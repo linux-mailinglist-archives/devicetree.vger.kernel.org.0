@@ -2,123 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A32039C7E0
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 13:15:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF96939C7EC
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 13:38:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230039AbhFELQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 07:16:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36912 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229892AbhFELQv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 07:16:51 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30269C061766
-        for <devicetree@vger.kernel.org>; Sat,  5 Jun 2021 04:15:03 -0700 (PDT)
-Received: from [192.168.1.101] (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        id S230188AbhFELkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 07:40:19 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:36192 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229924AbhFELkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 07:40:19 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622893111; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=I9mTsoSll4PU6WpX6xvp32UhW4o+I4xgxF3zmKj0BYo=; b=Od+kioVS/0nwM+qPCtm0vaNDN9XjL8M3NwXb5iwUI90OfGCqW/1VYVSHqEu5dzHTeq4MVOGs
+ Jp+IUs2wZF2+f3KDsVt1/0OWGL2zu6LJONEtH1St4zGniX8RxxhHxBxrtS3uwTYJeRRxvHcq
+ qMyzp75wpOX97byQvl4sD3Za95w=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 60bb62376ddc3305c492e3b5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 05 Jun 2021 11:38:31
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 082DEC433F1; Sat,  5 Jun 2021 11:38:30 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 7191E3E913;
-        Sat,  5 Jun 2021 13:15:00 +0200 (CEST)
-Subject: Re: [PATCH 1/2] dt-bindings: Add SONY Synaptics JDI panel
-To:     Rob Herring <robh@kernel.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210525113105.52990-1-konrad.dybcio@somainline.org>
- <20210604201841.GA3834184@robh.at.kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <f68df9d6-7d17-12d0-5d4f-686482b9185e@somainline.org>
-Date:   Sat, 5 Jun 2021 13:14:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 00B5DC433F1;
+        Sat,  5 Jun 2021 11:38:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 00B5DC433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v2] ASoC: qcom: Fix for DMA interrupt clear reg overwriting
+Date:   Sat,  5 Jun 2021 17:08:09 +0530
+Message-Id: <20210605113809.26584-1-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-In-Reply-To: <20210604201841.GA3834184@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The DMA interrupt clear register overwritten during
+simultaneous playback and capture in lpass platform
+interrupt handler. It's causing playback or capture stuck
+in similtaneous plaback on speaker and capture on dmic test.
+Update appropriate reg fields of corresponding channel instead
+of entire register write.
 
->> +
->> +maintainers:
->> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
->> +
->> +description: |+
-> Do you need the formatting? If not, drop '|+'.
+Fixes: commit c5c8635a04711 ("ASoC: qcom: Add LPASS platform driver")
 
-I'm not sure whether I do, so I guess dropping it is fine.
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+ sound/soc/qcom/lpass-platform.c | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
 
-
->> +  This panel seems to only be found in SONY Xperia
->> +  X, X Performance, X Compact, XZ and XZs
->> +  smartphones and we have no straightforward way of
->> +  actually getting the correct model number,
->> +  as no schematics are released publicly.
-> Odd choice of line break length. 80 char please.
-
-Right.
-
-
->> +
->> +  preset-gpio:
->> +    description: panel reset pin
-> What's reset-gpios then?
-
-reset-gpios is an overlook on my side :)
-
-
->> +
->> +  pvddio-gpio:
->> +    description: panel vddio pin
->> +
->> +  treset-gpio:
->> +    description: touch reset pin
-> Use '-gpios'
->
-> And need to define how many (maxItems: 1).
-
-Right.
-
-
-
->> +    #include <dt-bindings/gpio/gpio.h>
->> +
->> +    dsi {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +            panel: panel@0 {
->> +                    reg = <0>;
->> +
->> +                    pvddio-gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
->> +                    preset-gpio = <&tlmm 8 GPIO_ACTIVE_HIGH>;
->> +                    treset-gpio = <&tlmm 89 GPIO_ACTIVE_HIGH>;
->> +
->> +                    vddio-supply = <&pm8994_s4>;
->> +                    avdd-supply = <&pm8994_l2>;
->> +                    tvdd-supply = <&panel_tvdd>;
->> +
->> +                    backlight = <&pmi8994_wled>;
->> +
->> +                    port {
->> +                      panel_in: endpoint {
->> +                        remote-endpoint = <&dsi0_out>;
->> +                      };
-> Consistent indentation please. 4 spaces is good.
-
-Another mistake, ack.
-
-
-I'll send a v2 shortly.
-
-
-Konrad
+diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+index 0df9481ea4c6..f220a2739ac3 100644
+--- a/sound/soc/qcom/lpass-platform.c
++++ b/sound/soc/qcom/lpass-platform.c
+@@ -526,7 +526,7 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
+ 			return -EINVAL;
+ 		}
+ 
+-		ret = regmap_write(map, reg_irqclr, val_irqclr);
++		ret = regmap_update_bits(map, reg_irqclr, val_irqclr, val_irqclr);
+ 		if (ret) {
+ 			dev_err(soc_runtime->dev, "error writing to irqclear reg: %d\n", ret);
+ 			return ret;
+@@ -650,7 +650,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
+ 	struct lpass_variant *v = drvdata->variant;
+ 	irqreturn_t ret = IRQ_NONE;
+ 	int rv;
+-	unsigned int reg = 0, val = 0;
++	unsigned int reg, val, val_clr, val_mask;
+ 	struct regmap *map;
+ 	unsigned int dai_id = cpu_dai->driver->id;
+ 
+@@ -676,8 +676,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
+ 	return -EINVAL;
+ 	}
+ 	if (interrupts & LPAIF_IRQ_PER(chan)) {
+-
+-		rv = regmap_write(map, reg, LPAIF_IRQ_PER(chan) | val);
++		val_clr = LPAIF_IRQ_PER(chan) | val;
++		val_mask = LPAIF_IRQ_ALL(chan);
++		rv = regmap_update_bits(map, reg, val_mask, val_clr);
+ 		if (rv) {
+ 			dev_err(soc_runtime->dev,
+ 				"error writing to irqclear reg: %d\n", rv);
+@@ -688,7 +689,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
+ 	}
+ 
+ 	if (interrupts & LPAIF_IRQ_XRUN(chan)) {
+-		rv = regmap_write(map, reg, LPAIF_IRQ_XRUN(chan) | val);
++		val_clr = (LPAIF_IRQ_XRUN(chan) | val);
++		val_mask = LPAIF_IRQ_ALL(chan);
++		rv = regmap_update_bits(map, reg, val_mask, val_clr);
+ 		if (rv) {
+ 			dev_err(soc_runtime->dev,
+ 				"error writing to irqclear reg: %d\n", rv);
+@@ -700,7 +703,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
+ 	}
+ 
+ 	if (interrupts & LPAIF_IRQ_ERR(chan)) {
+-		rv = regmap_write(map, reg, LPAIF_IRQ_ERR(chan) | val);
++		val_clr = (LPAIF_IRQ_ERR(chan) | val);
++		val_mask = LPAIF_IRQ_ALL(chan);
++		rv = regmap_update_bits(map, reg, val_mask, val_clr);
+ 		if (rv) {
+ 			dev_err(soc_runtime->dev,
+ 				"error writing to irqclear reg: %d\n", rv);
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
