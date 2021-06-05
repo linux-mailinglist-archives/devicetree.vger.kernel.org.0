@@ -2,107 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 684E639C92E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 16:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 829E939C943
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 16:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbhFEOpR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 10:45:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53774 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229931AbhFEOpQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 10:45:16 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D68FC061766;
-        Sat,  5 Jun 2021 07:43:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=8qQ9hzjcEJ80hbpWFC2SC7brUy2Qgi3649QBkks8BM4=; b=su0ySHjb3zrgzbUhhNycDz7m6
-        58slOzwjBXxa38qG5lkXRv5SUpBcc8kxfVrHkgtom5X1t8vxk9d2bZxJTA4KRnwkwyBvEvike0GIZ
-        fFCJ25AMPSw6d3hVZ25L8fLg/jfWBY+ay1s1E2cYsJHEuGEVY6q7x+kqnt7VjjZd4yUOxyzzD0Xgs
-        FrDwnGA4ZF0kmKZHqxkz3SXlH9iE9zfMPbshNfwUpOk7N0sX4BNskofamX0at63vAFLTioA47Iyrc
-        soMuy3m0+ayYwde/VbJezOzONuxPxrN0Qv9DXZFJz8IgQbSGOWQaM7AxC+AMPMyJOsyXQqUOUoxgW
-        IEfcNrZdA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44738)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1lpXU4-0006l9-4M; Sat, 05 Jun 2021 15:41:08 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1lpXU1-00046j-Qa; Sat, 05 Jun 2021 15:41:05 +0100
-Date:   Sat, 5 Jun 2021 15:41:05 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Hauke Mehrtens <hauke@hauke-m.de>
-Cc:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Igal Liberman <Igal.Liberman@freescale.com>,
-        Shruti Kanetkar <Shruti@freescale.com>,
-        Emil Medve <Emilian.Medve@freescale.com>,
-        Scott Wood <oss@buserror.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>
-Subject: Re: What is inside GPON SFP module? (Was: Re: Unsupported
- phy-connection-type sgmii-2500 in arch/powerpc/boot/dts/fsl/t1023rdb.dts)
-Message-ID: <20210605144105.GZ30436@shell.armlinux.org.uk>
-References: <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
- <20210604192732.GW30436@shell.armlinux.org.uk>
- <AM6PR04MB39768A569CE3CC4EC61A8769EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
- <YLqLzOltcb6jan+B@lunn.ch>
- <AM6PR04MB39760B986E86BA9169DEECC5EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
- <20210604233455.fwcu2chlsed2gwmu@pali>
- <20210605003306.GY30436@shell.armlinux.org.uk>
- <20210605122639.4lpox5bfppoyynl3@skbuf>
- <20210605125004.v6njqob6prb7k75k@pali>
- <80966478-8a7c-b66f-50b7-e50fc00b1784@hauke-m.de>
+        id S229958AbhFEO6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 10:58:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46808 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229930AbhFEO6p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Jun 2021 10:58:45 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4EFF9613AC;
+        Sat,  5 Jun 2021 14:56:55 +0000 (UTC)
+Date:   Sat, 5 Jun 2021 15:58:42 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Liam Beguin <liambeguin@gmail.com>, peda@axentia.se,
+        lars@metafoo.de, pmeerw@pmeerw.net, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 7/9] dt-bindings: iio: afe: add binding for
+ temperature-sense-rtd
+Message-ID: <20210605155842.036edd94@jic23-huawei>
+In-Reply-To: <20210604211702.GA3925041@robh.at.kernel.org>
+References: <20210530005917.20953-1-liambeguin@gmail.com>
+        <20210530005917.20953-8-liambeguin@gmail.com>
+        <20210604211702.GA3925041@robh.at.kernel.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <80966478-8a7c-b66f-50b7-e50fc00b1784@hauke-m.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 05, 2021 at 03:04:55PM +0200, Hauke Mehrtens wrote:
-> Is there a list of things these GPON sticks running Linux should do better
-> in the future? For example what to avoid in the EEPROM emulation handling?
+On Fri, 4 Jun 2021 16:17:02 -0500
+Rob Herring <robh@kernel.org> wrote:
 
-That is just not worth persuing. Large ISP-companies who have plenty of
-buying power have tried to get issues with GPON sticks resolved, and the
-response from the GPON stick manufacturers has not been helpful. I had
-contracted with a national telco over this problem in recent years, and
-I know they tried their best.
+> On Sat, May 29, 2021 at 08:59:15PM -0400, Liam Beguin wrote:
+> > From: Liam Beguin <lvb@xiphos.com>
+> > 
+> > An ADC is often used to measure other quantities indirectly. This
+> > binding describe one cases, the measurement of a temperature through
+> > the voltage across an RTD resistor such as a PT1000.
+> > 
+> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > ---
+> >  .../iio/afe/temperature-sense-rtd.yaml        | 65 +++++++++++++++++++
+> >  MAINTAINERS                                   |  1 +
+> >  2 files changed, 66 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml b/Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
+> > new file mode 100644
+> > index 000000000000..4798eda6e533
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
+> > @@ -0,0 +1,65 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/afe/temperature-sense-rtd.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Temperature Sense RTD
+> > +
+> > +maintainers:
+> > +  - Liam Beguin <lvb@xiphos.com>
+> > +
+> > +description: |
+> > +  When an io-channel measures the output voltage across an RTD such as a  
+> 
+> What's an RTD? Not defined anywhere here.
+> 
+> > +  PT1000, the interesting measurement is almost always the corresponding
+> > +  temperature, not the voltage output. This binding describes such a circuit.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: temperature-sense-rtd
+> > +
+> > +  io-channels:
+> > +    maxItems: 1
+> > +    description: |
+> > +      Channel node of a voltage io-channel.
+> > +
+> > +  '#io-channel-cells':
+> > +    const: 1  
+> 
+> Doesn't this belong in the provider?
 
-If large ISP companies who are significant customers can't effect any
-fixes, you can be absolutely sure that the voluntary effort around the
-Linux kernel will have no effect.
+Potentially this could in turn also be a provider if wired up to iio-hwmon or
+similar.  Certainly an option for a temperature sensor.
 
-Yes, we list the modules that don't work well in the kernel source, and
-sometimes we name and shame them, but they don't care.
+> 
+> > +
+> > +  excitation-current-microamp:
+> > +    description: The current fed through the RTD sensor.
+> > +
+> > +  alpha-micro-ohms-per-ohm-celsius:
+> > +    description: |
+> > +      Linear approximation of the resistance versus temperature relationship
+> > +      between 0 and 100 degrees Celsius.
+> > +
+> > +      Pure platinum has an alpha of 3925. Industry standards such as IEC60751
+> > +      and ASTM E-1137 specify an alpha of 3850.  
+> 
+> Is there a max and min value?
+> 
+> > +
+> > +  r-naught-ohms:
+> > +    description: |
+> > +      Resistance of the sensor at 0 degrees Celsius.
+> > +      Common values are 100 for PT100 and 1000 for PT1000.  
+> 
+> max or min?
+> 
+> > +
+> > +additionalProperties: false  
+> 
+> blank line here.
+> 
+> > +required:
+> > +  - compatible
+> > +  - io-channels
+> > +  - excitation-current-microamp
+> > +  - alpha-micro-ohms-per-ohm-celsius
+> > +  - r-naught-ohms
+> > +
+> > +examples:
+> > +  - |
+> > +    pt1000_1: iio-rescale0 {
+> > +        compatible = "temperature-sense-rtd";
+> > +        #io-channel-cells = <1>;
+> > +        io-channels = <&temp_adc1 0>;
+> > +
+> > +        excitation-current-microamp = <1000>;
+> > +        alpha-micro-ohms-per-ohm-celsius = <3908>;
+> > +        r-naught-ohms = <1000>;
+> > +    };
+> > +
+> > +...
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index d3ab0ccc34ab..a7279af85adb 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -8721,6 +8721,7 @@ L:	linux-iio@vger.kernel.org
+> >  S:	Maintained
+> >  F:	Documentation/devicetree/bindings/iio/afe/current-sense-amplifier.yaml
+> >  F:	Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
+> > +F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
+> >  F:	Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+> >  F:	drivers/iio/afe/iio-rescale.c
+> >  
+> > -- 
+> > 2.30.1.489.g328c10930387  
 
-For example, there is are a few modules that take up to 60 seconds
-before they respond to any I2C requests, because the I2C is entirely
-emulated by the Linux kernel running on the stick, and it takes that
-long for the stick to boot. Will that ever get fixed? Probably not
-without a hardware redesign. Will that happen? I really doubt it, and
-eevn if it did it doesn't affect the millions of sticks already out
-there.
-
-IMHO trying to get these issues fixed is pie in the sky.
-
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
