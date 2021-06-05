@@ -2,1104 +2,383 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8FBF39C7F6
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 13:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 401C739C806
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 14:10:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbhFELw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 07:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44686 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbhFELw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 07:52:57 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92114C061766
-        for <devicetree@vger.kernel.org>; Sat,  5 Jun 2021 04:51:09 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <r.czerwinski@pengutronix.de>)
-        id 1lpUpP-00049f-Oy; Sat, 05 Jun 2021 13:50:59 +0200
-Message-ID: <d50ad9392f7719c01f752e73a00d4dc83b1a5c5c.camel@pengutronix.de>
-Subject: Re: [PATCH v3 3/3] iommu: dart: Add DART iommu driver
-From:   Rouven Czerwinski <r.czerwinski@pengutronix.de>
-To:     Sven Peter <sven@svenpeter.dev>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Arnd Bergmann <arnd@kernel.org>, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org,
-        Marc Zyngier <maz@kernel.org>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        iommu@lists.linux-foundation.org, Alexander Graf <graf@amazon.com>
-Date:   Sat, 05 Jun 2021 13:50:55 +0200
-In-Reply-To: <20210603085003.50465-4-sven@svenpeter.dev>
-References: <20210603085003.50465-1-sven@svenpeter.dev>
-         <20210603085003.50465-4-sven@svenpeter.dev>
-Organization: Pengutronix e.K.
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.1 
+        id S230039AbhFEMMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 08:12:36 -0400
+Received: from relay06.th.seeweb.it ([5.144.164.167]:44317 "EHLO
+        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229924AbhFEMMg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 08:12:36 -0400
+Received: from localhost.localdomain (bband-dyn9.178-41-130.t-com.sk [178.41.130.9])
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 924A73ECA8;
+        Sat,  5 Jun 2021 14:10:46 +0200 (CEST)
+From:   Martin Botka <martin.botka@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        konrad.dybcio@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Martin Botka <martin.botka@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/2] dt-bindings: clk: qcom: gcc-sm6125: Document SM6125 GCC driver
+Date:   Sat,  5 Jun 2021 14:10:37 +0200
+Message-Id: <20210605121040.282053-1-martin.botka@somainline.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: r.czerwinski@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sven,
+Document the newly added SM6125 GCC driver.
 
-just a small comment, see inline.
+Signed-off-by: Martin Botka <martin.botka@somainline.org>
+---
+Changes in V2:
+Add commit description.
+Changes in V3:
+Use rpmcc.h instead of rpmh.h
+Changes in V4:
+Fix indentation
+License
+ .../bindings/clock/qcom,gcc-sm6125.yaml       |  72 ++++++
+ include/dt-bindings/clock/qcom,gcc-sm6125.h   | 240 ++++++++++++++++++
+ 2 files changed, 312 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sm6125.h
 
-On Thu, 2021-06-03 at 10:50 +0200, Sven Peter wrote:
-> Apple's new SoCs use iommus for almost all peripherals. These Device
-> Address Resolution Tables must be setup before these peripherals can
-> act as DMA masters.
-> 
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> ---
->  MAINTAINERS                      |   1 +
->  drivers/iommu/Kconfig            |  15 +
->  drivers/iommu/Makefile           |   1 +
->  drivers/iommu/apple-dart-iommu.c | 966 +++++++++++++++++++++++++++++++
->  4 files changed, 983 insertions(+)
->  create mode 100644 drivers/iommu/apple-dart-iommu.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4373d63f9ccf..cb9200ad05fe 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1245,6 +1245,7 @@ M:	Sven Peter <sven@svenpeter.dev>
->  L:	iommu@lists.linux-foundation.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/iommu/apple,dart.yaml
-> +F:	drivers/iommu/apple-dart-iommu.c
->  
->  APPLE SMC DRIVER
->  M:	Henrik Rydberg <rydberg@bitmath.org>
-> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-> index 1f111b399bca..87882c628b46 100644
-> --- a/drivers/iommu/Kconfig
-> +++ b/drivers/iommu/Kconfig
-> @@ -249,6 +249,21 @@ config SPAPR_TCE_IOMMU
->  	  Enables bits of IOMMU API required by VFIO. The iommu_ops
->  	  is not implemented as it is not necessary for VFIO.
->  
-> +config IOMMU_APPLE_DART
-> +	tristate "Apple DART IOMMU Support"
-> +	depends on ARM64 || (COMPILE_TEST && !GENERIC_ATOMIC64)
-> +	select IOMMU_API
-> +	select IOMMU_IO_PGTABLE
-> +	select IOMMU_IO_PGTABLE_LPAE
-> +	default ARCH_APPLE
-> +	help
-> +	  Support for Apple DART (Device Address Resolution Table) IOMMUs
-> +	  found in Apple ARM SoCs like the M1.
-> +	  This IOMMU is required for most peripherals using DMA to access
-> +	  the main memory.
-> +
-> +	  Say Y here if you are using an Apple SoC with a DART IOMMU.
-> +
->  # ARM IOMMU support
->  config ARM_SMMU
->  	tristate "ARM Ltd. System MMU (SMMU) Support"
-> diff --git a/drivers/iommu/Makefile b/drivers/iommu/Makefile
-> index c0fb0ba88143..8c813f0ebc54 100644
-> --- a/drivers/iommu/Makefile
-> +++ b/drivers/iommu/Makefile
-> @@ -29,3 +29,4 @@ obj-$(CONFIG_HYPERV_IOMMU) += hyperv-iommu.o
->  obj-$(CONFIG_VIRTIO_IOMMU) += virtio-iommu.o
->  obj-$(CONFIG_IOMMU_SVA_LIB) += iommu-sva-lib.o io-pgfault.o
->  obj-$(CONFIG_SPRD_IOMMU) += sprd-iommu.o
-> +obj-$(CONFIG_IOMMU_APPLE_DART) += apple-dart-iommu.o
-> diff --git a/drivers/iommu/apple-dart-iommu.c b/drivers/iommu/apple-dart-iommu.c
-> new file mode 100644
-> index 000000000000..2777852498de
-> --- /dev/null
-> +++ b/drivers/iommu/apple-dart-iommu.c
-> @@ -0,0 +1,966 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Apple DART (Device Address Resolution Table) IOMMU driver
-> + *
-> + * Copyright (C) 2021 The Asahi Linux Contributors
-> + *
-> + * Based on arm/arm-smmu/arm-ssmu.c and arm/arm-smmu-v3/arm-smmu-v3.c
-> + *  Copyright (C) 2013 ARM Limited
-> + *  Copyright (C) 2015 ARM Limited
-> + * and on exynos-iommu.c
-> + *  Copyright (c) 2011,2016 Samsung Electronics Co., Ltd.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/dma-iommu.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/err.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/io-pgtable.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/list.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_iommu.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/ratelimit.h>
-> +#include <linux/slab.h>
-> +#include <linux/pci.h>
-> +
-> +#define DART_MAX_STREAMS 16
-> +#define DART_MAX_TTBR 4
-> +
-> +#define DART_STREAM_ALL 0xffff
-> +
-> +#define DART_PARAMS1 0x00
-> +#define DART_PARAMS_PAGE_SHIFT GENMASK(27, 24)
-> +
-> +#define DART_PARAMS2 0x04
-> +#define DART_PARAMS_BYPASS_SUPPORT BIT(0)
-> +
-> +#define DART_STREAM_COMMAND 0x20
-> +#define DART_STREAM_COMMAND_BUSY BIT(2)
-> +#define DART_STREAM_COMMAND_INVALIDATE BIT(20)
-> +
-> +#define DART_STREAM_SELECT 0x34
-> +
-> +#define DART_ERROR 0x40
-> +#define DART_ERROR_STREAM GENMASK(27, 24)
-> +#define DART_ERROR_CODE GENMASK(23, 0)
-> +#define DART_ERROR_FLAG BIT(31)
-> +#define DART_ERROR_READ_FAULT BIT(4)
-> +#define DART_ERROR_WRITE_FAULT BIT(3)
-> +#define DART_ERROR_NO_PTE BIT(2)
-> +#define DART_ERROR_NO_PMD BIT(1)
-> +#define DART_ERROR_NO_TTBR BIT(0)
-> +
-> +#define DART_CONFIG 0x60
-> +#define DART_CONFIG_LOCK BIT(15)
-> +
-> +#define DART_STREAM_COMMAND_BUSY_TIMEOUT 100
-> +
-> +#define DART_STREAM_REMAP 0x80
-> +
-> +#define DART_ERROR_ADDR_HI 0x54
-> +#define DART_ERROR_ADDR_LO 0x50
-> +
-> +#define DART_TCR(sid) (0x100 + 4 * (sid))
-> +#define DART_TCR_TRANSLATE_ENABLE BIT(7)
-> +#define DART_TCR_BYPASS0_ENABLE BIT(8)
-> +#define DART_TCR_BYPASS1_ENABLE BIT(12)
-> +
-> +#define DART_TTBR(sid, idx) (0x200 + 16 * (sid) + 4 * (idx))
-> +#define DART_TTBR_VALID BIT(31)
-> +#define DART_TTBR_SHIFT 12
-> +
-> +/*
-> + * Private structure associated with each DART device.
-> + *
-> + * @dev: device struct
-> + * @regs: mapped MMIO region
-> + * @irq: interrupt number, can be shared with other DARTs
-> + * @clks: clocks associated with this DART
-> + * @num_clks: number of @clks
-> + * @lock: lock for @used_sids and hardware operations involving this dart
-> + * @used_sids: bitmap of streams attached to a domain
-> + * @pgsize: pagesize supported by this DART
-> + * @supports_bypass: indicates if this DART supports bypass mode
-> + * @force_bypass: force bypass mode due to pagesize mismatch?
-> + * @iommu: iommu core device
-> + */
-> +struct apple_dart {
-> +	struct device *dev;
-> +
-> +	void __iomem *regs;
-> +
-> +	int irq;
-> +	struct clk_bulk_data *clks;
-> +	int num_clks;
-> +
-> +	spinlock_t lock;
-> +
-> +	u32 used_sids;
-> +	u32 pgsize;
-> +
-> +	u32 supports_bypass : 1;
-> +	u32 force_bypass : 1;
-> +	u64 force_bypass_offset;
-> +	u64 force_bypass_len;
-> +
-> +	struct iommu_device iommu;
-> +};
-> +
-> +/*
-> + * This structure is used to identify a single stream attached to a domain.
-> + * It's used as a list inside that domain to be able to attach multiple
-> + * streams to a single domain. Since multiple devices can use a single stream
-> + * it additionally keeps track of how many devices are represented by this
-> + * stream. Once that number reaches zero it is detached from the IOMMU domain
-> + * and all translations from this stream are disabled.
-> + *
-> + * @dart: DART instance to which this stream belongs
-> + * @sid: stream id within the DART instance
-> + * @num_devices: count of devices attached to this stream
-> + * @stream_head: list head for the next stream
-> + */
-> +struct apple_dart_stream {
-> +	struct apple_dart *dart;
-> +	u32 sid;
-> +
-> +	u32 num_devices;
-> +
-> +	struct list_head stream_head;
-> +};
-> +
-> +/*
-> + * This structure is attached to each iommu domain handled by a DART.
-> + * A single domain is used to represent a single virtual address spaces.
-> + * It is always allocated together with a page table.
-> + *
-> + * Streams are the smallest units the DART hardware can differentiate.
-> + * These are pointed to the page table of a domain whenever a device is
-> + * attached to it. A single stream can only be assigned to a single domain.
-> + *
-> + * Devices are assigned to at least a single and sometimes multiple individual
-> + * streams (using the iommus property in the device tree). Multiple devices
-> + * can theoretically be represented by the same stream, though this is usually
-> + * not the case.
-> + *
-> + * We only keep track of streams here and just count how many devices are
-> + * represented by each stream. When the last device is removed the whole stream
-> + * is removed from the domain.
-> + *
-> + * @dart: pointer to the DART instance
-> + * @pgtbl_ops: pagetable ops allocated by io-pgtable
-> + * @type: domain type IOMMU_DOMAIN_IDENTITY_{IDENTITY,DMA,UNMANAGED,BLOCKED}
-> + * @streams: list of streams attached to this domain
-> + * @lock: spinlock for operations involving the list of streams
-> + * @domain: core iommu domain pointer
-> + */
-> +struct apple_dart_domain {
-> +	struct apple_dart *dart;
-> +	struct io_pgtable_ops *pgtbl_ops;
-> +
-> +	unsigned int type;
-> +
-> +	struct list_head streams;
-> +
-> +	spinlock_t lock;
-> +
-> +	struct iommu_domain domain;
-> +};
-> +
-> +/*
-> + * This structure is attached to devices with dev_iommu_priv_set() on of_xlate
-> + * and contains a list of streams bound to this device as defined in the
-> + * device tree. Multiple DART instances can be attached to a single device
-> + * and each stream is identified by its stream id.
-> + * It's usually reference by a pointer called *cfg.
-> + *
-> + * A dynamic array instead of a linked list is used here since in almost
-> + * all cases a device will just be attached to a single stream and streams
-> + * are never removed after they have been added.
-> + *
-> + * @num_streams: number of streams attached
-> + * @streams: array of structs to identify attached streams and the device link
-> + *           to the iommu
-> + */
-> +struct apple_dart_master_cfg {
-> +	int num_streams;
-> +	struct {
-> +		struct apple_dart *dart;
-> +		u32 sid;
-> +
-> +		struct device_link *link;
-> +	} streams[];
-> +};
-> +
-> +static struct platform_driver apple_dart_driver;
-> +static const struct iommu_ops apple_dart_iommu_ops;
-> +static const struct iommu_flush_ops apple_dart_tlb_ops;
-> +
-> +static struct apple_dart_domain *to_dart_domain(struct iommu_domain *dom)
-> +{
-> +	return container_of(dom, struct apple_dart_domain, domain);
-> +}
-> +
-> +static void apple_dart_hw_enable_translation(struct apple_dart *dart, u16 sid)
-> +{
-> +	writel(DART_TCR_TRANSLATE_ENABLE, dart->regs + DART_TCR(sid));
-> +}
-> +
-> +static void apple_dart_hw_disable_dma(struct apple_dart *dart, u16 sid)
-> +{
-> +	writel(0, dart->regs + DART_TCR(sid));
-> +}
-> +
-> +static void apple_dart_hw_enable_bypass(struct apple_dart *dart, u16 sid)
-> +{
-> +	WARN_ON(!dart->supports_bypass);
-> +	writel(DART_TCR_BYPASS0_ENABLE | DART_TCR_BYPASS1_ENABLE,
-> +	       dart->regs + DART_TCR(sid));
-> +}
-> +
-> +static void apple_dart_hw_set_ttbr(struct apple_dart *dart, u16 sid, u16 idx,
-> +				   phys_addr_t paddr)
-> +{
-> +	writel(DART_TTBR_VALID | (paddr >> DART_TTBR_SHIFT),
-> +	       dart->regs + DART_TTBR(sid, idx));
-> +}
-> +
-> +static void apple_dart_hw_clear_ttbr(struct apple_dart *dart, u16 sid, u16 idx)
-> +{
-> +	writel(0, dart->regs + DART_TTBR(sid, idx));
-> +}
-> +
-> +static void apple_dart_hw_clear_all_ttbrs(struct apple_dart *dart, u16 sid)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < 4; ++i)
-> +		apple_dart_hw_clear_ttbr(dart, sid, i);
-> +}
-> +
-> +static int apple_dart_hw_stream_command(struct apple_dart *dart, u16 sid_bitmap,
-> +					u32 command)
-> +{
-> +	unsigned long flags;
-> +	int ret;
-> +	u32 command_reg;
-> +
-> +	spin_lock_irqsave(&dart->lock, flags);
-> +
-> +	writel(sid_bitmap, dart->regs + DART_STREAM_SELECT);
-> +	writel(command, dart->regs + DART_STREAM_COMMAND);
-> +
-> +	ret = readl_poll_timeout_atomic(
-> +		dart->regs + DART_STREAM_COMMAND, command_reg,
-> +		!(command_reg & DART_STREAM_COMMAND_BUSY), 1,
-> +		DART_STREAM_COMMAND_BUSY_TIMEOUT);
-> +
-> +	spin_unlock_irqrestore(&dart->lock, flags);
-> +
-> +	if (ret) {
-> +		dev_err(dart->dev,
-> +			"busy bit did not clear after command %x for streams %x\n",
-> +			command, sid_bitmap);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int apple_dart_hw_invalidate_tlb_global(struct apple_dart *dart)
-> +{
-> +	return apple_dart_hw_stream_command(dart, DART_STREAM_ALL,
-> +					    DART_STREAM_COMMAND_INVALIDATE);
-> +}
-> +
-> +static int apple_dart_hw_invalidate_tlb_stream(struct apple_dart *dart, u16 sid)
-> +{
-> +	return apple_dart_hw_stream_command(dart, 1 << sid,
-> +					    DART_STREAM_COMMAND_INVALIDATE);
-> +}
-> +
-> +static int apple_dart_hw_reset(struct apple_dart *dart)
-> +{
-> +	int sid;
-> +	u32 config;
-> +
-> +	config = readl(dart->regs + DART_CONFIG);
-> +	if (config & DART_CONFIG_LOCK) {
-> +		dev_err(dart->dev, "DART is locked down until reboot: %08x\n",
-> +			config);
-> +		return -EINVAL;
-> +	}
-> +
-> +	for (sid = 0; sid < DART_MAX_STREAMS; ++sid) {
-> +		apple_dart_hw_disable_dma(dart, sid);
-> +		apple_dart_hw_clear_all_ttbrs(dart, sid);
-> +		apple_dart_hw_enable_translation(dart, sid);
-> +	}
-> +
-> +	/* restore stream identity map */
-> +	writel(0x03020100, dart->regs + DART_STREAM_REMAP);
-> +	writel(0x07060504, dart->regs + DART_STREAM_REMAP + 4);
-> +	writel(0x0b0a0908, dart->regs + DART_STREAM_REMAP + 8);
-> +	writel(0x0f0e0d0c, dart->regs + DART_STREAM_REMAP + 12);
-> +
-> +	/* clear any pending errors before the interrupt is unmasked */
-> +	writel(readl(dart->regs + DART_ERROR), dart->regs + DART_ERROR);
-> +
-> +	return apple_dart_hw_invalidate_tlb_global(dart);
-> +}
-> +
-> +static void apple_dart_domain_flush_tlb(struct apple_dart_domain *domain)
-> +{
-> +	unsigned long flags;
-> +	struct apple_dart_stream *stream;
-> +	struct apple_dart *dart = domain->dart;
-> +
-> +	if (!dart)
-> +		return;
-> +
-> +	spin_lock_irqsave(&domain->lock, flags);
-> +	list_for_each_entry(stream, &domain->streams, stream_head) {
-> +		apple_dart_hw_invalidate_tlb_stream(stream->dart, stream->sid);
-> +	}
-> +	spin_unlock_irqrestore(&domain->lock, flags);
-> +}
-> +
-> +static void apple_dart_flush_iotlb_all(struct iommu_domain *domain)
-> +{
-> +	struct apple_dart_domain *dart_domain = to_dart_domain(domain);
-> +
-> +	apple_dart_domain_flush_tlb(dart_domain);
-> +}
-> +
-> +static void apple_dart_iotlb_sync(struct iommu_domain *domain,
-> +				  struct iommu_iotlb_gather *gather)
-> +{
-> +	struct apple_dart_domain *dart_domain = to_dart_domain(domain);
-> +
-> +	apple_dart_domain_flush_tlb(dart_domain);
-> +}
-> +
-> +static void apple_dart_iotlb_sync_map(struct iommu_domain *domain,
-> +				      unsigned long iova, size_t size)
-> +{
-> +	struct apple_dart_domain *dart_domain = to_dart_domain(domain);
-> +
-> +	apple_dart_domain_flush_tlb(dart_domain);
-> +}
-> +
-> +static void apple_dart_tlb_flush_all(void *cookie)
-> +{
-> +	struct apple_dart_domain *domain = cookie;
-> +
-> +	apple_dart_domain_flush_tlb(domain);
-> +}
-> +
-> +static void apple_dart_tlb_flush_walk(unsigned long iova, size_t size,
-> +				      size_t granule, void *cookie)
-> +{
-> +	struct apple_dart_domain *domain = cookie;
-> +
-> +	apple_dart_domain_flush_tlb(domain);
-> +}
-> +
-> +static const struct iommu_flush_ops apple_dart_tlb_ops = {
-> +	.tlb_flush_all = apple_dart_tlb_flush_all,
-> +	.tlb_flush_walk = apple_dart_tlb_flush_walk,
-> +	.tlb_add_page = NULL,
-> +};
-> +
-> +static phys_addr_t apple_dart_iova_to_phys(struct iommu_domain *domain,
-> +					   dma_addr_t iova)
-> +{
-> +	struct apple_dart_domain *dart_domain = to_dart_domain(domain);
-> +	struct io_pgtable_ops *ops = dart_domain->pgtbl_ops;
-> +
-> +	if (domain->type == IOMMU_DOMAIN_IDENTITY)
-> +		return iova;
-> +	if (!ops)
-> +		return -ENODEV;
-> +
-> +	return ops->iova_to_phys(ops, iova);
-> +}
-> +
-> +static int apple_dart_map(struct iommu_domain *domain, unsigned long iova,
-> +			  phys_addr_t paddr, size_t size, int prot, gfp_t gfp)
-> +{
-> +	struct apple_dart_domain *dart_domain = to_dart_domain(domain);
-> +	struct io_pgtable_ops *ops = dart_domain->pgtbl_ops;
-> +
-> +	if (!ops)
-> +		return -ENODEV;
-> +	if (prot & IOMMU_MMIO)
-> +		return -EINVAL;
-> +	if (prot & IOMMU_NOEXEC)
-> +		return -EINVAL;
-> +
-> +	return ops->map(ops, iova, paddr, size, prot, gfp);
-> +}
-> +
-> +static size_t apple_dart_unmap(struct iommu_domain *domain, unsigned long iova,
-> +			       size_t size, struct iommu_iotlb_gather *gather)
-> +{
-> +	struct apple_dart_domain *dart_domain = to_dart_domain(domain);
-> +	struct io_pgtable_ops *ops = dart_domain->pgtbl_ops;
-> +
-> +	if (!ops)
-> +		return 0;
-> +
-> +	return ops->unmap(ops, iova, size, gather);
-> +}
-> +
-> +static int apple_dart_domain_needs_pgtbl_ops(struct apple_dart *dart,
-> +					     struct iommu_domain *domain)
-> +{
-> +	if (domain->type == IOMMU_DOMAIN_DMA)
-> +		return 1;
-> +	if (domain->type == IOMMU_DOMAIN_UNMANAGED)
-> +		return 1;
-> +	if (!dart->supports_bypass && domain->type == IOMMU_DOMAIN_IDENTITY)
-> +		return 1;
-> +	return 0;
-> +}
-> +
-> +/* must be called with held dart_domain->lock */
-
-You can remove this comment, include lockdep.h and…
-
-> +static int apple_dart_finalize_domain(struct iommu_domain *domain)
-> +{
-> +	struct apple_dart_domain *dart_domain = to_dart_domain(domain);
-> +	struct apple_dart *dart = dart_domain->dart;
-> +	struct io_pgtable_cfg pgtbl_cfg;
-> +
-
-	lockdep_assert_held(&dart_domain->lock);
-
-A lockdep enabled kernel will warn if this function is called without
-the lock held, otherwise this gets optimized out. Same for the similar
-comments below.
-
-> +	if (dart_domain->pgtbl_ops)
-> +		return 0;
-> +	if (!apple_dart_domain_needs_pgtbl_ops(dart, domain))
-> +		return 0;
-> +
-> +	pgtbl_cfg = (struct io_pgtable_cfg){
-> +		.pgsize_bitmap = dart->pgsize,
-> +		.ias = 32,
-> +		.oas = 36,
-> +		.coherent_walk = 1,
-> +		.tlb = &apple_dart_tlb_ops,
-> +		.iommu_dev = dart->dev,
-> +	};
-> +
-> +	dart_domain->pgtbl_ops =
-> +		alloc_io_pgtable_ops(ARM_APPLE_DART, &pgtbl_cfg, domain);
-> +	if (!dart_domain->pgtbl_ops)
-> +		return -ENOMEM;
-> +
-> +	domain->pgsize_bitmap = pgtbl_cfg.pgsize_bitmap;
-> +	domain->geometry.aperture_start = 0;
-> +	domain->geometry.aperture_end = DMA_BIT_MASK(32);
-> +	domain->geometry.force_aperture = true;
-> +
-> +	// HACK: create a static pagetable to fake bypass mode
-> +	if (domain->type == IOMMU_DOMAIN_IDENTITY) {
-> +		u64 addr;
-> +
-> +		for (addr = 0; addr < dart->force_bypass_len;
-> +		     addr += dart->pgsize)
-> +			dart_domain->pgtbl_ops->map(
-> +				dart_domain->pgtbl_ops, addr,
-> +				dart->force_bypass_offset + addr, dart->pgsize,
-> +				IOMMU_READ | IOMMU_WRITE, GFP_ATOMIC);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void apple_dart_stream_setup_ttbrs(struct apple_dart_domain *domain,
-> +					  struct apple_dart *dart, u32 sid)
-> +{
-> +	int i;
-> +	struct io_pgtable_cfg *pgtbl_cfg =
-> +		&io_pgtable_ops_to_pgtable(domain->pgtbl_ops)->cfg;
-> +
-> +	for (i = 0; i < pgtbl_cfg->apple_dart_cfg.n_ttbrs; ++i)
-> +		apple_dart_hw_set_ttbr(dart, sid, i,
-> +				       pgtbl_cfg->apple_dart_cfg.ttbr[i]);
-> +	for (; i < DART_MAX_TTBR; ++i)
-> +		apple_dart_hw_clear_ttbr(dart, sid, i);
-> +}
-> +
-> +/* must be called with held domain->lock */
-> +static int apple_dart_attach_stream(struct apple_dart_domain *domain,
-> +				    struct apple_dart *dart, u32 sid)
-> +{
-> +	unsigned long flags;
-> +	struct apple_dart_stream *stream;
-> +	int ret;
-> +
-> +	if (WARN_ON(dart->force_bypass &&
-> +		    domain->type != IOMMU_DOMAIN_IDENTITY))
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * we can't mix and match DARTs that support bypass mode with those who don't
-> +	 * because the iova space in fake bypass mode generally has an offset
-> +	 */
-> +	if (WARN_ON(domain->type == IOMMU_DOMAIN_IDENTITY &&
-> +		    (domain->dart->supports_bypass != dart->supports_bypass)))
-> +		return -EINVAL;
-> +
-> +	list_for_each_entry(stream, &domain->streams, stream_head) {
-> +		if (stream->dart == dart && stream->sid == sid) {
-> +			stream->num_devices++;
-> +			return 0;
-> +		}
-> +	}
-> +
-> +	spin_lock_irqsave(&dart->lock, flags);
-> +
-> +	if (WARN_ON(dart->used_sids & BIT(sid))) {
-> +		ret = -EINVAL;
-> +		goto error;
-> +	}
-> +
-> +	stream = kzalloc(sizeof(*stream), GFP_ATOMIC);
-> +	if (!stream) {
-> +		ret = -ENOMEM;
-> +		goto error;
-> +	}
-> +
-> +	stream->dart = dart;
-> +	stream->sid = sid;
-> +	stream->num_devices = 1;
-> +	list_add(&stream->stream_head, &domain->streams);
-> +
-> +	dart->used_sids |= BIT(sid);
-> +	spin_unlock_irqrestore(&dart->lock, flags);
-> +
-> +	apple_dart_hw_clear_all_ttbrs(stream->dart, stream->sid);
-> +
-> +	switch (domain->type) {
-> +	case IOMMU_DOMAIN_IDENTITY:
-> +		if (stream->dart->supports_bypass) {
-> +			apple_dart_hw_enable_bypass(stream->dart, stream->sid);
-> +		} else {
-> +			apple_dart_stream_setup_ttbrs(domain, stream->dart,
-> +						      stream->sid);
-> +			apple_dart_hw_enable_translation(stream->dart,
-> +							 stream->sid);
-> +			apple_dart_hw_invalidate_tlb_stream(stream->dart,
-> +							    stream->sid);
-> +		}
-> +		break;
-> +	case IOMMU_DOMAIN_BLOCKED:
-> +		apple_dart_hw_disable_dma(stream->dart, stream->sid);
-> +		break;
-> +	case IOMMU_DOMAIN_UNMANAGED:
-> +	case IOMMU_DOMAIN_DMA:
-> +		apple_dart_stream_setup_ttbrs(domain, stream->dart,
-> +					      stream->sid);
-> +		apple_dart_hw_enable_translation(stream->dart, stream->sid);
-> +		apple_dart_hw_invalidate_tlb_stream(stream->dart, stream->sid);
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +
-> +error:
-> +	spin_unlock_irqrestore(&dart->lock, flags);
-> +	return ret;
-> +}
-> +
-> +static void apple_dart_disable_stream(struct apple_dart *dart, u32 sid)
-> +{
-> +	unsigned long flags;
-> +
-> +	apple_dart_hw_disable_dma(dart, sid);
-> +	apple_dart_hw_clear_all_ttbrs(dart, sid);
-> +	apple_dart_hw_invalidate_tlb_stream(dart, sid);
-> +
-> +	spin_lock_irqsave(&dart->lock, flags);
-> +	dart->used_sids &= ~BIT(sid);
-> +	spin_unlock_irqrestore(&dart->lock, flags);
-> +}
-> +
-> +/* must be called with held domain->lock */
-> +static void apple_dart_detach_stream(struct apple_dart_domain *domain,
-> +				     struct apple_dart *dart, u32 sid)
-> +{
-> +	struct apple_dart_stream *stream;
-> +
-> +	list_for_each_entry(stream, &domain->streams, stream_head) {
-> +		if (stream->dart == dart && stream->sid == sid) {
-> +			stream->num_devices--;
-> +
-> +			if (stream->num_devices == 0) {
-> +				apple_dart_disable_stream(dart, sid);
-> +				list_del(&stream->stream_head);
-> +				kfree(stream);
-> +			}
-> +			return;
-> +		}
-> +	}
-> +}
-> +
-> +static int apple_dart_attach_dev(struct iommu_domain *domain,
-> +				 struct device *dev)
-> +{
-> +	int ret;
-> +	int i, j;
-> +	unsigned long flags;
-> +	struct apple_dart_master_cfg *cfg = dev_iommu_priv_get(dev);
-> +	struct apple_dart_domain *dart_domain = to_dart_domain(domain);
-> +	struct apple_dart *dart = cfg->streams[0].dart;
-> +
-> +	spin_lock_irqsave(&dart_domain->lock, flags);
-> +
-> +	if (!dart_domain->dart)
-> +		dart_domain->dart = dart;
-> +
-> +	if (WARN_ON(dart->force_bypass &&
-> +		    dart_domain->type != IOMMU_DOMAIN_IDENTITY)) {
-> +		dev_warn(
-> +			dev,
-> +			"IOMMU must be in bypass mode but trying to attach to translated domain.\n");
-> +		ret = -EINVAL;
-> +		goto out;
-> +	}
-> +
-> +	ret = apple_dart_finalize_domain(domain);
-> +	if (ret)
-> +		goto out;
-> +
-> +	for (i = 0; i < cfg->num_streams; ++i) {
-> +		ret = apple_dart_attach_stream(
-> +			dart_domain, cfg->streams[i].dart, cfg->streams[i].sid);
-> +		if (ret) {
-> +			/* try to undo what we did before returning */
-> +			for (j = 0; j < i; ++j)
-> +				apple_dart_detach_stream(dart_domain,
-> +							 cfg->streams[j].dart,
-> +							 cfg->streams[j].sid);
-> +
-> +			goto out;
-> +		}
-> +	}
-> +
-> +	ret = 0;
-> +
-> +out:
-> +	spin_unlock_irqrestore(&dart_domain->lock, flags);
-> +	return ret;
-> +}
-> +
-> +static void apple_dart_detach_dev(struct iommu_domain *domain,
-> +				  struct device *dev)
-> +{
-> +	int i;
-> +	unsigned long flags;
-> +	struct apple_dart_master_cfg *cfg = dev_iommu_priv_get(dev);
-> +	struct apple_dart_domain *dart_domain = to_dart_domain(domain);
-> +
-> +	spin_lock_irqsave(&dart_domain->lock, flags);
-> +
-> +	for (i = 0; i < cfg->num_streams; ++i)
-> +		apple_dart_detach_stream(dart_domain, cfg->streams[i].dart,
-> +					 cfg->streams[i].sid);
-> +
-> +	spin_unlock_irqrestore(&dart_domain->lock, flags);
-> +}
-> +
-> +static struct iommu_device *apple_dart_probe_device(struct device *dev)
-> +{
-> +	struct apple_dart_master_cfg *cfg = dev_iommu_priv_get(dev);
-> +	int i;
-> +
-> +	if (!cfg)
-> +		return ERR_PTR(-ENODEV);
-> +
-> +	for (i = 0; i < cfg->num_streams; ++i) {
-> +		cfg->streams[i].link =
-> +			device_link_add(dev, cfg->streams[i].dart->dev,
-> +					DL_FLAG_PM_RUNTIME | DL_FLAG_STATELESS);
-> +	}
-> +
-> +	return &cfg->streams[0].dart->iommu;
-> +}
-> +
-> +static void apple_dart_release_device(struct device *dev)
-> +{
-> +	struct apple_dart_master_cfg *cfg = dev_iommu_priv_get(dev);
-> +	int i;
-> +
-> +	if (!cfg)
-> +		return;
-> +
-> +	for (i = 0; i < cfg->num_streams; ++i)
-> +		device_link_del(cfg->streams[i].link);
-> +
-> +	dev_iommu_priv_set(dev, NULL);
-> +	kfree(cfg);
-> +}
-> +
-> +static struct iommu_domain *apple_dart_domain_alloc(unsigned int type)
-> +{
-> +	struct apple_dart_domain *dart_domain;
-> +
-> +	if (type != IOMMU_DOMAIN_DMA && type != IOMMU_DOMAIN_UNMANAGED &&
-> +	    type != IOMMU_DOMAIN_IDENTITY && type != IOMMU_DOMAIN_BLOCKED)
-> +		return NULL;
-> +
-> +	dart_domain = kzalloc(sizeof(*dart_domain), GFP_KERNEL);
-> +	if (!dart_domain)
-> +		return NULL;
-> +
-> +	INIT_LIST_HEAD(&dart_domain->streams);
-> +	spin_lock_init(&dart_domain->lock);
-> +	iommu_get_dma_cookie(&dart_domain->domain);
-> +	dart_domain->type = type;
-> +
-> +	return &dart_domain->domain;
-> +}
-> +
-> +static void apple_dart_domain_free(struct iommu_domain *domain)
-> +{
-> +	struct apple_dart_domain *dart_domain = to_dart_domain(domain);
-> +
-> +	WARN_ON(!list_empty(&dart_domain->streams));
-> +
-> +	kfree(dart_domain);
-> +}
-> +
-> +static int apple_dart_of_xlate(struct device *dev, struct of_phandle_args *args)
-> +{
-> +	struct platform_device *iommu_pdev = of_find_device_by_node(args->np);
-> +	struct apple_dart_master_cfg *cfg = dev_iommu_priv_get(dev);
-> +	unsigned int num_streams = cfg ? cfg->num_streams : 0;
-> +	struct apple_dart_master_cfg *cfg_new;
-> +	struct apple_dart *dart = platform_get_drvdata(iommu_pdev);
-> +
-> +	if (args->args_count != 1)
-> +		return -EINVAL;
-> +
-> +	cfg_new = krealloc(cfg, struct_size(cfg, streams, num_streams + 1),
-> +			   GFP_KERNEL);
-> +	if (!cfg_new)
-> +		return -ENOMEM;
-> +
-> +	cfg = cfg_new;
-> +	dev_iommu_priv_set(dev, cfg);
-> +
-> +	cfg->num_streams = num_streams;
-> +	cfg->streams[cfg->num_streams].dart = dart;
-> +	cfg->streams[cfg->num_streams].sid = args->args[0];
-> +	cfg->num_streams++;
-> +
-> +	return 0;
-> +}
-> +
-> +static struct iommu_group *apple_dart_device_group(struct device *dev)
-> +{
-> +#ifdef CONFIG_PCI
-> +	struct iommu_group *group;
-> +
-> +	if (dev_is_pci(dev))
-> +		group = pci_device_group(dev);
-> +	else
-> +		group = generic_device_group(dev);
-> +
-> +	return group;
-> +#else
-> +	return generic_device_group(dev);
-> +#endif
-> +}
-> +
-> +static const struct iommu_ops apple_dart_iommu_ops = {
-> +	.domain_alloc = apple_dart_domain_alloc,
-> +	.domain_free = apple_dart_domain_free,
-> +	.attach_dev = apple_dart_attach_dev,
-> +	.detach_dev = apple_dart_detach_dev,
-> +	.map = apple_dart_map,
-> +	.unmap = apple_dart_unmap,
-> +	.flush_iotlb_all = apple_dart_flush_iotlb_all,
-> +	.iotlb_sync = apple_dart_iotlb_sync,
-> +	.iotlb_sync_map = apple_dart_iotlb_sync_map,
-> +	.iova_to_phys = apple_dart_iova_to_phys,
-> +	.probe_device = apple_dart_probe_device,
-> +	.release_device = apple_dart_release_device,
-> +	.device_group = apple_dart_device_group,
-> +	.of_xlate = apple_dart_of_xlate,
-> +	.pgsize_bitmap = -1UL, /* Restricted during dart probe */
-> +};
-> +
-> +static irqreturn_t apple_dart_irq(int irq, void *dev)
-> +{
-> +	struct apple_dart *dart = dev;
-> +	static DEFINE_RATELIMIT_STATE(rs, DEFAULT_RATELIMIT_INTERVAL,
-> +				      DEFAULT_RATELIMIT_BURST);
-> +	const char *fault_name = NULL;
-> +	u32 error = readl(dart->regs + DART_ERROR);
-> +	u32 error_code = FIELD_GET(DART_ERROR_CODE, error);
-> +	u32 addr_lo = readl(dart->regs + DART_ERROR_ADDR_LO);
-> +	u32 addr_hi = readl(dart->regs + DART_ERROR_ADDR_HI);
-> +	u64 addr = addr_lo | (((u64)addr_hi) << 32);
-> +	u8 stream_idx = FIELD_GET(DART_ERROR_STREAM, error);
-> +
-> +	if (!(error & DART_ERROR_FLAG))
-> +		return IRQ_NONE;
-> +
-> +	if (error_code & DART_ERROR_READ_FAULT)
-> +		fault_name = "READ FAULT";
-> +	else if (error_code & DART_ERROR_WRITE_FAULT)
-> +		fault_name = "WRITE FAULT";
-> +	else if (error_code & DART_ERROR_NO_PTE)
-> +		fault_name = "NO PTE FOR IOVA";
-> +	else if (error_code & DART_ERROR_NO_PMD)
-> +		fault_name = "NO PMD FOR IOVA";
-> +	else if (error_code & DART_ERROR_NO_TTBR)
-> +		fault_name = "NO TTBR FOR IOVA";
-> +
-> +	if (WARN_ON(fault_name == NULL))
-> +		fault_name = "unknown";
-> +
-> +	if (__ratelimit(&rs)) {
-> +		dev_err(dart->dev,
-> +			"translation fault: status:0x%x stream:%d code:0x%x (%s) at 0x%llx",
-> +			error, stream_idx, error_code, fault_name, addr);
-> +	}
-> +
-> +	writel(error, dart->regs + DART_ERROR);
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int apple_dart_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
-> +	u32 dart_params[2];
-> +	struct resource *res;
-> +	struct apple_dart *dart;
-> +	struct device *dev = &pdev->dev;
-> +
-> +	dart = devm_kzalloc(dev, sizeof(*dart), GFP_KERNEL);
-> +	if (!dart)
-> +		return -ENOMEM;
-> +
-> +	dart->dev = dev;
-> +	spin_lock_init(&dart->lock);
-> +
-> +	if (pdev->num_resources < 1)
-> +		return -ENODEV;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (resource_size(res) < 0x4000) {
-> +		dev_err(dev, "MMIO region too small (%pr)\n", res);
-> +		return -EINVAL;
-> +	}
-> +
-> +	dart->regs = devm_ioremap_resource(dev, res);
-> +	if (IS_ERR(dart->regs))
-> +		return PTR_ERR(dart->regs);
-> +
-> +	ret = devm_clk_bulk_get_all(dev, &dart->clks);
-> +	if (ret < 0)
-> +		return ret;
-> +	dart->num_clks = ret;
-> +
-> +	ret = clk_bulk_prepare_enable(dart->num_clks, dart->clks);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = apple_dart_hw_reset(dart);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dart_params[0] = readl(dart->regs + DART_PARAMS1);
-> +	dart_params[1] = readl(dart->regs + DART_PARAMS2);
-> +	dart->pgsize = 1 << FIELD_GET(DART_PARAMS_PAGE_SHIFT, dart_params[0]);
-> +	dart->supports_bypass = dart_params[1] & DART_PARAMS_BYPASS_SUPPORT;
-> +	dart->force_bypass = dart->pgsize > PAGE_SIZE;
-> +
-> +	// HACK: these shouldn't be hardcoded here but come from the device tree
-> +	dart->force_bypass_offset = 0x0800000000;
-> +	dart->force_bypass_len = 0x0100000000;
-> +
-> +	dart->irq = platform_get_irq(pdev, 0);
-> +	if (dart->irq < 0)
-> +		return -ENODEV;
-> +
-> +	ret = devm_request_irq(dart->dev, dart->irq, apple_dart_irq,
-> +			       IRQF_SHARED, "apple-dart fault handler", dart);
-> +	if (ret)
-> +		return ret;
-> +
-> +	platform_set_drvdata(pdev, dart);
-> +
-> +	ret = iommu_device_sysfs_add(&dart->iommu, dev, NULL, "apple-dart.%s",
-> +				     dev_name(&pdev->dev));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iommu_device_register(&dart->iommu, &apple_dart_iommu_ops, dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (dev->bus->iommu_ops != &apple_dart_iommu_ops) {
-> +		ret = bus_set_iommu(dev->bus, &apple_dart_iommu_ops);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +#ifdef CONFIG_PCI
-> +	if (dev->bus->iommu_ops != pci_bus_type.iommu_ops) {
-> +		ret = bus_set_iommu(&pci_bus_type, &apple_dart_iommu_ops);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +#endif
-> +
-> +	dev_info(
-> +		&pdev->dev,
-> +		"DART [pagesize %x, bypass support: %d, bypass forced: %d] initialized\n",
-> +		dart->pgsize, dart->supports_bypass, dart->force_bypass);
-> +	return 0;
-> +}
-> +
-> +static int apple_dart_remove(struct platform_device *pdev)
-> +{
-> +	struct apple_dart *dart = platform_get_drvdata(pdev);
-> +
-> +	devm_free_irq(dart->dev, dart->irq, dart);
-> +
-> +	iommu_device_unregister(&dart->iommu);
-> +	iommu_device_sysfs_remove(&dart->iommu);
-> +
-> +	clk_bulk_disable(dart->num_clks, dart->clks);
-> +	clk_bulk_unprepare(dart->num_clks, dart->clks);
-> +
-> +	return 0;
-> +}
-> +
-> +static void apple_dart_shutdown(struct platform_device *pdev)
-> +{
-> +	apple_dart_remove(pdev);
-> +}
-> +
-> +static const struct of_device_id apple_dart_of_match[] = {
-> +	{ .compatible = "apple,t8103-dart", .data = NULL },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, apple_dart_of_match);
-> +
-> +static struct platform_driver apple_dart_driver = {
-> +	.driver	= {
-> +		.name			= "apple-dart",
-> +		.of_match_table		= apple_dart_of_match,
-> +	},
-> +	.probe	= apple_dart_probe,
-> +	.remove	= apple_dart_remove,
-> +	.shutdown = apple_dart_shutdown,
-> +};
-> +module_platform_driver(apple_dart_driver);
-> +
-> +MODULE_DESCRIPTION("IOMMU API for Apple's DART");
-> +MODULE_AUTHOR("Sven Peter <sven@svenpeter.dev>");
-> +MODULE_LICENSE("GPL v2");
-
-Regards,
-Rouven
-
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
+new file mode 100644
+index 000000000000..ab12b391effc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sm6125.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/qcom,gcc-sm6125.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Global Clock & Reset Controller Binding for SM6125
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@somainline.org>
++
++description: |
++  Qualcomm global clock control module which supports the clocks, resets and
++  power domains on SM6125.
++
++  See also:
++  - dt-bindings/clock/qcom,gcc-sm6125.h
++
++properties:
++  compatible:
++    const: qcom,gcc-sm6125
++
++  clocks:
++    items:
++      - description: Board XO source
++      - description: Sleep clock source
++
++  clock-names:
++    items:
++      - const: bi_tcxo
++      - const: sleep_clk
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  protected-clocks:
++    description:
++      Protected clock specifier list as per common clock binding.
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - reg
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,rpmcc.h>
++    clock-controller@1400000 {
++        compatible = "qcom,gcc-sm6125";
++        reg = <0x01400000 0x1f0000>;
++        #clock-cells = <1>;
++        #reset-cells = <1>;
++        #power-domain-cells = <1>;
++        clock-names = "bi_tcxo", "sleep_clk";
++        clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&sleep_clk>;
++    };
++...
+diff --git a/include/dt-bindings/clock/qcom,gcc-sm6125.h b/include/dt-bindings/clock/qcom,gcc-sm6125.h
+new file mode 100644
+index 000000000000..08ea18086824
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,gcc-sm6125.h
+@@ -0,0 +1,240 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_GCC_SM6125_H
++#define _DT_BINDINGS_CLK_QCOM_GCC_SM6125_H
++
++#define GPLL0_OUT_AUX2				0
++#define GPLL0_OUT_MAIN				1
++#define GPLL6_OUT_MAIN				2
++#define GPLL7_OUT_MAIN				3
++#define GPLL8_OUT_MAIN				4
++#define GPLL9_OUT_MAIN				5
++#define GPLL0_OUT_EARLY				6
++#define GPLL3_OUT_EARLY				7
++#define GPLL4_OUT_MAIN				8
++#define GPLL5_OUT_MAIN				9
++#define GPLL6_OUT_EARLY				10
++#define GPLL7_OUT_EARLY				11
++#define GPLL8_OUT_EARLY				12
++#define GPLL9_OUT_EARLY				13
++#define GCC_AHB2PHY_CSI_CLK			14
++#define GCC_AHB2PHY_USB_CLK			15
++#define GCC_APC_VS_CLK				16
++#define GCC_BOOT_ROM_AHB_CLK		17
++#define GCC_CAMERA_AHB_CLK			18
++#define GCC_CAMERA_XO_CLK			19
++#define GCC_CAMSS_AHB_CLK_SRC		20
++#define GCC_CAMSS_CCI_AHB_CLK		21
++#define GCC_CAMSS_CCI_CLK			22
++#define GCC_CAMSS_CCI_CLK_SRC			23
++#define GCC_CAMSS_CPHY_CSID0_CLK		24
++#define GCC_CAMSS_CPHY_CSID1_CLK		25
++#define GCC_CAMSS_CPHY_CSID2_CLK		26
++#define GCC_CAMSS_CPHY_CSID3_CLK		27
++#define GCC_CAMSS_CPP_AHB_CLK			28
++#define GCC_CAMSS_CPP_AXI_CLK			29
++#define GCC_CAMSS_CPP_CLK			30
++#define GCC_CAMSS_CPP_CLK_SRC			31
++#define GCC_CAMSS_CPP_VBIF_AHB_CLK		32
++#define GCC_CAMSS_CSI0_AHB_CLK			33
++#define GCC_CAMSS_CSI0_CLK				34
++#define GCC_CAMSS_CSI0_CLK_SRC			35
++#define GCC_CAMSS_CSI0PHYTIMER_CLK		36
++#define GCC_CAMSS_CSI0PHYTIMER_CLK_SRC	37
++#define GCC_CAMSS_CSI0PIX_CLK			38
++#define GCC_CAMSS_CSI0RDI_CLK			39
++#define GCC_CAMSS_CSI1_AHB_CLK			40
++#define GCC_CAMSS_CSI1_CLK				41
++#define GCC_CAMSS_CSI1_CLK_SRC			42
++#define GCC_CAMSS_CSI1PHYTIMER_CLK		43
++#define GCC_CAMSS_CSI1PHYTIMER_CLK_SRC	44
++#define GCC_CAMSS_CSI1PIX_CLK			45
++#define GCC_CAMSS_CSI1RDI_CLK			46
++#define GCC_CAMSS_CSI2_AHB_CLK			47
++#define GCC_CAMSS_CSI2_CLK				48
++#define GCC_CAMSS_CSI2_CLK_SRC			49
++#define GCC_CAMSS_CSI2PHYTIMER_CLK		50
++#define GCC_CAMSS_CSI2PHYTIMER_CLK_SRC	51
++#define GCC_CAMSS_CSI2PIX_CLK			52
++#define GCC_CAMSS_CSI2RDI_CLK			53
++#define GCC_CAMSS_CSI3_AHB_CLK			54
++#define GCC_CAMSS_CSI3_CLK				55
++#define GCC_CAMSS_CSI3_CLK_SRC			56
++#define GCC_CAMSS_CSI3PIX_CLK			57
++#define GCC_CAMSS_CSI3RDI_CLK			58
++#define GCC_CAMSS_CSI_VFE0_CLK			59
++#define GCC_CAMSS_CSI_VFE1_CLK			60
++#define GCC_CAMSS_CSIPHY0_CLK			61
++#define GCC_CAMSS_CSIPHY1_CLK			62
++#define GCC_CAMSS_CSIPHY2_CLK			63
++#define GCC_CAMSS_CSIPHY_CLK_SRC		64
++#define GCC_CAMSS_GP0_CLK				65
++#define GCC_CAMSS_GP0_CLK_SRC			66
++#define GCC_CAMSS_GP1_CLK				67
++#define GCC_CAMSS_GP1_CLK_SRC			68
++#define GCC_CAMSS_ISPIF_AHB_CLK			69
++#define GCC_CAMSS_JPEG_AHB_CLK			70
++#define GCC_CAMSS_JPEG_AXI_CLK			71
++#define GCC_CAMSS_JPEG_CLK				72
++#define GCC_CAMSS_JPEG_CLK_SRC			73
++#define GCC_CAMSS_MCLK0_CLK				74
++#define GCC_CAMSS_MCLK0_CLK_SRC			75
++#define GCC_CAMSS_MCLK1_CLK				76
++#define GCC_CAMSS_MCLK1_CLK_SRC			77
++#define GCC_CAMSS_MCLK2_CLK				78
++#define GCC_CAMSS_MCLK2_CLK_SRC			79
++#define GCC_CAMSS_MCLK3_CLK				80
++#define GCC_CAMSS_MCLK3_CLK_SRC			81
++#define GCC_CAMSS_MICRO_AHB_CLK			82
++#define GCC_CAMSS_THROTTLE_NRT_AXI_CLK	83
++#define GCC_CAMSS_THROTTLE_RT_AXI_CLK	84
++#define GCC_CAMSS_TOP_AHB_CLK			85
++#define GCC_CAMSS_VFE0_AHB_CLK			86
++#define GCC_CAMSS_VFE0_CLK				87
++#define GCC_CAMSS_VFE0_CLK_SRC			88
++#define GCC_CAMSS_VFE0_STREAM_CLK		89
++#define GCC_CAMSS_VFE1_AHB_CLK			90
++#define GCC_CAMSS_VFE1_CLK				91
++#define GCC_CAMSS_VFE1_CLK_SRC			92
++#define GCC_CAMSS_VFE1_STREAM_CLK		93
++#define GCC_CAMSS_VFE_TSCTR_CLK			94
++#define GCC_CAMSS_VFE_VBIF_AHB_CLK		95
++#define GCC_CAMSS_VFE_VBIF_AXI_CLK		96
++#define GCC_CE1_AHB_CLK					97
++#define GCC_CE1_AXI_CLK					98
++#define GCC_CE1_CLK						99
++#define GCC_CFG_NOC_USB3_PRIM_AXI_CLK	100
++#define GCC_CPUSS_GNOC_CLK				101
++#define GCC_DISP_AHB_CLK				102
++#define GCC_DISP_GPLL0_DIV_CLK_SRC		103
++#define GCC_DISP_HF_AXI_CLK				104
++#define GCC_DISP_THROTTLE_CORE_CLK		105
++#define GCC_DISP_XO_CLK					106
++#define GCC_GP1_CLK						107
++#define GCC_GP1_CLK_SRC					108
++#define GCC_GP2_CLK						109
++#define GCC_GP2_CLK_SRC					110
++#define GCC_GP3_CLK						111
++#define GCC_GP3_CLK_SRC					112
++#define GCC_GPU_CFG_AHB_CLK				113
++#define GCC_GPU_GPLL0_CLK_SRC			114
++#define GCC_GPU_GPLL0_DIV_CLK_SRC		115
++#define GCC_GPU_MEMNOC_GFX_CLK			116
++#define GCC_GPU_SNOC_DVM_GFX_CLK		117
++#define GCC_GPU_THROTTLE_CORE_CLK		118
++#define GCC_GPU_THROTTLE_XO_CLK			119
++#define GCC_MSS_VS_CLK					120
++#define GCC_PDM2_CLK					121
++#define GCC_PDM2_CLK_SRC				122
++#define GCC_PDM_AHB_CLK					123
++#define GCC_PDM_XO4_CLK					124
++#define GCC_PRNG_AHB_CLK				125
++#define GCC_QMIP_CAMERA_NRT_AHB_CLK		126
++#define GCC_QMIP_CAMERA_RT_AHB_CLK		127
++#define GCC_QMIP_DISP_AHB_CLK			128
++#define GCC_QMIP_GPU_CFG_AHB_CLK		129
++#define GCC_QMIP_VIDEO_VCODEC_AHB_CLK	130
++#define GCC_QUPV3_WRAP0_CORE_2X_CLK		131
++#define GCC_QUPV3_WRAP0_CORE_CLK		132
++#define GCC_QUPV3_WRAP0_S0_CLK			133
++#define GCC_QUPV3_WRAP0_S0_CLK_SRC		134
++#define GCC_QUPV3_WRAP0_S1_CLK			135
++#define GCC_QUPV3_WRAP0_S1_CLK_SRC		136
++#define GCC_QUPV3_WRAP0_S2_CLK			137
++#define GCC_QUPV3_WRAP0_S2_CLK_SRC		138
++#define GCC_QUPV3_WRAP0_S3_CLK			139
++#define GCC_QUPV3_WRAP0_S3_CLK_SRC		140
++#define GCC_QUPV3_WRAP0_S4_CLK			141
++#define GCC_QUPV3_WRAP0_S4_CLK_SRC		142
++#define GCC_QUPV3_WRAP0_S5_CLK			143
++#define GCC_QUPV3_WRAP0_S5_CLK_SRC		144
++#define GCC_QUPV3_WRAP1_CORE_2X_CLK		145
++#define GCC_QUPV3_WRAP1_CORE_CLK		146
++#define GCC_QUPV3_WRAP1_S0_CLK			147
++#define GCC_QUPV3_WRAP1_S0_CLK_SRC		148
++#define GCC_QUPV3_WRAP1_S1_CLK			149
++#define GCC_QUPV3_WRAP1_S1_CLK_SRC		150
++#define GCC_QUPV3_WRAP1_S2_CLK			151
++#define GCC_QUPV3_WRAP1_S2_CLK_SRC		152
++#define GCC_QUPV3_WRAP1_S3_CLK			153
++#define GCC_QUPV3_WRAP1_S3_CLK_SRC		154
++#define GCC_QUPV3_WRAP1_S4_CLK			155
++#define GCC_QUPV3_WRAP1_S4_CLK_SRC		156
++#define GCC_QUPV3_WRAP1_S5_CLK			157
++#define GCC_QUPV3_WRAP1_S5_CLK_SRC		158
++#define GCC_QUPV3_WRAP_0_M_AHB_CLK		159
++#define GCC_QUPV3_WRAP_0_S_AHB_CLK		160
++#define GCC_QUPV3_WRAP_1_M_AHB_CLK		161
++#define GCC_QUPV3_WRAP_1_S_AHB_CLK		162
++#define GCC_SDCC1_AHB_CLK				163
++#define GCC_SDCC1_APPS_CLK				164
++#define GCC_SDCC1_APPS_CLK_SRC			165
++#define GCC_SDCC1_ICE_CORE_CLK			166
++#define GCC_SDCC1_ICE_CORE_CLK_SRC		167
++#define GCC_SDCC2_AHB_CLK				168
++#define GCC_SDCC2_APPS_CLK				169
++#define GCC_SDCC2_APPS_CLK_SRC			170
++#define GCC_SYS_NOC_CPUSS_AHB_CLK		171
++#define GCC_SYS_NOC_UFS_PHY_AXI_CLK		172
++#define GCC_SYS_NOC_USB3_PRIM_AXI_CLK	173
++#define GCC_UFS_PHY_AHB_CLK				174
++#define GCC_UFS_PHY_AXI_CLK				175
++#define GCC_UFS_PHY_AXI_CLK_SRC			176
++#define GCC_UFS_PHY_ICE_CORE_CLK		177
++#define GCC_UFS_PHY_ICE_CORE_CLK_SRC	178
++#define GCC_UFS_PHY_PHY_AUX_CLK			179
++#define GCC_UFS_PHY_PHY_AUX_CLK_SRC		180
++#define GCC_UFS_PHY_RX_SYMBOL_0_CLK		181
++#define GCC_UFS_PHY_TX_SYMBOL_0_CLK		182
++#define GCC_UFS_PHY_UNIPRO_CORE_CLK		183
++#define GCC_UFS_PHY_UNIPRO_CORE_CLK_SRC	184
++#define GCC_USB30_PRIM_MASTER_CLK		185
++#define GCC_USB30_PRIM_MASTER_CLK_SRC	186
++#define GCC_USB30_PRIM_MOCK_UTMI_CLK	187
++#define GCC_USB30_PRIM_MOCK_UTMI_CLK_SRC	188
++#define GCC_USB30_PRIM_SLEEP_CLK		189
++#define GCC_USB3_PRIM_PHY_AUX_CLK_SRC	190
++#define GCC_USB3_PRIM_PHY_COM_AUX_CLK	191
++#define GCC_USB3_PRIM_PHY_PIPE_CLK		192
++#define GCC_VDDA_VS_CLK					193
++#define GCC_VDDCX_VS_CLK				194
++#define GCC_VDDMX_VS_CLK				195
++#define GCC_VIDEO_AHB_CLK				196
++#define GCC_VIDEO_AXI0_CLK				197
++#define GCC_VIDEO_THROTTLE_CORE_CLK		198
++#define GCC_VIDEO_XO_CLK				199
++#define GCC_VS_CTRL_AHB_CLK				200
++#define GCC_VS_CTRL_CLK					201
++#define GCC_VS_CTRL_CLK_SRC				202
++#define GCC_VSENSOR_CLK_SRC				203
++#define GCC_WCSS_VS_CLK					204
++#define GCC_USB3_PRIM_CLKREF_CLK		205
++#define GCC_SYS_NOC_COMPUTE_SF_AXI_CLK	206
++#define GCC_BIMC_GPU_AXI_CLK			207
++#define GCC_UFS_MEM_CLKREF_CLK			208
++
++/* GDSCs */
++#define USB30_PRIM_GDSC					0
++#define UFS_PHY_GDSC					1
++#define CAMSS_VFE0_GDSC					2
++#define CAMSS_VFE1_GDSC					3
++#define CAMSS_TOP_GDSC					4
++#define CAM_CPP_GDSC					5
++#define HLOS1_VOTE_TURING_MMU_TBU1_GDSC	6
++#define HLOS1_VOTE_MM_SNOC_MMU_TBU_RT_GDSC	7
++#define HLOS1_VOTE_MM_SNOC_MMU_TBU_NRT_GDSC	8
++#define HLOS1_VOTE_TURING_MMU_TBU0_GDSC	9
++
++#define GCC_QUSB2PHY_PRIM_BCR			0
++#define GCC_QUSB2PHY_SEC_BCR			1
++#define GCC_UFS_PHY_BCR				2
++#define GCC_USB30_PRIM_BCR			3
++#define GCC_USB_PHY_CFG_AHB2PHY_BCR		4
++#define GCC_USB3_PHY_PRIM_SP0_BCR		5
++#define GCC_USB3PHY_PHY_PRIM_SP0_BCR		6
++#define GCC_CAMSS_MICRO_BCR			7
++
++#endif
+-- 
+2.31.1
 
