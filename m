@@ -2,78 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3353C39C735
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 11:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6EBA39C773
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 12:31:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbhFEJ7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 05:59:31 -0400
-Received: from mail-ed1-f53.google.com ([209.85.208.53]:42585 "EHLO
-        mail-ed1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbhFEJ7b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 05:59:31 -0400
-Received: by mail-ed1-f53.google.com with SMTP id i13so13991782edb.9;
-        Sat, 05 Jun 2021 02:57:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yR3o22V6B0YXuWlVxnHv20sYJqOuoilM3F9ooehFaN8=;
-        b=EYM0+9+EVxjeZI77wQ3QZeqEL3vpuxoA7Kmxpdduc8F15lOc2egU5DruViDoQhX9Q0
-         Msx8YfbAJbyN8Wr+XFF17O7NI1VGHVmJNaEDTlqkNimbvNUeN3arSXR/ScDGd0Fdcj6E
-         LydkZyD4e57n5PVw47rQiEYl6rvmkVZg6q6lZx4r9gSZG3HZA1A/IqQk3xhwbrAdlLHf
-         28UdImJw9FU8OLXvROGH9X6PEY/n/W8Fu2kPSb/zzJ1phR0CRKSSIKhTn+uMXsvAy9Jm
-         wfDztuXz5fFTCFVnr4VinUBiV3kXw4gI7bm3aUnVquCeznzBVR9JDqOvDVfapV0DjyrW
-         138A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yR3o22V6B0YXuWlVxnHv20sYJqOuoilM3F9ooehFaN8=;
-        b=ZzkUVWIiijFJg0QWSzft4Qgpm3UAnV0OMWE8/Z00edzYe/q7aPl46Wh4xgHJp2vXtG
-         lul8UqzcZFvM714GRR8tQDyAfD6HukfSm94i8auHUEL6SqOvnWQZ+ehEwY154DeET7+2
-         Y4vLL1mK1bPz7xQ5GBTRl2Gul7KB3BYB8FG9nqUVJT8tjDVnVwYRaxC3gFO8eM5I/CEl
-         28uDxg6F0dpQgHgaKimMPcaRGfD0H76K+umkKypFnBSvfKN8dfwlkuWz1J3Vg2LnYup4
-         XQzVhNX1EMa2WREYNAD61nqkD3V2qE//UiSmgXXeY8cRGI39wjgL9t3ayBARvyZuB9Uw
-         7EDA==
-X-Gm-Message-State: AOAM530UN6VNOGZ9m0/rSc/IaGg1Ie3Po1z49nL0Y7r2SLmcBTmIdJWN
-        n4kqKQ6EsDJm7vg4cgDZjZmu2EJI7awA5YDpOLU=
-X-Google-Smtp-Source: ABdhPJzEOzc3gAXmpYvwyNJL0PnwFKClIXK7fupCEPfpbH3SEgvLCg0oYWO6q/WonnS3sKiStvCiL7rWuQRaJeiAsfM=
-X-Received: by 2002:aa7:dd14:: with SMTP id i20mr9658485edv.110.1622886988140;
- Sat, 05 Jun 2021 02:56:28 -0700 (PDT)
+        id S230153AbhFEKdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 06:33:33 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:27099 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230129AbhFEKdc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Jun 2021 06:33:32 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1622889104; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
+ Subject: Sender; bh=ibQev18T9V9fkVqRTgCod7cdmgA96I6rIWCsroTRfWI=; b=q2fcjChzC2jP33eUdh+Hxgt+zasYlUYoCCV5aZMwOtmX+csZ/3VPHOzYKS46VXLKssIUKeb4
+ XDg8YMklrYMNO0MH3ydVfXHrwpSDd+l7SLWY+aquiIG11Mj2E6fmC/vFU8EYE5A/fPNqLDCC
+ 7RoCEatfqRREFV9H10W+RVnyuyM=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 60bb527bf726fa41889cfaa1 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 05 Jun 2021 10:31:23
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B2347C43145; Sat,  5 Jun 2021 10:31:22 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.5 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.212.90] (unknown [157.48.166.146])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id AE40FC433F1;
+        Sat,  5 Jun 2021 10:31:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org AE40FC433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+Subject: Re: [PATCH] ASoC: qcom: Fix for DMA interrupt clear reg overwriting
+To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
+        bjorn.andersson@linaro.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, judyhsiao@chromium.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
+        robh+dt@kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com
+References: <20210603050530.15898-1-srivasam@codeaurora.org>
+ <CAE-0n52CyZkRDForR7LumXL7Tcr=48UV7T-wxirMsxk7AJJsmg@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <bea7d3f4-057a-7070-f493-3e625273212c@codeaurora.org>
+Date:   Sat, 5 Jun 2021 16:01:10 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-References: <20210605062313.418343-1-xieqinick@gmail.com> <20210605062313.418343-5-xieqinick@gmail.com>
-In-Reply-To: <20210605062313.418343-5-xieqinick@gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 5 Jun 2021 11:56:17 +0200
-Message-ID: <CAFBinCC=3=tQJo9jSLo-edjgZ5tuNEkjXA=xpiZXi6eXi4YfZA@mail.gmail.com>
-Subject: Re: [PATCH 4/6] arm64: dts: meson: vim3: add i2c aliases
-To:     xieqinick@gmail.com
-Cc:     robh+dt@kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
-        khilman@baylibre.com, jbrunet@baylibre.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        nick@khadas.com, artem@khadas.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAE-0n52CyZkRDForR7LumXL7Tcr=48UV7T-wxirMsxk7AJJsmg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nick,
+Hi Stephen,
 
-thank you for this patch!
+Thanks for Your Time for review comments!!!
 
-On Sat, Jun 5, 2021 at 8:24 AM <xieqinick@gmail.com> wrote:
+On 6/3/2021 11:47 AM, Stephen Boyd wrote:
+> Quoting Srinivasa Rao Mandadapu (2021-06-02 22:05:30)
+>> This patch fixes the DMA interrupt registers overwriting
+>   $ git grep "This patch" -- Documentation/process
+Okay will change description.
 >
-> From: Nick Xie <nick@khadas.com>
+>> issue in lpass platform interrupt handler.
+> Can you describe the issue more?
+Sure. will elaborate more.
 >
-> Add i2c aliases for Khadas VIM3/3L.
-commit ab547c4fb39fe1 ("arm64: dts: amlogic: Assign a fixed index to
-mmc devices") added the aliases for the MMC controllers to the
-soc.dtsi
-I would like to hear your opinion as well as the opinions from other
-Amlogic reviewers whether the same makes sense for the I2C controllers
-as well
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> ---
+> Any Fixes tag?
+>
+>>   sound/soc/qcom/lpass-platform.c | 17 +++++++++++------
+>>   1 file changed, 11 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+>> index 0df9481ea4c6..e02caa121fa4 100644
+>> --- a/sound/soc/qcom/lpass-platform.c
+>> +++ b/sound/soc/qcom/lpass-platform.c
+>> @@ -650,7 +650,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
+>>          struct lpass_variant *v = drvdata->variant;
+>>          irqreturn_t ret = IRQ_NONE;
+>>          int rv;
+>> -       unsigned int reg = 0, val = 0;
+>> +       unsigned int reg = 0, val = 0, val_clr = 0, val_mask = 0;
+> Why assign to 0 and then overwrite it?
+Okay. Will remove initialization.
+>
+>>          struct regmap *map;
+>>          unsigned int dai_id = cpu_dai->driver->id;
+>>
+>> @@ -676,8 +676,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
+>>          return -EINVAL;
+>>          }
+>>          if (interrupts & LPAIF_IRQ_PER(chan)) {
+>> -
+>> -               rv = regmap_write(map, reg, LPAIF_IRQ_PER(chan) | val);
+>> +               val_clr = (LPAIF_IRQ_PER(chan) | val);
+> Is the extra parenthesis useful?
+Not exactly. Will remove it.
+>
+>> +               val_mask = LPAIF_IRQ_ALL(chan);
+>> +               rv = regmap_update_bits(map, reg, val_mask, val_clr);
+>>                  if (rv) {
+>>                          dev_err(soc_runtime->dev,
+>>                                  "error writing to irqclear reg: %d\n", rv);
 
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-Best regards,
-Martin
