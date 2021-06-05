@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D4F39C72E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 11:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3353C39C735
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 11:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229902AbhFEJzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 05:55:48 -0400
-Received: from mail-ed1-f50.google.com ([209.85.208.50]:40678 "EHLO
-        mail-ed1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229892AbhFEJzs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 05:55:48 -0400
-Received: by mail-ed1-f50.google.com with SMTP id t3so13965346edc.7;
-        Sat, 05 Jun 2021 02:53:46 -0700 (PDT)
+        id S229986AbhFEJ7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 05:59:31 -0400
+Received: from mail-ed1-f53.google.com ([209.85.208.53]:42585 "EHLO
+        mail-ed1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229924AbhFEJ7b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 05:59:31 -0400
+Received: by mail-ed1-f53.google.com with SMTP id i13so13991782edb.9;
+        Sat, 05 Jun 2021 02:57:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+0AfCe+AnGuvkOIER3nDjEqdQTuYBtNrjSVqb94ABWM=;
-        b=BqMzg/S9cDMDkZYiXVBCycIeo7ddgthjkqzFqqWYzcAo+SrHpYLe2KcATTz99bai+t
-         29vE9+raYz3cyLM2j/QOj30ytpEcwzN4OFxwuIX8EudPjQ3hJQ1lseT9ItFYQHuKnMjO
-         /vTc9AD2NrG4NmG9FFa1+FboycLSHbaAGEZqCW7ge5NB+S0oWNxOouoY0cxP6NoTI5j1
-         aqC1vskHtDQX5MPgRTQbJ7tH/Kddc0qvghBw8tIJwe0zX10QURhPsv6UF53Lw1haMbFt
-         8aVC6xQjpPunsQ2DRuk/B2ilH/A4gg/E0TeDrcu88FpWGl114h4jIPyObZgHYBdARym7
-         e9nw==
+        bh=yR3o22V6B0YXuWlVxnHv20sYJqOuoilM3F9ooehFaN8=;
+        b=EYM0+9+EVxjeZI77wQ3QZeqEL3vpuxoA7Kmxpdduc8F15lOc2egU5DruViDoQhX9Q0
+         Msx8YfbAJbyN8Wr+XFF17O7NI1VGHVmJNaEDTlqkNimbvNUeN3arSXR/ScDGd0Fdcj6E
+         LydkZyD4e57n5PVw47rQiEYl6rvmkVZg6q6lZx4r9gSZG3HZA1A/IqQk3xhwbrAdlLHf
+         28UdImJw9FU8OLXvROGH9X6PEY/n/W8Fu2kPSb/zzJ1phR0CRKSSIKhTn+uMXsvAy9Jm
+         wfDztuXz5fFTCFVnr4VinUBiV3kXw4gI7bm3aUnVquCeznzBVR9JDqOvDVfapV0DjyrW
+         138A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+0AfCe+AnGuvkOIER3nDjEqdQTuYBtNrjSVqb94ABWM=;
-        b=rV2wwc/emQIe6nekyhk1WwMEhUp+dYFgbs8zBimdUuMp9pWiVUgMQo/eTmei1Hou/L
-         Vn7Zvx2HU83zt/WlHy9zD/BCTXILV30rMsxRWovyWuHB4KzYRe326Ml3JolTRwsM00/u
-         2KbksziDO5h3Kz3UKN7JCA/c+4or5Tiz41uuPxt7+11rAnUEiIjsZsH9Qylaxg4OC0Yg
-         +1u+hEsi8OLw1/mqXZNWDsHGlFgwlRRSMOg53g+AJtn29Y04xF1RxnNWRxX1F1/OgK1s
-         py5ZzW808QrRP2CzE26P7zMcqAJZPfNqzT3wEfx/erWaxK36wWE9HPSNDoyYr7iPF3O4
-         HuuQ==
-X-Gm-Message-State: AOAM531gtQaz8rbbpVn4Zpas+o0/nepzkaKD8wfB5zxGIn1sjHX1ezRH
-        1cUp7LYqUVGZOIQ/RwNKj6tt3PTitbn7c2uOKpA=
-X-Google-Smtp-Source: ABdhPJyKglIG9Jms2+CsJNo7kBtqYbUy0dCCoVZc7b/D2JH8g0ejV5RMArrBSbT3dFZIxWaS4XrRXrGh1wxvv00JeL8=
-X-Received: by 2002:aa7:cfc7:: with SMTP id r7mr6251662edy.13.1622886765949;
- Sat, 05 Jun 2021 02:52:45 -0700 (PDT)
+        bh=yR3o22V6B0YXuWlVxnHv20sYJqOuoilM3F9ooehFaN8=;
+        b=ZzkUVWIiijFJg0QWSzft4Qgpm3UAnV0OMWE8/Z00edzYe/q7aPl46Wh4xgHJp2vXtG
+         lul8UqzcZFvM714GRR8tQDyAfD6HukfSm94i8auHUEL6SqOvnWQZ+ehEwY154DeET7+2
+         Y4vLL1mK1bPz7xQ5GBTRl2Gul7KB3BYB8FG9nqUVJT8tjDVnVwYRaxC3gFO8eM5I/CEl
+         28uDxg6F0dpQgHgaKimMPcaRGfD0H76K+umkKypFnBSvfKN8dfwlkuWz1J3Vg2LnYup4
+         XQzVhNX1EMa2WREYNAD61nqkD3V2qE//UiSmgXXeY8cRGI39wjgL9t3ayBARvyZuB9Uw
+         7EDA==
+X-Gm-Message-State: AOAM530UN6VNOGZ9m0/rSc/IaGg1Ie3Po1z49nL0Y7r2SLmcBTmIdJWN
+        n4kqKQ6EsDJm7vg4cgDZjZmu2EJI7awA5YDpOLU=
+X-Google-Smtp-Source: ABdhPJzEOzc3gAXmpYvwyNJL0PnwFKClIXK7fupCEPfpbH3SEgvLCg0oYWO6q/WonnS3sKiStvCiL7rWuQRaJeiAsfM=
+X-Received: by 2002:aa7:dd14:: with SMTP id i20mr9658485edv.110.1622886988140;
+ Sat, 05 Jun 2021 02:56:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210605062313.418343-1-xieqinick@gmail.com> <20210605062313.418343-2-xieqinick@gmail.com>
-In-Reply-To: <20210605062313.418343-2-xieqinick@gmail.com>
+References: <20210605062313.418343-1-xieqinick@gmail.com> <20210605062313.418343-5-xieqinick@gmail.com>
+In-Reply-To: <20210605062313.418343-5-xieqinick@gmail.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 5 Jun 2021 11:52:35 +0200
-Message-ID: <CAFBinCCsix8MJKzsapmNA-Fe9wKk7xZMsLj9bGWZ_GskiqZLoA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] arm64: dts: meson: vim3: add serial aliases
+Date:   Sat, 5 Jun 2021 11:56:17 +0200
+Message-ID: <CAFBinCC=3=tQJo9jSLo-edjgZ5tuNEkjXA=xpiZXi6eXi4YfZA@mail.gmail.com>
+Subject: Re: [PATCH 4/6] arm64: dts: meson: vim3: add i2c aliases
 To:     xieqinick@gmail.com
 Cc:     robh+dt@kernel.org, Neil Armstrong <narmstrong@baylibre.com>,
         khilman@baylibre.com, jbrunet@baylibre.com,
@@ -58,34 +58,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 5, 2021 at 8:23 AM <xieqinick@gmail.com> wrote:
+Hi Nick,
+
+thank you for this patch!
+
+On Sat, Jun 5, 2021 at 8:24 AM <xieqinick@gmail.com> wrote:
 >
 > From: Nick Xie <nick@khadas.com>
 >
-> Add serial aliases for Khadas VIM3/3L.
->
-> Signed-off-by: Nick Xie <nick@khadas.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> index 66d67524b031..4686ea7abe0b 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> @@ -13,6 +13,10 @@
->  / {
->         aliases {
->                 serial0 = &uart_AO;
-> +               serial1 = &uart_A;
-uart_A is used for the Bluetooth module so with mainline Linux it will
-not get a /dev/ttyAMLx character device
-For that reason we are not adding an alias for uart_A when a new
-board.dts is added
-
-I suggest that you also drop this alias here because it is not visible
-to the user ever
-Same applies to VIM1 and VIM2 as well
+> Add i2c aliases for Khadas VIM3/3L.
+commit ab547c4fb39fe1 ("arm64: dts: amlogic: Assign a fixed index to
+mmc devices") added the aliases for the MMC controllers to the
+soc.dtsi
+I would like to hear your opinion as well as the opinions from other
+Amlogic reviewers whether the same makes sense for the I2C controllers
+as well
 
 
 Best regards,
