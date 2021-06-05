@@ -2,138 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B446639C3F0
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 01:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1611D39C449
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 02:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229873AbhFDXgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Jun 2021 19:36:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50574 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229853AbhFDXgp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 4 Jun 2021 19:36:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B6811613E4;
-        Fri,  4 Jun 2021 23:34:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1622849699;
-        bh=jM7rZDdzkxe5DiHvBKflOK29UC9MYAjpGh0KBIWYRWM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nFuRTot1LUNfkVqIDdei20X/6pmgsRnGZi+fRleW5D9Ly5qxmXMiIXrPeiA+DVUwP
-         PIiiTEF6fVDJ8G+fM9lbDLSxuk7hYHPPXyudtFYAA8kfBTAAVqQuvJ953POVZXB4gl
-         qN2+i79ffBvclN8tW+9AoWT4gWPHcBP2nbNEs1I9RmXyfa3Fe+IKq+wvVBYnvX2/Rg
-         nb9kibRlGtbChRBKOc+iyCAPamkYDdTOANC34ZjuZbK/tl49KkcVHuj7E9h1nPzFP3
-         dXQnOaZoN9aVPD4+0bi5l2ncqxD64yghLq3D00tPtdF1uNmAndNujOAUCOHTTYHBs+
-         +ZYpL3Fg6asGA==
-Received: by pali.im (Postfix)
-        id 86D84990; Sat,  5 Jun 2021 01:34:55 +0200 (CEST)
-Date:   Sat, 5 Jun 2021 01:34:55 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Madalin Bucur <madalin.bucur@nxp.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Russell King <linux@armlinux.org.uk>,
-        Igal Liberman <Igal.Liberman@freescale.com>,
-        Shruti Kanetkar <Shruti@freescale.com>,
-        Emil Medve <Emilian.Medve@freescale.com>,
-        Scott Wood <oss@buserror.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>
-Subject: Re: Unsupported phy-connection-type sgmii-2500 in
- arch/powerpc/boot/dts/fsl/t1023rdb.dts
-Message-ID: <20210604233455.fwcu2chlsed2gwmu@pali>
-References: <20210603143453.if7hgifupx5k433b@pali>
- <YLjxX/XPDoRRIvYf@lunn.ch>
- <20210603194853.ngz4jdso3kfncnj4@pali>
- <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
- <20210604192732.GW30436@shell.armlinux.org.uk>
- <AM6PR04MB39768A569CE3CC4EC61A8769EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
- <YLqLzOltcb6jan+B@lunn.ch>
- <AM6PR04MB39760B986E86BA9169DEECC5EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+        id S230255AbhFEAWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Jun 2021 20:22:06 -0400
+Received: from mail-vs1-f48.google.com ([209.85.217.48]:42757 "EHLO
+        mail-vs1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229847AbhFEAWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Jun 2021 20:22:06 -0400
+Received: by mail-vs1-f48.google.com with SMTP id l25so5742624vsb.9
+        for <devicetree@vger.kernel.org>; Fri, 04 Jun 2021 17:20:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=0vbLUf0aNq8CIlyYhcbgGxZ5n0sokzL7OV8oejCBB1U=;
+        b=PQhd6CGBXas8S6LrCWN1Mv/pDpT54JLFlmSt6rq8sKmCieoY6ky3jUrUuW5mQg/uRj
+         z0MK9fYQN4t8wWf/3Bdcyej3r2el350DzmlRPaBxe5pAMBE2LEXYFaukyTPs1wJ2yStJ
+         pI6mdKKmjVUnyJxBe5VXAdHMfT/wRxKfNnt88YdxFB9ZNhDZTVO+R/TjHLRwVWmEyfUK
+         OPWMDWSU9ZxCAAJKhqBNvemnw4ZdDSrJmnutiVI8cDBVY/PBmvV3ylHDXEy2IgWwAiTz
+         tUWaz5ZgFeuryWw7iRKDm7X9/RiVCDnmKWLDTa2Obltn8Rq9dq2jElzznbF521DkBO0I
+         pn5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=0vbLUf0aNq8CIlyYhcbgGxZ5n0sokzL7OV8oejCBB1U=;
+        b=SgXJQk7zlMu8wkW7G6hho0Gar7E0KnPXiZfK3ccmQOJLSKDNoHzYrQR9pZl8TzXI79
+         JSNSsoAiBANet1lP+e8Eb4uJyMcNwZPk/bh9d7w5gvslhevB+kLonLi5EKoQ+5I3IXqy
+         GmnMxLKmfMRyg0P2d/qfy23QSsrnvdIsHBEuTjw/NlkN211UMeA92Aa92lVobxQ0n44h
+         vN9bhQu7OMP1JqwxfCWKqtf2n6L4ZizMKUQGyWRq4fvrJdU436+ecYAmy1nPDJrgzPr0
+         bllcgceYjnJjZqieYAYRvyAeQvxZ5m1rwLdOwfEK6eyF4X2mhm1Zcu+ybcjaGPP5YDBP
+         QHFA==
+X-Gm-Message-State: AOAM531g9L1N4vLIXr0TIMgAanjlakhwKvBuUDgdc7wUUC1k0SyO+jZ5
+        DHLx8GdVOh4Jwc3+aqTwSTvhQw4cteW2AvaJ78oJ
+X-Google-Smtp-Source: ABdhPJyAhM89H3/fMRDHSTdzSwklriEUs7T0qCo1JfZoLXrSmnztk2LrCj1qh2SHlaIPh0UN51aHI+TEdtcX/EyAiys=
+X-Received: by 2002:a05:6102:512:: with SMTP id l18mr4668087vsa.33.1622852345212;
+ Fri, 04 Jun 2021 17:19:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AM6PR04MB39760B986E86BA9169DEECC5EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
-User-Agent: NeoMutt/20180716
+References: <20210531052142.695430-1-iwamatsu@nigauri.org> <20210604213326.GA3957165@robh.at.kernel.org>
+In-Reply-To: <20210604213326.GA3957165@robh.at.kernel.org>
+From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Date:   Sat, 5 Jun 2021 09:18:39 +0900
+Message-ID: <CABMQnV+ZjcrzZEZpaBBvO+VW8kV_2qWXwNPE7gYCdfcqa-UFkA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: spi: xilinx: convert to yaml
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Friday 04 June 2021 21:47:26 Madalin Bucur wrote:
-> > -----Original Message-----
-> > From: Andrew Lunn <andrew@lunn.ch>
-> > Sent: 04 June 2021 23:24
-> > To: Madalin Bucur <madalin.bucur@nxp.com>
-> > Cc: Russell King <linux@armlinux.org.uk>; Pali Rohár <pali@kernel.org>;
-> > Igal Liberman <Igal.Liberman@freescale.com>; Shruti Kanetkar
-> > <Shruti@freescale.com>; Emil Medve <Emilian.Medve@freescale.com>; Scott
-> > Wood <oss@buserror.net>; Rob Herring <robh+dt@kernel.org>; Michael
-> > Ellerman <mpe@ellerman.id.au>; Benjamin Herrenschmidt
-> > <benh@kernel.crashing.org>; netdev@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Camelia
-> > Alexandra Groza (OSS) <camelia.groza@oss.nxp.com>
-> > Subject: Re: Unsupported phy-connection-type sgmii-2500 in
-> > arch/powerpc/boot/dts/fsl/t1023rdb.dts
-> > 
-> > > The "sgmii-2500" compatible in that device tree describes an SGMII HW
-> > > block, overclocked at 2.5G. Without that overclocking, it's a plain
-> > > Cisco (like) SGMII HW block. That's the reason you need to disable it's
-> > > AN setting when overclocked. With the proper Reset Configuration Word,
-> > > you could remove the overclocking and transform that into a plain
-> > "sgmii".
-> > > Thus, the dts compatible describes the HW, as it is.
-> > 
-> > It sounds like the hardware is capable of swapping between SGMII and
-> > 2500BaseX.
-> > 
-> > What we have in DT in this case is not describing the hardware, but
-> > how we configure the hardware. It is one of the few places we abuse DT
-> > for configuration.
-> > 
-> >     Andrew
-> 
-> The actual selection of this mode of operation is performed by the so called
-> Reset Configuration Word from the boot media, that aligned with the HW and
-> board design. The need to name it something other than plain "sgmii" comes
-> from the HW special need for AN to be disabled to operate.
-> 
-> Actually, the weird/non-standard hardware is described by the device tree
-> with a value that puts it in a class of its own. Instead of the overclocked
-> SGMII denomination "sgmii-2500" it could have been named just as well
-> "overclocked-nonstandard-2.5G-ethernet-no-autoneg-SGMII-hw-ip".
-> 
-> One could try to change device trees to slip configuration details, but the
-> backwards compatibility aspect renders this futile. Is there any option to
-> say "sgmii" then "autoneg disabled"?
-> 
-> Madalin
+Hi,
 
-Madalin, my understanding is that "sgmii-2500" mode is unknown and
-unsupported by kernel.
+Thanks for your review.
 
-List of known modes which can be specified in DTS file are defined in
-YAML schema for 'phy-connection-type' in file:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/net/ethernet-controller.yaml?h=v5.12#n55
+2021=E5=B9=B46=E6=9C=885=E6=97=A5(=E5=9C=9F) 6:33 Rob Herring <robh@kernel.=
+org>:
+>
+> On Mon, May 31, 2021 at 02:21:42PM +0900, Nobuhiro Iwamatsu wrote:
+> > Convert SPI for Xilinx bindings documentation to YAML schemas.
+> >
+> > Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+> > ---
+> >  .../devicetree/bindings/spi/spi-xilinx.txt    | 23 ---------
+> >  .../devicetree/bindings/spi/spi-xilinx.yaml   | 51 +++++++++++++++++++
+> >  2 files changed, 51 insertions(+), 23 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/spi/spi-xilinx.tx=
+t
+> >  create mode 100644 Documentation/devicetree/bindings/spi/spi-xilinx.ya=
+ml
+> >
+> > diff --git a/Documentation/devicetree/bindings/spi/spi-xilinx.txt b/Doc=
+umentation/devicetree/bindings/spi/spi-xilinx.txt
+> > deleted file mode 100644
+> > index 5f4ed3e5c9942c..00000000000000
+> > --- a/Documentation/devicetree/bindings/spi/spi-xilinx.txt
+> > +++ /dev/null
+> > @@ -1,23 +0,0 @@
+> > -Xilinx SPI controller Device Tree Bindings
+> > --------------------------------------------------
+> > -
+> > -Required properties:
+> > -- compatible         : Should be "xlnx,xps-spi-2.00.a", "xlnx,xps-spi-=
+2.00.b" or "xlnx,axi-quad-spi-1.00.a"
+> > -- reg                        : Physical base address and size of SPI r=
+egisters map.
+> > -- interrupts         : Property with a value describing the interrupt
+> > -                       number.
+> > -
+> > -Optional properties:
+> > -- xlnx,num-ss-bits    : Number of chip selects used.
+> > -- xlnx,num-transfer-bits : Number of bits per transfer. This will be 8=
+ if not specified
+> > -
+> > -Example:
+> > -     axi_quad_spi@41e00000 {
+> > -                     compatible =3D "xlnx,xps-spi-2.00.a";
+> > -                     interrupt-parent =3D <&intc>;
+> > -                     interrupts =3D <0 31 1>;
+> > -                     reg =3D <0x41e00000 0x10000>;
+> > -                     xlnx,num-ss-bits =3D <0x1>;
+> > -                     xlnx,num-transfer-bits =3D <32>;
+> > -     };
+> > -
+> > diff --git a/Documentation/devicetree/bindings/spi/spi-xilinx.yaml b/Do=
+cumentation/devicetree/bindings/spi/spi-xilinx.yaml
+> > new file mode 100644
+> > index 00000000000000..17463151b36a02
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/spi/spi-xilinx.yaml
+> > @@ -0,0 +1,51 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/spi/spi-xilinx.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Xilinx SPI controller Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Michal Simek <michal.simek@xilinx.com>
+> > +
+> > +allOf:
+> > +  - $ref: "spi-controller.yaml#"
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - const: xlnx,xps-spi-2.00.a
+> > +      - const: xlnx,xps-spi-2.00.b
+> > +      - const: xlnx,axi-quad-spi-1.00.a
+>
+> Use enum instead of oneOf+const.
 
-And there is none "sgmii-2500", so some DTS schema validator could throw
-validation error for that DTS file. I'm not sure if somebody has written
-DTS schema validator with all those things (like there are JSON schema
-or OpenAPI validators in JavaScript / HTTP world).
+OK, I will change using enum.
 
-Plus also in linux/phy.h header file contains list of known Linux modes:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/phy.h?h=v5.12#n169
+>
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  xlnx,num-ss-bits:
+> > +    description: Number of chip selects used.
+>
+> Constraints? 0-2^32 is good?
 
-And based on all information in this email discussion, in my opinion the
-mode which HW supports matches Linux meaning of "2500base-x" key/string.
-So I would suggest to rename "sgmii-2500" in that DTS file to
-"2500base-x". Does it make sense?
+I will add constraints.
 
+>
+> > +
+> > +  xlnx,num-transfer-bits:
+> > +    description: Number of bits per transfer. This will be 8 if not sp=
+ecified.
+>
+> Constraints?
 
+Same above.
 
-But as this is really confusing what each mode means for Linux, I would
-suggest that documentation for these modes in ethernet-controller.yaml
-file (or in any other location) could be extended. I see that it is
-really hard to find exact information what these modes mean and what is
-their meaning in DTS / kernel.
+Best regards,
+  Nobuhiro
+
+--=20
+Nobuhiro Iwamatsu
+   iwamatsu at {nigauri.org / debian.org}
+   GPG ID: 40AD1FA6
