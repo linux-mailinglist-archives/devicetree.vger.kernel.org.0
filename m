@@ -2,127 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6741F39C823
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 14:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A99D239C83A
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 14:50:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229958AbhFEMa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 08:30:58 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:53923 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229902AbhFEMa6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 08:30:58 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 3E26D5804A2;
-        Sat,  5 Jun 2021 08:29:10 -0400 (EDT)
-Received: from imap21 ([10.202.2.71])
-  by compute3.internal (MEProxy); Sat, 05 Jun 2021 08:29:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type:content-transfer-encoding; s=fm1; bh=1R
-        bQgq677nj7G3MUumWQjelLqbrdkBM2pt/CFGcdDww=; b=IWPbj+jS3yyI1hVyW5
-        5sN1YgyHOAAM6fqrk2zzGemytyt9Y3iPjsLueBl2TBunTetDC5YbPeGP9y681UJZ
-        0k39tUpGZjoiwtDxSXs3VNq+qyspKPfIwoVGz8Sy/zVqp+elJ8Q7TpWLcagAfzTG
-        Fl2uhYittvM3zHEWKL6nrG+tY+pyy/9t6iNUwpaPkiYMHZN0LrN9YR8MxzTBo9ks
-        kh9JYRUCbjEUPOv9tcBfmvICu690LGywZIq8K0jM+D91SCSt1EYv65huFmOYg+30
-        cFj11jFs5i3ieoJWrjeSERdBJ1s88ukANXH/1BYjic7uA3b/KO6/JbhtI+hgbNgw
-        Y5ag==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=1RbQgq677nj7G3MUumWQjelLqbrdkBM2pt/CFGcdD
-        ww=; b=ADM+zxMegh80UeqCKmGjOf/Ocfu3mACp0SHiArW5qzrB2UqrIe+7He8GL
-        CMuL7ZIHXeyUjBISAuo3oZ6RxK/k4QIzexC9QyF0ty+ERyD0lAFZKeTvZYCIHHut
-        zHY0MMM5x6LtZoUHPVCBHZxljMhWK3s1TgZt6aXDewrd7w24MwAWntciDl92O3Bf
-        ctxryzULFb8rbi3zEoklA2O0VbBHGPip7rnooYhB1EktosG+U+aaKI5mNa5GWErV
-        VWKKPulJc8i/JLr0cUe+wnIk/NOsjDPOS2B/G8mMRyonIf9itbQouiIfZWaRwLfD
-        5I4G0bX8ilWu4IbaMmcFgfyMJFTWw==
-X-ME-Sender: <xms:E267YA39LqHB289QpI4QO7j05cWK08AKUAPP9lSSZ2r2zb0duLytwA>
-    <xme:E267YLGITa5dwhee8kYQuI9Q8vvLb4wg9SvS9Vl214JzjnRJp03Wpf1N2fo6W0_8N
-    V5iAI5hm74zrKT9QGo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedtfedgheefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgfgsehtqhertderreejnecuhfhrohhmpedfufhv
-    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
-    grthhtvghrnhepteeuudelteefueelvdelheehieevvdfhkeehjeejudfhieelffffudfh
-    keeileegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:E267YI6RXlh8AhpHUhLk-4BU1A25EogzJYRqZLkSE_vJCYyZ1_XRbA>
-    <xmx:E267YJ351C6D4mO9SnISqYVNpzlJnt3GUyvSeDcm0rWSM6PyuY-4Xg>
-    <xmx:E267YDEa8cc8BCZT5XSe1GJzDdSgVWHzQ_brkAp-bV_bXf7cd2hB8w>
-    <xmx:Fm67YDGLMS-_IYXnr35e9TtPqCVqR9RrTjXnmM3GYqXGSP7El6S0EA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id E519451C0060; Sat,  5 Jun 2021 08:29:06 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-519-g27a961944e-fm-20210531.001-g27a96194
-Mime-Version: 1.0
-Message-Id: <89b391d1-c076-491a-97c0-d08593c006e7@www.fastmail.com>
-In-Reply-To: <d50ad9392f7719c01f752e73a00d4dc83b1a5c5c.camel@pengutronix.de>
-References: <20210603085003.50465-1-sven@svenpeter.dev>
- <20210603085003.50465-4-sven@svenpeter.dev>
- <d50ad9392f7719c01f752e73a00d4dc83b1a5c5c.camel@pengutronix.de>
-Date:   Sat, 05 Jun 2021 14:28:27 +0200
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Rouven Czerwinski" <r.czerwinski@pengutronix.de>,
-        "Will Deacon" <will@kernel.org>,
-        "Robin Murphy" <robin.murphy@arm.com>,
-        "Joerg Roedel" <joro@8bytes.org>,
-        "Rob Herring" <robh+dt@kernel.org>
-Cc:     "Arnd Bergmann" <arnd@kernel.org>, devicetree@vger.kernel.org,
-        "Hector Martin" <marcan@marcan.st>, linux-kernel@vger.kernel.org,
-        "Marc Zyngier" <maz@kernel.org>,
-        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
-        "Stan Skowronek" <stan@corellium.com>,
-        linux-arm-kernel@lists.infradead.org,
-        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
-        "Petr Mladek via iommu" <iommu@lists.linux-foundation.org>,
-        "Alexander Graf" <graf@amazon.com>
-Subject: Re: [PATCH v3 3/3] iommu: dart: Add DART iommu driver
-Content-Type: text/plain;charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+        id S229978AbhFEMv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 08:51:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59386 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229959AbhFEMv4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Jun 2021 08:51:56 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C0A5761357;
+        Sat,  5 Jun 2021 12:50:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622897409;
+        bh=sBCXy98TXNjHjqaXut+0eax6C+KRlQ6QhUxOlmP6tIA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YuXpykyC7pMCTn4fVl+cOvk017Rl0N4iwl++9EAPcV5RjCuAV4ZntPYYZttWBVAM6
+         K4MyRBB5iomV9ufuH0Lc8xCCl3GKmSIlF26JT0GYsqtZbj25CFCA7FeNDV4/YAXj+q
+         eEUhAJKZ5x7bIom9KIcrvo54bYAVtn2OiHNjg3W79LkWDC/u1SpvBeSBk+vX+wz09A
+         wvhFB7BV2iZO94YM8ggEuVmia9mBYa/P2Fm1gLx0nVOcOPfm6bMKAjXhoz/xlvRyt3
+         PxYy1ze3LZQWFdWtgI0FaIsN4zgmhk1UOBmUJTYKgOuU3JSZYoFg+p5J9DotIdSHDU
+         7cvC0aJh3fUXg==
+Received: by pali.im (Postfix)
+        id 2B23E857; Sat,  5 Jun 2021 14:50:05 +0200 (CEST)
+Date:   Sat, 5 Jun 2021 14:50:04 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Madalin Bucur <madalin.bucur@nxp.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Igal Liberman <Igal.Liberman@freescale.com>,
+        Shruti Kanetkar <Shruti@freescale.com>,
+        Emil Medve <Emilian.Medve@freescale.com>,
+        Scott Wood <oss@buserror.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>
+Subject: What is inside GPON SFP module? (Was: Re: Unsupported
+ phy-connection-type sgmii-2500 in arch/powerpc/boot/dts/fsl/t1023rdb.dts)
+Message-ID: <20210605125004.v6njqob6prb7k75k@pali>
+References: <YLjxX/XPDoRRIvYf@lunn.ch>
+ <20210603194853.ngz4jdso3kfncnj4@pali>
+ <AM6PR04MB3976B62084EC462BA02F0C4CEC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+ <20210604192732.GW30436@shell.armlinux.org.uk>
+ <AM6PR04MB39768A569CE3CC4EC61A8769EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+ <YLqLzOltcb6jan+B@lunn.ch>
+ <AM6PR04MB39760B986E86BA9169DEECC5EC3B9@AM6PR04MB3976.eurprd04.prod.outlook.com>
+ <20210604233455.fwcu2chlsed2gwmu@pali>
+ <20210605003306.GY30436@shell.armlinux.org.uk>
+ <20210605122639.4lpox5bfppoyynl3@skbuf>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210605122639.4lpox5bfppoyynl3@skbuf>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rouven,
+On Saturday 05 June 2021 15:26:39 Vladimir Oltean wrote:
+> On Sat, Jun 05, 2021 at 01:33:07AM +0100, Russell King (Oracle) wrote:
+> > It started out as described - literally, 1000base-X multiplied by 2.5x.
+> > There are setups where that is known to work - namely GPON SFPs that
+> > support 2500base-X. What that means is that we know the GPON SFP
+> > module negotiates in-band AN with 2500base-X. However, we don't know
+> > whether the module will work if we disable in-band AN.
+> 
+> Pardon my ignorance, but what is inside a GPON ONT module? Just a laser
+> and some amplifiers? So it would still be the MAC PCS negotiating flow
+> control with the remote link partner? That's a different use case from a
+> PHY transmitting the negotiated link modes to the MAC.
 
-On Sat, Jun 5, 2021, at 13:50, Rouven Czerwinski wrote:
-> Hi Sven,
->=20
-> just a small comment, see inline.
->=20
-> On Thu, 2021-06-03 at 10:50 +0200, Sven Peter wrote:
-> > +
-> > +/* must be called with held dart_domain->lock */
->=20
-> You can remove this comment, include lockdep.h and=E2=80=A6
->=20
-> > +static int apple_dart_finalize_domain(struct iommu_domain *domain)
-> > +{
-> > +	struct apple_dart_domain *dart_domain =3D to_dart_domain(domain);
-> > +	struct apple_dart *dart =3D dart_domain->dart;
-> > +	struct io_pgtable_cfg pgtbl_cfg;
-> > +
->=20
-> 	lockdep_assert_held(&dart_domain->lock);
->=20
-> A lockdep enabled kernel will warn if this function is called without
-> the lock held, otherwise this gets optimized out. Same for the similar=
+Hello Vladimir! All GPON ONU/ONT SFP modules which I have tested, are
+fully featured mini computers. It is some SoC with powerful CPU, fiber
+part, at least two NICs and then two phys, one for fiber part and one
+for "SFP"-part (in most cases 1000base-x or 2500base-x). On SoC inside
+is running fully featured operating system, in most cases Linux kernel
+2.6.3x and tons of userspace applications which implements "application"
+layer of GPON protocol -- the most important part. If OEM vendor of GPON
+SFP stick did not locked it, you can connect to this "computer" via
+telnet or web browser and configure some settings, including GPON stuff
+and also how GPON network is connected to SFP part -- e.g. it can be
+fully featured IPv4 router with NAT or just plain bridge mode where
+"ethernet data packets" (those which are not part of ISP configuration
+protocol) are pass-throw to SFP phy 1000base-x to host CPU. GPON is not
+ethernet, it is some incompatible and heavily layered extension on ATM.
+Originally I thought that ATM is long ago dead (as I saw it in used last
+time in ADSL2) but it is still alive and cause issues... I think it does
+not use 8b/10b encoding and therefore cannot be directly mapped to
+1000base-x. Also GPON uses different wavelengths for inbound and
+outbound traffic. And to make it even more complicated it uses totally
+nonstandard asynchronous speeds, inbound is 2488.32Mbit/s, outbound is
+1244.16Mbit/s. So I guess CPU/SoC with GPON support (something which is
+inside that GPON ONU/ONT stick) must use totally different modes for
+which we do not have any option in DTS yet.
 
-> comments below.
->=20
-
-That looks very useful, thanks! Will use it for v4.
-
-I only found assert_spin_locked originally but didn't want to have that
-performance overhead for code that (I hope :-)) correctly uses these fun=
-ctions
-with a held lock right now.
-
-
-Thanks,
-
-
-Sven
-
+So once mainline kernel will support these "computers" with GPON support
+it would be required to define new kind of phy modes... But I do not
+think it happens and all OEM vendors are using 2.6.3x kernels their
+userspace GPON implementation is closed has tons of secrets.
