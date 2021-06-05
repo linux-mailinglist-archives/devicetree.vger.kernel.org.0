@@ -2,126 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6EBA39C773
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 12:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CAAD39C787
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 12:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230153AbhFEKdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 06:33:33 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:27099 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230129AbhFEKdc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 5 Jun 2021 06:33:32 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1622889104; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
- Subject: Sender; bh=ibQev18T9V9fkVqRTgCod7cdmgA96I6rIWCsroTRfWI=; b=q2fcjChzC2jP33eUdh+Hxgt+zasYlUYoCCV5aZMwOtmX+csZ/3VPHOzYKS46VXLKssIUKeb4
- XDg8YMklrYMNO0MH3ydVfXHrwpSDd+l7SLWY+aquiIG11Mj2E6fmC/vFU8EYE5A/fPNqLDCC
- 7RoCEatfqRREFV9H10W+RVnyuyM=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 60bb527bf726fa41889cfaa1 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 05 Jun 2021 10:31:23
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B2347C43145; Sat,  5 Jun 2021 10:31:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [192.168.212.90] (unknown [157.48.166.146])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id AE40FC433F1;
-        Sat,  5 Jun 2021 10:31:13 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org AE40FC433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-Subject: Re: [PATCH] ASoC: qcom: Fix for DMA interrupt clear reg overwriting
-To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
-        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
-        bjorn.andersson@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, judyhsiao@chromium.org,
-        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
-        robh+dt@kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, tiwai@suse.com
-References: <20210603050530.15898-1-srivasam@codeaurora.org>
- <CAE-0n52CyZkRDForR7LumXL7Tcr=48UV7T-wxirMsxk7AJJsmg@mail.gmail.com>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <bea7d3f4-057a-7070-f493-3e625273212c@codeaurora.org>
-Date:   Sat, 5 Jun 2021 16:01:10 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S229902AbhFEKvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 06:51:39 -0400
+Received: from relay05.th.seeweb.it ([5.144.164.166]:51467 "EHLO
+        relay05.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229892AbhFEKvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 06:51:39 -0400
+Received: from localhost.localdomain (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 5D8BA3EAD9;
+        Sat,  5 Jun 2021 12:49:48 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: Add SONY Synaptics JDI panel
+Date:   Sat,  5 Jun 2021 12:49:40 +0200
+Message-Id: <20210605104942.39487-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <CAE-0n52CyZkRDForR7LumXL7Tcr=48UV7T-wxirMsxk7AJJsmg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+Add bindings for the SONY Synaptics JDI panel used in
+Xperia X, X Performance, X Compact, XZ and XZs smartphones.
 
-Thanks for Your Time for review comments!!!
+Due to the nature of phone manufacturing and lack of any docs
+whatsoever, replacement names have been used to indicate the
+devices that this panel is used on.
 
-On 6/3/2021 11:47 AM, Stephen Boyd wrote:
-> Quoting Srinivasa Rao Mandadapu (2021-06-02 22:05:30)
->> This patch fixes the DMA interrupt registers overwriting
->   $ git grep "This patch" -- Documentation/process
-Okay will change description.
->
->> issue in lpass platform interrupt handler.
-> Can you describe the issue more?
-Sure. will elaborate more.
->
->> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
->> ---
-> Any Fixes tag?
->
->>   sound/soc/qcom/lpass-platform.c | 17 +++++++++++------
->>   1 file changed, 11 insertions(+), 6 deletions(-)
->>
->> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
->> index 0df9481ea4c6..e02caa121fa4 100644
->> --- a/sound/soc/qcom/lpass-platform.c
->> +++ b/sound/soc/qcom/lpass-platform.c
->> @@ -650,7 +650,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
->>          struct lpass_variant *v = drvdata->variant;
->>          irqreturn_t ret = IRQ_NONE;
->>          int rv;
->> -       unsigned int reg = 0, val = 0;
->> +       unsigned int reg = 0, val = 0, val_clr = 0, val_mask = 0;
-> Why assign to 0 and then overwrite it?
-Okay. Will remove initialization.
->
->>          struct regmap *map;
->>          unsigned int dai_id = cpu_dai->driver->id;
->>
->> @@ -676,8 +676,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
->>          return -EINVAL;
->>          }
->>          if (interrupts & LPAIF_IRQ_PER(chan)) {
->> -
->> -               rv = regmap_write(map, reg, LPAIF_IRQ_PER(chan) | val);
->> +               val_clr = (LPAIF_IRQ_PER(chan) | val);
-> Is the extra parenthesis useful?
-Not exactly. Will remove it.
->
->> +               val_mask = LPAIF_IRQ_ALL(chan);
->> +               rv = regmap_update_bits(map, reg, val_mask, val_clr);
->>                  if (rv) {
->>                          dev_err(soc_runtime->dev,
->>                                  "error writing to irqclear reg: %d\n", rv);
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+Changes since v1:
+- gpio -> gpios
+- description: |+ -> description: |
+- remove redundant reset-gpio
+- fix up indentation in the example
 
+ .../display/panel/sony,synaptics-jdi.yaml     | 100 ++++++++++++++++++
+ 1 file changed, 100 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml b/Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml
+new file mode 100644
+index 000000000000..81d841c049e8
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/sony,synaptics-jdi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: SONY Synaptics JDI panel
++
++maintainers:
++  - Konrad Dybcio <konrad.dybcio@somainline.org>
++
++description: |+
++  This panel seems to only be found in SONY Xperia
++  X, X Performance, X Compact, XZ and XZs
++  smartphones and we have no straightforward way of
++  actually getting the correct model number,
++  as no schematics are released publicly.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - sony,synaptics-jdi-dora
++          - sony,synaptics-jdi-kagura
++          - sony,synaptics-jdi-keyaki
++          - sony,synaptics-jdi-kugo
++          - sony,synaptics-jdi-suzu
++
++  reg: true
++
++  reset-gpios: true
++
++  avdd-supply:
++    description: avdd supply
++
++  vddio-supply:
++    description: vddio supply
++
++  vsn-supply:
++    description: voltage negative supply
++
++  vsp-supply:
++    description: voltage positive supply
++
++  tvdd-supply:
++    description: tvdd supply
++
++  preset-gpio:
++    description: panel reset pin
++
++  pvddio-gpio:
++    description: panel vddio pin
++
++  treset-gpio:
++    description: touch reset pin
++
++required:
++  - compatible
++  - reg
++  - preset-gpio
++  - pvddio-gpio
++  - treset-gpio
++  - avdd-supply
++  - vddio-supply
++  - vsn-supply
++  - vsp-supply
++  - tvdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++            #address-cells = <1>;
++            #size-cells = <0>;
++            panel: panel@0 {
++                    reg = <0>;
++
++                    pvddio-gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
++                    preset-gpio = <&tlmm 8 GPIO_ACTIVE_HIGH>;
++                    treset-gpio = <&tlmm 89 GPIO_ACTIVE_HIGH>;
++
++                    vddio-supply = <&pm8994_s4>;
++                    avdd-supply = <&pm8994_l2>;
++                    tvdd-supply = <&panel_tvdd>;
++
++                    backlight = <&pmi8994_wled>;
++
++                    port {
++                      panel_in: endpoint {
++                        remote-endpoint = <&dsi0_out>;
++                      };
++                    };
++            };
++    };
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.31.1
 
