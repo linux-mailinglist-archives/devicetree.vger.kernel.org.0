@@ -2,106 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C798739CA47
-	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 19:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD88639CAA0
+	for <lists+devicetree@lfdr.de>; Sat,  5 Jun 2021 21:08:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230104AbhFERnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Jun 2021 13:43:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35860 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229964AbhFERnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Jun 2021 13:43:46 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B76FDC061766;
-        Sat,  5 Jun 2021 10:41:57 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id e11so2310888wrg.3;
-        Sat, 05 Jun 2021 10:41:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zDrH59vPVGwHTPRMUG66pWvn8DwNgjhaTZ8+7bVvWks=;
-        b=hvBFg06ltlfMtFlCvnLQq1j7N9UIN3KeE7n8H53Qw+eQ4bR4Rsl7HVWxa5tn2hy5/H
-         nrFs87Ymz7vSIjN+IghhgpGNbKzkVzdb1KznXrQmiVeDyShc25SMLdgEo4qBaVsW/8IT
-         jTiRTL2zjzHQp6fEXT3wmZ1xeKvdG86xBPzPQ9n0PbxCWfxmh5VKXha5vUXzukrqwpZU
-         15wtQ1wpcc3EO7MHAmJA7TaXLdDKEvRqdy/a9njJSAti+tj3ncVCQrv+w1gmh06WhnEI
-         em7TI/c863zZiU5bXf5Yjg9L0LbqU/ksjsO0LtIo4jfECxYxJX/k4PIlZnAGuxmFz+xT
-         +ckg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zDrH59vPVGwHTPRMUG66pWvn8DwNgjhaTZ8+7bVvWks=;
-        b=KsXasaXgTi1aFGG0n1WkTCSRnMXfNoIqZ4EANFCoWymyGKay5BItuOqfRLxhCqHxse
-         dY0KFg3SCQ9xqPLC2onOWaI0xljBK5W5rOHklcpwjDU5uL1XVxuF0KTr+5dcEOqZqBfa
-         NNWfyVnS7xTK6FpHc5Zh7HhYgg0RNwOl7PWHqEXGuruMaBufCuhPesmLBJE0Ss4PLwcq
-         /Onzst6aNCnMy1lHE5iTpLUSLf37girm12R5DVPvqT2/Q8VXa/eiIPeBd9+X7p2dHixu
-         GCrDuyz0dudZyOmaFSduEdnGWGhSRj8+u3a31juj9rgDr1sG/JV+GVfmnfKrhU/FBkPz
-         cB2Q==
-X-Gm-Message-State: AOAM5334+KoURJdwh32yBpLE6HEYvE5ZtLsOBtbPLxE5QHHJ4dxqpxot
-        xCk3unPNcMd/Wn91bVWlXg4=
-X-Google-Smtp-Source: ABdhPJx3BUcRirbykVkDF5f4joc8UrtKp3p0OEUvd2smzOzw0Qw6oI6yfoY4Mg2YdD8+Vsjqe9+fYQ==
-X-Received: by 2002:a5d:538c:: with SMTP id d12mr9251525wrv.116.1622914916430;
-        Sat, 05 Jun 2021 10:41:56 -0700 (PDT)
-Received: from cluster5 ([80.76.206.81])
-        by smtp.gmail.com with ESMTPSA id t4sm10352505wru.53.2021.06.05.10.41.55
-        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
-        Sat, 05 Jun 2021 10:41:56 -0700 (PDT)
-From:   Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Matthew Hagan <mnhagan88@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ong Boon Leong <boon.leong.ong@intel.com>,
-        Voon Weifeng <weifeng.voon@intel.com>,
-        Wong Vee Khee <vee.khee.wong@linux.intel.com>,
-        Tan Tee Min <tee.min.tan@intel.com>,
-        "Wong, Vee Khee" <vee.khee.wong@intel.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 3/3] dt-bindings: net: stmmac: add ahb reset to example
-Date:   Sat,  5 Jun 2021 18:35:39 +0100
-Message-Id: <20210605173546.4102455-3-mnhagan88@gmail.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210605173546.4102455-1-mnhagan88@gmail.com>
-References: <20210605173546.4102455-1-mnhagan88@gmail.com>
+        id S230029AbhFETKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Jun 2021 15:10:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50012 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229994AbhFETKd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 5 Jun 2021 15:10:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C76CD61073;
+        Sat,  5 Jun 2021 19:08:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1622920125;
+        bh=tTJEbMfaqLm+MQIdZ6b17P+wEJbY3/9z+X1SQ27izYw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=JkQm3FNW5iQVYmgT/Gt9sN9r1LoTem2cqXUl0EjU+fiv82NY1pLAYU3Bw6unpEki9
+         JXsjuSgQIFHSyh38wM93iu29TbJXvLcRhJNrLaI3uPlTWuv27IKsdkFioKL4INshFP
+         X6wWHZCeoF+O8iMlmhkcXx84GYrwHdtLzik9jQie2+N1FEL3MtfoR0dRqJZtRSpa3B
+         75ZFgP9ntAFhWGSiwsFlzS8kJV4vdjx4gNxci+2IKGEj7omJo8VOW1W/h4rNmExnEf
+         Cyd+38BTHzfhwZ6TVmr+dpfprstE/6hddhXmgX9dnEe4dYMoT8QPViKF/MrmqKI8pR
+         fNqEWypa3GLOg==
+Date:   Sat, 5 Jun 2021 21:08:36 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     "=?UTF-8?B?TsOtY29sYXM=?= F. R. A. Prado" <n@nfraprado.net>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+        coresight@lists.linaro.org, devicetree@vger.kernel.org,
+        kunit-dev@googlegroups.com, kvm@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-security-module@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH 00/34] docs: avoid using ReST :doc:`foo` tag
+Message-ID: <20210605210836.540577d4@coco.lan>
+In-Reply-To: <20210605151109.axm3wzbcstsyxczp@notapiano>
+References: <cover.1622898327.git.mchehab+huawei@kernel.org>
+        <20210605151109.axm3wzbcstsyxczp@notapiano>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add ahb reset to the reset properties within the example gmac node.
+Em Sat, 5 Jun 2021 12:11:09 -0300
+N=C3=ADcolas F. R. A. Prado <n@nfraprado.net> escreveu:
 
-Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
----
- Documentation/devicetree/bindings/net/ipq806x-dwmac.txt | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+> Hi Mauro,
+>=20
+> On Sat, Jun 05, 2021 at 03:17:59PM +0200, Mauro Carvalho Chehab wrote:
+> > As discussed at:
+> > 	https://lore.kernel.org/linux-doc/871r9k6rmy.fsf@meer.lwn.net/
+> >=20
+> > It is better to avoid using :doc:`foo` to refer to Documentation/foo.rs=
+t, as the
+> > automarkup.py extension should handle it automatically, on most cases.
+> >=20
+> > There are a couple of exceptions to this rule:
+> >=20
+> > 1. when :doc:  tag is used to point to a kernel-doc DOC: markup;
+> > 2. when it is used with a named tag, e. g. :doc:`some name <foo>`;
+> >=20
+> > It should also be noticed that automarkup.py has currently an issue:
+> > if one use a markup like:
+> >=20
+> > 	Documentation/dev-tools/kunit/api/test.rst
+> > 	  - documents all of the standard testing API excluding mocking
+> > 	    or mocking related features.
+> >=20
+> > or, even:
+> >=20
+> > 	Documentation/dev-tools/kunit/api/test.rst
+> > 	    documents all of the standard testing API excluding mocking
+> > 	    or mocking related features.
+> > =09
+> > The automarkup.py will simply ignore it. Not sure why. This patch series
+> > avoid the above patterns (which is present only on 4 files), but it wou=
+ld be
+> > nice to have a followup patch fixing the issue at automarkup.py. =20
+>=20
+> What I think is happening here is that we're using rST's syntax for defin=
+ition
+> lists [1]. automarkup.py ignores literal nodes, and perhaps a definition =
+is
+> considered a literal by Sphinx. Adding a blank line after the Documentati=
+on/...
+> or removing the additional indentation makes it work, like you did in your
+> 2nd and 3rd patch, since then it's not a definition anymore, although the=
+n the
+> visual output is different as well.
 
-diff --git a/Documentation/devicetree/bindings/net/ipq806x-dwmac.txt b/Documentation/devicetree/bindings/net/ipq806x-dwmac.txt
-index 6d7ab4e524d4..ef5fd9f0b156 100644
---- a/Documentation/devicetree/bindings/net/ipq806x-dwmac.txt
-+++ b/Documentation/devicetree/bindings/net/ipq806x-dwmac.txt
-@@ -30,6 +30,7 @@ Example:
- 		clocks = <&gcc GMAC_CORE1_CLK>;
- 		clock-names = "stmmaceth";
- 
--		resets = <&gcc GMAC_CORE1_RESET>;
--		reset-names = "stmmaceth";
-+		resets = <&gcc GMAC_CORE1_RESET>,
-+			 <&gcc GMAC_AHB_RESET>;
-+		reset-names = "stmmaceth", "ahb";
- 	};
--- 
-2.26.3
+A literal has a different output. I think that this is not the case, but I=
+=20
+didn't check the python code from docutils/Sphinx.
+=20
+> I'm not sure this is something we need to fix. Does it make sense to use
+> definition lists for links like that? If it does, I guess one option woul=
+d be to
+> whitelist definition lists so they aren't ignored by automarkup, but I fe=
+el
+> this could get ugly really quickly.
 
+Yes, we should avoid handling literal blocks, as this can be a nightmare.
+
+> FWIW note that it's also possible to use relative paths to docs with auto=
+markup.
+
+Not sure if you meant to say using something like ../driver-api/foo.rst.
+If so, relative paths are a problem, as it will pass unnoticed by this scri=
+pt:
+
+	./scripts/documentation-file-ref-check
+
+which is meant to warn when a file is moved to be elsewhere. Ok, it
+could be taught to use "../" to identify paths, but I suspect that this
+could lead to false positives, like here:
+
+	Documentation/usb/gadget-testing.rst:  # ln -s ../../uncompressed/u
+	Documentation/usb/gadget-testing.rst:  # cd ../../class/fs
+	Documentation/usb/gadget-testing.rst:  # ln -s ../../header/h
+
+If you meant, instead, :doc:`../foo`, this series address those too.
+
+Regards,
+Mauro
