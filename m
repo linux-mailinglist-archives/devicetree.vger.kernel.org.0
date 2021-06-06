@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 411CE39D141
+	by mail.lfdr.de (Postfix) with ESMTP id 7B3DB39D143
 	for <lists+devicetree@lfdr.de>; Sun,  6 Jun 2021 22:17:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230212AbhFFUTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Jun 2021 16:19:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40198 "EHLO
+        id S230127AbhFFUTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Jun 2021 16:19:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbhFFUTD (ORCPT
+        with ESMTP id S230175AbhFFUTD (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 6 Jun 2021 16:19:03 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4303C061766
-        for <devicetree@vger.kernel.org>; Sun,  6 Jun 2021 13:16:57 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id k7so22985772ejv.12
-        for <devicetree@vger.kernel.org>; Sun, 06 Jun 2021 13:16:57 -0700 (PDT)
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EAE7C06178B
+        for <devicetree@vger.kernel.org>; Sun,  6 Jun 2021 13:16:59 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id w21so17541866edv.3
+        for <devicetree@vger.kernel.org>; Sun, 06 Jun 2021 13:16:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=snejp.pl; s=gmail;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=F1ajWql4CT7GltN44BZTpVtySeGp7feO6w70KJ9rPkg=;
-        b=RSQniDAoVRqMoghYU76L8KvO+kpaBmuJ0IyLxNOcC05uulL0ykNFvwFpE62Ajcesu1
-         ++8fleIvOHUyZlSG4b2pztMMTgPaKDQ9KUDKn2Ai6SIE88EuuzQjb0EZZfpgzeBoBxMV
-         B6YU6gcyNmHWZr6Rxc1uHo2GY/7XM3kpnHtKJpedLupvioSEjAHflveOJUxh864EYPIA
-         naFkfUAVP73xlrRiZMjtuDIv8TxJaXFlCU7iHChlRckJHsb67ZJKw1LGgi1FpgKmy4e4
-         accDbyKRa+Vl8Z6beJPTeMcoWOvcts/dzcPokTZPqz39np//qanftk33WhWrP0VsLico
-         Q4QQ==
+        bh=O9ZRLR7Ot8Lsx1jsDhH7FGYDbrZdMu5Zb2VpXOb1xQc=;
+        b=N1UVhLrqamh+j37H/CDIXyb9wNotOeqY8s7ZhQKgR8OXEErVi8u36Z/aVUfitvBm7q
+         vTzY1BNbpCX0npKT5OFB61G8V4MVlPWoxW4Gk5nl+6kvavgIvKjuiVFvbQ2PdrhyhIe3
+         UjgpurD7vaZG9U6KniLkS1K81h53Buquee8qH1Xgkkh5vXa/dFmjjuXqpNlbd+VUviP9
+         8SNtxBK+1L9V2nUSgTJMyT83z9B2ROutFkqmnjHGljGadKkfeds+lk0ks2ZrdvP/1gAW
+         gzGZqV7Pane9zcDf21MzxJipP24NrC9EonsWFHnsvpy3LrQ3TZKUyOXLBat0O6xseh0n
+         SISg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=F1ajWql4CT7GltN44BZTpVtySeGp7feO6w70KJ9rPkg=;
-        b=ZllkKRd5fHM6/hciwATlZ4acllpLRl+3oOVUpvY5+ebEQUfdr2HywI8WxoJbrXxz2I
-         B2XXWNTsIyOi8ypq0FGOzXui53H3yDmPdPyt4xj81fPatdkBf7sKNoQ3L1HMwlvxoYvi
-         +9bjJlPMjCevcCkJjyAZDxHG0ablee22ujUERbFjT9AxJN2U0L0Qi6iGfYW4P4liFKCJ
-         MuxWRWxnqbmTB0FFL3KkQMl8uk11eCV0sOPL4wsDeFFspcQZFM2coViBt0Z2dD1/vCt6
-         m/dPFTfpGtBak/+VkhSiytc7gNlQctUq/FAbhd+7xthog7/iV9DLOMqNROzQtq+ru3xY
-         jTyA==
-X-Gm-Message-State: AOAM533NGhi3oDSV0PNfFbqgz9IumI7LySWmr9xLAfp2hicPtgFBIJJX
-        BYeyT4YZIgYpN6BRuyO7lzei3w==
-X-Google-Smtp-Source: ABdhPJxq0IZ7g1T5qzpJ2e+h4gV5GQ4EpZL7g50B0RLHsXDkE7grAADFdIhNZQAXK1XTh+zRQwC/pQ==
-X-Received: by 2002:a17:907:9721:: with SMTP id jg33mr5128411ejc.64.1623010616286;
-        Sun, 06 Jun 2021 13:16:56 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=O9ZRLR7Ot8Lsx1jsDhH7FGYDbrZdMu5Zb2VpXOb1xQc=;
+        b=ZUv7spLGg5v3nU+i/ZcE3MfKpmnq9aqosHflDenpBBiD1FPNbUBAZkVNpCCLMMYf+Q
+         FE/vjCp62yy0T7EmqlB8sqR7XLm96U71PzQj2dnJOTJArhJFz7wGuHbWq23MlS/nCYIR
+         y8joCaam2ky+Jd2vwlK1ecpH7mUSTqUtL/9N0KbLUMtObR/Pr6Yuw2nVIU7S7wabJnCO
+         NIuisiy79PI9jXxOM6J57XYVrIGTij1T818cHZzuj9wUEM6D/YFNheehsH/Vvs0qmcpg
+         UTGB9cTH1AhHPuF2/diYzxuClVV9N2zNTPPWQLTuvINnAFopUI3yQg/mx9SmJy80Icrr
+         dZ7Q==
+X-Gm-Message-State: AOAM532WN3H3uR4pgpa6L0brPQj2O1lQjzmeeSQL+AkIVAoaMQgQ1CGC
+        1qO9SikYyKuIvlXZMAzaUW468bX3qVz8Aa4nQC0=
+X-Google-Smtp-Source: ABdhPJxn6NWckN7q1uCOM6LS0V8FJjs1rgHxW5ZZ6tI+96nCM4aSmz/RXIcLLRXQ6fatx18IzDKWZw==
+X-Received: by 2002:aa7:d5c6:: with SMTP id d6mr16311535eds.290.1623010617652;
+        Sun, 06 Jun 2021 13:16:57 -0700 (PDT)
 Received: from PackardBell (192038129059.mbb.telenor.dk. [192.38.129.59])
-        by smtp.googlemail.com with ESMTPSA id v8sm2211623edc.59.2021.06.06.13.16.54
+        by smtp.googlemail.com with ESMTPSA id v8sm2211623edc.59.2021.06.06.13.16.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Jun 2021 13:16:55 -0700 (PDT)
+        Sun, 06 Jun 2021 13:16:57 -0700 (PDT)
 Received: from localhost (PackardBell [local])
-        by PackardBell (OpenSMTPD) with ESMTPA id b1b38337;
+        by PackardBell (OpenSMTPD) with ESMTPA id 271784dc;
         Sun, 6 Jun 2021 20:16:53 +0000 (UTC)
 From:   Bartosz Dudziak <bartosz.dudziak@snejp.pl>
 To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
@@ -59,30 +59,46 @@ To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
         Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 0/2] arm: qcom: Add SMP support for MSM8226
-Date:   Sun,  6 Jun 2021 22:16:10 +0200
-Message-Id: <20210606201612.100752-1-bartosz.dudziak@snejp.pl>
+Subject: [PATCH v2 1/2] dt-bindings: arm: Add SMP enable-method for MSM8226
+Date:   Sun,  6 Jun 2021 22:16:11 +0200
+Message-Id: <20210606201612.100752-2-bartosz.dudziak@snejp.pl>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20210606201612.100752-1-bartosz.dudziak@snejp.pl>
+References: <20210606201612.100752-1-bartosz.dudziak@snejp.pl>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SMP support for a Cortex-A7 CPU in Qualcomm MSM8226 SoC.
+Add binding in enable-method property for MSM8226 SoC SMP support.
 
-Changes in v2:
-  - Patches are now MSM8226 SoC specific
-  - Properly unmap IO memory with iounmap() after using of_iomap() 
+Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+---
+ Documentation/devicetree/bindings/arm/cpus.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Bartosz Dudziak (2):
-  dt-bindings: arm: Add SMP enable-method for MSM8226
-  arm: qcom: Add SMP support for MSM8226
-
- .../devicetree/bindings/arm/cpus.yaml         |  3 +-
- arch/arm/mach-qcom/platsmp.c                  | 71 +++++++++++++++++++
- 2 files changed, 73 insertions(+), 1 deletion(-)
-
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index 26b886b20b..96912f1a26 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -207,6 +207,7 @@ properties:
+           - qcom,gcc-msm8660
+           - qcom,kpss-acc-v1
+           - qcom,kpss-acc-v2
++          - qcom,msm8226-smp
+           - renesas,apmu
+           - renesas,r9a06g032-smp
+           - rockchip,rk3036-smp
+@@ -286,7 +287,7 @@ properties:
+       Specifies the ACC* node associated with this CPU.
+ 
+       Required for systems that have an "enable-method" property
+-      value of "qcom,kpss-acc-v1" or "qcom,kpss-acc-v2"
++      value of "qcom,kpss-acc-v1", "qcom,kpss-acc-v2" or "qcom,msm8226-smp"
+ 
+       * arm/msm/qcom,kpss-acc.txt
+ 
 -- 
 2.25.1
 
