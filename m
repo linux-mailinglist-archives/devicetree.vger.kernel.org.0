@@ -2,109 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8616E39CF97
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jun 2021 16:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02C2A39D013
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jun 2021 18:53:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230025AbhFFOls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Jun 2021 10:41:48 -0400
-Received: from mail-wm1-f46.google.com ([209.85.128.46]:53951 "EHLO
-        mail-wm1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230156AbhFFOlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Jun 2021 10:41:47 -0400
-Received: by mail-wm1-f46.google.com with SMTP id h3so8294370wmq.3;
-        Sun, 06 Jun 2021 07:39:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=SEVMnnp5jdJsfAi2k7Qasv3hIqmGSZ59KOCLXsglWOA=;
-        b=BhlhgQ9N06MFmRnop6dpWkPHolaAHbqtg/S1iH7IkTPMYWqV3cuHpOza8s5TPhWn/m
-         kacj+V//eT5wfef/cBFWLqJKBeEmIcOKxJC7tRUg53dQSceeYhb9pGDgIYKHPTRjkc3J
-         Ri+D49LbinizfAQo5VR8NNyrMD+pNN/kw8x0y3Hik1suuKNLojvUz7e5C3pW/ZVx3wID
-         Eg/E02DR5l2fkKqlZpnz/FY30IB5tc3AHSpND3KypkLuGZ4TtJDGDSG4OPeU672Gq/Fe
-         ELvi71Cz2ogQqnD591h8eD+Vcgkr/FhAo3GAfjr4LYW8kq+3cu5odsJILUQGSkWJ3mF0
-         a9kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=SEVMnnp5jdJsfAi2k7Qasv3hIqmGSZ59KOCLXsglWOA=;
-        b=kQqyhoqgElJ2b+2zp4r0S2YR0KErrHXsLkc1IkQuIIn7JIFm779YniG4YspP51d+FL
-         cQ0uxQR/1dXh0jy+iGAFhvF6V+S6vImEW22PPBGUudUaulyL3kVkdw9fagFxxK5cTsJV
-         zsZbK9Gp/hh59B5D/f+EXi6WRxtwoEIaBCbvaWmZ/0peng8PCsnjLmTCPCJGLeP2+fV7
-         h6y7B6Aq8iUS7EUq9ZYYZEqUrIdvKGpeiJK5jF0pZqosSJClaT1cKyxo9wO47ti+a1qf
-         qGMLdi6Gd+omFL5bDaquJfaOpV28qVonyWx7wQfm8NTpdMMuspHay7wo9Y3vxDn3vKQl
-         K/ug==
-X-Gm-Message-State: AOAM530q1PT1EFq6/mvG1vaqW45XoiODsxugLOt9QEKM4dsStLQwIogJ
-        ZTAMzM/jRddnuZOXPDoXKvM=
-X-Google-Smtp-Source: ABdhPJwO7FetrZnpByd+buizj9rapzo5bXP50YMSXUYMlLCtYO90cuwv/6b2PSRFmQvSgM7IdmwcrQ==
-X-Received: by 2002:a05:600c:198c:: with SMTP id t12mr4191738wmq.16.1622990319748;
-        Sun, 06 Jun 2021 07:38:39 -0700 (PDT)
-Received: from localhost.localdomain (haganm.plus.com. [212.159.108.31])
-        by smtp.gmail.com with ESMTPSA id a123sm15383703wmd.2.2021.06.06.07.38.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Jun 2021 07:38:39 -0700 (PDT)
-Subject: Re: [PATCH 1/3] net: stmmac: explicitly deassert GMAC_AHB_RESET
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Voon Weifeng <weifeng.voon@intel.com>,
-        Ong Boon Leong <boon.leong.ong@intel.com>,
-        Wong Vee Khee <vee.khee.wong@linux.intel.com>,
-        Tan Tee Min <tee.min.tan@intel.com>,
-        "Wong, Vee Khee" <vee.khee.wong@intel.com>,
-        Fugang Duan <fugang.duan@nxp.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20210605173546.4102455-1-mnhagan88@gmail.com>
- <YLw//XARgqNlRoTB@builder.lan>
-From:   Matthew Hagan <mnhagan88@gmail.com>
-Message-ID: <a322fc12-b041-5530-0b2a-5bb6a5ca050c@gmail.com>
-Date:   Sun, 6 Jun 2021 15:38:37 +0100
+        id S230081AbhFFQyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Jun 2021 12:54:52 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:27380 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229738AbhFFQyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Jun 2021 12:54:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1622998382; x=1654534382;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=r3foDektlpWCZiIYs5tiX3amxQGmMFfjzU0zjQT7iOo=;
+  b=bhc6GwNR0iNDWrp99TiB301MhdNTIA77REeKKE6C7bbzU3g36wJTEi4d
+   2wWyxeeFLnt+9nVrX4e9kL6MJK9PDyV3Cjy2F37ARSiXP62K1AF6ytZX/
+   teGhifZnopBvKCksJLTTUXamxEOJA0TqCtfAji5hGJoPcmRRuu8HV1eeU
+   NKp52E5N1b8dzSNC56AALpHeXsv5RG/GC5YypP2x8qT7D1+kfmVIyQYb6
+   7nSkR0bYkOQttzbV0dE0TObgQWcBCfAVkPk5tai8ZSGyiE7avafOvOnNT
+   iVtDQgzsYKuZv8nC2++5h9NXbtE0fzYGogjeuTktRUtvlM0M5jOhZ5GvQ
+   w==;
+IronPort-SDR: WV4os3pfZ6cZd/F+isGOSsgdRoZqlZmoe1Jd/BcmuciyzyoKjZnW4A3/ZkfTuKfu3bwxoV7UsS
+ dxmt/Mk8IbEGPFoCSZMmFu6o/7YkmXqI2RpMHMfvNkemSlldRuMdf/M7XGOS3pHY0IiBZRtxFS
+ Djvvopcgp0EDhVva1LFzXTFRtnoZgr1PqUg5cKPHq2xy3VCRUAQ/Hcdf7CWGW+KjnZkkkRUuNH
+ Oe/Dh6VGD1L+Ly528+CvkZiK3be3O6s7W4gRuL6ThaH0Z9ImGxCb01P0J3DOLJ5CDbnuMP4zYf
+ fPs=
+X-IronPort-AV: E=Sophos;i="5.83,253,1616482800"; 
+   d="scan'208";a="123701277"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Jun 2021 09:53:01 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Sun, 6 Jun 2021 09:53:00 -0700
+Received: from [10.12.72.78] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Sun, 6 Jun 2021 09:52:59 -0700
+Subject: Re: [PATCH 1/3] dt-bindings: watchdog: sama5d4-wdt: convert to yaml
+To:     Eugen Hristev <eugen.hristev@microchip.com>,
+        <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh+dt@kernel.org>
+CC:     <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20210527100120.266796-1-eugen.hristev@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <2360b414-6a92-2952-8eec-954497f84bae@microchip.com>
+Date:   Sun, 6 Jun 2021 18:52:58 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <YLw//XARgqNlRoTB@builder.lan>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20210527100120.266796-1-eugen.hristev@microchip.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/06/2021 04:24, Bjorn Andersson wrote:
+On 27/05/2021 at 12:01, Eugen Hristev wrote:
+> Convert the old txt binding to yaml format.
+> 
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
 
->> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
->> index 97a1fedcc9ac..d8ae58bdbbe3 100644
->> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
->> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c
->> @@ -600,6 +600,13 @@ stmmac_probe_config_dt(struct platform_device *pdev, u8 *mac)
->>  		goto error_hw_init;
->>  	}
->>  
->> +	plat->stmmac_ahb_rst = devm_reset_control_get_optional_shared(
->> +							&pdev->dev, "ahb");
->> +	if (IS_ERR(plat->stmmac_ahb_rst)) {
->> +		ret = plat->stmmac_ahb_rst;
-> You need a PTR_ERR() around the plat->stmmac_ahb_rst.
+Series queued on at91-dt for 5.14. Will be sent to arm-soc soon.
+Thanks, best regards,
+   Nicolas
 
-This is giving a warning. Shouldn't v1 be kept as it is here? Please refer
-to "net: stmmac: platform: use optional clk/reset get APIs" [1] which
-modified error handling for plat->stmmac_rst. PTR_ERR() would then be
-called by the parent function on the returned value of ret.
+> ---
+>   .../bindings/watchdog/atmel,sama5d4-wdt.yaml  | 73 +++++++++++++++++++
+>   .../bindings/watchdog/atmel-sama5d4-wdt.txt   | 34 ---------
+>   2 files changed, 73 insertions(+), 34 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/watchdog/atmel-sama5d4-wdt.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml b/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml
+> new file mode 100644
+> index 000000000000..0d0ab81da040
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/watchdog/atmel,sama5d4-wdt.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/watchdog/atmel,sama5d4-wdt.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel SAMA5D4 Watchdog Timer (WDT) Controller
+> +
+> +maintainers:
+> +  - Eugen Hristev <eugen.hristev@microchip.com>
+> +
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - atmel,sama5d4-wdt
+> +      - microchip,sam9x60-wdt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  atmel,watchdog-type:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: should be hardware or software.
+> +    oneOf:
+> +      - description:
+> +          Enable watchdog fault reset. A watchdog fault triggers
+> +          watchdog reset.
+> +        const: hardware
+> +      - description:
+> +          Enable watchdog fault interrupt. A watchdog fault asserts
+> +          watchdog interrupt.
+> +        const: software
+> +    default: hardware
+> +
+> +  atmel,idle-halt:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      present if you want to stop the watchdog when the CPU is in idle state.
+> +      CAUTION: This property should be used with care, it actually makes the
+> +      watchdog not counting when the CPU is in idle state, therefore the
+> +      watchdog reset time depends on mean CPU usage and will not reset at all
+> +      if the CPU stop working while it is in idle state, which is probably
+> +      not what you want.
+> +
+> +  atmel,dbg-halt:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: |
+> +      present if you want to stop the watchdog when the CPU is in debug state.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    watchdog@fc068640 {
+> +      compatible = "atmel,sama5d4-wdt";
+> +      reg = <0xfc068640 0x10>;
+> +      interrupts = <4 IRQ_TYPE_LEVEL_HIGH 5>;
+> +      timeout-sec = <10>;
+> +      atmel,watchdog-type = "hardware";
+> +      atmel,dbg-halt;
+> +      atmel,idle-halt;
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/watchdog/atmel-sama5d4-wdt.txt b/Documentation/devicetree/bindings/watchdog/atmel-sama5d4-wdt.txt
+> deleted file mode 100644
+> index 44727fcc2729..000000000000
+> --- a/Documentation/devicetree/bindings/watchdog/atmel-sama5d4-wdt.txt
+> +++ /dev/null
+> @@ -1,34 +0,0 @@
+> -* Atmel SAMA5D4 Watchdog Timer (WDT) Controller
+> -
+> -Required properties:
+> -- compatible: "atmel,sama5d4-wdt" or "microchip,sam9x60-wdt"
+> -- reg: base physical address and length of memory mapped region.
+> -
+> -Optional properties:
+> -- timeout-sec: watchdog timeout value (in seconds).
+> -- interrupts: interrupt number to the CPU.
+> -- atmel,watchdog-type: should be "hardware" or "software".
+> -	"hardware": enable watchdog fault reset. A watchdog fault triggers
+> -		    watchdog reset.
+> -	"software": enable watchdog fault interrupt. A watchdog fault asserts
+> -		    watchdog interrupt.
+> -- atmel,idle-halt: present if you want to stop the watchdog when the CPU is
+> -		   in idle state.
+> -	CAUTION: This property should be used with care, it actually makes the
+> -	watchdog not counting when the CPU is in idle state, therefore the
+> -	watchdog reset time depends on mean CPU usage and will not reset at all
+> -	if the CPU stop working while it is in idle state, which is probably
+> -	not what you want.
+> -- atmel,dbg-halt: present if you want to stop the watchdog when the CPU is
+> -		  in debug state.
+> -
+> -Example:
+> -	watchdog@fc068640 {
+> -		compatible = "atmel,sama5d4-wdt";
+> -		reg = <0xfc068640 0x10>;
+> -		interrupts = <4 IRQ_TYPE_LEVEL_HIGH 5>;
+> -		timeout-sec = <10>;
+> -		atmel,watchdog-type = "hardware";
+> -		atmel,dbg-halt;
+> -		atmel,idle-halt;
+> -	};
+> 
 
-[1]: https://lore.kernel.org/netdev/20201112092606.5173aa6f@xhacker.debian/
 
-Thanks,
-Matthew
-
+-- 
+Nicolas Ferre
