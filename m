@@ -2,99 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6405A39CD8A
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jun 2021 07:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3B2E39CDE8
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jun 2021 09:40:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbhFFGBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Jun 2021 02:01:15 -0400
-Received: from muru.com ([72.249.23.125]:36958 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229504AbhFFGBP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Jun 2021 02:01:15 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 6A9FC80E5;
-        Sun,  6 Jun 2021 05:59:31 +0000 (UTC)
-Date:   Sun, 6 Jun 2021 08:59:20 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk <linux-clk@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Arnd Bergmann <arnd@kernel.org>
-Subject: Re: [PATCH 0/3] Apple M1 clock gate driver
-Message-ID: <YLxkOIu7XAJJd0bN@atomide.com>
-References: <20210524182745.22923-1-sven@svenpeter.dev>
- <CAL_JsqKqpSQbdj_Crc-LSc12700kyFFkMTU29BDY2bwGNLXn9A@mail.gmail.com>
- <YK32Mmiq9QXGkELF@atomide.com>
- <9ff6ec26-4b78-4684-9c23-16d5cbfef857@www.fastmail.com>
- <YLdOsA63GyMj4SgR@atomide.com>
- <1ff54382-7137-49d6-841d-318e400e956e@www.fastmail.com>
- <YLnZtJtUKdif47zE@atomide.com>
- <02176203-7f29-4ff4-933b-70235cf0dd22@www.fastmail.com>
+        id S230112AbhFFHml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Jun 2021 03:42:41 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:44989 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229508AbhFFHml (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Jun 2021 03:42:41 -0400
+Received: (Authenticated sender: alex@ghiti.fr)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 89713E0002;
+        Sun,  6 Jun 2021 07:40:44 +0000 (UTC)
+Subject: Re: [PATCH -fixes] riscv: Fix BUILTIN_DTB for sifive and microchip
+ soc
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20210604120639.1447869-1-alex@ghiti.fr>
+ <CAK8P3a1TiSNoqUEjTaqPyqnU8d0-p-yZkrsvmXt5fo4Rkfue_w@mail.gmail.com>
+ <1287f6f3-2f07-3269-9048-8f7d08eecc09@ghiti.fr>
+ <CAK8P3a1_N6dAdjWR10FtgaVz828o7W5Mp55DO3Ex+3en-ikOUw@mail.gmail.com>
+From:   Alex Ghiti <alex@ghiti.fr>
+Message-ID: <5d3a00d1-9e45-398a-39cf-1e6e9924eb18@ghiti.fr>
+Date:   Sun, 6 Jun 2021 09:40:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <02176203-7f29-4ff4-933b-70235cf0dd22@www.fastmail.com>
+In-Reply-To: <CAK8P3a1_N6dAdjWR10FtgaVz828o7W5Mp55DO3Ex+3en-ikOUw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: fr
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Sven Peter <sven@svenpeter.dev> [210605 12:13]:
-> Hi Tony,
+Le 5/06/2021 à 13:00, Arnd Bergmann a écrit :
+> On Sat, Jun 5, 2021 at 8:37 AM Alex Ghiti <alex@ghiti.fr> wrote:
+>> Le 4/06/2021 à 15:08, Arnd Bergmann a écrit :
+>>> On Fri, Jun 4, 2021 at 2:06 PM Alexandre Ghiti <alex@ghiti.fr> wrote:
+>>>>
+>>>> Fix BUILTIN_DTB config which resulted in a dtb that was actually not built
+>>>> into the Linux image: in the same manner as Canaan soc does, create an object
+>>>> file from the dtb file that will get linked into the Linux image.
+>>>>
+>>>> Signed-off-by: Alexandre Ghiti <alex@ghiti.fr>
+>>>
+>>> Along the same lines as the comment that Jisheng Zhang made on the fixed
+>>> address, building a dtb into the kernel itself fundamentally breaks generic
+>>> kernel images.
+>>>
+>>> I can understand using it on K210, which is extremely limited and wouldn't
+>>> run a generic kernel anyway, but for normal platforms like microchip and
+>>> sifive, it would be better to disallow CONFIG_BUILTIN_DTB in Kconfig
+>>> and require a non-broken boot loader.
+>>
+>> I kind of disagree because if I want to build a custom kernel for those
+>> platforms with a builtin dtb for some reasons (debug, development..Etc),
+>> I think I should be able to do so.
 > 
-> On Fri, Jun 4, 2021, at 09:43, Tony Lindgren wrote:
-> > Hi,
-> > 
-> > How about the following where you set up the gate clocks as separate 
-> > child nodes:
-> > 
-> > pmgr0: clock-controller@23b700000 {
-> > 	compatible = "apple,foo-clock-controller";
-> > 	#clock-cells = <1>;
-> > 	reg = <0x2 0x3b700000 0x0 0x4000>;
-> > 
-> > 	clk_uart0: clock@270 {
-> > 		compatible = "apple,t8103-gate-clock";
-> > 		#clock-cells = <0>;
-> > 		assigned-clock-parents = <&pmgr0 APPLE_CLK_SIO>,
-> > 					 <&pmgr0 APPLE_CLK_UART_P>;
-> > 		// ...
-> > 	};
-> > 
-> > };
-> > 
-> > Keep the clock controller still addressable by offset from base as discussed,
-> > and additionally have the driver parse and set up the child node clocks.
->
-> Nice, I like that one even better! We can keep the internal clocks "hidden"
-> inside the parent node and only need to model the actual consumer clocks
-> as separate nodes.
+> How is the builtin dtb better than appended dtb, or passing the dtb to the
+> boot loader in that case?
 
-I guess the child nodes could also use just a clocks property above
-instead of assigned-clock related properties if there are no configurable
-source clock mux registers.
+Ah never said it was better, just it was available so there is no reason 
+we could not allow it :)
 
-> Are you aware of any clock driver that implements something similar?
-> I'd like to avoid reinventing the wheel if it's already been done before.
-
-I'm only aware of a partial implementation so far :) The "offset from
-clock controller base" approach has worked well for the TI clkctrl
-clocks. The clkctrl gate clocks still have the SoC specific source
-clock data build into the clock driver(s).
-
-That's the Documentation/devicetree/bindings/clock/ti-clkctrl.txt
-binding. For the clkctrl clocks, the SoC specific source clock data
-is in drivers/clk/ti/clk-*.c files.
-
-With the Apple dtb describing the gate clock parents, you might be
-able to leave out most of the SoC specific built-in driver data
-sounds like.
-
-Regards,
-
-Tony
+> 
+>           Arnd
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
