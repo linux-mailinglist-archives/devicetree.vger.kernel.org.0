@@ -2,185 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46D0939D156
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jun 2021 22:19:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7319239D15B
+	for <lists+devicetree@lfdr.de>; Sun,  6 Jun 2021 22:23:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229885AbhFFUUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Jun 2021 16:20:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40222 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230159AbhFFUSv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Jun 2021 16:18:51 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73F95C0617A6
-        for <devicetree@vger.kernel.org>; Sun,  6 Jun 2021 13:17:00 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id cb9so17670914edb.1
-        for <devicetree@vger.kernel.org>; Sun, 06 Jun 2021 13:17:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=snejp.pl; s=gmail;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=qqv/zIOjF7NIyGSn6gjOvY+easTFG+SbModa0mydre0=;
-        b=ngi3GO87bf82JBszh9x1WrlJpUMr6tKYc5Xpyf18N0WQ1Qp8qC8vgwBtn/bCmUA6Gw
-         cti4hDldWE9EH+zn1CNBeo1amj+evmleTIlWX7UUW1wEA3i9xpl+Oo0qGMhWgBXyvBuH
-         DveCYykijKUCf/7xbNgK9QThElkjeyoxyhIY9FVcs+0diw0jpi5Wi+7qP464idM0QGx7
-         j/ROBJGdaP7ejmz8ie25IGLSRBdWsVzsgJFf4EaGGJ11pAp/maPO9lKp7pmZwWXSrZmX
-         CP7bOkTgYn8trQ5FnN6+OTBbt9R4qXhINwU9bQeAq5QZQFv81RlNASLsY55WZMWRLzev
-         bNJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=qqv/zIOjF7NIyGSn6gjOvY+easTFG+SbModa0mydre0=;
-        b=jkOyg03oeefgcE2+3TU9BZ9XBP7S7XVCdQsS+LsCXSZzIQg3cryLL4p/2zN0tfNOLt
-         fxlyhnl+cirxoB7TOHwDh4X3tmr+aon71tgyCR8nsz8y70maVWfoLXhFHDT/f23pICOd
-         OjevzSNAl1ub89uhrry7HKMJZz4mEHYLfxP+Ld4PKLbPstb1FwFaVQ/vGaSAnTFUqlOk
-         O3LTicKXcY6xos2QzB9RaSObMYpnIdX/vj8vPsgt5MVn6QTKMHEYLxIcn6BJmV1OfcB8
-         kNOGobbAVtVDLyZR2WFo+nrZJUcV4rWxUGtupF++7Crsu+HcthTPAqTVPRpdtziPqOLv
-         aw8Q==
-X-Gm-Message-State: AOAM533ssAHD/Ng37sSGT6XFt+0TgFdbyrS/gkLs7r+n5XiGH1fnbpYH
-        pQcYTjqaO/jSNhkJyMl/8M4t4g==
-X-Google-Smtp-Source: ABdhPJyC8Za9uHMXOdmHWNxp1ZB/q/0EUA8vonNdpV64QvjM9o48iCAQzT/b02iu7HThSlhwOoNWzw==
-X-Received: by 2002:aa7:d590:: with SMTP id r16mr16850650edq.355.1623010619108;
-        Sun, 06 Jun 2021 13:16:59 -0700 (PDT)
-Received: from PackardBell (192038129059.mbb.telenor.dk. [192.38.129.59])
-        by smtp.googlemail.com with ESMTPSA id v8sm2211623edc.59.2021.06.06.13.16.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Jun 2021 13:16:58 -0700 (PDT)
-Received: from localhost (PackardBell [local])
-        by PackardBell (OpenSMTPD) with ESMTPA id 49482cf5;
-        Sun, 6 Jun 2021 20:16:53 +0000 (UTC)
-From:   Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        David Sterba <dsterba@suse.com>, Jens Axboe <axboe@kernel.dk>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/2] arm: qcom: Add SMP support for MSM8226
-Date:   Sun,  6 Jun 2021 22:16:12 +0200
-Message-Id: <20210606201612.100752-3-bartosz.dudziak@snejp.pl>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210606201612.100752-1-bartosz.dudziak@snejp.pl>
-References: <20210606201612.100752-1-bartosz.dudziak@snejp.pl>
+        id S229991AbhFFUZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Jun 2021 16:25:06 -0400
+Received: from smtp-35-i2.italiaonline.it ([213.209.12.35]:44971 "EHLO
+        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229839AbhFFUZG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 6 Jun 2021 16:25:06 -0400
+Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
+ ([79.17.119.101])
+        by smtp-35.iol.local with ESMTPA
+        id pzIbl3WgQsptipzIflrvS7; Sun, 06 Jun 2021 22:23:15 +0200
+x-libjamoibt: 1601
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
+        t=1623010995; bh=GKqzetWt/dv1cWgZZ2u8XQZHK90wz4LVNGLm9kxGPI0=;
+        h=From;
+        b=nuc9NxlcA2SDwhLoD0OKb+e8jyK159P0Zi9CVsY2UIjuvzw4LKwBTNnTGuXJ9gt8P
+         TTp30CdwibI6JLbHnDtzQk7nSo/BxnExDfKjPGPdJ/da2uNqfFO76XBcnun1qoVatc
+         2fL4pah/jU07dTeXjLRGfgORufdeO2cx+ykRwNteV+E/G83VVDozfxYfF2kiNMu3B3
+         NaJPT7ufcIfpDI7lLTP8icYz5Riboct5IFmipbI+AZwo1496qVrB7nDUFQM/hgnR+u
+         xlowurPq/IDv/KQ9fq+YPj5Xw6UNh5UG6XWYhCZMILVgBB4VWvKXsQJkfio1qg7fu/
+         ypFq/DauE4FAQ==
+X-CNFS-Analysis: v=2.4 cv=Bo1Yfab5 c=1 sm=1 tr=0 ts=60bd2eb3 cx=a_exe
+ a=do1bHx4A/kh2kuTIUQHSxQ==:117 a=do1bHx4A/kh2kuTIUQHSxQ==:17
+ a=IkcTkHD0fZMA:10 a=7lJUY2J14ryrXklOE8AA:9 a=QEXdDO2ut3YA:10
+From:   Dario Binacchi <dariobin@libero.it>
+To:     linux-clk@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Dario Binacchi <dariobin@libero.it>,
+        linux-omap@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [RESEND PATCH v7 0/5] clk: ti: add am33xx spread spectrum clock support
+Date:   Sun,  6 Jun 2021 22:22:48 +0200
+Message-Id: <20210606202253.31649-1-dariobin@libero.it>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfI5nRvbbCZ0v19Bu7kLVeQHrArqdPErUgcd8LsmC4639LarUVB95QxaVsA+rN0o9Ten43Cf5fO/jOoc7x+hcvpTtlqmao8mOS1AtV7TYGlivK72Rz37x
+ BuhRgFbQXlkD6hhfH372yu9dpXVpigy1teVlHOJjkDL0czL354Qh23b1WetGol1AsetVdNZxsyQg9DZYSuraTBbMTfjibMAqHkAPGhYJcmbk5sKBVe5Bgggg
+ vAYWd9NAmbgMhDpIHr4PRfBoidzzBHI2n+IzubLrJWu+EZB/XpX29PJzorDggQpVb3NRIpVpDr1uWeOsvTepMePC8+HMqfzGsIgo1PNM8tCalxDyDooTsVzp
+ pM5UyRJZT/d7ot7NzduYudeH7x24rEzoatf9k7/TMCz0vzJCXU6S6V5SYrv1EKLWwgDZINWZEAiaU4TeiEa14g1T1H6PgsYXKr/A+9qNYgiPqS7jF4ENZCgs
+ j+s7Y8JYDsEjrKo81x/NEZWM6uN1+5ScEglmVcBzbtHdZMLIwPlU4mKCv66M/TksG+ch3IM+OTEowyWYa1tQS/9uN7+B1kbFW0qT5Or0rL4nD5M39IqKlS51
+ Mlg+mJMn/MgEHerj9yti5ubO7YErYv4okrel4VGWNu/LSg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Implement support for Cortex-A7 CPU release sequence in MSM8226 SoC.
 
-Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
----
- arch/arm/mach-qcom/platsmp.c | 71 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
+As reported by the TI spruh73x/spruhl7x RM, MPU and LCD modules support
+spread spectrum clocking (SSC) on their output clocks. SSC is used to
+spread the spectral peaking of the clock to reduce any electromagnetic
+interference (EMI) that may be caused due to the clock’s fundamental
+or any of its harmonics.
+The series allows you to enable and adjust the spread spectrum clocking
+for all am33xx/am43xx PLLs for which it is supported.
 
-diff --git a/arch/arm/mach-qcom/platsmp.c b/arch/arm/mach-qcom/platsmp.c
-index 630a038f45..60496554c6 100644
---- a/arch/arm/mach-qcom/platsmp.c
-+++ b/arch/arm/mach-qcom/platsmp.c
-@@ -29,6 +29,7 @@
- #define COREPOR_RST		BIT(5)
- #define CORE_RST		BIT(4)
- #define L2DT_SLP		BIT(3)
-+#define CORE_MEM_CLAMP		BIT(1)
- #define CLAMP			BIT(0)
- 
- #define APC_PWR_GATE_CTL	0x14
-@@ -75,6 +76,62 @@ static int scss_release_secondary(unsigned int cpu)
- 	return 0;
- }
- 
-+static int cortex_a7_release_secondary(unsigned int cpu)
-+{
-+	int ret = 0;
-+	void __iomem *reg;
-+	struct device_node *cpu_node, *acc_node;
-+	u32 reg_val;
-+
-+	cpu_node = of_get_cpu_node(cpu, NULL);
-+	if (!cpu_node)
-+		return -ENODEV;
-+
-+	acc_node = of_parse_phandle(cpu_node, "qcom,acc", 0);
-+	if (!acc_node) {
-+		ret = -ENODEV;
-+		goto out_acc;
-+	}
-+
-+	reg = of_iomap(acc_node, 0);
-+	if (!reg) {
-+		ret = -ENOMEM;
-+		goto out_acc_map;
-+	}
-+
-+	/* Put the CPU into reset. */
-+	reg_val = CORE_RST | COREPOR_RST | CLAMP | CORE_MEM_CLAMP;
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+
-+	/* Turn on the BHS and set the BHS_CNT to 16 XO clock cycles */
-+	writel(BHS_EN | (0x10 << BHS_CNT_SHIFT), reg + APC_PWR_GATE_CTL);
-+	/* Wait for the BHS to settle */
-+	udelay(2);
-+
-+	reg_val &= ~CORE_MEM_CLAMP;
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+	reg_val |= L2DT_SLP;
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+	udelay(2);
-+
-+	reg_val = (reg_val | BIT(17)) & ~CLAMP;
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+	udelay(2);
-+
-+	/* Release CPU out of reset and bring it to life. */
-+	reg_val &= ~(CORE_RST | COREPOR_RST);
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+	reg_val |= CORE_PWRD_UP;
-+	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-+
-+	iounmap(reg);
-+out_acc_map:
-+	of_node_put(acc_node);
-+out_acc:
-+	of_node_put(cpu_node);
-+	return ret;
-+}
-+
- static int kpssv1_release_secondary(unsigned int cpu)
- {
- 	int ret = 0;
-@@ -281,6 +338,11 @@ static int msm8660_boot_secondary(unsigned int cpu, struct task_struct *idle)
- 	return qcom_boot_secondary(cpu, scss_release_secondary);
- }
- 
-+static int cortex_a7_boot_secondary(unsigned int cpu, struct task_struct *idle)
-+{
-+	return qcom_boot_secondary(cpu, cortex_a7_release_secondary);
-+}
-+
- static int kpssv1_boot_secondary(unsigned int cpu, struct task_struct *idle)
- {
- 	return qcom_boot_secondary(cpu, kpssv1_release_secondary);
-@@ -315,6 +377,15 @@ static const struct smp_operations smp_msm8660_ops __initconst = {
- };
- CPU_METHOD_OF_DECLARE(qcom_smp, "qcom,gcc-msm8660", &smp_msm8660_ops);
- 
-+static const struct smp_operations qcom_smp_cortex_a7_ops __initconst = {
-+	.smp_prepare_cpus	= qcom_smp_prepare_cpus,
-+	.smp_boot_secondary	= cortex_a7_boot_secondary,
-+#ifdef CONFIG_HOTPLUG_CPU
-+	.cpu_die		= qcom_cpu_die,
-+#endif
-+};
-+CPU_METHOD_OF_DECLARE(qcom_smp_msm8226, "qcom,msm8226-smp", &qcom_smp_cortex_a7_ops);
-+
- static const struct smp_operations qcom_smp_kpssv1_ops __initconst = {
- 	.smp_prepare_cpus	= qcom_smp_prepare_cpus,
- 	.smp_boot_secondary	= kpssv1_boot_secondary,
+As suggested by Tony Lindgren I resend the whole series to the clk tree.
+For Tony the series is ok.
+
+Changes in v7:
+- Add Tony Lindgren acked tag.
+
+Changes in v6:
+- Add Tero Kristo review tag.
+
+Changes in v5:
+- Remove ssc_ack_mask field from dpll_data structure. It was not used.
+- Change ssc_downspread type from u8 to bool in dpll_data structure.
+
+Changes in v4:
+- Add Stephen Boyd review tag.
+- Add Rob Herring review tag.
+- Add SSC registers for CORE, DDR and PER PLLs.
+- Update commit message.
+- Update commit message.
+
+Changes in v3:
+- Add '-hz' suffix to "ti,ssc-modfreq" binding.
+- Add Tony Lindgren acked tag.
+- Use "ti,ssc-modfreq-hz" binding instead of "ti,ssc-modfreq".
+
+Changes in v2:
+- Remove SSC registers from dpll_core_ck@490 node (SSC is not supported)
+- Add SSC registers to dpll_mpu_ck@488 node.
+- Move the DT changes to the previous patch in the series.
+
+Dario Binacchi (5):
+  clk: ti: fix typo in routine description
+  dt-bindings: ti: dpll: add spread spectrum support
+  ARM: dts: am33xx-clocks: add spread spectrum support
+  ARM: dts: am43xx-clocks: add spread spectrum support
+  clk: ti: add am33xx/am43xx spread spectrum clock support
+
+ .../devicetree/bindings/clock/ti/dpll.txt     | 20 +++++
+ arch/arm/boot/dts/am33xx-clocks.dtsi          | 10 +--
+ arch/arm/boot/dts/am43xx-clocks.dtsi          | 12 +--
+ drivers/clk/ti/dpll.c                         | 39 +++++++++
+ drivers/clk/ti/dpll3xxx.c                     | 87 ++++++++++++++++++-
+ include/linux/clk/ti.h                        | 22 +++++
+ 6 files changed, 178 insertions(+), 12 deletions(-)
+
 -- 
-2.25.1
+2.17.1
 
