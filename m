@@ -2,135 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2822839D16A
-	for <lists+devicetree@lfdr.de>; Sun,  6 Jun 2021 22:23:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE7D439D210
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 00:53:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230252AbhFFUZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Jun 2021 16:25:24 -0400
-Received: from smtp-35-i2.italiaonline.it ([213.209.12.35]:46812 "EHLO
-        libero.it" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230235AbhFFUZW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 6 Jun 2021 16:25:22 -0400
-Received: from passgat-Modern-14-A10M.homenet.telecomitalia.it
- ([79.17.119.101])
-        by smtp-35.iol.local with ESMTPA
-        id pzIbl3WgQsptipzIwlrvWA; Sun, 06 Jun 2021 22:23:31 +0200
-x-libjamoibt: 1601
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=libero.it; s=s2021;
-        t=1623011011; bh=U7JzdCOLhubdapRB+n/j4Q+w7ZfRRrpW+Q5IRnQz5xw=;
-        h=From;
-        b=QsPF7m6FrYBl8qSo9HRUZVrEHnBdmPzj5GuK95mg1NF7YmN0XnGCUHzoLQDU2ioMH
-         yU5ixa1KbiHA0x0A8AajmKbBOhPU00QJDqQ0jyDc79swM2gEbKUPPdG6THHXzPfUgo
-         p9LpUTnBPRusfNS7KJJ7AKpQZFCr7UOGEOV/D8MXm2xZnM/FoeC4qzPMCZ2aW5m/NS
-         ykFAp39/kzP3F8ipBCAJZdLy3ZPRtCrvL0TKZ634pWWonmG1wnigrlAc3/smAUxXAC
-         Rvb2IG9Fi1BmQTbAAPg/wpE9Zh++c4+jw/xaBpQbZNyrAY1eCrY3yvGtGdC400uUg5
-         J532zA7TSoHEQ==
-X-CNFS-Analysis: v=2.4 cv=Bo1Yfab5 c=1 sm=1 tr=0 ts=60bd2ec3 cx=a_exe
- a=do1bHx4A/kh2kuTIUQHSxQ==:117 a=do1bHx4A/kh2kuTIUQHSxQ==:17 a=2KMo9-giAAAA:8
- a=2OX5x-OEy5pyK2UBO5QA:9 a=2pGyGSWy5nf2n_rBi4rp:22 a=UeCTMeHK7YUBiLmz_SX7:22
- a=pHzHmUro8NiASowvMSCR:22 a=xoEH_sTeL_Rfw54TyV31:22
-From:   Dario Binacchi <dariobin@libero.it>
-To:     linux-clk@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, Tony Lindgren <tony@atomide.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Dario Binacchi <dariobin@libero.it>,
-        linux-omap@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [RESEND PATCH v7 4/5] ARM: dts: am43xx-clocks: add spread spectrum support
-Date:   Sun,  6 Jun 2021 22:22:52 +0200
-Message-Id: <20210606202253.31649-5-dariobin@libero.it>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210606202253.31649-1-dariobin@libero.it>
-References: <20210606202253.31649-1-dariobin@libero.it>
-X-CMAE-Envelope: MS4xfPyspAKfdUGEueRhdjslJy1juqaeSj/rCbkuJQR0o+ZWBwm71JoP5e60ho7jKjB+wZ7FuIniQnVNnqsx7062+pMxs0HCsTmVVJCjeDc1jp2FeHxcCAYq
- fA1CMpjZzPWViwFINgiDpGt+guijAL7qbZ31gIfAgvjWGiXtCqOY9WyiGgeermFhovxpOv3AlrYBtcBa1pNJDC5Rw0ayjCoa6Pvbwa/ent2ZyoK4F0jaFD1Z
- nHBw5eRTFGb/kVMN9rtIbMOcslThF1C2u/ZQEW49NelIC4IEd7ajNYQ5xZj9OCrkrBPchJsMP/GWv64hb68Cx8Bd5KeNBpMf43oCSUfOWPnggAacsmhXKKwg
- d94r271xItR/u6FhcZe34CdF5zGEMFspj/JCbtYx7OPnmVNa4PbqGuwvQiCnyMbjYedRn8c24Y16zeRzu3RmQ9dTlKeYL4fJmFl12DfgV20OjPmi7SEtGJqT
- P/cDYM3+n0cyawtEdNUdMv6I0G/GpFWfOfjUtdtw3258VQ1Vq3Dql+WtWAEErIlsIUDPHn60uNGgUoVqmuhel78hbaIWrmgkHBr9sS84MTML8QAne2o2boid
- skgvqTFv3yPulzD9zAJwn/YcyuOJzuzTgimqeyPClhmvIg==
+        id S231174AbhFFWzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Jun 2021 18:55:11 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:53791 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230368AbhFFWzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Jun 2021 18:55:10 -0400
+Received: (Authenticated sender: n@nfraprado.net)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 861051BF203;
+        Sun,  6 Jun 2021 22:53:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nfraprado.net;
+        s=gm1; t=1623019997;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=LEITmbgA+ypfFiT6sDRv13/uCob4oKC9Sq9src0AzZE=;
+        b=chA+i0RmfXwj/WF8vUQcsG8LWn2bONkphlI9FxGByy3xXZzQ3/zHKFPGJxmKXuKUW335J7
+        jYK4CRJ9+UN7xZA7RoqojnjXZW+0cqiNSJEER76idFul1Hmyyid+LU7eBwqw4Yf6VUnAAy
+        EO/oCOnOkrJSrla2lWMUer63YFPTS6rPVGC6R5VJrg9wTSN5B9e0Ariq05tQnFO7ePJjQo
+        bl4pkIEG3/A5X1Ubh0QT5mRcrGJQ8WehYjr1NfQyPqrYiwulB4ynbpB9vRe3MCb4L15B0r
+        jLNt083VPjq8mnz5SK6VyymWvFVmHAPrKBJPANhNFdLyuGqe1sYaP2/+H+QnUQ==
+Date:   Sun, 6 Jun 2021 19:52:25 -0300
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <n@nfraprado.net>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-kernel@vger.kernel.org, bpf@vger.kernel.org,
+        coresight@lists.linaro.org, devicetree@vger.kernel.org,
+        kunit-dev@googlegroups.com, kvm@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-security-module@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH 00/34] docs: avoid using ReST :doc:`foo` tag
+Message-ID: <20210606225225.fz4dsyz6im4bqena@notapiano>
+References: <cover.1622898327.git.mchehab+huawei@kernel.org>
+ <20210605151109.axm3wzbcstsyxczp@notapiano>
+ <20210605210836.540577d4@coco.lan>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210605210836.540577d4@coco.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Registers for adjusting the spread spectrum clocking (SSC) have been
-added. As reported by the TI spruhl7x RM, SSC is supported only for LCD
-and MPU PLLs, but the PRCM_CM_SSC_DELTAMSTEP_DPLL_XXX and
-PRCM_CM_SSC_MODFREQDIV_DPLL_XXX registers, as well as the enable field
-in the PRCM_CM_CLKMODE_DPLL_XXX registers are mapped for all PLLs (CORE,
-MPU, DDR, PER, DISP, EXTDEV).
+On Sat, Jun 05, 2021 at 09:08:36PM +0200, Mauro Carvalho Chehab wrote:
+> Em Sat, 5 Jun 2021 12:11:09 -0300
+> Nícolas F. R. A. Prado <n@nfraprado.net> escreveu:
+> 
+> > Hi Mauro,
+> > 
+> > On Sat, Jun 05, 2021 at 03:17:59PM +0200, Mauro Carvalho Chehab wrote:
+> > > As discussed at:
+> > > 	https://lore.kernel.org/linux-doc/871r9k6rmy.fsf@meer.lwn.net/
+> > > 
+> > > It is better to avoid using :doc:`foo` to refer to Documentation/foo.rst, as the
+> > > automarkup.py extension should handle it automatically, on most cases.
+> > > 
+> > > There are a couple of exceptions to this rule:
+> > > 
+> > > 1. when :doc:  tag is used to point to a kernel-doc DOC: markup;
+> > > 2. when it is used with a named tag, e. g. :doc:`some name <foo>`;
+> > > 
+> > > It should also be noticed that automarkup.py has currently an issue:
+> > > if one use a markup like:
+> > > 
+> > > 	Documentation/dev-tools/kunit/api/test.rst
+> > > 	  - documents all of the standard testing API excluding mocking
+> > > 	    or mocking related features.
+> > > 
+> > > or, even:
+> > > 
+> > > 	Documentation/dev-tools/kunit/api/test.rst
+> > > 	    documents all of the standard testing API excluding mocking
+> > > 	    or mocking related features.
+> > > 	
+> > > The automarkup.py will simply ignore it. Not sure why. This patch series
+> > > avoid the above patterns (which is present only on 4 files), but it would be
+> > > nice to have a followup patch fixing the issue at automarkup.py.  
+> > 
+> > What I think is happening here is that we're using rST's syntax for definition
+> > lists [1]. automarkup.py ignores literal nodes, and perhaps a definition is
+> > considered a literal by Sphinx. Adding a blank line after the Documentation/...
+> > or removing the additional indentation makes it work, like you did in your
+> > 2nd and 3rd patch, since then it's not a definition anymore, although then the
+> > visual output is different as well.
+> 
+> A literal has a different output. I think that this is not the case, but I 
+> didn't check the python code from docutils/Sphinx.
 
-Signed-off-by: Dario Binacchi <dariobin@libero.it>
-Acked-by: Tony Lindgren <tony@atomide.com>
+Okay, I went in deeper to understand the issue and indeed it wasn't what I
+thought. The reason definitions are ignored by automarkup.py is because the main
+loop iterates only over nodes that are of type paragraph:
 
----
+    for para in doctree.traverse(nodes.paragraph):
+        for node in para.traverse(nodes.Text):
+            if not isinstance(node.parent, nodes.literal):
+                node.parent.replace(node, markup_refs(name, app, node))
 
-Changes in v7:
-- Add Tony Lindgren acked tag.
+And inspecting the HTML output from your example, the definition name is inside
+a <dt> tag, and it doesn't have a <p> inside. So in summary, automarkup.py will
+only work on elements which are inside a <p> in the output.
 
- arch/arm/boot/dts/am43xx-clocks.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Only applying the automarkup inside paragraphs seems like a good decision (which
+covers text in lists and tables as well), so unless there are other types of
+elements without paragraphs where automarkup should work, I think we should just
+avoid using definition lists pointing to documents like that.
 
-diff --git a/arch/arm/boot/dts/am43xx-clocks.dtsi b/arch/arm/boot/dts/am43xx-clocks.dtsi
-index c726cd8dbdf1..314fc5975acb 100644
---- a/arch/arm/boot/dts/am43xx-clocks.dtsi
-+++ b/arch/arm/boot/dts/am43xx-clocks.dtsi
-@@ -204,7 +204,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-core-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2d20>, <0x2d24>, <0x2d2c>;
-+		reg = <0x2d20>, <0x2d24>, <0x2d2c>, <0x2d48>, <0x2d4c>;
- 	};
- 
- 	dpll_core_x2_ck: dpll_core_x2_ck {
-@@ -250,7 +250,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2d60>, <0x2d64>, <0x2d6c>;
-+		reg = <0x2d60>, <0x2d64>, <0x2d6c>, <0x2d88>, <0x2d8c>;
- 	};
- 
- 	dpll_mpu_m2_ck: dpll_mpu_m2_ck@2d70 {
-@@ -276,7 +276,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2da0>, <0x2da4>, <0x2dac>;
-+		reg = <0x2da0>, <0x2da4>, <0x2dac>, <0x2dc8>, <0x2dcc>;
- 	};
- 
- 	dpll_ddr_m2_ck: dpll_ddr_m2_ck@2db0 {
-@@ -294,7 +294,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2e20>, <0x2e24>, <0x2e2c>;
-+		reg = <0x2e20>, <0x2e24>, <0x2e2c>, <0x2e48>, <0x2e4c>;
- 	};
- 
- 	dpll_disp_m2_ck: dpll_disp_m2_ck@2e30 {
-@@ -313,7 +313,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-j-type-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2de0>, <0x2de4>, <0x2dec>;
-+		reg = <0x2de0>, <0x2de4>, <0x2dec>, <0x2e08>, <0x2e0c>;
- 	};
- 
- 	dpll_per_m2_ck: dpll_per_m2_ck@2df0 {
-@@ -557,7 +557,7 @@
- 		#clock-cells = <0>;
- 		compatible = "ti,am3-dpll-clock";
- 		clocks = <&sys_clkin_ck>, <&sys_clkin_ck>;
--		reg = <0x2e60>, <0x2e64>, <0x2e6c>;
-+		reg = <0x2e60>, <0x2e64>, <0x2e6c>, <0x2e88>, <0x2e8c>;
- 	};
- 
- 	dpll_extdev_m2_ck: dpll_extdev_m2_ck@2e70 {
--- 
-2.17.1
+>  
+> > I'm not sure this is something we need to fix. Does it make sense to use
+> > definition lists for links like that? If it does, I guess one option would be to
+> > whitelist definition lists so they aren't ignored by automarkup, but I feel
+> > this could get ugly really quickly.
+> 
+> Yes, we should avoid handling literal blocks, as this can be a nightmare.
+> 
+> > FWIW note that it's also possible to use relative paths to docs with automarkup.
+> 
+> Not sure if you meant to say using something like ../driver-api/foo.rst.
+> If so, relative paths are a problem, as it will pass unnoticed by this script:
+> 
+> 	./scripts/documentation-file-ref-check
+> 
+> which is meant to warn when a file is moved to be elsewhere. Ok, it
+> could be taught to use "../" to identify paths, but I suspect that this
+> could lead to false positives, like here:
+> 
+> 	Documentation/usb/gadget-testing.rst:  # ln -s ../../uncompressed/u
+> 	Documentation/usb/gadget-testing.rst:  # cd ../../class/fs
+> 	Documentation/usb/gadget-testing.rst:  # ln -s ../../header/h
 
+Yes, that's what I meant. 
+
+Ok, that makes sense. Although after automarkup.py starts printing warnings on
+missing references to files (which is a patch I still need to resend), it would
+work out-of-the-box with relative paths. automarkup wouldn't face that false
+positives issue since it ignores literal blocks, which isn't as easy for a
+standalone script. But that's still in the future, we can discuss what to do
+then after it is implemented, so full paths seem better for now.
+
+Thanks,
+Nícolas
+
+> 
+> If you meant, instead, :doc:`../foo`, this series address those too.
+> 
+> Regards,
+> Mauro
