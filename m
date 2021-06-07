@@ -2,204 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3680B39D75C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 10:29:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C525539D762
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 10:30:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231352AbhFGIal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 04:30:41 -0400
-Received: from mail-eopbgr20041.outbound.protection.outlook.com ([40.107.2.41]:17124
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        id S229545AbhFGIbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 04:31:33 -0400
+Received: from mail-am6eur05on2062.outbound.protection.outlook.com ([40.107.22.62]:42209
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230215AbhFGIa0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Jun 2021 04:30:26 -0400
+        id S230128AbhFGIbd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 04:31:33 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FvXhVLqmWtrOHPxvXTqDRtvkj56BAVQLqGcSb/bB4oSF+wpzER1MkWifqXpjnW9K59wpnHU0Mlhk11HjoTUtmA1BBDMtHF6ntrAFA7pulLP49ut1r9W2G/hEKozoUDjKXcHH65HOICYWdmcbahZxp7aC9i5GZ9vcq7sYzE5SWI9UsMtRiPkvZA4uCTg/grF0bFHmgsoZNYvG7gp8ybgc+cHj4db/OZipP2d9bPL9qXocXXrnNi5BGcl1gmiKAonRG6ekKtBgeSNj3EybeXv8TygHfVN41ppc/R/YCdCqwwmfCcI7604Z4vHyZ+ZZVWXH1BuH4dXrA5ZcUc1ZYv0Ppg==
+ b=hAGDkfXRappCHt2llg0dNvkORmfy+LTC0lw9Nrt6MypA7SJwPkRos0S8x4L8qJxe+PWDreKO8T0l5jxMa0pJTqPS48k1AuJHHHpMDCDNbUJ42ljVvG1NWBNmUZ2Ymqj4dsVQaPp14KZC1Q95mLEh03vzVGs86WvdkuuZppfHumO8cjzcN5kDcNjF3e9cmuS0hDNsNFEhk2UBAsbvLwyOhEdhoZ1S2oVJUYW5vzo8d3AzwvBchb2y/UsECdkPLD+0ps2ZW3Kvho3UlmPDi8d6VtkON9kRIRm41VsqgXsB8g+9ouZ3eQOZYuNpba36DgS3RijIYbGkID+5p4s/61z7Zg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RpjRYYnXmBCJZfHBxJ/BYk/dglO61JCCnsksjTQjb+0=;
- b=Xe7RsFUB4igm1y0K4AZeMOFiU51BWgQAl0qkElqv9Wwm4//yTYMyKwDxKeG1lhWH0SgdskEf0wnGTfKwK5pD4rOz8BwohgJdL4Ie5ZwJOGNWU+bFiiP6j6sVKZHbKOSGe2h/4ij1GZGGAA5Dv7PanS6q2ky/tkgxdlA6ALTdukhyUO2xJw4bkET4BXdMAbup20m/s71NkGBHxxxKQXBhxYnkgd+mMnbg2n3gUoV7SO/+zoNJXvNRgss34V5x4Ct52LqSlRG7Pst19OnUagKNY0bJUpe4+ySVRw3ZZO7D+0Z/029MGa82fhmLmyWrSOgGXWC3+uq4QyGp9Jha6ZAeMQ==
+ bh=c/QgoaThD4pxRJVe/cGCfTsKQfyQAt7JPRJ7MUWh8Wc=;
+ b=CpgOR0R4EbH6i3n8F+qJEMSnXj4UW7d+2t9OiPOjfJqtpC9Ihn/rBVeUBwcjPBrnJ516M+5NMxAvwpPWfuF4WcFXtB0d+J91n3K2mw19q5K4Rez3XdeFNiugPxAu4PClHu0tJyt3+BZozFAUgclxenftgZezwlgmvpewU/6ORUs4a8swLQK+tEBdloQb6KcV52iBv1mudNPpoqqzPU1C+Q9U0CS4bQJb70oJX8GbeCOftXV4u5Z3Z9RsRgXm2bdyz5uKoV4404sNaz0lLQDMih589/JcL+4igWmfK2x8PztMRdz9g9y2k0/EK/4JUwZMfoWBM37Wlm1/AR0xcCApBw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=orolia.com; dmarc=pass action=none header.from=orolia.com;
- dkim=pass header.d=orolia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=orolia.com;
- s=selector1;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RpjRYYnXmBCJZfHBxJ/BYk/dglO61JCCnsksjTQjb+0=;
- b=GoXz0V09NdbwpopJNYExyDmRcZYQusxLKaWRpJezHDuz0W1Gyy6XuTtcpCHBHGBvv9n2U1wWYQITPPJr9D6OONweDAZmWEDYfN/Qp3RSX4TmOPJcXVMXpBKok3t92+jgCgpUkcjmwfN9xsakqKEqmrgRciJNkJFQJqGcQn9jXyw=
+ bh=c/QgoaThD4pxRJVe/cGCfTsKQfyQAt7JPRJ7MUWh8Wc=;
+ b=iEr70QWAbayjZNzUVbQPloV1JwmqdMRoV32qqYRzGyGFkPZ7NQusz4U3BiOi4lz6DWWp91v6vif0z/qa0/KCXZYk05xH3xtX+lGEOtRPGq82iuTvz4RJV+sAifPC+tNEsweloCGrV3r4dCIBsD9lfkXdhO7q4RQf0jldfK7J0ic=
 Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=orolia.com;
-Received: from PR1PR06MB4746.eurprd06.prod.outlook.com (2603:10a6:102:11::28)
- by PAXPR06MB7438.eurprd06.prod.outlook.com (2603:10a6:102:154::20) with
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
+ by DBBPR04MB7595.eurprd04.prod.outlook.com (2603:10a6:10:20d::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.22; Mon, 7 Jun
- 2021 08:28:32 +0000
-Received: from PR1PR06MB4746.eurprd06.prod.outlook.com
- ([fe80::81ef:de90:c451:d6e3]) by PR1PR06MB4746.eurprd06.prod.outlook.com
- ([fe80::81ef:de90:c451:d6e3%5]) with mapi id 15.20.4195.030; Mon, 7 Jun 2021
- 08:28:32 +0000
-Date:   Mon, 7 Jun 2021 10:28:14 +0200
-From:   Olivier Dautricourt <olivier.dautricourt@orolia.com>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Stefan Roese <sr@denx.de>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] dmaengine: altera-msgdma: add OF support
-Message-ID: <YL3Ynm9xBQ419qK3@orolia.com>
-References: <7d77772f49b978e3d52d3815b8743fe54c816994.1621343877.git.olivier.dautricourt@orolia.com>
- <088a373c92bdee6e24da771c1ae2e4ed0887c0d7.1621343877.git.olivier.dautricourt@orolia.com>
- <YL3DvQWhn+SsBqhJ@vkoul-mobl>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YL3DvQWhn+SsBqhJ@vkoul-mobl>
-X-Originating-IP: [2a01:e34:ec42:fd70:167:681b:bc47:e8b1]
-X-ClientProxiedBy: LO2P265CA0387.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:f::15) To PR1PR06MB4746.eurprd06.prod.outlook.com
- (2603:10a6:102:11::28)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.20; Mon, 7 Jun
+ 2021 08:29:40 +0000
+Received: from DBBPR04MB7930.eurprd04.prod.outlook.com
+ ([fe80::3921:acd6:3201:b209]) by DBBPR04MB7930.eurprd04.prod.outlook.com
+ ([fe80::3921:acd6:3201:b209%4]) with mapi id 15.20.4195.030; Mon, 7 Jun 2021
+ 08:29:40 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, sboyd@kernel.org,
+        s.hauer@pengutronix.de, linus.walleij@linaro.org,
+        aisheng.dong@nxp.com
+Cc:     festevam@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 00/11] Add imx8ulp basic dtsi support 
+Date:   Mon,  7 Jun 2021 16:39:10 +0800
+Message-Id: <20210607083921.2668568-1-ping.bai@nxp.com>
+X-Mailer: git-send-email 2.26.2
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: SG2P153CA0007.APCP153.PROD.OUTLOOK.COM (2603:1096::17) To
+ DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from orolia.com (2a01:e34:ec42:fd70:167:681b:bc47:e8b1) by LO2P265CA0387.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:f::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.15 via Frontend Transport; Mon, 7 Jun 2021 08:28:32 +0000
+Received: from localhost.localdomain (119.31.174.71) by SG2P153CA0007.APCP153.PROD.OUTLOOK.COM (2603:1096::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.4 via Frontend Transport; Mon, 7 Jun 2021 08:29:35 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5ea5c62a-dccf-4766-0169-08d9298e3c46
-X-MS-TrafficTypeDiagnostic: PAXPR06MB7438:
-X-Microsoft-Antispam-PRVS: <PAXPR06MB74389854DB5389E93CC55CCC8F389@PAXPR06MB7438.eurprd06.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
+X-MS-Office365-Filtering-Correlation-Id: 8cf38d56-ef23-4bc0-1734-08d9298e643c
+X-MS-TrafficTypeDiagnostic: DBBPR04MB7595:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DBBPR04MB75956A5FED6BFA275D9341F187389@DBBPR04MB7595.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /TpHUOnnrEOJaVIAuIgakzHj8ebRoSsMJ/tJktBniXG2QZvHPqjVpAeiNcmcpUtH6Xs5d9Gbjz3HupUmEPEEwPTNsABY3mvCbhkwVGs4JIv9HdgSVLpQFp47ym/rqQ8gRyAEliC2jic36PShmxMA+cFSS82v5K+mDPY6OlL2YhX4qxjgjGiEH/SJz1WRLTbWtGBVUkF/jN2C1QWeforvJcb6eswSbzHmQnrut6VN/PeMRkycJ3DyobyOuO279r5uRROJ4wH2SJn/Zc7WjzvVcHGSnXuJihDNy+aLc8OiCYPb/nFUM+6GcMcdpMvLMwQMEMJiRT/B2HCcvISmBMDiGRF+vbpcyofaU5a72Y0HbWr6rKziT01L4Rhg/Z0fKHJ8lRpjj5h4myxRmfmeLLGmialSOVAy3dqRRoLmsUCp9UKggD8obW8zVyaeoHnGHXjBiPIE3WPzUDyCIkbPD2axcDr2I/GAMaghMyTutDcu3E87AtcsLhd7sYwBiIdselfsGwGHEvq/92ouI9W+dY4ssA1Du8r84NUkZ1KRzmnMBlMUoJ2vDm5cWl8eRUXQdLcSujT2Cf+I0AQUuBZdcxfUPqQhJh3eTh79FOv5UoG3v7o=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PR1PR06MB4746.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39840400004)(396003)(136003)(346002)(366004)(376002)(66476007)(66556008)(66946007)(8676002)(6916009)(54906003)(5660300002)(53546011)(44832011)(16526019)(83380400001)(8936002)(186003)(2616005)(55016002)(36756003)(8886007)(316002)(4326008)(478600001)(6666004)(2906002)(7696005)(38100700002)(86362001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?YCsPeY/eBB8DtYty1hjsa74suOlsIKJUqBSiO+NgJQdkT3cnczfdGGLKL8oL?=
- =?us-ascii?Q?oyIuLaMmsbx1ZuAEdzbVSPzFgEn0TnxipZ4Vm+GFT8W9GntV10i+jtk7rDxF?=
- =?us-ascii?Q?4Dqlcpa9vqsKRXPmM6r5lAObh+OkB6ras+fiDRM/6+2f1yJeFKqpkJTb2SFz?=
- =?us-ascii?Q?H+5DN3V6N06AIB2PWbuI7rQhNZ38UuUDjvB0Goa3OHOWPLcRMUbwqnGxNx9l?=
- =?us-ascii?Q?aVALL8tOIxc874wxfI/x/R8EqErwmmI4W7AurTomwIHuMxwb2ZmWVi3xlyjO?=
- =?us-ascii?Q?3fIdo0aq1rrf7uNkp19WgqN3eCdr4bsoFSiL4hTV8RKX6/wRVkvq71G9zJi0?=
- =?us-ascii?Q?LpBjF5n0FllDZE4/gtq09kBeJS4KvozdkdRa4TJDl8t7dDIuKScPDEpsw9zs?=
- =?us-ascii?Q?qHUCzRsymW9BqZoO5MWk01eHtQnb8Aj7+NQqgd7QkljHYpKrZdYonkRjZEyE?=
- =?us-ascii?Q?YtKgSfL0jSIu7xHW72H1p2K+EaC7XFcqJtVxu0HmV0E/yccEIesbXZXuOK+F?=
- =?us-ascii?Q?quwaev+goo8TSPeEBTucoiFhhBvxc6aC/L7xj7FSTjfwFu8CSXAUcYJ/zvVK?=
- =?us-ascii?Q?0kGK3asA1Ifg2RDbJumHxqtjkNLHVvudV0bv9ZxgKXHmouR/fBJq1ns+GqNO?=
- =?us-ascii?Q?SLVxeX+vGK0CUdY/RvNB+XsEm/2MN2UGKLJx08RkkKbQ3G8RVSvpsnrXuB9q?=
- =?us-ascii?Q?cgJv6jvYeSHw9JhAyPTeovTgd5ztzsAjLexfKx8mg0tvK2veY2iln1XeHdiq?=
- =?us-ascii?Q?/Yra2NTb6NJw9UdyP+TcBbRaZsYiB2WbXnmzWHk8Scg3aqXtno/UXkwJ7D0+?=
- =?us-ascii?Q?7U7MhrWF5+cVYffrZ4AUKCHjnFPyoBZqON8sxZ4+At0BpN8BEU2ccC8coBHe?=
- =?us-ascii?Q?K0kZfZHlLYWdwJl/JrUCQq3GUYvm70F5iqU7MXY63UEZWtdoqZ/CiPfwRtO8?=
- =?us-ascii?Q?crmckadz/6DiPynkP3vimqZLVNuP1IB/ml1pb6tHpts8pZEunPLTBVTrpgB3?=
- =?us-ascii?Q?0URjEYqaBolU4VSee5ltwcotgoMEhIxbT8wHoNd+sVlWiWRGHOI3xlzne0mB?=
- =?us-ascii?Q?fzQ0eVOqwMTJMaU8vNANGUagtndGf51XZ0scVLT2wXOD402EDzBJ1xrlCfI4?=
- =?us-ascii?Q?MVPV9SUtmDYzK6rkTCWYdgmbrGeUcy3b1aBE9wCwG12oEopsNDmyBBEJhJIb?=
- =?us-ascii?Q?xzKjMicILViQUG3xNacZTBUd4xNb9VwCdNhzkV/DZ47NU+s/oXnTaGTqUzN5?=
- =?us-ascii?Q?PMXY8TFbD9B0tCOUGG9uUbrtI8N7iKDNrLmRGRPk/J2VsKLjovEkmPI2gjk1?=
- =?us-ascii?Q?RSW9meSSIabcsrgh+Kr6i1RlSYxMSNrCltNsCHw6zTTdTW7Kdrzb8IBHTTUC?=
- =?us-ascii?Q?6gxkDDyw0dXwbbYGTQG1eh0TVYDs?=
-X-OriginatorOrg: orolia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ea5c62a-dccf-4766-0169-08d9298e3c46
-X-MS-Exchange-CrossTenant-AuthSource: PR1PR06MB4746.eurprd06.prod.outlook.com
+X-Microsoft-Antispam-Message-Info: t+TQwbPX8zbbxfeP6YfbTpFoX6eS4LMWGJDgPLpQVy+Scenx6InPXCIa+XQjiSMma393hNZQgWL8NDxEUs1jhsRFvuwAC+ApYLU/z4AC9cne9vtr9v5GxHBXMdmJYez/5t2TLnCuMH413j9zkHQ6c8mTArYcoLGtRh2Ba9cerL9jzMYAp7gpZMZc5c4JjF4+iojw6+KuzTfrPygWmNfVT9U4ga5t4ov27SQExcWp73WfiSQU+KKDSfk1mKliGmLF1fpCZJkh/KcJckeuax1925bRV06YuH+kobcsPc6/jCnN9DKUZm8pRkms4Mfwl4E96HOirLNMr4hp1j7WaldxI8SF4uRpL6t//n4W6XolrCfaqpXN+eY5n/DkJ4fPqK035p8/kPw8+tPEH5ySueujTKODNHczjBg7BdToV4XnO08u+BC9b3nc6ox7RIdw1dL+I1Lv4j41Hw4PycpKDcxQ6DW8vKlPjgk0OUwbu5/D9hLhZXZElRmquca9t6uSE5nq7lWilx63sgloEAV+N2msEah8sKALwhIkPne8MqTL/KFZrYIQJfomPsSRCzeyA77nVczsbRE/00xP4zEtqw28KKC0LoskxSte5cmfQlZnBmQHG3T4NaCUamVGPvWoATA5Nb1gAyiOaDwkxNdhP0Lb30e1wslLqU7/32ryWzAoVid2USxDrHbP0nTAD800lPufZYRlOGMg8sSIf+ilX82pZw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7930.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39860400002)(136003)(366004)(396003)(376002)(6666004)(52116002)(16526019)(8676002)(1076003)(956004)(36756003)(2616005)(83380400001)(8936002)(26005)(2906002)(186003)(6636002)(6506007)(38100700002)(478600001)(316002)(6486002)(4743002)(86362001)(6512007)(66476007)(66556008)(5660300002)(66946007)(4326008)(38350700002)(69590400013)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?/gipKkxR50FCCEsSm5lbuxkPtXUxUM+LSYuDvKOZDU51ICAN5ViNarH6VioM?=
+ =?us-ascii?Q?7i6rNauLKaATCW1LXE6xOwjIk1JsxVFESWT9ilk02GRXJakuVDhxAbjLImCt?=
+ =?us-ascii?Q?indcC8Xm7CMefzmwzuZht2AOPSKCqBfd71xpD94e0Dxyva5/AXKA479WgAOY?=
+ =?us-ascii?Q?lFIMOC8DnnHIzvXGpDQaJ43cID0cV1PYLkHC9KJWp0ViT8AV/NouDKVEaZPb?=
+ =?us-ascii?Q?/bycH2s6vD5/bjZgnBjX/G05TWXnK6A/o2WKhyZmOvbJLt6bBAOmsB4QhTwg?=
+ =?us-ascii?Q?rk6IBsehU21I75y7tAotrbVWrQpd44j6s01nVj/IywI9jbiSjd/KTObegxE4?=
+ =?us-ascii?Q?UqMxyeL5mE/UxE8GFloQniwrFad7mLhOzrYCDCQSOaq2xs47D0RRvNNTMBue?=
+ =?us-ascii?Q?cxUixm1WrSmWc670K+edcEzXXbwmXQPIJ1l8zIIwUiK9n1NWUADZ9cIOKjaJ?=
+ =?us-ascii?Q?jba7SkvDwCNWEdZ38QZhfP2DOA2m/n9hwlbSObJrzDIQ2JTb79p5j2SsoJIV?=
+ =?us-ascii?Q?G6YMUvr8RNPTm9Rps0PEVSRROUW4G3/oZXT0/X9Po5UH20rP8YBL7lTTHlMC?=
+ =?us-ascii?Q?TnGQk8dBuh7LqhUL+D7J5Kny9P4SWddphjyxfbC2Nwz3UVZGJg92PMYoHcOd?=
+ =?us-ascii?Q?Ylhd1k9pI0a9WpMunCwoXDyvLif4j7Kj+omZRXmZjmzl830HY/iBdQsRazx2?=
+ =?us-ascii?Q?uA9N+LtCMffdC17ZjY1ZioOWqp7WwmDkzJfHpwcN6beTzptQQynALfdWlT3N?=
+ =?us-ascii?Q?vtM864u3EDGOmpQ5ohpg15y+HlfD21hNBSRBULiVhXauExbbB7jtCBCXgnhs?=
+ =?us-ascii?Q?XjZuU86Ra0roSlSucPBg6S2bJ6Lid7SftiuojExfCJ2F1cslAMCOnFvkspqM?=
+ =?us-ascii?Q?drfI7nrL5ZZTV9pCrAjn/+9TR4gMpwKFTf97izdbQmNbc5n9q0ygcY6qmkhP?=
+ =?us-ascii?Q?UrCRFC8VST4hFBDGkCW6MTAAVSj9dFVg/HGaW/poGEUy1HXPKNWVWtfCEgvX?=
+ =?us-ascii?Q?Ri7agERDn6kJbKuObQa9MjrPxvgYdZk3eEzu38T5soZxi4iKJx+EhYvkLgyM?=
+ =?us-ascii?Q?IQG2JBfO4fxbSZvAWqvwShbVWnO0u8RQo15+9v2sB8VukIFJGB5WnQDYZLfB?=
+ =?us-ascii?Q?ukQEcMZn36N5ZSoXk3y1XT+fAOWgQi+VQLp0YpG7bGzs9h3bNoupaabObI2Z?=
+ =?us-ascii?Q?x8OhUGd/GNp1cjDbNC2BVHYVdB4DDMF70aB06G4h/Tt55vabK9qOwWZe5QSO?=
+ =?us-ascii?Q?UsiRJGA6y4FAMdlhZl2ZfDdpsuracEPnDB82npUxzMJOpLoVigOwMuR6KTnJ?=
+ =?us-ascii?Q?SAYRjgml4XXcANk9dANSJ1E7?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8cf38d56-ef23-4bc0-1734-08d9298e643c
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7930.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2021 08:28:32.4361
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jun 2021 08:29:40.2540
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: a263030c-9c1b-421f-9471-1dec0b29c664
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: msrmd7M2Ti8lKNXjiHWFWQFsn6Z8AVuPU0gx50KNRqG61JqKMRBDxlNLF6uI6dg/YYMuOc8SfPEBXskWRFEjNOlB50QkqG3NgDA8aBq/18o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR06MB7438
+X-MS-Exchange-CrossTenant-UserPrincipalName: vae71RCII/gwtcPROzdQucMrkbGlmXLpApKXDHU+qYjkeusA4ZTJ8zaqKzMFillLw5V8NRIRM8DA8lwScgQ3Cw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7595
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 06/07/2021 12:29, Vinod Koul wrote:
-> On 18-05-21, 15:25, Olivier Dautricourt wrote:
-> > This driver had no device tree support.
-> >
-> > - add compatible field "altr,socfpga-msgdma"
-> > - define msgdma_of_xlate, with no argument
-> > - register dma controller with of_dma_controller_register
-> >
-> > Reviewed-by: Stefan Roese <sr@denx.de>
-> > Signed-off-by: Olivier Dautricourt <olivier.dautricourt@orolia.com>
-> > ---
-> >
-> > Notes:
-> >     Changes in v2:
-> >         none
-> >
-> >     Changes from v2 to v3:
-> >         Removed CONFIG_OF #ifdef's and use if (IS_ENABLED(CONFIG_OF))
-> >         only once.
-> >
-> >     Changes from v3 to v4
-> >         Reintroduce #ifdef CONFIG_OF for msgdma_match
-> >         as it produces a unused variable warning
-> >
-> >     Changes from v4 to v5
-> >         - As per Rob's comments on patch 1/2:
-> >           change compatible field from altr,msgdma to
-> >           altr,socfpga-msgdma.
-> >         - change commit title to fit previous commits naming
-> >         - As per Vinod's comments:
-> >           - use dma_get_slave_channel instead of dma_get_any_slave_channel which
-> >             makes more sense.
-> >           - remove if (IS_ENABLED(CONFIG_OF)) for of_dma_controller_register
-> >             as it is taken care by the core
-> >
-> >  drivers/dma/altera-msgdma.c | 26 ++++++++++++++++++++++++++
-> >  1 file changed, 26 insertions(+)
-> >
-> > diff --git a/drivers/dma/altera-msgdma.c b/drivers/dma/altera-msgdma.c
-> > index 9a841ce5f0c5..acf0990d73ae 100644
-> > --- a/drivers/dma/altera-msgdma.c
-> > +++ b/drivers/dma/altera-msgdma.c
-> > @@ -19,6 +19,7 @@
-> >  #include <linux/module.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/slab.h>
-> > +#include <linux/of_dma.h>
-> >
-> >  #include "dmaengine.h"
-> >
-> > @@ -784,6 +785,14 @@ static int request_and_map(struct platform_device *pdev, const char *name,
-> >       return 0;
-> >  }
-> >
-> > +static struct dma_chan *msgdma_of_xlate(struct of_phandle_args *dma_spec,
-> > +                                     struct of_dma *ofdma)
-> > +{
-> > +     struct msgdma_device *d = ofdma->of_dma_data;
-> > +
-> > +     return dma_get_slave_channel(&d->dmachan);
-> > +}
->
-> Why not use of_dma_simple_xlate() instead?
-I guess i could, but i don't think i need to define a filter function,
-also there is only one possible channel.
->
-> > +
-> >  /**
-> >   * msgdma_probe - Driver probe function
-> >   * @pdev: Pointer to the platform_device structure
-> > @@ -888,6 +897,13 @@ static int msgdma_probe(struct platform_device *pdev)
-> >       if (ret)
-> >               goto fail;
-> >
-> > +     ret = of_dma_controller_register(pdev->dev.of_node,
-> > +                                      msgdma_of_xlate, mdev);
-> > +     if (ret) {
-> > +             dev_err(&pdev->dev, "failed to register dma controller");
-> > +             goto fail;
->
-> Should this be treated as an error.. the probe will be invoked on non of
-> systems too..
-Ok, i'm a bit confused,
-in v4 those lines were enclosed with 'if (IS_ENABLED(CONFIG_OF)) { }'
-when you said to me that it was already taken care by the core i though
-that of_dma_controller_register will return 0 on non-of systems.
-Now i can add back IS_ENABLED(CONFIG_OF) or discard the ret value.
+i.MX 8ULP is part of the ULP family with emphasis on extreme low-power
+techniques using the 28 nm fully depleted silicon on insulator process.
+Like i.MX 7ULP, i.MX 8ULP continues to be based on asymmetric architecture,
+however will add a third DSP domain for advanced voice/audio capability and
+a Graphics domain where it is possible to access graphics resources from the
+application side or the realtime side.
 
->
-> --
-> ~Vinod
+This patchset adds the basic dtsi support for i.MX8ULP, and also update the
+dt-bindings docs for i.MX8ULP.
 
-Thanks,
---
-Olivier
+Jacky Bai (11):
+  dt-bindings: gpio: gpio-vf610: Add imx8ulp compatible string
+  dt-bindings: i2c: imx-lpi2c: Add imx8ulp compatible string
+  dt-bindings: mmc: imx-esdhc: Add imx8ulp compatibe string
+  dt-bindings: serial: fsl-lpuart: Add imx8ulp compatible string
+  dt-bindings: spi: fsl-lpspi: Add imx8ulp compatible string
+  dt-bindings: timer: tpm-timer: Add imx8ulp compatible string
+  dt-bindings: watchdog: imx7ulp-wdt: Add imx8ulp compatible string
+  dt-bindings: arm: fsl: Add binding for imx8ulp evk
+  dt-bindings: clock: Add imx8ulp clock support
+  arm64: dts: imx8ulp: Add the basic dtsi file for imx8ulp
+  arm64: dts: imx8ulp: Add the basic dts for imx8ulp evk board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ .../bindings/clock/imx8ulp-clock.yaml         |  72 ++
+ .../devicetree/bindings/gpio/gpio-vf610.yaml  |   3 +
+ .../bindings/i2c/i2c-imx-lpi2c.yaml           |   4 +-
+ .../bindings/mmc/fsl-imx-esdhc.yaml           |   4 +
+ .../bindings/serial/fsl-lpuart.yaml           |   4 +-
+ .../bindings/spi/spi-fsl-lpspi.yaml           |  11 +-
+ .../bindings/timer/nxp,tpm-timer.yaml         |   6 +-
+ .../bindings/watchdog/fsl-imx7ulp-wdt.yaml    |   7 +-
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ arch/arm64/boot/dts/freescale/imx8ulp-evk.dts | 143 +++
+ .../boot/dts/freescale/imx8ulp-pinfunc.h      | 978 ++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi    | 474 +++++++++
+ include/dt-bindings/clock/imx8ulp-clock.h     | 261 +++++
+ 14 files changed, 1965 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/imx8ulp-clock.yaml
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8ulp-evk.dts
+ create mode 100755 arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+ create mode 100644 include/dt-bindings/clock/imx8ulp-clock.h
+
+-- 
+2.26.2
 
