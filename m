@@ -2,48 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0920739DB93
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 13:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2BCC39DB81
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 13:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231538AbhFGLmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 07:42:10 -0400
-Received: from mail-pl1-f181.google.com ([209.85.214.181]:45609 "EHLO
-        mail-pl1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231515AbhFGLmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 07:42:09 -0400
-Received: by mail-pl1-f181.google.com with SMTP id 11so8474275plk.12
-        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 04:40:08 -0700 (PDT)
+        id S230219AbhFGLlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 07:41:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43518 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230341AbhFGLlE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 07:41:04 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA8ACC061787
+        for <devicetree@vger.kernel.org>; Mon,  7 Jun 2021 04:39:13 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id ei4so9631641pjb.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 04:39:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Z6Ewiz/FJiBEreBJpRrZidhXQHm4TISHkUY9VOlUYRc=;
-        b=l49RTEObja/G+frH4vnsjVumtrn+XxXWJXi91FrnyeDTSy73kjtiat9p6kAxrZIeu+
-         B+6CRo8GnJEFtFfifrYGaXqGApGhmlA+sWXl1YXWpk8z5EKeMjkSkfF4iBIL28E/wbYa
-         XB/GkLtjMMynH7/q8drDo5lsO6PcTmWS47QwELTSmeAVccfKlp4/4bdGmtvICAnGn2Pd
-         +k3Sen4Hrytnf03azFiHy5+6qyRacmeBiI5yda7TE3rTblg0xjPzfgn931D5EOEayoO8
-         7YMGYlKnNxvAfPDXwqbpWHHPFTjwtxME7pjUi8VHz3YBRGZ4Apfotq15LgJFiAxBZd1s
-         niMg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=jfeGYJOtKlcuIHOfL8nGiu8SwZWAHSC11095aJQL1jY=;
+        b=JHIeh6i4kE/pt7r7xB6cVQFnOBlfdoMPUc9uaALbGoaDkRTvaO9dV8g3kLCTqJaMew
+         PgQQTQN5faxzpFWEyvCApGxKzC3V0ye1fFTZ5nW8tRcfRUzQLqreV4vmcKYT9A58co9t
+         O/PYB+6dFkL8h7oVN3/07N3mSFbXY/3Pa1ub5P2MaQTrgZtbqETDZkrRHQT0bDRU9pNx
+         2uTldSGLqUVCLLGKxcxPEFUdXatG2thtO0BEn7iU2KhT4vkPq4RK0/BJr63W0ksyIbvp
+         qRTFeZzAwdRfRiDpmskkukNJtFpyHJ6ltvMgSgqFyPtka4AaPoQ0NEHhE6nr8rHI6fza
+         Ou2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Z6Ewiz/FJiBEreBJpRrZidhXQHm4TISHkUY9VOlUYRc=;
-        b=Ex4Fm0yNZxM+3pQua6sP5PFwaUd/UMx/e8csS1pAW1cy3leMmCmWiKRmqwJqcO/8Pp
-         NMap8KZ32c6bheJoo1PCXfTVWEpdt+I4kbAbLfxUJhc4ad/bo7YJs9/YYHUgFCxc1IwA
-         U3DRLzvu/Uik6X+FsKd0i1Z4BsPj4nnTWTzhCjDGwWugVXyLJXxbErxv+HEKtYTLsk3Z
-         QwlgNJLq2W+Yyp59iG29UCuCegVRYe31QpHPiEBZ4clFzSMW7kKXEi0u3z5TLc6uHqX6
-         a1qIvBuwHPzJWv9IBpVa1xPOVNt9dNxpX7uK/3Qj2p6OVMyVR7bPZk8A5nYbNDatPMIw
-         LBiA==
-X-Gm-Message-State: AOAM5327Am9jb0mrceqk5r24S7epz7UEeebjoOi8IFh7aWpyDHesNyMh
-        AX95VArADlosu2DczQNZkiZsUQ==
-X-Google-Smtp-Source: ABdhPJzUfAcjcqiD6DRmYHASLVohVLn7RbK703ta+Wr36NnZhdAUBzUcZ5DQEuns6LI9KVFJ3jHs0A==
-X-Received: by 2002:a17:90b:882:: with SMTP id bj2mr19631112pjb.167.1623065948131;
-        Mon, 07 Jun 2021 04:39:08 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=jfeGYJOtKlcuIHOfL8nGiu8SwZWAHSC11095aJQL1jY=;
+        b=DaYLcVQK7wCcGKiSkGGMU8zRRp5Ig5eqHumScXgotP3nwFCSgg23g09Ui3QvM8Pn0q
+         +mcxFbUzzrWYff5N62wpx91wILWBUqy4QdyOR9YJ+AjS2KM25oABIbouOmPQgKJObMqE
+         kfJ5KkFqguvs37OavXJxWUWN2SSP8i4tU8cYYFgKMA7kCrAdhk9rKgiypOGf9K1SfGnE
+         xu8UPKO5jng0X9ZFkZPWkuglOOIyMexpr/S7P+CvZOJOqz/uS9jp1DBZGdV6LCyhhN8g
+         8HgWfLKGTIQWeoFvXnCHnd2fVcl39RN0oA+qTGP1/OWhHjfKdVoIncBVzQQUaAtC5fLa
+         Fpxg==
+X-Gm-Message-State: AOAM530jovL8r2v9ykAXrgXgp2gfmvHgomme5jipaIiPf0KJaSkqZgEu
+        OLq8mUA2hjcJOda1hF9MA2r5qw==
+X-Google-Smtp-Source: ABdhPJxYaHxB0tXydPhuS9V12XDKPhoHPORk1mH4GYgbPCASYdKQq6J4FwMijmqQprfcbnYEGhgeww==
+X-Received: by 2002:a17:90a:bd04:: with SMTP id y4mr16602615pjr.127.1623065953309;
+        Mon, 07 Jun 2021 04:39:13 -0700 (PDT)
 Received: from localhost.localdomain.name ([122.177.177.211])
-        by smtp.gmail.com with ESMTPSA id j7sm7223939pjf.0.2021.06.07.04.39.03
+        by smtp.gmail.com with ESMTPSA id j7sm7223939pjf.0.2021.06.07.04.39.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jun 2021 04:39:07 -0700 (PDT)
+        Mon, 07 Jun 2021 04:39:13 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     bhupesh.sharma@linaro.org,
@@ -56,21 +59,20 @@ Cc:     bhupesh.sharma@linaro.org,
         Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
         bhupesh.linux@gmail.com
-Subject: [PATCH 0/8] arm64: dts: qcom: Add SA8155p-adp board DTS
-Date:   Mon,  7 Jun 2021 17:08:32 +0530
-Message-Id: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
+Subject: [PATCH 1/8] dt-bindings: qcom: rpmh-regulator: Add compatible for SA8155p-adp board pmics
+Date:   Mon,  7 Jun 2021 17:08:33 +0530
+Message-Id: <20210607113840.15435-2-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
+References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds DTS for SA8155p-adp board which is based on
-Qualcomm snapdragon sm8150 SoC. 
-
-This patchset also includes DTS for the two new PMICs PMM8155AU_1
-and PMM8155AU_2 found on the adp board.
+Add compatible strings for pmm8155au_1 and pmm8155au_2 pmics
+found on SA8155p-adp board.
 
 Cc: Linus Walleij <linus.walleij@linaro.org>
 Cc: Liam Girdwood <lgirdwood@gmail.com>
@@ -83,34 +85,24 @@ Cc: devicetree@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org
 Cc: linux-gpio@vger.kernel.org
 Cc: bhupesh.linux@gmail.com
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml      | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Bhupesh Sharma (8):
-  dt-bindings: qcom: rpmh-regulator: Add compatible for SA8155p-adp
-    board pmics
-  dt-bindings: pinctrl: qcom,pmic-gpio: Add compatible for SA8155p-adp
-  dt-bindings: arm: qcom: Add compatible for SA8155p-adp board
-  regulator: qcom-rpmh: Add new regulator types found on SA8155p adp
-    board
-  pinctrl: qcom/pinctrl-spmi-gpio: Add compatibles for pmic-gpios on
-    SA8155p-adp
-  arm64: dts: qcom: pmm8155au_1: Add base dts file
-  arm64: dts: qcom: pmm8155au_2: Add base dts file
-  arm64: dts: qcom: sa8155p-adp: Add base dts file
-
- .../devicetree/bindings/arm/qcom.yaml         |   8 +
- .../bindings/pinctrl/qcom,pmic-gpio.txt       |   5 +
- .../regulator/qcom,rpmh-regulator.yaml        |   2 +
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi     | 134 +++++++
- arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi     | 107 +++++
- arch/arm64/boot/dts/qcom/sa8155p-adp.dts      | 375 ++++++++++++++++++
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      |   4 +
- drivers/regulator/qcom-rpmh-regulator.c       |  72 ++++
- 9 files changed, 708 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
- create mode 100644 arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+index e561a5b941e4..ea5cd71aa0c7 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+@@ -55,6 +55,8 @@ properties:
+       - qcom,pm8009-1-rpmh-regulators
+       - qcom,pm8150-rpmh-regulators
+       - qcom,pm8150l-rpmh-regulators
++      - qcom,pmm8155au-1-rpmh-regulators
++      - qcom,pmm8155au-2-rpmh-regulators
+       - qcom,pm8350-rpmh-regulators
+       - qcom,pm8350c-rpmh-regulators
+       - qcom,pm8998-rpmh-regulators
 -- 
 2.31.1
 
