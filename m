@@ -2,92 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB8C939E031
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 17:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 882DA39E05C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 17:29:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbhFGPY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 11:24:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60590 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230212AbhFGPY2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Jun 2021 11:24:28 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A693C60C3D;
-        Mon,  7 Jun 2021 15:22:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623079357;
-        bh=AkvIZcOQR2MjwlCMTjuU8Ke8Ur/AqM0yyXCdXSHEmT0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r4trKSgMEv1ujYT26qffTcHnjCB78vQbzvPmedPzR04Wif7Dvy9GUxCHND6d0Ufcy
-         vjX9kz8BjVDrRZoJpAQd3zXMmz7jLo+nwZ+UZ9W5+PsaCpxD1qsGMTM3AuC3blgENQ
-         Bb/hga9U+05XmSNQa2ucPjtEOZUJH5gXGibW3MOTEBHcU4hBidQRTHISicPnyRkVSf
-         q2fLCRl8ZIl7GCRbr9bzNfOawa9Y6rldJ4AsSxLrcz/mzMvEq34RMMaMvdb2wAgNK1
-         T41iF6yM6/pSg9aLJs7HU7qNZ+6ZPJm6Gx/vVrFb6o1V2MxPkPcSNxMKybKLY0/wep
-         9jFkL3bBBxWqQ==
-Date:   Mon, 7 Jun 2021 20:52:33 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        bhupesh.linux@gmail.com
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: sa8155p-adp: Add base dts file
-Message-ID: <YL45uRr6+Q3jvPrO@vkoul-mobl>
-References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
- <20210607113840.15435-9-bhupesh.sharma@linaro.org>
+        id S230503AbhFGPbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 11:31:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38326 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230288AbhFGPbE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 11:31:04 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D505C061789
+        for <devicetree@vger.kernel.org>; Mon,  7 Jun 2021 08:29:00 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id t4-20020a1c77040000b029019d22d84ebdso13008232wmi.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 08:29:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TBonzj0wK2eMrUMd6BSIQ0dwX/RR5Bz8ilFeFxR/TGA=;
+        b=nMKso3FMfmrhSU5hrDKlPqTBzag4qyRAim1CmknzGmK5CZlXJ+8ldGm4nuY0CrK/KK
+         bL8JqkIY2YQGFKimMKeKOzdpOhcKrx29sAYIF7W9LnjDkIof9Y/+/U8MkuJPygjnC9a5
+         MbjPoB6hGVc5YnZprRBRfT/R8p1YvMzIMUMbG6SlJ8xLFIqlJls7VaEzc4Q1AEcO5q9A
+         NaScyNR0yMa7iUnhmilLklRiN75V6zgulkErXd3uHaQqQ/Lcr1eL14UWLn4jlls+Qd++
+         I1dgb7vkcyYiLVLtmDzH+x9XCiPPfNDcI/QCNx3OY5zxntGDbtU0i+eV49leyXH3HSPb
+         d/rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TBonzj0wK2eMrUMd6BSIQ0dwX/RR5Bz8ilFeFxR/TGA=;
+        b=J8DUbUhqeSmp5yRiVznQTz9S+W1W1ytQQdlKfP4TTiZkNDi87QvBGlsEeyHL09Ddv5
+         jts+hjSZIH2TUzz9hBYfeCiocVDHMu2eocKaSeTmDqDiJeFlE8pVC33eJzLw5XUKZWZO
+         MQM68F14bgduMOf/Vfnh48Ers6yG8ib02E/zH0h2NGRsC/zOz/SHNVhvLYEFRQl+W6yP
+         4MPgn5Tf0juBBjYJzn4PcipxmdidA+6PSm7HJuHBXXHM/gYP6Cy6uG91qggKlFwcnvUA
+         V5wz6TkBYMXHFzXp8m7JWNCfCsZSf2/qI0D6K01Nq4HebG3BkzXGMq+6MG/xXQXtfJ7y
+         gS4Q==
+X-Gm-Message-State: AOAM533J01NPatcvzHu31KBTWENaGJMVIBF0WBrwXeYLTLarOsWyOmmC
+        LV0Ty4y6bdRvVb3L5GFs69uSgQ==
+X-Google-Smtp-Source: ABdhPJxelM/QH7inYspnHoMLYLDbqxeuvm6+AOcdZUrk/uvppwrSz4H2RTVphX+KnCvHPmpiUGZ3Aw==
+X-Received: by 2002:a7b:c19a:: with SMTP id y26mr17394049wmi.132.1623079738917;
+        Mon, 07 Jun 2021 08:28:58 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id q3sm16370170wrr.43.2021.06.07.08.28.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Jun 2021 08:28:58 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     bjorn.andersson@linaro.org, broonie@kernel.org
+Cc:     plai@codeaurora.org, tiwai@suse.de, robh@kernel.org,
+        devicetree@vger.kernel.org, perex@perex.cz,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com, bgoswami@codeaurora.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [RFC PATCH 00/13] ASoC: qcom: Add AudioReach support
+Date:   Mon,  7 Jun 2021 16:28:23 +0100
+Message-Id: <20210607152836.17154-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210607113840.15435-9-bhupesh.sharma@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-06-21, 17:08, Bhupesh Sharma wrote:
-> Add base DTS file for sa8155p-adp and enable boot to console,
-> tlmm reserved range and also include pmic file(s).
+This patchset adds ASoC driver support to configure signal processing
+framework ("AudioReach") which is integral part of Qualcomm next
+generation audio SDK and will be deployed on upcoming Qualcomm chipsets.
+It makes use of ASoC Topology to load graphs on to the DSP which is then
+managed by APM (Audio Processing Manager) service to prepare/start/stop.
 
-I see ufs added too, pls mention that as well
+Here is simpified high-level block diagram of AudioReach:
 
- --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -71,6 +71,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
+ ___________________________________________________________
+|                 CPU (Application Processor)               |
+|  +---------+          +---------+         +---------+     |
+|  |  q6apm  |          |  q6apm  |         | q6afe   |     |
+|  |   dais  | <------> |         | <-----> | bedais  |     |
+|  +---------+          +---------+         +---------+     |
+|                            ^  ^                           |
+|                            |  |           +---------+     |
+|  +---------+               v  +---------->|topology |     |
+|  | q6prm   |          +---------+         |         |     |
+|  |         |<-------->|   GPR   |         +---------+     |
+|  +---------+          +---------+                         |
+|                            ^                              |
+|____________________________|______________________________|
+                             |  
+                             | RPMSG (IPC over GLINK)              
+ ____________________________|______________________________
+|                            |                              |
+|    +-----------------------+                              |
+|    |                       |                              |
+|    v                       v              q6 (Audio DSP)  |
+|+-----+    +----------------------------------+            |
+|| PRM |    | APM (Audio Processing Manager)   |            |
+|+-----+    |  . Graph Management              |            |  
+|           |  . Command Handing               |            |  
+|           |  . Event Management              |            |  
+|           |  ...                             |            |  
+|           +----------------------------------+            |  
+|                            ^                              |
+|____________________________|______________________________|
+                             |  
+                             |   LPASS AIF
+ ____________________________|______________________________
+|                            |            Audio I/O         |
+|                            v                              |
+|   +--------------------------------------------------+    |
+|    |                Audio devices                     |   |
+|    | CODEC | HDMI-TX | PCM  | SLIMBUS | I2S |MI2S |...|   |
+|    |                                                  |   |
+|    +--------------------------------------------------+   |
+|___________________________________________________________|
 
-I think this should go before sdm..
+AudioReach has constructs of sub-graph, container and modules.
+Each sub-graph can have N containers and each Container can have N Modules
+and connections between them can be linear or non-linear.
+An audio function can be realized with one or many connected
+sub-graphs. There are also control/event paths between modules that can
+be wired up while building graph to achieve various control mechanism
+between modules. These concepts of Sub-Graph, Containers and Modules
+are represented in ASoC topology.
+
+Here is simple I2S graph with a Write Shared Memory and a
+Volume control module within a single Subgraph (1) with one Container (1)
+and 5 modules.
+
+  ____________________________________________________________
+ |                        Sub-Graph [1]                       |
+ |  _______________________________________________________   |
+ | |                       Container [1]                   |  |
+ | | [WR_SH] -> [PCM DEC] -> [PCM CONV] -> [VOL]-> [I2S-EP]|  |
+ | |_______________________________________________________|  |
+ |____________________________________________________________|
+
+For now this graph is split into two subgraphs to achieve dpcm like below:
+ ________________________________________________    _________________
+|                Sub-Graph [1]                   |  |  Sub-Graph [2]  |
+|  ____________________________________________  |  |  _____________  |
+| |              Container [1]                 | |  | |Container [2]| |
+| | [WR_SH] -> [PCM DEC] -> [PCM CONV] -> [VOL]| |  | |   [I2S-EP]  | |
+| |____________________________________________| |  | |_____________| |
+|________________________________________________|  |_________________|
+
+                                                      _________________
+                                                    |  Sub-Graph [3]  |
+                                                    |  _____________  |
+                                                    | |Container [3]| |
+                                                    | |  [DMA-EP]   | |
+                                                    | |_____________| |
+                                                    |_________________|
 
 
-> +		vdd_usb_hs_core:
-> +		vdda_pll_hv_cc_ebi01:
-> +		vdda_pll_hv_cc_ebi23:
-> +		vdda_ufs_2ln_core:
-> +		vdda_ufs_2ln_core:
-> +		vdda_usb_ss_core:
-> +		vdda_usb_ss_dp_core_1:
-> +		vdda_usb_ss_dp_core_2:
-> +		vdda_sp_sensor:
-> +		vdda_qlink_lv:
-> +		vdda_qlink_lv_ck:
-> +		vdda_qrefs_0p875_5:
+This patchset adds very minimal support for AudioReach which includes
+supporting sub-graphs containing CODEC DMA ports and simple PCM
+Decoder/Encoder and Logger Modules. Additional capabilities will
+be built over time to expose features offered by AudioReach. 
 
-I didnt find these labels very useful, so maybe remove?
-It helped me to understand that a regulator is vreg_l5a_0p88 as it
-implies I am using l5a with 0p88V :)
+This patchset is Tested on SM8250 SoC based Qualcomm Robotics Platform RB5
+and SM9250 MTP with WSA881X Smart Speaker Amplifiers, DMICs connected via
+VA Macro and WCD938x Codec connected via TX and RX Macro.
 
-> +		vreg_l5a_0p88: ldo5 {
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <880000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+Sample WIP ASoC graphs are available at 
+https://git.linaro.org/people/srinivas.kandagatla/audioreach-topology.git/
 
-Pls do add regulator-name property, it helps in understanding which ldo
-in logs/debugfs, otherwise ldo5 will comes for both pmics
+Thanks,
+srini
+
+Srinivas Kandagatla (13):
+  soc: dt-bindings: qcom: add gpr bindings
+  soc: qcom: add gpr driver support
+  ASoC: qcom: dt-bindings: add bindings Audio Processing manager
+  ASoC: qcom: audioreach: add basic pkt alloc support
+  ASoC: qcom: audioreach: add q6apm support
+  ASoC: qcom: audioreach: add module configuration command helpers
+  ASoC: qcom: audioreach: add topology support
+  ASoC: qcom: audioreach: add q6apm-dai support
+  ASoC: qcom: audioreach: add bedai support
+  ASoC: qcom: dt-bindings: add bindings for Proxy Resource Manager
+  ASoC: qcom: audioreach: add q6prm support
+  ASoC: qcom: dt-bindings: add audioreach soundcard compatibles
+  ASoC: qcom: sm8250: Add audioreach support
+
+ .../bindings/soc/qcom/qcom,gpr.yaml           |   74 ++
+ .../devicetree/bindings/sound/qcom,q6apm.yaml |   72 ++
+ .../devicetree/bindings/sound/qcom,q6prm.yaml |   43 +
+ .../bindings/sound/qcom,sm8250.yaml           |   43 +
+ drivers/soc/qcom/Kconfig                      |    9 +
+ drivers/soc/qcom/Makefile                     |    1 +
+ drivers/soc/qcom/gpr.c                        |  487 ++++++++
+ include/dt-bindings/soc/qcom,gpr.h            |   18 +
+ include/dt-bindings/sound/qcom,q6apm.h        |  215 ++++
+ include/dt-bindings/sound/qcom,q6prm.h        |  205 ++++
+ include/linux/soc/qcom/gpr.h                  |  127 ++
+ include/uapi/sound/snd_ar_tokens.h            |  200 +++
+ sound/soc/qcom/Kconfig                        |   20 +
+ sound/soc/qcom/Makefile                       |    1 +
+ sound/soc/qcom/audioreach/Makefile            |   12 +
+ sound/soc/qcom/audioreach/audioreach.c        | 1082 +++++++++++++++++
+ sound/soc/qcom/audioreach/audioreach.h        |  649 ++++++++++
+ sound/soc/qcom/audioreach/q6apm-bedai.c       |  377 ++++++
+ sound/soc/qcom/audioreach/q6apm-dai.c         |  494 ++++++++
+ sound/soc/qcom/audioreach/q6apm.c             |  962 +++++++++++++++
+ sound/soc/qcom/audioreach/q6apm.h             |  171 +++
+ sound/soc/qcom/audioreach/q6prm.c             |  412 +++++++
+ sound/soc/qcom/audioreach/topology.c          |  848 +++++++++++++
+ sound/soc/qcom/sm8250.c                       |  144 ++-
+ 24 files changed, 6665 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,gpr.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6prm.yaml
+ create mode 100644 drivers/soc/qcom/gpr.c
+ create mode 100644 include/dt-bindings/soc/qcom,gpr.h
+ create mode 100644 include/dt-bindings/sound/qcom,q6apm.h
+ create mode 100644 include/dt-bindings/sound/qcom,q6prm.h
+ create mode 100644 include/linux/soc/qcom/gpr.h
+ create mode 100644 include/uapi/sound/snd_ar_tokens.h
+ create mode 100644 sound/soc/qcom/audioreach/Makefile
+ create mode 100644 sound/soc/qcom/audioreach/audioreach.c
+ create mode 100644 sound/soc/qcom/audioreach/audioreach.h
+ create mode 100644 sound/soc/qcom/audioreach/q6apm-bedai.c
+ create mode 100644 sound/soc/qcom/audioreach/q6apm-dai.c
+ create mode 100644 sound/soc/qcom/audioreach/q6apm.c
+ create mode 100644 sound/soc/qcom/audioreach/q6apm.h
+ create mode 100644 sound/soc/qcom/audioreach/q6prm.c
+ create mode 100644 sound/soc/qcom/audioreach/topology.c
 
 -- 
-~Vinod
+2.21.0
+
