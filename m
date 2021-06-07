@@ -2,107 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE41039D865
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 11:15:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19A0B39D887
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 11:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbhFGJRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 05:17:36 -0400
-Received: from mail-ej1-f51.google.com ([209.85.218.51]:33604 "EHLO
-        mail-ej1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230139AbhFGJRd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 05:17:33 -0400
-Received: by mail-ej1-f51.google.com with SMTP id g20so25538329ejt.0;
-        Mon, 07 Jun 2021 02:15:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=UZrq5VlhmQW6JZmMPrVakR8M/Jz/bAVYPXpHBFjrH1c=;
-        b=KLn0ZlNqWao86EIujuLqufe3OtsEytKF0ws/B3wc3/r7n3np7VmGBbtKzL47joK9cC
-         DPxaG75RV5SEQARuDIlNwRb2azNgabL9fbK890DZu2A2bpgyBCS0L1/JqQVbBDSqjPRI
-         mEPPkB0MsUv3koqXOXp0hq7dSZARqaJ6//+uxLvfEIJErcQ6ua+Cp54rfNOZrqroLQSc
-         gK73DjWJriG2Vpjv2DPaUymgpmJH5SkHboVw3C8E+scOFq+DS+p2PdoP20SMeoqGNh7j
-         81uAGcyJTM5jMRevo01ap3EaAGIoj7qngHGu5IQLKtGMCtUgqV9OmhxIcEUTRbk6mvWf
-         a0lQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=UZrq5VlhmQW6JZmMPrVakR8M/Jz/bAVYPXpHBFjrH1c=;
-        b=rN7Yt2Wc3QBHdRRKRQVivnYnyPykVpWdy0BcSFvM5cJ1MMF32bnHrhEB8Tl2msksy1
-         MCErahdR7IVVVAFcWONKBEDlyKnPMYkDfqDCTgk+fJwUR/Hq3xEXnDaNp5YbI1zdqALR
-         P8cVK9/Npmv2QXaWlCm7wSuCf4CutALwfIhhlgf+e1Z5FwjS4uiW+TEhSbMk1+OFlrx+
-         gMey4gcsN6oRdahVF3MdLT752fQSFXz4va9hbomsr1kBU6XyKA+ztpHcrIswKKCq6b4l
-         JHSrYyWmmLQ88oMcJArU/6wd8mKfWSTnEpPGCqWeNZogpx7b7SYS+YAjKk+R5NgOksuJ
-         nMFA==
-X-Gm-Message-State: AOAM531nIzq0sJL+AowTKZfjatVO86Sai/WZbP7X4S8gy/zbOrDxAsGs
-        8+ETOcV4wuoM7AvGK1nAfeYmVVjDoS/QEg==
-X-Google-Smtp-Source: ABdhPJzXK2A9L9nkflnok98q7PG7rX1Tcr7XYduvR8sIGZiKEBv2cHiQo0Pymrmm8SJyMG5RlEkWxw==
-X-Received: by 2002:a17:906:f8d0:: with SMTP id lh16mr17075823ejb.331.1623057265308;
-        Mon, 07 Jun 2021 02:14:25 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id gx28sm6320117ejc.107.2021.06.07.02.14.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Jun 2021 02:14:25 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: rockchip: add EEPROM node for NanoPi R4S
-To:     Tianling Shen <cnsztl@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Marty Jones <mj8263788@gmail.com>, Pavel Machek <pavel@ucw.cz>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210607081727.4723-1-cnsztl@gmail.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <9258ab23-ef65-2c3d-f0d2-ca5f77d7c12a@gmail.com>
-Date:   Mon, 7 Jun 2021 11:14:23 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S230351AbhFGJVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 05:21:22 -0400
+Received: from mga06.intel.com ([134.134.136.31]:43396 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230239AbhFGJVW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 05:21:22 -0400
+IronPort-SDR: khPzT3tuV3/Yv/91MYRl5+PI4RkxVxtEXzVdLQg2VTvvh/Nm45N9CZM6HfvkzAUlqtugkw8GAN
+ 3JpdQ4bRGarA==
+X-IronPort-AV: E=McAfee;i="6200,9189,10007"; a="265743711"
+X-IronPort-AV: E=Sophos;i="5.83,254,1616482800"; 
+   d="scan'208";a="265743711"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jun 2021 02:19:31 -0700
+IronPort-SDR: D+TGh23U+FT9mUuSbPOMyIJcYIgbZrdRiQdCzlaWOigvRHKUm99Jb1DgoATUgo0+2f6UiYA6/9
+ 2skc/Ujq0NNA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,254,1616482800"; 
+   d="scan'208";a="551815937"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 07 Jun 2021 02:19:28 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 07 Jun 2021 12:19:27 +0300
+Date:   Mon, 7 Jun 2021 12:19:27 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Kyle Tso <kyletso@google.com>
+Cc:     linux@roeck-us.net, gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        badhri@google.com, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] usb: typec: tcpm: Fix misuses of AMS invocation
+Message-ID: <YL3kn3C0/3bdNPwi@kuha.fi.intel.com>
+References: <20210601123151.3441914-1-kyletso@google.com>
+ <20210601123151.3441914-5-kyletso@google.com>
 MIME-Version: 1.0
-In-Reply-To: <20210607081727.4723-1-cnsztl@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210601123151.3441914-5-kyletso@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tianling,
-
-On 6/7/21 10:17 AM, Tianling Shen wrote:
-> NanoPi R4S has a EEPROM attached to the 2nd I2C bus (U92), which
-> stores the MAC address.
+On Tue, Jun 01, 2021 at 08:31:51PM +0800, Kyle Tso wrote:
+> tcpm_ams_start is used to initiate an AMS as well as checking Collision
+> Avoidance conditions but not for flagging passive AMS (initiated by the
+> port partner). Fix the misuses of tcpm_ams_start in tcpm_pd_svdm.
 > 
-> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+> ATTENTION doesn't need responses so the AMS flag is not needed here.
+> 
+> Fixes: 0bc3ee92880d ("usb: typec: tcpm: Properly interrupt VDM AMS")
+> Signed-off-by: Kyle Tso <kyletso@google.com>
+
+Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
 > ---
->  arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  drivers/usb/typec/tcpm/tcpm.c | 11 +++++------
+>  1 file changed, 5 insertions(+), 6 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> index cef4d18b599d..4a82f50a07c5 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> @@ -68,6 +68,15 @@
->  	status = "disabled";
->  };
+> diff --git a/drivers/usb/typec/tcpm/tcpm.c b/drivers/usb/typec/tcpm/tcpm.c
+> index ebe490949fa0..c4b02a6ca3d7 100644
+> --- a/drivers/usb/typec/tcpm/tcpm.c
+> +++ b/drivers/usb/typec/tcpm/tcpm.c
+> @@ -1583,7 +1583,7 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+>  				svdm_version = PD_VDO_SVDM_VER(p[0]);
+>  			}
 >  
-> +&i2c2 {
-> +	eeprom@51 {
-> +		compatible = "microchip,24c02", "atmel,24c02";
-> +		reg = <0x51>;
-> +		pagesize = <16>;
+> -			tcpm_ams_start(port, DISCOVER_IDENTITY);
+> +			port->ams = DISCOVER_IDENTITY;
+>  			/*
+>  			 * PD2.0 Spec 6.10.3: respond with NAK as DFP (data host)
+>  			 * PD3.1 Spec 6.4.4.2.5.1: respond with NAK if "invalid field" or
+> @@ -1604,19 +1604,18 @@ static int tcpm_pd_svdm(struct tcpm_port *port, struct typec_altmode *adev,
+>  			}
+>  			break;
+>  		case CMD_DISCOVER_SVID:
+> -			tcpm_ams_start(port, DISCOVER_SVIDS);
+> +			port->ams = DISCOVER_SVIDS;
+>  			break;
+>  		case CMD_DISCOVER_MODES:
+> -			tcpm_ams_start(port, DISCOVER_MODES);
+> +			port->ams = DISCOVER_MODES;
+>  			break;
+>  		case CMD_ENTER_MODE:
+> -			tcpm_ams_start(port, DFP_TO_UFP_ENTER_MODE);
+> +			port->ams = DFP_TO_UFP_ENTER_MODE;
+>  			break;
+>  		case CMD_EXIT_MODE:
+> -			tcpm_ams_start(port, DFP_TO_UFP_EXIT_MODE);
+> +			port->ams = DFP_TO_UFP_EXIT_MODE;
+>  			break;
+>  		case CMD_ATTENTION:
+> -			tcpm_ams_start(port, ATTENTION);
+>  			/* Attention command does not have response */
+>  			*adev_action = ADEV_ATTENTION;
+>  			return 0;
+> -- 
+> 2.32.0.rc0.204.g9fa02ecfa5-goog
 
-> +		read-only; /* This holds our MAC */
-
-The mainline dts files should be generic I think.
-Any comment about "use", partitions or write ability should be avoided.
-It's up the user.
-
-Johan
-
-> +	};
-> +};
-> +
->  &i2c4 {
->  	status = "disabled";
->  };
-> 
+-- 
+heikki
