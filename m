@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0805439DB9D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 13:40:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60C2B39DBA1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 13:40:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230494AbhFGLma (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 07:42:30 -0400
-Received: from mail-pj1-f48.google.com ([209.85.216.48]:35780 "EHLO
-        mail-pj1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230374AbhFGLm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 07:42:29 -0400
-Received: by mail-pj1-f48.google.com with SMTP id fy24-20020a17090b0218b029016c5a59021fso5205468pjb.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 04:40:39 -0700 (PDT)
+        id S231603AbhFGLmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 07:42:42 -0400
+Received: from mail-pl1-f170.google.com ([209.85.214.170]:34551 "EHLO
+        mail-pl1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231601AbhFGLmm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 07:42:42 -0400
+Received: by mail-pl1-f170.google.com with SMTP id h1so837598plt.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 04:40:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=a7axnRN7J0TgpBrh+Kb0fw1d7DU02xsKPrnGXvbuVaw=;
-        b=vVkRkAihLJJtBX4HTGi9pn9BV3vX7Qe0XrIoTcWjOPnHT24fkDYpqXhAkKoqgMzE6Z
-         e7TNWfcRWEq/QJRDbFjc0Cf64Q5dyJSpaAOgeHImeR2OJJdN+0b/m7dqLv+LA8JiKluq
-         EPUjauEqlo/yfXZFcahub8d6P7S66vhV6fupaRfD2LzkpUjSmf+sP+7rFpo0AmY6SAUB
-         2Yolb/9yaq/v65/qSANPGCIe3S3PwAwyJxB+6BpAJXDgcksarZohaVyoOrq8A4wKACGt
-         xb26UB665E97tauqd0Xxp9eIm3gL+KV1RSA3VzUNWFI1Z51tST2GRmwImSxfXr8KvuJ3
-         x7wQ==
+        bh=Ix3Z3iu5Sdv/B7LYx2J6tZXgGiemwrKhiSlqqq85Tao=;
+        b=kTSgf7cpzEefZXwj/Gi0pLErE2/d8Xz0i2MKmf7fPxskKtL4Ap66mCqhKSxUMkFVsD
+         e1NCuuSbL2YSOLMHyXqroWjo11J/c274RGqMf+oktKFxpcirue7p9iZxoqvjq5ktINvx
+         QWaT2Nu+IflBUPy5SeuBJjteB6xokggeABOEwvzP/iIEE996+vye1MGS1CeTi/jd4noq
+         Z4aSpIaKzATfZk20ADAtdXhvRwPNsDyW1CpyFsGdR26x+jnmHN0hcVulg0YUd6h3zAJj
+         XuSfh0akC5UQL46cqiWFnHPrU3Zglyj0exMkUsLu2Pxb1ltDxYAJ2Zwd7NyYpnx8hTXQ
+         l+TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=a7axnRN7J0TgpBrh+Kb0fw1d7DU02xsKPrnGXvbuVaw=;
-        b=CzYSSsLAZgMuENhd1UwP59rabP9eBsOb6hRsDZ3ngT5AoMDQPkYQT7m5YgXuKUKlXl
-         0CfRn+pDBoFVUzH7k/T7NZ1631RiE6jPgnBff6Hnhu1gOSWUaFss2ctbPMrxGbJzUCF6
-         xgXhQss1fZrqf+A44dozmFEOafq+YIxvWpKm7+FxbLRBspDp1xKjHkrlJ+9zXFgCvZyV
-         lTphnjZ7irNY5JtWfJknAUeleSbwnm1WC2OYAvb9skoQ5njpnBg9s+BJHUjEVm1Ns3t9
-         szd2RNf43dGBN/8nB3Ceu1++7pjsBOF1OYHMb7cDHGSXMbowFBCLS27ZsCmW0dOBuD/U
-         gdLQ==
-X-Gm-Message-State: AOAM530S88wYNq9kOYnxJpCM800D92Nb1ywNSxMcGGKG1jlayqlJn8nD
-        6x45f0rSzcE8H8bGR7ktQ69rLA==
-X-Google-Smtp-Source: ABdhPJxQCM2sTdShjg8xqQTg6oL/ZbHAuZxKnPCSh5Z09oDloWaPhHm+SamzN5DG2WUJvCpkb4dJsw==
-X-Received: by 2002:a17:90a:e298:: with SMTP id d24mr19962376pjz.36.1623065978833;
-        Mon, 07 Jun 2021 04:39:38 -0700 (PDT)
+        bh=Ix3Z3iu5Sdv/B7LYx2J6tZXgGiemwrKhiSlqqq85Tao=;
+        b=WuHdsz0nc7dSmSIIVwH73PhAgR2cDAf9C1nkQ5P7FU1b8SNQ2B/W10iF6PNH8Y3sq+
+         U5eZ/IGjQbuoPFOlpDCpqJDfBKK/1G2sKu0634U9p5FukXLbmLAyoWWwZnrTzVwamPul
+         Dg1C6AdNNbgAcjlrzKYYGX1Bccs3uZ9bedCa3nUmj/THkiBSi32WN3GK/hcOCthRX7Xm
+         UTHLdCdpJ40ekOtv2hSJC7H5wMeCLVCJi7+Un1UhrnlgeSDO7G8H7QnOQkhDKtaG83TP
+         pRek5b5QV5uIUtvG+/RjZ+OwUJjr804biGGOGeyC5qHH1CyCi9fmdysHoRCQBw8w9I6b
+         FhEw==
+X-Gm-Message-State: AOAM531Xl7NiMbdnV/qQTM+rHxU4/qh9oQv25p1qkM2EcG0GOV5qM9X7
+        w9B9zsjcW8i7d3a3UkOGjy79wQ==
+X-Google-Smtp-Source: ABdhPJxws8tbeEWl/MSug9iQQCtBEVPomYu6qYlDUP9up54p9iqpvXvSgdNOKLMUmgy6S2lqDqgc0w==
+X-Received: by 2002:a17:90b:3ecb:: with SMTP id rm11mr19723250pjb.95.1623065983941;
+        Mon, 07 Jun 2021 04:39:43 -0700 (PDT)
 Received: from localhost.localdomain.name ([122.177.177.211])
-        by smtp.gmail.com with ESMTPSA id j7sm7223939pjf.0.2021.06.07.04.39.34
+        by smtp.gmail.com with ESMTPSA id j7sm7223939pjf.0.2021.06.07.04.39.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jun 2021 04:39:38 -0700 (PDT)
+        Mon, 07 Jun 2021 04:39:43 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     bhupesh.sharma@linaro.org,
@@ -56,9 +56,9 @@ Cc:     bhupesh.sharma@linaro.org,
         Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
         bhupesh.linux@gmail.com
-Subject: [PATCH 6/8] arm64: dts: qcom: pmm8155au_1: Add base dts file
-Date:   Mon,  7 Jun 2021 17:08:38 +0530
-Message-Id: <20210607113840.15435-7-bhupesh.sharma@linaro.org>
+Subject: [PATCH 7/8] arm64: dts: qcom: pmm8155au_2: Add base dts file
+Date:   Mon,  7 Jun 2021 17:08:39 +0530
+Message-Id: <20210607113840.15435-8-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
 References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
@@ -68,7 +68,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add base DTS file for pmm8155au_1 along with GPIOs, power-on, rtc and vadc
+Add base DTS file for pmm8155au_2 along with GPIOs, power-on, rtc and vadc
 nodes.
 
 Cc: Linus Walleij <linus.walleij@linaro.org>
@@ -84,16 +84,16 @@ Cc: linux-gpio@vger.kernel.org
 Cc: bhupesh.linux@gmail.com
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi | 134 ++++++++++++++++++++++
- 1 file changed, 134 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
+ arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi | 107 ++++++++++++++++++++++
+ 1 file changed, 107 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
 
-diff --git a/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi b/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
+diff --git a/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi b/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
 new file mode 100644
-index 000000000000..2392c742021d
+index 000000000000..11c0c203a4e2
 --- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
-@@ -0,0 +1,134 @@
++++ b/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
+@@ -0,0 +1,107 @@
 +// SPDX-License-Identifier: BSD-3-Clause
 +/*
 + * Copyright (c) 2021, Linaro Limited
@@ -102,15 +102,14 @@ index 000000000000..2392c742021d
 +#include <dt-bindings/input/input.h>
 +#include <dt-bindings/interrupt-controller/irq.h>
 +#include <dt-bindings/spmi/spmi.h>
-+#include <dt-bindings/iio/qcom,spmi-vadc.h>
 +
 +/ {
 +	thermal-zones {
-+		pmm8155au-1-thermal {
++		pmm8155au-2-thermal {
 +			polling-delay-passive = <100>;
 +			polling-delay = <0>;
 +
-+			thermal-sensors = <&pmm8155au_1_temp>;
++			thermal-sensors = <&pmm8155au_2_temp>;
 +
 +			trips {
 +				trip0 {
@@ -136,42 +135,35 @@ index 000000000000..2392c742021d
 +};
 +
 +&spmi_bus {
-+	pmm8155au_1_0: pmic@0 {
-+		compatible = "qcom,pmm8155au-1", "qcom,spmi-pmic";
-+		reg = <0x0 SPMI_USID>;
++	pmic@4 {
++		compatible = "qcom,pmm8155au-2", "qcom,spmi-pmic";
++		reg = <0x4 SPMI_USID>;
 +		#address-cells = <1>;
 +		#size-cells = <0>;
 +
-+		pon: power-on@800 {
++		power-on@800 {
 +			compatible = "qcom,pm8916-pon";
 +			reg = <0x0800>;
-+			pwrkey {
-+				compatible = "qcom,pm8941-pwrkey";
-+				interrupts = <0x0 0x8 0x0 IRQ_TYPE_EDGE_BOTH>;
-+				debounce = <15625>;
-+				bias-pull-up;
-+				linux,code = <KEY_POWER>;
 +
-+				status = "disabled";
-+			};
++			status = "disabled";
 +		};
 +
-+		pmm8155au_1_temp: temp-alarm@2400 {
++		pmm8155au_2_temp: temp-alarm@2400 {
 +			compatible = "qcom,spmi-temp-alarm";
 +			reg = <0x2400>;
-+			interrupts = <0x0 0x24 0x0 IRQ_TYPE_EDGE_BOTH>;
-+			io-channels = <&pmm8155au_1_adc ADC5_DIE_TEMP>;
++			interrupts = <0x4 0x24 0x0 IRQ_TYPE_EDGE_BOTH>;
++			io-channels = <&pmm8155au_2_adc ADC5_DIE_TEMP>;
 +			io-channel-names = "thermal";
 +			#thermal-sensor-cells = <0>;
 +		};
 +
-+		pmm8155au_1_adc: adc@3100 {
++		pmm8155au_2_adc: adc@3100 {
 +			compatible = "qcom,spmi-adc5";
 +			reg = <0x3100>;
 +			#address-cells = <1>;
 +			#size-cells = <0>;
 +			#io-channel-cells = <1>;
-+			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
++			interrupts = <0x4 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
 +
 +			ref-gnd@0 {
 +				reg = <ADC5_REF_GND>;
@@ -192,27 +184,8 @@ index 000000000000..2392c742021d
 +			};
 +		};
 +
-+		pmm8155au_1_adc_tm: adc-tm@3500 {
-+			compatible = "qcom,spmi-adc-tm5";
-+			reg = <0x3500>;
-+			interrupts = <0x0 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
-+			#thermal-sensor-cells = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
-+		pmm8155au_1_rtc: rtc@6000 {
-+			compatible = "qcom,pm8941-rtc";
-+			reg = <0x6000>;
-+			reg-names = "rtc", "alarm";
-+			interrupts = <0x0 0x61 0x1 IRQ_TYPE_NONE>;
-+
-+			status = "disabled";
-+		};
-+
-+		pmm8155au_1_gpios: gpio@c000 {
-+			compatible = "qcom,pmm8155au-1-gpio";
++		pmm8155au_2_gpios: gpio@c000 {
++			compatible = "qcom,pmm8155au-2-gpio";
 +			reg = <0xc000>;
 +			gpio-controller;
 +			#gpio-cells = <2>;
@@ -221,9 +194,9 @@ index 000000000000..2392c742021d
 +		};
 +	};
 +
-+	pmic@1 {
-+		compatible = "qcom,pmm8155au-1", "qcom,spmi-pmic";
-+		reg = <0x1 SPMI_USID>;
++	pmic@5 {
++		compatible = "qcom,pmm8155au-2", "qcom,spmi-pmic";
++		reg = <0x5 SPMI_USID>;
 +		#address-cells = <1>;
 +		#size-cells = <0>;
 +	};
