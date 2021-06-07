@@ -2,145 +2,434 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AD0D39D99D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 12:27:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A3FC39D9CC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 12:35:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230178AbhFGK30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 06:29:26 -0400
-Received: from mail-ed1-f51.google.com ([209.85.208.51]:34728 "EHLO
-        mail-ed1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230097AbhFGK3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 06:29:25 -0400
-Received: by mail-ed1-f51.google.com with SMTP id cb9so19723036edb.1;
-        Mon, 07 Jun 2021 03:27:24 -0700 (PDT)
+        id S230262AbhFGKhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 06:37:41 -0400
+Received: from mail-ed1-f44.google.com ([209.85.208.44]:35610 "EHLO
+        mail-ed1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230252AbhFGKhl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 06:37:41 -0400
+Received: by mail-ed1-f44.google.com with SMTP id ba2so17990148edb.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 03:35:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=AGZ4t2IZtx3vp84RivJkuklm+6Eclk4GjnQsNM+4cwY=;
-        b=IS3GHMuZYXL3+6Tp4HPoZ5enuZ34IX8rZx2bRRf3MRngY5SdMvqqyyTLauV6wTei4t
-         C7JQ4cCpmCYUBwB2crFj3iMZiV8CRQbiecT5xc023UvriaSRz3G7D9oRBmxTGlF0nrK7
-         JG5DHCRKB3qm+6bqzzyKdJ+YT62SfWJM6IYWs5IIi2c+K9aqKvJuz3AaxynldiALf9Za
-         1htKh5RKL8eT1x7MQTi0kQZ2QscmWOS+y9Lcl8d8QANYTaUqp+xU4kOOj0wnqKnmQaCu
-         9qdSCE+sC11TkIuoigCgaihtiYzOgFdPBe6hmIySmOGUQNJgDdI6j+VlSsE6P8pxSwNY
-         4KKQ==
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=S8qFjFtY77CWgD6xHMcfYVdqAsgYbpKAyPPGBYSbTi8=;
+        b=J3fNjPwy69JWrSedpDkl2rDyaK5qIRIVYAhjdMhcM+mECiYwVqoBAqnfOqq4GM7Lya
+         s/3Wz1ghGZEUMh4YUIjTZrf+nZCuAY7fNm0CMc3SA1fLwX22qm5NqAmPGDjvTqXV4+hR
+         79SbLbgj4vf91KSN+7gfbkJrEa9fsmbxRVKfztzHJv/zNFHsIL6+BDb709ejeihEfYST
+         mqgUXPeL/n1n2UtSQA7tjzTIG/0sjPhsnWrLdFWLVE9XcjU8GjysKzwIzkAyFaHqgurE
+         +DnW1Puwe7S8gVZQqbNGsFCPnqmVdG4cg0edAzBBdPvWLYctYmN2q+W6LGkGz8WZdwqK
+         VPKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=AGZ4t2IZtx3vp84RivJkuklm+6Eclk4GjnQsNM+4cwY=;
-        b=s5WXihdBx+hQhLaKEYsY8PP18mPQHziPaY51Et7CZ6em2A+WXhReMnMdU7fkTpzNFO
-         MBZgviQSnP3NnyxPvG2a3PccfA4hzaPclrVriGJsn0nR2hAOvAESZzhl38x3ywP3jYI+
-         Rg54sjTupjkmwz155wRXJekavc3uGLk/KyNJDCHxjsYoKQ50doMO18l0tjWe+kQrndPY
-         a/4o2hB/whv6Hu0PAtRh1VxPxbIr9LSPmrEnBSn06zBJza3wE5/W515WJZ7TiLw+6est
-         YRo5fpPAoztYzKClSH+RiWGKdaXdfDeIoyd9wLAjiKpGYc8kbKNXpsAq2gQ8vraZ4rHa
-         umwQ==
-X-Gm-Message-State: AOAM530it5SaxxMYguXkLhjWKAetcEbCZAeo8mmte7k7hmJZMl5snCVt
-        P8ul/5+3wAsluP/POVz8Z4F8rVA3Ql3tlg==
-X-Google-Smtp-Source: ABdhPJwt9PZQnrBzAZKmGKFQd+/M6Fgc5w5oXTXIOm+4MqVHgd1hcmvdZtyVj7q18+t6XZkD60piZA==
-X-Received: by 2002:a50:9d8d:: with SMTP id w13mr19185406ede.94.1623061584372;
-        Mon, 07 Jun 2021 03:26:24 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id h6sm3973285edj.91.2021.06.07.03.26.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Jun 2021 03:26:24 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: rockchip: add EEPROM node for NanoPi R4S
-To:     wens@kernel.org
-Cc:     Tianling Shen <cnsztl@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Marty Jones <mj8263788@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20210607081727.4723-1-cnsztl@gmail.com>
- <9258ab23-ef65-2c3d-f0d2-ca5f77d7c12a@gmail.com>
- <CAGb2v65ck=LV+UCdQoaUtEjFaTaHr9-wmGmpkCCkebUOuYtikw@mail.gmail.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <f085da86-8b6d-ba99-2d0a-736ec02424db@gmail.com>
-Date:   Mon, 7 Jun 2021 12:26:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        bh=S8qFjFtY77CWgD6xHMcfYVdqAsgYbpKAyPPGBYSbTi8=;
+        b=g8zH2sMb2+QGev5iKC+psA8bBJNN7GKARR3TleoHKLBmKyeSMmfUJHtxDtIzSSPhUh
+         u80vQ0Il8dM80SmFhaFhQWXrAzqqIHUN0OexGzQD9CmWWHJRh+g7/fW9uODsXBkkND7R
+         ZaCIQVl4HWVZqItGZM0eKFJmw/JyHRPp6LCNSoO/FITbq4FOltT0hPOupdFIAX1iCJ7L
+         gW//mNaa1IVbx51J/7D+2LbwemJ+xc7yUImNlW9JN3J+MwvZIcSpLo6gxCoulru4EaNh
+         g5nqH8lyhlYtlk47n9Xe88eHz0XpMO6tRaphqeu2kjQwIO8iuu7w4iW1d81spnjzZBbr
+         cibw==
+X-Gm-Message-State: AOAM533CGpLg5uW6RLywMUY7Pk1V90NQzAwoJWz2UAyDCblzd7KX0Qb2
+        MIcdwORSnkW2PJtvaC4vDb2k8Q==
+X-Google-Smtp-Source: ABdhPJx7Gv0KfJS83MdjOa9ptrArD2pPYSH1jJ6YpvueYfGljkizG/xhQXX7AALRICFin5LuV0Sz6g==
+X-Received: by 2002:a05:6402:5a:: with SMTP id f26mr19271914edu.306.1623062076836;
+        Mon, 07 Jun 2021 03:34:36 -0700 (PDT)
+Received: from localhost.localdomain (dh207-96-76.xnet.hr. [88.207.96.76])
+        by smtp.googlemail.com with ESMTPSA id b25sm7521037edv.9.2021.06.07.03.34.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Jun 2021 03:34:36 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     robh+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net,
+        corbet@lwn.net, trivial@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org
+Cc:     luka.perkov@sartura.hr, jmp@epiphyte.org, pmenzel@molgen.mpg.de,
+        buczek@molgen.mpg.de, Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH v4 1/3] hwmon: (pmbus) Add driver for Delta DPS-920AB PSU
+Date:   Mon,  7 Jun 2021 12:34:29 +0200
+Message-Id: <20210607103431.2039073-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <CAGb2v65ck=LV+UCdQoaUtEjFaTaHr9-wmGmpkCCkebUOuYtikw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chen-Yu,
+This adds support for the Delta DPS-920AB PSU.
 
-On 6/7/21 11:40 AM, Chen-Yu Tsai wrote:
-> On Mon, Jun 7, 2021 at 5:31 PM Johan Jonker <jbx6244@gmail.com> wrote:
->>
->> Hi Tianling,
->>
->> On 6/7/21 10:17 AM, Tianling Shen wrote:
->>> NanoPi R4S has a EEPROM attached to the 2nd I2C bus (U92), which
->>> stores the MAC address.
->>>
->>> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
->>> ---
->>>  arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts | 9 +++++++++
->>>  1 file changed, 9 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
->>> index cef4d18b599d..4a82f50a07c5 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
->>> @@ -68,6 +68,15 @@
->>>       status = "disabled";
->>>  };
->>>
->>> +&i2c2 {
->>> +     eeprom@51 {
->>> +             compatible = "microchip,24c02", "atmel,24c02";
->>> +             reg = <0x51>;
->>> +             pagesize = <16>;
->>
->>> +             read-only; /* This holds our MAC */
->>
->> The mainline dts files should be generic I think.
->> Any comment about "use", partitions or write ability should be avoided.
->> It's up the user.
-> 
+Only missing feature is fan control which the PSU supports.
 
-> Per the datasheet for this specific EEPROM, the latter half (128 bytes)
-> is read-only in hardware by design though.
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+---
+Changes in v4:
+* Alphabetically order documentation in index.rst
+* Null terminate manufacturer and mode ID-s
+* Drop debugfs directory and I2C clients from the
+global structure, use local variables
 
-The 24AA02XEXX is programmed at the factory with a
-globally unique node address stored in the upper half
-of the array and permanently write-protected. The
-remaining 1,024 bits are available for application use.
+Changes in v3:
+* Use generic pmbus_read/write_word_data()
+* Correct word data return code
+* Cache PMBUS_MFR_ID and PMBUS_MFR_MODEL instead
+of reading them everytime that debugfs is read
 
-Just a question...
+Changes in v2:
+* Check for Manufacturer and Model
+* Restrict word read/write to supported only
+* Update documentation to reflect driver changes
+* Add basic debugfs entries
 
-    nvmem-cells = <&mac_address>;
-    nvmem-cells-names = "mac-address";
+ Documentation/hwmon/dps920ab.rst |  73 +++++++++++
+ Documentation/hwmon/index.rst    |   1 +
+ drivers/hwmon/pmbus/Kconfig      |   9 ++
+ drivers/hwmon/pmbus/Makefile     |   1 +
+ drivers/hwmon/pmbus/dps920ab.c   | 207 +++++++++++++++++++++++++++++++
+ 5 files changed, 291 insertions(+)
+ create mode 100644 Documentation/hwmon/dps920ab.rst
+ create mode 100644 drivers/hwmon/pmbus/dps920ab.c
 
-Which part does this point to?
+diff --git a/Documentation/hwmon/dps920ab.rst b/Documentation/hwmon/dps920ab.rst
+new file mode 100644
+index 000000000000..c33b4cdc0a60
+--- /dev/null
++++ b/Documentation/hwmon/dps920ab.rst
+@@ -0,0 +1,73 @@
++.. SPDX-License-Identifier: GPL-2.0-or-later
++
++Kernel driver dps920ab
++========================
++
++Supported chips:
++
++  * Delta DPS920AB
++
++    Prefix: 'dps920ab'
++
++    Addresses scanned: -
++
++Authors:
++    Robert Marko <robert.marko@sartura.hr>
++
++
++Description
++-----------
++
++This driver implements support for Delta DPS920AB 920W 54V DC single output
++power supply with PMBus support.
++
++The driver is a client driver to the core PMBus driver.
++Please see Documentation/hwmon/pmbus.rst for details on PMBus client drivers.
++
++
++Usage Notes
++-----------
++
++This driver does not auto-detect devices. You will have to instantiate the
++devices explicitly. Please see Documentation/i2c/instantiating-devices.rst for
++details.
++
++
++Sysfs entries
++-------------
++
++======================= ======================================================
++curr1_label		"iin"
++curr1_input		Measured input current
++curr1_alarm		Input current high alarm
++
++curr2_label		"iout1"
++curr2_input		Measured output current
++curr2_max		Maximum output current
++curr2_rated_max		Maximum rated output current
++
++in1_label		"vin"
++in1_input		Measured input voltage
++in1_alarm		Input voltage alarm
++
++in2_label		"vout1"
++in2_input		Measured output voltage
++in2_rated_min		Minimum rated output voltage
++in2_rated_max		Maximum rated output voltage
++in2_alarm		Output voltage alarm
++
++power1_label		"pin"
++power1_input		Measured input power
++power1_alarm		Input power high alarm
++
++power2_label		"pout1"
++power2_input		Measured output power
++power2_rated_max	Maximum rated output power
++
++temp[1-3]_input		Measured temperature
++temp[1-3]_alarm		Temperature alarm
++
++fan1_alarm		Fan 1 warning.
++fan1_fault		Fan 1 fault.
++fan1_input		Fan 1 speed in RPM.
++======================= ======================================================
+diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+index 8d5a2df1ecb6..8abdaf440a3c 100644
+--- a/Documentation/hwmon/index.rst
++++ b/Documentation/hwmon/index.rst
+@@ -53,6 +53,7 @@ Hardware Monitoring Kernel Drivers
+    da9055
+    dell-smm-hwmon
+    dme1737
++   dps920ab
+    drivetemp
+    ds1621
+    ds620
+diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+index 32d2fc850621..865ade0aa205 100644
+--- a/drivers/hwmon/pmbus/Kconfig
++++ b/drivers/hwmon/pmbus/Kconfig
+@@ -66,6 +66,15 @@ config SENSORS_IBM_CFFPS
+ 	  This driver can also be built as a module. If so, the module will
+ 	  be called ibm-cffps.
+ 
++config SENSORS_DPS920AB
++	tristate "Delta DPS920AB Power Supply"
++	help
++	  If you say yes here you get hardware monitoring support for Delta
++	  DPS920AB Power Supplies.
++
++	  This driver can also be built as a module. If so, the module will
++	  be called dps920ab.
++
+ config SENSORS_INSPUR_IPSPS
+ 	tristate "INSPUR Power System Power Supply"
+ 	help
+diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+index 6a4ba0fdc1db..f59ba0123d68 100644
+--- a/drivers/hwmon/pmbus/Makefile
++++ b/drivers/hwmon/pmbus/Makefile
+@@ -9,6 +9,7 @@ obj-$(CONFIG_SENSORS_ADM1266)	+= adm1266.o
+ obj-$(CONFIG_SENSORS_ADM1275)	+= adm1275.o
+ obj-$(CONFIG_SENSORS_BEL_PFE)	+= bel-pfe.o
+ obj-$(CONFIG_SENSORS_IBM_CFFPS)	+= ibm-cffps.o
++obj-$(CONFIG_SENSORS_DPS920AB)	+= dps920ab.o
+ obj-$(CONFIG_SENSORS_INSPUR_IPSPS) += inspur-ipsps.o
+ obj-$(CONFIG_SENSORS_IR35221)	+= ir35221.o
+ obj-$(CONFIG_SENSORS_IR38064)	+= ir38064.o
+diff --git a/drivers/hwmon/pmbus/dps920ab.c b/drivers/hwmon/pmbus/dps920ab.c
+new file mode 100644
+index 000000000000..692a86cdfb6d
+--- /dev/null
++++ b/drivers/hwmon/pmbus/dps920ab.c
+@@ -0,0 +1,207 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Driver for Delta DPS920AB PSU
++ *
++ * Copyright (C) 2021 Delta Networks, Inc.
++ * Copyright (C) 2021 Sartura Ltd.
++ */
++
++#include <linux/debugfs.h>
++#include <linux/i2c.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include "pmbus.h"
++
++struct dps920ab_data {
++	char *mfr_model;
++	char *mfr_id;
++};
++
++static int dps920ab_read_word_data(struct i2c_client *client, int page, int phase, int reg)
++{
++	/*
++	 * This masks commands which are not supported.
++	 * PSU advertises that all features are supported,
++	 * in reality that unfortunately is not true.
++	 * So enable only those that the datasheet confirms.
++	 */
++	switch (reg) {
++	case PMBUS_FAN_COMMAND_1:
++	case PMBUS_IOUT_OC_WARN_LIMIT:
++	case PMBUS_STATUS_WORD:
++	case PMBUS_READ_VIN:
++	case PMBUS_READ_IIN:
++	case PMBUS_READ_VOUT:
++	case PMBUS_READ_IOUT:
++	case PMBUS_READ_TEMPERATURE_1:
++	case PMBUS_READ_TEMPERATURE_2:
++	case PMBUS_READ_TEMPERATURE_3:
++	case PMBUS_READ_FAN_SPEED_1:
++	case PMBUS_READ_POUT:
++	case PMBUS_READ_PIN:
++	case PMBUS_MFR_VOUT_MIN:
++	case PMBUS_MFR_VOUT_MAX:
++	case PMBUS_MFR_IOUT_MAX:
++	case PMBUS_MFR_POUT_MAX:
++		return pmbus_read_word_data(client, page, phase, reg);
++	default:
++		return -ENXIO;
++	}
++}
++
++static int dps920ab_write_word_data(struct i2c_client *client, int page, int reg,
++				    u16 word)
++{
++	/*
++	 * This masks commands which are not supported.
++	 * PSU only has one R/W register and that is
++	 * for the fan.
++	 */
++	switch (reg) {
++	case PMBUS_FAN_COMMAND_1:
++		return pmbus_write_word_data(client, page, reg, word);
++	default:
++		return -EACCES;
++	}
++}
++
++static struct pmbus_driver_info dps920ab_info = {
++	.pages = 1,
++
++	.format[PSC_VOLTAGE_IN] = linear,
++	.format[PSC_VOLTAGE_OUT] = linear,
++	.format[PSC_CURRENT_IN] = linear,
++	.format[PSC_CURRENT_OUT] = linear,
++	.format[PSC_POWER] = linear,
++	.format[PSC_FAN] = linear,
++	.format[PSC_TEMPERATURE] = linear,
++
++	.func[0] =
++		PMBUS_HAVE_VIN | PMBUS_HAVE_IIN | PMBUS_HAVE_PIN |
++		PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT | PMBUS_HAVE_POUT |
++		PMBUS_HAVE_TEMP  | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
++		PMBUS_HAVE_FAN12 | PMBUS_HAVE_STATUS_FAN12 |
++		PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT |
++		PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP,
++	.read_word_data = dps920ab_read_word_data,
++	.write_word_data = dps920ab_write_word_data,
++};
++
++static int dps920ab_mfr_id_show(struct seq_file *s, void *data)
++{
++	struct dps920ab_data *priv = s->private;
++
++	seq_printf(s, "%s\n", priv->mfr_id);
++
++	return 0;
++}
++
++DEFINE_SHOW_ATTRIBUTE(dps920ab_mfr_id);
++
++static int dps920ab_mfr_model_show(struct seq_file *s, void *data)
++{
++	struct dps920ab_data *priv = s->private;
++
++	seq_printf(s, "%s\n", priv->mfr_model);
++
++	return 0;
++}
++
++DEFINE_SHOW_ATTRIBUTE(dps920ab_mfr_model);
++
++static void dps920ab_init_debugfs(struct dps920ab_data *data, struct i2c_client *client)
++{
++	struct dentry *debugfs_dir;
++	struct dentry *root;
++
++	root = pmbus_get_debugfs_dir(client);
++	if (!root)
++		return;
++
++	debugfs_dir = debugfs_create_dir(client->name, root);
++	if (!debugfs_dir)
++		return;
++
++	debugfs_create_file("mfr_id",
++			    0400,
++			    debugfs_dir,
++			    data,
++			    &dps920ab_mfr_id_fops);
++
++	debugfs_create_file("mfr_model",
++			    0400,
++			    debugfs_dir,
++			    data,
++			    &dps920ab_mfr_model_fops);
++}
++
++static int dps920ab_probe(struct i2c_client *client)
++{
++	u8 buf[I2C_SMBUS_BLOCK_MAX + 1];
++	struct dps920ab_data *data;
++	int ret;
++
++	data = devm_kzalloc(&client->dev, sizeof(*data), GFP_KERNEL);
++	if (!data)
++		return -ENOMEM;
++
++	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_ID, buf);
++	if (ret < 0) {
++		dev_err(&client->dev, "Failed to read Manufacturer ID\n");
++		return ret;
++	}
++
++	buf[ret] = '\0';
++	if (ret != 5 || strncmp(buf, "DELTA", 5)) {
++		buf[ret] = '\0';
++		dev_err(&client->dev, "Unsupported Manufacturer ID '%s'\n", buf);
++		return -ENODEV;
++	}
++	data->mfr_id = devm_kstrdup(&client->dev, buf, GFP_KERNEL);
++	if (!data->mfr_id)
++		return -ENOMEM;
++
++	ret = i2c_smbus_read_block_data(client, PMBUS_MFR_MODEL, buf);
++	if (ret < 0) {
++		dev_err(&client->dev, "Failed to read Manufacturer Model\n");
++		return ret;
++	}
++
++	buf[ret] = '\0';
++	if (ret != 11 || strncmp(buf, "DPS-920AB", 9)) {
++		dev_err(&client->dev, "Unsupported Manufacturer Model '%s'\n", buf);
++		return -ENODEV;
++	}
++	data->mfr_model = devm_kstrdup(&client->dev, buf, GFP_KERNEL);
++	if (!data->mfr_model)
++		return -ENOMEM;
++
++	ret = pmbus_do_probe(client, &dps920ab_info);
++	if (ret)
++		return ret;
++
++	dps920ab_init_debugfs(data, client);
++
++	return 0;
++}
++
++static const struct of_device_id __maybe_unused dps920ab_of_match[] = {
++	{ .compatible = "delta,dps920ab", },
++	{}
++};
++
++MODULE_DEVICE_TABLE(of, dps920ab_of_match);
++
++static struct i2c_driver dps920ab_driver = {
++	.driver = {
++		   .name = "dps920ab",
++		   .of_match_table = of_match_ptr(dps920ab_of_match),
++	},
++	.probe_new = dps920ab_probe,
++};
++
++module_i2c_driver(dps920ab_driver);
++
++MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
++MODULE_DESCRIPTION("PMBus driver for Delta DPS920AB PSU");
++MODULE_LICENSE("GPL");
+-- 
+2.31.1
 
-Can we use the lower part to store/rewrite this too?
-
-===
-
-From at24.yaml:
-
-            items:
-              - pattern:
-"^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|lc|mac)[0-9]+|spd)$"
-              - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
-
-How does Microchip 24AA025E48 fit the regex?
-What compatible would you advise?
-
-===
-
-Johan
-
-> 
-> ChenYu
-> 
