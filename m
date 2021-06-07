@@ -2,159 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F26339DF3E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 16:50:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4555839DFDB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 16:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230390AbhFGOwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 10:52:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230355AbhFGOwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 10:52:22 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04FE0C061787
-        for <devicetree@vger.kernel.org>; Mon,  7 Jun 2021 07:50:16 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id a20so18008330wrc.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 07:50:15 -0700 (PDT)
+        id S230411AbhFGPAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 11:00:33 -0400
+Received: from mail-wm1-f53.google.com ([209.85.128.53]:35713 "EHLO
+        mail-wm1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230193AbhFGPAc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 11:00:32 -0400
+Received: by mail-wm1-f53.google.com with SMTP id k5-20020a05600c1c85b02901affeec3ef8so2583080wms.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 07:58:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=ByuWA/FeshPmLL8w1r+fuCOMh+rIc6tFaDLNfGOXkJ4=;
-        b=Q+AUXH6Ozlo1bGcem9xyhXLx6p5zw2kfb5vmaOQlSrxbGpyKvoWKTpZpEJ5ldB0oIC
-         wraYRcylqwrytpiW4zj62E+ZoZdSFWh9YWyk94dnSUGPFzkhJje3pzPp8uKaETDiapR0
-         Mb/TEAdkpUcE2FLckZ4CeYBof1xyG3XTltANywQNINpLvY9IAycbT/nK0Q/cJO8JCWwp
-         dgOYOMSDb46x69pcxr7dOkpt3YBLZBCvOo6vw7lelyJ5ZOAQHT+gHPnC3OZEH5M50zR0
-         HKo5967qxi6xvh5n48XjRAnpZ7PSIFOKuqjMc9xcAWkXt5Fi6cNAwaJC+hr6n6KVpgtp
-         RnNA==
+        d=nuviainc-com.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VlCXU9+MFpUy7SArdgNYI/tiU14CG8Xgo06o1Uxsr38=;
+        b=rggAUTyKTufq+dvlwzacJo9pgOVEdDk5fs3Ote0eHa9Ikr22ppYaRz2a4Jb4/ToGE9
+         pJkiZO7GFVstggttfUpKJid5MIj7MBT1ehm0kb1rXd+jJXGbHfBu1nJAIo31+xmCh7U/
+         qb+/J8pqkPvJ6Ej8kejnhPDprATZqkAHu1JjTInwUK9LZVOHnCjoQltUVh0qxxonZAQc
+         Fu0WUKtDF2ECtEiAb9FDHkz7hTvmHveDDsQt3NyItj3IsxEReE4aEjQ5lm5VTo+Zkzbu
+         lzBFaZn6VV0tk1fhsqtHtys6OoAI3vchKxv3CWnDoo4Gf3/RInJRII3o9R4/UDEFbizy
+         vVsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ByuWA/FeshPmLL8w1r+fuCOMh+rIc6tFaDLNfGOXkJ4=;
-        b=kUjGowcfNWttVvEgyRvJadr9uPSeSRhtAq2Bd/v6HP/Ij6fIIRn+YNBZI1bjimD+eV
-         +UnSMlr7Ihg++I2xWd4/ivHF6w1y+Fydh8wD0l6dO9OWjZlDMum7/wtp1cJkpjfHwajT
-         Yu+2HmqeH2GzT7INkdBUAidOdGVMUh17PUcHCbsIDBgWhp7yRgOjmSmHnsfWqyAfvCtI
-         lxSvayzycnbAop6iGJ2OsYNm15eUfc/h7CbMAvnCx1VDZXj2tsrmZeanZa8RU6mhbms7
-         1uudqoix4eCInIufSGBcwuJ7faNKGUnHzotHkhVw0GhauAsLklfTSRrVWbZ+luB4AMbh
-         WS1A==
-X-Gm-Message-State: AOAM532qP2pRru+32K7JHTu95z1WcLpvrf5l/5Ypj9+UYIMxVmlu6UIj
-        NslEv7WnUG7Sc1kKaqzBLft+r9K4SPiwWg==
-X-Google-Smtp-Source: ABdhPJw59vawdwGj786iQvPc2EqyB2ILv3MVi/4BNcV3iN6RvaKPmAY4ReeZNQGuKy0QuV3behuSxg==
-X-Received: by 2002:a05:6000:1803:: with SMTP id m3mr17161493wrh.257.1623077414589;
-        Mon, 07 Jun 2021 07:50:14 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id x10sm5665619wrt.26.2021.06.07.07.50.12
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 07 Jun 2021 07:50:13 -0700 (PDT)
-Subject: Re: [PATCH v2] ASoC: qcom: Fix for DMA interrupt clear reg
- overwriting
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-References: <20210605113809.26584-1-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <ac3e70da-7d82-2021-3a25-08179aeb6b54@linaro.org>
-Date:   Mon, 7 Jun 2021 15:50:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VlCXU9+MFpUy7SArdgNYI/tiU14CG8Xgo06o1Uxsr38=;
+        b=f3O7FnTQVsqiVxZFFV9p+Qz6BKbcM93KkZoWo5uV6L5vCykBIAML43KfMczLgudIfs
+         cmIPkpxJOdPGEcFgJ4OIXp4uxgLNddvxQnqqYDZhdtDZw7MoPJFS1ArEk+2als0F+Ot7
+         gaI83jkBVd1Zz3TbwfY/MZDHzWtxv/5uIM9U1UsaIeOswQxO6XgVkBQwhE9Gw9R/orxM
+         9aaAnQDzEiuO8smZbKTF2I2/ofHvYYP/7Az9cHqRtbdp6mU4qdEaLhCF4BpemwP6Jfsq
+         y6mhz8ANGGSmHE89h3f8qapb36sAw9nxEKqViwW+SD91xiualiScenNKhYtooVY/qudG
+         bXsw==
+X-Gm-Message-State: AOAM532MAj+bYMUyp6/1HSVLH5ktTMilOJOGg0dPiaw9kq4nnSVwpXb+
+        3or5kdPtd76DAPWRI1ccUM8HRQ==
+X-Google-Smtp-Source: ABdhPJx6fGlVL5stxlu2ekuhuN/NXsWIomGXGgkt/9+9iT+k+wju9j4eewvseyJ0aY+TeXuGEd/cuQ==
+X-Received: by 2002:a7b:c7cd:: with SMTP id z13mr16901621wmk.54.1623077844897;
+        Mon, 07 Jun 2021 07:57:24 -0700 (PDT)
+Received: from ggregory-linuxws ([2a02:8010:64d6:5343:6309:485e:2524:388a])
+        by smtp.gmail.com with ESMTPSA id f14sm15953806wry.40.2021.06.07.07.57.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Jun 2021 07:57:24 -0700 (PDT)
+Date:   Mon, 7 Jun 2021 15:57:22 +0100
+From:   Graeme Gregory <graeme@nuviainc.com>
+To:     Quan Nguyen <quan@os.amperecomputing.com>
+Cc:     Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
+Message-ID: <20210607145722.GA2682@ggregory-linuxws>
+References: <20210519074934.20712-1-quan@os.amperecomputing.com>
+ <20210519074934.20712-6-quan@os.amperecomputing.com>
 MIME-Version: 1.0
-In-Reply-To: <20210605113809.26584-1-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210519074934.20712-6-quan@os.amperecomputing.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 05/06/2021 12:38, Srinivasa Rao Mandadapu wrote:
-> The DMA interrupt clear register overwritten during
-> simultaneous playback and capture in lpass platform
-> interrupt handler. It's causing playback or capture stuck
-> in similtaneous plaback on speaker and capture on dmic test.
-> Update appropriate reg fields of corresponding channel instead
-> of entire register write.
+On Wed, May 19, 2021 at 02:49:32PM +0700, Quan Nguyen wrote:
+> Slave i2c device on AST2500 received a lot of slave irq while it is
+> busy processing the response. To handle this case, adds and exports
+> aspeed_set_slave_busy() for controller to temporary stop slave irq
+> while slave is handling the response, and re-enable them again when
+> the response is ready.
 > 
-> Fixes: commit c5c8635a04711 ("ASoC: qcom: Add LPASS platform driver")
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
 > ---
->   sound/soc/qcom/lpass-platform.c | 17 +++++++++++------
->   1 file changed, 11 insertions(+), 6 deletions(-)
+> v3:
+>   + First introduce in v3 [Quan]
 > 
-> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
-> index 0df9481ea4c6..f220a2739ac3 100644
-> --- a/sound/soc/qcom/lpass-platform.c
-> +++ b/sound/soc/qcom/lpass-platform.c
-> @@ -526,7 +526,7 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
->   			return -EINVAL;
->   		}
->   
-> -		ret = regmap_write(map, reg_irqclr, val_irqclr);
-> +		ret = regmap_update_bits(map, reg_irqclr, val_irqclr, val_irqclr);
->   		if (ret) {
->   			dev_err(soc_runtime->dev, "error writing to irqclear reg: %d\n", ret);
->   			return ret;
-> @@ -650,7 +650,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
->   	struct lpass_variant *v = drvdata->variant;
->   	irqreturn_t ret = IRQ_NONE;
->   	int rv;
-> -	unsigned int reg = 0, val = 0;
-> +	unsigned int reg, val, val_clr, val_mask;
+>  drivers/i2c/busses/i2c-aspeed.c | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
+> index b2e9c8f0ddf7..9926d04831a2 100644
+> --- a/drivers/i2c/busses/i2c-aspeed.c
+> +++ b/drivers/i2c/busses/i2c-aspeed.c
+> @@ -944,6 +944,26 @@ static int aspeed_i2c_init(struct aspeed_i2c_bus *bus,
+>  	return 0;
+>  }
+>  
+> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
+> +void aspeed_set_slave_busy(struct i2c_adapter *adap, bool busy)
+> +{
+> +	struct aspeed_i2c_bus *bus = i2c_get_adapdata(adap);
+> +	unsigned long current_mask, flags;
+> +
+> +	spin_lock_irqsave(&bus->lock, flags);
 
-minor nit here, variable name val_clr is pretty confusing to readers, It 
-might be okay for irq clr register but we are using the same name of 
-writing to other registers. So can I suggest you to reuse val variable.
+This as far as I can see is still a recursive spinlock, and the spinlock
+debugger seems to agree with me.
 
-other thing is val_mask, please rename this to mask and just set it in 
-the start of function so you can avoid 3 extra lines below.
+Graeme
 
-Other than that patch looks good to me!
-
---srini
->   	struct regmap *map;
->   	unsigned int dai_id = cpu_dai->driver->id;
->   
-> @@ -676,8 +676,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
->   	return -EINVAL;
->   	}
->   	if (interrupts & LPAIF_IRQ_PER(chan)) {
-> -
-> -		rv = regmap_write(map, reg, LPAIF_IRQ_PER(chan) | val);
-> +		val_clr = LPAIF_IRQ_PER(chan) | val;
-> +		val_mask = LPAIF_IRQ_ALL(chan);
-> +		rv = regmap_update_bits(map, reg, val_mask, val_clr);
->   		if (rv) {
->   			dev_err(soc_runtime->dev,
->   				"error writing to irqclear reg: %d\n", rv);
-> @@ -688,7 +689,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
->   	}
->   
->   	if (interrupts & LPAIF_IRQ_XRUN(chan)) {
-> -		rv = regmap_write(map, reg, LPAIF_IRQ_XRUN(chan) | val);
-> +		val_clr = (LPAIF_IRQ_XRUN(chan) | val);
-> +		val_mask = LPAIF_IRQ_ALL(chan);
-> +		rv = regmap_update_bits(map, reg, val_mask, val_clr);
->   		if (rv) {
->   			dev_err(soc_runtime->dev,
->   				"error writing to irqclear reg: %d\n", rv);
-> @@ -700,7 +703,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
->   	}
->   
->   	if (interrupts & LPAIF_IRQ_ERR(chan)) {
-> -		rv = regmap_write(map, reg, LPAIF_IRQ_ERR(chan) | val);
-> +		val_clr = (LPAIF_IRQ_ERR(chan) | val);
-> +		val_mask = LPAIF_IRQ_ALL(chan);
-> +		rv = regmap_update_bits(map, reg, val_mask, val_clr);
->   		if (rv) {
->   			dev_err(soc_runtime->dev,
->   				"error writing to irqclear reg: %d\n", rv);
+> +
+> +	current_mask = readl(bus->base + ASPEED_I2C_INTR_CTRL_REG);
+> +	if (busy)
+> +		current_mask &= ~(ASPEED_I2CD_INTR_RX_DONE | ASPEED_I2CD_INTR_SLAVE_MATCH);
+> +	else
+> +		current_mask |= ASPEED_I2CD_INTR_RX_DONE | ASPEED_I2CD_INTR_SLAVE_MATCH;
+> +	writel(current_mask, bus->base + ASPEED_I2C_INTR_CTRL_REG);
+> +
+> +	spin_unlock_irqrestore(&bus->lock, flags);
+> +}
+> +EXPORT_SYMBOL_GPL(aspeed_set_slave_busy);
+> +#endif
+> +
+>  static int aspeed_i2c_reset(struct aspeed_i2c_bus *bus)
+>  {
+>  	struct platform_device *pdev = to_platform_device(bus->dev);
+> -- 
+> 2.28.0
 > 
