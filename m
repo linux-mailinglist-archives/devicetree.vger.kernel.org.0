@@ -2,64 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72B3639E6CC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 20:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F5A539E703
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 21:01:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230503AbhFGSo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 14:44:57 -0400
-Received: from foss.arm.com ([217.140.110.172]:40236 "EHLO foss.arm.com"
+        id S231488AbhFGTDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 15:03:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37612 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230378AbhFGSo4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Jun 2021 14:44:56 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DE1D212FC;
-        Mon,  7 Jun 2021 11:43:04 -0700 (PDT)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 37D633F73D;
-        Mon,  7 Jun 2021 11:43:04 -0700 (PDT)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     devicetree@vger.kernel.org
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH] dt-bindings: interrupt-controller: Fix compatible used in ti,pruss-intc
-Date:   Mon,  7 Jun 2021 19:42:57 +0100
-Message-Id: <20210607184257.2010276-1-sudeep.holla@arm.com>
-X-Mailer: git-send-email 2.25.1
+        id S231442AbhFGTDJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 15:03:09 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0B98561164;
+        Mon,  7 Jun 2021 19:01:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623092477;
+        bh=BUGAoI+KqIWeSqshgoFKvoknfcZfg6rrVZ5THdPAqLc=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=BXFoK3hHKx/nBaxEkLMVoPl5nv2z2l1Hmk3O9qgDReAwaJL4v6VMOrrentpY7sz1l
+         3GF6XyEHO03ZhOmRT2Iz4agrQowtYGHXUWYogvCU2BEpgJx9VxDHgm6Ia3Xoi37N+5
+         8aTQywFvW4ls6zLSxxmzpKOaA5mpIIx3dJKoFFPrxw55rfCixkbSA0y239VbxNE27A
+         LMuDoi7lgS4/1Q8fqa1L57bZfM6pqhQbiRZuCAa+a1dNSaMR0dpjsjMQEf76wqEb5z
+         OTCg3NxsVHWb4QdGuUx+dKxqPlf8bcnHZtJyCWCGQdUYbVTmXX1e4YXBD2Hx4nk5sT
+         yTTPnQ3zH+axg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Judy Hsiao <judyhsiao@chromium.org>
+Cc:     Mark Brown <broonie@kernel.org>, tzungbi@chromium.org,
+        swboyd@chromium.org, judyhsiao@google.com,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        alsa-devel@alsa-project.org, cychiang@google.com,
+        Taniya Das <tdas@codeaurora.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Andy Gross <agross@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        dianders@chromium.org, Liam Girdwood <lgirdwood@gmail.com>,
+        dgreid@chromium.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [v7] ASoC: qcom: lpass-cpu: Fix pop noise during audio capture begin
+Date:   Mon,  7 Jun 2021 20:00:46 +0100
+Message-Id: <162309220525.30523.13322673130433156811.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210604154545.1198337-1-judyhsiao@chromium.org>
+References: <20210604154545.1198337-1-judyhsiao@chromium.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per soc/ti/ti,pruss.yaml schema, only ti,am4376-pruss0 and
-ti,am4376-pruss1 are valid compatibles. Replace ti,am4376-pruss with
-ti,am4376-pruss1 based on example in soc/ti/ti,pruss.yaml
+On Fri, 4 Jun 2021 23:45:45 +0800, Judy Hsiao wrote:
+> This patch fixes PoP noise of around 15ms observed during audio
+> capture begin.
+> Enables BCLK and LRCLK in snd_soc_dai_ops prepare call for
+> introducing some delay before capture start.
+> 
+> (am from https://patchwork.kernel.org/patch/12276369/)
+> (also found at https://lore.kernel.org/r/20210524142114.18676-1-srivasam@codeaurora.org)
 
-This fixes the below warning with 'make DT_CHECKER_FLAGS=-m dt_binding_check':
+Applied to
 
-    interrupt-controller/ti,pruss-intc.example.dt.yaml:0:0: /example-1/pruss@0:
-    failed to match any schema with compatible: ['ti,am4376-pruss']
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Suman Anna <s-anna@ti.com>
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
----
- .../devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks!
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-index 9731dd4421a1..051beb45d998 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-@@ -134,7 +134,7 @@ additionalProperties: false
-     /* AM4376 PRU-ICSS */
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     pruss@0 {
--        compatible = "ti,am4376-pruss";
-+        compatible = "ti,am4376-pruss1";
-         reg = <0x0 0x40000>;
-         #address-cells = <1>;
-         #size-cells = <1>;
--- 
-2.25.1
+[1/1] ASoC: qcom: lpass-cpu: Fix pop noise during audio capture begin
+      commit: c8a4556d98510ca05bad8d02265a4918b03a8c0b
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
