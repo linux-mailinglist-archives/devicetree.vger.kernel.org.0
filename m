@@ -2,81 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0F8F39DC94
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 14:35:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2277439DC98
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 14:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbhFGMhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 08:37:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55048 "EHLO mail.kernel.org"
+        id S230258AbhFGMii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 08:38:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55942 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230261AbhFGMhA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Jun 2021 08:37:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 37CF0610E7;
-        Mon,  7 Jun 2021 12:35:09 +0000 (UTC)
+        id S230213AbhFGMih (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 08:38:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 97A1A60FE9;
+        Mon,  7 Jun 2021 12:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1623069309;
-        bh=ADMsq/ShJ2O26kMrdnlG5EUnw1/xmIU1TQQpDXI2K+Q=;
+        s=korg; t=1623069406;
+        bh=xPWkWt4mere88vFyYd89JcrZ0NlJFsjTPMJGauFmG8A=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gfxIsh3Zx8OT3XTTJyR4YIHl63c6LZAeKPvY/Cw/b39CYF9Sh8q3c9hIjB2vVKRwh
-         iVKsTEPVjR7OcgjskYe9dir0IDLlK5zC1BOteKv/3bVXrerJvDpmRh7JMo8Bb4vek5
-         VEhEBWJpbvnXx7VxM2YRarpykkpr0Or+izj56cvY=
-Date:   Mon, 7 Jun 2021 14:35:07 +0200
+        b=ZtXF2WWdKSpjotxx+538ES66yD20kxme3Jr4TCLfEslWhK3O4oxxucHzXv06PYEW1
+         fvgCDdpOa6kbw8ZXxC1NeGzEcKiR7SBDNkWGxFLLh6T2Ehnhq3arv/0tPchUcn5BgX
+         iWDfvca2tVOf5LTyNL4fYpZDnIkOsx1JDeYqvGSM=
+Date:   Mon, 7 Jun 2021 14:36:43 +0200
 From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 To:     Jiri Prchal <jiri.prchal@aksignal.cz>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Christian Eggers <ceggers@arri.de>,
         Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v7 1/5] nvmem: eeprom: at25: prepare basics for FRAM
- support
-Message-ID: <YL4Se3bQfnBYV8yN@kroah.com>
+Subject: Re: [PATCH v7 4/5] nvmem: eeprom: at25: export FRAM serial num
+Message-ID: <YL4S2/hlfRwRM+Ug@kroah.com>
 References: <20210607122640.143582-1-jiri.prchal@aksignal.cz>
- <20210607122640.143582-2-jiri.prchal@aksignal.cz>
+ <20210607122640.143582-5-jiri.prchal@aksignal.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210607122640.143582-2-jiri.prchal@aksignal.cz>
+In-Reply-To: <20210607122640.143582-5-jiri.prchal@aksignal.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 07, 2021 at 02:26:36PM +0200, Jiri Prchal wrote:
-> Added enum and string for FRAM to expose it as "fram".
+On Mon, Jun 07, 2021 at 02:26:39PM +0200, Jiri Prchal wrote:
+> This exports serial number of FRAM in sysfs file named "sernum".
+> Formatted in hex, each byte separated by space.
+> Example:
+> $ cat /sys/class/spi_master/spi0/spi0.0/sernum
+> 0000a43644f2ae6c
 > 
 > Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
 > ---
 > v2: no change here
 > v3: resend and added more recipients
 > v4: resend
-> v5: no change here
-> v6: changed commit subject
-> v7: no change here
+> v5: reworked up on Greg comments: no spaces in string, sysfs done correctly
+> v6: no change here
+> v7: moved FM25_SN_LEN, static array, used sysfs_emit, DEVICE_ATTR_RO
 > ---
->  drivers/nvmem/core.c           | 4 ++++
->  include/linux/nvmem-provider.h | 1 +
->  2 files changed, 5 insertions(+)
+>  drivers/misc/eeprom/at25.c | 22 +++++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index 177f5bf27c6d..01ef9a934b0a 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -180,6 +180,7 @@ static const char * const nvmem_type_str[] = {
->  	[NVMEM_TYPE_EEPROM] = "EEPROM",
->  	[NVMEM_TYPE_OTP] = "OTP",
->  	[NVMEM_TYPE_BATTERY_BACKED] = "Battery backed",
-> +	[NVMEM_TYPE_FRAM] = "FRAM",
+> diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
+> index 3b7ffef1f0d7..a28dfd7e1798 100644
+> --- a/drivers/misc/eeprom/at25.c
+> +++ b/drivers/misc/eeprom/at25.c
+> @@ -31,6 +31,7 @@
+>   *   AT25M02, AT25128B
+>   */
+>  
+> +#define	FM25_SN_LEN	8		/* serial number length */
+>  struct at25_data {
+>  	struct spi_device	*spi;
+>  	struct mutex		lock;
+> @@ -39,6 +40,7 @@ struct at25_data {
+>  	struct nvmem_config	nvmem_config;
+>  	struct nvmem_device	*nvmem;
+>  	int has_sernum;
+> +	u8 sernum[FM25_SN_LEN];
 >  };
 >  
->  #ifdef CONFIG_DEBUG_LOCK_ALLOC
-> @@ -359,6 +360,9 @@ static int nvmem_sysfs_setup_compat(struct nvmem_device *nvmem,
->  	if (!config->base_dev)
->  		return -EINVAL;
+>  #define	AT25_WREN	0x06		/* latch the write enable */
+> @@ -172,6 +174,21 @@ static int fm25_aux_read(struct at25_data *at25, char *buf, uint8_t command,
+>  	return status;
+>  }
 >  
-> +	if (config->type == NVMEM_TYPE_FRAM)
-> +		bin_attr_nvmem_eeprom_compat.attr.name = "fram";
+> +static ssize_t sernum_show(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	struct at25_data *at25;
 > +
+> +	at25 = dev_get_drvdata(dev);
+> +	return sysfs_emit(buf, "%016llx\n", *(unsigned long long *)at25->sernum);
 
-As this is a new sysfs file, where is the documentation for it?
+That's a horrid hack, why not use the %*phN modifier?
+
+Look in the printk-formats.rst file for help.
 
 thanks,
 
