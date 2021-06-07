@@ -2,130 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 720D539DE08
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 15:48:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B4AD39DE44
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 16:02:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230198AbhFGNug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 09:50:36 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:48234 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbhFGNug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 09:50:36 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157DmcDA069301;
-        Mon, 7 Jun 2021 08:48:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623073718;
-        bh=HGkB3N6wZim5Jz5vrC7ro/91fXnGzv4dfwqqAWDT120=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=t8N9g8yVHxRUkW1gTUfz8cmafpC5knGJkz8m8lpDLwuwWfIj/kXHbNryWCXvnOLC8
-         zLPzXnwEfU2BwiXdw6DVRXrl9UH4O/cPwYfyvw3IQ2SLL+sJwbJ7pSjOc9Kl1Bupd6
-         9mWlFJbgadg4LKPZ8hWLfUNt8yR0mRLNMWoEDVYI=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157Dmc8I017282
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Jun 2021 08:48:38 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 7 Jun
- 2021 08:48:38 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 7 Jun 2021 08:48:38 -0500
-Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157DmUnt056871;
-        Mon, 7 Jun 2021 08:48:32 -0500
-Subject: Re: [PATCH 3/5] arm64: dts: ti: am65: align ti,pindir-d0-out-d1-in
- property with dt-shema
-To:     Nishanth Menon <nm@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
+        id S230330AbhFGOEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 10:04:04 -0400
+Received: from mail-lj1-f173.google.com ([209.85.208.173]:33506 "EHLO
+        mail-lj1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230282AbhFGOD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 10:03:56 -0400
+Received: by mail-lj1-f173.google.com with SMTP id o8so22415254ljp.0;
+        Mon, 07 Jun 2021 07:02:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=j/h58gR4t5OdekYQSFNWFSj/ytcD8nEYOcwTds5lTpM=;
+        b=cZ7XwpDmaKUFyRGuU/gySPHGHuthR5dZLIB7M0erV4onywKe23DLtafLrWOETo7w7T
+         hec5JQpo9owxIclFPifVIDu5njeS1SVs4jF/KMo8rQKYpmQLn+fZ/9aAZ8EKKtFPNW7H
+         49F6BSpfSgBjMCBbl3KpmVCDfCM1TJKe4pC2Nk1/6WsjTHnKy7Gqzkv8XgHqnP5IBtZG
+         GencLDReN0jxgqKJnkJB+cv/pT3NPJVv2orkahuGhqhga+9z/r5KBWuqA2P8n3VqXVTi
+         MiwDtmfQdL4oAK20X0SqY/RmbPdbM9NkOAAjlxsXVM7dJjteoUxAo3fUGYWqUsUr3Pnb
+         LN/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=j/h58gR4t5OdekYQSFNWFSj/ytcD8nEYOcwTds5lTpM=;
+        b=EC4Oj2EPBsKKvvLuCE2kkpoconoDvp/CyjZnUxiTA5OslhSKQtgO1HdCcN6rlGq8Xw
+         Jwr75EM3OR5w1/nB1hw5Tmghz5QQ963bhOZt9F2iUw1KszJvTGc360aN7ntPuWUDMDfY
+         2Y3xhXcnkyzBqEkl6aAFnsMWw0fwOnZUDz1DZupwPf3nJydpUmwtPzMILG3/klCDQ5SA
+         4e9FM7akhASUMT6ZmZOr/LJ5/SO8sGYWY4wc8s3X8R6CI85VX6QE4apkV3N4Gu26klPT
+         DED/WeTv8Pb2u8tG2Z93nKSL7EGXTxXs0wEj2ta/fKj2prrAxsgeWPdUDO9VwaERO/66
+         TfVw==
+X-Gm-Message-State: AOAM530x/m9odo1NPGv0ZJHAk3wgTSJ2JRb8k3k8tBUVSdhHPtcabGZL
+        4C2eQk2dhSnouuGEoHHMxg7Jwa1eA67Phg==
+X-Google-Smtp-Source: ABdhPJwJPJlxEzcJy2V7HIsl9pZaKXUR1EHrfEc7wtr6r3yjIsl4WVm+fC5F1nStGJ5G324XD61png==
+X-Received: by 2002:a2e:98b:: with SMTP id 133mr14370450ljj.88.1623074463327;
+        Mon, 07 Jun 2021 07:01:03 -0700 (PDT)
+Received: from [192.168.2.145] (94-29-21-60.dynamic.spd-mgts.ru. [94.29.21.60])
+        by smtp.googlemail.com with ESMTPSA id u25sm1871572ljo.56.2021.06.07.07.01.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Jun 2021 07:01:02 -0700 (PDT)
+Subject: Re: [PATCH v6 08/14] memory: tegra: Enable compile testing for all
+ drivers
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        =?UTF-8?Q?Nikola_Milosavljevi=c4=87?= <mnidza@outlook.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Paul Fertser <fercerpav@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Tero Kristo <kristo@kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20210602123416.20378-1-a-govindraju@ti.com>
- <20210602123416.20378-4-a-govindraju@ti.com>
- <20210607134047.isfuedgjxpubpcb5@ungloved>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <9e27bd14-e16a-4177-bba8-d5d0e5638f04@ti.com>
-Date:   Mon, 7 Jun 2021 19:18:29 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Nathan Chancellor <nathan@kernel.org>,
+        linux-clk@vger.kernel.org
+References: <20210601023119.22044-1-digetx@gmail.com>
+ <20210601023119.22044-9-digetx@gmail.com>
+ <41899ef4-bb16-6c3a-035c-1e840a993bec@canonical.com>
+ <YL4gwxWopKT7LomG@orome.fritz.box>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <a1f20257-f041-966e-c37e-5c81c4cf94d9@gmail.com>
+Date:   Mon, 7 Jun 2021 17:01:02 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210607134047.isfuedgjxpubpcb5@ungloved>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <YL4gwxWopKT7LomG@orome.fritz.box>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+07.06.2021 16:36, Thierry Reding пишет:
+>> /bin/ld: warning: orphan section `__reservedmem_of_table' from `drivers/memory/tegra/tegra210-emc-table.o' being placed in section `__reservedmem_of_table'
+>> /bin/ld: drivers/memory/tegra/mc.o: in function `tegra_mc_probe':
+>> mc.c:(.text+0x87a): undefined reference to `reset_controller_register'
+>> make[1]: *** [/home/buildbot/worker/builddir/build/Makefile:1191: vmlinux] Error 1
+...
 
-On 07/06/21 7:10 pm, Nishanth Menon wrote:
-> On 18:04-20210602, Aswath Govindraju wrote:
->> ti,pindir-d0-out-d1-in property is expected to be of type boolean.
->> Therefore, fix the property accordingly.
->>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> No need for Fixes?
-> 
+> Not sure what to do about that orphaned __reservedmem_of_table section.
+> Maybe all we need to do is to select OF_RESERVED_MEM from
+> TEGRA210_EMC_TABLE?
 
-Functionality wise this is not a bug as the driver only checks for the
-presence of the property. This is the reason why I did not include fixes.
-
-> Also please split up the patches per maintainer so that we are'nt
-> confused on who should pick what etc..
-> 
-
-okay. Will be aware of this from next time.
-
-Thanks,
-Aswath
-
->> ---
->>  arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 2 +-
->>  arch/arm64/boot/dts/ti/k3-am654-base-board.dts     | 2 +-
->>  2 files changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
->> index f4ec9ed52939..23d51b6a9cf2 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
->> @@ -575,7 +575,7 @@
->>  
->>  	#address-cells = <1>;
->>  	#size-cells= <0>;
->> -	ti,pindir-d0-out-d1-in = <1>;
->> +	ti,pindir-d0-out-d1-in;
->>  };
->>  
->>  &tscadc0 {
->> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
->> index eddb2ffb93ca..1b947e2c2e74 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
->> @@ -299,7 +299,7 @@
->>  	pinctrl-0 = <&main_spi0_pins_default>;
->>  	#address-cells = <1>;
->>  	#size-cells= <0>;
->> -	ti,pindir-d0-out-d1-in = <1>;
->> +	ti,pindir-d0-out-d1-in;
->>  
->>  	flash@0{
->>  		compatible = "jedec,spi-nor";
->> -- 
->> 2.17.1
->>
-> 
-> 
-
+Select won't work easily, but the dependency for TEGRA210_EMC should.
