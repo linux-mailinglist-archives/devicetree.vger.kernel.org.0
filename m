@@ -2,105 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3049039DCD5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 14:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A249E39DCE3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 14:48:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230478AbhFGMqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 08:46:39 -0400
-Received: from lucky1.263xmail.com ([211.157.147.134]:34152 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231209AbhFGMqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 08:46:38 -0400
-Received: from localhost (unknown [192.168.167.16])
-        by lucky1.263xmail.com (Postfix) with ESMTP id D454EC8492;
-        Mon,  7 Jun 2021 20:44:44 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P32529T140357062862592S1623069879715065_;
-        Mon, 07 Jun 2021 20:44:46 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <80b9561bac60db3418677257b4859855>
-X-RL-SENDER: jon.lin@rock-chips.com
-X-SENDER: jon.lin@rock-chips.com
-X-LOGIN-NAME: jon.lin@rock-chips.com
-X-FST-TO: linux-spi@vger.kernel.org
-X-RCPT-COUNT: 17
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Jon Lin <jon.lin@rock-chips.com>
-To:     linux-spi@vger.kernel.org
-Cc:     jon.lin@rock-chips.com, broonie@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, jbx6244@gmail.com, hjc@rock-chips.com,
-        yifeng.zhao@rock-chips.com, sugar.zhang@rock-chips.com,
-        linux-rockchip@lists.infradead.org, linux-mtd@lists.infradead.org,
-        p.yadav@ti.com, macroalpha82@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH v5 8/8] arm64: dts: rockchip: Enable SFC for Odroid Go Advance
-Date:   Mon,  7 Jun 2021 20:44:37 +0800
-Message-Id: <20210607124437.4143-4-jon.lin@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210607124437.4143-1-jon.lin@rock-chips.com>
-References: <20210607124303.22393-1-jon.lin@rock-chips.com>
- <20210607124437.4143-1-jon.lin@rock-chips.com>
+        id S230212AbhFGMua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 08:50:30 -0400
+Received: from www.zeus03.de ([194.117.254.33]:34020 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230198AbhFGMu3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 08:50:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        from:to:cc:subject:date:message-id:mime-version:content-type
+        :content-transfer-encoding; s=k1; bh=oGVu9sD0aGq6pO8YoYNJl6zW8nM
+        WYUMTbfsOYdfBnXA=; b=JyjrEB2eZ4oXmzO8xp6olQRLGEh5emyrjWTO3W0m6ld
+        /IHaikWwo6POEvAamBZmH+GVHAbXUQ0X8YjBGSYqPk4faI/A9wTSwQqsOPeOz8UA
+        wbm9q7tPe4JLnM9X1ApMNtCaLZGC9pNO+fwFTi2DdCC6OeQbKOwLfKS9oNYwTNcA
+        =
+Received: (qmail 729490 invoked from network); 7 Jun 2021 14:48:36 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 7 Jun 2021 14:48:36 +0200
+X-UD-Smtp-Session: l3s3148p1@uVuvdSzEbs+57tsr
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH V2 RESEND] dt-bindings: timer: renesas,tmu: add r8a779a0 TMU support
+Date:   Mon,  7 Jun 2021 14:48:28 +0200
+Message-Id: <20210607124828.1984-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
-
-This enables the Rockchip Serial Flash Controller for the Odroid Go
-Advance. Note that while the attached SPI NOR flash and the controller
-both support quad read mode, only 2 of the required 4 pins are present.
-The rx and tx bus width is set to 2 for this reason.
-
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
 
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
-Changes in v1: None
+Changes since v1:
+* rebased to -next (other SoCs have been added meanwhile)
+  rebased second time for the resend
+* added tags from Niklas and Geert (thanks!)
 
- .../boot/dts/rockchip/rk3326-odroid-go2.dts      | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ Documentation/devicetree/bindings/timer/renesas,tmu.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-index 49c97f76df77..f78e11dd8447 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-@@ -484,6 +484,22 @@
- 	status = "okay";
- };
+diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+index f0f0f121c355..c57169118b68 100644
+--- a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
++++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+@@ -36,6 +36,7 @@ properties:
+           - renesas,tmu-r8a77980 # R-Car V3H
+           - renesas,tmu-r8a77990 # R-Car E3
+           - renesas,tmu-r8a77995 # R-Car D3
++          - renesas,tmu-r8a779a0 # R-Car V3U
+       - const: renesas,tmu
  
-+&sfc {
-+	pinctrl-0 = <&sfc_clk &sfc_cs0 &sfc_bus2>;
-+	pinctrl-names = "default";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <108000000>;
-+		spi-rx-bus-width = <2>;
-+		spi-tx-bus-width = <2>;
-+	};
-+};
-+
- &tsadc {
- 	status = "okay";
- };
+   reg:
 -- 
-2.17.1
-
-
+2.30.2
 
