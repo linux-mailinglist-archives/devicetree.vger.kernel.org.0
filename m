@@ -2,184 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 503E639E8F8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 23:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBAB039E918
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 23:22:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230450AbhFGVRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 17:17:30 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:35118 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230444AbhFGVR3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 17:17:29 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1B9958DB;
-        Mon,  7 Jun 2021 23:15:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1623100536;
-        bh=Si7z1mSBCxByHmBMiQ1CwHD9Qlf/H7ofE/lgBNr0dZI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tiySDq+yN8Vj3Tk7wlIHIeF3huRBycPmuZcB7ks956xgABv0h2pSBkFhUS9kdcwlB
-         fSpjcATCFxqJyg+LqjDmr1sevT3CTM6dpmJ8fvIb4IpK7mAZlzKs2vdB+GSOFWC3zv
-         D+crqpHbRjmM+mGAqwSDEC8tzypa/ks3lSoIJu5M=
-Date:   Tue, 8 Jun 2021 00:15:20 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     krzysztof.kozlowski@canonical.com, mchehab@kernel.org,
-        paul.kocialkowski@bootlin.com, pavel@ucw.cz,
-        devicetree@vger.kernel.org, kernel@puri.sm,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        phone-devel@vger.kernel.org, robh@kernel.org, shawnx.tu@intel.com
-Subject: Re: [PATCH v4 2/5] dt-bindings: media: document SK Hynix Hi-846 MIPI
- CSI-2 8M pixel sensor
-Message-ID: <YL6MaFAt2PaJq+2E@pendragon.ideasonboard.com>
-References: <20210607105213.1211722-1-martin.kepplinger@puri.sm>
- <20210607105213.1211722-3-martin.kepplinger@puri.sm>
+        id S230411AbhFGVYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 17:24:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60120 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230394AbhFGVYp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 17:24:45 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8139EC061787
+        for <devicetree@vger.kernel.org>; Mon,  7 Jun 2021 14:22:40 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id a21so19528009oiw.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 14:22:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=w6cymmwnuygy/COmkDxXiw8w0MLPT3SB23LZKuJIhqk=;
+        b=Imw57YSTwplWKEaH2jMh6y9gjQOKM8C1ctxHYEQ4dx59CFGUQ1ETLCB1TpAKziLjwt
+         a0i4CTX50+J9bvQdiQKTP7+RxQ4AbFp5UGPNgoOyW1WPlhMuuTP+ythNexcFfqigCdUp
+         A8VqriRQAwEurYZ+P/KtbMwxGC4UUy3jZUGdydWEBQNfk/1qSx2vxv886TtRRN3tuCbY
+         ERaBsHn+VcrwzET8xcvKm6k1a5vlk85NgZhckQ8VWlzBq5j6gfKukSm8+wVsOG8Advq0
+         HwD1RnVxQ+XmmD572VlV/Kr3MZtY2KCI37jpWNU95JdLcW332f/+KXdwb7GBOpQ+k+fS
+         cQ8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=w6cymmwnuygy/COmkDxXiw8w0MLPT3SB23LZKuJIhqk=;
+        b=akLx9iPqmiSg9CPFkDtHsMg3JUxS2VfymPFHwFj47vJf5ofirVVPpa/HUlwN9a98XZ
+         348f2S2uJKOiY+qn+pH/4L4hjuDai02c7O5nyCoPJsS/iTw8ybhGmHvDuLWDNrKkZ90p
+         e/Qsx6C/oZhsWVazicDHSoZw/ytABWO8Jf0Obfc+rSfbOS5c2+/itvW1IJHQHHCpmnRd
+         y4dFD5Q2bYEMks0hTDizqozqzDxhrE/joFcTREzcaeFzeonTfthVE/nzwHArEV3A5+2k
+         2ljcL5C5HhohUksTh4gQBjR8thhuEO/2c44DuDYbvugKyfeiJofeNNc36GvZxC7RBA2H
+         FBgA==
+X-Gm-Message-State: AOAM532kI90sIAwkfqhkNjaaAvmJFpC3r8XuAc3u1DULMiPwS2jPoyeS
+        8mzKdZgvdVkIVUVZ3Mn+UAU9Yr07lXHStg8qFsBwGw==
+X-Google-Smtp-Source: ABdhPJzVFi4ifcs3tEOiN3F0lwd561XWqjtWfo2MVoHwh8/TETf0Auy+GPFCcuTowEovcpU5FdnKuZ9hUIPCM2+C734=
+X-Received: by 2002:a05:6808:f0b:: with SMTP id m11mr675937oiw.12.1623100959866;
+ Mon, 07 Jun 2021 14:22:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210607105213.1211722-3-martin.kepplinger@puri.sm>
+References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
+ <20210607113840.15435-9-bhupesh.sharma@linaro.org> <YL45uRr6+Q3jvPrO@vkoul-mobl>
+In-Reply-To: <YL45uRr6+Q3jvPrO@vkoul-mobl>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Tue, 8 Jun 2021 02:52:28 +0530
+Message-ID: <CAH=2NtwhYpyHUB0ON6-MZP6PUA6CHwEsvwFhcUewdXo-Nqgo+A@mail.gmail.com>
+Subject: Re: [PATCH 8/8] arm64: dts: qcom: sa8155p-adp: Add base dts file
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        bhupesh.linux@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin
+Hi Vinod,
 
-Thank you for the patch.
+Thanks for your review.
 
-On Mon, Jun 07, 2021 at 12:52:10PM +0200, Martin Kepplinger wrote:
-> Document the bindings used for the SK Hynix Hi-846 CMOS camera driver.
-> 
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  .../bindings/media/i2c/hynix,hi846.yaml       | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> new file mode 100644
-> index 000000000000..19825392fb1f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> @@ -0,0 +1,105 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/hynix,hi846.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SK Hynix Hi-846 1/4" 8M Pixel MIPI CSI-2 sensor
-> +
-> +maintainers:
-> +  - Martin Kepplinger <martin.kepplinger@puri.sm>
-> +
-> +description: |-
-> +  The Hi-846 is a raw image sensor with an MIPI CSI-2 image data
-> +  interface and CCI (I2C compatible) control bus. The output format
-> +  is raw Bayer.
-> +
-> +properties:
-> +  compatible:
-> +    const: hynix,hi846
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Reference to the mclk clock.
-> +
-> +  reset-gpios:
-> +    description: Reference to the GPIO connected to the RESETB pin. Active low.
-> +    maxItems: 1
-> +
-> +  shutdown-gpios:
-> +    description: Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
-> +    maxItems: 1
-> +
-> +  vddi-supply:
+On Mon, 7 Jun 2021 at 20:52, Vinod Koul <vkoul@kernel.org> wrote:
+>
+> On 07-06-21, 17:08, Bhupesh Sharma wrote:
+> > Add base DTS file for sa8155p-adp and enable boot to console,
+> > tlmm reserved range and also include pmic file(s).
+>
+> I see ufs added too, pls mention that as well
 
-I think it's called vddio (seems to be a typo on page 8).
+Oops, missed that. Will fix it in v2.
 
-> +    description: Definition of the regulator used for the 1.8V or 2.8V I/O power supply.
+>  --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -71,6 +71,7 @@ dtb-$(CONFIG_ARCH_QCOM)     += sdm845-xiaomi-beryllium.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sdm850-lenovo-yoga-c630.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sm8150-hdk.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)      += sm8150-mtp.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)      += sa8155p-adp.dtb
+>
+> I think this should go before sdm..
 
-You could just say "... for the VDDIO supply". Same below. Up to you.
+Oh, ok, I thought of keeping all boards based on sm8150 SoC together.
+But alphabetically, it makes more sense to put it earlier.
 
-With the name fixed and the description optionally updated,
+> > +             vdd_usb_hs_core:
+> > +             vdda_pll_hv_cc_ebi01:
+> > +             vdda_pll_hv_cc_ebi23:
+> > +             vdda_ufs_2ln_core:
+> > +             vdda_ufs_2ln_core:
+> > +             vdda_usb_ss_core:
+> > +             vdda_usb_ss_dp_core_1:
+> > +             vdda_usb_ss_dp_core_2:
+> > +             vdda_sp_sensor:
+> > +             vdda_qlink_lv:
+> > +             vdda_qlink_lv_ck:
+> > +             vdda_qrefs_0p875_5:
+>
+> I didnt find these labels very useful, so maybe remove?
+> It helped me to understand that a regulator is vreg_l5a_0p88 as it
+> implies I am using l5a with 0p88V :)
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+While a few labels like 'vdd_usb_hs_core' are used in this patch (for
+example) to denote 'vdda-pll-supply ' of 'usb_1_hsphy', the others
+would be required as we enable further on-boards peripherals in the
+dts.
 
-Please add my tag if you post a new version.
+I will recheck and limit these further in v2.
 
-> +
-> +  vdda-supply:
-> +    description: Definition of the regulator used for the 2.8V analog power supply.
-> +
-> +  vddd-supply:
-> +    description: Definition of the regulator used for the 1.2V core power supply.
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            oneOf:
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +
-> +        required:
-> +          - data-lanes
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - vddi-supply
-> +  - vdda-supply
-> +  - vddd-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        hi846: camera@20 {
-> +            compatible = "hynix,hi846";
-> +            reg = <0x20>;
-> +            clocks = <&clk>;
-> +            vddi-supply = <&reg_camera_pwr_en>;
-> +            vdda-supply = <&reg_camera_pwr_en>;
-> +            vddd-supply = <&reg_camera_pwr_en>;
-> +            reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
-> +
-> +            port {
-> +                camera_out: endpoint {
-> +                    remote-endpoint = <&csi1_ep1>;
-> +                    data-lanes = <1 2>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
+> > +             vreg_l5a_0p88: ldo5 {
+> > +                     regulator-min-microvolt = <880000>;
+> > +                     regulator-max-microvolt = <880000>;
+> > +                     regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>
+> Pls do add regulator-name property, it helps in understanding which ldo
+> in logs/debugfs, otherwise ldo5 will comes for both pmics
 
--- 
+That's a good point. Will fix this in v2.
+
 Regards,
+Bhupesh
 
-Laurent Pinchart
+> --
+> ~Vinod
