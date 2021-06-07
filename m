@@ -2,257 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6F3C39E5B0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:43:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42F6039E5DC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:48:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230251AbhFGRpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 13:45:07 -0400
-Received: from phobos.denx.de ([85.214.62.61]:60054 "EHLO phobos.denx.de"
+        id S230215AbhFGRuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 13:50:00 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:13353 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229997AbhFGRpG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Jun 2021 13:45:06 -0400
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        id S229997AbhFGRuA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 13:50:00 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1623088088; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=MFuDFvHXYlR2gGa8jeKkSiXVOoZvWtSWsoYMxROMkaU=;
+ b=MDCMmv7w4rSBvtdeP7LaeZOg2pDaffUlaKv4s3wIBXirOfptJRYHKaJCtuYpyaYqP/1wvI06
+ qaAtDQbYz+UD9c9J3OP5WUKj5LUU00e+0eoagQ3tznPeEpT6vE2N5sEEL804rDPwPyKX4ThS
+ ptxbHs+dQ7Ld4QNTWHkYY+5ytKA=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 60be5bd4f726fa41885a6c48 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 07 Jun 2021 17:48:04
+ GMT
+Sender: khsieh=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D122EC43460; Mon,  7 Jun 2021 17:48:03 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id B9BF282B30;
-        Mon,  7 Jun 2021 19:43:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1623087794;
-        bh=stznHuOkG6Yt1ec7cFgRTCKbbVVOLWzqpSZf/gbu6Ww=;
-        h=From:To:Cc:Subject:Date:From;
-        b=ET843w0/XfN8wL0NLZh1a5i+CeAf2ajQ0o0/qj0xA5lgU9JaI65G0Zc4KZyrtg8Im
-         b5+6KcRIZFWvJ6GqbVPdfFCtDNT/Fyu0pE0E7aoNexTGNUvh+/ky5C6uNFc6WO8Kdn
-         Y0aIGhKMJbw05b2ef5r5A9rveYhGJBWa1lA76TKCezOKPhD0hLKdvQX629Hae2Kud+
-         WH2oPXTilSzCtrcIRG6t1/nyvfNRkrm/wHqL8joOddAdvLNnMhnjkUSjzLZu4Zil7L
-         3JSptiFuvr8p6N66GAnA9TbrDgnHERvsnBoS1Qc7P4uTwF6AAouEGUjIJk6w0PloOJ
-         x6LaYpXL5C8EQ==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     ch@denx.de, Marek Vasut <marex@denx.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Stephen Boyd <swboyd@chromium.org>, devicetree@vger.kernel.org
-Subject: [PATCH V6 1/2] dt-bindings: drm/bridge: ti-sn65dsi83: Add TI SN65DSI83 and SN65DSI84 bindings
-Date:   Mon,  7 Jun 2021 19:42:57 +0200
-Message-Id: <20210607174258.16300-1-marex@denx.de>
-X-Mailer: git-send-email 2.30.2
+        (Authenticated sender: khsieh)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5EB0FC4338A;
+        Mon,  7 Jun 2021 17:48:02 +0000 (UTC)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 07 Jun 2021 10:48:02 -0700
+From:   khsieh@codeaurora.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
+        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
+In-Reply-To: <YLxX/YtegtbLmkri@builder.lan>
+References: <1622736555-15775-1-git-send-email-khsieh@codeaurora.org>
+ <YLkI/6ItCz+SbbuJ@yoga> <ac326ec8689c0babb08b2311e19d52cc@codeaurora.org>
+ <YLxX/YtegtbLmkri@builder.lan>
+Message-ID: <ef1879fa7ecfefaf0c70c7a4782240a9@codeaurora.org>
+X-Sender: khsieh@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DT binding document for TI SN65DSI83 and SN65DSI84 DSI to LVDS bridge.
+On 2021-06-05 22:07, Bjorn Andersson wrote:
+> On Thu 03 Jun 16:56 CDT 2021, khsieh@codeaurora.org wrote:
+> 
+>> On 2021-06-03 09:53, Bjorn Andersson wrote:
+>> > On Thu 03 Jun 11:09 CDT 2021, Kuogee Hsieh wrote:
+> [..]
+>> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> [..]
+>> > > +				power-domains = <&rpmhpd SC7180_CX>;
+>> >
+>> > Just curious, but isn't the DP block in the MDSS_GDCS? Or do we need to
+>> > mention CX here in order for the opp framework to apply required-opps
+>> > of CX?
+>> 
+>> yes,
+> 
+> If you want me, or other maintainers, to spend any time reviewing or
+> applying your patches going forward then you need to actually bother
+> replying properly to the questions asked.
+> 
+> Thanks,
+> Bjorn
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Jagan Teki <jagan@amarulasolutions.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Stephen Boyd <swboyd@chromium.org>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V2: Add compatible string for SN65DSI84, since this is now tested on it
-V3: - Add 0x2c as valid i2c address
-    - Switch to schemas/graph.yaml
-    - Constraint data-lanes to <1>, <1 2>, <1 2 3>, <1 2 3 4> only
-    - Indent example by 4 spaces
-    - Handle dual-link LVDS with two ports and describe the second DSI
-      channel-B port as well. Based on the register defaults of DSI83
-      and DSI84, it is likely that the LVDS-channel-B and DSI-channel-B
-      hardware is present in all the chips, so just reuse port@0 and 2
-      for DSI83, port@0,2,3 for DSI84 and all of 0,1,2,3 for DSI85 when
-      that is supported
-V4: - Fix typo in port@3 description
-    - Add RB from Linus Walleij
-    - Replace oneOf: and const with enum:
-    - ref /schemas/media/video-interfaces.yaml#
-    - Drop empty endpoint: and properties:
-V5: - Add RB from Rob Herring
-V6: - No change
----
- .../bindings/display/bridge/ti,sn65dsi83.yaml | 159 ++++++++++++++++++
- 1 file changed, 159 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-new file mode 100644
-index 000000000000..d101233ae17f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-@@ -0,0 +1,159 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/ti,sn65dsi83.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SN65DSI83 and SN65DSI84 DSI to LVDS bridge chip
-+
-+maintainers:
-+  - Marek Vasut <marex@denx.de>
-+
-+description: |
-+  Texas Instruments SN65DSI83 1x Single-link MIPI DSI
-+  to 1x Single-link LVDS
-+  https://www.ti.com/lit/gpn/sn65dsi83
-+  Texas Instruments SN65DSI84 1x Single-link MIPI DSI
-+  to 1x Dual-link or 2x Single-link LVDS
-+  https://www.ti.com/lit/gpn/sn65dsi84
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,sn65dsi83
-+      - ti,sn65dsi84
-+
-+  reg:
-+    enum:
-+      - 0x2c
-+      - 0x2d
-+
-+  enable-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for bridge_en pin (active high).
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for MIPI DSI Channel-A input
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes:
-+                description: array of physical DSI data lane indexes.
-+                minItems: 1
-+                maxItems: 4
-+                items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for MIPI DSI Channel-B input
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes:
-+                description: array of physical DSI data lane indexes.
-+                minItems: 1
-+                maxItems: 4
-+                items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for LVDS Channel-A output (panel or bridge).
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Video port for LVDS Channel-B output (panel or bridge).
-+
-+    required:
-+      - port@0
-+      - port@2
-+
-+required:
-+  - compatible
-+  - reg
-+  - enable-gpios
-+  - ports
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ti,sn65dsi83
-+    then:
-+      properties:
-+        ports:
-+          properties:
-+            port@1: false
-+            port@3: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ti,sn65dsi84
-+    then:
-+      properties:
-+        ports:
-+          properties:
-+            port@1: false
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        bridge@2d {
-+            compatible = "ti,sn65dsi83";
-+            reg = <0x2d>;
-+
-+            enable-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+
-+                    endpoint {
-+                        remote-endpoint = <&dsi0_out>;
-+                        data-lanes = <1 2 3 4>;
-+                    };
-+                };
-+
-+                port@2 {
-+                    reg = <2>;
-+
-+                    endpoint {
-+                        remote-endpoint = <&panel_in_lvds>;
-+                    };
-+                };
-+            };
-+        };
-+    };
--- 
-2.30.2
-
+Sorry about the confusion. What I meant is that even though DP 
+controller is in the MDSS_GDSC
+power domain, DP PHY/PLL sources out of CX. The DP link clocks have a 
+direct impact
+on the CX voltage corners. Therefore, we need to mention the CX power 
+domain here. And, since
+we can associate only one OPP table with one device, we picked the DP 
+link clock over other
+clocks.
