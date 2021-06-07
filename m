@@ -2,106 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D951D39DD73
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 15:17:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9079539DD80
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 15:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbhFGNTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 09:19:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51018 "EHLO mail.kernel.org"
+        id S230344AbhFGNVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 09:21:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52334 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230127AbhFGNTB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Jun 2021 09:19:01 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C214861164;
-        Mon,  7 Jun 2021 13:17:10 +0000 (UTC)
+        id S230323AbhFGNVI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 09:21:08 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E6CD611BD;
+        Mon,  7 Jun 2021 13:19:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623071830;
-        bh=SGYTD9jGwwVnbXxZJo2IMmz6s1Wuu6sgPJY01wB0hj8=;
+        s=k20201202; t=1623071956;
+        bh=J61pmu1j6ryUYserdHWBlYXXfYgPMBBoZsm7N71ZXTo=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dPCoPQPpVQTmPC46OSxK1YTNM4Rp6aENDRN4jpV6sOt92dlgCTNDtvdIKKhAOh//3
-         7SrSB3TObM5qhZbsm4W8IHxTQFzgHQhiMyQMLjPpEawn++uhYu095w3YgbX8lb8H5O
-         aZRBIAlEEPPBQC7dsVKW5uR2jUOXZh9P+woU4bzxO7usIMoDV16K2DSPEP1Dl3oPNg
-         aP2Mp5L2uvW2dDYx7tobV4I6XjWu+onEc6DCtfPLqcEqK1CnlOIb09/ubR5+JdSKm5
-         vVCljfmvgD8uqf2fgJ/akVABNFRLJUWejC+qX13dt4XDXUXT2LgdsVp58xuwlzagOL
-         KJ+GHtyCIwDWQ==
-Received: by mail-ej1-f52.google.com with SMTP id he7so7182705ejc.13;
-        Mon, 07 Jun 2021 06:17:10 -0700 (PDT)
-X-Gm-Message-State: AOAM5312a9/O8TZ6nJazTrI+3F5QPTj4no4w5rrPNXXiKm7DaUwj4xEF
-        3NRacmcWIQbqHDfAf4AE3w5kPER/MPdoHi0C3A==
-X-Google-Smtp-Source: ABdhPJyB2mu2p0Vz6GuEA33/JHz9vO2OJC5SpaUCqz5KbM1IIo7ajKUdT/3rQ7GMquBx8tQt0gQr02DtW31fRQgs5vQ=
-X-Received: by 2002:a17:906:fa13:: with SMTP id lo19mr18291724ejb.468.1623071829381;
- Mon, 07 Jun 2021 06:17:09 -0700 (PDT)
+        b=luDGpmoMaPqOz6JQKS2C869/LKwIckgqB98U7tTCwqBtuuE29lcxn0qFaGPJvG5hb
+         Lc/r7hiFU/49WgjIepztF13Mtg1P6vHbsLx3fAWYEu6Jl7U+T91r5HGpubKgTyH8DZ
+         +Pf6AiJhIqcSfZhUGrUY3uI7Nm5VrzMaY9CxhqZyY9TPTPsviEuiHHP8+su2eo2doq
+         Kr7ldUKVElE/SQVFfuQ9fCyyCdPBFn77FuyGDsmzz/V3/0Ho3RftrJ70F3gt6AzCbx
+         B0aav7Ojadb5A+PFUGzng6SKqMaO5LAK/0iuYPSnUTWAuiuiXWaEgDWLq4i4BZIULa
+         0CI/SIIgWMCqA==
+Received: by mail-ed1-f44.google.com with SMTP id t3so20323813edc.7;
+        Mon, 07 Jun 2021 06:19:16 -0700 (PDT)
+X-Gm-Message-State: AOAM53075j79UzFu9Yq2yjJcrdOz23YW7XtCZY7OSnsMEfnPbHOOpXTE
+        nB4xZ1LUV81NTRtMmO5oImbAovQQcTFSn+stPw==
+X-Google-Smtp-Source: ABdhPJxzNlBS2VOpGlScoot1ij4UCYezPM7U/GRvFvlIEwgG7TrZboNzbJF0wUeqhr9QzxmTbA30S0QW1GcfIlRBKQY=
+X-Received: by 2002:a05:6402:1d0f:: with SMTP id dg15mr17392452edb.137.1623071954956;
+ Mon, 07 Jun 2021 06:19:14 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210601164800.7670-1-jbx6244@gmail.com> <20210601164800.7670-2-jbx6244@gmail.com>
- <YLhukPL7jSx3+dBj@vkoul-mobl> <3601774.Dhsi8hcfAM@diego>
-In-Reply-To: <3601774.Dhsi8hcfAM@diego>
+References: <20210603144216.10327-1-s-anna@ti.com>
+In-Reply-To: <20210603144216.10327-1-s-anna@ti.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 7 Jun 2021 08:16:58 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+xE7UfXcr-RTkxB8gZej8M52Fk-yM3yYA3KA7mMn50ng@mail.gmail.com>
-Message-ID: <CAL_Jsq+xE7UfXcr-RTkxB8gZej8M52Fk-yM3yYA3KA7mMn50ng@mail.gmail.com>
-Subject: Re: [PATCH v7 1/5] dt-bindings: phy: rename phy nodename in phy-rockchip-inno-usb2.yaml
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Johan Jonker <jbx6244@gmail.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tobias Schramm <t.schramm@manjaro.org>,
-        linux-phy@lists.infradead.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org,
+Date:   Mon, 7 Jun 2021 08:19:03 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+mhJgFZniXYTVf5ZEM84APhm2w_ozLJg_pFtgz+W_wYw@mail.gmail.com>
+Message-ID: <CAL_Jsq+mhJgFZniXYTVf5ZEM84APhm2w_ozLJg_pFtgz+W_wYw@mail.gmail.com>
+Subject: Re: [RFC PATCH] dt-bindings: hwlock: sun6i: Fix various warnings in binding
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Wilken Gottwalt <wilken.gottwalt@posteo.net>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>, linux-sunxi@lists.linux.dev,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 3, 2021 at 3:58 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+On Thu, Jun 3, 2021 at 9:42 AM Suman Anna <s-anna@ti.com> wrote:
 >
-> Hi Vinod,
+> The allwinner,sun6i-a31-hwspinlock.yaml binding has a mismatched
+> $id and fails to compile the example due to undefined args specifier
+> values for clocks and resets. Fix both of these issues.
 >
-> Am Donnerstag, 3. Juni 2021, 07:54:24 CEST schrieb Vinod Koul:
-> > On 01-06-21, 18:47, Johan Jonker wrote:
-> > > The pattern: "^(|usb-|usb2-|usb3-|pci-|pcie-|sata-)phy(@[0-9a-f,]+)*$=
-"
-> > > in phy-provider.yaml has required "#phy-cells" for phy nodes.
-> > > The "phy-cells" in rockchip-inno-usb2 nodes are located in subnodes.
-> > > Rename the nodename to pattern "usb2phy@[0-9a-f]+$" to prevent
-> > > notifications. Remove unneeded "#phy-cells" from parent node.
-> > > Also sort example.
-> > >
-> > > make ARCH=3Darm dtbs_check
-> > > DT_SCHEMA_FILES=3D~/.local/lib/python3.5/site-packages/dtschema/schem=
-as/
-> > > phy/phy-provider.yaml
-> > >
-> > > Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> > > Acked-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  .../devicetree/bindings/phy/phy-rockchip-inno-usb2.yaml       | 11 +=
-++--------
-> > >  Documentation/devicetree/bindings/soc/rockchip/grf.yaml       |  4 +=
-+--
-> >
-> > I dont have grf.yaml, I guess it would be easier to split this into two
-> > or apply this thru rockchip tree. If you prefer latter:
-> >
-> > Acked-By: Vinod Koul <vkoul@kernel.org>
+> Fixes: f9e784dcb63f ("dt-bindings: hwlock: add sun6i_hwspinlock")
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+> Hi Wilken,
 >
-> before we do any more rounds, I'll just do that with your Ack, thanks :-)
+> This fixes the warnings for now on linux-next, but I think the example
+> should be including sun6i-a31-ccu.h files instead to be accurate, and
+> those files are missing the definitions for CLK_BUS_SPINLOCK and
+> RST_BUS_SPINLOCK. Feel free to send a newer version or do an incremental
+> patch on top.
+>
+> regards
+> Suman
+>
+>  .../bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml      | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 
-This is generating warnings on linux-next now:
-
-/builds/robherring/linux-dt/Documentation/devicetree/bindings/soc/rockchip/=
-grf.example.dt.yaml:
-syscon@ff770000: usb2phy@e450: '#phy-cells' does not match any of the
-regexes: 'pinctrl-[0-9]+'
-From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/=
-soc/rockchip/grf.yaml
-/builds/robherring/linux-dt/Documentation/devicetree/bindings/soc/rockchip/=
-grf.example.dt.yaml:
-usb2phy@e450: '#phy-cells' does not match any of the regexes:
-'pinctrl-[0-9]+'
-From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/=
-phy/phy-rockchip-inno-usb2.yaml
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
