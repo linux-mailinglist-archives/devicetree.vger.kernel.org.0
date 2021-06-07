@@ -2,97 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3C0339DEF1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 16:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA1AB39DEFB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 16:42:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230213AbhFGOk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 10:40:29 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50616 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230193AbhFGOkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 10:40:25 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157EcQl8006429;
-        Mon, 7 Jun 2021 09:38:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623076706;
-        bh=jNaIN+Gya1SwEJ/A/roKUkAMJzCE7ATMF2355uU1Ytk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Ichz9okHzgsb/ajyqd/s5aQ1IEAKaPm1XERuy0cmculoaIW0qtm2d6uHuXWXMqViy
-         cSCp3oQtH+krYbB886wvON/1WMQE0lRuqIvinkLQQnZas0o5G/meJP7Vfho6hAQbl0
-         9r4e0Qh1oRhoWAdaXJ0iuApM+AphhXSB8HeEc0HM=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157EcQ0M087431
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Jun 2021 09:38:26 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 7 Jun
- 2021 09:38:26 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 7 Jun 2021 09:38:25 -0500
-Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157EcINC020778;
-        Mon, 7 Jun 2021 09:38:20 -0500
-Subject: Re: [PATCH v2 0/4] J721E: Use external clock in EVM for SERDES
-To:     Kishon Vijay Abraham I <kishon@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-References: <20210603143427.28735-1-kishon@ti.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <f2202e2a-e66b-449f-f2fe-7a677799c265@ti.com>
-Date:   Mon, 7 Jun 2021 20:08:16 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S230239AbhFGOog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 10:44:36 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:52866 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230207AbhFGOof (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 10:44:35 -0400
+Received: from mail-wm1-f69.google.com ([209.85.128.69])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lqGSh-0000pA-4W
+        for devicetree@vger.kernel.org; Mon, 07 Jun 2021 14:42:43 +0000
+Received: by mail-wm1-f69.google.com with SMTP id o14-20020a1c4d0e0000b029019a2085ba40so2401811wmh.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 07:42:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=LZouowOMeDZ6EndWSO8l3IpGbZlNHlcW3YYdxdPf/aY=;
+        b=Zuyuuuv+n5Gq5IaYidISUGJIUhgarfIz/n1Puef3g4CeLsnfQpuhdD+I7CiGNc7n5r
+         Iwzomf/UcvbPOrUdJKugTc7j6+YIbzrEZrJTJoRdNbuhW8Tf5T3qJCaYQ4cTBDf4t0mZ
+         JPsZtDoCPTugTBSguSaMNVfqFhvOlZUZ1rX8/RydUdbkat3LeIFqFm7FUNQH0cPrdjcE
+         BXj2qTJaSDKSCMZFIhMby6uXHsLYWIAOPl45DEP2ZRWr7BGVGwdynYJaIUWmQoY9hdAg
+         vf03+jmVLGlrVvP0xyKYgH3Orpzid9neMT3iGM2GI8qeI7+Uj/1a/ppUVG1PiTltbbAV
+         lvAg==
+X-Gm-Message-State: AOAM5339fBWi+HqIwi8zAdnFItKac3Hg61QFSkTcHo+z93pbiwY4o7gt
+        Vj+ftOnZuxLwe6gVgqaaMpj88mC7GRnmNJoXrJPGa0+bhiyPZ+tOKvvQgt/OgJpA1CJlcVdJtNK
+        zQs/K+W/+N7RqeZflH4ZG4dP5qtUCuyvjoiZmx2s=
+X-Received: by 2002:a05:6000:18ad:: with SMTP id b13mr17120993wri.134.1623076962916;
+        Mon, 07 Jun 2021 07:42:42 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyCR/qOJ2HOoz8Yaxcz1xb5SQF3ouTzcrIeE2rRHBxNtJtXVZtVdkLJ/2+fUMEntjBQHi/CIw==
+X-Received: by 2002:a05:6000:18ad:: with SMTP id b13mr17120979wri.134.1623076962784;
+        Mon, 07 Jun 2021 07:42:42 -0700 (PDT)
+Received: from [192.168.1.115] (xdsl-188-155-185-9.adslplus.ch. [188.155.185.9])
+        by smtp.gmail.com with ESMTPSA id l9sm14332397wme.21.2021.06.07.07.42.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Jun 2021 07:42:42 -0700 (PDT)
+Subject: Re: [PATCH v6 08/14] memory: tegra: Enable compile testing for all
+ drivers
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        =?UTF-8?Q?Nikola_Milosavljevi=c4=87?= <mnidza@outlook.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Paul Fertser <fercerpav@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Nathan Chancellor <nathan@kernel.org>,
+        linux-clk@vger.kernel.org
+References: <20210601023119.22044-1-digetx@gmail.com>
+ <20210601023119.22044-9-digetx@gmail.com>
+ <41899ef4-bb16-6c3a-035c-1e840a993bec@canonical.com>
+ <YL4gwxWopKT7LomG@orome.fritz.box>
+ <a1f20257-f041-966e-c37e-5c81c4cf94d9@gmail.com>
+ <YL4rBYkWHpeit66m@orome.fritz.box>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <e4896499-e593-aa5d-9b74-c5a3725e334d@canonical.com>
+Date:   Mon, 7 Jun 2021 16:42:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210603143427.28735-1-kishon@ti.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <YL4rBYkWHpeit66m@orome.fritz.box>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/21 8:04 pm, Kishon Vijay Abraham I wrote:
-> J721E EVM has clock generator that feeds both to the SERDES and to the
-> PCIe slot present in the EVM. In order to use common reference clock on
-> either side of the link, configure SERDES to use external reference
-> clock.
+On 07/06/2021 16:19, Thierry Reding wrote:
+> On Mon, Jun 07, 2021 at 05:01:02PM +0300, Dmitry Osipenko wrote:
+>> 07.06.2021 16:36, Thierry Reding пишет:
+>>>> /bin/ld: warning: orphan section `__reservedmem_of_table' from `drivers/memory/tegra/tegra210-emc-table.o' being placed in section `__reservedmem_of_table'
+>>>> /bin/ld: drivers/memory/tegra/mc.o: in function `tegra_mc_probe':
+>>>> mc.c:(.text+0x87a): undefined reference to `reset_controller_register'
+>>>> make[1]: *** [/home/buildbot/worker/builddir/build/Makefile:1191: vmlinux] Error 1
+>> ...
+>>
+>>> Not sure what to do about that orphaned __reservedmem_of_table section.
+>>> Maybe all we need to do is to select OF_RESERVED_MEM from
+>>> TEGRA210_EMC_TABLE?
+>>
+>> Select won't work easily, but the dependency for TEGRA210_EMC should.
 > 
-> Previously SERDES used internal reference clock and the attached device
-> used clock from clock generator in the EVM.
+> Select works if I also select OF_EARLY_FLATTREE. That's slightly odd
+> because typically that's something that the platform would select, but
+> there's precedent for doing this in drivers/clk/x86/Kconfig, so I think
+> it'd be fine.
 > 
-> Changes from v1:
-> 1) Fixed clock names as suggested by Nishanth
-> 2) Limit to < 100 lines
+> The attached patch resolves both of the above issues for me.
 > 
-> v1: http://lore.kernell.org/r/20210512151209.27560-1-kishon@ti.com
-> 
+> Krzysztof: do you want to squash that into the problematic patch or do
+> you want me to send this as a follow-up patch for you to apply? I guess
+> the latter since you've already sent out the PR for Will and ARM SoC?
 
-For the whole series,
+Follow up, please, but I am not sure about selecting reset controller.
+From the tegra/mc.c code I see it can be optional - if "reset_ops" is
+provided. Therefore I think:
+1. Reset controller should provide proper stubs. This will fix building
+of mc.c when reset controller is not chosen (regardless of point #2 below).
 
-Reviewed-by: Aswath Govindraju <a-govindraju@ti.com>
+2. Specific drivers should depend on it. Selecting user-visible symbols
+is rather discourage because might lead to circular dependencies.
 
-Thanks,
-Aswath
-
-> Kishon Vijay Abraham I (4):
->   arm64: dts: ti: k3-j721e-main: Fix external refclk input to SERDES
->   arm64: dts: ti: k3-j721e-main: Add #clock-cells property to serdes DT
->     node
->   arm64: dts: ti: k3-j721e-common-proc-board: Use external clock for
->     SERDES
->   arm64: dts: ti: k3-j721e-common-proc-board: Re-name "link" name as
->     "phy"
-> 
->  .../dts/ti/k3-j721e-common-proc-board.dts     | 52 ++++++++++-
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 86 +++++++++++--------
->  2 files changed, 98 insertions(+), 40 deletions(-)
-> 
-
+Best regards,
+Krzysztof
