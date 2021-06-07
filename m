@@ -2,114 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F2539DDA3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 15:30:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5522039DDB4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 15:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230353AbhFGNcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 09:32:31 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:43818 "EHLO
+        id S230226AbhFGNeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 09:34:11 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44314 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230356AbhFGNcb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 09:32:31 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157DUVO4060121;
-        Mon, 7 Jun 2021 08:30:31 -0500
+        with ESMTP id S230210AbhFGNeK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 09:34:10 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157DWABx060961;
+        Mon, 7 Jun 2021 08:32:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623072631;
-        bh=t3nEGTHF9ctx5Eur/1xc5eX+Fqys3RN2zmfbaHjXrBs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=KxlUVAlQAY9+IukGbroZsVMs/dF2astM/FDkfI9O0qnbZBRmYXCxy/PZsh+dX/CBH
-         tloGo55n7YP+bJJTjxjFcwVIt8L7C2vpJKm7++SWNm4qX3L4/2lTNCEYpSrNmnsszG
-         d8hTozUnaPM/bMX73gWma1VfcuW/auP/Evj4FDig=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157DUVXs112032
+        s=ti-com-17Q1; t=1623072730;
+        bh=LBEQwb0c+DHkpxvRBlg1mCEL41QwUFIaV67psQ5lexc=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=QQk21NmK7iCiEz08s/LVr5v5Fi406rUb7lTjVAbFecJHRtaW5gNuYSHEwD6CNsfKT
+         rC6gVx6zy6fHj1GYoHtXVd6vHv6vTN9fJxUWKTJRT33e7usVAEvAvjY+t167yKwhCn
+         bgmq9S687TAgcvxu4tlu/wyGwPz+VHBndY87T/F4=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157DWA6A076889
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Jun 2021 08:30:31 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 7 Jun 2021 08:32:10 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 7 Jun
- 2021 08:30:31 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 08:32:10 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 7 Jun 2021 08:30:31 -0500
-Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157DUPlo014065;
-        Mon, 7 Jun 2021 08:30:27 -0500
-Subject: Re: [PATCH] arm64: dts: ti: k3-am64-main: Update the location of ATF
- in SRAM and increase its max size
-To:     Nishanth Menon <nm@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Suman Anna <s-anna@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210604164308.16693-1-a-govindraju@ti.com>
- <20210607132831.byouctbdr62hqbpi@sneeze>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <aeac5b8c-033c-986d-485a-d06b44e14786@ti.com>
-Date:   Mon, 7 Jun 2021 19:00:24 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ Frontend Transport; Mon, 7 Jun 2021 08:32:10 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157DW9WC022486;
+        Mon, 7 Jun 2021 08:32:09 -0500
+Date:   Mon, 7 Jun 2021 08:32:09 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>
+CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Amarnath MB <amarnath.mb@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: arm: ti: Add bindings for J721E EAIK
+Message-ID: <20210607133209.lnx4cist3ajs557j@conduit>
+References: <20210607093314.23909-1-sinthu.raja@ti.com>
+ <20210607093314.23909-2-sinthu.raja@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20210607132831.byouctbdr62hqbpi@sneeze>
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210607093314.23909-2-sinthu.raja@ti.com>
+User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+On 15:03-20210607, Sinthu Raja wrote:
+> From: Sinthu Raja <sinthu.raja@ti.com>
+> 
+> J721E EdgeAI Kit (EAIK) is a low cost, small form factor board designed
+> for TI’s J721E SoC.
+> Add DT binding documentation for J721E EAIK
 
-On 07/06/21 6:58 pm, Nishanth Menon wrote:
-> On 22:13-20210604, Aswath Govindraju wrote:
->> Due to a limitation for USB DFU boot mode, SPL load address has to be less
->> than  or equal to 0x70001000. So, load address of SPL and ATF have been
->> moved to 0x70000000 and 0x701a0000 respectively.
->>
->> Also, the maximum size of ATF has been increased to 0x1c000 [1].
->>
->> Therefore, update ATF's location and maximum size accordingly in the device
->> tree file.
->>
->> [1] - https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/?id=2fb5312f61a7de8b7a70e1639199c4f14a10b6f9
->>
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> ---
->>
->> Link to corresponding U-Boot series that makes the ATF load address update,
->> - https://patchwork.ozlabs.org/project/uboot/list/?series=247265
->>
->>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> index ca59d1f711f8..7ae28992097f 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> @@ -14,7 +14,7 @@
->>  		ranges = <0x0 0x00 0x70000000 0x200000>;
->>  
->>  		atf-sram@0 {
-> 	@0 should be @1a0000 ?
+Need a url for the board.
 
-Sorry, forgot to make this change. Will correct this in the respin.
+> 
+> Signed-off-by: Amarnath MB <amarnath.mb@ti.com>
+> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> ---
+> Change in V2:
+> - Fix for dt_binding_check error.
+> 
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml                | 2 ++
+>  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml         | 2 +-
+>  2 files changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> index c5aa362e4026..923dd7cf1dc6 100644
+> --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> @@ -29,6 +29,8 @@ properties:
+>  
+>        - description: K3 J721E SoC
+>          items:
+> +          - enum:
+> +              - ti,j721e-eaik
+>            - const: ti,j721e
+>  
+>        - description: K3 J7200 SoC
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> index 6070456a7b67..464cee128811 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> @@ -135,7 +135,7 @@ examples:
+>    - |
+>      / {
+>          model = "Texas Instruments K3 J721E SoC";
+> -        compatible = "ti,j721e";
+> +        compatible = "ti,j721e-eaik", "ti,j721e";
+I see what we are attempting to do here.
 
-Thanks,
-Aswath
+Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+probably should strip off the board specifics out in the
+examples. but, that belongs to a different patch.
 
->> -			reg = <0x0 0x1a000>;
->> +			reg = <0x1a0000 0x1c000>;
->>  		};
->>  	};
->>  
->> -- 
->> 2.17.1
->>
+>          #address-cells = <2>;
+>          #size-cells = <2>;
+>  
+> -- 
+> 2.31.1
 > 
 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
