@@ -2,122 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA1AB39DEFB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 16:42:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 381D739DF15
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 16:48:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbhFGOog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 10:44:36 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:52866 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230207AbhFGOof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 10:44:35 -0400
-Received: from mail-wm1-f69.google.com ([209.85.128.69])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lqGSh-0000pA-4W
-        for devicetree@vger.kernel.org; Mon, 07 Jun 2021 14:42:43 +0000
-Received: by mail-wm1-f69.google.com with SMTP id o14-20020a1c4d0e0000b029019a2085ba40so2401811wmh.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 07:42:43 -0700 (PDT)
+        id S230385AbhFGOt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 10:49:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57246 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230383AbhFGOt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 10:49:27 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B82BC061766;
+        Mon,  7 Jun 2021 07:47:29 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id f70so1675415qke.13;
+        Mon, 07 Jun 2021 07:47:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TMN59PtZ5z0AUWY25PDNZoVNr0HWxKSo5UEY7flatdQ=;
+        b=mMMFOMc3xXuLU2dI9kkPVP7lt8xQkbELvMHdvq1gcyTId+qy9poe//r5RKvfgWkDgB
+         gtCDzqAGlFSUyS+es5CUUVNv4e3J049Wa7FjEy5hkkx9In00YvyVbq+kJjYK6EGFhdTU
+         tkcC2o8/mI0j5agq7mEE2Fqm/pS7d9AgB0dLpKYeivTvNpe5dSxR70l/1+0NMjBiARUw
+         B0WhZzlx9AGoQiYZY72lt5rtYGF0ppuAj82BEFahy5xPE/VTbfGDdX5ABQVH/bz7t5nS
+         CXFYwWzwrqVSNsgDTxY27vsSaCuwpuZvAPdSo1Evy1X+UZ0Ld0arluE9Xz9cg59s7MXS
+         xePg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=LZouowOMeDZ6EndWSO8l3IpGbZlNHlcW3YYdxdPf/aY=;
-        b=Zuyuuuv+n5Gq5IaYidISUGJIUhgarfIz/n1Puef3g4CeLsnfQpuhdD+I7CiGNc7n5r
-         Iwzomf/UcvbPOrUdJKugTc7j6+YIbzrEZrJTJoRdNbuhW8Tf5T3qJCaYQ4cTBDf4t0mZ
-         JPsZtDoCPTugTBSguSaMNVfqFhvOlZUZ1rX8/RydUdbkat3LeIFqFm7FUNQH0cPrdjcE
-         BXj2qTJaSDKSCMZFIhMby6uXHsLYWIAOPl45DEP2ZRWr7BGVGwdynYJaIUWmQoY9hdAg
-         vf03+jmVLGlrVvP0xyKYgH3Orpzid9neMT3iGM2GI8qeI7+Uj/1a/ppUVG1PiTltbbAV
-         lvAg==
-X-Gm-Message-State: AOAM5339fBWi+HqIwi8zAdnFItKac3Hg61QFSkTcHo+z93pbiwY4o7gt
-        Vj+ftOnZuxLwe6gVgqaaMpj88mC7GRnmNJoXrJPGa0+bhiyPZ+tOKvvQgt/OgJpA1CJlcVdJtNK
-        zQs/K+W/+N7RqeZflH4ZG4dP5qtUCuyvjoiZmx2s=
-X-Received: by 2002:a05:6000:18ad:: with SMTP id b13mr17120993wri.134.1623076962916;
-        Mon, 07 Jun 2021 07:42:42 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyCR/qOJ2HOoz8Yaxcz1xb5SQF3ouTzcrIeE2rRHBxNtJtXVZtVdkLJ/2+fUMEntjBQHi/CIw==
-X-Received: by 2002:a05:6000:18ad:: with SMTP id b13mr17120979wri.134.1623076962784;
-        Mon, 07 Jun 2021 07:42:42 -0700 (PDT)
-Received: from [192.168.1.115] (xdsl-188-155-185-9.adslplus.ch. [188.155.185.9])
-        by smtp.gmail.com with ESMTPSA id l9sm14332397wme.21.2021.06.07.07.42.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Jun 2021 07:42:42 -0700 (PDT)
-Subject: Re: [PATCH v6 08/14] memory: tegra: Enable compile testing for all
- drivers
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        =?UTF-8?Q?Nikola_Milosavljevi=c4=87?= <mnidza@outlook.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Paul Fertser <fercerpav@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Nathan Chancellor <nathan@kernel.org>,
-        linux-clk@vger.kernel.org
-References: <20210601023119.22044-1-digetx@gmail.com>
- <20210601023119.22044-9-digetx@gmail.com>
- <41899ef4-bb16-6c3a-035c-1e840a993bec@canonical.com>
- <YL4gwxWopKT7LomG@orome.fritz.box>
- <a1f20257-f041-966e-c37e-5c81c4cf94d9@gmail.com>
- <YL4rBYkWHpeit66m@orome.fritz.box>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <e4896499-e593-aa5d-9b74-c5a3725e334d@canonical.com>
-Date:   Mon, 7 Jun 2021 16:42:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        bh=TMN59PtZ5z0AUWY25PDNZoVNr0HWxKSo5UEY7flatdQ=;
+        b=DbQ76ABUlFhWdUGviV2s1vNRnmxnRdqFB8f/5kfrYHRSxDdcyzybhOAJys+WB8UfJ8
+         azxgwganIIC66+9c5GkuJgvoUVUo5BuwEH64o1gacLzR/F5Cm8H+E+2A/fzooqzDESh8
+         LGkTnwgLXKYrWFKvcKOrrtDpomLNw7E1c2hEI4x8WX1BgLh6KJq/pXJoi9nB7f1BrMdX
+         QTPJFdWM9IhPwMcuVSL6k/yx7PCrkKBXN1Sfalbdg6mmO64g26W04oxXf6GSXO6azBMq
+         jixCeZVlmF03X0mNG/vxOqOuvBh22McGfcXrCy6JKyT58Eak179poOzotcw8qtGYUfKA
+         M8Nw==
+X-Gm-Message-State: AOAM532nWDONryypWLuMXIXD8k202AehNkN/YLmJGsnRNIdlz7ObABgM
+        fq1Rb4kBeqLlWJWz2ItlkI4D1uZ7X1iqhw==
+X-Google-Smtp-Source: ABdhPJyMKEUmncihYbm3TcvGSd4UZ4L21nF1Ms/X3hotoYqoY1tW9cs9/9KC8TCbvWuBYUFXpeLspg==
+X-Received: by 2002:a37:ad5:: with SMTP id 204mr16770476qkk.373.1623077248168;
+        Mon, 07 Jun 2021 07:47:28 -0700 (PDT)
+Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id s7sm4157855qkp.35.2021.06.07.07.47.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Jun 2021 07:47:27 -0700 (PDT)
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     liambeguin@gmail.com, peda@axentia.se, jic23@kernel.org,
+        lars@metafoo.de, pmeerw@pmeerw.net
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: [PATCH v2 0/8] iio: afe: add temperature rescaling support
+Date:   Mon,  7 Jun 2021 10:47:10 -0400
+Message-Id: <20210607144718.1724413-1-liambeguin@gmail.com>
+X-Mailer: git-send-email 2.30.1.489.g328c10930387
 MIME-Version: 1.0
-In-Reply-To: <YL4rBYkWHpeit66m@orome.fritz.box>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/06/2021 16:19, Thierry Reding wrote:
-> On Mon, Jun 07, 2021 at 05:01:02PM +0300, Dmitry Osipenko wrote:
->> 07.06.2021 16:36, Thierry Reding пишет:
->>>> /bin/ld: warning: orphan section `__reservedmem_of_table' from `drivers/memory/tegra/tegra210-emc-table.o' being placed in section `__reservedmem_of_table'
->>>> /bin/ld: drivers/memory/tegra/mc.o: in function `tegra_mc_probe':
->>>> mc.c:(.text+0x87a): undefined reference to `reset_controller_register'
->>>> make[1]: *** [/home/buildbot/worker/builddir/build/Makefile:1191: vmlinux] Error 1
->> ...
->>
->>> Not sure what to do about that orphaned __reservedmem_of_table section.
->>> Maybe all we need to do is to select OF_RESERVED_MEM from
->>> TEGRA210_EMC_TABLE?
->>
->> Select won't work easily, but the dependency for TEGRA210_EMC should.
-> 
-> Select works if I also select OF_EARLY_FLATTREE. That's slightly odd
-> because typically that's something that the platform would select, but
-> there's precedent for doing this in drivers/clk/x86/Kconfig, so I think
-> it'd be fine.
-> 
-> The attached patch resolves both of the above issues for me.
-> 
-> Krzysztof: do you want to squash that into the problematic patch or do
-> you want me to send this as a follow-up patch for you to apply? I guess
-> the latter since you've already sent out the PR for Will and ARM SoC?
+From: Liam Beguin <lvb@xiphos.com>
 
-Follow up, please, but I am not sure about selecting reset controller.
-From the tegra/mc.c code I see it can be optional - if "reset_ops" is
-provided. Therefore I think:
-1. Reset controller should provide proper stubs. This will fix building
-of mc.c when reset controller is not chosen (regardless of point #2 below).
+Add temperature rescaling support to the IIO Analog Front End driver.
 
-2. Specific drivers should depend on it. Selecting user-visible symbols
-is rather discourage because might lead to circular dependencies.
+This series includes minor bugfixes and adds support for a generic
+temperature front end circuit.
 
-Best regards,
-Krzysztof
+As Peter suggested in v1, if the upstream channel has an offset, the
+rescaler will default to using the processed value. This was done to
+avoid having to process all supported offset an scale type combinations.
+
+At first I tried to use iio_convert_raw_to_processed() to get more
+precision out of processed values but ran into issues when one of my
+ADCs didn't provide a scale. I tried to address this in the first two
+patches.
+
+When adding offset support to iio-rescale, I also noticed that
+iio_read_channel_processed() assumes that the offset is always an
+integer which I tried to address in the third patch without breaking
+valid implicit truncations.
+
+Related to: https://patchwork.kernel.org/project/linux-iio/list/?series=483087
+
+Changes since v1:
+- rebase on latest iio `testing` branch
+- also apply consumer scale on integer channel scale types
+- don't break implicit truncation in processed channel offset
+  calculation
+- drop temperature AFE flavors in favor of a simpler generic
+  implementation
+
+Thanks for your time
+
+Liam Beguin (8):
+  iio: inkern: apply consumer scale on IIO_VAL_INT cases
+  iio: inkern: apply consumer scale when no channel scale is available
+  iio: inkern: error out on unsupported offset type
+  iio: inkern: return valid type on raw to processed conversion
+  iio: afe: rescale: add upstream offset support
+  iio: afe: rescale: add offset support
+  iio: afe: rescale: add temperature sensor support
+  dt-bindings: iio: afe: add binding for temperature-sense-amplifier
+
+ .../iio/afe/temperature-sense-amplifier.yaml  | 57 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ drivers/iio/afe/iio-rescale.c                 | 39 ++++++++++++-
+ drivers/iio/inkern.c                          | 46 +++++++++++----
+ 4 files changed, 131 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
+
+Range-diff against v1:
+ 1:  36f038f93537 <  -:  ------------ iio: inkern: always apply scale requested by consumer
+ 2:  fd3e9a69841a <  -:  ------------ iio: inkern: error out on unsupported offset type
+ 3:  91c473be7098 <  -:  ------------ iio: afe: rescale: use core to get processed value
+ 4:  1097973f3bf7 <  -:  ------------ iio: afe: rescale: add offset support
+ 5:  786badf92421 <  -:  ------------ iio: afe: rescale: add support for temperature sensors
+ 6:  0cae8abf6a06 <  -:  ------------ dt-bindings: iio: afe: update MAINTAINERS file
+ 7:  e806c73122f8 <  -:  ------------ dt-bindings: iio: afe: add binding for temperature-sense-rtd
+ 8:  f156b16ba01a <  -:  ------------ dt-bindings: iio: afe: add binding for temperature-sense-current
+ -:  ------------ >  1:  8ebae9e606a2 iio: inkern: apply consumer scale on IIO_VAL_INT cases
+ -:  ------------ >  2:  4d6e4d772f94 iio: inkern: apply consumer scale when no channel scale is available
+ -:  ------------ >  3:  dd26ddb49658 iio: inkern: error out on unsupported offset type
+ -:  ------------ >  4:  56e9e00cab9d iio: inkern: return valid type on raw to processed conversion
+ -:  ------------ >  5:  d86fabc43985 iio: afe: rescale: add upstream offset support
+ -:  ------------ >  6:  332fdb2d59ae iio: afe: rescale: add offset support
+ -:  ------------ >  7:  3eabc81fb9aa iio: afe: rescale: add temperature sensor support
+ 9:  9bfdfe7d86b7 !  8:  37980da320b2 dt-bindings: iio: afe: add binding for temperature-sense-amplifier
+    @@ Commit message
+         dt-bindings: iio: afe: add binding for temperature-sense-amplifier
+     
+         An ADC is often used to measure other quantities indirectly. This
+    -    binding describe one cases, the measurement of a temperature through a
+    -    voltage sense amplifier such as the LTC2997.
+    +    binding describe such a use case, the measurement of a temperature
+    +    through an analog front end connected to a voltage channel.
+     
+         Signed-off-by: Liam Beguin <lvb@xiphos.com>
+     
+    @@ Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml (new)
+     +  - Liam Beguin <lvb@xiphos.com>
+     +
+     +description: |
+    -+  When an io-channel measures the output voltage of a temperature IC such as
+    -+  the LTC2997, the interesting measurement is almost always the corresponding
+    ++  When an io-channel measures the output voltage of a temperature analog front
+    ++  end such as an RTD (resistance thermometer) or a temperature to current
+    ++  sensor, the interesting measurement is almost always the corresponding
+     +  temperature, not the voltage output. This binding describes such a circuit.
+     +
+     +properties:
+    @@ Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml (new)
+     +  '#io-channel-cells':
+     +    const: 1
+     +
+    -+  alpha-micro-volts-per-degree:
+    -+    description: |
+    -+      Output voltage gain of the temperature IC.
+    ++  sense-gain-mult:
+    ++    $ref: /schemas/types.yaml#/definitions/uint32
+    ++    description: Amplifier gain multiplier. The default is <1>.
+     +
+    -+  use-kelvin-scale:
+    -+    type: boolean
+    -+    description: |
+    -+      Boolean indicating if alpha uses Kelvin degrees instead of Celsius.
+    ++  sense-gain-div:
+    ++    $ref: /schemas/types.yaml#/definitions/uint32
+    ++    description: Amplifier gain divider. The default is <1>.
+    ++
+    ++  sense-offset-millicelsius:
+    ++    description: Amplifier offset. The default is <0>.
+     +
+     +additionalProperties: false
+     +required:
+     +  - compatible
+     +  - io-channels
+    -+  - alpha-micro-volts-per-degree
+     +
+     +examples:
+     +  - |
+    -+    znq_temp: iio-rescale0 {
+    ++    pt1000_1: temperature-sensor {
+     +        compatible = "temperature-sense-amplifier";
+     +        #io-channel-cells = <1>;
+     +        io-channels = <&temp_adc 3>;
+     +
+    -+        use-kelvin-scale;
+    -+        alpha-micro-volts-per-degree = <4000>;
+    ++        sense-gain-mult = <1000000>;
+    ++        sense-gain-div = <3908>;
+    ++        sense-offset-millicelsius = <(-255885)>;
+     +    };
+    -+
+     +...
+     
+      ## MAINTAINERS ##
+    @@ MAINTAINERS: L:	linux-iio@vger.kernel.org
+      F:	Documentation/devicetree/bindings/iio/afe/current-sense-amplifier.yaml
+      F:	Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
+     +F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-amplifier.yaml
+    - F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-current.yaml
+    - F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
+      F:	Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
+    + F:	drivers/iio/afe/iio-rescale.c
+    + 
+
+base-commit: 41340965b4f8055f975f73e1e3d23eff8038f013
+-- 
+2.30.1.489.g328c10930387
+
