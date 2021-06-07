@@ -2,69 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E16A39DC54
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 14:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 847B339DC6F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 14:32:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230519AbhFGM25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 08:28:57 -0400
-Received: from router.aksignal.cz ([62.44.4.214]:45944 "EHLO
-        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230487AbhFGM2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 08:28:55 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by router.aksignal.cz (Postfix) with ESMTP id EA38B4811A;
-        Mon,  7 Jun 2021 14:27:02 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
-Received: from router.aksignal.cz ([127.0.0.1])
-        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id 3yh2TUBcn8TH; Mon,  7 Jun 2021 14:26:58 +0200 (CEST)
-Received: from pc-gameroom.prchals.tk (unknown [83.240.30.185])
-        (Authenticated sender: jiri.prchal@aksignal.cz)
-        by router.aksignal.cz (Postfix) with ESMTPSA id 882B14811E;
-        Mon,  7 Jun 2021 14:26:46 +0200 (CEST)
-From:   Jiri Prchal <jiri.prchal@aksignal.cz>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Prchal <jiri.prchal@aksignal.cz>
-Subject: [PATCH v7 5/5] nvmem: eeprom: add documentation of sysfs sernum file
-Date:   Mon,  7 Jun 2021 14:26:40 +0200
-Message-Id: <20210607122640.143582-6-jiri.prchal@aksignal.cz>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210607122640.143582-1-jiri.prchal@aksignal.cz>
-References: <20210607122640.143582-1-jiri.prchal@aksignal.cz>
+        id S230220AbhFGMdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 08:33:52 -0400
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:37877 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230145AbhFGMdv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 08:33:51 -0400
+Received: by mail-oi1-f179.google.com with SMTP id h9so17852846oih.4
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 05:32:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Tvr2LpJO+zoZVn/wehOpfwJd2m7kH19dGowal30QNMo=;
+        b=aH7lHOFR5B7dsCa2m5tbQCoN750DuUFWr0HiN5vZAs6LAs+CGFdJpeEVFHtXY0kvoU
+         jrIBJ8bF0F4lN3VniDDO/EdA3I7SbMGk0BzQnunqQSI9dNlewZtGbkgt9ClHH5oR4h5E
+         Gjz2gUjjV+hDNF+tW0h7hRI+XSXv8XVKpZvgQO7VFo9uk4nvKKAL9bDRDG3G0lc++FyG
+         SG5s88en7owxCA5IjiLYZy5zQZroX82O9IVLHv1pHQPnS3TGR8X7mxEIKCVFWESbkgWl
+         52CoisHehVZ2VJcHrwk0XQse6tNIXeW7iKgCoQuLyfKTb9Ew86ZbFhzSdESJnT60zhuw
+         e45w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Tvr2LpJO+zoZVn/wehOpfwJd2m7kH19dGowal30QNMo=;
+        b=AEbBKAZvTd55OurHnCSCi4LxgIKy0PIKTzCiCl6KZPDU29SaI/FM0G1R1NuxgS1yA5
+         xkPvNs9UoSgpK++QHwlxq7rphBexAH6cBvh/6m0DcwDnWq6Z8QSrPRWj6r2yGWpy19mk
+         q/sFKK1C0gx1LOBu0EGfZJakd97C6IpbR2mwottGRLtfRTQb6mtHXMU5Qe0XdYfyp30g
+         STb+jr8Ofl7NPGa4vLjj0/m7xQnbhYxkpzlYyUB2upMczeSKn9iO/0g9h41m9jASmwrL
+         glTTTBx/jNd60jIBOB1GG4QK6hSwC3CGKHDKoMUKot7B/3+tp01WGfKyNHWYPXB503s8
+         nN1A==
+X-Gm-Message-State: AOAM530t+6Aj0vYbgx6srp7/QNzT/GOZzx/vhaHcG6Mt6lNEEStMlVQs
+        1gtBJ76QfActavRtvq7cXR4877gRxmLBe8HOOBJ2nQ==
+X-Google-Smtp-Source: ABdhPJxujfBEdFxkSmhJaaZBeJGlg2pawxqj0/1hGlU+4+i8J0LQb3IRXrgR10on+BxmXf/59rZHa0pvqkZakHHmsmo=
+X-Received: by 2002:a54:438e:: with SMTP id u14mr17939700oiv.126.1623069060601;
+ Mon, 07 Jun 2021 05:31:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
+ <20210607113840.15435-5-bhupesh.sharma@linaro.org> <CAHp75Vd7z6ivOxHikqP5j+yPtV7C8GBogwVUAziLznSatH+8EA@mail.gmail.com>
+In-Reply-To: <CAHp75Vd7z6ivOxHikqP5j+yPtV7C8GBogwVUAziLznSatH+8EA@mail.gmail.com>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Mon, 7 Jun 2021 18:00:48 +0530
+Message-ID: <CAH=2NtxtzRhOzekHxn+V4DSYmwncX1wSRbKOe=PNkcTsQ3jqiQ@mail.gmail.com>
+Subject: Re: [PATCH 4/8] regulator: qcom-rpmh: Add new regulator types found
+ on SA8155p adp board
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        bhupesh.linux@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added sysfs sernum file documentation.
+On Mon, 7 Jun 2021 at 17:39, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+>
+> On Mon, Jun 7, 2021 at 2:41 PM Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+> >
+> > SA8155p-adp board has two new regulator types - pmm8155au_1 and
+> > pmm8155au_2.
+> >
+> > The output power management circuits in these regulators include:
+> > - FTS510 smps,
+> > - HFS510 smps, and
+> > - LDO510 linear regulators
+>
+> ...
+>
+> > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > Cc: Liam Girdwood <lgirdwood@gmail.com>
+> > Cc: Mark Brown <broonie@kernel.org>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Vinod Koul <vkoul@kernel.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Andy Gross <agross@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > Cc: linux-kernel@vger.kernel.org
+> > Cc: linux-gpio@vger.kernel.org
+> > Cc: bhupesh.linux@gmail.com
+>
+> Use --cc or similar option when run `git send-email`, no need to
+> pollute the commit message with these.
 
-Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
----
-v5: new
-v6: no change here
-v7: no change here
----
- Documentation/ABI/testing/sysfs-class-spi-eeprom | 6 ++++++
- 1 file changed, 6 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-spi-eeprom
+It's just a matter of preference IMO. I prefer to use a Cc list
+here.
 
-diff --git a/Documentation/ABI/testing/sysfs-class-spi-eeprom b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-new file mode 100644
-index 000000000000..4f063a97b735
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-@@ -0,0 +1,6 @@
-+What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/sernum
-+Date:		May 2021
-+KernelVersion:	5.12.1
-+Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
-+Description:
-+		Exports serial number of Cypress FRAM (FM25VN). 8 bytes as is in chip in hex string.
--- 
-2.25.1
+> > +static const struct rpmh_vreg_init_data pmm8155au_1_vreg_data[] = {
+>
+>
+> > +       {},
+>
+> Comma is not needed in the terminator line.
 
+Hmm.. it's similar to the syntax already used at several places in this file.
+See ' struct rpmh_vreg_init_data pm8150l_vreg_data[] ' for example.
+
+Unless there is an obvious issue with it, let's use the same to keep
+things similar from a syntax p-o-v.
+
+Thanks,
+Bhupesh
+
+>
+> > +};
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
