@@ -2,139 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F73839DB17
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 13:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0920739DB93
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 13:40:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbhFGLWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 07:22:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38244 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230194AbhFGLWr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Jun 2021 07:22:47 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F212B6101A;
-        Mon,  7 Jun 2021 11:20:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623064856;
-        bh=AZv8dRcvDlfgxFi4HYEke9KgpebnK89UUq/um94nbN0=;
-        h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-        b=oqzDrF2hZNR9kjbIq4MZiQDYmcBwsWn0H9CudxGHMIkHbvj5lOiBlkeqFIv/NzUxT
-         4LKPyB6WEj41P4283ZZ547MIaAxBh74lxVcZ4Ky1cVS1OwKF6p0Iip0UlMToYrdoAO
-         4rsEQ+dkMRMggbR4IuIQxx9CFa0LQa83iHyNBJqE2BBwRiD98O+WXjPAdto5ko+AgC
-         lbXc+6eUjPqXalFKQz9sRKDx+eqW59YpuRxMbO71dDdyJkg2m4QT7VO/F3Q+dV2+ie
-         CbUtLtwdCDq8h+Z9DbFMrYsB3t7FVtcCSdMo5tubvSH329sb9Z3E3h/xcCyN4Mc3rZ
-         wWSA+GhY45xnw==
-Received: by mail-lf1-f49.google.com with SMTP id a2so25615480lfc.9;
-        Mon, 07 Jun 2021 04:20:55 -0700 (PDT)
-X-Gm-Message-State: AOAM530nUdHjMUjkCwa7VBIhsY/vsrkMJpqbN53Nr7c+utzp/GgayNo1
-        UGfSEFnCACx4ZwTPWHM00edfhBUCMSb900xSw/0=
-X-Google-Smtp-Source: ABdhPJzY71JZF6OCcQXGna/ln5JgqcsET8OdgsNKLv4hl+KtPLOZJc/0bZyYSKEAt0WHeW1x2OpQzrWggB0eiapDmNk=
-X-Received: by 2002:a19:f11e:: with SMTP id p30mr4920376lfh.496.1623064854255;
- Mon, 07 Jun 2021 04:20:54 -0700 (PDT)
+        id S231538AbhFGLmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 07:42:10 -0400
+Received: from mail-pl1-f181.google.com ([209.85.214.181]:45609 "EHLO
+        mail-pl1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231515AbhFGLmJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 07:42:09 -0400
+Received: by mail-pl1-f181.google.com with SMTP id 11so8474275plk.12
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 04:40:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Z6Ewiz/FJiBEreBJpRrZidhXQHm4TISHkUY9VOlUYRc=;
+        b=l49RTEObja/G+frH4vnsjVumtrn+XxXWJXi91FrnyeDTSy73kjtiat9p6kAxrZIeu+
+         B+6CRo8GnJEFtFfifrYGaXqGApGhmlA+sWXl1YXWpk8z5EKeMjkSkfF4iBIL28E/wbYa
+         XB/GkLtjMMynH7/q8drDo5lsO6PcTmWS47QwELTSmeAVccfKlp4/4bdGmtvICAnGn2Pd
+         +k3Sen4Hrytnf03azFiHy5+6qyRacmeBiI5yda7TE3rTblg0xjPzfgn931D5EOEayoO8
+         7YMGYlKnNxvAfPDXwqbpWHHPFTjwtxME7pjUi8VHz3YBRGZ4Apfotq15LgJFiAxBZd1s
+         niMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Z6Ewiz/FJiBEreBJpRrZidhXQHm4TISHkUY9VOlUYRc=;
+        b=Ex4Fm0yNZxM+3pQua6sP5PFwaUd/UMx/e8csS1pAW1cy3leMmCmWiKRmqwJqcO/8Pp
+         NMap8KZ32c6bheJoo1PCXfTVWEpdt+I4kbAbLfxUJhc4ad/bo7YJs9/YYHUgFCxc1IwA
+         U3DRLzvu/Uik6X+FsKd0i1Z4BsPj4nnTWTzhCjDGwWugVXyLJXxbErxv+HEKtYTLsk3Z
+         QwlgNJLq2W+Yyp59iG29UCuCegVRYe31QpHPiEBZ4clFzSMW7kKXEi0u3z5TLc6uHqX6
+         a1qIvBuwHPzJWv9IBpVa1xPOVNt9dNxpX7uK/3Qj2p6OVMyVR7bPZk8A5nYbNDatPMIw
+         LBiA==
+X-Gm-Message-State: AOAM5327Am9jb0mrceqk5r24S7epz7UEeebjoOi8IFh7aWpyDHesNyMh
+        AX95VArADlosu2DczQNZkiZsUQ==
+X-Google-Smtp-Source: ABdhPJzUfAcjcqiD6DRmYHASLVohVLn7RbK703ta+Wr36NnZhdAUBzUcZ5DQEuns6LI9KVFJ3jHs0A==
+X-Received: by 2002:a17:90b:882:: with SMTP id bj2mr19631112pjb.167.1623065948131;
+        Mon, 07 Jun 2021 04:39:08 -0700 (PDT)
+Received: from localhost.localdomain.name ([122.177.177.211])
+        by smtp.gmail.com with ESMTPSA id j7sm7223939pjf.0.2021.06.07.04.39.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Jun 2021 04:39:07 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        bhupesh.linux@gmail.com
+Subject: [PATCH 0/8] arm64: dts: qcom: Add SA8155p-adp board DTS
+Date:   Mon,  7 Jun 2021 17:08:32 +0530
+Message-Id: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210607081727.4723-1-cnsztl@gmail.com> <9258ab23-ef65-2c3d-f0d2-ca5f77d7c12a@gmail.com>
- <CAGb2v65ck=LV+UCdQoaUtEjFaTaHr9-wmGmpkCCkebUOuYtikw@mail.gmail.com> <f085da86-8b6d-ba99-2d0a-736ec02424db@gmail.com>
-In-Reply-To: <f085da86-8b6d-ba99-2d0a-736ec02424db@gmail.com>
-Reply-To: wens@kernel.org
-From:   Chen-Yu Tsai <wens@kernel.org>
-Date:   Mon, 7 Jun 2021 19:20:42 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67trVUJuSwLgsbDXHRKVhd5keWxs4V7u5NSs8jp5-asJw@mail.gmail.com>
-Message-ID: <CAGb2v67trVUJuSwLgsbDXHRKVhd5keWxs4V7u5NSs8jp5-asJw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: add EEPROM node for NanoPi R4S
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Tianling Shen <cnsztl@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Marty Jones <mj8263788@gmail.com>, Pavel Machek <pavel@ucw.cz>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This series adds DTS for SA8155p-adp board which is based on
+Qualcomm snapdragon sm8150 SoC. 
 
-On Mon, Jun 7, 2021 at 6:26 PM Johan Jonker <jbx6244@gmail.com> wrote:
->
-> Hi Chen-Yu,
->
-> On 6/7/21 11:40 AM, Chen-Yu Tsai wrote:
-> > On Mon, Jun 7, 2021 at 5:31 PM Johan Jonker <jbx6244@gmail.com> wrote:
-> >>
-> >> Hi Tianling,
-> >>
-> >> On 6/7/21 10:17 AM, Tianling Shen wrote:
-> >>> NanoPi R4S has a EEPROM attached to the 2nd I2C bus (U92), which
-> >>> stores the MAC address.
-> >>>
-> >>> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
-> >>> ---
-> >>>  arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts | 9 +++++++++
-> >>>  1 file changed, 9 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> >>> index cef4d18b599d..4a82f50a07c5 100644
-> >>> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> >>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> >>> @@ -68,6 +68,15 @@
-> >>>       status = "disabled";
-> >>>  };
-> >>>
-> >>> +&i2c2 {
-> >>> +     eeprom@51 {
-> >>> +             compatible = "microchip,24c02", "atmel,24c02";
-> >>> +             reg = <0x51>;
-> >>> +             pagesize = <16>;
-> >>
-> >>> +             read-only; /* This holds our MAC */
-> >>
-> >> The mainline dts files should be generic I think.
-> >> Any comment about "use", partitions or write ability should be avoided.
-> >> It's up the user.
-> >
->
-> > Per the datasheet for this specific EEPROM, the latter half (128 bytes)
-> > is read-only in hardware by design though.
->
-> The 24AA02XEXX is programmed at the factory with a
-> globally unique node address stored in the upper half
-> of the array and permanently write-protected. The
-> remaining 1,024 bits are available for application use.
->
-> Just a question...
->
->     nvmem-cells = <&mac_address>;
->     nvmem-cells-names = "mac-address";
->
-> Which part does this point to?
+This patchset also includes DTS for the two new PMICs PMM8155AU_1
+and PMM8155AU_2 found on the adp board.
 
-In the eeprom node:
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Andy Gross <agross@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-gpio@vger.kernel.org
+Cc: bhupesh.linux@gmail.com
 
-    mac_address: mac-address@fa {
-            reg = <0xfa 0x6>;
-    };
+Bhupesh Sharma (8):
+  dt-bindings: qcom: rpmh-regulator: Add compatible for SA8155p-adp
+    board pmics
+  dt-bindings: pinctrl: qcom,pmic-gpio: Add compatible for SA8155p-adp
+  dt-bindings: arm: qcom: Add compatible for SA8155p-adp board
+  regulator: qcom-rpmh: Add new regulator types found on SA8155p adp
+    board
+  pinctrl: qcom/pinctrl-spmi-gpio: Add compatibles for pmic-gpios on
+    SA8155p-adp
+  arm64: dts: qcom: pmm8155au_1: Add base dts file
+  arm64: dts: qcom: pmm8155au_2: Add base dts file
+  arm64: dts: qcom: sa8155p-adp: Add base dts file
 
-> Can we use the lower part to store/rewrite this too?
+ .../devicetree/bindings/arm/qcom.yaml         |   8 +
+ .../bindings/pinctrl/qcom,pmic-gpio.txt       |   5 +
+ .../regulator/qcom,rpmh-regulator.yaml        |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi     | 134 +++++++
+ arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi     | 107 +++++
+ arch/arm64/boot/dts/qcom/sa8155p-adp.dts      | 375 ++++++++++++++++++
+ drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      |   4 +
+ drivers/regulator/qcom-rpmh-regulator.c       |  72 ++++
+ 9 files changed, 708 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pmm8155au_1.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sa8155p-adp.dts
 
-If you don't set it to read only, then you could rewrite the lower
-portion. Writes to the upper portion would be ignored.
+-- 
+2.31.1
 
-> ===
->
-> From at24.yaml:
->
->             items:
->               - pattern:
-> "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|lc|mac)[0-9]+|spd)$"
->               - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
->
-> How does Microchip 24AA025E48 fit the regex?
-> What compatible would you advise?
-
-New regex: "^microchip,24aa025?e(48|64)$"
-
-
-All that was what I had around in my tree.
-
-ChenYu
