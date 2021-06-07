@@ -2,77 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E44F939E192
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 18:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EDCC39E554
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230450AbhFGQOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 12:14:04 -0400
-Received: from router.aksignal.cz ([62.44.4.214]:50678 "EHLO
-        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230382AbhFGQOD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 12:14:03 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by router.aksignal.cz (Postfix) with ESMTP id 4795C44415;
-        Mon,  7 Jun 2021 18:12:09 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
-Received: from router.aksignal.cz ([127.0.0.1])
-        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id gM5VKMylS0RI; Mon,  7 Jun 2021 18:12:08 +0200 (CEST)
-Received: from pc-gameroom.prchals.tk (unknown [83.240.30.185])
-        (Authenticated sender: jiri.prchal@aksignal.cz)
-        by router.aksignal.cz (Postfix) with ESMTPSA id A869A44417;
-        Mon,  7 Jun 2021 18:12:05 +0200 (CEST)
-From:   Jiri Prchal <jiri.prchal@aksignal.cz>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Prchal <jiri.prchal@aksignal.cz>
-Subject: [PATCH v8 5/5] nvmem: eeprom: add documentation of sysfs fram and sernum file
-Date:   Mon,  7 Jun 2021 18:12:01 +0200
-Message-Id: <20210607161201.223697-6-jiri.prchal@aksignal.cz>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210607161201.223697-1-jiri.prchal@aksignal.cz>
-References: <20210607161201.223697-1-jiri.prchal@aksignal.cz>
+        id S230251AbhFGR1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 13:27:15 -0400
+Received: from egress-ip4a.ess.de.barracuda.com ([18.184.203.227]:48990 "EHLO
+        egress-ip4a.ess.de.barracuda.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229997AbhFGR1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 13:27:14 -0400
+X-Greylist: delayed 1684 seconds by postgrey-1.27 at vger.kernel.org; Mon, 07 Jun 2021 13:27:14 EDT
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69]) by mx-outbound8-179.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 07 Jun 2021 17:25:09 +0000
+Received: by mail-ed1-f69.google.com with SMTP id h23-20020aa7c5d70000b029038fed7b27d5so9561364eds.21
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 10:25:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=rGVg8i1oRTdQ33VNZHiE6dEeShO7SwK5NDa2Bk4nE5w=;
+        b=BAyWfNZhR4mrduHRzsqdw889QBFb2JYUxp+bB8xt/Zg1zyUIwulRnLFw7eiuARIrpd
+         FBLxY3HqnhlyHik/8b4+R2vDvYOllbXENWpjnTsN1d+dzlpim84uCUdppyouxdT34DyO
+         3f5BZ+wIRdkH0joNufChXrVfA7nXOdT3oR59s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=rGVg8i1oRTdQ33VNZHiE6dEeShO7SwK5NDa2Bk4nE5w=;
+        b=pQ+K3+pCQu+Fd1xGhgOyyRFgK4rEMw+jcuTVNOXGegx0DmVxhwEpYD+GdqvK46/yJs
+         dH8TKupehwCl22f3PLERDCdcEvDCNOKLFgQ0m98hJOe9DInxZduJOYQX1923W/8uwAWF
+         82LOosqyINxQ1DrZBpUnWZZTawiEtcflYSxqUR4znGaqSaz+5O+1Sn1QaNqIm5BlaQRB
+         fvqcOJJ16lw/cOAS3my50LSRjxVpQiJPMjmr2oBIgtxHYGLekAvaDJngVTw6P83aucOQ
+         u8M30K1mmJVR89xOwAvP3hwjEVivQRt1pCYn2oSWQflZUeULPVTWWTan3ZzuGN49Q49t
+         Xu9w==
+X-Gm-Message-State: AOAM531T0x2uQf4cZ0pz5gCMe3STv1RkHRKfSp6X1MBifPSEW/Qi8mEG
+        6pqWve95Zsk6e9+V+Y4YdtOeOuwfCm1pviZjVjfkIiC4p4OobsuMbSY2IPL/rJxQJuZhSiW63TE
+        pc2RXBMQXOo8u2nfFkT921aSZxt6MYrzwBD5eBiFoucj1tlmlN9RP2UYk9OOowHTb5ggZLPIOfA
+        ==
+X-Received: by 2002:a5d:6daf:: with SMTP id u15mr16513854wrs.400.1623085024439;
+        Mon, 07 Jun 2021 09:57:04 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJytZ33wxUwxQSOk08HnhDli4AJ+BorI+8JwBuUjc8WJ0ohUKc3Jr8kIed8IZ31F8tIY+5xwxEW4If4ISg5Twvk=
+X-Received: by 2002:a5d:6daf:: with SMTP id u15mr16513835wrs.400.1623085024214;
+ Mon, 07 Jun 2021 09:57:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210607093314.23909-1-sinthu.raja@ti.com> <20210607093314.23909-2-sinthu.raja@ti.com>
+ <20210607133209.lnx4cist3ajs557j@conduit>
+In-Reply-To: <20210607133209.lnx4cist3ajs557j@conduit>
+From:   Sinthu Raja M <sinthu.raja@mistralsolutions.com>
+Date:   Mon, 7 Jun 2021 22:26:52 +0530
+Message-ID: <CAEd-yTQVuGjftjQs7B83Y3fcgQtLj+DF_09Va8HjP0=qOwE8Ng@mail.gmail.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: arm: ti: Add bindings for J721E EAIK
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Amarnath MB <amarnath.mb@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-BESS-ID: 1623086709-302227-5401-10556-1
+X-BESS-VER: 2019.1_20210603.1645
+X-BESS-Apparent-Source-IP: 209.85.208.69
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.232779 [from 
+        cloudscan14-53.eu-central-1a.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
+X-BESS-BRTS-Status: 1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added sysfs fram and sernum file documentation.
+On Mon, Jun 7, 2021 at 7:02 PM Nishanth Menon <nm@ti.com> wrote:
+>
+> On 15:03-20210607, Sinthu Raja wrote:
+> > From: Sinthu Raja <sinthu.raja@ti.com>
+> >
+> > J721E EdgeAI Kit (EAIK) is a low cost, small form factor board designed
+> > for TI=E2=80=99s J721E SoC.
+> > Add DT binding documentation for J721E EAIK
+>
+> Need a url for the board.
+The URL for the board is not available until the board launch.
+Probably should have mentioned in the cover letter.
+>
+> >
+> > Signed-off-by: Amarnath MB <amarnath.mb@ti.com>
+> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> > ---
+> > Change in V2:
+> > - Fix for dt_binding_check error.
+> >
+> >  Documentation/devicetree/bindings/arm/ti/k3.yaml                | 2 ++
+> >  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml         | 2 +-
+> >  2 files changed, 3 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documen=
+tation/devicetree/bindings/arm/ti/k3.yaml
+> > index c5aa362e4026..923dd7cf1dc6 100644
+> > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> > @@ -29,6 +29,8 @@ properties:
+> >
+> >        - description: K3 J721E SoC
+> >          items:
+> > +          - enum:
+> > +              - ti,j721e-eaik
+> >            - const: ti,j721e
+> >
+> >        - description: K3 J7200 SoC
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rpr=
+oc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> > index 6070456a7b67..464cee128811 100644
+> > --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> > +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> > @@ -135,7 +135,7 @@ examples:
+> >    - |
+> >      / {
+> >          model =3D "Texas Instruments K3 J721E SoC";
+> > -        compatible =3D "ti,j721e";
+> > +        compatible =3D "ti,j721e-eaik", "ti,j721e";
+> I see what we are attempting to do here.
+>
+> Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+> probably should strip off the board specifics out in the
+> examples. but, that belongs to a different patch.
+Will remove this change. But do we need to ignore the dt_binding
+_check for this patch series?
 
-Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
----
-v5: new
-v6: no change here
-v7: no change here
-v8: added fram file doc
----
- Documentation/ABI/testing/sysfs-class-spi-eeprom | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-spi-eeprom
-
-diff --git a/Documentation/ABI/testing/sysfs-class-spi-eeprom b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-new file mode 100644
-index 000000000000..b41420fe1329
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-@@ -0,0 +1,13 @@
-+What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/sernum
-+Date:		May 2021
-+KernelVersion:	5.13
-+Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
-+Description:
-+		(RO) Exports serial number of Cypress FRAM (FM25VN). 8 bytes as is in chip in hex string.
-+
-+What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/fram
-+Date:		June 2021
-+KernelVersion:	5.13
-+Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
-+Description:
-+		(RW) FRAM data.
--- 
-2.25.1
-
+Regards
+Sinthu Raja
