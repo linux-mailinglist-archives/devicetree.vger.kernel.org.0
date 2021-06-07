@@ -2,124 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C948D39E856
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 22:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5564E39E85E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 22:25:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231184AbhFGUYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 16:24:54 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:39686 "EHLO
+        id S230454AbhFGU0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 16:26:51 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:40098 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230454AbhFGUYx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 16:24:53 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157KMuIE002997;
-        Mon, 7 Jun 2021 15:22:56 -0500
+        with ESMTP id S230422AbhFGU0v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 16:26:51 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157KOtqb003693;
+        Mon, 7 Jun 2021 15:24:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623097376;
-        bh=5530kfoXgMeaoQnV/qUIWd3OlDjHeRDX4LncEwY9dXE=;
+        s=ti-com-17Q1; t=1623097495;
+        bh=soaO8j6FeW+HBW6qIKwrpmt+kh6ODk1iTx9WHdjq7J0=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=dX+gCa89GSDphORGFqW96slaGejLK/M8j0kAQuXql0brdni8Qg/PqZjMzPCfxI00a
-         iiZ0aSXWPOPmHu9I57sYujEZLsqkpy4okubaUczIZ3b8EbWZc3qbT5ZVzncHDX3pqm
-         jVLCu7oSw5jaV2njhjaJknQhkIVrke4f0yEJD4nU=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157KMuiI119409
+        b=anyt0Jvfd4rh5v8/d3gqR51gobNXklYkl/fiGPoq69zsNpgbYny/riM/DByfHEPAY
+         Qc8qpCM44B1A+Kl0/pdWzn2TezAeIevBSOBNOOU6qwq0gjuSot3k7uIIE06vnuzTfV
+         MiLyx+6I+qd+AHRM14yk8Qfkvy5X5aRpUL7+Ogsg=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157KOt7r037883
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Jun 2021 15:22:56 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 7 Jun 2021 15:24:55 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 7 Jun
- 2021 15:22:56 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 15:24:54 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 7 Jun 2021 15:22:56 -0500
+ Frontend Transport; Mon, 7 Jun 2021 15:24:54 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157KMunX091934;
-        Mon, 7 Jun 2021 15:22:56 -0500
-Date:   Mon, 7 Jun 2021 15:22:56 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157KOsZK127941;
+        Mon, 7 Jun 2021 15:24:54 -0500
+Date:   Mon, 7 Jun 2021 15:24:54 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Sinthu Raja M <sinthu.raja@mistralsolutions.com>
-CC:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Amarnath MB <amarnath.mb@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Subject: Re: [PATCH V2 2/2] arm64: dts: ti: Add support for J721E EAIK
-Message-ID: <20210607202256.wi7n7d4u27bfgm6c@pacifism>
-References: <20210607093314.23909-1-sinthu.raja@ti.com>
- <20210607093314.23909-3-sinthu.raja@ti.com>
- <20210607133526.3rn3othabu4uo3lo@defender>
- <CAEd-yTSVOchafETh+3CthtZhE4e4_BbWodcXRxyJRdRBWQ_Csg@mail.gmail.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Tero Kristo <kristo@kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 3/5] arm64: dts: ti: am65: align ti,pindir-d0-out-d1-in
+ property with dt-shema
+Message-ID: <20210607202454.7rhc7ufiphgrhqqx@rejoice>
+References: <20210602123416.20378-1-a-govindraju@ti.com>
+ <20210602123416.20378-4-a-govindraju@ti.com>
+ <20210607134047.isfuedgjxpubpcb5@ungloved>
+ <9e27bd14-e16a-4177-bba8-d5d0e5638f04@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAEd-yTSVOchafETh+3CthtZhE4e4_BbWodcXRxyJRdRBWQ_Csg@mail.gmail.com>
+In-Reply-To: <9e27bd14-e16a-4177-bba8-d5d0e5638f04@ti.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22:41-20210607, Sinthu Raja M wrote:
-> On Mon, Jun 7, 2021 at 7:05 PM Nishanth Menon <nm@ti.com> wrote:
-> >
-> > On 15:03-20210607, Sinthu Raja wrote:
-> > > From: Sinthu Raja <sinthu.raja@ti.com>
-> > >
-> > > J721E EdgeAI Kit (EAIK) is a low cost, small form factor board designed
-> > > for TI’s J721E SoC. TI’s J721E SoC comprises of dual core A72, high
-> > > performance vision accelerators, video codec accelerators, latest C71x
-> > > and C66x DSP, high bandwidth real-time IPs for capture and display, GPU,
-> > > dedicated safety island and security accelerators. The SoC is power
-> > > optimized to provide best in class performance for perception, sensor
-> > > fusion, localization, path planning tasks in robotics, industrial and
-> > > automotive applications.
-> > >
-> > > J721E EAIK supports the following interfaces:
-> > > * 4 GB LPDDR4 RAM
-> > > * x1 Gigabit Ethernet interface
-> > > * x1 USB 3.0 Type-C port
-> > > * x3 USB 3.0 Type-A ports
-> > > * x1 UHS-1 capable µSD card slot
-> > > * x1 PCIe M.2 E Key with x1 USB2.0, x1 MCASP, x1 MMC, x1 UART
-> > > * x1 PCIe M.2 M Key
-> > > * 512 Mbit OSPI flash
-> > > * x4 UART through UART-USB bridge
-> > > * x4 CAN-FD interface
-> > > * x1 DP interface
-> > > * x1 HDMI interface
-> > > * x2 CSI2 Camera interface (RPi and TI Camera connector)
-> > > * 40-pin Raspberry Pi compatible GPIO header
-> > > * Compact TI 20-Pin connector for JTAG debug
-> > > * Interface for remote automation. Includes:
-> > >    * power measurement and reset control
-> > >    * boot mode change
-> >
-> > please reduce the description above, also add a url for the board.
+On 19:18-20210607, Aswath Govindraju wrote:
+> Hi Nishanth,
 > 
-> Sure will reduce the description. The URL is not available until the
-> board launch.
+> On 07/06/21 7:10 pm, Nishanth Menon wrote:
+> > On 18:04-20210602, Aswath Govindraju wrote:
+> >> ti,pindir-d0-out-d1-in property is expected to be of type boolean.
+> >> Therefore, fix the property accordingly.
+> >>
+> >> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> > No need for Fixes?
+> > 
+> 
+> Functionality wise this is not a bug as the driver only checks for the
+> presence of the property. This is the reason why I did not include fixes.
 > 
 
-[...]
+Argument was based on device tree is considered independent of what or
+what not a driver does.
 
-> >
-> > please also check other nodes that needs to be disabled or configured.
+> > Also please split up the patches per maintainer so that we are'nt
+> > confused on who should pick what etc..
+> > 
 > 
-> The intention of the patch is to keep only the initial support for the
-> EAIK board. Subsequent patches will be posted as the testing
-> completes.
+> okay. Will be aware of this from next time.
+> 
 
-For the nodes that are present in k.org, we should probably make up our
-minds as to what needs to be the configuration. While I understand
-incremental patches, please look through the list to make sure low
-hanging items are addressed at the earliest. Commit message makes one
-feel that there is tons of nodes that are probably functional, but your
-response makes me feel, that is probably not the case - it is hard to
-distinguish between the two.
-
+Actually, I have dropped this off my list. I am assuming you'd want the
+bindings to be merged after the dts cleanup is done.
 
 -- 
 Regards,
