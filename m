@@ -2,133 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDADD39EA1A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 01:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7B939EA28
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 01:32:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbhFGXa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 19:30:59 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:58783 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230233AbhFGXa6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 19:30:58 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 8BA23580533;
-        Mon,  7 Jun 2021 19:29:06 -0400 (EDT)
-Received: from imap43 ([10.202.2.93])
-  by compute2.internal (MEProxy); Mon, 07 Jun 2021 19:29:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=JeacI608ztlENt+g/Kfe0iOKdJjNDia
-        HCrhjdIxMGDE=; b=HgSEJu9c/q8HnpLV3yCHbHIKtSQuICOrEk2tT4mVGEHDpBe
-        Rt5XHfJmxBZSRao6WXuT6jslFlHOIWAhe9TtXjprc0a2T8YrhwAIoMrlj70r1PHG
-        4zPsukok5dP9eUN9ewQvnhqQkEajUbYXIA7/QdDhl3YPSHBnt+f4ZPhzFz1ibS96
-        xYcDHZVCyawm0m+ANkLraLmHyv0X1DCM+Gl7mQTZ7b+9heI3jx/h9BfLYnY8sxLu
-        kTYZK6iy3bgcaySWE0BoCHYiul6yAAwKv1js1Sn/5UHq5l/UJ1taS70HI9sPjs6G
-        le1l56VB1UHUiPsKScXW46cciKa1yHxfDU4888w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=JeacI6
-        08ztlENt+g/Kfe0iOKdJjNDiaHCrhjdIxMGDE=; b=B7NFnr6Z9CaPmmwhvz4tZA
-        WTDlxEjHuE9/hKP5XB+UgGuKHCJkd+Eau5yvc/IMD/BaTtbgbEUamyrnB//WVaDP
-        RmlgfRb6BpomRG+QL5ZRi0mucx1NBhYNCvPL+jUWngVGhm1iRKshBtIIAFr1qbss
-        Bnp6HHBmfq05oGRKLPynHs4BWeQhQs8/AxR4+KiEm+9j8zgDPwh0l+Q8YidR5jdd
-        dklqR5McUEGpBHl4qUthcujFsHo+7GWZU6CDwIqyTCZI+zYitAFDvV5Lw1g7LYXT
-        +4+DnWrpDW8vealbFSm/CMSDv28GDb6/K/jZYfApE+2YNNUih29/8oJDLS0D9aGA
-        ==
-X-ME-Sender: <xms:v6u-YPSeiImkXurjzOJpXHSPUgjk8IjbJXlNCLMCombKb85hRg_3ug>
-    <xme:v6u-YAwC4bazm7e1Gjquvj0TBYETi2hWPH57tu7Nx77V1BwPcSRLQo-2ITg30Vt1d
-    BHqtZ_1Zse_Z5v4jg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedtkedgudefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
-    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:v6u-YE3_FEjyQ7xSdMbwrrMst0vlwckPfnsAxofLuy1W6dwODYJwOQ>
-    <xmx:v6u-YPBNL_SWodZo2vhfGpwijcuR5qxyHuTEwQEhdRSVozjz7u5psw>
-    <xmx:v6u-YIiTra2l-0jXkk9UYftWEa8xWEx7kHVwU5Iaooj5lp_5ZXtQWQ>
-    <xmx:wqu-YNYXQN4LeH-s0U-doqGLYC-FVKzOfnb6n5Ng9QJAJ5kaj9DxZQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id A3E24AC0062; Mon,  7 Jun 2021 19:29:03 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-519-g27a961944e-fm-20210531.001-g27a96194
-Mime-Version: 1.0
-Message-Id: <5277db96-4eb8-4794-a1fa-6a5bc40bffb7@www.fastmail.com>
-In-Reply-To: <20210607071514.11727-4-steven_lee@aspeedtech.com>
-References: <20210607071514.11727-1-steven_lee@aspeedtech.com>
- <20210607071514.11727-4-steven_lee@aspeedtech.com>
-Date:   Tue, 08 Jun 2021 08:58:42 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Steven Lee" <steven_lee@aspeedtech.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "open list" <linux-kernel@vger.kernel.org>
-Cc:     "Hongwei Zhang" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Billy Tsai" <billy_tsai@aspeedtech.com>
-Subject: Re: [PATCH v4 3/7] ARM: dts: aspeed-g6: Add SGPIO node.
-Content-Type: text/plain
+        id S230269AbhFGXd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 19:33:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59754 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230239AbhFGXd4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 19:33:56 -0400
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D76C4C061574
+        for <devicetree@vger.kernel.org>; Mon,  7 Jun 2021 16:31:50 -0700 (PDT)
+Received: by mail-ot1-x32f.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso18489521otu.10
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 16:31:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=pYTvT9ubISsRaLeWVshLEwMcGZ3wwUzz5ZnXQAq/G5Q=;
+        b=hZzVb3AlblV3JxW9qSZuCfP960vfYcWuKgRWH3bncsPDWCOejXYZ091GYK1SsVvu5g
+         ru4/preWElYvWI6qTf3C5f6mF3hI0Tm9eL3d5/zk+96tSrWoAS2+6lTy24rzRzrJT8XR
+         6hhfrdEf16V1ZVw+vjKiNwtYqntlBVwPbyB9fSsXQOQtEv7YY49NYodA3uUryk6TUTa5
+         YpK0lgMwpZXYF3z4hqK2LcP/BL1x96fIVakOkPerSpNlHfYyAROKz05e9e6ZT4Yx5SNH
+         xrbJBKTlCMdhUqiN0tirP1SvqPYyHSquSORt/6crQnlBuvfpA/redOIjhCo7v3Pur4HC
+         9C/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=pYTvT9ubISsRaLeWVshLEwMcGZ3wwUzz5ZnXQAq/G5Q=;
+        b=FNJf01tq9yAaSt6HP2WnvncCUloWszixQMLbyFNhQw/Rmr8cjcVyTQpuIUhptG4G2r
+         4bsQa8KTr3fcWrY6wGrVLT7d84JpraermARqKQ+q1MGs5avDSk7nyRCcP8u9a5NVRx2J
+         cp/P/HLB2/2bIInXWNyPybsNlSvjihG9Ory/wzzRyct6XKYs+qjBoNL1AixjyflNv8U+
+         zYuZF0LiDaHkImcJMcoEA2W0sSxVHD3JLZWGpKJ76SOuck0FRXtLIutJGYRAuKxy8fmN
+         XCFMEKdIdUrd2SRmimocuzQ1VrbJkiirMIom451kBEjJbPvR25iZV/ZZ3LE326Besvih
+         TD3Q==
+X-Gm-Message-State: AOAM5337dkfIbqKK4B6eIcUXcL3UNdv7bjIwhFtp/h5sNia0h6m9sQUj
+        6FuTnnHYXHzkkp91DhvpqETjKA==
+X-Google-Smtp-Source: ABdhPJzYINdaU88ZN26yUyqgewxkKu3o9+qJRNCObFoRd1mEFTKoDvaEpnIK1T2HLIM/JP+kh+DtNQ==
+X-Received: by 2002:a9d:5e8c:: with SMTP id f12mr15592500otl.18.1623108710244;
+        Mon, 07 Jun 2021 16:31:50 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 15sm2571809oij.26.2021.06.07.16.31.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Jun 2021 16:31:49 -0700 (PDT)
+Date:   Mon, 7 Jun 2021 18:31:47 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     khsieh@codeaurora.org, swboyd@chromium.org
+Cc:     robdclark@gmail.com, sean@poorly.run, vkoul@kernel.org,
+        agross@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
+Message-ID: <YL6sY/1E5wLzMiP/@yoga>
+References: <1622736555-15775-1-git-send-email-khsieh@codeaurora.org>
+ <YLkI/6ItCz+SbbuJ@yoga>
+ <ac326ec8689c0babb08b2311e19d52cc@codeaurora.org>
+ <YLxX/YtegtbLmkri@builder.lan>
+ <ef1879fa7ecfefaf0c70c7a4782240a9@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ef1879fa7ecfefaf0c70c7a4782240a9@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Jun 2021, at 16:45, Steven Lee wrote:
-> AST2600 supports 2 SGPIO master interfaces one with 128 pins another one
-> with 80 pins.
+On Mon 07 Jun 12:48 CDT 2021, khsieh@codeaurora.org wrote:
+
+> On 2021-06-05 22:07, Bjorn Andersson wrote:
+> > On Thu 03 Jun 16:56 CDT 2021, khsieh@codeaurora.org wrote:
+> > 
+> > > On 2021-06-03 09:53, Bjorn Andersson wrote:
+> > > > On Thu 03 Jun 11:09 CDT 2021, Kuogee Hsieh wrote:
+> > [..]
+> > > > > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > [..]
+> > > > > +				power-domains = <&rpmhpd SC7180_CX>;
+> > > >
+> > > > Just curious, but isn't the DP block in the MDSS_GDCS? Or do we need to
+> > > > mention CX here in order for the opp framework to apply required-opps
+> > > > of CX?
+> > > 
+> > > yes,
+> > 
+> > If you want me, or other maintainers, to spend any time reviewing or
+> > applying your patches going forward then you need to actually bother
+> > replying properly to the questions asked.
+> > 
+> > Thanks,
+> > Bjorn
 > 
-> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-> ---
->  arch/arm/boot/dts/aspeed-g6.dtsi | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-> index f96607b7b4e2..c09b24824b6d 100644
-> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-> @@ -377,6 +377,36 @@
->  				#interrupt-cells = <2>;
->  			};
->  
-> +			sgpiom0: sgpiom@1e780500 {
-> +				#gpio-cells = <2>;
-> +				gpio-controller;
-> +				compatible = "aspeed,ast2600-sgpiom-128";
-> +				reg = <0x1e780500 0x100>;
-> +				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> +				ngpios = <128>;
+> Sorry about the confusion. What I meant is that even though DP controller is
+> in the MDSS_GDSC
+> power domain, DP PHY/PLL sources out of CX. The DP link clocks have a direct
+> impact
+> on the CX voltage corners. Therefore, we need to mention the CX power domain
+> here. And, since
+> we can associate only one OPP table with one device, we picked the DP link
+> clock over other
+> clocks.
 
-Doesn't this affect the way the data is presented on the bus?
+Thank you, that's a much more useful answer.
 
-My understanding is this should be defined by each platform, not in the dtsi. Having said that, it appears it is specified in aspeed-g5.dtsi (as the value 8?).
+Naturally I would think it would make more sense for the PHY/PLL driver
+to ensure that CX is appropriately voted for then, but I think that
+would result in it being the clock driver performing such vote and I'm
+unsure how the opp table for that would look.
 
-> +				clocks = <&syscon ASPEED_CLK_APB2>;
-> +				interrupt-controller;
-> +				bus-frequency = <12000000>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&pinctrl_sgpm1_default>;
-> +				status = "disabled";
-> +			};
-> +
-> +			sgpiom1: sgpiom@1e780600 {
-> +				#gpio-cells = <2>;
-> +				gpio-controller;
-> +				compatible = "aspeed,ast2600-sgpiom-80";
-> +				reg = <0x1e780600 0x100>;
-> +				interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
-> +				ngpios = <80>;
+@Stephen, what do you say?
 
-As above.
-
-Andrew
+Regards,
+Bjorn
