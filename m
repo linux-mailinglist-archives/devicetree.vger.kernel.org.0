@@ -2,113 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EFCE39E0AC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 17:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDACA39E0BC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 17:40:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230226AbhFGPkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 11:40:01 -0400
-Received: from mail-ej1-f52.google.com ([209.85.218.52]:41635 "EHLO
-        mail-ej1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbhFGPkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 11:40:00 -0400
-Received: by mail-ej1-f52.google.com with SMTP id ho18so16432400ejc.8;
-        Mon, 07 Jun 2021 08:38:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=u47dRLH9oeOyhtJ8OMrgpRaWizdSf0mAyz6JZPVlC5o=;
-        b=u6xHF44T3sMIdmajR+irHU47dlOz5jNo0MMBPBgHJfLsfubbc3wX4jS+d8hv74/qS1
-         PtIN6857oiMtm2+Xn7t/JYs3utVKJ73UaVtRDy88dZLCP+DPQioSVlOAcRwo5ZvmHQad
-         6cPvmPLm8muB3nEyoANi+fBk3XsQ635WzcZngMkP4rR3Y+/BdQNIsOCJMijHEZMDN0M2
-         lQqrKPSlO26etEeAYbzxQeFxoqW03Md3OHQFcdhsm8TtpRPO2HdvDviICvei35cXq+ev
-         YN8vNlUUY7TbKcZU1j3/rSQWfv7XVG0KdRzW9hOU/O0/+cjViNJ8gTaq9umeRD56i/+Y
-         grWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=u47dRLH9oeOyhtJ8OMrgpRaWizdSf0mAyz6JZPVlC5o=;
-        b=WMa4rKVEdIyE8I7c/H8FHalg4QXL+AJ2Yt4zR/09VMiXJNjDFgHyRghv13TJIIQq4t
-         +7Vs7NiaGwu9aE4auin0pTQxSVLSireWjFrvJZDEEVCcEeQnTjMQLVgZIqIxMuC19Jyx
-         uMBLwQpIDO4CaviOUyDvSuTMbQnE+vDjRMdZfzGDkCDHUKXa1lqTj4u/tomsi24eZWur
-         d+7tAgaXXWNiT6MR+87hv2S0wHHvoDArhKqa1yYKSosT17lLrORi3de6icOSgJs2KE7E
-         TLg8ku63sDJJZvkAYodE0U3nm6Vx1bex9WV3Hg73xKKPw9qYJEWFniV3Is+z1YTrcVJV
-         G73w==
-X-Gm-Message-State: AOAM530H4qOe2xrbgunKjZdzvkzjduzTKnbwP6bFKdHJWpxPZ3XqcvyY
-        fEaGnJ1/hAcILzZFKqIe5LwH2GjfHiERdw==
-X-Google-Smtp-Source: ABdhPJx1ogxNiLcSdGIOUtVV3gUcBzzR83F5bN7m4FcxjGP78JjmVNXmmF0UAeUgUsZXJLtYqovNNA==
-X-Received: by 2002:a17:906:68c1:: with SMTP id y1mr18460242ejr.32.1623080228600;
-        Mon, 07 Jun 2021 08:37:08 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id v23sm7977384eds.25.2021.06.07.08.37.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Jun 2021 08:37:08 -0700 (PDT)
-Subject: Re: [PATCH] dt-bindings: soc: rockchip: drop unnecessary #phy-cells
- from grf.yaml
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     robh+dt@kernel.org, vkoul@kernel.org, kishon@ti.com,
-        t.schramm@manjaro.org, linux-phy@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <e7e09072-9cac-413e-dca2-e2a668c1807e@gmail.com>
- <20210607141845.3331910-1-heiko@sntech.de>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <46289b3c-f804-624b-3c74-1989e57d0a7c@gmail.com>
-Date:   Mon, 7 Jun 2021 17:37:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210607141845.3331910-1-heiko@sntech.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S230319AbhFGPmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 11:42:12 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:19150 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230350AbhFGPmL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 11:42:11 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1623080420; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=64r24yEhGGQ+dTqb1abtZSvbz6qcbB+fRIjh6n4L4r8=; b=fol27BgZ3uaapTpZVIevajLwhoAIgLt9khuvo9DDNvMEYpkWWPSYYYQ5j66w4zoxLGjkJ4O0
+ /5ROnQsg9++S0QK6P4rnt8YsovnmAo0JJ02evUgiIRIXg93bCvlqDEA11eG/fIJG55Sjy1Ct
+ 6Syjd2FxLGnQwAyJzXQ7kwrb9e8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 60be3dd0f726fa4188cf30e0 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 07 Jun 2021 15:40:00
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 1D4CFC43146; Mon,  7 Jun 2021 15:40:00 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 19791C433D3;
+        Mon,  7 Jun 2021 15:39:54 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 19791C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        robh+dt@kernel.org, swboyd@chromium.org
+Cc:     ulf.hansson@linaro.org, rjw@rjwysocki.net, agross@kernel.org,
+        ohad@wizery.com, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        rishabhb@codeaurora.org, sidgup@codeaurora.org,
+        Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH v2 00/13] Use qmp_send to update co-processor load state
+Date:   Mon,  7 Jun 2021 21:09:19 +0530
+Message-Id: <1623080372-13521-1-git-send-email-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The power domains exposed by the AOSS QMP driver control the load state
+resources linked to modem, adsp, cdsp remoteprocs. These are used to
+notify the Always on Subsystem (AOSS) that a particular co-processor is
+up/down. AOSS uses this information to wait for the co-processors to
+suspend before starting its sleep sequence. These co-processors enter
+low-power modes independent to that of the application processor and
+the load state resources linked to them are expected to remain unaltered
+across system suspend/resume cycles. To achieve this behavior let's stop
+modeling them as power-domains and replace them with generic qmp_send
+interface instead.
 
+https://lore.kernel.org/lkml/20200913034603.GV3715@yoga/
+Previous dicussion on dropping power-domain support from AOSS QMP driver
 
-On 6/7/21 4:18 PM, Heiko Stuebner wrote:
-> The recent yaml conversion of the grf and inno-usb2-phy bindings
-> left the #phy-cells in place in the main usb2phy node inside the
-> example in grf.yaml, causing new warnings.
-> 
-> Drop it to make the bindingcheck happy.
-> 
-> Fixes: e71ccdff376b ("dt-bindings: phy: rename phy nodename in phy-rockchip-inno-usb2.yaml")
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
+Depends on:
+qmp_send: https://patchwork.kernel.org/project/linux-arm-msm/cover/1620320818-2206-1-git-send-email-deesin@codeaurora.org/
+rproc,adsp_yaml: https://patchwork.kernel.org/project/linux-arm-msm/patch/20210603142639.8335-1-s-anna@ti.com/
 
-> Like this I guess?
+V2:
+* load_state is currently broken on mainline so be safely dropped
+   without side-effects.
+ * Rebased on top of qmp_send v3 series.
+ * Dropped R-b from Stephen and Rob on patch 3 due to the yaml
+   conversion.
+ * New patch [12] to drop unused aoss-qmp header.
+ * Commit message update [patch 1] [Rob]
+ * Reorder the series [Stephen]
 
-Hi Heiko,
+Sibi Sankar (13):
+  dt-bindings: soc: qcom: aoss: Drop power-domain bindings
+  dt-bindings: remoteproc: qcom: pas: Add QMP bindings
+  dt-bindings: remoteproc: qcom: Add QMP bindings
+  remoteproc: qcom: q6v5: Use qmp_send to update co-processor load state
+  arm64: dts: qcom: sc7180: Use QMP binding to control load state
+  arm64: dts: qcom: sc7280: Use QMP binding to control load state
+  arm64: dts: qcom: sdm845: Use QMP binding to control load state
+  arm64: dts: qcom: sm8150: Use QMP binding to control load state
+  arm64: dts: qcom: sm8250: Use QMP binding to control load state
+  arm64: dts: qcom: sm8350: Use QMP binding to control load state
+  soc: qcom: aoss: Drop power domain support
+  dt-bindings: msm/dp: Remove aoss-qmp header
+  dt-bindings: soc: qcom: aoss: Delete unused power-domain definitions
 
-When I apply this patch locally and give the command below the
-notifications are gone.
+ .../bindings/display/msm/dp-controller.yaml        |   1 -
+ .../devicetree/bindings/remoteproc/qcom,adsp.yaml  |  40 +++++---
+ .../devicetree/bindings/remoteproc/qcom,q6v5.txt   |   7 +-
+ .../devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt |  16 +--
+ arch/arm64/boot/dts/qcom/sc7180.dtsi               |   9 +-
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |   2 -
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |   8 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi               |  28 +++---
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               |  22 ++---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi               |  30 +++---
+ drivers/remoteproc/qcom_q6v5.c                     |  56 ++++++++++-
+ drivers/remoteproc/qcom_q6v5.h                     |   7 +-
+ drivers/remoteproc/qcom_q6v5_adsp.c                |   7 +-
+ drivers/remoteproc/qcom_q6v5_mss.c                 |  44 ++-------
+ drivers/remoteproc/qcom_q6v5_pas.c                 |  80 ++++-----------
+ drivers/remoteproc/qcom_q6v5_wcss.c                |   4 +-
+ drivers/soc/qcom/qcom_aoss.c                       | 109 +--------------------
+ include/dt-bindings/power/qcom-aoss-qmp.h          |  14 ---
+ 18 files changed, 181 insertions(+), 303 deletions(-)
+ delete mode 100644 include/dt-bindings/power/qcom-aoss-qmp.h
 
-make ARCH=arm dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-Thanks,
-
-Johan
-
-> 
->  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> index 8c1c46fef157..62fa72cfea34 100644
-> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-> @@ -242,7 +242,6 @@ examples:
->          clock-names = "phyclk";
->          #clock-cells = <0>;
->          clock-output-names = "clk_usbphy0_480m";
-> -        #phy-cells = <0>;
->  
->          u2phy0_host: host-port {
->            #phy-cells = <0>;
-> 
