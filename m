@@ -2,137 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EDCC39E554
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A08CB39E4BC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:05:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230251AbhFGR1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 13:27:15 -0400
-Received: from egress-ip4a.ess.de.barracuda.com ([18.184.203.227]:48990 "EHLO
-        egress-ip4a.ess.de.barracuda.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229997AbhFGR1O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 13:27:14 -0400
-X-Greylist: delayed 1684 seconds by postgrey-1.27 at vger.kernel.org; Mon, 07 Jun 2021 13:27:14 EDT
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69]) by mx-outbound8-179.eu-central-1a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 07 Jun 2021 17:25:09 +0000
-Received: by mail-ed1-f69.google.com with SMTP id h23-20020aa7c5d70000b029038fed7b27d5so9561364eds.21
-        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 10:25:09 -0700 (PDT)
+        id S230294AbhFGRHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 13:07:20 -0400
+Received: from mail-ej1-f52.google.com ([209.85.218.52]:33759 "EHLO
+        mail-ej1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231238AbhFGRHT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 13:07:19 -0400
+Received: by mail-ej1-f52.google.com with SMTP id g20so27927485ejt.0;
+        Mon, 07 Jun 2021 10:05:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=rGVg8i1oRTdQ33VNZHiE6dEeShO7SwK5NDa2Bk4nE5w=;
-        b=BAyWfNZhR4mrduHRzsqdw889QBFb2JYUxp+bB8xt/Zg1zyUIwulRnLFw7eiuARIrpd
-         FBLxY3HqnhlyHik/8b4+R2vDvYOllbXENWpjnTsN1d+dzlpim84uCUdppyouxdT34DyO
-         3f5BZ+wIRdkH0joNufChXrVfA7nXOdT3oR59s=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=vrWddwWHw9uPgT90OED9mI59lJfe1xzoeVULMb6Xu3I=;
+        b=vOMlssHEtFlFXMQxi2c6WwrCgLYjEIUc/VEJn4yGw0dPyPTLqjae3B1QdECCW8MJ6A
+         sXWeU6ynNlqgvouzxPQk4qwQo61CM+ok+tYlkiuuJxewaCeVHfYMP4yrQn8lpueU2Ruf
+         trk5MsyEKpEyZlMv1B5JtW3Icw59wFyd3VNGcDF6DyxkueJxHasR8JQ8Wqyqrm3uvrir
+         D+7Be5dFY+KxUKdjmCagzQqFeILMq9+LxrzON3J38i0ktG+qIQm17/ezHDNZBe54IPYX
+         fU/CTNkJKHCwkffOdzNCZsJOYoaHBhMG0QSI8FNXWN8+j5j5jXh9n/lMG777l9Iue+c8
+         77PQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=rGVg8i1oRTdQ33VNZHiE6dEeShO7SwK5NDa2Bk4nE5w=;
-        b=pQ+K3+pCQu+Fd1xGhgOyyRFgK4rEMw+jcuTVNOXGegx0DmVxhwEpYD+GdqvK46/yJs
-         dH8TKupehwCl22f3PLERDCdcEvDCNOKLFgQ0m98hJOe9DInxZduJOYQX1923W/8uwAWF
-         82LOosqyINxQ1DrZBpUnWZZTawiEtcflYSxqUR4znGaqSaz+5O+1Sn1QaNqIm5BlaQRB
-         fvqcOJJ16lw/cOAS3my50LSRjxVpQiJPMjmr2oBIgtxHYGLekAvaDJngVTw6P83aucOQ
-         u8M30K1mmJVR89xOwAvP3hwjEVivQRt1pCYn2oSWQflZUeULPVTWWTan3ZzuGN49Q49t
-         Xu9w==
-X-Gm-Message-State: AOAM531T0x2uQf4cZ0pz5gCMe3STv1RkHRKfSp6X1MBifPSEW/Qi8mEG
-        6pqWve95Zsk6e9+V+Y4YdtOeOuwfCm1pviZjVjfkIiC4p4OobsuMbSY2IPL/rJxQJuZhSiW63TE
-        pc2RXBMQXOo8u2nfFkT921aSZxt6MYrzwBD5eBiFoucj1tlmlN9RP2UYk9OOowHTb5ggZLPIOfA
-        ==
-X-Received: by 2002:a5d:6daf:: with SMTP id u15mr16513854wrs.400.1623085024439;
-        Mon, 07 Jun 2021 09:57:04 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJytZ33wxUwxQSOk08HnhDli4AJ+BorI+8JwBuUjc8WJ0ohUKc3Jr8kIed8IZ31F8tIY+5xwxEW4If4ISg5Twvk=
-X-Received: by 2002:a5d:6daf:: with SMTP id u15mr16513835wrs.400.1623085024214;
- Mon, 07 Jun 2021 09:57:04 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=vrWddwWHw9uPgT90OED9mI59lJfe1xzoeVULMb6Xu3I=;
+        b=kwk2YRll1+QSzPMJB/1r/jnq88T/u+LHwf8eW3fesD/Sfaida/ysInYguDu5B0u7z9
+         kBKtM8j7J9Cljt5/i63bRIET40VUY7wJ8bH/YpQmg0inQuWibXBzhphouk84Bh4wOg0N
+         3PdLDdEpIganFnWCecD9wDk93Qc30rvf4CFnaCBureOarbrwkUvrJlG3n6X/ch9t4OpQ
+         iqSHrpJAPbCNmW9/1qTV0Zo9saxthOlprtf7RQ9BDOc0hRrhM+Gh//UlKjHrOOQq5ue5
+         CbRLFnXEe1RLL6Zsc/9DPJbTiz9gQm/TBvqmeEBCVG078m+sbdU9+wpAMaqSer72OjGh
+         OnKg==
+X-Gm-Message-State: AOAM533pJlAz12pYATiK7LTdd9iOfxISwVMv999BsM76ooEkP3jy3AHx
+        nuv/C2w9//eEbGVgKWhQWLVnrEtsjbfQtQ==
+X-Google-Smtp-Source: ABdhPJwt055ZeOAcDRjhVFOzQkOYa90oEcJZ/OcMXCyPgqJpMV0jz1h4Fm3+oAc2i5cs5/Rz6JC8Pg==
+X-Received: by 2002:a17:907:1c9e:: with SMTP id nb30mr10363749ejc.0.1623085466935;
+        Mon, 07 Jun 2021 10:04:26 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id x13sm6753581ejj.21.2021.06.07.10.04.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Jun 2021 10:04:26 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: rockchip: add EEPROM node for NanoPi R4S
+To:     Tianling Shen <cnsztl@gmail.com>
+Cc:     Chen-Yu Tsai <wens@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Marty Jones <mj8263788@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20210607081727.4723-1-cnsztl@gmail.com>
+ <9258ab23-ef65-2c3d-f0d2-ca5f77d7c12a@gmail.com>
+ <CAGb2v65ck=LV+UCdQoaUtEjFaTaHr9-wmGmpkCCkebUOuYtikw@mail.gmail.com>
+ <f085da86-8b6d-ba99-2d0a-736ec02424db@gmail.com>
+ <CAOP2_TiHwYhLVLOEx-Vgx6k3XmHgNsiyR8CqrWyABnP0AidMBg@mail.gmail.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <b5cc8e2b-10b6-de5d-38dd-5e5cfd84e984@gmail.com>
+Date:   Mon, 7 Jun 2021 19:04:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-References: <20210607093314.23909-1-sinthu.raja@ti.com> <20210607093314.23909-2-sinthu.raja@ti.com>
- <20210607133209.lnx4cist3ajs557j@conduit>
-In-Reply-To: <20210607133209.lnx4cist3ajs557j@conduit>
-From:   Sinthu Raja M <sinthu.raja@mistralsolutions.com>
-Date:   Mon, 7 Jun 2021 22:26:52 +0530
-Message-ID: <CAEd-yTQVuGjftjQs7B83Y3fcgQtLj+DF_09Va8HjP0=qOwE8Ng@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: arm: ti: Add bindings for J721E EAIK
-To:     Nishanth Menon <nm@ti.com>
-Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Amarnath MB <amarnath.mb@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-BESS-ID: 1623086709-302227-5401-10556-1
-X-BESS-VER: 2019.1_20210603.1645
-X-BESS-Apparent-Source-IP: 209.85.208.69
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.232779 [from 
-        cloudscan14-53.eu-central-1a.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
-X-BESS-BRTS-Status: 1
+In-Reply-To: <CAOP2_TiHwYhLVLOEx-Vgx6k3XmHgNsiyR8CqrWyABnP0AidMBg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 7:02 PM Nishanth Menon <nm@ti.com> wrote:
->
-> On 15:03-20210607, Sinthu Raja wrote:
-> > From: Sinthu Raja <sinthu.raja@ti.com>
-> >
-> > J721E EdgeAI Kit (EAIK) is a low cost, small form factor board designed
-> > for TI=E2=80=99s J721E SoC.
-> > Add DT binding documentation for J721E EAIK
->
-> Need a url for the board.
-The URL for the board is not available until the board launch.
-Probably should have mentioned in the cover letter.
->
-> >
-> > Signed-off-by: Amarnath MB <amarnath.mb@ti.com>
-> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> > ---
-> > Change in V2:
-> > - Fix for dt_binding_check error.
-> >
-> >  Documentation/devicetree/bindings/arm/ti/k3.yaml                | 2 ++
-> >  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml         | 2 +-
-> >  2 files changed, 3 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documen=
-tation/devicetree/bindings/arm/ti/k3.yaml
-> > index c5aa362e4026..923dd7cf1dc6 100644
-> > --- a/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
-> > @@ -29,6 +29,8 @@ properties:
-> >
-> >        - description: K3 J721E SoC
-> >          items:
-> > +          - enum:
-> > +              - ti,j721e-eaik
-> >            - const: ti,j721e
-> >
-> >        - description: K3 J7200 SoC
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rpr=
-oc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> > index 6070456a7b67..464cee128811 100644
-> > --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> > +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> > @@ -135,7 +135,7 @@ examples:
-> >    - |
-> >      / {
-> >          model =3D "Texas Instruments K3 J721E SoC";
-> > -        compatible =3D "ti,j721e";
-> > +        compatible =3D "ti,j721e-eaik", "ti,j721e";
-> I see what we are attempting to do here.
->
-> Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-> probably should strip off the board specifics out in the
-> examples. but, that belongs to a different patch.
-Will remove this change. But do we need to ignore the dt_binding
-_check for this patch series?
 
-Regards
-Sinthu Raja
+
+On 6/7/21 6:01 PM, Tianling Shen wrote:
+> Hi Johan,
+> 
+> On Mon, Jun 7, 2021 at 6:26 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>>
+>> Hi Chen-Yu,
+>>
+>> On 6/7/21 11:40 AM, Chen-Yu Tsai wrote:
+>>> On Mon, Jun 7, 2021 at 5:31 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>>>>
+>>>> Hi Tianling,
+>>>>
+>>>> On 6/7/21 10:17 AM, Tianling Shen wrote:
+>>>>> NanoPi R4S has a EEPROM attached to the 2nd I2C bus (U92), which
+>>>>> stores the MAC address.
+>>>>>
+>>>>> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+>>>>> ---
+>>>>>  arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts | 9 +++++++++
+>>>>>  1 file changed, 9 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+>>>>> index cef4d18b599d..4a82f50a07c5 100644
+>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+>>>>> @@ -68,6 +68,15 @@
+>>>>>       status = "disabled";
+>>>>>  };
+>>>>>
+>>>>> +&i2c2 {
+>>>>> +     eeprom@51 {
+>>>>> +             compatible = "microchip,24c02", "atmel,24c02";
+>>>>> +             reg = <0x51>;
+>>>>> +             pagesize = <16>;
+>>>>
+>>>>> +             read-only; /* This holds our MAC */
+>>>>
+>>>> The mainline dts files should be generic I think.
+>>>> Any comment about "use", partitions or write ability should be avoided.
+>>>> It's up the user.
+>>>
+>>
+>>> Per the datasheet for this specific EEPROM, the latter half (128 bytes)
+>>> is read-only in hardware by design though.
+>>
+>> The 24AA02XEXX is programmed at the factory with a
+>> globally unique node address stored in the upper half
+>> of the array and permanently write-protected. The
+>> remaining 1,024 bits are available for application use.
+>>
+> 
+
+> In my opinion, as this contains data programmed by the factory, would
+> it be okay to keep it read-only?
+
+This chip is not completely read-only.
+There might be users that like to try some other mac_address or store
+something else in that lower part. Is this then still possible?
+Generic DT describes hardware independent from what Linux drivers or
+other OS are capable off.
+This factory mac_addres is permanently write-protected, so no need to
+keep the rest read-only.
+
+     nvmem-cells = <&new_mac_address_in_lower_part>;
+     nvmem-cells-names = "mac-address";
+
+> 
+>> Just a question...
+>>
+>>     nvmem-cells = <&mac_address>;
+>>     nvmem-cells-names = "mac-address";
+>>
+>> Which part does this point to?
+>>
+>> Can we use the lower part to store/rewrite this too?
+>>
+>> ===
+>>
+>> From at24.yaml:
+>>
+>>             items:
+>>               - pattern:
+>> "^(atmel|catalyst|microchip|nxp|ramtron|renesas|rohm|st),(24(c|cs|lc|mac)[0-9]+|spd)$"
+>>               - pattern: "^atmel,(24(c|cs|mac)[0-9]+|spd)$"
+>>
+>> How does Microchip 24AA025E48 fit the regex?
+>> What compatible would you advise?
+> 
+> It seems that 24AA025E48 is a variant of 24MAC402 [1], and
+> `atmel,24c02` will be okay in this case.
+> 1. https://lkml.org/lkml/2018/1/24/494
+
+Ask Heiko. ;)
+
+As long as it does not generate more notifications then we already have.
+
+> 
+> Thanks,
+> Tianling.
+> 
+>>
+>> ===
+>>
+>> Johan
+>>
+>>>
+>>> ChenYu
+>>>
