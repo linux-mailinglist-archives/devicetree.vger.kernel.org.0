@@ -2,131 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF0A39D83A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 11:04:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE41039D865
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 11:15:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230191AbhFGJGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 05:06:17 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:48620 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230173AbhFGJGR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 7 Jun 2021 05:06:17 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1lqBBH-0000nU-KF; Mon, 07 Jun 2021 11:04:23 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Jon Lin <jon.lin@rock-chips.com>, broonie@kernel.org,
-        Johan Jonker <jbx6244@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/6] dt-bindings: spi: spi-rockchip: add description for rv1126 and rk3568
-Date:   Mon, 07 Jun 2021 11:04:21 +0200
-Message-ID: <3681106.bcXerOTE6V@diego>
-In-Reply-To: <ef90ae6d-40bb-8389-f4f8-536a7b610fb7@gmail.com>
-References: <20210607063448.29589-1-jon.lin@rock-chips.com> <20210607063448.29589-2-jon.lin@rock-chips.com> <ef90ae6d-40bb-8389-f4f8-536a7b610fb7@gmail.com>
+        id S230131AbhFGJRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 05:17:36 -0400
+Received: from mail-ej1-f51.google.com ([209.85.218.51]:33604 "EHLO
+        mail-ej1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230139AbhFGJRd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 05:17:33 -0400
+Received: by mail-ej1-f51.google.com with SMTP id g20so25538329ejt.0;
+        Mon, 07 Jun 2021 02:15:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=UZrq5VlhmQW6JZmMPrVakR8M/Jz/bAVYPXpHBFjrH1c=;
+        b=KLn0ZlNqWao86EIujuLqufe3OtsEytKF0ws/B3wc3/r7n3np7VmGBbtKzL47joK9cC
+         DPxaG75RV5SEQARuDIlNwRb2azNgabL9fbK890DZu2A2bpgyBCS0L1/JqQVbBDSqjPRI
+         mEPPkB0MsUv3koqXOXp0hq7dSZARqaJ6//+uxLvfEIJErcQ6ua+Cp54rfNOZrqroLQSc
+         gK73DjWJriG2Vpjv2DPaUymgpmJH5SkHboVw3C8E+scOFq+DS+p2PdoP20SMeoqGNh7j
+         81uAGcyJTM5jMRevo01ap3EaAGIoj7qngHGu5IQLKtGMCtUgqV9OmhxIcEUTRbk6mvWf
+         a0lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=UZrq5VlhmQW6JZmMPrVakR8M/Jz/bAVYPXpHBFjrH1c=;
+        b=rN7Yt2Wc3QBHdRRKRQVivnYnyPykVpWdy0BcSFvM5cJ1MMF32bnHrhEB8Tl2msksy1
+         MCErahdR7IVVVAFcWONKBEDlyKnPMYkDfqDCTgk+fJwUR/Hq3xEXnDaNp5YbI1zdqALR
+         P8cVK9/Npmv2QXaWlCm7wSuCf4CutALwfIhhlgf+e1Z5FwjS4uiW+TEhSbMk1+OFlrx+
+         gMey4gcsN6oRdahVF3MdLT752fQSFXz4va9hbomsr1kBU6XyKA+ztpHcrIswKKCq6b4l
+         JHSrYyWmmLQ88oMcJArU/6wd8mKfWSTnEpPGCqWeNZogpx7b7SYS+YAjKk+R5NgOksuJ
+         nMFA==
+X-Gm-Message-State: AOAM531nIzq0sJL+AowTKZfjatVO86Sai/WZbP7X4S8gy/zbOrDxAsGs
+        8+ETOcV4wuoM7AvGK1nAfeYmVVjDoS/QEg==
+X-Google-Smtp-Source: ABdhPJzXK2A9L9nkflnok98q7PG7rX1Tcr7XYduvR8sIGZiKEBv2cHiQo0Pymrmm8SJyMG5RlEkWxw==
+X-Received: by 2002:a17:906:f8d0:: with SMTP id lh16mr17075823ejb.331.1623057265308;
+        Mon, 07 Jun 2021 02:14:25 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id gx28sm6320117ejc.107.2021.06.07.02.14.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Jun 2021 02:14:25 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: rockchip: add EEPROM node for NanoPi R4S
+To:     Tianling Shen <cnsztl@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Marty Jones <mj8263788@gmail.com>, Pavel Machek <pavel@ucw.cz>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210607081727.4723-1-cnsztl@gmail.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <9258ab23-ef65-2c3d-f0d2-ca5f77d7c12a@gmail.com>
+Date:   Mon, 7 Jun 2021 11:14:23 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <20210607081727.4723-1-cnsztl@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 7. Juni 2021, 10:15:30 CEST schrieb Johan Jonker:
-> Hi Jon,
+Hi Tianling,
+
+On 6/7/21 10:17 AM, Tianling Shen wrote:
+> NanoPi R4S has a EEPROM attached to the 2nd I2C bus (U92), which
+> stores the MAC address.
 > 
-> On 6/7/21 8:34 AM, Jon Lin wrote:
-> > The description below will be used for rv1126.dtsi or rk3568.dtsi in
-> > the future
-> > 
-> > Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
-> > ---
-> > 
-> > Changes in v4:
-> > - Adjust the order patches
-> > - Simply commit massage like redundancy "application" content
-> > 
-> > Changes in v3:
-> > - Fix compile error which is find by Sascha in [v2,2/8]
-> > 
-> >  Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-> > index 1e6cf29e6388..2d7957f9ae0a 100644
-> > --- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
-> > @@ -27,12 +27,14 @@ properties:
-> >        - items:
-> >            - enum:
-> >                - rockchip,px30-spi
+> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> > +              - rockchip,rv1126-spi
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+> index cef4d18b599d..4a82f50a07c5 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+> @@ -68,6 +68,15 @@
+>  	status = "disabled";
+>  };
+>  
+> +&i2c2 {
+> +	eeprom@51 {
+> +		compatible = "microchip,24c02", "atmel,24c02";
+> +		reg = <0x51>;
+> +		pagesize = <16>;
+
+> +		read-only; /* This holds our MAC */
+
+The mainline dts files should be generic I think.
+Any comment about "use", partitions or write ability should be avoided.
+It's up the user.
+
+Johan
+
+> +	};
+> +};
+> +
+>  &i2c4 {
+>  	status = "disabled";
+>  };
 > 
-> This list is sort alphabetically.
-> Move "rockchip,rv1126-spi" below "rockchip,rk3568-spi"
-> 
-> >                - rockchip,rk3188-spi
-> >                - rockchip,rk3288-spi
-> >                - rockchip,rk3308-spi
-> >                - rockchip,rk3328-spi
-> >                - rockchip,rk3368-spi
-> >                - rockchip,rk3399-spi
-> > +              - rockchip,rk3568-spi
-> 
-> 
-> >            - const: rockchip,rk3066-spi
-> >  
-> >    reg:
-> > 
-> 
-> ===
-> 
-> Your comment in [PATCH v3 3/8]:
-> >> Adding "rockchip,rv1126-spi" to rockchip_spi_dt_match[] is strictly not
-> >> needed when using "rockchip,rk3066-spi" as fall back string.
-> >> Could a maintainer advise?
-> >>
-> >> Maybe this bug of mine should revert too?? Or is it legacy?
-> >> spi: rockchip: add compatible string for px30 rk3308 rk3328
-> >> https://lore.kernel.org/r/20200309151004.7780-1-jbx6244@gmail.com
-> 
-> > I agree with you. If the maintainer doesn't have any comments, I will use
-> > "rockchip,spi" as compatible names for the subsequent rk platform.
-> 
-> Compatibility strings are supposed to be SoC orientated.
-> So generic ones like in the manufacturer tree can't be used here.
-
-Johan ist right :-) .
-
-rockchip,spi won't work at all, especially as these controllers always change
-over time. [0]
-
-Best example is the iommu. We started with "rockchip,iommu" thinking this
-won't change over time, but with the rk3568 we get a new slightly different
-iommu.
-
-The vendor-kernel then introduces somewhat random "-vX" additions to
-distinguish them, but often they do seem to be very software-centric.
-
-Meaning, hardware-designers moved stuff around and software-developers
-then invented the versioning to differentiate between versions.
-
-The devicetree is supposed to describe the hardware though, so going with
-the relevant soc-specific compatible gives us the necessary hardware-centric
-differentiation.
-
-Also this allows to catch later issues with specific soc implementations ;-)
-Like 6 monts down the road we discover some special behaviour on the
-rk3568 and devicetree is supposed to be stable.
-
-So having the relevant compatibles in place allows us to just add driver
-fixes and have those apply on the rk3568 if that is need at some point.
-
-Heiko
-
-
-
