@@ -2,483 +2,546 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E27C539E560
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:28:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DD2339E591
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:35:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231364AbhFGRaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 13:30:16 -0400
-Received: from out28-97.mail.aliyun.com ([115.124.28.97]:52284 "EHLO
-        out28-97.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230522AbhFGRaP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 13:30:15 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436282|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0180648-0.000191969-0.981743;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047202;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=20;RT=20;SR=0;TI=SMTPD_---.KP.FCzB_1623086888;
-Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KP.FCzB_1623086888)
-          by smtp.aliyun-inc.com(10.147.40.44);
-          Tue, 08 Jun 2021 01:28:18 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com, paul@crapouillou.net
-Subject: [PATCH 2/2] net: stmmac: Add Ingenic SoCs MAC support.
-Date:   Tue,  8 Jun 2021 01:27:47 +0800
-Message-Id: <1623086867-119039-3-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1623086867-119039-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1623086867-119039-1-git-send-email-zhouyanjie@wanyeetech.com>
+        id S230197AbhFGRhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 13:37:22 -0400
+Received: from egress-ip4a.ess.de.barracuda.com ([18.184.203.227]:41044 "EHLO
+        egress-ip4a.ess.de.barracuda.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229997AbhFGRhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 13:37:22 -0400
+Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71]) by mx-outbound44-136.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 07 Jun 2021 17:35:29 +0000
+Received: by mail-lf1-f71.google.com with SMTP id o138-20020a1941900000b02902a5ff0b6936so6497163lfa.9
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 10:35:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=uqhaU0BixGMC6yg2WIWbD8RroUuRdTwTQYuyJdWv/9o=;
+        b=g8t6yz3lSIE3zEppvq+8DAyatBqj5Ipcnxa7l9L1uO3MKyyStu19CS8RrVO6ZsMNaJ
+         SXG54r7Bsavb1me/BY9UNC0d5Czviqn/yUBCe+3Y7dU3QPUZO6mhh7q7WaCYeB0qpwyU
+         dOoxWVb7SMRDJqPaFSlILvEnaukXPO9CuhmtA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=uqhaU0BixGMC6yg2WIWbD8RroUuRdTwTQYuyJdWv/9o=;
+        b=KD3YwN+1QN0Yiaircv5WdLWfB8SscDxI3rsah66LvY3vXFpQyx77BJJma+7QNDUmMI
+         6iydw6+Gg+cHbutX9N5V7g6sgTzMjXe+dfwZPBMvCD/QgOa9lS+wDAR0tsqAwDw2uHaM
+         AgeWyOiYtsl4zN7rtSCzhTMp4H4NWQBq0lFAabPab2Mxs9TGli1ldcTvFmSrhBPchqdV
+         dtzuOlCJCqzd2kxXcxwoGW7WKA4UsxVlFa7GqJUFFGz+DYzsnFj7n07Quss9dMKj427V
+         sDGWGefp1+uoKjLLpD5o5H4pMgdHZnQU7R3Z/s9oNvMpnLM34ZXEHWtz+NeX8P5KQdcX
+         55Cw==
+X-Gm-Message-State: AOAM5313ehv2sQP/IWNdFXZIx8eYg4w1ID1KpMgoiVkE5khXKHiSH9FN
+        e83okMc0UGcAARhkH5R7hSrHDrQLKvMPmzp+bAlrSfjB6XbcMZXQyBthO+mFhJjEfTjzptM9viw
+        8bsuDHAdvLoC2SURYvHpZwrZO4YJjcw71jYeVUcLBOHb7WTu2RpJ+kuwtZ3dEuqvY8jl+aDG6Ag
+        ==
+X-Received: by 2002:a5d:528d:: with SMTP id c13mr18334475wrv.343.1623085902796;
+        Mon, 07 Jun 2021 10:11:42 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwoskZaAm4Alr5j1+LvHtFEl/8uJc1HJtaxzBZyveU+YpdDx4PGP3LdSRxG2AEgRPypt1dnYR4ZXn6jLD9XtWg=
+X-Received: by 2002:a5d:528d:: with SMTP id c13mr18334462wrv.343.1623085902626;
+ Mon, 07 Jun 2021 10:11:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20210607093314.23909-1-sinthu.raja@ti.com> <20210607093314.23909-3-sinthu.raja@ti.com>
+ <20210607133526.3rn3othabu4uo3lo@defender>
+In-Reply-To: <20210607133526.3rn3othabu4uo3lo@defender>
+From:   Sinthu Raja M <sinthu.raja@mistralsolutions.com>
+Date:   Mon, 7 Jun 2021 22:41:30 +0530
+Message-ID: <CAEd-yTSVOchafETh+3CthtZhE4e4_BbWodcXRxyJRdRBWQ_Csg@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] arm64: dts: ti: Add support for J721E EAIK
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Amarnath MB <amarnath.mb@ti.com>,
+        Sinthu Raja <sinthu.raja@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-BESS-ID: 1623087329-311400-7865-5695-1
+X-BESS-VER: 2019.1_20210603.1645
+X-BESS-Apparent-Source-IP: 209.85.167.71
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.232779 [from 
+        cloudscan16-205.eu-central-1b.ess.aws.cudaops.com]
+        Rule breakdown below
+         pts rule name              description
+        ---- ---------------------- --------------------------------
+        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
+X-BESS-BRTS-Status: 1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Ingenic SoC MAC glue layer support for the stmmac
-device driver. This driver is used on for the MAC ethernet controller
-found in the JZ4775 SoC, the X1000 SoC, the X1600 SoC, the X1830 SoC,
-and the X2000 SoC.
+On Mon, Jun 7, 2021 at 7:05 PM Nishanth Menon <nm@ti.com> wrote:
+>
+> On 15:03-20210607, Sinthu Raja wrote:
+> > From: Sinthu Raja <sinthu.raja@ti.com>
+> >
+> > J721E EdgeAI Kit (EAIK) is a low cost, small form factor board designed
+> > for TI=E2=80=99s J721E SoC. TI=E2=80=99s J721E SoC comprises of dual co=
+re A72, high
+> > performance vision accelerators, video codec accelerators, latest C71x
+> > and C66x DSP, high bandwidth real-time IPs for capture and display, GPU=
+,
+> > dedicated safety island and security accelerators. The SoC is power
+> > optimized to provide best in class performance for perception, sensor
+> > fusion, localization, path planning tasks in robotics, industrial and
+> > automotive applications.
+> >
+> > J721E EAIK supports the following interfaces:
+> > * 4 GB LPDDR4 RAM
+> > * x1 Gigabit Ethernet interface
+> > * x1 USB 3.0 Type-C port
+> > * x3 USB 3.0 Type-A ports
+> > * x1 UHS-1 capable =C2=B5SD card slot
+> > * x1 PCIe M.2 E Key with x1 USB2.0, x1 MCASP, x1 MMC, x1 UART
+> > * x1 PCIe M.2 M Key
+> > * 512 Mbit OSPI flash
+> > * x4 UART through UART-USB bridge
+> > * x4 CAN-FD interface
+> > * x1 DP interface
+> > * x1 HDMI interface
+> > * x2 CSI2 Camera interface (RPi and TI Camera connector)
+> > * 40-pin Raspberry Pi compatible GPIO header
+> > * Compact TI 20-Pin connector for JTAG debug
+> > * Interface for remote automation. Includes:
+> >    * power measurement and reset control
+> >    * boot mode change
+>
+> please reduce the description above, also add a url for the board.
 
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
- drivers/net/ethernet/stmicro/stmmac/Kconfig        |  16 +-
- drivers/net/ethernet/stmicro/stmmac/Makefile       |   1 +
- .../net/ethernet/stmicro/stmmac/dwmac-ingenic.c    | 367 +++++++++++++++++++++
- 3 files changed, 382 insertions(+), 2 deletions(-)
- create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-ingenic.c
+Sure will reduce the description. The URL is not available until the
+board launch.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 7737e4d0..fb58537 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-+++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-@@ -66,6 +66,18 @@ config DWMAC_ANARION
- 
- 	  This selects the Anarion SoC glue layer support for the stmmac driver.
- 
-+config DWMAC_INGENIC
-+	tristate "Ingenic MAC support"
-+	default MACH_INGENIC
-+	depends on OF && HAS_IOMEM && (MACH_INGENIC || COMPILE_TEST)
-+	select MFD_SYSCON
-+	help
-+	  Support for ethernet controller on Ingenic SoCs.
-+
-+	  This selects Ingenic SoCs glue layer support for the stmmac
-+	  device driver. This driver is used on for the Ingenic SoCs
-+	  MAC ethernet controller.
-+
- config DWMAC_IPQ806X
- 	tristate "QCA IPQ806x DWMAC support"
- 	default ARCH_QCOM
-@@ -129,7 +141,7 @@ config DWMAC_QCOM_ETHQOS
- 
- config DWMAC_ROCKCHIP
- 	tristate "Rockchip dwmac support"
--	default ARCH_ROCKCHIP
-+	default MACH_ROCKCHIP
- 	depends on OF && (ARCH_ROCKCHIP || COMPILE_TEST)
- 	select MFD_SYSCON
- 	help
-@@ -164,7 +176,7 @@ config DWMAC_STI
- 
- config DWMAC_STM32
- 	tristate "STM32 DWMAC support"
--	default ARCH_STM32
-+	default MACH_STM32
- 	depends on OF && HAS_IOMEM && (ARCH_STM32 || COMPILE_TEST)
- 	select MFD_SYSCON
- 	help
-diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index f2e478b..6471f93 100644
---- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-+++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-@@ -14,6 +14,7 @@ stmmac-$(CONFIG_STMMAC_SELFTESTS) += stmmac_selftests.o
- # Ordering matters. Generic driver must be last.
- obj-$(CONFIG_STMMAC_PLATFORM)	+= stmmac-platform.o
- obj-$(CONFIG_DWMAC_ANARION)	+= dwmac-anarion.o
-+obj-$(CONFIG_DWMAC_INGENIC)	+= dwmac-ingenic.o
- obj-$(CONFIG_DWMAC_IPQ806X)	+= dwmac-ipq806x.o
- obj-$(CONFIG_DWMAC_LPC18XX)	+= dwmac-lpc18xx.o
- obj-$(CONFIG_DWMAC_MEDIATEK)	+= dwmac-mediatek.o
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-ingenic.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-ingenic.c
-new file mode 100644
-index 00000000..8be8caa
---- /dev/null
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-ingenic.c
-@@ -0,0 +1,367 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * dwmac-ingenic.c - Ingenic SoCs DWMAC specific glue layer
-+ *
-+ * Copyright (c) 2020 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/of_net.h>
-+#include <linux/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+#include <linux/stmmac.h>
-+
-+#include "stmmac_platform.h"
-+
-+#define MACPHYC_TXCLK_SEL_MASK		GENMASK(31, 31)
-+#define MACPHYC_TXCLK_SEL_OUTPUT	0x1
-+#define MACPHYC_TXCLK_SEL_INPUT		0x0
-+#define MACPHYC_MODE_SEL_MASK		GENMASK(31, 31)
-+#define MACPHYC_MODE_SEL_RMII		0x0
-+#define MACPHYC_TX_SEL_MASK			GENMASK(19, 19)
-+#define MACPHYC_TX_SEL_ORIGIN		0x0
-+#define MACPHYC_TX_SEL_DELAY		0x1
-+#define MACPHYC_TX_DELAY_MASK		GENMASK(18, 12)
-+#define MACPHYC_TX_DELAY_63_UNIT	0x3e
-+#define MACPHYC_RX_SEL_MASK			GENMASK(11, 11)
-+#define MACPHYC_RX_SEL_ORIGIN		0x0
-+#define MACPHYC_RX_SEL_DELAY		0x1
-+#define MACPHYC_RX_DELAY_MASK		GENMASK(10, 4)
-+#define MACPHYC_SOFT_RST_MASK		GENMASK(3, 3)
-+#define MACPHYC_PHY_INFT_MASK		GENMASK(2, 0)
-+#define MACPHYC_PHY_INFT_RMII		0x4
-+#define MACPHYC_PHY_INFT_RGMII		0x1
-+#define MACPHYC_PHY_INFT_GMII		0x0
-+#define MACPHYC_PHY_INFT_MII		0x0
-+
-+enum ingenic_mac_version {
-+	ID_JZ4775,
-+	ID_X1000,
-+	ID_X1600,
-+	ID_X1830,
-+	ID_X2000,
-+};
-+
-+struct ingenic_mac {
-+	const struct ingenic_soc_info *soc_info;
-+	struct device *dev;
-+	struct regmap *regmap;
-+};
-+
-+struct ingenic_soc_info {
-+	enum ingenic_mac_version version;
-+	u32 mask;
-+
-+	int (*set_mode)(struct plat_stmmacenet_data *plat_dat);
-+	int (*suspend)(struct ingenic_mac *mac);
-+	void (*resume)(struct ingenic_mac *mac);
-+};
-+
-+static int ingenic_mac_init(struct plat_stmmacenet_data *plat_dat)
-+{
-+	struct ingenic_mac *mac = plat_dat->bsp_priv;
-+	int ret;
-+
-+	if (mac->soc_info->set_mode) {
-+		ret = mac->soc_info->set_mode(plat_dat);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return ret;
-+}
-+
-+static int jz4775_mac_set_mode(struct plat_stmmacenet_data *plat_dat)
-+{
-+	struct ingenic_mac *mac = plat_dat->bsp_priv;
-+	int val;
-+
-+	switch (plat_dat->interface) {
-+	case PHY_INTERFACE_MODE_MII:
-+		val = FIELD_PREP(MACPHYC_TXCLK_SEL_MASK, MACPHYC_TXCLK_SEL_INPUT) |
-+			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_MII);
-+		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_MII\n");
-+		break;
-+
-+	case PHY_INTERFACE_MODE_GMII:
-+		val = FIELD_PREP(MACPHYC_TXCLK_SEL_MASK, MACPHYC_TXCLK_SEL_INPUT) |
-+			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_GMII);
-+		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_GMII\n");
-+		break;
-+
-+	case PHY_INTERFACE_MODE_RMII:
-+		val = FIELD_PREP(MACPHYC_TXCLK_SEL_MASK, MACPHYC_TXCLK_SEL_INPUT) |
-+			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RMII);
-+		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_RMII\n");
-+		break;
-+
-+	case PHY_INTERFACE_MODE_RGMII:
-+		val = FIELD_PREP(MACPHYC_TXCLK_SEL_MASK, MACPHYC_TXCLK_SEL_INPUT) |
-+			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RGMII);
-+		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_RGMII\n");
-+		break;
-+
-+	default:
-+		dev_err(mac->dev, "unsupported interface %d", plat_dat->interface);
-+		return -EINVAL;
-+	}
-+
-+	/* Update MAC PHY control register */
-+	return regmap_update_bits(mac->regmap, 0, mac->soc_info->mask, val);
-+}
-+
-+static int x1000_mac_set_mode(struct plat_stmmacenet_data *plat_dat)
-+{
-+	struct ingenic_mac *mac = plat_dat->bsp_priv;
-+	int val;
-+
-+	switch (plat_dat->interface) {
-+	case PHY_INTERFACE_MODE_RMII:
-+		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_RMII\n");
-+		break;
-+
-+	default:
-+		dev_err(mac->dev, "unsupported interface %d", plat_dat->interface);
-+		return -EINVAL;
-+	}
-+
-+	/* Update MAC PHY control register */
-+	return regmap_update_bits(mac->regmap, 0, mac->soc_info->mask, val);
-+}
-+
-+static int x1600_mac_set_mode(struct plat_stmmacenet_data *plat_dat)
-+{
-+	struct ingenic_mac *mac = plat_dat->bsp_priv;
-+	int val;
-+
-+	switch (plat_dat->interface) {
-+	case PHY_INTERFACE_MODE_RMII:
-+		val = FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RMII);
-+		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_RMII\n");
-+		break;
-+
-+	default:
-+		dev_err(mac->dev, "unsupported interface %d", plat_dat->interface);
-+		return -EINVAL;
-+	}
-+
-+	/* Update MAC PHY control register */
-+	return regmap_update_bits(mac->regmap, 0, mac->soc_info->mask, val);
-+}
-+
-+static int x1830_mac_set_mode(struct plat_stmmacenet_data *plat_dat)
-+{
-+	struct ingenic_mac *mac = plat_dat->bsp_priv;
-+	int val;
-+
-+	switch (plat_dat->interface) {
-+	case PHY_INTERFACE_MODE_RMII:
-+		val = FIELD_PREP(MACPHYC_MODE_SEL_MASK, MACPHYC_MODE_SEL_RMII) |
-+			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RMII);
-+		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_RMII\n");
-+		break;
-+
-+	default:
-+		dev_err(mac->dev, "unsupported interface %d", plat_dat->interface);
-+		return -EINVAL;
-+	}
-+
-+	/* Update MAC PHY control register */
-+	return regmap_update_bits(mac->regmap, 0, mac->soc_info->mask, val);
-+}
-+
-+static int x2000_mac_set_mode(struct plat_stmmacenet_data *plat_dat)
-+{
-+	struct ingenic_mac *mac = plat_dat->bsp_priv;
-+	int val;
-+
-+	switch (plat_dat->interface) {
-+	case PHY_INTERFACE_MODE_RMII:
-+		val = FIELD_PREP(MACPHYC_TX_SEL_MASK, MACPHYC_TX_SEL_ORIGIN) |
-+			  FIELD_PREP(MACPHYC_RX_SEL_MASK, MACPHYC_RX_SEL_ORIGIN) |
-+			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RMII);
-+		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_RMII\n");
-+		break;
-+
-+	case PHY_INTERFACE_MODE_RGMII:
-+		val = FIELD_PREP(MACPHYC_TX_SEL_MASK, MACPHYC_TX_SEL_DELAY) |
-+			  FIELD_PREP(MACPHYC_TX_DELAY_MASK, MACPHYC_TX_DELAY_63_UNIT) |
-+			  FIELD_PREP(MACPHYC_RX_SEL_MASK, MACPHYC_RX_SEL_ORIGIN) |
-+			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RGMII);
-+		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_RGMII\n");
-+		break;
-+
-+	default:
-+		dev_err(mac->dev, "unsupported interface %d", plat_dat->interface);
-+		return -EINVAL;
-+	}
-+
-+	/* Update MAC PHY control register */
-+	return regmap_update_bits(mac->regmap, 0, mac->soc_info->mask, val);
-+}
-+
-+static int ingenic_mac_probe(struct platform_device *pdev)
-+{
-+	struct plat_stmmacenet_data *plat_dat;
-+	struct stmmac_resources stmmac_res;
-+	struct ingenic_mac *mac;
-+	const struct ingenic_soc_info *data;
-+	int ret;
-+
-+	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-+	if (ret)
-+		return ret;
-+
-+	plat_dat = stmmac_probe_config_dt(pdev, stmmac_res.mac);
-+	if (IS_ERR(plat_dat))
-+		return PTR_ERR(plat_dat);
-+
-+	mac = devm_kzalloc(&pdev->dev, sizeof(*mac), GFP_KERNEL);
-+	if (!mac) {
-+		ret = -ENOMEM;
-+		goto err_remove_config_dt;
-+	}
-+
-+	data = of_device_get_match_data(&pdev->dev);
-+	if (!data) {
-+		dev_err(&pdev->dev, "no of match data provided\n");
-+		ret = -EINVAL;
-+		goto err_remove_config_dt;
-+	}
-+
-+	/* Get MAC PHY control register */
-+	mac->regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node, "mode-reg");
-+	if (IS_ERR(mac->regmap)) {
-+		pr_err("%s: failed to get syscon regmap\n", __func__);
-+		goto err_remove_config_dt;
-+	}
-+
-+	mac->soc_info = data;
-+	mac->dev = &pdev->dev;
-+
-+	plat_dat->bsp_priv = mac;
-+
-+	ret = ingenic_mac_init(plat_dat);
-+	if (ret)
-+		goto err_remove_config_dt;
-+
-+	ret = stmmac_dvr_probe(&pdev->dev, plat_dat, &stmmac_res);
-+	if (ret)
-+		goto err_remove_config_dt;
-+
-+	return 0;
-+
-+err_remove_config_dt:
-+	stmmac_remove_config_dt(pdev, plat_dat);
-+
-+	return ret;
-+}
-+
-+#ifdef CONFIG_PM_SLEEP
-+static int ingenic_mac_suspend(struct device *dev)
-+{
-+	struct net_device *ndev = dev_get_drvdata(dev);
-+	struct stmmac_priv *priv = netdev_priv(ndev);
-+	struct ingenic_mac *mac = priv->plat->bsp_priv;
-+
-+	int ret;
-+
-+	ret = stmmac_suspend(dev);
-+
-+	if (mac->soc_info->suspend)
-+		ret = mac->soc_info->suspend(mac);
-+
-+	return ret;
-+}
-+
-+static int ingenic_mac_resume(struct device *dev)
-+{
-+	struct net_device *ndev = dev_get_drvdata(dev);
-+	struct stmmac_priv *priv = netdev_priv(ndev);
-+	struct ingenic_mac *mac = priv->plat->bsp_priv;
-+	int ret;
-+
-+	if (mac->soc_info->resume)
-+		mac->soc_info->resume(mac);
-+
-+	ret = ingenic_mac_init(priv->plat);
-+	if (ret)
-+		return ret;
-+
-+	ret = stmmac_resume(dev);
-+
-+	return ret;
-+}
-+#endif /* CONFIG_PM_SLEEP */
-+
-+static SIMPLE_DEV_PM_OPS(ingenic_mac_pm_ops,
-+	ingenic_mac_suspend, ingenic_mac_resume);
-+
-+static struct ingenic_soc_info jz4775_soc_info = {
-+	.version = ID_JZ4775,
-+	.mask = MACPHYC_TXCLK_SEL_MASK | MACPHYC_SOFT_RST_MASK | MACPHYC_PHY_INFT_MASK,
-+
-+	.set_mode = jz4775_mac_set_mode,
-+};
-+
-+static struct ingenic_soc_info x1000_soc_info = {
-+	.version = ID_X1000,
-+	.mask = MACPHYC_SOFT_RST_MASK,
-+
-+	.set_mode = x1000_mac_set_mode,
-+};
-+
-+static struct ingenic_soc_info x1600_soc_info = {
-+	.version = ID_X1600,
-+	.mask = MACPHYC_SOFT_RST_MASK | MACPHYC_PHY_INFT_MASK,
-+
-+	.set_mode = x1600_mac_set_mode,
-+};
-+
-+static struct ingenic_soc_info x1830_soc_info = {
-+	.version = ID_X1830,
-+	.mask = MACPHYC_MODE_SEL_MASK | MACPHYC_SOFT_RST_MASK | MACPHYC_PHY_INFT_MASK,
-+
-+	.set_mode = x1830_mac_set_mode,
-+};
-+
-+static struct ingenic_soc_info x2000_soc_info = {
-+	.version = ID_X2000,
-+	.mask = MACPHYC_TX_SEL_MASK | MACPHYC_TX_DELAY_MASK | MACPHYC_RX_SEL_MASK |
-+			MACPHYC_RX_DELAY_MASK | MACPHYC_SOFT_RST_MASK | MACPHYC_PHY_INFT_MASK,
-+
-+	.set_mode = x2000_mac_set_mode,
-+};
-+
-+static const struct of_device_id ingenic_mac_of_matches[] = {
-+	{ .compatible = "ingenic,jz4775-mac", .data = &jz4775_soc_info },
-+	{ .compatible = "ingenic,x1000-mac", .data = &x1000_soc_info },
-+	{ .compatible = "ingenic,x1600-mac", .data = &x1600_soc_info },
-+	{ .compatible = "ingenic,x1830-mac", .data = &x1830_soc_info },
-+	{ .compatible = "ingenic,x2000-mac", .data = &x2000_soc_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ingenic_mac_of_matches);
-+
-+static struct platform_driver ingenic_mac_driver = {
-+	.probe		= ingenic_mac_probe,
-+	.remove		= stmmac_pltfr_remove,
-+	.driver		= {
-+		.name	= "ingenic-mac",
-+		.pm		= &ingenic_mac_pm_ops,
-+		.of_match_table = ingenic_mac_of_matches,
-+	},
-+};
-+module_platform_driver(ingenic_mac_driver);
-+
-+MODULE_AUTHOR("周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>");
-+MODULE_DESCRIPTION("Ingenic SoCs DWMAC specific glue layer");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
+> >
+> > Add basic support for J721E-EAIK.
+> >
+> > Signed-off-by: Amarnath MB <amarnath.mb@ti.com>
+> > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/Makefile          |   2 +
+> >  arch/arm64/boot/dts/ti/k3-j721e-eaik.dts | 342 +++++++++++++++++++++++
+> >  2 files changed, 344 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-eaik.dts
+> >
+> > diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/M=
+akefile
+> > index d56c742f5a10..00eb2077616e 100644
+> > --- a/arch/arm64/boot/dts/ti/Makefile
+> > +++ b/arch/arm64/boot/dts/ti/Makefile
+> > @@ -12,6 +12,8 @@ dtb-$(CONFIG_ARCH_K3) +=3D k3-am6548-iot2050-advanced=
+.dtb
+> >
+> >  dtb-$(CONFIG_ARCH_K3) +=3D k3-j721e-common-proc-board.dtb
+> >
+> > +dtb-$(CONFIG_ARCH_K3) +=3D k3-j721e-eaik.dtb
+>
+> Keep the above two together:
+> dtb-$(CONFIG_ARCH_K3) +=3D k3-j721e-common-proc-board.dtb
+> dtb-$(CONFIG_ARCH_K3) +=3D k3-j721e-eaik.dtb
+>
+>
+> > +
+> >  dtb-$(CONFIG_ARCH_K3) +=3D k3-j7200-common-proc-board.dtb
+> >
+> >  dtb-$(CONFIG_ARCH_K3) +=3D k3-am642-evm.dtb
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-eaik.dts b/arch/arm64/boot=
+/dts/ti/k3-j721e-eaik.dts
+> > new file mode 100644
+> > index 000000000000..decb16274333
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-eaik.dts
+> > @@ -0,0 +1,342 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.=
+com/
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "k3-j721e.dtsi"
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/net/ti-dp83867.h>
+> > +
+> > +/ {
+> > +     compatible =3D "ti,j721e-eaik", "ti,j721e";
+> > +     model =3D "Texas Instruments J721E EAIK";
+> > +
+> > +     chosen {
+> > +             stdout-path =3D "serial2:115200n8";
+> > +             bootargs =3D "console=3DttyS2,115200n8 earlycon=3Dns16550=
+a,mmio32,0x02800000";
+> > +     };
+> > +
+> > +     memory@80000000 {
+> > +             device_type =3D "memory";
+> > +             /* 4G RAM */
+> > +             reg =3D <0x00000000 0x80000000 0x00000000 0x80000000>,
+> > +                   <0x00000008 0x80000000 0x00000000 0x80000000>;
+> > +     };
+> > +
+> > +     reserved_memory: reserved-memory {
+> > +             #address-cells =3D <2>;
+> > +             #size-cells =3D <2>;
+> > +             ranges;
+> > +
+> > +             secure_ddr: optee@9e800000 {
+> > +                     reg =3D <0x00 0x9e800000 0x00 0x01800000>;
+> > +                     alignment =3D <0x1000>;
+> > +                     no-map;
+> > +             };
+> > +     };
+> > +
+> > +     vusb_main: fixedregulator-vusb-main5v0 {
+> > +             /* USB MAIN INPUT 5V DC */
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vusb-main5v0";
+> > +             regulator-min-microvolt =3D <5000000>;
+> > +             regulator-max-microvolt =3D <5000000>;
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     vsys_3v3: fixedregulator-vsys3v3 {
+> > +             /* Output of LM5141 */
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vsys_3v3";
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +             vin-supply =3D <&vusb_main>;
+> > +             regulator-always-on;
+> > +             regulator-boot-on;
+> > +     };
+> > +
+> > +     vdd_mmc1: fixedregulator-sd {
+> > +             compatible =3D "regulator-fixed";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&vdd_mmc1_en_pins_default>;
+> > +             regulator-name =3D "vdd_mmc1";
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +             regulator-boot-on;
+> > +             enable-active-high;
+> > +             vin-supply =3D <&vsys_3v3>;
+> > +             gpio =3D <&wkup_gpio0 8 GPIO_ACTIVE_HIGH>;
+> > +     };
+> > +
+> > +     vdd_sd_dv_alt: gpio-regulator-tps659411 {
+> > +             compatible =3D "regulator-gpio";
+> > +             pinctrl-names =3D "default";
+> > +             pinctrl-0 =3D <&vdd_sd_dv_alt_pins_default>;
+> > +             regulator-name =3D "tps659411";
+> > +             regulator-min-microvolt =3D <1800000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +             regulator-boot-on;
+> > +             vin-supply =3D <&vsys_3v3>;
+> > +             gpios =3D <&wkup_gpio0 9 GPIO_ACTIVE_HIGH>;
+> > +             states =3D <1800000 0x0>,
+> > +                      <3300000 0x1>;
+> > +     };
+> > +};
+> > +
+> > +&main_pmx0 {
+> > +     main_mmc1_pins_default: main-mmc1-pins-default {
+> > +             pinctrl-single,pins =3D <
+> > +                     J721E_IOPAD(0x254, PIN_INPUT, 0) /* (R29) MMC1_CM=
+D */
+> > +                     J721E_IOPAD(0x250, PIN_INPUT, 0) /* (P25) MMC1_CL=
+K */
+> > +                     J721E_IOPAD(0x2ac, PIN_INPUT, 0) /* (P25) MMC1_CL=
+KLB */
+> > +                     J721E_IOPAD(0x24c, PIN_INPUT, 0) /* (R24) MMC1_DA=
+T0 */
+> > +                     J721E_IOPAD(0x248, PIN_INPUT, 0) /* (P24) MMC1_DA=
+T1 */
+> > +                     J721E_IOPAD(0x244, PIN_INPUT, 0) /* (R25) MMC1_DA=
+T2 */
+> > +                     J721E_IOPAD(0x240, PIN_INPUT, 0) /* (R26) MMC1_DA=
+T3 */
+> > +                     J721E_IOPAD(0x258, PIN_INPUT, 0) /* (P23) MMC1_SD=
+CD */
+> > +             >;
+> > +     };
+> > +
+> > +     main_uart0_pins_default: main-uart0-pins-default {
+> > +             pinctrl-single,pins =3D <
+> > +                     J721E_IOPAD(0x1f0, PIN_INPUT, 0) /* (AC2) UART0_C=
+TSn */
+> > +                     J721E_IOPAD(0x1f4, PIN_OUTPUT, 0) /* (AB1) UART0_=
+RTSn */
+> > +                     J721E_IOPAD(0x1e8, PIN_INPUT, 0) /* (AB2) UART0_R=
+XD */
+> > +                     J721E_IOPAD(0x1ec, PIN_OUTPUT, 0) /* (AB3) UART0_=
+TXD */
+> > +             >;
+> > +     };
+> > +
+> > +     main_i2c0_pins_default: main-i2c0-pins-default {
+> > +             pinctrl-single,pins =3D <
+> > +                     J721E_IOPAD(0x220, PIN_INPUT_PULLUP, 0) /* (AC5) =
+I2C0_SCL */
+> > +                     J721E_IOPAD(0x224, PIN_INPUT_PULLUP, 0) /* (AA5) =
+I2C0_SDA */
+> > +             >;
+> > +     };
+> > +
+> > +     main_i2c1_pins_default: main-i2c1-pins-default {
+> > +             pinctrl-single,pins =3D <
+> > +                     J721E_IOPAD(0x228, PIN_INPUT_PULLUP, 0) /* (Y6) I=
+2C1_SCL */
+> > +                     J721E_IOPAD(0x22c, PIN_INPUT_PULLUP, 0) /* (AA6) =
+I2C1_SDA */
+> > +             >;
+> > +     };
+> > +
+> > +     main_i2c3_pins_default: main-i2c3-pins-default {
+> > +             pinctrl-single,pins =3D <
+> > +                     J721E_IOPAD(0x270, PIN_INPUT_PULLUP, 4) /* (T26) =
+MMC2_CLK.I2C3_SCL */
+> > +                     J721E_IOPAD(0x274, PIN_INPUT_PULLUP, 4) /* (T25) =
+MMC2_CMD.I2C3_SDA */
+> > +             >;
+> > +     };
+> > +};
+> > +
+> > +&wkup_pmx0 {
+> > +     mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
+> > +             pinctrl-single,pins =3D <
+> > +                     J721E_WKUP_IOPAD(0x0, PIN_OUTPUT, 0) /* (E20) MCU=
+_OSPI0_CLK */
+> > +                     J721E_WKUP_IOPAD(0x2c, PIN_OUTPUT, 0) /* (F19) MC=
+U_OSPI0_CSn0 */
+> > +                     J721E_WKUP_IOPAD(0xc, PIN_INPUT, 0) /* (D20) MCU_=
+OSPI0_D0 */
+> > +                     J721E_WKUP_IOPAD(0x10, PIN_INPUT, 0) /* (G19) MCU=
+_OSPI0_D1 */
+> > +                     J721E_WKUP_IOPAD(0x14, PIN_INPUT, 0) /* (G20) MCU=
+_OSPI0_D2 */
+> > +                     J721E_WKUP_IOPAD(0x18, PIN_INPUT, 0) /* (F20) MCU=
+_OSPI0_D3 */
+> > +                     J721E_WKUP_IOPAD(0x1c, PIN_INPUT, 0) /* (F21) MCU=
+_OSPI0_D4 */
+> > +                     J721E_WKUP_IOPAD(0x20, PIN_INPUT, 0) /* (E21) MCU=
+_OSPI0_D5 */
+> > +                     J721E_WKUP_IOPAD(0x24, PIN_INPUT, 0) /* (B22) MCU=
+_OSPI0_D6 */
+> > +                     J721E_WKUP_IOPAD(0x28, PIN_INPUT, 0) /* (G21) MCU=
+_OSPI0_D7 */
+> > +                     J721E_WKUP_IOPAD(0x8, PIN_INPUT, 0) /* (D21) MCU_=
+OSPI0_DQS */
+> > +             >;
+> > +     };
+> > +
+> > +     vdd_mmc1_en_pins_default: vdd-mmc1-en-pins-default {
+> > +             pinctrl-single,pins =3D <
+> > +                     J721E_WKUP_IOPAD(0xd0, PIN_OUTPUT, 7) /* (G27) WK=
+UP_GPIO0_8 */
+> > +             >;
+> > +     };
+> > +
+> > +     vdd_sd_dv_alt_pins_default: vdd-sd-dv-alt-pins-default {
+> > +             pinctrl-single,pins =3D <
+> > +                     J721E_WKUP_IOPAD(0xd4, PIN_OUTPUT, 7) /* (G26) WK=
+UP_GPIO0_9 */
+> > +             >;
+> > +     };
+> > +
+> > +     wkup_i2c0_pins_default: wkup-i2c0-pins-default {
+> > +             pinctrl-single,pins =3D <
+> > +                     J721E_WKUP_IOPAD(0xf8, PIN_INPUT_PULLUP, 0) /* (J=
+25) WKUP_I2C0_SCL */
+> > +                     J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H=
+24) WKUP_I2C0_SDA */
+> > +             >;
+> > +     };
+> > +};
+> > +
+> > +&wkup_uart0 {
+> > +     /* Wakeup UART is used by System firmware */
+> > +     status =3D "reserved";
+> > +};
+> > +
+> > +&main_uart0 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&main_uart0_pins_default>;
+> > +     /* Shared with ATF on this platform */
+> > +     power-domains =3D <&k3_pds 146 TI_SCI_PD_SHARED>;
+> > +};
+> > +
+> > +&main_uart2 {
+> > +     /* Brought out on RPi header */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_uart3 {
+> > +     /* UART not brought out */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_uart5 {
+> > +     /* UART not brought out */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_uart6 {
+> > +     /* UART not brought out */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_uart7 {
+> > +     /* UART not brought out */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_uart8 {
+> > +     /* UART not brought out */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_uart9 {
+> > +     /* Brought out on M.2 E Key */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_sdhci0 {
+> > +     /* Unused */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_sdhci1 {
+> > +     /* SD Card */
+> > +     vmmc-supply =3D <&vdd_mmc1>;
+> > +     vqmmc-supply =3D <&vdd_sd_dv_alt>;
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&main_mmc1_pins_default>;
+> > +     ti,driver-strength-ohm =3D <50>;
+> > +     disable-wp;
+> > +};
+> > +
+> > +&main_sdhci2 {
+> > +     /* Unused */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&ospi0 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&mcu_fss0_ospi0_pins_default>;
+> > +
+> > +     flash@0{
+>
+>         flash@0<space>{
+>
+> > +             compatible =3D "jedec,spi-nor";
+> > +             reg =3D <0x0>;
+> > +             spi-tx-bus-width =3D <8>;
+> > +             spi-rx-bus-width =3D <8>;
+> > +             spi-max-frequency =3D <25000000>;
+> > +             cdns,tshsl-ns =3D <60>;
+> > +             cdns,tsd2d-ns =3D <60>;
+> > +             cdns,tchsh-ns =3D <60>;
+> > +             cdns,tslch-ns =3D <60>;
+> > +             cdns,read-delay =3D <4>;
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <1>;
+> > +             partition@3fc0000 {
+> > +                     label =3D "ospi.phypattern";
+> > +                     reg =3D <0x3fc0000 0x40000>;
+> > +                     u-boot,dm-spl;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&ospi1 {
+> > +     /* Unused */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_i2c0 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&main_i2c0_pins_default>;
+> > +     clock-frequency =3D <400000>;
+> > +
+> > +     i2c-switch@71 {
+> > +             compatible =3D "nxp,pca9543";
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +             reg =3D <0x71>;
+> > +
+> > +             /* PCIe1 M.2 M Key I2C */
+> > +             pcie1_m2_i2c: i2c@0 {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +                     reg =3D <0>;
+> > +             };
+> > +
+> > +             /* PCIe0 M.2 E Key I2C */
+> > +             pcie0_m2_i2c: i2c@1 {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +                     reg =3D <1>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&main_i2c1 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&main_i2c1_pins_default>;
+> > +     clock-frequency =3D <400000>;
+> > +};
+> > +
+> > +&main_i2c3 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&main_i2c3_pins_default>;
+> > +     clock-frequency =3D <400000>;
+> > +
+> > +     i2c-switch@70 {
+> > +             compatible =3D "nxp,pca9543";
+> > +             #address-cells =3D <1>;
+> > +             #size-cells =3D <0>;
+> > +             reg =3D <0x70>;
+> > +
+> > +             /* CAM0 I2C */
+> > +             ti_cam0_i2c: i2c@0 {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +                     reg =3D <0>;
+> > +             };
+> > +
+> > +             /* CAM1 I2C */
+> > +             rpi_cam0_i2c: i2c@1 {
+> > +                     #address-cells =3D <1>;
+> > +                     #size-cells =3D <0>;
+> > +                     reg =3D <1>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&main_i2c4 {
+> > +     /* Unused */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_i2c5 {
+> > +     /* Brought out on RPi Header */
+> > +     status =3D "disabled";
+> > +};
+> > +
+> > +&main_i2c6 {
+> > +     /* Unused */
+> > +     status =3D "disabled";
+> > +};
+>
+> please also check other nodes that needs to be disabled or configured.
 
+The intention of the patch is to keep only the initial support for the
+EAIK board. Subsequent patches will be posted as the testing
+completes.
+
+Regards
+Sinthu Raja
