@@ -2,517 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67D2F39D386
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 05:39:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1E4839D44A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 07:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230237AbhFGDlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Jun 2021 23:41:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50676 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230225AbhFGDlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Jun 2021 23:41:20 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C44C061766
-        for <devicetree@vger.kernel.org>; Sun,  6 Jun 2021 20:39:29 -0700 (PDT)
-Received: from mail-internal.denx.de (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: noc@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 72D7B82CCA;
-        Mon,  7 Jun 2021 05:39:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1623037168;
-        bh=sPsxdd4sNWfTxYnFzyV3FO1IE4IKDOoYxqRwZQDSfzM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fRL+xDGou3674+IXSEp6kJykiK+lytqD6xHhCCaRORPnL+MokQoPOtGDKa19QQxWb
-         EHaahz17ioJNwZ0yEWruXTh3XFDYaSDDABWv80FUthYigaeJDAV/gPRnTfzz3SgLp5
-         37ww0y0JwO96lY6pjqSUZ76LWsLxWnTr1TiHJpqo+yobn1Vxw8bosYLOipFxNGQevv
-         l10EORzmM5VInQOcv5v8D8Lx65fV6nZcSCUxrAdmEkpwczwVsYzRJ2KW3A5DpltLch
-         xNMyW8VqkVUf0NnjJT33c6okd1U+O3DwHEeXV13eqwBQLTB4I9FGLQw4rbo9EnBnc0
-         aqtpIkc6zcniQ==
-Received: from pollux.denx.de (pollux [192.168.1.1])
-        by mail-internal.denx.de (Postfix) with ESMTP id D385D181B63;
-        Mon,  7 Jun 2021 05:39:12 +0200 (CEST)
-Received: by pollux.denx.de (Postfix, from userid 515)
-        id CAC931A8BB0; Mon,  7 Jun 2021 05:39:12 +0200 (CEST)
-From:   Heiko Schocher <hs@denx.de>
-To:     linux-mtd@lists.infradead.org
-Cc:     Heiko Schocher <hs@denx.de>, Fabio Estevam <festevam@denx.de>,
-        kernel test robot <lkp@intel.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 2/2] mtd: devices: add support for microchip 48l640 EERAM
-Date:   Mon,  7 Jun 2021 05:39:09 +0200
-Message-Id: <20210607033909.1424605-3-hs@denx.de>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210607033909.1424605-1-hs@denx.de>
-References: <20210607033909.1424605-1-hs@denx.de>
+        id S229993AbhFGFWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 01:22:39 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:50523 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229436AbhFGFWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 01:22:39 -0400
+X-UUID: ddb6eafa474e4f78994749b7a036ff31-20210607
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=DmcodQK5B9rdSagRlyQ6T+J2oEgd2at//Gi+EqIPmDM=;
+        b=TBxMYrJGqW3JOYq0EOhj8hZED0AvDJH+Dbzea1IKq79PHjdkJzT9k+XzWxZD2mXrKmhPRj/KAs9SZr1kMHFANNoLcg0hvivpRavTKQJGrtuohKFhFPwy8A71OwGoB64jCmlq7UmKhQ7X87D5Hy4zOXi2SOw28gFqIt3id3mVGPE=;
+X-UUID: ddb6eafa474e4f78994749b7a036ff31-20210607
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1468748950; Mon, 07 Jun 2021 13:20:45 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 7 Jun 2021 13:20:43 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 7 Jun 2021 13:20:44 +0800
+Message-ID: <66e017401ab93aa02c5d2bbf11be9589b36649ac.camel@mediatek.com>
+Subject: Re: [PATCH v9 01/22] dt-bindings: ARM: Mediatek: Add new document
+ bindings of imp i2c wrapper controller
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Date:   Mon, 7 Jun 2021 13:20:43 +0800
+In-Reply-To: <20210602171201.GA3566462@robh.at.kernel.org>
+References: <20210524122053.17155-1-chun-jie.chen@mediatek.com>
+         <20210524122053.17155-2-chun-jie.chen@mediatek.com>
+         <20210602171201.GA3566462@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
-X-Virus-Status: Clean
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Microchip 48l640 is a 8KByte EERAM connected via SPI.
-
-Signed-off-by: Heiko Schocher <hs@denx.de>
-Tested-by: Fabio Estevam <festevam@denx.de>
-Reported-by: kernel test robot <lkp@intel.com>
-
----
-I tried to use drivers/mtd/devices/mchp23k256.c but this
-driver does not use any status register and there seems
-slight differences in registers (no write enable register
-for example), so I decided to make a new driver.
-
-This driver sets the continuous mode bit in Status register,
-which states you can write continuous ... but after writting
-32 bytes the chip goes into an undefined state, so driver now
-writes data in 32 byte chunks.
-
-I also tried to use regmap, but it leads in a lot of more code,
-and as this chip has only spi interface it makes no sense, or?
-
-Tested  this driver on board imx8mp-phyboard-pollux-rdk
-board, which is already in mainline.
-
-Made some tbot tests, which write at random offset random
-length bytes with dd and and random content. Reread the data
-after a reboot and compare with the written data. Works fine.
-
-(no changes since v3)
-
-Changes in v3:
-drop dev_dbg() in mchp48l640_read() as not really needed to
-fix warning which kernel test robot found for
-config: arc-allyesconfig (attached as .config)
-compiler: arceb-elf-gcc (GCC) 9.3.0
-reproduce (this is a W=1 build):
-add Reported-by: kernel test robot <lkp@intel.com>
-add Fabio to cc
-
-Changes in v2:
-- fix build warnings
-- add Fabios Tested-by
-
- drivers/mtd/devices/Kconfig      |   6 +
- drivers/mtd/devices/Makefile     |   1 +
- drivers/mtd/devices/mchp48l640.c | 373 +++++++++++++++++++++++++++++++
- 3 files changed, 380 insertions(+)
- create mode 100644 drivers/mtd/devices/mchp48l640.c
-
-diff --git a/drivers/mtd/devices/Kconfig b/drivers/mtd/devices/Kconfig
-index 0f4c2d823de84..79cb981ececc9 100644
---- a/drivers/mtd/devices/Kconfig
-+++ b/drivers/mtd/devices/Kconfig
-@@ -89,6 +89,12 @@ config MTD_MCHP23K256
- 	  platform data, or a device tree description if you want to
- 	  specify device partitioning
- 
-+config MTD_MCHP48L640
-+	tristate "Microchip 48L640 EERAM"
-+	depends on SPI_MASTER
-+	help
-+	  This enables access to Microchip 48L640 EERAM chips, using SPI.
-+
- config MTD_SPEAR_SMI
- 	tristate "SPEAR MTD NOR Support through SMI controller"
- 	depends on PLAT_SPEAR || COMPILE_TEST
-diff --git a/drivers/mtd/devices/Makefile b/drivers/mtd/devices/Makefile
-index 991c8d12c0160..0362cf6bdc67f 100644
---- a/drivers/mtd/devices/Makefile
-+++ b/drivers/mtd/devices/Makefile
-@@ -13,6 +13,7 @@ obj-$(CONFIG_MTD_LART)		+= lart.o
- obj-$(CONFIG_MTD_BLOCK2MTD)	+= block2mtd.o
- obj-$(CONFIG_MTD_DATAFLASH)	+= mtd_dataflash.o
- obj-$(CONFIG_MTD_MCHP23K256)	+= mchp23k256.o
-+obj-$(CONFIG_MTD_MCHP48L640)	+= mchp48l640.o
- obj-$(CONFIG_MTD_SPEAR_SMI)	+= spear_smi.o
- obj-$(CONFIG_MTD_SST25L)	+= sst25l.o
- obj-$(CONFIG_MTD_BCM47XXSFLASH)	+= bcm47xxsflash.o
-diff --git a/drivers/mtd/devices/mchp48l640.c b/drivers/mtd/devices/mchp48l640.c
-new file mode 100644
-index 0000000000000..efc2003bd13a4
---- /dev/null
-+++ b/drivers/mtd/devices/mchp48l640.c
-@@ -0,0 +1,373 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for Microchip 48L640 64 Kb SPI Serial EERAM
-+ *
-+ * Copyright Heiko Schocher <hs@denx.de>
-+ *
-+ * datasheet: http://ww1.microchip.com/downloads/en/DeviceDoc/20006055B.pdf
-+ *
-+ * we set continuous mode but reading/writing more bytes than
-+ * pagesize seems to bring chip into state where readden values
-+ * are wrong ... no idea why.
-+ *
-+ */
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/jiffies.h>
-+#include <linux/module.h>
-+#include <linux/mtd/mtd.h>
-+#include <linux/mtd/partitions.h>
-+#include <linux/mutex.h>
-+#include <linux/sched.h>
-+#include <linux/sizes.h>
-+#include <linux/spi/flash.h>
-+#include <linux/spi/spi.h>
-+#include <linux/of_device.h>
-+
-+struct mchp48_caps {
-+	unsigned int size;
-+	unsigned int page_size;
-+};
-+
-+struct mchp48l640_flash {
-+	struct spi_device	*spi;
-+	struct mutex		lock;
-+	struct mtd_info		mtd;
-+	const struct mchp48_caps	*caps;
-+};
-+
-+#define MCHP48L640_CMD_WREN		0x06
-+#define MCHP48L640_CMD_WRDI		0x04
-+#define MCHP48L640_CMD_WRITE		0x02
-+#define MCHP48L640_CMD_READ		0x03
-+#define MCHP48L640_CMD_WRSR		0x01
-+#define MCHP48L640_CMD_RDSR		0x05
-+
-+#define MCHP48L640_STATUS_RDY		0x01
-+#define MCHP48L640_STATUS_WEL		0x02
-+#define MCHP48L640_STATUS_BP0		0x04
-+#define MCHP48L640_STATUS_BP1		0x08
-+#define MCHP48L640_STATUS_SWM		0x10
-+#define MCHP48L640_STATUS_PRO		0x20
-+#define MCHP48L640_STATUS_ASE		0x40
-+
-+#define MCHP48L640_TIMEOUT		100
-+
-+#define MAX_CMD_SIZE			0x10
-+
-+#define to_mchp48l640_flash(x) container_of(x, struct mchp48l640_flash, mtd)
-+
-+static int mchp48l640_mkcmd(struct mchp48l640_flash *flash, u8 cmd, loff_t addr, char *buf)
-+{
-+	buf[0] = cmd;
-+	buf[1] = addr >> 8;
-+	buf[2] = addr;
-+
-+	return 3;
-+}
-+
-+static int mchp48l640_read_status(struct mchp48l640_flash *flash, int *status)
-+{
-+	unsigned char cmd[2];
-+	int ret;
-+
-+	cmd[0] = MCHP48L640_CMD_RDSR;
-+	cmd[1] = 0x00;
-+	mutex_lock(&flash->lock);
-+	ret = spi_write_then_read(flash->spi, &cmd[0], 1, &cmd[1], 1);
-+	mutex_unlock(&flash->lock);
-+	if (!ret)
-+		*status = cmd[1];
-+	dev_dbg(&flash->spi->dev, "read status ret: %d status: %x", ret, *status);
-+
-+	return ret;
-+}
-+
-+static int mchp48l640_waitforbit(struct mchp48l640_flash *flash, int bit, bool set)
-+{
-+	int ret, status;
-+	unsigned long deadline;
-+
-+	deadline = jiffies + msecs_to_jiffies(MCHP48L640_TIMEOUT);
-+	do {
-+		ret = mchp48l640_read_status(flash, &status);
-+		dev_dbg(&flash->spi->dev, "read status ret: %d bit: %x %sset status: %x",
-+			ret, bit, (set ? "" : "not"), status);
-+		if (ret)
-+			return ret;
-+
-+		if (set) {
-+			if ((status & bit) == bit)
-+				return 0;
-+		} else {
-+			if ((status & bit) == 0)
-+				return 0;
-+		}
-+
-+		usleep_range(1000, 2000);
-+	} while (!time_after_eq(jiffies, deadline));
-+
-+	dev_err(&flash->spi->dev, "Timeout waiting for bit %x %s set in status register.",
-+		bit, (set ? "" : "not"));
-+	return -ETIMEDOUT;
-+}
-+
-+static int mchp48l640_write_prepare(struct mchp48l640_flash *flash, bool enable)
-+{
-+	unsigned char cmd[2];
-+	int ret;
-+
-+	if (enable)
-+		cmd[0] = MCHP48L640_CMD_WREN;
-+	else
-+		cmd[0] = MCHP48L640_CMD_WRDI;
-+
-+	mutex_lock(&flash->lock);
-+	ret = spi_write(flash->spi, cmd, 1);
-+	mutex_unlock(&flash->lock);
-+
-+	if (ret)
-+		dev_err(&flash->spi->dev, "write %sable failed ret: %d",
-+			(enable ? "en" : "dis"), ret);
-+
-+	dev_dbg(&flash->spi->dev, "write %sable success ret: %d",
-+		(enable ? "en" : "dis"), ret);
-+	if (enable)
-+		return mchp48l640_waitforbit(flash, MCHP48L640_STATUS_WEL, true);
-+
-+	return ret;
-+}
-+
-+static int mchp48l640_set_mode(struct mchp48l640_flash *flash)
-+{
-+	unsigned char cmd[2];
-+	int ret;
-+
-+	ret = mchp48l640_write_prepare(flash, true);
-+	if (ret)
-+		return ret;
-+
-+	cmd[0] = MCHP48L640_CMD_WRSR;
-+	cmd[1] = MCHP48L640_STATUS_PRO;
-+
-+	mutex_lock(&flash->lock);
-+	ret = spi_write(flash->spi, cmd, 2);
-+	mutex_unlock(&flash->lock);
-+	if (ret)
-+		dev_err(&flash->spi->dev, "Could not set continuous mode ret: %d", ret);
-+
-+	return mchp48l640_waitforbit(flash, MCHP48L640_STATUS_PRO, true);
-+}
-+
-+static int mchp48l640_wait_rdy(struct mchp48l640_flash *flash)
-+{
-+	return mchp48l640_waitforbit(flash, MCHP48L640_STATUS_RDY, false);
-+};
-+
-+static int mchp48l640_write_page(struct mtd_info *mtd, loff_t to, size_t len,
-+			    size_t *retlen, const unsigned char *buf)
-+{
-+	struct mchp48l640_flash *flash = to_mchp48l640_flash(mtd);
-+	unsigned char *cmd;
-+	int ret;
-+	int cmdlen;
-+
-+	cmd = kmalloc((3 + len), GFP_KERNEL | GFP_DMA);
-+	if (!cmd)
-+		return -ENOMEM;
-+
-+	ret = mchp48l640_wait_rdy(flash);
-+	if (ret)
-+		goto fail;
-+
-+	ret = mchp48l640_write_prepare(flash, true);
-+	if (ret)
-+		goto fail;
-+
-+	mutex_lock(&flash->lock);
-+	cmdlen = mchp48l640_mkcmd(flash, MCHP48L640_CMD_WRITE, to, cmd);
-+	memcpy(&cmd[cmdlen], buf, len);
-+	ret = spi_write(flash->spi, cmd, cmdlen + len);
-+	mutex_unlock(&flash->lock);
-+	if (!ret)
-+		*retlen += len;
-+	else
-+		goto fail;
-+
-+	ret = mchp48l640_waitforbit(flash, MCHP48L640_STATUS_WEL, false);
-+	if (ret)
-+		goto fail;
-+
-+	kfree(cmd);
-+	return 0;
-+fail:
-+	kfree(cmd);
-+	dev_err(&flash->spi->dev, "write fail with: %d", ret);
-+	return ret;
-+};
-+
-+static int mchp48l640_write(struct mtd_info *mtd, loff_t to, size_t len,
-+			    size_t *retlen, const unsigned char *buf)
-+{
-+	struct mchp48l640_flash *flash = to_mchp48l640_flash(mtd);
-+	int ret;
-+	size_t wlen = 0;
-+	loff_t woff = to;
-+	size_t ws;
-+	size_t page_sz = flash->caps->page_size;
-+
-+	/*
-+	 * we set PRO bit (page rollover), but writing length > page size
-+	 * does result in total chaos, so write in 32 byte chunks.
-+	 */
-+	while (wlen < len) {
-+		ws = min((len - wlen), page_sz);
-+		ret = mchp48l640_write_page(mtd, woff, ws, retlen, &buf[wlen]);
-+		if (ret)
-+			return ret;
-+		wlen += ws;
-+		woff += ws;
-+	}
-+
-+	return ret;
-+}
-+
-+static int mchp48l640_read_page(struct mtd_info *mtd, loff_t from, size_t len,
-+			   size_t *retlen, unsigned char *buf)
-+{
-+	struct mchp48l640_flash *flash = to_mchp48l640_flash(mtd);
-+	unsigned char *cmd;
-+	int ret;
-+	int cmdlen;
-+
-+	cmd = kmalloc((3 + len), GFP_KERNEL | GFP_DMA);
-+	if (!cmd)
-+		return -ENOMEM;
-+
-+	ret = mchp48l640_wait_rdy(flash);
-+	if (ret)
-+		goto fail;
-+
-+	mutex_lock(&flash->lock);
-+	cmdlen = mchp48l640_mkcmd(flash, MCHP48L640_CMD_READ, from, cmd);
-+	ret = spi_write_then_read(flash->spi, cmd, cmdlen, buf, len);
-+	mutex_unlock(&flash->lock);
-+	if (!ret)
-+		*retlen += len;
-+
-+	return ret;
-+
-+fail:
-+	kfree(cmd);
-+	dev_err(&flash->spi->dev, "read fail with: %d", ret);
-+	return ret;
-+}
-+
-+static int mchp48l640_read(struct mtd_info *mtd, loff_t from, size_t len,
-+			   size_t *retlen, unsigned char *buf)
-+{
-+	struct mchp48l640_flash *flash = to_mchp48l640_flash(mtd);
-+	int ret;
-+	size_t wlen = 0;
-+	loff_t woff = from;
-+	size_t ws;
-+	size_t page_sz = flash->caps->page_size;
-+
-+	/*
-+	 * we set PRO bit (page rollover), but if read length > page size
-+	 * does result in total chaos in result ...
-+	 */
-+	while (wlen < len) {
-+		ws = min((len - wlen), page_sz);
-+		ret = mchp48l640_read_page(mtd, woff, ws, retlen, &buf[wlen]);
-+		if (ret)
-+			return ret;
-+		wlen += ws;
-+		woff += ws;
-+	}
-+
-+	return ret;
-+};
-+
-+static const struct mchp48_caps mchp48l640_caps = {
-+	.size = SZ_8K,
-+	.page_size = 32,
-+};
-+
-+static int mchp48l640_probe(struct spi_device *spi)
-+{
-+	struct mchp48l640_flash *flash;
-+	struct flash_platform_data *data;
-+	int err;
-+	int status;
-+
-+	flash = devm_kzalloc(&spi->dev, sizeof(*flash), GFP_KERNEL);
-+	if (!flash)
-+		return -ENOMEM;
-+
-+	flash->spi = spi;
-+	mutex_init(&flash->lock);
-+	spi_set_drvdata(spi, flash);
-+
-+	err = mchp48l640_read_status(flash, &status);
-+	if (err)
-+		return err;
-+
-+	err = mchp48l640_set_mode(flash);
-+	if (err)
-+		return err;
-+
-+	data = dev_get_platdata(&spi->dev);
-+
-+	flash->caps = of_device_get_match_data(&spi->dev);
-+	if (!flash->caps)
-+		flash->caps = &mchp48l640_caps;
-+
-+	mtd_set_of_node(&flash->mtd, spi->dev.of_node);
-+	flash->mtd.dev.parent	= &spi->dev;
-+	flash->mtd.type		= MTD_RAM;
-+	flash->mtd.flags	= MTD_CAP_RAM;
-+	flash->mtd.writesize	= flash->caps->page_size;
-+	flash->mtd.size		= flash->caps->size;
-+	flash->mtd._read	= mchp48l640_read;
-+	flash->mtd._write	= mchp48l640_write;
-+
-+	err = mtd_device_register(&flash->mtd, data ? data->parts : NULL,
-+				  data ? data->nr_parts : 0);
-+	if (err)
-+		return err;
-+
-+	return 0;
-+}
-+
-+static int mchp48l640_remove(struct spi_device *spi)
-+{
-+	struct mchp48l640_flash *flash = spi_get_drvdata(spi);
-+
-+	return mtd_device_unregister(&flash->mtd);
-+}
-+
-+static const struct of_device_id mchp48l640_of_table[] = {
-+	{
-+		.compatible = "microchip,48l640",
-+		.data = &mchp48l640_caps,
-+	},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mchp48l640_of_table);
-+
-+static struct spi_driver mchp48l640_driver = {
-+	.driver = {
-+		.name	= "mchp48l640",
-+		.of_match_table = of_match_ptr(mchp48l640_of_table),
-+	},
-+	.probe		= mchp48l640_probe,
-+	.remove		= mchp48l640_remove,
-+};
-+
-+module_spi_driver(mchp48l640_driver);
-+
-+MODULE_DESCRIPTION("MTD SPI driver for Microchip 48l640 EERAM chips");
-+MODULE_AUTHOR("Heiko Schocher <hs@denx.de>");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("spi:mchp48l640");
--- 
-2.31.1
+T24gV2VkLCAyMDIxLTA2LTAyIGF0IDEyOjEyIC0wNTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gTW9uLCBNYXkgMjQsIDIwMjEgYXQgMDg6MjA6MzJQTSArMDgwMCwgQ2h1bi1KaWUgQ2hlbiB3
+cm90ZToNCj4gPiBUaGlzIHBhdGNoIGFkZHMgdGhlIG5ldyBiaW5kaW5nIGRvY3VtZW50YXRpb24g
+b2YgaW1wIGkyYyB3cmFwcGVyDQo+ID4gY29udHJvbGxlcg0KPiA+IGZvciBNZWRpYXRlayBNVDgx
+OTIuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogV2VpeWkgTHUgPHdlaXlpLmx1QG1lZGlhdGVr
+LmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBjaHVuLWppZS5jaGVuIDxjaHVuLWppZS5jaGVuQG1l
+ZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2FybS9tZWRpYXRlay9tZWRpYXRlayxpbXBf
+aWljX3dyYXAueWFtbCAgIHwgODANCj4gPiArKysrKysrKysrKysrKysrKysrDQo+ID4gIDEgZmls
+ZSBjaGFuZ2VkLCA4MCBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+
+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vbWVkaWF0ZWsvbWVkaWF0ZWss
+aW1wX2lpY193cmENCj4gPiBwLnlhbWwNCj4gPiANCj4gPiBkaWZmIC0tZ2l0DQo+ID4gYS9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL21lZGlhdGVrL21lZGlhdGVrLGltcF9p
+aWNfdw0KPiA+IHJhcC55YW1sDQo+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGlu
+Z3MvYXJtL21lZGlhdGVrL21lZGlhdGVrLGltcF9paWNfdw0KPiA+IHJhcC55YW1sDQo+ID4gbmV3
+IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLmZiNmNiOWU2MGVlMg0K
+PiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysNCj4gPiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
+ZS9iaW5kaW5ncy9hcm0vbWVkaWF0ZWsvbWVkaWF0ZWssaW1wX2lpY193DQo+ID4gcmFwLnlhbWwN
+Cj4gPiBAQCAtMCwwICsxLDgwIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChH
+UEwtMi4wIE9SIEJTRC0yLUNsYXVzZSkNCj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICsk
+aWQ6IA0KPiA+IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL2FybS9tZWRpYXRlay9tZWRp
+YXRlayxpbXBfaWljX3dyYXAueWFtbCMNCj4gPiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUu
+b3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0KPiA+ICt0aXRsZTogTWVkaWFUZWsg
+SU1QIEkyQyBXcmFwcGVyIENvbnRyb2xsZXINCj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+
+ICsgIC0gQ2h1bi1KaWUgQ2hlbiA8Y2h1bi1qaWUuY2hlbkBtZWRpYXRlay5jb20+DQo+ID4gKw0K
+PiA+ICtkZXNjcmlwdGlvbjoNCj4gPiArICBUaGUgTWVkaWF0ZWsgaW1wIGkyYyB3cmFwcGVyIGNv
+bnRyb2xsZXIgcHJvdmlkZXMgZnVuY3Rpb25hbA0KPiA+IGNvbmZpZ3VyYXRpb25zIGFuZCBjbG9j
+a3MgdG8gdGhlIHN5c3RlbS4NCj4gPiArDQo+ID4gK3Byb3BlcnRpZXM6DQo+ID4gKyAgY29tcGF0
+aWJsZToNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGVudW06DQo+ID4gKyAgICAgICAg
+ICAtIG1lZGlhdGVrLG10ODE5Mi1pbXBfaWljX3dyYXBfYw0KPiA+ICsgICAgICAgICAgLSBtZWRp
+YXRlayxtdDgxOTItaW1wX2lpY193cmFwX2UNCj4gPiArICAgICAgICAgIC0gbWVkaWF0ZWssbXQ4
+MTkyLWltcF9paWNfd3JhcF9zDQo+ID4gKyAgICAgICAgICAtIG1lZGlhdGVrLG10ODE5Mi1pbXBf
+aWljX3dyYXBfd3MNCj4gPiArICAgICAgICAgIC0gbWVkaWF0ZWssbXQ4MTkyLWltcF9paWNfd3Jh
+cF93DQo+ID4gKyAgICAgICAgICAtIG1lZGlhdGVrLG10ODE5Mi1pbXBfaWljX3dyYXBfbg0KPiAN
+Cj4gTG9va3MgdG8gbWUgbGlrZSB0aGVzZSBhcmUgYWxsIHRoZSBzYW1lIGgvdywgYnV0IGp1c3Qg
+aGF2ZSBkaWZmZXJpbmcgDQo+IHNldHMgb2YgY2xvY2tzLiBUaGF0J3Mgbm90IHJlYWxseSBhIHJl
+YXNvbiB0byBoYXZlIGRpZmZlcmVudCANCj4gY29tcGF0aWJsZXMuIA0KPiANCj4gSWYgeW91IG5l
+ZWQgdG8ga25vdyB3aGF0IGNsb2NrcyBhcmUgcHJlc2VudCwgeW91IGNhbiB3YWxrIHRoZSBEVCBm
+b3IgDQo+IGFsbCAnY2xvY2tzJyBwcm9wZXJ0aWVzIG1hdGNoaW5nIHRoaXMgY2xvY2sgY29udHJv
+bGxlciBpbnN0YW5jZS4gT3INCj4gdXNlIA0KPiAnY2xvY2staW5kaWNlcycgdG8gZGVmaW5lIHdo
+aWNoIG9uZXMgYXJlIHByZXNlbnQuDQo+IA0KPiBSb2INCg0KU29tZSBtb2R1bGUgaXMgZGl2aWRl
+ZCB0byBzdWItbW9kdWxlcyB3aGljaCBhcmUgZGVzaWduZWQgaW4gZGlmZmVyZW50DQpoL3cgYmxv
+Y2tzIGZvciBkaWZmZXJlbnQgdXNhZ2UsIGFuZCBpZiB3ZSB3YW50IHRvIHVzZSB0aGUgc2FtZQ0K
+Y29tcGF0aWJsZSB0byBwcmVzZW50IHRoZXNlIGgvdyBibG9ja3MsIHdlIG5lZWQgdG8gbW92ZSB0
+aGUgY2xvY2sgZGF0YQ0KcHJvdmlkZWQgYnkgdGhlc2UgaC93IGJsb2NrcyB0byBkdHMsIGJ1dCB3
+ZSB1c3VhbGx5IHVzZSBkaWZmZXJlbnQNCmNvbXBhdGlibGUgdG8gZ2V0IHRoZSBoL3cgYmxvY2tz
+IGRhdGEgaW4NCk1lZGlhdGVrJ3MgY2xvY2sgZHJpdmVyLCBzbyBkbyB5b3Ugc3VnZ2VzdCB0byBy
+ZWdpc3RlciBjbG9jayBwcm92aWRlZA0KYnkgZGlmZmVyZW50IGgvdyBibG9ja3MgdXNpbmcgc2Ft
+ZSBjb21wYXRpYmxlPw0KDQpCZXN0IFJlZ2FyZHMsDQpDaHVuLUppZQ0K
 
