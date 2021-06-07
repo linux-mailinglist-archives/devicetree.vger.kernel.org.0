@@ -2,122 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 847B339DC6F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 14:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C338939DC89
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 14:34:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230220AbhFGMdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 08:33:52 -0400
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:37877 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230145AbhFGMdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 08:33:51 -0400
-Received: by mail-oi1-f179.google.com with SMTP id h9so17852846oih.4
-        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 05:32:00 -0700 (PDT)
+        id S230329AbhFGMgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 08:36:21 -0400
+Received: from mail-ej1-f41.google.com ([209.85.218.41]:43865 "EHLO
+        mail-ej1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230288AbhFGMgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 08:36:16 -0400
+Received: by mail-ej1-f41.google.com with SMTP id ci15so26345434ejc.10
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 05:34:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Tvr2LpJO+zoZVn/wehOpfwJd2m7kH19dGowal30QNMo=;
-        b=aH7lHOFR5B7dsCa2m5tbQCoN750DuUFWr0HiN5vZAs6LAs+CGFdJpeEVFHtXY0kvoU
-         jrIBJ8bF0F4lN3VniDDO/EdA3I7SbMGk0BzQnunqQSI9dNlewZtGbkgt9ClHH5oR4h5E
-         Gjz2gUjjV+hDNF+tW0h7hRI+XSXv8XVKpZvgQO7VFo9uk4nvKKAL9bDRDG3G0lc++FyG
-         SG5s88en7owxCA5IjiLYZy5zQZroX82O9IVLHv1pHQPnS3TGR8X7mxEIKCVFWESbkgWl
-         52CoisHehVZ2VJcHrwk0XQse6tNIXeW7iKgCoQuLyfKTb9Ew86ZbFhzSdESJnT60zhuw
-         e45w==
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=s1McyNikPeBkyMCxJJKhjGXbmzHmFRGVfiDXNrONCTw=;
+        b=Tlmrp/Lx1rETQeuEkLjcveKpE8NsDZh8QzPT4p3h4hUhxqjaccqSnzx+/PHSH5esO5
+         XINlc86HFGLDMTtYWAJARJYsvJ7T9lfbWKIOHIvKhyysmPSymmI1cBqMbj56XfWB+VDe
+         mtI2oq30yKsRxr7Cm134ccAzHlKvAA4RKezpbId4VLWTG4dMr+NRJ/Tdw7yheXYtOJAd
+         BHop/MGWI454lK9IeTas5NM/skSNcRIyyV8FL2YH8+TAKgJCpDmf+GvkCmHlhIZn3ylp
+         LdAmtMvQbDV+qTT1TTvc/KuGCa3qCpvtfQmY6jQqugLPOUjAHj9PIcemDforVBeLbzI5
+         dRmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Tvr2LpJO+zoZVn/wehOpfwJd2m7kH19dGowal30QNMo=;
-        b=AEbBKAZvTd55OurHnCSCi4LxgIKy0PIKTzCiCl6KZPDU29SaI/FM0G1R1NuxgS1yA5
-         xkPvNs9UoSgpK++QHwlxq7rphBexAH6cBvh/6m0DcwDnWq6Z8QSrPRWj6r2yGWpy19mk
-         q/sFKK1C0gx1LOBu0EGfZJakd97C6IpbR2mwottGRLtfRTQb6mtHXMU5Qe0XdYfyp30g
-         STb+jr8Ofl7NPGa4vLjj0/m7xQnbhYxkpzlYyUB2upMczeSKn9iO/0g9h41m9jASmwrL
-         glTTTBx/jNd60jIBOB1GG4QK6hSwC3CGKHDKoMUKot7B/3+tp01WGfKyNHWYPXB503s8
-         nN1A==
-X-Gm-Message-State: AOAM530t+6Aj0vYbgx6srp7/QNzT/GOZzx/vhaHcG6Mt6lNEEStMlVQs
-        1gtBJ76QfActavRtvq7cXR4877gRxmLBe8HOOBJ2nQ==
-X-Google-Smtp-Source: ABdhPJxujfBEdFxkSmhJaaZBeJGlg2pawxqj0/1hGlU+4+i8J0LQb3IRXrgR10on+BxmXf/59rZHa0pvqkZakHHmsmo=
-X-Received: by 2002:a54:438e:: with SMTP id u14mr17939700oiv.126.1623069060601;
- Mon, 07 Jun 2021 05:31:00 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=s1McyNikPeBkyMCxJJKhjGXbmzHmFRGVfiDXNrONCTw=;
+        b=RJW3WJ3ik0e0it+uHbpj7HsChdcnEOAIfgPd1xVykMN0os0wy2ODytRgRXP0MkAOrz
+         sBwbwtIMXXwtwFOeTmU2oi9XV2Kx39YmKuJAYHCYuehARWBuUQMHUeVCAW7/z5ChYmUZ
+         anvKa+y6BiR+oddv0nurTFgScsCsaRHz3mVCFWkvau520zfiKRRU2/SVZYIkoHsnXFGr
+         5GfvA+Z6eP6rFckTqq6qfvY9uar3vMfLkpIQCJVdv6/ysV16SKMzgF6ZEaHpMep9E8YW
+         9wH+WNoRVICf4q0lHRZp8KdqXIjfobRnmWfej3MvpbvtBcvmEXM+SXgEMS2eae9yy6Li
+         8rGA==
+X-Gm-Message-State: AOAM530OUd272BVGPDagVV1tlTj9qxoxS/1hi1dhctlKA3hHExKeKQdz
+        4rL3Q72TGzgVmMlGsEQeJj9Ynw==
+X-Google-Smtp-Source: ABdhPJyx9+fVGPQO13neftlKAK7lNRGKMnjjOGyvp7SqnC0fIqlkQaJhv43Ypu8J0r8Ze57YVS7hVA==
+X-Received: by 2002:a17:906:3485:: with SMTP id g5mr17369204ejb.174.1623069204108;
+        Mon, 07 Jun 2021 05:33:24 -0700 (PDT)
+Received: from localhost.localdomain (dh207-96-76.xnet.hr. [88.207.96.76])
+        by smtp.googlemail.com with ESMTPSA id f18sm6471000ejz.119.2021.06.07.05.33.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Jun 2021 05:33:23 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        robh+dt@kernel.org, lee.jones@linaro.org, p.zabel@pengutronix.de,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     luka.perkov@sartura.hr, jmp@epiphyte.org, pmenzel@molgen.mpg.de,
+        buczek@molgen.mpg.de, Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH v6 1/6] mfd: simple-mfd-i2c: Add Delta TN48M CPLD support
+Date:   Mon,  7 Jun 2021 14:33:12 +0200
+Message-Id: <20210607123317.3242031-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
- <20210607113840.15435-5-bhupesh.sharma@linaro.org> <CAHp75Vd7z6ivOxHikqP5j+yPtV7C8GBogwVUAziLznSatH+8EA@mail.gmail.com>
-In-Reply-To: <CAHp75Vd7z6ivOxHikqP5j+yPtV7C8GBogwVUAziLznSatH+8EA@mail.gmail.com>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 7 Jun 2021 18:00:48 +0530
-Message-ID: <CAH=2NtxtzRhOzekHxn+V4DSYmwncX1wSRbKOe=PNkcTsQ3jqiQ@mail.gmail.com>
-Subject: Re: [PATCH 4/8] regulator: qcom-rpmh: Add new regulator types found
- on SA8155p adp board
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        bhupesh.linux@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Jun 2021 at 17:39, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
->
-> On Mon, Jun 7, 2021 at 2:41 PM Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
-> >
-> > SA8155p-adp board has two new regulator types - pmm8155au_1 and
-> > pmm8155au_2.
-> >
-> > The output power management circuits in these regulators include:
-> > - FTS510 smps,
-> > - HFS510 smps, and
-> > - LDO510 linear regulators
->
-> ...
->
-> > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > Cc: Liam Girdwood <lgirdwood@gmail.com>
-> > Cc: Mark Brown <broonie@kernel.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Vinod Koul <vkoul@kernel.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Andy Gross <agross@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: linux-gpio@vger.kernel.org
-> > Cc: bhupesh.linux@gmail.com
->
-> Use --cc or similar option when run `git send-email`, no need to
-> pollute the commit message with these.
+Delta TN48M switches have a Lattice CPLD that serves
+multiple purposes including being a GPIO expander.
 
-It's just a matter of preference IMO. I prefer to use a Cc list
-here.
+So, lets use the simple I2C MFD driver to provide the MFD core.
 
-> > +static const struct rpmh_vreg_init_data pmm8155au_1_vreg_data[] = {
->
->
-> > +       {},
->
-> Comma is not needed in the terminator line.
+Also add a virtual symbol which pulls in the simple-mfd-i2c driver and
+provide a common symbol on which the subdevice drivers can depend on.
 
-Hmm.. it's similar to the syntax already used at several places in this file.
-See ' struct rpmh_vreg_init_data pm8150l_vreg_data[] ' for example.
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+---
+Changes in v2:
+* Drop the custom MFD driver and header
+* Use simple I2C MFD driver
 
-Unless there is an obvious issue with it, let's use the same to keep
-things similar from a syntax p-o-v.
+ drivers/mfd/Kconfig          | 10 ++++++++++
+ drivers/mfd/simple-mfd-i2c.c |  1 +
+ 2 files changed, 11 insertions(+)
 
-Thanks,
-Bhupesh
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index b74efa469e90..733c2f9adb15 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -297,6 +297,16 @@ config MFD_ASIC3
+ 	  This driver supports the ASIC3 multifunction chip found on many
+ 	  PDAs (mainly iPAQ and HTC based ones)
+ 
++config MFD_TN48M_CPLD
++	tristate "Delta Networks TN48M switch CPLD driver"
++	depends on I2C
++	select MFD_SIMPLE_MFD_I2C
++	help
++	  Select this option to enable support for Delta Networks TN48M switch
++	  CPLD. It consists of reset and GPIO drivers. CPLD provides GPIOS-s
++	  for the SFP slots as well as power supply related information.
++	  SFP support depends on the GPIO driver being selected.
++
+ config PMIC_DA903X
+ 	bool "Dialog Semiconductor DA9030/DA9034 PMIC Support"
+ 	depends on I2C=y
+diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+index 87f684cff9a1..af8e91781417 100644
+--- a/drivers/mfd/simple-mfd-i2c.c
++++ b/drivers/mfd/simple-mfd-i2c.c
+@@ -39,6 +39,7 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
+ 
+ static const struct of_device_id simple_mfd_i2c_of_match[] = {
+ 	{ .compatible = "kontron,sl28cpld" },
++	{ .compatible = "delta,tn48m-cpld" },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
+-- 
+2.31.1
 
->
-> > +};
->
-> --
-> With Best Regards,
-> Andy Shevchenko
