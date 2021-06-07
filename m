@@ -2,46 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8909039E79D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 21:39:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A688239E7A4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 21:40:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231392AbhFGTld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 15:41:33 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:37472 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231371AbhFGTlc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 15:41:32 -0400
-Received: by mail-oi1-f171.google.com with SMTP id h9so19234473oih.4;
-        Mon, 07 Jun 2021 12:39:30 -0700 (PDT)
+        id S230468AbhFGTmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 15:42:33 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:38510 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230435AbhFGTmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 15:42:33 -0400
+Received: by mail-ot1-f47.google.com with SMTP id j11-20020a9d738b0000b02903ea3c02ded8so4322576otk.5;
+        Mon, 07 Jun 2021 12:40:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=oOu6y7k7gvZd3NLHH6tjzjQbm5rJW9mdNwcguV3ceu8=;
-        b=d29JAxEc46/zz8shBR89B88ZvLq/rRzs8K77Sb7r3/r/MwaSlVLjWJadT3ncrLw+Jr
-         6Jquib5YfnzWtII4AAWsfF5TU1CxATse8tu1JCqUrwdROr9yt4ZhXWoaDBEJ87w2cpEh
-         J/7FjTv+ymlk/IJtD4t5YjLYM6NKG4V1Lo6HKfRjZo7vBFpMEB/fbg4ATj0c1Gol2r3q
-         r7iDVIyK3+tF0zTajGYeNMXYjIy4hAtjcF97ioMK84thDeYXccuYZBgL8seiZ54tY21n
-         1V2n0vYNYvVbemzEZjkFqcA/rywvHxcQwRm9DuD1G9UgkpxLzD4mMYUexLYxUZ9rztn6
-         3aPQ==
-X-Gm-Message-State: AOAM533Qbm2Y2WhC5aevAJWLkpfzIVcdsYWmLOPaeEJfY2PUWjMd+odM
-        gFdKp5mtgaWF7LedFF4dYg==
-X-Google-Smtp-Source: ABdhPJy1JhjUryWudKnsLW7krc1Uq81vGLcMhgev+bY//vq2cMgyAxRFYH+SxAndyNHZTgnydxsn6Q==
-X-Received: by 2002:a54:4684:: with SMTP id k4mr568744oic.20.1623094770024;
-        Mon, 07 Jun 2021 12:39:30 -0700 (PDT)
+        bh=VaKySZ70jJSosJvHgjAP/lh8fDMXa9AHRHPivIYz6bo=;
+        b=f6kWHrtUfifGW/Y07F+bJ2auaVn6N2Rz+mOuoLylLTRovfIdXMwjzztDatNUUbjqqJ
+         4q8Yop1F0/T+VnF7wp86caf4/BAdAuuows5AVlFz6Wv7pEeZRdb5HELYOIzwnmEBp7MC
+         KMc68jQS2KuXIED3VB4X9IsPY/Xb8dEL3KTC5mEH/80fdRi8mHLg0g9AVFErQo4QkB3z
+         GKKV60vpwi16uuLszFwphrDGX28AX/Y3wEsLKCMZdK9YtLJjnDH91niiNbMQKC6JUaMc
+         pUQcPdZ+SYhTndFdaHrow532EKSmx8VohIbLtZjDAJajtadsrUQeA4T93ar9XQ9RSboY
+         wJcA==
+X-Gm-Message-State: AOAM531qqFrY83sHPNllX4IaCzgwXg9TvpJoE+XPxBwCsV/y8HDLEZed
+        lNs4+VrCOdlzFEw1VapG4g==
+X-Google-Smtp-Source: ABdhPJx6W/m9cTOYX0LJh7RyB5Ur43rwvEjFPssjDCqG6ZwCliNJOMvlNL0EYOnYEUN6BAEztsaGGQ==
+X-Received: by 2002:a9d:6d8c:: with SMTP id x12mr11893377otp.121.1623094825080;
+        Mon, 07 Jun 2021 12:40:25 -0700 (PDT)
 Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id s6sm2540201otk.71.2021.06.07.12.39.28
+        by smtp.googlemail.com with ESMTPSA id o8sm2192047oif.52.2021.06.07.12.40.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jun 2021 12:39:29 -0700 (PDT)
+        Mon, 07 Jun 2021 12:40:23 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     "Michael S. Tsirkin" <mst@redhat.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jason Wang <jasowang@redhat.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        virtualization@lists.linux-foundation.org
-Subject: [PATCH] dt-bindings: virtio: Convert virtio-mmio to DT schema
-Date:   Mon,  7 Jun 2021 14:39:28 -0500
-Message-Id: <20210607193928.3092186-1-robh@kernel.org>
+        Fu Wei <fu.wei@linaro.org>, linux-watchdog@vger.kernel.org
+Subject: [PATCH] dt-bindings: watchdog: Convert arm,sbsa-gwdt to DT schema
+Date:   Mon,  7 Jun 2021 14:40:22 -0500
+Message-Id: <20210607194022.3095736-1-robh@kernel.org>
 X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -49,114 +48,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the virtio-mmio binding to DT schema format.
+Convert the arm,sbsa-gwdt binding to DT schema format.
 
-Cc: "Michael S. Tsirkin" <mst@redhat.com>
-Cc: Jason Wang <jasowang@redhat.com>
-Cc: Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc: virtualization@lists.linux-foundation.org
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc: Guenter Roeck <linux@roeck-us.net>
+Cc: Fu Wei <fu.wei@linaro.org>
+Cc: linux-watchdog@vger.kernel.org
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
-Jean-Philippe, hopefully you are okay with being listed as the 
-maintainer here. You're the only active person that's touched this 
-binding.
+ .../bindings/watchdog/arm,sbsa-gwdt.yaml      | 51 +++++++++++++++++++
+ .../bindings/watchdog/sbsa-gwdt.txt           | 31 -----------
+ 2 files changed, 51 insertions(+), 31 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/arm,sbsa-gwdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/sbsa-gwdt.txt
 
- .../devicetree/bindings/virtio/mmio.txt       | 47 ---------------
- .../devicetree/bindings/virtio/mmio.yaml      | 60 +++++++++++++++++++
- 2 files changed, 60 insertions(+), 47 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/virtio/mmio.txt
- create mode 100644 Documentation/devicetree/bindings/virtio/mmio.yaml
-
-diff --git a/Documentation/devicetree/bindings/virtio/mmio.txt b/Documentation/devicetree/bindings/virtio/mmio.txt
-deleted file mode 100644
-index 0a575f329f6e..000000000000
---- a/Documentation/devicetree/bindings/virtio/mmio.txt
-+++ /dev/null
-@@ -1,47 +0,0 @@
--* virtio memory mapped device
--
--See https://ozlabs.org/~rusty/virtio-spec/ for more details.
--
--Required properties:
--
--- compatible:	"virtio,mmio" compatibility string
--- reg:		control registers base address and size including configuration space
--- interrupts:	interrupt generated by the device
--
--Required properties for virtio-iommu:
--
--- #iommu-cells:	When the node corresponds to a virtio-iommu device, it is
--		linked to DMA masters using the "iommus" or "iommu-map"
--		properties [1][2]. #iommu-cells specifies the size of the
--		"iommus" property. For virtio-iommu #iommu-cells must be
--		1, each cell describing a single endpoint ID.
--
--Optional properties:
--
--- iommus:	If the device accesses memory through an IOMMU, it should
--		have an "iommus" property [1]. Since virtio-iommu itself
--		does not access memory through an IOMMU, the "virtio,mmio"
--		node cannot have both an "#iommu-cells" and an "iommus"
--		property.
--
--Example:
--
--	virtio_block@3000 {
--		compatible = "virtio,mmio";
--		reg = <0x3000 0x100>;
--		interrupts = <41>;
--
--		/* Device has endpoint ID 23 */
--		iommus = <&viommu 23>
--	}
--
--	viommu: iommu@3100 {
--		compatible = "virtio,mmio";
--		reg = <0x3100 0x100>;
--		interrupts = <42>;
--
--		#iommu-cells = <1>
--	}
--
--[1] Documentation/devicetree/bindings/iommu/iommu.txt
--[2] Documentation/devicetree/bindings/pci/pci-iommu.txt
-diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
+diff --git a/Documentation/devicetree/bindings/watchdog/arm,sbsa-gwdt.yaml b/Documentation/devicetree/bindings/watchdog/arm,sbsa-gwdt.yaml
 new file mode 100644
-index 000000000000..444bfa24affc
+index 000000000000..6bfa46353c4e
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
-@@ -0,0 +1,60 @@
++++ b/Documentation/devicetree/bindings/watchdog/arm,sbsa-gwdt.yaml
+@@ -0,0 +1,51 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/virtio/mmio.yaml#
++$id: http://devicetree.org/schemas/watchdog/arm,sbsa-gwdt.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: virtio memory mapped devices
++title: SBSA (Server Base System Architecture) Generic Watchdog
 +
 +maintainers:
-+  - Jean-Philippe Brucker <jean-philippe@linaro.org>
++  - Fu Wei <fu.wei@linaro.org>
 +
-+description:
-+  See https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
-+  more details.
++description: |
++  The SBSA Generic Watchdog Timer is used to force a reset of the system after
++  two stages of timeout have elapsed. A detailed definition of the watchdog
++  timer can be found in the ARM document: ARM-DEN-0029 - Server Base System
++  Architecture (SBSA)
++
++allOf:
++  - $ref: watchdog.yaml#
 +
 +properties:
 +  compatible:
-+    const: virtio-mmio
++    const: arm,sbsa-gwdt
 +
 +  reg:
-+    maxItems: 1
++    items:
++      - description: Watchdog control frame
++      - description: Refresh frame
 +
 +  interrupts:
-+    maxItems: 1
-+
-+  '#iommu-cells':
-+    description: Required when the node corresponds to a virtio-iommu device.
-+    const: 1
-+
-+  iommus:
-+    description: Required for devices making accesses thru an IOMMU.
++    description: The Watchdog Signal 0 (WS0) SPI (Shared Peripheral Interrupt)
 +    maxItems: 1
 +
 +required:
@@ -164,28 +106,56 @@ index 000000000000..444bfa24affc
 +  - reg
 +  - interrupts
 +
-+additionalProperties: false
++unevaluatedProperties: false
 +
 +examples:
 +  - |
-+    virtio@3000 {
-+        compatible = "virtio,mmio";
-+        reg = <0x3000 0x100>;
-+        interrupts = <41>;
 +
-+        /* Device has endpoint ID 23 */
-+        iommus = <&viommu 23>;
++    watchdog@2a440000 {
++        compatible = "arm,sbsa-gwdt";
++        reg = <0x2a440000 0x1000>,
++              <0x2a450000 0x1000>;
++        interrupts = <0 27 4>;
++        timeout-sec = <30>;
 +    };
-+
-+    viommu: iommu@3100 {
-+        compatible = "virtio,mmio";
-+        reg = <0x3100 0x100>;
-+        interrupts = <42>;
-+
-+        #iommu-cells = <1>;
-+    };
-+
 +...
+diff --git a/Documentation/devicetree/bindings/watchdog/sbsa-gwdt.txt b/Documentation/devicetree/bindings/watchdog/sbsa-gwdt.txt
+deleted file mode 100644
+index 6f2d5f91964d..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/sbsa-gwdt.txt
++++ /dev/null
+@@ -1,31 +0,0 @@
+-* SBSA (Server Base System Architecture) Generic Watchdog
+-
+-The SBSA Generic Watchdog Timer is used to force a reset of the system
+-after two stages of timeout have elapsed.  A detailed definition of the
+-watchdog timer can be found in the ARM document: ARM-DEN-0029 - Server
+-Base System Architecture (SBSA)
+-
+-Required properties:
+-- compatible: Should at least contain "arm,sbsa-gwdt".
+-
+-- reg: Each entry specifies the base physical address of a register frame
+-  and the length of that frame; currently, two frames must be defined,
+-  in this order:
+-  1: Watchdog control frame;
+-  2: Refresh frame.
+-
+-- interrupts: Should contain the Watchdog Signal 0 (WS0) SPI (Shared
+-  Peripheral Interrupt) number of SBSA Generic Watchdog.
+-
+-Optional properties
+-- timeout-sec: Watchdog timeout values (in seconds).
+-
+-Example for FVP Foundation Model v8:
+-
+-watchdog@2a440000 {
+-	compatible = "arm,sbsa-gwdt";
+-	reg = <0x0 0x2a440000 0 0x1000>,
+-	      <0x0 0x2a450000 0 0x1000>;
+-	interrupts = <0 27 4>;
+-	timeout-sec = <30>;
+-};
 -- 
 2.27.0
 
