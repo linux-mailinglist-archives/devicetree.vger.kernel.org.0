@@ -2,130 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4555839DFDB
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 16:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D25B339DFEC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 17:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230411AbhFGPAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 11:00:33 -0400
-Received: from mail-wm1-f53.google.com ([209.85.128.53]:35713 "EHLO
-        mail-wm1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230193AbhFGPAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 11:00:32 -0400
-Received: by mail-wm1-f53.google.com with SMTP id k5-20020a05600c1c85b02901affeec3ef8so2583080wms.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 07:58:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nuviainc-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=VlCXU9+MFpUy7SArdgNYI/tiU14CG8Xgo06o1Uxsr38=;
-        b=rggAUTyKTufq+dvlwzacJo9pgOVEdDk5fs3Ote0eHa9Ikr22ppYaRz2a4Jb4/ToGE9
-         pJkiZO7GFVstggttfUpKJid5MIj7MBT1ehm0kb1rXd+jJXGbHfBu1nJAIo31+xmCh7U/
-         qb+/J8pqkPvJ6Ej8kejnhPDprATZqkAHu1JjTInwUK9LZVOHnCjoQltUVh0qxxonZAQc
-         Fu0WUKtDF2ECtEiAb9FDHkz7hTvmHveDDsQt3NyItj3IsxEReE4aEjQ5lm5VTo+Zkzbu
-         lzBFaZn6VV0tk1fhsqtHtys6OoAI3vchKxv3CWnDoo4Gf3/RInJRII3o9R4/UDEFbizy
-         vVsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VlCXU9+MFpUy7SArdgNYI/tiU14CG8Xgo06o1Uxsr38=;
-        b=f3O7FnTQVsqiVxZFFV9p+Qz6BKbcM93KkZoWo5uV6L5vCykBIAML43KfMczLgudIfs
-         cmIPkpxJOdPGEcFgJ4OIXp4uxgLNddvxQnqqYDZhdtDZw7MoPJFS1ArEk+2als0F+Ot7
-         gaI83jkBVd1Zz3TbwfY/MZDHzWtxv/5uIM9U1UsaIeOswQxO6XgVkBQwhE9Gw9R/orxM
-         9aaAnQDzEiuO8smZbKTF2I2/ofHvYYP/7Az9cHqRtbdp6mU4qdEaLhCF4BpemwP6Jfsq
-         y6mhz8ANGGSmHE89h3f8qapb36sAw9nxEKqViwW+SD91xiualiScenNKhYtooVY/qudG
-         bXsw==
-X-Gm-Message-State: AOAM532MAj+bYMUyp6/1HSVLH5ktTMilOJOGg0dPiaw9kq4nnSVwpXb+
-        3or5kdPtd76DAPWRI1ccUM8HRQ==
-X-Google-Smtp-Source: ABdhPJx6fGlVL5stxlu2ekuhuN/NXsWIomGXGgkt/9+9iT+k+wju9j4eewvseyJ0aY+TeXuGEd/cuQ==
-X-Received: by 2002:a7b:c7cd:: with SMTP id z13mr16901621wmk.54.1623077844897;
-        Mon, 07 Jun 2021 07:57:24 -0700 (PDT)
-Received: from ggregory-linuxws ([2a02:8010:64d6:5343:6309:485e:2524:388a])
-        by smtp.gmail.com with ESMTPSA id f14sm15953806wry.40.2021.06.07.07.57.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jun 2021 07:57:24 -0700 (PDT)
-Date:   Mon, 7 Jun 2021 15:57:22 +0100
-From:   Graeme Gregory <graeme@nuviainc.com>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v3 5/7] i2c: aspeed: Add aspeed_set_slave_busy()
-Message-ID: <20210607145722.GA2682@ggregory-linuxws>
-References: <20210519074934.20712-1-quan@os.amperecomputing.com>
- <20210519074934.20712-6-quan@os.amperecomputing.com>
+        id S230217AbhFGPFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 11:05:51 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:42128 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230226AbhFGPFt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 11:05:49 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157F3jXQ108953;
+        Mon, 7 Jun 2021 10:03:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623078225;
+        bh=K1ruin6irZniVUvooTwtQJ4zubzVpOKUB8MYYcJT4M0=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=YnjXHfSoBvqLxLQzwt6qA3Bl5vu8hMcci0wEPllTzRfqmZVg/RL/nFCz0O+ySDQda
+         mmjVjXek9CybYJugGnbGL+lwXVeCj2E1v10/5572zN7igFxJx+qkjQExaMGvegCaRR
+         TiKvmhoycGlx/5BPz7cm/W8BIRM+b+U8e1OCezjo=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157F3j59128600
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 7 Jun 2021 10:03:45 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 7 Jun
+ 2021 10:03:44 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 7 Jun 2021 10:03:44 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157F3iYL041669;
+        Mon, 7 Jun 2021 10:03:44 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Suman Anna <s-anna@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4] arm64: dts: ti: k3-am65: Add support for UHS-I modes in MMCSD1 subsystem
+Date:   Mon, 7 Jun 2021 10:03:43 -0500
+Message-ID: <162307821120.24886.4913823870361200714.b4-ty@ti.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210529033749.6250-1-a-govindraju@ti.com>
+References: <20210529033749.6250-1-a-govindraju@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210519074934.20712-6-quan@os.amperecomputing.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 19, 2021 at 02:49:32PM +0700, Quan Nguyen wrote:
-> Slave i2c device on AST2500 received a lot of slave irq while it is
-> busy processing the response. To handle this case, adds and exports
-> aspeed_set_slave_busy() for controller to temporary stop slave irq
-> while slave is handling the response, and re-enable them again when
-> the response is ready.
+On Sat, 29 May 2021 09:07:49 +0530, Aswath Govindraju wrote:
+> UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
 > 
-> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-> ---
-> v3:
->   + First introduce in v3 [Quan]
+> Add support by removing the no-1-8-v tag and including the voltage
+> regulator device tree nodes for power cycling.
 > 
->  drivers/i2c/busses/i2c-aspeed.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
+> However, the 4 bit interface of AM65 SR 1.0 cannot be supported at 3.3 V or
+> 1.8 V because of erratas i2025 and i2026 [2]. As the SD card is the primary
+> boot mode for development usecases, continue to enable SD card and disable
+> UHS-I modes in it to minimize any ageing issues happening because of
+> erratas.
 > 
-> diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
-> index b2e9c8f0ddf7..9926d04831a2 100644
-> --- a/drivers/i2c/busses/i2c-aspeed.c
-> +++ b/drivers/i2c/busses/i2c-aspeed.c
-> @@ -944,6 +944,26 @@ static int aspeed_i2c_init(struct aspeed_i2c_bus *bus,
->  	return 0;
->  }
->  
-> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
-> +void aspeed_set_slave_busy(struct i2c_adapter *adap, bool busy)
-> +{
-> +	struct aspeed_i2c_bus *bus = i2c_get_adapdata(adap);
-> +	unsigned long current_mask, flags;
-> +
-> +	spin_lock_irqsave(&bus->lock, flags);
+> [...]
 
-This as far as I can see is still a recursive spinlock, and the spinlock
-debugger seems to agree with me.
+Hi Aswath Govindraju,
 
-Graeme
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-> +
-> +	current_mask = readl(bus->base + ASPEED_I2C_INTR_CTRL_REG);
-> +	if (busy)
-> +		current_mask &= ~(ASPEED_I2CD_INTR_RX_DONE | ASPEED_I2CD_INTR_SLAVE_MATCH);
-> +	else
-> +		current_mask |= ASPEED_I2CD_INTR_RX_DONE | ASPEED_I2CD_INTR_SLAVE_MATCH;
-> +	writel(current_mask, bus->base + ASPEED_I2C_INTR_CTRL_REG);
-> +
-> +	spin_unlock_irqrestore(&bus->lock, flags);
-> +}
-> +EXPORT_SYMBOL_GPL(aspeed_set_slave_busy);
-> +#endif
-> +
->  static int aspeed_i2c_reset(struct aspeed_i2c_bus *bus)
->  {
->  	struct platform_device *pdev = to_platform_device(bus->dev);
-> -- 
-> 2.28.0
-> 
+[1/1] arm64: dts: ti: k3-am65: Add support for UHS-I modes in MMCSD1 subsystem
+      commit: 79b08ae7c411840ea5a9fba349025d217e700576
+
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
