@@ -2,102 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5564E39E85E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 22:25:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 503E639E8F8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 23:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230454AbhFGU0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 16:26:51 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40098 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230422AbhFGU0v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 16:26:51 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157KOtqb003693;
-        Mon, 7 Jun 2021 15:24:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623097495;
-        bh=soaO8j6FeW+HBW6qIKwrpmt+kh6ODk1iTx9WHdjq7J0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=anyt0Jvfd4rh5v8/d3gqR51gobNXklYkl/fiGPoq69zsNpgbYny/riM/DByfHEPAY
-         Qc8qpCM44B1A+Kl0/pdWzn2TezAeIevBSOBNOOU6qwq0gjuSot3k7uIIE06vnuzTfV
-         MiLyx+6I+qd+AHRM14yk8Qfkvy5X5aRpUL7+Ogsg=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157KOt7r037883
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Jun 2021 15:24:55 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 7 Jun
- 2021 15:24:54 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 7 Jun 2021 15:24:54 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157KOsZK127941;
-        Mon, 7 Jun 2021 15:24:54 -0500
-Date:   Mon, 7 Jun 2021 15:24:54 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Tero Kristo <kristo@kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 3/5] arm64: dts: ti: am65: align ti,pindir-d0-out-d1-in
- property with dt-shema
-Message-ID: <20210607202454.7rhc7ufiphgrhqqx@rejoice>
-References: <20210602123416.20378-1-a-govindraju@ti.com>
- <20210602123416.20378-4-a-govindraju@ti.com>
- <20210607134047.isfuedgjxpubpcb5@ungloved>
- <9e27bd14-e16a-4177-bba8-d5d0e5638f04@ti.com>
+        id S230450AbhFGVRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 17:17:30 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:35118 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230444AbhFGVR3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 17:17:29 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1B9958DB;
+        Mon,  7 Jun 2021 23:15:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1623100536;
+        bh=Si7z1mSBCxByHmBMiQ1CwHD9Qlf/H7ofE/lgBNr0dZI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tiySDq+yN8Vj3Tk7wlIHIeF3huRBycPmuZcB7ks956xgABv0h2pSBkFhUS9kdcwlB
+         fSpjcATCFxqJyg+LqjDmr1sevT3CTM6dpmJ8fvIb4IpK7mAZlzKs2vdB+GSOFWC3zv
+         D+crqpHbRjmM+mGAqwSDEC8tzypa/ks3lSoIJu5M=
+Date:   Tue, 8 Jun 2021 00:15:20 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     krzysztof.kozlowski@canonical.com, mchehab@kernel.org,
+        paul.kocialkowski@bootlin.com, pavel@ucw.cz,
+        devicetree@vger.kernel.org, kernel@puri.sm,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        phone-devel@vger.kernel.org, robh@kernel.org, shawnx.tu@intel.com
+Subject: Re: [PATCH v4 2/5] dt-bindings: media: document SK Hynix Hi-846 MIPI
+ CSI-2 8M pixel sensor
+Message-ID: <YL6MaFAt2PaJq+2E@pendragon.ideasonboard.com>
+References: <20210607105213.1211722-1-martin.kepplinger@puri.sm>
+ <20210607105213.1211722-3-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <9e27bd14-e16a-4177-bba8-d5d0e5638f04@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210607105213.1211722-3-martin.kepplinger@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19:18-20210607, Aswath Govindraju wrote:
-> Hi Nishanth,
-> 
-> On 07/06/21 7:10 pm, Nishanth Menon wrote:
-> > On 18:04-20210602, Aswath Govindraju wrote:
-> >> ti,pindir-d0-out-d1-in property is expected to be of type boolean.
-> >> Therefore, fix the property accordingly.
-> >>
-> >> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> > No need for Fixes?
-> > 
-> 
-> Functionality wise this is not a bug as the driver only checks for the
-> presence of the property. This is the reason why I did not include fixes.
-> 
+Hi Martin
 
-Argument was based on device tree is considered independent of what or
-what not a driver does.
+Thank you for the patch.
 
-> > Also please split up the patches per maintainer so that we are'nt
-> > confused on who should pick what etc..
-> > 
+On Mon, Jun 07, 2021 at 12:52:10PM +0200, Martin Kepplinger wrote:
+> Document the bindings used for the SK Hynix Hi-846 CMOS camera driver.
 > 
-> okay. Will be aware of this from next time.
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+>  .../bindings/media/i2c/hynix,hi846.yaml       | 105 ++++++++++++++++++
+>  1 file changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> new file mode 100644
+> index 000000000000..19825392fb1f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> @@ -0,0 +1,105 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/hynix,hi846.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SK Hynix Hi-846 1/4" 8M Pixel MIPI CSI-2 sensor
+> +
+> +maintainers:
+> +  - Martin Kepplinger <martin.kepplinger@puri.sm>
+> +
+> +description: |-
+> +  The Hi-846 is a raw image sensor with an MIPI CSI-2 image data
+> +  interface and CCI (I2C compatible) control bus. The output format
+> +  is raw Bayer.
+> +
+> +properties:
+> +  compatible:
+> +    const: hynix,hi846
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Reference to the mclk clock.
+> +
+> +  reset-gpios:
+> +    description: Reference to the GPIO connected to the RESETB pin. Active low.
+> +    maxItems: 1
+> +
+> +  shutdown-gpios:
+> +    description: Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
+> +    maxItems: 1
+> +
+> +  vddi-supply:
 
-Actually, I have dropped this off my list. I am assuming you'd want the
-bindings to be merged after the dts cleanup is done.
+I think it's called vddio (seems to be a typo on page 8).
+
+> +    description: Definition of the regulator used for the 1.8V or 2.8V I/O power supply.
+
+You could just say "... for the VDDIO supply". Same below. Up to you.
+
+With the name fixed and the description optionally updated,
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+Please add my tag if you post a new version.
+
+> +
+> +  vdda-supply:
+> +    description: Definition of the regulator used for the 2.8V analog power supply.
+> +
+> +  vddd-supply:
+> +    description: Definition of the regulator used for the 1.2V core power supply.
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            oneOf:
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +
+> +        required:
+> +          - data-lanes
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - vddi-supply
+> +  - vdda-supply
+> +  - vddd-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        hi846: camera@20 {
+> +            compatible = "hynix,hi846";
+> +            reg = <0x20>;
+> +            clocks = <&clk>;
+> +            vddi-supply = <&reg_camera_pwr_en>;
+> +            vdda-supply = <&reg_camera_pwr_en>;
+> +            vddd-supply = <&reg_camera_pwr_en>;
+> +            reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
+> +
+> +            port {
+> +                camera_out: endpoint {
+> +                    remote-endpoint = <&csi1_ep1>;
+> +                    data-lanes = <1 2>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
 
 -- 
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
+Laurent Pinchart
