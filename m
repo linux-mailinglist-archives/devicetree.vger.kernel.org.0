@@ -2,486 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A32C39D8EC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 11:34:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 407EE39D900
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 11:44:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230230AbhFGJgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 05:36:45 -0400
-Received: from egress-ip4b.ess.de.barracuda.com ([18.185.115.208]:59806 "EHLO
-        egress-ip4b.ess.de.barracuda.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230211AbhFGJgo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 05:36:44 -0400
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199]) by mx-outbound22-128.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 07 Jun 2021 09:34:48 +0000
-Received: by mail-pf1-f199.google.com with SMTP id e19-20020aa78c530000b02902e9ca53899dso7421894pfd.22
-        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 02:34:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=V7JxcpmiqLU86QKh2NcFdnLMmgXJWX3OCDrA9CclY98=;
-        b=CHbBcHzffpPPZUKZjd63/PkNMqNlg+aGMq94w/3CX6x08wIw3gr+WHfRkOYuId38yn
-         7E4PTmUaC7pEPzcm+Gi2suRWLBXGOEc32WzO4HwpA/NOC4FCeA9QdSGQW4zRm49X/qnZ
-         oLi1QrRTJJ4VkYsBO+98wgSPVSTNzo7EVPAiQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=V7JxcpmiqLU86QKh2NcFdnLMmgXJWX3OCDrA9CclY98=;
-        b=Iqn/RD1BDXX26Xw9J3/eQmznsHqEwCjZJ9QsLtUnJOJFo1mObkt1YsOoA9LyPH+TkB
-         10ncsWKuYiD30ujitM8E5xWoRoR42TLON2TJo7iCT5M/aMHyM1GAdm43+eJc53yGiJ27
-         5FhetfeTG+0LFQ2qPKlq1U43EzrzlHN5Atetvd1TLKku9gGsHVitytBZLWr66Ck970GN
-         oX6NLLMN8qOAU62kH6KO5A8RBZz4Gj2WsjQ7FSHQEFmYe9PI6G1jC68Bje9Q2MMTxThz
-         Y4VepweVdQt3dq9TBg05HBv2jk+JH/swYSusZTtAAWm5qVRNh0tUARhCqSF4AXpCOeTg
-         YgFw==
-X-Gm-Message-State: AOAM533iDMrM59iu36bPiwHpSyCTEumitVdlKinXp5lhDTX7Rmu918Mp
-        OAMxnO73tZDJoMF5S06eU/eHvuYxxIYni0PrXiheqgMdClRwMlr/0RfoaZzg9VneE5M1OYTYILu
-        8pLK0jmQG80yOLls08YEfVvR2R8V4sqlLaPh8gSZ6f485/Mbj2wy7apk4wA==
-X-Received: by 2002:a17:90a:4a12:: with SMTP id e18mr19748957pjh.213.1623058485378;
-        Mon, 07 Jun 2021 02:34:45 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwC1VuHsvOb2VMBZXAVGZDIfFPP2YuPEY/aw2PlL+878nVxBE9KPU2XxgwoejIfa0Dbq5D8ug==
-X-Received: by 2002:a17:90a:4a12:: with SMTP id e18mr19748927pjh.213.1623058485089;
-        Mon, 07 Jun 2021 02:34:45 -0700 (PDT)
-Received: from LAP568U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id e188sm7567400pfe.23.2021.06.07.02.34.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jun 2021 02:34:44 -0700 (PDT)
-From:   Sinthu Raja <sinthu.raja@mistralsolutions.com>
-X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Amarnath MB <amarnath.mb@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>
-Subject: [PATCH V2 2/2] arm64: dts: ti: Add support for J721E EAIK
-Date:   Mon,  7 Jun 2021 15:03:14 +0530
-Message-Id: <20210607093314.23909-3-sinthu.raja@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210607093314.23909-1-sinthu.raja@ti.com>
-References: <20210607093314.23909-1-sinthu.raja@ti.com>
+        id S230231AbhFGJpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 05:45:54 -0400
+Received: from regular1.263xmail.com ([211.150.70.197]:43690 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230194AbhFGJpy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 05:45:54 -0400
+X-Greylist: delayed 462 seconds by postgrey-1.27 at vger.kernel.org; Mon, 07 Jun 2021 05:45:53 EDT
+Received: from localhost (unknown [192.168.167.235])
+        by regular1.263xmail.com (Postfix) with ESMTP id 30E301BBF;
+        Mon,  7 Jun 2021 17:35:36 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+Received: from [172.16.12.73] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P31751T140094889510656S1623058535154905_;
+        Mon, 07 Jun 2021 17:35:36 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <64b7a42d8996c14ab6b47535c6dccd2d>
+X-RL-SENDER: jon.lin@rock-chips.com
+X-SENDER: jon.lin@rock-chips.com
+X-LOGIN-NAME: jon.lin@rock-chips.com
+X-FST-TO: linux-arm-kernel@lists.infradead.org
+X-RCPT-COUNT: 9
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: Re: [PATCH v4 1/6] dt-bindings: spi: spi-rockchip: add description
+ for rv1126 and rk3568
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        broonie@kernel.org, Johan Jonker <jbx6244@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20210607063448.29589-1-jon.lin@rock-chips.com>
+ <20210607063448.29589-2-jon.lin@rock-chips.com>
+ <ef90ae6d-40bb-8389-f4f8-536a7b610fb7@gmail.com> <3681106.bcXerOTE6V@diego>
+From:   Jon Lin <jon.lin@rock-chips.com>
+Message-ID: <a38fc74e-809a-0823-2abe-bf6e05e1a5a3@rock-chips.com>
+Date:   Mon, 7 Jun 2021 17:35:40 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <3681106.bcXerOTE6V@diego>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1623058487-305760-5428-522-1
-X-BESS-VER: 2019.1_20210603.1645
-X-BESS-Apparent-Source-IP: 209.85.210.199
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.232772 [from 
-        cloudscan15-76.eu-central-1a.ess.aws.cudaops.com]
-        Rule breakdown below
-         pts rule name              description
-        ---- ---------------------- --------------------------------
-        0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-        0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sinthu Raja <sinthu.raja@ti.com>
 
-J721E EdgeAI Kit (EAIK) is a low cost, small form factor board designed
-for TI’s J721E SoC. TI’s J721E SoC comprises of dual core A72, high
-performance vision accelerators, video codec accelerators, latest C71x
-and C66x DSP, high bandwidth real-time IPs for capture and display, GPU,
-dedicated safety island and security accelerators. The SoC is power
-optimized to provide best in class performance for perception, sensor
-fusion, localization, path planning tasks in robotics, industrial and
-automotive applications.
+On 6/7/21 5:04 PM, Heiko Stübner wrote:
+> Am Montag, 7. Juni 2021, 10:15:30 CEST schrieb Johan Jonker:
+>> Hi Jon,
+>>
+>> On 6/7/21 8:34 AM, Jon Lin wrote:
+>>> The description below will be used for rv1126.dtsi or rk3568.dtsi in
+>>> the future
+>>>
+>>> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+>>> ---
+>>>
+>>> Changes in v4:
+>>> - Adjust the order patches
+>>> - Simply commit massage like redundancy "application" content
+>>>
+>>> Changes in v3:
+>>> - Fix compile error which is find by Sascha in [v2,2/8]
+>>>
+>>>   Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>> index 1e6cf29e6388..2d7957f9ae0a 100644
+>>> --- a/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>> +++ b/Documentation/devicetree/bindings/spi/spi-rockchip.yaml
+>>> @@ -27,12 +27,14 @@ properties:
+>>>         - items:
+>>>             - enum:
+>>>                 - rockchip,px30-spi
+>>> +              - rockchip,rv1126-spi
+>> This list is sort alphabetically.
+>> Move "rockchip,rv1126-spi" below "rockchip,rk3568-spi"
+>>
+>>>                 - rockchip,rk3188-spi
+>>>                 - rockchip,rk3288-spi
+>>>                 - rockchip,rk3308-spi
+>>>                 - rockchip,rk3328-spi
+>>>                 - rockchip,rk3368-spi
+>>>                 - rockchip,rk3399-spi
+>>> +              - rockchip,rk3568-spi
+>>
+>>>             - const: rockchip,rk3066-spi
+>>>   
+>>>     reg:
+>>>
+>> ===
+>>
+>> Your comment in [PATCH v3 3/8]:
+>>>> Adding "rockchip,rv1126-spi" to rockchip_spi_dt_match[] is strictly not
+>>>> needed when using "rockchip,rk3066-spi" as fall back string.
+>>>> Could a maintainer advise?
+With consulting to my colleague，we plane to:
+1.If new soc's spi ip is compatible with the fall back one, we wont add 
+new compatible id to the code.
+2.I will add new fall back string stand for new generation ip: 
+rockchip,rv1126-spi
+>>>>
+>>>> Maybe this bug of mine should revert too?? Or is it legacy?
+>>>> spi: rockchip: add compatible string for px30 rk3308 rk3328
+>>>> https://lore.kernel.org/r/20200309151004.7780-1-jbx6244@gmail.com
+>>> I agree with you. If the maintainer doesn't have any comments, I will use
+>>> "rockchip,spi" as compatible names for the subsequent rk platform.
+>> Compatibility strings are supposed to be SoC orientated.
+>> So generic ones like in the manufacturer tree can't be used here.
+> Johan ist right :-) .
+>
+> rockchip,spi won't work at all, especially as these controllers always change
+> over time. [0]
+>
+> Best example is the iommu. We started with "rockchip,iommu" thinking this
+> won't change over time, but with the rk3568 we get a new slightly different
+> iommu.
+>
+> The vendor-kernel then introduces somewhat random "-vX" additions to
+> distinguish them, but often they do seem to be very software-centric.
+>
+> Meaning, hardware-designers moved stuff around and software-developers
+> then invented the versioning to differentiate between versions.
+>
+> The devicetree is supposed to describe the hardware though, so going with
+> the relevant soc-specific compatible gives us the necessary hardware-centric
+> differentiation.
+>
+> Also this allows to catch later issues with specific soc implementations ;-)
+> Like 6 monts down the road we discover some special behaviour on the
+> rk3568 and devicetree is supposed to be stable.
+>
+> So having the relevant compatibles in place allows us to just add driver
+> fixes and have those apply on the rk3568 if that is need at some point.
+>
+> Heiko
+>
+After the explain from you and Johan, I found that the idea 
+"rockchip,spi" was immature.
+>
+>
+>
+>
 
-J721E EAIK supports the following interfaces:
-* 4 GB LPDDR4 RAM
-* x1 Gigabit Ethernet interface
-* x1 USB 3.0 Type-C port
-* x3 USB 3.0 Type-A ports
-* x1 UHS-1 capable µSD card slot
-* x1 PCIe M.2 E Key with x1 USB2.0, x1 MCASP, x1 MMC, x1 UART
-* x1 PCIe M.2 M Key
-* 512 Mbit OSPI flash
-* x4 UART through UART-USB bridge
-* x4 CAN-FD interface
-* x1 DP interface
-* x1 HDMI interface
-* x2 CSI2 Camera interface (RPi and TI Camera connector)
-* 40-pin Raspberry Pi compatible GPIO header
-* Compact TI 20-Pin connector for JTAG debug
-* Interface for remote automation. Includes:
-   * power measurement and reset control
-   * boot mode change
-
-Add basic support for J721E-EAIK.
-
-Signed-off-by: Amarnath MB <amarnath.mb@ti.com>
-Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile          |   2 +
- arch/arm64/boot/dts/ti/k3-j721e-eaik.dts | 342 +++++++++++++++++++++++
- 2 files changed, 344 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-eaik.dts
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index d56c742f5a10..00eb2077616e 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -12,6 +12,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am6548-iot2050-advanced.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
- 
-+dtb-$(CONFIG_ARCH_K3) += k3-j721e-eaik.dtb
-+
- dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-eaik.dts b/arch/arm64/boot/dts/ti/k3-j721e-eaik.dts
-new file mode 100644
-index 000000000000..decb16274333
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-eaik.dts
-@@ -0,0 +1,342 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-j721e.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/net/ti-dp83867.h>
-+
-+/ {
-+	compatible = "ti,j721e-eaik", "ti,j721e";
-+	model = "Texas Instruments J721E EAIK";
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 4G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>,
-+		      <0x00000008 0x80000000 0x00000000 0x80000000>;
-+	};
-+
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+	};
-+
-+	vusb_main: fixedregulator-vusb-main5v0 {
-+		/* USB MAIN INPUT 5V DC */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vusb-main5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vsys_3v3: fixedregulator-vsys3v3 {
-+		/* Output of LM5141 */
-+		compatible = "regulator-fixed";
-+		regulator-name = "vsys_3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vusb_main>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_mmc1: fixedregulator-sd {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_mmc1_en_pins_default>;
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vsys_3v3>;
-+		gpio = <&wkup_gpio0 8 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vdd_sd_dv_alt: gpio-regulator-tps659411 {
-+		compatible = "regulator-gpio";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_alt_pins_default>;
-+		regulator-name = "tps659411";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vsys_3v3>;
-+		gpios = <&wkup_gpio0 9 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_mmc1_pins_default: main-mmc1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x254, PIN_INPUT, 0) /* (R29) MMC1_CMD */
-+			J721E_IOPAD(0x250, PIN_INPUT, 0) /* (P25) MMC1_CLK */
-+			J721E_IOPAD(0x2ac, PIN_INPUT, 0) /* (P25) MMC1_CLKLB */
-+			J721E_IOPAD(0x24c, PIN_INPUT, 0) /* (R24) MMC1_DAT0 */
-+			J721E_IOPAD(0x248, PIN_INPUT, 0) /* (P24) MMC1_DAT1 */
-+			J721E_IOPAD(0x244, PIN_INPUT, 0) /* (R25) MMC1_DAT2 */
-+			J721E_IOPAD(0x240, PIN_INPUT, 0) /* (R26) MMC1_DAT3 */
-+			J721E_IOPAD(0x258, PIN_INPUT, 0) /* (P23) MMC1_SDCD */
-+		>;
-+	};
-+
-+	main_uart0_pins_default: main-uart0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x1f0, PIN_INPUT, 0) /* (AC2) UART0_CTSn */
-+			J721E_IOPAD(0x1f4, PIN_OUTPUT, 0) /* (AB1) UART0_RTSn */
-+			J721E_IOPAD(0x1e8, PIN_INPUT, 0) /* (AB2) UART0_RXD */
-+			J721E_IOPAD(0x1ec, PIN_OUTPUT, 0) /* (AB3) UART0_TXD */
-+		>;
-+	};
-+
-+	main_i2c0_pins_default: main-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x220, PIN_INPUT_PULLUP, 0) /* (AC5) I2C0_SCL */
-+			J721E_IOPAD(0x224, PIN_INPUT_PULLUP, 0) /* (AA5) I2C0_SDA */
-+		>;
-+	};
-+
-+	main_i2c1_pins_default: main-i2c1-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x228, PIN_INPUT_PULLUP, 0) /* (Y6) I2C1_SCL */
-+			J721E_IOPAD(0x22c, PIN_INPUT_PULLUP, 0) /* (AA6) I2C1_SDA */
-+		>;
-+	};
-+
-+	main_i2c3_pins_default: main-i2c3-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x270, PIN_INPUT_PULLUP, 4) /* (T26) MMC2_CLK.I2C3_SCL */
-+			J721E_IOPAD(0x274, PIN_INPUT_PULLUP, 4) /* (T25) MMC2_CMD.I2C3_SDA */
-+		>;
-+	};
-+};
-+
-+&wkup_pmx0 {
-+	mcu_fss0_ospi0_pins_default: mcu-fss0-ospi0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0x0, PIN_OUTPUT, 0) /* (E20) MCU_OSPI0_CLK */
-+			J721E_WKUP_IOPAD(0x2c, PIN_OUTPUT, 0) /* (F19) MCU_OSPI0_CSn0 */
-+			J721E_WKUP_IOPAD(0xc, PIN_INPUT, 0) /* (D20) MCU_OSPI0_D0 */
-+			J721E_WKUP_IOPAD(0x10, PIN_INPUT, 0) /* (G19) MCU_OSPI0_D1 */
-+			J721E_WKUP_IOPAD(0x14, PIN_INPUT, 0) /* (G20) MCU_OSPI0_D2 */
-+			J721E_WKUP_IOPAD(0x18, PIN_INPUT, 0) /* (F20) MCU_OSPI0_D3 */
-+			J721E_WKUP_IOPAD(0x1c, PIN_INPUT, 0) /* (F21) MCU_OSPI0_D4 */
-+			J721E_WKUP_IOPAD(0x20, PIN_INPUT, 0) /* (E21) MCU_OSPI0_D5 */
-+			J721E_WKUP_IOPAD(0x24, PIN_INPUT, 0) /* (B22) MCU_OSPI0_D6 */
-+			J721E_WKUP_IOPAD(0x28, PIN_INPUT, 0) /* (G21) MCU_OSPI0_D7 */
-+			J721E_WKUP_IOPAD(0x8, PIN_INPUT, 0) /* (D21) MCU_OSPI0_DQS */
-+		>;
-+	};
-+
-+	vdd_mmc1_en_pins_default: vdd-mmc1-en-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0xd0, PIN_OUTPUT, 7) /* (G27) WKUP_GPIO0_8 */
-+		>;
-+	};
-+
-+	vdd_sd_dv_alt_pins_default: vdd-sd-dv-alt-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0xd4, PIN_OUTPUT, 7) /* (G26) WKUP_GPIO0_9 */
-+		>;
-+	};
-+
-+	wkup_i2c0_pins_default: wkup-i2c0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_WKUP_IOPAD(0xf8, PIN_INPUT_PULLUP, 0) /* (J25) WKUP_I2C0_SCL */
-+			J721E_WKUP_IOPAD(0xfc, PIN_INPUT_PULLUP, 0) /* (H24) WKUP_I2C0_SDA */
-+		>;
-+	};
-+};
-+
-+&wkup_uart0 {
-+	/* Wakeup UART is used by System firmware */
-+	status = "reserved";
-+};
-+
-+&main_uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart0_pins_default>;
-+	/* Shared with ATF on this platform */
-+	power-domains = <&k3_pds 146 TI_SCI_PD_SHARED>;
-+};
-+
-+&main_uart2 {
-+	/* Brought out on RPi header */
-+	status = "disabled";
-+};
-+
-+&main_uart3 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart5 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart6 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart7 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart8 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart9 {
-+	/* Brought out on M.2 E Key */
-+	status = "disabled";
-+};
-+
-+&main_sdhci0 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_sdhci1 {
-+	/* SD Card */
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv_alt>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mmc1_pins_default>;
-+	ti,driver-strength-ohm = <50>;
-+	disable-wp;
-+};
-+
-+&main_sdhci2 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&ospi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-+
-+	flash@0{
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-tx-bus-width = <8>;
-+		spi-rx-bus-width = <8>;
-+		spi-max-frequency = <25000000>;
-+		cdns,tshsl-ns = <60>;
-+		cdns,tsd2d-ns = <60>;
-+		cdns,tchsh-ns = <60>;
-+		cdns,tslch-ns = <60>;
-+		cdns,read-delay = <4>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		partition@3fc0000 {
-+			label = "ospi.phypattern";
-+			reg = <0x3fc0000 0x40000>;
-+			u-boot,dm-spl;
-+		};
-+	};
-+};
-+
-+&ospi1 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c0_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	i2c-switch@71 {
-+		compatible = "nxp,pca9543";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x71>;
-+
-+		/* PCIe1 M.2 M Key I2C */
-+		pcie1_m2_i2c: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		/* PCIe0 M.2 E Key I2C */
-+		pcie0_m2_i2c: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+	};
-+};
-+
-+&main_i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c1_pins_default>;
-+	clock-frequency = <400000>;
-+};
-+
-+&main_i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_i2c3_pins_default>;
-+	clock-frequency = <400000>;
-+
-+	i2c-switch@70 {
-+		compatible = "nxp,pca9543";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x70>;
-+
-+		/* CAM0 I2C */
-+		ti_cam0_i2c: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		/* CAM1 I2C */
-+		rpi_cam0_i2c: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+	};
-+};
-+
-+&main_i2c4 {
-+	/* Unused */
-+	status = "disabled";
-+};
-+
-+&main_i2c5 {
-+	/* Brought out on RPi Header */
-+	status = "disabled";
-+};
-+
-+&main_i2c6 {
-+	/* Unused */
-+	status = "disabled";
-+};
--- 
-2.31.1
 
