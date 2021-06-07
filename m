@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B305939E4EF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F373F39E4F6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:07:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231783AbhFGRJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 13:09:27 -0400
-Received: from mail-pf1-f174.google.com ([209.85.210.174]:46601 "EHLO
-        mail-pf1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231811AbhFGRJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 13:09:24 -0400
-Received: by mail-pf1-f174.google.com with SMTP id u126so9580323pfu.13
-        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 10:07:19 -0700 (PDT)
+        id S231848AbhFGRJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 13:09:42 -0400
+Received: from mail-pf1-f179.google.com ([209.85.210.179]:37505 "EHLO
+        mail-pf1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231905AbhFGRJh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 13:09:37 -0400
+Received: by mail-pf1-f179.google.com with SMTP id y15so13555447pfl.4
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 10:07:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=J9FgQRQtT4dalpWmq/48llm03TZOe/GpH8sEg+4A3jk=;
-        b=k15oyF/xyFQ+soSSAB1x/F/6ifpZGu+DCxVJPHOpM4hlTCkESHm4H7VrXK55ugz1Kx
-         b8O46MJJrNDRsck8ZwLg2LdbC3EAhzWr6gEIUlKdJUwks2KjhZODrQDuyMcFB+TRIwdo
-         xlOJCnuphuA3ES52yqbALNnW2NmauosxvqbqI=
+        bh=wKbk17m+yRiqrp8oW9bJSr2UykFdXfcHhiqIPzfS2qI=;
+        b=d7uRiZFiVdHNBDp2qM1GV2qvC8tUScUp4gQqpHiZHXNee8gRa/eAc4xiuA9dx93pFr
+         QOiJLnTOHlCOM5wbiTgfPH6ytHol9+kEJug/yedPbuegsMS8kLc4Vx0/w/FDNaGsGRST
+         1ylMolobN5or1ag0U0WYOWfgeGpYnzKuQdi3E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=J9FgQRQtT4dalpWmq/48llm03TZOe/GpH8sEg+4A3jk=;
-        b=rQi8gidGhy3y1DUOwxDcWV/hfD17o0hSdvr/KCUeoQNngYqSUpWV2XOFhIFeh6kPXL
-         iIUfrdhFKft4zyRNYxSQ/I2lizMYv+mxS5gDT220DFANmuXcywsvXMSAvNIC8sV+5IcG
-         LTifuJas1/P2fh+kfJ6S1MYaonnSE5qgrHRj9ev8pjNeIFljGa1LRW0qZ0Tw7NUjq7vR
-         Rk9IcA3JlDh/lmxLVGUmSeXVBHIjggGy0elDxcgZH5SRzhgxQyi+1Nka5JUbqrIHOOJR
-         RnPp9KOD6BlbzdAKaVyP3147UE75qleB7ghREYfH5icHt67Hxp2WEtwyDmgGXM0B4HuG
-         kCXA==
-X-Gm-Message-State: AOAM5322EvbtEIxoWLVmCoh2+b71PG0QwmRBs8VPo/XT1CkjrIh5zgli
-        vtFOpofuvfBz+xpM54XReMzixg==
-X-Google-Smtp-Source: ABdhPJxtsUrJ7UTc1mTykx5JqbbNLPl0sLEmHpUiXzkbYZI/m3P1wxuqgg9R4R9yyRcZtQZKa3p18w==
-X-Received: by 2002:a63:3e4e:: with SMTP id l75mr18010152pga.10.1623085579742;
-        Mon, 07 Jun 2021 10:06:19 -0700 (PDT)
+        bh=wKbk17m+yRiqrp8oW9bJSr2UykFdXfcHhiqIPzfS2qI=;
+        b=T/vD/RYKtYUW+/57LRgFtUhGwBzzrh2ljyrvM8oLgHZ1b3YVcX0J0xg+bzbzrz5xL3
+         6dUVWVS6/lX59HhzKFkAax//iPTE5yRB2F234w0aAJ8b8wkjEXeE/y2cOC/Z7tTtXI59
+         kVwZ8VuTgp8x8akSO7ycVB/4PB+1O8mzd3474UMb5PoUrRd9VaRyyIb2rRRTeQwTEsSb
+         ftXLGh4+jmU5FXym6hvZAAG+9IcKezmwi47eso1m1X7w+sRWd3KGhrD23rL1vxiaBunR
+         0znnHD9efUDqlNPbIRsFYTwXqAmXixpYYVp40v5usNiuZRnOHKEvd51yLmaCq4hWph4j
+         SNIg==
+X-Gm-Message-State: AOAM532ZDkC8Q0Q1Utqf3Xp+yzWgi9piFyuc48aCrlnqeAr2+dsv8/ir
+        HOI2tpE+C+v7LVLT/m5iRYIz/A==
+X-Google-Smtp-Source: ABdhPJxEW50WvoFT9KK67OmVwM2Mr1eVymTaJSsTsWnsiAx1vJIlqoWz/EV/BWZ999GsFg+jutEjjg==
+X-Received: by 2002:a63:5504:: with SMTP id j4mr18814384pgb.238.1623085590332;
+        Mon, 07 Jun 2021 10:06:30 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:f656:ffce:6348:a42a])
-        by smtp.gmail.com with ESMTPSA id fs24sm12897639pjb.6.2021.06.07.10.06.18
+        by smtp.gmail.com with ESMTPSA id fs24sm12897639pjb.6.2021.06.07.10.06.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jun 2021 10:06:19 -0700 (PDT)
+        Mon, 07 Jun 2021 10:06:29 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Andrzej Hajda <a.hajda@samsung.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
@@ -57,15 +57,12 @@ Cc:     Linus W <linus.walleij@linaro.org>, robdclark@chromium.org,
         Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org,
         Stephen Boyd <swboyd@chromium.org>,
         Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sandeep Panda <spanda@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v9 03/11] dt-bindings: drm/bridge: ti-sn65dsi86: Add aux-bus child
-Date:   Mon,  7 Jun 2021 10:05:47 -0700
-Message-Id: <20210607100234.v9.3.I98bf729846c37c4c143f6ab88b1e299280e2fe26@changeid>
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v9 11/11] arm64: dts: qcom: sc7180-trogdor: Move panel under the bridge chip
+Date:   Mon,  7 Jun 2021 10:05:55 -0700
+Message-Id: <20210607100234.v9.11.Ibdb7735fb1844561b902252215a69526a14f9abd@changeid>
 X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
 In-Reply-To: <20210607170555.4006050-1-dianders@chromium.org>
 References: <20210607170555.4006050-1-dianders@chromium.org>
@@ -75,68 +72,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch ("dt-bindings: drm: Introduce the DP AUX bus") talks about
-how using the DP AUX bus is better than learning how to slice
-bread. Let's add it to the ti-sn65dsi86 bindings.
+Putting the panel under the bridge chip (under the aux-bus node)
+allows the panel driver to get access to the DP AUX bus, enabling all
+sorts of fabulous new features.
+
+While we're at this, get rid of a level of hierarchy for the panel
+node. It doesn't need "ports / port" and can just have a "port" child.
+
+For Linux, this patch has a hard requirement on the patches adding DP
+AUX bus support to the ti-sn65dsi86 bridge chip driver. See the patch
+("drm/bridge: ti-sn65dsi86: Add support for the DP AUX bus").
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 ---
 
-Changes in v9:
-- Use an absolute path to refer to aux-bus schema.
-
-Changes in v8:
-- ti-sn65dsi86 references the new aux bus bindings.
+(no changes since v7)
 
 Changes in v7:
-- ti-sn65dsi86: Add aux-bus child patch new for v7.
+- Panel now under bridge chip instead of getting a link to ddc-i2c
 
- .../bindings/display/bridge/ti,sn65dsi86.yaml | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 30 ++++++++++----------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-index 26932d2e86ab..12b876a20574 100644
---- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-@@ -70,6 +70,9 @@ properties:
-     const: 1
-     description: See ../../pwm/pwm.yaml for description of the cell formats.
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 24d293ef56d7..c76afd857b54 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -260,21 +260,6 @@ max98357a: audio-codec-0 {
+ 		#sound-dai-cells = <0>;
+ 	};
  
-+  aux-bus:
-+    $ref: /schemas/display/dp-aux-bus.yaml#
+-	panel: panel {
+-		/* Compatible will be filled in per-board */
+-		power-supply = <&pp3300_dx_edp>;
+-		backlight = <&backlight>;
+-		hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
+-
+-		ports {
+-			port {
+-				panel_in_edp: endpoint {
+-					remote-endpoint = <&sn65dsi86_out>;
+-				};
+-			};
+-		};
+-	};
+-
+ 	pwmleds {
+ 		compatible = "pwm-leds";
+ 		keyboard_backlight: keyboard-backlight {
+@@ -674,6 +659,21 @@ sn65dsi86_out: endpoint {
+ 				};
+ 			};
+ 		};
 +
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
++		aux-bus {
++			panel: panel {
++				/* Compatible will be filled in per-board */
++				power-supply = <&pp3300_dx_edp>;
++				backlight = <&backlight>;
++				hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
++
++				port {
++					panel_in_edp: endpoint {
++						remote-endpoint = <&sn65dsi86_out>;
++					};
++				};
++			};
++		};
+ 	};
+ };
  
-@@ -201,11 +204,26 @@ examples:
- 
-           port@1 {
-             reg = <1>;
--            endpoint {
-+            sn65dsi86_out: endpoint {
-               remote-endpoint = <&panel_in_edp>;
-             };
-           };
-         };
-+
-+        aux-bus {
-+          panel {
-+            compatible = "boe,nv133fhm-n62";
-+            power-supply = <&pp3300_dx_edp>;
-+            backlight = <&backlight>;
-+            hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
-+
-+            port {
-+              panel_in_edp: endpoint {
-+                remote-endpoint = <&sn65dsi86_out>;
-+              };
-+            };
-+          };
-+        };
-       };
-     };
-   - |
 -- 
 2.32.0.rc1.229.g3e70b5a671-goog
 
