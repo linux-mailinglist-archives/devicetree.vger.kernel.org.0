@@ -2,48 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 043C739E4D8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:07:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B305939E4EF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 19:07:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231448AbhFGRI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 13:08:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60056 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230286AbhFGRIZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 13:08:25 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9E9C061795
-        for <devicetree@vger.kernel.org>; Mon,  7 Jun 2021 10:06:18 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id v12so9044335plo.10
-        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 10:06:18 -0700 (PDT)
+        id S231783AbhFGRJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 13:09:27 -0400
+Received: from mail-pf1-f174.google.com ([209.85.210.174]:46601 "EHLO
+        mail-pf1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231811AbhFGRJY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 13:09:24 -0400
+Received: by mail-pf1-f174.google.com with SMTP id u126so9580323pfu.13
+        for <devicetree@vger.kernel.org>; Mon, 07 Jun 2021 10:07:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=dQE2oc4ck1yBx8OjbWi1jB5697iDZ6Jcz+Jq90YnWDE=;
-        b=BRHM24dXb9WdBH3AF7IEEdq5qZGZPbGeXoUVu78XEfchuxuyufLLfG7W4v0ZiQA8Dy
-         i7nO9xhzjYiBMja5Zr43QEFJeeeqyYZErxY2sVXgFe8yqkhc4x4+r662ossOOHA56BS1
-         pRzPqoE6FFJ22C3liFwTJKwnKLckezI1tsHck=
+        bh=J9FgQRQtT4dalpWmq/48llm03TZOe/GpH8sEg+4A3jk=;
+        b=k15oyF/xyFQ+soSSAB1x/F/6ifpZGu+DCxVJPHOpM4hlTCkESHm4H7VrXK55ugz1Kx
+         b8O46MJJrNDRsck8ZwLg2LdbC3EAhzWr6gEIUlKdJUwks2KjhZODrQDuyMcFB+TRIwdo
+         xlOJCnuphuA3ES52yqbALNnW2NmauosxvqbqI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=dQE2oc4ck1yBx8OjbWi1jB5697iDZ6Jcz+Jq90YnWDE=;
-        b=akEqxN09redb2SbZkZ8k+1PgpIGTSxUsZPjPTll2QXHx4QTpS2QKqnGDIPMXKdw3WL
-         6J+ius/8qPdeoRIZpw6CW9CbmyeufisTjetwEylglbUPESSRkwiYdwvbzG4f08RSDMH/
-         8U4dMorsKL1GhxXD5Uqrl7T60XOexqpVQwqN4hjVkxLAY+vQuyRuwuCzOjePCrIbtEPn
-         d6G7kqspcxM5co2Bho/eM6Kbq8H3HqDV8LyPB8ZmSzIEyuPJeRR5SkLKnRtI+F1X4ik6
-         Bkozm+22X46QXl5Y9i99iOpXcqAYjYMfzy/cOiA2qcmKmnYlIOAE/+b/TrLTxnWI3E3b
-         IANA==
-X-Gm-Message-State: AOAM530+aK4jSbRUN4PPid1gk0myblqrC7W4Dv/Dh90WrAvhYdSdIVCm
-        Nsuj8sXgeaWHgtYNlwipfRCNvQ==
-X-Google-Smtp-Source: ABdhPJyWrV1oYCT31s6fWz03UksAA2NhnlHdmI7OV5MP8ziAx7Ta1SgfnVY80ymWu7sQMnlDsAomtQ==
-X-Received: by 2002:a17:90a:1641:: with SMTP id x1mr139302pje.114.1623085578464;
-        Mon, 07 Jun 2021 10:06:18 -0700 (PDT)
+        bh=J9FgQRQtT4dalpWmq/48llm03TZOe/GpH8sEg+4A3jk=;
+        b=rQi8gidGhy3y1DUOwxDcWV/hfD17o0hSdvr/KCUeoQNngYqSUpWV2XOFhIFeh6kPXL
+         iIUfrdhFKft4zyRNYxSQ/I2lizMYv+mxS5gDT220DFANmuXcywsvXMSAvNIC8sV+5IcG
+         LTifuJas1/P2fh+kfJ6S1MYaonnSE5qgrHRj9ev8pjNeIFljGa1LRW0qZ0Tw7NUjq7vR
+         Rk9IcA3JlDh/lmxLVGUmSeXVBHIjggGy0elDxcgZH5SRzhgxQyi+1Nka5JUbqrIHOOJR
+         RnPp9KOD6BlbzdAKaVyP3147UE75qleB7ghREYfH5icHt67Hxp2WEtwyDmgGXM0B4HuG
+         kCXA==
+X-Gm-Message-State: AOAM5322EvbtEIxoWLVmCoh2+b71PG0QwmRBs8VPo/XT1CkjrIh5zgli
+        vtFOpofuvfBz+xpM54XReMzixg==
+X-Google-Smtp-Source: ABdhPJxtsUrJ7UTc1mTykx5JqbbNLPl0sLEmHpUiXzkbYZI/m3P1wxuqgg9R4R9yyRcZtQZKa3p18w==
+X-Received: by 2002:a63:3e4e:: with SMTP id l75mr18010152pga.10.1623085579742;
+        Mon, 07 Jun 2021 10:06:19 -0700 (PDT)
 Received: from tictac2.mtv.corp.google.com ([2620:15c:202:201:f656:ffce:6348:a42a])
-        by smtp.gmail.com with ESMTPSA id fs24sm12897639pjb.6.2021.06.07.10.06.17
+        by smtp.gmail.com with ESMTPSA id fs24sm12897639pjb.6.2021.06.07.10.06.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jun 2021 10:06:18 -0700 (PDT)
+        Mon, 07 Jun 2021 10:06:19 -0700 (PDT)
 From:   Douglas Anderson <dianders@chromium.org>
 To:     Andrzej Hajda <a.hajda@samsung.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
@@ -62,11 +59,13 @@ Cc:     Linus W <linus.walleij@linaro.org>, robdclark@chromium.org,
         Douglas Anderson <dianders@chromium.org>,
         Rob Herring <robh@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
         David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v9 02/11] dt-bindings: drm: Introduce the DP AUX bus
-Date:   Mon,  7 Jun 2021 10:05:46 -0700
-Message-Id: <20210607100234.v9.2.Id3c048d22e72a9f90084a543b5b4e3f43bc9ab62@changeid>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sandeep Panda <spanda@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v9 03/11] dt-bindings: drm/bridge: ti-sn65dsi86: Add aux-bus child
+Date:   Mon,  7 Jun 2021 10:05:47 -0700
+Message-Id: <20210607100234.v9.3.I98bf729846c37c4c143f6ab88b1e299280e2fe26@changeid>
 X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
 In-Reply-To: <20210607170555.4006050-1-dianders@chromium.org>
 References: <20210607170555.4006050-1-dianders@chromium.org>
@@ -76,94 +75,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We want to be able to list an eDP panel as a child of an eDP
-controller node to represent the fact that the panel is connected to
-the controller's DP AUX bus. Though the panel and the controller are
-connected in several ways, the DP AUX bus is the primary control
-interface between the two and thus makes the most sense to model in
-device tree hierarchy.
-
-Listing a panel in this way makes it possible for the panel driver to
-easily get access to the DP AUX bus that it resides on, which can be
-useful to help in auto-detecting the panel and for turning on various
-bits.
-
-NOTE: historically eDP panels were _not_ listed under their controller
-but were listed at the top level of the device tree. This will still
-be supported for backward compatibility (and while DP controller
-drivers are adapted to support the new DT syntax) but should be
-considered deprecated since there is no downside to listing the panel
-under the controller.
-
-For now, the DP AUX bus bindings will only support an eDP panel
-underneath. It's possible it could be extended to allow having a DP
-connector under it in the future.
-
-NOTE: there is no "Example" in this bindings file. Yikes! This avoids
-duplicating the same example lots of places. See users of the aux bus
-(like ti-sn65dsi86) for examples.
-
-The idea for this bus's design was hashed out over IRC [1].
-
-[1] https://people.freedesktop.org/~cbrill/dri-log/?channel=dri-devel&date=2021-05-11
+The patch ("dt-bindings: drm: Introduce the DP AUX bus") talks about
+how using the DP AUX bus is better than learning how to slice
+bread. Let's add it to the ti-sn65dsi86 bindings.
 
 Signed-off-by: Douglas Anderson <dianders@chromium.org>
 Reviewed-by: Rob Herring <robh@kernel.org>
 ---
 
 Changes in v9:
-- Commit message now notes aux-bus yaml won't have an "Example".
+- Use an absolute path to refer to aux-bus schema.
 
 Changes in v8:
-- Separate DP AUX bus binding is new for v8.
+- ti-sn65dsi86 references the new aux bus bindings.
 
- .../bindings/display/dp-aux-bus.yaml          | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/dp-aux-bus.yaml
+Changes in v7:
+- ti-sn65dsi86: Add aux-bus child patch new for v7.
 
-diff --git a/Documentation/devicetree/bindings/display/dp-aux-bus.yaml b/Documentation/devicetree/bindings/display/dp-aux-bus.yaml
-new file mode 100644
-index 000000000000..5e4afe9f98fb
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/dp-aux-bus.yaml
-@@ -0,0 +1,37 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/dp-aux-bus.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+ .../bindings/display/bridge/ti,sn65dsi86.yaml | 20 ++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
+index 26932d2e86ab..12b876a20574 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
+@@ -70,6 +70,9 @@ properties:
+     const: 1
+     description: See ../../pwm/pwm.yaml for description of the cell formats.
+ 
++  aux-bus:
++    $ref: /schemas/display/dp-aux-bus.yaml#
 +
-+title: DisplayPort AUX bus
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
+@@ -201,11 +204,26 @@ examples:
+ 
+           port@1 {
+             reg = <1>;
+-            endpoint {
++            sn65dsi86_out: endpoint {
+               remote-endpoint = <&panel_in_edp>;
+             };
+           };
+         };
 +
-+maintainers:
-+  - Douglas Anderson <dianders@chromium.org>
++        aux-bus {
++          panel {
++            compatible = "boe,nv133fhm-n62";
++            power-supply = <&pp3300_dx_edp>;
++            backlight = <&backlight>;
++            hpd-gpios = <&sn65dsi86_bridge 2 GPIO_ACTIVE_HIGH>;
 +
-+description:
-+  DisplayPort controllers provide a control channel to the sinks that
-+  are hooked up to them. This is the DP AUX bus. Over the DP AUX bus
-+  we can query properties about a sink and also configure it. In
-+  particular, DP sinks support DDC over DP AUX which allows tunneling
-+  a standard I2C DDC connection over the AUX channel.
-+
-+  To model this relationship, DP sinks should be placed as children
-+  of the DP controller under the "aux-bus" node.
-+
-+  At the moment, this binding only handles the eDP case. It is
-+  possible it will be extended in the future to handle the DP case.
-+  For DP, presumably a connector would be listed under the DP AUX
-+  bus instead of a panel.
-+
-+properties:
-+  $nodename:
-+    const: "aux-bus"
-+
-+  panel:
-+    $ref: panel/panel-common.yaml#
-+
-+additionalProperties: false
-+
-+required:
-+  - panel
++            port {
++              panel_in_edp: endpoint {
++                remote-endpoint = <&sn65dsi86_out>;
++              };
++            };
++          };
++        };
+       };
+     };
+   - |
 -- 
 2.32.0.rc1.229.g3e70b5a671-goog
 
