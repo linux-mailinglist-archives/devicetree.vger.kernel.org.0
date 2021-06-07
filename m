@@ -2,106 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D25B339DFEC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 17:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 519A139DFF3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 17:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230217AbhFGPFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 11:05:51 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:42128 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230226AbhFGPFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 11:05:49 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157F3jXQ108953;
-        Mon, 7 Jun 2021 10:03:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623078225;
-        bh=K1ruin6irZniVUvooTwtQJ4zubzVpOKUB8MYYcJT4M0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=YnjXHfSoBvqLxLQzwt6qA3Bl5vu8hMcci0wEPllTzRfqmZVg/RL/nFCz0O+ySDQda
-         mmjVjXek9CybYJugGnbGL+lwXVeCj2E1v10/5572zN7igFxJx+qkjQExaMGvegCaRR
-         TiKvmhoycGlx/5BPz7cm/W8BIRM+b+U8e1OCezjo=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157F3j59128600
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Jun 2021 10:03:45 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 7 Jun
- 2021 10:03:44 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 7 Jun 2021 10:03:44 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157F3iYL041669;
-        Mon, 7 Jun 2021 10:03:44 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Suman Anna <s-anna@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4] arm64: dts: ti: k3-am65: Add support for UHS-I modes in MMCSD1 subsystem
-Date:   Mon, 7 Jun 2021 10:03:43 -0500
-Message-ID: <162307821120.24886.4913823870361200714.b4-ty@ti.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210529033749.6250-1-a-govindraju@ti.com>
-References: <20210529033749.6250-1-a-govindraju@ti.com>
+        id S230386AbhFGPGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 11:06:50 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:62410 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230381AbhFGPGu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 11:06:50 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1623078299; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
+ Subject: Sender; bh=6OL88XHWl9ozHCq99izlFd+FKI5s0/oTrciQ/ohCW7A=; b=qOVN7OrMvYOzfEDeAhZQxjJ31zZqKKPEhI8vpr5kn3N3yEWHwTdiPvV1KXKenj/dKkZ3bFyz
+ pvX9Pk27s+CSdrVYp8vnZDa2yiyyGB9uG7Np4J900G5XbKzJMrDZh25HgH5V/2fmXpvzeBsE
+ MbVEtM+xnF+vK2wNTmAn+0nWuik=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 60be356fed59bf69ccad05d7 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 07 Jun 2021 15:04:15
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5DF88C43148; Mon,  7 Jun 2021 15:04:15 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.29.24] (unknown [49.37.144.164])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 37A76C433D3;
+        Mon,  7 Jun 2021 15:04:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 37A76C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+Subject: Re: [PATCH v2] ASoC: qcom: Fix for DMA interrupt clear reg
+ overwriting
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+References: <20210605113809.26584-1-srivasam@codeaurora.org>
+ <ac3e70da-7d82-2021-3a25-08179aeb6b54@linaro.org>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <8028139e-fe25-bb9e-3038-5180bc5f8ca3@codeaurora.org>
+Date:   Mon, 7 Jun 2021 20:34:06 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <ac3e70da-7d82-2021-3a25-08179aeb6b54@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 29 May 2021 09:07:49 +0530, Aswath Govindraju wrote:
-> UHS-I speed modes are supported in AM65 S.R. 2.0 SoC[1].
-> 
-> Add support by removing the no-1-8-v tag and including the voltage
-> regulator device tree nodes for power cycling.
-> 
-> However, the 4 bit interface of AM65 SR 1.0 cannot be supported at 3.3 V or
-> 1.8 V because of erratas i2025 and i2026 [2]. As the SD card is the primary
-> boot mode for development usecases, continue to enable SD card and disable
-> UHS-I modes in it to minimize any ageing issues happening because of
-> erratas.
-> 
-> [...]
+Hi Srini,
 
-Hi Aswath Govindraju,
+Thanks for your review comments!!!
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
-
-[1/1] arm64: dts: ti: k3-am65: Add support for UHS-I modes in MMCSD1 subsystem
-      commit: 79b08ae7c411840ea5a9fba349025d217e700576
-
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+On 6/7/2021 8:20 PM, Srinivas Kandagatla wrote:
+>
+>
+> On 05/06/2021 12:38, Srinivasa Rao Mandadapu wrote:
+>> The DMA interrupt clear register overwritten during
+>> simultaneous playback and capture in lpass platform
+>> interrupt handler. It's causing playback or capture stuck
+>> in similtaneous plaback on speaker and capture on dmic test.
+>> Update appropriate reg fields of corresponding channel instead
+>> of entire register write.
+>>
+>> Fixes: commit c5c8635a04711 ("ASoC: qcom: Add LPASS platform driver")
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> ---
+>>   sound/soc/qcom/lpass-platform.c | 17 +++++++++++------
+>>   1 file changed, 11 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/sound/soc/qcom/lpass-platform.c 
+>> b/sound/soc/qcom/lpass-platform.c
+>> index 0df9481ea4c6..f220a2739ac3 100644
+>> --- a/sound/soc/qcom/lpass-platform.c
+>> +++ b/sound/soc/qcom/lpass-platform.c
+>> @@ -526,7 +526,7 @@ static int lpass_platform_pcmops_trigger(struct 
+>> snd_soc_component *component,
+>>               return -EINVAL;
+>>           }
+>>   -        ret = regmap_write(map, reg_irqclr, val_irqclr);
+>> +        ret = regmap_update_bits(map, reg_irqclr, val_irqclr, 
+>> val_irqclr);
+>>           if (ret) {
+>>               dev_err(soc_runtime->dev, "error writing to irqclear 
+>> reg: %d\n", ret);
+>>               return ret;
+>> @@ -650,7 +650,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
+>>       struct lpass_variant *v = drvdata->variant;
+>>       irqreturn_t ret = IRQ_NONE;
+>>       int rv;
+>> -    unsigned int reg = 0, val = 0;
+>> +    unsigned int reg, val, val_clr, val_mask;
+>
+> minor nit here, variable name val_clr is pretty confusing to readers, 
+> It might be okay for irq clr register but we are using the same name 
+> of writing to other registers. So can I suggest you to reuse val 
+> variable.
+>
+> other thing is val_mask, please rename this to mask and just set it in 
+> the start of function so you can avoid 3 extra lines below.
+Ok will do accordingly and repost patch.
+>
+> Other than that patch looks good to me!
+>
+> --srini
+>>       struct regmap *map;
+>>       unsigned int dai_id = cpu_dai->driver->id;
+>>   @@ -676,8 +676,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
+>>       return -EINVAL;
+>>       }
+>>       if (interrupts & LPAIF_IRQ_PER(chan)) {
+>> -
+>> -        rv = regmap_write(map, reg, LPAIF_IRQ_PER(chan) | val);
+>> +        val_clr = LPAIF_IRQ_PER(chan) | val;
+>> +        val_mask = LPAIF_IRQ_ALL(chan);
+>> +        rv = regmap_update_bits(map, reg, val_mask, val_clr);
+>>           if (rv) {
+>>               dev_err(soc_runtime->dev,
+>>                   "error writing to irqclear reg: %d\n", rv);
+>> @@ -688,7 +689,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
+>>       }
+>>         if (interrupts & LPAIF_IRQ_XRUN(chan)) {
+>> -        rv = regmap_write(map, reg, LPAIF_IRQ_XRUN(chan) | val);
+>> +        val_clr = (LPAIF_IRQ_XRUN(chan) | val);
+>> +        val_mask = LPAIF_IRQ_ALL(chan);
+>> +        rv = regmap_update_bits(map, reg, val_mask, val_clr);
+>>           if (rv) {
+>>               dev_err(soc_runtime->dev,
+>>                   "error writing to irqclear reg: %d\n", rv);
+>> @@ -700,7 +703,9 @@ static irqreturn_t lpass_dma_interrupt_handler(
+>>       }
+>>         if (interrupts & LPAIF_IRQ_ERR(chan)) {
+>> -        rv = regmap_write(map, reg, LPAIF_IRQ_ERR(chan) | val);
+>> +        val_clr = (LPAIF_IRQ_ERR(chan) | val);
+>> +        val_mask = LPAIF_IRQ_ALL(chan);
+>> +        rv = regmap_update_bits(map, reg, val_mask, val_clr);
+>>           if (rv) {
+>>               dev_err(soc_runtime->dev,
+>>                   "error writing to irqclear reg: %d\n", rv);
+>>
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
