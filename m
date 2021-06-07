@@ -2,104 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3898539DFEE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 17:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB8C939E031
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 17:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230264AbhFGPGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 11:06:12 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:57486 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230226AbhFGPGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 11:06:07 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157F47iK018163;
-        Mon, 7 Jun 2021 10:04:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623078247;
-        bh=kR+bJRygBQMle/LUilKvvTbOG/6eDR/4HuyzbNdfQQw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ovqrBEqEfN0vJLR3n4GEfXGi9LSxPLqSOwlnhRp8rkUUzDip/7kcJH7e4ww6CPRrP
-         O5IoOFdRaPq/GtsFKbjdcJ73Sg0fCQIaUw/d83UxTJte3+LvrIl06TXexI+fdRzoUH
-         KFE4AvC3uGE2oAwQG7lAX1vsW9wEpzXxmkHdY6LI=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157F470Z077815
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 7 Jun 2021 10:04:07 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 7 Jun
- 2021 10:04:07 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 7 Jun 2021 10:04:07 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157F4778042434;
-        Mon, 7 Jun 2021 10:04:07 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Suman Anna <s-anna@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Subject: Re: [PATCH v2 0/2] Add ICSSG MDIO nodes on AM65x & J721E SoCs
-Date:   Mon, 7 Jun 2021 10:04:06 -0500
-Message-ID: <162307823472.25009.11069479156135896671.b4-ty@ti.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210601150032.11432-1-s-anna@ti.com>
-References: <20210601150032.11432-1-s-anna@ti.com>
+        id S230288AbhFGPY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 11:24:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60590 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230212AbhFGPY2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 11:24:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A693C60C3D;
+        Mon,  7 Jun 2021 15:22:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623079357;
+        bh=AkvIZcOQR2MjwlCMTjuU8Ke8Ur/AqM0yyXCdXSHEmT0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r4trKSgMEv1ujYT26qffTcHnjCB78vQbzvPmedPzR04Wif7Dvy9GUxCHND6d0Ufcy
+         vjX9kz8BjVDrRZoJpAQd3zXMmz7jLo+nwZ+UZ9W5+PsaCpxD1qsGMTM3AuC3blgENQ
+         Bb/hga9U+05XmSNQa2ucPjtEOZUJH5gXGibW3MOTEBHcU4hBidQRTHISicPnyRkVSf
+         q2fLCRl8ZIl7GCRbr9bzNfOawa9Y6rldJ4AsSxLrcz/mzMvEq34RMMaMvdb2wAgNK1
+         T41iF6yM6/pSg9aLJs7HU7qNZ+6ZPJm6Gx/vVrFb6o1V2MxPkPcSNxMKybKLY0/wep
+         9jFkL3bBBxWqQ==
+Date:   Mon, 7 Jun 2021 20:52:33 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        bhupesh.linux@gmail.com
+Subject: Re: [PATCH 8/8] arm64: dts: qcom: sa8155p-adp: Add base dts file
+Message-ID: <YL45uRr6+Q3jvPrO@vkoul-mobl>
+References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
+ <20210607113840.15435-9-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210607113840.15435-9-bhupesh.sharma@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Jun 2021 10:00:30 -0500, Suman Anna wrote:
-> he following series is a resend of the ICSSG DT nodes [1] for the 5.14
-> merge window. Patches are just rebased on top of 5.13-rc1 + your latest
-> ti-k3-dts-next branch HEAD commit 69db725cdb2b ("arm64: dts: ti:
-> k3-am654x/j721e/j7200-common-proc-board: Fix MCU_RGMII1_TXC direction")
-> + Aswath's AM65x MMCSD1 UHS-I patch [2]. There are no code changes w.r.t
-> v1, I have picked up Reviewed-by tags from Jan and Grygorii.
-> 
-> [...]
+On 07-06-21, 17:08, Bhupesh Sharma wrote:
+> Add base DTS file for sa8155p-adp and enable boot to console,
+> tlmm reserved range and also include pmic file(s).
 
-Hi Suman Anna,
+I see ufs added too, pls mention that as well
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+ --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -71,6 +71,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sa8155p-adp.dtb
 
-[1/2] arm64: dts: ti: k3-am65-main: Add ICSSG MDIO nodes
-      commit: d49a769dcddd4224bd631792a4d2e5bbb160aa20
-[2/2] arm64: dts: ti: k3-j721e-main: Add ICSSG MDIO nodes
-      commit: 7ce11d4704c080ab890831b8255fbba4d2b0c5ec
+I think this should go before sdm..
 
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> +		vdd_usb_hs_core:
+> +		vdda_pll_hv_cc_ebi01:
+> +		vdda_pll_hv_cc_ebi23:
+> +		vdda_ufs_2ln_core:
+> +		vdda_ufs_2ln_core:
+> +		vdda_usb_ss_core:
+> +		vdda_usb_ss_dp_core_1:
+> +		vdda_usb_ss_dp_core_2:
+> +		vdda_sp_sensor:
+> +		vdda_qlink_lv:
+> +		vdda_qlink_lv_ck:
+> +		vdda_qrefs_0p875_5:
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+I didnt find these labels very useful, so maybe remove?
+It helped me to understand that a regulator is vreg_l5a_0p88 as it
+implies I am using l5a with 0p88V :)
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +		vreg_l5a_0p88: ldo5 {
+> +			regulator-min-microvolt = <880000>;
+> +			regulator-max-microvolt = <880000>;
+> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Pls do add regulator-name property, it helps in understanding which ldo
+in logs/debugfs, otherwise ldo5 will comes for both pmics
 
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+~Vinod
