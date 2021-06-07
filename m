@@ -2,97 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B4AD39DE44
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 16:02:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AD2739DE8A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 16:19:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230330AbhFGOEE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 10:04:04 -0400
-Received: from mail-lj1-f173.google.com ([209.85.208.173]:33506 "EHLO
-        mail-lj1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230282AbhFGOD4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 10:03:56 -0400
-Received: by mail-lj1-f173.google.com with SMTP id o8so22415254ljp.0;
-        Mon, 07 Jun 2021 07:02:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=j/h58gR4t5OdekYQSFNWFSj/ytcD8nEYOcwTds5lTpM=;
-        b=cZ7XwpDmaKUFyRGuU/gySPHGHuthR5dZLIB7M0erV4onywKe23DLtafLrWOETo7w7T
-         hec5JQpo9owxIclFPifVIDu5njeS1SVs4jF/KMo8rQKYpmQLn+fZ/9aAZ8EKKtFPNW7H
-         49F6BSpfSgBjMCBbl3KpmVCDfCM1TJKe4pC2Nk1/6WsjTHnKy7Gqzkv8XgHqnP5IBtZG
-         GencLDReN0jxgqKJnkJB+cv/pT3NPJVv2orkahuGhqhga+9z/r5KBWuqA2P8n3VqXVTi
-         MiwDtmfQdL4oAK20X0SqY/RmbPdbM9NkOAAjlxsXVM7dJjteoUxAo3fUGYWqUsUr3Pnb
-         LN/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=j/h58gR4t5OdekYQSFNWFSj/ytcD8nEYOcwTds5lTpM=;
-        b=EC4Oj2EPBsKKvvLuCE2kkpoconoDvp/CyjZnUxiTA5OslhSKQtgO1HdCcN6rlGq8Xw
-         Jwr75EM3OR5w1/nB1hw5Tmghz5QQ963bhOZt9F2iUw1KszJvTGc360aN7ntPuWUDMDfY
-         2Y3xhXcnkyzBqEkl6aAFnsMWw0fwOnZUDz1DZupwPf3nJydpUmwtPzMILG3/klCDQ5SA
-         4e9FM7akhASUMT6ZmZOr/LJ5/SO8sGYWY4wc8s3X8R6CI85VX6QE4apkV3N4Gu26klPT
-         DED/WeTv8Pb2u8tG2Z93nKSL7EGXTxXs0wEj2ta/fKj2prrAxsgeWPdUDO9VwaERO/66
-         TfVw==
-X-Gm-Message-State: AOAM530x/m9odo1NPGv0ZJHAk3wgTSJ2JRb8k3k8tBUVSdhHPtcabGZL
-        4C2eQk2dhSnouuGEoHHMxg7Jwa1eA67Phg==
-X-Google-Smtp-Source: ABdhPJwJPJlxEzcJy2V7HIsl9pZaKXUR1EHrfEc7wtr6r3yjIsl4WVm+fC5F1nStGJ5G324XD61png==
-X-Received: by 2002:a2e:98b:: with SMTP id 133mr14370450ljj.88.1623074463327;
-        Mon, 07 Jun 2021 07:01:03 -0700 (PDT)
-Received: from [192.168.2.145] (94-29-21-60.dynamic.spd-mgts.ru. [94.29.21.60])
-        by smtp.googlemail.com with ESMTPSA id u25sm1871572ljo.56.2021.06.07.07.01.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Jun 2021 07:01:02 -0700 (PDT)
-Subject: Re: [PATCH v6 08/14] memory: tegra: Enable compile testing for all
- drivers
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        =?UTF-8?Q?Nikola_Milosavljevi=c4=87?= <mnidza@outlook.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Paul Fertser <fercerpav@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Nathan Chancellor <nathan@kernel.org>,
-        linux-clk@vger.kernel.org
-References: <20210601023119.22044-1-digetx@gmail.com>
- <20210601023119.22044-9-digetx@gmail.com>
- <41899ef4-bb16-6c3a-035c-1e840a993bec@canonical.com>
- <YL4gwxWopKT7LomG@orome.fritz.box>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <a1f20257-f041-966e-c37e-5c81c4cf94d9@gmail.com>
-Date:   Mon, 7 Jun 2021 17:01:02 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230372AbhFGOUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 10:20:46 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:50764 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230323AbhFGOUq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 10:20:46 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lqG5X-0002M3-Ev; Mon, 07 Jun 2021 16:18:47 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     jbx6244@gmail.com
+Cc:     robh+dt@kernel.org, vkoul@kernel.org, kishon@ti.com,
+        t.schramm@manjaro.org, linux-phy@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>
+Subject: [PATCH] dt-bindings: soc: rockchip: drop unnecessary #phy-cells from grf.yaml
+Date:   Mon,  7 Jun 2021 16:18:45 +0200
+Message-Id: <20210607141845.3331910-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <e7e09072-9cac-413e-dca2-e2a668c1807e@gmail.com>
+References: <e7e09072-9cac-413e-dca2-e2a668c1807e@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YL4gwxWopKT7LomG@orome.fritz.box>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-07.06.2021 16:36, Thierry Reding пишет:
->> /bin/ld: warning: orphan section `__reservedmem_of_table' from `drivers/memory/tegra/tegra210-emc-table.o' being placed in section `__reservedmem_of_table'
->> /bin/ld: drivers/memory/tegra/mc.o: in function `tegra_mc_probe':
->> mc.c:(.text+0x87a): undefined reference to `reset_controller_register'
->> make[1]: *** [/home/buildbot/worker/builddir/build/Makefile:1191: vmlinux] Error 1
-...
+The recent yaml conversion of the grf and inno-usb2-phy bindings
+left the #phy-cells in place in the main usb2phy node inside the
+example in grf.yaml, causing new warnings.
 
-> Not sure what to do about that orphaned __reservedmem_of_table section.
-> Maybe all we need to do is to select OF_RESERVED_MEM from
-> TEGRA210_EMC_TABLE?
+Drop it to make the bindingcheck happy.
 
-Select won't work easily, but the dependency for TEGRA210_EMC should.
+Fixes: e71ccdff376b ("dt-bindings: phy: rename phy nodename in phy-rockchip-inno-usb2.yaml")
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+Like this I guess?
+
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index 8c1c46fef157..62fa72cfea34 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -242,7 +242,6 @@ examples:
+         clock-names = "phyclk";
+         #clock-cells = <0>;
+         clock-output-names = "clk_usbphy0_480m";
+-        #phy-cells = <0>;
+ 
+         u2phy0_host: host-port {
+           #phy-cells = <0>;
+-- 
+2.29.2
+
