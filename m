@@ -2,173 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CAAC39DA86
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 13:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84E1C39DAF5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 13:18:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230494AbhFGLD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 07:03:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35048 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230215AbhFGLD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 07:03:28 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45C51C061766;
-        Mon,  7 Jun 2021 04:01:24 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id y2so24224355ybq.13;
-        Mon, 07 Jun 2021 04:01:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eOk28QuplFXUqfx4Omxl+hHoy7+LeKbRcCFQxR2HiDg=;
-        b=kcacTHFqZjpKgAGn83h6ZcGEfrTYMF4xHxvDO5D+aKf7yGAl7SNutkJU/dns5/0Toi
-         L1W8p4oMYhasUQYqMU3QnzwgkEIv+DbUoxv9IC7jrGZbbZV+fePV+frtSgJ9Qw+iPqrS
-         XycjgZ8aFN+QD8jSPmFNukQqU8gDo5BI04Qwfprk7lkMu67Lb3z8v4maNZfxpaffu/I6
-         UfEzizAUmMdxjMkqnALnuKmQfjeh0nhAAEuYXSeDuTLT+m6fv8R8Bn/EwtbDTAUwVhAQ
-         d1Y9eV8XiMghf2xI3ujnzpwSIbNOUJWpiQPSg3qaAU6nW+GvWgs5KQyazogzhF4M1H3l
-         xFfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eOk28QuplFXUqfx4Omxl+hHoy7+LeKbRcCFQxR2HiDg=;
-        b=QFSApm/SQRZHC6hN2PD5ykOOHY24BrPXulTPHnW6Nf7Pd5yIGDwvw/ThpMMlNHbf+U
-         2JSTk1AghR9DnDvNwdAdDKOAOaRfdbQPSlOCq+oEBCVO7sr+Qhtb6vqhKdEXw0VruEyC
-         Fn/QGIxYxJJu78hIktFXXiRr1dUl6vSMpTKcd4xq3N8pI0XUrQXjSABF9ZDxupaD2PH+
-         lSCbAjEMq/6QtR5jvZknKztiUuQdG2e2q2ryfHbK6qJPg5hPNTCXGZGJZg51v08DtaW+
-         chcEJlIntsi4iBe7XFin74L0Ot9sVlxmPKR8E5Hmt+ctxDq2BImOB+Xi3GyV4f4kLxXe
-         8juA==
-X-Gm-Message-State: AOAM533jKo1lGgj5odiLR9+iFcyYsVnLiYeYaqE1nUbmVPcjainfra5G
-        L2j4ndSOcRSg/AW20+lPgGNCXAOrBjUbUp66iV0=
-X-Google-Smtp-Source: ABdhPJxsAO4O7+1PJKJdXSJWiRnllFxvdUp/lmPmeLed0v6u2MYw19nOBSus4DzafHPuZRqHHk1Z52A1NP3Si7Ogius=
-X-Received: by 2002:a25:a26a:: with SMTP id b97mr23644097ybi.62.1623063683489;
- Mon, 07 Jun 2021 04:01:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210603221758.10305-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210603221758.10305-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Mon, 7 Jun 2021 12:00:57 +0100
-Message-ID: <CA+V-a8syJ=ea9Bhu1gBr=LgEc9ie0j9WmtvmbW285XxjJqE5XA@mail.gmail.com>
-Subject: Re: [PATCH v2 00/12] Add new Renesas RZ/G2L SoC and Renesas RZ/G2L
- SMARC EVK support
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        LAK <linux-arm-kernel@lists.infradead.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S230494AbhFGLUd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 07:20:33 -0400
+Received: from lucky1.263xmail.com ([211.157.147.134]:50198 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230434AbhFGLUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 07:20:33 -0400
+Received: from localhost (unknown [192.168.167.16])
+        by lucky1.263xmail.com (Postfix) with ESMTP id C96B5C8500;
+        Mon,  7 Jun 2021 19:18:39 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P32529T140357062862592S1623064720154033_;
+        Mon, 07 Jun 2021 19:18:41 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <12e3184ddaff61ebb4970c943d1e051f>
+X-RL-SENDER: jon.lin@rock-chips.com
+X-SENDER: jon.lin@rock-chips.com
+X-LOGIN-NAME: jon.lin@rock-chips.com
+X-FST-TO: broonie@kernel.org
+X-RCPT-COUNT: 9
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Jon Lin <jon.lin@rock-chips.com>
+To:     broonie@kernel.org
+Cc:     jon.lin@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org,
+        linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v6 0/6] Support ROCKCHIP SPI new feature
+Date:   Mon,  7 Jun 2021 19:18:31 +0800
+Message-Id: <20210607111837.31074-1-jon.lin@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
 
-On Thu, Jun 3, 2021 at 11:18 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->
-> Hi All,
->
-> This patch series adds initial support for Renesas RZ/G2L SoC and
-> Renesas RZ/G2L SMARC EVK.
->
-> Initial patches enables minimal peripherals on Renesas RZ/G2L
-> SMARC EVK and booted via initramfs.
-> * Documentation for RZ/G2{L,LC,UL} SoC variants
-> * SoC identification support
-> * CPG core support
-> * Minimal SoC DTSi
-> * Minimal DTS for SMARC EVK
->
-> Changes for v2:
-> * Included type-2 RZ/G2Ul SoC in binding doc
-> * Added single entry for SMARC EVK "renesas,smarc-evk"
-> * Renamed ARCH_R9A07G044L to ARCH_R9A07G044 and
->   dropped ARCH_R9A07G044LC config
-> * Dropped SoC identification changes will post them as
->   separate patch.
-> * Updated comment in sh-sci.c
-> * Binding documentation patch for serial driver has been
->   accepted so dropped the patch from this series
-> * Incorporated changes requested by Geert for CPG core
-> * Fixed dtbs_check errors
-> * Dropped 'clock-names'/'clocks'/'power-domains'/'resets'
->   properties from GIC node and will include them in a separate
->   patch along with arm,gic-v3.yaml binding updates
-> * Included ACK's from Rob
->
-> Patches are based on top of [1] master branch.
->
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/
->
-> Cheers,
-> Prabhakar
->
-> Biju Das (1):
->   serial: sh-sci: Add support for RZ/G2L SoC
->
-> Lad Prabhakar (11):
->   dt-bindings: arm: renesas: Document Renesas RZ/G2UL SoC
->   dt-bindings: arm: renesas: Document Renesas RZ/G2{L,LC} SoC variants
->   dt-bindings: arm: renesas: Document SMARC EVK
->   soc: renesas: Add ARCH_R9A07G044 for the new RZ/G2L SoC's
->   arm64: defconfig: Enable ARCH_R9A07G044
->   clk: renesas: Define RZ/G2L CPG Clock Definitions
->   dt-bindings: clock: renesas: Document RZ/G2L SoC CPG driver
->   clk: renesas: Add CPG core wrapper for RZ/G2L SoC
->   clk: renesas: Add support for R9A07G044 SoC
->   arm64: dts: renesas: Add initial DTSI for RZ/G2{L,LC} SoC's
->   arm64: dts: renesas: Add initial device tree for RZ/G2L SMARC EVK
->
-Biju pointed out USB/ADC isn't working with the current implementation
-on upstream kernel, I'll have to re-structure to accommodate this
-use-case. I'll send a v3 fixing the issue.
 
-Sorry for the inconvenience.
+Changes in v6:
+- Consider to compatibility, the "rockchip,rk3568-spi" is removed in
+  Series-changes v5, so the commit massage should also remove the
+  corresponding information
 
-Cheers,
-Prabhakar
+Changes in v5:
+- Change to leave one compatible id rv1126, and rk3568 is compatible
+  with rv1126
 
->  .../devicetree/bindings/arm/renesas.yaml      |  18 +
->  .../bindings/clock/renesas,rzg2l-cpg.yaml     |  80 ++
->  arch/arm64/boot/dts/renesas/Makefile          |   2 +
->  arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 119 +++
->  arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi  |  25 +
->  .../boot/dts/renesas/r9a07g044l2-smarc.dts    |  21 +
->  arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  |  27 +
->  arch/arm64/configs/defconfig                  |   1 +
->  drivers/clk/renesas/Kconfig                   |   9 +
->  drivers/clk/renesas/Makefile                  |   2 +
->  drivers/clk/renesas/r9a07g044-cpg.c           | 372 +++++++
->  drivers/clk/renesas/renesas-rzg2l-cpg.c       | 979 ++++++++++++++++++
->  drivers/clk/renesas/renesas-rzg2l-cpg.h       | 217 ++++
->  drivers/soc/renesas/Kconfig                   |   5 +
->  drivers/tty/serial/sh-sci.c                   |  12 +-
->  drivers/tty/serial/sh-sci.h                   |   1 +
->  include/dt-bindings/clock/r9a07g044-cpg.h     |  89 ++
->  17 files changed, 1978 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
->  create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi
->  create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
->  create mode 100644 arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
->  create mode 100644 drivers/clk/renesas/r9a07g044-cpg.c
->  create mode 100644 drivers/clk/renesas/renesas-rzg2l-cpg.c
->  create mode 100644 drivers/clk/renesas/renesas-rzg2l-cpg.h
->  create mode 100644 include/dt-bindings/clock/r9a07g044-cpg.h
->
-> --
-> 2.17.1
->
+Changes in v4:
+- Adjust the order patches
+- Simply commit massage like redundancy "application" content
+
+Changes in v3:
+- Fix compile error which is find by Sascha in [v2,2/8]
+
+Jon Lin (6):
+  dt-bindings: spi: spi-rockchip: add description for rv1126
+  spi: rockchip: add compatible string for rv1126
+  spi: rockchip: Set rx_fifo interrupt waterline base on transfer item
+  spi: rockchip: Wait for STB status in slave mode tx_xfer
+  spi: rockchip: Support cs-gpio
+  spi: rockchip: Support SPI_CS_HIGH
+
+ .../devicetree/bindings/spi/spi-rockchip.yaml |  1 +
+ drivers/spi/spi-rockchip.c                    | 95 +++++++++++++++----
+ 2 files changed, 80 insertions(+), 16 deletions(-)
+
+-- 
+2.17.1
+
+
+
