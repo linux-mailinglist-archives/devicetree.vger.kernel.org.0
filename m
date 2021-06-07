@@ -2,45 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8227E39E793
-	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 21:37:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8909039E79D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Jun 2021 21:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231287AbhFGTj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 15:39:28 -0400
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:34485 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230311AbhFGTj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 15:39:28 -0400
-Received: by mail-ot1-f52.google.com with SMTP id v27-20020a056830091bb02903cd67d40070so14838693ott.1;
-        Mon, 07 Jun 2021 12:37:20 -0700 (PDT)
+        id S231392AbhFGTld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 15:41:33 -0400
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:37472 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231371AbhFGTlc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 15:41:32 -0400
+Received: by mail-oi1-f171.google.com with SMTP id h9so19234473oih.4;
+        Mon, 07 Jun 2021 12:39:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=FRSxC13zHpan7fvtvaA5He0Vxjqfa70sKFxtkfFWbcw=;
-        b=CugNqgTndal7WiqFkFQmQdP47y3XctJr/aJU4dRoTy4YA50/sOfLLgCNNCa5cJZKVN
-         +AISFpxED7IgNORY8FnoEkVCB6RuP0TzepqzvIiEdhEW+4lZ+l/CNhb3/8XUnL4e1pZZ
-         aAtCTkjIgrY2mlDtzt5THACTGSQpHLd9oZghRqOKBH4Mp9lgPJz3f2cm48j6tS7SS2gR
-         l/UlE/pwxgFqYlV76TJahViwga1M4PPgmi8Le2EYF1P41xNgH1UDbV6vVfj7+irgQdXR
-         AmqP3rN5JRUPMhDHkdtaC7CZZGSgXT0ojJJpxt2KMXfCTbcpZGFRT6tUufjWVkAejmVh
-         YMvg==
-X-Gm-Message-State: AOAM531x1NxurHhulDElx2vcFPr2wE7jFw9QkUPedqnw4ar/Tr7HC8Hb
-        ShRfRlopYXgCdlJAR7ysXVTROOpzbQ==
-X-Google-Smtp-Source: ABdhPJzIBylnHYbjgquLEQkHLHDwH51VYqwQHfURLr0VwtjpKZ+Ex+dM9B6he9kGK3Jtiic6YnNzZg==
-X-Received: by 2002:a9d:541:: with SMTP id 59mr10202960otw.301.1623094639797;
-        Mon, 07 Jun 2021 12:37:19 -0700 (PDT)
+        bh=oOu6y7k7gvZd3NLHH6tjzjQbm5rJW9mdNwcguV3ceu8=;
+        b=d29JAxEc46/zz8shBR89B88ZvLq/rRzs8K77Sb7r3/r/MwaSlVLjWJadT3ncrLw+Jr
+         6Jquib5YfnzWtII4AAWsfF5TU1CxATse8tu1JCqUrwdROr9yt4ZhXWoaDBEJ87w2cpEh
+         J/7FjTv+ymlk/IJtD4t5YjLYM6NKG4V1Lo6HKfRjZo7vBFpMEB/fbg4ATj0c1Gol2r3q
+         r7iDVIyK3+tF0zTajGYeNMXYjIy4hAtjcF97ioMK84thDeYXccuYZBgL8seiZ54tY21n
+         1V2n0vYNYvVbemzEZjkFqcA/rywvHxcQwRm9DuD1G9UgkpxLzD4mMYUexLYxUZ9rztn6
+         3aPQ==
+X-Gm-Message-State: AOAM533Qbm2Y2WhC5aevAJWLkpfzIVcdsYWmLOPaeEJfY2PUWjMd+odM
+        gFdKp5mtgaWF7LedFF4dYg==
+X-Google-Smtp-Source: ABdhPJy1JhjUryWudKnsLW7krc1Uq81vGLcMhgev+bY//vq2cMgyAxRFYH+SxAndyNHZTgnydxsn6Q==
+X-Received: by 2002:a54:4684:: with SMTP id k4mr568744oic.20.1623094770024;
+        Mon, 07 Jun 2021 12:39:30 -0700 (PDT)
 Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id 94sm2544375otj.33.2021.06.07.12.37.18
+        by smtp.googlemail.com with ESMTPSA id s6sm2540201otk.71.2021.06.07.12.39.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Jun 2021 12:37:19 -0700 (PDT)
+        Mon, 07 Jun 2021 12:39:29 -0700 (PDT)
 From:   Rob Herring <robh@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     "Michael S. Tsirkin" <mst@redhat.com>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-rtc@vger.kernel.org
-Subject: [PATCH] dt-bindings: rtc: Add Arm PL031 schema
-Date:   Mon,  7 Jun 2021 14:37:18 -0500
-Message-Id: <20210607193718.3090202-1-robh@kernel.org>
+        Jason Wang <jasowang@redhat.com>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        virtualization@lists.linux-foundation.org
+Subject: [PATCH] dt-bindings: virtio: Convert virtio-mmio to DT schema
+Date:   Mon,  7 Jun 2021 14:39:28 -0500
+Message-Id: <20210607193928.3092186-1-robh@kernel.org>
 X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -48,51 +49,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PL031 RTC binding has been in use for a long time, but never got
-documented. Fortunately, it's simple and existing users are consistent.
+Convert the virtio-mmio binding to DT schema format.
 
-Cc: Alessandro Zummo <a.zummo@towertech.it>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: linux-rtc@vger.kernel.org
+Cc: "Michael S. Tsirkin" <mst@redhat.com>
+Cc: Jason Wang <jasowang@redhat.com>
+Cc: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc: virtualization@lists.linux-foundation.org
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/rtc/arm,pl031.yaml    | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/rtc/arm,pl031.yaml
+Jean-Philippe, hopefully you are okay with being listed as the 
+maintainer here. You're the only active person that's touched this 
+binding.
 
-diff --git a/Documentation/devicetree/bindings/rtc/arm,pl031.yaml b/Documentation/devicetree/bindings/rtc/arm,pl031.yaml
+ .../devicetree/bindings/virtio/mmio.txt       | 47 ---------------
+ .../devicetree/bindings/virtio/mmio.yaml      | 60 +++++++++++++++++++
+ 2 files changed, 60 insertions(+), 47 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/virtio/mmio.txt
+ create mode 100644 Documentation/devicetree/bindings/virtio/mmio.yaml
+
+diff --git a/Documentation/devicetree/bindings/virtio/mmio.txt b/Documentation/devicetree/bindings/virtio/mmio.txt
+deleted file mode 100644
+index 0a575f329f6e..000000000000
+--- a/Documentation/devicetree/bindings/virtio/mmio.txt
++++ /dev/null
+@@ -1,47 +0,0 @@
+-* virtio memory mapped device
+-
+-See https://ozlabs.org/~rusty/virtio-spec/ for more details.
+-
+-Required properties:
+-
+-- compatible:	"virtio,mmio" compatibility string
+-- reg:		control registers base address and size including configuration space
+-- interrupts:	interrupt generated by the device
+-
+-Required properties for virtio-iommu:
+-
+-- #iommu-cells:	When the node corresponds to a virtio-iommu device, it is
+-		linked to DMA masters using the "iommus" or "iommu-map"
+-		properties [1][2]. #iommu-cells specifies the size of the
+-		"iommus" property. For virtio-iommu #iommu-cells must be
+-		1, each cell describing a single endpoint ID.
+-
+-Optional properties:
+-
+-- iommus:	If the device accesses memory through an IOMMU, it should
+-		have an "iommus" property [1]. Since virtio-iommu itself
+-		does not access memory through an IOMMU, the "virtio,mmio"
+-		node cannot have both an "#iommu-cells" and an "iommus"
+-		property.
+-
+-Example:
+-
+-	virtio_block@3000 {
+-		compatible = "virtio,mmio";
+-		reg = <0x3000 0x100>;
+-		interrupts = <41>;
+-
+-		/* Device has endpoint ID 23 */
+-		iommus = <&viommu 23>
+-	}
+-
+-	viommu: iommu@3100 {
+-		compatible = "virtio,mmio";
+-		reg = <0x3100 0x100>;
+-		interrupts = <42>;
+-
+-		#iommu-cells = <1>
+-	}
+-
+-[1] Documentation/devicetree/bindings/iommu/iommu.txt
+-[2] Documentation/devicetree/bindings/pci/pci-iommu.txt
+diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
 new file mode 100644
-index 000000000000..77452c9e9b63
+index 000000000000..444bfa24affc
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/arm,pl031.yaml
-@@ -0,0 +1,56 @@
++++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
+@@ -0,0 +1,60 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/rtc/arm,pl031.yaml#
++$id: http://devicetree.org/schemas/virtio/mmio.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Arm Primecell PL031 Real Time Clock
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        const: arm,pl031
-+  required:
-+    - compatible
-+
-+allOf:
-+  - $ref: rtc.yaml#
++title: virtio memory mapped devices
 +
 +maintainers:
-+  - Rob Herring <robh@kernel.org>
++  - Jean-Philippe Brucker <jean-philippe@linaro.org>
++
++description:
++  See https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio for
++  more details.
 +
 +properties:
 +  compatible:
-+    items:
-+      - const: arm,pl031
-+      - const: arm,primecell
++    const: virtio-mmio
 +
 +  reg:
 +    maxItems: 1
@@ -100,28 +151,41 @@ index 000000000000..77452c9e9b63
 +  interrupts:
 +    maxItems: 1
 +
-+  clocks:
-+    maxItems: 1
++  '#iommu-cells':
++    description: Required when the node corresponds to a virtio-iommu device.
++    const: 1
 +
-+  clock-names:
++  iommus:
++    description: Required for devices making accesses thru an IOMMU.
 +    maxItems: 1
 +
 +required:
 +  - compatible
 +  - reg
-+  - clocks
-+  - clock-names
++  - interrupts
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    rtc@10017000 {
-+        compatible = "arm,pl031", "arm,primecell";
-+        reg = <0x10017000 0x1000>;
-+        clocks = <&pclk>;
-+        clock-names = "apb_pclk";
++    virtio@3000 {
++        compatible = "virtio,mmio";
++        reg = <0x3000 0x100>;
++        interrupts = <41>;
++
++        /* Device has endpoint ID 23 */
++        iommus = <&viommu 23>;
 +    };
++
++    viommu: iommu@3100 {
++        compatible = "virtio,mmio";
++        reg = <0x3100 0x100>;
++        interrupts = <42>;
++
++        #iommu-cells = <1>;
++    };
++
++...
 -- 
 2.27.0
 
