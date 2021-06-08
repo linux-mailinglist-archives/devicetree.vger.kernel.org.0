@@ -2,85 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65EB139F2F1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 11:54:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CE7039F314
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 11:57:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231173AbhFHJzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 05:55:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42628 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231181AbhFHJzv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Jun 2021 05:55:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 31B2E61008;
-        Tue,  8 Jun 2021 09:53:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1623146038;
-        bh=VYaAViHh1Py6v8pf+R+jIxsvaqWuJjCa07F+MAIE8WU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HNp23tvGHNeTqJa2VK3DVBNpBXaUiicbZVCcHkUSmamieuUG41mrYpxYe5iNu+87L
-         Z8O+7vVHDMd8HJyskHqvprv4spkQz0MT6Y+ieeHTnAFDCbrHc8/XnFlL+ezljn081V
-         Z8LIGvrbt93hNub/Ee1UfGHPlpG3wIYnKU06KUOY=
-Date:   Tue, 8 Jun 2021 11:53:56 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     =?utf-8?B?SmnFmcOt?= Prchal <jiri.prchal@aksignal.cz>
+        id S230119AbhFHJ7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 05:59:02 -0400
+Received: from router.aksignal.cz ([62.44.4.214]:59732 "EHLO
+        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230222AbhFHJ7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 05:59:02 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by router.aksignal.cz (Postfix) with ESMTP id BE08640F98;
+        Tue,  8 Jun 2021 11:57:05 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
+Received: from router.aksignal.cz ([127.0.0.1])
+        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
+        with LMTP id aN8x4IOG1YVK; Tue,  8 Jun 2021 11:57:05 +0200 (CEST)
+Received: from [172.25.161.48] (unknown [83.240.30.185])
+        (Authenticated sender: jiri.prchal@aksignal.cz)
+        by router.aksignal.cz (Postfix) with ESMTPSA id 2FB0D40F93;
+        Tue,  8 Jun 2021 11:57:05 +0200 (CEST)
+Subject: Re: [PATCH v8 2/5] nvmem: eeprom: at25: add support for FRAM
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v7 4/5] nvmem: eeprom: at25: export FRAM serial num
-Message-ID: <YL8+NOdz+ue3MTGg@kroah.com>
-References: <20210607122640.143582-1-jiri.prchal@aksignal.cz>
- <20210607122640.143582-5-jiri.prchal@aksignal.cz>
- <YL4S2/hlfRwRM+Ug@kroah.com>
- <56f088fe-8db2-54d4-bef3-72e5f893a414@aksignal.cz>
- <YL8ybqOfgOqjlpoX@kroah.com>
- <b1c0eab3-8d07-5c52-300e-45974f7fea9c@aksignal.cz>
+        Arnd Bergmann <arnd@arndb.de>,
+        kernel test robot <lkp@intel.com>
+References: <20210607161201.223697-1-jiri.prchal@aksignal.cz>
+ <20210607161201.223697-3-jiri.prchal@aksignal.cz>
+ <YL8zZraFXTvGr3dE@kroah.com>
+From:   =?UTF-8?B?SmnFmcOtIFByY2hhbA==?= <jiri.prchal@aksignal.cz>
+Message-ID: <cc57eb8a-bfd6-f314-b408-0c4c8fe01a03@aksignal.cz>
+Date:   Tue, 8 Jun 2021 11:57:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b1c0eab3-8d07-5c52-300e-45974f7fea9c@aksignal.cz>
+In-Reply-To: <YL8zZraFXTvGr3dE@kroah.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 08, 2021 at 11:45:56AM +0200, Jiří Prchal wrote:
+
+
+On 08. 06. 21 11:07, Greg Kroah-Hartman wrote:
+>> +	int has_sernum;
+> 
+> bool?
+
+OK.
+> 
+>> +	spi_message_init(&m);
+>> +	memset(t, 0, sizeof(t));
+> 
+> Are you allowed to send spi messages off of the stack?
+
+I don't know, but it's functional. Copied from read function.
 > 
 > 
-> On 08. 06. 21 11:03, Greg Kroah-Hartman wrote:
-> > On Mon, Jun 07, 2021 at 04:47:44PM +0200, Jiří Prchal wrote:
-> > > 
-> > > 
-> > > On 07. 06. 21 14:36, Greg Kroah-Hartman wrote:
-> > > > On Mon, Jun 07, 2021 at 02:26:39PM +0200, Jiri Prchal wrote:
-> > > > > +	return sysfs_emit(buf, "%016llx\n", *(unsigned long long *)at25->sernum);
-> > > > 
-> > > > That's a horrid hack, why not use the %*phN modifier?
-> > > 
-> > > Prints as little endian, is that OK?
-> > 
-> > You tell me!  What tool is going to be reading this?  What do they
-> > expect it to look like?
+>> -	dev_info(&spi->dev, "%d %s %s eeprom%s, pagesize %u\n",
+>> -		(chip.byte_len < 1024) ? chip.byte_len : (chip.byte_len / 1024),
+>> -		(chip.byte_len < 1024) ? "Byte" : "KByte",
+>> -		at25->chip.name,
+>> -		(chip.flags & EE_READONLY) ? " (readonly)" : "",
+>> -		at25->chip.page_size);
+>> +	dev_info(&spi->dev, "%d %s %s %s%s, pagesize %u\n",
+>> +		 (chip.byte_len < 1024) ? chip.byte_len : (chip.byte_len / 1024),
+>> +		 (chip.byte_len < 1024) ? "Byte" : "KByte",
+>> +		 at25->chip.name, is_fram ? "fram" : "eeprom",
+>> +		 (chip.flags & EE_READONLY) ? " (readonly)" : "",
+>> +		 at25->chip.page_size);
 > 
-> sh, php in my usecase as unique id.
+> When drivers work properly, they should be quiet.  This whole dev_info()
+> should be removed in a later patch.
 
-I am sorry, I do not understand.
-
-> So endianess does not matter to me too much. The question is what is usual
-> (like mac address, uuid...?).
-
-What does the device export?  Why not just export it as:
-	0123456789ABCDEF
-if it is 8 bytes long?
-
-> > And it's a byte array, why would there be endian issues?
-> 
-> Now is printed as one big number. Not real issue. Just human readability?
-> Should I turn back it to space separated bytes?
-
-It's up to you, what do you want to do with it and what does a tool want
-it to look like?
-
-thanks,
-
-greg k-h
+OK, didn't know, originally there is such info output. And keeping 
+simplest smallest patch changes.
