@@ -2,105 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49FC339F322
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 12:04:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DD6539F328
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 12:06:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230119AbhFHKGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 06:06:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44904 "EHLO mail.kernel.org"
+        id S230119AbhFHKIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 06:08:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46104 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229937AbhFHKGR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Jun 2021 06:06:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 78A6461029;
-        Tue,  8 Jun 2021 10:04:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1623146665;
-        bh=EK4el4APpWCVjBrcLKlrQLh70FOtGjt4sfJI+r/oQbQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=D4bKQmu6jUCjqPf81K8pwAh+t3QvnyhMzv723S1kIkRsTF/TJzXnYMevmDgfbwy1v
-         ZWo8ikCJP5rQVC+vCnxFO3S0Q6hrOKsannfUCZMx2K3kL0A+BYM66jKgHEmNJeyBKz
-         IrDuXU7eTs39I7bR1bLcocZbZmoyatU89XU1cGU0=
-Date:   Tue, 8 Jun 2021 12:04:22 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     =?utf-8?B?SmnFmcOt?= Prchal <jiri.prchal@aksignal.cz>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S230369AbhFHKIS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Jun 2021 06:08:18 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9DA2E61029;
+        Tue,  8 Jun 2021 10:06:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623146786;
+        bh=/4eo4nvXAKggoMT3u0BA0c4qH/TlfFend4Zs6pd5dOI=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=kyRLBa4ikE38jMT59Mz/tMR2me7OnDuB/r0TNQvCQE0NGV7mFGdFYU7SovqNaYAL3
+         Rhon7KZ2hQNF79N5oosKt3dVpQ7ClQpfie91H8siShLI6vfC/wnusBlymI+oGzspoW
+         4SBGHPZrzxnLWveVtvMTT7xfIBWKFMhT0VAiUiFgTMI/XEpLWik/j7gIHWfKwkTZw3
+         sYZZb0GjwtCXIde5dR8Tu4UJF5BLJugPgvDVZWggVdJY/sWK99P7ECu+nZr4CvfkDn
+         YmAMxKQqkx9Sgdy3ZwxB8FN/hce1kC9nYG+MNrC3o5CnDipOM4Jobh17zvFWwj6q7o
+         rmVZlLl/+cgMw==
+Message-ID: <777345df2227533d801d298c518b216c755aec83.camel@kernel.org>
+Subject: Re: [PATCH 4/4] ARM: boot: dts: bcm2711: Add BCM2711 VEC compatible
+From:   nicolas saenz julienne <nsaenz@kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>, dri-devel@lists.freedesktop.org,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Eric Anholt <eric@anholt.net>,
+        bcm-kernel-feedback-list@broadcom.com, Ray Jui <rjui@broadcom.com>,
+        devicetree@vger.kernel.org, Scott Branden <sbranden@broadcom.com>,
+        linux-kernel@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v8 5/5] nvmem: eeprom: add documentation of sysfs fram
- and sernum file
-Message-ID: <YL9AptarCWwSwuvq@kroah.com>
-References: <20210607161201.223697-1-jiri.prchal@aksignal.cz>
- <20210607161201.223697-6-jiri.prchal@aksignal.cz>
- <YL8yveuSWTC9iEEz@kroah.com>
- <d0aa3003-0cb7-53c8-6d0e-f1c2dcd90479@aksignal.cz>
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+Date:   Tue, 08 Jun 2021 12:06:20 +0200
+In-Reply-To: <20210520150344.273900-5-maxime@cerno.tech>
+References: <20210520150344.273900-1-maxime@cerno.tech>
+         <20210520150344.273900-5-maxime@cerno.tech>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.0 (3.40.0-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d0aa3003-0cb7-53c8-6d0e-f1c2dcd90479@aksignal.cz>
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 08, 2021 at 11:50:03AM +0200, Jiří Prchal wrote:
+On Thu, 2021-05-20 at 17:03 +0200, Maxime Ripard wrote:
+> From: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
 > 
+> The BCM2711 has a slightly different VEC than the one found in the older
+> SoCs. Now that we support the new variant, add its compatible to the
+> device tree.
 > 
-> On 08. 06. 21 11:05, Greg Kroah-Hartman wrote:
-> > On Mon, Jun 07, 2021 at 06:12:01PM +0200, Jiri Prchal wrote:
-> > > Added sysfs fram and sernum file documentation.
-> > > 
-> > > Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
-> > > ---
-> > > v5: new
-> > > v6: no change here
-> > > v7: no change here
-> > > v8: added fram file doc
-> > > ---
-> > >   Documentation/ABI/testing/sysfs-class-spi-eeprom | 13 +++++++++++++
-> > >   1 file changed, 13 insertions(+)
-> > >   create mode 100644 Documentation/ABI/testing/sysfs-class-spi-eeprom
-> > > 
-> > > diff --git a/Documentation/ABI/testing/sysfs-class-spi-eeprom b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-> > > new file mode 100644
-> > > index 000000000000..b41420fe1329
-> > > --- /dev/null
-> > > +++ b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-> > > @@ -0,0 +1,13 @@
-> > > +What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/sernum
-> > > +Date:		May 2021
-> > > +KernelVersion:	5.13
-> > > +Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
-> > > +Description:
-> > > +		(RO) Exports serial number of Cypress FRAM (FM25VN). 8 bytes as is in chip in hex string.
-> > 
-> > Please properly wrap your lines.
-> > 
-> > What is "(RO)" here?
-> 
-> Read Only, as seen in another doc.
+> Signed-off-by: Mateusz Kwiatkowski <kfyatek+publicgit@gmail.com>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> ---
 
-Perhaps this should say something like:
-	Contains the serial number of the Cypress FRAM (FM25VN) if it is
-	present.  It will be displayed as a 8 byte hex string, as read
-	from the device.
+Aplied for-next,
 
-	This is a read-only attribute.
+Regards,
+Nicolas
 
-> > And the grammer is a bit odd, what is the second sentence supposed to
-> > mean?
-> > 
-> > > +
-> > > +What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/fram
-> > > +Date:		June 2021
-> > > +KernelVersion:	5.13
-> > 
-> > Obviously it can not make 5.13, right?
-> 
-> Sorry for missunderstanding, what number should be here?
-
-5.14 if all goes well, right?
-
-thanks,
-
-greg k-h
