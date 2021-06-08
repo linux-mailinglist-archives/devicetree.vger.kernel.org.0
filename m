@@ -2,224 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C56639F860
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 16:02:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1585739F86C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 16:05:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233168AbhFHOEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 10:04:15 -0400
-Received: from mail-wm1-f41.google.com ([209.85.128.41]:41761 "EHLO
-        mail-wm1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233171AbhFHOEI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 10:04:08 -0400
-Received: by mail-wm1-f41.google.com with SMTP id l11-20020a05600c4f0bb029017a7cd488f5so1973260wmq.0;
-        Tue, 08 Jun 2021 07:02:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=E+9j4IJorqJShjQfs9LsrArykPixg4gTHiIgJ6SNPxU=;
-        b=tjSJOuiRQOaK418AxcbqOaKiZnav3BRxujrVXistY+iRayGWPWOKEK7QQKX8t0fZHX
-         BZTXjwoim0DyHSN1QAW09f4CuVC5VgId2S+nT+0qI33xK/FfWhS8MmFoq/ajXFDeHPTO
-         AFMnsIiYBpY8LBPI/Ex57eWTuhlKRhLWbvZXTgpnDf18qOwZ5dEu6bbteoffkkvpo9dM
-         1rYWsCMFfLWp8HpuUB9/Yp2LQjpYhO50KKGNLKIgFOukiLG8JYIKG7OJBuxFlQdCsHrH
-         a3GYDuJyFnGM9/tJCaY+xNBFLaTZKS3a0G2ywl9iXqLUPia7MIdIHO/6v0u1TDfrRXUz
-         7cUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=E+9j4IJorqJShjQfs9LsrArykPixg4gTHiIgJ6SNPxU=;
-        b=RyiQvotXR/JLTW2Vg8Y9srLZSw5eHmfj23cuiZCYCUvEoSJLQNH2CaSD0WpE1fEc0m
-         IrDqoD9SqnAa7bzW389ZT3ngOKAwO4V6yYF5v6tPbkc6KuSGY2jKIbQ3a5bJmYxYtKTZ
-         Pwnm0UcAql/l2BMLlGuF9Z6gy5W4jW8Rs53znmIsgA0G+jFgyaZdLmdIuuJloJSdqFt6
-         eyqiBETiO5et9keS8SeqaQ1fmF2saPsvuxpuar2cUiuDCNbhpH46dZMUqPc7QM3ABWm1
-         t7OtGzdHKRRQZRby56crxzkhEi3JwvHQZH/zB/FvYk7g1fIbuUgdNlNnvaXvyeunT0dF
-         YSrA==
-X-Gm-Message-State: AOAM5326VZVU5GOq4gKdJxU802fce3GJzzMB7WVfNmHgFsMc000+wkrG
-        pXJycPBg/UJlMn261c2T0rc=
-X-Google-Smtp-Source: ABdhPJw+FtTbLb9zuZT/GZBtbqdUosLyGkCaukigrg4ejpy+HqV456zcPr07NLm5VZNriq1h6GCgOg==
-X-Received: by 2002:a7b:ca44:: with SMTP id m4mr22061133wml.52.1623160862718;
-        Tue, 08 Jun 2021 07:01:02 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id g17sm15224005wrp.61.2021.06.08.07.01.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Jun 2021 07:01:02 -0700 (PDT)
-Subject: Re: [PATCH 2/3] i2c: mediatek: Dump i2c/dma register when a timeout
- occurs
-To:     Kewei Xu <kewei.xu@mediatek.com>, wsa@the-dreams.de
-Cc:     robh+dt@kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
-        qii.wang@mediatek.com, qiangming.xia@mediatek.com
-References: <1623122200-1896-1-git-send-email-kewei.xu@mediatek.com>
- <1623122200-1896-3-git-send-email-kewei.xu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <54301510-e0d5-0762-1979-b194b8fd5eb8@gmail.com>
-Date:   Tue, 8 Jun 2021 16:01:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S233173AbhFHOHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 10:07:10 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:51784 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233176AbhFHOHI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Jun 2021 10:07:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=omHxetGSf7WvvYJIz4CtL+xJtQiHSODIemCHft0cr2A=; b=iE
+        OybeMN7wY1+wMg1xRqw8c16xMPRhSuDIhcUcDTwMJdmkOASe08GQKjpV+1qKSiyUxhixe74HQ/NWH
+        /sTZWkqQZ2IPJUnW/HdNOP3honl1nn/7H4XQOqNIsTpv1YEuLGaQhqdwtTxSWnoSfzZjh2sHqweVt
+        Sgnkf6lyJ2kutWc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lqcLe-008Lsy-Lx; Tue, 08 Jun 2021 16:04:54 +0200
+Date:   Tue, 8 Jun 2021 16:04:54 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Zhou Yanjie <zhouyanjie@wanyeetech.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com, paul@crapouillou.net
+Subject: Re: [PATCH 2/2] net: stmmac: Add Ingenic SoCs MAC support.
+Message-ID: <YL95BgJTv/jyAYr1@lunn.ch>
+References: <1623086867-119039-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1623086867-119039-3-git-send-email-zhouyanjie@wanyeetech.com>
+ <YL6zYgGdqxqL9c0j@lunn.ch>
+ <6532a195-65db-afb3-37a2-f68bfed9d908@wanyeetech.com>
+ <YL9gr2QQ/YEXNUmP@lunn.ch>
+ <62ad605f-3689-cab3-e43e-9b6954da8df3@wanyeetech.com>
 MIME-Version: 1.0
-In-Reply-To: <1623122200-1896-3-git-send-email-kewei.xu@mediatek.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <62ad605f-3689-cab3-e43e-9b6954da8df3@wanyeetech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 08/06/2021 05:16, Kewei Xu wrote:
-> From: "Kewei.Xu" <kewei.xu@mediatek.com>
+On Tue, Jun 08, 2021 at 09:48:38PM +0800, Zhou Yanjie wrote:
+> Hello Andrew,
 > 
-> When a timeout error occurs in i2c transter, it is usually related
-> to the i2c/dma IP hardware configuration. Therefore, the purpose of
-> this patch is to dump the key register values of i2c/dma when a
-> timeout occurs in i2c for debugging.
+> On 2021/6/8 下午8:21, Andrew Lunn wrote:
+> > Please wrap your text to around 75 characters per line.
 > 
-> Signed-off-by: Kewei.Xu <kewei.xu@mediatek.com>
-> ---
->  drivers/i2c/busses/i2c-mt65xx.c | 97 ++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 95 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-> index 5ddfa4e..e65a41e 100644
-> --- a/drivers/i2c/busses/i2c-mt65xx.c
-> +++ b/drivers/i2c/busses/i2c-mt65xx.c
-> @@ -125,6 +125,7 @@ enum I2C_REGS_OFFSET {
->  	OFFSET_HS,
->  	OFFSET_SOFTRESET,
->  	OFFSET_DCM_EN,
-> +	OFFSET_MULTI_DMA,
->  	OFFSET_PATH_DIR,
->  	OFFSET_DEBUGSTAT,
->  	OFFSET_DEBUGCTRL,
-> @@ -192,8 +193,9 @@ enum I2C_REGS_OFFSET {
->  	[OFFSET_TRANSFER_LEN_AUX] = 0x44,
->  	[OFFSET_CLOCK_DIV] = 0x48,
->  	[OFFSET_SOFTRESET] = 0x50,
-> +	[OFFSET_MULTI_DMA] = 0x84,
->  	[OFFSET_SCL_MIS_COMP_POINT] = 0x90,
-> -	[OFFSET_DEBUGSTAT] = 0xe0,
-> +	[OFFSET_DEBUGSTAT] = 0xe4,
-
-Is this offset only for mt8192 or also for mt8183?
-In any case that should go in as another patch. Either a fix or a new
-mt_i2c_regs_v3[]
-
-Regards,
-Matthias
-
->  	[OFFSET_DEBUGCTRL] = 0xe8,
->  	[OFFSET_FIFO_STAT] = 0xf4,
->  	[OFFSET_FIFO_THRESH] = 0xf8,
-> @@ -828,6 +830,96 @@ static int mtk_i2c_set_speed(struct mtk_i2c *i2c, unsigned int parent_clk)
->  	return 0;
->  }
->  
-> +static void i2c_dump_register(struct mtk_i2c *i2c)
-> +{
-> +	dev_err(i2c->dev, "SLAVE_ADDR[0x%x]: 0x%x, INTR_MASK[0x%x]: 0x%x\n",
-> +		OFFSET_SLAVE_ADDR,
-> +		(mtk_i2c_readw(i2c, OFFSET_SLAVE_ADDR)),
-> +		OFFSET_INTR_MASK,
-> +		(mtk_i2c_readw(i2c, OFFSET_INTR_MASK)));
-> +	dev_err(i2c->dev, "INTR_STAT[0x%x]: 0x%x, CONTROL[0x%x]: 0x%x\n",
-> +		OFFSET_INTR_STAT,
-> +		(mtk_i2c_readw(i2c, OFFSET_INTR_STAT)),
-> +		OFFSET_CONTROL,
-> +		(mtk_i2c_readw(i2c, OFFSET_CONTROL)));
-> +	dev_err(i2c->dev, "TRANSFER_LEN[0x%x]: 0x%x, TRANSAC_LEN[0x%x]: 0x%x\n",
-> +		OFFSET_TRANSFER_LEN,
-> +		(mtk_i2c_readw(i2c, OFFSET_TRANSFER_LEN)),
-> +		OFFSET_TRANSAC_LEN,
-> +		(mtk_i2c_readw(i2c, OFFSET_TRANSAC_LEN)));
-> +	dev_err(i2c->dev, "DELAY_LEN[0x%x]: 0x%x, HTIMING[0x%x]: 0x%x\n",
-> +		OFFSET_DELAY_LEN,
-> +		(mtk_i2c_readw(i2c, OFFSET_DELAY_LEN)),
-> +		OFFSET_TIMING,
-> +		(mtk_i2c_readw(i2c, OFFSET_TIMING)));
-> +	dev_err(i2c->dev, "OFFSET_START[0x%x]: 0x%x\n",
-> +		OFFSET_START,
-> +		mtk_i2c_readw(i2c, OFFSET_START));
-> +	dev_err(i2c->dev, "OFFSET_EXT_CONF[0x%x]: 0x%x\n",
-> +		OFFSET_EXT_CONF,
-> +		mtk_i2c_readw(i2c, OFFSET_EXT_CONF));
-> +	dev_err(i2c->dev, "OFFSET_HS[0x%x]: 0x%x\n",
-> +		OFFSET_HS,
-> +		mtk_i2c_readw(i2c, OFFSET_HS));
-> +	dev_err(i2c->dev, "OFFSET_IO_CONFIG[0x%x]: 0x%x\n",
-> +		OFFSET_IO_CONFIG,
-> +		mtk_i2c_readw(i2c, OFFSET_IO_CONFIG));
-> +	dev_err(i2c->dev, "OFFSET_FIFO_ADDR_CLR[0x%x]: 0x%x\n",
-> +		OFFSET_FIFO_ADDR_CLR,
-> +		mtk_i2c_readw(i2c, OFFSET_FIFO_ADDR_CLR));
-> +	dev_err(i2c->dev, "TRANSFER_LEN_AUX[0x%x]: 0x%x\n",
-> +		OFFSET_TRANSFER_LEN_AUX,
-> +		mtk_i2c_readw(i2c, OFFSET_TRANSFER_LEN_AUX));
-> +	dev_err(i2c->dev, "CLOCK_DIV[0x%x]: 0x%x\n",
-> +		OFFSET_CLOCK_DIV,
-> +		mtk_i2c_readw(i2c, OFFSET_CLOCK_DIV));
-> +	dev_err(i2c->dev, "FIFO_STAT[0x%x]: 0x%x, FIFO_THRESH[0x%x]: 0x%x\n",
-> +		OFFSET_FIFO_STAT,
-> +		mtk_i2c_readw(i2c, OFFSET_FIFO_STAT),
-> +		OFFSET_FIFO_THRESH,
-> +		mtk_i2c_readw(i2c, OFFSET_FIFO_THRESH));
-> +	dev_err(i2c->dev, "DCM_EN[0x%x] 0x%x\n",
-> +		OFFSET_DCM_EN,
-> +		mtk_i2c_readw(i2c, OFFSET_DCM_EN));
-> +	dev_err(i2c->dev, "DEBUGSTAT[0x%x]: 0x%x, DEBUGCTRL[0x%x]: 0x%x\n",
-> +		OFFSET_DEBUGSTAT,
-> +		(mtk_i2c_readw(i2c, OFFSET_DEBUGSTAT)),
-> +		OFFSET_DEBUGCTRL,
-> +		(mtk_i2c_readw(i2c, OFFSET_DEBUGCTRL)));
-> +
-> +	if (i2c->dev_comp->regs == mt_i2c_regs_v2) {
-> +		dev_err(i2c->dev, "OFFSET_LTIMING[0x%x]: 0x%x\n",
-> +			OFFSET_LTIMING,
-> +			mtk_i2c_readw(i2c, OFFSET_LTIMING));
-> +		dev_err(i2c->dev, "MULTI_DMA[0x%x]: 0x%x\n",
-> +			OFFSET_MULTI_DMA,
-> +			(mtk_i2c_readw(i2c, OFFSET_MULTI_DMA)));
-> +	}
-> +
-> +	dev_err(i2c->dev, "OFFSET_INT_FLAG = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_INT_FLAG));
-> +	dev_err(i2c->dev, "OFFSET_INT_EN = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_INT_EN));
-> +	dev_err(i2c->dev, "OFFSET_EN = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_EN));
-> +	dev_err(i2c->dev, "OFFSET_RST = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_RST));
-> +	dev_err(i2c->dev, "OFFSET_CON = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_CON));
-> +	dev_err(i2c->dev, "OFFSET_TX_MEM_ADDR = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_TX_MEM_ADDR));
-> +	dev_err(i2c->dev, "OFFSET_RX_MEM_ADDR = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_RX_MEM_ADDR));
-> +	dev_err(i2c->dev, "OFFSET_TX_LEN = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_TX_LEN));
-> +	dev_err(i2c->dev, "OFFSET_RX_LEN = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_RX_LEN));
-> +	dev_err(i2c->dev, "OFFSET_TX_4G_MODE = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_TX_4G_MODE));
-> +	dev_err(i2c->dev, "OFFSET_RX_4G_MODE = 0x%x\n",
-> +		readl(i2c->pdmabase + OFFSET_RX_4G_MODE));
-> +}
-> +
->  static int mtk_i2c_do_transfer(struct mtk_i2c *i2c, struct i2c_msg *msgs,
->  			       int num, int left_num)
->  {
-> @@ -1034,7 +1126,8 @@ static int mtk_i2c_do_transfer(struct mtk_i2c *i2c, struct i2c_msg *msgs,
->  	}
->  
->  	if (ret == 0) {
-> -		dev_dbg(i2c->dev, "addr: %x, transfer timeout\n", msgs->addr);
-> +		dev_err(i2c->dev, "addr: %x, transfer timeout\n", msgs->addr);
-> +		i2c_dump_register(i2c);
->  		mtk_i2c_init_hw(i2c);
->  		return -ETIMEDOUT;
->  	}
+> Sure.
 > 
+> 
+> > 
+> > I suspect you don't understand RGMII delays. As i said, normally, the
+> > MAC does not add delays, the PHY does. Please take a closer look at
+> > this.
+> 
+> 
+> According to the description of ethernet-controller.yaml, "rgmii" seems
+> 
+> to allow MAC to add TX delay (the description in ethernet-controller.yaml
+> 
+> is "RX and TX delays are added by the MAC when required"), while rgmii-id
+> 
+> and rgmii-txid do not allow MAC to add delay (the description in
+> 
+> ethernet-controller.yaml is"RGMII with internal RX and TX delays provided
+> 
+> by the PHY, the MAC should not add the RX or TX delays in this case" and
+> 
+> "RGMII with internal TX delay provided by the PHY, the MAC should not add
+> 
+> an TX delay in this case"), I will add support for the other three RGMII
+> modes
+> 
+> in the next version (I forgot to reply to this in the previous email).
+
+Please follow the code all the way through. What gets passed to
+phylink_create() is very important. If you have both the MAC and the
+PHY adding delays, bad things will happen.
+
+    Andrew
