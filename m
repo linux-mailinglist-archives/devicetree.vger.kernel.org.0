@@ -2,105 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07EC239F82D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 15:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92DA539F84E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 16:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232871AbhFHN40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 09:56:26 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.83]:34962 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232842AbhFHN4X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 09:56:23 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1623160464; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=ZAaGTvvy+FQIbEaP4NPYq26hcjORwSIUmUq9CEcfixW0CVBLwZ4DegggGOnRAbn6xp
-    A44zhbfJPtsvI4VeMdCdHhpx3wxv6E3BgCV0ZbASxxzi/Nki/BK9WAqr5TJg2uNHXMvW
-    0X9VrioYkXXyLe+ERx/1FdGQjibYU0VQjihKM0lzGE+CGfJ0GYMMbLFpNFjPzW75si6k
-    G/GhwBkm7MfKC/DHgFHXalgyTRWz3O+M6J/SbQtG7LfTUgYcknR9w9vQZH2ajRNDrMxG
-    I6oS/JGAZdQhsFkJo6MRS7ABlV0HC6ruzPxJvk4P7UNmF9vb0Je6XMf9D6+XS5siTMrc
-    W+Cg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623160464;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=rl6OGeTVbuWMtg723dmqTLwwTjsRAkOWOnXJx3St/jM=;
-    b=h5A6HD2O1ed16AFmemsCp7wywFDQtEs1NgR7iePTV0iDi8clYUsm9p+0Pl7pBAwzBQ
-    /ESFtMMWx5PAdNNT5Rm3g2VnQDvhoHHOzVMOgPNTjMiRyR6iG7oTOxdEvpcSi6cy8X5U
-    9g1CBxGd+W6lWzUmzRo6DuHVLxeP1FpalcajOsZRT+jotMsSnsEfQiqWEbru5UgblUsZ
-    /nKrNH0gXHdFY2dlRceFl5P7XdSHyqVz+xgg4okG5oMSSlszgGeJxT4Pt+qkHnJRAnm5
-    MVJywAniOdmY2gZbys+Sxu4/M8IpDpTY2ckpQhALanyNP+mnAAQz5ukewS7HM6Rv/YBa
-    reUA==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623160464;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=rl6OGeTVbuWMtg723dmqTLwwTjsRAkOWOnXJx3St/jM=;
-    b=mpP9NyOwzoLN1KyHO6PqPbXg9DKqsbnjECMZmRbVwlwN36M6Enw6HkU8Xbqst9ejIZ
-    zkce6hsjJQ3lzGbnVpAGnmhPxlHVQshMPfOBI653dwjhQ+JBEusbmUTuZz1HeROMzD40
-    56cBgzCV4cqjctrWgAc6396C7LnBd3LBelPKt9LIRHIEPL8SW6OsOhNQ5plVDvTr2Ron
-    TEOsxhZbFAa9qDu+f/urXvbTuB+4Ff2BNVbtpOIi7eKDDekxUhpku1ygXGHTNfHBl5mP
-    iO1/BhZ4KGEXa2+yObz4DnOvdJ/seinfBr/nJUX8w2gheardsKAv98eVBG2Z+XDK9Z/N
-    fybg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7IcbDBg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
-    with ESMTPSA id y01375x58DsOdxz
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 8 Jun 2021 15:54:24 +0200 (CEST)
-Date:   Tue, 8 Jun 2021 15:54:22 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        David Sterba <dsterba@suse.com>, Jens Axboe <axboe@kernel.dk>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kumar Gala <galak@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] cpuidle: qcom: Add SPM register data for MSM8226
-Message-ID: <YL92jqf/146P9vSl@gerhold.net>
-References: <20210530121803.13102-1-bartosz.dudziak@snejp.pl>
+        id S232659AbhFHOCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 10:02:30 -0400
+Received: from mail-wr1-f53.google.com ([209.85.221.53]:43820 "EHLO
+        mail-wr1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232675AbhFHOC0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 10:02:26 -0400
+Received: by mail-wr1-f53.google.com with SMTP id r9so5001679wrz.10;
+        Tue, 08 Jun 2021 07:00:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=wha8NSsJMXDXrgiU3SNfxp/2iBxAp8C222zWJjqhoMU=;
+        b=bcJnF3H57bJobBww34fPeDlDuVccrVj5KUGko7NQweDYMMXx7lqxEkDXL0NR5OKARZ
+         uKUc4ywXc7NJ3V45uiYqjUzW7IvRUdHBiBR+XclX4qf8MOe7SMCPX5PI0FCjDKBwWrNg
+         /8cvtLpllVjowaDJryvXyx4ZdZ+G8+MLeXPNNOkXPK2sKVZfkuYwd8lXLgTTB5IrkHci
+         PcDzpxUebjnu9qaNEf9amsuW53IAKY+AWPRoVnELwCthEo38JDNrjTDmsQe4cLEoNO4x
+         Ii9LNgyup0+1+s8QavDbSf9g533wmF67Wn4Ofr5yg0muN9KDXv+eMh3jIwdYLNLw3S8L
+         JYQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wha8NSsJMXDXrgiU3SNfxp/2iBxAp8C222zWJjqhoMU=;
+        b=jJKwqlL/bcwAO3NBFt17OROEW+u4K6U3tScuYKPV4Sub7Ge0CFCatvdcvHFw4nuT7r
+         boGSBXsfk4Z0PtqOxhQFaBE1U8XP7AoaMe+S/TurnRUxplTJADTOF60JAv/f+e0XftRy
+         WINjObL3LFpGZeLqsKT7HE8nRF/cZ89C15R60utev4jzzvPPL2Ep9O+B7rABlxpDACTV
+         xAeOTBuyPEFAml2TxWE5xSoHIZh+Vhd62MLIDaVkTOwUKu5LLcthAbH2dDhHXizrMhHq
+         9ef2mhMtDOO7VFeX41AlV7QPMBRO40z6XHyN7ehqlendhEGto/N9FJX/RcoBVVkV+4bd
+         5W5g==
+X-Gm-Message-State: AOAM532Ou43XVOHq81wJzoTrpixbC90Dw+cvXRLaiBT1AGIgcM8Rg/K8
+        5RuyDhVkSAkZhsmZ2D4Yyxs=
+X-Google-Smtp-Source: ABdhPJxWHnY/CZiNAzieh2cURAlIqm+0x7tH/zf160ESS25e2FExXNlpwmpZT2iayb4PANYHUMn/ig==
+X-Received: by 2002:a5d:4567:: with SMTP id a7mr22632327wrc.362.1623160759809;
+        Tue, 08 Jun 2021 06:59:19 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id b15sm19028240wru.64.2021.06.08.06.59.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Jun 2021 06:59:19 -0700 (PDT)
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: update bindings for MT8195 SoC
+To:     Kewei Xu <kewei.xu@mediatek.com>, wsa@the-dreams.de
+Cc:     robh+dt@kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
+        qii.wang@mediatek.com, qiangming.xia@mediatek.com
+References: <1623122200-1896-1-git-send-email-kewei.xu@mediatek.com>
+ <1623122200-1896-2-git-send-email-kewei.xu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <4df57c35-529f-9534-979a-f5d862a519a3@gmail.com>
+Date:   Tue, 8 Jun 2021 15:59:18 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210530121803.13102-1-bartosz.dudziak@snejp.pl>
+In-Reply-To: <1623122200-1896-2-git-send-email-kewei.xu@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Sun, May 30, 2021 at 02:18:01PM +0200, Bartosz Dudziak wrote:
-> Add SPM register data sequence for MSM8226 SoC and enable SAW2 power
-> controller for it.
-> 
-> Changes in v2:
->  - Removed APQ8026 SoC support
-> 
-> Bartosz Dudziak (2):
->   dt-bindings: arm: msm: Add SAW2 for MSM8226
->   cpuidle: qcom: Add SPM register data for MSM8226
-> 
->  .../devicetree/bindings/arm/msm/qcom,saw2.txt      |  1 +
->  drivers/cpuidle/cpuidle-qcom-spm.c                 | 14 ++++++++++++++
->  2 files changed, 15 insertions(+)
-> 
-> 
 
-It looks like you got the To:/Cc: list wrong in v2 (was okay in v1).
-Can you re-send these patches and include Daniel Lezcano (ARM cpuidle
-maintainer) and the linux-pm mailing list? Otherwise they might never
-be applied by anyone. :)
+On 08/06/2021 05:16, Kewei Xu wrote:
+> From: "Kewei.Xu" <kewei.xu@mediatek.com>
+> 
+> Add a DT binding documentation for the MT8195 soc.
+> 
+> Signed-off-by: Kewei.Xu <kewei.xu@mediatek.com>
 
-Please also make sure to add the Acked-by:/Reviewed-by: from myself/Rob
-to the respective patches when re-sending.
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
-Thanks!
-Stephan
+> ---
+>  Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+> index 7f0194f..7c4915bc 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+> @@ -15,6 +15,7 @@ Required properties:
+>        "mediatek,mt8173-i2c": for MediaTek MT8173
+>        "mediatek,mt8183-i2c": for MediaTek MT8183
+>        "mediatek,mt8192-i2c": for MediaTek MT8192
+> +      "mediatek,mt8195-i2c", "mediatek,mt8192-i2c": for MediaTek MT8195
+>        "mediatek,mt8516-i2c", "mediatek,mt2712-i2c": for MediaTek MT8516
+>    - reg: physical base address of the controller and dma base, length of memory
+>      mapped region.
+> 
