@@ -2,314 +2,718 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2AF039F429
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 12:50:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3792139F425
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 12:50:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231997AbhFHKwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 06:52:13 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:34723 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232007AbhFHKwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 06:52:07 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 3FB3458060C;
-        Tue,  8 Jun 2021 06:50:14 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 08 Jun 2021 06:50:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=RcW5ROXgyW9XQ
-        fhcLFsrjFXYe699upJtdQ4O8F1RtFY=; b=GUODNA1XboZEhWUoLR4bk1tX157bO
-        sb8ufTgQIklqyM8eqKhTKISsyMPZyOMt3fTTMW0l8vlpvVmedxU/FyLCAKZg9GLL
-        WKkb20grDYsXsYvRT9w2gyP+iWr03EX4KTX/OnLfj+yBS+drj74DFJ0lcFdvjs9I
-        KdB9muuuy5XT7qH1G4aaI/6KOtZLeOIQ1s0+M3J3i+HRsH6v1mSk1lU6EhVc+h/p
-        +bEn1eAW3K3mINFos1zQMnDldh2Txbbp3aPdVFbW4NGtMJMm9uAp1TTMJpNcAXa3
-        s38xR03HUhEzIbRwQxIdLPChNGnXOVWlx/vpaaqOjGQce6bdNvY2Zj3DA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=RcW5ROXgyW9XQfhcLFsrjFXYe699upJtdQ4O8F1RtFY=; b=qA+mMLSy
-        c9ETPb45R/ndNVA6zya4a0UJMLT1n05q/d51L/jsTGO21Ia/ghWHWiF7T8naDHfZ
-        XGyR4NJB5VoMRYveO9UfcEEScwNSWmeSBJBZRQAZHJvPQOHMWjLKoN7Je5suc2Dj
-        WU6Qc84143GHV8oEhDuyzSWXZn/APysY58AWZkuP55az2UDfkKHuoGgwR5m3NM46
-        adEYgmtp4kAmkxl4m/GIwSsGzj3mo2y2mpZwcGemZCZp8mICn64MSZUdE+x5M3F1
-        L2QnbdvzBTv6AMQCRtEBPZTKfFIwWOKQyCDlMQpX9lEmavSAQeFYUVkax5UsXjmW
-        +wH6ugsDUHjDEQ==
-X-ME-Sender: <xms:Y0u_YMEX5zZ-agan78pfbFKc2MObFx0SgE0DleUR9fkmUMadpSRMYQ>
-    <xme:Y0u_YFWfnotwQEwhHGIoDkwVHx8qK1gMSEbpV7xDisGv6f-blPtM9GIITDhWvys75
-    G2JIBNP85NHWmlw9Q>
-X-ME-Received: <xmr:Y0u_YGKNbIXkDRr00ABsObs7VIG59C2_ez3wIutZEvQZWy0oucV23WBWyXshXqGEaFPaTQziNAAr7tuOwEyO0vc-uU8S71s1mu4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedtledgudeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegr
-    jhdrihgurdgruheqnecuggftrfgrthhtvghrnhepjefgvdevheetkeevgeegleelgfelte
-    etjeffleffvdduudevieffgeetleevhfetnecuvehluhhsthgvrhfuihiivgepvdenucfr
-    rghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:Y0u_YOGqee0vT2ToyI61qUMQ2K-UGLcUiu45OyxM2OktahCHDR-Jiw>
-    <xmx:Y0u_YCWsA05ODS1zDorIcO_J_PNxKfj_3ZSAEJ0vCw1X8H0tuzId8Q>
-    <xmx:Y0u_YBMmPM2_IwUHKa25zY5BLT3Yo3LpWZfrAy2M1Y40uxq-Yby53g>
-    <xmx:Zku_YOkf3JSsew-1fhFIVNz2sBp64TQlkhXFK3HtQAcyw-siRq9GmA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 8 Jun 2021 06:50:04 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     openipmi-developer@lists.sourceforge.net, openbmc@lists.ozlabs.org,
-        minyard@acm.org
-Cc:     devicetree@vger.kernel.org, tmaimon77@gmail.com,
-        linux-aspeed@lists.ozlabs.org, avifishman70@gmail.com,
-        venture@google.com, linux-kernel@vger.kernel.org,
-        tali.perry1@gmail.com, robh+dt@kernel.org,
-        chiawei_wang@aspeedtech.com, linux-arm-kernel@lists.infradead.org,
-        benjaminfair@google.com, arnd@arndb.de, zweiss@equinix.com,
-        joel@jms.id.au, KWLIU@nuvoton.com
-Subject: [PATCH v4 16/16] ipmi: kcs_bmc_aspeed: Optionally apply status address
-Date:   Tue,  8 Jun 2021 20:17:57 +0930
-Message-Id: <20210608104757.582199-17-andrew@aj.id.au>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210608104757.582199-1-andrew@aj.id.au>
-References: <20210608104757.582199-1-andrew@aj.id.au>
+        id S231986AbhFHKwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 06:52:03 -0400
+Received: from mail-mw2nam12on2046.outbound.protection.outlook.com ([40.107.244.46]:27520
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231994AbhFHKwB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Jun 2021 06:52:01 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EQEufuuw2VA3z+qDb8/nLsNJSAfQKdwR7Y2S5S/JirwFB3CkDAae9hhHqQqZUh+M6/9u+aqg4yimauljUO+BUh3NBERwvGhat8uD4OxlkSVAGsWSahJVs6xcbyHn4FI+/5/AV6vMACVqoOAPlcLUHqu3mjrv3n8ql+II7ERxbMEkk1crI76Pfqa81trpjM/q1Zvmte1tUR0aMatBD62XY5uEBQC+7G6Hd6D+1+3L0AwJ2v79QsqLxaQqLsgR3X8AujlZWVkSwf2X71x4T80WM+7hkl+BZECjswn1kJG4RgaCQ3DAS60cl/A703L7QiPkePyD/YfICsvaSnRLUGNunQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MITPOn1uhPc8mNxQrzMWUp/kmhBipqgLsuyP6qsXBWk=;
+ b=NQPYv9GKPEACQORKlUNJCiVw8F8i9iFKVADfkbsClLmNd0NCv07iailN/YfbJSa5TxtHV8mvaMsP+xOD+Emn6YcV51hq8284MuLLDb6WfMCfPOIneb+uGotEhvMdJ1RjPSqzJKvIeJxo8nfrpxxcBuYMjF3VQn93JvgSubbCDrlYZ20FmXzQwk11rB9EsGO31ijuEVODbLSuc0sHI2H8NWb0weswpXrWVtWjt9HYvsMUCPWDMuLGBxI4fGqJiKlcw5RdXDXksGUo5Rf4lxh5hUfrkTT2daY5QFNDgdp+0JqXC34hEB0zHAFrHn6GoVOpdf4kRZ3X6tqdNmHYK40/AA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.32) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MITPOn1uhPc8mNxQrzMWUp/kmhBipqgLsuyP6qsXBWk=;
+ b=WsgykVyBxxpFa5/kCnjvXK8iFA+NXAFJXRGhnUrTnYChvWpri0lTi+BTT/2ZQVxzvc/1yqrtcjKtN1w0aWOt0L8qTQqWa5w4oo1oCdIw7cIeFZ7y9471F/RIdMcqWhr6VsfwNaQe+atdDy0G4Fb/NdIrxObvhu2StMVO/KKEQoqoiND3NRUrkMQRwWLpn+QQOlk4qNOfTZO6FVAxiY2vI3TGilVCk3/Og9RWr99YD7g1fZMHfkTShtSare/jXOjKJ3EvpISVu/dOt9a3rBJLbsq4xJ9q8AT9u6I8Kds8ylDn9V9r985tCkJOvGBZjzA9IhC38FND5mIxbBCeH+jEHw==
+Received: from DM5PR21CA0062.namprd21.prod.outlook.com (2603:10b6:3:129::24)
+ by BYAPR12MB2808.namprd12.prod.outlook.com (2603:10b6:a03:69::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.20; Tue, 8 Jun
+ 2021 10:50:06 +0000
+Received: from DM6NAM11FT006.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:129:cafe::a9) by DM5PR21CA0062.outlook.office365.com
+ (2603:10b6:3:129::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.4 via Frontend
+ Transport; Tue, 8 Jun 2021 10:50:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.32)
+ smtp.mailfrom=nvidia.com; gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.32 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.32; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.32) by
+ DM6NAM11FT006.mail.protection.outlook.com (10.13.173.104) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4195.22 via Frontend Transport; Tue, 8 Jun 2021 10:50:06 +0000
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 8 Jun
+ 2021 03:50:03 -0700
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 8 Jun
+ 2021 10:50:03 +0000
+Received: from audio.nvidia.com (172.20.187.6) by mail.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 8 Jun 2021 10:50:01 +0000
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <thierry.reding@gmail.com>, <robh+dt@kernel.org>
+CC:     <jonathanh@nvidia.com>, <linux-tegra@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH] arm64: tegra: Audio graph sound card for Jetson Xavier NX
+Date:   Tue, 8 Jun 2021 16:19:48 +0530
+Message-ID: <1623149388-11995-1-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f298f897-cf2e-4195-8a30-08d92a6b2db6
+X-MS-TrafficTypeDiagnostic: BYAPR12MB2808:
+X-Microsoft-Antispam-PRVS: <BYAPR12MB2808A258A37A9123C43ACD68A7379@BYAPR12MB2808.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:773;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: CsSz+8nqeOkhH6FJQyA7MPChSY12hGy6vbuXaax1sgDPHIT/QkAkvMNcN1pZo+QOtQaImmxupjYmd+Yk/OI604ynoyLBtXulxmrsJSTrOvuUnafKjJ+wfxTRAdndx3WYNu5hFIkiSI8s3hPSgFBwSAvRC4Rw8xGCkOFW6Bn+XZYBBEhdpl0EoBGK/IfPNYvZGVNYFsUS3ljhPv/yAoDlTWhPn4bT2FOXuiJgpwLSigxvEhATz8XmR+SsTi9IRF9AsPj977xCrnP8xGQhOi2BCdHkyIIycPWjnNdG1wx0dczvkUhqlGNiS4cjSUrQmqfHhl0cWY2/9saPp3s/S16jEtlAjwugZoTkK4WC1/WAqnezxXW7nxkwmJQNa2OnMbSYQ0O6sjGtg0mRhleuZag/bMK41dEJLktn6xoZ/UhEklxl4pHPwFV5BHS+RcYxPW5DSmDYprNAlj+d3wI2eciVV54/4DfjTIrMnvOy8ctPBo+FtrdqehvU2UUWrk/9tT7FSoNPcNTA4Xi2P/tUDAcN4F8IN4dBIpAHDqk70IkyaOKBJsFqh1VW60TeIqSkIsyWxNvUrxEr0nodLIbPU2Erl4wFdmbgZ7simqj+Ij7AalHw2m4O6THa5/pK7iOwooZBRPzmx/GUzWFniT/azaOECw==
+X-Forefront-Antispam-Report: CIP:216.228.112.32;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid01.nvidia.com;CAT:NONE;SFS:(4636009)(136003)(396003)(376002)(346002)(39860400002)(46966006)(36840700001)(478600001)(36860700001)(7636003)(426003)(6666004)(86362001)(54906003)(110136005)(82740400003)(5660300002)(7696005)(186003)(8936002)(70206006)(36756003)(356005)(70586007)(2616005)(8676002)(26005)(2906002)(47076005)(4326008)(107886003)(316002)(82310400003)(336012);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 10:50:06.5251
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f298f897-cf2e-4195-8a30-08d92a6b2db6
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.32];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT006.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2808
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some Aspeed KCS devices can derive the status register address from the
-address of the data register. As such, the address of the status
-register can be implicit in the configuration if desired. On the other
-hand, sometimes address schemes might be requested that are incompatible
-with the default addressing scheme. Allow these requests where possible
-if the devicetree specifies the status register address.
+Enable support for audio-graph based sound card on Jetson Xavier NX.
+Following I/O interfaces are enabled.
+  - I2S3 and I2S5
+  - DMIC1, DMIC2 and DMIC4
+  - DSPK1 and DSPK2
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-Reviewed-by: Chia-Wei Wang <chiawei_wang@aspeedtech.com>
+Signed-off-by: Sameer Pujar <spujar@nvidia.com>
 ---
- drivers/char/ipmi/kcs_bmc_aspeed.c | 116 +++++++++++++++++++++--------
- 1 file changed, 83 insertions(+), 33 deletions(-)
+ .../arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi | 593 +++++++++++++++++++++
+ 1 file changed, 593 insertions(+)
 
-diff --git a/drivers/char/ipmi/kcs_bmc_aspeed.c b/drivers/char/ipmi/kcs_bmc_aspeed.c
-index 461cb2c9cc7e..0401089f8895 100644
---- a/drivers/char/ipmi/kcs_bmc_aspeed.c
-+++ b/drivers/char/ipmi/kcs_bmc_aspeed.c
-@@ -83,6 +83,8 @@
- #define LPC_STR2             0x040
- #define LPC_STR3             0x044
- #define LPC_HICRB            0x100
-+#define     LPC_HICRB_EN16LADR2      BIT(5)
-+#define     LPC_HICRB_EN16LADR1      BIT(4)
- #define     LPC_HICRB_IBFIE4         BIT(1)
- #define     LPC_HICRB_LPC4E          BIT(0)
- #define LPC_HICRC            0x104
-@@ -96,6 +98,11 @@
- #define LPC_IDR4             0x114
- #define LPC_ODR4             0x118
- #define LPC_STR4             0x11C
-+#define LPC_LSADR12	     0x120
-+#define     LPC_LSADR12_LSADR2_MASK  GENMASK(31, 16)
-+#define     LPC_LSADR12_LSADR2_SHIFT 16
-+#define     LPC_LSADR12_LSADR1_MASK  GENMASK(15, 0)
-+#define     LPC_LSADR12_LSADR1_SHIFT 0
- 
- #define OBE_POLL_PERIOD	     (HZ / 2)
- 
-@@ -123,7 +130,7 @@ struct aspeed_kcs_bmc {
- 
- struct aspeed_kcs_of_ops {
- 	int (*get_channel)(struct platform_device *pdev);
--	int (*get_io_address)(struct platform_device *pdev);
-+	int (*get_io_address)(struct platform_device *pdev, u32 addrs[2]);
- };
- 
- static inline struct aspeed_kcs_bmc *to_aspeed_kcs_bmc(struct kcs_bmc_device *kcs_bmc)
-@@ -217,38 +224,64 @@ static void aspeed_kcs_updateb(struct kcs_bmc_device *kcs_bmc, u32 reg, u8 mask,
-  *     C. KCS4
-  *        D / C : CA4h / CA5h
-  */
--static void aspeed_kcs_set_address(struct kcs_bmc_device *kcs_bmc, u16 addr)
-+static int aspeed_kcs_set_address(struct kcs_bmc_device *kcs_bmc, u32 addrs[2], int nr_addrs)
- {
- 	struct aspeed_kcs_bmc *priv = to_aspeed_kcs_bmc(kcs_bmc);
- 
--	switch (kcs_bmc->channel) {
-+	if (WARN_ON(nr_addrs < 1 || nr_addrs > 2))
-+		return -EINVAL;
+diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
+index a717d2b..836a7e0 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
+@@ -15,6 +15,577 @@
+ 			interrupt-controller@2a40000 {
+ 				status = "okay";
+ 			};
 +
-+	switch (priv->kcs_bmc.channel) {
- 	case 1:
--		regmap_update_bits(priv->map, LPC_HICR4,
--				LPC_HICR4_LADR12AS, 0);
--		regmap_write(priv->map, LPC_LADR12H, addr >> 8);
--		regmap_write(priv->map, LPC_LADR12L, addr & 0xFF);
-+		regmap_update_bits(priv->map, LPC_HICR4, LPC_HICR4_LADR12AS, 0);
-+		regmap_write(priv->map, LPC_LADR12H, addrs[0] >> 8);
-+		regmap_write(priv->map, LPC_LADR12L, addrs[0] & 0xFF);
-+		if (nr_addrs == 2) {
-+			regmap_update_bits(priv->map, LPC_LSADR12, LPC_LSADR12_LSADR1_MASK,
-+					   addrs[1] << LPC_LSADR12_LSADR1_SHIFT);
++			ahub@2900800 {
++				status = "okay";
 +
-+			regmap_update_bits(priv->map, LPC_HICRB, LPC_HICRB_EN16LADR1,
-+					   LPC_HICRB_EN16LADR1);
-+		}
- 		break;
- 
- 	case 2:
--		regmap_update_bits(priv->map, LPC_HICR4,
--				LPC_HICR4_LADR12AS, LPC_HICR4_LADR12AS);
--		regmap_write(priv->map, LPC_LADR12H, addr >> 8);
--		regmap_write(priv->map, LPC_LADR12L, addr & 0xFF);
-+		regmap_update_bits(priv->map, LPC_HICR4, LPC_HICR4_LADR12AS, LPC_HICR4_LADR12AS);
-+		regmap_write(priv->map, LPC_LADR12H, addrs[0] >> 8);
-+		regmap_write(priv->map, LPC_LADR12L, addrs[0] & 0xFF);
-+		if (nr_addrs == 2) {
-+			regmap_update_bits(priv->map, LPC_LSADR12, LPC_LSADR12_LSADR2_MASK,
-+					   addrs[1] << LPC_LSADR12_LSADR2_SHIFT);
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
 +
-+			regmap_update_bits(priv->map, LPC_HICRB, LPC_HICRB_EN16LADR2,
-+					   LPC_HICRB_EN16LADR2);
-+		}
- 		break;
- 
- 	case 3:
--		regmap_write(priv->map, LPC_LADR3H, addr >> 8);
--		regmap_write(priv->map, LPC_LADR3L, addr & 0xFF);
-+		if (nr_addrs == 2) {
-+			dev_err(priv->kcs_bmc.dev,
-+				"Channel 3 only supports inferred status IO address\n");
-+			return -EINVAL;
-+		}
++					port@0 {
++						reg = <0x0>;
 +
-+		regmap_write(priv->map, LPC_LADR3H, addrs[0] >> 8);
-+		regmap_write(priv->map, LPC_LADR3L, addrs[0] & 0xFF);
- 		break;
- 
- 	case 4:
--		regmap_write(priv->map, LPC_LADR4, ((addr + 1) << 16) |
--			addr);
-+		if (nr_addrs == 1)
-+			regmap_write(priv->map, LPC_LADR4, ((addrs[0] + 1) << 16) | addrs[0]);
-+		else
-+			regmap_write(priv->map, LPC_LADR4, (addrs[1] << 16) | addrs[0]);
++						xbar_admaif0_ep: endpoint {
++							remote-endpoint = <&admaif0_ep>;
++						};
++					};
 +
- 		break;
- 
- 	default:
--		break;
-+		return -EINVAL;
- 	}
++					port@1 {
++						reg = <0x1>;
 +
-+	return 0;
- }
- 
- static inline int aspeed_kcs_map_serirq_type(u32 dt_type)
-@@ -457,18 +490,18 @@ static int aspeed_kcs_of_v1_get_channel(struct platform_device *pdev)
- 	return channel;
- }
- 
--static int aspeed_kcs_of_v1_get_io_address(struct platform_device *pdev)
-+static int
-+aspeed_kcs_of_v1_get_io_address(struct platform_device *pdev, u32 addrs[2])
- {
--	u32 slave;
- 	int rc;
- 
--	rc = of_property_read_u32(pdev->dev.of_node, "kcs_addr", &slave);
--	if (rc || slave > 0xffff) {
-+	rc = of_property_read_u32(pdev->dev.of_node, "kcs_addr", addrs);
-+	if (rc || addrs[0] > 0xffff) {
- 		dev_err(&pdev->dev, "no valid 'kcs_addr' configured\n");
- 		return -EINVAL;
- 	}
- 
--	return slave;
-+	return 1;
- }
- 
- static int aspeed_kcs_of_v2_get_channel(struct platform_device *pdev)
-@@ -504,18 +537,30 @@ static int aspeed_kcs_of_v2_get_channel(struct platform_device *pdev)
- 	return -EINVAL;
- }
- 
--static int aspeed_kcs_of_v2_get_io_address(struct platform_device *pdev)
-+static int
-+aspeed_kcs_of_v2_get_io_address(struct platform_device *pdev, u32 addrs[2])
- {
--	uint32_t slave;
- 	int rc;
- 
--	rc = of_property_read_u32(pdev->dev.of_node, "aspeed,lpc-io-reg", &slave);
--	if (rc || slave > 0xffff) {
--		dev_err(&pdev->dev, "no valid 'aspeed,lpc-io-reg' configured\n");
-+	rc = of_property_read_variable_u32_array(pdev->dev.of_node,
-+						 "aspeed,lpc-io-reg",
-+						 addrs, 1, 2);
-+	if (rc < 0) {
-+		dev_err(&pdev->dev, "No valid 'aspeed,lpc-io-reg' configured\n");
-+		return rc;
-+	}
++						xbar_admaif1_ep: endpoint {
++							remote-endpoint = <&admaif1_ep>;
++						};
++					};
 +
-+	if (addrs[0] > 0xffff) {
-+		dev_err(&pdev->dev, "Invalid data address in 'aspeed,lpc-io-reg'\n");
-+		return -EINVAL;
-+	}
++					port@2 {
++						reg = <0x2>;
 +
-+	if (rc == 2 && addrs[1] > 0xffff) {
-+		dev_err(&pdev->dev, "Invalid status address in 'aspeed,lpc-io-reg'\n");
- 		return -EINVAL;
- 	}
++						xbar_admaif2_ep: endpoint {
++							remote-endpoint = <&admaif2_ep>;
++						};
++					};
++
++					port@3 {
++						reg = <0x3>;
++
++						xbar_admaif3_ep: endpoint {
++							remote-endpoint = <&admaif3_ep>;
++						};
++					};
++
++					port@4 {
++						reg = <0x4>;
++
++						xbar_admaif4_ep: endpoint {
++							remote-endpoint = <&admaif4_ep>;
++						};
++					};
++
++					port@5 {
++						reg = <0x5>;
++
++						xbar_admaif5_ep: endpoint {
++							remote-endpoint = <&admaif5_ep>;
++						};
++					};
++
++					port@6 {
++						reg = <0x6>;
++
++						xbar_admaif6_ep: endpoint {
++							remote-endpoint = <&admaif6_ep>;
++						};
++					};
++
++					port@7 {
++						reg = <0x7>;
++
++						xbar_admaif7_ep: endpoint {
++							remote-endpoint = <&admaif7_ep>;
++						};
++					};
++
++					port@8 {
++						reg = <0x8>;
++
++						xbar_admaif8_ep: endpoint {
++							remote-endpoint = <&admaif8_ep>;
++						};
++					};
++
++					port@9 {
++						reg = <0x9>;
++
++						xbar_admaif9_ep: endpoint {
++							remote-endpoint = <&admaif9_ep>;
++						};
++					};
++
++					port@a {
++						reg = <0xa>;
++
++						xbar_admaif10_ep: endpoint {
++							remote-endpoint = <&admaif10_ep>;
++						};
++					};
++
++					port@b {
++						reg = <0xb>;
++
++						xbar_admaif11_ep: endpoint {
++							remote-endpoint = <&admaif11_ep>;
++						};
++					};
++
++					port@c {
++						reg = <0xc>;
++
++						xbar_admaif12_ep: endpoint {
++							remote-endpoint = <&admaif12_ep>;
++						};
++					};
++
++					port@d {
++						reg = <0xd>;
++
++						xbar_admaif13_ep: endpoint {
++							remote-endpoint = <&admaif13_ep>;
++						};
++					};
++
++					port@e {
++						reg = <0xe>;
++
++						xbar_admaif14_ep: endpoint {
++							remote-endpoint = <&admaif14_ep>;
++						};
++					};
++
++					port@f {
++						reg = <0xf>;
++
++						xbar_admaif15_ep: endpoint {
++							remote-endpoint = <&admaif15_ep>;
++						};
++					};
++
++					port@10 {
++						reg = <0x10>;
++
++						xbar_admaif16_ep: endpoint {
++							remote-endpoint = <&admaif16_ep>;
++						};
++					};
++
++					port@11 {
++						reg = <0x11>;
++
++						xbar_admaif17_ep: endpoint {
++							remote-endpoint = <&admaif17_ep>;
++						};
++					};
++
++					port@12 {
++						reg = <0x12>;
++
++						xbar_admaif18_ep: endpoint {
++							remote-endpoint = <&admaif18_ep>;
++						};
++					};
++
++					port@13 {
++						reg = <0x13>;
++
++						xbar_admaif19_ep: endpoint {
++							remote-endpoint = <&admaif19_ep>;
++						};
++					};
++
++					xbar_i2s3_port: port@16 {
++						reg = <0x16>;
++
++						xbar_i2s3_ep: endpoint {
++							remote-endpoint = <&i2s3_cif_ep>;
++						};
++					};
++
++					xbar_i2s5_port: port@18 {
++						reg = <0x18>;
++
++						xbar_i2s5_ep: endpoint {
++							remote-endpoint = <&i2s5_cif_ep>;
++						};
++					};
++
++					xbar_dmic1_port: port@1a {
++						reg = <0x1a>;
++
++						xbar_dmic1_ep: endpoint {
++							remote-endpoint = <&dmic1_cif_ep>;
++						};
++					};
++
++					xbar_dmic2_port: port@1b {
++						reg = <0x1b>;
++
++						xbar_dmic2_ep: endpoint {
++							remote-endpoint = <&dmic2_cif_ep>;
++						};
++					};
++
++					xbar_dmic4_port: port@1d {
++						reg = <0x1d>;
++
++						xbar_dmic4_ep: endpoint {
++							remote-endpoint = <&dmic4_cif_ep>;
++						};
++					};
++
++					xbar_dspk1_port: port@1e {
++						reg = <0x1e>;
++
++						xbar_dspk1_ep: endpoint {
++							remote-endpoint = <&dspk1_cif_ep>;
++						};
++					};
++
++					xbar_dspk2_port: port@1f {
++						reg = <0x1f>;
++
++						xbar_dspk2_ep: endpoint {
++							remote-endpoint = <&dspk2_cif_ep>;
++						};
++					};
++				};
++
++				admaif@290f000 {
++					status = "okay";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						admaif0_port: port@0 {
++							reg = <0x0>;
++
++							admaif0_ep: endpoint {
++								remote-endpoint = <&xbar_admaif0_ep>;
++							};
++						};
++
++						admaif1_port: port@1 {
++							reg = <0x1>;
++
++							admaif1_ep: endpoint {
++								remote-endpoint = <&xbar_admaif1_ep>;
++							};
++						};
++
++						admaif2_port: port@2 {
++							reg = <0x2>;
++
++							admaif2_ep: endpoint {
++								remote-endpoint = <&xbar_admaif2_ep>;
++							};
++						};
++
++						admaif3_port: port@3 {
++							reg = <0x3>;
++
++							admaif3_ep: endpoint {
++								remote-endpoint = <&xbar_admaif3_ep>;
++							};
++						};
++
++						admaif4_port: port@4 {
++							reg = <0x4>;
++
++							admaif4_ep: endpoint {
++								remote-endpoint = <&xbar_admaif4_ep>;
++							};
++						};
++
++						admaif5_port: port@5 {
++							reg = <0x5>;
++
++							admaif5_ep: endpoint {
++								remote-endpoint = <&xbar_admaif5_ep>;
++							};
++						};
++
++						admaif6_port: port@6 {
++							reg = <0x6>;
++
++							admaif6_ep: endpoint {
++								remote-endpoint = <&xbar_admaif6_ep>;
++							};
++						};
++
++						admaif7_port: port@7 {
++							reg = <0x7>;
++
++							admaif7_ep: endpoint {
++								remote-endpoint = <&xbar_admaif7_ep>;
++							};
++						};
++
++						admaif8_port: port@8 {
++							reg = <0x8>;
++
++							admaif8_ep: endpoint {
++								remote-endpoint = <&xbar_admaif8_ep>;
++							};
++						};
++
++						admaif9_port: port@9 {
++							reg = <0x9>;
++
++							admaif9_ep: endpoint {
++								remote-endpoint = <&xbar_admaif9_ep>;
++							};
++						};
++
++						admaif10_port: port@a {
++							reg = <0xa>;
++
++							admaif10_ep: endpoint {
++								remote-endpoint = <&xbar_admaif10_ep>;
++							};
++						};
++
++						admaif11_port: port@b {
++							reg = <0xb>;
++
++							admaif11_ep: endpoint {
++								remote-endpoint = <&xbar_admaif11_ep>;
++							};
++						};
++
++						admaif12_port: port@c {
++							reg = <0xc>;
++
++							admaif12_ep: endpoint {
++								remote-endpoint = <&xbar_admaif12_ep>;
++							};
++						};
++
++						admaif13_port: port@d {
++							reg = <0xd>;
++
++							admaif13_ep: endpoint {
++								remote-endpoint = <&xbar_admaif13_ep>;
++							};
++						};
++
++						admaif14_port: port@e {
++							reg = <0xe>;
++
++							admaif14_ep: endpoint {
++								remote-endpoint = <&xbar_admaif14_ep>;
++							};
++						};
++
++						admaif15_port: port@f {
++							reg = <0xf>;
++
++							admaif15_ep: endpoint {
++								remote-endpoint = <&xbar_admaif15_ep>;
++							};
++						};
++
++						admaif16_port: port@10 {
++							reg = <0x10>;
++
++							admaif16_ep: endpoint {
++								remote-endpoint = <&xbar_admaif16_ep>;
++							};
++						};
++
++						admaif17_port: port@11 {
++							reg = <0x11>;
++
++							admaif17_ep: endpoint {
++								remote-endpoint = <&xbar_admaif17_ep>;
++							};
++						};
++
++						admaif18_port: port@12 {
++							reg = <0x12>;
++
++							admaif18_ep: endpoint {
++								remote-endpoint = <&xbar_admaif18_ep>;
++							};
++						};
++
++						admaif19_port: port@13 {
++							reg = <0x13>;
++
++							admaif19_ep: endpoint {
++								remote-endpoint = <&xbar_admaif19_ep>;
++							};
++						};
++					};
++				};
++
++				i2s@2901200 {
++					status = "okay";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						port@0 {
++							reg = <0>;
++
++							i2s3_cif_ep: endpoint {
++								remote-endpoint = <&xbar_i2s3_ep>;
++							};
++						};
++
++						i2s3_port: port@1 {
++							reg = <1>;
++
++							i2s3_dap_ep: endpoint {
++								dai-format = "i2s";
++								/* Place holder for external Codec */
++							};
++						};
++					};
++				};
++
++				i2s@2901400 {
++					status = "okay";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						port@0 {
++							reg = <0>;
++
++							i2s5_cif_ep: endpoint {
++								remote-endpoint = <&xbar_i2s5_ep>;
++							};
++						};
++
++						i2s5_port: port@1 {
++							reg = <1>;
++
++							i2s5_dap_ep: endpoint@0 {
++								dai-format = "i2s";
++								/* Place holder for external Codec */
++							};
++						};
++					};
++				};
++
++				dmic@2904000 {
++					status = "okay";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						port@0 {
++							reg = <0>;
++
++							dmic1_cif_ep: endpoint {
++								remote-endpoint = <&xbar_dmic1_ep>;
++							};
++						};
++
++						dmic1_port: port@1 {
++							reg = <1>;
++
++							dmic1_dap_ep: endpoint {
++								/* Place holder for external Codec */
++							};
++						};
++					};
++				};
++
++				dmic@2904100 {
++					status = "okay";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						port@0 {
++							reg = <0>;
++
++							dmic2_cif_ep: endpoint {
++								remote-endpoint = <&xbar_dmic2_ep>;
++							};
++						};
++
++						dmic2_port: port@1 {
++							reg = <1>;
++
++							dmic2_dap_ep: endpoint {
++								/* Place holder for external Codec */
++							};
++						};
++					};
++				};
++
++				dmic@2904300 {
++					status = "okay";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						port@0 {
++							reg = <0>;
++
++							dmic4_cif_ep: endpoint {
++								remote-endpoint = <&xbar_dmic4_ep>;
++							};
++						};
++
++						dmic4_port: port@1 {
++							reg = <1>;
++
++							dmic4_dap_ep: endpoint {
++								/* Place holder for external Codec */
++							};
++						};
++					};
++				};
++
++				dspk@2905000 {
++					status = "okay";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						port@0 {
++							reg = <0>;
++
++							dspk1_cif_ep: endpoint {
++								remote-endpoint = <&xbar_dspk1_ep>;
++							};
++						};
++
++						dspk1_port: port@1 {
++							reg = <1>;
++
++							dspk1_dap_ep: endpoint {
++								/* Place holder for external Codec */
++							};
++						};
++					};
++				};
++
++				dspk@2905100 {
++					status = "okay";
++
++					ports {
++						#address-cells = <1>;
++						#size-cells = <0>;
++
++						port@0 {
++							reg = <0>;
++
++							dspk2_cif_ep: endpoint {
++								remote-endpoint = <&xbar_dspk2_ep>;
++							};
++						};
++
++						dspk2_port: port@1 {
++							reg = <1>;
++
++							dspk2_dap_ep: endpoint {
++								/* Place holder for external Codec */
++							};
++						};
++					};
++				};
++			};
+ 		};
  
--	return slave;
-+	return rc;
- }
+ 		ddc: i2c@3190000 {
+@@ -265,6 +836,28 @@
+ 		regulator-boot-on;
+ 	};
  
- static int aspeed_kcs_probe(struct platform_device *pdev)
-@@ -524,9 +569,11 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
- 	struct kcs_bmc_device *kcs_bmc;
- 	struct aspeed_kcs_bmc *priv;
- 	struct device_node *np;
--	int rc, channel, addr;
- 	bool have_upstream_irq;
- 	u32 upstream_irq[2];
-+	int rc, channel;
-+	int nr_addrs;
-+	u32 addrs[2];
- 
- 	np = pdev->dev.of_node->parent;
- 	if (!of_device_is_compatible(np, "aspeed,ast2400-lpc-v2") &&
-@@ -544,9 +591,9 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
- 	if (channel < 0)
- 		return channel;
- 
--	addr = ops->get_io_address(pdev);
--	if (addr < 0)
--		return addr;
-+	nr_addrs = ops->get_io_address(pdev, addrs);
-+	if (nr_addrs < 0)
-+		return nr_addrs;
- 
- 	np = pdev->dev.of_node;
- 	rc = of_property_read_u32_array(np, "aspeed,lpc-interrupts", upstream_irq, 2);
-@@ -575,7 +622,9 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
- 	priv->obe.remove = false;
- 	timer_setup(&priv->obe.timer, aspeed_kcs_check_obe, 0);
- 
--	aspeed_kcs_set_address(kcs_bmc, addr);
-+	rc = aspeed_kcs_set_address(kcs_bmc, addrs, nr_addrs);
-+	if (rc)
-+		return rc;
- 
- 	/* Host to BMC IRQ */
- 	rc = aspeed_kcs_config_downstream_irq(kcs_bmc, pdev);
-@@ -602,7 +651,8 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
- 		return rc;
- 	}
- 
--	dev_info(&pdev->dev, "Initialised channel %d at 0x%x\n", kcs_bmc->channel, addr);
-+	dev_info(&pdev->dev, "Initialised channel %d at 0x%x\n",
-+			kcs_bmc->channel, addrs[0]);
- 
- 	return 0;
- }
++	sound {
++		compatible = "nvidia,tegra186-audio-graph-card";
++		status = "okay";
++
++		dais = /* ADMAIF (FE) Ports */
++		       <&admaif0_port>, <&admaif1_port>, <&admaif2_port>, <&admaif3_port>,
++		       <&admaif4_port>, <&admaif5_port>, <&admaif6_port>, <&admaif7_port>,
++		       <&admaif8_port>, <&admaif9_port>, <&admaif10_port>, <&admaif11_port>,
++		       <&admaif12_port>, <&admaif13_port>, <&admaif14_port>, <&admaif15_port>,
++		       <&admaif16_port>, <&admaif17_port>, <&admaif18_port>, <&admaif19_port>,
++		       /* XBAR Ports */
++		       <&xbar_i2s3_port>, <&xbar_i2s5_port>,
++		       <&xbar_dmic1_port>, <&xbar_dmic2_port>, <&xbar_dmic4_port>,
++		       <&xbar_dspk1_port>, <&xbar_dspk2_port>,
++		       /* BE I/O Ports */
++		       <&i2s3_port>, <&i2s5_port>,
++		       <&dmic1_port>, <&dmic2_port>, <&dmic4_port>,
++		       <&dspk1_port>, <&dspk2_port>;
++
++		label = "NVIDIA Jetson Xavier NX APE";
++	};
++
+ 	thermal-zones {
+ 		cpu {
+ 			polling-delay = <0>;
 -- 
-2.30.2
+2.7.4
 
