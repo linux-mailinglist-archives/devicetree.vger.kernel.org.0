@@ -2,174 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C499839F6E7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 14:37:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A2E639F6F8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 14:41:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232579AbhFHMj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 08:39:27 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:13033 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232577AbhFHMj1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 08:39:27 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1623155854; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=UBlZJh5rI7/1dUw1Yk4HhHruAdp5yem1UjzvehIHwFY=; b=DzJEEnwrziyMvyFg5a5JtDjehtDrDD6Oa8bY67rF0/HWMrTisNVxsMkw+G6lUIhs6muFZJ/H
- Sckc2q68DRjc6PjrQ8nRyLBtg6eWdGFIivhIBsZXqHkN08lb2bhhYT0ej5OFSnNR/WNVMenM
- QtljacnuRBmwoPM2a6IG/TcArXs=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 60bf647b8491191eb35d969f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 08 Jun 2021 12:37:15
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 9E53DC433D3; Tue,  8 Jun 2021 12:37:15 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D6AEFC433F1;
-        Tue,  8 Jun 2021 12:37:08 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D6AEFC433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH v3] ASoC: qcom: Add four speaker support on MI2S secondary
-Date:   Tue,  8 Jun 2021 18:06:44 +0530
-Message-Id: <20210608123644.31398-1-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
+        id S232602AbhFHMnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 08:43:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35694 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232570AbhFHMnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 08:43:18 -0400
+Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07D0DC061787
+        for <devicetree@vger.kernel.org>; Tue,  8 Jun 2021 05:41:26 -0700 (PDT)
+Received: by mail-ua1-x932.google.com with SMTP id d18so279461ual.7
+        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 05:41:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Mcc8OYc1xINsDjGaAzn2LnDPNNAqALk30CWabYfEJ5Y=;
+        b=ae0mnRjOIMn1cVt/lfPKFZ+dihY+iVQiOB120cuEUj9cs4YROrh3apZGQSzDgRbtlQ
+         6VMqpdt+vo7uIubvyFJ/Gx8sXMH/cCATEK4+QHruCfTWpe/arCeuwdIsjxRCeGuxCy/T
+         3/l9qXGBLWYlUf0UO1fouktqbEeWW0bhbJn4a9o5sPOB9J/ev9MesoPHr9U1j2NAxzKy
+         fWLwR7FRoH4KaROXLt+TtwVt/t1rNDMycHYALf5xLoDJRfmpceC9CP5luc1gX3BMBtw9
+         OfM8ymR4sp3l5h+b6rYCj4WUoUF0xGfhCxVD6Kn0RP4vW8YwWgb6yEc53dzg+868y8+Y
+         un7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Mcc8OYc1xINsDjGaAzn2LnDPNNAqALk30CWabYfEJ5Y=;
+        b=BeEGbk+3hAjtShLPZjPLRgmu5EQPoiSU5fx8WfgNmXoSEv9N1yyUV6yZFQ1s9THyAP
+         GhwHbbUgd7/63aQ0mi3BpzQx8XUZfrbbE6/+0nD9OxY2DOuIPkR74cYKcgALdCe2RTxk
+         V1NbbeFvNdxc3h4KIcENh50TEvHYPDoZrcw9ZTyYtj+t7ckp3GvIyJbrbz1IPD6cfM1b
+         +gkvzofunaFo9cP2cY/rqh/7mYGBvcMrRymptoN6WgEi9KGGdz3rD1+rzRpzalRgbobs
+         eK46ciZCu7Hh89evIwYBLri/k58qc/TUvjjoZt0wCH86SxleZZzX5I10iJHllEvJsRJr
+         V4QQ==
+X-Gm-Message-State: AOAM533hufzUxgzxiHbN6BXHCXzyZ+DVn16PgNCc2dHU3jy1mO+dV6JS
+        poY9500dyNBSO+fRCgF9UbDqxopbhQeNSFT8qly20Q==
+X-Google-Smtp-Source: ABdhPJxaPShcDb8weegxYcT+6lqT0m9ossZqMq8qD5rdHUJ1HszEh+p7p3IuISUl9zNHrKvoARqbkguEnZU/w/ywjho=
+X-Received: by 2002:ab0:7c5b:: with SMTP id d27mr12310573uaw.15.1623156082979;
+ Tue, 08 Jun 2021 05:41:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210602192758.38735-1-alcooperx@gmail.com> <20210602192758.38735-2-alcooperx@gmail.com>
+In-Reply-To: <20210602192758.38735-2-alcooperx@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 8 Jun 2021 14:40:46 +0200
+Message-ID: <CAPDyKFrynST66yA_T3iroiJsfmNuBOEiiBnb=vNoyP6QpvZ7aQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] mmc: sdhci-iproc: Add support for the legacy sdhci
+ controller on the BCM7211
+To:     Al Cooper <alcooperx@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+        Scott Branden <sbranden@broadcom.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add four speaker support on MI2S secondary block
-by using I2S SD1 line on gpio52 pin, and add channel map
-control support in the lpass-cpu audio driver.
+On Wed, 2 Jun 2021 at 21:28, Al Cooper <alcooperx@gmail.com> wrote:
+>
+> Add support for the legacy Arasan sdhci controller on the BCM7211 and
+> related SoC's. This includes adding a .shutdown callback to increase
+> the power savings during S5.
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
- sound/soc/qcom/lpass-cpu.c    | 40 ++++++++++++++++++++++++++++++++++-
- sound/soc/qcom/lpass-sc7180.c |  1 +
- sound/soc/qcom/lpass.h        |  8 ++++++-
- 3 files changed, 47 insertions(+), 2 deletions(-)
+Please split this into two separate changes.
 
-diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-index c62d2612e8f5..d03cc359983a 100644
---- a/sound/soc/qcom/lpass-cpu.c
-+++ b/sound/soc/qcom/lpass-cpu.c
-@@ -324,10 +324,43 @@ const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops = {
- };
- EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_dai_ops);
- 
-+int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
-+				struct snd_soc_dai *dai)
-+{
-+	int ret;
-+	struct snd_soc_dai_driver *drv = dai->driver;
-+	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-+
-+	ret =  snd_pcm_add_chmap_ctls(rtd->pcm, SNDRV_PCM_STREAM_PLAYBACK,
-+			snd_pcm_alt_chmaps, drv->playback.channels_max, 0,
-+			&drvdata->chmap_info);
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(lpass_cpu_pcm_new);
-+
- int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai)
- {
- 	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
--	int ret;
-+	struct snd_soc_dai_driver *drv = dai->driver;
-+	int ret, i;
-+
-+	drvdata->rx_chmap.channels = drv->playback.channels_max;
-+	drvdata->tx_chmap.channels = drv->playback.channels_max;
-+
-+	if (drv->playback.channels_max == 2)
-+		drvdata->chmap_idx = 1;
-+	else if (drv->playback.channels_max == 4)
-+		drvdata->chmap_idx = 2;
-+
-+	for (i = 0; i < drv->playback.channels_max; i++) {
-+		drvdata->tx_chmap.map[i] =
-+				snd_pcm_alt_chmaps[drvdata->chmap_idx].map[i];
-+		drvdata->rx_chmap.map[i] =
-+				snd_pcm_alt_chmaps[drvdata->chmap_idx].map[i];
-+	}
- 
- 	/* ensure audio hardware is disabled */
- 	ret = regmap_write(drvdata->lpaif_map,
-@@ -856,6 +889,11 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
- 				PTR_ERR(drvdata->mi2s_bit_clk[dai_id]));
- 			return PTR_ERR(drvdata->mi2s_bit_clk[dai_id]);
- 		}
-+		if (drvdata->mi2s_playback_sd_mode[dai_id] ==
-+			LPAIF_I2SCTL_MODE_QUAD01) {
-+			variant->dai_driver[dai_id].playback.channels_min = 4;
-+			variant->dai_driver[dai_id].playback.channels_max = 4;
-+		}
- 	}
- 
- 	/* Allocation for i2sctl regmap fields */
-diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-index 8c168d3c589e..77a556b27cf0 100644
---- a/sound/soc/qcom/lpass-sc7180.c
-+++ b/sound/soc/qcom/lpass-sc7180.c
-@@ -58,6 +58,7 @@ static struct snd_soc_dai_driver sc7180_lpass_cpu_dai_driver[] = {
- 		},
- 		.probe	= &asoc_qcom_lpass_cpu_dai_probe,
- 		.ops    = &asoc_qcom_lpass_cpu_dai_ops,
-+		.pcm_new = lpass_cpu_pcm_new,
- 	}, {
- 		.id = LPASS_DP_RX,
- 		.name = "Hdmi",
-diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
-index 83b2e08ade06..db239ea52946 100644
---- a/sound/soc/qcom/lpass.h
-+++ b/sound/soc/qcom/lpass.h
-@@ -110,6 +110,11 @@ struct lpass_data {
- 	struct lpass_hdmitx_dmactl *hdmi_tx_dmactl[LPASS_MAX_HDMI_DMA_CHANNELS];
- 	struct lpass_dp_metadata_ctl *meta_ctl;
- 	struct lpass_sstream_ctl *sstream_ctl;
-+	/* Channel map information */
-+	struct snd_pcm_chmap *chmap_info;
-+	struct snd_pcm_chmap_elem rx_chmap;
-+	struct snd_pcm_chmap_elem tx_chmap;
-+	int chmap_idx;
- };
- 
- /* Vairant data per each SOC */
-@@ -259,5 +264,6 @@ void asoc_qcom_lpass_cpu_platform_shutdown(struct platform_device *pdev);
- int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev);
- int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai);
- extern const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops;
--
-+int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
-+				struct snd_soc_dai *dai);
- #endif /* __LPASS_H__ */
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+May I also ask about the ->shutdown() callback and in relation to S5.
+What makes the ->shutdown callback only being invoked for S5?
 
+Kind regards
+Uffe
+
+>
+> Signed-off-by: Al Cooper <alcooperx@gmail.com>
+> ---
+>  drivers/mmc/host/Kconfig       |  2 +-
+>  drivers/mmc/host/sdhci-iproc.c | 30 ++++++++++++++++++++++++++++++
+>  drivers/mmc/host/sdhci.h       |  2 ++
+>  3 files changed, 33 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index a4d4c757eea0..561184fa7eb9 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -412,7 +412,7 @@ config MMC_SDHCI_MILBEAUT
+>
+>  config MMC_SDHCI_IPROC
+>         tristate "SDHCI support for the BCM2835 & iProc SD/MMC Controller"
+> -       depends on ARCH_BCM2835 || ARCH_BCM_IPROC || COMPILE_TEST
+> +       depends on ARCH_BCM2835 || ARCH_BCM_IPROC || ARCH_BRCMSTB || COMPILE_TEST
+>         depends on MMC_SDHCI_PLTFM
+>         depends on OF || ACPI
+>         default ARCH_BCM_IPROC
+> diff --git a/drivers/mmc/host/sdhci-iproc.c b/drivers/mmc/host/sdhci-iproc.c
+> index ddeaf8e1f72f..cce390fe9cf3 100644
+> --- a/drivers/mmc/host/sdhci-iproc.c
+> +++ b/drivers/mmc/host/sdhci-iproc.c
+> @@ -286,11 +286,35 @@ static const struct sdhci_iproc_data bcm2711_data = {
+>         .mmc_caps = MMC_CAP_3_3V_DDR,
+>  };
+>
+> +static const struct sdhci_pltfm_data sdhci_bcm7211a0_pltfm_data = {
+> +       .quirks = SDHCI_QUIRK_MISSING_CAPS |
+> +               SDHCI_QUIRK_BROKEN_TIMEOUT_VAL |
+> +               SDHCI_QUIRK_BROKEN_DMA |
+> +               SDHCI_QUIRK_BROKEN_ADMA,
+> +       .ops = &sdhci_iproc_ops,
+> +};
+> +
+> +#define BCM7211A0_BASE_CLK_MHZ 100
+> +static const struct sdhci_iproc_data bcm7211a0_data = {
+> +       .pdata = &sdhci_bcm7211a0_pltfm_data,
+> +       .caps = ((BCM7211A0_BASE_CLK_MHZ / 2) << SDHCI_TIMEOUT_CLK_SHIFT) |
+> +               (BCM7211A0_BASE_CLK_MHZ << SDHCI_CLOCK_BASE_SHIFT) |
+> +               ((0x2 << SDHCI_MAX_BLOCK_SHIFT)
+> +                       & SDHCI_MAX_BLOCK_MASK) |
+> +               SDHCI_CAN_VDD_330 |
+> +               SDHCI_CAN_VDD_180 |
+> +               SDHCI_CAN_DO_SUSPEND |
+> +               SDHCI_CAN_DO_HISPD,
+> +       .caps1 = SDHCI_DRIVER_TYPE_C |
+> +                SDHCI_DRIVER_TYPE_D,
+> +};
+> +
+>  static const struct of_device_id sdhci_iproc_of_match[] = {
+>         { .compatible = "brcm,bcm2835-sdhci", .data = &bcm2835_data },
+>         { .compatible = "brcm,bcm2711-emmc2", .data = &bcm2711_data },
+>         { .compatible = "brcm,sdhci-iproc-cygnus", .data = &iproc_cygnus_data},
+>         { .compatible = "brcm,sdhci-iproc", .data = &iproc_data },
+> +       { .compatible = "brcm,bcm7211a0-sdhci", .data = &bcm7211a0_data },
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(of, sdhci_iproc_of_match);
+> @@ -384,6 +408,11 @@ static int sdhci_iproc_probe(struct platform_device *pdev)
+>         return ret;
+>  }
+>
+> +static void sdhci_iproc_shutdown(struct platform_device *pdev)
+> +{
+> +       sdhci_pltfm_suspend(&pdev->dev);
+> +}
+> +
+>  static struct platform_driver sdhci_iproc_driver = {
+>         .driver = {
+>                 .name = "sdhci-iproc",
+> @@ -394,6 +423,7 @@ static struct platform_driver sdhci_iproc_driver = {
+>         },
+>         .probe = sdhci_iproc_probe,
+>         .remove = sdhci_pltfm_unregister,
+> +       .shutdown = sdhci_iproc_shutdown,
+>  };
+>  module_platform_driver(sdhci_iproc_driver);
+>
+> diff --git a/drivers/mmc/host/sdhci.h b/drivers/mmc/host/sdhci.h
+> index 0770c036e2ff..c35ed4be75b7 100644
+> --- a/drivers/mmc/host/sdhci.h
+> +++ b/drivers/mmc/host/sdhci.h
+> @@ -201,8 +201,10 @@
+>
+>  #define SDHCI_CAPABILITIES     0x40
+>  #define  SDHCI_TIMEOUT_CLK_MASK                GENMASK(5, 0)
+> +#define  SDHCI_TIMEOUT_CLK_SHIFT 0
+>  #define  SDHCI_TIMEOUT_CLK_UNIT        0x00000080
+>  #define  SDHCI_CLOCK_BASE_MASK         GENMASK(13, 8)
+> +#define  SDHCI_CLOCK_BASE_SHIFT        8
+>  #define  SDHCI_CLOCK_V3_BASE_MASK      GENMASK(15, 8)
+>  #define  SDHCI_MAX_BLOCK_MASK  0x00030000
+>  #define  SDHCI_MAX_BLOCK_SHIFT  16
+> --
+> 2.17.1
+>
