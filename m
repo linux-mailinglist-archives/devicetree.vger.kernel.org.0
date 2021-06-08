@@ -2,82 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CE7039F314
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 11:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49FC339F322
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 12:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230119AbhFHJ7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 05:59:02 -0400
-Received: from router.aksignal.cz ([62.44.4.214]:59732 "EHLO
-        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230222AbhFHJ7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 05:59:02 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by router.aksignal.cz (Postfix) with ESMTP id BE08640F98;
-        Tue,  8 Jun 2021 11:57:05 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
-Received: from router.aksignal.cz ([127.0.0.1])
-        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id aN8x4IOG1YVK; Tue,  8 Jun 2021 11:57:05 +0200 (CEST)
-Received: from [172.25.161.48] (unknown [83.240.30.185])
-        (Authenticated sender: jiri.prchal@aksignal.cz)
-        by router.aksignal.cz (Postfix) with ESMTPSA id 2FB0D40F93;
-        Tue,  8 Jun 2021 11:57:05 +0200 (CEST)
-Subject: Re: [PATCH v8 2/5] nvmem: eeprom: at25: add support for FRAM
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+        id S230119AbhFHKGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 06:06:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44904 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229937AbhFHKGR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Jun 2021 06:06:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 78A6461029;
+        Tue,  8 Jun 2021 10:04:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1623146665;
+        bh=EK4el4APpWCVjBrcLKlrQLh70FOtGjt4sfJI+r/oQbQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=D4bKQmu6jUCjqPf81K8pwAh+t3QvnyhMzv723S1kIkRsTF/TJzXnYMevmDgfbwy1v
+         ZWo8ikCJP5rQVC+vCnxFO3S0Q6hrOKsannfUCZMx2K3kL0A+BYM66jKgHEmNJeyBKz
+         IrDuXU7eTs39I7bR1bLcocZbZmoyatU89XU1cGU0=
+Date:   Tue, 8 Jun 2021 12:04:22 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     =?utf-8?B?SmnFmcOt?= Prchal <jiri.prchal@aksignal.cz>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        kernel test robot <lkp@intel.com>
+        Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v8 5/5] nvmem: eeprom: add documentation of sysfs fram
+ and sernum file
+Message-ID: <YL9AptarCWwSwuvq@kroah.com>
 References: <20210607161201.223697-1-jiri.prchal@aksignal.cz>
- <20210607161201.223697-3-jiri.prchal@aksignal.cz>
- <YL8zZraFXTvGr3dE@kroah.com>
-From:   =?UTF-8?B?SmnFmcOtIFByY2hhbA==?= <jiri.prchal@aksignal.cz>
-Message-ID: <cc57eb8a-bfd6-f314-b408-0c4c8fe01a03@aksignal.cz>
-Date:   Tue, 8 Jun 2021 11:57:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ <20210607161201.223697-6-jiri.prchal@aksignal.cz>
+ <YL8yveuSWTC9iEEz@kroah.com>
+ <d0aa3003-0cb7-53c8-6d0e-f1c2dcd90479@aksignal.cz>
 MIME-Version: 1.0
-In-Reply-To: <YL8zZraFXTvGr3dE@kroah.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <d0aa3003-0cb7-53c8-6d0e-f1c2dcd90479@aksignal.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 08, 2021 at 11:50:03AM +0200, Jiří Prchal wrote:
+> 
+> 
+> On 08. 06. 21 11:05, Greg Kroah-Hartman wrote:
+> > On Mon, Jun 07, 2021 at 06:12:01PM +0200, Jiri Prchal wrote:
+> > > Added sysfs fram and sernum file documentation.
+> > > 
+> > > Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
+> > > ---
+> > > v5: new
+> > > v6: no change here
+> > > v7: no change here
+> > > v8: added fram file doc
+> > > ---
+> > >   Documentation/ABI/testing/sysfs-class-spi-eeprom | 13 +++++++++++++
+> > >   1 file changed, 13 insertions(+)
+> > >   create mode 100644 Documentation/ABI/testing/sysfs-class-spi-eeprom
+> > > 
+> > > diff --git a/Documentation/ABI/testing/sysfs-class-spi-eeprom b/Documentation/ABI/testing/sysfs-class-spi-eeprom
+> > > new file mode 100644
+> > > index 000000000000..b41420fe1329
+> > > --- /dev/null
+> > > +++ b/Documentation/ABI/testing/sysfs-class-spi-eeprom
+> > > @@ -0,0 +1,13 @@
+> > > +What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/sernum
+> > > +Date:		May 2021
+> > > +KernelVersion:	5.13
+> > > +Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
+> > > +Description:
+> > > +		(RO) Exports serial number of Cypress FRAM (FM25VN). 8 bytes as is in chip in hex string.
+> > 
+> > Please properly wrap your lines.
+> > 
+> > What is "(RO)" here?
+> 
+> Read Only, as seen in another doc.
 
+Perhaps this should say something like:
+	Contains the serial number of the Cypress FRAM (FM25VN) if it is
+	present.  It will be displayed as a 8 byte hex string, as read
+	from the device.
 
-On 08. 06. 21 11:07, Greg Kroah-Hartman wrote:
->> +	int has_sernum;
-> 
-> bool?
+	This is a read-only attribute.
 
-OK.
+> > And the grammer is a bit odd, what is the second sentence supposed to
+> > mean?
+> > 
+> > > +
+> > > +What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/fram
+> > > +Date:		June 2021
+> > > +KernelVersion:	5.13
+> > 
+> > Obviously it can not make 5.13, right?
 > 
->> +	spi_message_init(&m);
->> +	memset(t, 0, sizeof(t));
-> 
-> Are you allowed to send spi messages off of the stack?
+> Sorry for missunderstanding, what number should be here?
 
-I don't know, but it's functional. Copied from read function.
-> 
-> 
->> -	dev_info(&spi->dev, "%d %s %s eeprom%s, pagesize %u\n",
->> -		(chip.byte_len < 1024) ? chip.byte_len : (chip.byte_len / 1024),
->> -		(chip.byte_len < 1024) ? "Byte" : "KByte",
->> -		at25->chip.name,
->> -		(chip.flags & EE_READONLY) ? " (readonly)" : "",
->> -		at25->chip.page_size);
->> +	dev_info(&spi->dev, "%d %s %s %s%s, pagesize %u\n",
->> +		 (chip.byte_len < 1024) ? chip.byte_len : (chip.byte_len / 1024),
->> +		 (chip.byte_len < 1024) ? "Byte" : "KByte",
->> +		 at25->chip.name, is_fram ? "fram" : "eeprom",
->> +		 (chip.flags & EE_READONLY) ? " (readonly)" : "",
->> +		 at25->chip.page_size);
-> 
-> When drivers work properly, they should be quiet.  This whole dev_info()
-> should be removed in a later patch.
+5.14 if all goes well, right?
 
-OK, didn't know, originally there is such info output. And keeping 
-simplest smallest patch changes.
+thanks,
+
+greg k-h
