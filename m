@@ -2,155 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9CBE39FC99
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 18:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1F1A39FCAC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 18:40:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232131AbhFHQdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 12:33:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58570 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231675AbhFHQdj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 12:33:39 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09013C061574;
-        Tue,  8 Jun 2021 09:31:39 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id ba2so23507218edb.2;
-        Tue, 08 Jun 2021 09:31:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=WUaKdqkyjh6EzjeWuZqdi2dYNMKlRLnh+NM1sHEfuao=;
-        b=X+CfpsFyq5hloeViHoJlyIds19uSTtUIlXAf7k7HrrJUDrSreBvTIyOHADrMjqCAEq
-         No4vVonjSBSX0Ql67lfm9mL8pDnFKjMF3mKZsNVqW/Pq6NBek2wKwW1hxbkgrKzu8tC4
-         43kO6TYrViuMaxdFjtiwt6J3TA6tHdQywILSow1IEt3NiZeVn2MTqF/aR0fLIxaGrV1w
-         ozG0OpRHBTDGcY06ZL/er2groWt3t9mndbpDjrnFXgIt92u4v22hUGD8Jtr+J3EiYFn7
-         eAPF1kPCdip9/viRZCIxtzLQB8eEnh7syshU+OfZSfYsV+FGiRrIs+VEHhi41s8cQ7hf
-         c1sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=WUaKdqkyjh6EzjeWuZqdi2dYNMKlRLnh+NM1sHEfuao=;
-        b=HphpeI/aXUYcvWZHcIon2HL5/7g6V2xFf0FX+8p/A6hxWKa49xE50BLFNc7x1l8CaF
-         77OWSCB9VkN0KV9bE+X2n0L9Lb1sD9bAYeGj17VWtBjVMEoQSj8AiCa7aaK0jDWhbvCh
-         RjSbWOKj3aOzXqa4oKgEjgmF4g9qqnZsxCAO4FMo2+xOpfnuo3g3aa5eSWBuGRSrrEmv
-         lGmqxO4QMSzoDI1BWe8r1+L/bBuKNEa7TfARFBi8AH8J05Vfo8e2sP9vmNO7uS5kTSSX
-         eHj1QK0c1X/qmbJ+N/ZwiXrTCRifNHNIxULqBG9cze0jHXYF1nenNxbZegAywkeYV0Il
-         9KWg==
-X-Gm-Message-State: AOAM531Lqas9dpggSS2PT5C8VJgDcN84GlQ/m9hcNaTDmfdy42Nng7lD
-        1oFDoDLzX7TaHDIFb1OEieA=
-X-Google-Smtp-Source: ABdhPJzzR0UxUuKFEEiY/gFD3U2yfUWNfHociiNEWPmaKlEGhRv6BT2dZsFeIRBn1A82AD/+Z6C00Q==
-X-Received: by 2002:a05:6402:1592:: with SMTP id c18mr19539617edv.2.1623169896749;
-        Tue, 08 Jun 2021 09:31:36 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id f18sm74848ejz.119.2021.06.08.09.31.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Jun 2021 09:31:36 -0700 (PDT)
-Subject: Re: [PATCH v6 4/8] clk: rockchip: Add support for hclk_sfc on rk3036
-To:     Jon Lin <jon.lin@rock-chips.com>, linux-spi@vger.kernel.org
-Cc:     broonie@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
-        hjc@rock-chips.com, yifeng.zhao@rock-chips.com,
-        sugar.zhang@rock-chips.com, linux-rockchip@lists.infradead.org,
-        linux-mtd@lists.infradead.org, p.yadav@ti.com,
-        macroalpha82@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20210608022644.21074-1-jon.lin@rock-chips.com>
- <20210608022644.21074-5-jon.lin@rock-chips.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <4a4524f5-ee85-c7f6-aa95-1df84f2a8a99@gmail.com>
-Date:   Tue, 8 Jun 2021 18:31:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S231278AbhFHQls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 12:41:48 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.167]:26591 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231175AbhFHQlr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 12:41:47 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1623170383; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=LL6+qgW3rmuRKM9S+PCBqJt/OfcrnMD/aBcCL3HKNniaYUOO9Fmh/wW50KJ+lFYtUJ
+    rkugGASHwEc1CHcCkgywmm+LbtOeGSspZWLaCMad1eCPTyyV0m8Dcinp9TlJtcjXJcie
+    XcTvRSpxYSbtgLeyZSaIqLuBMGWldAzFYLRFOrT9SoKuxcEfoBsjpeVivhMyfQ3+8oQf
+    9z2FdZpxAH7HKfA8DY6I8u7vXotmA3mankWLKy+EdH2VeCnIl62s6RVsIfu3FKULi5fe
+    tKkwx7Sw/vWH6DhBeDAaqkYWe2pX3qTGtwaAvyv0DZkyxMtMrTYkb1cpe1bHUMuoyFsj
+    cyGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623170383;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=TsO8zQvAeuILETbsyy0wjP+jllz1JH7CujPdRGXvvo4=;
+    b=Nio76JFLhrGOfQX0ghSa0O5VlpjPJlGgRjBvP9mgoXXsnRbd6qkn6PK9iu+KvU+iTe
+    dxcSGbd6qoc5pg24LNDcP3kCMxjX2cuGb5V8FaG7gmlr2sz73BEoBa3QP0Pp74n6BTdj
+    NfdnjB04/t1BFXkpbYtvEaAKKA4k/Ky20IYPjEE9Uo/aniVdeyeQ7jX6rUMhA9O4rUbU
+    S4izJqHH9disCvsZPWA9HNaaqj0v9/4rQYMNe7QC9JPJnTD4GGdfAhivLaERVjRQMzfA
+    wLBEE2sLAfOI+mHnM4eFB+MoVnulkyq3Xi6mnXfsk7FLlJpYs6oOcrL96sInPqdtpn1Q
+    1LWA==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623170383;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=TsO8zQvAeuILETbsyy0wjP+jllz1JH7CujPdRGXvvo4=;
+    b=tkkz+lEedL3UbGv8FPiMM2FfiAeJSpHMVmgM5zSMpd5XOKja3hAz1P0QqRrfUeFFo7
+    BxJlAKN1sNViM7MkTopSHnXTI0I0qFg41F1MRnUm0g8fbKa9WT3QdPtkCluSy8R0bQnp
+    eEfjqUnrFLXr9B3ZZFTBWS5o+FiMti0Pa0phWqmY1vp9YvkzGEG7Vdoszj4l2cvc21oT
+    pSmiDL9RObq0NBYorBIzTP9iN3GMLT6svtNvSdj7Dhy7kxyUuyFXsp0mJetjVnDtUu++
+    t/9eySlRmpzqSiE2WNgb+wz0N4ZxFBrpu+UtuLfUbYTX6sZM9TmV6K0dhZD36mGo5tSr
+    oG0w==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7IcbDBg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
+    with ESMTPSA id y01375x58GdggUM
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 8 Jun 2021 18:39:42 +0200 (CEST)
+Date:   Tue, 8 Jun 2021 18:39:36 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: Add support for SONY Xperia X
+ Performance / XZ / XZs (msm8996, Tone platform)
+Message-ID: <YL+dSBRwS3bf1ztb@gerhold.net>
+References: <20210608152737.154218-1-konrad.dybcio@somainline.org>
+ <20210608152737.154218-3-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
-In-Reply-To: <20210608022644.21074-5-jon.lin@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210608152737.154218-3-konrad.dybcio@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jon,
-
-For rk3036 we might need another fix added to this serie as well.
-
-clk: rockchip: rk3036: fix up the sclk_sfc parent error
-https://github.com/rockchip-linux/kernel/commit/100718ef0d44872db1672b6a88030374c0d1613b
-
-===
-Add more people for clk driver changes:
-
-M:	Michael Turquette <mturquette@baylibre.com>
-M:	Stephen Boyd <sboyd@kernel.org>
-L:	linux-clk@vger.kernel.org
-
-===
-
-Johan
-
-On 6/8/21 4:26 AM, Jon Lin wrote:
-
-> From: Chris Morgan <macromorgan@hotmail.com>
-
-From: Randy Li <randy.li@rock-chips.com>
-
+On Tue, Jun 08, 2021 at 05:27:36PM +0200, Konrad Dybcio wrote:
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > 
-> Add support for the bus clock for the serial flash controller on the
-> rk3036. Taken from the Rockchip BSP kernel but not tested on real
-> hardware (as I lack a 3036 based SoC to test).
+> Add support for following boards:
 > 
-
-Signed-off-by: Randy Li <randy.li@rock-chips.com>
-
-Maybe give credit to the original author?
-clk: rockchip: rk3036: export the sfc clocks
-https://github.com/rockchip-linux/kernel/commit/600925e8ef6edbdda0a4ac6b3c55b0199be1e03e
-
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+> - Xperia X Performance (dora)
+> - Xperia XZ (kagura)
+> - Xperia XZs (keyaki)
+> 
+> They are all based on the SONY Tone platform and feature largely similar hardware
+> with the most obvious differences being lack of USB-C and ToF sensor on Dora and
+> different camera sensor on Keyaki.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 > ---
+> Changes since v2:
+> - Remove unneeded labels from the pinned(pun intended)-by-default pins
 > 
-> Changes in v6: None
-> Changes in v5: None
-> Changes in v4: None
-> Changes in v3: None
-> Changes in v2: None
-> Changes in v1: None
+>  arch/arm64/boot/dts/qcom/Makefile             |   6 +
+>  .../msm8996-pmi8996-sony-xperia-tone-dora.dts |  11 +
+>  ...sm8996-pmi8996-sony-xperia-tone-kagura.dts |  11 +
+>  ...sm8996-pmi8996-sony-xperia-tone-keyaki.dts |  11 +
+>  .../qcom/msm8996-sony-xperia-tone-dora.dts    |  27 +
+>  .../qcom/msm8996-sony-xperia-tone-kagura.dts  |  15 +
+>  .../qcom/msm8996-sony-xperia-tone-keyaki.dts  |  26 +
+>  .../dts/qcom/msm8996-sony-xperia-tone.dtsi    | 959 ++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi         |  12 +-
+>  9 files changed, 1072 insertions(+), 6 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
 > 
->  drivers/clk/rockchip/clk-rk3036.c      | 2 +-
->  include/dt-bindings/clock/rk3036-cru.h | 1 +
->  2 files changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/rockchip/clk-rk3036.c b/drivers/clk/rockchip/clk-rk3036.c
-> index 91d56ad45817..ebb628733f6d 100644
-> --- a/drivers/clk/rockchip/clk-rk3036.c
-> +++ b/drivers/clk/rockchip/clk-rk3036.c
-> @@ -403,7 +403,7 @@ static struct rockchip_clk_branch rk3036_clk_branches[] __initdata = {
->  	GATE(HCLK_OTG0, "hclk_otg0", "hclk_peri", CLK_IGNORE_UNUSED, RK2928_CLKGATE_CON(5), 13, GFLAGS),
->  	GATE(HCLK_OTG1, "hclk_otg1", "hclk_peri", CLK_IGNORE_UNUSED, RK2928_CLKGATE_CON(7), 3, GFLAGS),
->  	GATE(HCLK_I2S, "hclk_i2s", "hclk_peri", 0, RK2928_CLKGATE_CON(7), 2, GFLAGS),
+[...]
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
+> new file mode 100644
+> index 000000000000..1f71b3b2dc57
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone.dtsi
+> @@ -0,0 +1,959 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2021, AngeloGioacchino Del Regno
+> + *                     <angelogioacchino.delregno@somainline.org>
+> + * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
+> + */
+> +
+> +#include "msm8996.dtsi"
+> +#include "pm8994.dtsi"
+> +#include "pmi8994.dtsi"
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+> +#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
+> +
+> +/delete-node/ &hdmi;
+> +/delete-node/ &hdmi_phy;
+> +/delete-node/ &mdp5_intf3_out;
 
-> -	GATE(0, "hclk_sfc", "hclk_peri", CLK_IGNORE_UNUSED, RK2928_CLKGATE_CON(3), 14, GFLAGS),
-> +	GATE(HCLK_SFC, "hclk_sfc", "hclk_peri", CLK_IGNORE_UNUSED, RK2928_CLKGATE_CON(3), 14, GFLAGS),
+Is it not enough to set those to status = "disabled"? Kind of strange
+that you have to delete those entirely. I guess ideally "hdmi" should
+even be disabled by default in the SoC device tree.
 
-Maybe CLK_IGNORE_UNUSED should be changed to 0 ?
+> +/delete-node/ &slpi_region;
+> +/delete-node/ &venus_region;
+> +/delete-node/ &zap_shader_region;
+> +
+> +/ {
+> +	qcom,msm-id = <246 0x30001>; /* MSM8996 V3.1 (Final) */
+> +	qcom,pmic-id = <0x20009 0x2000a 0 0>; /* PM8994 + PMI8994 */
+> +	qcom,board-id = <8 0>;
+> +
+> +	chosen {
+> +		/*
+> +		 * Due to an unknown-for-a-few-years regression,
+> +		 * SDHCI only works on MSM8996 in PIO (lame) mode.
+> +		 */
+> +		bootargs = "sdhci.debug_quirks=0x40 sdhci.debug_quirks2=0x4 maxcpus=2";
+> +	};
+> +
+> +	reserved-memory {
+> +		ramoops@a7f00000 {
+> +			compatible = "ramoops";
+> +			reg = <0 0xa7f00000 0 0x100000>;
+> +			record-size = <0x20000>;
+> +			console-size = <0x40000>;
+> +			ftrace-size = <0x20000>;
+> +			pmsg-size = <0x20000>;
+> +			ecc-size = <16>;
+> +		};
+> +
+> +		cont_splash_mem: memory@83401000 {
+> +			reg = <0 0x83401000 0 0x23ff000>;
+> +			no-map;
+> +		};
+> +
+> +		zap_shader_region: gpu@90400000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x0 0x90400000 0x0 0x2000>;
+> +			no-map;
+> +		};
+> +
+> +		slpi_region: memory@90500000 {
+> +			reg = <0 0x90500000 0 0xa00000>;
+> +			no-map;
+> +		};
+> +
+> +		venus_region: memory@90f00000 {
+> +			reg = <0 0x90f00000 0 0x500000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	panel_tvdd: tvdd-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "panel_tvdd";
+> +		gpio = <&tlmm 50 GPIO_ACTIVE_HIGH>;
 
->  	GATE(HCLK_MAC, "hclk_mac", "hclk_peri", 0, RK2928_CLKGATE_CON(3), 5, GFLAGS),
->  
->  	/* pclk_peri gates */
-> diff --git a/include/dt-bindings/clock/rk3036-cru.h b/include/dt-bindings/clock/rk3036-cru.h
-> index 35a5a01f9697..a96a9870ad59 100644
-> --- a/include/dt-bindings/clock/rk3036-cru.h
-> +++ b/include/dt-bindings/clock/rk3036-cru.h
-> @@ -81,6 +81,7 @@
->  #define HCLK_OTG0		449
->  #define HCLK_OTG1		450
->  #define HCLK_NANDC		453
-> +#define HCLK_SFC		454
->  #define HCLK_SDMMC		456
->  #define HCLK_SDIO		457
->  #define HCLK_EMMC		459
-> 
+regulator-fixed is active-low without "enable-active-high;"
+If that's what you want it's probably more clear to write
+GPIO_ACTIVE_LOW. Otherwise, perhaps you forgot that property? :)
+
+Stephan
