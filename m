@@ -2,109 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0FAF3A04CE
+	by mail.lfdr.de (Postfix) with ESMTP id EA2483A04CF
 	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 21:58:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235609AbhFHT6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 15:58:43 -0400
-Received: from mail-qk1-f176.google.com ([209.85.222.176]:38503 "EHLO
-        mail-qk1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235187AbhFHT6g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 15:58:36 -0400
-Received: by mail-qk1-f176.google.com with SMTP id c138so8585628qkg.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 12:56:32 -0700 (PDT)
+        id S234695AbhFHT6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 15:58:44 -0400
+Received: from mail-qk1-f169.google.com ([209.85.222.169]:37651 "EHLO
+        mail-qk1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235027AbhFHT6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 15:58:38 -0400
+Received: by mail-qk1-f169.google.com with SMTP id i67so21449507qkc.4
+        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 12:56:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HN/dADQ65ljJkOdLNlsYJNf64TdCy5snXLeJXI/fSws=;
-        b=tl6qBfeR1ctMdKOjD5T7yqHao2tzBYPwBZ6V7bhuPFKO/eH0NCRXEHAZNCBXm21vh6
-         y+Jo6Lh2RnmrDGBcqsjKAkzFJkxr7aCjm19n/+UXJWae4U8zd3GMNLBODNvdGNIICjan
-         Wk01zjyEh80E5jQGbtt4eSMWfBMj5BCcLPr4/vsqVc0SFWUjvYYTR9eqwatQ4qyUsDYL
-         sxqIeBRVaLxnIVC4Ae/NGANFJ25uT7q1kEcFs/0s6XMesfA4z/g4NGVZz7hBQ3g+TxFz
-         vHekfmbcapwt4zasp8IASP5xmqq0xOkziXoyPB9saT/TMxZVUKM94a6nnAJqepFv06za
-         AT0Q==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=zFpLFKwnnwm0v+NfjRrYrippm6tYEqwT/Uhc6jwTJ8w=;
+        b=b0oPOrNo+272HFqMy8yfisgYJbkEi9xugRr+3TQwP35XzlQTKJPjFtV/nXZ9Dc9k45
+         I00qaWcsJkvoAJjbFkUdCKVQIrtxCjt4gxFoCGs8ZLlYojDW3pFiqko1/gwW2Cxql1XZ
+         pijnlAtH+m0eF1zZzOxTKmM1lJQcl9onaNuiOuIz/2LdI09pcxIwkVQes9Y51XxgeoKT
+         nQZqxpJBAh9rFUBn2q6mV07oqQ4NRNZ8y5cxlEo412V6n+HIxvNNDiQNuARju6qAYth4
+         96cjvgZyrsxvAyLeLBh4SnlW22dmLSfSX4vjBYmRZFb+s6mzLTorovZvFuI8k2Mh9Thg
+         MbuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HN/dADQ65ljJkOdLNlsYJNf64TdCy5snXLeJXI/fSws=;
-        b=q0dQCSGYUm1Khv5NyV6RptfCy/+HySGxhUI7sYRzlQc7r78Kylzc8IuJZENjb4W30o
-         Am0Xp9YVgstUQDWeN/Kf/6UuEI0VyMXfCmXby61vtzGg5eb0KQJ+7wan5L0xgUMb1g5w
-         TraPOMKvFDSXM4BG2fXwHG4vbTNmd3SoYNv5RBM7rQHW0CMUt80f9UheR50g+/bVWz34
-         PnlsIAG9iVpu0Imc0PkZOiRINIwNFt5NSvRTwNWaCS901U472QlFi0PRl/Dea0il2mwJ
-         vG+JlyAuGymJLH15RMP3HsNc94EUb/aBEkCJvhA8aV9E3/ohD436FJMA8QwJB/gyTFl4
-         ysFQ==
-X-Gm-Message-State: AOAM530j2J3ynY6EunQ1AbK5JNbZGi+9ZKwtH4fi4C7xXfATmKf3RVoM
-        BcEHK8Zi8zbO4620FqGuMgIvsg==
-X-Google-Smtp-Source: ABdhPJxCiMcEk4rEfSFxoc9MLYPAFpeFQHE1XQnjKYvFYU9dDovhkcdD8gGzWd5X3y+DjjX9qqPZtw==
-X-Received: by 2002:a37:d58:: with SMTP id 85mr20317382qkn.414.1623182131919;
-        Tue, 08 Jun 2021 12:55:31 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=zFpLFKwnnwm0v+NfjRrYrippm6tYEqwT/Uhc6jwTJ8w=;
+        b=hPHolSSFRBhDCJc7u8x1DZwWxF6HlQU+d6OU835iCwkNINPBDfJ/S2JlB9Jinkwsxj
+         e9kQTVOQu4EOC2L8iGzMV/fDM06ufhyQF3Ge0LorVKuyCW96pu5ViZmUTZauw4v/SU+M
+         c8ji2Lhhra3PCAGjBJnRMwJotCd8hOgWJvZb6xZo8TTx7RjYsHMd4m9BnaFgTLgmIXro
+         Bg4wrg3DzitR+Myv+3deU840woEibnucdgHi4glPUJ6wHp20HiupRrCaaicRk1tANp5V
+         vkoQjPKcMHcfoQa0j9dNPXYv41/66LllPudtJQ2KKNhDX6u1oySoiaz37JGrSlaSX5vi
+         qSpw==
+X-Gm-Message-State: AOAM5325lA5182BnWVHzGFrnVKKhe+UKy63YLbUx5w+lP0JRaJofW7ny
+        WtyfvnRChvlU8p2lep5do/4CIQ==
+X-Google-Smtp-Source: ABdhPJzYaRdFTlAOd4uLx+ty4mPjYDj5n0p9y4JDG0llRCv/4CexdXu+QJN2N5fMSfqvkuPcfAeTBA==
+X-Received: by 2002:a05:620a:1675:: with SMTP id d21mr22993674qko.390.1623182133954;
+        Tue, 08 Jun 2021 12:55:33 -0700 (PDT)
 Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id l141sm643687qke.48.2021.06.08.12.55.30
+        by smtp.gmail.com with ESMTPSA id l141sm643687qke.48.2021.06.08.12.55.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jun 2021 12:55:31 -0700 (PDT)
+        Tue, 08 Jun 2021 12:55:33 -0700 (PDT)
 From:   Jonathan Marek <jonathan@marek.ca>
 To:     freedreno@lists.freedesktop.org
-Cc:     Abhinav Kumar <abhinavk@codeaurora.org>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
         David Airlie <airlied@linux.ie>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        dri-devel@lists.freedesktop.org (open list:DRM DRIVER FOR MSM ADRENO
-        GPU), Jordan Crouse <jordan@cosmicpenguin.net>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org (open list:DRM DRIVER FOR MSM ADRENO GPU),
-        linux-kernel@vger.kernel.org (open list),
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Rikard Falkeborn <rikard.falkeborn@gmail.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Subject: [PATCH v3 0/3] drm/msm/dsi: support CPHY mode for 7nm pll/phy
-Date:   Tue,  8 Jun 2021 15:53:26 -0400
-Message-Id: <20210608195342.18269-1-jonathan@marek.ca>
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVER FOR MSM ADRENO
+        GPU),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v3 1/3] dt-bindings: msm: dsi: add missing 7nm bindings
+Date:   Tue,  8 Jun 2021 15:53:27 -0400
+Message-Id: <20210608195342.18269-2-jonathan@marek.ca>
 X-Mailer: git-send-email 2.26.1
+In-Reply-To: <20210608195342.18269-1-jonathan@marek.ca>
+References: <20210608195342.18269-1-jonathan@marek.ca>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the required changes to support 7nm pll/phy in CPHY mode.
+These got lost when going from .txt to .yaml bindings, add them back.
 
-This adds a "qcom,dsi-phy-cphy-mode" property for the PHY node to enable
-the CPHY mode.
-
-v2:
- - rebased on DSI PHY reworks
- - reworked getting cphy_mode in dsi_host.c
- - documentation change in separate patch
-
-v3:
- - yaml bindings
- - changed binding to "phy-mode = <PHY_TYPE_DSI_CPHY>;"
-
-Jonathan Marek (3):
-  dt-bindings: msm: dsi: add missing 7nm bindings
-  dt-bindings: msm: dsi: document phy-type property for 7nm dsi phy
-  drm/msm/dsi: support CPHY mode for 7nm pll/phy
-
- .../bindings/display/msm/dsi-phy-7nm.yaml     |  70 +++++++++
- drivers/gpu/drm/msm/dsi/dsi.xml.h             |   2 +
- drivers/gpu/drm/msm/dsi/dsi_host.c            |  34 +++-
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         |  49 ++++++
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |   3 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c     | 145 ++++++++++++------
- include/dt-bindings/phy/phy.h                 |   2 +
- 7 files changed, 258 insertions(+), 47 deletions(-)
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+---
+ .../bindings/display/msm/dsi-phy-7nm.yaml     | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
 
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+new file mode 100644
+index 000000000000..bf16b1c65e10
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/msm/dsi-phy-7nm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Display DSI 7nm PHY
++
++maintainers:
++  - Jonathan Marek <jonathan@marek.ca>
++
++allOf:
++  - $ref: dsi-phy-common.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - const: qcom,dsi-phy-7nm
++      - const: qcom,dsi-phy-7nm-8150
++
++  reg:
++    items:
++      - description: dsi phy register set
++      - description: dsi phy lane register set
++      - description: dsi pll register set
++
++  reg-names:
++    items:
++      - const: dsi_phy
++      - const: dsi_phy_lane
++      - const: dsi_pll
++
++  vdds-supply:
++    description: |
++      Connected to VDD_A_DSI_PLL_0P9 pin (or VDDA_DSI{0,1}_PLL_0P9 for sm8150)
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - vdds-supply
++
++unevaluatedProperties: false
++
++examples:
++  - |
++     #include <dt-bindings/clock/qcom,dispcc-sm8250.h>
++     #include <dt-bindings/clock/qcom,rpmh.h>
++
++     dsi-phy@ae94400 {
++         compatible = "qcom,dsi-phy-7nm";
++         reg = <0x0ae94400 0x200>,
++               <0x0ae94600 0x280>,
++               <0x0ae94900 0x260>;;
++         reg-names = "dsi_phy",
++                     "dsi_phy_lane",
++                     "dsi_pll";
++
++         #clock-cells = <1>;
++         #phy-cells = <0>;
++
++         vdds-supply = <&vreg_l5a_0p88>;
++         clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++                  <&rpmhcc RPMH_CXO_CLK>;
++         clock-names = "iface", "ref";
++     };
 -- 
 2.26.1
 
