@@ -2,110 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1E5039FA42
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 17:21:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E031F39FA5A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 17:24:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231362AbhFHPXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 11:23:35 -0400
-Received: from mail-wm1-f48.google.com ([209.85.128.48]:37542 "EHLO
-        mail-wm1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231295AbhFHPXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 11:23:35 -0400
-Received: by mail-wm1-f48.google.com with SMTP id f16-20020a05600c1550b02901b00c1be4abso2237682wmg.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 08:21:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=9hSTH6iFfhk4YNZO/PD9dC5EfuAvuq3JWTMQoezRpa4=;
-        b=rVbGga0YMt9v4RX5dgluDTeRiWVagmxiI0r5XffEEGtnBUTGgfpdr8TilsetE54+aG
-         W+49JL8h9wKLOfe2XEo8MUlmzM5apk577/ud4NiVAdwH7A60G3aHuxZGXSoBUHf2D496
-         glgWg5l6oifVXTG1gPto4Qv820VWcm3Lzpb8VutkEgH3k31hrPNLcFzbkdaYh2JdgPtw
-         6s41/4/GuEVBDCpHCFDTk7MgZUXOyg1ldFA0euDOCnUtKrdGK/JbAZCssNpZ29sePJzm
-         t2X3aymp+IbTcoOYt7eJV/cXyLo24gbfnedJf01l5+H4fXemCe9VDCIlVEYmF5SmBo4H
-         O3gg==
+        id S231712AbhFHPZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 11:25:55 -0400
+Received: from mail-vs1-f54.google.com ([209.85.217.54]:40943 "EHLO
+        mail-vs1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231830AbhFHPZi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 11:25:38 -0400
+Received: by mail-vs1-f54.google.com with SMTP id b1so9339230vsh.7;
+        Tue, 08 Jun 2021 08:23:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=9hSTH6iFfhk4YNZO/PD9dC5EfuAvuq3JWTMQoezRpa4=;
-        b=aFSxOOnOPin0ftDPvkxSgTbBkQHRLzF+pXxR/zO+rYx6ImiUVWBCO6nGPrMLlB9Ar3
-         uAiVYAcgg02UA/NyoUyVXRpz6IWLzUtDBLNDu0v45LBrYxToFUh6/gR08zQa17F53GS1
-         nkeg2V8Sz5drhu5cIalWTI2XtZ0k+w/ipPYXjG8oypDwmqOiSzIsyNJG9uOTb3zznobf
-         APs4D5IbDmVyNZ1kv1P+aVPXTR1tmdASHR1jZMlZG9+3E0B6SbLKlYDaXmjTetAY2+3a
-         te8uJ1ywDpT+7XpPT7tAFickCnPprG9gPMTnkEy/i/NeCZFMCTCP7D3O9w+icZVpWvQy
-         ReIg==
-X-Gm-Message-State: AOAM530rVn5ZiY1EzhfGDgt+keovqq9eezwSz9uaLMKbL/E3SIdFOFws
-        kmDOWJGawkh6bR2U5vxy/seIpA==
-X-Google-Smtp-Source: ABdhPJyxapM48QVF45aLpo2H+FUZRplP63/n5liTflATtO1NCzwg7X8/1DrHPmn3DkqJrHfE7tmETA==
-X-Received: by 2002:a7b:c44f:: with SMTP id l15mr4870340wmi.151.1623165632463;
-        Tue, 08 Jun 2021 08:20:32 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id b26sm3123109wmj.25.2021.06.08.08.20.31
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Jun 2021 08:20:32 -0700 (PDT)
-Subject: Re: [PATCH v8 6/9] ASoC: codecs: wcd938x: add basic controls
-To:     Mark Brown <broonie@kernel.org>
-Cc:     robh@kernel.org, devicetree@vger.kernel.org, perex@perex.cz,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        lgirdwood@gmail.com
-References: <20210601113158.16085-1-srinivas.kandagatla@linaro.org>
- <20210601113158.16085-7-srinivas.kandagatla@linaro.org>
- <20210608135933.GE4200@sirena.org.uk>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <e8ca16d9-f179-c6de-d683-21180ea4ed1b@linaro.org>
-Date:   Tue, 8 Jun 2021 16:20:31 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eLtAXNvdTwsCQkdXR6zInVT34PWj9yNdT1iQLsuVGcU=;
+        b=UiCRGtg3unQzaRelZEzj3xSjbjycJyTyBZ4hIlX6TZSl3jc4ZnHrIVw3nbVs0R2adQ
+         Xzde7XqYwu89ob5rCcNV4VRFMf9JCFwTntZyBj/oGJn2v3dQDw/jFWCCO4MOk3zpQxLq
+         aywuOGo5dJBTld7TY3ndYD4M67/aTPkurcVEDaZbP0jc2rN72SAkf1Qg2525ecWzL51r
+         6yUorskANEzYS8ewicTIi3CUFTylBrdMZbe6nTc7gPXcFAHhcW5cjsxYaiNpp81xslKh
+         fFY1FEoUtl6fTpuvzQG8RmFlQHW9tCnHfcvIfGfcX7nG8L1Qk7AG2rgFGr8MCjxuTee6
+         /Hgw==
+X-Gm-Message-State: AOAM531FCOBF40wypyacxeqizDFH1tuakBiqcYAq/xSpCCMb0QjWWt38
+        bBqrum06eSLyYm1XcQ5wrNARSHM6GWZ1BZ7kEZ8=
+X-Google-Smtp-Source: ABdhPJy2G4x1+3g6k8M7MspEWuFkyDUzrUpWcbY6zb6G+KomiRlPbUGVcJ3aH/+CUrzg5TDctjse8O/AD7JNA2Dmw7o=
+X-Received: by 2002:a05:6102:c4c:: with SMTP id y12mr759222vss.18.1623165824596;
+ Tue, 08 Jun 2021 08:23:44 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210608135933.GE4200@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210603221758.10305-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210603221758.10305-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210603221758.10305-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Jun 2021 17:23:33 +0200
+Message-ID: <CAMuHMdUHEmGarOrvTjR4wzUPK+tzh0bx9Vy2o=3LthAh2BvXxQ@mail.gmail.com>
+Subject: Re: [PATCH v2 01/12] dt-bindings: arm: renesas: Document Renesas
+ RZ/G2UL SoC
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 4, 2021 at 12:18 AM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add device tree bindings documentation for Renesas RZ/G2UL SoC.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
-On 08/06/2021 14:59, Mark Brown wrote:
-> On Tue, Jun 01, 2021 at 12:31:55PM +0100, Srinivas Kandagatla wrote:
-> 
->> +static int wcd938x_rx_hph_mode_put(struct snd_kcontrol *kcontrol,
->> +				   struct snd_ctl_elem_value *ucontrol)
->> +{
->> +	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
->> +	struct wcd938x_priv *wcd938x = snd_soc_component_get_drvdata(component);
->> +
->> +	wcd938x->hph_mode = ucontrol->value.enumerated.item[0];
->> +
->> +	return 0;
->> +}
-> 
-> _put() should return true if it made a change, the same bug is present
-> in a lot of other drivers too.
-> 
-Sure will fix this in next spin
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
->> +static const struct snd_kcontrol_new wcd9380_snd_controls[] = {
->> +	SOC_ENUM_EXT("RX HPH Mode", rx_hph_mode_mux_enum_wcd9380,
->> +		     wcd938x_rx_hph_mode_get, wcd938x_rx_hph_mode_put),
->> +	SOC_ENUM_EXT("TX0 MODE", tx_mode_mux_enum_wcd9380[0],
->> +		     wcd938x_tx_mode_get, wcd938x_tx_mode_put),
->> +	SOC_ENUM_EXT("TX1 MODE", tx_mode_mux_enum_wcd9380[1],
->> +		     wcd938x_tx_mode_get, wcd938x_tx_mode_put),
->> +	SOC_ENUM_EXT("TX2 MODE", tx_mode_mux_enum_wcd9380[2],
->> +		     wcd938x_tx_mode_get, wcd938x_tx_mode_put),
->> +	SOC_ENUM_EXT("TX3 MODE", tx_mode_mux_enum_wcd9380[3],
->> +		     wcd938x_tx_mode_get, wcd938x_tx_mode_put),
->> +};
-> 
-> Please don't use this pattern of indexing into arrays by absolute
-> number, it's error prone and hard to read.  Just declare static
-> variables for the enums and reference them individually.
-
-I agree, will clean these instances in next version.
-
---srini
-> 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
