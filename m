@@ -2,84 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 025B439F819
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 15:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07EC239F82D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 15:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232771AbhFHNuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 09:50:37 -0400
-Received: from out28-170.mail.aliyun.com ([115.124.28.170]:34264 "EHLO
-        out28-170.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231162AbhFHNuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 09:50:37 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07798912|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_news_journal|0.00689651-0.00422478-0.988879;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047199;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=21;RT=21;SR=0;TI=SMTPD_---.KPSTFJt_1623160119;
-Received: from 192.168.0.103(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KPSTFJt_1623160119)
-          by smtp.aliyun-inc.com(10.147.40.7);
-          Tue, 08 Jun 2021 21:48:40 +0800
-Subject: Re: [PATCH 2/2] net: stmmac: Add Ingenic SoCs MAC support.
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com, paul@crapouillou.net
-References: <1623086867-119039-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1623086867-119039-3-git-send-email-zhouyanjie@wanyeetech.com>
- <YL6zYgGdqxqL9c0j@lunn.ch>
- <6532a195-65db-afb3-37a2-f68bfed9d908@wanyeetech.com>
- <YL9gr2QQ/YEXNUmP@lunn.ch>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <62ad605f-3689-cab3-e43e-9b6954da8df3@wanyeetech.com>
-Date:   Tue, 8 Jun 2021 21:48:38 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S232871AbhFHN40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 09:56:26 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.83]:34962 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232842AbhFHN4X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 09:56:23 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1623160464; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=ZAaGTvvy+FQIbEaP4NPYq26hcjORwSIUmUq9CEcfixW0CVBLwZ4DegggGOnRAbn6xp
+    A44zhbfJPtsvI4VeMdCdHhpx3wxv6E3BgCV0ZbASxxzi/Nki/BK9WAqr5TJg2uNHXMvW
+    0X9VrioYkXXyLe+ERx/1FdGQjibYU0VQjihKM0lzGE+CGfJ0GYMMbLFpNFjPzW75si6k
+    G/GhwBkm7MfKC/DHgFHXalgyTRWz3O+M6J/SbQtG7LfTUgYcknR9w9vQZH2ajRNDrMxG
+    I6oS/JGAZdQhsFkJo6MRS7ABlV0HC6ruzPxJvk4P7UNmF9vb0Je6XMf9D6+XS5siTMrc
+    W+Cg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623160464;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=rl6OGeTVbuWMtg723dmqTLwwTjsRAkOWOnXJx3St/jM=;
+    b=h5A6HD2O1ed16AFmemsCp7wywFDQtEs1NgR7iePTV0iDi8clYUsm9p+0Pl7pBAwzBQ
+    /ESFtMMWx5PAdNNT5Rm3g2VnQDvhoHHOzVMOgPNTjMiRyR6iG7oTOxdEvpcSi6cy8X5U
+    9g1CBxGd+W6lWzUmzRo6DuHVLxeP1FpalcajOsZRT+jotMsSnsEfQiqWEbru5UgblUsZ
+    /nKrNH0gXHdFY2dlRceFl5P7XdSHyqVz+xgg4okG5oMSSlszgGeJxT4Pt+qkHnJRAnm5
+    MVJywAniOdmY2gZbys+Sxu4/M8IpDpTY2ckpQhALanyNP+mnAAQz5ukewS7HM6Rv/YBa
+    reUA==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623160464;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=rl6OGeTVbuWMtg723dmqTLwwTjsRAkOWOnXJx3St/jM=;
+    b=mpP9NyOwzoLN1KyHO6PqPbXg9DKqsbnjECMZmRbVwlwN36M6Enw6HkU8Xbqst9ejIZ
+    zkce6hsjJQ3lzGbnVpAGnmhPxlHVQshMPfOBI653dwjhQ+JBEusbmUTuZz1HeROMzD40
+    56cBgzCV4cqjctrWgAc6396C7LnBd3LBelPKt9LIRHIEPL8SW6OsOhNQ5plVDvTr2Ron
+    TEOsxhZbFAa9qDu+f/urXvbTuB+4Ff2BNVbtpOIi7eKDDekxUhpku1ygXGHTNfHBl5mP
+    iO1/BhZ4KGEXa2+yObz4DnOvdJ/seinfBr/nJUX8w2gheardsKAv98eVBG2Z+XDK9Z/N
+    fybg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7IcbDBg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
+    with ESMTPSA id y01375x58DsOdxz
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 8 Jun 2021 15:54:24 +0200 (CEST)
+Date:   Tue, 8 Jun 2021 15:54:22 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Russell King <linux@armlinux.org.uk>,
+        David Sterba <dsterba@suse.com>, Jens Axboe <axboe@kernel.dk>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Kumar Gala <galak@codeaurora.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] cpuidle: qcom: Add SPM register data for MSM8226
+Message-ID: <YL92jqf/146P9vSl@gerhold.net>
+References: <20210530121803.13102-1-bartosz.dudziak@snejp.pl>
 MIME-Version: 1.0
-In-Reply-To: <YL9gr2QQ/YEXNUmP@lunn.ch>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210530121803.13102-1-bartosz.dudziak@snejp.pl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andrew,
+Hi,
 
-On 2021/6/8 下午8:21, Andrew Lunn wrote:
-> Please wrap your text to around 75 characters per line.
+On Sun, May 30, 2021 at 02:18:01PM +0200, Bartosz Dudziak wrote:
+> Add SPM register data sequence for MSM8226 SoC and enable SAW2 power
+> controller for it.
+> 
+> Changes in v2:
+>  - Removed APQ8026 SoC support
+> 
+> Bartosz Dudziak (2):
+>   dt-bindings: arm: msm: Add SAW2 for MSM8226
+>   cpuidle: qcom: Add SPM register data for MSM8226
+> 
+>  .../devicetree/bindings/arm/msm/qcom,saw2.txt      |  1 +
+>  drivers/cpuidle/cpuidle-qcom-spm.c                 | 14 ++++++++++++++
+>  2 files changed, 15 insertions(+)
+> 
+> 
 
+It looks like you got the To:/Cc: list wrong in v2 (was okay in v1).
+Can you re-send these patches and include Daniel Lezcano (ARM cpuidle
+maintainer) and the linux-pm mailing list? Otherwise they might never
+be applied by anyone. :)
 
-Sure.
+Please also make sure to add the Acked-by:/Reviewed-by: from myself/Rob
+to the respective patches when re-sending.
 
-
->
-> I suspect you don't understand RGMII delays. As i said, normally, the
-> MAC does not add delays, the PHY does. Please take a closer look at
-> this.
-
-
-According to the description of ethernet-controller.yaml, "rgmii" seems
-
-to allow MAC to add TX delay (the description in ethernet-controller.yaml
-
-is "RX and TX delays are added by the MAC when required"), while rgmii-id
-
-and rgmii-txid do not allow MAC to add delay (the description in
-
-ethernet-controller.yaml is"RGMII with internal RX and TX delays provided
-
-by the PHY, the MAC should not add the RX or TX delays in this case" and
-
-"RGMII with internal TX delay provided by the PHY, the MAC should not add
-
-an TX delay in this case"), I will add support for the other three RGMII 
-modes
-
-in the next version (I forgot to reply to this in the previous email).
-
-
-Thanks and best regards!
-
+Thanks!
+Stephan
