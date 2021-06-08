@@ -2,108 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92C8D39F62E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 14:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAA5439F661
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 14:21:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232302AbhFHMRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 08:17:48 -0400
-Received: from mail-wm1-f41.google.com ([209.85.128.41]:51954 "EHLO
-        mail-wm1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231560AbhFHMRs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 08:17:48 -0400
-Received: by mail-wm1-f41.google.com with SMTP id l9so1703774wms.1;
-        Tue, 08 Jun 2021 05:15:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=RTw6h67yYGIfkq0uNmib+64EPQNtkd4gyJ1XCCEbH0g=;
-        b=IkIg/DTEvB2VPfv0iGeBPu96cKkU3u9UoK9a8GgPT538Z5/CQ2SFYywGI770UkRZ1n
-         rg8iwYwMSUt4K04TDxnVdn3IH9lVHPFZBE4nnTBkKGwBCOijyGzWdRbxJ5U5Lfikt9HK
-         xA41O5oh37pyFjohgoA5/7ugAH7esmMHqLNnT8CgD7DTo6bMxsEMh4KOC8aXku3hzfYp
-         OOzIuUpE+FLPSDaCb52fm2p8OBpWhaK2gkS6NKdU0tmwxMmBMJ8Bq6dk71zsqKRXcLnJ
-         3jNmeX1fne31A8H6OmNX9LgcrDTdTbelPw+k0CpTS4SeCqbiEITijKgMMrEZ/etspNF/
-         73oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=RTw6h67yYGIfkq0uNmib+64EPQNtkd4gyJ1XCCEbH0g=;
-        b=of8whRJl1nEvOc38MF1oeWol6kynPig2/I/JX4+8MeVG6vcPu+RT6nQU2fFWvUaP07
-         5X3F4BluVLG6Xsl3toeZpGoN6fIEAKkK5Wp0vgaj90/KhOYG/0Lf2LTKZZ82awA1+0kp
-         HuyRQ8I4YuNkODAnuyqbC00SeKzoT9bBGi/gLiKd7ugO1Ds2lazkodcporkAhcJNJn/y
-         2nAf6S62Z08QrdiJOukpMwUA8jmUIyNqgRAysGDB0wuSpikflsCFgrvgF1zBiu8lNvKp
-         Y8TZ9vQ3ywu3Fx8K01jjFgNHorTemgS9b6JUWCQkuKA47k3QNDCGSbod8XIZOSOOkO6x
-         MT+w==
-X-Gm-Message-State: AOAM530aTEzOMWHtEgbADjrQyGHeSAKCi/TbK6POGhJGn6+6SPtR+P3r
-        zZolI140AX7wzRZ/Szn0kRg=
-X-Google-Smtp-Source: ABdhPJwYRhOgNjGp18b/XJzeuJ7+AiN2QGfTleFv7N5Pr/y+p1AcEDq/cQPiEHq1LJA3rhq0G02Dfw==
-X-Received: by 2002:a7b:c097:: with SMTP id r23mr12255357wmh.30.1623154480309;
-        Tue, 08 Jun 2021 05:14:40 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id t1sm19457036wrx.28.2021.06.08.05.14.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jun 2021 05:14:39 -0700 (PDT)
-Date:   Tue, 8 Jun 2021 14:16:20 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     robh+dt@kernel.org, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra: Audio graph sound card for Jetson Xavier NX
-Message-ID: <YL9flIkIcI3KH10W@orome.fritz.box>
-References: <1623149388-11995-1-git-send-email-spujar@nvidia.com>
+        id S232453AbhFHMXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 08:23:18 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:51480 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232316AbhFHMXR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Jun 2021 08:23:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=Q358deKO0MihPyIqvyu38upjUiXQjkj1FqyY/WxW6nI=; b=cMloeQTcBpRPBKzrnmZVTDQgaH
+        qWorJTk3VV5bV/smsCzdneITpX/oUu3Lrmf5xWVj+UG4DrIjj/F9Iaw+shEkiSCS7pluGQTlWfjdt
+        DVKK4F8l6ywjDuvgY+nThwjkf66cBITrlSi/skyy0Hhkaq/KDFIwGOBeu/f1P2pfW/tw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lqaj9-008KzF-3J; Tue, 08 Jun 2021 14:21:03 +0200
+Date:   Tue, 8 Jun 2021 14:21:03 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Zhou Yanjie <zhouyanjie@wanyeetech.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com, paul@crapouillou.net
+Subject: Re: [PATCH 2/2] net: stmmac: Add Ingenic SoCs MAC support.
+Message-ID: <YL9gr2QQ/YEXNUmP@lunn.ch>
+References: <1623086867-119039-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1623086867-119039-3-git-send-email-zhouyanjie@wanyeetech.com>
+ <YL6zYgGdqxqL9c0j@lunn.ch>
+ <6532a195-65db-afb3-37a2-f68bfed9d908@wanyeetech.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jqV2DqZFSXOM6h6N"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1623149388-11995-1-git-send-email-spujar@nvidia.com>
-User-Agent: Mutt/2.0.6 (98f8cb83) (2021-03-06)
+In-Reply-To: <6532a195-65db-afb3-37a2-f68bfed9d908@wanyeetech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> > > +	case PHY_INTERFACE_MODE_RGMII:
+> > > +		val = FIELD_PREP(MACPHYC_TX_SEL_MASK, MACPHYC_TX_SEL_DELAY) |
+> > > +			  FIELD_PREP(MACPHYC_TX_DELAY_MASK, MACPHYC_TX_DELAY_63_UNIT) |
+> > > +			  FIELD_PREP(MACPHYC_RX_SEL_MASK, MACPHYC_RX_SEL_ORIGIN) |
+> > > +			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RGMII);
+> > What exactly does MACPHYC_TX_DELAY_63_UNIT mean here? Ideally, the MAC
+> > should not be adding any RGMII delays. It should however pass mode
+> > through to the PHY, so it can add the delays, if the mode indicates it
+> > should, e.g. PHY_INTERFACE_MODE_RGMII_ID. This is also why you should
+> > be handling all 4 RGMII modes here, not just one.
+> 
+> 
+> MACPHYC_TX_DELAY_63_UNIT means set MAC TX clk delay to 63 units (similar to the "tx-delay" in dwmac-rk.c). However, the manual does not clearly describe the time span of one unit, after consulting engineer of Ingenic, I learned that the value is recommended to be set to 63.
+> I will change it to be similar to the way done in dwmac-rk.c.
 
---jqV2DqZFSXOM6h6N
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please wrap your text to around 75 characters per line.
 
-On Tue, Jun 08, 2021 at 04:19:48PM +0530, Sameer Pujar wrote:
-> Enable support for audio-graph based sound card on Jetson Xavier NX.
-> Following I/O interfaces are enabled.
->   - I2S3 and I2S5
->   - DMIC1, DMIC2 and DMIC4
->   - DSPK1 and DSPK2
->=20
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> ---
->  .../arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi | 593 +++++++++++++++=
-++++++
->  1 file changed, 593 insertions(+)
+I suspect you don't understand RGMII delays. As i said, normally, the
+MAC does not add delays, the PHY does. Please take a closer look at
+this.
 
-Applied, thanks.
-
-Thierry
-
---jqV2DqZFSXOM6h6N
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmC/X5QACgkQ3SOs138+
-s6EyERAAnzCrBnBDK9RGX7zODpVNwl4mGgCeUqvcLVmc02CBOw60L/251o6OS7Sw
-gBB4/5N1cy7NW7SFGkji5sS115rArPKpU++0gGNrzpJ29O8JKau8jnbM+kST3KaY
-NAnuHWh4fLS0cRVF7DPBQSqjONfrLvB17EEiOEaymOEZuy1DNAR1Q3t3vLpY+irv
-N59H8cuDpp08jMBbf71MlliM4PmsPz5NvENWGS1/63RM+i6JmnAzS0iOdkMlM3rZ
-2MPe+ZajC/pyIpcCY54mgFlFiMeiHcDyGSvGpKGJQ4CpWQY8XgtmRA2K8IEtDK7z
-geoGkjTIu9rl9JO7hr8SAIKNkhFSYE7WO2rvWkqpU2/szDsjfyyCeQt4oOL+zfdv
-WJM/217beKUXn1TldvsaEbNDGBrshmTI/O4GlwWvmFKcZf1oaiToEPQbQAruritC
-b7rWJc7YuIGyWwZnHp5EhFtqO+epgocSAmO07KQPhZnhQjmCRpdtBBLvaXKlypNn
-Sk5LY1kqadn/Gp8o9N0BIsuyIC/2Q9TKxvWnOcpks42RRvnAyKeuL3k/vUNrnyrB
-7yyquBteBY6inu9lpMs4sfhQFtTqVNfIihE+/hK3HM4WEbkUN2Wcg9nBKzcUnD3i
-zw2XggnRWLjD9DslM2F3wxv4pqn652iO/zu8Z4PQOvxL3b4Eg6A=
-=/hG4
------END PGP SIGNATURE-----
-
---jqV2DqZFSXOM6h6N--
+	Andrew
