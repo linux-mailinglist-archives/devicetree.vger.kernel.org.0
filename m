@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 112D539F942
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 16:34:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC6239F957
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 16:38:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233288AbhFHOg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 10:36:29 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51420 "EHLO
+        id S233452AbhFHOkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 10:40:35 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:52234 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232911AbhFHOg3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 10:36:29 -0400
+        with ESMTP id S233316AbhFHOkd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 10:40:33 -0400
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 158EYQbI015392;
-        Tue, 8 Jun 2021 09:34:26 -0500
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 158EcbGr016940;
+        Tue, 8 Jun 2021 09:38:37 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623162866;
-        bh=kLVOLQpzpEYWHMfnJk1j34dVERgJQyKRpIuMcUEPRMw=;
+        s=ti-com-17Q1; t=1623163117;
+        bh=3pyK6CAwRyvWaeUBhVTbQzJs7ys6z8cOCX6qJ4mAoFs=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=y45V/aU00ptfJpFX4yusnpqTXUNmwH/SvV9te9MRHsA4BbHD85VoK5rvugvJL/w+R
-         I2r7MvMr08SK/2EMqW51ILQtaTlBJX2YoqL1SM/mh2Eppi31tRohuzIphuNcNERwgb
-         MVAjcLUwvEnyTdXyeT0pNvFPUd7iqb5qvcjZx1Qg=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 158EYQiV055988
+        b=iZtCdxaeUOFLmQ5EnX35CGrrsrmKrQyaVWDp3rzjYs2RxVRGoEhbGco31uLr2fL3L
+         ySPf6UPHvvmxR7fcVicz0jDM1+MZP0ngArs+7HRDOglTZ21GwPAyK6CQqtfpXwlXaF
+         RvSQ/S5OcPIimYwh/heJLPNIHgctflxiUfjPcjLs=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 158EcbHV061524
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Jun 2021 09:34:26 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 8 Jun 2021 09:38:37 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 8 Jun
- 2021 09:34:26 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 09:38:36 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 8 Jun 2021 09:34:26 -0500
+ Frontend Transport; Tue, 8 Jun 2021 09:38:36 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 158EYQDR113576;
-        Tue, 8 Jun 2021 09:34:26 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 158EcapU121452;
+        Tue, 8 Jun 2021 09:38:36 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Lokesh Vutla <lokeshvutla@ti.com>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 0/4] J721E: Use external clock in EVM for SERDES
-Date:   Tue, 8 Jun 2021 09:34:25 -0500
-Message-ID: <162316285077.9448.15907397272506220015.b4-ty@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
+        <a-govindraju@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 0/5] AM64: EVM/SK: Enable PCIe and USB
+Date:   Tue, 8 Jun 2021 09:38:35 -0500
+Message-ID: <162316287234.9624.10615974945267054848.b4-ty@ti.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210603143427.28735-1-kishon@ti.com>
-References: <20210603143427.28735-1-kishon@ti.com>
+In-Reply-To: <20210603142251.14563-1-kishon@ti.com>
+References: <20210603142251.14563-1-kishon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -57,14 +56,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Jun 2021 20:04:23 +0530, Kishon Vijay Abraham I wrote:
-> J721E EVM has clock generator that feeds both to the SERDES and to the
-> PCIe slot present in the EVM. In order to use common reference clock on
-> either side of the link, configure SERDES to use external reference
-> clock.
+On Thu, 3 Jun 2021 19:52:46 +0530, Kishon Vijay Abraham I wrote:
+> AM642 EVM has one PCIe slot (no USB slot) and AM642 SK has one USB slot
+> (no PCIe slot).
+> AM64 SoC has one SERDES module which can be used by either PCIe or USB.
 > 
-> Previously SERDES used internal reference clock and the attached device
-> used clock from clock generator in the EVM.
+> Add DT nodes to represent and enable SERDES/PCIe/USB modules in EVM/SK.
+> 
+> Changes from v3:
+> 1) Limit the lines to < 100
 > 
 > [...]
 
@@ -73,15 +73,23 @@ Hi Kishon Vijay Abraham I,
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/4] arm64: dts: ti: k3-j721e-main: Fix external refclk input to SERDES
-      commit: 5c6d0b55b46aeb91355e6a9616decf50a3778c91
-[2/4] arm64: dts: ti: k3-j721e-main: Add #clock-cells property to serdes DT node
-      commit: 2427bfb335eb5f291a821e91c4c520351ce933df
-[3/4] arm64: dts: ti: k3-j721e-common-proc-board: Use external clock for SERDES
-      commit: f2a7657ad7a821de9cc77d071a5587b243144cd5
-[4/4] arm64: dts: ti: k3-j721e-common-proc-board: Re-name "link" name as "phy"
-      commit: 02b4d9186121d842a53e347f53a86ec7f2c6b0c7
+[1/5] arm64: dts: ti: k3-am64-main: Add SERDES DT node
+      commit: 68fefbfed8ba67957b4ab18be4dfb8051b625321
+[2/5] arm64: dts: ti: k3-am64-main: Add PCIe DT node
+      commit: 4a868bffd876086d9017753a2d5c88a118fe6d5a
+[3/5] arm64: dts: ti: k3-am642-evm: Enable PCIe and SERDES
+      commit: 354065bed2d15f6ff7796c8105133ccdf3a84917
+[4/5] arm64: dts: ti: k3-am642-sk: Enable USB Super-Speed HOST port
+      commit: 4e8aa4e3559a7f71e333b0fb8661f302aec64c5c
+[5/5] arm64: dts: ti: k3-am642-sk: Disable PCIe
+      commit: c90ec93d94f2bddf3873f2dfbc7b4859e09c01ef
 
+
+Note: we do have this consistent definition unit address conflict in
+PCIe subnode on multiple SoCs, which though logical, as we discussed
+in [2], is something to look at as needed.
+/bus@f4000/pcie@f102000: duplicate unit-address (also used in node
+/bus@f4000/pcie-ep@f102000)
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent up the chain during
@@ -100,8 +108,9 @@ Please add any relevant lists and maintainers to the CCs when replying
 to this mail.
 
 [1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+[2] https://lore.kernel.org/linux-arm-kernel/ab908779-804f-75c3-d9cc-98a3a558e686@ti.com/
+
 -- 
 Regards,
 Nishanth Menon
 Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
