@@ -2,197 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 525F539F7FD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 15:41:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A5DF39F80E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 15:45:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231162AbhFHNm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 09:42:59 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:14508 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232797AbhFHNm7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 09:42:59 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1623159651; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=G9VxwWb8bGsBl7+3DbYo6VDhjWTMxkaPtN3zBTrN8ujYpCcTiNIi/w67eGaj6/32jD
-    HT7Gwf7yANiLuhdj7nKlhzUIL5dMnskiErCBdNXschc2dL6Y3G3SW6Y+OFWRFVTtBWUy
-    gmV9tgHZohr6KD+AFWz78myUaMRMf4ufTlQRydNl3XIZPOggqNh7mBX+98XrRkwL4EPz
-    ASTL456+MVbJBRHSY9J7zEQsUp7JH8yVbvXimzruwvNG6ABSd4SvMSwwEYiewPwiL9Pt
-    vuMoRXurb0hVWHFqjN8KeHRncu8sNpbnEl7XuG6OUueICaZe4t/Xax3Djgxai3zyhOTu
-    7yGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623159651;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Zx4/iLLgJx/rXn9XP5ob9EuxItyt6o86j/JyvYZbqtQ=;
-    b=sMSxqIAkHHi29JaRGJyC4jAKQPpEsPN8Ni5FJQrFoSy3vqy4WtoY5roTYy/7DA2ZNI
-    f8MF2IJM9V1XboYEmMSoADOuauB5q1Q95ZENte9AYJMieJBOP+LU5IxemnBgo2kCWnag
-    4Y50yTC+gFxhf1M1iWqYM8XXBsIrezHE/E1vO2iwr7o6a/LHVdR95R2YyuA8IoaDUp/3
-    l/s0cZ9oYiBXOWHAmNWoxHLHmmGYrB95zyg/xvgFLjykITndxduhpdi6O4264eVF7UND
-    ID6GCRUW3bDiulhiXdOpBLz+eAKpO90dmp5sQs8gcVCMnlyszhXshXi50iNofN3iFhQ3
-    jZPQ==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623159651;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=Zx4/iLLgJx/rXn9XP5ob9EuxItyt6o86j/JyvYZbqtQ=;
-    b=G++hwdH1QyInw8NRVfntDwK/aYsME0QJKekU3kAtVytpMgwhm3FSlxpqy0Pp0qa3wN
-    c03UAs+//fFdZDK4CYXbQ9iSilqo6pMZsZV1lglOurxFIqRs2bt7XvhwPRg3914zBHsf
-    FUvQbI1nHAUIUhJXtYfVMY4CxoJJ4IWLNS+vPKqBNlEjHy9vNJrrg/XbNMyJAKjRqtUf
-    kDebjKDht2DT1clmPiUhlJu1ZDIk8EKFfY+ngNfokuKi2Eo6wiOAshD3iHVJSe1IqKk6
-    5Q0y29LoqIoBRIUd1Io14SGW2JDfGCbjwhqAskDdu5Y730sn6MxQ6yscXnrdSJGCs+MF
-    CuFw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7IcbDBg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
-    with ESMTPSA id y01375x58DepdtY
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 8 Jun 2021 15:40:51 +0200 (CEST)
-Date:   Tue, 8 Jun 2021 15:40:45 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Russell King <linux@armlinux.org.uk>,
-        David Sterba <dsterba@suse.com>, Jens Axboe <axboe@kernel.dk>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] arm: qcom: Add SMP support for MSM8226
-Message-ID: <YL9zXcyj4omVheNF@gerhold.net>
-References: <20210606201612.100752-1-bartosz.dudziak@snejp.pl>
- <20210606201612.100752-3-bartosz.dudziak@snejp.pl>
+        id S232771AbhFHNqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 09:46:42 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:52445 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232797AbhFHNqm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 09:46:42 -0400
+Received: (Authenticated sender: paul@opendingux.net)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 32C871BF205;
+        Tue,  8 Jun 2021 13:44:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=opendingux.net;
+        s=gm1; t=1623159888;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=BQMptio49srjsFtDPE0SuFSfbNkfTGwnrL3Zcw/9Xhw=;
+        b=XqqpFaA4jHsaQKwcPJUOqYpmSBoFOfEy5cZtaG00J7kWA+Nk7frkzxp/wK0WDlTt9eOaq0
+        TA9PtJ4wfcVGFVu+je7VUhQvDBfHVutMeayg+nglVBpi+g9jWqNr3mWo7ZcB4uAo4Sr2Bq
+        Sr2DnBMMz/IIF8glXjgmUvYWv1rs+pl+TkgeztvGC3zo1FrXWxmAu0goQ+dBQHUaR47j4m
+        0smoLfV3W9U0TUK8tzncrmlyBdoWKeiyobMbQr8XoCYfenSAoxmqGFJaJE67WZ7GR6emV5
+        dEuC9DQy/TARQnfPlb/NrUDBSS64ByEBH80kZlaXRga99d95oaez3e7U73G72A==
+Date:   Tue, 08 Jun 2021 14:44:35 +0100
+From:   Paul Cercueil <paul@opendingux.net>
+Subject: Re: [PATCH 2/2] mmc: JZ4740: Add support for JZ4775 and rename
+ unreasonable array name.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com, sihui.liu@ingenic.com,
+        jun.jiang@ingenic.com, sernia.zhou@foxmail.com,
+        paul@crapouillou.net
+Message-Id: <B6YDUQ.LVNCFD4XPUIY1@opendingux.net>
+In-Reply-To: <1623002884-57244-3-git-send-email-zhouyanjie@wanyeetech.com>
+References: <1623002884-57244-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1623002884-57244-3-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210606201612.100752-3-bartosz.dudziak@snejp.pl>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 06, 2021 at 10:16:12PM +0200, Bartosz Dudziak wrote:
-> Implement support for Cortex-A7 CPU release sequence in MSM8226 SoC.
-> 
-> Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+Hi Zhou,
+
+Le lun., juin 7 2021 at 02:08:04 +0800, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Y=
+anjie)=20
+<zhouyanjie@wanyeetech.com> a =C3=A9crit :
+> 1.Add support for probing mmc driver on the JZ4775 SoC from Ingenic.
+> 2.When the support for JZ4775 SoC is added, there will be six=20
+> compatible
+>   strings, so renaming "jz4740_mmc_of_match[]" to=20
+> "jz4740_mmc_of_matches[]"
+>   is more reasonable.
+
+Honestly, you can drop #2. We don't really care about the=20
+variable/function names not being "perfect". For instance this driver=20
+still use "jz4740_mmc*" functions everywhere even though it supports=20
+many more SoCs. Besides, renames like that makes it harder to "git=20
+blame" afterwards since it fills the git history with non-functional=20
+changes.
+
+>=20
+> Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) <zhouyanjie@wany=
+eetech.com>
 > ---
->  arch/arm/mach-qcom/platsmp.c | 71 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 71 insertions(+)
-> 
-> diff --git a/arch/arm/mach-qcom/platsmp.c b/arch/arm/mach-qcom/platsmp.c
-> index 630a038f45..60496554c6 100644
-> --- a/arch/arm/mach-qcom/platsmp.c
-> +++ b/arch/arm/mach-qcom/platsmp.c
-> @@ -29,6 +29,7 @@
->  #define COREPOR_RST		BIT(5)
->  #define CORE_RST		BIT(4)
->  #define L2DT_SLP		BIT(3)
-> +#define CORE_MEM_CLAMP		BIT(1)
->  #define CLAMP			BIT(0)
->  
->  #define APC_PWR_GATE_CTL	0x14
-> @@ -75,6 +76,62 @@ static int scss_release_secondary(unsigned int cpu)
->  	return 0;
->  }
->  
-> +static int cortex_a7_release_secondary(unsigned int cpu)
-> +{
-> +	int ret = 0;
-> +	void __iomem *reg;
-> +	struct device_node *cpu_node, *acc_node;
-> +	u32 reg_val;
-> +
-> +	cpu_node = of_get_cpu_node(cpu, NULL);
-> +	if (!cpu_node)
-> +		return -ENODEV;
-> +
-> +	acc_node = of_parse_phandle(cpu_node, "qcom,acc", 0);
-> +	if (!acc_node) {
-> +		ret = -ENODEV;
-> +		goto out_acc;
-> +	}
-> +
-> +	reg = of_iomap(acc_node, 0);
-> +	if (!reg) {
-> +		ret = -ENOMEM;
-> +		goto out_acc_map;
-> +	}
-> +
-> +	/* Put the CPU into reset. */
-> +	reg_val = CORE_RST | COREPOR_RST | CLAMP | CORE_MEM_CLAMP;
-> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-> +
-> +	/* Turn on the BHS and set the BHS_CNT to 16 XO clock cycles */
-> +	writel(BHS_EN | (0x10 << BHS_CNT_SHIFT), reg + APC_PWR_GATE_CTL);
-> +	/* Wait for the BHS to settle */
-> +	udelay(2);
-> +
-> +	reg_val &= ~CORE_MEM_CLAMP;
-> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-> +	reg_val |= L2DT_SLP;
-> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-> +	udelay(2);
-> +
-> +	reg_val = (reg_val | BIT(17)) & ~CLAMP;
-> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-> +	udelay(2);
-> +
-> +	/* Release CPU out of reset and bring it to life. */
-> +	reg_val &= ~(CORE_RST | COREPOR_RST);
-> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-> +	reg_val |= CORE_PWRD_UP;
-> +	writel(reg_val, reg + APCS_CPU_PWR_CTL);
-> +
-> +	iounmap(reg);
-> +out_acc_map:
-> +	of_node_put(acc_node);
-> +out_acc:
-> +	of_node_put(cpu_node);
-> +	return ret;
-> +}
-> +
->  static int kpssv1_release_secondary(unsigned int cpu)
->  {
->  	int ret = 0;
-> @@ -281,6 +338,11 @@ static int msm8660_boot_secondary(unsigned int cpu, struct task_struct *idle)
->  	return qcom_boot_secondary(cpu, scss_release_secondary);
->  }
->  
-> +static int cortex_a7_boot_secondary(unsigned int cpu, struct task_struct *idle)
-> +{
-> +	return qcom_boot_secondary(cpu, cortex_a7_release_secondary);
-> +}
-> +
->  static int kpssv1_boot_secondary(unsigned int cpu, struct task_struct *idle)
->  {
->  	return qcom_boot_secondary(cpu, kpssv1_release_secondary);
-> @@ -315,6 +377,15 @@ static const struct smp_operations smp_msm8660_ops __initconst = {
+>  drivers/mmc/host/jz4740_mmc.c | 25 ++++++++++++++-----------
+>  1 file changed, 14 insertions(+), 11 deletions(-)
+>=20
+> diff --git a/drivers/mmc/host/jz4740_mmc.c=20
+> b/drivers/mmc/host/jz4740_mmc.c
+> index b3c636e..ea8434f 100644
+> --- a/drivers/mmc/host/jz4740_mmc.c
+> +++ b/drivers/mmc/host/jz4740_mmc.c
+> @@ -2,6 +2,7 @@
+>  /*
+>   *  Copyright (C) 2009-2010, Lars-Peter Clausen <lars@metafoo.de>
+>   *  Copyright (C) 2013, Imagination Technologies
+> + *  Copyright (C) 2021, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie)=20
+> <zhouyanjie@wanyeetech.com>
+>   *
+>   *  JZ4740 SD/MMC controller driver
+>   */
+> @@ -114,6 +115,7 @@ enum jz4740_mmc_version {
+>  	JZ_MMC_JZ4740,
+>  	JZ_MMC_JZ4725B,
+>  	JZ_MMC_JZ4760,
+> +	JZ_MMC_JZ4775,
+>  	JZ_MMC_JZ4780,
+>  	JZ_MMC_X1000,
 >  };
->  CPU_METHOD_OF_DECLARE(qcom_smp, "qcom,gcc-msm8660", &smp_msm8660_ops);
->  
-> +static const struct smp_operations qcom_smp_cortex_a7_ops __initconst = {
-> +	.smp_prepare_cpus	= qcom_smp_prepare_cpus,
-> +	.smp_boot_secondary	= cortex_a7_boot_secondary,
-> +#ifdef CONFIG_HOTPLUG_CPU
-> +	.cpu_die		= qcom_cpu_die,
-> +#endif
-> +};
-> +CPU_METHOD_OF_DECLARE(qcom_smp_msm8226, "qcom,msm8226-smp", &qcom_smp_cortex_a7_ops);
-> +
+> @@ -138,7 +140,7 @@ enum jz4740_mmc_state {
+>   * COOKIE_MAPPED: the request was mapped in the irq handler,
+>   * and should be unmapped before mmc_request_done is called..
+>   */
+> -enum jz4780_cookie {
+> +enum jz4775_cookie {
+>  	COOKIE_UNMAPPED =3D 0,
+>  	COOKIE_PREMAPPED,
+>  	COOKIE_MAPPED,
+> @@ -194,7 +196,7 @@ static void jz4740_mmc_write_irq_mask(struct=20
+> jz4740_mmc_host *host,
+>  static void jz4740_mmc_write_irq_reg(struct jz4740_mmc_host *host,
+>  				     uint32_t val)
+>  {
+> -	if (host->version >=3D JZ_MMC_JZ4780)
+> +	if (host->version >=3D JZ_MMC_JZ4775)
+>  		writel(val, host->base + JZ_REG_MMC_IREG);
+>  	else
+>  		writew(val, host->base + JZ_REG_MMC_IREG);
+> @@ -202,7 +204,7 @@ static void jz4740_mmc_write_irq_reg(struct=20
+> jz4740_mmc_host *host,
+>=20
+>  static uint32_t jz4740_mmc_read_irq_reg(struct jz4740_mmc_host *host)
+>  {
+> -	if (host->version >=3D JZ_MMC_JZ4780)
+> +	if (host->version >=3D JZ_MMC_JZ4775)
+>  		return readl(host->base + JZ_REG_MMC_IREG);
+>  	else
+>  		return readw(host->base + JZ_REG_MMC_IREG);
+> @@ -674,7 +676,7 @@ static void jz4740_mmc_send_command(struct=20
+> jz4740_mmc_host *host,
+>  			cmdat |=3D JZ_MMC_CMDAT_WRITE;
+>  		if (host->use_dma) {
+>  			/*
+> -			 * The 4780's MMC controller has integrated DMA ability
+> +			 * The JZ4775's MMC controller has integrated DMA ability
+>  			 * in addition to being able to use the external DMA
+>  			 * controller. It moves DMA control bits to a separate
+>  			 * register. The DMA_SEL bit chooses the external
+> @@ -682,13 +684,13 @@ static void jz4740_mmc_send_command(struct=20
+> jz4740_mmc_host *host,
+>  			 * can only use the external controller, and have a
+>  			 * single DMA enable bit in CMDAT.
+>  			 */
+> -			if (host->version >=3D JZ_MMC_JZ4780) {
+> +			if (host->version >=3D JZ_MMC_JZ4775) {
+>  				writel(JZ_MMC_DMAC_DMA_EN | JZ_MMC_DMAC_DMA_SEL,
+>  				       host->base + JZ_REG_MMC_DMAC);
+>  			} else {
+>  				cmdat |=3D JZ_MMC_CMDAT_DMA_EN;
+>  			}
+> -		} else if (host->version >=3D JZ_MMC_JZ4780) {
+> +		} else if (host->version >=3D JZ_MMC_JZ4775) {
+>  			writel(0, host->base + JZ_REG_MMC_DMAC);
+>  		}
+>=20
+> @@ -866,7 +868,7 @@ static int jz4740_mmc_set_clock_rate(struct=20
+> jz4740_mmc_host *host, int rate)
+>  	writew(div, host->base + JZ_REG_MMC_CLKRT);
+>=20
+>  	if (real_rate > 25000000) {
+> -		if (host->version >=3D JZ_MMC_X1000) {
+> +		if (host->version >=3D JZ_MMC_JZ4775) {
 
-Looks good to me now. Actually this is also working well on
-MSM8916/Cortex-A53 on a rather unfortunate device where the firmware
-does not allow booting 64-bit kernels. I might upstream that now that
-it's mostly just adding a new compatible string with the same code.
+This changes the behaviour for the JZ4780.
 
-Assuming your change log is correct and you didn't change the
-initialization sequence in v1 -> v2 (didn't check it again):
+Even if it is correct, this belongs in its own commit (with a Fixes=20
+tag), or at the very least a mention about it in the commit message.
 
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+>  			writel(JZ_MMC_LPM_DRV_RISING_QTR_PHASE_DLY |
+>  				   JZ_MMC_LPM_SMP_RISING_QTR_OR_HALF_PHASE_DLY |
+>  				   JZ_MMC_LPM_LOW_POWER_MODE_EN,
+> @@ -955,15 +957,16 @@ static const struct mmc_host_ops jz4740_mmc_ops=20
+> =3D {
+>  	.enable_sdio_irq =3D jz4740_mmc_enable_sdio_irq,
+>  };
+>=20
+> -static const struct of_device_id jz4740_mmc_of_match[] =3D {
+> +static const struct of_device_id jz4740_mmc_of_matches[] =3D {
+>  	{ .compatible =3D "ingenic,jz4740-mmc", .data =3D (void *)=20
+> JZ_MMC_JZ4740 },
+>  	{ .compatible =3D "ingenic,jz4725b-mmc", .data =3D (void=20
+> *)JZ_MMC_JZ4725B },
+>  	{ .compatible =3D "ingenic,jz4760-mmc", .data =3D (void *)=20
+> JZ_MMC_JZ4760 },
+> +	{ .compatible =3D "ingenic,jz4775-mmc", .data =3D (void *)=20
+> JZ_MMC_JZ4775 },
+>  	{ .compatible =3D "ingenic,jz4780-mmc", .data =3D (void *)=20
+> JZ_MMC_JZ4780 },
 
-Thanks!
-Stephan
+Looks to me that the JZ4775 and JZ4780 have the exact same behaviour,=20
+so this patch could have been a one-liner, adding "ingenic,jz4775-mmc"=20
+with the JZ_MMC_JZ4780 ID.
+
+Cheers,
+-Paul
+
+>  	{ .compatible =3D "ingenic,x1000-mmc", .data =3D (void *) JZ_MMC_X1000=20
+> },
+>  	{},
+>  };
+> -MODULE_DEVICE_TABLE(of, jz4740_mmc_of_match);
+> +MODULE_DEVICE_TABLE(of, jz4740_mmc_of_matches);
+>=20
+>  static int jz4740_mmc_probe(struct platform_device* pdev)
+>  {
+> @@ -980,7 +983,7 @@ static int jz4740_mmc_probe(struct=20
+> platform_device* pdev)
+>=20
+>  	host =3D mmc_priv(mmc);
+>=20
+> -	match =3D of_match_device(jz4740_mmc_of_match, &pdev->dev);
+> +	match =3D of_match_device(jz4740_mmc_of_matches, &pdev->dev);
+>  	if (match) {
+>  		host->version =3D (enum jz4740_mmc_version)match->data;
+>  	} else {
+> @@ -1124,7 +1127,7 @@ static struct platform_driver jz4740_mmc_driver=20
+> =3D {
+>  	.driver =3D {
+>  		.name =3D "jz4740-mmc",
+>  		.probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
+> -		.of_match_table =3D of_match_ptr(jz4740_mmc_of_match),
+> +		.of_match_table =3D of_match_ptr(jz4740_mmc_of_matches),
+>  		.pm =3D pm_ptr(&jz4740_mmc_pm_ops),
+>  	},
+>  };
+> --
+> 2.7.4
+>=20
+
+
