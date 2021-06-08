@@ -2,75 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA3BE39F2BA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 11:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79B8839F2D1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 11:50:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230017AbhFHJsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 05:48:02 -0400
-Received: from router.aksignal.cz ([62.44.4.214]:59106 "EHLO
+        id S229536AbhFHJwC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 05:52:02 -0400
+Received: from router.aksignal.cz ([62.44.4.214]:59342 "EHLO
         router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbhFHJsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 05:48:02 -0400
+        with ESMTP id S229507AbhFHJwB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 05:52:01 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by router.aksignal.cz (Postfix) with ESMTP id BF4C44896A;
-        Tue,  8 Jun 2021 11:45:57 +0200 (CEST)
+        by router.aksignal.cz (Postfix) with ESMTP id 50832406FE;
+        Tue,  8 Jun 2021 11:50:08 +0200 (CEST)
 X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
 Received: from router.aksignal.cz ([127.0.0.1])
         by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id ebHIpC7HDiQt; Tue,  8 Jun 2021 11:45:57 +0200 (CEST)
+        with LMTP id xsdHTSOUdbTu; Tue,  8 Jun 2021 11:50:03 +0200 (CEST)
 Received: from [172.25.161.48] (unknown [83.240.30.185])
         (Authenticated sender: jiri.prchal@aksignal.cz)
-        by router.aksignal.cz (Postfix) with ESMTPSA id C029748969;
-        Tue,  8 Jun 2021 11:45:56 +0200 (CEST)
-Subject: Re: [PATCH v7 4/5] nvmem: eeprom: at25: export FRAM serial num
+        by router.aksignal.cz (Postfix) with ESMTPSA id 429DF405B3;
+        Tue,  8 Jun 2021 11:50:03 +0200 (CEST)
+Subject: Re: [PATCH v8 5/5] nvmem: eeprom: add documentation of sysfs fram and
+ sernum file
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Christian Eggers <ceggers@arri.de>,
         Arnd Bergmann <arnd@arndb.de>
-References: <20210607122640.143582-1-jiri.prchal@aksignal.cz>
- <20210607122640.143582-5-jiri.prchal@aksignal.cz>
- <YL4S2/hlfRwRM+Ug@kroah.com>
- <56f088fe-8db2-54d4-bef3-72e5f893a414@aksignal.cz>
- <YL8ybqOfgOqjlpoX@kroah.com>
+References: <20210607161201.223697-1-jiri.prchal@aksignal.cz>
+ <20210607161201.223697-6-jiri.prchal@aksignal.cz>
+ <YL8yveuSWTC9iEEz@kroah.com>
 From:   =?UTF-8?B?SmnFmcOtIFByY2hhbA==?= <jiri.prchal@aksignal.cz>
-Message-ID: <b1c0eab3-8d07-5c52-300e-45974f7fea9c@aksignal.cz>
-Date:   Tue, 8 Jun 2021 11:45:56 +0200
+Message-ID: <d0aa3003-0cb7-53c8-6d0e-f1c2dcd90479@aksignal.cz>
+Date:   Tue, 8 Jun 2021 11:50:03 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <YL8ybqOfgOqjlpoX@kroah.com>
+In-Reply-To: <YL8yveuSWTC9iEEz@kroah.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 08. 06. 21 11:03, Greg Kroah-Hartman wrote:
-> On Mon, Jun 07, 2021 at 04:47:44PM +0200, Jiří Prchal wrote:
+On 08. 06. 21 11:05, Greg Kroah-Hartman wrote:
+> On Mon, Jun 07, 2021 at 06:12:01PM +0200, Jiri Prchal wrote:
+>> Added sysfs fram and sernum file documentation.
 >>
+>> Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
+>> ---
+>> v5: new
+>> v6: no change here
+>> v7: no change here
+>> v8: added fram file doc
+>> ---
+>>   Documentation/ABI/testing/sysfs-class-spi-eeprom | 13 +++++++++++++
+>>   1 file changed, 13 insertions(+)
+>>   create mode 100644 Documentation/ABI/testing/sysfs-class-spi-eeprom
 >>
->> On 07. 06. 21 14:36, Greg Kroah-Hartman wrote:
->>> On Mon, Jun 07, 2021 at 02:26:39PM +0200, Jiri Prchal wrote:
->>>> +	return sysfs_emit(buf, "%016llx\n", *(unsigned long long *)at25->sernum);
->>>
->>> That's a horrid hack, why not use the %*phN modifier?
->>
->> Prints as little endian, is that OK?
+>> diff --git a/Documentation/ABI/testing/sysfs-class-spi-eeprom b/Documentation/ABI/testing/sysfs-class-spi-eeprom
+>> new file mode 100644
+>> index 000000000000..b41420fe1329
+>> --- /dev/null
+>> +++ b/Documentation/ABI/testing/sysfs-class-spi-eeprom
+>> @@ -0,0 +1,13 @@
+>> +What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/sernum
+>> +Date:		May 2021
+>> +KernelVersion:	5.13
+>> +Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
+>> +Description:
+>> +		(RO) Exports serial number of Cypress FRAM (FM25VN). 8 bytes as is in chip in hex string.
 > 
-> You tell me!  What tool is going to be reading this?  What do they
-> expect it to look like?
+> Please properly wrap your lines.
+> 
+> What is "(RO)" here?
 
-sh, php in my usecase as unique id.
-So endianess does not matter to me too much. The question is what is 
-usual (like mac address, uuid...?).
+Read Only, as seen in another doc.
 
-> And it's a byte array, why would there be endian issues?
+> 
+> And the grammer is a bit odd, what is the second sentence supposed to
+> mean?
+> 
+>> +
+>> +What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/fram
+>> +Date:		June 2021
+>> +KernelVersion:	5.13
+> 
+> Obviously it can not make 5.13, right?
 
-Now is printed as one big number. Not real issue. Just human 
-readability? Should I turn back it to space separated bytes?
+Sorry for missunderstanding, what number should be here?
 
-J
