@@ -2,94 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B77539EA6F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 01:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE6C739EA83
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 02:02:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230233AbhFGXyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Jun 2021 19:54:16 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:60485 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230183AbhFGXyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Jun 2021 19:54:16 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 541F9580367;
-        Mon,  7 Jun 2021 19:52:24 -0400 (EDT)
-Received: from imap43 ([10.202.2.93])
-  by compute2.internal (MEProxy); Mon, 07 Jun 2021 19:52:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=Io+5A3KYyFWZtuyNO5Wohgf1Bbj7cm2
-        Abaeore9IIG8=; b=pUjets1HcJ55Z0xQOES1O/7rhClrWHvPpB3qFiqhDnL3ZzA
-        T43ECWICdquwdwfFQW6gzHelWTh6g4UNbfhlDd51aarVAEnQkttG6qfxqx8fkmlN
-        T145+Ul3GF4Ncu+QRLoGiV1Y2Ad+VODe2QRQPMrKrwqfLC0FdYZIJuYpEdRqnTdL
-        7436Lk9tA6aevC9MtOoRKHl9ikOLZPrE2sZQPPd+7EiEqT8Zf3INNrqp1+LlMY1G
-        XIYRhUVN6yC0CFkePJtwdqmsj6uft6FYXG7IOVjzJde+GoUzOsT9T7vxwsbBpDj5
-        R7zAuHe3TaUveSm2FhvWpO2f9gu6/140BWdfX/A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Io+5A3
-        KYyFWZtuyNO5Wohgf1Bbj7cm2Abaeore9IIG8=; b=gWBvIsFyn+1bxsUkDUEHIp
-        2WwT66eB9zEhiAorPkK0Oo5D03E9XJwNkgeFYYmqbhKAxRYGOH8ceE311IGen7ZD
-        0uoXzb4l2FU1dVbLeUI3bd0rcfv56VLnj/5aDSkZ2k9e+6jSDHfgfFHgvyU5+urh
-        oFfe0tgyxItSDFdYsf76FV5ECflS26vDSnxMhq6z8GNDa+6j4/Jhyn9A9b8d59fy
-        1rsVpjWCvJE8nINZjfQJIWRKr+X6sIxTli9qfjfrXrttz91GoSKgcbpYJsTdmAKC
-        k0yEFeug7kLmlKceoMA7aM4KXZaNByh1qKSzA1fn+c884iWNi/drK/KG1zCY2qKw
-        ==
-X-ME-Sender: <xms:NrG-YKVTLlfXYr8o09vMXzGlqfsKWScwo3aWg6osmNkKfgV8UtnPeQ>
-    <xme:NrG-YGn38Tf4E8wt9010-Y41tQJWbtF6gtmhpfSfoJhArNuW_-MFv8d9N6eYC4kS_
-    UVGzQ_gpcNbDYcf_A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedtkedgudekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
-    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:NrG-YOYFe1DaslDg2hYLzEnkFZuHQ4BB0zHD-4OmJt7U3xmcXQFjdA>
-    <xmx:NrG-YBWTmfR9XSvk9mmJqwo1AWwTqZOq-NonRLcVAXLNLFZUaeJj-A>
-    <xmx:NrG-YElCKCl8quTENqBdVmIl4OlBk-QBmyQMf9yEdYVEm0_Y-7M6uQ>
-    <xmx:OLG-YNf4N73cBZ2CtvjY2LOVLf3ruiUve8bwiK7xU1DFkYULBFpetA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 38640AC0062; Mon,  7 Jun 2021 19:52:22 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-519-g27a961944e-fm-20210531.001-g27a96194
-Mime-Version: 1.0
-Message-Id: <84a19429-a4ee-48d1-be5e-c20069277d42@www.fastmail.com>
-In-Reply-To: <20210607071514.11727-8-steven_lee@aspeedtech.com>
-References: <20210607071514.11727-1-steven_lee@aspeedtech.com>
- <20210607071514.11727-8-steven_lee@aspeedtech.com>
-Date:   Tue, 08 Jun 2021 09:22:02 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Steven Lee" <steven_lee@aspeedtech.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "open list" <linux-kernel@vger.kernel.org>
-Cc:     "Hongwei Zhang" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Billy Tsai" <billy_tsai@aspeedtech.com>
-Subject: =?UTF-8?Q?Re:_[PATCH_v4_7/7]_gpio:_gpio-aspeed-sgpio:_Use_generic_device?=
- =?UTF-8?Q?_property_APIs?=
-Content-Type: text/plain
+        id S230351AbhFHAD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Jun 2021 20:03:57 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:50400 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230282AbhFHAD4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 7 Jun 2021 20:03:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=N3a+03kBTMfQSx5Hd/bgZB3TBPMGzTKqpBlMp1B0wk8=; b=nakdTipNHB98wcXQ2sRFnxmLlF
+        WoyocyN0jrUpK+Zcdvcu2GYF34gelZzc6rMgPNpe6zxlAVZE7cwYGNe+aAHNR9ozGYlAVFVT6HYBS
+        x1EBu7rwkrI8Yx2xyCDXKAF7Y0MixQIOsjKlaDfC4SRgb88JciIQq9gImH4SrflyzGC0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lqPBa-008GfJ-3G; Tue, 08 Jun 2021 02:01:38 +0200
+Date:   Tue, 8 Jun 2021 02:01:38 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com, paul@crapouillou.net
+Subject: Re: [PATCH 2/2] net: stmmac: Add Ingenic SoCs MAC support.
+Message-ID: <YL6zYgGdqxqL9c0j@lunn.ch>
+References: <1623086867-119039-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1623086867-119039-3-git-send-email-zhouyanjie@wanyeetech.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1623086867-119039-3-git-send-email-zhouyanjie@wanyeetech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+>  config DWMAC_ROCKCHIP
+>  	tristate "Rockchip dwmac support"
+> -	default ARCH_ROCKCHIP
+> +	default MACH_ROCKCHIP
+>  	depends on OF && (ARCH_ROCKCHIP || COMPILE_TEST)
+>  	select MFD_SYSCON
+>  	help
+> @@ -164,7 +176,7 @@ config DWMAC_STI
+>  
+>  config DWMAC_STM32
+>  	tristate "STM32 DWMAC support"
+> -	default ARCH_STM32
+> +	default MACH_STM32
 
+It would be good to explain in the commit message why you are changing
+these two. It is not obvious.
 
-On Mon, 7 Jun 2021, at 16:45, Steven Lee wrote:
-> Replace all of_property_read_u32() with device_property_read_u32().
-> 
-> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> +static int jz4775_mac_set_mode(struct plat_stmmacenet_data *plat_dat)
+> +{
+> +	struct ingenic_mac *mac = plat_dat->bsp_priv;
+> +	int val;
+> +
+> +	switch (plat_dat->interface) {
+> +	case PHY_INTERFACE_MODE_MII:
+> +		val = FIELD_PREP(MACPHYC_TXCLK_SEL_MASK, MACPHYC_TXCLK_SEL_INPUT) |
+> +			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_MII);
+> +		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_MII\n");
+> +		break;
+> +
+> +	case PHY_INTERFACE_MODE_GMII:
+> +		val = FIELD_PREP(MACPHYC_TXCLK_SEL_MASK, MACPHYC_TXCLK_SEL_INPUT) |
+> +			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_GMII);
+> +		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_GMII\n");
+> +		break;
+> +
+> +	case PHY_INTERFACE_MODE_RMII:
+> +		val = FIELD_PREP(MACPHYC_TXCLK_SEL_MASK, MACPHYC_TXCLK_SEL_INPUT) |
+> +			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RMII);
+> +		pr_debug("MAC PHY Control Register: PHY_INTERFACE_MODE_RMII\n");
+> +		break;
+> +
+> +	case PHY_INTERFACE_MODE_RGMII:
 
-Acked-by: Andrew Jeffery <andrew@aj.id.au>
+What about the other three RGMII modes?
+
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +		val = FIELD_PREP(MACPHYC_TX_SEL_MASK, MACPHYC_TX_SEL_DELAY) |
+> +			  FIELD_PREP(MACPHYC_TX_DELAY_MASK, MACPHYC_TX_DELAY_63_UNIT) |
+> +			  FIELD_PREP(MACPHYC_RX_SEL_MASK, MACPHYC_RX_SEL_ORIGIN) |
+> +			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RGMII);
+
+What exactly does MACPHYC_TX_DELAY_63_UNIT mean here? Ideally, the MAC
+should not be adding any RGMII delays. It should however pass mode
+through to the PHY, so it can add the delays, if the mode indicates it
+should, e.g. PHY_INTERFACE_MODE_RGMII_ID. This is also why you should
+be handling all 4 RGMII modes here, not just one.
+
+	 Andrew
