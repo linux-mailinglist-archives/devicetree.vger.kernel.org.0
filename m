@@ -2,122 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD6E039F92B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 16:30:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 112D539F942
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 16:34:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233333AbhFHOcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 10:32:35 -0400
-Received: from mail-qt1-f182.google.com ([209.85.160.182]:44980 "EHLO
-        mail-qt1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233392AbhFHOcN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 10:32:13 -0400
-Received: by mail-qt1-f182.google.com with SMTP id t17so15371793qta.11
-        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 07:30:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ya4sSOjySMHGjVVWLWrWfBjZGU/UNkNaSi2rQLK5WkI=;
-        b=1X5vWiICSrpwWJEznutissR6pu/5bj0Ju4L12Omxfb3SP/Za4+dbBmiY5ac1YZbKIK
-         ZG13VmDs1K+v5GcUYx9Wwwv2H6/36pMlI7sLQ13lWvQNb9cG4O+rGaWEmLbbXhb6UUxh
-         5esOht+eSbhW/L4rTNDyaCRQzfpBW8sDQ6SN4xJOjmkYLM4j3/QgHBS4m24oAVKNAiAC
-         czFQVsq/j33+Q72tzzg3NZaPvn3E0ncGwKDHzqNRVU1K+swCemhYaJeSINjAwyAyLxp+
-         Cw7O0VRMEYe77xyeurCssl/ojJtN0mIqs6ld3PD6xrEGp44zgFGp7vK4Ic4gsyJN91Nh
-         3yvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ya4sSOjySMHGjVVWLWrWfBjZGU/UNkNaSi2rQLK5WkI=;
-        b=UTYyjqc+aECPvh0vEGzvXIOFlUwSDSPLvCON1pD473yLUAyK7mrQu6qB4DXt1E7Oap
-         j41QgChTpAvuzgXMZMHCVt/sno7oZGGIdkQnHCSzv4dAttoZvSd6ru+alDhSVzamWrmT
-         XbGyNGD4jeMXA9enjxvjq8ZSe6bbgu94/xDTghb+vuCxdn/ci13Xiw+Mr5H9cZFrhfLZ
-         2C4TZ4vwnHJJbOiW3t6DG44QPt7M9OmtnbbSntLFEbBIvvmpJqX+/Ldp1CoOt837h/JF
-         PWN0NA3/0HFnpTx2jxQvDqVaRipTOMI5fA92vOo/jHMsf2mYAZvAe3iucBazgiNoUrJV
-         Yh0Q==
-X-Gm-Message-State: AOAM530Lv4TNM34LJnxn4insiLSCAOLJp2YsiR0Hy+4RaipOa6H5tAtW
-        3KypZr6A82VY85skXuNc/2h6zg==
-X-Google-Smtp-Source: ABdhPJwXYMw9s+35IctDKhPg2MZvfzZqU2XLhwmUCtvJaU+eoTE/zoB5Ljo1Tzq6Z54HDxylEPn7EQ==
-X-Received: by 2002:a05:622a:154:: with SMTP id v20mr21676270qtw.91.1623162547243;
-        Tue, 08 Jun 2021 07:29:07 -0700 (PDT)
-Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id v6sm11838748qkv.54.2021.06.08.07.29.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jun 2021 07:29:06 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 2/2] dt-bindings: clock: add QCOM SM8350 display clock bindings
-Date:   Tue,  8 Jun 2021 10:27:07 -0400
-Message-Id: <20210608142707.19637-2-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20210608142707.19637-1-jonathan@marek.ca>
-References: <20210608142707.19637-1-jonathan@marek.ca>
+        id S233288AbhFHOg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 10:36:29 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:51420 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232911AbhFHOg3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 10:36:29 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 158EYQbI015392;
+        Tue, 8 Jun 2021 09:34:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623162866;
+        bh=kLVOLQpzpEYWHMfnJk1j34dVERgJQyKRpIuMcUEPRMw=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=y45V/aU00ptfJpFX4yusnpqTXUNmwH/SvV9te9MRHsA4BbHD85VoK5rvugvJL/w+R
+         I2r7MvMr08SK/2EMqW51ILQtaTlBJX2YoqL1SM/mh2Eppi31tRohuzIphuNcNERwgb
+         MVAjcLUwvEnyTdXyeT0pNvFPUd7iqb5qvcjZx1Qg=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 158EYQiV055988
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Jun 2021 09:34:26 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 8 Jun
+ 2021 09:34:26 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 8 Jun 2021 09:34:26 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 158EYQDR113576;
+        Tue, 8 Jun 2021 09:34:26 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Lokesh Vutla <lokeshvutla@ti.com>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 0/4] J721E: Use external clock in EVM for SERDES
+Date:   Tue, 8 Jun 2021 09:34:25 -0500
+Message-ID: <162316285077.9448.15907397272506220015.b4-ty@ti.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210603143427.28735-1-kishon@ti.com>
+References: <20210603143427.28735-1-kishon@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add sm8350 DISPCC bindings, which are simply a symlink to the sm8250
-bindings. Update the documentation with the new compatible.
+On Thu, 3 Jun 2021 20:04:23 +0530, Kishon Vijay Abraham I wrote:
+> J721E EVM has clock generator that feeds both to the SERDES and to the
+> PCIe slot present in the EVM. In order to use common reference clock on
+> either side of the link, configure SERDES to use external reference
+> clock.
+> 
+> Previously SERDES used internal reference clock and the attached device
+> used clock from clock generator in the EVM.
+> 
+> [...]
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml       | 6 ++++--
- include/dt-bindings/clock/qcom,dispcc-sm8350.h              | 1 +
- 2 files changed, 5 insertions(+), 2 deletions(-)
- create mode 120000 include/dt-bindings/clock/qcom,dispcc-sm8350.h
+Hi Kishon Vijay Abraham I,
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-index 0cdf53f41f84..8f414642445e 100644
---- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-@@ -4,24 +4,26 @@
- $id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8x50.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250
-+title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250/SM8350
- 
- maintainers:
-   - Jonathan Marek <jonathan@marek.ca>
- 
- description: |
-   Qualcomm display clock control module which supports the clocks, resets and
--  power domains on SM8150 and SM8250.
-+  power domains on SM8150/SM8250/SM8350.
- 
-   See also:
-     dt-bindings/clock/qcom,dispcc-sm8150.h
-     dt-bindings/clock/qcom,dispcc-sm8250.h
-+    dt-bindings/clock/qcom,dispcc-sm8350.h
- 
- properties:
-   compatible:
-     enum:
-       - qcom,sm8150-dispcc
-       - qcom,sm8250-dispcc
-+      - qcom,sm8350-dispcc
- 
-   clocks:
-     items:
-diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8350.h b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
-new file mode 120000
-index 000000000000..0312b4544acb
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
-@@ -0,0 +1 @@
-+qcom,dispcc-sm8250.h
-\ No newline at end of file
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/4] arm64: dts: ti: k3-j721e-main: Fix external refclk input to SERDES
+      commit: 5c6d0b55b46aeb91355e6a9616decf50a3778c91
+[2/4] arm64: dts: ti: k3-j721e-main: Add #clock-cells property to serdes DT node
+      commit: 2427bfb335eb5f291a821e91c4c520351ce933df
+[3/4] arm64: dts: ti: k3-j721e-common-proc-board: Use external clock for SERDES
+      commit: f2a7657ad7a821de9cc77d071a5587b243144cd5
+[4/4] arm64: dts: ti: k3-j721e-common-proc-board: Re-name "link" name as "phy"
+      commit: 02b4d9186121d842a53e347f53a86ec7f2c6b0c7
+
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
 -- 
-2.26.1
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
