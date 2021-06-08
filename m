@@ -2,166 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6417339F97B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 16:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A55FD39F994
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 16:50:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233545AbhFHOr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 10:47:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34886 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233412AbhFHOr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 10:47:56 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEC3DC061574;
-        Tue,  8 Jun 2021 07:45:52 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id g204so1999986wmf.5;
-        Tue, 08 Jun 2021 07:45:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=WhGg1GY2JArUC9JhigDKpkZ6Xe7W1oA3+93jKzq1f38=;
-        b=B4mRSioLZ6j//5zPneKMUDsP/wpDVCY3Wj2qLzdp4992p9GhKUIipAyWaUGsLm80Zw
-         7lOh10qeX5l99QNrs9GjEE0SrT9dVncEr473I1EEqcy6ycFzWJZEMzhRtb5qQB1qGoXB
-         n1qvMWoAU8FNr7m/0F3eLqtYp0M1FHOwPye6OgsWl4PIZXfTNb3xwWgOxJSyqSTd/M4O
-         hdtLDsr2QZ0beBYVm12UCEW8zy46M+XbtSIUCmVORs4b2ycGQgGOrK2W/LPyGcGIjkWN
-         dJ9dpdHl1qGnl2p3UDlMIf38FqT3dgYleFzwXRqEa71m7/zO11Hk/98O6f9f/4ECXNBA
-         s7RQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=WhGg1GY2JArUC9JhigDKpkZ6Xe7W1oA3+93jKzq1f38=;
-        b=LvpR36MOeDkIxqu3X7FZ7ZxoPbm3SEuhLldAx4HBxJOtRTIN33n0mgBocVXC2oCv1d
-         e1zurAFIYqWFn7TMfhHmER3jb/hNuV4ReSKazy7NywHry2fYMDLAcO9aUKrxZgML9qYP
-         Ff45PE23XAyWBDgOBR98AkJo+7ARs2zRlTK1D/MX9k0te/SgKxKbg1aUCtOFq1wZeM4o
-         f1hwZXVyA3n9cRKEPHbvD9c6Gy2DIQY5C7kqLhnzXMDqGyKMDSr0ojx+ULBdF5DZrOGY
-         /YN/K2MCfWAZjLK2bm83sZlV0PvatLKo5ijuBA1wyPUxUSD/jO2qDJtAhCcgYsoimfBg
-         rxfg==
-X-Gm-Message-State: AOAM532AGh6V/yZEafK/Qth5ThfdAj1Aymy/prbuOCovA1R56SFnIwi8
-        E4gD/PGBibEh0qTD++DKspl36niDP1I+/g==
-X-Google-Smtp-Source: ABdhPJzQhcjeRmC8c9aR3UirCowVfXJEx+lHuSu9dvfO3W5sxgdTcQ+GcLNJJx7hbfaGgRDGOE7ieg==
-X-Received: by 2002:a05:600c:1c84:: with SMTP id k4mr4726772wms.164.1623163551514;
-        Tue, 08 Jun 2021 07:45:51 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id n10sm7990257wri.77.2021.06.08.07.45.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Jun 2021 07:45:50 -0700 (PDT)
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Weiyi Lu <weiyi.lu@mediatek.com>
-References: <20210524122053.17155-1-chun-jie.chen@mediatek.com>
- <20210524122053.17155-2-chun-jie.chen@mediatek.com>
- <20210602171201.GA3566462@robh.at.kernel.org>
- <66e017401ab93aa02c5d2bbf11be9589b36649ac.camel@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v9 01/22] dt-bindings: ARM: Mediatek: Add new document
- bindings of imp i2c wrapper controller
-Message-ID: <1f59ed31-4a0e-9719-bf84-1fe4cdd6c57d@gmail.com>
-Date:   Tue, 8 Jun 2021 16:45:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S233475AbhFHOwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 10:52:16 -0400
+Received: from out28-53.mail.aliyun.com ([115.124.28.53]:40964 "EHLO
+        out28-53.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233363AbhFHOwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 10:52:16 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436284|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_alarm|0.0498931-0.00130407-0.948803;FP=12645373337884369137|2|1|3|0|-1|-1|-1;HT=ay29a033018047204;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=14;RT=14;SR=0;TI=SMTPD_---.KPTncC0_1623163818;
+Received: from 192.168.0.103(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KPTncC0_1623163818)
+          by smtp.aliyun-inc.com(10.147.40.2);
+          Tue, 08 Jun 2021 22:50:20 +0800
+Subject: Re: [PATCH 2/2] mmc: JZ4740: Add support for JZ4775 and rename
+ unreasonable array name.
+To:     Paul Cercueil <paul@opendingux.net>
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com, sihui.liu@ingenic.com,
+        jun.jiang@ingenic.com, sernia.zhou@foxmail.com,
+        paul@crapouillou.net
+References: <1623002884-57244-1-git-send-email-zhouyanjie@wanyeetech.com>
+ <1623002884-57244-3-git-send-email-zhouyanjie@wanyeetech.com>
+ <B6YDUQ.LVNCFD4XPUIY1@opendingux.net>
+From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
+Message-ID: <ba66ff69-5ab9-0e6e-9da9-d4b2bf342b61@wanyeetech.com>
+Date:   Tue, 8 Jun 2021 22:50:18 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <66e017401ab93aa02c5d2bbf11be9589b36649ac.camel@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <B6YDUQ.LVNCFD4XPUIY1@opendingux.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Paul,
+
+On 2021/6/8 下午9:44, Paul Cercueil wrote:
+> Hi Zhou,
+>
+> Le lun., juin 7 2021 at 02:08:04 +0800, 周琰杰 (Zhou Yanjie) 
+> <zhouyanjie@wanyeetech.com> a écrit :
+>> 1.Add support for probing mmc driver on the JZ4775 SoC from Ingenic.
+>> 2.When the support for JZ4775 SoC is added, there will be six compatible
+>>   strings, so renaming "jz4740_mmc_of_match[]" to 
+>> "jz4740_mmc_of_matches[]"
+>>   is more reasonable.
+>
+> Honestly, you can drop #2. We don't really care about the 
+> variable/function names not being "perfect". For instance this driver 
+> still use "jz4740_mmc*" functions everywhere even though it supports 
+> many more SoCs. Besides, renames like that makes it harder to "git 
+> blame" afterwards since it fills the git history with non-functional 
+> changes.
 
 
-On 07/06/2021 07:20, Chun-Jie Chen wrote:
-> On Wed, 2021-06-02 at 12:12 -0500, Rob Herring wrote:
->> On Mon, May 24, 2021 at 08:20:32PM +0800, Chun-Jie Chen wrote:
->>> This patch adds the new binding documentation of imp i2c wrapper
->>> controller
->>> for Mediatek MT8192.
->>>
->>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
->>> Signed-off-by: chun-jie.chen <chun-jie.chen@mediatek.com>
->>> ---
->>>  .../arm/mediatek/mediatek,imp_iic_wrap.yaml   | 80
->>> +++++++++++++++++++
->>>  1 file changed, 80 insertions(+)
->>>  create mode 100644
->>> Documentation/devicetree/bindings/arm/mediatek/mediatek,imp_iic_wra
->>> p.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/arm/mediatek/mediatek,imp_iic_w
->>> rap.yaml
->>> b/Documentation/devicetree/bindings/arm/mediatek/mediatek,imp_iic_w
->>> rap.yaml
->>> new file mode 100644
->>> index 000000000000..fb6cb9e60ee2
->>> --- /dev/null
->>> +++
->>> b/Documentation/devicetree/bindings/arm/mediatek/mediatek,imp_iic_w
->>> rap.yaml
->>> @@ -0,0 +1,80 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: 
->>> http://devicetree.org/schemas/arm/mediatek/mediatek,imp_iic_wrap.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: MediaTek IMP I2C Wrapper Controller
->>> +
->>> +maintainers:
->>> +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
->>> +
->>> +description:
->>> +  The Mediatek imp i2c wrapper controller provides functional
->>> configurations and clocks to the system.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - mediatek,mt8192-imp_iic_wrap_c
->>> +          - mediatek,mt8192-imp_iic_wrap_e
->>> +          - mediatek,mt8192-imp_iic_wrap_s
->>> +          - mediatek,mt8192-imp_iic_wrap_ws
->>> +          - mediatek,mt8192-imp_iic_wrap_w
->>> +          - mediatek,mt8192-imp_iic_wrap_n
+Sure, I will drop #2.
+
+
+>
 >>
->> Looks to me like these are all the same h/w, but just have differing 
->> sets of clocks. That's not really a reason to have different 
->> compatibles. 
+>> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+>> ---
+>>  drivers/mmc/host/jz4740_mmc.c | 25 ++++++++++++++-----------
+>>  1 file changed, 14 insertions(+), 11 deletions(-)
 >>
->> If you need to know what clocks are present, you can walk the DT for 
->> all 'clocks' properties matching this clock controller instance. Or
->> use 
->> 'clock-indices' to define which ones are present.
+>> diff --git a/drivers/mmc/host/jz4740_mmc.c 
+>> b/drivers/mmc/host/jz4740_mmc.c
+>> index b3c636e..ea8434f 100644
+>> --- a/drivers/mmc/host/jz4740_mmc.c
+>> +++ b/drivers/mmc/host/jz4740_mmc.c
+>> @@ -2,6 +2,7 @@
+>>  /*
+>>   *  Copyright (C) 2009-2010, Lars-Peter Clausen <lars@metafoo.de>
+>>   *  Copyright (C) 2013, Imagination Technologies
+>> + *  Copyright (C) 2021, 周琰杰 (Zhou Yanjie) 
+>> <zhouyanjie@wanyeetech.com>
+>>   *
+>>   *  JZ4740 SD/MMC controller driver
+>>   */
+>> @@ -114,6 +115,7 @@ enum jz4740_mmc_version {
+>>      JZ_MMC_JZ4740,
+>>      JZ_MMC_JZ4725B,
+>>      JZ_MMC_JZ4760,
+>> +    JZ_MMC_JZ4775,
+>>      JZ_MMC_JZ4780,
+>>      JZ_MMC_X1000,
+>>  };
+>> @@ -138,7 +140,7 @@ enum jz4740_mmc_state {
+>>   * COOKIE_MAPPED: the request was mapped in the irq handler,
+>>   * and should be unmapped before mmc_request_done is called..
+>>   */
+>> -enum jz4780_cookie {
+>> +enum jz4775_cookie {
+>>      COOKIE_UNMAPPED = 0,
+>>      COOKIE_PREMAPPED,
+>>      COOKIE_MAPPED,
+>> @@ -194,7 +196,7 @@ static void jz4740_mmc_write_irq_mask(struct 
+>> jz4740_mmc_host *host,
+>>  static void jz4740_mmc_write_irq_reg(struct jz4740_mmc_host *host,
+>>                       uint32_t val)
+>>  {
+>> -    if (host->version >= JZ_MMC_JZ4780)
+>> +    if (host->version >= JZ_MMC_JZ4775)
+>>          writel(val, host->base + JZ_REG_MMC_IREG);
+>>      else
+>>          writew(val, host->base + JZ_REG_MMC_IREG);
+>> @@ -202,7 +204,7 @@ static void jz4740_mmc_write_irq_reg(struct 
+>> jz4740_mmc_host *host,
 >>
->> Rob
-> 
-> Some module is divided to sub-modules which are designed in different
-> h/w blocks for different usage, and if we want to use the same
-> compatible to present these h/w blocks, we need to move the clock data
-> provided by these h/w blocks to dts, but we usually use different
-> compatible to get the h/w blocks data in
-> Mediatek's clock driver, so do you suggest to register clock provided
-> by different h/w blocks using same compatible?
-> 
+>>  static uint32_t jz4740_mmc_read_irq_reg(struct jz4740_mmc_host *host)
+>>  {
+>> -    if (host->version >= JZ_MMC_JZ4780)
+>> +    if (host->version >= JZ_MMC_JZ4775)
+>>          return readl(host->base + JZ_REG_MMC_IREG);
+>>      else
+>>          return readw(host->base + JZ_REG_MMC_IREG);
+>> @@ -674,7 +676,7 @@ static void jz4740_mmc_send_command(struct 
+>> jz4740_mmc_host *host,
+>>              cmdat |= JZ_MMC_CMDAT_WRITE;
+>>          if (host->use_dma) {
+>>              /*
+>> -             * The 4780's MMC controller has integrated DMA ability
+>> +             * The JZ4775's MMC controller has integrated DMA ability
+>>               * in addition to being able to use the external DMA
+>>               * controller. It moves DMA control bits to a separate
+>>               * register. The DMA_SEL bit chooses the external
+>> @@ -682,13 +684,13 @@ static void jz4740_mmc_send_command(struct 
+>> jz4740_mmc_host *host,
+>>               * can only use the external controller, and have a
+>>               * single DMA enable bit in CMDAT.
+>>               */
+>> -            if (host->version >= JZ_MMC_JZ4780) {
+>> +            if (host->version >= JZ_MMC_JZ4775) {
+>>                  writel(JZ_MMC_DMAC_DMA_EN | JZ_MMC_DMAC_DMA_SEL,
+>>                         host->base + JZ_REG_MMC_DMAC);
+>>              } else {
+>>                  cmdat |= JZ_MMC_CMDAT_DMA_EN;
+>>              }
+>> -        } else if (host->version >= JZ_MMC_JZ4780) {
+>> +        } else if (host->version >= JZ_MMC_JZ4775) {
+>>              writel(0, host->base + JZ_REG_MMC_DMAC);
+>>          }
+>>
+>> @@ -866,7 +868,7 @@ static int jz4740_mmc_set_clock_rate(struct 
+>> jz4740_mmc_host *host, int rate)
+>>      writew(div, host->base + JZ_REG_MMC_CLKRT);
+>>
+>>      if (real_rate > 25000000) {
+>> -        if (host->version >= JZ_MMC_X1000) {
+>> +        if (host->version >= JZ_MMC_JZ4775) {
+>
+> This changes the behaviour for the JZ4780.
+>
+> Even if it is correct, this belongs in its own commit (with a Fixes 
+> tag), or at the very least a mention about it in the commit message.
 
-The mapping of them is as following:
-imp_iic_wrap_c:  11007000
-imp_iic_wrap_e:  11cb1000
-imp_iic_wrap_s:  11d03000
-imp_iic_wrap_ws: 11d23000
-imp_iic_wrap_w:  11e01000
-imp_iic_wrap_n:  11f02000
 
-Regards,
-Matthias
+In fact, both JZ4775 and JZ4780 support this feature, I will add a 
+corresponding description in the commit message.
+
+
+>
+>> writel(JZ_MMC_LPM_DRV_RISING_QTR_PHASE_DLY |
+>>                     JZ_MMC_LPM_SMP_RISING_QTR_OR_HALF_PHASE_DLY |
+>>                     JZ_MMC_LPM_LOW_POWER_MODE_EN,
+>> @@ -955,15 +957,16 @@ static const struct mmc_host_ops jz4740_mmc_ops 
+>> = {
+>>      .enable_sdio_irq = jz4740_mmc_enable_sdio_irq,
+>>  };
+>>
+>> -static const struct of_device_id jz4740_mmc_of_match[] = {
+>> +static const struct of_device_id jz4740_mmc_of_matches[] = {
+>>      { .compatible = "ingenic,jz4740-mmc", .data = (void *) 
+>> JZ_MMC_JZ4740 },
+>>      { .compatible = "ingenic,jz4725b-mmc", .data = (void 
+>> *)JZ_MMC_JZ4725B },
+>>      { .compatible = "ingenic,jz4760-mmc", .data = (void *) 
+>> JZ_MMC_JZ4760 },
+>> +    { .compatible = "ingenic,jz4775-mmc", .data = (void *) 
+>> JZ_MMC_JZ4775 },
+>>      { .compatible = "ingenic,jz4780-mmc", .data = (void *) 
+>> JZ_MMC_JZ4780 },
+>
+> Looks to me that the JZ4775 and JZ4780 have the exact same behaviour, 
+> so this patch could have been a one-liner, adding "ingenic,jz4775-mmc" 
+> with the JZ_MMC_JZ4780 ID.
+>
+
+Sure, I will change it in the next version.
+
+
+Thanks and best regards!
+
+
+> Cheers,
+> -Paul
+>
+>>      { .compatible = "ingenic,x1000-mmc", .data = (void *) 
+>> JZ_MMC_X1000 },
+>>      {},
+>>  };
+>> -MODULE_DEVICE_TABLE(of, jz4740_mmc_of_match);
+>> +MODULE_DEVICE_TABLE(of, jz4740_mmc_of_matches);
+>>
+>>  static int jz4740_mmc_probe(struct platform_device* pdev)
+>>  {
+>> @@ -980,7 +983,7 @@ static int jz4740_mmc_probe(struct 
+>> platform_device* pdev)
+>>
+>>      host = mmc_priv(mmc);
+>>
+>> -    match = of_match_device(jz4740_mmc_of_match, &pdev->dev);
+>> +    match = of_match_device(jz4740_mmc_of_matches, &pdev->dev);
+>>      if (match) {
+>>          host->version = (enum jz4740_mmc_version)match->data;
+>>      } else {
+>> @@ -1124,7 +1127,7 @@ static struct platform_driver jz4740_mmc_driver 
+>> = {
+>>      .driver = {
+>>          .name = "jz4740-mmc",
+>>          .probe_type = PROBE_PREFER_ASYNCHRONOUS,
+>> -        .of_match_table = of_match_ptr(jz4740_mmc_of_match),
+>> +        .of_match_table = of_match_ptr(jz4740_mmc_of_matches),
+>>          .pm = pm_ptr(&jz4740_mmc_pm_ops),
+>>      },
+>>  };
+>> -- 
+>> 2.7.4
+>>
+>
