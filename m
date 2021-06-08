@@ -2,718 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3792139F425
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 12:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5028239F4E7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 13:27:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231986AbhFHKwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 06:52:03 -0400
-Received: from mail-mw2nam12on2046.outbound.protection.outlook.com ([40.107.244.46]:27520
-        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231994AbhFHKwB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Jun 2021 06:52:01 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EQEufuuw2VA3z+qDb8/nLsNJSAfQKdwR7Y2S5S/JirwFB3CkDAae9hhHqQqZUh+M6/9u+aqg4yimauljUO+BUh3NBERwvGhat8uD4OxlkSVAGsWSahJVs6xcbyHn4FI+/5/AV6vMACVqoOAPlcLUHqu3mjrv3n8ql+II7ERxbMEkk1crI76Pfqa81trpjM/q1Zvmte1tUR0aMatBD62XY5uEBQC+7G6Hd6D+1+3L0AwJ2v79QsqLxaQqLsgR3X8AujlZWVkSwf2X71x4T80WM+7hkl+BZECjswn1kJG4RgaCQ3DAS60cl/A703L7QiPkePyD/YfICsvaSnRLUGNunQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MITPOn1uhPc8mNxQrzMWUp/kmhBipqgLsuyP6qsXBWk=;
- b=NQPYv9GKPEACQORKlUNJCiVw8F8i9iFKVADfkbsClLmNd0NCv07iailN/YfbJSa5TxtHV8mvaMsP+xOD+Emn6YcV51hq8284MuLLDb6WfMCfPOIneb+uGotEhvMdJ1RjPSqzJKvIeJxo8nfrpxxcBuYMjF3VQn93JvgSubbCDrlYZ20FmXzQwk11rB9EsGO31ijuEVODbLSuc0sHI2H8NWb0weswpXrWVtWjt9HYvsMUCPWDMuLGBxI4fGqJiKlcw5RdXDXksGUo5Rf4lxh5hUfrkTT2daY5QFNDgdp+0JqXC34hEB0zHAFrHn6GoVOpdf4kRZ3X6tqdNmHYK40/AA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.32) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MITPOn1uhPc8mNxQrzMWUp/kmhBipqgLsuyP6qsXBWk=;
- b=WsgykVyBxxpFa5/kCnjvXK8iFA+NXAFJXRGhnUrTnYChvWpri0lTi+BTT/2ZQVxzvc/1yqrtcjKtN1w0aWOt0L8qTQqWa5w4oo1oCdIw7cIeFZ7y9471F/RIdMcqWhr6VsfwNaQe+atdDy0G4Fb/NdIrxObvhu2StMVO/KKEQoqoiND3NRUrkMQRwWLpn+QQOlk4qNOfTZO6FVAxiY2vI3TGilVCk3/Og9RWr99YD7g1fZMHfkTShtSare/jXOjKJ3EvpISVu/dOt9a3rBJLbsq4xJ9q8AT9u6I8Kds8ylDn9V9r985tCkJOvGBZjzA9IhC38FND5mIxbBCeH+jEHw==
-Received: from DM5PR21CA0062.namprd21.prod.outlook.com (2603:10b6:3:129::24)
- by BYAPR12MB2808.namprd12.prod.outlook.com (2603:10b6:a03:69::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.20; Tue, 8 Jun
- 2021 10:50:06 +0000
-Received: from DM6NAM11FT006.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:129:cafe::a9) by DM5PR21CA0062.outlook.office365.com
- (2603:10b6:3:129::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.4 via Frontend
- Transport; Tue, 8 Jun 2021 10:50:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.32)
- smtp.mailfrom=nvidia.com; gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.32 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.32; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.32) by
- DM6NAM11FT006.mail.protection.outlook.com (10.13.173.104) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4195.22 via Frontend Transport; Tue, 8 Jun 2021 10:50:06 +0000
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 8 Jun
- 2021 03:50:03 -0700
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 8 Jun
- 2021 10:50:03 +0000
-Received: from audio.nvidia.com (172.20.187.6) by mail.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 8 Jun 2021 10:50:01 +0000
-From:   Sameer Pujar <spujar@nvidia.com>
-To:     <thierry.reding@gmail.com>, <robh+dt@kernel.org>
-CC:     <jonathanh@nvidia.com>, <linux-tegra@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Sameer Pujar <spujar@nvidia.com>
-Subject: [PATCH] arm64: tegra: Audio graph sound card for Jetson Xavier NX
-Date:   Tue, 8 Jun 2021 16:19:48 +0530
-Message-ID: <1623149388-11995-1-git-send-email-spujar@nvidia.com>
-X-Mailer: git-send-email 2.7.4
+        id S231409AbhFHL27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 07:28:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47298 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231330AbhFHL27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 07:28:59 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B017C061574;
+        Tue,  8 Jun 2021 04:27:06 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id r11so24032257edt.13;
+        Tue, 08 Jun 2021 04:27:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XzJh8k2+3CTA9TUNfYHIxwiKINZGjgGPWk31gQg1rds=;
+        b=nH3qy9rM/J+wpkErwX10lYjmhw9907fpaMkdI56aqiJlWb0nP605BDa5e9+iF01vFw
+         YWG881aAhNnrfORJ5/ZanR9G8R+ywOrwWno+N0qE3WNzF2Jr7HoUpa+gioDOXerMH7sg
+         QM/Rd2doN06kjQzZ7OY/zf2n0uQXPTSjPEv/FAFQilh8r4b2sAPEdk64L679FAiypRgw
+         grN/Il7ZfAIx43lHh6T/it3WHkCI3MUbd9Cn7IOmDHrxOFoDzH9XKgeMv5TxtNBwxbng
+         8kBYIVVPt3ympzuDOxdw/Re9wvVH2SANpbcLTAyj9wBDht5Xf2zEeAXHaPFAStl14hF5
+         pg0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XzJh8k2+3CTA9TUNfYHIxwiKINZGjgGPWk31gQg1rds=;
+        b=bYZIRINx82o5PoNVaQhuIRUrDbWE2jmYtFgijTm2goXlJOcVobJ8R6YjGyQf+Ec9RR
+         xemmT7KQLiOrBb/1aO9xx6Y6E4iSHuUQYuLzxUbZVsRWE7FUrWyYiWJkJqRd0QQ7lEjk
+         Z830gSedo8Eodd6i7Cn6dRi73QqezyS9FouudgxZ4twx04nWnLgVc/IE8RcxpRFkOnQK
+         CIiE377t1avHiwSZV/RTv5IEumI3EB9MdxKdxVCvG6i0WTC2Ctxfty4HpagI84ES9ajP
+         4ZTMfmUKAMjPmCGNrSoYFNn/sMglWrVjaH/ME1hz5rLv+Y9ybcXOGZculDsiDqV4zHR6
+         9gqw==
+X-Gm-Message-State: AOAM531GtRblRr4j/HSaeOBAl5uSSxgNQe+kzFbLufJnl5fdI7qKDHRZ
+        SPmqMSGT9+MtJS5gz2Jt5I0=
+X-Google-Smtp-Source: ABdhPJzCIJWJ3xOXptipDnrgmThoiTdibZBPeBm6AFow4RtsUjo44kJ4ciJFxDEoKq/1BBg1uUic2A==
+X-Received: by 2002:a05:6402:1c83:: with SMTP id cy3mr24440653edb.108.1623151625070;
+        Tue, 08 Jun 2021 04:27:05 -0700 (PDT)
+Received: from localhost.localdomain ([188.26.52.84])
+        by smtp.gmail.com with ESMTPSA id u21sm7468846ejm.89.2021.06.08.04.27.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Jun 2021 04:27:04 -0700 (PDT)
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: [PATCH] arm64: dts: fix node name for the sysclk
+Date:   Tue,  8 Jun 2021 14:26:58 +0300
+Message-Id: <20210608112658.4087235-1-olteanv@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f298f897-cf2e-4195-8a30-08d92a6b2db6
-X-MS-TrafficTypeDiagnostic: BYAPR12MB2808:
-X-Microsoft-Antispam-PRVS: <BYAPR12MB2808A258A37A9123C43ACD68A7379@BYAPR12MB2808.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:773;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CsSz+8nqeOkhH6FJQyA7MPChSY12hGy6vbuXaax1sgDPHIT/QkAkvMNcN1pZo+QOtQaImmxupjYmd+Yk/OI604ynoyLBtXulxmrsJSTrOvuUnafKjJ+wfxTRAdndx3WYNu5hFIkiSI8s3hPSgFBwSAvRC4Rw8xGCkOFW6Bn+XZYBBEhdpl0EoBGK/IfPNYvZGVNYFsUS3ljhPv/yAoDlTWhPn4bT2FOXuiJgpwLSigxvEhATz8XmR+SsTi9IRF9AsPj977xCrnP8xGQhOi2BCdHkyIIycPWjnNdG1wx0dczvkUhqlGNiS4cjSUrQmqfHhl0cWY2/9saPp3s/S16jEtlAjwugZoTkK4WC1/WAqnezxXW7nxkwmJQNa2OnMbSYQ0O6sjGtg0mRhleuZag/bMK41dEJLktn6xoZ/UhEklxl4pHPwFV5BHS+RcYxPW5DSmDYprNAlj+d3wI2eciVV54/4DfjTIrMnvOy8ctPBo+FtrdqehvU2UUWrk/9tT7FSoNPcNTA4Xi2P/tUDAcN4F8IN4dBIpAHDqk70IkyaOKBJsFqh1VW60TeIqSkIsyWxNvUrxEr0nodLIbPU2Erl4wFdmbgZ7simqj+Ij7AalHw2m4O6THa5/pK7iOwooZBRPzmx/GUzWFniT/azaOECw==
-X-Forefront-Antispam-Report: CIP:216.228.112.32;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid01.nvidia.com;CAT:NONE;SFS:(4636009)(136003)(396003)(376002)(346002)(39860400002)(46966006)(36840700001)(478600001)(36860700001)(7636003)(426003)(6666004)(86362001)(54906003)(110136005)(82740400003)(5660300002)(7696005)(186003)(8936002)(70206006)(36756003)(356005)(70586007)(2616005)(8676002)(26005)(2906002)(47076005)(4326008)(107886003)(316002)(82310400003)(336012);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2021 10:50:06.5251
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f298f897-cf2e-4195-8a30-08d92a6b2db6
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.32];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT006.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR12MB2808
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable support for audio-graph based sound card on Jetson Xavier NX.
-Following I/O interfaces are enabled.
-  - I2S3 and I2S5
-  - DMIC1, DMIC2 and DMIC4
-  - DSPK1 and DSPK2
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+U-Boot attempts to fix up the "clock-frequency" property of the "/sysclk" node:
+https://elixir.bootlin.com/u-boot/v2021.04/source/arch/arm/cpu/armv8/fsl-layerscape/fdt.c#L512
+
+but fails to do so:
+
+  ## Booting kernel from Legacy Image at a1000000 ...
+     Image Name:
+     Created:      2021-06-08  10:31:38 UTC
+     Image Type:   AArch64 Linux Kernel Image (gzip compressed)
+     Data Size:    15431370 Bytes = 14.7 MiB
+     Load Address: 80080000
+     Entry Point:  80080000
+     Verifying Checksum ... OK
+  ## Flattened Device Tree blob at a0000000
+     Booting using the fdt blob at 0xa0000000
+     Uncompressing Kernel Image
+     Loading Device Tree to 00000000fbb19000, end 00000000fbb22717 ... OK
+  Unable to update property /sysclk:clock-frequency, err=FDT_ERR_NOTFOUND
+
+  Starting kernel ...
+
+All Layerscape SoCs except LS1028A use "sysclk" as the node name, and
+not "clock-sysclk". So change the node name of LS1028A accordingly.
+
+Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
+Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 ---
- .../arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi | 593 +++++++++++++++++++++
- 1 file changed, 593 insertions(+)
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
-index a717d2b..836a7e0 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p3509-0000.dtsi
-@@ -15,6 +15,577 @@
- 			interrupt-controller@2a40000 {
- 				status = "okay";
- 			};
-+
-+			ahub@2900800 {
-+				status = "okay";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0x0>;
-+
-+						xbar_admaif0_ep: endpoint {
-+							remote-endpoint = <&admaif0_ep>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <0x1>;
-+
-+						xbar_admaif1_ep: endpoint {
-+							remote-endpoint = <&admaif1_ep>;
-+						};
-+					};
-+
-+					port@2 {
-+						reg = <0x2>;
-+
-+						xbar_admaif2_ep: endpoint {
-+							remote-endpoint = <&admaif2_ep>;
-+						};
-+					};
-+
-+					port@3 {
-+						reg = <0x3>;
-+
-+						xbar_admaif3_ep: endpoint {
-+							remote-endpoint = <&admaif3_ep>;
-+						};
-+					};
-+
-+					port@4 {
-+						reg = <0x4>;
-+
-+						xbar_admaif4_ep: endpoint {
-+							remote-endpoint = <&admaif4_ep>;
-+						};
-+					};
-+
-+					port@5 {
-+						reg = <0x5>;
-+
-+						xbar_admaif5_ep: endpoint {
-+							remote-endpoint = <&admaif5_ep>;
-+						};
-+					};
-+
-+					port@6 {
-+						reg = <0x6>;
-+
-+						xbar_admaif6_ep: endpoint {
-+							remote-endpoint = <&admaif6_ep>;
-+						};
-+					};
-+
-+					port@7 {
-+						reg = <0x7>;
-+
-+						xbar_admaif7_ep: endpoint {
-+							remote-endpoint = <&admaif7_ep>;
-+						};
-+					};
-+
-+					port@8 {
-+						reg = <0x8>;
-+
-+						xbar_admaif8_ep: endpoint {
-+							remote-endpoint = <&admaif8_ep>;
-+						};
-+					};
-+
-+					port@9 {
-+						reg = <0x9>;
-+
-+						xbar_admaif9_ep: endpoint {
-+							remote-endpoint = <&admaif9_ep>;
-+						};
-+					};
-+
-+					port@a {
-+						reg = <0xa>;
-+
-+						xbar_admaif10_ep: endpoint {
-+							remote-endpoint = <&admaif10_ep>;
-+						};
-+					};
-+
-+					port@b {
-+						reg = <0xb>;
-+
-+						xbar_admaif11_ep: endpoint {
-+							remote-endpoint = <&admaif11_ep>;
-+						};
-+					};
-+
-+					port@c {
-+						reg = <0xc>;
-+
-+						xbar_admaif12_ep: endpoint {
-+							remote-endpoint = <&admaif12_ep>;
-+						};
-+					};
-+
-+					port@d {
-+						reg = <0xd>;
-+
-+						xbar_admaif13_ep: endpoint {
-+							remote-endpoint = <&admaif13_ep>;
-+						};
-+					};
-+
-+					port@e {
-+						reg = <0xe>;
-+
-+						xbar_admaif14_ep: endpoint {
-+							remote-endpoint = <&admaif14_ep>;
-+						};
-+					};
-+
-+					port@f {
-+						reg = <0xf>;
-+
-+						xbar_admaif15_ep: endpoint {
-+							remote-endpoint = <&admaif15_ep>;
-+						};
-+					};
-+
-+					port@10 {
-+						reg = <0x10>;
-+
-+						xbar_admaif16_ep: endpoint {
-+							remote-endpoint = <&admaif16_ep>;
-+						};
-+					};
-+
-+					port@11 {
-+						reg = <0x11>;
-+
-+						xbar_admaif17_ep: endpoint {
-+							remote-endpoint = <&admaif17_ep>;
-+						};
-+					};
-+
-+					port@12 {
-+						reg = <0x12>;
-+
-+						xbar_admaif18_ep: endpoint {
-+							remote-endpoint = <&admaif18_ep>;
-+						};
-+					};
-+
-+					port@13 {
-+						reg = <0x13>;
-+
-+						xbar_admaif19_ep: endpoint {
-+							remote-endpoint = <&admaif19_ep>;
-+						};
-+					};
-+
-+					xbar_i2s3_port: port@16 {
-+						reg = <0x16>;
-+
-+						xbar_i2s3_ep: endpoint {
-+							remote-endpoint = <&i2s3_cif_ep>;
-+						};
-+					};
-+
-+					xbar_i2s5_port: port@18 {
-+						reg = <0x18>;
-+
-+						xbar_i2s5_ep: endpoint {
-+							remote-endpoint = <&i2s5_cif_ep>;
-+						};
-+					};
-+
-+					xbar_dmic1_port: port@1a {
-+						reg = <0x1a>;
-+
-+						xbar_dmic1_ep: endpoint {
-+							remote-endpoint = <&dmic1_cif_ep>;
-+						};
-+					};
-+
-+					xbar_dmic2_port: port@1b {
-+						reg = <0x1b>;
-+
-+						xbar_dmic2_ep: endpoint {
-+							remote-endpoint = <&dmic2_cif_ep>;
-+						};
-+					};
-+
-+					xbar_dmic4_port: port@1d {
-+						reg = <0x1d>;
-+
-+						xbar_dmic4_ep: endpoint {
-+							remote-endpoint = <&dmic4_cif_ep>;
-+						};
-+					};
-+
-+					xbar_dspk1_port: port@1e {
-+						reg = <0x1e>;
-+
-+						xbar_dspk1_ep: endpoint {
-+							remote-endpoint = <&dspk1_cif_ep>;
-+						};
-+					};
-+
-+					xbar_dspk2_port: port@1f {
-+						reg = <0x1f>;
-+
-+						xbar_dspk2_ep: endpoint {
-+							remote-endpoint = <&dspk2_cif_ep>;
-+						};
-+					};
-+				};
-+
-+				admaif@290f000 {
-+					status = "okay";
-+
-+					ports {
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						admaif0_port: port@0 {
-+							reg = <0x0>;
-+
-+							admaif0_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif0_ep>;
-+							};
-+						};
-+
-+						admaif1_port: port@1 {
-+							reg = <0x1>;
-+
-+							admaif1_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif1_ep>;
-+							};
-+						};
-+
-+						admaif2_port: port@2 {
-+							reg = <0x2>;
-+
-+							admaif2_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif2_ep>;
-+							};
-+						};
-+
-+						admaif3_port: port@3 {
-+							reg = <0x3>;
-+
-+							admaif3_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif3_ep>;
-+							};
-+						};
-+
-+						admaif4_port: port@4 {
-+							reg = <0x4>;
-+
-+							admaif4_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif4_ep>;
-+							};
-+						};
-+
-+						admaif5_port: port@5 {
-+							reg = <0x5>;
-+
-+							admaif5_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif5_ep>;
-+							};
-+						};
-+
-+						admaif6_port: port@6 {
-+							reg = <0x6>;
-+
-+							admaif6_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif6_ep>;
-+							};
-+						};
-+
-+						admaif7_port: port@7 {
-+							reg = <0x7>;
-+
-+							admaif7_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif7_ep>;
-+							};
-+						};
-+
-+						admaif8_port: port@8 {
-+							reg = <0x8>;
-+
-+							admaif8_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif8_ep>;
-+							};
-+						};
-+
-+						admaif9_port: port@9 {
-+							reg = <0x9>;
-+
-+							admaif9_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif9_ep>;
-+							};
-+						};
-+
-+						admaif10_port: port@a {
-+							reg = <0xa>;
-+
-+							admaif10_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif10_ep>;
-+							};
-+						};
-+
-+						admaif11_port: port@b {
-+							reg = <0xb>;
-+
-+							admaif11_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif11_ep>;
-+							};
-+						};
-+
-+						admaif12_port: port@c {
-+							reg = <0xc>;
-+
-+							admaif12_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif12_ep>;
-+							};
-+						};
-+
-+						admaif13_port: port@d {
-+							reg = <0xd>;
-+
-+							admaif13_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif13_ep>;
-+							};
-+						};
-+
-+						admaif14_port: port@e {
-+							reg = <0xe>;
-+
-+							admaif14_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif14_ep>;
-+							};
-+						};
-+
-+						admaif15_port: port@f {
-+							reg = <0xf>;
-+
-+							admaif15_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif15_ep>;
-+							};
-+						};
-+
-+						admaif16_port: port@10 {
-+							reg = <0x10>;
-+
-+							admaif16_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif16_ep>;
-+							};
-+						};
-+
-+						admaif17_port: port@11 {
-+							reg = <0x11>;
-+
-+							admaif17_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif17_ep>;
-+							};
-+						};
-+
-+						admaif18_port: port@12 {
-+							reg = <0x12>;
-+
-+							admaif18_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif18_ep>;
-+							};
-+						};
-+
-+						admaif19_port: port@13 {
-+							reg = <0x13>;
-+
-+							admaif19_ep: endpoint {
-+								remote-endpoint = <&xbar_admaif19_ep>;
-+							};
-+						};
-+					};
-+				};
-+
-+				i2s@2901200 {
-+					status = "okay";
-+
-+					ports {
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						port@0 {
-+							reg = <0>;
-+
-+							i2s3_cif_ep: endpoint {
-+								remote-endpoint = <&xbar_i2s3_ep>;
-+							};
-+						};
-+
-+						i2s3_port: port@1 {
-+							reg = <1>;
-+
-+							i2s3_dap_ep: endpoint {
-+								dai-format = "i2s";
-+								/* Place holder for external Codec */
-+							};
-+						};
-+					};
-+				};
-+
-+				i2s@2901400 {
-+					status = "okay";
-+
-+					ports {
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						port@0 {
-+							reg = <0>;
-+
-+							i2s5_cif_ep: endpoint {
-+								remote-endpoint = <&xbar_i2s5_ep>;
-+							};
-+						};
-+
-+						i2s5_port: port@1 {
-+							reg = <1>;
-+
-+							i2s5_dap_ep: endpoint@0 {
-+								dai-format = "i2s";
-+								/* Place holder for external Codec */
-+							};
-+						};
-+					};
-+				};
-+
-+				dmic@2904000 {
-+					status = "okay";
-+
-+					ports {
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						port@0 {
-+							reg = <0>;
-+
-+							dmic1_cif_ep: endpoint {
-+								remote-endpoint = <&xbar_dmic1_ep>;
-+							};
-+						};
-+
-+						dmic1_port: port@1 {
-+							reg = <1>;
-+
-+							dmic1_dap_ep: endpoint {
-+								/* Place holder for external Codec */
-+							};
-+						};
-+					};
-+				};
-+
-+				dmic@2904100 {
-+					status = "okay";
-+
-+					ports {
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						port@0 {
-+							reg = <0>;
-+
-+							dmic2_cif_ep: endpoint {
-+								remote-endpoint = <&xbar_dmic2_ep>;
-+							};
-+						};
-+
-+						dmic2_port: port@1 {
-+							reg = <1>;
-+
-+							dmic2_dap_ep: endpoint {
-+								/* Place holder for external Codec */
-+							};
-+						};
-+					};
-+				};
-+
-+				dmic@2904300 {
-+					status = "okay";
-+
-+					ports {
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						port@0 {
-+							reg = <0>;
-+
-+							dmic4_cif_ep: endpoint {
-+								remote-endpoint = <&xbar_dmic4_ep>;
-+							};
-+						};
-+
-+						dmic4_port: port@1 {
-+							reg = <1>;
-+
-+							dmic4_dap_ep: endpoint {
-+								/* Place holder for external Codec */
-+							};
-+						};
-+					};
-+				};
-+
-+				dspk@2905000 {
-+					status = "okay";
-+
-+					ports {
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						port@0 {
-+							reg = <0>;
-+
-+							dspk1_cif_ep: endpoint {
-+								remote-endpoint = <&xbar_dspk1_ep>;
-+							};
-+						};
-+
-+						dspk1_port: port@1 {
-+							reg = <1>;
-+
-+							dspk1_dap_ep: endpoint {
-+								/* Place holder for external Codec */
-+							};
-+						};
-+					};
-+				};
-+
-+				dspk@2905100 {
-+					status = "okay";
-+
-+					ports {
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+
-+						port@0 {
-+							reg = <0>;
-+
-+							dspk2_cif_ep: endpoint {
-+								remote-endpoint = <&xbar_dspk2_ep>;
-+							};
-+						};
-+
-+						dspk2_port: port@1 {
-+							reg = <1>;
-+
-+							dspk2_dap_ep: endpoint {
-+								/* Place holder for external Codec */
-+							};
-+						};
-+					};
-+				};
-+			};
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index d0dddf19578a..03e1ca7fea9a 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -66,7 +66,7 @@ CPU_PW20: cpu-pw20 {
  		};
- 
- 		ddc: i2c@3190000 {
-@@ -265,6 +836,28 @@
- 		regulator-boot-on;
  	};
  
-+	sound {
-+		compatible = "nvidia,tegra186-audio-graph-card";
-+		status = "okay";
-+
-+		dais = /* ADMAIF (FE) Ports */
-+		       <&admaif0_port>, <&admaif1_port>, <&admaif2_port>, <&admaif3_port>,
-+		       <&admaif4_port>, <&admaif5_port>, <&admaif6_port>, <&admaif7_port>,
-+		       <&admaif8_port>, <&admaif9_port>, <&admaif10_port>, <&admaif11_port>,
-+		       <&admaif12_port>, <&admaif13_port>, <&admaif14_port>, <&admaif15_port>,
-+		       <&admaif16_port>, <&admaif17_port>, <&admaif18_port>, <&admaif19_port>,
-+		       /* XBAR Ports */
-+		       <&xbar_i2s3_port>, <&xbar_i2s5_port>,
-+		       <&xbar_dmic1_port>, <&xbar_dmic2_port>, <&xbar_dmic4_port>,
-+		       <&xbar_dspk1_port>, <&xbar_dspk2_port>,
-+		       /* BE I/O Ports */
-+		       <&i2s3_port>, <&i2s5_port>,
-+		       <&dmic1_port>, <&dmic2_port>, <&dmic4_port>,
-+		       <&dspk1_port>, <&dspk2_port>;
-+
-+		label = "NVIDIA Jetson Xavier NX APE";
-+	};
-+
- 	thermal-zones {
- 		cpu {
- 			polling-delay = <0>;
+-	sysclk: clock-sysclk {
++	sysclk: sysclk {
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+ 		clock-frequency = <100000000>;
 -- 
-2.7.4
+2.25.1
 
