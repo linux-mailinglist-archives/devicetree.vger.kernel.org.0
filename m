@@ -2,183 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A47363A00AB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 20:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0C883A01C0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 21:18:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235401AbhFHSqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 14:46:02 -0400
-Received: from mail-ed1-f46.google.com ([209.85.208.46]:42515 "EHLO
-        mail-ed1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232603AbhFHSmg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 14:42:36 -0400
-Received: by mail-ed1-f46.google.com with SMTP id i13so25722537edb.9;
-        Tue, 08 Jun 2021 11:40:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=W/V7ksUiiZB58zMxMRkULUFDegQBYCL2IF/rhUEMXHc=;
-        b=IJbqV6FUUfi7qCArMillGRxl4VycBJhs5gYs1Lf0mMvJYu5kw345uaLWVcikHjOxiy
-         TFJQhy70+KtzUmpSPBAGITjsAaU9yHpuRah8PWUPx3giAgGmLDxqxAxGFPEvIjWZjadh
-         /XjD+XNLZrd1n4PDsyvZtPLrlI1pJCUtfwVXSCJ8CiAXMFZFYxladyIDH8tGjl30wMkf
-         vtr/ZiqQVcAVouktL/hMNvpZFd06DgNsv1ovNfmfLhFR4HIfRNfViVNesEUjSkCN7EZV
-         pNso+09KKYl9bWgGxOaRKlV2AfV7pPF7LZelGToKFJmpdo8SJ2CMdKHVVOa5ZFr1TDSi
-         +4Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=W/V7ksUiiZB58zMxMRkULUFDegQBYCL2IF/rhUEMXHc=;
-        b=GFGF6Xkp/7aqtHEYmokIbaHLRxFmlZFj70DLZsZXpQXaoI+aAWIrqyRNuTGruk1zs/
-         PQNm8YCD9hlS7+a5lPf4FgFIMS8YKaFUs6QXZGrg/T7MwONmmdAO+WfbHIzdlBYgOVTT
-         vcJjGrBuGZXddPv+q6hW1MD9yqRR0Caj7nzhRMVcscDB2P2cmPEtQS1daFJcE9G1MIqR
-         mdxpnOaDFHpONejmhTU+TE2ty4gCT5pgHHif0kmG4XtDXMv89tOjMmwy8Vpz22r2wlRO
-         OvA5RAgPrZlcMF0sUfsBoOHj3gf0XCeu7rIQ0B0XPwnLy2NogbDk+6GP5ZDT3WDbth1I
-         ds9w==
-X-Gm-Message-State: AOAM533uTpn2LR4Zk5tqDwN0soQrS/BUootlVlHP/f5cVoZ+knD5iAGo
-        EXeeKV3VzX3A3Jl8E7WyYDm76RNVs6VPCg==
-X-Google-Smtp-Source: ABdhPJxi/SXwX8f6NHTk5beJ5dr9fZw0669BTAJnkBXZ5K/oYpH7fAlpLbYQC+bUjrsGqeChFLoUQw==
-X-Received: by 2002:a50:8dc6:: with SMTP id s6mr27186109edh.50.1623177566310;
-        Tue, 08 Jun 2021 11:39:26 -0700 (PDT)
-Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id z7sm174358ejm.122.2021.06.08.11.39.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Jun 2021 11:39:25 -0700 (PDT)
-Subject: Re: [PATCH v6 5/8] arm: dts: rockchip: Add SFC to RK3036
-To:     Jon Lin <jon.lin@rock-chips.com>, linux-spi@vger.kernel.org
-Cc:     broonie@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
-        hjc@rock-chips.com, yifeng.zhao@rock-chips.com,
-        sugar.zhang@rock-chips.com, linux-rockchip@lists.infradead.org,
-        linux-mtd@lists.infradead.org, p.yadav@ti.com,
-        macroalpha82@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20210608022644.21074-1-jon.lin@rock-chips.com>
- <20210608023305.25371-1-jon.lin@rock-chips.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <b5f29e1c-f4ec-7a08-a97c-8a516ba6649a@gmail.com>
-Date:   Tue, 8 Jun 2021 20:39:23 +0200
-User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S236972AbhFHS4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 14:56:09 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44990 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235795AbhFHSvw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 14:51:52 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 158Inndx080929;
+        Tue, 8 Jun 2021 13:49:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623178189;
+        bh=XFmvnR4Sp9qLoZE86AyC7J5ZSl2Xb2RCdaI+k6DBZjY=;
+        h=From:To:CC:Subject:Date;
+        b=yaG/RTDBfzSBMwBK9EDSfdoN3rvAi5WCHslPVNGgmjGP4VXJpxqqcfizZTJRzEBQ1
+         tavaxMEMXeZQjkvePue012n1v5CtbjmN41lne3Zc+ukbdJAAXHO2SqqBUQ1e8TCsvP
+         bmCgOBk3wY4Cx7bDc6+DKNNgM9uaaYJKrF9x9WEY=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 158InnR9101654
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 8 Jun 2021 13:49:49 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 8 Jun
+ 2021 13:49:48 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 8 Jun 2021 13:49:48 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 158InlxD043167;
+        Tue, 8 Jun 2021 13:49:47 -0500
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am642-main: fix ports mac properties
+Date:   Tue, 8 Jun 2021 21:49:40 +0300
+Message-ID: <20210608184940.25934-1-grygorii.strashko@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210608023305.25371-1-jon.lin@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The current device tree CPSW3g node adds non-zero "mac-address" property to
+the ports, which prevents random MAC address assignment to network devices
+if bootloader failed to update DT. This may cause more then one host to
+have the same MAC in the network.
 
+ mac-address = [00 00 de ad be ef];
+ mac-address = [00 01 de ad be ef];
 
-On 6/8/21 4:33 AM, Jon Lin wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add a devicetree entry for the Rockchip SFC for the RK3036 SOC.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
-> ---
-> 
-> Changes in v6: None
-> Changes in v5: None
-> Changes in v4: None
-> Changes in v3: None
-> Changes in v2: None
-> Changes in v1: None
-> 
->  arch/arm/boot/dts/rk3036.dtsi | 42 +++++++++++++++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
-> index e24230d50a78..e7faf815ca74 100644
-> --- a/arch/arm/boot/dts/rk3036.dtsi
-> +++ b/arch/arm/boot/dts/rk3036.dtsi
-> @@ -206,6 +206,17 @@
->  		status = "disabled";
->  	};
->  
-> +	sfc: spi@10208000 {
-> +		compatible = "rockchip,rk3036-sfc";
-> +		reg = <0x10208000 0x4000>;
-> +		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru HCLK_SFC>, <&cru SCLK_SFC>;
-> +		clock-names = "hclk_sfc", "clk_sfc";
-> +		pinctrl-0 = <&sfc_clk &sfc_cs0 &sfc_bus4>;
-> +		pinctrl-names = "default";
-> +		status = "disabled";
-> +	};
-> +
->  	sdmmc: mmc@10214000 {
->  		compatible = "rockchip,rk3036-dw-mshc", "rockchip,rk3288-dw-mshc";
->  		reg = <0x10214000 0x4000>;
-> @@ -684,6 +695,37 @@
->  			};
->  		};
->  
+In addition, there is one MAC address available in eFuse registers which
+can be used for default port 1.
 
-> +		serial_flash {
+Hence, fix ports MAC properties by:
+- resetting "mac-address" property to 0
+- adding ti,syscon-efuse = <&main_conf 0x200> to Port 1
 
-sfc {
+Fixes: 3753b12877b6 ("arm64: dts: ti: k3-am64-main: Add CPSW DT node")
+Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Nodes are sort alphabetically.
-Sort other patches with sfc nodes in this serie as well.
-Maybe rename nodename consistent with sfc label?
-Similar to nfc nodes?
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+index effb9d2e3c25..7f7178a7a055 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+@@ -514,7 +514,8 @@
+ 				ti,mac-only;
+ 				label = "port1";
+ 				phys = <&phy_gmii_sel 1>;
+-				mac-address = [00 00 de ad be ef];
++				mac-address = [00 00 00 00 00 00];
++				ti,syscon-efuse = <&main_conf 0x200>;
+ 			};
+ 
+ 			cpsw_port2: port@2 {
+@@ -522,7 +523,7 @@
+ 				ti,mac-only;
+ 				label = "port2";
+ 				phys = <&phy_gmii_sel 2>;
+-				mac-address = [00 01 de ad be ef];
++				mac-address = [00 00 00 00 00 00];
+ 			};
+ 		};
+ 
+-- 
+2.17.1
 
-> +			sfc_bus4: sfc-bus4 {
-> +				rockchip,pins =
-
-> +					<1 RK_PD0 3 &pcfg_pull_none>,
-> +					<1 RK_PD1 3 &pcfg_pull_none>,
-> +					<1 RK_PD2 3 &pcfg_pull_none>,
-> +					<1 RK_PD3 3 &pcfg_pull_none>;
-
-Keep align with the rest in the pinctrl node.
-Check that in other sfc patches as well.
-
-> +			};
-> +
-> +			sfc_bus2: sfc-bus2 {
-> +				rockchip,pins =
-
-> +					<1 RK_PD0 3 &pcfg_pull_none>,
-> +					<1 RK_PD1 3 &pcfg_pull_none>;
-
-dito
-
-> +			};
-> +
-> +			sfc_cs0: sfc-cs0 {
-> +				rockchip,pins =
-
-> +					<2 RK_PA2 3 &pcfg_pull_none>;
-
-dito
-
-> +			};
-> +
-> +			sfc_cs1: sfc-cs1 {
-> +				rockchip,pins =
-
-> +					<2 RK_PA3 3 &pcfg_pull_none>;
-
-dito
-
-> +			};
-> +
-> +			sfc_clk: sfc-clk {
-> +				rockchip,pins =
-
-> +					<2 RK_PA4 3 &pcfg_pull_none>;
-
-dito
-
-> +			};
-> +		};
-> +
->  		emac {
->  			emac_xfer: emac-xfer {
->  				rockchip,pins = <2 RK_PB2 1 &pcfg_pull_default>, /* crs_dvalid */
-> 
