@@ -2,81 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7365839FA91
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 17:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C3BC39FAA9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 17:28:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233245AbhFHP1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 11:27:36 -0400
-Received: from mail-vk1-f180.google.com ([209.85.221.180]:43539 "EHLO
-        mail-vk1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232956AbhFHP1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 11:27:02 -0400
-Received: by mail-vk1-f180.google.com with SMTP id d13so240842vkl.10;
-        Tue, 08 Jun 2021 08:24:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Ad+EBgofQNw1MfBBcdhLWexkoajVnv5JnIhLXQOx13o=;
-        b=YJW+iaoLs9yoJlGZqtEHZx7VHsyIN94S4n91m4BeScx519XZJkEy3sVT/FtSwoHVoe
-         457eIheSXiL4Ylwn7TdQh7+GO0UQINg4rr5L+SlmtTKL2+odSyqghVtbAI3KlerZ/BTq
-         S8UBKXoqsVqUHff5J/EIiU24XxMm85fNxdY7WQ73r1QgH8/XQNqLXBOZj1ag+kdyTO5l
-         vG/6q/ezNXIhMITBpZ19QxrFTP6Zo4pgYM5Uaoj/DUfgzrGvlJ4oS81URCiRuxO8zVBz
-         4SQpE1bvWdpvHQHsBFMFkW1eBjokb+XSHVQ3Q4jZZaEh5HPcxub2UbtZw2LMeznEOFyo
-         jTXg==
-X-Gm-Message-State: AOAM531KiRZFU4VyZSIw1bJXTYVymhOIaWZKX5NBYI52R0lf6hrImDDt
-        gi3mRCmS54VtG6u9jgJmXPsYI+x6NyeYMb/04jE=
-X-Google-Smtp-Source: ABdhPJxFvJflEZlUr55+YSzTOMgbS4a7skjPqZXcucnn5AZVvlKzPy0Ni14TW7ujM4pgHc4clcRKAeENUXDtTdCvKRQ=
-X-Received: by 2002:a1f:b4c5:: with SMTP id d188mr396167vkf.5.1623165894383;
- Tue, 08 Jun 2021 08:24:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210603221758.10305-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210603221758.10305-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210603221758.10305-6-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 8 Jun 2021 17:24:42 +0200
-Message-ID: <CAMuHMdUqJFnkK=0tX10ud-3vZFyaQ7p8oKxxuWnrY8Z6cbM2qA@mail.gmail.com>
-Subject: Re: [PATCH v2 05/12] arm64: defconfig: Enable ARCH_R9A07G044
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        id S231462AbhFHP3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 11:29:37 -0400
+Received: from m-r1.th.seeweb.it ([5.144.164.170]:54205 "EHLO
+        m-r1.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231237AbhFHP3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 11:29:36 -0400
+Received: from localhost.localdomain (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id E350A1FAFE;
+        Tue,  8 Jun 2021 17:27:40 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/3] arm64: dts: qcom: Add PMI8996 DTSI file
+Date:   Tue,  8 Jun 2021 17:27:34 +0200
+Message-Id: <20210608152737.154218-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 4, 2021 at 12:18 AM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Enable the Renesas RZ/G2L SoC variants in the ARM64 defconfig.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+PMI8996 is *almost* the same hardware as PMI8994, say for some annoyances:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+- Boards equipped with PMI8996 now have to include pmic-id (which wasn't the
+case before)
 
-Gr{oetje,eeting}s,
+- Different qpnp-ibb-discharge-resistor value (will be addressed after LABIBB
+is introduced)
 
-                        Geert
+- Different inhibit-derating-ua value (will be addressed after BCL is
+introduced)
 
+- Different ramp_up_step value (will be addressed after [if?] QPNP Flash LED
+is introduced)
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+This DTSI is supposed to be included >>ON TOP OF<< pmi8994.dtsi, like this:
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- msm8996-nice-device.dts --
+\#include "pmi8994.dtsi"
+\#include "pmi8996.dtsi"
+
+or more likely like this:
+
+-- msm8996-some-phone.dts --
+\#include "msm8996.dtsi"
+...
+\#include "pmi8994.dtsi"
+
+-- msm8996-pmi8996-some-phone.dts --
+\#include "msm8996-some-phone.dts"
+\#include "pmi8996.dtsi"
+
+So that we only have to keep 2 DTs for devices that were shipped with both
+ones, instead of what would be three (device base + pmi8994 + pmi8996)
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+changes since v2:
+- Add a more explanatory commit message
+
+ arch/arm64/boot/dts/qcom/pmi8996.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/pmi8996.dtsi
+
+diff --git a/arch/arm64/boot/dts/qcom/pmi8996.dtsi b/arch/arm64/boot/dts/qcom/pmi8996.dtsi
+new file mode 100644
+index 000000000000..31b47209e261
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/pmi8996.dtsi
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
++ */
++
++ /*
++  * PMI8996 is a slight modification of PMI8994 with
++  * some notable changes, like being the first PMIC
++  * whose the bootloader has to check to continue booting
++  * and a change to a LABIBB parameter.
++  */
++
++/ {
++	qcom,pmic-id = <0x20009 0x10013 0 0>;
++};
+-- 
+2.31.1
+
