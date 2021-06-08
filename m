@@ -2,79 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A393939F555
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 13:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68B9639F58E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 13:49:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231630AbhFHLom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 07:44:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39534 "EHLO mail.kernel.org"
+        id S231791AbhFHLvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 07:51:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42292 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232156AbhFHLol (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Jun 2021 07:44:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 31B7061354;
-        Tue,  8 Jun 2021 11:42:46 +0000 (UTC)
+        id S231751AbhFHLvk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Jun 2021 07:51:40 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 392D96139A;
+        Tue,  8 Jun 2021 11:49:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623152569;
-        bh=k9u4oLtqZFZqMQL5RbX/43JiWGWq0vXU6dFMnuHjNoo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=h39WeBtDyBSnnyS/KwdvKIPeiku1C6zXw7LmVal2HB5v0KgjR7LYJPAto245v4w83
-         W9mGsRstf8WFhBnWoV6kJ1quWeQX23mNBjCvqMG1Iofg5z8LVtIWPGTm688mbFQP+N
-         uRoFyYS5dNBUzRhvhL380PCYnHLnwMMLFENGABvXecoxBPGP2UtukuNStVcek0oFvO
-         DV9L5fgy93xFwlVCMAg/9KK/Y9XhNC1ydbAqA72XU3Tr+TCuX6LaDZbXF0pT/dCnJy
-         JdTgS6+0RyWe4iTM+Ny6NzHac3JQo3qP54Ur3WTWo8O0MKuytlKVim4DWt4aB7cfKf
-         oh4CYOEKQogMg==
-From:   Will Deacon <will@kernel.org>
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org
-Cc:     catalin.marinas@arm.com, kernel-team@android.com,
-        Will Deacon <will@kernel.org>, robh+dt@kernel.org,
-        linux-acpi@vger.kernel.org, sudeep.holla@arm.com,
-        robin.murphy@arm.com, guohanjun@huawei.com,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        zhangfei.gao@linaro.org, wangzhou1@hisilicon.com,
-        Jonathan.Cameron@huawei.com, lorenzo.pieralisi@arm.com,
-        linux-arm-kernel@lists.infradead.org, eric.auger@redhat.com,
-        rjw@rjwysocki.net, lenb@kernel.org
-Subject: Re: [PATCH v15 0/3] iommu/arm-smmu-v3: Add stall support
-Date:   Tue,  8 Jun 2021 12:42:34 +0100
-Message-Id: <162314710744.3707892.6632600736379822229.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210526161927.24268-1-jean-philippe@linaro.org>
-References: <20210526161927.24268-1-jean-philippe@linaro.org>
+        s=k20201202; t=1623152988;
+        bh=SPVQkohvTqDM+QVrSw6JVqDCoe1Ro44Yw3kYDdtNkOk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZJRZwKeWk7K6mulYmlYZfbisD2v1YcBurfVmCCZaEUsW8tWz/xP8wfakgzJ4P1HYU
+         93CjtIahDb0Pg7KVPloqITw/4JC6Bi8BDeEM9QZsFHkvaRWlRwSonvIuoZSydlVC59
+         S1DHMgD2bfmtdp4sGvWMDq870m9AcwStIaP8hVOCHzYgRSAtAwtOHquQa+31dU/Vhw
+         D80dgyApn9p9q4ElCZ3tz9fjrFaCwE6hW2bKAVBZYJzHJvJzkj21YUYDUqgOgb19H7
+         xYZr2XF8vp6KHXHFmuFKhYvIevcs/a+1YK2q762kbNRcE3EuLEtjmnxdsLBBU9Mfkz
+         sNzzSndq16qEg==
+Date:   Tue, 8 Jun 2021 19:49:42 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH v1 0/9] ARM: dts: fixes for Protonic boards
+Message-ID: <20210608114941.GA29138@dragon>
+References: <20210518082850.26048-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210518082850.26048-1-o.rempel@pengutronix.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 May 2021 18:19:25 +0200, Jean-Philippe Brucker wrote:
-> Add stall support for SMMUv3, enabling I/O page faults and SVA for
-> compatible devices. No change since last version [1], but I'd still like
-> this to be considered for upstream, because there exists hardware and
-> applications.
+On Tue, May 18, 2021 at 10:28:41AM +0200, Oleksij Rempel wrote:
+> This patch series provide different fixes for Protonic boards.
 > 
-> Stall is implemented by the Kunpeng 920 processor for its compression
-> and crypto accelerators, with which I tested the SVA infrastructure.
-> Using the userspace accelerator API [2], a program can obtain a queue
-> from one of these devices and submit compression or encryption work
-> within the program's address space. UADK [3] provides a library to do
-> this, and there is an openssl plugin [4] to use it.
+> Oleksij Rempel (6):
+>   ARM: dts: imx6dl-prtvt7: add TSC2046 touchscreen node
+>   ARM: dts: imx6dl-prtvt7: Remove backlight enable gpio
+>   ARM: dts: imx6dl-prtvt7: fix PWM cell count for the backlight node.
+>   ARM: dts: imx6dl-plym2m: remove touchscreen-size-* properties
+>   ARM: dts: imx6dl: enable touchscreen debounce filter on PLYM2M and
+>     PRTVT7 boards
+>   ARM: dts: imx6qdl-vicut1: add interrupt-counter nodes
 > 
-> [...]
+> Robin van der Gracht (3):
+>   ARM: dts: imx6dl-prtvt7: Enable the VPU
+>   ARM: dts: imx6dl-prtvt7: The sgtl5000 uses i2s not ac97
+>   ARM: dts: imx6dl-prtvt7: Remove unused 'sound-dai-cells' from ssi1
+>     node
 
-Applied to will (for-joerg/arm-smmu/updates), thanks!
-
-[1/3] dt-bindings: document stall property for IOMMU masters
-      https://git.kernel.org/will/c/ed1d08b9d0c9
-[2/3] ACPI/IORT: Enable stall support for platform devices
-      https://git.kernel.org/will/c/6522b1e0c78f
-[3/3] iommu/arm-smmu-v3: Add stall support for platform devices
-      https://git.kernel.org/will/c/395ad89d11fd
-
-Cheers,
--- 
-Will
-
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+Applied all, thanks.
