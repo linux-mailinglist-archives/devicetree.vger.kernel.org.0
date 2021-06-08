@@ -2,180 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A2E639F6F8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 14:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2881D39F78D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 15:18:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232602AbhFHMnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 08:43:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35694 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232570AbhFHMnS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 08:43:18 -0400
-Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07D0DC061787
-        for <devicetree@vger.kernel.org>; Tue,  8 Jun 2021 05:41:26 -0700 (PDT)
-Received: by mail-ua1-x932.google.com with SMTP id d18so279461ual.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 05:41:25 -0700 (PDT)
+        id S231162AbhFHNUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 09:20:08 -0400
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:40483 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232815AbhFHNT5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 09:19:57 -0400
+Received: by mail-ua1-f53.google.com with SMTP id d18so315172ual.7
+        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 06:18:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Mcc8OYc1xINsDjGaAzn2LnDPNNAqALk30CWabYfEJ5Y=;
-        b=ae0mnRjOIMn1cVt/lfPKFZ+dihY+iVQiOB120cuEUj9cs4YROrh3apZGQSzDgRbtlQ
-         6VMqpdt+vo7uIubvyFJ/Gx8sXMH/cCATEK4+QHruCfTWpe/arCeuwdIsjxRCeGuxCy/T
-         3/l9qXGBLWYlUf0UO1fouktqbEeWW0bhbJn4a9o5sPOB9J/ev9MesoPHr9U1j2NAxzKy
-         fWLwR7FRoH4KaROXLt+TtwVt/t1rNDMycHYALf5xLoDJRfmpceC9CP5luc1gX3BMBtw9
-         OfM8ymR4sp3l5h+b6rYCj4WUoUF0xGfhCxVD6Kn0RP4vW8YwWgb6yEc53dzg+868y8+Y
-         un7A==
+         :cc:content-transfer-encoding;
+        bh=AeJwkXf02FHfkTc2tBhjPcNKSoYfgCe3Kp4yq0sZmLQ=;
+        b=rf8YIY99EbZMH7/g12lKGP+/SS1HGQgyS+TwSAWEoUkshR9P9Ec3G/WR5fH6jYhGbN
+         bl5LprBy5xsyf0h/IPEzPCJlzOerq5GFGC8npSAHFpt0HgQiGeRy1h90ikX15ib8uCVe
+         BSMcQGvJRyTIHbKsWuB39rNXYMN2ogOqjqdhSwRBLpjleKKw5E36j8Jomg9WzHSygfpf
+         BB+ZHFK5AHq78zJlPPK1igG5DSdmy2PBnoK9uT6iAXAPuxUA783R5bDjZYH4z51UBrLE
+         +TCW7CIO8Osk8FlZeidbHZjQg8zN+3WG1XQtFr4OlHWO1S6v0CUG8s7RwpfirhwtiWWr
+         /kcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Mcc8OYc1xINsDjGaAzn2LnDPNNAqALk30CWabYfEJ5Y=;
-        b=BeEGbk+3hAjtShLPZjPLRgmu5EQPoiSU5fx8WfgNmXoSEv9N1yyUV6yZFQ1s9THyAP
-         GhwHbbUgd7/63aQ0mi3BpzQx8XUZfrbbE6/+0nD9OxY2DOuIPkR74cYKcgALdCe2RTxk
-         V1NbbeFvNdxc3h4KIcENh50TEvHYPDoZrcw9ZTyYtj+t7ckp3GvIyJbrbz1IPD6cfM1b
-         +gkvzofunaFo9cP2cY/rqh/7mYGBvcMrRymptoN6WgEi9KGGdz3rD1+rzRpzalRgbobs
-         eK46ciZCu7Hh89evIwYBLri/k58qc/TUvjjoZt0wCH86SxleZZzX5I10iJHllEvJsRJr
-         V4QQ==
-X-Gm-Message-State: AOAM533hufzUxgzxiHbN6BXHCXzyZ+DVn16PgNCc2dHU3jy1mO+dV6JS
-        poY9500dyNBSO+fRCgF9UbDqxopbhQeNSFT8qly20Q==
-X-Google-Smtp-Source: ABdhPJxaPShcDb8weegxYcT+6lqT0m9ossZqMq8qD5rdHUJ1HszEh+p7p3IuISUl9zNHrKvoARqbkguEnZU/w/ywjho=
-X-Received: by 2002:ab0:7c5b:: with SMTP id d27mr12310573uaw.15.1623156082979;
- Tue, 08 Jun 2021 05:41:22 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=AeJwkXf02FHfkTc2tBhjPcNKSoYfgCe3Kp4yq0sZmLQ=;
+        b=XHWEqT87LJm3VnLjT5TYv0y/Hu3sdVW4lVH+wAdMDXxw4eTWFCEvDUy9EDB28jXr+/
+         iXS6QaNChfgF9XhKzeSyRWLkeb37CPzWK4jfslFg9LXbCt5u2re1CsWW9SPgsKbcGgnc
+         z7BB72KL6JGNmGtVojPgWg4GymXtJUDn735cpMSU+YDNFtmHLLJoQP5iTDBP/0lUQyGM
+         c36SlYyGaqVglftidDm0JK0I4zmx2ZamtdujA7FXOfosjTcvwtRfrlLe6lZuyDfptmwl
+         ulxZIO9Rhau/ZGBa1S1DPkx8MPcfUCargShFpM6Dx/XEok0e+6hOi8lemK4f0vBMsJEv
+         WPsA==
+X-Gm-Message-State: AOAM533qb/jMZ/ioZ5Rlcdig8BkiBlX+kFhA/0i6N4Z09C7FsLpwB+gl
+        CZJMRyd5vkr7mSzU50HhiYZed34i8NsdWxuMeI5LGw==
+X-Google-Smtp-Source: ABdhPJyNWit/KMWObghRKbmC6vtI+CqqBIJIhWt5YdpyC0OBpfA57D9EyglRt+y4bBMHLxwHJLZJWt4XwfmLKDDM/Aw=
+X-Received: by 2002:ab0:12a:: with SMTP id 39mr12675863uak.19.1623158223925;
+ Tue, 08 Jun 2021 06:17:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210602192758.38735-1-alcooperx@gmail.com> <20210602192758.38735-2-alcooperx@gmail.com>
-In-Reply-To: <20210602192758.38735-2-alcooperx@gmail.com>
+References: <1623002884-57244-1-git-send-email-zhouyanjie@wanyeetech.com> <1623002884-57244-2-git-send-email-zhouyanjie@wanyeetech.com>
+In-Reply-To: <1623002884-57244-2-git-send-email-zhouyanjie@wanyeetech.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 8 Jun 2021 14:40:46 +0200
-Message-ID: <CAPDyKFrynST66yA_T3iroiJsfmNuBOEiiBnb=vNoyP6QpvZ7aQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] mmc: sdhci-iproc: Add support for the legacy sdhci
- controller on the BCM7211
-To:     Al Cooper <alcooperx@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+Date:   Tue, 8 Jun 2021 15:16:26 +0200
+Message-ID: <CAPDyKFrHuMZdHJ+KKBffCu+FiOJr14ynBnjYW_oGpNQN8+Hy8A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: JZ4740: Add bindings for JZ4775.
+To:     =?UTF-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-mips <linux-mips@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         linux-mmc <linux-mmc@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
-        Scott Branden <sbranden@broadcom.com>
+        DTML <devicetree@vger.kernel.org>, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com, Paul Cercueil <paul@crapouillou.net>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Jun 2021 at 21:28, Al Cooper <alcooperx@gmail.com> wrote:
+On Sun, 6 Jun 2021 at 20:08, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie)
+<zhouyanjie@wanyeetech.com> wrote:
 >
-> Add support for the legacy Arasan sdhci controller on the BCM7211 and
-> related SoC's. This includes adding a .shutdown callback to increase
-> the power savings during S5.
+> Add the MMC bindings for the JZ4775 SoC from Ingenic.
+>
+> Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) <zhouyanjie@wany=
+eetech.com>
 
-Please split this into two separate changes.
-
-May I also ask about the ->shutdown() callback and in relation to S5.
-What makes the ->shutdown callback only being invoked for S5?
+Applied for next, thanks!
 
 Kind regards
 Uffe
 
->
-> Signed-off-by: Al Cooper <alcooperx@gmail.com>
+
 > ---
->  drivers/mmc/host/Kconfig       |  2 +-
->  drivers/mmc/host/sdhci-iproc.c | 30 ++++++++++++++++++++++++++++++
->  drivers/mmc/host/sdhci.h       |  2 ++
->  3 files changed, 33 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-> index a4d4c757eea0..561184fa7eb9 100644
-> --- a/drivers/mmc/host/Kconfig
-> +++ b/drivers/mmc/host/Kconfig
-> @@ -412,7 +412,7 @@ config MMC_SDHCI_MILBEAUT
->
->  config MMC_SDHCI_IPROC
->         tristate "SDHCI support for the BCM2835 & iProc SD/MMC Controller"
-> -       depends on ARCH_BCM2835 || ARCH_BCM_IPROC || COMPILE_TEST
-> +       depends on ARCH_BCM2835 || ARCH_BCM_IPROC || ARCH_BRCMSTB || COMPILE_TEST
->         depends on MMC_SDHCI_PLTFM
->         depends on OF || ACPI
->         default ARCH_BCM_IPROC
-> diff --git a/drivers/mmc/host/sdhci-iproc.c b/drivers/mmc/host/sdhci-iproc.c
-> index ddeaf8e1f72f..cce390fe9cf3 100644
-> --- a/drivers/mmc/host/sdhci-iproc.c
-> +++ b/drivers/mmc/host/sdhci-iproc.c
-> @@ -286,11 +286,35 @@ static const struct sdhci_iproc_data bcm2711_data = {
->         .mmc_caps = MMC_CAP_3_3V_DDR,
->  };
->
-> +static const struct sdhci_pltfm_data sdhci_bcm7211a0_pltfm_data = {
-> +       .quirks = SDHCI_QUIRK_MISSING_CAPS |
-> +               SDHCI_QUIRK_BROKEN_TIMEOUT_VAL |
-> +               SDHCI_QUIRK_BROKEN_DMA |
-> +               SDHCI_QUIRK_BROKEN_ADMA,
-> +       .ops = &sdhci_iproc_ops,
-> +};
-> +
-> +#define BCM7211A0_BASE_CLK_MHZ 100
-> +static const struct sdhci_iproc_data bcm7211a0_data = {
-> +       .pdata = &sdhci_bcm7211a0_pltfm_data,
-> +       .caps = ((BCM7211A0_BASE_CLK_MHZ / 2) << SDHCI_TIMEOUT_CLK_SHIFT) |
-> +               (BCM7211A0_BASE_CLK_MHZ << SDHCI_CLOCK_BASE_SHIFT) |
-> +               ((0x2 << SDHCI_MAX_BLOCK_SHIFT)
-> +                       & SDHCI_MAX_BLOCK_MASK) |
-> +               SDHCI_CAN_VDD_330 |
-> +               SDHCI_CAN_VDD_180 |
-> +               SDHCI_CAN_DO_SUSPEND |
-> +               SDHCI_CAN_DO_HISPD,
-> +       .caps1 = SDHCI_DRIVER_TYPE_C |
-> +                SDHCI_DRIVER_TYPE_D,
-> +};
-> +
->  static const struct of_device_id sdhci_iproc_of_match[] = {
->         { .compatible = "brcm,bcm2835-sdhci", .data = &bcm2835_data },
->         { .compatible = "brcm,bcm2711-emmc2", .data = &bcm2711_data },
->         { .compatible = "brcm,sdhci-iproc-cygnus", .data = &iproc_cygnus_data},
->         { .compatible = "brcm,sdhci-iproc", .data = &iproc_data },
-> +       { .compatible = "brcm,bcm7211a0-sdhci", .data = &bcm7211a0_data },
->         { }
->  };
->  MODULE_DEVICE_TABLE(of, sdhci_iproc_of_match);
-> @@ -384,6 +408,11 @@ static int sdhci_iproc_probe(struct platform_device *pdev)
->         return ret;
->  }
->
-> +static void sdhci_iproc_shutdown(struct platform_device *pdev)
-> +{
-> +       sdhci_pltfm_suspend(&pdev->dev);
-> +}
-> +
->  static struct platform_driver sdhci_iproc_driver = {
->         .driver = {
->                 .name = "sdhci-iproc",
-> @@ -394,6 +423,7 @@ static struct platform_driver sdhci_iproc_driver = {
->         },
->         .probe = sdhci_iproc_probe,
->         .remove = sdhci_pltfm_unregister,
-> +       .shutdown = sdhci_iproc_shutdown,
->  };
->  module_platform_driver(sdhci_iproc_driver);
->
-> diff --git a/drivers/mmc/host/sdhci.h b/drivers/mmc/host/sdhci.h
-> index 0770c036e2ff..c35ed4be75b7 100644
-> --- a/drivers/mmc/host/sdhci.h
-> +++ b/drivers/mmc/host/sdhci.h
-> @@ -201,8 +201,10 @@
->
->  #define SDHCI_CAPABILITIES     0x40
->  #define  SDHCI_TIMEOUT_CLK_MASK                GENMASK(5, 0)
-> +#define  SDHCI_TIMEOUT_CLK_SHIFT 0
->  #define  SDHCI_TIMEOUT_CLK_UNIT        0x00000080
->  #define  SDHCI_CLOCK_BASE_MASK         GENMASK(13, 8)
-> +#define  SDHCI_CLOCK_BASE_SHIFT        8
->  #define  SDHCI_CLOCK_V3_BASE_MASK      GENMASK(15, 8)
->  #define  SDHCI_MAX_BLOCK_MASK  0x00030000
->  #define  SDHCI_MAX_BLOCK_SHIFT  16
+> diff --git a/Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml b/Doc=
+umentation/devicetree/bindings/mmc/ingenic,mmc.yaml
+> index 04ba8b7..546480f 100644
+> --- a/Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml
+> @@ -19,6 +19,7 @@ properties:
+>            - ingenic,jz4740-mmc
+>            - ingenic,jz4725b-mmc
+>            - ingenic,jz4760-mmc
+> +          - ingenic,jz4775-mmc
+>            - ingenic,jz4780-mmc
+>            - ingenic,x1000-mmc
+>        - items:
 > --
-> 2.17.1
+> 2.7.4
 >
