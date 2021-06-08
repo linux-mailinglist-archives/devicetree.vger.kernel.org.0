@@ -2,130 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CDFC39EE15
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 07:24:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26FDA39EE51
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 07:45:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229923AbhFHF0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 01:26:45 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:46768 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229657AbhFHF0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 01:26:45 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1585Ohcv071596;
-        Tue, 8 Jun 2021 00:24:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623129883;
-        bh=MiomeBKdGuUjQiTfzTbKXHj9oqvow/F9u+TZwL2rqzQ=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=fmA5DM2/FigyKfCnoYtQVeqzSk7KEszIHf1vNTR5Ex7t+U0ZhJd9a7vMKwzERTQrF
-         bu9hG6SZO5/Vlk9+OTaZIQ4WEkACOqJyqRueJMx0B/YMP2fB2fqDUv5WHfUJIF/QLT
-         NSGAsgl08t7Kdg8QUE9a7xHjEjAzAI0RCVXeybzY=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1585OhBg007040
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Jun 2021 00:24:43 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 8 Jun
- 2021 00:24:43 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 8 Jun 2021 00:24:43 -0500
-Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1585OcEO026973;
-        Tue, 8 Jun 2021 00:24:39 -0500
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: am65: align ti,pindir-d0-out-d1-in
- property with dt-shema
-To:     Jan Kiszka <jan.kiszka@siemens.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210608051414.14873-1-a-govindraju@ti.com>
- <20210608051414.14873-2-a-govindraju@ti.com>
- <8d466cbc-eb35-42a8-d4d6-5bcf44cf965e@siemens.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <fb6c6c73-a29b-e190-b4c0-3b8b030d8268@ti.com>
-Date:   Tue, 8 Jun 2021 10:54:37 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S230310AbhFHFrT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 01:47:19 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:16894 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230272AbhFHFrR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Jun 2021 01:47:17 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1623131125; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=FTH5irT6do2Mgww4obC31jDBjjRHc32WfJ8ytHIN7i0=; b=PVMkLzBOuZuYRIDU0jDNQ9wYy2Cb7i+bnsIJKLsz1HcVdvCVo1A1528tKBfVhyb/tb3m7RVB
+ NewfwgLp4UwCxQe5w1RIT8U9Tne4PLpnRU45DPmwDCU2cUHI0mgkQYEogEDoBCRZWY1qqfyq
+ j0tNDedFkJ7ru2sE0yKH0OuY1q8=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 60bf03dbe570c05619336781 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 08 Jun 2021 05:44:59
+ GMT
+Sender: wcheng=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 2B98CC433D3; Tue,  8 Jun 2021 05:44:59 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.110.62.3] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 20E97C433D3;
+        Tue,  8 Jun 2021 05:44:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 20E97C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
+Subject: Re: [PATCH v9 0/5] Re-introduce TX FIFO resize for larger EP bursting
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        jackp@codeaurora.org, Thinh.Nguyen@synopsys.com
+References: <1621410561-32762-1-git-send-email-wcheng@codeaurora.org>
+ <YLoUiO8tpRpmvcyU@kroah.com> <87k0n9btnb.fsf@kernel.org>
+ <YLo6W5sKaXvy51eW@kroah.com>
+From:   Wesley Cheng <wcheng@codeaurora.org>
+Message-ID: <c2daab34-1b25-7ee3-e203-a414c1e486d5@codeaurora.org>
+Date:   Mon, 7 Jun 2021 22:44:56 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-In-Reply-To: <8d466cbc-eb35-42a8-d4d6-5bcf44cf965e@siemens.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <YLo6W5sKaXvy51eW@kroah.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jan,
+Hi Greg/Felipe,
 
-On 08/06/21 10:50 am, Jan Kiszka wrote:
-> On 08.06.21 07:14, Aswath Govindraju wrote:
->> ti,pindir-d0-out-d1-in property is expected to be of type boolean.
->> Therefore, fix the property accordingly.
+On 6/4/2021 7:36 AM, Greg KH wrote:
+> On Fri, Jun 04, 2021 at 05:18:16PM +0300, Felipe Balbi wrote:
 >>
-> 
-> Is there a patch for Documentation/devicetree/bindings/spi/omap-spi.txt
-> on the way as well that makes this even clearer?
-> 
-
-Yes, these fixes are a part of conversion of omap-spi.txt to yaml
-format. In the yaml file the type for the property is mentioned.
-
-Link to yaml conversion patch,
-https://lore.kernel.org/patchwork/project/lkml/list/?series=503240
-
->> Fixes: e180f76d0641 ("arm64: dts: ti: Add support for Siemens IOT2050 boards")
->> Fixes: 5da94b50475a ("arm64: dts: ti: k3-am654: Enable main domain McSPI0")
->> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 2 +-
->>  arch/arm64/boot/dts/ti/k3-am654-base-board.dts     | 2 +-
->>  2 files changed, 2 insertions(+), 2 deletions(-)
+>> Hi,
 >>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
->> index f4ec9ed52939..23d51b6a9cf2 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
->> @@ -575,7 +575,7 @@
->>  
->>  	#address-cells = <1>;
->>  	#size-cells= <0>;
->> -	ti,pindir-d0-out-d1-in = <1>;
->> +	ti,pindir-d0-out-d1-in;
->>  };
->>  
-> 
-> Acked-by: Jan Kiszka <jan.kiszka@siemens.com>
-> 
+>> Greg KH <gregkh@linuxfoundation.org> writes:
+>>> On Wed, May 19, 2021 at 12:49:16AM -0700, Wesley Cheng wrote:
+>>>> Changes in V9:
+>>>>  - Fixed incorrect patch in series.  Removed changes in DTSI, as dwc3-qcom will
+>>>>    add the property by default from the kernel.
+>>>
+>>> This patch series has one build failure and one warning added:
+>>>
+>>> drivers/usb/dwc3/gadget.c: In function ‘dwc3_gadget_calc_tx_fifo_size’:
+>>> drivers/usb/dwc3/gadget.c:653:45: warning: passing argument 1 of ‘dwc3_mdwidth’ makes pointer from integer without a cast [-Wint-conversion]
+>>>   653 |         mdwidth = dwc3_mdwidth(dwc->hwparams.hwparams0);
+>>>       |                                ~~~~~~~~~~~~~^~~~~~~~~~
+>>>       |                                             |
+>>>       |                                             u32 {aka unsigned int}
+>>> In file included from drivers/usb/dwc3/debug.h:14,
+>>>                  from drivers/usb/dwc3/gadget.c:25:
+>>> drivers/usb/dwc3/core.h:1493:45: note: expected ‘struct dwc3 *’ but argument is of type ‘u32’ {aka ‘unsigned int’}
+>>>  1493 | static inline u32 dwc3_mdwidth(struct dwc3 *dwc)
+>>>       |                                ~~~~~~~~~~~~~^~~
+>>>
+>>>
+>>> drivers/usb/dwc3/dwc3-qcom.c: In function ‘dwc3_qcom_of_register_core’:
+>>> drivers/usb/dwc3/dwc3-qcom.c:660:23: error: implicit declaration of function ‘of_add_property’; did you mean ‘of_get_property’? [-Werror=implicit-function-declaration]
+>>>   660 |                 ret = of_add_property(dwc3_np, prop);
+>>>       |                       ^~~~~~~~~~~~~~~
+>>>       |                       of_get_property
+>>>
+>>>
+>>> How did you test these?
 
-Thanks,
-Aswath
+I ran these changes on our internal branches, which were probably
+missing some of the recent changes done to the DWC3 drivers.  Will fix
+the above compile errors and re-submit.
 
-> Jan
-> 
->>  &tscadc0 {
->> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
->> index eddb2ffb93ca..1b947e2c2e74 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
->> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
->> @@ -299,7 +299,7 @@
->>  	pinctrl-0 = <&main_spi0_pins_default>;
->>  	#address-cells = <1>;
->>  	#size-cells= <0>;
->> -	ti,pindir-d0-out-d1-in = <1>;
->> +	ti,pindir-d0-out-d1-in;
->>  
->>  	flash@0{
->>  		compatible = "jedec,spi-nor";
+In regards to how much these changes have been tested, we've been
+maintaining the TX FIFO resize logic downstream for a few years already,
+so its being used in end products.  We also verify this with our
+internal testing, which has certain benchmarks we need to meet.
+
 >>
-> 
+>> to be honest, I don't think these should go in (apart from the build
+>> failure) because it's likely to break instantiations of the core with
+>> differing FIFO sizes. Some instantiations even have some endpoints with
+>> dedicated functionality that requires the default FIFO size configured
+>> during coreConsultant instantiation. I know of at OMAP5 and some Intel
+>> implementations which have dedicated endpoints for processor tracing.
+>>
+>> With OMAP5, these endpoints are configured at the top of the available
+>> endpoints, which means that if a gadget driver gets loaded and takes
+>> over most of the FIFO space because of this resizing, processor tracing
+>> will have a hard time running. That being said, processor tracing isn't
+>> supported in upstream at this moment.
+>>
+
+I agree that the application of this logic may differ between vendors,
+hence why I wanted to keep this controllable by the DT property, so that
+for those which do not support this use case can leave it disabled.  The
+logic is there to ensure that for a given USB configuration, for each EP
+it would have at least 1 TX FIFO.  For USB configurations which don't
+utilize all available IN EPs, it would allow re-allocation of internal
+memory to EPs which will actually be in use.
+
+>> I still think this may cause other places to break down. The promise the
+>> databook makes is that increasing the FIFO size over 2x wMaxPacketSize
+>> should bring little to no benefit, if we're not maintaining that, I
+>> wonder if the problem is with some of the BUSCFG registers instead,
+>> where we configure interconnect bursting and the like.
 > 
 
+I've been referring mainly to the DWC3 programming guide for
+recommendations on how to improve USB performance in:
+Section 3.3.5 System Bus Features to Improve USB Performance
+
+At least when I ran the initial profiling, adjusting the RX/TX
+thresholds brought little to no benefits.  Even in some of the examples,
+they have diagrams showing a TXFIFO size of 6 max packets (Figure 3-5).
+ I think its difficult to say that the TX fifo resizing won't help in
+systems with limited, or shared resources where the bus latencies would
+be somewhat larger.  By adjusting the TX FIFO size, the controller would
+be able to fetch more data from system memory into the memory within the
+controller, leading to less frequent end of bursts, etc... as data is
+readily available.
+
+In terms of adjusting the AXI/AHB bursting, I would think the bandwidth
+increase would eventually be constrained based on your system's design.
+ We don't touch the GSBUSCFG registers, and leave them as is based off
+the recommendations from the HW designers.
+
+> Good points.
+> 
+> Wesley, what kind of testing have you done on this on different devices?
+> 
+
+As mentioned above, these changes are currently present on end user
+devices for the past few years, so its been through a lot of testing :).
+
+Thanks
+Wesley Cheng
+
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
