@@ -2,138 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38AC93A0755
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 00:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F2F83A0794
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 01:10:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234216AbhFHXB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 19:01:28 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:46283 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230250AbhFHXB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 19:01:28 -0400
-X-UUID: 21a70051223b4f44a767e7a447cf0fec-20210609
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ZgVhymEJ5L4BrwipQZUOwi4OJWbvueZ20HB1FJkKDBM=;
-        b=mtESIbus3JwB9ymJUjjryP70c+fZs/nMHK6x2B+ZEYgiUG7KJ72RaiH9EHgltEtFaO4n8/4/z7kGtikUhA0uyGQSspl0rtz3b4wQexXx1VRwVF2BlBROZ+JRLaiuc1X/p4I8kIcwdbUjWSeNaHKF6kJ/tcuTOUXOtlCFf9uWXjk=;
-X-UUID: 21a70051223b4f44a767e7a447cf0fec-20210609
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1655942614; Wed, 09 Jun 2021 06:59:30 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 9 Jun 2021 06:59:23 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 9 Jun 2021 06:59:23 +0800
-Message-ID: <f7fd0d7038361c7efae54ba96924105baa3fb033.camel@mediatek.com>
-Subject: Re: [PATCH v5, 4/4] soc: mediatek: mmsys: Add mt8192 mmsys routing
- table
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        "Dennis YC Hsieh" <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 9 Jun 2021 06:59:23 +0800
-In-Reply-To: <1618236288-1617-5-git-send-email-yongqiang.niu@mediatek.com>
-References: <1618236288-1617-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1618236288-1617-5-git-send-email-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S234937AbhFHXMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 19:12:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33808 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234389AbhFHXMV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 19:12:21 -0400
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1966DC061787
+        for <devicetree@vger.kernel.org>; Tue,  8 Jun 2021 16:10:18 -0700 (PDT)
+Received: by mail-oo1-xc36.google.com with SMTP id d27-20020a4a3c1b0000b029024983ef66dbso2640634ooa.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 16:10:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8Fd2UnKqRp3r57f4CDJXwSiaZtMqRHFyBh9cIrJCLHc=;
+        b=YVQxIh4DVDYDVOSMez79iluTdib8wNEGnSurhGWV5Sx1Yt2DoKdkChJeEswUoeSsGw
+         0K00d68k/hSD0WCstFm065QnDK9rywsVn9kQw/4Kj0jMQJu8ZRDpHZMz4K4FPQnn10E4
+         N08rvCo6ABfBzZhrVuzfRfm3qkKNuPPRPLa+kZFaYoNlgWkvp3nUvMsE0CxBchjX/GIB
+         vXnYe965oMdOEKaqGviedRqmdY0N1l8CECcUioeXQ7O3Itu5he0GWhI7CLxMzbVsPVmj
+         r+K+/JevqaG+yMYcwmhqA6BJ63t8i+MsqNQnyxgtKgYLrEkMPPCpydxSpF+pD3aDS0MU
+         UgDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8Fd2UnKqRp3r57f4CDJXwSiaZtMqRHFyBh9cIrJCLHc=;
+        b=ltrv8dacZfE8Ksh0K86ck7hU4N8QkbuhGeoiYFrVtP/ysUUV2sAi/U9kvrr22hHfDv
+         3gh57QmwZGmINOceMK7Y96rM4oTgtW0b7LvhZ8wYmW06Me/qrsFnBvgxw0UukIM48WEr
+         xQ1WXop3klv/5jCdtfo3WT/oIYQldQ0kBZcUeX/UpzEnIYj/r+qWvs+Pupz4/SF7VoAW
+         rJYwPUGKw8zPIMIdAEdx9fk7MhaMTJnroVXdbjh5d4ihWBtlB6ScU8/zYhdqGtH5Jjis
+         wyuUuggHEObmECYrvzgWA18o3yR4wZvrPPoAaIEHCVK0mkJVFUziv0mxwT/Kova0Mclm
+         n4kg==
+X-Gm-Message-State: AOAM533yCKPA2IcW4ix936ngx5+bt69vq1PVcZ82Lj4/0i051WTYr4rS
+        Yuv/YxIzOt2z6hqiB4wXcFg4Xg==
+X-Google-Smtp-Source: ABdhPJycM7QJ6UxCAKDNC7FB+QTjxDFiYOAHom/UYvJgDGXNLHmf6SoUQFIeescv/3vi8398Xn3oHg==
+X-Received: by 2002:a4a:b789:: with SMTP id a9mr19171527oop.45.1623193817402;
+        Tue, 08 Jun 2021 16:10:17 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id c205sm3092501oob.38.2021.06.08.16.10.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Jun 2021 16:10:16 -0700 (PDT)
+Date:   Tue, 8 Jun 2021 18:10:14 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     khsieh@codeaurora.org, robdclark@gmail.com, sean@poorly.run,
+        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
+        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
+Message-ID: <YL/41hWz8xB+jSeO@yoga>
+References: <YLkI/6ItCz+SbbuJ@yoga>
+ <ac326ec8689c0babb08b2311e19d52cc@codeaurora.org>
+ <YLxX/YtegtbLmkri@builder.lan>
+ <ef1879fa7ecfefaf0c70c7a4782240a9@codeaurora.org>
+ <YL6sY/1E5wLzMiP/@yoga>
+ <CAE-0n50-X03sMyJdsw7s=Ue0dWXBo=iHOc0HxDQm5yh2J-uS3A@mail.gmail.com>
+ <YL/uj+t+BFkII1Fh@yoga>
+ <CAE-0n50WP25kRQkWMVdDZGsZWBXwfbVSTFKyBLF7f8Mp3x2Wfg@mail.gmail.com>
+ <YL/wWdRs6e/eECiC@yoga>
+ <CAE-0n51GM65rZVJgXuHy6FerJorHeHKf2W31GijG8sDEhaX_KQ@mail.gmail.com>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE-0n51GM65rZVJgXuHy6FerJorHeHKf2W31GijG8sDEhaX_KQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIxLTA0LTEyIGF0IDIyOjA0ICswODAwLCBZb25ncWlhbmcgTml1IHdyb3RlOg0K
-PiBtdDgxOTIgaGFzIGRpZmZlcmVudCByb3V0aW5nIHJlZ2lzdGVycyB0aGFuIG10ODE4Mw0KPiAN
-Cj4gU2lnbmVkLW9mZi1ieTogWW9uZ3FpYW5nIE5pdSA8eW9uZ3FpYW5nLm5pdUBtZWRpYXRlay5j
-b20+DQo+IC0tLQ0KPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXQ4MTkyLW1tc3lzLmggfCA2OA0K
-PiArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ICBkcml2ZXJzL3NvYy9t
-ZWRpYXRlay9tdGstbW1zeXMuYyAgICB8ICA3ICsrKysNCj4gIDIgZmlsZXMgY2hhbmdlZCwgNzUg
-aW5zZXJ0aW9ucygrKQ0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvc29jL21lZGlhdGVr
-L210ODE5Mi1tbXN5cy5oDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsv
-bXQ4MTkyLW1tc3lzLmgNCj4gYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdDgxOTItbW1zeXMuaA0K
-PiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAwLi4zMTc5MDI5DQo+IC0tLSAv
-ZGV2L251bGwNCj4gKysrIGIvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXQ4MTkyLW1tc3lzLmgNCj4g
-QEAgLTAsMCArMSw2OCBAQA0KPiArLyogU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAt
-b25seSAqLw0KPiArDQo+ICsjaWZuZGVmIF9fU09DX01FRElBVEVLX01UODE5Ml9NTVNZU19IDQo+
-ICsjZGVmaW5lIF9fU09DX01FRElBVEVLX01UODE5Ml9NTVNZU19IDQo+ICsNCj4gKyNkZWZpbmUg
-TVQ4MTkyX01NU1lTX09WTF9NT1VUX0VOCQkweGYwNA0KPiArI2RlZmluZSBNVDgxOTJfRElTUF9P
-VkwxXzJMX01PVVRfRU4JCTB4ZjA4DQo+ICsjZGVmaW5lIE1UODE5Ml9ESVNQX09WTDBfMkxfTU9V
-VF9FTgkJMHhmMTgNCj4gKyNkZWZpbmUgTVQ4MTkyX0RJU1BfT1ZMMF9NT1VUX0VOCQkweGYxYw0K
-PiArI2RlZmluZSBNVDgxOTJfRElTUF9SRE1BMF9TRUxfSU4JCTB4ZjJjDQo+ICsjZGVmaW5lIE1U
-ODE5Ml9ESVNQX1JETUEwX1NPVVRfU0VMCQkweGYzMA0KPiArI2RlZmluZSBNVDgxOTJfRElTUF9D
-Q09SUjBfU09VVF9TRUwJCTB4ZjM0DQo+ICsjZGVmaW5lIE1UODE5Ml9ESVNQX0FBTDBfU0VMX0lO
-CQkJMHhmMzgNCj4gKyNkZWZpbmUgTVQ4MTkyX0RJU1BfRElUSEVSMF9NT1VUX0VOCQkweGYzYw0K
-PiArI2RlZmluZSBNVDgxOTJfRElTUF9EU0kwX1NFTF9JTgkJCTB4ZjQwDQo+ICsjZGVmaW5lIE1U
-ODE5Ml9ESVNQX09WTDJfMkxfTU9VVF9FTgkJMHhmNGMNCj4gKw0KPiArI2RlZmluZSBNVDgxOTJf
-RElTUF9PVkwwX0dPX0JMRU5ECQkJQklUKDApDQo+ICsjZGVmaW5lIE1UODE5Ml9ESVRIRVIwX01P
-VVRfSU5fRFNJMAkJCUJJVCgwKQ0KPiArI2RlZmluZSBNVDgxOTJfT1ZMMF9NT1VUX0VOX0RJU1Bf
-UkRNQTAJCQlCSVQoMCkNCj4gKyNkZWZpbmUgTVQ4MTkyX09WTDJfMkxfTU9VVF9FTl9SRE1BNAkJ
-CUJJVCgwKQ0KPiArI2RlZmluZSBNVDgxOTJfRElTUF9PVkwwX0dPX0JHCQkJCUJJVCgxKQ0KPiAr
-I2RlZmluZSBNVDgxOTJfRElTUF9PVkwwXzJMX0dPX0JMRU5ECQkJQklUKDIpDQo+ICsjZGVmaW5l
-IE1UODE5Ml9ESVNQX09WTDBfMkxfR09fQkcJCQlCSVQoMykNCj4gKyNkZWZpbmUgTVQ4MTkyX09W
-TDFfMkxfTU9VVF9FTl9SRE1BMQkJCUJJVCg0KQ0KPiArI2RlZmluZSBNVDgxOTJfT1ZMMF9NT1VU
-X0VOX09WTDBfMkwJCQlCSVQoNCkNCj4gKyNkZWZpbmUgTVQ4MTkyX1JETUEwX1NFTF9JTl9PVkww
-XzJMCQkJMHgzDQo+ICsjZGVmaW5lIE1UODE5Ml9SRE1BMF9TT1VUX0NPTE9SMAkJCTB4MQ0KPiAr
-I2RlZmluZSBNVDgxOTJfQ0NPUlIwX1NPVVRfQUFMMAkJCQkweDENCj4gKyNkZWZpbmUgTVQ4MTky
-X0FBTDBfU0VMX0lOX0NDT1JSMAkJCTB4MQ0KPiArI2RlZmluZSBNVDgxOTJfRFNJMF9TRUxfSU5f
-RElUSEVSMAkJCTB4MQ0KPiArDQo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG10a19tbXN5c19yb3V0
-ZXMgbW1zeXNfbXQ4MTkyX3JvdXRpbmdfdGFibGVbXSA9DQo+IHsNCj4gKwl7DQo+ICsJCUREUF9D
-T01QT05FTlRfT1ZMXzJMMCwgRERQX0NPTVBPTkVOVF9SRE1BMCwNCj4gKwkJTVQ4MTkyX0RJU1Bf
-T1ZMMF8yTF9NT1VUX0VOLA0KPiBNVDgxOTJfT1ZMMF9NT1VUX0VOX0RJU1BfUkRNQTAsDQo+ICsJ
-fSwgew0KPiArCQlERFBfQ09NUE9ORU5UX09WTF8yTDIsIEREUF9DT01QT05FTlRfUkRNQTQsDQo+
-ICsJCU1UODE5Ml9ESVNQX09WTDJfMkxfTU9VVF9FTiwNCj4gTVQ4MTkyX09WTDJfMkxfTU9VVF9F
-Tl9SRE1BNA0KPiArCX0sIHsNCj4gKwkJRERQX0NPTVBPTkVOVF9ESVRIRVIsIEREUF9DT01QT05F
-TlRfRFNJMCwNCj4gKwkJTVQ4MTkyX0RJU1BfRElUSEVSMF9NT1VUX0VOLA0KPiBNVDgxOTJfRElU
-SEVSMF9NT1VUX0lOX0RTSTANCj4gKwl9LCB7DQo+ICsJCUREUF9DT01QT05FTlRfT1ZMXzJMMCwg
-RERQX0NPTVBPTkVOVF9SRE1BMCwNCj4gKwkJTVQ4MTkyX0RJU1BfUkRNQTBfU0VMX0lOLCBNVDgx
-OTJfUkRNQTBfU0VMX0lOX09WTDBfMkwNCj4gKwl9LCB7DQo+ICsJCUREUF9DT01QT05FTlRfQ0NP
-UlIsIEREUF9DT01QT05FTlRfQUFMMCwNCj4gKwkJTVQ4MTkyX0RJU1BfQUFMMF9TRUxfSU4sIE1U
-ODE5Ml9BQUwwX1NFTF9JTl9DQ09SUjANCj4gKwl9LCB7DQo+ICsJCUREUF9DT01QT05FTlRfRElU
-SEVSLCBERFBfQ09NUE9ORU5UX0RTSTAsDQo+ICsJCU1UODE5Ml9ESVNQX0RTSTBfU0VMX0lOLCBN
-VDgxOTJfRFNJMF9TRUxfSU5fRElUSEVSMA0KPiArCX0sIHsNCj4gKwkJRERQX0NPTVBPTkVOVF9S
-RE1BMCwgRERQX0NPTVBPTkVOVF9DT0xPUjAsDQo+ICsJCU1UODE5Ml9ESVNQX1JETUEwX1NPVVRf
-U0VMLCBNVDgxOTJfUkRNQTBfU09VVF9DT0xPUjANCj4gKwl9LCB7DQo+ICsJCUREUF9DT01QT05F
-TlRfQ0NPUlIsIEREUF9DT01QT05FTlRfQUFMMCwNCj4gKwkJTVQ4MTkyX0RJU1BfQ0NPUlIwX1NP
-VVRfU0VMLCBNVDgxOTJfQ0NPUlIwX1NPVVRfQUFMMA0KPiArCX0sIHsNCj4gKwkJRERQX0NPTVBP
-TkVOVF9PVkwwLCBERFBfQ09NUE9ORU5UX09WTF8yTDAsDQo+ICsJCU1UODE5Ml9NTVNZU19PVkxf
-TU9VVF9FTiwgTVQ4MTkyX0RJU1BfT1ZMMF9HT19CRywNCj4gKwl9LCB7DQo+ICsJCUREUF9DT01Q
-T05FTlRfT1ZMXzJMMCwgRERQX0NPTVBPTkVOVF9SRE1BMCwNCj4gKwkJTVQ4MTkyX01NU1lTX09W
-TF9NT1VUX0VOLCBNVDgxOTJfRElTUF9PVkwwXzJMX0dPX0JMRU5ELA0KPiArCX0NCj4gK307DQo+
-ICsNCj4gKyNlbmRpZiAvKiBfX1NPQ19NRURJQVRFS19NVDgxOTJfTU1TWVNfSCAqLw0KPiArDQo+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstbW1zeXMuYw0KPiBiL2RyaXZl
-cnMvc29jL21lZGlhdGVrL210ay1tbXN5cy5jDQo+IGluZGV4IDc5ZTU1MTUuLmM3NTU2MTcgMTAw
-NjQ0DQo+IC0tLSBhL2RyaXZlcnMvc29jL21lZGlhdGVrL210ay1tbXN5cy5jDQo+ICsrKyBiL2Ry
-aXZlcnMvc29jL21lZGlhdGVrL210ay1tbXN5cy5jDQo+IEBAIC0xMiw2ICsxMiw3IEBADQo+ICAN
-Cj4gICNpbmNsdWRlICJtdGstbW1zeXMuaCINCj4gICNpbmNsdWRlICJtdDgxODMtbW1zeXMuaCIN
-Cj4gKyNpbmNsdWRlICJtdDgxOTItbW1zeXMuaCINCj4gIA0KPiAgc3RhdGljIGNvbnN0IHN0cnVj
-dCBtdGtfbW1zeXNfZHJpdmVyX2RhdGEgbXQyNzAxX21tc3lzX2RyaXZlcl9kYXRhID0NCj4gew0K
-PiAgCS5jbGtfZHJpdmVyID0gImNsay1tdDI3MDEtbW0iLA0KPiBAQCAtNDUsNiArNDYsMTIgQEAN
-Cj4gIAkubnVtX3JvdXRlcyA9IEFSUkFZX1NJWkUobW1zeXNfbXQ4MTgzX3JvdXRpbmdfdGFibGUp
-LA0KPiAgfTsNCj4gIA0KPiArc3RhdGljIGNvbnN0IHN0cnVjdCBtdGtfbW1zeXNfZHJpdmVyX2Rh
-dGEgbXQ4MTkyX21tc3lzX2RyaXZlcl9kYXRhID0NCj4gew0KPiArCS5jbGtfZHJpdmVyID0gImNs
-ay1tdDgxOTItbW0iLA0KPiArCS5yb3V0ZXMgPSBtbXN5c19tdDgxOTJfcm91dGluZ190YWJsZSwN
-Cj4gKwkubnVtX3JvdXRlcyA9IEFSUkFZX1NJWkUobW1zeXNfbXQ4MTkyX3JvdXRpbmdfdGFibGUp
-LA0KPiArfTsNCj4gKw0KPiAgc3RydWN0IG10a19tbXN5cyB7DQo+ICAJdm9pZCBfX2lvbWVtICpy
-ZWdzOw0KPiAgCWNvbnN0IHN0cnVjdCBtdGtfbW1zeXNfZHJpdmVyX2RhdGEgKmRhdGE7DQoNCkhp
-IFlvbmdxaWFuZywNCg0KVGhlcmUgaXMgODE5MiBtbXN5cyBjb21wYXRpYmxlIGRhdGEgaW4gWzFd
-LCBidXQgc2VlbXMgdG8gbGFjayBvZiBpdCBpbg0KdGhpcyBwYXRjaCwgYmVjYXVzZSBtbSBjbG9j
-ayBkcml2ZXIgd2lsbCBiZSBib3VuZCB0byBwbGF0Zm9ybSBkZXZpY2UgDQppbiBtdGtfbW1zeXNf
-cHJvYmUuDQoNClsxXSANCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51
-eC1tZWRpYXRlay9wYXRjaC8xNjA5ODE1OTkzLTIyNzQ0LTExLWdpdC1zZW5kLWVtYWlsLXlvbmdx
-aWFuZy5uaXVAbWVkaWF0ZWsuY29tLw0KDQpCZXN0IFJlZ2FyZHMsDQpDaHVuLUppZQ0K
+On Tue 08 Jun 17:44 CDT 2021, Stephen Boyd wrote:
 
+> Quoting Bjorn Andersson (2021-06-08 15:34:01)
+> > On Tue 08 Jun 17:29 CDT 2021, Stephen Boyd wrote:
+> >
+> > > Quoting Bjorn Andersson (2021-06-08 15:26:23)
+> > > > On Tue 08 Jun 17:15 CDT 2021, Stephen Boyd wrote:
+> > > >
+> > > > > Quoting Bjorn Andersson (2021-06-07 16:31:47)
+> > > > > > On Mon 07 Jun 12:48 CDT 2021, khsieh@codeaurora.org wrote:
+> > > > > >
+> > > > > > > Sorry about the confusion. What I meant is that even though DP controller is
+> > > > > > > in the MDSS_GDSC
+> > > > > > > power domain, DP PHY/PLL sources out of CX. The DP link clocks have a direct
+> > > > > > > impact
+> > > > > > > on the CX voltage corners. Therefore, we need to mention the CX power domain
+> > > > > > > here. And, since
+> > > > > > > we can associate only one OPP table with one device, we picked the DP link
+> > > > > > > clock over other
+> > > > > > > clocks.
+> > > > > >
+> > > > > > Thank you, that's a much more useful answer.
+> > > > > >
+> > > > > > Naturally I would think it would make more sense for the PHY/PLL driver
+> > > > > > to ensure that CX is appropriately voted for then, but I think that
+> > > > > > would result in it being the clock driver performing such vote and I'm
+> > > > > > unsure how the opp table for that would look.
+> > > > > >
+> > > > > > @Stephen, what do you say?
+> > > > > >
+> > > > >
+> > > > > Wouldn't the PHY be the one that sets some vote? So it wouldn't be the
+> > > > > clk driver, and probably not from the clk ops, but instead come from the
+> > > > > phy ops via phy_enable() and phy_configure().
+> > > > >
+> > > >
+> > > > If I understand the logic correctly *_configure_dp_phy() will both
+> > > > configure the vco clock and "request" the clock framework to change the
+> > > > rate.
+> > > >
+> > > > So I presume what you're suggesting is that that would be the place to
+> > > > cast the CX corner vote?
+> > >
+> > > Yes that would be a place to make the CX vote. The problem is then I
+> > > don't know where to drop the vote. Is that when the phy is disabled?
+> >
+> > We do pass qcom_qmp_phy_power_off() and power down the DP part as DP
+> > output is being disabled. So that sounds like a reasonable place to drop
+> > the vote for the lowest performance state.
+> >
+> 
+> So then will the corner vote be in place when the PHY isn't actually
+> powered up? That will be bad for power. The phy configure code will need
+> to know if the phy is enabled and then only put in the vote when the phy
+> is enabled, otherwise wait for enable to make the corner vote.
+> 
+
+If we vote for a corner based on the link rate in *_configure_dp_phy()
+and put the vote for lowest corner we'd get the corner part sorted out
+afaict.
+
+We'd still have to make sure that the PHY doesn't hang on to the cx vote
+beyond that though - and implicitly in the non-DP cases...
+
+> Honestly I suspect the DP PHY is _not_ in the CX domain as CX is for
+> digital logic. Probably the PLL is the hardware that has some minimum CX
+> requirement, and that flows down into the various display clks like the
+> link clk that actually clock the DP controller hardware. The mdss_gdsc
+> probably gates CX for the display subsystem (mdss) so if we had proper
+> corner aggregation logic we could indicate that mdss_gdsc is a child of
+> the CX domain and then make requests from the DP driver for particular
+> link frequencies on the mdss_gdsc and then have that bubble up to CX
+> appropriately. I don't think any of that sort of code is in place
+> though, right?
+
+I haven't checked sc7180, but I'm guessing that it's following the other
+modern platforms, where all the MDSS related pieces (including e.g.
+dispcc) lives in the MMCX domain, which is separate from CX.
+
+So the parent of MDSS_GDSC should be MMCX, while Kuogee's answer (and
+the dp-opp-table) tells us that the PLL lives in the CX domain.
+
+
+PS. While this goes for the QMPs the DSI and eDP/DP PHYs (and PLLs)
+seems to live in MMCX.
+
+Regards,
+Bjorn
