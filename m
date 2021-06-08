@@ -2,267 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F8793A06E9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 00:33:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9AA03A06F4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 00:35:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbhFHWfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 18:35:10 -0400
-Received: from smtp.220.in.ua ([89.184.67.205]:49495 "EHLO smtp.220.in.ua"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229548AbhFHWfK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Jun 2021 18:35:10 -0400
-Received: from oleh-pc.lan (unknown [95.67.115.55])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by smtp.220.in.ua (Postfix) with ESMTPSA id 3C3FB1A20473;
-        Wed,  9 Jun 2021 01:33:14 +0300 (EEST)
-From:   Oleh Kravchenko <oleg@kaa.org.ua>
-To:     linux-input@vger.kernel.org
-Cc:     Oleh Kravchenko <oleg@kaa.org.ua>,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Device Tree mailing list <devicetree@vger.kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Jiri Kosina <jikos@jikos.cz>,
-        Patchwork Bot <patchwork-bot@kernel.org>,
-        Rob Herring <robh@kernel.org>, Jeff LaBundy <jeff@labundy.com>
-Subject: [PATCH 2/2 v4] input: add SparkFun Qwiic Joystick driver
-Date:   Wed,  9 Jun 2021 01:31:32 +0300
-Message-Id: <20210608223130.16830-2-oleg@kaa.org.ua>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210608223130.16830-1-oleg@kaa.org.ua>
-References: <20210608223130.16830-1-oleg@kaa.org.ua>
+        id S234092AbhFHWhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 18:37:10 -0400
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:38658 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229548AbhFHWhJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 18:37:09 -0400
+Received: by mail-oi1-f173.google.com with SMTP id z3so23177177oib.5
+        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 15:35:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Z2cNfvcQAcy2ANvLLjZJjzEI5gApw88qpo9VFjprV7o=;
+        b=hjV9Lzd8YhaXBZN4GSOiJj40wzj9SDuNYxR2HaFBNfEVbp/fQ5cK4tOioLD1X2OUX2
+         uYtdPK9q3irwTJJqg/aeChzTLLyMK6ustvInbvS23aX7mlpNB1Ye5eyVlTPZoa8fYIPE
+         yaBQB3exJuY5ybsKj4A4UqrXO/+mqlt8hQpr+2krKZgAQDOUIEOPoyeF9AH9hOyKfdjx
+         ARRBaoXTJv6GvOyeSJSr3gOmCOpO99VTk0MlRCnc4e/w/Kqg0lDhu5r5PfOV00cK7yWF
+         fculQdbq+XRPqnlZXSxCd6Qh9BlnoR4Cu+81sCuK7eoPiA7g8RAHZsTibg2Wi6ibvWX0
+         hM/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Z2cNfvcQAcy2ANvLLjZJjzEI5gApw88qpo9VFjprV7o=;
+        b=qUAbEPmp04Hx124GzOmmIELcDnTSsL71CXu02MK5klhxkJeH1PwTsEKyhWAnCALb5f
+         iLCI49wquZTFrCoysUh5Sc02x+/+ji88PVl7LtrLPYkmZOmU4VRcbNwMk/0p65fqoKUX
+         d9z+N+OqTqBr4WM1zwbujSUq/NlNsqEtSaX5YWKV4v4D/4Cr0Fa4RYpZhYv1szHyjSU2
+         jsPQvNcRE4ITPO4lRp22WPoN9uqgUmU19AA+nKHz5V7AerDahKxFZlovGAV3jM5T6z64
+         XNpVSy43PP2zvcPAzwD7nIqA8Wlw/vjPdqDaPFVXa4f7kj8aL6CNfE2CKAoS5YOJQLxu
+         0QkQ==
+X-Gm-Message-State: AOAM531P1Dl62Qg1kxIA23q0rwZGGqS3dk/bA7DTKIr6lh+RXRCtVabt
+        /wxUDeb4W+lHod05BUF7nvT8Jw==
+X-Google-Smtp-Source: ABdhPJydZSsBQopKHSARPdjPdI/RjKhExqcUJ297JFnLmqUOpbX/lAhjikw1P3if/3WtaIWisSJNKQ==
+X-Received: by 2002:aca:1b0f:: with SMTP id b15mr4150593oib.178.1623191643760;
+        Tue, 08 Jun 2021 15:34:03 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id e19sm315895oiw.24.2021.06.08.15.34.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Jun 2021 15:34:03 -0700 (PDT)
+Date:   Tue, 8 Jun 2021 17:34:01 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     khsieh@codeaurora.org, robdclark@gmail.com, sean@poorly.run,
+        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
+        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
+Message-ID: <YL/wWdRs6e/eECiC@yoga>
+References: <1622736555-15775-1-git-send-email-khsieh@codeaurora.org>
+ <YLkI/6ItCz+SbbuJ@yoga>
+ <ac326ec8689c0babb08b2311e19d52cc@codeaurora.org>
+ <YLxX/YtegtbLmkri@builder.lan>
+ <ef1879fa7ecfefaf0c70c7a4782240a9@codeaurora.org>
+ <YL6sY/1E5wLzMiP/@yoga>
+ <CAE-0n50-X03sMyJdsw7s=Ue0dWXBo=iHOc0HxDQm5yh2J-uS3A@mail.gmail.com>
+ <YL/uj+t+BFkII1Fh@yoga>
+ <CAE-0n50WP25kRQkWMVdDZGsZWBXwfbVSTFKyBLF7f8Mp3x2Wfg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAE-0n50WP25kRQkWMVdDZGsZWBXwfbVSTFKyBLF7f8Mp3x2Wfg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A simple analog joystick built on Low Power ATtiny85 Microcontroller.
-Directional movements are measured with two 10 kΩ potentiometers
-connected with a gimbal mechanism that separates the horizontal and
-vertical movements. This joystick also has a select button that is actuated
-when the joystick is pressed down.
+On Tue 08 Jun 17:29 CDT 2021, Stephen Boyd wrote:
 
-Input events polled over the I2C bus.
+> Quoting Bjorn Andersson (2021-06-08 15:26:23)
+> > On Tue 08 Jun 17:15 CDT 2021, Stephen Boyd wrote:
+> >
+> > > Quoting Bjorn Andersson (2021-06-07 16:31:47)
+> > > > On Mon 07 Jun 12:48 CDT 2021, khsieh@codeaurora.org wrote:
+> > > >
+> > > > > Sorry about the confusion. What I meant is that even though DP controller is
+> > > > > in the MDSS_GDSC
+> > > > > power domain, DP PHY/PLL sources out of CX. The DP link clocks have a direct
+> > > > > impact
+> > > > > on the CX voltage corners. Therefore, we need to mention the CX power domain
+> > > > > here. And, since
+> > > > > we can associate only one OPP table with one device, we picked the DP link
+> > > > > clock over other
+> > > > > clocks.
+> > > >
+> > > > Thank you, that's a much more useful answer.
+> > > >
+> > > > Naturally I would think it would make more sense for the PHY/PLL driver
+> > > > to ensure that CX is appropriately voted for then, but I think that
+> > > > would result in it being the clock driver performing such vote and I'm
+> > > > unsure how the opp table for that would look.
+> > > >
+> > > > @Stephen, what do you say?
+> > > >
+> > >
+> > > Wouldn't the PHY be the one that sets some vote? So it wouldn't be the
+> > > clk driver, and probably not from the clk ops, but instead come from the
+> > > phy ops via phy_enable() and phy_configure().
+> > >
+> >
+> > If I understand the logic correctly *_configure_dp_phy() will both
+> > configure the vco clock and "request" the clock framework to change the
+> > rate.
+> >
+> > So I presume what you're suggesting is that that would be the place to
+> > cast the CX corner vote?
+> 
+> Yes that would be a place to make the CX vote. The problem is then I
+> don't know where to drop the vote. Is that when the phy is disabled?
 
-Product page:
-https://www.sparkfun.com/products/15168
-Firmware and hardware sources:
-https://github.com/sparkfun/Qwiic_Joystick
+We do pass qcom_qmp_phy_power_off() and power down the DP part as DP
+output is being disabled. So that sounds like a reasonable place to drop
+the vote for the lowest performance state.
 
-Tested on RPi4B and O4-iMX-NANO boards.
-
-Cc: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Cc: Device Tree mailing list <devicetree@vger.kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Jiri Kosina <jikos@jikos.cz>
-Cc: Patchwork Bot <patchwork-bot@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
-Reviewed-by: Jeff LaBundy <jeff@labundy.com>
----
-
-Changes for v4:
-- alphabetize include headers.
-
-Changes for v3:
-- rebase patch for device tree before code.
-
-Changes for v2:
-- Separate patch for device tree bindings.
-
- drivers/input/joystick/Kconfig          |   9 ++
- drivers/input/joystick/Makefile         |   1 +
- drivers/input/joystick/qwiic-joystick.c | 147 ++++++++++++++++++++++++
- 3 files changed, 157 insertions(+)
- create mode 100644 drivers/input/joystick/qwiic-joystick.c
-
-diff --git a/drivers/input/joystick/Kconfig b/drivers/input/joystick/Kconfig
-index 5e38899058c1..7dfe8ea90923 100644
---- a/drivers/input/joystick/Kconfig
-+++ b/drivers/input/joystick/Kconfig
-@@ -372,6 +372,15 @@ config JOYSTICK_PXRC
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called pxrc.
- 
-+config JOYSTICK_QWIIC
-+	tristate "SparkFun Qwiic Joystick"
-+	depends on I2C
-+	help
-+	  Say Y here if you want to use the SparkFun Qwiic Joystick.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called qwiic-joystick.
-+
- config JOYSTICK_FSIA6B
- 	tristate "FlySky FS-iA6B RC Receiver"
- 	select SERIO
-diff --git a/drivers/input/joystick/Makefile b/drivers/input/joystick/Makefile
-index 31d720c9e493..5174b8aba2dd 100644
---- a/drivers/input/joystick/Makefile
-+++ b/drivers/input/joystick/Makefile
-@@ -27,6 +27,7 @@ obj-$(CONFIG_JOYSTICK_MAPLE)		+= maplecontrol.o
- obj-$(CONFIG_JOYSTICK_N64)		+= n64joy.o
- obj-$(CONFIG_JOYSTICK_PSXPAD_SPI)	+= psxpad-spi.o
- obj-$(CONFIG_JOYSTICK_PXRC)		+= pxrc.o
-+obj-$(CONFIG_JOYSTICK_QWIIC)		+= qwiic-joystick.o
- obj-$(CONFIG_JOYSTICK_SIDEWINDER)	+= sidewinder.o
- obj-$(CONFIG_JOYSTICK_SPACEBALL)	+= spaceball.o
- obj-$(CONFIG_JOYSTICK_SPACEORB)		+= spaceorb.o
-diff --git a/drivers/input/joystick/qwiic-joystick.c b/drivers/input/joystick/qwiic-joystick.c
-new file mode 100644
-index 000000000000..557708e9e756
---- /dev/null
-+++ b/drivers/input/joystick/qwiic-joystick.c
-@@ -0,0 +1,147 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021 Oleh Kravchenko <oleg@kaa.org.ua>
-+ *
-+ * SparkFun Qwiic Joystick
-+ * Product page:https://www.sparkfun.com/products/15168
-+ * Firmware and hardware sources:https://github.com/sparkfun/Qwiic_Joystick
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/i2c.h>
-+#include <linux/input.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+
-+#define DRV_NAME "qwiic-joystick"
-+
-+#define QWIIC_JSK_REG_VERS	1
-+#define QWIIC_JSK_REG_DATA	3
-+
-+#define QWIIC_JSK_MAX_AXIS	GENMASK(9, 0)
-+#define QWIIC_JSK_FUZZ		2
-+#define QWIIC_JSK_FLAT		2
-+#define QWIIC_JSK_POLL_INTERVAL	16
-+#define QWIIC_JSK_POLL_MIN	8
-+#define QWIIC_JSK_POLL_MAX	32
-+
-+struct qwiic_jsk {
-+	char phys[32];
-+	struct input_dev *dev;
-+	struct i2c_client *client;
-+};
-+
-+struct qwiic_ver {
-+	u8 major;
-+	u8 minor;
-+};
-+
-+struct qwiic_data {
-+	__be16 x;
-+	__be16 y;
-+	u8 thumb;
-+} __packed;
-+
-+static void qwiic_poll(struct input_dev *input)
-+{
-+	struct qwiic_jsk *priv;
-+	struct qwiic_data data;
-+	int err;
-+
-+	priv = input_get_drvdata(input);
-+
-+	err = i2c_smbus_read_i2c_block_data(priv->client, QWIIC_JSK_REG_DATA,
-+					    sizeof(data), (u8 *)&data);
-+	if (err != sizeof(data))
-+		return;
-+
-+	input_report_abs(input, ABS_X, be16_to_cpu(data.x) >> 6);
-+	input_report_abs(input, ABS_Y, be16_to_cpu(data.y) >> 6);
-+	input_report_key(input, BTN_THUMBL, !data.thumb);
-+	input_sync(input);
-+}
-+
-+static int qwiic_probe(struct i2c_client *client,
-+		       const struct i2c_device_id *id)
-+{
-+	struct qwiic_jsk *priv;
-+	struct qwiic_ver vers;
-+	int err;
-+
-+	err = i2c_smbus_read_i2c_block_data(client, QWIIC_JSK_REG_VERS,
-+					    sizeof(vers), (u8 *)&vers);
-+	if (err < 0)
-+		return err;
-+	if (err != sizeof(vers))
-+		return -EIO;
-+
-+	dev_dbg(&client->dev, "SparkFun Qwiic Joystick, FW: %u.%u\n",
-+		vers.major, vers.minor);
-+
-+	priv = devm_kzalloc(&client->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->client = client;
-+	snprintf(priv->phys, sizeof(priv->phys),
-+		 "i2c/%s", dev_name(&client->dev));
-+	i2c_set_clientdata(client, priv);
-+
-+	priv->dev = devm_input_allocate_device(&client->dev);
-+	if (!priv->dev)
-+		return -ENOMEM;
-+
-+	priv->dev->id.bustype = BUS_I2C;
-+	priv->dev->name = "SparkFun Qwiic Joystick";
-+	priv->dev->phys = priv->phys;
-+	input_set_drvdata(priv->dev, priv);
-+
-+	input_set_abs_params(priv->dev, ABS_X, 0, QWIIC_JSK_MAX_AXIS,
-+			     QWIIC_JSK_FUZZ, QWIIC_JSK_FLAT);
-+	input_set_abs_params(priv->dev, ABS_Y, 0, QWIIC_JSK_MAX_AXIS,
-+			     QWIIC_JSK_FUZZ, QWIIC_JSK_FLAT);
-+	input_set_capability(priv->dev, EV_KEY, BTN_THUMBL);
-+
-+	err = input_setup_polling(priv->dev, qwiic_poll);
-+	if (err) {
-+		dev_err(&client->dev, "failed to set up polling: %d\n", err);
-+		return err;
-+	}
-+	input_set_poll_interval(priv->dev, QWIIC_JSK_POLL_INTERVAL);
-+	input_set_min_poll_interval(priv->dev, QWIIC_JSK_POLL_MIN);
-+	input_set_max_poll_interval(priv->dev, QWIIC_JSK_POLL_MAX);
-+
-+	err = input_register_device(priv->dev);
-+	if (err)
-+		dev_err(&client->dev, "failed to register joystick: %d\n", err);
-+
-+	return err;
-+}
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id of_qwiic_match[] = {
-+	{ .compatible = "sparkfun,qwiic-joystick", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, of_qwiic_match);
-+#endif /* CONFIG_OF */
-+
-+static const struct i2c_device_id qwiic_id_table[] = {
-+	{ KBUILD_MODNAME, 0 },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(i2c, qwiic_id_table);
-+
-+static struct i2c_driver qwiic_driver = {
-+	.driver = {
-+		.name		= DRV_NAME,
-+		.of_match_table	= of_match_ptr(of_qwiic_match),
-+	},
-+	.id_table	= qwiic_id_table,
-+	.probe		= qwiic_probe,
-+};
-+module_i2c_driver(qwiic_driver);
-+
-+MODULE_AUTHOR("Oleh Kravchenko <oleg@kaa.org.ua>");
-+MODULE_DESCRIPTION("SparkFun Qwiic Joystick driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.26.3
-
+Regards,
+Bjorn
