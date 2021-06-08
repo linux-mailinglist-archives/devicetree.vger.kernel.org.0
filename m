@@ -2,595 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A0B039F245
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 11:27:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 007B539F289
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 11:36:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229797AbhFHJ3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 05:29:01 -0400
-Received: from mail-ej1-f47.google.com ([209.85.218.47]:41726 "EHLO
-        mail-ej1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbhFHJ3A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 05:29:00 -0400
-Received: by mail-ej1-f47.google.com with SMTP id ho18so20516575ejc.8;
-        Tue, 08 Jun 2021 02:26:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=hO+43ZlBya5VwFbDK66fIGeDDhZ0ig2Bu501KkTdwa0=;
-        b=r/EHsk9uv/R5SQIwCVy2ZjhSjEfXIEiShJqhqBhHPYWaNlgPAGI1X5F63frN8soQBe
-         rH+rA+3hDg3CJIloImkhCIb4XsV6cctFNpkPCflMf1aSCJOmu18bstzPMT0w65RASxdW
-         tHeUTgml2p08orkOvGCwTC/ShyN6/ULsYAc+xLmBMh/9zGHY5wZLJobsJMD4Bc2m/DvQ
-         Td2mlSSsMABRtAlN80mSLsXrMf7748SGy4414MxVcCyGWbWVv+nR2sLQ66p7bVqSTekV
-         GcuKa/Dm3Ds6DETi1zFd6Nk57h+Gp6K2S43Gnmt4sf6GLv6CimX71/CPROWUI3Ds4cV5
-         hdxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=hO+43ZlBya5VwFbDK66fIGeDDhZ0ig2Bu501KkTdwa0=;
-        b=HYtQ9m3AxSf4AssZk1vn6J48m5Iy4H9Lw8B9y9UTfkInr0RQPw0yYmQBiQahazsK3L
-         mTQfLNiWI+jA0uXsG6AcSvNHzoclWIwKW4qKqf1OwHxG2HVwb2T2LP0epplVNZDxBOsq
-         3Iks+fHalKtdjtvAFFwVxVtxLNKN4Hr6402A4RREEKHfMDOEnqRaY0t1yb9bcwarL7Qm
-         0cXK8Te700tL/otomS3rZw+r26fsn3wcpqtxqdlBJHdhbhoaCSwKzF+8WaO6Ioj1fed3
-         JK4E30szealXG1ataIh7u+LQo6CN4JOK3vdasRMj2eHhztCwg9kk97ZnCwJpxz9sZ0/A
-         xyPg==
-X-Gm-Message-State: AOAM533yt5Zu9xqqUdpJHIEJLJX/RFFw0pl3sRD/B97V0ZZDxzB8r3pd
-        S/2HroKYApfX/x2GFF9wz6kqzpIsGj4=
-X-Google-Smtp-Source: ABdhPJxEHH6IzfEOhLJHe5a57moajFcioxgTY5tbiejU8vqeikz56e9Y0Di198RGS5F0S+9Vp+QllQ==
-X-Received: by 2002:a17:906:17c4:: with SMTP id u4mr22688725eje.481.1623144352248;
-        Tue, 08 Jun 2021 02:25:52 -0700 (PDT)
-Received: from localhost.localdomain ([188.26.52.84])
-        by smtp.gmail.com with ESMTPSA id x9sm639783ejc.37.2021.06.08.02.25.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jun 2021 02:25:52 -0700 (PDT)
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Jakub Kicinski <kuba@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v3 net-next 4/4] net: dsa: sja1105: register the MDIO buses for 100base-T1 and 100base-TX
-Date:   Tue,  8 Jun 2021 12:25:38 +0300
-Message-Id: <20210608092538.3920217-5-olteanv@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210608092538.3920217-1-olteanv@gmail.com>
-References: <20210608092538.3920217-1-olteanv@gmail.com>
+        id S229724AbhFHJiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 05:38:01 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:35139 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229678AbhFHJiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 05:38:01 -0400
+X-UUID: 3e9002f43fa04a4f8ece9a742ed08a52-20210608
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=+B2QImP6/+3dV4dUubTd73D2XzItTeRR9Dm1MA2u5aE=;
+        b=lTgFCwz2jqS7rYdq8AlB3TCHlmdYVfQ0e5K23qnsgpDL/GfE9uYxvDarwe84n/tdOqc+4pPW3ggd/TMZXjTqj47PX3Wzzsc7rlxFRLi19BQJ1Ur5t7c/FUfbzxPH4cRKNLijkMFxkct2KhXzDc4C3DjU99jpcG29T8yzotJNs2I=;
+X-UUID: 3e9002f43fa04a4f8ece9a742ed08a52-20210608
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <houlong.wei@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1596794492; Tue, 08 Jun 2021 17:35:59 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 8 Jun
+ 2021 17:35:54 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 8 Jun 2021 17:35:52 +0800
+Message-ID: <1623144943.7079.1.camel@mhfsdcap03>
+Subject: Re: [PATCH v5 08/16] media: mtk-mdp: Get rid of mtk_smi_larb_get/put
+From:   houlong wei <houlong.wei@mediatek.com>
+To:     Yong Wu <yong.wu@mediatek.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "iommu@lists.linux-foundation.org" <iommu@lists.linux-foundation.org>,
+        Youlin Pei =?UTF-8?Q?=28=E8=A3=B4=E5=8F=8B=E6=9E=97=29?= 
+        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Anan Sun =?UTF-8?Q?=28=E5=AD=99=E5=AE=89=E5=AE=89=29?= 
+        <Anan.Sun@mediatek.com>,
+        Chao Hao =?UTF-8?Q?=28=E9=83=9D=E8=B6=85=29?= 
+        <Chao.Hao@mediatek.com>,
+        Ming-Fan Chen =?UTF-8?Q?=28=E9=99=B3=E6=98=8E=E6=B1=8E=29?= 
+        <Ming-Fan.Chen@mediatek.com>,
+        Yi Kuo =?UTF-8?Q?=28=E9=83=AD=E6=87=BF=29?= 
+        <Yi.Kuo@mediatek.com>, "eizan@chromium.org" <eizan@chromium.org>,
+        "acourbot@chromium.org" <acourbot@chromium.org>,
+        Minghsiu Tsai =?UTF-8?Q?=28=E8=94=A1=E6=98=8E=E4=BF=AE=29?= 
+        <Minghsiu.Tsai@mediatek.com>
+Date:   Tue, 8 Jun 2021 17:35:43 +0800
+In-Reply-To: <20210410091128.31823-9-yong.wu@mediatek.com>
+References: <20210410091128.31823-1-yong.wu@mediatek.com>
+         <20210410091128.31823-9-yong.wu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-TM-SNTS-SMTP: 73160F7F9D6C1295E7F9E9F7A0C989361B8103D51415275D79DD2191FBD6D2842000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <vladimir.oltean@nxp.com>
-
-The SJA1110 contains two types of integrated PHYs: one 100base-TX PHY
-and multiple 100base-T1 PHYs.
-
-The access procedure for the 100base-T1 PHYs is also different than it
-is for the 100base-TX one. So we register 2 MDIO buses, one for the
-base-TX and the other for the base-T1. Each bus has an OF node which is
-a child of the "mdio" subnode of the switch, and they are recognized by
-compatible string.
-
-Cc: Russell King <linux@armlinux.org.uk>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
----
-v1->v2: s/"mdio"/"mdios"/ for the name of the container OF node.
-v2->v3: none
-
- drivers/net/dsa/sja1105/Makefile       |   1 +
- drivers/net/dsa/sja1105/sja1105.h      |  19 ++
- drivers/net/dsa/sja1105/sja1105_main.c |  21 +-
- drivers/net/dsa/sja1105/sja1105_mdio.c | 288 +++++++++++++++++++++++++
- drivers/net/dsa/sja1105/sja1105_spi.c  |  30 +++
- 5 files changed, 358 insertions(+), 1 deletion(-)
- create mode 100644 drivers/net/dsa/sja1105/sja1105_mdio.c
-
-diff --git a/drivers/net/dsa/sja1105/Makefile b/drivers/net/dsa/sja1105/Makefile
-index a860e3a910be..40d69e6c0bae 100644
---- a/drivers/net/dsa/sja1105/Makefile
-+++ b/drivers/net/dsa/sja1105/Makefile
-@@ -4,6 +4,7 @@ obj-$(CONFIG_NET_DSA_SJA1105) += sja1105.o
- sja1105-objs := \
-     sja1105_spi.o \
-     sja1105_main.o \
-+    sja1105_mdio.o \
-     sja1105_flower.o \
-     sja1105_ethtool.o \
-     sja1105_devlink.o \
-diff --git a/drivers/net/dsa/sja1105/sja1105.h b/drivers/net/dsa/sja1105/sja1105.h
-index ef6e22c78373..f762f5488a76 100644
---- a/drivers/net/dsa/sja1105/sja1105.h
-+++ b/drivers/net/dsa/sja1105/sja1105.h
-@@ -67,6 +67,12 @@ struct sja1105_regs {
- 	u64 rmii_ref_clk[SJA1105_MAX_NUM_PORTS];
- 	u64 rmii_ext_tx_clk[SJA1105_MAX_NUM_PORTS];
- 	u64 stats[__MAX_SJA1105_STATS_AREA][SJA1105_MAX_NUM_PORTS];
-+	u64 mdio_100base_tx;
-+	u64 mdio_100base_t1;
-+};
-+
-+struct sja1105_mdio_private {
-+	struct sja1105_private *priv;
- };
- 
- enum {
-@@ -78,6 +84,12 @@ enum {
- 	SJA1105_SPEED_MAX,
- };
- 
-+enum sja1105_internal_phy_t {
-+	SJA1105_NO_PHY		= 0,
-+	SJA1105_PHY_BASE_TX,
-+	SJA1105_PHY_BASE_T1,
-+};
-+
- struct sja1105_info {
- 	u64 device_id;
- 	/* Needed for distinction between P and R, and between Q and S
-@@ -123,6 +135,7 @@ struct sja1105_info {
- 	bool supports_rgmii[SJA1105_MAX_NUM_PORTS];
- 	bool supports_sgmii[SJA1105_MAX_NUM_PORTS];
- 	bool supports_2500basex[SJA1105_MAX_NUM_PORTS];
-+	enum sja1105_internal_phy_t internal_phy[SJA1105_MAX_NUM_PORTS];
- 	const u64 port_speed[SJA1105_SPEED_MAX];
- };
- 
-@@ -246,6 +259,8 @@ struct sja1105_private {
- 	enum sja1105_vlan_state vlan_state;
- 	struct devlink_region **regions;
- 	struct sja1105_cbs_entry *cbs;
-+	struct mii_bus *mdio_base_t1;
-+	struct mii_bus *mdio_base_tx;
- 	struct sja1105_tagger_data tagger_data;
- 	struct sja1105_ptp_data ptp_data;
- 	struct sja1105_tas_data tas_data;
-@@ -275,6 +290,10 @@ int sja1105_vlan_filtering(struct dsa_switch *ds, int port, bool enabled,
- 			   struct netlink_ext_ack *extack);
- void sja1105_frame_memory_partitioning(struct sja1105_private *priv);
- 
-+/* From sja1105_mdio.c */
-+int sja1105_mdiobus_register(struct dsa_switch *ds);
-+void sja1105_mdiobus_unregister(struct dsa_switch *ds);
-+
- /* From sja1105_devlink.c */
- int sja1105_devlink_setup(struct dsa_switch *ds);
- void sja1105_devlink_teardown(struct dsa_switch *ds);
-diff --git a/drivers/net/dsa/sja1105/sja1105_main.c b/drivers/net/dsa/sja1105/sja1105_main.c
-index 801cf47d9572..3b031864ad74 100644
---- a/drivers/net/dsa/sja1105/sja1105_main.c
-+++ b/drivers/net/dsa/sja1105/sja1105_main.c
-@@ -168,6 +168,15 @@ static int sja1105_init_mii_settings(struct sja1105_private *priv)
- 			continue;
- 
- 		switch (priv->phy_mode[i]) {
-+		case PHY_INTERFACE_MODE_INTERNAL:
-+			if (priv->info->internal_phy[i] == SJA1105_NO_PHY)
-+				goto unsupported;
-+
-+			mii->xmii_mode[i] = XMII_MODE_MII;
-+			if (priv->info->internal_phy[i] == SJA1105_PHY_BASE_TX)
-+				mii->special[i] = true;
-+
-+			break;
- 		case PHY_INTERFACE_MODE_REVMII:
- 			role = XMII_PHY;
- 			fallthrough;
-@@ -3109,11 +3118,19 @@ static int sja1105_setup(struct dsa_switch *ds)
- 		dev_err(ds->dev, "Failed to register PTP clock: %d\n", rc);
- 		return rc;
- 	}
-+
-+	rc = sja1105_mdiobus_register(ds);
-+	if (rc < 0) {
-+		dev_err(ds->dev, "Failed to register MDIO bus: %pe\n",
-+			ERR_PTR(rc));
-+		goto out_ptp_clock_unregister;
-+	}
-+
- 	/* Create and send configuration down to device */
- 	rc = sja1105_static_config_load(priv);
- 	if (rc < 0) {
- 		dev_err(ds->dev, "Failed to load static config: %d\n", rc);
--		goto out_ptp_clock_unregister;
-+		goto out_mdiobus_unregister;
- 	}
- 	/* Configure the CGU (PHY link modes and speeds) */
- 	rc = priv->info->clocking_setup(priv);
-@@ -3156,6 +3173,8 @@ static int sja1105_setup(struct dsa_switch *ds)
- 
- out_devlink_teardown:
- 	sja1105_devlink_teardown(ds);
-+out_mdiobus_unregister:
-+	sja1105_mdiobus_unregister(ds);
- out_ptp_clock_unregister:
- 	sja1105_ptp_clock_unregister(ds);
- out_static_config_free:
-diff --git a/drivers/net/dsa/sja1105/sja1105_mdio.c b/drivers/net/dsa/sja1105/sja1105_mdio.c
-new file mode 100644
-index 000000000000..8dfd06318b23
---- /dev/null
-+++ b/drivers/net/dsa/sja1105/sja1105_mdio.c
-@@ -0,0 +1,288 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/* Copyright 2021, NXP Semiconductors
-+ */
-+#include <linux/of_mdio.h>
-+#include "sja1105.h"
-+
-+enum sja1105_mdio_opcode {
-+	SJA1105_C45_ADDR = 0,
-+	SJA1105_C22 = 1,
-+	SJA1105_C45_DATA = 2,
-+	SJA1105_C45_DATA_AUTOINC = 3,
-+};
-+
-+static u64 sja1105_base_t1_encode_addr(struct sja1105_private *priv,
-+				       int phy, enum sja1105_mdio_opcode op,
-+				       int xad)
-+{
-+	const struct sja1105_regs *regs = priv->info->regs;
-+
-+	return regs->mdio_100base_t1 | (phy << 7) | (op << 5) | (xad << 0);
-+}
-+
-+static int sja1105_base_t1_mdio_read(struct mii_bus *bus, int phy, int reg)
-+{
-+	struct sja1105_mdio_private *mdio_priv = bus->priv;
-+	struct sja1105_private *priv = mdio_priv->priv;
-+	u64 addr;
-+	u32 tmp;
-+	int rc;
-+
-+	if (reg & MII_ADDR_C45) {
-+		u16 mmd = (reg >> MII_DEVADDR_C45_SHIFT) & 0x1f;
-+
-+		addr = sja1105_base_t1_encode_addr(priv, phy, SJA1105_C45_ADDR,
-+						   mmd);
-+
-+		tmp = reg & MII_REGADDR_C45_MASK;
-+
-+		rc = sja1105_xfer_u32(priv, SPI_WRITE, addr, &tmp, NULL);
-+		if (rc < 0)
-+			return rc;
-+
-+		addr = sja1105_base_t1_encode_addr(priv, phy, SJA1105_C45_DATA,
-+						   mmd);
-+
-+		rc = sja1105_xfer_u32(priv, SPI_READ, addr, &tmp, NULL);
-+		if (rc < 0)
-+			return rc;
-+
-+		return tmp & 0xffff;
-+	}
-+
-+	/* Clause 22 read */
-+	addr = sja1105_base_t1_encode_addr(priv, phy, SJA1105_C22, reg & 0x1f);
-+
-+	rc = sja1105_xfer_u32(priv, SPI_READ, addr, &tmp, NULL);
-+	if (rc < 0)
-+		return rc;
-+
-+	return tmp & 0xffff;
-+}
-+
-+static int sja1105_base_t1_mdio_write(struct mii_bus *bus, int phy, int reg,
-+				      u16 val)
-+{
-+	struct sja1105_mdio_private *mdio_priv = bus->priv;
-+	struct sja1105_private *priv = mdio_priv->priv;
-+	u64 addr;
-+	u32 tmp;
-+	int rc;
-+
-+	if (reg & MII_ADDR_C45) {
-+		u16 mmd = (reg >> MII_DEVADDR_C45_SHIFT) & 0x1f;
-+
-+		addr = sja1105_base_t1_encode_addr(priv, phy, SJA1105_C45_ADDR,
-+						   mmd);
-+
-+		tmp = reg & MII_REGADDR_C45_MASK;
-+
-+		rc = sja1105_xfer_u32(priv, SPI_WRITE, addr, &tmp, NULL);
-+		if (rc < 0)
-+			return rc;
-+
-+		addr = sja1105_base_t1_encode_addr(priv, phy, SJA1105_C45_DATA,
-+						   mmd);
-+
-+		tmp = val & 0xffff;
-+
-+		rc = sja1105_xfer_u32(priv, SPI_WRITE, addr, &tmp, NULL);
-+		if (rc < 0)
-+			return rc;
-+
-+		return 0;
-+	}
-+
-+	/* Clause 22 write */
-+	addr = sja1105_base_t1_encode_addr(priv, phy, SJA1105_C22, reg & 0x1f);
-+
-+	tmp = val & 0xffff;
-+
-+	return sja1105_xfer_u32(priv, SPI_WRITE, addr, &tmp, NULL);
-+}
-+
-+static int sja1105_base_tx_mdio_read(struct mii_bus *bus, int phy, int reg)
-+{
-+	struct sja1105_mdio_private *mdio_priv = bus->priv;
-+	struct sja1105_private *priv = mdio_priv->priv;
-+	const struct sja1105_regs *regs = priv->info->regs;
-+	u32 tmp;
-+	int rc;
-+
-+	rc = sja1105_xfer_u32(priv, SPI_READ, regs->mdio_100base_tx + reg,
-+			      &tmp, NULL);
-+	if (rc < 0)
-+		return rc;
-+
-+	return tmp & 0xffff;
-+}
-+
-+static int sja1105_base_tx_mdio_write(struct mii_bus *bus, int phy, int reg,
-+				      u16 val)
-+{
-+	struct sja1105_mdio_private *mdio_priv = bus->priv;
-+	struct sja1105_private *priv = mdio_priv->priv;
-+	const struct sja1105_regs *regs = priv->info->regs;
-+	u32 tmp = val;
-+
-+	return sja1105_xfer_u32(priv, SPI_WRITE, regs->mdio_100base_tx + reg,
-+				&tmp, NULL);
-+}
-+
-+static int sja1105_mdiobus_base_tx_register(struct sja1105_private *priv,
-+					    struct device_node *mdio_node)
-+{
-+	struct sja1105_mdio_private *mdio_priv;
-+	struct device_node *np;
-+	struct mii_bus *bus;
-+	int rc = 0;
-+
-+	np = of_find_compatible_node(mdio_node, NULL,
-+				     "nxp,sja1110-base-tx-mdio");
-+	if (!np)
-+		return 0;
-+
-+	if (!of_device_is_available(np))
-+		goto out_put_np;
-+
-+	bus = mdiobus_alloc_size(sizeof(*mdio_priv));
-+	if (!bus) {
-+		rc = -ENOMEM;
-+		goto out_put_np;
-+	}
-+
-+	bus->name = "SJA1110 100base-TX MDIO bus";
-+	snprintf(bus->id, MII_BUS_ID_SIZE, "%s-base-tx",
-+		 dev_name(priv->ds->dev));
-+	bus->read = sja1105_base_tx_mdio_read;
-+	bus->write = sja1105_base_tx_mdio_write;
-+	bus->parent = priv->ds->dev;
-+	mdio_priv = bus->priv;
-+	mdio_priv->priv = priv;
-+
-+	rc = of_mdiobus_register(bus, np);
-+	if (rc) {
-+		mdiobus_free(bus);
-+		goto out_put_np;
-+	}
-+
-+	priv->mdio_base_tx = bus;
-+
-+out_put_np:
-+	of_node_put(np);
-+
-+	return 0;
-+}
-+
-+static void sja1105_mdiobus_base_tx_unregister(struct sja1105_private *priv)
-+{
-+	if (!priv->mdio_base_tx)
-+		return;
-+
-+	mdiobus_unregister(priv->mdio_base_tx);
-+	mdiobus_free(priv->mdio_base_tx);
-+	priv->mdio_base_tx = NULL;
-+}
-+
-+static int sja1105_mdiobus_base_t1_register(struct sja1105_private *priv,
-+					    struct device_node *mdio_node)
-+{
-+	struct sja1105_mdio_private *mdio_priv;
-+	struct device_node *np;
-+	struct mii_bus *bus;
-+	int rc = 0;
-+
-+	np = of_find_compatible_node(mdio_node, NULL,
-+				     "nxp,sja1110-base-t1-mdio");
-+	if (!np)
-+		return 0;
-+
-+	if (!of_device_is_available(np))
-+		goto out_put_np;
-+
-+	bus = mdiobus_alloc_size(sizeof(*mdio_priv));
-+	if (!bus) {
-+		rc = -ENOMEM;
-+		goto out_put_np;
-+	}
-+
-+	bus->name = "SJA1110 100base-T1 MDIO bus";
-+	snprintf(bus->id, MII_BUS_ID_SIZE, "%s-base-t1",
-+		 dev_name(priv->ds->dev));
-+	bus->read = sja1105_base_t1_mdio_read;
-+	bus->write = sja1105_base_t1_mdio_write;
-+	bus->parent = priv->ds->dev;
-+	mdio_priv = bus->priv;
-+	mdio_priv->priv = priv;
-+
-+	rc = of_mdiobus_register(bus, np);
-+	if (rc) {
-+		mdiobus_free(bus);
-+		goto out_put_np;
-+	}
-+
-+	priv->mdio_base_t1 = bus;
-+
-+out_put_np:
-+	of_node_put(np);
-+
-+	return rc;
-+}
-+
-+static void sja1105_mdiobus_base_t1_unregister(struct sja1105_private *priv)
-+{
-+	if (!priv->mdio_base_t1)
-+		return;
-+
-+	mdiobus_unregister(priv->mdio_base_t1);
-+	mdiobus_free(priv->mdio_base_t1);
-+	priv->mdio_base_t1 = NULL;
-+}
-+
-+int sja1105_mdiobus_register(struct dsa_switch *ds)
-+{
-+	struct sja1105_private *priv = ds->priv;
-+	const struct sja1105_regs *regs = priv->info->regs;
-+	struct device_node *switch_node = ds->dev->of_node;
-+	struct device_node *mdio_node;
-+	int rc;
-+
-+	mdio_node = of_get_child_by_name(switch_node, "mdios");
-+	if (!mdio_node)
-+		return 0;
-+
-+	if (!of_device_is_available(mdio_node))
-+		goto out_put_mdio_node;
-+
-+	if (regs->mdio_100base_tx != SJA1105_RSV_ADDR) {
-+		rc = sja1105_mdiobus_base_tx_register(priv, mdio_node);
-+		if (rc)
-+			goto err_put_mdio_node;
-+	}
-+
-+	if (regs->mdio_100base_t1 != SJA1105_RSV_ADDR) {
-+		rc = sja1105_mdiobus_base_t1_register(priv, mdio_node);
-+		if (rc)
-+			goto err_free_base_tx_mdiobus;
-+	}
-+
-+out_put_mdio_node:
-+	of_node_put(mdio_node);
-+
-+	return 0;
-+
-+err_free_base_tx_mdiobus:
-+	sja1105_mdiobus_base_tx_unregister(priv);
-+err_put_mdio_node:
-+	of_node_put(mdio_node);
-+
-+	return rc;
-+}
-+
-+void sja1105_mdiobus_unregister(struct dsa_switch *ds)
-+{
-+	struct sja1105_private *priv = ds->priv;
-+
-+	sja1105_mdiobus_base_t1_unregister(priv);
-+	sja1105_mdiobus_base_tx_unregister(priv);
-+}
-diff --git a/drivers/net/dsa/sja1105/sja1105_spi.c b/drivers/net/dsa/sja1105/sja1105_spi.c
-index 187c9fbbd397..54ecb5565761 100644
---- a/drivers/net/dsa/sja1105/sja1105_spi.c
-+++ b/drivers/net/dsa/sja1105/sja1105_spi.c
-@@ -436,6 +436,8 @@ static struct sja1105_regs sja1105et_regs = {
- 	.ptpclkval = 0x18, /* Spans 0x18 to 0x19 */
- 	.ptpclkrate = 0x1A,
- 	.ptpclkcorp = 0x1D,
-+	.mdio_100base_tx = SJA1105_RSV_ADDR,
-+	.mdio_100base_t1 = SJA1105_RSV_ADDR,
- };
- 
- static struct sja1105_regs sja1105pqrs_regs = {
-@@ -473,6 +475,8 @@ static struct sja1105_regs sja1105pqrs_regs = {
- 	.ptpclkrate = 0x1B,
- 	.ptpclkcorp = 0x1E,
- 	.ptpsyncts = 0x1F,
-+	.mdio_100base_tx = SJA1105_RSV_ADDR,
-+	.mdio_100base_t1 = SJA1105_RSV_ADDR,
- };
- 
- static struct sja1105_regs sja1110_regs = {
-@@ -555,6 +559,8 @@ static struct sja1105_regs sja1110_regs = {
- 	.ptpclkrate = SJA1110_SPI_ADDR(0x74),
- 	.ptpclkcorp = SJA1110_SPI_ADDR(0x80),
- 	.ptpsyncts = SJA1110_SPI_ADDR(0x84),
-+	.mdio_100base_tx = 0x1c2400,
-+	.mdio_100base_t1 = 0x1c1000,
- };
- 
- const struct sja1105_info sja1105e_info = {
-@@ -785,6 +791,12 @@ const struct sja1105_info sja1110a_info = {
- 				   false, false, false, false, false, false},
- 	.supports_2500basex	= {false, false, false, true, true,
- 				   false, false, false, false, false, false},
-+	.internal_phy		= {SJA1105_NO_PHY, SJA1105_PHY_BASE_TX,
-+				   SJA1105_NO_PHY, SJA1105_NO_PHY,
-+				   SJA1105_NO_PHY, SJA1105_PHY_BASE_T1,
-+				   SJA1105_PHY_BASE_T1, SJA1105_PHY_BASE_T1,
-+				   SJA1105_PHY_BASE_T1, SJA1105_PHY_BASE_T1,
-+				   SJA1105_PHY_BASE_T1},
- 	.name			= "SJA1110A",
- };
- 
-@@ -824,6 +836,12 @@ const struct sja1105_info sja1110b_info = {
- 				   false, false, false, false, false, false},
- 	.supports_2500basex	= {false, false, false, true, true,
- 				   false, false, false, false, false, false},
-+	.internal_phy		= {SJA1105_NO_PHY, SJA1105_PHY_BASE_TX,
-+				   SJA1105_NO_PHY, SJA1105_NO_PHY,
-+				   SJA1105_NO_PHY, SJA1105_PHY_BASE_T1,
-+				   SJA1105_PHY_BASE_T1, SJA1105_PHY_BASE_T1,
-+				   SJA1105_PHY_BASE_T1, SJA1105_PHY_BASE_T1,
-+				   SJA1105_NO_PHY},
- 	.name			= "SJA1110B",
- };
- 
-@@ -863,6 +881,12 @@ const struct sja1105_info sja1110c_info = {
- 				   false, false, false, false, false, false},
- 	.supports_2500basex	= {false, false, false, false, true,
- 				   false, false, false, false, false, false},
-+	.internal_phy		= {SJA1105_NO_PHY, SJA1105_PHY_BASE_TX,
-+				   SJA1105_NO_PHY, SJA1105_NO_PHY,
-+				   SJA1105_NO_PHY, SJA1105_PHY_BASE_T1,
-+				   SJA1105_PHY_BASE_T1, SJA1105_PHY_BASE_T1,
-+				   SJA1105_NO_PHY, SJA1105_NO_PHY,
-+				   SJA1105_NO_PHY},
- 	.name			= "SJA1110C",
- };
- 
-@@ -900,5 +924,11 @@ const struct sja1105_info sja1110d_info = {
- 				   false, false, false, false, false, false},
- 	.supports_sgmii		= {false, true, true, true, true,
- 				   false, false, false, false, false, false},
-+	.internal_phy		= {SJA1105_NO_PHY, SJA1105_NO_PHY,
-+				   SJA1105_NO_PHY, SJA1105_NO_PHY,
-+				   SJA1105_NO_PHY, SJA1105_PHY_BASE_T1,
-+				   SJA1105_PHY_BASE_T1, SJA1105_PHY_BASE_T1,
-+				   SJA1105_NO_PHY, SJA1105_NO_PHY,
-+				   SJA1105_NO_PHY},
- 	.name			= "SJA1110D",
- };
--- 
-2.25.1
+T24gU2F0LCAyMDIxLTA0LTEwIGF0IDE3OjExICswODAwLCBZb25nIFd1IHdyb3RlOg0KPiBNZWRp
+YVRlayBJT01NVSBoYXMgYWxyZWFkeSBhZGRlZCB0aGUgZGV2aWNlX2xpbmsgYmV0d2VlbiB0aGUg
+Y29uc3VtZXINCj4gYW5kIHNtaS1sYXJiIGRldmljZS4gSWYgdGhlIG1kcCBkZXZpY2UgY2FsbCB0
+aGUgcG1fcnVudGltZV9nZXRfc3luYywNCj4gdGhlIHNtaS1sYXJiJ3MgcG1fcnVudGltZV9nZXRf
+c3luYyBhbHNvIGJlIGNhbGxlZCBhdXRvbWF0aWNhbGx5Lg0KPiANCj4gQ0M6IE1pbmdoc2l1IFRz
+YWkgPG1pbmdoc2l1LnRzYWlAbWVkaWF0ZWsuY29tPg0KPiBDQzogSG91bG9uZyBXZWkgPGhvdWxv
+bmcud2VpQG1lZGlhdGVrLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogWW9uZyBXdSA8eW9uZy53dUBt
+ZWRpYXRlay5jb20+DQo+IFJldmlld2VkLWJ5OiBFdmFuIEdyZWVuIDxldmdyZWVuQGNocm9taXVt
+Lm9yZz4NCj4gLS0tDQo+ICBkcml2ZXJzL21lZGlhL3BsYXRmb3JtL210ay1tZHAvbXRrX21kcF9j
+b21wLmMgfCA0MCAtLS0tLS0tLS0tLS0tLS0tLS0tDQo+ICBkcml2ZXJzL21lZGlhL3BsYXRmb3Jt
+L210ay1tZHAvbXRrX21kcF9jb21wLmggfCAgMiAtDQo+ICBkcml2ZXJzL21lZGlhL3BsYXRmb3Jt
+L210ay1tZHAvbXRrX21kcF9jb3JlLmMgfCAgMSAtDQo+ICAzIGZpbGVzIGNoYW5nZWQsIDQzIGRl
+bGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRr
+LW1kcC9tdGtfbWRwX2NvbXAuYyBiL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLW1kcC9tdGtf
+bWRwX2NvbXAuYw0KPiBpbmRleCBiMzQyNmE1NTFiZWEuLjFlMzgzM2YxYzlhZSAxMDA2NDQNCj4g
+LS0tIGEvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstbWRwL210a19tZHBfY29tcC5jDQo+ICsr
+KyBiL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLW1kcC9tdGtfbWRwX2NvbXAuYw0KPiBAQCAt
+OSw3ICs5LDYgQEANCj4gICNpbmNsdWRlIDxsaW51eC9vZi5oPg0KPiAgI2luY2x1ZGUgPGxpbnV4
+L29mX2FkZHJlc3MuaD4NCj4gICNpbmNsdWRlIDxsaW51eC9vZl9wbGF0Zm9ybS5oPg0KPiAtI2lu
+Y2x1ZGUgPHNvYy9tZWRpYXRlay9zbWkuaD4NCj4gIA0KPiAgI2luY2x1ZGUgIm10a19tZHBfY29t
+cC5oIg0KPiAgDQo+IEBAIC0xOCwxNCArMTcsNiBAQCB2b2lkIG10a19tZHBfY29tcF9jbG9ja19v
+bihzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBtdGtfbWRwX2NvbXAgKmNvbXApDQo+ICB7DQo+
+ICAJaW50IGksIGVycjsNCj4gIA0KPiAtCWlmIChjb21wLT5sYXJiX2Rldikgew0KPiAtCQllcnIg
+PSBtdGtfc21pX2xhcmJfZ2V0KGNvbXAtPmxhcmJfZGV2KTsNCj4gLQkJaWYgKGVycikNCj4gLQkJ
+CWRldl9lcnIoZGV2LA0KPiAtCQkJCSJmYWlsZWQgdG8gZ2V0IGxhcmIsIGVyciAlZC4gdHlwZTol
+ZFxuIiwNCj4gLQkJCQllcnIsIGNvbXAtPnR5cGUpOw0KPiAtCX0NCj4gLQ0KPiAgCWZvciAoaSA9
+IDA7IGkgPCBBUlJBWV9TSVpFKGNvbXAtPmNsayk7IGkrKykgew0KPiAgCQlpZiAoSVNfRVJSKGNv
+bXAtPmNsa1tpXSkpDQo+ICAJCQljb250aW51ZTsNCj4gQEAgLTQ2LDE3ICszNywxMiBAQCB2b2lk
+IG10a19tZHBfY29tcF9jbG9ja19vZmYoc3RydWN0IGRldmljZSAqZGV2LCBzdHJ1Y3QgbXRrX21k
+cF9jb21wICpjb21wKQ0KPiAgCQkJY29udGludWU7DQo+ICAJCWNsa19kaXNhYmxlX3VucHJlcGFy
+ZShjb21wLT5jbGtbaV0pOw0KPiAgCX0NCj4gLQ0KPiAtCWlmIChjb21wLT5sYXJiX2RldikNCj4g
+LQkJbXRrX3NtaV9sYXJiX3B1dChjb21wLT5sYXJiX2Rldik7DQo+ICB9DQo+ICANCj4gIGludCBt
+dGtfbWRwX2NvbXBfaW5pdChzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBkZXZpY2Vfbm9kZSAq
+bm9kZSwNCj4gIAkJICAgICAgc3RydWN0IG10a19tZHBfY29tcCAqY29tcCwNCj4gIAkJICAgICAg
+ZW51bSBtdGtfbWRwX2NvbXBfdHlwZSBjb21wX3R5cGUpDQo+ICB7DQo+IC0Jc3RydWN0IGRldmlj
+ZV9ub2RlICpsYXJiX25vZGU7DQo+IC0Jc3RydWN0IHBsYXRmb3JtX2RldmljZSAqbGFyYl9wZGV2
+Ow0KPiAgCWludCByZXQ7DQo+ICAJaW50IGk7DQo+ICANCj4gQEAgLTc3LDMyICs2Myw2IEBAIGlu
+dCBtdGtfbWRwX2NvbXBfaW5pdChzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCBkZXZpY2Vfbm9k
+ZSAqbm9kZSwNCj4gIAkJCWJyZWFrOw0KPiAgCX0NCj4gIA0KPiAtCS8qIE9ubHkgRE1BIGNhcGFi
+bGUgY29tcG9uZW50cyBuZWVkIHRoZSBMQVJCIHByb3BlcnR5ICovDQo+IC0JY29tcC0+bGFyYl9k
+ZXYgPSBOVUxMOw0KPiAtCWlmIChjb21wLT50eXBlICE9IE1US19NRFBfUkRNQSAmJg0KPiAtCSAg
+ICBjb21wLT50eXBlICE9IE1US19NRFBfV0RNQSAmJg0KPiAtCSAgICBjb21wLT50eXBlICE9IE1U
+S19NRFBfV1JPVCkNCj4gLQkJcmV0dXJuIDA7DQo+IC0NCj4gLQlsYXJiX25vZGUgPSBvZl9wYXJz
+ZV9waGFuZGxlKG5vZGUsICJtZWRpYXRlayxsYXJiIiwgMCk7DQo+IC0JaWYgKCFsYXJiX25vZGUp
+IHsNCj4gLQkJZGV2X2VycihkZXYsDQo+IC0JCQkiTWlzc2luZyBtZWRpYWRlayxsYXJiIHBoYW5k
+bGUgaW4gJXBPRiBub2RlXG4iLCBub2RlKTsNCj4gLQkJcmV0ID0gLUVJTlZBTDsNCj4gLQkJZ290
+byBwdXRfZGV2Ow0KPiAtCX0NCj4gLQ0KPiAtCWxhcmJfcGRldiA9IG9mX2ZpbmRfZGV2aWNlX2J5
+X25vZGUobGFyYl9ub2RlKTsNCj4gLQlpZiAoIWxhcmJfcGRldikgew0KPiAtCQlkZXZfd2Fybihk
+ZXYsICJXYWl0aW5nIGZvciBsYXJiIGRldmljZSAlcE9GXG4iLCBsYXJiX25vZGUpOw0KPiAtCQlv
+Zl9ub2RlX3B1dChsYXJiX25vZGUpOw0KPiAtCQlyZXQgPSAtRVBST0JFX0RFRkVSOw0KPiAtCQln
+b3RvIHB1dF9kZXY7DQo+IC0JfQ0KPiAtCW9mX25vZGVfcHV0KGxhcmJfbm9kZSk7DQo+IC0NCj4g
+LQljb21wLT5sYXJiX2RldiA9ICZsYXJiX3BkZXYtPmRldjsNCj4gLQ0KPiAgCXJldHVybiAwOw0K
+PiAgDQo+ICBwdXRfZGV2Og0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9t
+dGstbWRwL210a19tZHBfY29tcC5oIGIvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstbWRwL210
+a19tZHBfY29tcC5oDQo+IGluZGV4IDFiZjAyNDJjY2U0Ni4uMzZiYzFiOGY2MjIyIDEwMDY0NA0K
+PiAtLS0gYS9kcml2ZXJzL21lZGlhL3BsYXRmb3JtL210ay1tZHAvbXRrX21kcF9jb21wLmgNCj4g
+KysrIGIvZHJpdmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstbWRwL210a19tZHBfY29tcC5oDQo+IEBA
+IC0yNywxNCArMjcsMTIgQEAgZW51bSBtdGtfbWRwX2NvbXBfdHlwZSB7DQo+ICAgKiBAbm9kZToJ
+bGlzdCBub2RlIHRvIHRyYWNrIHNpYmluZyBNRFAgY29tcG9uZW50cw0KPiAgICogQGRldl9ub2Rl
+Ogljb21wb25lbnQgZGV2aWNlIG5vZGUNCj4gICAqIEBjbGs6CWNsb2NrcyByZXF1aXJlZCBmb3Ig
+Y29tcG9uZW50DQo+IC0gKiBAbGFyYl9kZXY6CVNNSSBkZXZpY2UgcmVxdWlyZWQgZm9yIGNvbXBv
+bmVudA0KPiAgICogQHR5cGU6CWNvbXBvbmVudCB0eXBlDQo+ICAgKi8NCj4gIHN0cnVjdCBtdGtf
+bWRwX2NvbXAgew0KPiAgCXN0cnVjdCBsaXN0X2hlYWQJbm9kZTsNCj4gIAlzdHJ1Y3QgZGV2aWNl
+X25vZGUJKmRldl9ub2RlOw0KPiAgCXN0cnVjdCBjbGsJCSpjbGtbMl07DQo+IC0Jc3RydWN0IGRl
+dmljZQkJKmxhcmJfZGV2Ow0KPiAgCWVudW0gbXRrX21kcF9jb21wX3R5cGUJdHlwZTsNCj4gIH07
+DQo+ICANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLW1kcC9tdGtf
+bWRwX2NvcmUuYyBiL2RyaXZlcnMvbWVkaWEvcGxhdGZvcm0vbXRrLW1kcC9tdGtfbWRwX2NvcmUu
+Yw0KPiBpbmRleCA5NzZhYTFmNDgyOWIuLjcwYThlYWIxNjg2MyAxMDA2NDQNCj4gLS0tIGEvZHJp
+dmVycy9tZWRpYS9wbGF0Zm9ybS9tdGstbWRwL210a19tZHBfY29yZS5jDQo+ICsrKyBiL2RyaXZl
+cnMvbWVkaWEvcGxhdGZvcm0vbXRrLW1kcC9tdGtfbWRwX2NvcmUuYw0KPiBAQCAtMTcsNyArMTcs
+NiBAQA0KPiAgI2luY2x1ZGUgPGxpbnV4L3BsYXRmb3JtX2RldmljZS5oPg0KPiAgI2luY2x1ZGUg
+PGxpbnV4L3BtX3J1bnRpbWUuaD4NCj4gICNpbmNsdWRlIDxsaW51eC93b3JrcXVldWUuaD4NCj4g
+LSNpbmNsdWRlIDxzb2MvbWVkaWF0ZWsvc21pLmg+DQo+ICANCj4gICNpbmNsdWRlICJtdGtfbWRw
+X2NvcmUuaCINCj4gICNpbmNsdWRlICJtdGtfbWRwX20ybS5oIg0KDQpSZXZpZXdlZC1ieTogSG91
+bG9uZyBXZWkgPGhvdWxvbmcud2VpQG1lZGlhdGVrLmNvbT4NCg0K
 
