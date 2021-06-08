@@ -2,64 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6344939F32E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 12:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FD5A39F32F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 12:07:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230460AbhFHKIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 06:08:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46482 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230369AbhFHKIt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 8 Jun 2021 06:08:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D40EA60FE8;
-        Tue,  8 Jun 2021 10:06:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623146817;
-        bh=oKQn07gBiXs7d7y9+nS/ZKudX75ncmwnkheQiYUV7xc=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=fGYQAScRJjNYDaPW8ey9C1Db3VimzcIi7NW3m8Vi2NJzDt8D+iYQkvRF+vNspPIos
-         6e5q03hxtYShf8tFCaAKG/2hqtv93ych1KhKv4rCMWhlmccEq5jM+0+653nfbSdlIc
-         cJTQHnTjriCrTqRzq2GiOJ4GnlMLWzLOVfnMCZgSmSyPn3kMd3DZKPwJp2mgiF+uxp
-         Fw7kPcoOZE8MCkiASU7hSJ3fSMmluMuxPY73r2H6zlHvtnxbIa03G2gVQytKOGNQfu
-         8uJszvvQ56XLyrBlrm1hRIztOsqhRqSFUH59w10ZRiaB1tzBNJgwP6wUOiEDHIIuBl
-         0p/1Zgw2R59dw==
-Message-ID: <31a7c717b404f1dfd82bb2cc3cbd16c4b1830dde.camel@kernel.org>
-Subject: Re: [PATCH] Revert "ARM: dts: bcm283x: increase dwc2's RX FIFO size"
-From:   nicolas saenz julienne <nsaenz@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Pavel Hofman <pavel.hofman@ivitera.com>
-Date:   Tue, 08 Jun 2021 12:06:52 +0200
-In-Reply-To: <1622293371-5997-1-git-send-email-stefan.wahren@i2se.com>
-References: <1622293371-5997-1-git-send-email-stefan.wahren@i2se.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.0 (3.40.0-1.fc34) 
+        id S231177AbhFHKJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 06:09:47 -0400
+Received: from router.aksignal.cz ([62.44.4.214]:60734 "EHLO
+        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231171AbhFHKJr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 06:09:47 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by router.aksignal.cz (Postfix) with ESMTP id 6F964423F0;
+        Tue,  8 Jun 2021 12:07:53 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
+Received: from router.aksignal.cz ([127.0.0.1])
+        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
+        with LMTP id NB2YPxqvotri; Tue,  8 Jun 2021 12:07:53 +0200 (CEST)
+Received: from [172.25.161.48] (unknown [83.240.30.185])
+        (Authenticated sender: jiri.prchal@aksignal.cz)
+        by router.aksignal.cz (Postfix) with ESMTPSA id E0439423EE;
+        Tue,  8 Jun 2021 12:07:52 +0200 (CEST)
+Subject: Re: [PATCH v7 4/5] nvmem: eeprom: at25: export FRAM serial num
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Christian Eggers <ceggers@arri.de>,
+        Arnd Bergmann <arnd@arndb.de>
+References: <20210607122640.143582-1-jiri.prchal@aksignal.cz>
+ <20210607122640.143582-5-jiri.prchal@aksignal.cz>
+ <YL4S2/hlfRwRM+Ug@kroah.com>
+ <56f088fe-8db2-54d4-bef3-72e5f893a414@aksignal.cz>
+ <YL8ybqOfgOqjlpoX@kroah.com>
+ <b1c0eab3-8d07-5c52-300e-45974f7fea9c@aksignal.cz>
+ <YL8+NOdz+ue3MTGg@kroah.com>
+From:   =?UTF-8?B?SmnFmcOtIFByY2hhbA==?= <jiri.prchal@aksignal.cz>
+Message-ID: <e32ad2d9-f2b3-f5de-54e5-fe43cd5403a9@aksignal.cz>
+Date:   Tue, 8 Jun 2021 12:07:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <YL8+NOdz+ue3MTGg@kroah.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2021-05-29 at 15:02 +0200, Stefan Wahren wrote:
-> This reverts commit 278407a53c3b33fb820332c4d39eb39316c3879a.
+
+
+On 08. 06. 21 11:53, Greg Kroah-Hartman wrote:
+>>>> Prints as little endian, is that OK?
+>>>
+>>> You tell me!  What tool is going to be reading this?  What do they
+>>> expect it to look like?
+>>
+>> sh, php in my usecase as unique id.
 > 
-> The original change breaks USB config on Raspberry Pi Zero and Pi 4 B,
-> because it exceeds the total fifo size of 4080. A naive attempt to reduce
-> g-tx-fifo-size doesn't help on Raspberry Pi Zero. So better go back.
+> I am sorry, I do not understand.
+
+In my use case: shell and php.
+
 > 
-> Fixes: 278407a53c3b ("ARM: dts: bcm283x: increase dwc2's RX FIFO size")
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
-> Cc: Pavel Hofman <pavel.hofman@ivitera.com>
-> ---
+>> So endianess does not matter to me too much. The question is what is usual
+>> (like mac address, uuid...?).
+> 
+> What does the device export?  Why not just export it as:
+> 	0123456789ABCDEF
+> if it is 8 bytes long?
 
-Applied for next.
+Yes, device contains 0123456789ABCDEF.
 
-Regards,
-Nicolas
+> 
+>>> And it's a byte array, why would there be endian issues?
+>>
+>> Now is printed as one big number. Not real issue. Just human readability?
+>> Should I turn back it to space separated bytes?
+> 
+> It's up to you, what do you want to do with it and what does a tool want
+> it to look like?
 
+Right now I export it as bytes separated by space. But no problem to 
+change it.
+Just asking: for generic users what would be better or is there "best 
+practice"?
+
+> 
+> thanks,
+> 
+> greg k-h
+> 
