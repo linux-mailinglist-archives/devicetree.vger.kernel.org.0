@@ -2,99 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DBFF3A05EB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 23:25:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C5B03A066E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 23:50:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234628AbhFHV0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 17:26:41 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:49096 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233064AbhFHV0X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 17:26:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1623187470;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=jeq8qRfoRfsbx4uL9oOz0deeKscRGraAzU6rnmI4bDk=;
-        b=GxkaqM3Cf+lORjEVs/ycRRWiFqkfHKDfiF027LswJI54lBhfsj9NQQp0nPa5Hhl65RpmWN
-        cR9KrXaOP/SKWKah1STX8lHUud8rWUeLeTWbLroeY82ldBkwDawx6fcrCcnQpsrHaqx7FH
-        3WKPf69/+eu94o78xVJdUcTodhPMjTo=
-Received: from mail-oo1-f72.google.com (mail-oo1-f72.google.com
- [209.85.161.72]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-60-ktrnKUt-OESXXlY9h2JvQw-1; Tue, 08 Jun 2021 17:24:28 -0400
-X-MC-Unique: ktrnKUt-OESXXlY9h2JvQw-1
-Received: by mail-oo1-f72.google.com with SMTP id r4-20020a4ab5040000b02902446eb55473so14044268ooo.20
-        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 14:24:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jeq8qRfoRfsbx4uL9oOz0deeKscRGraAzU6rnmI4bDk=;
-        b=KFvDd0pOE6Bp2EFNtKUjNF/0esa5jcdWZdODJwfk/39JoC3G5F1fq+WnHpQN2g69hQ
-         wvBGJwGOqJAo82g/L7VGn/Plunzmqwr8ueTpKzxiAqfu6dUq0CaXozJA2Mk7/K8CunaL
-         YivTAllEmbIFf8e1GTpu64+qjYMQlPg5c7j7HwPJQnlK+3SDg60rk+g3x1PVmwrYXCh4
-         nBYQG966h5zbKeWMXE7RZOGRM/GAahn2Og/NNSRzIdREXvqhacM33cQGOsWWE6773K7N
-         mA0IxBJ5p4FwUq1X1yxMQhTAzT1GOqhYqyo7H8XDyEnPzC0RPy3IupP8azK+vYtVn4Aw
-         aT4g==
-X-Gm-Message-State: AOAM530PO4b3w4qiT7W+nI5nRcavUHggsd1qs3ocvF7dAeN1c2a4wcd0
-        do5ZnsfI+VrKquxdwxtAd7CRlqF+jAtiPgDecL0ROZ3nApT50mVIsdk5mT7HTG0nUDnqswsroBP
-        DxMrrcFjZoi8WvmP9C3m0pg==
-X-Received: by 2002:a05:6830:1309:: with SMTP id p9mr12963273otq.209.1623187468231;
-        Tue, 08 Jun 2021 14:24:28 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxKsGI5o2pAZuxgtMx6UsQ5GpgFuru3G9QqB8VKcT3CwJSpYN5gRSP28hE4xYJAJAJCEsUFOQ==
-X-Received: by 2002:a05:6830:1309:: with SMTP id p9mr12963250otq.209.1623187468089;
-        Tue, 08 Jun 2021 14:24:28 -0700 (PDT)
-Received: from localhost.localdomain.com (075-142-250-213.res.spectrum.com. [75.142.250.213])
-        by smtp.gmail.com with ESMTPSA id x199sm1954310oif.5.2021.06.08.14.24.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jun 2021 14:24:27 -0700 (PDT)
-From:   trix@redhat.com
-To:     mdf@kernel.org, robh+dt@kernel.org, hao.wu@intel.com,
-        corbet@lwn.net, fbarrat@linux.ibm.com, ajd@linux.ibm.com,
-        bbrezillon@kernel.org, arno@natisbad.org, schalla@marvell.com,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        gregkh@linuxfoundation.org, Sven.Auhagen@voleatech.de,
-        grandmaster@al2klimov.de
-Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-crypto@vger.kernel.org,
-        linux-staging@lists.linux.dev, Tom Rix <trix@redhat.com>
-Subject: [PATCH 11/11] staging: fpgaboot: change FPGA indirect article to an
-Date:   Tue,  8 Jun 2021 14:23:50 -0700
-Message-Id: <20210608212350.3029742-13-trix@redhat.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210608212350.3029742-1-trix@redhat.com>
-References: <20210608212350.3029742-1-trix@redhat.com>
+        id S234841AbhFHVwD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 17:52:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47300 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234788AbhFHVwC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Jun 2021 17:52:02 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id 80DAD613BE;
+        Tue,  8 Jun 2021 21:50:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623189009;
+        bh=7HaHqXDkQAaRmLuluhwhaz+pMlSPbe51C6w0nDiCRmU=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=iP6t6aRPlOFIxZCTjewUjpLHYg2kCRGviV1B752hTRLqurh/qmP6tWEmJ4d+uuM43
+         tuYfk9J8LddEoRvbGDgNjxyY7FormTJT8aTH7jklV0QNnS6LraOKFC4XtBCxRSfehx
+         SpaPgyaQ7cqU9rmCMbfPqJRzkXdG0qD4Cb57BUbQqRmcf4fMc/9bYNHR9HQZB5cWjn
+         ow4tLwD2+kQD6efQ0MUQDab28jzz1RUso0mMW46I1FLwQu1Dcp0F1X4XnzIuyv+473
+         uwVHj/Xr2dCFjiC/nWz4ZbmS1qippQDc/N7tKrSldCxRwOVQzzYb25HxO/4XRjmSax
+         mKo7HlgmLMEiQ==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 7A558609E3;
+        Tue,  8 Jun 2021 21:50:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 net-next 0/4] Add NXP SJA1110 support to the sja1105 DSA
+ driver
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <162318900949.8715.14591221292425232059.git-patchwork-notify@kernel.org>
+Date:   Tue, 08 Jun 2021 21:50:09 +0000
+References: <20210608092538.3920217-1-olteanv@gmail.com>
+In-Reply-To: <20210608092538.3920217-1-olteanv@gmail.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     kuba@kernel.org, davem@davemloft.net, netdev@vger.kernel.org,
+        f.fainelli@gmail.com, andrew@lunn.ch, vivien.didelot@gmail.com,
+        vladimir.oltean@nxp.com, linux@armlinux.org.uk,
+        hkallweit1@gmail.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tom Rix <trix@redhat.com>
+Hello:
 
-Change use of 'a fpga' to 'an fpga'
+This series was applied to netdev/net-next.git (refs/heads/master):
 
-Signed-off-by: Tom Rix <trix@redhat.com>
----
- drivers/staging/gs_fpgaboot/README | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Tue,  8 Jun 2021 12:25:34 +0300 you wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
+> 
+> The NXP SJA1110 is an automotive Ethernet switch with an embedded Arm
+> Cortex-M7 microcontroller. The switch has 11 ports (10 external + one
+> for the DSA-style connection to the microcontroller).
+> The microcontroller can be disabled and the switch can be controlled
+> over SPI, a la SJA1105 - this is how this driver handles things.
+> 
+> [...]
 
-diff --git a/drivers/staging/gs_fpgaboot/README b/drivers/staging/gs_fpgaboot/README
-index b85a76849fc4a..ec1235a21bcc1 100644
---- a/drivers/staging/gs_fpgaboot/README
-+++ b/drivers/staging/gs_fpgaboot/README
-@@ -39,7 +39,7 @@ TABLE OF CONTENTS.
- 
- 5. USE CASE (from a mailing list discussion with Greg)
- 
--	a. As a FPGA development support tool,
-+	a. As an FPGA development support tool,
- 	During FPGA firmware development, you need to download a new FPGA
- 	image frequently.
- 	You would do that with a dedicated JTAG, which usually a limited
--- 
-2.26.3
+Here is the summary with links:
+  - [v3,net-next,1/4] dt-bindings: net: dsa: sja1105: add SJA1110 bindings
+    https://git.kernel.org/netdev/net-next/c/070f5b701d55
+  - [v3,net-next,2/4] net: dsa: sja1105: add support for the SJA1110 switch family
+    https://git.kernel.org/netdev/net-next/c/3e77e59bf8cf
+  - [v3,net-next,3/4] net: dsa: sja1105: make sure the retagging port is enabled for SJA1110
+    https://git.kernel.org/netdev/net-next/c/ceec8bc0988d
+  - [v3,net-next,4/4] net: dsa: sja1105: register the MDIO buses for 100base-T1 and 100base-TX
+    https://git.kernel.org/netdev/net-next/c/5a8f09748ee7
+
+You are awesome, thank you!
+--
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
