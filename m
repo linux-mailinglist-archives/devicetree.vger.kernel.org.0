@@ -2,114 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1968B3A04C2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 21:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E0D83A050B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Jun 2021 22:18:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234596AbhFHT5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 15:57:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47512 "EHLO
+        id S235041AbhFHUTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 16:19:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234994AbhFHT5g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 15:57:36 -0400
-Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF59EC0617A6
-        for <devicetree@vger.kernel.org>; Tue,  8 Jun 2021 12:55:36 -0700 (PDT)
-Received: by mail-qk1-x732.google.com with SMTP id u30so21444950qke.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 12:55:36 -0700 (PDT)
+        with ESMTP id S234815AbhFHUTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 16:19:22 -0400
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0297DC061787
+        for <devicetree@vger.kernel.org>; Tue,  8 Jun 2021 13:17:27 -0700 (PDT)
+Received: by mail-ot1-x335.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so21606940oth.8
+        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 13:17:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FRQbUUCJlhW9ygh9vvAmC6+FxFn5VHFTqyQsJoOuIsw=;
-        b=Ca/6Ad6FX+g+Vqk4WnMo2PAkqaNvB1HEXCYUDPKBU8/t7N0r6otFmQg71xm8AXQeDa
-         UJBRVWbsjTPmOvoMYOC3gjZYaQeKp/8PBxj4S99oFGkAgqcC0AqV92zp3YOFnsTQktGs
-         NtCNZl7mmbPUQ05Wpp1lE4rkbFHroRLkKCMNO9xF3gSpadAcePhwsoAHlPl6wzummC88
-         g4vS7utFFbr8PPp9VFSH+WgM0obA06qjCTzzAXo2rB/jva+DTa0She9+4Ob7jFliRZp2
-         wSCbeV8vrrrJkOXWN5A3OqXeQJeGvL1r6TVDpGZZsjbf+k0X+mRbgzYUVyjXfQU8PMv1
-         kPZQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=So38bth6mBWT6iiBoQOuRXazg1ugN3YaIyiAe68Qh/M=;
+        b=VuAfbKtmWgPabI31uDdBl82sfzFiBGAm7/ciGwvTc403GGwWNAu7XSAEQE7qzl7LqM
+         N03Wuy8VsfReMphaXsGXviECqa8CAs97t5wmQceiymT64kFWwbQktu76g1uXD+cNNe48
+         4y7dFklcmE96wx+sROdmiU22Ci8e42dUFLbe1ab5kX/+4q2S96thIisu6o3o+sHSYnTW
+         TWJdpK9zvoQfjsgmkM81C1LeYKJY5Nu4lxQIX6roMvh27WhmoLQQ2NQPgbtiCnw0qIfS
+         15IdAj+kGvDGFl8eUJoTeM6BaorRfm4rU832X9gPZCQPQzk61LjM5lWD0r3uJ+4b7us0
+         6hQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FRQbUUCJlhW9ygh9vvAmC6+FxFn5VHFTqyQsJoOuIsw=;
-        b=nqUoUnW0ZgtsNHTdInMK6U42TA9POUwkwZDtQEbwWrJfTMSVnapyWZBs9y/NBIazCF
-         q3atYypImStMNjGM4nU2VzbJMlNBApfHBHIuKbqy0chIRldFatWL/1qhx65rTYcXDxpQ
-         bExeDxY99Q19CNp9bZ9XXalkuUBtQ41sV6uv9MGfbhPst2DUiqq9256Cxs7WoJb4MdfP
-         EgHvxjQ4JZJUNYa2jmALvhZfE5Aa/jUG3ajA+qfl2ZGwoaJI6KR1O7daUA1Fn6tzTO7E
-         BxH3LnkAsiNLkhNoBRpNWFtEAboV9x7cBy75uGQE8LQq1HnX1owM76445flXBGYqzW2r
-         wrwg==
-X-Gm-Message-State: AOAM530yJZojhqRbdHBsOZUFAzuSuNLp9XWCyi0QDV07SD4bfU1A++RA
-        WNWts/cjQ1SZhMQ/VgyYxRCHoFQo90dxp9jsEhisXA==
-X-Google-Smtp-Source: ABdhPJz5fLjQW8AxvyM5NR001PVs62aqLYDy8D6ESFST46GKsM4Pdfn29/ZZkv02E9ikOnZhhzqr4g==
-X-Received: by 2002:a37:444a:: with SMTP id r71mr23015575qka.381.1623182136135;
-        Tue, 08 Jun 2021 12:55:36 -0700 (PDT)
-Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id l141sm643687qke.48.2021.06.08.12.55.35
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=So38bth6mBWT6iiBoQOuRXazg1ugN3YaIyiAe68Qh/M=;
+        b=Dy1t6bPehKAvGewTghwi2LEjcpwilmv/EOwDdK9bIZTnsYUCvWLB4r6knvPmR2uJE4
+         z0YcDi3bfP0SfJkr8Qdi199GtY3uqPzzq1SxbajaBeAJq+HjjlbKtaxv2q5fzg6DTOI+
+         dP7IXgC8+vUi+4xpiWNfm+P5b6EkoAdjjrlhGxTMACndrDE7W3nS2ceZkWl1vmkMllQd
+         CQP1OdfrrXp9NvHdQocD7EJaMhrAtS2v/hO4GLUNdE0awE8GPUjRE/PuUyzKF9GkSZgI
+         bVep2Ts+4uZz8xRYPvuo50BgGYTm5b2CUssL+TC8ali6D9OJ3J/eKd3Ge5r3tmgjViGz
+         5Z+g==
+X-Gm-Message-State: AOAM5304OdxXp8VjQPGcNOYIC3lJBoV45J4tiSdOe3DtAYd5ieDE67Wo
+        ZJ8owWNZcgSgo+8we3i0NWqigg==
+X-Google-Smtp-Source: ABdhPJyZKF1RWsMB7ZjmDMdJI+FRLFEI6UQz8/ft8bojNZcuIrpkXRyQZtuoeYQ4ehCHpYpQBAK+fw==
+X-Received: by 2002:a05:6830:161a:: with SMTP id g26mr12529361otr.62.1623183446592;
+        Tue, 08 Jun 2021 13:17:26 -0700 (PDT)
+Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id i4sm3263231oth.38.2021.06.08.13.17.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jun 2021 12:55:35 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     freedreno@lists.freedesktop.org
-Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        linux-arm-msm@vger.kernel.org (open list:DRM DRIVER FOR MSM ADRENO GPU),
-        dri-devel@lists.freedesktop.org (open list:DRM DRIVER FOR MSM ADRENO
-        GPU),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 2/3] dt-bindings: msm: dsi: document phy-type property for 7nm dsi phy
-Date:   Tue,  8 Jun 2021 15:53:28 -0400
-Message-Id: <20210608195342.18269-3-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20210608195342.18269-1-jonathan@marek.ca>
-References: <20210608195342.18269-1-jonathan@marek.ca>
+        Tue, 08 Jun 2021 13:17:26 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: thermal: tsens: Add sc8180x compatible
+Date:   Tue,  8 Jun 2021 13:16:38 -0700
+Message-Id: <20210608201638.2136344-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document a new phy-type property which will be used to determine whether
-the phy should operate in D-PHY or C-PHY mode.
+The Qualcomm sc8180x platform has the usual tsens blocks, add compatible
+for this.
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- .../devicetree/bindings/display/msm/dsi-phy-7nm.yaml          | 4 ++++
- include/dt-bindings/phy/phy.h                                 | 2 ++
- 2 files changed, 6 insertions(+)
+ Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-index bf16b1c65e10..d447b517ea19 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-@@ -34,6 +34,10 @@ properties:
-     description: |
-       Connected to VDD_A_DSI_PLL_0P9 pin (or VDDA_DSI{0,1}_PLL_0P9 for sm8150)
- 
-+  phy-type:
-+    description: |
-+      D-PHY (default) or C-PHY mode: PHY_TYPE_DSI_DPHY or PHY_TYPE_DSI_CPHY
-+
- required:
-   - compatible
-   - reg
-diff --git a/include/dt-bindings/phy/phy.h b/include/dt-bindings/phy/phy.h
-index 887a31b250a8..b978dac16bb8 100644
---- a/include/dt-bindings/phy/phy.h
-+++ b/include/dt-bindings/phy/phy.h
-@@ -20,5 +20,7 @@
- #define PHY_TYPE_XPCS		7
- #define PHY_TYPE_SGMII		8
- #define PHY_TYPE_QSGMII		9
-+#define PHY_TYPE_DSI_DPHY	10
-+#define PHY_TYPE_DSI_CPHY	11
- 
- #endif /* _DT_BINDINGS_PHY */
+diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+index 0242fd91b622..fdd7c361104f 100644
+--- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
++++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+@@ -46,6 +46,7 @@ properties:
+               - qcom,msm8996-tsens
+               - qcom,msm8998-tsens
+               - qcom,sc7180-tsens
++              - qcom,sc8180x-tsens
+               - qcom,sdm845-tsens
+               - qcom,sm8150-tsens
+               - qcom,sm8250-tsens
 -- 
-2.26.1
+2.29.2
 
