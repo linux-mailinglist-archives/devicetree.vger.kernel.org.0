@@ -2,178 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91D543A1D70
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 21:04:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75CE23A1DAE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 21:26:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbhFITGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 15:06:39 -0400
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:36605 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229925AbhFITGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 15:06:39 -0400
-Received: by mail-ot1-f51.google.com with SMTP id h24-20020a9d64180000b029036edcf8f9a6so25008964otl.3;
-        Wed, 09 Jun 2021 12:04:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=FXSEcfB5SUcNxZP0MOeA1wAez5HsP1pj0Jjf8UKVWHY=;
-        b=JCCgWqfs7qQn8jEgQYxvwda8trtx38SU/Nv9e8oZGbjF9CshLJNWWkX7e8jhtUWVsx
-         wlyWuQc3itRTi7ajWwNcPQ3ec0qjecp/m0gkM/TkdE7ATKrWAWy4tuajkqy7c0n9rpey
-         3e/en1fC9fzje22PazEAwM4H7jj1fJBf1ApgeFOKrAvJ/Kbg40snxE4DgnHoVy3vUF86
-         79EGtKL/yQvazbfknmt3VAMq1W/PyG10TU+tS7s3UPHjJn+YWpm5KmppWnl5xSD1JWrY
-         XU2ZJhrFL+20UgU6vy5S0aESQIQb+tVC9Xy03AdagZ8HKP42tYTuknEJwYSium9lU1Ce
-         8NLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=FXSEcfB5SUcNxZP0MOeA1wAez5HsP1pj0Jjf8UKVWHY=;
-        b=b3yfViebt2dUYgmiVYWaUj28gsRwcatWm55ViFO4e+QvdqDIg/JunFg5I6L6sEcGGJ
-         Nkb3Fn8qLGMRZffkRm3UqbkgNf5Pniky6n33j5/LFvTTUEvExRUDVheIxWZYWv/mK/K9
-         tX+WI/YJOBQ9Z2lVEgJam8ZdmX/jS/PYB6oQlfFFsPlsheWY/m/rzmEkgHpOIAuVUynd
-         sYIAN06Zp4e6Wn3gyJtk+U2jN+Tpo511hL3U0uyJH+YARGdEt4sDn4FzlGSQco+PTgSs
-         30QJb2DSTv++2XsBviHbeOhd9vUJaJVvgX499cQbGwNjLDQRyVZ29G2Y0a7cptTYcuAg
-         m+zw==
-X-Gm-Message-State: AOAM532nIdX+mYquR9kyApcrdR7Y0lB+C5uS2a3xsykKdWP1/J6QQl+Y
-        YhfKs3vZs9/SG1vjg4+lod4=
-X-Google-Smtp-Source: ABdhPJxk/8Iv7ad/klVIULIgyrhCmOs1GL+ozOHGVP+tfW2KZ4GyqhuognVhqSkP1E7tO2JB894rZw==
-X-Received: by 2002:a9d:2f62:: with SMTP id h89mr712491otb.225.1623265423442;
-        Wed, 09 Jun 2021 12:03:43 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 3sm166016otu.52.2021.06.09.12.03.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jun 2021 12:03:42 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 9 Jun 2021 12:03:41 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Fu Wei <fu.wei@linaro.org>, linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: watchdog: Convert arm,sbsa-gwdt to DT schema
-Message-ID: <20210609190341.GB2534956@roeck-us.net>
-References: <20210607194022.3095736-1-robh@kernel.org>
+        id S229499AbhFIT2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 15:28:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35964 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229535AbhFIT2s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Jun 2021 15:28:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E746361403;
+        Wed,  9 Jun 2021 19:26:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623266813;
+        bh=96jmhnDdYUYzWGwtTwwo8iS1dyMXAQKNuE9fkGS8Jp8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QEeuED2qUENZ5eKaeFZq3umwdELglPNxR3cRotVCa4Oo5IP/ZaglO7x6AD14MdWNU
+         8P+AYdzyEBcvxcaHeIvg/rM0p4CZYGk+XjjYgkfaDGm9Q64vn0dI5/qoGoZPWj3sFo
+         UpaKQZNB1EXW8aRdLzNc99VG1fKuOyjVLpznxdXOG3Cb4wdW+veNCumvP7KFB7CAzL
+         ancWjMbJ8bDn92OnLrBC915Ctc8fDuC8IDnv0YDTBFxBat3821kieMJBgWQmh3qizb
+         uP5GNw2QKtQvWtLKsQCvAPizgfhDcFOZLRRbB0kBM2YQ8yXfUN144FEm+NBbgSh3ZX
+         GveVNpCQUHIpA==
+Received: by mail-qk1-f177.google.com with SMTP id i67so24848139qkc.4;
+        Wed, 09 Jun 2021 12:26:53 -0700 (PDT)
+X-Gm-Message-State: AOAM530tSjQ5CL2CKM1N49ZhUuwK+OBZJRZrDc35FdEAkXZ9Nmz8G2ig
+        KABHwpVOzfcn7w5EpWmkVaUw0NdzdUy9AL6WoQ==
+X-Google-Smtp-Source: ABdhPJwIF2VAc3W3tDLHATbFdB2v0fwn3EwAFw2Dy6hysy99DIc0dA4ocPbE/DdU1zN+5F7yffjXWx/yn9jFgvfWsnM=
+X-Received: by 2002:a37:947:: with SMTP id 68mr1188220qkj.364.1623266812990;
+ Wed, 09 Jun 2021 12:26:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210607194022.3095736-1-robh@kernel.org>
+References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
+ <20210609080112.1753221-10-miquel.raynal@bootlin.com> <e431d594-05cd-27b8-fcbe-11c310b99cd3@canonical.com>
+ <20210609153410.53eadf8e@xps13> <77db74d3-c44a-6aa3-1b61-f6bed565fa04@canonical.com>
+ <20210609161128.16cdf5ec@xps13> <32c7adf2-6f4e-ef2d-a137-a9674f9e6baa@canonical.com>
+In-Reply-To: <32c7adf2-6f4e-ef2d-a137-a9674f9e6baa@canonical.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 9 Jun 2021 14:26:41 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJW6Nt5h_gpfd5OgaTjSQGnrH2mCdwDeWvsnq1y_3uV=A@mail.gmail.com>
+Message-ID: <CAL_JsqJW6Nt5h_gpfd5OgaTjSQGnrH2mCdwDeWvsnq1y_3uV=A@mail.gmail.com>
+Subject: Re: [PATCH v22 09/18] dt-binding: memory: pl353-smc: Convert to yaml
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        devicetree@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 07, 2021 at 02:40:22PM -0500, Rob Herring wrote:
-> Convert the arm,sbsa-gwdt binding to DT schema format.
-> 
-> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Fu Wei <fu.wei@linaro.org>
-> Cc: linux-watchdog@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Wed, Jun 9, 2021 at 10:26 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 09/06/2021 16:11, Miquel Raynal wrote:
+> > Hi Krzysztof, Rob,
+> >
+> > Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
+> > Jun 2021 15:54:19 +0200:
+> >
+> >> On 09/06/2021 15:34, Miquel Raynal wrote:
+> >>> Hi Krzysztof,
+> >>>
+> >>> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
+> >>> Jun 2021 14:12:40 +0200:
+> >>>
+> >>>> On 09/06/2021 10:01, Miquel Raynal wrote:
+> >>>>> Convert this binding file to yaml schema.
+> >>>>>
+> >>>>> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> >>>>> ---
+> >>>>>  .../memory-controllers/arm,pl353-smc.yaml     | 133 ++++++++++++++++++
+> >>>>>  .../bindings/memory-controllers/pl353-smc.txt |  45 ------
+> >>>>>  2 files changed, 133 insertions(+), 45 deletions(-)
+> >>>>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> >>>>>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> >>>>> new file mode 100644
+> >>>>> index 000000000000..1de6f87d4986
+> >>>>> --- /dev/null
+> >>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> >>>>> @@ -0,0 +1,133 @@
+> >>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>>>> +%YAML 1.2
+> >>>>> +---
+> >>>>> +$id: http://devicetree.org/schemas/memory-controllers/arm,pl353-smc.yaml#
+> >>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>>> +
+> >>>>> +title: ARM PL353 Static Memory Controller (SMC) device-tree bindings
+> >>>>> +
+> >>>>> +maintainers:
+> >>>>> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> >>>>> +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
+> >>>>> +
+> >>>>> +description:
+> >>>>> +  The PL353 Static Memory Controller is a bus where you can connect two kinds
+> >>>>> +  of memory interfaces, which are NAND and memory mapped interfaces (such as
+> >>>>> +  SRAM or NOR).
+> >>>>> +
+> >>>>> +# We need a select here so we don't match all nodes with 'arm,primecell'
+> >>>>> +select:
+> >>>>> +  properties:
+> >>>>> +    compatible:
+> >>>>> +      contains:
+> >>>>> +        enum:
+> >>>>> +          - arm,pl353-smc-r2p1
+> >>>>
+> >>>> That's a const... but also I don't get the need for select.
+> >>>
+> >>> I think this is needed to ensure this binding is not enforced against
+> >>> arm,primecell compatible nodes which are not featuring the
+> >>> arm,pl353-smc-r2p1 compatible.
+> >>
+> >> Which seems to be result of unusual compatible match, so once you
+> >> convert to regular match, this select is not needed.
+> >
+> > I don't think so, I received a hint from Rob some time ago, he told
+> > me to add this additional select line as in all other arm,primecell
+> > binding.
+> >
+> > Rob, any additional info regarding this?
+>
+> Hmm, I think you' are right. Since arm,primecell is used in many other
+> compatibles (including ones without schema yet), the select is needed.
+>
+> In such case the select can be only:
+>
+> select:
+>   properties:
+>     compatible:
+>       contains:
+>         const: arm,pl353-smc-r2p1
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+The above is true if there's no 'compatible'. So you need 'required: [
+compatible ]' as well.
 
-> ---
->  .../bindings/watchdog/arm,sbsa-gwdt.yaml      | 51 +++++++++++++++++++
->  .../bindings/watchdog/sbsa-gwdt.txt           | 31 -----------
->  2 files changed, 51 insertions(+), 31 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/arm,sbsa-gwdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/sbsa-gwdt.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/arm,sbsa-gwdt.yaml b/Documentation/devicetree/bindings/watchdog/arm,sbsa-gwdt.yaml
-> new file mode 100644
-> index 000000000000..6bfa46353c4e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/arm,sbsa-gwdt.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/arm,sbsa-gwdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SBSA (Server Base System Architecture) Generic Watchdog
-> +
-> +maintainers:
-> +  - Fu Wei <fu.wei@linaro.org>
-> +
-> +description: |
-> +  The SBSA Generic Watchdog Timer is used to force a reset of the system after
-> +  two stages of timeout have elapsed. A detailed definition of the watchdog
-> +  timer can be found in the ARM document: ARM-DEN-0029 - Server Base System
-> +  Architecture (SBSA)
-> +
-> +allOf:
-> +  - $ref: watchdog.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,sbsa-gwdt
-> +
-> +  reg:
-> +    items:
-> +      - description: Watchdog control frame
-> +      - description: Refresh frame
-> +
-> +  interrupts:
-> +    description: The Watchdog Signal 0 (WS0) SPI (Shared Peripheral Interrupt)
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    watchdog@2a440000 {
-> +        compatible = "arm,sbsa-gwdt";
-> +        reg = <0x2a440000 0x1000>,
-> +              <0x2a450000 0x1000>;
-> +        interrupts = <0 27 4>;
-> +        timeout-sec = <30>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/watchdog/sbsa-gwdt.txt b/Documentation/devicetree/bindings/watchdog/sbsa-gwdt.txt
-> deleted file mode 100644
-> index 6f2d5f91964d..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/sbsa-gwdt.txt
-> +++ /dev/null
-> @@ -1,31 +0,0 @@
-> -* SBSA (Server Base System Architecture) Generic Watchdog
-> -
-> -The SBSA Generic Watchdog Timer is used to force a reset of the system
-> -after two stages of timeout have elapsed.  A detailed definition of the
-> -watchdog timer can be found in the ARM document: ARM-DEN-0029 - Server
-> -Base System Architecture (SBSA)
-> -
-> -Required properties:
-> -- compatible: Should at least contain "arm,sbsa-gwdt".
-> -
-> -- reg: Each entry specifies the base physical address of a register frame
-> -  and the length of that frame; currently, two frames must be defined,
-> -  in this order:
-> -  1: Watchdog control frame;
-> -  2: Refresh frame.
-> -
-> -- interrupts: Should contain the Watchdog Signal 0 (WS0) SPI (Shared
-> -  Peripheral Interrupt) number of SBSA Generic Watchdog.
-> -
-> -Optional properties
-> -- timeout-sec: Watchdog timeout values (in seconds).
-> -
-> -Example for FVP Foundation Model v8:
-> -
-> -watchdog@2a440000 {
-> -	compatible = "arm,sbsa-gwdt";
-> -	reg = <0x0 0x2a440000 0 0x1000>,
-> -	      <0x0 0x2a450000 0 0x1000>;
-> -	interrupts = <0 27 4>;
-> -	timeout-sec = <30>;
-> -};
-> -- 
-> 2.27.0
-> 
+Rob
