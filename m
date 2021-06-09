@@ -2,109 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 612853A0F8A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 11:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8A4C3A107C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237889AbhFIJZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 05:25:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54732 "EHLO
+        id S234859AbhFIJqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 05:46:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237982AbhFIJZD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 05:25:03 -0400
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51183C061574
-        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 02:22:52 -0700 (PDT)
-Received: by mail-vs1-xe2f.google.com with SMTP id q2so5085744vsr.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 02:22:52 -0700 (PDT)
+        with ESMTP id S234017AbhFIJqH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 05:46:07 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 088C4C06175F
+        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 02:44:12 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id a11so22859402wrt.13
+        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 02:44:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=g0YZpXNbvNe/aSIMfW/fwl9JTlg+qPtxAYhHQZpkJJ4=;
-        b=CyVtn6ZSLRs1oFQym5BtCew3deGCkiBozlrFzkPIiKz5Rb7UCB26M8AyNnmSisKHTr
-         F1/le1gMmi0RFt6NQF0eucGdqRZgkKDwvYbOOjVt8bCBLLIf3lTcakxEWcNDLAB89nKG
-         4IosI3wPfmZwZhHQSynroTq0O6TTShBe35D+FTlwBf+3t0N1a7XKJ8lXf9U7PYgbVrP7
-         Tb53lyrs2E+NfzJ/u1vOGHtJLC35qtzM1KkFafmPlmXLBKlKUVybXKgcVnniOCWnuMZX
-         J7CXv8iAEtf6FD4DSZOqz4p97tUD7Kj0xj5QL8CMLT6Wb8/FNP0Y5e8EGjMm/b1enD4B
-         GOuA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=n+lFdIy/Fj8w641ouj5kQ8wz/6ZZG0ZHAWeOT4yzbRc=;
+        b=AT64ZswDoaXLxTV5klTqoMfaholatkhAgnHUHUWahtJmGmuFXvejIFYV2hDEh4Rk3O
+         PDGIZWSNjngAhf2i1GUAhAuRbdZyt4r4L6BOpuInByx9+QeUJVeV0PHMpVrQd7krsSxF
+         /tBikZ50LsePM25jiogN+MPuP137zS1/Bpq+O9862lzK7vprtdrHBr+1FbJaCQYp1zBw
+         xiOZYCS9lSQUuALZaaPZwSyTm392hcZhtCagAm+d01KNzUVdfqo7smulok/Utmwxg2vt
+         DTGcUvy0B+AAEAhMD5XTQvmSSbd/mI0FqHAy2In9nE5SA87kIDLgx8Q2hR5YA3dBRMXw
+         8cAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g0YZpXNbvNe/aSIMfW/fwl9JTlg+qPtxAYhHQZpkJJ4=;
-        b=YyANNqG6XXMgvWqiQu50XOz1fCLf5Ufb/PE/JuVhs5PyLmZYEA/iY4ETm5ubWBZn1c
-         eHVr5uwF3OOdClHA5u5BEICM+23jMGFoq+QtzXn/fZj3WlUHYefk6D/8iCLTlBuo8NlP
-         b6+Tx8OgS6jPr5f3uS7O+NDpQUQDVKuhlgB6s5eMt2ddDGuKBSqJJwsaOSF71KLUyvTm
-         /r1ZjKqWjjhL3182FHHjQzClgZZZ2eY7/YCuKMdx9Emgh0Ii0vIK5U7t1Z9mbCyiiGY6
-         HreWw3On9+QperL/sk5mDHCzdXAQWfDBqikV2Y8EKYEdYpC0y7DL9zXbwnzC9hdLV4er
-         76wQ==
-X-Gm-Message-State: AOAM532j5tKRManjYGcxhEk0CrBTHHx/f++YEQhXWby0rxl2ebe/xR2A
-        /B87XaUg2rD+CjnxS9aSY+nPJ9mAelW1cKComJPsWQ==
-X-Google-Smtp-Source: ABdhPJwmQWO+A9c4qf5r1Sf38PiCEAqfFiT0xFdSmkConGycXQzCXk0CGXuaUZiTt7ZCa0L/YNo6OIhaj0pjcUYyCjg=
-X-Received: by 2002:a67:e359:: with SMTP id s25mr3243979vsm.55.1623230571541;
- Wed, 09 Jun 2021 02:22:51 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=n+lFdIy/Fj8w641ouj5kQ8wz/6ZZG0ZHAWeOT4yzbRc=;
+        b=UDuJqPIKjruOBlAi5G0/eVotgWYTFIqPjoITiFWDNPH6ExlaTbJC9UoUuvlk0rf5D0
+         wOUhB6ef6cHwDRxkoMHSmOYSmHBO09WTDxyQDzIBof2zFp935/eZPdn0au4VjOF4YVk6
+         I8nBf0adio4d40VBjUEi8A8wWx9LA8NsDgjgHTrKTCa0rOz/DRvhhKDbGCkQ7rfAgF19
+         nFsoAiuIeRS6XbVvhCfFmXABru4GEnoXw/INLqjCwa14tIvlBQ55SKewrKcf993Mzhez
+         1ZPUcIEWo1JE92asf64tjDpN4NC+SgvtnWJLvm+pxINtivWIV/J7obwAhxz8n5LrH4b3
+         l3uQ==
+X-Gm-Message-State: AOAM530HOFoC2t3ZqZcgDYTJZP/S9pIV0oJoijJI9cIj/rnNLoWQTdSX
+        HLcHA2iDhSROq/uB69wOe9O1qw==
+X-Google-Smtp-Source: ABdhPJwO3THpKtkdcUWrskaIYkB0u8maKDhXBCguE9TgSQU4qzM70G7eqJmGWmGYL8J1rMvvo9H1PA==
+X-Received: by 2002:a5d:67cf:: with SMTP id n15mr27346967wrw.228.1623231850644;
+        Wed, 09 Jun 2021 02:44:10 -0700 (PDT)
+Received: from myrica (adsl-84-226-111-173.adslplus.ch. [84.226.111.173])
+        by smtp.gmail.com with ESMTPSA id m23sm6757801wml.27.2021.06.09.02.44.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Jun 2021 02:44:10 -0700 (PDT)
+Date:   Wed, 9 Jun 2021 11:43:52 +0200
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     Will Deacon <will@kernel.org>
+Cc:     joro@8bytes.org, catalin.marinas@arm.com, kernel-team@android.com,
+        robh+dt@kernel.org, linux-acpi@vger.kernel.org,
+        sudeep.holla@arm.com, robin.murphy@arm.com, guohanjun@huawei.com,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        zhangfei.gao@linaro.org, wangzhou1@hisilicon.com,
+        Jonathan.Cameron@huawei.com, lorenzo.pieralisi@arm.com,
+        linux-arm-kernel@lists.infradead.org, eric.auger@redhat.com,
+        rjw@rjwysocki.net, lenb@kernel.org
+Subject: Re: [PATCH v15 0/3] iommu/arm-smmu-v3: Add stall support
+Message-ID: <YMCNWOkJ/xi2Yv1U@myrica>
+References: <20210526161927.24268-1-jean-philippe@linaro.org>
+ <162314710744.3707892.6632600736379822229.b4-ty@kernel.org>
 MIME-Version: 1.0
-References: <20210602192758.38735-1-alcooperx@gmail.com> <20210602192758.38735-2-alcooperx@gmail.com>
- <CAPDyKFrynST66yA_T3iroiJsfmNuBOEiiBnb=vNoyP6QpvZ7aQ@mail.gmail.com> <fe956941-bb39-413e-f051-d9f353f64eda@gmail.com>
-In-Reply-To: <fe956941-bb39-413e-f051-d9f353f64eda@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 9 Jun 2021 11:22:15 +0200
-Message-ID: <CAPDyKFpEtvjS1mWC68gRBWD64dq2M1LO84UWE5uDLTzbGz1g8Q@mail.gmail.com>
-Subject: Re: [PATCH 2/2] mmc: sdhci-iproc: Add support for the legacy sdhci
- controller on the BCM7211
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Al Cooper <alcooperx@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
-        Scott Branden <sbranden@broadcom.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <162314710744.3707892.6632600736379822229.b4-ty@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Jun 2021 at 05:07, Florian Fainelli <f.fainelli@gmail.com> wrote:
->
->
->
-> On 6/8/2021 5:40 AM, Ulf Hansson wrote:
-> > On Wed, 2 Jun 2021 at 21:28, Al Cooper <alcooperx@gmail.com> wrote:
-> >>
-> >> Add support for the legacy Arasan sdhci controller on the BCM7211 and
-> >> related SoC's. This includes adding a .shutdown callback to increase
-> >> the power savings during S5.
-> >
-> > Please split this into two separate changes.
-> >
-> > May I also ask about the ->shutdown() callback and in relation to S5.
-> > What makes the ->shutdown callback only being invoked for S5?
->
-> It is not only called for S5 (entered via poweroff on a prompt) but also
-> during kexec or reboot. The poweroff path is via:
->
-> kernel_power_off() -> kernel_shutdown_prepare() -> device_shutdown() ->
-> .shutdown()
->
-> For kexec or reboot we do not really care about power savings since we
-> are about to load a new image anyway, however for S5/poweroff we do care
-> about quiescing the eMMC controller in a way that its clocks and the
-> eMMC device can be put into low power mode since we will stay in that
-> mode for seconds/hours/days until someone presses a button on their
-> remote (or other wake-up sources).
+On Tue, Jun 08, 2021 at 12:42:34PM +0100, Will Deacon wrote:
+> On Wed, 26 May 2021 18:19:25 +0200, Jean-Philippe Brucker wrote:
+> > Add stall support for SMMUv3, enabling I/O page faults and SVA for
+> > compatible devices. No change since last version [1], but I'd still like
+> > this to be considered for upstream, because there exists hardware and
+> > applications.
+> > 
+> > Stall is implemented by the Kunpeng 920 processor for its compression
+> > and crypto accelerators, with which I tested the SVA infrastructure.
+> > Using the userspace accelerator API [2], a program can obtain a queue
+> > from one of these devices and submit compression or encryption work
+> > within the program's address space. UADK [3] provides a library to do
+> > this, and there is an openssl plugin [4] to use it.
+> > 
+> > [...]
+> 
+> Applied to will (for-joerg/arm-smmu/updates), thanks!
+> 
+> [1/3] dt-bindings: document stall property for IOMMU masters
+>       https://git.kernel.org/will/c/ed1d08b9d0c9
+> [2/3] ACPI/IORT: Enable stall support for platform devices
+>       https://git.kernel.org/will/c/6522b1e0c78f
+> [3/3] iommu/arm-smmu-v3: Add stall support for platform devices
+>       https://git.kernel.org/will/c/395ad89d11fd
+> 
 
-Hmm, I am not sure I understand correctly. At shutdown we don't care
-about wake-up sources from the kernel point of view, instead we treat
-everything as if it will be powered off.
+Thanks!  That concludes most of the SVA work. For SMMUv3 we still need to
+figure out DVM, there will be PRI at some point, and I'm sure some
+bugfixes but I don't plan to send any other major feature support for the
+next cycles.
 
-We put devices into low power state at system suspend and potentially
-also during some of the hibernation phases.
+Thanks,
+Jean
 
-Graceful shutdown of the eMMC is also managed by the mmc core.
-
-Kind regards
-Uffe
