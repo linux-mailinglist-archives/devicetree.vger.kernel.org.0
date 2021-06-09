@@ -2,90 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04ADB3A120B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 13:07:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D5353A122C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 13:17:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232942AbhFILJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 07:09:01 -0400
-Received: from mail-lj1-f177.google.com ([209.85.208.177]:33303 "EHLO
-        mail-lj1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232750AbhFILJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 07:09:01 -0400
-Received: by mail-lj1-f177.google.com with SMTP id r16so948843ljc.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 04:07:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=edtgaudOZI4aiobavQOBXkJeOQl3hnYi6MVEV9AQq84=;
-        b=ayZr7B/HMgVlC0okdohGCei7GaktNCuF+JQVg9SStH5spMXSHL3MnoVsgcy0gRKsa4
-         pmC0Ygl7wVqf8VNXIa61EBQp1XUesgEtUX6+OLbue18UVTP2J47q+hd2k9/FHzfOHm5z
-         v4s5fWNXcE4/VZXgXHruumXCmX5k8xgRxNY7/zlcN6NTfr5/GC2s1LXU9dTDHZshBKAk
-         fI5MiFrk14taaL/0EL1VY7ryUodwSdjXb05t+Qz7hHFcs3/UjKjSPPUYSd7DSJxsvaO/
-         ziRY4ZuBQwp9SwRC/wZ2DbWTwttmeVHxRTQE75htG42JEINP5VSFO96y+WHJUC6jJULz
-         mX/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=edtgaudOZI4aiobavQOBXkJeOQl3hnYi6MVEV9AQq84=;
-        b=A+E1D17mLFZqVHRx4vR0w1WFLOD4aPANWrgO3CSGI5u8n6TmzXsGLPSGp1DH4zpseW
-         1CX9l03a3gUZLKTHBRmX4GFPLK6DsQP9xULyYu7L8vJGa8t4zAGRbBp91Sdl0Gi8xMTg
-         AmGs9xcRwWk5jraZ+xMakeCJP1MUiTChBgHCjV/CbDp7XBRH1m45Xa8RsaAmy6jebG0X
-         Ksa/sRwt0xGP2vb4zXOeEamDIkyhVLFILE0mg/RyAqi53E4zZPIGtNcmC2VPF1s2tB0l
-         xtWTz+ds6RjV0P9z0AMtdcmm8d8D7DAbU8Gche41+crgxk4mKRXcg2GWiVyyYp6Q9rxX
-         lQcA==
-X-Gm-Message-State: AOAM532EfxhTl/A3VrKx+i/4IimbqH4186DPBtUpeOTRthn/cfIkr/6Y
-        nGJys7+qcoZHqu1o+1LA2L3GM4dHEj+HI/teXDKaBA==
-X-Google-Smtp-Source: ABdhPJzV9fO/orVbfpt+Pzff+qMI9NVxWDVHQAbz6au45P7iPdxzk0Z/yoL6wNzUHNhPVrsLwIbINGn7G3wSbYXVuXg=
-X-Received: by 2002:a05:651c:1411:: with SMTP id u17mr11266433lje.438.1623236765968;
- Wed, 09 Jun 2021 04:06:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210607170555.4006050-1-dianders@chromium.org> <20210607100234.v9.3.I98bf729846c37c4c143f6ab88b1e299280e2fe26@changeid>
-In-Reply-To: <20210607100234.v9.3.I98bf729846c37c4c143f6ab88b1e299280e2fe26@changeid>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 9 Jun 2021 13:05:55 +0200
-Message-ID: <CACRpkdZF_WgoJHExbw8R8ejVkWh7h32VfXQw8mfux_i2+sy-QA@mail.gmail.com>
-Subject: Re: [PATCH v9 03/11] dt-bindings: drm/bridge: ti-sn65dsi86: Add
- aux-bus child
-To:     Douglas Anderson <dianders@chromium.org>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
-        Steev Klimaszewski <steev@kali.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        Lyude Paul <lyude@redhat.com>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Rob Herring <robh@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
+        id S238320AbhFILT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 07:19:26 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:54916 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237302AbhFILT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 07:19:26 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159BHCiP108413;
+        Wed, 9 Jun 2021 06:17:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623237432;
+        bh=42fJCg/ThRtNdB6VcGZs5PPX2/UEAquNHV1MLw62RGA=;
+        h=From:To:CC:Subject:Date;
+        b=XEQ+oGo0ysY18uezmsqxgyaFR+L2jlQYvY0p1TQQ+OP4YfEbxV3x1Bjr3Ze1rda23
+         68sL6S8tl4wKyG1iYsm149JPYLA+1YspsabFKRZv4D9yAux6CbTmHXYZ2h5axy/oGp
+         eMeLqnEth/SJr/bRaguu/E3dSOme64hbExmKgeRQ=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159BHCkC085826
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 9 Jun 2021 06:17:12 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
+ 2021 06:17:11 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 9 Jun 2021 06:17:12 -0500
+Received: from pratyush-OptiPlex-790.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159BH7uF073420;
+        Wed, 9 Jun 2021 06:17:08 -0500
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sandeep Panda <spanda@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Brown <broonie@kernel.org>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-spi@vger.kernel.org>
+CC:     Nishanth Menon <nm@ti.com>, Michael Walle <michael@walle.cc>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>
+Subject: [PATCH 0/2] Add bindings for slave-specific SPI controller properties
+Date:   Wed, 9 Jun 2021 16:47:05 +0530
+Message-ID: <20210609111707.9555-1-p.yadav@ti.com>
+X-Mailer: git-send-email 2.30.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 7:06 PM Douglas Anderson <dianders@chromium.org> wrote:
+Hi,
 
->  The patch ("dt-bindings: drm: Introduce the DP AUX bus") talks about
-> how using the DP AUX bus is better than learning how to slice
-> bread. Let's add it to the ti-sn65dsi86 bindings.
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+This series adds bindings for slave-specific SPI controller properties.
+See patch 1 for more info on the motivations behind this.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+This is the best approach that I came up with with my limited knowledge
+of JSON schema. It has some limitations that are mentioned in patch 1. I
+don't know of any better ways to model this. Suggestions are welcome!
 
-Yours,
-Linus Walleij
+
+Pratyush Yadav (2):
+  spi: dt-bindings: add schema listing slave-specific properties
+  dt-bindings: mtd: spi-nor: Add a reference to spi-slave-props.yaml
+
+ .../bindings/mtd/jedec,spi-nor.yaml           |  3 +-
+ .../bindings/spi/cdns,qspi-nor.yaml           | 33 ------------
+ .../bindings/spi/spi-slave-props.yaml         | 52 +++++++++++++++++++
+ 3 files changed, 54 insertions(+), 34 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/spi-slave-props.yaml
+
+-- 
+2.30.0
+
