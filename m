@@ -2,172 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8A9C3A0D3B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 09:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 726413A0D58
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 09:12:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234947AbhFIHKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 03:10:05 -0400
-Received: from mail-eopbgr1410124.outbound.protection.outlook.com ([40.107.141.124]:6208
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S235073AbhFIHKA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Jun 2021 03:10:00 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mc595umWPDg8PQCK0tFrQmqSfVbmYMz9JJALWNeh+DEFaXNEBwJStbp6LURq7RtoFnjdyF7xWpHO71Vz3g0Eqlue7K22e7DiglESp88sKTt4wQVfJB/V9IcN6mCCm7TWAJq0T2DeR/ToZrIGfpidRSGYhyGZUPtSan6H3XGgOTKT24cwDeibF4A7oLt+kaZS59u2GQc0mnXPmGYnVC2eic284xz6xJEYsrlqn1Oxi6V790fOS3IpsY8H28MKXaG+oxL8HlvKB7gXCb8kDuPYZXuTK+hCXmvdGaZL9yPVd3hDz/RSeVFFSDX5kiPrQHB+RGOGcduldo5IWadNLgndPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NePzZR2srf00vjJKB1Xj1OtHi50CUr015xliIMSqEuU=;
- b=F9KCh0QAEjkwPNmnRj4W/uOZFrPvSXqI+sNLyrLmYnXVY7/pXgYCBSz1fHpJR77/aQ+Lts6NUH7dti+1V7rELmTbBeP61zLSceoRT2Folz1fyuPsSWDJqXBwWOncGvXLfqZKwEI4/OcM0boSjXwiK+VhcteRfAafeT7yAFqv0BH7vVeRUR5OgSPiuYQL47+lnCtYtyyhAc4QPwDVt0WXKF/L/ikwZty4cZgskTFvBhi7IXuWGDYrTSgz0wqnxLxz2XRxJjfZw94tKEh62yQvSW72Rf359oFbBDIY36sHq9VBKZhsr9hvpk+d5zEFnHg2DPF4czgqDj1BUmI08tyhqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NePzZR2srf00vjJKB1Xj1OtHi50CUr015xliIMSqEuU=;
- b=Aa4h/zWEQ1sFrYz/XOUVnl53gUX/D5xG1QU2Nq5FocbA35/OcHhU/Am/g1QHC9A6WgTf0/qAPxTIuW9ec+tiMb29xCMmAwx/CPearT9gnUOb3Rqw9ziKT6xz0PSDLEs7mZfqY56dPL+xAYdUwC/ZgC/dkCagbve8CcSNHNzmhBM=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OS3PR01MB5701.jpnprd01.prod.outlook.com (2603:1096:604:c2::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.27; Wed, 9 Jun
- 2021 07:08:02 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::b834:5e50:2ce8:9ae0]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::b834:5e50:2ce8:9ae0%3]) with mapi id 15.20.4219.021; Wed, 9 Jun 2021
- 07:08:02 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: RE: [PATCH v2 11/12] arm64: dts: renesas: Add initial DTSI for
- RZ/G2{L,LC} SoC's
-Thread-Topic: [PATCH v2 11/12] arm64: dts: renesas: Add initial DTSI for
- RZ/G2{L,LC} SoC's
-Thread-Index: AQHXWMZyYuQzkjFuh0OkiBvnoZpocasD3lhAgAdqnICAAABloA==
-Date:   Wed, 9 Jun 2021 07:08:02 +0000
-Message-ID: <OS0PR01MB5922432E7C5FC1188FAB73FE86369@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20210603221758.10305-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20210603221758.10305-12-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <OS0PR01MB592232BFAF59D5C81CCBE6C7863B9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CAMuHMdWCVsMOnURjS8BP9KW=nYW6q9hEfdb_x5_hLei=1DWp3g@mail.gmail.com>
-In-Reply-To: <CAMuHMdWCVsMOnURjS8BP9KW=nYW6q9hEfdb_x5_hLei=1DWp3g@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linux-m68k.org; dkim=none (message not signed)
- header.d=none;linux-m68k.org; dmarc=none action=none
- header.from=bp.renesas.com;
-x-originating-ip: [193.141.219.20]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 82221a77-82cf-478d-4114-08d92b15523f
-x-ms-traffictypediagnostic: OS3PR01MB5701:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <OS3PR01MB570176E3D87F1FE35615608F86369@OS3PR01MB5701.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5SRY94Vj6w+RAlAj2D60AOMq2XdSB1KulzjM+5b1OWwhrQAHmLf22N85LT63jzJnRDmS2th9TY/vpuCp9C9HsxWhLpA+1Bs+ESVYcaVb/pbSTQypHOUdFu09o7t46YE4b5Ysqlx2665OGINqAWWrrfpK4/Ds8/wshqLrdi4vTVuSzeqB2LtFEIX4vqAGeRgKmPRmNPFnQSu9naSMq9HY0LpyMnT2uj8Dglcz9dvQDgIgEWa1gIeaub+EO4GnoP1ThA5Jh02gBjwt8kLJcX7VzsF7qL8S19KPtZG13Jw03pOo8EqhJPxNZrUIeB4VKxfQ7ihw+9cYHOsbPfqwTP/rS4aTvf4IuOZ0u53zuKjl7oOgc9VLqqRP18D28jGiocMiLByQ21loIDGPvI84wQYZbGYti3QmM6eNudlOucgscQGj23qrQbuZodlEbRhNEz/I8BIMpmCOtaqrs6exHSspfAU2X/79uRon9jAlO4cjXB8RztgQ7OnoO1QnB0+2LAmMvE11XPE+6M/mCgs4DYT7nVvhqxbgqxFJdmOLi6xvpzI/1Gx2/MUDl84Sg+3Q0RG4b7nAl111mp4PELw+TGLLcmXa/WYKQGfueWGrAIcxe44=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39860400002)(376002)(346002)(366004)(136003)(26005)(9686003)(55016002)(66946007)(6506007)(186003)(71200400001)(5660300002)(33656002)(7416002)(6916009)(316002)(66446008)(76116006)(2906002)(86362001)(52536014)(54906003)(66476007)(4326008)(64756008)(66556008)(83380400001)(7696005)(122000001)(8936002)(8676002)(38100700002)(53546011)(478600001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?utf-8?B?aUVadUhVUUZCSXBhaGQyZWsxM1BNQ1V3NnZuQ1JlNEhVNVloWTllMGx1YWlm?=
- =?utf-8?B?T3RwcnNFSTdxNlp1Njl2aXBMbmU0Wk1BVVErZlk2OWh2RVdyaGZ6Sm4wczNN?=
- =?utf-8?B?bG9WZ3VrejRwZ1RkbVF1L3lKejhDOUtzRVJzRUo0Q1lXeGRlamFmaTdRYTI5?=
- =?utf-8?B?czZTQWYvaVgrMXE5OHhLUnRMWFJITTZBd0NSN2tGa3lNcGZCVFR2clNBNWVT?=
- =?utf-8?B?eUxwL3J5M3Q2bnp2akFTbmxEeFl2SExFa01EeGFXQVBMK3B5dFJDcHQ2LzB4?=
- =?utf-8?B?YjZsdW9NOWVQbzFGN3NjaDZ1RWNMWXJDT0hHTElmY1dTSlVmNk5mbDdzQ2Za?=
- =?utf-8?B?SDI3ZU5KTzExQlpOYkErSWw5NUFHZGNxMzNZdnYxNXR0dVpMZzR5bkZtTkV6?=
- =?utf-8?B?a1VwUFN5WkFUUDU2UllwK1pSYUxzSFV1S0dIcWFHTktnNlhTcWs5Z1FlaHJn?=
- =?utf-8?B?aXgwTW9rcndVRHJYRjJ0a0xWZ0NJYld3SDA5eURIVm5DRDRkdWdqTjlabWlC?=
- =?utf-8?B?VysyTU5nQXA0YUMrNitNbklDZFhkQm5CQ2ptaFpFT2dkbVZxeCt1U1dKbjdD?=
- =?utf-8?B?aWRrUkNSLzFtLzdLQllPeG5lYzZValFNWCtMYUNvRG5XS0paRmwxc2pFVHAr?=
- =?utf-8?B?RVJpa1d5OVVOOG5EVWR6SmkyQmJQYkRQR2NGcmRVT2RYOVRld1lBTnNzTzZ4?=
- =?utf-8?B?NU1VV0hURzFiZ2JZV21wTDRxTmd6dVhHcFpqZE02bW1QeFpsVDd2L2x0dzE0?=
- =?utf-8?B?RDVUd2tHKzFncHlZK1pQV0t1aS9YRG1IRlM2YUFjWm8yMzRKaFBxckRmOCt5?=
- =?utf-8?B?dVkySjF6V3RLUVpGVTBYSlpHc3AvRnFnOFF5TlVzbFVwbGYyZXpQc1pOODNu?=
- =?utf-8?B?Wk9pY29IVDVBN1ZpNzNBUWlxNHh1bFg2N01tUE5LRTI4M3RrZTc5YlA3SlJQ?=
- =?utf-8?B?bW41Q05Pem1YaE5LTEFyeFc4SnFiMVU5cHAveUtydWxRL0hWS3BqQ0cyUXND?=
- =?utf-8?B?dGN5QllJVko0LzNsam1pRVBFQXNhTUtubUNsTStPRDZBK1hvamFDT280Mnhy?=
- =?utf-8?B?MStUT0NDMDROZUJKblpJRnh3SXZITkRIT21hKy8xMDJxTnZBNU9RN1FCU3B2?=
- =?utf-8?B?VW5RTUl0NEYycVVSTWF4ZnRTelRrSlJ4aGIxeFFvOThNNndtTDBzUHdyaGM0?=
- =?utf-8?B?MjR6SWN3WGxHRTV0YW9EYTJpYklZaXVwdWF3anYxQzU3K0I2VFVSZnJELzNN?=
- =?utf-8?B?ZG8rczV1Nzh3Q0RHbGRLbzdwZEU3RVdJR0R5RjJDT3U2aVB5WEtPdDBpZ2t6?=
- =?utf-8?B?WG5JVjZzMlBrcUFqSUVHK2wzV1BpRHdzbXFPK2poc0RrODlJRHdBWGV0LzVm?=
- =?utf-8?B?c0h6TStld0JHUlg0Um9iRjdWVW44ZGxJZGc4RzNsdytWMFNUcHBUNmhtK25Y?=
- =?utf-8?B?dmNGeFpZeXZVVVMwWklpakEvcnlqUWZXaTdrRjN0MVVoY0N2QmwvRyt5eFpC?=
- =?utf-8?B?WlNTeFZSdk1zUEZleVpiTXhVdlJBcWNTbzFpeUJqRTFSVzhNbjdzZk5HRkNu?=
- =?utf-8?B?OUh0VTF3UC9EVDNteW5nU3BQbnZGWW9VQnFkaGFuQzlyajBLYkRGaWhmNDV3?=
- =?utf-8?B?WWRnT1poVkRQT1ZFZ2JHWjRTS2JNaytWM1NmUVpiYXV3MUtIelU5VzJnME1Y?=
- =?utf-8?B?ODluRXZxVTNHc1RsNmIrbUVwU3E1MVFWd05QUnBYalI5WEs5a0s4K0dFa1ZT?=
- =?utf-8?Q?oY9Wv83xa5QLT9Q2pODpK1nwLWCUTXc99xT+bsj?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S237066AbhFIHOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 03:14:38 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:46825 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235522AbhFIHOh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 03:14:37 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1623222763; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: To:
+ Subject: Sender; bh=yGggwcGCgMNBKDHzpYRGadeZXnkBj5hEP/vFR0XE154=; b=Ry1F3E9M3D6pJkxKd2VP3zQwDhOqORjuSESgjJOPr6jlCefGrleyEjWz8DxFPJU4qqTYIIC3
+ qypU9Z1zsGCAMzDwHKbqsyC0g6sGXebpiXeIeScUzEl/wMvmZfHINYd5cEkFkoN5v8FtRDly
+ 4aU3BuoOh8hDMXUuifQpwNE89qs=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 60c069dbe27c0cc77f38ce01 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 09 Jun 2021 07:12:27
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id C1D09C43460; Wed,  9 Jun 2021 07:12:26 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.29.24] (unknown [49.37.144.202])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D78A3C433F1;
+        Wed,  9 Jun 2021 07:12:19 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D78A3C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+Subject: Re: [PATCH] Asoc: qcom: Add four speaker support on MI2S secondary
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+References: <20210527073309.28661-1-srivasam@codeaurora.org>
+ <213e1133-0164-03da-1740-c7ca39f3fd8c@linaro.org>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <8483cafd-8dbd-c603-7290-de666376649d@codeaurora.org>
+Date:   Wed, 9 Jun 2021 12:42:17 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82221a77-82cf-478d-4114-08d92b15523f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jun 2021 07:08:02.1719
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lUhDlRgZLEAS+G0npGkAWgd4Zkwdc9eKW3cwUJ5z+0Azv68Dgw5aiWozrwaaGJrX/Td9lwRhsvkIfuBDfyB1RCVD3z8t6wrCMucUPb+Ztds=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5701
+In-Reply-To: <213e1133-0164-03da-1740-c7ca39f3fd8c@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IFN1YmplY3Q6IFJlOiBb
-UEFUQ0ggdjIgMTEvMTJdIGFybTY0OiBkdHM6IHJlbmVzYXM6IEFkZCBpbml0aWFsIERUU0kgZm9y
-DQo+IFJaL0cye0wsTEN9IFNvQydzDQo+IA0KPiBIaSBCaWp1LA0KPiANCj4gT24gRnJpLCBKdW4g
-NCwgMjAyMSBhdCAzOjU1IFBNIEJpanUgRGFzIDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNvbT4N
-Cj4gd3JvdGU6DQo+ID4gPiBTdWJqZWN0OiBbUEFUQ0ggdjIgMTEvMTJdIGFybTY0OiBkdHM6IHJl
-bmVzYXM6IEFkZCBpbml0aWFsIERUU0kgZm9yDQo+ID4gPiBSWi9HMntMLExDfSBTb0Mncw0KPiA+
-ID4NCj4gPiA+IEFkZCBpbml0aWFsIERUU0kgZm9yIFJaL0cye0wsTEN9IFNvQydzLg0KPiA+ID4N
-Cj4gPiA+IEZpbGUgc3RydWN0dXJlOg0KPiA+ID4gcjlhMDdnMDQ0LmR0c2kgID0+IFJaL0cyTCBm
-YW1pbHkgU29DIGNvbW1vbiBwYXJ0cyByOWEwN2cwNDRsMS5kdHNpDQo+ID4gPiA9PiBTcGVjaWZp
-YyB0byBSWi9HMkwgKFI5QTA3RzA0NEwgc2luZ2xlIGNvcnRleCBBNTUpIFNvQw0KPiA+ID4NCj4g
-PiA+IFNpZ25lZC1vZmYtYnk6IExhZCBQcmFiaGFrYXINCj4gPiA+IDxwcmFiaGFrYXIubWFoYWRl
-di1sYWQucmpAYnAucmVuZXNhcy5jb20+DQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBCaWp1IERhcyA8
-YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+IA0KPiA+ID4gLS0tIC9kZXYvbnVsbA0KPiA+
-ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9yZW5lc2FzL3I5YTA3ZzA0NC5kdHNpDQo+IA0K
-PiA+ID4gKyAgICAgICAgICAgICBjcGc6IGNsb2NrLWNvbnRyb2xsZXJAMTEwMTAwMDAgew0KPiA+
-ID4gKyAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAicmVuZXNhcyxyOWEwN2cwNDQt
-Y3BnIjsNCj4gPiA+ICsgICAgICAgICAgICAgICAgICAgICByZWcgPSA8MCAweDExMDEwMDAwIDAg
-MHgxMDAwMD47DQo+ID4NCj4gPiBXaGF0IGFib3V0IFdEVE9WRl9SU1QoMHhCMTApIGFuZCBXRFRS
-U1RfU0VMKDB4QjE0KSByZWdpc3RlcnMsIHRoaXMNCj4gcmVnaXN0ZXJzIHRvIGJlIGhhbmRsZWQg
-YnkgV0RUIGRyaXZlci4NCj4gPiBVbmZvcnR1bmF0ZWx5IGl0IGlzIGluIENQRyBibG9jay4NCj4g
-Pg0KPiA+IFNvIGRvIHdlIG5lZWQgdG8gbWFwIHRoZSBlbnRpcmUgQ1BHIHJlZ2lzdGVycyBvciB1
-cCB0byAweEIwMD8NCj4gPg0KPiA+IEdlZXJ0LCBQcmFiaGFrYXI6IEFueSB0aG91Z2h0cz8NCj4g
-DQo+IEFzIHRoZSByZWdpc3RlcnMgYXJlIHBhcnQgb2YgdGhlIENQRyBibG9jaywgSSB0aGluayB0
-aGV5IHNob3VsZCBiZSBjb3ZlcmVkDQo+IGJ5IHRoZSBDUEcgbm9kZS4gIFlvdSBjYW4gaGFuZGxl
-IHRoZW0gaW4gdGhlIENQRyBkcml2ZXIsIHRocm91Z2ggZnVuY3Rpb25zDQo+IGNhbGxlZCBmcm9t
-IHRoZSBXRFQgZHJpdmVyIChjZnIuIHJjYXJfcnN0X3JlYWRfbW9kZV9waW5zKCkpLg0KDQpHb3Qg
-aXQuIFNpbWlsYXIgY2FzZSBmb3IgV0RUQ1RSTCByZWdpc3RlciB0byBzdG9wIHdhdGNoZG9nLiBU
-aGlzIHJlZ2lzdGVyIGlzIGluIFNZU0MgYmxvY2suIFNvDQp3ZSBuZWVkIHRvIGhhbmRsZSB0aGlz
-IHJlZ2lzdGVyIGluIFNZU0MgZHJpdmVyLg0KDQpDaGVlcnMsDQpCaWp1DQoNCg0KPiANCj4gR3J7
-b2V0amUsZWV0aW5nfXMsDQo+IA0KPiAgICAgICAgICAgICAgICAgICAgICAgICBHZWVydA0KPiAN
-Cj4gLS0NCj4gR2VlcnQgVXl0dGVyaG9ldmVuIC0tIFRoZXJlJ3MgbG90cyBvZiBMaW51eCBiZXlv
-bmQgaWEzMiAtLSBnZWVydEBsaW51eC0NCj4gbTY4ay5vcmcNCj4gDQo+IEluIHBlcnNvbmFsIGNv
-bnZlcnNhdGlvbnMgd2l0aCB0ZWNobmljYWwgcGVvcGxlLCBJIGNhbGwgbXlzZWxmIGEgaGFja2Vy
-Lg0KPiBCdXQgd2hlbiBJJ20gdGFsa2luZyB0byBqb3VybmFsaXN0cyBJIGp1c3Qgc2F5ICJwcm9n
-cmFtbWVyIiBvciBzb21ldGhpbmcNCj4gbGlrZSB0aGF0Lg0KPiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIC0tIExpbnVzIFRvcnZhbGRzDQo=
+Hi Srini,
+
+Thanks for your review comments!!!.
+
+On 5/28/2021 2:06 PM, Srinivas Kandagatla wrote:
+> Hi Srinivasa,
+>
+> On 27/05/2021 08:33, Srinivasa Rao Mandadapu wrote:
+>> Add four speaker support on MI2S secondary block
+>> by using I2S SD1 line on gpio52 pin, and add channel map
+>> control support in the lpass-cpu audio driver.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+>> ---
+>>   sound/soc/qcom/lpass-cpu.c    | 106 +++++++++++++++++++++++++++++++++-
+>>   sound/soc/qcom/lpass-sc7180.c |   1 +
+>>   sound/soc/qcom/lpass.h        |   5 ++
+>>   3 files changed, 111 insertions(+), 1 deletion(-)
+>>
+>
+> This patch looks totally redundant to set_channel_map/get_channel_map 
+> implementation. You should probably consider adding that support to 
+> the qcom_lpass_cpu_dai_ops. And let the machine driver set the channel 
+> map.
+>
+> --srini
+Yes we will do changes accordingly and Post next patch.
+>
+>> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+>> index c62d2612e8f5..88a038a107a7 100644
+>> --- a/sound/soc/qcom/lpass-cpu.c
+>> +++ b/sound/soc/qcom/lpass-cpu.c
+>> @@ -28,6 +28,19 @@
+>>   #define LPASS_CPU_I2S_SD2_3_MASK    GENMASK(3, 2)
+>>   #define LPASS_CPU_I2S_SD0_1_2_MASK    GENMASK(2, 0)
+>>   #define LPASS_CPU_I2S_SD0_1_2_3_MASK    GENMASK(3, 0)
+>> +#define LPASS_CHMAP_IDX_UNKNOWN        -1
+>> +
+>> +/*
+>> + * Channel maps for multi-channel playbacks on MI2S Secondary, up to 
+>> 4 n_ch
+>> + */
+>> +static struct snd_pcm_chmap_elem lpass_chmaps[] = {
+>> +    { .channels = 2,
+>> +      .map = { SNDRV_CHMAP_FL, SNDRV_CHMAP_FR } },
+>> +    { .channels = 4,
+>> +      .map = { SNDRV_CHMAP_FL, SNDRV_CHMAP_FR,
+>> +                SNDRV_CHMAP_RL, SNDRV_CHMAP_RR } },
+>> +    { }
+>> +};
+>>     static int lpass_cpu_init_i2sctl_bitfields(struct device *dev,
+>>               struct lpaif_i2sctl *i2sctl, struct regmap *map)
+>> @@ -86,6 +99,9 @@ static int lpass_cpu_daiops_startup(struct 
+>> snd_pcm_substream *substream,
+>> clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
+>>           return ret;
+>>       }
+>> +    if (drvdata->chmap_info && drvdata->chmap_info->max_channels == 4)
+>> +        drvdata->chmap_info->chmap = lpass_chmaps;
+>> +
+>>       return 0;
+>>   }
+>>   @@ -96,6 +112,7 @@ static void lpass_cpu_daiops_shutdown(struct 
+>> snd_pcm_substream *substream,
+>> clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
+>> clk_unprepare(drvdata->mi2s_bit_clk[dai->driver->id]);
+>> +    drvdata->chmap_idx = LPASS_CHMAP_IDX_UNKNOWN;
+>>   }
+>>     static int lpass_cpu_daiops_hw_params(struct snd_pcm_substream 
+>> *substream,
+>> @@ -224,9 +241,14 @@ static int lpass_cpu_daiops_hw_params(struct 
+>> snd_pcm_substream *substream,
+>>                   ret);
+>>               return ret;
+>>           }
+>> -        if (channels >= 2)
+>> +        if (channels >= 2) {
+>>               ret = regmap_fields_write(i2sctl->spkmono, id,
+>>                            LPAIF_I2SCTL_SPKMONO_STEREO);
+>> +            if (channels == 4)
+>> +                drvdata->chmap_idx = 1;
+>> +            else
+>> +                drvdata->chmap_idx = 0;
+>> +        }
+>>           else
+>>               ret = regmap_fields_write(i2sctl->spkmono, id,
+>>                            LPAIF_I2SCTL_SPKMONO_MONO);
+>> @@ -324,6 +346,84 @@ const struct snd_soc_dai_ops 
+>> asoc_qcom_lpass_cpu_dai_ops = {
+>>   };
+>>   EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_dai_ops);
+>>   +static int lpass_cpu_chmap_ctl_get(struct snd_kcontrol *kcontrol,
+>> +                struct snd_ctl_elem_value *ucontrol)
+>> +{
+>> +    unsigned const char *map;
+>> +    unsigned int i;
+>> +    struct snd_pcm_chmap *info = snd_kcontrol_chip(kcontrol);
+>> +    struct lpass_data *drvdata = info->private_data;
+>> +
+>> +    if (info->max_channels == 2)
+>> +        map = &lpass_chmaps[0].map[0];
+>> +    else if (info->max_channels == 4)
+>> +        map = &lpass_chmaps[1].map[0];
+>> +
+>> +    for (i = 0; i < info->max_channels; i++) {
+>> +        if (drvdata->chmap_idx == LPASS_CHMAP_IDX_UNKNOWN)
+>> +            ucontrol->value.integer.value[i] = 0;
+>> +        else
+>> +            ucontrol->value.integer.value[i] = map[i];
+>> +    }
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static int lpass_cpu_chmap_ctl_set(struct snd_kcontrol *kcontrol,
+>> +                struct snd_ctl_elem_value *ucontrol)
+>> +{
+>> +    unsigned int i;
+>> +    struct snd_pcm_chmap *info = snd_kcontrol_chip(kcontrol);
+>> +    struct lpass_data *drvdata = info->private_data;
+>> +    unsigned char *map;
+>> +
+>> +    if (info->max_channels == 2)
+>> +        map = &lpass_chmaps[0].map[0];
+>> +    else if (info->max_channels == 4)
+>> +        map = &lpass_chmaps[1].map[0];
+>> +
+>> +    for (i = 0; i < info->max_channels; i++) {
+>> +        if (drvdata->chmap_idx == LPASS_CHMAP_IDX_UNKNOWN)
+>> +            map[i] = 0;
+>> +        else
+>> +            map[i] = ucontrol->value.integer.value[i];
+>> +    }
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
+>> +                  struct snd_soc_dai *dai)
+>> +{
+>> +    int ret;
+>> +
+>> +    struct snd_soc_dai_driver *drv = dai->driver;
+>> +    struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+>> +
+>> +    ret =  snd_pcm_add_chmap_ctls(rtd->pcm, SNDRV_PCM_STREAM_PLAYBACK,
+>> +            snd_pcm_alt_chmaps, drv->playback.channels_max, 0,
+>> +            &drvdata->chmap_info);
+>> +    if (ret < 0)
+>> +        return ret;
+>> +
+>> +
+>> +    /*
+>> +     * override handlers
+>> +     */
+>> +    drvdata->chmap_info->private_data = drvdata;
+>> +    drvdata->chmap_info->kctl->get = lpass_cpu_chmap_ctl_get;
+>> +    drvdata->chmap_info->kctl->put = lpass_cpu_chmap_ctl_set;
+>> +
+>> +    /*
+>> +     * default chmap supported is stereo
+>> +     */
+>> +    drvdata->chmap_info->chmap = lpass_chmaps;
+>> +    drvdata->chmap_idx = LPASS_CHMAP_IDX_UNKNOWN;
+>> +
+>> +    return 0;
+>> +}
+>> +EXPORT_SYMBOL_GPL(lpass_cpu_pcm_new);
+>> +
+>>   int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai)
+>>   {
+>>       struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+>> @@ -856,6 +956,10 @@ int asoc_qcom_lpass_cpu_platform_probe(struct 
+>> platform_device *pdev)
+>>                   PTR_ERR(drvdata->mi2s_bit_clk[dai_id]));
+>>               return PTR_ERR(drvdata->mi2s_bit_clk[dai_id]);
+>>           }
+>> +        if (drvdata->mi2s_playback_sd_mode[dai_id] == 
+>> LPAIF_I2SCTL_MODE_QUAD01) {
+>> + variant->dai_driver[dai_id].playback.channels_min = 4;
+>> + variant->dai_driver[dai_id].playback.channels_max = 4;
+>> +        }
+>>       }
+>>         /* Allocation for i2sctl regmap fields */
+>> diff --git a/sound/soc/qcom/lpass-sc7180.c 
+>> b/sound/soc/qcom/lpass-sc7180.c
+>> index 8c168d3c589e..77a556b27cf0 100644
+>> --- a/sound/soc/qcom/lpass-sc7180.c
+>> +++ b/sound/soc/qcom/lpass-sc7180.c
+>> @@ -58,6 +58,7 @@ static struct snd_soc_dai_driver 
+>> sc7180_lpass_cpu_dai_driver[] = {
+>>           },
+>>           .probe    = &asoc_qcom_lpass_cpu_dai_probe,
+>>           .ops    = &asoc_qcom_lpass_cpu_dai_ops,
+>> +        .pcm_new = lpass_cpu_pcm_new,
+>>       }, {
+>>           .id = LPASS_DP_RX,
+>>           .name = "Hdmi",
+>> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
+>> index 83b2e08ade06..fb82591d550c 100644
+>> --- a/sound/soc/qcom/lpass.h
+>> +++ b/sound/soc/qcom/lpass.h
+>> @@ -76,6 +76,9 @@ struct lpass_data {
+>>       /* regmap backed by the low-power audio interface (LPAIF) 
+>> registers */
+>>       struct regmap *lpaif_map;
+>>       struct regmap *hdmiif_map;
+>> +    struct snd_pcm_chmap *chmap_info;
+>> +
+>> +    int chmap_idx;
+>>         /* interrupts from the low-power audio interface (LPAIF) */
+>>       int lpaif_irq;
+>> @@ -259,5 +262,7 @@ void asoc_qcom_lpass_cpu_platform_shutdown(struct 
+>> platform_device *pdev);
+>>   int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev);
+>>   int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai);
+>>   extern const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops;
+>> +int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
+>> +                struct snd_soc_dai *dai);
+>>     #endif /* __LPASS_H__ */
+>>
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
