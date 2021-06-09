@@ -2,185 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B929F3A113F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD563A115E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236549AbhFIKi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 06:38:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43166 "EHLO
+        id S239004AbhFIKm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 06:42:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236283AbhFIKi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 06:38:58 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEF86C06175F
-        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 03:37:03 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id h11-20020a05600c350bb02901b59c28e8b4so3459745wmq.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 03:37:03 -0700 (PDT)
+        with ESMTP id S237682AbhFIKm5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 06:42:57 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D587C061574
+        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 03:41:03 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id p13so8518845pfw.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 03:41:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rYodVtyswGkxjPZ1N4VGwVug/p/tXWlRC7vMIsTSrBI=;
-        b=bPJatgBr7cf/n/nozcV2QXkJ6KuYcmc76wQhAXvk8Hq+0jiCf6/weX5BvAxYuOgBWL
-         tWw35amLPl4/ErMRBcCXdpHGnDsivP8d9+T96WJsPIFQQuvwIwuFoyuH2TlXYHmZ2ekD
-         ZHqceoPEjeLEw6zJEJ06j9uYxHOY54DttYbKMAdqmOlbIrAWgymewLD+n551uHTZtvzs
-         sOjOc8+zgOxmMeABVYyDzKOSdJcSU9UhkbnQi+/fvmYNGPmcUMs04w8EC+rjHzLRf0ns
-         4vQ2+Re0/hFuAliL64jRfAkIloDs4EoP1BMiVF3mO1y7nPY5SiFjRYqqgQMKjLc0z6Y9
-         jWDw==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o3KSqDVs9YRSwE4rOwA0va7NCLHw84o+H5YF3VkLQdM=;
+        b=JtSlkmTPs+H1JCpMlMT4IMsfQa8AN05+Jwzr9y0eMBoFqPN3OLlDF/sSIU2wdbnafj
+         Bvwc8QVi2hybfJT8seIRU25PwWiVOUXoe3zAOyP1PsE0Jbs8WypZ6B02spebC97i8YPP
+         dCTZsIfDepmonyk02MH7akhX/22srZngJ2VAo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rYodVtyswGkxjPZ1N4VGwVug/p/tXWlRC7vMIsTSrBI=;
-        b=jt8Au1ksw0Z//0HGFhR9fhldvkddKCJxWPWe4yct/3BbfzL+IvzI9bjQ0SNnadrEmw
-         0Q2KTEUNi28Hh4cGcBwv/ZkfJlE8TPOURL5xpEj3FNDQ8///qkJLOHNFeTeXOMUjl5EY
-         idIVjIHxfyBI6bUmNmIaQU7aS+aDnLe7LaPO3jnuLhoo+ulad4emo73I/ExY5pTFwjzi
-         B5HZDQCB/XaIVjmRgWE8MQClNzazSkNy80K4KLcSQrXc+L1qvMnPqlkG1ZJ0phJplC/8
-         ydxlYm5z+6sNIXNxFty1Z98+ClrlMJ7/M6LzAUEAZhXR925UIxzHITGJ0kpznFbbGSyS
-         lz0A==
-X-Gm-Message-State: AOAM53311CZ7wMzxkpgs/2iMcCNBfPpwEIn1Y/5ngSg9rdhmV13gH65d
-        xGfpVmW4/kGMOVf5A84tOVmCPW9c5epNyIB5IK4zdA==
-X-Google-Smtp-Source: ABdhPJwOxSjrqbtXWi10C+dUk2jqM3x4JRkuQ+gY4Ec5hihOhUwkVNAF+kUVfPzxoPSu0goTPjfOIV7UIM3SddRgI/Q=
-X-Received: by 2002:a05:600c:4ec7:: with SMTP id g7mr13233266wmq.157.1623235022430;
- Wed, 09 Jun 2021 03:37:02 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o3KSqDVs9YRSwE4rOwA0va7NCLHw84o+H5YF3VkLQdM=;
+        b=VoffIJwQxn3EZooLrqIJTwjPct/4lh75Qu6AfdMEud059p+lHyWeGL6dnS0i+t6AXg
+         vrRS4H3FUjvNzh613JHoZ9EyP20nNcx+vK2/LTybaKuib7A3A90JiQbdqYrTHYDDB2NZ
+         64X5sqRh7NBP2HyXzfUWsMaAM0AqlpmsHuJTs/ZU+BsEtN9Ao0AXmpcqayrGcsvERDm9
+         JWREH9K2JxbxQLge+++hPTGb+ApvMsTu7zXUAZdYyoZiebkYFY95l8MtvG9jNm8ilzyb
+         zmQ90OaVqVD+gx8tU3AJcj3KcJX8n07Ohhz7krMwGxrzGlFxNnfdOJajwQ6E2tb9PUhj
+         I68A==
+X-Gm-Message-State: AOAM531zCHk6eB6VlNn+0+nzEk6FbpFL+W4nz6TVYLxaVFG6MKc8/mXd
+        6W24i75lkVqLeWnMTk5/CKSGVg==
+X-Google-Smtp-Source: ABdhPJxeWSnFVRMewe1zjN1xVuTUbrFOPSw8XzwNwPRTj6Pvhj8lQCDm/w6gJDaJPdNL+Nt/nRAF9A==
+X-Received: by 2002:a63:f245:: with SMTP id d5mr3191835pgk.416.1623235262439;
+        Wed, 09 Jun 2021 03:41:02 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:83f0:56eb:3535:6bd5])
+        by smtp.gmail.com with ESMTPSA id k1sm13223904pfa.30.2021.06.09.03.41.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Jun 2021 03:41:01 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        maoguang.meng@mediatek.com, yong.wu@mediatek.com
+Subject: [PATCH] dt-bindings: mediatek: convert mtk jpeg decoder/encoder to yaml
+Date:   Wed,  9 Jun 2021 18:40:54 +0800
+Message-Id: <20210609104053.617751-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
 MIME-Version: 1.0
-References: <20210602112321.2241566-1-anup.patel@wdc.com> <20210602112321.2241566-7-anup.patel@wdc.com>
- <26cddfa8-75e2-7b5b-1a47-e01cc1c7821e@sholland.org>
-In-Reply-To: <26cddfa8-75e2-7b5b-1a47-e01cc1c7821e@sholland.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 9 Jun 2021 16:06:51 +0530
-Message-ID: <CAAhSdy3jKY_48bFCSyzCcJ8kW=aERNEjBRz=5GEasefuN3Bydw@mail.gmail.com>
-Subject: Re: [PATCH v5 6/8] cpuidle: Add RISC-V SBI CPU idle driver
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Anup Patel <anup.patel@wdc.com>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Pavel Machek <pavel@ucw.cz>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 12:09 AM Samuel Holland <samuel@sholland.org> wrote:
->
-> On 6/2/21 6:23 AM, Anup Patel wrote:
-> > The RISC-V SBI HSM extension provides HSM suspend call which can
-> > be used by Linux RISC-V to enter platform specific low-power state.
-> >
-> > This patch adds a CPU idle driver based on RISC-V SBI calls which
-> > will populate idle states from device tree and use SBI calls to
-> > entry these idle states.
-> >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> > ---
-> >  MAINTAINERS                   |   7 +
-> >  drivers/cpuidle/Kconfig       |   5 +
-> >  drivers/cpuidle/Kconfig.riscv |  15 +
-> >  drivers/cpuidle/Makefile      |   4 +
-> >  drivers/cpuidle/cpuidle-sbi.c | 626 ++++++++++++++++++++++++++++++++++
-> >  5 files changed, 657 insertions(+)
-> >  create mode 100644 drivers/cpuidle/Kconfig.riscv
-> >  create mode 100644 drivers/cpuidle/cpuidle-sbi.c
-> >
-> > ...
-> > diff --git a/drivers/cpuidle/cpuidle-sbi.c b/drivers/cpuidle/cpuidle-sbi.c
-> > new file mode 100644
-> > index 000000000000..f743684d07de
-> > --- /dev/null
-> > +++ b/drivers/cpuidle/cpuidle-sbi.c
-> > @@ -0,0 +1,626 @@
-> > ...
-> > +     /* Initialize idle states from DT. */
-> > +     ret = sbi_cpuidle_dt_init_states(dev, drv, cpu, state_count);
-> > +     if (ret) {
-> > +             pr_err("HART%ld: failed to init idle states\n",
-> > +                    cpuid_to_hartid_map(cpu));
-> > +             return ret;
-> > +     }
-> > +
-> > +     ret = cpuidle_register(drv, NULL);
-> > +     if (ret)
-> > +             goto deinit;
-> > +
-> > +     cpuidle_cooling_register(drv);
-> > +
-> > +     return 0;
-> > +deinit:
-> > +     sbi_cpuidle_deinit_cpu(cpu);
-> > +     return ret;
-> > +}
-> > +
-> > +static int sbi_cpuidle_pd_power_off(struct generic_pm_domain *pd)
->
-> This function should be moved inside the CONFIG_DT_IDLE_GENPD block
-> below. Otherwise it is defined but unused.
+Convert mediatek jpeg decoder and encoder bindings to yaml.
 
-Indeed, sbi_cpuidle_pd_power_off() should be under
-"#ifdef CONFIG_DT_IDLE_GENPD". I will update in the
-next patch revision.
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+mediatek,larb in the original file will be removed after this series[1]
+[1] https://patchwork.kernel.org/project/linux-mediatek/patch/20210410091128.31823-2-yong.wu@mediatek.com/
+---
+ .../bindings/media/mediatek-jpeg-decoder.yaml | 73 +++++++++++++++++++
+ .../bindings/media/mediatek-jpeg-encoder.yaml | 65 +++++++++++++++++
+ 2 files changed, 138 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
 
->
-> > +{
-> > +     struct genpd_power_state *state = &pd->states[pd->state_idx];
-> > +     u32 *pd_state;
-> > +
-> > +     if (!state->data)
-> > +             return 0;
-> > +
-> > +     if (!sbi_cpuidle_pd_allow_domain_state)
-> > +             return -EBUSY;
-> > +
-> > +     /* OSI mode is enabled, set the corresponding domain state. */
-> > +     pd_state = state->data;
-> > +     sbi_set_domain_state(*pd_state);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void sbi_cpuidle_domain_sync_state(struct device *dev)
-> > +{
-> > +     /*
-> > +      * All devices have now been attached/probed to the PM domain
-> > +      * topology, hence it's fine to allow domain states to be picked.
-> > +      */
-> > +     sbi_cpuidle_pd_allow_domain_state = true;
-> > +}
-> > +
-> > +#ifdef CONFIG_DT_IDLE_GENPD
-> > +
-> > +struct sbi_pd_provider {
-> > +     struct list_head link;
-> > +     struct device_node *node;
-> > +};
-> > +
-> > +static LIST_HEAD(sbi_pd_providers);
-> > +
-> > +static int sbi_pd_init(struct device_node *np)
-> > +{
-> > +     struct generic_pm_domain *pd;
-> > +     struct sbi_pd_provider *pd_provider;
-> > +     struct dev_power_governor *pd_gov;
-> > +     int ret = -ENOMEM, state_count = 0;
-> > +
-> > +     pd = dt_idle_pd_alloc(np, sbi_dt_parse_state_node);
-> > +     if (!pd)
-> > +             goto out;
-> > ...
+diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+new file mode 100644
+index 0000000000000..812f366163d8a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/mediatek-jpeg-decoder.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek JPEG Decoder Device Tree Bindings
++
++maintainers:
++  - Xia Jiang <xia.jiang@mediatek.com>
++
++description: |-
++  Mediatek JPEG Decoder is the JPEG decode hardware present in Mediatek SoCs
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++        - const: mediatek,mt8173-jpgdec
++      - items:
++        - const: mediatek,mt2701-jpgdec
++      - items:
++        - enum:
++            - mediatek,mt7623-jpgdec
++        - const: mediatek,mt2701-jpgdec
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 2
++    minItems: 2
++
++  clock-names:
++    items:
++      - const: jpgdec-smi
++      - const: jpgdec
++
++  power-domains:
++    maxItems: 1
++
++  iommus:
++    minItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - power-domains
++  - iommus
++
++additionalProperties: false
++
++examples:
++  - |
++    jpegdec: jpegdec@15004000 {
++      compatible = "mediatek,mt2701-jpgdec";
++      reg = <0 0x15004000 0 0x1000>;
++      interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW>;
++      clocks =  <&imgsys CLK_IMG_JPGDEC_SMI>,
++                <&imgsys CLK_IMG_JPGDEC>;
++      clock-names = "jpgdec-smi",
++                    "jpgdec";
++      power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
++      iommus = <&iommu MT2701_M4U_PORT_JPGDEC_WDMA>,
++               <&iommu MT2701_M4U_PORT_JPGDEC_BSDMA>;
++    };
++
+diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+new file mode 100644
+index 0000000000000..8ffc17fe576d5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/mediatek-jpeg-encoder.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MediaTek JPEG Encoder Device Tree Bindings
++
++maintainers:
++  - Xia Jiang <xia.jiang@mediatek.com>
++
++description: |-
++  MediaTek JPEG Encoder is the JPEG encode hardware present in MediaTek SoCs
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - mediatek,mt2701-jpgenc
++          - mediatek,mt8183-jpgenc
++      - const: mediatek,mtk-jpgenc
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: jpgenc
++
++  power-domains:
++    maxItems: 1
++
++  iommus:
++    minItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - power-domains
++  - iommus
++
++additionalProperties: false
++
++examples:
++  - |
++    jpegenc: jpegenc@1500a000 {
++      compatible = "mediatek,mt2701-jpgenc",
++                   "mediatek,mtk-jpgenc";
++      reg = <0 0x1500a000 0 0x1000>;
++      interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_LOW>;
++      clocks =  <&imgsys CLK_IMG_VENC>;
++      clock-names = "jpgenc";
++      power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
++      iommus = <&iommu MT2701_M4U_PORT_JPGENC_RDMA>,
++               <&iommu MT2701_M4U_PORT_JPGENC_BSDMA>;
++    };
++
+-- 
+2.32.0.rc1.229.g3e70b5a671-goog
 
-Regards,
-Anup
