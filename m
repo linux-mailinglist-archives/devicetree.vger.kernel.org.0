@@ -2,197 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2651A3A1E3C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 22:45:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA4CB3A1E53
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 22:52:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229743AbhFIUrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 16:47:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37564 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229802AbhFIUro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 16:47:44 -0400
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267EFC06175F;
-        Wed,  9 Jun 2021 13:45:48 -0700 (PDT)
-Received: from [192.168.1.101] (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id BAA023EBC3;
-        Wed,  9 Jun 2021 22:45:44 +0200 (CEST)
-Subject: Re: [PATCH V3] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD
- card
-To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        adrian.hunter@intel.com, ulf.hansson@linaro.org, robh+dt@kernel.org
-Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
-        vbadigan@codeaurora.org, rampraka@codeaurora.org,
-        sayalil@codeaurora.org, sartgarg@codeaurora.org,
-        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        sibis@codeaurora.org, okukatla@codeaurora.org, djakov@kernel.org,
-        cang@codeaurora.org, pragalla@codeaurora.org,
-        nitirawa@codeaurora.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org
-References: <1623252028-20467-1-git-send-email-sbhanu@codeaurora.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <793c9596-73f3-42b2-291e-1c728e279e28@somainline.org>
-Date:   Wed, 9 Jun 2021 22:45:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        id S229809AbhFIUyG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 16:54:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42796 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229757AbhFIUyF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Jun 2021 16:54:05 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F24EE613EE;
+        Wed,  9 Jun 2021 20:52:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623271931;
+        bh=2xJm8+K9K3yMMtA6Yx9r/pcA3AR2W+Issga14oVL+C4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=AbzkJununfgwbAGwE3AtUtr2nA57hzQFqDq6jZfslDbmgZ7UrZM38e7a6e/0NNLZE
+         kVc3hq9v0BcJ1eyKCYiQoot0UDEP/qBq6yvZMYEQADfOBt5arC55BWrzX37JFASnQq
+         ytRoTFR6PFv+kdilSubISa8kwUShrPT3z+c3k96e8hgX5t+ZQqroG0FFSpdYL+Z8d0
+         IxC7L/72/i3QqRgPh5Qunwl4fH2RI7PrmSCRDrOUMx7ynM92sYwkLHCvfB0zddTPzZ
+         e/AEFrfu9KIY6E+UyAtnOe1Gv3X0i+V556FJg2YI3fSwIN8JR/38riT1T/VrJgdGic
+         XyySS5HyLbZ9g==
+Received: by mail-ed1-f51.google.com with SMTP id t3so30109341edc.7;
+        Wed, 09 Jun 2021 13:52:10 -0700 (PDT)
+X-Gm-Message-State: AOAM533QTWckisledz3UvSFh57lHW3WTSJBo6xsBGG1eYt2q6dNqn8Wg
+        QRb+4SM+ktv5OipW7amyiLAHPFC2d6ZDI9j9Ow==
+X-Google-Smtp-Source: ABdhPJzrK1tDX4o4Uy/uplvx+4AlBnNvKFj8nYmtpy43TZKhYfrjC8V5LdESsaQIeFWnDzy8sshEhj8QPP1doC80iXs=
+X-Received: by 2002:aa7:cd83:: with SMTP id x3mr1187447edv.373.1623271929496;
+ Wed, 09 Jun 2021 13:52:09 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1623252028-20467-1-git-send-email-sbhanu@codeaurora.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <20210609111707.9555-1-p.yadav@ti.com> <20210609111707.9555-2-p.yadav@ti.com>
+In-Reply-To: <20210609111707.9555-2-p.yadav@ti.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 9 Jun 2021 15:51:58 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK5hu6NSVxiTpPvH_jHA97WTj3=DyJhDf5g1hwXXZ8MZA@mail.gmail.com>
+Message-ID: <CAL_JsqK5hu6NSVxiTpPvH_jHA97WTj3=DyJhDf5g1hwXXZ8MZA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] spi: dt-bindings: add schema listing slave-specific properties
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Mark Brown <broonie@kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>, Michael Walle <michael@walle.cc>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Jun 9, 2021 at 6:17 AM Pratyush Yadav <p.yadav@ti.com> wrote:
+>
+> Many SPI controllers need to add properties to slave devices. This could
+> be the delay in clock or data lines, etc. These properties are
+> controller specific but need to be defined in the slave node because
+> they are per-slave and there can be multiple slaves attached to a
+> controller.
+>
+> If these properties are not added to the slave binding, then the dtbs
+> check emits a warning. But these properties do not make much sense in
+> the slave binding because they are controller-specific and they will
+> just pollute every slave binding. So this binding is added to collect
+> all such properties from all such controllers. Slave bindings should
+> simply refer to this binding and they should be rid of the warnings.
 
+Thanks for working on this. I haven't thought of any better solution
+than this approach.
 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> index 3900cfc..8b159d1 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> @@ -11,6 +11,7 @@
->  #include <dt-bindings/iio/qcom,spmi-adc7-pmr735b.h>
->  #include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
->  #include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-> +#include <dt-bindings/gpio/gpio.h>
->  #include "sc7280.dtsi"
->  #include "pm7325.dtsi"
->  #include "pmr735a.dtsi"
-> @@ -272,6 +273,36 @@
->  	status = "okay";
->  };
->  
-> +&sdhc_1 {
-> +	status = "okay";
+> There are some limitations with this approach. Firstly, there is no way
+> to specify required properties. The schema contains properties for all
+> controllers and there is no way to know which controller is being used.
+
+If required properties are a function of the controller and not the
+controller+device, then the controller schema can list required
+properties for child nodes.
+
+> Secondly, there is no way to restrict additional properties. Since this
+> schema will be used with an allOf operator, additionalProperties needs
+> to be true. In addition, the slave schema will have to set
+> unevaluatedProperties: false.
+
+No issue there other than unevaluatedProperties is currently not implemented.
+
+> Despite these limitations, this appears to be the best solution to this
+> problem that doesn't involve modifying existing tools or schema specs.
+>
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> ---
+>
+>  .../bindings/spi/cdns,qspi-nor.yaml           | 33 ------------
+>  .../bindings/spi/spi-slave-props.yaml         | 52 +++++++++++++++++++
+
+I think you need 2+ files here. A common one that's just an 'allOf' of
+all the controller specific schemas and then controller specific child
+node schemas.
+
+>  2 files changed, 52 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/spi-slave-props.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> index 0e7087cc8bf9..0730e6a8dc4a 100644
+> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> @@ -74,39 +74,6 @@ properties:
+>      items:
+>        enum: [ qspi, qspi-ocp ]
+>
+> -# subnode's properties
+> -patternProperties:
+> -  "@[0-9a-f]+$":
+> -    type: object
+> -    description:
+> -      Flash device uses the below defined properties in the subnode.
+> -
+> -    properties:
+> -      cdns,read-delay:
+> -        $ref: /schemas/types.yaml#/definitions/uint32
+> -        description:
+> -          Delay for read capture logic, in clock cycles.
+> -
+> -      cdns,tshsl-ns:
+> -        description:
+> -          Delay in nanoseconds for the length that the master mode chip select
+> -          outputs are de-asserted between transactions.
+> -
+> -      cdns,tsd2d-ns:
+> -        description:
+> -          Delay in nanoseconds between one chip select being de-activated
+> -          and the activation of another.
+> -
+> -      cdns,tchsh-ns:
+> -        description:
+> -          Delay in nanoseconds between last bit of current transaction and
+> -          deasserting the device chip select (qspi_n_ss_out).
+> -
+> -      cdns,tslch-ns:
+> -        description:
+> -          Delay in nanoseconds between setting qspi_n_ss_out low and
+> -          first bit transfer.
+> -
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/spi/spi-slave-props.yaml b/Documentation/devicetree/bindings/spi/spi-slave-props.yaml
+> new file mode 100644
+> index 000000000000..b2248e01dc43
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/spi-slave-props.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/spi-slave-props.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc1_clk &sdc1_cmd &sdc1_data &sdc1_rclk>;
-> +	pinctrl-1 = <&sdc1_clk_sleep &sdc1_cmd_sleep &sdc1_data_sleep &sdc1_rclk_sleep>;
+> +title: Slave-specific properties for a SPI bus.
+> +
+> +description: |
+> +  Many SPI controllers need to add properties to slave devices. This could be
+> +  the delay in clock or data lines, etc. These properties are controller
+> +  specific but need to be defined in the slave node because they are per-slave
+> +  and there can be multiple slaves attached to a controller.
+> +
+> +  If these properties are not added to the slave binding, then the dtbs check
+> +  emits a warning. But these properties do not make much sense in the slave
+> +  binding because they are controller-specific and they will just pollute every
+> +  slave binding. So this binding is added to collect all such properties from
+> +  all such controllers. Slave bindings should simply refer to this binding and
+> +  they should be rid of the warnings.
 
-Please condense these pins into a since sdc1_on_state/sdc1_off_state (check sdc1_state_on in [1])
-
-
+I don't think this paragraph belongs in the schema.
 
 > +
-> +	non-removable;
-> +	no-sd;
-> +	no-sdio;
+> +maintainers:
+> +  - Pratyush Yadav <p.yadav@ti.com>
 > +
-> +	vmmc-supply = <&vreg_l7b_2p9>;
-> +	vqmmc-supply = <&vreg_l19b_1p8>;
+> +properties:
+> +  # cdns,qspi-nor.yaml
+> +  cdns,read-delay:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Delay for read capture logic, in clock cycles.
 > +
-> +};
+> +  cdns,tshsl-ns:
+> +    description:
+> +      Delay in nanoseconds for the length that the master mode chip select
+> +      outputs are de-asserted between transactions.
 > +
-> +&sdhc_2 {
-> +	status = "okay";
+> +  cdns,tsd2d-ns:
+> +    description:
+> +      Delay in nanoseconds between one chip select being de-activated
+> +      and the activation of another.
 > +
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc2_clk &sdc2_cmd &sdc2_data &sd_cd>;
-> +	pinctrl-1 = <&sdc2_clk_sleep &sdc2_cmd_sleep &sdc2_data_sleep>;
-
-Ditto
-
-
-
-> +&tlmm {
-> +	sdc1_clk: sdc1-clk {
-> +		pins = "sdc1_clk";
-> +		bias-disable;
-> +		drive-strength = <16>;
-> +	};
+> +  cdns,tchsh-ns:
+> +    description:
+> +      Delay in nanoseconds between last bit of current transaction and
+> +      deasserting the device chip select (qspi_n_ss_out).
 > +
-> +	sdc1_cmd: sdc1-cmd {
-> +		pins = "sdc1_cmd";
-> +		bias-pull-up;
-> +		drive-strength = <10>;
-> +	};
+> +  cdns,tslch-ns:
+> +    description:
+> +      Delay in nanoseconds between setting qspi_n_ss_out low and
+> +      first bit transfer.
 > +
-> +	sdc1_data: sdc1-data {
-> +		pins = "sdc1_data";
-> +		bias-pull-up;
-> +		drive-strength = <10>;
-> +	};
-> +	sdc1_rclk: sdc1-rclk {
-> +		pins = "sdc1_rclk";
-> +		bias-pull-down;
-> +	};
-> +
-> +	sdc2_clk: sdc2-clk {
-> +		pins = "sdc2_clk";
-> +		bias-disable;
-> +		drive-strength = <16>;
-> +	};
-> +
-> +	sdc2_cmd: sdc2-cmd {
-> +		pins = "sdc2_cmd";
-> +		bias-pull-up;
-> +		drive-strength = <10>;
-> +	};
-> +
-> +	sdc2_data: sdc2-data {
-> +		pins = "sdc2_data";
-> +		bias-pull-up;
-> +		drive-strength = <10>;
-> +	};
-> +
-> +	sd_cd: sd-cd {
-
-Please make it sdc2 to keep things coherent.
-
-
-
-> +		pins = "gpio91";
-> +		bias-pull-up;
-> +	};
-> +
-> +};
-
-Why are you defining on_state pins in the device dt and sleep state in the SoC one?
-
-Most devices share a common config for these, often coming from MTP or QRD boards
-
-and it makes little to no sense to define these separately every time, because if you hit the
-
-rare case of needing to make a change against that, it's probably just drive-strength.
-
-
-
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 0b6f119..eab6f7b 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -24,6 +24,11 @@
->  
->  	chosen { };
->  
-> +	aliases {
-> +		mmc1 = &sdhc_1;
-> +		mmc2 = &sdhc_2;
-> +	};
-
-This is board specific. Something might have a SDIO Wi-Fi card on it.
-
-
-
-> +			mmc-ddr-1_8v;
-> +			mmc-hs200-1_8v;
-> +			mmc-hs400-1_8v;
-> +			mmc-hs400-enhanced-strobe;
-
-These properties should probably be in the device DT, unless the SoC controller
-
-can only support these speeds and only at 1.8v
-
-
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=for-next&id=35a4a8b6e9b133cf3a7d059ad4cf0e24cb4bd029
-
-
-Konrad
-
+> +additionalProperties: true
+> --
+> 2.30.0
+>
