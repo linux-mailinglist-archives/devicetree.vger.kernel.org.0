@@ -2,64 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 116C03A1ABF
+	by mail.lfdr.de (Postfix) with ESMTP id ECC7E3A1AC2
 	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 18:17:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237319AbhFIQTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 12:19:02 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:46812 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237477AbhFIQS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 12:18:59 -0400
-Received: by mail-ot1-f47.google.com with SMTP id 66-20020a9d02c80000b02903615edf7c1aso24405513otl.13;
-        Wed, 09 Jun 2021 09:16:48 -0700 (PDT)
+        id S237686AbhFIQTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 12:19:14 -0400
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:46802 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237541AbhFIQTE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 12:19:04 -0400
+Received: by mail-oi1-f169.google.com with SMTP id c13so20050333oib.13;
+        Wed, 09 Jun 2021 09:16:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=pGGy0QJiGHO1VqANFEeP8eQnM2OGRel1gTBvXXS9M6M=;
-        b=F4pC2j1+8nk11vArjlRzMOKHXpbTptScH8fuR1EM+n2/SL6RUTNf8NArckvNXRvP+R
-         lUHm5VhvFWRHzWiu1wy4/+RBbTEB6+cwG/O0b5UWmswGXuV3spuvLmmaFGgXlYdKbqmK
-         jgBKLUNAW/yVdbnvZq2Lq+3mRRW7zqDr+2r/0JhTSFGaUz+0+uPOau5+P9/XVpu2ex1X
-         FSCQWaxdpKqyMtVc6k2i+TcLzL6l15eRHZCtDXKUa+biuwXuRb1+cxRZGaYukyLwvXxB
-         lskEJQ5lATCm66LJMkDAQs0bTHQxwWNK1uwFI1V8n/P5+wtwnoGhZvWARuujaShRX+UN
-         Y9lg==
-X-Gm-Message-State: AOAM532nB9mFNylyiMUUXCGkSEx8R4D2lkK96Kh0P7ced0SgMisNiZNr
-        VsABep2S3nW+zVLAmapc7w==
-X-Google-Smtp-Source: ABdhPJz9lb6nQLNfKFtmUMYZW5PMOiiZPprVnIwJWUBq/29WErexzGXTF+CbUeDZFUDAGFLzY7eHew==
-X-Received: by 2002:a05:6830:14c:: with SMTP id j12mr196670otp.0.1623255408424;
-        Wed, 09 Jun 2021 09:16:48 -0700 (PDT)
+        bh=QqWyDoHhoXoYqgs2T5kEgvQV6Y0xJvZ2rX9HVCOuEYs=;
+        b=Q2sQVy2i3XXbHm5UreuDl3jwFgT5Q5ylXYXljYKZu8sF+iZ78jk131BeHXlM/0aiI0
+         88/3B3rewxcPR+Ces8MRUnU++36ImLQ4p9cgxcKjvdejqlwBwYij2cF2am3Bztpj2fyx
+         j5SXqMxQ5Rr0nY9f0NoFCnbhqBVoVf21PBUBaPi2L5CVtzQuZVQ8bUDjvPV/PDjPk2E7
+         dr9LDryIYut6cA1lDzRfSNUQCRXFpSDZiIAuLalQq/HLzFIU+RLU/sUnUiNKQEvJkMw/
+         ekaFNzn8H2PdLvS4TFSC5eAVKXVRp1S3d2KqQtZ8JRRV8RZjSYyysG6oqm9JNcpqPHc+
+         tvDA==
+X-Gm-Message-State: AOAM532wAz6waOWqHHrhg4czqZhqMIaWsI823/WKNmlcQZPNIe4rceJu
+        oPnlR4FuU2MVquJEBEEBSiemLWDNMw==
+X-Google-Smtp-Source: ABdhPJzsAd6hH99fyWkSdFSubrSBtcEU6Syfei/UK9V4M+8nsK/xgWCP3h2i6sLExsfayBEMCekg5w==
+X-Received: by 2002:aca:3e06:: with SMTP id l6mr270687oia.147.1623255412952;
+        Wed, 09 Jun 2021 09:16:52 -0700 (PDT)
 Received: from robh.at.kernel.org (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v203sm49302oie.52.2021.06.09.09.16.47
+        by smtp.gmail.com with ESMTPSA id i15sm86906ots.39.2021.06.09.09.16.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jun 2021 09:16:47 -0700 (PDT)
-Received: (nullmailer pid 3763302 invoked by uid 1000);
+        Wed, 09 Jun 2021 09:16:52 -0700 (PDT)
+Received: (nullmailer pid 3763296 invoked by uid 1000);
         Wed, 09 Jun 2021 16:16:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Marek <jonathan@marek.ca>
-Cc:     dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
-        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+To:     Anup Patel <anup.patel@wdc.com>
+Cc:     Albert Ou <aou@eecs.berkeley.edu>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        linux-riscv@lists.infradead.org,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Atish Patra <atish.patra@wdc.com>, linux-pm@vger.kernel.org,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        devicetree@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <anup@brainfault.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>
-In-Reply-To: <20210608195342.18269-2-jonathan@marek.ca>
-References: <20210608195342.18269-1-jonathan@marek.ca> <20210608195342.18269-2-jonathan@marek.ca>
-Subject: Re: [PATCH v3 1/3] dt-bindings: msm: dsi: add missing 7nm bindings
+        Liush <liush@allwinnertech.com>, Pavel Machek <pavel@ucw.cz>
+In-Reply-To: <20210609122715.3389-8-anup.patel@wdc.com>
+References: <20210609122715.3389-1-anup.patel@wdc.com> <20210609122715.3389-8-anup.patel@wdc.com>
+Subject: Re: [PATCH v6 7/8] dt-bindings: Add common bindings for ARM and RISC-V idle states
 Date:   Wed, 09 Jun 2021 11:16:43 -0500
-Message-Id: <1623255403.647740.3763301.nullmailer@robh.at.kernel.org>
+Message-Id: <1623255403.618479.3763295.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Jun 2021 15:53:27 -0400, Jonathan Marek wrote:
-> These got lost when going from .txt to .yaml bindings, add them back.
+On Wed, 09 Jun 2021 17:57:14 +0530, Anup Patel wrote:
+> The RISC-V CPU idle states will be described in under the
+> /cpus/idle-states DT node in the same way as ARM CPU idle
+> states.
 > 
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+> This patch adds common bindings documentation for both ARM
+> and RISC-V idle states.
+> 
+> Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/display/msm/dsi-phy-7nm.yaml     | 66 +++++++++++++++++++
->  1 file changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+>  .../bindings/{arm => cpu}/idle-states.yaml    | 228 ++++++++++++++++--
+>  .../devicetree/bindings/riscv/cpus.yaml       |   6 +
+>  2 files changed, 217 insertions(+), 17 deletions(-)
+>  rename Documentation/devicetree/bindings/{arm => cpu}/idle-states.yaml (74%)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -68,16 +85,14 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/display/msm/dsi-phy-common.yaml'
-xargs: dt-doc-validate: exited with status 255; aborting
-Error: Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.example.dts:26.38-39 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1416: dt_binding_check] Error 2
-\ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1489620
+\ndoc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt references a file that doesn't exist: Documentation/devicetree/bindings/arm/idle-states.yaml
+Warning: Documentation/devicetree/bindings/arm/psci.yaml references a file that doesn't exist: Documentation/devicetree/bindings/arm/idle-states.yaml
+Documentation/devicetree/bindings/arm/msm/qcom,idle-state.txt: Documentation/devicetree/bindings/arm/idle-states.yaml
+Documentation/devicetree/bindings/arm/psci.yaml: Documentation/devicetree/bindings/arm/idle-states.yaml
+
+See https://patchwork.ozlabs.org/patch/1489849
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
