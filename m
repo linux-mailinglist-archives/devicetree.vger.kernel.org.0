@@ -2,107 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43ED63A11C1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:55:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E8E3A11ED
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:57:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238441AbhFIK4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 06:56:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47106 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238431AbhFIK4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 06:56:52 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 117FCC061574
-        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 03:54:50 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id d2so26905002ljj.11
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 03:54:49 -0700 (PDT)
+        id S238396AbhFIK7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 06:59:31 -0400
+Received: from mail-lf1-f53.google.com ([209.85.167.53]:35449 "EHLO
+        mail-lf1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238755AbhFIK7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 06:59:20 -0400
+Received: by mail-lf1-f53.google.com with SMTP id i10so37333132lfj.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 03:57:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=cvIuq7yCBZI9oh+HolFFkb/f7sv15WjrCKTD1PWydYE=;
-        b=aqmTQ4Tq7tp3JhjxH4GQ9HXZVvX8RRZOYwnTZqi9FwM6DNLCDlVKbHyie15+145qBI
-         o6An9yE8okaeikBuxFIdZs9p4u/S/tbNX2MTXDdDPcCd7ychrX5KlcQmqoBHvyS/8y1h
-         aZa2dxXYrL9EbKPIUC/kIdVAGRkxfR4+kmzpfVgiI7rkvePdrajM08ARcHhUO88/QK2O
-         hdXXraH/qgd3SkAAiB+DPV3k4t8u8A70JSZe7qkIfHciR8T1SK8BsKtLhEhUMBqVjAGZ
-         G60hZjGepVKScMs3xNKpAJ8FlPOv6u3jYG45jLhhpQbOIHjrSkCsCl+mSQnRSl74lJpK
-         t3pw==
+        bh=87HfZUoSam1Hj5S8TdQpI9fN5J8chFoyRyEZDkMSWsg=;
+        b=I4qlBifs66UHfPIn9pi+nxyXtPWrfhxcOHxYNmPPiAH8/W6Qb1S0Q5pBdzrqs/t7Vp
+         IRJn9lTVXBNEf0HOeJlX2yMFsWfHivrDGr29aIDvLt1J3EUABi5GCZ3kgc6Yriw4vJ1w
+         wQxzFFAUTCxH2sn8FNWC12MvVhXtIHgEhVWMTfNb+L8UF/hKCTgqPb1osJPvOcZ4lkUf
+         GDLn4bwkji6Olt+IeLD/0eJHy9T6cbgrah2uY7xWb8qYvSbNzoa+VydZwF1yPl1eCea8
+         UYO5cB96iwEJMRBCG2cBNHcjpiy5ORTRIHvKZR87oM9H4i+BjaiNIbkvLVEwW5PK1Yi7
+         cUpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=cvIuq7yCBZI9oh+HolFFkb/f7sv15WjrCKTD1PWydYE=;
-        b=MuESP9I2JOR1GXsw1kndvXwLS7Wdq6FhblWVP9F1FzrhUJQrsITS/Y4Sc4+p0ylHmx
-         00ZH/dDpZkU3wifDJrouctUQ+8/YHkd3pj14xqELd8O9EasXxOvbgiIbcZzvN5PYTw+S
-         yqCEzftMz+ggzfOzHUWjU06blV+UxY7M6ByAWNlHextuzIeCtPcbpr4RHNMczgzjmi1Q
-         ZDqXadQ8KzrHBEW3AvNhQMLacEe1lQsjIALgNfu+3ube+IkkpTPJaruvZbdFSgagzx/a
-         bkTfr6E7K+MOw+el1aI1OnEbLBJkQtiJrlJsrXAbZqucttt701KhEnsRIRgHER5qarKH
-         J46Q==
-X-Gm-Message-State: AOAM531Jmr/0M0u1AIJimtf5WSUA0odd25KkVk24nSXsco8UZOhwMhZY
-        RLliYpTft7ihSu0PkY2Ke7mu8EvfWzBtTppoTFi15Q==
-X-Google-Smtp-Source: ABdhPJy9jtLYPd3PIA6YsEvO5XTv5tO8NP31qTDfX0RScssCc2S2g4ub5LbPM5p6JmfTmLKacK2QOK7wOSZswNzp3KA=
-X-Received: by 2002:a05:651c:1411:: with SMTP id u17mr11232132lje.438.1623236088374;
- Wed, 09 Jun 2021 03:54:48 -0700 (PDT)
+        bh=87HfZUoSam1Hj5S8TdQpI9fN5J8chFoyRyEZDkMSWsg=;
+        b=dqHaS/q4Q4XhexQjINjm9xjzchbNn+OArHQdAQA+UbctWV/bghMiQqBmqBXht7+KFg
+         zBsk7N5IG+rO1L/ilZfOFrNCt7xEwRlokpPfEgpmKqTooQUd31XYwB7OLEuAUoxqxVO8
+         FuFtsjx6uW7pYqb05VjcVGXj5hydbGP51cN6MlxdV6tLDfSff2WMAjbrGkuhyL1gDB3H
+         IodZCclR9V0y51zGGjZKYbEP+8kHxAxyI+QHoac6JxYLYbrWGUxb3nCeXWd5pQDQnMLL
+         XqJX7vAVdOeW7ZsxqQbrSixGxlHB9yC3eCq4ZTWXFaE2O2Z5RcckiRY0GhMTAG892ieM
+         7y+Q==
+X-Gm-Message-State: AOAM530siDUe5k+dN/wDk0YE/gOG8zVNf09pRsyGAXtM0QnoN2nn7+Ah
+        fKPJFY64mXhi3yYfSg+YCcZYgsu4rBOf6WTWgwgcHw==
+X-Google-Smtp-Source: ABdhPJwyyLOSVDHD6xy//SQ6Dxok+fUmy6nMDsA1kMyW4Bv63nlLmsPRRDhkJ4n5HjS6xxaihmzKFoMEHJwhTfhojcM=
+X-Received: by 2002:a19:8157:: with SMTP id c84mr19013747lfd.529.1623236173438;
+ Wed, 09 Jun 2021 03:56:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210608102547.4880-1-steven_lee@aspeedtech.com>
-In-Reply-To: <20210608102547.4880-1-steven_lee@aspeedtech.com>
+References: <20210607083921.2668568-1-ping.bai@nxp.com> <20210607083921.2668568-2-ping.bai@nxp.com>
+In-Reply-To: <20210607083921.2668568-2-ping.bai@nxp.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 9 Jun 2021 12:54:37 +0200
-Message-ID: <CACRpkdZOStr+K9U9QTkAcsk4NxuSqBRVv_-9_VkGJbT69iSxmQ@mail.gmail.com>
-Subject: Re: [PATCH v5 00/10] ASPEED sgpio driver enhancement.
-To:     Steven Lee <steven_lee@aspeedtech.com>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+Date:   Wed, 9 Jun 2021 12:56:02 +0200
+Message-ID: <CACRpkdZHjAkfeEUQOkYov=mYjxqUomyTJL-Vhtk=3q8n23RLtg@mail.gmail.com>
+Subject: Re: [PATCH 01/11] dt-bindings: gpio: gpio-vf610: Add imx8ulp
+ compatible string
+To:     Jacky Bai <ping.bai@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Hongwei Zhang <Hongweiz@ami.com>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Billy Tsai <billy_tsai@aspeedtech.com>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 8, 2021 at 12:26 PM Steven Lee <steven_lee@aspeedtech.com> wrote:
+On Mon, Jun 7, 2021 at 10:29 AM Jacky Bai <ping.bai@nxp.com> wrote:
 
-> AST2600 SoC has 2 SGPIO master interfaces one with 128 pins another one
-> with 80 pins, AST2500/AST2400 SoC has 1 SGPIO master interface that
-> supports up to 80 pins.
-> In the current driver design, the max number of sgpio pins is hardcoded
-> in macro MAX_NR_HW_SGPIO and the value is 80.
+> Add the compatible string for i.MX8ULP.
 >
-> For supporting sgpio master interfaces of AST2600 SoC, the patch series
-> contains the following enhancement:
-> - Convert txt dt-bindings to yaml.
-> - Update aspeed-g6 dtsi to support the enhanced sgpio.
-> - Define max number of gpio pins in ast2600 platform data. Old chip
->   uses the original hardcoded value.
-> - Support muiltiple SGPIO master interfaces.
-> - Support up to 128 pins.
-> - Support wdt reset tolerance.
-> - Fix irq_chip issues which causes multiple sgpio devices use the same
->   irq_chip data.
-> - Replace all of_*() APIs with device_*().
->
-> Changes from v4:
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 
-v5 looks good to me!
-
-I just need Rob's or another DT persons nod on the bindings (or timeout)
-before I merge it. Poke me if nothing happens.
-
->   ARM: dts: aspeed-g6: Add SGPIO node.
->   ARM: dts: aspeed-g5: Remove ngpios from sgpio node.
-
-These two need to be merged through the SoC tree, the rest I will handle.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
