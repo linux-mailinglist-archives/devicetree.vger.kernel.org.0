@@ -2,79 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CBDF3A163D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2508C3A163F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:57:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236989AbhFIN6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 09:58:21 -0400
-Received: from mail-yb1-f181.google.com ([209.85.219.181]:33606 "EHLO
-        mail-yb1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236832AbhFIN6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:58:16 -0400
-Received: by mail-yb1-f181.google.com with SMTP id f84so35663623ybg.0;
-        Wed, 09 Jun 2021 06:56:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JXjV+7f0WBEMMRJY6HHsrOAPf0kxeVuUsWsm/eKN1x0=;
-        b=nuBjQAL5dmQJsfGHqyV7lCsKg8VMnGOS9MjB4dcjlxggDE1PTZzaBxPooYUgttS4Rr
-         7tOQzWL/RfBcaJ6PI6DPfn2hTAecrr6GYpTXIcfO93nzx2HxsuZ88BiUZlUUx38vCGDw
-         eAST/XodvPIcd2jBnsBpIhfp5cU/Zd3B1/HHDnLc9c6HgiDEpQyKilQPQIKSuU9fH/Mz
-         JDJBBeLKKQMryZvSh+nAzh4VhMNKvIMnUun3iwj0VjFfuhKh0aiJX8SCmanSXnkmR/7r
-         SG2lT9t0tjvH31htXiqpg6fKdBs5np/gIHDLHruwOyGRRc9nS5ty6qc6lfxkzyLSXyyl
-         CZ/Q==
+        id S236304AbhFIN7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 09:59:03 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:43788 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235765AbhFIN7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:59:02 -0400
+Received: from mail-wr1-f72.google.com ([209.85.221.72])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lqyhf-0001jW-1c
+        for devicetree@vger.kernel.org; Wed, 09 Jun 2021 13:57:07 +0000
+Received: by mail-wr1-f72.google.com with SMTP id x9-20020a5d49090000b0290118d8746e06so10850057wrq.10
+        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 06:57:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JXjV+7f0WBEMMRJY6HHsrOAPf0kxeVuUsWsm/eKN1x0=;
-        b=ZDfIh+40c6p+WsunrD/TWEL7O87EZSp2Qip7Z1fYv3/Xk31zfEsxhale5LKQFLtDw0
-         1suBZsSWb2R69B8ylUxTB4bQBegWEav+hPpixBH67lXxLI+0jz6zB8uD7J3s4zSuLUmz
-         whTsCf8wYW2sCwb+XfT/2EQd6DxZ51ehRQ0i2dAwIgdlqL0fhq4wuPD5x0xt8qlXmKUJ
-         cxgADKTKeH7h5iZbxP6nS99KvFZfg977uZOx16oyjoT/+3txAPGcSGrb4P6GyGeg3H0o
-         EGsI4DlPkiARm7CI+xNAS/AsGDT49zItQXn4y9x/6bQIPfcSnyYAZjer8oRZd1M3IRxm
-         2lwg==
-X-Gm-Message-State: AOAM531gVPjzZz80j5EhRvOITOjPx3kbHmyEvlCbNSe98zKcSqvMH1EF
-        ARiuaCP9PoMQdLJbHjg9VXlsVa4xRkxnigeBUGEWycO1XKo=
-X-Google-Smtp-Source: ABdhPJz8f3xgTQQ46PvVqRFbiiyhAukL7Qu0iE18p8GB/7VEmTdV0b5PltB8mP8HWP+bDHJmDEPn0pfX1jI6hylRwyw=
-X-Received: by 2002:a25:a289:: with SMTP id c9mr245565ybi.26.1623246921522;
- Wed, 09 Jun 2021 06:55:21 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=94MTmrJjy+QuCQp+H85bF1V9qIA+ZZgrzOcpkBB5S9M=;
+        b=GRf2MKbzYwNvxu64ItPbkEal8adO0fEptzh0klDAwAqgA2HdkJs77pKQLHdolXoOoA
+         ipw+NjI9rQ8OH2YT+//dTHFQiVtzG4zqEyn6lI1AFeYV7BkehsuazQDbrtUcv7oD0LP3
+         S+9QnZvI4ds4+qPjzksA6Pe9G4xO5FzFG+80iko2QZsAqoFQ6eF32S7TutOO8DhpyOod
+         fcCjXm2lCfW3qJhsaLi2FcFYYgzN38RiIwm9pxpxeu5ENKcUvCzxVn768Vm9kE+qmnLY
+         PVU2FrbHsIWpBUMP2Wgn6+zs+LxvDp8vYkBhu6BJUA1RUSmxQBYVlpWkM5Tl9Vcc47zY
+         gWDw==
+X-Gm-Message-State: AOAM5334YNWCrlWuOyRgzPLrRIUcl+9CuBCTTRmouHJY5WRPYOj27dNs
+        uSmdUyZFwOQ8c5nr9gT+4p0k0pXIuxYDGves5z2EDpYgALXyILLApGu7G3fF0/TpHj3CmdLt2m3
+        AGaofN9TaXDx8WThTbQ4upOL5tp2AXoOMyJEYLP4=
+X-Received: by 2002:a05:600c:22cf:: with SMTP id 15mr28210714wmg.144.1623247026705;
+        Wed, 09 Jun 2021 06:57:06 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxnMkKQ1aeaiRBj9+JK4EwMsgwWT/6OvveUSFlZdu8TfcqICkeqyGjLL1rEQa6Dgw064GW83g==
+X-Received: by 2002:a05:600c:22cf:: with SMTP id 15mr28210682wmg.144.1623247026518;
+        Wed, 09 Jun 2021 06:57:06 -0700 (PDT)
+Received: from [192.168.1.115] (xdsl-188-155-177-222.adslplus.ch. [188.155.177.222])
+        by smtp.gmail.com with ESMTPSA id q11sm23273791wrx.80.2021.06.09.06.57.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jun 2021 06:57:06 -0700 (PDT)
+Subject: Re: [PATCH v22 17/18] dt-bindings: mtd: pl353-nand: Describe this
+ hardware controller
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
+ <20210609080112.1753221-18-miquel.raynal@bootlin.com>
+ <57ef16cd-33e7-6c16-3a24-9634f47831b3@canonical.com>
+ <20210609153621.1303bc4d@xps13>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <6fb9c0e4-43cb-d224-0ebe-568f62ac35b1@canonical.com>
+Date:   Wed, 9 Jun 2021 15:57:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210106113730.k5qveshjgcd57kgx@runtux.com> <20210106113929.fizyg6fcsmsntkiy@runtux.com>
- <CANiq72=Cfv=Qo2fs+HDjUc8pV37mL326SDS5JpGotUfHLwK_rQ@mail.gmail.com>
- <CAMuHMdUW3U6DVkHp3xiHFzvRUDJ1FwTNCnBWp5LCuDGxhds9wg@mail.gmail.com>
- <CANiq72mCFwYnbynQgwNGTt0mzo_rMrnQfpinz6DrPttFxUpyNQ@mail.gmail.com>
- <20210517152035.GA2581887@robh.at.kernel.org> <20210519090047.e63d2im5vgskqpcs@runtux.com>
- <CAMuHMdV80XUo5ihXUkogCikGA4H71Ada9w=9W9d9d1zdgrw0uA@mail.gmail.com> <20210519115450.qoqpy7d5dgnjtenx@runtux.com>
-In-Reply-To: <20210519115450.qoqpy7d5dgnjtenx@runtux.com>
-From:   Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date:   Wed, 9 Jun 2021 15:55:10 +0200
-Message-ID: <CANiq72m+gqGWpUnA1tk0GX-wKdDnXF_1dKftjOLEAt4rjsnoaw@mail.gmail.com>
-Subject: Re: [PATCH 1/1] auxdisplay: Add I2C gpio expander example
-To:     Ralf Schlatterbeck <rsc@runtux.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Rob Herring <robh@kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Willy Tarreau <w@1wt.eu>, Lars Poeschel <poeschel@lemonage.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210609153621.1303bc4d@xps13>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ralf, Rob,
+On 09/06/2021 15:36, Miquel Raynal wrote:
+> Hi Krzysztof,
+> 
+> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
+> Jun 2021 14:01:10 +0200:
+> 
+>> On 09/06/2021 10:01, Miquel Raynal wrote:
+>>> Add a yaml description of this NAND controller which is described as a
+>>> subnode of the SMC bus.
+>>>
+>>> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+>>> ---
+>>>  .../bindings/mtd/arm,pl353-nand-r2p1.yaml     | 57 +++++++++++++++++++
+>>>  1 file changed, 57 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+>>> new file mode 100644
+>>> index 000000000000..e72fa14b4385
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+>>> @@ -0,0 +1,57 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/mtd/arm,pl353-nand-r2p1.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: PL353 NAND Controller device tree bindings
+>>> +
+>>> +allOf:
+>>> +  - $ref: "nand-controller.yaml"
+>>> +
+>>> +maintainers:
+>>> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+>>> +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:  
+>>
+>> That's not an enum, but simple const without items.
+> 
+> Ok.
+> 
+>>
+>>> +          - arm,pl353-nand-r2p1
+>>> +
+>>> +  reg:
+>>> +    items:
+>>> +      - items:
+>>> +          - description: CS with regard to the parent ranges property
+>>> +          - description: Offset of the memory region requested by the device
+>>> +          - description: Length of the memory region requested by the device  
+>>
+>> Doesn't it depend on parent's address/size cells?
+> 
+> Yes, but as the child nodes are not defined in the parent's binding
+> (ie. the SMC) I think it's interesting to have them defined here, no?
 
-On Wed, May 19, 2021 at 1:54 PM Ralf Schlatterbeck <rsc@runtux.com> wrote:
->
-> The hd44780 displays are often used with pcf8574 based I/O expanders.
-> Add example to documentation.
->
-> Signed-off-by: Ralf Schlatterbeck <rsc@runtux.com>
+The trouble is if parent decides to have different address/size cells.
+The schema will stop matching. I am actually not that sure if such case
+is real since the pl353 NAND part will usually be connected to pl353
+SMC. However the schema now hard-codes specific dependency against
+parent schema/node.
 
-I have queued this one into -next, adding the `Suggested-by` tag.
+Rob,
+Maybe you have here some thoughts?
 
-Cheers,
-Miguel
+Best regards,
+Krzysztof
