@@ -2,303 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A0D83A09F3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 04:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04BDF3A0A07
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 04:25:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232775AbhFICYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 22:24:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47598 "EHLO
+        id S230269AbhFIC1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 22:27:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232103AbhFICYs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 22:24:48 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22E8FC061795
-        for <devicetree@vger.kernel.org>; Tue,  8 Jun 2021 19:22:54 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id z4so13870793qts.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 19:22:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=15CdY0r5RnxftkFZJ6yhdJWHPVIzarpaUkI6fo0sN8U=;
-        b=Gh1INC/ZuAFqHbFIVwJLH027TUdIsa9wkgOqZth2FgceEpQD/IOsqwNmEAlI88V+b2
-         l9K/tfNVh1NeQREfuzDSXal2BqWlmnawKMdO5c4zSlMAobqYBBaDJiG07TDc41yzPFZY
-         Jwjjgfuv+5HCY+PSbt49oScnWAijaZT8v7joG305GXnybn/aS6E3I+MJ4/zQ9zh/J3AW
-         usupaDtffOjAnJM/l6aSkZzh3RmpTOKf1o/Sn8D6Tqj7F+yZuRDApePEUIoGKyIUiVkY
-         /4NInJnvln2BEfrt0kt6qtl4PGmPbCDu21ywUsN+eA2d3Yhn0aTQIwrIWhx0w8n+VSiu
-         DSjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=15CdY0r5RnxftkFZJ6yhdJWHPVIzarpaUkI6fo0sN8U=;
-        b=B4rDbBXkNHroD53Kz4D2njXmDhqbGsYY/8/vGKEToP4Llp6Ex6LyxZd3ojlOI3xkdN
-         FyeYViV7hbKY7aAuIcHrdNk9Cl9b7IqzKx0SoEM9tgy0f27qIVcUbohav3YTLaD9I/8/
-         CX4bL/K9KuQM9k5FajNkntwicbo2WYao442YY3TXulvCFR3rGX7+psapTs3tqvsnU8O3
-         YDmGIQeDehv9vRTgk5swhpDCsIuNb1poVTpi1phT8G7xmIgtqolqCZN/o/NeA4JNWtRG
-         vtCaKkz8qPVAlQlnnVdHxyeARfglYRrFmOfu1UVimpM+VBGV5RYJjU0iG9ItCsTjc7Lm
-         lCPQ==
-X-Gm-Message-State: AOAM532kie9U+ZR2JREWYpaxzhyjuUyN9Rwgb5Idgw/xq2ahR513itqQ
-        /1BZyxgyQ8A3A4ZjTOg+GTnXlQ==
-X-Google-Smtp-Source: ABdhPJz4qgAr/+xk+3/cMiRADKD4dDhJEAaQvHrwhv1HgBZ+D2JTxPdOAzlxUjr+AJTFSNwgnAXwcQ==
-X-Received: by 2002:a05:622a:104b:: with SMTP id f11mr7685024qte.220.1623205373346;
-        Tue, 08 Jun 2021 19:22:53 -0700 (PDT)
-Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id h6sm7004657qtr.73.2021.06.08.19.22.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jun 2021 19:22:53 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     robert.foss@linaro.org, andrey.konovalov@linaro.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 2/3] dt-bindings: clock: add QCOM SM8250 camera clock bindings
-Date:   Tue,  8 Jun 2021 22:20:47 -0400
-Message-Id: <20210609022051.2171-3-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20210609022051.2171-1-jonathan@marek.ca>
-References: <20210609022051.2171-1-jonathan@marek.ca>
+        with ESMTP id S230259AbhFIC1e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 22:27:34 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B8ABC061574;
+        Tue,  8 Jun 2021 19:25:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=NVOiE3q6n5OsUVCkyojOeuEAHuYE4AwOawABwQR+Mqc=; b=lx6V32UvTTqvxs+P5oCSs2xW8s
+        tnPptJ9ZrYpGEQkBvFb8fFRB3LBjWYXW5YovxpLIHyv36eVRmmRe8YqCAgrsyoDpnY/0zcAPh5wFJ
+        HtpsfoFDz7OE8N88GRvtkVUQ+kVFnz49IXpZbaRI3/132fkrGu+EXzSGQJMC+4xJPW7stFn7xa9N4
+        aDZCO7AoQo6zYpbxSvEOh3mFRhsDIMGTiMPC6k9SdaSczATbB9XElUeDXt5JqeVlMl5w6ZmKFck7r
+        Atnq0j/h7AUMFOeiT9CoXOX1mqoeginATA/+cgVnM2IV9uQ5DNcC+8aLZZwlm32pqA7oBFJ1VdSx+
+        xgk5NFuw==;
+Received: from [2601:1c0:6280:3f0::bd57]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1lqnuV-00BQno-UV; Wed, 09 Jun 2021 02:25:40 +0000
+Subject: Re: [PATCH 2/5] thermal: qcom: Add support for LMh driver
+To:     Thara Gopinath <thara.gopinath@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, viresh.kumar@linaro.org,
+        rjw@rjwysocki.net, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210608222926.2707768-1-thara.gopinath@linaro.org>
+ <20210608222926.2707768-3-thara.gopinath@linaro.org>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <531fae77-f037-5e4a-be1e-ce21618fbd9d@infradead.org>
+Date:   Tue, 8 Jun 2021 19:25:37 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210608222926.2707768-3-thara.gopinath@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for camera clock controller for
-Qualcomm Technology Inc's SM8250 SoC.
+On 6/8/21 3:29 PM, Thara Gopinath wrote:
+> Driver enabling various pieces of Limits Management Hardware(LMh) for cpu
+> cluster0 and cpu cluster1 namely kick starting monitoring of temperature,
+> current, battery current violations, enabling reliability algorithm and
+> setting up various temperature limits.
+> 
+> The following has been explained in the cover letter. I am including this
+> here so that this remains in the commit message as well.
+> 
+> LMh is a hardware infrastructure on some Qualcomm SoCs that can enforce
+> temperature and current limits as programmed by software for certain IPs
+> like CPU. On many newer SoCs LMh is configured by firmware/TZ and no
+> programming is needed from the kernel side. But on certain SoCs like sdm845
+> the firmware does not do a complete programming of the h/w. On such SoCs
+> kernel software has to explicitly set up the temperature limits and turn on
+> various monitoring and enforcing algorithms on the hardware.
+> 
+> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+> ---
+>  drivers/thermal/qcom/Kconfig  |  10 ++
+>  drivers/thermal/qcom/Makefile |   1 +
+>  drivers/thermal/qcom/lmh.c    | 244 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 255 insertions(+)
+>  create mode 100644 drivers/thermal/qcom/lmh.c
+> 
+> diff --git a/drivers/thermal/qcom/Kconfig b/drivers/thermal/qcom/Kconfig
+> index 8d5ac2df26dc..c95b95e254d7 100644
+> --- a/drivers/thermal/qcom/Kconfig
+> +++ b/drivers/thermal/qcom/Kconfig
+> @@ -31,3 +31,13 @@ config QCOM_SPMI_TEMP_ALARM
+>  	  trip points. The temperature reported by the thermal sensor reflects the
+>  	  real time die temperature if an ADC is present or an estimate of the
+>  	  temperature based upon the over temperature stage value.
+> +
+> +config QCOM_LMH
+> +	tristate "Qualcomm Limits Management Hardware"
+> +	depends on ARCH_QCOM
+> +	help
+> +	  This enables initialization of Qualcomm limits management
+> +	  hardware(LMh). LMh allows for h/w enforced mitigation for cpus based on
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- .../bindings/clock/qcom,camcc-sm8250.yaml     |  68 +++++++++
- include/dt-bindings/clock/qcom,camcc-sm8250.h | 138 ++++++++++++++++++
- 2 files changed, 206 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml
- create mode 100644 include/dt-bindings/clock/qcom,camcc-sm8250.h
+	                                hardware-enforced           CPUs
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml b/Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml
-new file mode 100644
-index 0000000000000..9f239c3960d1d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,camcc-sm8250.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Camera Clock & Reset Controller Binding for SM8250
-+
-+maintainers:
-+  - Jonathan Marek <jonathan@marek.ca>
-+
-+description: |
-+  Qualcomm camera clock control module which supports the clocks, resets and
-+  power domains on SM8250.
-+
-+  See also dt-bindings/clock/qcom,camcc-sm8250.h
-+
-+properties:
-+  compatible:
-+    const: qcom,sm8250-camcc
-+
-+  clocks:
-+    items:
-+      - description: Board XO source
-+      - description: Sleep clock source
-+
-+  clock-names:
-+    items:
-+      - const: bi_tcxo
-+      - const: sleep_clk
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  '#power-domain-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - '#reset-cells'
-+  - '#power-domain-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    clock-controller@ad00000 {
-+      compatible = "qcom,sm8250-camcc";
-+      reg = <0x0ad00000 0x10000>;
-+      clocks = <&rpmhcc RPMH_CXO_CLK>,
-+               <&sleep_clk>;
-+      clock-names = "bi_tcxo", "sleep_clk";
-+      #clock-cells = <1>;
-+      #reset-cells = <1>;
-+      #power-domain-cells = <1>;
-+    };
-+...
-diff --git a/include/dt-bindings/clock/qcom,camcc-sm8250.h b/include/dt-bindings/clock/qcom,camcc-sm8250.h
-new file mode 100644
-index 0000000000000..383ead17608da
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,camcc-sm8250.h
-@@ -0,0 +1,138 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_CAM_CC_SM8250_H
-+#define _DT_BINDINGS_CLK_QCOM_CAM_CC_SM8250_H
-+
-+/* CAM_CC clocks */
-+#define CAM_CC_BPS_AHB_CLK		0
-+#define CAM_CC_BPS_AREG_CLK		1
-+#define CAM_CC_BPS_AXI_CLK		2
-+#define CAM_CC_BPS_CLK			3
-+#define CAM_CC_BPS_CLK_SRC		4
-+#define CAM_CC_CAMNOC_AXI_CLK		5
-+#define CAM_CC_CAMNOC_AXI_CLK_SRC	6
-+#define CAM_CC_CAMNOC_DCD_XO_CLK	7
-+#define CAM_CC_CCI_0_CLK		8
-+#define CAM_CC_CCI_0_CLK_SRC		9
-+#define CAM_CC_CCI_1_CLK		10
-+#define CAM_CC_CCI_1_CLK_SRC		11
-+#define CAM_CC_CORE_AHB_CLK		12
-+#define CAM_CC_CPAS_AHB_CLK		13
-+#define CAM_CC_CPHY_RX_CLK_SRC		14
-+#define CAM_CC_CSI0PHYTIMER_CLK		15
-+#define CAM_CC_CSI0PHYTIMER_CLK_SRC	16
-+#define CAM_CC_CSI1PHYTIMER_CLK		17
-+#define CAM_CC_CSI1PHYTIMER_CLK_SRC	18
-+#define CAM_CC_CSI2PHYTIMER_CLK		19
-+#define CAM_CC_CSI2PHYTIMER_CLK_SRC	20
-+#define CAM_CC_CSI3PHYTIMER_CLK		21
-+#define CAM_CC_CSI3PHYTIMER_CLK_SRC	22
-+#define CAM_CC_CSI4PHYTIMER_CLK		23
-+#define CAM_CC_CSI4PHYTIMER_CLK_SRC	24
-+#define CAM_CC_CSI5PHYTIMER_CLK		25
-+#define CAM_CC_CSI5PHYTIMER_CLK_SRC	26
-+#define CAM_CC_CSIPHY0_CLK		27
-+#define CAM_CC_CSIPHY1_CLK		28
-+#define CAM_CC_CSIPHY2_CLK		29
-+#define CAM_CC_CSIPHY3_CLK		30
-+#define CAM_CC_CSIPHY4_CLK		31
-+#define CAM_CC_CSIPHY5_CLK		32
-+#define CAM_CC_FAST_AHB_CLK_SRC		33
-+#define CAM_CC_FD_CORE_CLK		34
-+#define CAM_CC_FD_CORE_CLK_SRC		35
-+#define CAM_CC_FD_CORE_UAR_CLK		36
-+#define CAM_CC_GDSC_CLK			37
-+#define CAM_CC_ICP_AHB_CLK		38
-+#define CAM_CC_ICP_CLK			39
-+#define CAM_CC_ICP_CLK_SRC		40
-+#define CAM_CC_IFE_0_AHB_CLK		41
-+#define CAM_CC_IFE_0_AREG_CLK		42
-+#define CAM_CC_IFE_0_AXI_CLK		43
-+#define CAM_CC_IFE_0_CLK		44
-+#define CAM_CC_IFE_0_CLK_SRC		45
-+#define CAM_CC_IFE_0_CPHY_RX_CLK	46
-+#define CAM_CC_IFE_0_CSID_CLK		47
-+#define CAM_CC_IFE_0_CSID_CLK_SRC	48
-+#define CAM_CC_IFE_0_DSP_CLK		49
-+#define CAM_CC_IFE_1_AHB_CLK		50
-+#define CAM_CC_IFE_1_AREG_CLK		51
-+#define CAM_CC_IFE_1_AXI_CLK		52
-+#define CAM_CC_IFE_1_CLK		53
-+#define CAM_CC_IFE_1_CLK_SRC		54
-+#define CAM_CC_IFE_1_CPHY_RX_CLK	55
-+#define CAM_CC_IFE_1_CSID_CLK		56
-+#define CAM_CC_IFE_1_CSID_CLK_SRC	57
-+#define CAM_CC_IFE_1_DSP_CLK		58
-+#define CAM_CC_IFE_LITE_AHB_CLK		59
-+#define CAM_CC_IFE_LITE_AXI_CLK		60
-+#define CAM_CC_IFE_LITE_CLK		61
-+#define CAM_CC_IFE_LITE_CLK_SRC		62
-+#define CAM_CC_IFE_LITE_CPHY_RX_CLK	63
-+#define CAM_CC_IFE_LITE_CSID_CLK	64
-+#define CAM_CC_IFE_LITE_CSID_CLK_SRC	65
-+#define CAM_CC_IPE_0_AHB_CLK		66
-+#define CAM_CC_IPE_0_AREG_CLK		67
-+#define CAM_CC_IPE_0_AXI_CLK		68
-+#define CAM_CC_IPE_0_CLK		69
-+#define CAM_CC_IPE_0_CLK_SRC		70
-+#define CAM_CC_JPEG_CLK			71
-+#define CAM_CC_JPEG_CLK_SRC		72
-+#define CAM_CC_MCLK0_CLK		73
-+#define CAM_CC_MCLK0_CLK_SRC		74
-+#define CAM_CC_MCLK1_CLK		75
-+#define CAM_CC_MCLK1_CLK_SRC		76
-+#define CAM_CC_MCLK2_CLK		77
-+#define CAM_CC_MCLK2_CLK_SRC		78
-+#define CAM_CC_MCLK3_CLK		79
-+#define CAM_CC_MCLK3_CLK_SRC		80
-+#define CAM_CC_MCLK4_CLK		81
-+#define CAM_CC_MCLK4_CLK_SRC		82
-+#define CAM_CC_MCLK5_CLK		83
-+#define CAM_CC_MCLK5_CLK_SRC		84
-+#define CAM_CC_MCLK6_CLK		85
-+#define CAM_CC_MCLK6_CLK_SRC		86
-+#define CAM_CC_PLL0			87
-+#define CAM_CC_PLL0_OUT_EVEN		88
-+#define CAM_CC_PLL0_OUT_ODD		89
-+#define CAM_CC_PLL1			90
-+#define CAM_CC_PLL1_OUT_EVEN		91
-+#define CAM_CC_PLL2			92
-+#define CAM_CC_PLL2_OUT_MAIN		93
-+#define CAM_CC_PLL3			94
-+#define CAM_CC_PLL3_OUT_EVEN		95
-+#define CAM_CC_PLL4			96
-+#define CAM_CC_PLL4_OUT_EVEN		97
-+#define CAM_CC_SBI_AHB_CLK		98
-+#define CAM_CC_SBI_AXI_CLK		99
-+#define CAM_CC_SBI_CLK			100
-+#define CAM_CC_SBI_CPHY_RX_CLK		101
-+#define CAM_CC_SBI_CSID_CLK		102
-+#define CAM_CC_SBI_CSID_CLK_SRC		103
-+#define CAM_CC_SBI_DIV_CLK_SRC		104
-+#define CAM_CC_SBI_IFE_0_CLK		105
-+#define CAM_CC_SBI_IFE_1_CLK		106
-+#define CAM_CC_SLEEP_CLK		107
-+#define CAM_CC_SLEEP_CLK_SRC		108
-+#define CAM_CC_SLOW_AHB_CLK_SRC		109
-+#define CAM_CC_XO_CLK_SRC		110
-+
-+/* CAM_CC resets */
-+#define CAM_CC_BPS_BCR			0
-+#define CAM_CC_ICP_BCR			1
-+#define CAM_CC_IFE_0_BCR		2
-+#define CAM_CC_IFE_1_BCR		3
-+#define CAM_CC_IPE_0_BCR		4
-+#define CAM_CC_SBI_BCR			5
-+
-+/* CAM_CC GDSCRs */
-+#define BPS_GDSC			0
-+#define IPE_0_GDSC			1
-+#define SBI_GDSC			2
-+#define IFE_0_GDSC			3
-+#define IFE_1_GDSC			4
-+#define TITAN_TOP_GDSC			5
-+
-+#endif
+> +	  input from temperature and current sensors.  On many newer Qualcomm SoCs
+> +	  LMH is configure in the firmware and this feature need not be enabled.
+
+	  LMh
+
+> +	  However, on certain SoCs like sdm845 LMH has to be configured from HLOS.
+
+	                                       LMh
+
+What is HLOS?
+
+
+> diff --git a/drivers/thermal/qcom/lmh.c b/drivers/thermal/qcom/lmh.c
+> new file mode 100644
+> index 000000000000..8741a36cb674
+> --- /dev/null
+> +++ b/drivers/thermal/qcom/lmh.c
+> @@ -0,0 +1,244 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +/*
+> + * Copyright (C) 2021, Linaro Limited. All rights reserved.
+> + */
+
+[snip]
+
+> +static int lmh_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev;
+> +	struct device_node *np;
+> +	struct lmh_hw_data *lmh_data;
+> +	u32 node_id;
+> +	int ret;
+> +
+> +	dev = &pdev->dev;
+> +	np = dev->of_node;
+> +	if (!np)
+> +		return -EINVAL;
+> +
+> +	lmh_data = devm_kzalloc(dev, sizeof(*lmh_data), GFP_KERNEL);
+> +	if (!lmh_data)
+> +		return -ENOMEM;
+> +
+> +	lmh_data->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(lmh_data->base))
+> +		return PTR_ERR(lmh_data->base);
+> +
+> +	ret = of_property_read_u32(np, "qcom,lmh-cpu-id", &lmh_data->cpu_id);
+> +	if (ret)
+> +		return -ENODEV;
+> +
+> +	/*
+> +	 * Only sdm845 has lmh hardware currently enabled from hlos. If this is needed
+> +	 * for other platforms, revisit this to check if the <cpu-id, node-id> should be part
+> +	 * of a dt match table.
+> +	 */
+> +	if (lmh_data->cpu_id == 0) {
+> +		node_id = LMH_CLUSTER0_NODE_ID;
+> +	} else if (lmh_data->cpu_id == 4) {
+> +		node_id = LMH_CLUSTER1_NODE_ID;
+> +	} else {
+> +		dev_err(dev, "Wrong cpu id associated with lmh node\n");
+
+		                    CPU                    LMh
+
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Payload size is five bytes for now */
+> +	lmh_data->payload_size = 5 * sizeof(u32);
+> +
+> +	platform_set_drvdata(pdev, lmh_data);
+> +
+> +	if (!qcom_scm_lmh_dcvsh_available())
+> +		return -EINVAL;
+> +
+> +	/* Enable Thermal Algorithm */
+> +	update_payload(lmh_data, LMH_SUB_FN_THERMAL, LMH_ALGO_MODE_ENABLE, 1);
+> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+> +				 LMH_NODE_DCVS, node_id, 0);
+> +	if (ret) {
+> +		dev_err(dev, "Error %d enabling thermal subfunction\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Enable Current Sensing Algorithm */
+> +	update_payload(lmh_data, LMH_SUB_FN_CRNT, LMH_ALGO_MODE_ENABLE, 1);
+> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+> +				 LMH_NODE_DCVS, node_id, 0);
+> +	if (ret) {
+> +		dev_err(dev, "Error %d enabling current subfunction\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Enable Reliability Algorithm */
+> +	update_payload(lmh_data, LMH_SUB_FN_REL, LMH_ALGO_MODE_ENABLE, 1);
+> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+> +				 LMH_NODE_DCVS, node_id, 0);
+> +	if (ret) {
+> +		dev_err(dev, "Error %d enabling reliability subfunction\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Enable BCL Algorithm */
+> +	update_payload(lmh_data, LMH_SUB_FN_BCL, LMH_ALGO_MODE_ENABLE, 1);
+> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+> +				 LMH_NODE_DCVS, node_id, 0);
+> +	if (ret) {
+> +		dev_err(dev, "Error %d enabling BCL subfunction\n", ret);
+
+What is BCL?
+
+> +		return ret;
+> +	}
+> +
+> +	ret = qcom_scm_lmh_profile_change(0x1);
+> +	if (ret) {
+> +		dev_err(dev, "Error %d changing profile\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	/* Set default thermal trips */
+> +	update_payload(lmh_data, LMH_SUB_FN_THERMAL, LMH_TH_ARM_THRESHOLD, LMH_TH_ARM_TEMP);
+> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+> +				 LMH_NODE_DCVS, node_id, 0);
+> +	if (ret) {
+> +		dev_err(dev, "Error setting thermal ARM thershold%d\n", ret);
+
+		                                        threshold
+
+> +		return ret;
+> +	}
+> +
+> +	update_payload(lmh_data, LMH_SUB_FN_THERMAL, LMH_TH_HI_THRESHOLD, LMH_TH_HI_TEMP);
+> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+> +				 LMH_NODE_DCVS, node_id, 0);
+> +	if (ret) {
+> +		dev_err(dev, "Error setting thermal HI thershold%d\n", ret);
+
+		                                       threshold
+
+> +		return ret;
+> +	}
+> +	update_payload(lmh_data, LMH_SUB_FN_THERMAL, LMH_TH_LOW_THRESHOLD, LMH_TH_LOW_TEMP);
+> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+> +				 LMH_NODE_DCVS, node_id, 0);
+> +	if (ret) {
+> +		dev_err(dev, "Error setting thermal ARM thershold%d\n", ret);
+
+		                                        threshold
+
+> +		return ret;
+> +	}
+> +
+> +	lmh_data->irq = platform_get_irq(pdev, 0);
+> +	lmh_data->domain = irq_domain_add_linear(np, 1, &lmh_irq_ops, lmh_data);
+> +	if (!lmh_data->domain) {
+> +		dev_err(dev, "Error adding irq_domain\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = devm_request_irq(dev, lmh_data->irq, lmh_handle_irq,
+> +			       IRQF_TRIGGER_HIGH | IRQF_ONESHOT | IRQF_NO_SUSPEND,
+> +			       "lmh-irq", lmh_data);
+> +	if (ret) {
+> +		dev_err(dev, "Error %d registering irq %x\n", ret, lmh_data->irq);
+> +		irq_domain_remove(lmh_data->domain);
+> +		return ret;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id lmh_table[] = {
+> +	{ .compatible = "qcom,msm-hw-limits", },
+> +	{},
+> +};
+> +
+> +static struct platform_driver lmh_driver = {
+> +	.probe = lmh_probe,
+> +	.driver = {
+> +		.name = "qcom-lmh",
+> +		.of_match_table = lmh_table,
+> +	},
+> +};
+> +module_platform_driver(lmh_driver);
+> +
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_DESCRIPTION("QCOM LMH driver");
+
+                            LMh
+
+
+thanks.
 -- 
-2.26.1
+~Randy
 
