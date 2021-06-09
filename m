@@ -2,104 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 585043A173E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BEB33A1797
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:42:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235058AbhFIOb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 10:31:26 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:37488 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236283AbhFIObZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:31:25 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159ETPaB020794;
-        Wed, 9 Jun 2021 09:29:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623248966;
-        bh=zV3VZ4YOASefAdKhPByngIOqwleUDUA6BN4OYuClyYM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=bvWl3x8MVaXaXUNtYbKCjKDQwIEk6H1bZM3XrrcGxpXcYBIJpn4NPZ7C+UzYeBMra
-         gnVxdNb2BE3vQ8c8NFZSSQsU9lsJHLo2aOuA4bpQnICKQ4uCZkk5XCUneMylc0PwRT
-         RW40YRHR/NQblfwDoof8zzaFZFBVUatgwiIzPK+8=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159ETPB0113075
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Jun 2021 09:29:25 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
- 2021 09:29:22 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 9 Jun 2021 09:29:22 -0500
-Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159ETFu2012709;
-        Wed, 9 Jun 2021 09:29:17 -0500
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64-main: Update the location of
- ATF in SRAM and increase its max size
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        id S235446AbhFIOoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 10:44:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41590 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233970AbhFIOoH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:44:07 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E563C061574;
+        Wed,  9 Jun 2021 07:42:12 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id y7so21137784wrh.7;
+        Wed, 09 Jun 2021 07:42:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=IhyCu8H5WSS/E4CDjMhpArM4pXXOj0TlzCRvDB9JWNs=;
+        b=FylaupbFDFZrMhi3SvSNnIe8tPXxK9fI1FeBkscPkU7HbplyXTi5mjeQl4ajeZUMjF
+         3u9Y9nVjGb2t0Jl/1yP6vkekD7tk4+/juEZuLQPMu++PeIg4Rz0q+Y3HoLTPRvxlNgwm
+         d/saSwDWPCECKQPpWi/mJ6GbyjOEuY9BOFCwwHxkr9bLFyuLqWhYP8LZvaPQ1YYCIL6s
+         waetdHEa2R04ypG6be8Vd7k+j9eqjmmhbEldq2TdqRkoUscclY5BLVAkfx/5Dreyal2u
+         gb5v7pguPCe4uVY8/JkG6lEj0nXgYj6jMz7m0CFQZbala5Oq81d+LQmqbKQOnnBaf50D
+         O/XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=IhyCu8H5WSS/E4CDjMhpArM4pXXOj0TlzCRvDB9JWNs=;
+        b=iEJ5QtiqFzsVnmLrPPb9M/cBnZHWmToJzk8HZOg/dfSQo9VILMrQu9Xrccybxdzw+8
+         zcgKova2gcBxEoIJZftvs3LZfwMV7KLj0bQhKF24SOcaTw60zEM5pfoow2BHhD5xCVXi
+         rHT+YYSvPBJVXV4waG27C/jBVD/LXyUt4+DO/jdokaldD7zxovH6wgSE6Cu4zCEBFQ1p
+         87jyVVCnMk+M7XEfotNd/4lwk9E7AQN1OIKCFA+eZ6gQN6wO1J82++UvVPu90cbnM1TC
+         1wJ36jHYGf/fU+xs4S9CLz/GTNncZWHyjOCfP/y6TRgJQdMH7xN+e0Ni+QpLrVOsZOix
+         84Zw==
+X-Gm-Message-State: AOAM531M/X+xIUC5fN0hRYDGf7wdetw8vwBnfsi93xwUeRIwDPSifHlM
+        Pc/nvpjKg0/56LmoxObLwuQB2YWmXSb45nQb
+X-Google-Smtp-Source: ABdhPJxs1AUnYHyns8XqNWnre7Ubl2p5jpkkdqatFTbqbgJrQpW3L64xpTz6S+pkS0t8gqgaaORBHg==
+X-Received: by 2002:a5d:59af:: with SMTP id p15mr171709wrr.292.1623249731120;
+        Wed, 09 Jun 2021 07:42:11 -0700 (PDT)
+Received: from ziggy.stardust (81.172.61.185.dyn.user.ono.com. [81.172.61.185])
+        by smtp.gmail.com with ESMTPSA id v7sm129321wru.66.2021.06.09.07.42.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jun 2021 07:42:10 -0700 (PDT)
+Subject: Re: [PATCH v5 14/16] memory: mtk-smi: Get rid of mtk_smi_larb_get/put
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210607133806.18158-1-a-govindraju@ti.com>
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-Message-ID: <e53458a9-e5f6-6507-f95c-2406b47b5576@ti.com>
-Date:   Wed, 9 Jun 2021 19:59:14 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, eizan@chromium.org, acourbot@chromium.org
+References: <20210410091128.31823-1-yong.wu@mediatek.com>
+ <20210410091128.31823-15-yong.wu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <1755fd87-a724-508f-92a8-d09b627d58ca@gmail.com>
+Date:   Wed, 9 Jun 2021 16:42:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-In-Reply-To: <20210607133806.18158-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20210410091128.31823-15-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 07/06/21 7:08 pm, Aswath Govindraju wrote:
-> Due to a limitation for USB DFU boot mode, SPL load address has to be less
-> than  or equal to 0x70001000. So, load address of SPL and ATF have been
-> moved to 0x70000000 and 0x701a0000 respectively.
+On 10/04/2021 11:11, Yong Wu wrote:
+> After adding device_link between the iommu consumer and smi-larb,
+> the pm_runtime_get(_sync) of smi-larb and smi-common will be called
+> automatically. we can get rid of mtk_smi_larb_get/put.
 > 
-> Also, the maximum size of ATF has been increased to 0x1c000 [1].
-> 
-> Therefore, update ATF's location and maximum size accordingly in the device
-> tree file.
-> 
-> [1] - https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/?id=2fb5312f61a7de8b7a70e1639199c4f14a10b6f9
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> CC: Matthias Brugger <matthias.bgg@gmail.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Reviewed-by: Evan Green <evgreen@chromium.org>
+
+Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
+
 > ---
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/memory/mtk-smi.c   | 14 --------------
+>  include/soc/mediatek/smi.h | 20 --------------------
+>  2 files changed, 34 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index ca59d1f711f8..fcd12b6f10f6 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -13,8 +13,8 @@
->  		#size-cells = <1>;
->  		ranges = <0x0 0x00 0x70000000 0x200000>;
+> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
+> index c5fb51f73b34..7c61c924e220 100644
+> --- a/drivers/memory/mtk-smi.c
+> +++ b/drivers/memory/mtk-smi.c
+> @@ -134,20 +134,6 @@ static void mtk_smi_clk_disable(const struct mtk_smi *smi)
+>  	clk_disable_unprepare(smi->clk_apb);
+>  }
 >  
-> -		atf-sram@0 {
-> -			reg = <0x0 0x1a000>;
-> +		atf-sram@1a0000 {
-> +			reg = <0x1a0000 0x1c000>;
-
-After thinking a bot more, isn't size be 0x20000?
-ATF is allocated with 125KB no? no point keeping the ~3 as hole IMO.
-
-Thanks and regards,
-Lokesh
-
->  		};
->  	};
+> -int mtk_smi_larb_get(struct device *larbdev)
+> -{
+> -	int ret = pm_runtime_resume_and_get(larbdev);
+> -
+> -	return (ret < 0) ? ret : 0;
+> -}
+> -EXPORT_SYMBOL_GPL(mtk_smi_larb_get);
+> -
+> -void mtk_smi_larb_put(struct device *larbdev)
+> -{
+> -	pm_runtime_put_sync(larbdev);
+> -}
+> -EXPORT_SYMBOL_GPL(mtk_smi_larb_put);
+> -
+>  static int
+>  mtk_smi_larb_bind(struct device *dev, struct device *master, void *data)
+>  {
+> diff --git a/include/soc/mediatek/smi.h b/include/soc/mediatek/smi.h
+> index 15e3397cec58..11f7d6b59642 100644
+> --- a/include/soc/mediatek/smi.h
+> +++ b/include/soc/mediatek/smi.h
+> @@ -19,26 +19,6 @@ struct mtk_smi_larb_iommu {
+>  	unsigned char  bank[32];
+>  };
 >  
+> -/*
+> - * mtk_smi_larb_get: Enable the power domain and clocks for this local arbiter.
+> - *                   It also initialize some basic setting(like iommu).
+> - * mtk_smi_larb_put: Disable the power domain and clocks for this local arbiter.
+> - * Both should be called in non-atomic context.
+> - *
+> - * Returns 0 if successful, negative on failure.
+> - */
+> -int mtk_smi_larb_get(struct device *larbdev);
+> -void mtk_smi_larb_put(struct device *larbdev);
+> -
+> -#else
+> -
+> -static inline int mtk_smi_larb_get(struct device *larbdev)
+> -{
+> -	return 0;
+> -}
+> -
+> -static inline void mtk_smi_larb_put(struct device *larbdev) { }
+> -
+>  #endif
+>  
+>  #endif
 > 
