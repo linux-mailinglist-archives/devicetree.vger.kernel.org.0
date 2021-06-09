@@ -2,160 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A09C3A0E85
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 10:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D30F3A0E8B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 10:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237006AbhFIILh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 04:11:37 -0400
-Received: from mail-wm1-f50.google.com ([209.85.128.50]:52036 "EHLO
-        mail-wm1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236372AbhFIILh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 04:11:37 -0400
-Received: by mail-wm1-f50.google.com with SMTP id l9so3436151wms.1;
-        Wed, 09 Jun 2021 01:09:42 -0700 (PDT)
+        id S234362AbhFIIMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 04:12:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38980 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237073AbhFIIMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 04:12:54 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 046A8C061789
+        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 01:10:50 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id z8so24377562wrp.12
+        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 01:10:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VgaMltfJo1z7GEQx4rEQbem+9M1sDH5NvdC/cDT43co=;
-        b=K38NCOYzmomRJ7HWWg92jzk6WciNFspksJN9K+aaghil/1BPZ56e2OEPgPC/KwR+xx
-         BYPEkKu1yoAHFE83Wm70y+wV7xZAPbxxxZahvpqZwqB2lnJQVbzj9AJhP0PHD6Rv/Lm6
-         5sTL+YZAvkA1npgMW2b8D19Ld7BcREAG4q8crlscPMHV1B2QTzR3nKUp3iUpsRhHOS1b
-         O82AfCmcAM8am9kqWuTwwMug3a4ujAfFw+5Lv/UHECP62uteXLHh5Dn9neuUQjqUVwf5
-         oHl5bLlt7/yKLmjeTioQn5/lOLL5D5aTTSWnUCbwrQ5NKEeJDbi7iJNT8MIx7y1x/WaS
-         zyXw==
+        d=linaro.org; s=google;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=yeMGCtUgxK6t4A7+D+jzmV9juI4SVCPR/VjiQhoikOY=;
+        b=SRf1eULIXhahYK8Dwzo8FNoIxxo6HuJvR3fP38pj0ee/3J/UIwJ7eaXEybnr+An1X7
+         ldIP0yifHyV+xXeepgHNWmJG+xSDi/zzRX+JydP87oU1IZUycTP+QbxUAoQdSaS7UGcP
+         XYISTU5I1G59Tm4pVGKUFUMHaVKmTbhhcSbHKoo1G1F02aOp++g6sgOyP5TtjR+REIqQ
+         +FXTMmtZ5Ri2uFfil+VEhzfgdMydyb/tZgrI1nn5FuavmRmb/IPJLmVW2engTg2tOdxQ
+         CzqAhzBQS526LJ2iWZOjgXwTGocMZnjWvtzdWzhCp/vArXo8xszneScYd7oCCRS5orfE
+         aqow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+        h=x-gm-message-state:subject:to:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=VgaMltfJo1z7GEQx4rEQbem+9M1sDH5NvdC/cDT43co=;
-        b=Kj4csUW1eguLKMj5KXia/ElwEe7RGtmjvwG1zg5EOTsgS1ixdpiAg5AnLsZsVqzMmH
-         X1tq/7T4DW4fySDt+7+SZGAC2FdH2WKDa8XvDTY541Ugl7rYc0ytOv+dEQLAOWuylmR2
-         y5akKHOpp8Mv08Hx/aNAiJbFib43424FcXkLMqPaf8cMVKrjULzTCVxQ7cpxbwlkyD65
-         GVIlcHsRI6NELHS94z+zyboWkxAfnsCh5TTGBH+doVtGn275MtDe4xo7Qa+mB6DPaiVf
-         Ux8TcMdF1WaqWHmMV1Xoau9w52L5RqEzCzDoKAKQZVoqwFYy6PjppsXXH3wA/X8qSyE1
-         MPOw==
-X-Gm-Message-State: AOAM533oa7rTtg0R3bs9cD2sK0Llaio+fTrZSnuzf0E57Y7hgj1MjdHf
-        axIFC/gGRVsp/NJuO+YDRgDZO9FQsO8=
-X-Google-Smtp-Source: ABdhPJwP8qnw2dQb0Xb9SRf3aYteDR/JAE2GjpZniv4ftFR/DjNOBtVPcBQB441WfOAoZNSbCiKllg==
-X-Received: by 2002:a1c:4d09:: with SMTP id o9mr26874571wmh.149.1623226122425;
-        Wed, 09 Jun 2021 01:08:42 -0700 (PDT)
-Received: from ziggy.stardust (81.172.61.185.dyn.user.ono.com. [81.172.61.185])
-        by smtp.gmail.com with ESMTPSA id f14sm4257008wri.16.2021.06.09.01.08.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Jun 2021 01:08:41 -0700 (PDT)
-Subject: Re: [PATCH v9 18/22] clk: mediatek: Add MT8192 mmsys clock support
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Weiyi Lu <weiyi.lu@mediatek.com>
-References: <20210524122053.17155-1-chun-jie.chen@mediatek.com>
- <20210524122053.17155-19-chun-jie.chen@mediatek.com>
- <7520a10b-b362-03d4-e41b-e2098ae26621@gmail.com>
- <ef9441888d4ca82d79295106548dd3d463c9c8bc.camel@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <b7a1c230-3f09-d9be-1138-3a5fa87600e7@gmail.com>
-Date:   Wed, 9 Jun 2021 10:08:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        bh=yeMGCtUgxK6t4A7+D+jzmV9juI4SVCPR/VjiQhoikOY=;
+        b=TAAegsPigjsPH1ahIMEKX5vXwKybBIdFH9gG/2hqpygl0V0cW6d9TmOdiNQMy5fVXT
+         dxKuR46ToWG+HQ92dpZScHKertVSHjC+HEAxgQiFVEPCzADyl/YCAn32tQyTApVyW13y
+         wgvu7wQMPNubmfW0/Ym9OxnzDcuRQ0Gy+bZEFiXTac4suOpzB+3Jb1Nyy0XSNIWHGYoB
+         qWqTdq/xbNUFJQ1a47KYcfGB6RRGRT+EXjYKIBcfBco45y1jQbyMekSSZH6PeQQUDtWy
+         m9S+j2yxmpSnWG4WG67ldoathUapugLYhsztXGrdtDpHtJmkkgMi5ff9VpCkrjayRpFP
+         uXSw==
+X-Gm-Message-State: AOAM532sCQ8nJaptjDDfLAlnfa79Q+gTiEkG3cRkrfW6WvpEDuwQZ/XW
+        7xpI3AvVtWzvmw9xmIOpIFW7ew==
+X-Google-Smtp-Source: ABdhPJwiOv9HYqPqUVEfcTUiAMETCK+o02InNqPw0Xo7N42BXXYoQYoWr/ZBcbpROaU55/XTbngA7w==
+X-Received: by 2002:adf:d1c3:: with SMTP id b3mr18788612wrd.110.1623226249215;
+        Wed, 09 Jun 2021 01:10:49 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id e27sm23253335wra.50.2021.06.09.01.10.47
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 09 Jun 2021 01:10:48 -0700 (PDT)
+Subject: Re: [PATCH v2] ASoC: qcom: Add four speaker support on MI2S secondary
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+References: <20210609071313.18206-1-srivasam@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <d21e8951-583c-562b-421a-54ec206610ef@linaro.org>
+Date:   Wed, 9 Jun 2021 09:10:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <ef9441888d4ca82d79295106548dd3d463c9c8bc.camel@mediatek.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210609071313.18206-1-srivasam@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chun-Jie,
 
-On 09/06/2021 00:38, Chun-Jie Chen wrote:
-> On Tue, 2021-06-08 at 16:44 +0200, Matthias Brugger wrote:
->>
->> On 24/05/2021 14:20, Chun-Jie Chen wrote:
->>> Add MT8192 mmsys clock provider
->>>
->>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
->>> Signed-off-by: chun-jie.chen <chun-jie.chen@mediatek.com>
->>> ---
->>>  drivers/clk/mediatek/Kconfig         |   6 ++
->>>  drivers/clk/mediatek/Makefile        |   1 +
->>>  drivers/clk/mediatek/clk-mt8192-mm.c | 108
->>> +++++++++++++++++++++++++++
->>>  3 files changed, 115 insertions(+)
->>>  create mode 100644 drivers/clk/mediatek/clk-mt8192-mm.c
->>>
->>
->> [...]
->>> +
->>> +static int clk_mt8192_mm_probe(struct platform_device *pdev)
->>> +{
->>> +	struct device *dev = &pdev->dev;
->>> +	struct device_node *node = dev->parent->of_node;
->>> +	struct clk_onecell_data *clk_data;
->>> +	int r;
->>> +
->>> +	clk_data = mtk_alloc_clk_data(CLK_MM_NR_CLK);
->>> +	if (!clk_data)
->>> +		return -ENOMEM;
->>> +
->>> +	r = mtk_clk_register_gates(node, mm_clks, ARRAY_SIZE(mm_clks),
->>> clk_data);
->>> +	if (r)
->>> +		return r;
->>> +
->>> +	return of_clk_add_provider(node, of_clk_src_onecell_get,
->>> clk_data);
->>> +}
->>> +
->>> +static struct platform_driver clk_mt8192_mm_drv = {
->>> +	.probe = clk_mt8192_mm_probe,
->>> +	.driver = {
->>> +		.name = "clk-mt8192-mm",
->>> +	},
->>> +};
->>
->> Did you had a look at drivers/soc/mediatek/mtk-mmsys.c? How is the
->> MMSYS
->> different from all the other SoCs? I suppose it is not. Please don't
->> just
->> implement the clock drivers, but check in existing code how they play
->> together
->> with the HW they are for. MediaTek unfortunately has the design to
->> add the clock
->> registers in the address space of the IP block that needs this
->> registers. Which
->> makes it more complicated to implement clock driver in the first
->> place.
->>
->> Regards,
->> Matthias
+
+On 09/06/2021 08:13, Srinivasa Rao Mandadapu wrote:
+> Add four speaker support on MI2S secondary block
+> by using I2S SD1 line on gpio52 pin, and add channel map
+> control support in the lpass-cpu audio driver.
 > 
-> Did you means binding the mm clock driver by creating a platform device
-> in drivers/soc/mediatek/mtk-mmsys.c? There is 8192 mmsys compatible
-> data in patch [1] but lack of it in the latest patch [2], I will check
-> it.
-> Thanks for your kind reminder.
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> ---
+> Changes Since V1:
+> 	-- removed set_channel_map/get_channel_map implementation as default kcontrols
+> 		added in pcm_new API.
+> 		
+>   sound/soc/qcom/lpass-cpu.c    | 32 ++++++++++++++++++++++++++++++++
+>   sound/soc/qcom/lpass-sc7180.c |  1 +
+>   sound/soc/qcom/lpass.h        |  2 ++
+>   3 files changed, 35 insertions(+)
 > 
+> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+> index c62d2612e8f5..15d69e311b38 100644
+> --- a/sound/soc/qcom/lpass-cpu.c
+> +++ b/sound/soc/qcom/lpass-cpu.c
+> @@ -29,6 +29,14 @@
+>   #define LPASS_CPU_I2S_SD0_1_2_MASK	GENMASK(2, 0)
+>   #define LPASS_CPU_I2S_SD0_1_2_3_MASK	GENMASK(3, 0)
+>   
+> +/*
+> + * Channel maps for Quad channel playbacks on MI2S Secondary
+> + */
+> +static struct snd_pcm_chmap_elem lpass_quad_chmaps = {
+> +		.channels = 4,
+> +		.map = { SNDRV_CHMAP_FL, SNDRV_CHMAP_RL,
+> +				SNDRV_CHMAP_FR, SNDRV_CHMAP_RR }
 
-Yes, the clock driver should be a platform driver. Binding should be done
-through the soc driver.
+AFAIU, You would need an empty entry at the end of this list if not we 
+will endup in a dereferencing memory sitting right next to this array 
+which will lead to random memory corruptions...
+
+Have a look at some of the examples in existing codec drivers.
+
+Other than that patch looks good.
+
+--srini
 
 
-Thanks a lot,
-Matthias
-
-> [1] 
-> https://patchwork.kernel.org/project/linux-mediatek/patch/1609815993-22744-11-git-send-email-yongqiang.niu@mediatek.com/
-> [2] 
-> https://patchwork.kernel.org/project/linux-mediatek/patch/1618236288-1617-5-git-send-email-yongqiang.niu@mediatek.com/
-> 
-> Best Regards,
-> Chun-Jie
+> +};
+>   static int lpass_cpu_init_i2sctl_bitfields(struct device *dev,
+>   			struct lpaif_i2sctl *i2sctl, struct regmap *map)
+>   {
+> @@ -324,6 +332,25 @@ const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops = {
+>   };
+>   EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_dai_ops);
+>   
+> +int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
+> +				struct snd_soc_dai *dai)
+> +{
+> +	int ret;
+> +	struct snd_soc_dai_driver *drv = dai->driver;
+> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+> +
+> +	if (drvdata->mi2s_playback_sd_mode[dai->id] == LPAIF_I2SCTL_MODE_QUAD01) {
+> +		ret =  snd_pcm_add_chmap_ctls(rtd->pcm, SNDRV_PCM_STREAM_PLAYBACK,
+> +				&lpass_quad_chmaps, drv->playback.channels_max, 0,
+> +				NULL);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(lpass_cpu_pcm_new);
+> +
+>   int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai)
+>   {
+>   	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
+> @@ -856,6 +883,11 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
+>   				PTR_ERR(drvdata->mi2s_bit_clk[dai_id]));
+>   			return PTR_ERR(drvdata->mi2s_bit_clk[dai_id]);
+>   		}
+> +		if (drvdata->mi2s_playback_sd_mode[dai_id] ==
+> +			LPAIF_I2SCTL_MODE_QUAD01) {
+> +			variant->dai_driver[dai_id].playback.channels_min = 4;
+> +			variant->dai_driver[dai_id].playback.channels_max = 4;
+> +		}
+>   	}
+>   
+>   	/* Allocation for i2sctl regmap fields */
+> diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
+> index 8c168d3c589e..77a556b27cf0 100644
+> --- a/sound/soc/qcom/lpass-sc7180.c
+> +++ b/sound/soc/qcom/lpass-sc7180.c
+> @@ -58,6 +58,7 @@ static struct snd_soc_dai_driver sc7180_lpass_cpu_dai_driver[] = {
+>   		},
+>   		.probe	= &asoc_qcom_lpass_cpu_dai_probe,
+>   		.ops    = &asoc_qcom_lpass_cpu_dai_ops,
+> +		.pcm_new = lpass_cpu_pcm_new,
+>   	}, {
+>   		.id = LPASS_DP_RX,
+>   		.name = "Hdmi",
+> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
+> index 83b2e08ade06..623ddccdafff 100644
+> --- a/sound/soc/qcom/lpass.h
+> +++ b/sound/soc/qcom/lpass.h
+> @@ -259,5 +259,7 @@ void asoc_qcom_lpass_cpu_platform_shutdown(struct platform_device *pdev);
+>   int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev);
+>   int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai);
+>   extern const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops;
+> +int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
+> +				struct snd_soc_dai *dai);
+>   
+>   #endif /* __LPASS_H__ */
 > 
