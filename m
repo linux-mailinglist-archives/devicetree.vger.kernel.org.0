@@ -2,156 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BEB33A1797
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A74A3A1810
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235446AbhFIOoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 10:44:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41590 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233970AbhFIOoH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:44:07 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E563C061574;
-        Wed,  9 Jun 2021 07:42:12 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id y7so21137784wrh.7;
-        Wed, 09 Jun 2021 07:42:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=IhyCu8H5WSS/E4CDjMhpArM4pXXOj0TlzCRvDB9JWNs=;
-        b=FylaupbFDFZrMhi3SvSNnIe8tPXxK9fI1FeBkscPkU7HbplyXTi5mjeQl4ajeZUMjF
-         3u9Y9nVjGb2t0Jl/1yP6vkekD7tk4+/juEZuLQPMu++PeIg4Rz0q+Y3HoLTPRvxlNgwm
-         d/saSwDWPCECKQPpWi/mJ6GbyjOEuY9BOFCwwHxkr9bLFyuLqWhYP8LZvaPQ1YYCIL6s
-         waetdHEa2R04ypG6be8Vd7k+j9eqjmmhbEldq2TdqRkoUscclY5BLVAkfx/5Dreyal2u
-         gb5v7pguPCe4uVY8/JkG6lEj0nXgYj6jMz7m0CFQZbala5Oq81d+LQmqbKQOnnBaf50D
-         O/XQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=IhyCu8H5WSS/E4CDjMhpArM4pXXOj0TlzCRvDB9JWNs=;
-        b=iEJ5QtiqFzsVnmLrPPb9M/cBnZHWmToJzk8HZOg/dfSQo9VILMrQu9Xrccybxdzw+8
-         zcgKova2gcBxEoIJZftvs3LZfwMV7KLj0bQhKF24SOcaTw60zEM5pfoow2BHhD5xCVXi
-         rHT+YYSvPBJVXV4waG27C/jBVD/LXyUt4+DO/jdokaldD7zxovH6wgSE6Cu4zCEBFQ1p
-         87jyVVCnMk+M7XEfotNd/4lwk9E7AQN1OIKCFA+eZ6gQN6wO1J82++UvVPu90cbnM1TC
-         1wJ36jHYGf/fU+xs4S9CLz/GTNncZWHyjOCfP/y6TRgJQdMH7xN+e0Ni+QpLrVOsZOix
-         84Zw==
-X-Gm-Message-State: AOAM531M/X+xIUC5fN0hRYDGf7wdetw8vwBnfsi93xwUeRIwDPSifHlM
-        Pc/nvpjKg0/56LmoxObLwuQB2YWmXSb45nQb
-X-Google-Smtp-Source: ABdhPJxs1AUnYHyns8XqNWnre7Ubl2p5jpkkdqatFTbqbgJrQpW3L64xpTz6S+pkS0t8gqgaaORBHg==
-X-Received: by 2002:a5d:59af:: with SMTP id p15mr171709wrr.292.1623249731120;
-        Wed, 09 Jun 2021 07:42:11 -0700 (PDT)
-Received: from ziggy.stardust (81.172.61.185.dyn.user.ono.com. [81.172.61.185])
-        by smtp.gmail.com with ESMTPSA id v7sm129321wru.66.2021.06.09.07.42.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Jun 2021 07:42:10 -0700 (PDT)
-Subject: Re: [PATCH v5 14/16] memory: mtk-smi: Get rid of mtk_smi_larb_get/put
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        id S234452AbhFIO5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 10:57:33 -0400
+Received: from relay07.th.seeweb.it ([5.144.164.168]:57535 "EHLO
+        relay07.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234300AbhFIO5d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:57:33 -0400
+Received: from localhost.localdomain (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id B0E6B3F5E6;
+        Wed,  9 Jun 2021 16:55:36 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Evan Green <evgreen@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Will Deacon <will.deacon@arm.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
-        chao.hao@mediatek.com, ming-fan.chen@mediatek.com,
-        yi.kuo@mediatek.com, eizan@chromium.org, acourbot@chromium.org
-References: <20210410091128.31823-1-yong.wu@mediatek.com>
- <20210410091128.31823-15-yong.wu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <1755fd87-a724-508f-92a8-d09b627d58ca@gmail.com>
-Date:   Wed, 9 Jun 2021 16:42:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/9] dt-bindings: clk: qcom: Add bindings for MSM8994 GCC driver
+Date:   Wed,  9 Jun 2021 16:55:13 +0200
+Message-Id: <20210609145523.467090-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210410091128.31823-15-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add documentation for the MSM8994 GCC driver.
 
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+ .../bindings/clock/qcom,gcc-msm8994.yaml      | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
 
-On 10/04/2021 11:11, Yong Wu wrote:
-> After adding device_link between the iommu consumer and smi-larb,
-> the pm_runtime_get(_sync) of smi-larb and smi-common will be called
-> automatically. we can get rid of mtk_smi_larb_get/put.
-> 
-> CC: Matthias Brugger <matthias.bgg@gmail.com>
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> Reviewed-by: Evan Green <evgreen@chromium.org>
+diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
+new file mode 100644
+index 000000000000..b44a844d894c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/qcom,gcc-msm8994.yaml
+@@ -0,0 +1,72 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/clock/qcom,gcc-msm8994.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm Global Clock & Reset Controller Binding for MSM8994
++
++description: |
++  Qualcomm global clock control module which supports the clocks, resets and
++  power domains on MSM8994 and MSM8992.
++
++  See also:
++  - dt-bindings/clock/qcom,gcc-msm8994.h
++
++maintainers:
++  - Stephen Boyd <sboyd@kernel.org>
++  - Taniya Das <tdas@codeaurora.org>
++
++properties:
++  compatible:
++    enum:
++      - qcom,gcc-msm8992
++      - qcom,gcc-msm8994
++
++  clocks:
++    items:
++      - description: XO source
++      - description: Sleep clock source
++
++  clock-names:
++    items:
++      - const: xo
++      - const: sleep
++
++  '#clock-cells':
++    const: 1
++
++  '#reset-cells':
++    const: 1
++
++  '#power-domain-cells':
++    const: 1
++
++  reg:
++    maxItems: 1
++
++  protected-clocks:
++    description:
++      Protected clock specifier list as per common clock binding.
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++  - '#reset-cells'
++  - '#power-domain-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@300000 {
++      compatible = "qcom,gcc-msm8994";
++      reg = <0x300000 0x90000>;
++      #clock-cells = <1>;
++      #reset-cells = <1>;
++      #power-domain-cells = <1>;
++      clocks = <&xo_board>, <&sleep_clk>;
++      clock-names = "xo", "sleep";
++    };
++...
+-- 
+2.31.1
 
-Acked-by: Matthias Brugger <matthias.bgg@gmail.com>
-
-> ---
->  drivers/memory/mtk-smi.c   | 14 --------------
->  include/soc/mediatek/smi.h | 20 --------------------
->  2 files changed, 34 deletions(-)
-> 
-> diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
-> index c5fb51f73b34..7c61c924e220 100644
-> --- a/drivers/memory/mtk-smi.c
-> +++ b/drivers/memory/mtk-smi.c
-> @@ -134,20 +134,6 @@ static void mtk_smi_clk_disable(const struct mtk_smi *smi)
->  	clk_disable_unprepare(smi->clk_apb);
->  }
->  
-> -int mtk_smi_larb_get(struct device *larbdev)
-> -{
-> -	int ret = pm_runtime_resume_and_get(larbdev);
-> -
-> -	return (ret < 0) ? ret : 0;
-> -}
-> -EXPORT_SYMBOL_GPL(mtk_smi_larb_get);
-> -
-> -void mtk_smi_larb_put(struct device *larbdev)
-> -{
-> -	pm_runtime_put_sync(larbdev);
-> -}
-> -EXPORT_SYMBOL_GPL(mtk_smi_larb_put);
-> -
->  static int
->  mtk_smi_larb_bind(struct device *dev, struct device *master, void *data)
->  {
-> diff --git a/include/soc/mediatek/smi.h b/include/soc/mediatek/smi.h
-> index 15e3397cec58..11f7d6b59642 100644
-> --- a/include/soc/mediatek/smi.h
-> +++ b/include/soc/mediatek/smi.h
-> @@ -19,26 +19,6 @@ struct mtk_smi_larb_iommu {
->  	unsigned char  bank[32];
->  };
->  
-> -/*
-> - * mtk_smi_larb_get: Enable the power domain and clocks for this local arbiter.
-> - *                   It also initialize some basic setting(like iommu).
-> - * mtk_smi_larb_put: Disable the power domain and clocks for this local arbiter.
-> - * Both should be called in non-atomic context.
-> - *
-> - * Returns 0 if successful, negative on failure.
-> - */
-> -int mtk_smi_larb_get(struct device *larbdev);
-> -void mtk_smi_larb_put(struct device *larbdev);
-> -
-> -#else
-> -
-> -static inline int mtk_smi_larb_get(struct device *larbdev)
-> -{
-> -	return 0;
-> -}
-> -
-> -static inline void mtk_smi_larb_put(struct device *larbdev) { }
-> -
->  #endif
->  
->  #endif
-> 
