@@ -2,185 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 449B83A1422
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 14:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD183A144F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 14:27:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233935AbhFIMVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 08:21:44 -0400
-Received: from mail-mw2nam10on2040.outbound.protection.outlook.com ([40.107.94.40]:39104
-        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230303AbhFIMVn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Jun 2021 08:21:43 -0400
+        id S229814AbhFIM3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 08:29:37 -0400
+Received: from esa3.hgst.iphmx.com ([216.71.153.141]:16006 "EHLO
+        esa3.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231730AbhFIM3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 08:29:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1623241661; x=1654777661;
+  h=from:to:cc:subject:date:message-id:
+   content-transfer-encoding:mime-version;
+  bh=I76/Ufb26uhC71/c8XcGcydZc5zpDeA6KsNaqsIgznk=;
+  b=FjpbXI3nnscCWsu1WmIkb1lTMxCvgJf2XZhLpp0NtJE4L2tQwpZCtnIS
+   vLxPmSX6xqj7hY+dMeF8NskscimguaUtqEOoC6qK9a7GlJsIjJpxxvFru
+   vCm4j1hlaitXvy4xrZjl7H/J4T2CvZ6RUUj/hZLL46NwEYAVhnV1sol/b
+   qJP4z5OpbLSEDxXSNL+NioLIjhRf76R2vFBnx71X1Bo6JGX2goqw3Fk0Z
+   vXVFONcyASii/+ao9K6oK1TZT5j48PTnrwLxT8T4GsuvyV2tbCf2WeHdD
+   nPMI1CPeq57I4tev8u+YjEQ4reNmFpDvc6cMnnKRI5d7f8DRVPaaYcHM/
+   w==;
+IronPort-SDR: 2Y2rwYYAk+KqsXPnhBpsK9Z10Qj7BiADLM7DTUxwNc/xDv0ZFrMMSKwr4wfNmeTP3XIKxjCd8q
+ OzT23ae8XEQKmIdKSz9PV9gIu58IjBYWRD93uzASoYridRsunY7YjLvF7ZSqC3i4J7OAgC1gj5
+ BxCzxk1GJ+tpHIefMKRmT/nFAYWPPLh8d4aTUXFdjB8j/hQFl7ys2MKLYY++00jDZpcIKU7+O6
+ Owq1xWgr0zYfUhvRbaQURn9GR7L1NxlWUJB5mxbGtNuY8cCl/mIsg0Bnj/lyy6P9pTM2hd6aDb
+ pnY=
+X-IronPort-AV: E=Sophos;i="5.83,260,1616428800"; 
+   d="scan'208";a="176057710"
+Received: from mail-mw2nam10lp2106.outbound.protection.outlook.com (HELO NAM10-MW2-obe.outbound.protection.outlook.com) ([104.47.55.106])
+  by ob1.hgst.iphmx.com with ESMTP; 09 Jun 2021 20:27:39 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CrF6/37tgaLzaahqS14rzWwfK/G8g4OukoWshsXGjd1fzvBtpjjoFmdfz9eAdKoNX0dVCxMEOVkFEfD4KfzzheDIxirzXRio+VsGCE7dB8UdKPomOxwuCLyz5IKbvjlDW6Ta3eqRZuNOf2q2ODWe4QMg7LvCrSmrQVh0UGQCXsNPiwiJNCmw3kbOu0Kcp/60hscqbb+K7P0/01BwMmv4JqUsj9hAQV2FgG8TXnvt35mfW2cChlXhKmUX0kSget3fgCxxolDI+gzN0uRZBr7iMnoEmzGy2j/k9b4/NTwnAC+HCVXguKV3g5WtXBfgyiryqdtLnrmajqJN4b4l2h5ijg==
+ b=ht6NTwc5DC20kbVc7wmfann74tRggQkz/9RfDt7FFUdPFikl7WDdjJGFsWKacTXhi5WlCtdSSmfWZx16e+e3mBTqN1Y9frcDBR6fSCnwIW+TIfqFaHXbx5NvZnkQaDEN6WkZf9Ic+nLRVrvmKonoo+dbiLUk5WWBJXMU9HCRXDX8cGJkDoB1w9SvYQjvN4yE8H4/cvUVSHOhIoDnoKQ8rOUUuQyqsTtB+LqQTgDY3uqbs/Ms4dwgi+WGgWJ9QruY4uP1UTF3xlpvibsPPfcAOym0lkd02K0K87YD4879bAzTK84oZ9vZQ3BDNPrhKrT+3NhN27Jn4+aIdDtg7WkXJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zEIq4wbm/kU0e34YSTZqixkYJx+w7YLZAR/e0EupiVk=;
- b=CBX8+XuLrAq6RNGyxfcv2rni2kugtGrYg1L5npABvvJLl1DCMTVFui4bmRw7b/HIZoDphoy9SwHWg4gf/zNBGBQ1F2TXT30Fg6MPLgWqREDgQaeuJUrFM8XQ52Kd5Ie6QuDIvIp9uzD5EYxYYKDZEg8/zQbXcTOlbmjmtK4v9/2s8ntJDcW6c03HWEjnbDXNYRVo0UOb1q76T31Zq6BM6RgM6Ja/6tS3ShLWWIyBv27jA7MtMyTlGg73C8EgOzVaYYyqI6AfXABi2gb7EHw7E8EQ4kkH+0Wc5FyWwf9kKdf4QGSkHSfd5wYM3fObYopzqN+kxeYaz/TWH1uaHciDog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=xilinx.com; dmarc=pass (p=none sp=none pct=100) action=none
- header.from=xilinx.com; dkim=none (message not signed); arc=none
+ bh=XDqJbzooJhW2O5cLi+D00NiBCWVlzgC/bjJH6NpxeUo=;
+ b=aDPAaJ12e/9qh8w464K4qK0lePnCe2N/yskumCEcDFVWLnquOI4i0NM1qe3i9/FKHMTf6zdGeEJSISvQ6DE4Jkh7A9RycvrwoNwKHRJlNRGLbovMDi20zsYOKDMfH7aoBKyXhrM0skdU6/VMz4DQs72daAHa2KNqOnnBZUKPK4oSdf3Ks7k3IAGaLrTl7A0HBpsSk9Lc7QnfakuTVMF2Fy7cWyTQXa70j1cwGKBNGMGV9nvHUj4/loLLXa03lALiVZIZ2EHk1LD5djbPVHtRJ5yXlIRlBH9Gjxt5283fYq6Ezcj+COwHP+BLM0KwpD4WHrrMs066uorOLC8dftNOhA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
+ header.d=wdc.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zEIq4wbm/kU0e34YSTZqixkYJx+w7YLZAR/e0EupiVk=;
- b=MOTrU1OreVC7FPvaM8tUZhST+K0/qr6T5Dct4bF3CzCm85exunbafwG0vcUObo88/lXDkFEEKmnc/LLGwsFDfSikA4o7gO9TJN6pwZ/yqxqrl6C62zl32A61riG5t5B11LMXpQobp8v9B2iP0W+xYS1EbIonqmRZ5iA4bDWm6Lc=
-Received: from DM5PR06CA0077.namprd06.prod.outlook.com (2603:10b6:3:4::15) by
- SN6PR02MB5072.namprd02.prod.outlook.com (2603:10b6:805:6f::26) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4195.24; Wed, 9 Jun 2021 12:19:47 +0000
-Received: from DM3NAM02FT024.eop-nam02.prod.protection.outlook.com
- (2603:10b6:3:4:cafe::e2) by DM5PR06CA0077.outlook.office365.com
- (2603:10b6:3:4::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21 via Frontend
- Transport; Wed, 9 Jun 2021 12:19:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
- header.d=none;lists.infradead.org; dmarc=pass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- DM3NAM02FT024.mail.protection.outlook.com (10.13.5.128) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4219.21 via Frontend Transport; Wed, 9 Jun 2021 12:19:47 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Wed, 9 Jun 2021 05:19:44 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Wed, 9 Jun 2021 05:19:44 -0700
-Envelope-to: git@xilinx.com,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- robh+dt@kernel.org,
- michael@walle.cc,
- krzk@kernel.org,
- viresh.kumar@linaro.org,
- monstr@monstr.eu,
- linux-kernel@vger.kernel.org,
- geert@linux-m68k.org
-Received: from [172.30.17.109] (port=57088)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1lqxBP-0003oH-A2; Wed, 09 Jun 2021 05:19:43 -0700
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michal Simek <michal.simek@xilinx.com>
-CC:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Michal Simek <monstr@monstr.eu>, <git@xilinx.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <cover.1623239033.git.michal.simek@xilinx.com>
- <ea3944deffedd8a09f097a54016bf9f2e9ddcb0e.1623239033.git.michal.simek@xilinx.com>
- <CAMuHMdX7J5UK1Y_ghqneppFTHDw=MQTUGcBy6GTeeCPZtcJojg@mail.gmail.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Subject: Re: [PATCH 31/31] arm64: zynqmp: Add support for Xilinx Kria SOM
- board
-Message-ID: <8404cf0d-08ee-627c-f842-819baf3420eb@xilinx.com>
-Date:   Wed, 9 Jun 2021 14:19:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <CAMuHMdX7J5UK1Y_ghqneppFTHDw=MQTUGcBy6GTeeCPZtcJojg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+ bh=XDqJbzooJhW2O5cLi+D00NiBCWVlzgC/bjJH6NpxeUo=;
+ b=njYDIv3+7ojRpYlmhdiyu/BcANnSfda0MGtxI0P+1IFo58A8crVJHs+gXzJAoNNBu39LxXZUrIs9oMXhVtQD/97vGHlw6q0s6VpWgpUho0nnd+3kWzWfl4SEQN47gLv4h/MZkN0Da/V9Qz4so46H+56IeE9XJDBhetA62I3tHG8=
+Authentication-Results: dabbelt.com; dkim=none (message not signed)
+ header.d=none;dabbelt.com; dmarc=none action=none header.from=wdc.com;
+Received: from CO6PR04MB7812.namprd04.prod.outlook.com (2603:10b6:303:138::6)
+ by CO6PR04MB7843.namprd04.prod.outlook.com (2603:10b6:5:35f::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21; Wed, 9 Jun
+ 2021 12:27:39 +0000
+Received: from CO6PR04MB7812.namprd04.prod.outlook.com
+ ([fe80::a153:b7f8:c87f:89f8]) by CO6PR04MB7812.namprd04.prod.outlook.com
+ ([fe80::a153:b7f8:c87f:89f8%9]) with mapi id 15.20.4219.021; Wed, 9 Jun 2021
+ 12:27:38 +0000
+From:   Anup Patel <anup.patel@wdc.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
+Cc:     Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        Anup Patel <anup@brainfault.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Anup Patel <anup.patel@wdc.com>
+Subject: [PATCH v6 0/8] RISC-V CPU Idle Support
+Date:   Wed,  9 Jun 2021 17:57:07 +0530
+Message-Id: <20210609122715.3389-1-anup.patel@wdc.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
+Content-Type: text/plain
+X-Originating-IP: [122.172.176.125]
+X-ClientProxiedBy: MA1PR0101CA0033.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:22::19) To CO6PR04MB7812.namprd04.prod.outlook.com
+ (2603:10b6:303:138::6)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from wdc.com (122.172.176.125) by MA1PR0101CA0033.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:22::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21 via Frontend Transport; Wed, 9 Jun 2021 12:27:33 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7364c6d0-0a7e-424b-c841-08d92b40df29
-X-MS-TrafficTypeDiagnostic: SN6PR02MB5072:
-X-Microsoft-Antispam-PRVS: <SN6PR02MB50726F2591D7E523C8AAB652C6369@SN6PR02MB5072.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: ca30a6ed-06a7-47e2-f959-08d92b41f80a
+X-MS-TrafficTypeDiagnostic: CO6PR04MB7843:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <CO6PR04MB7843545ED9A13F022EA038828D369@CO6PR04MB7843.namprd04.prod.outlook.com>
+WDCIPOUTBOUND: EOP-TRUE
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Fe3uW/RsSIh7KFkqYedzIm+jDi2t5QHsKhE4a/iIOnKY4LG+R85KxBoiWexS5h7xvR9NUeqZzEf0leCu7StuF7VGpaL9WHD7ejxbDZTCbdc/3HN1+ueWbVVeBpXNMCmy0haYLNXBpr86KMK1/ziKTt1Ab9b1/G+jT+QK2zudHEDoctPZeyaxTvl57lYHbtw2g5Ugv4NDAmIipcqGmVXQrwmMWknJ85UaP5oMb0edaRTS6llRxWEle5SRw5JHkwElABO+kLtfCAEF+yTfDy+ipu5af+Dco8/Cb6ejF7ZIRZGNsj/c/mBDqok8I9841O+CUFn6qAUVIDj+3vDtn9cVtfMaVzuAiPwHcR7L13XgheiDYVI3Y+ACwqU0VFSSVe5A4s1pyYNuL/Y8aV+BDdJR74AwvWr5wynhAliYbu1CXzCwylGA7+1Za7EMOGo2cKvhMN285KU0+BYksw96J73zIUASWDcCs5WesaNTJTafDCwylDEtsxYEGQWCLnsL9ohGWGCWypMSYoBPaf+b5edCqc79gU1DFSaVxak72WRe9h57FYnJr7RJLl0y30ryATs212l40KMwrYfYRAZC+ULWmm5K7hfOFhRtWvRCo9CYpacpwJn+EtpJPLDplcQHX11MY/OgNXX9GVMJkIKp51VIbU7G6AqEE0Z4WnyB4LlYs3kbmty+er4J5Ydrt8ecEo9+AcdNKfeMBQkSO0AkhyF8DA==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(396003)(346002)(39850400004)(136003)(46966006)(36840700001)(8676002)(36860700001)(426003)(26005)(44832011)(336012)(36756003)(186003)(31686004)(70586007)(2616005)(478600001)(9786002)(70206006)(8936002)(7636003)(82310400003)(316002)(54906003)(5660300002)(4326008)(36906005)(47076005)(356005)(53546011)(2906002)(110136005)(82740400003)(31696002)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2021 12:19:47.0694
+X-Microsoft-Antispam-Message-Info: ZptQZ2nPEYsBQJkeFF2bLHHISP6FxehwnZgmlLawQ0TmDWSpsG9zqDLGy2CdCYE8hF5f857FIRb/uNXh/QBNtSd/ES1WFElOxom3WeOmb37ZoQ0QN9JdOsCv4fnwUAby9vXmRMriC4BW1BSN7f7ezPCU7Jyucu2SJpoYJ+jXfwhX1qXHTygi2Jcw06k0suq5m8fSV+nPsCHFlfZkEToprQxfAuDCnV7aPc8cw0aD7rOR7Tw8/fhIXcNR0nM9SLJz8eqwTt6s6mWr2OYl3ktDJQu/oo6K2d6dEmqB+gdgYiL0uYBrr6AuxR+bWpaBRjnaeepaWW5f14AD9EAnNIJbHXU/fIQf2PZ+/uCUR7IhY5XTBodE8Fn2BM71anKEqv4xSAb7EJMYy7EGMl2CNf77Jf9huu201xjj8/RrD2n5FcFkpUhb2eO3xnYNAm+8ZewRHQlyISdb2e6W07gZehcaGnkpnCxuGJS/QrgYxrT0LJAMGAtYdBrOL8WEotNYOF23yNTUtIdZ13c30yMAIsg8mmq/T9soXyg4ytEvYMdFsa269xId0XphDz3GUqfXod/l/fhJrh0/stmMZtiN2B9I8YwidMwLA70HgoeNqZG8FHFW6om8Bk67ZoCme+Djfr2rn+Yv/kSnT2nCjzimHYAefpU7zS5Moieq8rv5cAWqroRpeqzvP4mNQP25YegZuD7+np4Y1hDId4yaKqaFRSznJkAQplwkQN7FS4/vzSOvBZBkiJ3OJz+SWK5hP3+6fcy4qkgpvEQp0pCLYmqynPHfQg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR04MB7812.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39860400002)(396003)(366004)(136003)(376002)(7416002)(4326008)(8676002)(8886007)(83380400001)(478600001)(110136005)(956004)(316002)(86362001)(6666004)(966005)(44832011)(2616005)(38350700002)(52116002)(2906002)(55236004)(7696005)(26005)(8936002)(38100700002)(1076003)(55016002)(66476007)(66556008)(66946007)(36756003)(16526019)(186003)(5660300002)(54906003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ly+o00+C/Skc6TsBr1ztmUJyxEAe7CyQ0t0Br6BO52RNAuwFazZGKapwO/dI?=
+ =?us-ascii?Q?PLAzbZCELzNK9wSQwpackGngihgX9T0Hot+k8TIvaVBLkgX4ELjeHTWg/x+7?=
+ =?us-ascii?Q?m4/wcLdQy186ft3puFjzSuSFozao222ODh2KMbsYERAXUYMEBIxWhnQtEl62?=
+ =?us-ascii?Q?8NSuHnxU/09emt1fHsWjno2tYjRQN72fFfmf6nWHR4cpdfqdvu3P+B39rZ23?=
+ =?us-ascii?Q?N4IoSzasnseOAFqH349gtL8p9ye/EThb8+KFq0oJ7JLEOCw/lM6TaWXAyewX?=
+ =?us-ascii?Q?dIKQvCoAprE0mmHnBWTq6m08/NSHXSf+pjuXEtNIzI0LOH/zR3No2SgtiZ1K?=
+ =?us-ascii?Q?mhHoHxFzqRiGIiE9bsKnOpZDnxUTTJmEeUZA/0XIex2ojKvXqEAtlMLr1rmI?=
+ =?us-ascii?Q?qlUgYod3x45WuxHSAF30VNQwjoyltwT65O7CBLpFTnPmr3L0aO3nuhB2c64e?=
+ =?us-ascii?Q?5ds/lXkqiD5u8qzRrKXgjYTmTghH+09dMpiHWYOnmi44F5z2yMnHeWYf6Tyd?=
+ =?us-ascii?Q?OB+/QGp1jR0jMTAk9gtJ88IMXSTlGZi6IIq4veg0EwyICSWSF01swVpKApko?=
+ =?us-ascii?Q?BQAj/5QMv0cxL/6C2/rf3kQ6uN2illdoyOYDgvPK2PH/2VXWxnZMi6q61/OD?=
+ =?us-ascii?Q?C53TlIyGr7DgklgjEXD0xGI8XohmB395G0VVZU+AMDNBfAiFOAH/VtmP3Ai+?=
+ =?us-ascii?Q?zYJwDEuModgTVUgA05VtlrYGYnpxhS4SOxN6mLzHufVmy9FX03CxOooopj58?=
+ =?us-ascii?Q?1g/Cceth59OuogXPqJn5FRgB3hNzpWf0tJTF+BjsWgw4JEoozRqhZgCire2V?=
+ =?us-ascii?Q?uQVD0txpdB9xD4M2avJnJvjD8VkUAj6Z4t4F7KtNHY0kCRBAGI9hwUws01oT?=
+ =?us-ascii?Q?jjEFBjEUfU0+FzzpYB6gYj7KUk4aTBdBCRu31GpaYGaH282V/sLeyX81TeBL?=
+ =?us-ascii?Q?Fc4aIcz4h5Ed6D9zOTSAok9CHrN46A53MVmt42cfT1Mwf3lnppFSNHco1PWJ?=
+ =?us-ascii?Q?PpPzgskxs8Tmp1ehV5F2y4GhuAioJxyxR6yB/tpayzwOQwX21PT6VtPwlNgI?=
+ =?us-ascii?Q?gsmR8o5ADAZcOCfyDxxqYzTkNBdAgtscJ6/nFccgTI2G6y+M1K08E3a5oOsp?=
+ =?us-ascii?Q?KEGJmicvAsgTM5Yh/vGNhvZJcSnU4gSI1a3CcVxmRdWvnog7Nn4K89Oli2dM?=
+ =?us-ascii?Q?mnuY1hxImeDhn6Mz4HSSvLQdDDvCPhZoj+LvN3/reD+fTLg48VsSMiNrpdBS?=
+ =?us-ascii?Q?Q4fevZh0C39LbmvhcNUbfr3RqdUr43gE3AkIV3z70MTIdqALLLykLZX7CNTl?=
+ =?us-ascii?Q?sXmdHrWFt92Cx0qgGwQKVbmZ?=
+X-OriginatorOrg: wdc.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca30a6ed-06a7-47e2-f959-08d92b41f80a
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR04MB7812.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jun 2021 12:27:38.7607
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7364c6d0-0a7e-424b-c841-08d92b40df29
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT024.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR02MB5072
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b61c8803-16f3-4c35-9b17-6f65f441df86
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vmguFZ3LI0cKyQmvh5PB+U7V4UAdojjuQynOT1fX4vc87e96y6kB2ZZcL8n5L/QPdJ16gJHqZLYI1UCI3u73+Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR04MB7843
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+This series adds RISC-V CPU Idle support using SBI HSM suspend function.
+The RISC-V SBI CPU idle driver added by this series is highly inspired
+from the ARM PSCI CPU idle driver.
 
-On 6/9/21 2:04 PM, Geert Uytterhoeven wrote:
-> Hi Michal,
-> 
-> On Wed, Jun 9, 2021 at 1:46 PM Michal Simek <michal.simek@xilinx.com> wrote:
->> There are couple of revisions of SOMs (k26) and associated carrier cards
->> (kv260).
->> SOM itself has two major versions:
->> sm-k26 - SOM with EMMC
->> smk-k26 - SOM without EMMC used on starter kit with preprogrammed firmware
->> in QSPI.
->>
->> SOMs are describing only devices available on the SOM or connections which
->> are described in specification (for example UART, fwuen).
->>
->> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-> 
-> Thanks for your patch!
-> 
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
->> @@ -0,0 +1,371 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * dts file for KV260 revA Carrier Card
->> + *
->> + * (C) Copyright 2020, Xilinx, Inc.
->> + *
->> + * SD level shifter:
->> + * "A" – A01 board un-modified (NXP)
->> + * "Y" – A01 board modified with legacy interposer (Nexperia)
->> + * "Z" – A01 board modified with Diode interposer
->> + *
->> + * Michal Simek <michal.simek@xilinx.com>
->> + */
->> +
->> + #include <dt-bindings/gpio/gpio.h>
->> + #include <dt-bindings/net/ti-dp83867.h>
->> + #include <dt-bindings/phy/phy.h>
->> + #include <dt-bindings/pinctrl/pinctrl-zynqmp.h>
->> +
->> +/dts-v1/;
->> +/plugin/;
->> +
->> +/{
->> +       compatible = "xlnx,zynqmp-sk-kv260-revA",
->> +                    "xlnx,zynqmp-sk-kv260-revY",
->> +                    "xlnx,zynqmp-sk-kv260-revZ",
->> +                    "xlnx,zynqmp-sk-kv260", "xlnx,zynqmp";
->> +
->> +       fragment1 {
->> +               target = <&i2c1>; /* I2C_SCK C23/C24 - MIO from SOM */
->> +
->> +               __overlay__ {
-> 
-> Please use overlay sugar syntax, which is supported by the dtc
-> supplied with the kernel since v4.15.
+At high-level, this series includes the following changes:
+1) Preparatory arch/riscv patches (Patches 1 to 3)
+2) Defines for RISC-V SBI HSM suspend (Patch 4)
+3) Preparatory patch to share code between RISC-V SBI CPU idle driver
+   and ARM PSCI CPU idle driver (Patch 5)
+4) RISC-V SBI CPU idle driver and related DT bindings (Patches 6 to 7)
 
-No problem I will.
+These patches can be found in riscv_sbi_hsm_suspend_v6 branch at
+https://github.com/avpatel/linux
 
-Thanks,
-Michal
+Special thanks Sandeep Tripathy for providing early feeback on SBI HSM
+support in all above projects (RISC-V SBI specification, OpenSBI, and
+Linux RISC-V).
+
+Changes since v5:
+ - Rebased on Linux-5.13-rc5
+ - Removed unnecessary exports from PATCH5
+ - Removed stray ";" from PATCH5
+ - Moved sbi_cpuidle_pd_power_off() under "#ifdef CONFIG_DT_IDLE_GENPD"
+   in PATCH6
+
+Changes since v4:
+ - Rebased on Linux-5.13-rc2
+ - Renamed all dt_idle_genpd functions to have "dt_idle_" prefix
+ - Added MAINTAINERS file entry for dt_idle_genpd
+
+Changes since v3:
+ - Rebased on Linux-5.13-rc2
+ - Fixed __cpu_resume_enter() which was broken due to XIP kernel support
+ - Removed "struct dt_idle_genpd_ops" abstraction which simplifies code
+   sharing between ARM PSCI and RISC-V SBI drivers in PATCH5
+
+Changes since v2:
+ - Rebased on Linux-5.12-rc3
+ - Updated PATCH7 to add common DT bindings for both ARM and RISC-V
+   idle states
+ - Added "additionalProperties = false" for both idle-states node and
+   child nodes in PATCH7
+
+Changes since v1:
+ - Fixex minor typo in PATCH1
+ - Use just "idle-states" as DT node name for CPU idle states
+ - Added documentation for "cpu-idle-states" DT property in
+   devicetree/bindings/riscv/cpus.yaml
+ - Added documentation for "riscv,sbi-suspend-param" DT property in
+   devicetree/bindings/riscv/idle-states.yaml
+
+Anup Patel (8):
+  RISC-V: Enable CPU_IDLE drivers
+  RISC-V: Rename relocate() and make it global
+  RISC-V: Add arch functions for non-retentive suspend entry/exit
+  RISC-V: Add SBI HSM suspend related defines
+  cpuidle: Factor-out power domain related code from PSCI domain driver
+  cpuidle: Add RISC-V SBI CPU idle driver
+  dt-bindings: Add common bindings for ARM and RISC-V idle states
+  RISC-V: Enable RISC-V SBI CPU Idle driver for QEMU virt machine
+
+ .../bindings/{arm => cpu}/idle-states.yaml    | 228 ++++++-
+ .../devicetree/bindings/riscv/cpus.yaml       |   6 +
+ MAINTAINERS                                   |  14 +
+ arch/riscv/Kconfig                            |   7 +
+ arch/riscv/Kconfig.socs                       |   3 +
+ arch/riscv/configs/defconfig                  |  13 +-
+ arch/riscv/configs/rv32_defconfig             |   6 +-
+ arch/riscv/include/asm/asm.h                  |  17 +
+ arch/riscv/include/asm/cpuidle.h              |  24 +
+ arch/riscv/include/asm/sbi.h                  |  27 +-
+ arch/riscv/include/asm/suspend.h              |  35 +
+ arch/riscv/kernel/Makefile                    |   2 +
+ arch/riscv/kernel/asm-offsets.c               |   3 +
+ arch/riscv/kernel/cpu_ops_sbi.c               |   2 +-
+ arch/riscv/kernel/head.S                      |  18 +-
+ arch/riscv/kernel/process.c                   |   3 +-
+ arch/riscv/kernel/suspend.c                   |  86 +++
+ arch/riscv/kernel/suspend_entry.S             | 123 ++++
+ drivers/cpuidle/Kconfig                       |   9 +
+ drivers/cpuidle/Kconfig.arm                   |   1 +
+ drivers/cpuidle/Kconfig.riscv                 |  15 +
+ drivers/cpuidle/Makefile                      |   5 +
+ drivers/cpuidle/cpuidle-psci-domain.c         | 138 +---
+ drivers/cpuidle/cpuidle-psci.h                |  15 +-
+ drivers/cpuidle/cpuidle-sbi.c                 | 626 ++++++++++++++++++
+ drivers/cpuidle/dt_idle_genpd.c               | 177 +++++
+ drivers/cpuidle/dt_idle_genpd.h               |  50 ++
+ 27 files changed, 1470 insertions(+), 183 deletions(-)
+ rename Documentation/devicetree/bindings/{arm => cpu}/idle-states.yaml (74%)
+ create mode 100644 arch/riscv/include/asm/cpuidle.h
+ create mode 100644 arch/riscv/include/asm/suspend.h
+ create mode 100644 arch/riscv/kernel/suspend.c
+ create mode 100644 arch/riscv/kernel/suspend_entry.S
+ create mode 100644 drivers/cpuidle/Kconfig.riscv
+ create mode 100644 drivers/cpuidle/cpuidle-sbi.c
+ create mode 100644 drivers/cpuidle/dt_idle_genpd.c
+ create mode 100644 drivers/cpuidle/dt_idle_genpd.h
+
+-- 
+2.25.1
 
