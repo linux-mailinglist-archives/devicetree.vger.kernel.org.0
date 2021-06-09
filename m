@@ -2,149 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2508C3A163F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 366483A1664
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:01:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236304AbhFIN7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 09:59:03 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:43788 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235765AbhFIN7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:59:02 -0400
-Received: from mail-wr1-f72.google.com ([209.85.221.72])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lqyhf-0001jW-1c
-        for devicetree@vger.kernel.org; Wed, 09 Jun 2021 13:57:07 +0000
-Received: by mail-wr1-f72.google.com with SMTP id x9-20020a5d49090000b0290118d8746e06so10850057wrq.10
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 06:57:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=94MTmrJjy+QuCQp+H85bF1V9qIA+ZZgrzOcpkBB5S9M=;
-        b=GRf2MKbzYwNvxu64ItPbkEal8adO0fEptzh0klDAwAqgA2HdkJs77pKQLHdolXoOoA
-         ipw+NjI9rQ8OH2YT+//dTHFQiVtzG4zqEyn6lI1AFeYV7BkehsuazQDbrtUcv7oD0LP3
-         S+9QnZvI4ds4+qPjzksA6Pe9G4xO5FzFG+80iko2QZsAqoFQ6eF32S7TutOO8DhpyOod
-         fcCjXm2lCfW3qJhsaLi2FcFYYgzN38RiIwm9pxpxeu5ENKcUvCzxVn768Vm9kE+qmnLY
-         PVU2FrbHsIWpBUMP2Wgn6+zs+LxvDp8vYkBhu6BJUA1RUSmxQBYVlpWkM5Tl9Vcc47zY
-         gWDw==
-X-Gm-Message-State: AOAM5334YNWCrlWuOyRgzPLrRIUcl+9CuBCTTRmouHJY5WRPYOj27dNs
-        uSmdUyZFwOQ8c5nr9gT+4p0k0pXIuxYDGves5z2EDpYgALXyILLApGu7G3fF0/TpHj3CmdLt2m3
-        AGaofN9TaXDx8WThTbQ4upOL5tp2AXoOMyJEYLP4=
-X-Received: by 2002:a05:600c:22cf:: with SMTP id 15mr28210714wmg.144.1623247026705;
-        Wed, 09 Jun 2021 06:57:06 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxnMkKQ1aeaiRBj9+JK4EwMsgwWT/6OvveUSFlZdu8TfcqICkeqyGjLL1rEQa6Dgw064GW83g==
-X-Received: by 2002:a05:600c:22cf:: with SMTP id 15mr28210682wmg.144.1623247026518;
-        Wed, 09 Jun 2021 06:57:06 -0700 (PDT)
-Received: from [192.168.1.115] (xdsl-188-155-177-222.adslplus.ch. [188.155.177.222])
-        by smtp.gmail.com with ESMTPSA id q11sm23273791wrx.80.2021.06.09.06.57.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Jun 2021 06:57:06 -0700 (PDT)
-Subject: Re: [PATCH v22 17/18] dt-bindings: mtd: pl353-nand: Describe this
- hardware controller
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        Michal Simek <monstr@monstr.eu>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Amit Kumar Mahapatra <akumarma@xilinx.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
-        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
-References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
- <20210609080112.1753221-18-miquel.raynal@bootlin.com>
- <57ef16cd-33e7-6c16-3a24-9634f47831b3@canonical.com>
- <20210609153621.1303bc4d@xps13>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <6fb9c0e4-43cb-d224-0ebe-568f62ac35b1@canonical.com>
-Date:   Wed, 9 Jun 2021 15:57:05 +0200
+        id S237182AbhFIODe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 10:03:34 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:41150 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237151AbhFIODd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:03:33 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159E1a7j047790;
+        Wed, 9 Jun 2021 09:01:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623247296;
+        bh=Tw1eN5lgDE9D28pNImTTEUKJXCMh0POoZIKxPcndiVk=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=WjJIFiBGTyeJUwvX05Zi04K6/eorqEyljyt90QbADLRMyy0JHPeHQGF0rjPr/GlNI
+         yC9I5QQc3ele8/uO8EiVKWBI53vBy9Wqy7jfMq0ERLXfZ6KBfI5RVSSnVxlCIW/oPi
+         5y4wneFxPd2WyduzX4esTfWTi335YQkJVXcmU/hg=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159E1a7O012039
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 9 Jun 2021 09:01:36 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
+ 2021 09:01:36 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 9 Jun 2021 09:01:36 -0500
+Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159E1YOJ083663;
+        Wed, 9 Jun 2021 09:01:35 -0500
+Subject: Re: [PATCH 4/4] arm64: dts: ti: k3-am642-evm/sk: Reserve some on-chip
+ SRAM for R5Fs
+To:     Suman Anna <s-anna@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210528144718.25132-1-s-anna@ti.com>
+ <20210528144718.25132-5-s-anna@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <6035b723-ae52-3674-728d-b335b7d07982@ti.com>
+Date:   Wed, 9 Jun 2021 19:31:33 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210609153621.1303bc4d@xps13>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210528144718.25132-5-s-anna@ti.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/06/2021 15:36, Miquel Raynal wrote:
-> Hi Krzysztof,
-> 
-> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
-> Jun 2021 14:01:10 +0200:
-> 
->> On 09/06/2021 10:01, Miquel Raynal wrote:
->>> Add a yaml description of this NAND controller which is described as a
->>> subnode of the SMC bus.
->>>
->>> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
->>> ---
->>>  .../bindings/mtd/arm,pl353-nand-r2p1.yaml     | 57 +++++++++++++++++++
->>>  1 file changed, 57 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
->>> new file mode 100644
->>> index 000000000000..e72fa14b4385
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
->>> @@ -0,0 +1,57 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/mtd/arm,pl353-nand-r2p1.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: PL353 NAND Controller device tree bindings
->>> +
->>> +allOf:
->>> +  - $ref: "nand-controller.yaml"
->>> +
->>> +maintainers:
->>> +  - Miquel Raynal <miquel.raynal@bootlin.com>
->>> +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:  
->>
->> That's not an enum, but simple const without items.
-> 
-> Ok.
-> 
->>
->>> +          - arm,pl353-nand-r2p1
->>> +
->>> +  reg:
->>> +    items:
->>> +      - items:
->>> +          - description: CS with regard to the parent ranges property
->>> +          - description: Offset of the memory region requested by the device
->>> +          - description: Length of the memory region requested by the device  
->>
->> Doesn't it depend on parent's address/size cells?
-> 
-> Yes, but as the child nodes are not defined in the parent's binding
-> (ie. the SMC) I think it's interesting to have them defined here, no?
+Hi Suman,
 
-The trouble is if parent decides to have different address/size cells.
-The schema will stop matching. I am actually not that sure if such case
-is real since the pl353 NAND part will usually be connected to pl353
-SMC. However the schema now hard-codes specific dependency against
-parent schema/node.
+On 5/28/21 8:17 PM, Suman Anna wrote:
+> +&oc_sram {
+> +	main_r5fss0_core0_sram: r5f-sram@40000 {
+> +		reg = <0x40000 0x40000>;
+> +	};
+> +
+> +	main_r5fss0_core1_sram: r5f-sram@80000 {
+> +		reg = <0x80000 0x40000>;
+> +	};
+> +
+> +	main_r5fss1_core0_sram: r5f-sram@c0000 {
+> +		reg = <0xc0000 0x40000>;
+> +	};
+> +
+> +	main_r5fss1_core1_sram: r5f-sram@100000 {
+> +		reg = <0x100000 0x40000>;
+> +	};
+> +};
+> +
 
-Rob,
-Maybe you have here some thoughts?
+Now that ATF is being moved to end of SRAM[1], is it possible to move
+these allocations closer to that ATF reserved location?
 
-Best regards,
-Krzysztof
+This will provide one large contiguouos memory at the beginning of SRAM
+which can be used as generic pool. Right now there are two
+dis-contiguous pool (256K@0 and ~384K@140000) which is not very
+efficient use of SRAM.
+
+
+[1]
+http://kahuna.dhcp.ti.com:8000/project/arm64-ti-dts/patch/20210607133806.18158-1-a-govindraju@ti.com/
