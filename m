@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B1253A16F5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:20:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06E053A171D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:24:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234629AbhFIOVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 10:21:52 -0400
-Received: from regular1.263xmail.com ([211.150.70.201]:33604 "EHLO
+        id S237869AbhFIOZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 10:25:52 -0400
+Received: from regular1.263xmail.com ([211.150.70.204]:46194 "EHLO
         regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234221AbhFIOVv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:21:51 -0400
-Received: from localhost (unknown [192.168.167.32])
-        by regular1.263xmail.com (Postfix) with ESMTP id 3BF1BE31;
-        Wed,  9 Jun 2021 22:18:55 +0800 (CST)
+        with ESMTP id S237830AbhFIOZq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:25:46 -0400
+Received: from localhost (unknown [192.168.167.69])
+        by regular1.263xmail.com (Postfix) with ESMTP id B1F9B3A4;
+        Wed,  9 Jun 2021 22:23:45 +0800 (CST)
 X-MAIL-GRAY: 0
 X-MAIL-DELIVERY: 1
 X-ADDR-CHECKED4: 1
@@ -21,10 +21,10 @@ X-ANTISPAM-LEVEL: 2
 X-SKE-CHECKED: 1
 X-ABS-CHECKED: 1
 Received: from [172.16.12.73] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P30810T139673931085568S1623248332896123_;
-        Wed, 09 Jun 2021 22:18:54 +0800 (CST)
+        by smtp.263.net (postfix) whith ESMTP id P31907T140446225393408S1623248622928502_;
+        Wed, 09 Jun 2021 22:23:44 +0800 (CST)
 X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <9bf565096dc6cc666549660df8d44332>
+X-UNIQUE-TAG: <aaef219e8ac562c7c20e5d7e0c19fa90>
 X-RL-SENDER: jon.lin@rock-chips.com
 X-SENDER: jon.lin@rock-chips.com
 X-LOGIN-NAME: jon.lin@rock-chips.com
@@ -46,8 +46,8 @@ References: <20210608022644.21074-1-jon.lin@rock-chips.com>
  <20210608022644.21074-5-jon.lin@rock-chips.com>
  <4a4524f5-ee85-c7f6-aa95-1df84f2a8a99@gmail.com>
 From:   Jon Lin <jon.lin@rock-chips.com>
-Message-ID: <d5b4f452-1f76-e82c-42dd-bc6fdf27a59c@rock-chips.com>
-Date:   Wed, 9 Jun 2021 22:18:54 +0800
+Message-ID: <90752de9-786d-171c-26a4-ee2851168c11@rock-chips.com>
+Date:   Wed, 9 Jun 2021 22:23:44 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
@@ -93,8 +93,7 @@ On 6/9/21 12:31 AM, Johan Jonker wrote:
 > Maybe give credit to the original author?
 > clk: rockchip: rk3036: export the sfc clocks
 > https://github.com/rockchip-linux/kernel/commit/600925e8ef6edbdda0a4ac6b3c55b0199be1e03e
-something wrong when I add randy.li@rock-chips.com email, I will make a 
-confirmation with it with him.
+Randy Li has resigned from RK
 >> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 >> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
 >> ---
