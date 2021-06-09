@@ -2,104 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A3253A0A7B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 05:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F0C83A0A85
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 05:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233134AbhFIDKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 23:10:15 -0400
-Received: from mail-pg1-f171.google.com ([209.85.215.171]:41860 "EHLO
-        mail-pg1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233424AbhFIDKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 23:10:12 -0400
-Received: by mail-pg1-f171.google.com with SMTP id l184so2692066pgd.8;
-        Tue, 08 Jun 2021 20:08:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lhOA0nGrbjhRPVswA/mywNHLTKJKSXnKV9s3KRuT9b0=;
-        b=eEmOANjFoGPTyGNLvXOsBxdb0fTnjiOwL3tROU9dOMmgDoC4VLjtO4w3cbWVHjP/hK
-         wahkSdOQe6292A4Zn72SHDGSDQaqSZvso7WyW9u34Vwqv2L5DHF5rRaf9WSCKL+42j6D
-         sTsko0XWv/xQ3arflI694ZIhCh54TuUiXuSReVeG4nsdfYAx1jK8QJf8lwJC1b0ugrvg
-         +RP1QuPDBGV1ZSp/zvIsyRKloDrOWI3p2hrm/8AVOXa2zEeXEX82q0sCAb2jGwMuXF4g
-         /2ReUEHOTSgMrDGy+jyIek6skxY2OZkHy6r6YEa3aAzhdybCiZjSqeTZNjJQ8d8nSY2S
-         ot4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lhOA0nGrbjhRPVswA/mywNHLTKJKSXnKV9s3KRuT9b0=;
-        b=bqt8TZL46XHlspCSjlpLQ1Al5XNLlGflPKlT1r08WJ/3pUdoKgz4wYawK9DiLGHsV1
-         9HxgAU7BfHW+WMGsBJLpUwuWY67jWELkxlhUTrfc/G0Jps4t6uB0l/myZeMQPG6PRQfG
-         JcpSBvLSshGvH1RHr8MaTqBDuY2SzqgQTY9lR3zva1hPhZtLA9Byfp1A3FMHSpqS5l05
-         ikBT0B0lWgsITjeY27eljw8hW74NVWz5efm1MrfwgKPzB5zM6HouGSOGPsCLCnkgH0FD
-         JKHDkEWYKa++c5wNwhJvQOyxeB/kA/0eOJHSDnyGCpuvMDpClXk5hyET7yCaiYhbAxPW
-         6C+Q==
-X-Gm-Message-State: AOAM531UNyqxfYRqVqG16ay5S+fzR9X93ImTIG4wPGyzYFh9z+csqyJ6
-        rlY8nFRMb2l3xJAHdTDxOG8=
-X-Google-Smtp-Source: ABdhPJwrg5MzG8QRD1JUtBgAuC+Cuk6MZaXdsiHLg5dbQBqrcdPsR4+dfoUF+OL919y4bNLZoHDv+A==
-X-Received: by 2002:a63:7e11:: with SMTP id z17mr1517467pgc.9.1623208028225;
-        Tue, 08 Jun 2021 20:07:08 -0700 (PDT)
-Received: from [192.168.1.67] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
-        by smtp.gmail.com with ESMTPSA id 78sm12733364pgg.73.2021.06.08.20.07.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Jun 2021 20:07:07 -0700 (PDT)
-Subject: Re: [PATCH 2/2] mmc: sdhci-iproc: Add support for the legacy sdhci
- controller on the BCM7211
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Al Cooper <alcooperx@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
-        Scott Branden <sbranden@broadcom.com>
-References: <20210602192758.38735-1-alcooperx@gmail.com>
- <20210602192758.38735-2-alcooperx@gmail.com>
- <CAPDyKFrynST66yA_T3iroiJsfmNuBOEiiBnb=vNoyP6QpvZ7aQ@mail.gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <fe956941-bb39-413e-f051-d9f353f64eda@gmail.com>
-Date:   Tue, 8 Jun 2021 20:07:05 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.10.2
+        id S233424AbhFIDNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 23:13:15 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:27816 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S233316AbhFIDNP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 23:13:15 -0400
+Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1592Yljn166699;
+        Tue, 8 Jun 2021 23:10:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=XA2LuTKM6oytXDfyhlj9P6N1EyqEbVoRRxJ1vjn8jgc=;
+ b=bLiCk1FtCU1F6m72Dk44bIJFumRDvGvlg2fqfyuWKdtHqeyisSOg0Ssi5jUy0EYvs60p
+ p7bV5IHrSao073RmGCDxVCXX818TC6/xLLwqhefYKegxfikoO7UcSNfUcG18Cn1+aPRj
+ UghMgSQQ/f9aXTIYUc2UNSl9ChjkW3VI+7+hVBBmUj+Pxa8dmJ8WoEJfnvjSwJMsGLw7
+ ptC/ZuIHAImVOxRultXmhS1nBL3+KGVTfrU2+WmIYMJXxcF5iAmXWa/WsqJ4KzKMQTW/
+ Ps34kkPPXz+8bJsSCYIkoZhz0+9SlQyjFSPxoaWmEtHdKedXYHrRi2yPsUNWJQAszQbh 6A== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 392d7pkpsb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 08 Jun 2021 23:10:57 -0400
+Received: from m0098416.ppops.net (m0098416.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 1592ZWrv168759;
+        Tue, 8 Jun 2021 23:10:57 -0400
+Received: from ppma01fra.de.ibm.com (46.49.7a9f.ip4.static.sl-reverse.com [159.122.73.70])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 392d7pkprx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 08 Jun 2021 23:10:57 -0400
+Received: from pps.filterd (ppma01fra.de.ibm.com [127.0.0.1])
+        by ppma01fra.de.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 1593AtHT020402;
+        Wed, 9 Jun 2021 03:10:55 GMT
+Received: from b06cxnps4074.portsmouth.uk.ibm.com (d06relay11.portsmouth.uk.ibm.com [9.149.109.196])
+        by ppma01fra.de.ibm.com with ESMTP id 3900w891e2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Jun 2021 03:10:55 +0000
+Received: from d06av24.portsmouth.uk.ibm.com (d06av24.portsmouth.uk.ibm.com [9.149.105.60])
+        by b06cxnps4074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 1593ArdC25625026
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 9 Jun 2021 03:10:53 GMT
+Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 01D3942042;
+        Wed,  9 Jun 2021 03:10:53 +0000 (GMT)
+Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 9F1864203F;
+        Wed,  9 Jun 2021 03:10:52 +0000 (GMT)
+Received: from ozlabs.au.ibm.com (unknown [9.192.253.14])
+        by d06av24.portsmouth.uk.ibm.com (Postfix) with ESMTP;
+        Wed,  9 Jun 2021 03:10:52 +0000 (GMT)
+Received: from [9.206.155.145] (unknown [9.206.155.145])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by ozlabs.au.ibm.com (Postfix) with ESMTPSA id 27FAB60134;
+        Wed,  9 Jun 2021 13:10:44 +1000 (AEST)
+Subject: Re: [PATCH 03/11] Documentation: ocxl.rst: change FPGA indirect
+ article to an
+To:     trix@redhat.com, mdf@kernel.org, robh+dt@kernel.org,
+        hao.wu@intel.com, corbet@lwn.net, fbarrat@linux.ibm.com,
+        bbrezillon@kernel.org, arno@natisbad.org, schalla@marvell.com,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        gregkh@linuxfoundation.org, Sven.Auhagen@voleatech.de,
+        grandmaster@al2klimov.de
+Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-crypto@vger.kernel.org,
+        linux-staging@lists.linux.dev
+References: <20210608212350.3029742-1-trix@redhat.com>
+ <20210608212350.3029742-5-trix@redhat.com>
+From:   Andrew Donnellan <ajd@linux.ibm.com>
+Message-ID: <01f22915-0a72-1d16-7a42-a6e870ccaec2@linux.ibm.com>
+Date:   Wed, 9 Jun 2021 13:10:39 +1000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFrynST66yA_T3iroiJsfmNuBOEiiBnb=vNoyP6QpvZ7aQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20210608212350.3029742-5-trix@redhat.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: rhKqRFJG-wMyLq05xrV-qvprdaqJmQuI
+X-Proofpoint-GUID: nFu8dFCLDDKqockFlSmj80mifT7sH7nq
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-06-09_01:2021-06-04,2021-06-09 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 phishscore=0 spamscore=0 mlxlogscore=999 bulkscore=0
+ priorityscore=1501 malwarescore=0 adultscore=0 clxscore=1011
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2106090001
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 6/8/2021 5:40 AM, Ulf Hansson wrote:
-> On Wed, 2 Jun 2021 at 21:28, Al Cooper <alcooperx@gmail.com> wrote:
->>
->> Add support for the legacy Arasan sdhci controller on the BCM7211 and
->> related SoC's. This includes adding a .shutdown callback to increase
->> the power savings during S5.
+On 9/6/21 7:23 am, trix@redhat.com wrote:
+> From: Tom Rix <trix@redhat.com>
 > 
-> Please split this into two separate changes.
+> Change use of 'a fpga' to 'an fpga'
 > 
-> May I also ask about the ->shutdown() callback and in relation to S5.
-> What makes the ->shutdown callback only being invoked for S5?
+> Signed-off-by: Tom Rix <trix@redhat.com>
 
-It is not only called for S5 (entered via poweroff on a prompt) but also
-during kexec or reboot. The poweroff path is via:
+Acked-by: Andrew Donnellan <ajd@linux.ibm.com>
 
-kernel_power_off() -> kernel_shutdown_prepare() -> device_shutdown() ->
-.shutdown()
 
-For kexec or reboot we do not really care about power savings since we
-are about to load a new image anyway, however for S5/poweroff we do care
-about quiescing the eMMC controller in a way that its clocks and the
-eMMC device can be put into low power mode since we will stay in that
-mode for seconds/hours/days until someone presses a button on their
-remote (or other wake-up sources).
 -- 
-Florian
+Andrew Donnellan              OzLabs, ADL Canberra
+ajd@linux.ibm.com             IBM Australia Limited
