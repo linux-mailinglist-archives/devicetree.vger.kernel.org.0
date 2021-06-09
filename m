@@ -2,163 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DF3A3A0E1B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 09:52:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B93FE3A0E28
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 09:56:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234011AbhFIHyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 03:54:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34902 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232911AbhFIHys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 03:54:48 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70844C061574
-        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 00:52:53 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1lqt11-00063s-5n; Wed, 09 Jun 2021 09:52:43 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1lqt0y-0004m9-RT; Wed, 09 Jun 2021 09:52:40 +0200
-Date:   Wed, 9 Jun 2021 09:52:40 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     festevam@gmail.com, krzk@kernel.org,
-        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, kernel@puri.sm,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-staging@lists.linux.dev, mchehab@kernel.org,
-        phone-devel@vger.kernel.org, robh@kernel.org, shawnguo@kernel.org,
-        slongerbeam@gmail.com
-Subject: Re: [PATCH v3 3/3] arm64: dts: imx8mq: add mipi csi phy and csi
- bridge descriptions
-Message-ID: <20210609075240.ajx6ejvqie4sgkvj@pengutronix.de>
-References: <20210608104128.1616028-1-martin.kepplinger@puri.sm>
- <20210608104128.1616028-4-martin.kepplinger@puri.sm>
+        id S236865AbhFIH6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 03:58:42 -0400
+Received: from mail-yb1-f173.google.com ([209.85.219.173]:43668 "EHLO
+        mail-yb1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235676AbhFIH6l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 03:58:41 -0400
+Received: by mail-yb1-f173.google.com with SMTP id b9so34189621ybg.10;
+        Wed, 09 Jun 2021 00:56:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KXMGHXTBrIil+I7I4kjVUCaxAzxvJ/gccp3wjNKkRTM=;
+        b=TdlrugkUXsgXQ/klf03KArJGCtrAiDPExNhLRnhLTnf0alb/+ecpu/0+DwhUwzslD8
+         nGjl98bGRk4TwWuui+zYqmbhQr9bE0tNad0C3W2RJJpCdV7bG1JYyCQyLp6E2zYgAgge
+         hYHrDcWoMprH8As++8E927poTTiodJXfPK8yQ60+diRba59Zs8p1OizhGYGLa2UCPvPO
+         shDuXeIIZjrEwzvPp0q8fRjng4RqUsXokYqWPTvr37PzK88XtWMX169uVCMYLKFj/Oy5
+         OaJ0Krnxml+yQE3E7NIdcLkIIdr83D4StVlpWWXnNynGmnQy5cXUCG7QldrHNjjwAuJB
+         p3QQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KXMGHXTBrIil+I7I4kjVUCaxAzxvJ/gccp3wjNKkRTM=;
+        b=tqEBozAFRcT+wQhxQoyEFjz/b3tE7qI1nGAoGxyPpSxAUQvxT0sCk2ID7nKwz8ehDI
+         SIjSdhReWt5ufQMDcBoOwoUq/ceIsOdUwAnT+8jGKujRYRkIxRLRPf4XYOq9pbVUm1f1
+         /F8Sgy7hDpNZx11xo3cV2HpF7WR95rSdiAz35xTZnaKo4GsEwglED1MIQnH28jUugTF/
+         QImAYjzIVgbpx1ck8eiAhANvAgXhI0jAQJGSgo5lAmabbLFXySy4+OVnS4pm6H0qigfP
+         9DN0yjfT9ubCTgLq3xYG0e1xN7IXm34S9w0/IPI8rVeNqZ/jw8Bwxtd3eCgj6UTo92+a
+         LhgA==
+X-Gm-Message-State: AOAM530WV5PG2ASxpQPK9R0Rx6oDkMtjm4WzZ2ytRXc/ATR8LLJ5h2jD
+        1YXxyLXnculWQ2c2Az/Qh14dywP5T1zIMHDLSts=
+X-Google-Smtp-Source: ABdhPJwAbGPtDbZtlUcIsNuAqy/YZy5uVx2bQGCuOHQkm9uid77r2z6Qq8LBhTcmzyQfawpZBULT7hw/ULTpug/IjSw=
+X-Received: by 2002:a25:d888:: with SMTP id p130mr1010477ybg.179.1623225331965;
+ Wed, 09 Jun 2021 00:55:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210608104128.1616028-4-martin.kepplinger@puri.sm>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:46:34 up 188 days, 21:52, 47 users,  load average: 0.18, 0.13,
- 0.11
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210603221758.10305-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210603221758.10305-13-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXO1RyF9ZuXR2CGHqvPOh6jnf07_EEreTOmiwUzoEg5hQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdXO1RyF9ZuXR2CGHqvPOh6jnf07_EEreTOmiwUzoEg5hQ@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 9 Jun 2021 08:55:06 +0100
+Message-ID: <CA+V-a8uaAcFOqqRzNVdjmSD2LsQO9yHjM8AcQRA8gOFmF5q8gg@mail.gmail.com>
+Subject: Re: [PATCH v2 12/12] arm64: dts: renesas: Add initial device tree for
+ RZ/G2L SMARC EVK
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+Hi Geert,
 
-On 21-06-08 12:41, Martin Kepplinger wrote:
+Thank you for the review.
 
-...
+On Wed, Jun 9, 2021 at 8:18 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, Jun 4, 2021 at 12:19 AM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Add basic support for RZ/G2L SMARC EVK (based on R9A07G044L2):
+> > - memory
+> > - External input clock
+> > - SCIF
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+> > @@ -0,0 +1,21 @@
+> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +/*
+> > + * Device Tree Source for the RZ/G2L SMARC EVK board
+> > + *
+> > + * Copyright (C) 2021 Renesas Electronics Corp.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +#include "r9a07g044.dtsi"
+>
+> So this should include r9a07g044l2.dtsi.
+>
+Good point I'll create an empty r9a07g044l2.dtsi file including
+"r9a07g044.dtsi '' along with the compatible value and include it
+here.
 
-> +			csi1: csi@30a90000 {
-> +				compatible = "fsl,imx7-csi";
+Cheers,
+Prabhakar
 
-AFAIK an unwritten rule (at least for the iMX mach) is to specify the
-SoC specific compatible and the compatible which is supported by the
-driver already, so this should be:
-
-compatible = "fsl,imx8mq-csi", "fsl,imx7-csi";
-
-This is very helpful if we need to handle some quirk for the imx8mq
-later on.
-
-Regards,
-  Marco
-
-
-> +				reg = <0x30a90000 0x10000>;
-> +				interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk IMX8MQ_CLK_CSI1_ROOT>;
-> +				clock-names = "mclk";
-> +				status = "disabled";
-> +
-> +				port {
-> +					csi1_ep: endpoint {
-> +						remote-endpoint = <&csi1_mipi_ep>;
-> +					};
-> +				};
-> +			};
-> +
-> +			mipi_csi2: csi@30b60000 {
-> +				compatible = "fsl,imx8mq-mipi-csi2";
-> +				reg = <0x30b60000 0x1000>;
-> +				clocks = <&clk IMX8MQ_CLK_CSI2_CORE>,
-> +				   <&clk IMX8MQ_CLK_CSI2_ESC>,
-> +				   <&clk IMX8MQ_CLK_CSI2_PHY_REF>,
-> +				   <&clk IMX8MQ_CLK_CLKO2>;
-> +				clock-names = "core", "esc", "pxl", "clko2";
-> +				assigned-clocks = <&clk IMX8MQ_CLK_CSI2_CORE>,
-> +				    <&clk IMX8MQ_CLK_CSI2_PHY_REF>,
-> +				    <&clk IMX8MQ_CLK_CSI2_ESC>;
-> +				assigned-clock-rates = <266000000>, <333000000>, <66000000>;
-> +				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_266M>,
-> +					<&clk IMX8MQ_SYS2_PLL_1000M>,
-> +					<&clk IMX8MQ_SYS1_PLL_800M>;
-> +				power-domains = <&pgc_mipi_csi2>;
-> +				reset = <&src>;
-> +				phy = <&iomuxc_gpr>;
-> +				interconnects = <&noc IMX8MQ_ICM_CSI2 &noc IMX8MQ_ICS_DRAM>;
-> +				interconnect-names = "dram";
-> +				status = "disabled";
-> +
-> +				ports {
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					port@0 {
-> +						reg = <0>;
-> +
-> +						csi2_mipi_ep: endpoint {
-> +							remote-endpoint = <&csi2_ep>;
-> +						};
-> +					};
-> +				};
-> +			};
-> +
-> +			csi2: csi@30b80000 {
-> +				compatible = "fsl,imx7-csi";
-> +				reg = <0x30b80000 0x10000>;
-> +				interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk IMX8MQ_CLK_CSI2_ROOT>;
-> +				clock-names = "mclk";
-> +				status = "disabled";
-> +
-> +				port {
-> +					csi2_ep: endpoint {
-> +						remote-endpoint = <&csi2_mipi_ep>;
-> +					};
-> +				};
-> +			};
-> +
->  			mu: mailbox@30aa0000 {
->  				compatible = "fsl,imx8mq-mu", "fsl,imx6sx-mu";
->  				reg = <0x30aa0000 0x10000>;
-> -- 
-> 2.30.2
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> The rest looks fine, so
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
