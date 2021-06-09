@@ -2,97 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6833C3A0BB0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 06:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A949B3A0BC0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 07:12:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232206AbhFIEwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 00:52:20 -0400
-Received: from mail-pf1-f181.google.com ([209.85.210.181]:40471 "EHLO
-        mail-pf1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230244AbhFIEwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 00:52:09 -0400
-Received: by mail-pf1-f181.google.com with SMTP id q25so17473633pfh.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 21:49:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iYok65sFwc6WEDcag9xh0Hf6j7gDgq0CQ1KsKHhgvjo=;
-        b=IiKc5ndp1M+CHWA+wdg+354lmwNXghTKdybF8tq0RZvCL5COD05uofXz0TjPvIqrWD
-         2Zd0UlSBCO8bso5l3lOkrxIqxpFUkoAtZW9Vodvtph2lfU6bzvov7tO/ZuOj6l+ULzzt
-         HjWDkmXNfdxxOHBFRr+e80s0Z+H6fkvwtboE4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=iYok65sFwc6WEDcag9xh0Hf6j7gDgq0CQ1KsKHhgvjo=;
-        b=JUx2d+GnM36gzFb2CTvsB8n45oW7/pHXUNmslw2rPmNZqNZB1t0Yoq+ONhAKUuMl+1
-         PERMOFzom/iob56ympmP+hntom7P/pUc4BGmvYxgk1A+wG7pGi6sVwfAcDBooljFK1gi
-         pspGlVCRUBElSXa6p5qwnhY0/5n6O+Al291rznn/+Kk4fxTC7egu/Oi1tYD2eHwo0haU
-         fz1gcSNYjJcdlgZe+7adNyl0cqTVO0EXjBPAO++WWUoUxphdUVi0spoHLdJ4VLkMxu7D
-         zVRy5sY3zL3kWYx3eTN5tZY6fRsEokUuNR2rwBSfrbkWwTONz2dhbREl6m7sG+b5n01K
-         us0A==
-X-Gm-Message-State: AOAM533ukkJDgl48s9/l3fcTO4EBXzX9vkgs5GPeepzTSfVrmLWY3GGB
-        VayK9CjN6Ox/9JvEaXkaTaAFaA==
-X-Google-Smtp-Source: ABdhPJzu5e6c64mB7KD2PoLwdt2R2dL9vCR7lWw3zZp8Cn9JbjCwrAk24pXd1HLgFvQL4XbwwXG88A==
-X-Received: by 2002:a62:dd83:0:b029:2e8:e511:c32f with SMTP id w125-20020a62dd830000b02902e8e511c32fmr3335696pff.49.1623214139561;
-        Tue, 08 Jun 2021 21:48:59 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:83f0:56eb:3535:6bd5])
-        by smtp.gmail.com with ESMTPSA id h18sm12865110pgl.87.2021.06.08.21.48.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jun 2021 21:48:58 -0700 (PDT)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        maoguang.meng@mediatek.com, yong.wu@mediatek.com,
-        tfiga@chromium.org
-Subject: [PATCH v2] arm64: dts: mt8183: add jpeg enc node for mt8183
-Date:   Wed,  9 Jun 2021 12:48:54 +0800
-Message-Id: <20210609044854.393452-1-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
+        id S231424AbhFIFOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 01:14:49 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:50522 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232153AbhFIFOt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 01:14:49 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1595CmVQ063309;
+        Wed, 9 Jun 2021 00:12:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623215568;
+        bh=8nU8dx0W7UHA7c2WDGiyi7oL2CaDsAqar1u6ZM2n30Q=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=IHlXFtRyDtg9r55tenCp+Tf+UKwB2jNb+FPTaIBC1O5uExwWt9dKleJ8baHi07+Uf
+         yLWnM7m1w1huCr+aRRejiCghpNFib4ScawsSSVmXSTv3aDDHoeWZGDGybOWwjWv0aX
+         JqPx2D8xFkRjjEiXtjTX1hEtazl5kfcwjKlufU3g=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1595Cm93054084
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 9 Jun 2021 00:12:48 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
+ 2021 00:12:48 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 9 Jun 2021 00:12:48 -0500
+Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1595CjRq124940;
+        Wed, 9 Jun 2021 00:12:46 -0500
+Subject: Re: [PATCH] arm64: dts: ti: k3-am642-main: fix ports mac properties
+To:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210608184940.25934-1-grygorii.strashko@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <abe15d92-83a7-d60f-c4b4-81e8b9ac415a@ti.com>
+Date:   Wed, 9 Jun 2021 10:42:44 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210608184940.25934-1-grygorii.strashko@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maoguang Meng <maoguang.meng@mediatek.com>
 
-Add jpeg encoder device tree node.
 
-Signed-off-by: Maoguang Meng <maoguang.meng@mediatek.com>
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
----
-v2: rebase to latest
-v1: https://patchwork.kernel.org/project/linux-media/patch/20200914094012.5817-1-maoguang.meng@mediatek.com/
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+On 6/9/21 12:19 AM, Grygorii Strashko wrote:
+> The current device tree CPSW3g node adds non-zero "mac-address" property to
+> the ports, which prevents random MAC address assignment to network devices
+> if bootloader failed to update DT. This may cause more then one host to
+> have the same MAC in the network.
+> 
+>  mac-address = [00 00 de ad be ef];
+>  mac-address = [00 01 de ad be ef];
+> 
+> In addition, there is one MAC address available in eFuse registers which
+> can be used for default port 1.
+> 
+> Hence, fix ports MAC properties by:
+> - resetting "mac-address" property to 0
+> - adding ti,syscon-efuse = <&main_conf 0x200> to Port 1
+> 
+> Fixes: 3753b12877b6 ("arm64: dts: ti: k3-am64-main: Add CPSW DT node")
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> ---
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index c5e822b6b77a3..fffe0c52909ce 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1329,6 +1329,17 @@ larb4: larb@17010000 {
- 			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
- 		};
- 
-+		venc_jpg: venc_jpg@17030000 {
-+			compatible = "mediatek,mt8183-jpgenc", "mediatek,mtk-jpgenc";
-+			reg = <0 0x17030000 0 0x1000>;
-+			interrupts = <GIC_SPI 249 IRQ_TYPE_LEVEL_LOW>;
-+			iommus = <&iommu M4U_PORT_JPGENC_RDMA>,
-+				 <&iommu M4U_PORT_JPGENC_BSDMA>;
-+			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
-+			clocks = <&vencsys CLK_VENC_JPGENC>;
-+			clock-names = "jpgenc";
-+		};
-+
- 		ipu_conn: syscon@19000000 {
- 			compatible = "mediatek,mt8183-ipu_conn", "syscon";
- 			reg = <0 0x19000000 0 0x1000>;
--- 
-2.32.0.rc1.229.g3e70b5a671-goog
+Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
 
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index effb9d2e3c25..7f7178a7a055 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -514,7 +514,8 @@
+>  				ti,mac-only;
+>  				label = "port1";
+>  				phys = <&phy_gmii_sel 1>;
+> -				mac-address = [00 00 de ad be ef];
+> +				mac-address = [00 00 00 00 00 00];
+> +				ti,syscon-efuse = <&main_conf 0x200>;
+>  			};
+>  
+>  			cpsw_port2: port@2 {
+> @@ -522,7 +523,7 @@
+>  				ti,mac-only;
+>  				label = "port2";
+>  				phys = <&phy_gmii_sel 2>;
+> -				mac-address = [00 01 de ad be ef];
+> +				mac-address = [00 00 00 00 00 00];
+>  			};
+>  		};
+>  
+> 
