@@ -2,180 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D9D43A15B4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:33:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B483E3A15B9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:34:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234749AbhFINfe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 09:35:34 -0400
-Received: from mail-wr1-f43.google.com ([209.85.221.43]:42536 "EHLO
-        mail-wr1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236420AbhFINfZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:35:25 -0400
-Received: by mail-wr1-f43.google.com with SMTP id c5so25473763wrq.9
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 06:33:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=lUdke6htwmhA5dwmH5nqrl72FFCl9nDLwry0d6NYq10=;
-        b=R8mGoDMwBBV4hbsRgCugAOZRINIEA08feaDk66tA1/lvBXWu/S4mRWoZjlLTMQUcZb
-         B8+GK7X12x72JgBelnNELBMtYhTs4wrfoQDGA/Pzy+e5QoYH4e5G0JJpPwKEp1gn7QPA
-         JR8mJ9uO0uI17pQoEOzhV6Hp0ubeniwuLMc/BdnbdXiZgLA6EO9I4ziIrnSWDn3h1nK2
-         eljT/7K45PN6HgdIetUOoiIbNLJ0tthL1GCmIrOpOQS/umywKSxrGq1FbEpazIafkUkx
-         gFaDXtSIEFArgmBZRXSkSaJvnZE6tb2BsLMBxTNXEmgAR2RbKsl6FC08bkKGqZQOkmfo
-         D+/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lUdke6htwmhA5dwmH5nqrl72FFCl9nDLwry0d6NYq10=;
-        b=Hxo22Sq8Yk0o6dVvmaORcS/WN8H/mt8VOyZ0DROx2HpaHmFLGugbfzV3vni00TA0zU
-         0aCgKLwT9qNXmq4OnKAvjWrN8+0ECXT3n/Z/EyunUsbSEQPxFYgvkOaPTqqBZQitwDAM
-         HvXA2Hgz88UtxMgCD2Jb0JYE78F6QoydoXFaBwRhhFZ28zg2iXCHpTcfm89XONh8cZhr
-         hgvHO8t1yDguOMJ5OueI8LNB+ILbWeci5QQyRuWxy/8kvWpY/4Y4k7ZzzuJUoAmVA2t8
-         kBVBMkvjzcUejK9eg3KnqmEsCQWYhLgM1CQDDTDAtZzjghp8ui1jYpcSkz1rw6ACnhBu
-         vuIg==
-X-Gm-Message-State: AOAM532N7o0c1UveA+QBrQ12iYpQAho7o1WZ48iPllPo9bKNKpza7A0v
-        nQYEZx+rxqS4x8ZoYJYH4u2kVw==
-X-Google-Smtp-Source: ABdhPJxsmddMb8dvO3dYf14XNfU0myBP9qEVALchMojRiPg7w1K9x7FqpVtDhdvheKH6YNVjevxE0w==
-X-Received: by 2002:a5d:59af:: with SMTP id p15mr18312086wrr.292.1623245550059;
-        Wed, 09 Jun 2021 06:32:30 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id v18sm26112965wrb.10.2021.06.09.06.32.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 09 Jun 2021 06:32:29 -0700 (PDT)
-Subject: Re: [PATCH v3] ASoC: qcom: Add four speaker support on MI2S secondary
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-References: <20210609133039.4648-1-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <c2ab81bc-98e8-e833-a8cc-7176ff03809c@linaro.org>
-Date:   Wed, 9 Jun 2021 14:32:28 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S236417AbhFINgO convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Jun 2021 09:36:14 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:47895 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234126AbhFINgN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:36:13 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id F05A6C0006;
+        Wed,  9 Jun 2021 13:34:11 +0000 (UTC)
+Date:   Wed, 9 Jun 2021 15:34:10 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+Subject: Re: [PATCH v22 09/18] dt-binding: memory: pl353-smc: Convert to
+ yaml
+Message-ID: <20210609153410.53eadf8e@xps13>
+In-Reply-To: <e431d594-05cd-27b8-fcbe-11c310b99cd3@canonical.com>
+References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
+        <20210609080112.1753221-10-miquel.raynal@bootlin.com>
+        <e431d594-05cd-27b8-fcbe-11c310b99cd3@canonical.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210609133039.4648-1-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
+Jun 2021 14:12:40 +0200:
 
-On 09/06/2021 14:30, Srinivasa Rao Mandadapu wrote:
-> Add four speaker support on MI2S secondary block
-> by using I2S SD1 line on gpio52 pin, and add channel map
-> control support in the lpass-cpu audio driver.
+> On 09/06/2021 10:01, Miquel Raynal wrote:
+> > Convert this binding file to yaml schema.
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  .../memory-controllers/arm,pl353-smc.yaml     | 133 ++++++++++++++++++
+> >  .../bindings/memory-controllers/pl353-smc.txt |  45 ------
+> >  2 files changed, 133 insertions(+), 45 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> > new file mode 100644
+> > index 000000000000..1de6f87d4986
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> > @@ -0,0 +1,133 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/memory-controllers/arm,pl353-smc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ARM PL353 Static Memory Controller (SMC) device-tree bindings
+> > +
+> > +maintainers:
+> > +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> > +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
+> > +
+> > +description:
+> > +  The PL353 Static Memory Controller is a bus where you can connect two kinds
+> > +  of memory interfaces, which are NAND and memory mapped interfaces (such as
+> > +  SRAM or NOR).
+> > +
+> > +# We need a select here so we don't match all nodes with 'arm,primecell'
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        enum:
+> > +          - arm,pl353-smc-r2p1  
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> ---
+> That's a const... but also I don't get the need for select.
 
-LGTM,
+I think this is needed to ensure this binding is not enforced against
+arm,primecell compatible nodes which are not featuring the
+arm,pl353-smc-r2p1 compatible.
 
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-
-
-
---srini
-> Changes Since V2:
-> 	-- Added empty entry at the end of channel maps array.
-> Changes Since V1:
-> 	-- removed set_channel_map/get_channel_map implementation as default kcontrols
-> 		added in pcm_new API.
->   sound/soc/qcom/lpass-cpu.c    | 33 +++++++++++++++++++++++++++++++++
->   sound/soc/qcom/lpass-sc7180.c |  1 +
->   sound/soc/qcom/lpass.h        |  2 ++
->   3 files changed, 36 insertions(+)
 > 
-> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-> index c62d2612e8f5..aff39c9f6326 100644
-> --- a/sound/soc/qcom/lpass-cpu.c
-> +++ b/sound/soc/qcom/lpass-cpu.c
-> @@ -29,6 +29,15 @@
->   #define LPASS_CPU_I2S_SD0_1_2_MASK	GENMASK(2, 0)
->   #define LPASS_CPU_I2S_SD0_1_2_3_MASK	GENMASK(3, 0)
->   
-> +/*
-> + * Channel maps for Quad channel playbacks on MI2S Secondary
-> + */
-> +static struct snd_pcm_chmap_elem lpass_quad_chmaps[] = {
-> +		{ .channels = 4,
-> +		  .map = { SNDRV_CHMAP_FL, SNDRV_CHMAP_RL,
-> +				SNDRV_CHMAP_FR, SNDRV_CHMAP_RR } },
-> +		{ }
-> +};
->   static int lpass_cpu_init_i2sctl_bitfields(struct device *dev,
->   			struct lpaif_i2sctl *i2sctl, struct regmap *map)
->   {
-> @@ -324,6 +333,25 @@ const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops = {
->   };
->   EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_dai_ops);
->   
-> +int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
-> +				struct snd_soc_dai *dai)
-> +{
-> +	int ret;
-> +	struct snd_soc_dai_driver *drv = dai->driver;
-> +	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> +
-> +	if (drvdata->mi2s_playback_sd_mode[dai->id] == LPAIF_I2SCTL_MODE_QUAD01) {
-> +		ret =  snd_pcm_add_chmap_ctls(rtd->pcm, SNDRV_PCM_STREAM_PLAYBACK,
-> +				lpass_quad_chmaps, drv->playback.channels_max, 0,
-> +				NULL);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(lpass_cpu_pcm_new);
-> +
->   int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai)
->   {
->   	struct lpass_data *drvdata = snd_soc_dai_get_drvdata(dai);
-> @@ -856,6 +884,11 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
->   				PTR_ERR(drvdata->mi2s_bit_clk[dai_id]));
->   			return PTR_ERR(drvdata->mi2s_bit_clk[dai_id]);
->   		}
-> +		if (drvdata->mi2s_playback_sd_mode[dai_id] ==
-> +			LPAIF_I2SCTL_MODE_QUAD01) {
-> +			variant->dai_driver[dai_id].playback.channels_min = 4;
-> +			variant->dai_driver[dai_id].playback.channels_max = 4;
-> +		}
->   	}
->   
->   	/* Allocation for i2sctl regmap fields */
-> diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-> index 8c168d3c589e..77a556b27cf0 100644
-> --- a/sound/soc/qcom/lpass-sc7180.c
-> +++ b/sound/soc/qcom/lpass-sc7180.c
-> @@ -58,6 +58,7 @@ static struct snd_soc_dai_driver sc7180_lpass_cpu_dai_driver[] = {
->   		},
->   		.probe	= &asoc_qcom_lpass_cpu_dai_probe,
->   		.ops    = &asoc_qcom_lpass_cpu_dai_ops,
-> +		.pcm_new = lpass_cpu_pcm_new,
->   	}, {
->   		.id = LPASS_DP_RX,
->   		.name = "Hdmi",
-> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
-> index 83b2e08ade06..623ddccdafff 100644
-> --- a/sound/soc/qcom/lpass.h
-> +++ b/sound/soc/qcom/lpass.h
-> @@ -259,5 +259,7 @@ void asoc_qcom_lpass_cpu_platform_shutdown(struct platform_device *pdev);
->   int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev);
->   int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai);
->   extern const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops;
-> +int lpass_cpu_pcm_new(struct snd_soc_pcm_runtime *rtd,
-> +				struct snd_soc_dai *dai);
->   
->   #endif /* __LPASS_H__ */
+> > +  required:
+> > +    - compatible
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^memory-controller@[0-9a-f]+$"
+> > +
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - arm,pl353-smc-r2p1
+> > +          - enum:
+> > +              - arm,primecell  
 > 
+> This looks unusual. Basically you change the bindings, because before
+> they required "arm,pl353-smc-r2p1", "arm,primecell".
+
+That is precisely what I try to match and I think it works. Perhaps
+this version is easier to extend when a new compatible comes in.
+However, I am fine using an alternative formula, like below if you
+think it's better:
+
+compatible:
+  items:
+    - const: arm,pl353-smc-r2p1
+    - const: arm,primecell
+
+> Don't you want here items:
+>  - const: ...
+>  - const: ...
+> ?
+> 
+> > +
+> > +  "#address-cells":
+> > +    const: 2
+> > +
+> > +  "#size-cells":
+> > +    const: 1
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: configuration registers for the host and sub-controllers  
+> 
+> Just maxItems. Description is obvious.
+
+I don't think it is that obvious because there are actually 4 areas
+and, because of the yaml language, we only describe one in the reg
+property while the others and defined in the ranges property, but
+that's fine by me, I'll drop the description and stick to a
+maxItems entry.
+
+> 
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: the clock for the memory device bus
+> > +      - description: the main clock of the controller  
+> 
+> Isn't apb_pclk the bus clock (so second item below)?
+
+The SMC has two clock domains referred as aclk and mclk. In the TRM,
+aclk is described as "Clock for the AXI domain". The AXI interface is
+used to trigger CMD/ADDR/DATA cycles on the memory bus. There is also
+an APB interface used to reach the SMC registers. I *think* that
+both APB and AXI domains are fed by the same apb_pclk source but I
+might be wrong. Hence memclk would just feed the memory bus that bonds
+the memory device (eg. the NAND flash) to the host controller.
+
+This is my current understanding but if you think it works differently
+I'm all ears because this part is not 100% clear to me.
+
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: memclk
+> > +      - const: apb_pclk  
+> 
+> 
+> > +
+> > +  ranges:
+> > +    minItems: 1
+> > +    maxItems: 3
+> > +    description: |
+> > +      Memory bus areas for interacting with the devices. Reflects
+> > +      the memory layout with four integer values following:
+> > +      <cs-number> 0 <offset> <size>
+> > +    items:
+> > +      - description: NAND bank 0
+> > +      - description: NOR/SRAM bank 0
+> > +      - description: NOR/SRAM bank 1
+> > +
+> > +  interrupts: true
+> > +
+> > +patternProperties:
+> > +  ".*@[0-9]+,[0-9]+$":  
+> 
+> Match with start ^. I think you cannot have 9 nodes and hex can appear
+> in address so maybe:
+> "^.*@[0-3],[a-f0-9]+$":
+
+I think Rob even now prefers to drop the ^.* prefix, but you're right on
+the two other points so I'll stick to:
+
+  "@[0-3],[a-f0-9]+$"
+
+> 
+> 
+> > +    type: object
+> > +    description: |
+> > +      The child device node represents the controller connected to the SMC
+> > +      bus. The controller can be a NAND controller or a pair of any memory
+> > +      mapped controllers such as NOR and SRAM controllers.
+> > +  
+> 
+> Best regards,
+> Krzysztof
+
+Thanks,
+Miquèl
