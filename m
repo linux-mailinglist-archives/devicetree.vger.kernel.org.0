@@ -2,142 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06E053A171D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 585043A173E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237869AbhFIOZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 10:25:52 -0400
-Received: from regular1.263xmail.com ([211.150.70.204]:46194 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237830AbhFIOZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:25:46 -0400
-Received: from localhost (unknown [192.168.167.69])
-        by regular1.263xmail.com (Postfix) with ESMTP id B1F9B3A4;
-        Wed,  9 Jun 2021 22:23:45 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-Received: from [172.16.12.73] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P31907T140446225393408S1623248622928502_;
-        Wed, 09 Jun 2021 22:23:44 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <aaef219e8ac562c7c20e5d7e0c19fa90>
-X-RL-SENDER: jon.lin@rock-chips.com
-X-SENDER: jon.lin@rock-chips.com
-X-LOGIN-NAME: jon.lin@rock-chips.com
-X-FST-TO: macromorgan@hotmail.com
-X-RCPT-COUNT: 16
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: Re: [PATCH v6 4/8] clk: rockchip: Add support for hclk_sfc on rk3036
-To:     Johan Jonker <jbx6244@gmail.com>, linux-spi@vger.kernel.org
-Cc:     broonie@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
-        hjc@rock-chips.com, yifeng.zhao@rock-chips.com,
-        sugar.zhang@rock-chips.com, linux-rockchip@lists.infradead.org,
-        linux-mtd@lists.infradead.org, p.yadav@ti.com,
-        macroalpha82@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20210608022644.21074-1-jon.lin@rock-chips.com>
- <20210608022644.21074-5-jon.lin@rock-chips.com>
- <4a4524f5-ee85-c7f6-aa95-1df84f2a8a99@gmail.com>
-From:   Jon Lin <jon.lin@rock-chips.com>
-Message-ID: <90752de9-786d-171c-26a4-ee2851168c11@rock-chips.com>
-Date:   Wed, 9 Jun 2021 22:23:44 +0800
+        id S235058AbhFIOb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 10:31:26 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:37488 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236283AbhFIObZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:31:25 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159ETPaB020794;
+        Wed, 9 Jun 2021 09:29:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623248966;
+        bh=zV3VZ4YOASefAdKhPByngIOqwleUDUA6BN4OYuClyYM=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=bvWl3x8MVaXaXUNtYbKCjKDQwIEk6H1bZM3XrrcGxpXcYBIJpn4NPZ7C+UzYeBMra
+         gnVxdNb2BE3vQ8c8NFZSSQsU9lsJHLo2aOuA4bpQnICKQ4uCZkk5XCUneMylc0PwRT
+         RW40YRHR/NQblfwDoof8zzaFZFBVUatgwiIzPK+8=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159ETPB0113075
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 9 Jun 2021 09:29:25 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
+ 2021 09:29:22 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 9 Jun 2021 09:29:22 -0500
+Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159ETFu2012709;
+        Wed, 9 Jun 2021 09:29:17 -0500
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64-main: Update the location of
+ ATF in SRAM and increase its max size
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210607133806.18158-1-a-govindraju@ti.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <e53458a9-e5f6-6507-f95c-2406b47b5576@ti.com>
+Date:   Wed, 9 Jun 2021 19:59:14 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <4a4524f5-ee85-c7f6-aa95-1df84f2a8a99@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20210607133806.18158-1-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 6/9/21 12:31 AM, Johan Jonker wrote:
-> Hi Jon,
->
-> For rk3036 we might need another fix added to this serie as well.
->
-> clk: rockchip: rk3036: fix up the sclk_sfc parent error
-> https://github.com/rockchip-linux/kernel/commit/100718ef0d44872db1672b6a88030374c0d1613b
->
-> ===
-> Add more people for clk driver changes:
->
-> M:	Michael Turquette <mturquette@baylibre.com>
-> M:	Stephen Boyd <sboyd@kernel.org>
-> L:	linux-clk@vger.kernel.org
->
-> ===
->
-> Johan
->
-> On 6/8/21 4:26 AM, Jon Lin wrote:
->
->> From: Chris Morgan <macromorgan@hotmail.com>
-> From: Randy Li <randy.li@rock-chips.com>
->
->> Add support for the bus clock for the serial flash controller on the
->> rk3036. Taken from the Rockchip BSP kernel but not tested on real
->> hardware (as I lack a 3036 based SoC to test).
->>
-> Signed-off-by: Randy Li <randy.li@rock-chips.com>
->
-> Maybe give credit to the original author?
-> clk: rockchip: rk3036: export the sfc clocks
-> https://github.com/rockchip-linux/kernel/commit/600925e8ef6edbdda0a4ac6b3c55b0199be1e03e
-Randy Li has resigned from RK
->> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
->> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
->> ---
->>
->> Changes in v6: None
->> Changes in v5: None
->> Changes in v4: None
->> Changes in v3: None
->> Changes in v2: None
->> Changes in v1: None
->>
->>   drivers/clk/rockchip/clk-rk3036.c      | 2 +-
->>   include/dt-bindings/clock/rk3036-cru.h | 1 +
->>   2 files changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/clk/rockchip/clk-rk3036.c b/drivers/clk/rockchip/clk-rk3036.c
->> index 91d56ad45817..ebb628733f6d 100644
->> --- a/drivers/clk/rockchip/clk-rk3036.c
->> +++ b/drivers/clk/rockchip/clk-rk3036.c
->> @@ -403,7 +403,7 @@ static struct rockchip_clk_branch rk3036_clk_branches[] __initdata = {
->>   	GATE(HCLK_OTG0, "hclk_otg0", "hclk_peri", CLK_IGNORE_UNUSED, RK2928_CLKGATE_CON(5), 13, GFLAGS),
->>   	GATE(HCLK_OTG1, "hclk_otg1", "hclk_peri", CLK_IGNORE_UNUSED, RK2928_CLKGATE_CON(7), 3, GFLAGS),
->>   	GATE(HCLK_I2S, "hclk_i2s", "hclk_peri", 0, RK2928_CLKGATE_CON(7), 2, GFLAGS),
->> -	GATE(0, "hclk_sfc", "hclk_peri", CLK_IGNORE_UNUSED, RK2928_CLKGATE_CON(3), 14, GFLAGS),
->> +	GATE(HCLK_SFC, "hclk_sfc", "hclk_peri", CLK_IGNORE_UNUSED, RK2928_CLKGATE_CON(3), 14, GFLAGS),
-> Maybe CLK_IGNORE_UNUSED should be changed to 0 ?
->
->>   	GATE(HCLK_MAC, "hclk_mac", "hclk_peri", 0, RK2928_CLKGATE_CON(3), 5, GFLAGS),
->>   
->>   	/* pclk_peri gates */
->> diff --git a/include/dt-bindings/clock/rk3036-cru.h b/include/dt-bindings/clock/rk3036-cru.h
->> index 35a5a01f9697..a96a9870ad59 100644
->> --- a/include/dt-bindings/clock/rk3036-cru.h
->> +++ b/include/dt-bindings/clock/rk3036-cru.h
->> @@ -81,6 +81,7 @@
->>   #define HCLK_OTG0		449
->>   #define HCLK_OTG1		450
->>   #define HCLK_NANDC		453
->> +#define HCLK_SFC		454
->>   #define HCLK_SDMMC		456
->>   #define HCLK_SDIO		457
->>   #define HCLK_EMMC		459
->>
->
->
 
+On 07/06/21 7:08 pm, Aswath Govindraju wrote:
+> Due to a limitation for USB DFU boot mode, SPL load address has to be less
+> than  or equal to 0x70001000. So, load address of SPL and ATF have been
+> moved to 0x70000000 and 0x701a0000 respectively.
+> 
+> Also, the maximum size of ATF has been increased to 0x1c000 [1].
+> 
+> Therefore, update ATF's location and maximum size accordingly in the device
+> tree file.
+> 
+> [1] - https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/?id=2fb5312f61a7de8b7a70e1639199c4f14a10b6f9
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index ca59d1f711f8..fcd12b6f10f6 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -13,8 +13,8 @@
+>  		#size-cells = <1>;
+>  		ranges = <0x0 0x00 0x70000000 0x200000>;
+>  
+> -		atf-sram@0 {
+> -			reg = <0x0 0x1a000>;
+> +		atf-sram@1a0000 {
+> +			reg = <0x1a0000 0x1c000>;
 
+After thinking a bot more, isn't size be 0x20000?
+ATF is allocated with 125KB no? no point keeping the ~3 as hole IMO.
+
+Thanks and regards,
+Lokesh
+
+>  		};
+>  	};
+>  
+> 
