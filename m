@@ -2,149 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75CE23A1DAE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 21:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 508753A1DB8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 21:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbhFIT2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 15:28:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35964 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229535AbhFIT2s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Jun 2021 15:28:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E746361403;
-        Wed,  9 Jun 2021 19:26:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623266813;
-        bh=96jmhnDdYUYzWGwtTwwo8iS1dyMXAQKNuE9fkGS8Jp8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QEeuED2qUENZ5eKaeFZq3umwdELglPNxR3cRotVCa4Oo5IP/ZaglO7x6AD14MdWNU
-         8P+AYdzyEBcvxcaHeIvg/rM0p4CZYGk+XjjYgkfaDGm9Q64vn0dI5/qoGoZPWj3sFo
-         UpaKQZNB1EXW8aRdLzNc99VG1fKuOyjVLpznxdXOG3Cb4wdW+veNCumvP7KFB7CAzL
-         ancWjMbJ8bDn92OnLrBC915Ctc8fDuC8IDnv0YDTBFxBat3821kieMJBgWQmh3qizb
-         uP5GNw2QKtQvWtLKsQCvAPizgfhDcFOZLRRbB0kBM2YQ8yXfUN144FEm+NBbgSh3ZX
-         GveVNpCQUHIpA==
-Received: by mail-qk1-f177.google.com with SMTP id i67so24848139qkc.4;
-        Wed, 09 Jun 2021 12:26:53 -0700 (PDT)
-X-Gm-Message-State: AOAM530tSjQ5CL2CKM1N49ZhUuwK+OBZJRZrDc35FdEAkXZ9Nmz8G2ig
-        KABHwpVOzfcn7w5EpWmkVaUw0NdzdUy9AL6WoQ==
-X-Google-Smtp-Source: ABdhPJwIF2VAc3W3tDLHATbFdB2v0fwn3EwAFw2Dy6hysy99DIc0dA4ocPbE/DdU1zN+5F7yffjXWx/yn9jFgvfWsnM=
-X-Received: by 2002:a37:947:: with SMTP id 68mr1188220qkj.364.1623266812990;
- Wed, 09 Jun 2021 12:26:52 -0700 (PDT)
+        id S229536AbhFITea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 15:34:30 -0400
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:35466 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229504AbhFITe3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 15:34:29 -0400
+Received: by mail-ot1-f48.google.com with SMTP id 69-20020a9d0a4b0000b02902ed42f141e1so25109752otg.2
+        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 12:32:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to;
+        bh=/5hRR3JhxA61/7kGbJ52XF4Id3fG9uBeIzCvCACHPQw=;
+        b=MMFEzs5U6IDNKqGfwXrix6STIsbRevLZaidgF9ycrqSfLwnZd2nH5WPjEDTby0ZOMT
+         8mSMBVUXuPyJIo4vUqhf5ZC9cfz4dg6jelk7kAgdMPS1kHmslrmOtoqpiLM/7/f0b9tk
+         3nPQf+T5651vsSqqm8Tz1nlX7vFJ6ukPeraZY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to;
+        bh=/5hRR3JhxA61/7kGbJ52XF4Id3fG9uBeIzCvCACHPQw=;
+        b=WKBOYzp5nnxlUTG6EDv5MjHERDWE5t37UUbmSQJqF/DWSXbqoxaUSqU28fTZmCaC1M
+         YBeFuIvp7nPf5CnszxdgmrLAQ4bsIFCMHM1AmIGpnmOEP4C3WDuHNqibzGN0TNx4VZeV
+         /zy3/0QZml2sqfFz4vEba0bDYIcVP2kR1mfRU7GjTgPRbqbQoGF1jz0msKpxFEHeji9Q
+         wBPAyVsEb7T67w2UM/RoJLnDIAqk+jIycKjLX7vIqJgY1ceReCaCiakuhLmfENucFv8t
+         Orr/Ej3zskoaRQ/V05Q//KVqFsoYkd2xP0nyU6BF0702FFnE0lzkKVKqRlunwY778/WC
+         INBA==
+X-Gm-Message-State: AOAM533X6umCQdza9R2nSRSRtw+IyDX6sN1Ll1K9HTvwupMRu6WMKYJ4
+        2mpejbPLOm4rfwFL7ue6bZKw3lnUP6C7PX5s4551EQ==
+X-Google-Smtp-Source: ABdhPJwbGOmwALrdCY6bSX1H2qs6NY1fPr3SD/WDtOxCLEy4O9BT2CZIneFt6DfO7TE5QTj4TK4ORmu+XZn+RYoNM64=
+X-Received: by 2002:a05:6830:190:: with SMTP id q16mr865886ota.34.1623267094752;
+ Wed, 09 Jun 2021 12:31:34 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 9 Jun 2021 12:31:33 -0700
 MIME-Version: 1.0
-References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
- <20210609080112.1753221-10-miquel.raynal@bootlin.com> <e431d594-05cd-27b8-fcbe-11c310b99cd3@canonical.com>
- <20210609153410.53eadf8e@xps13> <77db74d3-c44a-6aa3-1b61-f6bed565fa04@canonical.com>
- <20210609161128.16cdf5ec@xps13> <32c7adf2-6f4e-ef2d-a137-a9674f9e6baa@canonical.com>
-In-Reply-To: <32c7adf2-6f4e-ef2d-a137-a9674f9e6baa@canonical.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 9 Jun 2021 14:26:41 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJW6Nt5h_gpfd5OgaTjSQGnrH2mCdwDeWvsnq1y_3uV=A@mail.gmail.com>
-Message-ID: <CAL_JsqJW6Nt5h_gpfd5OgaTjSQGnrH2mCdwDeWvsnq1y_3uV=A@mail.gmail.com>
-Subject: Re: [PATCH v22 09/18] dt-binding: memory: pl353-smc: Convert to yaml
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        devicetree@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Amit Kumar Mahapatra <akumarma@xilinx.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Srinivas Goud <sgoud@xilinx.com>,
-        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+In-Reply-To: <20210609133039.4648-1-srivasam@codeaurora.org>
+References: <20210609133039.4648-1-srivasam@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Wed, 9 Jun 2021 12:31:33 -0700
+Message-ID: <CAE-0n53Jy_kRK-6L4bZMZ2EAv2n3b9PX2GZSaUodZtU8P7P=6Q@mail.gmail.com>
+Subject: Re: [PATCH v3] ASoC: qcom: Add four speaker support on MI2S secondary
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
+        tiwai@suse.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 9, 2021 at 10:26 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
+Quoting Srinivasa Rao Mandadapu (2021-06-09 06:30:39)
+> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+> index c62d2612e8f5..aff39c9f6326 100644
+> --- a/sound/soc/qcom/lpass-cpu.c
+> +++ b/sound/soc/qcom/lpass-cpu.c
+> @@ -29,6 +29,15 @@
+>  #define LPASS_CPU_I2S_SD0_1_2_MASK     GENMASK(2, 0)
+>  #define LPASS_CPU_I2S_SD0_1_2_3_MASK   GENMASK(3, 0)
 >
-> On 09/06/2021 16:11, Miquel Raynal wrote:
-> > Hi Krzysztof, Rob,
-> >
-> > Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
-> > Jun 2021 15:54:19 +0200:
-> >
-> >> On 09/06/2021 15:34, Miquel Raynal wrote:
-> >>> Hi Krzysztof,
-> >>>
-> >>> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
-> >>> Jun 2021 14:12:40 +0200:
-> >>>
-> >>>> On 09/06/2021 10:01, Miquel Raynal wrote:
-> >>>>> Convert this binding file to yaml schema.
-> >>>>>
-> >>>>> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> >>>>> ---
-> >>>>>  .../memory-controllers/arm,pl353-smc.yaml     | 133 ++++++++++++++++++
-> >>>>>  .../bindings/memory-controllers/pl353-smc.txt |  45 ------
-> >>>>>  2 files changed, 133 insertions(+), 45 deletions(-)
-> >>>>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
-> >>>>>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
-> >>>>> new file mode 100644
-> >>>>> index 000000000000..1de6f87d4986
-> >>>>> --- /dev/null
-> >>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
-> >>>>> @@ -0,0 +1,133 @@
-> >>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>>>> +%YAML 1.2
-> >>>>> +---
-> >>>>> +$id: http://devicetree.org/schemas/memory-controllers/arm,pl353-smc.yaml#
-> >>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>>> +
-> >>>>> +title: ARM PL353 Static Memory Controller (SMC) device-tree bindings
-> >>>>> +
-> >>>>> +maintainers:
-> >>>>> +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> >>>>> +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
-> >>>>> +
-> >>>>> +description:
-> >>>>> +  The PL353 Static Memory Controller is a bus where you can connect two kinds
-> >>>>> +  of memory interfaces, which are NAND and memory mapped interfaces (such as
-> >>>>> +  SRAM or NOR).
-> >>>>> +
-> >>>>> +# We need a select here so we don't match all nodes with 'arm,primecell'
-> >>>>> +select:
-> >>>>> +  properties:
-> >>>>> +    compatible:
-> >>>>> +      contains:
-> >>>>> +        enum:
-> >>>>> +          - arm,pl353-smc-r2p1
-> >>>>
-> >>>> That's a const... but also I don't get the need for select.
-> >>>
-> >>> I think this is needed to ensure this binding is not enforced against
-> >>> arm,primecell compatible nodes which are not featuring the
-> >>> arm,pl353-smc-r2p1 compatible.
-> >>
-> >> Which seems to be result of unusual compatible match, so once you
-> >> convert to regular match, this select is not needed.
-> >
-> > I don't think so, I received a hint from Rob some time ago, he told
-> > me to add this additional select line as in all other arm,primecell
-> > binding.
-> >
-> > Rob, any additional info regarding this?
->
-> Hmm, I think you' are right. Since arm,primecell is used in many other
-> compatibles (including ones without schema yet), the select is needed.
->
-> In such case the select can be only:
->
-> select:
->   properties:
->     compatible:
->       contains:
->         const: arm,pl353-smc-r2p1
+> +/*
+> + * Channel maps for Quad channel playbacks on MI2S Secondary
+> + */
+> +static struct snd_pcm_chmap_elem lpass_quad_chmaps[] = {
 
-The above is true if there's no 'compatible'. So you need 'required: [
-compatible ]' as well.
+Can this be const?
 
-Rob
+> +               { .channels = 4,
+> +                 .map = { SNDRV_CHMAP_FL, SNDRV_CHMAP_RL,
+> +                               SNDRV_CHMAP_FR, SNDRV_CHMAP_RR } },
+> +               { }
+> +};
+>  static int lpass_cpu_init_i2sctl_bitfields(struct device *dev,
+>                         struct lpaif_i2sctl *i2sctl, struct regmap *map)
+>  {
