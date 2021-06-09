@@ -2,164 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F2F83A0794
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 01:10:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70D8B3A087A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 02:43:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234937AbhFHXMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 19:12:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33808 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234389AbhFHXMV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 19:12:21 -0400
-Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1966DC061787
-        for <devicetree@vger.kernel.org>; Tue,  8 Jun 2021 16:10:18 -0700 (PDT)
-Received: by mail-oo1-xc36.google.com with SMTP id d27-20020a4a3c1b0000b029024983ef66dbso2640634ooa.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 16:10:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8Fd2UnKqRp3r57f4CDJXwSiaZtMqRHFyBh9cIrJCLHc=;
-        b=YVQxIh4DVDYDVOSMez79iluTdib8wNEGnSurhGWV5Sx1Yt2DoKdkChJeEswUoeSsGw
-         0K00d68k/hSD0WCstFm065QnDK9rywsVn9kQw/4Kj0jMQJu8ZRDpHZMz4K4FPQnn10E4
-         N08rvCo6ABfBzZhrVuzfRfm3qkKNuPPRPLa+kZFaYoNlgWkvp3nUvMsE0CxBchjX/GIB
-         vXnYe965oMdOEKaqGviedRqmdY0N1l8CECcUioeXQ7O3Itu5he0GWhI7CLxMzbVsPVmj
-         r+K+/JevqaG+yMYcwmhqA6BJ63t8i+MsqNQnyxgtKgYLrEkMPPCpydxSpF+pD3aDS0MU
-         UgDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8Fd2UnKqRp3r57f4CDJXwSiaZtMqRHFyBh9cIrJCLHc=;
-        b=ltrv8dacZfE8Ksh0K86ck7hU4N8QkbuhGeoiYFrVtP/ysUUV2sAi/U9kvrr22hHfDv
-         3gh57QmwZGmINOceMK7Y96rM4oTgtW0b7LvhZ8wYmW06Me/qrsFnBvgxw0UukIM48WEr
-         xQ1WXop3klv/5jCdtfo3WT/oIYQldQ0kBZcUeX/UpzEnIYj/r+qWvs+Pupz4/SF7VoAW
-         rJYwPUGKw8zPIMIdAEdx9fk7MhaMTJnroVXdbjh5d4ihWBtlB6ScU8/zYhdqGtH5Jjis
-         wyuUuggHEObmECYrvzgWA18o3yR4wZvrPPoAaIEHCVK0mkJVFUziv0mxwT/Kova0Mclm
-         n4kg==
-X-Gm-Message-State: AOAM533yCKPA2IcW4ix936ngx5+bt69vq1PVcZ82Lj4/0i051WTYr4rS
-        Yuv/YxIzOt2z6hqiB4wXcFg4Xg==
-X-Google-Smtp-Source: ABdhPJycM7QJ6UxCAKDNC7FB+QTjxDFiYOAHom/UYvJgDGXNLHmf6SoUQFIeescv/3vi8398Xn3oHg==
-X-Received: by 2002:a4a:b789:: with SMTP id a9mr19171527oop.45.1623193817402;
-        Tue, 08 Jun 2021 16:10:17 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c205sm3092501oob.38.2021.06.08.16.10.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jun 2021 16:10:16 -0700 (PDT)
-Date:   Tue, 8 Jun 2021 18:10:14 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     khsieh@codeaurora.org, robdclark@gmail.com, sean@poorly.run,
-        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
-        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
-Message-ID: <YL/41hWz8xB+jSeO@yoga>
-References: <YLkI/6ItCz+SbbuJ@yoga>
- <ac326ec8689c0babb08b2311e19d52cc@codeaurora.org>
- <YLxX/YtegtbLmkri@builder.lan>
- <ef1879fa7ecfefaf0c70c7a4782240a9@codeaurora.org>
- <YL6sY/1E5wLzMiP/@yoga>
- <CAE-0n50-X03sMyJdsw7s=Ue0dWXBo=iHOc0HxDQm5yh2J-uS3A@mail.gmail.com>
- <YL/uj+t+BFkII1Fh@yoga>
- <CAE-0n50WP25kRQkWMVdDZGsZWBXwfbVSTFKyBLF7f8Mp3x2Wfg@mail.gmail.com>
- <YL/wWdRs6e/eECiC@yoga>
- <CAE-0n51GM65rZVJgXuHy6FerJorHeHKf2W31GijG8sDEhaX_KQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n51GM65rZVJgXuHy6FerJorHeHKf2W31GijG8sDEhaX_KQ@mail.gmail.com>
+        id S232624AbhFIAo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 20:44:56 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:49527 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232568AbhFIAo4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 20:44:56 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 565095804F7;
+        Tue,  8 Jun 2021 20:42:58 -0400 (EDT)
+Received: from imap43 ([10.202.2.93])
+  by compute2.internal (MEProxy); Tue, 08 Jun 2021 20:42:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=w3DCX2yd+9lMXdmKvG11WHVe5Bs0SHd
+        AIYy275ZguRM=; b=IDsjMEodHPa2wMYM7CMsUMgF6xDFVbZOLqxw5meGMciUnvg
+        h+jRh3nl2Kzg8EwXVFZFenFVXif+GRYCcz1JaTuto4BOeBFaFCr5w1fQsC1c+rkX
+        VQLleGkqdEjvq0E0CFZ9c9jXlcA5eNd9fenRuCIICfjfHeYD3qoYQz64IESTU0Dq
+        B2rh5TDfgEzXM/s1lCVfT+samRb+F797YdbUs+7voMDpfWa+scgsXwO8aSpBwvS/
+        lu7ev/Dhb241Zj1CeY9An6Ma/0sbfbcili5O7YofvfOH1L3eBgE7a0S6/kF7C6lq
+        yIAxOCnU4/zg/QFZZtv3phOKE6gMS/t7dHnZ/IA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=w3DCX2
+        yd+9lMXdmKvG11WHVe5Bs0SHdAIYy275ZguRM=; b=wNutnjepAfTBWCXOJb5j9m
+        T2AVlQTfoC1o1oCUt7bAeSuijkh32BdZn5O/xy4LyxHpDd7qqq8xAghiHPR9mA0a
+        JRLQypRC3uaw+zOgYaFzMbaVZ0EB9nim26QeIw5Le7A2yNcKqfP+xt/SQoYR4PsU
+        4x/WMVx12rD3KJi9IjA7cGFvAvFROxexpzBFgxlTw3HqRxnKY3IpolhqkOf6SANx
+        3stDrnbYS2KLZNVx4jTzFrS9J7MCcZ63ZSUryAjarl6UfgF5KYFlZQZNLCS2WAHK
+        7NKXmgK2Pcq7PIq4R/NqSncI8/ag5vkimnGSLripIYF22m2ko4zExcKQY95wXVLA
+        ==
+X-ME-Sender: <xms:jg7AYI3c7fgr3BglBoaPJhpk3ooHQEN3Z1ko8X6FuwiLltdxVBzRzw>
+    <xme:jg7AYDGyX5E2ClqDKHxC6BYGBbLuTk51vfgIIuNlt_V516fcZot3J4BFOVZG5kqGL
+    1gPDAXiJxicHih9bQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedutddgfedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhephefguedvfedvgffgudehjeegudefvedufefgveefudetffdvfeeigffg
+    jedvkeetnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhi
+    ugdrrghu
+X-ME-Proxy: <xmx:jg7AYA49Y5r06jf_m8ZNIoL-tP_3Erb_cG2CUoE60WcJorc1LAUi6Q>
+    <xmx:jg7AYB3_5pbZQIrKaWyEH77FStCwdK367V5_-08Y1HR4Pt7W_cK5FQ>
+    <xmx:jg7AYLFxjlpHk4GQlRmu3YFuV_An4k8e-tXTqcNNiEBE3USgw9ETOg>
+    <xmx:kg7AYD_SqI8BUDPm8IerBJWGhc6ilZ_VsKJQlDkAtEd5h2zEogRdQg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 95A87AC0062; Tue,  8 Jun 2021 20:42:54 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-519-g27a961944e-fm-20210531.001-g27a96194
+Mime-Version: 1.0
+Message-Id: <1f34af33-0905-480e-8a55-e5e34d66216f@www.fastmail.com>
+In-Reply-To: <20210608102547.4880-2-steven_lee@aspeedtech.com>
+References: <20210608102547.4880-1-steven_lee@aspeedtech.com>
+ <20210608102547.4880-2-steven_lee@aspeedtech.com>
+Date:   Wed, 09 Jun 2021 10:12:33 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Steven Lee" <steven_lee@aspeedtech.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        "open list" <linux-kernel@vger.kernel.org>
+Cc:     "Hongwei Zhang" <Hongweiz@ami.com>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>,
+        "Billy Tsai" <billy_tsai@aspeedtech.com>
+Subject: =?UTF-8?Q?Re:_[PATCH_v5_01/10]_dt-bindings:_aspeed-sgpio:_Convert_txt_bi?=
+ =?UTF-8?Q?ndings_to_yaml.?=
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 08 Jun 17:44 CDT 2021, Stephen Boyd wrote:
 
-> Quoting Bjorn Andersson (2021-06-08 15:34:01)
-> > On Tue 08 Jun 17:29 CDT 2021, Stephen Boyd wrote:
-> >
-> > > Quoting Bjorn Andersson (2021-06-08 15:26:23)
-> > > > On Tue 08 Jun 17:15 CDT 2021, Stephen Boyd wrote:
-> > > >
-> > > > > Quoting Bjorn Andersson (2021-06-07 16:31:47)
-> > > > > > On Mon 07 Jun 12:48 CDT 2021, khsieh@codeaurora.org wrote:
-> > > > > >
-> > > > > > > Sorry about the confusion. What I meant is that even though DP controller is
-> > > > > > > in the MDSS_GDSC
-> > > > > > > power domain, DP PHY/PLL sources out of CX. The DP link clocks have a direct
-> > > > > > > impact
-> > > > > > > on the CX voltage corners. Therefore, we need to mention the CX power domain
-> > > > > > > here. And, since
-> > > > > > > we can associate only one OPP table with one device, we picked the DP link
-> > > > > > > clock over other
-> > > > > > > clocks.
-> > > > > >
-> > > > > > Thank you, that's a much more useful answer.
-> > > > > >
-> > > > > > Naturally I would think it would make more sense for the PHY/PLL driver
-> > > > > > to ensure that CX is appropriately voted for then, but I think that
-> > > > > > would result in it being the clock driver performing such vote and I'm
-> > > > > > unsure how the opp table for that would look.
-> > > > > >
-> > > > > > @Stephen, what do you say?
-> > > > > >
-> > > > >
-> > > > > Wouldn't the PHY be the one that sets some vote? So it wouldn't be the
-> > > > > clk driver, and probably not from the clk ops, but instead come from the
-> > > > > phy ops via phy_enable() and phy_configure().
-> > > > >
-> > > >
-> > > > If I understand the logic correctly *_configure_dp_phy() will both
-> > > > configure the vco clock and "request" the clock framework to change the
-> > > > rate.
-> > > >
-> > > > So I presume what you're suggesting is that that would be the place to
-> > > > cast the CX corner vote?
-> > >
-> > > Yes that would be a place to make the CX vote. The problem is then I
-> > > don't know where to drop the vote. Is that when the phy is disabled?
-> >
-> > We do pass qcom_qmp_phy_power_off() and power down the DP part as DP
-> > output is being disabled. So that sounds like a reasonable place to drop
-> > the vote for the lowest performance state.
-> >
+
+On Tue, 8 Jun 2021, at 19:55, Steven Lee wrote:
+> sgpio-aspeed bindings should be converted to yaml format.
 > 
-> So then will the corner vote be in place when the PHY isn't actually
-> powered up? That will be bad for power. The phy configure code will need
-> to know if the phy is enabled and then only put in the vote when the phy
-> is enabled, otherwise wait for enable to make the corner vote.
+> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> ---
+>  .../bindings/gpio/aspeed,sgpio.yaml           | 75 +++++++++++++++++++
+>  .../devicetree/bindings/gpio/sgpio-aspeed.txt | 46 ------------
+>  2 files changed, 75 insertions(+), 46 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
 > 
+> diff --git a/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml 
+> b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> new file mode 100644
+> index 000000000000..b2ae211411ff
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/aspeed,sgpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Aspeed SGPIO controller
+> +
+> +maintainers:
+> +  - Andrew Jeffery <andrew@aj.id.au>
+> +
+> +description:
+> +  This SGPIO controller is for ASPEED AST2500 SoC, it supports up to 
+> 80 full
+> +  featured Serial GPIOs. Each of the Serial GPIO pins can be 
+> programmed to
+> +  support the following options
+> +  - Support interrupt option for each input port and various interrupt
+> +    sensitivity option (level-high, level-low, edge-high, edge-low)
+> +  - Support reset tolerance option for each output port
+> +  - Directly connected to APB bus and its shift clock is from APB bus 
+> clock
+> +    divided by a programmable value.
+> +  - Co-work with external signal-chained TTL components 
+> (74LV165/74LV595)
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2400-sgpio
+> +      - aspeed,ast2500-sgpio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  interrupt-controller: true
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  ngpios: true
+> +
+> +  bus-frequency: true
 
-If we vote for a corner based on the link rate in *_configure_dp_phy()
-and put the vote for lowest corner we'd get the corner part sorted out
-afaict.
+I'm not familiar enough with dt-schema to know that this does what we need, so deferring to Rob.
 
-We'd still have to make sure that the PHY doesn't hang on to the cx vote
-beyond that though - and implicitly in the non-DP cases...
+Looks good otherwise.
 
-> Honestly I suspect the DP PHY is _not_ in the CX domain as CX is for
-> digital logic. Probably the PLL is the hardware that has some minimum CX
-> requirement, and that flows down into the various display clks like the
-> link clk that actually clock the DP controller hardware. The mdss_gdsc
-> probably gates CX for the display subsystem (mdss) so if we had proper
-> corner aggregation logic we could indicate that mdss_gdsc is a child of
-> the CX domain and then make requests from the DP driver for particular
-> link frequencies on the mdss_gdsc and then have that bubble up to CX
-> appropriately. I don't think any of that sort of code is in place
-> though, right?
-
-I haven't checked sc7180, but I'm guessing that it's following the other
-modern platforms, where all the MDSS related pieces (including e.g.
-dispcc) lives in the MMCX domain, which is separate from CX.
-
-So the parent of MDSS_GDSC should be MMCX, while Kuogee's answer (and
-the dp-opp-table) tells us that the PLL lives in the CX domain.
-
-
-PS. While this goes for the QMPs the DSI and eDP/DP PHYs (and PLLs)
-seems to live in MMCX.
-
-Regards,
-Bjorn
+Andrew
