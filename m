@@ -2,92 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 366483A1664
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4B8B3A166B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:02:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237182AbhFIODe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 10:03:34 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:41150 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237151AbhFIODd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:03:33 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159E1a7j047790;
-        Wed, 9 Jun 2021 09:01:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623247296;
-        bh=Tw1eN5lgDE9D28pNImTTEUKJXCMh0POoZIKxPcndiVk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=WjJIFiBGTyeJUwvX05Zi04K6/eorqEyljyt90QbADLRMyy0JHPeHQGF0rjPr/GlNI
-         yC9I5QQc3ele8/uO8EiVKWBI53vBy9Wqy7jfMq0ERLXfZ6KBfI5RVSSnVxlCIW/oPi
-         5y4wneFxPd2WyduzX4esTfWTi335YQkJVXcmU/hg=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159E1a7O012039
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Jun 2021 09:01:36 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
- 2021 09:01:36 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 9 Jun 2021 09:01:36 -0500
-Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159E1YOJ083663;
-        Wed, 9 Jun 2021 09:01:35 -0500
-Subject: Re: [PATCH 4/4] arm64: dts: ti: k3-am642-evm/sk: Reserve some on-chip
- SRAM for R5Fs
-To:     Suman Anna <s-anna@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20210528144718.25132-1-s-anna@ti.com>
- <20210528144718.25132-5-s-anna@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <6035b723-ae52-3674-728d-b335b7d07982@ti.com>
-Date:   Wed, 9 Jun 2021 19:31:33 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S233790AbhFIOEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 10:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60728 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232724AbhFIOEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:04:15 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4467BC061574;
+        Wed,  9 Jun 2021 07:02:04 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id h3so4085278wmq.3;
+        Wed, 09 Jun 2021 07:02:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N+/riSjz4euVjoS0RyWGJtslWdSbTXbIIzdHyoJErc4=;
+        b=CmEM6g3wKtqAtYflVQVVErEtCQXW7Uy97gHNNQMjxtonip1VUyhvcZC2QebjWgKwCi
+         mTwlhj6sJugCtXWgwTDKYP7Dgw/sM58GRyFv5FQEGYkCwLYFWh1Sm14Mhikl7RyGLpVx
+         5rwwrSAwCRSdayPE3twckTuAnsjOsNX3mgm9fUArlTkRqWz5RI3SYIeLlT0v/r686OJE
+         Hp2c8EZDe0diw7WWe1oq0c0gKahOs6oj3sTodA7+lK4AiG2LeuX+3I6p6S7mT+uy13zd
+         oZDVmcNiNuqFszcQnViykC4Ulq9c6IbD7u4akpvCoHXRumMc0XNMbm10q7oy3XJuU7tF
+         QKBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N+/riSjz4euVjoS0RyWGJtslWdSbTXbIIzdHyoJErc4=;
+        b=OQbDUA1AeaSUBCJuk9yx/WaQihYp5Vk3Kw7IwWabmyAtO97SEkhjhQMS6uShWE3RGb
+         F1iPrkR58B7N39EUCWbKL57N3SYQTj2rH4v6cTVggFDkTxr0Nvi18voY2JthgV9t2m3T
+         4almrkgMhdxEFdeZeyUcIUQbk50j/umMUtfbNm/LwUhc5ebq5tFFtXza/hYrFkXonZRK
+         YZtoqpr+pm62cnTjSjmtzkp4WmRwRwPgRix8lTXscQbs6oZ4sXYd4cFdhfIqQt8YfU9e
+         SY22tmGCGF8uP8BfsfwPtW288gCnm8vcDZ9ONGInRy3Rba5uJK1Tmha3u+DOy93GCyzI
+         vH7w==
+X-Gm-Message-State: AOAM530RyVEo5CMgMq5PhqbZ4x88FDD1sf4yvjNqXOY1u+BTm6nrY4bk
+        /e8t3HI/lfVniilx5ZjcE4eZXGe6JyrbCg==
+X-Google-Smtp-Source: ABdhPJxxFNmbfZIorFhb7skleM0DfQgbYgi6xFHPj/VVl6nDB7ZfDAyLHUwUiAruZiFx1d9ydxCZBg==
+X-Received: by 2002:a1c:c256:: with SMTP id s83mr221wmf.86.1623247322353;
+        Wed, 09 Jun 2021 07:02:02 -0700 (PDT)
+Received: from localhost.localdomain (103.red-81-47-144.staticip.rima-tde.net. [81.47.144.103])
+        by smtp.gmail.com with ESMTPSA id m23sm5673912wms.2.2021.06.09.07.02.01
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 09 Jun 2021 07:02:01 -0700 (PDT)
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To:     linux-pci@vger.kernel.org
+Cc:     linux-mips@vger.kernel.org, tsbogend@alpha.franken.de,
+        devicetree@vger.kernel.org, matthias.bgg@gmail.com,
+        john@phrozen.org, bhelgaas@google.com, robh+dt@kernel.org,
+        linux-staging@lists.linux.dev, gregkh@linuxfoundation.org,
+        neil@brown.name, ilya.lipnitskiy@gmail.com,
+        linux-kernel@vger.kernel.org, pali@kernel.org
+Subject: [PATCH v2 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host controller driver
+Date:   Wed,  9 Jun 2021 16:01:56 +0200
+Message-Id: <20210609140159.20476-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210528144718.25132-5-s-anna@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Suman,
+MediaTek MT7621 PCIe subsys supports single Root complex (RC)
+with 3 Root Ports. Each Root Ports supports a Gen1 1-lane Link.
+Topology is as follows:
 
-On 5/28/21 8:17 PM, Suman Anna wrote:
-> +&oc_sram {
-> +	main_r5fss0_core0_sram: r5f-sram@40000 {
-> +		reg = <0x40000 0x40000>;
-> +	};
-> +
-> +	main_r5fss0_core1_sram: r5f-sram@80000 {
-> +		reg = <0x80000 0x40000>;
-> +	};
-> +
-> +	main_r5fss1_core0_sram: r5f-sram@c0000 {
-> +		reg = <0xc0000 0x40000>;
-> +	};
-> +
-> +	main_r5fss1_core1_sram: r5f-sram@100000 {
-> +		reg = <0x100000 0x40000>;
-> +	};
-> +};
-> +
+                          MT7621 PCIe HOST Topology
 
-Now that ATF is being moved to end of SRAM[1], is it possible to move
-these allocations closer to that ATF reserved location?
+                                   .-------.
+                                   |       |
+                                   |  CPU  |
+                                   |       |
+                                   '-------'
+                                       |
+                                       |
+                                       |
+                                       v
+                              .------------------.
+                  .-----------|  HOST/PCI Bridge |------------.
+                  |           '------------------'            |     Type1 
+         BUS0     |                     |                     |    Access 
+                  v                     v                     v    On Bus0
+          .-------------.        .-------------.       .-------------.
+          | VIRTUAL P2P |        | VIRTUAL P2P |       | VIRTUAL P2P |
+          |    BUS0     |        |    BUS0     |       |    BUS0     |
+          |    DEV0     |        |    DEV1     |       |    DEV2     |
+          '-------------'        '-------------'       '-------------'
+    Type0        |          Type0       |         Type0       |
+   Access   BUS1 |         Access   BUS2|        Access   BUS3|
+   On Bus1       v         On Bus2      v        On Bus3      v
+           .----------.           .----------.          .----------.
+           | Device 0 |           | Device 0 |          | Device 0 |
+           |  Func 0  |           |  Func 0  |          |  Func 0  |
+           '----------'           '----------'          '----------'
 
-This will provide one large contiguouos memory at the beginning of SRAM
-which can be used as generic pool. Right now there are two
-dis-contiguous pool (256K@0 and ~384K@140000) which is not very
-efficient use of SRAM.
+This driver has been very long time in staging and I have been cleaning
+it from its first versions where there was code kaos and PCI_LEGACY support.
+Original code came probably from openWRT based on mediatek's SDK code. There
+is no documentation at all about the mt7621 PCI subsystem.
+I have been cleaning it targeting mt7621 SoC which is the one I use in
+my GNUBee PC1 board and HiLink HLK-MT7621A evaluation board.
 
+Now I think is clean enough to be moved into 'drivers/pci/controller'.
+This driver is mips/ralink architecture and need 'mips_cps_numiocu()'
+to properly configure iocu regions for mips.
 
-[1]
-http://kahuna.dhcp.ti.com:8000/project/arm64-ti-dts/patch/20210607133806.18158-1-a-govindraju@ti.com/
+This driver also uses already mainlined pci phy driver located in
+'drivers/phy/ralink/phy-mt7621-pci.c'. There are two instances of
+the phy being the first one dual ported for pci0 and pci1, and the
+second one not dual ported dedicated to pci2. Because of writing twice
+some phy registers of the dual-ported one sometimes become in not
+confident boot cycles we have to take care of this when device link
+is checked here in controller driver. We power on the dual ported-phy
+if there is something connected in pcie0 or pcie1. In the same manner
+we have to properly disable it only if nothing is connected in of both
+pcie0 and pcie1 slots.
+
+Another thing that must be mentioned is that this driver uses IO
+in physical address 0x001e160000. IO_SPACE_LIMIT for MIPS is 0xffff
+so some generic PCI functions (like of_pci_range_to_resource) won't
+work and the resource ranges part for IO is set manually.
+
+Changes in v2:
+    - Make one commit moving driver directly from staging into
+     'drivers/pci/controllers' instead of two commits making
+     one add and a later remove.
+    - Update binding documentation moving 'clocks', 'resets' and
+     'phys' properties to child root bridge nodes. 
+    - Update code to properly be able to use new bindings.
+    - Kconfig: add || (MIPS && COMPILE_TEST).
+    - Use {read/write}_relaxed versions.
+    - Use 'PCI_BASE_ADDRESS_0' instead of a custom definition.
+    - Avoid to set 'PCI_COMMAND_MASTER' and re-do functions
+     'mt7621_pcie_enable_ports' and 'mt7621_pcie_enable_port'.
+
+NOTE: Greg, I have maintained your Acked-by from previous series in
+delete driver commit and added in the one which is moving code here
+and delete the remaining stuff. If you are not ok with this, just
+let me now and I'll drop it and resend.
+
+Thanks in advance for your time.
+
+Best regards,
+    Sergio Paracuellos
+
+Sergio Paracuellos (3):
+  dt-bindings: mt7621-pci: PCIe binding documentation for MT7621 SoCs
+  PCI: mt7621: Add MediaTek MT7621 PCIe host controller driver
+  MAINTAINERS: add myself as maintainer of the MT7621 PCI controller
+    driver
+
+ .../bindings/pci/mediatek,mt7621-pci.yaml     | 142 ++++++++++++++++++
+ MAINTAINERS                                   |   6 +
+ arch/mips/ralink/Kconfig                      |   2 +-
+ drivers/pci/controller/Kconfig                |   8 +
+ drivers/pci/controller/Makefile               |   1 +
+ .../controller}/pci-mt7621.c                  |   0
+ drivers/staging/Kconfig                       |   2 -
+ drivers/staging/Makefile                      |   1 -
+ drivers/staging/mt7621-pci/Kconfig            |   8 -
+ drivers/staging/mt7621-pci/Makefile           |   2 -
+ drivers/staging/mt7621-pci/TODO               |   4 -
+ .../mt7621-pci/mediatek,mt7621-pci.txt        | 104 -------------
+ 12 files changed, 158 insertions(+), 122 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
+ rename drivers/{staging/mt7621-pci => pci/controller}/pci-mt7621.c (100%)
+ delete mode 100644 drivers/staging/mt7621-pci/Kconfig
+ delete mode 100644 drivers/staging/mt7621-pci/Makefile
+ delete mode 100644 drivers/staging/mt7621-pci/TODO
+ delete mode 100644 drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
+
+-- 
+2.25.1
+
