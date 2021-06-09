@@ -2,90 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE1923A0906
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 03:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 923493A09AC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 03:54:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234212AbhFIBbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 21:31:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35788 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230288AbhFIBbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 21:31:11 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4224EC061574;
-        Tue,  8 Jun 2021 18:29:02 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id 22-20020a17090a0c16b0290164a5354ad0so431549pjs.2;
-        Tue, 08 Jun 2021 18:29:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KuNMncGZs3GHDbKWNjfQWlX3Vob302GR1aWzQRy79OM=;
-        b=CfvIC7jYnQjz5rAmKprStBaZhx/nr7tAy99U5m6LITpLwvUcuh/EkzRqqHrYgEhXn7
-         9LNNhdyneC9lMFwyWd429vLtXCQny/DIW96gbjDVyLoZWXQEaLVufMCph8HLrZ0mWy9i
-         TGnhjYBPBe7nfshN1ss9FRH9m++DgtXxrJePgPf7PruZBxhl9MAUNcS4QLVpqjH7AZUe
-         FkIaWSEa7REROSod+op5IYYviKnyfYuHE0QpWLS2+cL37FbNZTUBokZs1oAyFHBDEHrj
-         MLtu6MCdwT/VENHDJDM90l+fgSu7DxfrlifsAIgRPMzPfmBy/cjdeuUQw+01Z630h6BI
-         4J2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=KuNMncGZs3GHDbKWNjfQWlX3Vob302GR1aWzQRy79OM=;
-        b=J6Z/iSyKUOSFN8U28P+ERmIfkAxna8S4A8OqU81RxQnCDEKpHokR5M/YFSTS+hqxYD
-         Fo+LE8JWDiIEKh027Wz6gFnULYxOr8IO3gfYO3AGyECEk1lOJLcMi3OWt9IoSk2+3n7i
-         XCWT9lBEKpfQkljJcOovyRuvoncYVARNfu9IXNi6yB6dDariLgTnrN/F6lTUEoZq42YW
-         xwVOlPBtycJn84LU+APpNS8D6SyVpPTcO037PdoQ5PN0nL5u/oGfyBH4g6fYJsyNCPw9
-         XuwEHA5kVIrAoi7zzs1UeCNsoTpknk1b3z+Lvp7E8b6FcyKNepOdysPer39vMQ5jPLCJ
-         ZVWw==
-X-Gm-Message-State: AOAM531Q5QMFtDzmR+wzcpMTh26P4aK11Pp4yjZyGd289zeaS9iPyU7P
-        1MtjAkeQbHrMO7EWPqOFoWsTXI7DaNEp+A==
-X-Google-Smtp-Source: ABdhPJxGKs7mSSbDSGwey9L30wPI4VVIdKFHnVrqDnTDrV0ZhWEMLVxaqFokG5rCTR5r+O3GvJxD7Q==
-X-Received: by 2002:a17:90a:fa95:: with SMTP id cu21mr8027656pjb.210.1623202141900;
-        Tue, 08 Jun 2021 18:29:01 -0700 (PDT)
-Received: from localhost.localdomain (199.19.111.227.16clouds.com. [199.19.111.227])
-        by smtp.gmail.com with ESMTPSA id d15sm11493714pfd.35.2021.06.08.18.28.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Jun 2021 18:29:01 -0700 (PDT)
-From:   xieqinick@gmail.com
-To:     robh+dt@kernel.org, narmstrong@baylibre.com, khilman@baylibre.com,
-        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     nick@khadas.com, artem@khadas.com
-Subject: [PATCH] arm64: dts: meson: vim3: reduce cpu thermal fan trigger temperature
-Date:   Wed,  9 Jun 2021 09:28:49 +0800
-Message-Id: <20210609012849.797576-1-xieqinick@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        id S233129AbhFIB4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 21:56:01 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:45715 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233113AbhFIB4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 21:56:00 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 1591c2nC096728;
+        Wed, 9 Jun 2021 09:38:02 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 9 Jun
+ 2021 09:51:53 +0800
+Date:   Wed, 9 Jun 2021 09:51:49 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Andrew Jeffery <andrew@aj.id.au>
+CC:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+Subject: Re: [PATCH v5 03/10] ARM: dts: aspeed-g6: Add SGPIO node.
+Message-ID: <20210609015148.GA14839@aspeedtech.com>
+References: <20210608102547.4880-1-steven_lee@aspeedtech.com>
+ <20210608102547.4880-4-steven_lee@aspeedtech.com>
+ <cef3e619-bd49-4318-bdcd-f844d2b80af7@www.fastmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <cef3e619-bd49-4318-bdcd-f844d2b80af7@www.fastmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 1591c2nC096728
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Xie <nick@khadas.com>
+The 06/09/2021 08:43, Andrew Jeffery wrote:
+> 
+> 
+> On Tue, 8 Jun 2021, at 19:55, Steven Lee wrote:
+> > AST2600 supports 2 SGPIO master interfaces one with 128 pins another one
+> > with 80 pins.
+> > 
+> > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > ---
+> >  arch/arm/boot/dts/aspeed-g6.dtsi | 28 ++++++++++++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+> > index f96607b7b4e2..c55baaf94314 100644
+> > --- a/arch/arm/boot/dts/aspeed-g6.dtsi
+> > +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+> > @@ -377,6 +377,34 @@
+> >  				#interrupt-cells = <2>;
+> >  			};
+> >  
+> > +			sgpiom0: sgpiom@1e780500 {
+> > +				#gpio-cells = <2>;
+> > +				gpio-controller;
+> > +				compatible = "aspeed,ast2600-sgpiom-128";
+> > +				reg = <0x1e780500 0x100>;
+> > +				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
+> > +				clocks = <&syscon ASPEED_CLK_APB2>;
+> 
+> The example in the binding document used ASPEED_CLK_APB. Which is correct? I assume ASPEED_CLK_APB2?
+> 
 
-Reduce the MCU FAN trigger temperature from
-80 degree centigrade to 50 degree centigrade.
+The example in the binding document is for aspeed-g5.
+aspeed-g5 and aspeed-g6 use different clocks.
+Should I add a new patch for adding an example for aspeed-g6?
 
-Signed-off-by: Nick Xie <nick@khadas.com>
----
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-index 66d67524b031..a9c34fee91f4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-@@ -256,7 +256,7 @@ &cecb_AO {
- &cpu_thermal {
- 	trips {
- 		cpu_active: cpu-active {
--			temperature = <80000>; /* millicelsius */
-+			temperature = <50000>; /* millicelsius */
- 			hysteresis = <2000>; /* millicelsius */
- 			type = "active";
- 		};
--- 
-2.25.1
-
+> > +				interrupt-controller;
+> > +				bus-frequency = <12000000>;
+> > +				pinctrl-names = "default";
+> > +				pinctrl-0 = <&pinctrl_sgpm1_default>;
+> > +				status = "disabled";
+> > +			};
+> > +
+> > +			sgpiom1: sgpiom@1e780600 {
+> > +				#gpio-cells = <2>;
+> > +				gpio-controller;
+> > +				compatible = "aspeed,ast2600-sgpiom-80";
+> > +				reg = <0x1e780600 0x100>;
+> > +				interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
+> > +				clocks = <&syscon ASPEED_CLK_APB2>;
+> > +				interrupt-controller;
+> > +				bus-frequency = <12000000>;
+> > +				pinctrl-names = "default";
+> > +				pinctrl-0 = <&pinctrl_sgpm2_default>;
+> > +				status = "disabled";
+> > +			};
+> > +
+> >  			gpio1: gpio@1e780800 {
+> >  				#gpio-cells = <2>;
+> >  				gpio-controller;
+> > -- 
+> > 2.17.1
+> > 
+> > 
+> > _______________________________________________
+> > linux-arm-kernel mailing list
+> > linux-arm-kernel@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> > 
