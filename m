@@ -2,66 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75CD43A1995
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 17:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91F723A19A8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 17:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232634AbhFIPcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 11:32:17 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:4608 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232656AbhFIPcO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 11:32:14 -0400
-Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
-  by alexa-out.qualcomm.com with ESMTP; 09 Jun 2021 08:30:20 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 09 Jun 2021 08:30:17 -0700
-X-QCInternal: smtphost
-Received: from c-sbhanu-linux.qualcomm.com ([10.242.50.201])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 09 Jun 2021 20:59:24 +0530
-Received: by c-sbhanu-linux.qualcomm.com (Postfix, from userid 2344807)
-        id A42384DDE; Wed,  9 Jun 2021 20:59:23 +0530 (IST)
-From:   Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-To:     adrian.hunter@intel.com, ulf.hansson@linaro.org, robh+dt@kernel.org
-Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
-        vbadigan@codeaurora.org, rampraka@codeaurora.org,
-        sayalil@codeaurora.org, sartgarg@codeaurora.org,
-        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        sibis@codeaurora.org, okukatla@codeaurora.org, djakov@kernel.org,
-        cang@codeaurora.org, pragalla@codeaurora.org,
-        nitirawa@codeaurora.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org,
-        Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-Subject: [PATCH V1 2/2] dt-bindings: mmc: sdhci-msm: Add compatible string for sc7280
-Date:   Wed,  9 Jun 2021 20:59:09 +0530
-Message-Id: <1623252549-32687-1-git-send-email-sbhanu@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S233016AbhFIPew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 11:34:52 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:53196 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S231691AbhFIPev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 11:34:51 -0400
+X-IronPort-AV: E=Sophos;i="5.83,261,1616425200"; 
+   d="scan'208";a="83886951"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 10 Jun 2021 00:32:54 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 4DD6040090FB;
+        Thu, 10 Jun 2021 00:32:51 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 00/11] Add new Renesas RZ/G2L SoC and Renesas RZ/G2L SMARC EVK support
+Date:   Wed,  9 Jun 2021 16:32:19 +0100
+Message-Id: <20210609153230.6967-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add sc7280 SoC specific compatible strings for qcom-sdhci controller.
+Hi All,
 
-Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
----
- Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 1 +
- 1 file changed, 1 insertion(+)
+This patch series adds initial support for Renesas RZ/G2L SoC and
+Renesas RZ/G2L SMARC EVK.
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-index 4c7fa6a..365c3fc 100644
---- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-+++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-@@ -19,6 +19,7 @@ Required properties:
- 		"qcom,msm8996-sdhci", "qcom,sdhci-msm-v4"
- 		"qcom,qcs404-sdhci", "qcom,sdhci-msm-v5"
- 		"qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
-+		"qcom,sc7280-sdhci", "qcom,sdhci-msm-v5";
- 		"qcom,sdm845-sdhci", "qcom,sdhci-msm-v5"
- 		"qcom,sdx55-sdhci", "qcom,sdhci-msm-v5";
- 		"qcom,sm8250-sdhci", "qcom,sdhci-msm-v5"
+Initial patches enables minimal peripherals on Renesas RZ/G2L
+SMARC EVK and booted via initramfs.
+* Documentation for RZ/G2{L,LC,UL} SoC variants
+* SoC identification support
+* CPG core support
+* Minimal SoC DTSi
+* Minimal DTS for SMARC EVK
+
+Changes for v3:
+* Updated tag from Rob for CPG binding doc
+* Included RB tags from Geert
+* Added description for clock-names property in CPG binding doc
+* Dropped serial driver patch (already merged)
+* Fixed CPG core issues for USB/ADC IP
+* Added r9a07g044l2.dtsi
+
+Changes for v2:
+* Included type-2 RZ/G2Ul SoC in binding doc
+* Added single entry for SMARC EVK "renesas,smarc-evk"
+* Renamed ARCH_R9A07G044L to ARCH_R9A07G044 and
+  dropped ARCH_R9A07G044LC config
+* Dropped SoC identification changes will post them as
+  separate patch.
+* Updated comment in sh-sci.c
+* Binding documentation patch for serial driver has been
+  accepted so dropped the patch from this series
+* Incorporated changes requested by Geert for CPG core
+* Fixed dtbs_check errors
+* Dropped 'clock-names'/'clocks'/'power-domains'/'resets'
+  properties from GIC node and will include them in a separate
+  patch along with arm,gic-v3.yaml binding updates
+* Included ACK's from Rob
+
+Patches are based on top of [1] master branch.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (11):
+  dt-bindings: arm: renesas: Document Renesas RZ/G2UL SoC
+  dt-bindings: arm: renesas: Document Renesas RZ/G2{L,LC} SoC variants
+  dt-bindings: arm: renesas: Document SMARC EVK
+  soc: renesas: Add ARCH_R9A07G044 for the new RZ/G2L SoC's
+  arm64: defconfig: Enable ARCH_R9A07G044
+  clk: renesas: Define RZ/G2L CPG Clock Definitions
+  dt-bindings: clock: renesas: Document RZ/G2L SoC CPG driver
+  clk: renesas: Add CPG core wrapper for RZ/G2L SoC
+  clk: renesas: Add support for R9A07G044 SoC
+  arm64: dts: renesas: Add initial DTSI for RZ/G2{L,LC} SoC's
+  arm64: dts: renesas: Add initial device tree for RZ/G2L SMARC EVK
+
+ .../devicetree/bindings/arm/renesas.yaml      |  18 +
+ .../bindings/clock/renesas,rzg2l-cpg.yaml     |  83 ++
+ arch/arm64/boot/dts/renesas/Makefile          |   2 +
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 120 +++
+ arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi  |  25 +
+ .../boot/dts/renesas/r9a07g044l2-smarc.dts    |  21 +
+ arch/arm64/boot/dts/renesas/r9a07g044l2.dtsi  |  13 +
+ arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  |  27 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/clk/renesas/Kconfig                   |  10 +
+ drivers/clk/renesas/Makefile                  |   2 +
+ drivers/clk/renesas/r9a07g044-cpg.c           | 127 +++
+ drivers/clk/renesas/renesas-rzg2l-cpg.c       | 750 ++++++++++++++++++
+ drivers/clk/renesas/renesas-rzg2l-cpg.h       | 136 ++++
+ drivers/soc/renesas/Kconfig                   |   5 +
+ include/dt-bindings/clock/r9a07g044-cpg.h     |  89 +++
+ 16 files changed, 1429 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l2.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+ create mode 100644 drivers/clk/renesas/r9a07g044-cpg.c
+ create mode 100644 drivers/clk/renesas/renesas-rzg2l-cpg.c
+ create mode 100644 drivers/clk/renesas/renesas-rzg2l-cpg.h
+ create mode 100644 include/dt-bindings/clock/r9a07g044-cpg.h
+
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
+2.17.1
 
