@@ -2,227 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBD563A115E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:50:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BA153A1165
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:50:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239004AbhFIKm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 06:42:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44062 "EHLO
+        id S238021AbhFIKtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 06:49:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237682AbhFIKm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 06:42:57 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D587C061574
-        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 03:41:03 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id p13so8518845pfw.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 03:41:03 -0700 (PDT)
+        with ESMTP id S232165AbhFIKtJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 06:49:09 -0400
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC86C06175F
+        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 03:46:59 -0700 (PDT)
+Received: by mail-il1-x12d.google.com with SMTP id w14so15341309ilv.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 03:46:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=o3KSqDVs9YRSwE4rOwA0va7NCLHw84o+H5YF3VkLQdM=;
-        b=JtSlkmTPs+H1JCpMlMT4IMsfQa8AN05+Jwzr9y0eMBoFqPN3OLlDF/sSIU2wdbnafj
-         Bvwc8QVi2hybfJT8seIRU25PwWiVOUXoe3zAOyP1PsE0Jbs8WypZ6B02spebC97i8YPP
-         dCTZsIfDepmonyk02MH7akhX/22srZngJ2VAo=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=k+5GzVyM+TFuTZLW/qFX3WiZRW9D495A3O6aGgKjLxs=;
+        b=icqvxZiYbmJBLHoQNod0FxFLxphOWacXqY4xuBdb5fqVvTYbUo37QfNhVZL+BVBc7v
+         vv3ricSDDsmBFXoggCz0oXH5e33zFyx6ZkePhITrR1kcFEGVWqJ1B7d+62BnZo77+GEy
+         n0fpiYQsT5Qk0tsjZc/uP4tlxLa24JdPBxt7I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=o3KSqDVs9YRSwE4rOwA0va7NCLHw84o+H5YF3VkLQdM=;
-        b=VoffIJwQxn3EZooLrqIJTwjPct/4lh75Qu6AfdMEud059p+lHyWeGL6dnS0i+t6AXg
-         vrRS4H3FUjvNzh613JHoZ9EyP20nNcx+vK2/LTybaKuib7A3A90JiQbdqYrTHYDDB2NZ
-         64X5sqRh7NBP2HyXzfUWsMaAM0AqlpmsHuJTs/ZU+BsEtN9Ao0AXmpcqayrGcsvERDm9
-         JWREH9K2JxbxQLge+++hPTGb+ApvMsTu7zXUAZdYyoZiebkYFY95l8MtvG9jNm8ilzyb
-         zmQ90OaVqVD+gx8tU3AJcj3KcJX8n07Ohhz7krMwGxrzGlFxNnfdOJajwQ6E2tb9PUhj
-         I68A==
-X-Gm-Message-State: AOAM531zCHk6eB6VlNn+0+nzEk6FbpFL+W4nz6TVYLxaVFG6MKc8/mXd
-        6W24i75lkVqLeWnMTk5/CKSGVg==
-X-Google-Smtp-Source: ABdhPJxeWSnFVRMewe1zjN1xVuTUbrFOPSw8XzwNwPRTj6Pvhj8lQCDm/w6gJDaJPdNL+Nt/nRAF9A==
-X-Received: by 2002:a63:f245:: with SMTP id d5mr3191835pgk.416.1623235262439;
-        Wed, 09 Jun 2021 03:41:02 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:83f0:56eb:3535:6bd5])
-        by smtp.gmail.com with ESMTPSA id k1sm13223904pfa.30.2021.06.09.03.41.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jun 2021 03:41:01 -0700 (PDT)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        maoguang.meng@mediatek.com, yong.wu@mediatek.com
-Subject: [PATCH] dt-bindings: mediatek: convert mtk jpeg decoder/encoder to yaml
-Date:   Wed,  9 Jun 2021 18:40:54 +0800
-Message-Id: <20210609104053.617751-1-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=k+5GzVyM+TFuTZLW/qFX3WiZRW9D495A3O6aGgKjLxs=;
+        b=i47cRphIaqoL2U+iAyr6n6vYRFBOPQNuHpZ8RoXL+50kblnezvKinlj9x6f1F+JE1u
+         P0ztzvQdhucvLLxKshNBJ1lWftlr2njFaMeMPKHqUO1yaVNOX0X2K5Iac0OUpIa7OGuX
+         yG1Sj+5JXSpVzER2EyrW8PxamojwaStPtYM92uB9gPr+n30GgWyz5jdZhPyO3NK3Izl9
+         N3fxDNagBh8kIaTGimmOfNaV9QdUrxQA9lfzSZy1i7vZ/snBhTe+MoSJ9YEtqdQjtnpB
+         sDCDfZdp6Dye1DPX05tS78DJMPJQ+RtD+s5BhzoSjzdyquI2i7GeTSef0NvQFJxcDqBD
+         G28w==
+X-Gm-Message-State: AOAM530yvbI44epK3Q8Yt7DQYvD5h4bZKIZYUVSWxJj/JXU/pVyUW0dy
+        lV3hjFQemh4M0adERsRDM0d0MO/bolEoxEWXD6DvWg==
+X-Google-Smtp-Source: ABdhPJwgBjwFhsmtC1XmbGiOcK7Z4pF0o5B7kd44vj0dZ9UzBo2ihwDg/0svNbMUYUf6PM+t2LazOCf1UIXVUByntUc=
+X-Received: by 2002:a05:6638:11:: with SMTP id z17mr24468108jao.102.1623235618594;
+ Wed, 09 Jun 2021 03:46:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210609044854.393452-1-hsinyi@chromium.org> <7a96166f-70d9-bc0e-72cc-53a8612741e8@gmail.com>
+In-Reply-To: <7a96166f-70d9-bc0e-72cc-53a8612741e8@gmail.com>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Wed, 9 Jun 2021 18:46:32 +0800
+Message-ID: <CAJMQK-gtQpHTJvjy240fN31G7=sz73w2jJQk6_zqdeAiYpXJsw@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: mt8183: add jpeg enc node for mt8183
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>, maoguang.meng@mediatek.com,
+        Yong Wu <yong.wu@mediatek.com>,
+        Tomasz Figa <tfiga@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert mediatek jpeg decoder and encoder bindings to yaml.
+On Wed, Jun 9, 2021 at 3:46 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
+>
+>
+>
+> On 09/06/2021 06:48, Hsin-Yi Wang wrote:
+> > From: Maoguang Meng <maoguang.meng@mediatek.com>
+> >
+> > Add jpeg encoder device tree node.
+> >
+> > Signed-off-by: Maoguang Meng <maoguang.meng@mediatek.com>
+> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> > ---
+> > v2: rebase to latest
+> > v1: https://patchwork.kernel.org/project/linux-media/patch/20200914094012.5817-1-maoguang.meng@mediatek.com/
+> > ---
+> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > index c5e822b6b77a3..fffe0c52909ce 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > @@ -1329,6 +1329,17 @@ larb4: larb@17010000 {
+> >                       power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
+> >               };
+> >
+> > +             venc_jpg: venc_jpg@17030000 {
+> > +                     compatible = "mediatek,mt8183-jpgenc", "mediatek,mtk-jpgenc";
+>
+> We are missing "mediatek,mt8183-jpgenc" in mediatek-jpeg-encoder.txt. Would be
+> great if you could help to convert it to yaml before adding the new compatible.
+>
+mediatek-jpeg-en(de)coder.txt converted to yaml:
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210609104053.617751-1-hsinyi@chromium.org/
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
----
-mediatek,larb in the original file will be removed after this series[1]
-[1] https://patchwork.kernel.org/project/linux-mediatek/patch/20210410091128.31823-2-yong.wu@mediatek.com/
----
- .../bindings/media/mediatek-jpeg-decoder.yaml | 73 +++++++++++++++++++
- .../bindings/media/mediatek-jpeg-encoder.yaml | 65 +++++++++++++++++
- 2 files changed, 138 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
- create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
 
-diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-new file mode 100644
-index 0000000000000..812f366163d8a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/mediatek-jpeg-decoder.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek JPEG Decoder Device Tree Bindings
-+
-+maintainers:
-+  - Xia Jiang <xia.jiang@mediatek.com>
-+
-+description: |-
-+  Mediatek JPEG Decoder is the JPEG decode hardware present in Mediatek SoCs
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+        - const: mediatek,mt8173-jpgdec
-+      - items:
-+        - const: mediatek,mt2701-jpgdec
-+      - items:
-+        - enum:
-+            - mediatek,mt7623-jpgdec
-+        - const: mediatek,mt2701-jpgdec
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: jpgdec-smi
-+      - const: jpgdec
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  iommus:
-+    minItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - power-domains
-+  - iommus
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    jpegdec: jpegdec@15004000 {
-+      compatible = "mediatek,mt2701-jpgdec";
-+      reg = <0 0x15004000 0 0x1000>;
-+      interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW>;
-+      clocks =  <&imgsys CLK_IMG_JPGDEC_SMI>,
-+                <&imgsys CLK_IMG_JPGDEC>;
-+      clock-names = "jpgdec-smi",
-+                    "jpgdec";
-+      power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
-+      iommus = <&iommu MT2701_M4U_PORT_JPGDEC_WDMA>,
-+               <&iommu MT2701_M4U_PORT_JPGDEC_BSDMA>;
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
-new file mode 100644
-index 0000000000000..8ffc17fe576d5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/mediatek-jpeg-encoder.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MediaTek JPEG Encoder Device Tree Bindings
-+
-+maintainers:
-+  - Xia Jiang <xia.jiang@mediatek.com>
-+
-+description: |-
-+  MediaTek JPEG Encoder is the JPEG encode hardware present in MediaTek SoCs
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - mediatek,mt2701-jpgenc
-+          - mediatek,mt8183-jpgenc
-+      - const: mediatek,mtk-jpgenc
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: jpgenc
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  iommus:
-+    minItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - power-domains
-+  - iommus
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    jpegenc: jpegenc@1500a000 {
-+      compatible = "mediatek,mt2701-jpgenc",
-+                   "mediatek,mtk-jpgenc";
-+      reg = <0 0x1500a000 0 0x1000>;
-+      interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_LOW>;
-+      clocks =  <&imgsys CLK_IMG_VENC>;
-+      clock-names = "jpgenc";
-+      power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
-+      iommus = <&iommu MT2701_M4U_PORT_JPGENC_RDMA>,
-+               <&iommu MT2701_M4U_PORT_JPGENC_BSDMA>;
-+    };
-+
--- 
-2.32.0.rc1.229.g3e70b5a671-goog
-
+> Thanks!
+> Matthias
+> > +                     reg = <0 0x17030000 0 0x1000>;
+> > +                     interrupts = <GIC_SPI 249 IRQ_TYPE_LEVEL_LOW>;
+> > +                     iommus = <&iommu M4U_PORT_JPGENC_RDMA>,
+> > +                              <&iommu M4U_PORT_JPGENC_BSDMA>;
+> > +                     power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
+> > +                     clocks = <&vencsys CLK_VENC_JPGENC>;
+> > +                     clock-names = "jpgenc";
+> > +             };
+> > +
+> >               ipu_conn: syscon@19000000 {
+> >                       compatible = "mediatek,mt8183-ipu_conn", "syscon";
+> >                       reg = <0 0x19000000 0 0x1000>;
+> >
