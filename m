@@ -2,80 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D202E3A1975
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 17:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 614103A1976
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 17:26:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234278AbhFIP2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 11:28:40 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:53984 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236302AbhFIP2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 11:28:38 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159FQe40046481;
-        Wed, 9 Jun 2021 10:26:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623252400;
-        bh=mnSyj3seYJVrCfWRp82o87lUcvOOqJKfbM7He6wKok4=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=hDpbAyFe6Aq6Eciy09ajT34xKs3erfhTl9tBOU/T8YKwC7gE3QttdT/DMrZDwlr9V
-         C7OQNpjkdYx3Ipy6zMALucQo9tiBGILjcKoswSZ+zV5C8BRg7ChA6YVrztOQlA2Wdd
-         yau7ptcqApGDn1Crp4ARjrB72/4TTI60GcKkeDzs=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159FQe4I121947
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Jun 2021 10:26:40 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
- 2021 10:26:40 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 9 Jun 2021 10:26:39 -0500
-Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159FQWOL084446;
-        Wed, 9 Jun 2021 10:26:37 -0500
-Subject: Re: [PATCH] arm64: dts: ti: k3-am64-main: Add SYSFW reserved ranges
- in OCRAM
-To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-References: <20210609140604.9490-1-vigneshr@ti.com>
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-Message-ID: <81e61d1a-efde-0bff-719c-607752bfdbc1@ti.com>
-Date:   Wed, 9 Jun 2021 20:56:32 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S233160AbhFIP2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 11:28:43 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:46484 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236229AbhFIP2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 11:28:41 -0400
+Received: from mail-wm1-f72.google.com ([209.85.128.72])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lr06P-0000IU-Kf
+        for devicetree@vger.kernel.org; Wed, 09 Jun 2021 15:26:45 +0000
+Received: by mail-wm1-f72.google.com with SMTP id 18-20020a05600c0252b029019a0ce35d36so2684376wmj.4
+        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 08:26:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Uc80ffGUW4bvL26aSzQf5lcnkR5pCyi0tKOquETfeS4=;
+        b=a1zdoWTlBx0J061Xcyh83GYJwFDfQEVfwl3Z+a6FaQEbjwYTeLEPgazxujMUQgZlxg
+         ZtIa1NJnrbQnGFLZQqc1Zz5skWTSrMggVm///xx15UxAoQudKgnEdXgXKtJJaCYkGYi4
+         bXjL/acJHjzaMcgoCOVtj7Ijyd8y8Xg/BszC5eAN5SXEjCkasQWsYAUX4JBGlyWm1NdD
+         Nhcp1iThhnUULqfh9KG5fMjZsxjNiKqibgPda9kq+be9sdhl1Dh7/ybWkIlVMNnjyJF8
+         dDN86GmpiLJrJ6CiLEqqNEPorXUdYbJyPI3Q554SlbP07hpDrRpXKNgllzWpyPXErpKK
+         ALOQ==
+X-Gm-Message-State: AOAM531BhTe7YDrtxH67Jq6Z25kEite1J7fHiowOUmbvqUC1snQBweGy
+        Q85yXfF9XFTA45bamPJJ/R6wxE9wnTGElQ4KQh4SoX5f6qu6uXoc/gh/Mqh4Nom6FQ9YMGhnX55
+        /cYWHhqBVzOk9tKCnBPf+nptbTyjRHgZ95ICsYSs=
+X-Received: by 2002:adf:ed8d:: with SMTP id c13mr424013wro.164.1623252405364;
+        Wed, 09 Jun 2021 08:26:45 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyhA14PyEmBvm9o5LBw9p40ein5C/0++XCyNMvnaDvIOg27HB9rKWvzvpDI5U68qhBmz6kV4A==
+X-Received: by 2002:adf:ed8d:: with SMTP id c13mr423998wro.164.1623252405214;
+        Wed, 09 Jun 2021 08:26:45 -0700 (PDT)
+Received: from [192.168.1.115] (xdsl-188-155-177-222.adslplus.ch. [188.155.177.222])
+        by smtp.gmail.com with ESMTPSA id k42sm7937283wms.0.2021.06.09.08.26.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jun 2021 08:26:44 -0700 (PDT)
+Subject: Re: [PATCH v22 09/18] dt-binding: memory: pl353-smc: Convert to yaml
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
+ <20210609080112.1753221-10-miquel.raynal@bootlin.com>
+ <e431d594-05cd-27b8-fcbe-11c310b99cd3@canonical.com>
+ <20210609153410.53eadf8e@xps13>
+ <77db74d3-c44a-6aa3-1b61-f6bed565fa04@canonical.com>
+ <20210609161128.16cdf5ec@xps13>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <32c7adf2-6f4e-ef2d-a137-a9674f9e6baa@canonical.com>
+Date:   Wed, 9 Jun 2021 17:26:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210609140604.9490-1-vigneshr@ti.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20210609161128.16cdf5ec@xps13>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 09/06/21 7:36 pm, Vignesh Raghavendra wrote:
-> Last 256K of OCRAM (256K@0x701c0000) is reserved for SYSFW usage. Hence
-> add an entry in DT so that its not used for generic pool memory
-> allocation.
+On 09/06/2021 16:11, Miquel Raynal wrote:
+> Hi Krzysztof, Rob,
 > 
-> Without this certain drivers using SRAM as generic shared memory pool
-> may end up being allocated memory from this range and will lead to boot
-> time crash when the reserved range is accessed (due to firewall
-> violation).
+> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
+> Jun 2021 15:54:19 +0200:
 > 
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>> On 09/06/2021 15:34, Miquel Raynal wrote:
+>>> Hi Krzysztof,
+>>>
+>>> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
+>>> Jun 2021 14:12:40 +0200:
+>>>   
+>>>> On 09/06/2021 10:01, Miquel Raynal wrote:  
+>>>>> Convert this binding file to yaml schema.
+>>>>>
+>>>>> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+>>>>> ---
+>>>>>  .../memory-controllers/arm,pl353-smc.yaml     | 133 ++++++++++++++++++
+>>>>>  .../bindings/memory-controllers/pl353-smc.txt |  45 ------
+>>>>>  2 files changed, 133 insertions(+), 45 deletions(-)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+>>>>>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..1de6f87d4986
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+>>>>> @@ -0,0 +1,133 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/memory-controllers/arm,pl353-smc.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: ARM PL353 Static Memory Controller (SMC) device-tree bindings
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+>>>>> +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
+>>>>> +
+>>>>> +description:
+>>>>> +  The PL353 Static Memory Controller is a bus where you can connect two kinds
+>>>>> +  of memory interfaces, which are NAND and memory mapped interfaces (such as
+>>>>> +  SRAM or NOR).
+>>>>> +
+>>>>> +# We need a select here so we don't match all nodes with 'arm,primecell'
+>>>>> +select:
+>>>>> +  properties:
+>>>>> +    compatible:
+>>>>> +      contains:
+>>>>> +        enum:
+>>>>> +          - arm,pl353-smc-r2p1    
+>>>>
+>>>> That's a const... but also I don't get the need for select.  
+>>>
+>>> I think this is needed to ensure this binding is not enforced against
+>>> arm,primecell compatible nodes which are not featuring the
+>>> arm,pl353-smc-r2p1 compatible.  
+>>
+>> Which seems to be result of unusual compatible match, so once you
+>> convert to regular match, this select is not needed.
+> 
+> I don't think so, I received a hint from Rob some time ago, he told
+> me to add this additional select line as in all other arm,primecell
+> binding.
+> 
+> Rob, any additional info regarding this?
 
-You might want to re-base on top of Aswath's patch updating ATF address. Otherwise:
+Hmm, I think you' are right. Since arm,primecell is used in many other
+compatibles (including ones without schema yet), the select is needed.
 
-Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
+In such case the select can be only:
 
-Thanks and regards,
-Lokesh
+select:
+  properties:
+    compatible:
+      contains:
+        const: arm,pl353-smc-r2p1
 
+
+Best regards,
+Krzysztof
