@@ -2,97 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E953A088E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 02:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0A0B3A08AE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 02:52:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234459AbhFIArR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 20:47:17 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:58087 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233682AbhFIArQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 20:47:16 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id F0C8C58080A;
-        Tue,  8 Jun 2021 20:45:22 -0400 (EDT)
-Received: from imap43 ([10.202.2.93])
-  by compute2.internal (MEProxy); Tue, 08 Jun 2021 20:45:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=KfiDffVkxnvv11SVkb8pJKMihOr1O/9
-        5B4gsVfnBBxA=; b=XCXV6r+9f1y3gqQ87+s0KLkMLNLuo4LfKIribKkQy6QjBj6
-        uHAmQcegdDoEPYut3wrfVTWHYhW6OwVA6wvehmkLUgTroz3kV3eiWnK2/QnLayxT
-        uGEnslC379SjxKLvCXf/Nhrjcc3mPRAhX0jmTvpSIWduvXgnRgIyFTAfgzm5j9ZM
-        tgkVnrOKHD42koAi7pLR+NpZwXi7mftcYT/jHvck/bU08ZcjopCG+Lskpz0hwyNZ
-        czASmqeHel4TI7a0yKZC73IFJPg5OjeSz5dSR1EGIUFcmalp3R5/1pxBEBp2ymev
-        CSsOZ2Evd5kyBz6kiVMlJ0ScjY6fAdv1pCuUgZg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=KfiDff
-        Vkxnvv11SVkb8pJKMihOr1O/95B4gsVfnBBxA=; b=huFl0Z5c4zKitSf4xVD/ZQ
-        5ZMdZErE1FyvSRmezEmu792rY/XURKTVeKQ0eb/hWys87X35prIIsP9bj/SEO8B0
-        gPJCs3Is2N6vKxXvIZ4i9tfZwZeMOHq5+FCRvUhPCsEwCZfpvamRBdZtkdB3rjbt
-        btQHgd3TADHEdgsLVS6Q3LP2U2TioZECZMdIbDmQnGpaNvBubm3Iq9ST4gtsnv0S
-        sYHcN9eqBUA5eXv2TuOC8/OdSxwM+iKoDnphEnNLoHw7jM3Qt5wi/mY1TYfBuDsk
-        oaL/8nE3NSm8WR4VsKiXgjwgA34/d8zeT8o+50ZI0ssb2oHGRLUfEr/Lm972OClA
-        ==
-X-ME-Sender: <xms:IQ_AYIXAZvDBUbgZqGYVF_W0APL5ilIgQG-YssoaIdJBrHUETJy9ug>
-    <xme:IQ_AYMmSScUXjhHo5FEqDZ04zbSVAewkpftSyd0Rwg_D9BQUXwICUKIwnpinO5tYt
-    aHYj1wLcL_w1oMYfg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedutddgfedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
-    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:IQ_AYMZt4LCO-cY6rLYvQrm59Dw56uQOywsz1_CaHD65cTDUFCC-8A>
-    <xmx:IQ_AYHUNmh34-Hesxq4yrSglXNGXPhDTsbD98RcuRX27NiQ6w0fYkw>
-    <xmx:IQ_AYCmdzhzBQcoYiPwiY9SiDlQcL79wHn83FMqO2R7jCm5F0DuXLw>
-    <xmx:Ig_AYLfLqhSsKoW1n1G_ChvrT7xjg1m5UkUMBS5BP4ffkdtmPdI6cA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id CBD3DAC0062; Tue,  8 Jun 2021 20:45:21 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-519-g27a961944e-fm-20210531.001-g27a96194
-Mime-Version: 1.0
-Message-Id: <fb3ea3b6-8af1-4ad8-880d-acc296ad8160@www.fastmail.com>
-In-Reply-To: <20210608102547.4880-5-steven_lee@aspeedtech.com>
-References: <20210608102547.4880-1-steven_lee@aspeedtech.com>
- <20210608102547.4880-5-steven_lee@aspeedtech.com>
-Date:   Wed, 09 Jun 2021 10:15:01 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Steven Lee" <steven_lee@aspeedtech.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "open list" <linux-kernel@vger.kernel.org>
-Cc:     "Hongwei Zhang" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Billy Tsai" <billy_tsai@aspeedtech.com>
-Subject: =?UTF-8?Q?Re:_[PATCH_v5_04/10]_ARM:_dts:_aspeed-g5:_Remove_ngpios_from_s?=
- =?UTF-8?Q?gpio_node.?=
-Content-Type: text/plain
+        id S232094AbhFIAyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 20:54:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54806 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235221AbhFIAyJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 8 Jun 2021 20:54:09 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5ED93613AD;
+        Wed,  9 Jun 2021 00:52:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623199935;
+        bh=RDqO+r4z4WqAW+2/VcwEVBlvIh3ptokTewvKTgMIiwM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=fIW9P4mZnNT77sMRWS7eqfMJDkCame65dzO654rts75NgS6XUnsOGOBoh1jrNiv20
+         e1SHBQutiUfS0eJOaARw8tewkxY4g1BiDLCNZPLkRr6ivqmImRb88Pta6dfsMbL3mo
+         gx8/5KG6WlNVCDEzdlhWUhDfcyAhdpYunbvBtvQW2ibDKNDVsWr48Wmv1i9VBE9Td3
+         qzfBs9A2N++aBGKN/iC6VlLIEDqGeiLdAx61zVxlLQOzHOqByL3N4jljigOJU+oeVy
+         Qzg68+1nPnZvl/Q3WBGN8H07Y91T+iYSiM7rlSD6P2tORn3cl8fDD/nT7lFKvM8C3Q
+         CYlE9FsAkYX7w==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210606202253.31649-3-dariobin@libero.it>
+References: <20210606202253.31649-1-dariobin@libero.it> <20210606202253.31649-3-dariobin@libero.it>
+Subject: Re: [RESEND PATCH v7 2/5] dt-bindings: ti: dpll: add spread spectrum support
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Dario Binacchi <dariobin@libero.it>,
+        linux-omap@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        =?utf-8?q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tero Kristo <kristo@kernel.org>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+To:     Dario Binacchi <dariobin@libero.it>, linux-clk@vger.kernel.org
+Date:   Tue, 08 Jun 2021 17:52:13 -0700
+Message-ID: <162319993380.1835121.1812196853786432045@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Dario Binacchi (2021-06-06 13:22:50)
+> DT bindings for enabling and adjusting spread spectrum clocking have
+> been added.
+>=20
+> Signed-off-by: Dario Binacchi <dariobin@libero.it>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+>=20
+> ---
 
-
-On Tue, 8 Jun 2021, at 19:55, Steven Lee wrote:
-> Remove ngpios property from sgpio node as it should be defined in the
-> platform dts.
-> 
-> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-
-I guess someone will make some noise if this breaks them.
-
-Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+Applied to clk-next
