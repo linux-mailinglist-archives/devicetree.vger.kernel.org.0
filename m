@@ -2,111 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F0C83A0A85
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 05:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 805F63A0A9D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 05:26:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233424AbhFIDNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Jun 2021 23:13:15 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:27816 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S233316AbhFIDNP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 23:13:15 -0400
-Received: from pps.filterd (m0098416.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 1592Yljn166699;
-        Tue, 8 Jun 2021 23:10:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=XA2LuTKM6oytXDfyhlj9P6N1EyqEbVoRRxJ1vjn8jgc=;
- b=bLiCk1FtCU1F6m72Dk44bIJFumRDvGvlg2fqfyuWKdtHqeyisSOg0Ssi5jUy0EYvs60p
- p7bV5IHrSao073RmGCDxVCXX818TC6/xLLwqhefYKegxfikoO7UcSNfUcG18Cn1+aPRj
- UghMgSQQ/f9aXTIYUc2UNSl9ChjkW3VI+7+hVBBmUj+Pxa8dmJ8WoEJfnvjSwJMsGLw7
- ptC/ZuIHAImVOxRultXmhS1nBL3+KGVTfrU2+WmIYMJXxcF5iAmXWa/WsqJ4KzKMQTW/
- Ps34kkPPXz+8bJsSCYIkoZhz0+9SlQyjFSPxoaWmEtHdKedXYHrRi2yPsUNWJQAszQbh 6A== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 392d7pkpsb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 08 Jun 2021 23:10:57 -0400
-Received: from m0098416.ppops.net (m0098416.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 1592ZWrv168759;
-        Tue, 8 Jun 2021 23:10:57 -0400
-Received: from ppma01fra.de.ibm.com (46.49.7a9f.ip4.static.sl-reverse.com [159.122.73.70])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 392d7pkprx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 08 Jun 2021 23:10:57 -0400
-Received: from pps.filterd (ppma01fra.de.ibm.com [127.0.0.1])
-        by ppma01fra.de.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 1593AtHT020402;
-        Wed, 9 Jun 2021 03:10:55 GMT
-Received: from b06cxnps4074.portsmouth.uk.ibm.com (d06relay11.portsmouth.uk.ibm.com [9.149.109.196])
-        by ppma01fra.de.ibm.com with ESMTP id 3900w891e2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Jun 2021 03:10:55 +0000
-Received: from d06av24.portsmouth.uk.ibm.com (d06av24.portsmouth.uk.ibm.com [9.149.105.60])
-        by b06cxnps4074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 1593ArdC25625026
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 9 Jun 2021 03:10:53 GMT
-Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 01D3942042;
-        Wed,  9 Jun 2021 03:10:53 +0000 (GMT)
-Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 9F1864203F;
-        Wed,  9 Jun 2021 03:10:52 +0000 (GMT)
-Received: from ozlabs.au.ibm.com (unknown [9.192.253.14])
-        by d06av24.portsmouth.uk.ibm.com (Postfix) with ESMTP;
-        Wed,  9 Jun 2021 03:10:52 +0000 (GMT)
-Received: from [9.206.155.145] (unknown [9.206.155.145])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by ozlabs.au.ibm.com (Postfix) with ESMTPSA id 27FAB60134;
-        Wed,  9 Jun 2021 13:10:44 +1000 (AEST)
-Subject: Re: [PATCH 03/11] Documentation: ocxl.rst: change FPGA indirect
- article to an
-To:     trix@redhat.com, mdf@kernel.org, robh+dt@kernel.org,
-        hao.wu@intel.com, corbet@lwn.net, fbarrat@linux.ibm.com,
-        bbrezillon@kernel.org, arno@natisbad.org, schalla@marvell.com,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        gregkh@linuxfoundation.org, Sven.Auhagen@voleatech.de,
-        grandmaster@al2klimov.de
-Cc:     linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-crypto@vger.kernel.org,
-        linux-staging@lists.linux.dev
-References: <20210608212350.3029742-1-trix@redhat.com>
- <20210608212350.3029742-5-trix@redhat.com>
-From:   Andrew Donnellan <ajd@linux.ibm.com>
-Message-ID: <01f22915-0a72-1d16-7a42-a6e870ccaec2@linux.ibm.com>
-Date:   Wed, 9 Jun 2021 13:10:39 +1000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+        id S236396AbhFID20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Jun 2021 23:28:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33166 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236376AbhFID20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Jun 2021 23:28:26 -0400
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A9B6C061574
+        for <devicetree@vger.kernel.org>; Tue,  8 Jun 2021 20:26:18 -0700 (PDT)
+Received: by mail-pl1-x636.google.com with SMTP id v12so11795005plo.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Jun 2021 20:26:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MdYrW81rTRXOyPwwkBxz8oEi4fq6qdyXtGkz0juieDI=;
+        b=oM5dWCghrtGmRy3vXH0k82IRuHsl9PMV9Y87AV1Zaz54x7HGdVWxu43tLv4fncOx0J
+         xLZ2H3DhJKC69qT80S/baQirsqtrhIndxLA426DhYtYAxf6Mw1FHtoSedK8wbZGiucvj
+         o9YaaLtkJFPA5CY8pD1jmQzI5pRtzS+CiRFVk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MdYrW81rTRXOyPwwkBxz8oEi4fq6qdyXtGkz0juieDI=;
+        b=K8y07uc6akrSwBEHKmFIWV1j1LM8n+oLUp+IJqxoBceKoqM3fFgb0jfLShoJDi1HJV
+         +jrOXzhR4xVjv/urfKYRvySDK1yrL2CqbWpWIyzNu2m23PUXgKYwPV2Zebx1/chKyU/e
+         +KN1+WwQvdiHr7KzVjMSv2FaY2Y3i8KVskuYZG8U0DFogokYEU/hf+JoAyrTQVLfX1Ph
+         X5VFA5HPailwT+0hNaeRoW4/F3Obx8avgyGlP1rl/5Fua98G9IdE/5Nx2w++Gw2vI2CS
+         KegzJsYStfSRCA3ZIBq1oyWegjBbcTetn+5aVaBTo+Fef7v/OvH9z5lGmzigWpXiPd64
+         1gTw==
+X-Gm-Message-State: AOAM5315r8TceW9mXASeihak+r+Mas+i14TOXWHfL8j9V5iU30pAdZBO
+        pRdW8xpJePXyMIf/AHufqLgekg==
+X-Google-Smtp-Source: ABdhPJxU3TRagjuWEF2Gz3E1Ucyrx55ygzxfYieVj3D0ExyoJPKDqzOCd2hmUMkedHakii/hod69Hw==
+X-Received: by 2002:a17:90a:a41:: with SMTP id o59mr8087029pjo.203.1623209177949;
+        Tue, 08 Jun 2021 20:26:17 -0700 (PDT)
+Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:10:2585:de55:d6c4:950c])
+        by smtp.gmail.com with ESMTPSA id 125sm11728635pfg.52.2021.06.08.20.26.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Jun 2021 20:26:17 -0700 (PDT)
+From:   Ikjoon Jang <ikjn@chromium.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Ikjoon Jang <ikjn@chromium.org>
+Subject: [PATCH] arm64: dts: mt8183: add cbas node under cros_ec
+Date:   Wed,  9 Jun 2021 11:25:54 +0800
+Message-Id: <20210609032554.2443675-1-ikjn@chromium.org>
+X-Mailer: git-send-email 2.32.0.rc1.229.g3e70b5a671-goog
 MIME-Version: 1.0
-In-Reply-To: <20210608212350.3029742-5-trix@redhat.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: rhKqRFJG-wMyLq05xrV-qvprdaqJmQuI
-X-Proofpoint-GUID: nFu8dFCLDDKqockFlSmj80mifT7sH7nq
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-06-09_01:2021-06-04,2021-06-09 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 phishscore=0 spamscore=0 mlxlogscore=999 bulkscore=0
- priorityscore=1501 malwarescore=0 adultscore=0 clxscore=1011
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2106090001
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/6/21 7:23 am, trix@redhat.com wrote:
-> From: Tom Rix <trix@redhat.com>
-> 
-> Change use of 'a fpga' to 'an fpga'
-> 
-> Signed-off-by: Tom Rix <trix@redhat.com>
+Add a 'cbas' device node for supporting tablet mode switch in
+kukui devices.
 
-Acked-by: Andrew Donnellan <ajd@linux.ibm.com>
+Kukui platforms with detacheable base have an additional input
+device under cros-ec, which reports SW_TABLET_MODE regarding
+its base state (e.g. base flipped or detached).
 
+Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
+---
+Resend this as a spin-off, other patches for dt-binding and
+hid driver were applied.
+
+Link: https://lore.kernel.org/r/20210514122051.266169-1-ikjn@chromium.org/
+Link: https://lore.kernel.org/r/20210415032958.740233-1-ikjn@chromium.org/
+
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index ff56bcfa3370..1512605a438e 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -816,6 +816,10 @@ usbc_extcon: extcon0 {
+ 			compatible = "google,extcon-usbc-cros-ec";
+ 			google,usb-port-id = <0>;
+ 		};
++
++		cbas {
++			compatible = "google,cros-cbas";
++		};
+ 	};
+ };
+ 
 -- 
-Andrew Donnellan              OzLabs, ADL Canberra
-ajd@linux.ibm.com             IBM Australia Limited
+2.32.0.rc1.229.g3e70b5a671-goog
+
