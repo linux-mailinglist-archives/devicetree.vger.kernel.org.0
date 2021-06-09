@@ -2,115 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26F3D3A15C6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:37:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9DF63A15CD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:38:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236421AbhFINiY convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Jun 2021 09:38:24 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:60681 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235485AbhFINiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:38:23 -0400
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id E115C6000B;
-        Wed,  9 Jun 2021 13:36:22 +0000 (UTC)
-Date:   Wed, 9 Jun 2021 15:36:21 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Amit Kumar Mahapatra <akumarma@xilinx.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
-        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
-Subject: Re: [PATCH v22 17/18] dt-bindings: mtd: pl353-nand: Describe this
- hardware controller
-Message-ID: <20210609153621.1303bc4d@xps13>
-In-Reply-To: <57ef16cd-33e7-6c16-3a24-9634f47831b3@canonical.com>
-References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
-        <20210609080112.1753221-18-miquel.raynal@bootlin.com>
-        <57ef16cd-33e7-6c16-3a24-9634f47831b3@canonical.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S231644AbhFINk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 09:40:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55418 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230297AbhFINk0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:40:26 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF63C061574;
+        Wed,  9 Jun 2021 06:38:17 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id h3so4033882wmq.3;
+        Wed, 09 Jun 2021 06:38:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=2XtC26dDQI+8z2NBND3LcVHi35tPI4TG6eO9es29Zac=;
+        b=DzJMNm+3h04RwqPbHWExMNYCF+kaN1b1pLrOfQW7uU+gGHoukXnx3AUoHcpShlEZO0
+         G71QT3Yq2vT78oEWlHeQbmVZbe6WM94LtTSdjT/VxIglyPKyK3Q2T/JDNndT0yPXJsLv
+         dzSJJGkGwPqQfbRaTULkHwERsRxu0yYuZnTzhu1Xntt4qzZgrVQnNR77xZGHBK9l9stF
+         BXbE4iv+o0YLeRS2xXM1E2//e2UMHJyrgFdOtBoiyUlO/bQ62I9kCR/NdZq1THpFdIzK
+         9DCO2qzA06o/FOLDmZ7BKKEoefE45EM+fOjGHTirVfQMUhogaiE+NoMOAtVlA0BO8b+B
+         FG7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=2XtC26dDQI+8z2NBND3LcVHi35tPI4TG6eO9es29Zac=;
+        b=JqlWxbF557ux6akCF4b6rFlbiCJ2yvCQOGTSDYJo1yF2kB4rli+OZwk68WaJCfGNLG
+         3RMbQE5i8QqNDXs830vcqHY2cZMNzHWyNFd5syfhdyWSHo7I95d0jJ6KRMEGcKPueyzB
+         Q42EFtEEbH+7xZE7GbbjWjFRWUGauKxwgpbmRxISjtkawNF3ymVXVNtgyjCv2lazwIVB
+         FNvnnlL+MruSbAZJKAwAhNVnDaxopxS3eFIW4dyKh2UBb58Ic1Eq9ZI0k+lLlyKNpc0U
+         FG3MRBrnQSHkbOEBENJZfPyVKlfkmICXrm1td0J0761h+cTLNkdjjkPeJsSCJIv5VydD
+         q0ig==
+X-Gm-Message-State: AOAM533aUxhUdz8ZHRKKH3xFXKSiWBoj66cvU5SXt9z9jENwBikkiYuW
+        JUNOvXZozF4B5yiTnYSFx+I=
+X-Google-Smtp-Source: ABdhPJwRn7xOH9cpkumSJykpQHFyX0W4qhaLI33hiASlySCZeUqCvFm4zsH9ez6+Ei9TmMDVCfoy+Q==
+X-Received: by 2002:a05:600c:190f:: with SMTP id j15mr10147185wmq.4.1623245895818;
+        Wed, 09 Jun 2021 06:38:15 -0700 (PDT)
+Received: from ziggy.stardust (81.172.61.185.dyn.user.ono.com. [81.172.61.185])
+        by smtp.gmail.com with ESMTPSA id u12sm2793979wrr.40.2021.06.09.06.38.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jun 2021 06:38:15 -0700 (PDT)
+Subject: Re: [PATCH v5 05/16] media: mtk-jpeg: Use pm_runtime_resume_and_get
+ for PM get_sync
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, eizan@chromium.org, acourbot@chromium.org,
+        Xia Jiang <xia.jiang@mediatek.com>
+References: <20210410091128.31823-1-yong.wu@mediatek.com>
+ <20210410091128.31823-6-yong.wu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <82aea4aa-0007-369d-9c0d-db0077471b80@gmail.com>
+Date:   Wed, 9 Jun 2021 15:38:13 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20210410091128.31823-6-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
-Jun 2021 14:01:10 +0200:
 
-> On 09/06/2021 10:01, Miquel Raynal wrote:
-> > Add a yaml description of this NAND controller which is described as a
-> > subnode of the SMC bus.
-> > 
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  .../bindings/mtd/arm,pl353-nand-r2p1.yaml     | 57 +++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
-> > new file mode 100644
-> > index 000000000000..e72fa14b4385
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
-> > @@ -0,0 +1,57 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mtd/arm,pl353-nand-r2p1.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: PL353 NAND Controller device tree bindings
-> > +
-> > +allOf:
-> > +  - $ref: "nand-controller.yaml"
-> > +
-> > +maintainers:
-> > +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> > +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:  
+On 10/04/2021 11:11, Yong Wu wrote:
+> pm_runtime_get_sync will increment pm usage counter even it failed.
+> This patch use pm_runtime_resume_and_get instead of pm_runtime_get
+> to keep usage counter balanced.
 > 
-> That's not an enum, but simple const without items.
+> CC: Xia Jiang <xia.jiang@mediatek.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 
-Ok.
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
+> ---
+>  drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> > +          - arm,pl353-nand-r2p1
-> > +
-> > +  reg:
-> > +    items:
-> > +      - items:
-> > +          - description: CS with regard to the parent ranges property
-> > +          - description: Offset of the memory region requested by the device
-> > +          - description: Length of the memory region requested by the device  
+> diff --git a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c
+> index 88a23bce569d..a89c7b206eef 100644
+> --- a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c
+> +++ b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c
+> @@ -920,7 +920,7 @@ static void mtk_jpeg_enc_device_run(void *priv)
+>  	src_buf = v4l2_m2m_next_src_buf(ctx->fh.m2m_ctx);
+>  	dst_buf = v4l2_m2m_next_dst_buf(ctx->fh.m2m_ctx);
+>  
+> -	ret = pm_runtime_get_sync(jpeg->dev);
+> +	ret = pm_runtime_resume_and_get(jpeg->dev);
+>  	if (ret < 0)
+>  		goto enc_end;
+>  
+> @@ -973,7 +973,7 @@ static void mtk_jpeg_dec_device_run(void *priv)
+>  		return;
+>  	}
+>  
+> -	ret = pm_runtime_get_sync(jpeg->dev);
+> +	ret = pm_runtime_resume_and_get(jpeg->dev);
+>  	if (ret < 0)
+>  		goto dec_end;
+>  
 > 
-> Doesn't it depend on parent's address/size cells?
-
-Yes, but as the child nodes are not defined in the parent's binding
-(ie. the SMC) I think it's interesting to have them defined here, no?
-
-> > +
-> > +  "#address-cells": true
-> > +  "#size-cells": true  
-> 
-> These should come from nand-controller.yaml
-
-Right, I'll drop these, they are probably redundant.
-
-Thanks,
-Miquèl
