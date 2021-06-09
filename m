@@ -2,59 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9AAD3A195E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 17:24:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D202E3A1975
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 17:26:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232939AbhFIP0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 11:26:35 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:35680 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234688AbhFIP03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 11:26:29 -0400
+        id S234278AbhFIP2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 11:28:40 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:53984 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236302AbhFIP2i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 11:28:38 -0400
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159FORcB084415;
-        Wed, 9 Jun 2021 10:24:27 -0500
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159FQe40046481;
+        Wed, 9 Jun 2021 10:26:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623252267;
-        bh=Akeg2CUF9xC8OIaJjJ+uRRAnTPnPHWRV4WNHbffInfU=;
+        s=ti-com-17Q1; t=1623252400;
+        bh=mnSyj3seYJVrCfWRp82o87lUcvOOqJKfbM7He6wKok4=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=BVZi213eHaxOzEEIaI/3z2LtlDFmylIZoPwIthwDsjzC5OTV0lPDwz+sVCLbK4Qpp
-         wGK4xnL7H1krYOSSw/N841ziugy4aycm3GC/xq7bfGHK32nW0U0WfxvovDyAoY7G4h
-         bSwd39A5ckoHOYId+hveYMQJq/Ird+dsRV2z6TQI=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159FORJb117067
+        b=hDpbAyFe6Aq6Eciy09ajT34xKs3erfhTl9tBOU/T8YKwC7gE3QttdT/DMrZDwlr9V
+         C7OQNpjkdYx3Ipy6zMALucQo9tiBGILjcKoswSZ+zV5C8BRg7ChA6YVrztOQlA2Wdd
+         yau7ptcqApGDn1Crp4ARjrB72/4TTI60GcKkeDzs=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159FQe4I121947
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Jun 2021 10:24:27 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 9 Jun 2021 10:26:40 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
- 2021 10:24:27 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 10:26:40 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 9 Jun 2021 10:24:27 -0500
+ Frontend Transport; Wed, 9 Jun 2021 10:26:39 -0500
 Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159FOJ7I077894;
-        Wed, 9 Jun 2021 10:24:23 -0500
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64-main: Update the location of
- ATF in SRAM and increase its max size
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210607133806.18158-1-a-govindraju@ti.com>
- <e53458a9-e5f6-6507-f95c-2406b47b5576@ti.com>
- <b709d5a8-17dd-37e7-405a-35f39f84878b@ti.com>
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159FQWOL084446;
+        Wed, 9 Jun 2021 10:26:37 -0500
+Subject: Re: [PATCH] arm64: dts: ti: k3-am64-main: Add SYSFW reserved ranges
+ in OCRAM
+To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+References: <20210609140604.9490-1-vigneshr@ti.com>
 From:   Lokesh Vutla <lokeshvutla@ti.com>
-Message-ID: <50bb1f20-ccca-fe94-eac1-70ac83bc004d@ti.com>
-Date:   Wed, 9 Jun 2021 20:54:19 +0530
+Message-ID: <81e61d1a-efde-0bff-719c-607752bfdbc1@ti.com>
+Date:   Wed, 9 Jun 2021 20:56:32 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <b709d5a8-17dd-37e7-405a-35f39f84878b@ti.com>
+In-Reply-To: <20210609140604.9490-1-vigneshr@ti.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -65,64 +60,22 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 09/06/21 8:52 pm, Aswath Govindraju wrote:
-> Hi Lokesh,
+On 09/06/21 7:36 pm, Vignesh Raghavendra wrote:
+> Last 256K of OCRAM (256K@0x701c0000) is reserved for SYSFW usage. Hence
+> add an entry in DT so that its not used for generic pool memory
+> allocation.
 > 
-> On 09/06/21 7:59 pm, Lokesh Vutla wrote:
->>
->>
->> On 07/06/21 7:08 pm, Aswath Govindraju wrote:
->>> Due to a limitation for USB DFU boot mode, SPL load address has to be less
->>> than  or equal to 0x70001000. So, load address of SPL and ATF have been
->>> moved to 0x70000000 and 0x701a0000 respectively.
->>>
->>> Also, the maximum size of ATF has been increased to 0x1c000 [1].
->>>
->>> Therefore, update ATF's location and maximum size accordingly in the device
->>> tree file.
->>>
->>> [1] - https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/?id=2fb5312f61a7de8b7a70e1639199c4f14a10b6f9
->>>
->>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->>> ---
->>>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++--
->>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->>> index ca59d1f711f8..fcd12b6f10f6 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->>> @@ -13,8 +13,8 @@
->>>  		#size-cells = <1>;
->>>  		ranges = <0x0 0x00 0x70000000 0x200000>;
->>>  
->>> -		atf-sram@0 {
->>> -			reg = <0x0 0x1a000>;
->>> +		atf-sram@1a0000 {
->>> +			reg = <0x1a0000 0x1c000>;
->>
->> After thinking a bot more, isn't size be 0x20000?
->> ATF is allocated with 125KB no? no point keeping the ~3 as hole IMO.
->>
+> Without this certain drivers using SRAM as generic shared memory pool
+> may end up being allocated memory from this range and will lead to boot
+> time crash when the reserved range is accessed (due to firewall
+> violation).
 > 
-> The max size of ATF as defined above in [1] is 0x1c000 and as the
-> argument has to reflect it I have modified it to the same.
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 
-ahh..Got it. Ignore my comment.
+You might want to re-base on top of Aswath's patch updating ATF address. Otherwise:
+
+Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
 
 Thanks and regards,
 Lokesh
 
-> 
-> Thanks,
-> Aswath
-> 
-> 
->> Thanks and regards,
->> Lokesh
->>
->>>  		};
->>>  	};
->>>  
->>>
-> 
