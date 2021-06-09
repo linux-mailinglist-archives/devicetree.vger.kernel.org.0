@@ -2,108 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B65713A2026
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 00:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CDD23A208D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 01:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbhFIWhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 18:37:09 -0400
-Received: from mail-qk1-f180.google.com ([209.85.222.180]:35526 "EHLO
-        mail-qk1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229966AbhFIWhI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 18:37:08 -0400
-Received: by mail-qk1-f180.google.com with SMTP id j189so25445933qkf.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 15:35:02 -0700 (PDT)
+        id S229626AbhFIXNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 19:13:24 -0400
+Received: from mail-wm1-f49.google.com ([209.85.128.49]:56165 "EHLO
+        mail-wm1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229507AbhFIXNW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 19:13:22 -0400
+Received: by mail-wm1-f49.google.com with SMTP id g204so5007224wmf.5;
+        Wed, 09 Jun 2021 16:11:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=h4YIin9nc0Zhzp3oLI4rfG0duyRcR0Z0PNgbrlky0wk=;
-        b=lLJONwKFq63Tm8D6sZ33y32elvuZEf1fRY5wmO0RsNFP8PF98lRxqaJGetLG7TddUA
-         WRLdwyDIaUd2iJSycBMY7XidFZgz6kitqpKtqUdTVRTT0kMUH5K4xFoCuBpToxaWpOcP
-         RPa3kK1WFQwb0jEx2vFfl0rVhuRkxgzNhfRIfeS82IEZjzc+JWsC0U0LL0Yn5TyL85Ro
-         jVtgKpH10oYYgUdHf+jlOBBpfIL3Ymo+3rIp5phg12740/sOlyqVy92QXq87zPsCTWel
-         11RGNx3lCoGDCzVcdDf8T4p+rOu95sYEd6pRxRybJNCUd6nU2bPIiZ7J4uUW8XqcD0VI
-         pG8A==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yHRC/scq4F0dFWocWwb0fJBrfvbRpe4lCbCOMRFoGqs=;
+        b=tX4VrW01dqBYDc4Ypi9GhnVybHYLT5kE3h6QwdYMIpgtPRi/pWTxo8i04R3kedKusK
+         Gt8zm5YEphQcR1VUapMtWTXn07bql74l6f/9N2LWDRkqeliv2Qh6klB9dHhKvG61Eokw
+         JsLss4rL0rGW0AAPwYCUW3Le+kQXIP9fpAa/QlVxvlDrw9UxFDQOKlDicXQaK0LU9zQX
+         1lOiXVdtHccHuFJYb4+mrI2e4VJ57a9/hiBU5NJLc4b47snKILJk5xNC990xzIiTES5n
+         l5kdUahARBIOkq/zhh4chtf1/LY2aRfHqLuy1W+n7mocwFOPktjJSeVpQlZ1vRK7Xg9u
+         r66Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=h4YIin9nc0Zhzp3oLI4rfG0duyRcR0Z0PNgbrlky0wk=;
-        b=nXZm+DvoiY5b2JCEVnlzZV+9+DQ0VbVd4Gknb7loQMj9xZYRxfG2xRnNB7jFYFtyFu
-         WCAr1kjII8d7ClhXygdDdA2gqbVgII7X8Dt0ggvPxlVx1JGRI5EFF/0d9jNLBX12VXWp
-         PRNpiZs32+qscXnVTC0tpFS6fcdhP8JgcBQ1pTnQUgZk/DbmCCfcxw4fm19C1EzuuMRW
-         B235+wHl0a8rjXfcKvijmCkJjoBy54FFVn+gNfnoG3E4TaRu41eB/1+Ho9ZAsBkepIbG
-         jqCpkq9itUWqGRiDi58U3S1/ETg82PdD3WhF0WegQF6K8sz5NwoNII8UBg+pfCT2FELG
-         gRxw==
-X-Gm-Message-State: AOAM533IWmLH07UjiAy+vZFYnIEgpBu78QMuDCwIytuAOWiXpXcqlIej
-        6Sa9UXD5gQ2eZWyiZ+Zr5xGxJw==
-X-Google-Smtp-Source: ABdhPJwtArpBD1ZM+4Odq67v5cly6Y8fhr0FO7NO62M2Wc4b3Mx4N9cvSdz3PhLRv3vc9jLvY1mdZA==
-X-Received: by 2002:a37:b6c1:: with SMTP id g184mr1922300qkf.270.1623278042419;
-        Wed, 09 Jun 2021 15:34:02 -0700 (PDT)
-Received: from [192.168.0.189] (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id g19sm983133qtg.36.2021.06.09.15.34.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Jun 2021 15:34:01 -0700 (PDT)
-Subject: Re: [PATCH 17/17] media: dt-bindings: media: camss: Add
- qcom,sm8250-camss binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, robert.foss@linaro.org,
-        andrey.konovalov@linaro.org, Andy Gross <agross@kernel.org>,
+        bh=yHRC/scq4F0dFWocWwb0fJBrfvbRpe4lCbCOMRFoGqs=;
+        b=WrlutK/LcbchTI36fq9h3fiI0r56wyJs4PnoCYlcX2PZqyAUgAECTO1dAopKDaK8ou
+         KstYYk9A2h+MDj178elyszlmch7JA3GbeSN+Ebw9m5I+ZFOr7ybaljtnSkDdqwPgk5jq
+         1cSne4QH+4SKuEyILj/LgpD8SYOh4iSmx4FUvVAbXoAuWLAPSnvEuV3dqA00uaxZGJBU
+         QEa2vgu1VwgZDfzImLS139xEbLNjcFrZy5CEf3av+cTvuaxGPD7Yq0Cql5rTTFw4OAMe
+         h3ZAspiSBO+W+ZKidhDuwf4IJ0BVsXyJ9U17sKqShgvEZZntRoxJ5ZJmE2DjZhveAQkq
+         mwMw==
+X-Gm-Message-State: AOAM531qydToFg5dMC1prd7MwIvC4K+nFuEFuQGYJoJ0xtQFFaHCqPbi
+        laf9FKrmMa2+SLNolC0TUQ9WcZ81QVc=
+X-Google-Smtp-Source: ABdhPJw9WN8fCvpMPoE1AKzRm9GBs4EOGspo0NE/ssQH9Em8eorfi7AEOyiN82ccMpQ0pt7l0hdg8w==
+X-Received: by 2002:a7b:c417:: with SMTP id k23mr11755112wmi.71.1623280213734;
+        Wed, 09 Jun 2021 16:10:13 -0700 (PDT)
+Received: from cluster5 ([80.76.206.81])
+        by smtp.gmail.com with ESMTPSA id c7sm1477621wrc.42.2021.06.09.16.10.12
+        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Wed, 09 Jun 2021 16:10:13 -0700 (PDT)
+From:   Matthew Hagan <mnhagan88@gmail.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthew Hagan <mnhagan88@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "open list:QUALCOMM CAMERA SUBSYSTEM DRIVER" 
-        <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210608223513.23193-1-jonathan@marek.ca>
- <20210608223513.23193-18-jonathan@marek.ca>
- <20210609221055.GA171974@robh.at.kernel.org>
-From:   Jonathan Marek <jonathan@marek.ca>
-Message-ID: <df0750af-74a9-9bc3-a7ec-96efba248aa1@marek.ca>
-Date:   Wed, 9 Jun 2021 18:32:18 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH RESEND 0/2] Add GMAC_AHB_RESET to ipq8064 ethernet resets
+Date:   Thu, 10 Jun 2021 00:09:43 +0100
+Message-Id: <20210609230946.1294326-1-mnhagan88@gmail.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-In-Reply-To: <20210609221055.GA171974@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/9/21 6:10 PM, Rob Herring wrote:
-> On Tue, Jun 08, 2021 at 06:35:06PM -0400, Jonathan Marek wrote:
->> Add bindings for qcom,sm8250-camss in order to support the camera
->> subsystem for SM8250.
+These two additional patches were dropped at v2, v3 by error and
+should have been included with "net: stmmac: explicitly deassert
+GMAC_AHB_RESET". These add GMAC_AHB_RESET to the ipq8064 ethernet
+reset definitions and documentation.
 
-...
+Apologies for the oversight.
 
->> +    items:
->> +      - const: csiphy0
->> +      - const: csiphy1
->> +      - const: csiphy2
->> +      - const: csiphy3
->> +      - const: csiphy4
->> +      - const: csiphy5
-> 
-> Should be separate phy nodes? Same/similar DPHY or CPHY as QCom DSI PHY?
-> 
+Matthew Hagan (2):
+  ARM: dts: qcom: add ahb reset to ipq806x-gmac
+  dt-bindings: net: stmmac: add ahb reset to example
 
-This is not a new driver, this series only adds support for a new SoC - 
-the design has already been decided (and this binding is similar to 
-qcom,sdm845-camss.yaml).
+ .../devicetree/bindings/net/ipq806x-dwmac.txt |  5 +++--
+ arch/arm/boot/dts/qcom-ipq8064.dtsi           | 20 +++++++++++--------
+ 2 files changed, 15 insertions(+), 10 deletions(-)
 
-The hardware supports D-PHY and C-PHY, but the driver isn't aware of 
-this and assumes D-PHY. sdm845 and msm8996 hardware also support C-PHY, 
-so it isn't a problem specific to this series.
-
->> +      - const: vfe0
->> +      - const: vfe1
->> +      - const: vfe_lite0
->> +      - const: vfe_lite1
->> +
+-- 
+2.26.3
 
