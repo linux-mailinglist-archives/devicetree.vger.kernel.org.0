@@ -2,114 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA153A1165
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:50:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43ED63A11C1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:55:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238021AbhFIKtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 06:49:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45356 "EHLO
+        id S238441AbhFIK4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 06:56:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232165AbhFIKtJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 06:49:09 -0400
-Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC86C06175F
-        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 03:46:59 -0700 (PDT)
-Received: by mail-il1-x12d.google.com with SMTP id w14so15341309ilv.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 03:46:59 -0700 (PDT)
+        with ESMTP id S238431AbhFIK4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 06:56:52 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 117FCC061574
+        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 03:54:50 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id d2so26905002ljj.11
+        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 03:54:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=k+5GzVyM+TFuTZLW/qFX3WiZRW9D495A3O6aGgKjLxs=;
-        b=icqvxZiYbmJBLHoQNod0FxFLxphOWacXqY4xuBdb5fqVvTYbUo37QfNhVZL+BVBc7v
-         vv3ricSDDsmBFXoggCz0oXH5e33zFyx6ZkePhITrR1kcFEGVWqJ1B7d+62BnZo77+GEy
-         n0fpiYQsT5Qk0tsjZc/uP4tlxLa24JdPBxt7I=
+        bh=cvIuq7yCBZI9oh+HolFFkb/f7sv15WjrCKTD1PWydYE=;
+        b=aqmTQ4Tq7tp3JhjxH4GQ9HXZVvX8RRZOYwnTZqi9FwM6DNLCDlVKbHyie15+145qBI
+         o6An9yE8okaeikBuxFIdZs9p4u/S/tbNX2MTXDdDPcCd7ychrX5KlcQmqoBHvyS/8y1h
+         aZa2dxXYrL9EbKPIUC/kIdVAGRkxfR4+kmzpfVgiI7rkvePdrajM08ARcHhUO88/QK2O
+         hdXXraH/qgd3SkAAiB+DPV3k4t8u8A70JSZe7qkIfHciR8T1SK8BsKtLhEhUMBqVjAGZ
+         G60hZjGepVKScMs3xNKpAJ8FlPOv6u3jYG45jLhhpQbOIHjrSkCsCl+mSQnRSl74lJpK
+         t3pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=k+5GzVyM+TFuTZLW/qFX3WiZRW9D495A3O6aGgKjLxs=;
-        b=i47cRphIaqoL2U+iAyr6n6vYRFBOPQNuHpZ8RoXL+50kblnezvKinlj9x6f1F+JE1u
-         P0ztzvQdhucvLLxKshNBJ1lWftlr2njFaMeMPKHqUO1yaVNOX0X2K5Iac0OUpIa7OGuX
-         yG1Sj+5JXSpVzER2EyrW8PxamojwaStPtYM92uB9gPr+n30GgWyz5jdZhPyO3NK3Izl9
-         N3fxDNagBh8kIaTGimmOfNaV9QdUrxQA9lfzSZy1i7vZ/snBhTe+MoSJ9YEtqdQjtnpB
-         sDCDfZdp6Dye1DPX05tS78DJMPJQ+RtD+s5BhzoSjzdyquI2i7GeTSef0NvQFJxcDqBD
-         G28w==
-X-Gm-Message-State: AOAM530yvbI44epK3Q8Yt7DQYvD5h4bZKIZYUVSWxJj/JXU/pVyUW0dy
-        lV3hjFQemh4M0adERsRDM0d0MO/bolEoxEWXD6DvWg==
-X-Google-Smtp-Source: ABdhPJwgBjwFhsmtC1XmbGiOcK7Z4pF0o5B7kd44vj0dZ9UzBo2ihwDg/0svNbMUYUf6PM+t2LazOCf1UIXVUByntUc=
-X-Received: by 2002:a05:6638:11:: with SMTP id z17mr24468108jao.102.1623235618594;
- Wed, 09 Jun 2021 03:46:58 -0700 (PDT)
+        bh=cvIuq7yCBZI9oh+HolFFkb/f7sv15WjrCKTD1PWydYE=;
+        b=MuESP9I2JOR1GXsw1kndvXwLS7Wdq6FhblWVP9F1FzrhUJQrsITS/Y4Sc4+p0ylHmx
+         00ZH/dDpZkU3wifDJrouctUQ+8/YHkd3pj14xqELd8O9EasXxOvbgiIbcZzvN5PYTw+S
+         yqCEzftMz+ggzfOzHUWjU06blV+UxY7M6ByAWNlHextuzIeCtPcbpr4RHNMczgzjmi1Q
+         ZDqXadQ8KzrHBEW3AvNhQMLacEe1lQsjIALgNfu+3ube+IkkpTPJaruvZbdFSgagzx/a
+         bkTfr6E7K+MOw+el1aI1OnEbLBJkQtiJrlJsrXAbZqucttt701KhEnsRIRgHER5qarKH
+         J46Q==
+X-Gm-Message-State: AOAM531Jmr/0M0u1AIJimtf5WSUA0odd25KkVk24nSXsco8UZOhwMhZY
+        RLliYpTft7ihSu0PkY2Ke7mu8EvfWzBtTppoTFi15Q==
+X-Google-Smtp-Source: ABdhPJy9jtLYPd3PIA6YsEvO5XTv5tO8NP31qTDfX0RScssCc2S2g4ub5LbPM5p6JmfTmLKacK2QOK7wOSZswNzp3KA=
+X-Received: by 2002:a05:651c:1411:: with SMTP id u17mr11232132lje.438.1623236088374;
+ Wed, 09 Jun 2021 03:54:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210609044854.393452-1-hsinyi@chromium.org> <7a96166f-70d9-bc0e-72cc-53a8612741e8@gmail.com>
-In-Reply-To: <7a96166f-70d9-bc0e-72cc-53a8612741e8@gmail.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Wed, 9 Jun 2021 18:46:32 +0800
-Message-ID: <CAJMQK-gtQpHTJvjy240fN31G7=sz73w2jJQk6_zqdeAiYpXJsw@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: mt8183: add jpeg enc node for mt8183
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+References: <20210608102547.4880-1-steven_lee@aspeedtech.com>
+In-Reply-To: <20210608102547.4880-1-steven_lee@aspeedtech.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 9 Jun 2021 12:54:37 +0200
+Message-ID: <CACRpkdZOStr+K9U9QTkAcsk4NxuSqBRVv_-9_VkGJbT69iSxmQ@mail.gmail.com>
+Subject: Re: [PATCH v5 00/10] ASPEED sgpio driver enhancement.
+To:     Steven Lee <steven_lee@aspeedtech.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
         <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>, maoguang.meng@mediatek.com,
-        Yong Wu <yong.wu@mediatek.com>,
-        Tomasz Figa <tfiga@chromium.org>
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 9, 2021 at 3:46 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
->
->
->
-> On 09/06/2021 06:48, Hsin-Yi Wang wrote:
-> > From: Maoguang Meng <maoguang.meng@mediatek.com>
-> >
-> > Add jpeg encoder device tree node.
-> >
-> > Signed-off-by: Maoguang Meng <maoguang.meng@mediatek.com>
-> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > ---
-> > v2: rebase to latest
-> > v1: https://patchwork.kernel.org/project/linux-media/patch/20200914094012.5817-1-maoguang.meng@mediatek.com/
-> > ---
-> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index c5e822b6b77a3..fffe0c52909ce 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -1329,6 +1329,17 @@ larb4: larb@17010000 {
-> >                       power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
-> >               };
-> >
-> > +             venc_jpg: venc_jpg@17030000 {
-> > +                     compatible = "mediatek,mt8183-jpgenc", "mediatek,mtk-jpgenc";
->
-> We are missing "mediatek,mt8183-jpgenc" in mediatek-jpeg-encoder.txt. Would be
-> great if you could help to convert it to yaml before adding the new compatible.
->
-mediatek-jpeg-en(de)coder.txt converted to yaml:
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20210609104053.617751-1-hsinyi@chromium.org/
+On Tue, Jun 8, 2021 at 12:26 PM Steven Lee <steven_lee@aspeedtech.com> wrote:
 
+> AST2600 SoC has 2 SGPIO master interfaces one with 128 pins another one
+> with 80 pins, AST2500/AST2400 SoC has 1 SGPIO master interface that
+> supports up to 80 pins.
+> In the current driver design, the max number of sgpio pins is hardcoded
+> in macro MAX_NR_HW_SGPIO and the value is 80.
+>
+> For supporting sgpio master interfaces of AST2600 SoC, the patch series
+> contains the following enhancement:
+> - Convert txt dt-bindings to yaml.
+> - Update aspeed-g6 dtsi to support the enhanced sgpio.
+> - Define max number of gpio pins in ast2600 platform data. Old chip
+>   uses the original hardcoded value.
+> - Support muiltiple SGPIO master interfaces.
+> - Support up to 128 pins.
+> - Support wdt reset tolerance.
+> - Fix irq_chip issues which causes multiple sgpio devices use the same
+>   irq_chip data.
+> - Replace all of_*() APIs with device_*().
+>
+> Changes from v4:
 
-> Thanks!
-> Matthias
-> > +                     reg = <0 0x17030000 0 0x1000>;
-> > +                     interrupts = <GIC_SPI 249 IRQ_TYPE_LEVEL_LOW>;
-> > +                     iommus = <&iommu M4U_PORT_JPGENC_RDMA>,
-> > +                              <&iommu M4U_PORT_JPGENC_BSDMA>;
-> > +                     power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
-> > +                     clocks = <&vencsys CLK_VENC_JPGENC>;
-> > +                     clock-names = "jpgenc";
-> > +             };
-> > +
-> >               ipu_conn: syscon@19000000 {
-> >                       compatible = "mediatek,mt8183-ipu_conn", "syscon";
-> >                       reg = <0 0x19000000 0 0x1000>;
-> >
+v5 looks good to me!
+
+I just need Rob's or another DT persons nod on the bindings (or timeout)
+before I merge it. Poke me if nothing happens.
+
+>   ARM: dts: aspeed-g6: Add SGPIO node.
+>   ARM: dts: aspeed-g5: Remove ngpios from sgpio node.
+
+These two need to be merged through the SoC tree, the rest I will handle.
+
+Yours,
+Linus Walleij
