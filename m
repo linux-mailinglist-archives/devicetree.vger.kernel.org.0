@@ -2,192 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B12163A0CAD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 08:46:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED31B3A0CC1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 08:52:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233893AbhFIGsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 02:48:08 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:52477 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233887AbhFIGsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 02:48:06 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.nyi.internal (Postfix) with ESMTP id D8403580ADE;
-        Wed,  9 Jun 2021 02:46:11 -0400 (EDT)
-Received: from imap43 ([10.202.2.93])
-  by compute2.internal (MEProxy); Wed, 09 Jun 2021 02:46:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=2YOzmbDi1xjNEo1C6HPD/84oDZ0f4/H
-        N3jUNZ1te9sM=; b=J52hxjoZPOK9ytKJdu6wtQ/DzS/sftP8GX+qfXN4vWKh204
-        EHMUHffjlr6j0AzXsGwDPE8HdoCpjLD64IRBp8CtNAPhZfXApizkEL/T0E/bJqo8
-        Aef3Wtv5kuGry35OCkY8Rc6e8m1AmxHyKLTCi0HnauSkZGIw+P87VekLzzDLqZlY
-        5d/mZMEf492d5I6+1rSiYrpXM5x24KuniOBE1V76Nz7BpWQXN2P+P6Ghwvaxtc48
-        m6CLohrFzQjcFwwth0Z8hmEu52H4dGafm+xZJxh8Apep9ta4a2zPPP5qa/Gu8RR5
-        kYVpNWTKWXC5+xYqtn1kxqz4c2xaTj7jJ908f4w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=2YOzmb
-        Di1xjNEo1C6HPD/84oDZ0f4/HN3jUNZ1te9sM=; b=P5o1uiLjTdXzogRlt4fEQn
-        S7LjwMxu4kT9DYr4HTAcR29V47PKLRGn42nUkGedv2HpB6ShzgVyvJnP4WWOz8gs
-        54zqjO9/rlqJs8jxCV1W4k+DBb2aC3Mb7+5Sx4BW7vAkZ6IzZIbRgGigPdQpAjbG
-        Ti8xUb6Qjef1EutUD4fGjO7+HR8mXR3wB3BWfMlTu/WZMLIA98CvpcZtJyXVuCU8
-        Q5GUAGWD3gPp8DWKDvHDb6SD5IxjLijI9rAFjyp6QdTfHpCP8cWtdDR9SV/JqwFg
-        hepsLNXfPL8KJPu9v10qnWurCw+AnOHc2nkyVbZ7rZahoaR+tDmMlw8IDk57M0Iw
-        ==
-X-ME-Sender: <xms:smPAYAdcPlnp6-PIsL4jZ-8nCYYBtaz-aMpbrCT8uIKy-in0O1UNVQ>
-    <xme:smPAYCOVpTY63fl9k4H90CxBYVdFfg-iHVTgJ41MeAeaPQmP6QhNpC2gxsks8SnJP
-    Sryw8q8rTfH90Fe7w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedutddguddtfecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderreejnecuhfhrohhmpedftehn
-    ughrvgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtf
-    frrghtthgvrhhnpedutddtkeeugeegvddttdeukeeiuddtgfeuuddtfeeiueetfeeileet
-    tedvtdfhieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpegrnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:smPAYBhKItYPXGBd7dV-5NJqq6TtnPv2gLqw5mwYibXyNiFvt0ndng>
-    <xmx:smPAYF-ILl5xOI7Q9nTNggc4nq9qtx1hFEeGCvR_h6mL_kj8x4IAXw>
-    <xmx:smPAYMsuLT6FX30WXFHJGisGOJrMF1H-fKl0qvV4ClzciKwveP2ojA>
-    <xmx:s2PAYNkJOQh8NQcZLD581QUbS8ySKQnEIBzBDgxFpR-aI-HVk6xKnw>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 3D808AC0064; Wed,  9 Jun 2021 02:46:10 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-519-g27a961944e-fm-20210531.001-g27a96194
-Mime-Version: 1.0
-Message-Id: <1a4dc5a6-8035-4879-ba9d-b6d6afd48196@www.fastmail.com>
-In-Reply-To: <20210609041227.GB14839@aspeedtech.com>
-References: <20210608102547.4880-1-steven_lee@aspeedtech.com>
- <20210608102547.4880-7-steven_lee@aspeedtech.com>
- <6f87ccf4-9b8f-4c67-84a1-e83a2ee5103b@www.fastmail.com>
- <20210609041227.GB14839@aspeedtech.com>
-Date:   Wed, 09 Jun 2021 16:15:50 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Steven Lee" <steven_lee@aspeedtech.com>
-Cc:     "Linus Walleij" <linus.walleij@linaro.org>,
-        "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        id S233866AbhFIGyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 02:54:41 -0400
+Received: from mail-vs1-f48.google.com ([209.85.217.48]:41733 "EHLO
+        mail-vs1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233737AbhFIGyl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 02:54:41 -0400
+Received: by mail-vs1-f48.google.com with SMTP id c1so5879517vsh.8;
+        Tue, 08 Jun 2021 23:52:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TSoKY793QQP8Lg3KOL1Eq+qF4VFHd0Ap3iIktbWFwKI=;
+        b=KSVubdfoeAuqOuX9m1upjOWdRs5t7BQLckzSDREAF52bbf+XY+1MhrVOdGB+zLX2F4
+         Q2VciOI8NLZ3i02+nLZ3Vn5OqDcbw6NMfQ325qRHZcqzAADV1/yRZqBjY7coSBvpcZCA
+         X9wvq2D4Lt5dpc1a2YgS5Q3ELL32/CtmAFj2gIyxH/ZULg30y3R+tDHm+hhOvK5HoIiL
+         /GJDPH/A1NZ45uq8Z4kq9GrRc8MNy0B+ewC2nJjv/AWdjuM7ZBeuNV4YAi5WfiZXf/GX
+         gc+oBWvOlmcKMpfJvx87uNmGl2TsEul8JjIRsZNsQuecXwZc79oyawYEB0ssmqn4v05B
+         WjZw==
+X-Gm-Message-State: AOAM530REf3fVdLLE1/0voOCgthYnteHP4zISfoa26/O4jRpxbRkFGwO
+        FKQl1vjsk7iIHxoo0oxF+LcdbnWnM3QNnLvkfq8ZUA/SNgt6Cg==
+X-Google-Smtp-Source: ABdhPJygZr/3LQ/D9FOyetVDM2EZnw/62aS6ccgNDCfA/ODtwcs1rC1hedtwimbImN81NOV5Bk77rEP4L35DofRZdSM=
+X-Received: by 2002:a05:6102:c4c:: with SMTP id y12mr3828568vss.18.1623221553803;
+ Tue, 08 Jun 2021 23:52:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210603221758.10305-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210603221758.10305-12-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210603221758.10305-12-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 9 Jun 2021 08:52:22 +0200
+Message-ID: <CAMuHMdW8Nn2q06J0F+zFCFFSGz5TEGus46gc++oKAb8-gKi5fQ@mail.gmail.com>
+Subject: Re: [PATCH v2 11/12] arm64: dts: renesas: Add initial DTSI for
+ RZ/G2{L,LC} SoC's
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        "open list" <linux-kernel@vger.kernel.org>,
-        "Hongwei Zhang" <Hongweiz@ami.com>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Billy Tsai" <billy_tsai@aspeedtech.com>
-Subject: =?UTF-8?Q?Re:_[PATCH_v5_06/10]_gpio:_gpio-aspeed-sgpio:_Add_AST2400_and_?=
- =?UTF-8?Q?AST2500_platform_data.?=
-Content-Type: text/plain
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Prabhakar,
 
+On Fri, Jun 4, 2021 at 12:18 AM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add initial DTSI for RZ/G2{L,LC} SoC's.
+>
+> File structure:
+> r9a07g044.dtsi  => RZ/G2L family SoC common parts
+> r9a07g044l1.dtsi => Specific to RZ/G2L (R9A07G044L single cortex A55) SoC
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-On Wed, 9 Jun 2021, at 13:42, Steven Lee wrote:
-> The 06/09/2021 08:55, Andrew Jeffery wrote:
-> > 
-> > 
-> > On Tue, 8 Jun 2021, at 19:55, Steven Lee wrote:
-> > > We use platform data to store GPIO pin mask and the max number of
-> > > available GPIO pins for AST2600.
-> > > Refactor driver to also add the platform data for AST2400/AST2500 and
-> > > remove unused MAX_NR_HW_SGPIO and ASPEED_SGPIO_PINS_MASK macros.
-> > > 
-> > > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-> > > ---
-> > >  drivers/gpio/gpio-aspeed-sgpio.c | 34 +++++++++++---------------------
-> > >  1 file changed, 12 insertions(+), 22 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpio/gpio-aspeed-sgpio.c b/drivers/gpio/gpio-aspeed-sgpio.c
-> > > index ea20a0127748..7d0a4f6fd9d1 100644
-> > > --- a/drivers/gpio/gpio-aspeed-sgpio.c
-> > > +++ b/drivers/gpio/gpio-aspeed-sgpio.c
-> > > @@ -17,21 +17,8 @@
-> > >  #include <linux/spinlock.h>
-> > >  #include <linux/string.h>
-> > >  
-> > > -/*
-> > > - * MAX_NR_HW_GPIO represents the number of actual hardware-supported GPIOs (ie,
-> > > - * slots within the clocked serial GPIO data). Since each HW GPIO is both an
-> > > - * input and an output, we provide MAX_NR_HW_GPIO * 2 lines on our gpiochip
-> > > - * device.
-> > > - *
-> > > - * We use SGPIO_OUTPUT_OFFSET to define the split between the inputs and
-> > > - * outputs; the inputs start at line 0, the outputs start at OUTPUT_OFFSET.
-> > > - */
-> > > -#define MAX_NR_HW_SGPIO			80
-> > > -#define SGPIO_OUTPUT_OFFSET		MAX_NR_HW_SGPIO
-> > > -
-> > >  #define ASPEED_SGPIO_CTRL		0x54
-> > >  
-> > > -#define ASPEED_SGPIO_PINS_MASK		GENMASK(9, 6)
-> > >  #define ASPEED_SGPIO_CLK_DIV_MASK	GENMASK(31, 16)
-> > >  #define ASPEED_SGPIO_ENABLE		BIT(0)
-> > >  #define ASPEED_SGPIO_PINS_SHIFT		6
-> > > @@ -484,6 +471,11 @@ static int aspeed_sgpio_setup_irqs(struct 
-> > > aspeed_sgpio *gpio,
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +static const struct aspeed_sgpio_pdata ast2400_sgpio_pdata = {
-> > > +	.max_ngpios = 80,
-> > > +	.pin_mask = GENMASK(9, 6),
-> > > +};
-> > > +
-> > >  static const struct aspeed_sgpio_pdata ast2600_sgpiom_128_pdata = {
-> > >  	.max_ngpios = 128,
-> > >  	.pin_mask = GENMASK(10, 6),
-> > > @@ -495,8 +487,8 @@ static const struct aspeed_sgpio_pdata 
-> > > ast2600_sgpiom_80_pdata = {
-> > >  };
-> > >  
-> > >  static const struct of_device_id aspeed_sgpio_of_table[] = {
-> > > -	{ .compatible = "aspeed,ast2400-sgpio" },
-> > > -	{ .compatible = "aspeed,ast2500-sgpio" },
-> > > +	{ .compatible = "aspeed,ast2400-sgpio", .data = &ast2400_sgpio_pdata, 
-> > > },
-> > > +	{ .compatible = "aspeed,ast2500-sgpio", .data = &ast2400_sgpio_pdata, 
-> > > },
-> > >  	{ .compatible = "aspeed,ast2600-sgpiom-128", .data = 
-> > > &ast2600_sgpiom_128_pdata, },
-> > >  	{ .compatible = "aspeed,ast2600-sgpiom-80", .data = 
-> > > &ast2600_sgpiom_80_pdata, },
-> > >  	{}
-> > > @@ -521,13 +513,11 @@ static int __init aspeed_sgpio_probe(struct 
-> > > platform_device *pdev)
-> > >  		return PTR_ERR(gpio->base);
-> > >  
-> > >  	pdata = device_get_match_data(&pdev->dev);
-> > > -	if (pdata) {
-> > > -		gpio->max_ngpios = pdata->max_ngpios;
-> > > -		pin_mask = pdata->pin_mask;
-> > > -	} else {
-> > > -		gpio->max_ngpios = MAX_NR_HW_SGPIO;
-> > > -		pin_mask = ASPEED_SGPIO_PINS_MASK;
-> > > -	}
-> > > +	if (!pdata)
-> > > +		return -EINVAL;
-> > > +
-> > > +	gpio->max_ngpios = pdata->max_ngpios;
-> > > +	pin_mask = pdata->pin_mask;
-> > 
-> > Hmm, okay, maybe just re-order the patches so this commit comes before the previous one. That way we don't immediately rip out this condition that we just introduced in the previous patch.
-> > 
-> > I think I suggested squashing it into the previous patch, but with the removal of the comments and macros I think it's worth leaving it separate, just reordered.
-> > 
-> 
-> I was wondering if I can squash patch-05 and patch-06 into one patch
-> as this patch(patch-06) requires macros, structures, and functions that
-> modified in the previous patch(patch-05).
+Thanks for your patch!
 
-Yeah, fair enough. Just squash them.
+> ---
+>  arch/arm64/boot/dts/renesas/r9a07g044.dtsi   | 119 +++++++++++++++++++
+>  arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi |  25 ++++
+>  2 files changed, 144 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+>  create mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi
 
-Cheers,
+Don't you still want an r9a07g044l2.dtsi, for symmetry, and to add the
+"renesas,r9a07g044l2" root compatible value?
 
-Andrew
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
