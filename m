@@ -2,138 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F5013A0DB2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 09:24:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F68F3A0DB9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 09:27:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237166AbhFIH0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 03:26:07 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:55508 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235509AbhFIH0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 03:26:06 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1623223453; h=Content-Transfer-Encoding: MIME-Version:
- Message-Id: Date: Subject: Cc: To: From: Sender;
- bh=axR21LKUolqQmvGD0SPdoJkcTUo2/NXvSNtNP6BRzPE=; b=vLa6u1HwUGMboQ63YNnYpwFIV/3ian3veTpCpriEMMejKSQBrvC2OaKl+h5v2hnunwzhJsIs
- clI7+aliIhzA5oCnfEFQKOW1/53v43AqinRiS6HS1uNQeWVEYFD6u7bZPDmvBspJPdB0qe/7
- c1YBy3Gj6YyiEnI9kO+2z4bLnrk=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 60c06c81f726fa41885319c0 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 09 Jun 2021 07:23:45
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8E5A8C43145; Wed,  9 Jun 2021 07:23:44 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8602FC433D3;
-        Wed,  9 Jun 2021 07:23:38 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8602FC433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH v3] ASoC: qcom: Fix for DMA interrupt clear reg overwriting
-Date:   Wed,  9 Jun 2021 12:53:10 +0530
-Message-Id: <20210609072310.26099-1-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.29.0
+        id S234029AbhFIH3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 03:29:25 -0400
+Received: from mail-vs1-f51.google.com ([209.85.217.51]:38895 "EHLO
+        mail-vs1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230221AbhFIH3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 03:29:24 -0400
+Received: by mail-vs1-f51.google.com with SMTP id x8so12353492vso.5;
+        Wed, 09 Jun 2021 00:27:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nWNpzXGRyCGRE/T+VmaA6oH+l9WqaV/Ah1VoOoi8rDk=;
+        b=OM7/mwsLDWu9Bi3GDZiXBCo90xdVImQGQLQF7dH3HKWKufMpkZFeoEWT/eMRJVvZXB
+         5oPK+cOSaEQ0Uh8sMMZxfwwvWYd/YBX3S0Gs4d5957LaRxItNMA7pjeYvXTTSkcRJqzN
+         lAysbIWNU1BlHZK71RnRk26+q4It0QDZyE2hVjw/3Qw7vPDqIoP1QCJLUItpQmusvXJD
+         vzZN8+Nna0CrRWgjoszJdOewH8hJxPp+yEGjIodxT/GDKWqE4F0XS73gWi0NRr3PPxvz
+         r/alPK5Tx2JzMFUgq4+KgFDsyUanT+Jy9Ek2T+SNv5Oo3uOSgxaiE+1hq2aklkxdgKMr
+         4ddg==
+X-Gm-Message-State: AOAM5313Gt902dbZM/lQ43C0gomUJ6HUZKLH9RfZK2iIP5b1MmnDGyFL
+        9Nm9vsAUL05dpp54cqgVRwkPJBic0XH2dr/16E6nvzNi526MBw==
+X-Google-Smtp-Source: ABdhPJxRBcZfyGdvJxRstRs7Opkp9as+0vaZOjoxAlvkppxwAy0BA5T7tOpNPuM9ZrrqvGbj2LS3FrBdiwdN+Px/dek=
+X-Received: by 2002:a05:6102:2011:: with SMTP id p17mr3979601vsr.40.1623223636944;
+ Wed, 09 Jun 2021 00:27:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210604180933.16754-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210604180933.16754-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210604180933.16754-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 9 Jun 2021 09:27:05 +0200
+Message-ID: <CAMuHMdVkKhD3kU-DtPzrGfNf4Sn5Ht09Z1N0scwx1XJoG-F6Mg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] soc: renesas: Add support to read LSI DEVID register
+ of RZ/G2{L,LC} SoC's
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DMA interrupt clear register overwritten during
-simultaneous playback and capture in lpass platform
-interrupt handler. It's causing playback or capture stuck
-in similtaneous plaback on speaker and capture on dmic test.
-Update appropriate reg fields of corresponding channel instead
-of entire register write.
+Hi Prabhakar,
 
-Fixes: commit c5c8635a04711 ("ASoC: qcom: Add LPASS platform driver")
+On Fri, Jun 4, 2021 at 8:09 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add support for reading the LSI DEVID register which is present in
+> SYSC block of RZ/G2{L,LC} SoC's.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
-Changes since v2:
-	-- Removed redundant variables.
-Changes since v1:
-	-- Subject lines changed.
- sound/soc/qcom/lpass-platform.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Thanks for your patch!
 
-diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
-index 0df9481ea4c6..f9df76d37858 100644
---- a/sound/soc/qcom/lpass-platform.c
-+++ b/sound/soc/qcom/lpass-platform.c
-@@ -526,7 +526,7 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
- 			return -EINVAL;
- 		}
- 
--		ret = regmap_write(map, reg_irqclr, val_irqclr);
-+		ret = regmap_update_bits(map, reg_irqclr, val_irqclr, val_irqclr);
- 		if (ret) {
- 			dev_err(soc_runtime->dev, "error writing to irqclear reg: %d\n", ret);
- 			return ret;
-@@ -650,10 +650,11 @@ static irqreturn_t lpass_dma_interrupt_handler(
- 	struct lpass_variant *v = drvdata->variant;
- 	irqreturn_t ret = IRQ_NONE;
- 	int rv;
--	unsigned int reg = 0, val = 0;
-+	unsigned int reg, val, mask;
- 	struct regmap *map;
- 	unsigned int dai_id = cpu_dai->driver->id;
- 
-+	mask = LPAIF_IRQ_ALL(chan);
- 	switch (dai_id) {
- 	case LPASS_DP_RX:
- 		map = drvdata->hdmiif_map;
-@@ -676,8 +677,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
- 	return -EINVAL;
- 	}
- 	if (interrupts & LPAIF_IRQ_PER(chan)) {
--
--		rv = regmap_write(map, reg, LPAIF_IRQ_PER(chan) | val);
-+		rv = regmap_update_bits(map, reg, mask, (LPAIF_IRQ_PER(chan) | val));
- 		if (rv) {
- 			dev_err(soc_runtime->dev,
- 				"error writing to irqclear reg: %d\n", rv);
-@@ -688,7 +688,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
- 	}
- 
- 	if (interrupts & LPAIF_IRQ_XRUN(chan)) {
--		rv = regmap_write(map, reg, LPAIF_IRQ_XRUN(chan) | val);
-+		rv = regmap_update_bits(map, reg, mask, (LPAIF_IRQ_XRUN(chan) | val));
- 		if (rv) {
- 			dev_err(soc_runtime->dev,
- 				"error writing to irqclear reg: %d\n", rv);
-@@ -700,7 +700,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
- 	}
- 
- 	if (interrupts & LPAIF_IRQ_ERR(chan)) {
--		rv = regmap_write(map, reg, LPAIF_IRQ_ERR(chan) | val);
-+		rv = regmap_update_bits(map, reg, mask, (LPAIF_IRQ_ERR(chan) | val));
- 		if (rv) {
- 			dev_err(soc_runtime->dev,
- 				"error writing to irqclear reg: %d\n", rv);
+> --- a/drivers/soc/renesas/renesas-soc.c
+> +++ b/drivers/soc/renesas/renesas-soc.c
+> @@ -56,6 +56,11 @@ static const struct renesas_family fam_rzg2 __initconst __maybe_unused = {
+>         .reg    = 0xfff00044,           /* PRR (Product Register) */
+>  };
+>
+> +static const struct renesas_family fam_rzg2l __initconst __maybe_unused = {
+> +       .name   = "RZ/G2L",
+> +       .reg    = 0x11020a04,
+
+Please don't add hardcoded register addresses for new SoCs (i.e. drop
+".reg").  The "renesas,r9a07g044-sysc" is always present.
+And if it were missing, the hardcoded fallback would lead into the
+classic CCCR/PRR scheme, which is not correct for RZ/G2L...
+
+> @@ -348,6 +361,25 @@ static int __init renesas_soc_init(void)
+>                 goto done;
+>         }
+>
+> +       np = of_find_compatible_node(NULL, NULL, "renesas,r9a07g044-sysc");
+> +       if (np) {
+> +               of_node_put(np);
+> +               chipid = ioremap(family->reg, 4);
+
+Just use of_iomap(np, 0)...
+
+> +
+> +               if (chipid) {
+> +                       product = readl(chipid);
+
+... and add the DEVID offset within the SYSC block here.
+
+> +                       iounmap(chipid);
+> +
+> +                       if (soc->id && (product & 0xfffffff) != soc->id) {
+> +                               pr_warn("SoC mismatch (product = 0x%x)\n",
+> +                                       product);
+> +                               return -ENODEV;
+> +                       }
+> +               }
+> +
+> +               goto done;
+> +       }
+> +
+>         /* Try PRR first, then hardcoded fallback */
+>         np = of_find_compatible_node(NULL, NULL, "renesas,prr");
+>         if (np) {
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
