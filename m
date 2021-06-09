@@ -2,108 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7A913A15CF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:41:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83E9B3A15D2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:42:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230507AbhFINnR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 09:43:17 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59740 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230297AbhFINnR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:43:17 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159DfD19034758;
-        Wed, 9 Jun 2021 08:41:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623246073;
-        bh=+auUiyb0I87uGB2Y002e34VTCveCPZYoAbJKlHKA53s=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Mibau5f5YrZ/KBZWbKX5BOq6WA465yzLDtV8My7CYyl7QStBoB9O7dOVA1oQLQLR/
-         TkdEDB8DmF2XalQDLa+Mrbet8zA1gfTVhtIMLItmrV5Nid4hqfD4sB4jJjtuLq605+
-         fz6KGAtyfvRkB/hRevHpApmgMW3hBKWq3lYwKB14=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159DfD0J083990
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Jun 2021 08:41:13 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
- 2021 08:41:13 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 9 Jun 2021 08:41:13 -0500
-Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159Df8HR012856;
-        Wed, 9 Jun 2021 08:41:09 -0500
-Subject: Re: [PATCH V2 2/2] arm64: dts: ti: Add support for J721E EAIK
-To:     Sinthu Raja <sinthu.raja@mistralsolutions.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Amarnath MB <amarnath.mb@ti.com>,
-        Sinthu Raja <sinthu.raja@ti.com>
-References: <20210607093314.23909-1-sinthu.raja@ti.com>
- <20210607093314.23909-3-sinthu.raja@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <aace7e34-3f58-86f9-9ec3-f7782eac2c2c@ti.com>
-Date:   Wed, 9 Jun 2021 19:11:08 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S232031AbhFINn4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Jun 2021 09:43:56 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:40901 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232345AbhFINn4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:43:56 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id DBDBB1BF215;
+        Wed,  9 Jun 2021 13:41:55 +0000 (UTC)
+Date:   Wed, 9 Jun 2021 15:41:54 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Michal Simek <monstr@monstr.eu>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>,
+        Richard Weinberger <richard@nod.at>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>
+Subject: Re: [PATCH v22 15/18] MAINTAINERS: Add PL353 SMC entry
+Message-ID: <20210609154154.54aa5f06@xps13>
+In-Reply-To: <f04b06fc-72f9-8f90-343d-e4826a3bf4d7@canonical.com>
+References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
+        <20210609080112.1753221-16-miquel.raynal@bootlin.com>
+        <f04b06fc-72f9-8f90-343d-e4826a3bf4d7@canonical.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210607093314.23909-3-sinthu.raja@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Krzysztof,
 
-On 6/7/21 3:03 PM, Sinthu Raja wrote:
-> +
-> +&ospi0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_fss0_ospi0_pins_default>;
-> +
-> +	flash@0{
-> +		compatible = "jedec,spi-nor";
-> +		reg = <0x0>;
-> +		spi-tx-bus-width = <8>;
-> +		spi-rx-bus-width = <8>;
-> +		spi-max-frequency = <25000000>;
-> +		cdns,tshsl-ns = <60>;
-> +		cdns,tsd2d-ns = <60>;
-> +		cdns,tchsh-ns = <60>;
-> +		cdns,tslch-ns = <60>;
-> +		cdns,read-delay = <4>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
+Jun 2021 15:23:11 +0200:
 
-> +		partition@3fc0000 {
-> +			label = "ospi.phypattern";
-> +			reg = <0x3fc0000 0x40000>;
-> +			u-boot,dm-spl;
-> +		};
+> On 09/06/2021 10:01, Miquel Raynal wrote:
+> > Add Naga from Xilinx and myself responsible of this driver.
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  MAINTAINERS | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >   
+> 
+> Memory controller bits look good to me, except few things in bindings. I
+> can take them up to this patch, for which I would need also Ack from
+> Naga Sureshkumar Relli confirming he will co-maintain this code.
 
-OSPI PHY calibration support is not yet final in mainline. Please drop
-partition@3fc0000
+Sure. I would also expect Rob to Ack the yaml conversion possibly.
 
-Also, please drop u-boot,dm-spl here and elsewhere. This is U-Boot
-specific property.
+I am waiting for your feedback on a couple of questions and then I will
+respin the series.
 
-> +	};
-> +};
-> +
-> +&ospi1 {
-> +	/* Unused */
-> +	status = "disabled";
-> +};
-> +
+> I assume the NAND driver depends on this, so I can prepare a stable tag
+> with the memory controller part, if needed.
 
-Regards
-Vignesh
+Absolutely, that would be great.
+
+Thanks,
+Miquèl
