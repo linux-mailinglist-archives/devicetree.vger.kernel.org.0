@@ -2,95 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA7F43A208A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 01:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84EE13A2113
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 01:59:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbhFIXM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 19:12:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41230 "EHLO
+        id S229753AbhFJABI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 20:01:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbhFIXM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 19:12:27 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 562B4C061574;
-        Wed,  9 Jun 2021 16:10:20 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id t4-20020a1c77040000b029019d22d84ebdso5315796wmi.3;
-        Wed, 09 Jun 2021 16:10:20 -0700 (PDT)
+        with ESMTP id S229507AbhFJABH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 20:01:07 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73CEC061574;
+        Wed,  9 Jun 2021 16:59:04 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id l1so21097284pgm.1;
+        Wed, 09 Jun 2021 16:59:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=PfozX53mqIuTOWhokMnsagdrlUUXn9Pvjxrq3cTYwNo=;
-        b=HpzZu3FRw41etxBMDpD3F0ip0twtq1OU43K362uqWo1Hx68Az/GlYVQUNCjRDN/TRd
-         lsIxjBsCHy2u6y4QdDo/4FElf9VIwc7la2HD4do5pF9pxJieCSc+GUK2bOsSnLn5JJs+
-         PVcToGcwGpfZJ2KG1Vx8vSYhSe00T7mGFX1qo46rbJFwQt01hWgQRCccBENKKQ1HOzck
-         2NwJ8BiK/pF/g8YM4is7q9IJnB2xJ3p3mSA4UrEREgnvgHkT4wvn5nKEA4VknXGy1DHU
-         PxOpNVnyKjKooble35qu/jMgPeMa7rIZbmp3piriO6vZi832Yzlow5J+PljM1ljdzZeR
-         ex8w==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=sZzSiPNuS6HzP3W3kJeux2YhF8hkdCu7Hs+HpWnk32I=;
+        b=g+mnOJ9CPb2aZZkhrxZSjQEA3l0xsT28NQFB8tWfdHx+kD1J02obbOj4obmpXt1Ru0
+         dssAnA5M4elwWQW7f0NTx2UP273vVpzNCCRZj80dHfdkUumjBuKwmAhFyPMk9M1y++N3
+         e/cDpxK7XCgTerPLo3tVhrsZR0biCzSYfQZjz/Tg9GurHsOdhkUhpkXG4dv09Q478gJk
+         FxAcCXTP3Y0ZNqnxYoaAHmChIciPilU753kDk0dvklM8xp0FydoO/Z2SvUGulTK3ZMZz
+         BtcHPLj5FlienrXMZmOJJtoANDOjxuu1FN5VGKv1myOQNTfl8VA/5A224xY02mbXc2N+
+         Fx0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PfozX53mqIuTOWhokMnsagdrlUUXn9Pvjxrq3cTYwNo=;
-        b=PK04DJKtl+fLQP7UgqitcTfwdZdh82eJE5HhNCx/AJtNlZow6sN0SY4ae46iRCcE0q
-         yVbATZO4K2alwoOlTmkX+6W6MtOBjYMzhso2Ssn1LlV3gFgOCPmhPZhbRvnXGBbJiXNE
-         +6TZPjb6JmsS85LbS4SIxEdU4XmGk/Au7f5pMpgtIy3ohDv87yLsOpXMXGTaN0NSvm7s
-         MqGGBmFjhlXEZImrbfC16wUURWYYoO6jo5rnu/7L3dicgyjh9NH7mq9eFu5V7HzTvTDY
-         w3wLE2y+hHQ2Ef4Zr1IiQitmVknkd7DPlbAt/Xx0A5it9qt9kZsjM7B4726KpCn7bUwW
-         FQIA==
-X-Gm-Message-State: AOAM531tYyTgsN8BZpypDMG1MeIdBSbppQvpya9kx0/Y0lkmm5Vi7W+l
-        BltjP3JJ/P19UO5kYNywY3BE+UUt4Tc=
-X-Google-Smtp-Source: ABdhPJyjoIkw0I76bE7J5Ty+8KMNGSbrvux+nanyZyhIJAx8BRYOGTkTUfdMq84b41WCj5alfyDVxg==
-X-Received: by 2002:a7b:c4da:: with SMTP id g26mr12286319wmk.64.1623280218702;
-        Wed, 09 Jun 2021 16:10:18 -0700 (PDT)
-Received: from cluster5 ([80.76.206.81])
-        by smtp.gmail.com with ESMTPSA id q4sm2830147wma.32.2021.06.09.16.10.17
-        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
-        Wed, 09 Jun 2021 16:10:18 -0700 (PDT)
-From:   Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthew Hagan <mnhagan88@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH RESEND 2/2] dt-bindings: net: stmmac: add ahb reset to example
-Date:   Thu, 10 Jun 2021 00:09:45 +0100
-Message-Id: <20210609230946.1294326-3-mnhagan88@gmail.com>
-X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20210609230946.1294326-1-mnhagan88@gmail.com>
-References: <20210609230946.1294326-1-mnhagan88@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=sZzSiPNuS6HzP3W3kJeux2YhF8hkdCu7Hs+HpWnk32I=;
+        b=Qvt0PN20Ws6st6SCVuAupYwXrZBLJ/vOa/NaSdrRbkNRjdoTW7iscMwloXaNasVm19
+         GmpEmgcjyNAvPIOaGsKezhR9T3HvsjX3ZlDMBfmccO9wDhNosW/Yx2OFrtZoRKGW5JsS
+         EYVjg8lg2f52euWDux/Dm3on70J+uslrev25prlplWI3Z/Dqu5iCFLRw8eKGRnZwzwi7
+         RJpnfsoybZPUIyM20ebFQ4V7KwmtYY9dq67uKaRGBdA0MiLxcw8VyU84ugCbaXjUb9oV
+         pV5LFNNhWbQ1v7jBt2RUrZcpJfb/cVzxDUDIwzt4pVHxhc/tIZkyvn0G0xY4yQzFACmq
+         ED+Q==
+X-Gm-Message-State: AOAM532oZlM2kiJn1wpyxpjCqK/Z/5I2h4JXZUvPivkA4Xmj2gi8Y7RP
+        US7yG/zL+bveM35EYsaJ7/0=
+X-Google-Smtp-Source: ABdhPJwgXo7n2Yno/auZncv+or4D/adXE63ZaZroShaZjM5hYoDhPmOuGVGxmf0W81DyS+VuzrBqAQ==
+X-Received: by 2002:a65:6118:: with SMTP id z24mr2130369pgu.325.1623283144265;
+        Wed, 09 Jun 2021 16:59:04 -0700 (PDT)
+Received: from [192.168.1.67] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
+        by smtp.gmail.com with ESMTPSA id r11sm742619pgl.34.2021.06.09.16.59.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jun 2021 16:59:03 -0700 (PDT)
+Subject: Re: [PATCH 2/2] mmc: sdhci-iproc: Add support for the legacy sdhci
+ controller on the BCM7211
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Al Cooper <alcooperx@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+        Scott Branden <sbranden@broadcom.com>
+References: <20210602192758.38735-1-alcooperx@gmail.com>
+ <20210602192758.38735-2-alcooperx@gmail.com>
+ <CAPDyKFrynST66yA_T3iroiJsfmNuBOEiiBnb=vNoyP6QpvZ7aQ@mail.gmail.com>
+ <fe956941-bb39-413e-f051-d9f353f64eda@gmail.com>
+ <CAPDyKFpEtvjS1mWC68gRBWD64dq2M1LO84UWE5uDLTzbGz1g8Q@mail.gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <6acd480a-8928-89bb-0f40-d278294973a1@gmail.com>
+Date:   Wed, 9 Jun 2021 16:59:00 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <CAPDyKFpEtvjS1mWC68gRBWD64dq2M1LO84UWE5uDLTzbGz1g8Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add ahb reset to the reset properties within the example GMAC node.
 
-Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
----
- Documentation/devicetree/bindings/net/ipq806x-dwmac.txt | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/ipq806x-dwmac.txt b/Documentation/devicetree/bindings/net/ipq806x-dwmac.txt
-index 6d7ab4e524d4..ef5fd9f0b156 100644
---- a/Documentation/devicetree/bindings/net/ipq806x-dwmac.txt
-+++ b/Documentation/devicetree/bindings/net/ipq806x-dwmac.txt
-@@ -30,6 +30,7 @@ Example:
- 		clocks = <&gcc GMAC_CORE1_CLK>;
- 		clock-names = "stmmaceth";
- 
--		resets = <&gcc GMAC_CORE1_RESET>;
--		reset-names = "stmmaceth";
-+		resets = <&gcc GMAC_CORE1_RESET>,
-+			 <&gcc GMAC_AHB_RESET>;
-+		reset-names = "stmmaceth", "ahb";
- 	};
+On 6/9/2021 2:22 AM, Ulf Hansson wrote:
+> On Wed, 9 Jun 2021 at 05:07, Florian Fainelli <f.fainelli@gmail.com> wrote:
+>>
+>>
+>>
+>> On 6/8/2021 5:40 AM, Ulf Hansson wrote:
+>>> On Wed, 2 Jun 2021 at 21:28, Al Cooper <alcooperx@gmail.com> wrote:
+>>>>
+>>>> Add support for the legacy Arasan sdhci controller on the BCM7211 and
+>>>> related SoC's. This includes adding a .shutdown callback to increase
+>>>> the power savings during S5.
+>>>
+>>> Please split this into two separate changes.
+>>>
+>>> May I also ask about the ->shutdown() callback and in relation to S5.
+>>> What makes the ->shutdown callback only being invoked for S5?
+>>
+>> It is not only called for S5 (entered via poweroff on a prompt) but also
+>> during kexec or reboot. The poweroff path is via:
+>>
+>> kernel_power_off() -> kernel_shutdown_prepare() -> device_shutdown() ->
+>> .shutdown()
+>>
+>> For kexec or reboot we do not really care about power savings since we
+>> are about to load a new image anyway, however for S5/poweroff we do care
+>> about quiescing the eMMC controller in a way that its clocks and the
+>> eMMC device can be put into low power mode since we will stay in that
+>> mode for seconds/hours/days until someone presses a button on their
+>> remote (or other wake-up sources).
+> 
+> Hmm, I am not sure I understand correctly. At shutdown we don't care
+> about wake-up sources from the kernel point of view, instead we treat
+> everything as if it will be powered off.
+
+The same .shutdown() path is used whether you kexec, reboot or poweroff,
+but for poweroff we do care about allowing specific wake-up sources
+configured as such to wake-up the system at a later time, like GPIOs,
+RTC, etc.
+
+> 
+> We put devices into low power state at system suspend and potentially
+> also during some of the hibernation phases.
+> 
+> Graceful shutdown of the eMMC is also managed by the mmc core.
+
+AFAICT that calls mmc_blk_shutdown() but that is pretty much it, the
+SDHCI platform_driver still needs to do something in order to conserve
+power including disabling host->clk, otherwise we would not have done
+that for sdhci-brcmstb.c.
 -- 
-2.26.3
-
+Florian
