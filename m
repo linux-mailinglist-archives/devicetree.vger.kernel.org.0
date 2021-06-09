@@ -2,87 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64AA43A169E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:06:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10EAB3A16A7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:09:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237085AbhFIOIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 10:08:19 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:42832 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233803AbhFIOIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:08:18 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159E6KRi050340;
-        Wed, 9 Jun 2021 09:06:20 -0500
+        id S233153AbhFIOLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 10:11:11 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33332 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232474AbhFIOLL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:11:11 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159E9COZ013195;
+        Wed, 9 Jun 2021 09:09:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623247580;
-        bh=yb8Sxqxy99dpc2ubYDYTp0LMBNhTC8C2NS2ZuUFEc9o=;
-        h=From:To:CC:Subject:Date;
-        b=JD4dmsDKqe3zYJIzbkmZJrDT8s1p7HAYe1fSSWhtY+e2DRctHyVEbS7k57xIAj0wY
-         6YhVg2IKrMSdBf+ktV5F1XKhUZTRqX6mgo8oDn9QQDBHnLg0uqaF+yVA80P76rSVTL
-         A5pKNvzTtLa4E4EbPuWwbHPNtyjY6txvnHHpORnA=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159E6KWp049606
+        s=ti-com-17Q1; t=1623247752;
+        bh=+hUmNy6lh00j1G/dAJ1wjYIi58XeS/+ysrAXq6S55UU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=fz9VhToeahDH2NuSCmGHwZb3/eD5QPqKEoIn5iV6xjl0GssQdBgCloJCcuUwbnpK6
+         BKawYpJ/NO63HeqWQ/0qRVR6BE4HdZpXa5aVsVCbP5em0Mtia9ZqNf5RBZiR96K1/H
+         2vEyXug+hASA2rodz3TPo2OspIaNc6FoBEaXxCoA=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159E9CiV055770
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Jun 2021 09:06:20 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 9 Jun 2021 09:09:12 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
- 2021 09:06:20 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 09:09:11 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 9 Jun 2021 09:06:20 -0500
-Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159E6H2d067032;
-        Wed, 9 Jun 2021 09:06:18 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Nishanth Menon <nm@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH] arm64: dts: ti: k3-am64-main: Add SYSFW reserved ranges in OCRAM
-Date:   Wed, 9 Jun 2021 19:36:04 +0530
-Message-ID: <20210609140604.9490-1-vigneshr@ti.com>
-X-Mailer: git-send-email 2.31.1
+ Frontend Transport; Wed, 9 Jun 2021 09:09:11 -0500
+Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159E96lQ073591;
+        Wed, 9 Jun 2021 09:09:08 -0500
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64-main: Update the location of
+ ATF in SRAM and increase its max size
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210607133806.18158-1-a-govindraju@ti.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <ad34982c-0067-7b8b-f7e6-775e8cffe21c@ti.com>
+Date:   Wed, 9 Jun 2021 19:39:06 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <20210607133806.18158-1-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Last 256K of OCRAM (256K@0x701c0000) is reserved for SYSFW usage. Hence
-add an entry in DT so that its not used for generic pool memory
-allocation.
 
-Without this certain drivers using SRAM as generic shared memory pool
-may end up being allocated memory from this range and will lead to boot
-time crash when the reserved range is accessed (due to firewall
-violation).
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+On 07/06/21 7:08 pm, Aswath Govindraju wrote:
+> Due to a limitation for USB DFU boot mode, SPL load address has to be less
+> than  or equal to 0x70001000. So, load address of SPL and ATF have been
+> moved to 0x70000000 and 0x701a0000 respectively.
+> 
+> Also, the maximum size of ATF has been increased to 0x1c000 [1].
+> 
+> Therefore, update ATF's location and maximum size accordingly in the device
+> tree file.
+> 
+> [1] - https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/?id=2fb5312f61a7de8b7a70e1639199c4f14a10b6f9
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index f1c42ef05e52..77b88e536534 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -16,6 +16,10 @@ oc_sram: sram@70000000 {
- 		atf-sram@0 {
- 			reg = <0x0 0x1a000>;
- 		};
-+
-+		dmsc-sram@1c0000 {
-+			reg = <0x1c0000 0x40000>;
-+		};
- 	};
- 
- 	gic500: interrupt-controller@1800000 {
--- 
-2.31.1
+Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
 
+I have already applied the corresponding U-Boot change into for-next branch.
+
+Thanks and regards,
+Lokesh
