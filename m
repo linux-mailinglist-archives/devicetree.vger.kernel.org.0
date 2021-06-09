@@ -2,86 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 777703A1DCA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 21:36:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCA513A1E15
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 22:27:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229504AbhFITig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 15:38:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40242 "EHLO mail.kernel.org"
+        id S229578AbhFIU2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 16:28:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59380 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229472AbhFITif (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Jun 2021 15:38:35 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B3AE76139A;
-        Wed,  9 Jun 2021 19:36:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623267400;
-        bh=X5BBnmOIxZn8P1yRC4oksYkdkEDawoP4AuyY71hEDd4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WXGx5uuAJOpUBhJlE/ivrDiVSqhgqT+IwVW1K8dsBY9BegGDZz+SZGy3BD5+BGSYq
-         vJstnn71bT0oVWdNBiiS9bXKuRGHYzhG4z4MLL3BoGiXXAtdLueBa3THeuP7XR8Enr
-         Dk+r5+ykHjNyEvIigxkGg+zdu0owAlA5E+lJ7UQVsxxbIjo7M7U7iUTLW940dtxSsb
-         MbOsTc9BSNm5GeIwN1kMZW8N1YEcoKHSou85jeNja1AKprPW2vV5UsXSCne77l/NF7
-         YZ3ysr4NldFp66MIv8PJpjfenALcaX4SmkLvrDW2s74GQsetbqfoT9LQmqDzc6mGFz
-         vPUVjo+R7W6Ow==
-Received: by mail-ed1-f44.google.com with SMTP id dj8so29872488edb.6;
-        Wed, 09 Jun 2021 12:36:40 -0700 (PDT)
-X-Gm-Message-State: AOAM531m2hyFb2Q4BHUbJUc4WheLD8fBy6DIXvBHnY/EW4BsRp/7T3CA
-        oaaP9m8Ucv3FlsbhfhoyRzqV7AQpCFbNvmztFg==
-X-Google-Smtp-Source: ABdhPJzgNI2+5vEERakKrzf95MkI2PUaocE5cKoGnU8i9q8tWEHPlwI5flHI9jk/IHPLd/GIYm3Kvs8mL1aNefrwNnA=
-X-Received: by 2002:a05:6402:31eb:: with SMTP id dy11mr976983edb.165.1623267399325;
- Wed, 09 Jun 2021 12:36:39 -0700 (PDT)
+        id S229507AbhFIU2y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Jun 2021 16:28:54 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D174661278;
+        Wed,  9 Jun 2021 20:26:57 +0000 (UTC)
+Date:   Wed, 9 Jun 2021 21:28:50 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     peda@axentia.se, lars@metafoo.de, pmeerw@pmeerw.net,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2 3/8] iio: inkern: error out on unsupported offset
+ type
+Message-ID: <20210609212850.008d7f84@jic23-huawei>
+In-Reply-To: <20210607144718.1724413-4-liambeguin@gmail.com>
+References: <20210607144718.1724413-1-liambeguin@gmail.com>
+        <20210607144718.1724413-4-liambeguin@gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
- <20210609080112.1753221-18-miquel.raynal@bootlin.com> <1623255403.668043.3763305.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1623255403.668043.3763305.nullmailer@robh.at.kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 9 Jun 2021 14:36:28 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJT6Wks=ChNis06fhYqpKfxoApr6g1u9cAZLOnHevLnQw@mail.gmail.com>
-Message-ID: <CAL_JsqJT6Wks=ChNis06fhYqpKfxoApr6g1u9cAZLOnHevLnQw@mail.gmail.com>
-Subject: Re: [PATCH v22 17/18] dt-bindings: mtd: pl353-nand: Describe this
- hardware controller
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Amit Kumar Mahapatra <akumarma@xilinx.com>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Siva Durga Prasad Paladugu <sivadur@xilinx.com>,
-        Richard Weinberger <richard@nod.at>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Srinivas Goud <sgoud@xilinx.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 9, 2021 at 11:16 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, 09 Jun 2021 10:01:11 +0200, Miquel Raynal wrote:
-> > Add a yaml description of this NAND controller which is described as a
-> > subnode of the SMC bus.
-> >
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  .../bindings/mtd/arm,pl353-nand-r2p1.yaml     | 57 +++++++++++++++++++
-> >  1 file changed, 57 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
-> >
->
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.example.dt.yaml:0:0: /example-0/memory-controller@e000e000: failed to match any schema with compatible: ['arm,pl353-smc-r2p1', 'arm,primecell']
+On Mon,  7 Jun 2021 10:47:13 -0400
+Liam Beguin <liambeguin@gmail.com> wrote:
 
-Ignore these errors.
+> From: Liam Beguin <lvb@xiphos.com>
+> 
+> iio_convert_raw_to_processed_unlocked() assumes the offset is an
+> integer.
+> Make that clear to the consumer by returning an error on unsupported
+> offset types without breaking valid implicit truncations.
+> 
+> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> ---
+>  drivers/iio/inkern.c | 34 +++++++++++++++++++++++++++++-----
+>  1 file changed, 29 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/iio/inkern.c b/drivers/iio/inkern.c
+> index b69027690ed5..0b5667f22b1d 100644
+> --- a/drivers/iio/inkern.c
+> +++ b/drivers/iio/inkern.c
+> @@ -578,13 +578,37 @@ EXPORT_SYMBOL_GPL(iio_read_channel_average_raw);
+>  static int iio_convert_raw_to_processed_unlocked(struct iio_channel *chan,
+>  	int raw, int *processed, unsigned int scale)
+>  {
+> -	int scale_type, scale_val, scale_val2, offset;
+> +	int scale_type, scale_val, scale_val2;
+> +	int offset_type, offset_val, offset_val2;
+>  	s64 raw64 = raw;
+> -	int ret;
+>  
+> -	ret = iio_channel_read(chan, &offset, NULL, IIO_CHAN_INFO_OFFSET);
+> -	if (ret >= 0)
+> -		raw64 += offset;
+> +	offset_type = iio_channel_read(chan, &offset_val, &offset_val2,
+> +				       IIO_CHAN_INFO_OFFSET);
+> +	if (offset_type >= 0) {
+> +		switch (offset_type) {
+> +		case IIO_VAL_INT:
+> +			break;
+> +		case IIO_VAL_INT_PLUS_MICRO:
+> +			if (offset_val2 > 1000)
 
-Rob
+What's the logic behind this one?  > 1000000
+would be an interesting corner case, though I'm not sure we've ever
+explicitly disallowed it before.
+
+Why are we at 1000th of that for the check?
+
+> +				return -EINVAL;
+> +			break;
+> +		case IIO_VAL_INT_PLUS_NANO:
+> +			if (offset_val2 > 1000000)
+
+Similar this is a bit odd.
+
+> +				return -EINVAL;
+> +		case IIO_VAL_FRACTIONAL:
+> +			if (offset_val2 != 1)
+> +				return -EINVAL;
+
+We could be more flexible on this, but I don't recall any
+channels using this so far.
+
+> +			break;
+> +		case IIO_VAL_FRACTIONAL_LOG2:
+> +			if (offset_val2)
+> +				return -EINVAL;
+
+Same in this case.
+
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +
+> +		raw64 += offset_val;
+> +	}
+>  
+>  	scale_type = iio_channel_read(chan, &scale_val, &scale_val2,
+>  					IIO_CHAN_INFO_SCALE);
+
