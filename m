@@ -2,84 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10EAB3A16A7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 114A43A16AD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:11:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233153AbhFIOLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 10:11:11 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33332 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232474AbhFIOLL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:11:11 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159E9COZ013195;
-        Wed, 9 Jun 2021 09:09:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623247752;
-        bh=+hUmNy6lh00j1G/dAJ1wjYIi58XeS/+ysrAXq6S55UU=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=fz9VhToeahDH2NuSCmGHwZb3/eD5QPqKEoIn5iV6xjl0GssQdBgCloJCcuUwbnpK6
-         BKawYpJ/NO63HeqWQ/0qRVR6BE4HdZpXa5aVsVCbP5em0Mtia9ZqNf5RBZiR96K1/H
-         2vEyXug+hASA2rodz3TPo2OspIaNc6FoBEaXxCoA=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159E9CiV055770
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Jun 2021 09:09:12 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
- 2021 09:09:11 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 9 Jun 2021 09:09:11 -0500
-Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159E96lQ073591;
-        Wed, 9 Jun 2021 09:09:08 -0500
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64-main: Update the location of
- ATF in SRAM and increase its max size
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210607133806.18158-1-a-govindraju@ti.com>
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-Message-ID: <ad34982c-0067-7b8b-f7e6-775e8cffe21c@ti.com>
-Date:   Wed, 9 Jun 2021 19:39:06 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S233142AbhFIONa convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Jun 2021 10:13:30 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:38495 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236014AbhFION1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:13:27 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id B57C21BF203;
+        Wed,  9 Jun 2021 14:11:29 +0000 (UTC)
+Date:   Wed, 9 Jun 2021 16:11:28 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+Subject: Re: [PATCH v22 09/18] dt-binding: memory: pl353-smc: Convert to
+ yaml
+Message-ID: <20210609161128.16cdf5ec@xps13>
+In-Reply-To: <77db74d3-c44a-6aa3-1b61-f6bed565fa04@canonical.com>
+References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
+        <20210609080112.1753221-10-miquel.raynal@bootlin.com>
+        <e431d594-05cd-27b8-fcbe-11c310b99cd3@canonical.com>
+        <20210609153410.53eadf8e@xps13>
+        <77db74d3-c44a-6aa3-1b61-f6bed565fa04@canonical.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210607133806.18158-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof, Rob,
 
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
+Jun 2021 15:54:19 +0200:
 
-On 07/06/21 7:08 pm, Aswath Govindraju wrote:
-> Due to a limitation for USB DFU boot mode, SPL load address has to be less
-> than  or equal to 0x70001000. So, load address of SPL and ATF have been
-> moved to 0x70000000 and 0x701a0000 respectively.
+> On 09/06/2021 15:34, Miquel Raynal wrote:
+> > Hi Krzysztof,
+> > 
+> > Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Wed, 9
+> > Jun 2021 14:12:40 +0200:
+> >   
+> >> On 09/06/2021 10:01, Miquel Raynal wrote:  
+> >>> Convert this binding file to yaml schema.
+> >>>
+> >>> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> >>> ---
+> >>>  .../memory-controllers/arm,pl353-smc.yaml     | 133 ++++++++++++++++++
+> >>>  .../bindings/memory-controllers/pl353-smc.txt |  45 ------
+> >>>  2 files changed, 133 insertions(+), 45 deletions(-)
+> >>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> >>>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..1de6f87d4986
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+> >>> @@ -0,0 +1,133 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/memory-controllers/arm,pl353-smc.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: ARM PL353 Static Memory Controller (SMC) device-tree bindings
+> >>> +
+> >>> +maintainers:
+> >>> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> >>> +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
+> >>> +
+> >>> +description:
+> >>> +  The PL353 Static Memory Controller is a bus where you can connect two kinds
+> >>> +  of memory interfaces, which are NAND and memory mapped interfaces (such as
+> >>> +  SRAM or NOR).
+> >>> +
+> >>> +# We need a select here so we don't match all nodes with 'arm,primecell'
+> >>> +select:
+> >>> +  properties:
+> >>> +    compatible:
+> >>> +      contains:
+> >>> +        enum:
+> >>> +          - arm,pl353-smc-r2p1    
+> >>
+> >> That's a const... but also I don't get the need for select.  
+> > 
+> > I think this is needed to ensure this binding is not enforced against
+> > arm,primecell compatible nodes which are not featuring the
+> > arm,pl353-smc-r2p1 compatible.  
 > 
-> Also, the maximum size of ATF has been increased to 0x1c000 [1].
-> 
-> Therefore, update ATF's location and maximum size accordingly in the device
-> tree file.
-> 
-> [1] - https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/?id=2fb5312f61a7de8b7a70e1639199c4f14a10b6f9
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> Which seems to be result of unusual compatible match, so once you
+> convert to regular match, this select is not needed.
 
-Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
+I don't think so, I received a hint from Rob some time ago, he told
+me to add this additional select line as in all other arm,primecell
+binding.
 
-I have already applied the corresponding U-Boot change into for-next branch.
+Rob, any additional info regarding this?
 
-Thanks and regards,
-Lokesh
+
+> >>> +
+> >>> +  "#address-cells":
+> >>> +    const: 2
+> >>> +
+> >>> +  "#size-cells":
+> >>> +    const: 1
+> >>> +
+> >>> +  reg:
+> >>> +    items:
+> >>> +      - description: configuration registers for the host and sub-controllers    
+> >>
+> >> Just maxItems. Description is obvious.  
+> > 
+> > I don't think it is that obvious because there are actually 4 areas
+> > and, because of the yaml language, we only describe one in the reg
+> > property while the others and defined in the ranges property, but
+> > that's fine by me, I'll drop the description and stick to a
+> > maxItems entry.  
+> 
+> The explanation of all four areas could have sense, but now it states
+> the obvious - these are configuration registers :)
+
+Well, that's true :)
+
+Thanks,
+Miquèl
