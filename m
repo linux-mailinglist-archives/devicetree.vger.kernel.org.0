@@ -2,96 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 855623A168E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:04:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64AA43A169E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 16:06:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237417AbhFIOGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 10:06:43 -0400
-Received: from lucky1.263xmail.com ([211.157.147.130]:56902 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237408AbhFIOGm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:06:42 -0400
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id D478BD1CBB;
-        Wed,  9 Jun 2021 22:04:21 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P31748T140095042557696S1623247454096580_;
-        Wed, 09 Jun 2021 22:04:21 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <4a89ae5862db913a75d604af23e72152>
-X-RL-SENDER: jon.lin@rock-chips.com
-X-SENDER: jon.lin@rock-chips.com
-X-LOGIN-NAME: jon.lin@rock-chips.com
-X-FST-TO: linux-spi@vger.kernel.org
-X-RCPT-COUNT: 20
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Jon Lin <jon.lin@rock-chips.com>
-To:     linux-spi@vger.kernel.org
-Cc:     jon.lin@rock-chips.com, broonie@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, jbx6244@gmail.com, hjc@rock-chips.com,
-        yifeng.zhao@rock-chips.com, sugar.zhang@rock-chips.com,
-        linux-rockchip@lists.infradead.org, linux-mtd@lists.infradead.org,
-        p.yadav@ti.com, macroalpha82@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, Elaine Zhang <zhangqing@rock-chips.com>
-Subject: [PATCH v7 4/9] clk: rockchip: rk3036: fix up the sclk_sfc parent error
-Date:   Wed,  9 Jun 2021 22:04:07 +0800
-Message-Id: <20210609140412.16058-5-jon.lin@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210609140412.16058-1-jon.lin@rock-chips.com>
-References: <20210609140412.16058-1-jon.lin@rock-chips.com>
+        id S237085AbhFIOIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 10:08:19 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:42832 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233803AbhFIOIS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 10:08:18 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159E6KRi050340;
+        Wed, 9 Jun 2021 09:06:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623247580;
+        bh=yb8Sxqxy99dpc2ubYDYTp0LMBNhTC8C2NS2ZuUFEc9o=;
+        h=From:To:CC:Subject:Date;
+        b=JD4dmsDKqe3zYJIzbkmZJrDT8s1p7HAYe1fSSWhtY+e2DRctHyVEbS7k57xIAj0wY
+         6YhVg2IKrMSdBf+ktV5F1XKhUZTRqX6mgo8oDn9QQDBHnLg0uqaF+yVA80P76rSVTL
+         A5pKNvzTtLa4E4EbPuWwbHPNtyjY6txvnHHpORnA=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159E6KWp049606
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 9 Jun 2021 09:06:20 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
+ 2021 09:06:20 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 9 Jun 2021 09:06:20 -0500
+Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159E6H2d067032;
+        Wed, 9 Jun 2021 09:06:18 -0500
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] arm64: dts: ti: k3-am64-main: Add SYSFW reserved ranges in OCRAM
+Date:   Wed, 9 Jun 2021 19:36:04 +0530
+Message-ID: <20210609140604.9490-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.31.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Choose the correct pll
+Last 256K of OCRAM (256K@0x701c0000) is reserved for SYSFW usage. Hence
+add an entry in DT so that its not used for generic pool memory
+allocation.
 
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+Without this certain drivers using SRAM as generic shared memory pool
+may end up being allocated memory from this range and will lead to boot
+time crash when the reserved range is accessed (due to firewall
+violation).
+
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 ---
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Changes in v7: None
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
-Changes in v1: None
-
- drivers/clk/rockchip/clk-rk3036.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/clk/rockchip/clk-rk3036.c b/drivers/clk/rockchip/clk-rk3036.c
-index 91d56ad45817..1986856d94b2 100644
---- a/drivers/clk/rockchip/clk-rk3036.c
-+++ b/drivers/clk/rockchip/clk-rk3036.c
-@@ -121,6 +121,7 @@ PNAME(mux_pll_src_3plls_p)	= { "apll", "dpll", "gpll" };
- PNAME(mux_timer_p)		= { "xin24m", "pclk_peri_src" };
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+index f1c42ef05e52..77b88e536534 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+@@ -16,6 +16,10 @@ oc_sram: sram@70000000 {
+ 		atf-sram@0 {
+ 			reg = <0x0 0x1a000>;
+ 		};
++
++		dmsc-sram@1c0000 {
++			reg = <0x1c0000 0x40000>;
++		};
+ 	};
  
- PNAME(mux_pll_src_apll_dpll_gpll_usb480m_p)	= { "apll", "dpll", "gpll", "usb480m" };
-+PNAME(mux_pll_src_dmyapll_dpll_gpll_xin24_p)   = { "dummy_apll", "dpll", "gpll", "xin24m" };
- 
- PNAME(mux_mmc_src_p)	= { "apll", "dpll", "gpll", "xin24m" };
- PNAME(mux_i2s_pre_p)	= { "i2s_src", "i2s_frac", "ext_i2s", "xin12m" };
-@@ -340,7 +341,7 @@ static struct rockchip_clk_branch rk3036_clk_branches[] __initdata = {
- 			RK2928_CLKSEL_CON(16), 8, 2, MFLAGS, 10, 5, DFLAGS,
- 			RK2928_CLKGATE_CON(10), 4, GFLAGS),
- 
--	COMPOSITE(SCLK_SFC, "sclk_sfc", mux_pll_src_apll_dpll_gpll_usb480m_p, 0,
-+	COMPOSITE(SCLK_SFC, "sclk_sfc", mux_pll_src_dmyapll_dpll_gpll_xin24_p, 0,
- 			RK2928_CLKSEL_CON(16), 0, 2, MFLAGS, 2, 5, DFLAGS,
- 			RK2928_CLKGATE_CON(10), 5, GFLAGS),
- 
+ 	gic500: interrupt-controller@1800000 {
 -- 
-2.17.1
-
-
+2.31.1
 
