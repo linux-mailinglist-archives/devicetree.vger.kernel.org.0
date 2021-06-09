@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F3593A15FB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 451603A1609
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 15:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235676AbhFINts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 09:49:48 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:53554 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233773AbhFINtr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:49:47 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159DliYZ001608;
-        Wed, 9 Jun 2021 08:47:44 -0500
+        id S234750AbhFINuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 09:50:54 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36682 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236555AbhFINuy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 09:50:54 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159DmrsV041042;
+        Wed, 9 Jun 2021 08:48:53 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623246464;
-        bh=r81EU4YF9chVd2IZTA3TUdq4Zmxh9TGeZjs2q9m+MBs=;
+        s=ti-com-17Q1; t=1623246533;
+        bh=eDuAtLYmqR7daxNV3cens825Hyy16ytC5ebXfF6P7Q0=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=UQqr66EFN8exKq9pMM5lyRHN+Qa1wg9WAKXMXHxtnpkfap6Wt6dat0F3vwTaU+4yZ
-         7x+wk9y2VYqIbZHZ3IBRYrCmtzkMWiKefbJkZuxPMs834EQbB/UA2r3U1R4KUQnkSe
-         YQIF340v3eGKO5/2IH+rDUe08KDcUtHXcnGgTmKs=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159DliEl003702
+        b=cTVlnqNIqReJHpbUGQiKog3Z34uoOWkt0SW4pdM/KRuB09d0XDCh4luoQLfR5vNzZ
+         fuAj40YLo5DhXKx17ASqWwSmar8hgUAOrB9CHlznh7D0Sy/5pH6jahu8mUFXql01Cn
+         /cfNrk/8ZTaEA5uU8o2IisiohvLkc2b0FLxEgw3Y=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159Dmrb0107038
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Jun 2021 08:47:44 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 9 Jun 2021 08:48:53 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 9 Jun
- 2021 08:47:44 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ 2021 08:48:52 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 9 Jun 2021 08:47:44 -0500
+ Frontend Transport; Wed, 9 Jun 2021 08:48:52 -0500
 Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159Dld5r126278;
-        Wed, 9 Jun 2021 08:47:41 -0500
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am642-evm: align
- ti,pindir-d0-out-d1-in property with dt-shema
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159DmnbY009248;
+        Wed, 9 Jun 2021 08:48:50 -0500
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: am65: align ti,pindir-d0-out-d1-in
+ property with dt-shema
 To:     Aswath Govindraju <a-govindraju@ti.com>
 CC:     Lokesh Vutla <lokeshvutla@ti.com>,
         Kishon Vijay Abraham I <kishon@ti.com>,
@@ -47,14 +47,14 @@ CC:     Lokesh Vutla <lokeshvutla@ti.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 References: <20210608051414.14873-1-a-govindraju@ti.com>
- <20210608051414.14873-3-a-govindraju@ti.com>
+ <20210608051414.14873-2-a-govindraju@ti.com>
 From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <d7f97a1e-4870-9837-3cc6-f6788310ec54@ti.com>
-Date:   Wed, 9 Jun 2021 19:17:38 +0530
+Message-ID: <793e8672-d337-21c5-3f75-d12684c678f1@ti.com>
+Date:   Wed, 9 Jun 2021 19:18:48 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210608051414.14873-3-a-govindraju@ti.com>
+In-Reply-To: <20210608051414.14873-2-a-govindraju@ti.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -69,24 +69,44 @@ On 6/8/21 10:44 AM, Aswath Govindraju wrote:
 > ti,pindir-d0-out-d1-in property is expected to be of type boolean.
 > Therefore, fix the property accordingly.
 > 
-> Fixes: 4fb6c04683aa ("arm64: dts: ti: k3-am642-evm: Add support for SPI EEPROM")
+> Fixes: e180f76d0641 ("arm64: dts: ti: Add support for Siemens IOT2050 boards")
+> Fixes: 5da94b50475a ("arm64: dts: ti: k3-am654: Enable main domain McSPI0")
 > Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-am642-evm.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 2 +-
+>  arch/arm64/boot/dts/ti/k3-am654-base-board.dts     | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> index dad0efa961ed..2fd0de905e61 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-> @@ -334,7 +334,7 @@
->  &main_spi0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&main_spi0_pins_default>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> index f4ec9ed52939..23d51b6a9cf2 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+> @@ -575,7 +575,7 @@
+>  
+>  	#address-cells = <1>;
+>  	#size-cells= <0>;
 > -	ti,pindir-d0-out-d1-in = <1>;
 > +	ti,pindir-d0-out-d1-in;
->  	eeprom@0 {
->  		compatible = "microchip,93lc46b";
->  		reg = <0>;
-> 
+>  };
+>  
+>  &tscadc0 {
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> index eddb2ffb93ca..1b947e2c2e74 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> @@ -299,7 +299,7 @@
+>  	pinctrl-0 = <&main_spi0_pins_default>;
+>  	#address-cells = <1>;
+>  	#size-cells= <0>;
+> -	ti,pindir-d0-out-d1-in = <1>;
+> +	ti,pindir-d0-out-d1-in;
+>  
+>  	flash@0{
+>  		compatible = "jedec,spi-nor";
+
+
 Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
+
+
+Regards
+Vignesh
