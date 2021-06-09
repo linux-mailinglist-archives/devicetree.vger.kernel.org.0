@@ -2,105 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8A4C3A107C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:49:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AE483A10A9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 12:49:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234859AbhFIJqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 05:46:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234017AbhFIJqH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 05:46:07 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 088C4C06175F
-        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 02:44:12 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id a11so22859402wrt.13
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 02:44:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=n+lFdIy/Fj8w641ouj5kQ8wz/6ZZG0ZHAWeOT4yzbRc=;
-        b=AT64ZswDoaXLxTV5klTqoMfaholatkhAgnHUHUWahtJmGmuFXvejIFYV2hDEh4Rk3O
-         PDGIZWSNjngAhf2i1GUAhAuRbdZyt4r4L6BOpuInByx9+QeUJVeV0PHMpVrQd7krsSxF
-         /tBikZ50LsePM25jiogN+MPuP137zS1/Bpq+O9862lzK7vprtdrHBr+1FbJaCQYp1zBw
-         xiOZYCS9lSQUuALZaaPZwSyTm392hcZhtCagAm+d01KNzUVdfqo7smulok/Utmwxg2vt
-         DTGcUvy0B+AAEAhMD5XTQvmSSbd/mI0FqHAy2In9nE5SA87kIDLgx8Q2hR5YA3dBRMXw
-         8cAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=n+lFdIy/Fj8w641ouj5kQ8wz/6ZZG0ZHAWeOT4yzbRc=;
-        b=UDuJqPIKjruOBlAi5G0/eVotgWYTFIqPjoITiFWDNPH6ExlaTbJC9UoUuvlk0rf5D0
-         wOUhB6ef6cHwDRxkoMHSmOYSmHBO09WTDxyQDzIBof2zFp935/eZPdn0au4VjOF4YVk6
-         I8nBf0adio4d40VBjUEi8A8wWx9LA8NsDgjgHTrKTCa0rOz/DRvhhKDbGCkQ7rfAgF19
-         nFsoAiuIeRS6XbVvhCfFmXABru4GEnoXw/INLqjCwa14tIvlBQ55SKewrKcf993Mzhez
-         1ZPUcIEWo1JE92asf64tjDpN4NC+SgvtnWJLvm+pxINtivWIV/J7obwAhxz8n5LrH4b3
-         l3uQ==
-X-Gm-Message-State: AOAM530HOFoC2t3ZqZcgDYTJZP/S9pIV0oJoijJI9cIj/rnNLoWQTdSX
-        HLcHA2iDhSROq/uB69wOe9O1qw==
-X-Google-Smtp-Source: ABdhPJwO3THpKtkdcUWrskaIYkB0u8maKDhXBCguE9TgSQU4qzM70G7eqJmGWmGYL8J1rMvvo9H1PA==
-X-Received: by 2002:a5d:67cf:: with SMTP id n15mr27346967wrw.228.1623231850644;
-        Wed, 09 Jun 2021 02:44:10 -0700 (PDT)
-Received: from myrica (adsl-84-226-111-173.adslplus.ch. [84.226.111.173])
-        by smtp.gmail.com with ESMTPSA id m23sm6757801wml.27.2021.06.09.02.44.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Jun 2021 02:44:10 -0700 (PDT)
-Date:   Wed, 9 Jun 2021 11:43:52 +0200
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Will Deacon <will@kernel.org>
-Cc:     joro@8bytes.org, catalin.marinas@arm.com, kernel-team@android.com,
-        robh+dt@kernel.org, linux-acpi@vger.kernel.org,
-        sudeep.holla@arm.com, robin.murphy@arm.com, guohanjun@huawei.com,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        zhangfei.gao@linaro.org, wangzhou1@hisilicon.com,
-        Jonathan.Cameron@huawei.com, lorenzo.pieralisi@arm.com,
-        linux-arm-kernel@lists.infradead.org, eric.auger@redhat.com,
-        rjw@rjwysocki.net, lenb@kernel.org
-Subject: Re: [PATCH v15 0/3] iommu/arm-smmu-v3: Add stall support
-Message-ID: <YMCNWOkJ/xi2Yv1U@myrica>
-References: <20210526161927.24268-1-jean-philippe@linaro.org>
- <162314710744.3707892.6632600736379822229.b4-ty@kernel.org>
+        id S238480AbhFIJ5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 05:57:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42778 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234582AbhFIJ5I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Jun 2021 05:57:08 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8BA3461042;
+        Wed,  9 Jun 2021 09:55:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1623232514;
+        bh=JrqycFn4TkpeNt54gU7cj38GFkWwPD/eocl+1ViKwdY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=v4GVOZz7LUNMpiL/jfSpVpx8PplMlVpZDbzqJ3xpuBmuUNoKEUfFrUTQBxqajo2vI
+         Gl3DZckysR2NIvdDJN6kvQ9iwqU9r+DaOacvxFVqWmC0qHVPCghK4g+hXJcEhOtCX0
+         gXPsxBm2lJUMSfeQquMVhqGKG25G55ZM2n7rzt9M=
+Date:   Wed, 9 Jun 2021 11:55:11 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Nava kishore Manne <nava.manne@xilinx.com>
+Cc:     robh+dt@kernel.org, michal.simek@xilinx.com, mdf@kernel.org,
+        trix@redhat.com, arnd@arndb.de, rajan.vaja@xilinx.com,
+        amit.sunil.dhamne@xilinx.com, tejas.patel@xilinx.com,
+        zou_wei@huawei.com, lakshmi.sai.krishna.potthuri@xilinx.com,
+        ravi.patel@xilinx.com, iwamatsu@nigauri.org,
+        wendy.liang@xilinx.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-fpga@vger.kernel.org, git@xilinx.com,
+        chinnikishore369@gmail.com
+Subject: Re: [RFC v2 1/4] drivers: firmware: Add user encrypted key load API
+ support
+Message-ID: <YMCP/+uYMun478Z9@kroah.com>
+References: <20210609055232.4501-1-nava.manne@xilinx.com>
+ <20210609055232.4501-2-nava.manne@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <162314710744.3707892.6632600736379822229.b4-ty@kernel.org>
+In-Reply-To: <20210609055232.4501-2-nava.manne@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 08, 2021 at 12:42:34PM +0100, Will Deacon wrote:
-> On Wed, 26 May 2021 18:19:25 +0200, Jean-Philippe Brucker wrote:
-> > Add stall support for SMMUv3, enabling I/O page faults and SVA for
-> > compatible devices. No change since last version [1], but I'd still like
-> > this to be considered for upstream, because there exists hardware and
-> > applications.
-> > 
-> > Stall is implemented by the Kunpeng 920 processor for its compression
-> > and crypto accelerators, with which I tested the SVA infrastructure.
-> > Using the userspace accelerator API [2], a program can obtain a queue
-> > from one of these devices and submit compression or encryption work
-> > within the program's address space. UADK [3] provides a library to do
-> > this, and there is an openssl plugin [4] to use it.
-> > 
-> > [...]
-> 
-> Applied to will (for-joerg/arm-smmu/updates), thanks!
-> 
-> [1/3] dt-bindings: document stall property for IOMMU masters
->       https://git.kernel.org/will/c/ed1d08b9d0c9
-> [2/3] ACPI/IORT: Enable stall support for platform devices
->       https://git.kernel.org/will/c/6522b1e0c78f
-> [3/3] iommu/arm-smmu-v3: Add stall support for platform devices
->       https://git.kernel.org/will/c/395ad89d11fd
-> 
+On Wed, Jun 09, 2021 at 11:22:29AM +0530, Nava kishore Manne wrote:
+> This patch adds user encrypted key load API to support
+> User key encrypted images loading use cases from Linux.
 
-Thanks!  That concludes most of the SVA work. For SMMUv3 we still need to
-figure out DVM, there will be PRI at some point, and I'm sure some
-bugfixes but I don't plan to send any other major feature support for the
-next cycles.
+What is "user key encrypted images"?  Do we need more documentation here
+for what this is and how to use it?
 
-Thanks,
-Jean
+And why is "User" capitalized?
 
+thanks,
+
+greg k-h
