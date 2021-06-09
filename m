@@ -2,173 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E04A3A0E60
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 10:03:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D1AC3A0E75
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 10:05:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237419AbhFIIEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 04:04:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36936 "EHLO
+        id S235138AbhFIIG5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 04:06:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237517AbhFIIDw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 04:03:52 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D66C2C0617A6
-        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 01:01:57 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id f16-20020a05600c1550b02901b00c1be4abso3633590wmg.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 01:01:57 -0700 (PDT)
+        with ESMTP id S237474AbhFIIGh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 04:06:37 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD2CC061574;
+        Wed,  9 Jun 2021 01:04:35 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id y7so19752812wrh.7;
+        Wed, 09 Jun 2021 01:04:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Ju48vJplC/eqeHsAD3uNcfdCHg6qYZAOA8GhsxxsbGo=;
-        b=RoJROVGx6pF3QoOuy/LW0b+B8pW4z/Gu8UsSrljkaodrIneT6aJ5VDM0xOo4QyIIzv
-         Gj2yhqG8i/swO3l9mOI7UPStpX1mkoZb+9ZtFCrLBtHfdInHXO9DQzrqz6EnoBSCsDbJ
-         CQyY7YdW8oig7+dPjOpzWmgH7zhMtk+yZskpmYk3+dOlc4KOXd1RxbP+Umt+54CUVZRm
-         azXxGHY98MXetAA5dphBGr6CRGTv5bFOtfhkbMHOjIHtgKGknZuZd1qGV9narPBcUBvS
-         wo8IGBL6tczovK1vv5CFCBG+VcQXdNaQ1n3muF+jV116E+phUJQoQ0NfkYF+TlXToFlL
-         njGw==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=wT8jMSk2fM+J5ZgJXdeEUVeym5jcaNbFNA2ciIih7RE=;
+        b=A27j6cFCvfhUIj11imB2Akrk6OKq23vnyfFbaKwRxt7bQbCFXu3ONVex1OxuB48nS1
+         WAAxkXD+5Rib7zFJUcb6aPan0ger24D7KZj64lfeEUyq2kCGw+PGBmDiudUT89zvsMon
+         cQRNGqmRstXpQ3ZCP1UjljPNYjJmTmEBhhNpoE4wWp2plVWvaZYDs2ZIfcHh4G9r6kyp
+         rg2IgjrtjTOAs2Zkak59Y7JkHrnsE1jPgeOb9loXi1DPoAmhpwV0Ew4+ytUi2GWJX8hQ
+         CemkpkRArAcmfh1tZV4Jz+P6GmCDX8chxD3BWasEbZSlQDXurmfnk51EUheGnbo18VwX
+         meFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Ju48vJplC/eqeHsAD3uNcfdCHg6qYZAOA8GhsxxsbGo=;
-        b=KJ77eeE/zkr9UnCZEJxX9wm4z2BnR/seHiLuVbxH6c2KkPOeKp4XqSM80vcpb75GUu
-         CYdExnp57wYZkpopCLjdC324wiAZDjAxjFzQl9ZceXHaSfKscA/FUW/e8TBTfvxHg2Vs
-         MByD3B+/2/axWdZW7OLkCBRAK2+3/wsBj9Lz7mGba11b/PbEyB1a053QM7AX1MlNf+2k
-         XmhxVNJBKa9/HgQ8nB+iUBpqXf3WrdAnotv1HuDRcx1JmJrfeXPlixLjcYUM8ZWYij40
-         O75ohli1GHGoquuICMT2sGHYaP1sg87swk3n6PJD0IZd0Ew+N0PuQS0eGflEnrasgMaM
-         W1IA==
-X-Gm-Message-State: AOAM531Nxz3PAMSdrHqsLn2gto75WOwsGZZA8krcKCAsBEMQzMhfhblp
-        uFjtQ6FPt1ACOOuNuRjbxb1h26OxJyQ0c/Ap66sSbg==
-X-Google-Smtp-Source: ABdhPJwCl3qJZm5Z606JSaosHKIbg85Mj+Z7FrvUrA4ecB82gMzqX8XkomV2Nv0hp9Jl1/jpfn0HzS95ejA1SCogr7s=
-X-Received: by 2002:a7b:c1c5:: with SMTP id a5mr26760837wmj.134.1623225715467;
- Wed, 09 Jun 2021 01:01:55 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wT8jMSk2fM+J5ZgJXdeEUVeym5jcaNbFNA2ciIih7RE=;
+        b=mUNRcecFOYNaFW7qMaR77Rio+r20QPpQ/fBegdNxZN/gYGI4YouKElIghVPo4tR1nY
+         RyDqy66PRTXozLbPkMKx6BeaPJCPmfG+hSW0N+tGYugE0WtjDTyDkdwZw3Rz9JPswChS
+         No5cwJh4O5Dl1ErgLRSBTZgjfR33JivdZ821jpxi48s5OIBi6IXqHsgJJiWRsdYtTIH9
+         YMQhfxFlv1JT2swqbbcpAZbh6LckddzXhfEu+ByQAhPizRHn4gK7J9EDF6miVrcZiCYd
+         BsCQFGkqYwrvhXAd1Oa+OSA4MeLXrLAh2exiGsRRJ/cdFv1WydHFnEimj4u6GgsRVV2o
+         NbNg==
+X-Gm-Message-State: AOAM532zFn/RsTvyvcVY1cfka9Kx3Yh9jgMipBRH1bRVMf7tRWI9GC6G
+        l6auWalwntosYJD8wgQ8aXNzwRAFVnU=
+X-Google-Smtp-Source: ABdhPJxcdlRhjCnbcVbYr9xZ88zmOBBIJbICZY/xUibynL/tQ9TAgojkqsgCpCOSigZQ9JvuSnMpQQ==
+X-Received: by 2002:a05:6000:2c4:: with SMTP id o4mr26967217wry.267.1623225873633;
+        Wed, 09 Jun 2021 01:04:33 -0700 (PDT)
+Received: from ziggy.stardust (81.172.61.185.dyn.user.ono.com. [81.172.61.185])
+        by smtp.gmail.com with ESMTPSA id o3sm16695687wrc.0.2021.06.09.01.04.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jun 2021 01:04:33 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: mt8183: add cbas node under cros_ec
+To:     Ikjoon Jang <ikjn@chromium.org>, linux-mediatek@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Guenter Roeck <groeck@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+References: <20210609032554.2443675-1-ikjn@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <6fa5d766-83ab-737a-f081-e21d989c14dd@gmail.com>
+Date:   Wed, 9 Jun 2021 10:04:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-References: <20210602112321.2241566-1-anup.patel@wdc.com> <20210602112321.2241566-6-anup.patel@wdc.com>
- <82217630-5f89-50dc-bbca-e591bee90950@sholland.org>
-In-Reply-To: <82217630-5f89-50dc-bbca-e591bee90950@sholland.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 9 Jun 2021 13:31:44 +0530
-Message-ID: <CAAhSdy1D4HnHuuC0Da-rvia5-o3TaCUapTHb-HsBCQ9X6y-AiQ@mail.gmail.com>
-Subject: Re: [PATCH v5 5/8] cpuidle: Factor-out power domain related code from
- PSCI domain driver
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Anup Patel <anup.patel@wdc.com>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210609032554.2443675-1-ikjn@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 12:04 AM Samuel Holland <samuel@sholland.org> wrote:
->
-> On 6/2/21 6:23 AM, Anup Patel wrote:
-> > The generic power domain related code in PSCI domain driver is largely
-> > independent of PSCI and can be shared with RISC-V SBI domain driver
-> > hence we factor-out this code into dt_idle_genpd.c and dt_idle_genpd.h.
-> >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> > Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > ---
-> >  MAINTAINERS                           |   7 +
-> >  drivers/cpuidle/Kconfig               |   4 +
-> >  drivers/cpuidle/Kconfig.arm           |   1 +
-> >  drivers/cpuidle/Makefile              |   1 +
-> >  drivers/cpuidle/cpuidle-psci-domain.c | 138 +------------------
-> >  drivers/cpuidle/cpuidle-psci.h        |  15 ++-
-> >  drivers/cpuidle/dt_idle_genpd.c       | 182 ++++++++++++++++++++++++++
-> >  drivers/cpuidle/dt_idle_genpd.h       |  50 +++++++
-> >  8 files changed, 263 insertions(+), 135 deletions(-)
-> >  create mode 100644 drivers/cpuidle/dt_idle_genpd.c
-> >  create mode 100644 drivers/cpuidle/dt_idle_genpd.h
-> >
-> ...
-> > diff --git a/drivers/cpuidle/dt_idle_genpd.h b/drivers/cpuidle/dt_idle_genpd.h
-> > new file mode 100644
-> > index 000000000000..a8a3bad3cb7f
-> > --- /dev/null
-> > +++ b/drivers/cpuidle/dt_idle_genpd.h
-> > @@ -0,0 +1,50 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
-> > +#ifndef __DT_IDLE_GENPD
-> > +#define __DT_IDLE_GENPD
-> > +
-> > +struct device_node;
-> > +struct generic_pm_domain;
-> > +
-> > +#ifdef CONFIG_DT_IDLE_GENPD
-> > +
-> > +void dt_idle_pd_free(struct generic_pm_domain *pd);
-> > +
-> > +struct generic_pm_domain *dt_idle_pd_alloc(struct device_node *np,
-> > +                     int (*parse_state)(struct device_node *, u32 *));
-> > +
-> > +int dt_idle_pd_init_topology(struct device_node *np);
-> > +
-> > +struct device *dt_idle_attach_cpu(int cpu, const char *name);
-> > +
-> > +void dt_idle_detach_cpu(struct device *dev);
-> > +
-> > +#else
-> > +
-> > +static inline void dt_idle_pd_free(struct generic_pm_domain *pd)
-> > +{
-> > +}
-> > +
-> > +static inline struct generic_pm_domain *dt_idle_pd_alloc(
-> > +                     struct device_node *np,
-> > +                     int (*parse_state)(struct device_node *, u32 *));
->
-> In file included from drivers/cpuidle/cpuidle-sbi.c:27:
-> drivers/cpuidle/dt_idle_genpd.h:29:1: error: expected identifier or '('
-> before '{' token
->    29 | {
->       | ^
->
-> Looks like you have a stray semicolon here.
 
-Okay, I will fix this in the next revision.
 
-Regards,
-Anup
+On 09/06/2021 05:25, Ikjoon Jang wrote:
+> Add a 'cbas' device node for supporting tablet mode switch in
+> kukui devices.
+> 
+> Kukui platforms with detacheable base have an additional input
+> device under cros-ec, which reports SW_TABLET_MODE regarding
+> its base state (e.g. base flipped or detached).
+> 
+> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
->
-> > +{
-> > +     return NULL;
-> > +}
-> > +
-> > +static inline int dt_idle_pd_init_topology(struct device_node *np)
-> > +{
-> > +     return 0;
-> > +}
-> > +
-> > +static inline struct device *dt_idle_attach_cpu(int cpu, const char *name)
-> > +{
-> > +     return NULL;
-> > +}
-> > +
-> > +static inline void dt_idle_detach_cpu(struct device *dev)
-> > +{
-> > +}
-> > +
-> > +#endif
-> > +
-> > +#endif
-> >
->
+Applied to v5.13-next/dts64
+
+Thanks!
+
+> 
+> ---
+> Resend this as a spin-off, other patches for dt-binding and
+> hid driver were applied.
+> 
+> Link: https://lore.kernel.org/r/20210514122051.266169-1-ikjn@chromium.org/
+> Link: https://lore.kernel.org/r/20210415032958.740233-1-ikjn@chromium.org/
+> 
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> index ff56bcfa3370..1512605a438e 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+> @@ -816,6 +816,10 @@ usbc_extcon: extcon0 {
+>  			compatible = "google,extcon-usbc-cros-ec";
+>  			google,usb-port-id = <0>;
+>  		};
+> +
+> +		cbas {
+> +			compatible = "google,cros-cbas";
+> +		};
+>  	};
+>  };
+>  
+> 
