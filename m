@@ -2,119 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A81EA3A13B7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 14:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AF023A13D4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 14:11:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232394AbhFIMG5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Jun 2021 08:06:57 -0400
-Received: from mail-ua1-f41.google.com ([209.85.222.41]:41631 "EHLO
-        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232146AbhFIMG5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 08:06:57 -0400
-Received: by mail-ua1-f41.google.com with SMTP id g34so12762651uah.8;
-        Wed, 09 Jun 2021 05:05:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=bB6XM12yprLPFoNwutgUyB3njSDuVRGfpEtvr0UqK8E=;
-        b=WVnwFClrFvemeUv92j6sJiLWk/BIsGCP1ohlVDamdpeUJ3hR49+zxDAJQMMYSG2AqJ
-         b199t+elARYDqGxJcMm0p4/RMDgozb/NiKY2Kig/Z/ggiR/d15dgNfDQSh8my6el0SvP
-         zjwRfZMtEibMJMXozicW/0+BtoAhIm+zXx255ylO0NwPM6wjNT1kCeFVZ2cyLJi/7n4K
-         QobdfoTDGADHQQjzP72Ui+0WXeNC/QiPhbdnLpTC0I60w1cTYs6n0LV6RzuYdbC3wHMt
-         /vl/th3xADEbKztmWglRgjwot7W6Qoy2n6+eFGc/C2VTNH2q/KJJTZVXRqLCM6BQB41J
-         XRNg==
-X-Gm-Message-State: AOAM530qOx+KLfTonkiYP+C9OI8A7evB2xVG5jthdQ6PYaUahs7AujIP
-        YAV7ETzt4yj3HQuatDxaDydizxBa23Y4R0M7oJ65r+jpJZM=
-X-Google-Smtp-Source: ABdhPJxkVHC78nRXOL62apDKXIIiTaPSbYJOa/DdeJsofMRspd3gymywG39zgIcSDYK+yyeVq89bME3aEbJ/ebS9KfI=
-X-Received: by 2002:ab0:2a4e:: with SMTP id p14mr9356668uar.2.1623240302138;
- Wed, 09 Jun 2021 05:05:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1623239033.git.michal.simek@xilinx.com> <ea3944deffedd8a09f097a54016bf9f2e9ddcb0e.1623239033.git.michal.simek@xilinx.com>
-In-Reply-To: <ea3944deffedd8a09f097a54016bf9f2e9ddcb0e.1623239033.git.michal.simek@xilinx.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 9 Jun 2021 14:04:50 +0200
-Message-ID: <CAMuHMdX7J5UK1Y_ghqneppFTHDw=MQTUGcBy6GTeeCPZtcJojg@mail.gmail.com>
-Subject: Re: [PATCH 31/31] arm64: zynqmp: Add support for Xilinx Kria SOM board
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Michal Simek <monstr@monstr.eu>, git@xilinx.com,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Michael Walle <michael@walle.cc>,
+        id S232515AbhFIMNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 08:13:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36026 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239351AbhFIMNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 08:13:00 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14585C061789
+        for <devicetree@vger.kernel.org>; Wed,  9 Jun 2021 05:11:06 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1lqx2q-0007WL-60; Wed, 09 Jun 2021 14:10:52 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1lqx2o-0004sn-Rb; Wed, 09 Jun 2021 14:10:50 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Arnd Bergmann <arnd@arndb.de>, Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, soc@kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>
+Subject: [PATCH v1 0/4] Mainline imx6 based SKOV boards
+Date:   Wed,  9 Jun 2021 14:10:46 +0200
+Message-Id: <20210609121050.18715-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michal,
+Mainline imx6 based DTs for SKOV A/S boards
 
-On Wed, Jun 9, 2021 at 1:46 PM Michal Simek <michal.simek@xilinx.com> wrote:
-> There are couple of revisions of SOMs (k26) and associated carrier cards
-> (kv260).
-> SOM itself has two major versions:
-> sm-k26 - SOM with EMMC
-> smk-k26 - SOM without EMMC used on starter kit with preprogrammed firmware
-> in QSPI.
->
-> SOMs are describing only devices available on the SOM or connections which
-> are described in specification (for example UART, fwuen).
->
-> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+Oleksij Rempel (3):
+  dt-bindings: display: simple: add some Logic Technologies and
+    Multi-Inno panels
+  dt-bindings: vendor-prefixes: Add an entry for SKOV A/S
+  dt-bindings: arm: fsl: add SKOV imx6q and imx6dl based boards
 
-Thanks for your patch!
+Sam Ravnborg (1):
+  ARM: dts: add SKOV imx6q and imx6dl based boards
 
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
-> @@ -0,0 +1,371 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * dts file for KV260 revA Carrier Card
-> + *
-> + * (C) Copyright 2020, Xilinx, Inc.
-> + *
-> + * SD level shifter:
-> + * "A" – A01 board un-modified (NXP)
-> + * "Y" – A01 board modified with legacy interposer (Nexperia)
-> + * "Z" – A01 board modified with Diode interposer
-> + *
-> + * Michal Simek <michal.simek@xilinx.com>
-> + */
-> +
-> + #include <dt-bindings/gpio/gpio.h>
-> + #include <dt-bindings/net/ti-dp83867.h>
-> + #include <dt-bindings/phy/phy.h>
-> + #include <dt-bindings/pinctrl/pinctrl-zynqmp.h>
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +/{
-> +       compatible = "xlnx,zynqmp-sk-kv260-revA",
-> +                    "xlnx,zynqmp-sk-kv260-revY",
-> +                    "xlnx,zynqmp-sk-kv260-revZ",
-> +                    "xlnx,zynqmp-sk-kv260", "xlnx,zynqmp";
-> +
-> +       fragment1 {
-> +               target = <&i2c1>; /* I2C_SCK C23/C24 - MIO from SOM */
-> +
-> +               __overlay__ {
-
-Please use overlay sugar syntax, which is supported by the dtc
-supplied with the kernel since v4.15.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../devicetree/bindings/arm/fsl.yaml          |   5 +
+ .../bindings/display/panel/panel-simple.yaml  |   6 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   5 +
+ arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts    |  13 +
+ arch/arm/boot/dts/imx6dl-skov-revc-lt6.dts    | 108 ++++
+ arch/arm/boot/dts/imx6q-skov-revc-lt2.dts     |  36 ++
+ arch/arm/boot/dts/imx6q-skov-revc-lt6.dts     | 128 +++++
+ .../dts/imx6q-skov-reve-mi1010ait-1cp1.dts    | 127 +++++
+ arch/arm/boot/dts/imx6qdl-skov-cpu-revc.dtsi  |  58 +++
+ arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi       | 476 ++++++++++++++++++
+ 11 files changed, 964 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6dl-skov-revc-lt2.dts
+ create mode 100644 arch/arm/boot/dts/imx6dl-skov-revc-lt6.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-skov-revc-lt2.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-skov-revc-lt6.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-skov-reve-mi1010ait-1cp1.dts
+ create mode 100644 arch/arm/boot/dts/imx6qdl-skov-cpu-revc.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6qdl-skov-cpu.dtsi
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.29.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
