@@ -2,89 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16F483A1362
-	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 13:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D46223A1383
+	for <lists+devicetree@lfdr.de>; Wed,  9 Jun 2021 13:54:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239582AbhFILuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 07:50:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52686 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239507AbhFILt5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Jun 2021 07:49:57 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A9D5961108;
-        Wed,  9 Jun 2021 11:48:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623239283;
-        bh=L0TaDiumV9g0cIteIcgFV0j4u4Kh80VYFpiyW9vBRQY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=V3GbvmOpjfoGU/6X02DR5JX6hvIedBwigbJH4DPNd3RxI73jhsvmlKTbhj330ujVg
-         MkQoQiCf+VlCj/IQGfkJBa2OWLchCy8AHrP1QwVIYkJ6lCBFduRyJc0EFX4RkxnW7T
-         5cOAVjmHcsL6/p7UHZjX4Vd99wZbb01BEjFPO7df7hZZgWma4c0njSDGZ4xtCQUlWW
-         7Df5KvMkOO2W5bc+qyNlxYNOSQ7kHmGqFkk1/a3mWd2BIwKjPadoo5PkOl9aD6IDGL
-         dAAgr1dEGqbHZ70tTAxmDvr5fXFKw4A/m6l9HCoLsTKQSMc5RybHRyo3Z1RYtGTiIS
-         kU0ltdsnuhLAg==
-Date:   Wed, 9 Jun 2021 12:47:47 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Ian Ray <ian.ray@ge.com>,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCHv3 3/5] dt-bindings: misc: ge-achc: Convert to DT schema
- format
-Message-ID: <20210609114747.GA19966@sirena.org.uk>
-References: <20210528113346.37137-1-sebastian.reichel@collabora.com>
- <20210528113346.37137-4-sebastian.reichel@collabora.com>
+        id S239505AbhFIL4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 07:56:25 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:40519 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239531AbhFIL4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 07:56:24 -0400
+Received: from mail-wm1-f70.google.com ([209.85.128.70])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lqwmy-0007BU-BS
+        for devicetree@vger.kernel.org; Wed, 09 Jun 2021 11:54:28 +0000
+Received: by mail-wm1-f70.google.com with SMTP id 128-20020a1c04860000b0290196f3c0a927so2514507wme.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Jun 2021 04:54:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zLhTmNdHd7QsVRSZXglysFm3zyoNBR2RnD/RonHYik0=;
+        b=XsskosnoToocBiq3jjiZVJGzFNt0mmO87GH5oMFO6Kffk0tUuSWLDpb9e+Tx/YpGzH
+         9RTvjBwuTIotU+ppA/vQGYcA+vXCsRoAbP4H3tRntYS69RSF6nN4OVZWllZM1CclaUyv
+         pupG7l4vOfawLae3hVqHvWqkLiXprQu3e3aE6s8wubpU5VvA2kW2yilNzr20dC2BXAu+
+         0qiVlYNta7a66sBo6UzQg9AZE+0hY+YqxlihWmPoP3dC4OicSzqFOEn7m+uABL47YPyZ
+         b6mt5YXxiKAnXR4eLcpFyyVa0PwFSUZHyxu/sT3sMbbi1xuUV1cBqSuCcciZ1eJv7mIB
+         LHHQ==
+X-Gm-Message-State: AOAM530wA6ESeKqcZAPwGDiwJSXDeKs0w02IH/C0WXds13mJw4shooRf
+        WfgCuouR1FgCbviLISdvhYLCSQtguzyeBgPGKgvGahK2A7dKV7fNqg86ewC+VkUw18OwnjkPoe+
+        ZcQ7htuGaD/CimZYrUJAgf/mKN6D+E132iMaMjLw=
+X-Received: by 2002:adf:ee46:: with SMTP id w6mr28653517wro.345.1623239668055;
+        Wed, 09 Jun 2021 04:54:28 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxCt33hywH+M3y1CT+bTXzh8xJ2GJIIBftxRP+jWPUmJmFgjRVOBzLHkNPNuSSYkP5EMOKO/w==
+X-Received: by 2002:adf:ee46:: with SMTP id w6mr28653501wro.345.1623239667931;
+        Wed, 09 Jun 2021 04:54:27 -0700 (PDT)
+Received: from [192.168.1.115] (xdsl-188-155-177-222.adslplus.ch. [188.155.177.222])
+        by smtp.gmail.com with ESMTPSA id u15sm5852148wmq.48.2021.06.09.04.54.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jun 2021 04:54:27 -0700 (PDT)
+Subject: Re: [PATCH v22 12/18] memory: pl353-smc: Let lower level controller
+ drivers handle inits
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+References: <20210609080112.1753221-1-miquel.raynal@bootlin.com>
+ <20210609080112.1753221-13-miquel.raynal@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <b9be2ca0-7d62-c5fd-6aa8-e04c57b0f75c@canonical.com>
+Date:   Wed, 9 Jun 2021 13:54:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SLDf9lqlvOQaIe6s"
-Content-Disposition: inline
-In-Reply-To: <20210528113346.37137-4-sebastian.reichel@collabora.com>
-X-Cookie: Don't I know you?
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210609080112.1753221-13-miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 09/06/2021 10:01, Miquel Raynal wrote:
+> There is no point in having all these definitions at the SMC bus level,
+> these are extremely tight to the NAND controller driver implementation,
+> are not particularly generic, imply more boilerplate than needed, do
+> not really follow the device model by receiving no argument and some of
+> them are actually buggy.
+> 
+> Let's get rid of these right now as there is no current user and keep
+> this driver at a simple level: only the SMC bare initializations.
+> 
+> The NAND controller driver which I am going to introduce will take care
+> of redefining properly all these helpers and using them directly.
+> 
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  drivers/memory/pl353-smc.c | 294 -------------------------------------
+>  include/linux/pl353-smc.h  |  30 ----
+>  2 files changed, 324 deletions(-)
+>  delete mode 100644 include/linux/pl353-smc.h
+> 
 
---SLDf9lqlvOQaIe6s
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I see you remove here a bunch of code. Are the series still fully
+bisectable?
 
-On Fri, May 28, 2021 at 01:33:45PM +0200, Sebastian Reichel wrote:
 
-> -Required SPI properties:
-> -
-> -- reg : Should be address of the device chip select within
-> -  the controller.
-
-There is an existing binding...
-
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 2
-> +    items:
-> +      - description: Control interface
-> +      - description: Firmware programming interface
-
-...but this new one is incompatible with it.
-
---SLDf9lqlvOQaIe6s
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDAqmIACgkQJNaLcl1U
-h9BnSQf9E6uWlvT9txzp0eCNjIwGtxi15bHwfyQ4dQhGbb7CsFQJLzub+Wbk+LUT
-F79SYf9G4QslbbSb3U2qPEJOZLH2Vki3dv/qccDBbi7wFRqs+lfTYuDcoENV0e/j
-TOJgIdZxKSl+bAmtZunnFwj2rEOEE/iTiocEaBK1vCuosIRgb4D6KpG7wccD23hY
-jwd6Tr8O84lFz0182zSN8p1yyBJ2kqa+oR+T8ijsFcWwQHFITxT++vX4iFfcrHao
-O1rzeerLasTMOHz2gQwSHH7zdohOpHIoGSjc/2dISoVSr6jph5yhDikTn2Rpyxb2
-lJwWmyNimO47h5zx7Qt2PkiQDcsDRQ==
-=sL3/
------END PGP SIGNATURE-----
-
---SLDf9lqlvOQaIe6s--
+Best regards,
+Krzysztof
