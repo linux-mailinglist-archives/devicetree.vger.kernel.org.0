@@ -2,100 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F10C83A251C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 09:13:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 386A33A257D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 09:30:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbhFJHPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 03:15:12 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:49821 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229705AbhFJHPL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 03:15:11 -0400
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 10 Jun 2021 00:13:15 -0700
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 10 Jun 2021 00:13:13 -0700
-X-QCInternal: smtphost
-Received: from c-sbhanu-linux.qualcomm.com ([10.242.50.201])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 10 Jun 2021 12:43:11 +0530
-Received: by c-sbhanu-linux.qualcomm.com (Postfix, from userid 2344807)
-        id BCC774DC2; Thu, 10 Jun 2021 12:43:10 +0530 (IST)
-From:   Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-To:     adrian.hunter@intel.com, ulf.hansson@linaro.org, robh+dt@kernel.org
-Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
-        vbadigan@codeaurora.org, rampraka@codeaurora.org,
-        sayalil@codeaurora.org, sartgarg@codeaurora.org,
-        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        sibis@codeaurora.org, okukatla@codeaurora.org, djakov@kernel.org,
-        cang@codeaurora.org, pragalla@codeaurora.org,
-        nitirawa@codeaurora.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org,
-        Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-Subject: [PATCH V1] arm64: dts: qcom: sc7180: bus votes for eMMC and SD card
-Date:   Thu, 10 Jun 2021 12:43:09 +0530
-Message-Id: <1623309189-27943-1-git-send-email-sbhanu@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S229788AbhFJHcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 03:32:52 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:40494 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229634AbhFJHcv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Jun 2021 03:32:51 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lrF9P-0002mW-8K; Thu, 10 Jun 2021 09:30:51 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     robh+dt@kernel.org, vkoul@kernel.org, kishon@ti.com,
+        t.schramm@manjaro.org, linux-phy@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: soc: rockchip: drop unnecessary #phy-cells from grf.yaml
+Date:   Thu, 10 Jun 2021 09:30:50 +0200
+Message-ID: <11362049.qUNvkh4Gvn@diego>
+In-Reply-To: <46289b3c-f804-624b-3c74-1989e57d0a7c@gmail.com>
+References: <e7e09072-9cac-413e-dca2-e2a668c1807e@gmail.com> <20210607141845.3331910-1-heiko@sntech.de> <46289b3c-f804-624b-3c74-1989e57d0a7c@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Updated bus votes for eMMC and Sd card.
+Am Montag, 7. Juni 2021, 17:37:06 CEST schrieb Johan Jonker:
+> 
+> On 6/7/21 4:18 PM, Heiko Stuebner wrote:
+> > The recent yaml conversion of the grf and inno-usb2-phy bindings
+> > left the #phy-cells in place in the main usb2phy node inside the
+> > example in grf.yaml, causing new warnings.
+> > 
+> > Drop it to make the bindingcheck happy.
+> > 
+> > Fixes: e71ccdff376b ("dt-bindings: phy: rename phy nodename in phy-rockchip-inno-usb2.yaml")
+> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > ---
+> 
+> > Like this I guess?
+> 
+> Hi Heiko,
+> 
+> When I apply this patch locally and give the command below the
+> notifications are gone.
+> 
+> make ARCH=arm dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/soc/rockchip/grf.yaml
 
-Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+so I've applied the patch on top now in my tree.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 295844e..1fce39d 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -726,15 +726,15 @@
- 				opp-100000000 {
- 					opp-hz = /bits/ 64 <100000000>;
- 					required-opps = <&rpmhpd_opp_low_svs>;
--					opp-peak-kBps = <100000 100000>;
--					opp-avg-kBps = <100000 50000>;
-+					opp-peak-kBps = <1800000 600000>;
-+					opp-avg-kBps = <100000 0>;
- 				};
- 
- 				opp-384000000 {
- 					opp-hz = /bits/ 64 <384000000>;
--					required-opps = <&rpmhpd_opp_svs_l1>;
--					opp-peak-kBps = <600000 900000>;
--					opp-avg-kBps = <261438 300000>;
-+					required-opps = <&rpmhpd_opp_nom>;
-+					opp-peak-kBps = <5400000 1600000>;
-+					opp-avg-kBps = <390000 0>;
- 				};
- 			};
- 		};
-@@ -2685,15 +2685,15 @@
- 				opp-100000000 {
- 					opp-hz = /bits/ 64 <100000000>;
- 					required-opps = <&rpmhpd_opp_low_svs>;
--					opp-peak-kBps = <160000 100000>;
--					opp-avg-kBps = <80000 50000>;
-+					opp-peak-kBps = <1800000 600000>;
-+					opp-avg-kBps = <100000 0>;
- 				};
- 
- 				opp-202000000 {
- 					opp-hz = /bits/ 64 <202000000>;
--					required-opps = <&rpmhpd_opp_svs_l1>;
--					opp-peak-kBps = <200000	120000>;
--					opp-avg-kBps = <100000 60000>;
-+					required-opps = <&rpmhpd_opp_nom>;
-+					opp-peak-kBps = <5400000 1600000>;
-+					opp-avg-kBps = <200000 0>;
- 				};
- 			};
- 		};
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-of Code Aurora Forum, hosted by The Linux Foundation
+Heiko
+
+
 
