@@ -2,116 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97CB73A27CC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 11:08:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AA323A27FC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 11:12:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229937AbhFJJKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 05:10:41 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:3192 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229895AbhFJJKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 05:10:41 -0400
-Received: from fraeml710-chm.china.huawei.com (unknown [172.18.147.207])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4G0yf15yzSz6N5Kh;
-        Thu, 10 Jun 2021 17:02:01 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml710-chm.china.huawei.com (10.206.15.59) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Thu, 10 Jun 2021 11:08:44 +0200
-Received: from localhost (10.52.126.112) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Thu, 10 Jun
- 2021 10:08:43 +0100
-Date:   Thu, 10 Jun 2021 10:08:41 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Liam Beguin <liambeguin@gmail.com>
-CC:     Jonathan Cameron <jic23@kernel.org>, <peda@axentia.se>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 4/8] iio: inkern: return valid type on raw to
- processed conversion
-Message-ID: <20210610100841.00001f76@Huawei.com>
-In-Reply-To: <CBZF1GGLRR7Y.2S244HIQOEERN@shaak>
-References: <20210607144718.1724413-1-liambeguin@gmail.com>
-        <20210607144718.1724413-5-liambeguin@gmail.com>
-        <20210609213247.2ad09186@jic23-huawei>
-        <CBZF1GGLRR7Y.2S244HIQOEERN@shaak>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        id S230033AbhFJJOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 05:14:42 -0400
+Received: from mail-wm1-f52.google.com ([209.85.128.52]:39861 "EHLO
+        mail-wm1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230086AbhFJJOm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 05:14:42 -0400
+Received: by mail-wm1-f52.google.com with SMTP id l18-20020a1ced120000b029014c1adff1edso6049810wmh.4;
+        Thu, 10 Jun 2021 02:12:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=FBbTEMnsb2ggh860cgZ29dfHltR8ip05DHuNrwJxSGA=;
+        b=HKPU4y/ltJX4LH6b2iBOVUVafQKjBqYwOGxnxqMCz7IdsQvtbGfu8NBJVrcAFNmVeY
+         iHlbRQXEf6z5smPUvnlauCp+bzdb+JBhY3biq+TSYvPgzF2q6ZKLn9fSoeJoJmBcfWSu
+         XLoMpgsCiQJzndS9HVfRcu2P38dkKgRWdNZknVa4ZrFbH/iWpDkpp09edTEk0JBedQWV
+         SRcIXZTldJyiT/2yf9UPTbbJv1srBPXw1vYuT0NDxM5T0KbVv735Wp2HguaTDbwGgt9O
+         MQgdGIEZa4rp/4QaYmSa1gCruQbdEbLDiDPaNW9FlKsZ94RAmsyMCUTo/8VTiAU7o9No
+         KIfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=FBbTEMnsb2ggh860cgZ29dfHltR8ip05DHuNrwJxSGA=;
+        b=jarF996bNT6f+UOWMmPXrRL6NyPmg2B6thCy2Y8VcTkvPG6CEBMvZyAaKW8t9Znk41
+         lrP3JcheclU0sWVkPVCQatYTR6ZNYF1jGTsCc9coGPKkkCbiVit4Th94FZb3rb1yPRtE
+         2SfMkQLnzMskUPCUvWNmcJS8Yy79Zmo7iS6n2V+vu7n53YmoNh9Iww54VF6Hw7AuPBtn
+         nsjkwIC6nQUNHGZoryA59+7a6qZjpn155ThmDxGfq+30bDfHtnqR1zFg07TzBqgi3OQT
+         I88lV6gqtrIYn8xTlB7tmEWDK14RzDC5HIUWy9DNN6S+NncmbkpEkYZvYhbyRmVu9dtT
+         CTZw==
+X-Gm-Message-State: AOAM5309WThmA+LpTnUL5Ii/3agHh2gjMqXXOze0s/P0hd5MZ1YAsjIC
+        7XDxYYZQN8++yoY2R5cssJE=
+X-Google-Smtp-Source: ABdhPJyguF6nrGNiftYxWcwuL3XoumPAgYke+ltF2+g/NDmaScu9ZkK+KJiNz0fSi42lC/YWc5IA4g==
+X-Received: by 2002:a1c:c3d7:: with SMTP id t206mr14053277wmf.23.1623316293433;
+        Thu, 10 Jun 2021 02:11:33 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id o5sm2799219wrw.65.2021.06.10.02.11.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Jun 2021 02:11:32 -0700 (PDT)
+Subject: Re: [PATCH 1/2] arm64: dts: mt8183: Add kukui-jacuzzi-cerise board
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+References: <20210604052312.1040707-1-hsinyi@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <5524c45b-0517-f2ff-b6dc-b2129fbd5d05@gmail.com>
+Date:   Thu, 10 Jun 2021 11:11:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+In-Reply-To: <20210604052312.1040707-1-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.126.112]
-X-ClientProxiedBy: lhreml728-chm.china.huawei.com (10.201.108.79) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Jun 2021 17:46:58 -0400
-"Liam Beguin" <liambeguin@gmail.com> wrote:
 
-> On Wed Jun 9, 2021 at 4:32 PM EDT, Jonathan Cameron wrote:
-> > On Mon, 7 Jun 2021 10:47:14 -0400
-> > Liam Beguin <liambeguin@gmail.com> wrote:
-> >  
-> > > From: Liam Beguin <lvb@xiphos.com>
-> > > 
-> > > iio_convert_raw_to_processed_unlocked() applies the offset and scale of
-> > > a channel on it's raw value.
-> > > The processed value returned is always an integer. Return IIO_VAL_INT so
-> > > that consumers can use this return value directly.
-> > > 
-> > > Signed-off-by: Liam Beguin <lvb@xiphos.com>  
-> > This looks likely to cause breakage given that return value will go to
-> > consumers directly via iio_convert_raw_to_processed()
-> >
-> > Looks like this will break lmp91000 which checks for error as
-> >
-> > if (ret)
-> >  
+
+On 04/06/2021 07:23, Hsin-Yi Wang wrote:
+> Cerise is known as ASUS Chromebook CZ1.
+> Stern is known as ASUS Chromebook Flip CZ1.
 > 
-> IIO_VAL_INT seems like a better return value here since the consumer
-> gets an integer. I can look at existing consumers and patch those too.
-> Or would you rather I drop this patch?
-If we were looking at actually allowing this to return other types,
-then I'd agree with updating callers appropriately.
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+> The difference of rev3 and non rev3 are the audio driver they use, which
+> is not added in this series.
+> ---
+>  arch/arm64/boot/dts/mediatek/Makefile         |  4 +++
+>  .../mt8183-kukui-jacuzzi-cerise-rev3.dts      | 24 +++++++++++++
+>  .../mediatek/mt8183-kukui-jacuzzi-cerise.dts  | 24 +++++++++++++
+>  .../mediatek/mt8183-kukui-jacuzzi-cerise.dtsi | 13 +++++++
+>  .../mt8183-kukui-jacuzzi-stern-rev3.dts       | 34 +++++++++++++++++++
+>  .../mediatek/mt8183-kukui-jacuzzi-stern.dts   | 34 +++++++++++++++++++
+>  6 files changed, 133 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise-rev3.dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise.dts
 
-For now we aren't doing that, so the only question is success or fail.
-So I'd drop this one.
+Both files are identical. Can we merge them and use a fallback compatible, or do
+you expect changes to the different revisions in the near future?
 
-Most consumers don't care about IIO types.
-
-Jonathan
-
-> 
-> > > ---
-> > >  drivers/iio/inkern.c | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/iio/inkern.c b/drivers/iio/inkern.c
-> > > index 0b5667f22b1d..00d234e87234 100644
-> > > --- a/drivers/iio/inkern.c
-> > > +++ b/drivers/iio/inkern.c
-> > > @@ -618,7 +618,7 @@ static int iio_convert_raw_to_processed_unlocked(struct iio_channel *chan,
-> > >  		 * raw value and return.
-> > >  		 */
-> > >  		*processed = raw * scale;
-> > > -		return 0;
-> > > +		return IIO_VAL_INT;
-> > >  	}
-> > >  
-> > >  	switch (scale_type) {
-> > > @@ -652,7 +652,7 @@ static int iio_convert_raw_to_processed_unlocked(struct iio_channel *chan,
-> > >  		return -EINVAL;
-> > >  	}
-> > >  
-> > > -	return 0;
-> > > +	return IIO_VAL_INT;
-> > >  }
-> > >  
-> > >  int iio_convert_raw_to_processed(struct iio_channel *chan, int raw,  
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-cerise.dtsi
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-stern-rev3.dts
+>  create mode 100644 arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-stern.dts
 > 
 
+Same question here :)
+
+Regards,
+Matthias
