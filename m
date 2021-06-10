@@ -2,93 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 939DE3A27B6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 11:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EC133A27BE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 11:07:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229990AbhFJJHj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Jun 2021 05:07:39 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:55896 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229715AbhFJJHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 05:07:39 -0400
-Received: from [77.244.183.192] (port=63626 helo=[192.168.178.41])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1lrGdB-0003wE-P8; Thu, 10 Jun 2021 11:05:41 +0200
-Subject: Re: [PATCH 1/2] dt-bindings: clk: vc5: Add property for SD polarity
-To:     Sean Anderson <sean.anderson@seco.com>, linux-clk@vger.kernel.org
-Cc:     Adam Ford <aford173@gmail.com>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-References: <20210607154931.2491499-1-sean.anderson@seco.com>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <eafea6ac-fbfd-3f42-93fa-edb8cdced3ea@lucaceresoli.net>
-Date:   Thu, 10 Jun 2021 11:05:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S229914AbhFJJI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 05:08:57 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3191 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229770AbhFJJI5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 05:08:57 -0400
+Received: from fraeml734-chm.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4G0yc04tffz6N6PS;
+        Thu, 10 Jun 2021 17:00:16 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml734-chm.china.huawei.com (10.206.15.215) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 10 Jun 2021 11:06:59 +0200
+Received: from localhost (10.52.126.112) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Thu, 10 Jun
+ 2021 10:06:58 +0100
+Date:   Thu, 10 Jun 2021 10:06:55 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Liam Beguin <liambeguin@gmail.com>
+CC:     Jonathan Cameron <jic23@kernel.org>, <peda@axentia.se>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 3/8] iio: inkern: error out on unsupported offset
+ type
+Message-ID: <20210610100655.000010ff@Huawei.com>
+In-Reply-To: <CBZEWQ0YIIEC.3A2WESVVMHPJM@shaak>
+References: <20210607144718.1724413-1-liambeguin@gmail.com>
+        <20210607144718.1724413-4-liambeguin@gmail.com>
+        <20210609212850.008d7f84@jic23-huawei>
+        <CBZEWQ0YIIEC.3A2WESVVMHPJM@shaak>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-In-Reply-To: <20210607154931.2491499-1-sean.anderson@seco.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8BIT
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.126.112]
+X-ClientProxiedBy: lhreml728-chm.china.huawei.com (10.201.108.79) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sean,
+On Wed, 09 Jun 2021 17:40:47 -0400
+"Liam Beguin" <liambeguin@gmail.com> wrote:
 
-On 07/06/21 17:49, Sean Anderson wrote:
-> This property allows setting the SD/OE pin's polarity to active-high,
-> instead of the default of active-low.
+> Hi Jonathan,
 > 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> On Wed Jun 9, 2021 at 4:28 PM EDT, Jonathan Cameron wrote:
+> > On Mon, 7 Jun 2021 10:47:13 -0400
+> > Liam Beguin <liambeguin@gmail.com> wrote:
+> >  
+> > > From: Liam Beguin <lvb@xiphos.com>
+> > > 
+> > > iio_convert_raw_to_processed_unlocked() assumes the offset is an
+> > > integer.
+> > > Make that clear to the consumer by returning an error on unsupported
+> > > offset types without breaking valid implicit truncations.
+> > > 
+> > > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > > ---
+> > >  drivers/iio/inkern.c | 34 +++++++++++++++++++++++++++++-----
+> > >  1 file changed, 29 insertions(+), 5 deletions(-)
+> > > 
+> > > diff --git a/drivers/iio/inkern.c b/drivers/iio/inkern.c
+> > > index b69027690ed5..0b5667f22b1d 100644
+> > > --- a/drivers/iio/inkern.c
+> > > +++ b/drivers/iio/inkern.c
+> > > @@ -578,13 +578,37 @@ EXPORT_SYMBOL_GPL(iio_read_channel_average_raw);
+> > >  static int iio_convert_raw_to_processed_unlocked(struct iio_channel *chan,
+> > >  	int raw, int *processed, unsigned int scale)
+> > >  {
+> > > -	int scale_type, scale_val, scale_val2, offset;
+> > > +	int scale_type, scale_val, scale_val2;
+> > > +	int offset_type, offset_val, offset_val2;
+> > >  	s64 raw64 = raw;
+> > > -	int ret;
+> > >  
+> > > -	ret = iio_channel_read(chan, &offset, NULL, IIO_CHAN_INFO_OFFSET);
+> > > -	if (ret >= 0)
+> > > -		raw64 += offset;
+> > > +	offset_type = iio_channel_read(chan, &offset_val, &offset_val2,
+> > > +				       IIO_CHAN_INFO_OFFSET);
+> > > +	if (offset_type >= 0) {
+> > > +		switch (offset_type) {
+> > > +		case IIO_VAL_INT:
+> > > +			break;
+> > > +		case IIO_VAL_INT_PLUS_MICRO:
+> > > +			if (offset_val2 > 1000)  
+> >
+> > What's the logic behind this one? > 1000000
+> > would be an interesting corner case, though I'm not sure we've ever
+> > explicitly disallowed it before.
+> >
+> > Why are we at 1000th of that for the check?
+> >  
+> 
+> For these the idea was to go with one milli of precision.
+> I don't know if that's a good criteria but I wanted to start with
+> something. Do you have any suggestions?
+> 
+> > > +				return -EINVAL;
+> > > +			break;
+> > > +		case IIO_VAL_INT_PLUS_NANO:
+> > > +			if (offset_val2 > 1000000)  
+> >
+> > Similar this is a bit odd.
+> >  
+> > > +				return -EINVAL;
+> > > +		case IIO_VAL_FRACTIONAL:
+> > > +			if (offset_val2 != 1)
+> > > +				return -EINVAL;  
+> >
+> > We could be more flexible on this, but I don't recall any
+> > channels using this so far.
+> >  
+> > > +			break;
+> > > +		case IIO_VAL_FRACTIONAL_LOG2:
+> > > +			if (offset_val2)
+> > > +				return -EINVAL;  
+> >
+> > Same in this case.
+> >  
+> 
+> For these two cases, I went with what Peter suggested in the previous
+> version, to not break on valid implicit truncations.
+> 
+> What would be a good precision criteria for all offset types?
 
-Thanks.
+@Peter, what were your thoughts on this.
 
-> +  idt,sd-active-high:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: SD/OE pin polarity is active-high
+I was thinking we'd just not worry about how much truncation was happening
+and just silently eat it.
 
-I think the name "sd" is misleading.
-
-In the Renesas docs (which are very confusing on their own about this
-topic) this bit is called "SP" -- *S*D/OE *P*olarity. But actually it
-controls polarity of the SD/OE pin only if the pin is configured for
-"OE" function:
-
-> SP bit = “SD/OE pin Polarity Bit”: Set the polarity of the SD/OE
-> pin where outputs enable or disable. Only works with OE, not with SD.
-(VC6E register and programming guide [0])
-
-As such I suggest you use either "sp" to keep the naming used in the
-Renesas docs or "oe" as it actually controls OE polarity only. I do
-prefer "sp" as it helps matching with the datasheets, but maybe adding a
-little more detail in bindings docs to clarify, as in:
-
- idt,sp-active-high:
-   $ref: /schemas/types.yaml#/definitions/flag
-   description: SD/OE pin polarity is active-high
-                (only works when SD/OE pin is configured as OE)
-
-BTW is it only me finding the "Shutdown Function" of [0] completely
-confusing? Also, Table 24 has contradictory lines and missing lines. I'm
-sending a request to Renesas support to ask them to clarify it all.
-
-[0]
-https://www.renesas.com/eu/en/document/mau/versaclock-6e-family-register-descriptions-and-programming-guide
-
--- 
-Luca
+J
+> 
+> > > +			break;
+> > > +		default:
+> > > +			return -EINVAL;
+> > > +		}
+> > > +
+> > > +		raw64 += offset_val;
+> > > +	}
+> > >  
+> > >  	scale_type = iio_channel_read(chan, &scale_val, &scale_val2,
+> > >  					IIO_CHAN_INFO_SCALE);  
+> 
+> Thanks for looking at this,
+> Liam
 
