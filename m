@@ -2,212 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 276643A2E44
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 16:32:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C79833A2E4C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 16:33:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbhFJOev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 10:34:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230488AbhFJOeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 10:34:50 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98F4CC061760
-        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 07:32:44 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id o17-20020a17090a9f91b029015cef5b3c50so3845120pjp.4
-        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 07:32:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Cd2W8TOIgpOf1z4OGqH/3rBspOukbuxO7R8hv8hZEok=;
-        b=Vr4L/ooG51SPZk+BpTj8d3Dhl1MPAmW12L/bcFgrUWXomaGDgNIne38p4Bg9qIam6a
-         IbjJ8u/l/xYi1fQqs1g8O7t3W9cxDCRT5kZS/tWfjizizPkPYCb18eSZFMHwdyNTtQ54
-         DW9S4FB4cnqKT5sqNvviUXdL1+8+ufi3ziOr3q4Rs0uTKopYfpKH70CTulAV3faobYzv
-         ns3RltWPZMezuTIKGqZLTdTIiI8SoOwcC+b3d5ERYmdvB4F82Hyt4V3UsnrV3ol9Dp1W
-         j/5Oa0hh+mv3r6f+QHOLvDGPy3s89T+wY3jKJBxn21vk7jOCsH+9a/QF85/GhS4M1J0u
-         d/cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Cd2W8TOIgpOf1z4OGqH/3rBspOukbuxO7R8hv8hZEok=;
-        b=UtezT8LQpE/oagPq9fBNELmED9dx3cTjRKjm9Nc4n/+hV6Lf2JoPr3FP2JD1o6OiOk
-         uyoy1CuQHt6RPQ2Km8XP5QFbQCXzsXhFrBTlufvP+8JAY6HqhZmccnU+4Ch7PfmtD7mM
-         GZTQK3ENrCK1becbtPp2rMY4w1WsOAnBGW3Rqm8bxC9/2aSXKAmA061gIpSoQBnaJjWv
-         eaVKGkkIBlp4Gco0QLg+ty83wIUnetgPBr7YMjAd22g8hXmdkfivKzT25H5CE3cxOP/x
-         4p6vtQB43iCWMYEYZbL51pr5yg2oLXhxbCFB3bqQKSYTekaf0OobISLnOwSGfzCzvuv/
-         SGBw==
-X-Gm-Message-State: AOAM5314z5MvVccS3wgRNi75glBRQ0gzF0S8a7mEvwM9Xw9AEoJ+x3dD
-        Xd0x7GG/2l8jk6/lNmvZSibI
-X-Google-Smtp-Source: ABdhPJxNoILIsN8CwvQBVsBvPsJzIbXbbrpiAL77q3s8DI3eveLia7tMeqCgBT5x0WYEfg0Jp83zAA==
-X-Received: by 2002:a17:90b:2112:: with SMTP id kz18mr3553629pjb.58.1623335564050;
-        Thu, 10 Jun 2021 07:32:44 -0700 (PDT)
-Received: from thinkpad ([2409:4072:6d9e:80ad:d341:9a16:2c5c:2249])
-        by smtp.gmail.com with ESMTPSA id l128sm3056864pgl.18.2021.06.10.07.32.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jun 2021 07:32:43 -0700 (PDT)
-Date:   Thu, 10 Jun 2021 20:02:35 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Edgar Bernardi Righi <edgar.righi@lsitec.org.br>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] clk: actions: Fix bisp_factor_table based clocks
- on Owl S500 SoC
-Message-ID: <20210610143235.GB315240@thinkpad>
-References: <cover.1622119892.git.cristian.ciocaltea@gmail.com>
- <288f7a0a677a6bd8a3007b8b126f5a4637ec772e.1622119892.git.cristian.ciocaltea@gmail.com>
+        id S230348AbhFJOfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 10:35:42 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:33293 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230153AbhFJOfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Jun 2021 10:35:42 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15AEMOAC008243;
+        Thu, 10 Jun 2021 16:33:28 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=/hkRnTEMeC7+hgFh6oD0/FMI5Nxfp+iUUqwGzvsdDa4=;
+ b=Wg299IqSLi4nruuOKVB0+Qs1wqEVojRMAnDkLkrwuqNIdss1p4GxUpvBFIJVbxrjYb5/
+ 67Q1+3L0zs0AhVBOzi4RTOz5kEdOqXGJ1TE+IBUxie2vlEQXwjq0lPvomgQml5ZrrD1p
+ iSyankZjuaXyzXKhKGxTKHF85IF/fmrfwwTw68GwKsFp4jhGwFBbQyH+S5QJF92Cfnef
+ 4sgWIiIH/9USTQwIBDzh23RDVQfNDMwHHgYchhRfvDIauTFfovMN2Xpfy66qJW/KTOZz
+ bI8bwN2m5ncSb3Z87bhvbXttYxFAhEMEzT8uZ6hBDxc3DtMpJcRhW73IYAxVlru5WFqS lQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 393ee5jexu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Jun 2021 16:33:28 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 89BD4100034;
+        Thu, 10 Jun 2021 16:33:27 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 41D0522A6FF;
+        Thu, 10 Jun 2021 16:33:27 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 10 Jun
+ 2021 16:33:26 +0200
+Subject: Re: [PATCH 09/13] ARM: dts: stm32: fix stpmic node for stm32mp1
+ boards
+To:     <arnd@arndb.de>, <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+        <jagan@amarulasolutions.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        <kuba@kernel.org>
+References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
+ <20210415101037.1465-10-alexandre.torgue@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <b155f309-0bfb-3fa5-4b2b-c0128f6981b5@foss.st.com>
+Date:   Thu, 10 Jun 2021 16:33:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <288f7a0a677a6bd8a3007b8b126f5a4637ec772e.1622119892.git.cristian.ciocaltea@gmail.com>
+In-Reply-To: <20210415101037.1465-10-alexandre.torgue@foss.st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-06-10_10:2021-06-10,2021-06-10 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 27, 2021 at 04:16:41PM +0300, Cristian Ciocaltea wrote:
-> The following clocks of the Actions Semi Owl S500 SoC have been defined
-> to use a shared clock factor table 'bisp_factor_table[]': DE[1-2], VCE,
-> VDE, BISP, SENSOR[0-1]
+On 4/15/21 12:10 PM, Alexandre Torgue wrote:
+> On some STM32 MP15 boards, stpmic node is not correct which generates
+> warnings running "make dtbs_check W=1" command. Issues are:
 > 
-> There are several issues involved in this approach:
+> -"regulator-active-discharge" is not a boolean but an uint32.
+> -"regulator-over-current-protection" is not a valid entry for vref_ddr.
+> -LDO4 has a fixed voltage (3v3) so min/max entries are not allowed.
 > 
-> * 'bisp_factor_table[]' describes the configuration of a regular 8-rates
->   divider, so its usage is redundant. Additionally, judging by the BISP
->   clock context, it is incomplete since it maps only 8 out of 12
->   possible entries.
-> 
-> * The clocks mentioned above are not identical in terms of the available
->   rates, therefore cannot rely on the same factor table. Specifically,
->   BISP and SENSOR* are standard 12-rate dividers so their configuration
->   should rely on a proper clock div table, while VCE and VDE require a
->   factor table that is a actually a subset of the one needed for DE[1-2]
->   clocks.
-> 
-> Let's fix this by implementing the following:
-> 
-> * Add new factor tables 'de_factor_table' and 'hde_factor_table' to
->   properly handle DE[1-2], VCE and VDE clocks.
-> 
-> * Add a common div table 'std12rate_div_table' for BISP and SENSOR[0-1]
->   clocks converted to OWL_COMP_DIV.
-> 
-> * Drop the now unused 'bisp_factor_table[]'.
-> 
-> Additionally, drop the CLK_IGNORE_UNUSED flag for SENSOR[0-1] since
-> there is no reason to always keep ON those clocks.
-> 
-> Fixes: ed6b4795ece4 ("clk: actions: Add clock driver for S500 SoC")
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Applied on stm32-next.
 
-Thanks,
-Mani
+Thanks.
+Alex
 
-> ---
-> Changes in v2:
->  - Re-added OWL_GATE_HW to SENSOR[0-1], according to the datasheet they
->    are gated, even though the vendor implementation states the opposite
 > 
->  drivers/clk/actions/owl-s500.c | 44 ++++++++++++++++++++++------------
->  1 file changed, 29 insertions(+), 15 deletions(-)
+> diff --git a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
+> index 113c48b2ef93..a4b14ef3caee 100644
+> --- a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
+> @@ -184,8 +184,6 @@
+>   
+>   			vdd_usb: ldo4 {
+>   				regulator-name = "vdd_usb";
+> -				regulator-min-microvolt = <3300000>;
+> -				regulator-max-microvolt = <3300000>;
+>   				interrupts = <IT_CURLIM_LDO4 0>;
+>   			};
+>   
+> @@ -208,7 +206,6 @@
+>   			vref_ddr: vref_ddr {
+>   				regulator-name = "vref_ddr";
+>   				regulator-always-on;
+> -				regulator-over-current-protection;
+>   			};
+>   
+>   			bst_out: boost {
+> @@ -219,13 +216,13 @@
+>   			vbus_otg: pwr_sw1 {
+>   				regulator-name = "vbus_otg";
+>   				interrupts = <IT_OCP_OTG 0>;
+> -				regulator-active-discharge;
+> +				regulator-active-discharge = <1>;
+>   			};
+>   
+>   			vbus_sw: pwr_sw2 {
+>   				regulator-name = "vbus_sw";
+>   				interrupts = <IT_OCP_SWOUT 0>;
+> -				regulator-active-discharge;
+> +				regulator-active-discharge = <1>;
+>   			};
+>   		};
+>   
+> diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
+> index 6cf49a0a9e69..0c0b66788ea1 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
+> @@ -173,8 +173,6 @@
+>   
+>   			vdd_usb: ldo4 {
+>   				regulator-name = "vdd_usb";
+> -				regulator-min-microvolt = <3300000>;
+> -				regulator-max-microvolt = <3300000>;
+>   				interrupts = <IT_CURLIM_LDO4 0>;
+>   			};
+>   
+> @@ -197,7 +195,6 @@
+>   			vref_ddr: vref_ddr {
+>   				regulator-name = "vref_ddr";
+>   				regulator-always-on;
+> -				regulator-over-current-protection;
+>   			};
+>   
+>   			 bst_out: boost {
+> @@ -213,7 +210,7 @@
+>   			 vbus_sw: pwr_sw2 {
+>   				regulator-name = "vbus_sw";
+>   				interrupts = <IT_OCP_SWOUT 0>;
+> -				regulator-active-discharge;
+> +				regulator-active-discharge = <1>;
+>   			 };
+>   		};
+>   
+> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
+> index 272a1a67a9ad..769fcf74685a 100644
+> --- a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
+> @@ -327,8 +327,6 @@
+>   
+>   			vdd_usb: ldo4 {
+>   				regulator-name = "vdd_usb";
+> -				regulator-min-microvolt = <3300000>;
+> -				regulator-max-microvolt = <3300000>;
+>   				interrupts = <IT_CURLIM_LDO4 0>;
+>   			};
+>   
+> @@ -350,7 +348,6 @@
+>   			vref_ddr: vref_ddr {
+>   				regulator-name = "vref_ddr";
+>   				regulator-always-on;
+> -				regulator-over-current-protection;
+>   			};
+>   
+>   			bst_out: boost {
+> @@ -366,7 +363,7 @@
+>   			vbus_sw: pwr_sw2 {
+>   				regulator-name = "vbus_sw";
+>   				interrupts = <IT_OCP_SWOUT 0>;
+> -				regulator-active-discharge;
+> +				regulator-active-discharge = <1>;
+>   			};
+>   		};
+>   
+> diff --git a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
+> index 713485a95795..6706d8311a66 100644
+> --- a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
+> @@ -146,8 +146,6 @@
+>   
+>   			vdd_usb: ldo4 {
+>   				regulator-name = "vdd_usb";
+> -				regulator-min-microvolt = <3300000>;
+> -				regulator-max-microvolt = <3300000>;
+>   				interrupts = <IT_CURLIM_LDO4 0>;
+>   			};
+>   
+> @@ -171,7 +169,6 @@
+>   			vref_ddr: vref_ddr {
+>   				regulator-name = "vref_ddr";
+>   				regulator-always-on;
+> -				regulator-over-current-protection;
+>   			};
+>   
+>   			bst_out: boost {
+> @@ -182,13 +179,13 @@
+>   			vbus_otg: pwr_sw1 {
+>   				regulator-name = "vbus_otg";
+>   				interrupts = <IT_OCP_OTG 0>;
+> -				regulator-active-discharge;
+> +				regulator-active-discharge = <1>;
+>   			};
+>   
+>   			vbus_sw: pwr_sw2 {
+>   				regulator-name = "vbus_sw";
+>   				interrupts = <IT_OCP_SWOUT 0>;
+> -				regulator-active-discharge;
+> +				regulator-active-discharge = <1>;
+>   			};
+>   		};
+>   
 > 
-> diff --git a/drivers/clk/actions/owl-s500.c b/drivers/clk/actions/owl-s500.c
-> index 42abdf964044..42d6899755e6 100644
-> --- a/drivers/clk/actions/owl-s500.c
-> +++ b/drivers/clk/actions/owl-s500.c
-> @@ -140,9 +140,16 @@ static struct clk_factor_table sd_factor_table[] = {
->  	{ 0, 0, 0 },
->  };
->  
-> -static struct clk_factor_table bisp_factor_table[] = {
-> -	{ 0, 1, 1 }, { 1, 1, 2 }, { 2, 1, 3 }, { 3, 1, 4 },
-> -	{ 4, 1, 5 }, { 5, 1, 6 }, { 6, 1, 7 }, { 7, 1, 8 },
-> +static struct clk_factor_table de_factor_table[] = {
-> +	{ 0, 1, 1 }, { 1, 2, 3 }, { 2, 1, 2 }, { 3, 2, 5 },
-> +	{ 4, 1, 3 }, { 5, 1, 4 }, { 6, 1, 6 }, { 7, 1, 8 },
-> +	{ 8, 1, 12 },
-> +	{ 0, 0, 0 },
-> +};
-> +
-> +static struct clk_factor_table hde_factor_table[] = {
-> +	{ 0, 1, 1 }, { 1, 2, 3 }, { 2, 1, 2 }, { 3, 2, 5 },
-> +	{ 4, 1, 3 }, { 5, 1, 4 }, { 6, 1, 6 }, { 7, 1, 8 },
->  	{ 0, 0, 0 },
->  };
->  
-> @@ -156,6 +163,13 @@ static struct clk_div_table rmii_ref_div_table[] = {
->  	{ 0, 0 },
->  };
->  
-> +static struct clk_div_table std12rate_div_table[] = {
-> +	{ 0, 1 }, { 1, 2 }, { 2, 3 }, { 3, 4 },
-> +	{ 4, 5 }, { 5, 6 }, { 6, 7 }, { 7, 8 },
-> +	{ 8, 9 }, { 9, 10 }, { 10, 11 }, { 11, 12 },
-> +	{ 0, 0 },
-> +};
-> +
->  static struct clk_div_table i2s_div_table[] = {
->  	{ 0, 1 }, { 1, 2 }, { 2, 3 }, { 3, 4 },
->  	{ 4, 6 }, { 5, 8 }, { 6, 12 }, { 7, 16 },
-> @@ -191,39 +205,39 @@ static OWL_DIVIDER(rmii_ref_clk, "rmii_ref_clk", "ethernet_pll_clk", CMU_ETHERNE
->  
->  /* factor clocks */
->  static OWL_FACTOR(ahb_clk, "ahb_clk", "h_clk", CMU_BUSCLK1, 2, 2, ahb_factor_table, 0, 0);
-> -static OWL_FACTOR(de1_clk, "de_clk1", "de_clk", CMU_DECLK, 0, 3, bisp_factor_table, 0, 0);
-> -static OWL_FACTOR(de2_clk, "de_clk2", "de_clk", CMU_DECLK, 4, 3, bisp_factor_table, 0, 0);
-> +static OWL_FACTOR(de1_clk, "de_clk1", "de_clk", CMU_DECLK, 0, 4, de_factor_table, 0, 0);
-> +static OWL_FACTOR(de2_clk, "de_clk2", "de_clk", CMU_DECLK, 4, 4, de_factor_table, 0, 0);
->  
->  /* composite clocks */
->  static OWL_COMP_FACTOR(vce_clk, "vce_clk", hde_clk_mux_p,
->  			OWL_MUX_HW(CMU_VCECLK, 4, 2),
->  			OWL_GATE_HW(CMU_DEVCLKEN0, 26, 0),
-> -			OWL_FACTOR_HW(CMU_VCECLK, 0, 3, 0, bisp_factor_table),
-> +			OWL_FACTOR_HW(CMU_VCECLK, 0, 3, 0, hde_factor_table),
->  			0);
->  
->  static OWL_COMP_FACTOR(vde_clk, "vde_clk", hde_clk_mux_p,
->  			OWL_MUX_HW(CMU_VDECLK, 4, 2),
->  			OWL_GATE_HW(CMU_DEVCLKEN0, 25, 0),
-> -			OWL_FACTOR_HW(CMU_VDECLK, 0, 3, 0, bisp_factor_table),
-> +			OWL_FACTOR_HW(CMU_VDECLK, 0, 3, 0, hde_factor_table),
->  			0);
->  
-> -static OWL_COMP_FACTOR(bisp_clk, "bisp_clk", bisp_clk_mux_p,
-> +static OWL_COMP_DIV(bisp_clk, "bisp_clk", bisp_clk_mux_p,
->  			OWL_MUX_HW(CMU_BISPCLK, 4, 1),
->  			OWL_GATE_HW(CMU_DEVCLKEN0, 14, 0),
-> -			OWL_FACTOR_HW(CMU_BISPCLK, 0, 3, 0, bisp_factor_table),
-> +			OWL_DIVIDER_HW(CMU_BISPCLK, 0, 4, 0, std12rate_div_table),
->  			0);
->  
-> -static OWL_COMP_FACTOR(sensor0_clk, "sensor0_clk", sensor_clk_mux_p,
-> +static OWL_COMP_DIV(sensor0_clk, "sensor0_clk", sensor_clk_mux_p,
->  			OWL_MUX_HW(CMU_SENSORCLK, 4, 1),
->  			OWL_GATE_HW(CMU_DEVCLKEN0, 14, 0),
-> -			OWL_FACTOR_HW(CMU_SENSORCLK, 0, 3, 0, bisp_factor_table),
-> -			CLK_IGNORE_UNUSED);
-> +			OWL_DIVIDER_HW(CMU_SENSORCLK, 0, 4, 0, std12rate_div_table),
-> +			0);
->  
-> -static OWL_COMP_FACTOR(sensor1_clk, "sensor1_clk", sensor_clk_mux_p,
-> +static OWL_COMP_DIV(sensor1_clk, "sensor1_clk", sensor_clk_mux_p,
->  			OWL_MUX_HW(CMU_SENSORCLK, 4, 1),
->  			OWL_GATE_HW(CMU_DEVCLKEN0, 14, 0),
-> -			OWL_FACTOR_HW(CMU_SENSORCLK, 8, 3, 0, bisp_factor_table),
-> -			CLK_IGNORE_UNUSED);
-> +			OWL_DIVIDER_HW(CMU_SENSORCLK, 8, 4, 0, std12rate_div_table),
-> +			0);
->  
->  static OWL_COMP_FACTOR(sd0_clk, "sd0_clk", sd_clk_mux_p,
->  			OWL_MUX_HW(CMU_SD0CLK, 9, 1),
-> -- 
-> 2.31.1
-> 
+
