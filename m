@@ -2,128 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D04A03A2A21
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 13:25:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E02853A2AE6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 13:57:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbhFJL1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 07:27:40 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:31037 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229895AbhFJL1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 07:27:40 -0400
-X-Greylist: delayed 5351 seconds by postgrey-1.27 at vger.kernel.org; Thu, 10 Jun 2021 07:27:39 EDT
-ARC-Seal: i=1; a=rsa-sha256; t=1623324340; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=kMaJnRCmK3pM00zwoIAFaK2fzMgsncYpUL6mtB9QYneg7TtPQtE3wFWg3OfQwDH9Az
-    vQHhVCXo72v2zIBrWm0YTJB7LF8QIKCu3hqJDU1BkRJE1oe8W0SlO1+Z8UvhyPiOjIn3
-    ZrMoLwqwYOPY57Z3/pgUOfKCT3CAH0GnFYOTYgwF+c33SZSPsH7BoEmrWTGKIfUD5Ozo
-    eaKIzy9XV9GSLfKTmTWEcD8N8f0qV7icGvc1TjKfmQ2ZZbiBLx/y/lfHKMnUF2wbpUcl
-    OuQBzKVHLGidyTIoyQbBEUFPGvPrhnpjsaSPtstggIY3zBnajGXXMZEcNpm4qeoVMB3j
-    14Fw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623324340;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=1WVSBndPGbx2t1HrcMlYrtSeGKXkrVerGYD+9o506GE=;
-    b=IPHp0ZWoH/0easmhkjXnqJ2DTV3I4qHNvsyMRWPv6457eeyI49OvMqhLpMrAVwQno8
-    meKRuPlJnkfJEW42WlUtgOAR7IjVLbGDl2r1jOuYF6aZbtvaIb1kRd9J4p5chvfeaE9s
-    GdI5xMYVXHaPH821/PDF+/vKndFNYq5lUeroZYDV1RLOzKiTKVfb2xu8xFErb7FiRi6M
-    vfdql2W60GaxRYsrQhONzaaFOzyhKxQfWm7i29TkChjwJ008UEF/IEmAx9DzVYVLvs+l
-    cGBtCa+UOTg4WjpHxe1cGrKQOBv0V1NLPG2Wa6Ktn60OMiMDYsr+NNgmGTF+2+zVIJNP
-    D52g==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623324340;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=1WVSBndPGbx2t1HrcMlYrtSeGKXkrVerGYD+9o506GE=;
-    b=QemOYP009w2SfEuWDRiiIWNQY0W6x9Idh4woHRCFtQy1rrp6KP4QBHpYbwZsg9JaBZ
-    YRFle+R0+EBtI8tEtpzaw5RqOYQcxBqtCuQl17npephnMVTjQ2zFpRfM/Xr6h0VoIWFw
-    4TzwTNFr5mPBRAMpWfXKqtn3MUuL6S/zZJ/qZNc5kGBpWUBlDAnxJT02ZNusN7VRiCwf
-    HGxu7CufRZd48hsdzjav5OYl+pjGl0llCY282UjELZ3XyG2ZHWD7kLtVkus+MziMyzjb
-    YK79xZmmu7IUl7frin8860eEOMpVNC+Sk8g16JDvGhpR1k2KMtwBtwr+O3jfaBB/MsV0
-    bsOQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8nxIc/BaYo="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
-    with ESMTPSA id y01375x5ABPetWp
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 10 Jun 2021 13:25:40 +0200 (CEST)
-Date:   Thu, 10 Jun 2021 13:25:35 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Hans de Goede <hdegoede@redhat.com>
-Subject: Re: [PATCH 0/6] iio: accel: bmc150: Add support for BMA253/BMA254
-Message-ID: <YMH2r3TXp0+qYiLN@gerhold.net>
-References: <20210610095300.3613-1-stephan@gerhold.net>
- <CAHp75Vc2c3GX5jESbGexnwJ-WUtZHCjVNsqTVykCrViCjH77+Q@mail.gmail.com>
- <YMHt1Z1QKUGMPDZX@gerhold.net>
- <CAHp75Vervzi9zXdWef8vpGZwM5wS3LtuKTY9f5j9QA0Asbea2Q@mail.gmail.com>
+        id S230146AbhFJL7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 07:59:20 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:32979 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230113AbhFJL7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 07:59:20 -0400
+X-UUID: 884a963e274e4ff3aefc74ac7a06f8b4-20210610
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=elJ9YOjsWZi/CCl9FuG5SvQqldYPlUBku3yqU/pScuY=;
+        b=pftvq2X5i4XCwLgWFMCWvFzXhka7jEmLnlY5nMhBIOhOuhKMcZhIjhGwsCe6nJz3VmRg+ukItsGe8bt57F3ISvWKbjeyHrdY0HTfftx6+wcOtNpo1dU6ZykcovoJ4AcJw4VHmYgC9TLvGAXSPXdwW81TnMvt9RmkYUKOiJKSXsQ=;
+X-UUID: 884a963e274e4ff3aefc74ac7a06f8b4-20210610
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1652861480; Thu, 10 Jun 2021 19:57:20 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
+ (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 10 Jun
+ 2021 19:57:17 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 10 Jun 2021 19:57:17 +0800
+Message-ID: <1623326237.23717.15.camel@mhfsdcap03>
+Subject: Re: [PATCH v2] dt-bindings: mediatek: convert mtk jpeg
+ decoder/encoder to yaml
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <maoguang.meng@mediatek.com>
+Date:   Thu, 10 Jun 2021 19:57:17 +0800
+In-Reply-To: <c324de79-9a07-2f2c-e29a-dcd448da29f8@gmail.com>
+References: <20210609180130.693944-1-hsinyi@chromium.org>
+         <c324de79-9a07-2f2c-e29a-dcd448da29f8@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vervzi9zXdWef8vpGZwM5wS3LtuKTY9f5j9QA0Asbea2Q@mail.gmail.com>
+X-TM-SNTS-SMTP: 73A1C0BC2E8DD718376B7BC09E60E8F00CCCB19571270216A0D526E592F538382000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 10, 2021 at 01:51:22PM +0300, Andy Shevchenko wrote:
-> On Thu, Jun 10, 2021 at 1:48 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-> > On Thu, Jun 10, 2021 at 01:29:26PM +0300, Andy Shevchenko wrote:
-> > > On Thu, Jun 10, 2021 at 12:56 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-> > > >
-> > > > The Bosch BMA253 accelerometer is very similar to both BMA254 and BMA255.
-> > > > The current situation is very confusing: BMA254 is supported by the bma180
-> > > > driver, but BMA255 is supported by the bmc150-accel driver.
-> > > >
-> > > > It turns out the bma180 and bmc150-accel drivers have quite some overlap,
-> > > > and BMA253/BMA254 would be a bit better supported in bmc150
-> > > > (which has support for the motion trigger/interrupt).
-> > > >
-> > > > This series adds BMA253 support to bmc150-accel and also moves BMA254
-> > > > over to bmc150, removing some unnecessary code from the bma180 driver.
-> > > >
-> > > > I asked Linus Walleij to test these patches on BMA254 a while ago
-> > > > and he suggested that I already add his Reviewed-by.
-> > >
-> > > I add
-> > >
-> > >
-> > > After addressing comments per patch 1, feel free to add my
-> > > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > > to the series.
-> > >
-> >
-> > Thanks for the review!
-> >
-> > I think the re-ordering should be a separate commit to make the diff not
-> > too confusing. Is it fine for you if I send that as a follow-up patch?
-> > I already have two more patches that would conflict with the reordering,
-> > so it would be easier to include that in the next series.
-> >
-> > But I can also re-send the entire series with the extra patch if you
-> > prefer that, just let me know. :)
-> 
-> I think that doing the reordering first (if there are no fixes so far)
-> is a good idea.
-> 
+T24gVGh1LCAyMDIxLTA2LTEwIGF0IDEwOjM3ICswMjAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3Rl
+Og0KPiBIaSBIc2luLVlpLA0KPiANCj4gT24gMDkvMDYvMjAyMSAyMDowMSwgSHNpbi1ZaSBXYW5n
+IHdyb3RlOg0KPiA+IENvbnZlcnQgbWVkaWF0ZWsganBlZyBkZWNvZGVyIGFuZCBlbmNvZGVyIGJp
+bmRpbmdzIHRvIHlhbWwuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogSHNpbi1ZaSBXYW5nIDxo
+c2lueWlAY2hyb21pdW0ub3JnPg0KPiA+IC0tLQ0KPiA+IHYyOiBmaXggZHRfYmluZGluZ19jaGVj
+ayBlcnJvcnMNCj4gPiAtLS0NCj4gPiAgLi4uL2JpbmRpbmdzL21lZGlhL21lZGlhdGVrLWpwZWct
+ZGVjb2Rlci50eHQgIHwgMzggLS0tLS0tLS0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvbWVkaWEvbWVk
+aWF0ZWstanBlZy1kZWNvZGVyLnlhbWwgfCA3NiArKysrKysrKysrKysrKysrKysrDQo+ID4gIC4u
+Li9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlay1qcGVnLWVuY29kZXIudHh0ICB8IDM1IC0tLS0tLS0t
+LQ0KPiA+ICAuLi4vYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWstanBlZy1lbmNvZGVyLnlhbWwgfCA2
+OCArKysrKysrKysrKysrKysrKw0KPiA+ICA0IGZpbGVzIGNoYW5nZWQsIDE0NCBpbnNlcnRpb25z
+KCspLCA3MyBkZWxldGlvbnMoLSkNCj4gPiAgZGVsZXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlay1qcGVnLWRlY29kZXIudHh0DQo+
+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+bWVkaWEvbWVkaWF0ZWstanBlZy1kZWNvZGVyLnlhbWwNCj4gPiAgZGVsZXRlIG1vZGUgMTAwNjQ0
+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlay1qcGVnLWVu
+Y29kZXIudHh0DQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWstanBlZy1lbmNvZGVyLnlhbWwNCj4gPiANCj4gPiBk
+aWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlhL21lZGlh
+dGVrLWpwZWctZGVjb2Rlci50eHQgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+bWVkaWEvbWVkaWF0ZWstanBlZy1kZWNvZGVyLnR4dA0KPiA+IGRlbGV0ZWQgZmlsZSBtb2RlIDEw
+MDY0NA0KPiA+IGluZGV4IDM5YzEwMjhiMmRmYjQuLjAwMDAwMDAwMDAwMDANCj4gPiAtLS0gYS9E
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWstanBlZy1kZWNv
+ZGVyLnR4dA0KPiA+ICsrKyAvZGV2L251bGwNCj4gPiBAQCAtMSwzOCArMCwwIEBADQo+ID4gLSog
+TWVkaWF0ZWsgSlBFRyBEZWNvZGVyDQo+ID4gLQ0KPiA+IC1NZWRpYXRlayBKUEVHIERlY29kZXIg
+aXMgdGhlIEpQRUcgZGVjb2RlIGhhcmR3YXJlIHByZXNlbnQgaW4gTWVkaWF0ZWsgU29Dcw0KPiA+
+IC0NCj4gPiAtUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPiAtLSBjb21wYXRpYmxlIDogbXVzdCBi
+ZSBvbmUgb2YgdGhlIGZvbGxvd2luZyBzdHJpbmc6DQo+ID4gLQkibWVkaWF0ZWssbXQ4MTczLWpw
+Z2RlYyINCj4gPiAtCSJtZWRpYXRlayxtdDc2MjMtanBnZGVjIiwgIm1lZGlhdGVrLG10MjcwMS1q
+cGdkZWMiDQo+ID4gLQkibWVkaWF0ZWssbXQyNzAxLWpwZ2RlYyINCj4gPiAtLSByZWcgOiBwaHlz
+aWNhbCBiYXNlIGFkZHJlc3Mgb2YgdGhlIGpwZWcgZGVjb2RlciByZWdpc3RlcnMgYW5kIGxlbmd0
+aCBvZg0KPiA+IC0gIG1lbW9yeSBtYXBwZWQgcmVnaW9uLg0KPiA+IC0tIGludGVycnVwdHMgOiBp
+bnRlcnJ1cHQgbnVtYmVyIHRvIHRoZSBpbnRlcnJ1cHQgY29udHJvbGxlci4NCj4gPiAtLSBjbG9j
+a3M6IGRldmljZSBjbG9ja3MsIHNlZQ0KPiA+IC0gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9jbG9jay9jbG9jay1iaW5kaW5ncy50eHQgZm9yIGRldGFpbHMuDQo+ID4gLS0gY2xv
+Y2stbmFtZXM6IG11c3QgY29udGFpbiAianBnZGVjLXNtaSIgYW5kICJqcGdkZWMiLg0KPiA+IC0t
+IHBvd2VyLWRvbWFpbnM6IGEgcGhhbmRsZSB0byB0aGUgcG93ZXIgZG9tYWluLCBzZWUNCj4gPiAt
+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcG93ZXIvcG93ZXJfZG9tYWluLnR4
+dCBmb3IgZGV0YWlscy4NCj4gPiAtLSBtZWRpYXRlayxsYXJiOiBtdXN0IGNvbnRhaW4gdGhlIGxv
+Y2FsIGFyYml0ZXJzIGluIHRoZSBjdXJyZW50IFNvY3MsIHNlZQ0KPiA+IC0gIERvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZW1vcnktY29udHJvbGxlcnMvbWVkaWF0ZWssc21pLWxh
+cmIueWFtbA0KPiA+IC0gIGZvciBkZXRhaWxzLg0KPiANCj4gV2UgbWlzcyB0aGUgbWVkaWF0ZWss
+bGFyYiBpbiB0aGUgeWFtbC4NCg0KSGkgSHNpbi1ZaSwNCg0KSSB3aWxsIHJlYmFzZSB0aGlzIG9u
+ZSB3aGVuIHJlbW92aW5nIG1lZGlhdGVrLGxhcmIuDQoNCj4gDQo+ID4gLS0gaW9tbXVzOiBzaG91
+bGQgcG9pbnQgdG8gdGhlIHJlc3BlY3RpdmUgSU9NTVUgYmxvY2sgd2l0aCBtYXN0ZXIgcG9ydCBh
+cw0KPiA+IC0gIGFyZ3VtZW50LCBzZWUgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L2lvbW11L21lZGlhdGVrLGlvbW11LnlhbWwNCj4gPiAtICBmb3IgZGV0YWlscy4NCj4gPiAtDQo+
+ID4gLUV4YW1wbGU6DQo+ID4gLQlqcGVnZGVjOiBqcGVnZGVjQDE1MDA0MDAwIHsNCj4gPiAtCQlj
+b21wYXRpYmxlID0gIm1lZGlhdGVrLG10MjcwMS1qcGdkZWMiOw0KPiA+IC0JCXJlZyA9IDwwIDB4
+MTUwMDQwMDAgMCAweDEwMDA+Ow0KPiA+IC0JCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNDMgSVJR
+X1RZUEVfTEVWRUxfTE9XPjsNCj4gPiAtCQljbG9ja3MgPSAgPCZpbWdzeXMgQ0xLX0lNR19KUEdE
+RUNfU01JPiwNCj4gPiAtCQkJICA8JmltZ3N5cyBDTEtfSU1HX0pQR0RFQz47DQo+ID4gLQkJY2xv
+Y2stbmFtZXMgPSAianBnZGVjLXNtaSIsDQo+ID4gLQkJCSAgICAgICJqcGdkZWMiOw0KPiA+IC0J
+CXBvd2VyLWRvbWFpbnMgPSA8JnNjcHN5cyBNVDI3MDFfUE9XRVJfRE9NQUlOX0lTUD47DQo+ID4g
+LQkJbWVkaWF0ZWssbGFyYiA9IDwmbGFyYjI+Ow0KPiA+IC0JCWlvbW11cyA9IDwmaW9tbXUgTVQy
+NzAxX000VV9QT1JUX0pQR0RFQ19XRE1BPiwNCj4gPiAtCQkJIDwmaW9tbXUgTVQyNzAxX000VV9Q
+T1JUX0pQR0RFQ19CU0RNQT47DQo+ID4gLQl9Ow0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWstanBlZy1kZWNvZGVyLnlhbWwg
+Yi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWstanBlZy1k
+ZWNvZGVyLnlhbWwNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAw
+MDAwMDAuLjgyMWU2YjQ4MDkwMWENCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlhL21lZGlhdGVrLWpwZWctZGVjb2Rlci55
+YW1sDQo+ID4gQEAgLTAsMCArMSw3NiBAQA0KPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVy
+OiAoR1BMLTIuMCBPUiBCU0QtMi1DbGF1c2UpDQo+ID4gKyVZQU1MIDEuMg0KPiA+ICstLS0NCj4g
+PiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9tZWRpYS9tZWRpYXRlay1qcGVn
+LWRlY29kZXIueWFtbCMNCj4gPiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEt
+c2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0KPiA+ICt0aXRsZTogTWVkaWFUZWsgSlBFRyBEZWNv
+ZGVyIERldmljZSBUcmVlIEJpbmRpbmdzDQo+ID4gKw0KPiA+ICttYWludGFpbmVyczoNCj4gPiAr
+ICAtIFhpYSBKaWFuZyA8eGlhLmppYW5nQG1lZGlhdGVrLmNvbT4NCj4gPiArDQo+ID4gK2Rlc2Ny
+aXB0aW9uOiB8LQ0KPiA+ICsgIE1lZGlhdGVrIEpQRUcgRGVjb2RlciBpcyB0aGUgSlBFRyBkZWNv
+ZGUgaGFyZHdhcmUgcHJlc2VudCBpbiBNZWRpYXRlayBTb0NzDQo+ID4gKw0KPiA+ICtwcm9wZXJ0
+aWVzOg0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBvbmVPZjoNCj4gPiArICAgICAgLSBp
+dGVtczoNCj4gPiArICAgICAgICAgIC0gY29uc3Q6IG1lZGlhdGVrLG10ODE3My1qcGdkZWMNCj4g
+PiArICAgICAgLSBpdGVtczoNCj4gPiArICAgICAgICAgIC0gY29uc3Q6IG1lZGlhdGVrLG10Mjcw
+MS1qcGdkZWMNCj4gPiArICAgICAgLSBpdGVtczoNCj4gPiArICAgICAgICAgIC0gZW51bToNCj4g
+PiArICAgICAgICAgICAgICAtIG1lZGlhdGVrLG10NzYyMy1qcGdkZWMNCj4gPiArICAgICAgICAg
+IC0gY29uc3Q6IG1lZGlhdGVrLG10MjcwMS1qcGdkZWMNCj4gPiArDQo+ID4gKyAgcmVnOg0KPiA+
+ICsgICAgbWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgaW50ZXJydXB0czoNCj4gPiArICAgIG1h
+eEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIGNsb2NrczoNCj4gPiArICAgIG1heEl0ZW1zOiAyDQo+
+ID4gKyAgICBtaW5JdGVtczogMg0KPiA+ICsNCj4gPiArICBjbG9jay1uYW1lczoNCj4gPiArICAg
+IGl0ZW1zOg0KPiA+ICsgICAgICAtIGNvbnN0OiBqcGdkZWMtc21pDQo+ID4gKyAgICAgIC0gY29u
+c3Q6IGpwZ2RlYw0KPiA+ICsNCj4gPiArICBwb3dlci1kb21haW5zOg0KPiA+ICsgICAgbWF4SXRl
+bXM6IDENCj4gPiArDQo+ID4gKyAgaW9tbXVzOg0KPiA+ICsgICAgbWF4SXRlbXM6IDINCj4gPiAr
+DQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29tcGF0aWJsZQ0KPiA+ICsgIC0gcmVnDQo+ID4g
+KyAgLSBpbnRlcnJ1cHRzDQo+ID4gKyAgLSBjbG9ja3MNCj4gPiArICAtIGNsb2NrLW5hbWVzDQo+
+ID4gKyAgLSBwb3dlci1kb21haW5zDQo+ID4gKyAgLSBpb21tdXMNCj4gPiArDQo+ID4gK2FkZGl0
+aW9uYWxQcm9wZXJ0aWVzOiBmYWxzZQ0KPiA+ICsNCj4gPiArZXhhbXBsZXM6DQo+ID4gKyAgLSB8
+DQo+ID4gKyAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvY2xvY2svbXQyNzAxLWNsay5oPg0KPiA+
+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2FybS1naWMu
+aD4NCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9tZW1vcnkvbXQyNzAxLWxhcmItcG9y
+dC5oPg0KPiA+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3Bvd2VyL210MjcwMS1wb3dlci5o
+Pg0KPiA+ICsgICAganBlZ2RlYzoganBlZ2RlY0AxNTAwNDAwMCB7DQo+ID4gKyAgICAgIGNvbXBh
+dGlibGUgPSAibWVkaWF0ZWssbXQyNzAxLWpwZ2RlYyI7DQo+ID4gKyAgICAgIHJlZyA9IDwweDE1
+MDA0MDAwIDB4MTAwMD47DQo+ID4gKyAgICAgIGludGVycnVwdHMgPSA8R0lDX1NQSSAxNDMgSVJR
+X1RZUEVfTEVWRUxfTE9XPjsNCj4gPiArICAgICAgY2xvY2tzID0gIDwmaW1nc3lzIENMS19JTUdf
+SlBHREVDX1NNST4sDQo+ID4gKyAgICAgICAgICAgICAgICA8JmltZ3N5cyBDTEtfSU1HX0pQR0RF
+Qz47DQo+ID4gKyAgICAgIGNsb2NrLW5hbWVzID0gImpwZ2RlYy1zbWkiLA0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICJqcGdkZWMiOw0KPiA+ICsgICAgICBwb3dlci1kb21haW5zID0gPCZzY3Bz
+eXMgTVQyNzAxX1BPV0VSX0RPTUFJTl9JU1A+Ow0KPiA+ICsgICAgICBpb21tdXMgPSA8JmlvbW11
+IE1UMjcwMV9NNFVfUE9SVF9KUEdERUNfV0RNQT4sDQo+ID4gKyAgICAgICAgICAgICAgIDwmaW9t
+bXUgTVQyNzAxX000VV9QT1JUX0pQR0RFQ19CU0RNQT47DQo+ID4gKyAgICB9Ow0KPiA+IGRpZmYg
+LS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWst
+anBlZy1lbmNvZGVyLnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRp
+YS9tZWRpYXRlay1qcGVnLWVuY29kZXIudHh0DQo+ID4gZGVsZXRlZCBmaWxlIG1vZGUgMTAwNjQ0
+DQo+ID4gaW5kZXggNWU1M2M2YWI1MmQwMS4uMDAwMDAwMDAwMDAwMA0KPiA+IC0tLSBhL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlay1qcGVnLWVuY29kZXIu
+dHh0DQo+ID4gKysrIC9kZXYvbnVsbA0KPiA+IEBAIC0xLDM1ICswLDAgQEANCj4gPiAtKiBNZWRp
+YVRlayBKUEVHIEVuY29kZXINCj4gPiAtDQo+ID4gLU1lZGlhVGVrIEpQRUcgRW5jb2RlciBpcyB0
+aGUgSlBFRyBlbmNvZGUgaGFyZHdhcmUgcHJlc2VudCBpbiBNZWRpYVRlayBTb0NzDQo+ID4gLQ0K
+PiA+IC1SZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiA+IC0tIGNvbXBhdGlibGUgOiAibWVkaWF0ZWss
+bXQyNzAxLWpwZ2VuYyINCj4gPiAtICBmb2xsb3dlZCBieSAibWVkaWF0ZWssbXRrLWpwZ2VuYyIN
+Cj4gPiAtLSByZWcgOiBwaHlzaWNhbCBiYXNlIGFkZHJlc3Mgb2YgdGhlIEpQRUcgZW5jb2RlciBy
+ZWdpc3RlcnMgYW5kIGxlbmd0aCBvZg0KPiA+IC0gIG1lbW9yeSBtYXBwZWQgcmVnaW9uLg0KPiA+
+IC0tIGludGVycnVwdHMgOiBpbnRlcnJ1cHQgbnVtYmVyIHRvIHRoZSBpbnRlcnJ1cHQgY29udHJv
+bGxlci4NCj4gPiAtLSBjbG9ja3M6IGRldmljZSBjbG9ja3MsIHNlZQ0KPiA+IC0gIERvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9jbG9jay1iaW5kaW5ncy50eHQgZm9yIGRl
+dGFpbHMuDQo+ID4gLS0gY2xvY2stbmFtZXM6IG11c3QgY29udGFpbiAianBnZW5jIi4gSXQgaXMg
+dGhlIGNsb2NrIG9mIEpQRUcgZW5jb2Rlci4NCj4gPiAtLSBwb3dlci1kb21haW5zOiBhIHBoYW5k
+bGUgdG8gdGhlIHBvd2VyIGRvbWFpbiwgc2VlDQo+ID4gLSAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL3Bvd2VyL3Bvd2VyX2RvbWFpbi50eHQgZm9yIGRldGFpbHMuDQo+ID4gLS0g
+bWVkaWF0ZWssbGFyYjogbXVzdCBjb250YWluIHRoZSBsb2NhbCBhcmJpdGVycyBpbiB0aGUgY3Vy
+cmVudCBTb0NzLCBzZWUNCj4gPiAtICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+bWVtb3J5LWNvbnRyb2xsZXJzL21lZGlhdGVrLHNtaS1sYXJiLnlhbWwNCj4gPiAtICBmb3IgZGV0
+YWlscy4NCj4gDQo+IFNhbWUgaGVyZS4NCj4gDQo+IFJlZ2FyZHMsDQo+IE1hdHRoaWFzDQoNCg==
 
-OK, I will try to do that somehow. I will probably prepend one of my
-additional patches to this series since it has a Fixes: tag that would
-just cause the stable people headaches later when backporting.
-
-Thanks,
-Stephan
