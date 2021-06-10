@@ -2,103 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 022303A21E8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 03:35:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B4D43A2239
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 04:17:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbhFJBhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 21:37:17 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:33858 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbhFJBhR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 21:37:17 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4CC678A2;
-        Thu, 10 Jun 2021 03:35:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1623288920;
-        bh=ZOPIF/Y2NL+RVtQmqfz7Yzk+FKKW1kdfWXCUZ0p+IYo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nIUIc8Ae0iR5Cdk4+JCLjml+9LuS7ep/EjFfxQ93Yi5dCVT9RpLe7OPxB/FzQwUK3
-         /KZeyTbLUH0LNqQ8SM9Me9We5MpQPn73gkFAb2eJcw/ULwYBY9J30OyIgaB6Zhpnlf
-         8pYgudO3SFYWbiZ5KYk8kwTXmzhjIMqOnioqw7Iw=
-Date:   Thu, 10 Jun 2021 04:35:02 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Quanyang Wang <quanyang.wang@windriver.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 21/31] arm64: zynqmp: Move DP nodes to the end of file on
- zcu106
-Message-ID: <YMFsRjXuYm0KMRMD@pendragon.ideasonboard.com>
-References: <cover.1623239033.git.michal.simek@xilinx.com>
- <4d1c79f6f184367687f61608bb8e0f18d9121802.1623239033.git.michal.simek@xilinx.com>
+        id S229802AbhFJCTE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Jun 2021 22:19:04 -0400
+Received: from mail.ceyrat.fr ([51.255.105.212]:39420 "EHLO mail.ceyrat.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229507AbhFJCTD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Jun 2021 22:19:03 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.ceyrat.fr (Postfix) with ESMTP id EF3421A9DE16;
+        Thu, 10 Jun 2021 03:14:55 +0200 (CEST)
+Received: from mail.ceyrat.fr ([127.0.0.1])
+        by localhost (intra-ceyrat.ceyrat.fr [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id a-GJvD_zDHeh; Thu, 10 Jun 2021 03:14:55 +0200 (CEST)
+Received: from reverse-dns.chicago (cuscon67051.tstt.net.tt [190.58.141.13])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mail.ceyrat.fr (Postfix) with ESMTPSA id D51551A9D831;
+        Thu, 10 Jun 2021 03:00:17 +0200 (CEST)
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <4d1c79f6f184367687f61608bb8e0f18d9121802.1623239033.git.michal.simek@xilinx.com>
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: Last Notification
+To:     Recipients <toto@ceyrat.fr>
+From:   "note" <toto@ceyrat.fr>
+Date:   Wed, 09 Jun 2021 18:00:10 -0700
+Reply-To: trustees202000@consultant.com
+Message-Id: <20210610011455.EF3421A9DE16@mail.ceyrat.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michal,
+After several failed attempts, we reaching you again as regards the estate of Late George Brumley, you were made one of the beneficiaries of his estate. Do get back to me at your earliest convenience. 
 
-Thank you for the patch.
-
-On Wed, Jun 09, 2021 at 01:44:57PM +0200, Michal Simek wrote:
-> This location is used by others DTs files that's why this move.
-
-I like alphabetical order :-)
-
-> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> ---
-> 
->  .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 22 +++++++++----------
->  1 file changed, 11 insertions(+), 11 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-> index dbb8bfbb5c7f..4a0f3370bf7f 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-> @@ -160,17 +160,6 @@ &dcc {
->  	status = "okay";
->  };
->  
-> -&zynqmp_dpdma {
-> -	status = "okay";
-> -};
-> -
-> -&zynqmp_dpsub {
-> -	status = "okay";
-> -	phy-names = "dp-phy0", "dp-phy1";
-> -	phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
-> -	       <&psgtr 0 PHY_TYPE_DP 1 3>;
-> -};
-> -
->  /* fpd_dma clk 667MHz, lpd_dma 500MHz */
->  &fpd_dma_chan1 {
->  	status = "okay";
-> @@ -994,3 +983,14 @@ &usb0 {
->  &watchdog0 {
->  	status = "okay";
->  };
-> +
-> +&zynqmp_dpdma {
-> +	status = "okay";
-> +};
-> +
-> +&zynqmp_dpsub {
-> +	status = "okay";
-> +	phy-names = "dp-phy0", "dp-phy1";
-> +	phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
-> +	       <&psgtr 0 PHY_TYPE_DP 1 3>;
-> +};
-
--- 
-Regards,
-
-Laurent Pinchart
+The Trustees
