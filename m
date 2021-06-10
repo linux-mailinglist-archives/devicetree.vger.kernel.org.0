@@ -2,80 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44E253A2720
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:33:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 306643A273E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:38:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230130AbhFJIfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 04:35:37 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:34864 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229823AbhFJIfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 04:35:37 -0400
-Received: from [77.244.183.192] (port=63482 helo=[192.168.178.41])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1lrG8B-000FMr-2O; Thu, 10 Jun 2021 10:33:39 +0200
-Subject: Re: [PATCH v6] dt-bindings: clk: versaclock5: Miscellaneous fixes and
- improvements:
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S229895AbhFJIkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 04:40:42 -0400
+Received: from mail-wm1-f53.google.com ([209.85.128.53]:53132 "EHLO
+        mail-wm1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229715AbhFJIkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 04:40:42 -0400
+Received: by mail-wm1-f53.google.com with SMTP id f17so5654862wmf.2;
+        Thu, 10 Jun 2021 01:38:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Vw2rEidNYSZeHFrj7gyKfEnss0oZYJ9I5iUbvOkNzhg=;
+        b=ooamT84SYgotXdYQmlxem5mrZzw1HzuUkCjt4aOlyohi6/Rm95UNTFkdQIjLulE2VV
+         aozaQKnE6Si75yQpSMmR0ssVEZK0cPJxkXhNKsqeaP3BL8ASpHmfDJaIxXT+/DZ+54iJ
+         aQy7NZ9kioLpoWTxSmhbdlRGt/T1Ds4CF+z9PKTf90jHc53Sl6FV3m/eWb+el5brKNMz
+         luw6RF0GAQ3/+JRjmJ6Jizh4HK2iWbP8p7zLGlTMpOor1ZXGxLw3MLezHPmcJWwPbbt2
+         iQgDCzRYRhk7CbBMhrZC4uoKRzddo7vYB+9pou03oWbTUyOcPE2EoVm5J//xQ92LMs+G
+         PdUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Vw2rEidNYSZeHFrj7gyKfEnss0oZYJ9I5iUbvOkNzhg=;
+        b=bolXeZ81BGMdfQAEnym+CH9gcwqe7XawYsot1IzuoMttWcEyYMKNkCNIxO/LH5XB2Z
+         RroiMfqyOEPs7SemBdI3PQ03dmWjHaglUYbDhAckvOoi3/51Db3VNIJxaEgUD2NuhkaU
+         6zKtLLtsdEqKPZ4LjwiSAqobbVqHAehDNU3mS5xyZw+LUr1tU544C8Dm3Jcx5+vnh6Pt
+         dyhjYk7qzYxRAIYFevoCLbjn8NlIAIs1XhTxp+uCaYSV+xaGGB2wVgdxM5kd3b9SaV+c
+         b3aNvpzoA/ADssc09FlE1bT9P9Ci63iWcaRHJi5yLqQoCwi+HofwBIDfcjRHuu5IeoY4
+         EZyA==
+X-Gm-Message-State: AOAM533+PIGcULk+BxhrQvR7xwS4/TlVvTY2je2T6Rz/qFiJKbz4/lsx
+        i/TcE5olZ0bGJO3QOx46yyA=
+X-Google-Smtp-Source: ABdhPJzcXxE0Z1+qB1Riub+DwCapNG6b60zmCOtH7Z/t9aZnXBURBj3oDjbAhDLMIsLCcajgntaNyA==
+X-Received: by 2002:a05:600c:4114:: with SMTP id j20mr14226178wmi.0.1623314265323;
+        Thu, 10 Jun 2021 01:37:45 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id o18sm2648988wrx.59.2021.06.10.01.37.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Jun 2021 01:37:44 -0700 (PDT)
+Subject: Re: [PATCH v2] dt-bindings: mediatek: convert mtk jpeg
+ decoder/encoder to yaml
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     Adam Ford <aford173@gmail.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>
-References: <46310530171886c6ccf4046518e07510274a506c.1623308843.git.geert+renesas@glider.be>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <ec070c68-5b5e-0366-434e-9d9b571e95a8@lucaceresoli.net>
-Date:   Thu, 10 Jun 2021 10:33:38 +0200
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        maoguang.meng@mediatek.com, yong.wu@mediatek.com
+References: <20210609180130.693944-1-hsinyi@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <c324de79-9a07-2f2c-e29a-dcd448da29f8@gmail.com>
+Date:   Thu, 10 Jun 2021 10:37:43 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-In-Reply-To: <46310530171886c6ccf4046518e07510274a506c.1623308843.git.geert+renesas@glider.be>
+In-Reply-To: <20210609180130.693944-1-hsinyi@chromium.org>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert, All,
+Hi Hsin-Yi,
 
-On 10/06/21 09:09, Geert Uytterhoeven wrote:
->   - Add missing "additionalProperties: false" for subnodes, to catch
->     typos in properties,
->   - Fix property names in example.
+On 09/06/2021 20:01, Hsin-Yi Wang wrote:
+> Convert mediatek jpeg decoder and encoder bindings to yaml.
 > 
-> Fixes: 45c940184b501fc6 ("dt-bindings: clk: versaclock5: convert to yaml")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+> v2: fix dt_binding_check errors
+> ---
+>  .../bindings/media/mediatek-jpeg-decoder.txt  | 38 ----------
+>  .../bindings/media/mediatek-jpeg-decoder.yaml | 76 +++++++++++++++++++
+>  .../bindings/media/mediatek-jpeg-encoder.txt  | 35 ---------
+>  .../bindings/media/mediatek-jpeg-encoder.yaml | 68 +++++++++++++++++
+>  4 files changed, 144 insertions(+), 73 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+> deleted file mode 100644
+> index 39c1028b2dfb4..0000000000000
+> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -* Mediatek JPEG Decoder
+> -
+> -Mediatek JPEG Decoder is the JPEG decode hardware present in Mediatek SoCs
+> -
+> -Required properties:
+> -- compatible : must be one of the following string:
+> -	"mediatek,mt8173-jpgdec"
+> -	"mediatek,mt7623-jpgdec", "mediatek,mt2701-jpgdec"
+> -	"mediatek,mt2701-jpgdec"
+> -- reg : physical base address of the jpeg decoder registers and length of
+> -  memory mapped region.
+> -- interrupts : interrupt number to the interrupt controller.
+> -- clocks: device clocks, see
+> -  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+> -- clock-names: must contain "jpgdec-smi" and "jpgdec".
+> -- power-domains: a phandle to the power domain, see
+> -  Documentation/devicetree/bindings/power/power_domain.txt for details.
+> -- mediatek,larb: must contain the local arbiters in the current Socs, see
+> -  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> -  for details.
 
-Thanks for resending.
+We miss the mediatek,larb in the yaml.
 
-In the meanwhile this patch has got shorter and shorter, and now I
-realize it has now become identical (except for an empty line
-difference) to patch "dt-bindings: clk: vc5: Fix example" send by Sean
-Anderson on June 7 and Reviewed-by me yesterday.
+> -- iommus: should point to the respective IOMMU block with master port as
+> -  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> -  for details.
+> -
+> -Example:
+> -	jpegdec: jpegdec@15004000 {
+> -		compatible = "mediatek,mt2701-jpgdec";
+> -		reg = <0 0x15004000 0 0x1000>;
+> -		interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW>;
+> -		clocks =  <&imgsys CLK_IMG_JPGDEC_SMI>,
+> -			  <&imgsys CLK_IMG_JPGDEC>;
+> -		clock-names = "jpgdec-smi",
+> -			      "jpgdec";
+> -		power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
+> -		mediatek,larb = <&larb2>;
+> -		iommus = <&iommu MT2701_M4U_PORT_JPGDEC_WDMA>,
+> -			 <&iommu MT2701_M4U_PORT_JPGDEC_BSDMA>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+> new file mode 100644
+> index 0000000000000..821e6b480901a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek-jpeg-decoder.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek JPEG Decoder Device Tree Bindings
+> +
+> +maintainers:
+> +  - Xia Jiang <xia.jiang@mediatek.com>
+> +
+> +description: |-
+> +  Mediatek JPEG Decoder is the JPEG decode hardware present in Mediatek SoCs
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: mediatek,mt8173-jpgdec
+> +      - items:
+> +          - const: mediatek,mt2701-jpgdec
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt7623-jpgdec
+> +          - const: mediatek,mt2701-jpgdec
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+> +    minItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: jpgdec-smi
+> +      - const: jpgdec
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  iommus:
+> +    maxItems: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - iommus
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt2701-clk.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/memory/mt2701-larb-port.h>
+> +    #include <dt-bindings/power/mt2701-power.h>
+> +    jpegdec: jpegdec@15004000 {
+> +      compatible = "mediatek,mt2701-jpgdec";
+> +      reg = <0x15004000 0x1000>;
+> +      interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW>;
+> +      clocks =  <&imgsys CLK_IMG_JPGDEC_SMI>,
+> +                <&imgsys CLK_IMG_JPGDEC>;
+> +      clock-names = "jpgdec-smi",
+> +                    "jpgdec";
+> +      power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
+> +      iommus = <&iommu MT2701_M4U_PORT_JPGDEC_WDMA>,
+> +               <&iommu MT2701_M4U_PORT_JPGDEC_BSDMA>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
+> deleted file mode 100644
+> index 5e53c6ab52d01..0000000000000
+> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
+> +++ /dev/null
+> @@ -1,35 +0,0 @@
+> -* MediaTek JPEG Encoder
+> -
+> -MediaTek JPEG Encoder is the JPEG encode hardware present in MediaTek SoCs
+> -
+> -Required properties:
+> -- compatible : "mediatek,mt2701-jpgenc"
+> -  followed by "mediatek,mtk-jpgenc"
+> -- reg : physical base address of the JPEG encoder registers and length of
+> -  memory mapped region.
+> -- interrupts : interrupt number to the interrupt controller.
+> -- clocks: device clocks, see
+> -  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+> -- clock-names: must contain "jpgenc". It is the clock of JPEG encoder.
+> -- power-domains: a phandle to the power domain, see
+> -  Documentation/devicetree/bindings/power/power_domain.txt for details.
+> -- mediatek,larb: must contain the local arbiters in the current SoCs, see
+> -  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> -  for details.
 
-To the maintainer: either one can be applied, it's technically
-identical. If it were me I'd choose this one as it's out since way longer.
+Same here.
 
-Thanks everybody for your patience.
-
--- 
-Luca
+Regards,
+Matthias
