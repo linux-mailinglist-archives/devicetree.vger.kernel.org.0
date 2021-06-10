@@ -2,249 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 532CB3A2602
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:00:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6973A2674
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:20:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbhFJICt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 04:02:49 -0400
-Received: from out28-97.mail.aliyun.com ([115.124.28.97]:51002 "EHLO
-        out28-97.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbhFJIC3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 04:02:29 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436536|-1;CH=green;DM=|CONTINUE|false|;DS=||;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047206;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=21;RT=21;SR=0;TI=SMTPD_---.KQMISdx_1623312022;
-Received: from 192.168.88.129(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KQMISdx_1623312022)
-          by smtp.aliyun-inc.com(10.147.41.120);
-          Thu, 10 Jun 2021 16:00:23 +0800
-Subject: Re: [PATCH v2 2/2] net: stmmac: Add Ingenic SoCs MAC support.
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com, paul@crapouillou.net
-References: <1623260110-25842-1-git-send-email-zhouyanjie@wanyeetech.com>
- <1623260110-25842-3-git-send-email-zhouyanjie@wanyeetech.com>
- <YMGEutCet7fP1NZ9@lunn.ch>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <405696cb-5987-0e56-87f8-5a1443eadc19@wanyeetech.com>
-Date:   Thu, 10 Jun 2021 16:00:00 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S229910AbhFJIWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 04:22:41 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:49173 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229770AbhFJIWl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 04:22:41 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id C976720008;
+        Thu, 10 Jun 2021 08:20:40 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        <linux-mtd@lists.infradead.org>, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, helmut.grohne@intenta.de,
+        Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v23 00/18] ARM Primecell PL35x support
+Date:   Thu, 10 Jun 2021 10:20:22 +0200
+Message-Id: <20210610082040.2075611-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <YMGEutCet7fP1NZ9@lunn.ch>
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Hello,
 
-On 2021/6/10 上午11:19, Andrew Lunn wrote:
->> +static int jz4775_mac_set_mode(struct plat_stmmacenet_data *plat_dat)
->> +{
->> +	struct ingenic_mac *mac = plat_dat->bsp_priv;
->> +	unsigned int val;
->
->> +	case PHY_INTERFACE_MODE_RGMII:
->> +	case PHY_INTERFACE_MODE_RGMII_ID:
->> +	case PHY_INTERFACE_MODE_RGMII_RXID:
->> +	case PHY_INTERFACE_MODE_RGMII_TXID:
->> +		val = FIELD_PREP(MACPHYC_TXCLK_SEL_MASK, MACPHYC_TXCLK_SEL_INPUT) |
->> +			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RGMII);
->> +		dev_dbg(mac->dev, "MAC PHY Control Register: PHY_INTERFACE_MODE_RGMII\n");
->> +		break;
-> So this does what DT writes expect. They put 'rgmii-id' as phy
-> mode. The MAC does not add a delay. PHY_INTERFACE_MODE_RGMII_ID is
-> passed to the PHY and it adds the delay. And frames flow to/from the
-> PHY and users are happy. The majority of MAC drivers are like this.
+I am taking over Naga's series, here are the major changes:
+* Cleaning of the SMC bus binding file (and yaml conversion)
+* Superficial cleaning and great simplification of the SMC bus driver
+* Addition of a yaml file describing the NAND controller
+* Full rework of the NAND controller driver. JFFS2 and UBIFS not tested
+  yet, only bare test tools have been used to proove basic correctness
+  of the helpers.
+* Addition of a couple of MAINTAINERS entries.
 
+A Github branch named pl353 is available on my repository:
+https://github.com/miquelraynal/linux/
 
-Got it, thanks!
+Thanks,
+Miquèl
 
+Changes in v23:
+- Collected Naga Acked-by's.
+- Used const instead of single enum entries in the bindings.
+- Dropped the address-cells/size-cells superfluous definitions out of
+  the NAND controller binding.
+- Enhanced the SMC reg property description to mention that the various
+  CS are described in the ranges property.
+- Fixed the SMC child nodes regex to match Rob's requirements.
 
->
->> +static int x2000_mac_set_mode(struct plat_stmmacenet_data *plat_dat)
->> +{
->> +	struct ingenic_mac *mac = plat_dat->bsp_priv;
->> +	unsigned int val;
-> Here we have a complete different story.
->
->
->> +	case PHY_INTERFACE_MODE_RGMII:
->> +		val = FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RGMII);
->> +
->> +		if (mac->tx_delay == 0) {
->> +			val |= FIELD_PREP(MACPHYC_TX_SEL_MASK, MACPHYC_TX_SEL_ORIGIN);
->> +		} else {
->> +			val |= FIELD_PREP(MACPHYC_TX_SEL_MASK, MACPHYC_TX_SEL_DELAY);
->> +
->> +			if (mac->tx_delay > MACPHYC_TX_DELAY_MAX)
->> +				val |= FIELD_PREP(MACPHYC_TX_DELAY_MASK, MACPHYC_TX_DELAY_MAX - 1);
->> +			else
->> +				val |= FIELD_PREP(MACPHYC_TX_DELAY_MASK, mac->tx_delay - 1);
->> +		}
-> What are the units of tx_delay. The DT binding should be pS, and you
-> need to convert from that to whatever the hardware is using.
+Changes in v22:
+- Misc typo fixes.
+- Light rewording of a few commit titles.
+- Not forgetting to Cc: Rob and Krzysztof this time...
 
+Changes in v21:
+- Added Rob's Acked-by/Reviewed-by tags.
+- Addressed all comments from Rob and Michael about the bindings.
+- Tested both JFFS2 and UBIFS with simple file I/O.
 
-The manual does not tell how much ps a unit is.
+Miquel Raynal (18):
+  dt-binding: memory: pl353-smc: Rephrase the binding
+  dt-binding: memory: pl353-smc: Document the range property
+  dt-binding: memory: pl353-smc: Drop the partitioning section
+  dt-binding: memory: pl353-smc: Describe the child reg property
+  dt-binding: memory: pl353-smc: Fix the example syntax and style
+  dt-binding: memory: pl353-smc: Drop unsupported nodes from the example
+  dt-binding: memory: pl353-smc: Fix the NAND controller node in the
+    example
+  dt-binding: memory: pl353-smc: Enhance the description of the reg
+    property
+  dt-binding: memory: pl353-smc: Convert to yaml
+  memory: pl353-smc: Fix style
+  memory: pl353-smc: Rename goto labels
+  memory: pl353-smc: Let lower level controller drivers handle inits
+  memory: pl353-smc: Avoid useless acronyms in descriptions
+  memory: pl353-smc: Declare variables following a reverse christmas
+    tree order
+  MAINTAINERS: Add PL353 SMC entry
+  MAINTAINERS: Add PL353 NAND controller entry
+  dt-bindings: mtd: pl353-nand: Describe this hardware controller
+  mtd: rawnand: pl353: Add support for the ARM PL353 SMC NAND controller
 
-I am confirming with Ingenic, but there is no reply
+ .../memory-controllers/arm,pl353-smc.yaml     |  131 ++
+ .../bindings/memory-controllers/pl353-smc.txt |   47 -
+ .../bindings/mtd/arm,pl353-nand-r2p1.yaml     |   53 +
+ MAINTAINERS                                   |   16 +
+ drivers/memory/pl353-smc.c                    |  314 +----
+ drivers/mtd/nand/raw/Kconfig                  |    8 +
+ drivers/mtd/nand/raw/Makefile                 |    1 +
+ drivers/mtd/nand/raw/pl35x-nand-controller.c  | 1194 +++++++++++++++++
+ include/linux/pl353-smc.h                     |   30 -
+ 9 files changed, 1413 insertions(+), 381 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/arm,pl353-smc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+ create mode 100644 drivers/mtd/nand/raw/pl35x-nand-controller.c
+ delete mode 100644 include/linux/pl353-smc.h
 
-at the moment. Can we follow Rockchip's approach?
+-- 
+2.27.0
 
-According to the description in "rockchip-dwmac.yaml"
-
-and the related code in "dwmac-rk.c", it seems that their
-
-delay parameter seems to be the value used by the hardware
-
-directly instead of ps.
-
-
-> If mac->tx_delay is greater than MACPHYC_TX_DELAY_MAX, please return
-> -EINVAL when parsing the binding. We want the DT writer to know they
-> have requested something the hardware cannot do.
-
-
-Sure, I'll change it in the next version.
-
-
-> So if the device tree contains 'rgmii' for PHY mode, you can use this
-> for when you have long clock lines on your board adding the delay, and
-> you just need to fine tune the delay, add a few pS. The PHY will also
-> not add a delay, due to receiving PHY_INTERFACE_MODE_RGMII.
->
->> +
->> +		if (mac->rx_delay == 0) {
->> +			val |= FIELD_PREP(MACPHYC_RX_SEL_MASK, MACPHYC_RX_SEL_ORIGIN);
->> +		} else {
->> +			val |= FIELD_PREP(MACPHYC_RX_SEL_MASK, MACPHYC_RX_SEL_DELAY);
->> +
->> +			if (mac->rx_delay > MACPHYC_RX_DELAY_MAX)
->> +				val |= FIELD_PREP(MACPHYC_RX_DELAY_MASK, MACPHYC_RX_DELAY_MAX - 1);
->> +			else
->> +				val |= FIELD_PREP(MACPHYC_RX_DELAY_MASK, mac->rx_delay - 1);
->> +		}
->> +
->> +		dev_dbg(mac->dev, "MAC PHY Control Register: PHY_INTERFACE_MODE_RGMII\n");
->> +		break;
->> +
->> +	case PHY_INTERFACE_MODE_RGMII_ID:
->> +		val = FIELD_PREP(MACPHYC_TX_SEL_MASK, MACPHYC_TX_SEL_ORIGIN) |
->> +			  FIELD_PREP(MACPHYC_RX_SEL_MASK, MACPHYC_RX_SEL_ORIGIN) |
->> +			  FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RGMII);
->> +		dev_dbg(mac->dev, "MAC PHY Control Register: PHY_INTERFACE_MODE_RGMII_ID\n");
->> +		break;
-> So this one is pretty normal. The MAC does not add a delay,
-> PHY_INTERFACE_MODE_RGMII_ID is passed to the PHY, and it adds the
-> delay. The interface will likely work.
->
->> +
->> +	case PHY_INTERFACE_MODE_RGMII_RXID:
->> +		val = FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RGMII) |
->> +			  FIELD_PREP(MACPHYC_RX_SEL_MASK, MACPHYC_RX_SEL_ORIGIN);
->> +
->> +		if (mac->tx_delay == 0) {
->> +			val |= FIELD_PREP(MACPHYC_TX_SEL_MASK, MACPHYC_TX_SEL_ORIGIN);
->> +		} else {
->> +			val |= FIELD_PREP(MACPHYC_TX_SEL_MASK, MACPHYC_TX_SEL_DELAY);
->> +
->> +			if (mac->tx_delay > MACPHYC_TX_DELAY_MAX)
->> +				val |= FIELD_PREP(MACPHYC_TX_DELAY_MASK, MACPHYC_TX_DELAY_MAX - 1);
->> +			else
->> +				val |= FIELD_PREP(MACPHYC_TX_DELAY_MASK, mac->tx_delay - 1);
->> +		}
-> So here, the PHY is going to be passed PHY_INTERFACE_MODE_RGMII_RXID.
-> The PHY will add a delay in the receive path. The MAC needs to add the
-> delay in the transmit path. So tx_delay needs to be the full 2ns, not
-> just a small fine tuning value, or the PCB is adding the delay. And
-> you also cannot fine tune the RX delay, since rx_delay is ignored.
->
->> +
->> +		dev_dbg(mac->dev, "MAC PHY Control Register: PHY_INTERFACE_MODE_RGMII_RXID\n");
->> +		break;
->> +
->> +	case PHY_INTERFACE_MODE_RGMII_TXID:
->> +		val = FIELD_PREP(MACPHYC_PHY_INFT_MASK, MACPHYC_PHY_INFT_RGMII) |
->> +			  FIELD_PREP(MACPHYC_TX_SEL_MASK, MACPHYC_TX_SEL_ORIGIN);
->> +
->> +		if (mac->rx_delay == 0) {
->> +			val |= FIELD_PREP(MACPHYC_RX_SEL_MASK, MACPHYC_RX_SEL_ORIGIN);
->> +		} else {
->> +			val |= FIELD_PREP(MACPHYC_RX_SEL_MASK, MACPHYC_RX_SEL_DELAY);
->> +
->> +			if (mac->rx_delay > MACPHYC_RX_DELAY_MAX)
->> +				val |= FIELD_PREP(MACPHYC_RX_DELAY_MASK, MACPHYC_RX_DELAY_MAX - 1);
->> +			else
->> +				val |= FIELD_PREP(MACPHYC_RX_DELAY_MASK, mac->rx_delay - 1);
->> +		}
-> And here we have the opposite to PHY_INTERFACE_MODE_RGMII_RXID.
->
-> So you need to clearly document in the device tree binding when
-> rx_delay and tx_delay are used, and when they are ignored. You don't
-> want to have DT writers having to look deep into the code to figure
-> this out.
-
-
-Sure, maybe I should write a new independent document
-
-for Ingenic instead of just making corresponding changes
-
-in "snps, dwmac.yaml"
-
-
->
-> Personally, i would simply this, in a big way. I see two options:
->
-> 1) The MAC never adds a delay. The hardware is there, but simply don't
-> use it, to keep thing simple, and the same as nearly every other MAC.
->
-> 2) If the hardware can do small steps of delay, allow this delay, both
-> RX and TX, to be configured in all four modes, in order to allow for
-> fine tuning. Leave the PHY to insert the majority of the delay.
-
-
-It seems that this method is better, I will adopt it in v3.
-
-
->> +	/* Get MAC PHY control register */
->> +	mac->regmap = syscon_regmap_lookup_by_phandle(pdev->dev.of_node, "mode-reg");
->> +	if (IS_ERR(mac->regmap)) {
->> +		dev_err(&pdev->dev, "%s: failed to get syscon regmap\n", __func__);
->> +		goto err_remove_config_dt;
->> +	}
-> Please document this in the device tree binding.
-
-
-Sure.
-
-
->
->> +
->> +	ret = of_property_read_u32(pdev->dev.of_node, "rx-clk-delay", &mac->rx_delay);
->> +	if (ret)
->> +		mac->rx_delay = 0;
->> +
->> +	ret = of_property_read_u32(pdev->dev.of_node, "tx-clk-delay", &mac->tx_delay);
->> +	if (ret)
->> +		mac->tx_delay = 0;
-> Please take a look at dwmac-mediatek.c. It handles delays nicely. I
-> would suggest that is the model to follow.
-
-
-Sure.
-
-
-Thanks and best regards!
-
-
->
->         Andrew
