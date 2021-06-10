@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 303D33A2C54
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:01:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1247C3A2C5C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:03:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230378AbhFJNDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 09:03:03 -0400
-Received: from mo4-p03-ob.smtp.rzone.de ([85.215.255.100]:9383 "EHLO
+        id S230330AbhFJNE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 09:04:56 -0400
+Received: from mo4-p03-ob.smtp.rzone.de ([85.215.255.104]:32577 "EHLO
         mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231133AbhFJNC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 09:02:59 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1623330057; cv=none;
+        with ESMTP id S230188AbhFJNEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 09:04:55 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1623330174; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=KrSsON5uT1FtPXkvwp6dMEUOsejS4rCADVo+pVkw2xeLbk2FOxVTRVR7r7Y3zESPxE
-    gJtKaD0sxbMurZCvcoWkjpFytd4IduDKD/HZGr6HNVhTsEs16vy6MrxCNvtNZ5OlF57v
-    6oOx94I3pQwp2LgX61feRUswMYwKv8UJ3I6KrUZSL4J2mp6XLmAN3Mgdm7ds4AD518jf
-    PcmpqB1EA5a+P7tnMgbX7w41vcr4kx2pp0DJgvL4A68JMnTiyTF0Q2ZS0V9ghWLxW952
-    RtJbslJxlR02+9lW+yl7TrjLTBx/u7tbKm4AAIej0z9N7CLD1W3vBOEdO+pKIi6vFyNM
-    yA7g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623330057;
+    b=hbV2ofuuX94G9csxqghXz2D4VAK8FhuDhK/p0/80JyR2nXKJPm/Ey30uc1rwmnIifJ
+    upNsflM3eNwEpICnSekaMSk16svu6Y2VGDP0Vocs7IF83UuHSUOLfVVXKo3WERR77BUF
+    3Gut/tvzqbZNB0cAPJ6T8sAzR5ypGYXIioOnedwuRSkwjNxW9eviPzBJNzc/iDCAfN3c
+    Gjx34y/WQbG/u4iZtuhXatEkwUluvrvpUpTMI1k1EtCTu3ptJ7RWedewaUDoimX4SkFw
+    aMvos9tVn6d5sxqSsAj7tNxW8e5dMvZEMIMsMOGqWJ6K3CEGFL17+auRvqfhyFJWfepE
+    yYqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623330174;
     s=strato-dkim-0002; d=strato.com;
     h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
     From:Subject:Sender;
-    bh=sWxhDLVjSdcZ2UQfDvOUeM8ckKd6tdu1RXGe2b5SbxA=;
-    b=EYYMmZ/tfmHP0l+Z0vXHSDg3jx/Y32XMdAwYefQZHhWwxN09BkS+wiumHwK+THAk6h
-    HP0NOG1MSSCUcByK0zVGxsPZPmATfLZuXxG7NLoKxbNp++cxlcxKQf4IZ1OfPAEjAxnT
-    BixW1Uul/6mIQOJMihoC3q2uztkI6SyeCUkvR7H980C/iD76oAnrsWtKkTAm41uQ0x3s
-    1l/jhTHRiX9ZS/pFD03k+rAFIDc5xeKGGJEW8oTyhgHjVrBToNkBKjhb6sMQ2o09ncfe
-    RBZUGyyZEWrr1LUEwboBN/+3ugjECWI2AKtn22o0zYM3HM1T5nzxVuGtRldF1xUSLHlK
-    Em6g==
+    bh=K3t8QJ/9F6hP7rSPOzWlJf4yAr8V8XezJiqIqb6/nec=;
+    b=CB0nJ0jiK9955DlaqwRulDYj1l8kZNK14mFup2ngQQ/iMJuhTFFZ3D/gwAXtMGETQW
+    n3PepuSxWNHAgiLKK1FilYO/Vp+UO7LgDoAMOj5xGDzOCEmu139HQoetFiN32qRnnDxb
+    xOxJh8hz8FNRL8/+nhPYY/cl+JI/RWBjDPz4EfeQlqrNZUyXrK9xI+c1R0ulgT5oLSd7
+    yAH7SHGBHd7PiH5foZGM7kW2KSdeB4/vlm82xXqYovq8IekESONGpUkijRKAhAA7NJtU
+    Ajf6TupcRtkH7RSZaYPZ8tuVvQzIGej/XZB2SDA/ho3AxZRpZlmPO5N/VrK0BAfKyPAw
+    kcXQ==
 ARC-Authentication-Results: i=1; strato.com;
     dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623330057;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623330174;
     s=strato-dkim-0002; d=gerhold.net;
     h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
     From:Subject:Sender;
-    bh=sWxhDLVjSdcZ2UQfDvOUeM8ckKd6tdu1RXGe2b5SbxA=;
-    b=H2jrjcHXgiGUpEexIxYEfL3LUzAVtY12sPAr57SrHQpp0L4FKIDyKIhNhlHFNqz0t9
-    xasZpjHn3Rr2GGQywa+wuJvn+oO9RskoCFM7LbsTmwisA5zA66wLRFVePMJsVbmqu37B
-    x4Rg9xNbi0lupI/jAf9dYdKuqjJ66aQQyqPeM9BBhzo07NRzSHO5EpxMGSgwyl4vtCLc
-    zVXfQ3BRIIZA5VZdvVXU9f4zZ1+dxEzNJL/KGujroPI08DpTizCcCfMdE/OtlCi8vi52
-    HNhB/+W1GOJjIAYp2wvfzBIObzYQPPoILG7hDXU8cL5sDquLq+m/c/2aodJKb3G12cUh
-    ic/w==
+    bh=K3t8QJ/9F6hP7rSPOzWlJf4yAr8V8XezJiqIqb6/nec=;
+    b=DqZg+nOl/hSrxNN02+WwWpI1hBYu9geYa8T9QiZrUEljFiVeSza/zJUw9ijJNvvj3W
+    kRD4m3egUWfhx7tPqpDRlpHV0BwrEoSKHk9wK0xAbJ2nqBHJADu3CSaJrqgNnbzflKNY
+    QEev4uK0BABuCTLQTpI6QmTp+553g2nWwf2xrDpDMANFu4nXr6FXvixpQdIklAHvNxUA
+    LWfZpgOLA6Ex9KvSi1iOyrlRhaVLCGrCl+iO63naNRNrTfSYpyEsv980ID6snoXCqRbn
+    sXSgMN9sdU1XW+u0y9Ra+K5p1r3izz+NY/3Dpp/eDUIQ40rYQPlqxmCCVeh+IPZ7q7JP
+    FsVg==
 Authentication-Results: strato.com;
     dkim=none
 X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8nxIc/BaYo="
 X-RZG-CLASS-ID: mo00
 Received: from gerhold.net
     by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
-    with ESMTPSA id y01375x5AD0vuGE
+    with ESMTPSA id y01375x5AD2ruK2
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
         (Client did not present a certificate);
-    Thu, 10 Jun 2021 15:00:57 +0200 (CEST)
-Date:   Thu, 10 Jun 2021 15:00:52 +0200
+    Thu, 10 Jun 2021 15:02:53 +0200 (CEST)
+Date:   Thu, 10 Jun 2021 15:02:52 +0200
 From:   Stephan Gerhold <stephan@gerhold.net>
 To:     Andy Shevchenko <andy.shevchenko@gmail.com>
 Cc:     Jonathan Cameron <jic23@kernel.org>,
@@ -66,67 +66,39 @@ Cc:     Jonathan Cameron <jic23@kernel.org>,
         Bastien Nocera <hadess@hadess.net>,
         Hans de Goede <hdegoede@redhat.com>,
         ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 4/9] iio: accel: bmc150: Sort all chip names
- alphabetically / by chip ID
-Message-ID: <YMINBHXM4ZmZMblL@gerhold.net>
+Subject: Re: [PATCH v2 6/9] iio: accel: bmc150: Add device IDs for BMA253
+Message-ID: <YMINfLkT0gxZKI2g@gerhold.net>
 References: <20210610122126.50504-1-stephan@gerhold.net>
- <20210610122126.50504-5-stephan@gerhold.net>
- <CAHp75Vee9+RU8zRH-QtoKmw4K-O-SjiGnpxJRnYT2Aat3qKtfw@mail.gmail.com>
+ <20210610122126.50504-7-stephan@gerhold.net>
+ <CAHp75VdutqFuhTnZsi79ZgcVcL+o7M1k+cOFUKRB_vUUXiWJgA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHp75Vee9+RU8zRH-QtoKmw4K-O-SjiGnpxJRnYT2Aat3qKtfw@mail.gmail.com>
+In-Reply-To: <CAHp75VdutqFuhTnZsi79ZgcVcL+o7M1k+cOFUKRB_vUUXiWJgA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 10, 2021 at 03:50:25PM +0300, Andy Shevchenko wrote:
+On Thu, Jun 10, 2021 at 03:51:46PM +0300, Andy Shevchenko wrote:
 > On Thu, Jun 10, 2021 at 3:24 PM Stephan Gerhold <stephan@gerhold.net> wrote:
-> >
-> > Right now all the device IDs are listed in seemingly random order,
-> > make this consistent by ordering those alphabetically. Also, order
-> > bmc150_accel_chip_info_tbl by chip ID for the same reason.
-> 
-> Thanks!
-> My comments below, after addressing them,
-> Reviewed-by: Andy Shevchenko <andy.shevhcenko@gmail.com>
+> > BMA253 is mostly like BMA255 and has exactly the same register layout
+> > as used by the bmc150-accel driver as far I can tell. Making it work
+> > is as simple as adding new device IDs for it since it has the same
+> > chip_id = 0xFA (250) as BMA255 and others.
 > 
 > ...
 > 
-> >         select BMC150_ACCEL_SPI if SPI
-> >         help
-> >           Say yes here to build support for the following Bosch accelerometers:
-> > -         BMC150, BMI055, BMA250E, BMA222E, BMA255, BMA280.
-> > +         BMA222, BMA222E, BMA250E, BMA255, BMA280, BMC150, BMI055.
+> > -               .name = "BMC150/BMI055/BMA255",
 > 
-> Thanks!
+> Somehow this is unsorted.
 > 
-> > -         This is a combo module with both accelerometer and magnetometer.
+> > +               .name = "BMC150/BMI055/BMA253/BMA255",
 > 
-> > +         BMC150 is a combo module with both accelerometer and magnetometer.
-> 
-> BMC150 is only one from the list. Previous message applies to all
-> listed components, so is this not true anymore for the rest?
-> Or all the rest is not a combo? Please, clarify that in the commit
-> message, or if this is a wrong change, drop it.
+> So does this.
 > 
 
-I stumbled on that sentence when making the changes and it definitely
-does not apply to the BMA* variants. Those are accelerometer only.
+Yeah I sorted multi-line lists and Kconfig but not those "one-line"
+lists... :-) Time for v3...
 
-As far I can tell the prefix in the chip name says which kind of sensors
-are included, i.e.
-
-  - BMC150: accelerometer + magnetometer
-  - BMA*:   only accelerometer
-
-I'm not familiar with BMI055 but funnily the datasheet suggests it's
-
-  - BMI055: accelerometer + gyroscope
-
-So for BMI055 the previous message is wrong too. I guess I need to do
-yet another commit in v3 to make the Kconfig option more clear for all
-the sensor variants. :)
-
-Thanks!
+Thanks for your review!
 Stephan
