@@ -2,238 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C52613A3292
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 19:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 086993A3294
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 19:57:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230117AbhFJR7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 13:59:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35956 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230103AbhFJR7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 13:59:36 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03BE0C061574;
-        Thu, 10 Jun 2021 10:57:38 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2804:14c:1a9:2978:fdf4:5e57:8aee:5d72])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 301EF1F437D3;
-        Thu, 10 Jun 2021 18:57:33 +0100 (BST)
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     devicetree@vger.kernel.org
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Xing Zheng <zhengxing@rock-chips.com>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Elaine Zhang <zhangqing@rock-chips.com>, kernel@collabora.com
-Subject: [PATCH] dt-bindings: clk: Convert rockchip,rk3399-cru to DT schema
-Date:   Thu, 10 Jun 2021 14:56:13 -0300
-Message-Id: <20210610175613.167601-1-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.32.0
+        id S230217AbhFJR7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 13:59:54 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:38672 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230103AbhFJR7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 13:59:53 -0400
+Received: by mail-ot1-f41.google.com with SMTP id j11-20020a9d738b0000b02903ea3c02ded8so543289otk.5;
+        Thu, 10 Jun 2021 10:57:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=V2+0pbawt/0s4pIlgGvctFlDIbaFKg1ZRcW2jg9lKwU=;
+        b=IBmMjdAZDg+p1dGY5Z9F83czaTR4kQ6gPdNz8Xj3qiHniIM2j8spulumCIb28JhZJ6
+         brHnmZXm4f+pWL9/6tgO4JTtsTUejLs5ksJmEwPHF/pE59xDK02MD2OOD6QijGZ0ZMrC
+         /5w+btVnH/QWciZ+0AR4Yt4+9Ondb7SngJOpRbwGPNZwjgyyaK8ItExLpWLXuwZiyeAa
+         m9ALlSRH6qifMBD2GN1hYGSITF5M61D2rF5yVwauFW+AY44ZudfpfW6FDEWiodqy9tPn
+         lUKeRnqwPGf6ios3m57zLTdJ7fhn/AFudl8Xmw14kpbJmaMpPpRLQPhcUrQlVZqZADeO
+         PUtA==
+X-Gm-Message-State: AOAM531dRLbPtSq7sotzfYF7y2XSxk5oqDYsMggou89eG2nn/P033fBY
+        K9YQ41PY/AYnzbOdSUT73g==
+X-Google-Smtp-Source: ABdhPJwAToOJiC0mSKtLICASE5GDIks9Jjnq5vnMBj4u9NB123xg0atsrTWOBPHjGsKEgaadumLqeQ==
+X-Received: by 2002:a9d:526:: with SMTP id 35mr3433392otw.176.1623347860197;
+        Thu, 10 Jun 2021 10:57:40 -0700 (PDT)
+Received: from robh.at.kernel.org ([172.58.99.113])
+        by smtp.gmail.com with ESMTPSA id p10sm787423otf.45.2021.06.10.10.57.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Jun 2021 10:57:39 -0700 (PDT)
+Received: (nullmailer pid 2389055 invoked by uid 1000);
+        Thu, 10 Jun 2021 17:57:36 -0000
+Date:   Thu, 10 Jun 2021 12:57:36 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Tretter <m.tretter@pengutronix.de>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: Add Intersil ISL79987 DT
+ bindings
+Message-ID: <20210610175736.GA2337424@robh.at.kernel.org>
+References: <20210602132950.4167596-1-m.tretter@pengutronix.de>
+ <20210602132950.4167596-2-m.tretter@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210602132950.4167596-2-m.tretter@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the rockchip,rk3399-cru binding to DT schema format.
-Tested with
-ARCH=arm64 make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
-ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
+On Wed, Jun 02, 2021 at 03:29:49PM +0200, Michael Tretter wrote:
+> From: Marek Vasut <marex@denx.de>
+> 
+> Add bindings for the Intersil ISL79987 analog to MIPI CSI-2 decoder.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> To: linux-media@vger.kernel.org
+> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> ---
+> Changelog:
+> 
+> v2:
+> 
+> - convert binding to yaml
+> - change description to match only isl79987
+> - replace num-inputs property with multiple ports
+> - add reset gpio
+> ---
+>  .../bindings/media/i2c/isil,isl79987.yaml     | 108 ++++++++++++++++++
+>  1 file changed, 108 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml b/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+> new file mode 100644
+> index 000000000000..4aa27511b1ab
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+> @@ -0,0 +1,108 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/isil,isl79987.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Intersil ISL79987 Analog to MIPI CSI-2 decoder
+> +
+> +maintainers:
+> +  - Michael Tretter <m.tretter@pengutronix.de>
+> +  - Marek Vasut <marex@denx.de>
+> +
+> +description:
+> +  The Intersil ISL79987 is an analog to MIPI CSI-2 decoder which is capable of
+> +  receiving up to four analog stream and multiplexing them into up to four MIPI
+> +  CSI-2 virtual channels, using one MIPI clock lane and 1/2 data lanes.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - isil,isl79987
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      A GPIO spec for the RSTB pin (active high)
+> +
+> +  pd-gpios:
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
+powerdown-gpios is the somewhat standard name.
 
-One caveat is that this node expects certain external clocks, mainly 'xin24m'.
-From what I read of clock-bindings.txt, it seems the way to make this dependency
-explicit would be to add 'clocks' and 'clock-names' properties to both the DT
-and the binding. But since I'm not sure changing the DT ABI is desirable, I just
-moved that information to the binding description for now.
+> +    maxItems: 1
+> +    description:
+> +      A GPIO spec for the Power Down pin (active high)
+> +
+> +  ports:
+> +    type: object
 
- .../bindings/clock/rockchip,rk3399-cru.txt    | 68 --------------
- .../bindings/clock/rockchip,rk3399-cru.yaml   | 92 +++++++++++++++++++
- 2 files changed, 92 insertions(+), 68 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.txt
- create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
+Please reference the graph.yaml schema. There's several examples in the 
+tree now what this should look like.
 
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.txt b/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.txt
-deleted file mode 100644
-index 3bc56fae90ac..000000000000
---- a/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.txt
-+++ /dev/null
-@@ -1,68 +0,0 @@
--* Rockchip RK3399 Clock and Reset Unit
--
--The RK3399 clock controller generates and supplies clock to various
--controllers within the SoC and also implements a reset controller for SoC
--peripherals.
--
--Required Properties:
--
--- compatible: PMU for CRU should be "rockchip,rk3399-pmucru"
--- compatible: CRU should be "rockchip,rk3399-cru"
--- reg: physical base address of the controller and length of memory mapped
--  region.
--- #clock-cells: should be 1.
--- #reset-cells: should be 1.
--
--Optional Properties:
--
--- rockchip,grf: phandle to the syscon managing the "general register files".
--  It is used for GRF muxes, if missing any muxes present in the GRF will not
--  be available.
--
--Each clock is assigned an identifier and client nodes can use this identifier
--to specify the clock which they consume. All available clocks are defined as
--preprocessor macros in the dt-bindings/clock/rk3399-cru.h headers and can be
--used in device tree sources. Similar macros exist for the reset sources in
--these files.
--
--External clocks:
--
--There are several clocks that are generated outside the SoC. It is expected
--that they are defined using standard clock bindings with following
--clock-output-names:
-- - "xin24m" - crystal input - required,
-- - "xin32k" - rtc clock - optional,
-- - "clkin_gmac" - external GMAC clock - optional,
-- - "clkin_i2s" - external I2S clock - optional,
-- - "pclkin_cif" - external ISP clock - optional,
-- - "clk_usbphy0_480m" - output clock of the pll in the usbphy0
-- - "clk_usbphy1_480m" - output clock of the pll in the usbphy1
--
--Example: Clock controller node:
--
--	pmucru: pmu-clock-controller@ff750000 {
--		compatible = "rockchip,rk3399-pmucru";
--		reg = <0x0 0xff750000 0x0 0x1000>;
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--	};
--
--	cru: clock-controller@ff760000 {
--		compatible = "rockchip,rk3399-cru";
--		reg = <0x0 0xff760000 0x0 0x1000>;
--		#clock-cells = <1>;
--		#reset-cells = <1>;
--	};
--
--Example: UART controller node that consumes the clock generated by the clock
--  controller:
--
--	uart0: serial@ff1a0000 {
--		compatible = "rockchip,rk3399-uart", "snps,dw-apb-uart";
--		reg = <0x0 0xff180000 0x0 0x100>;
--		clocks = <&cru SCLK_UART0>, <&cru PCLK_UART0>;
--		clock-names = "baudclk", "apb_pclk";
--		interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
--		reg-shift = <2>;
--		reg-io-width = <4>;
--	};
-diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
-new file mode 100644
-index 000000000000..72b286a1beba
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/rockchip,rk3399-cru.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/rockchip,rk3399-cru.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip RK3399 Clock and Reset Unit
-+
-+maintainers:
-+  - Xing Zheng <zhengxing@rock-chips.com>
-+  - Heiko Stuebner <heiko@sntech.de>
-+
-+description: |
-+  The RK3399 clock controller generates and supplies clock to various
-+  controllers within the SoC and also implements a reset controller for SoC
-+  peripherals.
-+  Each clock is assigned an identifier and client nodes can use this identifier
-+  to specify the clock which they consume. All available clocks are defined as
-+  preprocessor macros in the dt-bindings/clock/rk3399-cru.h headers and can be
-+  used in device tree sources. Similar macros exist for the reset sources in
-+  these files.
-+  There are several clocks that are generated outside the SoC. It is expected
-+  that they are defined using standard clock bindings with following
-+  clock-output-names:
-+    - "xin24m" - crystal input - required,
-+    - "xin32k" - rtc clock - optional,
-+    - "clkin_gmac" - external GMAC clock - optional,
-+    - "clkin_i2s" - external I2S clock - optional,
-+    - "pclkin_cif" - external ISP clock - optional,
-+    - "clk_usbphy0_480m" - output clock of the pll in the usbphy0
-+    - "clk_usbphy1_480m" - output clock of the pll in the usbphy1
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,rk3399-pmucru
-+      - rockchip,rk3399-cru
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#clock-cells":
-+    const: 1
-+
-+  "#reset-cells":
-+    const: 1
-+
-+  clocks:
-+    minItems: 1
-+
-+  assigned-clocks:
-+    minItems: 1
-+    maxItems: 64
-+
-+  assigned-clock-parents:
-+    minItems: 1
-+    maxItems: 64
-+
-+  assigned-clock-rates:
-+    minItems: 1
-+    maxItems: 64
-+
-+  rockchip,grf:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: >
-+      phandle to the syscon managing the "general register files". It is used
-+      for GRF muxes, if missing any muxes present in the GRF will not be
-+      available.
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#clock-cells"
-+  - "#reset-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pmucru: pmu-clock-controller@ff750000 {
-+      compatible = "rockchip,rk3399-pmucru";
-+      reg = <0xff750000 0x1000>;
-+      #clock-cells = <1>;
-+      #reset-cells = <1>;
-+    };
-+  - |
-+    cru: clock-controller@ff760000 {
-+      compatible = "rockchip,rk3399-cru";
-+      reg = <0xff760000 0x1000>;
-+      #clock-cells = <1>;
-+      #reset-cells = <1>;
-+    };
--- 
-2.32.0
+> +    description:
+> +      A node containing input and output port nodes with endpoint definitions
+> +      as documented in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt
 
+This is now video-interfaces.yaml, but it's not actually used here.
+
+> +    properties:
+
+> +      '#address-cells':
+> +        const: 1
+> +      '#size-cells':
+> +        const: 0
+
+These can be dropped (covered by graph.yaml).
+
+> +      port@0:
+> +        type: object
+> +        description: Output port
+> +
+> +    patternProperties:
+> +      "^port@[1-4]$":
+> +        type: object
+> +        description: Input ports
+> +
+> +    required:
+> +      - port@0
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ports
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      isl7998x_mipi@44 {
+> +        compatible = "isil,isl79987";
+> +        reg = <0x44>;
+> +        pd-gpios = <&gpio3 27 GPIO_ACTIVE_HIGH>;
+> +        reset-gpios = <&gpio3 28 GPIO_ACTIVE_HIGH>;
+> +
+> +        ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +            reg = <0>;
+> +            isl79987_out: endpoint {
+> +              remote-endpoint = <&mipi_csi2_in>;
+> +              clock-lanes = <0>;
+> +              data-lanes = <1 2>;
+> +            };
+> +          };
+> +
+> +          port@1 {
+> +            reg = <1>;
+> +            endpoint {
+> +              remote-endpoint = <&camera_0>;
+> +            };
+> +          };
+> +
+> +          port@2 {
+> +            reg = <2>;
+> +            endpoint {
+> +              remote-endpoint = <&camera_1>;
+> +            };
+> +          };
+> +        };
+> +      };
+> +    };
+> -- 
+> 2.29.2
