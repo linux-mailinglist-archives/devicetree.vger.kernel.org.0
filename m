@@ -2,81 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A38A3A2C71
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:05:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EC483A2CDF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:24:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230492AbhFJNGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 09:06:50 -0400
-Received: from mail-vs1-f50.google.com ([209.85.217.50]:40896 "EHLO
-        mail-vs1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230317AbhFJNGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 09:06:50 -0400
-Received: by mail-vs1-f50.google.com with SMTP id b1so1802561vsh.7;
-        Thu, 10 Jun 2021 06:04:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dtTnjbShfsHfwnFII8h2MIwIChoALSHoXSdICCW25tI=;
-        b=sPpuKvC4am4ycPFH+CGb0nnLeawkisGDRTc4XD4Gu63ZeO1UPa/Eo65vSQPFEOBN+C
-         wHKbVHSWs1uwhqZWilKOwJpwGav0ZT0BuKflxZljGeshAq85zHHwB8UINvPR7rnEKimW
-         yfzKuOSxSEaxubu3HeVhgbKp2jEXu5Aso9GN2aKBh6SoB+vD16pXtNmc2BrKbNrxt1zo
-         yPbBJIpjwGomZN+Lq0lG+Hl2df+6fHBVQQOEL8WCgUgUoOFG1h8hesMgN/MaTWbKEBvY
-         1pdIJUIK3ZIGbLSh+Nk7N7uNtPUCwCWoE2Cc8tINWeD363Wnz2BPc7TI9KFk1yBmhaCv
-         Jcvg==
-X-Gm-Message-State: AOAM532sk2EjZRHB+/bVBkkS76vMhkGAfOIrPwN0RAaQ8bbXgpgaZpvW
-        QY2/nXQiccRkiQVQo8+IosPj4M9tNqaNlNlBrTU=
-X-Google-Smtp-Source: ABdhPJwHRRMMdepvDucLXToAJNJ68PXSF84KowPsfoH9qmacKhu2d7fsNOT5aYSfVWcERx3KIEWynNVqM8wFK6LpH+g=
-X-Received: by 2002:a67:efd6:: with SMTP id s22mr4552947vsp.3.1623330277115;
- Thu, 10 Jun 2021 06:04:37 -0700 (PDT)
+        id S230380AbhFJN0y convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Jun 2021 09:26:54 -0400
+Received: from mslow1.mail.gandi.net ([217.70.178.240]:39297 "EHLO
+        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230084AbhFJN0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 09:26:53 -0400
+Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id 0CAB3C58FF;
+        Thu, 10 Jun 2021 13:14:43 +0000 (UTC)
+Received: (Authenticated sender: paul@opendingux.net)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 2E8F5C0002;
+        Thu, 10 Jun 2021 13:14:16 +0000 (UTC)
+Date:   Thu, 10 Jun 2021 14:14:09 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: JZ4740: Add bindings for JZ4775.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com, sihui.liu@ingenic.com,
+        jun.jiang@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Message-Id: <L3MHUQ.A87BDK2JG0G33@crapouillou.net>
+In-Reply-To: <1623329930-14387-2-git-send-email-zhouyanjie@wanyeetech.com>
+References: <1623329930-14387-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1623329930-14387-2-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-References: <20210609153230.6967-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210609153230.6967-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210609153230.6967-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Jun 2021 15:04:26 +0200
-Message-ID: <CAMuHMdWHa0dgKCuxpZFMYBz7FeOHDXDLXrN0i3c=Aw-6BaB+5g@mail.gmail.com>
-Subject: Re: [PATCH v3 09/11] clk: renesas: Add support for R9A07G044 SoC
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 9, 2021 at 5:33 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Define the clock outputs supported by RZ/G2L (R9A07G044) SoC
-> and bind it with RZ/G2L CPG core.
->
-> Based on a patch in the BSP by Binh Nguyen
-> <binh.nguyen.jz@renesas.com>.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+Hi Zhou,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Le jeu., juin 10 2021 at 20:58:49 +0800, 周琰杰 (Zhou Yanjie) 
+<zhouyanjie@wanyeetech.com> a écrit :
+> Add the MMC bindings for the JZ4775 SoC from Ingenic.
+> 
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
 
-Gr{oetje,eeting}s,
+Acked-by: Paul Cercueil <paul@crapouillou.net>
 
-                        Geert
+Cheers,
+-Paul
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> ---
+> 
+> Notes:
+>     v1->v2:
+>     No change.
+> 
+>  Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml 
+> b/Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml
+> index 04ba8b7..546480f 100644
+> --- a/Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml
+> @@ -19,6 +19,7 @@ properties:
+>            - ingenic,jz4740-mmc
+>            - ingenic,jz4725b-mmc
+>            - ingenic,jz4760-mmc
+> +          - ingenic,jz4775-mmc
+>            - ingenic,jz4780-mmc
+>            - ingenic,x1000-mmc
+>        - items:
+> --
+> 2.7.4
+> 
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+
