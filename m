@@ -2,116 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FC8F3A2BFE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 14:52:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58A1D3A2C16
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 14:55:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230255AbhFJMyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 08:54:10 -0400
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:40255 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230136AbhFJMyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 08:54:09 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 58E5A2101;
-        Thu, 10 Jun 2021 08:52:12 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Thu, 10 Jun 2021 08:52:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=E5Pc7fipEbBuER2SNRqORMg07Xg
-        /kjPfCBgdeNOwwzM=; b=uq6gkHgO9P4locKPO6euSQbmudLsOCueuxjgrVcQzUn
-        jIuPRd0L2ilYFUJM5fDYevFoxX3Q5mZT4EHcO2eeYX/nhzN6C/Bbk5udF9bOecCX
-        IF3ogEnb6EQE9ee8fZfCKU51fxPf1gtLymjRvGXaeSNgZB4jupKyUcK91WFUeY1h
-        C7YQW66FVS8agu5Nf6J3OUodV5qKCNdNlVe/NG7vfcNmUgYFzVTNp+/TeaGL3L/k
-        sn1hCtz9v6+4Up4fLxAnNb7mNqFJA80feYZEe3VdTZFnrthHtWn2m5UwxKDace+M
-        6xqgi0tqDyxn65Px5GpD4g3Qg2n6D1Pi5o1XTkHzeMA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=E5Pc7f
-        ipEbBuER2SNRqORMg07Xg/kjPfCBgdeNOwwzM=; b=ZqXhRvdLv45r+chVTO/7Gn
-        4rkTQyCMncwDlexzWTVXLDnhXkbbSKs5Xe9MxCsVqpd0TVjcyvUfK4xAtRjSzLRI
-        gl7uAgr9e2S2Ocr9XjLPRkSG6SH1NrKWpp5s3ES8NS5S7CKays9SWhpyBFE4hS77
-        KVplRntLY+OkP0sUlE0jPpQUnnOuBv3dk87lBosI12nZe2mZKu4kEiYFA7cvzJhf
-        ufH89d4ym7eV5GD8XfnCA0RexPkqAcNKmIfl3Ejr0FeCTncX9O0Y8ybAvyh1xYCe
-        ctIL6Xbo2Ei1SHgo2h9Y7fRF2s0XB19aapdramN8/FEKyvPZQj0SMssjYB8zZPuw
-        ==
-X-ME-Sender: <xms:-grCYIpZbk5lCYj5uIN1DWB4fQsO8JVtMIPqmV1WF0BXFVndtZiI4g>
-    <xme:-grCYOo3nAhFXjOAHrf3GQVv00tNDtviMzBCYRZEoeluqolcj37rIcPBiKZFTYIRk
-    ZEBd0-OkqrArdUvJc8>
-X-ME-Received: <xmr:-grCYNNi2HN3uwtsvbhZBGogEDdiC_tn2F4TBDmI_46TB2aM14r7e9TM_QHQrAXDOggB8AytUl9rhM6hc9PnFAZB-MkfML50IzvX>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedufedgheeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:-grCYP4RUxWvahUH6bjMQyTyFo7s_d5zqATDaS6mrGP7hYEDPhuADQ>
-    <xmx:-grCYH6h9MyvrQghSck7vrbCmTz9Mva5GdXqYe7m8QpgnUyWJmTSqA>
-    <xmx:-grCYPiSTrLLLOf4_U1B4WhOym-nAdceCSX-CrQreObSrp6nRr0eQA>
-    <xmx:-wrCYEs1rcT8oVyHC_bxhQL45xKAEUpsBzsH6sJAbrobiqh3DWVlTA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 10 Jun 2021 08:52:10 -0400 (EDT)
-Date:   Thu, 10 Jun 2021 14:52:09 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: allwinner: a64-sopine-baseboard: change
- RGMII mode to TXID
-Message-ID: <20210610125209.glrd2qlpwqiha24h@gilmour>
-References: <20210609083843.463750-1-icenowy@aosc.io>
+        id S230248AbhFJM5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 08:57:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52742 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230230AbhFJM5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 08:57:04 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC2B2C061574;
+        Thu, 10 Jun 2021 05:55:08 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id g4so3631225pjk.0;
+        Thu, 10 Jun 2021 05:55:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W9MR7VyfjbAVQKovizeaQVfhcaf1Wuct3oROAX9gJfI=;
+        b=dDQolY7xmu8sb3hUQbo4q+R/+R2dkPcje2f7+aRWYBMHZl4h6P6Iau939h2h8MiNRd
+         5kuEHPclM+RNwZYF2WZlUzypH/ibLUDUxGNOj3iAePbXfMhv1Z8b+aqPisPUb4JVa/Y+
+         E1fzzkrHWk/pu4OALL0kQq5NytWQpyMZpX9phghxw4g3M6AXN5LUAKXQI6doNCiIk5Ek
+         2lhPyKlFzDuDTGp2UDhH7EiELMrrx+/PZokUmMyMyqC94pHQa7KgFXzongxWlsYOZaL4
+         5qSCZvUn2J1JOEi12v6XFWeC69O6BxgunkI4OD27vY8xL9P9JkDNEz7KmXctSQXduZqS
+         zSxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W9MR7VyfjbAVQKovizeaQVfhcaf1Wuct3oROAX9gJfI=;
+        b=haVJ+KQBZouZvotr9zDHoyYKk4IkNB6CNlNQEejvr9zy9nBDI+cPlt0HO5eBQLhW58
+         7qKY7flJqNW9fK041kOZpUL8G+2L3F4XQkpzHovdv0my1Xr1QWPO7YJohB8DrxlI5OYk
+         +xe+wy41ehwLLYiJfmEl3vZgMSUYtC90yfZGN0L0Sg4lCNYWOB1rpqwh5lRAkjxQIxOe
+         +W66XNfhgC5x3oAMYdt0k+EhTEh1Fk7GzDoWdjIhdnf2Stqu8Z2O5uoyQ2qJtLTLnNHN
+         DucGsH2Q7udFcoKKyiYsDVyf4pKfSPfncChN2bUUhpX8P9wCnPr2CVrXheZnoE48fgQF
+         lfTA==
+X-Gm-Message-State: AOAM533m80Gdvw2kbVBegSE5Eksk55rW10Eojef3IAvwss4Amn3hEJkU
+        OJojUiogABqNQPPvE1MEIvPU6p1Qn/vPFg634E4=
+X-Google-Smtp-Source: ABdhPJyR41nlqSbu3PH+3jeD6jWrov1oPPkf0n3CdL4OsmIwHViPtdUgpjEuvSCxBBWHVZZ+B03HSf5gJpvPd8grqrg=
+X-Received: by 2002:a17:902:c784:b029:104:9a21:262a with SMTP id
+ w4-20020a170902c784b02901049a21262amr4650065pla.21.1623329708212; Thu, 10 Jun
+ 2021 05:55:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="io7uwxozpxpfiet4"
-Content-Disposition: inline
-In-Reply-To: <20210609083843.463750-1-icenowy@aosc.io>
+References: <20210610122126.50504-1-stephan@gerhold.net> <20210610122126.50504-10-stephan@gerhold.net>
+In-Reply-To: <20210610122126.50504-10-stephan@gerhold.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 10 Jun 2021 15:54:52 +0300
+Message-ID: <CAHp75VensmLxN-1biCRGyz2vSsNe5Sd6YKGNbZz-m0+c6ACHeg@mail.gmail.com>
+Subject: Re: [PATCH v2 9/9] iio: accel: bma180/bmc150: Move BMA254 to
+ bmc150-accel driver
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 10, 2021 at 3:24 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+>
+> Commit c1d1c4a62db5 ("iio: accel: bma180: BMA254 support") added
+> BMA254 support to the bma180 driver and changed some naming to BMA25x
+> to make it easier to add support for BMA253 and BMA255.
+>
+> Unfortunately, there is quite some overlap between the bma180 driver
+> and the bmc150-accel driver. Back when the commit was made, the
+> bmc150-accel driver actually already had support for BMA255, and
+> adding support for BMA254 would have been as simple as adding a new
+> compatible to bmc150-accel.
+>
+> The bmc150-accel driver is a bit better for BMA254 since it also
+> supports the motion trigger/interrupt functionality. Fortunately,
+> moving BMA254 support over to bmc150-accel is fairly simple because
+> the drivers have compatible device tree bindings.
+>
+> Revert most of the changes for BMA254 support in bma180 and move
+> BMA254 over to bmc150-accel. This has the following advantages:
+>
+>   - Support for motion trigger/interrupt
+>   - Fix incorrect scale values (BMA254 currently uses the same as
+>     BMA250 but actually they're different because of 10 vs 12 bits
+>     data size)
+>   - Less code than before :)
+>
+> BMA250 could be potentially also moved but it's more complicated
+> because its chip_id conflicts with the one for BMA222 in bmc150-accel.
+> Perhaps there are also other register differences, I did not investigate
+> further yet (and I have no way to test it).
 
---io7uwxozpxpfiet4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+...
 
-On Wed, Jun 09, 2021 at 04:38:43PM +0800, Icenowy Zheng wrote:
-> Although the schematics of Pine A64-LTS and SoPine Baseboard shows both
-> the RX and TX internal delay are enabled, they're using the same broken
-> RTL8211E chip batch with Pine A64+, so they should use TXID instead, not
-> ID.
->=20
-> In addition, by checking the real components soldered on both a SoPine
-> Baseboard and a Pine A64-LTS, RX delay is not enabled (GR69 soldered and
-> GR70 NC) despite the schematics says it's enabled. It's a common
-> situation for Pine64 boards that the NC information on schematics is not
-> the same with the board.
->=20
-> So the RGMII delay mode should be TXID on these boards.
->=20
-> Fixes: c2b111e59a7b ("arm64: dts: allwinner: A64 Sopine: phy-mode rgmii-i=
-d")
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+>           Say Y here if you want to build a driver for the Bosch BMA023, BMA150
+> -         BMA180, SMB380, or BMA25x triaxial acceleration sensor.
+> +         BMA180, SMB380, or BMA250 triaxial acceleration sensor.
 
-Applied, thanks
-Maxime
+Unsorted before and after.
 
---io7uwxozpxpfiet4
-Content-Type: application/pgp-signature; name="signature.asc"
+...
 
------BEGIN PGP SIGNATURE-----
+> -               .name = "BMC150/BMI055/BMA253/BMA255",
+> +               .name = "BMC150/BMI055/BMA253/BMA254/BMA255",
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYMIK+QAKCRDj7w1vZxhR
-xdspAP9uCPofAxHimp/PmBqZWpgDIoj9Jm6i11JcI3I8w29RPQEAl/hyxPgO52Bq
-BJlk9Q56TTqTCDsAPS0wOl8F0unSGAg=
-=DvGq
------END PGP SIGNATURE-----
+Ditto.
 
---io7uwxozpxpfiet4--
+-- 
+With Best Regards,
+Andy Shevchenko
