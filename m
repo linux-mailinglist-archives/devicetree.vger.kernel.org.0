@@ -2,136 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 469F03A2B7F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 14:27:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5112B3A2B9D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 14:30:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230319AbhFJM2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 08:28:49 -0400
-Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:54699 "EHLO
-        wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230350AbhFJM2k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 08:28:40 -0400
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
-        by mailnew.west.internal (Postfix) with ESMTP id 193091EC9;
-        Thu, 10 Jun 2021 08:26:42 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute2.internal (MEProxy); Thu, 10 Jun 2021 08:26:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=COkkJeYcvwmDlhpVmcIauI0ShUX
-        vSvQARYR7Bn0tqj4=; b=G41sR6gjk5D5n5+FAAgCsTkZaWGX63tNhkvr9KZMQQa
-        kD5xsbgJS4XyFwXzV5Q/f4SBi3DBuRTSsUaeYxwoP2NOBJh69atOAEGcwrAhIVU8
-        20vpJ72V62SztQzyMH9C5HZG5TUnVluRMXH2fzDigiuu9ECr70ZHrxg4Qy7IvyZ5
-        XwDcRkgE3fnu9M2pZzNCrEUydH1gKmEAniNMwscrUUGPaPqCnGAj4GX40+R7P1tk
-        PEwIx9B3+gh5izlDpR/B9pus4aE4puPISZ9WCVYXZeCx0krKQh59tSew2E4vpKU/
-        gqQGEuG3BX0vPBj7/uGa29kHeUBzw/bYKhrDSvJSUEQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=COkkJe
-        YcvwmDlhpVmcIauI0ShUXvSvQARYR7Bn0tqj4=; b=ICOyP9St7jwWbGIlx3CNCY
-        prS1VY8z8pCBlkiiJufnszVcTDQ6oUi9oGOmAqXZaNjCkfKzZ1l/AUbW75BLyWYD
-        d4ILtT1YWKvb0+FtgNoJmkd8vNXnSurrJNuF0U+kcOTu4BObkY8RMYWV+ZOKJ7rI
-        ZQZzrYJIG3UL0I5P/4ve7LiAURdYQyy3MyePB7TIDDEAw+p9Qqz8+IIfVOS3ng1J
-        G9y43mVHwGczXVMNOJyxSQcxjGXGSluVvlLhSH284NIdVZCeYDuKyW1ieArs4pz+
-        6pFTapf57ZUlsnacwOnsbyC3MoFck26ZQ9cpnwOF0F0rq3fekwKyxBHp0oSWtoVQ
-        ==
-X-ME-Sender: <xms:_wTCYF8PdNQj6W1wzlV4kQcku_qarcQ_TOMFr8PFOqkGvb40AR-_xA>
-    <xme:_wTCYJsBxJBy0KCQsbugwvxTyzZ6w04RwTzju7N20ULSoKeqgwA9-kNgMknL7Ut8K
-    vawA16N3yALDIj5Ouk>
-X-ME-Received: <xmr:_wTCYDBJKpkBtO6IXAFkEunQ1B8Iu4vHnVIl1jPtct49szdaqfPi7NuP83jRpssswdObcV5mx6LDPgBYKhVCaKlVxc_ZREmF8ssf>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfedufedgheduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:_wTCYJe15ZHZNdjUCja9QjWLu1WlqA-sRiba3xpvrVV--Dau8RAyww>
-    <xmx:_wTCYKO_axXYL_TNXTtBXErnIF7oVy0322ml_28-M4VD7t-j6UzpHA>
-    <xmx:_wTCYLmmN3LBJQ2VFRdSPScIEk3D1zJBZgkgc5oNyvi17jS1NWH_Ww>
-    <xmx:AQXCYFeDXWWKPm8JQQYHlS0EskI_cmnxbj5Xwd05n2CNTN0ggvDag6Tc5P4>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 10 Jun 2021 08:26:39 -0400 (EDT)
-Date:   Thu, 10 Jun 2021 14:26:36 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Jaroslav Kysela <perex@perex.cz>, dri-devel@lists.freedesktop.org,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>, devicetree@vger.kernel.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>, linux-doc@vger.kernel.org,
-        Eric Anholt <eric@anholt.net>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        linux-rpi-kernel@lists.infradead.org,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 04/12] ASoC: hdmi-codec: Add iec958 controls
-Message-ID: <20210610122636.nrzq4edube4e4xx5@gilmour>
-References: <20210525132354.297468-1-maxime@cerno.tech>
- <20210525132354.297468-5-maxime@cerno.tech>
- <20210609124304.GB5052@sirena.org.uk>
+        id S230297AbhFJMcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 08:32:46 -0400
+Received: from mail-vs1-f42.google.com ([209.85.217.42]:46898 "EHLO
+        mail-vs1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230130AbhFJMcp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 08:32:45 -0400
+Received: by mail-vs1-f42.google.com with SMTP id z15so1745106vsn.13;
+        Thu, 10 Jun 2021 05:30:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MY8WKRn2GArViRUc7bu5Utce7nrvaxhUEO/qAgCvVVQ=;
+        b=BMiX/dWpodU/8iGyWfARFady0i9PE9BeEGW/GUMhioGBeKMBwLXz3wUPL57exeNmZS
+         NoSGVef1FYC6YBHiFCijNFqcrkJxKCEW6usOZ8cXDscL0rPbCQP/EMoPlEO6lu0It/Lf
+         r4herY2efNzMwEOA8UmhzNb8cgbo6rNWpHkNW0PMXdAXvBheMFJu3QDaZ6JasyCgbij5
+         g7sZ8xnx13IRyINyx0uA3gHCh6GFVum0aB4Ac9ceMeLr5v6QcCI25vcAORX1Ta8m36oI
+         9rSfrSuAfhiRet8DbD+HE6Px0E+bVIoNR6zEY/j5wlO4atsZRKOGkU9bhR4UxpTtp0As
+         xvvQ==
+X-Gm-Message-State: AOAM531vDGc0tknE9O32l8+EsA+/MQ2bkVBJ8i2NLM/9JSMB7sWqXTzZ
+        4UhD3mI0mGZmiWG1quryz9U0tDt6nyoFMmegLKM=
+X-Google-Smtp-Source: ABdhPJzUHkDQLE/1DEZ9wffgvMmXoWFgooq0Mjku7tNI2zXV1nEKtR9HvdAkcHPbXH0RU8CrNdhe+6n1afqegsY4Qgc=
+X-Received: by 2002:a05:6102:2011:: with SMTP id p17mr3724515vsr.40.1623328247559;
+ Thu, 10 Jun 2021 05:30:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ca7v7tdvp4h73ynz"
-Content-Disposition: inline
-In-Reply-To: <20210609124304.GB5052@sirena.org.uk>
+References: <20210609153230.6967-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210609153230.6967-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210609153230.6967-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 10 Jun 2021 14:30:36 +0200
+Message-ID: <CAMuHMdWcJGHxjQgHWPVsgvtsz=y0=y0QTocf879MvidrpEZDgQ@mail.gmail.com>
+Subject: Re: [PATCH v3 07/11] dt-bindings: clock: renesas: Document RZ/G2L SoC
+ CPG driver
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 9, 2021 at 5:33 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Document the device tree bindings of the Renesas RZ/G2L SoC clock
+> driver in Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
---ca7v7tdvp4h73ynz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.14.
 
-Hi Mark
+Gr{oetje,eeting}s,
 
-On Wed, Jun 09, 2021 at 01:43:04PM +0100, Mark Brown wrote:
-> On Tue, May 25, 2021 at 03:23:46PM +0200, Maxime Ripard wrote:
-> > The IEC958 status bits can be exposed and modified by the userspace
-> > through dedicated ALSA controls.
-> >=20
-> > This patch implements those controls for the hdmi-codec driver. It
-> > relies on a default value being setup at probe time that can later be
-> > overridden by the control put.
->=20
-> This breaks bisection:
->=20
-> /mnt/kernel/sound/soc/codecs/hdmi-codec.c: In function 'hdmi_codec_hw_par=
-ams':
-> /mnt/kernel/sound/soc/codecs/hdmi-codec.c:504:50: error: invalid type arg=
-ument of '->' (have 'struct hdmi_codec_params')
->   memcpy(hp.iec.status, hcp->iec_status, sizeof(hp->iec_status));
->                                                   ^~
+                        Geert
 
-Indeed, sorry. I just sent a new version of the PR with that breakage fixed
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Maxime
-
---ca7v7tdvp4h73ynz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYMIE/AAKCRDj7w1vZxhR
-xRTlAP9A1B518vIEh0yPmEb88zrbl9iK6pcUuknr9pf2xJtwUAEA/rrMwlBSRpR8
-Y+nhnpOTpFudYyX6DNXdi97U/IRptgk=
-=GVe1
------END PGP SIGNATURE-----
-
---ca7v7tdvp4h73ynz--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
