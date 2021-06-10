@@ -2,84 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B98F3A2BB0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 14:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE6343A2BDC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 14:45:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230001AbhFJMgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 08:36:10 -0400
-Received: from mail-vs1-f45.google.com ([209.85.217.45]:38540 "EHLO
-        mail-vs1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229937AbhFJMgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 08:36:09 -0400
-Received: by mail-vs1-f45.google.com with SMTP id x8so1764300vso.5;
-        Thu, 10 Jun 2021 05:34:13 -0700 (PDT)
+        id S230323AbhFJMra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 08:47:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50580 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230313AbhFJMr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 08:47:29 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C754FC061574;
+        Thu, 10 Jun 2021 05:45:33 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id k15so1527644pfp.6;
+        Thu, 10 Jun 2021 05:45:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1ZFgjRNcsYwqR6zZ5ZdCuPdhjx4CcGH8bsJJ09OPifc=;
+        b=HaEPnAYNNlpDSrNP4PY0me8e8qR05e3qyIuWtOkAyZZujQXuOIofm83/kW/Pe+eN19
+         hxG8hrcuQOcTOgE/+zYHdJ44XBxloh5C+6szsqA5Ur1g3DyFGyRrAGxFflU8AA17HwVr
+         an8/iAYetQ2GG9IkNlBkcl81QbxLY4pU2SKbM+GdUow5QfLtPjg+P0IOfAioEa0KEVIT
+         1brlpwpx+k2DpN3PNGYlZYdHE+je82VESS4U6NeclqIRG+oQr9MIyyY3iMmR46D4TlLN
+         r6DwTJBEANE45B1QQt4Sxk2GMjyT6FLQFznOo/19cKguIzUxyxBhS2PBjAJU+mp1z6H6
+         fkCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=XcGnFi3G5x2Sch7dDLtQQ+JlG+Fv9b3m7v0WJT6/z68=;
-        b=Akh/EjBttnjhrWNmv61VH5PsbucjUJ7GNiWrrRGMalNMRJLKC+5vQpKzGr70YfklNe
-         6Z0D/cDNbFIYO9pseapfCqc1+vs5FkjYXoG3wVVMXLdNbHbnkUTDzgf4LO7tZU9Kv2mt
-         Mkip/rnLoqSQCkjXGRvS1HDYhcDxTIAr8p8Lm4bFCYzMGWrdOQ/6PF1Ymqy80/iZ6Tb3
-         o1OZtS9apn70yxX0iVIUUo0vOOkbKd6wAlhZFuw8fuuc2pMrMna+fznMotbGvcKooNz5
-         XY8mF0XZrXyeY4J6wS/05P5dJ8/WmxmaUgKwhGHYWkDknM/qGk9cQdaTjpYTZYfa2NEf
-         M/Sw==
-X-Gm-Message-State: AOAM532zLtJebHqI9gkXx9UBFXd11Yj9kVQQ2hRmxwhsoPduWzwn8ujB
-        tnUZm/pgRvNC7nfRd4DWF2XSvneebX6ctliFO7Q=
-X-Google-Smtp-Source: ABdhPJzmbjjXRl4XQOFYUcklOmO/KV9+auNrwWvD76LCznklLOeassh4ikQLViK02pST7b2lu6q9V4TGpHzm0BxYk04=
-X-Received: by 2002:a05:6102:c4c:: with SMTP id y12mr4173492vss.18.1623328453196;
- Thu, 10 Jun 2021 05:34:13 -0700 (PDT)
+        bh=1ZFgjRNcsYwqR6zZ5ZdCuPdhjx4CcGH8bsJJ09OPifc=;
+        b=m7+Ts/LY1p45zncmrcQ+Zh9Ur+kAc/qlMyX+J1vURMlChmZ559YBav8P3z3zgQwS2r
+         lM5j5ju8EJy+h/F00o2Ynd2O9S6yfB7YYondQh+E6pDwd2uAu8Eh4Iiokgs8csGut8wz
+         HAR5HTj7rDHsEsnVZSCi931xBUmYnSGuwHK2b8RziHBghdZE/ZFQuH+aylGJ+3VTDYwN
+         mV05jQcX1T/Ky35NSWImhMyLwQGAz3MGfvKXQKGeIUarER2SksWZH0QemDiKy57iQDvp
+         +s2RNLUGAk1lw5V8/F9IzJaRftl6jkKcXMNTgRQAUtOQANCH3XfuX7VgBUIUJ8Eachir
+         FjvQ==
+X-Gm-Message-State: AOAM532PnwGCIcOTJURBnBe2vuZvstHKrBgBEyiNZjZ/yeZvsZA6/se8
+        QyfgJEGNe82iiV1qhJjNnyOBETiwbDmf7MB20+Q=
+X-Google-Smtp-Source: ABdhPJziZr55ewTQf+XDVxKZLMLDQP8ruVAgdXFyyAOWErFy1EM1izvsdPhZVYz4uuEcs/hRCr/a9Atj71l9jPi3pGY=
+X-Received: by 2002:a63:b507:: with SMTP id y7mr4856830pge.74.1623329133286;
+ Thu, 10 Jun 2021 05:45:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210609153230.6967-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210609153230.6967-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20210609153230.6967-11-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Jun 2021 14:34:02 +0200
-Message-ID: <CAMuHMdVCF2Oq5WVLoKT6r1PT7KASJGGJ2CQz5Xw7twS-NwgC3g@mail.gmail.com>
-Subject: Re: [PATCH v3 10/11] arm64: dts: renesas: Add initial DTSI for
- RZ/G2{L,LC} SoC's
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+References: <20210610122126.50504-1-stephan@gerhold.net> <20210610122126.50504-4-stephan@gerhold.net>
+In-Reply-To: <20210610122126.50504-4-stephan@gerhold.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 10 Jun 2021 15:45:17 +0300
+Message-ID: <CAHp75VcLWK=b3fn3c2m-2ZgapxrcNxJdQx7ODfZG2mRK5z+rQQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/9] iio: accel: bmc150: Drop duplicated documentation
+ of supported chips
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        ~postmarketos/upstreaming@lists.sr.ht
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 9, 2021 at 5:33 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add initial DTSI for RZ/G2{L,LC} SoC's.
+On Thu, Jun 10, 2021 at 3:24 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 >
-> File structure:
-> r9a07g044.dtsi  => RZ/G2L family SoC common parts
-> r9a07g044l1.dtsi => RZ/G2L R9A07G044L1 SoC specific parts
-> r9a07g044l2.dtsi => RZ/G2L R9A07G044L2 SoC specific parts
+> The chips supported by the bmc150-accel driver are clearly documented
+> in Kconfig, in the bmc150_accel_chip_info_tbl as well as in all the
+> device ID tables in the I2C/SPI drivers. It's easy to forget to update
+> the lists in the file header. Drop those entirely to reduce the amount
+> of changes required to add new chip variants.
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+> New patch in v2. Originally I tried to reorder those too but then it
+> caused conflicts in all my following patches so I'm not convinced
+> it's worth to try and keep those up to date.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.14.
+It's not user-visible, so I'm fine, but users should have a
+possibility to know about supported chips in the Kconfig option.
 
-Gr{oetje,eeting}s,
+Assuming above is done deal,
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-                        Geert
+> ---
+>  drivers/iio/accel/bmc150-accel-core.c | 10 +---------
+>  drivers/iio/accel/bmc150-accel-i2c.c  | 10 +---------
+>  2 files changed, 2 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/iio/accel/bmc150-accel-core.c b/drivers/iio/accel/bmc150-accel-core.c
+> index a0df704730ee..6fb025b4228f 100644
+> --- a/drivers/iio/accel/bmc150-accel-core.c
+> +++ b/drivers/iio/accel/bmc150-accel-core.c
+> @@ -1,14 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * 3-axis accelerometer driver supporting following Bosch-Sensortec chips:
+> - *  - BMC150
+> - *  - BMI055
+> - *  - BMA255
+> - *  - BMA250E
+> - *  - BMA222
+> - *  - BMA222E
+> - *  - BMA280
+> - *
+> + * 3-axis accelerometer driver supporting many Bosch-Sensortec chips
+>   * Copyright (c) 2014, Intel Corporation.
+>   */
+>
+> diff --git a/drivers/iio/accel/bmc150-accel-i2c.c b/drivers/iio/accel/bmc150-accel-i2c.c
+> index b8bda0dfb495..a0e2782580b7 100644
+> --- a/drivers/iio/accel/bmc150-accel-i2c.c
+> +++ b/drivers/iio/accel/bmc150-accel-i2c.c
+> @@ -1,14 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * 3-axis accelerometer driver supporting following I2C Bosch-Sensortec chips:
+> - *  - BMC150
+> - *  - BMI055
+> - *  - BMA255
+> - *  - BMA250E
+> - *  - BMA222
+> - *  - BMA222E
+> - *  - BMA280
+> - *
+> + * 3-axis accelerometer driver supporting many I2C Bosch-Sensortec chips
+>   * Copyright (c) 2014, Intel Corporation.
+>   */
+>
+> --
+> 2.32.0
+>
+
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+With Best Regards,
+Andy Shevchenko
