@@ -2,117 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC8983A2CFA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A15143A2D2A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:36:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230250AbhFJNaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 09:30:10 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:29191 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230291AbhFJNaJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 09:30:09 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1623331693; h=Message-ID: Subject: Cc: To: From: Date:
- Content-Transfer-Encoding: Content-Type: MIME-Version: Sender;
- bh=zdh8Ve3I0bYMzcTgGWZH5OZKHgsbwm12U3W/MB8rCAU=; b=hQ2DNeNuam25rCYC38PGoZIt2LgA+sAbzwuSZO9o8OKqTvvWLC7QH/Kgc9FqXcwY6Yhb0XWV
- fDjUM+PI+zO6TkSRo617jg5tGlEPZYSovMaKdc3QXJR0Mm0mG8GOE2HlkL/5mB0oSHo94HA3
- DKybYpxfSYqv05vhbg1oZ3QR8kA=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 60c21367e27c0cc77f28bd8f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 10 Jun 2021 13:28:07
- GMT
-Sender: vhiren=codeaurora.com@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id B0531C433D3; Thu, 10 Jun 2021 13:28:06 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: vhiren)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D7CA7C433F1;
-        Thu, 10 Jun 2021 13:28:04 +0000 (UTC)
+        id S230458AbhFJNh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 09:37:57 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:23014 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230413AbhFJNh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Jun 2021 09:37:57 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15ADRTRM027439;
+        Thu, 10 Jun 2021 15:35:42 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=PVwoi7QXAKZzjqIJrJlU43OTjFre496R9tdNWd8Ac2w=;
+ b=ZN81NbvDFhrXwk4O1UyjffqcLGTinleTVxJhmVMlxYd5rFaqSI/dX2wNs1w2DGinAbNh
+ Lt8/ZcUg5m0Ncdsjg0M6PEn/h5cniXxt1kuO1hOPYkb0BNIN3jxBzL0OOOF8AwSzSRHZ
+ /jLKxZ8ARy7finN7O9nUCe5fnM4T64Z5Dxd/SsFfUgyCp+2BPFIYWqAR5V1LndMt5SNJ
+ rjo/l64Jg4AQCtfpzScvPu6zaAvb6UhWrK0u9NCsKTYD4RFb7so9WENiByooWQ3/Ok6u
+ mnfPKfUlIRVQ98HRjwzP+cIPkoOHqiRoHGvs0W3obLUGD7VSc4FJRhDTnPa6JcUIMt4p Bg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 392xq7y0g4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Jun 2021 15:35:42 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 38EB2100034;
+        Thu, 10 Jun 2021 15:35:41 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 195B7228817;
+        Thu, 10 Jun 2021 15:35:41 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 10 Jun
+ 2021 15:35:40 +0200
+Subject: Re: [PATCH v2] ARM: dts: stm32: add a new DCMI pins group
+To:     Grzegorz Szymaszek <gszymaszek@short.pl>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <fcee4f30-446e-f4da-6d95-c9223cf82981@pengutronix.de>
+ <YLj2emwxhAVVOeIo@nx64de-df6d00>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <0b37872e-4ae9-acd6-5698-b188ad38bb8a@foss.st.com>
+Date:   Thu, 10 Jun 2021 15:35:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Thu, 10 Jun 2021 18:58:04 +0530
-From:   vhiren@codeaurora.com
-To:     bjorn.andersson@linaro.org, adrian.hunter@intel.com,
-        robh+dt@kernel.org, ulf.hansson@linaro.org,
-        asutoshd@codeaurora.org, stummala@codeaurora.org,
-        sayalil@codeaurora.org, rampraka@codeaurora.org,
-        vbadigan@codeaurora.org, sboyd@kernel.org,
-        georgi.djakov@linaro.org, mka@chromium.org
-Cc:     linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, linux-mmc-owner@vger.kernel.org,
-        nitirawa@codeaurora.org
-Subject: Re : Query on UFS Lun detection
-Message-ID: <d60373362ed41b49f763cdb46c9973e2@codeaurora.com>
-X-Sender: vhiren@codeaurora.com
-User-Agent: Roundcube Webmail/1.3.9
+In-Reply-To: <YLj2emwxhAVVOeIo@nx64de-df6d00>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-06-10_07:2021-06-10,2021-06-10 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Community,
+Hi
 
-We are using UFS as a boot device, and we encountered an error, 
-mentioned below while booting through UFS.
+On 6/3/21 5:34 PM, Grzegorz Szymaszek wrote:
+> The Seeed Odyssey-STM32MP157C board has a 20-pin DVP camera output.
+> stm32mp15-pinctrl.dtsi contained one pin state definition for the DCMI
+> interface, dcmi-0, AKA phandle dcmi_pins_a. This definition was
+> incompatible with the pins used on the Odyssey board, where:
+> - there are 8 data pins instead of 12,
+> - DCMI_HSYNC is available at PA4 instead of PH8,
+> - DCMI_D0 is at PC6 instead of PH9,
+> - DCMI_D3 is at PE1 instead of PH12,
+> - DCMI_D4 is at PE11 instead of PH14,
+> - DCMI_D5 is at PD3 instead of PI4,
+> - DCMI_D6 is at PE13 instead of PB8,
+> - DCMI_D7 is at PB9 instead of PE6.
+> 
+> Add the DCMI pins used on the Odyssey board as a new DCMI pin state
+> definition, dcmi-1, AKA phandle dcmi_pins_b.
+> 
+> Signed-off-by: Grzegorz Szymaszek <gszymaszek@short.pl>
+> ---
+> V1 -> V2: Removed the pinctrl override from the Odyssey device tree,
+> added a new pinctrl in stm32mp15-pinctrl.dtsi instead
+> 
+>   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 33 ++++++++++++++++++++++++
+>   1 file changed, 33 insertions(+)
+> 
 
+Applied on stm32-next. I just updated the commit title by
+"ARM: dts: stm32: add a new DCMI pins group on stm32mp15"
 
-APPS Crash - Kernel panic - not syncing: VFS: Unable to mount root fs on 
-unknown-block(8,7)
-
-Here in Kernel command line we are passing "root=sda7", this is our 
-Filesystem partition to be mounted.
-
-While debugging the same we observed the partition which is suppose to 
-be mounted as Filesystem is not enumerated  itself.
-The reason behind not enumerating of partition is, the other Lun got 
-detected first instead of one which is having FS partition.
-
-We are using async probe, hence we know the detection will happen in 
-async way,
-
-
-In working case :  it looks like below
-
-sd 0:0:0:0: sda1 sda2 sda3 sda4 …..sda8
-
-sd 0:0:0:1: sdb1 sdb2
-Here, sd 0:0:0:0 Lun got detected first and enumerated as "sdaN", we 
-have FS partition as "sda7" and so we don’t see above mentioned error.
-
-
-In non working case : it looks like below
-
-sd 0:0:0:0: sdb1 sdb2 sdb3 sdb4 …..sdb8
-
-sd 0:0:0:1: sda1 sda2
-Here, sd 0:0:0:1 Lun got detected first and enumerated as "sdaN" but we 
-don’t have FS partition in this Lun. Instead FS partition now became 
-"sdb7".
+Thanks.
+Alex
 
 
-Observation here is, which ever Lun gets detected first it will have 
-"sda" enumeration and so on.
-However, sdx’s driver scsi/sd.c uses async probe to improve performance, 
-meaning sdx disks are created in parallel. Whoever calls 
-device_add_disk() first becomes sda, the next become sdb….
+> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> index 060baa8b7e9d..5b60ecbd718f 100644
+> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> @@ -118,6 +118,39 @@ pins {
+>   		};
+>   	};
+>   
+> +	dcmi_pins_b: dcmi-1 {
+> +		pins {
+> +			pinmux = <STM32_PINMUX('A', 4,  AF13)>,/* DCMI_HSYNC */
+> +				 <STM32_PINMUX('B', 7,  AF13)>,/* DCMI_VSYNC */
+> +				 <STM32_PINMUX('A', 6,  AF13)>,/* DCMI_PIXCLK */
+> +				 <STM32_PINMUX('C', 6,  AF13)>,/* DCMI_D0 */
+> +				 <STM32_PINMUX('H', 10, AF13)>,/* DCMI_D1 */
+> +				 <STM32_PINMUX('H', 11, AF13)>,/* DCMI_D2 */
+> +				 <STM32_PINMUX('E', 1,  AF13)>,/* DCMI_D3 */
+> +				 <STM32_PINMUX('E', 11, AF13)>,/* DCMI_D4 */
+> +				 <STM32_PINMUX('D', 3,  AF13)>,/* DCMI_D5 */
+> +				 <STM32_PINMUX('E', 13, AF13)>,/* DCMI_D6 */
+> +				 <STM32_PINMUX('B', 9,  AF13)>;/* DCMI_D7 */
+> +			bias-disable;
+> +		};
+> +	};
+> +
+> +	dcmi_sleep_pins_b: dcmi-sleep-1 {
+> +		pins {
+> +			pinmux = <STM32_PINMUX('A', 4,  ANALOG)>,/* DCMI_HSYNC */
+> +				 <STM32_PINMUX('B', 7,  ANALOG)>,/* DCMI_VSYNC */
+> +				 <STM32_PINMUX('A', 6,  ANALOG)>,/* DCMI_PIXCLK */
+> +				 <STM32_PINMUX('C', 6,  ANALOG)>,/* DCMI_D0 */
+> +				 <STM32_PINMUX('H', 10, ANALOG)>,/* DCMI_D1 */
+> +				 <STM32_PINMUX('H', 11, ANALOG)>,/* DCMI_D2 */
+> +				 <STM32_PINMUX('E', 1,  ANALOG)>,/* DCMI_D3 */
+> +				 <STM32_PINMUX('E', 11, ANALOG)>,/* DCMI_D4 */
+> +				 <STM32_PINMUX('D', 3,  ANALOG)>,/* DCMI_D5 */
+> +				 <STM32_PINMUX('E', 13, ANALOG)>,/* DCMI_D6 */
+> +				 <STM32_PINMUX('B', 9,  ANALOG)>;/* DCMI_D7 */
+> +		};
+> +	};
+> +
+>   	ethernet0_rgmii_pins_a: rgmii-0 {
+>   		pins1 {
+>   			pinmux = <STM32_PINMUX('G', 5, AF11)>, /* ETH_RGMII_CLK125 */
+> 
 
-
-Is there any way, where we can fix this in the Lun detection part of 
-code?
-
-Thank You,
-Regards,
-Hiren Gohel
