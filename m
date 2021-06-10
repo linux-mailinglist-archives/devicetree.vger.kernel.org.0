@@ -2,91 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 696313A2751
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B4943A2764
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230154AbhFJIny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 04:43:54 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:64215 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229980AbhFJIny (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 04:43:54 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1623314518; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=ZSWj5UofeqiRKNbckhCqBKn/Q4JIqBdqTYFAQzCnGgM=;
- b=Qj8n89x42iZ9RhwwnLbQOTi6/cu1acSZkrJvR9Arg3TzvcL2Jip9+rAOK2OiVQ5oO9DG7b18
- DiYJhdHgsXeWMHmjG6g9djBIC/F+UEMCHX2ZmUKa6x2nMpLXZr9nbVXC/ZRg8OhZ3XYRo/5S
- kzN/iSTKiY8xuqqxbDOZJtfRmDg=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 60c1d042ed59bf69cc41302f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 10 Jun 2021 08:41:38
- GMT
-Sender: skakit=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 6E284C43460; Thu, 10 Jun 2021 08:41:38 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: skakit)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C9FCBC433D3;
-        Thu, 10 Jun 2021 08:41:37 +0000 (UTC)
+        id S229911AbhFJIuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 04:50:19 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:44270 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229770AbhFJIuP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 04:50:15 -0400
+Received: from mail-wm1-f71.google.com ([209.85.128.71])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lrGMM-0007vZ-6n
+        for devicetree@vger.kernel.org; Thu, 10 Jun 2021 08:48:18 +0000
+Received: by mail-wm1-f71.google.com with SMTP id j6-20020a05600c1906b029019e9c982271so3604775wmq.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 01:48:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=YCThDjpaFHnd9q5rWUaETkYePP9lVv23un9cpBMG23U=;
+        b=fMVF4jynUw7YY4tMDeMquqgMOrASAJg4MVSJ4UpUTkpyhycu9XjqANZOxs0Dvl954T
+         AAb3uv8lo5vZGhfVjZ7KSZ/Y3rSt4THYkkzlrL9JkVdjmbtENT3U0i/UZSrtosVTk/C+
+         cm1M35D7QLovEHHr5ycwYKZElfKYdSe1KjsVANydYS+xSMIDEErKsrzkFNpplZusIPHG
+         B78OSQ3f/V/9Nsd0IoA8flCWwdCju+RnidOalTks9mgiSXsxfM08OCDMDYniIvnCIIs6
+         kexpljCZX0YgLZpHZrYvPnQiHYxz9HjJPHunkRm+B4MCG8S3GRyD92hogJ1fn63e9Xu2
+         NhAw==
+X-Gm-Message-State: AOAM5308UsT7OTXocBbV4geauLq3KOrWBAhdmLA5rxQguBkzXkJEMT2U
+        he4Y3bDWpBbp8fPFuST8GS1B9RgpfoFTH3LmruTHo/wwUUr9IbLqq0fLxaLpV1f1GfsXQDz8FIs
+        VHn7Leq5COp/GZ0d7PlEzw3aIzvctnQOML2IEdYQ=
+X-Received: by 2002:a5d:6a02:: with SMTP id m2mr4101179wru.77.1623314897977;
+        Thu, 10 Jun 2021 01:48:17 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxnI69OSD3AX6rHDEwFixaiCIwaEQAjUyh8avsvzpR/BP415Z0ipn+qaT3Xcoa9ZnIkST0Cww==
+X-Received: by 2002:a5d:6a02:: with SMTP id m2mr4101169wru.77.1623314897855;
+        Thu, 10 Jun 2021 01:48:17 -0700 (PDT)
+Received: from [192.168.1.115] (xdsl-188-155-177-222.adslplus.ch. [188.155.177.222])
+        by smtp.gmail.com with ESMTPSA id d131sm8758029wmd.4.2021.06.10.01.48.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Jun 2021 01:48:17 -0700 (PDT)
+Subject: Re: [PATCH v23 17/18] dt-bindings: mtd: pl353-nand: Describe this
+ hardware controller
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+References: <20210610082040.2075611-1-miquel.raynal@bootlin.com>
+ <20210610082040.2075611-18-miquel.raynal@bootlin.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <ce97c460-14eb-a758-31f6-124585e733f1@canonical.com>
+Date:   Thu, 10 Jun 2021 10:48:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <20210610082040.2075611-18-miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Thu, 10 Jun 2021 14:11:37 +0530
-From:   skakit@codeaurora.org
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCH V4] dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom
- pmic gpio bindings to YAML
-In-Reply-To: <CACRpkdb=+XOeSco22hXdYr=PTfPS6OFnWArBL3urU5qPf735uQ@mail.gmail.com>
-References: <1621578615-4613-1-git-send-email-skakit@codeaurora.org>
- <CACRpkdb=+XOeSco22hXdYr=PTfPS6OFnWArBL3urU5qPf735uQ@mail.gmail.com>
-Message-ID: <f0baa873223eed629d945523dd471fdb@codeaurora.org>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
-
-On 2021-06-10 13:15, Linus Walleij wrote:
-> Hi Satya,
+On 10/06/2021 10:20, Miquel Raynal wrote:
+> Add a yaml description of this NAND controller which is described as a
+> subnode of the SMC bus.
 > 
-> On Fri, May 21, 2021 at 8:30 AM satya priya <skakit@codeaurora.org> 
-> wrote:
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  .../bindings/mtd/arm,pl353-nand-r2p1.yaml     | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
 > 
->> Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
->> 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
-> 
-> For some reason this patch will not apply, I already applied the
-> two other patches, can you investigate and/or resend just this
-> YAML conversion patch, including Rob's review tag?
-> 
+> diff --git a/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+> new file mode 100644
+> index 000000000000..5f126bb9b202
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/arm,pl353-nand-r2p1.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PL353 NAND Controller device tree bindings
+> +
+> +allOf:
+> +  - $ref: "nand-controller.yaml"
+> +
+> +maintainers:
+> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
 
-Sure, will rebase and resend it.
+I think you can skip the "items" here and leave only "const: foo".
 
-Thanks,
-Satya Priya
-
-> Yours,
-> Linus Walleij
+Best regards,
+Krzysztof
