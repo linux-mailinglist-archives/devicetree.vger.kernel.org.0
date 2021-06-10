@@ -2,205 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D8EF3A2D8E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:57:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC7023A2DB5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 16:06:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230413AbhFJN7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 09:59:21 -0400
-Received: from foss.arm.com ([217.140.110.172]:60742 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230035AbhFJN7V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 09:59:21 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C6483106F;
-        Thu, 10 Jun 2021 06:57:24 -0700 (PDT)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id EF5BD3F73D;
-        Thu, 10 Jun 2021 06:57:23 -0700 (PDT)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH] dt-bindings: interrupt-controller: Convert ARM VIC to json-schema
-Date:   Thu, 10 Jun 2021 14:57:17 +0100
-Message-Id: <20210610135717.2782793-1-sudeep.holla@arm.com>
-X-Mailer: git-send-email 2.25.1
+        id S230332AbhFJOIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 10:08:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40734 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230311AbhFJOIa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 10:08:30 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06E09C061574;
+        Thu, 10 Jun 2021 07:06:20 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id f84so41024340ybg.0;
+        Thu, 10 Jun 2021 07:06:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tbM+etLOCSLCI1Qw+ID4onOsBsF0/cT0k6PPBLohEEM=;
+        b=sYquY0wXd7bW286zgFipmH21BGe2tJ8QWI54e7+eVWyKh6h0yENOIgFADqFeJkJIZo
+         d6amP4Oef1JMdmYHIs7YsLfQJbFKlrmWS7hTqCd2AJs2Vj3SyxcMph2dJpI+/WmbitFj
+         tPpNuG3c8HnhagusKy71Qou+Hl0NISJ3S1UNbQ+nRHI2ou1XGVTnEF/NzYxb6FzLHbhn
+         4O7SHdsW3RVxtRst6231aj9J9N7TmtlEcScDqDuIfCkM1P2voTlm+CtRP6vH6vHpCrH5
+         colXVGG1CMWP3/W3hg0ZoeJD/zAOsvTi87ZfLrPmU9d1smRHOOL0fYSb9EuWl/RxwDnc
+         OxFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tbM+etLOCSLCI1Qw+ID4onOsBsF0/cT0k6PPBLohEEM=;
+        b=CMo4hCampgcxww2cg4QW+S2ue1J8vBJQNlF2xx/Erob54ENhf+CaGDjYPI/XMqQ07S
+         Lw5bxiXejs/1oc7+VA3l9SyVD3dqRvB6KclPZK3aa+cLaEH/n3tDz0l1tF643wiQ6J3j
+         g5H3YTTVK4BgNssioBwGJ8keCO2Ma//1STC7Jo1IrbcOqkFbwWKFJsCpdbZS79CJ0krP
+         fMy0WBgIwxDS7CZjD9v2VmxJ20zJjb7quiUO6kgX5ACL8JZtjv93tvXMxw9h418Su367
+         VnJBbUF5ZB3djruwN2U2vFewun/RIIXwwb6Tzx6JqdT4zhEIgvZNFmimzP5y5sIMa1Te
+         HMZw==
+X-Gm-Message-State: AOAM530KxzoaMuiF/lVZdacULDFPm3lxtvJzZnghpgmBUR94hfaMLLVU
+        8f0NYS5Ke4abmwq8WZSTiX/W68RnCC+EevyxbZQ=
+X-Google-Smtp-Source: ABdhPJwVgOx4sWZ21Ulp8gv1yGtQDABHTAuMufqFhlIMn3eUt/XbKqQiRWeLAqVCJHFTn9uA9OEiwEkIYZ0Erw+UX0U=
+X-Received: by 2002:a5b:54a:: with SMTP id r10mr7760650ybp.476.1623333979162;
+ Thu, 10 Jun 2021 07:06:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210609153230.6967-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20210609153230.6967-9-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXR0y7d2hRi35YsTT2rdOtRzFirGwbVnbUVO2d3yV=mwg@mail.gmail.com>
+In-Reply-To: <CAMuHMdXR0y7d2hRi35YsTT2rdOtRzFirGwbVnbUVO2d3yV=mwg@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 10 Jun 2021 15:05:52 +0100
+Message-ID: <CA+V-a8t5pS3BsOVYWk5ve=pitoKnaf+cBK+ZuNMiER+Ya_tp6Q@mail.gmail.com>
+Subject: Re: [PATCH v3 08/11] clk: renesas: Add CPG core wrapper for RZ/G2L SoC
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ARM VIC binding document to DT schema format using
-json-schema.
+Hi Geert,
 
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
----
- .../bindings/interrupt-controller/arm,vic.txt | 41 ---------
- .../interrupt-controller/arm,vic.yaml         | 92 +++++++++++++++++++
- 2 files changed, 92 insertions(+), 41 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
+Thank you for the review.
 
-Hi Rob,
+On Thu, Jun 10, 2021 at 2:04 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Wed, Jun 9, 2021 at 5:33 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Add CPG core wrapper for RZ/G2L family.
+> >
+> > Based on a patch in the BSP by Binh Nguyen
+> > <binh.nguyen.jz@renesas.com>.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/clk/renesas/Kconfig
+> > +++ b/drivers/clk/renesas/Kconfig
+> > @@ -182,6 +182,11 @@ config CLK_RCAR_USB2_CLOCK_SEL
+> >         help
+> >           This is a driver for R-Car USB2 clock selector
+> >
+> > +config CLK_RZG2L
+> > +       bool "Renesas RZ/G2L SoC clock support" if COMPILE_TEST && !ARCH_RENESAS
+>
+> s/SoC/family/?
+>
+Agreed.
 
-This also helps to get rid of this warning.
+> I think "if COMPILE_TEST", as all other entries are using, is sufficient.
+>
+> > +       depends on ARCH_RENESAS || COMPILE_TEST
+>
+> I think this can be dropped.
+>
+Agreed.
 
-	bus/arm,integrator-ap-lm.example.dt.yaml:0:0:
-	/example-0/bus@c0000000/bus@c0000000/interrupt-controller@3000000:
-	failed to match any schema with compatible: ['arm,pl192-vic']
+> > +       select RESET_CONTROLLER
+> > +
+> >  # Generic
+>
+> > --- /dev/null
+> > +++ b/drivers/clk/renesas/renesas-rzg2l-cpg.c
+>
+> > +static struct clk
+> > +*rzg2l_cpg_clk_src_twocell_get(struct of_phandle_args *clkspec,
+> > +                              void *data)
+> > +{
+> > +       unsigned int clkidx = clkspec->args[1];
+> > +       struct rzg2l_cpg_priv *priv = data;
+> > +       struct device *dev = priv->dev;
+> > +       const char *type;
+> > +       struct clk *clk;
+> > +
+> > +       switch (clkspec->args[0]) {
+> > +       case CPG_CORE:
+> > +               type = "core";
+> > +               if (clkidx > priv->last_dt_core_clk) {
+> > +                       dev_err(dev, "Invalid %s clock index %u\n", type, clkidx);
+> > +                       return ERR_PTR(-EINVAL);
+> > +               }
+> > +               clk = priv->clks[clkidx];
+> > +               break;
+> > +
+> > +       case CPG_MOD:
+> > +               type = "module";
+> > +               if (clkidx > priv->num_core_clks + priv->num_mod_clks) {
+>
+> The range of module clocks in DT specifiers starts at zero, so
+>
+>     if (clkidx > priv->num_mod_clks) {
+>
+Thanks for the catch, yes the above check should be good.
 
-Regards,
-Sudeep
+>
+> > +                       dev_err(dev, "Invalid %s clock index %u\n", type,
+> > +                               clkidx);
+> > +                       return ERR_PTR(-EINVAL);
+> > +               }
+> > +               clk = priv->clks[priv->num_core_clks + clkidx];
+> > +               break;
+> > +
+> > +       default:
+> > +               dev_err(dev, "Invalid CPG clock type %u\n", clkspec->args[0]);
+> > +               return ERR_PTR(-EINVAL);
+> > +       }
+> > +
+> > +       if (IS_ERR(clk))
+> > +               dev_err(dev, "Cannot get %s clock %u: %ld", type, clkidx,
+> > +                       PTR_ERR(clk));
+> > +       else
+> > +               dev_dbg(dev, "clock (%u, %u) is %pC at %lu Hz\n",
+> > +                       clkspec->args[0], clkspec->args[1], clk,
+> > +                       clk_get_rate(clk));
+> > +       return clk;
+> > +}
+>
+> With the above fixed:
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> I can fix these while applying.
+>
+Thank you.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt b/Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt
-deleted file mode 100644
-index dd527216c5fb..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--* ARM Vectored Interrupt Controller
--
--One or more Vectored Interrupt Controllers (VIC's) can be connected in an ARM
--system for interrupt routing.  For multiple controllers they can either be
--nested or have the outputs wire-OR'd together.
--
--Required properties:
--
--- compatible : should be one of
--	"arm,pl190-vic"
--	"arm,pl192-vic"
--- interrupt-controller : Identifies the node as an interrupt controller
--- #interrupt-cells : The number of cells to define the interrupts.  Must be 1 as
--  the VIC has no configuration options for interrupt sources.  The cell is a u32
--  and defines the interrupt number.
--- reg : The register bank for the VIC.
--
--Optional properties:
--
--- interrupts : Interrupt source for parent controllers if the VIC is nested.
--- valid-mask : A one cell big bit mask of valid interrupt sources. Each bit
--  represents single interrupt source, starting from source 0 at LSb and ending
--  at source 31 at MSb. A bit that is set means that the source is wired and
--  clear means otherwise. If unspecified, defaults to all valid.
--- valid-wakeup-mask : A one cell big bit mask of interrupt sources that can be
--  configured as wake up source for the system. Order of bits is the same as for
--  valid-mask property. A set bit means that this interrupt source can be
--  configured as a wake up source for the system. If unspecied, defaults to all
--  interrupt sources configurable as wake up sources.
--
--Example:
--
--	vic0: interrupt-controller@60000 {
--		compatible = "arm,pl192-vic";
--		interrupt-controller;
--		#interrupt-cells = <1>;
--		reg = <0x60000 0x1000>;
--
--		valid-mask = <0xffffff7f>;
--		valid-wakeup-mask = <0x0000ff7f>;
--	};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
-new file mode 100644
-index 000000000000..aeadbd2d9398
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/arm,vic.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM Vectored Interrupt Controller
-+
-+maintainers:
-+  - Rob Herring <robh@kernel.org>
-+
-+description: |+
-+  One or more Vectored Interrupt Controllers (VIC's) can be connected in an
-+  ARM system for interrupt routing.  For multiple controllers they can either
-+  be nested or have the outputs wire-OR'd together.
-+
-+allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: arm,pl190-vic
-+      - const: arm,pl192-vic
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 1
-+    description:
-+      The number of cells to define the interrupts.  It must be 1 as the
-+      VIC has no configuration options for interrupt sources. The single
-+      cell defines the interrupt number.
-+
-+  reg:
-+    description: The register bank for the VIC.
-+    maxItems: 1
-+
-+  interrupts:
-+    description:
-+      Interrupt source for the parent interrupt controller if the VIC
-+      is nested.
-+    maxItems: 1
-+
-+  interrupts-extended:
-+    description:
-+      Interrupt source for the parent interrupt controllers if the VIC
-+      is nested.
-+    maxItems: 1
-+
-+  valid-mask:
-+    description:
-+      A one cell big bit mask of valid interrupt sources. Each bit
-+      represents single interrupt source, starting from source 0 at
-+      LSb and ending at source 31 at MSb. A bit that is set means
-+      that the source is wired and clear means otherwise. If unspecified,
-+      defaults to all valid.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maxItems: 1
-+
-+  valid-wakeup-mask:
-+    description:
-+      A one cell big bit mask of interrupt sources that can be configured
-+      as wake up source for the system. Order of bits is the same as for
-+      valid-mask property. A set bit means that this interrupt source
-+      can be configured as a wake up source for the system. If unspecied,
-+      defaults to all interrupt sources configurable as wake up sources.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupt-controller
-+  - "#interrupt-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    // GICv1
-+    vic0: interrupt-controller@60000 {
-+      compatible = "arm,pl192-vic";
-+      interrupt-controller;
-+      #interrupt-cells = <1>;
-+      reg = <0x60000 0x1000>;
-+
-+      valid-mask = <0xffffff7f>;
-+      valid-wakeup-mask = <0x0000ff7f>;
-+    };
-+
-+...
--- 
-2.25.1
-
+Cheers,
+Prabhakar
