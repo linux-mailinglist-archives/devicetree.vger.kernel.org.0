@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F97A3A286D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 11:37:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67C423A286A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 11:37:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229961AbhFJJjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 05:39:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37438 "EHLO
+        id S230154AbhFJJjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 05:39:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230197AbhFJJji (ORCPT
+        with ESMTP id S230175AbhFJJji (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 05:39:38 -0400
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D85C3C06121D
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A91C0613A3
         for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 02:37:41 -0700 (PDT)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:a946:bccb:b1a1:3055])
-        by michel.telenet-ops.be with bizsmtp
-        id FMdf2500X0wnyou06MdflV; Thu, 10 Jun 2021 11:37:39 +0200
+        by albert.telenet-ops.be with bizsmtp
+        id FMdf2500Q0wnyou06MdfEq; Thu, 10 Jun 2021 11:37:39 +0200
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1lrH86-00FDX9-TA; Thu, 10 Jun 2021 11:37:38 +0200
+        id 1lrH86-00FDXA-RX; Thu, 10 Jun 2021 11:37:38 +0200
 Received: from geert by rox.of.borg with local (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1lrH85-00BTmO-Sy; Thu, 10 Jun 2021 11:37:37 +0200
+        id 1lrH85-00BTmV-Tj; Thu, 10 Jun 2021 11:37:37 +0200
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
 To:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH 10/14] arm64: dts: renesas: Add support for Salvator-XS with R-Car M3e-2G
-Date:   Thu, 10 Jun 2021 11:37:23 +0200
-Message-Id: <1b467e9c9ae580f7a555c42493b95029223b18e8.1623315732.git.geert+renesas@glider.be>
+Subject: [PATCH 11/14] arm64: dts: renesas: Add support for M3ULCB with R-Car M3e-2G
+Date:   Thu, 10 Jun 2021 11:37:24 +0200
+Message-Id: <dfef77a16c752ad7078d6f8d0ee40e579b9a82ff.1623315732.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <cover.1623315732.git.geert+renesas@glider.be>
 References: <cover.1623315732.git.geert+renesas@glider.be>
@@ -42,50 +42,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Renesas Salvator-X 2nd version development
-board equipped with an R-Car M3e-2G SiP.
+Add support for the Renesas R-Car Starter Kit Pro equipped with an R-Car
+M3e-2G SiP.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- arch/arm64/boot/dts/renesas/Makefile          |  2 +
- .../boot/dts/renesas/r8a779m3-salvator-xs.dts | 46 +++++++++++++++++++
- 2 files changed, 48 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts
+ arch/arm64/boot/dts/renesas/Makefile          |  1 +
+ arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dts | 45 +++++++++++++++++++
+ 2 files changed, 46 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dts
 
 diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 4fa0d56602684faf..6a1061824a9f29f0 100644
+index 6a1061824a9f29f0..f29dd27692ba4a66 100644
 --- a/arch/arm64/boot/dts/renesas/Makefile
 +++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -66,3 +66,5 @@ dtb-$(CONFIG_ARCH_R8A779A0) += r8a779a0-falcon.dtb
- dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-salvator-xs.dtb
- dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-ulcb.dtb
+@@ -68,3 +68,4 @@ dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-ulcb.dtb
  dtb-$(CONFIG_ARCH_R8A77951) += r8a779m1-ulcb-kf.dtb
-+
-+dtb-$(CONFIG_ARCH_R8A77961) += r8a779m3-salvator-xs.dtb
-diff --git a/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts
+ 
+ dtb-$(CONFIG_ARCH_R8A77961) += r8a779m3-salvator-xs.dtb
++dtb-$(CONFIG_ARCH_R8A77961) += r8a779m3-ulcb.dtb
+diff --git a/arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dts b/arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dts
 new file mode 100644
-index 0000000000000000..4ab26fd7233d62fc
+index 0000000000000000..8f215a0b771b7c30
 --- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts
-@@ -0,0 +1,46 @@
++++ b/arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dts
+@@ -0,0 +1,45 @@
 +// SPDX-License-Identifier: (GPL-2.0 or MIT)
 +/*
-+ * Device Tree Source for the Salvator-X 2nd version board with R-Car M3e-2G
++ * Device Tree Source for the M3ULCB (R-Car Starter Kit Pro) with R-Car M3e-2G
 + *
 + * Copyright (C) 2021 Glider bv
 + *
-+ * Based on r8a77961-salvator-xs.dts
-+ * Copyright (C) 2018 Renesas Electronics Corp.
++ * Based on r8a77961-ulcb.dts
++ * Copyright (C) 2020 Renesas Electronics Corp.
 + */
 +
 +/dts-v1/;
 +#include "r8a779m3.dtsi"
-+#include "salvator-xs.dtsi"
++#include "ulcb.dtsi"
 +
 +/ {
-+	model = "Renesas Salvator-X 2nd version board based on r8a779m3";
-+	compatible = "renesas,salvator-xs", "renesas,r8a779m3",
-+		     "renesas,r8a77961";
++	model = "Renesas M3ULCB board based on r8a779m3";
++	compatible = "renesas,m3ulcb", "renesas,r8a779m3", "renesas,r8a77961";
 +
 +	memory@48000000 {
 +		device_type = "memory";
@@ -108,9 +106,9 @@ index 0000000000000000..4ab26fd7233d62fc
 +	clocks = <&cpg CPG_MOD 724>,
 +		 <&cpg CPG_MOD 723>,
 +		 <&cpg CPG_MOD 722>,
-+		 <&versaclock6 1>,
-+		 <&x21_clk>,
-+		 <&versaclock6 2>;
++		 <&versaclock5 1>,
++		 <&versaclock5 3>,
++		 <&versaclock5 2>;
 +	clock-names = "du.0", "du.1", "du.2",
 +		      "dclkin.0", "dclkin.1", "dclkin.2";
 +};
