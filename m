@@ -2,83 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 847F83A2A1E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 13:23:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D04A03A2A21
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 13:25:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbhFJLZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 07:25:37 -0400
-Received: from mail.chalver.com.ec ([186.3.12.10]:34687 "EHLO
-        mail.chalver.com.ec" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229895AbhFJLZh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 07:25:37 -0400
-Received: from mail.chalver.com.ec (localhost.localdomain [127.0.0.1])
-        by mail.chalver.com.ec (Postfix) with ESMTPS id C8C641F24BA4;
-        Thu, 10 Jun 2021 02:48:03 -0500 (ECT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by mail.chalver.com.ec (Postfix) with ESMTP id A88ED1F24BB5;
-        Thu, 10 Jun 2021 02:13:01 -0500 (ECT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.chalver.com.ec A88ED1F24BB5
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chalver.com.ec;
-        s=E2A417BC-DDA7-11E6-85F6-38495636B764; t=1623309181;
-        bh=PxMh0SAMbBGlctefOH2OhvTlJNlHw25bONEEE7Ldp0I=;
-        h=MIME-Version:To:From:Date:Message-Id;
-        b=C6Hu2adFnjyJs73FeYp8QLeJKRI6q/qb/VIsHCCZ6La3Yjyg7F7hEtdggp/GWq9o7
-         UOkVJHyXmuBax6rdxevFcM7nyz2NXSni4wbeSPnRtEB/7bZYMFuGrkmKyoHbCy0cC1
-         SU7ufbrtJd45F79uyysnaLEtXeomal7dE2LXiMB4cw1+eZXFDT3C0Dj0J8/8Mv1D9g
-         X5WQd3P7VaVN0SEAxGym36/lTvLfnwyBsr5PH2OONg25r4zZAgWM2DDq/3U1H6zbQ3
-         uNIRRmn2Ktry/3hkM5B2gv3V9rSOTitbkdzKgNX+0sukpPMNodraiBHpJXysd6hTKs
-         pyXw8FVCRty5Q==
-X-Virus-Scanned: amavisd-new at chalver.com.ec
-Received: from mail.chalver.com.ec ([127.0.0.1])
-        by localhost (mail.chalver.com.ec [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 8SRl6BgMxcFU; Thu, 10 Jun 2021 02:13:01 -0500 (ECT)
-Received: from cris-PC.wifi (unknown [105.9.120.116])
-        by mail.chalver.com.ec (Postfix) with ESMTPSA id 580541F24BB4;
-        Thu, 10 Jun 2021 02:12:47 -0500 (ECT)
-Content-Type: text/plain; charset="utf-8"
+        id S229935AbhFJL1k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 07:27:40 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:31037 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229895AbhFJL1k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 07:27:40 -0400
+X-Greylist: delayed 5351 seconds by postgrey-1.27 at vger.kernel.org; Thu, 10 Jun 2021 07:27:39 EDT
+ARC-Seal: i=1; a=rsa-sha256; t=1623324340; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=kMaJnRCmK3pM00zwoIAFaK2fzMgsncYpUL6mtB9QYneg7TtPQtE3wFWg3OfQwDH9Az
+    vQHhVCXo72v2zIBrWm0YTJB7LF8QIKCu3hqJDU1BkRJE1oe8W0SlO1+Z8UvhyPiOjIn3
+    ZrMoLwqwYOPY57Z3/pgUOfKCT3CAH0GnFYOTYgwF+c33SZSPsH7BoEmrWTGKIfUD5Ozo
+    eaKIzy9XV9GSLfKTmTWEcD8N8f0qV7icGvc1TjKfmQ2ZZbiBLx/y/lfHKMnUF2wbpUcl
+    OuQBzKVHLGidyTIoyQbBEUFPGvPrhnpjsaSPtstggIY3zBnajGXXMZEcNpm4qeoVMB3j
+    14Fw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623324340;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=1WVSBndPGbx2t1HrcMlYrtSeGKXkrVerGYD+9o506GE=;
+    b=IPHp0ZWoH/0easmhkjXnqJ2DTV3I4qHNvsyMRWPv6457eeyI49OvMqhLpMrAVwQno8
+    meKRuPlJnkfJEW42WlUtgOAR7IjVLbGDl2r1jOuYF6aZbtvaIb1kRd9J4p5chvfeaE9s
+    GdI5xMYVXHaPH821/PDF+/vKndFNYq5lUeroZYDV1RLOzKiTKVfb2xu8xFErb7FiRi6M
+    vfdql2W60GaxRYsrQhONzaaFOzyhKxQfWm7i29TkChjwJ008UEF/IEmAx9DzVYVLvs+l
+    cGBtCa+UOTg4WjpHxe1cGrKQOBv0V1NLPG2Wa6Ktn60OMiMDYsr+NNgmGTF+2+zVIJNP
+    D52g==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623324340;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=1WVSBndPGbx2t1HrcMlYrtSeGKXkrVerGYD+9o506GE=;
+    b=QemOYP009w2SfEuWDRiiIWNQY0W6x9Idh4woHRCFtQy1rrp6KP4QBHpYbwZsg9JaBZ
+    YRFle+R0+EBtI8tEtpzaw5RqOYQcxBqtCuQl17npephnMVTjQ2zFpRfM/Xr6h0VoIWFw
+    4TzwTNFr5mPBRAMpWfXKqtn3MUuL6S/zZJ/qZNc5kGBpWUBlDAnxJT02ZNusN7VRiCwf
+    HGxu7CufRZd48hsdzjav5OYl+pjGl0llCY282UjELZ3XyG2ZHWD7kLtVkus+MziMyzjb
+    YK79xZmmu7IUl7frin8860eEOMpVNC+Sk8g16JDvGhpR1k2KMtwBtwr+O3jfaBB/MsV0
+    bsOQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8nxIc/BaYo="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
+    with ESMTPSA id y01375x5ABPetWp
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Thu, 10 Jun 2021 13:25:40 +0200 (CEST)
+Date:   Thu, 10 Jun 2021 13:25:35 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Hans de Goede <hdegoede@redhat.com>
+Subject: Re: [PATCH 0/6] iio: accel: bmc150: Add support for BMA253/BMA254
+Message-ID: <YMH2r3TXp0+qYiLN@gerhold.net>
+References: <20210610095300.3613-1-stephan@gerhold.net>
+ <CAHp75Vc2c3GX5jESbGexnwJ-WUtZHCjVNsqTVykCrViCjH77+Q@mail.gmail.com>
+ <YMHt1Z1QKUGMPDZX@gerhold.net>
+ <CAHp75Vervzi9zXdWef8vpGZwM5wS3LtuKTY9f5j9QA0Asbea2Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: =?utf-8?q?Covid_19_Wohlt=C3=A4tigkeitsfonds?=
-To:     Recipients <mpaucar@chalver.com.ec>
-From:   ''Tayeb souami'' <mpaucar@chalver.com.ec>
-Date:   Thu, 10 Jun 2021 09:20:02 +0200
-Reply-To: Tayebsouam.spende@gmail.com
-Message-Id: <20210610071248.580541F24BB4@mail.chalver.com.ec>
-X-Laboratorios-Chalver-MailScanner-Information: Please contact the ISP for more information
-X-Laboratorios-Chalver-MailScanner-ID: 580541F24BB4.A0F2E
-X-Laboratorios-Chalver-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75Vervzi9zXdWef8vpGZwM5wS3LtuKTY9f5j9QA0Asbea2Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 10, 2021 at 01:51:22PM +0300, Andy Shevchenko wrote:
+> On Thu, Jun 10, 2021 at 1:48 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> > On Thu, Jun 10, 2021 at 01:29:26PM +0300, Andy Shevchenko wrote:
+> > > On Thu, Jun 10, 2021 at 12:56 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> > > >
+> > > > The Bosch BMA253 accelerometer is very similar to both BMA254 and BMA255.
+> > > > The current situation is very confusing: BMA254 is supported by the bma180
+> > > > driver, but BMA255 is supported by the bmc150-accel driver.
+> > > >
+> > > > It turns out the bma180 and bmc150-accel drivers have quite some overlap,
+> > > > and BMA253/BMA254 would be a bit better supported in bmc150
+> > > > (which has support for the motion trigger/interrupt).
+> > > >
+> > > > This series adds BMA253 support to bmc150-accel and also moves BMA254
+> > > > over to bmc150, removing some unnecessary code from the bma180 driver.
+> > > >
+> > > > I asked Linus Walleij to test these patches on BMA254 a while ago
+> > > > and he suggested that I already add his Reviewed-by.
+> > >
+> > > I add
+> > >
+> > >
+> > > After addressing comments per patch 1, feel free to add my
+> > > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > > to the series.
+> > >
+> >
+> > Thanks for the review!
+> >
+> > I think the re-ordering should be a separate commit to make the diff not
+> > too confusing. Is it fine for you if I send that as a follow-up patch?
+> > I already have two more patches that would conflict with the reordering,
+> > so it would be easier to include that in the next series.
+> >
+> > But I can also re-send the entire series with the extra patch if you
+> > prefer that, just let me know. :)
+> 
+> I think that doing the reordering first (if there are no fixes so far)
+> is a good idea.
+> 
 
-Lieber Freund,
+OK, I will try to do that somehow. I will probably prepend one of my
+additional patches to this series since it has a Fixes: tag that would
+just cause the stable people headaches later when backporting.
 
-Ich bin Herr Tayeb Souami, New Jersey, Vereinigte Staaten von Amerika, der =
-Mega-Gewinner von $ 315million In Mega Millions Jackpot, spende ich an 5 zu=
-f=C3=A4llige Personen, wenn Sie diese E-Mail erhalten, dann wurde Ihre E-Ma=
-il nach einem Spinball ausgew=C3=A4hlt.Ich habe den gr=C3=B6=C3=9Ften Teil =
-meines Verm=C3=B6gens auf eine Reihe von Wohlt=C3=A4tigkeitsorganisationen =
-und Organisationen verteilt.Ich habe mich freiwillig dazu entschieden, die =
-Summe von =E2=82=AC 2.000.000,00 an Sie als eine der ausgew=C3=A4hlten 5 zu=
- spenden, um meine Gewinne zu =C3=BCberpr=C3=BCfen, sehen Sie bitte meine Y=
-ou Tube Seite unten.
-
-UHR MICH HIER: https://www.youtube.com/watch?v=3DZ6ui8ZDQ6Ks
-
-
-
-Das ist dein Spendencode: [TS530342018]
-
-
-
-Antworten Sie mit dem SPENDE-CODE an diese
-
-E-Mail:Tayebsouam.spende@gmail.com
-
-
-Ich hoffe, Sie und Ihre Familie gl=C3=BCcklich zu machen.
-
-Gr=C3=BC=C3=9Fe
-Herr Tayeb Souami
+Thanks,
+Stephan
