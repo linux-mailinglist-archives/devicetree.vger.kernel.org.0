@@ -2,99 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C123A2D62
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D8EF3A2D8E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:57:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230291AbhFJNsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 09:48:24 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:34868 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230346AbhFJNsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 09:48:24 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15ADfF2G011626;
-        Thu, 10 Jun 2021 15:46:11 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=wEEkWxXSfq66/leswbqmUsRSfaLtlKhzGDS4UuKrTTk=;
- b=MW7/lejI8Ni+q25Bdb5nP/0nlLSRcMzo0l04yr9y0FMZDdlFI5ncEuH5Pd6qzsxzcWg9
- sL6vzU5V9CMTWs5fDnoNYUPsCGRGwKsCSfbSaMUcbzCAv0Cn8NZiNgQb46Z9DD1J92qM
- zuJeX/MrTr1Vn37L6glaLFMtqoBGGwCPvrWx+dn6YDvkcfRFgJsBmWgeEbrqq8JTkGfJ
- V3/XgeU2S6AUsayfQZTTqzy75vfl58O5YeU0Tz0hNKiGodt/CseWn0AhRsHjNlrYK9oL
- hnuq7Ge0aGk03uoEEF+zlKsyng3R3NtkTH0Q1/PzhdmBxJkpNYfRL5dM52MtWGHZr5Wy 2w== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 393eqyj1uf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Jun 2021 15:46:11 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 274CD10002A;
-        Thu, 10 Jun 2021 15:46:11 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 093B2228838;
-        Thu, 10 Jun 2021 15:46:11 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 10 Jun
- 2021 15:46:10 +0200
-Subject: Re: [PATCH] ARM: dts: stm32: fix the Odyssey SoM eMMC VQMMC supply
-To:     Grzegorz Szymaszek <gszymaszek@short.pl>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <YLj4AMTCi84yO9GO@nx64de-df6d00>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <af63b0d2-fce7-1e29-e36e-02da08f14d83@foss.st.com>
-Date:   Thu, 10 Jun 2021 15:46:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S230413AbhFJN7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 09:59:21 -0400
+Received: from foss.arm.com ([217.140.110.172]:60742 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230035AbhFJN7V (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Jun 2021 09:59:21 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C6483106F;
+        Thu, 10 Jun 2021 06:57:24 -0700 (PDT)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id EF5BD3F73D;
+        Thu, 10 Jun 2021 06:57:23 -0700 (PDT)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH] dt-bindings: interrupt-controller: Convert ARM VIC to json-schema
+Date:   Thu, 10 Jun 2021 14:57:17 +0100
+Message-Id: <20210610135717.2782793-1-sudeep.holla@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <YLj4AMTCi84yO9GO@nx64de-df6d00>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-06-10_07:2021-06-10,2021-06-10 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Convert the ARM VIC binding document to DT schema format using
+json-schema.
 
-On 6/3/21 5:40 PM, Grzegorz Szymaszek wrote:
-> The Seeed SoM-STM32MP157C device tree had the eMMC’s (SDMMC2) VQMMC
-> supply set to v3v3 (buck4), the same as the VMMC supply. That was
-> incorrect, as on the SoM, the VQMMC supply is provided from vdd (buck3)
-> instead.
-> 
-> Signed-off-by: Grzegorz Szymaszek <gszymaszek@short.pl>
-> ---
->   arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-> index 6cf49a0a9e69..b5601d270c8f 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-> @@ -269,7 +269,7 @@ &sdmmc2 {
->   	st,neg-edge;
->   	bus-width = <8>;
->   	vmmc-supply = <&v3v3>;
-> -	vqmmc-supply = <&v3v3>;
-> +	vqmmc-supply = <&vdd>;
->   	mmc-ddr-3_3v;
->   	status = "okay";
->   };
-> 
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh@kernel.org>
+Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+---
+ .../bindings/interrupt-controller/arm,vic.txt | 41 ---------
+ .../interrupt-controller/arm,vic.yaml         | 92 +++++++++++++++++++
+ 2 files changed, 92 insertions(+), 41 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
 
-Applied on stm32-next.
+Hi Rob,
 
-Thanks.
-Alex
+This also helps to get rid of this warning.
+
+	bus/arm,integrator-ap-lm.example.dt.yaml:0:0:
+	/example-0/bus@c0000000/bus@c0000000/interrupt-controller@3000000:
+	failed to match any schema with compatible: ['arm,pl192-vic']
+
+Regards,
+Sudeep
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt b/Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt
+deleted file mode 100644
+index dd527216c5fb..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-* ARM Vectored Interrupt Controller
+-
+-One or more Vectored Interrupt Controllers (VIC's) can be connected in an ARM
+-system for interrupt routing.  For multiple controllers they can either be
+-nested or have the outputs wire-OR'd together.
+-
+-Required properties:
+-
+-- compatible : should be one of
+-	"arm,pl190-vic"
+-	"arm,pl192-vic"
+-- interrupt-controller : Identifies the node as an interrupt controller
+-- #interrupt-cells : The number of cells to define the interrupts.  Must be 1 as
+-  the VIC has no configuration options for interrupt sources.  The cell is a u32
+-  and defines the interrupt number.
+-- reg : The register bank for the VIC.
+-
+-Optional properties:
+-
+-- interrupts : Interrupt source for parent controllers if the VIC is nested.
+-- valid-mask : A one cell big bit mask of valid interrupt sources. Each bit
+-  represents single interrupt source, starting from source 0 at LSb and ending
+-  at source 31 at MSb. A bit that is set means that the source is wired and
+-  clear means otherwise. If unspecified, defaults to all valid.
+-- valid-wakeup-mask : A one cell big bit mask of interrupt sources that can be
+-  configured as wake up source for the system. Order of bits is the same as for
+-  valid-mask property. A set bit means that this interrupt source can be
+-  configured as a wake up source for the system. If unspecied, defaults to all
+-  interrupt sources configurable as wake up sources.
+-
+-Example:
+-
+-	vic0: interrupt-controller@60000 {
+-		compatible = "arm,pl192-vic";
+-		interrupt-controller;
+-		#interrupt-cells = <1>;
+-		reg = <0x60000 0x1000>;
+-
+-		valid-mask = <0xffffff7f>;
+-		valid-wakeup-mask = <0x0000ff7f>;
+-	};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
+new file mode 100644
+index 000000000000..aeadbd2d9398
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/arm,vic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARM Vectored Interrupt Controller
++
++maintainers:
++  - Rob Herring <robh@kernel.org>
++
++description: |+
++  One or more Vectored Interrupt Controllers (VIC's) can be connected in an
++  ARM system for interrupt routing.  For multiple controllers they can either
++  be nested or have the outputs wire-OR'd together.
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - const: arm,pl190-vic
++      - const: arm,pl192-vic
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 1
++    description:
++      The number of cells to define the interrupts.  It must be 1 as the
++      VIC has no configuration options for interrupt sources. The single
++      cell defines the interrupt number.
++
++  reg:
++    description: The register bank for the VIC.
++    maxItems: 1
++
++  interrupts:
++    description:
++      Interrupt source for the parent interrupt controller if the VIC
++      is nested.
++    maxItems: 1
++
++  interrupts-extended:
++    description:
++      Interrupt source for the parent interrupt controllers if the VIC
++      is nested.
++    maxItems: 1
++
++  valid-mask:
++    description:
++      A one cell big bit mask of valid interrupt sources. Each bit
++      represents single interrupt source, starting from source 0 at
++      LSb and ending at source 31 at MSb. A bit that is set means
++      that the source is wired and clear means otherwise. If unspecified,
++      defaults to all valid.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maxItems: 1
++
++  valid-wakeup-mask:
++    description:
++      A one cell big bit mask of interrupt sources that can be configured
++      as wake up source for the system. Order of bits is the same as for
++      valid-mask property. A set bit means that this interrupt source
++      can be configured as a wake up source for the system. If unspecied,
++      defaults to all interrupt sources configurable as wake up sources.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupt-controller
++  - "#interrupt-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    // GICv1
++    vic0: interrupt-controller@60000 {
++      compatible = "arm,pl192-vic";
++      interrupt-controller;
++      #interrupt-cells = <1>;
++      reg = <0x60000 0x1000>;
++
++      valid-mask = <0xffffff7f>;
++      valid-wakeup-mask = <0x0000ff7f>;
++    };
++
++...
+-- 
+2.25.1
+
