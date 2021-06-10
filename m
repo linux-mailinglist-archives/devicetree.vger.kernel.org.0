@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C8CA3A2692
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:21:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D256E3A2695
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:21:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230391AbhFJIXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 04:23:14 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:46539 "EHLO
+        id S230407AbhFJIXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 04:23:17 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:51533 "EHLO
         relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230351AbhFJIXL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 04:23:11 -0400
+        with ESMTP id S230378AbhFJIXN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 04:23:13 -0400
 Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id EE57420009;
-        Thu, 10 Jun 2021 08:21:11 +0000 (UTC)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 688E820012;
+        Thu, 10 Jun 2021 08:21:14 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Richard Weinberger <richard@nod.at>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -31,9 +31,9 @@ Cc:     Michal Simek <monstr@monstr.eu>,
         Siva Durga Prasad Paladugu <sivadur@xilinx.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>,
         Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
-Subject: [PATCH v23 15/18] MAINTAINERS: Add PL353 SMC entry
-Date:   Thu, 10 Jun 2021 10:20:37 +0200
-Message-Id: <20210610082040.2075611-16-miquel.raynal@bootlin.com>
+Subject: [PATCH v23 16/18] MAINTAINERS: Add PL353 NAND controller entry
+Date:   Thu, 10 Jun 2021 10:20:38 +0200
+Message-Id: <20210610082040.2075611-17-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20210610082040.2075611-1-miquel.raynal@bootlin.com>
 References: <20210610082040.2075611-1-miquel.raynal@bootlin.com>
@@ -53,24 +53,24 @@ Acked-by: Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
  1 file changed, 8 insertions(+)
 
 diff --git a/MAINTAINERS b/MAINTAINERS
-index bd7aff0c120f..b4315b76645a 100644
+index b4315b76645a..a36fb919e913 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -1452,6 +1452,14 @@ S:	Odd Fixes
  F:	drivers/amba/
  F:	include/linux/amba/bus.h
  
-+ARM PRIMECELL PL35X SMC DRIVER
++ARM PRIMECELL PL35X NAND CONTROLLER DRIVER
 +M:	Miquel Raynal <miquel.raynal@bootlin.com@bootlin.com>
 +M:	Naga Sureshkumar Relli <nagasure@xilinx.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
++L:	linux-mtd@lists.infradead.org
 +S:	Maintained
-+F:	Documentation/devicetree/bindings/mtd/arm,pl353-smc.yaml
-+F:	drivers/memory/pl353-smc.c
++F:	Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
++F:	drivers/mtd/nand/raw/pl35x-nand-controller.c
 +
- ARM PRIMECELL CLCD PL110 DRIVER
- M:	Russell King <linux@armlinux.org.uk>
- S:	Odd Fixes
+ ARM PRIMECELL PL35X SMC DRIVER
+ M:	Miquel Raynal <miquel.raynal@bootlin.com@bootlin.com>
+ M:	Naga Sureshkumar Relli <nagasure@xilinx.com>
 -- 
 2.27.0
 
