@@ -2,245 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 306643A273E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:38:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3DE13A274A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:40:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbhFJIkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 04:40:42 -0400
-Received: from mail-wm1-f53.google.com ([209.85.128.53]:53132 "EHLO
-        mail-wm1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229715AbhFJIkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 04:40:42 -0400
-Received: by mail-wm1-f53.google.com with SMTP id f17so5654862wmf.2;
-        Thu, 10 Jun 2021 01:38:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Vw2rEidNYSZeHFrj7gyKfEnss0oZYJ9I5iUbvOkNzhg=;
-        b=ooamT84SYgotXdYQmlxem5mrZzw1HzuUkCjt4aOlyohi6/Rm95UNTFkdQIjLulE2VV
-         aozaQKnE6Si75yQpSMmR0ssVEZK0cPJxkXhNKsqeaP3BL8ASpHmfDJaIxXT+/DZ+54iJ
-         aQy7NZ9kioLpoWTxSmhbdlRGt/T1Ds4CF+z9PKTf90jHc53Sl6FV3m/eWb+el5brKNMz
-         luw6RF0GAQ3/+JRjmJ6Jizh4HK2iWbP8p7zLGlTMpOor1ZXGxLw3MLezHPmcJWwPbbt2
-         iQgDCzRYRhk7CbBMhrZC4uoKRzddo7vYB+9pou03oWbTUyOcPE2EoVm5J//xQ92LMs+G
-         PdUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Vw2rEidNYSZeHFrj7gyKfEnss0oZYJ9I5iUbvOkNzhg=;
-        b=bolXeZ81BGMdfQAEnym+CH9gcwqe7XawYsot1IzuoMttWcEyYMKNkCNIxO/LH5XB2Z
-         RroiMfqyOEPs7SemBdI3PQ03dmWjHaglUYbDhAckvOoi3/51Db3VNIJxaEgUD2NuhkaU
-         6zKtLLtsdEqKPZ4LjwiSAqobbVqHAehDNU3mS5xyZw+LUr1tU544C8Dm3Jcx5+vnh6Pt
-         dyhjYk7qzYxRAIYFevoCLbjn8NlIAIs1XhTxp+uCaYSV+xaGGB2wVgdxM5kd3b9SaV+c
-         b3aNvpzoA/ADssc09FlE1bT9P9Ci63iWcaRHJi5yLqQoCwi+HofwBIDfcjRHuu5IeoY4
-         EZyA==
-X-Gm-Message-State: AOAM533+PIGcULk+BxhrQvR7xwS4/TlVvTY2je2T6Rz/qFiJKbz4/lsx
-        i/TcE5olZ0bGJO3QOx46yyA=
-X-Google-Smtp-Source: ABdhPJzcXxE0Z1+qB1Riub+DwCapNG6b60zmCOtH7Z/t9aZnXBURBj3oDjbAhDLMIsLCcajgntaNyA==
-X-Received: by 2002:a05:600c:4114:: with SMTP id j20mr14226178wmi.0.1623314265323;
-        Thu, 10 Jun 2021 01:37:45 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id o18sm2648988wrx.59.2021.06.10.01.37.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Jun 2021 01:37:44 -0700 (PDT)
-Subject: Re: [PATCH v2] dt-bindings: mediatek: convert mtk jpeg
- decoder/encoder to yaml
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        maoguang.meng@mediatek.com, yong.wu@mediatek.com
-References: <20210609180130.693944-1-hsinyi@chromium.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <c324de79-9a07-2f2c-e29a-dcd448da29f8@gmail.com>
-Date:   Thu, 10 Jun 2021 10:37:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S229770AbhFJImM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 04:42:12 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:15191 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229910AbhFJImM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 04:42:12 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 15A8Pde1068923;
+        Thu, 10 Jun 2021 16:25:39 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 10 Jun
+ 2021 16:39:33 +0800
+Date:   Thu, 10 Jun 2021 16:39:32 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
+Subject: Re: [PATCH v5 00/10] ASPEED sgpio driver enhancement.
+Message-ID: <20210610083932.GA30360@aspeedtech.com>
+References: <20210608102547.4880-1-steven_lee@aspeedtech.com>
+ <CACRpkdZOStr+K9U9QTkAcsk4NxuSqBRVv_-9_VkGJbT69iSxmQ@mail.gmail.com>
+ <20210610022416.GA27188@aspeedtech.com>
+ <CACRpkda60eB6i2+2MQFyhqYn4Q0WRGPPs91cu9K-g1maov61+w@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210609180130.693944-1-hsinyi@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <CACRpkda60eB6i2+2MQFyhqYn4Q0WRGPPs91cu9K-g1maov61+w@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 15A8Pde1068923
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hsin-Yi,
-
-On 09/06/2021 20:01, Hsin-Yi Wang wrote:
-> Convert mediatek jpeg decoder and encoder bindings to yaml.
+The 06/10/2021 15:50, Linus Walleij wrote:
+> On Thu, Jun 10, 2021 at 4:24 AM Steven Lee <steven_lee@aspeedtech.com> wrote:
 > 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
-> v2: fix dt_binding_check errors
-> ---
->  .../bindings/media/mediatek-jpeg-decoder.txt  | 38 ----------
->  .../bindings/media/mediatek-jpeg-decoder.yaml | 76 +++++++++++++++++++
->  .../bindings/media/mediatek-jpeg-encoder.txt  | 35 ---------
->  .../bindings/media/mediatek-jpeg-encoder.yaml | 68 +++++++++++++++++
->  4 files changed, 144 insertions(+), 73 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+> > Per the comment in the following mail
+> > https://lkml.org/lkml/2021/6/9/317
+> >
+> > I was wondering if I should prepare v6 for the currnet solution or
+> > I should drop this patch series then prepare another patch for the
+> > new solution(piar GPIO input/output) which breaks userspace but is
+> > better than the current solution.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
-> deleted file mode 100644
-> index 39c1028b2dfb4..0000000000000
-> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
-> +++ /dev/null
-> @@ -1,38 +0,0 @@
-> -* Mediatek JPEG Decoder
-> -
-> -Mediatek JPEG Decoder is the JPEG decode hardware present in Mediatek SoCs
-> -
-> -Required properties:
-> -- compatible : must be one of the following string:
-> -	"mediatek,mt8173-jpgdec"
-> -	"mediatek,mt7623-jpgdec", "mediatek,mt2701-jpgdec"
-> -	"mediatek,mt2701-jpgdec"
-> -- reg : physical base address of the jpeg decoder registers and length of
-> -  memory mapped region.
-> -- interrupts : interrupt number to the interrupt controller.
-> -- clocks: device clocks, see
-> -  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
-> -- clock-names: must contain "jpgdec-smi" and "jpgdec".
-> -- power-domains: a phandle to the power domain, see
-> -  Documentation/devicetree/bindings/power/power_domain.txt for details.
-> -- mediatek,larb: must contain the local arbiters in the current Socs, see
-> -  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> -  for details.
+> I would say just go ahead with the new solution. AFAIK Aspeed
+> has pretty tight control over what kind of userspace run on these
+> systems.
+> 
+> BTW please influence Aspeed to use the GPIO character device
+> and ligpiod
+> https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/
+> if you are doing any kind of userspace GPIO control (which I
+> suspect that you do).
+> 
 
-We miss the mediatek,larb in the yaml.
+We currently use gpioset and gpioget that provided by libgpiod to test
+aspeed gpio and sgpio drivers.
 
-> -- iommus: should point to the respective IOMMU block with master port as
-> -  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> -  for details.
-> -
-> -Example:
-> -	jpegdec: jpegdec@15004000 {
-> -		compatible = "mediatek,mt2701-jpgdec";
-> -		reg = <0 0x15004000 0 0x1000>;
-> -		interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW>;
-> -		clocks =  <&imgsys CLK_IMG_JPGDEC_SMI>,
-> -			  <&imgsys CLK_IMG_JPGDEC>;
-> -		clock-names = "jpgdec-smi",
-> -			      "jpgdec";
-> -		power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
-> -		mediatek,larb = <&larb2>;
-> -		iommus = <&iommu MT2701_M4U_PORT_JPGDEC_WDMA>,
-> -			 <&iommu MT2701_M4U_PORT_JPGDEC_BSDMA>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-> new file mode 100644
-> index 0000000000000..821e6b480901a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek-jpeg-decoder.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek JPEG Decoder Device Tree Bindings
-> +
-> +maintainers:
-> +  - Xia Jiang <xia.jiang@mediatek.com>
-> +
-> +description: |-
-> +  Mediatek JPEG Decoder is the JPEG decode hardware present in Mediatek SoCs
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: mediatek,mt8173-jpgdec
-> +      - items:
-> +          - const: mediatek,mt2701-jpgdec
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt7623-jpgdec
-> +          - const: mediatek,mt2701-jpgdec
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 2
-> +    minItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: jpgdec-smi
-> +      - const: jpgdec
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  iommus:
-> +    maxItems: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - iommus
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt2701-clk.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/memory/mt2701-larb-port.h>
-> +    #include <dt-bindings/power/mt2701-power.h>
-> +    jpegdec: jpegdec@15004000 {
-> +      compatible = "mediatek,mt2701-jpgdec";
-> +      reg = <0x15004000 0x1000>;
-> +      interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW>;
-> +      clocks =  <&imgsys CLK_IMG_JPGDEC_SMI>,
-> +                <&imgsys CLK_IMG_JPGDEC>;
-> +      clock-names = "jpgdec-smi",
-> +                    "jpgdec";
-> +      power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
-> +      iommus = <&iommu MT2701_M4U_PORT_JPGDEC_WDMA>,
-> +               <&iommu MT2701_M4U_PORT_JPGDEC_BSDMA>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
-> deleted file mode 100644
-> index 5e53c6ab52d01..0000000000000
-> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
-> +++ /dev/null
-> @@ -1,35 +0,0 @@
-> -* MediaTek JPEG Encoder
-> -
-> -MediaTek JPEG Encoder is the JPEG encode hardware present in MediaTek SoCs
-> -
-> -Required properties:
-> -- compatible : "mediatek,mt2701-jpgenc"
-> -  followed by "mediatek,mtk-jpgenc"
-> -- reg : physical base address of the JPEG encoder registers and length of
-> -  memory mapped region.
-> -- interrupts : interrupt number to the interrupt controller.
-> -- clocks: device clocks, see
-> -  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
-> -- clock-names: must contain "jpgenc". It is the clock of JPEG encoder.
-> -- power-domains: a phandle to the power domain, see
-> -  Documentation/devicetree/bindings/power/power_domain.txt for details.
-> -- mediatek,larb: must contain the local arbiters in the current SoCs, see
-> -  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
-> -  for details.
+For the current solution on AST2600,
+the valid range of input pins  is 0 ~ 127,
+the valid range of output pins is 128 ~ 255.
+So we access input pins by the following command
 
-Same here.
+```
+gpioget $chipId 0 1 2 3 4 ... 127
+```
 
-Regards,
-Matthias
+and access output pins by the following command
+
+```
+gpioset $chipId 128=1 129=0 130=1 131=1 ... 255=1
+
+```
+
+
+The new solution will change the gpio id order as follows
+Input:
+```
+gpioget $chipId 0 2 4 6 8 ... 254
+
+```
+
+Output:
+
+```
+gpioset $chipId 1=1 3=0 5=1 7=1 ... 255=1
+
+```
+
+Thanks,
+Steven
+
+> Yours,
+> Linus Walleij
