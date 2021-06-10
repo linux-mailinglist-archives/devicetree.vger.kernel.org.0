@@ -2,89 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3550B3A2C3F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 14:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 303D33A2C54
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:01:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230472AbhFJNBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 09:01:09 -0400
-Received: from out28-121.mail.aliyun.com ([115.124.28.121]:35411 "EHLO
-        out28-121.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230392AbhFJNBD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 09:01:03 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1723083|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_alarm|0.0591475-0.0029278-0.937925;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047207;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=14;RT=14;SR=0;TI=SMTPD_---.KQVfrD4_1623329936;
-Received: from zhouyanjie-virtual-machine.lan(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KQVfrD4_1623329936)
-          by smtp.aliyun-inc.com(10.147.41.137);
-          Thu, 10 Jun 2021 20:59:04 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sihui.liu@ingenic.com,
-        jun.jiang@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com, paul@crapouillou.net
-Subject: [PATCH v2 2/2] mmc: JZ4740: Add support for JZ4775.
-Date:   Thu, 10 Jun 2021 20:58:50 +0800
-Message-Id: <1623329930-14387-3-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1623329930-14387-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1623329930-14387-1-git-send-email-zhouyanjie@wanyeetech.com>
+        id S230378AbhFJNDD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 09:03:03 -0400
+Received: from mo4-p03-ob.smtp.rzone.de ([85.215.255.100]:9383 "EHLO
+        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231133AbhFJNC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 09:02:59 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1623330057; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=KrSsON5uT1FtPXkvwp6dMEUOsejS4rCADVo+pVkw2xeLbk2FOxVTRVR7r7Y3zESPxE
+    gJtKaD0sxbMurZCvcoWkjpFytd4IduDKD/HZGr6HNVhTsEs16vy6MrxCNvtNZ5OlF57v
+    6oOx94I3pQwp2LgX61feRUswMYwKv8UJ3I6KrUZSL4J2mp6XLmAN3Mgdm7ds4AD518jf
+    PcmpqB1EA5a+P7tnMgbX7w41vcr4kx2pp0DJgvL4A68JMnTiyTF0Q2ZS0V9ghWLxW952
+    RtJbslJxlR02+9lW+yl7TrjLTBx/u7tbKm4AAIej0z9N7CLD1W3vBOEdO+pKIi6vFyNM
+    yA7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623330057;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=sWxhDLVjSdcZ2UQfDvOUeM8ckKd6tdu1RXGe2b5SbxA=;
+    b=EYYMmZ/tfmHP0l+Z0vXHSDg3jx/Y32XMdAwYefQZHhWwxN09BkS+wiumHwK+THAk6h
+    HP0NOG1MSSCUcByK0zVGxsPZPmATfLZuXxG7NLoKxbNp++cxlcxKQf4IZ1OfPAEjAxnT
+    BixW1Uul/6mIQOJMihoC3q2uztkI6SyeCUkvR7H980C/iD76oAnrsWtKkTAm41uQ0x3s
+    1l/jhTHRiX9ZS/pFD03k+rAFIDc5xeKGGJEW8oTyhgHjVrBToNkBKjhb6sMQ2o09ncfe
+    RBZUGyyZEWrr1LUEwboBN/+3ugjECWI2AKtn22o0zYM3HM1T5nzxVuGtRldF1xUSLHlK
+    Em6g==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623330057;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=sWxhDLVjSdcZ2UQfDvOUeM8ckKd6tdu1RXGe2b5SbxA=;
+    b=H2jrjcHXgiGUpEexIxYEfL3LUzAVtY12sPAr57SrHQpp0L4FKIDyKIhNhlHFNqz0t9
+    xasZpjHn3Rr2GGQywa+wuJvn+oO9RskoCFM7LbsTmwisA5zA66wLRFVePMJsVbmqu37B
+    x4Rg9xNbi0lupI/jAf9dYdKuqjJ66aQQyqPeM9BBhzo07NRzSHO5EpxMGSgwyl4vtCLc
+    zVXfQ3BRIIZA5VZdvVXU9f4zZ1+dxEzNJL/KGujroPI08DpTizCcCfMdE/OtlCi8vi52
+    HNhB/+W1GOJjIAYp2wvfzBIObzYQPPoILG7hDXU8cL5sDquLq+m/c/2aodJKb3G12cUh
+    ic/w==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8nxIc/BaYo="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
+    with ESMTPSA id y01375x5AD0vuGE
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Thu, 10 Jun 2021 15:00:57 +0200 (CEST)
+Date:   Thu, 10 Jun 2021 15:00:52 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 4/9] iio: accel: bmc150: Sort all chip names
+ alphabetically / by chip ID
+Message-ID: <YMINBHXM4ZmZMblL@gerhold.net>
+References: <20210610122126.50504-1-stephan@gerhold.net>
+ <20210610122126.50504-5-stephan@gerhold.net>
+ <CAHp75Vee9+RU8zRH-QtoKmw4K-O-SjiGnpxJRnYT2Aat3qKtfw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75Vee9+RU8zRH-QtoKmw4K-O-SjiGnpxJRnYT2Aat3qKtfw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-1.Add support for probing mmc driver on the JZ4775 SoC from Ingenic.
-2.The drive clock selection and sample clock selection have been
-  supported since JZ4775, not X1000. So support for these two
-  functions has been added for JZ4775 and JZ4780.
+On Thu, Jun 10, 2021 at 03:50:25PM +0300, Andy Shevchenko wrote:
+> On Thu, Jun 10, 2021 at 3:24 PM Stephan Gerhold <stephan@gerhold.net> wrote:
+> >
+> > Right now all the device IDs are listed in seemingly random order,
+> > make this consistent by ordering those alphabetically. Also, order
+> > bmc150_accel_chip_info_tbl by chip ID for the same reason.
+> 
+> Thanks!
+> My comments below, after addressing them,
+> Reviewed-by: Andy Shevchenko <andy.shevhcenko@gmail.com>
+> 
+> ...
+> 
+> >         select BMC150_ACCEL_SPI if SPI
+> >         help
+> >           Say yes here to build support for the following Bosch accelerometers:
+> > -         BMC150, BMI055, BMA250E, BMA222E, BMA255, BMA280.
+> > +         BMA222, BMA222E, BMA250E, BMA255, BMA280, BMC150, BMI055.
+> 
+> Thanks!
+> 
+> > -         This is a combo module with both accelerometer and magnetometer.
+> 
+> > +         BMC150 is a combo module with both accelerometer and magnetometer.
+> 
+> BMC150 is only one from the list. Previous message applies to all
+> listed components, so is this not true anymore for the rest?
+> Or all the rest is not a combo? Please, clarify that in the commit
+> message, or if this is a wrong change, drop it.
+> 
 
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
+I stumbled on that sentence when making the changes and it definitely
+does not apply to the BMA* variants. Those are accelerometer only.
 
-Notes:
-    v1->v2:
-    1.Remove unnecessary renaming as Paul Cercueil's suggestion.
-    2.Reuse the ID of JZ4775 and JZ4780 to simplify the code.
-    3.Add support of drive clock selection and sample clock
-      selection for JZ4775 and JZ4780.
+As far I can tell the prefix in the chip name says which kind of sensors
+are included, i.e.
 
- drivers/mmc/host/jz4740_mmc.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+  - BMC150: accelerometer + magnetometer
+  - BMA*:   only accelerometer
 
-diff --git a/drivers/mmc/host/jz4740_mmc.c b/drivers/mmc/host/jz4740_mmc.c
-index b3c636e..f3172e5 100644
---- a/drivers/mmc/host/jz4740_mmc.c
-+++ b/drivers/mmc/host/jz4740_mmc.c
-@@ -674,7 +674,7 @@ static void jz4740_mmc_send_command(struct jz4740_mmc_host *host,
- 			cmdat |= JZ_MMC_CMDAT_WRITE;
- 		if (host->use_dma) {
- 			/*
--			 * The 4780's MMC controller has integrated DMA ability
-+			 * The JZ4780's MMC controller has integrated DMA ability
- 			 * in addition to being able to use the external DMA
- 			 * controller. It moves DMA control bits to a separate
- 			 * register. The DMA_SEL bit chooses the external
-@@ -866,7 +866,7 @@ static int jz4740_mmc_set_clock_rate(struct jz4740_mmc_host *host, int rate)
- 	writew(div, host->base + JZ_REG_MMC_CLKRT);
- 
- 	if (real_rate > 25000000) {
--		if (host->version >= JZ_MMC_X1000) {
-+		if (host->version >= JZ_MMC_JZ4780) {
- 			writel(JZ_MMC_LPM_DRV_RISING_QTR_PHASE_DLY |
- 				   JZ_MMC_LPM_SMP_RISING_QTR_OR_HALF_PHASE_DLY |
- 				   JZ_MMC_LPM_LOW_POWER_MODE_EN,
-@@ -959,6 +959,7 @@ static const struct of_device_id jz4740_mmc_of_match[] = {
- 	{ .compatible = "ingenic,jz4740-mmc", .data = (void *) JZ_MMC_JZ4740 },
- 	{ .compatible = "ingenic,jz4725b-mmc", .data = (void *)JZ_MMC_JZ4725B },
- 	{ .compatible = "ingenic,jz4760-mmc", .data = (void *) JZ_MMC_JZ4760 },
-+	{ .compatible = "ingenic,jz4775-mmc", .data = (void *) JZ_MMC_JZ4780 },
- 	{ .compatible = "ingenic,jz4780-mmc", .data = (void *) JZ_MMC_JZ4780 },
- 	{ .compatible = "ingenic,x1000-mmc", .data = (void *) JZ_MMC_X1000 },
- 	{},
--- 
-2.7.4
+I'm not familiar with BMI055 but funnily the datasheet suggests it's
 
+  - BMI055: accelerometer + gyroscope
+
+So for BMI055 the previous message is wrong too. I guess I need to do
+yet another commit in v3 to make the Kconfig option more clear for all
+the sensor variants. :)
+
+Thanks!
+Stephan
