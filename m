@@ -2,250 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC2FF3A3301
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 20:22:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 319AF3A342E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 21:38:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230155AbhFJSYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 14:24:53 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:52510 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbhFJSYw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 14:24:52 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15AIMmwL049584;
-        Thu, 10 Jun 2021 13:22:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623349368;
-        bh=j4y1roC4Z+WBp/KricZBidNy0UOzWVsHnaR9EbgN0IQ=;
-        h=From:To:CC:Subject:Date;
-        b=CdO5+W2ht48r8SsE9FeVpJlGOAMbsquiWC9KIB8KVrZ/FXO3zxPHaA6Q+G04H7w9z
-         Szr6ES8MuyzRg42hRfakLXJXFxEGa9qnjWxWo005KXfA8ViU0fbJNKB15nujmam/hc
-         q0ObwFjQ8fyuolaMRgUyauCcYO3usnbcCmvLsidg=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15AIMmD0092764
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Jun 2021 13:22:48 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 10
- Jun 2021 13:22:47 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 10 Jun 2021 13:22:47 -0500
-Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15AIMhs9041519;
-        Thu, 10 Jun 2021 13:22:44 -0500
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Tony Lindgren <tony@atomide.com>, <linux-omap@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: [PATCH v2] dt-bindings: serial: Move omap-serial.txt to YAML schema
-Date:   Thu, 10 Jun 2021 23:52:27 +0530
-Message-ID: <20210610182227.2480-1-vigneshr@ti.com>
-X-Mailer: git-send-email 2.32.0
+        id S230169AbhFJTkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 15:40:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58192 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229941AbhFJTkV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 15:40:21 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92ECEC061574;
+        Thu, 10 Jun 2021 12:38:10 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id c10so889380eja.11;
+        Thu, 10 Jun 2021 12:38:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=CxZFPPf8/Af3IJZUxSvuHpUIlLCprby35hrQY11nLk0=;
+        b=BWtEQUN8nf/6VjFK7uhX1RcY5asvzB2UiEbS72Lz0vJtWPA30K4QVKDr6Poc2pDDRe
+         sRdWYwKF8HsBo6gKk3HT6GgCsVSXYDKywKq3m02x93ockwiewh/qXh/4UtQAm8fzeCxf
+         aMHpeKdJkB431MW04XPNfStFauvgt7cL2szhZCIrWpPmFOpeYHWqtNutYewQnZpWXVe4
+         j2CvPpeKXMkT4K2rWmBh0FreOG/A/EX83YXlvalPdxTRUEjX5QrjrcifbA6KRDeBn/zF
+         4suCR09L32ROUOHYS7A8X5VizRrJ5ULkzqV5YxpLTU0Be2MMvmrjn+EVOrTwAV4gMnNb
+         M+yQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CxZFPPf8/Af3IJZUxSvuHpUIlLCprby35hrQY11nLk0=;
+        b=EiJ88uq/bBhlA/OyJtWnqrr6C5i621Jed2MjafoDZR6FDcOX5jdafkVaK7p+OSYjOH
+         ATmPfozNH2yJ4MFL+zP/+xC/e36HLnsV/wKEQCKMzkgYaqnXB581G3jc1QDu7M3srwqb
+         31GpHhwVzxymn7y98jcRtxUzJuzcUIg5zHXvoTZwLqWqrUrOdiRNEbOOd6ZRmdKbVVxu
+         WXMzPBtSbgNdX0lf8JcW2onR1NwyhsmQ0pCU7sX5uMfkNZ6FjLMXoOqgHYbbBQBEQpbg
+         IukbSqdDo6XLlQ9PGJ27c3C7e5t+pqcaTBbLPpBP2LO5FWNjxDqL3muf3UUjhiIDmpcq
+         Aecg==
+X-Gm-Message-State: AOAM531PuoZ7YhRBHFX8tMww0uEiLy6p+pcGHqL+na8OsVI10TJEUxIw
+        E8kFR4qM5JldngjtqP6At5c+6ShjY5IY2w==
+X-Google-Smtp-Source: ABdhPJyV9fK6I1s/3kbZNh9kRn5B7l5/zIUTRIqKYyA4U8+9QjxZxRwR6ZMJACtn2u8d3uufYfUE3A==
+X-Received: by 2002:a17:906:2f91:: with SMTP id w17mr193983eji.443.1623353889221;
+        Thu, 10 Jun 2021 12:38:09 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id d2sm1105423ejo.13.2021.06.10.12.38.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Jun 2021 12:38:08 -0700 (PDT)
+Subject: Re: [PATCH v6 1/6] dt-bindings: spi: spi-rockchip: add description
+ for rv1126
+To:     Rob Herring <robh@kernel.org>, Jon Lin <jon.lin@rock-chips.com>
+Cc:     linux-rockchip@lists.infradead.org, heiko@sntech.de,
+        linux-arm-kernel@lists.infradead.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org
+References: <20210607111837.31074-1-jon.lin@rock-chips.com>
+ <20210607111837.31074-2-jon.lin@rock-chips.com>
+ <20210610160634.GA1894512@robh.at.kernel.org>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <e71e9bca-4c30-d155-2beb-cb85a7b3106a@gmail.com>
+Date:   Thu, 10 Jun 2021 21:38:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20210610160634.GA1894512@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert serial-omap.txt to YAML schema for better checks and documentation.
+Hi Rob,
 
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
----
+Similar to the Rockchip SFC discussion this compatible does currently
+not add any data or difference to the driver. Therefore a simple
+fallback string will do for now. That in the past that was not strictly
+enforced, so be it.
+Could you have a look at it?
 
-v2:
-*Drop reg-io-width and reg-shift as they are constant and documented in
- txt bindings (also not used by driver).
-*Drop unused label in example.
-*Rename file to 8250_omap.yaml to be more generic as IP is present in
-varies families of TI SoCs.
-*Add description for interrupt entries
+Kind regards,
 
- .../devicetree/bindings/serial/8250_omap.yaml | 118 ++++++++++++++++++
- .../bindings/serial/omap_serial.txt           |  40 ------
- 2 files changed, 118 insertions(+), 40 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/serial/8250_omap.yaml
- delete mode 100644 Documentation/devicetree/bindings/serial/omap_serial.txt
+Johan Jonker
 
-diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-new file mode 100644
-index 000000000000..1c826fcf5828
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-@@ -0,0 +1,118 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/8250_omap.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Bindings for 8250 compliant UARTs on TI's OMAP2+ and K3 SoCs
-+
-+maintainers:
-+  - Vignesh Raghavendra <vigneshr@ti.com>
-+
-+allOf:
-+  - $ref: /schemas/serial/serial.yaml#
-+  - $ref: /schemas/serial/rs485.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - ti,am3352-uart
-+          - ti,am4372-uart
-+          - ti,am654-uart
-+          - ti,dra742-uart
-+          - ti,omap2-uart
-+          - ti,omap3-uart
-+          - ti,omap4-uart
-+      - items:
-+          - enum:
-+              - ti,am64-uart
-+              - ti,j721e-uart
-+          - const: ti,am654-uart
-+
-+  ti,hwmods:
-+    description:
-+      Must be "uart<n>", n being the instance number (1-based)
-+      This property is applicable only on legacy platforms mainly omap2/3
-+      and ti81xx and should not be used on other platforms.
-+    $ref: /schemas/types.yaml#/definitions/string
-+    deprecated: true
-+
-+  dmas:
-+    minItems: 1
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 2
-+    description:
-+      First entry is module IRQ required for normal IO operation.
-+      Second entry is optional and corresponds to system wakeup IRQ
-+      where supported.
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: fclk
-+
-+  rts-gpios: true
-+  cts-gpios: true
-+  dtr-gpios: true
-+  dsr-gpios: true
-+  rng-gpios: true
-+  dcd-gpios: true
-+  rs485-rts-delay: true
-+  rs485-rts-active-low: true
-+  rs485-rx-during-tx: true
-+  rs485-rts-active-high: true
-+  linux,rs485-enabled-at-boot-time: true
-+  rts-gpio: true
-+  power-domains: true
-+  clock-frequency: true
-+  current-speed: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+if:
-+  properties:
-+    compatible:
-+      oneOf:
-+        - const: ti,omap2-uart
-+        - const: ti,omap3-uart
-+        - const: ti,omap4-uart
-+
-+then:
-+  properties:
-+    ti,hwmods:
-+      items:
-+        - pattern: "^uart([1-9])$"
-+
-+else:
-+  properties:
-+    ti,hwmods: false
-+
-+examples:
-+  - |
-+          serial@49042000 {
-+            compatible = "ti,omap3-uart";
-+            reg = <0x49042000 0x400>;
-+            interrupts = <80>;
-+            dmas = <&sdma 81 &sdma 82>;
-+            dma-names = "tx", "rx";
-+            ti,hwmods = "uart4";
-+            clock-frequency = <48000000>;
-+          };
-diff --git a/Documentation/devicetree/bindings/serial/omap_serial.txt b/Documentation/devicetree/bindings/serial/omap_serial.txt
-deleted file mode 100644
-index c2db8cabf2ab..000000000000
---- a/Documentation/devicetree/bindings/serial/omap_serial.txt
-+++ /dev/null
-@@ -1,40 +0,0 @@
--OMAP UART controller
--
--Required properties:
--- compatible : should be "ti,am64-uart", "ti,am654-uart" for AM64 controllers
--- compatible : should be "ti,j721e-uart", "ti,am654-uart" for J721E controllers
--- compatible : should be "ti,am654-uart" for AM654 controllers
--- compatible : should be "ti,omap2-uart" for OMAP2 controllers
--- compatible : should be "ti,omap3-uart" for OMAP3 controllers
--- compatible : should be "ti,omap4-uart" for OMAP4 controllers
--- compatible : should be "ti,am4372-uart" for AM437x controllers
--- compatible : should be "ti,am3352-uart" for AM335x controllers
--- compatible : should be "ti,dra742-uart" for DRA7x controllers
--- reg : address and length of the register space
--- interrupts or interrupts-extended : Should contain the uart interrupt
--                                      specifier or both the interrupt
--                                      controller phandle and interrupt
--                                      specifier.
--- ti,hwmods : Must be "uart<n>", n being the instance number (1-based)
--
--Optional properties:
--- clock-frequency : frequency of the clock input to the UART
--- dmas : DMA specifier, consisting of a phandle to the DMA controller
--         node and a DMA channel number.
--- dma-names : "rx" for receive channel, "tx" for transmit channel.
--- rs485-rts-delay, rs485-rx-during-tx, linux,rs485-enabled-at-boot-time: see rs485.txt
--- rs485-rts-active-high: drive RTS high when sending (default is low).
--- clocks: phandle to the functional clock as per
--  Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--Example:
--
--                uart4: serial@49042000 {
--                        compatible = "ti,omap3-uart";
--                        reg = <0x49042000 0x400>;
--                        interrupts = <80>;
--                        dmas = <&sdma 81 &sdma 82>;
--                        dma-names = "tx", "rx";
--                        ti,hwmods = "uart4";
--                        clock-frequency = <48000000>;
--                };
--- 
-2.32.0
+https://lore.kernel.org/linux-rockchip/20210607063448.29589-1-jon.lin@rock-chips.com/T/#e202225dbe50829069becd2915267124f379bf2fe
 
+               - rockchip,rk3368-spi
+               - rockchip,rk3399-spi
+
+               - rockchip,rv1126-spi
+
+           - const: rockchip,rk3066-spi
+
+
+On 6/10/21 6:06 PM, Rob Herring wrote:
+> On Mon, 07 Jun 2021 19:18:32 +0800, Jon Lin wrote:
+>> The description below will be used for rv1126.dtsi or compatible one in
+>> the future
+>>
+>> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+>> ---
+>>
+>> Changes in v6:
+>> - Consider to compatibility, the "rockchip,rk3568-spi" is removed in
+>>   Series-changes v5, so the commit massage should also remove the
+>>   corresponding information
+>>
+>> Changes in v5:
+>> - Change to leave one compatible id rv1126, and rk3568 is compatible
+>>   with rv1126
+>>
+>> Changes in v4:
+>> - Adjust the order patches
+>> - Simply commit massage like redundancy "application" content
+>>
+>> Changes in v3:
+>> - Fix compile error which is find by Sascha in [v2,2/8]
+>>
+>>  Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> 
