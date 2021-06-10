@@ -2,113 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B98C3A36C1
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 00:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F923A36F7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 00:23:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230272AbhFJWCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 18:02:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58508 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229941AbhFJWCf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 18:02:35 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 77667613F1;
-        Thu, 10 Jun 2021 22:00:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623362438;
-        bh=nucnG5/QbJ/UafKRCt55CqTzS6+sHQTAWpyRcFUheUY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OKDp/WO/2bZ7+KuIi5wq/GKNwZymdnRr5mMC5N4kLONwm3q39r4C4LUf0oS0wvBhK
-         wGZxbu1b58cfY8QfKIKVwwWNH2snT2EWNjbsSznxKJmHA/RsXHqMHouhk6RcTldiQF
-         d5QWj/ZQ3ui5F753H6wYJvaiAdlEMknnlA5SfAOEHuVMY9Q4YTHwJINXKZllTZkqXX
-         BDR5ikIdLCN3cjPGA0KoHgMdewY3wDN7MV8lK98ML37yKwzsXzcLfhKpr55W2hHULT
-         IGXttB4srUQLbSSyM6t7wNaJtdAZWPAhnX8gthnHxr5yQUXVAmumx0g78UPruQGNWC
-         oLfODFtKbYMHA==
-Date:   Thu, 10 Jun 2021 18:00:37 -0400
-From:   Sasha Levin <sashal@kernel.org>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     Michael Ellerman <mpe@ellerman.id.au>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "stable@vger.kernel.org" <stable@vger.kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Subject: Re: [PATCH AUTOSEL 5.12 42/43] powerpc/fsl: set
- fsl,i2c-erratum-a004447 flag for P2041 i2c controllers
-Message-ID: <YMKLhWMfYf4pQYOo@sashalap>
-References: <20210603170734.3168284-1-sashal@kernel.org>
- <20210603170734.3168284-42-sashal@kernel.org>
- <87y2bqfok8.fsf@mpe.ellerman.id.au>
- <81ce50f1-73eb-687b-898a-df5f6ac68c5a@alliedtelesis.co.nz>
+        id S230307AbhFJWZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 18:25:50 -0400
+Received: from smtprelay0143.hostedemail.com ([216.40.44.143]:38892 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230236AbhFJWZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Jun 2021 18:25:50 -0400
+X-Greylist: delayed 516 seconds by postgrey-1.27 at vger.kernel.org; Thu, 10 Jun 2021 18:25:50 EDT
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com [10.5.19.251])
+        by smtpgrave05.hostedemail.com (Postfix) with ESMTP id CB1421828B337;
+        Thu, 10 Jun 2021 22:15:18 +0000 (UTC)
+Received: from omf16.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay03.hostedemail.com (Postfix) with ESMTP id F1676837F24C;
+        Thu, 10 Jun 2021 22:15:16 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: joe@perches.com) by omf16.hostedemail.com (Postfix) with ESMTPA id 2C534255104;
+        Thu, 10 Jun 2021 22:15:04 +0000 (UTC)
+Message-ID: <fa180c7093b946f2bd86d26d5875db28f80957de.camel@perches.com>
+Subject: Re: [PATCH 1/7] checkpatch: check Makefiles and Kconfigs for SPDX
+ tag
+From:   Joe Perches <joe@perches.com>
+To:     trix@redhat.com, robh+dt@kernel.org, tsbogend@alpha.franken.de,
+        jic23@kernel.org, lars@metafoo.de, tomas.winkler@intel.com,
+        arnd@arndb.de, gregkh@linuxfoundation.org, nbd@nbd.name,
+        lorenzo.bianconi83@gmail.com, ryder.lee@mediatek.com,
+        kvalo@codeaurora.org, davem@davemloft.net, kuba@kernel.org,
+        matthias.bgg@gmail.com, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@foss.st.com, apw@canonical.com,
+        dwaipayanray1@gmail.com, lukas.bulwahn@gmail.com,
+        chenhuacai@kernel.org, jiaxun.yang@flygoat.com,
+        zhangqing@loongson.cn, jbhayana@google.com, sean.wang@mediatek.com,
+        shayne.chen@mediatek.com, Soul.Huang@mediatek.com,
+        shorne@gmail.com, gsomlo@gmail.com,
+        pczarnecki@internships.antmicro.com, mholenko@antmicro.com,
+        davidgow@google.com
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Date:   Thu, 10 Jun 2021 15:15:02 -0700
+In-Reply-To: <20210610214438.3161140-3-trix@redhat.com>
+References: <20210610214438.3161140-1-trix@redhat.com>
+         <20210610214438.3161140-3-trix@redhat.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <81ce50f1-73eb-687b-898a-df5f6ac68c5a@alliedtelesis.co.nz>
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-0.56
+X-Rspamd-Server: rspamout01
+X-Rspamd-Queue-Id: 2C534255104
+X-Stat-Signature: hbs5edjb7ssp137oygbp83agndwobmm6
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Session-ID: U2FsdGVkX188Q7ACCxeE8e0t3mWcK2DFYS2XGLRcOCk=
+X-HE-Tag: 1623363304-278120
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 04, 2021 at 12:58:54AM +0000, Chris Packham wrote:
->
->On 4/06/21 12:42 pm, Michael Ellerman wrote:
->> Sasha Levin <sashal@kernel.org> writes:
->>> From: Chris Packham <chris.packham@alliedtelesis.co.nz>
->>>
->>> [ Upstream commit 7adc7b225cddcfd0f346d10144fd7a3d3d9f9ea7 ]
->>>
->>> The i2c controllers on the P2040/P2041 have an erratum where the
->>> documented scheme for i2c bus recovery will not work (A-004447). A
->>> different mechanism is needed which is documented in the P2040 Chip
->>> Errata Rev Q (latest available at the time of writing).
->>>
->>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->>> Acked-by: Michael Ellerman <mpe@ellerman.id.au>
->>> Signed-off-by: Wolfram Sang <wsa@kernel.org>
->>> Signed-off-by: Sasha Levin <sashal@kernel.org>
->>> ---
->>>   arch/powerpc/boot/dts/fsl/p2041si-post.dtsi | 16 ++++++++++++++++
->>>   1 file changed, 16 insertions(+)
->> This patch (and the subsequent one), just set a flag in the device tree.
->>
->> They have no effect unless you also backport the code change that looks
->> for that flag, which was upstream commit:
->>
->>    8f0cdec8b5fd ("i2c: mpc: implement erratum A-004447 workaround")
->
->That change itself isn't cherry-pick able without
->
->65171b2df15e ("i2c: mpc: Make use of i2c_recover_bus()")
->
->and in between 65171b2df15e and 8f0cdec8b5fd are a bunch of cleanups and
->a fairly major rewrite which may also affect the cherry-pick ability.
->
->> AFAICS you haven't picked that one up for any of the stable trees.
->>
->> I'll defer to Chris & Wolfram on whether it's a good idea to take the
->> code change for stable.
->
->We have been doing some extra QA on our end for the "i2c: mpc: Refactor
->to improve responsiveness" and "P2040/P2041 i2c recovery erratum" series
->which hasn't thrown up any issues. But it's still a lot of new code and
->at some point we're going to run into API changes.
->
->Given the fact that it's starting to snowball one might err on the side
->of caution.
->
->> I guess it's harmless to pick these two patches, but it's also
->> pointless. So I think you either want to take all three, or drop these
->> two.
->
->At a minimum you need
->
->65171b2df15e ("i2c: mpc: Make use of i2c_recover_bus()")
->8f0cdec8b5fd ("i2c: mpc: implement erratum A-004447 workaround")
->7adc7b225cdd ("powerpc/fsl: set fsl,i2c-erratum-a004447 flag for P2041
->i2c controllers")
->19ae697a1e4e ("powerpc/fsl: set fsl,i2c-erratum-a004447 flag for P1010
->i2c controllers")
+On Thu, 2021-06-10 at 14:44 -0700, trix@redhat.com wrote:
+> From: Tom Rix <trix@redhat.com>
+> 
+> Both Makefiles and Kconfigs should carry an SPDX tag.
+> Something like
+>  # SPDX-License-Identifier: GPL-2.0-only
+> 
+> Add a matcher to existing check
+> 
+> Signed-off-by: Tom Rix <trix@redhat.com>
 
-I'll take the two additional commits, thanks!
+Seems fine, thanks.
 
--- 
-Thanks,
-Sasha
+There's a Makefile with two tags that could be updated too.
+---
+ drivers/staging/media/atomisp/Makefile | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/staging/media/atomisp/Makefile b/drivers/staging/media/atomisp/Makefile
+index 51498b2e85b8f..cee03e31f420d 100644
+--- a/drivers/staging/media/atomisp/Makefile
++++ b/drivers/staging/media/atomisp/Makefile
+@@ -11,7 +11,6 @@ DEFINES += -DDEBUG
+ 
+ atomisp = $(srctree)/drivers/staging/media/atomisp/
+ 
+-# SPDX-License-Identifier: GPL-2.0
+ atomisp-objs += \
+ 	pci/atomisp_acc.o \
+ 	pci/atomisp_cmd.o \
+
+
