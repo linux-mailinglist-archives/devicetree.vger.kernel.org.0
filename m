@@ -2,117 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC4D23A2CE2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDC623A2CEC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:25:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230084AbhFJN04 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Jun 2021 09:26:56 -0400
-Received: from mslow1.mail.gandi.net ([217.70.178.240]:41473 "EHLO
-        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230410AbhFJN0z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 09:26:55 -0400
-Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id D51B3C2D4D;
-        Thu, 10 Jun 2021 13:16:06 +0000 (UTC)
-Received: (Authenticated sender: paul@opendingux.net)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 70543C0005;
-        Thu, 10 Jun 2021 13:15:40 +0000 (UTC)
-Date:   Thu, 10 Jun 2021 14:15:31 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v2 2/2] mmc: JZ4740: Add support for JZ4775.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, sihui.liu@ingenic.com,
-        jun.jiang@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com
-Message-Id: <V5MHUQ.E8C6HNTG18GS3@crapouillou.net>
-In-Reply-To: <1623329930-14387-3-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1623329930-14387-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1623329930-14387-3-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: geary/40.0
+        id S230488AbhFJN1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 09:27:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231143AbhFJN1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 09:27:10 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB03C061574;
+        Thu, 10 Jun 2021 06:25:00 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id r7so18624300edv.12;
+        Thu, 10 Jun 2021 06:25:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fHjU2WEAbMZiarjhmO6iycYFdVSmDuuGt5Qz3UrBd+Y=;
+        b=I/TRvtWBf2DDlmtgj9SJsOmWLpYOaIfcq4VrtTsAp2XaC6+XhDPuz1BzWHvp4mo7t6
+         fIcEaPfX63674bKdSVX+mNCqw59k+dqXNz2wAPa5apypTXMiLrHB1ivA1Nb/wtVW5jeL
+         0IbwQhmZb3QLvOzEIl6We35cXPxTp/G28sGN53xTwHwBEz3HkMOdFBAtTY2MyWg9f89r
+         txcxLqCUQGMj45LVm2dBp+ym/RXADi2xenGYWrVHloTLpPHCQP72hlxXgKlK+k0k0Pbe
+         wkrT/wtmhAKJ1j43VNNzoyaI3wPZRKnbCrJhd+BNQbXeSkTTLimAi6KEmkeO62R345v2
+         jHYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=fHjU2WEAbMZiarjhmO6iycYFdVSmDuuGt5Qz3UrBd+Y=;
+        b=dQ23py5UeZkKUiIGgnc9ec2EMv5jxRoejmGRMqgyY/qMi7cRlqaY1lb5+7yeUbPYyH
+         0awGL9w+d6qP+KqFBy57/qXWQA/8OE2VqeublrYJLp5VJHvX6+KXBsV2zlkFABaHS69k
+         7yN+dln76K1QWyW5/p5vbyBFTuKS10S7n1MiLwx8JHxH+phBR0YjGzZoLdP5FPUz6nCW
+         r3G3xHkaiE5yglzm7DNsP4rMyP86E9JelMSBdcbqVfJrKemZl7yF+i5nZcEsBDMNVv9A
+         QzJUtI9DWZvsljsJ5QuM6lyLxG5nxvXa1rbtkKvVZ7ssWcuOtNqqCx10z74hPKJM9G1H
+         3EpQ==
+X-Gm-Message-State: AOAM53174bmLJQNUiwKhcRzNJtKFVGYSZDrd+1ugV/vdHheJhlbSLmsE
+        UOEsFh70PBqFRcz6LX6hRCE=
+X-Google-Smtp-Source: ABdhPJyuG6UoPJnv1fm5wbYE3JVsU3eu0AejdDreusBw8vLID7l2lSp5Fp6bM8JsuY+V/qGFKUtM/g==
+X-Received: by 2002:a05:6402:14d8:: with SMTP id f24mr4823204edx.79.1623331498736;
+        Thu, 10 Jun 2021 06:24:58 -0700 (PDT)
+Received: from lab-pc01.sra.uni-hannover.de (lab.sra.uni-hannover.de. [130.75.33.87])
+        by smtp.gmail.com with ESMTPSA id du16sm999619ejc.42.2021.06.10.06.24.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Jun 2021 06:24:58 -0700 (PDT)
+From:   Andreas Kaessens <akaessens@gmail.com>
+To:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     linux-kernel@i4.cs.fau.de, Andreas Kaessens <akaessens@gmail.com>,
+        Darian Biastoch <d.biastoch@gmail.com>
+Subject: [PATCH 1/2] pinctrl: mcp23s08: Add optional reset GPIO
+Date:   Thu, 10 Jun 2021 15:24:37 +0200
+Message-Id: <20210610132438.3085841-1-akaessens@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
+The MCP23x port expander RESET# line can be connected to a host GPIO.
+The optional reset-gpio must be set to LOW if the reset is asserted
+at probing time.
 
-Le jeu., juin 10 2021 at 20:58:50 +0800, 周琰杰 (Zhou Yanjie) 
-<zhouyanjie@wanyeetech.com> a écrit :
-> 1.Add support for probing mmc driver on the JZ4775 SoC from Ingenic.
-> 2.The drive clock selection and sample clock selection have been
->   supported since JZ4775, not X1000. So support for these two
->   functions has been added for JZ4775 and JZ4780.
-> 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+On page 5 in the datasheet [0] the "Device Active After Reset high"
+time is specified at 0 µs. Therefore no waiting is needed after the
+reset transition.
 
-Acked-by: Paul Cercueil <paul@crapouillou.net>
+[0] https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf
 
-Now that's a good-looking patch ;)
-Thanks for working on it.
+Signed-off-by: Andreas Kaessens <akaessens@gmail.com>
+Signed-off-by: Darian Biastoch <d.biastoch@gmail.com>
+---
+ drivers/pinctrl/pinctrl-mcp23s08.c | 3 +++
+ drivers/pinctrl/pinctrl-mcp23s08.h | 1 +
+ 2 files changed, 4 insertions(+)
 
-Cheers,
--Paul
-
-> ---
-> 
-> Notes:
->     v1->v2:
->     1.Remove unnecessary renaming as Paul Cercueil's suggestion.
->     2.Reuse the ID of JZ4775 and JZ4780 to simplify the code.
->     3.Add support of drive clock selection and sample clock
->       selection for JZ4775 and JZ4780.
-> 
->  drivers/mmc/host/jz4740_mmc.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/jz4740_mmc.c 
-> b/drivers/mmc/host/jz4740_mmc.c
-> index b3c636e..f3172e5 100644
-> --- a/drivers/mmc/host/jz4740_mmc.c
-> +++ b/drivers/mmc/host/jz4740_mmc.c
-> @@ -674,7 +674,7 @@ static void jz4740_mmc_send_command(struct 
-> jz4740_mmc_host *host,
->  			cmdat |= JZ_MMC_CMDAT_WRITE;
->  		if (host->use_dma) {
->  			/*
-> -			 * The 4780's MMC controller has integrated DMA ability
-> +			 * The JZ4780's MMC controller has integrated DMA ability
->  			 * in addition to being able to use the external DMA
->  			 * controller. It moves DMA control bits to a separate
->  			 * register. The DMA_SEL bit chooses the external
-> @@ -866,7 +866,7 @@ static int jz4740_mmc_set_clock_rate(struct 
-> jz4740_mmc_host *host, int rate)
->  	writew(div, host->base + JZ_REG_MMC_CLKRT);
-> 
->  	if (real_rate > 25000000) {
-> -		if (host->version >= JZ_MMC_X1000) {
-> +		if (host->version >= JZ_MMC_JZ4780) {
->  			writel(JZ_MMC_LPM_DRV_RISING_QTR_PHASE_DLY |
->  				   JZ_MMC_LPM_SMP_RISING_QTR_OR_HALF_PHASE_DLY |
->  				   JZ_MMC_LPM_LOW_POWER_MODE_EN,
-> @@ -959,6 +959,7 @@ static const struct of_device_id 
-> jz4740_mmc_of_match[] = {
->  	{ .compatible = "ingenic,jz4740-mmc", .data = (void *) 
-> JZ_MMC_JZ4740 },
->  	{ .compatible = "ingenic,jz4725b-mmc", .data = (void 
-> *)JZ_MMC_JZ4725B },
->  	{ .compatible = "ingenic,jz4760-mmc", .data = (void *) 
-> JZ_MMC_JZ4760 },
-> +	{ .compatible = "ingenic,jz4775-mmc", .data = (void *) 
-> JZ_MMC_JZ4780 },
->  	{ .compatible = "ingenic,jz4780-mmc", .data = (void *) 
-> JZ_MMC_JZ4780 },
->  	{ .compatible = "ingenic,x1000-mmc", .data = (void *) JZ_MMC_X1000 
-> },
->  	{},
-> --
-> 2.7.4
-> 
-
+diff --git a/drivers/pinctrl/pinctrl-mcp23s08.c b/drivers/pinctrl/pinctrl-mcp23s08.c
+index 799d596a1a4b..8ab254170d99 100644
+--- a/drivers/pinctrl/pinctrl-mcp23s08.c
++++ b/drivers/pinctrl/pinctrl-mcp23s08.c
+@@ -9,6 +9,7 @@
+ #include <linux/module.h>
+ #include <linux/export.h>
+ #include <linux/gpio/driver.h>
++#include <linux/gpio/consumer.h>
+ #include <linux/slab.h>
+ #include <asm/byteorder.h>
+ #include <linux/interrupt.h>
+@@ -558,6 +559,8 @@ int mcp23s08_probe_one(struct mcp23s08 *mcp, struct device *dev,
+ 	mcp->chip.parent = dev;
+ 	mcp->chip.owner = THIS_MODULE;
+ 
++	mcp->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
++
+ 	/* verify MCP_IOCON.SEQOP = 0, so sequential reads work,
+ 	 * and MCP_IOCON.HAEN = 1, so we work with all chips.
+ 	 */
+diff --git a/drivers/pinctrl/pinctrl-mcp23s08.h b/drivers/pinctrl/pinctrl-mcp23s08.h
+index 90dc27081a3c..b8d15939e0c2 100644
+--- a/drivers/pinctrl/pinctrl-mcp23s08.h
++++ b/drivers/pinctrl/pinctrl-mcp23s08.h
+@@ -43,6 +43,7 @@ struct mcp23s08 {
+ 
+ 	struct pinctrl_dev	*pctldev;
+ 	struct pinctrl_desc	pinctrl_desc;
++	struct gpio_desc        *reset_gpio;
+ };
+ 
+ extern const struct regmap_config mcp23x08_regmap;
+-- 
+2.25.1
 
