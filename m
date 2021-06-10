@@ -2,124 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FC483A25B7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 09:45:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66FE03A25BE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 09:46:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbhFJHrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 03:47:16 -0400
-Received: from webserver.carbg.com ([212.45.67.1]:44470 "EHLO
-        webserver.carbg.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbhFJHrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 03:47:16 -0400
-X-Greylist: delayed 618 seconds by postgrey-1.27 at vger.kernel.org; Thu, 10 Jun 2021 03:47:14 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by webserver.carbg.com (Postfix) with ESMTP id 420B212800FF;
-        Thu, 10 Jun 2021 10:34:56 +0300 (EEST)
-Received: from webserver.carbg.com ([127.0.0.1])
-        by localhost (webserver.carbg.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id uwRJpuT8_BLJ; Thu, 10 Jun 2021 10:34:48 +0300 (EEST)
-Received: by webserver.carbg.com (Postfix, from userid 107)
-        id 7B67912800FC; Thu, 10 Jun 2021 10:34:47 +0300 (EEST)
-X-Spam-ASN:  
-Received: from MacBook-Pro.local (macbook [10.44.66.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: georgi@djakov.com)
-        by webserver.carbg.com (Postfix) with ESMTPSA id 05CA412800FB;
-        Thu, 10 Jun 2021 10:34:29 +0300 (EEST)
-Authentication-Results: webserver.carbg.com; dmarc=none header.from=kernel.org
-Subject: Re: [PATCH V1] arm64: dts: qcom: sc7180: bus votes for eMMC and SD
- card
-To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        adrian.hunter@intel.com, ulf.hansson@linaro.org, robh+dt@kernel.org
-Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
-        vbadigan@codeaurora.org, rampraka@codeaurora.org,
-        sayalil@codeaurora.org, sartgarg@codeaurora.org,
-        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        sibis@codeaurora.org, okukatla@codeaurora.org, cang@codeaurora.org,
-        pragalla@codeaurora.org, nitirawa@codeaurora.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-References: <1623309189-27943-1-git-send-email-sbhanu@codeaurora.org>
-From:   Georgi Djakov <djakov@kernel.org>
-Message-ID: <b1d108f1-75c1-87a7-a9de-3a004f56596e@kernel.org>
-Date:   Thu, 10 Jun 2021 10:34:28 +0300
+        id S230215AbhFJHsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 03:48:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40660 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230212AbhFJHsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 03:48:01 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D04ECC06175F
+        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 00:46:05 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id k40so1692018lfv.7
+        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 00:46:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=udIxG5USSw+Hcr3E1grdoWUuEEeWgk3R6uxO7ub/bPQ=;
+        b=sFkI8h5UtbeEw5k28cglEJ3LsGAseFbS9atLFrt9ABqkoOYJlq6O4bRdxG+uKhwphU
+         kQVqz32mNenz0I1JIo4R9/zNb/oFemHz45oHIbv/pdIEnp/W60hBTWv0E2jt1FY4ppnW
+         +bsnMPJ2fX/vw/pfaT7wMcSSfxDCzTcs+ddLjk4gwVXlXU6V4sJy89AuMm1nT+Nhc4ec
+         axGTRcbu0pOZ6h/cDSKLLa0iM64bb90t2YAjlZqGeq67hcyPfEZf3G4LncC5tgZl40OW
+         uFTSe50MiCTl2TXQXvg6SBtuWHpW+0LhzBalDeU/KCrWOlYiGql2VS+XXFJbgEQt02lb
+         ZDWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=udIxG5USSw+Hcr3E1grdoWUuEEeWgk3R6uxO7ub/bPQ=;
+        b=EprRxwX3YWD30b10pDO93EO7MeSFP1w+b8qYlqcXztl2S7G0ckWpdYd2biUexnUk4i
+         xtJmzOnnUo9eGMuQV3G7lOTABFRDc5crmRYQcmT6Z29UbKpgdfEIVsimqJMrIeRcqG6C
+         wvX/6xbgcmK5KYvxIP0DKj1EAJDGv6DL4ss7VLup26R28ZUuBWglIBWIZDGW8aWsqBL8
+         lZQkIy7i/ZCI4oRVo5MwuDX5d/bH9w+Xk1qsBwf+ygjIw+2EdTbENCNVlv8KIQcPXMQc
+         jrD+3YYdZOX1CVo0ocIK8WIj0HtEZKWLj1+KTAodHTtz1ao714v103TrViy/Okziea+4
+         vkbg==
+X-Gm-Message-State: AOAM531V0eidQ/173nfdHqX30g1wa9l7+KusbkC/iZ9QRgFfBXtWNaaL
+        2NB2i7iPmi5knhknGSLtfr1xfz5cjIRTDpl5QkHpkA==
+X-Google-Smtp-Source: ABdhPJwTaf7BDlzSV8wd1tReN8yNPXxtdIQoWMszkevetT+Bp801TF6XeJPesi9NU+QNjo87y7H+NxG/N+nzdhEjk8U=
+X-Received: by 2002:a05:6512:20c9:: with SMTP id u9mr1065275lfr.291.1623311164062;
+ Thu, 10 Jun 2021 00:46:04 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1623309189-27943-1-git-send-email-sbhanu@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <1621578615-4613-1-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <1621578615-4613-1-git-send-email-skakit@codeaurora.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 10 Jun 2021 09:45:53 +0200
+Message-ID: <CACRpkdb=+XOeSco22hXdYr=PTfPS6OFnWArBL3urU5qPf735uQ@mail.gmail.com>
+Subject: Re: [PATCH V4] dt-bindings: pinctrl: qcom-pmic-gpio: Convert qcom
+ pmic gpio bindings to YAML
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, MSM <linux-arm-msm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sajida,
+Hi Satya,
 
-Thank you for the patch!
+On Fri, May 21, 2021 at 8:30 AM satya priya <skakit@codeaurora.org> wrote:
 
-On 10.06.21 10:13, Shaik Sajida Bhanu wrote:
-> Updated bus votes for eMMC and Sd card.
+> Convert Qualcomm PMIC GPIO bindings from .txt to .yaml format.
+>
+> Signed-off-by: satya priya <skakit@codeaurora.org>
 
-The commit text should also give answer to the question "Why is this 
-patch necessary?". Do we need a Fixes: tag? The subject could be 
-improved too. Please check:
-https://www.kernel.org/doc/Documentation/process/submitting-patches.rst
+For some reason this patch will not apply, I already applied the
+two other patches, can you investigate and/or resend just this
+YAML conversion patch, including Rob's review tag?
 
-Thanks,
-Georgi
-
-> 
-> Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-> ---
->   arch/arm64/boot/dts/qcom/sc7180.dtsi | 20 ++++++++++----------
->   1 file changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index 295844e..1fce39d 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -726,15 +726,15 @@
->   				opp-100000000 {
->   					opp-hz = /bits/ 64 <100000000>;
->   					required-opps = <&rpmhpd_opp_low_svs>;
-> -					opp-peak-kBps = <100000 100000>;
-> -					opp-avg-kBps = <100000 50000>;
-> +					opp-peak-kBps = <1800000 600000>;
-> +					opp-avg-kBps = <100000 0>;
->   				};
->   
->   				opp-384000000 {
->   					opp-hz = /bits/ 64 <384000000>;
-> -					required-opps = <&rpmhpd_opp_svs_l1>;
-> -					opp-peak-kBps = <600000 900000>;
-> -					opp-avg-kBps = <261438 300000>;
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +					opp-peak-kBps = <5400000 1600000>;
-> +					opp-avg-kBps = <390000 0>;
->   				};
->   			};
->   		};
-> @@ -2685,15 +2685,15 @@
->   				opp-100000000 {
->   					opp-hz = /bits/ 64 <100000000>;
->   					required-opps = <&rpmhpd_opp_low_svs>;
-> -					opp-peak-kBps = <160000 100000>;
-> -					opp-avg-kBps = <80000 50000>;
-> +					opp-peak-kBps = <1800000 600000>;
-> +					opp-avg-kBps = <100000 0>;
->   				};
->   
->   				opp-202000000 {
->   					opp-hz = /bits/ 64 <202000000>;
-> -					required-opps = <&rpmhpd_opp_svs_l1>;
-> -					opp-peak-kBps = <200000	120000>;
-> -					opp-avg-kBps = <100000 60000>;
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +					opp-peak-kBps = <5400000 1600000>;
-> +					opp-avg-kBps = <200000 0>;
->   				};
->   			};
->   		};
-> 
-
+Yours,
+Linus Walleij
