@@ -2,69 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C3EB3A30C9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 18:37:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7F743A30D2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 18:38:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230181AbhFJQjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 12:39:23 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:42773 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbhFJQjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 12:39:23 -0400
-Received: by mail-ot1-f47.google.com with SMTP id w23-20020a9d5a970000b02903d0ef989477so270799oth.9;
-        Thu, 10 Jun 2021 09:37:26 -0700 (PDT)
+        id S231143AbhFJQky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 12:40:54 -0400
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:38679 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229823AbhFJQky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 12:40:54 -0400
+Received: by mail-ot1-f42.google.com with SMTP id j11-20020a9d738b0000b02903ea3c02ded8so302298otk.5;
+        Thu, 10 Jun 2021 09:38:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wdQKSCrcRex0e+UJ+sU32HCth0EXxp66LSDLxbGJ5hI=;
-        b=DvSgGPc9R43Udo8ms1wE1+j8vqHgIHa37b9GSv4jvrYRvfIYlfFmcqdG4mcfqVGNgW
-         z4HfEKXsahfWhbw9vlX4pmznvK3Chq5HsYZmaxkV5a0xGQnCFf9CEd838EXRzydwIefh
-         2h6X3Mi2yuThDdsuGMwiXGdsKoIvAlHTugV6XkkVPVsXHonwayFHngYknLijgGDyifZZ
-         1YPo3rX/1ifebKEI30UKKCVOMeP+SpIRM9s0I/o5Hae9gXVNbfK4Z8T0gmLCy6vuMh4l
-         xo88KMzdqhDKWTzAQ3S+z5SUshV6BoZBXcDOC3DkjaGVKp5ocDG0OjcPmRuBfi6yzHtj
-         3yiA==
-X-Gm-Message-State: AOAM532Q7SdPM9ZvvqIDCiqOTRhKnepJW9s1y7M2OnmGjRa5tUD0HfSw
-        Lcrn+wqBeZUf30P6fq/QBg==
-X-Google-Smtp-Source: ABdhPJwDCcHfdElit0dk67HErzfQ95wKwnoorc+o7d4BDoNVAnuLCxH8V7KBFB5toXOck0p4yfCO7g==
-X-Received: by 2002:a9d:7987:: with SMTP id h7mr3306882otm.98.1623343046512;
-        Thu, 10 Jun 2021 09:37:26 -0700 (PDT)
+        bh=ThsuhgjwQPY1nL0DC6AfRGD4QCrDv0Wb8QRuS1qgScc=;
+        b=MbcVzL6956KJ6h3WCrJzWntC9sFBb7cqYmcywSKeCoXemdUoURf3ivIdom4XJNotUs
+         t9dq14WLShXaO3kzzdKyBbybgUDfrQZoxz9fP66P7Wb7zewO99Qfdy31NFBL+6N0gdiV
+         2suHeAo+ImGkfc9hA7Ks8fTb5OHve9MnQRRNvV+X07Hhdws4WmO+9B6IHQ9qvLsF7IVx
+         pVmo+hgjECXUNSzoeogKDTptCNpr0P5gQqe/jopFRO9qYdV16rSmXD1rjbqMcLtrB1ab
+         fOOHkP5jkzDgu57TtdVanCLAD7v4SwKRqm0YmV1RoTpPjj5fy19LYbZKDehV+hR7tJc0
+         U32Q==
+X-Gm-Message-State: AOAM532m6OZv1gGQSZirMwcR6PmReZSmWRlgDia7ThpEulWvYLNGbIlY
+        /LzrM5q+qPOp6nIZSWs2HA==
+X-Google-Smtp-Source: ABdhPJzx+hvlN/w4B0vDRWK2ePv0ZMiOVeLFHf3+Gx7ZGUnN8pfqLv5McDPcDbaldOvEE/AsVN1NFA==
+X-Received: by 2002:a05:6830:99:: with SMTP id a25mr3193911oto.72.1623343129066;
+        Thu, 10 Jun 2021 09:38:49 -0700 (PDT)
 Received: from robh.at.kernel.org ([172.58.99.113])
-        by smtp.gmail.com with ESMTPSA id h23sm647491oih.30.2021.06.10.09.37.21
+        by smtp.gmail.com with ESMTPSA id f63sm711216otb.36.2021.06.10.09.38.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jun 2021 09:37:25 -0700 (PDT)
-Received: (nullmailer pid 1935041 invoked by uid 1000);
-        Thu, 10 Jun 2021 16:37:20 -0000
-Date:   Thu, 10 Jun 2021 11:37:20 -0500
+        Thu, 10 Jun 2021 09:38:48 -0700 (PDT)
+Received: (nullmailer pid 1937010 invoked by uid 1000);
+        Thu, 10 Jun 2021 16:38:46 -0000
+Date:   Thu, 10 Jun 2021 11:38:46 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     linux-kernel@vger.kernel.org, paul.kocialkowski@bootlin.com,
-        mchehab@kernel.org, devicetree@vger.kernel.org,
-        phone-devel@vger.kernel.org, shawnx.tu@intel.com,
-        linux-media@vger.kernel.org, pavel@ucw.cz,
-        laurent.pinchart@ideasonboard.com,
-        krzysztof.kozlowski@canonical.com, kernel@puri.sm
-Subject: Re: [PATCH v4 2/5] dt-bindings: media: document SK Hynix Hi-846 MIPI
- CSI-2 8M pixel sensor
-Message-ID: <20210610163720.GA1935008@robh.at.kernel.org>
-References: <20210607105213.1211722-1-martin.kepplinger@puri.sm>
- <20210607105213.1211722-3-martin.kepplinger@puri.sm>
+To:     Oleh Kravchenko <oleg@kaa.org.ua>
+Cc:     Patchwork Bot <patchwork-bot@kernel.org>,
+        Jiri Kosina <jikos@jikos.cz>,
+        Device Tree mailing list <devicetree@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>
+Subject: Re: [PATCH 1/2 v4] dt-bindings: Add vendor prefix and bindings for
+ Qwiic Joystick
+Message-ID: <20210610163846.GA1936976@robh.at.kernel.org>
+References: <20210608223130.16830-1-oleg@kaa.org.ua>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210607105213.1211722-3-martin.kepplinger@puri.sm>
+In-Reply-To: <20210608223130.16830-1-oleg@kaa.org.ua>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Jun 2021 12:52:10 +0200, Martin Kepplinger wrote:
-> Document the bindings used for the SK Hynix Hi-846 CMOS camera driver.
+On Wed, 09 Jun 2021 01:31:30 +0300, Oleh Kravchenko wrote:
+> Add vendor prefix for SparkFun Electronics.
+> Update trivial-devices.yaml with SparkFun Qwiic Joystick description.
 > 
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> Cc: Benjamin Tissoires <benjamin.tissoires@redhat.com>
+> Cc: Device Tree mailing list <devicetree@vger.kernel.org>
+> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> Cc: Jiri Kosina <jikos@jikos.cz>
+> Cc: Patchwork Bot <patchwork-bot@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
 > ---
->  .../bindings/media/i2c/hynix,hi846.yaml       | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> 
+> Changes for v4:
+> - no updates.
+> 
+> Changes for v3:
+> - update patch after code review.
+> 
+> Changes for v2:
+> - update code after code review
+> 
+> 
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  2 files changed, 4 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
