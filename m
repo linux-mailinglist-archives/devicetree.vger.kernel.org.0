@@ -2,69 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57B973A25D6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 09:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 195B13A25DD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 09:53:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbhFJHxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 03:53:36 -0400
-Received: from router.aksignal.cz ([62.44.4.214]:33820 "EHLO
-        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230144AbhFJHxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 03:53:31 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by router.aksignal.cz (Postfix) with ESMTP id 033574635E;
-        Thu, 10 Jun 2021 09:51:34 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
-Received: from router.aksignal.cz ([127.0.0.1])
-        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id fzyabMmuYz4l; Thu, 10 Jun 2021 09:51:33 +0200 (CEST)
-Received: from [172.25.161.48] (unknown [83.240.30.185])
-        (Authenticated sender: jiri.prchal@aksignal.cz)
-        by router.aksignal.cz (Postfix) with ESMTPSA id 2DEFD4635D;
-        Thu, 10 Jun 2021 09:51:33 +0200 (CEST)
-Subject: Re: [PATCH v7 4/5] nvmem: eeprom: at25: export FRAM serial num
-From:   =?UTF-8?B?SmnFmcOtIFByY2hhbA==?= <jiri.prchal@aksignal.cz>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>
-References: <20210607122640.143582-1-jiri.prchal@aksignal.cz>
- <20210607122640.143582-5-jiri.prchal@aksignal.cz>
- <YL4S2/hlfRwRM+Ug@kroah.com>
- <56f088fe-8db2-54d4-bef3-72e5f893a414@aksignal.cz>
- <YL8ybqOfgOqjlpoX@kroah.com>
- <b1c0eab3-8d07-5c52-300e-45974f7fea9c@aksignal.cz>
- <YL8+NOdz+ue3MTGg@kroah.com>
- <e32ad2d9-f2b3-f5de-54e5-fe43cd5403a9@aksignal.cz>
-Message-ID: <7bb829e8-bdfe-02d1-c191-ca03f9586aed@aksignal.cz>
-Date:   Thu, 10 Jun 2021 09:51:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S229865AbhFJHzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 03:55:15 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:40656 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229778AbhFJHzO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Jun 2021 03:55:14 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lrFV5-0002uS-J6; Thu, 10 Jun 2021 09:53:15 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: rockchip: fix supply properties in io-domains nodes
+Date:   Thu, 10 Jun 2021 09:53:14 +0200
+Message-Id: <162331157357.3382826.15742943707319190282.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210606181632.13371-1-jbx6244@gmail.com>
+References: <20210606181632.13371-1-jbx6244@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <e32ad2d9-f2b3-f5de-54e5-fe43cd5403a9@aksignal.cz>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 6 Jun 2021 20:16:32 +0200, Johan Jonker wrote:
+> A test with rockchip-io-domain.yaml gives notifications
+> for supply properties in io-domains nodes.
+> Fix them all into ".*-supply$" format.
 
+Applied, thanks!
 
-On 08. 06. 21 12:07, Jiří Prchal wrote:
-> 
-> 
-> On 08. 06. 21 11:53, Greg Kroah-Hartman wrote:
->> It's up to you, what do you want to do with it and what does a tool want
->> it to look like?
-> 
-> Right now I export it as bytes separated by space. But no problem to 
-> change it.
-> Just asking: for generic users what would be better or is there "best 
-> practice"?
+[1/1] ARM: dts: rockchip: fix supply properties in io-domains nodes
+      commit: f07edc41220b14ce057a4e6d7161b30688ddb8a2
 
-Hi Greg and others,
-if nobody bothers I'll make it as space separated bytes, MSB first.
-
-Jiri
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
