@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5F643A28D0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 11:56:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBEF73A28D3
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 11:56:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbhFJJ6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 05:58:30 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.169]:24985 "EHLO
+        id S229935AbhFJJ6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 05:58:31 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.171]:28525 "EHLO
         mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229770AbhFJJ63 (ORCPT
+        with ESMTP id S229980AbhFJJ63 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 05:58:29 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1623318986; cv=none;
+ARC-Seal: i=1; a=rsa-sha256; t=1623318987; cv=none;
     d=strato.com; s=strato-dkim-0002;
-    b=TTLliUPITIGp9qJoCkRy9QEboMPfPULvED4DLCYnZ0krf4+/5P41izI9Rr2ju6/jH6
-    ZTPt7m9q1x3G5HvpSgvmKNnMQYrcyFmVWNt36K8Y2eqHPo0+vyeGPRJa19/a+KuV+DMy
-    QWfh1an9z1NBN3YnCbzR7uBpecjS4WVJCrZ60M7sBK5SjoLd20KQaGFFxNmHD5Fib3uG
-    BdYGpsN3DL3A7GdWAo7lmBDT+7o2s3+vf9KqcMuMixeQM41NnJjBAqVs2uiW/cFiA6q6
-    6jtDYBHqTbtNACc0QzLct0Osug5Y5kq3GVlm4vBdIJkb9BA+DxrVWI1CCSLj6w75e+Hf
-    9iUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623318986;
+    b=fxgXaoic9waSnvARpFd+Os3vVaEyzZ0wc1nVBXtaRvquoezsGFFIXauCRxRZeGtuy4
+    gfS4sfD6UjjvOP3KSoeUFJfBQb/94lkLrNimZ4nmTSaxxYcEsafsscx32Z33aOzBcG95
+    Oyija0NHOcfdlTMp5IBlA/Y2fVh39OOIT6fKMchWDfR9c6xTvdrQ7hQQs+tdWB+pKqhQ
+    Lvl8TQDJl9UBGsxU8iuQEnO8eBRFZyJQmD1aKGbFDAakxYFDM6tnGW4oJ8SoN3JBkaVz
+    8K8ImBlg0iUBTC5Mou74C1Se82+8RvsYnBZT0MaKC3GsE936hIRgCWT6je9w7sKQXLh6
+    //aA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623318987;
     s=strato-dkim-0002; d=strato.com;
     h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=Q3vxYG9DwGWTpHZF0muiHrGzUfeM8Kn9aAfnCoRgf8w=;
-    b=lzfKLLYBvGaaShc/XWjIJRXh7frgqdLFFiweCrQkrPiQYGZllU/z6mUtzQxHFsgUdP
-    5HX3awpnm/7tDu5TYJaIYuFpeHuHn2bqG0sEkOl5vX+v955hY4QpFofNhAZtVaiOd+kA
-    NQsstxFHz85XBs5i5rlUZj46ggYxDEsxuTt6YZO8qHWOGJJ8SfL6Rd74DLIALjeWVByn
-    ZeMji+A958+E8zK0xE+nqpIRxoP2x2nqaZNkGanYDD65RsCiTbMAweS9LFF/ZuCqncqa
-    uZl5JUx8Z2MAD82YB+kM4Ypwy6NEKCnOZMT3D3OMe/2I0IQjNBsUFInkuO1fSQW3C8vo
-    wHAQ==
+    bh=AH2P9XfKb0PEYAd9xaBbRcSiO7z56XjX7li+ixOW9Ww=;
+    b=pLuGvtHZkxoeE93rlX6PxRKULbl7OZm8so5SIGTZghbHdMzCYz4DP7/gNTkqeL72Kn
+    YJOFYyb7f1BC/rVf9j0GXnohucGVdt2pjvePMdhiYq7QKqLoTE9TE1AJEgPSDdYwhJNi
+    xTpCAoi+YYY9fRPHWBjmsu2POb6rQYj2vyvpROvzldkJFl0rV+vo/0mwhEfK6fmFoyKt
+    gYHE1QSFR+H7AunCYhPCOVPgvf3phwFnDFXCd2yOVSZr0j0weEokvDU4xo8Ti7vtt24u
+    Lk5NXvE5jezdJ2E1SzktUDwvqDxZ5d11h+yFkMpage9lFc0H7zoEJRyciRDjb1g6wEru
+    b8+A==
 ARC-Authentication-Results: i=1; strato.com;
     dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623318986;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623318987;
     s=strato-dkim-0002; d=gerhold.net;
     h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
     From:Subject:Sender;
-    bh=Q3vxYG9DwGWTpHZF0muiHrGzUfeM8Kn9aAfnCoRgf8w=;
-    b=lEHXrVIEyRaH5tmEBLJTqhYBjpfmbOPV37r47sOxRSyTLGOwCPyw+IvYVg31HWk9vk
-    J7HbpTaB1xn6vIrz76UJd0NxvbrzgKD5gW6FC2TZACfFGuhvXVIIcyIBMK2FHKrDUgAn
-    CzNxY4vdPLwfVmaf5PdYwcc8hzDqJ+jCs7W2HL5yMiAnHmKAw11PXKMHLV+mo39/eLpy
-    PA1/0SS+I/vITFKTCOyM2uAwAo8FRUcnN5HJnwJGTnYSELYTrj0AAVHVMhe8i5nwYwlj
-    GAkNUsZJTIkTSUpFX954zjweBPB+tzzFUdY/dAnSub+iuB612ZgF1tcGHP8+n+l+DYmY
-    mEhA==
+    bh=AH2P9XfKb0PEYAd9xaBbRcSiO7z56XjX7li+ixOW9Ww=;
+    b=bo4Lhqu2H7jnLd4cbaxhp0liYvO0DlJGA3YVlT6qj+ALwOGrche7LmnSpRhTq3AJOO
+    k7CZ1UzpsDirNlCs3cgo950X4h+DrtSCjgs5nRHTDu/VUOvRDdGqR6PqSWpkyO3o8O51
+    RpCe+//i8r911cDHSs6aa1qJnrzY4FyC32Lrambtk9LeqKBpNa3Am5WTo6RHdzkncjy8
+    J+PjoWzqfXrCmDWYA8W5XvBe6aHF9UdJ5x7hEk+dKa2tG9kLhgHYO57Rm0SSNa8csLDG
+    k9AVnkX7jy0CILPlbq64ltXwlRd5eJq/IpWIIbxRROk9pcAVy59KdQwb79+t3K08bfnd
+    NmHg==
 Authentication-Results: strato.com;
     dkim=none
 X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxA626NTAM6"
 X-RZG-CLASS-ID: mo00
 Received: from droid..
     by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
-    with ESMTPSA id y01375x5A9uPso2
+    with ESMTPSA id y01375x5A9uQso3
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
         (Client did not present a certificate);
-    Thu, 10 Jun 2021 11:56:25 +0200 (CEST)
+    Thu, 10 Jun 2021 11:56:26 +0200 (CEST)
 From:   Stephan Gerhold <stephan@gerhold.net>
 To:     Jonathan Cameron <jic23@kernel.org>
 Cc:     Lars-Peter Clausen <lars@metafoo.de>,
@@ -64,9 +64,9 @@ Cc:     Lars-Peter Clausen <lars@metafoo.de>,
         Hans de Goede <hdegoede@redhat.com>,
         Andy Shevchenko <andy.shevchenko@gmail.com>,
         Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 4/6] dt-bindings: iio: bma255: Allow multiple interrupts
-Date:   Thu, 10 Jun 2021 11:52:58 +0200
-Message-Id: <20210610095300.3613-5-stephan@gerhold.net>
+Subject: [PATCH 5/6] dt-bindings: iio: accel: bma180/bma255: Move bma254 to bma255 schema
+Date:   Thu, 10 Jun 2021 11:52:59 +0200
+Message-Id: <20210610095300.3613-6-stephan@gerhold.net>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210610095300.3613-1-stephan@gerhold.net>
 References: <20210610095300.3613-1-stephan@gerhold.net>
@@ -76,40 +76,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-BMA253 has two interrupt pins (INT1 and INT2) that can be configured
-independently. At the moment the bmc150-accel driver does not make use
-of them but it might be able to in the future, so it's useful to already
-specify all available interrupts in the device tree.
+BMA254 is very similar to BMA253/BMA255 which are both supported by
+the bmc150-accel driver. In general, there is quite some overlap between
+the bma180 and bmc150-accel driver, but the bmc150-accel driver has a few
+more features (e.g. motion trigger/interrupt).
 
-Set maxItems: 2 for interrupts to allow specifying a second one.
-This is necessary as preparation to move the bosch,bma254 compatible
-from bosch,bma180.yaml to bosch,bma255.yaml since bma180 allows two
-interrupts, but BMA254 is better supported by the bmc150-accel driver.
+Let's move bma254 over to the bma255 schema (bmc150-accel driver).
 
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 ---
- .../devicetree/bindings/iio/accel/bosch,bma255.yaml        | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/iio/accel/bosch,bma180.yaml | 3 +--
+ Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml | 1 +
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bma180.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bma180.yaml
+index 45b3abde298f..a7e84089cc3d 100644
+--- a/Documentation/devicetree/bindings/iio/accel/bosch,bma180.yaml
++++ b/Documentation/devicetree/bindings/iio/accel/bosch,bma180.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/iio/accel/bosch,bma180.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Bosch BMA023 / BMA150/ BMA180 / BMA25x / SMB380 triaxial accelerometers
++title: Bosch BMA023 / BMA150/ BMA180 / BMA250 / SMB380 triaxial accelerometers
+ 
+ maintainers:
+   - Jonathan Cameron <jic23@kernel.org>
+@@ -21,7 +21,6 @@ properties:
+       - bosch,bma150
+       - bosch,bma180
+       - bosch,bma250
+-      - bosch,bma254
+       - bosch,smb380
+ 
+   reg:
 diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
-index 8afb0fe8ef5c..65b299a5619b 100644
+index 65b299a5619b..e830d5295b92 100644
 --- a/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
 +++ b/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
-@@ -32,7 +32,12 @@ properties:
-   vddio-supply: true
- 
-   interrupts:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 2
-+    description: |
-+      The first interrupt listed must be the one connected to the INT1 pin,
-+      the second (optional) interrupt listed must be the one connected to the
-+      INT2 pin (if available).
- 
-   mount-matrix:
-     description: an optional 3x3 mounting rotation matrix.
+@@ -19,6 +19,7 @@ properties:
+       - bosch,bmc150_accel
+       - bosch,bmi055_accel
+       - bosch,bma253
++      - bosch,bma254
+       - bosch,bma255
+       - bosch,bma250e
+       - bosch,bma222
 -- 
 2.31.1
 
