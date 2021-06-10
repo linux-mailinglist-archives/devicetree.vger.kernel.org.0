@@ -2,116 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DF9B3A3498
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 22:10:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B58D93A34E9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 22:36:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230035AbhFJUMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 16:12:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37084 "EHLO
+        id S230130AbhFJUh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 16:37:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42668 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbhFJUMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 16:12:38 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D1D1C061574;
-        Thu, 10 Jun 2021 13:10:29 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id l18-20020a1ced120000b029014c1adff1edso7318473wmh.4;
-        Thu, 10 Jun 2021 13:10:29 -0700 (PDT)
+        with ESMTP id S230077AbhFJUh5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 16:37:57 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B795C061574;
+        Thu, 10 Jun 2021 13:35:52 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id v206-20020a1cded70000b02901a586d3fa23so7212048wmg.4;
+        Thu, 10 Jun 2021 13:35:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=lGhwbRzDJ+vGi7Ot+KWwVBsMmeXKl4MgFdcn1VLKhu4=;
-        b=KK7Yi0BW7919kOgCjST7LGeMI5Ht7fQ6G+iTB444vZ3h9kTXMFwqhRJ9AyK0RKj5kO
-         UIbwE9BedDIW0dGTtJUdQ0rQc1yyTgTNR/gyhrKdBCv85eitvYwj+Io4CUwTvp7IkSYi
-         avcOSA/WAkWPtrwsXSXODeG0AquBbDSVfyVd+ImIcOQNBpfD2v6mD8T85Or5AYFL7qIt
-         uQ++qYIIfxBcDV8iBfOr5MaDGL7bY5WqA/H1s4aoTrF4y2OzPuyU6aW7kKPiHmEhb+zn
-         DhaXBAzFnjzM9Woj2r/y/hoXBF1XuFZ8QW20WzV1p9ZwGYLZ5uo3XlDdgJnAvQlmVXl2
-         2WaQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VeZXswZxRD+3nTHCw6XIn2R0ZIwkjuuYpAtyCSKoiyc=;
+        b=fyOH+33+oSzufKMhSSVK9A4tuPMTrqdsJT9Xnhwii7ajsVNYmURYGAjB03+NGj0EwZ
+         CjY72dXff51psKaFO7bZrsM4f+r9PVHfczw4jzcYU4IEyBvTFjmP47uY8F/23ryd9tr7
+         dkn/s9lfPs8oYKwn1USPuVckuuiH49HzdoLygTsr9J/aAQ9NT4CjUSEcsqgLniQQvz09
+         ZOmYO+SuacogCUDppSS1k3IjEBpLlC61YsYbxVoeKd5t9HtxPgpekrmj2FIvYg36NqwN
+         YdOe7RGon5lcde7Bgu/nJGBEkPhtLbnlN5/jietHP3zHsqtqR4z8wozFZOBc4/aZ8Rxj
+         K1/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=lGhwbRzDJ+vGi7Ot+KWwVBsMmeXKl4MgFdcn1VLKhu4=;
-        b=Op0L1cFPFsJsaxrYYvwOOH0wEoazBqq/jZ7e7Tk1Ajt40AGYH8lrMDjnnWTm9753AC
-         YkpYJ841nHcUbNMVklOr5ff/FaQ7i8MTRncpX2+wd/LkUqw5bMNiYtvXxIRwEeGuSIOV
-         xIX+wIfd9eatNZlAa7fdZ4wiKjoEGnH5YIAgRejH9KNBdrCpNRtED908viU7pIxBjEiF
-         sM40RdDgl6x26NoyTzIdXFWWB8j2Yna58ADrmrAkuYvQUcFq5uv4uyJ+dsTcH4SPlobr
-         F6xu5Nc+IzxTEiZ9+T7jofjoD4DM1vofAjHr+JhGVZ6RU8w5OT/Bt/PfDUDzX0W27XCT
-         EtFA==
-X-Gm-Message-State: AOAM532Kuy/FhrAdYOiy6H94Atlj1Qchg86/c4hYp9SkGdbAAwBaFrcX
-        YXGsa8BnI8pysKfExxgfC0Y0IzHo/NE=
-X-Google-Smtp-Source: ABdhPJwSbbI0f8rYfUdZeTHhH6+zg2pb5A+ySR5vIj18KhFz0KovyJaQYBG3DSUU4vvUaWKVC/kOLQ==
-X-Received: by 2002:a1c:c911:: with SMTP id f17mr592618wmb.60.1623355827750;
-        Thu, 10 Jun 2021 13:10:27 -0700 (PDT)
-Received: from BV030612LT ([188.24.178.25])
-        by smtp.gmail.com with ESMTPSA id l13sm4883946wrz.34.2021.06.10.13.10.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jun 2021 13:10:27 -0700 (PDT)
-Date:   Thu, 10 Jun 2021 23:10:25 +0300
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Edgar Bernardi Righi <edgar.righi@lsitec.org.br>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] clk: actions: Fix AHPPREDIV-H-AHB clock chain on
- Owl S500 SoC
-Message-ID: <20210610201025.GA1497285@BV030612LT>
-References: <cover.1622119892.git.cristian.ciocaltea@gmail.com>
- <107776b4a4e752ef83b143114d2baf52bf8c4107.1622119892.git.cristian.ciocaltea@gmail.com>
- <20210610143413.GC315240@thinkpad>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VeZXswZxRD+3nTHCw6XIn2R0ZIwkjuuYpAtyCSKoiyc=;
+        b=AzrwYE25XbfbIJnZmgFOg3VU6+c5Crca8yobZ/t++KR8OJJI887qQF1v3h0PLIxDdL
+         ATI7smXromfs+iYblmQAevNx4+GhwmyQkeJ17CaUShEyNT4uSyybZr6jSDghW+WFufkr
+         j20MFCGVNQsNllkxfZUrPoiRCtxV1LfgJHjNLFdrH3gaSI5nlohrucwPrPUWQUxCCXRs
+         b9cFALI/ogO+HSg0ozTn2LqArmQaa8TtzkqbIT2FcbWiUBczpWJ1e1Ep+wcvsCHT2eu5
+         OIz4n2VrTTepYoPk3g9QNRSsziPqOvOTWIPucHmPAuYsS1kFmssaS+YT0tZ/aF9hVLuP
+         Cjcw==
+X-Gm-Message-State: AOAM533udBo9AWuQXXVcNcjzrzsHshnKpbq4/FBPk+6a0Bm22sQHtKGW
+        D5QXkOSqL69j+gGV50JmdoI=
+X-Google-Smtp-Source: ABdhPJwJgJKfP3/wUnNSWXN8P8VMjcaDQiO8aym5JBB4uUhLMFnfwySNC5y+RnBC2l7lRJH4JfACJw==
+X-Received: by 2002:a05:600c:2194:: with SMTP id e20mr16420410wme.138.1623357350613;
+        Thu, 10 Jun 2021 13:35:50 -0700 (PDT)
+Received: from cluster5 ([80.76.206.81])
+        by smtp.gmail.com with ESMTPSA id z5sm4705333wrv.67.2021.06.10.13.35.48
+        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
+        Thu, 10 Jun 2021 13:35:48 -0700 (PDT)
+From:   Matthew Hagan <mnhagan88@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Matthew Hagan <mnhagan88@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/3] ARM: dts: NSP: add device names to compatible
+Date:   Thu, 10 Jun 2021 21:35:10 +0100
+Message-Id: <20210610203524.2215918-1-mnhagan88@gmail.com>
+X-Mailer: git-send-email 2.26.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210610143413.GC315240@thinkpad>
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 10, 2021 at 08:04:13PM +0530, Manivannan Sadhasivam wrote:
-> On Thu, May 27, 2021 at 04:16:42PM +0300, Cristian Ciocaltea wrote:
-> > There are a few issues with the setup of the Actions Semi Owl S500 SoC's
-> > clock chain involving AHPPREDIV, H and AHB clocks:
-> > 
-> > * AHBPREDIV clock is defined as a muxer only, although it also acts as
-> >   a divider.
-> > * H clock is using a wrong divider register offset
-> > * AHB is defined as a multi-rate factor clock, but it is actually just
-> >   a fixed pass clock.
-> > 
-> > Let's provide the following fixes:
-> > 
-> > * Change AHBPREDIV clock to an ungated OWL_COMP_DIV definition.
-> > * Use the correct register shift value in the OWL_DIVIDER definition
-> >   for H clock
-> > * Drop the unneeded 'ahb_factor_table[]' and change AHB clock to an
-> >   ungated OWL_COMP_FIXED_FACTOR definition.
+Currently only the SoC type and platform are specified for all NSP
+devices. This patch adds the device names.
 
-[...]
+Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+---
+ arch/arm/boot/dts/bcm958522er.dts  | 2 +-
+ arch/arm/boot/dts/bcm958525er.dts  | 2 +-
+ arch/arm/boot/dts/bcm958525xmc.dts | 2 +-
+ arch/arm/boot/dts/bcm958622hr.dts  | 2 +-
+ arch/arm/boot/dts/bcm958625hr.dts  | 2 +-
+ arch/arm/boot/dts/bcm958625k.dts   | 2 +-
+ arch/arm/boot/dts/bcm988312hr.dts  | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
-> >  /* composite clocks */
-> > +static OWL_COMP_DIV(ahbprediv_clk, "ahbprediv_clk", ahbprediv_clk_mux_p,
-> > +			OWL_MUX_HW(CMU_BUSCLK1, 8, 3),
-> > +			{ 0 },
-> > +			OWL_DIVIDER_HW(CMU_BUSCLK1, 12, 2, 0, NULL),
-> > +			0);
-> > +
-> > +static OWL_COMP_FIXED_FACTOR(ahb_clk, "ahb_clk", "h_clk",
-> > +			{ 0 },
-> > +			1, 1, CLK_SET_RATE_PARENT);
-> 
-> I think you swapped the flags between "ahbprediv_clk" and "ahb_clk"...
+diff --git a/arch/arm/boot/dts/bcm958522er.dts b/arch/arm/boot/dts/bcm958522er.dts
+index 5443fc079e6e..b6f4d931123c 100644
+--- a/arch/arm/boot/dts/bcm958522er.dts
++++ b/arch/arm/boot/dts/bcm958522er.dts
+@@ -37,7 +37,7 @@
+ 
+ / {
+ 	model = "NorthStar Plus SVK (BCM958522ER)";
+-	compatible = "brcm,bcm58522", "brcm,nsp";
++	compatible = "brcm,bcm958522er", "brcm,bcm58522", "brcm,nsp";
+ 
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+diff --git a/arch/arm/boot/dts/bcm958525er.dts b/arch/arm/boot/dts/bcm958525er.dts
+index e1e3c26cef19..af66caa87bfc 100644
+--- a/arch/arm/boot/dts/bcm958525er.dts
++++ b/arch/arm/boot/dts/bcm958525er.dts
+@@ -37,7 +37,7 @@
+ 
+ / {
+ 	model = "NorthStar Plus SVK (BCM958525ER)";
+-	compatible = "brcm,bcm58525", "brcm,nsp";
++	compatible = "brcm,bcm958525er", "brcm,bcm58525", "brcm,nsp";
+ 
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+diff --git a/arch/arm/boot/dts/bcm958525xmc.dts b/arch/arm/boot/dts/bcm958525xmc.dts
+index f161ba2e7e5e..3d6859e4fd5e 100644
+--- a/arch/arm/boot/dts/bcm958525xmc.dts
++++ b/arch/arm/boot/dts/bcm958525xmc.dts
+@@ -37,7 +37,7 @@
+ 
+ / {
+ 	model = "NorthStar Plus XMC (BCM958525xmc)";
+-	compatible = "brcm,bcm58525", "brcm,nsp";
++	compatible = "brcm,bcm958525xmc", "brcm,bcm58525", "brcm,nsp";
+ 
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+diff --git a/arch/arm/boot/dts/bcm958622hr.dts b/arch/arm/boot/dts/bcm958622hr.dts
+index 83cb877d63db..dca2c9c60857 100644
+--- a/arch/arm/boot/dts/bcm958622hr.dts
++++ b/arch/arm/boot/dts/bcm958622hr.dts
+@@ -37,7 +37,7 @@
+ 
+ / {
+ 	model = "NorthStar Plus SVK (BCM958622HR)";
+-	compatible = "brcm,bcm58622", "brcm,nsp";
++	compatible = "brcm,bcm958622hr", "brcm,bcm58622", "brcm,nsp";
+ 
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+diff --git a/arch/arm/boot/dts/bcm958625hr.dts b/arch/arm/boot/dts/bcm958625hr.dts
+index cda6cc281e18..3a62d2d90a18 100644
+--- a/arch/arm/boot/dts/bcm958625hr.dts
++++ b/arch/arm/boot/dts/bcm958625hr.dts
+@@ -37,7 +37,7 @@
+ 
+ / {
+ 	model = "NorthStar Plus SVK (BCM958625HR)";
+-	compatible = "brcm,bcm58625", "brcm,nsp";
++	compatible = "brcm,bcm958625hr", "brcm,bcm58625", "brcm,nsp";
+ 
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+diff --git a/arch/arm/boot/dts/bcm958625k.dts b/arch/arm/boot/dts/bcm958625k.dts
+index ffbff0014c65..d331c0a4e6b6 100644
+--- a/arch/arm/boot/dts/bcm958625k.dts
++++ b/arch/arm/boot/dts/bcm958625k.dts
+@@ -36,7 +36,7 @@
+ 
+ / {
+ 	model = "NorthStar Plus SVK (BCM958625K)";
+-	compatible = "brcm,bcm58625", "brcm,nsp";
++	compatible = "brcm,bcm958625k", "brcm,bcm58625", "brcm,nsp";
+ 
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+diff --git a/arch/arm/boot/dts/bcm988312hr.dts b/arch/arm/boot/dts/bcm988312hr.dts
+index 3fd39c479a3c..a7953e5acc01 100644
+--- a/arch/arm/boot/dts/bcm988312hr.dts
++++ b/arch/arm/boot/dts/bcm988312hr.dts
+@@ -37,7 +37,7 @@
+ 
+ / {
+ 	model = "NorthStar Plus SVK (BCM988312HR)";
+-	compatible = "brcm,bcm88312", "brcm,nsp";
++	compatible = "brcm,bcm988312hr", "brcm,bcm88312", "brcm,nsp";
+ 
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+-- 
+2.26.3
 
-Thanks for noticing this, I fixed it in v3:
-https://lore.kernel.org/lkml/cover.1623354574.git.cristian.ciocaltea@gmail.com/
-
-> > +
-> >  static OWL_COMP_FACTOR(vce_clk, "vce_clk", hde_clk_mux_p,
-> >  			OWL_MUX_HW(CMU_VCECLK, 4, 2),
-> >  			OWL_GATE_HW(CMU_DEVCLKEN0, 26, 0),
-> > -- 
-> > 2.31.1
-> > 
