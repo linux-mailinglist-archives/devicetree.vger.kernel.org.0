@@ -2,273 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 714273A2170
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 02:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 022303A21E8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 03:35:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229705AbhFJAbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 20:31:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58742 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbhFJAbj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 20:31:39 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B087DC061574;
-        Wed,  9 Jun 2021 17:29:43 -0700 (PDT)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 22BC882D15;
-        Thu, 10 Jun 2021 02:29:42 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1623284982;
-        bh=6I4U2q9LH5ZdHLOvI3e+vXomaSFdDwghOJDlhVcOVK0=;
-        h=From:To:Cc:Subject:Date:From;
-        b=UTKEKH8F68L+N4uZ72zf8eHVPKBvPiNosOBx02h/DKvu9DoVqv2uCvMfcGyGHao30
-         JBAvXiWn1CxkVK18gLEmxPueVvsktL/t71nuyadkz8wcEQ6BXtsKj09bfxfNhhJDUs
-         xemWid98bp/T+wgtmv6MwLECMIzw7UJQssDYGgQ1zFiJqSqpzVWHPQMusR2odqMtS0
-         e3BaI1NC4Bar4VeEAll9rpuzYCBkjvE04Di7dB99aoww6PKA6+sKF2Uu3JwdAXDHlh
-         S09qiqYnehxOepTYdtJaHhe/sxOTp6hlOjUaA+gab/SfaYsdGG0EaJ6ZL+RnNo/eQw
-         kc4nx700dZ7ew==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Michael Welling <mwelling@ieee.org>,
-        Rob Herring <robh@kernel.org>, kernel@dh-electronics.com,
-        linux-rtc@vger.kernel.org
-Subject: [PATCH] dt-bindings: input: tsc2005: Convert to YAML schema
-Date:   Thu, 10 Jun 2021 02:29:31 +0200
-Message-Id: <20210610002931.134258-1-marex@denx.de>
-X-Mailer: git-send-email 2.30.2
+        id S229659AbhFJBhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 21:37:17 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:33858 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229557AbhFJBhR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 21:37:17 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4CC678A2;
+        Thu, 10 Jun 2021 03:35:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1623288920;
+        bh=ZOPIF/Y2NL+RVtQmqfz7Yzk+FKKW1kdfWXCUZ0p+IYo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nIUIc8Ae0iR5Cdk4+JCLjml+9LuS7ep/EjFfxQ93Yi5dCVT9RpLe7OPxB/FzQwUK3
+         /KZeyTbLUH0LNqQ8SM9Me9We5MpQPn73gkFAb2eJcw/ULwYBY9J30OyIgaB6Zhpnlf
+         8pYgudO3SFYWbiZ5KYk8kwTXmzhjIMqOnioqw7Iw=
+Date:   Thu, 10 Jun 2021 04:35:02 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Quanyang Wang <quanyang.wang@windriver.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 21/31] arm64: zynqmp: Move DP nodes to the end of file on
+ zcu106
+Message-ID: <YMFsRjXuYm0KMRMD@pendragon.ideasonboard.com>
+References: <cover.1623239033.git.michal.simek@xilinx.com>
+ <4d1c79f6f184367687f61608bb8e0f18d9121802.1623239033.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <4d1c79f6f184367687f61608bb8e0f18d9121802.1623239033.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the TI TSC2004/TSC2005 DT bindings to YAML schema.
+Hi Michal,
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Michael Welling <mwelling@ieee.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: kernel@dh-electronics.com
-Cc: linux-rtc@vger.kernel.org
-To: devicetree@vger.kernel.org
----
- .../input/touchscreen/ti,tsc2005.yaml         | 128 ++++++++++++++++++
- .../bindings/input/touchscreen/tsc2005.txt    |  64 ---------
- 2 files changed, 128 insertions(+), 64 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/tsc2005.txt
+Thank you for the patch.
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-new file mode 100644
-index 000000000000..f79503019b3d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-@@ -0,0 +1,128 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/touchscreen/ti,tsc2005.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments TSC2004 and TSC2005 touchscreen controller bindings
-+
-+maintainers:
-+  - Marek Vasut <marex@denx.de>
-+  - Michael Welling <mwelling@ieee.org>
-+
-+properties:
-+  $nodename:
-+    pattern: "^touchscreen(@.*)?$"
-+
-+  compatible:
-+    oneOf:
-+      - const: "ti,tsc2004"
-+      - const: "ti,tsc2005"
-+
-+  reg:
-+    description: |
-+      I2C address when used on the I2C bus, or the SPI chip select index
-+      when used on the SPI bus
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description: GPIO specifier for the controller reset line
-+
-+  spi-max-frequency:
-+    description: TSC2005 SPI bus clock frequency.
-+    maximum: 25000000
-+
-+  ti,x-plate-ohms:
-+    description: resistance of the touchscreen's X plates in ohm (defaults to 280)
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  ti,esd-recovery-timeout-ms:
-+    description: |
-+        if the touchscreen does not respond after the configured time
-+        (in milli seconds), the driver will reset it. This is disabled
-+        by default.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  vio-supply:
-+    description: Regulator specifier
-+
-+  touchscreen-fuzz-pressure: true
-+  touchscreen-fuzz-x: true
-+  touchscreen-fuzz-y: true
-+  touchscreen-max-pressure: true
-+  touchscreen-size-x: true
-+  touchscreen-size-y: true
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: "ti,tsc2004"
-+    then:
-+      properties:
-+        spi-max-frequency: false
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        touchscreen@48 {
-+            compatible = "ti,tsc2004";
-+            reg = <0x48>;
-+            vio-supply = <&vio>;
-+
-+            reset-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>;
-+            interrupts-extended = <&gpio1 27 IRQ_TYPE_EDGE_RISING>;
-+
-+            touchscreen-fuzz-x = <4>;
-+            touchscreen-fuzz-y = <7>;
-+            touchscreen-fuzz-pressure = <2>;
-+            touchscreen-size-x = <4096>;
-+            touchscreen-size-y = <4096>;
-+            touchscreen-max-pressure = <2048>;
-+
-+            ti,x-plate-ohms = <280>;
-+            ti,esd-recovery-timeout-ms = <8000>;
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        touchscreen@0 {
-+            compatible = "ti,tsc2005";
-+            spi-max-frequency = <6000000>;
-+            reg = <0>;
-+
-+            vio-supply = <&vio>;
-+
-+            reset-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>; /* 104 */
-+            interrupts-extended = <&gpio4 4 IRQ_TYPE_EDGE_RISING>; /* 100 */
-+
-+            touchscreen-fuzz-x = <4>;
-+            touchscreen-fuzz-y = <7>;
-+            touchscreen-fuzz-pressure = <2>;
-+            touchscreen-size-x = <4096>;
-+            touchscreen-size-y = <4096>;
-+            touchscreen-max-pressure = <2048>;
-+
-+            ti,x-plate-ohms = <280>;
-+            ti,esd-recovery-timeout-ms = <8000>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/tsc2005.txt b/Documentation/devicetree/bindings/input/touchscreen/tsc2005.txt
-deleted file mode 100644
-index b80c04b0e5c0..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/tsc2005.txt
-+++ /dev/null
-@@ -1,64 +0,0 @@
--* Texas Instruments tsc2004 and tsc2005 touchscreen controllers
--
--Required properties:
-- - compatible		      : "ti,tsc2004" or "ti,tsc2005"
-- - reg			      : Device address
-- - interrupts		      : IRQ specifier
-- - spi-max-frequency	      : Maximum SPI clocking speed of the device
--			        (for tsc2005)
--
--Optional properties:
-- - vio-supply		      : Regulator specifier
-- - reset-gpios		      : GPIO specifier for the controller reset line
-- - ti,x-plate-ohms	      : integer, resistance of the touchscreen's X plates
--				in ohm (defaults to 280)
-- - ti,esd-recovery-timeout-ms : integer, if the touchscreen does not respond after
--				the configured time (in milli seconds), the driver
--				will reset it. This is disabled by default.
-- - properties defined in touchscreen.txt
--
--Example:
--
--&i2c3 {
--	tsc2004@48 {
--		compatible = "ti,tsc2004";
--		reg = <0x48>;
--		vio-supply = <&vio>;
--
--		reset-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>;
--		interrupts-extended = <&gpio1 27 IRQ_TYPE_EDGE_RISING>;
--
--		touchscreen-fuzz-x = <4>;
--		touchscreen-fuzz-y = <7>;
--		touchscreen-fuzz-pressure = <2>;
--		touchscreen-size-x = <4096>;
--		touchscreen-size-y = <4096>;
--		touchscreen-max-pressure = <2048>;
--
--		ti,x-plate-ohms = <280>;
--		ti,esd-recovery-timeout-ms = <8000>;
--	};
--}
--
--&mcspi1 {
--	tsc2005@0 {
--		compatible = "ti,tsc2005";
--		spi-max-frequency = <6000000>;
--		reg = <0>;
--
--		vio-supply = <&vio>;
--
--		reset-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>; /* 104 */
--		interrupts-extended = <&gpio4 4 IRQ_TYPE_EDGE_RISING>; /* 100 */
--
--		touchscreen-fuzz-x = <4>;
--		touchscreen-fuzz-y = <7>;
--		touchscreen-fuzz-pressure = <2>;
--		touchscreen-size-x = <4096>;
--		touchscreen-size-y = <4096>;
--		touchscreen-max-pressure = <2048>;
--
--		ti,x-plate-ohms = <280>;
--		ti,esd-recovery-timeout-ms = <8000>;
--	};
--}
+On Wed, Jun 09, 2021 at 01:44:57PM +0200, Michal Simek wrote:
+> This location is used by others DTs files that's why this move.
+
+I like alphabetical order :-)
+
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+> 
+>  .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 22 +++++++++----------
+>  1 file changed, 11 insertions(+), 11 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> index dbb8bfbb5c7f..4a0f3370bf7f 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+> @@ -160,17 +160,6 @@ &dcc {
+>  	status = "okay";
+>  };
+>  
+> -&zynqmp_dpdma {
+> -	status = "okay";
+> -};
+> -
+> -&zynqmp_dpsub {
+> -	status = "okay";
+> -	phy-names = "dp-phy0", "dp-phy1";
+> -	phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
+> -	       <&psgtr 0 PHY_TYPE_DP 1 3>;
+> -};
+> -
+>  /* fpd_dma clk 667MHz, lpd_dma 500MHz */
+>  &fpd_dma_chan1 {
+>  	status = "okay";
+> @@ -994,3 +983,14 @@ &usb0 {
+>  &watchdog0 {
+>  	status = "okay";
+>  };
+> +
+> +&zynqmp_dpdma {
+> +	status = "okay";
+> +};
+> +
+> +&zynqmp_dpsub {
+> +	status = "okay";
+> +	phy-names = "dp-phy0", "dp-phy1";
+> +	phys = <&psgtr 1 PHY_TYPE_DP 0 3>,
+> +	       <&psgtr 0 PHY_TYPE_DP 1 3>;
+> +};
+
 -- 
-2.30.2
+Regards,
 
+Laurent Pinchart
