@@ -2,223 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C79833A2E4C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 16:33:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75C3D3A2E51
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 16:34:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230348AbhFJOfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 10:35:42 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:33293 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230153AbhFJOfm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 10:35:42 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15AEMOAC008243;
-        Thu, 10 Jun 2021 16:33:28 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=/hkRnTEMeC7+hgFh6oD0/FMI5Nxfp+iUUqwGzvsdDa4=;
- b=Wg299IqSLi4nruuOKVB0+Qs1wqEVojRMAnDkLkrwuqNIdss1p4GxUpvBFIJVbxrjYb5/
- 67Q1+3L0zs0AhVBOzi4RTOz5kEdOqXGJ1TE+IBUxie2vlEQXwjq0lPvomgQml5ZrrD1p
- iSyankZjuaXyzXKhKGxTKHF85IF/fmrfwwTw68GwKsFp4jhGwFBbQyH+S5QJF92Cfnef
- 4sgWIiIH/9USTQwIBDzh23RDVQfNDMwHHgYchhRfvDIauTFfovMN2Xpfy66qJW/KTOZz
- bI8bwN2m5ncSb3Z87bhvbXttYxFAhEMEzT8uZ6hBDxc3DtMpJcRhW73IYAxVlru5WFqS lQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 393ee5jexu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Jun 2021 16:33:28 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 89BD4100034;
-        Thu, 10 Jun 2021 16:33:27 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 41D0522A6FF;
-        Thu, 10 Jun 2021 16:33:27 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
- (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 10 Jun
- 2021 16:33:26 +0200
-Subject: Re: [PATCH 09/13] ARM: dts: stm32: fix stpmic node for stm32mp1
- boards
-To:     <arnd@arndb.de>, <robh+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-        <jagan@amarulasolutions.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Marcin Sloniewski <marcin.sloniewski@gmail.com>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        <kuba@kernel.org>
-References: <20210415101037.1465-1-alexandre.torgue@foss.st.com>
- <20210415101037.1465-10-alexandre.torgue@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <b155f309-0bfb-3fa5-4b2b-c0128f6981b5@foss.st.com>
-Date:   Thu, 10 Jun 2021 16:33:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S231410AbhFJOgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 10:36:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46960 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231320AbhFJOgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 10:36:17 -0400
+Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B855BC061760
+        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 07:34:21 -0700 (PDT)
+Received: by mail-pj1-x102a.google.com with SMTP id g6-20020a17090adac6b029015d1a9a6f1aso5564828pjx.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 07:34:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6NoG4kcVr4onmC8GwKi74Fb0Au47jb6GQBPdI6ViJks=;
+        b=hb+gFlMZ5lsfye5orD2HfDm69xWdh0ImWNrad0GfmspEQe/MBdHf3Bdn/pBUdOTIMz
+         vJgQTkk6IKqPDE90d3GqXyh2lMetjiVYCHaV3koKdOWnzzgID5ZwFFkHT+ZPX+IB4CRY
+         pr3dfjU5mxgGZ6w4+rjHvKSGJTz66UdEwz0sLR7CbGHIgFF9Ym2QTPX2/GfUF6D8DPss
+         P5BIPLEtBNrVMVFTSElQ8fkBu7PASbQnkln+1NhijjL2ZqG9AHFg0BgVQZkSQhqzgSiZ
+         VTYSdElUzNXQ+Edo5gyAV9Pb5duRU0lNkY4AGZLZZQYR/ytYXMkQjCTeZICrqj64Nehu
+         zhVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6NoG4kcVr4onmC8GwKi74Fb0Au47jb6GQBPdI6ViJks=;
+        b=o+YxD+aXl2Fg1IY3rtgVYSa3yrMZYHYjeSHvHEEgqvRln03PwxVGeVGYZicm3zPCSd
+         Md6VcQo1u51RrZPCL0zuEgv8vYUmP7EVPdVgmR62sjIkL9dFoUZiEdWFJNVh8n9/kTGK
+         7JmHAl0kSWspICLjM0KmRFi34hcAEDP31qT8fCorJWQTpuJaT/p42cvlGRE9p35sOAeO
+         QQQlTyzV/IPkCBf78yFQEKuonFBjcC8l65ZP1LWJxz26E/BoSgkxwggDaoOtfsQaY9md
+         FJJMiQUUf/0D+QdGgPcggXM9yRG2jCrNV/GISIr0R8DH6xWMMztVES8E4yFXwzzUuEGy
+         Qwdg==
+X-Gm-Message-State: AOAM532FFHFeORQiGMozNWPFmlCbbDqVhk6vtOa9uxP502U5CUWf4ITq
+        vccecAyy3bPgkbCvMjcBjxAt
+X-Google-Smtp-Source: ABdhPJzbF7Z0yYFRdKQ/8/O7a/ocykejjMhtwCjk3txcAfux7Dj9U26puqA3/fd1ViStsxX6YI8mJw==
+X-Received: by 2002:a17:902:d917:b029:107:eca4:d5b4 with SMTP id c23-20020a170902d917b0290107eca4d5b4mr5063870plz.79.1623335661194;
+        Thu, 10 Jun 2021 07:34:21 -0700 (PDT)
+Received: from thinkpad ([2409:4072:6d9e:80ad:d341:9a16:2c5c:2249])
+        by smtp.gmail.com with ESMTPSA id o133sm2804262pfd.49.2021.06.10.07.34.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Jun 2021 07:34:20 -0700 (PDT)
+Date:   Thu, 10 Jun 2021 20:04:13 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Edgar Bernardi Righi <edgar.righi@lsitec.org.br>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] clk: actions: Fix AHPPREDIV-H-AHB clock chain on
+ Owl S500 SoC
+Message-ID: <20210610143413.GC315240@thinkpad>
+References: <cover.1622119892.git.cristian.ciocaltea@gmail.com>
+ <107776b4a4e752ef83b143114d2baf52bf8c4107.1622119892.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210415101037.1465-10-alexandre.torgue@foss.st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-06-10_10:2021-06-10,2021-06-10 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <107776b4a4e752ef83b143114d2baf52bf8c4107.1622119892.git.cristian.ciocaltea@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/15/21 12:10 PM, Alexandre Torgue wrote:
-> On some STM32 MP15 boards, stpmic node is not correct which generates
-> warnings running "make dtbs_check W=1" command. Issues are:
+On Thu, May 27, 2021 at 04:16:42PM +0300, Cristian Ciocaltea wrote:
+> There are a few issues with the setup of the Actions Semi Owl S500 SoC's
+> clock chain involving AHPPREDIV, H and AHB clocks:
 > 
-> -"regulator-active-discharge" is not a boolean but an uint32.
-> -"regulator-over-current-protection" is not a valid entry for vref_ddr.
-> -LDO4 has a fixed voltage (3v3) so min/max entries are not allowed.
+> * AHBPREDIV clock is defined as a muxer only, although it also acts as
+>   a divider.
+> * H clock is using a wrong divider register offset
+> * AHB is defined as a multi-rate factor clock, but it is actually just
+>   a fixed pass clock.
 > 
-> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
-
-Applied on stm32-next.
-
-Thanks.
-Alex
-
+> Let's provide the following fixes:
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-> index 113c48b2ef93..a4b14ef3caee 100644
-> --- a/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp157a-stinger96.dtsi
-> @@ -184,8 +184,6 @@
->   
->   			vdd_usb: ldo4 {
->   				regulator-name = "vdd_usb";
-> -				regulator-min-microvolt = <3300000>;
-> -				regulator-max-microvolt = <3300000>;
->   				interrupts = <IT_CURLIM_LDO4 0>;
->   			};
->   
-> @@ -208,7 +206,6 @@
->   			vref_ddr: vref_ddr {
->   				regulator-name = "vref_ddr";
->   				regulator-always-on;
-> -				regulator-over-current-protection;
->   			};
->   
->   			bst_out: boost {
-> @@ -219,13 +216,13 @@
->   			vbus_otg: pwr_sw1 {
->   				regulator-name = "vbus_otg";
->   				interrupts = <IT_OCP_OTG 0>;
-> -				regulator-active-discharge;
-> +				regulator-active-discharge = <1>;
->   			};
->   
->   			vbus_sw: pwr_sw2 {
->   				regulator-name = "vbus_sw";
->   				interrupts = <IT_OCP_SWOUT 0>;
-> -				regulator-active-discharge;
-> +				regulator-active-discharge = <1>;
->   			};
->   		};
->   
-> diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-> index 6cf49a0a9e69..0c0b66788ea1 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
-> @@ -173,8 +173,6 @@
->   
->   			vdd_usb: ldo4 {
->   				regulator-name = "vdd_usb";
-> -				regulator-min-microvolt = <3300000>;
-> -				regulator-max-microvolt = <3300000>;
->   				interrupts = <IT_CURLIM_LDO4 0>;
->   			};
->   
-> @@ -197,7 +195,6 @@
->   			vref_ddr: vref_ddr {
->   				regulator-name = "vref_ddr";
->   				regulator-always-on;
-> -				regulator-over-current-protection;
->   			};
->   
->   			 bst_out: boost {
-> @@ -213,7 +210,7 @@
->   			 vbus_sw: pwr_sw2 {
->   				regulator-name = "vbus_sw";
->   				interrupts = <IT_OCP_SWOUT 0>;
-> -				regulator-active-discharge;
-> +				regulator-active-discharge = <1>;
->   			 };
->   		};
->   
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-> index 272a1a67a9ad..769fcf74685a 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-dhcom-som.dtsi
-> @@ -327,8 +327,6 @@
->   
->   			vdd_usb: ldo4 {
->   				regulator-name = "vdd_usb";
-> -				regulator-min-microvolt = <3300000>;
-> -				regulator-max-microvolt = <3300000>;
->   				interrupts = <IT_CURLIM_LDO4 0>;
->   			};
->   
-> @@ -350,7 +348,6 @@
->   			vref_ddr: vref_ddr {
->   				regulator-name = "vref_ddr";
->   				regulator-always-on;
-> -				regulator-over-current-protection;
->   			};
->   
->   			bst_out: boost {
-> @@ -366,7 +363,7 @@
->   			vbus_sw: pwr_sw2 {
->   				regulator-name = "vbus_sw";
->   				interrupts = <IT_OCP_SWOUT 0>;
-> -				regulator-active-discharge;
-> +				regulator-active-discharge = <1>;
->   			};
->   		};
->   
-> diff --git a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-> index 713485a95795..6706d8311a66 100644
-> --- a/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15xx-osd32.dtsi
-> @@ -146,8 +146,6 @@
->   
->   			vdd_usb: ldo4 {
->   				regulator-name = "vdd_usb";
-> -				regulator-min-microvolt = <3300000>;
-> -				regulator-max-microvolt = <3300000>;
->   				interrupts = <IT_CURLIM_LDO4 0>;
->   			};
->   
-> @@ -171,7 +169,6 @@
->   			vref_ddr: vref_ddr {
->   				regulator-name = "vref_ddr";
->   				regulator-always-on;
-> -				regulator-over-current-protection;
->   			};
->   
->   			bst_out: boost {
-> @@ -182,13 +179,13 @@
->   			vbus_otg: pwr_sw1 {
->   				regulator-name = "vbus_otg";
->   				interrupts = <IT_OCP_OTG 0>;
-> -				regulator-active-discharge;
-> +				regulator-active-discharge = <1>;
->   			};
->   
->   			vbus_sw: pwr_sw2 {
->   				regulator-name = "vbus_sw";
->   				interrupts = <IT_OCP_SWOUT 0>;
-> -				regulator-active-discharge;
-> +				regulator-active-discharge = <1>;
->   			};
->   		};
->   
+> * Change AHBPREDIV clock to an ungated OWL_COMP_DIV definition.
+> * Use the correct register shift value in the OWL_DIVIDER definition
+>   for H clock
+> * Drop the unneeded 'ahb_factor_table[]' and change AHB clock to an
+>   ungated OWL_COMP_FIXED_FACTOR definition.
 > 
+> Fixes: ed6b4795ece4 ("clk: actions: Add clock driver for S500 SoC")
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> ---
+> Changes in v2:
+>  - Reverted the addition of the clock div table for H clock to support the
+>    '1' divider (according to the datasheet), even though the vendor
+>    implementation marks it as reserved
+>  
+>  drivers/clk/actions/owl-s500.c | 19 +++++++++++--------
+>  1 file changed, 11 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/clk/actions/owl-s500.c b/drivers/clk/actions/owl-s500.c
+> index 42d6899755e6..257923bd5386 100644
+> --- a/drivers/clk/actions/owl-s500.c
+> +++ b/drivers/clk/actions/owl-s500.c
+> @@ -153,11 +153,6 @@ static struct clk_factor_table hde_factor_table[] = {
+>  	{ 0, 0, 0 },
+>  };
+>  
+> -static struct clk_factor_table ahb_factor_table[] = {
+> -	{ 1, 1, 2 }, { 2, 1, 3 },
+> -	{ 0, 0, 0 },
+> -};
+> -
+>  static struct clk_div_table rmii_ref_div_table[] = {
+>  	{ 0, 4 }, { 1, 10 },
+>  	{ 0, 0 },
+> @@ -186,7 +181,6 @@ static struct clk_div_table nand_div_table[] = {
+>  
+>  /* mux clock */
+>  static OWL_MUX(dev_clk, "dev_clk", dev_clk_mux_p, CMU_DEVPLL, 12, 1, CLK_SET_RATE_PARENT);
+> -static OWL_MUX(ahbprediv_clk, "ahbprediv_clk", ahbprediv_clk_mux_p, CMU_BUSCLK1, 8, 3, CLK_SET_RATE_PARENT);
+>  
+>  /* gate clocks */
+>  static OWL_GATE(gpio_clk, "gpio_clk", "apb_clk", CMU_DEVCLKEN0, 18, 0, 0);
+> @@ -199,16 +193,25 @@ static OWL_GATE(timer_clk, "timer_clk", "hosc", CMU_DEVCLKEN1, 27, 0, 0);
+>  static OWL_GATE(hdmi_clk, "hdmi_clk", "hosc", CMU_DEVCLKEN1, 3, 0, 0);
+>  
+>  /* divider clocks */
+> -static OWL_DIVIDER(h_clk, "h_clk", "ahbprediv_clk", CMU_BUSCLK1, 12, 2, NULL, 0, 0);
+> +static OWL_DIVIDER(h_clk, "h_clk", "ahbprediv_clk", CMU_BUSCLK1, 2, 2, NULL, 0, 0);
+>  static OWL_DIVIDER(apb_clk, "apb_clk", "ahb_clk", CMU_BUSCLK1, 14, 2, NULL, 0, 0);
+>  static OWL_DIVIDER(rmii_ref_clk, "rmii_ref_clk", "ethernet_pll_clk", CMU_ETHERNETPLL, 1, 1, rmii_ref_div_table, 0, 0);
+>  
+>  /* factor clocks */
+> -static OWL_FACTOR(ahb_clk, "ahb_clk", "h_clk", CMU_BUSCLK1, 2, 2, ahb_factor_table, 0, 0);
+>  static OWL_FACTOR(de1_clk, "de_clk1", "de_clk", CMU_DECLK, 0, 4, de_factor_table, 0, 0);
+>  static OWL_FACTOR(de2_clk, "de_clk2", "de_clk", CMU_DECLK, 4, 4, de_factor_table, 0, 0);
+>  
+>  /* composite clocks */
+> +static OWL_COMP_DIV(ahbprediv_clk, "ahbprediv_clk", ahbprediv_clk_mux_p,
+> +			OWL_MUX_HW(CMU_BUSCLK1, 8, 3),
+> +			{ 0 },
+> +			OWL_DIVIDER_HW(CMU_BUSCLK1, 12, 2, 0, NULL),
+> +			0);
+> +
+> +static OWL_COMP_FIXED_FACTOR(ahb_clk, "ahb_clk", "h_clk",
+> +			{ 0 },
+> +			1, 1, CLK_SET_RATE_PARENT);
 
+I think you swapped the flags between "ahbprediv_clk" and "ahb_clk"...
+
+> +
+>  static OWL_COMP_FACTOR(vce_clk, "vce_clk", hde_clk_mux_p,
+>  			OWL_MUX_HW(CMU_VCECLK, 4, 2),
+>  			OWL_GATE_HW(CMU_DEVCLKEN0, 26, 0),
+> -- 
+> 2.31.1
+> 
