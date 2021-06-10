@@ -2,79 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 223AA3A305E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 18:18:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D5033A308D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 18:25:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230196AbhFJQUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 12:20:16 -0400
-Received: from mail-oo1-f45.google.com ([209.85.161.45]:33594 "EHLO
-        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbhFJQUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 12:20:16 -0400
-Received: by mail-oo1-f45.google.com with SMTP id v17-20020a4aa5110000b0290249d63900faso31952ook.0;
-        Thu, 10 Jun 2021 09:18:19 -0700 (PDT)
+        id S231362AbhFJQ1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 12:27:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43338 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231351AbhFJQ1A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 12:27:00 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78C7AC061760;
+        Thu, 10 Jun 2021 09:25:03 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id bn21so5761329ljb.1;
+        Thu, 10 Jun 2021 09:25:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6QucbuFgOMWEGN4VFEHi2XvTZe9V4ccPJlTWt4NGrBo=;
+        b=c4MEbVnfe38PR6J6KsIGT0/uYuEW08pi28SwT7rCIxc0BhUFIclOwg1baQFC0IE9QV
+         7oumeIFy65yJ6YqYIjSL7Iueq3Utafk2Ag7BUFT/ySjW8ZsDqC8McDqVsYO6oLqriXHl
+         H9mD94xABW+u6p3WIyp1DMBmmAg5870Gx3oLwrOZDvb/VQ+ZsVNaZ6KYzrxL+sSZdLYJ
+         Kvi4pul5Sz/lBYNTws5taOH6xlzu/WigpzgZVioO+17+GJUtlYGm63v5TDMEwYk4BZ4a
+         Ql6Ru3aKjAOo7gmO5ih3Q3gYXENfSO9mmFE59uPHDnOgxZo+axdZIYL//HBI2kFgbKHv
+         A/xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zowArRjAAnzKvHBN+RPg0/JH6reTanVtBG1ZhO+au30=;
-        b=EI5YcDTe7N1MF/8ijscPU/eVMz2TiVMpb2ivL0fUIz6bzODo3IDqWdbjrYE+DWBUoe
-         hY+wXF4MJhrz9cWpKzzcDFUVaNjiPGWTA7Rghho7AlwFjyW20LM7l6qjKTKnC/APULVs
-         dYSVend+KeS4kU8pKalnXOltYUpVOguT/UTa+8wy8PGdw+AGSAWYnGdh1VwFryeLq3HI
-         QDmSShOek/0xwriO8FaHAwwVuZRBBTnhhSc5ElJShTwyuDGdw/mrR7WcWkTKLl+97Owq
-         /8hcQxPZ372O3blEIujqGivs3rBcecnBaIDl8LdsyXg4oeeRsrUJhQTD/xXuRf8tQ/+g
-         1vsQ==
-X-Gm-Message-State: AOAM532OHdwJyhwUgL/ZErvnL4bSUvIwKkhZz1gGXPJuguhy8Cfd1iPD
-        trcn9fcYuXsC9zI2/Ze5Wg==
-X-Google-Smtp-Source: ABdhPJxDa2nJg5IbToRfbbwFxUmVIEpzV4GOafbjOpqGflOC3KFiwmEQEvu7SFxiC9JxpaBHK8QyWQ==
-X-Received: by 2002:a4a:a9c8:: with SMTP id h8mr2975424oon.1.1623341899426;
-        Thu, 10 Jun 2021 09:18:19 -0700 (PDT)
-Received: from robh.at.kernel.org ([172.58.99.113])
-        by smtp.gmail.com with ESMTPSA id x187sm637622oia.17.2021.06.10.09.18.17
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6QucbuFgOMWEGN4VFEHi2XvTZe9V4ccPJlTWt4NGrBo=;
+        b=Yda7mGDrmHYf79DtZrxdyEfN+WyYnxXNJqXcNl2wyETM6hB7U65PP6ignEs7ZPU7qM
+         Z3YbROSATR70wfeLMsY2QykFxjea80PwcrB7j6r96li5ewpvmZMAxOPUGCNgtp/U7oh9
+         /AQ47ocBzJdZzqL0Lh8RYYr/1F6Vd/NQs2KgBji31f7/oD/9/t9nepIe9YHlo+80zO+x
+         mCjK92vLdSyldDJnFwb1h2bs+m5hXEGXQb0AKMvP6u32YVAcxneeLDEXpMUQkpHZ+xSK
+         g60Jh1yrh+QXP3FuVFKcTqzd4qGcV8k1ZxScHfe4ZGY9wLjzxsKNocZNyLG/e8vbqbb2
+         q1sQ==
+X-Gm-Message-State: AOAM5324CrzFvVjUAIDaVkS5JsI9STYg4xphWdqXy0MV+H0BRNjrzieO
+        EfFnUt3NkBBnN0PfkE4Z5Fw=
+X-Google-Smtp-Source: ABdhPJznV2QY0x8c0KOwBDbjwAj9tpENJVZ19e/DvBB3y8XWi2CuG965bvQ2EMAEG9C60/84ZCqtCA==
+X-Received: by 2002:a05:651c:178b:: with SMTP id bn11mr2829559ljb.43.1623342301810;
+        Thu, 10 Jun 2021 09:25:01 -0700 (PDT)
+Received: from localhost.localdomain (94-29-21-60.dynamic.spd-mgts.ru. [94.29.21.60])
+        by smtp.gmail.com with ESMTPSA id g2sm340507lfu.173.2021.06.10.09.25.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jun 2021 09:18:18 -0700 (PDT)
-Received: (nullmailer pid 1910178 invoked by uid 1000);
-        Thu, 10 Jun 2021 16:18:15 -0000
-Date:   Thu, 10 Jun 2021 11:18:15 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Steven Lee <steven_lee@aspeedtech.com>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        billy_tsai@aspeedtech.com,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, ryan_chen@aspeedtech.com,
-        Hongweiz@ami.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v5 01/10] dt-bindings: aspeed-sgpio: Convert txt bindings
- to yaml.
-Message-ID: <20210610161815.GA1910106@robh.at.kernel.org>
-References: <20210608102547.4880-1-steven_lee@aspeedtech.com>
- <20210608102547.4880-2-steven_lee@aspeedtech.com>
+        Thu, 10 Jun 2021 09:25:01 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v1] of: reserved-memory: Add stub for RESERVEDMEM_OF_DECLARE()
+Date:   Thu, 10 Jun 2021 19:23:13 +0300
+Message-Id: <20210610162313.20942-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210608102547.4880-2-steven_lee@aspeedtech.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Jun 2021 18:25:36 +0800, Steven Lee wrote:
-> sgpio-aspeed bindings should be converted to yaml format.
-> 
-> Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
-> ---
->  .../bindings/gpio/aspeed,sgpio.yaml           | 75 +++++++++++++++++++
->  .../devicetree/bindings/gpio/sgpio-aspeed.txt | 46 ------------
->  2 files changed, 75 insertions(+), 46 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
->  delete mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
-> 
+The reserved-memory Kconfig could be disabled when drivers are
+compile-tested. In this case RESERVEDMEM_OF_DECLARE() produces a
+noisy warning about the orphaned __reservedmem_of_table section.
+Add the missing stub that fixes the warning. In particular this is
+needed for compile-testing of NVIDIA Tegra210 memory driver which
+uses reserved-memory.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Reported-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+---
+ include/linux/of.h              | 11 +++++++----
+ include/linux/of_reserved_mem.h |  8 ++++++--
+ 2 files changed, 13 insertions(+), 6 deletions(-)
+
+diff --git a/include/linux/of.h b/include/linux/of.h
+index d8db8d3592fd..9c2e71e202d1 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -1329,6 +1329,12 @@ static inline int of_get_available_child_count(const struct device_node *np)
+ 	return num;
+ }
+ 
++#define _OF_DECLARE_STUB(table, name, compat, fn, fn_type)		\
++	static const struct of_device_id __of_table_##name		\
++		__attribute__((unused))					\
++		 = { .compatible = compat,				\
++		     .data = (fn == (fn_type)NULL) ? fn : fn }
++
+ #if defined(CONFIG_OF) && !defined(MODULE)
+ #define _OF_DECLARE(table, name, compat, fn, fn_type)			\
+ 	static const struct of_device_id __of_table_##name		\
+@@ -1338,10 +1344,7 @@ static inline int of_get_available_child_count(const struct device_node *np)
+ 		     .data = (fn == (fn_type)NULL) ? fn : fn  }
+ #else
+ #define _OF_DECLARE(table, name, compat, fn, fn_type)			\
+-	static const struct of_device_id __of_table_##name		\
+-		__attribute__((unused))					\
+-		 = { .compatible = compat,				\
+-		     .data = (fn == (fn_type)NULL) ? fn : fn }
++	_OF_DECLARE_STUB(table, name, compat, fn, fn_type)
+ #endif
+ 
+ typedef int (*of_init_fn_2)(struct device_node *, struct device_node *);
+diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
+index 76e4a0fffba4..4de2a24cadc9 100644
+--- a/include/linux/of_reserved_mem.h
++++ b/include/linux/of_reserved_mem.h
+@@ -27,11 +27,11 @@ struct reserved_mem_ops {
+ 
+ typedef int (*reservedmem_of_init_fn)(struct reserved_mem *rmem);
+ 
++#ifdef CONFIG_OF_RESERVED_MEM
++
+ #define RESERVEDMEM_OF_DECLARE(name, compat, init)			\
+ 	_OF_DECLARE(reservedmem, name, compat, init, reservedmem_of_init_fn)
+ 
+-#ifdef CONFIG_OF_RESERVED_MEM
+-
+ int of_reserved_mem_device_init_by_idx(struct device *dev,
+ 				       struct device_node *np, int idx);
+ int of_reserved_mem_device_init_by_name(struct device *dev,
+@@ -41,6 +41,10 @@ void of_reserved_mem_device_release(struct device *dev);
+ 
+ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np);
+ #else
++
++#define RESERVEDMEM_OF_DECLARE(name, compat, init)			\
++	_OF_DECLARE_STUB(reservedmem, name, compat, init, reservedmem_of_init_fn)
++
+ static inline int of_reserved_mem_device_init_by_idx(struct device *dev,
+ 					struct device_node *np, int idx)
+ {
+-- 
+2.30.2
+
