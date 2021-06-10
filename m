@@ -2,121 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 020363A276B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AB1D3A2785
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 10:57:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229895AbhFJIwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 04:52:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55130 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229778AbhFJIwX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 04:52:23 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8909C061574;
-        Thu, 10 Jun 2021 01:50:20 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id b145-20020a1c80970000b029019c8c824054so6003875wmd.5;
-        Thu, 10 Jun 2021 01:50:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=to:cc:references:from:subject:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=44JZKXW5mlJ+V66lNHP+kLdlMsmv+wQwqYhG+XePn7c=;
-        b=M7yW14u97s0esMMs5NLjNyxtwj6BNY8fZyF5sZK8eL0iaCFu/ff14nbLM1WLXapT8c
-         xP7B3ubFVTXi9zKXlwpz5T5vTGo23jRWOKqANUpzdn+rnOFbL+yzyg0rdCD0Qi4mkyXy
-         W0FyMfdZ13WgAMGzxC5wF+A/vEhYx4C2Y2BE7ytxDwXGLkTBiNtfQE71ZDGT18v2CKfY
-         jfrfHYgByJTSqEK+uybf+x3IEJ8H7rAO8ePDaBcvHs6FAtFlKnhTk6JA1UwImYLFt998
-         etkfyMgFQDdru6TrrZTaXxFnR87EmbRST5fl46lwAsJcdKQFsCnWaQwodLq3I0AmOcLq
-         p3Hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:cc:references:from:subject:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=44JZKXW5mlJ+V66lNHP+kLdlMsmv+wQwqYhG+XePn7c=;
-        b=Uu9/wXqrdpSofsLLRkdICQ3FlIM80rB2aRa4/I80/UoAaLUI1Czm1LT76XUmJ/04uN
-         cAIRs1WqpvppO5dwWVHuUj0C0TunEYPARqgQ6Ah+f1SvRWzpJb2QobcRXkRUEF4PowZt
-         7Bg0XqN0EMiKSiDZvMtFtTBGbGypviycewQrZiikItcNHVLwIQnVjldOpaqnE2g1iOOP
-         EV7PlE1ZJ/E/vokiJ+1UaGv3EyJHkJt7jDirSsyrLayTemCTMWVdhpAhohdQ3lJeEaCM
-         I/DQdfrSD2DkfixxUFTDWPMPsoxpKdtINwYrwIK9ja70EcmoEHigXsVOIdjpdLxhIbWq
-         MzAA==
-X-Gm-Message-State: AOAM532ibKS7l97qi8tbyJN6Y2g2D7mTK4WZtgurjEDV27EKIYQDy2Sz
-        Zv69vn/HfSFAgoSCqjFBzwg=
-X-Google-Smtp-Source: ABdhPJzipKj0+rm+nYuqnnIexKWbIJ3xlkSONQUmo8ETNx/aSznC0DwV2AcZ+4LyWwkx6A/f1k88hw==
-X-Received: by 2002:a7b:c042:: with SMTP id u2mr3798921wmc.127.1623315019312;
-        Thu, 10 Jun 2021 01:50:19 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id v7sm2650858wru.66.2021.06.10.01.50.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Jun 2021 01:50:18 -0700 (PDT)
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        "chun-jie.chen" <chun-jie.chen@mediatek.corp-partner.google.com>
-References: <20210610023614.5375-1-chun-jie.chen@mediatek.com>
- <20210610023614.5375-4-chun-jie.chen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH 3/3] soc: mediatek: pm-domains: Add support for mt8195
-Message-ID: <f050f072-1732-b6f0-f505-2d0a44563ce5@gmail.com>
-Date:   Thu, 10 Jun 2021 10:50:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S229980AbhFJI7B convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 10 Jun 2021 04:59:01 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:65075 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229770AbhFJI7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 04:59:00 -0400
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 9633340010;
+        Thu, 10 Jun 2021 08:56:54 +0000 (UTC)
+Date:   Thu, 10 Jun 2021 10:56:53 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Michal Simek <monstr@monstr.eu>,
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+Subject: Re: [PATCH v23 17/18] dt-bindings: mtd: pl353-nand: Describe this
+ hardware controller
+Message-ID: <20210610105653.2d732c4b@xps13>
+In-Reply-To: <ce97c460-14eb-a758-31f6-124585e733f1@canonical.com>
+References: <20210610082040.2075611-1-miquel.raynal@bootlin.com>
+        <20210610082040.2075611-18-miquel.raynal@bootlin.com>
+        <ce97c460-14eb-a758-31f6-124585e733f1@canonical.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20210610023614.5375-4-chun-jie.chen@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chun-Jie,
+Hi Krzysztof,
 
-Thanks for the patch, comments below.
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote on Thu,
+10 Jun 2021 10:48:16 +0200:
 
-On 10/06/2021 04:36, Chun-Jie Chen wrote:
-> From: "chun-jie.chen" <chun-jie.chen@mediatek.corp-partner.google.com>
+> On 10/06/2021 10:20, Miquel Raynal wrote:
+> > Add a yaml description of this NAND controller which is described as a
+> > subnode of the SMC bus.
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  .../bindings/mtd/arm,pl353-nand-r2p1.yaml     | 53 +++++++++++++++++++
+> >  1 file changed, 53 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+> > new file mode 100644
+> > index 000000000000..5f126bb9b202
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+> > @@ -0,0 +1,53 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mtd/arm,pl353-nand-r2p1.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: PL353 NAND Controller device tree bindings
+> > +
+> > +allOf:
+> > +  - $ref: "nand-controller.yaml"
+> > +
+> > +maintainers:
+> > +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> > +  - Naga Sureshkumar Relli <naga.sureshkumar.relli@xilinx.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:  
 > 
-> Add the needed board data to support mt8195 SoC.
-> 
+> I think you can skip the "items" here and leave only "const: foo".
 
-Please try to come up with a better commit message. Especially mention that we
-have to increase the SPM_MAX_BUS_PROT_DATA.
+Crap, I missed that one, you're right. I'll wait a bit for Rob's
+feedback and eventually fix it when applying or resend (hopefully) only
+the NAND bits.
 
-> Signed-off-by: chun-jie.chen <chun-jie.chen@mediatek.com>
-
-I suppose your name would be "Chun-Jie Chen"
-
-Please also fix your git settings to that From and Signed-off-by matches.
-
-[...]
-
->  
-> diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
-> index 8b86ed22ca56..1b8967b9829e 100644
-> --- a/drivers/soc/mediatek/mtk-pm-domains.h
-> +++ b/drivers/soc/mediatek/mtk-pm-domains.h
-> @@ -37,7 +37,7 @@
->  #define PWR_STATUS_AUDIO		BIT(24)
->  #define PWR_STATUS_USB			BIT(25)
->  
-> -#define SPM_MAX_BUS_PROT_DATA		5
-> +#define SPM_MAX_BUS_PROT_DATA		6
->  
->  #define _BUS_PROT(_mask, _set, _clr, _sta, _update, _ignore) {	\
->  		.bus_prot_mask = (_mask),			\
-> @@ -72,8 +72,6 @@ struct scpsys_bus_prot_data {
->  	bool ignore_clr_ack;
->  };
->  
-> -#define MAX_SUBSYS_CLKS 10
-> -
-
-Good catch, not needed define. Can you put that in a new patch please?
-
-Regards,
-Matthias
+Thanks,
+Miquèl
