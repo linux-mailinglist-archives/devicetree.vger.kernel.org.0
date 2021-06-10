@@ -2,110 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F51E3A2515
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 09:11:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E0103A2518
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 09:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbhFJHNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 03:13:41 -0400
-Received: from mail-vs1-f48.google.com ([209.85.217.48]:38516 "EHLO
-        mail-vs1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229725AbhFJHNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 03:13:41 -0400
-Received: by mail-vs1-f48.google.com with SMTP id x8so1329468vso.5;
-        Thu, 10 Jun 2021 00:11:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vcFbB0zpMkf2v3bQbPR3LDvJ7wjTHUBgJDyynwLmudM=;
-        b=GJq+RU0CSr2VFfoAYhnq+Q6bSNKN9Vake9sspskXpbWRNN6WcAJg9UD3/2NQvWBeDg
-         mx0nUNfboJiy5J1m+2+c3BWy0tyVAyE62Xq6qucciCQLeLzQImzTBODzKU1o15IMFiVi
-         Iw+uyKslgXMyH8wag/2bzIR2Bzac4/Rb0nzu+RQz9cYeD7PsvtKpsn+EjlTiNmwDV4qH
-         1ZogQARLp6KLWstJsBEhtX+BDwEKZxv0zoZF/UEQigJcGMqGVd2hXHnLV+rpfDY9YhAK
-         MOf5Ly37b4u2GeJUutK/8TaN9ErxaM1QaYPLefo81m7E4KZCZLoISPmOM/W0mhFFCsi6
-         bVhA==
-X-Gm-Message-State: AOAM533AGFb4MzI4USz+Cx4z7geos2JcmO+H7YDynS8wAQxXqZuDQrxD
-        Tin2qZZOxsuiUvkwFz7we5/HT68EpzHzRJwkDPv3UmeJ1gA=
-X-Google-Smtp-Source: ABdhPJxxKK0lDgIZmBN/w0exGQXCOUXElDHybpZDt8pGjC9+KkMUamFRGWqtpOd5WcXIyPXVAkygHVXiVo4bmTYyryY=
-X-Received: by 2002:a05:6102:c4c:: with SMTP id y12mr3277130vss.18.1623309089805;
- Thu, 10 Jun 2021 00:11:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210316162643.2442885-1-geert+renesas@glider.be> <4d2edd16-2ca5-c732-d075-5c913e13114a@lucaceresoli.net>
-In-Reply-To: <4d2edd16-2ca5-c732-d075-5c913e13114a@lucaceresoli.net>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Jun 2021 09:11:18 +0200
-Message-ID: <CAMuHMdUdEwD84HDs=GC_USFL1rjsfpL6qUXXgpLtpZKXc=voFw@mail.gmail.com>
-Subject: Re: [PATCH v5] dt-bindings: clk: versaclock5: Miscellaneous fixes and improvements:
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S229802AbhFJHOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 03:14:45 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:33170 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229705AbhFJHOo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 03:14:44 -0400
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 10 Jun 2021 00:12:48 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 10 Jun 2021 00:12:46 -0700
+X-QCInternal: smtphost
+Received: from c-sbhanu-linux.qualcomm.com ([10.242.50.201])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 10 Jun 2021 12:41:53 +0530
+Received: by c-sbhanu-linux.qualcomm.com (Postfix, from userid 2344807)
+        id 54D914DC2; Thu, 10 Jun 2021 12:41:52 +0530 (IST)
+From:   Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+To:     adrian.hunter@intel.com, ulf.hansson@linaro.org, robh+dt@kernel.org
+Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
+        vbadigan@codeaurora.org, rampraka@codeaurora.org,
+        sayalil@codeaurora.org, sartgarg@codeaurora.org,
+        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
+        sibis@codeaurora.org, okukatla@codeaurora.org, djakov@kernel.org,
+        cang@codeaurora.org, pragalla@codeaurora.org,
+        nitirawa@codeaurora.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org,
+        Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+Subject: [PATCH V1] arm64: dts: qcom: sc7180: Added xo clock for eMMC and Sd card
+Date:   Thu, 10 Jun 2021 12:41:47 +0530
+Message-Id: <1623309107-27833-1-git-send-email-sbhanu@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca,
+Added xo clock for eMMC and Sd card.
 
-On Wed, Jun 9, 2021 at 10:56 PM Luca Ceresoli <luca@lucaceresoli.net> wrote:
-> On 16/03/21 17:26, Geert Uytterhoeven wrote:
-> >   - Remove unneeded references for "idt,xtal-load-femtofarads" and
-> >     "idt,slew-percent", as vendor specific properties having a standard
-> >     unit suffix don't need a type,
-> >   - Add missing "additionalProperties: false" for subnodes, to catch
-> >     typos in properties,
-> >   - Fix property names in example.
-> >
-> > Fixes: 45c940184b501fc6 ("dt-bindings: clk: versaclock5: convert to yaml")
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Acked-by: Stephen Boyd <sboyd@kernel.org>
->
-> This patch seems to have gone MIA. It really should be applied. Geert,
-> would you please rebase&resend in case it does not not apply anymore?
-> (or tell me if you prefer me to take it over)
+Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-Send v6 (patch got smaller again ;-)
-
->
-> > ---
-> > This depends on dt-schema v2021.2.1.
-> >
-> > v4:
-> >   - Add Reviewed-by, Acked-by,
-> >
-> > v3:
-> >   - Drop references for "idt,voltage-microvolt" and "idt,slew-percent",
-> >
-> > v2:
-> >   - Settle on "idt,voltage-microvolt", cfr. commit 4b003f5fcadfa2d0
-> >     ('clk: vc5: Use "idt,voltage-microvolt" instead of
-> >     "idt,voltage-microvolts"'),
-> >   - Drop reference to clock.yaml, which is already applied
-> >     unconditionally,
-> >   - Drop removal of allOf around if condition, as it is unnecessary
-> >     churn.
-> >
-> > squash! dt-bindings: clk: versaclock5: Miscellaneous fixes and improvements:
->
-> heh, should be removed, but is's after --- so not a big deal.
-
-Yeah, silly rebase mistake (I apply fixes with changelogs with --squash).
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 295844e..5bb6bd4 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -701,8 +701,9 @@
+ 			interrupt-names = "hc_irq", "pwr_irq";
+ 
+ 			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
+-					<&gcc GCC_SDCC1_AHB_CLK>;
+-			clock-names = "core", "iface";
++					<&gcc GCC_SDCC1_AHB_CLK>,
++					<&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "core", "iface","xo";
+ 			interconnects = <&aggre1_noc MASTER_EMMC 0 &mc_virt SLAVE_EBI1 0>,
+ 					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_EMMC_CFG 0>;
+ 			interconnect-names = "sdhc-ddr","cpu-sdhc";
+@@ -2666,8 +2667,9 @@
+ 			interrupt-names = "hc_irq", "pwr_irq";
+ 
+ 			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
+-					<&gcc GCC_SDCC2_AHB_CLK>;
+-			clock-names = "core", "iface";
++					<&gcc GCC_SDCC2_AHB_CLK>,
++					<&rpmhcc RPMH_CXO_CLK>;
++			clock-names = "core", "iface", "xo";
+ 
+ 			interconnects = <&aggre1_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
+ 					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
