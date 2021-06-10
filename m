@@ -2,201 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FD7B3A300E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 18:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 381FD3A3028
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 18:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229941AbhFJQF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 12:05:59 -0400
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:43743 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229802AbhFJQF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 12:05:58 -0400
-Received: by mail-oi1-f175.google.com with SMTP id x196so2635595oif.10;
-        Thu, 10 Jun 2021 09:03:47 -0700 (PDT)
+        id S231161AbhFJQIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 12:08:37 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:35517 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231184AbhFJQIe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 12:08:34 -0400
+Received: by mail-ot1-f47.google.com with SMTP id 69-20020a9d0a4b0000b02902ed42f141e1so216996otg.2;
+        Thu, 10 Jun 2021 09:06:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=a5oo7TWTKnejB/NSyi1wnjYclDhZO0+JNnZ0T3JYfKU=;
-        b=DlbuS8U5MRTOzvFc2JjRWFzKkFWP8RUQNJYHATdP69KNi1rsuT3UsecltxNkJcaNy0
-         yAof0hJjP0n7hxwpo+LqnV4IAfFPfzHAyP/O7uKyK1FHCtek24TQdEH/phxXH3rtsa1n
-         au09HfOkpJkv11OzV7Cm6Gc70/1GgVYByLUqGnxuWpBoPPBx9sV20l091YwVn9fue08B
-         0q5JuuhyXqF5LDX9W7sK3TXrUpEcODRMJSEhMnsa/v23akxSjrDiptAj0B0LwqmfvK0D
-         ArgAXd7tsjXdrQpBp+inur5EDvX0XNnUDOpEe/EgJrOsTT+MwUxo89WQB3gjRNMiBz/I
-         dD3w==
-X-Gm-Message-State: AOAM530z8Jc3FDITL5I2WRdhvfnmU3xvvkAS9Lgn//o2tri2xQf6X/eU
-        l8npocA2huPgZg4ay+bt3A==
-X-Google-Smtp-Source: ABdhPJxwAL0yW2ShIIl0STCx2/tb/hEmiPJpgxZ2+n9NW7+yPvslHVmkAwQwapoq9KYASfSAdmTouA==
-X-Received: by 2002:aca:ac47:: with SMTP id v68mr3958872oie.160.1623341026947;
-        Thu, 10 Jun 2021 09:03:46 -0700 (PDT)
+        bh=rxqQk5aKXfH8UaE4CFyDXn1vUL+w5pv/lwdq0F6kEMY=;
+        b=g8Rrwz04dP9Fx9kG2epFfQc7ChNqX6ihjVlFZbOhJcLycTFvy8HiiSbxfH8Otk2dmB
+         rWX+Mj9We+t2K8OfeObubdFW1tOQHNMqBJvV+IhxyAYJxm4I2i93L9KdA36SfQnR3yPh
+         xjxeBi2tCw1y8pcW4Pxy2QZTn9uRFJCFREkDbs1wAfSU8IvrrML5sd8UCEQa7+1MuaBv
+         sk3DefnMDIEGX72amC3MT+5sx4qtcz6OnPlBUzu3ZAnzxUz8LR4eUla4WIiURmVBZ/Sr
+         ZDGChjnGht3a+oS0/8oADxvLzQDgIF+TmyIt81pWoOsqM4cBkWRgyIdsue2G6p5lvQTk
+         J86A==
+X-Gm-Message-State: AOAM533KNl4jBDVhjirqneG9iKgGeAzREBNOamL7+x6c/x61W91fpKHY
+        USqx0NXs0iB0LtbHbJE4E4EqnZiiAA==
+X-Google-Smtp-Source: ABdhPJwov5RI4si9eQhd6XsEeuC32d2dIO1xtzkVyC0dJGyD0zJfZ6epsAiDIboK1+FgpVibfS0Llw==
+X-Received: by 2002:a9d:5ccd:: with SMTP id r13mr3027731oti.13.1623341197323;
+        Thu, 10 Jun 2021 09:06:37 -0700 (PDT)
 Received: from robh.at.kernel.org ([172.58.99.113])
-        by smtp.gmail.com with ESMTPSA id h1sm675077otq.59.2021.06.10.09.03.44
+        by smtp.gmail.com with ESMTPSA id e29sm622376oiy.53.2021.06.10.09.06.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jun 2021 09:03:46 -0700 (PDT)
-Received: (nullmailer pid 1890719 invoked by uid 1000);
-        Thu, 10 Jun 2021 16:03:42 -0000
-Date:   Thu, 10 Jun 2021 11:03:42 -0500
+        Thu, 10 Jun 2021 09:06:36 -0700 (PDT)
+Received: (nullmailer pid 1894616 invoked by uid 1000);
+        Thu, 10 Jun 2021 16:06:34 -0000
+Date:   Thu, 10 Jun 2021 11:06:34 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Nava kishore Manne <nava.manne@xilinx.com>
-Cc:     michal.simek@xilinx.com, mdf@kernel.org, trix@redhat.com,
-        arnd@arndb.de, rajan.vaja@xilinx.com, gregkh@linuxfoundation.org,
-        amit.sunil.dhamne@xilinx.com, tejas.patel@xilinx.com,
-        zou_wei@huawei.com, lakshmi.sai.krishna.potthuri@xilinx.com,
-        ravi.patel@xilinx.com, iwamatsu@nigauri.org,
-        wendy.liang@xilinx.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-fpga@vger.kernel.org, git@xilinx.com,
-        chinnikishore369@gmail.com
-Subject: Re: [PATCH v7 3/4] dt-bindings: firmware: Add bindings for xilinx
- firmware
-Message-ID: <20210610160342.GA1883933@robh.at.kernel.org>
-References: <20210604113332.1394-1-nava.manne@xilinx.com>
- <20210604113332.1394-4-nava.manne@xilinx.com>
+To:     Jon Lin <jon.lin@rock-chips.com>
+Cc:     linux-rockchip@lists.infradead.org, heiko@sntech.de,
+        linux-arm-kernel@lists.infradead.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v6 1/6] dt-bindings: spi: spi-rockchip: add description
+ for rv1126
+Message-ID: <20210610160634.GA1894512@robh.at.kernel.org>
+References: <20210607111837.31074-1-jon.lin@rock-chips.com>
+ <20210607111837.31074-2-jon.lin@rock-chips.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210604113332.1394-4-nava.manne@xilinx.com>
+In-Reply-To: <20210607111837.31074-2-jon.lin@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 04, 2021 at 05:03:31PM +0530, Nava kishore Manne wrote:
-> Add documentation to describe Xilinx firmware driver bindings.
-> Firmware driver provides an interface to firmware APIs.
-> Interface APIs can be used by any driver to communicate
-> to Platform Management Unit.
+On Mon, 07 Jun 2021 19:18:32 +0800, Jon Lin wrote:
+> The description below will be used for rv1126.dtsi or compatible one in
+> the future
 > 
-> Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
 > ---
-> Changes for v4:
->               -Added new yaml file for xilinx firmware
->                as suggested by Rob.
 > 
-> Changes for v5:
->               -Fixed some minor issues and updated the fpga node name to versal_fpga.
+> Changes in v6:
+> - Consider to compatibility, the "rockchip,rk3568-spi" is removed in
+>   Series-changes v5, so the commit massage should also remove the
+>   corresponding information
 > 
-> Changes for v6:
->               -Added AES and Clk nodes as a sub nodes to the firmware node.
+> Changes in v5:
+> - Change to leave one compatible id rv1126, and rk3568 is compatible
+>   with rv1126
 > 
-> Changes for v7:
->               -Fixed child nodes format ssues.
+> Changes in v4:
+> - Adjust the order patches
+> - Simply commit massage like redundancy "application" content
 > 
->  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-
-You need to remove xlnx,zynqmp-firmware.txt
-
+> Changes in v3:
+> - Fix compile error which is find by Sascha in [v2,2/8]
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-> new file mode 100644
-> index 000000000000..8e0241c4c137
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml
-> @@ -0,0 +1,94 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx firmware driver
-> +
-> +maintainers:
-> +  - Nava kishore Manne <nava.manne@xilinx.com>
-> +
-> +description:
-> +  The zynqmp-firmware node describes the interface to platform firmware.
-> +  ZynqMP has an interface to communicate with secure firmware. Firmware
-> +  driver provides an interface to firmware APIs. Interface APIs can be
-> +  used by any driver to communicate to PMUFW(Platform Management Unit).
-> +  These requests include clock management, pin control, device control,
-> +  power management service, FPGA service and other platform management
-> +  services.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description:
-> +          For implementations complying for Zynq Ultrascale+ MPSoC.
-> +        const: xlnx,zynqmp-firmware
-> +
-> +      - description:
-> +          For implementations complying for Versal.
-> +        const: xlnx,versal-firmware
-> +
-> +  method:
-> +    description: |
-> +                 The method of calling the PM-API firmware layer.
-> +                 Permitted values are.
-> +                 - "smc" : SMC #0, following the SMCCC
-> +                 - "hvc" : HVC #0, following the SMCCC
-> +
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    enum:
-> +      - smc
-> +      - hvc
-> +
-> +  "versal_fpga":
+>  Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Don't need quotes
-
-> +    $ref: /schemas/fpga/xlnx,versal-fpga.yaml#
-> +    description: Compatible of the FPGA device.
-> +    type: object
-> +
-> +  "zynqmp-aes":
-
-Don't need quotes
-
-> +    $ref: /schemas/crypto/xlnx,zynqmp-aes.yaml#
-> +    description: |
-> +                 The ZynqMP AES-GCM hardened cryptographic accelerator is
-> +                 used to encrypt or decrypt the data with provided key and
-> +                 initialization vector.
-
-Don't need '|' here (there's no formatting) and indent 2 more than 
-'description'.
-
-> +    type: object
-> +
-> +  "clock-controller":
-> +    $ref: /schemas/clock/xlnx,versal-clk.yaml#
-> +    description: |
-> +                 The clock controller is a hardware block of Xilinx versal
-> +                 clock tree. It reads required input clock frequencies from
-> +                 the devicetree and acts as clock provider for all clock
-> +                 consumers of PS clocks.list of clock specifiers which are
-> +                 external input clocks to the given clock controller.
-> +    type: object
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    versal-firmware {
-> +      compatible = "xlnx,versal-firmware";
-> +      method = "smc";
-> +
-> +      versal_fpga: versal_fpga {
-> +        compatible = "xlnx,versal-fpga";
-> +      };
-> +
-> +      xlnx_aes: zynqmp-aes {
-> +        compatible = "xlnx,zynqmp-aes";
-> +      };
-> +
-> +      versal_clk: clock-controller {
-> +        #clock-cells = <1>;
-> +        compatible = "xlnx,versal-clk";
-> +        clocks = <&ref>, <&alt_ref>, <&pl_alt_ref>;
-> +        clock-names = "ref", "alt_ref", "pl_alt_ref";
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.17.1
+Acked-by: Rob Herring <robh@kernel.org>
