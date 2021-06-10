@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A15143A2D2A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73C123A2D62
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 15:46:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230458AbhFJNh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 09:37:57 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:23014 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S230413AbhFJNh5 (ORCPT
+        id S230291AbhFJNsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 09:48:24 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:34868 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230346AbhFJNsY (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Jun 2021 09:37:57 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15ADRTRM027439;
-        Thu, 10 Jun 2021 15:35:42 +0200
+        Thu, 10 Jun 2021 09:48:24 -0400
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15ADfF2G011626;
+        Thu, 10 Jun 2021 15:46:11 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to :
  references : from : message-id : date : mime-version : in-reply-to :
  content-type : content-transfer-encoding; s=selector1;
- bh=PVwoi7QXAKZzjqIJrJlU43OTjFre496R9tdNWd8Ac2w=;
- b=ZN81NbvDFhrXwk4O1UyjffqcLGTinleTVxJhmVMlxYd5rFaqSI/dX2wNs1w2DGinAbNh
- Lt8/ZcUg5m0Ncdsjg0M6PEn/h5cniXxt1kuO1hOPYkb0BNIN3jxBzL0OOOF8AwSzSRHZ
- /jLKxZ8ARy7finN7O9nUCe5fnM4T64Z5Dxd/SsFfUgyCp+2BPFIYWqAR5V1LndMt5SNJ
- rjo/l64Jg4AQCtfpzScvPu6zaAvb6UhWrK0u9NCsKTYD4RFb7so9WENiByooWQ3/Ok6u
- mnfPKfUlIRVQ98HRjwzP+cIPkoOHqiRoHGvs0W3obLUGD7VSc4FJRhDTnPa6JcUIMt4p Bg== 
+ bh=wEEkWxXSfq66/leswbqmUsRSfaLtlKhzGDS4UuKrTTk=;
+ b=MW7/lejI8Ni+q25Bdb5nP/0nlLSRcMzo0l04yr9y0FMZDdlFI5ncEuH5Pd6qzsxzcWg9
+ sL6vzU5V9CMTWs5fDnoNYUPsCGRGwKsCSfbSaMUcbzCAv0Cn8NZiNgQb46Z9DD1J92qM
+ zuJeX/MrTr1Vn37L6glaLFMtqoBGGwCPvrWx+dn6YDvkcfRFgJsBmWgeEbrqq8JTkGfJ
+ V3/XgeU2S6AUsayfQZTTqzy75vfl58O5YeU0Tz0hNKiGodt/CseWn0AhRsHjNlrYK9oL
+ hnuq7Ge0aGk03uoEEF+zlKsyng3R3NtkTH0Q1/PzhdmBxJkpNYfRL5dM52MtWGHZr5Wy 2w== 
 Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 392xq7y0g4-1
+        by mx07-00178001.pphosted.com with ESMTP id 393eqyj1uf-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Jun 2021 15:35:42 +0200
+        Thu, 10 Jun 2021 15:46:11 +0200
 Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 38EB2100034;
-        Thu, 10 Jun 2021 15:35:41 +0200 (CEST)
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 274CD10002A;
+        Thu, 10 Jun 2021 15:46:11 +0200 (CEST)
 Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 195B7228817;
-        Thu, 10 Jun 2021 15:35:41 +0200 (CEST)
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 093B2228838;
+        Thu, 10 Jun 2021 15:46:11 +0200 (CEST)
 Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE3.st.com
  (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 10 Jun
- 2021 15:35:40 +0200
-Subject: Re: [PATCH v2] ARM: dts: stm32: add a new DCMI pins group
+ 2021 15:46:10 +0200
+Subject: Re: [PATCH] ARM: dts: stm32: fix the Odyssey SoM eMMC VQMMC supply
 To:     Grzegorz Szymaszek <gszymaszek@short.pl>,
         Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Ahmad Fatoum <a.fatoum@pengutronix.de>,
@@ -46,18 +46,17 @@ To:     Grzegorz Szymaszek <gszymaszek@short.pl>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>,
         <linux-stm32@st-md-mailman.stormreply.com>
-References: <fcee4f30-446e-f4da-6d95-c9223cf82981@pengutronix.de>
- <YLj2emwxhAVVOeIo@nx64de-df6d00>
+References: <YLj4AMTCi84yO9GO@nx64de-df6d00>
 From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <0b37872e-4ae9-acd6-5698-b188ad38bb8a@foss.st.com>
-Date:   Thu, 10 Jun 2021 15:35:40 +0200
+Message-ID: <af63b0d2-fce7-1e29-e36e-02da08f14d83@foss.st.com>
+Date:   Thu, 10 Jun 2021 15:46:10 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <YLj2emwxhAVVOeIo@nx64de-df6d00>
+In-Reply-To: <YLj4AMTCi84yO9GO@nx64de-df6d00>
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Originating-IP: [10.75.127.50]
 X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE3.st.com
  (10.75.127.6)
@@ -69,82 +68,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi
 
-On 6/3/21 5:34 PM, Grzegorz Szymaszek wrote:
-> The Seeed Odyssey-STM32MP157C board has a 20-pin DVP camera output.
-> stm32mp15-pinctrl.dtsi contained one pin state definition for the DCMI
-> interface, dcmi-0, AKA phandle dcmi_pins_a. This definition was
-> incompatible with the pins used on the Odyssey board, where:
-> - there are 8 data pins instead of 12,
-> - DCMI_HSYNC is available at PA4 instead of PH8,
-> - DCMI_D0 is at PC6 instead of PH9,
-> - DCMI_D3 is at PE1 instead of PH12,
-> - DCMI_D4 is at PE11 instead of PH14,
-> - DCMI_D5 is at PD3 instead of PI4,
-> - DCMI_D6 is at PE13 instead of PB8,
-> - DCMI_D7 is at PB9 instead of PE6.
-> 
-> Add the DCMI pins used on the Odyssey board as a new DCMI pin state
-> definition, dcmi-1, AKA phandle dcmi_pins_b.
+On 6/3/21 5:40 PM, Grzegorz Szymaszek wrote:
+> The Seeed SoM-STM32MP157C device tree had the eMMC’s (SDMMC2) VQMMC
+> supply set to v3v3 (buck4), the same as the VMMC supply. That was
+> incorrect, as on the SoM, the VQMMC supply is provided from vdd (buck3)
+> instead.
 > 
 > Signed-off-by: Grzegorz Szymaszek <gszymaszek@short.pl>
 > ---
-> V1 -> V2: Removed the pinctrl override from the Odyssey device tree,
-> added a new pinctrl in stm32mp15-pinctrl.dtsi instead
+>   arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 33 ++++++++++++++++++++++++
->   1 file changed, 33 insertions(+)
+> diff --git a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
+> index 6cf49a0a9e69..b5601d270c8f 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp157c-odyssey-som.dtsi
+> @@ -269,7 +269,7 @@ &sdmmc2 {
+>   	st,neg-edge;
+>   	bus-width = <8>;
+>   	vmmc-supply = <&v3v3>;
+> -	vqmmc-supply = <&v3v3>;
+> +	vqmmc-supply = <&vdd>;
+>   	mmc-ddr-3_3v;
+>   	status = "okay";
+>   };
 > 
 
-Applied on stm32-next. I just updated the commit title by
-"ARM: dts: stm32: add a new DCMI pins group on stm32mp15"
+Applied on stm32-next.
 
 Thanks.
 Alex
-
-
-> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> index 060baa8b7e9d..5b60ecbd718f 100644
-> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> @@ -118,6 +118,39 @@ pins {
->   		};
->   	};
->   
-> +	dcmi_pins_b: dcmi-1 {
-> +		pins {
-> +			pinmux = <STM32_PINMUX('A', 4,  AF13)>,/* DCMI_HSYNC */
-> +				 <STM32_PINMUX('B', 7,  AF13)>,/* DCMI_VSYNC */
-> +				 <STM32_PINMUX('A', 6,  AF13)>,/* DCMI_PIXCLK */
-> +				 <STM32_PINMUX('C', 6,  AF13)>,/* DCMI_D0 */
-> +				 <STM32_PINMUX('H', 10, AF13)>,/* DCMI_D1 */
-> +				 <STM32_PINMUX('H', 11, AF13)>,/* DCMI_D2 */
-> +				 <STM32_PINMUX('E', 1,  AF13)>,/* DCMI_D3 */
-> +				 <STM32_PINMUX('E', 11, AF13)>,/* DCMI_D4 */
-> +				 <STM32_PINMUX('D', 3,  AF13)>,/* DCMI_D5 */
-> +				 <STM32_PINMUX('E', 13, AF13)>,/* DCMI_D6 */
-> +				 <STM32_PINMUX('B', 9,  AF13)>;/* DCMI_D7 */
-> +			bias-disable;
-> +		};
-> +	};
-> +
-> +	dcmi_sleep_pins_b: dcmi-sleep-1 {
-> +		pins {
-> +			pinmux = <STM32_PINMUX('A', 4,  ANALOG)>,/* DCMI_HSYNC */
-> +				 <STM32_PINMUX('B', 7,  ANALOG)>,/* DCMI_VSYNC */
-> +				 <STM32_PINMUX('A', 6,  ANALOG)>,/* DCMI_PIXCLK */
-> +				 <STM32_PINMUX('C', 6,  ANALOG)>,/* DCMI_D0 */
-> +				 <STM32_PINMUX('H', 10, ANALOG)>,/* DCMI_D1 */
-> +				 <STM32_PINMUX('H', 11, ANALOG)>,/* DCMI_D2 */
-> +				 <STM32_PINMUX('E', 1,  ANALOG)>,/* DCMI_D3 */
-> +				 <STM32_PINMUX('E', 11, ANALOG)>,/* DCMI_D4 */
-> +				 <STM32_PINMUX('D', 3,  ANALOG)>,/* DCMI_D5 */
-> +				 <STM32_PINMUX('E', 13, ANALOG)>,/* DCMI_D6 */
-> +				 <STM32_PINMUX('B', 9,  ANALOG)>;/* DCMI_D7 */
-> +		};
-> +	};
-> +
->   	ethernet0_rgmii_pins_a: rgmii-0 {
->   		pins1 {
->   			pinmux = <STM32_PINMUX('G', 5, AF11)>, /* ETH_RGMII_CLK125 */
-> 
-
