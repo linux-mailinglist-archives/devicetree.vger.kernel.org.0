@@ -2,78 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C278A3A2FC8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 17:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1EBE3A2FE2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 17:54:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231153AbhFJPvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 11:51:17 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:38725 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230298AbhFJPvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 11:51:16 -0400
-Received: by mail-ot1-f47.google.com with SMTP id j11-20020a9d738b0000b02903ea3c02ded8so142893otk.5;
-        Thu, 10 Jun 2021 08:49:08 -0700 (PDT)
+        id S231542AbhFJP4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 11:56:00 -0400
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:38516 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231450AbhFJPz7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 11:55:59 -0400
+Received: by mail-oi1-f177.google.com with SMTP id z3so2608709oib.5;
+        Thu, 10 Jun 2021 08:53:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jHLGIt6RLM2t7ULN/gWoY1/X6PighK4+59mVA8vx+r8=;
-        b=Df2gtLxwCY2GEbLE5t4bA8/nqxDbSseE+x2Frv/AEI/zjOSXYa/Ol4xIOlwbdCYUcW
-         W3UjoENl/3oEhsZF+yqja98msfwXk8tIUP5pByG8Dj8z23D+dn6O2d70zNTPhgJv7zBp
-         fYbQSxFY2COcWtlq0mj+Z6l4r7hbCIBwCIwv1rpsSe53NpbSE+PUxdLjRP8EKZ//d0EO
-         zwoF7dqqIHOIfJDc6d5BFRCc6eTTQ6DWdTlBquxubR/1FRU7YMbgaqOFDngYEr0/5HIg
-         dSttBPA/ZYVyOX6pf9CL4CprTcsduIVDRGEugyhdNGEWiq64gOB6ay8Fm2IxHc8/mXtD
-         B1Dw==
-X-Gm-Message-State: AOAM530SCxMuxVfBDGGGsT6T0zeTSkCDeyrWVjsPsO/U/rSNmzQKGg8h
-        SseCxLDy5YDueovnSCMU2g==
-X-Google-Smtp-Source: ABdhPJwZnH/HEVQP9MZceozaTD8X/CkVHBbgq+n0s6TSv58Q9zBYFCo/F+Ma9llLukA882/0GaAySg==
-X-Received: by 2002:a9d:4817:: with SMTP id c23mr3105218otf.352.1623340147764;
-        Thu, 10 Jun 2021 08:49:07 -0700 (PDT)
+        bh=VRySpPzJlLYhI3h/JIF31rTc1KoHGLh9s0BINnZ+x9M=;
+        b=XuMKGROQXfdsi/Ljt6hppjHzrRChQvD3NZykFY93nb+40NcF3/dSRdDWfK2lvUNFPp
+         z5obCMAuHUAD1WKOQwLrGM/iInWnnHmNv4GEdRj8jKJxKNRu0jczURQlvCfBinan002x
+         WDmhAd8de7+XthiHNR4tReiOH36yisbD2bmd+TcyPHAei+FCkQ1NL98S/tR7JJccqGGx
+         t0p4g6Ah4tCyCyvPWCFZRuhJRD3wrtks9pnRKnyHMTuXz9PwAp2jTvoyIM60KBZ8QkXW
+         Hlnz4c/0u13p0IdsTJE9zuOjkckCz4+SXe3rrLBtnIBW2DjUtO7KtRYt1xLl94qUt6to
+         Krvw==
+X-Gm-Message-State: AOAM533LMX9Kpc84CydL48UhLMXQynIBUYZJaLKat4KLppJCQV6S7IVf
+        huEsYAX6veD3w6LBWGmERA==
+X-Google-Smtp-Source: ABdhPJy1S0NCE5ntUuS+7phY6/iHJ2rMqyiVziT1ZAtosDKXBmthXoUwpRdOtZBBEhZ1W70GFFQXfg==
+X-Received: by 2002:a05:6808:8fb:: with SMTP id d27mr6116265oic.115.1623340432085;
+        Thu, 10 Jun 2021 08:53:52 -0700 (PDT)
 Received: from robh.at.kernel.org ([172.58.99.113])
-        by smtp.gmail.com with ESMTPSA id g25sm680396otn.81.2021.06.10.08.49.05
+        by smtp.gmail.com with ESMTPSA id f25sm677899oto.26.2021.06.10.08.53.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jun 2021 08:49:07 -0700 (PDT)
-Received: (nullmailer pid 1868515 invoked by uid 1000);
-        Thu, 10 Jun 2021 15:49:04 -0000
-Date:   Thu, 10 Jun 2021 10:49:04 -0500
+        Thu, 10 Jun 2021 08:53:51 -0700 (PDT)
+Received: (nullmailer pid 1877730 invoked by uid 1000);
+        Thu, 10 Jun 2021 15:53:45 -0000
+Date:   Thu, 10 Jun 2021 10:53:45 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        helmut.grohne@intenta.de,
-        Amit Kumar Mahapatra <akumarma@xilinx.com>,
-        Siva Durga Prasad Paladugu <sivadur@xilinx.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Srinivas Goud <sgoud@xilinx.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Naga Sureshkumar Relli <nagasure@xilinx.com>,
-        linux-mtd@lists.infradead.org, Richard Weinberger <richard@nod.at>,
         Michal Simek <monstr@monstr.eu>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v23 17/18] dt-bindings: mtd: pl353-nand: Describe this
- hardware controller
-Message-ID: <20210610154904.GA1868448@robh.at.kernel.org>
+        Naga Sureshkumar Relli <nagasure@xilinx.com>,
+        Amit Kumar Mahapatra <akumarma@xilinx.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+Subject: Re: [PATCH v23 08/18] dt-binding: memory: pl353-smc: Enhance the
+ description of the reg property
+Message-ID: <20210610155345.GA1873816@robh.at.kernel.org>
 References: <20210610082040.2075611-1-miquel.raynal@bootlin.com>
- <20210610082040.2075611-18-miquel.raynal@bootlin.com>
+ <20210610082040.2075611-9-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210610082040.2075611-18-miquel.raynal@bootlin.com>
+In-Reply-To: <20210610082040.2075611-9-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Jun 2021 10:20:39 +0200, Miquel Raynal wrote:
-> Add a yaml description of this NAND controller which is described as a
-> subnode of the SMC bus.
+On Thu, Jun 10, 2021 at 10:20:30AM +0200, Miquel Raynal wrote:
+> The SMC bus controller features several register sets. The one pointed
+> by the reg property is for the SMC configuration (impacts the
+> sub-controllers configuration), while the others are meant to be used to
+> send regular cycles on the memory bus (eg. CMD, ADDR, DATA for a NAND
+> device). Detail this a little bit for the sake of clarity.
 > 
 > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  .../bindings/mtd/arm,pl353-nand-r2p1.yaml     | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/arm,pl353-nand-r2p1.yaml
+>  .../devicetree/bindings/memory-controllers/pl353-smc.txt       | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt b/Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+> index ecd46856f139..ba6a5426f62b 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+> +++ b/Documentation/devicetree/bindings/memory-controllers/pl353-smc.txt
+> @@ -5,7 +5,8 @@ of memory interfaces: NAND and memory mapped interfaces (such as SRAM or NOR).
+>  
+>  Required properties:
+>  - compatible		: Should be "arm,pl353-smc-r2p1", "arm,primecell".
+> -- reg			: Controller registers map and length.
+> +- reg			: SMC controller and sub-controllers configuration
+> +			  registers.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I think you could just drop this patch. Otherwise, this doesn't match 
+what's now in the yaml file.
+
+Rob
