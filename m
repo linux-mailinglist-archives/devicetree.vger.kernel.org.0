@@ -2,135 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84EE13A2113
-	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 01:59:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CE383A2169
+	for <lists+devicetree@lfdr.de>; Thu, 10 Jun 2021 02:28:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229753AbhFJABI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Jun 2021 20:01:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51990 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229507AbhFJABH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Jun 2021 20:01:07 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73CEC061574;
-        Wed,  9 Jun 2021 16:59:04 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id l1so21097284pgm.1;
-        Wed, 09 Jun 2021 16:59:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=sZzSiPNuS6HzP3W3kJeux2YhF8hkdCu7Hs+HpWnk32I=;
-        b=g+mnOJ9CPb2aZZkhrxZSjQEA3l0xsT28NQFB8tWfdHx+kD1J02obbOj4obmpXt1Ru0
-         dssAnA5M4elwWQW7f0NTx2UP273vVpzNCCRZj80dHfdkUumjBuKwmAhFyPMk9M1y++N3
-         e/cDpxK7XCgTerPLo3tVhrsZR0biCzSYfQZjz/Tg9GurHsOdhkUhpkXG4dv09Q478gJk
-         FxAcCXTP3Y0ZNqnxYoaAHmChIciPilU753kDk0dvklM8xp0FydoO/Z2SvUGulTK3ZMZz
-         BtcHPLj5FlienrXMZmOJJtoANDOjxuu1FN5VGKv1myOQNTfl8VA/5A224xY02mbXc2N+
-         Fx0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=sZzSiPNuS6HzP3W3kJeux2YhF8hkdCu7Hs+HpWnk32I=;
-        b=Qvt0PN20Ws6st6SCVuAupYwXrZBLJ/vOa/NaSdrRbkNRjdoTW7iscMwloXaNasVm19
-         GmpEmgcjyNAvPIOaGsKezhR9T3HvsjX3ZlDMBfmccO9wDhNosW/Yx2OFrtZoRKGW5JsS
-         EYVjg8lg2f52euWDux/Dm3on70J+uslrev25prlplWI3Z/Dqu5iCFLRw8eKGRnZwzwi7
-         RJpnfsoybZPUIyM20ebFQ4V7KwmtYY9dq67uKaRGBdA0MiLxcw8VyU84ugCbaXjUb9oV
-         pV5LFNNhWbQ1v7jBt2RUrZcpJfb/cVzxDUDIwzt4pVHxhc/tIZkyvn0G0xY4yQzFACmq
-         ED+Q==
-X-Gm-Message-State: AOAM532oZlM2kiJn1wpyxpjCqK/Z/5I2h4JXZUvPivkA4Xmj2gi8Y7RP
-        US7yG/zL+bveM35EYsaJ7/0=
-X-Google-Smtp-Source: ABdhPJwgXo7n2Yno/auZncv+or4D/adXE63ZaZroShaZjM5hYoDhPmOuGVGxmf0W81DyS+VuzrBqAQ==
-X-Received: by 2002:a65:6118:: with SMTP id z24mr2130369pgu.325.1623283144265;
-        Wed, 09 Jun 2021 16:59:04 -0700 (PDT)
-Received: from [192.168.1.67] (99-44-17-11.lightspeed.irvnca.sbcglobal.net. [99.44.17.11])
-        by smtp.gmail.com with ESMTPSA id r11sm742619pgl.34.2021.06.09.16.59.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Jun 2021 16:59:03 -0700 (PDT)
-Subject: Re: [PATCH 2/2] mmc: sdhci-iproc: Add support for the legacy sdhci
- controller on the BCM7211
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Al Cooper <alcooperx@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
-        Scott Branden <sbranden@broadcom.com>
-References: <20210602192758.38735-1-alcooperx@gmail.com>
- <20210602192758.38735-2-alcooperx@gmail.com>
- <CAPDyKFrynST66yA_T3iroiJsfmNuBOEiiBnb=vNoyP6QpvZ7aQ@mail.gmail.com>
- <fe956941-bb39-413e-f051-d9f353f64eda@gmail.com>
- <CAPDyKFpEtvjS1mWC68gRBWD64dq2M1LO84UWE5uDLTzbGz1g8Q@mail.gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <6acd480a-8928-89bb-0f40-d278294973a1@gmail.com>
-Date:   Wed, 9 Jun 2021 16:59:00 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.10.2
+        id S229655AbhFJAaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Jun 2021 20:30:00 -0400
+Received: from phobos.denx.de ([85.214.62.61]:42242 "EHLO phobos.denx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229507AbhFJA36 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Jun 2021 20:29:58 -0400
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 8F3A182CDA;
+        Thu, 10 Jun 2021 02:28:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1623284881;
+        bh=EhQLnZmwSsQnp9MEfs5ngDBIF6k+h0qBpUTk20qgmTQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=hW72+jCT54YlLJe/LJb4UD//QiAy/8+N9Wj18DZKmDdZ/h4bpfIu5Il0MVuYn2djH
+         CFqIAj/g3RfbvV9r1kZcSFJ2rRIqHmN1lTUPJF7LYb8cR15c815RhQ47yBNyjKmi9B
+         UA47TvEe8dEqvy1FJ35sJA+GC1AS2LX2zIkB3mNKdSqDPeanrOqZnOwkm2FZGm6Q8o
+         IdViYqVNpPp0ZbNeYYOA4zm49lNMriwd10A4Qxx+PzwiCc4NIc1tiDf2g1F4Q3etrw
+         oyb7BeEjah2bnzPBO0NJDz14KlpLBIhlAXGdAheMYSmKyuDX6ZTiBsAItUwhdTd5wV
+         MIuY/nfhu/5dw==
+From:   Marek Vasut <marex@denx.de>
+To:     devicetree@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Lukas Wunner <lukas@wunner.de>, Petr Stetiar <ynezz@true.cz>,
+        Rob Herring <robh@kernel.org>, kernel@dh-electronics.com,
+        netdev@vger.kernel.org
+Subject: [PATCH] dt-bindings: net: ks8851: Convert to YAML schema
+Date:   Thu, 10 Jun 2021 02:27:48 +0200
+Message-Id: <20210610002748.134140-1-marex@denx.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFpEtvjS1mWC68gRBWD64dq2M1LO84UWE5uDLTzbGz1g8Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.102.4 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the Micrel KSZ8851 DT bindings to YAML schema.
 
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: David S. Miller <davem@davemloft.net>
+Cc: Lukas Wunner <lukas@wunner.de>
+Cc: Petr Stetiar <ynezz@true.cz>
+Cc: Rob Herring <robh@kernel.org>
+Cc: kernel@dh-electronics.com
+Cc: netdev@vger.kernel.org
+To: devicetree@vger.kernel.org
+---
+ .../bindings/net/micrel,ks8851.yaml           | 94 +++++++++++++++++++
+ .../devicetree/bindings/net/micrel-ks8851.txt | 18 ----
+ 2 files changed, 94 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/micrel,ks8851.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/micrel-ks8851.txt
 
-On 6/9/2021 2:22 AM, Ulf Hansson wrote:
-> On Wed, 9 Jun 2021 at 05:07, Florian Fainelli <f.fainelli@gmail.com> wrote:
->>
->>
->>
->> On 6/8/2021 5:40 AM, Ulf Hansson wrote:
->>> On Wed, 2 Jun 2021 at 21:28, Al Cooper <alcooperx@gmail.com> wrote:
->>>>
->>>> Add support for the legacy Arasan sdhci controller on the BCM7211 and
->>>> related SoC's. This includes adding a .shutdown callback to increase
->>>> the power savings during S5.
->>>
->>> Please split this into two separate changes.
->>>
->>> May I also ask about the ->shutdown() callback and in relation to S5.
->>> What makes the ->shutdown callback only being invoked for S5?
->>
->> It is not only called for S5 (entered via poweroff on a prompt) but also
->> during kexec or reboot. The poweroff path is via:
->>
->> kernel_power_off() -> kernel_shutdown_prepare() -> device_shutdown() ->
->> .shutdown()
->>
->> For kexec or reboot we do not really care about power savings since we
->> are about to load a new image anyway, however for S5/poweroff we do care
->> about quiescing the eMMC controller in a way that its clocks and the
->> eMMC device can be put into low power mode since we will stay in that
->> mode for seconds/hours/days until someone presses a button on their
->> remote (or other wake-up sources).
-> 
-> Hmm, I am not sure I understand correctly. At shutdown we don't care
-> about wake-up sources from the kernel point of view, instead we treat
-> everything as if it will be powered off.
-
-The same .shutdown() path is used whether you kexec, reboot or poweroff,
-but for poweroff we do care about allowing specific wake-up sources
-configured as such to wake-up the system at a later time, like GPIOs,
-RTC, etc.
-
-> 
-> We put devices into low power state at system suspend and potentially
-> also during some of the hibernation phases.
-> 
-> Graceful shutdown of the eMMC is also managed by the mmc core.
-
-AFAICT that calls mmc_blk_shutdown() but that is pretty much it, the
-SDHCI platform_driver still needs to do something in order to conserve
-power including disabling host->clk, otherwise we would not have done
-that for sdhci-brcmstb.c.
+diff --git a/Documentation/devicetree/bindings/net/micrel,ks8851.yaml b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
+new file mode 100644
+index 000000000000..d25a439e0087
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
+@@ -0,0 +1,94 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/micrel,ks8851.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Micrel KS8851 Ethernet MAC (MLL)
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++properties:
++  compatible:
++    oneOf:
++      - const: "micrel,ks8851"      # SPI bus option
++      - const: "micrel,ks8851-mll"  # Parallel bus option
++
++  interrupts:
++    maxItems: 1
++
++  reg:
++    minItems: 1
++    maxItems: 2
++
++  reset-gpios:
++    maxItems: 1
++    description:
++      The reset_n input pin
++
++  vdd-supply:
++    description: |
++      Analog 3.3V supply for Ethernet MAC (see regulator/regulator.yaml)
++
++  vdd-io-supply:
++    description: |
++      Digital 1.8V IO supply for Ethernet MAC (see regulator/regulator.yaml)
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++allOf:
++  - $ref: ethernet-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: "micrel,ks8851"
++    then:
++      properties:
++        reg:
++          maxItems: 1
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: "micrel,ks8851-mll"
++    then:
++      properties:
++        reg:
++          minItems: 2
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    /* SPI bus option */
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        ethernet@0 {
++            compatible = "micrel,ks8851";
++            reg = <0>;
++            interrupt-parent = <&msmgpio>;
++            interrupts = <90 8>;
++            vdd-supply = <&ext_l2>;
++            vdd-io-supply = <&pm8921_lvs6>;
++            reset-gpios = <&msmgpio 89 0>;
++        };
++    };
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    /* Parallel bus option */
++    memory-controller {
++        #address-cells = <2>;
++        #size-cells = <1>;
++        ethernet@1,0 {
++            compatible = "micrel,ks8851-mll";
++            reg = <1 0x0 0x2>, <1 0x2 0x20000>;
++            interrupt-parent = <&gpioc>;
++            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/net/micrel-ks8851.txt b/Documentation/devicetree/bindings/net/micrel-ks8851.txt
+deleted file mode 100644
+index bbdf9a7359a2..000000000000
+--- a/Documentation/devicetree/bindings/net/micrel-ks8851.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-Micrel KS8851 Ethernet mac (MLL)
+-
+-Required properties:
+-- compatible = "micrel,ks8851-mll" of parallel interface
+-- reg : 2 physical address and size of registers for data and command
+-- interrupts : interrupt connection
+-
+-Micrel KS8851 Ethernet mac (SPI)
+-
+-Required properties:
+-- compatible = "micrel,ks8851" or the deprecated "ks8851"
+-- reg : chip select number
+-- interrupts : interrupt connection
+-
+-Optional properties:
+-- vdd-supply: analog 3.3V supply for Ethernet mac
+-- vdd-io-supply: digital 1.8V IO supply for Ethernet mac
+-- reset-gpios: reset_n input pin
 -- 
-Florian
+2.30.2
+
