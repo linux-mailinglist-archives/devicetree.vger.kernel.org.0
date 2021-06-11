@@ -2,130 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42E183A4369
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 15:54:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 566343A4383
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 15:55:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231324AbhFKN4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 09:56:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46710 "EHLO
+        id S232010AbhFKN5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 09:57:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231268AbhFKN4a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 09:56:30 -0400
-Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F9BC061574
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 06:54:31 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2411:a261:8fe2:b47f])
-        by baptiste.telenet-ops.be with bizsmtp
-        id FpuV2500825eH3q01puVxq; Fri, 11 Jun 2021 15:54:29 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lrhcC-00FhDG-Ns; Fri, 11 Jun 2021 15:54:28 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lrhcC-00CsQD-2l; Fri, 11 Jun 2021 15:54:28 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joe Hung <joe_hung@ilitek.com>, Marek Vasut <marex@denx.de>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: input: touchscreen: ilitek_ts_i2c: Absorb ili2xxx bindings
-Date:   Fri, 11 Jun 2021 15:54:27 +0200
-Message-Id: <c381ee2526074e02b6058c489f85cfdaee582713.1623419587.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231845AbhFKN5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 09:57:05 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFEF5C0617AF;
+        Fri, 11 Jun 2021 06:54:54 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id k5-20020a05600c1c85b02901affeec3ef8so8759504wms.0;
+        Fri, 11 Jun 2021 06:54:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=t4GhLZNbe4X2F3Nkr5l8ySaeJ4eizRMsuR8A0/1Zt0Y=;
+        b=a/f8+4vbE1r6uJlb7Fjan9+4imWd4Zedf0Xckjd0d4AB2QSBHX5peJ7wmUNKD6RqI+
+         to/2lPyvcfU4XkwCX1knG7AuwfjX7/O2OISnaQPZ87aakBd6RbyLw4/U7RX49QraOXlq
+         QfLh4HN4i3aXmH2Ho1av8xEWIPTj/5AC3Myk3hLxEyLEmLS1IFpJ0UJssFbeGA2vAQ48
+         f6RIU2Tg+qkYwbz1YGFE2faT4qXVsIjz43HqDnXCDFi/AC/y3IdrajUzl6YjzxwxkJPz
+         e1RASmN2Y/FUn76nkutOI1G//cDXb97TqWLuuFECkcD3Pv2EU49R9fhmMV08LGh6AlGI
+         KWGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=t4GhLZNbe4X2F3Nkr5l8ySaeJ4eizRMsuR8A0/1Zt0Y=;
+        b=czkb4mmxLCh9+hF4Dr+8hYEm2HLwGYwjnSazLrglourXsj5nXl289k0x+dRLfCFQB5
+         kn37tvUV2T7MKvVD7annefuk3iBmbTABDpL8cHcWaw+kIRxNaYIHoLffZ35x6nj8FuhM
+         Tya0dkL5sExAincEoniFYGAJJKs7nfNKMwxmjkPI1YgJm2kOKfwpErVtlZ6K+Ym4bQ2L
+         4sngD8EpJfvgFLhGKqJ67yIRpcDD9Opg+cdhs45H0kS5Hb9M7wrS1bVyWkPOwiCl8u8/
+         Yb7QXQXeZNbonOgk2p0Sj+uhkogclaU9eW/hCuTRhCkxb0NDXWAC/gsFilrHQfnQrgLo
+         7Vzg==
+X-Gm-Message-State: AOAM532MszD2/gEI1m+9pRikShl7Ix4DsSdG13tY8Pt+uwQej1GZHfCI
+        45ti6gB5WBsPd0VSetiNB3XssyggSBX2SQ==
+X-Google-Smtp-Source: ABdhPJwGotQnlGnQ6Y9vwgx6pMAyzR0pOVPeMeus0XIW6adAlKXjSYCF3sSJwsvgh9y7r9m7GBGYrQ==
+X-Received: by 2002:a1c:1d04:: with SMTP id d4mr4074792wmd.126.1623419693316;
+        Fri, 11 Jun 2021 06:54:53 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id d15sm7025666wri.58.2021.06.11.06.54.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Jun 2021 06:54:52 -0700 (PDT)
+Subject: Re: [PATCH 2/2] dt-binding: mediatek: mt6779: update spi document
+To:     Mason Zhang <mason.zhang@mediatek.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, wsd_upstream@mediatek.com,
+        hanks.chen@mediatek.com, linux-kernel@vger.kernel.org,
+        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <1623413625.22727.10.camel@mbjsdccf07>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <a00f4055-4f44-9acf-5a0f-579c300bd5c0@gmail.com>
+Date:   Fri, 11 Jun 2021 15:54:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1623413625.22727.10.camel@mbjsdccf07>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While Linux uses a different driver, the Ilitek
-ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller Device Tree
-binding documentation is very similar.
+Hi Mason,
 
-  - Drop the fixed reg value, as some controllers use a different
-    address,
-  - Make reset-gpios optional, as it is not always wired.
+On 11/06/2021 14:13, Mason Zhang wrote:
+> 
+> this patch update spi document for MT6779 SOC.
+> 
+> Signed-off-by: Mason Zhang <Mason.Zhang@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/spi/spi-mt65xx.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-mt65xx.txt b/Documentation/devicetree/bindings/spi/spi-mt65xx.txt
+> index 9e43721fa7d6..7bae7eef26c7 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-mt65xx.txt
+> +++ b/Documentation/devicetree/bindings/spi/spi-mt65xx.txt
+> @@ -13,6 +13,7 @@ Required properties:
+>      - mediatek,mt8183-spi: for mt8183 platforms
+>      - "mediatek,mt8192-spi", "mediatek,mt6765-spi": for mt8192 platforms
+>      - "mediatek,mt8516-spi", "mediatek,mt2712-spi": for mt8516 platforms
+> +    - "mediatek,mt6779-spi", "mediatek,mt6765-spi": for mt6779 platforms
+>  
+>  - #address-cells: should be 1.
+>  
+> 
+> Hi Matthias:
+> 	
+> 	I'm sorry to disturb you, this patch is stay here for a long time, Do
+> you have any suggestions about this patch? 
+> 	We hope this patch will be merged as soon as possible,If you have any
+> concern, I will fix it in time.
+> 
+> 	Looking forward to your reply~  
+> 
+> Thanks
+> Mason
+> 
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../bindings/input/ilitek,ili2xxx.txt         | 27 -------------------
- .../input/touchscreen/ilitek_ts_i2c.yaml      |  7 +++--
- 2 files changed, 5 insertions(+), 29 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
+Please put any comments below --- but before the diff, otherwise you break the
+patch.
 
-diff --git a/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt b/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
-deleted file mode 100644
-index cdcaa3f52d253670..0000000000000000
---- a/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--Ilitek ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller
--
--Required properties:
--- compatible:
--    ilitek,ili210x for ILI210x
--    ilitek,ili2117 for ILI2117
--    ilitek,ili2120 for ILI2120
--    ilitek,ili251x for ILI251x
--
--- reg: The I2C address of the device
--
--- interrupts: The sink for the touchscreen's IRQ output
--    See ../interrupt-controller/interrupts.txt
--
--Optional properties for main touchpad device:
--
--- reset-gpios: GPIO specifier for the touchscreen's reset pin (active low)
--
--Example:
--
--	touchscreen@41 {
--		compatible = "ilitek,ili251x";
--		reg = <0x41>;
--		interrupt-parent = <&gpio4>;
--		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
--		reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
--	};
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
-index a190e7baac3162a3..9f732899975683a8 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
-@@ -15,6 +15,9 @@ allOf:
- properties:
-   compatible:
-     enum:
-+      - ilitek,ili210x
-+      - ilitek,ili2117
-+      - ilitek,ili2120
-       - ilitek,ili2130
-       - ilitek,ili2131
-       - ilitek,ili2132
-@@ -22,11 +25,12 @@ properties:
-       - ilitek,ili2322
-       - ilitek,ili2323
-       - ilitek,ili2326
-+      - ilitek,ili251x
-       - ilitek,ili2520
-       - ilitek,ili2521
- 
-   reg:
--    const: 0x41
-+    maxItems: 1
- 
-   interrupts:
-     maxItems: 1
-@@ -50,7 +54,6 @@ required:
-   - compatible
-   - reg
-   - interrupts
--  - reset-gpios
- 
- examples:
-   - |
--- 
-2.25.1
+This patch was already upstreamed by:
+260864f797f2 ("spi: mt6779: update spi document")
 
+
+Regards,
+Matthias
