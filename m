@@ -2,42 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 252D23A3B4C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 07:19:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 642AB3A3B54
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 07:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230361AbhFKFVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 01:21:04 -0400
-Received: from muru.com ([72.249.23.125]:41598 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230212AbhFKFVD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 01:21:03 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id E627A80E1;
-        Fri, 11 Jun 2021 05:19:13 +0000 (UTC)
-Date:   Fri, 11 Jun 2021 08:19:02 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-omap@vger.kernel.org, Nishanth Menon <nm@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: Re: [PATCH v2] dt-bindings: serial: Move omap-serial.txt to YAML
- schema
-Message-ID: <YMLyRoHWgGAy2lXh@atomide.com>
-References: <20210610182227.2480-1-vigneshr@ti.com>
+        id S230168AbhFKF24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 01:28:56 -0400
+Received: from router.aksignal.cz ([62.44.4.214]:41450 "EHLO
+        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229908AbhFKF24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 01:28:56 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by router.aksignal.cz (Postfix) with ESMTP id 7974D44429;
+        Fri, 11 Jun 2021 07:26:56 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
+Received: from router.aksignal.cz ([127.0.0.1])
+        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
+        with LMTP id F89H1A2PLSLa; Fri, 11 Jun 2021 07:26:56 +0200 (CEST)
+Received: from pc-gameroom.prchals.tk (unknown [83.240.30.185])
+        (Authenticated sender: jiri.prchal@aksignal.cz)
+        by router.aksignal.cz (Postfix) with ESMTPSA id C82CA4441F;
+        Fri, 11 Jun 2021 07:26:55 +0200 (CEST)
+From:   Jiri Prchal <jiri.prchal@aksignal.cz>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Christian Eggers <ceggers@arri.de>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Prchal <jiri.prchal@aksignal.cz>
+Subject: [PATCH v9 0/5] add support for FRAM
+Date:   Fri, 11 Jun 2021 07:26:47 +0200
+Message-Id: <20210611052652.7894-1-jiri.prchal@aksignal.cz>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210610182227.2480-1-vigneshr@ti.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Vignesh Raghavendra <vigneshr@ti.com> [210610 18:22]:
-> Convert serial-omap.txt to YAML schema for better checks and documentation.
+Adds support for Cypress FRAMs.
 
-Looks good to me thanks:
+Jiri Prchal (5):
+  nvmem: prepare basics for FRAM support
+  nvmem: eeprom: at25: add support for FRAM
+  dt-bindings: nvmem: at25: add for FRAM support
+  nvmem: eeprom: at25: export FRAM serial num
+  nvmem: eeprom: add documentation of sysfs fram and sernum file
 
-Acked-by: Tony Lindgren <tony@atomide.com>
+ .../ABI/testing/sysfs-class-spi-eeprom        |  20 +++
+ .../devicetree/bindings/eeprom/at25.yaml      |  31 +++-
+ drivers/misc/eeprom/Kconfig                   |   5 +-
+ drivers/misc/eeprom/at25.c                    | 161 ++++++++++++++----
+ drivers/nvmem/core.c                          |   4 +
+ include/linux/nvmem-provider.h                |   1 +
+ 6 files changed, 184 insertions(+), 38 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-class-spi-eeprom
+
+-- 
+2.25.1
+
