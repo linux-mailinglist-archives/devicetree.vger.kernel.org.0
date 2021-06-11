@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACC613A3A09
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 05:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA803A3A11
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 05:02:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231274AbhFKDDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 23:03:02 -0400
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:44722 "EHLO
+        id S231180AbhFKDD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 23:03:56 -0400
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:34794 "EHLO
         mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231230AbhFKDDB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 23:03:01 -0400
-Received: by mail-ot1-f46.google.com with SMTP id q5-20020a9d66450000b02903f18d65089fso1766070otm.11
-        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 20:00:51 -0700 (PDT)
+        with ESMTP id S231434AbhFKDDx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 23:03:53 -0400
+Received: by mail-ot1-f46.google.com with SMTP id v27-20020a056830091bb02903cd67d40070so1820147ott.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 20:01:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=9elBhRYRohBJLYXGAbC8/QtueNh7yhzWwdc2SlWJcOU=;
-        b=vegh8wsiAC+x1bVv8y3kjhUeGWh9t2LfpIXlFUh1fR7KFxkonHV4/EpbnYFyNJG7A/
-         2S3+EdWpeDLbwZLpyPxeVdyla/rZijDPnQIK69FHteGtdP3mQv43s391Q7DJX1aiOLac
-         S1YTiMwgrKzdu5xgDfcYnkdKSwKxPq5UmWtUV2LnVwBnYbhKlOaJReXdtkFp/f3UVGGd
-         LJHHoiWY08rqK+q1ymjI0WbynAP/P0fCynmb+h/S5hdQ0WiRCf5nvZwkZnsgzcRzTtXq
-         TnS9tECmSNSatPkOpPoNWoWUyIXw0ft+6kJIHOE3Pyfr3QHrMJKkI6IBeFULSnJ7MxKY
-         baIA==
+        bh=CMqzFHpL/T/3Mu7pEcAjimpE29cdfMEPiGJnXB3dZDc=;
+        b=xhQjKJNC5QUacmFM0L5+he2v67mA+MyCRbRQb5hMJPhkXWUFJ2q+Aetkcuz9I8lkqM
+         CjYP3omEYdZTQbyRdqY17ZHgQ+KcD4Z1iVvUTahlp81bwIoc5GXCTqT3c69Cs0zDfye2
+         Vtpdk+ymJNY4WaJ4tk+7xRbTWNRHBH9hUwmVL3j/t5dX9ILtFpiAJZvNhPcct4JrxoGO
+         Bh5O2V6JPi7MRKgQfr1XNVCrqBqd1KkvbPYmnfB40ycx97NGLIVDA8g9sSb6WvhQn+55
+         Dy1aUSNyTyiEzPT4eC+rYLKx3uk1pgeZ6uBGK/bufNeGVS4p5OxoyhG+FZgnnc+7FNZW
+         gx6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9elBhRYRohBJLYXGAbC8/QtueNh7yhzWwdc2SlWJcOU=;
-        b=f+YlxYjtSz53kkjN/u4SyUQKRBer8QxP2AwTkU1dLF4NzshyE+YvO1D4DEoPGp/uEw
-         1HBEp4B6yNZ+0VHRgLAFbS/TXe1/4rAoXeqYcQV2dW5gCAivLHk+9KyhZR5OdMd+/exE
-         WrFVXrwZwkNGGxaTJ/5SmzqiEA7tMaCSC/hasW4xyArvlP20zxzo9BBs74eUzBqPKrUm
-         AaP5tp14cH7eUMLYyGZhNQRXl1qUsTSInRGdKPCICsheK/abTvjMRnAUDhz9A88L8sQV
-         exV1k2J+TiJY03lztEl3HVLw7SLyXAROe3dVKAY8Aoyyl9iWMzAy3xSO1kuOl/+wEse6
-         ma/w==
-X-Gm-Message-State: AOAM530pn159qPv5Qwcs8VU64ri1Ya0Ao0sOPwlVcDDtbTTV2qPOBJa0
-        o9Wfhb/Iale2PinGgpOp4rCMYpwlOazZAw==
-X-Google-Smtp-Source: ABdhPJzuDFfl+YeXo+oLDAV43WO+1r+i1ImfP2DWcxPkaviwdYfSnI2fhWMMdjGvSkOQ5LWpEaFxOw==
-X-Received: by 2002:a9d:526:: with SMTP id 35mr1159467otw.176.1623380391091;
-        Thu, 10 Jun 2021 19:59:51 -0700 (PDT)
+        bh=CMqzFHpL/T/3Mu7pEcAjimpE29cdfMEPiGJnXB3dZDc=;
+        b=twzU2Dw1yDlttJxmmRimTqlIywjgKtVlKbKNncCW5ZACR3nHZ9flqR65G5qrW5JElS
+         DwyNPGM8TOksHarjludz9R/uwn3FNWzgbCYVuU4Rtr87dXorGaD5B4BNWY+ZhsdQ6ZlM
+         ecXoUzWXQDU/GPQ3BpS2sXhWKenqX5ghknLjjwAATY7pYCeFwW/bqalPn32VuUrxCjZJ
+         K8ydn0/A+0+i5pH+fUfAr6ytjHf7pKok81VqBFaeOS9O14Tvi3wkg2iYQSiKZa9fPHN+
+         t4p9FWQ8RoQtE0BJw5eeBz61+crZKOf2ccnnIE7SQIX6gp96wf7g4Ld9ng9iywLY4Y0/
+         8rPw==
+X-Gm-Message-State: AOAM533ZtvX2lYkeggMGyrD8f0ARFuPh7y6rsv5w384GtnGw6rFRKd0p
+        14OygmaO+urspqajPgyZs8i3Gw==
+X-Google-Smtp-Source: ABdhPJypjD1Lk3iNtELqDAcPXKCtM+oT3ko2EQNtyx0WUHMSXGYLlrUd6fnidHS8/EAyhn0NlqptwA==
+X-Received: by 2002:a05:6830:1d0:: with SMTP id r16mr1157644ota.116.1623380441709;
+        Thu, 10 Jun 2021 20:00:41 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 7sm991454oti.30.2021.06.10.19.59.50
+        by smtp.gmail.com with ESMTPSA id q15sm921677oon.28.2021.06.10.20.00.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jun 2021 19:59:50 -0700 (PDT)
-Date:   Thu, 10 Jun 2021 21:59:48 -0500
+        Thu, 10 Jun 2021 20:00:41 -0700 (PDT)
+Date:   Thu, 10 Jun 2021 22:00:39 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org,
@@ -55,29 +55,28 @@ Cc:     linux-arm-msm@vger.kernel.org,
         Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
         bhupesh.linux@gmail.com
-Subject: Re: [PATCH 3/8] dt-bindings: arm: qcom: Add compatible for
- SA8155p-adp board
-Message-ID: <YMLRpLoc7LiegLp/@builder.lan>
+Subject: Re: [PATCH 5/8] pinctrl: qcom/pinctrl-spmi-gpio: Add compatibles for
+ pmic-gpios on SA8155p-adp
+Message-ID: <YMLR11+6A/6klgqJ@builder.lan>
 References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
- <20210607113840.15435-4-bhupesh.sharma@linaro.org>
+ <20210607113840.15435-6-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210607113840.15435-4-bhupesh.sharma@linaro.org>
+In-Reply-To: <20210607113840.15435-6-bhupesh.sharma@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon 07 Jun 06:38 CDT 2021, Bhupesh Sharma wrote:
 
-> SA8155p-adp board is based on Qualcomm Snapdragon sm8150
-> SoC.
+> SA8155p-adp PMICs (PMM8155AU_1 and PMM8155AU_2) expose
+> the following PMIC GPIO blocks:
 > 
-> Add support for the same.
-
-The SA8155p is similar to SM8150 and we can reuse most things, but I
-think we can afford to add qcom,sa8155p in the DT bindings.
-
+> - PMM8155AU_1: gpio1-gpio10 (with holes on gpio2, gpio5, gpio7 and gpio8)
+> - PMM8155AU_2: gpio1-gpio10 (with holes on gpio2, gpio5, gpio7)
+> 
+> Add support for the same in the pinctrl driver.
 > 
 > Cc: Linus Walleij <linus.walleij@linaro.org>
 > Cc: Liam Girdwood <lgirdwood@gmail.com>
@@ -92,57 +91,31 @@ think we can afford to add qcom,sa8155p in the DT bindings.
 > Cc: bhupesh.linux@gmail.com
 > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 9b27e991bddc..b5897f1f9695 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -42,11 +42,13 @@ description: |
->          sdm660
->          sdm845
->          sdx55
-> +        sm8150
+> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> index 00870da0c94e..890c44b6e198 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> @@ -1127,6 +1127,10 @@ static const struct of_device_id pmic_gpio_of_match[] = {
+>  	{ .compatible = "qcom,pm8150b-gpio", .data = (void *) 12 },
+>  	/* pm8150l has 12 GPIOs with holes on 7 */
+>  	{ .compatible = "qcom,pm8150l-gpio", .data = (void *) 12 },
+> +	/* pmm8155au-1 has 10 GPIOs with holes on 2, 5, 7 and 8 */
+> +	{ .compatible = "qcom,pmm8155au-1-gpio", .data = (void *) 10 },
 
-Naturally sm8150 should be part of this list, but please also add
-sa8155p as well.
-
->          sm8250
->          sm8350
->  
->    The 'board' element must be one of the following strings:
->  
-> +        adp
->          cdp
->          cp01-c1
->          dragonboard
-> @@ -198,6 +200,12 @@ properties:
->                - qcom,ipq6018-cp01-c1
->            - const: qcom,ipq6018
->  
-> +      - items:
-> +          - enum:
-> +              - qcom,sa8155p-adp
-> +              - qcom,sm8150-mtp
-> +          - const: qcom,sm8150
-
-And please split this in two (one qcom,sm8150-mtp and qcom,sm8150, and
-one qcom,sa8155p-adp and qcom,sa8155p).
-
-And note that this is saying that your compatible needs to be one of the
-enum entries, followed by the const, but in your dts you only specified
-qcom,sa8155p-adp. It needs to be:
-
-	compatible = "qcom,sa8155p-adp", "qcom,sa8155p";
+As noted in the binding, I think this should be "qcom,pmm8155au-gpio"
+and please skip the comment about the holes.
 
 Thanks,
 Bjorn
 
-> +
->        - items:
->            - enum:
->                - qcom,qrb5165-rb5
+> +	/* pmm8155au-2 has 10 GPIOs with holes on 2, 5 and 7 */
+> +	{ .compatible = "qcom,pmm8155au-2-gpio", .data = (void *) 10 },
+>  	{ .compatible = "qcom,pm8350-gpio", .data = (void *) 10 },
+>  	{ .compatible = "qcom,pm8350b-gpio", .data = (void *) 8 },
+>  	{ .compatible = "qcom,pm8350c-gpio", .data = (void *) 9 },
 > -- 
 > 2.31.1
 > 
