@@ -2,113 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78FED3A4491
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 17:01:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 242553A44B0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 17:10:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231179AbhFKPDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 11:03:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33390 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230382AbhFKPDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 11:03:14 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E24C061574;
-        Fri, 11 Jun 2021 08:01:15 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id A3CD81F4479F
-Message-ID: <15d5728aeb7895f81f833e7f7e281861c1fcef9a.camel@collabora.com>
-Subject: Re: [PATCH v13 2/2] arm64: dts: imx: Add jpeg encoder/decoder nodes
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Dong Aisheng <dongas86@gmail.com>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "G.n. Zhou" <guoniu.zhou@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Date:   Fri, 11 Jun 2021 12:00:59 -0300
-In-Reply-To: <CAA+hA=TEi3iZ+nOfff=aN1FrLGb6+OHfx23aWaa1J7YfZRRgtA@mail.gmail.com>
-References: <20210522211055.15988-1-mirela.rabulea@oss.nxp.com>
-         <20210522211055.15988-3-mirela.rabulea@oss.nxp.com>
-         <DB9PR04MB8477D8F7DC86E67F74D5D9F780269@DB9PR04MB8477.eurprd04.prod.outlook.com>
-         <e4c174afd7c55c56c68afbe69276b41c3f574964.camel@nxp.com>
-         <CAA+hA=TEi3iZ+nOfff=aN1FrLGb6+OHfx23aWaa1J7YfZRRgtA@mail.gmail.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        id S229638AbhFKPMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 11:12:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56274 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229792AbhFKPMl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 11:12:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2B404613DE
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 15:10:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623424243;
+        bh=LZfgzzsTu933LnZjW4x5plMccVdr3NZnLwOajYTc730=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ngpIrNwE9eVhUURwkE0MQnklMFYTyS53F+u0w47Mjq2QxHZgz2eB6ANerfh6cnQ/A
+         4O9lSmDjw0tAPBNZOZBr9HZj95hUFEeUv3hzMtJt6HzJCqnSOdMg5qxElTAbtUil1V
+         CDYHnPy/vRjI+pVRngbvqCjqrA+DNdwsC8TWns0diJghBTj/wGxSHK40iVe9GoRytA
+         loRSjstl6oB5JhJ50e6AC8dhZeS/50Ff46qfbJjPDr+ASqwX0BEs1Mngl0ER6UG6yc
+         yhu6pE6sLTtJyjr3b7yVJOb/mdV1zvJhp6whFi5O51m3jJNdjwQbzRMd4EYFTM6qdy
+         F7ua+UrlwDbrw==
+Received: by mail-ej1-f53.google.com with SMTP id k7so5037140ejv.12
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 08:10:43 -0700 (PDT)
+X-Gm-Message-State: AOAM530VKtCO23+3OftKTZmCCc86fspXqwrfR852zSbixUHldWr47QcK
+        glDVyywrr7Ix7LPS7EqwK26baK7UotNttNcBSw==
+X-Google-Smtp-Source: ABdhPJzd6nI+cA/IXS5U2ZgR7cJpYamZW2F3GH6iGy+6sXnJ2UNJch3RshlFKHnquPg3K3x20s08q7AmOjQ9XJjps+M=
+X-Received: by 2002:a17:906:394:: with SMTP id b20mr4109992eja.108.1623424241774;
+ Fri, 11 Jun 2021 08:10:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210611053533.16701-1-vigneshr@ti.com> <20210611053533.16701-2-vigneshr@ti.com>
+In-Reply-To: <20210611053533.16701-2-vigneshr@ti.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 11 Jun 2021 09:10:30 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+DgeH40x0H-ny_Ot_VVkr5tu=yE4aRcBgSNmrm5woJLQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+DgeH40x0H-ny_Ot_VVkr5tu=yE4aRcBgSNmrm5woJLQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: Convert cypress,hyperflash to YAML schema
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2021-06-11 at 21:33 +0800, Dong Aisheng wrote:
-> [...]
-> 
-> > > > +img_subsys: bus@58000000 {
-> > > > +   compatible = "simple-bus";
-> > > > +   #address-cells = <1>;
-> > > > +   #size-cells = <1>;
-> > > > +   ranges = <0x58000000 0x0 0x58000000 0x1000000>;
-> > > > +
-> > > > +   img_ipg_clk: clock-img-ipg {
-> > > > +           compatible = "fixed-clock";
-> > > > +           #clock-cells = <0>;
-> > > > +           clock-frequency = <200000000>;
-> > > > +           clock-output-names = "img_ipg_clk";
-> > > > +   };
-> > > > +
-> > > > +   jpegdec: jpegdec@58400000 {
-> > > 
-> > > Node should be disabled by default.
-> > > And enable it in board dts including LPCG.
-> > 
-> > At version v5 of this patch, the node was disabled by default, and I
-> > received this feedback from Ezequiel Garcia:
-> > 
-> > "Pure memory-to-memory are typically not enabled per-board, but just
-> > per-platform.
-> > So you can drop the disabled status here."
-> > 
-> > So, in v6 I made it enabled by default.
-> > 
-> > Any strong reasons for enabled/disabled per platform?
-> 
-> AFAIK we usually only enable system basic features and let other
-> user selectable features disabled by default in dts.
-> Even for device LPCG clocks, if it's enabled by default and later
-> enter runtime suspend if no users, it still consumes power.
-> 
+On Thu, Jun 10, 2021 at 11:35 PM Vignesh Raghavendra <vigneshr@ti.com> wrote:
+>
+> Convert cypress,hyperflash bindings to YAML schema
+>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+>  .../bindings/mtd/cypress,hyperflash.yaml      | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/cypress,hyperflash.yaml
 
-Well-written drivers shouldn't draw any power if not used.
+This isn't needed[1].
 
-And DT is about hardware-description, not about usage-description.
-Which means, at the soc.dtsi level you disable devices that need
-some board-level hardware thing to be enabled (e.g. a physical
-connected, a regulator, etc.).
+Rob
 
-A pure memory-to-memory should be enabled by default, because
-in practice you can't predict what the users a board will want
-to use, nor the DT is the place for that.
-
-Sticking to hardware description is the best way to get DT right :-)
-
-Cheers,
-Ezequiel
-
+[1] https://lore.kernel.org/linux-devicetree/20210607193500.3085920-1-robh@kernel.org/
