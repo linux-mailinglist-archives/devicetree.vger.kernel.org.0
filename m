@@ -2,131 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DED3B3A4244
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 14:46:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 605073A4231
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 14:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231415AbhFKMsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 08:48:30 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:49702 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231547AbhFKMs3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 08:48:29 -0400
-X-UUID: 509a7522d56d4333bdcdd7bf70846178-20210611
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:Date:CC:To:From:Subject:Message-ID; bh=NPSAquVn6OcH8zMMUCJI1xEdPAoRZoeMvYeki4aI62s=;
-        b=h/fO8S8EPp1isekHbOeHttgmkOPXMdSCzkIOqUO8K8v0ZwY9/778jdcI3+qU5Tf7a4nW1G8uxQCRtzupkTaAvZQYI4sHXSeFrhdrP35gWpDb8KXa1iHIlS9F8U2vI6B/h427rUnuL+rnUGlml73kFx9PiOsYhqg0ye8nDTUmgmU=;
-X-UUID: 509a7522d56d4333bdcdd7bf70846178-20210611
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <mason.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 812319646; Fri, 11 Jun 2021 20:46:28 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 11 Jun 2021 20:46:27 +0800
-Received: from [10.15.20.246] (10.15.20.246) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 11 Jun 2021 20:46:26 +0800
-Message-ID: <1623414736.22727.17.camel@mbjsdccf07>
-Subject: [PATCH v2 1/1] arm64: dts: mediatek: add MT6779 spi master dts node
-From:   Mason Zhang <mason.zhang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <hanks.chen@mediatek.com>,
-        <wsd_upstream@mediatek.com>, Mason Zhang <Mason.Zhang@mediatek.com>
-Date:   Fri, 11 Jun 2021 20:32:16 +0800
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S231272AbhFKMow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 08:44:52 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36712 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231266AbhFKMow (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 08:44:52 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15BCgboc071359;
+        Fri, 11 Jun 2021 07:42:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623415357;
+        bh=v82uh5HzLd/YwEcTzLFbnUXGw9AInR09/KHwciMxi1A=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=evKQ5ekeeKsESB+3hyv0d+WAueNj2j+5OVgEvX1JpPppzGbi2Ds/Awm+BZq7/i/Rd
+         yRBBF7GRcXZAh81ITmxnARXPXP3b3057WZIOAGow8RyZuKhKr6nQcSAt5iYvf6gNhQ
+         qxGr1MPI58brpbVgG66eliJQsdpWnHvUIRZ2PlhE=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15BCgb6D009782
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Jun 2021 07:42:37 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 11
+ Jun 2021 07:42:37 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Fri, 11 Jun 2021 07:42:37 -0500
+Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15BCgT8c034379;
+        Fri, 11 Jun 2021 07:42:31 -0500
+Subject: Re: [PATCH v6 1/3] phy: core: Reword the comment specifying the units
+ of max_link_rate to be Mbps
+From:   Aswath Govindraju <a-govindraju@ti.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     <linux-can@vger.kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20210510051006.11393-1-a-govindraju@ti.com>
+ <20210510051006.11393-2-a-govindraju@ti.com>
+ <YLSNvUDJZ/v6NTuN@vkoul-mobl.Dlink>
+ <615d3a2a-0dc2-0e87-fdac-e170542d33da@ti.com>
+Message-ID: <0150622f-8543-ac4a-fe18-f22d7862d163@ti.com>
+Date:   Fri, 11 Jun 2021 18:12:27 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <615d3a2a-0dc2-0e87-fdac-e170542d33da@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpUaGlzIHBhdGNoIGFkZCBhZGRyZXNzLWNlbGxzICYmIHNpemUtY2VsbHMgaW4gc3BpIG5vZGUg
-YmFzZWQgb24gcGF0Y2ggdjEuDQoNClNpZ25lZC1vZmYtYnk6IE1hc29uIFpoYW5nIDxNYXNvbi5a
-aGFuZ0BtZWRpYXRlay5jb20+DQotLS0NCiBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210
-Njc3OS5kdHNpIHwgMTEyICsrKysrKysrKysrKysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQs
-IDExMiBpbnNlcnRpb25zKCspDQoNCmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21l
-ZGlhdGVrL210Njc3OS5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3Nzku
-ZHRzaQ0KaW5kZXggMzcwZjMwOWQzMmRlLi5jODFlNzY4NjVkMWIgMTAwNjQ0DQotLS0gYS9hcmNo
-L2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3OS5kdHNpDQorKysgYi9hcmNoL2FybTY0L2Jv
-b3QvZHRzL21lZGlhdGVrL210Njc3OS5kdHNpDQpAQCAtMjE5LDYgKzIxOSwxMTggQEANCiAJCQlz
-dGF0dXMgPSAiZGlzYWJsZWQiOw0KIAkJfTsNCiANCisJCXNwaTA6IHNwaTBAMTEwMGEwMDAgew0K
-KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1lZGlh
-dGVrLG10Njc2NS1zcGkiOw0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNl
-bGxzID0gPDA+Ow0KKwkJCW1lZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0gPDAg
-MHgxMTAwYTAwMCAwIDB4MTAwMD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE0MyBJUlFf
-VFlQRV9MRVZFTF9MT1cgMD47DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5Q
-TExfRDVfRDI+LA0KKwkJCQk8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJPCZpbmZyYWNm
-Z19hbyBDTEtfSU5GUkFfU1BJMD47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJz
-ZWwtY2xrIiwgInNwaS1jbGsiOw0KKwkJfTsNCisNCisJCXNwaTE6IHNwaTFAMTEwMTAwMDAgew0K
-KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1lZGlh
-dGVrLG10Njc2NS1zcGkiOw0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNl
-bGxzID0gPDA+Ow0KKwkJCW1lZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0gPDAg
-MHgxMTAxMDAwMCAwIDB4MTAwMD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE0NyBJUlFf
-VFlQRV9MRVZFTF9MT1cgMD47DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5Q
-TExfRDVfRDI+LA0KKwkJCQk8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJPCZpbmZyYWNm
-Z19hbyBDTEtfSU5GUkFfU1BJMT47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJz
-ZWwtY2xrIiwgInNwaS1jbGsiOw0KKwkJfTsNCisNCisJCXNwaTI6IHNwaTJAMTEwMTIwMDAgew0K
-KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1lZGlh
-dGVrLG10Njc2NS1zcGkiOw0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNl
-bGxzID0gPDA+Ow0KKwkJCW1lZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0gPDAg
-MHgxMTAxMjAwMCAwIDB4MTAwMD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1MiBJUlFf
-VFlQRV9MRVZFTF9MT1cgMD47DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5Q
-TExfRDVfRDI+LA0KKwkJCQkgPCZ0b3Bja2dlbiBDTEtfVE9QX1NQST4sDQorCQkJCTwmaW5mcmFj
-ZmdfYW8gQ0xLX0lORlJBX1NQSTI+Ow0KKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAi
-c2VsLWNsayIsICJzcGktY2xrIjsNCisJCX07DQorDQorCQlzcGkzOiBzcGkzQDExMDEzMDAwIHsN
-CisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAgICJtZWRp
-YXRlayxtdDY3NjUtc3BpIjsNCisJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1j
-ZWxscyA9IDwwPjsNCisJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJlZyA9IDww
-IDB4MTEwMTMwMDAgMCAweDEwMDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNTMgSVJR
-X1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlO
-UExMX0Q1X0QyPiwNCisJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KKwkJCQkgPCZpbmZy
-YWNmZ19hbyBDTEtfSU5GUkFfU1BJMz47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIs
-ICJzZWwtY2xrIiwgInNwaS1jbGsiOw0KKwkJfTsNCisNCisJCXNwaTQ6IHNwaTRAMTEwMTgwMDAg
-ew0KKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1l
-ZGlhdGVrLG10Njc2NS1zcGkiOw0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXpl
-LWNlbGxzID0gPDA+Ow0KKwkJCW1lZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0g
-PDAgMHgxMTAxODAwMCAwIDB4MTAwMD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1NiBJ
-UlFfVFlQRV9MRVZFTF9MT1cgMD47DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01B
-SU5QTExfRDVfRDI+LA0KKwkJCQkgPCZ0b3Bja2dlbiBDTEtfVE9QX1NQST4sDQorCQkJCSA8Jmlu
-ZnJhY2ZnX2FvIENMS19JTkZSQV9TUEk0PjsNCisJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xr
-IiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQorCQl9Ow0KKw0KKwkJc3BpNTogc3BpNUAxMTAxOTAw
-MCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3Nzktc3BpIiwNCisJCQkJICAgICAi
-bWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQorCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3Np
-emUtY2VsbHMgPSA8MD47DQorCQkJbWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCisJCQlyZWcg
-PSA8MCAweDExMDE5MDAwIDAgMHgxMDAwPjsNCisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTU3
-IElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCisJCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1Bf
-TUFJTlBMTF9ENV9EMj4sDQorCQkJCTwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KKwkJCQk8Jmlu
-ZnJhY2ZnX2FvIENMS19JTkZSQV9TUEk1PjsNCisJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xr
-IiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQorCQl9Ow0KKw0KKwkJc3BpNjogc3BpNkAxMTAxZDAw
-MCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3Nzktc3BpIiwNCisJCQkJICAgICAi
-bWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQorCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3Np
-emUtY2VsbHMgPSA8MD47DQorCQkJbWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCisJCQlyZWcg
-PSA8MCAweDExMDFkMDAwIDAgMHgxMDAwPjsNCisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTQ0
-IElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCisJCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1Bf
-TUFJTlBMTF9ENV9EMj4sDQorCQkJCSA8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJIDwm
-aW5mcmFjZmdfYW8gQ0xLX0lORlJBX1NQSTY+Ow0KKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1j
-bGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCisJCX07DQorDQorCQlzcGk3OiBzcGk3QDExMDFl
-MDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAg
-ICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCisJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkj
-c2l6ZS1jZWxscyA9IDwwPjsNCisJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJl
-ZyA9IDwwIDB4MTEwMWUwMDAgMCAweDEwMDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAx
-NDUgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RP
-UF9NQUlOUExMX0Q1X0QyPiwNCisJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KKwkJCQkg
-PCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJNz47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50
-LWNsayIsICJzZWwtY2xrIiwgInNwaS1jbGsiOw0KKwkJfTsNCisNCiAJCWF1ZGlvOiBjbG9jay1j
-b250cm9sbGVyQDExMjEwMDAwIHsNCiAJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1h
-dWRpbyIsICJzeXNjb24iOw0KIAkJCXJlZyA9IDwwIDB4MTEyMTAwMDAgMCAweDEwMDA+Ow0KDQoN
-CkhpIE1hdHRoaWFzOg0KDQoJUGxlYXNlIGlnbm9yZSBsYXN0IG1haWwsIG15IGVhbWlsIGhhcyBh
-IGxpdHRsZSBidWd+DQogICAgICAgIEknbSBzb3JyeSB0byBkaXN0dXJiIHlvdX4NCgl0aGlzIHBh
-dGNoIGlzIHN0YXkgaGVyZSBmb3IgYSBsb25nIHRpbWUsIERvIHlvdSBoYXZlIGFueSBzdWdnZXN0
-aW9ucyBhYm91dCB0aGlzIHBhdGNoPyANCiAgICAgICAgV2UgaG9wZSB0aGlzIHBhdGNoIHdpbGwg
-YmUgbWVyZ2VkIGFzIHNvb24gYXMgcG9zc2libGUsIElmIHlvdSBoYXZlIGFueSBjb25jZXJuLCBJ
-IHdpbGwgZml4IGl0IGluIHRpbWUuDQoNCiAgICAgICAgTG9va2luZyBmb3J3YXJkIHRvIHlvdXIg
-cmVwbHl+ICANCg0KVGhhbmtzDQpNYXNvbg0KDQo=
+Hi Vinod,
+
+On 31/05/21 2:04 pm, Aswath Govindraju wrote:
+> Hi Vinod,
+> 
+> On 31/05/21 12:48 pm, Vinod Koul wrote:
+>> On 10-05-21, 10:40, Aswath Govindraju wrote:
+>>> In some subsystems (eg. CAN, SPI), the max link rate supported can be less
+>>> than 1 Mbps and if the unit for max_link_rate is Mbps then it can't be
+>>> used. Therefore, leave the decision of units to be used, to the producer
+>>> and consumer.
+>>>
+>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>> Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+>>> ---
+>>>  include/linux/phy/phy.h | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/include/linux/phy/phy.h b/include/linux/phy/phy.h
+>>> index 0ed434d02196..f3286f4cd306 100644
+>>> --- a/include/linux/phy/phy.h
+>>> +++ b/include/linux/phy/phy.h
+>>> @@ -125,7 +125,7 @@ struct phy_ops {
+>>>  /**
+>>>   * struct phy_attrs - represents phy attributes
+>>>   * @bus_width: Data path width implemented by PHY
+>>> - * @max_link_rate: Maximum link rate supported by PHY (in Mbps)
+>>> + * @max_link_rate: Maximum link rate supported by PHY (units to be decided by producer and consumer)
+>>
+>> So there are a few users of max_link_rate. It would be better that we
+>> document all previous users of max_link_rate that unit is in Mbps and
+>> then modify it here
+>>
+> 
+> I was able to see that the max_link_rate attribute was used at,
+> 
+> drivers/phy/cadence/phy-cadence-torrent.c:2514:
+> gphy->attrs.max_link_rate = cdns_phy->max_bit_rate;
+> 
+> and in the bindings there is indication that the units to be used is Mbps.
+> 
+> Can you please point me if there is any other place that I might have
+> missed to look at or that might need documentation update?
+> 
+
+May I know if this patch series is good to be merged ?
+
+Thanks,
+Aswath
+
+> Thanks,
+> Aswath
+> 
+> 
 
