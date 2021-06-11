@@ -2,134 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42B013A3D27
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 09:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4EED3A3D31
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 09:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbhFKHd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 03:33:57 -0400
-Received: from mail-pg1-f181.google.com ([209.85.215.181]:46596 "EHLO
-        mail-pg1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230188AbhFKHd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 03:33:57 -0400
-Received: by mail-pg1-f181.google.com with SMTP id n12so1727911pgs.13;
-        Fri, 11 Jun 2021 00:31:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=fG0F4HBoROHD6DXq0+EVGrn1s2SpM2ZJvpNOm1d4zUg=;
-        b=SnPIV5vze7J7JcnPD4B4Awerb0mcgkxEYKR+YeEzoxtMuRl6WUKi2YWHAs3CrsUcmb
-         JWhZLp/mVOjQhPrefHUsnTMfu0c8rLZj5S001QRBnvpttQS3QGOvUZpcXPNrYQq5Apgh
-         A22UhddUK7q3Bam4yebGnaolkneUyXXP0cwlS44X+fhmIVQTwT+iO409YiB/Pbr07rNu
-         /gsiq9KmYp2cRVzhTLy1qyD+PFjx9mjcarcCAXucLBlig7mx1P29bOM6lQZj1spZvW2g
-         677+GJSl29RoRKz/7kvf+MRvhZomZgj07MWXgLIaVA1Jj9Ttr5vcxtopLJu5udH55FKH
-         iZIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=fG0F4HBoROHD6DXq0+EVGrn1s2SpM2ZJvpNOm1d4zUg=;
-        b=EGuTuuST6rggi1FoUjnmAH5rwmblk3ot4PSt2zUGXI+8BJ8xubdxZxWAF5MOqpKP6j
-         085901tcjDV3Jo7v/RxCqpflc5SjtkSdaljw5dNYrRL7bsvSkAE5lkDePJKBFgpd0cCS
-         UVbEfNVVPxdz0R+9jMphsON56OfZQ7VfInhu5vY48Z2an4g4GZZ7YxEWBDxRvztzI5Jf
-         oQzPZDzNGU6mes4+N31vUIzIf6nl8PJS7Scd2RmIy3dDCFu1sTDfmj0I9nyCyDkPwx79
-         gwrl8JUqQWAKASGsFcZqDuE6hcb+5zyH59evXG+F3qlurwr4BxNS0JDxfQK+QdliD31n
-         dEKw==
-X-Gm-Message-State: AOAM531QWHhroYTEb/1+I7GYcrjv0mUB/WvEvU5PEVEaSKC0BFEbGny9
-        5Qqo6LRHdvosOPlYjq0yiut0iXAbq4ohxegQpXk=
-X-Google-Smtp-Source: ABdhPJwgxg5M1F7Tbl6QjEiV5uVfgPWNOoW1AlwpYF/7g/rhoAsBS/3d+ETCatkdfjOsXrQ3Y5NDIpdCRtjOLqbtIkA=
-X-Received: by 2002:a63:181f:: with SMTP id y31mr2280746pgl.145.1623396644577;
- Fri, 11 Jun 2021 00:30:44 -0700 (PDT)
+        id S231308AbhFKHf1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 03:35:27 -0400
+Received: from muru.com ([72.249.23.125]:41814 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231289AbhFKHf0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 03:35:26 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 4DF2580BA;
+        Fri, 11 Jun 2021 07:33:35 +0000 (UTC)
+Date:   Fri, 11 Jun 2021 10:33:23 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Darren Hart <dvhart@infradead.org>,
+        Andy Shevchenko <andy@infradead.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        "H . Peter Anvin" <hpa@zytor.com>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, x86@kernel.org,
+        linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org,
+        platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] ARM: dts: dra7x-evm: Drop "ti,pcf8575"
+Message-ID: <YMMRw43TKtXsDoLL@atomide.com>
+References: <cover.1622560799.git.geert+renesas@glider.be>
+ <f499a261e0b39daca2d761bd600fe362cddab653.1622560799.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-References: <20210609012849.797576-1-xieqinick@gmail.com> <11da3ae4-91d4-1e51-c652-e4ad518f13bd@baylibre.com>
- <CAP4nuTVMZV7pz8NrM2MHcZzBdueRXjS+KYsU4=cQ1CB67gr_Hg@mail.gmail.com> <ee3341d9-350e-a84d-6836-3401be679b2a@baylibre.com>
-In-Reply-To: <ee3341d9-350e-a84d-6836-3401be679b2a@baylibre.com>
-From:   Nick Xie <xieqinick@gmail.com>
-Date:   Fri, 11 Jun 2021 15:30:33 +0800
-Message-ID: <CAP4nuTUt1vQjVP=3_NYaeu+m47f78ru6-MgGBiAqLeU9fJAsNg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: meson: vim3: reduce cpu thermal fan trigger temperature
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     robh+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Nick <nick@khadas.com>, artem@khadas.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f499a261e0b39daca2d761bd600fe362cddab653.1622560799.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Neil,
+* Geert Uytterhoeven <geert+renesas@glider.be> [210601 18:26]:
+> The TI part is equivalent to the NXP part and its compatible value is
+> not documented in the DT bindings.  All other users of similar I2C GPIO
+> expanders just use the compatible values of the original NXP parts.
 
+Picking this patch into omap-for-v5.14/dt thanks.
 
-Neil Armstrong <narmstrong@baylibre.com> =E4=BA=8E2021=E5=B9=B46=E6=9C=8811=
-=E6=97=A5=E5=91=A8=E4=BA=94 =E4=B8=8B=E5=8D=883:15=E5=86=99=E9=81=93=EF=BC=
-=9A
->
-> Hi,
->
-> On 11/06/2021 08:54, Nick Xie wrote:
-> > Hello Neil,
-> >
-> > The MCU FAN won't work until the temperature reach to 80 degree centigr=
-ade,
-> > Do you think the temperature is too high?
->
-> I think 80 is tool high, but I fear 50 is way too low, but if you think 5=
-0 is OK after you ran some tests, just add it to the commit log and it's ok=
- for me.
-
-I think it is OK, we use it for a long time.
-
-Thanks.
-
->
-> Neil
->
-> >
-> > Thanks.
-> >
-> > Neil Armstrong <narmstrong@baylibre.com <mailto:narmstrong@baylibre.com=
->> =E4=BA=8E2021=E5=B9=B46=E6=9C=8811=E6=97=A5=E5=91=A8=E4=BA=94 =E4=B8=8B=
-=E5=8D=882:44=E5=86=99=E9=81=93=EF=BC=9A
-> >
-> >     Hi Nick,
-> >
-> >     On 09/06/2021 03:28, xieqinick@gmail.com <mailto:xieqinick@gmail.co=
-m> wrote:
-> >     > From: Nick Xie <nick@khadas.com <mailto:nick@khadas.com>>
-> >     >
-> >     > Reduce the MCU FAN trigger temperature from
-> >     > 80 degree centigrade to 50 degree centigrade.
-> >
-> >     Can you add some more rationale to this change ?
-> >
-> >     >
-> >     > Signed-off-by: Nick Xie <nick@khadas.com <mailto:nick@khadas.com>=
->
-> >     > ---
-> >     >  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 2 +-
-> >     >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >     >
-> >     > diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b=
-/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> >     > index 66d67524b031..a9c34fee91f4 100644
-> >     > --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> >     > +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> >     > @@ -256,7 +256,7 @@ &cecb_AO {
-> >     >  &cpu_thermal {
-> >     >       trips {
-> >     >               cpu_active: cpu-active {
-> >     > -                     temperature =3D <80000>; /* millicelsius */
-> >     > +                     temperature =3D <50000>; /* millicelsius */
-> >     >                       hysteresis =3D <2000>; /* millicelsius */
-> >     >                       type =3D "active";
-> >     >               };
-> >     >
-> >
-> >     With that:
-> >     Reviewed-by: Neil Armstrong <narmstrong@baylibre.com <mailto:narmst=
-rong@baylibre.com>>
-> >
->
+Tony
