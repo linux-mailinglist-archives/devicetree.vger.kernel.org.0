@@ -2,132 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D43023A4207
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 14:30:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DED3B3A4244
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 14:46:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231193AbhFKMcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 08:32:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230251AbhFKMcu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 08:32:50 -0400
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B2ABC0617AF
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 05:30:52 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2411:a261:8fe2:b47f])
-        by albert.telenet-ops.be with bizsmtp
-        id FoWp2501Y25eH3q06oWpgr; Fri, 11 Jun 2021 14:30:50 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lrgJF-00FfbY-Cn; Fri, 11 Jun 2021 14:30:49 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lrgJE-00CiDD-Qd; Fri, 11 Jun 2021 14:30:48 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Sergej Sawazki <ce3a@gmx.de>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: clock: gpio-mux-clock: Convert to json-schema
-Date:   Fri, 11 Jun 2021 14:30:47 +0200
-Message-Id: <14cb3b4da446f26a4780e0bd1b58788eb6085d05.1623414619.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        id S231415AbhFKMsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 08:48:30 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:49702 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231547AbhFKMs3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 08:48:29 -0400
+X-UUID: 509a7522d56d4333bdcdd7bf70846178-20210611
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:Date:CC:To:From:Subject:Message-ID; bh=NPSAquVn6OcH8zMMUCJI1xEdPAoRZoeMvYeki4aI62s=;
+        b=h/fO8S8EPp1isekHbOeHttgmkOPXMdSCzkIOqUO8K8v0ZwY9/778jdcI3+qU5Tf7a4nW1G8uxQCRtzupkTaAvZQYI4sHXSeFrhdrP35gWpDb8KXa1iHIlS9F8U2vI6B/h427rUnuL+rnUGlml73kFx9PiOsYhqg0ye8nDTUmgmU=;
+X-UUID: 509a7522d56d4333bdcdd7bf70846178-20210611
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <mason.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 812319646; Fri, 11 Jun 2021 20:46:28 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 11 Jun 2021 20:46:27 +0800
+Received: from [10.15.20.246] (10.15.20.246) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 11 Jun 2021 20:46:26 +0800
+Message-ID: <1623414736.22727.17.camel@mbjsdccf07>
+Subject: [PATCH v2 1/1] arm64: dts: mediatek: add MT6779 spi master dts node
+From:   Mason Zhang <mason.zhang@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <hanks.chen@mediatek.com>,
+        <wsd_upstream@mediatek.com>, Mason Zhang <Mason.Zhang@mediatek.com>
+Date:   Fri, 11 Jun 2021 20:32:16 +0800
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the simple GPIO clock multiplexer Device Tree binding
-documentation to json-schema.
-
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../bindings/clock/gpio-mux-clock.txt         | 19 --------
- .../bindings/clock/gpio-mux-clock.yaml        | 45 +++++++++++++++++++
- 2 files changed, 45 insertions(+), 19 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/gpio-mux-clock.txt
- create mode 100644 Documentation/devicetree/bindings/clock/gpio-mux-clock.yaml
-
-diff --git a/Documentation/devicetree/bindings/clock/gpio-mux-clock.txt b/Documentation/devicetree/bindings/clock/gpio-mux-clock.txt
-deleted file mode 100644
-index 2be1e038ca62907a..0000000000000000
---- a/Documentation/devicetree/bindings/clock/gpio-mux-clock.txt
-+++ /dev/null
-@@ -1,19 +0,0 @@
--Binding for simple gpio clock multiplexer.
--
--This binding uses the common clock binding[1].
--
--[1] Documentation/devicetree/bindings/clock/clock-bindings.txt
--
--Required properties:
--- compatible : shall be "gpio-mux-clock".
--- clocks: list of two references to parent clocks.
--- #clock-cells : from common clock binding; shall be set to 0.
--- select-gpios : GPIO reference for selecting the parent clock.
--
--Example:
--	clock {
--		compatible = "gpio-mux-clock";
--		clocks = <&parentclk1>, <&parentclk2>;
--		#clock-cells = <0>;
--		select-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
--	};
-diff --git a/Documentation/devicetree/bindings/clock/gpio-mux-clock.yaml b/Documentation/devicetree/bindings/clock/gpio-mux-clock.yaml
-new file mode 100644
-index 0000000000000000..1e21f8b3a4ff42dc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/gpio-mux-clock.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/gpio-mux-clock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Simple GPIO clock multiplexer
-+
-+maintainers:
-+  - Sergej Sawazki <ce3a@gmx.de>
-+
-+properties:
-+  compatible:
-+    const: gpio-mux-clock
-+
-+  clocks:
-+    items:
-+      - description: First parent clock
-+      - description: Second parent clock
-+
-+  '#clock-cells':
-+    const: 0
-+
-+  select-gpios:
-+    description: GPIO reference for selecting the parent clock.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - clocks
-+  - '#clock-cells'
-+  - select-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    clock {
-+            compatible = "gpio-mux-clock";
-+            clocks = <&parentclk1>, <&parentclk2>;
-+            #clock-cells = <0>;
-+            select-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
-+    };
--- 
-2.25.1
+DQpUaGlzIHBhdGNoIGFkZCBhZGRyZXNzLWNlbGxzICYmIHNpemUtY2VsbHMgaW4gc3BpIG5vZGUg
+YmFzZWQgb24gcGF0Y2ggdjEuDQoNClNpZ25lZC1vZmYtYnk6IE1hc29uIFpoYW5nIDxNYXNvbi5a
+aGFuZ0BtZWRpYXRlay5jb20+DQotLS0NCiBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210
+Njc3OS5kdHNpIHwgMTEyICsrKysrKysrKysrKysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQs
+IDExMiBpbnNlcnRpb25zKCspDQoNCmRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21l
+ZGlhdGVrL210Njc3OS5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3Nzku
+ZHRzaQ0KaW5kZXggMzcwZjMwOWQzMmRlLi5jODFlNzY4NjVkMWIgMTAwNjQ0DQotLS0gYS9hcmNo
+L2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3OS5kdHNpDQorKysgYi9hcmNoL2FybTY0L2Jv
+b3QvZHRzL21lZGlhdGVrL210Njc3OS5kdHNpDQpAQCAtMjE5LDYgKzIxOSwxMTggQEANCiAJCQlz
+dGF0dXMgPSAiZGlzYWJsZWQiOw0KIAkJfTsNCiANCisJCXNwaTA6IHNwaTBAMTEwMGEwMDAgew0K
+KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1lZGlh
+dGVrLG10Njc2NS1zcGkiOw0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNl
+bGxzID0gPDA+Ow0KKwkJCW1lZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0gPDAg
+MHgxMTAwYTAwMCAwIDB4MTAwMD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE0MyBJUlFf
+VFlQRV9MRVZFTF9MT1cgMD47DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5Q
+TExfRDVfRDI+LA0KKwkJCQk8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJPCZpbmZyYWNm
+Z19hbyBDTEtfSU5GUkFfU1BJMD47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJz
+ZWwtY2xrIiwgInNwaS1jbGsiOw0KKwkJfTsNCisNCisJCXNwaTE6IHNwaTFAMTEwMTAwMDAgew0K
+KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1lZGlh
+dGVrLG10Njc2NS1zcGkiOw0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNl
+bGxzID0gPDA+Ow0KKwkJCW1lZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0gPDAg
+MHgxMTAxMDAwMCAwIDB4MTAwMD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE0NyBJUlFf
+VFlQRV9MRVZFTF9MT1cgMD47DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5Q
+TExfRDVfRDI+LA0KKwkJCQk8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJPCZpbmZyYWNm
+Z19hbyBDTEtfSU5GUkFfU1BJMT47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJz
+ZWwtY2xrIiwgInNwaS1jbGsiOw0KKwkJfTsNCisNCisJCXNwaTI6IHNwaTJAMTEwMTIwMDAgew0K
+KwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1lZGlh
+dGVrLG10Njc2NS1zcGkiOw0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNl
+bGxzID0gPDA+Ow0KKwkJCW1lZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0gPDAg
+MHgxMTAxMjAwMCAwIDB4MTAwMD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1MiBJUlFf
+VFlQRV9MRVZFTF9MT1cgMD47DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5Q
+TExfRDVfRDI+LA0KKwkJCQkgPCZ0b3Bja2dlbiBDTEtfVE9QX1NQST4sDQorCQkJCTwmaW5mcmFj
+ZmdfYW8gQ0xLX0lORlJBX1NQSTI+Ow0KKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAi
+c2VsLWNsayIsICJzcGktY2xrIjsNCisJCX07DQorDQorCQlzcGkzOiBzcGkzQDExMDEzMDAwIHsN
+CisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAgICJtZWRp
+YXRlayxtdDY3NjUtc3BpIjsNCisJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1j
+ZWxscyA9IDwwPjsNCisJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJlZyA9IDww
+IDB4MTEwMTMwMDAgMCAweDEwMDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNTMgSVJR
+X1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlO
+UExMX0Q1X0QyPiwNCisJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KKwkJCQkgPCZpbmZy
+YWNmZ19hbyBDTEtfSU5GUkFfU1BJMz47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIs
+ICJzZWwtY2xrIiwgInNwaS1jbGsiOw0KKwkJfTsNCisNCisJCXNwaTQ6IHNwaTRAMTEwMTgwMDAg
+ew0KKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1l
+ZGlhdGVrLG10Njc2NS1zcGkiOw0KKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXpl
+LWNlbGxzID0gPDA+Ow0KKwkJCW1lZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0g
+PDAgMHgxMTAxODAwMCAwIDB4MTAwMD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1NiBJ
+UlFfVFlQRV9MRVZFTF9MT1cgMD47DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01B
+SU5QTExfRDVfRDI+LA0KKwkJCQkgPCZ0b3Bja2dlbiBDTEtfVE9QX1NQST4sDQorCQkJCSA8Jmlu
+ZnJhY2ZnX2FvIENMS19JTkZSQV9TUEk0PjsNCisJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xr
+IiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQorCQl9Ow0KKw0KKwkJc3BpNTogc3BpNUAxMTAxOTAw
+MCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3Nzktc3BpIiwNCisJCQkJICAgICAi
+bWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQorCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3Np
+emUtY2VsbHMgPSA8MD47DQorCQkJbWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCisJCQlyZWcg
+PSA8MCAweDExMDE5MDAwIDAgMHgxMDAwPjsNCisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTU3
+IElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCisJCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1Bf
+TUFJTlBMTF9ENV9EMj4sDQorCQkJCTwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KKwkJCQk8Jmlu
+ZnJhY2ZnX2FvIENMS19JTkZSQV9TUEk1PjsNCisJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xr
+IiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQorCQl9Ow0KKw0KKwkJc3BpNjogc3BpNkAxMTAxZDAw
+MCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3Nzktc3BpIiwNCisJCQkJICAgICAi
+bWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQorCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3Np
+emUtY2VsbHMgPSA8MD47DQorCQkJbWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCisJCQlyZWcg
+PSA8MCAweDExMDFkMDAwIDAgMHgxMDAwPjsNCisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTQ0
+IElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCisJCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1Bf
+TUFJTlBMTF9ENV9EMj4sDQorCQkJCSA8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJIDwm
+aW5mcmFjZmdfYW8gQ0xLX0lORlJBX1NQSTY+Ow0KKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1j
+bGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCisJCX07DQorDQorCQlzcGk3OiBzcGk3QDExMDFl
+MDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAg
+ICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCisJCQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkj
+c2l6ZS1jZWxscyA9IDwwPjsNCisJCQltZWRpYXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJl
+ZyA9IDwwIDB4MTEwMWUwMDAgMCAweDEwMDA+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAx
+NDUgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RP
+UF9NQUlOUExMX0Q1X0QyPiwNCisJCQkJIDwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KKwkJCQkg
+PCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJNz47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50
+LWNsayIsICJzZWwtY2xrIiwgInNwaS1jbGsiOw0KKwkJfTsNCisNCiAJCWF1ZGlvOiBjbG9jay1j
+b250cm9sbGVyQDExMjEwMDAwIHsNCiAJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1h
+dWRpbyIsICJzeXNjb24iOw0KIAkJCXJlZyA9IDwwIDB4MTEyMTAwMDAgMCAweDEwMDA+Ow0KDQoN
+CkhpIE1hdHRoaWFzOg0KDQoJUGxlYXNlIGlnbm9yZSBsYXN0IG1haWwsIG15IGVhbWlsIGhhcyBh
+IGxpdHRsZSBidWd+DQogICAgICAgIEknbSBzb3JyeSB0byBkaXN0dXJiIHlvdX4NCgl0aGlzIHBh
+dGNoIGlzIHN0YXkgaGVyZSBmb3IgYSBsb25nIHRpbWUsIERvIHlvdSBoYXZlIGFueSBzdWdnZXN0
+aW9ucyBhYm91dCB0aGlzIHBhdGNoPyANCiAgICAgICAgV2UgaG9wZSB0aGlzIHBhdGNoIHdpbGwg
+YmUgbWVyZ2VkIGFzIHNvb24gYXMgcG9zc2libGUsIElmIHlvdSBoYXZlIGFueSBjb25jZXJuLCBJ
+IHdpbGwgZml4IGl0IGluIHRpbWUuDQoNCiAgICAgICAgTG9va2luZyBmb3J3YXJkIHRvIHlvdXIg
+cmVwbHl+ICANCg0KVGhhbmtzDQpNYXNvbg0KDQo=
 
