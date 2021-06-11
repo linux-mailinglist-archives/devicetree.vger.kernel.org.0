@@ -2,109 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 661FF3A43AB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 16:00:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E77B3A43A0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 15:58:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231646AbhFKOCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 10:02:25 -0400
-Received: from mail-oo1-f43.google.com ([209.85.161.43]:34351 "EHLO
-        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229985AbhFKOCU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 10:02:20 -0400
-Received: by mail-oo1-f43.google.com with SMTP id i8-20020a4aa1080000b0290201edd785e7so727353ool.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 07:00:22 -0700 (PDT)
+        id S231295AbhFKOAe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 10:00:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47676 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230487AbhFKOAe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 10:00:34 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91C3AC061574;
+        Fri, 11 Jun 2021 06:58:36 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id o3so6184174wri.8;
+        Fri, 11 Jun 2021 06:58:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XaOZUHVmtwBqm3RfZPVozuu3/NEu4cqerXESep9dzeg=;
-        b=t4qtEDxnqMTYPS2ZRWq+X4X9jT8XzpQhN4TktADmB4VRnoPnMjGqji236ZNVw9dJuP
-         ExHs+6NP82zHzNIpzXBr6G6j0v1kC+vr2jIZdfhanhQ2ki9u9O2ioaHkRYq06FGF8TYt
-         MkFEEkjHKpnu4dlQdDXnJwOHmeYhpcSyXGRM+n8BxgSEiPfKspna9DoQTbsXTFgXBgjp
-         xV5xsNLAGGknHbrLTI7bQCHZ1RYbaj9KHLcJN/CVf586pR0rnbvuLixiap/sodfvV+hK
-         5VfRE5APRKnt3Fkkfc3K9Dn+0XxfNHU5Uyyy1XGARUDL2DJYMVuRy5mEMbWUGnetCKHG
-         7tTw==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=65HXSbNbmh2eB86Bo4Ktjk4oUhG8UnCDwk0uApNVoXo=;
+        b=vQ2nhn4M1kRI+inZ01ZL0rg1eKcQohm+IhGgChNvONiLqe9p/tKgEzGc1yxiTXQYPD
+         RI3zK+MkYajI8+V/tXf0j9MEJsgxQtTOVpPfiKEHD4SJTpaTwZ5EfK0X4YCl4Xf8Bdwu
+         Kvt8GR9lQOk7Z2f1Lq+yoOM5LoGQi0ab41KdOSA0jBDf5WsGqh7D1lZXPSa5rY4+lI9r
+         amQhgZvD9HOJCJ+XjZrGvtI8mjdVkVEsZ6MNmXumH2VhEK9irMXZ/PscnRp59DCADNQ+
+         ugsrorfuA2Aysctc3iw2q/j/0+ZJrcwfwbEpMW90UcT/BpGy/SjWZp3bDiuD3+qUhPEl
+         PpNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XaOZUHVmtwBqm3RfZPVozuu3/NEu4cqerXESep9dzeg=;
-        b=DB+BKNuee8lKR8uzQGqtmwi1LgO86qnj4B5cKiSQd5h7cpa9tAJ00Y54rvYjNLntun
-         leA2+Zw2h8X67g3KwFIOZX36ZjXHz46XFj9oz6Bq6eS9X6JcaJSMOeTYWvZBj6/oEmbz
-         UXLCwXnlEHdJfpEaRhzOJxLwO+Y2AMhl2pERJQ0DgstAqVmfH4dNsZorTBsbxt6LQEyT
-         tBFY1W90zAv/7Fii/IGfEVafP7ZtAM4Dp2VOY/lPwiV+uceDdRo6jnS2jRv0KSq9cQe4
-         luSv/UBoC1Oeias6CKXujdhd2Y2GonQ+Kgn+57xQaLQ2fLcohkuglG97nWeMStD9FogC
-         ayJg==
-X-Gm-Message-State: AOAM531Evq22xXtAH2abLZnunNkgJ7wnlr1gzEOOHNKGA9MWMZTKOTL6
-        g1i7z9qDSuIHCFgL8x1YMbL2Sd/KoeewgHFx2TXClJZ2hsVsZQ==
-X-Google-Smtp-Source: ABdhPJzj/t5pP6LV1mF3DQV6fGJlvch67kPne9Wwo+a2Yu3wqWpJ3+ZBu1lQW8KWpYHbvpxnaJb4w2YFRZyaXSGw32o=
-X-Received: by 2002:a4a:b1c2:: with SMTP id j2mr3177619ooo.78.1623419962012;
- Fri, 11 Jun 2021 06:59:22 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=65HXSbNbmh2eB86Bo4Ktjk4oUhG8UnCDwk0uApNVoXo=;
+        b=mg4bNm6KEV6JVhBv+CH1doT228lkujd/AVy1EH5Hi0a5Ksb0pGr5N428uTFSYG4ZfP
+         sR0/WQtK0+NrcocCqTZzh6ACpAnTcZcrC0oNSHOBH714Wj7zeSs6aHVG6x5Dfrcxd6cL
+         RjQqNgI/EFsHPlSu4ZaCXk+OAHTXsjTzVv5vxm7C1F/pbGC86DNCp7C3J1COJEICOUSR
+         a4iScXnbu2WbjCIkiZY91DxRDPjL+zbfLfZDKtCXsYmaderx2qOB74dWPvqnpBLqImik
+         00rx8Z1etWwlIRWegejxERksm9887ZPOniMtxAcysdt0xu9Tl6iozO25klYeL0a9Rz2e
+         Bqtw==
+X-Gm-Message-State: AOAM532rusD7Bj1zB7Ihzok+T/Wym2rSFyXCJe5bb9C8+OMHd5QoKx0N
+        a8n/SZx07ERSh+68ZAvSHQo=
+X-Google-Smtp-Source: ABdhPJxZlr1sJExAQqIe+Ht9eFJb7CaHNbSMfSYh1iNUYux526F16gInmumcvtcfKoolHwU8y6GSoA==
+X-Received: by 2002:adf:df09:: with SMTP id y9mr4379275wrl.108.1623419915200;
+        Fri, 11 Jun 2021 06:58:35 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id o11sm5779133wmq.1.2021.06.11.06.58.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Jun 2021 06:58:34 -0700 (PDT)
+Subject: Re: [PATCH v2 1/1] arm64: dts: mediatek: add MT6779 spi master dts
+ node
+To:     Mason Zhang <Mason.Zhang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        hanks.chen@mediatek.com, wsd_upstream@mediatek.com
+References: <20210409015651.11474-1-Mason.Zhang@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <faafa83d-4831-2b70-78ec-0e9f3636b5c9@gmail.com>
+Date:   Fri, 11 Jun 2021 15:58:33 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-References: <20210607083921.2668568-1-ping.bai@nxp.com> <20210607083921.2668568-7-ping.bai@nxp.com>
-In-Reply-To: <20210607083921.2668568-7-ping.bai@nxp.com>
-From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Fri, 11 Jun 2021 21:58:05 +0800
-Message-ID: <CAA+hA=TNbyo-YLRwW=SjGCkLDxU026DJOa12qpVZbTNyBna-KQ@mail.gmail.com>
-Subject: Re: [PATCH 06/11] dt-bindings: timer: tpm-timer: Add imx8ulp
- compatible string
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210409015651.11474-1-Mason.Zhang@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 4:34 PM Jacky Bai <ping.bai@nxp.com> wrote:
->
-> For i.MX8ULP, it use two compatible strings, so update the
-> compatible strings for it.
->
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 
-As previously mentioned, pls improve commit message,
-otherwise:
-Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
 
-Regards
-Aisheng
+On 09/04/2021 03:56, Mason Zhang wrote:
+> This patch add address-cells && size-cells in spi node based on patch v1.
+> 
 
+Can you please come up with a better commit message, otherwise patch looks good.
+
+Regards,
+Matthias
+
+> Signed-off-by: Mason Zhang <Mason.Zhang@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml b/Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml
-> index edd9585f6726..f69773a8e4b9 100644
-> --- a/Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml
-> +++ b/Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml
-> @@ -19,7 +19,11 @@ description: |
->
->  properties:
->    compatible:
-> -    const: fsl,imx7ulp-tpm
-> +    oneOf:
-> +      - const: fsl,imx7ulp-tpm
-> +      - items:
-> +          - const: fsl,imx8ulp-tpm
-> +          - const: fsl,imx7ulp-tpm
->
->    reg:
->      maxItems: 1
-> --
-> 2.26.2
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>  arch/arm64/boot/dts/mediatek/mt6779.dtsi | 112 +++++++++++++++++++++++
+>  1 file changed, 112 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+> index 370f309d32de..c81e76865d1b 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
+> @@ -219,6 +219,118 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		spi0: spi0@1100a000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x1100a000 0 0x1000>;
+> +			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				<&topckgen CLK_TOP_SPI>,
+> +				<&infracfg_ao CLK_INFRA_SPI0>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi1: spi1@11010000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x11010000 0 0x1000>;
+> +			interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				<&topckgen CLK_TOP_SPI>,
+> +				<&infracfg_ao CLK_INFRA_SPI1>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi2: spi2@11012000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x11012000 0 0x1000>;
+> +			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				<&infracfg_ao CLK_INFRA_SPI2>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi3: spi3@11013000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x11013000 0 0x1000>;
+> +			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_SPI3>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi4: spi4@11018000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x11018000 0 0x1000>;
+> +			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_SPI4>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi5: spi5@11019000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x11019000 0 0x1000>;
+> +			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				<&topckgen CLK_TOP_SPI>,
+> +				<&infracfg_ao CLK_INFRA_SPI5>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi6: spi6@1101d000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x1101d000 0 0x1000>;
+> +			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_SPI6>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+> +		spi7: spi7@1101e000 {
+> +			compatible = "mediatek,mt6779-spi",
+> +				     "mediatek,mt6765-spi";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			mediatek,pad-select = <0>;
+> +			reg = <0 0x1101e000 0 0x1000>;
+> +			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW 0>;
+> +			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
+> +				 <&topckgen CLK_TOP_SPI>,
+> +				 <&infracfg_ao CLK_INFRA_SPI7>;
+> +			clock-names = "parent-clk", "sel-clk", "spi-clk";
+> +		};
+> +
+>  		audio: clock-controller@11210000 {
+>  			compatible = "mediatek,mt6779-audio", "syscon";
+>  			reg = <0 0x11210000 0 0x1000>;
+> 
