@@ -2,144 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A71A3A4722
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 18:56:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B35113A474A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 19:01:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbhFKQ6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 12:58:42 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:32669 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S229874AbhFKQ6m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 12:58:42 -0400
-X-IronPort-AV: E=Sophos;i="5.83,265,1616425200"; 
-   d="scan'208";a="83967397"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 12 Jun 2021 01:56:43 +0900
-Received: from localhost.localdomain (unknown [10.226.92.121])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 95B6A400C4C6;
-        Sat, 12 Jun 2021 01:56:41 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 4/5] arm64: dts: renesas: r9a07g044: Add I2C nodes
-Date:   Fri, 11 Jun 2021 17:56:23 +0100
-Message-Id: <20210611165624.30749-5-biju.das.jz@bp.renesas.com>
+        id S231437AbhFKRDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 13:03:15 -0400
+Received: from foss.arm.com ([217.140.110.172]:35780 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231478AbhFKRDK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 13:03:10 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E118BD6E;
+        Fri, 11 Jun 2021 10:01:11 -0700 (PDT)
+Received: from e120937-lin.home (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 718DF3F719;
+        Fri, 11 Jun 2021 10:01:08 -0700 (PDT)
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        virtualization@lists.linux-foundation.org,
+        virtio-dev@lists.oasis-open.org
+Cc:     sudeep.holla@arm.com, james.quinlan@broadcom.com,
+        Jonathan.Cameron@Huawei.com, f.fainelli@gmail.com,
+        etienne.carriere@linaro.org, vincent.guittot@linaro.org,
+        souvik.chakravarty@arm.com, cristian.marussi@arm.com,
+        igor.skalkin@opensynergy.com, peter.hilber@opensynergy.com,
+        alex.bennee@linaro.org, jean-philippe@linaro.org,
+        mikhail.golubev@opensynergy.com, anton.yakovlev@opensynergy.com,
+        Vasyl.Vavrychuk@opensynergy.com,
+        Andriy.Tryshnivskyy@opensynergy.com,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v4 13/16] dt-bindings: arm: Add virtio transport for SCMI
+Date:   Fri, 11 Jun 2021 17:59:34 +0100
+Message-Id: <20210611165937.701-14-cristian.marussi@arm.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210611165624.30749-1-biju.das.jz@bp.renesas.com>
-References: <20210611165624.30749-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210611165937.701-1-cristian.marussi@arm.com>
+References: <20210611165937.701-1-cristian.marussi@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add I2C{0,1,2,3} nodes to RZ/G2 (R9A07G044) SoC DTSI.
+From: Igor Skalkin <igor.skalkin@opensynergy.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-This patch depend on [1]
-[1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20210609153230.6967-11-prabhakar.mahadev-lad.rj@bp.renesas.com/
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 80 ++++++++++++++++++++++
- 1 file changed, 80 insertions(+)
+Document the properties for arm,scmi-virtio compatible nodes.
+The backing virtio SCMI device is described in patch [1].
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 2ffdaed6c9a5..36b3295a8829 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -93,6 +93,86 @@
- 			status = "disabled";
- 		};
+While doing that, make shmem property required only for pre-existing
+mailbox and smc transports, since virtio-scmi does not need it.
+
+[1] https://lists.oasis-open.org/archives/virtio-comment/202102/msg00018.html
+
+CC: Rob Herring <robh+dt@kernel.org>
+CC: devicetree@vger.kernel.org
+Signed-off-by: Igor Skalkin <igor.skalkin@opensynergy.com>
+[ Peter: Adapted patch for submission to upstream. ]
+Co-developed-by: Peter Hilber <peter.hilber@opensynergy.com>
+Signed-off-by: Peter Hilber <peter.hilber@opensynergy.com>
+[ Cristian: converted to yaml format, moved shmen required property. ]
+Co-developed-by: Cristian Marussi <cristian.marussi@arm.com>
+Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
+---
+v3 --> V4
+- convertd to YAML
+- make shmem required only for pre-existing mailbox and smc transport
+- updated VirtIO specification patch message reference
+- dropped virtio-mmio SCMI device example since really not pertinent to
+  virtio-scmi dt bindings transport: it is not even referenced in SCMI
+  virtio DT node since they are enumerated by VirtIO subsystem and there
+  could be PCI based SCMI devices anyway.
+---
+ Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index cebf6ffe70d5..5c4c6782e052 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -34,6 +34,10 @@ properties:
+       - description: SCMI compliant firmware with ARM SMC/HVC transport
+         items:
+           - const: arm,scmi-smc
++      - description: SCMI compliant firmware with SCMI Virtio transport.
++                     The virtio transport only supports a single device.
++        items:
++          - const: arm,scmi-virtio
  
-+		i2c0: i2c@10058000 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058000 0 0x400>;
-+			interrupts = <GIC_SPI 350  IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 348 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 349 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 351 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_CLK_I2C0>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_CLK_I2C0>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		i2c1: i2c@10058400 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058400 0 0x400>;
-+			interrupts = <GIC_SPI 358  IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 356 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 357 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 362 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_CLK_I2C1>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_CLK_I2C1>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		i2c2: i2c@10058800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058800 0 0x400>;
-+			interrupts = <GIC_SPI 366  IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 364 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 365 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_CLK_I2C2>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_CLK_I2C2>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		i2c3: i2c@10058C00 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058c00 0 0x400>;
-+			interrupts = <GIC_SPI 374  IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 372 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 373 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 376 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_CLK_I2C3>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_CLK_I2C3>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
- 		cpg: clock-controller@11010000 {
- 			compatible = "renesas,r9a07g044-cpg";
- 			reg = <0 0x11010000 0 0x10000>;
+   interrupts:
+     description:
+@@ -172,6 +176,7 @@ patternProperties:
+       Each sub-node represents a protocol supported. If the platform
+       supports a dedicated communication channel for a particular protocol,
+       then the corresponding transport properties must be present.
++      The virtio transport does not support a dedicated communication channel.
+ 
+     properties:
+       reg:
+@@ -195,7 +200,6 @@ patternProperties:
+ 
+ required:
+   - compatible
+-  - shmem
+ 
+ if:
+   properties:
+@@ -209,6 +213,7 @@ then:
+ 
+   required:
+     - mboxes
++    - shmem
+ 
+ else:
+   if:
+@@ -219,6 +224,7 @@ else:
+   then:
+     required:
+       - arm,smc-id
++      - shmem
+ 
+ examples:
+   - |
 -- 
 2.17.1
 
