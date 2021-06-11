@@ -2,75 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBD9A3A4060
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 12:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 561343A40E4
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 13:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230515AbhFKKsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 06:48:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33022 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230365AbhFKKsW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 06:48:22 -0400
-Received: from theia.8bytes.org (8bytes.org [IPv6:2a01:238:4383:600:38bc:a715:4b6d:a889])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7377AC061574;
-        Fri, 11 Jun 2021 03:46:24 -0700 (PDT)
-Received: by theia.8bytes.org (Postfix, from userid 1000)
-        id 376EC2FB; Fri, 11 Jun 2021 12:46:21 +0200 (CEST)
-Date:   Fri, 11 Jun 2021 12:46:19 +0200
-From:   Joerg Roedel <joro@8bytes.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Yong Wu <yong.wu@mediatek.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Will Deacon <will.deacon@arm.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, srv_heupstream@mediatek.com,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
-        chao.hao@mediatek.com, ming-fan.chen@mediatek.com,
-        yi.kuo@mediatek.com, eizan@chromium.org,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Irui Wang <irui.wang@mediatek.com>, linux-media@vger.kernel.org
-Subject: Re: [PATCH v5 13/16] media: mtk-vcodec: Get rid of
- mtk_smi_larb_get/put
-Message-ID: <YMM++ySKo38OUMXQ@8bytes.org>
-References: <20210410091128.31823-1-yong.wu@mediatek.com>
- <20210410091128.31823-14-yong.wu@mediatek.com>
- <CAJMQK-iTrQRDDm_=LNqSpvXFd431LYRxXMasJHUpN+K8rJ=Qpg@mail.gmail.com>
- <1620822547.2983.8.camel@mhfsdcap03>
- <c1422242-8d8c-9592-c22d-288c503cd8b1@gmail.com>
- <1623326528.23717.20.camel@mhfsdcap03>
- <e7269c80-5437-6ab9-c1db-df0b94eb97d8@gmail.com>
+        id S231734AbhFKLMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 07:12:51 -0400
+Received: from foss.arm.com ([217.140.110.172]:55266 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231733AbhFKLMt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 07:12:49 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ADD5E143D;
+        Fri, 11 Jun 2021 04:10:51 -0700 (PDT)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id D8F6E3F694;
+        Fri, 11 Jun 2021 04:10:50 -0700 (PDT)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v2] dt-bindings: interrupt-controller: Convert ARM VIC to json-schema
+Date:   Fri, 11 Jun 2021 12:10:33 +0100
+Message-Id: <20210611111033.2818949-1-sudeep.holla@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e7269c80-5437-6ab9-c1db-df0b94eb97d8@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 12:07:24PM +0200, Matthias Brugger wrote:
-> That's a good question. I think the media tree would be a good
-> candidate, as it has the biggest bunch of patches. But that would mean
-> that Joerg is fine that.  The DTS part could still go through my tree.
+Convert the ARM VIC binding document to DT schema format using
+json-schema.
 
-IOMMU changes are only a minor part of this, so it should not go through
-the IOMMU tree. When Matthias has reviewed the IOMMU changes, feel free
-to add my
+Cc: Rob Herring <robh@kernel.org>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+---
+ .../bindings/interrupt-controller/arm,vic.txt | 41 --------
+ .../interrupt-controller/arm,vic.yaml         | 93 +++++++++++++++++++
+ 2 files changed, 93 insertions(+), 41 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
 
-	Acked-by: Joerg Roedel <jroedel@suse.de>
+v1->v2:
+	- Added arm,versatile-vic to the list of compatibles as suggested
+	  by Linus W and added his review tag
+	- Updated the SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+	  Original txt file doesn't carry anything and is not sure about
+	  it, but just followed what I have done with scmi/scpi ones
 
-to them.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt b/Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt
+deleted file mode 100644
+index dd527216c5fb..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-* ARM Vectored Interrupt Controller
+-
+-One or more Vectored Interrupt Controllers (VIC's) can be connected in an ARM
+-system for interrupt routing.  For multiple controllers they can either be
+-nested or have the outputs wire-OR'd together.
+-
+-Required properties:
+-
+-- compatible : should be one of
+-	"arm,pl190-vic"
+-	"arm,pl192-vic"
+-- interrupt-controller : Identifies the node as an interrupt controller
+-- #interrupt-cells : The number of cells to define the interrupts.  Must be 1 as
+-  the VIC has no configuration options for interrupt sources.  The cell is a u32
+-  and defines the interrupt number.
+-- reg : The register bank for the VIC.
+-
+-Optional properties:
+-
+-- interrupts : Interrupt source for parent controllers if the VIC is nested.
+-- valid-mask : A one cell big bit mask of valid interrupt sources. Each bit
+-  represents single interrupt source, starting from source 0 at LSb and ending
+-  at source 31 at MSb. A bit that is set means that the source is wired and
+-  clear means otherwise. If unspecified, defaults to all valid.
+-- valid-wakeup-mask : A one cell big bit mask of interrupt sources that can be
+-  configured as wake up source for the system. Order of bits is the same as for
+-  valid-mask property. A set bit means that this interrupt source can be
+-  configured as a wake up source for the system. If unspecied, defaults to all
+-  interrupt sources configurable as wake up sources.
+-
+-Example:
+-
+-	vic0: interrupt-controller@60000 {
+-		compatible = "arm,pl192-vic";
+-		interrupt-controller;
+-		#interrupt-cells = <1>;
+-		reg = <0x60000 0x1000>;
+-
+-		valid-mask = <0xffffff7f>;
+-		valid-wakeup-mask = <0x0000ff7f>;
+-	};
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
+new file mode 100644
+index 000000000000..60576bf14b43
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/arm,vic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARM Vectored Interrupt Controller
++
++maintainers:
++  - Rob Herring <robh@kernel.org>
++
++description: |+
++  One or more Vectored Interrupt Controllers (VIC's) can be connected in an
++  ARM system for interrupt routing.  For multiple controllers they can either
++  be nested or have the outputs wire-OR'd together.
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - const: arm,pl190-vic
++      - const: arm,pl192-vic
++      - const: arm,versatile-vic
++
++  interrupt-controller: true
++
++  "#interrupt-cells":
++    const: 1
++    description:
++      The number of cells to define the interrupts.  It must be 1 as the
++      VIC has no configuration options for interrupt sources. The single
++      cell defines the interrupt number.
++
++  reg:
++    description: The register bank for the VIC.
++    maxItems: 1
++
++  interrupts:
++    description:
++      Interrupt source for the parent interrupt controller if the VIC
++      is nested.
++    maxItems: 1
++
++  interrupts-extended:
++    description:
++      Interrupt source for the parent interrupt controllers if the VIC
++      is nested.
++    maxItems: 1
++
++  valid-mask:
++    description:
++      A one cell big bit mask of valid interrupt sources. Each bit
++      represents single interrupt source, starting from source 0 at
++      LSb and ending at source 31 at MSb. A bit that is set means
++      that the source is wired and clear means otherwise. If unspecified,
++      defaults to all valid.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maxItems: 1
++
++  valid-wakeup-mask:
++    description:
++      A one cell big bit mask of interrupt sources that can be configured
++      as wake up source for the system. Order of bits is the same as for
++      valid-mask property. A set bit means that this interrupt source
++      can be configured as a wake up source for the system. If unspecied,
++      defaults to all interrupt sources configurable as wake up sources.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupt-controller
++  - "#interrupt-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    // GICv1
++    vic0: interrupt-controller@60000 {
++      compatible = "arm,pl192-vic";
++      interrupt-controller;
++      #interrupt-cells = <1>;
++      reg = <0x60000 0x1000>;
++
++      valid-mask = <0xffffff7f>;
++      valid-wakeup-mask = <0x0000ff7f>;
++    };
++
++...
+-- 
+2.25.1
 
-Regards,
-
-	Joerg
