@@ -2,98 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E7863A4452
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 16:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78FED3A4491
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 17:01:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231553AbhFKOtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 10:49:09 -0400
-Received: from router.aksignal.cz ([62.44.4.214]:41480 "EHLO
-        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231231AbhFKOtJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 10:49:09 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by router.aksignal.cz (Postfix) with ESMTP id 161A6484DF;
-        Fri, 11 Jun 2021 16:47:09 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
-Received: from router.aksignal.cz ([127.0.0.1])
-        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id Ne5tC4B7MD-f; Fri, 11 Jun 2021 16:47:08 +0200 (CEST)
-Received: from [172.25.161.48] (unknown [83.240.30.185])
-        (Authenticated sender: jiri.prchal@aksignal.cz)
-        by router.aksignal.cz (Postfix) with ESMTPSA id 4E52C484DE;
-        Fri, 11 Jun 2021 16:47:08 +0200 (CEST)
-Subject: Re: [PATCH] nvmem: eeprom: at25: fix type compiler warnings
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        kernel test robot <lkp@intel.com>
-References: <20210611142706.27336-1-jiri.prchal@aksignal.cz>
- <YMN29rIlPDCL0w3A@kroah.com>
-From:   =?UTF-8?B?SmnFmcOtIFByY2hhbA==?= <jiri.prchal@aksignal.cz>
-Message-ID: <84769ab5-ff30-6c6a-8362-864bd069066d@aksignal.cz>
-Date:   Fri, 11 Jun 2021 16:47:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S231179AbhFKPDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 11:03:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33390 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230382AbhFKPDO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 11:03:14 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45E24C061574;
+        Fri, 11 Jun 2021 08:01:15 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: ezequiel)
+        with ESMTPSA id A3CD81F4479F
+Message-ID: <15d5728aeb7895f81f833e7f7e281861c1fcef9a.camel@collabora.com>
+Subject: Re: [PATCH v13 2/2] arm64: dts: imx: Add jpeg encoder/decoder nodes
+From:   Ezequiel Garcia <ezequiel@collabora.com>
+To:     Dong Aisheng <dongas86@gmail.com>,
+        Mirela Rabulea <mirela.rabulea@nxp.com>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "G.n. Zhou" <guoniu.zhou@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Date:   Fri, 11 Jun 2021 12:00:59 -0300
+In-Reply-To: <CAA+hA=TEi3iZ+nOfff=aN1FrLGb6+OHfx23aWaa1J7YfZRRgtA@mail.gmail.com>
+References: <20210522211055.15988-1-mirela.rabulea@oss.nxp.com>
+         <20210522211055.15988-3-mirela.rabulea@oss.nxp.com>
+         <DB9PR04MB8477D8F7DC86E67F74D5D9F780269@DB9PR04MB8477.eurprd04.prod.outlook.com>
+         <e4c174afd7c55c56c68afbe69276b41c3f574964.camel@nxp.com>
+         <CAA+hA=TEi3iZ+nOfff=aN1FrLGb6+OHfx23aWaa1J7YfZRRgtA@mail.gmail.com>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.2-1 
 MIME-Version: 1.0
-In-Reply-To: <YMN29rIlPDCL0w3A@kroah.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 11. 06. 21 16:45, Greg Kroah-Hartman wrote:
-> On Fri, Jun 11, 2021 at 04:27:06PM +0200, Jiri Prchal wrote:
->> Fixes:
->> drivers/misc/eeprom/at25.c:181:28: warning: field width should have type 'int',
->> but argument has type 'unsigned long'
->>
->> drivers/misc/eeprom/at25.c:386:13: warning: cast to smaller integer type 'int'
->> from 'const void *'
->>
->> Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
->> Reported-by: kernel test robot <lkp@intel.com>
->> ---
->>   drivers/misc/eeprom/at25.c | 6 +++---
->>   1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
->> index 6e26de68a001..744f7abb22ee 100644
->> --- a/drivers/misc/eeprom/at25.c
->> +++ b/drivers/misc/eeprom/at25.c
->> @@ -178,7 +178,7 @@ static ssize_t sernum_show(struct device *dev, struct device_attribute *attr, ch
->>   	struct at25_data *at25;
->>   
->>   	at25 = dev_get_drvdata(dev);
->> -	return sysfs_emit(buf, "%*ph\n", sizeof(at25->sernum), at25->sernum);
->> +	return sysfs_emit(buf, "%*ph\n", (int)sizeof(at25->sernum), at25->sernum);
->>   }
->>   static DEVICE_ATTR_RO(sernum);
->>   
->> @@ -379,11 +379,11 @@ static int at25_probe(struct spi_device *spi)
->>   	u8 sernum[FM25_SN_LEN];
->>   	int i;
->>   	const struct of_device_id *match;
->> -	int is_fram = 0;
->> +	unsigned long is_fram = 0;
->>   
->>   	match = of_match_device(of_match_ptr(at25_of_match), &spi->dev);
->>   	if (match)
->> -		is_fram = (int)match->data;
->> +		is_fram = (unsigned long)match->data;
->>   
->>   	/* Chip description */
->>   	if (!spi->dev.platform_data) {
->> -- 
->> 2.25.1
->>
+On Fri, 2021-06-11 at 21:33 +0800, Dong Aisheng wrote:
+> [...]
 > 
-> Looks good, now queued up.
+> > > > +img_subsys: bus@58000000 {
+> > > > +   compatible = "simple-bus";
+> > > > +   #address-cells = <1>;
+> > > > +   #size-cells = <1>;
+> > > > +   ranges = <0x58000000 0x0 0x58000000 0x1000000>;
+> > > > +
+> > > > +   img_ipg_clk: clock-img-ipg {
+> > > > +           compatible = "fixed-clock";
+> > > > +           #clock-cells = <0>;
+> > > > +           clock-frequency = <200000000>;
+> > > > +           clock-output-names = "img_ipg_clk";
+> > > > +   };
+> > > > +
+> > > > +   jpegdec: jpegdec@58400000 {
+> > > 
+> > > Node should be disabled by default.
+> > > And enable it in board dts including LPCG.
+> > 
+> > At version v5 of this patch, the node was disabled by default, and I
+> > received this feedback from Ezequiel Garcia:
+> > 
+> > "Pure memory-to-memory are typically not enabled per-board, but just
+> > per-platform.
+> > So you can drop the disabled status here."
+> > 
+> > So, in v6 I made it enabled by default.
+> > 
+> > Any strong reasons for enabled/disabled per platform?
+> 
+> AFAIK we usually only enable system basic features and let other
+> user selectable features disabled by default in dts.
+> Even for device LPCG clocks, if it's enabled by default and later
+> enter runtime suspend if no users, it still consumes power.
+> 
 
-Thanks Greg for patience and guiding me...
-Jiri
+Well-written drivers shouldn't draw any power if not used.
+
+And DT is about hardware-description, not about usage-description.
+Which means, at the soc.dtsi level you disable devices that need
+some board-level hardware thing to be enabled (e.g. a physical
+connected, a regulator, etc.).
+
+A pure memory-to-memory should be enabled by default, because
+in practice you can't predict what the users a board will want
+to use, nor the DT is the place for that.
+
+Sticking to hardware description is the best way to get DT right :-)
+
+Cheers,
+Ezequiel
+
