@@ -2,64 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDE323A3F7B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 11:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D234F3A3FA8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 11:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230467AbhFKJvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 05:51:31 -0400
-Received: from mail-wm1-f50.google.com ([209.85.128.50]:52856 "EHLO
-        mail-wm1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbhFKJvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 05:51:31 -0400
-Received: by mail-wm1-f50.google.com with SMTP id f17so7749913wmf.2;
-        Fri, 11 Jun 2021 02:49:33 -0700 (PDT)
+        id S229824AbhFKJ6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 05:58:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50208 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229480AbhFKJ6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 05:58:48 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BAEFC061574;
+        Fri, 11 Jun 2021 02:56:50 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id l18-20020a1ced120000b029014c1adff1edso8293399wmh.4;
+        Fri, 11 Jun 2021 02:56:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=7ObfSjunS2lqcu+qmz5f/+ME5Q9V/oV3SAiNhGet7h0=;
-        b=ClRCy2c0ol1tBDtfW5RGO5sESybQqKJgcKnfy8A2Py/6VY67/NwXULxLLMBifRExwS
-         ntroCvu6XNQlu4XJn4tdwlZEQibGveP0GIcF1zwC0Hd/EF4B9yPBdIewIb6KiHM9hQNb
-         9OV6wZE44HMN1/Z+sZFFJwt57YeVDk/MvgBvDnPXqCX6kaM3lyBn1a2T4Zv/0GP9G2ze
-         lOe5iGnCZG6xFx9kafVbE/9FYJN29esHDg6lLVJEioVWGMBQppyV160ZH068BzPlgfvr
-         lg+83qjJq697jJS4ht7RTr2wZo1Z2KWbQqbSz516lS2ABz06tStNlb6BqoxENNL/T8cZ
-         NqRA==
+        bh=2aS2aKAnK8HRnoLMpd4OzBFgPhNdvccv1jLgYOp9O1Q=;
+        b=Vyj4vp+WQf3MX0A/ykECp07yDpSb+a2MxyYqRr080tcVKfgDf8tI640rL1QeMrCyK/
+         KSxsuph4wUrjqR0LqLMf107xy6m80NsuUZ8qw6qGK49pLXNKXBzwlBA4xfcYuohcPlEd
+         DJtrZ9Myk0J4eOPUqnBaXEUy2QwJsPSoyG1OhkYwAOaDqsL0I3/Eix5GjJdvYu8EyKRO
+         YYmkuL/aB3Hyq9eGmrBD0f6jkV82JH2iQUnLbF7c77tbekcZIxtmu/FAiwa2nkgomV6w
+         uMbwDw5ag+Ficnl5rBF6lagRTWz89/ntlx8XIrYzFsOiybdWQWTxRv6g45A13YaAw609
+         OiJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=7ObfSjunS2lqcu+qmz5f/+ME5Q9V/oV3SAiNhGet7h0=;
-        b=jncx/PCrKjbat2sQooEONfgJwEWvFdtQek+ESOX6rsInjxAEgUB//mVZBBGnXhigIm
-         9u17RmiPrvqNbNclY1fBgWPWhRHM9cJIAHUtapAPZ5Y+EmnMxLdtyhxx9J8/1BQMJuLN
-         KNs5wsfaJLbGWqURXyoxPi5XjK+qIkcvULZ8yXNPSsd0cHq+7H3gywhpXyuTvqTr+8p2
-         8JaJERGk/XF4TaBtIMko1ZI0ndAHtp/tveCz0c6MDYK/0z4apdddSTslsu49AdUBtSoe
-         IPLJs0IEuUMjxDbT0m81xYkrHh2HZLQiWyDSuIcXiwPyEJeZGYMBnsjYUZ1d5wuC6/XW
-         hWRw==
-X-Gm-Message-State: AOAM533mALsvzxRg1QsFiNw788fRc/hLrnk8wlmEmvRu6ixACdpYKzk5
-        /i5CrukvhrQqEKoXeZJDH2k=
-X-Google-Smtp-Source: ABdhPJzcgh43AweTQqlpG4DsIlO93zwseDZqvtC3I1XN2r+uEIw3ceMUybZE1nde+hE5GmM70BNbgw==
-X-Received: by 2002:a05:600c:22d9:: with SMTP id 25mr19855564wmg.152.1623404912991;
-        Fri, 11 Jun 2021 02:48:32 -0700 (PDT)
+        bh=2aS2aKAnK8HRnoLMpd4OzBFgPhNdvccv1jLgYOp9O1Q=;
+        b=R/H6mTcuG7voykUhEWZIIDKdtJeb1MH8vublQLb9J6l2+VRjGKtsGhI7u+nFDtdbUp
+         d30jxErKY4loGZgjG86TVBFDVTxGbcJrr79nEcVeYi7vYFt8E6eRrUw3wHAah1k6l1ST
+         h+5RHwfc5PxuGPa83KlLlUr/VhPxiuYMrzv40wulHf5fDIKPgcZ0nnukgFl+QXkrKndY
+         b2iBFVnWOoIOjIiN2GzhH1ZuTqpyrmd0jLPbWh2mzhZ6HUPqm4Ae+4VTpPORVwYqSYEo
+         KKXMm5L+nzh86GRutHYexlNzT7Uxnvtan3Ah9pzEQ1DP3zhnjHsCb+9+HYXgTjZ1HT5B
+         aNCQ==
+X-Gm-Message-State: AOAM533HHfDREXatrZEfQX5WdA/IPw8vbBcE8Rtpd2fFGQ22eUTt0C/1
+        gTaqsHZ3fJwXk4qaKBSSayr0XQFjidr6bg==
+X-Google-Smtp-Source: ABdhPJzRO51Kgr6iMGfZOZyQH08p7CKPYr70cepTRwtpjrGRVpTlK4qEzZS/X+xskoGy1H8iq7qkGw==
+X-Received: by 2002:a05:600c:2e43:: with SMTP id q3mr3096187wmf.11.1623405409129;
+        Fri, 11 Jun 2021 02:56:49 -0700 (PDT)
 Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id 89sm6799095wrq.14.2021.06.11.02.48.32
+        by smtp.gmail.com with ESMTPSA id 73sm6955489wrk.17.2021.06.11.02.56.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jun 2021 02:48:32 -0700 (PDT)
-Subject: Re: [PATCH v3 1/2] dt-bindings: mediatek: convert mtk jpeg
- decoder/encoder to yaml
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        maoguang.meng@mediatek.com, yong.wu@mediatek.com
-References: <20210611092357.2930310-1-hsinyi@chromium.org>
+        Fri, 11 Jun 2021 02:56:48 -0700 (PDT)
+Subject: Re: [PATCH v9 01/22] dt-bindings: ARM: Mediatek: Add new document
+ bindings of imp i2c wrapper controller
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Nicolas Boichat <drinkcat@chromium.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+References: <20210524122053.17155-1-chun-jie.chen@mediatek.com>
+ <20210524122053.17155-2-chun-jie.chen@mediatek.com>
+ <20210602171201.GA3566462@robh.at.kernel.org>
+ <66e017401ab93aa02c5d2bbf11be9589b36649ac.camel@mediatek.com>
+ <1f59ed31-4a0e-9719-bf84-1fe4cdd6c57d@gmail.com>
+ <162334689784.9598.2709970788186333494@swboyd.mtv.corp.google.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <b8c3433d-8860-38bc-27f0-877f05e9e0a7@gmail.com>
-Date:   Fri, 11 Jun 2021 11:48:30 +0200
+Message-ID: <de082c64-ace3-30b5-7404-1f4b607a83e1@gmail.com>
+Date:   Fri, 11 Jun 2021 11:56:47 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.10.2
 MIME-Version: 1.0
-In-Reply-To: <20210611092357.2930310-1-hsinyi@chromium.org>
+In-Reply-To: <162334689784.9598.2709970788186333494@swboyd.mtv.corp.google.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -69,40 +81,81 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 11/06/2021 11:23, Hsin-Yi Wang wrote:
-> Convert mediatek jpeg decoder and encoder bindings to yaml.>
-[...]
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
-> new file mode 100644
-> index 0000000000000..e4e791d76cdaa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/mediatek-jpeg-encoder.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek JPEG Encoder Device Tree Bindings
-> +
-> +maintainers:
-> +  - Xia Jiang <xia.jiang@mediatek.com>
-> +
-> +description: |-
-> +  MediaTek JPEG Encoder is the JPEG encode hardware present in MediaTek SoCs
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - mediatek,mt2701-jpgenc
-> +          - mediatek,mt8183-jpgenc
+On 10/06/2021 19:41, Stephen Boyd wrote:
+> Quoting Matthias Brugger (2021-06-08 07:45:49)
+>>
+>>
+>> On 07/06/2021 07:20, Chun-Jie Chen wrote:
+>>> On Wed, 2021-06-02 at 12:12 -0500, Rob Herring wrote:
+>>>>> +
+>>>>> +description:
+>>>>> +  The Mediatek imp i2c wrapper controller provides functional
+>>>>> configurations and clocks to the system.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    items:
+>>>>> +      - enum:
+>>>>> +          - mediatek,mt8192-imp_iic_wrap_c
+>>>>> +          - mediatek,mt8192-imp_iic_wrap_e
+>>>>> +          - mediatek,mt8192-imp_iic_wrap_s
+>>>>> +          - mediatek,mt8192-imp_iic_wrap_ws
+>>>>> +          - mediatek,mt8192-imp_iic_wrap_w
+>>>>> +          - mediatek,mt8192-imp_iic_wrap_n
+>>>>
+>>>> Looks to me like these are all the same h/w, but just have differing 
+>>>> sets of clocks. That's not really a reason to have different 
+>>>> compatibles. 
+>>>>
+>>>> If you need to know what clocks are present, you can walk the DT for 
+>>>> all 'clocks' properties matching this clock controller instance. Or
+>>>> use 
+>>>> 'clock-indices' to define which ones are present.
+> 
+> Is the idea to use clock-indices and then list all the clock ids in
+> there and match them up at driver probe time to register the clocks
+> provided by the IO region? Feels like we'll do a lot of parsing at each
+> boot to match up structures and register clks with the clk framework.
+> 
+> If it's like other SoCs then the clk id maps to a hard macro for a type
+> of clk, and those hard macros have been glued together with other clks
+> and then partitioned into different IO regions to make up a clock
+> controller. Or maybe in this case, those clk hard macros have been
+> scattered into each IP block like SPI, i2c, uart, etc. so that the clock
+> controller doesn't really exist and merely the gates and rate control
+> (mux/divider) for the clk that's clocking some particular IP block all
+> live inside the IP wrapper. If it's this case then I hope there are a
+> bunch of PLLs that are fixed rate so that the i2c clk doesn't have to go
+> outside the wrapper to change frequency (of which there should be two
+> "standard" frequencies anyway).
+> 
+>>>>
+>>>> Rob
+>>>
+>>> Some module is divided to sub-modules which are designed in different
+>>> h/w blocks for different usage, and if we want to use the same
+>>> compatible to present these h/w blocks, we need to move the clock data
+>>> provided by these h/w blocks to dts, but we usually use different
+>>> compatible to get the h/w blocks data in
+>>> Mediatek's clock driver, so do you suggest to register clock provided
+>>> by different h/w blocks using same compatible?
+>>>
+>>
+>> The mapping of them is as following:
+>> imp_iic_wrap_c:  11007000
+>> imp_iic_wrap_e:  11cb1000
+>> imp_iic_wrap_s:  11d03000
+>> imp_iic_wrap_ws: 11d23000
+>> imp_iic_wrap_w:  11e01000
+>> imp_iic_wrap_n:  11f02000
+>>
+> 
+> Sure. What is their purpose though? Are they simply a bunch of different
+> i2c clks?
+> 
 
-Commit message talks about conversion. Sorry for nit-picking, but I think the
-new compatible should get a new patch. If you add changes to a file while
-converting/moving it, it get's really hard to find that change later on.
+That would be need to be answered by MediaTek as I don't have access to any
+documentation.
 
 Regards,
 Matthias
-
