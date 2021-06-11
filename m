@@ -2,112 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A1523A3D7C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 09:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2BBA3A3D94
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 09:54:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231615AbhFKHsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 03:48:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48918 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230526AbhFKHsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 03:48:01 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4CECC0617AF
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 00:45:54 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id z8so4957737wrp.12
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 00:45:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=jyVLRP1QkA2IL6a5f5yksm2l9IPiad2Lfrho8JCrB80=;
-        b=tnUXwEtIxNsUkR3juOymwq8NsDACLFO4UY9stNt8nf4fnyEfeLnMLJRCJ4WQrBSTVo
-         YXthzzdbMkbartaX3GNqDiGY4Gz7qS9h7XO2LM1KW0jgywjEjW8YmTfPj6o9v5fL/yxE
-         b9mjgp5A6ZiodETFvTQAp9m5YaYuipu2JP+jI5qYapY0Qf+qqvtB3sunq5gEnCh9WtkM
-         R//r15ndCwJfRN6O4LT1G4c1oQ9pBNogvUVYa7pZeYik7xN9OVlPoL5dpPlCSGuCReOI
-         RjsU/AFnUKF2BOQnHb+fLoueJveCWv+LFh4UewSsRxnBpkIIyGQq7bq1QNw6Bg7hqn9i
-         gDDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=jyVLRP1QkA2IL6a5f5yksm2l9IPiad2Lfrho8JCrB80=;
-        b=iWa9liL5T2MW3FFtJTWCznUS2mF7ttxaSU4PRcK0uY6ChvZ+zlFg44rlkaz6+e7veu
-         a9tReGODC68BYL8i3A+u5Jq8KP8dP6ghdiT9rxHVOxrzq9aZeaiQORbG4aIEw/uIb1Vj
-         qs6JAmR4RyMf92WswwsiXnJsYLA6w5VjI2UGmBXvZYPEIfUXwFUCM9VvAx0B6pJ4w7Rz
-         I7o2K+Z110tVpsZSW/60fAmO1fOxfZybtafojz/XLSu9m9i7wxW8wQdh4NLdWkoIYQvx
-         49QJLXmnMtyMj+IzaXt4XZfHWnKDfdYGY9i4+ppCblkAQ/cScn94h4ySIpw4soXKTgQV
-         DXYQ==
-X-Gm-Message-State: AOAM5322d2DhxCcw7pf/OcRwDsdI3iywZmvX1RjK5v8MdkTJ9YLjAOwq
-        ICxQWt1MM74v+iD1ptfN8f3yzQ==
-X-Google-Smtp-Source: ABdhPJzdpXeCEBaZqW+gbgn/Y7fTCnLbcAraMgni6bIzcHxjI8moZxc8QRHIancTbR/BoSfZr7KBAw==
-X-Received: by 2002:adf:f1ca:: with SMTP id z10mr2557658wro.396.1623397553262;
-        Fri, 11 Jun 2021 00:45:53 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:e537:d458:d3c4:18e1? ([2a01:e34:ed2f:f020:e537:d458:d3c4:18e1])
-        by smtp.googlemail.com with ESMTPSA id v15sm5701683wrw.24.2021.06.11.00.45.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jun 2021 00:45:52 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: meson: vim3: reduce cpu thermal fan trigger
- temperature
-To:     Nick Xie <xieqinick@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Cc:     robh+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Nick <nick@khadas.com>, artem@khadas.com
-References: <20210609012849.797576-1-xieqinick@gmail.com>
- <11da3ae4-91d4-1e51-c652-e4ad518f13bd@baylibre.com>
- <CAP4nuTVMZV7pz8NrM2MHcZzBdueRXjS+KYsU4=cQ1CB67gr_Hg@mail.gmail.com>
- <ee3341d9-350e-a84d-6836-3401be679b2a@baylibre.com>
- <CAP4nuTUt1vQjVP=3_NYaeu+m47f78ru6-MgGBiAqLeU9fJAsNg@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <09c65310-9441-9b97-d9ae-4695f0dd16af@linaro.org>
-Date:   Fri, 11 Jun 2021 09:45:51 +0200
+        id S231312AbhFKH4S convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 11 Jun 2021 03:56:18 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:55337 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229733AbhFKH4R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 03:56:17 -0400
+Received: from [77.244.183.192] (port=63938 helo=[192.168.178.41])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1lrbze-0000eL-75; Fri, 11 Jun 2021 09:54:18 +0200
+Subject: Re: [PATCH 1/2] dt-bindings: clk: vc5: Add property for SD polarity
+To:     Sean Anderson <sean.anderson@seco.com>, linux-clk@vger.kernel.org
+Cc:     Adam Ford <aford173@gmail.com>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+References: <20210607154931.2491499-1-sean.anderson@seco.com>
+ <eafea6ac-fbfd-3f42-93fa-edb8cdced3ea@lucaceresoli.net>
+ <5ef31cbd-473c-0916-85ff-860012ac694d@seco.com>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <a5c55357-e5e8-9e00-53cc-509e78fd6987@lucaceresoli.net>
+Date:   Fri, 11 Jun 2021 09:54:17 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <CAP4nuTUt1vQjVP=3_NYaeu+m47f78ru6-MgGBiAqLeU9fJAsNg@mail.gmail.com>
+In-Reply-To: <5ef31cbd-473c-0916-85ff-860012ac694d@seco.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 8BIT
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/06/2021 09:30, Nick Xie wrote:
-> Hello Neil,
+Hi Sean,
+
+On 10/06/21 17:43, Sean Anderson wrote:
 > 
 > 
-> Neil Armstrong <narmstrong@baylibre.com> 于2021年6月11日周五 下午3:15写道：
+> On 6/10/21 5:05 AM, Luca Ceresoli wrote:
+>> Hi Sean,
 >>
->> Hi,
->>
->> On 11/06/2021 08:54, Nick Xie wrote:
->>> Hello Neil,
+>> On 07/06/21 17:49, Sean Anderson wrote:
+>>> This property allows setting the SD/OE pin's polarity to active-high,
+>>> instead of the default of active-low.
 >>>
->>> The MCU FAN won't work until the temperature reach to 80 degree centigrade,
->>> Do you think the temperature is too high?
+>>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 >>
->> I think 80 is tool high, but I fear 50 is way too low, but if you think 50 is OK after you ran some tests, just add it to the commit log and it's ok for me.
+>> Thanks.
+>>
+>>> +  idt,sd-active-high:
+>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>> +    description: SD/OE pin polarity is active-high
+>>
+>> I think the name "sd" is misleading.
 > 
-> I think it is OK, we use it for a long time.
+> I do as well. After sending this patch, I reviewed the documentation
+> again and discovered that the functionality was not as clear as I
+> initially thought.
+> 
+>> In the Renesas docs (which are very confusing on their own about this
+>> topic) this bit is called "SP" -- *S*D/OE *P*olarity. But actually it
+>> controls polarity of the SD/OE pin only if the pin is configured for
+>> "OE" function:
+>>
+>>> SP bit = “SD/OE pin Polarity Bit”: Set the polarity of the SD/OE
+>>> pin where outputs enable or disable. Only works with OE, not with SD.
+>> (VC6E register and programming guide [0])
+>>
+>> As such I suggest you use either "sp" to keep the naming used in the
+>> Renesas docs or "oe" as it actually controls OE polarity only. I do
+>> prefer "sp" as it helps matching with the datasheets, but maybe adding a
+>> little more detail in bindings docs to clarify, as in:
+>>
+>>   idt,sp-active-high:
+>>     $ref: /schemas/types.yaml#/definitions/flag
+>>     description: SD/OE pin polarity is active-high
+>>                  (only works when SD/OE pin is configured as OE)
+>>
+>> BTW is it only me finding the "Shutdown Function" of [0] completely
+>> confusing? Also, Table 24 has contradictory lines and missing lines. I'm
+>> sending a request to Renesas support to ask them to clarify it all.
+> 
+> I rearranged the table to highlight which bits cause the output to
+> become inactive:
+> 
+> SH    SP    OSn    OEn    SD/OE    OUT
+> x    x    1    0    x    Active
+> 0    0    1    1    0    Active
+> 0    0    1    1    1    Inactive
+> 0    1    1    1    0    Inactive
+> 0    1    1    1    1    Active
+> 1    0    1    1    0    Active
+> 1    0    x    x    1    Shutdown
+> 1    1    1    1    0    Inactive
+> 1    1    x    x    1    Shutdown
+> x    x    0    x    x    Inactive>
+> This may be condensed to
+> 
+> SH    SP    SD/OE function for 0/1
+> 0    0    Active/Inactive
+> 0    1    Inactive/Active
+> 1    0    Active/Shutdown
+> 1    1    Inactive/Shutdown
+> 
+> According to the datasheet, the default settings are SH=0 and SP=0. So
+> perhaps a good set of properties would be
+> 
+> idt,enable-shutdown:
+>     Shutdown the device when the SD/OE pin is high. This would set
+>     SH=1.
+> idt,output-enable-active-high:
+>     Disable output when the SD/OE pin is low. This would set SP=1.
 
-50°C sounds like normal temperature with regular load. That means the
-fan will be switched on most of the time when the board is used.
-
-And this change may be put in regard with the other trip points in the
-common DT. For instance, enable the fan when reaching 80°C but set the
-passive trip point to 75°C instead of 85°C.
-
-All that depends on the hardware characteristics and TDP which are in
-the TRM normally.
-
+Seems good.
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Luca
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
