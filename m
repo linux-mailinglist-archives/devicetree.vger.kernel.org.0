@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E783A4907
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 21:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B6913A490B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 21:02:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231356AbhFKTDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 15:03:46 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:49767 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229824AbhFKTDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 15:03:46 -0400
+        id S230504AbhFKTEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 15:04:01 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:33807 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231383AbhFKTD6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 15:03:58 -0400
 Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 92622100006;
-        Fri, 11 Jun 2021 19:01:43 +0000 (UTC)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 4ED7F1BF207;
+        Fri, 11 Jun 2021 19:01:53 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Richard Weinberger <richard@nod.at>,
@@ -28,31 +28,27 @@ Cc:     Michal Simek <monstr@monstr.eu>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         helmut.grohne@intenta.de, Srinivas Goud <sgoud@xilinx.com>,
-        Siva Durga Prasad Paladugu <sivadur@xilinx.com>,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH v23 18/18] mtd: rawnand: pl353: Add support for the ARM PL353 SMC NAND controller
-Date:   Fri, 11 Jun 2021 21:01:42 +0200
-Message-Id: <20210611190142.226002-1-miquel.raynal@bootlin.com>
+        Siva Durga Prasad Paladugu <sivadur@xilinx.com>
+Subject: Re: [PATCH v23 17/18] dt-bindings: mtd: pl353-nand: Describe this hardware controller
+Date:   Fri, 11 Jun 2021 21:01:52 +0200
+Message-Id: <20210611190152.226068-1-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210610082040.2075611-19-miquel.raynal@bootlin.com>
+In-Reply-To: <20210610082040.2075611-18-miquel.raynal@bootlin.com>
 References: 
 MIME-Version: 1.0
 X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'd952eaf06e3b9e5d7bd32967c2089fd220aa03af'
+X-linux-mtd-patch-commit: b'0af8d462cc6f4eaef7069389c57c0b4a8ba2ef21'
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-06-10 at 08:20:40 UTC, Miquel Raynal wrote:
-> This hardware controller is embedded in XilinX Zynq-7000 SoCs and has
-> partial support for Hamming ECC correction.
-> 
-> This work is inspired from the original contributions of Punnaiah
-> Choudary Kalluri and Naga Sureshkumar Relli.
+On Thu, 2021-06-10 at 08:20:39 UTC, Miquel Raynal wrote:
+> Add a yaml description of this NAND controller which is described as a
+> subnode of the SMC bus.
 > 
 > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Tested-by: Michael Walle <michael@walle.cc> [on zynq-7000]
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
 Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next.
 
