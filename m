@@ -2,213 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D7893A48DF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F3C83A48E6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:55:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229540AbhFKSxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 14:53:30 -0400
-Received: from mail-wm1-f52.google.com ([209.85.128.52]:36418 "EHLO
-        mail-wm1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230188AbhFKSx3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 14:53:29 -0400
-Received: by mail-wm1-f52.google.com with SMTP id h11-20020a05600c350bb02901b59c28e8b4so8721355wmq.1;
-        Fri, 11 Jun 2021 11:51:21 -0700 (PDT)
+        id S230060AbhFKS50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 14:57:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57040 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229969AbhFKS50 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 14:57:26 -0400
+Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6991CC061574
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 11:55:28 -0700 (PDT)
+Received: by mail-pj1-x1029.google.com with SMTP id k5so6202799pjj.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 11:55:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=blJyy+GtTYyuD/0ZaPoBiTfk3dsMy/ByVxg74gzG+ds=;
-        b=BLrnWDrgsi5CxXDJegG9hi2UcF8InW5KJdpB3yZ8p7LE3AnxxsyC95QVJzBBnQOJ1B
-         J+1lBOrwwhXJElGH4sjUbXVTwzB+uS7F8YjZ5xhrOOX93pliZokU7v9NxxB+kFqt+t8Y
-         ZJ+XEahzWY4gW2fUnWfqDZlrv6lMJYufT2f0bbRYMDJ6WpzeDQeAcn9JB0KqyRdGv/j6
-         uuS0tC0SWHbTyRZQ43W/HAU7WLgVGr+3/khk4R/8t3d6dOWe7bW3/Ib/Js9pEkCwEleh
-         /Y7S/Ts4xxQfU4PNxWNiW2p9iIz2q9exSKhiT3YOnIyXXxuSc8F/ZMv6f5z8ce76b1QG
-         1u0A==
+        bh=aQ0QO0h8aoEGycfmGR0+TIM0LJMpu0pkcrcpKPrPTs8=;
+        b=o92kW98hiYSJapWCq+w+uXr2rKomAWGwu5lEddmV/tnaoJ7jRPd1spC7Az2abOoJhK
+         /Ji99ZmgXJmz3KNUn1CtldZzl3CHvBMjTGUmzqf7fNu2pEsAXch4J/nIKZgsKlM7TFZ0
+         eqZ71WJhulmIl0F92L85C+6NNfYMMZvmFPm2qgVzxEeeM2bIFoMvAGGbXPqmy/m3AehF
+         nEC4h3Sk4fj3u2WKBO+XD2Ghf3U0k33BWRsWlcx/msIh9UQby8+33a7ixAiOk/trEUmQ
+         6uGXorNvNV/cyhPQG3ng0hpI4yIgfVCZpJ7XZkyGe9Sp+w+AIAbC2aWNtTrsqkFMrFBm
+         cePA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=blJyy+GtTYyuD/0ZaPoBiTfk3dsMy/ByVxg74gzG+ds=;
-        b=PIZ+gxO3LyAbkSXNGXEMP+xDAXq9BrCVhb8o0RS+4XATteaZBKbsrZkPzYhk5kjKKX
-         cyfz8mQeXUUmK6k5EoAZlNxHjhElT1DhLP1lAHjcHDGzHJH/o4Fyvq8M4fT9synl32HQ
-         ocQPKk4SJ/WDB7ZOEzoelBa2zQ1oLxWJwiIIoQyN2TivMHtTJZj7Usesfu4tAq6zK6yv
-         Monssw1ouggIHzCuzpi/61JzYY1Paycl+4kLl1nzwJo2tYxBul8QyUULztiUkR5VDmWG
-         7XoQ49702xZOvZpxlWMrmrBb6hdKsc7SDCsAMsZeG926e4PyXZ4Px8URK5HThHpOPNf0
-         cfHg==
-X-Gm-Message-State: AOAM533ytgwWvPIyBmMmtY3ncoA541myLwtAxyBHOkqMgH+w3Ep7AdbC
-        FmKqer8Gf6kjTQROejyfUGiMcO0pEG2t2n/nR+YUnYYt+vA=
-X-Google-Smtp-Source: ABdhPJxRCn7VlJXU1vRcMg0lL7XvKEJrkJimqye0cQukJFVWVFGMDBf1SMg/+Lcr+kib8QHMKvSPSuZX3SuRCilDk4M=
-X-Received: by 2002:a05:600c:1ca6:: with SMTP id k38mr22418945wms.49.1623437420485;
- Fri, 11 Jun 2021 11:50:20 -0700 (PDT)
+        bh=aQ0QO0h8aoEGycfmGR0+TIM0LJMpu0pkcrcpKPrPTs8=;
+        b=Pg4hOXSYeL1Kn8xnVSJrlGPJrY5qTQXKV8QhAGDto9RGyI+HNxfYV11FlFqZrbLAIh
+         36eQl+E31bOQe+VAjsciDAOovxV+sT1szdBYsgh/rbjgVYKb0H8rpfkx+YpsHeecO9Wq
+         tdOQJQMZTI7IbcvtGM6n1dCJIm0eBRZWNJGjMPzoa2Fblq/Dgw07H148Tnce+YPQnBBD
+         WBb1bdpzq+P9MK5k3ReMrNftSY4o1/F+K5wJbVgBrIv1umobJYYyjiVhRmDZg925oLsH
+         WbyUA6DXc3N0LkI9RhGMiVQduIFVtYMKKssekSklaMfEWTdYZ7PDHs3EYaGaBdlGn75p
+         pGag==
+X-Gm-Message-State: AOAM530DYO8jHAvl6U8nQrKy942yWVfng9QpJXj4R9tkQHyfTuvnSwu1
+        cwThMlTtTZ6CyMSRn5xOjaaGcgWYNUKXWiESlObs8w==
+X-Google-Smtp-Source: ABdhPJy7CAd3K4ZYdyXL8F5lowsQYZsXeVHU6EhUe5rTmFq8qT7FHT3TG02781ZGIZ394iapgifFVuKbcdrUR739esA=
+X-Received: by 2002:a17:903:1241:b029:10f:ff8c:a3fe with SMTP id
+ u1-20020a1709031241b029010fff8ca3femr5166494plh.13.1623437727770; Fri, 11 Jun
+ 2021 11:55:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210611113514.27173-1-konrad.dybcio@somainline.org>
-In-Reply-To: <20210611113514.27173-1-konrad.dybcio@somainline.org>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Fri, 11 Jun 2021 11:54:14 -0700
-Message-ID: <CAF6AEGv3UivqUKb8wkCgzpApORV=ucswOzUh7BQMWRiif5ZJdw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8250: Disable Adreno and Venus by default
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Martin Botka <martin.botka@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        jamipkettunen@somainline.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20210601174917.1979-1-tharvey@gateworks.com> <b63300e8-3739-fcc6-6d37-952f93cfd17b@kontron.de>
+ <CAJ+vNU0mBQJ_ZLsKOiY0k7+drYvmw+bsHfeX4+Mg=s4_fxSUYA@mail.gmail.com>
+ <5eba4438-239c-71d1-56ec-4edd70e87ec3@kontron.de> <DBBPR04MB79303661E07409B4B65F3EF487389@DBBPR04MB7930.eurprd04.prod.outlook.com>
+ <273e2859-7874-e273-9599-139274891023@kontron.de> <DBBPR04MB7930943628D1E80C17237D8187389@DBBPR04MB7930.eurprd04.prod.outlook.com>
+ <717608d8-685a-0435-aaa2-3bd4f82f3b97@kontron.de>
+In-Reply-To: <717608d8-685a-0435-aaa2-3bd4f82f3b97@kontron.de>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 11 Jun 2021 11:55:16 -0700
+Message-ID: <CAJ+vNU1bj6VtVSo45tG4nP8Pv9rx4oDyxNKZB2zAX85Y2c7=pg@mail.gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: imx8mm-venice-gw700x: override thermal
+ cfg for industrial temp
+To:     Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc:     Jacky Bai <ping.bai@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 4:35 AM Konrad Dybcio
-<konrad.dybcio@somainline.org> wrote:
+On Mon, Jun 7, 2021 at 1:34 AM Frieder Schrempf
+<frieder.schrempf@kontron.de> wrote:
 >
-> Components that rely on proprietary (not to mention signed!) firmware should
-> not be enabled by default, as lack of the aforementioned firmware could cause
-> various issues, from random errors to straight-up failing to boot.
+> On 07.06.21 10:00, Jacky Bai wrote:
+> >> Subject: Re: [PATCH 1/4] arm64: dts: imx8mm-venice-gw700x: override
+> >> thermal cfg for industrial temp
+> >>
+> >> On 07.06.21 09:30, Jacky Bai wrote:
+> >>>> Subject: Re: [PATCH 1/4] arm64: dts: imx8mm-venice-gw700x: override
+> >>>> thermal cfg for industrial temp
+> >>>>
+> >>>> On 04.06.21 17:42, Tim Harvey wrote:
+> >>>>> On Wed, Jun 2, 2021 at 12:11 AM Frieder Schrempf
+> >>>>> <frieder.schrempf@kontron.de> wrote:
+> >>>>>>
+> >>>>>> On 01.06.21 19:49, Tim Harvey wrote:
+> >>>>>>> Override the default temperature alert/crit for Industrial temp
+> >>>>>>> IMX8M Mini.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+> >>>>>>> ---
+> >>>>>>>  .../boot/dts/freescale/imx8mm-venice-gw700x.dtsi     | 12
+> >>>> ++++++++++++
+> >>>>>>>  1 file changed, 12 insertions(+)
+> >>>>>>>
+> >>>>>>> diff --git
+> >>>>>>> a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> >>>>>>> b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> >>>>>>> index c769fadbd008..512b76cd7c3b 100644
+> >>>>>>> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> >>>>>>> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
+> >>>>>>> @@ -493,3 +493,15 @@
+> >>>>>>>               >;
+> >>>>>>>       };
+> >>>>>>>  };
+> >>>>>>> +
+> >>>>>>> +&cpu_alert0 {
+> >>>>>>> +     temperature = <95000>;
+> >>>>>>> +     hysteresis = <2000>;
+> >>>>>>> +     type = "passive";
+> >>>>>>> +};
+> >>>>>>> +
+> >>>>>>> +&cpu_crit0 {
+> >>>>>>> +     temperature = <105000>;
+> >>>>>>> +     hysteresis = <2000>;
+> >>>>>>> +     type = "critical";
+> >>>>>>> +};
+> >>>>>>
+> >>>>>> As this is not really board-specific, I think the proper way to
+> >>>>>> handle this for
+> >>>> all boards is to let the thermal driver read the temperature grading
+> >>>> from the OTP fuses and set the trip-points accordingly, similar to
+> >>>> what is done on i.MX6 [1].
+> >>>>>>
+> >>> ...
+> >>>>>
+> >>>>> Frieder,
+> >>>>>
+> >>>>> Yes, I thought about adding that kind of support to imx8mm_thermal.c
+> >>>>> but the difference is that imx8mm has alerts defined by dt and imx6
+> >>>>> does not so is it right to override dt alerts on imx8m? What if
+> >>>>> someone designs a board that they specifically want a lower alert
+> >>>>> than the cpu grade they are using based on something else on the board?
+> >>>>>
+> >>>>> My approach to this was to eventually actually adjust the imx8m dt
+> >>>>> alerts in boot firmware based on some boot firmware setting or
+> >>>>> specific board support and leave the kernel alone.
+> >>>>
+> >>>> Allowing board-specific trip points sounds like a valid request, but
+> >>>> I still think we need a way to handle the temperature grading in the
+> >>>> driver if no board-specific trip-points are given.
+> >>>>
+> >>>> What if we just set the temperature property in the trip nodes in
+> >>>> imx8mm.dtsi to zero? The thermal driver would detect this and setup
+> >>>> the correct values according to the grading. If the dt already
+> >>>> provides non-zero temperature values (through the board dts) the
+> >>>> driver will just leave the values and disregard the grading.
+> >>>>
+> >>>> I think this solution would be covering all needs.
+> >>>
+> >>> I thought to add the grading check in the imx8mm_thermal.c to
+> >>> dynamically set the trip points temp, but it seems hard to do it due
+> >>> to the fact of_thermal is used, as no helper API is exported by of_thermal,
+> >> no better way to override the trip point temp.
+> >>>
+> >>> glad to see any good suggestions.
+> >>
+> >> Right, the driver doesn't handle the trip-points directly. This is all hidden in the
+> >> framework. So this might not be so easy to implement.
+> >>
+> >> What about this other approach: Adding all the possible trip-points for the
+> >> different gradings to the SoC-devicetree and then let the thermal driver
+> >> remove the trip nodes from the dt that are not valid for the detected grading,
+> >> just before the driver registers the sensor/zone.
+> >
+> > It is more reasonable for the firmware/bootloader to handle this by checking the grading.
+>
+> If possible, I would rather like to avoid creating another dependency on bootloader/firmware. I think the kernel should be able to detect the grading by itself and adjust its behavior accordingly. We also do this for the speed grading in cpufreq.
 
-I admit I probably don't test much without fw, but I think maybe
-*that* is the issue to solve instead.
+Frieder and Jacky,
 
-Taking a guess, I think the situation is that you have *some* of the
-fw (ie. the unsigned parts coming from linux-firmware) but not
-specifically the zap fw.  So adreno_zap_shader_load() returns -ENODEV,
-which is interpreted to mean "this is a platform that doesn't need zap
-to take GPU out of secure mode", and then things go boom when we try
-to write RBBM_SECVID_TRUST_CNTL ?
+I'm ok with dropping this dt patch and instead implementing something
+in boot firmware that automatically detects and adjusts there. I'm not
+given the time to work through a more complicated or more elegant
+solution kernel-only approach for this and handling it in the boot
+firmware will not break anything or create a dependence from where we
+currently stand. We already have things in boot firmware that populate
+mac addresses, mtd partition ids, etc in dt during runtime.
 
-Which I think is down to missing the "firmware-name" property in the
-device specific dts
+Best regards,
 
-BR,
--R
-
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 10 ++++++++++
->  arch/arm64/boot/dts/qcom/sm8250-hdk.dts  | 12 ++++++++++++
->  arch/arm64/boot/dts/qcom/sm8250-mtp.dts  | 10 ++++++++++
->  arch/arm64/boot/dts/qcom/sm8250.dtsi     |  6 ++++++
->  4 files changed, 38 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index 5f41de20aa22..a5b742325261 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -552,7 +552,13 @@ &dsi0_phy {
->         vdds-supply = <&vreg_l5a_0p88>;
->  };
->
-> +&gmu {
-> +       status = "okay";
-> +};
-> +
->  &gpu {
-> +       status = "okay";
-> +
->         zap-shader {
->                 memory-region = <&gpu_mem>;
->                 firmware-name = "qcom/sm8250/a650_zap.mbn";
-> @@ -1352,6 +1358,10 @@ &vamacro {
->         qcom,dmic-sample-rate = <600000>;
->  };
->
-> +&venus {
-> +       status = "okay";
-> +};
-> +
->  /* PINCTRL - additions to nodes defined in sm8250.dtsi */
->  &qup_spi0_cs_gpio {
->         drive-strength = <6>;
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-> index c3a2c5aa6fe9..397359ee2f85 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-> @@ -365,6 +365,14 @@ vreg_l7f_1p8: ldo7 {
->         };
->  };
->
-> +&gmu {
-> +       status = "okay";
-> +};
-> +
-> +&gpu {
-> +       status = "okay";
-> +};
-> +
->  &qupv3_id_1 {
->         status = "okay";
->  };
-> @@ -452,3 +460,7 @@ &usb_1_dwc3 {
->  &usb_2_dwc3 {
->         dr_mode = "host";
->  };
-> +
-> +&venus {
-> +       status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> index cfc4d1febe0f..062b944be91d 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-> @@ -465,7 +465,13 @@ &cdsp {
->         firmware-name = "qcom/sm8250/cdsp.mbn";
->  };
->
-> +&gmu {
-> +       status = "okay";
-> +};
-> +
->  &gpu {
-> +       status = "okay";
-> +
->         zap-shader {
->                 memory-region = <&gpu_mem>;
->                 firmware-name = "qcom/sm8250/a650_zap.mbn";
-> @@ -691,3 +697,7 @@ &usb_2_qmpphy {
->         vdda-phy-supply = <&vreg_l9a_1p2>;
->         vdda-pll-supply = <&vreg_l18a_0p9>;
->  };
-> +
-> +&venus {
-> +       status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 4c0de12aaba6..fc1049c2bb11 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -1746,6 +1746,8 @@ gpu: gpu@3d00000 {
->
->                         qcom,gmu = <&gmu>;
->
-> +                       status = "disabled";
-> +
->                         zap-shader {
->                                 memory-region = <&gpu_mem>;
->                         };
-> @@ -1819,6 +1821,8 @@ gmu: gmu@3d6a000 {
->
->                         operating-points-v2 = <&gmu_opp_table>;
->
-> +                       status = "disabled";
-> +
->                         gmu_opp_table: opp-table {
->                                 compatible = "operating-points-v2";
->
-> @@ -2323,6 +2327,8 @@ venus: video-codec@aa00000 {
->                                  <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
->                         reset-names = "bus", "core";
->
-> +                       status = "disabled";
-> +
->                         video-decoder {
->                                 compatible = "venus-decoder";
->                         };
-> --
-> 2.32.0
->
+Tim
