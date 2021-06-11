@@ -2,137 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2BBD3A4049
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 12:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBD9A3A4060
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 12:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231551AbhFKKhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 06:37:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58914 "EHLO
+        id S230515AbhFKKsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 06:48:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231216AbhFKKhl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 06:37:41 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A361C061574;
-        Fri, 11 Jun 2021 03:35:44 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id c13so5332681oib.13;
-        Fri, 11 Jun 2021 03:35:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=CL8/Svq9gNJKgOiNLGqVNr492jbcHqwurkx/kYrwgrM=;
-        b=m9WzSvoadQfxuR+6MG7OpdOT47ONxLqLMDrhBc4GsXRlAvZGabqxIsCNiWsYHVyM9f
-         C9GdCnwLPV+BE7ojhXwJ1ZiuFzlucqEU9qSjNelxpyocYlt07vpgzO/Ruvjf/RkLYqra
-         wsZaG3xWDQpNqDWxUgCbZ+ELw5p6AzA1XdcbDiSNc7BTGlyzFka6pONEomm+q+qX9oZI
-         q7UUryAdsbRBUvQIiQIYHyxpN5sagAQ9nqGVrcfQtzTU9zD+4UQdPfS7T1bjeoHOSAQn
-         XJ/gruVzlm7of0KVXM44d5uq36bhf9ySoMvL7nF2p0H1Sbr9/9VSpOoSnt3ka+1r/lUL
-         WMUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=CL8/Svq9gNJKgOiNLGqVNr492jbcHqwurkx/kYrwgrM=;
-        b=Y9K3yUBzqoWQNXEyZRGdv6Nm/qgw9+Ip2lttzA0eR9053s/ksaOUAgdgnGpUVKHy3U
-         lzx0qN1+gBsx4u7k8YAZ+hkn3gB7NVcDP+D6im+IuGFPnY2oqPGRZtrh8RbTAqhuEwOX
-         VhGD/QrcYxVFyV1Ofhpv9g6biHYjQxRjEf8hCXGU1YZeqTQDMWq3DzVWCbjEnymDsUUx
-         ptz4efZ+Eg6tzOaEngRSgAmQMHqXMhkQ5x5/lhOGVFABooJ++cuzFq1J+gEpffS7pHNz
-         yRNdK6/yS6HYwLUWoWyzSCxYRxKxFvTKxsPyegb3B+faGOfpTd1hNU7tiP9DjrsE0S/R
-         7qSA==
-X-Gm-Message-State: AOAM532aW/DeUrCVvM4nPO9Qv7VsrKXI4qQFQQnK1omrGVIifYKEgnsR
-        y5om+rw88LoecXXglDCB4n4=
-X-Google-Smtp-Source: ABdhPJyKVcuwihx4x9Nz8kVrTc1ypAEJ5hMaAptcZN39FJBDRjJh+TvUq+4hvWaHegONL2luI+ENOg==
-X-Received: by 2002:aca:f452:: with SMTP id s79mr2006735oih.84.1623407743779;
-        Fri, 11 Jun 2021 03:35:43 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l18sm1150188otr.50.2021.06.11.03.35.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 03:35:43 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 11 Jun 2021 03:35:41 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc:     wim@linux-watchdog.org, linux-watchdog@vger.kernel.org,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] watchdog: sama5d4_wdt: add support for sama7g5-wdt
-Message-ID: <20210611103541.GA3189041@roeck-us.net>
-References: <20210527100120.266796-1-eugen.hristev@microchip.com>
- <20210527100120.266796-2-eugen.hristev@microchip.com>
- <20210527165506.GA1294623@roeck-us.net>
- <94d409ba-2073-a84e-5c8e-580f6e12191c@microchip.com>
+        with ESMTP id S230365AbhFKKsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 06:48:22 -0400
+Received: from theia.8bytes.org (8bytes.org [IPv6:2a01:238:4383:600:38bc:a715:4b6d:a889])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7377AC061574;
+        Fri, 11 Jun 2021 03:46:24 -0700 (PDT)
+Received: by theia.8bytes.org (Postfix, from userid 1000)
+        id 376EC2FB; Fri, 11 Jun 2021 12:46:21 +0200 (CEST)
+Date:   Fri, 11 Jun 2021 12:46:19 +0200
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Yong Wu <yong.wu@mediatek.com>, Hsin-Yi Wang <hsinyi@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Will Deacon <will.deacon@arm.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, srv_heupstream@mediatek.com,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com, ming-fan.chen@mediatek.com,
+        yi.kuo@mediatek.com, eizan@chromium.org,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Irui Wang <irui.wang@mediatek.com>, linux-media@vger.kernel.org
+Subject: Re: [PATCH v5 13/16] media: mtk-vcodec: Get rid of
+ mtk_smi_larb_get/put
+Message-ID: <YMM++ySKo38OUMXQ@8bytes.org>
+References: <20210410091128.31823-1-yong.wu@mediatek.com>
+ <20210410091128.31823-14-yong.wu@mediatek.com>
+ <CAJMQK-iTrQRDDm_=LNqSpvXFd431LYRxXMasJHUpN+K8rJ=Qpg@mail.gmail.com>
+ <1620822547.2983.8.camel@mhfsdcap03>
+ <c1422242-8d8c-9592-c22d-288c503cd8b1@gmail.com>
+ <1623326528.23717.20.camel@mhfsdcap03>
+ <e7269c80-5437-6ab9-c1db-df0b94eb97d8@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <94d409ba-2073-a84e-5c8e-580f6e12191c@microchip.com>
+In-Reply-To: <e7269c80-5437-6ab9-c1db-df0b94eb97d8@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 09:19:56AM +0200, Nicolas Ferre wrote:
-> On 27/05/2021 at 18:55, Guenter Roeck wrote:
-> > On Thu, May 27, 2021 at 01:01:19PM +0300, Eugen Hristev wrote:
-> > > Add support for compatible sama7g5-wdt.
-> > > The sama7g5 wdt is the same hardware block as on sam9x60.
-> > > Adapt the driver to use the sam9x60/sama7g5 variant if either
-> > > of the two compatibles are selected (sam9x60-wdt/sama7g5-wdt).
-> > > 
-> > > Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> > 
-> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> 
-> Guenter, Wim,
-> 
-> How do we proceed? Do I take this "driver" patch through my tree which goes
-> to arm-soc or do you take it with the watchdog tree?
+On Fri, Jun 11, 2021 at 12:07:24PM +0200, Matthias Brugger wrote:
+> That's a good question. I think the media tree would be a good
+> candidate, as it has the biggest bunch of patches. But that would mean
+> that Joerg is fine that.  The DTS part could still go through my tree.
 
-I applied the series to my watchdog-next branch. That is all I can do
-from my side.
+IOMMU changes are only a minor part of this, so it should not go through
+the IOMMU tree. When Matthias has reviewed the IOMMU changes, feel free
+to add my
 
-Guenter
+	Acked-by: Joerg Roedel <jroedel@suse.de>
 
-> 
-> I'm planning to send my pull-requests before the end of this week.
-> 
-> Best regards,
->   Nicolas
-> 
-> > > ---
-> > >   drivers/watchdog/sama5d4_wdt.c | 10 ++++++++--
-> > >   1 file changed, 8 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/watchdog/sama5d4_wdt.c b/drivers/watchdog/sama5d4_wdt.c
-> > > index e5d11d6a2600..ec20ad4e534f 100644
-> > > --- a/drivers/watchdog/sama5d4_wdt.c
-> > > +++ b/drivers/watchdog/sama5d4_wdt.c
-> > > @@ -268,8 +268,10 @@ static int sama5d4_wdt_probe(struct platform_device *pdev)
-> > >        wdd->min_timeout = MIN_WDT_TIMEOUT;
-> > >        wdd->max_timeout = MAX_WDT_TIMEOUT;
-> > >        wdt->last_ping = jiffies;
-> > > -     wdt->sam9x60_support = of_device_is_compatible(dev->of_node,
-> > > -                                                    "microchip,sam9x60-wdt");
-> > > +
-> > > +     if (of_device_is_compatible(dev->of_node, "microchip,sam9x60-wdt") ||
-> > > +         of_device_is_compatible(dev->of_node, "microchip,sama7g5-wdt"))
-> > > +             wdt->sam9x60_support = true;
-> > > 
-> > >        watchdog_set_drvdata(wdd, wdt);
-> > > 
-> > > @@ -329,6 +331,10 @@ static const struct of_device_id sama5d4_wdt_of_match[] = {
-> > >        {
-> > >                .compatible = "microchip,sam9x60-wdt",
-> > >        },
-> > > +     {
-> > > +             .compatible = "microchip,sama7g5-wdt",
-> > > +     },
-> > > +
-> > >        { }
-> > >   };
-> > >   MODULE_DEVICE_TABLE(of, sama5d4_wdt_of_match);
-> > > --
-> > > 2.25.1
-> > > 
-> 
-> 
-> -- 
-> Nicolas Ferre
+to them.
+
+Regards,
+
+	Joerg
