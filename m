@@ -2,183 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F3C83A48E6
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E64D83A48ED
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:58:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbhFKS50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 14:57:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57040 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229969AbhFKS50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 14:57:26 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6991CC061574
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 11:55:28 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id k5so6202799pjj.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 11:55:28 -0700 (PDT)
+        id S230444AbhFKTAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 15:00:44 -0400
+Received: from mail-co1nam11on2047.outbound.protection.outlook.com ([40.107.220.47]:57696
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229824AbhFKTAn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 15:00:43 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=d7bcRD8Eg7wAO8Q1lRthZC4WkR1IVwdRvnGFUQwWZGMJPVvXBOkrFhtcCEZnDLD4PVC2VT5pb7aniwLijofKOevdxPVtm1i+XQGPsqPSsz/i0cB+l58302c44baM6BHDL74Z3mfBxO4vpr8YepKJdXY/Mk8+MUHWhM1wbivevL0KIBDt060SBfY+x557mqVVkI3cD8+cHtnKP6FU8piuGqSAjhc9hcd11tWVST1f5CVZdISSttrqRxMl030X8orV4xQ59DYnmX1y5WZBZMJhA2qwcB9sDdqxwjgF4KHynftfSgRe8hA4341uNxZ3tcqMUfUFTNqHsZzpBC6vB4fuRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E276EkhTdSLtmfAoF+awu1jTBRbo3jXRkMHZ4mWPA8U=;
+ b=iXCK7DU70R2xBCQUjGZlSVCvcXwtPVKelpyMuv7mdWIeOLyft8/lBBJ89sQtfex8y0eEJBo1QF/HyM6jhcYsuBIgjTTzzGOF4+YMgLX031q6E9yI15xa79s8Qe2TRMyZPH4eHxTARHlR3KL5yLrzyC4lH/dhoUmOC8VF5cPB4da6es1nMsSLPEoWFN3DPYQL9wknP1FWT7408nK2aYngRzExjDPfNE3XvaH0WoNRkhxCAH4qxL7lqDMM2HRgKb1ZF/hh4UWMtDsxgbyt2RadeWwilJUsghkWKSl+QHAtXIc7qYayWEYuXAS4yy60mSd7c3fUMqJCRfbnNhzIvnWWdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aQ0QO0h8aoEGycfmGR0+TIM0LJMpu0pkcrcpKPrPTs8=;
-        b=o92kW98hiYSJapWCq+w+uXr2rKomAWGwu5lEddmV/tnaoJ7jRPd1spC7Az2abOoJhK
-         /Ji99ZmgXJmz3KNUn1CtldZzl3CHvBMjTGUmzqf7fNu2pEsAXch4J/nIKZgsKlM7TFZ0
-         eqZ71WJhulmIl0F92L85C+6NNfYMMZvmFPm2qgVzxEeeM2bIFoMvAGGbXPqmy/m3AehF
-         nEC4h3Sk4fj3u2WKBO+XD2Ghf3U0k33BWRsWlcx/msIh9UQby8+33a7ixAiOk/trEUmQ
-         6uGXorNvNV/cyhPQG3ng0hpI4yIgfVCZpJ7XZkyGe9Sp+w+AIAbC2aWNtTrsqkFMrFBm
-         cePA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aQ0QO0h8aoEGycfmGR0+TIM0LJMpu0pkcrcpKPrPTs8=;
-        b=Pg4hOXSYeL1Kn8xnVSJrlGPJrY5qTQXKV8QhAGDto9RGyI+HNxfYV11FlFqZrbLAIh
-         36eQl+E31bOQe+VAjsciDAOovxV+sT1szdBYsgh/rbjgVYKb0H8rpfkx+YpsHeecO9Wq
-         tdOQJQMZTI7IbcvtGM6n1dCJIm0eBRZWNJGjMPzoa2Fblq/Dgw07H148Tnce+YPQnBBD
-         WBb1bdpzq+P9MK5k3ReMrNftSY4o1/F+K5wJbVgBrIv1umobJYYyjiVhRmDZg925oLsH
-         WbyUA6DXc3N0LkI9RhGMiVQduIFVtYMKKssekSklaMfEWTdYZ7PDHs3EYaGaBdlGn75p
-         pGag==
-X-Gm-Message-State: AOAM530DYO8jHAvl6U8nQrKy942yWVfng9QpJXj4R9tkQHyfTuvnSwu1
-        cwThMlTtTZ6CyMSRn5xOjaaGcgWYNUKXWiESlObs8w==
-X-Google-Smtp-Source: ABdhPJy7CAd3K4ZYdyXL8F5lowsQYZsXeVHU6EhUe5rTmFq8qT7FHT3TG02781ZGIZ394iapgifFVuKbcdrUR739esA=
-X-Received: by 2002:a17:903:1241:b029:10f:ff8c:a3fe with SMTP id
- u1-20020a1709031241b029010fff8ca3femr5166494plh.13.1623437727770; Fri, 11 Jun
- 2021 11:55:27 -0700 (PDT)
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E276EkhTdSLtmfAoF+awu1jTBRbo3jXRkMHZ4mWPA8U=;
+ b=o/n7AcqzxL7OhTLfiiZyFgsOuVkbbaRKauLaR96C57cBxBw9CLWnbJYHiQ7SL9fRyBJa4y4da3tbg5AN1HcZoteaZq2IWY3QTHmuCWtAsiBWwQtOrM+/TPZxw5OosezVzIypZz+WuBJGUwnnZxR9IM6rD7VnNhBbZSpyFeqUHeo=
+Received: from BY5PR02MB6520.namprd02.prod.outlook.com (2603:10b6:a03:1d3::8)
+ by BY5PR02MB6130.namprd02.prod.outlook.com (2603:10b6:a03:1fa::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.22; Fri, 11 Jun
+ 2021 18:58:41 +0000
+Received: from BY5PR02MB6520.namprd02.prod.outlook.com
+ ([fe80::d880:7694:92d6:7798]) by BY5PR02MB6520.namprd02.prod.outlook.com
+ ([fe80::d880:7694:92d6:7798%5]) with mapi id 15.20.4219.024; Fri, 11 Jun 2021
+ 18:58:41 +0000
+From:   Radhey Shyam Pandey <radheys@xilinx.com>
+To:     Lars-Peter Clausen <lars@metafoo.de>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Michal Simek <michals@xilinx.com>
+CC:     "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>
+Subject: RE: [RFC v2 PATCH 5/7] dmaengine: xilinx_dma: Freeup active list
+ based on descriptor completion bit
+Thread-Topic: [RFC v2 PATCH 5/7] dmaengine: xilinx_dma: Freeup active list
+ based on descriptor completion bit
+Thread-Index: AQHXLWnQwGXrB49GLkeWOkZPWQaKgqq1NliAgFpWBTA=
+Date:   Fri, 11 Jun 2021 18:58:41 +0000
+Message-ID: <BY5PR02MB652069D06D93955A3D45DF49C7349@BY5PR02MB6520.namprd02.prod.outlook.com>
+References: <1617990965-35337-1-git-send-email-radhey.shyam.pandey@xilinx.com>
+ <1617990965-35337-6-git-send-email-radhey.shyam.pandey@xilinx.com>
+ <94a2a053-46b6-77be-7c1f-3ece3a0f9af3@metafoo.de>
+In-Reply-To: <94a2a053-46b6-77be-7c1f-3ece3a0f9af3@metafoo.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: metafoo.de; dkim=none (message not signed)
+ header.d=none;metafoo.de; dmarc=none action=none header.from=xilinx.com;
+x-originating-ip: [149.199.50.130]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 884e6c81-8592-476d-a55e-08d92d0aedf6
+x-ms-traffictypediagnostic: BY5PR02MB6130:
+x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BY5PR02MB61307960A1E4A4553E014A30C7349@BY5PR02MB6130.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: x3IQCVivbd0WQX8pcn8Yij+IjmqKGrTPr6V+IfOm4yBmiXB6zl7E0sMdlH3MnFDPMTSVBqq+EpWxO8v/6AzTI4yivxKTNY7Nuuf2t954ZfpaCZQS0drb06UZoKa6dyLfMx80+Yvrka87iAyUA5m7GBw+De/91irayQjcesn05y/XS5L7jIXi0gCfOFGf7f5wuuEqYvp+10oRIkKl/qT6TNT+mpxiFhn220l0HUxujdtfo/0SwrcE5Ol7tRqANrI5aezTDO/6CNbeZ43LR7EkZT9AuKuIW+f1x1NxkHM6/+zRpp5YGjlc/4aZ6rYPUCGtbh9F2Vc6RjPPTP4gidUJU42NW34mk9a3Gfghs5NLQce/o6oolzKknq+Q8IqQslBdRnoZ6V5yPfESGUVI/WRNhr5wVL6MhGef+seYqgZcHb/nw1YGIUyzWqli01ytJPOc7MXxzDf7+171mS7vCujQ9poJUq01EV4bP0SxRMwwU11ByYqKAeMrXqVYuJjxrDzs58pN7mIJ3eryj0ySmzbk79ZFSnKT/zkC5BU/ya7hrV7Ka2+71/4YUCE/X59fG1V4yxl2AFl0ansMkLI0GlOCUKZjgDmNzqcgTaoH4jDYnKY=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6520.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(136003)(366004)(396003)(346002)(376002)(7696005)(38100700002)(9686003)(8676002)(110136005)(316002)(55016002)(122000001)(478600001)(5660300002)(66556008)(33656002)(64756008)(66476007)(66946007)(86362001)(186003)(66446008)(76116006)(6636002)(54906003)(107886003)(26005)(6506007)(53546011)(52536014)(4326008)(71200400001)(83380400001)(2906002)(8936002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UmxzM1k3Tno4UHFwNyt2REM2L3ZEQndwZWJtbTVXNzlFWVpHOTFqNUVmdTRn?=
+ =?utf-8?B?V1JxRnM5M1RpWFd5UWFLTkpMZGh3cWhYM3VvdjM3SXVROTUxTXQ4ai9aRXV0?=
+ =?utf-8?B?SVVoU2Y4UHlwc2JTZWRFRDlqK05sbGkvMFVaYXcxR2xnQXpFa0IyU21XTjdh?=
+ =?utf-8?B?eVlERVBtckRJOTRRMVJDQXRLalhydTNuMHF0ZG91aCtnRUJqR2pZYmMwWXdW?=
+ =?utf-8?B?blBrN0V1WkJOMlgwTlhxNnhseGE2U2czYjU0VlljY3g4azg2dEJIc2h2VURk?=
+ =?utf-8?B?SFpMWXFDRFNZV3Yyc0FLRm12cXZJWkZrM0tXTkNVRml3S2NyelovOHFCUFpJ?=
+ =?utf-8?B?NVlUOXR6UFY4ckFqaXN1NDF6WlBBZlpkclgyWXd4UzdHcDJKUjBQaXJQUVhQ?=
+ =?utf-8?B?VERmb3gzM3JzZ3AycE5yMWFLOHNmelNQd2RaSWEwMUs2bEhwaGVEY3MyVEo2?=
+ =?utf-8?B?TEo2Y3VEamprRnNYVkFqY0k2Z3FwYU1ISEJ2OFRGWW56blJvZEVHYUs5eEt4?=
+ =?utf-8?B?TnJndFRoMTdqU3hQUTUyWGVJbjRkZnF4QXpESWtxcVVQaERkaVZZVkhjQlE2?=
+ =?utf-8?B?VGR0TWxIUE1OVHl5eC9jRkluZEIyN2RTQUgvVTd3R1U5MFE3SXFFL1dmQ3dY?=
+ =?utf-8?B?NFVrY3NXdmo0TnNDWEorVWpjOGNEVEl6R2xkaFpONXpzK2lVSEQrdVVzMXkx?=
+ =?utf-8?B?bTFMZWIrNzNLVVUxdEY2YUI1SE54cVVLUVByWTZJdzFFbmlVdFZmVWVDemwv?=
+ =?utf-8?B?ZE5ieHNtVlUxQnJIL1ZhMHViUHZ6VStxZlhLZHh6OXFJdjNMYWs0MzJtWU5V?=
+ =?utf-8?B?VUMyU2FqVTc0QUdNR0tmMWc2Zm5LNjgrRnJVZTBMSUU4ZkpMSlFtM1ZLWExy?=
+ =?utf-8?B?VlBqRzFRblEyUkY5V0pZUFZzMHJYdmdiREVlb29tMnJDQUVWSVlQUG5GSE5Y?=
+ =?utf-8?B?WnA2UVpqeEdQUmlSdkh3bmRPQjhjamJ4VTF4TGVhb2h4N2Q5MXM5SEhNN0V1?=
+ =?utf-8?B?SC9VSitPV3kwZXhaUnB2WGZrWEE0aE1qNzhMeWNPSnlMaVBsaEd1SGdLNko4?=
+ =?utf-8?B?VXRsZC9kYnh1TnVqOHYwSlNCMkVvWVlRUkdoQmV6QXc1UVV6NlovWFhWT3ZJ?=
+ =?utf-8?B?Y2xyN0o1dW10TU9JQm1yRGdpVUlxQ29yRjFvd2d6WVVPWDN1by9zdEpCTDla?=
+ =?utf-8?B?SzVWM0VLOUJkem40UnlqeFNqbUpkcHVOMVFxVHpXYjFnQ1BBVDBYV1IrdVEw?=
+ =?utf-8?B?dURTbDlDeVJGVlJjbDJPVjRVRjFJelJJMlkzQ3AvVUZjejVIazExbm5hRFls?=
+ =?utf-8?B?UUFEM0RWSWl0MmZDcDgzR0p2Zzc0b3Z4Qk92OGJQc29GdjUrTWlCRllIcHlm?=
+ =?utf-8?B?a3prNjVIWXVwR2t1ZGxkNk5SbTh5Qmwxc2h0Z0RSdzRQRVpkUTNXckpsNUVS?=
+ =?utf-8?B?QWdSakhPMGowaUFQalErU3gxUFNELzVhaDRkU0owVHp2TkVycEZPWHhRWWNS?=
+ =?utf-8?B?QzdJbGFZdDV1SmFPNlJVQTI2dDZFcTBTS0daQlpLQkVDbGxucmNodlpOM2NC?=
+ =?utf-8?B?NEwrSkJYdUo1VmFxVnhqTmc3dnprbGMxWnRPZG5lSlplaVhrNFhkVU5saUFv?=
+ =?utf-8?B?VDJxWGNkV0VJdXBwNFZkQ2JDd1BTTGFFdHJFcnJPMld6c0U2eTM4K0x3TjRO?=
+ =?utf-8?B?YjhTbGZPaDlwUk9MeFQ0NG02YWZ3cHdnN2xWQVdXNERuRi9ZK0tKbDVWbVBr?=
+ =?utf-8?Q?Ds4iex5RWBdK5L7I78m4fhxqPTOUDXsRkNcEp+T?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20210601174917.1979-1-tharvey@gateworks.com> <b63300e8-3739-fcc6-6d37-952f93cfd17b@kontron.de>
- <CAJ+vNU0mBQJ_ZLsKOiY0k7+drYvmw+bsHfeX4+Mg=s4_fxSUYA@mail.gmail.com>
- <5eba4438-239c-71d1-56ec-4edd70e87ec3@kontron.de> <DBBPR04MB79303661E07409B4B65F3EF487389@DBBPR04MB7930.eurprd04.prod.outlook.com>
- <273e2859-7874-e273-9599-139274891023@kontron.de> <DBBPR04MB7930943628D1E80C17237D8187389@DBBPR04MB7930.eurprd04.prod.outlook.com>
- <717608d8-685a-0435-aaa2-3bd4f82f3b97@kontron.de>
-In-Reply-To: <717608d8-685a-0435-aaa2-3bd4f82f3b97@kontron.de>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 11 Jun 2021 11:55:16 -0700
-Message-ID: <CAJ+vNU1bj6VtVSo45tG4nP8Pv9rx4oDyxNKZB2zAX85Y2c7=pg@mail.gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: imx8mm-venice-gw700x: override thermal
- cfg for industrial temp
-To:     Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc:     Jacky Bai <ping.bai@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6520.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 884e6c81-8592-476d-a55e-08d92d0aedf6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2021 18:58:41.3947
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: nvTgl4o8EBzh6vvtuGuWyEQAsySMtpw5TCg4LUO+qSP5C1DEb3a0jdLXIgDW63yXzL7tpH/KoNB7aDHjERlacw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6130
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 1:34 AM Frieder Schrempf
-<frieder.schrempf@kontron.de> wrote:
->
-> On 07.06.21 10:00, Jacky Bai wrote:
-> >> Subject: Re: [PATCH 1/4] arm64: dts: imx8mm-venice-gw700x: override
-> >> thermal cfg for industrial temp
-> >>
-> >> On 07.06.21 09:30, Jacky Bai wrote:
-> >>>> Subject: Re: [PATCH 1/4] arm64: dts: imx8mm-venice-gw700x: override
-> >>>> thermal cfg for industrial temp
-> >>>>
-> >>>> On 04.06.21 17:42, Tim Harvey wrote:
-> >>>>> On Wed, Jun 2, 2021 at 12:11 AM Frieder Schrempf
-> >>>>> <frieder.schrempf@kontron.de> wrote:
-> >>>>>>
-> >>>>>> On 01.06.21 19:49, Tim Harvey wrote:
-> >>>>>>> Override the default temperature alert/crit for Industrial temp
-> >>>>>>> IMX8M Mini.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Tim Harvey <tharvey@gateworks.com>
-> >>>>>>> ---
-> >>>>>>>  .../boot/dts/freescale/imx8mm-venice-gw700x.dtsi     | 12
-> >>>> ++++++++++++
-> >>>>>>>  1 file changed, 12 insertions(+)
-> >>>>>>>
-> >>>>>>> diff --git
-> >>>>>>> a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> >>>>>>> b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> >>>>>>> index c769fadbd008..512b76cd7c3b 100644
-> >>>>>>> --- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> >>>>>>> +++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw700x.dtsi
-> >>>>>>> @@ -493,3 +493,15 @@
-> >>>>>>>               >;
-> >>>>>>>       };
-> >>>>>>>  };
-> >>>>>>> +
-> >>>>>>> +&cpu_alert0 {
-> >>>>>>> +     temperature = <95000>;
-> >>>>>>> +     hysteresis = <2000>;
-> >>>>>>> +     type = "passive";
-> >>>>>>> +};
-> >>>>>>> +
-> >>>>>>> +&cpu_crit0 {
-> >>>>>>> +     temperature = <105000>;
-> >>>>>>> +     hysteresis = <2000>;
-> >>>>>>> +     type = "critical";
-> >>>>>>> +};
-> >>>>>>
-> >>>>>> As this is not really board-specific, I think the proper way to
-> >>>>>> handle this for
-> >>>> all boards is to let the thermal driver read the temperature grading
-> >>>> from the OTP fuses and set the trip-points accordingly, similar to
-> >>>> what is done on i.MX6 [1].
-> >>>>>>
-> >>> ...
-> >>>>>
-> >>>>> Frieder,
-> >>>>>
-> >>>>> Yes, I thought about adding that kind of support to imx8mm_thermal.c
-> >>>>> but the difference is that imx8mm has alerts defined by dt and imx6
-> >>>>> does not so is it right to override dt alerts on imx8m? What if
-> >>>>> someone designs a board that they specifically want a lower alert
-> >>>>> than the cpu grade they are using based on something else on the board?
-> >>>>>
-> >>>>> My approach to this was to eventually actually adjust the imx8m dt
-> >>>>> alerts in boot firmware based on some boot firmware setting or
-> >>>>> specific board support and leave the kernel alone.
-> >>>>
-> >>>> Allowing board-specific trip points sounds like a valid request, but
-> >>>> I still think we need a way to handle the temperature grading in the
-> >>>> driver if no board-specific trip-points are given.
-> >>>>
-> >>>> What if we just set the temperature property in the trip nodes in
-> >>>> imx8mm.dtsi to zero? The thermal driver would detect this and setup
-> >>>> the correct values according to the grading. If the dt already
-> >>>> provides non-zero temperature values (through the board dts) the
-> >>>> driver will just leave the values and disregard the grading.
-> >>>>
-> >>>> I think this solution would be covering all needs.
-> >>>
-> >>> I thought to add the grading check in the imx8mm_thermal.c to
-> >>> dynamically set the trip points temp, but it seems hard to do it due
-> >>> to the fact of_thermal is used, as no helper API is exported by of_thermal,
-> >> no better way to override the trip point temp.
-> >>>
-> >>> glad to see any good suggestions.
-> >>
-> >> Right, the driver doesn't handle the trip-points directly. This is all hidden in the
-> >> framework. So this might not be so easy to implement.
-> >>
-> >> What about this other approach: Adding all the possible trip-points for the
-> >> different gradings to the SoC-devicetree and then let the thermal driver
-> >> remove the trip nodes from the dt that are not valid for the detected grading,
-> >> just before the driver registers the sensor/zone.
-> >
-> > It is more reasonable for the firmware/bootloader to handle this by checking the grading.
->
-> If possible, I would rather like to avoid creating another dependency on bootloader/firmware. I think the kernel should be able to detect the grading by itself and adjust its behavior accordingly. We also do this for the speed grading in cpufreq.
-
-Frieder and Jacky,
-
-I'm ok with dropping this dt patch and instead implementing something
-in boot firmware that automatically detects and adjusts there. I'm not
-given the time to work through a more complicated or more elegant
-solution kernel-only approach for this and handling it in the boot
-firmware will not break anything or create a dependence from where we
-currently stand. We already have things in boot firmware that populate
-mac addresses, mtd partition ids, etc in dt during runtime.
-
-Best regards,
-
-Tim
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBMYXJzLVBldGVyIENsYXVzZW4g
+PGxhcnNAbWV0YWZvby5kZT4NCj4gU2VudDogVGh1cnNkYXksIEFwcmlsIDE1LCAyMDIxIDEyOjU2
+IFBNDQo+IFRvOiBSYWRoZXkgU2h5YW0gUGFuZGV5IDxyYWRoZXlzQHhpbGlueC5jb20+OyB2a291
+bEBrZXJuZWwub3JnOw0KPiByb2JoK2R0QGtlcm5lbC5vcmc7IE1pY2hhbCBTaW1layA8bWljaGFs
+c0B4aWxpbnguY29tPg0KPiBDYzogZG1hZW5naW5lQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJl
+ZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS0NCj4ga2VybmVsQGxpc3RzLmluZnJhZGVhZC5v
+cmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGdpdA0KPiA8Z2l0QHhpbGlueC5jb20+
+DQo+IFN1YmplY3Q6IFJlOiBbUkZDIHYyIFBBVENIIDUvN10gZG1hZW5naW5lOiB4aWxpbnhfZG1h
+OiBGcmVldXAgYWN0aXZlIGxpc3QNCj4gYmFzZWQgb24gZGVzY3JpcHRvciBjb21wbGV0aW9uIGJp
+dA0KPiANCj4gT24gNC85LzIxIDc6NTYgUE0sIFJhZGhleSBTaHlhbSBQYW5kZXkgd3JvdGU6DQo+
+ID4gQVhJRE1BIElQIGluIFNHIG1vZGUgc2V0cyBjb21wbGV0aW9uIGJpdCB0byAxIHdoZW4gdGhl
+IHRyYW5zZmVyIGlzDQo+ID4gY29tcGxldGVkLiBSZWFkIHRoaXMgYml0IHRvIG1vdmUgZGVzY3Jp
+cHRvciBmcm9tIGFjdGl2ZSBsaXN0IHRvIHRoZQ0KPiA+IGRvbmUgbGlzdC4gVGhpcyBmZWF0dXJl
+IGlzIG5lZWRlZCB3aGVuIGludGVycnVwdCBkZWxheSB0aW1lb3V0IGFuZA0KPiA+IElSUVRocmVz
+aG9sZCBpcyBlbmFibGVkIGkuZSBEbHlfSXJxRW4gaXMgdHJpZ2dlcmVkIHcvbyBjb21wbGV0aW5n
+DQo+ID4gaW50ZXJydXB0IHRocmVzaG9sZC4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFJhZGhl
+eSBTaHlhbSBQYW5kZXkgPHJhZGhleS5zaHlhbS5wYW5kZXlAeGlsaW54LmNvbT4NCj4gPiAtLS0N
+Cj4gPiAtIENoZWNrIEJEIGNvbXBsZXRpb24gYml0IG9ubHkgZm9yIFNHIG1vZGUuDQo+ID4gLSBN
+b2RpZnkgdGhlIGxvZ2ljIHRvIGhhdmUgZWFybHkgcmV0dXJuIHBhdGguDQo+ID4gLS0tDQo+ID4g
+ICBkcml2ZXJzL2RtYS94aWxpbngveGlsaW54X2RtYS5jIHwgNyArKysrKysrDQo+ID4gICAxIGZp
+bGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9kbWEveGlsaW54L3hpbGlueF9kbWEuYw0KPiA+IGIvZHJpdmVycy9kbWEveGlsaW54L3hpbGlu
+eF9kbWEuYyBpbmRleCA4OTBiZjQ2YjM2ZTUuLmYyMzA1YTczY2I5MQ0KPiA+IDEwMDY0NA0KPiA+
+IC0tLSBhL2RyaXZlcnMvZG1hL3hpbGlueC94aWxpbnhfZG1hLmMNCj4gPiArKysgYi9kcml2ZXJz
+L2RtYS94aWxpbngveGlsaW54X2RtYS5jDQo+ID4gQEAgLTE3Nyw2ICsxNzcsNyBAQA0KPiA+ICAg
+I2RlZmluZSBYSUxJTlhfRE1BX0NSX0NPQUxFU0NFX1NISUZUCTE2DQo+ID4gICAjZGVmaW5lIFhJ
+TElOWF9ETUFfQkRfU09QCQlCSVQoMjcpDQo+ID4gICAjZGVmaW5lIFhJTElOWF9ETUFfQkRfRU9Q
+CQlCSVQoMjYpDQo+ID4gKyNkZWZpbmUgWElMSU5YX0RNQV9CRF9DT01QX01BU0sJCUJJVCgzMSkN
+Cj4gPiAgICNkZWZpbmUgWElMSU5YX0RNQV9DT0FMRVNDRV9NQVgJCTI1NQ0KPiA+ICAgI2RlZmlu
+ZSBYSUxJTlhfRE1BX05VTV9ERVNDUwkJNTEyDQo+ID4gICAjZGVmaW5lIFhJTElOWF9ETUFfTlVN
+X0FQUF9XT1JEUwk1DQo+ID4gQEAgLTE2ODMsMTIgKzE2ODQsMTggQEAgc3RhdGljIHZvaWQgeGls
+aW54X2RtYV9pc3N1ZV9wZW5kaW5nKHN0cnVjdA0KPiBkbWFfY2hhbiAqZGNoYW4pDQo+ID4gICBz
+dGF0aWMgdm9pZCB4aWxpbnhfZG1hX2NvbXBsZXRlX2Rlc2NyaXB0b3Ioc3RydWN0IHhpbGlueF9k
+bWFfY2hhbg0KPiAqY2hhbikNCj4gPiAgIHsNCj4gPiAgIAlzdHJ1Y3QgeGlsaW54X2RtYV90eF9k
+ZXNjcmlwdG9yICpkZXNjLCAqbmV4dDsNCj4gPiArCXN0cnVjdCB4aWxpbnhfYXhpZG1hX3R4X3Nl
+Z21lbnQgKnNlZzsNCj4gPg0KPiA+ICAgCS8qIFRoaXMgZnVuY3Rpb24gd2FzIGludm9rZWQgd2l0
+aCBsb2NrIGhlbGQgKi8NCj4gPiAgIAlpZiAobGlzdF9lbXB0eSgmY2hhbi0+YWN0aXZlX2xpc3Qp
+KQ0KPiA+ICAgCQlyZXR1cm47DQo+ID4NCj4gPiAgIAlsaXN0X2Zvcl9lYWNoX2VudHJ5X3NhZmUo
+ZGVzYywgbmV4dCwgJmNoYW4tPmFjdGl2ZV9saXN0LCBub2RlKSB7DQo+ID4gKwkJLyogVE9ETzog
+cmVtb3ZlIGhhcmRjb2RpbmcgZm9yIGF4aWRtYV90eF9zZWdtZW50ICovDQo+ID4gKwkJc2VnID0g
+bGlzdF9sYXN0X2VudHJ5KCZkZXNjLT5zZWdtZW50cywNCj4gPiArCQkJCSAgICAgIHN0cnVjdCB4
+aWxpbnhfYXhpZG1hX3R4X3NlZ21lbnQsIG5vZGUpOw0KPiA+ICsJCWlmICghKHNlZy0+aHcuc3Rh
+dHVzICYgWElMSU5YX0RNQV9CRF9DT01QX01BU0spICYmDQo+IGNoYW4tPmhhc19zZykNCj4gPiAr
+CQkJYnJlYWs7DQo+ID4gICAJCWlmIChjaGFuLT5oYXNfc2cgJiYgY2hhbi0+eGRldi0+ZG1hX2Nv
+bmZpZy0+ZG1hdHlwZSAhPQ0KPiA+ICAgCQkgICAgWERNQV9UWVBFX1ZETUEpDQo+ID4gICAJCQlk
+ZXNjLT5yZXNpZHVlID0geGlsaW54X2RtYV9nZXRfcmVzaWR1ZShjaGFuLCBkZXNjKTsNCj4gDQo+
+IFNpbmNlIG5vdCBhbGwgZGVzY3JpcHRvcnMgd2lsbCBiZSBjb21wbGV0ZWQgaW4gdGhpcyBmdW5j
+dGlvbiB0aGUgYGNoYW4tPmlkbGUgPQ0KPiB0cnVlO2AgaW4geGlsaW54X2RtYV9pcnFfaGFuZGxl
+cigpIG5lZWRzIHRvIGJlIGdhdGVkIG9uIHRoZSBhY3RpdmVfbGlzdCBiZWluZw0KPiBlbXB0eS4N
+Cg0KVGhhbmtzIGZvciBwb2ludGluZyBpdCBvdXQuIEFncmVlIHRvIGl0LCB3aWxsIGZpeCBpdCBp
+biB0aGUgbmV4dCB2ZXJzaW9uLg0KPiANCj4geGlsaW54X2RtYV9jb21wbGV0ZV9kZXNjcmlwdG9y
+DQoNCg==
