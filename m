@@ -2,54 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BF143A43A3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 15:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 661FF3A43AB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 16:00:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229824AbhFKOAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 10:00:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47720 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbhFKOAo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 10:00:44 -0400
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6BCBC061574
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 06:58:46 -0700 (PDT)
-Received: by mail-ot1-x331.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so3202026oth.8
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 06:58:46 -0700 (PDT)
+        id S231646AbhFKOCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 10:02:25 -0400
+Received: from mail-oo1-f43.google.com ([209.85.161.43]:34351 "EHLO
+        mail-oo1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229985AbhFKOCU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 10:02:20 -0400
+Received: by mail-oo1-f43.google.com with SMTP id i8-20020a4aa1080000b0290201edd785e7so727353ool.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 07:00:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=5u8/d/FAVA1SMvxlhwuLiLBxLoYWCAefYpC5EQqSZV8=;
-        b=OLEaPzb0ImhCRJP99xrnRxX+AyB/xwg3DLsHK4pokpZ/i+NXNJmYFugoLwIBDngFH1
-         BcCsGBhFgll7R0DdOky/24vc7A2zoVsL/8Dw/7fmCBBXPrxGqDm8u2+abfXIhEGuljji
-         8tTKRQholSB9KbJjgoASXIB6lyyfBOj3je44bfQ0d9oDuGziuCMVVhztYPfaMlNlTW8D
-         gJF16Epwr9w3IrgKTTfU5VTI5Kh/tqG2QpM8ndnqrOVbI/dC7qcI1cZymq5XV4TmsSgH
-         mYuul/CsIu8LV0o81OsOl83/ouvB7hlcbkcjGkarwLIMsaXXAY4Np9TMYYBg4CjUbjt6
-         IUBQ==
+        bh=XaOZUHVmtwBqm3RfZPVozuu3/NEu4cqerXESep9dzeg=;
+        b=t4qtEDxnqMTYPS2ZRWq+X4X9jT8XzpQhN4TktADmB4VRnoPnMjGqji236ZNVw9dJuP
+         ExHs+6NP82zHzNIpzXBr6G6j0v1kC+vr2jIZdfhanhQ2ki9u9O2ioaHkRYq06FGF8TYt
+         MkFEEkjHKpnu4dlQdDXnJwOHmeYhpcSyXGRM+n8BxgSEiPfKspna9DoQTbsXTFgXBgjp
+         xV5xsNLAGGknHbrLTI7bQCHZ1RYbaj9KHLcJN/CVf586pR0rnbvuLixiap/sodfvV+hK
+         5VfRE5APRKnt3Fkkfc3K9Dn+0XxfNHU5Uyyy1XGARUDL2DJYMVuRy5mEMbWUGnetCKHG
+         7tTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=5u8/d/FAVA1SMvxlhwuLiLBxLoYWCAefYpC5EQqSZV8=;
-        b=jRthx36Pqgy5SyViPQukLNXcsJDeUcOEQ+NRO8INfkfEDFR+aOfdyn2eLkGbHL00rX
-         Bc1C+rmok3+DFpaX/kgNun5X1yTsy3QbKOK/q6040sBTtbkvdiuDdgLZcR/mQmx2mjHy
-         cwiilPwXqCMQvl/6U3rZmGV5I5QzcRgB1TZVWfqVt4T053+ALkjvkxCS3IxRpiD8j2k4
-         aNuvU5MqdPE/w1KMiHsiXT8I1Rt8RC5LeQaP7E7VB7HPkarmxdnUZ8BQQoHhd1mCv2F2
-         flndxyODUZ0EkT53m4qJa6veJgfhM5e43phKwmlAsvxaG+4RciOWx2bTGMRE0Us8amHd
-         7C8A==
-X-Gm-Message-State: AOAM532aEuiZlJTAp1Eulx51GshSK9nT2tCKUu+qp0p9Np9QgKCC6oPj
-        MlNmzbJJxQIVzKV8p8ckUN3cc+6cjIeeCCk3gl4=
-X-Google-Smtp-Source: ABdhPJy+hnRWXXLCim3XX8VR8NttDQdoTiRqRmk15ZU3zey1uUDav8/x3CYGdR2Rhq0blwpAH6F2plDBmFbPpF26jzI=
-X-Received: by 2002:a05:6830:308c:: with SMTP id f12mr3281848ots.52.1623419926189;
- Fri, 11 Jun 2021 06:58:46 -0700 (PDT)
+        bh=XaOZUHVmtwBqm3RfZPVozuu3/NEu4cqerXESep9dzeg=;
+        b=DB+BKNuee8lKR8uzQGqtmwi1LgO86qnj4B5cKiSQd5h7cpa9tAJ00Y54rvYjNLntun
+         leA2+Zw2h8X67g3KwFIOZX36ZjXHz46XFj9oz6Bq6eS9X6JcaJSMOeTYWvZBj6/oEmbz
+         UXLCwXnlEHdJfpEaRhzOJxLwO+Y2AMhl2pERJQ0DgstAqVmfH4dNsZorTBsbxt6LQEyT
+         tBFY1W90zAv/7Fii/IGfEVafP7ZtAM4Dp2VOY/lPwiV+uceDdRo6jnS2jRv0KSq9cQe4
+         luSv/UBoC1Oeias6CKXujdhd2Y2GonQ+Kgn+57xQaLQ2fLcohkuglG97nWeMStD9FogC
+         ayJg==
+X-Gm-Message-State: AOAM531Evq22xXtAH2abLZnunNkgJ7wnlr1gzEOOHNKGA9MWMZTKOTL6
+        g1i7z9qDSuIHCFgL8x1YMbL2Sd/KoeewgHFx2TXClJZ2hsVsZQ==
+X-Google-Smtp-Source: ABdhPJzj/t5pP6LV1mF3DQV6fGJlvch67kPne9Wwo+a2Yu3wqWpJ3+ZBu1lQW8KWpYHbvpxnaJb4w2YFRZyaXSGw32o=
+X-Received: by 2002:a4a:b1c2:: with SMTP id j2mr3177619ooo.78.1623419962012;
+ Fri, 11 Jun 2021 06:59:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210607083921.2668568-1-ping.bai@nxp.com> <20210607083921.2668568-6-ping.bai@nxp.com>
-In-Reply-To: <20210607083921.2668568-6-ping.bai@nxp.com>
+References: <20210607083921.2668568-1-ping.bai@nxp.com> <20210607083921.2668568-7-ping.bai@nxp.com>
+In-Reply-To: <20210607083921.2668568-7-ping.bai@nxp.com>
 From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Fri, 11 Jun 2021 21:57:29 +0800
-Message-ID: <CAA+hA=R=pAVA0u1VRrW_tYcN5qwqrxYYY+aVTxk4+euB-Atvbg@mail.gmail.com>
-Subject: Re: [PATCH 05/11] dt-bindings: spi: fsl-lpspi: Add imx8ulp compatible string
+Date:   Fri, 11 Jun 2021 21:58:05 +0800
+Message-ID: <CAA+hA=TNbyo-YLRwW=SjGCkLDxU026DJOa12qpVZbTNyBna-KQ@mail.gmail.com>
+Subject: Re: [PATCH 06/11] dt-bindings: timer: tpm-timer: Add imx8ulp
+ compatible string
 To:     Jacky Bai <ping.bai@nxp.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -67,10 +65,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 4:33 PM Jacky Bai <ping.bai@nxp.com> wrote:
+On Mon, Jun 7, 2021 at 4:34 PM Jacky Bai <ping.bai@nxp.com> wrote:
 >
-> For i.MX8ULP, it uses two compatible strings, so update the
-> comaptible strings.
+> For i.MX8ULP, it use two compatible strings, so update the
+> compatible strings for it.
 >
 > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 
@@ -82,31 +80,26 @@ Regards
 Aisheng
 
 > ---
->  .../devicetree/bindings/spi/spi-fsl-lpspi.yaml        | 11 +++++++----
->  1 file changed, 7 insertions(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
 >
-> diff --git a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
-> index 312d8fee9dbb..1d46877fe46a 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
-> @@ -14,10 +14,13 @@ allOf:
+> diff --git a/Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml b/Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml
+> index edd9585f6726..f69773a8e4b9 100644
+> --- a/Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml
+> +++ b/Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml
+> @@ -19,7 +19,11 @@ description: |
 >
 >  properties:
 >    compatible:
-> -    enum:
-> -      - fsl,imx7ulp-spi
-> -      - fsl,imx8qxp-spi
-> -
+> -    const: fsl,imx7ulp-tpm
 > +    oneOf:
-> +      - enum:
-> +          - fsl,imx7ulp-spi
-> +          - fsl,imx8qxp-spi
+> +      - const: fsl,imx7ulp-tpm
 > +      - items:
-> +          - const: fsl,imx8ulp-spi
-> +          - const: fsl,imx7ulp-spi
+> +          - const: fsl,imx8ulp-tpm
+> +          - const: fsl,imx7ulp-tpm
+>
 >    reg:
 >      maxItems: 1
->
 > --
 > 2.26.2
 >
