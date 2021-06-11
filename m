@@ -2,142 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3495D3A3B88
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 07:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 816203A3B8E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 08:00:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230001AbhFKF6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 01:58:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44618 "EHLO mail.kernel.org"
+        id S230307AbhFKGCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 02:02:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45952 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230445AbhFKF6M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 01:58:12 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BF61D61374;
-        Fri, 11 Jun 2021 05:56:11 +0000 (UTC)
+        id S230291AbhFKGCy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 02:02:54 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 37A13610A5;
+        Fri, 11 Jun 2021 06:00:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623390975;
-        bh=VOKoy9LXqjs24DiLLSPKITIAEJBXmrmePJ3RmlXXJV0=;
+        s=k20201202; t=1623391255;
+        bh=G5fNaWMC3tJrhYe4hSWFBJEP1GPo85Wn6N+8X6LULmY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PmstDJ+D4pwg8w7uiJ2Nnlxx6nWO6VA1/OCmmgP6yndS0TtMMiuM4gvHdiZ7u+lum
-         iYDk2Bp5PgCjTuvVGYhe4fM3hUWvc/9tOpTG7Dwtm5RF9Ihl6s3KGCfcSE0sPZjnrm
-         OASVT2GjToSgdVF4W/9q35vnwF2oufzCr8tz7LhSetpcNukcF3A0MPpox+9q2wLDxy
-         pTahaM1rPVwHVvdfOVzGMtnuMP4x8vvobr787XTSswaJar0jJpOVdLf1F7Btf2eMbL
-         WZFCTEqmIVlpuf3vO2XCvs63UBytC1OTsp+OX/RLPBoVcrJRZenoPIbE2aWlqiZnth
-         OIYkegd/VcyRw==
-Date:   Fri, 11 Jun 2021 11:26:06 +0530
+        b=PvOKXoqLPWg2DL5x0sLR3jKcaLGDgemhNXYpdA4vtfzQv5BZ+aG1UVF6NEB3ZEE/y
+         VKSvMaOBeEpJabWdr98IEW6B2Mbs1smhiZTGGm81Iy1QMsITnz5QWcHc2pnBHnPA12
+         TiI7ZL+jfLMeuLe7Gc0p14QRnfd5OpcDBLeViF4XXac6nhYVQ9IbRqRaKy1X7T7wTa
+         9zgC0eyoy4qX4/ZYQ5iMz22jmp1ROaH3qFse8G1ZnrZ0ss69dmSR3W4qTDIz01t9zQ
+         /AYCJFbr4/JJD1LiaaZnPNSOIOHFrOCAVjaumhiBixqN0vTtZbLLSOjqkdmXKSDiSu
+         nO4uq3H9HqJdQ==
+Date:   Fri, 11 Jun 2021 11:30:47 +0530
 From:   Manivannan Sadhasivam <mani@kernel.org>
 To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] ARM: dts: owl-s500-roseapplepi: Add ethernet support
-Message-ID: <20210611055606.GB6950@thinkpad>
+Subject: Re: [PATCH 1/2] ARM: dts: owl-s500: Add ethernet support
+Message-ID: <20210611060047.GC6950@thinkpad>
 References: <cover.1623358117.git.cristian.ciocaltea@gmail.com>
- <632e12c445ced7f10e6d7240162484ae5afc148e.1623358117.git.cristian.ciocaltea@gmail.com>
+ <926456e8a3700b257605534cf711a0bfb667fc36.1623358117.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <632e12c445ced7f10e6d7240162484ae5afc148e.1623358117.git.cristian.ciocaltea@gmail.com>
+In-Reply-To: <926456e8a3700b257605534cf711a0bfb667fc36.1623358117.git.cristian.ciocaltea@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 12:09:22AM +0300, Cristian Ciocaltea wrote:
-> Add pinctrl configuration for enabling the Ethernet MAC on RoseapplePi
-> SBC. Additionally, provide the necessary properties for the generic S500
-> ethernet node in order to setup PHY and MDIO.
+On Fri, Jun 11, 2021 at 12:09:21AM +0300, Cristian Ciocaltea wrote:
+> Add Ethernet MAC device tree node for Actions Semi S500 SoC.
 > 
 > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> ---
->  arch/arm/boot/dts/owl-s500-roseapplepi.dts | 56 ++++++++++++++++++++++
->  1 file changed, 56 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/owl-s500-roseapplepi.dts b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> index b8c5db2344aa..bffabc7eaa50 100644
-> --- a/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> +++ b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> @@ -225,6 +225,38 @@ bias1-pinconf {
->  			bias-pull-down;
->  		};
->  	};
-> +
-> +	ethernet_pins: ethernet-pins {
-> +		txd01-pinmux {
-> +			groups = "rmii_txd0_mfp", "rmii_txd1_mfp";
-> +			function = "eth_rmii";
-> +		};
-> +
-> +		rxd01-pinmux {
-> +			groups = "rmii_rxd0_mfp", "rmii_rxd1_mfp";
-> +			function = "eth_rmii";
-> +		};
-> +
-> +		txen_rxer-pinmux {
-> +			groups = "rmii_txen_mfp", "rmii_rxen_mfp";
-> +			function = "eth_rmii";
-> +		};
-> +
-> +		crs_dv_ref_clk-pinmux {
-> +			groups = "rmii_crs_dv_mfp", "rmii_ref_clk_mfp";
-> +			function = "eth_rmii";
 
-Since the function is same, just club all the groups together.
-
-> +		};
-> +
-> +		ref_clk-pinconf {
-> +			groups = "rmii_ref_clk_drv";
-> +			drive-strength = <2>;
-> +		};
-> +
-> +		phy_clk-pinmux {
-> +			groups = "clko_25m_mfp";
-> +			function = "clko_25m";
-> +		};
-
-Move this above node pinconf.
-
-> +	};
->  };
->  
->  /* uSD */
-> @@ -241,6 +273,30 @@ &mmc0 {
->  	vqmmc-supply = <&sd_vcc>;
->  };
->  
-> +&ethernet {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&ethernet_pins>;
-> +	phy-mode = "rmii";
-> +	phy-handle = <&eth_phy>;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		reset-gpios = <&pinctrl 88 GPIO_ACTIVE_LOW>; /* GPIOC24 */
-> +		reset-delay-us = <10000>;
-> +		reset-post-delay-us = <150000>;
-
-reset-* properties belong to "ethernet-phy" node. Also, while adding new nodes
-please run the dtbs_check and try to address the warnings.
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 Thanks,
 Mani
 
+> ---
+>  arch/arm/boot/dts/owl-s500.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/owl-s500.dtsi b/arch/arm/boot/dts/owl-s500.dtsi
+> index cd635f222d26..739b4b9cec8c 100644
+> --- a/arch/arm/boot/dts/owl-s500.dtsi
+> +++ b/arch/arm/boot/dts/owl-s500.dtsi
+> @@ -324,5 +324,15 @@ mmc2: mmc@b0238000 {
+>  			dma-names = "mmc";
+>  			status = "disabled";
+>  		};
 > +
-> +		eth_phy: ethernet-phy@3 {
-> +			reg = <0x3>;
-> +			max-speed = <100>;
-> +			interrupt-parent = <&sirq>;
-> +			interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
+> +		ethernet: ethernet@b0310000 {
+> +			compatible = "actions,s500-emac", "actions,owl-emac";
+> +			reg = <0xb0310000 0x10000>;
+> +			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&cmu CLK_ETHERNET>, <&cmu CLK_RMII_REF>;
+> +			clock-names = "eth", "rmii";
+> +			resets = <&cmu RESET_ETHERNET>;
+> +			status = "disabled";
 > +		};
-> +	};
-> +};
-> +
->  &twd_timer {
->  	status = "okay";
+>  	};
 >  };
 > -- 
 > 2.32.0
