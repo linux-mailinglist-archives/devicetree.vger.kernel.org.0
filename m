@@ -2,124 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B35113A474A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 19:01:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87ABD3A4783
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 19:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231437AbhFKRDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 13:03:15 -0400
-Received: from foss.arm.com ([217.140.110.172]:35780 "EHLO foss.arm.com"
+        id S229685AbhFKRMt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 13:12:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60092 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231478AbhFKRDK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 13:03:10 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E118BD6E;
-        Fri, 11 Jun 2021 10:01:11 -0700 (PDT)
-Received: from e120937-lin.home (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 718DF3F719;
-        Fri, 11 Jun 2021 10:01:08 -0700 (PDT)
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        virtualization@lists.linux-foundation.org,
-        virtio-dev@lists.oasis-open.org
-Cc:     sudeep.holla@arm.com, james.quinlan@broadcom.com,
-        Jonathan.Cameron@Huawei.com, f.fainelli@gmail.com,
-        etienne.carriere@linaro.org, vincent.guittot@linaro.org,
-        souvik.chakravarty@arm.com, cristian.marussi@arm.com,
-        igor.skalkin@opensynergy.com, peter.hilber@opensynergy.com,
-        alex.bennee@linaro.org, jean-philippe@linaro.org,
-        mikhail.golubev@opensynergy.com, anton.yakovlev@opensynergy.com,
-        Vasyl.Vavrychuk@opensynergy.com,
-        Andriy.Tryshnivskyy@opensynergy.com,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v4 13/16] dt-bindings: arm: Add virtio transport for SCMI
-Date:   Fri, 11 Jun 2021 17:59:34 +0100
-Message-Id: <20210611165937.701-14-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210611165937.701-1-cristian.marussi@arm.com>
-References: <20210611165937.701-1-cristian.marussi@arm.com>
+        id S229510AbhFKRMs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 13:12:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9825B613D0;
+        Fri, 11 Jun 2021 17:10:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623431450;
+        bh=FfrPBTLS3IBVIVyyeuJrgFZ+eOxNJLAjI5MfDp/aJgE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=VU5wP/l85pMtYrSDweQgAaUPIHsusCfDjF07cdtFKfQtoIIaokVemKetVswvZYash
+         FkioIRy8dQFOiIQP+5w2TjVopahgobGeAH2i1Qj61jCDGFxqVCrxh+yB9IgQ83Isq3
+         xVmhXwKsxZW0kZa7sg/7QmO6gjeV08NXO/IgNZlTiZPzirDqz+Yp5b0YbmXWbkXZBR
+         v+g97Eq/G0EhB0EMF7Cf3OnCRSQX1+cqQUGahsTqeN8mlHl+p7INZ+1vcgVljQhmQo
+         F0vZ/rKfzxyKNvpYQpvJKP+tZMbZRDXejJYQkwhOesVQ5vkJLY9jmem/0yjWxj9Nyq
+         FWXezBTE043+Q==
+Received: by mail-ed1-f50.google.com with SMTP id s6so37915329edu.10;
+        Fri, 11 Jun 2021 10:10:50 -0700 (PDT)
+X-Gm-Message-State: AOAM530nhzcJskyOQIaxbXafy2/dqVqDVQMQIFeWqBzWZi3ce6ipTYX0
+        +VWzwfx66vn34CDUYEcBDO3m/ImIoMdDDN/dyA==
+X-Google-Smtp-Source: ABdhPJzXen0iXLyQ/Wre3Q5uONhrHhT7pVpH9LXRTjzCQKgCTvYCot0lFJEJNZAnubFnbkobUzQlhicDi0/c0za+Bp0=
+X-Received: by 2002:aa7:cac9:: with SMTP id l9mr4773587edt.373.1623431449052;
+ Fri, 11 Jun 2021 10:10:49 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210611131153.3731147-1-aisheng.dong@nxp.com> <20210611131153.3731147-2-aisheng.dong@nxp.com>
+In-Reply-To: <20210611131153.3731147-2-aisheng.dong@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 11 Jun 2021 11:10:36 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJMyY4iEcJi1z0o7pZdCASYHjnVjf6+fQDqa_ucb-M-MA@mail.gmail.com>
+Message-ID: <CAL_JsqJMyY4iEcJi1z0o7pZdCASYHjnVjf6+fQDqa_ucb-M-MA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] of: of_reserved_mem: mark nomap memory instead of removing
+To:     Dong Aisheng <aisheng.dong@nxp.com>,
+        Quentin Perret <qperret@google.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        KarimAllah Ahmed <karahmed@amazon.de>
+Cc:     linux-mm <linux-mm@kvack.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Dong Aisheng <dongas86@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Igor Skalkin <igor.skalkin@opensynergy.com>
+On Fri, Jun 11, 2021 at 7:13 AM Dong Aisheng <aisheng.dong@nxp.com> wrote:
+>
+> Since commit 86588296acbf ("fdt: Properly handle "no-map" field in the memory region"),
+> nomap memory is changed to call memblock_mark_nomap() instead of
+> memblock_remove(). But it only changed the reserved memory with fixed
+> addr and size case in early_init_dt_reserve_memory_arch(), not
+> including the dynamical allocation by size case in
+> early_init_dt_alloc_reserved_memory_arch().
+>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
 
-Document the properties for arm,scmi-virtio compatible nodes.
-The backing virtio SCMI device is described in patch [1].
+Good practice is to Cc the people involved in referenced commits.
+Adding them now. This code is a minefield so I'd like other eyes on
+it.
 
-While doing that, make shmem property required only for pre-existing
-mailbox and smc transports, since virtio-scmi does not need it.
-
-[1] https://lists.oasis-open.org/archives/virtio-comment/202102/msg00018.html
-
-CC: Rob Herring <robh+dt@kernel.org>
-CC: devicetree@vger.kernel.org
-Signed-off-by: Igor Skalkin <igor.skalkin@opensynergy.com>
-[ Peter: Adapted patch for submission to upstream. ]
-Co-developed-by: Peter Hilber <peter.hilber@opensynergy.com>
-Signed-off-by: Peter Hilber <peter.hilber@opensynergy.com>
-[ Cristian: converted to yaml format, moved shmen required property. ]
-Co-developed-by: Cristian Marussi <cristian.marussi@arm.com>
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
----
-v3 --> V4
-- convertd to YAML
-- make shmem required only for pre-existing mailbox and smc transport
-- updated VirtIO specification patch message reference
-- dropped virtio-mmio SCMI device example since really not pertinent to
-  virtio-scmi dt bindings transport: it is not even referenced in SCMI
-  virtio DT node since they are enumerated by VirtIO subsystem and there
-  could be PCI based SCMI devices anyway.
----
- Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-index cebf6ffe70d5..5c4c6782e052 100644
---- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-+++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-@@ -34,6 +34,10 @@ properties:
-       - description: SCMI compliant firmware with ARM SMC/HVC transport
-         items:
-           - const: arm,scmi-smc
-+      - description: SCMI compliant firmware with SCMI Virtio transport.
-+                     The virtio transport only supports a single device.
-+        items:
-+          - const: arm,scmi-virtio
- 
-   interrupts:
-     description:
-@@ -172,6 +176,7 @@ patternProperties:
-       Each sub-node represents a protocol supported. If the platform
-       supports a dedicated communication channel for a particular protocol,
-       then the corresponding transport properties must be present.
-+      The virtio transport does not support a dedicated communication channel.
- 
-     properties:
-       reg:
-@@ -195,7 +200,6 @@ patternProperties:
- 
- required:
-   - compatible
--  - shmem
- 
- if:
-   properties:
-@@ -209,6 +213,7 @@ then:
- 
-   required:
-     - mboxes
-+    - shmem
- 
- else:
-   if:
-@@ -219,6 +224,7 @@ else:
-   then:
-     required:
-       - arm,smc-id
-+      - shmem
- 
- examples:
-   - |
--- 
-2.17.1
-
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> ---
+>  drivers/of/of_reserved_mem.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+> index 367f298a83b2..ebba88395bf8 100644
+> --- a/drivers/of/of_reserved_mem.c
+> +++ b/drivers/of/of_reserved_mem.c
+> @@ -42,7 +42,7 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
+>
+>         *res_base = base;
+>         if (nomap)
+> -               return memblock_remove(base, size);
+> +               return memblock_mark_nomap(base, size);
+>
+>         return memblock_reserve(base, size);
+>  }
+> @@ -276,7 +276,7 @@ void __init fdt_init_reserved_mem(void)
+>                                 pr_info("node %s compatible matching fail\n",
+>                                         rmem->name);
+>                                 if (nomap)
+> -                                       memblock_add(rmem->base, rmem->size);
+> +                                       memblock_clear_nomap(rmem->base, rmem->size);
+>                                 else
+>                                         memblock_free(rmem->base, rmem->size);
+>                         }
+> --
+> 2.25.1
+>
