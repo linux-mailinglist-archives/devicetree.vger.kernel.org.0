@@ -2,109 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F8A23A4159
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 13:37:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C18E63A416F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 13:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230514AbhFKLi5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 07:38:57 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:42669 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231681AbhFKLi4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 07:38:56 -0400
-X-IronPort-AV: E=Sophos;i="5.83,265,1616425200"; 
-   d="scan'208";a="83950432"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 11 Jun 2021 20:36:57 +0900
-Received: from localhost.localdomain (unknown [10.226.92.121])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id E56B4401BBFD;
-        Fri, 11 Jun 2021 20:36:55 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 4/5] arm64: dts: renesas: r9a07g044: Add DMAC support
-Date:   Fri, 11 Jun 2021 12:36:41 +0100
-Message-Id: <20210611113642.18457-5-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210611113642.18457-1-biju.das.jz@bp.renesas.com>
-References: <20210611113642.18457-1-biju.das.jz@bp.renesas.com>
+        id S231254AbhFKLui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 07:50:38 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:36184 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230370AbhFKLuh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 07:50:37 -0400
+X-UUID: bbe6db63d9d7498bac7329aa3b6d2161-20210611
+X-UUID: bbe6db63d9d7498bac7329aa3b6d2161-20210611
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1283311070; Fri, 11 Jun 2021 19:48:37 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 11 Jun 2021 19:48:35 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 11 Jun 2021 19:48:34 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>,
+        <drinkcat@chromium.org>, <Rex-BC.Chen@mediatek.com>,
+        Krzysztof Wilczyski <kw@linux.com>, <Ryan-JH.Yu@mediatek.com>
+Subject: [PATCH v2 0/2] PCI: mediatek-gen3: Add support for disable dvfsrc
+Date:   Fri, 11 Jun 2021 19:48:22 +0800
+Message-ID: <20210611114824.14537-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DMAC support to RZ/G2L SoC DT.
+These series patches add support for disable dvfsrc voltage request.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-This patch depend on [1]
-[1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20210609153230.6967-11-prabhakar.mahadev-lad.rj@bp.renesas.com/
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 38 ++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+Changes in v2:
+Fix typo.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 476ee9a69065..47f9fafd6c06 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -8,6 +8,10 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/r9a07g044-cpg.h>
- 
-+#define CH_CFG(reqd, loen, hien, lvl, am, sds, dds, tm) \
-+	((((tm) << 22) | ((dds) << 16) | ((sds) << 12) | ((am) << 8) | \
-+	((lvl) << 6) | ((hien) << 5) | ((loen) << 4) | ((reqd) << 3)) & 0x004FF778)
-+
- / {
- 	compatible = "renesas,r9a07g044";
- 	#address-cells = <2>;
-@@ -111,6 +115,40 @@
- 			status = "disabled";
- 		};
- 
-+		dmac: dma-controller@11820000 {
-+			compatible = "renesas,dmac-r9a07g044",
-+				     "renesas,rz-dmac";
-+			reg = <0 0x11820000 0 0x10000>,
-+			      <0 0x11830000 0 0x10000>;
-+			interrupts = <GIC_SPI 125 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 126 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 127 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 128 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 129 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 130 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 132 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 133 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 134 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 135 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 136 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 137 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 138 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 139 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 140 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 141 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15",
-+					  "error";
-+			clocks = <&cpg CPG_MOD R9A07G044_CLK_DMAC>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg R9A07G044_CLK_DMAC>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+		};
-+
- 		gic: interrupt-controller@11900000 {
- 			compatible = "arm,gic-v3";
- 			#interrupt-cells = <3>;
+Jianjun Wang (2):
+  dt-bindings: PCI: mediatek-gen3: Add property to disable dvfsrc
+    voltage request
+  PCI: mediatek-gen3: Add support for disable dvfsrc voltage request
+
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  8 +++++
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 31 +++++++++++++++++++
+ 2 files changed, 39 insertions(+)
+
 -- 
-2.17.1
+2.25.1
 
