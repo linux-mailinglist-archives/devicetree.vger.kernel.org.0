@@ -2,89 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C678B3A3E57
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 10:53:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C5733A3E71
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 10:59:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229584AbhFKIzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 04:55:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59078 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229598AbhFKIzV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 04:55:21 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0AF5C611CD;
-        Fri, 11 Jun 2021 08:53:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1623401603;
-        bh=smTzRx2zx9EfIZmrcrU3+rjPyo/xH3+WrI1TijPFAfo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GEYn2q0edweutaShIlS4C2ma1EfL/x6cCf89p459q4/qkSKWqWUaVoex7OuA7sDZK
-         imKQra24IJB3bYLqaiieP/fLX4zugNxh1AkF9ekRbiWqZt0UcazrgKgWY2Z+mp19H2
-         2DfHVDaLLjFBfmMBlI8fT6hCDl47yP3d1HZUMMIc=
-Date:   Fri, 11 Jun 2021 10:53:21 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Jiri Prchal <jiri.prchal@aksignal.cz>
+        id S231269AbhFKJBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 05:01:08 -0400
+Received: from router.aksignal.cz ([62.44.4.214]:55906 "EHLO
+        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230385AbhFKJBI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 05:01:08 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by router.aksignal.cz (Postfix) with ESMTP id BC08E47317;
+        Fri, 11 Jun 2021 10:59:08 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
+Received: from router.aksignal.cz ([127.0.0.1])
+        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
+        with LMTP id JoxcQDnsDsKA; Fri, 11 Jun 2021 10:59:08 +0200 (CEST)
+Received: from [172.25.161.48] (unknown [83.240.30.185])
+        (Authenticated sender: jiri.prchal@aksignal.cz)
+        by router.aksignal.cz (Postfix) with ESMTPSA id 1BD0B47316;
+        Fri, 11 Jun 2021 10:59:07 +0200 (CEST)
+Subject: Re: [PATCH v9 1/5] nvmem: prepare basics for FRAM support
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Christian Eggers <ceggers@arri.de>,
         Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v9 5/5] nvmem: eeprom: add documentation of sysfs fram
- and sernum file
-Message-ID: <YMMkgfRBKpwCo3PE@kroah.com>
 References: <20210611052652.7894-1-jiri.prchal@aksignal.cz>
- <20210611052652.7894-6-jiri.prchal@aksignal.cz>
+ <20210611052652.7894-2-jiri.prchal@aksignal.cz> <YMMjbCFzsfiT8dMA@kroah.com>
+From:   =?UTF-8?B?SmnFmcOtIFByY2hhbA==?= <jiri.prchal@aksignal.cz>
+Message-ID: <3c2beca6-8ef5-834d-a37a-5aea53bc1305@aksignal.cz>
+Date:   Fri, 11 Jun 2021 10:59:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210611052652.7894-6-jiri.prchal@aksignal.cz>
+In-Reply-To: <YMMjbCFzsfiT8dMA@kroah.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 07:26:52AM +0200, Jiri Prchal wrote:
-> Added sysfs fram and sernum file documentation.
+
+
+On 11. 06. 21 10:48, Greg Kroah-Hartman wrote:
+> On Fri, Jun 11, 2021 at 07:26:48AM +0200, Jiri Prchal wrote:
+>> Added enum and string for FRAM to expose it as "fram".
 > 
-> Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
-> ---
-> v5: new
-> v6: no change here
-> v7: no change here
-> v8: added fram file doc
-> v9: rewritten description
-> ---
->  .../ABI/testing/sysfs-class-spi-eeprom        | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-class-spi-eeprom
+> I have no idea what "FRAM" is, nor what "fram" is.
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-class-spi-eeprom b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-> new file mode 100644
-> index 000000000000..4e69c78f9f65
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-> @@ -0,0 +1,20 @@
-> +What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/sernum
-> +Date:		May 2021
-> +KernelVersion:	5.14
-> +Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
-> +Description:
-> +	Contains the serial number of the Cypress FRAM (FM25VN) if it is
-> +	present.  It will be displayed as a 8 byte hex string, as read
-> +	from the device.
-> +
-> +	This is a read-only attribute.
-> +
-> +What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/fram
-> +Date:		June 2021
-> +KernelVersion:	5.14
-> +Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
-> +Description:
-> +	Contains the FRAM binary data. Same as EEPROM, just another file
-> +	name to indicate that it employs ferroelectric process.
-> +	It performs write operations at bus speed - no write delays, capable
-> +	of 10^14 read/write cycles and 151 years data retention.
+> And why do you not add the documentation update here in this same
+> commit?  This is where you are adding it, trying to dig later in the
+> series to notice that you really did provide this is a pain, and is
+> harder to track.
+> 
+> Please provide more information here in the changelog and move the
+> Documentation addition here into this patch.
 
-Are you sure of these statistics?  Don't promise something here that
-might not be true, this is not a marketing document :)
-
-thanks,
-
-greg k-h
+Should I also join #1 and 2 together?
