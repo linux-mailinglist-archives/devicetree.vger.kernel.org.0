@@ -2,70 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EDF33A41FD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 14:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 778563A41DA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 14:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230405AbhFKMaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 08:30:04 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:55153 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230188AbhFKMaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 08:30:03 -0400
-X-UUID: c71177d5340f476d9d37672459edf88e-20210611
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:Date:CC:To:From:Subject:Message-ID; bh=5WTI0sd3QrS6AzdAtUg1zyVx5qtJHQj3wy1A/5ifOvk=;
-        b=c3J8bZfFR7uB26v76G5+YiFVPE/BIYsvjJ66mKc8Q26DmTkgcFCCdOW2JxcxcReViIgxCDS9Mr3etmYy3yOa4yb9FOZLSab4frhlePsKHt8kSjXxWGP+w1XT0Ns2W0rPoKAz+alkeGDe8G2QRHjlQ145LNAqkjUw441lZLMh1is=;
-X-UUID: c71177d5340f476d9d37672459edf88e-20210611
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <mason.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 442193545; Fri, 11 Jun 2021 20:28:03 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 11 Jun 2021 20:27:56 +0800
-Received: from [10.15.20.246] (10.15.20.246) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 11 Jun 2021 20:27:55 +0800
-Message-ID: <1623413625.22727.10.camel@mbjsdccf07>
-Subject: [PATCH 2/2] dt-binding: mediatek: mt6779: update spi document
-From:   Mason Zhang <mason.zhang@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        Mason Zhang <Mason.Zhang@mediatek.com>,
-        <wsd_upstream@mediatek.com>, <hanks.chen@mediatek.com>,
-        <linux-kernel@vger.kernel.org>,
-        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Fri, 11 Jun 2021 20:13:45 +0800
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S231535AbhFKMUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 08:20:17 -0400
+Received: from mail-vk1-f174.google.com ([209.85.221.174]:38637 "EHLO
+        mail-vk1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231231AbhFKMUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 08:20:17 -0400
+Received: by mail-vk1-f174.google.com with SMTP id 27so2478202vkl.5;
+        Fri, 11 Jun 2021 05:18:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2H92W+hizK8eMcWXk2Y8eWMITPk9xnALpSRvGPnaNkM=;
+        b=Lrh56rJszvl5AgsB/DiUPZ/kf82FVgfsNn2isT9n15WtgTrcPsXeDIkS+V6FBRIgnx
+         HOrDV8OcN1zb/ST76jY+CITY3ZakkhUqXwRt+ud7kN5deWaqjThKC1hS+1COPqVOZqXC
+         Pji/AUJL3W1M4nRrklQeuFpHvp3MvtBkWgN/DjpCE7v1+lbclgBG4q+2Qdrk4gAjbHYl
+         Ibjct2H5RhZy6INeWWYBmS+D9B9fNhPKeXSWiWFw2D5D8wgths13kxl7x2ybWhQLJa83
+         jjs51dLGsbAUDAX9TyYYGZ7a1zF5u2jeZVD97VroAMwZRZzgm05iET+B7RS+pjEl4Db4
+         rHEw==
+X-Gm-Message-State: AOAM5330Zxs1/bhyAAI+SjnDb2ALhQ3BGk3PVhziogvM0Mt1+UysfHNS
+        cpoGcw9SiiFQa7BDbqmdqJXjTbvzKWJ+ZKI8zko=
+X-Google-Smtp-Source: ABdhPJwz6Me+KM54mXk3hIXczz496UPhe+43FmIyojKlLNDvp3KjYmbSrLmfcsB+iEA1piGZptQOdvkHKL8skQ1N3pE=
+X-Received: by 2002:ac5:cb6b:: with SMTP id l11mr8169784vkn.2.1623413899073;
+ Fri, 11 Jun 2021 05:18:19 -0700 (PDT)
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20210519201551.690654-1-daniel@zonque.org> <20210519201551.690654-3-daniel@zonque.org>
+In-Reply-To: <20210519201551.690654-3-daniel@zonque.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 11 Jun 2021 14:18:08 +0200
+Message-ID: <CAMuHMdUmEWNCj6J43jwxE67K=ksRy53Eb9B82HjDfC++-YLw9g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock: cs2000-cp: Document aux-output-source
+To:     Daniel Mack <daniel@zonque.org>
+Cc:     linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQp0aGlzIHBhdGNoIHVwZGF0ZSBzcGkgZG9jdW1lbnQgZm9yIE1UNjc3OSBTT0MuDQoNClNpZ25l
-ZC1vZmYtYnk6IE1hc29uIFpoYW5nIDxNYXNvbi5aaGFuZ0BtZWRpYXRlay5jb20+DQotLS0NCiBE
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc3BpL3NwaS1tdDY1eHgudHh0IHwgMSAr
-DQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQoNCmRpZmYgLS1naXQgYS9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc3BpL3NwaS1tdDY1eHgudHh0IGIvRG9jdW1lbnRh
-dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9zcGktbXQ2NXh4LnR4dA0KaW5kZXggOWU0Mzcy
-MWZhN2Q2Li43YmFlN2VlZjI2YzcgMTAwNjQ0DQotLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3Mvc3BpL3NwaS1tdDY1eHgudHh0DQorKysgYi9Eb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3Mvc3BpL3NwaS1tdDY1eHgudHh0DQpAQCAtMTMsNiArMTMsNyBAQCBSZXF1
-aXJlZCBwcm9wZXJ0aWVzOg0KICAgICAtIG1lZGlhdGVrLG10ODE4My1zcGk6IGZvciBtdDgxODMg
-cGxhdGZvcm1zDQogICAgIC0gIm1lZGlhdGVrLG10ODE5Mi1zcGkiLCAibWVkaWF0ZWssbXQ2NzY1
-LXNwaSI6IGZvciBtdDgxOTIgcGxhdGZvcm1zDQogICAgIC0gIm1lZGlhdGVrLG10ODUxNi1zcGki
-LCAibWVkaWF0ZWssbXQyNzEyLXNwaSI6IGZvciBtdDg1MTYgcGxhdGZvcm1zDQorICAgIC0gIm1l
-ZGlhdGVrLG10Njc3OS1zcGkiLCAibWVkaWF0ZWssbXQ2NzY1LXNwaSI6IGZvciBtdDY3NzkgcGxh
-dGZvcm1zDQogDQogLSAjYWRkcmVzcy1jZWxsczogc2hvdWxkIGJlIDEuDQogDQoNCkhpIE1hdHRo
-aWFzOg0KCQ0KCUknbSBzb3JyeSB0byBkaXN0dXJiIHlvdSwgdGhpcyBwYXRjaCBpcyBzdGF5IGhl
-cmUgZm9yIGEgbG9uZyB0aW1lLCBEbw0KeW91IGhhdmUgYW55IHN1Z2dlc3Rpb25zIGFib3V0IHRo
-aXMgcGF0Y2g/IA0KCVdlIGhvcGUgdGhpcyBwYXRjaCB3aWxsIGJlIG1lcmdlZCBhcyBzb29uIGFz
-IHBvc3NpYmxlLElmIHlvdSBoYXZlIGFueQ0KY29uY2VybiwgSSB3aWxsIGZpeCBpdCBpbiB0aW1l
-Lg0KDQoJTG9va2luZyBmb3J3YXJkIHRvIHlvdXIgcmVwbHl+ICANCg0KVGhhbmtzDQpNYXNvbg0K
+Hi Daniel,
 
+On Wed, May 19, 2021 at 10:23 PM Daniel Mack <daniel@zonque.org> wrote:
+> This new optional property can be used to control the function of the
+> auxiliary output pin. Introduce a new dt-bindings include file that
+> contains the numerical values.
+>
+> Signed-off-by: Daniel Mack <daniel@zonque.org>
+
+Thanks for your patch!
+
+> --- a/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
+> +++ b/Documentation/devicetree/bindings/clock/cirrus,cs2000-cp.yaml
+> @@ -37,6 +37,16 @@ properties:
+>    reg:
+>      maxItems: 1
+>
+> +  cirrus,aux-output-source:
+> +    description:
+> +      Specfies the function of the auxililary clock output pin
+
+Specifies ... auxiliary
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum:
+> +      - 0 # CS2000CP_AUX_OUTPUT_REF_CLK:  ref_clk input
+> +      - 1 # CS2000CP_AUX_OUTPUT_CLK_IN:   clk_in input
+> +      - 2 # CS2000CP_AUX_OUTPUT_CLK_OUT:  clk_out output
+> +      - 3 # CS2000CP_AUX_OUTPUT_PLL_LOCK: pll lock status
+
+Should the default be documented? "default: 0"?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
