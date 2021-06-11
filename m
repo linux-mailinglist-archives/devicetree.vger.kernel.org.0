@@ -2,64 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B86F3A4025
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 12:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 062703A4041
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 12:34:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230233AbhFKK1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 06:27:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54186 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229480AbhFKK1d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 06:27:33 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4656F61249;
-        Fri, 11 Jun 2021 10:25:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1623407135;
-        bh=6q3mUFSKDFTDFR++ZUsA24vSxxL0h3fhNdhjHWkD25E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=0N37AJPlE8K6/xB5WUh4BhhQI95pMW96tGDVXm3lticGueXkKPzhH0QsBhmqh7PA2
-         cF7dnisUmSUK/djCWYa1xQHb+u7Lpji57H2o9orZE+80lBvPlrZVEjqqdwX7hgqen6
-         wfSFZoUcW/G3lLYn6Y/3M+U3xDlFS9t/laFjl9Zc=
-Date:   Fri, 11 Jun 2021 12:25:33 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Jiri Prchal <jiri.prchal@aksignal.cz>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S230251AbhFKKgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 06:36:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58608 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231359AbhFKKgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 06:36:43 -0400
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5098C061574;
+        Fri, 11 Jun 2021 03:34:29 -0700 (PDT)
+Received: by mail-ot1-x333.google.com with SMTP id j11-20020a9d738b0000b02903ea3c02ded8so2689507otk.5;
+        Fri, 11 Jun 2021 03:34:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4Pu5Bpf2F/UJvF9uKJ3m2aKujMucNH5SJI5mlJyuB9Q=;
+        b=QPp+Grb1CyKMSGCHFxei6cYRmVlOBshR9pCDzK4iT0gjoEpnvQUc+Z/HhfvmCm9/V4
+         SmbYieHf0KRT/dZi8Q0X84sUBzSm/Q3aURO2i+7BeZt+Z8rXeNGoj04Jg6bqbxna6bPK
+         oeEPJX1onVWJUErXfB5qS1wlaNvRGRHZEoAXxx4+axvdr4sfY5Dgm+T/CUH98xDES0E6
+         IgQS/rG80lnixFSB5aRy86yAL+NrbjcauEXrSFBrEsRfmjngsS2im6dNxynhV0iUdzzK
+         OS8ysVKKOnSJX0d1QbQS1lFAYdb/6U4KYrqlXg2YfFppTO6mRYEn5dPuxDfK3zPqHRl9
+         RFPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=4Pu5Bpf2F/UJvF9uKJ3m2aKujMucNH5SJI5mlJyuB9Q=;
+        b=l0+xNwjo8v9UFK3Ocy4cT0B1PsqNTJsOPNWsR+JEQDs6cfF2XcwgUOZtfXDiCN7FxV
+         QHmiy2jM+wdIPPDS+st75vx+nKWsJNbUjF2JoSdf5kzmaqLqCZ66EEu7X+sg9ZUjSj3h
+         +UW2TuN+be8F8ntxXi8I/JQm2gzc/nIN0qQ+nfVtq4wgsWRRIIQ5E84vA03ZKbsf0Yzc
+         xf8vA/HGgvCn9wCVUdsTeQtVL2hGehEpjk+vy9TuBMp+999qbbJOmhYl11Z3R9d6a0QK
+         RGvN4o6ThtEJrdpLkWUz2Mc20x8EVDn7+JBcyiYPJ3Epm1JQ2vEC+gepfZRKMUlhXWK2
+         YvcA==
+X-Gm-Message-State: AOAM533WLsnv8AXuhqT33h8IsWE2o1b53tHHVG0/vnOb/uwnQxB0jJHD
+        RZJUgLxUOfcXYm0foAw4znQ=
+X-Google-Smtp-Source: ABdhPJyUTPvHfixh+M2K3fcKVYT51Etc/NymGJInBDt63AZPIJWZStmaGwI5hxLiXEtXy9d1r6vdaw==
+X-Received: by 2002:a9d:8a7:: with SMTP id 36mr2473395otf.287.1623407669202;
+        Fri, 11 Jun 2021 03:34:29 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id c13sm1237472otr.23.2021.06.11.03.34.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Jun 2021 03:34:28 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 11 Jun 2021 03:34:26 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Romain Perier <romain.perier@gmail.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH v10 0/4] add support for FRAM
-Message-ID: <YMM6Hdw5mdK8LXQe@kroah.com>
-References: <20210611094601.95131-1-jiri.prchal@aksignal.cz>
+        Daniel Palmer <daniel@0x0f.com>,
+        Mohammed Billoo <mohammed.billoo@gmail.com>,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] watchdog: Add Mstar MSC313e WDT driver
+Message-ID: <20210611103426.GA3827319@roeck-us.net>
+References: <20210605170441.33667-1-romain.perier@gmail.com>
+ <20210605170441.33667-3-romain.perier@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210611094601.95131-1-jiri.prchal@aksignal.cz>
+In-Reply-To: <20210605170441.33667-3-romain.perier@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 11:45:57AM +0200, Jiri Prchal wrote:
-> Adds support for Cypress FRAMs.
+On Sat, Jun 05, 2021 at 07:04:40PM +0200, Romain Perier wrote:
+> From: Daniel Palmer <daniel@0x0f.com>
 > 
-> Jiri Prchal (4):
->   nvmem: prepare basics for FRAM support
->   nvmem: eeprom: at25: add support for FRAM
->   dt-bindings: nvmem: at25: add for FRAM support
->   nvmem: eeprom: at25: export FRAM serial num
+> It adds a driver for the IP block handling the watchdog timer found for
+> Mstar MSC313e SoCs and newer.
 > 
->  .../ABI/testing/sysfs-class-spi-eeprom        |  19 +++
->  .../devicetree/bindings/eeprom/at25.yaml      |  31 +++-
->  drivers/misc/eeprom/Kconfig                   |   5 +-
->  drivers/misc/eeprom/at25.c                    | 161 ++++++++++++++----
->  drivers/nvmem/core.c                          |   4 +
->  include/linux/nvmem-provider.h                |   1 +
->  6 files changed, 183 insertions(+), 38 deletions(-)
->  create mode 100644 Documentation/ABI/testing/sysfs-class-spi-eeprom
-> 
-> -- 
-> 2.25.1
-> 
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> Co-developed-by: Romain Perier <romain.perier@gmail.com>
+> Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> ---
+>  MAINTAINERS                    |   1 +
 
-Looks good to me, now queued up.  Thanks for sticking with this!
+I tried to apply this patch to my tree, but it doesn't apply because ...
 
-greg k-h
+>  drivers/watchdog/Kconfig       |  12 +++
+>  drivers/watchdog/Makefile      |   1 +
+>  drivers/watchdog/msc313e_wdt.c | 166 +++++++++++++++++++++++++++++++++
+>  4 files changed, 180 insertions(+)
+>  create mode 100644 drivers/watchdog/msc313e_wdt.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index a0f37adb9e64..fcc10c57298c 100644
+
+a0f37adb9e64 is not an upstream SHA and there is a conflict. Please resend
+the series based on some upstream tag.
+
+Guenter
