@@ -2,159 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 182B03A3F5F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 11:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDE323A3F7B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 11:49:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231627AbhFKJsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 05:48:08 -0400
-Received: from router.aksignal.cz ([62.44.4.214]:58850 "EHLO
-        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231609AbhFKJsH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 05:48:07 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by router.aksignal.cz (Postfix) with ESMTP id 251BB417C3;
-        Fri, 11 Jun 2021 11:46:08 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
-Received: from router.aksignal.cz ([127.0.0.1])
-        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id 1dkE4ZSel5lr; Fri, 11 Jun 2021 11:46:07 +0200 (CEST)
-Received: from pc-gameroom.prchals.tk (unknown [83.240.30.185])
-        (Authenticated sender: jiri.prchal@aksignal.cz)
-        by router.aksignal.cz (Postfix) with ESMTPSA id BC868416DF;
-        Fri, 11 Jun 2021 11:46:05 +0200 (CEST)
-From:   Jiri Prchal <jiri.prchal@aksignal.cz>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Prchal <jiri.prchal@aksignal.cz>
-Subject: [PATCH v10 4/4] nvmem: eeprom: at25: export FRAM serial num
-Date:   Fri, 11 Jun 2021 11:46:01 +0200
-Message-Id: <20210611094601.95131-5-jiri.prchal@aksignal.cz>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210611094601.95131-1-jiri.prchal@aksignal.cz>
-References: <20210611094601.95131-1-jiri.prchal@aksignal.cz>
+        id S230467AbhFKJvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 05:51:31 -0400
+Received: from mail-wm1-f50.google.com ([209.85.128.50]:52856 "EHLO
+        mail-wm1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229480AbhFKJvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 05:51:31 -0400
+Received: by mail-wm1-f50.google.com with SMTP id f17so7749913wmf.2;
+        Fri, 11 Jun 2021 02:49:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=7ObfSjunS2lqcu+qmz5f/+ME5Q9V/oV3SAiNhGet7h0=;
+        b=ClRCy2c0ol1tBDtfW5RGO5sESybQqKJgcKnfy8A2Py/6VY67/NwXULxLLMBifRExwS
+         ntroCvu6XNQlu4XJn4tdwlZEQibGveP0GIcF1zwC0Hd/EF4B9yPBdIewIb6KiHM9hQNb
+         9OV6wZE44HMN1/Z+sZFFJwt57YeVDk/MvgBvDnPXqCX6kaM3lyBn1a2T4Zv/0GP9G2ze
+         lOe5iGnCZG6xFx9kafVbE/9FYJN29esHDg6lLVJEioVWGMBQppyV160ZH068BzPlgfvr
+         lg+83qjJq697jJS4ht7RTr2wZo1Z2KWbQqbSz516lS2ABz06tStNlb6BqoxENNL/T8cZ
+         NqRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7ObfSjunS2lqcu+qmz5f/+ME5Q9V/oV3SAiNhGet7h0=;
+        b=jncx/PCrKjbat2sQooEONfgJwEWvFdtQek+ESOX6rsInjxAEgUB//mVZBBGnXhigIm
+         9u17RmiPrvqNbNclY1fBgWPWhRHM9cJIAHUtapAPZ5Y+EmnMxLdtyhxx9J8/1BQMJuLN
+         KNs5wsfaJLbGWqURXyoxPi5XjK+qIkcvULZ8yXNPSsd0cHq+7H3gywhpXyuTvqTr+8p2
+         8JaJERGk/XF4TaBtIMko1ZI0ndAHtp/tveCz0c6MDYK/0z4apdddSTslsu49AdUBtSoe
+         IPLJs0IEuUMjxDbT0m81xYkrHh2HZLQiWyDSuIcXiwPyEJeZGYMBnsjYUZ1d5wuC6/XW
+         hWRw==
+X-Gm-Message-State: AOAM533mALsvzxRg1QsFiNw788fRc/hLrnk8wlmEmvRu6ixACdpYKzk5
+        /i5CrukvhrQqEKoXeZJDH2k=
+X-Google-Smtp-Source: ABdhPJzcgh43AweTQqlpG4DsIlO93zwseDZqvtC3I1XN2r+uEIw3ceMUybZE1nde+hE5GmM70BNbgw==
+X-Received: by 2002:a05:600c:22d9:: with SMTP id 25mr19855564wmg.152.1623404912991;
+        Fri, 11 Jun 2021 02:48:32 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id 89sm6799095wrq.14.2021.06.11.02.48.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Jun 2021 02:48:32 -0700 (PDT)
+Subject: Re: [PATCH v3 1/2] dt-bindings: mediatek: convert mtk jpeg
+ decoder/encoder to yaml
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        maoguang.meng@mediatek.com, yong.wu@mediatek.com
+References: <20210611092357.2930310-1-hsinyi@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <b8c3433d-8860-38bc-27f0-877f05e9e0a7@gmail.com>
+Date:   Fri, 11 Jun 2021 11:48:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210611092357.2930310-1-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This exports serial number of FRAM in sysfs file named "sernum".
-Formatted in hex, each byte separated by space.
-Example:
-$ cat /sys/class/spi_master/spi0/spi0.0/sernum
-ef cd ab 89 67 45 23 01
 
-Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
----
-v2: no change here
-v3: resend and added more recipients
-v4: resend
-v5: reworked up on Greg comments: no spaces in string, sysfs done correctly
-v6: no change here
-v7: moved FM25_SN_LEN, static array, used sysfs_emit, DEVICE_ATTR_RO
-v8: clarify sysfs_emit format
-v9: sizeof parentheses, export with spaces MSB first
-v10: moved documentation to here
----
- .../ABI/testing/sysfs-class-spi-eeprom        | 11 ++++++++
- drivers/misc/eeprom/at25.c                    | 27 +++++++++++++++++++
- 2 files changed, 38 insertions(+)
 
-diff --git a/Documentation/ABI/testing/sysfs-class-spi-eeprom b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-index 7447e242d415..1ff757982079 100644
---- a/Documentation/ABI/testing/sysfs-class-spi-eeprom
-+++ b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-@@ -6,3 +6,14 @@ Description:
- 	Contains the FRAM binary data. Same as EEPROM, just another file
- 	name to indicate that it employs ferroelectric process.
- 	It performs write operations at bus speed - no write delays.
-+
-+What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/sernum
-+Date:		May 2021
-+KernelVersion:	5.14
-+Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
-+Description:
-+	Contains the serial number of the Cypress FRAM (FM25VN) if it is
-+	present.  It will be displayed as a 8 byte hex string, as read
-+	from the device.
-+
-+	This is a read-only attribute.
-diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
-index 6ac2ddfd6833..6e26de68a001 100644
---- a/drivers/misc/eeprom/at25.c
-+++ b/drivers/misc/eeprom/at25.c
-@@ -31,6 +31,7 @@
-  *   AT25M02, AT25128B
-  */
- 
-+#define	FM25_SN_LEN	8		/* serial number length */
- struct at25_data {
- 	struct spi_device	*spi;
- 	struct mutex		lock;
-@@ -38,6 +39,7 @@ struct at25_data {
- 	unsigned		addrlen;
- 	struct nvmem_config	nvmem_config;
- 	struct nvmem_device	*nvmem;
-+	u8 sernum[FM25_SN_LEN];
- };
- 
- #define	AT25_WREN	0x06		/* latch the write enable */
-@@ -171,6 +173,21 @@ static int fm25_aux_read(struct at25_data *at25, u8 *buf, uint8_t command,
- 	return status;
- }
- 
-+static ssize_t sernum_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct at25_data *at25;
-+
-+	at25 = dev_get_drvdata(dev);
-+	return sysfs_emit(buf, "%*ph\n", sizeof(at25->sernum), at25->sernum);
-+}
-+static DEVICE_ATTR_RO(sernum);
-+
-+static struct attribute *sernum_attrs[] = {
-+	&dev_attr_sernum.attr,
-+	NULL,
-+};
-+ATTRIBUTE_GROUPS(sernum);
-+
- static int at25_ee_write(void *priv, unsigned int off, void *val, size_t count)
- {
- 	struct at25_data *at25 = priv;
-@@ -359,6 +376,8 @@ static int at25_probe(struct spi_device *spi)
- 	int			err;
- 	int			sr;
- 	u8 id[FM25_ID_LEN];
-+	u8 sernum[FM25_SN_LEN];
-+	int i;
- 	const struct of_device_id *match;
- 	int is_fram = 0;
- 
-@@ -415,6 +434,13 @@ static int at25_probe(struct spi_device *spi)
- 		else
- 			at25->chip.flags |= EE_ADDR2;
- 
-+		if (id[8]) {
-+			fm25_aux_read(at25, sernum, FM25_RDSN, FM25_SN_LEN);
-+			/* swap byte order */
-+			for (i = 0; i < FM25_SN_LEN; i++)
-+				at25->sernum[i] = sernum[FM25_SN_LEN - 1 - i];
-+		}
-+
- 		at25->chip.page_size = PAGE_SIZE;
- 		strncpy(at25->chip.name, "fm25", sizeof(at25->chip.name));
- 	}
-@@ -465,6 +491,7 @@ static struct spi_driver at25_driver = {
- 	.driver = {
- 		.name		= "at25",
- 		.of_match_table = at25_of_match,
-+		.dev_groups	= sernum_groups,
- 	},
- 	.probe		= at25_probe,
- };
--- 
-2.25.1
+On 11/06/2021 11:23, Hsin-Yi Wang wrote:
+> Convert mediatek jpeg decoder and encoder bindings to yaml.>
+[...]
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+> new file mode 100644
+> index 0000000000000..e4e791d76cdaa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek-jpeg-encoder.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek JPEG Encoder Device Tree Bindings
+> +
+> +maintainers:
+> +  - Xia Jiang <xia.jiang@mediatek.com>
+> +
+> +description: |-
+> +  MediaTek JPEG Encoder is the JPEG encode hardware present in MediaTek SoCs
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - mediatek,mt2701-jpgenc
+> +          - mediatek,mt8183-jpgenc
+
+Commit message talks about conversion. Sorry for nit-picking, but I think the
+new compatible should get a new patch. If you add changes to a file while
+converting/moving it, it get's really hard to find that change later on.
+
+Regards,
+Matthias
 
