@@ -2,85 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B7B93A4894
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:23:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 530E33A4899
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:25:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230252AbhFKSZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 14:25:36 -0400
-Received: from mail-vs1-f49.google.com ([209.85.217.49]:40575 "EHLO
-        mail-vs1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230313AbhFKSZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 14:25:35 -0400
-Received: by mail-vs1-f49.google.com with SMTP id b1so4261172vsh.7;
-        Fri, 11 Jun 2021 11:23:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/QyKO2sWDPRuH+xh/7ic5xA0q4lXz7dWRKEZ89NMiBc=;
-        b=s3vIxum2BL2xN+cTiHzvZzFCguayWxjbWpyFChiofj4QTNiStqXSMOx2y3ictR/qaX
-         ay6QOxKU94H2ATS8hnkBBt8i8iK7sl+ObtgdiRZAF6ijEQEjkIH2F2c67Q59eAnh8FpH
-         1LdW3VOC9LTePnatXADlIFrgbzc3QkT/PtGyItbtFM0aeXJXIdo8tsmHb45Jk3zQIglU
-         sep2aBwYfegT95kS5FsqZv+ba7XVVoli9MGEZbd2R6m7Dw/EJ5enzuZ7oAeEajF72cpb
-         zkIX9VdTul6c1rZxkCXQKuS2JYaoBcHMmpBtTog9tSyfMKMSr017BHRXqmAClDC7IFuH
-         0ISw==
-X-Gm-Message-State: AOAM530a/pjdUhdJgG+gq58KuzN/AnhLPPpgLzGUlHyhawEkL2MTXNk5
-        PW+bhDDnw68yVOsZ344TceRhzQgNRHf4jtSh6dAUL/sr4UUWgw==
-X-Google-Smtp-Source: ABdhPJxKpLIukv3+hXCAEtgy5XgKF+PqMiSYY3kcEcOkNqeN7r/uF4Q0MaxqvPfExI0gyVzU4ZW2v8c/1jmbKuNVq2k=
-X-Received: by 2002:a05:6102:c4c:: with SMTP id y12mr11191098vss.18.1623435801977;
- Fri, 11 Jun 2021 11:23:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <c381ee2526074e02b6058c489f85cfdaee582713.1623419587.git.geert+renesas@glider.be>
- <9b1b2a44-348e-5453-d767-d5c69a0869a7@denx.de>
-In-Reply-To: <9b1b2a44-348e-5453-d767-d5c69a0869a7@denx.de>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 11 Jun 2021 20:23:10 +0200
-Message-ID: <CAMuHMdXE0kipUm6wqHsrFurFkviU_nRJJB7cg6z1XwEvpEewGQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: input: touchscreen: ilitek_ts_i2c: Absorb
- ili2xxx bindings
-To:     Marek Vasut <marex@denx.de>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joe Hung <joe_hung@ilitek.com>,
-        linux-input <linux-input@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S229976AbhFKS1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 14:27:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46708 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229753AbhFKS1g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 14:27:36 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPS id B5B69613C6;
+        Fri, 11 Jun 2021 18:25:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623435938;
+        bh=DrtR+q2XaxkTZbWLGHy9oTkkJR1OAmhxqmfWf4jGRxk=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=QUyHCkC5hlFyzPvZW8lRU+UHxaN0RipVf4CUIJz2+7ypTIM2UIunWXss6Asfp66gf
+         0lwaBD64qEEwrb8FP2mswiXOGVeONg5BhyYsNnEWHpjT0Xt9ww04w4faw5K0/hmo4d
+         9sPstR0cKB1a5zKCqvV2muparE+h1uFCxtE+jh4JRqrtsBTpkFTolGeF1ZcucDv8Bq
+         BnYB3Z0LOZAFZPuLxfkIzlVuWwPAx2vooe50It5o8Fv1G4tz8n/s2Bc97rZF3QD1pO
+         1unZjG4T5J2jsucFVQsiHfrp3z5eRZUXftIN/52xu+eOdcCr/aSWMzWj9pa/b4P1ou
+         G+Ot9cChEzjKQ==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id A2F1260A0C;
+        Fri, 11 Jun 2021 18:25:38 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fix for 5.13, take 3
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20210611172320.GA1154861@robh.at.kernel.org>
+References: <20210611172320.GA1154861@robh.at.kernel.org>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20210611172320.GA1154861@robh.at.kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.13-3
+X-PR-Tracked-Commit-Id: 8929ef8d4dfd53a05913e22561784ece5f6419c7
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 929d931f2b40d7c24587818cf6c1f7a6473c363f
+Message-Id: <162343593860.23611.537828192437825863.pr-tracker-bot@kernel.org>
+Date:   Fri, 11 Jun 2021 18:25:38 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+The pull request you sent on Fri, 11 Jun 2021 11:23:20 -0600:
 
-On Fri, Jun 11, 2021 at 4:20 PM Marek Vasut <marex@denx.de> wrote:
-> On 6/11/21 3:54 PM, Geert Uytterhoeven wrote:
-> > While Linux uses a different driver, the Ilitek
-> > ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller Device Tree
-> > binding documentation is very similar.
-> >
-> >    - Drop the fixed reg value, as some controllers use a different
-> >      address,
-> >    - Make reset-gpios optional, as it is not always wired.
->
-> It looks like there are now two drivers for the same hardware,
-> drivers/input/touchscreen/ili210x.c
-> drivers/input/touchscreen/ilitek_ts_i2c.c
-> The ilitek_ts_i2c (newer) seems to be derived from the ilitek example
-> code / driver, while the ili210x was written from scratch as far as I
-> can tell.
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.13-3
 
-I'm not so sure they're for the same hardware, but you may know better?
-https://www.displayvisions.us/fileadmin/html-seiten/eng/pdf/zubehoer/ILITek_TP_Programming_Guide_V1.50.pdf
-lists only Ilitek parts handled by ilitek_ts_i2c.c.
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/929d931f2b40d7c24587818cf6c1f7a6473c363f
 
-Gr{oetje,eeting}s,
-
-                        Geert
+Thank you!
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
