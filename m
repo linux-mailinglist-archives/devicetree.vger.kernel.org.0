@@ -2,99 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB1C33A412A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 13:20:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 837AA3A4146
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 13:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231545AbhFKLWU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 07:22:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40780 "EHLO
+        id S230484AbhFKLhT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 07:37:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230248AbhFKLWT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 07:22:19 -0400
-Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF9EC061574
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 04:20:21 -0700 (PDT)
-Received: by mail-pj1-x1031.google.com with SMTP id o17-20020a17090a9f91b029015cef5b3c50so5659109pjp.4
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 04:20:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4QwvH5bGqHeUyZVp5Ps3bAzGRgv84nKw9pL18XwdnBM=;
-        b=kk3HFX3t7+pm4U/kjbmmasXspVI2T+d5ttTTpONnlHt9FJYS47YoPl6FI4PGXes9Wc
-         6QS1tcKLLxH/Y0PD3TQ9KyiAySH3iNieFqIF9+2m7FSXNetsYOKvLEh6swUIljF9NFG0
-         2eC5PsZkx/XLvDuBZG5ZICFggERngLC8Vp8Ls=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4QwvH5bGqHeUyZVp5Ps3bAzGRgv84nKw9pL18XwdnBM=;
-        b=anP3FZp4kIpxb5+jx1hRX29mNAvXw0l0C5R7NDiMH/EqsKU0Me5LMuwppsOroB85AA
-         41wj4Epm4WqVIGJapwTiyH7udDJeLGVeKD7QXwif52Jqm3+z6a7RSsnJohreN7VXhSOj
-         oJADRw40ZjLBk8KMcMKk944Vv9YIzVi5RUuv0dkHFbfJNCLEz+3eLtNXWkb54lOPyVWh
-         xxLbEM+1Yy0xlK0HzL364/cvh8XDJe6P1xlvdf02cyblvInJWq1SggKf7nkPqNE/ar6l
-         btmTtXtUZG0BcwtCGc5n2FPLvPUqV/IZV7Tn2DdHfFLfiAcoTcKzrcp4GNK83h7Pcwfd
-         KqVw==
-X-Gm-Message-State: AOAM531ktZUW5r+6FjXl3DxhNb2v3f9v/4UnRxcJhGKOq0r67FObUSUC
-        45Kbxk6RhXMgU2DOo0SgG6wTuA==
-X-Google-Smtp-Source: ABdhPJzduBIz6I4dCv6hcEL/NSQSitCklTwTnFZIr9rbFuPwFRYv2RhdaiZve2JcmaimUOSyRSHFlA==
-X-Received: by 2002:a17:90b:3696:: with SMTP id mj22mr3994602pjb.42.1623410418179;
-        Fri, 11 Jun 2021 04:20:18 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:73d3:4412:54cc:752d])
-        by smtp.gmail.com with ESMTPSA id y5sm5177189pfo.25.2021.06.11.04.20.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 04:20:17 -0700 (PDT)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        maoguang.meng@mediatek.com, yong.wu@mediatek.com
-Subject: [PATCH v4 3/3] arm64: dts: mt8183: add jpeg enc node for mt8183
-Date:   Fri, 11 Jun 2021 19:20:09 +0800
-Message-Id: <20210611112009.2955944-3-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.32.0.272.g935e593368-goog
-In-Reply-To: <20210611112009.2955944-1-hsinyi@chromium.org>
-References: <20210611112009.2955944-1-hsinyi@chromium.org>
+        with ESMTP id S230417AbhFKLhT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 07:37:19 -0400
+Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 803D9C061574
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 04:35:21 -0700 (PDT)
+Received: from localhost.localdomain (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
+        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 5905C3F30C;
+        Fri, 11 Jun 2021 13:35:18 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: qcom: sm8250: Disable Adreno and Venus by default
+Date:   Fri, 11 Jun 2021 13:35:12 +0200
+Message-Id: <20210611113514.27173-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maoguang Meng <maoguang.meng@mediatek.com>
+Components that rely on proprietary (not to mention signed!) firmware should
+not be enabled by default, as lack of the aforementioned firmware could cause
+various issues, from random errors to straight-up failing to boot.
 
-Add jpeg encoder device tree node.
-
-Signed-off-by: Maoguang Meng <maoguang.meng@mediatek.com>
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 10 ++++++++++
+ arch/arm64/boot/dts/qcom/sm8250-hdk.dts  | 12 ++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250-mtp.dts  | 10 ++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi     |  6 ++++++
+ 4 files changed, 38 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index c5e822b6b77a3..d54b4532fc3f3 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1329,6 +1329,18 @@ larb4: larb@17010000 {
- 			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index 5f41de20aa22..a5b742325261 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -552,7 +552,13 @@ &dsi0_phy {
+ 	vdds-supply = <&vreg_l5a_0p88>;
+ };
  
-+		venc_jpg: venc_jpg@17030000 {
-+			compatible = "mediatek,mt8183-jpgenc", "mediatek,mtk-jpgenc";
-+			reg = <0 0x17030000 0 0x1000>;
-+			interrupts = <GIC_SPI 249 IRQ_TYPE_LEVEL_LOW>;
-+			mediatek,larb = <&larb4>;
-+			iommus = <&iommu M4U_PORT_JPGENC_RDMA>,
-+				 <&iommu M4U_PORT_JPGENC_BSDMA>;
-+			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
-+			clocks = <&vencsys CLK_VENC_JPGENC>;
-+			clock-names = "jpgenc";
-+		};
++&gmu {
++	status = "okay";
++};
 +
- 		ipu_conn: syscon@19000000 {
- 			compatible = "mediatek,mt8183-ipu_conn", "syscon";
- 			reg = <0 0x19000000 0 0x1000>;
+ &gpu {
++	status = "okay";
++
+ 	zap-shader {
+ 		memory-region = <&gpu_mem>;
+ 		firmware-name = "qcom/sm8250/a650_zap.mbn";
+@@ -1352,6 +1358,10 @@ &vamacro {
+ 	qcom,dmic-sample-rate = <600000>;
+ };
+ 
++&venus {
++	status = "okay";
++};
++
+ /* PINCTRL - additions to nodes defined in sm8250.dtsi */
+ &qup_spi0_cs_gpio {
+ 	drive-strength = <6>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+index c3a2c5aa6fe9..397359ee2f85 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+@@ -365,6 +365,14 @@ vreg_l7f_1p8: ldo7 {
+ 	};
+ };
+ 
++&gmu {
++	status = "okay";
++};
++
++&gpu {
++	status = "okay";
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
+@@ -452,3 +460,7 @@ &usb_1_dwc3 {
+ &usb_2_dwc3 {
+ 	dr_mode = "host";
+ };
++
++&venus {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+index cfc4d1febe0f..062b944be91d 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+@@ -465,7 +465,13 @@ &cdsp {
+ 	firmware-name = "qcom/sm8250/cdsp.mbn";
+ };
+ 
++&gmu {
++	status = "okay";
++};
++
+ &gpu {
++	status = "okay";
++
+ 	zap-shader {
+ 		memory-region = <&gpu_mem>;
+ 		firmware-name = "qcom/sm8250/a650_zap.mbn";
+@@ -691,3 +697,7 @@ &usb_2_qmpphy {
+ 	vdda-phy-supply = <&vreg_l9a_1p2>;
+ 	vdda-pll-supply = <&vreg_l18a_0p9>;
+ };
++
++&venus {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 4c0de12aaba6..fc1049c2bb11 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -1746,6 +1746,8 @@ gpu: gpu@3d00000 {
+ 
+ 			qcom,gmu = <&gmu>;
+ 
++			status = "disabled";
++
+ 			zap-shader {
+ 				memory-region = <&gpu_mem>;
+ 			};
+@@ -1819,6 +1821,8 @@ gmu: gmu@3d6a000 {
+ 
+ 			operating-points-v2 = <&gmu_opp_table>;
+ 
++			status = "disabled";
++
+ 			gmu_opp_table: opp-table {
+ 				compatible = "operating-points-v2";
+ 
+@@ -2323,6 +2327,8 @@ venus: video-codec@aa00000 {
+ 				 <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
+ 			reset-names = "bus", "core";
+ 
++			status = "disabled";
++
+ 			video-decoder {
+ 				compatible = "venus-decoder";
+ 			};
 -- 
-2.32.0.272.g935e593368-goog
+2.32.0
 
