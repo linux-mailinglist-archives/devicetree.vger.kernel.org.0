@@ -2,55 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1BC93A43AA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 16:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3B733A43AD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 16:01:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231419AbhFKOCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 10:02:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47966 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231391AbhFKOCC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 10:02:02 -0400
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E902C061574
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 06:59:51 -0700 (PDT)
-Received: by mail-oi1-x235.google.com with SMTP id a26so5878434oie.11
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 06:59:51 -0700 (PDT)
+        id S230385AbhFKODV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 10:03:21 -0400
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:36478 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229985AbhFKODU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 10:03:20 -0400
+Received: by mail-ot1-f51.google.com with SMTP id h24-20020a9d64180000b029036edcf8f9a6so3233411otl.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 07:01:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=SmuOqUkZ7JsXCNlTdZ/8l4N1KGOMrTdBCmcwZ6aglT4=;
-        b=aZJfQgGDJYnurbfXGXX4LgXmHJS1iNSHZhsEk8EjAO2t5PiiiIV7Nv7tx8Cbr4DvCj
-         chJDLqhW614KzcJEVTEY4vaOtzGEbE71hPKf04mV+wnBh+5P5trU3lkEMLNlD2TneAyo
-         HjHSPVf38adCLPSA1V5CWYRorA9H8SUqOuluLuzDRAloOTG33OembtwgjIGtXjJq4fuK
-         bn8VJYwGYe2R0F7RaOdjfvDD7AKVEmc9ePByPK2HL9qwoyyXQu0uGa2yM3n3BozyZrjY
-         cFa1ZZ++LeKurXsxBUNgLV0qdny6VOOoz+WOXYidaYN/Tpat9/sdrDH5TVlOcYNq5Cju
-         G1hA==
+        bh=nsSRSFyV83hkLXTCvmCrGzqooNSzTUP2AhqDwAZrokw=;
+        b=k7P8dYkbikP0PauL5LxBmNdjnWikKgFhHxs7xPSR6fneGSPhThbr2oCNE+2HtrnZ4j
+         Ogmj3As3ww9dhMZ9VhYTbIk+cvE01nfuIA6uLP5ATKwd3JsQqBfZ/Bx2LJIN4PbW3Pk4
+         1twJfGxDhB/1+NM03BDOhBLFrY5s4KAjKx9Kiabl2ZPRKAhYALcIO2vGP1qkrxg9/hN/
+         8DKd+3t+urFx9YDZGldD0ka31VYXdkrmPI7ZNUGQ98K7UDY040mZX6aue4rIUlGFYLJ9
+         o7TeOFXe5P7mL9LMZc+9M71mf15u3+faBLrnVLJvtPRadJ6+6iyCuvSqUQIizQOkZV1y
+         zwdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=SmuOqUkZ7JsXCNlTdZ/8l4N1KGOMrTdBCmcwZ6aglT4=;
-        b=QbMEK8EkEILMmtBUa9rK1o7wYc3bSSwtYtUp4lwjWh3gSlMDlTeFveiDPpWxbHhVLH
-         H1U3F1jw8stO/CMmpmC1GyUf7NgpoYUnxn7j5keGOvV5No/SV1SUSzTQ/Jo1qDR24TNy
-         jHPm0IPy5cBPydWKdSc5kl6vdBth6OYOxdI43PmG95lQmqq/59aeaQCI10LIlxYquU9W
-         BfegVRTYdV1CcWwCN2hRNoeXcMaAh53RqyK2Sd8m5nLSjWXZsuiqzz2x9ZAXBSxFISTE
-         2wjcZ/GWW+wyDa08CGQDl2cJgLcMTQl0eG9SnmYHKIFe1GhGkeaO3YL8+oz5d2mGeXM2
-         X+lg==
-X-Gm-Message-State: AOAM532hJkCeLjpIAwfqlU0zpeSf+Hw0Aj3esxSaMgw/4bucOKs1NsmG
-        d1l4WPkowQpfFEufidUx4GPW5kWKPTYwW85T8ik=
-X-Google-Smtp-Source: ABdhPJznjNSE0CtKebpX0rYEhrFfX0JT0SQNaHiOKz1iWTu+x98iV9VkLOuweWYoiD+bkWkBMNyYWmScmsG59C6kKsg=
-X-Received: by 2002:aca:3385:: with SMTP id z127mr2499198oiz.142.1623419990925;
- Fri, 11 Jun 2021 06:59:50 -0700 (PDT)
+        bh=nsSRSFyV83hkLXTCvmCrGzqooNSzTUP2AhqDwAZrokw=;
+        b=U6e9SkF5GhMCeQGBqWDdjx+c7pX3TulZRQaGSlpFscBYuKOjcd+mxoR1f65HOI+pXC
+         Z4byA3kFxdSdDCR4Ttvs2j/TeIR1oT/rPqEeeAXyH/My66pdJHcwpGMGDInBV1SToWW9
+         E2c2dJMVnX0jW9TiXhCPG1B8IWgtgbj9minuUf7DwLOWX9i8OO/lkrvphwbc0O8L06NF
+         qRTb4rR50Hl4sbpDM+S28HRfTTbRnKAGCTC/nGhQcF8ZVnmZP0PEebnnDx44U5mi6Kfr
+         QLCZeptIbqPsEmA38CKMUqmIy8ntzig9EqtDJOdEcokwcKAnssxpAoYWAQlScNDPUL+6
+         nI4g==
+X-Gm-Message-State: AOAM5316siLNqWIn9q/6ggxJCU2XU/LfvURhOWerM6mYRQiyiTxWzLP9
+        RZgRpD4X0L9QXhIW3dn6LU+DLJzfo20gePNvx0E=
+X-Google-Smtp-Source: ABdhPJzyPun9/rlXy1w5MKrhZd7o6egXhuCqfSEexhi7RiqjjJwLuBgxfZB00QAz+FaQ/z2IbkNfXfHj22LtKUcYyV0=
+X-Received: by 2002:a05:6830:1c3d:: with SMTP id f29mr3318629ote.248.1623420022943;
+ Fri, 11 Jun 2021 07:00:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210607083921.2668568-1-ping.bai@nxp.com> <20210607083921.2668568-8-ping.bai@nxp.com>
-In-Reply-To: <20210607083921.2668568-8-ping.bai@nxp.com>
+References: <20210607083921.2668568-1-ping.bai@nxp.com> <20210607083921.2668568-9-ping.bai@nxp.com>
+In-Reply-To: <20210607083921.2668568-9-ping.bai@nxp.com>
 From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Fri, 11 Jun 2021 21:58:34 +0800
-Message-ID: <CAA+hA=Re8LuyP47K6OuuPMAfXSTYzN3uL3=qU7FWSGLcGx4xtg@mail.gmail.com>
-Subject: Re: [PATCH 07/11] dt-bindings: watchdog: imx7ulp-wdt: Add imx8ulp
- compatible string
+Date:   Fri, 11 Jun 2021 21:59:06 +0800
+Message-ID: <CAA+hA=TfL7CKT=BLi9HwNE-v+OTTmcBJdJE1EkwJtiRv0o_8LQ@mail.gmail.com>
+Subject: Re: [PATCH 08/11] dt-bindings: arm: fsl: Add binding for imx8ulp evk
 To:     Jacky Bai <ping.bai@nxp.com>
 Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -68,42 +64,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 4:35 PM Jacky Bai <ping.bai@nxp.com> wrote:
+On Mon, Jun 7, 2021 at 4:36 PM Jacky Bai <ping.bai@nxp.com> wrote:
 >
-> For i.MX8ULP, it uses two compatible strings, so Add the compatible
-> string for i.MX8ULP.
+> Add the dt binding for i.MX8ULP EVK board.
+>
+> i.MX 8ULP is part of the ULP family with emphasis on extreme
+> low-power techniques using the 28 nm fully depleted silicon on
+> insulator process. Like i.MX 7ULP, i.MX 8ULP continues to be
+> based on asymmetric architecture, however will add a third DSP
+> domain for advanced voice/audio capability and a Graphics domain
+> where it is possible to access graphics resources from the
+> application side or the realtime side.
 >
 > Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 
-As previously mentioned, pls improve commit message,
-otherwise:
 Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
 
 Regards
 Aisheng
 
 > ---
->  .../devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml      | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
-> index 51d6d482bbc2..fb603a20e396 100644
-> --- a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml
-> @@ -14,8 +14,11 @@ allOf:
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index fce2a8670b49..e68a1b43b144 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -788,6 +788,12 @@ properties:
+>            - const: toradex,colibri-imx8x
+>            - const: fsl,imx8qxp
 >
->  properties:
->    compatible:
-> -    enum:
-> -      - fsl,imx7ulp-wdt
-> +    oneOf:
-> +      - const: fsl,imx7ulp-wdt
-> +      - items:
-> +          - const: fsl,imx8ulp-wdt
-> +          - const: fsl,imx7ulp-wdt
+> +      - description: i.MX8ULP based Boards
+> +        items:
+> +          - enum:
+> +              - fsl,imx8ulp-evk           # i.MX8ULP EVK Board
+> +          - const: fsl,imx8ulp
+> +
+>        - description:
+>            Freescale Vybrid Platform Device Tree Bindings
 >
->    reg:
->      maxItems: 1
 > --
 > 2.26.2
 >
