@@ -2,216 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CACD63A4987
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 21:39:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5B983A4997
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 21:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbhFKTl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 15:41:29 -0400
-Received: from mail-il1-f174.google.com ([209.85.166.174]:43716 "EHLO
-        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229548AbhFKTl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 15:41:29 -0400
-Received: by mail-il1-f174.google.com with SMTP id x18so6184329ila.10;
-        Fri, 11 Jun 2021 12:39:19 -0700 (PDT)
+        id S229874AbhFKTuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 15:50:00 -0400
+Received: from mail-ej1-f47.google.com ([209.85.218.47]:33776 "EHLO
+        mail-ej1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229530AbhFKTuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 15:50:00 -0400
+Received: by mail-ej1-f47.google.com with SMTP id g20so6261406ejt.0;
+        Fri, 11 Jun 2021 12:47:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=C6C9XAc/4o5g/nJl5oV+VV5fk+Yq/QDQ08tqYJKVlN8=;
+        b=Wr7Kz7qyfO/ySRu0Ur5oh4v8IOHFu8omwbVz1962faGV6z+ITUn5KuX1jAG8TS3aaK
+         38Y5LWZipl+cT7CCjzqAEBNuaFWBQYdqfW1H+5+6Lt5EG720ZyzFkIMcTcl+OjuFRlSa
+         1XlypvFbDDLNScs0lkW0/HZT66ck3oqM/FyMxwKAeo4o8OwF0+vbD2b/quzziHxXWW6d
+         pidse3IlAvV/27stXoJhYAvK3j0oalHBWdCtu9CVifIKhqi3wF+kuOid+KRDOkOZL/Qe
+         LZelQiJQ03l7fkbwK73jwDQ1mz1FLjgp+ReFtkMynml8Dd6zmR5KO1KUkt39XleFQ0HV
+         6lMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4NpZcvggxFqahbTtAQ/JfigfoBMJtVtYbBK96DFp/VA=;
-        b=SZy+YePLQ1MaPGXBE/+sNMTVZuMjGDnczjWM2LbRsyt+tkdUWEtjx3Sc+YZPtAfUKk
-         PeIprja86CywuFutiX3vFoFxlhfDSsNGW9mwcnfdHffatpTcDk3eIf01YCnz6L64KWj3
-         BXGzy3DnsdZdI1f3rxA2kZLlJbqdSr1Q2CMq1ADTRIxmLM62xDUIm7HgAOWmk7TLiI+D
-         W6JM/FksUXD/zmnZv0bZmARG/x1FJC6w8Je1U9IhCb9sGZdRuhnYPLGQC2rtUUzf6H2D
-         SKgWN2ZXQNHYwUKSbAHLCsQonLt5ch3pk5ORP+9xroJE3sE+xF39Bj/S3Y0B5qJQNN0W
-         N40g==
-X-Gm-Message-State: AOAM532+xUlbvCPuGGR4oV7H4b9/Ix3k9C8/j41KXtcNchRFG8LCn/u4
-        G2nUWl1VdcU5AsTTbF33hbQhTsyiyg==
-X-Google-Smtp-Source: ABdhPJx71Mrc+D8b93a6XajbFWbdozG3tzhyh3BUTghkbFlopXboyObUkpGJsZ7QSG1FxLGB74bSsA==
-X-Received: by 2002:a05:6e02:eaf:: with SMTP id u15mr4302344ilj.0.1623440359098;
-        Fri, 11 Jun 2021 12:39:19 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id q6sm3971652ilm.45.2021.06.11.12.39.17
+        bh=C6C9XAc/4o5g/nJl5oV+VV5fk+Yq/QDQ08tqYJKVlN8=;
+        b=IXl5b5sHWtuImAruwq2YWtFzKXqAIMC89PkH1rtOkD3OohvO8lHPch2B76OX80Z8Nu
+         +S+2Gz7ilRK5S15Wo3aC8ZmVNYtiASrByQMTG0szj4RuuMgDITRQJpivb3ZDNnOOX6Kp
+         LPhDkebgaJCekwvOefzdLarXQBJrFNYX3/aZpjLGD40lWnd7yKhiCv+ZEGXO3u9MSkej
+         vNpqgC57tn+vpGuLU0AvoHOhdAQpnmV/kdToK4T9kskzbDChKqQjJJ+uVn/1OtYzjxlb
+         kpY7ymFclCkJf7KEnO5Sw8RN02oBRfq1gVgViZG2kf+SLsJXMLe6yc/yG0fdSUKZuIwN
+         kpVQ==
+X-Gm-Message-State: AOAM530GGeYGlSllrz9N0PnMfzNca6O/D2Eo7tETiw5zfbpMNgvxjtOP
+        +K11XNDRZmumijnaTaxl1u0=
+X-Google-Smtp-Source: ABdhPJxfI9du5pPrBGY5Y+smBF61rv+3CBid1CuZMbtYk5u7WBPWybqvRdM2AW0rcmkmc37DxDvXjw==
+X-Received: by 2002:a17:907:948c:: with SMTP id dm12mr5060138ejc.484.1623440806641;
+        Fri, 11 Jun 2021 12:46:46 -0700 (PDT)
+Received: from skbuf ([188.26.52.84])
+        by smtp.gmail.com with ESMTPSA id o64sm3011500eda.83.2021.06.11.12.46.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 12:39:18 -0700 (PDT)
-Received: (nullmailer pid 1541768 invoked by uid 1000);
-        Fri, 11 Jun 2021 19:39:16 -0000
-Date:   Fri, 11 Jun 2021 13:39:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        Fri, 11 Jun 2021 12:46:46 -0700 (PDT)
+Date:   Fri, 11 Jun 2021 22:46:44 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Matthew Hagan <mnhagan88@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
-Message-ID: <20210611193916.GA1254227@robh.at.kernel.org>
-References: <20210611113642.18457-1-biju.das.jz@bp.renesas.com>
- <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: arm: bcm: NSP: add Meraki MX64/MX65
+Message-ID: <20210611194644.64lvhvp76wy6guqp@skbuf>
+References: <20210610232727.1383117-1-mnhagan88@gmail.com>
+ <20210610232727.1383117-2-mnhagan88@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210610232727.1383117-2-mnhagan88@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 12:36:38PM +0100, Biju Das wrote:
-> Document RZ/G2L DMAC bindings.
+On Fri, Jun 11, 2021 at 12:27:13AM +0100, Matthew Hagan wrote:
+> Add bindings for the Meraki MX64/MX65 series. Note this patch should be
+> applied on top of "dt-bindings: arm: bcm: add NSP devices to SoCs".
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
 > ---
->  .../bindings/dma/renesas,rz-dmac.yaml         | 132 ++++++++++++++++++
->  1 file changed, 132 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+>  Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> new file mode 100644
-> index 000000000000..df54bd6ddfd4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> @@ -0,0 +1,132 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/renesas,rz-dmac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L DMA Controller
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,dmac-r9a07g044  # RZ/G2{L,LC}
-> +      - const: renesas,rz-dmac
-> +
-> +  reg:
-> +    items:
-> +      - description: Control and channel register block
-> +      - description: DMA extension resource selector block
-> +
-> +  interrupts:
-> +    maxItems: 17
-> +
-> +  interrupt-names:
-> +    maxItems: 17
-> +    items:
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-> +      - pattern: "^ch([0-9]|1[0-5])$"
-
-Is there some reason these need be in undefined order?
-
-> +      - const: error
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  '#dma-cells':
-> +    const: 1
-> +    description:
-> +      The cell specifies the MID/RID of the DMAC port connected to
-> +      the DMA client.
-> +
-> +  dma-channels:
-> +    const: 16
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  renesas,rz-dmac-slavecfg:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: |
-> +      DMA configuration for a slave channel. Each channel must have an array of
-> +      3 items as below.
-> +      first item in the array is MID+RID
-> +      second item in the array is slave src or dst address
-> +      third item in the array is channel configuration value.
-
-Why not put all these in the dma-cells? You already have 1 of them.
-
-Though doesn't the client device know what address to use?
-
-> +    items:
-> +      minItems: 3
-> +      maxItems: 48
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - '#dma-cells'
-> +  - dma-channels
-> +  - power-domains
-> +  - resets
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> +
-> +    dmac: dma-controller@11820000 {
-> +        compatible = "renesas,dmac-r9a07g044",
-> +                     "renesas,rz-dmac";
-> +        reg = <0x11820000 0x10000>,
-> +              <0x11830000 0x10000>;
-> +        interrupts = <GIC_SPI 125 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 126 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 127 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 128 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 129 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 130 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 132 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 133 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 134 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 135 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 136 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 137 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 138 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 139 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 140 IRQ_TYPE_EDGE_RISING>,
-> +                     <GIC_SPI 141 IRQ_TYPE_EDGE_RISING>;
-> +        interrupt-names = "ch0", "ch1", "ch2", "ch3",
-> +                          "ch4", "ch5", "ch6", "ch7",
-> +                          "ch8", "ch9", "ch10", "ch11",
-> +                          "ch12", "ch13", "ch14", "ch15",
-> +                          "error";
-> +        clocks = <&cpg CPG_MOD R9A07G044_CLK_DMAC>;
-> +        power-domains = <&cpg>;
-> +        resets = <&cpg R9A07G044_CLK_DMAC>;
-> +        #dma-cells = <1>;
-> +        dma-channels = <16>;
-> +        renesas,rz-dmac-slavecfg = <0x255 0x10049C18 0x0011228>;
-> +    };
+> diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
+> index 78dfa315f3d0..7d184ba7d180 100644
+> --- a/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
+> +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
+> @@ -62,6 +62,12 @@ properties:
+>            - enum:
+>                - brcm,bcm958625hr
+>                - brcm,bcm958625k
+> +              - meraki,mx64
+> +              - meraki,mx64-a0
+> +              - meraki,mx64w
+> +              - meraki,mx64w-a0
+> +              - meraki,mx65
+> +              - meraki,mx65w
+>            - const: brcm,bcm58625
+>            - const: brcm,nsp
+>  
 > -- 
-> 2.17.1
+> 2.26.3
+> 
+
+I think these compatibles describe SoCs, whereas Meraki MX64/MX65 are
+boards, so this is a miscategorization. Can you not just describe the
+Northstar Plus SoC that you are using in your compatible string?
