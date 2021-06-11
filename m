@@ -2,224 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A98F43A3A2B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 05:13:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECB713A3A40
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 05:29:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbhFKDPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 23:15:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45246 "EHLO
+        id S230307AbhFKDbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 23:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231400AbhFKDPn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 23:15:43 -0400
+        with ESMTP id S230205AbhFKDbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 23:31:38 -0400
 Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2890AC0617AD
-        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 20:13:31 -0700 (PDT)
-Received: by mail-ot1-x32d.google.com with SMTP id v27-20020a056830091bb02903cd67d40070so1843378ott.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 20:13:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC7D3C061574
+        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 20:29:40 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id h24-20020a9d64180000b029036edcf8f9a6so1864429otl.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 20:29:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=KQu0eDuwQvpglxFBbKjew1x6RGhhszO56HCWSTbbarA=;
-        b=TX7g+W/s3byvmkCH7QlSOO557obd7nW2JBe6rGkstprgoJpSfCZ/kSiKJNx83GDOU+
-         xw1FIybt2mTCYrgfbBnXnPuMvGpx/6AH26eaDRdLGEGhxREwPMei3U1eTY48le7CbTuZ
-         ypX7VuXGC6vMtqgn0Seq6ZTqMWOsOJe0NVNxsKFuirQl/KT3jpwq2btseiFZW8BN8eXH
-         O6RxNAgDnLL3qOMoFpxC03Mg2lwN8TMizNBiTNerVklP/VYdpatDDAlxwyu0eprsQXt4
-         jkYVfYijx2pag0W5k7LD7UPmPAb+xg+jys+k8DszgOUYE+SOqvBfKYCCPNJHC1+Lan9e
-         /77Q==
+        bh=1hLzClEPWcc9T3rZaPsiaM+hZWd7ywljr1mqjlpKVTE=;
+        b=sWO79oaAXt8x6S+Sc43eMIvB/4r1u38J21m1vDtkqS8PAN/jWs9esddfmS26EBaSuj
+         SPwuc/0cSz06OGSa0hULBp8+rpvguNIIhDa+JnCAT/kib/THSyOFW4gFbcSbFsx2m4QU
+         yafjlhu5r73lDLTC6Fza+8jWXi9n+JkarPOOdnWiWxNabM6Ila/i4sjGd9gm/GYuV5rI
+         sNPJDeTcvqUClsq23EX940vHEeMVWfmfRBvtNxyAHcbNtU60BKeLspSw25uADkgiWWwJ
+         halhdGv8ZTdpq0MgBbBDk6BRsaTDm0/F+ij9LPB3Wh8UMn8JoG9/8mZ9aMjc4KTp7ODL
+         pWVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=KQu0eDuwQvpglxFBbKjew1x6RGhhszO56HCWSTbbarA=;
-        b=tFHHk6CSH9GZ1mFlEFJnvtgzGb08Qb4G9zfvBSvtjRpBhBgNfnt67vKCcl3PdTI0xT
-         dVjibrB+OER66DQIBurXjg5Vi+StKReNlZ04q/lSYiEB4GLl2yqZFRxiCoGcAi0UZ1bA
-         z7R0GcWcv2NsshJHQGjMbSpjqhxXVoRr8WVLYQjr1SvEozLikmsv+O7Fgl/5kHNtrnF+
-         nM4jR1XacGOd/8UstgePn1lkJTDt8UTyWbcS868eXOBSMzuOu/c5fG2Fq/ehRJQSjSzi
-         zp771dzfK9ksGaj7+kUSsJDITbBktCvjKkQwZ82jGN+ZuDVCb7G6jLf3Nk6xQbS0nHix
-         N3oQ==
-X-Gm-Message-State: AOAM533+HYH/LygQyWDFGsa+4olq7msiZv5jUdYUv54UoWJ+TXDWIwlj
-        nde+ClObiXcG5pjBDwpQ49FTuA==
-X-Google-Smtp-Source: ABdhPJw7EYbfaoXxnIco2pLxpPJBwR54SnN3GzbtMcq7eaTMq+GPiQAso6TL1BvXqJasrqSoKTQHyA==
-X-Received: by 2002:a05:6830:19c2:: with SMTP id p2mr1151911otp.234.1623381210437;
-        Thu, 10 Jun 2021 20:13:30 -0700 (PDT)
+        bh=1hLzClEPWcc9T3rZaPsiaM+hZWd7ywljr1mqjlpKVTE=;
+        b=X+THgMSjnFSpk0n7KisFvwDLIdO4ZdsJu4m9NKWvNaTqEzKiNt/EuLYFU38ZkRkLFF
+         jOlSBUSKuIVnrg1yxIx5CCTo2SoM0+PU03V0vTz+sBMHTqT0yzb0bscCTbZE72kp/NOA
+         8tUl2pr7RK1WhQQ2nw8iTGTTfVPumB0rHw51QLQlmhz/cMLNT2+0TnNSYDkjlvCyDtTI
+         yixF17Ms3SBcOgfcbnYxo6dj4iarvqtc17JB1ihYOhjo9R3wfu3KAL4BiGh9zebRsdd5
+         kQQ0eml1hmrp1FREsfc4ykVIZcNkg4a0MvLRY9z2fOC9Uj2QaMKPEdrL5z3KX3PeqK6E
+         0E2Q==
+X-Gm-Message-State: AOAM5310WZHVHbsdPqFaI/iTw+KPJDkP17/U0kJfRAKILlk5RTvWFsut
+        lgu3ZOwTFoSOL9HIJvC8aklG8A==
+X-Google-Smtp-Source: ABdhPJw5J7t7bSClrb6lWwgJ8az5i6kqEZymqSBfImxUoo0Pqavlib0JbL7bl+Rawc2sq/Dx380OMg==
+X-Received: by 2002:a9d:344b:: with SMTP id v69mr1219764otb.41.1623382180014;
+        Thu, 10 Jun 2021 20:29:40 -0700 (PDT)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id z23sm601635ooz.15.2021.06.10.20.13.29
+        by smtp.gmail.com with ESMTPSA id l24sm940271oii.45.2021.06.10.20.29.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jun 2021 20:13:29 -0700 (PDT)
-Date:   Thu, 10 Jun 2021 22:13:28 -0500
+        Thu, 10 Jun 2021 20:29:39 -0700 (PDT)
+Date:   Thu, 10 Jun 2021 22:29:37 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        bhupesh.linux@gmail.com
-Subject: Re: [PATCH 7/8] arm64: dts: qcom: pmm8155au_2: Add base dts file
-Message-ID: <YMLU2D+Jkfs6dmM9@builder.lan>
-References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
- <20210607113840.15435-8-bhupesh.sharma@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
+        adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, asutoshd@codeaurora.org,
+        stummala@codeaurora.org, vbadigan@codeaurora.org,
+        rampraka@codeaurora.org, sayalil@codeaurora.org,
+        sartgarg@codeaurora.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, sibis@codeaurora.org,
+        okukatla@codeaurora.org, djakov@kernel.org, cang@codeaurora.org,
+        pragalla@codeaurora.org, nitirawa@codeaurora.org,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org
+Subject: Re: [PATCH V1] arm64: dts: qcom: sc7180: Added xo clock for eMMC and
+ Sd card
+Message-ID: <YMLYob1Qup4wHZqg@builder.lan>
+References: <1623309107-27833-1-git-send-email-sbhanu@codeaurora.org>
+ <dd685abc-c332-cd0c-af6a-d2f1116cef05@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210607113840.15435-8-bhupesh.sharma@linaro.org>
+In-Reply-To: <dd685abc-c332-cd0c-af6a-d2f1116cef05@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 07 Jun 06:38 CDT 2021, Bhupesh Sharma wrote:
+On Thu 10 Jun 02:54 CDT 2021, Konrad Dybcio wrote:
 
-> Add base DTS file for pmm8155au_2 along with GPIOs, power-on, rtc and vadc
-> nodes.
+> Hi,
 > 
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-gpio@vger.kernel.org
-> Cc: bhupesh.linux@gmail.com
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi | 107 ++++++++++++++++++++++
->  1 file changed, 107 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi b/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
+> > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > @@ -701,8 +701,9 @@
+> >  			interrupt-names = "hc_irq", "pwr_irq";
+> >  
+> >  			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
+> > -					<&gcc GCC_SDCC1_AHB_CLK>;
+> > -			clock-names = "core", "iface";
+> > +					<&gcc GCC_SDCC1_AHB_CLK>,
+> > +					<&rpmhcc RPMH_CXO_CLK>;
+> 
+> Don't these clocks fit in 100 chars?
+> 
 
-As with _1, I approve of this design.
+We typically list them on one line each, so I'm fine with that.
 
-> new file mode 100644
-> index 000000000000..11c0c203a4e2
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
-> @@ -0,0 +1,107 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2021, Linaro Limited
-> + */
-> +
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/spmi/spmi.h>
-> +
-> +/ {
-> +	thermal-zones {
-> +		pmm8155au-2-thermal {
-> +			polling-delay-passive = <100>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&pmm8155au_2_temp>;
-> +
-> +			trips {
-> +				trip0 {
-> +					temperature = <95000>;
-> +					hysteresis = <0>;
-> +					type = "passive";
-> +				};
-> +
-> +				trip1 {
-> +					temperature = <115000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				trip2 {
-> +					temperature = <145000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&spmi_bus {
-> +	pmic@4 {
-> +		compatible = "qcom,pmm8155au-2", "qcom,spmi-pmic";
+But all three clocks should be aligned.
 
-"qcom,pmm8155au", "qcom,spmi-pmic"
+> 
+> 
+> > +			clock-names = "core", "iface","xo";
+> 
+> A space is missing before "xo".
+> 
 
-> +		reg = <0x4 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		power-on@800 {
-> +			compatible = "qcom,pm8916-pon";
-> +			reg = <0x0800>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		pmm8155au_2_temp: temp-alarm@2400 {
-> +			compatible = "qcom,spmi-temp-alarm";
-> +			reg = <0x2400>;
-> +			interrupts = <0x4 0x24 0x0 IRQ_TYPE_EDGE_BOTH>;
-> +			io-channels = <&pmm8155au_2_adc ADC5_DIE_TEMP>;
-> +			io-channel-names = "thermal";
-> +			#thermal-sensor-cells = <0>;
-> +		};
-> +
-> +		pmm8155au_2_adc: adc@3100 {
-> +			compatible = "qcom,spmi-adc5";
-> +			reg = <0x3100>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			#io-channel-cells = <1>;
-> +			interrupts = <0x4 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
-> +
-> +			ref-gnd@0 {
-> +				reg = <ADC5_REF_GND>;
-> +				qcom,pre-scaling = <1 1>;
-> +				label = "ref_gnd";
-> +			};
-> +
-> +			vref-1p25@1 {
-> +				reg = <ADC5_1P25VREF>;
-> +				qcom,pre-scaling = <1 1>;
-> +				label = "vref_1p25";
-> +			};
-> +
-> +			die-temp@6 {
-> +				reg = <ADC5_DIE_TEMP>;
-> +				qcom,pre-scaling = <1 1>;
-> +				label = "die_temp";
-> +			};
-> +		};
-> +
-> +		pmm8155au_2_gpios: gpio@c000 {
-> +			compatible = "qcom,pmm8155au-2-gpio";
+Thanks for pointing this out.
 
-"qcom,pmm8155-gpio"
-
-> +			reg = <0xc000>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +
-> +	pmic@5 {
-> +		compatible = "qcom,pmm8155au-2", "qcom,spmi-pmic";
-
-"qcom,pmm8155au", "qcom,spmi-pmic"
+I fixed up the indentation and applied the patch.
 
 Regards,
 Bjorn
 
-> +		reg = <0x5 SPMI_USID>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +	};
-> +};
-> -- 
-> 2.31.1
+> 
+> 
+> >  			interconnects = <&aggre1_noc MASTER_EMMC 0 &mc_virt SLAVE_EBI1 0>,
+> >  					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_EMMC_CFG 0>;
+> >  			interconnect-names = "sdhc-ddr","cpu-sdhc";
+> > @@ -2666,8 +2667,9 @@
+> >  			interrupt-names = "hc_irq", "pwr_irq";
+> >  
+> >  			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
+> > -					<&gcc GCC_SDCC2_AHB_CLK>;
+> > -			clock-names = "core", "iface";
+> > +					<&gcc GCC_SDCC2_AHB_CLK>,
+> > +					<&rpmhcc RPMH_CXO_CLK>;
+> 
+> Ditto
+> 
+> 
+> 
+> Konrad
 > 
