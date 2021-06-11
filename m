@@ -2,41 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C5733A3E71
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 10:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D57A63A3E7E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 11:02:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231269AbhFKJBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 05:01:08 -0400
-Received: from router.aksignal.cz ([62.44.4.214]:55906 "EHLO
+        id S231150AbhFKJD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 05:03:57 -0400
+Received: from router.aksignal.cz ([62.44.4.214]:56292 "EHLO
         router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230385AbhFKJBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 05:01:08 -0400
+        with ESMTP id S230460AbhFKJD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 05:03:56 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by router.aksignal.cz (Postfix) with ESMTP id BC08E47317;
-        Fri, 11 Jun 2021 10:59:08 +0200 (CEST)
+        by router.aksignal.cz (Postfix) with ESMTP id 3ED8647326;
+        Fri, 11 Jun 2021 11:01:58 +0200 (CEST)
 X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
 Received: from router.aksignal.cz ([127.0.0.1])
         by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id JoxcQDnsDsKA; Fri, 11 Jun 2021 10:59:08 +0200 (CEST)
+        with LMTP id ILpsyLn6D_EX; Fri, 11 Jun 2021 11:01:57 +0200 (CEST)
 Received: from [172.25.161.48] (unknown [83.240.30.185])
         (Authenticated sender: jiri.prchal@aksignal.cz)
-        by router.aksignal.cz (Postfix) with ESMTPSA id 1BD0B47316;
-        Fri, 11 Jun 2021 10:59:07 +0200 (CEST)
-Subject: Re: [PATCH v9 1/5] nvmem: prepare basics for FRAM support
+        by router.aksignal.cz (Postfix) with ESMTPSA id C0ABC47325;
+        Fri, 11 Jun 2021 11:01:57 +0200 (CEST)
+Subject: Re: [PATCH v9 5/5] nvmem: eeprom: add documentation of sysfs fram and
+ sernum file
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Christian Eggers <ceggers@arri.de>,
         Arnd Bergmann <arnd@arndb.de>
 References: <20210611052652.7894-1-jiri.prchal@aksignal.cz>
- <20210611052652.7894-2-jiri.prchal@aksignal.cz> <YMMjbCFzsfiT8dMA@kroah.com>
+ <20210611052652.7894-6-jiri.prchal@aksignal.cz> <YMMkgfRBKpwCo3PE@kroah.com>
 From:   =?UTF-8?B?SmnFmcOtIFByY2hhbA==?= <jiri.prchal@aksignal.cz>
-Message-ID: <3c2beca6-8ef5-834d-a37a-5aea53bc1305@aksignal.cz>
-Date:   Fri, 11 Jun 2021 10:59:07 +0200
+Message-ID: <8ff601c4-776b-3973-2855-eb2013e72200@aksignal.cz>
+Date:   Fri, 11 Jun 2021 11:01:57 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <YMMjbCFzsfiT8dMA@kroah.com>
+In-Reply-To: <YMMkgfRBKpwCo3PE@kroah.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -46,18 +47,16 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 11. 06. 21 10:48, Greg Kroah-Hartman wrote:
-> On Fri, Jun 11, 2021 at 07:26:48AM +0200, Jiri Prchal wrote:
->> Added enum and string for FRAM to expose it as "fram".
+On 11. 06. 21 10:53, Greg Kroah-Hartman wrote:
+> On Fri, Jun 11, 2021 at 07:26:52AM +0200, Jiri Prchal wrote:
+>> +Description:
+>> +	Contains the FRAM binary data. Same as EEPROM, just another file
+>> +	name to indicate that it employs ferroelectric process.
+>> +	It performs write operations at bus speed - no write delays, capable
+>> +	of 10^14 read/write cycles and 151 years data retention.
 > 
-> I have no idea what "FRAM" is, nor what "fram" is.
-> 
-> And why do you not add the documentation update here in this same
-> commit?  This is where you are adding it, trying to dig later in the
-> series to notice that you really did provide this is a pain, and is
-> harder to track.
-> 
-> Please provide more information here in the changelog and move the
-> Documentation addition here into this patch.
+> Are you sure of these statistics?  Don't promise something here that
+> might not be true, this is not a marketing document :)
 
-Should I also join #1 and 2 together?
+Just copied from datasheet. Is write at bus speed OK? And about others: 
+much more then EEPROM would be OK? Or don't write about it?
