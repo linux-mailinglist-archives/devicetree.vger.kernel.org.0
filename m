@@ -2,103 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52EC33A4346
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 15:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2CFB3A4343
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 15:48:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229517AbhFKNu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 09:50:58 -0400
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:38623 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbhFKNu6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 09:50:58 -0400
-Received: by mail-ot1-f41.google.com with SMTP id j11-20020a9d738b0000b02903ea3c02ded8so3185930otk.5
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 06:49:00 -0700 (PDT)
+        id S229874AbhFKNu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 09:50:29 -0400
+Received: from mail-wm1-f42.google.com ([209.85.128.42]:46732 "EHLO
+        mail-wm1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229517AbhFKNu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 09:50:29 -0400
+Received: by mail-wm1-f42.google.com with SMTP id h22-20020a05600c3516b02901a826f84095so8538400wmq.5;
+        Fri, 11 Jun 2021 06:48:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6NqzeXU6XRJGwPAHg6AVZUGbDtY4E1AfNISmV8nCEN0=;
-        b=DeoT9u9KcL3lzMpfmSOv94WXpJn1w0KrpBboZa6PUbFiwsP4Ehta/wbQDfC3EDWe3w
-         DVaMsnZOP+AocB8EqkfjmTwl4N80AwkKZ2g2ij2BLQJT2p2WvJi9HcOUiQ39lkM8gm29
-         OQffTsrgaLmuQWwShnqLa3AfFUHgP+Gbne2fE+/PSciurTy85Lx5LYHLs1wG7z3eMIsr
-         MUrhdw1LJsf6g2dJtJjlLMYJqzVZaM8tcxKhqd5fmjNqBjra1A/8Hn5JQuTjzx2/36Ou
-         yhBI4LV25xPhHdZ3Bez8KWRpK93//6bdnoqUzEW/4Uh5YcZMq+R+umwrqPgQ7DTNLKpg
-         DBIg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=73CyQddFjXeyq3KLs0vmikz1AYd/seTWj9eRVSGOW1U=;
+        b=jzLyoN/KkjTThG6bLNAg+/k0lmoOx9xjP+/VMtG7CGQOS89k0uP/vWxgDXoZQIB4p8
+         YLzAUMIAOsxpZQaa3NWjBADC5OCsxm7Gl8AGFsvMRzCN3FDDm/f7pMW4lqIRhxYvywU0
+         cZlHSZP31v/uMF/EIAt+GumjA6W0JoTUT54PPl3GI/WV7Y+OHd0T+ONBKAMwzlGiXAuT
+         UeSH5oXuhVft61NUFIC7mWW21wKcHFMBjAkK7+xiO25uCy0H8ATn3z5buEAK5dL28L0U
+         GHHHsd0bmjZbTwBAsFrQJnwOilkZ5iQ77M1EEzlMvQUIzdD3NhfTFYcHcfXRNAoSiJ9r
+         kSFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6NqzeXU6XRJGwPAHg6AVZUGbDtY4E1AfNISmV8nCEN0=;
-        b=FCOobTLsARbaftKKG5y1r1TZgdvbo3/vZnS4Ptt5N0EcHG5GJML3J30nIr4cZcgtJM
-         c+yB8GdVwB/q8ezcQkTC9Xi88knmtfE/hqjd+gcoiIZ7SMao1jr3q874SrJWQe2W+zCE
-         ox1oQQwcj+M4UBLQ9dJFp6FItR29ScoBqdATJF2nPoc5k4RU8qZ9qEzSBwxKr1sDL8Gu
-         hc5pkHnndZaE2j9+QjVOUdp9zfgjkYwg4gzMHB+SXqjI1RbOnLZkQIdc55K54v/6st/g
-         IWaCC3FXSUasZE7vLXib+vWRH57Wzg0AkCqzQgtOww84NlG8tA6e4kKBc98qCtOlyT+R
-         ab0g==
-X-Gm-Message-State: AOAM530iYl2iht0h651oQ8Ct42E9CbD44tf39E42SRAjG/NjsX4OUqDO
-        +h1qvcYcrrlZ/WLc1g+EWHIIMH/LoRy2qDh+F1wBQYLkVaWgAA==
-X-Google-Smtp-Source: ABdhPJw9VK7KTYt/EN/FdPAuxL9L6DNMYE1kb6BMvt6ahqR0Tk9jKom0fhe7JVgQKmXZzOlEpMPeT6PRlBajiIsqy+c=
-X-Received: by 2002:a05:6830:308c:: with SMTP id f12mr3245255ots.52.1623419280151;
- Fri, 11 Jun 2021 06:48:00 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=73CyQddFjXeyq3KLs0vmikz1AYd/seTWj9eRVSGOW1U=;
+        b=EM+AAAz58bNIOy06zxPJR9d74Wgl3wRxyniFVkvjdvZ5jBnSEkmCrMER1RvogWcay2
+         jGRte2CItxE5khE58/Q+6WCCGw5FPtkaTILhxmF8yRoJfTa2+i3g6Go/rKFZHe86MEM2
+         cRXIF5tansqBDDdBtGHR37+dnamkxwORTxZeqeMj2K8Y40qFo8glf9JarAAwdh5Gi3C5
+         KlHaK1BALPHpdg7B3YbagvHao70c1CC0C4cO7d2SXNM6c7TkCK0az45d/b8nHStVWpzh
+         8MKCxYw3fLlNIdWlF6NEAJn0kgAJg17I1mfIDYBO10VhZs1xdS6NImPpksBdZ0W5YNic
+         6s4w==
+X-Gm-Message-State: AOAM5303JD2w2CBpt68FC7PvIoHN5jv0Jjd397ZVG0Wei6kY5w5mioXZ
+        FTjm6h62itYIjfScndKfLQk=
+X-Google-Smtp-Source: ABdhPJwpq2Yeiy/iQrYQe033avggot+eV2WT1p/iVOHuNKV/PwV32Zh/FfzWYziG/2sltaCxGIo/Vg==
+X-Received: by 2002:a7b:ce13:: with SMTP id m19mr4165326wmc.159.1623419250311;
+        Fri, 11 Jun 2021 06:47:30 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id v132sm13686127wmb.14.2021.06.11.06.47.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Jun 2021 06:47:29 -0700 (PDT)
+Subject: Re: [PATCH v4 2/3] dt-bindings: mediatek: Add mediatek,mt8183-jpgenc
+ compatible
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        maoguang.meng@mediatek.com, yong.wu@mediatek.com
+References: <20210611112009.2955944-1-hsinyi@chromium.org>
+ <20210611112009.2955944-2-hsinyi@chromium.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <9b8cb121-e7a1-8f1d-c591-d42a113415f8@gmail.com>
+Date:   Fri, 11 Jun 2021 15:47:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-References: <20210607083921.2668568-1-ping.bai@nxp.com> <20210607083921.2668568-3-ping.bai@nxp.com>
-In-Reply-To: <20210607083921.2668568-3-ping.bai@nxp.com>
-From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Fri, 11 Jun 2021 21:46:43 +0800
-Message-ID: <CAA+hA=RMapnqU8Dut8RwVi7+0DqqT77mPYoX_DeBwt52-cp9dA@mail.gmail.com>
-Subject: Re: [PATCH 02/11] dt-bindings: i2c: imx-lpi2c: Add imx8ulp compatible string
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210611112009.2955944-2-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 4:31 PM Jacky Bai <ping.bai@nxp.com> wrote:
->
-> Add the compatible for i.MX8ULP.
->
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 
-Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
 
-Regards
-Aisheng
+On 11/06/2021 13:20, Hsin-Yi Wang wrote:
+> Add mediatek,mt8183-jpgenc compatible to binding document.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
 > ---
->  Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
-> index 29b9447f3b84..0875753c7d15 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
-> @@ -19,7 +19,9 @@ properties:
->            - fsl,imx7ulp-lpi2c
->            - fsl,imx8qm-lpi2c
->        - items:
-> -          - const: fsl,imx8qxp-lpi2c
-> +          - enum:
-> +              - fsl,imx8qxp-lpi2c
-> +              - fsl,imx8ulp-lpi2c
->            - const: fsl,imx7ulp-lpi2c
->
+>  .../devicetree/bindings/media/mediatek-jpeg-encoder.yaml         | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+> index 28f26e79fcb3a..e4e791d76cdaa 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
+> @@ -17,6 +17,7 @@ properties:
+>      items:
+>        - enum:
+>            - mediatek,mt2701-jpgenc
+> +          - mediatek,mt8183-jpgenc
+>        - const: mediatek,mtk-jpgenc
 >    reg:
-> --
-> 2.26.2
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>      maxItems: 1
+> 
