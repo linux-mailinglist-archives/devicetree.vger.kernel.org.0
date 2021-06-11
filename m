@@ -2,281 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3007E3A42CB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 15:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84B4A3A42DA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 15:14:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231795AbhFKNOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 09:14:05 -0400
-Received: from mail-bn8nam12on2064.outbound.protection.outlook.com ([40.107.237.64]:40673
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230382AbhFKNOF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 09:14:05 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HglcYlyrh8vSknquvaGcVX6rbLdSslKRRzCTzczeotw5JukMZWW4ZpNpJdkMyCJ3/ivaYEMqswfaP6qVhItK63IXx3LRzLT49D/f+ZLBYQao7EIVL6427V9aRp1sX0uqUXyrZVju3DR86+fb8jAFM+J8MZtN7ppU77NrXLTs9l/nVMGt1dlCbs2G1aj42HO3FQkiy9hhqwGlaNwvuTdomRr3x7jrkAIaPI7TbD6kIwj4BwPO6WMi1ZTzBMG1sv4XygM23ZX8U28UsjIpG7RUAtNYExL7yCKT9mygZsQFDgEDouJW9FYMsyVxgUlrIzgF9mtLeyLNaEKkOEvIBRQgEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3H2o8pAKYJPGT3bqtAYWVWe574Xzl/92IokYnDxbGag=;
- b=Q3+yxx5lChMXyXvIXYbf49r8V9gn2eX7ScHLNrN384PMu/cLRpwwxV+GiN+YfyLI4/ELfO7kHLyys/Px/qe2XIx3gGBlbLemzVyPfouZQVtx6011vj3HQrFhPu0Bq7upVTCL19nbbm5vUMYj8CgV1yDWtQAkh1CUXsywPC3I4K4vv0EOtALSGOGk1dISf+rhqPmGIDgdAigYWaEtdc4py3/4fSQzL5YCf5XutN33pGtQuTFYFsTnROvSHKrsjoKpaVMxCeMrLNxFrSf/lq5OZ0AjdM29lbpy76G8eVOYKze94hd5uc9Q/09BNrypeIaufshN21yPqxpRa2/Bph/4ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3H2o8pAKYJPGT3bqtAYWVWe574Xzl/92IokYnDxbGag=;
- b=qggPTd+WL5vKDWWCr/RK4PFzIapwzU0I730owWqAaVTE2d38+WVTSFQxurTEUjlBdZ//zapdBGmLFMTOBzebKz8D6+PW7c80Qsw1x70AkZgAYx+St28clzMBAcqsjeeWLryV4+BapNdoEQ2Ck+GTIvVtT8W4WiKzZHG7757LGPI=
-Received: from BY5PR02MB6520.namprd02.prod.outlook.com (2603:10b6:a03:1d3::8)
- by BY5PR02MB6518.namprd02.prod.outlook.com (2603:10b6:a03:1d6::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21; Fri, 11 Jun
- 2021 13:12:03 +0000
-Received: from BY5PR02MB6520.namprd02.prod.outlook.com
- ([fe80::d880:7694:92d6:7798]) by BY5PR02MB6520.namprd02.prod.outlook.com
- ([fe80::d880:7694:92d6:7798%5]) with mapi id 15.20.4219.024; Fri, 11 Jun 2021
- 13:12:03 +0000
-From:   Radhey Shyam Pandey <radheys@xilinx.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        git <git@xilinx.com>
-Subject: RE: [RFC PATCH 2/3] dt-bindings: net: xilinx_axienet: Introduce
- dmaengine binding support
-Thread-Topic: [RFC PATCH 2/3] dt-bindings: net: xilinx_axienet: Introduce
- dmaengine binding support
-Thread-Index: AQHXLWwXOJwFrmMwT0GEUXL9WYgFO6qxOPoAgF3cs8A=
-Date:   Fri, 11 Jun 2021 13:12:03 +0000
-Message-ID: <BY5PR02MB65207E7A4C5BB958D33D4568C7349@BY5PR02MB6520.namprd02.prod.outlook.com>
-References: <1617992002-38028-1-git-send-email-radhey.shyam.pandey@xilinx.com>
- <1617992002-38028-3-git-send-email-radhey.shyam.pandey@xilinx.com>
- <20210412183028.GA4156095@robh.at.kernel.org>
-In-Reply-To: <20210412183028.GA4156095@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=xilinx.com;
-x-originating-ip: [149.199.50.130]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b4cc5d5e-f55d-440a-e714-08d92cda8130
-x-ms-traffictypediagnostic: BY5PR02MB6518:
-x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR02MB651872A598056CED1EA71A1DC7349@BY5PR02MB6518.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: b/CaBoiX5icbp5NItZtO4WUtOCQ/G0PZ+BaPmrHXsAB2sj78P1qZhEVJLt1M5/o1FfotAr+bXYS00Av/yaR/EFbWm5HqeG3kaE2YYVig0HXHVUrr6hPKvv8kTCHfDGq9D4xIsJNTb40hIykn4YJAwePJUc2SPOnxIfm9mKZUhNXdjsTuGLTxP7nvBzEkFMRZh46e5J1BiUDjkDDhCAOYq9Og8cRfSi6x/V74VWh1Cc+v/JN7fdnxZhgdI2OXtSzETqzGgC2l3sN+C7sBBHL3Ai8AXaCK5QIF7BHluzw8kGVuClEYB3ggEHKy3/quvxryYd1mbCVI9fnekyKXmEGAjsSzn6DY56dovjHWM8yUyUyHztoQeAanH7/+3U5TjVJ2dp47N1iu4qqbFydT1uzpsUDX7EiGPN7isHZ4Zdxyn8g+IW/F92+EzcsDzNuCqWVYuOgnxmorHLVlBBWIzypm/CDDtCzMXINVAweB8nTBJ8xyljbxPnzR6XDuccY5GFjeRxxFPzhGhohfAm0qZ+Fw13sElh+k9TDbXkQHYEAr1pXa3JQJDjNBUuA5+HYoKT9UeNz2yHILbRn1YR0WGRAY5813y1Y+GmPqcrhrW9QMUbo=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6520.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(136003)(396003)(366004)(39850400004)(33656002)(26005)(71200400001)(76116006)(9686003)(55016002)(316002)(478600001)(5660300002)(54906003)(2906002)(52536014)(107886003)(4326008)(53546011)(66946007)(7696005)(8936002)(66556008)(186003)(64756008)(66446008)(8676002)(66476007)(6506007)(6916009)(38100700002)(122000001)(86362001)(83380400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Sg7iogiYgtKrMy8+dmDr5PYl1zjKoWpjnWN2MYFCJXbWsm/OjP5XBfYCYoaU?=
- =?us-ascii?Q?UsMnPXM5DadN3hHcCO1ejU0OPZkruOrAyF2U14WPnXhPXPpR/pd3/oyPT8JA?=
- =?us-ascii?Q?iOv4WicFEXvcYUEkd3+YzSSUv85KOgU6DKs3f7uoizWwU/AQCZ0vkNEodbp3?=
- =?us-ascii?Q?/pqJ4TL/0EQQjhIFCINyUU/dhB2tAzqDOwuMYURUDvhI73MoffrmsKzzTVVh?=
- =?us-ascii?Q?iMzPplXRgLNl2MH4HL9YWLi9kQcqW2hFq3S02Xr2AUuWUr942MF5h2yE1Ywg?=
- =?us-ascii?Q?Hyn814Shbpa0JHHJaySFa4VgeeXgyUCfTY7HRhfsQ7/sJUdo2ojwsC/A/bQC?=
- =?us-ascii?Q?fICSqse1mQl8AuuFjKl0kmDzVt3TjZl9ymZ62Ae+H06SDKW+U6m5RAo0A9PP?=
- =?us-ascii?Q?6/h5j2XiMTMSJLzigVAxbz6fEuH/63XomEm6GZ+Y3ru1RogFQnty5+G16nxA?=
- =?us-ascii?Q?HcAoMIMYYbDhvEsJNXwD0EW+3ecA3p0AmVsjPV1+OysmfJk74d4blzD7DNHG?=
- =?us-ascii?Q?tKMLlEzkZXRnQx4mdtia1OfH016zMl+QtMS8vbAItwXiwf7zDowRdRdi/38h?=
- =?us-ascii?Q?NLhb8xkVDrtSvrcJtTckKHJdoXtEk/McPW9hGGUiDTj6e/9RI95Uj9WDVdDG?=
- =?us-ascii?Q?JqHS2VTG/EfqbjwQPWywQFRjQKZFlQKmqLufRHfK2o3HuLNI0yqk0PmZJZ3T?=
- =?us-ascii?Q?erX1Z13YWT6c4aTRES3gX/06ZhJjA1nPOpwPg3EpUvwHzQ5eRgV99okb3ew5?=
- =?us-ascii?Q?kdCYHCoPkalgAFSBu7t2V18xr1FHI39Kqb2kxaXTBeHSibjrHeC3I1HceAHu?=
- =?us-ascii?Q?4XqmUyI4gGbpdN/RZvHLtdpS6j3Gq4YdyunGZpzTkST6Wq86MS9OUfnN5buN?=
- =?us-ascii?Q?mCGs+feuJ4XQ3VotTyMPrLNlca3ofscisOVFa+Pppq0NS3C5Ndcj+c6rkp6Z?=
- =?us-ascii?Q?gTqwFH/oHFhGks4C7G5B5n56m8FgHi+n+4B4I8KTH7IyO4DWCeptLBBvqa/z?=
- =?us-ascii?Q?4/G8sb/ZQ3Fvfatu55yOgQWjCw02VmF6K1fvOosH+ikC8dMQ83OA3R47EBe7?=
- =?us-ascii?Q?LyyqItbKEiQNhOZN0BzULlTetKIugyu4/GiAwQMnsujXHZo3GNc3uhC3SBXt?=
- =?us-ascii?Q?0tg66CASH2+88gPxtj+MWwzRriGmq6Us82tSTqzXooIZIEbPo/CENPsOIhS2?=
- =?us-ascii?Q?g3aOkLkyvs7IkoAjgDRlHTL65th4HvidF/NnYwr6mW96R0Qaes/CeP1h4TOv?=
- =?us-ascii?Q?dYd5OT10inDlEMxScCAVrwFGASKETPqYZNpTzqw6VYKtKD2UdngyI/FuxzH/?=
- =?us-ascii?Q?9Wa4iuA/RdqrzrqlLtl3qLZW?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S231817AbhFKNQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 09:16:12 -0400
+Received: from mga05.intel.com ([192.55.52.43]:54119 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231597AbhFKNQJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 09:16:09 -0400
+IronPort-SDR: F2ovnmd6zKl8KNIkLMAQ5BMir3fzK+SSfiMxJe/gpXDLhl3DJz5io//k57+kA2g3DGMmybxNLJ
+ 2ODNwNclMhfQ==
+X-IronPort-AV: E=McAfee;i="6200,9189,10011"; a="291152567"
+X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; 
+   d="scan'208";a="291152567"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2021 06:14:10 -0700
+IronPort-SDR: GUNpHEMiRQTzXqKG04eSN0ahY5vmERssW8Ah9fV9lzW0ejpv+Vftz275jlXFquDLBkk/1+SI3j
+ h221C1Y3jvqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; 
+   d="scan'208";a="553402864"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 11 Jun 2021 06:14:05 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 11 Jun 2021 16:14:04 +0300
+Date:   Fri, 11 Jun 2021 16:14:04 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Felipe Balbi <balbi@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Wesley Cheng <wcheng@codeaurora.org>,
+        Greg KH <gregkh@linuxfoundation.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        jackp@codeaurora.org, Thinh.Nguyen@synopsys.com,
+        John Youn <John.Youn@synopsys.com>
+Subject: Re: [PATCH v9 0/5] Re-introduce TX FIFO resize for larger EP bursting
+Message-ID: <YMNhnCBq2lb7oUZK@kuha.fi.intel.com>
+References: <1621410561-32762-1-git-send-email-wcheng@codeaurora.org>
+ <YLoUiO8tpRpmvcyU@kroah.com>
+ <87k0n9btnb.fsf@kernel.org>
+ <YLo6W5sKaXvy51eW@kroah.com>
+ <c2daab34-1b25-7ee3-e203-a414c1e486d5@codeaurora.org>
+ <874ke62i0v.fsf@kernel.org>
+ <e5f231ca-6807-bcea-29c2-ab3926057310@codeaurora.org>
+ <8735to29tt.fsf@kernel.org>
+ <f1d57fca-3ac1-d8c8-bd23-cf525b366573@codeaurora.org>
+ <87tum4zhc9.fsf@kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6520.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4cc5d5e-f55d-440a-e714-08d92cda8130
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2021 13:12:03.0270
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JHjS8IwfV907VRsZn64tnu5axm4pa7JE4oMx6aRuD83TCebA4a7Tn79HFrP1qxoY24v8DvLQgWQRK1GeqFqo/A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6518
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87tum4zhc9.fsf@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Tuesday, April 13, 2021 12:00 AM
-> To: Radhey Shyam Pandey <radheys@xilinx.com>
-> Cc: davem@davemloft.net; kuba@kernel.org; Michal Simek
-> <michals@xilinx.com>; vkoul@kernel.org; devicetree@vger.kernel.org;
-> netdev@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> kernel@vger.kernel.org; git <git@xilinx.com>
-> Subject: Re: [RFC PATCH 2/3] dt-bindings: net: xilinx_axienet: Introduce
-> dmaengine binding support
->=20
-> On Fri, Apr 09, 2021 at 11:43:21PM +0530, Radhey Shyam Pandey wrote:
-> > The axiethernet driver will now use dmaengine framework to
-> communicate
-> > with dma controller IP instead of built-in dma programming sequence.
+On Fri, Jun 11, 2021 at 04:00:38PM +0300, Felipe Balbi wrote:
+> 
+> Hi,
+> 
+> Wesley Cheng <wcheng@codeaurora.org> writes:
+> >>>>>>> to be honest, I don't think these should go in (apart from the build
+> >>>>>>> failure) because it's likely to break instantiations of the core with
+> >>>>>>> differing FIFO sizes. Some instantiations even have some endpoints with
+> >>>>>>> dedicated functionality that requires the default FIFO size configured
+> >>>>>>> during coreConsultant instantiation. I know of at OMAP5 and some Intel
+> >>>>>>> implementations which have dedicated endpoints for processor tracing.
+> >>>>>>>
+> >>>>>>> With OMAP5, these endpoints are configured at the top of the available
+> >>>>>>> endpoints, which means that if a gadget driver gets loaded and takes
+> >>>>>>> over most of the FIFO space because of this resizing, processor tracing
+> >>>>>>> will have a hard time running. That being said, processor tracing isn't
+> >>>>>>> supported in upstream at this moment.
+> >>>>>>>
+> >>>>>
+> >>>>> I agree that the application of this logic may differ between vendors,
+> >>>>> hence why I wanted to keep this controllable by the DT property, so that
+> >>>>> for those which do not support this use case can leave it disabled.  The
+> >>>>> logic is there to ensure that for a given USB configuration, for each EP
+> >>>>> it would have at least 1 TX FIFO.  For USB configurations which don't
+> >>>>> utilize all available IN EPs, it would allow re-allocation of internal
+> >>>>> memory to EPs which will actually be in use.
+> >>>>
+> >>>> The feature ends up being all-or-nothing, then :-) It sounds like we can
+> >>>> be a little nicer in this regard.
+> >>>>
+> >>>
+> >>> Don't get me wrong, I think once those features become available
+> >>> upstream, we can improve the logic.  From what I remember when looking
+> >> 
+> >> sure, I support that. But I want to make sure the first cut isn't likely
+> >> to break things left and right :)
+> >> 
+> >> Hence, let's at least get more testing.
+> >> 
 > >
-> > To request dma transmit and receive channels the axiethernet driver
-> > uses generic dmas, dma-names properties. It deprecates
-> > axistream-connected
->=20
-> Huh, you just added the property and now deprecating?
+> > Sure, I'd hope that the other users of DWC3 will also see some pretty
+> > big improvements on the TX path with this.
+> 
+> fingers crossed
+> 
+> >>> at Andy Shevchenko's Github, the Intel tracer downstream changes were
+> >>> just to remove physical EP1 and 2 from the DWC3 endpoint list.  If that
+> >> 
+> >> right, that's the reason why we introduced the endpoint feature
+> >> flags. The end goal was that the UDC would be able to have custom
+> >> feature flags paired with ->validate_endpoint() or whatever before
+> >> allowing it to be enabled. Then the UDC driver could tell UDC core to
+> >> skip that endpoint on that particular platform without interefering with
+> >> everything else.
+> >> 
+> >> Of course, we still need to figure out a way to abstract the different
+> >> dwc3 instantiations.
+> >> 
+> >>> was the change which ended up upstream for the Intel tracer then we
+> >>> could improve the logic to avoid re-sizing those particular EPs.
+> >> 
+> >> The problem then, just as I mentioned in the previous paragraph, will be
+> >> coming up with a solution that's elegant and works for all different
+> >> instantiations of dwc3 (or musb, cdns3, etc).
+> >> 
+> >
+> > Well, at least for the TX FIFO resizing logic, we'd only be needing to
+> > focus on the DWC3 implementation.
+> >
+> > You bring up another good topic that I'll eventually needing to be
+> > taking a look at, which is a nice way we can handle vendor specific
+> > endpoints and how they can co-exist with other "normal" endpoints.  We
+> > have a few special HW eps as well, which we try to maintain separately
+> > in our DWC3 vendor driver, but it isn't the most convenient, or most
+> > pretty method :).
+> 
+> Awesome, as mentioned, the endpoint feature flags were added exactly to
+> allow for these vendor-specific features :-)
+> 
+> I'm more than happy to help testing now that I finally got our SM8150
+> Surface Duo device tree accepted by Bjorn ;-)
+> 
+> >>> However, I'm not sure how the changes would look like in the end, so I
+> >>> would like to wait later down the line to include that :).
+> >> 
+> >> Fair enough, I agree. Can we get some more testing of $subject, though?
+> >> Did you test $subject with upstream too? Which gadget drivers did you
+> >> use? How did you test
+> >> 
+> >
+> > The results that I included in the cover page was tested with the pure
+> > upstream kernel on our device.  Below was using the ConfigFS gadget w/ a
+> > mass storage only composition.
+> >
+> > Test Parameters:
+> >  - Platform: Qualcomm SM8150
+> >  - bMaxBurst = 6
+> >  - USB req size = 256kB
+> >  - Num of USB reqs = 16
+> 
+> do you mind testing with the regular request size (16KiB) and 250
+> requests? I think we can even do 15 bursts in that case.
+> 
+> >  - USB Speed = Super-Speed
+> >  - Function Driver: Mass Storage (w/ ramdisk)
+> >  - Test Application: CrystalDiskMark
+> >
+> > Results:
+> >
+> > TXFIFO Depth = 3 max packets
+> >
+> > Test Case | Data Size | AVG tput (in MB/s)
+> > -------------------------------------------
+> > Sequential|1 GB x     |
+> > Read      |9 loops    | 193.60
+> >           |           | 195.86
+> >           |           | 184.77
+> >           |           | 193.60
+> > -------------------------------------------
+> >
+> > TXFIFO Depth = 6 max packets
+> >
+> > Test Case | Data Size | AVG tput (in MB/s)
+> > -------------------------------------------
+> > Sequential|1 GB x     |
+> > Read      |9 loops    | 287.35
+> > 	    |           | 304.94
+> >           |           | 289.64
+> >           |           | 293.61
+> 
+> I remember getting close to 400MiB/sec with Intel platforms without
+> resizing FIFOs and I'm sure the FIFO size was set to 2x1024, though my
+> memory could be failing.
+> 
+> Then again, I never ran with CrystalDiskMark, I was using my own tool
+> (it's somewhere in github. If you care, I can look up the URL).
+> 
+> > We also have internal numbers which have shown similar improvements as
+> > well.  Those are over networking/tethering interfaces, so testing IPERF
+> > loopback over TCP/UDP.
+> 
+> loopback iperf? That would skip the wire, no?
+> 
+> >>> size of 2 and TX threshold of 1, this would really be not beneficial to
+> >>> us, because we can only change the TX threshold to 2 at max, and at
+> >>> least in my observations, once we have to go out to system memory to
+> >>> fetch the next data packet, that latency takes enough time for the
+> >>> controller to end the current burst.
+> >> 
+> >> What I noticed with g_mass_storage is that we can amortize the cost of
+> >> fetching data from memory, with a deeper request queue. Whenever I
+> >> test(ed) g_mass_storage, I was doing so with 250 requests. And that was
+> >> enough to give me very good performance. Never had to poke at TX FIFO
+> >> resizing. Did you try something like this too?
+> >> 
+> >> I feel that allocating more requests is a far simpler and more generic
+> >> method that changing FIFO sizes :)
+> >> 
+> >
+> > I wish I had a USB bus trace handy to show you, which would make it very
+> > clear how the USB bus is currently utilized with TXFIFO size 2 vs 6.  So
+> > by increasing the number of USB requests, that will help if there was a
+> > bottleneck at the SW level where the application/function driver
+> > utilizing the DWC3 was submitting data much faster than the HW was
+> > processing them.
+> >
+> > So yes, this method of increasing the # of USB reqs will definitely help
+> > with situations such as HSUSB or in SSUSB when EP bursting isn't used.
+> > The TXFIFO resize comes into play for SSUSB, which utilizes endpoint
+> > bursting.
+> 
+> Hmm, that's not what I remember. Perhaps the TRB cache size plays a role
+> here too. I have clear memories of testing this very scenario of
+> bursting (using g_mass_storage at the time) because I was curious about
+> it. Back then, my tests showed no difference in behavior.
+> 
+> It could be nice if Heikki could test Intel parts with and without your
+> changes on g_mass_storage with 250 requests.
 
-In the previous patch - we added the 'xlnx,axistream-connected' property
-to dmaengine node.  In this patch we are deprecating axiethernet=20
-axistream-connected property. So instead of custom properties the=20
-ethernet client will now use generic  dmas, dma-names properties
-to communicate with the dmaengine driver.
+Andy, you have a system at hand that has the DWC3 block enabled,
+right? Can you help out here?
 
->=20
-> > property, remove axidma reg and interrupt properties from the ethernet
-> > node. Just to highlight that these DT changes are not backward
-> > compatible due to major driver restructuring/cleanup done in adopting
-> > the dmaengine framework.
->=20
-> Aren't users going to care this isn't a backwards compatible change?
+thanks,
 
-Yes, as it was a major design change for framework adoption and
-there was no  option to support legacy usecases with this new approach.
 
-To advertise that changes aren't backward compatible -
-Should we introduce new compatibility string and raise a warning
-for earlier unsupported versions?=20
+> > Now with endpoint bursting, if the function notifies the host that
+> > bursting is supported, when the host sends the ACK for the Data Packet,
+> > it should have a NumP value equal to the bMaxBurst reported in the EP
+> 
+> Yes and no. Looking back at the history, we used to configure NUMP based
+> on bMaxBurst, but it was changed later in commit
+> 4e99472bc10bda9906526d725ff6d5f27b4ddca1 by yours truly because of a
+> problem reported by John Youn.
+> 
+> And now we've come full circle. Because even if I believe more requests
+> are enough for bursting, NUMP is limited by the RxFIFO size. This ends
+> up supporting your claim that we need RxFIFO resizing if we want to
+> squeeze more throughput out of the controller.
+> 
+> However, note that this is about RxFIFO size, not TxFIFO size. In fact,
+> looking at Table 8-13 of USB 3.1 r1.0, we read the following about NumP
+> (emphasis is mine):
+> 
+> 	"Number of Packets (NumP). This field is used to indicate the
+> 	number of Data Packet buffers that the **receiver** can
+> 	accept. The value in this field shall be less than or equal to
+> 	the maximum burst size supported by the endpoint as determined
+> 	by the value in the bMaxBurst field in the Endpoint Companion
+> 	Descriptor (refer to Section 9.6.7)."
+> 
+> So, NumP is for the receiver, not the transmitter. Could you clarify
+> what you mean here?
+> 
+> /me keeps reading
+> 
+> Hmm, table 8-15 tries to clarify:
+> 
+> 	"Number of Packets (NumP).
+> 
+> 	For an OUT endpoint, refer to Table 8-13 for the description of
+> 	this field.
+> 
+> 	For an IN endpoint this field is set by the endpoint to the
+> 	number of packets it can transmit when the host resumes
+> 	transactions to it. This field shall not have a value greater
+> 	than the maximum burst size supported by the endpoint as
+> 	indicated by the value in the bMaxBurst field in the Endpoint
+> 	Companion Descriptor. Note that the value reported in this field
+> 	may be treated by the host as informative only."
+> 
+> However, if I remember correctly (please verify dwc3 databook), NUMP in
+> DCFG was only for receive buffers. Thin, John, how does dwc3 compute
+> NumP for TX/IN endpoints? Is that computed as a function of DCFG.NUMP or
+> TxFIFO size?
+> 
+> > desc.  If we have a TXFIFO size of 2, then normally what I have seen is
+> > that after 2 data packets, the device issues a NRDY.  So then we'd need
+> > to send an ERDY once data is available within the FIFO, and the same
+> > sequence happens until the USB request is complete.  With this constant
+> > NRDY/ERDY handshake going on, you actually see that the bus is under
+> > utilized.  When we increase an EP's FIFO size, then you'll see constant
+> > bursts for a request, until the request is done, or if the host runs out
+> > of RXFIFO. (ie no interruption [on the USB protocol level] during USB
+> > request data transfer)
+> 
+> Unfortunately I don't have access to a USB sniffer anymore :-(
+> 
+> >>>>>> Good points.
+> >>>>>>
+> >>>>>> Wesley, what kind of testing have you done on this on different devices?
+> >>>>>>
+> >>>>>
+> >>>>> As mentioned above, these changes are currently present on end user
+> >>>>> devices for the past few years, so its been through a lot of testing :).
+> >>>>
+> >>>> all with the same gadget driver. Also, who uses USB on android devices
+> >>>> these days? Most of the data transfer goes via WiFi or Bluetooth, anyway
+> >>>> :-)
+> >>>>
+> >>>> I guess only developers are using USB during development to flash dev
+> >>>> images heh.
+> >>>>
+> >>>
+> >>> I used to be a customer facing engineer, so honestly I did see some
+> >>> really interesting and crazy designs.  Again, we do have non-Android
+> >>> products that use the same code, and it has been working in there for a
+> >>> few years as well.  The TXFIFO sizing really has helped with multimedia
+> >>> use cases, which use isoc endpoints, since esp. in those lower end CPU
+> >>> chips where latencies across the system are much larger, and a missed
+> >>> ISOC interval leads to a pop in your ear.
+> >> 
+> >> This is good background information. Thanks for bringing this
+> >> up. Admitedly, we still have ISOC issues with dwc3. I'm interested in
+> >> knowing if a deeper request queue would also help here.
+> >> 
+> >> Remember dwc3 can accomodate 255 requests + link for each endpoint. If
+> >> our gadget driver uses a low number of requests, we're never really
+> >> using the TRB ring in our benefit.
+> >> 
+> >
+> > We're actually using both a deeper USB request queue + TX fifo resizing. :).
+> 
+> okay, great. Let's see what John and/or Thinh respond WRT dwc3 TX Burst
+> behavior.
 
->=20
-> >
-> > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-> > ---
-> >  .../devicetree/bindings/net/xilinx_axienet.yaml    | 40 +++++++++++++-=
------
-> ---
-> >  1 file changed, 24 insertions(+), 16 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/xilinx_axienet.yaml
-> > b/Documentation/devicetree/bindings/net/xilinx_axienet.yaml
-> > index 6a00e03e8804..0ea3972fefef 100644
-> > --- a/Documentation/devicetree/bindings/net/xilinx_axienet.yaml
-> > +++ b/Documentation/devicetree/bindings/net/xilinx_axienet.yaml
-> > @@ -14,10 +14,8 @@ description: |
-> >    offloading TX/RX checksum calculation off the processor.
-> >
-> >    Management configuration is done through the AXI interface, while
-> > payload is
-> > -  sent and received through means of an AXI DMA controller. This
-> > driver
-> > -  includes the DMA driver code, so this driver is incompatible with
-> > AXI DMA
-> > -  driver.
-> > -
-> > +  sent and received through means of an AXI DMA controller using
-> > + dmaengine  framework.
-> >
-> >  allOf:
-> >    - $ref: "ethernet-controller.yaml#"
-> > @@ -36,19 +34,13 @@ properties:
-> >
-> >    reg:
-> >      description:
-> > -      Address and length of the IO space, as well as the address
-> > -      and length of the AXI DMA controller IO space, unless
-> > -      axistream-connected is specified, in which case the reg
-> > -      attribute of the node referenced by it is used.
-> > -    maxItems: 2
-> > +      Address and length of the IO space.
-> > +    maxItems: 1
-> >
-> >    interrupts:
-> >      description:
-> > -      Can point to at most 3 interrupts. TX DMA, RX DMA, and optionall=
-y
-> Ethernet
-> > -      core. If axistream-connected is specified, the TX/RX DMA interru=
-pts
-> should
-> > -      be on that node instead, and only the Ethernet core interrupt is
-> optionally
-> > -      specified here.
-> > -    maxItems: 3
-> > +      Ethernet core interrupt.
-> > +    maxItems: 1
-> >
-> >    phy-handle: true
-> >
-> > @@ -109,15 +101,29 @@ properties:
-> >        for the AXI DMA controller used by this device. If this is speci=
-fied,
-> >        the DMA-related resources from that device (DMA registers and DM=
-A
-> >        TX/RX interrupts) rather than this one will be used.
-> > +    deprecated: true
-> >
-> >    mdio: true
-> >
-> > +  dmas:
-> > +    items:
-> > +      - description: TX DMA Channel phandle and DMA request line numbe=
-r
-> > +      - description: RX DMA Channel phandle and DMA request line
-> > + number
-> > +
-> > +  dma-names:
-> > +    items:
-> > +      - const: tx_chan0
-> > +      - const: rx_chan0
-> > +
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> >    - interrupts
-> >    - xlnx,rxmem
-> >    - phy-handle
-> > +  - dmas
-> > +  - dma-names
-> >
-> >  additionalProperties: false
-> >
-> > @@ -127,11 +133,13 @@ examples:
-> >        compatible =3D "xlnx,axi-ethernet-1.00.a";
-> >        device_type =3D "network";
-> >        interrupt-parent =3D <&microblaze_0_axi_intc>;
-> > -      interrupts =3D <2>, <0>, <1>;
-> > +      interrupts =3D <1>;
-> >        clock-names =3D "s_axi_lite_clk", "axis_clk", "ref_clk", "mgt_cl=
-k";
-> >        clocks =3D <&axi_clk>, <&axi_clk>, <&pl_enet_ref_clk>, <&mgt_clk=
->;
-> >        phy-mode =3D "mii";
-> > -      reg =3D <0x40c00000 0x40000>,<0x50c00000 0x40000>;
-> > +      reg =3D <0x40c00000 0x40000>;
-> > +      dmas =3D <&xilinx_dma 0>, <&xilinx_dma 1>;
-> > +      dma-names =3D "tx_chan0", "rx_chan0";
->=20
-> Is there a chan1? Typical dma-names are just 'tx' and 'rx'.
->=20
-> >        xlnx,rxcsum =3D <0x2>;
-> >        xlnx,rxmem =3D <0x800>;
-> >        xlnx,txcsum =3D <0x2>;
-> > --
-> > 2.7.4
-> >
+-- 
+heikki
