@@ -2,84 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE5E63A4409
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 16:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A03D3A4429
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 16:36:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231312AbhFKO3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 10:29:21 -0400
-Received: from router.aksignal.cz ([62.44.4.214]:41190 "EHLO
-        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230280AbhFKO3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 10:29:21 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by router.aksignal.cz (Postfix) with ESMTP id EA083484CD;
-        Fri, 11 Jun 2021 16:27:21 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
-Received: from router.aksignal.cz ([127.0.0.1])
-        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id qJukQUuu46Is; Fri, 11 Jun 2021 16:27:21 +0200 (CEST)
-Received: from pc-gameroom.prchals.tk (unknown [83.240.30.185])
-        (Authenticated sender: jiri.prchal@aksignal.cz)
-        by router.aksignal.cz (Postfix) with ESMTPSA id 7D4D6484CC;
-        Fri, 11 Jun 2021 16:27:20 +0200 (CEST)
-From:   Jiri Prchal <jiri.prchal@aksignal.cz>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Prchal <jiri.prchal@aksignal.cz>,
-        kernel test robot <lkp@intel.com>
-Subject: [PATCH] nvmem: eeprom: at25: fix type compiler warnings
-Date:   Fri, 11 Jun 2021 16:27:06 +0200
-Message-Id: <20210611142706.27336-1-jiri.prchal@aksignal.cz>
-X-Mailer: git-send-email 2.25.1
+        id S229722AbhFKOiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 10:38:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55938 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231577AbhFKOiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 10:38:00 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0FF0C061574;
+        Fri, 11 Jun 2021 07:35:46 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id h24-20020a9d64180000b029036edcf8f9a6so3345906otl.3;
+        Fri, 11 Jun 2021 07:35:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=5I09DPd8Kwy7LMo76EGR3YM2G9Xf21apnHARNeBFJ+k=;
+        b=bXofxSglPVxt7p7Om3fW43zbPw9IPtI1w0qmIpQ21u3NhjCsxcOO/bt340q43zLIrX
+         D8GMFZJ147WnbH+bqcbLL/EK7Y9wxXWy72BSMk//WwQouZzIJG9gdzvADAwtre6kG2FY
+         ETGroG63+oDDWxfRMXl3YF8bAKBRLUBpf483KfGyO2obWNdfqW/BsHdomPfI+6zdkcgg
+         UjMvzSkgYpd/px6Y+E52FBgGvNx4MKu1ni1Gm/hU5nOuQjmddK6xqbZGwMumDp2WWOIw
+         WRlwzuOUR2TqcxOSGHKTyaYAlwEaiWXi3fOwrCm8lWpePsF90lK3lDh3AiQHW+mw3Xbs
+         yPZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=5I09DPd8Kwy7LMo76EGR3YM2G9Xf21apnHARNeBFJ+k=;
+        b=PMyasl5dxXzFN31LbrDcYUde4rXjpbYK0dFEO+nPbsadRiHgw9GFSC0s9NHCH6f6q3
+         5c2sDCGvbmv9noI6jNOam4gFI+L9lWdJ4NeShTlwNbxKQMt5ecoNSN2r5gu+2f5Vj6kM
+         95ONv8cT6vApA1iBUQnFZmRUd/W8qWQzas719w5YYFBa28azXVLYJGrSOpyLP+yTsc/1
+         HfrlLJxRjSPwLwpbZha2zeOhkYmMNIUMO7S1ar6jDJkkMK///lAsPQ45P2O7hHEOZJWK
+         Vl8XnyInhwwDwFrWhlpJOW/UtQcvnPGScLHB7Ijs//IYVWeOYMXQYUpyFXGr9758mxEa
+         wxhQ==
+X-Gm-Message-State: AOAM530KDztiPvKiFAUygJa//xV3KkdJU2xrpBvjcvePGmbJcr8qkgF9
+        9Rn6YiuzxfSH4qXJXYI+o5ECu5QwVeaUQp4wsjw=
+X-Google-Smtp-Source: ABdhPJyBX0YMR9nw4FCEWqEtfHxhwPSKQX3qlzHtQjCQ+5AoKjVXFo5BqKi2wCn7x9zZ/JfhKinZYGBwyPBAxIp/XX0=
+X-Received: by 2002:a9d:5382:: with SMTP id w2mr3349667otg.290.1623422145756;
+ Fri, 11 Jun 2021 07:35:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210605170441.33667-1-romain.perier@gmail.com>
+ <20210605170441.33667-3-romain.perier@gmail.com> <20210611103426.GA3827319@roeck-us.net>
+In-Reply-To: <20210611103426.GA3827319@roeck-us.net>
+From:   Romain Perier <romain.perier@gmail.com>
+Date:   Fri, 11 Jun 2021 16:35:33 +0200
+Message-ID: <CABgxDoJhCiBoyJW3WOF9Jac9QcAfDxE5wND6gg1tvqd74hd+NQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] watchdog: Add Mstar MSC313e WDT driver
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Mohammed Billoo <mohammed.billoo@gmail.com>,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes:
-drivers/misc/eeprom/at25.c:181:28: warning: field width should have type 'int',
-but argument has type 'unsigned long'
+Le ven. 11 juin 2021 =C3=A0 12:34, Guenter Roeck <linux@roeck-us.net> a =C3=
+=A9crit :
+>
+> On Sat, Jun 05, 2021 at 07:04:40PM +0200, Romain Perier wrote:
+> > From: Daniel Palmer <daniel@0x0f.com>
+> >
+> > It adds a driver for the IP block handling the watchdog timer found for
+> > Mstar MSC313e SoCs and newer.
+> >
+> > Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> > Co-developed-by: Romain Perier <romain.perier@gmail.com>
+> > Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> > ---
+> >  MAINTAINERS                    |   1 +
+>
+> I tried to apply this patch to my tree, but it doesn't apply because ...
+>
+> >  drivers/watchdog/Kconfig       |  12 +++
+> >  drivers/watchdog/Makefile      |   1 +
+> >  drivers/watchdog/msc313e_wdt.c | 166 +++++++++++++++++++++++++++++++++
+> >  4 files changed, 180 insertions(+)
+> >  create mode 100644 drivers/watchdog/msc313e_wdt.c
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index a0f37adb9e64..fcc10c57298c 100644
+>
+> a0f37adb9e64 is not an upstream SHA and there is a conflict. Please resen=
+d
+> the series based on some upstream tag.
+>
+> Guenter
 
-drivers/misc/eeprom/at25.c:386:13: warning: cast to smaller integer type 'int'
-from 'const void *'
+Arf, I will rebase and resend then, my bad. It is okay if I rebase the
+series onto https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-st=
+aging.git
+, branch watchdog-next ?
 
-Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
-Reported-by: kernel test robot <lkp@intel.com>
----
- drivers/misc/eeprom/at25.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
-index 6e26de68a001..744f7abb22ee 100644
---- a/drivers/misc/eeprom/at25.c
-+++ b/drivers/misc/eeprom/at25.c
-@@ -178,7 +178,7 @@ static ssize_t sernum_show(struct device *dev, struct device_attribute *attr, ch
- 	struct at25_data *at25;
- 
- 	at25 = dev_get_drvdata(dev);
--	return sysfs_emit(buf, "%*ph\n", sizeof(at25->sernum), at25->sernum);
-+	return sysfs_emit(buf, "%*ph\n", (int)sizeof(at25->sernum), at25->sernum);
- }
- static DEVICE_ATTR_RO(sernum);
- 
-@@ -379,11 +379,11 @@ static int at25_probe(struct spi_device *spi)
- 	u8 sernum[FM25_SN_LEN];
- 	int i;
- 	const struct of_device_id *match;
--	int is_fram = 0;
-+	unsigned long is_fram = 0;
- 
- 	match = of_match_device(of_match_ptr(at25_of_match), &spi->dev);
- 	if (match)
--		is_fram = (int)match->data;
-+		is_fram = (unsigned long)match->data;
- 
- 	/* Chip description */
- 	if (!spi->dev.platform_data) {
--- 
-2.25.1
-
+Romain
