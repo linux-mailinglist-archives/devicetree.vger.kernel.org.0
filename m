@@ -2,90 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF4F43A3D5D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 09:40:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A1523A3D7C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 09:46:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231502AbhFKHmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 03:42:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47790 "EHLO
+        id S231615AbhFKHsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 03:48:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbhFKHmt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 03:42:49 -0400
-Received: from mail-vk1-xa31.google.com (mail-vk1-xa31.google.com [IPv6:2607:f8b0:4864:20::a31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21A83C061574
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 00:40:52 -0700 (PDT)
-Received: by mail-vk1-xa31.google.com with SMTP id d13so2327336vkl.10
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 00:40:52 -0700 (PDT)
+        with ESMTP id S230526AbhFKHsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 03:48:01 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4CECC0617AF
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 00:45:54 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id z8so4957737wrp.12
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 00:45:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=BBdAwSczaNf+rHArQaHJIC7Mgb+GZNj+B0A18W96i2I=;
-        b=DDuRUkgGQ2gwm4MrE0GMH0YF2qaeIgqXCeXFS+9TFihSQOe6GGs8L2y7GNz4se7hbS
-         ZzVkLsktgUG+PQ58w0GtxC71EPdJvGoY/UL3Zbmy9YJjpJgmYFg3mxnA/QztGkSqDCYR
-         YHIIXFPWP06gtKoCz9kdKQkRh1mA551lwU+IZFz7gWdypUxsdwIrTqSJqnyeM+WFcAcV
-         KZVVyf6CU4f6Y3O7iFYCbXe8ASiSeE6k0Fie2qc18UVZ07ybB3G2R0J/48F8iUwySD/7
-         fqS+s5NrH2gLXdjfryaS8pCFdZSWOEg8+rk2z/bbewPt/p1x/J9JjVYuOkYWlXcWhXLp
-         wcBw==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jyVLRP1QkA2IL6a5f5yksm2l9IPiad2Lfrho8JCrB80=;
+        b=tnUXwEtIxNsUkR3juOymwq8NsDACLFO4UY9stNt8nf4fnyEfeLnMLJRCJ4WQrBSTVo
+         YXthzzdbMkbartaX3GNqDiGY4Gz7qS9h7XO2LM1KW0jgywjEjW8YmTfPj6o9v5fL/yxE
+         b9mjgp5A6ZiodETFvTQAp9m5YaYuipu2JP+jI5qYapY0Qf+qqvtB3sunq5gEnCh9WtkM
+         R//r15ndCwJfRN6O4LT1G4c1oQ9pBNogvUVYa7pZeYik7xN9OVlPoL5dpPlCSGuCReOI
+         RjsU/AFnUKF2BOQnHb+fLoueJveCWv+LFh4UewSsRxnBpkIIyGQq7bq1QNw6Bg7hqn9i
+         gDDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=BBdAwSczaNf+rHArQaHJIC7Mgb+GZNj+B0A18W96i2I=;
-        b=UVJG4+q2c+xPm+uCfiTxRN9aB7A9MUfKkgEP9puDN1YdaZNei8Z8wDYJHmJP5UwCt+
-         IU2gBwCFlZ0tUey7n1L/4KjyU+fHlwr4e6FF/IgfosWlIX2eDnfOL6nywVrfbHlYxeDI
-         1V1R3e//6lVXVInqk7vSW18dctOZch/Y71Fu9isIG+9yYlBxCPZ3zCP0IpCF487zRzr+
-         6UxmuwtgS4D/KjCHr9cG9iYD+RIsW46z9aJBXV1e3hJyj5DEglE50adurBPE4X/ia0O1
-         tC1AAM9Xn3LMLjK5+KMP2FNWkmah+Sjg/Yupo5rubAM09ZsuRgRSKLqKYuZeE/gtY7jp
-         /XNQ==
-X-Gm-Message-State: AOAM5322OpGCPHmf5T1wIEZncPPP5MV2ME6bKA56YhH3JzV5Wg1Mo6p9
-        /qwpHoZQwJ8BDSGJS+u3b6E4ED3k1j6cdOwNCHpjIRbRvA/kjw==
-X-Google-Smtp-Source: ABdhPJxmj6fYMIapIuKq25TWJPMsAbZwQIFmsiOZFWnQReFEn4Z81dnBenUXepsXJ8aQSZIqkG2yB3XvcuNtapnOMmY=
-X-Received: by 2002:a1f:9542:: with SMTP id x63mr7317524vkd.15.1623397247116;
- Fri, 11 Jun 2021 00:40:47 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jyVLRP1QkA2IL6a5f5yksm2l9IPiad2Lfrho8JCrB80=;
+        b=iWa9liL5T2MW3FFtJTWCznUS2mF7ttxaSU4PRcK0uY6ChvZ+zlFg44rlkaz6+e7veu
+         a9tReGODC68BYL8i3A+u5Jq8KP8dP6ghdiT9rxHVOxrzq9aZeaiQORbG4aIEw/uIb1Vj
+         qs6JAmR4RyMf92WswwsiXnJsYLA6w5VjI2UGmBXvZYPEIfUXwFUCM9VvAx0B6pJ4w7Rz
+         I7o2K+Z110tVpsZSW/60fAmO1fOxfZybtafojz/XLSu9m9i7wxW8wQdh4NLdWkoIYQvx
+         49QJLXmnMtyMj+IzaXt4XZfHWnKDfdYGY9i4+ppCblkAQ/cScn94h4ySIpw4soXKTgQV
+         DXYQ==
+X-Gm-Message-State: AOAM5322d2DhxCcw7pf/OcRwDsdI3iywZmvX1RjK5v8MdkTJ9YLjAOwq
+        ICxQWt1MM74v+iD1ptfN8f3yzQ==
+X-Google-Smtp-Source: ABdhPJzdpXeCEBaZqW+gbgn/Y7fTCnLbcAraMgni6bIzcHxjI8moZxc8QRHIancTbR/BoSfZr7KBAw==
+X-Received: by 2002:adf:f1ca:: with SMTP id z10mr2557658wro.396.1623397553262;
+        Fri, 11 Jun 2021 00:45:53 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:e537:d458:d3c4:18e1? ([2a01:e34:ed2f:f020:e537:d458:d3c4:18e1])
+        by smtp.googlemail.com with ESMTPSA id v15sm5701683wrw.24.2021.06.11.00.45.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Jun 2021 00:45:52 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: meson: vim3: reduce cpu thermal fan trigger
+ temperature
+To:     Nick Xie <xieqinick@gmail.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+Cc:     robh+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Nick <nick@khadas.com>, artem@khadas.com
+References: <20210609012849.797576-1-xieqinick@gmail.com>
+ <11da3ae4-91d4-1e51-c652-e4ad518f13bd@baylibre.com>
+ <CAP4nuTVMZV7pz8NrM2MHcZzBdueRXjS+KYsU4=cQ1CB67gr_Hg@mail.gmail.com>
+ <ee3341d9-350e-a84d-6836-3401be679b2a@baylibre.com>
+ <CAP4nuTUt1vQjVP=3_NYaeu+m47f78ru6-MgGBiAqLeU9fJAsNg@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <09c65310-9441-9b97-d9ae-4695f0dd16af@linaro.org>
+Date:   Fri, 11 Jun 2021 09:45:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <1623329930-14387-1-git-send-email-zhouyanjie@wanyeetech.com>
-In-Reply-To: <1623329930-14387-1-git-send-email-zhouyanjie@wanyeetech.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 11 Jun 2021 09:40:10 +0200
-Message-ID: <CAPDyKFqyB=rL-aLX3YLAoE7qEsR4sDP7zqmS2io2-aoCVsQyzQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] Add support for JZ4775
-To:     =?UTF-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com,
-        Paul Cercueil <paul@crapouillou.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAP4nuTUt1vQjVP=3_NYaeu+m47f78ru6-MgGBiAqLeU9fJAsNg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Jun 2021 at 14:59, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie)
-<zhouyanjie@wanyeetech.com> wrote:
->
-> v1->v2:
-> 1.Add support for probing mmc driver on the JZ4775 SoC from Ingenic.
-> 2.The drive clock selection and sample clock selection have been
->   supported since JZ4775, not X1000. So support for these two
->   functions has been added for JZ4775 and JZ4780.
->
-> =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) (2):
->   dt-bindings: mmc: JZ4740: Add bindings for JZ4775.
->   mmc: JZ4740: Add support for JZ4775.
->
->  Documentation/devicetree/bindings/mmc/ingenic,mmc.yaml | 1 +
->  drivers/mmc/host/jz4740_mmc.c                          | 5 +++--
->  2 files changed, 4 insertions(+), 2 deletions(-)
->
+On 11/06/2021 09:30, Nick Xie wrote:
+> Hello Neil,
+> 
+> 
+> Neil Armstrong <narmstrong@baylibre.com> 于2021年6月11日周五 下午3:15写道：
+>>
+>> Hi,
+>>
+>> On 11/06/2021 08:54, Nick Xie wrote:
+>>> Hello Neil,
+>>>
+>>> The MCU FAN won't work until the temperature reach to 80 degree centigrade,
+>>> Do you think the temperature is too high?
+>>
+>> I think 80 is tool high, but I fear 50 is way too low, but if you think 50 is OK after you ran some tests, just add it to the commit log and it's ok for me.
+> 
+> I think it is OK, we use it for a long time.
 
-Applied for next, thanks!
+50°C sounds like normal temperature with regular load. That means the
+fan will be switched on most of the time when the board is used.
 
-Kind regards
-Uffe
+And this change may be put in regard with the other trip points in the
+common DT. For instance, enable the fan when reaching 80°C but set the
+passive trip point to 75°C instead of 85°C.
+
+All that depends on the hardware characteristics and TDP which are in
+the TRM normally.
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
