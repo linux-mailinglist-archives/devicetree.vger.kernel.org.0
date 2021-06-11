@@ -2,313 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F7593A3A83
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 05:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9193A3A8D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 05:54:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230083AbhFKDwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Jun 2021 23:52:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53196 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231501AbhFKDwF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 23:52:05 -0400
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25F5C0617AE
-        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 20:49:51 -0700 (PDT)
-Received: by mail-oo1-xc2e.google.com with SMTP id q20-20020a4a6c140000b029024915d1bd7cso398897ooc.12
-        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 20:49:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qT8MmbssqwjjQy/dKsbd4ZG4G3VdYCwzB+a8OBRE14E=;
-        b=ghUtbPQTxBqrpD7B2uYe0PnzoeYicmVcanTih/ataUoqWXctVJmYXKG1m8N0SeIHjX
-         veZ74P/XX3DcjVprGpywqlDZjWITyinQ35ybhPjzIYu4wCLxooK1JNP1zfnXINeUybix
-         t88I5QR9U+wo6iOfT/8tP5hQWY3jT6fFk5tXEc7d8LPQesQpt/v9e/ix+jdVN1+hELI/
-         QrOpyV6e7oBX01byqvv6KSvk8Fps4cu3/IJbjlWhl8PryF9lEYnpAOBRcYXNLZka36qb
-         ipNmRpwnExSX1NEP3UalmAvj/clYZs0llE5ymuVtb8MtLqhfGffZn0BOb4TqrTwVSZ8B
-         TK3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qT8MmbssqwjjQy/dKsbd4ZG4G3VdYCwzB+a8OBRE14E=;
-        b=R2pj9LbIgsUihujPDlIBYVm5DV5oyq4AudZn2hw59v/VJZwXk9K6ZJQ2b0HaOqJxXS
-         FRtt7r+5t0n1Lolz6AJ5NHZ/2y4oX99khW5MCRVwCiOY8L3QFatgYztqWvae0OmIMDPg
-         FKSbuKKRscewprmJALU5DrE3gYT+u9L3ZEsdHeK5PpXMLw+56AemkCag9/CJWTksm3r8
-         pihNTN4Ufh1QHj3ik6E/cFc9iO5g/h9RYvDfz75J+6dJHMSXdMoEthodFxIZeFyOYB7V
-         gVcNFmmy6Mw5prWRhUZftLqhBGN4rqLDYrT68cKednFu+9kYoWoZU03NQHO3+BPOsT8s
-         Ne6A==
-X-Gm-Message-State: AOAM531WR0g5eieLqQcm50oK7c/I+9hc4K9Ogg+37wRY/z+ivivhZjcs
-        hNOSukGpB4Qvru6FQ+x1VtS5yg==
-X-Google-Smtp-Source: ABdhPJySl/0xQ4SdDaKxtXic4a22b5TUXp7slntxsx3IgTEyWNgw7Lc9ZCtpf3ZpIxOpoBl9QvZPDA==
-X-Received: by 2002:a4a:e9b1:: with SMTP id t17mr1369674ood.0.1623383391153;
-        Thu, 10 Jun 2021 20:49:51 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id l128sm970094oif.16.2021.06.10.20.49.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jun 2021 20:49:50 -0700 (PDT)
-Date:   Thu, 10 Jun 2021 22:49:48 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] pinctrl: qcom: Add MDM9607 pinctrl driver
-Message-ID: <YMLdXFNBhkYF3goe@builder.lan>
-References: <20210602080518.1589889-1-konrad.dybcio@somainline.org>
- <20210602080518.1589889-2-konrad.dybcio@somainline.org>
+        id S230440AbhFKD4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Jun 2021 23:56:13 -0400
+Received: from regular1.263xmail.com ([211.150.70.200]:45668 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230329AbhFKD4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Jun 2021 23:56:13 -0400
+Received: from localhost (unknown [192.168.167.235])
+        by regular1.263xmail.com (Postfix) with ESMTP id 9B7FA1DB8;
+        Fri, 11 Jun 2021 11:54:10 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from [172.16.12.73] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P15328T140654309000960S1623383648787942_;
+        Fri, 11 Jun 2021 11:54:10 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <70eca2d5e53924834f14eb9922eb0b7d>
+X-RL-SENDER: jon.lin@rock-chips.com
+X-SENDER: jon.lin@rock-chips.com
+X-LOGIN-NAME: jon.lin@rock-chips.com
+X-FST-TO: linux-clk@vger.kernel.org
+X-RCPT-COUNT: 19
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: Re: [PATCH v7 9/9] arm64: dts: rockchip: Enable SFC for Odroid Go
+ Advance
+To:     Chris Morgan <macromorgan@hotmail.com>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-spi@vger.kernel.org,
+        broonie@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
+        jbx6244@gmail.com, hjc@rock-chips.com, yifeng.zhao@rock-chips.com,
+        sugar.zhang@rock-chips.com, linux-rockchip@lists.infradead.org,
+        linux-mtd@lists.infradead.org, p.yadav@ti.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org
+References: <20210609140412.16058-1-jon.lin@rock-chips.com>
+ <20210609141348.19178-1-jon.lin@rock-chips.com>
+ <20210609141348.19178-5-jon.lin@rock-chips.com>
+ <20210610173657.GA20228@wintermute.localdomain>
+ <89283da6-b00e-4d0f-5c4a-0169bda101d3@rock-chips.com>
+ <SN6PR06MB5342327048383CC3D416C93DA5349@SN6PR06MB5342.namprd06.prod.outlook.com>
+From:   Jon Lin <jon.lin@rock-chips.com>
+Message-ID: <19481190-2a28-8602-8f5f-6258a967833d@rock-chips.com>
+Date:   Fri, 11 Jun 2021 11:54:09 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210602080518.1589889-2-konrad.dybcio@somainline.org>
+In-Reply-To: <SN6PR06MB5342327048383CC3D416C93DA5349@SN6PR06MB5342.namprd06.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 02 Jun 03:05 CDT 2021, Konrad Dybcio wrote:
 
-> Add a pinctrl driver to allow for managing SoC pins.
-> 
+On 6/11/21 11:38 AM, Chris Morgan wrote:
+> On Fri, Jun 11, 2021 at 10:26:35AM +0800, Jon Lin wrote:
+>> Hi Chris
+>>
+>> May you attach the XT25F128B device code to me, and I'll try to work it out.
+> Sure, here is the patch I am using:
+>
+> https://patchwork.ozlabs.org/project/linux-mtd/patch/SN6PR06MB5342C82F372F37FB8E21B327A57A9@SN6PR06MB5342.namprd06.prod.outlook.com/
 
-This looks really good, just a few of small things below.
+this patch works well in my rk3308 tx-2 rx-2 XT25F128BSSIGU case.
 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> ---
->  drivers/pinctrl/qcom/Kconfig           |    8 +
->  drivers/pinctrl/qcom/Makefile          |    1 +
->  drivers/pinctrl/qcom/pinctrl-mdm9607.c | 1124 ++++++++++++++++++++++++
->  3 files changed, 1133 insertions(+)
->  create mode 100644 drivers/pinctrl/qcom/pinctrl-mdm9607.c
-> 
-> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
-> index 6853a896c476..34a7b9322b9b 100644
-> --- a/drivers/pinctrl/qcom/Kconfig
-> +++ b/drivers/pinctrl/qcom/Kconfig
-> @@ -88,6 +88,14 @@ config PINCTRL_MSM8960
->  	  This is the pinctrl, pinmux, pinconf and gpiolib driver for the
->  	  Qualcomm TLMM block found in the Qualcomm 8960 platform.
->  
-> +config PINCTRL_MDM9607
-> +	tristate "Qualcomm 9607 pin controller driver"
-> +	depends on GPIOLIB && OF
-> +	depends on PINCTRL_MSM
-> +	help
-> +	  This is the pinctrl, pinmux, pinconf and gpiolib driver for the
-> +	  Qualcomm TLMM block found in the Qualcomm 9607 platform.
-> +
->  config PINCTRL_MDM9615
->  	tristate "Qualcomm 9615 pin controller driver"
->  	depends on GPIOLIB && OF
-> diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-> index d4301fbb7274..a60b075b3054 100644
-> --- a/drivers/pinctrl/qcom/Makefile
-> +++ b/drivers/pinctrl/qcom/Makefile
-> @@ -19,6 +19,7 @@ obj-$(CONFIG_PINCTRL_MSM8996)   += pinctrl-msm8996.o
->  obj-$(CONFIG_PINCTRL_MSM8998)   += pinctrl-msm8998.o
->  obj-$(CONFIG_PINCTRL_QCS404)	+= pinctrl-qcs404.o
->  obj-$(CONFIG_PINCTRL_QDF2XXX)	+= pinctrl-qdf2xxx.o
-> +obj-$(CONFIG_PINCTRL_MDM9607)	+= pinctrl-mdm9607.o
->  obj-$(CONFIG_PINCTRL_MDM9615)	+= pinctrl-mdm9615.o
->  obj-$(CONFIG_PINCTRL_QCOM_SPMI_PMIC) += pinctrl-spmi-gpio.o
->  obj-$(CONFIG_PINCTRL_QCOM_SPMI_PMIC) += pinctrl-spmi-mpp.o
-> diff --git a/drivers/pinctrl/qcom/pinctrl-mdm9607.c b/drivers/pinctrl/qcom/pinctrl-mdm9607.c
-[..]
-> +enum mdm9607_functions {
-> +	msm_mux_blsp_spi3,
+# dd if=/tmp/rand.img of=/dev/mtdblock0 bs=4096 seek=1024
+1024+0 records in
+1024+0 records out
+#
+# dd if=/dev/mtd0 of=/tmp/rand1.img bs=4096 skip=1024 count=1024
 
-The order of these doesn't matter, so please sort them alphabetically.
+1024+0 records in
+1024+0 records out
+#
+#
+# md5sum /tmp/*.img
+83e45a56766168b47e6db1d41b1b403d  /tmp/rand.img
+83e45a56766168b47e6db1d41b1b403d  /tmp/rand1.img
+#
+# dmesg | grep XT25F128BSSIGU
+[    0.200738] spi-nor spi3.0: XT25F128BSSIGU (16384 Kbytes)
+#
 
-> +	msm_mux_gpio,
-> +	msm_mux_blsp_uart3,
-> +	msm_mux_qdss_tracedata_a,
-> +	msm_mux_bimc_dte1,
-> +	msm_mux_blsp_i2c3,
-> +	msm_mux_qdss_traceclk_a,
-> +	msm_mux_bimc_dte0,
-> +	msm_mux_qdss_cti_trig_in_a1,
-> +	msm_mux_blsp_spi2,
-> +	msm_mux_blsp_uart2,
-> +	msm_mux_blsp_uim2,
-> +	msm_mux_blsp_i2c2,
-> +	msm_mux_qdss_tracectl_a,
-> +	msm_mux_sensor_int2,
-> +	msm_mux_blsp_spi5,
-> +	msm_mux_blsp_uart5,
-> +	msm_mux_ebi2_lcd,
-> +	msm_mux_m_voc,
-> +	msm_mux_sensor_int3,
-> +	msm_mux_sensor_en,
-> +	msm_mux_blsp_i2c5,
-> +	msm_mux_ebi2_a,
-> +	msm_mux_qdss_tracedata_b,
-> +	msm_mux_sensor_rst,
-> +	msm_mux_blsp2_spi,
-> +	msm_mux_blsp_spi1,
-> +	msm_mux_blsp_uart1,
-> +	msm_mux_blsp_uim1,
-> +	msm_mux_blsp3_spi,
-> +	msm_mux_gcc_gp2_clk_b,
-> +	msm_mux_gcc_gp3_clk_b,
-> +	msm_mux_blsp_i2c1,
-> +	msm_mux_gcc_gp1_clk_b,
-> +	msm_mux_blsp_spi4,
-> +	msm_mux_blsp_uart4,
-> +	msm_mux_rcm_marker1,
-> +	msm_mux_blsp_i2c4,
-> +	msm_mux_qdss_cti_trig_out_a1,
-> +	msm_mux_rcm_marker2,
-> +	msm_mux_qdss_cti_trig_out_a0,
-> +	msm_mux_blsp_spi6,
-> +	msm_mux_blsp_uart6,
-> +	msm_mux_pri_mi2s_ws_a,
-> +	msm_mux_ebi2_lcd_te_b,
-> +	msm_mux_blsp1_spi,
-> +	msm_mux_backlight_en_b,
-> +	msm_mux_pri_mi2s_data0_a,
-> +	msm_mux_pri_mi2s_data1_a,
-> +	msm_mux_blsp_i2c6,
-> +	msm_mux_ebi2_a_d_8_b,
-> +	msm_mux_pri_mi2s_sck_a,
-> +	msm_mux_ebi2_lcd_cs_n_b,
-> +	msm_mux_touch_rst,
-> +	msm_mux_pri_mi2s_mclk_a,
-> +	msm_mux_pwr_nav_enabled_a,
-> +	msm_mux_ts_int,
-> +	msm_mux_sd_write,
-> +	msm_mux_pwr_crypto_enabled_a,
-> +	msm_mux_codec_rst,
-> +	msm_mux_adsp_ext,
-> +	msm_mux_atest_combodac_to_gpio_native,
-> +	msm_mux_uim2_data,
-> +	msm_mux_gmac_mdio,
-> +	msm_mux_gcc_gp1_clk_a,
-> +	msm_mux_uim2_clk,
-> +	msm_mux_gcc_gp2_clk_a,
-> +	msm_mux_eth_irq,
-> +	msm_mux_uim2_reset,
-> +	msm_mux_gcc_gp3_clk_a,
-> +	msm_mux_eth_rst,
-> +	msm_mux_uim2_present,
-> +	msm_mux_prng_rosc,
-> +	msm_mux_uim1_data,
-> +	msm_mux_uim1_clk,
-> +	msm_mux_uim1_reset,
-> +	msm_mux_uim1_present,
-> +	msm_mux_gcc_plltest,
-> +	msm_mux_uim_batt,
-> +	msm_mux_coex_uart,
-> +	msm_mux_codec_int,
-> +	msm_mux_qdss_cti_trig_in_a0,
-> +	msm_mux_atest_bbrx1,
-> +	msm_mux_cri_trng0,
-> +	msm_mux_atest_bbrx0,
-> +	msm_mux_cri_trng,
-> +	msm_mux_qdss_cti_trig_in_b0,
-> +	msm_mux_atest_gpsadc_dtest0_native,
-> +	msm_mux_qdss_cti_trig_out_b0,
-> +	msm_mux_qdss_tracectl_b,
-> +	msm_mux_qdss_traceclk_b,
-> +	msm_mux_pa_indicator,
-> +	msm_mux_modem_tsync,
-> +	msm_mux_nav_tsync_out_a,
-> +	msm_mux_nav_ptp_pps_in_a,
-> +	msm_mux_ptp_pps_out_a,
-> +	msm_mux_gsm0_tx,
-> +	msm_mux_qdss_cti_trig_in_b1,
-> +	msm_mux_cri_trng1,
-> +	msm_mux_qdss_cti_trig_out_b1,
-> +	msm_mux_ssbi1,
-> +	msm_mux_atest_gpsadc_dtest1_native,
-> +	msm_mux_ssbi2,
-> +	msm_mux_atest_char3,
-> +	msm_mux_atest_char2,
-> +	msm_mux_atest_char1,
-> +	msm_mux_atest_char0,
-> +	msm_mux_atest_char,
-> +	msm_mux_ebi0_wrcdc,
-> +	msm_mux_ldo_update,
-> +	msm_mux_gcc_tlmm,
-> +	msm_mux_ldo_en,
-> +	msm_mux_dbg_out,
-> +	msm_mux_atest_tsens,
-> +	msm_mux_lcd_rst,
-> +	msm_mux_wlan_en1,
-> +	msm_mux_nav_tsync_out_b,
-> +	msm_mux_nav_ptp_pps_in_b,
-> +	msm_mux_ptp_pps_out_b,
-> +	msm_mux_pbs0,
-> +	msm_mux_sec_mi2s,
-> +	msm_mux_pwr_modem_enabled_a,
-> +	msm_mux_pbs1,
-> +	msm_mux_pwr_modem_enabled_b,
-> +	msm_mux_pbs2,
-> +	msm_mux_pwr_nav_enabled_b,
-> +	msm_mux_pwr_crypto_enabled_b,
-> +	msm_mux_NA,
-> +};
-[..]
-> +static const struct msm_pingroup mdm9607_groups[] = {
-> +	PINGROUP(0, blsp_uart3, blsp_spi3, NA, NA, NA, NA, NA,
-> +		 qdss_tracedata_a, NA),
+>
+>> On 6/11/21 1:36 AM, Chris Morgan wrote:
+>>> On Wed, Jun 09, 2021 at 10:13:48PM +0800, Jon Lin wrote:
+>>>> From: Chris Morgan <macromorgan@hotmail.com>
+>>>>
+>>>> This enables the Rockchip Serial Flash Controller for the Odroid Go
+>>>> Advance. Note that while the attached SPI NOR flash and the controller
+>>>> both support quad read mode, only 2 of the required 4 pins are present.
+>>>> The rx and tx bus width is set to 2 for this reason.
+>>>>
+>>>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+>>>> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+>>>> ---
+>>>>
+>>>> Changes in v7: None
+>>>> Changes in v6: None
+>>>> Changes in v5: None
+>>>> Changes in v4: None
+>>>> Changes in v3: None
+>>>> Changes in v2: None
+>>>> Changes in v1: None
+>>>>
+>>>>    .../boot/dts/rockchip/rk3326-odroid-go2.dts      | 16 ++++++++++++++++
+>>>>    1 file changed, 16 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+>>>> index 49c97f76df77..f78e11dd8447 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+>>>> @@ -484,6 +484,22 @@
+>>>>    	status = "okay";
+>>>>    };
+>>>> +&sfc {
+>>>> +	pinctrl-0 = <&sfc_clk &sfc_cs0 &sfc_bus2>;
+>>>> +	pinctrl-names = "default";
+>>>> +	#address-cells = <1>;
+>>>> +	#size-cells = <0>;
+>>>> +	status = "okay";
+>>>> +
+>>>> +	flash@0 {
+>>>> +		compatible = "jedec,spi-nor";
+>>>> +		reg = <0>;
+>>>> +		spi-max-frequency = <108000000>;
+>>>> +		spi-rx-bus-width = <2>;
+>>>> +		spi-tx-bus-width = <2>;
+>>> Note that I am still working with Jon Lin to research this, but it was
+>>> found in testing that if I set the tx bus width to 1 the problems I
+>>> encountered in earlier are resolved. At this time I do not know if it
+>>> is an issue with the driver for the flash controller, or if the NOR, or
+>>> board itself has some sort of errata which prevent dual tx from working
+>>> correctly. Note that as of right now the flash chip I am using (an
+>>> XTX XT25F128B) is not currently supported in mainline, so it's very
+>>> possible this is some sort of errata with the chip. It's also possible
+>>> that there is something with the board that is interferring with dual
+>>> mode TX.  When Jon comes back that he has tested dual mode on the SFC
+>>> with a different board/chip I will recommend that we change the tx
+>>> bus width here to a 1, and then once the XT25F128B gets mainlined we
+>>> can see if someone else has issues with dual tx mode so we can note
+>>> that as a problem with the chip. Or maybe there is something weird
+>>> with dual tx mode yet on the SFC driver/controller, I don't know yet.
+>>> I'm all too happy to work with a Rockchip engineer so things like
+>>> this can be determined before we hit mainline. :-)
+>>>
+>>> The XTX25F128B driver is currently awaiting a decision on how to handle
+>>> continuation codes, as this chip ID should be using continuation codes,
+>>> but doesn't appear to return them when you query for manufacturer ID.
+>>> So I should also note in the commit here that the SFC will still be
+>>> unusable on the Odroid Go Advance until the XTX25F128B is also
+>>> mainlined.
+>>>
+>>> Thank you.
+>>>
+>>>> +	};
+>>>> +};
+>>>> +
+>>>>    &tsadc {
+>>>>    	status = "okay";
+>>>>    };
+>>>> -- 
+>>>> 2.17.1
+>>>>
+>>>>
+>>>>
+>>>
+>>
+>
+>
 
-After doing a few platforms I realized that replacing NA with _ makes
-this easier to read.
 
-And please avoid breaking these lines.
-
-> +	PINGROUP(1, blsp_uart3, blsp_spi3, NA, NA, NA, NA, NA,
-> +		 qdss_tracedata_a, bimc_dte1),
-[..]
-> +	PINGROUP(79, sec_mi2s, NA, pwr_crypto_enabled_b, NA, qdss_tracedata_a,
-> +		 NA, NA, NA, NA),
-> +	SDC_PINGROUP(sdc1_clk, 0x10a000, 13, 6),
-> +	SDC_PINGROUP(sdc1_cmd, 0x10a000, 11, 3),
-> +	SDC_PINGROUP(sdc1_data, 0x10a000, 9, 0),
-> +	SDC_PINGROUP(sdc2_clk, 0x109000, 14, 6),
-> +	SDC_PINGROUP(sdc2_cmd, 0x109000, 11, 3),
-> +	SDC_PINGROUP(sdc2_data, 0x109000, 9, 0),
-> +	SDC_PINGROUP(qdsd_clk, 0x19c000, 3, 0),
-> +	SDC_PINGROUP(qdsd_cmd, 0x19c000, 8, 5),
-> +	SDC_PINGROUP(qdsd_data0, 0x19c000, 13, 10),
-> +	SDC_PINGROUP(qdsd_data1, 0x19c000, 18, 15),
-> +	SDC_PINGROUP(qdsd_data2, 0x19c000, 23, 20),
-> +	SDC_PINGROUP(qdsd_data3, 0x19c000, 28, 25),
-> +};
-> +
-> +#define NUM_GPIO_PINGROUPS	92
-
-Only 80 of these makes sense to poke through the gpio framework, so this
-should be 80...
-
-> +
-> +static const struct msm_pinctrl_soc_data mdm9607_pinctrl = {
-> +	.pins = mdm9607_pins,
-> +	.npins = ARRAY_SIZE(mdm9607_pins),
-> +	.functions = mdm9607_functions,
-> +	.nfunctions = ARRAY_SIZE(mdm9607_functions),
-> +	.groups = mdm9607_groups,
-> +	.ngroups = ARRAY_SIZE(mdm9607_groups),
-> +	.ngpios = NUM_GPIO_PINGROUPS,
-> +};
-> +
-> +static int mdm9607_pinctrl_probe(struct platform_device *pdev)
-> +{
-> +	return msm_pinctrl_probe(pdev, &mdm9607_pinctrl);
-> +}
-> +
-> +static const struct of_device_id mdm9607_pinctrl_of_match[] = {
-> +	{ .compatible = "qcom,mdm9607-pinctrl", },
-
-qcom,mdm9607-tlmm
-
-> +	{ },
-
-No need to this comma.
-
-Thanks,
-Bjorn
