@@ -2,80 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 816203A3B8E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 08:00:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C52983A3BB8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 08:10:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230307AbhFKGCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 02:02:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45952 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230291AbhFKGCy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 02:02:54 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 37A13610A5;
-        Fri, 11 Jun 2021 06:00:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623391255;
-        bh=G5fNaWMC3tJrhYe4hSWFBJEP1GPo85Wn6N+8X6LULmY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PvOKXoqLPWg2DL5x0sLR3jKcaLGDgemhNXYpdA4vtfzQv5BZ+aG1UVF6NEB3ZEE/y
-         VKSvMaOBeEpJabWdr98IEW6B2Mbs1smhiZTGGm81Iy1QMsITnz5QWcHc2pnBHnPA12
-         TiI7ZL+jfLMeuLe7Gc0p14QRnfd5OpcDBLeViF4XXac6nhYVQ9IbRqRaKy1X7T7wTa
-         9zgC0eyoy4qX4/ZYQ5iMz22jmp1ROaH3qFse8G1ZnrZ0ss69dmSR3W4qTDIz01t9zQ
-         /AYCJFbr4/JJD1LiaaZnPNSOIOHFrOCAVjaumhiBixqN0vTtZbLLSOjqkdmXKSDiSu
-         nO4uq3H9HqJdQ==
-Date:   Fri, 11 Jun 2021 11:30:47 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ARM: dts: owl-s500: Add ethernet support
-Message-ID: <20210611060047.GC6950@thinkpad>
-References: <cover.1623358117.git.cristian.ciocaltea@gmail.com>
- <926456e8a3700b257605534cf711a0bfb667fc36.1623358117.git.cristian.ciocaltea@gmail.com>
+        id S231218AbhFKGMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 02:12:54 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:59447 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230463AbhFKGMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 02:12:54 -0400
+X-UUID: 557d55a163574bb8a9ea390b1925ce5f-20210611
+X-UUID: 557d55a163574bb8a9ea390b1925ce5f-20210611
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <chuanjia.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1474560928; Fri, 11 Jun 2021 14:10:11 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 11 Jun 2021 14:10:08 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 11 Jun 2021 14:10:07 +0800
+From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
+To:     <lorenzo.pieralisi@arm.com>, <robh+dt@kernel.org>,
+        <bhelgaas@google.com>, <matthias.bgg@gmail.com>
+CC:     <ryder.lee@mediatek.com>, <jianjun.wang@mediatek.com>,
+        <yong.wu@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v10 0/4] PCI: mediatek: Spilt PCIe node to comply with hardware design
+Date:   Fri, 11 Jun 2021 14:08:58 +0800
+Message-ID: <20210611060902.12418-1-chuanjia.liu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <926456e8a3700b257605534cf711a0bfb667fc36.1623358117.git.cristian.ciocaltea@gmail.com>
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 12:09:21AM +0300, Cristian Ciocaltea wrote:
-> Add Ethernet MAC device tree node for Actions Semi S500 SoC.
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+There are two independent PCIe controllers in MT2712 and MT7622
+platform. Each of them should contain an independent MSI domain.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+In old dts architecture, MSI domain will be inherited from the root
+bridge, and all of the devices will share the same MSI domain.
+Hence that, the PCIe devices will not work properly if the irq number
+which required is more than 32.
 
-Thanks,
-Mani
+Split the PCIe node for MT2712 and MT7622 platform to comply with
+the hardware design and fix MSI issue.
 
-> ---
->  arch/arm/boot/dts/owl-s500.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/owl-s500.dtsi b/arch/arm/boot/dts/owl-s500.dtsi
-> index cd635f222d26..739b4b9cec8c 100644
-> --- a/arch/arm/boot/dts/owl-s500.dtsi
-> +++ b/arch/arm/boot/dts/owl-s500.dtsi
-> @@ -324,5 +324,15 @@ mmc2: mmc@b0238000 {
->  			dma-names = "mmc";
->  			status = "disabled";
->  		};
-> +
-> +		ethernet: ethernet@b0310000 {
-> +			compatible = "actions,s500-emac", "actions,owl-emac";
-> +			reg = <0xb0310000 0x10000>;
-> +			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&cmu CLK_ETHERNET>, <&cmu CLK_RMII_REF>;
-> +			clock-names = "eth", "rmii";
-> +			resets = <&cmu RESET_ETHERNET>;
-> +			status = "disabled";
-> +		};
->  	};
->  };
-> -- 
-> 2.32.0
-> 
+change note:
+  v10:Rebase for 5.13-rc1, no code change. 
+  v9:Add reviewed-by Rob and fix kernel-ci bot warning.
+     In the scene of using new dts format,when mtk_pcie_parse_port fails,
+     of_node_put don't need to be called.
+  v8:Remove slot node and fix yaml warning.
+  v7:dt-bindings file was modified as suggested by Rob, other file no change.
+  v6:Fix yaml error. make sure driver compatible with old and new DTS format.
+  v5:Rebase for 5.9-rc1, no code change. 
+  v4:Change commit message due to bayes statistical bogofilter
+     considers this series patch SPAM.
+  v3:Rebase for 5.8-rc1. Only collect ack of Ryder, No code change.
+  v2:Change the allocation of MT2712 PCIe MMIO space due to the
+     allocation size is not right in v1.
+
+Chuanjia Liu (4):
+  dt-bindings: PCI: mediatek: Update the Device tree bindings
+  PCI: mediatek: Add new method to get shared pcie-cfg base address and
+      parse node
+  arm64: dts: mediatek: Split PCIe node for MT2712 and MT7622
+  ARM: dts: mediatek: Update MT7629 PCIe node for new format
+
+  .../bindings/pci/mediatek-pcie-cfg.yaml       |  39 ++++
+  .../devicetree/bindings/pci/mediatek-pcie.txt | 201 ++++++++++--------
+  arch/arm/boot/dts/mt7629-rfb.dts              |   3 +-
+  arch/arm/boot/dts/mt7629.dtsi                 |  45 ++--
+  arch/arm64/boot/dts/mediatek/mt2712e.dtsi     |  97 +++++----
+  .../dts/mediatek/mt7622-bananapi-bpi-r64.dts  |  16 +-
+  arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts  |   6 +-
+  arch/arm64/boot/dts/mediatek/mt7622.dtsi      | 112 +++++-----
+  drivers/pci/controller/pcie-mediatek.c        |  52 +++--
+  9 files changed, 326 insertions(+), 245 deletions(-)
+  create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-cfg.yaml
+
+-- 
+2.18.0
+
+
+
