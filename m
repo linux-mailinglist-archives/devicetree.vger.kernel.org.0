@@ -2,135 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2BBA3A3D94
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 09:54:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA5453A3DC7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 10:11:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231312AbhFKH4S convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 11 Jun 2021 03:56:18 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:55337 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229733AbhFKH4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 03:56:17 -0400
-Received: from [77.244.183.192] (port=63938 helo=[192.168.178.41])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1lrbze-0000eL-75; Fri, 11 Jun 2021 09:54:18 +0200
-Subject: Re: [PATCH 1/2] dt-bindings: clk: vc5: Add property for SD polarity
-To:     Sean Anderson <sean.anderson@seco.com>, linux-clk@vger.kernel.org
-Cc:     Adam Ford <aford173@gmail.com>, Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-References: <20210607154931.2491499-1-sean.anderson@seco.com>
- <eafea6ac-fbfd-3f42-93fa-edb8cdced3ea@lucaceresoli.net>
- <5ef31cbd-473c-0916-85ff-860012ac694d@seco.com>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <a5c55357-e5e8-9e00-53cc-509e78fd6987@lucaceresoli.net>
-Date:   Fri, 11 Jun 2021 09:54:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230356AbhFKINw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 04:13:52 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.51]:13871 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230303AbhFKINw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 04:13:52 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1623399108; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=Yhp1ufU+plb2w7ndSSjd2McDW/6O3DBp8XIN/WdNrZAiQzUxUNln0V8np/bUxgbByI
+    9zO7NDfsznUHs4H7pktf2d5MydrDWU4FM3uaRI3sWhkdBEdPAXWaArt3aLYMHQzg1xEV
+    UgDfLLYrrfMqa3tYVbHk/EBA3fChCkBqRlqLztFDf2gZmNv7LbEzGoOoTBEMX5heBZSi
+    g7tmIt/b8VkxO2nX7OFvp7wya227UMhqBBKlEhL6s3yUmdzhfc4dkAf6B0cIf1EQgpqj
+    srKN+dWweb747WQceLCcBNDJZ4Iz3qbVT23ZSo7F54PNgcVTMfD2ND3T7JyBkW0uFN0Z
+    MWqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623399108;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=kuM4h7mC8y5z6aurlPPcWWagOJ8KT3YnyvYk99jtCiQ=;
+    b=NWF1Np+K1GBG0HY00wFIhrjCpMG7Kp4cDZXag2lzQr3oFLGuoGqZ34Jl3j/BxFFehs
+    dxPRM0+UXf/CL8UXhE8xF0g6CnWQp9JPUvrZkY2E+DvBH7EvMxFQ73vwTX8OPnv1xQ4C
+    hPWank7Vlnn6KccW6YRSMCdEju/Dw5Lm7xeS6G6xuNX/Wgzir/isd3Y5Q+n6N8yqTwAY
+    xPW8mwDNV8WRhLn/GNzoBwM3q9umgN2Taza0Ju18RPW6e3j3sKcWSxHZg4WoXdfZfivJ
+    Z70v+isjT67DoZjD3RqsaiLgABGgu4uNLir0XCOqKqgqFXzc5BcTqwYqotath3rfrPZX
+    eWbQ==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623399108;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=kuM4h7mC8y5z6aurlPPcWWagOJ8KT3YnyvYk99jtCiQ=;
+    b=XzhQsc8DUz71eqnxYECB2t6h2quPB/gMATka+7qRLSnhBj+Smner5e6KQUaQcj1tvP
+    qBO1f2yaFAiRxj8o6QmH4Fo2wSZyklnB93jfbrTUPYXjlK29IUKWz/VP8TueGZzxyVSg
+    7X+Od0URCoCLSuB3CsIrvtS41WN/32ksreIhpDcSjkPykcHcYaq8DM3GlVknf9znuXS7
+    Cf9Cd7MUPatK4p7frlVNPmo00ndnn0WO3qcpWvGzTXQ1psREPoRItoVkaW48ZW5kRRgI
+    hjQJfVvbHZqVRYKnTcr6sP2UUIu2RhWcUmnQD+utSmGyqUpG/WZUqH5JGzXs6zW6bB3E
+    7Zpw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxA6m6PrPw="
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
+    with ESMTPSA id y01375x5B8Bl02c
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 11 Jun 2021 10:11:47 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Peter Meerwald <pmeerw@pmeerw.net>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH v3 00/10] iio: accel: bmc150: Add support for BMA253/BMA254
+Date:   Fri, 11 Jun 2021 10:08:53 +0200
+Message-Id: <20210611080903.14384-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <5ef31cbd-473c-0916-85ff-860012ac694d@seco.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8BIT
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sean,
+The Bosch BMA253 accelerometer is very similar to both BMA254 and BMA255.
+The current situation is very confusing: BMA254 is supported by the bma180
+driver, but BMA255 is supported by the bmc150-accel driver.
 
-On 10/06/21 17:43, Sean Anderson wrote:
-> 
-> 
-> On 6/10/21 5:05 AM, Luca Ceresoli wrote:
->> Hi Sean,
->>
->> On 07/06/21 17:49, Sean Anderson wrote:
->>> This property allows setting the SD/OE pin's polarity to active-high,
->>> instead of the default of active-low.
->>>
->>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->>
->> Thanks.
->>
->>> +  idt,sd-active-high:
->>> +    $ref: /schemas/types.yaml#/definitions/flag
->>> +    description: SD/OE pin polarity is active-high
->>
->> I think the name "sd" is misleading.
-> 
-> I do as well. After sending this patch, I reviewed the documentation
-> again and discovered that the functionality was not as clear as I
-> initially thought.
-> 
->> In the Renesas docs (which are very confusing on their own about this
->> topic) this bit is called "SP" -- *S*D/OE *P*olarity. But actually it
->> controls polarity of the SD/OE pin only if the pin is configured for
->> "OE" function:
->>
->>> SP bit = “SD/OE pin Polarity Bit”: Set the polarity of the SD/OE
->>> pin where outputs enable or disable. Only works with OE, not with SD.
->> (VC6E register and programming guide [0])
->>
->> As such I suggest you use either "sp" to keep the naming used in the
->> Renesas docs or "oe" as it actually controls OE polarity only. I do
->> prefer "sp" as it helps matching with the datasheets, but maybe adding a
->> little more detail in bindings docs to clarify, as in:
->>
->>   idt,sp-active-high:
->>     $ref: /schemas/types.yaml#/definitions/flag
->>     description: SD/OE pin polarity is active-high
->>                  (only works when SD/OE pin is configured as OE)
->>
->> BTW is it only me finding the "Shutdown Function" of [0] completely
->> confusing? Also, Table 24 has contradictory lines and missing lines. I'm
->> sending a request to Renesas support to ask them to clarify it all.
-> 
-> I rearranged the table to highlight which bits cause the output to
-> become inactive:
-> 
-> SH    SP    OSn    OEn    SD/OE    OUT
-> x    x    1    0    x    Active
-> 0    0    1    1    0    Active
-> 0    0    1    1    1    Inactive
-> 0    1    1    1    0    Inactive
-> 0    1    1    1    1    Active
-> 1    0    1    1    0    Active
-> 1    0    x    x    1    Shutdown
-> 1    1    1    1    0    Inactive
-> 1    1    x    x    1    Shutdown
-> x    x    0    x    x    Inactive>
-> This may be condensed to
-> 
-> SH    SP    SD/OE function for 0/1
-> 0    0    Active/Inactive
-> 0    1    Inactive/Active
-> 1    0    Active/Shutdown
-> 1    1    Inactive/Shutdown
-> 
-> According to the datasheet, the default settings are SH=0 and SP=0. So
-> perhaps a good set of properties would be
-> 
-> idt,enable-shutdown:
->     Shutdown the device when the SD/OE pin is high. This would set
->     SH=1.
-> idt,output-enable-active-high:
->     Disable output when the SD/OE pin is low. This would set SP=1.
+It turns out the bma180 and bmc150-accel drivers have quite some overlap,
+and BMA253/BMA254 would be a bit better supported in bmc150-accel
+(which has support for the motion trigger/interrupt).
 
-Seems good.
+This series adds BMA253 support to bmc150-accel and also moves BMA254
+over to bmc150, removing some unnecessary code from the bma180 driver.
+
+In v2 I also sneaked in a small fix for the scale table of BMA222
+to simplify backporting for the stable people.
+
+---
+Changes in v3:
+  - Add new "iio: accel: bmc150: Clarify combo modules in Kconfig" patch
+  - Sort "one-line" chip name lists as well, not just multi-line ones
+
+v2: https://lore.kernel.org/linux-iio/20210610122126.50504-1-stephan@gerhold.net/
+Changes in v2:
+  - Add new "iio: accel: bmc150: Fix bma222 scale unit" patch at the
+    beginning so the stable people can backport it without conflicts
+  - Add Reviewed-by: from Hans and Andy for all previous patches
+  - Add patch 3 and 4 to have all the chip lists in a consistent order
+  - Fix last patch to also drop BMA254 from the file header in bma180.c
+
+v1: https://lore.kernel.org/linux-iio/20210610095300.3613-1-stephan@gerhold.net/
+
+Stephan Gerhold (10):
+  iio: accel: bmc150: Fix bma222 scale unit
+  iio: accel: bmc150: Clarify combo modules in Kconfig
+  iio: accel: bmc150: Drop misleading/duplicate chip identifiers
+  iio: accel: bmc150: Drop duplicated documentation of supported chips
+  iio: accel: bmc150: Sort all chip names alphabetically / by chip ID
+  dt-bindings: iio: accel: bma255: Document bosch,bma253
+  iio: accel: bmc150: Add device IDs for BMA253
+  dt-bindings: iio: bma255: Allow multiple interrupts
+  dt-bindings: iio: accel: bma180/bma255: Move bma254 to bma255 schema
+  iio: accel: bma180/bmc150: Move BMA254 to bmc150-accel driver
+
+ .../bindings/iio/accel/bosch,bma180.yaml      |  3 +-
+ .../bindings/iio/accel/bosch,bma255.yaml      |  9 +-
+ drivers/iio/accel/Kconfig                     | 11 ++-
+ drivers/iio/accel/bma180.c                    | 92 +++----------------
+ drivers/iio/accel/bmc150-accel-core.c         | 87 ++++++------------
+ drivers/iio/accel/bmc150-accel-i2c.c          | 52 +++++------
+ drivers/iio/accel/bmc150-accel-spi.c          | 31 ++++---
+ drivers/iio/accel/bmc150-accel.h              | 10 --
+ 8 files changed, 98 insertions(+), 197 deletions(-)
 
 -- 
-Luca
+2.32.0
 
