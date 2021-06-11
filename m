@@ -2,147 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CDF13A48AE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D3D73A4868
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:05:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230469AbhFKSca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 14:32:30 -0400
-Received: from mail-dm6nam11on2058.outbound.protection.outlook.com ([40.107.223.58]:50271
-        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229753AbhFKSc3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 14:32:29 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DaPVJFxdAzpdQZ1zTLdozjX3GrysgqSodPPR/GM+xRW9dNEL3kSg2vtheVXBA7gRZy6by12ctAxa3gNjjWXSAOUL4HZ0NPaF9L9N6ZK0EuKWf/YcNLzWiIi+ZNdkF140C5Np7B/roLdsvY2fCUB3S/yzeA2jkimeamBrSrD4oMFaZmiSqgQ28wKPR/JKbfQHocTaFyB7l5bfV6z6hJMxhFmUlT+qyWGxZ4zKoy41GTFOZHIwfqs1I+4iz04zVYbTwmWEscqXqdgFgNG2VztTLxXNvnJz5lvaFaxuUfnNiyFaBddrn7CcVhLn02n0dOcy46p3BhSQ5DNiDe9qOMcYug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=132X75BNOcJB+60bkxR/zHRFpTLQ5uf0oWURnWR8xTo=;
- b=QnFrOsF6KW6cYqL0+TTd5GCoqJ9YfNHHf5cQmXQcHNDe3fXtNZhXuZAYUhq6ypvGNkskNzf/hperIcT9Wtbo9MRiPLwoHUCMEcpS4VAGxJiUoD+zZLsVZaN8oonNn8ZqyQGKW1oZxIALOUlzHMCLV+I/iA0ZZWN3GlapyVf4Pm3NH2nppGHgu1IcDkrVQqF/mkEVGFGJJlWOg8aRfUB944ZATtWtDAYhecNp/9a5gfimxqKj0IK0ZH3Mihwm8BEDL/Q6uInX8zTiHEPZDOeiD2DfgWU1zhVqjnojTpfb+KrQg3emD2zMTiS6Kfch60Ny07EWGi234tkumVl661FS1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
+        id S229985AbhFKSHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 14:07:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46116 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230201AbhFKSHc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 14:07:32 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2B1C061574;
+        Fri, 11 Jun 2021 11:05:33 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id l7-20020a05600c1d07b02901b0e2ebd6deso9089620wms.1;
+        Fri, 11 Jun 2021 11:05:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=132X75BNOcJB+60bkxR/zHRFpTLQ5uf0oWURnWR8xTo=;
- b=SueSuh5SuFlhRgVJcTb58yQs5V+LpfY84aASMOA9TqD7kYrXJ1WwlPgAG/Z+Gz+QObIkPYCY81zgII2sliKj2Q2y/mLip8xCtY/ZDUIaTHOR0/HdjKpCzOiMgORK0y8VrZk9NbVfJnntMUkEaf1cG+gCkmha4xTF0fblfTjImdo=
-Received: from BY5PR02MB6520.namprd02.prod.outlook.com (2603:10b6:a03:1d3::8)
- by BY5PR02MB6404.namprd02.prod.outlook.com (2603:10b6:a03:1f8::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.24; Fri, 11 Jun
- 2021 18:30:24 +0000
-Received: from BY5PR02MB6520.namprd02.prod.outlook.com
- ([fe80::d880:7694:92d6:7798]) by BY5PR02MB6520.namprd02.prod.outlook.com
- ([fe80::d880:7694:92d6:7798%5]) with mapi id 15.20.4219.024; Fri, 11 Jun 2021
- 18:30:24 +0000
-From:   Radhey Shyam Pandey <radheys@xilinx.com>
-To:     Lars-Peter Clausen <lars@metafoo.de>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Michal Simek <michals@xilinx.com>
-CC:     "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        git <git@xilinx.com>
-Subject: RE: [RFC v2 PATCH 6/7] dmaengine: xilinx_dma: Use tasklet_hi_schedule
- for timing critical usecase
-Thread-Topic: [RFC v2 PATCH 6/7] dmaengine: xilinx_dma: Use
- tasklet_hi_schedule for timing critical usecase
-Thread-Index: AQHXLWnYyET0Sdl3eEuBNLLlieUfgqq1Mh8AgFotgtA=
-Date:   Fri, 11 Jun 2021 18:30:24 +0000
-Message-ID: <BY5PR02MB652096A6F787E277BFD404A2C7349@BY5PR02MB6520.namprd02.prod.outlook.com>
-References: <1617990965-35337-1-git-send-email-radhey.shyam.pandey@xilinx.com>
- <1617990965-35337-7-git-send-email-radhey.shyam.pandey@xilinx.com>
- <52f01459-13be-ff29-1c07-b98636169c74@metafoo.de>
-In-Reply-To: <52f01459-13be-ff29-1c07-b98636169c74@metafoo.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: metafoo.de; dkim=none (message not signed)
- header.d=none;metafoo.de; dmarc=none action=none header.from=xilinx.com;
-x-originating-ip: [149.199.50.130]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c6b0a1c4-b9ae-46dc-976d-08d92d06fa5c
-x-ms-traffictypediagnostic: BY5PR02MB6404:
-x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR02MB6404A6BA0EED2A9AA9591543C7349@BY5PR02MB6404.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:765;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 4a7WzI8lmDofjSsrA6+lpV5IZUBkBHocpamMmqOow3yplCd+vSlKZjqyKeEHC6dlGYp63BP78Bzg5RUgzM4zIaRrO3y1ZJ9h/MRHQDQxWJmAp2Ev2ZhKpx6q2VlabJYIWfWeYBqPFC8UuTY+WKgD3LJ1jnt/SXbhgrz7hDZxLbLxCJXQJ48SOX7cS60DchZWDuOirrANl+oBu1xslItM9wLpyv+DEn4186DFYWoE9g0KboC8leFGXmdK1Y4MclfnUXqQtMzog3pFsbZuG66FGeipQhQVt676VCA936FAF8BDqZU/5NSBs6VQ3ybzNbmNTCrlSCDwPGGtDfxpBKOtTJRlRZa0h/9kSHdvnvjC13CyzYCXXjI14fBNFUxhqkgsl0hSloe/IagNZvnMQlZg9lleUvg+FZZC5FM4L6/EFQOXBUo/wwacqBFxaJ4aEavIbCvxaHRgKnRZQRxX80sIyY0ye780rNOpG9AOGXTGfs3hLHwCOad1Wb0hgFoDm+iHW0GlBFcicPtZXwdZHbonVGTQ1py4FlIdrPzfcQJ6M5/ffwux8RXMIF/F210/qTDayD1iE5SYKOsu0BfHTD0exAEaB0EN3pEBbYK3BM1Olyc=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR02MB6520.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(396003)(366004)(39860400002)(76116006)(8936002)(7696005)(33656002)(6636002)(8676002)(55016002)(83380400001)(2906002)(9686003)(66476007)(66556008)(53546011)(52536014)(66946007)(54906003)(110136005)(478600001)(4744005)(316002)(66446008)(64756008)(122000001)(38100700002)(4326008)(186003)(107886003)(86362001)(26005)(5660300002)(71200400001)(6506007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZmtCMlAzOHdyQ1ZRSjdEejRxSjVYS2lmVm1OK0tFV3lyaVUyZXZHOU1KOFlU?=
- =?utf-8?B?ck9Jb1VKOTZodkd5OEtxaHRKQktNQXNkNFMvSThGQjlDbGlkeXI3cSs5ZENs?=
- =?utf-8?B?UzJVV21NMXpEaDZJTWpnK0hLVDZmSWFmRW9PcjdCRUw5Qk9LR0ZKUnE2ektw?=
- =?utf-8?B?UW9zVTdWSnZjQ2xmUFNXTGh2bnBlV1ZGQzZPZm1KVFhvbUdlbWFTUG1UcVFT?=
- =?utf-8?B?aFVPMlNtdFY2cW41SEZvL2xWVUdLcmR6WHBNQlZxZzA4L0dEQVhKOVExSVRR?=
- =?utf-8?B?dVRDMFEzTExQc1ZkaVEzOWZrN1o2VkRIU25EQWRCRkpMSkxENmJVcUxHQkJL?=
- =?utf-8?B?TGtvd2Y5ZXhBN3c0T1lWZkNFamFsVEF5ZFZFbFRYbFNEMzh2OEZPQTM5d3BP?=
- =?utf-8?B?Y0JYMWUzVEJjTWZPaDIrOGpQVXlzSzBWYkV1WCs3MCtBZS96TGdNTTRFRDA3?=
- =?utf-8?B?QU92Y0M1YTJvb09mZ3IxU204ZzBIT0Z4bmZyT3UxUThITFBVdWdqNnZ4dk43?=
- =?utf-8?B?bXBOQW5RYTQ5bnFhVmV1Vnc5V0VOa1M1OU5LaXBQR3EzeXJqY1FIenluSUxM?=
- =?utf-8?B?dS84QnNTTXZKalhjNUVGdkRBK3F0RDF5cmsvWUVmZVNCTVh1ZXQ3K1Q0VFdn?=
- =?utf-8?B?SWFzRGxzeFU1WHh5ay91aFp4L0o3cFltWE1qcEluMHZVNkZ0eTJyYzVrVjNN?=
- =?utf-8?B?UXVGUWhnWk4rdjc0bDRUMTVKbUNFSzJCWXZybUtTbC9RQ012OEZsMVFFamhD?=
- =?utf-8?B?NVpQU0Jwa0RmTXhtZHVwM05kWGNEb3Vaek1kUTBJWk8vSWFSdjhRdTdLd3A4?=
- =?utf-8?B?VVY5QTlnODJTTEk3UmN1a0F2Nyt4M0RFODdDYkExRGE0V1hKbEE4QTJDQW9M?=
- =?utf-8?B?YnNCRlhybkxvTlpISVpBTFJ6MGxxMWhBVEorT2tzb01JYWdRcUIxU292Mjkv?=
- =?utf-8?B?SVc4UkF0Tko5ZmJidDRncytQTk9lOXBtUTZQVjEyYkFtd1lLVXA2N04wZko3?=
- =?utf-8?B?K1BnQzR0c0NPUmNXWVhLZGdwR0hEb1JDT1NETjlZL3EyYUJKdlRmQWl4MVJR?=
- =?utf-8?B?U0IzdFlUb09FWkNOUGpNbUJpWUl1WUZyY2UxdklQTzJmeXFHNmI3SzJ1NjdP?=
- =?utf-8?B?TklKaDhmU2plc2p5QnF3OW9LeGtPMktlN3lCR0N0aWROdHNFRDRBS3FXOXJo?=
- =?utf-8?B?dVIveDZpYkJud1BKSjl2eWhJOUkrU1pKMFRTUXQyNVJPWDI4UWcwR0k4OWhN?=
- =?utf-8?B?K0J5cmt3eGhZa0xyYUFKU1huS3oyZnBBUnpSZHlaUWtMV1RXWDlsbHdnUkJ6?=
- =?utf-8?B?WnczcElVR0RWU0dSNVlBb09ydG9yRHdrREEyK3Bad1RNaWw2eWZWZk05Qmhw?=
- =?utf-8?B?akFQYStJMEZJQVlXNUhKdmxNUTJObnB0WXRYSXFkRmkxdkZzcXZHMTRKYXJa?=
- =?utf-8?B?d2R1OWEwaXZBa3ZQdHZLcTdQUG5zaGJOWEVwelpYNnloQkRyd1NPSmpOeUpU?=
- =?utf-8?B?TnNsVUdMakJHaGFUVU1PYkg5RktJNFo1N2xsUUZibHJpS2VLdWdwZnJTQm42?=
- =?utf-8?B?V1VzODd2UmxPU04yTHBteFJPdmttdit1ekFFODR5VmFjbFJ0UkgvaFNsaktK?=
- =?utf-8?B?d2k0WVV6QWlzTUJndE1MS3g1RkovSGpGa1RJMEs2bW4vWmxocTlaZ3QvMlJ6?=
- =?utf-8?B?QU8yZElOUDBWNGFnczFnUXA2TEFqbHdFM0o5eE9ycHVFTzAxY0toRDVPMDJz?=
- =?utf-8?Q?mZdRLIixLAUgv/GJsl1QkXZPDjsnKKhRGEEe5zV?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=subject:cc:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=bN6nTLxY4EsdLFWLAWGteRiQWDdS+7C3QFVM088ASFE=;
+        b=MM4COoLSA7xG8EChlBEJ5B1a4kKgW8GYL3rFLe6rgXd6dn1J+MOxxh8OBahI8Hf3qU
+         +IJVTL1QnCphHj6oaxN+dt+SObRs3mRxsjlRmjvRxbEArc50YKYVF9yHU0ZvZO09yMwC
+         znDdwS39pU0jkxg6Js37O8sxuwXXTUBffOZuewsnqSGzGs+u3xOVwfQ1iwXHo+aw+vIV
+         YDP2acm0m9nDjx6LypqbhkCFNS4twy3JWewxVb+u/uVbEpyNkTPgOxeNglCF7gpyh+jQ
+         ANxc/c0GKqCQBa7u0xibwBT4hYPzrrcqUlWKf4t6IAh92oXBzAr9b/WiHYtvOhw0bCAe
+         uZ0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=bN6nTLxY4EsdLFWLAWGteRiQWDdS+7C3QFVM088ASFE=;
+        b=TCiITQcD74tNDOuqF5O7guouhbp73gDniXeu7K5o19lTH60MaBfT2tpbrhk+/h5VFg
+         peBnsajNbVkHDY2RJlTQ2qNK2j0OXSP/oAdSPqSVLUg9XL6zL3/BwhcP25sG/hf3aYGA
+         PNypx0M4ZvDfBWqSBuv0oSM5MfFAdTW8a3uz/tepcg9z88WOR/e6y2OtDqBfTU0drlOD
+         uX9dZ9Gvb5rkPhWy3u/i/IQTW8MGbbcZybnUg+BpF9WsMgucndGXudaKTxl7++0ZX5yB
+         7uNtq4FJz+K5vMlvEo+SJx7UkyQd0Ojv18FKOl2uXcSKNrY5sdM04LA1wkf3E+DJLdUd
+         oKLw==
+X-Gm-Message-State: AOAM533hXVXfqXTGAo0RzGG+TzHQFrBPxo832dPSzL6IbvonU+a7sIj/
+        AONAefDnJH4Vn8jTBiDQd5M=
+X-Google-Smtp-Source: ABdhPJzIrCFOo0eiP8MxWhbZw3VV3cxplb7U2Gsw28q2AGWfsBBjPEgKHks424+y3z36m1ru4TB1Ug==
+X-Received: by 2002:a05:600c:4f09:: with SMTP id l9mr19610113wmq.114.1623434731861;
+        Fri, 11 Jun 2021 11:05:31 -0700 (PDT)
+Received: from localhost.localdomain (haganm.plus.com. [212.159.108.31])
+        by smtp.gmail.com with ESMTPSA id a1sm8888617wrg.92.2021.06.11.11.05.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Jun 2021 11:05:30 -0700 (PDT)
+Subject: Re: [PATCH v2 5/5] ARM: dts: NSP: Add DT files for Meraki MX65 series
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20210610232727.1383117-1-mnhagan88@gmail.com>
+ <20210610232727.1383117-6-mnhagan88@gmail.com>
+From:   Matthew Hagan <mnhagan88@gmail.com>
+Message-ID: <15622641-7689-551e-3e56-35a9eed62828@gmail.com>
+Date:   Fri, 11 Jun 2021 20:02:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR02MB6520.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6b0a1c4-b9ae-46dc-976d-08d92d06fa5c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2021 18:30:24.1916
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: GbTcy0iEqS2ZuaHViH0QaydrvDoK2YZVCvsdPj5raSildkFwyg6aRFvDsrVpLAFt3Xs4MTKZIyTrv3OEexAQfg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6404
+In-Reply-To: <20210610232727.1383117-6-mnhagan88@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBMYXJzLVBldGVyIENsYXVzZW4g
-PGxhcnNAbWV0YWZvby5kZT4NCj4gU2VudDogVGh1cnNkYXksIEFwcmlsIDE1LCAyMDIxIDEyOjQx
-IFBNDQo+IFRvOiBSYWRoZXkgU2h5YW0gUGFuZGV5IDxyYWRoZXlzQHhpbGlueC5jb20+OyB2a291
-bEBrZXJuZWwub3JnOw0KPiByb2JoK2R0QGtlcm5lbC5vcmc7IE1pY2hhbCBTaW1layA8bWljaGFs
-c0B4aWxpbnguY29tPg0KPiBDYzogZG1hZW5naW5lQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJl
-ZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS0NCj4ga2VybmVsQGxpc3RzLmluZnJhZGVhZC5v
-cmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGdpdA0KPiA8Z2l0QHhpbGlueC5jb20+
-DQo+IFN1YmplY3Q6IFJlOiBbUkZDIHYyIFBBVENIIDYvN10gZG1hZW5naW5lOiB4aWxpbnhfZG1h
-OiBVc2UNCj4gdGFza2xldF9oaV9zY2hlZHVsZSBmb3IgdGltaW5nIGNyaXRpY2FsIHVzZWNhc2UN
-Cj4gDQo+IE9uIDQvOS8yMSA3OjU2IFBNLCBSYWRoZXkgU2h5YW0gUGFuZGV5IHdyb3RlOg0KPiA+
-IFNjaGVkdWxlIHRhc2tsZXQgd2l0aCBoaWdoIHByaW9yaXR5IHRvIGVuc3VyZSB0aGF0IGNhbGxi
-YWNrIHByb2Nlc3NpbmcNCj4gPiBpcyBwcmlvcml0aXplZC4gSXQgaW1wcm92ZXMgdGhyb3VnaHB1
-dCBmb3IgbmV0ZGV2IGRtYSBjbGllbnRzLg0KPiBEbyB5b3UgaGF2ZSBzcGVjaWZpYyBudW1iZXJz
-IG9uIHRoZSB0aHJvdWdocHV0IGltcHJvdmVtZW50Pw0KSUlSQyB0aGVyZSB3YXMgfjUlIHBlcmZv
-cm1hbmNlIGltcHJvdmVtZW50IGJ1dCBJIGRpZCB0aGF0IGEgbG9uZyBiYWNrDQpvbiBhbiBvbGRl
-ciBrZXJuZWwgNC44IGFuZCBhZnRlciB0aGF0IG9ud2FyZCBJIGFsd2F5cyBjaGVja2VkIG92ZXJh
-bGwNCnBlcmZvcm1hbmNlIChoYXZpbmcgYWxsIG9wdGltaXphdGlvbiBhcHBsaWVkKS4gSW4gbmV4
-dCB2ZXJzaW9uIGkgd2lsbCANCnJlZG8gaW5jcmVtZW50YWwgcHJvZmlsaW5nIGFuZCBjYXB0dXJl
-IGltcHJvdmVtZW50ICUgaW4gdGhlIGNvbW1pdCANCmRlc2NyaXB0aW9uLg0KDQpUaGFua3MsDQpS
-YWRoZXkNCg==
+On 11/06/2021 00:27, Matthew Hagan wrote:
+
+> diff --git a/arch/arm/boot/dts/bcm958625-meraki-mx65w.dts b/arch/arm/boot/dts/bcm958625-meraki-mx65w.dts
+> new file mode 100644
+> index 000000000000..0045a33055c1
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/bcm958625-meraki-mx65w.dts
+> @@ -0,0 +1,23 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Device Tree Bindings for Cisco Meraki MX65W.
+> + *
+> + * Copyright (C) 2021 Matthew Hagan <mnhagan88@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "bcm958625-meraki-mx65x.dtsi"
+
+Should be including "bcm958625-meraki-alamo.dtsi". Will fix in next version, subject to any other feedback.
+
