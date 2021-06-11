@@ -2,162 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E9913A3AC7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 06:13:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 118083A3B0C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 06:30:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231175AbhFKEPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 00:15:11 -0400
-Received: from mail-pl1-f181.google.com ([209.85.214.181]:40510 "EHLO
-        mail-pl1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229785AbhFKEPL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 00:15:11 -0400
-Received: by mail-pl1-f181.google.com with SMTP id e7so2171860plj.7
-        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 21:13:02 -0700 (PDT)
+        id S229480AbhFKEcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 00:32:03 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:34507 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230190AbhFKEcC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 00:32:02 -0400
+Received: by mail-ot1-f41.google.com with SMTP id v27-20020a056830091bb02903cd67d40070so1973650ott.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 21:29:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=ZpAKBzRtum++A6I+sQPu1wrLWwSoIBCUNQ7Vp72lb8E=;
-        b=fryvg3Qh73vZ5EZgeSi5omN3PED391AT8z36/quqA7pIW1a2JcrWsJ/wPANZhdilkq
-         EL40BLy1XoW2Vnp+Z9R40RmrDZvOHWty98Nzcsmby+1ul3SgyfdGmK3MWqdeSOrHL3MA
-         QAVA9uFE4wm1W1k/qGbaty+/cxsQmql3H9QnpR/jbO+SzexHCH11t0oZMnTMtAYNJnCB
-         xcWqp+pKMaGsUTjHJN3o0bDKYFpLGILNjAd9hZnNryQamaisL0epRO54rF5oFcFr0RCS
-         xcEzP1OKee3spwRv+yEilM9sGTu77La7/LOkEsthOo9Ou0xCl/tFW5MR3bPPRZXURDww
-         BDtQ==
+        bh=kXOnYtSbHsP5X52mqhdl8R+kJt1644GbTqVsWCBSr+8=;
+        b=gT2z31cM9KvYyLM1VaJUYef+UGZQBTFA92jC/G9pD8dujw7uhHDUncjWyBavgJ4LCj
+         ci1Buo3O7Q6WUU+FMLFR/K65uns48zfUaH35BqxbXyVr8TqzyhsAPLFVbfQiTGXRJLK3
+         SVZyeB8Cn6eEwo8+tKmNKvxnpNrETzUBv1sO5mVApdrSgv2hQuyr6Ex5Dz6yGo1IVT+2
+         S3vVQ6rdZ5SjAijr7w0TMrRexGarUgJTjpSIEtpLkith3zzM0PZjOZk/ZQw/Mtqtj/z5
+         5WZdzZsVaKFn/SvOx9n7PcbBnn8r2aAYZxXcJSMs6hEqYkWi/IJ/Lt53Kzh9w1T9ynzu
+         72uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ZpAKBzRtum++A6I+sQPu1wrLWwSoIBCUNQ7Vp72lb8E=;
-        b=V3aZ5H21Zfo6QqcFB9pfrSmd9WMQ7M4C1zrk8QF7ftqlE7/VXwAt6spJp18P/vwA/Y
-         zVL/NtSjflbk8OsfCT8aHNi5T5RCBz0iLfXtp6eoA/Fd+M7SubljVF5NimHcHT7qn4H6
-         bHwXGl1gtDdicCBTyYHwt8qHvlRNQHLW3HJ918KZ0iLEnaPxSke7sK35ouPQzg5VvwTb
-         oJPdV/vhbl2G5IlSt+ajP2o7Ik1F1oV10sg1oZ7gw6YiJ6JOe/jtH0KVTSAAZhCtxFbV
-         lI5ZqJzSloLH2bX6Ninf2tKobhcsiZOgg+3iEeAyfECN7oDh+XRBdKzRPfxCrEeQxy4P
-         YlVQ==
-X-Gm-Message-State: AOAM5327LcESjZFzgu/gUbcTTEseBlLwRoRLLGaO2KN183dcD4JV1/Js
-        idQY6sOODrb44l0RaZojr2+V
-X-Google-Smtp-Source: ABdhPJyQNtV4HQWkIfjBIcoMAqHXA+VmwTmB0Hmc7bSteNAdGCzWAwJtPQJ5BnZQjxUTyGFWTt0yWg==
-X-Received: by 2002:a17:90b:1d0f:: with SMTP id on15mr6985029pjb.194.1623384722346;
-        Thu, 10 Jun 2021 21:12:02 -0700 (PDT)
-Received: from thinkpad ([2409:4072:6281:d9a2:40f:351d:828b:fc1a])
-        by smtp.gmail.com with ESMTPSA id y27sm3851881pff.202.2021.06.10.21.11.56
+        bh=kXOnYtSbHsP5X52mqhdl8R+kJt1644GbTqVsWCBSr+8=;
+        b=ueEnTsIbEdZwW3OUVWH1NGGzzyL4pYhIp3BfH85Pd81zIoF3ciwv2oLOwcdpmREk0T
+         UzIExltcPUrEIACbBCoAHxf9jRymUn7zU6HcP5QGl66X1tDwD9ZMwsq8krQHn/bmAztt
+         CR0nFIkp1YwhtVuJ9chn1UDV2zl8DCrbDRFzzRDocTHImLEJrPZ4dOilNQKwcCisOcxi
+         pV78RrDI4P2CYdirWhAHoxVNVYfK0i/Pc3wrzr4xOvUDuavvBWR09STtT9q1zwGs16x8
+         DrF8HzbYi51SggtodZHY24xHe+XGFnaPu6ee6dQ9ZCNnftpKEMbUixcmaIA/wBtblT4N
+         AE+w==
+X-Gm-Message-State: AOAM5307CFXw3NPbbqf/Mz5qwZIEF6NmCfQPWZRkmqWuV+Nhy1MELM21
+        ADX1D0bYFccAIP6AiZa3eRI6Eg==
+X-Google-Smtp-Source: ABdhPJxjl7kJ0ta7lOiS9PdPWC9LD3KY43aOF9j4vvoPej0A02/M5+YQvExPRPViZI7+Spg/BywjSA==
+X-Received: by 2002:a05:6830:30a8:: with SMTP id g8mr1444380ots.122.1623385732053;
+        Thu, 10 Jun 2021 21:28:52 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id u10sm934709otj.75.2021.06.10.21.28.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Jun 2021 21:12:01 -0700 (PDT)
-Date:   Fri, 11 Jun 2021 09:41:54 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Edgar Bernardi Righi <edgar.righi@lsitec.org.br>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/6] clk: actions: Fix AHPPREDIV-H-AHB clock chain on
- Owl S500 SoC
-Message-ID: <20210611041154.GA5317@thinkpad>
-References: <cover.1623354574.git.cristian.ciocaltea@gmail.com>
- <21c1abd19a7089b65a34852ac6513961be88cbe1.1623354574.git.cristian.ciocaltea@gmail.com>
+        Thu, 10 Jun 2021 21:28:51 -0700 (PDT)
+Date:   Thu, 10 Jun 2021 23:28:49 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     lorenzo.pieralisi@arm.com, robh@kernel.org, bhelgaas@google.com,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Siddartha Mohanadoss <smohanad@codeaurora.org>
+Subject: Re: [PATCH v2 2/3] PCI: dwc: Add Qualcomm PCIe Endpoint controller
+ driver
+Message-ID: <YMLmgQ2hWAxj+vuy@builder.lan>
+References: <20210603103814.95177-1-manivannan.sadhasivam@linaro.org>
+ <20210603103814.95177-3-manivannan.sadhasivam@linaro.org>
+ <YLw744UeM6fj/xoS@builder.lan>
+ <20210609085152.GB15118@thinkpad>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <21c1abd19a7089b65a34852ac6513961be88cbe1.1623354574.git.cristian.ciocaltea@gmail.com>
+In-Reply-To: <20210609085152.GB15118@thinkpad>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 10, 2021 at 11:05:24PM +0300, Cristian Ciocaltea wrote:
-> There are a few issues with the setup of the Actions Semi Owl S500 SoC's
-> clock chain involving AHPPREDIV, H and AHB clocks:
+On Wed 09 Jun 03:51 CDT 2021, Manivannan Sadhasivam wrote:
+> On Sat, Jun 05, 2021 at 10:07:15PM -0500, Bjorn Andersson wrote:
+> > On Thu 03 Jun 05:38 CDT 2021, Manivannan Sadhasivam wrote:
+> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
+[..]
+> > > +static irqreturn_t qcom_pcie_ep_perst_threaded_irq(int irq, void *data)
+> > > +{
+> > > +	struct qcom_pcie_ep *pcie_ep = data;
+> > > +	struct dw_pcie *pci = &pcie_ep->pci;
+> > > +	struct device *dev = pci->dev;
+> > > +	u32 perst;
+> > > +
+> > > +	perst = gpiod_get_value(pcie_ep->reset);
+> > > +
+> > > +	if (perst) {
+> > > +		/* Start link training */
+> > > +		dev_info(dev, "PERST de-asserted by host. Starting link training!\n");
+> > > +		qcom_pcie_establish_link(pci);
+> > > +	} else {
+> > > +		/* Shutdown the link if the link is already on */
+> > > +		dev_info(dev, "PERST asserted by host. Shutting down the PCIe link!\n");
+> > > +		qcom_pcie_disable_link(pci);
+> > > +	}
+> > > +
+> > > +	/* Set trigger type based on the next expected value of perst gpio */
+> > > +	irq_set_irq_type(gpiod_to_irq(pcie_ep->reset),
+> > > +			 (perst ? IRQF_TRIGGER_LOW : IRQF_TRIGGER_HIGH));
+> > 
+> > Looks like you're manually implementing edge triggering, is there any
+> > reason for that? EDGE_BOTH seems to do the same thing...
+> > 
 > 
-> * AHBPREDIV clock is defined as a muxer only, although it also acts as
->   a divider.
-> * H clock is using a wrong divider register offset
-> * AHB is defined as a multi-rate factor clock, but it is actually just
->   a fixed pass clock.
+> PERST is a level based signal, so I don't think we can use EDGE_BOTH here.
 > 
-> Let's provide the following fixes:
-> 
-> * Change AHBPREDIV clock to an ungated OWL_COMP_DIV definition.
-> * Use the correct register shift value in the OWL_DIVIDER definition
->   for H clock
-> * Drop the unneeded 'ahb_factor_table[]' and change AHB clock to an
->   ungated OWL_COMP_FIXED_FACTOR definition.
-> 
-> Fixes: ed6b4795ece4 ("clk: actions: Add clock driver for S500 SoC")
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Afaict it's just a gpio and you define if the hardware should fire of
+interrupts given its level or if it should detect transitions.
 
-Thanks,
-Mani
+That said, if the gpio is already high when registering the irq handler
+there's no transition.
 
-> ---
-> Changes in v3:
->  - Fixed the swapped flags between "ahbprediv_clk" and "ahb_clk" as noticed
->    by Mani
+> > > +
+> > > +	return IRQ_HANDLED;
+> > > +}
+[..]
+> > > +static struct platform_driver qcom_pcie_ep_driver = {
+> > > +	.probe	= qcom_pcie_ep_probe,
+> > > +	.driver	= {
+> > > +		.name		= "qcom-pcie-ep",
+> > 
+> > Skip the indentation of the '='.
+> > 
+> > > +		.suppress_bind_attrs = true,
+> > 
+> > Why do we suppress_bind_attrs?
+> > 
 > 
-> Changes in v2:
->  - Reverted the addition of the clock div table for H clock to support the
->    '1' divider (according to the datasheet), even though the vendor
->    implementation marks it as reserved
->  
->  drivers/clk/actions/owl-s500.c | 19 +++++++++++--------
->  1 file changed, 11 insertions(+), 8 deletions(-)
+> This driver doesn't support remove() callback and I don't think it is necessary
+> for this platform driver. So this flag is here to prevent unbind from sysfs.
 > 
-> diff --git a/drivers/clk/actions/owl-s500.c b/drivers/clk/actions/owl-s500.c
-> index 42d6899755e6..cbeb51c804eb 100644
-> --- a/drivers/clk/actions/owl-s500.c
-> +++ b/drivers/clk/actions/owl-s500.c
-> @@ -153,11 +153,6 @@ static struct clk_factor_table hde_factor_table[] = {
->  	{ 0, 0, 0 },
->  };
->  
-> -static struct clk_factor_table ahb_factor_table[] = {
-> -	{ 1, 1, 2 }, { 2, 1, 3 },
-> -	{ 0, 0, 0 },
-> -};
-> -
->  static struct clk_div_table rmii_ref_div_table[] = {
->  	{ 0, 4 }, { 1, 10 },
->  	{ 0, 0 },
-> @@ -186,7 +181,6 @@ static struct clk_div_table nand_div_table[] = {
->  
->  /* mux clock */
->  static OWL_MUX(dev_clk, "dev_clk", dev_clk_mux_p, CMU_DEVPLL, 12, 1, CLK_SET_RATE_PARENT);
-> -static OWL_MUX(ahbprediv_clk, "ahbprediv_clk", ahbprediv_clk_mux_p, CMU_BUSCLK1, 8, 3, CLK_SET_RATE_PARENT);
->  
->  /* gate clocks */
->  static OWL_GATE(gpio_clk, "gpio_clk", "apb_clk", CMU_DEVCLKEN0, 18, 0, 0);
-> @@ -199,16 +193,25 @@ static OWL_GATE(timer_clk, "timer_clk", "hosc", CMU_DEVCLKEN1, 27, 0, 0);
->  static OWL_GATE(hdmi_clk, "hdmi_clk", "hosc", CMU_DEVCLKEN1, 3, 0, 0);
->  
->  /* divider clocks */
-> -static OWL_DIVIDER(h_clk, "h_clk", "ahbprediv_clk", CMU_BUSCLK1, 12, 2, NULL, 0, 0);
-> +static OWL_DIVIDER(h_clk, "h_clk", "ahbprediv_clk", CMU_BUSCLK1, 2, 2, NULL, 0, 0);
->  static OWL_DIVIDER(apb_clk, "apb_clk", "ahb_clk", CMU_BUSCLK1, 14, 2, NULL, 0, 0);
->  static OWL_DIVIDER(rmii_ref_clk, "rmii_ref_clk", "ethernet_pll_clk", CMU_ETHERNETPLL, 1, 1, rmii_ref_div_table, 0, 0);
->  
->  /* factor clocks */
-> -static OWL_FACTOR(ahb_clk, "ahb_clk", "h_clk", CMU_BUSCLK1, 2, 2, ahb_factor_table, 0, 0);
->  static OWL_FACTOR(de1_clk, "de_clk1", "de_clk", CMU_DECLK, 0, 4, de_factor_table, 0, 0);
->  static OWL_FACTOR(de2_clk, "de_clk2", "de_clk", CMU_DECLK, 4, 4, de_factor_table, 0, 0);
->  
->  /* composite clocks */
-> +static OWL_COMP_DIV(ahbprediv_clk, "ahbprediv_clk", ahbprediv_clk_mux_p,
-> +			OWL_MUX_HW(CMU_BUSCLK1, 8, 3),
-> +			{ 0 },
-> +			OWL_DIVIDER_HW(CMU_BUSCLK1, 12, 2, 0, NULL),
-> +			CLK_SET_RATE_PARENT);
-> +
-> +static OWL_COMP_FIXED_FACTOR(ahb_clk, "ahb_clk", "h_clk",
-> +			{ 0 },
-> +			1, 1, 0);
-> +
->  static OWL_COMP_FACTOR(vce_clk, "vce_clk", hde_clk_mux_p,
->  			OWL_MUX_HW(CMU_VCECLK, 4, 2),
->  			OWL_GATE_HW(CMU_DEVCLKEN0, 26, 0),
-> -- 
-> 2.32.0
-> 
+
+Right, that part makes sense. But do you know why this is, why it's not
+possible to have the PCI controller built as a module? (GKI should
+want this).
+
+Regards,
+Bjorn
