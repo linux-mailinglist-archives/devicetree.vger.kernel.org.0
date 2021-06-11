@@ -2,100 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D3D73A4868
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFDF23A48B7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:33:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229985AbhFKSHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 14:07:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46116 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230201AbhFKSHc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 14:07:32 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2B1C061574;
-        Fri, 11 Jun 2021 11:05:33 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id l7-20020a05600c1d07b02901b0e2ebd6deso9089620wms.1;
-        Fri, 11 Jun 2021 11:05:33 -0700 (PDT)
+        id S229965AbhFKSfl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 14:35:41 -0400
+Received: from mail-pf1-f169.google.com ([209.85.210.169]:41502 "EHLO
+        mail-pf1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229942AbhFKSfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 14:35:41 -0400
+Received: by mail-pf1-f169.google.com with SMTP id x73so5134377pfc.8;
+        Fri, 11 Jun 2021 11:33:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:cc:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=bN6nTLxY4EsdLFWLAWGteRiQWDdS+7C3QFVM088ASFE=;
-        b=MM4COoLSA7xG8EChlBEJ5B1a4kKgW8GYL3rFLe6rgXd6dn1J+MOxxh8OBahI8Hf3qU
-         +IJVTL1QnCphHj6oaxN+dt+SObRs3mRxsjlRmjvRxbEArc50YKYVF9yHU0ZvZO09yMwC
-         znDdwS39pU0jkxg6Js37O8sxuwXXTUBffOZuewsnqSGzGs+u3xOVwfQ1iwXHo+aw+vIV
-         YDP2acm0m9nDjx6LypqbhkCFNS4twy3JWewxVb+u/uVbEpyNkTPgOxeNglCF7gpyh+jQ
-         ANxc/c0GKqCQBa7u0xibwBT4hYPzrrcqUlWKf4t6IAh92oXBzAr9b/WiHYtvOhw0bCAe
-         uZ0w==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=pAPGs1LNbp3j6HV6z8Xo20/Fw8JrM4KOovl5BHElSDk=;
+        b=mnZQhThDrehxSOK3GoYzr5ibsg0sLrjm+4nzpjwtKt8xIL+QZXYdRaszlCUQs3s32V
+         ZcJ8A3VkNqH+JTUKeQjjwo6izIna7960c3CHKJksdopBJ3SCwcxAS0pEN2m8kJwgBiFi
+         JVDxR4+UwhjFQBd59wSAbhgQv5ui6Oh3yk8ziGsqBe+uvUNXGWSQ0nnRTkewm0i+zc0M
+         r3Uy+A9RhjGDmihkuV5BhI64f95P+CFaH0GHRnAMpCxM407zp5N5C0XJczyh/ecKXJ7F
+         prLWqRzq6VO2kqi5RisfxyOlSPMxBEs9FEdrLl8wDmRFceNCMuGxi4zUxlnR7u+Ox9bS
+         eVwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=bN6nTLxY4EsdLFWLAWGteRiQWDdS+7C3QFVM088ASFE=;
-        b=TCiITQcD74tNDOuqF5O7guouhbp73gDniXeu7K5o19lTH60MaBfT2tpbrhk+/h5VFg
-         peBnsajNbVkHDY2RJlTQ2qNK2j0OXSP/oAdSPqSVLUg9XL6zL3/BwhcP25sG/hf3aYGA
-         PNypx0M4ZvDfBWqSBuv0oSM5MfFAdTW8a3uz/tepcg9z88WOR/e6y2OtDqBfTU0drlOD
-         uX9dZ9Gvb5rkPhWy3u/i/IQTW8MGbbcZybnUg+BpF9WsMgucndGXudaKTxl7++0ZX5yB
-         7uNtq4FJz+K5vMlvEo+SJx7UkyQd0Ojv18FKOl2uXcSKNrY5sdM04LA1wkf3E+DJLdUd
-         oKLw==
-X-Gm-Message-State: AOAM533hXVXfqXTGAo0RzGG+TzHQFrBPxo832dPSzL6IbvonU+a7sIj/
-        AONAefDnJH4Vn8jTBiDQd5M=
-X-Google-Smtp-Source: ABdhPJzIrCFOo0eiP8MxWhbZw3VV3cxplb7U2Gsw28q2AGWfsBBjPEgKHks424+y3z36m1ru4TB1Ug==
-X-Received: by 2002:a05:600c:4f09:: with SMTP id l9mr19610113wmq.114.1623434731861;
-        Fri, 11 Jun 2021 11:05:31 -0700 (PDT)
-Received: from localhost.localdomain (haganm.plus.com. [212.159.108.31])
-        by smtp.gmail.com with ESMTPSA id a1sm8888617wrg.92.2021.06.11.11.05.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jun 2021 11:05:30 -0700 (PDT)
-Subject: Re: [PATCH v2 5/5] ARM: dts: NSP: Add DT files for Meraki MX65 series
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20210610232727.1383117-1-mnhagan88@gmail.com>
- <20210610232727.1383117-6-mnhagan88@gmail.com>
-From:   Matthew Hagan <mnhagan88@gmail.com>
-Message-ID: <15622641-7689-551e-3e56-35a9eed62828@gmail.com>
-Date:   Fri, 11 Jun 2021 20:02:14 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=pAPGs1LNbp3j6HV6z8Xo20/Fw8JrM4KOovl5BHElSDk=;
+        b=rQuSkqmVLG5jmtB4RiQTkN9tkl9J7X9lQCTZUBZBSmpQGOtgvfWsSGvNeKNow6W/iY
+         jtOtY9un5Yp52ySVsqGWxiuEJ4TDo1GrSj+DO4i7bfbNpva0FKjfvSWc4uqXsbHEbZJO
+         8MmH8xrm+nD0BMMiQfmdRAfMXEhZioxQmEA7M1o7BNxJiAyaEd8jF7b8fp91MPoZez6/
+         nJBJpUp7d6BEk/2IEcD2qoU79bAJVa0ulsoroptu3Xpt6BXuluhBeI8EAD61SBmYV1vA
+         YTLMCKpp7pOaUyClVN6/NGkrVC80Zf7/91uiKjkznhB5WHsc+qB5SaipD81UY57vvTaa
+         tmiw==
+X-Gm-Message-State: AOAM533JC80HTe9b9b+kzHx6H+2vWrn3Tki+BJFNG5pk3eO4HuuLG7Ze
+        tzKLkcvNMF9kgpvd4RU9kWk=
+X-Google-Smtp-Source: ABdhPJyIbJDNOi6dyFmAlH/mze2ZGBMW8H3yahSB2BamCGGUDK69YX2Q8ST0cS+t+ovPFsbVooKDpg==
+X-Received: by 2002:a63:e205:: with SMTP id q5mr4944767pgh.404.1623436363271;
+        Fri, 11 Jun 2021 11:32:43 -0700 (PDT)
+Received: from google.com ([2620:15c:202:201:a379:e0b0:67f9:6c5f])
+        by smtp.gmail.com with ESMTPSA id p1sm5544765pfn.212.2021.06.11.11.32.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Jun 2021 11:32:42 -0700 (PDT)
+Date:   Fri, 11 Jun 2021 11:32:39 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
+        Joe Hung <joe_hung@ilitek.com>,
+        linux-input <linux-input@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: input: touchscreen: ilitek_ts_i2c: Absorb
+ ili2xxx bindings
+Message-ID: <YMOsRzfDnZ/iApwD@google.com>
+References: <c381ee2526074e02b6058c489f85cfdaee582713.1623419587.git.geert+renesas@glider.be>
+ <9b1b2a44-348e-5453-d767-d5c69a0869a7@denx.de>
+ <CAMuHMdXE0kipUm6wqHsrFurFkviU_nRJJB7cg6z1XwEvpEewGQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210610232727.1383117-6-mnhagan88@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdXE0kipUm6wqHsrFurFkviU_nRJJB7cg6z1XwEvpEewGQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/06/2021 00:27, Matthew Hagan wrote:
+Hi Geert, Maerek,
 
-> diff --git a/arch/arm/boot/dts/bcm958625-meraki-mx65w.dts b/arch/arm/boot/dts/bcm958625-meraki-mx65w.dts
-> new file mode 100644
-> index 000000000000..0045a33055c1
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/bcm958625-meraki-mx65w.dts
-> @@ -0,0 +1,23 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> +/*
-> + * Device Tree Bindings for Cisco Meraki MX65W.
-> + *
-> + * Copyright (C) 2021 Matthew Hagan <mnhagan88@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "bcm958625-meraki-mx65x.dtsi"
+On Fri, Jun 11, 2021 at 08:23:10PM +0200, Geert Uytterhoeven wrote:
+> Hi Marek,
+> 
+> On Fri, Jun 11, 2021 at 4:20 PM Marek Vasut <marex@denx.de> wrote:
+> > On 6/11/21 3:54 PM, Geert Uytterhoeven wrote:
+> > > While Linux uses a different driver, the Ilitek
+> > > ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller Device Tree
+> > > binding documentation is very similar.
+> > >
+> > >    - Drop the fixed reg value, as some controllers use a different
+> > >      address,
+> > >    - Make reset-gpios optional, as it is not always wired.
+> >
+> > It looks like there are now two drivers for the same hardware,
+> > drivers/input/touchscreen/ili210x.c
+> > drivers/input/touchscreen/ilitek_ts_i2c.c
+> > The ilitek_ts_i2c (newer) seems to be derived from the ilitek example
+> > code / driver, while the ili210x was written from scratch as far as I
+> > can tell.
+> 
+> I'm not so sure they're for the same hardware, but you may know better?
+> https://www.displayvisions.us/fileadmin/html-seiten/eng/pdf/zubehoer/ILITek_TP_Programming_Guide_V1.50.pdf
+> lists only Ilitek parts handled by ilitek_ts_i2c.c.
 
-Should be including "bcm958625-meraki-alamo.dtsi". Will fix in next version, subject to any other feedback.
+Ilitek folks said that the new driver is for their "Lego" series
+controllers, whereas ili210x.c is for older hardware.
 
+Thanks.
+
+-- 
+Dmitry
