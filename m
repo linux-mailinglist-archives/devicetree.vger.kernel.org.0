@@ -2,85 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EA8A3A3B5A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 07:27:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 452D13A3B63
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 07:28:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230478AbhFKF3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 01:29:01 -0400
-Received: from router.aksignal.cz ([62.44.4.214]:41514 "EHLO
-        router.aksignal.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230450AbhFKF3A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 01:29:00 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by router.aksignal.cz (Postfix) with ESMTP id 7198A44437;
-        Fri, 11 Jun 2021 07:27:00 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at router.aksignal.cz
-Received: from router.aksignal.cz ([127.0.0.1])
-        by localhost (router.aksignal.cz [127.0.0.1]) (amavisd-new, port 10026)
-        with LMTP id caN4VxDcJrYw; Fri, 11 Jun 2021 07:27:00 +0200 (CEST)
-Received: from pc-gameroom.prchals.tk (unknown [83.240.30.185])
-        (Authenticated sender: jiri.prchal@aksignal.cz)
-        by router.aksignal.cz (Postfix) with ESMTPSA id 074AD44439;
-        Fri, 11 Jun 2021 07:26:57 +0200 (CEST)
-From:   Jiri Prchal <jiri.prchal@aksignal.cz>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Prchal <jiri.prchal@aksignal.cz>
-Subject: [PATCH v9 5/5] nvmem: eeprom: add documentation of sysfs fram and sernum file
-Date:   Fri, 11 Jun 2021 07:26:52 +0200
-Message-Id: <20210611052652.7894-6-jiri.prchal@aksignal.cz>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210611052652.7894-1-jiri.prchal@aksignal.cz>
-References: <20210611052652.7894-1-jiri.prchal@aksignal.cz>
+        id S230233AbhFKFak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 01:30:40 -0400
+Received: from mail-lf1-f51.google.com ([209.85.167.51]:42848 "EHLO
+        mail-lf1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230117AbhFKFak (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 01:30:40 -0400
+Received: by mail-lf1-f51.google.com with SMTP id j2so6759983lfg.9
+        for <devicetree@vger.kernel.org>; Thu, 10 Jun 2021 22:28:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=c5gXsKjQ+2+2284C7oSdijmBbkdjN+0NbjWEbQpWHs0=;
+        b=x+D4hIAty3oWf9qpo//b+wT4NFnC/7Z+GH0sd5q0MbdyLgyp/+EG8f2KxBMIT5FgC4
+         wMPT9mRU3seonnJ+6lrKTRNdPFQA59UJ3C5FsPJW2ddb/BsxkfcSIxIwLEmQgJXrnvKb
+         a7+oqJEDwBtaP1NogddNoP1Pr8dJyyCwCiu4KMdV0KDS1tnMjlSCHJ7HjKjOA229pd5X
+         q/PsEG1+ncaCra591SGqkQLGJv2fixOpL5CNE02wSCrHzLgr9k+HnN8uSC5NW56oRgiC
+         JUi/ONCB04hlpkBa+GSQCTnj46h3FADmHbh/32Hd/I7sVvkaaFbzRUXZrjOxMolj1QMN
+         s2eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=c5gXsKjQ+2+2284C7oSdijmBbkdjN+0NbjWEbQpWHs0=;
+        b=HPi2S33o24/0k9tVmQj9Iy+3t1IAPqu/au+YS7kTX4RScGtlUP7p9MFNmjAZSecSLn
+         UoW6Qs0XUdxk0VBpKDe4jltwbH0sCBuHBDaX56ZLf4yIaXaqv9Fzz3QIh1U3TAv2yqTX
+         G+BL2dPPzSNnAvaZl96b2a4E0N3G9obYlvfZy3GxP6Z032M3zWhoI0lRB8rwSDFpA6th
+         DE8SNvnwo3aVVWpVBO9CCQTQwgSzOuQcmuO6ofZ/iwiDFI0PWd4uA1OMCFt7ZANjLlSJ
+         9oP+FmRazOOOk04RL5HzqM3ZV30H0W8zpaOgCN8cODwfeoLxpFZNH+D5zGnlTFjjX2jG
+         1+vA==
+X-Gm-Message-State: AOAM530tv6ccRt3Sa+l9wLqerBll/+z/W3Ya8waF669lTlA/kpOm3OCq
+        yZkYzQ70zVKZjcghtWqnYooVRwomIf8S01ubEQ+L3g==
+X-Google-Smtp-Source: ABdhPJyZKyGtiOfPRcMJrZvtA9TUzOVyTDzCtTLxsHXMG9F/620ulxn/5HTE5T/itY0AbUbfS5C2fqnKM289cctkk60=
+X-Received: by 2002:a05:6512:3a84:: with SMTP id q4mr1491503lfu.626.1623389248682;
+ Thu, 10 Jun 2021 22:27:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210611050808.2554431-1-vkoul@kernel.org>
+In-Reply-To: <20210611050808.2554431-1-vkoul@kernel.org>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Thu, 10 Jun 2021 22:27:16 -0700
+Message-ID: <CALAqxLW4n8ijkD6hw_xqa2tzkttmXS_LFn_yJo6cP+iYYt-+=A@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8350-mtp: Use mdt files for firmware
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added sysfs fram and sernum file documentation.
+On Thu, Jun 10, 2021 at 10:08 PM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> As discussed in [1], it makes it easy for everyone to use mdt firmware file
+> name instead of mbn ones, so changes this for SM8350
+>
+> [1]: http://lore.kernel.org/r/CALAqxLXn6wFBAxRkThxWg5RvTuFEX80kHPt8BVja1CpAB-qzGA@mail.gmail.com
+>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8350-mtp.dts | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350-mtp.dts b/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
+> index 93740444dd1e..d859305f1f75 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8350-mtp.dts
+> @@ -40,7 +40,7 @@ vph_pwr: vph-pwr-regulator {
+>
+>  &adsp {
+>         status = "okay";
+> -       firmware-name = "qcom/sm8350/adsp.mbn";
+> +       irmware-name = "qcom/sm8350/adsp.mdt";
+>  };
 
-Signed-off-by: Jiri Prchal <jiri.prchal@aksignal.cz>
----
-v5: new
-v6: no change here
-v7: no change here
-v8: added fram file doc
-v9: rewritten description
----
- .../ABI/testing/sysfs-class-spi-eeprom        | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-spi-eeprom
+Uhh, isn't this the opposite of [1]?  My apologies for butting in, and
+I'd stay out of the discussion, except for my mail being linked as
+justification :)
 
-diff --git a/Documentation/ABI/testing/sysfs-class-spi-eeprom b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-new file mode 100644
-index 000000000000..4e69c78f9f65
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-spi-eeprom
-@@ -0,0 +1,20 @@
-+What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/sernum
-+Date:		May 2021
-+KernelVersion:	5.14
-+Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
-+Description:
-+	Contains the serial number of the Cypress FRAM (FM25VN) if it is
-+	present.  It will be displayed as a 8 byte hex string, as read
-+	from the device.
-+
-+	This is a read-only attribute.
-+
-+What:		/sys/class/spi_master/spi<bus>/spi<bus>.<dev>/fram
-+Date:		June 2021
-+KernelVersion:	5.14
-+Contact:	Jiri Prchal <jiri.prchal@aksignal.cz>
-+Description:
-+	Contains the FRAM binary data. Same as EEPROM, just another file
-+	name to indicate that it employs ferroelectric process.
-+	It performs write operations at bus speed - no write delays, capable
-+	of 10^14 read/write cycles and 151 years data retention.
--- 
-2.25.1
+In [1] the case was db845c was switched from older mdt files to using
+the upstream linux-firmware mbn files. This was a bit of a pain, as it
+broke on our userland with mdt files, and since we use both old and
+new kernels we had to have both filenames on the disk (via symlink) to
+keep it working everywhere.
 
+My argument in [1] was for new boards, go with the new conventions,
+but we should avoid breaking those conventions casually on existing
+devices.  That said, I know it's more complex, and I graciously defer
+to Bjorn and RobC on the decision.
+
+But your patch above seems to be switching from mbn (what I understand
+to be the new convention) to mdt (what I thought was the old way). And
+from the git blame, it looks like it was introduced as mbn (new board,
+new convention - so all good, right?).
+
+So is this really the right change? Or maybe just more exposition in
+the commit message is needed (rather than pointing to my mail, which
+seems to be arguing the opposite) to explain it?
+
+thanks
+-john
