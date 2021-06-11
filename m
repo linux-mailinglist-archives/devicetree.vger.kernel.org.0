@@ -2,57 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EDBE3A3FE8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 12:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FBB63A400B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 12:18:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230334AbhFKKQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 06:16:48 -0400
-Received: from comms.puri.sm ([159.203.221.185]:51616 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231342AbhFKKQr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 06:16:47 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id D84B9E01C9;
-        Fri, 11 Jun 2021 03:14:49 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id nmdMuW5XXsJ7; Fri, 11 Jun 2021 03:14:49 -0700 (PDT)
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     martin.kepplinger@puri.sm, krzysztof.kozlowski@canonical.com,
-        laurent.pinchart@ideasonboard.com, mchehab@kernel.org,
-        paul.kocialkowski@bootlin.com, pavel@ucw.cz
-Cc:     devicetree@vger.kernel.org, kernel@puri.sm,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        phone-devel@vger.kernel.org, robh@kernel.org, shawnx.tu@intel.com
-Subject: [PATCH v5 5/5] Documentation: i2c-cardlist: add the Hynix hi846 sensor
-Date:   Fri, 11 Jun 2021 12:14:04 +0200
-Message-Id: <20210611101404.2553818-6-martin.kepplinger@puri.sm>
-In-Reply-To: <20210611101404.2553818-1-martin.kepplinger@puri.sm>
-References: <20210611101404.2553818-1-martin.kepplinger@puri.sm>
+        id S230385AbhFKKUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 06:20:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55130 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230515AbhFKKUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 06:20:47 -0400
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D727C0613A3
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 03:18:48 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:2411:a261:8fe2:b47f])
+        by baptiste.telenet-ops.be with bizsmtp
+        id FmJl2500K25eH3q01mJl6A; Fri, 11 Jun 2021 12:18:46 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lreFQ-00Fd29-VD; Fri, 11 Jun 2021 12:18:44 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lreFQ-00CaZT-H1; Fri, 11 Jun 2021 12:18:44 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-sh@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/3] Remove shdma DT support
+Date:   Fri, 11 Jun 2021 12:18:38 +0200
+Message-Id: <cover.1623405675.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the SK Hynix Hi-846 8M Pixel CMOS image sensor to the i2c-cardlist.
+	Hi all,
 
-Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
----
- Documentation/admin-guide/media/i2c-cardlist.rst | 1 +
- 1 file changed, 1 insertion(+)
+Documentation/devicetree/bindings/dma/renesas,shdma.txt is one of the
+few^W57% of the DT bindings that haven't been converted to json-schema
+yet.  These bindings were originally intended to cover all SH/R-Mobile
+SoCs, but the DMA multiplexer node and one DMA controller instance were
+only ever added to one .dtsi file, for R-Mobile APE6.  Still, DMA
+support for R-Mobile APE6 was never completed to the point that it would
+actually work, cfr. commit a19788612f51b787 ("dmaengine: sh: Remove
+R-Mobile APE6 support").  Later, the mux idea was dropped when
+implementing support for DMA on (very similar) R-Car Gen2, cfr.
+renesas,rcar-dmac.yaml.
 
-diff --git a/Documentation/admin-guide/media/i2c-cardlist.rst b/Documentation/admin-guide/media/i2c-cardlist.rst
-index e60d459d18a9..185e07a3da43 100644
---- a/Documentation/admin-guide/media/i2c-cardlist.rst
-+++ b/Documentation/admin-guide/media/i2c-cardlist.rst
-@@ -60,6 +60,7 @@ Driver        Name
- ============  ==========================================================
- et8ek8        ET8EK8 camera sensor
- hi556         Hynix Hi-556 sensor
-+hi846         Hynix Hi-846 sensor
- imx214        Sony IMX214 sensor
- imx219        Sony IMX219 sensor
- imx258        Sony IMX258 sensor
+Hence this series removes the Renesas SHDMA Device Tree bindings, the
+SHDMA DMA multiplexer driver, and the corresponding description in the
+R-Mobile APE6 DTS.
+
+I plan to queue [PATCH 3/3] in renesas-devel for v5.15.
+
+Thanks for your comments!
+
+Geert Uytterhoeven (3):
+  dt-bindings: dmaengine: Remove SHDMA Device Tree bindings
+  dmaengine: sh: Remove unused shdma-of driver
+  ARM: dts: r8a73a4: Remove non-functional DMA support
+
+ .../devicetree/bindings/dma/renesas,shdma.txt | 84 -------------------
+ arch/arm/boot/dts/r8a73a4.dtsi                | 44 ----------
+ drivers/dma/sh/Makefile                       |  2 +-
+ drivers/dma/sh/shdma-of.c                     | 76 -----------------
+ 4 files changed, 1 insertion(+), 205 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/dma/renesas,shdma.txt
+ delete mode 100644 drivers/dma/sh/shdma-of.c
+
 -- 
-2.30.2
+2.25.1
 
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
