@@ -2,147 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9143A4888
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B7B93A4894
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 20:23:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbhFKSXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 14:23:24 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:8040 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230188AbhFKSXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 14:23:24 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1623435678; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=pWYHQBFk8L+A8EkTTGJog4B0JvDOrx5AIa7SJhsZ9mMxfu9DVTrCyGjaqGhe05FNcZ
-    Cbw/VwrIGwWT7KoU6nurmS8/DhUtdhXTM1rM9NU4olihoHqSRJOHQ/QReQRM3qJB698t
-    6mTZ9yBYKl8HgTYUuOQI/eP4CGzp8pL9riquk3Kzmb3pJecec00HlPh3Zw50famGsz2l
-    OQNtSnscNbct6z3gx4nfuDj1i3v4napfqYtXehSFmQ+nC9t4/gQgkp/XG0fjWkvgs9/p
-    dFdrvnLkCn2y4RUyAQ/Rtct5GX6tj6NyWm4yTVSdOagQGHlwDgNpFTh137kjLrT+tW0E
-    4uWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623435678;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=lmf4bw65mbkhp3InKqMJNO7ZwRHsfXnSV9W6BmPcfCI=;
-    b=rAcceJVKTmqxvyDP6iGjGU0vDTR5U03GHJ9vzw4UJF4pfsh4rUblxTzMLqFClCRj2T
-    +74CU7FzpNr2RVuedPhgnm+SRnPn7ao30y2s2AZcxFxrHkEbicHWkDekHere9cOtQBbn
-    YnJFTfuYV+n2h/pPh8tG3X+HHPae+iB6KGRIdNzR2fYu85ELFtL9ssV4ON9F46FKKxwk
-    OnZZ+D0tddBoAn0lDZz0Lf3U0Lap+9Zr8+mOCBTI2mRxA4//zpoJDNwbuzCbzPl1189Y
-    lPI6jxAXAMJtI6uvNwjZVM9YIVpmcleHNDSBJPhDwL6emWfJ64gxlmZNDBwCivx9bMXO
-    faAA==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623435678;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=lmf4bw65mbkhp3InKqMJNO7ZwRHsfXnSV9W6BmPcfCI=;
-    b=G/Db1wMSOsBz61SpIGz3R11vUYYeA5lM0OfO6Vwga8bg/R6QIl3oCuDby0b7p2dSas
-    PV1QGOaztTqxpLjmjQdaYK7eXf+GGNGQtZIpjLfMPcAu2D5gVU9fbBJvQhF19HTmpchJ
-    2ljbNSe8igmSZvBOa0psBB+Lqt4+N6Lpr0QUHniJnPyFasuCgkhVRay6LwHlimmPCuRl
-    UlgUzV7JdhYXiKnLEmF1TlZKVPcGMSWJCCUKwdQ4zMsBWeXJVYWFcXUXYUOXzj6y4lOX
-    NrLVlPw56/RRNC0fPXJ5ONtGSfBWoMGuwHWjr93bDmUuBX8EOmpzucJikHEz1b69sSVc
-    awPA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8nwIc3GBg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
-    with ESMTPSA id y01375x5BILH2oE
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 11 Jun 2021 20:21:17 +0200 (CEST)
-Date:   Fri, 11 Jun 2021 20:21:05 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Peter Meerwald <pmeerw@pmeerw.net>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v3 08/10] dt-bindings: iio: bma255: Allow multiple
- interrupts
-Message-ID: <YMOphuXSoODIVX06@gerhold.net>
-References: <20210611080903.14384-1-stephan@gerhold.net>
- <20210611080903.14384-9-stephan@gerhold.net>
- <20210611185941.3487efc6@jic23-huawei>
+        id S230252AbhFKSZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 14:25:36 -0400
+Received: from mail-vs1-f49.google.com ([209.85.217.49]:40575 "EHLO
+        mail-vs1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230313AbhFKSZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 14:25:35 -0400
+Received: by mail-vs1-f49.google.com with SMTP id b1so4261172vsh.7;
+        Fri, 11 Jun 2021 11:23:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/QyKO2sWDPRuH+xh/7ic5xA0q4lXz7dWRKEZ89NMiBc=;
+        b=s3vIxum2BL2xN+cTiHzvZzFCguayWxjbWpyFChiofj4QTNiStqXSMOx2y3ictR/qaX
+         ay6QOxKU94H2ATS8hnkBBt8i8iK7sl+ObtgdiRZAF6ijEQEjkIH2F2c67Q59eAnh8FpH
+         1LdW3VOC9LTePnatXADlIFrgbzc3QkT/PtGyItbtFM0aeXJXIdo8tsmHb45Jk3zQIglU
+         sep2aBwYfegT95kS5FsqZv+ba7XVVoli9MGEZbd2R6m7Dw/EJ5enzuZ7oAeEajF72cpb
+         zkIX9VdTul6c1rZxkCXQKuS2JYaoBcHMmpBtTog9tSyfMKMSr017BHRXqmAClDC7IFuH
+         0ISw==
+X-Gm-Message-State: AOAM530a/pjdUhdJgG+gq58KuzN/AnhLPPpgLzGUlHyhawEkL2MTXNk5
+        PW+bhDDnw68yVOsZ344TceRhzQgNRHf4jtSh6dAUL/sr4UUWgw==
+X-Google-Smtp-Source: ABdhPJxKpLIukv3+hXCAEtgy5XgKF+PqMiSYY3kcEcOkNqeN7r/uF4Q0MaxqvPfExI0gyVzU4ZW2v8c/1jmbKuNVq2k=
+X-Received: by 2002:a05:6102:c4c:: with SMTP id y12mr11191098vss.18.1623435801977;
+ Fri, 11 Jun 2021 11:23:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210611185941.3487efc6@jic23-huawei>
+References: <c381ee2526074e02b6058c489f85cfdaee582713.1623419587.git.geert+renesas@glider.be>
+ <9b1b2a44-348e-5453-d767-d5c69a0869a7@denx.de>
+In-Reply-To: <9b1b2a44-348e-5453-d767-d5c69a0869a7@denx.de>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 11 Jun 2021 20:23:10 +0200
+Message-ID: <CAMuHMdXE0kipUm6wqHsrFurFkviU_nRJJB7cg6z1XwEvpEewGQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: input: touchscreen: ilitek_ts_i2c: Absorb
+ ili2xxx bindings
+To:     Marek Vasut <marex@denx.de>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joe Hung <joe_hung@ilitek.com>,
+        linux-input <linux-input@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 06:59:41PM +0100, Jonathan Cameron wrote:
-> On Fri, 11 Jun 2021 10:09:01 +0200
-> Stephan Gerhold <stephan@gerhold.net> wrote:
-> 
-> > BMA253 has two interrupt pins (INT1 and INT2) that can be configured
-> > independently. At the moment the bmc150-accel driver does not make use
-> > of them but it might be able to in the future, so it's useful to already
-> > specify all available interrupts in the device tree.
-> > 
-> > Set maxItems: 2 for interrupts to allow specifying a second one.
-> > This is necessary as preparation to move the bosch,bma254 compatible
-> > from bosch,bma180.yaml to bosch,bma255.yaml since bma180 allows two
-> > interrupts, but BMA254 is better supported by the bmc150-accel driver.
-> > 
-> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > Reviewed-by: Hans de Goede <hdegoede@redhat.com>
-> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > ---
-> >  .../devicetree/bindings/iio/accel/bosch,bma255.yaml        | 7 ++++++-
-> >  1 file changed, 6 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
-> > index 8afb0fe8ef5c..65b299a5619b 100644
-> > --- a/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
-> > @@ -32,7 +32,12 @@ properties:
-> >    vddio-supply: true
-> >  
-> >    interrupts:
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    description: |
-> > +      The first interrupt listed must be the one connected to the INT1 pin,
-> > +      the second (optional) interrupt listed must be the one connected to the
-> > +      INT2 pin (if available).
-> 
-> As this is a direct copy from the bma180 binding and we are moving devices
-> from one to the other, we need to support this as the default.
-> Longer term, from the bma253 datasheet, it look looks the two pins are equally
-> capable so if we get a board where only the int2 pin is connected then we will
-> need to use interrupt-names to distinguish the two (as we do in other drivers).
-> 
+Hi Marek,
 
-This kind of sounds like a strange board layout in general. But what's
-worse is that for some reason even Bosch thought this is a "good" idea
-so they released the BMC156 [1]. It works just like the BMC150 but has
-only a single interrupt pin. One would expect that would be INT1,
-but nope, it's INT2 of course. :-)
+On Fri, Jun 11, 2021 at 4:20 PM Marek Vasut <marex@denx.de> wrote:
+> On 6/11/21 3:54 PM, Geert Uytterhoeven wrote:
+> > While Linux uses a different driver, the Ilitek
+> > ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller Device Tree
+> > binding documentation is very similar.
+> >
+> >    - Drop the fixed reg value, as some controllers use a different
+> >      address,
+> >    - Make reset-gpios optional, as it is not always wired.
+>
+> It looks like there are now two drivers for the same hardware,
+> drivers/input/touchscreen/ili210x.c
+> drivers/input/touchscreen/ilitek_ts_i2c.c
+> The ilitek_ts_i2c (newer) seems to be derived from the ilitek example
+> code / driver, while the ili210x was written from scratch as far as I
+> can tell.
 
-I have a device with BMC156 where this is the case, so I guess I need to
-make bmc150-accel use INT2 somehow (without specifying INT1). It might
-be easiest if we treat this the same way as the case that you mentioned,
-i.e. everyone with BMC156 would specify the interrupt-names explicitly
-to have a consistent meaning of the device tree.
+I'm not so sure they're for the same hardware, but you may know better?
+https://www.displayvisions.us/fileadmin/html-seiten/eng/pdf/zubehoer/ILITek_TP_Programming_Guide_V1.50.pdf
+lists only Ilitek parts handled by ilitek_ts_i2c.c.
 
-[1]: https://www.mouser.de/datasheet/2/783/BST-BMC156-DS000-1509546.pdf
+Gr{oetje,eeting}s,
 
-> Another thing to note is that we don't have to have separate binding docs just
-> because we have separate drivers. At somepoint we might want to consider just
-> fusing the two docs.
->  
+                        Geert
 
-Good point! I might do that together with the BMC156 changes. :)
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Thanks!
-Stephan
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
