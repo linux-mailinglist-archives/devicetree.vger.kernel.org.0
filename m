@@ -2,45 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D1073A455B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 17:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B274F3A4547
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 17:29:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232027AbhFKPb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 11:31:57 -0400
-Received: from mail-pj1-f44.google.com ([209.85.216.44]:41976 "EHLO
-        mail-pj1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231992AbhFKPbj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 11:31:39 -0400
-Received: by mail-pj1-f44.google.com with SMTP id go18-20020a17090b03d2b029016e4ae973f7so5090050pjb.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 08:29:41 -0700 (PDT)
+        id S231940AbhFKPbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 11:31:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39456 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231936AbhFKPbE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 11:31:04 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D249EC0617AF
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 08:28:50 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id z3-20020a17090a3983b029016bc232e40bso6184944pjb.4
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 08:28:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=XS4G5xy6+vfRdhwlX4dDJ0Yj9yl3k4TUpXEyoiYlXdQ=;
-        b=aFasplHKLdqDM3eBlOV7pwqTk+B1SD0kHcbylvEQ6ctrIvMXBUr8LejksidOkg8J24
-         fcCmbphvGffW+g6oA32rHtV2UUmZpuqwluVETGeSf2V3z0AYNoHtsF328JTdyVv/LiVW
-         epogX0cUxaR/GY91cHvrC/Zy6jCT7BOWrG+mU=
+        bh=kF6lfFlm47ewlGSwNHdOa0bRh+k/2w/JyGCG+Bsk7jg=;
+        b=H/C67oW7mc9oS6nqFrlyQ5bKo2M4IEytOonNmobjWozjPKJmD5foT/Xw7AFSNzd2Jo
+         0wjSUN2RW/ppa8UiQ09kGN695gbXZ6TGfgjGghWkAaCeHdylaYggXNn7A87sM831TjH9
+         l31C3Fl2eMIXd/0uX15rNLpBd42Axwn6s/C8I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XS4G5xy6+vfRdhwlX4dDJ0Yj9yl3k4TUpXEyoiYlXdQ=;
-        b=rx2lGP8xAKQKy7nGxaJPRTavXvJAp+YOf+xhuKJ6H6cYkHoSV8YQQdL9pmR0ibCjLM
-         kpQAlTiZ0qM8kljNt0ucYU2QmgIKw11GyPBWywLdTDtgQFxkZpIdoTvzRM3pt6CtRop3
-         T4b+xB3307vwuXDVl3NbZltSdKKPJpwGit2qXcT7Iz24aBIgLr3G0QFwCca92EvMK3Sc
-         34GVBWkI00iTRUDHa1TZ5in9pA22IoAfNGD7BKTLNLRgQ3ZrY3GMGRwVBPdOjP7mLFoE
-         TCZjd11B0tcHQDjyIKAcAGgqCbV0mWTpgISS7PE+vLM505DpguhZrxscphB0JszJ7mcm
-         rVOg==
-X-Gm-Message-State: AOAM533+VUJirY4QHk7eo531N7sG+jEgZFZorE3UIOGQ7wIUBafWppUk
-        n71w7VRrCB1T485tskpDJQRsyw==
-X-Google-Smtp-Source: ABdhPJwicfQo/0v2MeKUXopLCPgFcwJpi4Wap+QFjjvputvdMnB/ECh+CzhqbhVAhbqd974yX1BCiw==
-X-Received: by 2002:a17:90a:ce0b:: with SMTP id f11mr9250452pju.185.1623425321710;
-        Fri, 11 Jun 2021 08:28:41 -0700 (PDT)
+        bh=kF6lfFlm47ewlGSwNHdOa0bRh+k/2w/JyGCG+Bsk7jg=;
+        b=YwnpN41aoYUP/FMWnv2lUkB8JPevz0MFlhik37s53kQisI+H/lBPzUdyq7HtfIeksc
+         86AX5yKgSGf0Ga+Ptfxjw1yG//7GfjJclSfJSDbc+BCUxBNRF3gMojC+6XeDpMsRgMrp
+         z4o0XVfVC0LuXftIjFg8QykPU2z5eN4QJH1h82H0rZ/SPknm+ATQ2qB5qoqu5SYKKymG
+         tCFDbbFIsZY9l6H99z0GvdRnYeXrl0nEZ7z8iG7mYMG2xUFGao8Q58pwrJQsLyfjS3Ml
+         tU953nv4o9c2UW7Rjj5QqOMVBvKx4gmqTAPxEDpr2GVVdVR2PCCyjviXhLVCwWKiUVbv
+         +BDQ==
+X-Gm-Message-State: AOAM5316WbwOnnKiJ85b7ggpcW3JIcKQRmGpmL//WmkLa+FxYk/hKCul
+        Z3PQLjvhhCcl8BZlVJYn/BEOcA==
+X-Google-Smtp-Source: ABdhPJwmTa5xH/d7onV720jkujld6c+EE1EDx86RTuZajd94EHAxdcF++t/hrsHfq11H6lXLYCr71w==
+X-Received: by 2002:a17:902:d4d0:b029:113:fb3d:3644 with SMTP id o16-20020a170902d4d0b0290113fb3d3644mr4373020plg.58.1623425330334;
+        Fri, 11 Jun 2021 08:28:50 -0700 (PDT)
 Received: from localhost ([2401:fa00:95:205:33c8:8e01:1161:6797])
-        by smtp.gmail.com with UTF8SMTPSA id m1sm5459163pfc.63.2021.06.11.08.28.34
+        by smtp.gmail.com with UTF8SMTPSA id p11sm3312697pjj.43.2021.06.11.08.28.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jun 2021 08:28:41 -0700 (PDT)
+        Fri, 11 Jun 2021 08:28:49 -0700 (PDT)
 From:   Claire Chang <tientzu@chromium.org>
 To:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
         Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
@@ -75,9 +78,9 @@ Cc:     benh@kernel.crashing.org, paulus@samba.org,
         joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
         maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
         rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
-Subject: [PATCH v9 10/14] dma-direct: Add a new wrapper __dma_direct_free_pages()
-Date:   Fri, 11 Jun 2021 23:26:55 +0800
-Message-Id: <20210611152659.2142983-11-tientzu@chromium.org>
+Subject: [PATCH v9 11/14] swiotlb: Add restricted DMA alloc/free support.
+Date:   Fri, 11 Jun 2021 23:26:56 +0800
+Message-Id: <20210611152659.2142983-12-tientzu@chromium.org>
 X-Mailer: git-send-email 2.32.0.272.g935e593368-goog
 In-Reply-To: <20210611152659.2142983-1-tientzu@chromium.org>
 References: <20210611152659.2142983-1-tientzu@chromium.org>
@@ -87,67 +90,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new wrapper __dma_direct_free_pages() that will be useful later
-for swiotlb_free().
+Add the functions, swiotlb_{alloc,free} to support the memory allocation
+from restricted DMA pool.
 
 Signed-off-by: Claire Chang <tientzu@chromium.org>
 ---
- kernel/dma/direct.c | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+ include/linux/swiotlb.h | 15 +++++++++++++++
+ kernel/dma/swiotlb.c    | 35 +++++++++++++++++++++++++++++++++--
+ 2 files changed, 48 insertions(+), 2 deletions(-)
 
-diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-index 078f7087e466..eb4098323bbc 100644
---- a/kernel/dma/direct.c
-+++ b/kernel/dma/direct.c
-@@ -75,6 +75,12 @@ static bool dma_coherent_ok(struct device *dev, phys_addr_t phys, size_t size)
- 		min_not_zero(dev->coherent_dma_mask, dev->bus_dma_limit);
- }
+diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
+index 8200c100fe10..d3374497a4f8 100644
+--- a/include/linux/swiotlb.h
++++ b/include/linux/swiotlb.h
+@@ -162,4 +162,19 @@ static inline void swiotlb_adjust_size(unsigned long size)
+ extern void swiotlb_print_info(void);
+ extern void swiotlb_set_max_segment(unsigned int);
  
-+static void __dma_direct_free_pages(struct device *dev, struct page *page,
-+				    size_t size)
++#ifdef CONFIG_DMA_RESTRICTED_POOL
++struct page *swiotlb_alloc(struct device *dev, size_t size);
++bool swiotlb_free(struct device *dev, struct page *page, size_t size);
++#else
++static inline struct page *swiotlb_alloc(struct device *dev, size_t size)
 +{
-+	dma_free_contiguous(dev, page, size);
++	return NULL;
++}
++static inline bool swiotlb_free(struct device *dev, struct page *page,
++				size_t size)
++{
++	return false;
++}
++#endif /* CONFIG_DMA_RESTRICTED_POOL */
++
+ #endif /* __LINUX_SWIOTLB_H */
+diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+index a6562573f090..0a19858da5b8 100644
+--- a/kernel/dma/swiotlb.c
++++ b/kernel/dma/swiotlb.c
+@@ -461,8 +461,9 @@ static int find_slots(struct device *dev, phys_addr_t orig_addr,
+ 
+ 	index = wrap = wrap_index(mem, ALIGN(mem->index, stride));
+ 	do {
+-		if ((slot_addr(tbl_dma_addr, index) & iotlb_align_mask) !=
+-		    (orig_addr & iotlb_align_mask)) {
++		if (orig_addr &&
++		    (slot_addr(tbl_dma_addr, index) & iotlb_align_mask) !=
++			    (orig_addr & iotlb_align_mask)) {
+ 			index = wrap_index(mem, index + 1);
+ 			continue;
+ 		}
+@@ -702,6 +703,36 @@ late_initcall(swiotlb_create_default_debugfs);
+ #endif
+ 
+ #ifdef CONFIG_DMA_RESTRICTED_POOL
++struct page *swiotlb_alloc(struct device *dev, size_t size)
++{
++	struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
++	phys_addr_t tlb_addr;
++	int index;
++
++	if (!mem)
++		return NULL;
++
++	index = find_slots(dev, 0, size);
++	if (index == -1)
++		return NULL;
++
++	tlb_addr = slot_addr(mem->start, index);
++
++	return pfn_to_page(PFN_DOWN(tlb_addr));
 +}
 +
- static struct page *__dma_direct_alloc_pages(struct device *dev, size_t size,
- 		gfp_t gfp)
++bool swiotlb_free(struct device *dev, struct page *page, size_t size)
++{
++	phys_addr_t tlb_addr = page_to_phys(page);
++
++	if (!is_swiotlb_buffer(dev, tlb_addr))
++		return false;
++
++	release_slots(dev, tlb_addr);
++
++	return true;
++}
++
+ static int rmem_swiotlb_device_init(struct reserved_mem *rmem,
+ 				    struct device *dev)
  {
-@@ -237,7 +243,7 @@ void *dma_direct_alloc(struct device *dev, size_t size,
- 			return NULL;
- 	}
- out_free_pages:
--	dma_free_contiguous(dev, page, size);
-+	__dma_direct_free_pages(dev, page, size);
- 	return NULL;
- }
- 
-@@ -273,7 +279,7 @@ void dma_direct_free(struct device *dev, size_t size,
- 	else if (IS_ENABLED(CONFIG_ARCH_HAS_DMA_CLEAR_UNCACHED))
- 		arch_dma_clear_uncached(cpu_addr, size);
- 
--	dma_free_contiguous(dev, dma_direct_to_page(dev, dma_addr), size);
-+	__dma_direct_free_pages(dev, dma_direct_to_page(dev, dma_addr), size);
- }
- 
- struct page *dma_direct_alloc_pages(struct device *dev, size_t size,
-@@ -310,7 +316,7 @@ struct page *dma_direct_alloc_pages(struct device *dev, size_t size,
- 	*dma_handle = phys_to_dma_direct(dev, page_to_phys(page));
- 	return page;
- out_free_pages:
--	dma_free_contiguous(dev, page, size);
-+	__dma_direct_free_pages(dev, page, size);
- 	return NULL;
- }
- 
-@@ -329,7 +335,7 @@ void dma_direct_free_pages(struct device *dev, size_t size,
- 	if (force_dma_unencrypted(dev))
- 		set_memory_encrypted((unsigned long)vaddr, 1 << page_order);
- 
--	dma_free_contiguous(dev, page, size);
-+	__dma_direct_free_pages(dev, page, size);
- }
- 
- #if defined(CONFIG_ARCH_HAS_SYNC_DMA_FOR_DEVICE) || \
 -- 
 2.32.0.272.g935e593368-goog
 
