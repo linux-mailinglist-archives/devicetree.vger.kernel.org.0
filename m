@@ -2,119 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 566343A4383
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 15:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BF143A43A3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 15:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232010AbhFKN5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 09:57:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46830 "EHLO
+        id S229824AbhFKOAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 10:00:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231845AbhFKN5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 09:57:05 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFEF5C0617AF;
-        Fri, 11 Jun 2021 06:54:54 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id k5-20020a05600c1c85b02901affeec3ef8so8759504wms.0;
-        Fri, 11 Jun 2021 06:54:54 -0700 (PDT)
+        with ESMTP id S229529AbhFKOAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 10:00:44 -0400
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6BCBC061574
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 06:58:46 -0700 (PDT)
+Received: by mail-ot1-x331.google.com with SMTP id 36-20020a9d0ba70000b02902e0a0a8fe36so3202026oth.8
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 06:58:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=t4GhLZNbe4X2F3Nkr5l8ySaeJ4eizRMsuR8A0/1Zt0Y=;
-        b=a/f8+4vbE1r6uJlb7Fjan9+4imWd4Zedf0Xckjd0d4AB2QSBHX5peJ7wmUNKD6RqI+
-         to/2lPyvcfU4XkwCX1knG7AuwfjX7/O2OISnaQPZ87aakBd6RbyLw4/U7RX49QraOXlq
-         QfLh4HN4i3aXmH2Ho1av8xEWIPTj/5AC3Myk3hLxEyLEmLS1IFpJ0UJssFbeGA2vAQ48
-         f6RIU2Tg+qkYwbz1YGFE2faT4qXVsIjz43HqDnXCDFi/AC/y3IdrajUzl6YjzxwxkJPz
-         e1RASmN2Y/FUn76nkutOI1G//cDXb97TqWLuuFECkcD3Pv2EU49R9fhmMV08LGh6AlGI
-         KWGQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5u8/d/FAVA1SMvxlhwuLiLBxLoYWCAefYpC5EQqSZV8=;
+        b=OLEaPzb0ImhCRJP99xrnRxX+AyB/xwg3DLsHK4pokpZ/i+NXNJmYFugoLwIBDngFH1
+         BcCsGBhFgll7R0DdOky/24vc7A2zoVsL/8Dw/7fmCBBXPrxGqDm8u2+abfXIhEGuljji
+         8tTKRQholSB9KbJjgoASXIB6lyyfBOj3je44bfQ0d9oDuGziuCMVVhztYPfaMlNlTW8D
+         gJF16Epwr9w3IrgKTTfU5VTI5Kh/tqG2QpM8ndnqrOVbI/dC7qcI1cZymq5XV4TmsSgH
+         mYuul/CsIu8LV0o81OsOl83/ouvB7hlcbkcjGkarwLIMsaXXAY4Np9TMYYBg4CjUbjt6
+         IUBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=t4GhLZNbe4X2F3Nkr5l8ySaeJ4eizRMsuR8A0/1Zt0Y=;
-        b=czkb4mmxLCh9+hF4Dr+8hYEm2HLwGYwjnSazLrglourXsj5nXl289k0x+dRLfCFQB5
-         kn37tvUV2T7MKvVD7annefuk3iBmbTABDpL8cHcWaw+kIRxNaYIHoLffZ35x6nj8FuhM
-         Tya0dkL5sExAincEoniFYGAJJKs7nfNKMwxmjkPI1YgJm2kOKfwpErVtlZ6K+Ym4bQ2L
-         4sngD8EpJfvgFLhGKqJ67yIRpcDD9Opg+cdhs45H0kS5Hb9M7wrS1bVyWkPOwiCl8u8/
-         Yb7QXQXeZNbonOgk2p0Sj+uhkogclaU9eW/hCuTRhCkxb0NDXWAC/gsFilrHQfnQrgLo
-         7Vzg==
-X-Gm-Message-State: AOAM532MszD2/gEI1m+9pRikShl7Ix4DsSdG13tY8Pt+uwQej1GZHfCI
-        45ti6gB5WBsPd0VSetiNB3XssyggSBX2SQ==
-X-Google-Smtp-Source: ABdhPJwGotQnlGnQ6Y9vwgx6pMAyzR0pOVPeMeus0XIW6adAlKXjSYCF3sSJwsvgh9y7r9m7GBGYrQ==
-X-Received: by 2002:a1c:1d04:: with SMTP id d4mr4074792wmd.126.1623419693316;
-        Fri, 11 Jun 2021 06:54:53 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id d15sm7025666wri.58.2021.06.11.06.54.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jun 2021 06:54:52 -0700 (PDT)
-Subject: Re: [PATCH 2/2] dt-binding: mediatek: mt6779: update spi document
-To:     Mason Zhang <mason.zhang@mediatek.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, wsd_upstream@mediatek.com,
-        hanks.chen@mediatek.com, linux-kernel@vger.kernel.org,
-        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <1623413625.22727.10.camel@mbjsdccf07>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <a00f4055-4f44-9acf-5a0f-579c300bd5c0@gmail.com>
-Date:   Fri, 11 Jun 2021 15:54:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5u8/d/FAVA1SMvxlhwuLiLBxLoYWCAefYpC5EQqSZV8=;
+        b=jRthx36Pqgy5SyViPQukLNXcsJDeUcOEQ+NRO8INfkfEDFR+aOfdyn2eLkGbHL00rX
+         Bc1C+rmok3+DFpaX/kgNun5X1yTsy3QbKOK/q6040sBTtbkvdiuDdgLZcR/mQmx2mjHy
+         cwiilPwXqCMQvl/6U3rZmGV5I5QzcRgB1TZVWfqVt4T053+ALkjvkxCS3IxRpiD8j2k4
+         aNuvU5MqdPE/w1KMiHsiXT8I1Rt8RC5LeQaP7E7VB7HPkarmxdnUZ8BQQoHhd1mCv2F2
+         flndxyODUZ0EkT53m4qJa6veJgfhM5e43phKwmlAsvxaG+4RciOWx2bTGMRE0Us8amHd
+         7C8A==
+X-Gm-Message-State: AOAM532aEuiZlJTAp1Eulx51GshSK9nT2tCKUu+qp0p9Np9QgKCC6oPj
+        MlNmzbJJxQIVzKV8p8ckUN3cc+6cjIeeCCk3gl4=
+X-Google-Smtp-Source: ABdhPJy+hnRWXXLCim3XX8VR8NttDQdoTiRqRmk15ZU3zey1uUDav8/x3CYGdR2Rhq0blwpAH6F2plDBmFbPpF26jzI=
+X-Received: by 2002:a05:6830:308c:: with SMTP id f12mr3281848ots.52.1623419926189;
+ Fri, 11 Jun 2021 06:58:46 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1623413625.22727.10.camel@mbjsdccf07>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210607083921.2668568-1-ping.bai@nxp.com> <20210607083921.2668568-6-ping.bai@nxp.com>
+In-Reply-To: <20210607083921.2668568-6-ping.bai@nxp.com>
+From:   Dong Aisheng <dongas86@gmail.com>
+Date:   Fri, 11 Jun 2021 21:57:29 +0800
+Message-ID: <CAA+hA=R=pAVA0u1VRrW_tYcN5qwqrxYYY+aVTxk4+euB-Atvbg@mail.gmail.com>
+Subject: Re: [PATCH 05/11] dt-bindings: spi: fsl-lpspi: Add imx8ulp compatible string
+To:     Jacky Bai <ping.bai@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mason,
+On Mon, Jun 7, 2021 at 4:33 PM Jacky Bai <ping.bai@nxp.com> wrote:
+>
+> For i.MX8ULP, it uses two compatible strings, so update the
+> comaptible strings.
+>
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 
-On 11/06/2021 14:13, Mason Zhang wrote:
-> 
-> this patch update spi document for MT6779 SOC.
-> 
-> Signed-off-by: Mason Zhang <Mason.Zhang@mediatek.com>
+As previously mentioned, pls improve commit message,
+otherwise:
+Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+
+Regards
+Aisheng
+
 > ---
->  Documentation/devicetree/bindings/spi/spi-mt65xx.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-mt65xx.txt b/Documentation/devicetree/bindings/spi/spi-mt65xx.txt
-> index 9e43721fa7d6..7bae7eef26c7 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-mt65xx.txt
-> +++ b/Documentation/devicetree/bindings/spi/spi-mt65xx.txt
-> @@ -13,6 +13,7 @@ Required properties:
->      - mediatek,mt8183-spi: for mt8183 platforms
->      - "mediatek,mt8192-spi", "mediatek,mt6765-spi": for mt8192 platforms
->      - "mediatek,mt8516-spi", "mediatek,mt2712-spi": for mt8516 platforms
-> +    - "mediatek,mt6779-spi", "mediatek,mt6765-spi": for mt6779 platforms
->  
->  - #address-cells: should be 1.
->  
-> 
-> Hi Matthias:
-> 	
-> 	I'm sorry to disturb you, this patch is stay here for a long time, Do
-> you have any suggestions about this patch? 
-> 	We hope this patch will be merged as soon as possible,If you have any
-> concern, I will fix it in time.
-> 
-> 	Looking forward to your reply~  
-> 
-> Thanks
-> Mason
-> 
-
-Please put any comments below --- but before the diff, otherwise you break the
-patch.
-
-This patch was already upstreamed by:
-260864f797f2 ("spi: mt6779: update spi document")
-
-
-Regards,
-Matthias
+>  .../devicetree/bindings/spi/spi-fsl-lpspi.yaml        | 11 +++++++----
+>  1 file changed, 7 insertions(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+> index 312d8fee9dbb..1d46877fe46a 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-fsl-lpspi.yaml
+> @@ -14,10 +14,13 @@ allOf:
+>
+>  properties:
+>    compatible:
+> -    enum:
+> -      - fsl,imx7ulp-spi
+> -      - fsl,imx8qxp-spi
+> -
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx7ulp-spi
+> +          - fsl,imx8qxp-spi
+> +      - items:
+> +          - const: fsl,imx8ulp-spi
+> +          - const: fsl,imx7ulp-spi
+>    reg:
+>      maxItems: 1
+>
+> --
+> 2.26.2
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
