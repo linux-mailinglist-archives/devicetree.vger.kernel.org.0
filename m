@@ -2,112 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 278CD3A49E9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 22:08:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0C6A3A4A04
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 22:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231235AbhFKUKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 16:10:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44962 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230455AbhFKUKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 16:10:16 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53130C061574;
-        Fri, 11 Jun 2021 13:08:18 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id z8so7251665wrp.12;
-        Fri, 11 Jun 2021 13:08:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tzxiu7KFGSluOPtUekhY+72u7lbVVCqQQlsEwyNj1Qg=;
-        b=vROX4jNiaWGHijnOjfKBo6d3pqx42H+5qGdwurRLD7O4fPmDhIObwlDUtzfLG0SLPX
-         IP3T74La8bnvi5+gAlLEjRAqSXP6pwRoLT18wH2ix+Uv8xNtvhZshrq7iTepo78ZXJgB
-         d+PYhb9GC2VESBbumysCwNWeDs9yOOSiYKcc1O0lpDpGwz6I/iWEl42IYnML8PRSLGjK
-         iVDNJcWsoyBknsHj5yeEi4/mRhVE7up5FUHOY9fYATHd6RYSNURnyheHWe8+Iqmlzgwt
-         tfrRefoW/3Vevrj2/glIm6DDo/KIZiRruGZmC2yqZh44/vcR6uhFsgBGTKer5t9/uCNr
-         mgZw==
+        id S229931AbhFKUTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 16:19:00 -0400
+Received: from mail-io1-f47.google.com ([209.85.166.47]:47099 "EHLO
+        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229572AbhFKUS7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 16:18:59 -0400
+Received: by mail-io1-f47.google.com with SMTP id b14so17438319iow.13;
+        Fri, 11 Jun 2021 13:16:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tzxiu7KFGSluOPtUekhY+72u7lbVVCqQQlsEwyNj1Qg=;
-        b=cIlG9jFEiPe27zCkZvxyG2oeG3Ib+tmPU+COkSNus+i9H7rh7OP0QFIA9lGutkQ53V
-         qaIXCM0/a9PFAjG3wUj4b6kbQvs0roItwQDTUK5GWlfwEdqgmwJBY7PpdXKsJY8sKstQ
-         QfTe8R6McF1RcQ9tD8/J79jf3KlacZ2Vq0aYCXOHZBtQX4R1M139Yc92PiNEIT5m+qut
-         Ig+fLkO4E+xovSst5ok6cbLO6DCUzLGkcJ0go+Dp9wydIGHpBMo7rMCjeunSCzOanCrH
-         FDI2uxShTkwznebY6qqX5J4+b6MubaDOc1/ZzncHnLtjeOyo7tEqeId3MKuyyoC6MCNg
-         8RJw==
-X-Gm-Message-State: AOAM530vo0Zuw1fTCTKUjyZOoYadJrcydnCGYPTzefz+qmvGRxuAXQCU
-        SqPAlZ0BrVLdOyX/51DbwmYZoVMynCE=
-X-Google-Smtp-Source: ABdhPJygC3PA0tq7FMN68+kal30TbfxTd8WdXPm5eg88bWh3p2DjciczPD3JHFYt0GkINaM3gpDTMg==
-X-Received: by 2002:a5d:4fc6:: with SMTP id h6mr5973499wrw.1.1623442093463;
-        Fri, 11 Jun 2021 13:08:13 -0700 (PDT)
-Received: from debby (176-141-241-253.abo.bbox.fr. [176.141.241.253])
-        by smtp.gmail.com with ESMTPSA id u20sm6741319wmq.24.2021.06.11.13.08.12
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=q0+x2SqoxWiaPifmKrDxHGfFMZV2vnASbAUPISmleOI=;
+        b=BbnnJgvhZNQGoqumgKHeJROhZEvWywVJAnOUFH8J4eHclstVdE2uNxN8/fgk5ICsRE
+         Cu3NpSwsjhvbET+H4JC9x08bNo6TQ7Vz5I93jZ3Px6x/2sJrloEOrVFJ4mGdUE5XeneF
+         seKlqaY8Jkopd9kcdNJbw6/ehix7Vb3XrkCty5+n7E5dxueZyxME4PnEhlRtRpgqfHOQ
+         5PrTDPJjI04a7khlN29Nn5Exntjja6fRb+UPDgPT+R9bgv8vYBAvz2yhpQ0fikKFLNrK
+         V7bsSKT1I7IxlJSxGks9WxSt0QoiPMA1R1diqsrJs5dXcH5fUw9OpHXGZjUcOQ06lyuy
+         HNeA==
+X-Gm-Message-State: AOAM530mn94Cnl+NLYGQfxJOE3eIqOQhnO6lIzJJoq4hiEf8YpTj8Y+J
+        gUDqcqM8cu7aOs0/OPfIgLsjjgNjoA==
+X-Google-Smtp-Source: ABdhPJzQIm/BqMSQwWzSA9z9gs+k22W0KTiGbehcPSKI8jfx8c3oJlpVku2pmx/4kzLFd1YTq5DgtA==
+X-Received: by 2002:a05:6602:29d0:: with SMTP id z16mr4427962ioq.207.1623442606182;
+        Fri, 11 Jun 2021 13:16:46 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id i13sm3833718ilr.16.2021.06.11.13.16.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 13:08:13 -0700 (PDT)
-From:   Romain Perier <romain.perier@gmail.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        Mohammed Billoo <mohammed.billoo@gmail.com>,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/3] ARM: dts: mstar: Add watchdog device_node definition
-Date:   Fri, 11 Jun 2021 22:08:01 +0200
-Message-Id: <20210611200801.52139-4-romain.perier@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210611200801.52139-1-romain.perier@gmail.com>
-References: <20210611200801.52139-1-romain.perier@gmail.com>
+        Fri, 11 Jun 2021 13:16:45 -0700 (PDT)
+Received: (nullmailer pid 1608484 invoked by uid 1000);
+        Fri, 11 Jun 2021 20:16:43 -0000
+Date:   Fri, 11 Jun 2021 14:16:43 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     cy_huang <u0084500@gmail.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, matthias.bgg@gmail.com,
+        gene_chen@richtek.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        cy_huang@richtek.com, gene.chen.richtek@gmail.com
+Subject: Re: [PATCH 1/2] regulator: mt6360: Add optional
+ mediatek.power-off-sequence in bindings document
+Message-ID: <20210611201643.GA1583875@robh.at.kernel.org>
+References: <1622616875-22740-1-git-send-email-u0084500@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1622616875-22740-1-git-send-email-u0084500@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the definition of both an oscillator at 12Mhz required by the
-the watchdog and the watchdog device_node.
+On Wed, Jun 02, 2021 at 02:54:34PM +0800, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> Add optional mediatek.power-off-sequence in bindings document.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+> Hi,
+> 
+> Originally, we think it must write in platform dependent code like as bootloader.
+> But after the evaluation, it must write only when system normal HALT or POWER_OFF.
+> For the other cases, just follow HW immediate off by default.
 
-Signed-off-by: Romain Perier <romain.perier@gmail.com>
----
- arch/arm/boot/dts/mstar-v7.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Wouldn't this be handled by PSCI implementation?
 
-diff --git a/arch/arm/boot/dts/mstar-v7.dtsi b/arch/arm/boot/dts/mstar-v7.dtsi
-index 075d583d6f40..2273295e140f 100644
---- a/arch/arm/boot/dts/mstar-v7.dtsi
-+++ b/arch/arm/boot/dts/mstar-v7.dtsi
-@@ -60,6 +60,14 @@ rtc_xtal: rtc_xtal {
- 			clock-frequency = <32768>;
- 			status = "disabled";
- 		};
-+
-+		xtal_div2: xtal_div2 {
-+			#clock-cells = <0>;
-+			compatible = "fixed-factor-clock";
-+			clocks = <&xtal>;
-+			clock-div = <2>;
-+			clock-mult = <1>;
-+		};
- 	};
- 
- 	soc: soc {
-@@ -101,6 +109,12 @@ reboot {
- 				mask = <0x79>;
- 			};
- 
-+			watchdog@6000 {
-+				compatible = "mstar,msc313e-wdt";
-+				reg = <0x6000 0x1f>;
-+				clocks = <&xtal_div2>;
-+			};
-+
- 			intc_fiq: interrupt-controller@201310 {
- 				compatible = "mstar,mst-intc";
- 				reg = <0x201310 0x40>;
--- 
-2.30.2
+> ---
+>  .../devicetree/bindings/regulator/mt6360-regulator.yaml       | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
+> index a462d99..eaf36e2 100644
+> --- a/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
+> @@ -24,6 +24,16 @@ properties:
+>    LDO_VIN3-supply:
+>      description: Input supply phandle(s) for LDO6/7
+>  
+> +  mediatek,power-off-sequence:
+> +    description: |
+> +      Power off sequence time selection for BUCK1/BUCK2/LDO7/LDO6, respetively.
+> +      Cause these regulators are all default-on power. Each value from 0 to 63,
+> +      and step is 1. Each step means 2 millisecond delay.
+> +      Therefore, the power off sequence delay time range is from 0ms to 126ms.
+> +    $ref: "/schemas/types.yaml#/definitions/uint8-array"
+> +    minItems: 4
+> +    maxItems: 4
 
+So this is the delay between BUCK1 and BUCK2, then BUCK2 to LDO7, etcc? 
+If we wanted to express this in DT, we'd made this generic which would 
+need to be more flexible. A poweroff delay in each regulator (similar to 
+the existing power on delay) would be sufficient for what you need I 
+think.
+
+Rob
