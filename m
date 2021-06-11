@@ -2,91 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1B8C3A4AC8
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 23:50:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8647B3A4AD3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 23:57:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbhFKVv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 17:51:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39032 "EHLO
+        id S230168AbhFKV7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 17:59:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbhFKVv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 17:51:58 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63DBFC061574;
-        Fri, 11 Jun 2021 14:50:00 -0700 (PDT)
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 8B0368047F;
-        Fri, 11 Jun 2021 23:49:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1623448196;
-        bh=J1w1Qy+UZUBMOkVepzUoEUawid8tPfM8riAKr4+3hes=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=kOfhTWKNaDLvYWOSRk0HwKPzXaTTm/qgE84IOw6w4DueqrI17o6U8z8Vp7csa0qvs
-         VlA7aUY0tfosX4im3hXbtGrge+XzfhY9C31t4BsdFeutIe91PlKCXA7YkoddwvUg4f
-         WsGkofi6CF5oDgZMo6zrstCNesofWdfkd5ZXx0Jr1A9NbHXy3wUQBq70pLH8oRo8c5
-         hUBi2Ls06XeJ0GUG19FLeK2Jq5b+/Q3MklOXt85rHap7IN9FKjPTBCqQtpFJdhaXGQ
-         ypKbjZpHlHeNxQWiXvQdtrpormvDVivTScvcoS2qFgYm2WILtjF2Fu0TC22aKfxbDs
-         4Kujj0O3oFCfQ==
-Subject: Re: [PATCH] dt-bindings: input: touchscreen: ilitek_ts_i2c: Absorb
- ili2xxx bindings
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joe Hung <joe_hung@ilitek.com>,
-        linux-input <linux-input@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-References: <c381ee2526074e02b6058c489f85cfdaee582713.1623419587.git.geert+renesas@glider.be>
- <9b1b2a44-348e-5453-d767-d5c69a0869a7@denx.de>
- <CAMuHMdXE0kipUm6wqHsrFurFkviU_nRJJB7cg6z1XwEvpEewGQ@mail.gmail.com>
- <YMOsRzfDnZ/iApwD@google.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <9d901eb1-6408-6b4f-1377-03c394d440c4@denx.de>
-Date:   Fri, 11 Jun 2021 23:49:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S229777AbhFKV7o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 17:59:44 -0400
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7B4FC061574;
+        Fri, 11 Jun 2021 14:57:35 -0700 (PDT)
+Received: by mail-qv1-xf29.google.com with SMTP id l3so10292321qvl.0;
+        Fri, 11 Jun 2021 14:57:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/twGMyo5EO9GXJuIlNzACVg/yJN3yFBsRp8LJlEdtXM=;
+        b=FwxcQHeM7PISTuZI0+UBbTk2U/Ifne6xvCN7lgf/mDl56VYpw0qec/8ladJtzEDxM9
+         bpD2+kzR5F907VaTmef5z4kEacdOiqXp4QjZ44fx92tb9ix/Zhc+ADyXaB9AIK6ak+01
+         VxStL9uURyzUzd8z+eI7S5GsneuptEOIREF0i7Rz3OVS2G6yZTixfCrCCLPdC8ut/g9x
+         E3dhLuxxR3cgEU4JvsDCfc9D5gC9OeFOoYXs8s6ktMYGroj8EBmlotUkCyHghdrSIYh7
+         AhhhZ1AmFudanKRhE2nOvprbVgJhmY1ElE6BGwlB0JxxWW01gWN2t18fsYla7gcxnJVT
+         khLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/twGMyo5EO9GXJuIlNzACVg/yJN3yFBsRp8LJlEdtXM=;
+        b=TSwTRJyzgyqMv3PamUtfxsWX0fCrT62dnP6Oc9n69koB/6XwUU1UV4L2fhRjrfSEOO
+         QCjyRQpyyWZVtD+HUOC8fGLTLC2qNcqEK3Uf6axWmICFgqGvaafTQngyL8rK9LYr2eES
+         PWBe6MbcLarW4luLP4GQDRNaqlnSoS30WZZvNUrm2nw9dQRgSKhL0OvSmmjU6Inbrdiw
+         8lEAeVNHk9ziiYahNGcxQFvdROsWlYpDgl25LF9dG5I2510q4zexpU9Y6ePDWJy3KK14
+         EdJymZqaQ0+OOMGW2srLbxoLUXsl3HAE+taiKVkMUkrC4cDyuxCFE9/2XiK6YaQ5xkNr
+         yZSw==
+X-Gm-Message-State: AOAM530lDm8bc5p5qoK00SfsSQhXs9z2X77IdnMflWvUlUUzZtJtHGpw
+        2fxy5LK+Roz6koKVWwMrWmJOXfzJPG+H89N/shMOKOaTBWE79ohe
+X-Google-Smtp-Source: ABdhPJxagl6eJfmc3DNGhjfpe4EHJxWxMWDcN9SWrXsF55lIrUza4fxVv/Huvq6tUo9g+Fa86e25TOEEvxvfKAiuImM=
+X-Received: by 2002:ad4:4e2e:: with SMTP id dm14mr7005009qvb.33.1623448655003;
+ Fri, 11 Jun 2021 14:57:35 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YMOsRzfDnZ/iApwD@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+References: <20210611203301.101067-1-konrad.dybcio@somainline.org> <20210611203301.101067-2-konrad.dybcio@somainline.org>
+In-Reply-To: <20210611203301.101067-2-konrad.dybcio@somainline.org>
+From:   Marijn Suijten <marijns95@gmail.com>
+Date:   Fri, 11 Jun 2021 23:57:24 +0200
+Message-ID: <CANX-K3uHfV2dh8Ep1__atCgZ-VYxn4=9MkeR7zi40p0vLdF4Cg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add support for SONY Xperia 1 / 5
+ (Kumano platform)
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/11/21 8:32 PM, Dmitry Torokhov wrote:
+On Fri, 11 Jun 2021 at 22:33, Konrad Dybcio
+<konrad.dybcio@somainline.org> wrote:
+>
+> Add support for SONY Xperia 1 and 5 smartphones, both based on the
+> Qualcomm SM8150 chipset. There also exist 5G-capable versions of these
+> devices, but they weren't sold much (if at all) outside Japan.
+>
+> The devices are affected by a scary UFS behaviour where sending a certain UFS
+> command (which is worked around on downstream) renders the device unbootable,
+> by effectively erasing the bootloader. Therefore UFS AND UFSPHY are strictly
+> disabled for now.
+>
+> Downstream workaround:
+> https://github.com/kholk/kernel/commit/2e7a9ee1c91a016baa0b826a7752ec45663a0561
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-Hi,
+Thanks for working on this!
 
->>> On 6/11/21 3:54 PM, Geert Uytterhoeven wrote:
->>>> While Linux uses a different driver, the Ilitek
->>>> ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller Device Tree
->>>> binding documentation is very similar.
->>>>
->>>>     - Drop the fixed reg value, as some controllers use a different
->>>>       address,
->>>>     - Make reset-gpios optional, as it is not always wired.
->>>
->>> It looks like there are now two drivers for the same hardware,
->>> drivers/input/touchscreen/ili210x.c
->>> drivers/input/touchscreen/ilitek_ts_i2c.c
->>> The ilitek_ts_i2c (newer) seems to be derived from the ilitek example
->>> code / driver, while the ili210x was written from scratch as far as I
->>> can tell.
->>
->> I'm not so sure they're for the same hardware, but you may know better?
->> https://www.displayvisions.us/fileadmin/html-seiten/eng/pdf/zubehoer/ILITek_TP_Programming_Guide_V1.50.pdf
->> lists only Ilitek parts handled by ilitek_ts_i2c.c.
-> 
-> Ilitek folks said that the new driver is for their "Lego" series
-> controllers, whereas ili210x.c is for older hardware.
+Tested-by: Marijn Suijten <marijn.suijten@somainline.org>
+(On Bahamut)
 
-The older driver also supports 251x . What exactly is "Lego" series ?
-In fact, is there documentation for the different ILI2xxx touchscreen 
-controllers ? So far, all the information I had was pulled from the 
-various forks of downstream example code.
+- Marijn
