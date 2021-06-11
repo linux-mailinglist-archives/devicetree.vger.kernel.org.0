@@ -2,100 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0C6A3A4A04
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 22:17:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06D783A4A18
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 22:24:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229931AbhFKUTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 16:19:00 -0400
-Received: from mail-io1-f47.google.com ([209.85.166.47]:47099 "EHLO
-        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbhFKUS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 16:18:59 -0400
-Received: by mail-io1-f47.google.com with SMTP id b14so17438319iow.13;
-        Fri, 11 Jun 2021 13:16:46 -0700 (PDT)
+        id S230267AbhFKU0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 16:26:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48572 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229951AbhFKU0h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 16:26:37 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F81FC061574;
+        Fri, 11 Jun 2021 13:24:38 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id k25so6293561eja.9;
+        Fri, 11 Jun 2021 13:24:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=+dQpQl+uCaHWxj358F0QEZFc7ikOW5DB/iODbuCA6Bo=;
+        b=MOUo8P7M9qdEIG8LWpwG8oLhvsWO07zAGYwJ8BdYnmZ9pjT0vrIIM/ihQbyHWpVkBK
+         i+vgTfrewH5QgNISDGetGS6E0ygfJrYnfnYeR+NHynZDTu6h96fRVoc9ovey2UKcHL7l
+         QYAKB3ui4M8fPSv287ODj2K3kuYIVmH/9IV3vAoCuDhGM09j2UxevJx7Onfrdd+45dpd
+         fGt4rGNrMwu2powuZ+XQxbmOHZYQVNB9RKouMTTJCZKdHzc2DUkKx66fVLkWJJEZQVoO
+         3eF/fzMJC+O2j0spwrZ0S25mS5cmapTPqgNRNnzItarcnJfe78DQGz7i0EzwN2rOWukH
+         Gu/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=q0+x2SqoxWiaPifmKrDxHGfFMZV2vnASbAUPISmleOI=;
-        b=BbnnJgvhZNQGoqumgKHeJROhZEvWywVJAnOUFH8J4eHclstVdE2uNxN8/fgk5ICsRE
-         Cu3NpSwsjhvbET+H4JC9x08bNo6TQ7Vz5I93jZ3Px6x/2sJrloEOrVFJ4mGdUE5XeneF
-         seKlqaY8Jkopd9kcdNJbw6/ehix7Vb3XrkCty5+n7E5dxueZyxME4PnEhlRtRpgqfHOQ
-         5PrTDPJjI04a7khlN29Nn5Exntjja6fRb+UPDgPT+R9bgv8vYBAvz2yhpQ0fikKFLNrK
-         V7bsSKT1I7IxlJSxGks9WxSt0QoiPMA1R1diqsrJs5dXcH5fUw9OpHXGZjUcOQ06lyuy
-         HNeA==
-X-Gm-Message-State: AOAM530mn94Cnl+NLYGQfxJOE3eIqOQhnO6lIzJJoq4hiEf8YpTj8Y+J
-        gUDqcqM8cu7aOs0/OPfIgLsjjgNjoA==
-X-Google-Smtp-Source: ABdhPJzQIm/BqMSQwWzSA9z9gs+k22W0KTiGbehcPSKI8jfx8c3oJlpVku2pmx/4kzLFd1YTq5DgtA==
-X-Received: by 2002:a05:6602:29d0:: with SMTP id z16mr4427962ioq.207.1623442606182;
-        Fri, 11 Jun 2021 13:16:46 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id i13sm3833718ilr.16.2021.06.11.13.16.44
+        bh=+dQpQl+uCaHWxj358F0QEZFc7ikOW5DB/iODbuCA6Bo=;
+        b=ZLThxkyUpg3sdnMfikjaALM/YmXXBfcvrtYNXGLqEjIKIgxprVhEfU2Ux66yUFruge
+         8e6aGsK0/Fhg6MhQkEKyHltxmmmXatkMTzVeY8Knz87tF9YHcPyIT818tQcDC6yu+ivh
+         JBfAH3szKqKQfXrlOW18YUclDY7kJsG6JpptSSGrXodj2x6hBI4s7aPPoGm8GKsLGQkp
+         yqzwkYKjuA5ZRtScMGw6IpfBSV+EzWcGkhEBi3Hau2WXMpXignoVjdJfk4/FkohcgPCs
+         DfdIvKlBwsskMYcaQjHGmDIDCCe5gNtAknBFx02Pgjd267f1ZLwoQE8J+m33+LIz9+LU
+         GFKg==
+X-Gm-Message-State: AOAM530avNUZ7jhoFpEDdRFW2nj5COPJmeMiZ5t56GgtsU7OLS9t2QOI
+        yelDZPDCt8UsjKJlwDAbwMA=
+X-Google-Smtp-Source: ABdhPJwn0zaoJnSvp7caqYDvwC27ySoMhITMCdGC7cD6Vb9O61GJvtDJHbVtst6yea7wXmuT39FPXw==
+X-Received: by 2002:a17:906:5049:: with SMTP id e9mr5160780ejk.30.1623443077111;
+        Fri, 11 Jun 2021 13:24:37 -0700 (PDT)
+Received: from skbuf ([188.26.52.84])
+        by smtp.gmail.com with ESMTPSA id b24sm2951033edw.4.2021.06.11.13.24.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 13:16:45 -0700 (PDT)
-Received: (nullmailer pid 1608484 invoked by uid 1000);
-        Fri, 11 Jun 2021 20:16:43 -0000
-Date:   Fri, 11 Jun 2021 14:16:43 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, matthias.bgg@gmail.com,
-        gene_chen@richtek.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        cy_huang@richtek.com, gene.chen.richtek@gmail.com
-Subject: Re: [PATCH 1/2] regulator: mt6360: Add optional
- mediatek.power-off-sequence in bindings document
-Message-ID: <20210611201643.GA1583875@robh.at.kernel.org>
-References: <1622616875-22740-1-git-send-email-u0084500@gmail.com>
+        Fri, 11 Jun 2021 13:24:35 -0700 (PDT)
+Date:   Fri, 11 Jun 2021 23:24:34 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Matthew Hagan <mnhagan88@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/5] ARM: dts: NSP: Add Meraki MX64/MX65 to Makefile
+Message-ID: <20210611202434.flnqrzbbxicw5c3t@skbuf>
+References: <20210610232727.1383117-1-mnhagan88@gmail.com>
+ <20210610232727.1383117-3-mnhagan88@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1622616875-22740-1-git-send-email-u0084500@gmail.com>
+In-Reply-To: <20210610232727.1383117-3-mnhagan88@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 02, 2021 at 02:54:34PM +0800, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+On Fri, Jun 11, 2021 at 12:27:14AM +0100, Matthew Hagan wrote:
+> Add Makefile entries for the Meraki MX64/MX65 series devices.
 > 
-> Add optional mediatek.power-off-sequence in bindings document.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
 > ---
-> Hi,
+>  arch/arm/boot/dts/Makefile | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> Originally, we think it must write in platform dependent code like as bootloader.
-> But after the evaluation, it must write only when system normal HALT or POWER_OFF.
-> For the other cases, just follow HW immediate off by default.
-
-Wouldn't this be handled by PSCI implementation?
-
-> ---
->  .../devicetree/bindings/regulator/mt6360-regulator.yaml       | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index f8f09c5066e7..033d9604db60 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -154,6 +154,12 @@ dtb-$(CONFIG_ARCH_BCM_NSP) += \
+>  	bcm958525xmc.dtb \
+>  	bcm958622hr.dtb \
+>  	bcm958623hr.dtb \
+> +	bcm958625-meraki-mx64.dtb \
+> +	bcm958625-meraki-mx64-a0.dtb \
+> +	bcm958625-meraki-mx64w.dtb \
+> +	bcm958625-meraki-mx64w-a0.dtb \
+> +	bcm958625-meraki-mx65.dtb \
+> +	bcm958625-meraki-mx65w.dtb \
+>  	bcm958625hr.dtb \
+>  	bcm988312hr.dtb \
+>  	bcm958625k.dtb
+> -- 
+> 2.26.3
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml b/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
-> index a462d99..eaf36e2 100644
-> --- a/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
-> @@ -24,6 +24,16 @@ properties:
->    LDO_VIN3-supply:
->      description: Input supply phandle(s) for LDO6/7
->  
-> +  mediatek,power-off-sequence:
-> +    description: |
-> +      Power off sequence time selection for BUCK1/BUCK2/LDO7/LDO6, respetively.
-> +      Cause these regulators are all default-on power. Each value from 0 to 63,
-> +      and step is 1. Each step means 2 millisecond delay.
-> +      Therefore, the power off sequence delay time range is from 0ms to 126ms.
-> +    $ref: "/schemas/types.yaml#/definitions/uint8-array"
-> +    minItems: 4
-> +    maxItems: 4
 
-So this is the delay between BUCK1 and BUCK2, then BUCK2 to LDO7, etcc? 
-If we wanted to express this in DT, we'd made this generic which would 
-need to be more flexible. A poweroff delay in each regulator (similar to 
-the existing power on delay) would be sufficient for what you need I 
-think.
-
-Rob
+It is odd to add the device trees to the Makefile in a separate patch
+compared to their actual introduction. Does the tree even compile at
+this stage?
