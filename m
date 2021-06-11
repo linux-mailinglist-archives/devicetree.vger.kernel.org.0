@@ -2,54 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D18C3A48FA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 21:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7000C3A48FE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 21:00:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231256AbhFKTCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 15:02:20 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:34468 "EHLO
+        id S230136AbhFKTCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 15:02:48 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34648 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231250AbhFKTCT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 15:02:19 -0400
+        with ESMTP id S230251AbhFKTCr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 15:02:47 -0400
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15BJ0Ft4085088;
-        Fri, 11 Jun 2021 14:00:15 -0500
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15BJ0ev4085288;
+        Fri, 11 Jun 2021 14:00:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623438015;
-        bh=DRr++KruFJuU3v1PVHDTue7tJ+rjtsJ1uOfP1dsU0kw=;
+        s=ti-com-17Q1; t=1623438040;
+        bh=vFfJv1DJK8Bw4YTTIhR/MlPi6BczN33Mge3qrZ5xeZI=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Qm5A8vf3sv4cKIQBu/uONiTXP74rqRfpslfysDVj0dzqpqAGVzxfpUiLS/wSrRZj9
-         ctLtCUug4bxD2HdjQTIT3LdKaKk8ZTliSL+2uLNCJMQQKehvlvKJCDwzIPjQMw3BpF
-         IY+7wqB7y+4NeEutj16INHgVTFlYTznJIIvuLRzo=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15BJ0Fe8075297
+        b=Pco79IsprNwJadNVmHiG8WfKA7TzSejZbVwpyxLrCx3nAZyRWKoVY0Lotlauozmae
+         OKMUkfUyR8ocXMAQ3wOAcxB7ffLKSe+qYKceGXxX37xNPpxAydQJaHxChfErJjXWhs
+         gdsdaPL+3P9JVNTXbq/o6+rxsnLfWhdAj9PYDSWE=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15BJ0e9s075908
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Jun 2021 14:00:15 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 11 Jun 2021 14:00:40 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 11
- Jun 2021 14:00:15 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2021 14:00:40 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 11 Jun 2021 14:00:14 -0500
+ Frontend Transport; Fri, 11 Jun 2021 14:00:40 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15BJ0EMg067169;
-        Fri, 11 Jun 2021 14:00:14 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15BJ0ewO065001;
+        Fri, 11 Jun 2021 14:00:40 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     Aswath Govindraju <a-govindraju@ti.com>
 CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, <devicetree@vger.kernel.org>,
-        Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am64-main: Update the location of ATF in SRAM and increase its max size
-Date:   Fri, 11 Jun 2021 14:00:13 -0500
-Message-ID: <162343800075.7434.10921347563461214925.b4-ty@ti.com>
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/2] arm64: am65/am64: Fix ti,pindir-d0-out-d1-in property to boolean
+Date:   Fri, 11 Jun 2021 14:00:39 -0500
+Message-ID: <162343802641.7621.4442458748650241719.b4-ty@ti.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210607133806.18158-1-a-govindraju@ti.com>
-References: <20210607133806.18158-1-a-govindraju@ti.com>
+In-Reply-To: <20210608051414.14873-1-a-govindraju@ti.com>
+References: <20210608051414.14873-1-a-govindraju@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -58,15 +60,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Jun 2021 19:08:06 +0530, Aswath Govindraju wrote:
-> Due to a limitation for USB DFU boot mode, SPL load address has to be less
-> than  or equal to 0x70001000. So, load address of SPL and ATF have been
-> moved to 0x70000000 and 0x701a0000 respectively.
+On Tue, 8 Jun 2021 10:44:12 +0530, Aswath Govindraju wrote:
+> The following series of patches fix "ti,pindir-d0-out-d1-in" property to
+> boolean.
 > 
-> Also, the maximum size of ATF has been increased to 0x1c000 [1].
-> 
-> Therefore, update ATF's location and maximum size accordingly in the device
-> tree file.
+> changes since v1:
+> - added fixes tags
+> - split the series according to their respective trees
 > 
 > [...]
 
@@ -75,8 +75,10 @@ Hi Aswath Govindraju,
 I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/1] arm64: dts: ti: k3-am64-main: Update the location of ATF in SRAM and increase its max size
-      commit: d05c19bd3f588445eb6769fb71f2e5e02b7a959e
+[1/2] arm64: dts: ti: am65: align ti,pindir-d0-out-d1-in property with dt-shema
+      commit: 5c5217c76a26d04e44e7c359cd5f044adb648d31
+[2/2] arm64: dts: ti: k3-am642-evm: align ti,pindir-d0-out-d1-in property with dt-shema
+      commit: 7c5b7c6071396c9de09048b8ffa21e0b29b99f7b
 
 
 All being well this means that it will be integrated into the linux-next
