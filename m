@@ -2,103 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5B983A4997
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 21:48:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64B3C3A49AE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 21:59:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229874AbhFKTuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 15:50:00 -0400
-Received: from mail-ej1-f47.google.com ([209.85.218.47]:33776 "EHLO
-        mail-ej1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229530AbhFKTuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 15:50:00 -0400
-Received: by mail-ej1-f47.google.com with SMTP id g20so6261406ejt.0;
-        Fri, 11 Jun 2021 12:47:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=C6C9XAc/4o5g/nJl5oV+VV5fk+Yq/QDQ08tqYJKVlN8=;
-        b=Wr7Kz7qyfO/ySRu0Ur5oh4v8IOHFu8omwbVz1962faGV6z+ITUn5KuX1jAG8TS3aaK
-         38Y5LWZipl+cT7CCjzqAEBNuaFWBQYdqfW1H+5+6Lt5EG720ZyzFkIMcTcl+OjuFRlSa
-         1XlypvFbDDLNScs0lkW0/HZT66ck3oqM/FyMxwKAeo4o8OwF0+vbD2b/quzziHxXWW6d
-         pidse3IlAvV/27stXoJhYAvK3j0oalHBWdCtu9CVifIKhqi3wF+kuOid+KRDOkOZL/Qe
-         LZelQiJQ03l7fkbwK73jwDQ1mz1FLjgp+ReFtkMynml8Dd6zmR5KO1KUkt39XleFQ0HV
-         6lMg==
+        id S229548AbhFKUBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 16:01:23 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:41555 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229517AbhFKUBX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 16:01:23 -0400
+Received: by mail-io1-f50.google.com with SMTP id p66so30567004iod.8;
+        Fri, 11 Jun 2021 12:59:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=C6C9XAc/4o5g/nJl5oV+VV5fk+Yq/QDQ08tqYJKVlN8=;
-        b=IXl5b5sHWtuImAruwq2YWtFzKXqAIMC89PkH1rtOkD3OohvO8lHPch2B76OX80Z8Nu
-         +S+2Gz7ilRK5S15Wo3aC8ZmVNYtiASrByQMTG0szj4RuuMgDITRQJpivb3ZDNnOOX6Kp
-         LPhDkebgaJCekwvOefzdLarXQBJrFNYX3/aZpjLGD40lWnd7yKhiCv+ZEGXO3u9MSkej
-         vNpqgC57tn+vpGuLU0AvoHOhdAQpnmV/kdToK4T9kskzbDChKqQjJJ+uVn/1OtYzjxlb
-         kpY7ymFclCkJf7KEnO5Sw8RN02oBRfq1gVgViZG2kf+SLsJXMLe6yc/yG0fdSUKZuIwN
-         kpVQ==
-X-Gm-Message-State: AOAM530GGeYGlSllrz9N0PnMfzNca6O/D2Eo7tETiw5zfbpMNgvxjtOP
-        +K11XNDRZmumijnaTaxl1u0=
-X-Google-Smtp-Source: ABdhPJxfI9du5pPrBGY5Y+smBF61rv+3CBid1CuZMbtYk5u7WBPWybqvRdM2AW0rcmkmc37DxDvXjw==
-X-Received: by 2002:a17:907:948c:: with SMTP id dm12mr5060138ejc.484.1623440806641;
-        Fri, 11 Jun 2021 12:46:46 -0700 (PDT)
-Received: from skbuf ([188.26.52.84])
-        by smtp.gmail.com with ESMTPSA id o64sm3011500eda.83.2021.06.11.12.46.45
+        bh=2MShu2QtVsTqRdskB6+VsVqYV5HgLpTWfQ/M1na3eIs=;
+        b=E1Ma9WpzJhqSe3RVBhvO3itkXeI3Te6JefbkrlCOZEDpkUNYOJErbc7Eoxt4wyZtOj
+         JqK279HtoNfu9WhtTv39yiJHyYfo495zgBn1fk6QEHysb80aMQtjiYCr86ryZe4mjggI
+         HMAG+2Ug3TCPl14REIQmsdS77cx8/pWndeNHrLA5/wJBaaOphLD4s0umAe0fzjcwdwkV
+         4rmQ6PoePluj28ErzSHwwqg5DpmClefAJtyUW4PlPPuIL5brpsp37cqo/ZJUJ3gXZLhj
+         dcfgysX3Zmw626JiS11jBrkoo/i5XPQMFJkPaQMTjhPah0+bKxU+Zv/kKt1EYv7nkk4G
+         adaw==
+X-Gm-Message-State: AOAM533y+IShVsc0Glpafl7Bmxzi9b0no6wUCS0uFO6GjfXBo3UqVCTG
+        E/abXNhHyIRUFoB/JnhDNg==
+X-Google-Smtp-Source: ABdhPJwTFpbeqD9YH9tBdz46jdLN4xy2ht/+rh8ETaVXV5osiP4uPcIJFDR/WZ+x0E7XuQBg0hr5tg==
+X-Received: by 2002:a5d:9e41:: with SMTP id i1mr4454339ioi.72.1623441564508;
+        Fri, 11 Jun 2021 12:59:24 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id c11sm3971336ils.24.2021.06.11.12.59.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 12:46:46 -0700 (PDT)
-Date:   Fri, 11 Jun 2021 22:46:44 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: arm: bcm: NSP: add Meraki MX64/MX65
-Message-ID: <20210611194644.64lvhvp76wy6guqp@skbuf>
-References: <20210610232727.1383117-1-mnhagan88@gmail.com>
- <20210610232727.1383117-2-mnhagan88@gmail.com>
+        Fri, 11 Jun 2021 12:59:24 -0700 (PDT)
+Received: (nullmailer pid 1581560 invoked by uid 1000);
+        Fri, 11 Jun 2021 19:59:22 -0000
+Date:   Fri, 11 Jun 2021 13:59:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com
+Subject: Re: [PATCH] ASoC: dt-bindings: fsl-sai: Add compatible string for
+ imx8mm/8mn/8mp/8ulp
+Message-ID: <20210611195922.GA1581497@robh.at.kernel.org>
+References: <1622613770-10220-1-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210610232727.1383117-2-mnhagan88@gmail.com>
+In-Reply-To: <1622613770-10220-1-git-send-email-shengjiu.wang@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 12:27:13AM +0100, Matthew Hagan wrote:
-> Add bindings for the Meraki MX64/MX65 series. Note this patch should be
-> applied on top of "dt-bindings: arm: bcm: add NSP devices to SoCs".
+On Wed, 02 Jun 2021 14:02:50 +0800, Shengjiu Wang wrote:
+> Add compatible string for imx8mm/8mn/8mp/8ulp, these platforms all
+> support SAI IP.
 > 
-> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 > ---
->  Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
-> index 78dfa315f3d0..7d184ba7d180 100644
-> --- a/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
-> +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
-> @@ -62,6 +62,12 @@ properties:
->            - enum:
->                - brcm,bcm958625hr
->                - brcm,bcm958625k
-> +              - meraki,mx64
-> +              - meraki,mx64-a0
-> +              - meraki,mx64w
-> +              - meraki,mx64w-a0
-> +              - meraki,mx65
-> +              - meraki,mx65w
->            - const: brcm,bcm58625
->            - const: brcm,nsp
->  
-> -- 
-> 2.26.3
+>  Documentation/devicetree/bindings/sound/fsl-sai.txt | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
 
-I think these compatibles describe SoCs, whereas Meraki MX64/MX65 are
-boards, so this is a miscategorization. Can you not just describe the
-Northstar Plus SoC that you are using in your compatible string?
+Acked-by: Rob Herring <robh@kernel.org>
