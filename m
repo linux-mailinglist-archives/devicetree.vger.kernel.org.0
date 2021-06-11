@@ -2,113 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFD4E3A47D3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 19:22:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93DE83A47D8
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 19:23:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229633AbhFKRYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 13:24:12 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:45210 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231152AbhFKRYM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 13:24:12 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id 3C1411F448DB
-Received: by earth.universe (Postfix, from userid 1000)
-        id D9AF13C0C95; Fri, 11 Jun 2021 19:22:09 +0200 (CEST)
-Date:   Fri, 11 Jun 2021 19:22:09 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Ian Ray <ian.ray@ge.com>,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@collabora.com
-Subject: Re: [PATCHv4 1/6] spi: add ancillary device support
-Message-ID: <20210611172209.acbrpwxg75k4v4je@earth.universe>
-References: <20210609151235.48964-1-sebastian.reichel@collabora.com>
- <20210609151235.48964-2-sebastian.reichel@collabora.com>
- <YMMnrYbuwe4z/s3h@kroah.com>
+        id S231133AbhFKRZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 13:25:35 -0400
+Received: from mail-il1-f174.google.com ([209.85.166.174]:35550 "EHLO
+        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230197AbhFKRZe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 13:25:34 -0400
+Received: by mail-il1-f174.google.com with SMTP id b9so5883313ilr.2;
+        Fri, 11 Jun 2021 10:23:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=qEYgvms6GcvO0l0piA/elDD6OPG4/YU42eSsTHmuAvE=;
+        b=Ws2ctmXmdOTP6oOx5haljTBvh0pbKK0tQC8b5QVs5zo4YDvjHXl4lds/YkHpWvdtw1
+         H825oO3y/O8FQqxTDTfyd03BVgjEMNKNNZvXhNxQgVnDjytAUimFtV3R7CbyC9khadFs
+         HtIr2q68iiaNl0UsqDv0HFE1UbKJ503KOjTL8x01ZaYteM5Xz8Qt2dzMU+SdpHeHWSSV
+         TgvFFdqX21uwutTYDJtDq/c5JeQBHMxJZINVQDKU6qBQyoTzPS5v/BEMCKhzA6TmfY0B
+         2KvEJ8oZgTePCLuYbXKGUefCvAuO1RrWc5ikdiLVsu2EjvVxBZTqt67ilUjCgpM5ncca
+         72vQ==
+X-Gm-Message-State: AOAM533XpE6E+DsSnO8s+8pdyd7eQOASeKsAcNjMTK8ti20ECi5ZHs1p
+        PMl+Z30jmXwxkoMMaXEVGQ==
+X-Google-Smtp-Source: ABdhPJxl1k1XtlKdfqXpDDOGOnQ85pGzP4uSbRVmCoa4gltDFTku32Mi//jaBKEjtDP9XtaitWwFzw==
+X-Received: by 2002:a92:9411:: with SMTP id c17mr4258049ili.264.1623432202165;
+        Fri, 11 Jun 2021 10:23:22 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id k10sm3471364ion.38.2021.06.11.10.23.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Jun 2021 10:23:21 -0700 (PDT)
+Received: (nullmailer pid 1158294 invoked by uid 1000);
+        Fri, 11 Jun 2021 17:23:20 -0000
+Date:   Fri, 11 Jun 2021 11:23:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: [GIT PULL] Devicetree fix for 5.13, take 3
+Message-ID: <20210611172320.GA1154861@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fnv2zapnday6i2fd"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YMMnrYbuwe4z/s3h@kroah.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Linus,
 
---fnv2zapnday6i2fd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please pull this single fix for DT.
 
-Hi Greg,
+Rob
 
-On Fri, Jun 11, 2021 at 11:06:53AM +0200, Greg Kroah-Hartman wrote:
-> On Wed, Jun 09, 2021 at 05:12:30PM +0200, Sebastian Reichel wrote:
-> > Introduce support for ancillary devices, similar to existing
-> > implementation for I2C. This is useful for devices having
-> > multiple chip-selects, for example some microcontrollers
-> > provide a normal SPI interface and a flashing SPI interface.
-> >=20
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> > [...]
-> > +static int spi_add_device_locked(struct spi_device *spi)
-> > +{
-> > +	struct spi_controller *ctlr =3D spi->controller;
-> > +	struct device *dev =3D ctlr->dev.parent;
-> > +
-> > +	/* Chipselects are numbered 0..max; validate. */
-> > +	if (spi->chip_select >=3D ctlr->num_chipselect) {
-> > +		dev_err(dev, "cs%d >=3D max %d\n", spi->chip_select,
-> > +			ctlr->num_chipselect);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	/* Set the bus ID string */
-> > +	spi_dev_set_name(spi);
-> > +
-> > +	WARN_ON(!mutex_is_locked(&spi_add_lock));
->=20
-> So you just rebooted a machine that has panic-on-warn set.  Not
-> nice.
->=20
-> If this really can happen, test for it and recover, do not reboot
-> devices.
->=20
-> If this really can never happen, why are you testing for it?
+The following changes since commit c17611592d9635c443bedc9be901f4463f45c6d5:
 
-This is reached when ancillary device is not registered in
-the main SPI device's probe routine, which would be a driver
-bug. The gehc-achc driver calls it in the right place, so
-this is not reached with this patchset, but the function to
-register ancillary devices is generic and is expected to be
-also used by others.
+  dt-bindings: More removals of type references on common properties (2021-05-17 16:20:08 -0500)
 
--- Sebastian
+are available in the Git repository at:
 
---fnv2zapnday6i2fd
-Content-Type: application/pgp-signature; name="signature.asc"
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.13-3
 
------BEGIN PGP SIGNATURE-----
+for you to fetch changes up to 8929ef8d4dfd53a05913e22561784ece5f6419c7:
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmDDm7QACgkQ2O7X88g7
-+ppAohAApS/cMcm/00V3Nzdui7yis1bX7vbxTlR5vE+ZV5EJ6Fbnvdi6F+efeR4P
-Q3T7jxOgx1Dn5F8NKH1yWgaVi6m9jb8ysBCx54OoEm4hnO2RBr6hb9nB2FEzFS72
-nGqoA/f4TaZe+m+z9PGNNLTDKSX9WDzl5UqBbpSLo2sSHXhBNAe9KqokVd/ss9NA
-biY4pWC/Mn3Lr05/UEPs6Vj8FPB6XWXUD3lLAIb9N/ejzb3CUPFHbjJkH4CcsBnl
-TW30NjK0EzXaimuDmHnLIA/D1caJyK4YzESHyV2x9cuLb2Yz4SYm/1IB2LFZJbW+
-DkmQhBHQpW75MozrzNOxuR81auzenORSDkbxffXdszTRW6kVewXjwlH6ZvtIN1Cd
-NdScWV5jLX1aqt3rSBpA7Mmd5ku3FeYtCS5AdpqPbfD4NVqziwxavwDrrhicC/k6
-o40b0VZ9xVWCZPGEMj/Jpxny3HcJaN76AEVV3joKUyUlbvAi9JZ3jIDOoI9kD12A
-DJNI7Uj/RmQlx+LXpPLFb9pVZpe1xlwl+LL3l/gkMIGb8UcsxVAJm6mWR4B4NZaV
-LrlLZNNmWPyh+m1cQ01niFYDrtC+XoXHRLF4awtjLS59fiPlaNGBQPzLQHdGh/iR
-E6UNo7sKSYr2jkRLqoRpooCA5yK/w99t8w+IA77mb/3M3Wjo0Nw=
-=ZPku
------END PGP SIGNATURE-----
+  media: dt-bindings: media: renesas,drif: Fix fck definition (2021-06-08 20:03:57 -0500)
 
---fnv2zapnday6i2fd--
+----------------------------------------------------------------
+Devicetree fixes for v5.13, take 3:
+
+- A single fix for broken media/renesas,drif.yaml binding schema
+
+----------------------------------------------------------------
+Fabrizio Castro (1):
+      media: dt-bindings: media: renesas,drif: Fix fck definition
+
+ Documentation/devicetree/bindings/media/renesas,drif.yaml | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
