@@ -2,97 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19DBA3A3E92
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 11:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B26113A3E9C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 11:07:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231286AbhFKJID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 05:08:03 -0400
-Received: from mga17.intel.com ([192.55.52.151]:61648 "EHLO mga17.intel.com"
+        id S231451AbhFKJJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 05:09:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33408 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231210AbhFKJID (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Jun 2021 05:08:03 -0400
-IronPort-SDR: noQx/FPKEEyWdZW4/G4mk9YlC8e008xqTa3nqxafvRcGukQ8hO3KmCcLW8wgFM+x4dMBZ0YQn+
- 4C1IAMu2qpig==
-X-IronPort-AV: E=McAfee;i="6200,9189,10011"; a="185865700"
-X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; 
-   d="scan'208";a="185865700"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2021 02:06:05 -0700
-IronPort-SDR: He+kiiJDW/aMy5hGRhObJ6XDvxRWx5U/gdIKxV9sJkfHQ9016R3pRvag24JyxSa6O+KVf0hkKJ
- oki6RZ18yMvg==
-X-IronPort-AV: E=Sophos;i="5.83,265,1616482800"; 
-   d="scan'208";a="449047754"
-Received: from mkrastex-mobl.ger.corp.intel.com (HELO [10.104.88.16]) ([10.104.88.16])
-  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jun 2021 02:06:02 -0700
-Subject: Re: [PATCH v2 0/6] Camera Sensor Drivers
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        daniele.alessandrelli@linux.intel.com,
-        paul.j.murphy@linux.intel.com, gjorgjix.rosikopulos@linux.intel.com
-References: <20210527142145.173-1-martinax.krasteva@linux.intel.com>
- <20210610212751.GJ3@paasikivi.fi.intel.com>
-From:   "Krasteva, Martina" <martinax.krasteva@linux.intel.com>
-Message-ID: <747a5d78-2575-4d1e-f4c2-ae803a02a654@linux.intel.com>
-Date:   Fri, 11 Jun 2021 10:06:00 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S231145AbhFKJJG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 05:09:06 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2D8F5613C8;
+        Fri, 11 Jun 2021 09:06:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1623402415;
+        bh=Ukkj3ecfse5HyDd+JTtcMdhPVZqAw36h2hTQO7WHmj4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uAC722NPNQSfrmzUkCzqd7ok5AOnRyWbwW56p88DTAxDZ8Us9DPro56+F2/9HY4tn
+         MnH/8FawcR8w40sKWlJWKO9Jxho3IcENSaId0zRXGOSVLgLhA866Tt7E3kXWx92LDa
+         S5VXqceTLVTrxzwkMa5Z5+mlumsEIbLP8CPMZLHM=
+Date:   Fri, 11 Jun 2021 11:06:53 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Ian Ray <ian.ray@ge.com>,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCHv4 1/6] spi: add ancillary device support
+Message-ID: <YMMnrYbuwe4z/s3h@kroah.com>
+References: <20210609151235.48964-1-sebastian.reichel@collabora.com>
+ <20210609151235.48964-2-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-In-Reply-To: <20210610212751.GJ3@paasikivi.fi.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210609151235.48964-2-sebastian.reichel@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+On Wed, Jun 09, 2021 at 05:12:30PM +0200, Sebastian Reichel wrote:
+> Introduce support for ancillary devices, similar to existing
+> implementation for I2C. This is useful for devices having
+> multiple chip-selects, for example some microcontrollers
+> provide a normal SPI interface and a flashing SPI interface.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  drivers/spi/spi.c       | 139 +++++++++++++++++++++++++++++++---------
+>  include/linux/spi/spi.h |   2 +
+>  2 files changed, 109 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+> index ba425b9c7700..7fdf224262b1 100644
+> --- a/drivers/spi/spi.c
+> +++ b/drivers/spi/spi.c
+> @@ -558,49 +558,23 @@ static int spi_dev_check(struct device *dev, void *data)
+>  	return 0;
+>  }
+>  
+> -/**
+> - * spi_add_device - Add spi_device allocated with spi_alloc_device
+> - * @spi: spi_device to register
+> - *
+> - * Companion function to spi_alloc_device.  Devices allocated with
+> - * spi_alloc_device can be added onto the spi bus with this function.
+> - *
+> - * Return: 0 on success; negative errno on failure
+> - */
+> -int spi_add_device(struct spi_device *spi)
+> +static int __spi_add_device(struct spi_device *spi)
+>  {
+>  	struct spi_controller *ctlr = spi->controller;
+>  	struct device *dev = ctlr->dev.parent;
+>  	int status;
+>  
+> -	/* Chipselects are numbered 0..max; validate. */
+> -	if (spi->chip_select >= ctlr->num_chipselect) {
+> -		dev_err(dev, "cs%d >= max %d\n", spi->chip_select,
+> -			ctlr->num_chipselect);
+> -		return -EINVAL;
+> -	}
+> -
+> -	/* Set the bus ID string */
+> -	spi_dev_set_name(spi);
+> -
+> -	/* We need to make sure there's no other device with this
+> -	 * chipselect **BEFORE** we call setup(), else we'll trash
+> -	 * its configuration.  Lock against concurrent add() calls.
+> -	 */
+> -	mutex_lock(&spi_add_lock);
+> -
+>  	status = bus_for_each_dev(&spi_bus_type, NULL, spi, spi_dev_check);
+>  	if (status) {
+>  		dev_err(dev, "chipselect %d already in use\n",
+>  				spi->chip_select);
+> -		goto done;
+> +		return status;
+>  	}
+>  
+>  	/* Controller may unregister concurrently */
+>  	if (IS_ENABLED(CONFIG_SPI_DYNAMIC) &&
+>  	    !device_is_registered(&ctlr->dev)) {
+> -		status = -ENODEV;
+> -		goto done;
+> +		return -ENODEV;
+>  	}
+>  
+>  	/* Descriptors take precedence */
+> @@ -617,7 +591,7 @@ int spi_add_device(struct spi_device *spi)
+>  	if (status < 0) {
+>  		dev_err(dev, "can't setup %s, status %d\n",
+>  				dev_name(&spi->dev), status);
+> -		goto done;
+> +		return status;
+>  	}
+>  
+>  	/* Device may be bound to an active driver when this returns */
+> @@ -628,12 +602,64 @@ int spi_add_device(struct spi_device *spi)
+>  	else
+>  		dev_dbg(dev, "registered child %s\n", dev_name(&spi->dev));
+>  
+> -done:
+> +	return status;
+> +}
+> +
+> +/**
+> + * spi_add_device - Add spi_device allocated with spi_alloc_device
+> + * @spi: spi_device to register
+> + *
+> + * Companion function to spi_alloc_device.  Devices allocated with
+> + * spi_alloc_device can be added onto the spi bus with this function.
+> + *
+> + * Return: 0 on success; negative errno on failure
+> + */
+> +int spi_add_device(struct spi_device *spi)
+> +{
+> +	struct spi_controller *ctlr = spi->controller;
+> +	struct device *dev = ctlr->dev.parent;
+> +	int status;
+> +
+> +	/* Chipselects are numbered 0..max; validate. */
+> +	if (spi->chip_select >= ctlr->num_chipselect) {
+> +		dev_err(dev, "cs%d >= max %d\n", spi->chip_select,
+> +			ctlr->num_chipselect);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Set the bus ID string */
+> +	spi_dev_set_name(spi);
+> +
+> +	/* We need to make sure there's no other device with this
+> +	 * chipselect **BEFORE** we call setup(), else we'll trash
+> +	 * its configuration.  Lock against concurrent add() calls.
+> +	 */
+> +	mutex_lock(&spi_add_lock);
+> +	status = __spi_add_device(spi);
+>  	mutex_unlock(&spi_add_lock);
+>  	return status;
+>  }
+>  EXPORT_SYMBOL_GPL(spi_add_device);
+>  
+> +static int spi_add_device_locked(struct spi_device *spi)
+> +{
+> +	struct spi_controller *ctlr = spi->controller;
+> +	struct device *dev = ctlr->dev.parent;
+> +
+> +	/* Chipselects are numbered 0..max; validate. */
+> +	if (spi->chip_select >= ctlr->num_chipselect) {
+> +		dev_err(dev, "cs%d >= max %d\n", spi->chip_select,
+> +			ctlr->num_chipselect);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Set the bus ID string */
+> +	spi_dev_set_name(spi);
+> +
+> +	WARN_ON(!mutex_is_locked(&spi_add_lock));
 
-Thanks for the review
+So you just rebooted a machine that has panic-on-warn set.  Not nice.
 
-On 6/10/2021 10:27 PM, Sakari Ailus wrote:
-> Hi Martina,
->
-> On Thu, May 27, 2021 at 03:21:39PM +0100, Martina Krasteva wrote:
->> From: Martina Krasteva <martinax.krasteva@intel.com>
->>
->> Patch series contains Sony IMX335, Sony IMX412 and OmniVision OV9282
->> camera sensor drivers and respective binding documentation.
->>
->> v1->v2:
->> - define maxItems for reset-gpios in dt binding document
->> - make sure the device is powered off on remove
->> - use pm_runtime_resume_and_get() instead of pm_runtime_get_sync()
->>
->> v1: https://patchwork.kernel.org/project/linux-media/list/?series=458115
-> Thanks for the update.
->
-> The patches seem fine, but I noticed one problem: the analogue gain is only
-> updated when exposure is set. This is a bug.
->
-> Most drivers do not try to synchronise setting analogue gain and exposure
-> to the same frame. Do you need that? Alternatively the control framework
-> would probably need to be amended a little --- something that would have
-> other benefits, too.
+If this really can happen, test for it and recover, do not reboot
+devices.
 
-Analog gain and exposure are "clustered". If I understand correctly, 
-when several controls are in a cluster and one/several of them are 
-set/get from userspace only the first control ops is called - 
-V4L2_CID_EXPOSURE in my case.
+If this really can never happen, why are you testing for it?
 
-Analog gain can be set explicitly, exposure control ops will be called 
-with analog gain new value and current exp. value.
-Then I could have checked the is_new flag, so I can write the reg value 
-just to the updated control, not to both.
+thanks,
 
-In my case the userspace provides gain and exposure settings in sync so 
-cluster is used to mirror that behavior.
-
->
-> I don't think that blocks merging the drivers though. But this needs to be
-> addressed.
-
-
-Best Regards,
-Martina
-
+greg k-h
