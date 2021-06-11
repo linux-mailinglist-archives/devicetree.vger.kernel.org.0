@@ -2,67 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 654503A4830
-	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 19:56:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A8AD3A4829
+	for <lists+devicetree@lfdr.de>; Fri, 11 Jun 2021 19:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230487AbhFKR55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 13:57:57 -0400
-Received: from mail-il1-f171.google.com ([209.85.166.171]:39594 "EHLO
-        mail-il1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230035AbhFKR54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 13:57:56 -0400
-Received: by mail-il1-f171.google.com with SMTP id j14so3135918ila.6;
-        Fri, 11 Jun 2021 10:55:43 -0700 (PDT)
+        id S230184AbhFKR5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 13:57:36 -0400
+Received: from mail-io1-f45.google.com ([209.85.166.45]:37426 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230035AbhFKR5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 13:57:36 -0400
+Received: by mail-io1-f45.google.com with SMTP id q7so32097491iob.4;
+        Fri, 11 Jun 2021 10:55:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=eS7FoRD0YGUsWFSvjA1QCJvmsWkR4OAgwFy2PP5WSik=;
-        b=ExK0KnhyDgr1mHze7TtcUu0i8B5Tkk/RYOuOXh9+A6/aB6J+bZq9EL8l0BygNMfCgw
-         RFS5aDDu7FOH8hXJ+X5mwwyzlhLn7HxDtp1CYwoGGJs3+CllgYeArocTNNV05ezqozBX
-         aWr0/BJB7juUH9HDgoivtCQ2/K+QMsuYeSKB1Ro4B6y6hqMcdZ1o/SNoOccGsyzZRAWK
-         4ev2aagrCDMjagxjMFp8LCi3/klZqb2bSn0CoVtkaBQSzVCIr8gKs8D3+XdLGdBWHvZM
-         GNRhDgvf+F5h8llWM0F2Mer/CaSQCUWyARJRElCv/UoP+aJWvOLHfWpOOoclpFsYma6D
-         SBFA==
-X-Gm-Message-State: AOAM531dOUbAAbqjGSj6QcRtE0CI6mUpvQSgGq+lm3yCKVVU/8bE3xw8
-        haE6vd0Vj3eq5EW8c7ApQw==
-X-Google-Smtp-Source: ABdhPJwh4rmlDzrOw1v2SpR3LQ7g2YDOFobuL3xpaUvLChd9WlR1HaFFk0rRQsoHkYBQQY3NAGj4BQ==
-X-Received: by 2002:a92:c546:: with SMTP id a6mr3809792ilj.39.1623434142862;
-        Fri, 11 Jun 2021 10:55:42 -0700 (PDT)
+        bh=GhKdnmG1yoizS3pbpaYv+va/QoVsK+02BeSi6TEeUTM=;
+        b=RBZCpW1DzAS9c5zu3M41JpW6vrVEWUH7d5m+bPssKfc213HSugJe2fCpd1K3uIYRHa
+         WML8LZoTpauJfKMgQ+ZrsjQnuOkatrjU5gwyPu7RLeYrjMvvL1/XGhUyJ/jNhQzznSc4
+         NQ+jD7ivsXTn3FrLx+S7cJ0KlqRCduIeGZ+RsuKn2oGpuNoeHPEMXjZ+msvZb0wxN4Cf
+         JyTqZc4q8JnU+2B1km6j3Bv/D0qySuc/26sLdxbWpobA2Tq1QOnpBt7nY6efxUeFcytB
+         oKfphjURdKFSBnXBSpMzSnaTyPfWV7PrLYUy/RA2F3bWXHACwYlM3ayIcKuGQUqehKyY
+         uihQ==
+X-Gm-Message-State: AOAM532KtExKFVBB4Rklmd9lTIFIGzlT6MvcvsWT1zBrLani/JEhusHW
+        M0kITSLBfN56DgmYmNrxxw==
+X-Google-Smtp-Source: ABdhPJxEbCBQmiSq6AHrgssN4FV0oH72srYnZQkN+Cl5siXxMrk0oag94/p2zTbOs2Ggbqg9LxkD6A==
+X-Received: by 2002:a02:a318:: with SMTP id q24mr4962093jai.100.1623434138203;
+        Fri, 11 Jun 2021 10:55:38 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id m7sm3988523ilu.75.2021.06.11.10.55.39
+        by smtp.gmail.com with ESMTPSA id j12sm4251068ils.42.2021.06.11.10.55.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 10:55:42 -0700 (PDT)
-Received: (nullmailer pid 1208943 invoked by uid 1000);
+        Fri, 11 Jun 2021 10:55:37 -0700 (PDT)
+Received: (nullmailer pid 1208940 invoked by uid 1000);
         Fri, 11 Jun 2021 17:55:33 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        linux-renesas-soc@vger.kernel.org,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org
-In-Reply-To: <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
-References: <20210611113642.18457-1-biju.das.jz@bp.renesas.com> <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        maoguang.meng@mediatek.com, linux-mediatek@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        yong.wu@mediatek.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20210611112009.2955944-1-hsinyi@chromium.org>
+References: <20210611112009.2955944-1-hsinyi@chromium.org>
+Subject: Re: [PATCH v4 1/3] dt-bindings: mediatek: convert mtk jpeg decoder/encoder to yaml
 Date:   Fri, 11 Jun 2021 11:55:33 -0600
-Message-Id: <1623434133.974776.1208942.nullmailer@robh.at.kernel.org>
+Message-Id: <1623434133.955843.1208939.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Jun 2021 12:36:38 +0100, Biju Das wrote:
-> Document RZ/G2L DMAC bindings.
+On Fri, 11 Jun 2021 19:20:07 +0800, Hsin-Yi Wang wrote:
+> Convert mediatek jpeg decoder and encoder bindings to yaml.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
 > ---
->  .../bindings/dma/renesas,rz-dmac.yaml         | 132 ++++++++++++++++++
->  1 file changed, 132 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+> v3->v4: split adding mt8183 into another patch
+> ---
+>  .../bindings/media/mediatek-jpeg-decoder.txt  | 38 ---------
+>  .../bindings/media/mediatek-jpeg-decoder.yaml | 85 +++++++++++++++++++
+>  .../bindings/media/mediatek-jpeg-encoder.txt  | 35 --------
+>  .../bindings/media/mediatek-jpeg-encoder.yaml | 76 +++++++++++++++++
+>  4 files changed, 161 insertions(+), 73 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -71,16 +75,16 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/dma/renesas,rz-dmac.example.dts:20:18: fatal error: dt-bindings/clock/r9a07g044-cpg.h: No such file or directory
-   20 |         #include <dt-bindings/clock/r9a07g044-cpg.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/dma/renesas,rz-dmac.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1416: dt_binding_check] Error 2
-\ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1490917
+\ndoc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml references a file that doesn't exist: Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+Warning: Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml references a file that doesn't exist: Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+Warning: MAINTAINERS references a file that doesn't exist: Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml: Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml: Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+MAINTAINERS: Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.txt
+
+See https://patchwork.ozlabs.org/patch/1490913
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
