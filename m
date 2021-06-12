@@ -2,122 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CE2F3A4D55
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 09:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4E863A4D73
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 09:53:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229942AbhFLHXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Jun 2021 03:23:51 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:33984 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229532AbhFLHXv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 03:23:51 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15C7LlC1067900;
-        Sat, 12 Jun 2021 02:21:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623482507;
-        bh=YzSaoRQU35DpLlcWUVC889LLvvrRwlO1hWjuvl74KpI=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=e8BAXI0fJ7Jm+izmuW8MDcjtWCvDZaLnUwNuv8bInZPv7/D6MFNh6KobPkF2otcEA
-         89z8Tg3tLTBBTD6MtQvkVGIE8T0HkpvSK3exJ9LMp8N0Glrz54w+yzpl7rWF6TtRfe
-         pdtyCxN4+jJOF4Bq6knLJRIKP40A6Q1O/wV9uoZ8=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15C7LlRN035598
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 12 Jun 2021 02:21:47 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Sat, 12
- Jun 2021 02:21:46 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Sat, 12 Jun 2021 02:21:46 -0500
-Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15C7LhVb089548;
-        Sat, 12 Jun 2021 02:21:44 -0500
-Subject: Re: [PATCH] arm64: dts: ti: k3-am64-main: Add SYSFW reserved ranges
- in OCRAM
-To:     Nishanth Menon <nm@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Aswath Govindraju <a-govindraju@ti.com>
-References: <20210609140604.9490-1-vigneshr@ti.com>
- <20210611191640.lczsliyzasjie6lm@dismantle>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <84e5865f-e107-f0e1-ca8b-b6bd655e92e6@ti.com>
-Date:   Sat, 12 Jun 2021 12:51:42 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230095AbhFLHzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Jun 2021 03:55:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37162 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229942AbhFLHzv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Jun 2021 03:55:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 467DA600EF;
+        Sat, 12 Jun 2021 07:53:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623484432;
+        bh=oCwkNHhkWKOxjdFxSnrTrgHE/Aq9OTaliKcLMCi2kGI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=g3ynf+RHh5/BuZbJRA+x2AdP/KsD/WldeWCp0yWddTkROg2316TOAW2dL9PLW/qrM
+         qRn+wnCMw9ER4cHHewFQpYu1M9cstKO8+zD7ZXo33SbeJNEZ8eW5YEjAFFqCuzPGP3
+         H+rTL5lemg2FNZ1F7pIc0aP6KXRbLgmuIes2qZVHk6poFIP1mZvHVrUXUxjs5dG4p9
+         mdBXJXXMRzZ1v/F6edxEzKZIg5km5jNdIgW2ufTlZtZMvDa1ZH2fPAtcEm6arzYNbg
+         PXHXUiY47AT/rCoTCSYIx9UUgsi8BC/dESLBGUv73jyS/1+A+klNFtxUZf/e0NEE7v
+         tH1uFnEMwdyvQ==
+Date:   Sat, 12 Jun 2021 15:53:47 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     devicetree@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [PATCH] arm64: dts: fix node name for the sysclk
+Message-ID: <20210612075346.GZ29138@dragon>
+References: <20210608112658.4087235-1-olteanv@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210611191640.lczsliyzasjie6lm@dismantle>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210608112658.4087235-1-olteanv@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Aswath
-
-On 6/12/21 12:46 AM, Nishanth Menon wrote:
-> On 19:36-20210609, Vignesh Raghavendra wrote:
->> Last 256K of OCRAM (256K@0x701c0000) is reserved for SYSFW usage. Hence
->> add an entry in DT so that its not used for generic pool memory
->> allocation.
+On Tue, Jun 08, 2021 at 02:26:58PM +0300, Vladimir Oltean wrote:
+> From: Vladimir Oltean <vladimir.oltean@nxp.com>
 > 
-> Are you really sure?? I know that I had set a budget for 16K in sysfw
-> when I did the memory split up for sysfw of which 16k is actually used.
+> U-Boot attempts to fix up the "clock-frequency" property of the "/sysclk" node:
+> https://elixir.bootlin.com/u-boot/v2021.04/source/arch/arm/cpu/armv8/fsl-layerscape/fdt.c#L512
 > 
-> Not sure where this 256K bucket started off from.. am I missing
-> something here?
+> but fails to do so:
 > 
+>   ## Booting kernel from Legacy Image at a1000000 ...
+>      Image Name:
+>      Created:      2021-06-08  10:31:38 UTC
+>      Image Type:   AArch64 Linux Kernel Image (gzip compressed)
+>      Data Size:    15431370 Bytes = 14.7 MiB
+>      Load Address: 80080000
+>      Entry Point:  80080000
+>      Verifying Checksum ... OK
+>   ## Flattened Device Tree blob at a0000000
+>      Booting using the fdt blob at 0xa0000000
+>      Uncompressing Kernel Image
+>      Loading Device Tree to 00000000fbb19000, end 00000000fbb22717 ... OK
+>   Unable to update property /sysclk:clock-frequency, err=FDT_ERR_NOTFOUND
+> 
+>   Starting kernel ...
+> 
+> All Layerscape SoCs except LS1028A use "sysclk" as the node name, and
+> not "clock-sysclk". So change the node name of LS1028A accordingly.
 
-Per: http://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am64x/firewalls.html
+Wouldn't it more flexible to use alias/label for finding the node?
+Using node name/path looks fragile. 
 
-24	dmsc	0x44060000	0x4407BFFF	dmsc,rwcd	 	 // alias for 0x701E0000
-24	dmsc	0x701FC000	0x701FFFFF	sproxy_private,rwcd	 	 
-24	dmsc	0x4407C000	0x4407FFFF	sproxy_private,rwcd	 	 
-24	dmsc	0x701C0000	0x701DFFFF	everyone,rwcd	 	 
-
-So it looks like only 128K@0x701E0000 is firewalled off. 
-Will update the patch.
-
-This makes me wonder why ATF is being moved to 0x701a0000-0x701c0000
-leaving a hole at 0x701C0000-0x701DFFFF? 
-
+Shawn
 
 > 
->>
->> Without this certain drivers using SRAM as generic shared memory pool
->> may end up being allocated memory from this range and will lead to boot
->> time crash when the reserved range is accessed (due to firewall
->> violation).
->>
->> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++++
->>  1 file changed, 4 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> index f1c42ef05e52..77b88e536534 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->> @@ -16,6 +16,10 @@ oc_sram: sram@70000000 {
->>  		atf-sram@0 {
->>  			reg = <0x0 0x1a000>;
->>  		};
->> +
->> +		dmsc-sram@1c0000 {
->> +			reg = <0x1c0000 0x40000>;
+> Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
->> +		};
->>  	};
->>  
->>  	gic500: interrupt-controller@1800000 {
->> -- 
->> 2.31.1
->>
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index d0dddf19578a..03e1ca7fea9a 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -66,7 +66,7 @@ CPU_PW20: cpu-pw20 {
+>  		};
+>  	};
+>  
+> -	sysclk: clock-sysclk {
+> +	sysclk: sysclk {
+>  		compatible = "fixed-clock";
+>  		#clock-cells = <0>;
+>  		clock-frequency = <100000000>;
+> -- 
+> 2.25.1
 > 
