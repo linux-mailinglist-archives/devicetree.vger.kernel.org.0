@@ -2,312 +2,697 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AEBE3A4EA3
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 14:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 575613A4ECB
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 14:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230526AbhFLM2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Jun 2021 08:28:16 -0400
-Received: from mail-eopbgr1410120.outbound.protection.outlook.com ([40.107.141.120]:14573
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        id S231446AbhFLMhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Jun 2021 08:37:23 -0400
+Received: from mail-eopbgr30046.outbound.protection.outlook.com ([40.107.3.46]:13878
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230191AbhFLM2P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Jun 2021 08:28:15 -0400
+        id S231400AbhFLMhW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Jun 2021 08:37:22 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m9dsEVKHgOxa/fX3MoEX68or/EKMZcTNYBslqxnf+dcF+VJPbi3EvaNWLNqDUnsOC4DYjH4c2hFN8CeBcFkEKSwH9P809COZ8SDiDK6qpZMUgbRnYXkFlzN1GFjNGaGH2Mtd2ZvVNioYqy2LROjT5WT+Zp6HAV+6Tt+wVG1Y/8o8pEb+hFOYC86lMxMdzRL60+Y+1BOvDfMKzOy1iCWAcnsY7hdUKPCpdzWqAqdz4pmIid6VXC9ZagHZzjrrakDFwjxV27YcjEzsyiUX372XFWYBE/tU2HyaV8SK2p2lNWNo1tNePFflqIkYgolCmuZ/LVNg20CX5Oz5zl2Rq1N/ag==
+ b=muGSUSMK78gtSBEXs9G8yQ4o/NzKFQK9WhO93vAvA9jctq0JVev+7VxB9tSv0U3e9R2A/NiGNeN8dxxJjG9O44dh/tYvVniGj8WuSG7y9b5+Sf+3Br9aYritHTLtcIuzuaiIQsjWIOrx2NVZeffQY2V8per78qMELPy/tR+f1EhXlIi0pfQMG7KE/WcSsTL/rXF4yB7O5oXpHFhczPWlEAEwRGHJO/zqVnAuttAIhPjLPJYWmPt3zbYFrnxZ16uVXoKyvdc5vaCL00aRc3QXNEvMYsy4eLiVw/JQaVGYuA/Y3Y5/770gsGlaESZQVUJQZPcqNTDuM0P01QxaEmPMTA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f+SEQm+St0GiPBOrM0YF6DW72KIOb4GxeBonrLIxBP4=;
- b=etLuQ0ARZtjnOa7u3Y41VRuR6dj4fMGLdGFZ+D1xu82cv04fbXekVHZxJm96izIQXTZhKS4WersecRTIYBnVPgB0HhaAc/0ddpCxqYY15Q0kTKgcVn43hv2CdmCL7003LRsoMe8EnJUQG9gUq5cfUweVkW8yvf8n0dURB4jnC5n9Zuxo9Sa0REizCmWmUzYImTMNTK8fHNkoNqzqUY7H/IEJEOuE8iZJIoOXHtf/lG4QaonymQBCJmvMWrikfIrgBB00nY3Tn+tB3pG5NUTXrs6SdOF7+qvmOB46AGuOctqc6t1qjz0IcAzgQIIw2/qR4xVL1ajTrMApDg6nyqNNhg==
+ bh=O1pKeEtqK3wgbdDsdyFTmzvpWgHJ8pIFkIaVYHHK3R8=;
+ b=eNuqRkGiljgA79xNET4wyAYlxSCYc48BF3nWUVDrPjIyccd3z2BaVD/PeL4VKZE+T3vdlK1/NmOSbjIn2O2mvNo7zIlwjmwu400qH6FDXK8zJ+vLTErkXQhYlx4hqWT3tRRzoauQvrGrlI/Z5jiz4JI6z8bWvGcsq9ZGXNawyLlPxChw4ln/8F6GhlmTmJdU+cUpCpA0s/1eJWQfJY+zoFreTn3QsbddDxcKGmMMghoVJtyNij+wI3j12GyAKAN1uijYXHFwyUGl53Hlg/RcyTh9HPvI7BaifGxd0qCfcugxOKsIS0zp6Q1iyaiJgNhXYSgY0ZO/05u8Mat6wF1B2A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f+SEQm+St0GiPBOrM0YF6DW72KIOb4GxeBonrLIxBP4=;
- b=EJDrJiroWgfcZ7VwhDfttk6oWy1uLoWvMlvguX85NmSgSCRwVCx/emjeFifs6vQr4HZdv+LOVePRgWX6j2K4XhG6wqHdHofXFh5rSnAE8ZwUf+6wEmAr+uhvVIp7qlHLf2KHyeQ760qfvvH7NN/kgg9rzu1HdZAyFy5QvpHw+Lw=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OS3PR01MB5686.jpnprd01.prod.outlook.com (2603:1096:604:c3::10) with
+ bh=O1pKeEtqK3wgbdDsdyFTmzvpWgHJ8pIFkIaVYHHK3R8=;
+ b=CEC9AHcogxc5M/RXGLE5bE8o57AYO4MNha4eyMksSAcJ0HKpOzSWzrNcWQwFLvAypHurpA2V2xefhsVH6wJV41ehXaBkAAZUECmM1U64NeHqBr0nEmvqMoD0Q17M9pQtT//15e7nbtFEkn2qr4YlodkUlbVb4JDFvWzwPJrtkvc=
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB7PR04MB4939.eurprd04.prod.outlook.com (2603:10a6:10:20::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.22; Sat, 12 Jun
- 2021 12:26:13 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::b834:5e50:2ce8:9ae0]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::b834:5e50:2ce8:9ae0%3]) with mapi id 15.20.4219.024; Sat, 12 Jun 2021
- 12:26:13 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Vinod Koul <vkoul@kernel.org>,
-        Chris Brandt <Chris.Brandt@renesas.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4195.29; Sat, 12 Jun
+ 2021 12:35:20 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::45b9:c993:87ec:9a64]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::45b9:c993:87ec:9a64%8]) with mapi id 15.20.4219.022; Sat, 12 Jun 2021
+ 12:35:20 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "marex@denx.de" <marex@denx.de>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
-Thread-Topic: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
-Thread-Index: AQHXXrYS1Y35K9bUV02GRKgFCWvED6sPNYEAgAEXDeA=
-Date:   Sat, 12 Jun 2021 12:26:13 +0000
-Message-ID: <OS0PR01MB5922D52151C1FCC29014003186339@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20210611113642.18457-1-biju.das.jz@bp.renesas.com>
- <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
- <20210611193916.GA1254227@robh.at.kernel.org>
-In-Reply-To: <20210611193916.GA1254227@robh.at.kernel.org>
-Accept-Language: en-GB, en-US
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jacky Bai <ping.bai@nxp.com>,
+        "frieder.schrempf@kontron.de" <frieder.schrempf@kontron.de>,
+        "aford173@gmail.com" <aford173@gmail.com>,
+        Abel Vesa <abel.vesa@nxp.com>
+Subject: RE: [PATCH V6 3/4] soc: imx: Add generic blk-ctl driver
+Thread-Topic: [PATCH V6 3/4] soc: imx: Add generic blk-ctl driver
+Thread-Index: AQHXTwvXz3ml5KS/WU2bIQjwsz4ceKsPshmAgAC6ZxA=
+Date:   Sat, 12 Jun 2021 12:35:19 +0000
+Message-ID: <DB6PR0402MB276077D04FAC90D4EBE760B188339@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+References: <20210522134249.15322-1-peng.fan@oss.nxp.com>
+ <20210522134249.15322-4-peng.fan@oss.nxp.com> <20210612011304.GD29138@dragon>
+In-Reply-To: <20210612011304.GD29138@dragon>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=bp.renesas.com;
-x-originating-ip: [86.139.26.177]
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [92.121.68.129]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7ded4835-e0fd-4dfa-245c-08d92d9d44c6
-x-ms-traffictypediagnostic: OS3PR01MB5686:
+x-ms-office365-filtering-correlation-id: 72ec9fc7-c5bd-4d18-54b9-08d92d9e8a75
+x-ms-traffictypediagnostic: DB7PR04MB4939:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <OS3PR01MB5686608B74F0AB145F1035DB86339@OS3PR01MB5686.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-microsoft-antispam-prvs: <DB7PR04MB49394BA36F7EE5ABD90CC950C9339@DB7PR04MB4939.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2887;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kHjOYI76eNlkcaTVBImGhWLnvMyLYcT0+kEZgstXux6AhJmxBMoIDJi98urOTuGoIjMPwNUiWpEGcUC3/rs9jzsy2+JTfDq20ep2PxqhszMTi2+cqapgW/lHiZvamIab3Lcm/3IpVVYd7b7ovO8rWV3wIh2kiXh4rsC6bkcbxakW8sXKMs3XrR+6aBwu70YaBecpb+n+Oy+zdUdsfq8vxOAYKt0qXJ+ocZ/87n6X9Q1SHJeK38KuYt44cH0DLDq2Kfa0XpVvUPU1ysakifnD4XTulF7tJHE926aNau3Q2v3WV4XSDOIaXqa4n57472xTuG0rlr1evnC1iTg+bAPIzcPhO7ivCZKxr4L+AxkqdYaKaPiHHNLM7vNvPmKelYpXXr+B+HiP+5tWrvN5TrQYjWdwEYxJIjFZoIF1g6ctWBiWtnLyVmOXLA3npPAxC1ailWyBR269XOHzgtkh+Xp5aTXM/Ml2jyfK/gsW7QQ3e6xcZWjnKXbbNW9nN1Mf/f8d3uasUKZBtTZK1I52n25/JKOZYyLjWCEaHqQlmkG9BjV1xjQb+uOZ1ADhPc5gm8L5OHDFH0rF5igI9yDZY5p/FG95FXnzsqx+VCmfxG/SSz6+QoJz4SAV8HOxWyCRGrACS9a6L9b34BEgch5A6uMfHGgH0y8Pih/ht4Si3iteG4SCd4nKGep46NqbL9GhcjD3YGecMi5HcaGHTKr0j9mC+g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(366004)(39830400003)(396003)(376002)(52536014)(45080400002)(478600001)(9686003)(7696005)(316002)(4326008)(5660300002)(55016002)(66946007)(186003)(122000001)(33656002)(2906002)(38100700002)(6916009)(8676002)(71200400001)(76116006)(6506007)(54906003)(64756008)(66476007)(83380400001)(66446008)(86362001)(8936002)(66556008)(26005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?0VjLyziIyNRcamdP98FmsGg2iapnyfaN32nImXNW6jd5UWaPh7xW5vFVcAX/?=
- =?us-ascii?Q?fuL1uu3qMRfD0S3W1J5GOQZIN1/D0cRR1Bu8q3romjUFImgEtpnM/wRm/yHp?=
- =?us-ascii?Q?lDwczmrIlHEBvffX/QSg1Srp+bpt9k7HKhFF4gnY9GjjGgaimaVJB3ys4UPA?=
- =?us-ascii?Q?UE7s7MpYI0GTGvBGpiLJKlDLuxfcFh6MJsjM3liO6vDrMGjje1hYfqoiSgcZ?=
- =?us-ascii?Q?EJtwvM83Mmhu0Cxp06+9FDC/5FGBpuHpgutiZxaqMgwDsOuEuZiOdJuHjYsl?=
- =?us-ascii?Q?eRYZTMM2JqEXb42vF2koCP636Lbu/X2LkhKCdOO404MrahXr9lVHONjnTokR?=
- =?us-ascii?Q?91aMrAUAIZLfK4+qccpKu8hIfLWDt+YDYBOKIxYRq4rjqgoCy1RYDgLpMnQo?=
- =?us-ascii?Q?5eLo9nDV2M5UHidv3qzObrUyMzUtCKeyDQ1x78yKsUZJNxJiydH/rm83FFWP?=
- =?us-ascii?Q?Ou0Cko7UmC81rgy0SFOWENn6o5o0iSc/eVH1XckD4tQxyxtKgy0Ox0jw79LR?=
- =?us-ascii?Q?hY7pEp1ec8vwjG7ebnVDCjl3WjYdGhsNh/dmUNiIWFASjDnofD9fTP8j7spV?=
- =?us-ascii?Q?35auzYglgfhKr2qRnU4BDynqzcE8eAhp2iDZ7hil0m4VF6m/zDS57Cfe3ByR?=
- =?us-ascii?Q?/Nf+qSL6WdBlZ673ZDF5EperIwi2wPBcXpFF2J0poc6sY1BZT86Cj+e54b2y?=
- =?us-ascii?Q?F05lQ9dJE3Pq3T5zI0Da0SKpPlfVhRHA8PCAjHYpJW0nLYwkGqcRGSeC1stj?=
- =?us-ascii?Q?e4E2xctG2gAdId6oXBs07eGB8L3fPr4+Z2JY7MYaixQFYQsKK9RSQO8TUmLl?=
- =?us-ascii?Q?diicMkxZ6phi7LgiVmBsjAZwN05FFQFqkEC/XEYkms+cZn9R5zlpCLxK+s94?=
- =?us-ascii?Q?D6/sdHc4oFM8q8dcNEL/CsoyYH2H1OQX/jF9SX3CEe1cdSX7P80kZS80Zxr4?=
- =?us-ascii?Q?fnS8SaXdvLm95ediNfz+pCW/twfpQRdc4oUCpBELqEhRxzJlvnW/YfQhSshS?=
- =?us-ascii?Q?nhqREoXvBXx59l6CDogRcltkggK3H+llQraNVypCvBaj9poftUlr2FgznAt/?=
- =?us-ascii?Q?mwRIliQiPtnX/W9XWuv4HHMxd7fJuT1SI4tgdMe8eiLKbE/ZkOaaGUsM5W4v?=
- =?us-ascii?Q?qKsPDnIKIs3E27DrmGdQ4HygcCYSB4OaldI19hn0eT7/RlTMxb7k3fWZKlRz?=
- =?us-ascii?Q?8l/pCMbd9dDs6fzxGqJQh8WoSXJPIx46Mt8LyXIF6HUH3PKyR9VJ8NSQxt4G?=
- =?us-ascii?Q?8k/K5FCb5lWCvRdvS1yCiuIMDGQamP+Rv13cqeZPXJnRla8YChP9ZL2DwOKQ?=
- =?us-ascii?Q?LVjZ3C39VB01SWRMoBGSYG22?=
+x-microsoft-antispam-message-info: i3myQHDRQ/2WA13EQbjafqppCWSCVlEKaru16Zk65AAjKO1d/ot3WT+0kVzDTEacLJ+f0lsAxarBjT4wN4dqydGB6YcdcuqLvhwRRQeS7GUnZDaAfTL/SLdPU2dtHoCJQiWXACeJwCTvzABUiIh2HJoUi2qV5VwXY/jRJyrKQGpTJUouOfSwg2KiWCQ+cJG2n2bDaURvcL3o6ThYW8PT0cfakKQfDn1jbZ//iv2keaW0SaacyX2g/UFnPrPzOnCVLjza3UgOr8nBS7kChvdkaB5lVfbA3TKzifnhsOSp9s+sim5NnJPB2OJ7erzUhCF3CKJW3+v2Tj0ktOKXXz6IhnCQtn2FJ9gHgppOq+F51Y1slDL4DWdaBZvPcld9g6ecP2wZEFUtAS9F360yQy5dg1zF4Q6kDisimdUBD4aH5Tg0EWtFLMXmFEsdu/o5sWeiO0CCeAZymET33lfOFmb4rTfsNIvSXdxqSjxKyq/aMAX7cWw2t9+kdxwQ37bnNqc9jBjcUdXMoZz3heNsuL4gi1m++j1WvZlI53RcJBPfMZKK/tYYDef892mNNCJRZo6cZcZ+uURz+g1VnPqJ622EHj9sha7XCGhi33pRzFvV9bfHHXtj9EkyuN/ThRYxW/3BkqNskXWiQW3yD7mSx0zssA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(376002)(39830400003)(366004)(346002)(83380400001)(186003)(55016002)(122000001)(478600001)(6506007)(9686003)(38100700002)(26005)(66556008)(66946007)(86362001)(2906002)(33656002)(7696005)(54906003)(71200400001)(52536014)(5660300002)(30864003)(4326008)(64756008)(7416002)(66446008)(110136005)(66476007)(316002)(8676002)(8936002)(76116006)(41533002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?EgeSpumdYDd2wawe56dglCF7lVQDKHXMyhv7JQrjccb/3finNAcgFQK0BOt9?=
+ =?us-ascii?Q?UuHb137LX/mKGiJ4iFby6CCAHtfMiAQnEDXK+4mNaoErBvVEOZKS1mz8pawC?=
+ =?us-ascii?Q?JPiq59vUEhFyT3xzH4SbHnptgx+8sY84Qu7T9rJdBqPy+gPz2jKOMSjiMjzC?=
+ =?us-ascii?Q?9mU4YXguwLhgzElh6I1RjCHWE220xraJ8UL/MOQ1T7z7W7nbaw/e16f7R6Fa?=
+ =?us-ascii?Q?QIbcsSB2r7XI745CCn0k0dGV+px3ojVZnDcX6v3N0d+Rp36u4xz3Ges7qjQL?=
+ =?us-ascii?Q?gklcGCN31N88s4Jxxb6dK+ZyKL62llj+vg6miv1k8lttUrzHjeSfxoSeTvN0?=
+ =?us-ascii?Q?myYrMBjPBqsjl6fdJhEFoytmphYePK1K+twgfYf3fA3ckOVk54CDIrIKiWDq?=
+ =?us-ascii?Q?PhY+inZe8dKXbwxq54X8CxnutXbyR0o09j3SmuQORVwEShf/HDq9pkkd6tKf?=
+ =?us-ascii?Q?T/pmt20hN47c9ojQ8oDurcd5iwOaf9L+BzaS8kZ30Hc7rS4Q80OBgTbyLHho?=
+ =?us-ascii?Q?riULAZlMw4gR6PlltpCVEeqrBFEJu6khVP/+wTL9rHGaVFoDWeCVv5zXl9ZR?=
+ =?us-ascii?Q?FAHkYn9lRmWTFnu3uJcDfz7287xNToHlQry9NwiZKSGeWge1LALodLWIHYi9?=
+ =?us-ascii?Q?A1TfaU5ZFOj4Hgf7EpNQDCx+PaWOEFwfd2enLbv8/BGeFcLtC2raYn6Aifr0?=
+ =?us-ascii?Q?hzF07KgHXlXuFgrM9nOUwR6icuMoUIJrcSc4YQK2PlVOTTUymmlphyBYy9WZ?=
+ =?us-ascii?Q?eqrQTdFGTL0P0ZVpzZ9r1Jjbs/Qtw/xo/FgecSyaNM+nDR8Tx+xh/diDCspt?=
+ =?us-ascii?Q?WVKPIlnh+ZgMZPsChZRcuNuZHy1BwiNCZG8vA20XcskZz4pVFuXhSRrq1US/?=
+ =?us-ascii?Q?wp/mH5eacJc1zbaIrJohbGjnQFFmFEyzSzJ+vWtMl52LuHp57B4UTi/hD0SS?=
+ =?us-ascii?Q?nYSkVx1/wgLrsCAFAKa4JKRqyi2HhMB7824hyNHcy6LQp0uh5+8l+kfY2lxp?=
+ =?us-ascii?Q?HgrMmUp8PhjypbfMsXM61nWwBe9A2iP/btvsAAHAIxd6MDjnzHYXabnsa++d?=
+ =?us-ascii?Q?39+NhlqtN5dcDyX3ZxPwl5jXCx3LHZCJX98JErkphPhWz6JuN+HNiXZlRE5f?=
+ =?us-ascii?Q?UDuTU0TSQa2wkmLWkMDUqjT+n/zVcqP5ODEB2qg/C5TCAFkUs17eK2QBodLK?=
+ =?us-ascii?Q?HuLeksVqP7tGQV0wEv14pbM0hrb+35q9bOObot92aohYlx9J9GnY6C8TS4wy?=
+ =?us-ascii?Q?Y1eE/dqwNcJkPktRBHlMr5GzCFXt5W94Ayj4fbUmaQX/YHamjlC/Rhvpxqlq?=
+ =?us-ascii?Q?Rp88ECJdhkFaQ+j1nUgGsUgG?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
+X-OriginatorOrg: oss.nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ded4835-e0fd-4dfa-245c-08d92d9d44c6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2021 12:26:13.5103
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72ec9fc7-c5bd-4d18-54b9-08d92d9e8a75
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Jun 2021 12:35:19.9054
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mERWjNvVTL+pfWkOuuIklVqGEBSHFbI9DAgimHQaSasZJFWBz7GeM61cwrOO/VGmqZ8DcbqlBjqPjDx4fpZ/13Iz2Y9alcFkFi1VgB5Ogh4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5686
+X-MS-Exchange-CrossTenant-userprincipalname: Pr6dMecyPHlpIUhj9IPuh+aB0SqjdUEyi0L46Za6wiW/6ICgteSkODYhfR4w0F17TXhCIwJFAVIEM5RnO5xJUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4939
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Thanks for the feedback.
-
-> Subject: Re: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
+> Subject: Re: [PATCH V6 3/4] soc: imx: Add generic blk-ctl driver
 >=20
-> On Fri, Jun 11, 2021 at 12:36:38PM +0100, Biju Das wrote:
-> > Document RZ/G2L DMAC bindings.
+> On Sat, May 22, 2021 at 09:42:48PM +0800, Peng Fan (OSS) wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
 > >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > The i.MX8MM introduces an IP named BLK_CTL and usually is comprised of
+> > some GPRs.
+> >
+> > The GPRs has some clock bits and reset bits, but here we take it as
+> > virtual PDs, because of the clock and power domain A/B lock issue when
+> > taking it as a clock controller.
+> >
+> > For some bits, it might be good to also make it as a reset controller,
+> > but to i.MX8MM, we not add that support for now.
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+>=20
+> I would like to see some Reviewed-by tags.
+
+ok
+
+>=20
 > > ---
-> >  .../bindings/dma/renesas,rz-dmac.yaml         | 132 ++++++++++++++++++
-> >  1 file changed, 132 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+> >  drivers/soc/imx/Makefile  |   2 +-
+> >  drivers/soc/imx/blk-ctl.c | 334
+> > ++++++++++++++++++++++++++++++++++++++
+> >  drivers/soc/imx/blk-ctl.h |  85 ++++++++++
+> >  3 files changed, 420 insertions(+), 1 deletion(-)  create mode 100644
+> > drivers/soc/imx/blk-ctl.c  create mode 100644
+> > drivers/soc/imx/blk-ctl.h
 > >
-> > diff --git
-> > a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> > b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> > new file mode 100644
-> > index 000000000000..df54bd6ddfd4
+> > diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile index
+> > 078dc918f4f3..d3d2b49a386c 100644
+> > --- a/drivers/soc/imx/Makefile
+> > +++ b/drivers/soc/imx/Makefile
+> > @@ -4,4 +4,4 @@ obj-$(CONFIG_ARCH_MXC) +=3D soc-imx.o  endif
+> >  obj-$(CONFIG_HAVE_IMX_GPC) +=3D gpc.o
+> >  obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) +=3D gpcv2.o
+> > -obj-$(CONFIG_SOC_IMX8M) +=3D soc-imx8m.o
+> > +obj-$(CONFIG_SOC_IMX8M) +=3D soc-imx8m.o blk-ctl.o
+>=20
+> As it's a generic blk-ctl driver, should we have a dedicated Kconfig opti=
+on for
+> it?
+
+I think no need a dedicated Kconfig option, It is almost a must have
+driver for i.MX8M.
+
+>=20
+> > diff --git a/drivers/soc/imx/blk-ctl.c b/drivers/soc/imx/blk-ctl.c new
+> > file mode 100644 index 000000000000..8e286b8ef1b3
 > > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> > @@ -0,0 +1,132 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > +---
-> > +$id:
-> > +https://jpn01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
-i
-> > +cetree.org%2Fschemas%2Fdma%2Frenesas%2Crz-dmac.yaml%23&amp;data=3D04%7=
-C
-> > +01%7Cbiju.das.jz%40bp.renesas.com%7Ce46660b298b942937fe408d92d109c19%
-> > +7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C637590371623792000%7CUnk
-> > +nown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haW
-> > +wiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DkirztzPuCmsjeKEivOgQZqP5obsByrSaTn=
-Q
-> > +bzQbU%2BRM%3D&amp;reserved=3D0
-> > +$schema:
-> > +https://jpn01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdev=
-i
-> > +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=3D04%7C01%7Cbiju.das=
-.
-> > +jz%40bp.renesas.com%7Ce46660b298b942937fe408d92d109c19%7C53d82571da19
-> > +47e49cb4625a166a4a2a%7C0%7C0%7C637590371623792000%7CUnknown%7CTWFpbGZ
-> > +sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%
-> > +3D%7C1000&amp;sdata=3DU2lrBvVVhySXVYHK6Qk41VTGijep8yPaTCMJpSjRsXs%3D&a=
-m
-> > +p;reserved=3D0
+> > +++ b/drivers/soc/imx/blk-ctl.c
+> > @@ -0,0 +1,334 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright 2021 NXP.
+> > + */
 > > +
-> > +title: Renesas RZ/G2L DMA Controller
-> > +
-> > +maintainers:
-> > +  - Biju Das <biju.das.jz@bp.renesas.com>
-> > +
-> > +allOf:
-> > +  - $ref: "dma-controller.yaml#"
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - renesas,dmac-r9a07g044  # RZ/G2{L,LC}
-> > +      - const: renesas,rz-dmac
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: Control and channel register block
-> > +      - description: DMA extension resource selector block
-> > +
-> > +  interrupts:
-> > +    maxItems: 17
-> > +
-> > +  interrupt-names:
-> > +    maxItems: 17
-> > +    items:
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
-> > +      - pattern: "^ch([0-9]|1[0-5])$"
+> > +#include <linux/clk.h>
+> > +#include <linux/completion.h>
+> > +#include <linux/err.h>
+> > +#include <linux/io.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/slab.h>
+> > +#include <linux/string.h>
+> > +#include <linux/types.h>
+> > +#include <linux/pm_domain.h>
+> > +#include <linux/reset-controller.h>
 >=20
-> Is there some reason these need be in undefined order?
-No. I will make it as defined order in next version.
+> Some of the includes are out of alphabetic order.  Also please check if y=
+ou
+> need all of these headers.
+
+Fix in V7.
 
 >=20
-> > +      - const: error
 > > +
-> > +  clocks:
-> > +    maxItems: 1
+> > +#include "blk-ctl.h"
 > > +
-> > +  '#dma-cells':
-> > +    const: 1
-> > +    description:
-> > +      The cell specifies the MID/RID of the DMAC port connected to
-> > +      the DMA client.
-> > +
-> > +  dma-channels:
-> > +    const: 16
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  renesas,rz-dmac-slavecfg:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +    description: |
-> > +      DMA configuration for a slave channel. Each channel must have an
-> array of
-> > +      3 items as below.
-> > +      first item in the array is MID+RID
-> > +      second item in the array is slave src or dst address
-> > +      third item in the array is channel configuration value.
+> > +static inline struct imx_blk_ctl_domain *to_imx_blk_ctl_pd(struct
+> > +generic_pm_domain *genpd)
 >=20
-> Why not put all these in the dma-cells? You already have 1 of them.
+> Did you run checkpatch on it?  Isn't this line beyond 80 column?
 
-Thanks for the suggestion. I will make use of dma-cells and will remove the=
- above property
-in next revision. Basically It simplifies the implementation as well.
+Yes. I ran, kernel new rule has been 100 column as I know.
 
-> Though doesn't the client device know what address to use?
-Indeed. it knows.
-
-Cheers,
-Biju
 >=20
-> > +    items:
-> > +      minItems: 3
-> > +      maxItems: 48
+> > +{
+> > +	return container_of(genpd, struct imx_blk_ctl_domain, genpd); }
 > > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - clocks
-> > +  - '#dma-cells'
-> > +  - dma-channels
-> > +  - power-domains
-> > +  - resets
+> > +static int imx_blk_ctl_enable_hsk(struct device *dev) {
+> > +	struct imx_blk_ctl *blk_ctl =3D dev_get_drvdata(dev);
+> > +	const struct imx_blk_ctl_hw *hw =3D blk_ctl->dev_data->hw_hsk;
+> > +	struct regmap *regmap =3D blk_ctl->regmap;
+> > +	int ret;
 > > +
-> > +additionalProperties: false
+> > +	if (hw->flags & IMX_BLK_CTL_PD_RESET) {
+> > +		ret =3D regmap_update_bits(regmap, hw->rst_offset, hw->rst_mask,
+> hw->rst_mask);
+> > +		if (ret)
+> > +			return ret;
+> > +	}
 > > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> > +	ret =3D regmap_update_bits(regmap, hw->offset, hw->mask, hw->mask);
 > > +
-> > +    dmac: dma-controller@11820000 {
-> > +        compatible =3D "renesas,dmac-r9a07g044",
-> > +                     "renesas,rz-dmac";
-> > +        reg =3D <0x11820000 0x10000>,
-> > +              <0x11830000 0x10000>;
-> > +        interrupts =3D <GIC_SPI 125 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 126 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 127 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 128 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 129 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 130 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 132 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 133 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 134 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 135 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 136 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 137 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 138 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 139 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 140 IRQ_TYPE_EDGE_RISING>,
-> > +                     <GIC_SPI 141 IRQ_TYPE_EDGE_RISING>;
-> > +        interrupt-names =3D "ch0", "ch1", "ch2", "ch3",
-> > +                          "ch4", "ch5", "ch6", "ch7",
-> > +                          "ch8", "ch9", "ch10", "ch11",
-> > +                          "ch12", "ch13", "ch14", "ch15",
-> > +                          "error";
-> > +        clocks =3D <&cpg CPG_MOD R9A07G044_CLK_DMAC>;
-> > +        power-domains =3D <&cpg>;
-> > +        resets =3D <&cpg R9A07G044_CLK_DMAC>;
-> > +        #dma-cells =3D <1>;
-> > +        dma-channels =3D <16>;
-> > +        renesas,rz-dmac-slavecfg =3D <0x255 0x10049C18 0x0011228>;
-> > +    };
+> > +	/* Wait for handshake */
+> > +	udelay(5);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +int imx_blk_ctl_power_on(struct generic_pm_domain *domain)
+>=20
+> static?
+
+Fix in v7.
+
+>=20
+> > +{
+> > +	struct imx_blk_ctl_domain *pd =3D to_imx_blk_ctl_pd(domain);
+> > +	struct imx_blk_ctl *blk_ctl =3D pd->blk_ctl;
+> > +	struct regmap *regmap =3D blk_ctl->regmap;
+> > +	const struct imx_blk_ctl_hw *hw =3D &blk_ctl->dev_data->pds[pd->id];
+> > +	int ret;
+> > +
+> > +	mutex_lock(&blk_ctl->lock);
+> > +
+> > +	ret =3D clk_bulk_prepare_enable(blk_ctl->num_clks, blk_ctl->clks);
+> > +	if (ret) {
+> > +		mutex_unlock(&blk_ctl->lock);
+> > +		return ret;
+> > +	}
+> > +
+> > +	if (hw->flags & IMX_BLK_CTL_PD_HANDSHAKE) {
+> > +		ret =3D imx_blk_ctl_enable_hsk(blk_ctl->dev);
+> > +		if (ret)
+> > +			dev_err(blk_ctl->dev, "Hankshake failed when power on\n");
+> > +
+> > +		goto disable_clk;
+>=20
+> Goto disable_clk regardless of the ret check?
+
+Oh, this was introduced in v6, fix in V7.
+
+>=20
+> > +	}
+> > +
+> > +	if (hw->flags & IMX_BLK_CTL_PD_RESET) {
+> > +		ret =3D regmap_clear_bits(regmap, hw->rst_offset, hw->rst_mask);
+> > +		if (ret)
+> > +			goto disable_clk;
+> > +	}
+> > +
+> > +	/* Wait for reset propagate */
+> > +	udelay(5);
+>=20
+> The delay will be there even when IMX_BLK_CTL_PD_RESET is not set.
+
+Fix in V7.
+
+>=20
+> > +
+> > +	if (hw->flags & IMX_BLK_CTL_PD_RESET) {
+> > +		ret =3D regmap_update_bits(regmap, hw->rst_offset, hw->rst_mask,
+> hw->rst_mask);
+> > +		if (ret)
+> > +			goto disable_clk;
+> > +	}
+> > +
+> > +	ret =3D regmap_update_bits(regmap, hw->offset, hw->mask, hw->mask);
+> > +	if (ret)
+> > +		goto disable_clk;
+>=20
+> Useless goto.
+
+Fix in V7.
+
+>=20
+> > +
+> > +disable_clk:
+> > +	clk_bulk_disable_unprepare(blk_ctl->num_clks, blk_ctl->clks);
+> > +
+> > +	mutex_unlock(&blk_ctl->lock);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +int imx_blk_ctl_power_off(struct generic_pm_domain *domain) {
+> > +	struct imx_blk_ctl_domain *pd =3D to_imx_blk_ctl_pd(domain);
+> > +	struct imx_blk_ctl *blk_ctl =3D pd->blk_ctl;
+> > +	struct regmap *regmap =3D blk_ctl->regmap;
+> > +	const struct imx_blk_ctl_hw *hw =3D &blk_ctl->dev_data->pds[pd->id];
+> > +	int ret;
+> > +
+> > +	mutex_lock(&blk_ctl->lock);
+> > +
+> > +	ret =3D clk_bulk_prepare_enable(blk_ctl->num_clks, blk_ctl->clks);
+> > +	if (ret) {
+> > +		mutex_unlock(&blk_ctl->lock);
+> > +		return ret;
+> > +	}
+> > +
+> > +	if (!(hw->flags & IMX_BLK_CTL_PD_HANDSHAKE)) {
+> > +		ret =3D regmap_clear_bits(regmap, hw->offset, hw->mask);
+> > +		if (ret)
+> > +			goto hsk_fail;
+> > +
+> > +		if (hw->flags & IMX_BLK_CTL_PD_RESET) {
+> > +			ret =3D regmap_clear_bits(regmap, hw->rst_offset,
+> hw->rst_mask);
+> > +			if (ret)
+> > +				goto hsk_fail;
+> > +		}
+> > +	}
+> > +
+> > +	if (hw->flags & IMX_BLK_CTL_PD_HANDSHAKE) {
+> > +		ret =3D imx_blk_ctl_enable_hsk(blk_ctl->dev);
+> > +		if (ret)
+> > +			dev_err(blk_ctl->dev, "Hankshake failed when power off\n");
+> > +	}
+> > +
+> > +hsk_fail:
+>=20
+> You use disable_clk in above function for the same code.  Inconsistent
+> labeling strategy.
+
+Fix in V7.
+
+>=20
+> > +	clk_bulk_disable_unprepare(blk_ctl->num_clks, blk_ctl->clks);
+> > +
+> > +	mutex_unlock(&blk_ctl->lock);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int imx_blk_ctl_probe(struct platform_device *pdev) {
+> > +	struct imx_blk_ctl_domain *domain =3D pdev->dev.platform_data;
+> > +	struct imx_blk_ctl *blk_ctl =3D domain->blk_ctl;
+> > +	struct generic_pm_domain *parent_genpd;
+> > +	struct device *dev =3D &pdev->dev;
+> > +	struct device *active_pd;
+> > +	int ret;
+> > +
+> > +	pdev->dev.of_node =3D blk_ctl->dev->of_node;
+>=20
+> Have a newline.
+
+Fix in V7.
+
+>=20
+> > +	if (domain->hw->active_pd_name) {
+> > +		active_pd =3D dev_pm_domain_attach_by_name(dev,
+> domain->hw->active_pd_name);
+> > +		if (IS_ERR_OR_NULL(active_pd)) {
+> > +			ret =3D PTR_ERR(active_pd) ? : -ENODATA;
+> > +			pdev->dev.of_node =3D NULL;
+>=20
+> Why is this necessary?
+
+This is to avoid blk-ctl match with is parent's device driver, if
+it use same dt node.
+
+>=20
+> > +			return ret;
+> > +		}
+>=20
+> Have a newline.
+>=20
+> > +		domain->active_pd =3D active_pd;
+> > +	} else {
+> > +		if (!blk_ctl->bus_domain) {
+> > +			pdev->dev.of_node =3D NULL;
+> > +			return -EPROBE_DEFER;
+> > +		}
+> > +	}
+> > +
+> > +	if (domain->hw->active_pd_name)
+> > +		parent_genpd =3D pd_to_genpd(active_pd->pm_domain);
+> > +	else
+> > +		parent_genpd =3D blk_ctl->bus_domain;
+> > +
+> > +	if (pm_genpd_add_subdomain(parent_genpd, &domain->genpd)) {
+> > +		pr_warn("failed to add subdomain: %s\n", domain->genpd.name);
+>=20
+> dev_warn()?
+>=20
+> > +	} else {
+> > +		mutex_lock(&blk_ctl->lock);
+> > +		domain->hooked =3D true;
+> > +		mutex_unlock(&blk_ctl->lock);
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int imx_blk_ctl_remove(struct platform_device *pdev) {
+> > +	struct imx_blk_ctl_domain *domain =3D pdev->dev.platform_data;
+> > +	struct imx_blk_ctl *blk_ctl =3D domain->blk_ctl;
+> > +	struct generic_pm_domain *parent_genpd;
+> > +	struct device *active_pd;
+> > +
+> > +	pdev->dev.of_node =3D blk_ctl->dev->of_node;
+>=20
+> Why is this needed for .remove?
+Fix in v7.
+>=20
+> I stop right here.  The patch really needs some level cross reviewing.
+
+ok, we are almost done in V5, but have to introduce a new design in V6.
+I'll try to invite someone to help review.
+
+Thanks,
+Peng.
+
+>=20
+> Shawn
+>=20
+> > +	if (domain->hw->active_pd_name)
+> > +		parent_genpd =3D pd_to_genpd(active_pd->pm_domain);
+> > +	else
+> > +		parent_genpd =3D blk_ctl->bus_domain;
+> > +
+> > +	pm_genpd_remove_subdomain(parent_genpd, &domain->genpd);
+> > +
+> > +	mutex_lock(&blk_ctl->lock);
+> > +	domain->hooked =3D false;
+> > +	mutex_unlock(&blk_ctl->lock);
+> > +
+> > +	if (domain->hw->active_pd_name)
+> > +		dev_pm_domain_detach(domain->active_pd, false);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct platform_device_id imx_blk_ctl_id[] =3D {
+> > +	{ "imx-vpumix-blk-ctl", },
+> > +	{ "imx-dispmix-blk-ctl", },
+> > +	{ },
+> > +};
+> > +
+> > +static struct platform_driver imx_blk_ctl_driver =3D {
+> > +	.driver =3D {
+> > +		.name =3D "imx-blk-ctl",
+> > +	},
+> > +	.probe    =3D imx_blk_ctl_probe,
+> > +	.remove   =3D imx_blk_ctl_remove,
+> > +	.id_table =3D imx_blk_ctl_id,
+> > +};
+> > +builtin_platform_driver(imx_blk_ctl_driver)
+> > +
+> > +static struct generic_pm_domain *imx_blk_ctl_genpd_xlate(struct
+> of_phandle_args *genpdspec,
+> > +							 void *data)
+> > +{
+> > +	struct genpd_onecell_data *genpd_data =3D data;
+> > +	unsigned int idx =3D genpdspec->args[0];
+> > +	struct imx_blk_ctl_domain *domain;
+> > +	struct generic_pm_domain *genpd =3D ERR_PTR(-EPROBE_DEFER);
+> > +
+> > +	if (genpdspec->args_count !=3D 1)
+> > +		return ERR_PTR(-EINVAL);
+> > +
+> > +	if (idx >=3D genpd_data->num_domains) {
+> > +		pr_err("%s: invalid domain index %u\n", __func__, idx);
+> > +		return ERR_PTR(-EINVAL);
+> > +	}
+> > +
+> > +	if (!genpd_data->domains[idx])
+> > +		return ERR_PTR(-ENOENT);
+> > +
+> > +	domain =3D to_imx_blk_ctl_pd(genpd_data->domains[idx]);
+> > +	mutex_lock(&domain->blk_ctl->lock);
+> > +	if (domain->hooked)
+> > +		genpd =3D genpd_data->domains[idx];
+> > +	mutex_unlock(&domain->blk_ctl->lock);
+> > +
+> > +	return genpd;
+> > +}
+> > +
+> > +int imx_blk_ctl_register(struct device *dev) {
+> > +	struct imx_blk_ctl *blk_ctl =3D dev_get_drvdata(dev);
+> > +	const struct imx_blk_ctl_dev_data *dev_data =3D blk_ctl->dev_data;
+> > +	int num =3D dev_data->pds_num;
+> > +	struct imx_blk_ctl_domain *domain;
+> > +	struct generic_pm_domain *genpd;
+> > +	struct platform_device *pd_pdev;
+> > +	int domain_index;
+> > +	int i, ret;
+> > +
+> > +	blk_ctl->onecell_data.num_domains =3D num;
+> > +	blk_ctl->onecell_data.xlate =3D imx_blk_ctl_genpd_xlate;
+> > +	blk_ctl->onecell_data.domains =3D devm_kcalloc(dev, num, sizeof(struc=
+t
+> generic_pm_domain *),
+> > +						     GFP_KERNEL);
+> > +	if (!blk_ctl->onecell_data.domains)
+> > +		return -ENOMEM;
+> > +
+> > +	for (i =3D 0; i < num; i++) {
+> > +		domain_index =3D dev_data->pds[i].id;
+> > +		if (domain_index >=3D num) {
+> > +			dev_warn(dev, "Domain index %d is out of bounds\n",
+> domain_index);
+> > +			continue;
+> > +		}
+> > +
+> > +		domain =3D devm_kzalloc(dev, sizeof(struct imx_blk_ctl_domain),
+> GFP_KERNEL);
+> > +		if (!domain)
+> > +			goto error;
+> > +
+> > +		pd_pdev =3D platform_device_alloc(dev_data->name, domain_index);
+> > +		if (!pd_pdev) {
+> > +			dev_err(dev, "Failed to allocate platform device\n");
+> > +			goto error;
+> > +		}
+> > +
+> > +		pd_pdev->dev.platform_data =3D domain;
+> > +
+> > +		domain->blk_ctl =3D blk_ctl;
+> > +		domain->hw =3D &dev_data->pds[i];
+> > +		domain->id =3D domain_index;
+> > +		domain->genpd.name =3D dev_data->pds[i].name;
+> > +		domain->genpd.power_off =3D imx_blk_ctl_power_off;
+> > +		domain->genpd.power_on =3D imx_blk_ctl_power_on;
+> > +		domain->dev =3D &pd_pdev->dev;
+> > +		domain->hooked =3D false;
+> > +
+> > +		ret =3D pm_genpd_init(&domain->genpd, NULL, true);
+> > +		pd_pdev->dev.parent =3D dev;
+> > +
+> > +		if (domain->hw->flags & IMX_BLK_CTL_PD_HANDSHAKE)
+> > +			blk_ctl->bus_domain =3D &domain->genpd;
+> > +
+> > +		ret =3D platform_device_add(pd_pdev);
+> > +		if (ret) {
+> > +			platform_device_put(pd_pdev);
+> > +			goto error;
+> > +		}
+> > +		blk_ctl->onecell_data.domains[i] =3D &domain->genpd;
+> > +	}
+> > +
+> > +	return of_genpd_add_provider_onecell(dev->of_node,
+> > +&blk_ctl->onecell_data);
+> > +
+> > +error:
+> > +	for (; i >=3D 0; i--) {
+> > +		genpd =3D blk_ctl->onecell_data.domains[i];
+> > +		if (!genpd)
+> > +			continue;
+> > +		domain =3D to_imx_blk_ctl_pd(genpd);
+> > +		if (domain->dev)
+> > +			platform_device_put(to_platform_device(domain->dev));
+> > +	}
+> > +	return ret;
+> > +}
+> > +EXPORT_SYMBOL_GPL(imx_blk_ctl_register);
+> > +
+> > +const struct dev_pm_ops imx_blk_ctl_pm_ops =3D {
+> > +	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+> > +			   pm_runtime_force_resume)
+> > +};
+> > +EXPORT_SYMBOL_GPL(imx_blk_ctl_pm_ops);
+> > diff --git a/drivers/soc/imx/blk-ctl.h b/drivers/soc/imx/blk-ctl.h new
+> > file mode 100644 index 000000000000..6780d00ec8c5
+> > --- /dev/null
+> > +++ b/drivers/soc/imx/blk-ctl.h
+> > @@ -0,0 +1,85 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */ #ifndef __SOC_IMX_BLK_CTL_H
+> > +#define __SOC_IMX_BLK_CTL_H
+> > +
+> > +enum imx_blk_ctl_pd_type {
+> > +	BLK_CTL_PD,
+> > +};
+> > +
+> > +struct imx_blk_ctl_hw {
+> > +	int type;
+> > +	char *name;
+> > +	char *active_pd_name;
+> > +	u32 offset;
+> > +	u32 mask;
+> > +	u32 flags;
+> > +	u32 id;
+> > +	u32 rst_offset;
+> > +	u32 rst_mask;
+> > +	u32 errata;
+> > +};
+> > +
+> > +struct imx_blk_ctl_domain {
+> > +	struct generic_pm_domain genpd;
+> > +	struct device *active_pd;
+> > +	struct imx_blk_ctl *blk_ctl;
+> > +	struct imx_blk_ctl_hw *hw;
+> > +	struct device *dev;
+> > +	bool hooked;
+> > +	u32 id;
+> > +};
+> > +
+> > +struct imx_blk_ctl_dev_data {
+> > +	struct regmap_config config;
+> > +	struct imx_blk_ctl_hw *pds;
+> > +	struct imx_blk_ctl_hw *hw_hsk;
+> > +	u32 pds_num;
+> > +	u32 max_num;
+> > +	char *name;
+> > +};
+> > +
+> > +struct imx_blk_ctl {
+> > +	struct device *dev;
+> > +	struct regmap *regmap;
+> > +	struct genpd_onecell_data onecell_data;
+> > +	const struct imx_blk_ctl_dev_data *dev_data;
+> > +	struct clk_bulk_data *clks;
+> > +	u32 num_clks;
+> > +	struct generic_pm_domain *bus_domain;
+> > +
+> > +	struct mutex lock;
+> > +};
+> > +
+> > +#define IMX_BLK_CTL(_type, _name, _active_pd, _id, _offset, _mask,
+> _rst_offset, _rst_mask,	\
+> > +		    _flags, _errata)								\
+> > +	{											\
+> > +		.type =3D _type,									\
+> > +		.name =3D _name,									\
+> > +		.active_pd_name =3D _active_pd,							\
+> > +		.id =3D _id,									\
+> > +		.offset =3D _offset,								\
+> > +		.mask =3D _mask,									\
+> > +		.flags =3D _flags,								\
+> > +		.rst_offset =3D _rst_offset,							\
+> > +		.rst_mask =3D _rst_mask,								\
+> > +		.errata =3D _errata,								\
+> > +	}
+> > +
+> > +#define IMX_BLK_CTL_PD(_name, _active_pd, _id, _offset, _mask,
+> _rst_offset, _rst_mask, _flags)	\
+> > +	IMX_BLK_CTL(BLK_CTL_PD, _name, _active_pd, _id, _offset, _mask,
+> _rst_offset,		\
+> > +		    _rst_mask, _flags, 0)
+> > +
+> > +#define IMX_BLK_CTL_PD_ERRATA(_name, _active_pd, _id, _offset, _mask,
+> _rst_offset, _rst_mask,	\
+> > +			      _flags, _errata)							\
+> > +	IMX_BLK_CTL(BLK_CTL_PD, _name, _active_pd, _id, _offset, _mask,
+> _rst_offset,		\
+> > +		    _rst_mask, _flags, _errata)
+> > +
+> > +int imx_blk_ctl_register(struct device *dev);
+> > +
+> > +#define IMX_BLK_CTL_PD_HANDSHAKE	BIT(0)
+> > +#define IMX_BLK_CTL_PD_RESET		BIT(1)
+> > +#define IMX_BLK_CTL_PD_BUS		BIT(2)
+> > +
+> > +const extern struct dev_pm_ops imx_blk_ctl_pm_ops;
+> > +
+> > +#endif
 > > --
-> > 2.17.1
+> > 2.30.0
+> >
