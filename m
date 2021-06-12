@@ -2,114 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 976043A4DE2
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 11:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E87163A4DEF
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 11:45:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229584AbhFLJZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Jun 2021 05:25:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46952 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230191AbhFLJZW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 05:25:22 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C58A6C061574;
-        Sat, 12 Jun 2021 02:23:09 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id v206-20020a1cded70000b02901a586d3fa23so9946540wmg.4;
-        Sat, 12 Jun 2021 02:23:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=SLFVhursGu66Uj/3K3eYasv4quV8R1dSmz2H6vx5rpU=;
-        b=WK28YEY+mxu0dajuAkqICfBIey1HTQatNZpyxGFo9qbiP9NBSr6fYEGQvGgZht6PvO
-         zgZ3hO18JVXKaAmM5D+5Inm/QkSMB7qXQbOQMcjwXtI7AAGd9Ds6z+FYgTdRksPvHV9K
-         NRddoj35bs0eD2qSjrmIN2XTtz9Sj39v/8mp/NQ0Hiizde9SEIpqONigfIa8lP7VWcFS
-         +/oUqFA8gS2wSPDguVPykI/8tTIbcYVfG8Q7ozpdmng2VRC6U5s/yctnI7Y+29vn4FV5
-         ajmyKmYRbD4drWDkWw9aUhJJtnFT2ke+bxA1q0v9yiwYG/hvWurJMQqq5/CXSvr/AVqv
-         ohFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=SLFVhursGu66Uj/3K3eYasv4quV8R1dSmz2H6vx5rpU=;
-        b=gMSYslX46VfJUMyJo7w+qr8vTf/DU4chNO+JQ5nyYcUyyMTg9He65XOIJ6hp43YV3U
-         WY5oi67b4cRJk4zttt1eR2PD0LZuHeWJ0Lly12SyNlMcUwkXJIFFjfe71QKkMQs+n0lF
-         eH5pDxdZPVv9Sx+5BeE/bnFGtTm5krQnMtbbWS3bsdmlymz8uo5zD7iR1AoZIhb4iw5J
-         lWodxwgsYOH+waFMs5tJ3Ztb7sDkDDuUvGsTE4a3dGa5BWz+3FSR8VO6VyXkTk/m+lo1
-         NsLjxPv73efSh3DQ56QVTzij/UiWOkZlnHaybVp+VBeWeXNkTPWdN/dqSdtQQR/KkpIZ
-         lYGw==
-X-Gm-Message-State: AOAM533YV8fBpcaWomcOFM/cZi0+WdA7diaG+Dt7XR/0g6+xH1/Vlp2J
-        BrbfIxF3/zqTM/F+3V6CZeU=
-X-Google-Smtp-Source: ABdhPJzgicMpzLh5bZMPsx62eBNKrcy04WIKYCttKwTTO0YhKS4Ms+svmfp8nsdqmDgGKwUZ4BIHQw==
-X-Received: by 2002:a7b:c1ce:: with SMTP id a14mr24077747wmj.180.1623489788393;
-        Sat, 12 Jun 2021 02:23:08 -0700 (PDT)
-Received: from localhost.localdomain (haganm.plus.com. [212.159.108.31])
-        by smtp.gmail.com with ESMTPSA id a3sm10262253wra.4.2021.06.12.02.23.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Jun 2021 02:23:08 -0700 (PDT)
-Subject: Re: [PATCH v2 2/5] ARM: dts: NSP: Add Meraki MX64/MX65 to Makefile
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20210610232727.1383117-1-mnhagan88@gmail.com>
- <20210610232727.1383117-3-mnhagan88@gmail.com>
- <20210611202434.flnqrzbbxicw5c3t@skbuf>
-From:   Matthew Hagan <mnhagan88@gmail.com>
-Message-ID: <e9d5fffd-4483-8342-c97e-a115894ca93b@gmail.com>
-Date:   Sat, 12 Jun 2021 10:23:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S229942AbhFLJrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Jun 2021 05:47:53 -0400
+Received: from relay02.th.seeweb.it ([5.144.164.163]:41497 "EHLO
+        relay02.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229584AbhFLJrw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 05:47:52 -0400
+Received: from localhost.localdomain (bband-dyn73.178-41-129.t-com.sk [178.41.129.73])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id C09641F95A;
+        Sat, 12 Jun 2021 11:45:50 +0200 (CEST)
+From:   Martin Botka <martin.botka@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        konrad.dybcio@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Martin Botka <martin.botka@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V4 1/2] dt-bindings: pinctrl: qcom: sm6125: Document SM6125 pinctrl driver
+Date:   Sat, 12 Jun 2021 11:45:30 +0200
+Message-Id: <20210612094534.88992-1-martin.botka@somainline.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210611202434.flnqrzbbxicw5c3t@skbuf>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document the newly added SM6125 pinctrl driver
 
-On 11/06/2021 21:24, Vladimir Oltean wrote:
-> On Fri, Jun 11, 2021 at 12:27:14AM +0100, Matthew Hagan wrote:
->> Add Makefile entries for the Meraki MX64/MX65 series devices.
->>
->> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
->> ---
->>  arch/arm/boot/dts/Makefile | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
->> index f8f09c5066e7..033d9604db60 100644
->> --- a/arch/arm/boot/dts/Makefile
->> +++ b/arch/arm/boot/dts/Makefile
->> @@ -154,6 +154,12 @@ dtb-$(CONFIG_ARCH_BCM_NSP) += \
->>  	bcm958525xmc.dtb \
->>  	bcm958622hr.dtb \
->>  	bcm958623hr.dtb \
->> +	bcm958625-meraki-mx64.dtb \
->> +	bcm958625-meraki-mx64-a0.dtb \
->> +	bcm958625-meraki-mx64w.dtb \
->> +	bcm958625-meraki-mx64w-a0.dtb \
->> +	bcm958625-meraki-mx65.dtb \
->> +	bcm958625-meraki-mx65w.dtb \
->>  	bcm958625hr.dtb \
->>  	bcm988312hr.dtb \
->>  	bcm958625k.dtb
->> -- 
->> 2.26.3
->>
-> It is odd to add the device trees to the Makefile in a separate patch
-> compared to their actual introduction. Does the tree even compile at
-> this stage?
+Signed-off-by: Martin Botka <martin.botka@somainline.org>
+---
+Changes in V2:
+Add commit description
+Changes in V3:
+Fix syntax errors
+Remove not needed state from example
+Changes in V4:
+maxItems set to 3
+Correct the pattern
+Remove deleted enums
+Fix the compatible
+ .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml | 124 ++++++++++++++++++
+ 1 file changed, 124 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
 
-Will rectify this. Thanks!
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
+new file mode 100644
+index 000000000000..45366945a86f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
+@@ -0,0 +1,124 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,sm6125-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++title: Qualcomm Technologies, Inc. SM6125 TLMM block
++
++maintainers:
++  - Martin Botka <martin.botka@somainline.org>
++
++description: |
++  This binding describes the Top Level Mode Multiplexer (TLMM) block found
++  in the SM6125 platform.
++
++allOf:
++  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
++
++properties:
++  compatible:
++    const: qcom,sm6125-tlmm
++
++  reg:
++    maxItems: 3
++
++  interrupts: true
++  interrupt-controller: true
++  '#interrupt-cells': true
++  gpio-controller: true
++  gpio-reserved-ranges: true
++  '#gpio-cells': true
++  gpio-ranges: true
++  wakeup-parent: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++patternProperties:
++  '-state$':
++    oneOf:
++      - $ref: "#/$defs/qcom-sm6125-tlmm-state"
++      - patternProperties:
++          ".*":
++            $ref: "#/$defs/qcom-sm6125-tlmm-state"
++
++$defs:
++  qcom-sm6125-tlmm-state:
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          oneOf:
++            - pattern: "^gpio[0-9]|[1-9][0-9]|1[0-2][0-9]|13[0-2]$"
++            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
++        minItems: 1
++        maxItems: 36
++
++      function:
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++
++        enum: [ adsp_ext, agera_pll, atest_char, atest_char0, atest_char1,
++                atest_char2, atest_char3, atest_tsens, atest_tsens2, atest_usb1,
++                atest_usb10, atest_usb11, atest_usb12, atest_usb13, atest_usb2,
++                atest_usb20, atest_usb21, atest_usb22, atest_usb23, aud_sb,
++                audio_ref, cam_mclk, cci_async, cci_i2c, cci_timer0, cci_timer1,
++                cci_timer2, cci_timer3, cci_timer4, copy_gp, copy_phase, cri_trng,
++                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
++                ddr_pxi2, ddr_pxi3, debug_hot, dmic0_clk, dmic0_data, dmic1_clk,
++                dmic1_data, dp_hot, edp_hot, edp_lcd, gcc_gp1, gcc_gp2, gcc_gp3,
++                gp_pdm0, gp_pdm1, gp_pdm2, gpio, gps_tx, jitter_bist, ldo_en,
++                ldo_update, m_voc, mclk1, mclk2, mdp_vsync, mdp_vsync0, mdp_vsync1,
++                mdp_vsync2, mdp_vsync3, mdp_vsync4, mdp_vsync5, mpm_pwr, mss_lte,
++                nav_pps, pa_indicator, phase_flag, pll_bist, pll_bypassnl, pll_reset,
++                pri_mi2s, pri_mi2s_ws, prng_rosc, qca_sb, qdss_cti, qdss, qlink_enable,
++                qlink_request, qua_mi2s, qui_mi2s, qup00, qup01, qup02, qup03, qup04,
++                qup10, qup11, qup12, qup13, qup14, sd_write, sec_mi2s, sp_cmu, swr_rx,
++                swr_tx, ter_mi2s, tgu_ch0, tgu_ch1, tgu_ch2, tgu_ch3, tsense_pwm,
++                uim1_clk, uim1_data, uim1_present, uim1_reset, uim2_clk, uim2_data,
++                uim2_present, uim2_reset, unused1, unused2, usb_phy, vfr_1, vsense_trigger,
++                wlan1_adc0, wlan1_adc1, wlan2_adc0, wlan2_adc1, wsa_clk, wsa_data ]
++
++
++      bias-disable: true
++      bias-pull-down: true
++      bias-pull-up: true
++      drive-strength: true
++      input-enable: true
++      output-high: true
++      output-low: true
++
++    required:
++      - pins
++      - function
++
++    additionalProperties: false
++
++examples:
++  - |
++        #include <dt-bindings/interrupt-controller/arm-gic.h>
++        pinctrl@500000 {
++                compatible = "qcom,sm6125-tlmm";
++                reg = <0x00500000 0x400000>,
++                    <0x00900000 0x400000>,
++                    <0x00d00000 0x400000>;
++                reg-names = "west", "south", "east";
++                interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
++                gpio-controller;
++                gpio-ranges = <&tlmm 0 0 134>;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++        };
+-- 
+2.31.1
 
