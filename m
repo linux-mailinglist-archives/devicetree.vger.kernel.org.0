@@ -2,41 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C090B3A4DF8
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 11:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA3013A4E01
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 11:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231196AbhFLJsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Jun 2021 05:48:21 -0400
-Received: from relay07.th.seeweb.it ([5.144.164.168]:42855 "EHLO
-        relay07.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231195AbhFLJsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 05:48:21 -0400
+        id S231279AbhFLJsj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Jun 2021 05:48:39 -0400
+Received: from relay04.th.seeweb.it ([5.144.164.165]:52493 "EHLO
+        relay04.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231245AbhFLJsh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 05:48:37 -0400
 Received: from localhost.localdomain (bband-dyn73.178-41-129.t-com.sk [178.41.129.73])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 0E0AC3F3E6;
-        Sat, 12 Jun 2021 11:46:20 +0200 (CEST)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 4037A1F983;
+        Sat, 12 Jun 2021 11:46:37 +0200 (CEST)
 From:   Martin Botka <martin.botka@somainline.org>
 Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         konrad.dybcio@somainline.org,
         angelogioacchino.delregno@somainline.org,
         marijn.suijten@somainline.org, jamipkettunen@somainline.org,
         Martin Botka <martin.botka@somainline.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Rob Clark <robdclark@chromium.org>,
-        "Isaac J. Manjarres" <isaacm@codeaurora.org>
-Subject: [PATCH V3 2/2] iommu: arm-smmu-qcom: Add sm6125 compatible
-Date:   Sat, 12 Jun 2021 11:46:05 +0200
-Message-Id: <20210612094606.89576-2-martin.botka@somainline.org>
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH V3 2/3] dt-bindings: mailbox: Add binding for sm6125
+Date:   Sat, 12 Jun 2021 11:46:29 +0200
+Message-Id: <20210612094631.89980-2-martin.botka@somainline.org>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210612094606.89576-1-martin.botka@somainline.org>
-References: <20210612094606.89576-1-martin.botka@somainline.org>
+In-Reply-To: <20210612094631.89980-1-martin.botka@somainline.org>
+References: <20210612094631.89980-1-martin.botka@somainline.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 To:     unlisted-recipients:; (no To-header on input)
@@ -44,27 +40,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for SM6125 SoC
+This patch adds the binding for sm6125
 
 Signed-off-by: Martin Botka <martin.botka@somainline.org>
 ---
 Changes in V3:
 Add this file
- drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml      | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-index 98b3a1c2a181..7455bcc92f43 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
-@@ -333,6 +333,7 @@ static const struct of_device_id __maybe_unused qcom_smmu_impl_of_match[] = {
- 	{ .compatible = "qcom,sc8180x-smmu-500" },
- 	{ .compatible = "qcom,sdm630-smmu-v2" },
- 	{ .compatible = "qcom,sdm845-smmu-500" },
-+	{ .compatible = "qcom,sm6125-smmu-500" },
- 	{ .compatible = "qcom,sm8150-smmu-500" },
- 	{ .compatible = "qcom,sm8250-smmu-500" },
- 	{ .compatible = "qcom,sm8350-smmu-500" },
+diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+index 5dc1173d03fd..9f4fbc6a141c 100644
+--- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
++++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.yaml
+@@ -27,6 +27,7 @@ properties:
+       - qcom,sc8180x-apss-shared
+       - qcom,sdm660-apcs-hmss-global
+       - qcom,sdm845-apss-shared
++      - qcom,sm6125-apcs-hmss-global
+       - qcom,sm8150-apss-shared
+ 
+   reg:
+@@ -75,6 +76,7 @@ allOf:
+             - qcom,sc7180-apss-shared
+             - qcom,sdm660-apcs-hmss-global
+             - qcom,sdm845-apss-shared
++            - qcom,sm6125-apcs-hmss-global
+             - qcom,sm8150-apss-shared
+     then:
+       properties:
 -- 
 2.31.1
 
