@@ -2,71 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81B883A5026
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 20:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 898773A5034
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 21:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231390AbhFLSyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Jun 2021 14:54:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57020 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229753AbhFLSyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 14:54:23 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DDCDC061574;
-        Sat, 12 Jun 2021 11:52:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=6vyq8++fgJW9VT1oJ2gzeTKHAjPRKuu+Bi0OQsraujM=; b=f2K0vN6g33glZVIwNJPjlpw3V
-        RsdE31t3s9zTKZ2JW/y1RZnp+73goQ37tIEwvLqIwzuc24lCsPOi0cT05xkWwVTAAeGuOQd31kbcD
-        qL5FkTVbo5ci48qqBz7IUqEOTkfJFEeBc6ljCfx8aLI5Dz7z5I5wnkZBrSjI4fBJdBkLL8Zswnls/
-        akhwB1/MNjN7cU8X2m+eWfJaN3acr2szPX9GTV0Y+72lV/OcjVtbozVCuR+wfkEO3vDgh6jYsRAHL
-        9AaI8scmecUCV5JQXGOvICWlvDjBgYJq+9sP0G7nDYn7eFcGYZoLOolWClLBJsX1F2jSfnYS/rgcd
-        51HExLDCQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44948)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1ls8jv-0002jO-5b; Sat, 12 Jun 2021 19:52:15 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1ls8jt-0002Rn-Rd; Sat, 12 Jun 2021 19:52:13 +0100
-Date:   Sat, 12 Jun 2021 19:52:13 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Steen Hegelund <steen.hegelund@microchip.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: Add 25G BASE-R phy
- interface
-Message-ID: <20210612185213.GL22278@shell.armlinux.org.uk>
-References: <20210611125453.313308-1-steen.hegelund@microchip.com>
- <20210611125453.313308-2-steen.hegelund@microchip.com>
+        id S231215AbhFLTK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Jun 2021 15:10:56 -0400
+Received: from mail-wm1-f44.google.com ([209.85.128.44]:53005 "EHLO
+        mail-wm1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229753AbhFLTKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 15:10:55 -0400
+Received: by mail-wm1-f44.google.com with SMTP id f17so9797990wmf.2
+        for <devicetree@vger.kernel.org>; Sat, 12 Jun 2021 12:08:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=BB8JUk0gwOcSxW/GKLMC0NWk2t05q2bfE76haF6J3Uo=;
+        b=o0usK3QAxuMZK/rVefuHHGWcinLsWk2ORSuWGqkbpvKNPirUZwHB0IX1vBVsGc1m2q
+         CXODO5OyslNMhb0byegXAdCtsQhI5sf43fRZe4bnHneuWFDsHUKR4ju/vvP3d4KuqNhq
+         WmUzU7I1Vq6e6r/OJP/kHXT3/GOMyHRDUpGs37RF2AhT+UzTfYv6yp2xm373zI9nSeHF
+         MJCgHJkwUnWg+JyfiwGAjyPG2H6Ac/XFERVX0vl6f2Jcn1H1jPxiVW5KOxX3mvpjKx3w
+         BirBvxX1YMVQPleRAlwNumjxpidN4lchJ68kDc2LZRihahAwdQ+Xaw4saFwbQmKBo9Mk
+         8Z3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=BB8JUk0gwOcSxW/GKLMC0NWk2t05q2bfE76haF6J3Uo=;
+        b=f89XL11vuuxJS/4TMi+YO+FqdK1Xw937vtbwDHsSUXFWFYMCl18F5+rIMhaA3AL1mR
+         GZzNreIw9eWKvYect3G22JAepi4/mZjG0KjIWTGvqkEOsrerxyCfj/99rdSi9jfQxbZo
+         jdHJlWIQehqKStIeHLjJ1nYo4AHCDmxUGMmmToMEDNetCODZpnpDZPnWgF8t0jnnwCp/
+         yRyAo8HFtsOdJz2m3040oYytFS/cilv+3osv1DRuKohR6FDYD2hgpQJW62hnq401q8DC
+         eAR6VlTcxQE+UfPzzaWKL0s6km21wyadozVk9CUMtJ4ZFxJXF2VBRj3z0ZtzahA8n55f
+         zTGQ==
+X-Gm-Message-State: AOAM531J/2hwJ0Ei/PeJu2BUTRcPIFfj1hskIjFZqXkTaYgnOuuJ/SQK
+        yaspuAC2wtSP70DPgsXfxZd9uA==
+X-Google-Smtp-Source: ABdhPJz9Cv27r1lmZZb4uNwMHuG9pbRW72eCDdcMkHadZWJDxkgeHQdiuL6Zx6X5A5hk6iPmc4LKew==
+X-Received: by 2002:a7b:c110:: with SMTP id w16mr9449399wmi.4.1623524874956;
+        Sat, 12 Jun 2021 12:07:54 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:15bb:2e33:aa66:1b44? ([2a01:e34:ed2f:f020:15bb:2e33:aa66:1b44])
+        by smtp.googlemail.com with ESMTPSA id w23sm16170888wmi.0.2021.06.12.12.07.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 12 Jun 2021 12:07:54 -0700 (PDT)
+Subject: Re: [PATCH V4 1/3] dt-bindings: thermal: tsens: Add compatible string
+ to TSENS binding for SC7280
+To:     Rajeshwari Ravindra Kamble <rkambl@codeaurora.org>,
+        amitk@kernel.org, thara.gopinath@linaro.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org
+Cc:     linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sanm@codeaurora.org, manafm@codeaurora.org
+References: <1620367641-23383-1-git-send-email-rkambl@codeaurora.org>
+ <1620367641-23383-2-git-send-email-rkambl@codeaurora.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <9a8f0d40-5368-580b-b037-9d9637cc0861@linaro.org>
+Date:   Sat, 12 Jun 2021 21:07:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210611125453.313308-2-steen.hegelund@microchip.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <1620367641-23383-2-git-send-email-rkambl@codeaurora.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 02:54:50PM +0200, Steen Hegelund wrote:
-> Add 25gbase-r PHY interface mode.
+On 07/05/2021 08:07, Rajeshwari Ravindra Kamble wrote:
+> Adding compatible string in TSENS dt-bindings for SC7280.
 > 
-> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-> Signed-off-by: Bjarni Jonasson <bjarni.jonasson@microchip.com>
+> Signed-off-by: Rajeshwari Ravindra Kamble <rkambl@codeaurora.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
 
-Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Applied, thanks
+
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
