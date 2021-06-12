@@ -2,244 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2A833A4D76
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 10:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A59863A4DE0
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 11:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230348AbhFLID0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Jun 2021 04:03:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37622 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229942AbhFLIDZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Jun 2021 04:03:25 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 54525611C9;
-        Sat, 12 Jun 2021 08:01:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623484886;
-        bh=MGNqkWJ1sCuzKDQbg57dAyp2wtRQv0/ZqUAW5Jfi9eE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dhu6f1t80BM4fx5b2mO6wlHdXBGlthT6XOhSgqkAmt8IOdwLmNpXNJtjksGG/dybG
-         PNwz2Ta0R7x4wytFlhW0XTzEpRyWPxmAelbB2x+LCeDG+jvA+KhDFG5o5q9gDgK2a/
-         FY0uj8yopQFSekDsKMMItADEtSw/3zenhISefz2JGlNET8N2iFPCVUMK4gNJIJIOvN
-         sBQkOfsn1YZuX0HVsu4yx1yil0u1UyVx09IIt7cjRgnfPb1IawlfKHl+6251YzGwNY
-         446jrcH7BXbRWr4L/44/Ad5HssIRzGY9WPW5EwOAHBcJPjyWZRLzOtrqLBH+UCAzSs
-         4s/K31XasOS0g==
-Date:   Sat, 12 Jun 2021 16:01:21 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     alice.guo@nxp.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] arm64: dts: imx8mx: move soc device into ocotp
-Message-ID: <20210612080120.GA29138@dragon>
-References: <1623089112-27069-1-git-send-email-yibin.gong@nxp.com>
+        id S229819AbhFLJYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Jun 2021 05:24:34 -0400
+Received: from mail-wr1-f47.google.com ([209.85.221.47]:44615 "EHLO
+        mail-wr1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229584AbhFLJYe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 05:24:34 -0400
+Received: by mail-wr1-f47.google.com with SMTP id f2so8543459wri.11;
+        Sat, 12 Jun 2021 02:22:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=VPyfpqUMlxaWdAzLxId3Zh5R6JorORKQlcjlpTdHelo=;
+        b=WBu1HCdi/S31eLGZ4097FPwjEU+DY8GX9ch7FcVF2Pku3eCw7UKY2MgUUFvTO0Hj9X
+         894JgYQx//cwhbtezHsqIc1BJGPSTQrtn2+Yhg+wxoaKClgGrAMDpAHmMwRgFw9Trjdr
+         HPy/wMVkrzY604BmPMAU7OFsHXEPHKBB8xAuckjfNdDfwFXhyMZJjwWdTaGNSL6MCbrI
+         PP6dlsn+/rfnyp6jBmillGqFo7DLgFxG2CrH1eSCiXQyoGiuwd5kxuibpMdpLblENOef
+         V6Ao2+gcqT+1ZSv475obc0Fxso5cIxHVidPjwFnahKQedOMhCsTQUG43c9OD6rwZjE+f
+         JWNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=VPyfpqUMlxaWdAzLxId3Zh5R6JorORKQlcjlpTdHelo=;
+        b=HCQ7HWwsa+VlUBZ9tzFDSHyOJNyZV/swU/89r7zfn2bwA4x/fnVpWuI+gihUaCVfLm
+         /D9VUeGfvGp0nkWTtvqejeex9QZ44Si/kYqtIF6Q7qobLptL+7NqAAMHGgjW01TwWpvU
+         9pVxQCpqaVaJzRg2h5flpYCwLFJGqHeeCDEaIuz6+b/D+RDoY8cEnZGXeohfAjUQoEud
+         yQhnZt3+Y5xr8veugE3yLm87zIyh2z4nRUKwfdVJ1PidlUKYHgyf7WlQCDYWNiOQGugj
+         23ZOenV3j00GrD7D79nhvh4xQ3OPBvkmkSl0Di91DRU2ZMccd16xpuWlLm1Zq+9GDOJv
+         NsVg==
+X-Gm-Message-State: AOAM5324gJzYhl4cnkdR0ZfY3YggsLIRvReauWQlldf05BBSCpqrR/Oq
+        7YYyOpl2Y7pGNFQwsb9o/65bQaNWq46kZQ==
+X-Google-Smtp-Source: ABdhPJx1SmIKt8DQjEBrnkm86h9UTaK5hGf5oK2W6pHvVhU3I/3Rp6viczcAtjNXXOl91Mjt/XRPZQ==
+X-Received: by 2002:a5d:64c7:: with SMTP id f7mr8237318wri.36.1623489694024;
+        Sat, 12 Jun 2021 02:21:34 -0700 (PDT)
+Received: from localhost.localdomain (haganm.plus.com. [212.159.108.31])
+        by smtp.gmail.com with ESMTPSA id l10sm9562095wrs.11.2021.06.12.02.21.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 12 Jun 2021 02:21:33 -0700 (PDT)
+Subject: Re: [PATCH v2 1/5] dt-bindings: arm: bcm: NSP: add Meraki MX64/MX65
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20210610232727.1383117-1-mnhagan88@gmail.com>
+ <20210610232727.1383117-2-mnhagan88@gmail.com>
+ <20210611194644.64lvhvp76wy6guqp@skbuf>
+From:   Matthew Hagan <mnhagan88@gmail.com>
+Message-ID: <f0af3f0a-ab13-ecdc-d834-c95ddcb52866@gmail.com>
+Date:   Sat, 12 Jun 2021 10:21:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1623089112-27069-1-git-send-email-yibin.gong@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210611194644.64lvhvp76wy6guqp@skbuf>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 08, 2021 at 02:05:12AM +0800, Robin Gong wrote:
-> move soc device into ocotp device node instead of the parent device
-> of the all devices which located in 'soc@0', otherwise, all probed
-> children devices will be reorder to dmp_list again once 'imx8mx-soc'
-> device defered probed, which may break driver's suspend/resume sequence,
-> such as imx_spdif and fsl_spdif, hence the later would suspended before
-> the former as below and endless interrupt may never be handled since
-> clock has been disabled already in the later.
-> 
-> [    1.930598] calling  fsl_spdif_driver_init+0x0/0x20 @ 1
-> [    1.955712] initcall fsl_spdif_driver_init+0x0/0x20 returned 0 after 24512 usecs
-> [    1.981963] calling  imx_spdif_driver_init+0x0/0x20 @ 1
-> [    1.986600] initcall imx_spdif_driver_init+0x0/0x20 returned 0 after 4509 usecs
-> [    2.901408]   #0: imx-spdif
-> [   21.151529] fsl-spdif-dai 30090000.spdif: calling platform_pm_suspend+0x0/0x70 @ 470, parent: 30000000.bus
-> [   21.161189] fsl-spdif-dai 30090000.spdif: platform_pm_suspend+0x0/0x70 returned 0 after 0 usecs
-> [   21.474311] imx-spdif sound-spdif: calling platform_pm_suspend+0x0/0x70 @ 470, parent: platform
-> [   21.483024] imx-spdif sound-spdif: platform_pm_suspend+0x0/0x70 returned 0 after 9 usecs
+Hi Vladimir,
 
-DT is written as a description of hardware, not for resolving Linux
-specific issue.
+Many thanks for taking the time to review the submission.
 
-Shawn
+On 11/06/2021 20:46, Vladimir Oltean wrote:
 
-> 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 12 ++++++++----
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 13 +++++++++----
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 13 +++++++++----
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 12 ++++++++----
->  4 files changed, 34 insertions(+), 16 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index e7648c3..9ef0554 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -257,13 +257,11 @@
->  	};
->  
->  	soc@0 {
-> -		compatible = "fsl,imx8mm-soc", "simple-bus";
-> +		compatible = "simple-bus";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
->  		ranges = <0x0 0x0 0x0 0x3e000000>;
->  		dma-ranges = <0x40000000 0x0 0x40000000 0xc0000000>;
-> -		nvmem-cells = <&imx8mm_uid>;
-> -		nvmem-cell-names = "soc_unique_id";
->  
->  		aips1: bus@30000000 {
->  			compatible = "fsl,aips-bus", "simple-bus";
-> @@ -522,7 +520,7 @@
->  			};
->  
->  			ocotp: efuse@30350000 {
-> -				compatible = "fsl,imx8mm-ocotp", "syscon";
-> +				compatible = "fsl,imx8mm-ocotp", "syscon", "simple-mfd";
->  				reg = <0x30350000 0x10000>;
->  				clocks = <&clk IMX8MM_CLK_OCOTP_ROOT>;
->  				/* For nvmem subnodes */
-> @@ -540,6 +538,12 @@
->  				fec_mac_address: mac-address@90 {
->  					reg = <0x90 6>;
->  				};
-> +
-> +				imx8mm_soc: imx8mm-soc {
-> +					compatible = "fsl,imx8mm-soc";
-> +					nvmem-cells = <&imx8mm_uid>;
-> +					nvmem-cell-names = "soc_unique_id";
-> +				};
->  			};
->  
->  			anatop: anatop@30360000 {
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> index d4231e0..f82905c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> @@ -241,13 +241,11 @@
->  	};
->  
->  	soc@0 {
-> -		compatible = "fsl,imx8mn-soc", "simple-bus";
-> +		compatible = "simple-bus";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
->  		ranges = <0x0 0x0 0x0 0x3e000000>;
->  		dma-ranges = <0x40000000 0x0 0x40000000 0xc0000000>;
-> -		nvmem-cells = <&imx8mn_uid>;
-> -		nvmem-cell-names = "soc_unique_id";
->  
->  		aips1: bus@30000000 {
->  			compatible = "fsl,aips-bus", "simple-bus";
-> @@ -528,7 +526,8 @@
->  			};
->  
->  			ocotp: efuse@30350000 {
-> -				compatible = "fsl,imx8mn-ocotp", "fsl,imx8mm-ocotp", "syscon";
-> +				compatible = "fsl,imx8mn-ocotp", "fsl,imx8mm-ocotp", "syscon",
-> +						"simple-mfd";
->  				reg = <0x30350000 0x10000>;
->  				clocks = <&clk IMX8MN_CLK_OCOTP_ROOT>;
->  				#address-cells = <1>;
-> @@ -545,6 +544,12 @@
->  				fec_mac_address: mac-address@90 {
->  					reg = <0x90 6>;
->  				};
-> +
-> +				imx8mn_soc: imx8mn-soc {
-> +					compatible = "fsl,imx8mn-soc";
-> +					nvmem-cells = <&imx8mn_uid>;
-> +					nvmem-cell-names = "soc_unique_id";
-> +				};
->  			};
->  
->  			anatop: anatop@30360000 {
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index 9f7c7f5..d113691 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> @@ -220,12 +220,10 @@
->  	};
->  
->  	soc@0 {
-> -		compatible = "fsl,imx8mp-soc", "simple-bus";
-> +		compatible = "simple-bus";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
->  		ranges = <0x0 0x0 0x0 0x3e000000>;
-> -		nvmem-cells = <&imx8mp_uid>;
-> -		nvmem-cell-names = "soc_unique_id";
->  
->  		aips1: bus@30000000 {
->  			compatible = "fsl,aips-bus", "simple-bus";
-> @@ -341,7 +339,8 @@
->  			};
->  
->  			ocotp: efuse@30350000 {
-> -				compatible = "fsl,imx8mp-ocotp", "fsl,imx8mm-ocotp", "syscon";
-> +				compatible = "fsl,imx8mp-ocotp", "fsl,imx8mm-ocotp", "syscon",
-> +						"simple-mfd";
->  				reg = <0x30350000 0x10000>;
->  				clocks = <&clk IMX8MP_CLK_OCOTP_ROOT>;
->  				/* For nvmem subnodes */
-> @@ -359,6 +358,12 @@
->  				eth_mac1: mac-address@90 {
->  					reg = <0x90 6>;
->  				};
-> +
-> +				imx8mp_soc: imx8mp-soc {
-> +					compatible = "fsl,imx8mp-soc";
-> +					nvmem-cells = <&imx8mp_uid>;
-> +					nvmem-cell-names = "soc_unique_id";
-> +				};
->  			};
->  
->  			anatop: anatop@30360000 {
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 91df9c5..8cfbc77 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -287,13 +287,11 @@
->  	};
->  
->  	soc@0 {
-> -		compatible = "fsl,imx8mq-soc", "simple-bus";
-> +		compatible = "simple-bus";
->  		#address-cells = <1>;
->  		#size-cells = <1>;
->  		ranges = <0x0 0x0 0x0 0x3e000000>;
->  		dma-ranges = <0x40000000 0x0 0x40000000 0xc0000000>;
-> -		nvmem-cells = <&imx8mq_uid>;
-> -		nvmem-cell-names = "soc_unique_id";
->  
->  		bus@30000000 { /* AIPS1 */
->  			compatible = "fsl,aips-bus", "simple-bus";
-> @@ -554,7 +552,7 @@
->  			};
->  
->  			ocotp: efuse@30350000 {
-> -				compatible = "fsl,imx8mq-ocotp", "syscon";
-> +				compatible = "fsl,imx8mq-ocotp", "syscon", "simple-mfd";
->  				reg = <0x30350000 0x10000>;
->  				clocks = <&clk IMX8MQ_CLK_OCOTP_ROOT>;
->  				#address-cells = <1>;
-> @@ -571,6 +569,12 @@
->  				fec_mac_address: mac-address@90 {
->  					reg = <0x90 6>;
->  				};
-> +
-> +				imx8mq_soc: imx8mq-soc {
-> +					compatible = "fsl,imx8mq-soc";
-> +					nvmem-cells = <&imx8mq_uid>;
-> +					nvmem-cell-names = "soc_unique_id";
-> +				};
->  			};
->  
->  			anatop: syscon@30360000 {
-> -- 
-> 2.7.4
-> 
+> On Fri, Jun 11, 2021 at 12:27:13AM +0100, Matthew Hagan wrote:
+>> Add bindings for the Meraki MX64/MX65 series. Note this patch should be
+>> applied on top of "dt-bindings: arm: bcm: add NSP devices to SoCs".
+>>
+>> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
+>> index 78dfa315f3d0..7d184ba7d180 100644
+>> --- a/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml
+>> @@ -62,6 +62,12 @@ properties:
+>>            - enum:
+>>                - brcm,bcm958625hr
+>>                - brcm,bcm958625k
+>> +              - meraki,mx64
+>> +              - meraki,mx64-a0
+>> +              - meraki,mx64w
+>> +              - meraki,mx64w-a0
+>> +              - meraki,mx65
+>> +              - meraki,mx65w
+>>            - const: brcm,bcm58625
+>>            - const: brcm,nsp
+>>  
+>> -- 
+>> 2.26.3
+>>
+> I think these compatibles describe SoCs, whereas Meraki MX64/MX65 are
+> boards, so this is a miscategorization. Can you not just describe the
+> Northstar Plus SoC that you are using in your compatible string?
+
+My understanding is that the bcm958625hr and bcm958625k are dev boards
+using the BCM58625 SoC variant of NSP. For reference, a close example
+can be found in brcm,bcm4708.yaml in the same directory:
+
+      - description: BCM53012 based boards
+        items:
+          - enum:
+              - brcm,bcm953012er
+              - brcm,bcm953012hr
+              - brcm,bcm953012k
+              - meraki,mr32
+          - const: brcm,brcm53012
+          - const: brcm,brcm53016
+          - const: brcm,bcm4708
+
+For the compatible string we would definitely need to specify a unique
+device name for identification by the OS, rather than just the SoC.
+
+Of course I could be mistaken. Will await confirmation on this.
+
+Matthew
+
