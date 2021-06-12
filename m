@@ -2,188 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A05563A4E09
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 11:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 217FE3A4E1A
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 11:57:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231303AbhFLJtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Jun 2021 05:49:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52130 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231324AbhFLJtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 05:49:02 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 592CDC061767
-        for <devicetree@vger.kernel.org>; Sat, 12 Jun 2021 02:47:03 -0700 (PDT)
-Received: from localhost.localdomain (bband-dyn73.178-41-129.t-com.sk [178.41.129.73])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 7BE3A3F483;
-        Sat, 12 Jun 2021 11:47:01 +0200 (CEST)
-From:   Martin Botka <martin.botka@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        konrad.dybcio@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Martin Botka <martin.botka@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>
-Subject: [PATCH 2/2] arch: arm64: dts: qcom: Add support for Sony Xperia 10II
-Date:   Sat, 12 Jun 2021 11:46:51 +0200
-Message-Id: <20210612094652.90354-2-martin.botka@somainline.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210612094652.90354-1-martin.botka@somainline.org>
-References: <20210612094652.90354-1-martin.botka@somainline.org>
+        id S229942AbhFLJ7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Jun 2021 05:59:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37046 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229584AbhFLJ7U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Jun 2021 05:59:20 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C11EC61374
+        for <devicetree@vger.kernel.org>; Sat, 12 Jun 2021 09:57:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623491840;
+        bh=XnSEjaKPd/fbYfru5wtrp9Rz5uAEO33BR1flJorZQwA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=M9sT4g7XRAMVy4BG/0fTa7/AXA+Vf/4ax8BoGpxoTOAZV8uz0z0B9v08jYlriHrm+
+         kao0NZ6wRF2ixEyaGgZSJNtBHJEXFqnUsUCBw86ogLEm7Jhk0luI8GZEf+FV5GPpnZ
+         bODbtNNYvSXOQdRH7Z2wLiDyJSVUcEyiT7SGM35DN5k8Ic3I+ssAlbT42PTvmuU7yu
+         95tN/qPNgbKJa4CSOWKlKZwo9cU6IKjdTuYJ9YhcQfRIZPgsxZzwW8Xpqn2cpzV728
+         GeqLMafTndpIUAZsTp9/+IQC8RUUxcM2eU1OUR7nXmbsVaQGMcjAII/QcR/SLeUVvs
+         qfgj+fJciuUkA==
+Received: by mail-oo1-f52.google.com with SMTP id w13-20020a4ad02d0000b029024a98209c35so534958oor.4
+        for <devicetree@vger.kernel.org>; Sat, 12 Jun 2021 02:57:20 -0700 (PDT)
+X-Gm-Message-State: AOAM5307Y0Y+ZLnTVSYCbSR39OEV8BNTbHVesT4vA1cX3m0cqysrRJ2G
+        XRt+eFuua9PZEkvndLn0DcRctzSZu/qymG4ceAA=
+X-Google-Smtp-Source: ABdhPJyCD+FPKbBDT5dwWkad5fVnxEIth71iTLLyhy0Z6pCHU0PgHew1wJ6PiO253rm190AyK/y6mLWkJYjUhDl1KC0=
+X-Received: by 2002:a4a:e416:: with SMTP id t22mr6194006oov.39.1623491840089;
+ Sat, 12 Jun 2021 02:57:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+References: <20210524124536.27854-1-dev@lynxeye.de> <20210524124536.27854-4-dev@lynxeye.de>
+ <20210612031412.GJ29138@dragon>
+In-Reply-To: <20210612031412.GJ29138@dragon>
+From:   Shawn Guo <shawnguo@kernel.org>
+Date:   Sat, 12 Jun 2021 17:57:09 +0800
+X-Gmail-Original-Message-ID: <CAJBJ56+hrMMt0SnjnaHhHjuzej8eJzTE8=AyKnAWOm+ueKMMvQ@mail.gmail.com>
+Message-ID: <CAJBJ56+hrMMt0SnjnaHhHjuzej8eJzTE8=AyKnAWOm+ueKMMvQ@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] arm64: dts: imx8mq: add support for MNT Reform2
+To:     Lucas Stach <dev@lynxeye.de>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "Lukas F . Hartmann" <lukas@mntre.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sascha Hauer <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commits add support for Sony Xperia 10II based on the SM6125 SoC.
+On Sat, Jun 12, 2021 at 11:14 AM Shawn Guo <shawnguo@kernel.org> wrote:
+>
+> On Mon, May 24, 2021 at 02:45:36PM +0200, Lucas Stach wrote:
+> > This adds a basic devicetree for the MNT Reform2 DIY laptop. Not all
+> > of the board periperals are enabled yet, as some of them still require
+> > kernel patches to work properly. The nodes for those peripherals will
+> > be added as soon as the required patches are upstream.
+> >
+> > The following has been tested to work:
+> > - UART console
+> > - SD card
+> > - eMMC
+> > - Gigabit Ethernet
+> > - USB (internal Keyboard, Mouse, external ports)
+> > - M.2 PCIe port
+> >
+> > Co-developed-by: Lukas F. Hartmann <lukas@mntre.com>
+> > Signed-off-by: Lucas Stach <dev@lynxeye.de>
+>
+> Applied, thanks.
 
-Currently working features:
-- dmesg output to bootloader preconfigured display
-- USB
-- eMMC
-- Volume down button
+Oops, I shouldn't apply other patches in the series without applying #1.
 
-Signed-off-by: Martin Botka <martin.botka@somainline.org>
----
-Changes in v2:
-None
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../qcom/sm6125-sony-xperia-seine-pdx201.dts  | 105 ++++++++++++++++++
- 2 files changed, 106 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+Dropped them.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 456502aeee49..5a70dd9593c2 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -69,6 +69,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-enchilada.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-oneplus-fajita.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-hdk.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-new file mode 100644
-index 000000000000..b1d6de430273
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-@@ -0,0 +1,105 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2021, Martin Botka <martin.botka@somainline.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sm6125.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/input/gpio-keys.h>
-+
-+/ {
-+	/* required for bootloader to select correct board */
-+	qcom,msm-id = <394 0x10000>; /* sm6125 v1 */
-+	qcom,board-id = <34 0>;
-+
-+	model = "Sony Xperia 10 II";
-+	compatible = "sony,pdx201", "qcom,sm6125";
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		framebuffer0: framebuffer@5c000000 {
-+			compatible = "simple-framebuffer";
-+			reg = <0 0x5c000000 0 (2520 * 1080 * 4)>;
-+			width = <1080>;
-+			height = <2520>;
-+			stride = <(1080 * 4)>;
-+			format = "a8r8g8b8";
-+		};
-+	};
-+
-+	extcon_usb: extcon-usb {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpio = <&tlmm 102 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	gpio_keys {
-+		status = "okay";
-+		compatible = "gpio-keys";
-+		input-name = "gpio-keys";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		autorepeat;
-+
-+		vol_dn {
-+			label = "Volume Down";
-+			gpios = <&tlmm 47 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <1>;
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			gpio-key,wakeup;
-+			debounce-interval = <15>;
-+		};
-+	};
-+	
-+	reserved_memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		debug_mem: memory@ffb00000 {
-+			reg = <0x0 0xffb00000 0x0 0xc0000>;
-+			no-map;
-+		};
-+
-+		last_log_mem: memory@ffbc0000 {
-+			reg = <0x0 0xffbc0000 0x0 0x80000>;
-+			no-map;
-+		};
-+
-+		pstore_mem: ramoops@ffc00000 {
-+			compatible = "ramoops";
-+			reg = <0x0 0xffc40000 0x0 0xc0000>;
-+			record-size = <0x1000>;
-+			console-size = <0x40000>;
-+			msg-size = <0x20000 0x20000>;
-+		};
-+
-+		cmdline_mem: memory@ffd00000 {
-+			reg = <0x0 0xffd40000 0x0 0x1000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&hsusb_phy1 {
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <22 2>, <28 6>;
-+};
-+
-+&usb3 {
-+	status = "okay";
-+};
-+
-+&usb3_dwc3 {
-+	extcon = <&extcon_usb>;
-+};
--- 
-2.31.1
-
+Shawn
