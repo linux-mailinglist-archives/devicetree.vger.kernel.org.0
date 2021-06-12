@@ -2,50 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10DEC3A50AD
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 22:55:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C125D3A509E
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 22:54:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231579AbhFLU5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Jun 2021 16:57:08 -0400
-Received: from mail-ej1-f48.google.com ([209.85.218.48]:46660 "EHLO
-        mail-ej1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230403AbhFLU5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 16:57:07 -0400
-Received: by mail-ej1-f48.google.com with SMTP id he7so9748848ejc.13
-        for <devicetree@vger.kernel.org>; Sat, 12 Jun 2021 13:54:53 -0700 (PDT)
+        id S231519AbhFLU4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Jun 2021 16:56:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54878 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231484AbhFLU4Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 16:56:16 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35B74C061767
+        for <devicetree@vger.kernel.org>; Sat, 12 Jun 2021 13:54:00 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id g18so39271840edq.8
+        for <devicetree@vger.kernel.org>; Sat, 12 Jun 2021 13:54:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=snejp.pl; s=gmail;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=XiiHomSDQ1o4VUI3T8udjQjFfOxoZmojvalr/eLfj2o=;
-        b=HgVRp6IL+BYfu9aHLffjfvl5GNbB5ZX9YsR+62rCSA+crSI0+5oWYT9uOY4Q+A4OH3
-         s5ty40rJUCrFYkG+3eruX3N+b7SJoxZPDTkYGE1fmEIMc7QmVm56nuuBsg8BtPvFK6jJ
-         uYox0TgiXNq7uJUbSO6zJfV5iS0nHWwH8rLciSJ59IQRxyXlDwMao0jMWISHQe3dK0Qz
-         +i/WT8BvaCwUHFwZb1O/JjEqDmjx3gVKCwtDPqFCiWqv13tSeqLgr+uLIvyCBaejFAwf
-         dwRsfkm+Fce71k7lKbgxU/1KWOUFm9ZDHmvmrC2eKY3nl5uYu1vuvceZXhsIKGipG9oQ
-         l/4w==
+        bh=xlYaRle/KBZdVqyKagtdFiOjMnJM8/KeL165T0BBTEg=;
+        b=nLnuFh+nLohBsNgJOKq3QzSPVUvugPaDxgYnt2VZ+eBlPslWYWK36n85rk8/UvLMya
+         XJVrq1UIKXhjfGNABp1yb0njZG7gJ33ssBy3MM2DsrXVOLYXa8GpUbHehjcS1/JpRijH
+         zlZXnNnTJ4UFa5CeX8ZdNQeducqGBoKcPnwMqq0uXdk+Tl282W4IShor4s9OaN2oFyiO
+         zuY1i0SA3X2uVCV3I/6O7XBULWIxHwf7arBiKJ+VttLuy92xxar/WE8nc0Zop5TnqYh1
+         NraCOEFuF9EheonwWjTY5GVD1+bbK/IE7BxMs9FJvyguxqW23elarID5HtyTr3OBD8Bx
+         V4MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XiiHomSDQ1o4VUI3T8udjQjFfOxoZmojvalr/eLfj2o=;
-        b=fCWNsfzHCgPT5zKq7MsrA5ujRHrfbTLAo0cltjlvbrc1MJFRz1ioR3+2b2c50TmzJx
-         TsUN2Wnbq3po4Cf7JKBORC8MCPH66VN1FaoAbDWTfILyQEQ/UjkUdZ10hFRwK/8zL3ai
-         TRPkmS5iaYj6UEqAtfcTQ4PNENnLWRiJSHm5GQb6KKk/5yZBHF0hGirq3L/Wq7r80sa9
-         JgWsNsRJwEV+h7PiBuycwWuwEdTxzNx+wCLRUiDcbO/yJSuGSCc8KDTyC1zyq2jCKFgQ
-         /9xbBnWL5drS9GxQd8vliFuQfKyP5/ltvSqOEQAnUCv/mKw+S8XG3bZ/QUKWN6RH+zBE
-         uPOw==
-X-Gm-Message-State: AOAM530BpgErABN5RvdAFUHhMw0d5VGNns4AVY2a/FrwRUaNJP6rL15M
-        DDyR+YzGe4S1s6h8Y3sRbEat2g==
-X-Google-Smtp-Source: ABdhPJz0ryjoTQreGfAJzewZlYlepEh5I7//2yewTSPYlLViSpawJAIQC5Wm+lAhXNZaevQvsnggbQ==
-X-Received: by 2002:a17:906:ce4a:: with SMTP id se10mr9354594ejb.235.1623531233345;
-        Sat, 12 Jun 2021 13:53:53 -0700 (PDT)
+        bh=xlYaRle/KBZdVqyKagtdFiOjMnJM8/KeL165T0BBTEg=;
+        b=Cmifv9MRnRNqjiC0UbHTSoeV7x4F97xuBpjNxG4U9ffktNrX27qutGwyINjFKb4DCn
+         2jkt+YxIrINyNwAXvZpOSGMM8XyKXpEF/zs49nyP5crLaTAIhmiLG55O7nkQ+tEiKaJJ
+         Vg0bNmR47G4hXYskBF8dTPlIZVoH4nXbRclmAihwyBEX5Hno1l1djCZ+hdrykscXTTrx
+         Fp2T4Xqn2BHnbycTpCAOgduifTYECRg6MmYS4uTThcnFALmGbODZGWwQcuX1sjYw7AS5
+         C9rTbW5+m4qpQgxnbl8h43P9WxXBpnkVVeQh/RT+dlHldDnTN/PPui7TJ8Fsc/w4YaaW
+         Rl0w==
+X-Gm-Message-State: AOAM5310khk8mlMTpBlfyD5wmVhwyiH1Rxlq9B33muMtAN5YEz7LxXM1
+        4byjzo8jCN/uf5R7kOLGC8QxyZxggWg0ZMms
+X-Google-Smtp-Source: ABdhPJwHLDuHPg0VtenGkHarKw2PiL5QrFckPZGZN3u9kgjd+y98eRZb2Haq00sfLN5PzJEr8eEBXg==
+X-Received: by 2002:a05:6402:5244:: with SMTP id t4mr3672905edd.254.1623531237180;
+        Sat, 12 Jun 2021 13:53:57 -0700 (PDT)
 Received: from PackardBell (192038129059.mbb.telenor.dk. [192.38.129.59])
-        by smtp.googlemail.com with ESMTPSA id a2sm3574362ejp.1.2021.06.12.13.53.50
+        by smtp.googlemail.com with ESMTPSA id a2sm3574362ejp.1.2021.06.12.13.53.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Jun 2021 13:53:52 -0700 (PDT)
+        Sat, 12 Jun 2021 13:53:56 -0700 (PDT)
 Received: from localhost (PackardBell [local])
-        by PackardBell (OpenSMTPD) with ESMTPA id 24c9afc8;
+        by PackardBell (OpenSMTPD) with ESMTPA id fb2a5c75;
         Sat, 12 Jun 2021 20:53:45 +0000 (UTC)
 From:   Bartosz Dudziak <bartosz.dudziak@snejp.pl>
 To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
@@ -56,10 +59,10 @@ To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
 Cc:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH v2 1/2] dt-bindings: arm: msm: Add SAW2 for MSM8226
-Date:   Sat, 12 Jun 2021 22:53:34 +0200
-Message-Id: <20210612205335.9730-2-bartosz.dudziak@snejp.pl>
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [RESEND PATCH v2 2/2] cpuidle: qcom: Add SPM register data for MSM8226
+Date:   Sat, 12 Jun 2021 22:53:35 +0200
+Message-Id: <20210612205335.9730-3-bartosz.dudziak@snejp.pl>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20210612205335.9730-1-bartosz.dudziak@snejp.pl>
 References: <20210612205335.9730-1-bartosz.dudziak@snejp.pl>
@@ -69,27 +72,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the dt-binding compatible in the SPM AVS Wrapper 2 (SAW2) for the
-MSM8226 SoC platform.
+Add MSM8226 register data to SPM AVS Wrapper 2 (SAW2) power controller
+driver.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
 Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
 ---
- Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/cpuidle/cpuidle-qcom-spm.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt b/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
-index ae4afc6dcf..94d50a949b 100644
---- a/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
-+++ b/Documentation/devicetree/bindings/arm/msm/qcom,saw2.txt
-@@ -25,6 +25,7 @@ PROPERTIES
- 			"qcom,saw2"
- 		    A more specific value could be one of:
- 			"qcom,apq8064-saw2-v1.1-cpu"
-+			"qcom,msm8226-saw2-v2.1-cpu"
- 			"qcom,msm8974-saw2-v2.1-cpu"
- 			"qcom,apq8084-saw2-v2.1-cpu"
+diff --git a/drivers/cpuidle/cpuidle-qcom-spm.c b/drivers/cpuidle/cpuidle-qcom-spm.c
+index adf91a6e4d..c0e7971da2 100644
+--- a/drivers/cpuidle/cpuidle-qcom-spm.c
++++ b/drivers/cpuidle/cpuidle-qcom-spm.c
+@@ -87,6 +87,18 @@ static const struct spm_reg_data spm_reg_8974_8084_cpu  = {
+ 	.start_index[PM_SLEEP_MODE_SPC] = 3,
+ };
  
++/* SPM register data for 8226 */
++static const struct spm_reg_data spm_reg_8226_cpu  = {
++	.reg_offset = spm_reg_offset_v2_1,
++	.spm_cfg = 0x0,
++	.spm_dly = 0x3C102800,
++	.seq = { 0x60, 0x03, 0x60, 0x0B, 0x0F, 0x20, 0x10, 0x80, 0x30, 0x90,
++		0x5B, 0x60, 0x03, 0x60, 0x3B, 0x76, 0x76, 0x0B, 0x94, 0x5B,
++		0x80, 0x10, 0x26, 0x30, 0x0F },
++	.start_index[PM_SLEEP_MODE_STBY] = 0,
++	.start_index[PM_SLEEP_MODE_SPC] = 5,
++};
++
+ static const u8 spm_reg_offset_v1_1[SPM_REG_NR] = {
+ 	[SPM_REG_CFG]		= 0x08,
+ 	[SPM_REG_SPM_CTL]	= 0x20,
+@@ -259,6 +271,8 @@ static struct spm_driver_data *spm_get_drv(struct platform_device *pdev,
+ }
+ 
+ static const struct of_device_id spm_match_table[] = {
++	{ .compatible = "qcom,msm8226-saw2-v2.1-cpu",
++	  .data = &spm_reg_8226_cpu },
+ 	{ .compatible = "qcom,msm8974-saw2-v2.1-cpu",
+ 	  .data = &spm_reg_8974_8084_cpu },
+ 	{ .compatible = "qcom,apq8084-saw2-v2.1-cpu",
 -- 
 2.25.1
 
