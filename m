@@ -2,81 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F0533A4B8E
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 02:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07F973A4BC7
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 02:46:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230331AbhFLACb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 20:02:31 -0400
-Received: from mail-lf1-f46.google.com ([209.85.167.46]:44869 "EHLO
-        mail-lf1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230060AbhFLACa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 20:02:30 -0400
-Received: by mail-lf1-f46.google.com with SMTP id r198so10954965lff.11
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 17:00:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Bnh77Qps8T12Yo/r2kYdixbFDzWVS8YUSFSt9pZejSw=;
-        b=AWtH1zVWX9LrMGgrpUo8HPUUIvzDUyoZl633ankwLTvO9+62f67jyPXuHc8n+a02MG
-         UHULZ1LG5CBtjgzuSZJXsdg0SjnrhKflsqkS4ZLewVv3lLY4FsQMK0W6BIl2aYe40nQx
-         sto7cZqnjIxxo8Fx5z/HQRsPfzKR8PxSZoLSK0TKpxR5wlIqGVU2tqynp0DpZnjqC63Q
-         NIHZ+boUkpYMzXf1yA9/gsKEGFZwD9ioyqzhk2iatGD+G8BahRSPtnQYGll1dcIhxP8n
-         13BC+c0/5/XVpGwbcIsY41Fnb126vfb7mkGaCmZgiK7O8r8A0vLXttw2y4Hxm4te39Rz
-         v+/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Bnh77Qps8T12Yo/r2kYdixbFDzWVS8YUSFSt9pZejSw=;
-        b=gOOYvYnSc4VKVOG6NvLIOVwBrTyq7OVolwdUsTY9i8QS9v/rVa9S5ahV9jLpfprDXq
-         Zp7U1o6PCKWdnlsvTooMtOMycLeu0K+CqygFnfLW4HG0w1K0irP0fvKhbBTR+1f/G+6q
-         ohhvIryW0JakC8r7ophZwbGA1l7quqmB4ShmCot9JDnuBHsFwZ0y+1nJzIoF0rH/ILcp
-         S2VeBRbwR3lE6rKTvZwRQSTQYDyqMOpCMglJnOVSu56IrgJv5FTglwHHMASYcPvBUCrM
-         ibyM6JnxfdLWuReqCX5uyKsgk6eQ9zs+P+yzXY/N8WKzwcg0LoVq4LWyHS2pajr4O3IO
-         HHOg==
-X-Gm-Message-State: AOAM532hVEahSyGIBWS0DaQEjvUQG3B1ipazSs/1ddlVmvC5g7zTjsvQ
-        UnUCnWqErSq43yvlkn7FZEU9j/XvKy1wjrid36DxVA==
-X-Google-Smtp-Source: ABdhPJwagqfRiKpcWXHus3RD/FpEgWbbMjU5geKQlpNnM1DDaB0xKy+40r48Ne1QzLI3tptGAMTR2TGiC1N0nmUmS3s=
-X-Received: by 2002:ac2:544f:: with SMTP id d15mr4235452lfn.465.1623455956385;
- Fri, 11 Jun 2021 16:59:16 -0700 (PDT)
+        id S229980AbhFLAr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 20:47:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50026 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229584AbhFLAr4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Jun 2021 20:47:56 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id ABDCF61181;
+        Sat, 12 Jun 2021 00:45:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623458758;
+        bh=aHVcBRVTirFXBTQGZ1D/qDt/hppo1Wzxf97VHIll9Fo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BhxsTnmV2Px0kthvruh05x5UvppRkVnkutAyByqdZm+Er/rJbXp1bmloL2heXbX5W
+         MZ+OOsvTgHbFsW9h9SYUXjHbEPTGDqIw/rKAi5gLUtl+W3wcHDD/6gUjOCTYRhC7Wr
+         fY/NdncBSYLdClok0mSkgtH0Fie2p6HGqKI2jo5ttQtVM3x93BSyBXJRkUveaugYiD
+         1B437+FpcT6Rlaq74rA4KnrYv/mbob1PAddI2yl7xgDguvHXjZ6yMmd7LYPIuAjwFC
+         qnXws4TmsM8vO62fWsh1rq1eGUPMUXAOJI3Gt0rAFMMx4BePUtTu1u5FTh8I4o6ms6
+         Wz9gmL+L5AkPg==
+Date:   Sat, 12 Jun 2021 08:45:50 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, p.zabel@pengutronix.de,
+        l.stach@pengutronix.de, krzk@kernel.org, agx@sigxcpu.org,
+        marex@denx.de, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, ping.bai@nxp.com,
+        frieder.schrempf@kontron.de, aford173@gmail.com, abel.vesa@nxp.com,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH V6 2/4] Documentation: bindings: clk: Add bindings for
+ i.MX BLK_CTL
+Message-ID: <20210612004550.GC29138@dragon>
+References: <20210522134249.15322-1-peng.fan@oss.nxp.com>
+ <20210522134249.15322-3-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-References: <20210610132438.3085841-1-akaessens@gmail.com>
-In-Reply-To: <20210610132438.3085841-1-akaessens@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 12 Jun 2021 01:59:05 +0200
-Message-ID: <CACRpkdbkjpV4DY+WMVdYX0136XxB9Z9bga-KbZ+D0oB+pQu_ww@mail.gmail.com>
-Subject: Re: [PATCH 1/2] pinctrl: mcp23s08: Add optional reset GPIO
-To:     Andreas Kaessens <akaessens@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-kernel@i4.cs.fau.de, Darian Biastoch <d.biastoch@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210522134249.15322-3-peng.fan@oss.nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 10, 2021 at 3:24 PM Andreas Kaessens <akaessens@gmail.com> wrot=
-e:
+On Sat, May 22, 2021 at 09:42:47PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Document the i.MX BLK_CTL with its devicetree properties.
+> 
+> Each BLK CTL have different power domain inputs and they have different
+> names, so we are not able to list all the power domain names for each
+> BLK CTL here.
+> 
+> For example:
+> i.MX8MM dispmix BLK CTL, it has
+> 	power-domains = <&pgc_dispmix>, <&pgc_mipi>;
+> 	power-domain-names = "dispmix", "mipi";
+> 
+> vpumix BLK CTL, it has
+> 	power-domains = <&vpumix_pd>, <&vpu_g1_pd>, <&vpu_g2_pd>,
+> 			<&vpu_h1_pd>;
+> 	power-domain-names = "vpumix", "g1", "g2", "h1";
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 
-> The MCP23x port expander RESET# line can be connected to a host GPIO.
-> The optional reset-gpio must be set to LOW if the reset is asserted
-> at probing time.
->
-> On page 5 in the datasheet [0] the "Device Active After Reset high"
-> time is specified at 0 =C2=B5s. Therefore no waiting is needed after the
-> reset transition.
->
-> [0] https://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf
->
-> Signed-off-by: Andreas Kaessens <akaessens@gmail.com>
-> Signed-off-by: Darian Biastoch <d.biastoch@gmail.com>
+Can we be consistent in using 'dt-bindings: ...' as prefix?
 
-Both patches applied, thanks!
+Shawn
 
-Yours,
-Linus Walleij
+> ---
+>  .../bindings/soc/imx/fsl,imx-blk-ctl.yaml     | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx-blk-ctl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx-blk-ctl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx-blk-ctl.yaml
+> new file mode 100644
+> index 000000000000..a66f11acc6b4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx-blk-ctl.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/imx/fsl,imx-blk-ctl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX BLK_CTL
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +description:
+> +  i.MX BLK_CTL is a conglomerate of different GPRs that are
+> +  dedicated to a specific subsystem. It usually contains
+> +  clocks and resets amongst other things. Here we take the clocks
+> +  and resets as virtual PDs, the reason we could not take it as
+> +  clock provider is there is A/B lock issue between power domain
+> +  and clock.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,imx8mm-dispmix-blk-ctl
+> +          - fsl,imx8mm-vpumix-blk-ctl
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#power-domain-cells":
+> +    const: 1
+> +
+> +  power-domains:
+> +    minItems: 1
+> +    maxItems: 32
+> +
+> +  power-domain-names:
+> +    minItems: 1
+> +    maxItems: 32
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 32
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - power-domains
+> +  - power-domain-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx8mm-clock.h>
+> +
+> +    dispmix_blk_ctl: blk-ctl@32e28000 {
+> +      compatible = "fsl,imx8mm-dispmix-blk-ctl", "syscon";
+> +      reg = <0x32e28000 0x100>;
+> +      #power-domain-cells = <1>;
+> +      power-domains = <&pgc_dispmix>, <&pgc_mipi>;
+> +      power-domain-names = "dispmix", "mipi";
+> +      clocks = <&clk IMX8MM_CLK_DISP_ROOT>, <&clk IMX8MM_CLK_DISP_AXI_ROOT>,
+> +               <&clk IMX8MM_CLK_DISP_APB_ROOT>;
+> +    };
+> -- 
+> 2.30.0
+> 
