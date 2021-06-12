@@ -2,57 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99C743A4C64
-	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 05:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C1263A4C65
+	for <lists+devicetree@lfdr.de>; Sat, 12 Jun 2021 05:20:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229584AbhFLDVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Jun 2021 23:21:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53716 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230305AbhFLDVU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 23:21:20 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD7BC0617AF
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 20:19:06 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id i34so3962361pgl.9
-        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 20:19:06 -0700 (PDT)
+        id S230181AbhFLDWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Jun 2021 23:22:03 -0400
+Received: from mail-pg1-f173.google.com ([209.85.215.173]:35394 "EHLO
+        mail-pg1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230103AbhFLDWC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Jun 2021 23:22:02 -0400
+Received: by mail-pg1-f173.google.com with SMTP id o9so3992779pgd.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Jun 2021 20:20:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=iZrBmMYE0pMOpeejrZ6SD6PbgBG0c1CSAN0mNTGXUKE=;
-        b=TNgcUBunGafH3meocpCHNnKt/NA0dXXg11PA8MJLnXVu2euTusqY8Y6Omd0109ghCk
-         H0AgZU349VZO8eu0pOFsXQzALup4lPXVYpemz/57GnFvlV8QT+sYZytIoXvsbBfXlbTN
-         UMVeOMEPggAA0zdhBz2L62mGEBBfcTnLlRksI=
+        bh=4QwvH5bGqHeUyZVp5Ps3bAzGRgv84nKw9pL18XwdnBM=;
+        b=iXquLxweg3SptlHKfWh1N9xBYQVkWZU+sg8cR2LhTOsGZuSLC38gAQ3ayu2fXU/VDI
+         4dCEYFZNzQAHfCoDNEQlOWz5o4Rm6+m40HjB5JXP0AqBNLvmhsCQteXRJl6BllHdtMlT
+         JwmrP6sTE4Pug/FOpvakWoWM5eLQ5ujnYnHqg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=iZrBmMYE0pMOpeejrZ6SD6PbgBG0c1CSAN0mNTGXUKE=;
-        b=rAVDE4TVgWTVpKTlbOJloT99+KQJrXyeFKDWdNQuKiNoSO72EKoe0+1HB7dajFwq1y
-         psSXQEIIc+7k+59Q00zQPhp+oWIT71YNCSR4wetpNpwkD5B2LKHIdgoCb0fRsNGBM2Jv
-         SNorZRBnowILQnDHcyEMnlfKMJBIn1nIwt6rG5dPdvftdpI38yCNwtJSG7sH5Gi7Dl3s
-         MtL/sHM0R3brenkCxjRo/qZBXenbPCgJn1Rrp9usz2amDf5wIH3nWszgjT7Z+NN1O3tD
-         ouPLc1oAs641x0KiJDSJkdy5XRKSaUq6s7yDb4/fn2QSYlYsAU2Q62l7N18hL/9hl6Th
-         N9GA==
-X-Gm-Message-State: AOAM530x4lUEF7bKlFY3jdKIX2S3A0CGyp2sji3HETOns4aZIFs2HK1n
-        /kl9OUOBjlYKJmPcg4QBRFCKyg==
-X-Google-Smtp-Source: ABdhPJzXg020oCP9I7Nnr9yMMU4Dj1q2AfTjBBfaTk9JMIl35vhu5mQFfDgjlMLikbvgRNYDPfH5UA==
-X-Received: by 2002:a63:f13:: with SMTP id e19mr6513263pgl.112.1623467942147;
-        Fri, 11 Jun 2021 20:19:02 -0700 (PDT)
+        bh=4QwvH5bGqHeUyZVp5Ps3bAzGRgv84nKw9pL18XwdnBM=;
+        b=TEDQDkgpwYfehjt6uTeicTVVoEe5oKjJCchyKO9HYH3vmlq2XK04jaY6ARI+YmGmzk
+         03wBwyP5N546Af160VAHJh0M1W2t/z+C47sTfPVRO8lXAgrC2vbg3Sh0n5p4pf3JwI1v
+         Y0O4Pw28virNwlZ04vkSL9rm75OBcg16MBw56uGdwTahngTztszhnXPpjum7my7O465p
+         zJ+7JB3R+0075ICFrHUuYKrPlaIbnac/S5yHIgX7ZE1qZ4ku42Du6GN6MgMUZlW95ftk
+         nYBDLULMoNfqYsN8+uwe6jMydAH6uNIz9r26ToGhdrDvgy0h5Yj88WJisrxDSyDOYQfK
+         1DLA==
+X-Gm-Message-State: AOAM533AmdlW84XGPo5zoUOa+sxim5BeOA6AVSTVIJuDGZF7ZIQhZCRC
+        5AAg1grey0Xz1CLGBRM24pAvmQ==
+X-Google-Smtp-Source: ABdhPJyWlvLaCN0zazKtkeyI88Zfmd5LHNUF4MilDnvjYVTdK+P5DUEdpdazd43Qm0f/JEM/rNbn3A==
+X-Received: by 2002:a05:6a00:16c9:b029:2df:c620:8156 with SMTP id l9-20020a056a0016c9b02902dfc6208156mr11231224pfc.40.1623467943989;
+        Fri, 11 Jun 2021 20:19:03 -0700 (PDT)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:cbbc:c8a0:4601:2039])
-        by smtp.gmail.com with ESMTPSA id h5sm6688519pfn.127.2021.06.11.20.19.00
+        by smtp.gmail.com with ESMTPSA id h5sm6688519pfn.127.2021.06.11.20.19.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Jun 2021 20:19:01 -0700 (PDT)
+        Fri, 11 Jun 2021 20:19:03 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         maoguang.meng@mediatek.com, yong.wu@mediatek.com
-Subject: [PATCH v5 2/3] dt-bindings: mediatek: Add mediatek,mt8183-jpgenc compatible
-Date:   Sat, 12 Jun 2021 11:18:52 +0800
-Message-Id: <20210612031853.3115482-2-hsinyi@chromium.org>
+Subject: [PATCH v5 3/3] arm64: dts: mt8183: add jpeg enc node for mt8183
+Date:   Sat, 12 Jun 2021 11:18:53 +0800
+Message-Id: <20210612031853.3115482-3-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.32.0.272.g935e593368-goog
 In-Reply-To: <20210612031853.3115482-1-hsinyi@chromium.org>
 References: <20210612031853.3115482-1-hsinyi@chromium.org>
@@ -62,26 +59,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mediatek,mt8183-jpgenc compatible to binding document.
+From: Maoguang Meng <maoguang.meng@mediatek.com>
 
+Add jpeg encoder device tree node.
+
+Signed-off-by: Maoguang Meng <maoguang.meng@mediatek.com>
 Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 ---
- .../devicetree/bindings/media/mediatek-jpeg-encoder.yaml         | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
-index 5e35ecfd21f1b..fcd9b829e0366 100644
---- a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
-+++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
-@@ -17,6 +17,7 @@ properties:
-     items:
-       - enum:
-           - mediatek,mt2701-jpgenc
-+          - mediatek,mt8183-jpgenc
-       - const: mediatek,mtk-jpgenc
-   reg:
-     maxItems: 1
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index c5e822b6b77a3..d54b4532fc3f3 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -1329,6 +1329,18 @@ larb4: larb@17010000 {
+ 			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
+ 		};
+ 
++		venc_jpg: venc_jpg@17030000 {
++			compatible = "mediatek,mt8183-jpgenc", "mediatek,mtk-jpgenc";
++			reg = <0 0x17030000 0 0x1000>;
++			interrupts = <GIC_SPI 249 IRQ_TYPE_LEVEL_LOW>;
++			mediatek,larb = <&larb4>;
++			iommus = <&iommu M4U_PORT_JPGENC_RDMA>,
++				 <&iommu M4U_PORT_JPGENC_BSDMA>;
++			power-domains = <&spm MT8183_POWER_DOMAIN_VENC>;
++			clocks = <&vencsys CLK_VENC_JPGENC>;
++			clock-names = "jpgenc";
++		};
++
+ 		ipu_conn: syscon@19000000 {
+ 			compatible = "mediatek,mt8183-ipu_conn", "syscon";
+ 			reg = <0 0x19000000 0 0x1000>;
 -- 
 2.32.0.272.g935e593368-goog
 
