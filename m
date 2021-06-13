@@ -2,93 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56BCF3A5927
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 16:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6A5D3A5986
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 18:22:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231924AbhFMPBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Jun 2021 11:01:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33538 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231755AbhFMPBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 11:01:53 -0400
-Received: from mxout012.mail.hostpoint.ch (mxout012.mail.hostpoint.ch [IPv6:2a00:d70:0:e::312])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BE47C061574;
-        Sun, 13 Jun 2021 07:59:52 -0700 (PDT)
-Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
-        by mxout012.mail.hostpoint.ch with esmtp (Exim 4.94.2 (FreeBSD))
-        (envelope-from <code@reto-schneider.ch>)
-        id 1lsRaV-000AWg-EJ; Sun, 13 Jun 2021 16:59:47 +0200
-Received: from [2a02:168:6182:1:d747:8127:5b7a:4266] (helo=eleanor.home.reto-schneider.ch)
-        by asmtp013.mail.hostpoint.ch with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2 (FreeBSD))
-        (envelope-from <code@reto-schneider.ch>)
-        id 1lsRaV-00020T-BT; Sun, 13 Jun 2021 16:59:47 +0200
-X-Authenticated-Sender-Id: reto-schneider@reto-schneider.ch
-From:   Reto Schneider <code@reto-schneider.ch>
-To:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        netdev@vger.kernel.org
-Cc:     Stefan Roese <sr@denx.de>,
-        Reto Schneider <reto.schneider@husqvarnagroup.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Felix Fietkau <nbd@nbd.name>, Jakub Kicinski <kuba@kernel.org>,
-        John Crispin <john@phrozen.org>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Sean Wang <sean.wang@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] net: ethernet: mtk_eth_soc: Support custom ifname
-Date:   Sun, 13 Jun 2021 16:59:01 +0200
-Message-Id: <20210613145859.1774246-2-code@reto-schneider.ch>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210613115820.1525478-1-code@reto-schneider.ch>
-References: <20210613115820.1525478-1-code@reto-schneider.ch>
+        id S231898AbhFMQYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Jun 2021 12:24:08 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:58722 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231782AbhFMQYI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 13 Jun 2021 12:24:08 -0400
+Received: from p508fc96c.dip0.t-ipconnect.de ([80.143.201.108] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lsSs4-0005Bk-Sg; Sun, 13 Jun 2021 18:22:00 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Alex Bee <knaerzche@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 08/12] ARM: dts: rockchip: add power controller for RK3036
+Date:   Sun, 13 Jun 2021 18:22:00 +0200
+Message-ID: <3783580.yKVeVyVuyW@phil>
+In-Reply-To: <1dc782cd3956598b2eb5f89ad0680d2ce38ffd54.camel@collabora.com>
+References: <20210525152225.154302-1-knaerzche@gmail.com> <20210527154455.358869-9-knaerzche@gmail.com> <1dc782cd3956598b2eb5f89ad0680d2ce38ffd54.camel@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Reto Schneider <reto.schneider@husqvarnagroup.com>
+Am Freitag, 11. Juni 2021, 17:58:58 CEST schrieb Ezequiel Garcia:
+> Hi Heiko,
+> 
+> On Thu, 2021-05-27 at 17:44 +0200, Alex Bee wrote:
+> > Add the power controller node and the correspondending qos nodes for
+> > RK3036.
+> > Also add the power-domain property to the nodes that are already
+> > present.
+> > Note: Since the regiser offsets of the axi interconnect QoS are missing
+> > in the TRM (RK3036 TRM V1.0), they have been taken from vendor kernel.
+> > 
+> 
+> Can you take care of the device tree changes (patches 8 to 12)?
 
-Name the MAC interface name according to the label property. If the
-property is missing, the default name (ethX) gets used.
+sure, I'll pick the power-domains now but need to wait for
+the vpu nodes for the driver parts to land in the media tree.
 
-Labels with more than IFNAMSIZ -1 characters will be truncated silently,
-which seems to be what most of the code base does when using strscpy.
 
-Signed-off-by: Reto Schneider <reto.schneider@husqvarnagroup.com>
+Heiko
 
----
-
-Changes in v2:
-- Avoid dangerous usage of strncpy
-
- drivers/net/ethernet/mediatek/mtk_eth_soc.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/net/ethernet/mediatek/mtk_eth_soc.c b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-index 64adfd24e134..a921ecc1c997 100644
---- a/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-+++ b/drivers/net/ethernet/mediatek/mtk_eth_soc.c
-@@ -2948,6 +2948,7 @@ static const struct net_device_ops mtk_netdev_ops = {
- static int mtk_add_mac(struct mtk_eth *eth, struct device_node *np)
- {
- 	const __be32 *_id = of_get_property(np, "reg", NULL);
-+	const char *const name = of_get_property(np, "label", NULL);
- 	phy_interface_t phy_mode;
- 	struct phylink *phylink;
- 	struct mtk_mac *mac;
-@@ -3020,6 +3021,9 @@ static int mtk_add_mac(struct mtk_eth *eth, struct device_node *np)
- 
- 	mac->phylink = phylink;
- 
-+	if (name)
-+		strscpy(eth->netdev[id]->name, name, IFNAMSIZ);
-+
- 	SET_NETDEV_DEV(eth->netdev[id], eth->dev);
- 	eth->netdev[id]->watchdog_timeo = 5 * HZ;
- 	eth->netdev[id]->netdev_ops = &mtk_netdev_ops;
--- 
-2.30.2
 
