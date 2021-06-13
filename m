@@ -2,169 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F4F93A5882
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 14:52:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30F6F3A58E3
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 15:54:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231747AbhFMMyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Jun 2021 08:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34506 "EHLO
+        id S231799AbhFMN4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Jun 2021 09:56:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231819AbhFMMyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 08:54:20 -0400
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3A5C061766;
-        Sun, 13 Jun 2021 05:52:19 -0700 (PDT)
-Received: from localhost.localdomain (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 6035C1F5EB;
-        Sun, 13 Jun 2021 14:52:14 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sm8[12]50-pm8150: Move RESIN to pm8150 dtsi
-Date:   Sun, 13 Jun 2021 14:48:22 +0200
-Message-Id: <20210613124822.124039-1-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.32.0
+        with ESMTP id S231755AbhFMN4A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 09:56:00 -0400
+Received: from mxout017.mail.hostpoint.ch (mxout017.mail.hostpoint.ch [IPv6:2a00:d70:0:e::317])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33C5C061574;
+        Sun, 13 Jun 2021 06:53:58 -0700 (PDT)
+Received: from [10.0.2.45] (helo=asmtp012.mail.hostpoint.ch)
+        by mxout017.mail.hostpoint.ch with esmtp (Exim 4.94.2 (FreeBSD))
+        (envelope-from <code@reto-schneider.ch>)
+        id 1lsQYh-000NnB-6r; Sun, 13 Jun 2021 15:53:51 +0200
+Received: from [2a02:168:6182:1:d747:8127:5b7a:4266]
+        by asmtp012.mail.hostpoint.ch with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2 (FreeBSD))
+        (envelope-from <code@reto-schneider.ch>)
+        id 1lsQYh-000JXF-4H; Sun, 13 Jun 2021 15:53:51 +0200
+X-Authenticated-Sender-Id: reto-schneider@reto-schneider.ch
+Subject: Re: [PATCH v1 2/2] net: ethernet: mtk_eth_soc: Support custom ifname
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        netdev@vger.kernel.org, Stefan Roese <sr@denx.de>,
+        Reto Schneider <reto.schneider@husqvarnagroup.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Felix Fietkau <nbd@nbd.name>, Jakub Kicinski <kuba@kernel.org>,
+        John Crispin <john@phrozen.org>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210613115820.1525478-1-code@reto-schneider.ch>
+ <20210613115820.1525478-2-code@reto-schneider.ch>
+ <20210613122043.GP22278@shell.armlinux.org.uk>
+From:   Reto Schneider <code@reto-schneider.ch>
+Message-ID: <aa7a15cc-761f-00b0-5582-a8045d8f30ed@reto-schneider.ch>
+Date:   Sun, 13 Jun 2021 15:53:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210613122043.GP22278@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It's not worth duplicating the same node over and over and over and over again,
-so let's keep the common bits in the pm8150 DTSI, making only changing the
-status and keycode necessary.
+Hi Russell,
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
- arch/arm64/boot/dts/qcom/pm8150.dtsi    |  9 +++++++++
- arch/arm64/boot/dts/qcom/sm8150-hdk.dts | 18 +++++++-----------
- arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 18 +++++++-----------
- arch/arm64/boot/dts/qcom/sm8250-hdk.dts | 20 ++++++++------------
- 4 files changed, 31 insertions(+), 34 deletions(-)
+On 13.06.21 14:20, Russell King (Oracle) wrote:
+> Please don't use strncpy() - this is a good example why strncpy() is bad
+> news.
+> 
+>   * strncpy - Copy a length-limited, C-string
+>   * @dest: Where to copy the string to
+>   * @src: Where to copy the string from
+>   * @count: The maximum number of bytes to copy
+>   *
+>   * The result is not %NUL-terminated if the source exceeds
+>   * @count bytes.
+> 
+> Consequently, if "name" is IFNAMSIZ bytes or longer,
+> eth->netdev[id]->name will not be NUL terminated, and subsequent use
+> will run off the end of the string. strscpy() is safer to use here.
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-index 3b5e80dce5d2..7d5a35f52df1 100644
---- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
-@@ -59,6 +59,15 @@ pon_pwrkey: pwrkey {
- 
- 				status = "disabled";
- 			};
-+
-+			pon_resin: resin {
-+				compatible = "qcom,pm8941-resin";
-+				interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
-+				debounce = <15625>;
-+				bias-pull-up;
-+
-+				status = "disabled";
-+			};
- 		};
- 
- 		pm8150_temp: temp-alarm@2400 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-index 50ee3bb97325..335aa0753fc0 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
-@@ -362,18 +362,14 @@ &gpu {
- 	status = "okay";
- };
- 
--&pon {
--	pwrkey {
--		status = "okay";
--	};
-+&pon_pwrkey {
-+	status = "okay";
-+};
- 
--	resin {
--		compatible = "qcom,pm8941-resin";
--		interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
--		debounce = <15625>;
--		bias-pull-up;
--		linux,code = <KEY_VOLUMEDOWN>;
--	};
-+&pon_resin {
-+	status = "okay";
-+
-+	linux,code = <KEY_VOLUMEDOWN>;
- };
- 
- &qupv3_id_1 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-index 7de54b2e497e..53edf7541169 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-@@ -357,18 +357,14 @@ &gpu {
- 	status = "okay";
- };
- 
--&pon {
--	pwrkey {
--		status = "okay";
--	};
-+&pon_pwrkey {
-+	status = "okay";
-+};
- 
--	resin {
--		compatible = "qcom,pm8941-resin";
--		interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
--		debounce = <15625>;
--		bias-pull-up;
--		linux,code = <KEY_VOLUMEDOWN>;
--	};
-+&pon_resin {
-+	status = "okay";
-+
-+	linux,code = <KEY_VOLUMEDOWN>;
- };
- 
- &qupv3_id_1 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-index 397359ee2f85..e911a254aa0b 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
-@@ -373,22 +373,18 @@ &gpu {
- 	status = "okay";
- };
- 
--&qupv3_id_1 {
-+&pon_pwrkey {
- 	status = "okay";
- };
- 
--&pon {
--	pwrkey {
--		status = "okay";
--	};
-+&pon_resin {
-+	status = "okay";
- 
--	resin {
--		compatible = "qcom,pm8941-resin";
--		interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
--		debounce = <15625>;
--		bias-pull-up;
--		linux,code = <KEY_VOLUMEDOWN>;
--	};
-+	linux,code = <KEY_VOLUMEDOWN>;
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
- };
- 
- &tlmm {
--- 
-2.32.0
+Thanks a lot for finding this (embarrassing mistake) and pointing me in 
+the right direction (did dot know about strscpy).
 
+Will send v2 soon.
+
+Kind regards,
+Reto
