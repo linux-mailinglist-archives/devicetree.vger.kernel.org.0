@@ -2,93 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B30B13A5A32
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 21:43:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E0CE3A5A35
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 21:46:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231826AbhFMTpQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Jun 2021 15:45:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37670 "EHLO
+        id S231803AbhFMTsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Jun 2021 15:48:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231788AbhFMTpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 15:45:15 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC95C061574;
-        Sun, 13 Jun 2021 12:43:13 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 2070480412;
-        Sun, 13 Jun 2021 21:43:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1623613388;
-        bh=+mfGQ/TWK4Pg8XN7ph4PE9cUaE57WSFl8YmuDW3L1eU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=S7Si6KXOSsOVaFBsj9TdI5VgI4j/WdBNMY/WLD33I+BjARLSSdITauNealUQobAaA
-         Z8frtGwGyzbpK0PFpQIy1hRTK+saOhPxlHXgVaBd44mzNN0FxIofVlABsWLq2V5E19
-         sWnQSvMGZaypFL5kWkoJDZBK4Vw4JmAA3onZOZR5FfaagNQza9vleovskuWt6fIlVB
-         YCNw8Qo4Oed/9WhV/hUEsymsgDcctpKwzXiTx67KMd+slWYKR+iEKigC51WpHLvvHw
-         NkmdVgQtu3dKCafm1j5bmBMfKiUx0nCAn+TS1kwh9QDylG+/iZgx1Iv9CFOGEskagJ
-         ZHUBelrxFfSRg==
-Subject: Re: [PATCH] dt-bindings: input: touchscreen: ilitek_ts_i2c: Absorb
- ili2xxx bindings
-To:     =?UTF-8?B?Sm9lIEh1bmcgKOa0qumKmOmZvSk=?= <joe_hung@ilitek.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-input <linux-input@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        =?UTF-8?B?THVjYSBIc3UgKOW+kOWYiemNiik=?= <luca_hsu@ilitek.com>
-References: <c381ee2526074e02b6058c489f85cfdaee582713.1623419587.git.geert+renesas@glider.be>
- <9b1b2a44-348e-5453-d767-d5c69a0869a7@denx.de>
- <CAMuHMdXE0kipUm6wqHsrFurFkviU_nRJJB7cg6z1XwEvpEewGQ@mail.gmail.com>
- <YMOsRzfDnZ/iApwD@google.com> <9d901eb1-6408-6b4f-1377-03c394d440c4@denx.de>
- <b30e65d0847949b497c635dd1d5035ac@ilitek.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <c9850c77-523e-3f25-a771-dc6e84ae8bde@denx.de>
-Date:   Sun, 13 Jun 2021 21:43:07 +0200
+        with ESMTP id S231788AbhFMTsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 15:48:21 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F258C061574;
+        Sun, 13 Jun 2021 12:46:19 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id m41-20020a05600c3b29b02901b9e5d74f02so8426396wms.3;
+        Sun, 13 Jun 2021 12:46:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=N8m6uFtpHPt63aEJlkKD3SdHW0SajvD30NS0Rd4Qo+k=;
+        b=lRWuG60Pn95OAxSatBAlmMy19HDLDCGoUsetku6uhi9wG0qcfmQ7Jzojl2aGj9CAIy
+         4Kn3wJFBXA2HW8n6f7AqKo3twLF76v0fCoU8E2M+jH70Od/0NEur8Ex98d9qPCXV8hoU
+         aWgu5eL9nc67Y9zrCq8Pg00z5kWAtgvqkv0sHn7Fs4ZTv1wKHjJ80iQ+A1r6I0cLuRI2
+         9chQTJnyyQpdXMDYSSbdRejANZkDYpKj26sFPh/LSJglMbIqrWl567yunXo51tVQxagy
+         N6R43+//fxgm5QMKNQpxfWSnSrSK3NKrcBEN2sCwoAZcmZ6RNdDNyQcjVZ+c4H1BAkM5
+         XdNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=N8m6uFtpHPt63aEJlkKD3SdHW0SajvD30NS0Rd4Qo+k=;
+        b=rAoFiKWCjAX8m8i+Ox36bHvueOiHfZNbH0d2YzmhBeyF/WbnNSpQkqC+afgrvEq2K0
+         ATiYnyRw8ovnWPsuH1dGRy3Jp4boofp01DybiGxsDW+BytegA6WWF5IUrceK0pEn9n99
+         bQO1eQuu8FXz22auFVRKTnMD1fLxJW4XlMhzb4hTFT4BK9itWOk4rUZRF5t7sYQqOlzS
+         USZvbAosEs7DkxiL+uKTfyRD9fhI0LrZbIHMVtgCIsaMi33ZtlqJTFUpd7LNR8B1U4p0
+         cyerQZ4M2iP4dBclZJlfMp+87jtefsN5ZeArA48EA3o+JaBFa/zFiLkbB8/LJk/4140K
+         YhTg==
+X-Gm-Message-State: AOAM532MKZe10FS8WhgZ9gcdi0MAUFEg1pkI3dlZCij8zF1C7xlAguq7
+        34631NaGW1qSSxynt3pf477p7M27SdSPvA==
+X-Google-Smtp-Source: ABdhPJwnYb7VWxcB6pq0hc1Q2Vb1Oe8cgwv/DW88rxAVYr7biFEV04PeXTQMgZSoO4AH/eVFz/WhGQ==
+X-Received: by 2002:a1c:3c89:: with SMTP id j131mr13187552wma.85.1623613578136;
+        Sun, 13 Jun 2021 12:46:18 -0700 (PDT)
+Received: from localhost.localdomain (haganm.plus.com. [212.159.108.31])
+        by smtp.gmail.com with ESMTPSA id a10sm12579796wrr.48.2021.06.13.12.46.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 13 Jun 2021 12:46:17 -0700 (PDT)
+Subject: Re: [PATCH 2/4] ARM: dts: NSP: disable sp804 ccbtimers by default
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210613094639.3242151-1-mnhagan88@gmail.com>
+ <20210613094639.3242151-2-mnhagan88@gmail.com>
+ <89d2a415-a9a3-f778-bd40-e39e01e219ef@gmail.com>
+From:   Matthew Hagan <mnhagan88@gmail.com>
+Message-ID: <58b60b8f-6c86-f44f-38d2-fc260aa59de0@gmail.com>
+Date:   Sun, 13 Jun 2021 20:46:16 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <b30e65d0847949b497c635dd1d5035ac@ilitek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <89d2a415-a9a3-f778-bd40-e39e01e219ef@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/12/21 7:52 AM, Joe Hung (洪銘陽) wrote:
-> Hi Marek,
+On 13/06/2021 17:22, Florian Fainelli wrote:
 
-Hi,
+>
+> On 6/13/2021 2:46 AM, Matthew Hagan wrote:
+>> The sp804 ccbtimers are enabled by default, however they may or may not
+>> be present on the board. This patch disables them by default, requiring
+>> them to be enabled only where applicable.
+> The timers are always part of the SoC, so they should always be enabled,
+> and if there was some board specific wiring, in that maybe one of the
+> times was fed a different clock source than iprocslow, we could deal
+> with that on a per-board basis.
+>
+> If someone does not want a specific timer to be used, it could be
+> unbound once the kernel has booted for instance.
 
-> I'm the committer of "ilitek_ts_i2c.c" driver.
-> The so-called "Lego" series was listed below, as listed in ilitek_ts_i2c.yaml
-> It's the newer series with different protocol and control flow to ILITEK IC FW.
-> 
-> - ilitek,ili2130
-> - ilitek,ili2131
-> - ilitek,ili2132
-> - ilitek,ili2316
-> - ilitek,ili2322
-> - ilitek,ili2323
-> - ilitek,ili2326
-> - ilitek,ili2520
-> - ilitek,ili2521
-> 
->> The older driver also supports 251x . What exactly is "Lego" series ?
-> More specifically, Lego series support "252x", not "2510".
-> The older driver support 210x and 251x, which has older protocol.
-> 
->> In fact, is there documentation for the different ILI2xxx touchscreen controllers ? So far, all the information I had was pulled from the various forks of downstream example code.
-> If it need for a doc. to distinguish it, I am glad to support/arrange, and where should I put those description to ?
+I should have spent more time to look at the issue rather rather than
+proposing to disable parts of the SoC.
 
-I think the older ili251x has protocol V5 and the lego series has 
-protocol V6 or something like that, right ? If that's the case, maybe it 
-would be useful to clarify that and that the protocols are incompatible, 
-so others don't get confused by those two drivers.
+In my case with ccbtimer0, ccbtimer1 both enabled:
+
+[    0.000181] clocksource: arm,sp804: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 15290083572 ns
+[    0.000209] Failed to initialize '/axi@18000000/timer@35000': -22
+
+but with ccbtimer0 disabled, ccbtimer1 now initialises correctly:
+
+[    0.000186] clocksource: arm,sp804: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 15290083572 ns
+
+Will investigate this further, but yes this patch should be dropped.
+
+Thanks,
+Matthew
+
