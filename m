@@ -2,127 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2F293A584F
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 14:30:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F4F93A5882
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 14:52:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231761AbhFMMcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Jun 2021 08:32:07 -0400
-Received: from mail-wm1-f46.google.com ([209.85.128.46]:44816 "EHLO
-        mail-wm1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231733AbhFMMcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 08:32:05 -0400
-Received: by mail-wm1-f46.google.com with SMTP id m41-20020a05600c3b29b02901b9e5d74f02so8057366wms.3
-        for <devicetree@vger.kernel.org>; Sun, 13 Jun 2021 05:29:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SFw5V6rcIrPE+2HCF52bPq6yFSTBGQP95PAhiE4OJDM=;
-        b=hRzQ0f+uIAiruqZ6/UeXM9i+Qa0s+aGsy/nypdMQWkpcSjkvdKrsSHPYv4mlB/ZCI6
-         Y4l4Oyw+87+XCTxQ2o3Y40Q9jfAWQUhLeuPYedBsrPwhtaFR1E/BEGcq7ub2yxv2l9xA
-         2VIWUeqeizWjSq2cq2obkiMj1IuntZsXOeGy3rlfSHq60wHoHxyEpe6Fxh/zlNRat0Tq
-         3etlBxe8kGgQR5wPXSCXxVVKqfXC8aNpjNIzd3lQSXvCTakLIkaU4GMwU9jkx+y1wIFg
-         oGIkRcgoKezfZKFOu4Q75CdXRVJlnjPcCUF6+X6m7U8bryEa8VrmodzmJ80aFVfkLtOv
-         xhmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SFw5V6rcIrPE+2HCF52bPq6yFSTBGQP95PAhiE4OJDM=;
-        b=qLkr6lIc5RKhncUnZ3sDIazyn9JU07MgZSKD7KxNzYYjeYOaQBmyn3T6gTat1IwWPA
-         C+aZqtQrQBleO7ltKezmW3DrKldDbB9TeADxZIMfi9rGKm/2KTzxSKxo+/NwsSHSWqig
-         naXmHJxsKc1JTj/ex6XBoMw1TUanZDb3zFCDh4wXNPVVh8bnbkk8iEjedMQVKsVGGZfh
-         cGT1n+b1+A8OApmkoUtxfmRgM2r0Lq/yCBOE2azBghctZMBxH+1sqCezYxL8cRG1yQJB
-         yhtmuFZnLDI87eYd+3prTPD6PKUyQNtTlSyw8EE5spbEhrmboWG5UlaOzWEtGb7Y10jl
-         qo/w==
-X-Gm-Message-State: AOAM530M4I79fv1QHhZsu+iHmZHo/omVcdOlk/LoV9N/MYxBBZ3+rhjI
-        rq9NiLAeLgtxryb+6gk3n6QeNArqQzL/BFT8ErQnVg==
-X-Google-Smtp-Source: ABdhPJwEQO4Mjls0s+EY5auqfFyOv+/X1rhrcKbVkmx5yPV4XoADVdTjZkrOoOg0ZYmeEwvrgAlMsk8rzjAouUfGo20=
-X-Received: by 2002:a7b:c1c5:: with SMTP id a5mr12077157wmj.134.1623587330548;
- Sun, 13 Jun 2021 05:28:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210612160422.330705-1-anup.patel@wdc.com> <20210612160422.330705-5-anup.patel@wdc.com>
- <87a6nut8h9.wl-maz@kernel.org>
-In-Reply-To: <87a6nut8h9.wl-maz@kernel.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Sun, 13 Jun 2021 17:58:39 +0530
-Message-ID: <CAAhSdy1-VbEwmWbYzB4KmCK3HjDXzi5-3S+9BS-D3o6q0iOY9g@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 04/10] RISC-V: Use IPIs for remote TLB flush when possible
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Anup Patel <anup.patel@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        id S231747AbhFMMyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Jun 2021 08:54:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34506 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231819AbhFMMyU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 08:54:20 -0400
+Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3A5C061766;
+        Sun, 13 Jun 2021 05:52:19 -0700 (PDT)
+Received: from localhost.localdomain (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 6035C1F5EB;
+        Sun, 13 Jun 2021 14:52:14 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm8[12]50-pm8150: Move RESIN to pm8150 dtsi
+Date:   Sun, 13 Jun 2021 14:48:22 +0200
+Message-Id: <20210613124822.124039-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 13, 2021 at 3:03 PM Marc Zyngier <maz@kernel.org> wrote:
->
-> On Sat, 12 Jun 2021 17:04:16 +0100,
-> Anup Patel <anup.patel@wdc.com> wrote:
-> >
-> > If IPI calls are injected using SBI IPI calls then remote TLB flush
-> > using SBI RFENCE calls is much faster because using IPIs for remote
-> > TLB flush would still endup as SBI IPI calls with extra processing
-> > on kernel side.
-> >
-> > It is now possible to have specialized hardware (such as RISC-V AIA)
-> > which allows S-mode software to directly inject IPIs without any
-> > assistance from M-mode runtime firmware.
-> >
-> > This patch extends remote TLB flush functions to use IPIs whenever
-> > underlying IPI operations are suitable for remote FENCEs.
-> >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> > ---
-> >  arch/riscv/mm/tlbflush.c | 62 +++++++++++++++++++++++++++++++---------
-> >  1 file changed, 48 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/arch/riscv/mm/tlbflush.c b/arch/riscv/mm/tlbflush.c
-> > index 720b443c4528..009c56fa102d 100644
-> > --- a/arch/riscv/mm/tlbflush.c
-> > +++ b/arch/riscv/mm/tlbflush.c
-> > @@ -1,39 +1,73 @@
-> >  // SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * TLB flush implementation.
-> > + *
-> > + * Copyright (c) 2021 Western Digital Corporation or its affiliates.
-> > + */
->
-> I find this a bit odd. You don't mention this addition in the commit
-> message, and a quick look at the commits touching tlbflush.[ch]
-> doesn't make the copyright assignment obvious (most commits originate
-> from either SiFive or Christoph).
->
-> In any way, please keep this kind of changes out of this series if
-> possible, and have a separate discussion on who gets to brag about
-> this code.
+It's not worth duplicating the same node over and over and over and over again,
+so let's keep the common bits in the pm8150 DTSI, making only changing the
+status and keycode necessary.
 
-I agree it's unrelated change.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+ arch/arm64/boot/dts/qcom/pm8150.dtsi    |  9 +++++++++
+ arch/arm64/boot/dts/qcom/sm8150-hdk.dts | 18 +++++++-----------
+ arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 18 +++++++-----------
+ arch/arm64/boot/dts/qcom/sm8250-hdk.dts | 20 ++++++++------------
+ 4 files changed, 31 insertions(+), 34 deletions(-)
 
-The commit history suggest mm/tlbflush.c was added by Christoph
-and other commits after that are from Atish (Western Digital).
+diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
+index 3b5e80dce5d2..7d5a35f52df1 100644
+--- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
+@@ -59,6 +59,15 @@ pon_pwrkey: pwrkey {
+ 
+ 				status = "disabled";
+ 			};
++
++			pon_resin: resin {
++				compatible = "qcom,pm8941-resin";
++				interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
++				debounce = <15625>;
++				bias-pull-up;
++
++				status = "disabled";
++			};
+ 		};
+ 
+ 		pm8150_temp: temp-alarm@2400 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+index 50ee3bb97325..335aa0753fc0 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-hdk.dts
+@@ -362,18 +362,14 @@ &gpu {
+ 	status = "okay";
+ };
+ 
+-&pon {
+-	pwrkey {
+-		status = "okay";
+-	};
++&pon_pwrkey {
++	status = "okay";
++};
+ 
+-	resin {
+-		compatible = "qcom,pm8941-resin";
+-		interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
+-		debounce = <15625>;
+-		bias-pull-up;
+-		linux,code = <KEY_VOLUMEDOWN>;
+-	};
++&pon_resin {
++	status = "okay";
++
++	linux,code = <KEY_VOLUMEDOWN>;
+ };
+ 
+ &qupv3_id_1 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+index 7de54b2e497e..53edf7541169 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+@@ -357,18 +357,14 @@ &gpu {
+ 	status = "okay";
+ };
+ 
+-&pon {
+-	pwrkey {
+-		status = "okay";
+-	};
++&pon_pwrkey {
++	status = "okay";
++};
+ 
+-	resin {
+-		compatible = "qcom,pm8941-resin";
+-		interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
+-		debounce = <15625>;
+-		bias-pull-up;
+-		linux,code = <KEY_VOLUMEDOWN>;
+-	};
++&pon_resin {
++	status = "okay";
++
++	linux,code = <KEY_VOLUMEDOWN>;
+ };
+ 
+ &qupv3_id_1 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+index 397359ee2f85..e911a254aa0b 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+@@ -373,22 +373,18 @@ &gpu {
+ 	status = "okay";
+ };
+ 
+-&qupv3_id_1 {
++&pon_pwrkey {
+ 	status = "okay";
+ };
+ 
+-&pon {
+-	pwrkey {
+-		status = "okay";
+-	};
++&pon_resin {
++	status = "okay";
+ 
+-	resin {
+-		compatible = "qcom,pm8941-resin";
+-		interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
+-		debounce = <15625>;
+-		bias-pull-up;
+-		linux,code = <KEY_VOLUMEDOWN>;
+-	};
++	linux,code = <KEY_VOLUMEDOWN>;
++};
++
++&qupv3_id_1 {
++	status = "okay";
+ };
+ 
+ &tlmm {
+-- 
+2.32.0
 
-I will sort this out separately.
-
-Regards,
-Anup
-
->
-> Thanks,
->
->         M.
->
-> --
-> Without deviation from the norm, progress is not possible.
