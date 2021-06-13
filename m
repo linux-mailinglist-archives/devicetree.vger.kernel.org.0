@@ -2,123 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 531693A5602
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 04:04:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 217D43A5632
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 06:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231635AbhFMCGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Jun 2021 22:06:40 -0400
-Received: from mail-pj1-f41.google.com ([209.85.216.41]:39901 "EHLO
-        mail-pj1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230492AbhFMCGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 22:06:40 -0400
-Received: by mail-pj1-f41.google.com with SMTP id w14-20020a17090aea0eb029016e9e0e7983so1483892pjy.4;
-        Sat, 12 Jun 2021 19:04:33 -0700 (PDT)
+        id S229664AbhFMEVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Jun 2021 00:21:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37564 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229939AbhFMEVM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 00:21:12 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E76EAC061574
+        for <devicetree@vger.kernel.org>; Sat, 12 Jun 2021 21:18:56 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id x196so10592503oif.10
+        for <devicetree@vger.kernel.org>; Sat, 12 Jun 2021 21:18:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=GXniuSw9ZMF00jtVBbwWdNTHC0JQ2hlRGU6EisXwcVc=;
-        b=XtYIKlxgbuwqIrJ/SFXLecxdONWGKycr4SZNgxgEOfoVsTwcZATs5qOSeWb0ICjbrW
-         0oFCIPP9x1a0Z0vTLis+8ojoMy1z7UkikPWNNrnavkV44YdqvGOLwAA+bIswzRHP1cTd
-         goMPk+JGyp/pI+ycSs5Nhf41ex50VxmQOdUGOFwm4EVJ/BKnZ2RsETtcXM17LUKS+6zq
-         CPO//54zmzJqjFg6i7Ni1EX+EB4HmvB1+ZX341+aC1S2u6exaWa4HbIMbeQxUqJwagGH
-         Bm1L5L5fFdAoYpcXIgX19X6j5nRWPV3ZNKgGhPf8ehCkzu6UD+cC11yPAgIkuF/UznSh
-         0TDQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=rENYX8baibT1F6ebeTktR9VC4kuSvLpcFb0ZjhVaxhU=;
+        b=PuDtHc0sQihfNzff23unpPBYWmOqQZCNL1NN04iGwg+xBDnN60VTAsFJS/pVRuypWr
+         5Ez1Y0+EzPKCZtbLiXkAgIXbZfcaYE06PrMWoByTH9klNb38Xr1hX4/Kvgbn3p/M3tlw
+         OLyCE/qKW2p/qBruupZpqZlu361OrK+KpPtT8ApIvgiH5t7Jefx9HjNtHIRzbvILeWiu
+         eGWQ28WY8NRQtbxIm3WhYn6p9x1VuXYPntYG2SPH3PnzkhVkymychBKeaFGQCfknD1M3
+         RvY7XNvW4000Qj+T0NLuSrUa04al+g7Zgwd1/RKfDtcoO5IXsrUouyQIJb20hxsPb/Ng
+         LDfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=GXniuSw9ZMF00jtVBbwWdNTHC0JQ2hlRGU6EisXwcVc=;
-        b=h1yK7F3aKi8gPsgTERr17YjGHeDYZr2j9ilIGk4RDp4ep+W7cIT+lWsv1tc7yoq4cN
-         bYV1bcnlPUDh649mlJ8nXSwpc7n2YW4FW8dnF+4YdYW02s0ni1/uUIqpp/XeD+pKUe1H
-         TxawBPK4KOn8R44rAPaVRL9T5dmPElc4WvQjpCd99ybP94E3Q98CyRIZmd2subPSvB4p
-         YNDRjRcEbj53OAvK3nu7Zq3TJmK28hn5FCil1YwqHuvBP6oi4J9rT97VyKL5ksSrXtX/
-         0g2AjJOHDw97zu52gn5ggW5q7/B6hrvRtxsmp0irYOvMEy0KEQayscFmRv4Nwuh8xxJu
-         Y3Fg==
-X-Gm-Message-State: AOAM5304Af0JAl+uOPmjhdT6BverdWEqt7q+/ZT7JZYnv3oeojaPkIOp
-        ofReiVD/Qd/bK5cqGpaoCDw=
-X-Google-Smtp-Source: ABdhPJzZxqHRGgsczR/Ffu5hOfnCDw/t60KeaFg1sev/yKbBqB1gL39zuW+KBj84curnuugQKMeWKw==
-X-Received: by 2002:a17:90a:b94c:: with SMTP id f12mr12110709pjw.32.1623549812731;
-        Sat, 12 Jun 2021 19:03:32 -0700 (PDT)
-Received: from [10.230.29.202] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id b23sm8444278pfi.34.2021.06.12.19.03.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Jun 2021 19:03:31 -0700 (PDT)
-Subject: Re: [PATCH v2 3/5] ARM: dts: NSP: Add common bindings for MX64/MX65
-To:     Matthew Hagan <mnhagan88@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20210610232727.1383117-1-mnhagan88@gmail.com>
- <20210610232727.1383117-4-mnhagan88@gmail.com>
- <20210611203031.fj3g32o7kgupgzjy@skbuf>
- <0f3e81be-e99a-41fe-6898-42c4d25b21be@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <670e1397-1b90-ca8d-c161-6a4c48d6bff4@gmail.com>
-Date:   Sat, 12 Jun 2021 19:03:29 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.10.2
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rENYX8baibT1F6ebeTktR9VC4kuSvLpcFb0ZjhVaxhU=;
+        b=kxMKM14aVGptmiJHA8O3qJMTWaqZMFhisihrDWbVOT4i5SoSQH2QWQeIZkF3Fb/wrN
+         dUkWZxhYRaAvJHO+btC3kZRGtoe4QE6xQdDaStXZTDCxNQI8O07UJTGRYr1JzA2GxmnH
+         rN/ewmtnZeZ7qmr9HCB8MQA5+Wpsv098X2m2/F0x8/iQMwUdohnYtyhxEOoMfue2PW0B
+         hU8U6AA15K1/jZPOY9B/JC/j7v6DcVOpnbKnOKBQsnUsaEDaY4A2OIGDh5nxOrtnFqAP
+         LurAJ08Akm1JYJgQP1e7kUoNzD6bo6ZNLBgpBwW2QOjoojRjGi5Jjnt7nCE4vlCzGunr
+         QUTw==
+X-Gm-Message-State: AOAM531n+pZz9cmBCIB/TTaLTYpntdQd4Ge2zShMEYowiyi+FLkk4YZ/
+        aXNLs++Ixptr4VzjQUH5LJRg8w==
+X-Google-Smtp-Source: ABdhPJwKy/WnhgiuARyk7OIDkUpgFqBS9kpf9d3v58WPuX5WQaQTRJ5A08aElcicaU7eM3f79Ynw8g==
+X-Received: by 2002:aca:3102:: with SMTP id x2mr13928303oix.112.1623557935989;
+        Sat, 12 Jun 2021 21:18:55 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id w11sm2195627oov.19.2021.06.12.21.18.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Jun 2021 21:18:55 -0700 (PDT)
+Date:   Sat, 12 Jun 2021 23:18:53 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Caleb Connolly <caleb@connolly.tech>
+Cc:     Andy Gross <agross@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: input: add Qualcomm QPNP haptics driver
+Message-ID: <YMWHLb3aOjuSG5t9@yoga>
+References: <20210612205405.1233588-1-caleb@connolly.tech>
+ <20210612205405.1233588-2-caleb@connolly.tech>
 MIME-Version: 1.0
-In-Reply-To: <0f3e81be-e99a-41fe-6898-42c4d25b21be@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210612205405.1233588-2-caleb@connolly.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat 12 Jun 15:54 CDT 2021, Caleb Connolly wrote:
 
-
-On 6/12/2021 4:14 PM, Matthew Hagan wrote:
-[snip]
->>> +	pwm-leds {
->>> +		compatible = "pwm-leds";
->>> +
->>> +		red {
->>> +			label = "red:led";
->>> +			pwms = <&pwm 1 50000>;
->>> +		};
->>> +
->>> +		green {
->>> +			label = "green:led";
->>> +			pwms = <&pwm 2 50000>;
->>> +		};
->>> +
->>> +		blue {
->>> +			label = "blue:led";
->>> +			pwms = <&pwm 3 50000>;
->>> +		};
->>> +	};
-
-[snip]
-
->> What is the reason for overriding this to 2?
+> Add bindings for pmi8998 qpnp haptics driver.
 > 
-> I can't provide an explanation other than that it only works at 2.
+> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> ---
+>  .../bindings/input/qcom,qpnp-haptics.yaml     | 123 ++++++++++++++++++
+>  include/dt-bindings/input/qcom,qpnp-haptics.h |  31 +++++
+>  2 files changed, 154 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/qcom,qpnp-haptics.yaml
+>  create mode 100644 include/dt-bindings/input/qcom,qpnp-haptics.h
 > 
-> When set to 3 I get the following:
+> diff --git a/Documentation/devicetree/bindings/input/qcom,qpnp-haptics.yaml b/Documentation/devicetree/bindings/input/qcom,qpnp-haptics.yaml
+> new file mode 100644
+> index 000000000000..81dd8d6321f0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/qcom,qpnp-haptics.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2020 Unisoc Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/qcom,qpnp-haptics.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies Inc PMI8998 QPNP haptics
+> +
+> +maintainers:
+> +  - Caleb Connolly <caleb@connolly.tech>
+> +
+> +description: |
+> +  QPNP (Qualcomm Technologies, Inc. Plug N Play) Haptics is a peripheral on some
+> +  QTI PMICs. It supports linear resonant actuators commonly found in mobile devices.
+
+Please avoid the Plug'n Play naming, just go with Qualcomm SPMI Haptics
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,qpnp-haptics
+
+qcom,spmi-haptics
+
+But could we also have some pmic-specific compatibles in the binding?
+Even though we might not need them in the driver today.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 2
+
+I don't think you need minItems, when you list the "items"
+
+> +    items:
+> +      - description: short circuit interrupt
+> +      - description: play interrupt
+> +
+> +  interrupt-names:
+> +    minItems: 2
+> +    items:
+> +      - const: short
+> +      - const: play
+> +
+> +  qcom,actuator-type:
+> +    description: |
+> +      The type of actuator attached to the hardware.
+> +      Allowed values are,
+> +        0 - HAP_TYPE_LRA
+> +        1 - HAP_TYPE_ERM
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    default: 0
+> +
+> +  qcom,wave-shape:
+> +    description: |
+> +      Selects the wave shape to use.
+> +      Allowed values are,
+> +        0 - HAP_WAVE_SINE
+> +        1 - HAP_WAVE_SQUARE
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1 ]
+> +    default: 0
+> +
+> +  qcom,play-mode:
+> +    description: |
+> +      Selects the play mode to use.
+> +      Allowed values are,
+> +        0 - HAP_PLAY_DIRECT
+> +        1 - HAP_PLAY_BUFFER
+> +        2 - HAP_PLAY_AUDIO
+> +        3 - HAP_PLAY_PWM
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [ 0, 1, 2, 3 ]
+> +    default: 2
+> +
+> +  qcom,wave-play-rate-us:
+> +    description: |
+> +      Wave sample durection in microseconds, 1/f where f
+> +      is the resonant frequency of the actuator.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 20475
+> +
+> +  qcom,brake-pattern:
+> +    minItems: 4
+
+It's also maxItems: 4, right?
+
+> +    description: |
+> +      The brake pattern are the strengths of the pattern
+> +      used to brake the haptics. Allowed values are,
+> +        0 - 0V
+> +        1 - Vmax/4
+> +        2 - Vmax/2
+> +        3 - Vmax
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    default: [0x3, 0x3, 0x2, 0x1]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - qcom,wave-play-rate-us
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/spmi/spmi.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/input/qcom,qpnp-haptics.h>
+
+Would be nice with a blank line here.
+
+> +    pmi8998_lsid1: pmic@3 {
+> +      compatible = "qcom,pmi8998", "qcom,spmi-pmic";
+> +      reg = <0x3 SPMI_USID>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      qpnp_haptics: qcom,haptics@c000 {
+
+No "qcom," in the node name please.
+
+> +        compatible = "qcom,qpnp-haptics";
+> +        reg = <0xc000 0x100>;
+
+With #size-cells = <0> this means that you have 2 regs, but binding says
+that you may only have one.
+
+> +
+> +        interrupts = <0x3 0xc0 0x0 IRQ_TYPE_EDGE_BOTH>,
+> +              <0x3 0xc0 0x1 IRQ_TYPE_EDGE_BOTH>;
+
+I don't think the '<' on those two lines are lining up.
+
+Regards,
+Bjorn
+
+> +        interrupt-names = "short", "play";
+> +
+> +        qcom,actuator-type = <HAP_TYPE_LRA>;
+> +        qcom,wave-shape = <HAP_WAVE_SINE>;
+> +        qcom,play-mode = <HAP_PLAY_BUFFER>;
+> +        qcom,brake-pattern = <0x3 0x3 0x2 0x1>;
+> +
+> +        qcom,wave-play-rate-us = <4255>;
+> +      };
+> +    };
+> diff --git a/include/dt-bindings/input/qcom,qpnp-haptics.h b/include/dt-bindings/input/qcom,qpnp-haptics.h
+> new file mode 100644
+> index 000000000000..bfbec041484c
+> --- /dev/null
+> +++ b/include/dt-bindings/input/qcom,qpnp-haptics.h
+> @@ -0,0 +1,31 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * This header provides constants for pmi8998 qpnp haptics options.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_QCOM_PMIC_QPNP_HAPTICS_
+> +#define _DT_BINDINGS_QCOM_PMIC_QPNP_HAPTICS_
+> +
+> +// Actuator types
+> +#define HAP_TYPE_LRA		0
+> +#define HAP_TYPE_ERM		1
+> +
+> +// LRA Wave type
+> +#define HAP_WAVE_SINE		0
+> +#define HAP_WAVE_SQUARE		1
+> +
+> +// Play modes
+> +#define HAP_PLAY_DIRECT		0
+> +#define HAP_PLAY_BUFFER		1
+> +#define HAP_PLAY_AUDIO		2
+> +#define HAP_PLAY_PWM		3
+> +
+> +#define HAP_PLAY_MAX		HAP_PLAY_PWM
+> +
+> +#define HAP_AUTO_RES_NONE	0
+> +#define HAP_AUTO_RES_ZXD	1
+> +#define HAP_AUTO_RES_QWD	2
+> +#define HAP_AUTO_RES_MAX_QWD	3
+> +#define HAP_AUTO_RES_ZXD_EOP	4
+> +
+> +#endif /* _DT_BINDINGS_QCOM_PMIC_QPNP_HAPTICS_ */
+> --
+> 2.31.1
 > 
-> [    0.784051] OF: /pwm-leds/red: #pwm-cells = 3 found -1
-> [    0.789201] of_pwm_get(): can't parse "pwms" property
-> [    0.794295] leds_pwm pwm-leds: error -EINVAL: unable to request PWM for red:led
-> [    0.801628] leds_pwm: probe of pwm-leds failed with error -22
-
-Strange because with a #pwm-cells value of 3, of_pwm_xlate_with_flags()
-would treat the flags as optional so the way you have put it looks
-correct to me. I am not sure what the channel sub-nodes are supposed to
-do, they do not appear to be documented properties or parsed by the PWM
-core?
-
-Is your Device Tree possibly corrupted here?
--- 
-Florian
+> 
