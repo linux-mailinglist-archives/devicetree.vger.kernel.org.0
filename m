@@ -2,106 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D90693A5183
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 02:49:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5A973A55F2
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 03:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230492AbhFMAu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Jun 2021 20:50:57 -0400
-Received: from mail-pj1-f52.google.com ([209.85.216.52]:38789 "EHLO
-        mail-pj1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229753AbhFMAu4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 20:50:56 -0400
-Received: by mail-pj1-f52.google.com with SMTP id m13-20020a17090b068db02901656cc93a75so7965207pjz.3
-        for <devicetree@vger.kernel.org>; Sat, 12 Jun 2021 17:48:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:date:message-id:mime-version:content-transfer-encoding:cc
-         :from:to;
-        bh=M1E/KqCrqBw8na7d8YIMW+xmxN0lavHYzwrAJ6gdNyE=;
-        b=aJ4vaMntnYLgO+AgqInAT3oip05GQ9+gNzo1FF0RO3y0ROVmsEO59Kf6M9WRmKNexd
-         Im3aqEwp2V9tWPw5sEBgAubEpA3Ugl/hA9ynMewPB7KygbAOo+im7/kZdwReYgA3EiO1
-         pxfp9s5vuQAFDvv1Hm5XHiqmTrof5qiMxTFuln8RzviTRkDT8oqAiwMawXo4xej5eqdH
-         aH4u9/o27P4ylT3Rd2/lmmeTIIyryMt/sTtCCk64WQa8kIFc1BUR9ATxnxxxhXMNegLQ
-         E3K+D+4GZjAyoMdufCAj4/KdgoPEFGhciRSWg79FPFUUPfwnCaLXiJQYEXQKahBoWMVl
-         sIKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:date:message-id:mime-version
-         :content-transfer-encoding:cc:from:to;
-        bh=M1E/KqCrqBw8na7d8YIMW+xmxN0lavHYzwrAJ6gdNyE=;
-        b=gEpM4wi0iw3qOO3VRobviUzkSNOabMsRDhK5HiITKHyHHmZqiELdbal6pMY28rwtUC
-         AyyXzozlEGJv8GWWyn5Js+C3eR8cyJEo/FUjmQzx31V/2alUUQnHntQfn6QIOoiVX1F1
-         2JJoxSDAeJZb59uytcqoColaxjCpHAuJXEZzkqDzmKISv/by0xmtG0GRggU+az3UYVd5
-         4yLaN2ZS2gay7RnGkMDwQy3NjNCW2PAxhhpvPwgmBHWpc3L51lGIDKKKVpF5B8qfzrJX
-         AClnBXwSFsSz79weHQ0szHp4DFKv+3uCLxMIExXkFz+ndLx0/rG8YCdsVoQSQ9sdxbM7
-         cAcw==
-X-Gm-Message-State: AOAM532ZMGmBs3hZF2U/fLmOUc9frY0yIudgjE7bR/w7Hje5ktv3bXjx
-        p7o1YnM2ppc+A3yRpCEVa1zq0A==
-X-Google-Smtp-Source: ABdhPJxIgIF6EZ1OZi/YZBMXsbuk9BT5FZqb5enbN/qDJXSDgc7aIaGWEWdDmWC73fybobAJGHJ9Dw==
-X-Received: by 2002:a17:902:c78a:b029:109:edbb:44de with SMTP id w10-20020a170902c78ab0290109edbb44demr10408698pla.6.1623545263470;
-        Sat, 12 Jun 2021 17:47:43 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id q18sm8900032pfj.5.2021.06.12.17.47.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Jun 2021 17:47:42 -0700 (PDT)
-Subject: [PATCH] riscv: dts: fu740: fix cache-controller interrupts
-Date:   Sat, 12 Jun 2021 17:43:57 -0700
-Message-Id: <20210613004356.3503995-1-palmer@dabbelt.com>
-X-Mailer: git-send-email 2.32.0.272.g935e593368-goog
+        id S230492AbhFMBPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Jun 2021 21:15:52 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:38506 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229753AbhFMBPw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Jun 2021 21:15:52 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BE2EE436;
+        Sun, 13 Jun 2021 03:13:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1623546830;
+        bh=E4Gc/QsUaHVbAbV+RVx7BikI//M8UMAmG7NKfGiSVII=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iacO8BE2s7wefwqrLKy6Cg31XiRAO/rm4eGvTcvQujm1aQyPekiyUWNg9JkwQjy0N
+         L+EEvsb0eOPl7Q+6H70VCfEm6ry38Jb75AilAhit/ef2SBEmm/Ks3x1l2fXlYTqxCH
+         1lI0LBLIWEuUEQ8gRFgslM07n2VLIOagSqNYLEmE=
+Date:   Sun, 13 Jun 2021 04:13:30 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 01/14] dt-bindings: arm: renesas: Document R-Car H3e-2G
+ and M3e-2G SoCs and boards
+Message-ID: <YMVbupt4pqdl2FOc@pendragon.ideasonboard.com>
+References: <cover.1623315732.git.geert+renesas@glider.be>
+ <f79841c1881f8b9a2c10fadb3d3ad6cb5fccc6a5.1623315732.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Cc:     robh+dt@kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, greentime.hu@sifive.com,
-        lorenzo.pieralisi@arm.com, yash.shah@sifive.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel-team@android.com,
-        Palmer Dabbelt <palmerdabbelt@google.com>
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     david.abdurachmanov@sifive.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <f79841c1881f8b9a2c10fadb3d3ad6cb5fccc6a5.1623315732.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Abdurachmanov <david.abdurachmanov@sifive.com>
+Hi Geert,
 
-The order of interrupt numbers is incorrect.
+Thank you for the patch.
 
-The order for FU740 is: DirError, DataError, DataFail, DirFail
+On Thu, Jun 10, 2021 at 11:37:14AM +0200, Geert Uytterhoeven wrote:
+> Document the compatible values for the R-Car H3e-2G (R8A779M1) and
+> M3e-2G (R8A779M3) SoCs.  These are different gradings of the R-Car H3
+> ES3.0 (R8A77951) and M3-W+ (R8A77961) SoCs.
+> 
+> All R-Car Gen3e on-SoC devices are identical to the devices on the
+> corresponding R-Car Gen3 SoCs, and thus just use the compatible values
+> for the latter.  The root compatible properties do gain an additional
+> value, to sort out integration issues if they ever arise.
+> 
+> Document the use of these SoCs on the Salvator-XS and ULCB (with and
+> without Kingfisher) development boards.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-From SiFive FU740-C000 Manual:
-19 - L2 Cache DirError
-20 - L2 Cache DirFail
-21 - L2 Cache DataError
-22 - L2 Cache DataFail
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Signed-off-by: David Abdurachmanov <david.abdurachmanov@sifive.com>
-Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
----
-Olof pointed me to
-https://raw.githubusercontent.com/sifive/meta-sifive/2021.03/recipes-kernel/linux/files/unmatched/0009-riscv-dts-fu740-fix-cache-controller-interrupts.patch
+(Copying a comment from another e-mail)
 
-This appears necessary to make the FU740 function properly, but hasn't been
-posted on the mailing lists.  Given the age I'm hoping it's just slipped
-through the cracks somewhere, but I figured I'd send it out to give David a
-chance to comment if there's a different plan.
----
- arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I however wonder if we haven't messed up the board compatible strings
+somehow (unrelated to this patch). Aren't compatible strings supposed to
+be ordered from most specific to most generic, with a more specific
+compatible string being a strict subset of a more generic string ?
+Looking at, for example,
 
-diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-index 8eef82e4199f..abbb960f90a0 100644
---- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-@@ -273,7 +273,7 @@ ccache: cache-controller@2010000 {
- 			cache-size = <2097152>;
- 			cache-unified;
- 			interrupt-parent = <&plic0>;
--			interrupts = <19 20 21 22>;
-+			interrupts = <19 21 22 20>;
- 			reg = <0x0 0x2010000 0x0 0x1000>;
- 		};
- 		gpio: gpio@10060000 {
+        compatible = "renesas,salvator-xs", "renesas,r8a779m1", "renesas,r8a7795";
+
+the rule is upheld by renesas,r8a779m1 being a subset of the more
+generic renesas,r8a7795, but that's not the case for
+renesas,salvator-xs.
+
+> ---
+>  .../devicetree/bindings/arm/renesas.yaml      | 50 +++++++++++++++----
+>  1 file changed, 39 insertions(+), 11 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml b/Documentation/devicetree/bindings/arm/renesas.yaml
+> index 5fd0696a9f91f383..a01dd064bf16632a 100644
+> --- a/Documentation/devicetree/bindings/arm/renesas.yaml
+> +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
+> @@ -238,17 +238,29 @@ properties:
+>            - const: renesas,r8a77961
+>  
+>        - description: Kingfisher (SBEV-RCAR-KF-M03)
+> -        items:
+> -          - const: shimafuji,kingfisher
+> -          - enum:
+> -              - renesas,h3ulcb
+> -              - renesas,m3ulcb
+> -              - renesas,m3nulcb
+> -          - enum:
+> -              - renesas,r8a7795
+> -              - renesas,r8a7796
+> -              - renesas,r8a77961
+> -              - renesas,r8a77965
+> +        oneOf:
+> +          - items:
+> +              - const: shimafuji,kingfisher
+> +              - enum:
+> +                  - renesas,h3ulcb
+> +                  - renesas,m3ulcb
+> +                  - renesas,m3nulcb
+> +              - enum:
+> +                  - renesas,r8a7795
+> +                  - renesas,r8a7796
+> +                  - renesas,r8a77961
+> +                  - renesas,r8a77965
+> +          - items:
+> +              - const: shimafuji,kingfisher
+> +              - enum:
+> +                  - renesas,h3ulcb
+> +                  - renesas,m3ulcb
+> +              - enum:
+> +                  - renesas,r8a779m1
+> +                  - renesas,r8a779m3
+> +              - enum:
+> +                  - renesas,r8a7795
+> +                  - renesas,r8a77961
+>  
+>        - description: R-Car M3-N (R8A77965)
+>          items:
+> @@ -296,6 +308,22 @@ properties:
+>            - const: renesas,falcon-cpu
+>            - const: renesas,r8a779a0
+>  
+> +      - description: R-Car H3e-2G (R8A779M1)
+> +        items:
+> +          - enum:
+> +              - renesas,h3ulcb      # H3ULCB (R-Car Starter Kit Premier)
+> +              - renesas,salvator-xs # Salvator-XS (Salvator-X 2nd version)
+> +          - const: renesas,r8a779m1
+> +          - const: renesas,r8a7795
+> +
+> +      - description: R-Car M3e-2G (R8A779M3)
+> +        items:
+> +          - enum:
+> +              - renesas,m3ulcb      # M3ULCB (R-Car Starter Kit Pro)
+> +              - renesas,salvator-xs # Salvator-XS (Salvator-X 2nd version)
+> +          - const: renesas,r8a779m3
+> +          - const: renesas,r8a77961
+> +
+>        - description: RZ/N1D (R9A06G032)
+>          items:
+>            - enum:
+
 -- 
-2.32.0.272.g935e593368-goog
+Regards,
 
+Laurent Pinchart
