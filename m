@@ -2,130 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E11C63A5A4E
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 22:18:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65DFB3A5A6B
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 22:46:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232095AbhFMUUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Jun 2021 16:20:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45174 "EHLO
+        id S232099AbhFMUsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Jun 2021 16:48:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232094AbhFMUUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 16:20:07 -0400
-Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07AFAC061767;
-        Sun, 13 Jun 2021 13:18:04 -0700 (PDT)
-Received: from localhost.localdomain (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id D49761F87F;
-        Sun, 13 Jun 2021 22:18:01 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: qrb5165-rb5: Fix up pins
-Date:   Sun, 13 Jun 2021 22:17:54 +0200
-Message-Id: <20210613201754.346440-1-konrad.dybcio@somainline.org>
+        with ESMTP id S231840AbhFMUsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 16:48:04 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0132BC061766
+        for <devicetree@vger.kernel.org>; Sun, 13 Jun 2021 13:45:47 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id n12so7011231pgs.13
+        for <devicetree@vger.kernel.org>; Sun, 13 Jun 2021 13:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hj6PxG9Uu38xsSuh/hPwTGIxfZIdP7m3pLuGKjMI4Ig=;
+        b=bmu2JThxVHAxXOKEYhsFEtuH0nryHuVmYu4OmNnz+kZZWdpYhkWRc2E6+JxoadL7dt
+         2RbYeGwq0TA/zqWtVfOrLWuziOLWAsjYdJ4ajxfi7s7wxW7PWFmO9H/i2YxE7GIQFb8m
+         t88txhMBaBgPrkVc77atYDYUM2cx6EeSQWO32R5hX0fF7r+MV3FFncfZLuZq2Nk6TqXS
+         mIT7kmINjqLUpFEaaUwojPFAmIwXVyxAxWPN0JWtzvFbYz9pWXm0V6kLyQlnOjFL30iK
+         6iwoooocEtD888TmW/lxUiv+JSYIhHILQl/NvBHTxNhWN/tPAUU2cATvJiZp1e/d5tdX
+         wJIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hj6PxG9Uu38xsSuh/hPwTGIxfZIdP7m3pLuGKjMI4Ig=;
+        b=e7Gyryw1gL6gTXf1d7m2aRmpNQzUc+C0zLlJgv+K/gU1avI0FiLBdKe1ZjyH695PfL
+         YrT8bhMGeN16cb9xtZBEmPaW1ekuK9p8LisdyEG8vlTWG7R6qMxOuGlkoBDAViRUEDFp
+         pdVePwfx58JIuBpzv2F6n3YliykUtSg3CeGTo15ZBHZD+ht623HnnspaPfUj+ZerWoji
+         yKgywpNQ2fn8vnJ9Ywpv1ZT57fXl0I43h2IQZIl6fjdyypBQ6znoC8n3XcbN1i+D1KYk
+         zBqnmFgnOZlduGSRlnEck4OxKHY4qPXLXgW1SwbgBYw1tnnb+qE7oTXH8XzXbyYePfrH
+         5+Cw==
+X-Gm-Message-State: AOAM530i46nD6CA8qWwJpOPvzK2lkXkiWrHm4qK0bnKk9Bk/sNSgnky0
+        rZLJnob5GFJKxWgeC3Y2N1Ci
+X-Google-Smtp-Source: ABdhPJySEgrWjFdxISwelgWe5aaaq9/MjvjjsiLJBt9wbvsLwYM8vvx3QL1cWls+noKMXLzqTlO/Pw==
+X-Received: by 2002:a62:ea1a:0:b029:2ec:9146:30be with SMTP id t26-20020a62ea1a0000b02902ec914630bemr18700202pfh.29.1623617145141;
+        Sun, 13 Jun 2021 13:45:45 -0700 (PDT)
+Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
+        by smtp.gmail.com with ESMTPSA id iq15sm14651277pjb.53.2021.06.13.13.45.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Jun 2021 13:45:44 -0700 (PDT)
+From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+To:     michal.simek@xilinx.com, mturquette@baylibre.com, robh@kernel.org,
+        sboyd@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Subject: [PATCH v3] dt-bindings: rtc: zynqmp: convert bindings to YAML
+Date:   Mon, 14 Jun 2021 05:45:32 +0900
+Message-Id: <20210613204532.291512-1-iwamatsu@nigauri.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210612192358.62602-2-konrad.dybcio@somainline.org>
-References: 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the SDHCI pin commonization commit I overlooked the fact that this
-board had the pins defined in its own DT. Revert their settings to the
-original values.
+Convert Real Time Clock for Xilinx Zynq MPSoC SoC bindings documentation
+to YAML schemas.
+And this renamed the file to compatible string of DT.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
 ---
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 38 ++++++++----------------
- arch/arm64/boot/dts/qcom/sm8250.dtsi     |  4 +--
- 2 files changed, 14 insertions(+), 28 deletions(-)
+v3: Fix description.
+    Add $refs to calibration property.
+    Add minimum, maximum and default to calibration property.
+v2: Fix warning with DT_CHECKER_FLAGS=-m
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index a5b742325261..bf05328f3901 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -858,6 +858,18 @@ dai@2 {
- 	};
- };
- 
-+&sdc2_card_det_n {
-+	/delete-property/ drive-strength;
-+};
+ .../bindings/rtc/xlnx,zynqmp-rtc.yaml         | 65 +++++++++++++++++++
+ .../devicetree/bindings/rtc/xlnx-rtc.txt      | 25 -------
+ 2 files changed, 65 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/rtc/xlnx-rtc.txt
+
+diff --git a/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml b/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
+new file mode 100644
+index 00000000000000..bdb72d3ddf2a93
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/xlnx,zynqmp-rtc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+&sdc2_cmd_default {
-+	drive-strength = <10>;
-+};
++title: Xilinx Zynq Ultrascale+ MPSoC Real Time Clock
 +
-+&sdc2_data_default {
-+	drive-strength = <10>;
-+};
++description:
++  RTC controller for the Xilinx Zynq MPSoC Real Time Clock.
++  The RTC controller has separate IRQ lines for seconds and alarm.
 +
- &sdhc_2 {
- 	status = "okay";
- 	pinctrl-names = "default";
-@@ -1253,32 +1265,6 @@ wake-n {
- 			bias-pull-up;
- 		};
- 	};
++maintainers:
++  - Michal Simek <michal.simek@xilinx.com>
++
++allOf:
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    const: xlnx,zynqmp-rtc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 2
++
++  interrupt-names:
++    items:
++      - const: alarm
++      - const: sec
++
++  calibration:
++    description: |
++      calibration value for 1 sec period which will
++      be programmed directly to calibration register.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0x1
++    maximum: 0x1FFFFF
++    default: 0x198233
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-names
++
++additionalProperties: false
++
++examples:
++  - |
++    soc {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      rtc: rtc@ffa60000 {
++        compatible = "xlnx,zynqmp-rtc";
++        reg = <0x0 0xffa60000 0x0 0x100>;
++        interrupt-parent = <&gic>;
++        interrupts = <0 26 4>, <0 27 4>;
++        interrupt-names = "alarm", "sec";
++        calibration = <0x198233>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/rtc/xlnx-rtc.txt b/Documentation/devicetree/bindings/rtc/xlnx-rtc.txt
+deleted file mode 100644
+index 0df6f016b1b771..00000000000000
+--- a/Documentation/devicetree/bindings/rtc/xlnx-rtc.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-* Xilinx Zynq Ultrascale+ MPSoC Real Time Clock
 -
--	sdc2_default_state: sdc2-default {
--		clk {
--			pins = "sdc2_clk";
--			bias-disable;
--			drive-strength = <16>;
--		};
+-RTC controller for the Xilinx Zynq MPSoC Real Time Clock
+-Separate IRQ lines for seconds and alarm
 -
--		cmd {
--			pins = "sdc2_cmd";
--			bias-pull-up;
--			drive-strength = <10>;
--		};
+-Required properties:
+-- compatible: Should be "xlnx,zynqmp-rtc"
+-- reg: Physical base address of the controller and length
+-       of memory mapped region.
+-- interrupts: IRQ lines for the RTC.
+-- interrupt-names: interrupt line names eg. "sec" "alarm"
 -
--		data {
--			pins = "sdc2_data";
--			bias-pull-up;
--			drive-strength = <10>;
--		};
--	};
+-Optional:
+-- calibration: calibration value for 1 sec period which will
+-		be programmed directly to calibration register
 -
--	sdc2_card_det_n: sd-card-det-n {
--		pins = "gpio77";
--		function = "gpio";
--		bias-pull-up;
--	};
- };
- 
- &uart12 {
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index fe858abbff5d..fab5d83f4496 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -3414,13 +3414,13 @@ clk {
- 					bias-disable;
- 				};
- 
--				cmd {
-+				sdc2_cmd_default: cmd {
- 					pins = "sdc2_cmd";
- 					drive-strength = <16>;
- 					bias-pull-up;
- 				};
- 
--				data {
-+				sdc2_data_default: data {
- 					pins = "sdc2_data";
- 					drive-strength = <16>;
- 					bias-pull-up;
+-Example:
+-rtc: rtc@ffa60000 {
+-	compatible = "xlnx,zynqmp-rtc";
+-	reg = <0x0 0xffa60000 0x100>;
+-	interrupt-parent = <&gic>;
+-	interrupts = <0 26 4>, <0 27 4>;
+-	interrupt-names = "alarm", "sec";
+-	calibration = <0x198233>;
+-};
 -- 
 2.32.0
 
