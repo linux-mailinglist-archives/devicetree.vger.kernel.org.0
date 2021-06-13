@@ -2,179 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4912D3A56BD
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 08:11:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 174AE3A56C4
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 08:30:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230286AbhFMGMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Jun 2021 02:12:16 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:37456 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230007AbhFMGMP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 02:12:15 -0400
-X-UUID: ef3f0f97a89c4e5e88d7fc5376686f14-20210613
-X-UUID: ef3f0f97a89c4e5e88d7fc5376686f14-20210613
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        id S229870AbhFMGcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Jun 2021 02:32:00 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:34327 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229777AbhFMGb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 02:31:59 -0400
+X-UUID: 2d6da5cb709540e6bba1623a01784112-20210613
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=8WtSPGkNuQ7241ILje9VJjGKNPvfoYVf4vIrsfMG0ug=;
+        b=K8UiGnfvo+MCmjEpBErRXJzmLG2dzqGpm+hPQ8CRhlR+FzF0UZ56imdR7N0iWkyZ/giPNEXRsp2aNqu9/7vjMnidEZXO5MhnbDawIWlS2KIGfm8NxFHDZU/3L5VmhfdBgFuL2/h3BZDLoEzqQ86FU2FTNnVVbxprimPUHq5se+g=;
+X-UUID: 2d6da5cb709540e6bba1623a01784112-20210613
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
         (envelope-from <mason.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 2129828998; Sun, 13 Jun 2021 14:10:10 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 13 Jun 2021 14:10:09 +0800
-Received: from localhost.localdomain (10.15.20.246) by mtkcas07.mediatek.inc
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1006012958; Sun, 13 Jun 2021 14:29:55 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sun, 13 Jun 2021 14:29:48 +0800
+Received: from [10.15.20.246] (10.15.20.246) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 13 Jun 2021 14:10:08 +0800
+ Transport; Sun, 13 Jun 2021 14:29:47 +0800
+Message-ID: <1623564933.15174.5.camel@mbjsdccf07>
+Subject: Re: [PATCH v2 1/1] arm64: dts: mediatek: add MT6779 spi master dts
+ node
 From:   Mason Zhang <mason.zhang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
-        <hanks.chen@mediatek.com>, <mason.zhang@mediatek.com>,
-        Mason Zhang <Mason.Zhang@mediatek.com>
-Subject: [PATCH v3 1/1] arm64: dts: mediatek: add MT6779 spi master dts node
-Date:   Sun, 13 Jun 2021 13:54:59 +0800
-Message-ID: <20210613055458.6073-1-mason.zhang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        <linux-kernel@vger.kernel.org>, <hanks.chen@mediatek.com>,
+        <wsd_upstream@mediatek.com>
+Date:   Sun, 13 Jun 2021 14:15:33 +0800
+In-Reply-To: <faafa83d-4831-2b70-78ec-0e9f3636b5c9@gmail.com>
+References: <20210409015651.11474-1-Mason.Zhang@mediatek.com>
+         <faafa83d-4831-2b70-78ec-0e9f3636b5c9@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain
 X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mason Zhang <Mason.Zhang@mediatek.com>
-
-This patch add spi master dts node for MT6779 SOC.
-
-Signed-off-by: Mason Zhang <Mason.Zhang@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt6779.dtsi | 112 +++++++++++++++++++++++
- 1 file changed, 112 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt6779.dtsi b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-index 370f309d32de..c81e76865d1b 100644
---- a/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6779.dtsi
-@@ -219,6 +219,118 @@
- 			status = "disabled";
- 		};
- 
-+		spi0: spi0@1100a000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x1100a000 0 0x1000>;
-+			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_LOW 0>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				<&topckgen CLK_TOP_SPI>,
-+				<&infracfg_ao CLK_INFRA_SPI0>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi1: spi1@11010000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x11010000 0 0x1000>;
-+			interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_LOW 0>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				<&topckgen CLK_TOP_SPI>,
-+				<&infracfg_ao CLK_INFRA_SPI1>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi2: spi2@11012000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x11012000 0 0x1000>;
-+			interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_LOW 0>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				<&infracfg_ao CLK_INFRA_SPI2>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi3: spi3@11013000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x11013000 0 0x1000>;
-+			interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_LOW 0>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_SPI3>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi4: spi4@11018000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x11018000 0 0x1000>;
-+			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_LOW 0>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_SPI4>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi5: spi5@11019000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x11019000 0 0x1000>;
-+			interrupts = <GIC_SPI 157 IRQ_TYPE_LEVEL_LOW 0>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				<&topckgen CLK_TOP_SPI>,
-+				<&infracfg_ao CLK_INFRA_SPI5>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi6: spi6@1101d000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x1101d000 0 0x1000>;
-+			interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_LOW 0>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_SPI6>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
-+		spi7: spi7@1101e000 {
-+			compatible = "mediatek,mt6779-spi",
-+				     "mediatek,mt6765-spi";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			mediatek,pad-select = <0>;
-+			reg = <0 0x1101e000 0 0x1000>;
-+			interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW 0>;
-+			clocks = <&topckgen CLK_TOP_MAINPLL_D5_D2>,
-+				 <&topckgen CLK_TOP_SPI>,
-+				 <&infracfg_ao CLK_INFRA_SPI7>;
-+			clock-names = "parent-clk", "sel-clk", "spi-clk";
-+		};
-+
- 		audio: clock-controller@11210000 {
- 			compatible = "mediatek,mt6779-audio", "syscon";
- 			reg = <0 0x11210000 0 0x1000>;
--- 
-2.18.0
+T24gRnJpLCAyMDIxLTA2LTExIGF0IDE1OjU4ICswMjAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3Rl
+Og0KPiANCj4gT24gMDkvMDQvMjAyMSAwMzo1NiwgTWFzb24gWmhhbmcgd3JvdGU6DQo+ID4gVGhp
+cyBwYXRjaCBhZGQgYWRkcmVzcy1jZWxscyAmJiBzaXplLWNlbGxzIGluIHNwaSBub2RlIGJhc2Vk
+IG9uIHBhdGNoIHYxLg0KPiA+IA0KPiANCj4gQ2FuIHlvdSBwbGVhc2UgY29tZSB1cCB3aXRoIGEg
+YmV0dGVyIGNvbW1pdCBtZXNzYWdlLCBvdGhlcndpc2UgcGF0Y2ggbG9va3MgZ29vZC4NCj4gDQo+
+IFJlZ2FyZHMsDQo+IE1hdHRoaWFzDQo+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IE1hc29uIFpoYW5n
+IDxNYXNvbi5aaGFuZ0BtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gIGFyY2gvYXJtNjQvYm9v
+dC9kdHMvbWVkaWF0ZWsvbXQ2Nzc5LmR0c2kgfCAxMTIgKysrKysrKysrKysrKysrKysrKysrKysN
+Cj4gPiAgMSBmaWxlIGNoYW5nZWQsIDExMiBpbnNlcnRpb25zKCspDQo+ID4gDQo+ID4gZGlmZiAt
+LWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2Nzc5LmR0c2kgYi9hcmNoL2Fy
+bTY0L2Jvb3QvZHRzL21lZGlhdGVrL210Njc3OS5kdHNpDQo+ID4gaW5kZXggMzcwZjMwOWQzMmRl
+Li5jODFlNzY4NjVkMWIgMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRp
+YXRlay9tdDY3NzkuZHRzaQ0KPiA+ICsrKyBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsv
+bXQ2Nzc5LmR0c2kNCj4gPiBAQCAtMjE5LDYgKzIxOSwxMTggQEANCj4gPiAgCQkJc3RhdHVzID0g
+ImRpc2FibGVkIjsNCj4gPiAgCQl9Ow0KPiA+ICANCj4gPiArCQlzcGkwOiBzcGkwQDExMDBhMDAw
+IHsNCj4gPiArCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3Nzktc3BpIiwNCj4gPiArCQkJ
+CSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0KPiA+ICsJCQkjYWRkcmVzcy1jZWxscyA9IDwx
+PjsNCj4gPiArCQkJI3NpemUtY2VsbHMgPSA8MD47DQo+ID4gKwkJCW1lZGlhdGVrLHBhZC1zZWxl
+Y3QgPSA8MD47DQo+ID4gKwkJCXJlZyA9IDwwIDB4MTEwMGEwMDAgMCAweDEwMDA+Ow0KPiA+ICsJ
+CQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTQzIElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCj4gPiAr
+CQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0KPiA+ICsJCQkJ
+PCZ0b3Bja2dlbiBDTEtfVE9QX1NQST4sDQo+ID4gKwkJCQk8JmluZnJhY2ZnX2FvIENMS19JTkZS
+QV9TUEkwPjsNCj4gPiArCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJzZWwtY2xrIiwg
+InNwaS1jbGsiOw0KPiA+ICsJCX07DQo+ID4gKw0KPiA+ICsJCXNwaTE6IHNwaTFAMTEwMTAwMDAg
+ew0KPiA+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KPiA+ICsJCQkJ
+ICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ID4gKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+
+Ow0KPiA+ICsJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCj4gPiArCQkJbWVkaWF0ZWsscGFkLXNlbGVj
+dCA9IDwwPjsNCj4gPiArCQkJcmVnID0gPDAgMHgxMTAxMDAwMCAwIDB4MTAwMD47DQo+ID4gKwkJ
+CWludGVycnVwdHMgPSA8R0lDX1NQSSAxNDcgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KPiA+ICsJ
+CQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQo+ID4gKwkJCQk8
+JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gPiArCQkJCTwmaW5mcmFjZmdfYW8gQ0xLX0lORlJB
+X1NQSTE+Ow0KPiA+ICsJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAi
+c3BpLWNsayI7DQo+ID4gKwkJfTsNCj4gPiArDQo+ID4gKwkJc3BpMjogc3BpMkAxMTAxMjAwMCB7
+DQo+ID4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ID4gKwkJCQkg
+ICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCj4gPiArCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47
+DQo+ID4gKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KPiA+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0
+ID0gPDA+Ow0KPiA+ICsJCQlyZWcgPSA8MCAweDExMDEyMDAwIDAgMHgxMDAwPjsNCj4gPiArCQkJ
+aW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1MiBJUlFfVFlQRV9MRVZFTF9MT1cgMD47DQo+ID4gKwkJ
+CWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCj4gPiArCQkJCSA8
+JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gPiArCQkJCTwmaW5mcmFjZmdfYW8gQ0xLX0lORlJB
+X1NQSTI+Ow0KPiA+ICsJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAi
+c3BpLWNsayI7DQo+ID4gKwkJfTsNCj4gPiArDQo+ID4gKwkJc3BpMzogc3BpM0AxMTAxMzAwMCB7
+DQo+ID4gKwkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQo+ID4gKwkJCQkg
+ICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCj4gPiArCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47
+DQo+ID4gKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KPiA+ICsJCQltZWRpYXRlayxwYWQtc2VsZWN0
+ID0gPDA+Ow0KPiA+ICsJCQlyZWcgPSA8MCAweDExMDEzMDAwIDAgMHgxMDAwPjsNCj4gPiArCQkJ
+aW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1MyBJUlFfVFlQRV9MRVZFTF9MT1cgMD47DQo+ID4gKwkJ
+CWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCj4gPiArCQkJCSA8
+JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCj4gPiArCQkJCSA8JmluZnJhY2ZnX2FvIENMS19JTkZS
+QV9TUEkzPjsNCj4gPiArCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJzZWwtY2xrIiwg
+InNwaS1jbGsiOw0KPiA+ICsJCX07DQo+ID4gKw0KPiA+ICsJCXNwaTQ6IHNwaTRAMTEwMTgwMDAg
+ew0KPiA+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KPiA+ICsJCQkJ
+ICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ID4gKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+
+Ow0KPiA+ICsJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCj4gPiArCQkJbWVkaWF0ZWsscGFkLXNlbGVj
+dCA9IDwwPjsNCj4gPiArCQkJcmVnID0gPDAgMHgxMTAxODAwMCAwIDB4MTAwMD47DQo+ID4gKwkJ
+CWludGVycnVwdHMgPSA8R0lDX1NQSSAxNTYgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KPiA+ICsJ
+CQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQo+ID4gKwkJCQkg
+PCZ0b3Bja2dlbiBDTEtfVE9QX1NQST4sDQo+ID4gKwkJCQkgPCZpbmZyYWNmZ19hbyBDTEtfSU5G
+UkFfU1BJND47DQo+ID4gKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIs
+ICJzcGktY2xrIjsNCj4gPiArCQl9Ow0KPiA+ICsNCj4gPiArCQlzcGk1OiBzcGk1QDExMDE5MDAw
+IHsNCj4gPiArCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3Nzktc3BpIiwNCj4gPiArCQkJ
+CSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0KPiA+ICsJCQkjYWRkcmVzcy1jZWxscyA9IDwx
+PjsNCj4gPiArCQkJI3NpemUtY2VsbHMgPSA8MD47DQo+ID4gKwkJCW1lZGlhdGVrLHBhZC1zZWxl
+Y3QgPSA8MD47DQo+ID4gKwkJCXJlZyA9IDwwIDB4MTEwMTkwMDAgMCAweDEwMDA+Ow0KPiA+ICsJ
+CQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTU3IElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCj4gPiAr
+CQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0KPiA+ICsJCQkJ
+PCZ0b3Bja2dlbiBDTEtfVE9QX1NQST4sDQo+ID4gKwkJCQk8JmluZnJhY2ZnX2FvIENMS19JTkZS
+QV9TUEk1PjsNCj4gPiArCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJzZWwtY2xrIiwg
+InNwaS1jbGsiOw0KPiA+ICsJCX07DQo+ID4gKw0KPiA+ICsJCXNwaTY6IHNwaTZAMTEwMWQwMDAg
+ew0KPiA+ICsJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1zcGkiLA0KPiA+ICsJCQkJ
+ICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQo+ID4gKwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+
+Ow0KPiA+ICsJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCj4gPiArCQkJbWVkaWF0ZWsscGFkLXNlbGVj
+dCA9IDwwPjsNCj4gPiArCQkJcmVnID0gPDAgMHgxMTAxZDAwMCAwIDB4MTAwMD47DQo+ID4gKwkJ
+CWludGVycnVwdHMgPSA8R0lDX1NQSSAxNDQgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KPiA+ICsJ
+CQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQo+ID4gKwkJCQkg
+PCZ0b3Bja2dlbiBDTEtfVE9QX1NQST4sDQo+ID4gKwkJCQkgPCZpbmZyYWNmZ19hbyBDTEtfSU5G
+UkFfU1BJNj47DQo+ID4gKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIs
+ICJzcGktY2xrIjsNCj4gPiArCQl9Ow0KPiA+ICsNCj4gPiArCQlzcGk3OiBzcGk3QDExMDFlMDAw
+IHsNCj4gPiArCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3Nzktc3BpIiwNCj4gPiArCQkJ
+CSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0KPiA+ICsJCQkjYWRkcmVzcy1jZWxscyA9IDwx
+PjsNCj4gPiArCQkJI3NpemUtY2VsbHMgPSA8MD47DQo+ID4gKwkJCW1lZGlhdGVrLHBhZC1zZWxl
+Y3QgPSA8MD47DQo+ID4gKwkJCXJlZyA9IDwwIDB4MTEwMWUwMDAgMCAweDEwMDA+Ow0KPiA+ICsJ
+CQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTQ1IElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCj4gPiAr
+CQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0KPiA+ICsJCQkJ
+IDwmdG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KPiA+ICsJCQkJIDwmaW5mcmFjZmdfYW8gQ0xLX0lO
+RlJBX1NQSTc+Ow0KPiA+ICsJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsi
+LCAic3BpLWNsayI7DQo+ID4gKwkJfTsNCj4gPiArDQo+ID4gIAkJYXVkaW86IGNsb2NrLWNvbnRy
+b2xsZXJAMTEyMTAwMDAgew0KPiA+ICAJCQljb21wYXRpYmxlID0gIm1lZGlhdGVrLG10Njc3OS1h
+dWRpbyIsICJzeXNjb24iOw0KPiA+ICAJCQlyZWcgPSA8MCAweDExMjEwMDAwIDAgMHgxMDAwPjsN
+Cg0KDQpEZWFyIE1hdHRpYXM6DQoNCglUaGFua3MgZm9yIHlvdXIgc3VnZ2VzdGlvbn4NCg0KCUkg
+aGF2ZSB1cGRhdGUgY29tbWl0IG1lc3NhZ2UgaW4gcGF0Y2ggdjMuQ291bGQgeW91IHBsZWFzZSBn
+ZW50bGUgcGluZw0Kb24gcGF0Y2ggdjMgaWYgaXQgaGFzIG5vIG90aGVyIHByb2JsZW1zLg0KDQpU
+aGFua3MNCk1hc29uDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQo+ID4gDQoNCg==
 
