@@ -2,88 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CB1D3A598C
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 18:24:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 607FA3A5993
+	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 18:27:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231972AbhFMQ0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Jun 2021 12:26:16 -0400
-Received: from mail-pf1-f176.google.com ([209.85.210.176]:45732 "EHLO
-        mail-pf1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231782AbhFMQ0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 12:26:15 -0400
-Received: by mail-pf1-f176.google.com with SMTP id d16so8716704pfn.12;
-        Sun, 13 Jun 2021 09:24:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=aC2dhdspoUUA1LkjK2BRQaIt/hcnZcvsLvf5tjojtDc=;
-        b=JWFwzc5GQCLvNHzO/T16pGnCD4oY9eqO+zFxYTckjqpTzL1s1Gisf/AXBDCZoG3OwR
-         0iqwVqT8S/04DKdKIrgyP3unxVa2p9TPiqrSQiIm60IU7iY3cUuqkZdlk0ndZWuoS9Ao
-         tNXJdkuJr9HEozxzkCgxbqmJbIY7sr3NZlCUi0/IhQucFRTtQv1zav1TgVCTRoSJNQYJ
-         Htffw5B/gCU1RJUCP37B6HJrYwwc1fzBZn+OaiYx7vWdbStG9d5HHc1qyfEHeIfPZE5X
-         LFDIeKka2AjUif9GbSls+DvgNVO7Rqbkg5gmuN3o6na2fUQLofQIbpBapD5cbfA/2CeL
-         O0qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=aC2dhdspoUUA1LkjK2BRQaIt/hcnZcvsLvf5tjojtDc=;
-        b=YmZjPqYdA/bz1afzBYorKizFts11P3kWIbdKrZUY0DsusQ/0+BRGj4G9agqlL5m75e
-         wuzmK2ONicLlFAP4PqhDXyzAJxwy2d9hwuASQ0gZb1l3PCBeUf9/N4jDtfOATdfgT3QI
-         3nMQXsvsYZYhVWvUO4YsuDadEyKV2bD3JKj2U4NSA6XlsD12ceIHRY7Sb1Ii3HC0g+4F
-         AlCpkz9Cy2vXxpxRZj+zOTAe5E9C9uqAW/NGKrrO55vPZOFvpMywVldS6m++HvDkpJoQ
-         M51g2R3MO7AQ85T/4J5EHMwp7DQKl7VTl0Ya02DfUJx11x7O5vqgzMwUuBhs3rhAPh0d
-         NkBA==
-X-Gm-Message-State: AOAM530jHHaPgH37NrgVxRkYuuiJ8Zrdh3PUL14nUptwvFYhq0bLeAtx
-        NdTVDNpSHgbWFMQ6uv1CXem7whcIKyk=
-X-Google-Smtp-Source: ABdhPJwAqTa0Aki/WnTbOlKBOM1XqAXtcWAY+bkkZqquksEz49o02cVPS9FamtqtArdKaBvu8j2n/g==
-X-Received: by 2002:aa7:8881:0:b029:2f8:5004:9523 with SMTP id z1-20020aa788810000b02902f850049523mr6262285pfe.31.1623601380324;
-        Sun, 13 Jun 2021 09:23:00 -0700 (PDT)
-Received: from [10.230.29.202] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d15sm10040644pfd.35.2021.06.13.09.22.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 13 Jun 2021 09:22:59 -0700 (PDT)
-Subject: Re: [PATCH 2/4] ARM: dts: NSP: disable sp804 ccbtimers by default
-To:     Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210613094639.3242151-1-mnhagan88@gmail.com>
- <20210613094639.3242151-2-mnhagan88@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <89d2a415-a9a3-f778-bd40-e39e01e219ef@gmail.com>
-Date:   Sun, 13 Jun 2021 09:22:49 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.10.2
+        id S231936AbhFMQ3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Jun 2021 12:29:30 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:58838 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231915AbhFMQ3a (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 13 Jun 2021 12:29:30 -0400
+Received: from p508fc96c.dip0.t-ipconnect.de ([80.143.201.108] helo=phil.fritz.box)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lsSxJ-0005DC-KL; Sun, 13 Jun 2021 18:27:25 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, paweljarosz3691@gmail.com,
+        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: rockchip: add labels to the timer nodes on rk3066a
+Date:   Sun, 13 Jun 2021 18:27:20 +0200
+Message-Id: <162360159829.3586115.9536707519501339660.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210612184733.2331-1-jbx6244@gmail.com>
+References: <20210612184733.2331-1-jbx6244@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210613094639.3242151-2-mnhagan88@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, 12 Jun 2021 20:47:33 +0200, Johan Jonker wrote:
+> While the kernel doesn't care so much right now, boot loaders like
+> u-boot need to refine the node on their side, so to make life easier
+> for everyone add the labels to the timer nodes on rk3066a.
 
+Applied, thanks!
 
-On 6/13/2021 2:46 AM, Matthew Hagan wrote:
-> The sp804 ccbtimers are enabled by default, however they may or may not
-> be present on the board. This patch disables them by default, requiring
-> them to be enabled only where applicable.
+[1/1] ARM: dts: rockchip: add labels to the timer nodes on rk3066a
+      commit: 3fedcc636e28f6188b6bb126199eda031bc707f3
 
-The timers are always part of the SoC, so they should always be enabled,
-and if there was some board specific wiring, in that maybe one of the
-times was fed a different clock source than iprocslow, we could deal
-with that on a per-board basis.
-
-If someone does not want a specific timer to be used, it could be
-unbound once the kernel has booted for instance.
+Best regards,
 -- 
-Florian
+Heiko Stuebner <heiko@sntech.de>
