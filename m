@@ -2,156 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F39A13A63D4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 13:15:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBFC33A64FC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 13:30:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234934AbhFNLRp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 07:17:45 -0400
-Received: from lb2-smtp-cloud8.xs4all.net ([194.109.24.25]:59267 "EHLO
-        lb2-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234372AbhFNLPp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 07:15:45 -0400
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud8.xs4all.net with ESMTPA
-        id skX7lc0iFhqltskXAlmisa; Mon, 14 Jun 2021 13:13:37 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1623669217; bh=1TIzd5x+CMgkHTFAhSGpDBDj1aXRIOcZdPZzciM0q0w=;
-        h=Subject:From:To:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=sTbe3FrFVZ7vMLAfgguNjOcdHEWka58/LrPQk8nOCiMxGT3hKmsdztGQt8YjmVke1
-         OrI85nqWstaigRgSC7z4qogVHONvZgHkmEr+rRASF0wGgm5C61LWKAzu8zFngJ0Rs8
-         oKrMjPqsYa7obfD97EGEddBLAD6GzCYhQvOtoxWDdMWuoWfkmy/5quhkvz8ICPTpBk
-         saAJN92L+v9IhkiGLils+pJrPu72QzC3uf0kyTOUK6PaQRkEpgT/MyJm1zz8v+WZwV
-         NeEBC/rnx/+3MuJAJLfFtbB+QBkyPoi3QQxklLzALdLNevjq0RZXH5YtiQz5IzsPbP
-         N9DqN5RbuqzpA==
-Subject: Re: [PATCH v2 00/12] Add support for older Rockchip SoCs to V4L2
- hantro and rkvdec drivers
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-To:     Alex Bee <knaerzche@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210525152225.154302-1-knaerzche@gmail.com>
- <20210527154455.358869-1-knaerzche@gmail.com>
- <562d80eb-92e5-53ff-0a15-182cc7676063@xs4all.nl>
-Message-ID: <16caa644-e587-8896-ac44-2530388facab@xs4all.nl>
-Date:   Mon, 14 Jun 2021 13:13:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.10.0
-MIME-Version: 1.0
-In-Reply-To: <562d80eb-92e5-53ff-0a15-182cc7676063@xs4all.nl>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfDgCsS/92iyXDa0kjpBC6llMmoTOccVKWaK0Jr2FI/SXqA6tF8L9ak6R+nd3QioEPdeySVlI/UEYzt34kWYGVC9fibL0fO5/bblqQuTtNlXTqLq+39tR
- SIF4AMNqW0S+LFQYv8x1Ndw+9OEgoAFLXXrjJvA2gv7Sd4ezEMpE1rhU3ngj3PNe5kpc/LW74aNP3Ph72Y8JRD7b6BBwhQMgOeActaYsbBRMF52o2cpJWON1
- Q+0PIA/Smm94V/bwaH1/5ZTOZZXeYoQKNj4rzhgwD2MEmmz0zW6572ST3GXX9DcImWjQnkaFLe/asu79l7XVBJ6zViMfZ0ys9xgWWY1bYOC/0aW1rJPKlzkR
- GNAUVWRx1g0VMdcZARSu0I5mokJUQMtj4Pf3Og25UiYRdnJyDm+dqM5iXF/IqsR5/fO0jxcZ6OsJKH9AEwpGLYq3qIT1YrCb48e506WuGL4Eq54IcBeN9IWw
- oFf/W/lruOikTuHK/34LpT4/ZmaJRslomOeXRo3Z22+Vteo19HxZzpY1fj9SWrm3sfF+u6So1xa6nnO/CJ3QyCt2iZ/9xz+EWdUmLA7TF83jqRxDRuoguIa7
- YuFKIy5fbkL/yTzeyjdWaPIW2YJMmC1FEMMEsi94oXCCajp+el00vFCPsH73xU1AVro=
+        id S235668AbhFNLb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 07:31:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42986 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236059AbhFNL3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 07:29:44 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3820C0611FA;
+        Mon, 14 Jun 2021 04:24:00 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id l18-20020a1ced120000b029014c1adff1edso12776846wmh.4;
+        Mon, 14 Jun 2021 04:24:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=KkYDjNEVEUYWRsNoTrKu5VhSupn5YZcqZPCCTeGuQLE=;
+        b=SB4A5QIKc6qUAIZ+jcYTcKSADf/lridtue5zfa/P6SM+1kOjyKfrklP91/CMSjRNzR
+         FynuIjnZPCci+QQn0SK0sShi1pWnLXkGAklnpAScfFmbnL/wQZfGWIyGq4Dw8f8oHJ1Y
+         CZB0XafCi4mOGZuv54cunVkatH4ZfMZZXyJp1gn3p/+xATYw99s4o3zf/2YsdxtsJoI8
+         rIdIGGw7EhlfR283JEt8yLGA9ljL3qnfpXl5MnpEuMvTjV5ZnYqjXUTcZFNDwFQpUpqh
+         XtE/V6bBXuZarkV06b81erWIbPuo9t/nIuFPuk4SY8R1NzlrrCk5GnJ0/eNFtpCYznqi
+         SPOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=KkYDjNEVEUYWRsNoTrKu5VhSupn5YZcqZPCCTeGuQLE=;
+        b=dCPrTEA7U7y+FijX6SOTFjeF0BZdrSR1OBhU/m8/wqOAUo3dMQgxKN2yMTtsshN8Gf
+         IfW/EUKAIik2vXGXRnQY8m8M2WKhu0ZhSBCpg8lD1AgGF8HZlOSbYqf2/Rp5VsMJSOz7
+         pbkI7MqFI0n+h9ysFlubTXPXu2SThj136Bg/oMfYQnnOuxw9ArQhfTq9jP93onS00Jcc
+         VL5qSKyvryLZwY7p4hNvkjBsslFHefgpB8GZ9uy02uoz2oJOodicAyV7MSkLOQ0kLlyj
+         OgqwvPmMFMRpWefLztq5FXHl2z9dGBniveMZ0yueF8JOkXiOTeR5N/HG3Wa52TW//vVM
+         4l9Q==
+X-Gm-Message-State: AOAM531bV8MokqAO57BXxTsZxzHwxlY10V53ReIAEZRgps4oCIh8KE/F
+        JB8YY0+sA3P80o3+XVSb2/E=
+X-Google-Smtp-Source: ABdhPJwMRKNNvHww700Fm13czmA35T1evBYSuPXN6rQDjEwkAhz/muPptE2GB5DfPED68EPgBqHnvw==
+X-Received: by 2002:a1c:7c13:: with SMTP id x19mr32257413wmc.96.1623669839413;
+        Mon, 14 Jun 2021 04:23:59 -0700 (PDT)
+Received: from felia.fritz.box ([2001:16b8:2d62:e800:a8e7:80e:6e34:237d])
+        by smtp.gmail.com with ESMTPSA id w13sm17269485wrc.31.2021.06.14.04.23.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Jun 2021 04:23:58 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Yu Chen <chenyu56@huawei.com>,
+        Anitha Chrisanthus <anitha.chrisanthus@intel.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Joe Perches <joe@perches.com>,
+        Ralf Ramsauer <ralf.ramsauer@oth-regensburg.de>,
+        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: [PATCH v2 0/3] Rectify file references for dt-bindings in MAINTAINERS
+Date:   Mon, 14 Jun 2021 13:23:46 +0200
+Message-Id: <20210614112349.26108-1-lukas.bulwahn@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2021 13:09, Hans Verkuil wrote:
-> Hi Alex,
-> 
-> On 27/05/2021 17:44, Alex Bee wrote:
->> Hi list,
->>
->> this series adds support for older Rockchip SoCs (RK3036, RK3066, RK3188
->> and RK322x) to the existing V4L2 video decoder/-encoder drivers - namely
->> hantro and rkvdec.
->> They can be used as-is or with very little modifications.
->>
->> In preparation to that patches 1,8 and 9 add power-controller support for
->> RK3036 and RK322x, since both drivers rely on pm. The drivers for them 
->> exist already in the common Rockchip pm driver, they just haven't be added
->> to the device trees yet.
->>
->> Changes in v2:
->> - reordered patches as suggested by Heiko
->> - fixed indentation and order issues in dt-bindings / DT patches
->> - added patch to reorder variants in hantro alphanumeric
->> - added patch that merges hantro platform drivers for Rockchip in one
->> - added missing DT patch for RK3036 (missed to submit with v1)
->> See individual patches for details about changes.
->>
->> Thanks for your feedback,
->> Alex.
->>
->> Alex Bee (12):
->>   dt-bindings: mfd: syscon: add Rockchip RK3036/RK3228 qos compatibles
->>   dt-bindings: media: rockchip-vpu: add new compatibles
->>   dt-bindings: media: rockchip-vdec: add RK3228 compatible
->>   media: hantro: reorder variants
->>   media: hantro: merge Rockchip platform drivers
->>   media: hantro: add support for Rockchip RK3066
->>   media: hantro: add support for Rockchip RK3036
->>   ARM: dts: rockchip: add power controller for RK3036
->>   ARM: dts: rockchip: add power controller for RK322x
->>   ARM: dts: rockchip: add vpu node for RK3036
->>   ARM: dts: rockchip: add vpu nodes for RK3066 and RK3188
->>   ARM: dts: rockchip: add vpu and vdec node for RK322x
-> 
-> Unfortunately this series no longer applies. Support for the G2/HEVC decoder
-> was merged, and that conflicts with this series.
-> 
-> It is best to rebase you series to the master branch of the media_stage
-> tree (https://git.linuxtv.org/media_stage.git/log/), which contains that
-> series. I expect/hope that this will be merged later this week to the
-> regular media_tree master branch, so you can wait for that as well.
+Hi Rob,
 
-Ah, it just got merged to media_tree master. So just base your series on
-that branch.
+here is a patch series that cleans up some file references for dt-bindings
+in MAINTAINERS. It applies cleanly on next-20210611.
 
-Regards,
+This is a v2 of the still relevant patches from the first submission
+of the patch series (see Links) send out 2021-03-15 and resent on 2021-04-19.
 
-	Hans
 
-> 
-> Regards,
-> 
-> 	Hans
-> 
->>
->>  .../bindings/media/rockchip,vdec.yaml         |  10 +-
->>  .../bindings/media/rockchip-vpu.yaml          |  33 +-
->>  .../devicetree/bindings/mfd/syscon.yaml       |   2 +
->>  arch/arm/boot/dts/rk3036.dtsi                 |  72 +++
->>  arch/arm/boot/dts/rk3066a.dtsi                |   4 +
->>  arch/arm/boot/dts/rk3188.dtsi                 |   5 +
->>  arch/arm/boot/dts/rk322x.dtsi                 | 140 ++++-
->>  arch/arm/boot/dts/rk3xxx.dtsi                 |  12 +
->>  drivers/staging/media/hantro/Makefile         |   9 +-
->>  drivers/staging/media/hantro/hantro_drv.c     |   6 +-
->>  drivers/staging/media/hantro/hantro_hw.h      |  30 +-
->>  drivers/staging/media/hantro/rk3288_vpu_hw.c  | 208 -------
->>  drivers/staging/media/hantro/rk3399_vpu_hw.c  | 222 --------
->>  ...jpeg_enc.c => rockchip_vpu2_hw_jpeg_enc.c} |  30 +-
->>  ...eg2_dec.c => rockchip_vpu2_hw_mpeg2_dec.c} |  25 +-
->>  ...w_vp8_dec.c => rockchip_vpu2_hw_vp8_dec.c} |   2 +-
->>  ...rk3399_vpu_regs.h => rockchip_vpu2_regs.h} |   6 +-
->>  .../staging/media/hantro/rockchip_vpu_hw.c    | 526 ++++++++++++++++++
->>  18 files changed, 848 insertions(+), 494 deletions(-)
->>  delete mode 100644 drivers/staging/media/hantro/rk3288_vpu_hw.c
->>  delete mode 100644 drivers/staging/media/hantro/rk3399_vpu_hw.c
->>  rename drivers/staging/media/hantro/{rk3399_vpu_hw_jpeg_enc.c => rockchip_vpu2_hw_jpeg_enc.c} (87%)
->>  rename drivers/staging/media/hantro/{rk3399_vpu_hw_mpeg2_dec.c => rockchip_vpu2_hw_mpeg2_dec.c} (93%)
->>  rename drivers/staging/media/hantro/{rk3399_vpu_hw_vp8_dec.c => rockchip_vpu2_hw_vp8_dec.c} (99%)
->>  rename drivers/staging/media/hantro/{rk3399_vpu_regs.h => rockchip_vpu2_regs.h} (99%)
->>  create mode 100644 drivers/staging/media/hantro/rockchip_vpu_hw.c
->>
->>
->> base-commit: 5d765451c2409e63563fa6a3e8005bd03ab9e82f
->>
-> 
+Could you pick this series for your devicetree bindings tree?
+
+No functional change, just cleaning up MAINTAINERS.
+
+Lukas
+
+Link: https://lore.kernel.org/lkml/20210315160451.7469-1-lukas.bulwahn@gmail.com/
+Link: https://lore.kernel.org/lkml/20210419092609.3692-1-lukas.bulwahn@gmail.com/
+
+Adjustment from original to resend version:
+  - drop subsumed patches
+
+Adjustment to resend version:
+  - add Fixes-tags as requested by Nobuhiro Iwamatsu
+
+Lukas Bulwahn (3):
+  MAINTAINERS: rectify entry for ARM/TOSHIBA VISCONTI ARCHITECTURE
+  MAINTAINERS: rectify entry for HIKEY960 ONBOARD USB GPIO HUB DRIVER
+  MAINTAINERS: rectify entry for INTEL KEEM BAY DRM DRIVER
+
+ MAINTAINERS | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+-- 
+2.17.1
 
