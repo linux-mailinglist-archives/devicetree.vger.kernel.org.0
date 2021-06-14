@@ -2,266 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A5CF3A61A6
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 12:48:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04CBF3A637E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 13:13:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233607AbhFNKuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 06:50:10 -0400
-Received: from mail-wr1-f50.google.com ([209.85.221.50]:43694 "EHLO
-        mail-wr1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233663AbhFNKsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 06:48:04 -0400
-Received: by mail-wr1-f50.google.com with SMTP id r9so14014570wrz.10
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 03:46:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=8d/+A3nrsnLJMgR/AIVYK9SWox/OsVV6RfKVCOtelGA=;
-        b=RZ4RiiLQhy0zOTYNVjuHga3qM0UGB6CNFpcu61gCFgtGKxmVQf1HR8N9tTEMGHIXx8
-         zkvLalvqidxCcNwtrk7n/c63E7saX5t2wMsOxreXm2M81o0HK6SjZuzE0OxLjvkXskBJ
-         zWXXFyIvw+wX+xp15Gx3Z8xZZOuAYgdv4mwpsHRm0pfTYdqXtyh3GcIm1bj47taUb5YO
-         qyBtFzR1lW5R9a1gOybKje62SpkbVGPxggciRHW9MX8MFINsvHPvKmRVAamxxGtU/Ww/
-         hD5GCl/ohMah/6Rhi508JURocnRQHwY8VQRhKfCh2LI43CJVZxxjFTfVvq880zAozZ+j
-         FMcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8d/+A3nrsnLJMgR/AIVYK9SWox/OsVV6RfKVCOtelGA=;
-        b=G9fMLOdkXHHGlHyTBb9XkCbT3M6I6AexKAF8dpLG0GoNA0hcRgibj3kNU7oe+BAH30
-         0KV0CT0ekeFDwsTMLGjgIpxZa9VAmUpMsWOREA/601sNMuMiEKeSj/3pzNOypxFiWsaI
-         UtdPapvJbjVPo+3oVG32o58ueUZs1J/iY504fXyM2p1ShYq4KYqHE8CtQpeYPeCVDMDT
-         rUWGPJtM7Fxm/cB9Mq5Bnz+YBxOqnxgTJ8oIvTL2Tz5jcmKQar2L5qm6Vd5LNYXqhwRH
-         fKcOp/jRQxoIEMU0yiv1Zd0eKQ7p8D4OklJSA2rvNYLj8zTL42nJoksIs6KkIgU9EaVn
-         uhPA==
-X-Gm-Message-State: AOAM530VK3NZ6UzZGieXm1WKT9UdCk0Bb7iMbTVqlcHVq3TdXdZKgiZF
-        SYunZ9r9c5WCRrOhmjrVBbk5Rw==
-X-Google-Smtp-Source: ABdhPJyLXiN6JycbTN1svrMiyzlNZjRab04Oc3sN833/qLym10qO7qGkP2CV4Pc2qBxhpZWFnhb5qw==
-X-Received: by 2002:adf:a195:: with SMTP id u21mr17680126wru.367.1623667501217;
-        Mon, 14 Jun 2021 03:45:01 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id r18sm15843544wro.62.2021.06.14.03.45.00
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 14 Jun 2021 03:45:00 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] nvmem: core: introduce cells parser
-To:     Vadym Kochan <vadym.kochan@plvision.eu>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        id S235382AbhFNLNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 07:13:54 -0400
+Received: from lb3-smtp-cloud8.xs4all.net ([194.109.24.29]:59197 "EHLO
+        lb3-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234286AbhFNLLw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Jun 2021 07:11:52 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud8.xs4all.net with ESMTPA
+        id skTKlbz73hqltskTOlmht4; Mon, 14 Jun 2021 13:09:42 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1623668982; bh=vddD9ihU2ZPegn37Asrq1n1pbNugCtI3Mvl3vbyY6h8=;
+        h=From:Subject:To:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=Lr2Ea2Nto2lShMCH2S9F4Qy+ZMmP4fHjYWaNzClW178dJRGP54kumaKtjozLg2oLd
+         LQMuiNVGR9I8w5WypJ4YRPdfuowA9aC9QRfMekvPfAau101RZ/J59N1MP8jhmdjU3K
+         OS4v4s8q4i/oESf9z+CqGFOYapY0ti9NtJ2a5xMcs0ZDp2SeH2Lf5ffiLnOA7kjyst
+         ueW+Kl8n7VsJkKpUteqXBAdyJZ95oqNK6y+Bax4i+7COT2dWkIoZ6CaJLnbSK5SJRh
+         LGCZrLW9z4hSugxCMrtavEG/12C4UXL1xJw9PqdDVMoPJOX0kg53FKJcbg/5xOBBQ3
+         593kZXqao8AGg==
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Subject: Re: [PATCH v2 00/12] Add support for older Rockchip SoCs to V4L2
+ hantro and rkvdec drivers
+To:     Alex Bee <knaerzche@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
         devicetree@vger.kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>
-References: <20210608190327.22071-1-vadym.kochan@plvision.eu>
- <20210608190327.22071-2-vadym.kochan@plvision.eu>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <43023500-dd6a-5180-057e-cecc1f1b6500@linaro.org>
-Date:   Mon, 14 Jun 2021 11:44:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20210525152225.154302-1-knaerzche@gmail.com>
+ <20210527154455.358869-1-knaerzche@gmail.com>
+Message-ID: <562d80eb-92e5-53ff-0a15-182cc7676063@xs4all.nl>
+Date:   Mon, 14 Jun 2021 13:09:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.0
 MIME-Version: 1.0
-In-Reply-To: <20210608190327.22071-2-vadym.kochan@plvision.eu>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20210527154455.358869-1-knaerzche@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfD616eqUHJJQZz5sFByPOsT2nDsyUUckWPOoJiPESgeRGGyqXzoSDTV2d+J5vxBPHFQtCE7ANAWcxFhYOA2b34PGEqUnsnh0BYxT2Y/TDGHWlY35SSlP
+ 5sDVP+cBhS+p4bof0AGFTWLMLb2+szh+3qsh6pfM7nmwYqGhklRnvwUSK0zv3BfDCY5NeVTZ64UubpapoTbeu6hiMuIVlCyNMfY5gWEV9sZeK5RgS9Y2YVVe
+ 1RhaL33Dyo50NUabDEv2s3gJ3caTcFX7FKyrJ8SKjbht8ZKhmP9F0QVbCx8zurQcluEv9iJfZlWM4ZdW7yqihDnr1Q5hJDm32rXciZZE16jvN5f0yX6DqvYt
+ PuWagwZEzgxglTyQSuMHEOJTgYbIjQwCTaM1mv7O/UKwaN5DOhPjz2nspL7qz7pfYIedpiYgBXvA60bPpRR85gnE8BqfHzTTz5gzZE0tF0NRIXp2whb4Mpam
+ wlpeh6OUSzGzv/pShG7G47rDyvF/uLaeHwKNsX0vrPW4QM2UaS69Sw2DQFqCnCrFv1w2GNheGgRZQnLeWoGgoLJqCTkA4r8GgbFqqaryRm2P5ciY9a1EGH3f
+ HFI8Tcqv3xyQUd7XHc5DDckgRCV7DEm/WOnEOAXXZWN3n5wqd/xNwDab5wDOtts+/e0=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Alex,
 
-
-On 08/06/2021 20:03, Vadym Kochan wrote:
-> Current implementation does not allow to register cells for already
-> registered nvmem device and requires that this should be done before. But
-> there might a driver which needs to parse the nvmem device and after
-> register a cells table.
+On 27/05/2021 17:44, Alex Bee wrote:
+> Hi list,
 > 
-> Introduce nvmem_parser API which allows to register cells parser which
-> is called during nvmem device registration. During this stage the parser
-> can read the nvmem device and register the cells table.
+> this series adds support for older Rockchip SoCs (RK3036, RK3066, RK3188
+> and RK322x) to the existing V4L2 video decoder/-encoder drivers - namely
+> hantro and rkvdec.
+> They can be used as-is or with very little modifications.
 > 
-> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
-> ---
-> v2:
->      1) Added nvmem_parser_data so parser implementation
->         should fill it with cells table and lookups which
->         will be registered by core.c after cells_parse was
->         succeed.
+> In preparation to that patches 1,8 and 9 add power-controller support for
+> RK3036 and RK322x, since both drivers rely on pm. The drivers for them 
+> exist already in the common Rockchip pm driver, they just haven't be added
+> to the device trees yet.
 > 
->      2) Removed cells_remove callback from nvmem_parser_config which
->         is not needed because cells table & lookups are
->         registered/unregistered automatically by core.
+> Changes in v2:
+> - reordered patches as suggested by Heiko
+> - fixed indentation and order issues in dt-bindings / DT patches
+> - added patch to reorder variants in hantro alphanumeric
+> - added patch that merges hantro platform drivers for Rockchip in one
+> - added missing DT patch for RK3036 (missed to submit with v1)
+> See individual patches for details about changes.
 > 
->      3) Use new device property to read cells parser name during nvmem
->         registration. Removed of_node usage.
+> Thanks for your feedback,
+> Alex.
 > 
->      4) parser's module refcount is incremented/decremented on each parser
->         bind/unbind to nvmem device.
+> Alex Bee (12):
+>   dt-bindings: mfd: syscon: add Rockchip RK3036/RK3228 qos compatibles
+>   dt-bindings: media: rockchip-vpu: add new compatibles
+>   dt-bindings: media: rockchip-vdec: add RK3228 compatible
+>   media: hantro: reorder variants
+>   media: hantro: merge Rockchip platform drivers
+>   media: hantro: add support for Rockchip RK3066
+>   media: hantro: add support for Rockchip RK3036
+>   ARM: dts: rockchip: add power controller for RK3036
+>   ARM: dts: rockchip: add power controller for RK322x
+>   ARM: dts: rockchip: add vpu node for RK3036
+>   ARM: dts: rockchip: add vpu nodes for RK3066 and RK3188
+>   ARM: dts: rockchip: add vpu and vdec node for RK322x
+
+Unfortunately this series no longer applies. Support for the G2/HEVC decoder
+was merged, and that conflicts with this series.
+
+It is best to rebase you series to the master branch of the media_stage
+tree (https://git.linuxtv.org/media_stage.git/log/), which contains that
+series. I expect/hope that this will be merged later this week to the
+regular media_tree master branch, so you can wait for that as well.
+
+Regards,
+
+	Hans
+
 > 
->   drivers/nvmem/core.c           | 178 +++++++++++++++++++++++++++++++++
->   include/linux/nvmem-provider.h |  31 ++++++
->   2 files changed, 209 insertions(+)
+>  .../bindings/media/rockchip,vdec.yaml         |  10 +-
+>  .../bindings/media/rockchip-vpu.yaml          |  33 +-
+>  .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+>  arch/arm/boot/dts/rk3036.dtsi                 |  72 +++
+>  arch/arm/boot/dts/rk3066a.dtsi                |   4 +
+>  arch/arm/boot/dts/rk3188.dtsi                 |   5 +
+>  arch/arm/boot/dts/rk322x.dtsi                 | 140 ++++-
+>  arch/arm/boot/dts/rk3xxx.dtsi                 |  12 +
+>  drivers/staging/media/hantro/Makefile         |   9 +-
+>  drivers/staging/media/hantro/hantro_drv.c     |   6 +-
+>  drivers/staging/media/hantro/hantro_hw.h      |  30 +-
+>  drivers/staging/media/hantro/rk3288_vpu_hw.c  | 208 -------
+>  drivers/staging/media/hantro/rk3399_vpu_hw.c  | 222 --------
+>  ...jpeg_enc.c => rockchip_vpu2_hw_jpeg_enc.c} |  30 +-
+>  ...eg2_dec.c => rockchip_vpu2_hw_mpeg2_dec.c} |  25 +-
+>  ...w_vp8_dec.c => rockchip_vpu2_hw_vp8_dec.c} |   2 +-
+>  ...rk3399_vpu_regs.h => rockchip_vpu2_regs.h} |   6 +-
+>  .../staging/media/hantro/rockchip_vpu_hw.c    | 526 ++++++++++++++++++
+>  18 files changed, 848 insertions(+), 494 deletions(-)
+>  delete mode 100644 drivers/staging/media/hantro/rk3288_vpu_hw.c
+>  delete mode 100644 drivers/staging/media/hantro/rk3399_vpu_hw.c
+>  rename drivers/staging/media/hantro/{rk3399_vpu_hw_jpeg_enc.c => rockchip_vpu2_hw_jpeg_enc.c} (87%)
+>  rename drivers/staging/media/hantro/{rk3399_vpu_hw_mpeg2_dec.c => rockchip_vpu2_hw_mpeg2_dec.c} (93%)
+>  rename drivers/staging/media/hantro/{rk3399_vpu_hw_vp8_dec.c => rockchip_vpu2_hw_vp8_dec.c} (99%)
+>  rename drivers/staging/media/hantro/{rk3399_vpu_regs.h => rockchip_vpu2_regs.h} (99%)
+>  create mode 100644 drivers/staging/media/hantro/rockchip_vpu_hw.c
 > 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index bca671ff4e54..648373ced6d4 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -39,6 +39,7 @@ struct nvmem_device {
->   	nvmem_reg_read_t	reg_read;
->   	nvmem_reg_write_t	reg_write;
->   	struct gpio_desc	*wp_gpio;
-> +	struct nvmem_parser_data *parser_data;
+> 
+> base-commit: 5d765451c2409e63563fa6a3e8005bd03ab9e82f
+> 
 
-This should be renamed to nvmem_cell_info_parser or something on those 
-lines to avoid any misunderstanding on what exactly this parser is about.
-
-May be can totally avoid this by using parser name only during register.
-
->   	void *priv;
->   };
->   
-> @@ -57,6 +58,13 @@ struct nvmem_cell {
->   	struct list_head	node;
->   };
->   
-> +struct nvmem_parser {
-> +	struct list_head	head;
-> +	nvmem_parse_t		cells_parse;
-> +	const char		*name;
-> +	struct module		*owner;
-> +};
-> +
->   static DEFINE_MUTEX(nvmem_mutex);
->   static DEFINE_IDA(nvmem_ida);
->   
-> @@ -66,6 +74,9 @@ static LIST_HEAD(nvmem_cell_tables);
->   static DEFINE_MUTEX(nvmem_lookup_mutex);
->   static LIST_HEAD(nvmem_lookup_list);
->   
-> +static DEFINE_MUTEX(nvmem_parser_mutex);
-> +static LIST_HEAD(nvmem_parser_list);
-> +
->   static BLOCKING_NOTIFIER_HEAD(nvmem_notifier);
->   
->   static int __nvmem_reg_read(struct nvmem_device *nvmem, unsigned int offset,
-> @@ -418,6 +429,118 @@ static struct bus_type nvmem_bus_type = {
->   	.name		= "nvmem",
->   };
->   
-> +static struct nvmem_parser *__nvmem_parser_get(const char *name)
-> +{
-> +	struct nvmem_parser *tmp, *parser = NULL;
-> +
-> +	list_for_each_entry(tmp, &nvmem_parser_list, head) {
-> +		if (strcmp(name, tmp->name) == 0) {
-> +			parser = tmp;
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (!parser)
-> +		return ERR_PTR(-EPROBE_DEFER);
-> +
-> +	if (!try_module_get(parser->owner)) {
-> +		pr_err("could not increase module refcount for parser %s\n",
-> +		       parser->name);
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	}
-> +
-> +	return parser;
-> +}
-> +
-> +static void nvmem_parser_put(const struct nvmem_parser *parser)
-> +{
-> +	module_put(parser->owner);
-> +}
-> +
-> +static int nvmem_parser_bind(struct nvmem_device *nvmem, const char *name)
-> +{
-Do we really need parser bind/unbind mechanisms for what we are trying 
-to do here.
-
-It's just simply parsing cell info during nvmem register, do we really 
-care if parser is there or not after that?
-
-code can be probably made much simpler by just doing this in nvmem_register
-
-parser_get()
-parse_get_cell_info()
-parser_put()
-
-AFAIU, that is all we need.
-
-> +	struct nvmem_parser_data *data;
-> +	struct nvmem_parser *parser;
-> +	int err;
-> +
-> +	mutex_lock(&nvmem_parser_mutex);
-> +
-> +	parser = __nvmem_parser_get(name);
-> +	err = PTR_ERR_OR_ZERO(parser);
-> +	if (!err) { > +		data = kzalloc(sizeof(*data), GFP_KERNEL);
-> +		if (data) {
-> +			data->parser = parser;
-> +			nvmem->parser_data = data;
-> +		} else {
-> +			nvmem_parser_put(parser);
-> +			err = -ENOMEM;
-> +		}
-> +	}
-> +
-> +	mutex_unlock(&nvmem_parser_mutex);
-> +
-> +	return err;
-> +}
-> +
-> +static void nvmem_parser_unbind(const struct nvmem_device *nvmem)
-> +{
-> +	struct nvmem_parser_data *data = nvmem->parser_data;
-> +
-> +	if (data->table.cells) {
-> +		nvmem_del_cell_table(&data->table);
-> +		kfree(data->table.cells);
-who has allocated memory for this, its confusing for this to be freed in 
-core.
-> +	}
-> +	if (data->lookup) { > +		nvmem_del_cell_lookups(data->lookup, data->nlookups);
-> +		kfree(data->lookup);
-> +	}
-> +
-> +	nvmem_parser_put(data->parser);
-> +}
-> +
-> +static void nvmem_parser_data_register(struct nvmem_device *nvmem,
-> +				       struct nvmem_parser_data *data)
-> +{
-> +	if (data->table.cells) {
-> +		if (!data->table.nvmem_name)
-> +			data->table.nvmem_name = nvmem_dev_name(nvmem);
-> +
-> +		nvmem_add_cell_table(&data->table);
-> +	}
-> +
-> +	if (data->lookup) {
-Why do we need lookups?
-the cells are already associated with provider. lookups are normally 
-used for associating devices with nvmemcell more for old non-dt machine 
-code.
-
-you can remove this.
-> +		struct nvmem_cell_lookup *lookup = &data->lookup[0];
-> +		int i = 0;
-> +
-> +		for (i = 0; i < data->nlookups; i++, lookup++) {
-> +			if (!lookup->nvmem_name)
-> +				lookup->nvmem_name = nvmem_dev_name(nvmem);
-> +
-> +			if (!lookup->dev_id)
-> +				lookup->dev_id = data->parser->name;
-> +		}
-> +
-> +		nvmem_add_cell_lookups(data->lookup, data->nlookups);
-> +	}
-> +}
-> +
-
---srini
