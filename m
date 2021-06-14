@@ -2,78 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81E2F3A6805
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 15:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C26573A6833
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 15:40:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232888AbhFNNhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 09:37:31 -0400
-Received: from mail-yb1-f177.google.com ([209.85.219.177]:38683 "EHLO
-        mail-yb1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233287AbhFNNha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 09:37:30 -0400
-Received: by mail-yb1-f177.google.com with SMTP id m9so15476656ybo.5;
-        Mon, 14 Jun 2021 06:35:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Jjeb2VBZlHsMDUPadrsr3uON+trO752pZHCWpt5WtHQ=;
-        b=PJ35xyFVTzv/+suvuO3wLsMl2ome1H3nJs2WPwL2tfdai6MF4Xr4Tzp3NkbBDZQ6px
-         jrdeZmfji2yZz2nerme9LNjHMAnISVHEnuRsGYTkOG6EHitziq7JyfhhE+NDsQZ2WW32
-         +J2zSlMcIl0/D9BdQDMZ3WeEmIYCUYx2aCtlwn/HCOXbhIS9qHFVnEJXB5USYQ0paxqi
-         8nK/0Q0LVJe99gEDWJ3EMk+tcUBubZ5tPAJCcBBy0534cSTi0+C7YqI5USQxoSowbjH7
-         yrLYRH/AE92rqXJ9ad6ZdJTKL2pLfLSKsUCOAVxDs8N8UhkiVPf6BcTGpF6wCVY5tA+6
-         kPBA==
+        id S233797AbhFNNmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 09:42:19 -0400
+Received: from mail-il1-f180.google.com ([209.85.166.180]:44650 "EHLO
+        mail-il1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234200AbhFNNmQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 09:42:16 -0400
+Received: by mail-il1-f180.google.com with SMTP id i17so12204645ilj.11;
+        Mon, 14 Jun 2021 06:39:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Jjeb2VBZlHsMDUPadrsr3uON+trO752pZHCWpt5WtHQ=;
-        b=pGlifrfIciaQ0P+kLJ/fLVSHVvC7Tnpb/18hWRwSMXr6NgMIDNk6jBLpS6T6AZRL7p
-         E7e8qEwWxMEKDvOORwrW2f7CrZf9t9ndG1EaszvhmR335UmxfnI4zNqyAYQInEDIn3HC
-         HIYTINpseCBaCa5YL/QYGnqsINH0PFnErTvfnEVjgjCUJPUTxcTQ4spNpmQuMe2Fd9dn
-         CqjWs/1PSrTxqjLg+nyts19mpZJsBiM1TrHA5dtO2QQLEcf2oDrUw9waufLPDSEtU4sb
-         vvrXeer5Fvna1z3WBkz2rVWtiorsHGGJYCNwgA1yTF/3jWvRFQKXseClSkh7hzE+oxjV
-         s1Ag==
-X-Gm-Message-State: AOAM533sy30NqDRjNlf9HNLb5Wy6sVJNUYYarwn7hZ9pGoPEkktmMjQI
-        e+u0VqFspidFZjiYpGipyoN1ZIWXI2zzWe3Z920=
-X-Google-Smtp-Source: ABdhPJyFwHZpRU74JDJMgDYk1WERGTnTqTksGdZ8EaZrxK/tuJc0NHSS3jIS9xxtboEFCHv0OKpxB7UkBau+FvUFGTA=
-X-Received: by 2002:a25:b8c:: with SMTP id 134mr24998511ybl.332.1623677667645;
- Mon, 14 Jun 2021 06:34:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210612160422.330705-1-anup.patel@wdc.com> <20210612160422.330705-11-anup.patel@wdc.com>
-In-Reply-To: <20210612160422.330705-11-anup.patel@wdc.com>
-From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Mon, 14 Jun 2021 21:34:15 +0800
-Message-ID: <CAEUhbmUGSWOS7iG209BqTWBgTc63xPm1L_0xNBhKXVnu7Wpjjg@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 10/10] MAINTAINERS: Add entry for RISC-V ACLINT drivers
-To:     Anup Patel <anup.patel@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=OxkVXBVM55LDwVRAZPY6AljtXcBqUD2U0cvNY0im0TI=;
+        b=Dl2l5ICfALK0KfquruUxr0jmurOyOla+6ywhgnh4IvG+ZRYbJ5192uXACZCiQbsbIm
+         /ir62VToOl9AWAPOCUe39zJrMTw4sAoKg/aiz5o7Zdhx5UoQirMwfELxn0kjzOhixRJq
+         DhzIru6kIyaATKay3imHHfK47keSyjZQiBl9g6T0aXTAkRBdYURqyc8brIfAI6pd1jUT
+         uMj7nS6Dxc0SyZc+JEmxjaWwrBNIA24clu7A5mpQfQ7vs3FwTnDU7mbMGBfZ9pe0eaAO
+         AbGNQC+HkJDZg9Uw6W8oDI9Zk5ZZRqzEdYtBttMBWEYUobTbZzZClNoqjeP8fkee8ron
+         nY7Q==
+X-Gm-Message-State: AOAM530wWEhr52zDrqrYuL7A4A8HDwvVi9CBszN7ldSUtyXlRajTSkA/
+        LMu6aveanJAoHybo+KyU1djlsFE30w==
+X-Google-Smtp-Source: ABdhPJy6lhmA8NFPbyoWawUnEPz8LESbIgELTYTaG2/ny9Psly+KNDI+gFkFRpNEZ6qgODjZAgjcWg==
+X-Received: by 2002:a92:ccd1:: with SMTP id u17mr13864514ilq.239.1623677998429;
+        Mon, 14 Jun 2021 06:39:58 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id r10sm7695817ilq.46.2021.06.14.06.39.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Jun 2021 06:39:57 -0700 (PDT)
+Received: (nullmailer pid 630749 invoked by uid 1000);
+        Mon, 14 Jun 2021 13:39:48 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Caleb Connolly <caleb@connolly.tech>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-input@vger.kernel.org, phone-devel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+In-Reply-To: <20210612205405.1233588-2-caleb@connolly.tech>
+References: <20210612205405.1233588-1-caleb@connolly.tech> <20210612205405.1233588-2-caleb@connolly.tech>
+Subject: Re: [PATCH 1/4] dt-bindings: input: add Qualcomm QPNP haptics driver
+Date:   Mon, 14 Jun 2021 07:39:48 -0600
+Message-Id: <1623677988.130611.630748.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 13, 2021 at 12:08 AM Anup Patel <anup.patel@wdc.com> wrote:
->
-> Add myself as maintainer for RISC-V ACLINT drivers.
->
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
+On Sat, 12 Jun 2021 20:54:31 +0000, Caleb Connolly wrote:
+> Add bindings for pmi8998 qpnp haptics driver.
+> 
+> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
 > ---
->  MAINTAINERS | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
+>  .../bindings/input/qcom,qpnp-haptics.yaml     | 123 ++++++++++++++++++
+>  include/dt-bindings/input/qcom,qpnp-haptics.h |  31 +++++
+>  2 files changed, 154 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/qcom,qpnp-haptics.yaml
+>  create mode 100644 include/dt-bindings/input/qcom,qpnp-haptics.h
+> 
 
-Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/input/qcom,qpnp-haptics.example.dt.yaml:0:0: /example-0/pmic@3: failed to match any schema with compatible: ['qcom,pmi8998', 'qcom,spmi-pmic']
+Documentation/devicetree/bindings/input/qcom,qpnp-haptics.example.dt.yaml:0:0: /example-0/pmic@3: failed to match any schema with compatible: ['qcom,pmi8998', 'qcom,spmi-pmic']
+\ndoc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1491323
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
