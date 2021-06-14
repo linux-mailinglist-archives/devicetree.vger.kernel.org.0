@@ -2,119 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F16883A664B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 14:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5A083A6656
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 14:16:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233041AbhFNMOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 08:14:19 -0400
-Received: from mail-ua1-f46.google.com ([209.85.222.46]:36692 "EHLO
-        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232977AbhFNMOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 08:14:16 -0400
-Received: by mail-ua1-f46.google.com with SMTP id p9so5365140uar.3;
-        Mon, 14 Jun 2021 05:12:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=P4Iq/knWjwzfpXwSZUSxpj5Oaukze11zDNFuFkO7hjQ=;
-        b=TJpszwR/z+45Holrbe/dC2LYm9BY8V3ITyx9+ImfyzPjfx53V88MiqvX23zJJWlNBP
-         F3scIHAPe8P+nFgHeFd88Ox5cnLCMrDfXV9jxLM2u8+HlpfcpA6E9a6HgqbP64jqBFV/
-         3ONZg/XMPVFdfoJ/01S/IDKpVb/YYEx3t69N6QtT0JEE6PB0QuVeszDrwleZZNm76SFr
-         KYCnryfHCkoSZBTNDzvUtIimtIGlOIphXEr3qcHP1YFZo/35qXcnB1qaAGVvla6f0N11
-         D+LXrOovqNbH3BEK0/pY51bGG30uia3I/LMJixf6XDaEReyq6oKejqqwM0Pz4qBgnwrb
-         U7BQ==
-X-Gm-Message-State: AOAM531HcKp9UyqRIPpoIPyECD9cTIEtb4UR3vMl7OWeyAdp0bFLFnMG
-        CvsDcrsS8PlpRTbCh9okIdXup62AKs35cxpcYXiT8PyPYKoMDg==
-X-Google-Smtp-Source: ABdhPJwnqsYX7iRpE8vBsuVNoKR7cr27Qc4NXONjjirn5j/sIGqnyTffGa9LUYBOK7WFZgySMZinzkEHhTMc7zoiwEk=
-X-Received: by 2002:ab0:63d9:: with SMTP id i25mr11354554uap.106.1623672724647;
- Mon, 14 Jun 2021 05:12:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210611113642.18457-1-biju.das.jz@bp.renesas.com> <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 14 Jun 2021 14:11:53 +0200
-Message-ID: <CAMuHMdUQRHtVFhqmgi5EE2TNobspM3tNTP10gz-yPDJSK31ytA@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S233025AbhFNMSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 08:18:18 -0400
+Received: from comms.puri.sm ([159.203.221.185]:56530 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232559AbhFNMSS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Jun 2021 08:18:18 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 639BCE145C;
+        Mon, 14 Jun 2021 05:15:45 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id GxXrigckZaEu; Mon, 14 Jun 2021 05:15:44 -0700 (PDT)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     martin.kepplinger@puri.sm, laurent.pinchart@ideasonboard.com
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-staging@lists.linux.dev, mchehab@kernel.org,
+        phone-devel@vger.kernel.org, robh@kernel.org, shawnguo@kernel.org,
+        slongerbeam@gmail.com, m.felsch@pengutronix.de
+Subject: [PATCH v4 0/3] media: imx: add support for imx8mq MIPI RX
+Date:   Mon, 14 Jun 2021 14:15:19 +0200
+Message-Id: <20210614121522.2944593-1-martin.kepplinger@puri.sm>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+hi,
 
-On Fri, Jun 11, 2021 at 1:36 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document RZ/G2L DMAC bindings.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+This patch series adds a driver for the i.MX8MQ CSI MIPI receiver / controller.
 
-Thanks for your patch!
+It includes the driver, the dt-bindings and the DT addition to the SoC dtsi.
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> @@ -0,0 +1,132 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/renesas,rz-dmac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L DMA Controller
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,dmac-r9a07g044  # RZ/G2{L,LC}
+This is the vendor driver I'm basing the hardware-side of the driver on:
+https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/media/platform/imx8/mxc-mipi-csi2_yav.c?h=imx_5.4.70_2.3.0
 
-Please use "renesas,r9a07g044-dmac".
+Thanks Laurent who helped a lot. I'm happy for any feedback,
 
-> +      - const: renesas,rz-dmac
+                           martin
 
-Does this need many changes for RZ/A1H and RZ/A2M?
+revision history
+----------------
+v4: (thank you Rob and Marco)
+* create fsl,mipi-phy-gpr custom dt property instead of confusing "phy"
+* add imx8mq-specific compatibile to imx8mq.dtsi for future use
 
-> +  renesas,rz-dmac-slavecfg:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: |
-> +      DMA configuration for a slave channel. Each channel must have an array of
-> +      3 items as below.
-> +      first item in the array is MID+RID
+v3: (thank you, Rob and Laurent)
+among minor other things according to v2 review, changes include:
+* better describe the clocks
+* rename DT property "phy-reset" to "reset" and "phy-gpr" to "phy"
+https://lore.kernel.org/linux-media/20210608104128.1616028-1-martin.kepplinger@puri.sm/T/#t
 
-Already in dmas.
+v2: (thank you, Dan and Guido)
+among fixes according to v1 reviews, changes include:
+* remove status property from dt-bindings example
+* define a few bits in order to have less magic values
+* use "imx8mq_mipi_csi_" as local function prefix
+* read DT properties only during probe()
+* remove dead code (log_status)
+* add imx8mq_mipi_csi_release_icc()
+* fix imx8mq_mipi_csi_init_icc()
+https://lore.kernel.org/linux-media/20210531112326.90094-1-martin.kepplinger@puri.sm/
 
-> +      second item in the array is slave src or dst address
+v1:
+https://lore.kernel.org/linux-media/20210527075407.3180744-1-martin.kepplinger@puri.sm/T/#t
 
-As pointed out by Rob, already known by the slave driver.
+Martin Kepplinger (3):
+  dt-bindings: media: document the nxp,imx8mq-mipi-csi2 receiver phy and
+    controller
+  media: imx: add a driver for i.MX8MQ mipi csi rx phy and controller
+  arm64: dts: imx8mq: add mipi csi phy and csi bridge descriptions
 
-> +      third item in the array is channel configuration value.
+ .../bindings/media/nxp,imx8mq-mipi-csi2.yaml  | 171 +++
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 102 ++
+ drivers/staging/media/imx/Makefile            |   1 +
+ drivers/staging/media/imx/imx8mq-mipi-csi2.c  | 994 ++++++++++++++++++
+ 4 files changed, 1268 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
+ create mode 100644 drivers/staging/media/imx/imx8mq-mipi-csi2.c
 
-What exactly is this?
-Does the R-Car DMAC have this too? If yes, how does its driver handle it?
+-- 
+2.30.2
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
