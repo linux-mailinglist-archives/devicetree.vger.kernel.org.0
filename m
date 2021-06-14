@@ -2,55 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10EEA3A5E47
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 10:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 923623A5E64
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 10:30:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232552AbhFNIVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 04:21:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59272 "EHLO
+        id S232602AbhFNIcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 04:32:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232578AbhFNIVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 04:21:21 -0400
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B421BC061574
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 01:19:18 -0700 (PDT)
-Received: by mail-ot1-x330.google.com with SMTP id 7-20020a9d0d070000b0290439abcef697so4587842oti.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 01:19:18 -0700 (PDT)
+        with ESMTP id S232568AbhFNIcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 04:32:15 -0400
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A05C061574
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 01:30:12 -0700 (PDT)
+Received: by mail-oi1-x22a.google.com with SMTP id m137so13602560oig.6
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 01:30:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=uKKGjhbeg0B0pKWCQNCe7um9AkbBnP2WvySTEIvvkOk=;
-        b=Uhis+g582+5K2zRjimIe24IVA3XkBcXb7RMCMBxQBe2VQLc44N9mD+KyQQsxIlKEp/
-         +ePMaEu1IoqYc5jXeO2IKw1tUiMcEx/t1fdYO15cFz7minxO0IqjHkeyJWTNi8ZZ0shO
-         OkfrOkGGvtQKL/wUo6ZanBpClCgKjflVY1Uz4CnBi+NaYM0Ya4VyqewQI1WxAjACLmk7
-         OiSP4rY1i+njCUuiR4yDoBAw4EDKMPUMPuAsDP0qyZNM7v6GPtVGfBrIuRqR/Ig1u3Mf
-         uiy+V3kzJDYTphulSz0pgVmYNIaBONTlw2U/WoaqoSxComtJAYE1Gl39chUogeZrwjcb
-         M1Pg==
+        bh=QSAHKTcFLCX8/C+Bt+qS/8aN90gNtcFpqWMBF4o9Lj8=;
+        b=VxonmO7//XNFF8uHng7+ibIJaaO64cmwcIbhuWWcRpu/HZC9Vw4PUvNSjFlajDj6A+
+         k15Onk8ncCro83SlDNSU7GWY8afW2uvs+Bv3R4wHcW+KPAkbYs+FTuBfCFY2LWQH5dmJ
+         /y4weBRLHacyVQOkSitblHkwFMKQZ+qqgNQtuRK1Jo2BxYotu0dmCYSVtLG+kEclv1NW
+         CD6I6QaH0BSFKeEAG+trxVzJDtllSmsGLwhrNbQo0RE2ijIZvSihb5qe5W9UK4E5raNC
+         butaxzrAlZ6SFSkaCGX8G2TTOrQNpCR25EhCtUBEaiAP2RQSRWJ1WCiKysdjRMziZg73
+         GzXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=uKKGjhbeg0B0pKWCQNCe7um9AkbBnP2WvySTEIvvkOk=;
-        b=Fcu13vAWS2ebLS2wbq01GSPcDjas78swHDfgOLpDE1KP6j1Q3zo3DAmqixuuOS8+CS
-         E9RYWZQ5IHYO/zs1kaAU1eHgcpn8hR3Gx0iJ7Ittk1BWB59qiW2wZcDyS+OGgpK+TX9I
-         3IwLhiuZDpE3MkZMqC6XKUXNJ5FryZvpxKXfkq4yHzDVgz3OdbFdkBiO4PnZN1spjVIT
-         W8QE2SoWqSjXQD/B8rWZYAybPR5Q6BWPuMdd1Wy2zIDii/tEq3v/E25ePTo7Z9vD5JEm
-         HAgcGUa8U22DVHD98Z0t46qqeYONChniFlnOLQYP66xEjUCsNv5TO2rFRBcyCNz1qVZI
-         z5jA==
-X-Gm-Message-State: AOAM531ih5jjxiaY8ZbIlnFsnsbnS2hbDWe7MrgLnjuiYOydpHfNCqdg
-        sCCVIW67i0H5ab0XZvJ30wrxPcKGbeFrgmV2hNwgbw==
-X-Google-Smtp-Source: ABdhPJxBDo0O2EeYl93hlJpqgDDaLnFsFjvBy49fSG3rWvzSl1xzv0jzJYQ2C0W9+Fo8I8zDFQzfqAdwA3kAkUvKCNU=
-X-Received: by 2002:a9d:1726:: with SMTP id i38mr11907743ota.51.1623658758080;
- Mon, 14 Jun 2021 01:19:18 -0700 (PDT)
+        bh=QSAHKTcFLCX8/C+Bt+qS/8aN90gNtcFpqWMBF4o9Lj8=;
+        b=jGbqEjftOiMh8DgC30ROJRKH8IwByElzeuy5Xw90z/Q+b0vD6unT9ywChyDVD4tN21
+         qaiwU3NGka1IVRYqI1zacS5nBqXCdcGeVPNAqTgh37FQiT4/3hEPWFuktUE0D0sj3kzj
+         C+bTq/jU42Xyyc29UAXo71iPaBcx0kqMeX4FWh8b99wruk26NRQOKnpeQTpvJQBcjj0S
+         jOSJJ4B27KBb7bDQNQnN1Dv6nkWxsmX7VaFz689eLVU5BNNpBycoXmYpZFXqOgfC/8Rh
+         evstBKn7YTfYditnan9im/H6j4VuAXDLo5a2nXFjfbOzDDgYfd2fL9FdVz2dw3NMkM3Q
+         tb4Q==
+X-Gm-Message-State: AOAM531KIFj6GuVP+aauwwyHxRHwnTES6VLXJXDkrWdEhyP/dhA9gYMF
+        FAwxwsWhPPLRVET8SCwLI0nMQchujWq31L3vHP7I9Q==
+X-Google-Smtp-Source: ABdhPJz/rFMYq32ngA97nWv9bcy6sRojEmIB+U6ypCZQVoSHnGd1gzxCypoSPG3LS0SUdLiasD1CgGdr6DWCs/LTaCU=
+X-Received: by 2002:aca:4bd7:: with SMTP id y206mr9866132oia.40.1623659411792;
+ Mon, 14 Jun 2021 01:30:11 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
- <20210607113840.15435-9-bhupesh.sharma@linaro.org> <YMLJsieGd+G+/kxK@builder.lan>
-In-Reply-To: <YMLJsieGd+G+/kxK@builder.lan>
+ <20210607113840.15435-6-bhupesh.sharma@linaro.org> <YMLR11+6A/6klgqJ@builder.lan>
+In-Reply-To: <YMLR11+6A/6klgqJ@builder.lan>
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 14 Jun 2021 13:49:07 +0530
-Message-ID: <CAH=2NtxHXi1nduzRtVZA5YfMjWeCxPCC-y6gwTbT5nYH+OxqGw@mail.gmail.com>
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: sa8155p-adp: Add base dts file
+Date:   Mon, 14 Jun 2021 14:00:01 +0530
+Message-ID: <CAH=2Ntwkk4Hw1VQcXu9y08jPHWf99EFmj=7GG0V4uuwbNK7c0A@mail.gmail.com>
+Subject: Re: [PATCH 5/8] pinctrl: qcom/pinctrl-spmi-gpio: Add compatibles for
+ pmic-gpios on SA8155p-adp
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org,
         Linus Walleij <linus.walleij@linaro.org>,
@@ -67,29 +68,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Bjorn,
+Hi Bjorn,
 
-On Fri, 11 Jun 2021 at 07:55, Bjorn Andersson
+On Fri, 11 Jun 2021 at 08:30, Bjorn Andersson
 <bjorn.andersson@linaro.org> wrote:
 >
 > On Mon 07 Jun 06:38 CDT 2021, Bhupesh Sharma wrote:
 >
-> > Add base DTS file for sa8155p-adp and enable boot to console,
->
-> Please spell out "sa8155-adp", i.e. "Add base DTS for SA8155p Automotive
-> Development Platform."
-
-Ok, will do.
-
-> > tlmm reserved range and also include pmic file(s).
+> > SA8155p-adp PMICs (PMM8155AU_1 and PMM8155AU_2) expose
+> > the following PMIC GPIO blocks:
 > >
-> > SA8155p-adp board is based on sm8150 Qualcomm Snapdragon SoC.
+> > - PMM8155AU_1: gpio1-gpio10 (with holes on gpio2, gpio5, gpio7 and gpio8)
+> > - PMM8155AU_2: gpio1-gpio10 (with holes on gpio2, gpio5, gpio7)
 > >
->
-> It's not based on sm8150, it's based on sa8155p, so let's express this
-> as "The SA8155p platform is similar to the SM8150, so use this as base
-> for now", to document why we decided to do this.
->
+> > Add support for the same in the pinctrl driver.
+> >
 > > Cc: Linus Walleij <linus.walleij@linaro.org>
 > > Cc: Liam Girdwood <lgirdwood@gmail.com>
 > > Cc: Mark Brown <broonie@kernel.org>
@@ -101,153 +94,38 @@ Ok, will do.
 > > Cc: linux-kernel@vger.kernel.org
 > > Cc: linux-gpio@vger.kernel.org
 > > Cc: bhupesh.linux@gmail.com
->
-> This would go into the git history as "I specifically asked for input
-> from these people", so please keep this list shorter (but for a change
-> like this it's probably better to omit it completely)
-
-Ok, will keep it shorter for future series.
-
 > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > > ---
-> >  arch/arm64/boot/dts/qcom/Makefile        |   1 +
-> >  arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 363 +++++++++++++++++++++++
-> >  2 files changed, 364 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/qcom/sa8155p-adp.dts
+> >  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
 > >
-> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > index 456502aeee49..38d3a4728871 100644
-> > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > @@ -71,6 +71,7 @@ dtb-$(CONFIG_ARCH_QCOM)     += sdm845-xiaomi-beryllium.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sdm850-lenovo-yoga-c630.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sm8150-hdk.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sm8150-mtp.dtb
-> > +dtb-$(CONFIG_ARCH_QCOM)      += sa8155p-adp.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sm8250-hdk.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sm8250-mtp.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)      += sm8350-hdk.dtb
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> > new file mode 100644
-> > index 000000000000..470d740e060a
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> > @@ -0,0 +1,363 @@
-> > +// SPDX-License-Identifier: BSD-3-Clause
-> > +/*
-> > + * Copyright (c) 2021, Linaro Limited
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include "sm8150.dtsi"
-> > +#include "pmm8155au_1.dtsi"
-> > +#include "pmm8155au_2.dtsi"
-> > +
-> > +/ {
-> > +     model = "Qualcomm Technologies, Inc. SA8155P ADP";
-> > +     compatible = "qcom,sa8155p-adp";
-> > +
-> > +     aliases {
-> > +             serial0 = &uart2;
-> > +     };
-> > +
-> > +     chosen {
-> > +             stdout-path = "serial0:115200n8";
-> > +     };
-> > +
-> > +     vreg_3p3: vreg_3p3_regulator {
-> > +             compatible = "regulator-fixed";
-> > +             regulator-name = "vreg_3p3";
-> > +             regulator-min-microvolt = <3300000>;
-> > +             regulator-max-microvolt = <3300000>;
-> > +     };
-> > +
-> > +     /*
-> > +      * Apparently RPMh does not provide support for PM8150 S4 because it
-> > +      * is always-on; model it as a fixed regulator.
-> > +      */
+> > diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> > index 00870da0c94e..890c44b6e198 100644
+> > --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> > +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> > @@ -1127,6 +1127,10 @@ static const struct of_device_id pmic_gpio_of_match[] = {
+> >       { .compatible = "qcom,pm8150b-gpio", .data = (void *) 12 },
+> >       /* pm8150l has 12 GPIOs with holes on 7 */
+> >       { .compatible = "qcom,pm8150l-gpio", .data = (void *) 12 },
+> > +     /* pmm8155au-1 has 10 GPIOs with holes on 2, 5, 7 and 8 */
+> > +     { .compatible = "qcom,pmm8155au-1-gpio", .data = (void *) 10 },
 >
-> You can reduce this to
->
->         /* S4A is always on and not controllable through RPMh */
->
+> As noted in the binding, I think this should be "qcom,pmm8155au-gpio"
+> and please skip the comment about the holes.
 
-Ok, I wanted to keep it similar to the comment we have for sm815o-mtp,
-but this is fine as well.
+Similar to what I noted in the binding patch review thread, the pmic
+gpio holes seem different as per the downstream dtsi.
 
-> > +     vreg_s4a_1p8: smps4 {
-> > +             compatible = "regulator-fixed";
-> > +             regulator-name = "vreg_s4a_1p8";
-> > +
-> > +             regulator-min-microvolt = <1800000>;
-> > +             regulator-max-microvolt = <1800000>;
-> > +
-> > +             regulator-always-on;
-> > +             regulator-boot-on;
-> > +
-> > +             vin-supply = <&vreg_3p3>;
-> > +     };
-> > +};
-> > +
-> > +&apps_rsc {
-> > +     pmm8155au-1-rpmh-regulators {
-> > +             compatible = "qcom,pmm8155au-1-rpmh-regulators";
-> > +             qcom,pmic-id = "a";
-> > +
-> > +             vdd-s1-supply = <&vreg_3p3>;
-> > +             vdd-s2-supply = <&vreg_3p3>;
-> > +             vdd-s3-supply = <&vreg_3p3>;
-> > +             vdd-s4-supply = <&vreg_3p3>;
-> > +             vdd-s5-supply = <&vreg_3p3>;
-> > +             vdd-s6-supply = <&vreg_3p3>;
-> > +             vdd-s7-supply = <&vreg_3p3>;
-> > +             vdd-s8-supply = <&vreg_3p3>;
-> > +             vdd-s9-supply = <&vreg_3p3>;
-> > +             vdd-s10-supply = <&vreg_3p3>;
-> > +
-> > +             vdd-l1-l8-l11-supply = <&vreg_s6a_0p92>;
-> > +             vdd-l2-l10-supply = <&vreg_3p3>;
-> > +             vdd-l3-l4-l5-l18-supply = <&vreg_s6a_0p92>;
-> > +             vdd-l6-l9-supply = <&vreg_s6a_0p92>;
-> > +             vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-> > +             vdd-l13-l16-l17-supply = <&vreg_3p3>;
-> > +
-> > +             vreg_s5a_2p04: smps5 {
-> > +                     regulator-min-microvolt = <1904000>;
-> > +                     regulator-max-microvolt = <2000000>;
-> > +             };
-> > +
-> > +             vreg_s6a_0p92: smps6 {
-> > +                     regulator-min-microvolt = <920000>;
-> > +                     regulator-max-microvolt = <1128000>;
-> > +             };
-> > +
-> > +             vdda_wcss_pll:
->
-> This is the "label" of the pad which the regulator typically is
-> connected to (rather than a denotion of which regulator it is). So even
-> though we have these in some of the other boards, I would prefer if you
-> skip them and only use the vreg_xyz_abc variant.
+So, please let me know and if required, I can make the suggested change in v2.
 
-Ok.
-
-> > +             vreg_l1a_0p752: ldo1 {
-> > +                     regulator-min-microvolt = <752000>;
-> > +                     regulator-max-microvolt = <752000>;
-> > +                     regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > +             };
-> [..]
-> > +&usb_1_dwc3 {
-> > +     dr_mode = "peripheral";
->
-> We have enough pieces to handle mode switching on this platform, but as
-> discussed, lets leave it as "peripheral" until your local setup is back
-> online.
-
-Sure, in later patches, I can try playing more with this configuration.
-
-Regards,
+Thanks,
 Bhupesh
+
+> > +     /* pmm8155au-2 has 10 GPIOs with holes on 2, 5 and 7 */
+> > +     { .compatible = "qcom,pmm8155au-2-gpio", .data = (void *) 10 },
+> >       { .compatible = "qcom,pm8350-gpio", .data = (void *) 10 },
+> >       { .compatible = "qcom,pm8350b-gpio", .data = (void *) 8 },
+> >       { .compatible = "qcom,pm8350c-gpio", .data = (void *) 9 },
+> > --
+> > 2.31.1
+> >
