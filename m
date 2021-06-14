@@ -2,100 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5B233A6EAB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 21:15:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D55623A6EB0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 21:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233843AbhFNTRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 15:17:46 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:37582 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233169AbhFNTRq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 15:17:46 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15EJFOB8042719;
-        Mon, 14 Jun 2021 14:15:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623698124;
-        bh=45zAPLvQCJnaXG/Xt6NAJCtou400q1d7LTyzDd2Q70c=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=AG0VBXIdeICzBJk0cSMUut2tcmYZKRpgYlYEI9/EGxBReEfvo6lf1mpvTKao+AM2c
-         8Qgsy4smY61YxETRYJ98jSqV13KjQHdb5wVoAmRcwP+LaHUn9V53Na18f1l1eSjOYY
-         +1oZBeqW7lxnV0JYdQVz0WnXJf4Jm5nOkVY/wjNI=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15EJFOmF039932
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 14 Jun 2021 14:15:24 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 14
- Jun 2021 14:15:24 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 14 Jun 2021 14:15:24 -0500
-Received: from [10.250.35.153] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15EJFNau072913;
-        Mon, 14 Jun 2021 14:15:23 -0500
-Subject: Re: [RFC PATCH] dt-bindings: hwlock: sun6i: Fix various warnings in
- binding
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Wilken Gottwalt <wilken.gottwalt@posteo.net>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, <devicetree@vger.kernel.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>, <linux-sunxi@lists.linux.dev>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20210603144216.10327-1-s-anna@ti.com>
- <CAL_Jsq+mhJgFZniXYTVf5ZEM84APhm2w_ozLJg_pFtgz+W_wYw@mail.gmail.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <cd7ab36e-76f3-3d13-6896-6d812c66b0e3@ti.com>
-Date:   Mon, 14 Jun 2021 14:15:23 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S233965AbhFNTST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 15:18:19 -0400
+Received: from mail-vs1-f52.google.com ([209.85.217.52]:40947 "EHLO
+        mail-vs1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233983AbhFNTSS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 15:18:18 -0400
+Received: by mail-vs1-f52.google.com with SMTP id b1so8411297vsh.7;
+        Mon, 14 Jun 2021 12:16:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NtIBeKmFFsU8bB0WaD7JrFvVTjZReGZVDuT3YcTY+6o=;
+        b=ciivJ4Mkc8r2vaWXQio5sWpr1GPjkA9/ZyKn9I4WMJmCF3g+4ZduyKHlnahznSaCJr
+         PabzwpQzqN/YOERiV/LK3zQ7pOO70Qp7OE13gLOInwFdMm5Z+s9II9IbHfcKtzU4oY+3
+         D7bdYAZKKSzdnBHfmMzHenlmWnVEyWvpXPg7cPD22vA6U2HwS7WRg4sOwh3AeVxTNA1w
+         ttWPekoFI28mhznPop6SCqx8Y65fzE3xSQezQbdhag4xrQSHwwq4iBB/tlXoEdiMWZUN
+         SU3lo700/F7j8Md6AP9cMpMaALSGhAEhBDU89ReMmHk/cF8s6awQCoiaIOZIzbFcNAIc
+         8S8w==
+X-Gm-Message-State: AOAM530h/LIAb9g4ccnmaWOba6tLDSnneOI4pSsKR7EfsHUZ5/f2REOM
+        QS1ErYMCfLR7EfAr3YvoHiKPj0Auu36dwyzP4H8=
+X-Google-Smtp-Source: ABdhPJzOizLfsLBJbwOzmIjdiZA9+5b753Ws766gAVNs6/PBaCvBI4OMOoqQ7fR1MXtnuG7bJvezTzR5MwPa6JVFJ/I=
+X-Received: by 2002:a05:6102:c4c:: with SMTP id y12mr979007vss.18.1623698172415;
+ Mon, 14 Jun 2021 12:16:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+mhJgFZniXYTVf5ZEM84APhm2w_ozLJg_pFtgz+W_wYw@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <cover.1623315732.git.geert+renesas@glider.be> <ab1acd836e990c536ff3a8c715ce57363d3ff8cb.1623315732.git.geert+renesas@glider.be>
+ <YMeiE0xMW5zpgpRM@pendragon.ideasonboard.com>
+In-Reply-To: <YMeiE0xMW5zpgpRM@pendragon.ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 14 Jun 2021 21:16:01 +0200
+Message-ID: <CAMuHMdX0j-_Uup63uq-wwKzpmG4FYkma2LqBOpVJ_i7eLNy25g@mail.gmail.com>
+Subject: Re: [PATCH 03/14] pinctrl: renesas: Fix pin control matching on R-Car H3e-2G
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+Hi Laurent,
 
-On 6/7/21 8:19 AM, Rob Herring wrote:
-> On Thu, Jun 3, 2021 at 9:42 AM Suman Anna <s-anna@ti.com> wrote:
->>
->> The allwinner,sun6i-a31-hwspinlock.yaml binding has a mismatched
->> $id and fails to compile the example due to undefined args specifier
->> values for clocks and resets. Fix both of these issues.
->>
->> Fixes: f9e784dcb63f ("dt-bindings: hwlock: add sun6i_hwspinlock")
->> Signed-off-by: Suman Anna <s-anna@ti.com>
->> ---
->> Hi Wilken,
->>
->> This fixes the warnings for now on linux-next, but I think the example
->> should be including sun6i-a31-ccu.h files instead to be accurate, and
->> those files are missing the definitions for CLK_BUS_SPINLOCK and
->> RST_BUS_SPINLOCK. Feel free to send a newer version or do an incremental
->> patch on top.
->>
->> regards
->> Suman
->>
->>  .../bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml      | 5 ++++-
->>  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
+On Mon, Jun 14, 2021 at 8:38 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Thu, Jun 10, 2021 at 11:37:16AM +0200, Geert Uytterhoeven wrote:
+> > As R-Car H3 ES1.x (R8A77950) and R-Car ES2.0+ (R8A77951) use the same
+> > compatible value, the pin control driver relies on soc_device_match()
+> > with soc_id = "r8a7795" and the (non)matching of revision = "ES1.*" to
+> > match with and distinguish between the two SoC variants.  The
+> > corresponding entries in the normal of_match_table are present only to
+> > make the optional sanity checks work.
+> >
+> > The R-Car H3e-2G (R8A779M1) SoC is a different grading of the R-Car H3
+> > ES3.0 (R8A77951) SoC.  It uses the same compatible values for individual
+> > devices, but has an additional compatible value for the root node.
+> > When running on an R-Car H3e-2G SoC, soc_device_match() with soc_id =
+> > "r8a7795" does not return a match.  Hence the pin control driver falls
+> > back to the normal of_match_table, and, as the R8A77950 entry is listed
+> > first, incorrectly uses the sub-driver for R-Car H3 ES1.x.
+> >
+> > Fix this by moving the entry for R8A77951 before the entry for R8A77950.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Gentle ping, can you pick up this patch and the remoteproc pas binding
-indentations fixes please so that linux-next is sane w.r.t these?
+Thanks!
 
-regards
-Suman
+> I wonder if this means we could drop the second entry in the quirks
+> array, in sh_pfc_quirk_match().
+
+As both R-Car H3 ES1.x and ES2.0+ use the same compatible value,
+that function is designed (with the help of the __weak
+r8a7795[01]_pinmux_info symbols) to fail, when booting a kernel
+that lacks the right pin control driver.  It's less likely to happen
+nowadays, since we gained separate Kconfig symbols.
+
+Note that if you enable CONFIG_ARCH_R8A77950 but not
+CONFIG_ARCH_R8A77951, you can still trick a kernel running on R-Car
+H3e-2G into using the wrong pin control driver, which will usually
+cause something to fail during boot.  Perhaps the time is ripe to
+drop the safety net; need to thing about that with a fresh mind,
+after a morning coffee...
+
+> > --- a/drivers/pinctrl/renesas/core.c
+> > +++ b/drivers/pinctrl/renesas/core.c
+> > @@ -571,17 +571,21 @@ static const struct of_device_id sh_pfc_of_table[] = {
+> >               .data = &r8a7794_pinmux_info,
+> >       },
+> >  #endif
+> > -/* Both r8a7795 entries must be present to make sanity checks work */
+> > -#ifdef CONFIG_PINCTRL_PFC_R8A77950
+> > +/*
+> > + * Both r8a7795 entries must be present to make sanity checks work, but only
+> > + * the first entry is actually used, for R-Car H3e.
+> > + * R-Car H3 ES1.x and ES2.0+ are matched using soc_device_match() instead.
+> > + */
+> > +#ifdef CONFIG_PINCTRL_PFC_R8A77951
+> >       {
+> >               .compatible = "renesas,pfc-r8a7795",
+> > -             .data = &r8a77950_pinmux_info,
+> > +             .data = &r8a77951_pinmux_info,
+> >       },
+> >  #endif
+> > -#ifdef CONFIG_PINCTRL_PFC_R8A77951
+> > +#ifdef CONFIG_PINCTRL_PFC_R8A77950
+> >       {
+> >               .compatible = "renesas,pfc-r8a7795",
+> > -             .data = &r8a77951_pinmux_info,
+> > +             .data = &r8a77950_pinmux_info,
+> >       },
+> >  #endif
+> >  #ifdef CONFIG_PINCTRL_PFC_R8A77960
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
