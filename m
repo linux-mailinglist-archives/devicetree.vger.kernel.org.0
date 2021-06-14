@@ -2,145 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D71063A6BD4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF3063A6BE7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:34:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234538AbhFNQdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 12:33:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55024 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234589AbhFNQdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:33:17 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C0FBC061767
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:30:57 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id d19so10917370oic.7
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:30:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=M+AF+mCkpp4kl1lOa7pY3pKoyZ9EzI3bIOnjriCC7ec=;
-        b=jDHx4M/TAH39G2PaYBua5rrq7uf9nxNWz19BlA8WjwVFX7cjutzxxOlpLEPy3AiSEi
-         LPC7X6Hl5TvxU0Nmr8qonCWhylXaVmH+yZu9yQohe0hAt5wi2wqLb0ppa3TPHcYj4FPg
-         +xHCZ4ccLdQarlmppKqLZLzEWEpbbjMPJn/U6DL0QUdoyb2lgqqynCsp+RQoCc6U3Ljm
-         NDv9jHAXaCwyicXO72hYHY33mUJ5FWeyIlF6QrXbVAuUXwNiSmvB4OWJ0j7pYMynFqnr
-         +yYizd+bQihhOJOyAHOAJcsuUOZPX9jxxYyBzEu+XozZYF5RBTGt60ETgOBqfrmuWqSy
-         7EXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=M+AF+mCkpp4kl1lOa7pY3pKoyZ9EzI3bIOnjriCC7ec=;
-        b=rASxXRXw9Jp0tPtXyr+C42D9AVFuZXGOzoeg6LHexzQKV6yvwJ179rrfNNhS5b+7i3
-         ePRCuwjujiy7MIA2lDjgtYbvVFFgPMq/iETbZ9vlSOseaDPtB29FwGXfTXAFf4DUc/jl
-         PMJmwFJwwAMXNADzZYvLapSaXA8++yYEkXpD/oNtpZlYcLMfjnXOmbVuj7VMmrBCG2gz
-         k86xzvbGU11aWw8jmMUdzCXfwVEwLytZsEzRLSluWu5dZI0b9yZIyxRjBMWO+J3ufRgB
-         EnrqhE/cz0mJodw/OrmZrneSEMI5wPIoU6RRk9p49ECeba//XvprAtGNRoGR2VWYG5Hb
-         n2NA==
-X-Gm-Message-State: AOAM532GRHWwZRJwFE3ib2130W4RycIAbHu6+OjGrnS7+CLiNTJ0E4jE
-        MmT8+lh84tuiT5MECCe851OYUA==
-X-Google-Smtp-Source: ABdhPJzjl6Cfpe9v4eOyRAmwGqbG4q5aSjdR3OUYr6L/+u6Z4Fx5DhToxlH/X+/0dbLsfpVtwKE0xA==
-X-Received: by 2002:a05:6808:b11:: with SMTP id s17mr10524824oij.62.1623688256779;
-        Mon, 14 Jun 2021 09:30:56 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id n7sm3122251oom.37.2021.06.14.09.30.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jun 2021 09:30:56 -0700 (PDT)
-Date:   Mon, 14 Jun 2021 11:30:54 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     sbhanu@codeaurora.org
-Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, asutoshd@codeaurora.org,
-        stummala@codeaurora.org, vbadigan@codeaurora.org,
-        rampraka@codeaurora.org, sayalil@codeaurora.org,
-        sartgarg@codeaurora.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, sibis@codeaurora.org,
-        okukatla@codeaurora.org, djakov@kernel.org, cang@codeaurora.org,
-        pragalla@codeaurora.org, nitirawa@codeaurora.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org
-Subject: Re: [PATCH V1] arm64: dts: qcom: sc7180: Added xo clock for eMMC and
- Sd card
-Message-ID: <YMeEPg7EPC5E/MfW@builder.lan>
-References: <1623309107-27833-1-git-send-email-sbhanu@codeaurora.org>
- <YMLm96edhIYOJF+E@builder.lan>
- <1230be3c7f350b1f33110df2a9744e15@codeaurora.org>
+        id S234032AbhFNQgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 12:36:42 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:8538 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233643AbhFNQgm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:36:42 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1623688472; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=nbR6mWDd243J3k2HuVYGvdPPeMfLBmtFICeAgkA4w97WXzchLnL+ih2bD9ZyOPQYcQ
+    JOmBVY35GUaVr00dCwK6oVitCgA8/F+NPE415rqvcdndxATdC9YwSwi7xCFd8Wy52HmH
+    oIqZFtLyrv+vSEl76kTFNJhFAJPgUorOPzD7n27Pe2sOixUKhTr1KvjtScZh934QRfbA
+    eCFdVxrT7330dcQyIkDGmcXFbmI63ngB1TSPWQfSYRxa1wU2F258Fa6GBdIS2WK7OMH0
+    5psgYL7msweXEXAgghdlcjCrCF+PaqewyLPsW2Nt6vreD3+znpF2GXUZ0iFdzeK7K8vi
+    C97A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623688472;
+    s=strato-dkim-0002; d=strato.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=Lv8RLjDS2Zjs8oIsPVIv8YQWYQQ2/u1oHQyLb7NkEVo=;
+    b=Jv5nvcrgxTKiAxdcZhuyNrfjaPrcNcqfa7dC3ar09KmV1Efx8lcvG6YMyNgV7QzM6P
+    l1DnjHKZ7Jhj61D2eB6vZHqHmtDBf4R2TtPYjby0lh5uHMmyDH6DFmTbcrLPAR7y6X0E
+    Ntq2AbnZdHEHVPvRw7WOFqdIB4npR6np4Jxzelv40CJREZl4ODgFF3YBYUq5s4XyQqm4
+    S8KCAAFooQM/R5+Is3p5mcCmcHuxg2Dd30DIkhBB2f7WgctDVj6Br1mislD74mSFy2Yi
+    2TRLQJI5wMqUVA2v2EpS854lDP9t29IDevULcbzqxIe+iod5y0ersYO3/VnaJA6jCOIR
+    Fd/w==
+ARC-Authentication-Results: i=1; strato.com;
+    dkim=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623688472;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=Lv8RLjDS2Zjs8oIsPVIv8YQWYQQ2/u1oHQyLb7NkEVo=;
+    b=V8E+BJoynFwz/ow4sdObaxTPuiPMW6pbWCy35zxwuMZh+fuXxaJwRqXQ70xpfkLWmC
+    sk/rd9lbLLLi9OTZV3cTSW9UcNPeGKkyDJ28d9sHWycV0vRmAv0WSSO52Ctphxhialq0
+    1vAOPfdG+BD6sxHJKnDoZp15CNKRU7DQM4ANoJkBIx+blcVzG8BTnHnPNuSsCo5JQFDx
+    6x1K/pyu1Y8cTog3YvqNpBA65q1pSPKF87QD9TKD7QR5+Yf1NFaID+A2RtEzMigD+Niw
+    EUF1uNmwab3FcXuaC/NZawS+M+uayFjG7ka52tcR52s4vDnuoj9VOWwVpxgqEN52e7o7
+    eLGA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxA6m6NvdbT"
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
+    with ESMTPSA id y01375x5EGYWJ6s
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 14 Jun 2021 18:34:32 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 0/3] dt-bindings: iio: accel: bma255: Fix interrupt type / merge bma180
+Date:   Mon, 14 Jun 2021 18:31:47 +0200
+Message-Id: <20210614163150.7774-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1230be3c7f350b1f33110df2a9744e15@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 14 Jun 06:55 CDT 2021, sbhanu@codeaurora.org wrote:
+This patch series first fixes the interrupt type in the
+bosch,bma255.yaml schema and then combines it with the
+bosch,bma180.yaml schema since they are pretty much identical.
 
-> On 2021-06-11 10:00, Bjorn Andersson wrote:
-> > On Thu 10 Jun 02:11 CDT 2021, Shaik Sajida Bhanu wrote:
-> > 
-> > > Added xo clock for eMMC and Sd card.
-> > 
-> > Was about to push out my branch of patches, but before I do. Can you
-> > please describe WHY this is needed?
-> > 
-> > Regards,
-> > Bjorn
-> 
-> We are making use of this clock in dll register value calculation,
-> The default PoR value is also same as calculated value for
-> HS200/HS400/SDR104 modes.
-> But just not to rely on default register values we need this entry.
-> 
+Stephan Gerhold (3):
+  dt-bindings: iio: accel: bma255: Fix interrupt type
+  dt-bindings: iio: accel: bma255: Sort compatibles
+  dt-bindings: iio: accel: bma255: Merge bosch,bma180 schema
 
-That is the perfect thing to include in a commit message!
+ .../bindings/iio/accel/bosch,bma180.yaml      | 61 -------------------
+ .../bindings/iio/accel/bosch,bma255.yaml      | 23 ++++---
+ 2 files changed, 16 insertions(+), 68 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bma180.yaml
 
-I rewrote yours and applied the change, but please next time do describe
-the "why" of your change.
+-- 
+2.32.0
 
-Regards,
-Bjorn
-
-> > 
-> > > 
-> > > Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sc7180.dtsi | 10 ++++++----
-> > >  1 file changed, 6 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > index 295844e..5bb6bd4 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> > > @@ -701,8 +701,9 @@
-> > >  			interrupt-names = "hc_irq", "pwr_irq";
-> > > 
-> > >  			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
-> > > -					<&gcc GCC_SDCC1_AHB_CLK>;
-> > > -			clock-names = "core", "iface";
-> > > +					<&gcc GCC_SDCC1_AHB_CLK>,
-> > > +					<&rpmhcc RPMH_CXO_CLK>;
-> > > +			clock-names = "core", "iface","xo";
-> > >  			interconnects = <&aggre1_noc MASTER_EMMC 0 &mc_virt SLAVE_EBI1 0>,
-> > >  					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_EMMC_CFG 0>;
-> > >  			interconnect-names = "sdhc-ddr","cpu-sdhc";
-> > > @@ -2666,8 +2667,9 @@
-> > >  			interrupt-names = "hc_irq", "pwr_irq";
-> > > 
-> > >  			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
-> > > -					<&gcc GCC_SDCC2_AHB_CLK>;
-> > > -			clock-names = "core", "iface";
-> > > +					<&gcc GCC_SDCC2_AHB_CLK>,
-> > > +					<&rpmhcc RPMH_CXO_CLK>;
-> > > +			clock-names = "core", "iface", "xo";
-> > > 
-> > >  			interconnects = <&aggre1_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1
-> > > 0>,
-> > >  					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
-> > > --
-> > > QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a
-> > > member
-> > > of Code Aurora Forum, hosted by The Linux Foundation
-> > > 
