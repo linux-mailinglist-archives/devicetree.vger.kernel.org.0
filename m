@@ -2,126 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80FD83A6856
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 15:48:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43D5A3A68FF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 16:29:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233434AbhFNNu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 09:50:27 -0400
-Received: from mail-vs1-f46.google.com ([209.85.217.46]:44699 "EHLO
-        mail-vs1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233389AbhFNNu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 09:50:27 -0400
-Received: by mail-vs1-f46.google.com with SMTP id x13so7796139vsf.11;
-        Mon, 14 Jun 2021 06:48:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GcUfUlFIX4X4dWFAdI2Q98BKdpaJeSWFg0rExRnnbb8=;
-        b=OWqhB7ncZVWiVKD5R5J5J2TDaczs5eO0RSiZLuQ6qdfY+Mw+Tr2H4BHW1JjvUZNifR
-         uGbEqbS4a8AQ84ejMO5UpigrCinNhkonrS/0jSRpwXE13yAHv/JTazKrIFOEli2eW1DK
-         ncObJIq1B/q0nGl57neeJ9NrV4rgdzIkk1K4iKBY4bqfrPhVhNcNYQRKNXCnq+WD6ALa
-         eebujpFkdTmG9FxsFsaaPIxrYsQ+Me497rGNoy6ZeR1aRBZwiyVbPEXlw4+bUvGbCv3q
-         G2qdIE9wOZc+lyQpu65031AqQQzLF2b5c9ngAUwZMqI9PLMe2VPgCr9Xe+xaHTv7e6i4
-         VycQ==
-X-Gm-Message-State: AOAM530AKFo55iNd1w6BGuZML+1NpCHcmil8CWLl/t/3MGTxmJmk2ltl
-        /mxKBJnRUTCDM48HTic7a9ygScqtn4pTnYRTi6gUiu5nEMU2ZQ==
-X-Google-Smtp-Source: ABdhPJwCC2KVGlegTOg8+zG7cvtNxNdCnuGV8omrsx/Fg0zaZVvX3ewGZ5uUKPOCYJy2uY1ILtvKNyaobuXRc7PF90s=
-X-Received: by 2002:a67:efd6:: with SMTP id s22mr18250891vsp.3.1623678495006;
- Mon, 14 Jun 2021 06:48:15 -0700 (PDT)
+        id S232823AbhFNObH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 10:31:07 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:57612 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232984AbhFNObH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 10:31:07 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15EESnwd040412;
+        Mon, 14 Jun 2021 09:28:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623680929;
+        bh=+4NtWY3cuQShN1zQE/NiVLAmhqWotJAF5lyZWU71+cQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=BosDe65qpSRNQ8+oFac8/3XawPJ7QQK+tMYxrP0X4+TGO4SI1BOmbXwHHz/ZpVG0a
+         hAwxR5tkLqfvMg7raDq2yv6NCmcdHtkqFI2rU70X8oluoRqxwcIsid+iPuk6Vt6aWm
+         SfYZIsDLW/vw4k3dorWGYUo3tKb8lp8rzAj21RfE=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15EESn89073580
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Jun 2021 09:28:49 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 14
+ Jun 2021 09:28:49 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 14 Jun 2021 09:28:49 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15EESn1T061901;
+        Mon, 14 Jun 2021 09:28:49 -0500
+Date:   Mon, 14 Jun 2021 09:28:49 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: ti: k3-am64-main: Add SYSFW reserved ranges
+ in OCRAM
+Message-ID: <20210614142849.ogi4emuqgxg3m7ls@constrict>
+References: <20210609140604.9490-1-vigneshr@ti.com>
+ <20210611191640.lczsliyzasjie6lm@dismantle>
+ <84e5865f-e107-f0e1-ca8b-b6bd655e92e6@ti.com>
+ <36ff3c65-2f5e-2997-9fb5-a5e8d3230a75@ti.com>
 MIME-Version: 1.0
-References: <20210611113642.18457-1-biju.das.jz@bp.renesas.com>
- <20210611113642.18457-5-biju.das.jz@bp.renesas.com> <CAMuHMdUthmAbwNrBKeEBzqBUN6HYR=Fuz5ALpK+iGY_kUQpV1A@mail.gmail.com>
- <OS0PR01MB59227529257477835867FEFA86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB59227529257477835867FEFA86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 14 Jun 2021 15:48:03 +0200
-Message-ID: <CAMuHMdX2CR=3wpQbAXsmCBw=jWy7OQG7ur0MhTxaoVkz413Jcg@mail.gmail.com>
-Subject: Re: [PATCH 4/5] arm64: dts: renesas: r9a07g044: Add DMAC support
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Chris Brandt <Chris.Brandt@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <36ff3c65-2f5e-2997-9fb5-a5e8d3230a75@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On 10:18-20210614, Aswath Govindraju wrote:
+> Hi Vignesh,
+> 
+> On 12/06/21 12:51 pm, Vignesh Raghavendra wrote:
+> > +Aswath
+> > 
+> > On 6/12/21 12:46 AM, Nishanth Menon wrote:
+> >> On 19:36-20210609, Vignesh Raghavendra wrote:
+> >>> Last 256K of OCRAM (256K@0x701c0000) is reserved for SYSFW usage. Hence
+> >>> add an entry in DT so that its not used for generic pool memory
+> >>> allocation.
+> >>
+> >> Are you really sure?? I know that I had set a budget for 16K in sysfw
+> >> when I did the memory split up for sysfw of which 16k is actually used.
+> >>
+> >> Not sure where this 256K bucket started off from.. am I missing
+> >> something here?
+> >>
+> > 
+> > Per: http://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am64x/firewalls.html
+> > 
+> > 24	dmsc	0x44060000	0x4407BFFF	dmsc,rwcd	 	 // alias for 0x701E0000
+> > 24	dmsc	0x701FC000	0x701FFFFF	sproxy_private,rwcd	 	 
+> > 24	dmsc	0x4407C000	0x4407FFFF	sproxy_private,rwcd	 	 
+> > 24	dmsc	0x701C0000	0x701DFFFF	everyone,rwcd	 	 
+> > 
+> > So it looks like only 128K@0x701E0000 is firewalled off. 
+> > Will update the patch.
+> > 
+> > This makes me wonder why ATF is being moved to 0x701a0000-0x701c0000
+> > leaving a hole at 0x701C0000-0x701DFFFF? 
+> > 
+> > 
+> 
+> The reason for leaving the hole at 0x701C0000-0x701DFFFF was because
+> initially there was a bug in SYSFW which lead to the usage of the above
+> region too by it. However, this bug was recently fixed and the the above
+> region can be used for ATF.
 
-On Mon, Jun 14, 2021 at 3:02 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH 4/5] arm64: dts: renesas: r9a07g044: Add DMAC support
-> > On Fri, Jun 11, 2021 at 1:36 PM Biju Das <biju.das.jz@bp.renesas.com>
-> > wrote:
-> > > Add DMAC support to RZ/G2L SoC DT.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> > > @@ -8,6 +8,10 @@
-> > >  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > >  #include <dt-bindings/clock/r9a07g044-cpg.h>
-> > >
-> > > +#define CH_CFG(reqd, loen, hien, lvl, am, sds, dds, tm) \
-> > > +       ((((tm) << 22) | ((dds) << 16) | ((sds) << 12) | ((am) << 8) | \
-> > > +       ((lvl) << 6) | ((hien) << 5) | ((loen) << 4) | ((reqd) << 3))
-> > > +& 0x004FF778)
-> > > +
-> >
-> > I assume the above will be removed?
->
-> Basically the macro simplifies the channel configuration values in Table 16.4 page 569 of the hardware manual.
->
-> Client driver will use MID+RID, and pass (Src address or dest address along with the channel configuration values
-> For configuring DMA channel.
->
-> For eg:-
->
->                 ssi0: ssi@10049c00 {
->                         compatible = "renesas,r9a07g044-ssi",
->                                      "renesas,rz-ssi";
->                         reg = <0 0x10049c00 0 0x400>;
->                         interrupts = <GIC_SPI 326 IRQ_TYPE_LEVEL_HIGH>,
->                                      <GIC_SPI 327 IRQ_TYPE_EDGE_RISING>,
->                                      <GIC_SPI 328 IRQ_TYPE_EDGE_RISING>;
->                         interrupt-names = "int", "rx", "tx";
->                         clocks = <&cpg CPG_MOD R9A07G044_CLK_SSI0>,
->                                  <&audio_clk1>,
->                                  <&audio_clk2>;
->                         clock-names = "ssi", "audio_clk1", "audio_clk2";
->                         resets = <&cpg R9A07G044_CLK_SSI0>;
->                         dmas = <&dmac 0x255 0x10049c18 CH_CFG(0x1,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>,
->                                <&dmac 0x256 0x10049c1c CH_CFG(0x0,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>;
->                         dma-names = "tx", "rx";
->                         power-domains = <&cpg>;
->                         #sound-dai-cells = <0>;
->                         status = "disabled";
->                 };
->
-> Please let me know your thoughts on this.
 
-How will this work with (existing) drivers?
-E.g. drivers/tty/serial/sh-sci.c:sci_request_dma_chan() already knows the
-source and destination addresses.
-The other CHCFG bits may be new, though.
+OK. I am going to drop the TF-A update patch from my queue.
 
-Gr{oetje,eeting}s,
+NOTE:
+a) Default device configuration (if no specific API call[1]) is done
+   assumes last 128K is reserved.
+b) if bootloader does invoke optionally a call[1] then only 16K is
+   reserved for communication and remainder of 128K is released for usage
+   with the constraint that TF-A/OPTEE takes control of security resources.
+c) This is only a feature in AM64x devices so, handling is device
+   specific.
 
-                        Geert
+Hence, on AM64x: (a) should be our default configuration and (b) can
+be board specific configuration OR overlay depending on bootloader
+capability.
 
+[1] http://downloads.ti.com/tisci/esd/latest/6_topic_user_guides/security_handover.html#triggering-security-handover
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
