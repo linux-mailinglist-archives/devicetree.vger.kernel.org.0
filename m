@@ -2,130 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 923623A5E64
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 10:30:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2EC3A5F38
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 11:38:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232602AbhFNIcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 04:32:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33414 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232568AbhFNIcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 04:32:15 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A05C061574
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 01:30:12 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id m137so13602560oig.6
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 01:30:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QSAHKTcFLCX8/C+Bt+qS/8aN90gNtcFpqWMBF4o9Lj8=;
-        b=VxonmO7//XNFF8uHng7+ibIJaaO64cmwcIbhuWWcRpu/HZC9Vw4PUvNSjFlajDj6A+
-         k15Onk8ncCro83SlDNSU7GWY8afW2uvs+Bv3R4wHcW+KPAkbYs+FTuBfCFY2LWQH5dmJ
-         /y4weBRLHacyVQOkSitblHkwFMKQZ+qqgNQtuRK1Jo2BxYotu0dmCYSVtLG+kEclv1NW
-         CD6I6QaH0BSFKeEAG+trxVzJDtllSmsGLwhrNbQo0RE2ijIZvSihb5qe5W9UK4E5raNC
-         butaxzrAlZ6SFSkaCGX8G2TTOrQNpCR25EhCtUBEaiAP2RQSRWJ1WCiKysdjRMziZg73
-         GzXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QSAHKTcFLCX8/C+Bt+qS/8aN90gNtcFpqWMBF4o9Lj8=;
-        b=jGbqEjftOiMh8DgC30ROJRKH8IwByElzeuy5Xw90z/Q+b0vD6unT9ywChyDVD4tN21
-         qaiwU3NGka1IVRYqI1zacS5nBqXCdcGeVPNAqTgh37FQiT4/3hEPWFuktUE0D0sj3kzj
-         C+bTq/jU42Xyyc29UAXo71iPaBcx0kqMeX4FWh8b99wruk26NRQOKnpeQTpvJQBcjj0S
-         jOSJJ4B27KBb7bDQNQnN1Dv6nkWxsmX7VaFz689eLVU5BNNpBycoXmYpZFXqOgfC/8Rh
-         evstBKn7YTfYditnan9im/H6j4VuAXDLo5a2nXFjfbOzDDgYfd2fL9FdVz2dw3NMkM3Q
-         tb4Q==
-X-Gm-Message-State: AOAM531KIFj6GuVP+aauwwyHxRHwnTES6VLXJXDkrWdEhyP/dhA9gYMF
-        FAwxwsWhPPLRVET8SCwLI0nMQchujWq31L3vHP7I9Q==
-X-Google-Smtp-Source: ABdhPJz/rFMYq32ngA97nWv9bcy6sRojEmIB+U6ypCZQVoSHnGd1gzxCypoSPG3LS0SUdLiasD1CgGdr6DWCs/LTaCU=
-X-Received: by 2002:aca:4bd7:: with SMTP id y206mr9866132oia.40.1623659411792;
- Mon, 14 Jun 2021 01:30:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
- <20210607113840.15435-6-bhupesh.sharma@linaro.org> <YMLR11+6A/6klgqJ@builder.lan>
-In-Reply-To: <YMLR11+6A/6klgqJ@builder.lan>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 14 Jun 2021 14:00:01 +0530
-Message-ID: <CAH=2Ntwkk4Hw1VQcXu9y08jPHWf99EFmj=7GG0V4uuwbNK7c0A@mail.gmail.com>
-Subject: Re: [PATCH 5/8] pinctrl: qcom/pinctrl-spmi-gpio: Add compatibles for
- pmic-gpios on SA8155p-adp
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        id S232630AbhFNJkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 05:40:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55708 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232528AbhFNJkW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Jun 2021 05:40:22 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DB29D611CE;
+        Mon, 14 Jun 2021 09:38:19 +0000 (UTC)
+Received: from [185.219.108.64] (helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1lsj2v-007ORw-Nk; Mon, 14 Jun 2021 10:38:17 +0100
+Date:   Mon, 14 Jun 2021 10:38:17 +0100
+Message-ID: <87a6nsrdkm.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Anup Patel <anup@brainfault.org>
+Cc:     Anup Patel <anup.patel@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        bhupesh.linux@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Subject: Re: [RFC PATCH v1 05/10] irqchip: Add ACLINT software interrupt driver
+In-Reply-To: <CAAhSdy2e9BsgtTL3ETRC-dvHW9hgKmgRi87Gsk+vUT-kMsJ4NQ@mail.gmail.com>
+References: <20210612160422.330705-1-anup.patel@wdc.com>
+        <20210612160422.330705-6-anup.patel@wdc.com>
+        <878s3et831.wl-maz@kernel.org>
+        <CAAhSdy2e9BsgtTL3ETRC-dvHW9hgKmgRi87Gsk+vUT-kMsJ4NQ@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: anup@brainfault.org, anup.patel@wdc.com, palmer@dabbelt.com, palmerdabbelt@google.com, paul.walmsley@sifive.com, tglx@linutronix.de, daniel.lezcano@linaro.org, robh+dt@kernel.org, atish.patra@wdc.com, Alistair.Francis@wdc.com, linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-On Fri, 11 Jun 2021 at 08:30, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Mon 07 Jun 06:38 CDT 2021, Bhupesh Sharma wrote:
->
-> > SA8155p-adp PMICs (PMM8155AU_1 and PMM8155AU_2) expose
-> > the following PMIC GPIO blocks:
+On Sun, 13 Jun 2021 13:25:40 +0100,
+Anup Patel <anup@brainfault.org> wrote:
+> 
+> On Sun, Jun 13, 2021 at 3:11 PM Marc Zyngier <maz@kernel.org> wrote:
 > >
-> > - PMM8155AU_1: gpio1-gpio10 (with holes on gpio2, gpio5, gpio7 and gpio8)
-> > - PMM8155AU_2: gpio1-gpio10 (with holes on gpio2, gpio5, gpio7)
-> >
-> > Add support for the same in the pinctrl driver.
-> >
-> > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > Cc: Liam Girdwood <lgirdwood@gmail.com>
-> > Cc: Mark Brown <broonie@kernel.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Vinod Koul <vkoul@kernel.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Andy Gross <agross@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: linux-gpio@vger.kernel.org
-> > Cc: bhupesh.linux@gmail.com
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> > index 00870da0c94e..890c44b6e198 100644
-> > --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> > +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> > @@ -1127,6 +1127,10 @@ static const struct of_device_id pmic_gpio_of_match[] = {
-> >       { .compatible = "qcom,pm8150b-gpio", .data = (void *) 12 },
-> >       /* pm8150l has 12 GPIOs with holes on 7 */
-> >       { .compatible = "qcom,pm8150l-gpio", .data = (void *) 12 },
-> > +     /* pmm8155au-1 has 10 GPIOs with holes on 2, 5, 7 and 8 */
-> > +     { .compatible = "qcom,pmm8155au-1-gpio", .data = (void *) 10 },
->
-> As noted in the binding, I think this should be "qcom,pmm8155au-gpio"
-> and please skip the comment about the holes.
+> > I'm sorry, but this really isn't an irqchip driver. This is a piece of
+> > arch-specific code that uses *none* of the irq subsystem abstractions
+> > apart from the IRQCHIP_DECLARE() macro.
+> 
+> Yes, I was not sure we can call it IRQCHIP hence the RFC PATCH.
+> 
+> Both ACLINT MSWI and SSWI are special devices providing only IPI
+> support so I will re-think how to fit this.
 
-Similar to what I noted in the binding patch review thread, the pmic
-gpio holes seem different as per the downstream dtsi.
+It depends on how you think of IPIs in your architecture.
 
-So, please let me know and if required, I can make the suggested change in v2.
+arm64 (and even now 32bit) have been moved to a mode where IPIs are
+normal interrupts, as it helps with other things such as our pseudo
+NMIs, and reduces code duplication. MIPS has done the same for a long
+time (they don't have dedicated HW for that).
 
-Thanks,
-Bhupesh
+	M.
 
-> > +     /* pmm8155au-2 has 10 GPIOs with holes on 2, 5 and 7 */
-> > +     { .compatible = "qcom,pmm8155au-2-gpio", .data = (void *) 10 },
-> >       { .compatible = "qcom,pm8350-gpio", .data = (void *) 10 },
-> >       { .compatible = "qcom,pm8350b-gpio", .data = (void *) 8 },
-> >       { .compatible = "qcom,pm8350c-gpio", .data = (void *) 9 },
-> > --
-> > 2.31.1
-> >
+-- 
+Without deviation from the norm, progress is not possible.
