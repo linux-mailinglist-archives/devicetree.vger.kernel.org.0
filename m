@@ -2,249 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B14293A6D2D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 19:29:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92E2E3A6D3C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 19:31:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235573AbhFNRbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 13:31:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39666 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235570AbhFNRbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 13:31:03 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F2A8C0617AF;
-        Mon, 14 Jun 2021 10:29:00 -0700 (PDT)
-Received: from [192.168.1.78] (bband-dyn73.178-41-129.t-com.sk [178.41.129.73])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 469E51F73F;
-        Mon, 14 Jun 2021 19:28:55 +0200 (CEST)
-Date:   Mon, 14 Jun 2021 19:28:49 +0200
-From:   Martin Botka <martin.botka@somainline.org>
-Subject: Re: [PATCH V4 1/2] dt-bindings: pinctrl: qcom: sm6125: Document
- SM6125 pinctrl driver
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        konrad.dybcio@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        id S234844AbhFNRdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 13:33:16 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:38058 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235386AbhFNRdQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 13:33:16 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C1A5E436;
+        Mon, 14 Jun 2021 19:31:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1623691871;
+        bh=FavvCd3btg7dHm+0m8JZlDHC7lsNDhgYVY3e7Kb6a18=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RxwkiFaOyod1fA+EKD3Je3eczmWLu34+8u+HEdwzlb60r6yCJU8MArtDqeLnZfYP/
+         H3q1sancR0QrNn4XEd7GYGht0feePrVd33N0evuEQe/uhpJ4MDbMm+ZgvjOC9jSB0C
+         EWDSIZFiA5zVE5pp0cRpLK0hbrLQAX6nL268dW4s=
+Date:   Mon, 14 Jun 2021 20:30:52 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <1KCPUQ.NH0JUJ1SOFC02@somainline.org>
-In-Reply-To: <YMd7+e798xqUXKCN@yoga>
-References: <20210612094534.88992-1-martin.botka@somainline.org>
-        <YMd7+e798xqUXKCN@yoga>
-X-Mailer: geary/40.0
+        Chris Brandt <Chris.Brandt@renesas.com>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
+Message-ID: <YMeSTBzIPWTDQiJQ@pendragon.ideasonboard.com>
+References: <20210611113642.18457-1-biju.das.jz@bp.renesas.com>
+ <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
+ <CAMuHMdUQRHtVFhqmgi5EE2TNobspM3tNTP10gz-yPDJSK31ytA@mail.gmail.com>
+ <OS0PR01MB5922B2355864A98B14C6DE6D86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <YMdnzdCvX/ur9qVr@pendragon.ideasonboard.com>
+ <OS0PR01MB59227DFC38FD6CF6C568A90E86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <YMeBDfrVLZxSkVnL@pendragon.ideasonboard.com>
+ <OS0PR01MB592282EC4F5779A2169D6AB086319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <YMeDoj5RFZgbbRSO@pendragon.ideasonboard.com>
+ <OS0PR01MB5922D0054E5A5EEFF8B4A92F86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <OS0PR01MB5922D0054E5A5EEFF8B4A92F86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Corrected all in V5. Added minItems to reg as well
-since all the regs are required.
+Hi Biju,
 
-On Mon, Jun 14 2021 at 10:55:37 AM -0500, Bjorn Andersson 
-<bjorn.andersson@linaro.org> wrote:
-> On Sat 12 Jun 04:45 CDT 2021, Martin Botka wrote:
+On Mon, Jun 14, 2021 at 04:33:03PM +0000, Biju Das wrote:
+> > On Mon, Jun 14, 2021 at 04:24:38PM +0000, Biju Das wrote:
+> > > > On Mon, Jun 14, 2021 at 04:09:04PM +0000, Biju Das wrote:
+> > > > > > On Mon, Jun 14, 2021 at 12:54:02PM +0000, Biju Das wrote:
+> > > > > > > > On Fri, Jun 11, 2021 at 1:36 PM Biju Das wrote:
+> > > > > > > > > Document RZ/G2L DMAC bindings.
+> > > > > > > > >
+> > > > > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > > > > > > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > > > >
+> > > > > > > > Thanks for your patch!
+> > > > > > > >
+> > > > > > > > > --- /dev/null
+> > > > > > > > > +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dma
+> > > > > > > > > +++ c.ya
+> > > > > > > > > +++ ml
+> > > > > > > > > @@ -0,0 +1,132 @@
+> > > > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > > > > +%YAML
+> > > > > > > > > +1.2
+> > > > > > > > > +---
+> > > > > > > > > +$id:
+> > > > > > > > > +https://jpn01.safelinks.protection.outlook.com/?url=http%
+> > > > > > > > > +3A%2
+> > > > > > > > > +F%2F
+> > > > > > > > > +devi
+> > > > > > > > > +cetree.org%2Fschemas%2Fdma%2Frenesas%2Crz-dmac.yaml%23&am
+> > > > > > > > > +p;da
+> > > > > > > > > +ta=0
+> > > > > > > > > +4%7C
+> > > > > > > > > +01%7Cbiju.das.jz%40bp.renesas.com%7C4b547e10cbe64b6f4d850
+> > > > > > > > > +8d92
+> > > > > > > > > +f2da
+> > > > > > > > > +0c0%
+> > > > > > > > > +7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C637592695286
+> > > > > > > > > +8468
+> > > > > > > > > +09%7
+> > > > > > > > > +CUnk
+> > > > > > > > > +nown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLC
+> > > > > > > > > +JBTi
+> > > > > > > > > +I6Ik
+> > > > > > > > > +1haW
+> > > > > > > > > +wiLCJXVCI6Mn0%3D%7C1000&amp;sdata=5Jh%2FxPaia5ZOY0CrViQCc
+> > > > > > > > > +rNtz
+> > > > > > > > > +uDej
+> > > > > > > > > +p8wo
+> > > > > > > > > +Nrx9iO0ht8%3D&amp;reserved=0
+> > > > > > > > > +$schema:
+> > > > > > > > > +https://jpn01.safelinks.protection.outlook.com/?url=http%
+> > > > > > > > > +3A%2
+> > > > > > > > > +F%2F
+> > > > > > > > > +devi
+> > > > > > > > > +cetree.org%2Fmeta-
+> > > > > > schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cbiju.das.
+> > > > > > > > > +jz%40bp.renesas.com%7C4b547e10cbe64b6f4d8508d92f2da0c0%7C
+> > > > > > > > > +53d8
+> > > > > > > > > +2571
+> > > > > > > > > +da19
+> > > > > > > > > +47e49cb4625a166a4a2a%7C0%7C0%7C637592695286846809%7CUnkno
+> > > > > > > > > +wn%7
+> > > > > > > > > +CTWF
+> > > > > > > > > +pbGZ
+> > > > > > > > > +sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwi
+> > > > > > > > > +LCJX
+> > > > > > > > > +VCI6
+> > > > > > > > > +Mn0%
+> > > > > > > > > +3D%7C1000&amp;sdata=5qQ1PljM3e4Bn4%2FjdldYUHRBQL3jArJgRIA
+> > > > > > > > > +dLnh
+> > > > > > > > > +Jraw
+> > > > > > > > > +%3D&
+> > > > > > > > > +amp;reserved=0
+> > > > > >
+> > > > > > *sigh*
+> > > > > >
+> > > > > > > > > +
+> > > > > > > > > +title: Renesas RZ/G2L DMA Controller
+> > > > > > > > > +
+> > > > > > > > > +maintainers:
+> > > > > > > > > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > > > > > > > > +
+> > > > > > > > > +allOf:
+> > > > > > > > > +  - $ref: "dma-controller.yaml#"
+> > > > > > > > > +
+> > > > > > > > > +properties:
+> > > > > > > > > +  compatible:
+> > > > > > > > > +    items:
+> > > > > > > > > +      - enum:
+> > > > > > > > > +          - renesas,dmac-r9a07g044  # RZ/G2{L,LC}
+> > > > > > > >
+> > > > > > > > Please use "renesas,r9a07g044-dmac".
+> > > > > > >
+> > > > > > > OK. Will change.
+> > > > > > >
+> > > > > > > > > +      - const: renesas,rz-dmac
+> > > > > > > >
+> > > > > > > > Does this need many changes for RZ/A1H and RZ/A2M?
+> > > > > > >
+> > > > > > > It will work on both RZ/A1H and RZ/A2M. I have n't tested since I don't have the board.
+> > > > > > > There is some difference in MID bit size. Other wise both identical.
+> > > > > > >
+> > > > > > > > > +  renesas,rz-dmac-slavecfg:
+> > > > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > > > > > > +    description: |
+> > > > > > > > > +      DMA configuration for a slave channel. Each channel
+> > > > > > > > > + must have an array of
+> > > > > > > > > +      3 items as below.
+> > > > > > > > > +      first item in the array is MID+RID
+> > > > > > > >
+> > > > > > > > Already in dmas.
+> > > > > > > >
+> > > > > > > > > +      second item in the array is slave src or dst
+> > > > > > > > > + address
+> > > > > > > >
+> > > > > > > > As pointed out by Rob, already known by the slave driver.
+> > > > > > > >
+> > > > > > > > > +      third item in the array is channel configuration value.
+> > > > > > > >
+> > > > > > > > What exactly is this?
+> > > > > >
+> > > > > > What would prevent the DMA client from passing the configuration
+> > > > > > to the DMA channel through the DMA engine API, just like it
+> > > > > > passes the slave source or destination address ?
+> > > > >
+> > > > > On RZ/G2L, there is 1 case(SSIF ch2) where MID+RID is same for both tx and rx.
+> > > > > The only way we can distinguish it is from channel configuration value.
+> > > >
+> > > > Are those two different hardware DMA channels ? And configuration
+> > > > values change between the two ?
+> > >
+> > > Yes, REQD is different, apart from this Rx have transfer source and Tx
+> > > have Transfer destination.
+> > > This particular SSIF ch2 is used only for half duplex compared to other
+> > > SSIF channels.
+> > 
+> > Does this mean there's a single DMA channel, used by two clients, but not
+> > at the same time as it only supports half-duplex ?
 > 
->>  Document the newly added SM6125 pinctrl driver
->> 
->>  Signed-off-by: Martin Botka <martin.botka@somainline.org>
->>  ---
->>  Changes in V2:
->>  Add commit description
->>  Changes in V3:
->>  Fix syntax errors
->>  Remove not needed state from example
->>  Changes in V4:
->>  maxItems set to 3
->>  Correct the pattern
->>  Remove deleted enums
->>  Fix the compatible
->>   .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml | 124 
->> ++++++++++++++++++
->>   1 file changed, 124 insertions(+)
->>   create mode 100644 
->> Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
->> 
->>  diff --git 
->> a/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml 
->> b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
->>  new file mode 100644
->>  index 000000000000..45366945a86f
->>  --- /dev/null
->>  +++ 
->> b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
->>  @@ -0,0 +1,124 @@
->>  +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>  +%YAML 1.2
->>  +---
->>  +$id: 
->> http://devicetree.org/schemas/pinctrl/qcom,sm6125-pinctrl.yaml#
->>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>  +title: Qualcomm Technologies, Inc. SM6125 TLMM block
->>  +
->>  +maintainers:
->>  +  - Martin Botka <martin.botka@somainline.org>
->>  +
->>  +description: |
->>  +  This binding describes the Top Level Mode Multiplexer (TLMM) 
->> block found
->>  +  in the SM6125 platform.
->>  +
->>  +allOf:
->>  +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
->>  +
->>  +properties:
->>  +  compatible:
->>  +    const: qcom,sm6125-tlmm
->>  +
->>  +  reg:
->>  +    maxItems: 3
->>  +
-> 
-> As Rob's bot pointed out, you're missing reg-names here.
-> 
->>  +  interrupts: true
->>  +  interrupt-controller: true
->>  +  '#interrupt-cells': true
->>  +  gpio-controller: true
->>  +  gpio-reserved-ranges: true
->>  +  '#gpio-cells': true
->>  +  gpio-ranges: true
->>  +  wakeup-parent: true
->>  +
->>  +required:
->>  +  - compatible
->>  +  - reg
-> 
-> And given the use of tiles, I would suggest that reg-names is required
-> as well.
-> 
-> Other than that, I think this looks great.
-> 
-> Regards,
-> Bjorn
-> 
->>  +
->>  +additionalProperties: false
->>  +
->>  +patternProperties:
->>  +  '-state$':
->>  +    oneOf:
->>  +      - $ref: "#/$defs/qcom-sm6125-tlmm-state"
->>  +      - patternProperties:
->>  +          ".*":
->>  +            $ref: "#/$defs/qcom-sm6125-tlmm-state"
->>  +
->>  +$defs:
->>  +  qcom-sm6125-tlmm-state:
->>  +    type: object
->>  +    description:
->>  +      Pinctrl node's client devices use subnodes for desired pin 
->> configuration.
->>  +      Client device subnodes use below standard properties.
->>  +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
->>  +
->>  +    properties:
->>  +      pins:
->>  +        description:
->>  +          List of gpio pins affected by the properties specified 
->> in this
->>  +          subnode.
->>  +        items:
->>  +          oneOf:
->>  +            - pattern: "^gpio[0-9]|[1-9][0-9]|1[0-2][0-9]|13[0-2]$"
->>  +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, 
->> sdc2_cmd, sdc2_data ]
->>  +        minItems: 1
->>  +        maxItems: 36
->>  +
->>  +      function:
->>  +        description:
->>  +          Specify the alternative function to be configured for 
->> the specified
->>  +          pins.
->>  +
->>  +        enum: [ adsp_ext, agera_pll, atest_char, atest_char0, 
->> atest_char1,
->>  +                atest_char2, atest_char3, atest_tsens, 
->> atest_tsens2, atest_usb1,
->>  +                atest_usb10, atest_usb11, atest_usb12, 
->> atest_usb13, atest_usb2,
->>  +                atest_usb20, atest_usb21, atest_usb22, 
->> atest_usb23, aud_sb,
->>  +                audio_ref, cam_mclk, cci_async, cci_i2c, 
->> cci_timer0, cci_timer1,
->>  +                cci_timer2, cci_timer3, cci_timer4, copy_gp, 
->> copy_phase, cri_trng,
->>  +                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, 
->> ddr_pxi1,
->>  +                ddr_pxi2, ddr_pxi3, debug_hot, dmic0_clk, 
->> dmic0_data, dmic1_clk,
->>  +                dmic1_data, dp_hot, edp_hot, edp_lcd, gcc_gp1, 
->> gcc_gp2, gcc_gp3,
->>  +                gp_pdm0, gp_pdm1, gp_pdm2, gpio, gps_tx, 
->> jitter_bist, ldo_en,
->>  +                ldo_update, m_voc, mclk1, mclk2, mdp_vsync, 
->> mdp_vsync0, mdp_vsync1,
->>  +                mdp_vsync2, mdp_vsync3, mdp_vsync4, mdp_vsync5, 
->> mpm_pwr, mss_lte,
->>  +                nav_pps, pa_indicator, phase_flag, pll_bist, 
->> pll_bypassnl, pll_reset,
->>  +                pri_mi2s, pri_mi2s_ws, prng_rosc, qca_sb, 
->> qdss_cti, qdss, qlink_enable,
->>  +                qlink_request, qua_mi2s, qui_mi2s, qup00, qup01, 
->> qup02, qup03, qup04,
->>  +                qup10, qup11, qup12, qup13, qup14, sd_write, 
->> sec_mi2s, sp_cmu, swr_rx,
->>  +                swr_tx, ter_mi2s, tgu_ch0, tgu_ch1, tgu_ch2, 
->> tgu_ch3, tsense_pwm,
->>  +                uim1_clk, uim1_data, uim1_present, uim1_reset, 
->> uim2_clk, uim2_data,
->>  +                uim2_present, uim2_reset, unused1, unused2, 
->> usb_phy, vfr_1, vsense_trigger,
->>  +                wlan1_adc0, wlan1_adc1, wlan2_adc0, wlan2_adc1, 
->> wsa_clk, wsa_data ]
->>  +
->>  +
->>  +      bias-disable: true
->>  +      bias-pull-down: true
->>  +      bias-pull-up: true
->>  +      drive-strength: true
->>  +      input-enable: true
->>  +      output-high: true
->>  +      output-low: true
->>  +
->>  +    required:
->>  +      - pins
->>  +      - function
->>  +
->>  +    additionalProperties: false
->>  +
->>  +examples:
->>  +  - |
->>  +        #include <dt-bindings/interrupt-controller/arm-gic.h>
->>  +        pinctrl@500000 {
->>  +                compatible = "qcom,sm6125-tlmm";
->>  +                reg = <0x00500000 0x400000>,
->>  +                    <0x00900000 0x400000>,
->>  +                    <0x00d00000 0x400000>;
->>  +                reg-names = "west", "south", "east";
->>  +                interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
->>  +                gpio-controller;
->>  +                gpio-ranges = <&tlmm 0 0 134>;
->>  +                #gpio-cells = <2>;
->>  +                interrupt-controller;
->>  +                #interrupt-cells = <2>;
->>  +        };
->>  --
->>  2.31.1
->> 
+> From hardware perspective, it is 2 channel. For eg:- playback/recording use case.
+> You cannot do simultaneous playback, but you can do playback or record separately.
 
+If the two channels have the same MID+RID and only differ by the
+direction, I'd add a cell in the dmas property with the direction only.
+The source/destination address should be dropped, as it's already known
+by the driver.
 
+This being said, in your example below, you have
+
+dmas = <&dmac 0x255 0x10049c18 CH_CFG(0x1,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>,
+       <&dmac 0x256 0x10049c1c CH_CFG(0x0,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>;
+dma-names = "tx", "rx";
+
+This looks like different MID+RID values for the two channels.
+
+> > > > > > > > Does the R-Car DMAC have this too? If yes, how does its
+> > > > > > > > driver handle it?
+> > > > > > >
+> > > > > > > On R-CAR DMAC, we have only MID + RID values. Where as here we
+> > > > > > > have channel configuration value With different set of
+> > > > > > > parameter as mentioned in Table 16.4.
+> > > > > > >
+> > > > > > > Please see Page 569, Table 16.4 On-Chip Module requests section.
+> > > > > > >
+> > > > > > > For eg:- as per Rob's suggestion, I have modelled the driver
+> > > > > > > with the below entries in ALSA driver for playback/record use case.
+> > > > > > >
+> > > > > > > dmas = <&dmac 0x255 0x10049c18 CH_CFG(0x1,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>,
+> > > > > > >        <&dmac 0x256 0x10049c1c CH_CFG(0x0,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>;
+> > > > > > > dma-names = "tx", "rx";
+> > > > > > >
+> > > > > > > Using first parameter, it gets dmac channel. using second and
+> > > > > > > third parameter it configures the channel.
+
+-- 
+Regards,
+
+Laurent Pinchart
