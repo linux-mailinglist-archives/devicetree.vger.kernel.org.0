@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 885653A6A42
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:29:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3985B3A6A1E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:26:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234221AbhFNPaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 11:30:01 -0400
-Received: from mail-ej1-f46.google.com ([209.85.218.46]:43779 "EHLO
-        mail-ej1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234044AbhFNP3V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:29:21 -0400
-Received: by mail-ej1-f46.google.com with SMTP id ci15so17363698ejc.10
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:27:17 -0700 (PDT)
+        id S233479AbhFNP2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 11:28:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40630 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233583AbhFNP20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:28:26 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 599B6C061574
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:26:20 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id k25so17350568eja.9
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:26:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=sMVNJ/LPbRvn48KGy/785ZDuHz9PafjtcmN48BZV1GQ=;
-        b=mM1yRhikbHOL3TLiAHpFyBj6QWF1+TtzCsYz0AjHtLnmTyIij6X/49oInPUboRknNr
-         5zMlzCwR7BOYCCAx3Idgu8tthTrxOsW3v+D+Xio2mdIKnTYnjxplu4oSKKUmuf/J6gYG
-         wSuftX3UHn9t1EJbboA7cpy9uhw1z3O7vvDFpoRzfDb+82JKuMNemARewvYDWgmOu7gg
-         nVMgGukao362IJ6jHJxh4Bpl4KAkif+d3vGKQInve/3SPGYAgZxf/X+JWjso60IUgFX1
-         MYDH2W7kFY1IxDcY2pvpUIxuJlVwj3M6SkAwY6CdONFVBAJQpfVfxT5TspXvV/3GLVLw
-         yy/g==
+        bh=pllXmoBfaR6v88nI2EZLyWocXDe+jNv0XQ5J5eU4TTM=;
+        b=tNhCiBjft4gAGezGOEY01305uPLFvbGlntQ75S9hcVMivlTh1CsHgj1Ts/Pdqtyxxm
+         g4L73E/3ZYsp+h3f6oFMn82D+yzuM2SMuE1NlmWIB45oH1/vS59o1s6llrm4PNVC5Fu+
+         FZ6csi0dtbkjyVCaKSM8r7frt5X9Qor3xdpsmGVwf2l0FtTYVaIBCSzBgpCqJnHXPwHj
+         PJtC+oNLAt0BzSxqGxer3v/VOFT2ctJwBoLwRC/3bVr9ZuVlem7tnXr0yAJ5tq9sIgZE
+         UkagtiakPqVCjKzUUJsrN+Q8M1q7XpHnuJostqmbrOCVc427k0jAGt/w0Enddmihh24h
+         Y55Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=sMVNJ/LPbRvn48KGy/785ZDuHz9PafjtcmN48BZV1GQ=;
-        b=XFF42Wv7FAFvndH2x4CLnKvHqWgx5QtAYlHZ3ZTacde28fAYtUF6jA8NywpYzpWzkD
-         nM+uVJZZaPEpnQd4ym83LCDrB3ctkIThKqVSltYltF9+h5itnHY8+sce3U+uACkHiIt1
-         h6N5ypuac/fYXFbu3H+lBwdByEpTPIsdhvAiLIddO9zpcp8kXtEZHUjxZ/TWmzWTFr9B
-         V19ouk+TDLF/TU3IWRpWcH0Ls2TQmWx9a3wU+cKtz+LFmvpFJMAEfftybefDaKZ6ubef
-         A2wlKrgCNfOEqeQts4+N1hz93x0WW9VVbmguu2xDYQahODkR55+EY7CleNbR+BVYZ7YA
-         oJ6w==
-X-Gm-Message-State: AOAM533lEx9f9gKtYZ+lnicz2BymfpmJZqEL72Z3exDVSAJP+A/i3612
-        vH1W/3hjwpvn+KIfz+smvj8JaA==
-X-Google-Smtp-Source: ABdhPJw5nHPMaw17x6xIGLUWcrzK5xMwTMS8SeIrlnqdsD4/5XabEfPGOZwKsWg6dttfKzTHTcCOoQ==
-X-Received: by 2002:a17:906:260e:: with SMTP id h14mr15829603ejc.356.1623684377377;
-        Mon, 14 Jun 2021 08:26:17 -0700 (PDT)
+        bh=pllXmoBfaR6v88nI2EZLyWocXDe+jNv0XQ5J5eU4TTM=;
+        b=FMwGRP66czu4aDeDwsGYdfHRDLxaHquHwDIEJKbD1tzlQLtZEqx/LxKaOM0DyhfDuC
+         MrKOJkGHjSguYzT4JDqKr9sZ4H2P0jLnSWDkkmx+zge1uqK0eX8RhNwocGFYGsdVTo3T
+         pK7m5oqt/oshoKpCIKdljxE/hw+wuB4vX6QnNbgeStnCPwidgeV1ZcjOLpML+XduETz5
+         n0W/JZuDzVx8Obg9ML7mFAZ3y7wxUEXp9qGhUFKtEYke4BVwxnNKFNK6fj5JL3G3I3C/
+         PS/X93XuaAUbw0iWQ5mIO5TlKxkPIeiPPRorYQmDxNaz70+1zT6089pdQ9e43r3W2iDK
+         7ntQ==
+X-Gm-Message-State: AOAM5308xFiesDITKVFm/j5LjSf7/jhaC3vxTo2ioJKxr5Pvlr+KOGd4
+        IIkmhLOAdDb5fZcq+gTzSdiJSg==
+X-Google-Smtp-Source: ABdhPJyN519iEKLtVvVKu7t8tCtnyNqBAJriCu+SZizb3tk+MUM0VrkFIdsD9TGxuNAku0sClJkqoA==
+X-Received: by 2002:a17:906:39d7:: with SMTP id i23mr15653970eje.121.1623684378748;
+        Mon, 14 Jun 2021 08:26:18 -0700 (PDT)
 Received: from localhost ([2a02:768:2307:40d6:f666:9af6:3fed:e53b])
-        by smtp.gmail.com with ESMTPSA id s2sm5275071edt.53.2021.06.14.08.26.16
+        by smtp.gmail.com with ESMTPSA id x13sm7773746ejj.21.2021.06.14.08.26.18
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 14 Jun 2021 08:26:17 -0700 (PDT)
+        Mon, 14 Jun 2021 08:26:18 -0700 (PDT)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com,
         Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Srinivas Neeli <srinivas.neeli@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Quanyang Wang <quanyang.wang@windriver.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 23/33] arm64: zynqmp: Update rtc calibration value
-Date:   Mon, 14 Jun 2021 17:25:31 +0200
-Message-Id: <0d36d9fe999ff82f10d42ab5fc0d1e907c26ac34.1623684253.git.michal.simek@xilinx.com>
+Subject: [PATCH v2 24/33] arm64: zynqmp: Remove information about dma clock on zcu106
+Date:   Mon, 14 Jun 2021 17:25:32 +0200
+Message-Id: <17973ffda4e163a4b89d4732fe6fc7e089962ae7.1623684253.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <cover.1623684253.git.michal.simek@xilinx.com>
 References: <cover.1623684253.git.michal.simek@xilinx.com>
@@ -66,36 +68,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Srinivas Neeli <srinivas.neeli@xilinx.com>
+Clock setting is not static anymore that's why it depends on firmware setup
+that's why remove this comment.
 
-As per the design specification
-"The 16-bit Seconds Calibration Value represents the number of
- Oscillator Ticks that are required to measure the largest time
- period that is less than or equal to 1 second.
- For an oscillator that is 32.768 KHz, this value will be 0x7FFF."
-
-Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
 Changes in v2: None
 
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 80332e3b4d6a..da54a2d35552 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -663,7 +663,7 @@ rtc: rtc@ffa60000 {
- 			interrupt-parent = <&gic>;
- 			interrupts = <0 26 4>, <0 27 4>;
- 			interrupt-names = "alarm", "sec";
--			calibration = <0x8000>;
-+			calibration = <0x7FFF>;
- 		};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index 2c1c4d96fb21..464a76a13c24 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -160,7 +160,6 @@ &dcc {
+ 	status = "okay";
+ };
  
- 		sata: ahci@fd0c0000 {
+-/* fpd_dma clk 667MHz, lpd_dma 500MHz */
+ &fpd_dma_chan1 {
+ 	status = "okay";
+ };
 -- 
 2.32.0
 
