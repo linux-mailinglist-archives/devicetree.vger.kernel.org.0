@@ -2,92 +2,354 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E19BA3A6C67
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 233313A6C91
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:59:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234835AbhFNQxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 12:53:00 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:24270 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234668AbhFNQw7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 12:52:59 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15EGmfTX004542;
-        Mon, 14 Jun 2021 18:50:44 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=GoahTkcTk5wuiGE9EDQMY+hff3YTZLJJ0yuw8GM4ms4=;
- b=g6/ZEKetMygJ84zCpW/3K6iLqJHXYxnWFeDkYeWZ7jKukLkE3J5nn8980zjhaO8nOboc
- omiHbuiNBHNepv23qFrp2UFOUJl45p03bk0NzMB/jVq2e24k1ZlBXi2DQys4Q3lyBwbg
- b8qzWGtDRf6A9DauWC845P7H+Uurh3YuOvKGrjSJrE4y1fXgxRpF7QAb/KvsF2NouJ01
- hogp4FW0FSYo79TEGB0UdrRa5h+42YoOeiqVzSm3HKqjbS9vp1onwT/T45zCue5/BUGV
- wNueaJqJi1A6716AklQ8cR2hQVLQsBrP4TDIFc0geIQi5lRJOQ1BMDW3g8MTijR/rurQ Iw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 3962pntrr5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 14 Jun 2021 18:50:44 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7D593100039;
-        Mon, 14 Jun 2021 18:50:43 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6D46D21CE26;
-        Mon, 14 Jun 2021 18:50:43 +0200 (CEST)
-Received: from localhost (10.75.127.44) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 14 Jun 2021 18:50:42
- +0200
-From:   Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-To:     Rob Herring <robh@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Subject: [PATCH 2/2] ARM: dts: stm32: Add coprocessor detach mbox on stm32mp15x-dkx boards
-Date:   Mon, 14 Jun 2021 18:49:40 +0200
-Message-ID: <20210614164940.27153-3-arnaud.pouliquen@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210614164940.27153-1-arnaud.pouliquen@foss.st.com>
-References: <20210614164940.27153-1-arnaud.pouliquen@foss.st.com>
+        id S235074AbhFNRBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 13:01:37 -0400
+Received: from mail-wm1-f54.google.com ([209.85.128.54]:52098 "EHLO
+        mail-wm1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234987AbhFNRBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 13:01:36 -0400
+Received: by mail-wm1-f54.google.com with SMTP id l9so12534337wms.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:59:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=giu5t1ZJoDtjd9HrozCoAGsuGJjanw/vPGOmtscX5Cs=;
+        b=tSCWhahZ/W2djqrKDZgEuHhTAr9umg77GxrEpH2qmyK7p9nhaNgs9zWZy6Ge3xTknw
+         E+3vsUJJbtCCvg6uea5Mv4omGxu8io+SHMwsYfl8XiR8GbHXEpUAOHjthVHzHjeOXWJ7
+         Lga7cglSlw4gWXLy/VCaLU01vhSScHF3VdP/3PikPHbK9MWnjFi/UbP2e+Rd/cgzInu2
+         0MSnnuMddFWW2ec0Q0d4Ms374Fy5r/19dI4US427VSUg0RyLPjPcFvJkRiaMzb4eHG93
+         qd7hUYO4d+M+qiyiZjPI890GVIoVpHy0hg8rgBFTTmHJoAbvFsyYsNOILXVPO/VvCN3G
+         4Tag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=giu5t1ZJoDtjd9HrozCoAGsuGJjanw/vPGOmtscX5Cs=;
+        b=Ohqu3YQsrpJEUYFCr+driXy3so2TmIVSdPFyAG2+McaeflvShjb6l/8IBpdcitmB5v
+         6TmoP5qcUg96nzgR05EDHq2Ni2MTiAcfKcqj+aUO+HNdBuw+qu9/v5O8cOs088j9ge4e
+         I+lz/Uw4uOgP+LN7QvJy5d4htS0vq79FUIuc4bwRFUbKOTzM8m3EsWhP1upNmdZPbWKy
+         Ax1wvyVBIPqMVI4IewwDGOSII+7ikIyriDyuOrsLJ/ZGob/Hoc61vi8jJ92O9X28Zq8n
+         NWPSx50isbFmW3WloimlPxaNB+T+R4WS+ey95EfhBwxYR7gn+/UPPx2Yr+rn9SNX55Ln
+         XZuw==
+X-Gm-Message-State: AOAM531rWmzytaI1pVHrqu9RUUuTU78WB22zRMuc9QIsTZaGB3xE/ms2
+        DEhmp/FR7lTwvyoRyJNi1HuZ/Q==
+X-Google-Smtp-Source: ABdhPJyE/uLFsbeEgXsQzzS+2i1pwKmQNwLMqFWbiLFGX6m0o585ZozMlGPHOwdSfJL+e5AMB6diNw==
+X-Received: by 2002:a7b:cc8f:: with SMTP id p15mr39151wma.111.1623689897864;
+        Mon, 14 Jun 2021 09:58:17 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:9d56:9c35:8a63:312c? ([2a01:e34:ed2f:f020:9d56:9c35:8a63:312c])
+        by smtp.googlemail.com with ESMTPSA id r18sm16684407wro.62.2021.06.14.09.58.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jun 2021 09:58:17 -0700 (PDT)
+Subject: Re: [PATCH v8] thermal: mediatek: add another get_temp ops for
+ thermal sensors
+To:     Ben Tseng <ben.tseng@mediatek.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        srv_heupstream@mediatek.com
+Cc:     Eduardo Valentin <edubezval@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Michael Kao <michael.kao@mediatek.com>
+References: <20210603110042.21688-1-ben.tseng@mediatek.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <eeb2a96d-5cd0-ef11-b16e-872d9f3dcb09@linaro.org>
+Date:   Mon, 14 Jun 2021 18:58:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.44]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
- definitions=2021-06-14_10:2021-06-14,2021-06-14 signatures=0
+In-Reply-To: <20210603110042.21688-1-ben.tseng@mediatek.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To support the detach feature, add a new mailbox channel to inform
-the remote processor on a detach. This signal allows the remote processor
-firmware to stop IPC communication and to reinitialize the resources for
-a re-attach.
+On 03/06/2021 13:00, Ben Tseng wrote:
+> From: Michael Kao <michael.kao@mediatek.com>
+> 
+> Provide thermal zone to read thermal sensor
+> in the SoC. We can read all the thermal sensors
+> value in the SoC by the node /sys/class/thermal/
+> 
+> In mtk_thermal_bank_temperature, return -EAGAIN instead of -EACCESS
+> on the first read of sensor that often are bogus values.
+> This can avoid following warning on boot:
+> 
+>   thermal thermal_zone6: failed to read out thermal zone (-13)
+> 
+> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
+> 
+> ---
+> 
+> This patchset supports for MT8183 chip to mtk_thermal.c.
+> Add thermal zone of all the thermal sensor in SoC for
+> another get temperatrue. They don't need to thermal throttle.
+> And we bind coolers for thermal zone nodes of cpu_thermal.
+> 
+> Changes in V8:
+>     - Rebase to kernel-v5.13-rc1
+>     - Resend
+> 
+> Changes in v7:
+>     - Fix build error in v6.
+> 
+> Changes in v6:
+>     - Rebase to kernel-5.11-rc1.
+>     - [1/3]
+>         - add interrupts property.
+>     - [2/3]
+>         - add the Tested-by in the commit message.
+>     - [3/3]
+>         - use the mt->conf->msr[id] instead of conf->msr[id] in the
+>           _get_sensor_temp and mtk_thermal_bank_temperature.
+>         - remove the redundant space in _get_sensor_temp and
+>           mtk_read_sensor_temp.
+>         - change kmalloc to dev_kmalloc in mtk_thermal_probe.
+> 
+> Changes in v5:
+>     - Rebase to kernel-5.9-rc1.
+>     - Revise the title of cover letter.
+>     - Drop "[v4,7/7] thermal: mediatek: use spinlock to protect PTPCORESEL"
+>     - [2/2]
+>         -  Add the judgement to the version of raw_to_mcelsius.
+> 
+> Changes in v4:
+>     - Rebase to kernel-5.6-rc1.
+>     - [1/7]
+>         - Squash thermal zone settings in the dtsi from [v3,5/8]
+>           arm64: dts: mt8183: Increase polling frequency for CPU thermal zone.
+>         - Remove the property of interrupts and mediatek,hw-reset-temp.
+>     - [2/7]
+>         - Correct commit message.
+>     - [4/7]
+>         - Change the target temperature to the 80C and change the commit message.
+>     - [6/7]
+>         - Adjust newline alignment.
+>         - Fix the judgement on the return value of registering thermal zone.
+> 
+> Changes in v3:
+>     - Rebase to kernel-5.5-rc1.
+>     - [1/8]
+>         - Update sustainable power of cpu, tzts1~5 and tztsABB.
+>     - [7/8]
+>         - Bypass the failure that non cpu_thermal sensor is not find in thermal-zones
+>           in dts, which is normal for mt8173, so prompt a warning here instead of
+>           failing.
+> 
+> 	Return -EAGAIN instead of -EACCESS on the first read of sensor that
+>         often are bogus values. This can avoid following warning on boot:
+> 
+>           thermal thermal_zone6: failed to read out thermal zone (-13)
+> 
+> Changes in v2:
+>     - [1/8]
+>         - Add the sustainable-power,trips,cooling-maps to the tzts1~tztsABB.
+>     - [4/8]
+>         - Add the min opp of cpu throttle.
+> 
+> Matthias Kaehlcke (1):
+>   arm64: dts: mt8183: Configure CPU cooling
+> 
+> Michael Kao (2):
+>   thermal: mediatek: add another get_temp ops for thermal sensors
+>   arm64: dts: mt8183: add thermal zone node
+> ---
+>  drivers/thermal/mtk_thermal.c | 100 +++++++++++++++++++++++++++++++-----------
+>  1 file changed, 75 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
+> index 97e8678..b6bee451 100644
+> --- a/drivers/thermal/mtk_thermal.c
+> +++ b/drivers/thermal/mtk_thermal.c
+> @@ -245,6 +245,11 @@ enum mtk_thermal_version {
+>  
+>  struct mtk_thermal;
+>  
+> +struct mtk_thermal_zone {
+> +	struct mtk_thermal *mt;
+> +	int id;
+> +};
 
-Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
----
- arch/arm/boot/dts/stm32mp15xx-dkx.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+How does it differ from 'struct mtk_thermal_bank' ?
 
-diff --git a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-index 59f18846cf5d..06c11bad882a 100644
---- a/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-+++ b/arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
-@@ -470,8 +470,8 @@
- &m4_rproc {
- 	memory-region = <&retram>, <&mcuram>, <&mcuram2>, <&vdev0vring0>,
- 			<&vdev0vring1>, <&vdev0buffer>;
--	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>;
--	mbox-names = "vq0", "vq1", "shutdown";
-+	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>, <&ipcc 3>;
-+	mbox-names = "vq0", "vq1", "shutdown", "detach";
- 	interrupt-parent = <&exti>;
- 	interrupts = <68 1>;
- 	status = "okay";
+>  struct thermal_bank_cfg {
+>  	unsigned int num_sensors;
+>  	const int *sensors;
+> @@ -637,6 +642,30 @@ static void mtk_thermal_put_bank(struct mtk_thermal_bank *bank)
+>  		mutex_unlock(&mt->lock);
+>  }
+>  
+> +static u32 _get_sensor_temp(struct mtk_thermal *mt, int id)
+> +{
+> +	u32 raw;
+> +	int temp;
+> +
+> +	raw = readl(mt->thermal_base + mt->conf->msr[id]);
+> +
+> +	if (mt->conf->version == MTK_THERMAL_V1)
+> +		temp = raw_to_mcelsius_v1(mt, id, raw);
+> +	else
+> +		temp = raw_to_mcelsius_v2(mt, id, raw);
+
+Please add the proper conversion function as a callback and set it at
+probe time, instead of checking at every call.
+
+> +	/*
+> +	 * The first read of a sensor often contains very high bogus
+> +	 * temperature value. Filter these out so that the system does
+> +	 * not immediately shut down.
+> +	 */
+
+If it happens only once, why not call this function at probe time so
+this test won't be needed.
+
+> +	if (temp > 200000)
+> +		return -EAGAIN;
+> +	else
+> +		return temp;
+> +}
+> +
+>  /**
+>   * mtk_thermal_bank_temperature - get the temperature of a bank
+>   * @bank:	The bank
+> @@ -647,28 +676,11 @@ static void mtk_thermal_put_bank(struct mtk_thermal_bank *bank)
+>  static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
+>  {
+>  	struct mtk_thermal *mt = bank->mt;
+> -	const struct mtk_thermal_data *conf = mt->conf;
+>  	int i, temp = INT_MIN, max = INT_MIN;
+> -	u32 raw;
+> -
+> -	for (i = 0; i < conf->bank_data[bank->id].num_sensors; i++) {
+> -		raw = readl(mt->thermal_base + conf->msr[i]);
+>  
+> -		if (mt->conf->version == MTK_THERMAL_V1) {
+> -			temp = raw_to_mcelsius_v1(
+> -				mt, conf->bank_data[bank->id].sensors[i], raw);
+> -		} else {
+> -			temp = raw_to_mcelsius_v2(
+> -				mt, conf->bank_data[bank->id].sensors[i], raw);
+> -		}
+> +	for (i = 0; i < mt->conf->bank_data[bank->id].num_sensors; i++) {
+>  
+> -		/*
+> -		 * The first read of a sensor often contains very high bogus
+> -		 * temperature value. Filter these out so that the system does
+> -		 * not immediately shut down.
+> -		 */
+> -		if (temp > 200000)
+> -			temp = 0;
+> +		temp = _get_sensor_temp(mt, i);
+>  
+>  		if (temp > max)
+>  			max = temp;
+> @@ -679,7 +691,8 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
+>  
+>  static int mtk_read_temp(void *data, int *temperature)
+>  {
+> -	struct mtk_thermal *mt = data;
+> +	struct mtk_thermal_zone *tz = data;
+> +	struct mtk_thermal *mt = tz->mt;
+>  	int i;
+>  	int tempmax = INT_MIN;
+>  
+> @@ -698,10 +711,28 @@ static int mtk_read_temp(void *data, int *temperature)
+>  	return 0;
+>  }
+>  
+> +static int mtk_read_sensor_temp(void *data, int *temperature)
+> +{
+> +	struct mtk_thermal_zone *tz = data;
+> +	struct mtk_thermal *mt = tz->mt;
+> +	int id = tz->id - 1;
+> +
+> +	if (id < 0)
+> +		return -EACCES;
+
+How this can happen ?
+
+> +
+> +	*temperature = _get_sensor_temp(mt, id);
+> +
+> +	return 0;
+> +}
+> +
+>  static const struct thermal_zone_of_device_ops mtk_thermal_ops = {
+>  	.get_temp = mtk_read_temp,
+>  };
+>  
+> +static const struct thermal_zone_of_device_ops mtk_thermal_sensor_ops = {
+> +	.get_temp = mtk_read_sensor_temp,
+> +};
+> +
+>  static void mtk_thermal_init_bank(struct mtk_thermal *mt, int num,
+>  				  u32 apmixed_phys_base, u32 auxadc_phys_base,
+>  				  int ctrl_id)
+> @@ -992,6 +1023,7 @@ static int mtk_thermal_probe(struct platform_device *pdev)
+>  	u64 auxadc_phys_base, apmixed_phys_base;
+>  	struct thermal_zone_device *tzdev;
+>  	void __iomem *apmixed_base, *auxadc_base;
+> +	struct mtk_thermal_zone *tz;
+>  
+>  	mt = devm_kzalloc(&pdev->dev, sizeof(*mt), GFP_KERNEL);
+>  	if (!mt)
+> @@ -1080,11 +1112,29 @@ static int mtk_thermal_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, mt);
+>  
+> -	tzdev = devm_thermal_zone_of_sensor_register(&pdev->dev, 0, mt,
+> -						     &mtk_thermal_ops);
+> -	if (IS_ERR(tzdev)) {
+> -		ret = PTR_ERR(tzdev);
+> -		goto err_disable_clk_peri_therm;
+> +	for (i = 0; i < mt->conf->num_sensors + 1; i++) {
+> +		tz = devm_kmalloc(&pdev->dev, sizeof(*tz), GFP_KERNEL);
+> +		if (!tz)
+> +			return -ENOMEM;
+> +
+> +		tz->mt = mt;
+> +		tz->id = i;
+> +
+> +		tzdev = devm_thermal_zone_of_sensor_register(&pdev->dev, i, tz, (i == 0) ?
+> +							     &mtk_thermal_ops :
+> +							     &mtk_thermal_sensor_ops);
+> +
+> +		if (IS_ERR(tzdev)) {
+> +			if (PTR_ERR(tzdev) == -ENODEV) {
+> +				dev_warn(&pdev->dev,
+> +					 "sensor %d not registered in thermal zone in dt\n", i);
+> +				continue;
+> +			}
+> +			if (PTR_ERR(tzdev) == -EACCES) {
+> +				ret = PTR_ERR(tzdev);
+> +				goto err_disable_clk_peri_therm;
+> +			}
+
+If the error is none of the above, the loop continues. Is that what you
+want ?
+
+> +		}
+>  	}
+>  
+>  	return 0;
+> 
+
+
 -- 
-2.17.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
