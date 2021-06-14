@@ -2,119 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AC053A71AD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 23:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 549E83A71C7
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 00:11:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229760AbhFNWBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 18:01:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42460 "EHLO
+        id S229868AbhFNWNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 18:13:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231277AbhFNWBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 18:01:23 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 497A8C061574;
-        Mon, 14 Jun 2021 14:59:05 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id b9so17554567ybg.10;
-        Mon, 14 Jun 2021 14:59:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TZ9IOmDtrZ7ni16mZAp2GrXLaKHRdUgj/PRjU6h2E4g=;
-        b=hyJC88zcRBbPbmWSBxuipd4CSWNL1IvjA7MZr+nsTkzyjCH5iRWCnlMNpIRqS9el9c
-         XtD8+XTXh5LqEx9SzMAm0LEcwpuklJ/GLTHUD0d1dwzRL0YXJcW6sDmRBZjCpkfb6wmv
-         feY+aawuh7VyjZz39qiMoMbW4BzFHVyk6lrUx+HNkXCcjHuQxTgZCo1jE7jjy7F0scQz
-         ZkFNTpUmQ61KIWhkjl4KzKvOxgFssx/2eZzBgXnY5jYkF8jKyFJ4MxwRnMu1nCJD8EsW
-         zL9xKAm93+/jb6Cu1MinBAUjdETuB1JKJdb/lw6i6Jgmf/RhoOq48OHToUgxlTh7jKKM
-         sTdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TZ9IOmDtrZ7ni16mZAp2GrXLaKHRdUgj/PRjU6h2E4g=;
-        b=ZbmYc21T9JS+bKdlhkV7TrOdEGZdzznJrPHOcU9c7sVtEA1g+Ka4rxpMf8DB974tgl
-         948CwFN+DHe2ffJwgoekbAug6Y3gQRikH4HVlco273JUJOr+NicHSAVQ/sIl7o0tP8pd
-         CXJIhDSqeppl5/0VUt705WPdfkIztZr9fuitp0PyBhqzjnEMzzZh1phEy3oKXfZghtr5
-         XgmNiwCjBg/18ej5CLO2c3tTMMb8OFps9auS8bdafuc1WN0x3r09Q2N5qC5JUAwfKeuI
-         XTLz9KoppINW2OgL2w8yuCHBVFSfUIRakuIDEGTK+nc8SZhc0B60Dvd9GTQzB2q2jEZp
-         XqeA==
-X-Gm-Message-State: AOAM5311e3JiKo0v446g9N/fHDOuFT6XTYM4Z5yDKcO09WvIQM65MZfZ
-        5RYBQnw6eNlnTRqV+Y4c7Ru8ZlgAZebxpWsbv73Or6/ONt4N8A==
-X-Google-Smtp-Source: ABdhPJwM4JriTTGxJctcBS5AHLq3/0YqXry11po9fnxM/+M939A6AkOG4ffHD4uRJYcu+d1NLAf1LXQjWPejUAOxq8E=
-X-Received: by 2002:a25:db93:: with SMTP id g141mr28180078ybf.141.1623707944462;
- Mon, 14 Jun 2021 14:59:04 -0700 (PDT)
+        with ESMTP id S229499AbhFNWNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 18:13:32 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89503C061574;
+        Mon, 14 Jun 2021 15:11:29 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7530245E;
+        Tue, 15 Jun 2021 00:11:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1623708686;
+        bh=d6On1obOvR3mdypl3LHyTI9n/zs1VVSO7ReovBf8178=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=N3IweVw5LV42lTjVJimmEwOIpZRmLcBO7krY8/l8yqDni0c7WelA8OcKjVSYa+o8J
+         ASkpw46lNTodoMKcECgOKk+cm6FeYnILSPBKIrv4U9Ds1zw54aggxOicwuepZUt/6b
+         V0Kik33WzxsDGj4JV7kDZKW3dH0L0LDsFrE1gxWM=
+Date:   Tue, 15 Jun 2021 01:11:06 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
+        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
+        shawnguo@kernel.org, slongerbeam@gmail.com
+Subject: Re: [PATCH v4.1 3/3] arm64: dts: imx8mq: add mipi csi phy and csi
+ bridge descriptions
+Message-ID: <YMfT+swqNAm67EmS@pendragon.ideasonboard.com>
+References: <20210614121522.2944593-4-martin.kepplinger@puri.sm>
+ <20210614122517.2945532-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-References: <20210614154359.805555-1-benjamin.gaignard@collabora.com>
- <20210614154359.805555-4-benjamin.gaignard@collabora.com> <19d8cb97-d715-eb5f-5b2c-0c273937fd00@arm.com>
-In-Reply-To: <19d8cb97-d715-eb5f-5b2c-0c273937fd00@arm.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Mon, 14 Jun 2021 17:58:52 -0400
-Message-ID: <CAMdYzYrD=qtwAPc8tNRB8Ko-f_zhOVKiOsbgPPqpAi2MrDzSSA@mail.gmail.com>
-Subject: Re: [PATCH 3/4] PHY: rockchip: USB2: Allow 64 bits reg property
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Benjamin Gaignard <benjamin.gaignard@collabora.com>, kishon@ti.com,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210614122517.2945532-1-martin.kepplinger@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 14, 2021 at 1:09 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2021-06-14 16:43, Benjamin Gaignard wrote:
-> > In rk356x device-tree "reg" property could be coded on 64 bits.
-> > Change reg type and of_property_read_ to make it works.
->
-> On platforms with #address-cells=1, this isn't going to do what you
-> think. Worse, it's not even going to fail, because you *can* read a
-> 64-bit value from an address cell with a size cell after it...
+Hi Martin,
 
-Apologies, this was a hack and in no way ready for submission.
+Thank you for the patch.
 
-While I've got you here, what would be the best way to handle this?
-Since previous generations #address-cells=1 and #size-cells=1, where
-the rk356x #address-cells=2 and #size-cells=2 and we need to account
-for both of them.
+On Mon, Jun 14, 2021 at 02:25:17PM +0200, Martin Kepplinger wrote:
+> Describe the 2 available CSI interfaces on the i.MX8MQ with the MIPI-CSI2
+> receiver and the CSI Bridge that provides the user buffers, where the
+> existing driver can directly be used.
+> 
+> An image sensor is to be connected to the MIPIs' second port, described in
+> board files.
+> 
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+> 
+> sorry, the csi compatible addition suggested by Marco was missing in
+> v4 3/3. here is 3/3 updated.
+> 
+> 
+> 
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 102 ++++++++++++++++++++++
+>  1 file changed, 102 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index 91df9c5350ae..fa83e8294b20 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -1099,6 +1099,108 @@ uart4: serial@30a60000 {
+>  				status = "disabled";
+>  			};
+>  
+> +			mipi_csi1: csi@30a70000 {
+> +				compatible = "fsl,imx8mq-mipi-csi2";
+> +				reg = <0x30a70000 0x1000>;
+> +				clocks = <&clk IMX8MQ_CLK_CSI1_CORE>,
+> +				   <&clk IMX8MQ_CLK_CSI1_ESC>,
+> +				   <&clk IMX8MQ_CLK_CSI1_PHY_REF>,
+> +				   <&clk IMX8MQ_CLK_CLKO2>;
+> +				clock-names = "core", "esc", "pxl", "clko2";
 
-Thanks,
-Peter
+I can't figure out what the clko2 clock is used for based on the
+datasheet. It seems to be a clock output by the SoC on GPIO1_IO15, and
+doesn't seem to belong here.
 
->
-> Robin.
->
-> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> > Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> > ---
-> >   drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 4 ++--
-> >   1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> > index 46ebdb1460a3d..45518f96d7217 100644
-> > --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> > +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> > @@ -1068,7 +1068,7 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
-> >       struct rockchip_usb2phy *rphy;
-> >       const struct rockchip_usb2phy_cfg *phy_cfgs;
-> >       const struct of_device_id *match;
-> > -     unsigned int reg;
-> > +     u64 reg;
-> >       int index, ret;
-> >
-> >       rphy = devm_kzalloc(dev, sizeof(*rphy), GFP_KERNEL);
-> > @@ -1098,7 +1098,7 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
-> >               rphy->usbgrf = NULL;
-> >       }
-> >
-> > -     if (of_property_read_u32(np, "reg", &reg)) {
-> > +     if (of_property_read_u64(np, "reg", &reg)) {
-> >               dev_err(dev, "the reg property is not assigned in %pOFn node\n",
-> >                       np);
-> >               return -EINVAL;
-> >
+Regarding core, esc and pix, do these clock correspond to the clk,
+clk_esc and clk_ui listed in table 13-36 (section 13.8.3.3.1 "RX Local
+Interface Description") of the TRM ? If so, should they be renamed
+accordingly, to either "clk", "clk_esc" and "clk_ui", or, if we want to
+drop the prefixes, "core", "esc" and "ui" ?
+
+> +				assigned-clocks = <&clk IMX8MQ_CLK_CSI1_CORE>,
+> +				    <&clk IMX8MQ_CLK_CSI1_PHY_REF>,
+> +				    <&clk IMX8MQ_CLK_CSI1_ESC>;
+> +				assigned-clock-rates = <266000000>, <333000000>, <66000000>;
+> +				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_266M>,
+> +					<&clk IMX8MQ_SYS2_PLL_1000M>,
+> +					<&clk IMX8MQ_SYS1_PLL_800M>;
+> +				power-domains = <&pgc_mipi_csi1>;
+> +				resets = <&src>;
+
+The src node has #reset-cells set to 1, I think you're missing something
+here.
+
+> +				fsl,mipi-phy-gpr = <&iomuxc_gpr 0x88>;
+> +				interconnects = <&noc IMX8MQ_ICM_CSI1 &noc IMX8MQ_ICS_DRAM>;
+> +				interconnect-names = "dram";
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +
+> +						csi1_mipi_ep: endpoint {
+> +							remote-endpoint = <&csi1_ep>;
+> +						};
+> +					};
+> +				};
+> +			};
+> +
+> +			csi1: csi@30a90000 {
+> +				compatible = "fsl,imx8mq-csi", "fsl,imx7-csi";
+> +				reg = <0x30a90000 0x10000>;
+> +				interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clk IMX8MQ_CLK_CSI1_ROOT>;
+> +				clock-names = "mclk";
+> +				status = "disabled";
+> +
+> +				port {
+> +					csi1_ep: endpoint {
+> +						remote-endpoint = <&csi1_mipi_ep>;
+> +					};
+> +				};
+> +			};
+> +
+> +			mipi_csi2: csi@30b60000 {
+> +				compatible = "fsl,imx8mq-mipi-csi2";
+> +				reg = <0x30b60000 0x1000>;
+> +				clocks = <&clk IMX8MQ_CLK_CSI2_CORE>,
+> +				   <&clk IMX8MQ_CLK_CSI2_ESC>,
+> +				   <&clk IMX8MQ_CLK_CSI2_PHY_REF>,
+> +				   <&clk IMX8MQ_CLK_CLKO2>;
+> +				clock-names = "core", "esc", "pxl", "clko2";
+> +				assigned-clocks = <&clk IMX8MQ_CLK_CSI2_CORE>,
+> +				    <&clk IMX8MQ_CLK_CSI2_PHY_REF>,
+> +				    <&clk IMX8MQ_CLK_CSI2_ESC>;
+> +				assigned-clock-rates = <266000000>, <333000000>, <66000000>;
+> +				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_266M>,
+> +					<&clk IMX8MQ_SYS2_PLL_1000M>,
+> +					<&clk IMX8MQ_SYS1_PLL_800M>;
+> +				power-domains = <&pgc_mipi_csi2>;
+> +				resets = <&src>;
+> +				fsl,mipi-phy-gpr = <&iomuxc_gpr 0xa4>;
+> +				interconnects = <&noc IMX8MQ_ICM_CSI2 &noc IMX8MQ_ICS_DRAM>;
+> +				interconnect-names = "dram";
+> +				status = "disabled";
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +
+> +					port@0 {
+> +						reg = <0>;
+> +
+> +						csi2_mipi_ep: endpoint {
+> +							remote-endpoint = <&csi2_ep>;
+> +						};
+> +					};
+> +				};
+> +			};
+> +
+> +			csi2: csi@30b80000 {
+> +				compatible = "fsl,imx8mq-csi", "fsl,imx7-csi";
+> +				reg = <0x30b80000 0x10000>;
+> +				interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clk IMX8MQ_CLK_CSI2_ROOT>;
+> +				clock-names = "mclk";
+> +				status = "disabled";
+> +
+> +				port {
+> +					csi2_ep: endpoint {
+> +						remote-endpoint = <&csi2_mipi_ep>;
+> +					};
+> +				};
+> +			};
+> +
+>  			mu: mailbox@30aa0000 {
+>  				compatible = "fsl,imx8mq-mu", "fsl,imx6sx-mu";
+>  				reg = <0x30aa0000 0x10000>;
+
+-- 
+Regards,
+
+Laurent Pinchart
