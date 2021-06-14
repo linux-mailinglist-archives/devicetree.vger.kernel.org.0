@@ -2,515 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D996C3A6158
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 12:44:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A5CF3A61A6
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 12:48:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233492AbhFNKqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 06:46:18 -0400
-Received: from mail-pj1-f42.google.com ([209.85.216.42]:37491 "EHLO
-        mail-pj1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234157AbhFNKoR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 06:44:17 -0400
-Received: by mail-pj1-f42.google.com with SMTP id 22-20020a17090a0c16b0290164a5354ad0so9794913pjs.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 03:42:00 -0700 (PDT)
+        id S233607AbhFNKuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 06:50:10 -0400
+Received: from mail-wr1-f50.google.com ([209.85.221.50]:43694 "EHLO
+        mail-wr1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233663AbhFNKsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 06:48:04 -0400
+Received: by mail-wr1-f50.google.com with SMTP id r9so14014570wrz.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 03:46:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=F/FnxgJJ6X5Hj5mB3BJ7rGeDb6GnuuIHVH7+4AjxYJk=;
-        b=m3idL5ZgVLOu20VdRqMiAFMu7jQPmzfaGpRcaiM2RjhF8jWU/6zwpa4tCeFd5XgR1h
-         UL0LG5wuzHZCSKk/mmZ14mxgdugQJuRTf7z7ZqoZNDUrzpqMykpy8c6cv64+q1SWXFWj
-         OVTzeBtu5D2q1rXu4GvXwBH6OnbEPC5iRHVPvj5PVyJ3aj0xOefiInpckvamjFyLpQcN
-         De5mfB5WZ1XmoM0PWGcI/b6KLcSkHxVh/k6XRR7xBhjgFE4YmNRfqwKR8ceFp89RMmgb
-         CPf/jjofQ70KyGxPdbdo78XYWfZac1tvaRxmVaWm1xp51sdszkjCcur9g7bjUXwnQ8P3
-         dyFQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=8d/+A3nrsnLJMgR/AIVYK9SWox/OsVV6RfKVCOtelGA=;
+        b=RZ4RiiLQhy0zOTYNVjuHga3qM0UGB6CNFpcu61gCFgtGKxmVQf1HR8N9tTEMGHIXx8
+         zkvLalvqidxCcNwtrk7n/c63E7saX5t2wMsOxreXm2M81o0HK6SjZuzE0OxLjvkXskBJ
+         zWXXFyIvw+wX+xp15Gx3Z8xZZOuAYgdv4mwpsHRm0pfTYdqXtyh3GcIm1bj47taUb5YO
+         qyBtFzR1lW5R9a1gOybKje62SpkbVGPxggciRHW9MX8MFINsvHPvKmRVAamxxGtU/Ww/
+         hD5GCl/ohMah/6Rhi508JURocnRQHwY8VQRhKfCh2LI43CJVZxxjFTfVvq880zAozZ+j
+         FMcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=F/FnxgJJ6X5Hj5mB3BJ7rGeDb6GnuuIHVH7+4AjxYJk=;
-        b=R3jHZqfR6WQOgtH4sRMwvsgsMxCvRwn0608nzU20wl3zdo1yUGMXlazCR7Tze7LOUN
-         xgsJkV6zozuf95ssKOOjx/JHMh0uWr3C0LVzNCTI000ze0iYpWOwNk42H+ek9wBj9cpk
-         Siyg4lR5elS5yVj24LNhS1xbiI8itAZqgDDBeKjwDtkt2kXXQ9QcvXjFMpsmhXa0/pXU
-         NkuP3bc8Bm+U3rqSIe/dt6I6QpeSjtYoYXabeBRMlLdtZeTnSAnQxcN1H8GpshDp1ukL
-         PzrcvoN3OAfelGCcOv2vLslsrcLWg7u3qcFHDEZL7Nq9iNdJtGaAtOh4TVbzSt0+FpYB
-         JEug==
-X-Gm-Message-State: AOAM532LVOpVSijrExU06UNMeKazUl15jAT8Sf7IflyLWJeQU3VWg+Hj
-        8ptURYOB4Iq/+DgfpymC5SlIMQ==
-X-Google-Smtp-Source: ABdhPJx4RboqA6Ju92QG96Oq4Z5F9clsG/Whm+mnpf+mN81Ep2hsn7iBsxSDtcgSZ8XDPsgJ4LXlQA==
-X-Received: by 2002:a17:90a:d516:: with SMTP id t22mr18745289pju.144.1623667260404;
-        Mon, 14 Jun 2021 03:41:00 -0700 (PDT)
-Received: from localhost ([136.185.134.182])
-        by smtp.gmail.com with ESMTPSA id z3sm5594896pfb.127.2021.06.14.03.40.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jun 2021 03:40:59 -0700 (PDT)
-Date:   Mon, 14 Jun 2021 16:10:58 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wsd_upstream@mediatek.com
-Subject: Re: [PATCH v12 1/2] cpufreq: mediatek-hw: Add support for CPUFREQ HW
-Message-ID: <20210614104058.jdwb7godqzhf7rgd@vireshk-i7>
-References: <1622307153-3639-1-git-send-email-hector.yuan@mediatek.com>
- <1622307153-3639-2-git-send-email-hector.yuan@mediatek.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=8d/+A3nrsnLJMgR/AIVYK9SWox/OsVV6RfKVCOtelGA=;
+        b=G9fMLOdkXHHGlHyTBb9XkCbT3M6I6AexKAF8dpLG0GoNA0hcRgibj3kNU7oe+BAH30
+         0KV0CT0ekeFDwsTMLGjgIpxZa9VAmUpMsWOREA/601sNMuMiEKeSj/3pzNOypxFiWsaI
+         UtdPapvJbjVPo+3oVG32o58ueUZs1J/iY504fXyM2p1ShYq4KYqHE8CtQpeYPeCVDMDT
+         rUWGPJtM7Fxm/cB9Mq5Bnz+YBxOqnxgTJ8oIvTL2Tz5jcmKQar2L5qm6Vd5LNYXqhwRH
+         fKcOp/jRQxoIEMU0yiv1Zd0eKQ7p8D4OklJSA2rvNYLj8zTL42nJoksIs6KkIgU9EaVn
+         uhPA==
+X-Gm-Message-State: AOAM530VK3NZ6UzZGieXm1WKT9UdCk0Bb7iMbTVqlcHVq3TdXdZKgiZF
+        SYunZ9r9c5WCRrOhmjrVBbk5Rw==
+X-Google-Smtp-Source: ABdhPJyLXiN6JycbTN1svrMiyzlNZjRab04Oc3sN833/qLym10qO7qGkP2CV4Pc2qBxhpZWFnhb5qw==
+X-Received: by 2002:adf:a195:: with SMTP id u21mr17680126wru.367.1623667501217;
+        Mon, 14 Jun 2021 03:45:01 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id r18sm15843544wro.62.2021.06.14.03.45.00
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 14 Jun 2021 03:45:00 -0700 (PDT)
+Subject: Re: [PATCH v2 1/3] nvmem: core: introduce cells parser
+To:     Vadym Kochan <vadym.kochan@plvision.eu>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Robert Marko <robert.marko@sartura.hr>
+References: <20210608190327.22071-1-vadym.kochan@plvision.eu>
+ <20210608190327.22071-2-vadym.kochan@plvision.eu>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <43023500-dd6a-5180-057e-cecc1f1b6500@linaro.org>
+Date:   Mon, 14 Jun 2021 11:44:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1622307153-3639-2-git-send-email-hector.yuan@mediatek.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20210608190327.22071-2-vadym.kochan@plvision.eu>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-05-21, 00:52, Hector Yuan wrote:
-> From: "Hector.Yuan" <hector.yuan@mediatek.com>
+
+
+On 08/06/2021 20:03, Vadym Kochan wrote:
+> Current implementation does not allow to register cells for already
+> registered nvmem device and requires that this should be done before. But
+> there might a driver which needs to parse the nvmem device and after
+> register a cells table.
 > 
-> Add cpufreq HW support.
+> Introduce nvmem_parser API which allows to register cells parser which
+> is called during nvmem device registration. During this stage the parser
+> can read the nvmem device and register the cells table.
 > 
-> Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
+> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
 > ---
->  drivers/cpufreq/Kconfig.arm           |   12 ++
->  drivers/cpufreq/Makefile              |    1 +
->  drivers/cpufreq/mediatek-cpufreq-hw.c |  370 +++++++++++++++++++++++++++++++++
->  3 files changed, 383 insertions(+)
->  create mode 100644 drivers/cpufreq/mediatek-cpufreq-hw.c
+> v2:
+>      1) Added nvmem_parser_data so parser implementation
+>         should fill it with cells table and lookups which
+>         will be registered by core.c after cells_parse was
+>         succeed.
 > 
-> diff --git a/drivers/cpufreq/Kconfig.arm b/drivers/cpufreq/Kconfig.arm
-> index a5c5f70..954749a 100644
-> --- a/drivers/cpufreq/Kconfig.arm
-> +++ b/drivers/cpufreq/Kconfig.arm
-> @@ -133,6 +133,18 @@ config ARM_MEDIATEK_CPUFREQ
->  	help
->  	  This adds the CPUFreq driver support for MediaTek SoCs.
->  
-> +config ARM_MEDIATEK_CPUFREQ_HW
-> +	tristate "MediaTek CPUFreq HW driver"
-> +	depends on ARCH_MEDIATEK || COMPILE_TEST
-> +	default m
-> +	help
-> +	  Support for the CPUFreq HW driver.
-> +	  Some MediaTek chipsets have a HW engine to offload the steps
-> +	  necessary for changing the frequency of the CPUs. Firmware loaded
-> +	  in this engine exposes a programming interface to the OS.
-> +	  The driver implements the cpufreq interface for this HW engine.
-> +	  Say Y if you want to support CPUFreq HW.
-> +
->  config ARM_OMAP2PLUS_CPUFREQ
->  	bool "TI OMAP2+"
->  	depends on ARCH_OMAP2PLUS
-> diff --git a/drivers/cpufreq/Makefile b/drivers/cpufreq/Makefile
-> index 27d3bd7..48ee585 100644
-> --- a/drivers/cpufreq/Makefile
-> +++ b/drivers/cpufreq/Makefile
-> @@ -56,6 +56,7 @@ obj-$(CONFIG_ARM_IMX6Q_CPUFREQ)		+= imx6q-cpufreq.o
->  obj-$(CONFIG_ARM_IMX_CPUFREQ_DT)	+= imx-cpufreq-dt.o
->  obj-$(CONFIG_ARM_KIRKWOOD_CPUFREQ)	+= kirkwood-cpufreq.o
->  obj-$(CONFIG_ARM_MEDIATEK_CPUFREQ)	+= mediatek-cpufreq.o
-> +obj-$(CONFIG_ARM_MEDIATEK_CPUFREQ_HW)	+= mediatek-cpufreq-hw.o
->  obj-$(CONFIG_MACH_MVEBU_V7)		+= mvebu-cpufreq.o
->  obj-$(CONFIG_ARM_OMAP2PLUS_CPUFREQ)	+= omap-cpufreq.o
->  obj-$(CONFIG_ARM_PXA2xx_CPUFREQ)	+= pxa2xx-cpufreq.o
-> diff --git a/drivers/cpufreq/mediatek-cpufreq-hw.c b/drivers/cpufreq/mediatek-cpufreq-hw.c
-> new file mode 100644
-> index 0000000..6f3a461
-> --- /dev/null
-> +++ b/drivers/cpufreq/mediatek-cpufreq-hw.c
-> @@ -0,0 +1,370 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2020 MediaTek Inc.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/cpufreq.h>
-> +#include <linux/energy_model.h>
-> +#include <linux/init.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/pm_qos.h>
-> +#include <linux/slab.h>
-> +
-> +#define LUT_MAX_ENTRIES			32U
-> +#define LUT_FREQ			GENMASK(11, 0)
-> +#define LUT_ROW_SIZE			0x4
-> +#define CPUFREQ_HW_STATUS		BIT(0)
-> +#define SVS_HW_STATUS			BIT(1)
-> +#define POLL_USEC			1000
-> +#define TIMEOUT_USEC			300000
-> +
-> +enum {
-> +	REG_FREQ_LUT_TABLE,
-> +	REG_FREQ_ENABLE,
-> +	REG_FREQ_PERF_STATE,
-> +	REG_FREQ_HW_STATE,
-> +	REG_EM_POWER_TBL,
-> +	REG_FREQ_LATENCY,
-> +
-> +	REG_ARRAY_SIZE,
+>      2) Removed cells_remove callback from nvmem_parser_config which
+>         is not needed because cells table & lookups are
+>         registered/unregistered automatically by core.
+> 
+>      3) Use new device property to read cells parser name during nvmem
+>         registration. Removed of_node usage.
+> 
+>      4) parser's module refcount is incremented/decremented on each parser
+>         bind/unbind to nvmem device.
+> 
+>   drivers/nvmem/core.c           | 178 +++++++++++++++++++++++++++++++++
+>   include/linux/nvmem-provider.h |  31 ++++++
+>   2 files changed, 209 insertions(+)
+> 
+> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
+> index bca671ff4e54..648373ced6d4 100644
+> --- a/drivers/nvmem/core.c
+> +++ b/drivers/nvmem/core.c
+> @@ -39,6 +39,7 @@ struct nvmem_device {
+>   	nvmem_reg_read_t	reg_read;
+>   	nvmem_reg_write_t	reg_write;
+>   	struct gpio_desc	*wp_gpio;
+> +	struct nvmem_parser_data *parser_data;
+
+This should be renamed to nvmem_cell_info_parser or something on those 
+lines to avoid any misunderstanding on what exactly this parser is about.
+
+May be can totally avoid this by using parser name only during register.
+
+>   	void *priv;
+>   };
+>   
+> @@ -57,6 +58,13 @@ struct nvmem_cell {
+>   	struct list_head	node;
+>   };
+>   
+> +struct nvmem_parser {
+> +	struct list_head	head;
+> +	nvmem_parse_t		cells_parse;
+> +	const char		*name;
+> +	struct module		*owner;
 > +};
 > +
-> +struct cpufreq_mtk {
-> +	struct cpufreq_frequency_table *table;
-> +	void __iomem *reg_bases[REG_ARRAY_SIZE];
-> +	int nr_opp;
-> +	cpumask_t related_cpus;
-> +};
+>   static DEFINE_MUTEX(nvmem_mutex);
+>   static DEFINE_IDA(nvmem_ida);
+>   
+> @@ -66,6 +74,9 @@ static LIST_HEAD(nvmem_cell_tables);
+>   static DEFINE_MUTEX(nvmem_lookup_mutex);
+>   static LIST_HEAD(nvmem_lookup_list);
+>   
+> +static DEFINE_MUTEX(nvmem_parser_mutex);
+> +static LIST_HEAD(nvmem_parser_list);
 > +
-> +static const u16 cpufreq_mtk_offsets[REG_ARRAY_SIZE] = {
-> +	[REG_FREQ_LUT_TABLE]	= 0x0,
-> +	[REG_FREQ_ENABLE]	= 0x84,
-> +	[REG_FREQ_PERF_STATE]	= 0x88,
-> +	[REG_FREQ_HW_STATE]	= 0x8c,
-> +	[REG_EM_POWER_TBL]	= 0x90,
-> +	[REG_FREQ_LATENCY]	= 0x110,
-> +};
-> +
-> +static struct cpufreq_mtk *mtk_freq_domain_map[NR_CPUS];
-> +
-> +static int __maybe_unused
-> +mtk_cpufreq_get_cpu_power(unsigned long *mW,
-> +			  unsigned long *KHz, struct device *cpu_dev)
+>   static BLOCKING_NOTIFIER_HEAD(nvmem_notifier);
+>   
+>   static int __nvmem_reg_read(struct nvmem_device *nvmem, unsigned int offset,
+> @@ -418,6 +429,118 @@ static struct bus_type nvmem_bus_type = {
+>   	.name		= "nvmem",
+>   };
+>   
+> +static struct nvmem_parser *__nvmem_parser_get(const char *name)
 > +{
-> +	struct cpufreq_mtk *c = mtk_freq_domain_map[cpu_dev->id];
-> +	int i;
+> +	struct nvmem_parser *tmp, *parser = NULL;
 > +
-> +	for (i = 0; i < c->nr_opp; i++) {
-> +		if (c->table[i].frequency < *KHz)
+> +	list_for_each_entry(tmp, &nvmem_parser_list, head) {
+> +		if (strcmp(name, tmp->name) == 0) {
+> +			parser = tmp;
 > +			break;
-> +	}
-> +	i--;
-> +
-> +	*KHz = c->table[i].frequency;
-> +	*mW = readl_relaxed(c->reg_bases[REG_EM_POWER_TBL] +
-> +			    i * LUT_ROW_SIZE) / 1000;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_cpufreq_hw_target_index(struct cpufreq_policy *policy,
-> +				       unsigned int index)
-> +{
-> +	struct cpufreq_mtk *c = policy->driver_data;
-> +
-> +	writel_relaxed(index, c->reg_bases[REG_FREQ_PERF_STATE]);
-> +
-> +	return 0;
-> +}
-> +
-> +static unsigned int mtk_cpufreq_hw_get(unsigned int cpu)
-> +{
-> +	struct cpufreq_mtk *c;
-> +	unsigned int index;
-> +
-> +	c = mtk_freq_domain_map[cpu];
-> +
-> +	index = readl_relaxed(c->reg_bases[REG_FREQ_PERF_STATE]);
-> +	index = min(index, LUT_MAX_ENTRIES - 1);
-> +
-> +	return c->table[index].frequency;
-> +}
-> +
-> +static unsigned int mtk_cpufreq_hw_fast_switch(struct cpufreq_policy *policy,
-> +					       unsigned int target_freq)
-> +{
-> +	struct cpufreq_mtk *c = policy->driver_data;
-> +	unsigned int index;
-> +
-> +	index = cpufreq_table_find_index_dl(policy, target_freq);
-> +
-> +	writel_relaxed(index, c->reg_bases[REG_FREQ_PERF_STATE]);
-> +
-> +	return policy->freq_table[index].frequency;
-> +}
-> +
-> +static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
-> +{
-> +	struct cpufreq_mtk *c;
-> +	struct device *cpu_dev;
-> +	struct em_data_callback em_cb = EM_DATA_CB(mtk_cpufreq_get_cpu_power);
-> +	struct pm_qos_request *qos_request;
-> +	int sig, pwr_hw = CPUFREQ_HW_STATUS | SVS_HW_STATUS;
-> +	unsigned int latency;
-> +
-> +	qos_request = kzalloc(sizeof(*qos_request), GFP_KERNEL);
-> +	if (!qos_request)
-> +		return -ENOMEM;
-
-Since this is temporarily required, please allocate it while you are
-trying to use it.
-
-> +
-> +	cpu_dev = get_cpu_device(policy->cpu);
-> +	if (!cpu_dev) {
-> +		pr_err("failed to get cpu%d device\n", policy->cpu);
-> +		return -ENODEV;
-> +	}
-> +
-> +	c = mtk_freq_domain_map[policy->cpu];
-> +	if (!c) {
-> +		pr_err("No scaling support for CPU%d\n", policy->cpu);
-> +		return -ENODEV;
-> +	}
-> +
-> +	cpumask_copy(policy->cpus, &c->related_cpus);
-> +
-> +	policy->freq_table = c->table;
-> +	policy->driver_data = c;
-> +
-> +	latency = readl_relaxed(c->reg_bases[REG_FREQ_LATENCY]);
-> +	if (!latency)
-> +		latency = CPUFREQ_ETERNAL;
-> +
-> +	/* us convert to ns */
-> +	policy->cpuinfo.transition_latency = latency * 1000;
-> +
-> +	policy->fast_switch_possible = true;
-> +
-> +	/* Let CPUs leave idle-off state for SVS CPU initializing */
-> +	cpu_latency_qos_add_request(qos_request, 0);
-
-I am not sure I understand what's going on here.
-
-> +	/* HW should be in enabled state to proceed now */
-> +	writel_relaxed(0x1, c->reg_bases[REG_FREQ_ENABLE]);
-> +
-> +	if (readl_poll_timeout(c->reg_bases[REG_FREQ_HW_STATE], sig,
-> +			       (sig & pwr_hw) == pwr_hw, POLL_USEC,
-> +			       TIMEOUT_USEC)) {
-> +		if (!(sig & CPUFREQ_HW_STATUS)) {
-> +			pr_info("cpufreq hardware of CPU%d is not enabled\n",
-> +				policy->cpu);
-> +			return -ENODEV;
-> +		}
-> +
-> +		pr_info("SVS of CPU%d is not enabled\n", policy->cpu);
-> +	}
-> +
-> +	em_dev_register_perf_domain(cpu_dev, c->nr_opp, &em_cb, policy->cpus, true);
-> +
-> +	cpu_latency_qos_remove_request(qos_request);
-
-Can this be done before em_dev_register_perf_domain() ?
-
-> +	kfree(qos_request);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_cpufreq_hw_cpu_exit(struct cpufreq_policy *policy)
-> +{
-> +	struct cpufreq_mtk *c;
-> +
-> +	c = mtk_freq_domain_map[policy->cpu];
-> +	if (!c) {
-
-This can't be NULL here.
-
-> +		pr_err("No scaling support for CPU%d\n", policy->cpu);
-> +		return -ENODEV;
-> +	}
-> +
-> +	/* HW should be in paused state now */
-> +	writel_relaxed(0x0, c->reg_bases[REG_FREQ_ENABLE]);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct cpufreq_driver cpufreq_mtk_hw_driver = {
-> +	.flags		= CPUFREQ_NEED_INITIAL_FREQ_CHECK |
-> +			  CPUFREQ_HAVE_GOVERNOR_PER_POLICY |
-> +			  CPUFREQ_IS_COOLING_DEV,
-> +	.verify		= cpufreq_generic_frequency_table_verify,
-> +	.target_index	= mtk_cpufreq_hw_target_index,
-> +	.get		= mtk_cpufreq_hw_get,
-> +	.init		= mtk_cpufreq_hw_cpu_init,
-> +	.exit		= mtk_cpufreq_hw_cpu_exit,
-> +	.fast_switch	= mtk_cpufreq_hw_fast_switch,
-> +	.name		= "mtk-cpufreq-hw",
-> +	.attr		= cpufreq_generic_attr,
-> +};
-> +
-> +static int mtk_cpu_create_freq_table(struct platform_device *pdev,
-> +				     struct cpufreq_mtk *c)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	void __iomem *base_table;
-> +	u32 data, i, freq, prev_freq = 0;
-> +
-> +	c->table = devm_kcalloc(dev, LUT_MAX_ENTRIES + 1,
-> +				sizeof(*c->table), GFP_KERNEL);
-> +	if (!c->table)
-> +		return -ENOMEM;
-> +
-> +	base_table = c->reg_bases[REG_FREQ_LUT_TABLE];
-> +
-> +	for (i = 0; i < LUT_MAX_ENTRIES; i++) {
-> +		data = readl_relaxed(base_table + (i * LUT_ROW_SIZE));
-> +		freq = FIELD_GET(LUT_FREQ, data) * 1000;
-> +
-> +		if (freq == prev_freq)
-> +			break;
-> +
-> +		c->table[i].frequency = freq;
-> +
-> +		dev_dbg(dev, "index=%d freq=%d\n",
-> +			i, c->table[i].frequency);
-> +
-> +		prev_freq = freq;
-> +	}
-> +
-> +	c->table[i].frequency = CPUFREQ_TABLE_END;
-> +	c->nr_opp = i;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mtk_get_related_cpus(int index, struct cpufreq_mtk *c)
-> +{
-> +	struct device_node *cpu_np;
-> +	struct of_phandle_args args;
-> +	int cpu, ret;
-> +
-> +	for_each_possible_cpu(cpu) {
-> +		cpu_np = of_cpu_device_node_get(cpu);
-> +		if (!cpu_np)
-> +			continue;
-> +
-> +		ret = of_parse_phandle_with_args(cpu_np, "performance-domains",
-> +						 "#performance-domain-cells", 0,
-> +						 &args);
-> +		of_node_put(cpu_np);
-> +		if (ret < 0)
-> +			continue;
-> +
-> +		if (index == args.args[0]) {
-> +			cpumask_set_cpu(cpu, &c->related_cpus);
-> +			mtk_freq_domain_map[cpu] = c;
 > +		}
 > +	}
 > +
-> +	return 0;
-> +}
-
-I really hope this can be moved to a common place as more than one
-drier should be required to parse this thing.
-
-> +static int mtk_cpu_resources_init(struct platform_device *pdev,
-> +				  unsigned int cpu, int index,
-> +				  const u16 *offsets)
-> +{
-> +	struct cpufreq_mtk *c;
-> +	struct device *dev = &pdev->dev;
-> +	int ret, i;
-> +	void __iomem *base;
+> +	if (!parser)
+> +		return ERR_PTR(-EPROBE_DEFER);
 > +
-> +	if (mtk_freq_domain_map[cpu])
-> +		return 0;
+> +	if (!try_module_get(parser->owner)) {
+> +		pr_err("could not increase module refcount for parser %s\n",
+> +		       parser->name);
+> +		return ERR_PTR(-EINVAL);
 > +
-> +	c = devm_kzalloc(dev, sizeof(*c), GFP_KERNEL);
-> +	if (!c)
-> +		return -ENOMEM;
-> +
-> +	base = devm_platform_ioremap_resource(pdev, index);
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	for (i = REG_FREQ_LUT_TABLE; i < REG_ARRAY_SIZE; i++)
-> +		c->reg_bases[i] = base + offsets[i];
-> +
-> +	ret = mtk_get_related_cpus(index, c);
-> +	if (ret) {
-> +		dev_err(dev, "Domain-%d failed to get related CPUs\n", index);
-> +		return ret;
 > +	}
 > +
-> +	ret = mtk_cpu_create_freq_table(pdev, c);
-> +	if (ret) {
-> +		dev_err(dev, "Domain-%d failed to create freq table\n", index);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
+> +	return parser;
 > +}
 > +
-> +static int mtk_cpufreq_hw_driver_probe(struct platform_device *pdev)
+> +static void nvmem_parser_put(const struct nvmem_parser *parser)
 > +{
-> +	struct device_node *cpu_np;
-> +	struct of_phandle_args args;
-> +	const u16 *offsets;
-> +	unsigned int cpu;
-> +	int ret;
+> +	module_put(parser->owner);
+> +}
 > +
-> +	offsets = of_device_get_match_data(&pdev->dev);
-> +	if (!offsets)
-> +		return -EINVAL;
+> +static int nvmem_parser_bind(struct nvmem_device *nvmem, const char *name)
+> +{
+Do we really need parser bind/unbind mechanisms for what we are trying 
+to do here.
+
+It's just simply parsing cell info during nvmem register, do we really 
+care if parser is there or not after that?
+
+code can be probably made much simpler by just doing this in nvmem_register
+
+parser_get()
+parse_get_cell_info()
+parser_put()
+
+AFAIU, that is all we need.
+
+> +	struct nvmem_parser_data *data;
+> +	struct nvmem_parser *parser;
+> +	int err;
 > +
-> +	for_each_possible_cpu(cpu) {
-> +		cpu_np = of_cpu_device_node_get(cpu);
-> +		if (!cpu_np) {
-> +			dev_err(&pdev->dev, "Failed to get cpu %d device\n",
-> +				cpu);
-> +			return -ENODEV;
-> +		}
+> +	mutex_lock(&nvmem_parser_mutex);
 > +
-> +		ret = of_parse_phandle_with_args(cpu_np, "performance-domains",
-> +						 "#performance-domain-cells", 0,
-> +						 &args);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		/* Get the bases of cpufreq for domains */
-> +		ret = mtk_cpu_resources_init(pdev, cpu, args.args[0], offsets);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "CPUFreq resource init failed\n");
-> +			return ret;
+> +	parser = __nvmem_parser_get(name);
+> +	err = PTR_ERR_OR_ZERO(parser);
+> +	if (!err) { > +		data = kzalloc(sizeof(*data), GFP_KERNEL);
+> +		if (data) {
+> +			data->parser = parser;
+> +			nvmem->parser_data = data;
+> +		} else {
+> +			nvmem_parser_put(parser);
+> +			err = -ENOMEM;
 > +		}
 > +	}
-
-Why don't you do above stuff in driver's ->init() ? As this really
-isn't required to be done per CPU, but per policy.
-
 > +
-> +	ret = cpufreq_register_driver(&cpufreq_mtk_hw_driver);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "CPUFreq HW driver failed to register\n");
-> +		return ret;
+> +	mutex_unlock(&nvmem_parser_mutex);
+> +
+> +	return err;
+> +}
+> +
+> +static void nvmem_parser_unbind(const struct nvmem_device *nvmem)
+> +{
+> +	struct nvmem_parser_data *data = nvmem->parser_data;
+> +
+> +	if (data->table.cells) {
+> +		nvmem_del_cell_table(&data->table);
+> +		kfree(data->table.cells);
+who has allocated memory for this, its confusing for this to be freed in 
+core.
+> +	}
+> +	if (data->lookup) { > +		nvmem_del_cell_lookups(data->lookup, data->nlookups);
+> +		kfree(data->lookup);
 > +	}
 > +
-> +	return 0;
+> +	nvmem_parser_put(data->parser);
 > +}
 > +
-> +static int mtk_cpufreq_hw_driver_remove(struct platform_device *pdev)
+> +static void nvmem_parser_data_register(struct nvmem_device *nvmem,
+> +				       struct nvmem_parser_data *data)
 > +{
-> +	return cpufreq_unregister_driver(&cpufreq_mtk_hw_driver);
+> +	if (data->table.cells) {
+> +		if (!data->table.nvmem_name)
+> +			data->table.nvmem_name = nvmem_dev_name(nvmem);
+> +
+> +		nvmem_add_cell_table(&data->table);
+> +	}
+> +
+> +	if (data->lookup) {
+Why do we need lookups?
+the cells are already associated with provider. lookups are normally 
+used for associating devices with nvmemcell more for old non-dt machine 
+code.
+
+you can remove this.
+> +		struct nvmem_cell_lookup *lookup = &data->lookup[0];
+> +		int i = 0;
+> +
+> +		for (i = 0; i < data->nlookups; i++, lookup++) {
+> +			if (!lookup->nvmem_name)
+> +				lookup->nvmem_name = nvmem_dev_name(nvmem);
+> +
+> +			if (!lookup->dev_id)
+> +				lookup->dev_id = data->parser->name;
+> +		}
+> +
+> +		nvmem_add_cell_lookups(data->lookup, data->nlookups);
+> +	}
 > +}
 > +
-> +static const struct of_device_id mtk_cpufreq_hw_match[] = {
-> +	{ .compatible = "mediatek,cpufreq-hw", .data = &cpufreq_mtk_offsets },
-> +	{}
-> +};
-> +
-> +static struct platform_driver mtk_cpufreq_hw_driver = {
-> +	.probe = mtk_cpufreq_hw_driver_probe,
-> +	.remove = mtk_cpufreq_hw_driver_remove,
-> +	.driver = {
-> +		.name = "mtk-cpufreq-hw",
-> +		.of_match_table = mtk_cpufreq_hw_match,
-> +	},
-> +};
-> +module_platform_driver(mtk_cpufreq_hw_driver);
-> +
-> +MODULE_DESCRIPTION("Mediatek cpufreq-hw driver");
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 1.7.9.5
 
--- 
-viresh
+--srini
