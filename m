@@ -2,146 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 292DD3A6B7C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:17:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 963163A6B84
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:19:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234071AbhFNQTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 12:19:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52100 "EHLO
+        id S234511AbhFNQVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 12:21:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233901AbhFNQTr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:19:47 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4B6EC061574
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:17:44 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id l15-20020a05683016cfb02903fca0eacd15so11331138otr.7
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:17:44 -0700 (PDT)
+        with ESMTP id S234071AbhFNQVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:21:15 -0400
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99E91C061574
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:18:57 -0700 (PDT)
+Received: by mail-oo1-xc36.google.com with SMTP id w13-20020a4ad02d0000b029024a98209c35so1950479oor.4
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:18:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=3QwEcalkIS8ReAls0/w7Nq1e4RuGQTqstXEHc+vsOnw=;
-        b=S/yAuDYd0JJppmMTVABmtYQaTxnWKGrE2YRVqTjzJ98NhyUvuZFMuZIfgEOKz+ZWke
-         Tp0dQGkuFuu43P0a2iUud4BhxePaAFurc6Igt2Kqx4nSxxSMRJ1CFclCo3Vzku7H2sEA
-         dd6bJCD3wZMp8kfBHn1d9kUnv1STq417xUX1nc8ZlvzwISY3yEc9gGqOF1dzhj4D/ZWk
-         xWUqBVEA1FkVeMYIcfsgL/MZBm73Uor4DRE2Ip6eaY3+ofk2IGboaTxGcUIVGnz6CYae
-         WCkISe17fvoNKygeSwblRq/9M4krUbJe7jw3l/PrRNfxFnXGeqji2XJWOKVFQ84jC6LY
-         r9zQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BA/FOa55PNNk9Y6xo5vdwXvq/rrQpAwdaN14E7YLiG8=;
+        b=izE96wot0pTUWk91TQh5cQ8YPW7YYHZJuJy5LvTSdfZzsMydzlvADDE4f++/JH0xpg
+         Fo4bJxm2j5tp8D9+0j2976kwA5PJDlB3hkpkrfpJHxE4yIZSwz+5hO0b05BQvywVav+8
+         Ym2FjF0h7raL69GMv2oTy8kqeENwLe/jpds5yeGfL1l8z8Tmmx3FSLU1oWmGHm15nyF5
+         zewq06xhsezvjRvM0EqaSqaLDBvoqfvFaW3jMn7JF7mgvFJlSFp9+de3x+jitjyI7mfQ
+         ydpwzutCJW+jYwzl92VGlkuXLU5Hyi3YipV+QcoZQVHy2OIfgYrgy337uquARP/Rgx2k
+         smiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3QwEcalkIS8ReAls0/w7Nq1e4RuGQTqstXEHc+vsOnw=;
-        b=emYmwHP7+xfkIZNdmd1EW0u3fIIcI8Z9n0rK5knrI9sWmv/LIVNwW+A4dx6s5Q1QMd
-         +fcGaqQjsFM5y+LP39hMgZryPJvWMqY7bqrkjvPCcV6FqJnIX8tzxpn+qu6TQF2sLfrv
-         C2ZfysHLiqIWirvsBXogeoVjeBPG/J6nUJgrV6LZnqx1J4hDMGDR/5LYtGyduQ6g7HMA
-         Exruf9cA783Z/c/VzoMm8y1vRLK1b04ToFQYmSZb6PHBeqI2b0GllhpQmFVb0F7AuLrB
-         il7QdVsxixgv0U1cbKGFH36GiEgSN7lqUNMMgsBI3FaW4kCMYs3xYwlBCCRdNZKGnaMt
-         Rksw==
-X-Gm-Message-State: AOAM532VBqzUUkdspIdjcnjUxerElq8Y/Qifb7tLp4W0YoLD+nojl5mk
-        oR0GzQM6Wg/i4VMUgK/hrQtjlg==
-X-Google-Smtp-Source: ABdhPJzGtoAEDMq3D7uKFxq3zKowTgSYfT12PYxCOFGS+q5zFs8XY0M33mXlcr7v7ZVoLEVwiH9K4g==
-X-Received: by 2002:a9d:7254:: with SMTP id a20mr13823489otk.142.1623687464039;
-        Mon, 14 Jun 2021 09:17:44 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id x31sm3327351ota.24.2021.06.14.09.17.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=BA/FOa55PNNk9Y6xo5vdwXvq/rrQpAwdaN14E7YLiG8=;
+        b=VkLl4shlzbXSXYipCHAzJuOO6SWDsE1J21r/tMOfgZ1DQXj3+61Eh/LPGZ4mYUiiI8
+         NWe3EwYFiJSgP3M58PKVyGvxDOiM3S8+1Smz2Cu1i4EpAZA3blubTDWzA2y6AH0DpId6
+         S/K15qE3QTtpyfb3Ny50YDUi12ie4dfoH+7UJhtxTme5uYCNp53dCv6JBWFLGJEfELKu
+         9MXnq4VRfbZHhHq6hLtczw7PoJfbABJqTQvLTWMSks4ChsZ36f2i3teBhLA0bGmbNJyi
+         VtuEGx1n6KAZbRwJxU4+Va3tL4fh2G0gjmxM5bfHr8t7tnvv2IgMi8C1mCU7SJ/2jmII
+         p+BQ==
+X-Gm-Message-State: AOAM532i9Bt8YuTDNtDl8tKVjvpY9vsBKmSO+uY3dqOu4pvYmCZpW//7
+        mn4D06EZSvwniLB3g8eRWFpEuahieX8=
+X-Google-Smtp-Source: ABdhPJy++lYmy/KTSTzrA0wciwdcJqlC3gGU1z891FrMWLfXIEuvNa0hHKOukrNKiprGCghUeQ+chQ==
+X-Received: by 2002:a4a:cb06:: with SMTP id r6mr7400357ooq.15.1623687536577;
+        Mon, 14 Jun 2021 09:18:56 -0700 (PDT)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id o20sm3345268otl.2.2021.06.14.09.18.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jun 2021 09:17:43 -0700 (PDT)
-Date:   Mon, 14 Jun 2021 11:17:41 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        bhupesh.linux@gmail.com
-Subject: Re: [PATCH 4/8] regulator: qcom-rpmh: Add new regulator types found
- on SA8155p adp board
-Message-ID: <YMeBJRujxoxj9no4@yoga>
-References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
- <20210607113840.15435-5-bhupesh.sharma@linaro.org>
- <CAHp75Vd7z6ivOxHikqP5j+yPtV7C8GBogwVUAziLznSatH+8EA@mail.gmail.com>
- <CAH=2NtxtzRhOzekHxn+V4DSYmwncX1wSRbKOe=PNkcTsQ3jqiQ@mail.gmail.com>
+        Mon, 14 Jun 2021 09:18:56 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     robh+dt@kernel.org, heiko@sntech.de, jbx6244@gmail.com,
+        maccraft123mc@gmail.com, Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Add Rotation Property for OGA Panel
+Date:   Mon, 14 Jun 2021 11:18:49 -0500
+Message-Id: <20210614161849.332-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAH=2NtxtzRhOzekHxn+V4DSYmwncX1wSRbKOe=PNkcTsQ3jqiQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 07 Jun 07:30 CDT 2021, Bhupesh Sharma wrote:
+From: Chris Morgan <macromorgan@hotmail.com>
 
-> On Mon, 7 Jun 2021 at 17:39, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> >
-> > On Mon, Jun 7, 2021 at 2:41 PM Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
-> > >
-> > > SA8155p-adp board has two new regulator types - pmm8155au_1 and
-> > > pmm8155au_2.
-> > >
-> > > The output power management circuits in these regulators include:
-> > > - FTS510 smps,
-> > > - HFS510 smps, and
-> > > - LDO510 linear regulators
-> >
-> > ...
-> >
-> > > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > > Cc: Liam Girdwood <lgirdwood@gmail.com>
-> > > Cc: Mark Brown <broonie@kernel.org>
-> > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > Cc: Vinod Koul <vkoul@kernel.org>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: Andy Gross <agross@kernel.org>
-> > > Cc: devicetree@vger.kernel.org
-> > > Cc: linux-kernel@vger.kernel.org
-> > > Cc: linux-gpio@vger.kernel.org
-> > > Cc: bhupesh.linux@gmail.com
-> >
-> > Use --cc or similar option when run `git send-email`, no need to
-> > pollute the commit message with these.
-> 
-> It's just a matter of preference IMO. I prefer to use a Cc list
-> here.
-> 
+Add rotation property for Odroid Go Advance panel to note that it is
+rotated 270 degrees. Rotation affects DRM connector after this patch:
 
-The Cc list in the commit message will be committed to the git history
-and there it carries the information that you specifically made sure
-that these people saw the patch. So please limit the use to that
-purpose.
+https://cgit.freedesktop.org/drm/drm/commit/drivers/gpu/drm/panel/panel-elida-kd35t133.c?id=610d9c311b1387f8c4ac602fee1f2a1cb0508707
 
-> > > +static const struct rpmh_vreg_init_data pmm8155au_1_vreg_data[] = {
-> >
-> >
-> > > +       {},
-> >
-> > Comma is not needed in the terminator line.
-> 
-> Hmm.. it's similar to the syntax already used at several places in this file.
-> See ' struct rpmh_vreg_init_data pm8150l_vreg_data[] ' for example.
-> 
-> Unless there is an obvious issue with it, let's use the same to keep
-> things similar from a syntax p-o-v.
-> 
+Note: following example of motorola-mapphone-common and
+tegra30-asus-nexus7-grouper-common where rotation is specified by
+itself with other physical properties (which are already hard-coded
+into the driver in this case so not necessary). Please advise if this
+is not the correct manner in the devicetree to specify this.
 
-Those other places shouldn't use the ',' either, so please help set a
-better precedence.
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thanks,
-Bjorn
+diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+index 49c97f76df77..32d7b8270649 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
+@@ -241,6 +241,8 @@ panel@0 {
+ 		reset-gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_LOW>;
+ 		vdd-supply = <&vcc_lcd>;
+ 
++		rotation = <270>;
++
+ 		port {
+ 			mipi_in_panel: endpoint {
+ 				remote-endpoint = <&mipi_out_panel>;
+-- 
+2.25.1
 
-> Thanks,
-> Bhupesh
-> 
-> >
-> > > +};
-> >
-> > --
-> > With Best Regards,
-> > Andy Shevchenko
