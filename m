@@ -2,242 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A15113A64E0
+	by mail.lfdr.de (Postfix) with ESMTP id ED66B3A64E1
 	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 13:30:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233298AbhFNLaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 07:30:24 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:45231 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233149AbhFNL1a (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 07:27:30 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1623669927; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=LHTJHs8WLtG+cQlDY6gAWUCMiRc/oQhmi+dCZfmozBQ=;
- b=N4Mjtb6OpsSzx9bmxpeAN7n09/o92qXGJXslZvxZwSFETchmTjCK7tQlk61vHc4/DEqXUqqP
- C/ZJWetLOlgjVqi8J7mw2fo7lw6HbFWbvF2kEXTf4IrSAtPhbkx3hWP1hGv/C3gJ8TuCKZXx
- oQBNivhcvFuUJ+jO9d7KtxkaJYw=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 60c73ca38491191eb34ab6e8 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 14 Jun 2021 11:25:23
- GMT
-Sender: sbhanu=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id C5846C0091E; Mon, 14 Jun 2021 11:25:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sbhanu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 48FF6C43145;
-        Mon, 14 Jun 2021 11:25:18 +0000 (UTC)
+        id S233734AbhFNLaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 07:30:25 -0400
+Received: from mail-vs1-f46.google.com ([209.85.217.46]:46956 "EHLO
+        mail-vs1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235177AbhFNL2E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 07:28:04 -0400
+Received: by mail-vs1-f46.google.com with SMTP id z15so7572398vsn.13;
+        Mon, 14 Jun 2021 04:26:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bTSBYN8rB77+u8stbTCtFfsGhQZ+9hrV0blh5vsPcM8=;
+        b=ezfqobBGAdJB13yM1iqFmzhfLj1eiHKSsXk0wJZW/qdKnIMRYpSlt4EeoD4p1Te+/0
+         RwZ/5WsLSl+QyVz05GUgTThT1ig20uIEv5zY69qZuxIkT+ye5MOaf7yVIN3j8kkZu36D
+         jnn7sekopbE3YfaxWuDEOusSIR8MI8Ivj1WKtG/qsKcyevszwE0YCKohwuhbR1ereG/5
+         57R0W/iAKQ8mwN7k397DwmYYEy3BTwTxYlbu4azpS9cIVob00rF6fQwrLaSD438cWoGt
+         hfgEoYiELc3B9P42HAJsKbqUVHsjFn2UtbUYQJYjJtPwnHqaRAogkko1KZEWA/9jNO7L
+         zJpA==
+X-Gm-Message-State: AOAM533V9HCMOE/ND1mDclQ+ewLP6073GnfmlSabN4xcgUlSYe+Tz1wn
+        xbNqPZb3HjVLdCkQFKlCxMtOII1OMk8ner9A800=
+X-Google-Smtp-Source: ABdhPJwSoUdv+XJJLXAM5AiN9UYILuhDhY0u4gOSBJcrU4V9hU8do+W5mFGvy3VYfZ0rv4e8VJ/o9fS1xYBPYDhZo38=
+X-Received: by 2002:a05:6102:2011:: with SMTP id p17mr16631993vsr.40.1623669960839;
+ Mon, 14 Jun 2021 04:26:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 14 Jun 2021 16:55:17 +0530
-From:   sbhanu@codeaurora.org
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, asutoshd@codeaurora.org,
-        stummala@codeaurora.org, vbadigan@codeaurora.org,
-        rampraka@codeaurora.org, sayalil@codeaurora.org,
-        sartgarg@codeaurora.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, sibis@codeaurora.org,
-        okukatla@codeaurora.org, djakov@kernel.org, cang@codeaurora.org,
-        pragalla@codeaurora.org, nitirawa@codeaurora.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-Subject: Re: [PATCH V3] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD
- card
-In-Reply-To: <793c9596-73f3-42b2-291e-1c728e279e28@somainline.org>
-References: <1623252028-20467-1-git-send-email-sbhanu@codeaurora.org>
- <793c9596-73f3-42b2-291e-1c728e279e28@somainline.org>
-Message-ID: <1c22c4f5ca372988491181b3d0bd55e8@codeaurora.org>
-X-Sender: sbhanu@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+References: <cover.1623315732.git.geert+renesas@glider.be> <f79841c1881f8b9a2c10fadb3d3ad6cb5fccc6a5.1623315732.git.geert+renesas@glider.be>
+ <YMVbupt4pqdl2FOc@pendragon.ideasonboard.com>
+In-Reply-To: <YMVbupt4pqdl2FOc@pendragon.ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 14 Jun 2021 13:25:49 +0200
+Message-ID: <CAMuHMdXvB7dfcoCXOuE_oTCxaBqQyA8RVGm7SVy8iTmccvG95A@mail.gmail.com>
+Subject: Re: [PATCH 01/14] dt-bindings: arm: renesas: Document R-Car H3e-2G
+ and M3e-2G SoCs and boards
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-06-10 02:15, Konrad Dybcio wrote:
-> Hi,
-> 
-> 
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts 
->> b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> index 3900cfc..8b159d1 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->> @@ -11,6 +11,7 @@
->>  #include <dt-bindings/iio/qcom,spmi-adc7-pmr735b.h>
->>  #include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
->>  #include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
->> +#include <dt-bindings/gpio/gpio.h>
->>  #include "sc7280.dtsi"
->>  #include "pm7325.dtsi"
->>  #include "pmr735a.dtsi"
->> @@ -272,6 +273,36 @@
->>  	status = "okay";
->>  };
->> 
->> +&sdhc_1 {
->> +	status = "okay";
->> +
->> +	pinctrl-names = "default", "sleep";
->> +	pinctrl-0 = <&sdc1_clk &sdc1_cmd &sdc1_data &sdc1_rclk>;
->> +	pinctrl-1 = <&sdc1_clk_sleep &sdc1_cmd_sleep &sdc1_data_sleep 
->> &sdc1_rclk_sleep>;
-> 
-> Please condense these pins into a since sdc1_on_state/sdc1_off_state
-> (check sdc1_state_on in [1])
-> 
-Sure
-> 
-> 
->> +
->> +	non-removable;
->> +	no-sd;
->> +	no-sdio;
->> +
->> +	vmmc-supply = <&vreg_l7b_2p9>;
->> +	vqmmc-supply = <&vreg_l19b_1p8>;
->> +
->> +};
->> +
->> +&sdhc_2 {
->> +	status = "okay";
->> +
->> +	pinctrl-names = "default", "sleep";
->> +	pinctrl-0 = <&sdc2_clk &sdc2_cmd &sdc2_data &sd_cd>;
->> +	pinctrl-1 = <&sdc2_clk_sleep &sdc2_cmd_sleep &sdc2_data_sleep>;
-> 
-> Ditto
-> 
-Sure
-> 
-> 
->> +&tlmm {
->> +	sdc1_clk: sdc1-clk {
->> +		pins = "sdc1_clk";
->> +		bias-disable;
->> +		drive-strength = <16>;
->> +	};
->> +
->> +	sdc1_cmd: sdc1-cmd {
->> +		pins = "sdc1_cmd";
->> +		bias-pull-up;
->> +		drive-strength = <10>;
->> +	};
->> +
->> +	sdc1_data: sdc1-data {
->> +		pins = "sdc1_data";
->> +		bias-pull-up;
->> +		drive-strength = <10>;
->> +	};
->> +	sdc1_rclk: sdc1-rclk {
->> +		pins = "sdc1_rclk";
->> +		bias-pull-down;
->> +	};
->> +
->> +	sdc2_clk: sdc2-clk {
->> +		pins = "sdc2_clk";
->> +		bias-disable;
->> +		drive-strength = <16>;
->> +	};
->> +
->> +	sdc2_cmd: sdc2-cmd {
->> +		pins = "sdc2_cmd";
->> +		bias-pull-up;
->> +		drive-strength = <10>;
->> +	};
->> +
->> +	sdc2_data: sdc2-data {
->> +		pins = "sdc2_data";
->> +		bias-pull-up;
->> +		drive-strength = <10>;
->> +	};
->> +
->> +	sd_cd: sd-cd {
-> 
-> Please make it sdc2 to keep things coherent.
-> 
-Sure
-> 
-> 
->> +		pins = "gpio91";
->> +		bias-pull-up;
->> +	};
->> +
->> +};
-> 
-> Why are you defining on_state pins in the device dt and sleep state in
-> the SoC one?
-> 
-> Most devices share a common config for these, often coming from MTP or
-> QRD boards
-> 
-> and it makes little to no sense to define these separately every time,
-> because if you hit the
-> 
-> rare case of needing to make a change against that, it's probably just
-> drive-strength.
-> 
-I have made this change as per Doug Anderson comment on patch V2 
-(https://lore.kernel.org/patchwork/patch/1399453/#1598871)
-And along with drive-strength change, on some of boards Sd card gpio pin 
-also may change right.
-> 
-> 
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> index 0b6f119..eab6f7b 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->> @@ -24,6 +24,11 @@
->> 
->>  	chosen { };
->> 
->> +	aliases {
->> +		mmc1 = &sdhc_1;
->> +		mmc2 = &sdhc_2;
->> +	};
-> 
-> This is board specific. Something might have a SDIO Wi-Fi card on it.
-we are assuming eMMC and SD support available on all boards and if any 
-board supports SDIO Wi-Fi card
-they can add aliases for SDIO Wi-Fi card in that particular board device 
-DT file.
-> 
-> 
-> 
->> +			mmc-ddr-1_8v;
->> +			mmc-hs200-1_8v;
->> +			mmc-hs400-1_8v;
->> +			mmc-hs400-enhanced-strobe;
-> 
-> These properties should probably be in the device DT, unless the SoC 
-> controller
-> 
-> can only support these speeds and only at 1.8v
-> 
-we are keeping these flags in SOC file because all platforms would 
-support these modes,
-and yes we support only these and at 1.8V.
-> 
-> 
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/qcom/linux.git/commit/?h=for-next&id=35a4a8b6e9b133cf3a7d059ad4cf0e24cb4bd029
-> 
-> 
-> Konrad
+Hi Laurent,
+
+On Sun, Jun 13, 2021 at 3:13 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Thu, Jun 10, 2021 at 11:37:14AM +0200, Geert Uytterhoeven wrote:
+> > Document the compatible values for the R-Car H3e-2G (R8A779M1) and
+> > M3e-2G (R8A779M3) SoCs.  These are different gradings of the R-Car H3
+> > ES3.0 (R8A77951) and M3-W+ (R8A77961) SoCs.
+> >
+> > All R-Car Gen3e on-SoC devices are identical to the devices on the
+> > corresponding R-Car Gen3 SoCs, and thus just use the compatible values
+> > for the latter.  The root compatible properties do gain an additional
+> > value, to sort out integration issues if they ever arise.
+> >
+> > Document the use of these SoCs on the Salvator-XS and ULCB (with and
+> > without Kingfisher) development boards.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+Thanks!
+
+> I however wonder if we haven't messed up the board compatible strings
+> somehow (unrelated to this patch). Aren't compatible strings supposed to
+> be ordered from most specific to most generic, with a more specific
+> compatible string being a strict subset of a more generic string ?
+> Looking at, for example,
+>
+>         compatible = "renesas,salvator-xs", "renesas,r8a779m1", "renesas,r8a7795";
+>
+> the rule is upheld by renesas,r8a779m1 being a subset of the more
+> generic renesas,r8a7795, but that's not the case for
+> renesas,salvator-xs.
+
+That's a very interesting comment.  Originally, we had lists like:
+
+    compatible = "renesas,koelsch", "renesas,r8a7791";
+
+with the Koelsch board indeed being a specialization of an R-Car
+M2-W-based system. Later, we reused that system for the Salvator-X
+board with an R-Car H3 SiP:
+
+    compatible = "renesas,salvator-x", "renesas,r8a7795";
+
+That scheme became "broken" with the introduction of the R-Car M3-W
+SiP, which was also mounted on a Salvator-X board, leading to:
+
+    compatible = "renesas,salvator-x", "renesas,r8a7796";
+
+Note that we did have a similar case for R-Car M2-W and R-Car M2-N on
+the Koelsch resp. Gose boards: from the schematics (I haven't seen
+a Gose), it looks identical to Koelsch, with parts not supported by
+R-Car M2-N (like the second SDRAM bank) marked "Do not stuff".
+But in this case the boards were assigned different names, thus
+leading to different compatible values.
+
+With Salvator-X(S), it was easier to support multiple SoCs, as they
+are mounted on SiPs, with differences like the different number of
+memory channels hidden in the SiP, and handled at a different level
+(these days memory layout information flows from ATF to U-Boot to
+the DTB passed to the kernel).
+
+Would you feel more comfortable if we had introduced more
+board-specific compatible values, like "renesas,r8a7796-salvator-x",
+and had used
+
+    compatible = "renesas,r8a7795-salvator-x", "renesas,salvator-x",
+"renesas,r8a7795";
+
+or
+
+    compatible = "renesas,r8a7795-salvator-x", "renesas,r8a7795";
+
+?
+
+If the need ever arises, Linux can still identify the exact combination
+by checking for both the board- and the SoC-specific values.
+So far we didn't have that need for Salvator-X(S) yet (we do have
+board-specific checks in
+arch/arm/mach-shmobile/regulator-quirk-rcar-gen2.c).
+
+> > --- a/Documentation/devicetree/bindings/arm/renesas.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
+> > @@ -238,17 +238,29 @@ properties:
+> >            - const: renesas,r8a77961
+> >
+> >        - description: Kingfisher (SBEV-RCAR-KF-M03)
+> > -        items:
+> > -          - const: shimafuji,kingfisher
+> > -          - enum:
+> > -              - renesas,h3ulcb
+> > -              - renesas,m3ulcb
+> > -              - renesas,m3nulcb
+> > -          - enum:
+> > -              - renesas,r8a7795
+> > -              - renesas,r8a7796
+> > -              - renesas,r8a77961
+> > -              - renesas,r8a77965
+> > +        oneOf:
+> > +          - items:
+> > +              - const: shimafuji,kingfisher
+> > +              - enum:
+> > +                  - renesas,h3ulcb
+> > +                  - renesas,m3ulcb
+> > +                  - renesas,m3nulcb
+> > +              - enum:
+> > +                  - renesas,r8a7795
+> > +                  - renesas,r8a7796
+> > +                  - renesas,r8a77961
+> > +                  - renesas,r8a77965
+> > +          - items:
+> > +              - const: shimafuji,kingfisher
+> > +              - enum:
+> > +                  - renesas,h3ulcb
+> > +                  - renesas,m3ulcb
+> > +              - enum:
+> > +                  - renesas,r8a779m1
+> > +                  - renesas,r8a779m3
+> > +              - enum:
+> > +                  - renesas,r8a7795
+> > +                  - renesas,r8a77961
+> >
+> >        - description: R-Car M3-N (R8A77965)
+> >          items:
+> > @@ -296,6 +308,22 @@ properties:
+> >            - const: renesas,falcon-cpu
+> >            - const: renesas,r8a779a0
+> >
+> > +      - description: R-Car H3e-2G (R8A779M1)
+> > +        items:
+> > +          - enum:
+> > +              - renesas,h3ulcb      # H3ULCB (R-Car Starter Kit Premier)
+> > +              - renesas,salvator-xs # Salvator-XS (Salvator-X 2nd version)
+> > +          - const: renesas,r8a779m1
+> > +          - const: renesas,r8a7795
+> > +
+> > +      - description: R-Car M3e-2G (R8A779M3)
+> > +        items:
+> > +          - enum:
+> > +              - renesas,m3ulcb      # M3ULCB (R-Car Starter Kit Pro)
+> > +              - renesas,salvator-xs # Salvator-XS (Salvator-X 2nd version)
+> > +          - const: renesas,r8a779m3
+> > +          - const: renesas,r8a77961
+> > +
+> >        - description: RZ/N1D (R9A06G032)
+> >          items:
+> >            - enum:
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
