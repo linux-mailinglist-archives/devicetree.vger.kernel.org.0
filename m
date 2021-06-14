@@ -2,79 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA72B3A6830
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 15:40:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4D233A682A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 15:39:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234125AbhFNNmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 09:42:11 -0400
-Received: from mail-io1-f45.google.com ([209.85.166.45]:34557 "EHLO
+        id S234164AbhFNNl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 09:41:59 -0400
+Received: from mail-io1-f45.google.com ([209.85.166.45]:36630 "EHLO
         mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233803AbhFNNmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 09:42:09 -0400
-Received: by mail-io1-f45.google.com with SMTP id 5so39612028ioe.1;
-        Mon, 14 Jun 2021 06:39:56 -0700 (PDT)
+        with ESMTP id S234108AbhFNNl5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 09:41:57 -0400
+Received: by mail-io1-f45.google.com with SMTP id s19so29885317ioc.3;
+        Mon, 14 Jun 2021 06:39:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=tK4mvObzT5yhHWFs5yQAbbm4CHtG0x0FL1g6TUnbVOw=;
-        b=WPRBlR0xy0SxOp49vsHvlK2nixIaLnEGqjn/MhDJGdD/+IEKDoUYm9enm2tFEQ0xKv
-         D75rrPDGQpK0JsXFXY4r5VmCPhgispYSOcymCCMpHF2rxw/CAUXT02JjO47+Ib0tx+ck
-         LRYz898ghQvxKP4lV5VYtFxzqJ8dUqRNHP93HOvlLGcsmJ2QLR+gkf7UaqL5cesU5eQX
-         We3B7E85bisqgUuaYk26YG6DU/tdlUqhoWk4FZdEYt24xngAg4G5Dc8FNFoyjw0DFF/+
-         +FcVFRvY6+wrRm6R2OHNo6Ba6z3/KglFD70Qv+IyaPwY8Biggg4w1ZICjCyKHJg+ek9z
-         GDjw==
-X-Gm-Message-State: AOAM5313/s3jQUG/Nv7c41UnYlYAioB0JYao30sjejr83XpESsPx8rqm
-        I1O3SBLHUTOsiqmiTtkRyl8lpczoXA==
-X-Google-Smtp-Source: ABdhPJz651Pxax/XP5gAmnBT/RYQV/ZXl9Az215uyTRwLEIj/k0EwlCzE6a4IMUZ3d6+lSbb322r8A==
-X-Received: by 2002:a5d:904c:: with SMTP id v12mr14106122ioq.95.1623677996262;
-        Mon, 14 Jun 2021 06:39:56 -0700 (PDT)
+        bh=UQo+V/Q8ujvQ1+LtWpa/t6KpgRcbSaC4jLowXnhsXv8=;
+        b=i9F+SrFn6dLlnXIIYihPzE4v8Vxnc6prvUIDbhXXiKgRPxG1ksJHm7bs6CWbqJWj0D
+         0uUQIahyjC1geyimoWz2l5+QWeVLUkZg0LwTfDjC5MMPKmDBAU8uktuU4GUdyFut9Zmt
+         zfiL7RwQ4vIFFONCc8XG8dQ4ZoPwBtam+2bVukiiEalMICOmBKZqr8mgviDXvj5PFJ6Z
+         AnhR3yXqE8O/RGoRbi0UG+4KNnDujaTSTWPOwcl0Ur55kgGHACmhysQy57IwwDoA4x4i
+         a4QzPp1+WUc4YRY1v+3E4f3pBTva5XU9Wsck0MD/NzqIJ2Ulys8/xvY38k+KKxfUnib1
+         s+gA==
+X-Gm-Message-State: AOAM533r+julw3DeteQnyUl3GkN1edR1jwZZkDAOFnlR38UdPsQIVdyQ
+        yB8aRn5zyc+B76wMg37DCSHL2fmIMg==
+X-Google-Smtp-Source: ABdhPJwClHKqYg1uOG84hcQcUsrnUnI87mNovKnSC2hVdKLbd4HUa3QFwYc04l6xz7mEXwDGqNywZg==
+X-Received: by 2002:a02:6944:: with SMTP id e65mr16771387jac.31.1623677993634;
+        Mon, 14 Jun 2021 06:39:53 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id v1sm7726151ilo.81.2021.06.14.06.39.54
+        by smtp.gmail.com with ESMTPSA id z8sm8677395ilq.30.2021.06.14.06.39.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jun 2021 06:39:55 -0700 (PDT)
-Received: (nullmailer pid 630751 invoked by uid 1000);
+        Mon, 14 Jun 2021 06:39:52 -0700 (PDT)
+Received: (nullmailer pid 630753 invoked by uid 1000);
         Mon, 14 Jun 2021 13:39:48 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Cc:     linux-fpga@vger.kernel.org, shubhrajyoti.datta@xilinx.com,
-        gregkh@linuxfoundation.org, peter.crosthwaite@xilinx.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        navam@xilinx.com, michal.simek@xilinx.com,
-        soren.brinkmann@xilinx.com, linux-arm-kernel@lists.infradead.org,
-        linux-serial@vger.kernel.org
-In-Reply-To: <20210613213359.296400-1-iwamatsu@nigauri.org>
-References: <20210613213359.296400-1-iwamatsu@nigauri.org>
-Subject: Re: [PATCH] dt-bindings: serial: convert Cadence UART bindings to YAML
+To:     alexandru.tachici@analog.com
+Cc:     sboyd@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        linux-clk@vger.kernel.org, mturquette@baylibre.com,
+        devicetree@vger.kernel.org, petre.minciunescu@analog.com
+In-Reply-To: <20210614070718.78041-3-alexandru.tachici@analog.com>
+References: <20210614070718.78041-1-alexandru.tachici@analog.com> <20210614070718.78041-3-alexandru.tachici@analog.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: clock: ad9545: Add documentation
 Date:   Mon, 14 Jun 2021 07:39:48 -0600
-Message-Id: <1623677988.138699.630750.nullmailer@robh.at.kernel.org>
+Message-Id: <1623677988.146956.630752.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Jun 2021 06:33:59 +0900, Nobuhiro Iwamatsu wrote:
-> Convert serial for Cadence UART bindings documentation to YAML.
+On Mon, 14 Jun 2021 10:07:18 +0300, alexandru.tachici@analog.com wrote:
+> From: Alexandru Tachici <alexandru.tachici@analog.com>
 > 
-> Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+> Add dt bindings for ad9545.
+> 
+> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
 > ---
->  .../devicetree/bindings/serial/cdns,uart.txt  | 27 --------
->  .../devicetree/bindings/serial/cdns,uart.yaml | 68 +++++++++++++++++++
->  2 files changed, 68 insertions(+), 27 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/serial/cdns,uart.txt
->  create mode 100644 Documentation/devicetree/bindings/serial/cdns,uart.yaml
+>  .../devicetree/bindings/clock/clk-ad9545.yaml | 556 ++++++++++++++++++
+>  include/dt-bindings/clock/ad9545.h            |  69 +++
+>  2 files changed, 625 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/clk-ad9545.yaml
+>  create mode 100644 include/dt-bindings/clock/ad9545.h
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/serial/cdns,uart.yaml:21:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
-./Documentation/devicetree/bindings/serial/cdns,uart.yaml:26:13: [warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:115:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:118:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:153:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:156:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:280:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:283:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:298:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:301:14: [warning] wrong indentation: expected 12 but found 13 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:389:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:392:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:435:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
+./Documentation/devicetree/bindings/clock/clk-ad9545.yaml:438:10: [warning] wrong indentation: expected 8 but found 9 (indentation)
 
 dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/clk-ad9545.example.dt.yaml: ad9545@4A: 'clocks' is a dependency of 'assigned-clocks'
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/clock/clock.yaml
 \ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1491509
+See https://patchwork.ozlabs.org/patch/1491545
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
