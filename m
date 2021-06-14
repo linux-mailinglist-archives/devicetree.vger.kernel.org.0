@@ -2,103 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFF133A6C5A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:47:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE5713A6C6C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:51:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234855AbhFNQt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 12:49:56 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.171]:34393 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235036AbhFNQt4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:49:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1623689266; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=E7v5tLD8tTSzc2/HQ4QNd8hHzdzpM6lmFxSvkK+l23umHNu6NfXW2GvSiTLw48YK3E
-    YNyPHJxiqDm8WK7CF33en4aLpLTP5MNpfsvF08tg8BEcc9X/wm6N/zG7qS9mhbbaEd6r
-    N3q646ytMkovJvzO7+Y9E3C9R6wHzAzz9LMx+QgEJ9ucyBrsGIikcidBaMkfU4kxtypz
-    o45h/Xc+V02SrXSUvKtuFOPNbg2OQPjFyYHfcFYFbWjJ4wFPAEP99N3BI1EBUxBM4tYE
-    I0JZoCIZ4sLObSZ24toB1EgfrJkVPlLc14k6/4U7DfVo6nOrHO1prQfuAtRS/Frp8T37
-    6suA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1623689266;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=ZqBYr0Nz6mA2wcJ+xak+eC4fMLx4N6rwt5mXZEANWlo=;
-    b=taah575yq9kXzF9VlRjVB1hTwdAtLCaeFHRe6HY+1DzEvcIBXdYnjhBAROv8cIDe3/
-    cblo4ciJQg+VKCXQdmOn3oD80t32Ue19b31QsvNHNFFSuaBl4i5yvWKNBN3EDbRHHSF7
-    ZhaDgcbai9Z7kr6R3TTKhZJP8a7Clqx+WC3jP875h+oyBojqvGUU+KYb6ibsBSnkmPbm
-    sjhu7R46CxFfr+rH0UAbVr6+75HRtOHi3yfLCZ3o9V2qev+B21kKAyZIu3vBbiICvjAG
-    y0w9inUui9p0Z5inSmijA+IP+hP3JQZ7rRRxPRwF8pUxp+sZ4BkTGHec0bRqV705TtRO
-    17ow==
-ARC-Authentication-Results: i=1; strato.com;
-    dkim=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1623689266;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=ZqBYr0Nz6mA2wcJ+xak+eC4fMLx4N6rwt5mXZEANWlo=;
-    b=eikwn35OimVKNDcgiGvtW4NwGD45w5K15ibPdPTQWhnHiXCA6s53TCDqGqWbR2+csd
-    FN5KTaEDjitg1bKXR5SBjj+1/ZtvQvzLW7JhH1wxk0zSN8dUVZJ4PVyxHgusA4nTiw76
-    uITy9neRabxTgp/OsX0EQJY5MHRj9gzFQ2ZLm1+itBgyzXIz7epwMBautnOkIz1vD1He
-    VeVZuIQ8dBlfuu0E2qcZGUIC5vkno8V94Is9APDr+984IZvgewFLvGi4Ex8TqYQJc6wn
-    nsazYIYD+ZmnmK6omfveDR/bL/XAM964E60stOu6Evuod4SAe6CxbYH0nErt4HvfXFnJ
-    Kl0A==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8nwIc/BaYo="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.27.2 DYNA|AUTH)
-    with ESMTPSA id y01375x5EGljJ8q
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Mon, 14 Jun 2021 18:47:45 +0200 (CEST)
-Date:   Mon, 14 Jun 2021 18:47:40 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 3/3] mfd: rt5033: Drop rt5033-battery sub-device
-Message-ID: <YMeILEnjOCCzo61q@gerhold.net>
-References: <20210517105113.240379-1-stephan@gerhold.net>
- <20210517105113.240379-4-stephan@gerhold.net>
- <20210519144630.GC2549456@dell>
+        id S235162AbhFNQxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 12:53:02 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:22468 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S235092AbhFNQxB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Jun 2021 12:53:01 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15EGmDJW015215;
+        Mon, 14 Jun 2021 18:50:44 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=/9D3/0H3bHA9sU2AK/C1nUebkqDvEpgx+D4YIfVFv5s=;
+ b=KvkMyXtJRXZMcLaPnOzP5r1xVlPZv81gXFTvMuN6BIdhP5clixs7x+xB2gjdqk5inIjs
+ TY6VTB9E9uFPKutcvLNtSJrqJFe30MLW9UUAXIoPcvZxVZLHnOK1eOLki956UlguXFBR
+ x4fDRtMRppp+aIndW+8XiDRHIvptum2XNMlwWr/n/R796B4BPd4eVhDtVm5JFjvwTrYZ
+ u1U81vE6582HxHwqpVMdU3xWsXBHdF+sm3CdnU2f2ILoee05v9VKrV9cQfPmbC1wB7eM
+ 5qskzf3jo/6GqY1cVR9uV112QbA0sZjc5IxSfhpYszhKOMD2sBfMuUaNtPTQVJhuSGXX dg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 3963682q6y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 14 Jun 2021 18:50:44 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1DF70100034;
+        Mon, 14 Jun 2021 18:50:42 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0B58221CE24;
+        Mon, 14 Jun 2021 18:50:42 +0200 (CEST)
+Received: from localhost (10.75.127.46) by SFHDAG2NODE3.st.com (10.75.127.6)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 14 Jun 2021 18:50:41
+ +0200
+From:   Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To:     Rob Herring <robh@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Subject: [PATCH 0/2] Add new IPCC mailbox to support the coprocessor detach on some stm32mp15x boards
+Date:   Mon, 14 Jun 2021 18:49:38 +0200
+Message-ID: <20210614164940.27153-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210519144630.GC2549456@dell>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-06-14_10:2021-06-14,2021-06-14 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+Purpose:
+  Add the IPCC channel 4 as "detach" mailbox to support the remoteproc the feature added in [1].
 
-On Wed, May 19, 2021 at 03:46:30PM +0100, Lee Jones wrote:
-> On Mon, 17 May 2021, Stephan Gerhold wrote:
-> 
-> > The fuel gauge in the RT5033 PMIC (rt5033-battery) has its own I2C bus
-> > and interrupt lines. Therefore, it is not part of the MFD device
-> > and needs to be specified separately in the device tree.
-> > 
-> > Cc: Beomho Seo <beomho.seo@samsung.com>
-> > Cc: Chanwoo Choi <cw00.choi@samsung.com>
-> > Fixes: 0b271258544b ("mfd: rt5033: Add Richtek RT5033 driver core.")
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > ---
-> >  drivers/mfd/rt5033.c | 3 ---
-> >  1 file changed, 3 deletions(-)
-> 
-> Acked-by: Lee Jones <lee.jones@linaro.org>
-> 
+  The enable of this feature is a design choice. As consequence, the new mbox is declared
+  only for stm32mp157c-ed1 & stm32mp15x-dkx boards maintained by ST Microelectronics.
 
-Since I mentioned in the cover letter that the MFD and power supply
-changes can be applied independently, Sebastian only queued patch 1 and 2.
+Aim:
+  Allow to send to the remote processor a HW signal on IPCC channel 4 when user space requests
+  to detach the main processor from the remote processor (e.g. a reboot of the  Linux processor
+  on a crash).
 
-Can you queue this one through the MFD tree?
+[1] https://patchwork.ozlabs.org/project/devicetree-bindings/cover/20210331073347.8293-1-arnaud.pouliquen@foss.st.com/
 
-Thanks!
-Stephan
+Arnaud Pouliquen (2):
+  ARM: dts: stm32: Add coprocessor detach mbox on stm32mp157c-ed1 board
+  ARM: dts: stm32: Add coprocessor detach mbox on stm32mp15x-dkx boards
+
+ arch/arm/boot/dts/stm32mp157c-ed1.dts  | 4 ++--
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+-- 
+2.17.1
+
