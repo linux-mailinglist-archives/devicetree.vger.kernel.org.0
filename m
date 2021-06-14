@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC963A6F9C
+	by mail.lfdr.de (Postfix) with ESMTP id B6EB43A6F9D
 	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 21:57:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233732AbhFNT5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S235594AbhFNT5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 14 Jun 2021 15:57:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53404 "EHLO mail.kernel.org"
+Received: from mail.kernel.org ([198.145.29.99]:53490 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235670AbhFNT5M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 15:57:12 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8522861246;
-        Mon, 14 Jun 2021 19:55:08 +0000 (UTC)
+        id S234329AbhFNT5R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Jun 2021 15:57:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9E2B26124B;
+        Mon, 14 Jun 2021 19:55:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623700509;
-        bh=lmulZGLVIGgfLTHPuc1g/ChqUK2CxHQVWiDek7Fcvx4=;
+        s=k20201202; t=1623700514;
+        bh=MLQhnpT43E+IuV3h8evTcKcW3viJ0XfKTOYsAuSimQ4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=m24IE0P8yQ6et73WXk2Ee9oJZHR7XXd11fxTb3ApdeMumDT30IQ0/F8b5cdEDNMvE
-         LoE6VRiTJqnu+SBRrqF+HGjzBEOPQO54S7Z9PCCKOE4OUOJMJSJkOCeaoMnXNqcT45
-         S7k/DDm40bcWxjfRIMzu5kWQUC04tHAMtFsHa4tDZ1MlkyW+NQwHwrdaqBqiIo/3AI
-         TxEHOo6cJwsI7I3U1iOaK2gWf4/617RyadFg50IyDLj2vsI1SW05ITB2PmP7dztaOw
-         bEz2NEz+g2n6WmXBe9bkMGf8GbmX8tT0BE45IqbExMHWH+E6DREV6YInmpav4Q5BLt
-         dLOI8euWndE+g==
+        b=BMI0poMHkd2iw8twuz6C9q+kd4M/5EvXjzARmWS3nYo60RK1eCYTpkCOzByv384lZ
+         mBOsMRQyHp8C0SGs9nrqrtMNJybUildG12nt9hSCR6b4auHSCd8kDI8ZI43nvaf5Qk
+         /TACnE8s4a9kRoTaPcm2FzbLKyvUxU5livoQSThjY3v1lu1fkUguFI+oD+hqYU7x/D
+         zeKuFXq2eENCaJOXLyRjf9IMwr2Wt1tjeHm4cEDml9+9qYiAqM94QBAWEMS+qpo/6E
+         tLJLz5qTNeSCrWOPFV2VhAzTkcRH4/M5ctT3D1GVaz85yVVUk9vzqQ+J/U/Y6xWP4x
+         R7/7UHf/bT0yg==
 From:   Mark Brown <broonie@kernel.org>
-To:     Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, kernel@dh-electronics.com,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH] dt-bindings: ASoC: sgtl5000: Add audio-graph-card port
-Date:   Mon, 14 Jun 2021 20:53:48 +0100
-Message-Id: <162369994009.34524.17249754614402570910.b4-ty@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com, robh@kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, perex@perex.cz
+Subject: Re: [PATCH v8 0/9] ASoC: codecs: add wcd938x support
+Date:   Mon, 14 Jun 2021 20:53:50 +0100
+Message-Id: <162369994006.34524.14176361868682257794.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210610150135.29905-1-marex@denx.de>
-References: <20210610150135.29905-1-marex@denx.de>
+In-Reply-To: <20210601113158.16085-1-srinivas.kandagatla@linaro.org>
+References: <20210601113158.16085-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -41,9 +41,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Jun 2021 17:01:35 +0200, Marek Vasut wrote:
-> The SGTL5000 codec can be connected via audio-graph-card,
-> add the missing port: entry into the bindings.
+On Tue, 1 Jun 2021 12:31:49 +0100, Srinivas Kandagatla wrote:
+> This patchset adds support for Qualcomm WCD938X codec.
+> 
+> Qualcomm WCD9380/WCD9385 Codec is a standalone Hi-Fi audio codec IC
+> connected over SoundWire. This device has two SoundWire devices, RX and
+> TX respectively supporting 4 x ADCs, ClassH, Ear, Aux PA, 2xHPH,
+> 7 x TX diff inputs, 8 DMICs and MBHC.
+> 
+> [...]
 
 Applied to
 
@@ -51,8 +57,24 @@ Applied to
 
 Thanks!
 
-[1/1] dt-bindings: ASoC: sgtl5000: Add audio-graph-card port
-      commit: f1905ab2a8a2103b7fa74a5f96fb50cce0dee6f5
+[1/9] ASoC: dt-bindings: wcd938x: add bindings for wcd938x
+      commit: 10ee3e07d32bede6cd007fb76150a1ccd0628852
+[2/9] ASoC: codecs: wcd-clsh: add new version support
+      commit: 19c5d1f6a0c39cf910c8d211ea40ff758bcb3f49
+[3/9] ASoC: codecs: wcd938x: add basic driver
+      commit: 8d78602aa87a3805902bed83157526fdc5b837d4
+[4/9] ASoC: dt-bindings: wcd938x-sdw: add bindings for wcd938x-sdw
+      commit: e02c65f3a7ce11ce522e805c78ed2f1da5d96975
+[5/9] ASoC: codecs: wcd938x-sdw: add SoundWire driver
+      commit: 16572522aece6a142d303a25f32544643f52c383
+[6/9] ASoC: codecs: wcd938x: add basic controls
+      commit: e8ba1e05bdc016700c85fad559a812c2e795442f
+[7/9] ASoC: codecs: wcd938x: add playback dapm widgets
+      commit: 8da9db0cd6694c98f64b6ec413337ac834e05bb0
+[8/9] ASoC: codecs: wcd938x: add capture dapm widgets
+      commit: d5add08fcbce35faeeffa62d7e8f21fd979d8420
+[9/9] ASoC: codecs: wcd938x: add audio routing
+      (no commit info)
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
