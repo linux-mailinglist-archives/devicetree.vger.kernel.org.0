@@ -2,201 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B929E3A6BC2
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E7513A6BCC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:29:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233640AbhFNQao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 12:30:44 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:37176 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233593AbhFNQam (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:30:42 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EBF3FA59;
-        Mon, 14 Jun 2021 18:28:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1623688118;
-        bh=CB6kudswL8a8Om0dixaDezfirL0cM3QSFwkcOT9aSy8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ht/ATSMTUOf2Qd1jTBod6eWI03e3Y4tjLikrub3DrpPEp0HqVS74t7KqrwDCSRJbh
-         5BUAJSZSp7eUt2zuN2KyAT2Bb0OVdrVMh76qtxhrr6PXkPcGB1z4n+re7lVhFFrOtb
-         spxAFmWu65JOYOKr/UVMPNquNjSR5WTiPG+YU06M=
-Date:   Mon, 14 Jun 2021 19:28:18 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S234702AbhFNQbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 12:31:47 -0400
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:42764 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234664AbhFNQbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:31:47 -0400
+Received: by mail-ot1-f47.google.com with SMTP id w23-20020a9d5a970000b02903d0ef989477so11370371oth.9
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:29:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=9CIY8AjuCRy8RieSStx5nb9rNTU57wmjgQb3HVjK27U=;
+        b=i663WzaVYh9vcq7ceJqDlWbmey3o6O+WEhi7etvgrLnxsxi8f9kgk9mEDBtlC4Piyy
+         7LteFPw1qcz5tkTdJK6vZi1eGrQ91DeQPPH4DWVoTFJ7lipp6uuWFs04mr4qJYjZkhC8
+         fDaF0llrx66733fzl44DMSzDRNRjYyaPVXt+hEmldEFM/I3fzU0FgcGx2g3i0dp8hdlb
+         Rd7qiOi8MEDfHAuuDyRhwywrohKyktaISRVuR1BVp3URCDxR6LUex6I09mb3eVb2rh0L
+         UUWgIKKRnYlVihuCna31RI/TsnF0ger4VBYtMDUjeRv0o6Urogy4ogDh+m8jnO3swO+3
+         t4Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9CIY8AjuCRy8RieSStx5nb9rNTU57wmjgQb3HVjK27U=;
+        b=pHjA/te41HcYijMpvb810Jq3VB43mgbeWdokYKiRpMvTJw0oA+BKoVqxXJY006yIma
+         yW0FeS0hcdHSSUVStGRLlGJutSoSoLLU7YnvbQILI2mSu+bSPIUSaI/DbC6GdMrhlLEx
+         b3N5cG62WCwbDuF58PKLImPKVRCUcWbFw7L+K4nwaS1dlklkv+2A7uir+Lb3ngK9ACF3
+         QBCydfEPx3+VaHDIUwqPaTUAO932wvMcWtG4nU9Qyt5UEq/r9OAiJCB1mMvpIkJw/zAx
+         fiqrNBWcHywXE/Rdj/WEP3X4h80Hefrq5LjRNp3/HZ9FhtXeEmBppkhNndoQuUImoRUy
+         Zvjw==
+X-Gm-Message-State: AOAM5300UJZXw/2ymNbzVA/Bh/reyy6pVnSmgs4Dz6IeE6Lp1L9Z4KVB
+        2DD5xfTSyg/2Tx/ZUws5JteDrg==
+X-Google-Smtp-Source: ABdhPJwIXsrftnZxjGMjBdTiMtowSy+ltDxlxiwm7UMHVPBGyAbeWkXvt8Fplt0tpJ3QCoiJRkhHYg==
+X-Received: by 2002:a9d:491:: with SMTP id 17mr14139894otm.184.1623688124306;
+        Mon, 14 Jun 2021 09:28:44 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id w186sm3058210oib.58.2021.06.14.09.28.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Jun 2021 09:28:43 -0700 (PDT)
+Date:   Mon, 14 Jun 2021 11:28:41 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Chris Brandt <Chris.Brandt@renesas.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
-Message-ID: <YMeDoj5RFZgbbRSO@pendragon.ideasonboard.com>
-References: <20210611113642.18457-1-biju.das.jz@bp.renesas.com>
- <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
- <CAMuHMdUQRHtVFhqmgi5EE2TNobspM3tNTP10gz-yPDJSK31ytA@mail.gmail.com>
- <OS0PR01MB5922B2355864A98B14C6DE6D86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <YMdnzdCvX/ur9qVr@pendragon.ideasonboard.com>
- <OS0PR01MB59227DFC38FD6CF6C568A90E86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <YMeBDfrVLZxSkVnL@pendragon.ideasonboard.com>
- <OS0PR01MB592282EC4F5779A2169D6AB086319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        Andy Gross <agross@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        bhupesh.linux@gmail.com
+Subject: Re: [PATCH 1/8] dt-bindings: qcom: rpmh-regulator: Add compatible
+ for SA8155p-adp board pmics
+Message-ID: <YMeDuToX+YG8CJEa@yoga>
+References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
+ <20210607113840.15435-2-bhupesh.sharma@linaro.org>
+ <YMLO56Rr7UGUy8vo@builder.lan>
+ <CAH=2NtyV=qMn32d9nE7qBheTscUejF1UwVZSc99uiv_P65S03Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <OS0PR01MB592282EC4F5779A2169D6AB086319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <CAH=2NtyV=qMn32d9nE7qBheTscUejF1UwVZSc99uiv_P65S03Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Mon 14 Jun 03:05 CDT 2021, Bhupesh Sharma wrote:
 
-On Mon, Jun 14, 2021 at 04:24:38PM +0000, Biju Das wrote:
-> > On Mon, Jun 14, 2021 at 04:09:04PM +0000, Biju Das wrote:
-> > > > On Mon, Jun 14, 2021 at 12:54:02PM +0000, Biju Das wrote:
-> > > > > > On Fri, Jun 11, 2021 at 1:36 PM Biju Das wrote:
-> > > > > > > Document RZ/G2L DMAC bindings.
-> > > > > > >
-> > > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > > > > Reviewed-by: Lad Prabhakar
-> > > > > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > > >
-> > > > > > Thanks for your patch!
-> > > > > >
-> > > > > > > --- /dev/null
-> > > > > > > +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.ya
-> > > > > > > +++ ml
-> > > > > > > @@ -0,0 +1,132 @@
-> > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > > > +%YAML
-> > > > > > > +1.2
-> > > > > > > +---
-> > > > > > > +$id:
-> > > > > > > +https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2
-> > > > > > > +F%2F
-> > > > > > > +devi
-> > > > > > > +cetree.org%2Fschemas%2Fdma%2Frenesas%2Crz-dmac.yaml%23&amp;da
-> > > > > > > +ta=0
-> > > > > > > +4%7C
-> > > > > > > +01%7Cbiju.das.jz%40bp.renesas.com%7C4b547e10cbe64b6f4d8508d92
-> > > > > > > +f2da
-> > > > > > > +0c0%
-> > > > > > > +7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C6375926952868468
-> > > > > > > +09%7
-> > > > > > > +CUnk
-> > > > > > > +nown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTi
-> > > > > > > +I6Ik
-> > > > > > > +1haW
-> > > > > > > +wiLCJXVCI6Mn0%3D%7C1000&amp;sdata=5Jh%2FxPaia5ZOY0CrViQCcrNtz
-> > > > > > > +uDej
-> > > > > > > +p8wo
-> > > > > > > +Nrx9iO0ht8%3D&amp;reserved=0
-> > > > > > > +$schema:
-> > > > > > > +https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2
-> > > > > > > +F%2F
-> > > > > > > +devi
-> > > > > > > +cetree.org%2Fmeta-
-> > > > schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cbiju.das.
-> > > > > > > +jz%40bp.renesas.com%7C4b547e10cbe64b6f4d8508d92f2da0c0%7C53d8
-> > > > > > > +2571
-> > > > > > > +da19
-> > > > > > > +47e49cb4625a166a4a2a%7C0%7C0%7C637592695286846809%7CUnknown%7
-> > > > > > > +CTWF
-> > > > > > > +pbGZ
-> > > > > > > +sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJX
-> > > > > > > +VCI6
-> > > > > > > +Mn0%
-> > > > > > > +3D%7C1000&amp;sdata=5qQ1PljM3e4Bn4%2FjdldYUHRBQL3jArJgRIAdLnh
-> > > > > > > +Jraw
-> > > > > > > +%3D&
-> > > > > > > +amp;reserved=0
-> > > >
-> > > > *sigh*
-> > > >
-> > > > > > > +
-> > > > > > > +title: Renesas RZ/G2L DMA Controller
-> > > > > > > +
-> > > > > > > +maintainers:
-> > > > > > > +  - Biju Das <biju.das.jz@bp.renesas.com>
-> > > > > > > +
-> > > > > > > +allOf:
-> > > > > > > +  - $ref: "dma-controller.yaml#"
-> > > > > > > +
-> > > > > > > +properties:
-> > > > > > > +  compatible:
-> > > > > > > +    items:
-> > > > > > > +      - enum:
-> > > > > > > +          - renesas,dmac-r9a07g044  # RZ/G2{L,LC}
-> > > > > >
-> > > > > > Please use "renesas,r9a07g044-dmac".
-> > > > >
-> > > > > OK. Will change.
-> > > > >
-> > > > > > > +      - const: renesas,rz-dmac
-> > > > > >
-> > > > > > Does this need many changes for RZ/A1H and RZ/A2M?
-> > > > >
-> > > > > It will work on both RZ/A1H and RZ/A2M. I have n't tested since I don't have the board.
-> > > > > There is some difference in MID bit size. Other wise both identical.
-> > > > >
-> > > > > > > +  renesas,rz-dmac-slavecfg:
-> > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > > > > +    description: |
-> > > > > > > +      DMA configuration for a slave channel. Each channel
-> > > > > > > + must have an array of
-> > > > > > > +      3 items as below.
-> > > > > > > +      first item in the array is MID+RID
-> > > > > >
-> > > > > > Already in dmas.
-> > > > > >
-> > > > > > > +      second item in the array is slave src or dst address
-> > > > > >
-> > > > > > As pointed out by Rob, already known by the slave driver.
-> > > > > >
-> > > > > > > +      third item in the array is channel configuration value.
-> > > > > >
-> > > > > > What exactly is this?
-> > > >
-> > > > What would prevent the DMA client from passing the configuration to
-> > > > the DMA channel through the DMA engine API, just like it passes the
-> > > > slave source or destination address ?
-> > >
-> > > On RZ/G2L, there is 1 case(SSIF ch2) where MID+RID is same for both tx and rx.
-> > > The only way we can distinguish it is from channel configuration value.
-> > 
-> > Are those two different hardware DMA channels ? And configuration values
-> > change between the two ?
+> Hello Bjorn,
 > 
-> Yes, REQD is different, apart from this Rx have transfer source and Tx have Transfer destination.
-> This particular SSIF ch2 is used only for half duplex compared to other SSIF channels.
+> Thanks for the review comments.
+> 
+> On Fri, 11 Jun 2021 at 08:18, Bjorn Andersson
+> <bjorn.andersson@linaro.org> wrote:
+> >
+> > On Mon 07 Jun 06:38 CDT 2021, Bhupesh Sharma wrote:
+> >
+> > > Add compatible strings for pmm8155au_1 and pmm8155au_2 pmics
+> > > found on SA8155p-adp board.
+> > >
+> > > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > > Cc: Liam Girdwood <lgirdwood@gmail.com>
+> > > Cc: Mark Brown <broonie@kernel.org>
+> > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > Cc: Vinod Koul <vkoul@kernel.org>
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Cc: Andy Gross <agross@kernel.org>
+> > > Cc: devicetree@vger.kernel.org
+> > > Cc: linux-kernel@vger.kernel.org
+> > > Cc: linux-gpio@vger.kernel.org
+> > > Cc: bhupesh.linux@gmail.com
+> > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > > ---
+> > >  .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml      | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> > > index e561a5b941e4..ea5cd71aa0c7 100644
+> > > --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> > > +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> > > @@ -55,6 +55,8 @@ properties:
+> > >        - qcom,pm8009-1-rpmh-regulators
+> > >        - qcom,pm8150-rpmh-regulators
+> > >        - qcom,pm8150l-rpmh-regulators
+> > > +      - qcom,pmm8155au-1-rpmh-regulators
+> > > +      - qcom,pmm8155au-2-rpmh-regulators
+> >
+> > Looking at the component documentation and the schematics I think the
+> > component is "PMM8155AU" and we have two of them.
+> >
+> > Unless I'm mistaken we should have the compatible describe the single
+> > component and we should have DT describe the fact that we have 2 of
+> > them.
+> 
+> If we refer to the PM8155AU device specifications, there are two
+> regulators mentioned there PMM8155AU_1 and PMM8155AU_2. Although most
+> parameters of the regulators seem similar the smps regulator summary
+> for both appear different (Transient Load, mA ratings etc).
+> 
+> Although most of these differences don't probably matter to the Linux
+> world, others like the gpios on the pmic are different.
+> 
+> So, IMO, it makes sense to mention the different pmic types on the board.
+> 
+> Please let me know your views on the same.
+> 
 
-Does this mean there's a single DMA channel, used by two clients, but
-not at the same time as it only supports half-duplex ?
+Afaict, they are both physically the same component, but there is some
+configuration differences between them. I don't see any differences that
+will show up in Linux, but afaict we would capture those in the DT
+anyways.
 
-> > > > > > Does the R-Car DMAC have this too? If yes, how does its driver
-> > > > > > handle it?
-> > > > >
-> > > > > On R-CAR DMAC, we have only MID + RID values. Where as here we
-> > > > > have channel configuration value With different set of parameter
-> > > > > as mentioned in Table 16.4.
-> > > > >
-> > > > > Please see Page 569, Table 16.4 On-Chip Module requests section.
-> > > > >
-> > > > > For eg:- as per Rob's suggestion, I have modelled the driver with
-> > > > > the below entries in ALSA driver for playback/record use case.
-> > > > >
-> > > > > dmas = <&dmac 0x255 0x10049c18 CH_CFG(0x1,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>,
-> > > > >        <&dmac 0x256 0x10049c1c
-> > > > > CH_CFG(0x0,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>;
-> > > > > dma-names = "tx", "rx";
-> > > > >
-> > > > > Using first parameter, it gets dmac channel. using second and
-> > > > > third parameter it configures the channel.
+Let me know if you see anything I'm missing, but I think we should have
+a single compatible.
 
--- 
 Regards,
+Bjorn
 
-Laurent Pinchart
+> Thanks,
+> Bhupesh
+> 
+> >
+> > >        - qcom,pm8350-rpmh-regulators
+> > >        - qcom,pm8350c-rpmh-regulators
+> > >        - qcom,pm8998-rpmh-regulators
+> > > --
+> > > 2.31.1
+> > >
