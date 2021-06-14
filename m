@@ -2,74 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 107123A6C1C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E11DE3A6C56
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:46:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235298AbhFNQli (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 12:41:38 -0400
-Received: from mout.kundenserver.de ([212.227.126.131]:50839 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235170AbhFNQlL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:41:11 -0400
-Received: from [192.168.1.155] ([95.115.71.85]) by mrelayeu.kundenserver.de
- (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MmU9R-1lS3ME4Bu5-00iRYW; Mon, 14 Jun 2021 18:38:24 +0200
-Subject: Re: [PATCH v9 1/5] nvmem: prepare basics for FRAM support
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Prchal <jiri.prchal@aksignal.cz>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S234546AbhFNQs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 12:48:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58644 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233948AbhFNQs4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:48:56 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22944C061574;
+        Mon, 14 Jun 2021 09:46:53 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id s70-20020a1ca9490000b02901a589651424so257615wme.0;
+        Mon, 14 Jun 2021 09:46:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=tvljP/FADgJBhPk8ME8L4V47cVc2f6d7/8FHRIYD954=;
+        b=B8T6dmxQE+0ZeP3z3goo/uCBgwFxsqBnOtsv8GUo1GTgIyTt2spvcvGsEqtuFBUZWK
+         vFqBP36fjaqMSIiqnXoQ/A3/Xz4fE3JW3llo67SASmqge3+wpBE2MQGKpswswYUNXjYy
+         hC5yVts0+mPVxHWOqj6q6nWfgTSS+APojDJ0X7g0zF4kUOuG9//tygMwPL4F76vlfryV
+         2SL14T1k//Lq59mbsY/3Ey2q6vtCpxX9FdHPB9nmoNXpYtIsxllswOSA3UVhKEPO6sc0
+         qiUtzhBlkS/UTy6d2FM2nxVnMeHqrC8NMGrQJuQbhqXOGEjJP20YcnqZkwmcBf4e9PRI
+         mqHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=tvljP/FADgJBhPk8ME8L4V47cVc2f6d7/8FHRIYD954=;
+        b=cwpP73TOF+pftvHxopvaHxWyDWPd6SskdeAwLFLjTvYEbzNBBM86r2M+zG68j0Ez60
+         2c1oMWApsDAq/WuE1bZ2FYoHDK9B/BYQNJby8GzF84L/b30LVs30FHrb6NYwh3o6NOiX
+         EFCF2Z9Vu33g6vDC4hsJCfmSBv+WsLuJxtdGjOCamFFg1x7JZG0NKezNrwU0JBfHjFpK
+         WEYwu9Q4dS8x4DsU4xtljuEwornAnvB3bDOhcbaorl3/zurAOtNL1h35ZPWUFubJoSxw
+         MViZz+StfAhRgs8jkzLVLKsov3Mt38PpNh4DgBm+TuyFhgTodZEvBMPpV3tIiahvPunw
+         EQWw==
+X-Gm-Message-State: AOAM5320Gcb+I9SfF/SUfUBXPVn86pB0R9+y0rXI4V4t/gNiK1V/vRHM
+        Nd+q0ljkGwToF3J0MRvIMA==
+X-Google-Smtp-Source: ABdhPJz/TgPYRiMBAJkO6DK6KCQhd3nMPx3VN/0cIYRHyDbVaEy82gCi6urK85Tm6qF8t3KosZFFRQ==
+X-Received: by 2002:a05:600c:4ba1:: with SMTP id e33mr10664wmp.39.1623689211594;
+        Mon, 14 Jun 2021 09:46:51 -0700 (PDT)
+Received: from [192.168.200.247] (ip5b434b8b.dynamic.kabel-deutschland.de. [91.67.75.139])
+        by smtp.gmail.com with ESMTPSA id x10sm16580048wrt.26.2021.06.14.09.46.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jun 2021 09:46:51 -0700 (PDT)
+Subject: Re: [PATCH v2 06/12] media: hantro: add support for Rockchip RK3066
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Christian Eggers <ceggers@arri.de>,
-        Arnd Bergmann <arnd@arndb.de>
-References: <20210611052652.7894-1-jiri.prchal@aksignal.cz>
- <20210611052652.7894-2-jiri.prchal@aksignal.cz> <YMMjbCFzsfiT8dMA@kroah.com>
-From:   "Enrico Weigelt, metux IT consult" <lkml@metux.net>
-Message-ID: <d5927cbf-2c92-d45e-9f47-3ad8b8b27436@metux.net>
-Date:   Mon, 14 Jun 2021 18:38:23 +0200
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+References: <20210525152225.154302-1-knaerzche@gmail.com>
+ <20210527154455.358869-1-knaerzche@gmail.com>
+ <20210527154455.358869-7-knaerzche@gmail.com>
+ <09885c89dd37ca56305630c96da88333e81a2f25.camel@collabora.com>
+From:   Alex Bee <knaerzche@gmail.com>
+Message-ID: <25edf9d4-6740-4ce3-90e4-8633b936fc5b@gmail.com>
+Date:   Mon, 14 Jun 2021 18:46:49 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.0
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <YMMjbCFzsfiT8dMA@kroah.com>
+In-Reply-To: <09885c89dd37ca56305630c96da88333e81a2f25.camel@collabora.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: tl
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:4n+TQ9WlLCMNimSNbLHKb/PrM8nvB/UpTdbGzmw+ota4zcTghY+
- We0B4CSY7/O5qfqACxBHlnwOe6SnWMcZ8JAKoGjVJ7l/WlQFV7gW+a29/K3KC5aTylVd7NT
- iYysQotin5Swv8R2wWdvovHwjvA9NM+Mx3rmMae5XgStjNDUYvayKmdYJ0jNfBWi5daLpgK
- M+QSecedSP1O9too4xNng==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:mi12Q0pxyAw=:/uChxz/zVF3Vwq9l+iMnE9
- YewNHrOls1NyXYW3q6Xp9CgL7qNGQiNQrMuvWo6wSepqb2yG4UT7/7czDqYGc+rBwq7PUWdKu
- 4mWtE51PFbmHRF4wrOEhShZ+0O5b5Iq1rupEDPlkCKRG5hNNvt0AnGxe057XvctS9WjtV0Mct
- mdeQVy2qELn3DiNNYzZoBorzpB0VnpP7hwWbqZEmzIUfIl9EB9kvmUhRvl56K61nU/RMXqc1r
- r5qyyJ8X8++m6mNLvRLBkOT1vkDX5tuBp6ZgKeM4J8Qe8LMt+DomAkm74vMzMuK1i3MAqtNbm
- 3ZRFtEBMx9c2dgVKI7yWLAkMsfe/8CO1Wp8SyivvdXdYXSOl87lcABp72bim5CTFF1BVLhkiN
- zjlX1j/Gwzbaab5/xfS0hZW4MjGrRiuyUuMU+IOmJRu6y/a+R9q5/f6UzlmxdRX6/BfcxVJ3B
- hRlTuB2P5W7gVHoPo3Ub+WI5Rc8FMSQ9aKWMnaBZnG1MYq/4ihTjjeSAAHDMEVtevftcmQs9L
- skqnLlvLaivhyDYDTDIdKs=
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.06.21 10:48, Greg Kroah-Hartman wrote:
-> On Fri, Jun 11, 2021 at 07:26:48AM +0200, Jiri Prchal wrote:
->> Added enum and string for FRAM to expose it as "fram".
-> 
-> I have no idea what "FRAM" is, nor what "fram" is.
+Hi Ezequiel,
 
-perhaps ferroelectric RAM ?
+Am 11.06.21 um 17:50 schrieb Ezequiel Garcia:
+> Hi Alex,
+>
+> On Thu, 2021-05-27 at 17:44 +0200, Alex Bee wrote:
+>> RK3066's VPU IP block is the predecessor from what RK3288 has.
+>> The hardware differences are:
+>>    - supports decoding frame sizes up to 1920x1088 only
+>>    - doesn't have the 'G1_REG_SOFT_RESET' register
+>>      (requires another .reset callback for hantro_codec_ops,
+>>       since writing this register will result in non-working
+>>       IP block)
+>>    - has one ACLK/HCLK per vdpu/vepu
+>>    - ACLKs can be clocked up to 300 MHz only
+> Have you tested trying 400 MHz (or more) ?
 
-https://en.wikipedia.org/wiki/Ferroelectric_RAM
+Yes, I've tried this on both RK3066 and RK3036 variants - everything 
+above  300 MHz results in non-functioning IP block.
 
+See comment in RK3036 devicetree in vendor kernel at [1].
 
---mtx
+[1] 
+https://github.com/rockchip-linux/kernel/blob/develop-4.4/arch/arm/boot/dts/rk3036.dtsi#L246-L248
 
--- 
----
-Hinweis: unverschlüsselte E-Mails können leicht abgehört und manipuliert
-werden ! Für eine vertrauliche Kommunikation senden Sie bitte ihren
-GPG/PGP-Schlüssel zu.
----
-Enrico Weigelt, metux IT consult
-Free software and Linux embedded engineering
-info@metux.net -- +49-151-27565287
+>
+>>    - no MMU
+>>      (no changes required: CMA will be transparently used)
+>>
+>> Add a new RK3066 variant which reflect this differences. This variant
+>> can be used for RK3188 as well.
+>>
+> Reviewed-by: Ezequiel Garcia <ezequiel@collabora.com>
+>
+> Thanks!
+> Ezequiel
+>
