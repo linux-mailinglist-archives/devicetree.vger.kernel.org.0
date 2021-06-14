@@ -2,166 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8656F3A6A0C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 863EA3A6A2C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:27:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233427AbhFNP2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 11:28:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40456 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233358AbhFNP2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:28:01 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13CB6C061574
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:25:45 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id i13so47060505edb.9
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:25:44 -0700 (PDT)
+        id S233814AbhFNP3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 11:29:01 -0400
+Received: from mail-ej1-f54.google.com ([209.85.218.54]:41967 "EHLO
+        mail-ej1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233473AbhFNP2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:28:48 -0400
+Received: by mail-ej1-f54.google.com with SMTP id ho18so17334657ejc.8
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:26:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/nehZ9ZydCeKRlg2vLMvpSD+mPjakFShT0YfQBkuj6g=;
-        b=SyUFhvvdXA5IU2Upo7nw9c2GbDMy0RJ4qm0pXO6PNRMOaOUcJyHWEjX0L8z2kfm8Ft
-         o3nYSYOpBmBRnU+CNEPfT70MT1DXm5X2i1MM+bK5Xw9y+HzXKDn/b83jTpLBaOSg6N85
-         Q2g2A+j+x2wA+VHmmMG5WYLfpkwshCvvcGtZrF+vQ9cZ8MbL2PH8hZErAuUPIUfwEGVY
-         MqQDs9RKwY0ByxFNPYAZkipCHIC6oGYUHGPXMgrIsWsfQKEAZ/VG+fed4juUpBlNYHym
-         ocLhwmyNmK5Hx//iCty7p4t4UZGqz+6sqQL5cQ8pPqTpKMJGXCfjmtodqsXlRYkdKRqN
-         o1Lg==
+        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=5iw6j+So2xja7Nn4Xb1YrsDecAqpw6fkQHzTQiHGVHA=;
+        b=qSvvAdOX5mhRjZUmyzK4S23UaMb7KfvYGdwe6Sy5Ej+Vieew0MAO0rlnhzNlO0pB7C
+         IKQNpIM50XdwxqyC+PSbjeWBOTieycwqGtEMxnWQN76mOSAVXp2sy/YS85WCLbUwL53H
+         hmdhaCbV2nMYDOLlUf+DNzYcWCIXcmVvGQ/BPwzJxJkGOzIlx8oZ6QYkzFAtz8KT18Un
+         jLzzAlZ8uN1jT4Soz8PUuOO9n8VxCFL75S6652Y4TkWQk96kNHJyxBFiVSolamHebayS
+         0pH4zuhYXZNQX62Eymg4XYFJqzkUGdT8Tuuj76V69MyjNGg33yI2+/1S1v+BYKfFiUhW
+         qzqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=/nehZ9ZydCeKRlg2vLMvpSD+mPjakFShT0YfQBkuj6g=;
-        b=oeE+Fnatcdcn6yqntYA7rq7RHDy8WOMVpSIlLdvwulOScLtSqSxDGHJGFw3o7F57/L
-         yeXWS7KE5rGhE22TT8lWtRNSDZ6qyhulYBs5ow1wyXw0e/9imBlZY0ABQ7qyBBcO3gLl
-         BYSMgkC3F3K6TU/wd0mnScvjgWimH8gJcs7XLhPoi4qK/qOG8ohvxWpIrMpMTcLjTGA/
-         CNnsSVDDHvFJttPZKub08IMtubFJgPKi4BQUb36SztO3d2tR3FufgrQ7rzlA7NPDZU1Z
-         wwrzZ00mLr3JfmyRgMEklSUtviDkqZVUprccOdlca9kaWnymLBIgrAZKX2YRcu8u4kTw
-         bCNA==
-X-Gm-Message-State: AOAM530Fr7yqrlmH2oqcLVrB7B0m810V54CpWjXJ9VuOCDsBr3Stdb0L
-        T9H69rpUHRDXArECXme4BZBiCg==
-X-Google-Smtp-Source: ABdhPJx8d1jB0oSwGE1d6HGo3Lch6J0bEAK0D7Buf2I3djlLebylfDqcpCQzNAFVPE00D0ZhEyDv+g==
-X-Received: by 2002:aa7:c705:: with SMTP id i5mr17983480edq.222.1623684343570;
-        Mon, 14 Jun 2021 08:25:43 -0700 (PDT)
+         :in-reply-to:references:mime-version:content-transfer-encoding;
+        bh=5iw6j+So2xja7Nn4Xb1YrsDecAqpw6fkQHzTQiHGVHA=;
+        b=UhuLBz0+MPnFC7hRjE+T9UWAIG3c6R4WKXmhswcCype7wbaT6rAAbP3rf/QaAWGJrB
+         f+d9AXVlkon0icjzgxbLY64xSbp/i5C2620ph/Xz+uN3nQP9TfGth0E7OAiuhQnfPlUG
+         Em2w117XDjlFh3GRoIZFrPGVCk7qYWBqj370k9C9cdkewJqvF/GdF+ZW81FFlDdrs9Vq
+         dB9LoMxhADkRu94itjWKb+Y4xuMLC0n42d5UkhWb9+2P217q6VgewgVFI/Q1b7ngMeJu
+         9ihajfKUUSAROAXTILqEYtNSfbLQ/geJkCojJjV5CD4+Hg/huq66+H1RzeEIftYprzpl
+         gulQ==
+X-Gm-Message-State: AOAM531SL2/CoJs2cj1AbrY18i6+HcpPfJ0t3z0tVcfo610VTtKXNhBo
+        iWonp53sBWY6xDEiWiTla0jc4Q==
+X-Google-Smtp-Source: ABdhPJwCZ5cS8EG+THRZjNALzkSt9eTuJYnFO99d/1jawrSh22DbwXSYnzfgJyP5/MAlrM2bRiJnPg==
+X-Received: by 2002:a17:906:d297:: with SMTP id ay23mr15727124ejb.418.1623684345058;
+        Mon, 14 Jun 2021 08:25:45 -0700 (PDT)
 Received: from localhost ([2a02:768:2307:40d6:f666:9af6:3fed:e53b])
-        by smtp.gmail.com with ESMTPSA id f18sm4697907edu.5.2021.06.14.08.25.42
+        by smtp.gmail.com with ESMTPSA id q20sm7835389ejb.71.2021.06.14.08.25.44
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 14 Jun 2021 08:25:42 -0700 (PDT)
+        Mon, 14 Jun 2021 08:25:44 -0700 (PDT)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com,
         Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Michael Walle <michael@walle.cc>,
-        Quanyang Wang <quanyang.wang@windriver.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 00/33] arm64: zynqmp: Extend board description
-Date:   Mon, 14 Jun 2021 17:25:08 +0200
-Message-Id: <cover.1623684253.git.michal.simek@xilinx.com>
+Subject: [PATCH v2 01/33] arm64: zynqmp: Disable CCI by default
+Date:   Mon, 14 Jun 2021 17:25:09 +0200
+Message-Id: <f507d45fbaa0bd31f641e758efa40a2532466ced.1623684253.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <cover.1623684253.git.michal.simek@xilinx.com>
+References: <cover.1623684253.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+There is no reason to have CCI no enabled by default. Enable it when your
+system configuration requires it. In Xilinx configuration flow this is work
+for Device Tree Generator which reads information from HW Design
+configuration.
 
-over years couple of drivers were upstream and it is time to sync it up.
-On the top of it also adding new Kria boards which are using new overlay
-infrastructure which check if that overlays can be applied to base DT file.
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+---
 
-Thanks,
-Michal
+Changes in v2: None
 
-Changes in v2:
-- Add reviewed-by from Laurent
-- New patch in the series
-- New patch in the series
-- Use sugar syntax - reported by Geert
-- Update copyright years
-- Fix SD3.0 comment alignment
-- Remove one newline from Makefile
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Amit Kumar Mahapatra (1):
-  arm64: zynqmp: Do not duplicate flash partition label property
-
-Michal Simek (29):
-  arm64: zynqmp: Disable CCI by default
-  arm64: zynqmp: Enable fpd_dma for zcu104 platforms
-  arm64: zynqmp: Fix irps5401 device nodes
-  arm64: zynqmp: Add pinctrl description for all boards
-  arm64: zynqmp: Correct zcu111 psgtr description
-  arm64: zynqmp: Wire psgtr for zc1751-xm015
-  arm64: zynqmp: Correct psgtr description for zcu100-revC
-  arm64: zynqmp: Add phy description for usb3.0
-  arm64: zynqmp: Disable WP on zcu111
-  arm64: zynqmp: Add missing mio-bank properties to dc1 and dc5
-  arm64: zynqmp: Wire DP and DPDMA for dc1/dc4
-  arm64: zynqmp: Enable nand driver for dc2 and dc3
-  arm64: zynqmp: Remove additional newline
-  arm64: zynqmp: Move clock node to zynqmp-clk-ccf.dtsi
-  arm64: zynqmp: Add nvmem alises for eeproms
-  arm64: zynqmp: List reset property for ethernet phy
-  arm64: zynqmp: Remove can aliases from zc1751
-  arm64: zynqmp: Move DP nodes to the end of file on zcu106
-  arm64: zynqmp: Add note about UHS mode on some boards
-  arm64: zynqmp: Remove information about dma clock on zcu106
-  arm64: zynqmp: Wire qspi on multiple boards
-  arm64: zynqmp: Move rtc to different location on zcu104-revA
-  arm64: zynqmp: Add reset description for sata
-  arm64: zynqmp: Sync psgtr node location with zcu104-revA
-  arm64: zynqmp: Remove description for 8T49N287 and si5382 chips
-  arm64: zynqmp: Add support for zcu102-rev1.1 board
-  arm64: zynqmp: Enable xlnx,zynqmp-dwc3 driver for xilinx boards
-  arm64: zynqmp: Add psgtr description to zc1751 dc1 board
-  arm64: zynqmp: Add support for Xilinx Kria SOM board
-
-Mounika Grace Akula (1):
-  arm64: zynqmp: Add reset-on-timeout to all boards and modify default
-    timeout value
-
-Srinivas Neeli (1):
-  arm64: zynqmp: Update rtc calibration value
-
-Stefano Stabellini (1):
-  arm64: zynqmp: Add missing SMID for pcie to zynqmp.dtsi
-
- .../devicetree/bindings/arm/xilinx.yaml       |  32 ++
- arch/arm64/boot/dts/xilinx/Makefile           |  11 +
- .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  13 +-
- .../boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts  | 335 +++++++++++++++++
- .../boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts  | 318 ++++++++++++++++
- .../boot/dts/xilinx/zynqmp-sm-k26-revA.dts    | 289 +++++++++++++++
- .../boot/dts/xilinx/zynqmp-smk-k26-revA.dts   |  21 ++
- .../boot/dts/xilinx/zynqmp-zc1232-revA.dts    |  16 +-
- .../boot/dts/xilinx/zynqmp-zc1254-revA.dts    |  16 +-
- .../dts/xilinx/zynqmp-zc1751-xm015-dc1.dts    | 298 ++++++++++++++-
- .../dts/xilinx/zynqmp-zc1751-xm016-dc2.dts    | 342 +++++++++++++++++-
- .../dts/xilinx/zynqmp-zc1751-xm017-dc3.dts    |  23 +-
- .../dts/xilinx/zynqmp-zc1751-xm018-dc4.dts    |  24 +-
- .../dts/xilinx/zynqmp-zc1751-xm019-dc5.dts    | 330 ++++++++++++++++-
- .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 264 +++++++++++++-
- .../boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts  |  15 +
- .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 321 +++++++++++++++-
- .../boot/dts/xilinx/zynqmp-zcu102-revB.dts    |   3 +-
- .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 292 ++++++++++++++-
- .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 250 ++++++++++++-
- .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 341 ++++++++++++++++-
- .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 275 +++++++++++++-
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  99 +++--
- 23 files changed, 3833 insertions(+), 95 deletions(-)
- create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
- create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts
- create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
- create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts
- create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts
-
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 28dccb891a53..302ca0196c34 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -245,6 +245,7 @@ can1: can@ff070000 {
+ 
+ 		cci: cci@fd6e0000 {
+ 			compatible = "arm,cci-400";
++			status = "disabled";
+ 			reg = <0x0 0xfd6e0000 0x0 0x9000>;
+ 			ranges = <0x0 0x0 0xfd6e0000 0x10000>;
+ 			#address-cells = <1>;
 -- 
 2.32.0
 
