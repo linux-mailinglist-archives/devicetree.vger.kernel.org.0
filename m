@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F293A6A1B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 885653A6A42
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:29:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233343AbhFNP22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 11:28:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40516 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233441AbhFNP2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:28:21 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B651C0613A3
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:26:17 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id h24so17361730ejy.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:26:17 -0700 (PDT)
+        id S234221AbhFNPaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 11:30:01 -0400
+Received: from mail-ej1-f46.google.com ([209.85.218.46]:43779 "EHLO
+        mail-ej1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234044AbhFNP3V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:29:21 -0400
+Received: by mail-ej1-f46.google.com with SMTP id ci15so17363698ejc.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:27:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=F7lBceymVXyPIWYk/tgF5zZZKiUc/wpcuGpIs/70M3U=;
-        b=HG7bJ5j2mZEM1ey7XZwFLfS/q/hIXCiH6pBb/UXyNl7c25M+teLsL8oQyui/ggVUFI
-         CedyOy0fp67JCBFWavj0izaSj3EwgiHOTF6rneqifcu2pCY/pzrM8aNTncdwCrP49kzC
-         NUkgSwTKBQ2+f3Cswl+OlJjHWhq7W0+///Q9sp2sfNbGRLE5hiooaWhuUrT9S41Sk6v4
-         gpvxgeq2DBfzlvY4AJ3MltvQRODnPMbiNmJf7SRVj3GT6HwuT7VhNJG4KQPyQkbMEDj5
-         C+e3E5IWFwnxjbTEgrveR/d/Wh5ncLtr7npq5w4w4qNYIzvbMg2dCUQIo/z3Ug61AXDM
-         pPZg==
+        bh=sMVNJ/LPbRvn48KGy/785ZDuHz9PafjtcmN48BZV1GQ=;
+        b=mM1yRhikbHOL3TLiAHpFyBj6QWF1+TtzCsYz0AjHtLnmTyIij6X/49oInPUboRknNr
+         5zMlzCwR7BOYCCAx3Idgu8tthTrxOsW3v+D+Xio2mdIKnTYnjxplu4oSKKUmuf/J6gYG
+         wSuftX3UHn9t1EJbboA7cpy9uhw1z3O7vvDFpoRzfDb+82JKuMNemARewvYDWgmOu7gg
+         nVMgGukao362IJ6jHJxh4Bpl4KAkif+d3vGKQInve/3SPGYAgZxf/X+JWjso60IUgFX1
+         MYDH2W7kFY1IxDcY2pvpUIxuJlVwj3M6SkAwY6CdONFVBAJQpfVfxT5TspXvV/3GLVLw
+         yy/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=F7lBceymVXyPIWYk/tgF5zZZKiUc/wpcuGpIs/70M3U=;
-        b=JYtedUIELH2P6J7uo78PAKRRgIRJiCwuXh66MeBKFy+w++hsrBKdoOVuX75Ngl40c0
-         nAvmfTP2i13UdGZDUS6tFnXofeoj9aleCRJCZ8PLmcm4iLRpw+0WK+ibKsdhr1PquenA
-         54zPWyIVwZyCnekK5xDbX3oR6aHqglr/d+viUOUTRquYMlEA2eJAwVlyKlIk2pWn2FCr
-         QAro1BKdS60VMVlrdWoHdDcqt2ihrQYewxXq1IP5bOLBDSCLgzpS/Eu75UCixG7XSknR
-         M3oMNiRQm4u0WcFbAOQNJp/h9823mHUwo19CsMOyGK5QzHV8b+aFCy5Yb7vIGRJNXw8a
-         GG6w==
-X-Gm-Message-State: AOAM530TRZEEsD1AehFoRl81gZ8m5vStyv5vnJePyMWS8W3kNtsGPMKO
-        zbKH0R6IHFYFRMfc3fnbZV5jNg==
-X-Google-Smtp-Source: ABdhPJx2lNLaBs30rWZqqzjAaFYSMy69RB5MGoxgE+w3f6E0AwLl5dcG9/gJCbxlJVsgw7bgJF4Nsw==
-X-Received: by 2002:a17:906:c141:: with SMTP id dp1mr16452603ejc.87.1623684375987;
-        Mon, 14 Jun 2021 08:26:15 -0700 (PDT)
+        bh=sMVNJ/LPbRvn48KGy/785ZDuHz9PafjtcmN48BZV1GQ=;
+        b=XFF42Wv7FAFvndH2x4CLnKvHqWgx5QtAYlHZ3ZTacde28fAYtUF6jA8NywpYzpWzkD
+         nM+uVJZZaPEpnQd4ym83LCDrB3ctkIThKqVSltYltF9+h5itnHY8+sce3U+uACkHiIt1
+         h6N5ypuac/fYXFbu3H+lBwdByEpTPIsdhvAiLIddO9zpcp8kXtEZHUjxZ/TWmzWTFr9B
+         V19ouk+TDLF/TU3IWRpWcH0Ls2TQmWx9a3wU+cKtz+LFmvpFJMAEfftybefDaKZ6ubef
+         A2wlKrgCNfOEqeQts4+N1hz93x0WW9VVbmguu2xDYQahODkR55+EY7CleNbR+BVYZ7YA
+         oJ6w==
+X-Gm-Message-State: AOAM533lEx9f9gKtYZ+lnicz2BymfpmJZqEL72Z3exDVSAJP+A/i3612
+        vH1W/3hjwpvn+KIfz+smvj8JaA==
+X-Google-Smtp-Source: ABdhPJw5nHPMaw17x6xIGLUWcrzK5xMwTMS8SeIrlnqdsD4/5XabEfPGOZwKsWg6dttfKzTHTcCOoQ==
+X-Received: by 2002:a17:906:260e:: with SMTP id h14mr15829603ejc.356.1623684377377;
+        Mon, 14 Jun 2021 08:26:17 -0700 (PDT)
 Received: from localhost ([2a02:768:2307:40d6:f666:9af6:3fed:e53b])
-        by smtp.gmail.com with ESMTPSA id n5sm9123119edd.40.2021.06.14.08.26.15
+        by smtp.gmail.com with ESMTPSA id s2sm5275071edt.53.2021.06.14.08.26.16
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 14 Jun 2021 08:26:15 -0700 (PDT)
+        Mon, 14 Jun 2021 08:26:17 -0700 (PDT)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com,
         Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+Cc:     Srinivas Neeli <srinivas.neeli@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Quanyang Wang <quanyang.wang@windriver.com>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 22/33] arm64: zynqmp: Add note about UHS mode on some boards
-Date:   Mon, 14 Jun 2021 17:25:30 +0200
-Message-Id: <462b95844e7aedb00768035913265d7af90c3b2f.1623684253.git.michal.simek@xilinx.com>
+Subject: [PATCH v2 23/33] arm64: zynqmp: Update rtc calibration value
+Date:   Mon, 14 Jun 2021 17:25:31 +0200
+Message-Id: <0d36d9fe999ff82f10d42ab5fc0d1e907c26ac34.1623684253.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <cover.1623684253.git.michal.simek@xilinx.com>
 References: <cover.1623684253.git.michal.simek@xilinx.com>
@@ -69,80 +66,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add note about UHS mode and add no-1-8-v property to zc1751-dc1 board.
+From: Srinivas Neeli <srinivas.neeli@xilinx.com>
 
+As per the design specification
+"The 16-bit Seconds Calibration Value represents the number of
+ Oscillator Ticks that are required to measure the largest time
+ period that is less than or equal to 1 second.
+ For an oscillator that is 32.768 KHz, this value will be 0x7FFF."
+
+Signed-off-by: Srinivas Neeli <srinivas.neeli@xilinx.com>
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
 Changes in v2: None
 
- arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts | 4 ++++
- arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts      | 4 ++++
- arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts      | 3 +++
- arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts      | 5 ++++-
- 4 files changed, 15 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
-index 460aba6e7990..cd406947ec34 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
-@@ -370,6 +370,10 @@ &sdhci0 {
- /* SD1 with level shifter */
- &sdhci1 {
- 	status = "okay";
-+	/*
-+	 * This property should be removed for supporting UHS mode
-+	 */
-+	no-1-8-v;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sdhci1_default>;
- 	xlnx,mio-bank = <1>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
-index 5ddcfdf48626..3cbc51b4587d 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
-@@ -956,6 +956,10 @@ &sata {
- /* SD1 with level shifter */
- &sdhci1 {
- 	status = "okay";
-+	/*
-+	 * 1.0 revision has level shifter and this property should be
-+	 * removed for supporting UHS mode
-+	 */
- 	no-1-8-v;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sdhci1_default>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-index 4a0f3370bf7f..2c1c4d96fb21 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
-@@ -951,6 +951,9 @@ &sata {
- /* SD1 with level shifter */
- &sdhci1 {
- 	status = "okay";
-+	/*
-+	 * This property should be removed for supporting UHS mode
-+	 */
- 	no-1-8-v;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sdhci1_default>;
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-index 85e9d0e2f9bd..c9d41d16c3f0 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-@@ -796,8 +796,11 @@ &sdhci1 {
- 	status = "okay";
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sdhci1_default>;
--	no-1-8-v;
- 	disable-wp;
-+	/*
-+	 * This property should be removed for supporting UHS mode
-+	 */
-+	no-1-8-v;
- 	xlnx,mio-bank = <1>;
- };
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 80332e3b4d6a..da54a2d35552 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -663,7 +663,7 @@ rtc: rtc@ffa60000 {
+ 			interrupt-parent = <&gic>;
+ 			interrupts = <0 26 4>, <0 27 4>;
+ 			interrupt-names = "alarm", "sec";
+-			calibration = <0x8000>;
++			calibration = <0x7FFF>;
+ 		};
  
+ 		sata: ahci@fd0c0000 {
 -- 
 2.32.0
 
