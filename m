@@ -2,175 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B4FF3A6B04
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9D713A6B0B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234107AbhFNP46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 11:56:58 -0400
-Received: from mail-eopbgr80084.outbound.protection.outlook.com ([40.107.8.84]:2119
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233222AbhFNP46 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 11:56:58 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RVkVMCilX8wVz1GeeR6znZv1YgOsxb0GtkLuM7fxjfuPz8j7v4vOF/6bm2tIHFSCssnriJh30SyE+6oheDJh6+jfTHccKNJJj0f0xfoKRwMS2XhQlnZ6Hq0tbN3bcGBAOdjhjn/fimFYcLF1sACIcXWbmkvtHHqP80Y04Am3nvYMk7xNS/GgIq3UjyQ8gml2+FKdHUGq6gR9Hn/l9bkRjjJKV4621Q5Vuwo8KkI3vDta5pvOQ9UaFP4b3R/GU9mkw/CBHUJERr0OCfOCoWoWK+wLmrgXhgnksaCVEGzU1uHxfHUt+29pgMY0O8V89hmLVgJUDlYI8ZDq3vGICi5y4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nlXrnSjwNVhsVtk9otnu5uMFPyKq4VtGS36t0SDOsJI=;
- b=NMwj49jFMMOy7Z9jGVl6tVtJaaGCp7uLi6mXalHoIka5z2Ghy9+biFMwbskhnX0Xe0XldkUvCANUD5UIcbTpPiGv7mVJ7hwA0Mu9UGWX1RYR4QBqS+Xl7VVkiICViVSaFYX0C94mM2jJN/5fxFd2liTiPlDgYFH7UsmO+H6U6XhMe8sN5WCZVa8F2SJbjEmpP+IGgKEPrALlbtPHHut6Dg5oEKW9xUtlJzNJSJ72hvx5t6L0g/K4ai7HE95nQ5k/lPvwH5As4PhtpRqObXCa+z1eBOz2V70+EfgbguhvdK50wdGNsiLvDRGQ5Dgjkic38lx7qQGyu0XIg5qQNrNgQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
+        id S234326AbhFNP5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 11:57:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47282 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233222AbhFNP5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:57:44 -0400
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2537BC061574
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:55:41 -0700 (PDT)
+Received: by mail-oo1-xc2d.google.com with SMTP id k21-20020a4a2a150000b029024955603642so2756503oof.8
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:55:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nlXrnSjwNVhsVtk9otnu5uMFPyKq4VtGS36t0SDOsJI=;
- b=FF4lmOn0n70lu8oY7JCdx/pUxhV5UZ3iyVYf+JNCcVJscqGRXRuCcOTkKktVk617HMerNQk2fOvAyMD4tOM8tRDnTK9Z4GA8uG9IdZfUbz7ygxt6DeGUHvLnVu0RjRW1QeZco4rUhzKGDckZoK+94Qd92Y8cYHeMuONzu9dhtVA=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DB8PR03MB6201.eurprd03.prod.outlook.com (2603:10a6:10:13f::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21; Mon, 14 Jun
- 2021 15:54:52 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4219.025; Mon, 14 Jun 2021
- 15:54:52 +0000
-From:   Sean Anderson <sean.anderson@seco.com>
-To:     linux-clk@vger.kernel.org, Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Adam Ford <aford173@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: clk: vc5: Add properties for configuring the SD/OE pin
-Date:   Mon, 14 Jun 2021 11:54:36 -0400
-Message-Id: <20210614155437.3979771-1-sean.anderson@seco.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [50.195.82.171]
-X-ClientProxiedBy: BL1PR13CA0102.namprd13.prod.outlook.com
- (2603:10b6:208:2b9::17) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ao/HroxS7JwYFnTJ4NYG52SJwTWjW7jv1+xX0UEU3aM=;
+        b=Scf7BrFsA/kpXnLR5+bPUVrdBBsCVGLVf3FwAaKgzE+cIkqfPyIjIU2ZaIUD/Mc7nl
+         Hm3EbaF8IADhjyp345Xzgufq4MfjelDPmWdtiUvLHEhrTzlUPV1kTYLTDX3CYF+qtjGD
+         ouattPwabZMRMO9625etddU5lttXrc0c9pcyHWCdaB/GAAAEWU03ZwOZU1lHCOzXioBi
+         tAfbtw/r0xgnFTzYahPfu/SqWZsE8Uf66CkJyxHvhmpyYtVxzmrwGmFW9OPWjV/xRY8T
+         RfJRc067aX8yXjLgGx5bNHAa0K6xsxQGvWbUin6nJ4l83WgAChJjyN8w7K2CYATCdpwg
+         Y9nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ao/HroxS7JwYFnTJ4NYG52SJwTWjW7jv1+xX0UEU3aM=;
+        b=Rn8ecXOi6Q00RcCz3+quV1cM+nbguq8fHyY1UL0gEIwE2HN/+O20o30J+yot3Qa//K
+         FKfURibYjtHytGYHN5tvKfs7KoZotFmOlRvzPZWn0CZNJq12YWp1Yky0WMo21bQsqWv2
+         JtFwDYbtW8ISbg4PuUQ3jLdgH42Xz/GvmGfZELSWi/w6QtpUDswzoiT2xiZgkE4RuYOi
+         m4URAHMTLfKDOPWu8YIjo/RVTxJHscqb991zsSijiKgK5xNRWpFxkoLT2JTFTKv11z5p
+         YoI6Mwv933LVU3Ch+tvTM2nSy4Q4PCfWWOMSKte1tF5kjTT8D6qceECB+Q4bIg/zr+xi
+         Fjbw==
+X-Gm-Message-State: AOAM532ayhrc9VnzkZpd9JWxPGgl3R+AeAk2X6rJnzihXE5lrWtbfhpA
+        yyHdkQkeQw03C8bh0XxQkbmSJQ==
+X-Google-Smtp-Source: ABdhPJxu4oP8aV5p6XJiCVG8ccnQT244WXc2B4dWab2aCnEXSSH8ylgpRiR8M0DWA2E0c7qovAerLg==
+X-Received: by 2002:a4a:b544:: with SMTP id s4mr13561883ooo.62.1623686140480;
+        Mon, 14 Jun 2021 08:55:40 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id n11sm3083843ooo.12.2021.06.14.08.55.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Jun 2021 08:55:40 -0700 (PDT)
+Date:   Mon, 14 Jun 2021 10:55:37 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Martin Botka <martin.botka@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        konrad.dybcio@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 1/2] dt-bindings: pinctrl: qcom: sm6125: Document
+ SM6125 pinctrl driver
+Message-ID: <YMd7+e798xqUXKCN@yoga>
+References: <20210612094534.88992-1-martin.botka@somainline.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from plantagenet.inhand.com (50.195.82.171) by BL1PR13CA0102.namprd13.prod.outlook.com (2603:10b6:208:2b9::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.9 via Frontend Transport; Mon, 14 Jun 2021 15:54:51 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1a57497b-eba8-4e4f-6cbd-08d92f4cbf26
-X-MS-TrafficTypeDiagnostic: DB8PR03MB6201:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB8PR03MB62015E3E3D8B114B2CC0E3EA96319@DB8PR03MB6201.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QYaiDfnGUIFyLvyp3b4P3gvbhztuZK3uAPbzq77npVuVtFMT/+WozavH7UPwenfciZBvnJ7CoLlOwYbGmiMqEzecLbKD+vguj+E/KkYlRp7/HkWM+So53iaxG9pG6XaNAWh50RgIqO5xWUNJG5emcLoliTNSVkDpCZKGGsE7n//woxLSaSxvLHb0xFL498LfEynDpnrFIlSMYPuKlI7z5kSdv07qqDW9RO2NulkFyUcqTUtxOcJErjdLownipJN3IrsYjvPHlxuNwXddb2hfuOt8c73/m7+W2IqcdwQtaU/dgFnHDI7/d4Gchj1NtaGxaDOceEKBr4FR2gm/1OGLGtJLNDwHPrYkpb43AS1WNUcGSp0pDdYCH6lRWnDNUfyIPYwh/zZ6LAEC+qkfz8PFIJr03y6vUwKSA2FRvwHaL/tWEfbjCx+i0iAdRidTx/fumZtnrYmLF4L7VI8So+iwvfmzzQccVUfTahaUQYlAJkNas4gZJBX3KlcNeiW5YwVKWE+1CpmKmZNIVj77Le0imaXtu+mLFyPPxHtIlFJEv9hcbZoBSsUNBiTclP8fJ3nF7eHZSkjHgVxSx3R+a3ihk2tONsqSLTmEbgwcJxwW6u4vfZ1MqPcAlT+ckPdv27s42kpRFSmwODtxe36RlgIJzA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(498600001)(4326008)(83380400001)(36756003)(6916009)(6512007)(6486002)(956004)(44832011)(2616005)(8676002)(8936002)(2906002)(186003)(38100700002)(52116002)(6506007)(5660300002)(1076003)(54906003)(6666004)(86362001)(38350700002)(16526019)(26005)(66476007)(66556008)(66946007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uBxRoAE1BxwW46V47C37Ai48SDLIO12VBteokpg+weOnK4jvz1sniL+aGJgD?=
- =?us-ascii?Q?+h3Y44UWBRRwPzou6E+Z0dSQRg7py4mXQrEoSG5c4FtnZrnpZX5fs7dH67sK?=
- =?us-ascii?Q?zbbR9KGQm4ImzbcvDqkt4uanklkFbyD2oiXYmIulmCgCxKgkq9SfWFFk5SDW?=
- =?us-ascii?Q?McH/q1+fPnBGVwDVl48eWXwI+u1+kdykbPSyJcgGyhNREINeHzH1ypT3Pe5X?=
- =?us-ascii?Q?1eqQDOuYRHX7rf2B8PBdRzVbQJL8F4fNm6CH+5Aw6Eagr8XfjO9SXNP9OPdx?=
- =?us-ascii?Q?eVZew3121cEW6TxVgrNk3O8s+WR9S5qnkTTAPrvbeuEwtEqtxTG0bRR/1a6b?=
- =?us-ascii?Q?ZGBkHy82RUZnBgTLa+ZbS9VtXt8jXy2FuP3yDv43YdHbTVY6l7bBHVhOBrxF?=
- =?us-ascii?Q?gkV0JZsfFx6CJcVikhygkBanPy4WCdvk7dwp7rxyZEOsbTFjFuxYAmqnNFMT?=
- =?us-ascii?Q?VmHuMNz3r+jhzijuY5hLmLD3VZD+PjJnlTMVZhxewleLOFb+h8Pk28v06uzA?=
- =?us-ascii?Q?LaHgiAutnQ5MXdZGJlL9tdgB94/un3zmDCP7kjNXbraG0gQbXReve/HvQc2M?=
- =?us-ascii?Q?sfXKRrIwMjbCyI72JW686lXtKa+1qCPFe9Tryu0eN4vapOhArE8yUF1gDDWi?=
- =?us-ascii?Q?elULv5EobSN6wi0TDW+lpavJ7YEpZvOQ4niq2zKNVM+Hro+wc8YcGH+dCI8Z?=
- =?us-ascii?Q?IqmYlfbb+hlYB/i9tfs2TvNE8DFVEkCSqDDYkP4imCdF5UE5An1pnr7B8mbt?=
- =?us-ascii?Q?55K0uPAfK5ZoVwRA9TiBCpXxFTW+txFabf8XMgp8LWP6uA0I61MmlR3P6ZBd?=
- =?us-ascii?Q?mFnXJxOiYGuqhGcpVvDuedJSYZNTu92ScbydcS2fekfIUURkCv5XHDTaiorV?=
- =?us-ascii?Q?X+2S3r8m6pU7siAlC639oZ2ShM/T8lwfVGbl8yQ9RM2jd7zEKeEyfYUpT0Ey?=
- =?us-ascii?Q?amwV7DzfjQZWbmODMn3WIPeTvXm/TTSt5D8HRcZjNjyB+3Vok65AG1dWRpEG?=
- =?us-ascii?Q?WcqHQ+eq6gVq705N+QjJVYqACtkX0PwqUr0QKYtGrl0qxpuZWQWZSuQXKkjl?=
- =?us-ascii?Q?66OuJgptQr1r1OEE+NNeJoLrTz9rGxjHfbEpR8NzvwxoIqxJVWb9a+lWeld6?=
- =?us-ascii?Q?HbfHFQsajfDjFnMq8qOEIYBj58Zpj5xhnqpRlRQYnKCVU6SUSHyTRRCBSI6S?=
- =?us-ascii?Q?ra3EYpeSZ3Hjw9uGYgcjSLPhniwmS+YJdb458wpXTEVh2/KvE8Ra36YdJRKR?=
- =?us-ascii?Q?/jfijbnbrzpc0fv8FipWRwBweVzyQjyjBb7wcVnPNBWC3jXev0QRFxf97KoF?=
- =?us-ascii?Q?zSE9JV3mDXDSWnWNrppOUEUZ?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a57497b-eba8-4e4f-6cbd-08d92f4cbf26
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jun 2021 15:54:52.2021
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4LgbbY9L+JuV/B16xbLbyk3QOjPI7ZCtEemXRdEBbERHdfFIGjzD6IVgoebQWq0Ke5h7LB8a5rsAChET5E6aSw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR03MB6201
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210612094534.88992-1-martin.botka@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These properties allow configuring the SD/OE pin as described in the
-datasheet.
+On Sat 12 Jun 04:45 CDT 2021, Martin Botka wrote:
 
-Signed-off-by: Sean Anderson <sean.anderson@seco.com>
----
+> Document the newly added SM6125 pinctrl driver
+> 
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> ---
+> Changes in V2:
+> Add commit description
+> Changes in V3:
+> Fix syntax errors
+> Remove not needed state from example
+> Changes in V4:
+> maxItems set to 3
+> Correct the pattern
+> Remove deleted enums
+> Fix the compatible
+>  .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml | 124 ++++++++++++++++++
+>  1 file changed, 124 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..45366945a86f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
+> @@ -0,0 +1,124 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm6125-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +title: Qualcomm Technologies, Inc. SM6125 TLMM block
+> +
+> +maintainers:
+> +  - Martin Botka <martin.botka@somainline.org>
+> +
+> +description: |
+> +  This binding describes the Top Level Mode Multiplexer (TLMM) block found
+> +  in the SM6125 platform.
+> +
+> +allOf:
+> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm6125-tlmm
+> +
+> +  reg:
+> +    maxItems: 3
+> +
 
-Changes in v2:
-- Rename idt,sd-active-high to idt,output-enable-active-high
-- Add idt,enable-shutdown
+As Rob's bot pointed out, you're missing reg-names here.
 
- .../bindings/clock/idt,versaclock5.yaml       | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
+> +  interrupts: true
+> +  interrupt-controller: true
+> +  '#interrupt-cells': true
+> +  gpio-controller: true
+> +  gpio-reserved-ranges: true
+> +  '#gpio-cells': true
+> +  gpio-ranges: true
+> +  wakeup-parent: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
 
-diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-index 28675b0b80f1..79d67fad5284 100644
---- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-+++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-@@ -30,6 +30,22 @@ description: |
-     3 -- OUT3
-     4 -- OUT4
- 
-+  The idt,enable-shutdown and idt,output-enable-active-high properties
-+  correspond to the SH and SP bits of the Primary Source and Shutdown
-+  Register, respectively. Their behavior is summarized by the following
-+  table:
-+
-+  SH SP SD/OE Output
-+  == == ===== ========
-+   0  0 Low   Active
-+   0  0 High  Inactive
-+   0  1 Low   Inactive
-+   0  1 High  Active
-+   1  0 Low   Active
-+   1  0 High  Shutdown
-+   1  1 Low   Inactive
-+   1  1 High  Shutdown
-+
- maintainers:
-   - Luca Ceresoli <luca@lucaceresoli.net>
- 
-@@ -64,6 +80,23 @@ properties:
-     maximum: 22760
-     description: Optional load capacitor for XTAL1 and XTAL2
- 
-+  idt,enable-shutdown:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      Enable the shutdown function when the SD/OE pin is high. This
-+      corresponds to setting the SH bit of the Primary Source and
-+      Shutdown Register. If this property is set, it takes precedence
-+      over the usual enable/disable semantics of the SD/OE pin.
-+
-+  idt,output-enable-active-high:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: |
-+      This enables output when the SD/OE pin is high, and disables
-+      output when the SD/OE pin is low. This corresponds to setting the
-+      SP bit of the Primary Source and Shutdown Register. If this
-+      property is not present, then the SD/OE pin has the opposite
-+      polarity (enabled when low, disabled when high).
-+
- patternProperties:
-   "^OUT[1-4]$":
-     type: object
--- 
-2.25.1
+And given the use of tiles, I would suggest that reg-names is required
+as well.
 
+Other than that, I think this looks great.
+
+Regards,
+Bjorn
+
+> +
+> +additionalProperties: false
+> +
+> +patternProperties:
+> +  '-state$':
+> +    oneOf:
+> +      - $ref: "#/$defs/qcom-sm6125-tlmm-state"
+> +      - patternProperties:
+> +          ".*":
+> +            $ref: "#/$defs/qcom-sm6125-tlmm-state"
+> +
+> +$defs:
+> +  qcom-sm6125-tlmm-state:
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio[0-9]|[1-9][0-9]|1[0-2][0-9]|13[0-2]$"
+> +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
+> +        minItems: 1
+> +        maxItems: 36
+> +
+> +      function:
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins.
+> +
+> +        enum: [ adsp_ext, agera_pll, atest_char, atest_char0, atest_char1,
+> +                atest_char2, atest_char3, atest_tsens, atest_tsens2, atest_usb1,
+> +                atest_usb10, atest_usb11, atest_usb12, atest_usb13, atest_usb2,
+> +                atest_usb20, atest_usb21, atest_usb22, atest_usb23, aud_sb,
+> +                audio_ref, cam_mclk, cci_async, cci_i2c, cci_timer0, cci_timer1,
+> +                cci_timer2, cci_timer3, cci_timer4, copy_gp, copy_phase, cri_trng,
+> +                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
+> +                ddr_pxi2, ddr_pxi3, debug_hot, dmic0_clk, dmic0_data, dmic1_clk,
+> +                dmic1_data, dp_hot, edp_hot, edp_lcd, gcc_gp1, gcc_gp2, gcc_gp3,
+> +                gp_pdm0, gp_pdm1, gp_pdm2, gpio, gps_tx, jitter_bist, ldo_en,
+> +                ldo_update, m_voc, mclk1, mclk2, mdp_vsync, mdp_vsync0, mdp_vsync1,
+> +                mdp_vsync2, mdp_vsync3, mdp_vsync4, mdp_vsync5, mpm_pwr, mss_lte,
+> +                nav_pps, pa_indicator, phase_flag, pll_bist, pll_bypassnl, pll_reset,
+> +                pri_mi2s, pri_mi2s_ws, prng_rosc, qca_sb, qdss_cti, qdss, qlink_enable,
+> +                qlink_request, qua_mi2s, qui_mi2s, qup00, qup01, qup02, qup03, qup04,
+> +                qup10, qup11, qup12, qup13, qup14, sd_write, sec_mi2s, sp_cmu, swr_rx,
+> +                swr_tx, ter_mi2s, tgu_ch0, tgu_ch1, tgu_ch2, tgu_ch3, tsense_pwm,
+> +                uim1_clk, uim1_data, uim1_present, uim1_reset, uim2_clk, uim2_data,
+> +                uim2_present, uim2_reset, unused1, unused2, usb_phy, vfr_1, vsense_trigger,
+> +                wlan1_adc0, wlan1_adc1, wlan2_adc0, wlan2_adc1, wsa_clk, wsa_data ]
+> +
+> +
+> +      bias-disable: true
+> +      bias-pull-down: true
+> +      bias-pull-up: true
+> +      drive-strength: true
+> +      input-enable: true
+> +      output-high: true
+> +      output-low: true
+> +
+> +    required:
+> +      - pins
+> +      - function
+> +
+> +    additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +        pinctrl@500000 {
+> +                compatible = "qcom,sm6125-tlmm";
+> +                reg = <0x00500000 0x400000>,
+> +                    <0x00900000 0x400000>,
+> +                    <0x00d00000 0x400000>;
+> +                reg-names = "west", "south", "east";
+> +                interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+> +                gpio-controller;
+> +                gpio-ranges = <&tlmm 0 0 134>;
+> +                #gpio-cells = <2>;
+> +                interrupt-controller;
+> +                #interrupt-cells = <2>;
+> +        };
+> -- 
+> 2.31.1
+> 
