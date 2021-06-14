@@ -2,237 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9D713A6B0B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67E8C3A6B17
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:58:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234326AbhFNP5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 11:57:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47282 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233222AbhFNP5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:57:44 -0400
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2537BC061574
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:55:41 -0700 (PDT)
-Received: by mail-oo1-xc2d.google.com with SMTP id k21-20020a4a2a150000b029024955603642so2756503oof.8
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:55:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ao/HroxS7JwYFnTJ4NYG52SJwTWjW7jv1+xX0UEU3aM=;
-        b=Scf7BrFsA/kpXnLR5+bPUVrdBBsCVGLVf3FwAaKgzE+cIkqfPyIjIU2ZaIUD/Mc7nl
-         Hm3EbaF8IADhjyp345Xzgufq4MfjelDPmWdtiUvLHEhrTzlUPV1kTYLTDX3CYF+qtjGD
-         ouattPwabZMRMO9625etddU5lttXrc0c9pcyHWCdaB/GAAAEWU03ZwOZU1lHCOzXioBi
-         tAfbtw/r0xgnFTzYahPfu/SqWZsE8Uf66CkJyxHvhmpyYtVxzmrwGmFW9OPWjV/xRY8T
-         RfJRc067aX8yXjLgGx5bNHAa0K6xsxQGvWbUin6nJ4l83WgAChJjyN8w7K2CYATCdpwg
-         Y9nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ao/HroxS7JwYFnTJ4NYG52SJwTWjW7jv1+xX0UEU3aM=;
-        b=Rn8ecXOi6Q00RcCz3+quV1cM+nbguq8fHyY1UL0gEIwE2HN/+O20o30J+yot3Qa//K
-         FKfURibYjtHytGYHN5tvKfs7KoZotFmOlRvzPZWn0CZNJq12YWp1Yky0WMo21bQsqWv2
-         JtFwDYbtW8ISbg4PuUQ3jLdgH42Xz/GvmGfZELSWi/w6QtpUDswzoiT2xiZgkE4RuYOi
-         m4URAHMTLfKDOPWu8YIjo/RVTxJHscqb991zsSijiKgK5xNRWpFxkoLT2JTFTKv11z5p
-         YoI6Mwv933LVU3Ch+tvTM2nSy4Q4PCfWWOMSKte1tF5kjTT8D6qceECB+Q4bIg/zr+xi
-         Fjbw==
-X-Gm-Message-State: AOAM532ayhrc9VnzkZpd9JWxPGgl3R+AeAk2X6rJnzihXE5lrWtbfhpA
-        yyHdkQkeQw03C8bh0XxQkbmSJQ==
-X-Google-Smtp-Source: ABdhPJxu4oP8aV5p6XJiCVG8ccnQT244WXc2B4dWab2aCnEXSSH8ylgpRiR8M0DWA2E0c7qovAerLg==
-X-Received: by 2002:a4a:b544:: with SMTP id s4mr13561883ooo.62.1623686140480;
-        Mon, 14 Jun 2021 08:55:40 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id n11sm3083843ooo.12.2021.06.14.08.55.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jun 2021 08:55:40 -0700 (PDT)
-Date:   Mon, 14 Jun 2021 10:55:37 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Martin Botka <martin.botka@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        konrad.dybcio@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V4 1/2] dt-bindings: pinctrl: qcom: sm6125: Document
- SM6125 pinctrl driver
-Message-ID: <YMd7+e798xqUXKCN@yoga>
-References: <20210612094534.88992-1-martin.botka@somainline.org>
+        id S233440AbhFNQAH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Jun 2021 12:00:07 -0400
+Received: from out28-1.mail.aliyun.com ([115.124.28.1]:40862 "EHLO
+        out28-1.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234124AbhFNQAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:00:07 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.08197881|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0568616-0.00167767-0.941461;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047199;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=21;RT=21;SR=0;TI=SMTPD_---.KS9PVcH_1623686276;
+Received: from zhouyanjie-virtual-machine(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KS9PVcH_1623686276)
+          by smtp.aliyun-inc.com(10.147.41.137);
+          Mon, 14 Jun 2021 23:57:57 +0800
+Date:   Mon, 14 Jun 2021 23:57:55 +0800
+From:   =?UTF-8?B?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com, paul@crapouillou.net
+Subject: Re: [PATCH v2 2/2] net: stmmac: Add Ingenic SoCs MAC support.
+Message-ID: <20210614235755.6c1bd34e@zhouyanjie-virtual-machine>
+In-Reply-To: <YMYy6JMSHm1Cqdt2@lunn.ch>
+References: <1623260110-25842-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1623260110-25842-3-git-send-email-zhouyanjie@wanyeetech.com>
+        <YMGEutCet7fP1NZ9@lunn.ch>
+        <405696cb-5987-0e56-87f8-5a1443eadc19@wanyeetech.com>
+        <YMICTvjyEAgPMH9u@lunn.ch>
+        <346f64d9-6949-b506-258f-4cfa7eb22784@wanyeetech.com>
+        <12f35415-532e-5514-bc97-683fb9655091@wanyeetech.com>
+        <YMIoWS57Ra19E1qT@lunn.ch>
+        <20210613163452.1f01d418@zhouyanjie-virtual-machine>
+        <YMYy6JMSHm1Cqdt2@lunn.ch>
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210612094534.88992-1-martin.botka@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 12 Jun 04:45 CDT 2021, Martin Botka wrote:
+Hi Andrew,
 
-> Document the newly added SM6125 pinctrl driver
+于 Sun, 13 Jun 2021 18:31:36 +0200
+Andrew Lunn <andrew@lunn.ch> 写道:
+
+> On Sun, Jun 13, 2021 at 04:34:52PM +0800, 周琰杰 wrote:
+> > 于 Thu, 10 Jun 2021 16:57:29 +0200
+> > Andrew Lunn <andrew@lunn.ch> 写道:
+> >   
+> > > > Here is Ingenic's reply, the time length corresponding to a
+> > > > unit is 19.5ps (19500fs).    
+> > > 
+> > > Sometimes, there is a negative offset in the delays. So a delay
+> > > value of 0 written to the register actually means -200ps or
+> > > something.  
+> > 
+> > Ah, perhaps this explains why we still need to add fine-tuning
+> > parameter in rgmii-id and rgmii-txid modes to ensure that the
+> > network works properly.  
 > 
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> ---
-> Changes in V2:
-> Add commit description
-> Changes in V3:
-> Fix syntax errors
-> Remove not needed state from example
-> Changes in V4:
-> maxItems set to 3
-> Correct the pattern
-> Remove deleted enums
-> Fix the compatible
->  .../bindings/pinctrl/qcom,sm6125-pinctrl.yaml | 124 ++++++++++++++++++
->  1 file changed, 124 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
+> Please try to find this out. rgmii means no delay. If the hardware is
+> doing -500pS by default, you need to take this into account, and add
+> the 500pS back on.
+
+I think I may have found the problem. At present, my PHY uses a
+general driver, and there is no specific setting for delay-related
+registers. The default delay value of PHY is 1ns, which does not meet
+the delay requirement of 2ns, after and the MAC side add 500ps delay
+(and possibly some delays introduced on the hardware circuit), it just
+meets the requirement of 2ns delay.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..45366945a86f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6125-pinctrl.yaml
-> @@ -0,0 +1,124 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm6125-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +title: Qualcomm Technologies, Inc. SM6125 TLMM block
-> +
-> +maintainers:
-> +  - Martin Botka <martin.botka@somainline.org>
-> +
-> +description: |
-> +  This binding describes the Top Level Mode Multiplexer (TLMM) block found
-> +  in the SM6125 platform.
-> +
-> +allOf:
-> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm6125-tlmm
-> +
-> +  reg:
-> +    maxItems: 3
-> +
-
-As Rob's bot pointed out, you're missing reg-names here.
-
-> +  interrupts: true
-> +  interrupt-controller: true
-> +  '#interrupt-cells': true
-> +  gpio-controller: true
-> +  gpio-reserved-ranges: true
-> +  '#gpio-cells': true
-> +  gpio-ranges: true
-> +  wakeup-parent: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-
-And given the use of tiles, I would suggest that reg-names is required
-as well.
-
-Other than that, I think this looks great.
-
-Regards,
-Bjorn
-
-> +
-> +additionalProperties: false
-> +
-> +patternProperties:
-> +  '-state$':
-> +    oneOf:
-> +      - $ref: "#/$defs/qcom-sm6125-tlmm-state"
-> +      - patternProperties:
-> +          ".*":
-> +            $ref: "#/$defs/qcom-sm6125-tlmm-state"
-> +
-> +$defs:
-> +  qcom-sm6125-tlmm-state:
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          oneOf:
-> +            - pattern: "^gpio[0-9]|[1-9][0-9]|1[0-2][0-9]|13[0-2]$"
-> +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
-> +        minItems: 1
-> +        maxItems: 36
-> +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
-> +
-> +        enum: [ adsp_ext, agera_pll, atest_char, atest_char0, atest_char1,
-> +                atest_char2, atest_char3, atest_tsens, atest_tsens2, atest_usb1,
-> +                atest_usb10, atest_usb11, atest_usb12, atest_usb13, atest_usb2,
-> +                atest_usb20, atest_usb21, atest_usb22, atest_usb23, aud_sb,
-> +                audio_ref, cam_mclk, cci_async, cci_i2c, cci_timer0, cci_timer1,
-> +                cci_timer2, cci_timer3, cci_timer4, copy_gp, copy_phase, cri_trng,
-> +                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
-> +                ddr_pxi2, ddr_pxi3, debug_hot, dmic0_clk, dmic0_data, dmic1_clk,
-> +                dmic1_data, dp_hot, edp_hot, edp_lcd, gcc_gp1, gcc_gp2, gcc_gp3,
-> +                gp_pdm0, gp_pdm1, gp_pdm2, gpio, gps_tx, jitter_bist, ldo_en,
-> +                ldo_update, m_voc, mclk1, mclk2, mdp_vsync, mdp_vsync0, mdp_vsync1,
-> +                mdp_vsync2, mdp_vsync3, mdp_vsync4, mdp_vsync5, mpm_pwr, mss_lte,
-> +                nav_pps, pa_indicator, phase_flag, pll_bist, pll_bypassnl, pll_reset,
-> +                pri_mi2s, pri_mi2s_ws, prng_rosc, qca_sb, qdss_cti, qdss, qlink_enable,
-> +                qlink_request, qua_mi2s, qui_mi2s, qup00, qup01, qup02, qup03, qup04,
-> +                qup10, qup11, qup12, qup13, qup14, sd_write, sec_mi2s, sp_cmu, swr_rx,
-> +                swr_tx, ter_mi2s, tgu_ch0, tgu_ch1, tgu_ch2, tgu_ch3, tsense_pwm,
-> +                uim1_clk, uim1_data, uim1_present, uim1_reset, uim2_clk, uim2_data,
-> +                uim2_present, uim2_reset, unused1, unused2, usb_phy, vfr_1, vsense_trigger,
-> +                wlan1_adc0, wlan1_adc1, wlan2_adc0, wlan2_adc1, wsa_clk, wsa_data ]
-> +
-> +
-> +      bias-disable: true
-> +      bias-pull-down: true
-> +      bias-pull-up: true
-> +      drive-strength: true
-> +      input-enable: true
-> +      output-high: true
-> +      output-low: true
-> +
-> +    required:
-> +      - pins
-> +      - function
-> +
-> +    additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        pinctrl@500000 {
-> +                compatible = "qcom,sm6125-tlmm";
-> +                reg = <0x00500000 0x400000>,
-> +                    <0x00900000 0x400000>,
-> +                    <0x00d00000 0x400000>;
-> +                reg-names = "west", "south", "east";
-> +                interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
-> +                gpio-controller;
-> +                gpio-ranges = <&tlmm 0 0 134>;
-> +                #gpio-cells = <2>;
-> +                interrupt-controller;
-> +                #interrupt-cells = <2>;
-> +        };
-> -- 
-> 2.31.1
-> 
+>     Andrew
