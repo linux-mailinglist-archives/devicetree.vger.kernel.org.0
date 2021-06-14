@@ -2,81 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11CBE3A6CC9
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 19:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 053BF3A6CF2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 19:18:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235470AbhFNRL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 13:11:28 -0400
-Received: from foss.arm.com ([217.140.110.172]:41832 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235078AbhFNRL2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 13:11:28 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F066511D4;
-        Mon, 14 Jun 2021 10:09:24 -0700 (PDT)
-Received: from [10.57.9.136] (unknown [10.57.9.136])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 39EBF3F70D;
-        Mon, 14 Jun 2021 10:09:23 -0700 (PDT)
-Subject: Re: [PATCH 3/4] PHY: rockchip: USB2: Allow 64 bits reg property
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>, kishon@ti.com,
-        vkoul@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
-        pgwipeout@gmail.com
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        id S232994AbhFNRUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 13:20:04 -0400
+Received: from out28-193.mail.aliyun.com ([115.124.28.193]:59975 "EHLO
+        out28-193.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233653AbhFNRUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 13:20:03 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.3305371|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00425795-0.000892991-0.994849;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047208;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=21;RT=21;SR=0;TI=SMTPD_---.KSAJpVJ_1623691068;
+Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KSAJpVJ_1623691068)
+          by smtp.aliyun-inc.com(10.147.41.121);
+          Tue, 15 Jun 2021 01:17:57 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        matthias.bgg@gmail.com
+Cc:     alexandre.torgue@st.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20210614154359.805555-1-benjamin.gaignard@collabora.com>
- <20210614154359.805555-4-benjamin.gaignard@collabora.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <19d8cb97-d715-eb5f-5b2c-0c273937fd00@arm.com>
-Date:   Mon, 14 Jun 2021 18:09:15 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        linux-mediatek@lists.infradead.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com
+Subject: [PATCH v3 0/2] Add Ingenic SoCs MAC support.
+Date:   Tue, 15 Jun 2021 01:15:35 +0800
+Message-Id: <1623690937-52389-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <20210614154359.805555-4-benjamin.gaignard@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-06-14 16:43, Benjamin Gaignard wrote:
-> In rk356x device-tree "reg" property could be coded on 64 bits.
-> Change reg type and of_property_read_ to make it works.
+v2->v3:
+1.Add "ingenic,mac.yaml" for Ingenic SoCs.
+2.Change tx clk delay and rx clk delay from hardware value to ps.
+3.return -EINVAL when a unsupported value is encountered when
+  parsing the binding.
+4.Simplify the code of the RGMII part of X2000 SoC according to
+  Andrew Lunn’s suggestion.
+5.Follow the example of "dwmac-mediatek.c" to improve the code
+  that handles delays according to Andrew Lunn’s suggestion.
 
-On platforms with #address-cells=1, this isn't going to do what you 
-think. Worse, it's not even going to fail, because you *can* read a 
-64-bit value from an address cell with a size cell after it...
+周琰杰 (Zhou Yanjie) (2):
+  dt-bindings: dwmac: Add bindings for new Ingenic SoCs.
+  net: stmmac: Add Ingenic SoCs MAC support.
 
-Robin.
+ .../devicetree/bindings/net/ingenic,mac.yaml       |  76 ++++
+ .../devicetree/bindings/net/snps,dwmac.yaml        |  15 +
+ drivers/net/ethernet/stmicro/stmmac/Kconfig        |  12 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile       |   1 +
+ .../net/ethernet/stmicro/stmmac/dwmac-ingenic.c    | 401 +++++++++++++++++++++
+ 5 files changed, 505 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/ingenic,mac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-ingenic.c
 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
->   drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> index 46ebdb1460a3d..45518f96d7217 100644
-> --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-> @@ -1068,7 +1068,7 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
->   	struct rockchip_usb2phy *rphy;
->   	const struct rockchip_usb2phy_cfg *phy_cfgs;
->   	const struct of_device_id *match;
-> -	unsigned int reg;
-> +	u64 reg;
->   	int index, ret;
->   
->   	rphy = devm_kzalloc(dev, sizeof(*rphy), GFP_KERNEL);
-> @@ -1098,7 +1098,7 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
->   		rphy->usbgrf = NULL;
->   	}
->   
-> -	if (of_property_read_u32(np, "reg", &reg)) {
-> +	if (of_property_read_u64(np, "reg", &reg)) {
->   		dev_err(dev, "the reg property is not assigned in %pOFn node\n",
->   			np);
->   		return -EINVAL;
-> 
+-- 
+2.7.4
+
