@@ -2,133 +2,289 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D55623A6EB0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 21:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51CD43A6F0D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 21:31:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233965AbhFNTST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 15:18:19 -0400
-Received: from mail-vs1-f52.google.com ([209.85.217.52]:40947 "EHLO
-        mail-vs1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233983AbhFNTSS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 15:18:18 -0400
-Received: by mail-vs1-f52.google.com with SMTP id b1so8411297vsh.7;
-        Mon, 14 Jun 2021 12:16:15 -0700 (PDT)
+        id S234831AbhFNTcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 15:32:22 -0400
+Received: from mail-ej1-f48.google.com ([209.85.218.48]:37806 "EHLO
+        mail-ej1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234339AbhFNTcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 15:32:21 -0400
+Received: by mail-ej1-f48.google.com with SMTP id ce15so18416804ejb.4;
+        Mon, 14 Jun 2021 12:30:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=NSpnw+tTY8+Kyz/sVjltk30bkCcnr49vv8cnl01H+2g=;
+        b=u3uz5ayPQt6Ko6lD/4N9IPjiIfUk/aztJpMTPza3WAmYzG0aaNdNQKs/Ofso8g8HjK
+         Ph/z1CROjhSCcMbl5t5smYJU9Wie465duhKElXvGt2hD/CGV9pnig/2ti65TUEntsqgb
+         Pv4b51bWexzMLHDf/z7FBs6pibRzuBVA9nPvUGpqyyVc0mNNFGyyWBRljp9YWtmx7eCQ
+         XiKqf2a2Lf7wM+eHzXqwZBuSu+FfDhK5fmo0xmwbeblFIauO9wLwdY/qrZKb+Y0o/wRX
+         nVpU0YmR6WXoGscirc7UNxd4wDG7PcFSV1Icuo5cfhzZLLqcxB6JCEkZ1bAFpUUDlHBm
+         Ihrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=NtIBeKmFFsU8bB0WaD7JrFvVTjZReGZVDuT3YcTY+6o=;
-        b=ciivJ4Mkc8r2vaWXQio5sWpr1GPjkA9/ZyKn9I4WMJmCF3g+4ZduyKHlnahznSaCJr
-         PabzwpQzqN/YOERiV/LK3zQ7pOO70Qp7OE13gLOInwFdMm5Z+s9II9IbHfcKtzU4oY+3
-         D7bdYAZKKSzdnBHfmMzHenlmWnVEyWvpXPg7cPD22vA6U2HwS7WRg4sOwh3AeVxTNA1w
-         ttWPekoFI28mhznPop6SCqx8Y65fzE3xSQezQbdhag4xrQSHwwq4iBB/tlXoEdiMWZUN
-         SU3lo700/F7j8Md6AP9cMpMaALSGhAEhBDU89ReMmHk/cF8s6awQCoiaIOZIzbFcNAIc
-         8S8w==
-X-Gm-Message-State: AOAM530h/LIAb9g4ccnmaWOba6tLDSnneOI4pSsKR7EfsHUZ5/f2REOM
-        QS1ErYMCfLR7EfAr3YvoHiKPj0Auu36dwyzP4H8=
-X-Google-Smtp-Source: ABdhPJzOizLfsLBJbwOzmIjdiZA9+5b753Ws766gAVNs6/PBaCvBI4OMOoqQ7fR1MXtnuG7bJvezTzR5MwPa6JVFJ/I=
-X-Received: by 2002:a05:6102:c4c:: with SMTP id y12mr979007vss.18.1623698172415;
- Mon, 14 Jun 2021 12:16:12 -0700 (PDT)
+        bh=NSpnw+tTY8+Kyz/sVjltk30bkCcnr49vv8cnl01H+2g=;
+        b=SPIttIppKigHNxbIEE8VfXAWV3+zLtkSWIgxVDD4JzdL+oF+gCy+/8l/FYWFf3iDbZ
+         VLiXtFvjPMbN1UVaK+Evyv0zCp+pay5iCmMamsGGfW+DvNs9PhsC24tXgLxQqqPKM8g8
+         /ps10dBcJY1YBf+55mHMP2TMWhv0p1tEHRFyICFGi+2nSP6XI8X0NTOsqpWz2j6eCh7T
+         oJCBl2aAuB4bb6lAMP8pX/UoBPsE7OEH9iRWKYESRpPB+2tv3lmnNKIVCfnrzhi3oUAK
+         fNBfeepta2VO639BVvIrsFk9PltIlJLPUrsC1olB+y1lRYbAiUBFRqyD4ZGfPVOIWifH
+         fY6A==
+X-Gm-Message-State: AOAM530uYahbGseVra6zitOZrC3SfgKO02i+TKaSu6Dwrmxail8Rk6v8
+        /Z4MBdBqlcEfYu6H7YK2zqBN5iAMq8ajcmRQe4U=
+X-Google-Smtp-Source: ABdhPJw8IYTIfAj68hdl2jyoR72c87eC1VvHHBjtRgofO0TBkO0YEdojGvJt5eFypteniN48sjD/c0cfODSonbitXhc=
+X-Received: by 2002:a17:907:70d3:: with SMTP id yk19mr10228672ejb.450.1623698957355;
+ Mon, 14 Jun 2021 12:29:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1623315732.git.geert+renesas@glider.be> <ab1acd836e990c536ff3a8c715ce57363d3ff8cb.1623315732.git.geert+renesas@glider.be>
- <YMeiE0xMW5zpgpRM@pendragon.ideasonboard.com>
-In-Reply-To: <YMeiE0xMW5zpgpRM@pendragon.ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 14 Jun 2021 21:16:01 +0200
-Message-ID: <CAMuHMdX0j-_Uup63uq-wwKzpmG4FYkma2LqBOpVJ_i7eLNy25g@mail.gmail.com>
-Subject: Re: [PATCH 03/14] pinctrl: renesas: Fix pin control matching on R-Car H3e-2G
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+References: <20210612133134.2738-1-peng.fan@oss.nxp.com> <20210612133134.2738-5-peng.fan@oss.nxp.com>
+ <CAHCN7x+bCVcfgb-MmOApBgM=69rz0G8WhsU171SHF3H-12wSfw@mail.gmail.com>
+In-Reply-To: <CAHCN7x+bCVcfgb-MmOApBgM=69rz0G8WhsU171SHF3H-12wSfw@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 14 Jun 2021 14:29:06 -0500
+Message-ID: <CAHCN7xK86pdcx_BouriGTchnBdamNN1Cjjh-UuF-Oy=abq7rrw@mail.gmail.com>
+Subject: Re: [PATCH V7 4/4] soc: imx: Add blk-ctl driver for i.MX8MM
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Marek Vasut <marex@denx.de>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Abel Vesa <abel.vesa@nxp.com>, Peng Fan <peng.fan@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
-
-On Mon, Jun 14, 2021 at 8:38 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Thu, Jun 10, 2021 at 11:37:16AM +0200, Geert Uytterhoeven wrote:
-> > As R-Car H3 ES1.x (R8A77950) and R-Car ES2.0+ (R8A77951) use the same
-> > compatible value, the pin control driver relies on soc_device_match()
-> > with soc_id = "r8a7795" and the (non)matching of revision = "ES1.*" to
-> > match with and distinguish between the two SoC variants.  The
-> > corresponding entries in the normal of_match_table are present only to
-> > make the optional sanity checks work.
-> >
-> > The R-Car H3e-2G (R8A779M1) SoC is a different grading of the R-Car H3
-> > ES3.0 (R8A77951) SoC.  It uses the same compatible values for individual
-> > devices, but has an additional compatible value for the root node.
-> > When running on an R-Car H3e-2G SoC, soc_device_match() with soc_id =
-> > "r8a7795" does not return a match.  Hence the pin control driver falls
-> > back to the normal of_match_table, and, as the R8A77950 entry is listed
-> > first, incorrectly uses the sub-driver for R-Car H3 ES1.x.
-> >
-> > Fix this by moving the entry for R8A77951 before the entry for R8A77950.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Mon, Jun 14, 2021 at 1:07 PM Adam Ford <aford173@gmail.com> wrote:
 >
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> On Sat, Jun 12, 2021 at 7:58 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
+> >
+> > From: Peng Fan <peng.fan@nxp.com>
+> >
+> > The i.MX8MM SoC has dispmix BLK-CTL and vpumix BLK-CTL, so we add
+> > that support in this driver.
+> >
+> > Reviewed-by: Abel Vesa <abel.vesa@nxp.com>
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+>
+> Maybe my TF-A is too old, but I am not able to wake the device from
+> suspend-to-ram with this series.  I used the device tree from [1] to
+> enable both the GPCv2 and the blk-ctl stuff.
+>
+> [1] - https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210604111005.6804-1-peng.fan@oss.nxp.com/
+>
+> I based both off Shawn's for-next branch.
 
-Thanks!
+I tried to enable USB with the GPCv2 stuff pulled into Shawn's
+for-next branch, and my board hangs when USB is loaded, but USB
+doesn't use blk-ctl, it just uses GPCv2.
 
-> I wonder if this means we could drop the second entry in the quirks
-> array, in sh_pfc_quirk_match().
+I looked at some of the changes with GPCv2, and I noticed a comment in
+the GPCv2 function called imx_pgc_power_up.  The comment reads:
 
-As both R-Car H3 ES1.x and ES2.0+ use the same compatible value,
-that function is designed (with the help of the __weak
-r8a7795[01]_pinmux_info symbols) to fail, when booting a kernel
-that lacks the right pin control driver.  It's less likely to happen
-nowadays, since we gained separate Kconfig symbols.
+/*
+* ret = regmap_read_poll_timeout(domain->regmap, GPC_PU_PWRHSK, reg_val,
+*   (reg_val & domain->bits.hskack), 0,
+*   USEC_PER_MSEC);
+* Technically we need the commented code to wait handshake. But that needs
+* the BLK-CTL module BUS clk-en bit being set.
+*
+* There is a separate BLK-CTL module and we will have such a driver for it,
+* that driver will set the BUS clk-en bit and handshake will be triggered
+* automatically there. Just add a delay and suppose the handshake finish
+* after that.
+*/
 
-Note that if you enable CONFIG_ARCH_R8A77950 but not
-CONFIG_ARCH_R8A77951, you can still trick a kernel running on R-Car
-H3e-2G into using the wrong pin control driver, which will usually
-cause something to fail during boot.  Perhaps the time is ripe to
-drop the safety net; need to thing about that with a fresh mind,
-after a morning coffee...
+I didn't see a delay here despite the comment saying we should add one.
 
-> > --- a/drivers/pinctrl/renesas/core.c
-> > +++ b/drivers/pinctrl/renesas/core.c
-> > @@ -571,17 +571,21 @@ static const struct of_device_id sh_pfc_of_table[] = {
-> >               .data = &r8a7794_pinmux_info,
-> >       },
-> >  #endif
-> > -/* Both r8a7795 entries must be present to make sanity checks work */
-> > -#ifdef CONFIG_PINCTRL_PFC_R8A77950
+With the blk-ctl enabled, I attempted to uncomment the above line of
+code without much success in preventing the board from hanging.
+
+If BUS clk-en bit needs to be set in order for the handshake to work,
+should all these power domains reference it to bring it up?  If we
+decide against using the BUS clk-en bit, what should this delay be?
+
+adam
+>
+> adam
+>
+> > ---
+> >  drivers/soc/imx/Makefile         |   2 +-
+> >  drivers/soc/imx/blk-ctl-imx8mm.c | 139 +++++++++++++++++++++++++++++++
+> >  2 files changed, 140 insertions(+), 1 deletion(-)
+> >  create mode 100644 drivers/soc/imx/blk-ctl-imx8mm.c
+> >
+> > diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
+> > index d3d2b49a386c..c260b962f495 100644
+> > --- a/drivers/soc/imx/Makefile
+> > +++ b/drivers/soc/imx/Makefile
+> > @@ -4,4 +4,4 @@ obj-$(CONFIG_ARCH_MXC) += soc-imx.o
+> >  endif
+> >  obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
+> >  obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
+> > -obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o blk-ctl.o
+> > +obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o blk-ctl.o blk-ctl-imx8mm.o
+> > diff --git a/drivers/soc/imx/blk-ctl-imx8mm.c b/drivers/soc/imx/blk-ctl-imx8mm.c
+> > new file mode 100644
+> > index 000000000000..59443588f892
+> > --- /dev/null
+> > +++ b/drivers/soc/imx/blk-ctl-imx8mm.c
+> > @@ -0,0 +1,139 @@
+> > +// SPDX-License-Identifier: GPL-2.0
 > > +/*
-> > + * Both r8a7795 entries must be present to make sanity checks work, but only
-> > + * the first entry is actually used, for R-Car H3e.
-> > + * R-Car H3 ES1.x and ES2.0+ are matched using soc_device_match() instead.
+> > + * Copyright 2021 NXP
 > > + */
-> > +#ifdef CONFIG_PINCTRL_PFC_R8A77951
-> >       {
-> >               .compatible = "renesas,pfc-r8a7795",
-> > -             .data = &r8a77950_pinmux_info,
-> > +             .data = &r8a77951_pinmux_info,
-> >       },
-> >  #endif
-> > -#ifdef CONFIG_PINCTRL_PFC_R8A77951
-> > +#ifdef CONFIG_PINCTRL_PFC_R8A77950
-> >       {
-> >               .compatible = "renesas,pfc-r8a7795",
-> > -             .data = &r8a77951_pinmux_info,
-> > +             .data = &r8a77950_pinmux_info,
-> >       },
-> >  #endif
-> >  #ifdef CONFIG_PINCTRL_PFC_R8A77960
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> > +
+> > +#include <dt-bindings/clock/imx8mm-clock.h>
+> > +#include <dt-bindings/power/imx8mm-power.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/err.h>
+> > +#include <linux/io.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/slab.h>
+> > +#include <linux/types.h>
+> > +#include <linux/pm_domain.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +#include "blk-ctl.h"
+> > +
+> > +#define MEDIA_BLK_BUS_RSTN_BLK_SYNC_SFT_EN                     BIT(6)
+> > +#define MEDIA_BLK_MIPI_DSI_I_PRESETN_SFT_EN                    BIT(5)
+> > +#define MEDIA_BLK_MIPI_CSI_I_PRESETN_SFT_EN                    BIT(4)
+> > +#define MEDIA_BLK_CAMERA_PIXEL_RESET_N_SFT_EN                  BIT(3)
+> > +#define MEDIA_BLK_CSI_BRIDGE_SFT_EN                            GENMASK(2, 0)
+> > +
+> > +#define MEDIA_BLK_BUS_PD_MASK                                  BIT(12)
+> > +#define MEDIA_BLK_MIPI_CSI_PD_MASK                             GENMASK(11, 10)
+> > +#define MEDIA_BLK_MIPI_DSI_PD_MASK                             GENMASK(9, 8)
+> > +#define MEDIA_BLK_LCDIF_PD_MASK                                        GENMASK(7, 6)
+> > +#define MEDIA_BLK_CSI_BRIDGE_PD_MASK                           GENMASK(5, 0)
+> > +
+> > +static struct imx_blk_ctl_hw imx8mm_dispmix_blk_ctl_pds[] = {
+> > +       IMX_BLK_CTL_PD("CSI_BRIDGE", NULL, IMX8MM_BLK_CTL_PD_DISPMIX_CSI_BRIDGE, 0x4,
+> > +                      MEDIA_BLK_CSI_BRIDGE_PD_MASK, 0, MEDIA_BLK_CSI_BRIDGE_SFT_EN,
+> > +                      IMX_BLK_CTL_PD_RESET),
+> > +       IMX_BLK_CTL_PD("LCDIF", NULL, IMX8MM_BLK_CTL_PD_DISPMIX_LCDIF, 0x4,
+> > +                      MEDIA_BLK_LCDIF_PD_MASK, -1, -1, 0),
+> > +       IMX_BLK_CTL_PD("MIPI_DSI", "mipi", IMX8MM_BLK_CTL_PD_DISPMIX_MIPI_DSI, 0x4,
+> > +                      MEDIA_BLK_MIPI_DSI_PD_MASK, 0, MEDIA_BLK_MIPI_DSI_I_PRESETN_SFT_EN,
+> > +                      IMX_BLK_CTL_PD_RESET),
+> > +       IMX_BLK_CTL_PD("MIPI_CSI", "mipi", IMX8MM_BLK_CTL_PD_DISPMIX_MIPI_CSI, 0x4,
+> > +                      MEDIA_BLK_MIPI_CSI_PD_MASK, 0,
+> > +                      MEDIA_BLK_MIPI_CSI_I_PRESETN_SFT_EN | MEDIA_BLK_CAMERA_PIXEL_RESET_N_SFT_EN,
+> > +                      IMX_BLK_CTL_PD_RESET),
+> > +       IMX_BLK_CTL_PD("DISPMIX_BUS", "dispmix", IMX8MM_BLK_CTL_PD_DISPMIX_BUS, 0x4,
+> > +                      MEDIA_BLK_BUS_PD_MASK, 0, MEDIA_BLK_BUS_RSTN_BLK_SYNC_SFT_EN,
+> > +                      IMX_BLK_CTL_PD_HANDSHAKE | IMX_BLK_CTL_PD_RESET)
+> > +};
+> > +
+> > +static struct imx_blk_ctl_hw imx8mm_vpumix_blk_ctl_pds[] = {
+> > +       IMX_BLK_CTL_PD("VPU_BLK_CTL_G2", "vpu-g2", IMX8MM_BLK_CTL_PD_VPU_G2, 0x4,
+> > +                      BIT(0), 0, BIT(0), IMX_BLK_CTL_PD_RESET),
+> > +       IMX_BLK_CTL_PD("VPU_BLK_CTL_G1", "vpu-g1", IMX8MM_BLK_CTL_PD_VPU_G1, 0x4,
+> > +                      BIT(1), 0, BIT(1), IMX_BLK_CTL_PD_RESET),
+> > +       IMX_BLK_CTL_PD("VPU_BLK_CTL_H1", "vpu-h1", IMX8MM_BLK_CTL_PD_VPU_H1, 0x4,
+> > +                      BIT(2), 0, BIT(2), IMX_BLK_CTL_PD_RESET),
+> > +       IMX_BLK_CTL_PD("VPU_BLK_CTL_BUS", "vpumix", IMX8MM_BLK_CTL_PD_VPU_BUS, 0x4,
+> > +                      BIT(2), 0, BIT(2), IMX_BLK_CTL_PD_HANDSHAKE | IMX_BLK_CTL_PD_RESET)
+> > +};
+> > +
+> > +static const struct regmap_config imx8mm_blk_ctl_regmap_config = {
+> > +       .reg_bits               = 32,
+> > +       .reg_stride             = 4,
+> > +       .val_bits               = 32,
+> > +       .max_register           = 0x30,
+> > +       .fast_io                = true,
+> > +};
+> > +
+> > +static const struct imx_blk_ctl_dev_data imx8mm_vpumix_blk_ctl_dev_data = {
+> > +       .pds = imx8mm_vpumix_blk_ctl_pds,
+> > +       .pds_num = ARRAY_SIZE(imx8mm_vpumix_blk_ctl_pds),
+> > +       .max_num = IMX8MM_BLK_CTL_PD_VPU_MAX,
+> > +       .hw_hsk = &imx8mm_vpumix_blk_ctl_pds[3],
+> > +       .config = imx8mm_blk_ctl_regmap_config,
+> > +       .name = "imx-vpumix-blk-ctl",
+> > +};
+> > +
+> > +static const struct imx_blk_ctl_dev_data imx8mm_dispmix_blk_ctl_dev_data = {
+> > +       .pds = imx8mm_dispmix_blk_ctl_pds,
+> > +       .pds_num = ARRAY_SIZE(imx8mm_dispmix_blk_ctl_pds),
+> > +       .max_num = IMX8MM_BLK_CTL_PD_DISPMIX_MAX,
+> > +       .hw_hsk = &imx8mm_dispmix_blk_ctl_pds[4],
+> > +       .config = imx8mm_blk_ctl_regmap_config,
+> > +       .name = "imx-dispmix-blk-ctl",
+> > +};
+> > +
+> > +static int imx8mm_blk_ctl_probe(struct platform_device *pdev)
+> > +{
+> > +       struct device *dev = &pdev->dev;
+> > +       const struct imx_blk_ctl_dev_data *dev_data = of_device_get_match_data(dev);
+> > +       struct regmap *regmap;
+> > +       struct imx_blk_ctl *ctl;
+> > +       void __iomem *base;
+> > +
+> > +       ctl = devm_kzalloc(dev, sizeof(*ctl), GFP_KERNEL);
+> > +       if (!ctl)
+> > +               return -ENOMEM;
+> > +
+> > +       base = devm_platform_ioremap_resource(pdev, 0);
+> > +       if (IS_ERR(base))
+> > +               return PTR_ERR(base);
+> > +
+> > +       regmap = devm_regmap_init_mmio(dev, base, &dev_data->config);
+> > +       if (IS_ERR(regmap))
+> > +               return PTR_ERR(regmap);
+> > +
+> > +       ctl->regmap = regmap;
+> > +       ctl->dev = dev;
+> > +       mutex_init(&ctl->lock);
+> > +
+> > +       ctl->num_clks = devm_clk_bulk_get_all(dev, &ctl->clks);
+> > +       if (ctl->num_clks < 0)
+> > +               return ctl->num_clks;
+> > +
+> > +       dev_set_drvdata(dev, ctl);
+> > +       ctl->dev_data = dev_data;
+> > +
+> > +       return imx_blk_ctl_register(dev);
+> > +}
+> > +
+> > +static const struct of_device_id imx_blk_ctl_of_match[] = {
+> > +       { .compatible = "fsl,imx8mm-vpumix-blk-ctl", .data = &imx8mm_vpumix_blk_ctl_dev_data },
+> > +       { .compatible = "fsl,imx8mm-dispmix-blk-ctl", .data = &imx8mm_dispmix_blk_ctl_dev_data },
+> > +       { /* Sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, imx_blk_ctl_of_match);
+> > +
+> > +static struct platform_driver imx_blk_ctl_driver = {
+> > +       .probe = imx8mm_blk_ctl_probe,
+> > +       .driver = {
+> > +               .name = "imx8mm-blk-ctl",
+> > +               .of_match_table = of_match_ptr(imx_blk_ctl_of_match),
+> > +               .pm = &imx_blk_ctl_pm_ops,
+> > +       },
+> > +};
+> > +module_platform_driver(imx_blk_ctl_driver);
+> > --
+> > 2.30.0
+> >
