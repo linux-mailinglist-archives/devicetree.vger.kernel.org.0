@@ -2,354 +2,469 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 233313A6C91
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AA0C3A6C9E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 19:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235074AbhFNRBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 13:01:37 -0400
-Received: from mail-wm1-f54.google.com ([209.85.128.54]:52098 "EHLO
-        mail-wm1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234987AbhFNRBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 13:01:36 -0400
-Received: by mail-wm1-f54.google.com with SMTP id l9so12534337wms.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:59:18 -0700 (PDT)
+        id S234104AbhFNRF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 13:05:27 -0400
+Received: from mail-wr1-f53.google.com ([209.85.221.53]:33400 "EHLO
+        mail-wr1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233795AbhFNRF0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 13:05:26 -0400
+Received: by mail-wr1-f53.google.com with SMTP id a20so15349898wrc.0;
+        Mon, 14 Jun 2021 10:03:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=giu5t1ZJoDtjd9HrozCoAGsuGJjanw/vPGOmtscX5Cs=;
-        b=tSCWhahZ/W2djqrKDZgEuHhTAr9umg77GxrEpH2qmyK7p9nhaNgs9zWZy6Ge3xTknw
-         E+3vsUJJbtCCvg6uea5Mv4omGxu8io+SHMwsYfl8XiR8GbHXEpUAOHjthVHzHjeOXWJ7
-         Lga7cglSlw4gWXLy/VCaLU01vhSScHF3VdP/3PikPHbK9MWnjFi/UbP2e+Rd/cgzInu2
-         0MSnnuMddFWW2ec0Q0d4Ms374Fy5r/19dI4US427VSUg0RyLPjPcFvJkRiaMzb4eHG93
-         qd7hUYO4d+M+qiyiZjPI890GVIoVpHy0hg8rgBFTTmHJoAbvFsyYsNOILXVPO/VvCN3G
-         4Tag==
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=H7yznGHlzfPxvDpvZSbqFd5fVDqQ5LFFKjpUq3W88rg=;
+        b=eQzf6PJn6Zk1h/GN3B0JmHx0rAjPNLihmapVuV7mJKiCo3bhpaST/DcK68HSBsBf9D
+         yXYoRlPQkhGh3DRxeuzzAxfmsYyrhLaB/feUN0ym1TwyNSPGph3eElvlw6WFShiRbv+F
+         gEzkzGHGMzREQQYj1bWXp/OaIyT91fhFtlxzaDrfxZ5uPlDM8SuSgfs4t23tCSMxl1Sh
+         g5S4L/6o3NA1Zbhld8CYwXiaT6/hdC3x0+UScFFW3LwOplSe/SwcCWC4ohHo12nFmxEx
+         xJEhu/wWEZAqtt3N6VDjte7t4Phs80dBzqkWap2LdIUEMzXxNck81+EJqwGOnjk0dXwj
+         oL2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=giu5t1ZJoDtjd9HrozCoAGsuGJjanw/vPGOmtscX5Cs=;
-        b=Ohqu3YQsrpJEUYFCr+driXy3so2TmIVSdPFyAG2+McaeflvShjb6l/8IBpdcitmB5v
-         6TmoP5qcUg96nzgR05EDHq2Ni2MTiAcfKcqj+aUO+HNdBuw+qu9/v5O8cOs088j9ge4e
-         I+lz/Uw4uOgP+LN7QvJy5d4htS0vq79FUIuc4bwRFUbKOTzM8m3EsWhP1upNmdZPbWKy
-         Ax1wvyVBIPqMVI4IewwDGOSII+7ikIyriDyuOrsLJ/ZGob/Hoc61vi8jJ92O9X28Zq8n
-         NWPSx50isbFmW3WloimlPxaNB+T+R4WS+ey95EfhBwxYR7gn+/UPPx2Yr+rn9SNX55Ln
-         XZuw==
-X-Gm-Message-State: AOAM531rWmzytaI1pVHrqu9RUUuTU78WB22zRMuc9QIsTZaGB3xE/ms2
-        DEhmp/FR7lTwvyoRyJNi1HuZ/Q==
-X-Google-Smtp-Source: ABdhPJyE/uLFsbeEgXsQzzS+2i1pwKmQNwLMqFWbiLFGX6m0o585ZozMlGPHOwdSfJL+e5AMB6diNw==
-X-Received: by 2002:a7b:cc8f:: with SMTP id p15mr39151wma.111.1623689897864;
-        Mon, 14 Jun 2021 09:58:17 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:9d56:9c35:8a63:312c? ([2a01:e34:ed2f:f020:9d56:9c35:8a63:312c])
-        by smtp.googlemail.com with ESMTPSA id r18sm16684407wro.62.2021.06.14.09.58.16
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=H7yznGHlzfPxvDpvZSbqFd5fVDqQ5LFFKjpUq3W88rg=;
+        b=dmvpqw/BGXjA8XRpjZZx3b3gbdQEYr35y85QzPbZpupPfwRZSuiCda4c+leNllIPIt
+         KPWfpVTOaPg9egJg7b6f42gz6nnnZrpydmLMGBA9NCssOaznpqFmZhPWit06Hs88GkEz
+         /5lE9qYXld4OyA2bf3hgbfh3QVCLoy7EhhIhTwcZ3ggraxmHYd+w2kj0i06f9dQZF+H2
+         4+5oWXRt1oPiG38qe0XoAylbG+ZaWktNV5QC1F03nlJiEMmY6M0zi6WwooDtoRavwYJ8
+         KSYDBX1z2w0/i4T8k/y6+H32TKV9UsId8rOxpU5bzCRNOONayCcLsLJtt0MRnGS2Hwzz
+         6ssw==
+X-Gm-Message-State: AOAM530Tt4sGco50yzCLlnXiCFmqmfxm5ZddWz0bH5GkzHVqQejCVMrd
+        jjpWsGrCsW+3AHsp4s5sLA==
+X-Google-Smtp-Source: ABdhPJy7b4eSjTkgfw/IxRkzpfMfUcVmAIq1umEwAkfPgPl7K9B+Fd5iZM/qYWqycRgOBXrogfGRjw==
+X-Received: by 2002:a5d:494c:: with SMTP id r12mr19591862wrs.421.1623690142709;
+        Mon, 14 Jun 2021 10:02:22 -0700 (PDT)
+Received: from [192.168.200.247] (ip5b434b8b.dynamic.kabel-deutschland.de. [91.67.75.139])
+        by smtp.gmail.com with ESMTPSA id u15sm374626wmq.1.2021.06.14.10.02.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Jun 2021 09:58:17 -0700 (PDT)
-Subject: Re: [PATCH v8] thermal: mediatek: add another get_temp ops for
- thermal sensors
-To:     Ben Tseng <ben.tseng@mediatek.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        srv_heupstream@mediatek.com
-Cc:     Eduardo Valentin <edubezval@gmail.com>,
+        Mon, 14 Jun 2021 10:02:22 -0700 (PDT)
+Subject: Re: [PATCH v2 05/12] media: hantro: merge Rockchip platform drivers
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Michael Kao <michael.kao@mediatek.com>
-References: <20210603110042.21688-1-ben.tseng@mediatek.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <eeb2a96d-5cd0-ef11-b16e-872d9f3dcb09@linaro.org>
-Date:   Mon, 14 Jun 2021 18:58:15 +0200
+        Heiko Stuebner <heiko@sntech.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+References: <20210525152225.154302-1-knaerzche@gmail.com>
+ <20210527154455.358869-1-knaerzche@gmail.com>
+ <20210527154455.358869-6-knaerzche@gmail.com>
+ <35c24063aec561ca9696ab696fda86d34c38016e.camel@collabora.com>
+From:   Alex Bee <knaerzche@gmail.com>
+Message-ID: <f591c11d-3c9d-961d-ce72-6c7cf8e0d403@gmail.com>
+Date:   Mon, 14 Jun 2021 19:02:21 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210603110042.21688-1-ben.tseng@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <35c24063aec561ca9696ab696fda86d34c38016e.camel@collabora.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/06/2021 13:00, Ben Tseng wrote:
-> From: Michael Kao <michael.kao@mediatek.com>
-> 
-> Provide thermal zone to read thermal sensor
-> in the SoC. We can read all the thermal sensors
-> value in the SoC by the node /sys/class/thermal/
-> 
-> In mtk_thermal_bank_temperature, return -EAGAIN instead of -EACCESS
-> on the first read of sensor that often are bogus values.
-> This can avoid following warning on boot:
-> 
->   thermal thermal_zone6: failed to read out thermal zone (-13)
-> 
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
-> Signed-off-by: Ben Tseng <ben.tseng@mediatek.com>
-> 
-> ---
-> 
-> This patchset supports for MT8183 chip to mtk_thermal.c.
-> Add thermal zone of all the thermal sensor in SoC for
-> another get temperatrue. They don't need to thermal throttle.
-> And we bind coolers for thermal zone nodes of cpu_thermal.
-> 
-> Changes in V8:
->     - Rebase to kernel-v5.13-rc1
->     - Resend
-> 
-> Changes in v7:
->     - Fix build error in v6.
-> 
-> Changes in v6:
->     - Rebase to kernel-5.11-rc1.
->     - [1/3]
->         - add interrupts property.
->     - [2/3]
->         - add the Tested-by in the commit message.
->     - [3/3]
->         - use the mt->conf->msr[id] instead of conf->msr[id] in the
->           _get_sensor_temp and mtk_thermal_bank_temperature.
->         - remove the redundant space in _get_sensor_temp and
->           mtk_read_sensor_temp.
->         - change kmalloc to dev_kmalloc in mtk_thermal_probe.
-> 
-> Changes in v5:
->     - Rebase to kernel-5.9-rc1.
->     - Revise the title of cover letter.
->     - Drop "[v4,7/7] thermal: mediatek: use spinlock to protect PTPCORESEL"
->     - [2/2]
->         -  Add the judgement to the version of raw_to_mcelsius.
-> 
-> Changes in v4:
->     - Rebase to kernel-5.6-rc1.
->     - [1/7]
->         - Squash thermal zone settings in the dtsi from [v3,5/8]
->           arm64: dts: mt8183: Increase polling frequency for CPU thermal zone.
->         - Remove the property of interrupts and mediatek,hw-reset-temp.
->     - [2/7]
->         - Correct commit message.
->     - [4/7]
->         - Change the target temperature to the 80C and change the commit message.
->     - [6/7]
->         - Adjust newline alignment.
->         - Fix the judgement on the return value of registering thermal zone.
-> 
-> Changes in v3:
->     - Rebase to kernel-5.5-rc1.
->     - [1/8]
->         - Update sustainable power of cpu, tzts1~5 and tztsABB.
->     - [7/8]
->         - Bypass the failure that non cpu_thermal sensor is not find in thermal-zones
->           in dts, which is normal for mt8173, so prompt a warning here instead of
->           failing.
-> 
-> 	Return -EAGAIN instead of -EACCESS on the first read of sensor that
->         often are bogus values. This can avoid following warning on boot:
-> 
->           thermal thermal_zone6: failed to read out thermal zone (-13)
-> 
-> Changes in v2:
->     - [1/8]
->         - Add the sustainable-power,trips,cooling-maps to the tzts1~tztsABB.
->     - [4/8]
->         - Add the min opp of cpu throttle.
-> 
-> Matthias Kaehlcke (1):
->   arm64: dts: mt8183: Configure CPU cooling
-> 
-> Michael Kao (2):
->   thermal: mediatek: add another get_temp ops for thermal sensors
->   arm64: dts: mt8183: add thermal zone node
-> ---
->  drivers/thermal/mtk_thermal.c | 100 +++++++++++++++++++++++++++++++-----------
->  1 file changed, 75 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/thermal/mtk_thermal.c b/drivers/thermal/mtk_thermal.c
-> index 97e8678..b6bee451 100644
-> --- a/drivers/thermal/mtk_thermal.c
-> +++ b/drivers/thermal/mtk_thermal.c
-> @@ -245,6 +245,11 @@ enum mtk_thermal_version {
->  
->  struct mtk_thermal;
->  
-> +struct mtk_thermal_zone {
-> +	struct mtk_thermal *mt;
-> +	int id;
-> +};
+Hi Ezequiel,
 
-How does it differ from 'struct mtk_thermal_bank' ?
+Am 11.06.21 um 17:36 schrieb Ezequiel Garcia:
+> Hi Alex,
+>
+> This cleanup looks nice, thanks!
+>
+> Just a comment about the clock rate and a minor typo.
+>
+> On Thu, 2021-05-27 at 17:44 +0200, Alex Bee wrote:
+>> Merge the two Rockchip platform drivers into one as it was suggested at
+>> [1] and [2].
+>> This will hopefully make it easier to add new variants (which are surely
+>> to come for Rockchip).
+>> Also rename from "rk3288" to "v(d/e)pu1" and "rk3399" to "v(d/e)pu2"
+>> where applicable, as this is the dicition the vendor uses and will
+>> also refelect the variants that get added later in this series. Rename
+>> from "rk3288" to "rockchip" if applicable to both hardware versions.
+>>
+>> [1] https://patchwork.kernel.org/project/linux-rockchip/patch/20210107134101.195426-6-paul.kocialkowski@bootlin.com/
+>> [2] https://patchwork.kernel.org/project/linux-rockchip/patch/20210525152225.154302-5-knaerzche@gmail.com/
+>>
+>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>> ---
+>>
+>>   Changes in v2:
+>>   - added patch
+>>
+>>   drivers/staging/media/hantro/Makefile         |   9 +-
+>>   drivers/staging/media/hantro/hantro_hw.h      |  22 +-
+>>   drivers/staging/media/hantro/rk3288_vpu_hw.c  | 208 ----------
+>>   drivers/staging/media/hantro/rk3399_vpu_hw.c  | 222 -----------
+>>   ...jpeg_enc.c => rockchip_vpu2_hw_jpeg_enc.c} |  30 +-
+>>   ...eg2_dec.c => rockchip_vpu2_hw_mpeg2_dec.c} |  25 +-
+>>   ...w_vp8_dec.c => rockchip_vpu2_hw_vp8_dec.c} |   2 +-
+>>   ...rk3399_vpu_regs.h => rockchip_vpu2_regs.h} |   6 +-
+>>   .../staging/media/hantro/rockchip_vpu_hw.c    | 356 ++++++++++++++++++
+>>   9 files changed, 402 insertions(+), 478 deletions(-)
+>>   delete mode 100644 drivers/staging/media/hantro/rk3288_vpu_hw.c
+>>   delete mode 100644 drivers/staging/media/hantro/rk3399_vpu_hw.c
+>>   rename drivers/staging/media/hantro/{rk3399_vpu_hw_jpeg_enc.c => rockchip_vpu2_hw_jpeg_enc.c} (87%)
+>>   rename drivers/staging/media/hantro/{rk3399_vpu_hw_mpeg2_dec.c => rockchip_vpu2_hw_mpeg2_dec.c} (93%)
+>>   rename drivers/staging/media/hantro/{rk3399_vpu_hw_vp8_dec.c => rockchip_vpu2_hw_vp8_dec.c} (99%)
+>>   rename drivers/staging/media/hantro/{rk3399_vpu_regs.h => rockchip_vpu2_regs.h} (99%)
+>>   create mode 100644 drivers/staging/media/hantro/rockchip_vpu_hw.c
+>>
+> [..]
+>> diff --git a/drivers/staging/media/hantro/rockchip_vpu_hw.c b/drivers/staging/media/hantro/rockchip_vpu_hw.c
+>> new file mode 100644
+>> index 000000000000..175d0c5dfdbe
+>> --- /dev/null
+>> +++ b/drivers/staging/media/hantro/rockchip_vpu_hw.c
+>> @@ -0,0 +1,356 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Hantro VPU codec driver
+>> + *
+>> + * Copyright (C) 2018 Rockchip Electronics Co., Ltd.
+>> + *     Jeffy Chen <jeffy.chen@rock-chips.com>
+>> + */
+>> +
+>> +#include <linux/clk.h>
+>> +
+>> +#include "hantro.h"
+>> +#include "hantro_jpeg.h"
+>> +#include "hantro_h1_regs.h"
+>> +#include "rockchip_vpu2_regs.h"
+>> +
+>> +#define RK3288_ACLK_MAX_FREQ (400 * 1000 * 1000)
+>> +
+> Something for later, could we bump this clock?
+>
+> Rockchip uses 300MHz and 600MHz even for RK3288,
+> see arch/arm/boot/dts/rk3288.dtsi:
+>
+>          vdpu: vdpu@ff9a0400 {
+>                  compatible = "rockchip,vpu-decoder-rk3288", "rockchip,vpu-decoder-v1";
+>                  reg = <0x0 0xff9a0400 0x0 0x400>;
+>                  interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
+>                  interrupt-names = "irq_dec";
+>                  clocks = <&cru ACLK_VCODEC>, <&cru HCLK_VCODEC>;
+>                  clock-names = "aclk_vcodec", "hclk_vcodec";
+>                  rockchip,normal-rates = <300000000>, <0>;
+>                  rockchip,advanced-rates = <600000000>, <0>;
+>
+> On vdpu1 for instance, it switches to the "advanced-rate"
+> when width > 2560, which I think it's too naive for us.
+>
+> At least on RK3566 I tested bumping this rate, while still
+> passing conformance tests.
 
->  struct thermal_bank_cfg {
->  	unsigned int num_sensors;
->  	const int *sensors;
-> @@ -637,6 +642,30 @@ static void mtk_thermal_put_bank(struct mtk_thermal_bank *bank)
->  		mutex_unlock(&mt->lock);
->  }
->  
-> +static u32 _get_sensor_temp(struct mtk_thermal *mt, int id)
-> +{
-> +	u32 raw;
-> +	int temp;
-> +
-> +	raw = readl(mt->thermal_base + mt->conf->msr[id]);
-> +
-> +	if (mt->conf->version == MTK_THERMAL_V1)
-> +		temp = raw_to_mcelsius_v1(mt, id, raw);
-> +	else
-> +		temp = raw_to_mcelsius_v2(mt, id, raw);
+Yes, RK3288's can (and maybe also should) run at 600 MHz (since we are 
+sugesting to "Bump ACLK to max. possible freq. to improve performance." 
+currently) - but I never ran conformance tests after setting this rate, tbh.
 
-Please add the proper conversion function as a callback and set it at
-probe time, instead of checking at every call.
+I'm also not sure, VDPU2 (RK3399) variant supports VP8 up to 3840x2160p. 
+It would be the only codec supported up that frame size (we already 
+know, that H.264 is supported up to 1920x1088, even if it is not 
+supported currently by upstream hantro driver) and TRM says the hantro 
+IP block is a "1080P encoder/decoder Processing Core", without saying 
+anything specific per codec.
 
-> +	/*
-> +	 * The first read of a sensor often contains very high bogus
-> +	 * temperature value. Filter these out so that the system does
-> +	 * not immediately shut down.
-> +	 */
+Both should be checked and addressed in a upcoming series.
 
-If it happens only once, why not call this function at probe time so
-this test won't be needed.
-
-> +	if (temp > 200000)
-> +		return -EAGAIN;
-> +	else
-> +		return temp;
-> +}
-> +
->  /**
->   * mtk_thermal_bank_temperature - get the temperature of a bank
->   * @bank:	The bank
-> @@ -647,28 +676,11 @@ static void mtk_thermal_put_bank(struct mtk_thermal_bank *bank)
->  static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
->  {
->  	struct mtk_thermal *mt = bank->mt;
-> -	const struct mtk_thermal_data *conf = mt->conf;
->  	int i, temp = INT_MIN, max = INT_MIN;
-> -	u32 raw;
-> -
-> -	for (i = 0; i < conf->bank_data[bank->id].num_sensors; i++) {
-> -		raw = readl(mt->thermal_base + conf->msr[i]);
->  
-> -		if (mt->conf->version == MTK_THERMAL_V1) {
-> -			temp = raw_to_mcelsius_v1(
-> -				mt, conf->bank_data[bank->id].sensors[i], raw);
-> -		} else {
-> -			temp = raw_to_mcelsius_v2(
-> -				mt, conf->bank_data[bank->id].sensors[i], raw);
-> -		}
-> +	for (i = 0; i < mt->conf->bank_data[bank->id].num_sensors; i++) {
->  
-> -		/*
-> -		 * The first read of a sensor often contains very high bogus
-> -		 * temperature value. Filter these out so that the system does
-> -		 * not immediately shut down.
-> -		 */
-> -		if (temp > 200000)
-> -			temp = 0;
-> +		temp = _get_sensor_temp(mt, i);
->  
->  		if (temp > max)
->  			max = temp;
-> @@ -679,7 +691,8 @@ static int mtk_thermal_bank_temperature(struct mtk_thermal_bank *bank)
->  
->  static int mtk_read_temp(void *data, int *temperature)
->  {
-> -	struct mtk_thermal *mt = data;
-> +	struct mtk_thermal_zone *tz = data;
-> +	struct mtk_thermal *mt = tz->mt;
->  	int i;
->  	int tempmax = INT_MIN;
->  
-> @@ -698,10 +711,28 @@ static int mtk_read_temp(void *data, int *temperature)
->  	return 0;
->  }
->  
-> +static int mtk_read_sensor_temp(void *data, int *temperature)
-> +{
-> +	struct mtk_thermal_zone *tz = data;
-> +	struct mtk_thermal *mt = tz->mt;
-> +	int id = tz->id - 1;
-> +
-> +	if (id < 0)
-> +		return -EACCES;
-
-How this can happen ?
-
-> +
-> +	*temperature = _get_sensor_temp(mt, id);
-> +
-> +	return 0;
-> +}
-> +
->  static const struct thermal_zone_of_device_ops mtk_thermal_ops = {
->  	.get_temp = mtk_read_temp,
->  };
->  
-> +static const struct thermal_zone_of_device_ops mtk_thermal_sensor_ops = {
-> +	.get_temp = mtk_read_sensor_temp,
-> +};
-> +
->  static void mtk_thermal_init_bank(struct mtk_thermal *mt, int num,
->  				  u32 apmixed_phys_base, u32 auxadc_phys_base,
->  				  int ctrl_id)
-> @@ -992,6 +1023,7 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->  	u64 auxadc_phys_base, apmixed_phys_base;
->  	struct thermal_zone_device *tzdev;
->  	void __iomem *apmixed_base, *auxadc_base;
-> +	struct mtk_thermal_zone *tz;
->  
->  	mt = devm_kzalloc(&pdev->dev, sizeof(*mt), GFP_KERNEL);
->  	if (!mt)
-> @@ -1080,11 +1112,29 @@ static int mtk_thermal_probe(struct platform_device *pdev)
->  
->  	platform_set_drvdata(pdev, mt);
->  
-> -	tzdev = devm_thermal_zone_of_sensor_register(&pdev->dev, 0, mt,
-> -						     &mtk_thermal_ops);
-> -	if (IS_ERR(tzdev)) {
-> -		ret = PTR_ERR(tzdev);
-> -		goto err_disable_clk_peri_therm;
-> +	for (i = 0; i < mt->conf->num_sensors + 1; i++) {
-> +		tz = devm_kmalloc(&pdev->dev, sizeof(*tz), GFP_KERNEL);
-> +		if (!tz)
-> +			return -ENOMEM;
-> +
-> +		tz->mt = mt;
-> +		tz->id = i;
-> +
-> +		tzdev = devm_thermal_zone_of_sensor_register(&pdev->dev, i, tz, (i == 0) ?
-> +							     &mtk_thermal_ops :
-> +							     &mtk_thermal_sensor_ops);
-> +
-> +		if (IS_ERR(tzdev)) {
-> +			if (PTR_ERR(tzdev) == -ENODEV) {
-> +				dev_warn(&pdev->dev,
-> +					 "sensor %d not registered in thermal zone in dt\n", i);
-> +				continue;
-> +			}
-> +			if (PTR_ERR(tzdev) == -EACCES) {
-> +				ret = PTR_ERR(tzdev);
-> +				goto err_disable_clk_peri_therm;
-> +			}
-
-If the error is none of the above, the loop continues. Is that what you
-want ?
-
-> +		}
->  	}
->  
->  	return 0;
-> 
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+>> +/*
+>> + * Supported formats.
+>> + */
+>> +
+>> +static const struct hantro_fmt rockchip_vpu_enc_fmts[] = {
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_YUV420M,
+>> +               .codec_mode = HANTRO_MODE_NONE,
+>> +               .enc_fmt = ROCKCHIP_VPU_ENC_FMT_YUV420P,
+>> +       },
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_NV12M,
+>> +               .codec_mode = HANTRO_MODE_NONE,
+>> +               .enc_fmt = ROCKCHIP_VPU_ENC_FMT_YUV420SP,
+>> +       },
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_YUYV,
+>> +               .codec_mode = HANTRO_MODE_NONE,
+>> +               .enc_fmt = ROCKCHIP_VPU_ENC_FMT_YUYV422,
+>> +       },
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_UYVY,
+>> +               .codec_mode = HANTRO_MODE_NONE,
+>> +               .enc_fmt = ROCKCHIP_VPU_ENC_FMT_UYVY422,
+>> +       },
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_JPEG,
+>> +               .codec_mode = HANTRO_MODE_JPEG_ENC,
+>> +               .max_depth = 2,
+>> +               .header_size = JPEG_HEADER_SIZE,
+>> +               .frmsize = {
+>> +                       .min_width = 96,
+>> +                       .max_width = 8192,
+>> +                       .step_width = MB_DIM,
+>> +                       .min_height = 32,
+>> +                       .max_height = 8192,
+>> +                       .step_height = MB_DIM,
+>> +               },
+>> +       },
+>> +};
+>> +
+>> +static const struct hantro_fmt rockchip_vpu1_postproc_fmts[] = {
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_YUYV,
+>> +               .codec_mode = HANTRO_MODE_NONE,
+>> +       },
+>> +};
+>> +
+>> +static const struct hantro_fmt rk3288_vpu_dec_fmts[] = {
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_NV12,
+>> +               .codec_mode = HANTRO_MODE_NONE,
+>> +       },
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_H264_SLICE,
+>> +               .codec_mode = HANTRO_MODE_H264_DEC,
+>> +               .max_depth = 2,
+>> +               .frmsize = {
+>> +                       .min_width = 48,
+>> +                       .max_width = 4096,
+>> +                       .step_width = MB_DIM,
+>> +                       .min_height = 48,
+>> +                       .max_height = 2304,
+>> +                       .step_height = MB_DIM,
+>> +               },
+>> +       },
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_MPEG2_SLICE,
+>> +               .codec_mode = HANTRO_MODE_MPEG2_DEC,
+>> +               .max_depth = 2,
+>> +               .frmsize = {
+>> +                       .min_width = 48,
+>> +                       .max_width = 1920,
+>> +                       .step_width = MB_DIM,
+>> +                       .min_height = 48,
+>> +                       .max_height = 1088,
+>> +                       .step_height = MB_DIM,
+>> +               },
+>> +       },
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_VP8_FRAME,
+>> +               .codec_mode = HANTRO_MODE_VP8_DEC,
+>> +               .max_depth = 2,
+>> +               .frmsize = {
+>> +                       .min_width = 48,
+>> +                       .max_width = 3840,
+>> +                       .step_width = MB_DIM,
+>> +                       .min_height = 48,
+>> +                       .max_height = 2160,
+>> +                       .step_height = MB_DIM,
+>> +               },
+>> +       },
+>> +};
+>> +
+>> +static const struct hantro_fmt rk3399_vpu_dec_fmts[] = {
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_NV12,
+>> +               .codec_mode = HANTRO_MODE_NONE,
+>> +       },
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_MPEG2_SLICE,
+>> +               .codec_mode = HANTRO_MODE_MPEG2_DEC,
+>> +               .max_depth = 2,
+>> +               .frmsize = {
+>> +                       .min_width = 48,
+>> +                       .max_width = 1920,
+>> +                       .step_width = MB_DIM,
+>> +                       .min_height = 48,
+>> +                       .max_height = 1088,
+>> +                       .step_height = MB_DIM,
+>> +               },
+>> +       },
+>> +       {
+>> +               .fourcc = V4L2_PIX_FMT_VP8_FRAME,
+>> +               .codec_mode = HANTRO_MODE_VP8_DEC,
+>> +               .max_depth = 2,
+>> +               .frmsize = {
+>> +                       .min_width = 48,
+>> +                       .max_width = 3840,
+>> +                       .step_width = MB_DIM,
+>> +                       .min_height = 48,
+>> +                       .max_height = 2160,
+>> +                       .step_height = MB_DIM,
+>> +               },
+>> +       },
+>> +};
+>> +
+>> +static irqreturn_t rockchip_vpu1_vepu_irq(int irq, void *dev_id)
+>> +{
+>> +       struct hantro_dev *vpu = dev_id;
+>> +       enum vb2_buffer_state state;
+>> +       u32 status;
+>> +
+>> +       status = vepu_read(vpu, H1_REG_INTERRUPT);
+>> +       state = (status & H1_REG_INTERRUPT_FRAME_RDY) ?
+>> +               VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
+>> +
+>> +       vepu_write(vpu, 0, H1_REG_INTERRUPT);
+>> +       vepu_write(vpu, 0, H1_REG_AXI_CTRL);
+>> +
+>> +       hantro_irq_done(vpu, state);
+>> +
+>> +       return IRQ_HANDLED;
+>> +}
+>> +
+>> +static irqreturn_t rockchip_vpu2_vdpu_irq(int irq, void *dev_id)
+>> +{
+>> +       struct hantro_dev *vpu = dev_id;
+>> +       enum vb2_buffer_state state;
+>> +       u32 status;
+>> +
+>> +       status = vdpu_read(vpu, VDPU_REG_INTERRUPT);
+>> +       state = (status & VDPU_REG_INTERRUPT_DEC_IRQ) ?
+>> +               VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
+>> +
+>> +       vdpu_write(vpu, 0, VDPU_REG_INTERRUPT);
+>> +       vdpu_write(vpu, 0, VDPU_REG_AXI_CTRL);
+>> +
+>> +       hantro_irq_done(vpu, state);
+>> +
+>> +       return IRQ_HANDLED;
+>> +}
+>> +
+>> +static irqreturn_t rockchip_vpu2_vepu_irq(int irq, void *dev_id)
+>> +{
+>> +       struct hantro_dev *vpu = dev_id;
+>> +       enum vb2_buffer_state state;
+>> +       u32 status;
+>> +
+>> +       status = vepu_read(vpu, VEPU_REG_INTERRUPT);
+>> +       state = (status & VEPU_REG_INTERRUPT_FRAME_READY) ?
+>> +               VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
+>> +
+>> +       vepu_write(vpu, 0, VEPU_REG_INTERRUPT);
+>> +       vepu_write(vpu, 0, VEPU_REG_AXI_CTRL);
+>> +
+>> +       hantro_irq_done(vpu, state);
+>> +
+>> +       return IRQ_HANDLED;
+>> +}
+>> +
+>> +static int rockchip_vpu_hw_init(struct hantro_dev *vpu)
+>> +{
+>> +       /* Bump ACLK to max. possible freq. to improve performance. */
+>> +       clk_set_rate(vpu->clocks[0].clk, RK3288_ACLK_MAX_FREQ);
+>> +       return 0;
+>> +}
+>> +
+>> +static void rockchip_vpu1_enc_reset(struct hantro_ctx *ctx)
+>> +{
+>> +       struct hantro_dev *vpu = ctx->dev;
+>> +
+>> +       vepu_write(vpu, H1_REG_INTERRUPT_DIS_BIT, H1_REG_INTERRUPT);
+>> +       vepu_write(vpu, 0, H1_REG_ENC_CTRL);
+>> +       vepu_write(vpu, 0, H1_REG_AXI_CTRL);
+>> +}
+>> +
+>> +static void rockchip_vpu2_dec_reset(struct hantro_ctx *ctx)
+>> +{
+>> +       struct hantro_dev *vpu = ctx->dev;
+>> +
+>> +       vdpu_write(vpu, VDPU_REG_INTERRUPT_DEC_IRQ_DIS, VDPU_REG_INTERRUPT);
+>> +       vdpu_write(vpu, 0, VDPU_REG_EN_FLAGS);
+>> +       vdpu_write(vpu, 1, VDPU_REG_SOFT_RESET);
+>> +}
+>> +
+>> +static void rockchip_vpu2_enc_reset(struct hantro_ctx *ctx)
+>> +{
+>> +       struct hantro_dev *vpu = ctx->dev;
+>> +
+>> +       vepu_write(vpu, VEPU_REG_INTERRUPT_DIS_BIT, VEPU_REG_INTERRUPT);
+>> +       vepu_write(vpu, 0, VEPU_REG_ENCODE_START);
+>> +       vepu_write(vpu, 0, VEPU_REG_AXI_CTRL);
+>> +}
+>> +
+>> +/*
+>> + * Supported codec ops.
+>> + */
+>> +
+>> +static const struct hantro_codec_ops rk3288_vpu_codec_ops[] = {
+>> +       [HANTRO_MODE_JPEG_ENC] = {
+>> +               .run = hantro_h1_jpeg_enc_run,
+>> +               .reset = rockchip_vpu1_enc_reset,
+>> +               .init = hantro_jpeg_enc_init,
+>> +               .done = hantro_jpeg_enc_done,
+>> +               .exit = hantro_jpeg_enc_exit,
+>> +       },
+>> +       [HANTRO_MODE_H264_DEC] = {
+>> +               .run = hantro_g1_h264_dec_run,
+>> +               .reset = hantro_g1_reset,
+>> +               .init = hantro_h264_dec_init,
+>> +               .exit = hantro_h264_dec_exit,
+>> +       },
+>> +       [HANTRO_MODE_MPEG2_DEC] = {
+>> +               .run = hantro_g1_mpeg2_dec_run,
+>> +               .reset = hantro_g1_reset,
+>> +               .init = hantro_mpeg2_dec_init,
+>> +               .exit = hantro_mpeg2_dec_exit,
+>> +       },
+>> +       [HANTRO_MODE_VP8_DEC] = {
+>> +               .run = hantro_g1_vp8_dec_run,
+>> +               .reset = hantro_g1_reset,
+>> +               .init = hantro_vp8_dec_init,
+>> +               .exit = hantro_vp8_dec_exit,
+>> +       },
+>> +};
+>> +
+>> +static const struct hantro_codec_ops rk3399_vpu_codec_ops[] = {
+>> +       [HANTRO_MODE_JPEG_ENC] = {
+>> +               .run = rockchip_vpu2_jpeg_enc_run,
+>> +               .reset = rockchip_vpu2_enc_reset,
+>> +               .init = hantro_jpeg_enc_init,
+>> +               .exit = hantro_jpeg_enc_exit,
+>> +       },
+>> +       [HANTRO_MODE_MPEG2_DEC] = {
+>> +               .run = rockchip_vpu2_mpeg2_dec_run,
+>> +               .reset = rockchip_vpu2_dec_reset,
+>> +               .init = hantro_mpeg2_dec_init,
+>> +               .exit = hantro_mpeg2_dec_exit,
+>> +       },
+>> +       [HANTRO_MODE_VP8_DEC] = {
+>> +               .run = rockchip_vpu2_vp8_dec_run,
+>> +               .reset = rockchip_vpu2_dec_reset,
+>> +               .init = hantro_vp8_dec_init,
+>> +               .exit = hantro_vp8_dec_exit,
+>> +       },
+>> +};
+>> +
+>> +/*
+>> + * VPU variant.
+>> + */
+>> +
+>> +static const struct hantro_irq rockchip_vpu1_irqs[] = {
+>> +       { "vepu", rockchip_vpu1_vepu_irq },
+>> +       { "vdpu", hantro_g1_irq },
+>> +};
+>> +
+>> +static const struct hantro_irq rockchip_vpdu2_irqs[] = {
+> Typo: vpdu -> vdpu?
+Will fix it in v3.
+>
+>> +       { "vdpu", rockchip_vpu2_vdpu_irq },
+>> +};
+>> +
+> Reviewed-by: Ezequiel Garcia <ezequiel@collabora.com>
+>
+> Thanks,
+> Ezequiel
+>
+Alex
