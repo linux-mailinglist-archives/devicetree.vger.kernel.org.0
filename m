@@ -2,129 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E195B3A661E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 13:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FDC43A664D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 14:13:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233185AbhFNL5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 07:57:37 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:43705 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233173AbhFNL5g (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 07:57:36 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1623671732; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=cqG1thvBylRxuDcCaNArs/dxgNQZPARI5YwgxMBAoi8=;
- b=cyxD2b+qd5+Fgc12SX0+w3IzSDjEEix/qpSJlTsEuAe5pioVIX+HoxDW3KPOrBIVVx0mk1rB
- AqZ9E/GzLsPpExAKobnPuzSliUoX1GQ4vS2sy6+oQXiKGSsDQ9EuF3EIw4EJxToCp46Eb6bU
- FBi4oNYEsT9nSdLUNZxXuTPp/KA=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 60c743b4ed59bf69cc2c9f7c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 14 Jun 2021 11:55:32
- GMT
-Sender: sbhanu=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id E5222C4338A; Mon, 14 Jun 2021 11:55:31 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: sbhanu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 97EB0C433D3;
-        Mon, 14 Jun 2021 11:55:30 +0000 (UTC)
+        id S232940AbhFNMPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 08:15:07 -0400
+Received: from mail-ej1-f47.google.com ([209.85.218.47]:34752 "EHLO
+        mail-ej1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232559AbhFNMPH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 08:15:07 -0400
+Received: by mail-ej1-f47.google.com with SMTP id g8so16323077ejx.1;
+        Mon, 14 Jun 2021 05:12:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QLUxngfo3tVRsn8lxTbb2M+pKAJYV8dDKHPOOPKoTaQ=;
+        b=Bj60gfN//81FbKFsw8vmSYFyf9l4j9EcZ0FHlmCCiJcTgaPTWPvMz3ngEb9cFeox2L
+         J83g7X5gNn3rMiZorcToT8ihZhR+lKo5lAd4MFbFK9oidU39PP++s1KJSFjYh+W0KFYM
+         vzQhA2si4N0QYZYCurTZQwmm62tpOiJciqqQdyWcTprMZB9bEgalOVS4DhGUi9WIWxVg
+         JPySx84ag9rRTknbLwUECGucgre11bGerEFYkvHuBSMftO+UnGBuzZBd60mZVBX7COMW
+         VD1v7uyuqhxwYz58bE8GJKcENz3JsTvSJGQ9guFMp6e8tjylv3ZSCu6vONo+BxS04h1X
+         yqeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QLUxngfo3tVRsn8lxTbb2M+pKAJYV8dDKHPOOPKoTaQ=;
+        b=q+4PiH6EVKSWoTL2MAWKIL/OtfDTsTGQ+J1c8z0TU45i8ksLZFqngy2ShtH80NcMGL
+         kgf8mqTTyUEVM0JSf4IozyVrpg2FcUWUUaQg37pSZg+Acs7y92mDgXBjgcuHk6zSq8BT
+         4oAN4aTGld4++vGEuZwU0HOmEogzsgtZMRQ9iOKGdZqc2OzOSS9jUaMdvzEij3gBSUc8
+         2uHbkH/T5ntxxuemjhj+tOzGKCgCpVlQLiOcu35QI2aobDTZawrO42WS8e06esSI28bz
+         SQxmr/ryYh5MKQMi39dUUkcM78MuaSa9AN9VyzzfJRDVCYtTUxM4dp1OgCwO5tIE+hW1
+         1SLg==
+X-Gm-Message-State: AOAM533n4ggDpq/3YJtqvaL0xP+1QXK3zH6wYpatetdMQT34JkEN9b8P
+        6G3FDsNwPdgEykHL7g1lL7k=
+X-Google-Smtp-Source: ABdhPJy07Ww7kdGvvKtp/A8GhghbKQudQ2gRCkoXtVyIPHcVKEBxj97capoDt0Od0XC0i+mtJmK6XA==
+X-Received: by 2002:a17:906:3b99:: with SMTP id u25mr15017293ejf.539.1623672710305;
+        Mon, 14 Jun 2021 05:11:50 -0700 (PDT)
+Received: from BV030612LT ([188.24.178.25])
+        by smtp.gmail.com with ESMTPSA id o26sm8687476edi.15.2021.06.14.05.11.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Jun 2021 05:11:49 -0700 (PDT)
+Date:   Mon, 14 Jun 2021 15:11:47 +0300
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Manivannan Sadhasivam <mani@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] Add Ethernet DTS for Actions Semi Owl S500 SoCs
+Message-ID: <20210614121147.GA1876517@BV030612LT>
+References: <cover.1623401998.git.cristian.ciocaltea@gmail.com>
+ <20210614112831.GB38584@thinkpad>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 14 Jun 2021 17:25:30 +0530
-From:   sbhanu@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, asutoshd@codeaurora.org,
-        stummala@codeaurora.org, vbadigan@codeaurora.org,
-        rampraka@codeaurora.org, sayalil@codeaurora.org,
-        sartgarg@codeaurora.org, rnayak@codeaurora.org,
-        saiprakash.ranjan@codeaurora.org, sibis@codeaurora.org,
-        okukatla@codeaurora.org, djakov@kernel.org, cang@codeaurora.org,
-        pragalla@codeaurora.org, nitirawa@codeaurora.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org
-Subject: Re: [PATCH V1] arm64: dts: qcom: sc7180: Added xo clock for eMMC and
- Sd card
-In-Reply-To: <YMLm96edhIYOJF+E@builder.lan>
-References: <1623309107-27833-1-git-send-email-sbhanu@codeaurora.org>
- <YMLm96edhIYOJF+E@builder.lan>
-Message-ID: <1230be3c7f350b1f33110df2a9744e15@codeaurora.org>
-X-Sender: sbhanu@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210614112831.GB38584@thinkpad>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-06-11 10:00, Bjorn Andersson wrote:
-> On Thu 10 Jun 02:11 CDT 2021, Shaik Sajida Bhanu wrote:
+On Mon, Jun 14, 2021 at 04:58:31PM +0530, Manivannan Sadhasivam wrote:
+> On Fri, Jun 11, 2021 at 12:11:31PM +0300, Cristian Ciocaltea wrote:
+> > This patchset adds the required DTS changes for providing the ethernet
+> > functionality on the Actions S500 SoCs family.
+> > 
+> > For the moment I have been able to test the Ethernet MAC on the RoseaplePi
+> > SBC only.
+> > 
+> > Also, please note the patches depend on some clock changes that are
+> > currently under review:
+> > https://lore.kernel.org/lkml/cover.1623354574.git.cristian.ciocaltea@gmail.com/
+> > 
 > 
->> Added xo clock for eMMC and Sd card.
-> 
-> Was about to push out my branch of patches, but before I do. Can you
-> please describe WHY this is needed?
-> 
-> Regards,
-> Bjorn
+> Waiting for the clk patches to be merged...
 
-We are making use of this clock in dll register value calculation,
-The default PoR value is also same as calculated value for
-HS200/HS400/SDR104 modes.
-But just not to rely on default register values we need this entry.
+Thanks, Mani!
 
+Hopefully Stephen is going to pick them up in time..
+
+Kind regards,
+Cristi
+
+> Thanks,
+> Mani
 > 
->> 
->> Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 10 ++++++----
->>  1 file changed, 6 insertions(+), 4 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi 
->> b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> index 295844e..5bb6bd4 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> @@ -701,8 +701,9 @@
->>  			interrupt-names = "hc_irq", "pwr_irq";
->> 
->>  			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
->> -					<&gcc GCC_SDCC1_AHB_CLK>;
->> -			clock-names = "core", "iface";
->> +					<&gcc GCC_SDCC1_AHB_CLK>,
->> +					<&rpmhcc RPMH_CXO_CLK>;
->> +			clock-names = "core", "iface","xo";
->>  			interconnects = <&aggre1_noc MASTER_EMMC 0 &mc_virt SLAVE_EBI1 0>,
->>  					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_EMMC_CFG 0>;
->>  			interconnect-names = "sdhc-ddr","cpu-sdhc";
->> @@ -2666,8 +2667,9 @@
->>  			interrupt-names = "hc_irq", "pwr_irq";
->> 
->>  			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
->> -					<&gcc GCC_SDCC2_AHB_CLK>;
->> -			clock-names = "core", "iface";
->> +					<&gcc GCC_SDCC2_AHB_CLK>,
->> +					<&rpmhcc RPMH_CXO_CLK>;
->> +			clock-names = "core", "iface", "xo";
->> 
->>  			interconnects = <&aggre1_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 
->> 0>,
->>  					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
->> --
->> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
->> member
->> of Code Aurora Forum, hosted by The Linux Foundation
->> 
+> > Thanks,
+> > Cristi
+> > 
+> > Changes in v2:
+> > - Added Reviewed-by tag from Mani in patch 1/2
+> > - Joined the groups sharing common function "eth_rmii" and switch the
+> >   order of "ref_clk-pinconf" and "phy_clk-pinmux", per Mani's review,
+> >   in patch 2/2
+> > 
+> > Cristian Ciocaltea (2):
+> >   ARM: dts: owl-s500: Add ethernet support
+> >   ARM: dts: owl-s500-roseapplepi: Add ethernet support
+> > 
+> >  arch/arm/boot/dts/owl-s500-roseapplepi.dts | 45 ++++++++++++++++++++++
+> >  arch/arm/boot/dts/owl-s500.dtsi            | 10 +++++
+> >  2 files changed, 55 insertions(+)
+> > 
+> > -- 
+> > 2.32.0
+> > 
