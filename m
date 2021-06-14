@@ -2,93 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 814AB3A6F15
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 21:32:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B195C3A6F1C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 21:33:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233983AbhFNTe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 15:34:29 -0400
-Received: from mail-vk1-f171.google.com ([209.85.221.171]:45638 "EHLO
-        mail-vk1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233804AbhFNTe3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 15:34:29 -0400
-Received: by mail-vk1-f171.google.com with SMTP id az3so4411635vkb.12;
-        Mon, 14 Jun 2021 12:32:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=neEoJqVtr0vDl5UB61l+8ggKAKTZTHMcnPwVoveG8Uo=;
-        b=OKtm9gW3LF7MusFc5+KKfbCDO/Xxi3uI0QIOB/te2NHB3H2tlIwd9jKROaT3en/Ev8
-         e7Z1KCDn2po7mJ/9rDqdEkzWPmoUmRpCGXhKNrvQR2upL4Rhdew+zfrN9APqdI+TTcn1
-         Kd0S1qOYzZxcayDql5f9FLijr5X2gkvT3QXzHd7eTPDJPo3uSG4rasStLJK27DhqDk/P
-         sLR7R/M4Ix1tZbQM2Y9mfIBe2lihBWZvN7YJMWRHBOTkwMRj8CMy3R6MRfargQaq5Fqo
-         epGwGyC+vKpZJZcQAR3tr8pB2jlxWKjZBjILZR6vHLo6uCxKH/Ar+VVKR8fXenQYedAk
-         7YFQ==
-X-Gm-Message-State: AOAM533v7BgwYdsu8Ap8R5RPPvueAJzyIK+RhudcZoGUfg9rclim+i1a
-        B+aBdnh943SHQ9OwuvQZyK/8RpYSyY+NCn4aMGw=
-X-Google-Smtp-Source: ABdhPJy0cN5AiEDpiiYn3LtzL91J3/gGwoSB/xDTgWOmak8Q0W7xPu0uuPUmePXQfBZ8MV4rtHrfhbsMkr9U/6cfrPk=
-X-Received: by 2002:a1f:1a41:: with SMTP id a62mr322990vka.5.1623699137970;
- Mon, 14 Jun 2021 12:32:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1623315732.git.geert+renesas@glider.be> <22b4c393bf5074b53791d2797d8fe74deb8ea9a7.1623315732.git.geert+renesas@glider.be>
- <YMei/rKwEyicfx+H@pendragon.ideasonboard.com>
-In-Reply-To: <YMei/rKwEyicfx+H@pendragon.ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 14 Jun 2021 21:32:07 +0200
-Message-ID: <CAMuHMdUJQCv7Qe01Km=6F=yUjcNoo_OvOBrYpPcC3SbhX0Ru5Q@mail.gmail.com>
-Subject: Re: [PATCH 04/14] mmc: renesas_sdhi: Add support for R-Car H3e-2G and M3e-2G
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S234483AbhFNTfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 15:35:08 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:47818 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S234496AbhFNTfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Jun 2021 15:35:08 -0400
+X-IronPort-AV: E=Sophos;i="5.83,273,1616425200"; 
+   d="scan'208";a="84200411"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 15 Jun 2021 04:33:03 +0900
+Received: from localhost.localdomain (unknown [10.226.92.107])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 37CE240031D1;
+        Tue, 15 Jun 2021 04:33:01 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: i2c: renesas,riic: Document RZ/G2L I2C controller
+Date:   Mon, 14 Jun 2021 20:32:52 +0100
+Message-Id: <20210614193253.10011-2-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210614193253.10011-1-biju.das.jz@bp.renesas.com>
+References: <20210614193253.10011-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Document RZ/G2L I2C controller bindings.
 
-On Mon, Jun 14, 2021 at 8:42 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Thu, Jun 10, 2021 at 11:37:17AM +0200, Geert Uytterhoeven wrote:
-> > Add support for the R-Car H3e-2G (R8A779M1) and M3e-2G (R8A779M3) SoCs.
-> > These are different gradings of the R-Car H3 ES3.0 (R8A77951) and M3-W+
-> > (R8A77961) SoCs, and thus subject to the same quirks.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v1->v2
+   * Added Geert's Rb tag 
+---
+ .../devicetree/bindings/i2c/renesas,riic.yaml | 19 +++++++++++++++----
+ 1 file changed, 15 insertions(+), 4 deletions(-)
 
-> > --- a/drivers/mmc/host/renesas_sdhi_core.c
-> > +++ b/drivers/mmc/host/renesas_sdhi_core.c
-> > @@ -943,6 +943,8 @@ static const struct soc_device_attribute sdhi_quirks_match[]  = {
-> >       { .soc_id = "r8a77965", .data = &sdhi_quirks_r8a77965 },
-> >       { .soc_id = "r8a77980", .data = &sdhi_quirks_nohs400 },
-> >       { .soc_id = "r8a77990", .data = &sdhi_quirks_r8a77990 },
-> > +     { .soc_id = "r8a779m1", .data = &sdhi_quirks_bad_taps2367 },
-> > +     { .soc_id = "r8a779m3", .data = &sdhi_quirks_bad_taps1357 },
->
-> Could we reuse the entries for H3 and M3 instead, by dropping the
-> "ES3.*" revision ?
-
-We cannot reuse the H3 ES3.0 entry, as soc_device_match()
-works differently than of_machine_is_compatible(): the former doesn't
-consider "r8a779m1" and "r8a7795" equivalent, the latter does.
-Same for M3-W+ (no explicit ES3.0 there) and M3e-2G.
-
-It's a pity we still don't have a "quirk-free" SDHI version on H3
-and M3-W class SoCs (waiting for ES4.0?), as that would allow us to
-just match on "renesas,sdhi-r8a7795" resp. "renesas,sdhi-r8a77961"
-through the driver's .of_match_table[] instead, which would work for
-H3e-2G and M3e-2G, too.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+index 2d6378164958..52d92ec7ec0b 100644
+--- a/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
++++ b/Documentation/devicetree/bindings/i2c/renesas,riic.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/i2c/renesas,riic.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Renesas RZ/A I2C Bus Interface (RIIC)
++title: Renesas RZ/A and RZ/G2L I2C Bus Interface (RIIC)
+ 
+ maintainers:
+   - Chris Brandt <chris.brandt@renesas.com>
+@@ -17,9 +17,10 @@ properties:
+   compatible:
+     items:
+       - enum:
+-          - renesas,riic-r7s72100 # RZ/A1H
+-          - renesas,riic-r7s9210  # RZ/A2M
+-      - const: renesas,riic-rz    # RZ/A
++          - renesas,riic-r7s72100   # RZ/A1H
++          - renesas,riic-r7s9210    # RZ/A2M
++          - renesas,riic-r9a07g044  # RZ/G2{L,LC}
++      - const: renesas,riic-rz      # RZ/A or RZ/G2L
+ 
+   reg:
+     maxItems: 1
+@@ -56,6 +57,16 @@ required:
+   - '#address-cells'
+   - '#size-cells'
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - renesas,riic-r9a07g044
++then:
++  required:
++    - resets
++
+ unevaluatedProperties: false
+ 
+ examples:
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
