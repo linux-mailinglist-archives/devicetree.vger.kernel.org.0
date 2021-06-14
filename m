@@ -2,147 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DE2C3A6B58
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:12:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2EFB3A6B7B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:17:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234589AbhFNQOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 12:14:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50862 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234590AbhFNQOK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:14:10 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9087C061767
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:12:07 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id p5-20020a9d45450000b029043ee61dce6bso4235530oti.8
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:12:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0oFGZgzuK+wfWh3twXvjozyyp5mnxr4qBNBCoc1c4Vc=;
-        b=KUPJUELSmJyV98B+X/+cIUvTZ9qK865mR0u/qVLuiNlLxllgdbUkS1OgK1WWN8/0kn
-         x9IeyyK96IFCf+pp2n7uJTJbA03oqfpIATr4nejMBzhmXeE0pOm4+LiivxUGbVtaUQF3
-         X5eVUd+D4KsSpnrGANeTmogrhhw1E58moJ4SOLyRwJXDzjRKe6VXSz7u3WgbvnNc7E+G
-         1RPQaSat1SPzCxVRywkPZVvHD3ePFkSgeCwM1N996tTgRpSK1Hd0VIC8GnBarTFe0AHE
-         WhnkRJFalxBEMZjd2v/xgboeVWnpVkHmWlgTfHqq/MyavGE9TF/D+TpQf2kRHjdxdnnx
-         DzwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0oFGZgzuK+wfWh3twXvjozyyp5mnxr4qBNBCoc1c4Vc=;
-        b=T6ZeXPtf5110lhI+lsbvakX9RelWupPWxEYO4yiWTyI4RocSONkV1zf2PdfPwx/rNh
-         SrzprdcP6hDw4A4rzBpi8+oUSoa0oCYe2gr7beHEVceZEMC/6c8jtnCbI+uzOmyIBKo5
-         YGJL8bemcc3jK9DQCSeCDG4CK4boAoCWWdXNbB50ciCLSec+IOqgnOw35Q5oD9geh9jS
-         5U4+xV784oq1xxSNDXf1iubfGc+mzakpNitd7U15iqbMUqFrw4wuawa3U1I53JN0YFlT
-         GxUWXNDJvK9gBIL3EYTajmiBPVcgLVCoDwmQrgLH8XeE+H/OWYUgUUQqWbRowZM264Ba
-         Y7SA==
-X-Gm-Message-State: AOAM531HTiBvwkI69cgt/d3OFk4UWKD9A8cecEbj0BDz+Jw8d0+q6YfI
-        pdN4fBVMOTPnEqmu2cDlCbxcSQ==
-X-Google-Smtp-Source: ABdhPJwHmnrT1SOKWGo7+pc9rThKvmW9tBakGXsNBZEVxmFc0VzMxdN22HDAGcmt5a/aMO3+wDXMFw==
-X-Received: by 2002:a9d:3e15:: with SMTP id a21mr14289365otd.366.1623687127068;
-        Mon, 14 Jun 2021 09:12:07 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k84sm3033230oia.8.2021.06.14.09.12.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jun 2021 09:12:06 -0700 (PDT)
-Date:   Mon, 14 Jun 2021 11:12:04 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        id S234211AbhFNQTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 12:19:42 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:36894 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233901AbhFNQTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:19:42 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 55119A59;
+        Mon, 14 Jun 2021 18:17:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1623687457;
+        bh=vN6UQFf2qEAon/wrw/8BklVuLhi9CRlkMcfM6BKim9o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=H950cR5eqUa9VJfmzWJJnJoFekSjQk7uzTBPEmVyZM9PArvnlgeLshWRARyvbtwLW
+         VvvEYXN9TUFSPP4zJNdirwaR+Pp01p18+A69pmfkp18RqKRduLLb/Q65D5caOdZOwl
+         kZMvjeqerKnnTUu95jpw1qoMuoWmVXmbGdg06gBs=
+Date:   Mon, 14 Jun 2021 19:17:17 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        bhupesh.linux@gmail.com
-Subject: Re: [PATCH 5/8] pinctrl: qcom/pinctrl-spmi-gpio: Add compatibles for
- pmic-gpios on SA8155p-adp
-Message-ID: <YMd/1C3oJ41A8g4p@yoga>
-References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
- <20210607113840.15435-6-bhupesh.sharma@linaro.org>
- <YMLR11+6A/6klgqJ@builder.lan>
- <CAH=2Ntwkk4Hw1VQcXu9y08jPHWf99EFmj=7GG0V4uuwbNK7c0A@mail.gmail.com>
+        Chris Brandt <Chris.Brandt@renesas.com>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
+Message-ID: <YMeBDfrVLZxSkVnL@pendragon.ideasonboard.com>
+References: <20210611113642.18457-1-biju.das.jz@bp.renesas.com>
+ <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
+ <CAMuHMdUQRHtVFhqmgi5EE2TNobspM3tNTP10gz-yPDJSK31ytA@mail.gmail.com>
+ <OS0PR01MB5922B2355864A98B14C6DE6D86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <YMdnzdCvX/ur9qVr@pendragon.ideasonboard.com>
+ <OS0PR01MB59227DFC38FD6CF6C568A90E86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAH=2Ntwkk4Hw1VQcXu9y08jPHWf99EFmj=7GG0V4uuwbNK7c0A@mail.gmail.com>
+In-Reply-To: <OS0PR01MB59227DFC38FD6CF6C568A90E86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 14 Jun 03:30 CDT 2021, Bhupesh Sharma wrote:
+Hi Biju,
 
-> Hi Bjorn,
-> 
-> On Fri, 11 Jun 2021 at 08:30, Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > On Mon 07 Jun 06:38 CDT 2021, Bhupesh Sharma wrote:
-> >
-> > > SA8155p-adp PMICs (PMM8155AU_1 and PMM8155AU_2) expose
-> > > the following PMIC GPIO blocks:
+On Mon, Jun 14, 2021 at 04:09:04PM +0000, Biju Das wrote:
+> > On Mon, Jun 14, 2021 at 12:54:02PM +0000, Biju Das wrote:
+> > > > On Fri, Jun 11, 2021 at 1:36 PM Biju Das wrote:
+> > > > > Document RZ/G2L DMAC bindings.
+> > > > >
+> > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Thanks for your patch!
+> > > >
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+> > > > > @@ -0,0 +1,132 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML
+> > > > > +1.2
+> > > > > +---
+> > > > > +$id:
+> > > > > +https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2F
+> > > > > +devi
+> > > > > +cetree.org%2Fschemas%2Fdma%2Frenesas%2Crz-dmac.yaml%23&amp;data=0
+> > > > > +4%7C
+> > > > > +01%7Cbiju.das.jz%40bp.renesas.com%7C4b547e10cbe64b6f4d8508d92f2da
+> > > > > +0c0%
+> > > > > +7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C637592695286846809%7
+> > > > > +CUnk
+> > > > > +nown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik
+> > > > > +1haW
+> > > > > +wiLCJXVCI6Mn0%3D%7C1000&amp;sdata=5Jh%2FxPaia5ZOY0CrViQCcrNtzuDej
+> > > > > +p8wo
+> > > > > +Nrx9iO0ht8%3D&amp;reserved=0
+> > > > > +$schema:
+> > > > > +https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2F
+> > > > > +devi
+> > > > > +cetree.org%2Fmeta-
+> > schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cbiju.das.
+> > > > > +jz%40bp.renesas.com%7C4b547e10cbe64b6f4d8508d92f2da0c0%7C53d82571
+> > > > > +da19
+> > > > > +47e49cb4625a166a4a2a%7C0%7C0%7C637592695286846809%7CUnknown%7CTWF
+> > > > > +pbGZ
+> > > > > +sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6
+> > > > > +Mn0%
+> > > > > +3D%7C1000&amp;sdata=5qQ1PljM3e4Bn4%2FjdldYUHRBQL3jArJgRIAdLnhJraw
+> > > > > +%3D&
+> > > > > +amp;reserved=0
+> > 
+> > *sigh*
+> > 
+> > > > > +
+> > > > > +title: Renesas RZ/G2L DMA Controller
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > > > > +
+> > > > > +allOf:
+> > > > > +  - $ref: "dma-controller.yaml#"
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    items:
+> > > > > +      - enum:
+> > > > > +          - renesas,dmac-r9a07g044  # RZ/G2{L,LC}
+> > > >
+> > > > Please use "renesas,r9a07g044-dmac".
 > > >
-> > > - PMM8155AU_1: gpio1-gpio10 (with holes on gpio2, gpio5, gpio7 and gpio8)
-> > > - PMM8155AU_2: gpio1-gpio10 (with holes on gpio2, gpio5, gpio7)
+> > > OK. Will change.
 > > >
-> > > Add support for the same in the pinctrl driver.
+> > > > > +      - const: renesas,rz-dmac
+> > > >
+> > > > Does this need many changes for RZ/A1H and RZ/A2M?
 > > >
-> > > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > > Cc: Liam Girdwood <lgirdwood@gmail.com>
-> > > Cc: Mark Brown <broonie@kernel.org>
-> > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > Cc: Vinod Koul <vkoul@kernel.org>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: Andy Gross <agross@kernel.org>
-> > > Cc: devicetree@vger.kernel.org
-> > > Cc: linux-kernel@vger.kernel.org
-> > > Cc: linux-gpio@vger.kernel.org
-> > > Cc: bhupesh.linux@gmail.com
-> > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > > ---
-> > >  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 4 ++++
-> > >  1 file changed, 4 insertions(+)
+> > > It will work on both RZ/A1H and RZ/A2M. I have n't tested since I don't have the board.
+> > > There is some difference in MID bit size. Other wise both identical.
 > > >
-> > > diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> > > index 00870da0c94e..890c44b6e198 100644
-> > > --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> > > +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-> > > @@ -1127,6 +1127,10 @@ static const struct of_device_id pmic_gpio_of_match[] = {
-> > >       { .compatible = "qcom,pm8150b-gpio", .data = (void *) 12 },
-> > >       /* pm8150l has 12 GPIOs with holes on 7 */
-> > >       { .compatible = "qcom,pm8150l-gpio", .data = (void *) 12 },
-> > > +     /* pmm8155au-1 has 10 GPIOs with holes on 2, 5, 7 and 8 */
-> > > +     { .compatible = "qcom,pmm8155au-1-gpio", .data = (void *) 10 },
-> >
-> > As noted in the binding, I think this should be "qcom,pmm8155au-gpio"
-> > and please skip the comment about the holes.
+> > > > > +  renesas,rz-dmac-slavecfg:
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > > > > +    description: |
+> > > > > +      DMA configuration for a slave channel. Each channel must
+> > > > > + have an array of
+> > > > > +      3 items as below.
+> > > > > +      first item in the array is MID+RID
+> > > >
+> > > > Already in dmas.
+> > > >
+> > > > > +      second item in the array is slave src or dst address
+> > > >
+> > > > As pointed out by Rob, already known by the slave driver.
+> > > >
+> > > > > +      third item in the array is channel configuration value.
+> > > >
+> > > > What exactly is this?
+> > 
+> > What would prevent the DMA client from passing the configuration to the
+> > DMA channel through the DMA engine API, just like it passes the slave
+> > source or destination address ?
 > 
-> Similar to what I noted in the binding patch review thread, the pmic
-> gpio holes seem different as per the downstream dtsi.
-> 
-> So, please let me know and if required, I can make the suggested change in v2.
-> 
+> On RZ/G2L, there is 1 case(SSIF ch2) where MID+RID is same for both tx and rx. 
+> The only way we can distinguish it is from channel configuration value.
 
-As noted in the binding, this really seems like software configuration.
-So we should deal with this in DT (e.g. by not referencing the gpios
-that Linux shouldn't touch), rather than the driver.
+Are those two different hardware DMA channels ? And configuration values
+change between the two ?
 
+> > > > Does the R-Car DMAC have this too? If yes, how does its driver
+> > > > handle it?
+> > >
+> > > On R-CAR DMAC, we have only MID + RID values. Where as here we
+> > > have channel configuration value With different set of parameter
+> > > as mentioned in Table 16.4.
+> > >
+> > > Please see Page 569, Table 16.4 On-Chip Module requests section.
+> > >
+> > > For eg:- as per Rob's suggestion, I have modelled the driver with
+> > > the below entries in ALSA driver for playback/record use case.
+> > >
+> > > dmas = <&dmac 0x255 0x10049c18 CH_CFG(0x1,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>,
+> > >        <&dmac 0x256 0x10049c1c
+> > > CH_CFG(0x0,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>;
+> > > dma-names = "tx", "rx";
+> > >
+> > > Using first parameter, it gets dmac channel. using second and third
+> > > parameter it configures the channel.
+
+-- 
 Regards,
-Bjorn
 
-> Thanks,
-> Bhupesh
-> 
-> > > +     /* pmm8155au-2 has 10 GPIOs with holes on 2, 5 and 7 */
-> > > +     { .compatible = "qcom,pmm8155au-2-gpio", .data = (void *) 10 },
-> > >       { .compatible = "qcom,pm8350-gpio", .data = (void *) 10 },
-> > >       { .compatible = "qcom,pm8350b-gpio", .data = (void *) 8 },
-> > >       { .compatible = "qcom,pm8350c-gpio", .data = (void *) 9 },
-> > > --
-> > > 2.31.1
-> > >
+Laurent Pinchart
