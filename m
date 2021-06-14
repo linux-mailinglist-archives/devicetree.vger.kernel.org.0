@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62F303A6A50
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:29:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A1A13A6A46
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233917AbhFNPa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 11:30:27 -0400
-Received: from mail-ed1-f50.google.com ([209.85.208.50]:34814 "EHLO
-        mail-ed1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234161AbhFNP3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:29:44 -0400
-Received: by mail-ed1-f50.google.com with SMTP id cb9so47102349edb.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:27:26 -0700 (PDT)
+        id S234052AbhFNPaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 11:30:03 -0400
+Received: from mail-ej1-f52.google.com ([209.85.218.52]:46893 "EHLO
+        mail-ej1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233834AbhFNP3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:29:30 -0400
+Received: by mail-ej1-f52.google.com with SMTP id he7so17154896ejc.13
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:27:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ItdhOlLXx3JOi7zN07qCOdZ3c1nyE8y5l8oq9hutsv0=;
-        b=yI4yALgEWTy3CBu4zybXmePaK0Irr8PujjGXw6TYJ8g2S6f7LTHcdofEQueilkHKKo
-         G2/KsrYCKNKWopLG+QzRyF4NmzThB/YptOd2eDwc6Q/XIjK4wMQYsL4wmTigbW6701nA
-         wOT4fnBux7WYf6i7R17e30/MBcUH35zVbzu7pW9XyxRRXrmyK8TsPQuue1tTnMPYPX1C
-         QdevJ/7x/Yk1M3qYjUWSydJJzB19yGiueZ/FYBgzDJuQh7QRQ7vAU0vbgZMCo/U4hsm/
-         R/xxuLtxDqusg3Rjc1+iYYz4yDxs6WHdpy3zAqoxDXVamx1PFZmQXRjb8wZl7q3Z1PHK
-         obGg==
+        bh=uIIPf/rVDazF1Cu6Pp5jF9Ix3WsprKigp0yGfmEr25U=;
+        b=iAz4f/xBbtkY3AYctaPRA8DB2vzul2OSrBZ90ROJrbwcyhd+AoP5wN0SfRlUJb1oTA
+         BcG3BAxb1HAxrdBNQCI6e6QWMxBsH7K9+HZz/D2GHWphtACjWBcQljUK1kc4v4F6iY9N
+         pK0mmaUChvFT3yKR+1lwHz3DXnhz34LG/OTKYBNZf/nVpR0mkXW/ZTwbV8v1sVN+aLK5
+         TuaRkquusM/plvRTfoHYlXNcedNjLadSjmR4DSHTxqbWEfKwU1dC+RNb1RDEEpZXYUmz
+         I5RlAeabNiQ+pp+9pXSQP/oWcSezfxiEXRiEi7n8AA9x4qGAPNzGI+zLMco4OVSSk3c5
+         ye6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=ItdhOlLXx3JOi7zN07qCOdZ3c1nyE8y5l8oq9hutsv0=;
-        b=Ow44gJvTvb/lk4tNM0j+APhGE4tEY3j5OnSOglSzugFgb27fbUmo1RLJci6Z4EYKi6
-         IjPMpbiAJJdKJ1D9+FSQbxJLJmf7vlEbOPnWZ5U3niOO4m6sOEvLeVQlRp7B1y1BW3Io
-         XBBQPw2QTaCkgFcC0StHQw0KqD91pzsg7oE9vYk/rbFcdM4N5GVevsGV2W/3ScnTdWa5
-         B4hV28dLZFE9+Ldc325bpLK2prRhQ0a/SY1NTMd8oxAej9cRQF5YQzL6cw3BYUEhUyla
-         XZMBTfMZF/f9O0iq4VIb4LGxKD6hy/4rYXCQT4ihnLOFEkcSi8pEOqVindl/btRu3y5Y
-         n1PA==
-X-Gm-Message-State: AOAM531vqAFgMeipG7ogujfHc3J7PcUWxm8zQMnz00S0KHeOzK05MGdA
-        WonrppJVOk8OuINPE23Fr/xqig==
-X-Google-Smtp-Source: ABdhPJwXMgd0HOfGW1YAhy1r6mITXytvHcWYCMD1SmvgIJnDCxLtxHkY2RifdY3QXmf6SPrT9yHSdw==
-X-Received: by 2002:a05:6402:2207:: with SMTP id cq7mr17985195edb.295.1623684385702;
-        Mon, 14 Jun 2021 08:26:25 -0700 (PDT)
+        bh=uIIPf/rVDazF1Cu6Pp5jF9Ix3WsprKigp0yGfmEr25U=;
+        b=teE3IkFc+muTbm1oOwiCNmucngbCFivuwbmUnQnG/6pNhQVXosdbbBagOy3cbxvL05
+         IAc08+2xugbdQJktXi8pSRH2PNetdSqIRpSSXySwVdXlEUna6BPE1M9c181ZXf9XXoJp
+         6Qg3pi/GGEHyB7fG1w8l0LGHPojnEVhAPS8yvgtwPJzrOP6ZYAZiOy9AAnnZB+mp4FEo
+         h+NtLNWCHqbc2v5Pis481fOBorc5aLhOIGLZ9vDJv29sqAoRmlWK+Q8iKo9xgMEw76N1
+         K8GXRI/n0Ez6F7Sg7CkrtHlmbFzWxxnGBor6C778W23NsT2t96zmKFu0/9VPgZw327KQ
+         WN/Q==
+X-Gm-Message-State: AOAM533Om5TU1jKBd4aIk+P9kwvOKC1ckDjzIsLqMo6LhSct87OtcRMl
+        6Szd6iIAcjVL4EOnQYi1TE1P+Q==
+X-Google-Smtp-Source: ABdhPJyxOgoYNEiSM6KdbKJLH1VaDNbu7OfZUgt6+tWaJUY/8p8L/YwWXA8RgxHoY5CRrOzWionDHw==
+X-Received: by 2002:a17:906:86d2:: with SMTP id j18mr15425424ejy.180.1623684387146;
+        Mon, 14 Jun 2021 08:26:27 -0700 (PDT)
 Received: from localhost ([2a02:768:2307:40d6:f666:9af6:3fed:e53b])
-        by smtp.gmail.com with ESMTPSA id f10sm9238427edx.60.2021.06.14.08.26.25
+        by smtp.gmail.com with ESMTPSA id kb20sm7631297ejc.58.2021.06.14.08.26.26
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 14 Jun 2021 08:26:25 -0700 (PDT)
+        Mon, 14 Jun 2021 08:26:26 -0700 (PDT)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com,
         Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Walle <michael@walle.cc>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 29/33] arm64: zynqmp: Remove description for 8T49N287 and si5382 chips
-Date:   Mon, 14 Jun 2021 17:25:37 +0200
-Message-Id: <7557288230567fa136ba3edc004d5bfe4f4c6590.1623684253.git.michal.simek@xilinx.com>
+Subject: [PATCH v2 30/33] arm64: zynqmp: Add support for zcu102-rev1.1 board
+Date:   Mon, 14 Jun 2021 17:25:38 +0200
+Message-Id: <38bbbeb885f4d9ba466c43ab9b4d25190a3552fb.1623684253.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <cover.1623684253.git.michal.simek@xilinx.com>
 References: <cover.1623684253.git.michal.simek@xilinx.com>
@@ -64,65 +66,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Based on commit 73d677e9f379 ("arm64: dts: zynqmp: Remove si5328 device
-nodes") also remove description for clock chips which don't have Linux
-driver yet.
+zcu102 rev1.1 compare to rev1.0 is using by default different DDR memory
+which requires different configuration. The reason for adding this file to
+Linux kernel is that U-Boot fdtfile variable is composed based on board
+revision (in eeprom) and dtb file should exist in standard distibutions for
+passing it to Linux kernel.
 
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
 Changes in v2: None
 
- arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts | 4 +---
- arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts | 4 +---
- arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts | 4 +---
- 3 files changed, 3 insertions(+), 9 deletions(-)
+ Documentation/devicetree/bindings/arm/xilinx.yaml |  1 +
+ arch/arm64/boot/dts/xilinx/Makefile               |  1 +
+ .../boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts      | 15 +++++++++++++++
+ 3 files changed, 17 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
-index 048df043b45c..86fff3632c7d 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
-@@ -160,9 +160,7 @@ i2c@1 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <1>;
--			clock_8t49n287: clock-generator@6c { /* 8T49N287 - u182 */
--				reg = <0x6c>;
--			};
-+			/* 8T49N287 - u182 */
- 		};
+diff --git a/Documentation/devicetree/bindings/arm/xilinx.yaml b/Documentation/devicetree/bindings/arm/xilinx.yaml
+index f52c7e8ce654..a0b1ae6e3e71 100644
+--- a/Documentation/devicetree/bindings/arm/xilinx.yaml
++++ b/Documentation/devicetree/bindings/arm/xilinx.yaml
+@@ -87,6 +87,7 @@ properties:
+               - xlnx,zynqmp-zcu102-revA
+               - xlnx,zynqmp-zcu102-revB
+               - xlnx,zynqmp-zcu102-rev1.0
++              - xlnx,zynqmp-zcu102-rev1.1
+           - const: xlnx,zynqmp-zcu102
+           - const: xlnx,zynqmp
  
- 		i2c@2 {
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-index c21d9612ce04..2a872d439804 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
-@@ -184,9 +184,7 @@ i2c@1 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <1>;
--			clock_8t49n287: clock-generator@6c { /* 8T49N287 - u182 */
--				reg = <0x6c>;
--			};
-+			/* 8T49N287 - u182 */
- 		};
- 
- 		i2c@2 {
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-index 4dc315ee91b7..dac5ba67a160 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
-@@ -475,9 +475,7 @@ i2c@4 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			reg = <4>;
--			si5382: clock-generator@69 { /* SI5382 - u48 */
--				reg = <0x69>;
--			};
-+			/* SI5382 - u48 */
- 		};
- 		i2c@5 {
- 			#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/Makefile b/arch/arm64/boot/dts/xilinx/Makefile
+index 11fb4fd3ebd4..083ed52337fd 100644
+--- a/arch/arm64/boot/dts/xilinx/Makefile
++++ b/arch/arm64/boot/dts/xilinx/Makefile
+@@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu100-revC.dtb
+ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-revA.dtb
+ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-revB.dtb
+ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-rev1.0.dtb
++dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu102-rev1.1.dtb
+ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revA.dtb
+ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revC.dtb
+ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu106-revA.dtb
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts
+new file mode 100644
+index 000000000000..b6798394fcf4
+--- /dev/null
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * dts file for Xilinx ZynqMP ZCU102 Rev1.1
++ *
++ * (C) Copyright 2016 - 2020, Xilinx, Inc.
++ *
++ * Michal Simek <michal.simek@xilinx.com>
++ */
++
++#include "zynqmp-zcu102-rev1.0.dts"
++
++/ {
++	model = "ZynqMP ZCU102 Rev1.1";
++	compatible = "xlnx,zynqmp-zcu102-rev1.1", "xlnx,zynqmp-zcu102", "xlnx,zynqmp";
++};
 -- 
 2.32.0
 
