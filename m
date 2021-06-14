@@ -2,155 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E7513A6BCC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:29:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D71063A6BD4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 18:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234702AbhFNQbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 12:31:47 -0400
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:42764 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234664AbhFNQbr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:31:47 -0400
-Received: by mail-ot1-f47.google.com with SMTP id w23-20020a9d5a970000b02903d0ef989477so11370371oth.9
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:29:44 -0700 (PDT)
+        id S234538AbhFNQdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 12:33:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55024 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234589AbhFNQdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 12:33:17 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C0FBC061767
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:30:57 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id d19so10917370oic.7
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 09:30:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=9CIY8AjuCRy8RieSStx5nb9rNTU57wmjgQb3HVjK27U=;
-        b=i663WzaVYh9vcq7ceJqDlWbmey3o6O+WEhi7etvgrLnxsxi8f9kgk9mEDBtlC4Piyy
-         7LteFPw1qcz5tkTdJK6vZi1eGrQ91DeQPPH4DWVoTFJ7lipp6uuWFs04mr4qJYjZkhC8
-         fDaF0llrx66733fzl44DMSzDRNRjYyaPVXt+hEmldEFM/I3fzU0FgcGx2g3i0dp8hdlb
-         Rd7qiOi8MEDfHAuuDyRhwywrohKyktaISRVuR1BVp3URCDxR6LUex6I09mb3eVb2rh0L
-         UUWgIKKRnYlVihuCna31RI/TsnF0ger4VBYtMDUjeRv0o6Urogy4ogDh+m8jnO3swO+3
-         t4Jw==
+        bh=M+AF+mCkpp4kl1lOa7pY3pKoyZ9EzI3bIOnjriCC7ec=;
+        b=jDHx4M/TAH39G2PaYBua5rrq7uf9nxNWz19BlA8WjwVFX7cjutzxxOlpLEPy3AiSEi
+         LPC7X6Hl5TvxU0Nmr8qonCWhylXaVmH+yZu9yQohe0hAt5wi2wqLb0ppa3TPHcYj4FPg
+         +xHCZ4ccLdQarlmppKqLZLzEWEpbbjMPJn/U6DL0QUdoyb2lgqqynCsp+RQoCc6U3Ljm
+         NDv9jHAXaCwyicXO72hYHY33mUJ5FWeyIlF6QrXbVAuUXwNiSmvB4OWJ0j7pYMynFqnr
+         +yYizd+bQihhOJOyAHOAJcsuUOZPX9jxxYyBzEu+XozZYF5RBTGt60ETgOBqfrmuWqSy
+         7EXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9CIY8AjuCRy8RieSStx5nb9rNTU57wmjgQb3HVjK27U=;
-        b=pHjA/te41HcYijMpvb810Jq3VB43mgbeWdokYKiRpMvTJw0oA+BKoVqxXJY006yIma
-         yW0FeS0hcdHSSUVStGRLlGJutSoSoLLU7YnvbQILI2mSu+bSPIUSaI/DbC6GdMrhlLEx
-         b3N5cG62WCwbDuF58PKLImPKVRCUcWbFw7L+K4nwaS1dlklkv+2A7uir+Lb3ngK9ACF3
-         QBCydfEPx3+VaHDIUwqPaTUAO932wvMcWtG4nU9Qyt5UEq/r9OAiJCB1mMvpIkJw/zAx
-         fiqrNBWcHywXE/Rdj/WEP3X4h80Hefrq5LjRNp3/HZ9FhtXeEmBppkhNndoQuUImoRUy
-         Zvjw==
-X-Gm-Message-State: AOAM5300UJZXw/2ymNbzVA/Bh/reyy6pVnSmgs4Dz6IeE6Lp1L9Z4KVB
-        2DD5xfTSyg/2Tx/ZUws5JteDrg==
-X-Google-Smtp-Source: ABdhPJwIXsrftnZxjGMjBdTiMtowSy+ltDxlxiwm7UMHVPBGyAbeWkXvt8Fplt0tpJ3QCoiJRkhHYg==
-X-Received: by 2002:a9d:491:: with SMTP id 17mr14139894otm.184.1623688124306;
-        Mon, 14 Jun 2021 09:28:44 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w186sm3058210oib.58.2021.06.14.09.28.43
+        bh=M+AF+mCkpp4kl1lOa7pY3pKoyZ9EzI3bIOnjriCC7ec=;
+        b=rASxXRXw9Jp0tPtXyr+C42D9AVFuZXGOzoeg6LHexzQKV6yvwJ179rrfNNhS5b+7i3
+         ePRCuwjujiy7MIA2lDjgtYbvVFFgPMq/iETbZ9vlSOseaDPtB29FwGXfTXAFf4DUc/jl
+         PMJmwFJwwAMXNADzZYvLapSaXA8++yYEkXpD/oNtpZlYcLMfjnXOmbVuj7VMmrBCG2gz
+         k86xzvbGU11aWw8jmMUdzCXfwVEwLytZsEzRLSluWu5dZI0b9yZIyxRjBMWO+J3ufRgB
+         EnrqhE/cz0mJodw/OrmZrneSEMI5wPIoU6RRk9p49ECeba//XvprAtGNRoGR2VWYG5Hb
+         n2NA==
+X-Gm-Message-State: AOAM532GRHWwZRJwFE3ib2130W4RycIAbHu6+OjGrnS7+CLiNTJ0E4jE
+        MmT8+lh84tuiT5MECCe851OYUA==
+X-Google-Smtp-Source: ABdhPJzjl6Cfpe9v4eOyRAmwGqbG4q5aSjdR3OUYr6L/+u6Z4Fx5DhToxlH/X+/0dbLsfpVtwKE0xA==
+X-Received: by 2002:a05:6808:b11:: with SMTP id s17mr10524824oij.62.1623688256779;
+        Mon, 14 Jun 2021 09:30:56 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id n7sm3122251oom.37.2021.06.14.09.30.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jun 2021 09:28:43 -0700 (PDT)
-Date:   Mon, 14 Jun 2021 11:28:41 -0500
+        Mon, 14 Jun 2021 09:30:56 -0700 (PDT)
+Date:   Mon, 14 Jun 2021 11:30:54 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        bhupesh.linux@gmail.com
-Subject: Re: [PATCH 1/8] dt-bindings: qcom: rpmh-regulator: Add compatible
- for SA8155p-adp board pmics
-Message-ID: <YMeDuToX+YG8CJEa@yoga>
-References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
- <20210607113840.15435-2-bhupesh.sharma@linaro.org>
- <YMLO56Rr7UGUy8vo@builder.lan>
- <CAH=2NtyV=qMn32d9nE7qBheTscUejF1UwVZSc99uiv_P65S03Q@mail.gmail.com>
+To:     sbhanu@codeaurora.org
+Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, asutoshd@codeaurora.org,
+        stummala@codeaurora.org, vbadigan@codeaurora.org,
+        rampraka@codeaurora.org, sayalil@codeaurora.org,
+        sartgarg@codeaurora.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, sibis@codeaurora.org,
+        okukatla@codeaurora.org, djakov@kernel.org, cang@codeaurora.org,
+        pragalla@codeaurora.org, nitirawa@codeaurora.org,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org
+Subject: Re: [PATCH V1] arm64: dts: qcom: sc7180: Added xo clock for eMMC and
+ Sd card
+Message-ID: <YMeEPg7EPC5E/MfW@builder.lan>
+References: <1623309107-27833-1-git-send-email-sbhanu@codeaurora.org>
+ <YMLm96edhIYOJF+E@builder.lan>
+ <1230be3c7f350b1f33110df2a9744e15@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAH=2NtyV=qMn32d9nE7qBheTscUejF1UwVZSc99uiv_P65S03Q@mail.gmail.com>
+In-Reply-To: <1230be3c7f350b1f33110df2a9744e15@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 14 Jun 03:05 CDT 2021, Bhupesh Sharma wrote:
+On Mon 14 Jun 06:55 CDT 2021, sbhanu@codeaurora.org wrote:
 
-> Hello Bjorn,
+> On 2021-06-11 10:00, Bjorn Andersson wrote:
+> > On Thu 10 Jun 02:11 CDT 2021, Shaik Sajida Bhanu wrote:
+> > 
+> > > Added xo clock for eMMC and Sd card.
+> > 
+> > Was about to push out my branch of patches, but before I do. Can you
+> > please describe WHY this is needed?
+> > 
+> > Regards,
+> > Bjorn
 > 
-> Thanks for the review comments.
-> 
-> On Fri, 11 Jun 2021 at 08:18, Bjorn Andersson
-> <bjorn.andersson@linaro.org> wrote:
-> >
-> > On Mon 07 Jun 06:38 CDT 2021, Bhupesh Sharma wrote:
-> >
-> > > Add compatible strings for pmm8155au_1 and pmm8155au_2 pmics
-> > > found on SA8155p-adp board.
-> > >
-> > > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > > Cc: Liam Girdwood <lgirdwood@gmail.com>
-> > > Cc: Mark Brown <broonie@kernel.org>
-> > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > Cc: Vinod Koul <vkoul@kernel.org>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: Andy Gross <agross@kernel.org>
-> > > Cc: devicetree@vger.kernel.org
-> > > Cc: linux-kernel@vger.kernel.org
-> > > Cc: linux-gpio@vger.kernel.org
-> > > Cc: bhupesh.linux@gmail.com
-> > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > > ---
-> > >  .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml      | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-> > > index e561a5b941e4..ea5cd71aa0c7 100644
-> > > --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-> > > +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
-> > > @@ -55,6 +55,8 @@ properties:
-> > >        - qcom,pm8009-1-rpmh-regulators
-> > >        - qcom,pm8150-rpmh-regulators
-> > >        - qcom,pm8150l-rpmh-regulators
-> > > +      - qcom,pmm8155au-1-rpmh-regulators
-> > > +      - qcom,pmm8155au-2-rpmh-regulators
-> >
-> > Looking at the component documentation and the schematics I think the
-> > component is "PMM8155AU" and we have two of them.
-> >
-> > Unless I'm mistaken we should have the compatible describe the single
-> > component and we should have DT describe the fact that we have 2 of
-> > them.
-> 
-> If we refer to the PM8155AU device specifications, there are two
-> regulators mentioned there PMM8155AU_1 and PMM8155AU_2. Although most
-> parameters of the regulators seem similar the smps regulator summary
-> for both appear different (Transient Load, mA ratings etc).
-> 
-> Although most of these differences don't probably matter to the Linux
-> world, others like the gpios on the pmic are different.
-> 
-> So, IMO, it makes sense to mention the different pmic types on the board.
-> 
-> Please let me know your views on the same.
+> We are making use of this clock in dll register value calculation,
+> The default PoR value is also same as calculated value for
+> HS200/HS400/SDR104 modes.
+> But just not to rely on default register values we need this entry.
 > 
 
-Afaict, they are both physically the same component, but there is some
-configuration differences between them. I don't see any differences that
-will show up in Linux, but afaict we would capture those in the DT
-anyways.
+That is the perfect thing to include in a commit message!
 
-Let me know if you see anything I'm missing, but I think we should have
-a single compatible.
+I rewrote yours and applied the change, but please next time do describe
+the "why" of your change.
 
 Regards,
 Bjorn
 
-> Thanks,
-> Bhupesh
-> 
-> >
-> > >        - qcom,pm8350-rpmh-regulators
-> > >        - qcom,pm8350c-rpmh-regulators
-> > >        - qcom,pm8998-rpmh-regulators
+> > 
+> > > 
+> > > Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sc7180.dtsi | 10 ++++++----
+> > >  1 file changed, 6 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > index 295844e..5bb6bd4 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > > @@ -701,8 +701,9 @@
+> > >  			interrupt-names = "hc_irq", "pwr_irq";
+> > > 
+> > >  			clocks = <&gcc GCC_SDCC1_APPS_CLK>,
+> > > -					<&gcc GCC_SDCC1_AHB_CLK>;
+> > > -			clock-names = "core", "iface";
+> > > +					<&gcc GCC_SDCC1_AHB_CLK>,
+> > > +					<&rpmhcc RPMH_CXO_CLK>;
+> > > +			clock-names = "core", "iface","xo";
+> > >  			interconnects = <&aggre1_noc MASTER_EMMC 0 &mc_virt SLAVE_EBI1 0>,
+> > >  					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_EMMC_CFG 0>;
+> > >  			interconnect-names = "sdhc-ddr","cpu-sdhc";
+> > > @@ -2666,8 +2667,9 @@
+> > >  			interrupt-names = "hc_irq", "pwr_irq";
+> > > 
+> > >  			clocks = <&gcc GCC_SDCC2_APPS_CLK>,
+> > > -					<&gcc GCC_SDCC2_AHB_CLK>;
+> > > -			clock-names = "core", "iface";
+> > > +					<&gcc GCC_SDCC2_AHB_CLK>,
+> > > +					<&rpmhcc RPMH_CXO_CLK>;
+> > > +			clock-names = "core", "iface", "xo";
+> > > 
+> > >  			interconnects = <&aggre1_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1
+> > > 0>,
+> > >  					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
 > > > --
-> > > 2.31.1
-> > >
+> > > QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a
+> > > member
+> > > of Code Aurora Forum, hosted by The Linux Foundation
+> > > 
