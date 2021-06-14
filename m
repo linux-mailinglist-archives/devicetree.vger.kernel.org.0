@@ -2,61 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2106A3A6A10
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:26:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68FE33A6A38
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233269AbhFNP2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 11:28:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40546 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233199AbhFNP2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:28:06 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E03C061283
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:26:03 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id b11so47056248edy.4
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:26:03 -0700 (PDT)
+        id S233829AbhFNP33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 11:29:29 -0400
+Received: from mail-ed1-f46.google.com ([209.85.208.46]:42975 "EHLO
+        mail-ed1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233843AbhFNP3H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:29:07 -0400
+Received: by mail-ed1-f46.google.com with SMTP id i13so47062014edb.9
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:27:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=1PJmBZf2G/3VuzRVB8MuhLk6fPYGXd52C/maYloIeUA=;
-        b=fKQ/35piKP8FwlgqjdA28gAS7WG1+WW8KfL5wxq293ZVo8oK6jg5OLs2TXdV57B36F
-         px6yUUMwPsm0eL8EVdLN4wDARQhkUFDaXX4lLWnv3IUSIpL3gy8myXWrGGZNri1N0oZO
-         dgONx9JxkSEClcPR8sGCZ2ZMgmf0OJjw6OLd4GGk5eVSFgqIWMXLdDdN+nNcFIMT2bdo
-         Mk95Vd5RetifJmy4o0FUh9lyRfuMh9CixZKVjjUf251AO3HfDASFh/sB8Se4Vcpx99B3
-         9GcO5K6X/XHKO2avrfOfEiZwccgiD2BjvPzL/ZrkF4RLxCF61IgB5Tcl76bRn+EAk+bB
-         PBbg==
+        bh=XnI5A9GyUFD9otKRwepb1rslDx5RUfQ5qLlRLVzPwBw=;
+        b=0hM6kT7o+SO+ssGW1xOlD3jMzAbZ1I+pc1zzcxeu73jJBZ2kkqfxxckl/Bzn1iXHqC
+         m2Mw+7EnFBlBqdb2QUHyj8zyo5esqnsX9BPQ5C7GRnG/Qh/appBNJyoBgUA/cMFx32o+
+         7oHvJuT0ZLZnDIPIZKS9QWEwPpvfhlHRWdPbEewkT6N3nGgsKus9fqO3kuGXt/xeEugs
+         3W4FRNFEldN9Xhk3XA/VlOaB7OEMaLNhbM+lea3NS2BF3fgyPletUiyqw6LaCeuqe6N9
+         kdWV/eQHf6vMFfgfrVZtR3CbwPJMQk1ONpEQVqi+1DezZ6L3khfv6QYCsdMQhi9N0nLi
+         VAUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=1PJmBZf2G/3VuzRVB8MuhLk6fPYGXd52C/maYloIeUA=;
-        b=HbjBPNt4peBorOeMh4NdiJ0/xKcXAZEqhDFd2UbXJa1grnjC1I/0dAx9KLURF9jdmS
-         rYiUQwaFBiW4+MeUdQtGUwVSsxEfJm6wTmjrbzKuaN2TzC4mw/Y5eibpqOGT4X/oR5tp
-         eRuedkZrN0aun5oTrIjxrCAz/mo7/kT7on3+rHklw4Qhx76gkgKnW3ssGq5rWVCgvS6g
-         M4Un5Gz7n1wgYOIw0k4CQKD6u0PpkaYhW1E26eA8nktnF24gn3M8ldF1IwoHWFPAA8hS
-         ty8VC5zrbahDLIpbOrrHN+5DRq4wQoInizVjBGttDuAC2fBMTh8vakOzA2D1uCrt5myg
-         42ag==
-X-Gm-Message-State: AOAM532mTQTizNGtauC7qN2GCThzqeZUG/GZvCU73YBh5IeQdF1hrHEp
-        vt5vjCafEMOaqkMg72iun/vA3A==
-X-Google-Smtp-Source: ABdhPJzkwewvDWdyQwvMoAGW7UYt0cSYOWDv+AsxY7k56dVo9nzTd3UgPQupKpyketYASP9JGP8YHg==
-X-Received: by 2002:a05:6402:487:: with SMTP id k7mr17432002edv.315.1623684362472;
-        Mon, 14 Jun 2021 08:26:02 -0700 (PDT)
+        bh=XnI5A9GyUFD9otKRwepb1rslDx5RUfQ5qLlRLVzPwBw=;
+        b=Hcn/NpTgWCoyVCdC+IOmc/szxuksUdsAwGOls5feVYj5OsGn4E3Ye7LPiUDYfvtfdL
+         INFP9+XWL28n3WQlYm1HZqSmnf90+Hjs5EYIgrGAWsQ/vHcGBvr12Is0rEKuPCretnwQ
+         nqtOvRtmOfP5jLG8PPKZXjJcaS9oreIL2JCsk7j4K++Twzt1mZ6W3oXlgLEsIwBuA66K
+         Pb6XCJK96IHSmNxoUukp7RYmIt3Apz9MhBGSgiE2OgYWYenauXP7i0tHa8zVwCy52o1v
+         hDQlS4KjHJjLDibEV1nKr0xjO8dKh07TmpcUagaACMVeanty+qCQJyRRoaRMuU3iWQyT
+         cHsg==
+X-Gm-Message-State: AOAM532iTXIRxssOvRiaSBR4C7S8E7h6P7RKR5adVuBvYoIsiAE2ZQqK
+        ypM5qsPDAYQ8dFxWu7qVRI6vyA==
+X-Google-Smtp-Source: ABdhPJxNRpTAKjuZVKnNUooU3IwKhhXvXyj+G2dUHKrVJ+GMlhx9Uk/ES2wPYpcV7teL4FmrPLKTDg==
+X-Received: by 2002:a05:6402:40c3:: with SMTP id z3mr17493467edb.187.1623684363874;
+        Mon, 14 Jun 2021 08:26:03 -0700 (PDT)
 Received: from localhost ([2a02:768:2307:40d6:f666:9af6:3fed:e53b])
-        by smtp.gmail.com with ESMTPSA id u21sm7444151ejm.89.2021.06.14.08.26.02
+        by smtp.gmail.com with ESMTPSA id h6sm9498068edj.91.2021.06.14.08.26.03
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 14 Jun 2021 08:26:02 -0700 (PDT)
+        Mon, 14 Jun 2021 08:26:03 -0700 (PDT)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com,
         Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+Cc:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 13/33] arm64: zynqmp: Wire DP and DPDMA for dc1/dc4
-Date:   Mon, 14 Jun 2021 17:25:21 +0200
-Message-Id: <dbbd212bcc587e835d6df2f91622f5baa124bff5.1623684253.git.michal.simek@xilinx.com>
+Subject: [PATCH v2 14/33] arm64: zynqmp: Enable nand driver for dc2 and dc3
+Date:   Mon, 14 Jun 2021 17:25:22 +0200
+Message-Id: <e103821bdb717132559e780f1a4f4f6fefc95688.1623684253.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <cover.1623684253.git.michal.simek@xilinx.com>
 References: <cover.1623684253.git.michal.simek@xilinx.com>
@@ -66,58 +64,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Display Port and Display Port DMA for zc1751 dc1 and dc4.
+Add description for nand devices on zc1751 dc2 and dc3 boards.
 
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
 Changes in v2: None
 
- arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts |  8 ++++++++
- arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts | 10 +++++++++-
- 2 files changed, 17 insertions(+), 1 deletion(-)
+ .../dts/xilinx/zynqmp-zc1751-xm016-dc2.dts    | 26 +++++++++++++++++++
+ .../dts/xilinx/zynqmp-zc1751-xm017-dc3.dts    |  9 ++++++-
+ 2 files changed, 34 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
-index dd129347174a..460aba6e7990 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
-@@ -391,3 +391,11 @@ &usb0 {
- 	phys = <&psgtr 2 PHY_TYPE_USB3 0 2>;
- 	maximum-speed = "super-speed";
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+index 1ac105a82e1b..4b4c19034fe1 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dts
+@@ -127,6 +127,32 @@ rtc@68 {
+ 	};
  };
-+
-+&zynqmp_dpdma {
+ 
++&nand0 {
 +	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_nand0_default>;
++	arasan,has-mdma;
++
++	nand@0 {
++		reg = <0x0>;
++		#address-cells = <0x2>;
++		#size-cells = <0x1>;
++		nand-ecc-mode = "soft";
++		nand-ecc-algo = "bch";
++		nand-rb = <0>;
++		label = "main-storage-0";
++	};
++	nand@1 {
++		reg = <0x1>;
++		#address-cells = <0x2>;
++		#size-cells = <0x1>;
++		nand-ecc-mode = "soft";
++		nand-ecc-algo = "bch";
++		nand-rb = <0>;
++		label = "main-storage-1";
++	};
 +};
 +
-+&zynqmp_dpsub {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
-index 2366cd9f091a..8046f0df0f35 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+ &pinctrl0 {
+ 	status = "okay";
+ 	pinctrl_can0_default: can0-default {
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
+index 4ea6ef5a7f2b..ba7f1f21c579 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dts
 @@ -2,7 +2,7 @@
  /*
-  * dts file for Xilinx ZynqMP zc1751-xm018-dc4
+  * dts file for Xilinx ZynqMP zc1751-xm017-dc3
   *
-- * (C) Copyright 2015 - 2019, Xilinx, Inc.
-+ * (C) Copyright 2015 - 2021, Xilinx, Inc.
+- * (C) Copyright 2016 - 2019, Xilinx, Inc.
++ * (C) Copyright 2016 - 2021, Xilinx, Inc.
   *
   * Michal Simek <michal.simek@xilinx.com>
   */
-@@ -176,3 +176,11 @@ &uart1 {
- &watchdog0 {
+@@ -107,6 +107,13 @@ &i2c1 {
+ 	clock-frequency = <400000>;
+ };
+ 
++/* MT29F64G08AECDBJ4-6 */
++&nand0 {
++	status = "okay";
++	arasan,has-mdma;
++	num-cs = <2>;
++};
++
+ &rtc {
  	status = "okay";
  };
-+
-+&zynqmp_dpdma {
-+	status = "okay";
-+};
-+
-+&zynqmp_dpsub {
-+	status = "okay";
-+};
 -- 
 2.32.0
 
