@@ -2,172 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F3403A667F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 14:26:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1479E3A66AC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 14:33:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233195AbhFNM2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 08:28:16 -0400
-Received: from comms.puri.sm ([159.203.221.185]:57366 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233076AbhFNM2M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 08:28:12 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 00B3CE0FEB;
-        Mon, 14 Jun 2021 05:25:39 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id AUCxcWaGoJwN; Mon, 14 Jun 2021 05:25:38 -0700 (PDT)
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     martin.kepplinger@puri.sm
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
-        laurent.pinchart@ideasonboard.com,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
-        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
-        shawnguo@kernel.org, slongerbeam@gmail.com
-Subject: [PATCH v4.1 3/3] arm64: dts: imx8mq: add mipi csi phy and csi bridge descriptions
-Date:   Mon, 14 Jun 2021 14:25:17 +0200
-Message-Id: <20210614122517.2945532-1-martin.kepplinger@puri.sm>
-In-Reply-To: <20210614121522.2944593-4-martin.kepplinger@puri.sm>
-References: <20210614121522.2944593-4-martin.kepplinger@puri.sm>
-Content-Transfer-Encoding: 8bit
+        id S233507AbhFNMfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 08:35:23 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:60160 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233040AbhFNMfV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 08:35:21 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15ECX0g1126397;
+        Mon, 14 Jun 2021 07:33:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623673980;
+        bh=K9aA0EEHDadNv3Gx8t1nVIU1t9/F1DE1N2f1aCytT/Y=;
+        h=Subject:CC:References:To:From:Date:In-Reply-To;
+        b=laiaxztoru0AR/pQx7GoqGtV31haRRB6fir93GR4p9T6bvgFkUxHCq0IptbY0to0V
+         35WMAu/x8KS5pU/Zfhkyj6QYZ/GyVT2fj3DCl4y8O18M+3KeDNSSvG3DsbYaKzfMhj
+         MWzLE+GUrkL3IJxFVJgzxZ8cs89wUv27dtlrqq3E=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15ECX0Es064241
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Jun 2021 07:33:00 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 14
+ Jun 2021 07:33:00 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 14 Jun 2021 07:33:00 -0500
+Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15ECWshU005055;
+        Mon, 14 Jun 2021 07:32:55 -0500
+Subject: Re: [PATCH v4 0/2] MCAN: Add support for implementing transceiver as
+ a phy
+CC:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <linux-can@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+References: <20210510052541.14168-1-a-govindraju@ti.com>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <2c5b76f7-8899-ab84-736b-790482764384@ti.com>
+Date:   Mon, 14 Jun 2021 18:02:53 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210510052541.14168-1-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the 2 available CSI interfaces on the i.MX8MQ with the MIPI-CSI2
-receiver and the CSI Bridge that provides the user buffers, where the
-existing driver can directly be used.
+Hi Marc,
 
-An image sensor is to be connected to the MIPIs' second port, described in
-board files.
+On 10/05/21 10:55 am, Aswath Govindraju wrote:
+> The following series of patches add support for implementing the
+> transceiver as a phy of m_can_platform driver.
+> 
+> TCAN1042 has a standby signal that needs to be pulled high for
+> sending/receiving messages[1]. TCAN1043 has a enable signal along with
+> standby signal that needs to be pulled up for sending/receiving
+> messages[2], and other combinations of the two lines can be used to put the
+> transceiver in different states to reduce power consumption. On boards
+> like the AM654-idk and J721e-evm these signals are controlled using gpios.
+> 
+> These gpios are set in phy driver, and the transceiver can be put in
+> different states using phy API. The phy driver is added in the series [3].
+> 
+> This patch series is dependent on [4].
+> 
 
-Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
----
+[4] is now part of linux-next
 
-sorry, the csi compatible addition suggested by Marco was missing in
-v4 3/3. here is 3/3 updated.
+May I know if this series is okay to be picked up ?
 
+Thanks,
+Aswath
 
-
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 102 ++++++++++++++++++++++
- 1 file changed, 102 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 91df9c5350ae..fa83e8294b20 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1099,6 +1099,108 @@ uart4: serial@30a60000 {
- 				status = "disabled";
- 			};
- 
-+			mipi_csi1: csi@30a70000 {
-+				compatible = "fsl,imx8mq-mipi-csi2";
-+				reg = <0x30a70000 0x1000>;
-+				clocks = <&clk IMX8MQ_CLK_CSI1_CORE>,
-+				   <&clk IMX8MQ_CLK_CSI1_ESC>,
-+				   <&clk IMX8MQ_CLK_CSI1_PHY_REF>,
-+				   <&clk IMX8MQ_CLK_CLKO2>;
-+				clock-names = "core", "esc", "pxl", "clko2";
-+				assigned-clocks = <&clk IMX8MQ_CLK_CSI1_CORE>,
-+				    <&clk IMX8MQ_CLK_CSI1_PHY_REF>,
-+				    <&clk IMX8MQ_CLK_CSI1_ESC>;
-+				assigned-clock-rates = <266000000>, <333000000>, <66000000>;
-+				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_266M>,
-+					<&clk IMX8MQ_SYS2_PLL_1000M>,
-+					<&clk IMX8MQ_SYS1_PLL_800M>;
-+				power-domains = <&pgc_mipi_csi1>;
-+				resets = <&src>;
-+				fsl,mipi-phy-gpr = <&iomuxc_gpr 0x88>;
-+				interconnects = <&noc IMX8MQ_ICM_CSI1 &noc IMX8MQ_ICS_DRAM>;
-+				interconnect-names = "dram";
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						csi1_mipi_ep: endpoint {
-+							remote-endpoint = <&csi1_ep>;
-+						};
-+					};
-+				};
-+			};
-+
-+			csi1: csi@30a90000 {
-+				compatible = "fsl,imx8mq-csi", "fsl,imx7-csi";
-+				reg = <0x30a90000 0x10000>;
-+				interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MQ_CLK_CSI1_ROOT>;
-+				clock-names = "mclk";
-+				status = "disabled";
-+
-+				port {
-+					csi1_ep: endpoint {
-+						remote-endpoint = <&csi1_mipi_ep>;
-+					};
-+				};
-+			};
-+
-+			mipi_csi2: csi@30b60000 {
-+				compatible = "fsl,imx8mq-mipi-csi2";
-+				reg = <0x30b60000 0x1000>;
-+				clocks = <&clk IMX8MQ_CLK_CSI2_CORE>,
-+				   <&clk IMX8MQ_CLK_CSI2_ESC>,
-+				   <&clk IMX8MQ_CLK_CSI2_PHY_REF>,
-+				   <&clk IMX8MQ_CLK_CLKO2>;
-+				clock-names = "core", "esc", "pxl", "clko2";
-+				assigned-clocks = <&clk IMX8MQ_CLK_CSI2_CORE>,
-+				    <&clk IMX8MQ_CLK_CSI2_PHY_REF>,
-+				    <&clk IMX8MQ_CLK_CSI2_ESC>;
-+				assigned-clock-rates = <266000000>, <333000000>, <66000000>;
-+				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_266M>,
-+					<&clk IMX8MQ_SYS2_PLL_1000M>,
-+					<&clk IMX8MQ_SYS1_PLL_800M>;
-+				power-domains = <&pgc_mipi_csi2>;
-+				resets = <&src>;
-+				fsl,mipi-phy-gpr = <&iomuxc_gpr 0xa4>;
-+				interconnects = <&noc IMX8MQ_ICM_CSI2 &noc IMX8MQ_ICS_DRAM>;
-+				interconnect-names = "dram";
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					port@0 {
-+						reg = <0>;
-+
-+						csi2_mipi_ep: endpoint {
-+							remote-endpoint = <&csi2_ep>;
-+						};
-+					};
-+				};
-+			};
-+
-+			csi2: csi@30b80000 {
-+				compatible = "fsl,imx8mq-csi", "fsl,imx7-csi";
-+				reg = <0x30b80000 0x10000>;
-+				interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clk IMX8MQ_CLK_CSI2_ROOT>;
-+				clock-names = "mclk";
-+				status = "disabled";
-+
-+				port {
-+					csi2_ep: endpoint {
-+						remote-endpoint = <&csi2_mipi_ep>;
-+					};
-+				};
-+			};
-+
- 			mu: mailbox@30aa0000 {
- 				compatible = "fsl,imx8mq-mu", "fsl,imx6sx-mu";
- 				reg = <0x30aa0000 0x10000>;
--- 
-2.30.2
-
+> changes since v3:
+> - Added phy_power_off() in case of an error in m_can_open().
+> 
+> changes since v2:
+> - changed dev_err to dev_err_probe in patch 2
+> - used mcan_class instead of priv to assign max bit rate
+> - Picked up  Rob Herring's acked-by for patch 1
+> 
+> changes since v1:
+> - Used the API devm_phy_get_optional() instead of
+>   devm_of_phy_get_optional_by_index()
+> 
+> [1] - https://www.ti.com/lit/ds/symlink/tcan1042h.pdf
+> [2] - https://www.ti.com/lit/ds/symlink/tcan1043-q1.pdf
+> [3] - https://lore.kernel.org/patchwork/project/lkml/list/?series=498359
+> [4] - https://lore.kernel.org/patchwork/patch/1413286/
+> 
+> Faiz Abbas (2):
+>   dt-bindings: net: can: Document transceiver implementation as phy
+>   can: m_can: Add support for transceiver as phy
+> 
+>  .../devicetree/bindings/net/can/bosch,m_can.yaml    |  3 +++
+>  drivers/net/can/m_can/m_can.c                       | 11 +++++++++++
+>  drivers/net/can/m_can/m_can.h                       |  2 ++
+>  drivers/net/can/m_can/m_can_platform.c              | 13 +++++++++++++
+>  4 files changed, 29 insertions(+)
