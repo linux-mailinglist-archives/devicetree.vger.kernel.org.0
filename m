@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBF893A6CBC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 19:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F32613A6CBA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 19:07:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234371AbhFNRJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 13:09:28 -0400
-Received: from ns.lynxeye.de ([87.118.118.114]:36324 "EHLO lynxeye.de"
+        id S231160AbhFNRJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 13:09:25 -0400
+Received: from ns.lynxeye.de ([87.118.118.114]:36315 "EHLO lynxeye.de"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233843AbhFNRJ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 13:09:28 -0400
+        id S233795AbhFNRJZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Jun 2021 13:09:25 -0400
 Received: by lynxeye.de (Postfix, from userid 501)
-        id 3FCFAE7424E; Mon, 14 Jun 2021 19:06:54 +0200 (CEST)
+        id 6F983E74217; Mon, 14 Jun 2021 19:06:51 +0200 (CEST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on lynxeye.de
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.9 required=3.0 tests=ALL_TRUSTED,BAYES_00
         autolearn=ham version=3.3.1
 Received: from astat.fritz.box (a89-183-116-43.net-htp.de [89.183.116.43])
-        by lynxeye.de (Postfix) with ESMTPA id A9768E74214;
-        Mon, 14 Jun 2021 19:06:46 +0200 (CEST)
+        by lynxeye.de (Postfix) with ESMTPA id 3E6A1E74217;
+        Mon, 14 Jun 2021 19:06:47 +0200 (CEST)
 From:   Lucas Stach <dev@lynxeye.de>
 To:     Shawn Guo <shawnguo@kernel.org>
 Cc:     Fabio Estevam <festevam@gmail.com>,
@@ -27,9 +27,9 @@ Cc:     Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         "Lukas F . Hartmann" <lukas@mntre.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-Subject: [PATCH v4 2/5] arm64: dts: imx8mq: add Nitrogen8 SoM
-Date:   Mon, 14 Jun 2021 19:06:30 +0200
-Message-Id: <20210614170633.31638-2-dev@lynxeye.de>
+Subject: [PATCH v4 3/5] dt-bindings: vendor-prefixes: add mntre
+Date:   Mon, 14 Jun 2021 19:06:31 +0200
+Message-Id: <20210614170633.31638-3-dev@lynxeye.de>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20210614170633.31638-1-dev@lynxeye.de>
 References: <20210614170633.31638-1-dev@lynxeye.de>
@@ -39,305 +39,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the description of the Nitrogen8 System on Module. The module
-is quite simple with only a few (almost) fixed regulators and a eMMC
-on-board.
+MNT Research GmbH develops open source hardware, software
+and textiles in Berlin, Germany.
 
 Signed-off-by: Lucas Stach <dev@lynxeye.de>
 Acked-by: Rob Herring <robh@kernel.org>
 ---
-v2:
-- remove 100/200MHz pinctrl states for usdhc1
-- rename i2c nodes
-v4:
-- enable eMMC high-speed modes, now that we can selectively disable
-  HS400 mode
----
- .../dts/freescale/imx8mq-nitrogen-som.dtsi    | 275 ++++++++++++++++++
- 1 file changed, 275 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi
-new file mode 100644
-index 000000000000..36fc428ebe30
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen-som.dtsi
-@@ -0,0 +1,275 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2018 Boundary Devices
-+ * Copyright 2021 Lucas Stach <dev@lynxeye.de>
-+ */
-+
-+#include "imx8mq.dtsi"
-+
-+/ {
-+	model = "Boundary Devices i.MX8MQ Nitrogen8M";
-+	compatible = "boundary,imx8mq-nitrogen8m-som", "fsl,imx8mq";
-+
-+	chosen {
-+		stdout-path = &uart1;
-+	};
-+
-+	reg_1p8v: regulator-fixed-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1P8V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	reg_snvs: regulator-fixed-snvs {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_SNVS";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+};
-+
-+&{/opp-table/opp-800000000} {
-+	opp-microvolt = <1000000>;
-+};
-+
-+&{/opp-table/opp-1000000000} {
-+	opp-microvolt = <1000000>;
-+};
-+
-+&A53_0 {
-+	cpu-supply = <&reg_arm_dram>;
-+};
-+
-+&A53_1 {
-+	cpu-supply = <&reg_arm_dram>;
-+};
-+
-+&A53_2 {
-+	cpu-supply = <&reg_arm_dram>;
-+};
-+
-+&A53_3 {
-+	cpu-supply = <&reg_arm_dram>;
-+};
-+
-+&fec1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_fec1>;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy0>;
-+	fsl,magic-packet;
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy0: ethernet-phy@4 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <4>;
-+			interrupt-parent = <&gpio1>;
-+			interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9546";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_i2c1_pca9546>;
-+		reg = <0x70>;
-+		reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c1a: i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			reg_arm_dram: regulator@60 {
-+				compatible = "fcs,fan53555";
-+				reg = <0x60>;
-+				regulator-name = "VDD_ARM_DRAM_1V";
-+				regulator-min-microvolt = <1000000>;
-+				regulator-max-microvolt = <1000000>;
-+				regulator-always-on;
-+			};
-+		};
-+
-+		i2c1b: i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			reg_dram_1p1v: regulator@60 {
-+				compatible = "fcs,fan53555";
-+				reg = <0x60>;
-+				regulator-name = "NVCC_DRAM_1P1V";
-+				regulator-min-microvolt = <1100000>;
-+				regulator-max-microvolt = <1100000>;
-+				regulator-always-on;
-+			};
-+		};
-+
-+		i2c1c: i2c@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			reg_soc_gpu_vpu: regulator@60 {
-+				compatible = "fcs,fan53555";
-+				reg = <0x60>;
-+				regulator-name = "VDD_SOC_GPU_VPU";
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-always-on;
-+			};
-+		};
-+
-+		i2c1d: i2c@3 {
-+			reg = <3>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+};
-+
-+&pgc_gpu {
-+	power-supply = <&reg_soc_gpu_vpu>;
-+};
-+
-+&pgc_vpu {
-+	power-supply = <&reg_soc_gpu_vpu>;
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&usdhc1 {
-+	assigned-clocks = <&clk IMX8MQ_CLK_USDHC1>;
-+	assigned-clock-rates = <400000000>;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-+	vqmmc-supply = <&reg_1p8v>;
-+	vmmc-supply = <&reg_snvs>;
-+	bus-width = <8>;
-+	non-removable;
-+	no-mmc-hs400;
-+	no-sdio;
-+	no-sd;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_fec1: fec1grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_ENET_MDC_ENET1_MDC			0x3
-+			MX8MQ_IOMUXC_ENET_MDIO_ENET1_MDIO		0x23
-+			MX8MQ_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-+			MX8MQ_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x1f
-+			MX8MQ_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x1f
-+			MX8MQ_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x1f
-+			MX8MQ_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x1f
-+			MX8MQ_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x1f
-+			MX8MQ_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
-+			MX8MQ_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91
-+			MX8MQ_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91
-+			MX8MQ_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91
-+			MX8MQ_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91
-+			MX8MQ_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91
-+			MX8MQ_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x19
-+			MX8MQ_IOMUXC_GPIO1_IO11_GPIO1_IO11		0x59
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_I2C1_SCL_I2C1_SCL			0x4000007f
-+			MX8MQ_IOMUXC_I2C1_SDA_I2C1_SDA			0x4000007f
-+		>;
-+	};
-+
-+	pinctrl_i2c1_pca9546: i2c1-pca9546grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_GPIO1_IO08_GPIO1_IO8		0x49
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x45
-+			MX8MQ_IOMUXC_UART1_TXD_UART1_DCE_TX		0x45
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x83
-+			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xc3
-+			MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xc3
-+			MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xc3
-+			MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xc3
-+			MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xc3
-+			MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xc3
-+			MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xc3
-+			MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xc3
-+			MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xc3
-+			MX8MQ_IOMUXC_SD1_RESET_B_USDHC1_RESET_B		0xc1
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x8d
-+			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xcd
-+			MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xcd
-+			MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xcd
-+			MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xcd
-+			MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xcd
-+			MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xcd
-+			MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xcd
-+			MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xcd
-+			MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xcd
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x9f
-+			MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xdf
-+			MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xdf
-+			MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xdf
-+			MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xdf
-+			MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xdf
-+			MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xdf
-+			MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xdf
-+			MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xdf
-+			MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xdf
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0xc6
-+		>;
-+	};
-+};
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index f6064d84a424..11f5fc5452cb 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -717,6 +717,8 @@ patternProperties:
+     description: MiraMEMS Sensing Technology Co., Ltd.
+   "^mitsubishi,.*":
+     description: Mitsubishi Electric Corporation
++  "^mntre,.*":
++    description: MNT Research GmbH
+   "^modtronix,.*":
+     description: Modtronix Engineering
+   "^mosaixtech,.*":
 -- 
 2.31.1
 
