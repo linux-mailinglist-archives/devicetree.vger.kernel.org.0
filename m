@@ -2,252 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61A2F3A6CBD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 19:07:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11CBE3A6CC9
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 19:09:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233843AbhFNRJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 13:09:29 -0400
-Received: from ns.lynxeye.de ([87.118.118.114]:36328 "EHLO lynxeye.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234056AbhFNRJ3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 13:09:29 -0400
-Received: by lynxeye.de (Postfix, from userid 501)
-        id 0DD3AE74225; Mon, 14 Jun 2021 19:06:54 +0200 (CEST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on lynxeye.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=3.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=ham version=3.3.1
-Received: from astat.fritz.box (a89-183-116-43.net-htp.de [89.183.116.43])
-        by lynxeye.de (Postfix) with ESMTPA id 575CAE7422A;
-        Mon, 14 Jun 2021 19:06:48 +0200 (CEST)
-From:   Lucas Stach <dev@lynxeye.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "Lukas F . Hartmann" <lukas@mntre.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-Subject: [PATCH v4 5/5] arm64: dts: imx8mq: add support for MNT Reform2
-Date:   Mon, 14 Jun 2021 19:06:33 +0200
-Message-Id: <20210614170633.31638-5-dev@lynxeye.de>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210614170633.31638-1-dev@lynxeye.de>
-References: <20210614170633.31638-1-dev@lynxeye.de>
+        id S235470AbhFNRL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 13:11:28 -0400
+Received: from foss.arm.com ([217.140.110.172]:41832 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235078AbhFNRL2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Jun 2021 13:11:28 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F066511D4;
+        Mon, 14 Jun 2021 10:09:24 -0700 (PDT)
+Received: from [10.57.9.136] (unknown [10.57.9.136])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 39EBF3F70D;
+        Mon, 14 Jun 2021 10:09:23 -0700 (PDT)
+Subject: Re: [PATCH 3/4] PHY: rockchip: USB2: Allow 64 bits reg property
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>, kishon@ti.com,
+        vkoul@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
+        pgwipeout@gmail.com
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20210614154359.805555-1-benjamin.gaignard@collabora.com>
+ <20210614154359.805555-4-benjamin.gaignard@collabora.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <19d8cb97-d715-eb5f-5b2c-0c273937fd00@arm.com>
+Date:   Mon, 14 Jun 2021 18:09:15 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210614154359.805555-4-benjamin.gaignard@collabora.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a basic devicetree for the MNT Reform2 DIY laptop. Not all
-of the board periperals are enabled yet, as some of them still require
-kernel patches to work properly. The nodes for those peripherals will
-be added as soon as the required patches are upstream.
+On 2021-06-14 16:43, Benjamin Gaignard wrote:
+> In rk356x device-tree "reg" property could be coded on 64 bits.
+> Change reg type and of_property_read_ to make it works.
 
-The following has been tested to work:
-- UART console
-- SD card
-- eMMC
-- Gigabit Ethernet
-- USB (internal Keyboard, Mouse, external ports)
-- M.2 PCIe port
+On platforms with #address-cells=1, this isn't going to do what you 
+think. Worse, it's not even going to fail, because you *can* read a 
+64-bit value from an address cell with a size cell after it...
 
-Co-developed-by: Lukas F. Hartmann <lukas@mntre.com>
-Signed-off-by: Lucas Stach <dev@lynxeye.de>
----
-v2: Fix checkpatch complaints.
-v3:
-- split out binding
-- move status to end of usb node property list
-- rename RTC node name to generic name
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx8mq-mnt-reform2.dts | 164 ++++++++++++++++++
- 2 files changed, 165 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
+Robin.
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 44890d56c194..e45c8f9c8912 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -54,6 +54,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r3.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-r4.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mq-mnt-reform2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-nitrogen.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-phanbell.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-pico-pi.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
-new file mode 100644
-index 000000000000..099b0472db5d
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-mnt-reform2.dts
-@@ -0,0 +1,164 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/*
-+ * Copyright 2019-2021 MNT Research GmbH
-+ * Copyright 2021 Lucas Stach <dev@lynxeye.de>
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mq-nitrogen-som.dtsi"
-+
-+/ {
-+	model = "MNT Reform 2";
-+	compatible = "mntre,reform2", "boundary,imx8mq-nitrogen8m-som", "fsl,imx8mq";
-+
-+	pcie1_refclk: clock-pcie1-refclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+	};
-+
-+	reg_main_5v: regulator-main-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_main_3v3: regulator-main-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reg_main_usb: regulator-main-usb {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB_PWR";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_main_5v>;
-+	};
-+};
-+
-+&fec1 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	rtc@68 {
-+		compatible = "nxp,pcf8523";
-+		reg = <0x68>;
-+	};
-+};
-+
-+&pcie1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcie1>;
-+	reset-gpio = <&gpio3 23 GPIO_ACTIVE_LOW>;
-+	clocks = <&clk IMX8MQ_CLK_PCIE2_ROOT>,
-+		 <&clk IMX8MQ_CLK_PCIE2_AUX>,
-+		 <&clk IMX8MQ_CLK_PCIE2_PHY>,
-+		 <&pcie1_refclk>;
-+	clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
-+	status = "okay";
-+};
-+
-+&reg_1p8v {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_snvs {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_arm_dram {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_dram_1p1v {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&reg_soc_gpu_vpu {
-+	vin-supply = <&reg_main_5v>;
-+};
-+
-+&snvs_rtc {
-+	status = "disabled";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&usb3_phy0 {
-+	vbus-supply = <&reg_main_usb>;
-+	status = "okay";
-+};
-+
-+&usb3_phy1 {
-+	vbus-supply = <&reg_main_usb>;
-+	status = "okay";
-+};
-+
-+&usb_dwc3_0 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usb_dwc3_1 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usdhc2 {
-+	assigned-clocks = <&clk IMX8MQ_CLK_USDHC2>;
-+	assigned-clock-rates = <200000000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	vqmmc-supply = <&reg_main_3v3>;
-+	vmmc-supply = <&reg_main_3v3>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_I2C3_SCL_I2C3_SCL			0x4000007f
-+			MX8MQ_IOMUXC_I2C3_SDA_I2C3_SDA			0x4000007f
-+		>;
-+	};
-+
-+	pinctrl_pcie1: pcie1grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_SAI5_RXD2_GPIO3_IO23		0x16
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_UART2_RXD_UART2_DCE_RX		0x45
-+			MX8MQ_IOMUXC_UART2_TXD_UART2_DCE_TX		0x45
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x83
-+			MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xc3
-+			MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xc3
-+			MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xc3
-+			MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xc3
-+			MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xc3
-+		>;
-+	};
-+};
--- 
-2.31.1
-
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+> ---
+>   drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> index 46ebdb1460a3d..45518f96d7217 100644
+> --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
+> @@ -1068,7 +1068,7 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
+>   	struct rockchip_usb2phy *rphy;
+>   	const struct rockchip_usb2phy_cfg *phy_cfgs;
+>   	const struct of_device_id *match;
+> -	unsigned int reg;
+> +	u64 reg;
+>   	int index, ret;
+>   
+>   	rphy = devm_kzalloc(dev, sizeof(*rphy), GFP_KERNEL);
+> @@ -1098,7 +1098,7 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
+>   		rphy->usbgrf = NULL;
+>   	}
+>   
+> -	if (of_property_read_u32(np, "reg", &reg)) {
+> +	if (of_property_read_u64(np, "reg", &reg)) {
+>   		dev_err(dev, "the reg property is not assigned in %pOFn node\n",
+>   			np);
+>   		return -EINVAL;
+> 
