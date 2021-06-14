@@ -2,146 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C09E23A698C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:04:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8656F3A6A0C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 17:26:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233245AbhFNPGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 11:06:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35694 "EHLO
+        id S233427AbhFNP2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 11:28:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232869AbhFNPGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:06:32 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E30CC061574;
-        Mon, 14 Jun 2021 08:04:15 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id r14so20505536ljd.10;
-        Mon, 14 Jun 2021 08:04:14 -0700 (PDT)
+        with ESMTP id S233358AbhFNP2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 11:28:01 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13CB6C061574
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:25:45 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id i13so47060505edb.9
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 08:25:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=amLIRuKnX8etVBSiINMJCmDXT6ZlQpwL3htcwT0iYfw=;
-        b=HqNjQ+tMbZJq5JAwtGeHbUE3rr52qEq/eM/9wyt39c/Oi45aL+/qQ2BV6XglFCeAOc
-         41sv5B+PJ0ZvQqdOdZP4byrqsI61Po7CIz47VUnyMyU8f9aaun2VfrB6Zj4hb2UHkOkH
-         +NwNTv0CqYoPnkVLpgXYaZxxdY511dBFMGhgqg/+nuKquX3QOn0tkiFqBVi+nij+5OxU
-         lCgmvm62M1hfH8K5PmifI8NxKoM9qPEZDPfNJEpRS2TNwCteVvE5klB4WTKVf3nzI8Y2
-         B3rgFvtNw6PAlN4lGELO6SMEFwfaITgmfDaNMd2zFwAuEtVOPLVJBEpWklxyL4LTxZzM
-         BKwg==
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/nehZ9ZydCeKRlg2vLMvpSD+mPjakFShT0YfQBkuj6g=;
+        b=SyUFhvvdXA5IU2Upo7nw9c2GbDMy0RJ4qm0pXO6PNRMOaOUcJyHWEjX0L8z2kfm8Ft
+         o3nYSYOpBmBRnU+CNEPfT70MT1DXm5X2i1MM+bK5Xw9y+HzXKDn/b83jTpLBaOSg6N85
+         Q2g2A+j+x2wA+VHmmMG5WYLfpkwshCvvcGtZrF+vQ9cZ8MbL2PH8hZErAuUPIUfwEGVY
+         MqQDs9RKwY0ByxFNPYAZkipCHIC6oGYUHGPXMgrIsWsfQKEAZ/VG+fed4juUpBlNYHym
+         ocLhwmyNmK5Hx//iCty7p4t4UZGqz+6sqQL5cQ8pPqTpKMJGXCfjmtodqsXlRYkdKRqN
+         o1Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=amLIRuKnX8etVBSiINMJCmDXT6ZlQpwL3htcwT0iYfw=;
-        b=mETNk4H5RC9htRIxfCK/RX5ckr6jY8n0EqgBg4jszzQKj7O4kzlKzJg9H6Gp+rQ222
-         k201r403sf8j2nZfwBKoknHliFWbaWu7YHrf3+ghLRJ9snihvpY3gbeazHD2WjlSpUNg
-         R0teNpH1OfzpqlCL6ghU8Hk871fKvpLtfIid3INrnRw9pgDL94Ss+c3VzkUh9VP2EZS8
-         HbxIbaoicxsWTR1kCwM3kAecO+d7UtNwpfZJrhppOPnXD5546K1xN59PHJaM83ksesy7
-         7heCE8tuBupdiywDCWgkTWv8R9KR1IMbRIi7oA9XC/xzidB7ZND6gLagPNl7Eup5jSEc
-         zPxg==
-X-Gm-Message-State: AOAM530tnZgR9pXGTRk+MlA0h87BRC5heTnaysoIP7FCzZZ1Xn5G7Av0
-        Rl4AkLZuCnIGQzrEHjq9urW4luEDlRWw7GR3pOg=
-X-Google-Smtp-Source: ABdhPJxHddSXn7MQEp2UzCg15YgRi/rclsfAe5DXKS289hueqMrow1G88LUOOdzToY/PLKHRHzJnJCnx8KUSm8YacgE=
-X-Received: by 2002:a2e:2f03:: with SMTP id v3mr13547128ljv.168.1623683053157;
- Mon, 14 Jun 2021 08:04:13 -0700 (PDT)
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=/nehZ9ZydCeKRlg2vLMvpSD+mPjakFShT0YfQBkuj6g=;
+        b=oeE+Fnatcdcn6yqntYA7rq7RHDy8WOMVpSIlLdvwulOScLtSqSxDGHJGFw3o7F57/L
+         yeXWS7KE5rGhE22TT8lWtRNSDZ6qyhulYBs5ow1wyXw0e/9imBlZY0ABQ7qyBBcO3gLl
+         BYSMgkC3F3K6TU/wd0mnScvjgWimH8gJcs7XLhPoi4qK/qOG8ohvxWpIrMpMTcLjTGA/
+         CNnsSVDDHvFJttPZKub08IMtubFJgPKi4BQUb36SztO3d2tR3FufgrQ7rzlA7NPDZU1Z
+         wwrzZ00mLr3JfmyRgMEklSUtviDkqZVUprccOdlca9kaWnymLBIgrAZKX2YRcu8u4kTw
+         bCNA==
+X-Gm-Message-State: AOAM530Fr7yqrlmH2oqcLVrB7B0m810V54CpWjXJ9VuOCDsBr3Stdb0L
+        T9H69rpUHRDXArECXme4BZBiCg==
+X-Google-Smtp-Source: ABdhPJx8d1jB0oSwGE1d6HGo3Lch6J0bEAK0D7Buf2I3djlLebylfDqcpCQzNAFVPE00D0ZhEyDv+g==
+X-Received: by 2002:aa7:c705:: with SMTP id i5mr17983480edq.222.1623684343570;
+        Mon, 14 Jun 2021 08:25:43 -0700 (PDT)
+Received: from localhost ([2a02:768:2307:40d6:f666:9af6:3fed:e53b])
+        by smtp.gmail.com with ESMTPSA id f18sm4697907edu.5.2021.06.14.08.25.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 14 Jun 2021 08:25:42 -0700 (PDT)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michael Walle <michael@walle.cc>,
+        Quanyang Wang <quanyang.wang@windriver.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 00/33] arm64: zynqmp: Extend board description
+Date:   Mon, 14 Jun 2021 17:25:08 +0200
+Message-Id: <cover.1623684253.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <1622616875-22740-1-git-send-email-u0084500@gmail.com> <20210611201643.GA1583875@robh.at.kernel.org>
-In-Reply-To: <20210611201643.GA1583875@robh.at.kernel.org>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Mon, 14 Jun 2021 23:04:01 +0800
-Message-ID: <CADiBU39Prz99ZLtkYdcM9XDQsd0nKKeiEGjW3wq=u75JGjwX=g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] regulator: mt6360: Add optional mediatek.power-off-sequence
- in bindings document
-To:     Rob Herring <robh@kernel.org>
-Cc:     lgirdwood@gmail.com, Mark Brown <broonie@kernel.org>,
-        matthias.bgg@gmail.com, gene_chen@richtek.com,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, cy_huang <cy_huang@richtek.com>,
-        gene.chen.richtek@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rob:
+Hi,
 
-Rob Herring <robh@kernel.org> =E6=96=BC 2021=E5=B9=B46=E6=9C=8812=E6=97=A5 =
-=E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=884:16=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Wed, Jun 02, 2021 at 02:54:34PM +0800, cy_huang wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > Add optional mediatek.power-off-sequence in bindings document.
-> >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> > Hi,
-> >
-> > Originally, we think it must write in platform dependent code like as b=
-ootloader.
-> > But after the evaluation, it must write only when system normal HALT or=
- POWER_OFF.
-> > For the other cases, just follow HW immediate off by default.
->
-> Wouldn't this be handled by PSCI implementation?
-No, the current application default on powers buck1/buck2/ldo7/ldo6
-are for Dram power.
-It's not the soc core power. It seems not appropriate  to implement
-like as PSCI.
-MT6360 play the role for the subpmic in the SOC application reference desig=
-n.
->
-> > ---
-> >  .../devicetree/bindings/regulator/mt6360-regulator.yaml       | 11 +++=
-++++++++
-> >  1 file changed, 11 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/regulator/mt6360-regulat=
-or.yaml b/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
-> > index a462d99..eaf36e2 100644
-> > --- a/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
-> > +++ b/Documentation/devicetree/bindings/regulator/mt6360-regulator.yaml
-> > @@ -24,6 +24,16 @@ properties:
-> >    LDO_VIN3-supply:
-> >      description: Input supply phandle(s) for LDO6/7
-> >
-> > +  mediatek,power-off-sequence:
-> > +    description: |
-> > +      Power off sequence time selection for BUCK1/BUCK2/LDO7/LDO6, res=
-petively.
-> > +      Cause these regulators are all default-on power. Each value from=
- 0 to 63,
-> > +      and step is 1. Each step means 2 millisecond delay.
-> > +      Therefore, the power off sequence delay time range is from 0ms t=
-o 126ms.
-> > +    $ref: "/schemas/types.yaml#/definitions/uint8-array"
-> > +    minItems: 4
-> > +    maxItems: 4
->
-> So this is the delay between BUCK1 and BUCK2, then BUCK2 to LDO7, etcc?
-No. you may misunderstand. there's an external 'Enable' pin that's
-connected to the main pmic.
-The starting point of delay time are all from  the external 'Enable' H to L=
-.
-Not one-by-one delay time,
-> If we wanted to express this in DT, we'd made this generic which would
-> need to be more flexible. A poweroff delay in each regulator (similar to
-> the existing power on delay) would be sufficient for what you need I
-> think.
-Power on sequence already defined by the part number, It's not decided by S=
-W.
-So for the flexibility, I implement it in DT.
+over years couple of drivers were upstream and it is time to sync it up.
+On the top of it also adding new Kria boards which are using new overlay
+infrastructure which check if that overlays can be applied to base DT file.
 
-Duel to there're many part number MT6360 P/UP/LP, etc.
-The difference are the power on sequence.
+Thanks,
+Michal
 
-Do you have any suggestion about this situation?
+Changes in v2:
+- Add reviewed-by from Laurent
+- New patch in the series
+- New patch in the series
+- Use sugar syntax - reported by Geert
+- Update copyright years
+- Fix SD3.0 comment alignment
+- Remove one newline from Makefile
 
-PS: Due to DRAM power usage , sometimes it also need to customized by
-the DRAM that customer choosed.
-It may differ from external DRAM part choosen following by JEDEC spec.
->
-> Rob
+Amit Kumar Mahapatra (1):
+  arm64: zynqmp: Do not duplicate flash partition label property
+
+Michal Simek (29):
+  arm64: zynqmp: Disable CCI by default
+  arm64: zynqmp: Enable fpd_dma for zcu104 platforms
+  arm64: zynqmp: Fix irps5401 device nodes
+  arm64: zynqmp: Add pinctrl description for all boards
+  arm64: zynqmp: Correct zcu111 psgtr description
+  arm64: zynqmp: Wire psgtr for zc1751-xm015
+  arm64: zynqmp: Correct psgtr description for zcu100-revC
+  arm64: zynqmp: Add phy description for usb3.0
+  arm64: zynqmp: Disable WP on zcu111
+  arm64: zynqmp: Add missing mio-bank properties to dc1 and dc5
+  arm64: zynqmp: Wire DP and DPDMA for dc1/dc4
+  arm64: zynqmp: Enable nand driver for dc2 and dc3
+  arm64: zynqmp: Remove additional newline
+  arm64: zynqmp: Move clock node to zynqmp-clk-ccf.dtsi
+  arm64: zynqmp: Add nvmem alises for eeproms
+  arm64: zynqmp: List reset property for ethernet phy
+  arm64: zynqmp: Remove can aliases from zc1751
+  arm64: zynqmp: Move DP nodes to the end of file on zcu106
+  arm64: zynqmp: Add note about UHS mode on some boards
+  arm64: zynqmp: Remove information about dma clock on zcu106
+  arm64: zynqmp: Wire qspi on multiple boards
+  arm64: zynqmp: Move rtc to different location on zcu104-revA
+  arm64: zynqmp: Add reset description for sata
+  arm64: zynqmp: Sync psgtr node location with zcu104-revA
+  arm64: zynqmp: Remove description for 8T49N287 and si5382 chips
+  arm64: zynqmp: Add support for zcu102-rev1.1 board
+  arm64: zynqmp: Enable xlnx,zynqmp-dwc3 driver for xilinx boards
+  arm64: zynqmp: Add psgtr description to zc1751 dc1 board
+  arm64: zynqmp: Add support for Xilinx Kria SOM board
+
+Mounika Grace Akula (1):
+  arm64: zynqmp: Add reset-on-timeout to all boards and modify default
+    timeout value
+
+Srinivas Neeli (1):
+  arm64: zynqmp: Update rtc calibration value
+
+Stefano Stabellini (1):
+  arm64: zynqmp: Add missing SMID for pcie to zynqmp.dtsi
+
+ .../devicetree/bindings/arm/xilinx.yaml       |  32 ++
+ arch/arm64/boot/dts/xilinx/Makefile           |  11 +
+ .../arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  13 +-
+ .../boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts  | 335 +++++++++++++++++
+ .../boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts  | 318 ++++++++++++++++
+ .../boot/dts/xilinx/zynqmp-sm-k26-revA.dts    | 289 +++++++++++++++
+ .../boot/dts/xilinx/zynqmp-smk-k26-revA.dts   |  21 ++
+ .../boot/dts/xilinx/zynqmp-zc1232-revA.dts    |  16 +-
+ .../boot/dts/xilinx/zynqmp-zc1254-revA.dts    |  16 +-
+ .../dts/xilinx/zynqmp-zc1751-xm015-dc1.dts    | 298 ++++++++++++++-
+ .../dts/xilinx/zynqmp-zc1751-xm016-dc2.dts    | 342 +++++++++++++++++-
+ .../dts/xilinx/zynqmp-zc1751-xm017-dc3.dts    |  23 +-
+ .../dts/xilinx/zynqmp-zc1751-xm018-dc4.dts    |  24 +-
+ .../dts/xilinx/zynqmp-zc1751-xm019-dc5.dts    | 330 ++++++++++++++++-
+ .../boot/dts/xilinx/zynqmp-zcu100-revC.dts    | 264 +++++++++++++-
+ .../boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts  |  15 +
+ .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    | 321 +++++++++++++++-
+ .../boot/dts/xilinx/zynqmp-zcu102-revB.dts    |   3 +-
+ .../boot/dts/xilinx/zynqmp-zcu104-revA.dts    | 292 ++++++++++++++-
+ .../boot/dts/xilinx/zynqmp-zcu104-revC.dts    | 250 ++++++++++++-
+ .../boot/dts/xilinx/zynqmp-zcu106-revA.dts    | 341 ++++++++++++++++-
+ .../boot/dts/xilinx/zynqmp-zcu111-revA.dts    | 275 +++++++++++++-
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  99 +++--
+ 23 files changed, 3833 insertions(+), 95 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
+ create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts
+ create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+ create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts
+ create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts
+
+-- 
+2.32.0
+
