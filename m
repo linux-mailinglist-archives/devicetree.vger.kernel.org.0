@@ -2,162 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55A553A5AAF
-	for <lists+devicetree@lfdr.de>; Sun, 13 Jun 2021 23:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8193F3A5C47
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 06:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232147AbhFMVqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Jun 2021 17:46:45 -0400
-Received: from mail-pg1-f174.google.com ([209.85.215.174]:38809 "EHLO
-        mail-pg1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232020AbhFMVqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Jun 2021 17:46:44 -0400
-Received: by mail-pg1-f174.google.com with SMTP id t17so7106185pga.5
-        for <devicetree@vger.kernel.org>; Sun, 13 Jun 2021 14:44:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=F4FYr9FDMOpvwo3Zr3hfKXs3t7amppDGZQ7mivsffqA=;
-        b=TH0/0eKS4H6Ui936WKWhp7XjjY1XT2YWMJ80xz8p3SQWgtVyHwKkcOZRlAAiAvP4NV
-         nAz5sNz03gsSLLX7yFtqyXqZtQ/XGEu9167mSpjbj82O40LQWepesux0yk4up+cOsAa+
-         mLen7TPkfzbPmy83wwYg29MRCah5Y8k0lbPBlEAp+9dnmcE9/1YM0IxLYbXHuRpZMP5Q
-         WuVvNQDGt/5fNlYHTI236iDTFW2jD+jXFpJoe3pV4GnQPPshffPaxHzJT3YY2+lMr9tI
-         F5rLAVw0e40gX+C3CZ4ZAUbWwdmiimrXLI6ZoAERiCcC2y9dMWyCZBAQBY3JkIXV8RnZ
-         xlKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=F4FYr9FDMOpvwo3Zr3hfKXs3t7amppDGZQ7mivsffqA=;
-        b=Yc+9eCX0dV+uA4YkZadWy7Eo+zcne35A8GxxSIscoSumYowxzP8h+9dNBk8QUhByEP
-         oHceZg7HDpmjKk8Gx19IcCdSHHpPyPNrC3jAy5sUYZX2A8jUhys7kRmk51Q/mq867iGU
-         fo8rkijG1SRcqzds9nXR3syH5oF6H3ZMEoLGAwyJgdviDV2IM26TpeovLs+dxI2Twyam
-         rO+ugLeovtyZjwM93r7uequfRQpf82ExKlng1yEHEhfgFN7S1pe8UT9MXu9Ou46Hg06T
-         gaZvIbyV/5ftEOPfpzXMtFKULhqFOFHbPD9aRDugQ6DjLCn95qId8GEQ0huLjX/jgJQA
-         p4Lg==
-X-Gm-Message-State: AOAM532Ma4KDJWCaBZkh/mmS9AB2QEUgUpDN5oQDuD1xASgzEqxcyTy4
-        0uzlzaShaSKK25jbwR+ta2XH
-X-Google-Smtp-Source: ABdhPJzPRCfWhO+6To0aOkO3oRK33VeKw3NdpVVaElBJxQWRhZ11AI2176yVIa3vwrqMB1jbpu/fSg==
-X-Received: by 2002:a63:d455:: with SMTP id i21mr14200610pgj.263.1623620606663;
-        Sun, 13 Jun 2021 14:43:26 -0700 (PDT)
-Received: from localhost ([2405:6581:5360:1800:7285:c2ff:fec2:8f97])
-        by smtp.gmail.com with ESMTPSA id u1sm10730938pfu.160.2021.06.13.14.43.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Jun 2021 14:43:26 -0700 (PDT)
-From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-To:     robh+dt@kernel.org, broonie@kernel.org, michal.simek@xilinx.com
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH] dt-bindings: spi: convert Xilinx Zynq UltraScale+ MPSoC GQSPI bindings to YAML
-Date:   Mon, 14 Jun 2021 06:43:17 +0900
-Message-Id: <20210613214317.296667-1-iwamatsu@nigauri.org>
-X-Mailer: git-send-email 2.32.0
+        id S232245AbhFNEvN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 00:51:13 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56582 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232397AbhFNEvM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 00:51:12 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15E4n3FD096428;
+        Sun, 13 Jun 2021 23:49:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623646143;
+        bh=l0Dp6sAEeHHHEtSDphW6ZwsASXVOpwcEUsPl5t6puTQ=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=wEiNU64ib9qKHZBUseePp1U0Xnvif42LDtvbCFPrFpge5A1oRd8OQvUAj79G4oyvx
+         LkZ4KuYlISfqYXktxbpXMIp5H2AsWDh6rB31MV3pRHtRZQ568IrX7IyPJlCEH4w0DN
+         GnUVAA+HFHlS16cAdqOIPldZYLXwDPQZH1uZDP4A=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15E4n3FF046083
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 13 Jun 2021 23:49:03 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Sun, 13
+ Jun 2021 23:49:03 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Sun, 13 Jun 2021 23:49:03 -0500
+Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15E4mxZk053498;
+        Sun, 13 Jun 2021 23:49:00 -0500
+Subject: Re: [PATCH] arm64: dts: ti: k3-am64-main: Add SYSFW reserved ranges
+ in OCRAM
+To:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+References: <20210609140604.9490-1-vigneshr@ti.com>
+ <20210611191640.lczsliyzasjie6lm@dismantle>
+ <84e5865f-e107-f0e1-ca8b-b6bd655e92e6@ti.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <36ff3c65-2f5e-2997-9fb5-a5e8d3230a75@ti.com>
+Date:   Mon, 14 Jun 2021 10:18:57 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <84e5865f-e107-f0e1-ca8b-b6bd655e92e6@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert spi for Xilinx Zynq UltraScale+ MPSoC GQSPI bindings
-documentation to YAML.
+Hi Vignesh,
 
-Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
----
- .../bindings/spi/spi-zynqmp-qspi.txt          | 25 ---------
- .../bindings/spi/spi-zynqmp-qspi.yaml         | 51 +++++++++++++++++++
- 2 files changed, 51 insertions(+), 25 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.txt
- create mode 100644 Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+On 12/06/21 12:51 pm, Vignesh Raghavendra wrote:
+> +Aswath
+> 
+> On 6/12/21 12:46 AM, Nishanth Menon wrote:
+>> On 19:36-20210609, Vignesh Raghavendra wrote:
+>>> Last 256K of OCRAM (256K@0x701c0000) is reserved for SYSFW usage. Hence
+>>> add an entry in DT so that its not used for generic pool memory
+>>> allocation.
+>>
+>> Are you really sure?? I know that I had set a budget for 16K in sysfw
+>> when I did the memory split up for sysfw of which 16k is actually used.
+>>
+>> Not sure where this 256K bucket started off from.. am I missing
+>> something here?
+>>
+> 
+> Per: http://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am64x/firewalls.html
+> 
+> 24	dmsc	0x44060000	0x4407BFFF	dmsc,rwcd	 	 // alias for 0x701E0000
+> 24	dmsc	0x701FC000	0x701FFFFF	sproxy_private,rwcd	 	 
+> 24	dmsc	0x4407C000	0x4407FFFF	sproxy_private,rwcd	 	 
+> 24	dmsc	0x701C0000	0x701DFFFF	everyone,rwcd	 	 
+> 
+> So it looks like only 128K@0x701E0000 is firewalled off. 
+> Will update the patch.
+> 
+> This makes me wonder why ATF is being moved to 0x701a0000-0x701c0000
+> leaving a hole at 0x701C0000-0x701DFFFF? 
+> 
+> 
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.txt b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.txt
-deleted file mode 100644
-index 0f6d37ff541c4b..00000000000000
---- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Xilinx Zynq UltraScale+ MPSoC GQSPI controller Device Tree Bindings
---------------------------------------------------------------------
--
--Required properties:
--- compatible		: Should be "xlnx,zynqmp-qspi-1.0".
--- reg			: Physical base address and size of GQSPI registers map.
--- interrupts		: Property with a value describing the interrupt
--			  number.
--- clock-names		: List of input clock names - "ref_clk", "pclk"
--			  (See clock bindings for details).
--- clocks		: Clock phandles (see clock bindings for details).
--
--Optional properties:
--- num-cs		: Number of chip selects used.
--
--Example:
--	qspi: spi@ff0f0000 {
--		compatible = "xlnx,zynqmp-qspi-1.0";
--		clock-names = "ref_clk", "pclk";
--		clocks = <&misc_clk &misc_clk>;
--		interrupts = <0 15 4>;
--		interrupt-parent = <&gic>;
--		num-cs = <1>;
--		reg = <0x0 0xff0f0000 0x1000>,<0x0 0xc0000000 0x8000000>;
--	};
-diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-new file mode 100644
-index 00000000000000..ea72c8001256fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/spi-zynqmp-qspi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx Zynq UltraScale+ MPSoC GQSPI controller Device Tree Bindings
-+
-+maintainers:
-+  - Michal Simek <michal.simek@xilinx.com>
-+
-+allOf:
-+  - $ref: "spi-controller.yaml#"
-+
-+properties:
-+  compatible:
-+    const: xlnx,zynqmp-qspi-1.0
-+
-+  reg:
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: ref_clk
-+      - const: pclk
-+
-+  clocks:
-+    maxItems: 2
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
-+    soc {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      qspi: spi@ff0f0000 {
-+        compatible = "xlnx,zynqmp-qspi-1.0";
-+        clocks = <&zynqmp_clk QSPI_REF>, <&zynqmp_clk LPD_LSBUS>;
-+        clock-names = "ref_clk", "pclk";
-+        interrupts = <0 15 4>;
-+        interrupt-parent = <&gic>;
-+        reg = <0x0 0xff0f0000 0x0 0x1000>,
-+              <0x0 0xc0000000 0x0 0x8000000>;
-+      };
-+    };
--- 
-2.32.0
+The reason for leaving the hole at 0x701C0000-0x701DFFFF was because
+initially there was a bug in SYSFW which lead to the usage of the above
+region too by it. However, this bug was recently fixed and the the above
+region can be used for ATF.
+
+Thanks,
+Aswath
+
+>>
+>>>
+>>> Without this certain drivers using SRAM as generic shared memory pool
+>>> may end up being allocated memory from this range and will lead to boot
+>>> time crash when the reserved range is accessed (due to firewall
+>>> violation).
+>>>
+>>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>>> ---
+>>>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>>> index f1c42ef05e52..77b88e536534 100644
+>>> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>>> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>>> @@ -16,6 +16,10 @@ oc_sram: sram@70000000 {
+>>>  		atf-sram@0 {
+>>>  			reg = <0x0 0x1a000>;
+>>>  		};
+>>> +
+>>> +		dmsc-sram@1c0000 {
+>>> +			reg = <0x1c0000 0x40000>;
+>>
+>>> +		};
+>>>  	};
+>>>  
+>>>  	gic500: interrupt-controller@1800000 {
+>>> -- 
+>>> 2.31.1
+>>>
+>>
 
