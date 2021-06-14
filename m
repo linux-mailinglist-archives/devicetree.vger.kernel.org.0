@@ -2,250 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAC133A67AE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 15:21:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66F763A67FA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Jun 2021 15:34:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233361AbhFNNX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 09:23:26 -0400
-Received: from mail-vs1-f53.google.com ([209.85.217.53]:38826 "EHLO
-        mail-vs1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233434AbhFNNXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 09:23:25 -0400
-Received: by mail-vs1-f53.google.com with SMTP id x8so7753305vso.5
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 06:21:07 -0700 (PDT)
+        id S234035AbhFNNgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 09:36:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44078 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234003AbhFNNgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 09:36:23 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27947C061574;
+        Mon, 14 Jun 2021 06:34:07 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id i4so15502603ybe.2;
+        Mon, 14 Jun 2021 06:34:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=hznYiY/yIaLIQ43u53uPpsgJQvFToxlc5/LKCrV5tj4=;
-        b=pSej7L+/yh7aHpv6cKak9q+IbtY9RGMVlvK97EenQ6HD7xsp5T2aRatHSgXKEpdtbP
-         yzHCmiYa9ZVambvZ3DmtHHOf9OIJ8V4aLEPQ/0ELAwHy4J/1l7s6z2SXIGiuUetPrtBV
-         Ii8dFN5p3Tvf/kjC8QFuUKl5jGzQN6i8vW0HbjGuoxenTeH/cQgGOjejuZHXHPxzM3uJ
-         7YVyuAgbGtOtWqtPPDBFK9/r3CDPEzRmxe8QfBtGMlEeog/rvIpz2uMdCWsLDMEDtYhM
-         gZHGVBVkpqGp7IfeS7V4Y/z3I+hQk/mH8ldymrL4Zq3udYAyPOZ+vpYKGDuw63cqei7+
-         MWQg==
+        bh=fITfy3FoCscSzBKzsabed+L5goCIl2g/5fdsym0oiY4=;
+        b=MhW8P6lVLC6p+sZK1oYqz6bb8+6FLaELyTFUYsF4bjZU3eQnYpCiMlhCpAcG8NRRcy
+         CZcIifOsGderqM9MYJO1yxZJTQcfy43sC79EhFugkaZPxm8pUKeb3/mraNpqR7CirnbI
+         GiOB0sP6df12h8M3WAxu+z4SanqoLAEQktHeaTXLuYkMwYO85pgchisFIO8Hbtz1SbGc
+         fIg4jL7F7D6FwQiqYMPVvflIY7GnDapBpUQiWp8Pj1b6/2JGAtk2LcqvYXsSkxhsi+m8
+         coz0jPd83rTTwims4dlptk1iUHWQwFeM7L+Xo3iwxw9WDFzsLmeKyw/mL6DjDxpEc6f1
+         tF2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=hznYiY/yIaLIQ43u53uPpsgJQvFToxlc5/LKCrV5tj4=;
-        b=ryvyxVrXduHV6x/VbeLa/ncKHhZlOhFOOnlDlX7bI5YTLtIlmP0qiI70trY59qZFPU
-         400jllMMK4+WOPC0TPc3l7fX3XPvUKJiSq1KQAYYrs5EJC1XWY94FJ+dZIvd2k3CF2Eh
-         ybzXsAoc2rSfJcTewS0kUqnZSVcCw5TW82St8Z3JgrYSUKPv9uc3bUEvxQIpfLTA6ZG/
-         aVsraeBU77P8+/yGgEyGQnAR5LP8+U32+CVJ60LVeIuszOOzqXpFim0Hb0xtdjfe0vva
-         2CpKSOUKrgRjWQxNeCZJ53ZfNDjxbbUvMK+XoF66DRYQOEAF9BwuJkyIS4UfSJ4q2BpX
-         BbUg==
-X-Gm-Message-State: AOAM530x+WV84YeEfFObUQvOUnE1IZ3XzHMOIlTH1twFo9CZ+pAPfzHq
-        uJ7T2/sMbPVOAKG+r19907+0HLrZdAcz9rdpDBy1tw==
-X-Google-Smtp-Source: ABdhPJyI0OLl9c6qznSTU52N5rNTrdJ8c9JnIs+9ZEOaxUDrCelrmpXu4s6Fk3Gylc+zmtGqoXFYqHYOs74dp6Gr9LI=
-X-Received: by 2002:a67:e359:: with SMTP id s25mr16904297vsm.55.1623676802028;
- Mon, 14 Jun 2021 06:20:02 -0700 (PDT)
+        bh=fITfy3FoCscSzBKzsabed+L5goCIl2g/5fdsym0oiY4=;
+        b=Sv9oz4RygrJpAmXr0Q/0A8mmF8cfYd0KFXLFQg3mCqMZA4PmpDnFnlBFGAOjKIGP+1
+         z59lrKDJ16bMnf7CaaOdp1u+i98r46ijVuZMVVyb4Aq+yU7sdre8rsfTNNVVKwG3ap+N
+         K9Y9W+FaoZA2ROOfHlf9R39qFqmIE31Wd9GjCoiV/c3XJMHHvq+h3Tp6dNwgIxqW/eUf
+         0CEiMwPDbGHedHDchbs3OLDG4u/WhaxQ4DsRXNg4H5n4GitahW5kQzrp6vX00+bNpRHm
+         KCJIfgwpQT3vx9AKqcecq46YCvSoEN1Hq2GAyczOZ6m9wC6HRhxy+kA+J2vFn0JviZ8q
+         n3vw==
+X-Gm-Message-State: AOAM532qtouzsGDW5R6o8YwgrWi1nu5AlECbmcKQRF7zp+mjADZTOyI/
+        SJ3cTPWZ7T37QVXntqR6EiF0t71Jrx+RF3upSoY=
+X-Google-Smtp-Source: ABdhPJzylP/+U5d/VxskGMW//vGfCikjF9dkGLIxiDlPbjg6s6SPPEZY32Gk5rbGsiS4HIDDCDXM9d+uuBvguiVMSX0=
+X-Received: by 2002:a25:be09:: with SMTP id h9mr25605058ybk.239.1623677646410;
+ Mon, 14 Jun 2021 06:34:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210602192758.38735-1-alcooperx@gmail.com> <20210602192758.38735-2-alcooperx@gmail.com>
- <CAPDyKFrynST66yA_T3iroiJsfmNuBOEiiBnb=vNoyP6QpvZ7aQ@mail.gmail.com>
- <fe956941-bb39-413e-f051-d9f353f64eda@gmail.com> <CAPDyKFpEtvjS1mWC68gRBWD64dq2M1LO84UWE5uDLTzbGz1g8Q@mail.gmail.com>
- <6acd480a-8928-89bb-0f40-d278294973a1@gmail.com> <CAPDyKFqk23xg5R2k9GwQrnamwWYbMkmrbWYsHPF9VBQTAbvQHw@mail.gmail.com>
- <a1199e99-eb29-125b-2bac-f0abb4803c9b@gmail.com> <CAPDyKFq-rofbCyAhcQGt2xZykip6Le+CUDXgDwAisVOj=Tt-uA@mail.gmail.com>
- <b4c36944-8f41-1f30-10b4-b3efe0aade01@gmail.com>
-In-Reply-To: <b4c36944-8f41-1f30-10b4-b3efe0aade01@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 14 Jun 2021 15:19:25 +0200
-Message-ID: <CAPDyKFpR1GZcqCO5=-h7jvG0TysPLfJOP6rDJBagHvg9HFxnSQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] mmc: sdhci-iproc: Add support for the legacy sdhci
- controller on the BCM7211
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Al Cooper <alcooperx@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
-        Scott Branden <sbranden@broadcom.com>
+References: <20210612160422.330705-1-anup.patel@wdc.com> <20210612160422.330705-2-anup.patel@wdc.com>
+In-Reply-To: <20210612160422.330705-2-anup.patel@wdc.com>
+From:   Bin Meng <bmeng.cn@gmail.com>
+Date:   Mon, 14 Jun 2021 21:33:53 +0800
+Message-ID: <CAEUhbmXhDZExHpZwVUEW-xz2nq_j5SXev4pZBhG4qAtPr2riCA@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 01/10] RISC-V: Clear SIP bit only when using SBI
+ IPI operations
+To:     Anup Patel <anup.patel@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Jun 2021 at 18:54, Florian Fainelli <f.fainelli@gmail.com> wrote:
+On Sun, Jun 13, 2021 at 12:07 AM Anup Patel <anup.patel@wdc.com> wrote:
 >
->
->
-> On 6/11/2021 3:23 AM, Ulf Hansson wrote:
-> > On Thu, 10 Jun 2021 at 17:59, Florian Fainelli <f.fainelli@gmail.com> wrote:
-> >>
-> >>
-> >>
-> >> On 6/10/2021 1:49 AM, Ulf Hansson wrote:
-> >>> On Thu, 10 Jun 2021 at 01:59, Florian Fainelli <f.fainelli@gmail.com> wrote:
-> >>>>
-> >>>>
-> >>>>
-> >>>> On 6/9/2021 2:22 AM, Ulf Hansson wrote:
-> >>>>> On Wed, 9 Jun 2021 at 05:07, Florian Fainelli <f.fainelli@gmail.com> wrote:
-> >>>>>>
-> >>>>>>
-> >>>>>>
-> >>>>>> On 6/8/2021 5:40 AM, Ulf Hansson wrote:
-> >>>>>>> On Wed, 2 Jun 2021 at 21:28, Al Cooper <alcooperx@gmail.com> wrote:
-> >>>>>>>>
-> >>>>>>>> Add support for the legacy Arasan sdhci controller on the BCM7211 and
-> >>>>>>>> related SoC's. This includes adding a .shutdown callback to increase
-> >>>>>>>> the power savings during S5.
-> >>>>>>>
-> >>>>>>> Please split this into two separate changes.
-> >>>>>>>
-> >>>>>>> May I also ask about the ->shutdown() callback and in relation to S5.
-> >>>>>>> What makes the ->shutdown callback only being invoked for S5?
-> >>>>>>
-> >>>>>> It is not only called for S5 (entered via poweroff on a prompt) but also
-> >>>>>> during kexec or reboot. The poweroff path is via:
-> >>>>>>
-> >>>>>> kernel_power_off() -> kernel_shutdown_prepare() -> device_shutdown() ->
-> >>>>>> .shutdown()
-> >>>>>>
-> >>>>>> For kexec or reboot we do not really care about power savings since we
-> >>>>>> are about to load a new image anyway, however for S5/poweroff we do care
-> >>>>>> about quiescing the eMMC controller in a way that its clocks and the
-> >>>>>> eMMC device can be put into low power mode since we will stay in that
-> >>>>>> mode for seconds/hours/days until someone presses a button on their
-> >>>>>> remote (or other wake-up sources).
-> >>>>>
-> >>>>> Hmm, I am not sure I understand correctly. At shutdown we don't care
-> >>>>> about wake-up sources from the kernel point of view, instead we treat
-> >>>>> everything as if it will be powered off.
-> >>>>
-> >>>> The same .shutdown() path is used whether you kexec, reboot or poweroff,
-> >>>> but for poweroff we do care about allowing specific wake-up sources
-> >>>> configured as such to wake-up the system at a later time, like GPIOs,
-> >>>> RTC, etc.
-> >>>
-> >>> That's true, but using the ->shutdown() callbacks in this way would
-> >>> certainly be a new use case.
-> >>>
-> >>> Most subsystems/drivers don't care about power management in those
-> >>> callbacks, but rather just about managing a graceful shutdown.
-> >>>
-> >>> It sounds to me like you should have a look at the hibernation
-> >>> path/callbacks instead - or perhaps even the system suspend
-> >>> path/callback. Normally, that's where we care about power management.
-> >>
-> >> The platforms we use do not support hibernation, keep in mind that these
-> >> are embedded SoCs that support the S2 (standby), S3 (mem) and poweroff
-> >> suspend states, hibernation is not something that we can support.
-> >>
-> >>>
-> >>> I have looped in Rafael, to allow him to share his opinion on this.
-> >>>
-> >>>>
-> >>>>>
-> >>>>> We put devices into low power state at system suspend and potentially
-> >>>>> also during some of the hibernation phases.
-> >>>>>
-> >>>>> Graceful shutdown of the eMMC is also managed by the mmc core.
-> >>>>
-> >>>> AFAICT that calls mmc_blk_shutdown() but that is pretty much it, the
-> >>>> SDHCI platform_driver still needs to do something in order to conserve
-> >>>> power including disabling host->clk, otherwise we would not have done
-> >>>> that for sdhci-brcmstb.c.
-> >>>
-> >>> That's not entirely correct. When mmc_bus_shutdown() is called for the
-> >>> struct device* that belongs to an eMMC card, two actions are taken.
-> >>>
-> >>> *) We call mmc_blk_shutdown(), to suspend the block device queue from
-> >>> receiving new I/O requests.
-> >>> **) We call host->bus_ops->shutdown(), which is an eMMC specific
-> >>> callback set to mmc_shutdown(). In this step, we do a graceful
-> >>> shutdown/power-off of the eMMC card.
-> >>>
-> >>> When it comes to controller specific resources, like clocks and PM
-> >>> domains, for example, those may very well stay turned on. Do deal with
-> >>> these, then yes, you would need to implement the ->shutdown()
-> >>> callback. But as I said above, I am not sure it's the right thing to
-> >>> do.
-> >>
-> >> As explained before, we can enter S5 for an indefinite amount of time
-> >> until a wake-up source wakes us up so we must conserve power, even if we
-> >> happen to wake up the next second, we don't know that ahead of time. The
-> >> point of calling sdhci_pltfm_suspend() here is to ensure that host->clk
-> >> is turned off which cuts the eMMC controller digital clock, I forgot how
-> >> much power we save by doing so, but every 10s of mW counts for us.
-> >
-> > I fully understand that you want to avoid draining energy, every
-> > single uA certainly counts in cases like these.
-> >
-> > What puzzles me, is that your platform seems to keep some resources
-> > powered on (like device clocks) when entering the system wide low
-> > power state, S5.
->
-> More on that below.
->
-> >
-> > In principle, I am wondering if it would be possible to use S5 as the
-> > system-wide low power state for the system suspend path, rather than
-> > S3, for example? In this way, we would be able to re-use already
-> > implemented ->suspend|resume callbacks from most subsystems/drivers, I
-> > believe. Or is there a problem with that?
->
-> The specific platform this driver is used on (BCM7211) is only capable
-> of supporting S2 and S5. There is no S3 because we have no provision on
-> the board to maintain the DRAM supplies on and preserve the DRAM
-> contents. This is a design choice that is different from the other
-> Broadcom STB platforms where we offer S2, S3 and S5 and we have an
-> On/off domain which is shutdown by hardware upon S3 or S5 entry and a
-> small always on domain which remains on to service wake-up sources
-> (infrared, timer, gpio, UART, etc.). S2 on this platform is implemented
-> entirely in software/firmware and does make use of the regular
-> suspend/resume calls.
->
-> S5 is implemented in part in software/firmware and with the help of the
-> hardware that will turn off external board components. We do need the
-> help of the various software drivers (PCIe, Ethernet, GPIO, USB, UART,
-> RTC, eMMC, SPI, etc.) to do their job and conserve power when we enter
-> S5, hence the reason why all of our drivers implement ->shutdown() (in
-> addition to needing that for kexec and ensure no DMA is left running).
->
-> >
-> > I think we need an opinion from Rafel to move forward.
->
-> There is already an identical change done for sdhci-brcmstb.c, and the
-> exact same rationale applied there since both sdhci-iproc.c and
-> sdhci-brcmstb.c are used on this BCM7211 platform.
+> The software interrupt pending (i.e. [M|S]SIP) bit is writeable for
+> S-mode but readonly for M-mode so we clear this bit only when using
 
-Right, thanks for the pointer. Looks like we should have taken this
-discussion back then, but better late than never.
+nits: read-only
 
+> SBI IPI operations.
 >
-> In all honesty, I am a bit surprised that the Linux device driver model
-> does not try to default the absence of a ->shutdown() to a ->suspend()
-> call since in most cases they are functionally equivalent, or should be,
-> in that they need to save power and quiesce the hardware, or leave
-> enough running to support a wake-up event.
+> Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> ---
+>  arch/riscv/kernel/sbi.c | 8 +++++++-
+>  arch/riscv/kernel/smp.c | 2 --
+>  2 files changed, 7 insertions(+), 3 deletions(-)
+>
 
-Well, the generall assumption is that the platform is going to be
-entirely powered off, thus moving things into a low power state would
-just be a waste of execution cycles. Of course, that's not the case
-for your platform.
-
-As I have stated earlier, to me it looks a bit questionable to use the
-kernel_power_off() path to support the use case you describe. On the
-other hand, we may not have a better option at this point.
-
-Just a few things, from the top of my head, that we certainly are
-missing to support your use case through kernel_power_off() path
-(there are certainly more):
-1. In general, subsystems/drivers don't care about moving things into
-lower power modes from their ->shutdown() callbacks.
-2. System wakeups and devices being affected in the wakeup path, needs
-to be respected properly. Additionally, userspace should be able to
-decide if system wakeups should be enabled or not.
-3. PM domains don't have ->shutdown() callbacks, thus it's likely that
-they remain powered on.
-4. Etc...
-
-Kind regards
-Uffe
+Otherwise,
+Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
