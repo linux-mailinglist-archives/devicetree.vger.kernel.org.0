@@ -2,152 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4546E3A7E8F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 15:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 828663A7EAD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 15:07:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbhFOND6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 09:03:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47910 "EHLO
+        id S230211AbhFONJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 09:09:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229951AbhFOND6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 09:03:58 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03CA3C061574;
-        Tue, 15 Jun 2021 06:01:53 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id x14so24868134ljp.7;
-        Tue, 15 Jun 2021 06:01:52 -0700 (PDT)
+        with ESMTP id S229977AbhFONJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 09:09:49 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A662C061574;
+        Tue, 15 Jun 2021 06:07:44 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id k6so1932987pfk.12;
+        Tue, 15 Jun 2021 06:07:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Je6LUvQqM2+h4QweMn2XdMxL5oyPLqNPW0OGfuboKsg=;
-        b=IKTYPkLFGzVGeNItbfYkCLFxvZ42/oPY+6KyaJ9jPOnz9I9SusyGkOPU8iSMWwfOTO
-         T9cjw2fMCEg5SJjqdOAsHZ+OVv4xz0eSDgtg53iy2561cW1f3MDrlziMv3vSUl/BUzH5
-         Rb2s+ruRRaTXFnVAt2Vc7EhpdKA3KVo/GXcGbEC7cC2dq0OvvDyvLb5hwZsPLuGAgb0y
-         zaDpiZ6j4mhtrX0Kgu4BC2V5TkFde72QRCClAmaQaLJ5jnlDtgZBvmeU37WIIhEchG+F
-         5ykBNcx+K3DpvjSbpX11mo4lM7ISZEdpO4XqkLak3XGhATSbTHlwKCeW1FDAJOdpBQTP
-         UTjg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=B6awZixPEBIc1khaAEYvB0eLqjgA3TvS8zRyCjLVg8M=;
+        b=n7x038lnwlPdOc1w4l4gFub8lJPwPclJPWsYqMy1Wc8MbjD/zVwvxANPeRHHjVosGh
+         0dVfYRasW68lEiiA7i0f/fdIigTDl9Nj/D3O8zZ7E6W76uH3SXj0bMB2tYcFEAA/yWPl
+         1L7C6HpLQJ5Rj80ZWdANpc+nccdfD9Ai8XIxrp2+w/2rHFZ1UVbiMLeAA6oEV7QluYWl
+         CziCGByCjnhSp4pNfuZ+8TLMh4AHd+JPzFXYYR7pIsNd8QxzlBhBK/K/NDuYByReGWZq
+         ha21WkCl0P8csN/DrnXO4QNBXtIJpsj4C6+tQB/txwpBD3vxXnKt9xvxoBMGuPK3liu8
+         YZfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=Je6LUvQqM2+h4QweMn2XdMxL5oyPLqNPW0OGfuboKsg=;
-        b=L6O/1/BgE/ACA06gt1+E1Q94GOPitzTyEUHsOpnpgr6kiKZOP4ujz3s2dSplfPEwWq
-         tKn4qszQqtdU8p8iiMO8FjGfjkioGhiO7zVDUZow7C0DwiST5JU2BYZ0qxlQ1hzqoyWs
-         /GxT50NKnBoalpXtJ/RLgBNp0d/mm/K1T85rRMU1S8g4JxLTn2+tDhkaVV4Cpb+/PCRp
-         Mmxbr4ft+0wh4+i+mDVgtDp6gQuFfC4uxdAPvO+PboY+TBpz0SVAaFOskvTGgSsKOyXZ
-         ruoEt1LmJQsLfC5sUTZ2j7M446c+hF9fP5NrabqGyPapVbEzqqyajJ3bJ05kE9wwgi+I
-         4R6w==
-X-Gm-Message-State: AOAM5307VZ+Yv+UHb0CyBY2eSAyrhTkj3/lw8sYVdEqCN/0zARPwAHuA
-        ytMJ+MZ01xWvsdQICMhgiNz7TzU/dLE=
-X-Google-Smtp-Source: ABdhPJz05wB+Fj7uIytS6fn9Cd8advl4tRlk0ng7E+slzGo6f5CcKz7Pi96pGAqV9Go+EKbXW8fiNw==
-X-Received: by 2002:a05:651c:391:: with SMTP id e17mr17777217ljp.257.1623762109700;
-        Tue, 15 Jun 2021 06:01:49 -0700 (PDT)
-Received: from [192.168.2.145] (94-29-31-25.dynamic.spd-mgts.ru. [94.29.31.25])
-        by smtp.googlemail.com with ESMTPSA id v1sm1799731lfq.284.2021.06.15.06.01.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Jun 2021 06:01:49 -0700 (PDT)
-Subject: Re: [PATCH v3 4/7] thermal/drivers/tegra: Add driver for Tegra30
- thermal sensor
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Ihor Didenko <tailormoon@rambler.ru>,
-        Ion Agorria <ion@agorria.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <20210529170955.32574-1-digetx@gmail.com>
- <20210529170955.32574-5-digetx@gmail.com>
- <6f2b6290-095a-bd39-c160-1616a0ff89b1@linaro.org>
- <20210615102626.dja3agclwzxv2sj4@vireshk-i7>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <595f5e53-b872-bcc6-e886-ed225e26e9fe@gmail.com>
-Date:   Tue, 15 Jun 2021 16:01:48 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        bh=B6awZixPEBIc1khaAEYvB0eLqjgA3TvS8zRyCjLVg8M=;
+        b=WKX00KiQNYuo3DKLRqMRRhX31CHLvxeFhzI777DOIAYMLakasooc+Cun89DLPXvsxc
+         rKaFXA+NCJv3Nkw/c/38BsZ/ZjiPEHWQQmNi5EuvtuokQxe68S9DgDRW/hThH00n6wf5
+         gYt9eJ/Z5w01y12u0Br9MUdWeSJ2aJLseAUZOlsCCbSJqUNPZ4eNRb9XXOhcmJZMpWkT
+         WuhSnk8FAtSf1cQITg7qfcJNAOv0rQ375Ot2tUWdaPkzCFbzbA4kBgPwwo4PB0KFfQ7y
+         Afc9uZ9IblSUbF8iVF/xgY0GQIti8wqziZyNUzAlUyfASZYuS9KaoDWbFLGC8b6r7ki1
+         wJmg==
+X-Gm-Message-State: AOAM532w+/QghUSRWHZRH7PxVew58KQyOaCLrxc4GHTsmKwm884iP9ag
+        6TCN/ykQDATcjFxq/tIWjA==
+X-Google-Smtp-Source: ABdhPJybqEKw7feR8dYi/lWxFb3O2c8qqo8a+8pYqsq3Gq2My0PZ0nz16HwDobhs4XvfWtt4mW2bYw==
+X-Received: by 2002:a05:6a00:1a41:b029:2ef:9721:879e with SMTP id h1-20020a056a001a41b02902ef9721879emr4352418pfv.74.1623762463956;
+        Tue, 15 Jun 2021 06:07:43 -0700 (PDT)
+Received: from INTERNET-129.allwinnertech.com ([223.197.233.48])
+        by smtp.gmail.com with ESMTPSA id s4sm15218877pjn.31.2021.06.15.06.07.41
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 15 Jun 2021 06:07:43 -0700 (PDT)
+From:   Ban Tao <fengzheng923@gmail.com>
+To:     fengzheng923@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, mripard@kernel.org, wens@csie.org,
+        jernej.skrabec@gmail.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings for DMIC controller
+Date:   Tue, 15 Jun 2021 21:07:37 +0800
+Message-Id: <20210615130737.2098-1-fengzheng923@gmail.com>
+X-Mailer: git-send-email 2.22.0.windows.1
 MIME-Version: 1.0
-In-Reply-To: <20210615102626.dja3agclwzxv2sj4@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-15.06.2021 13:26, Viresh Kumar пишет:
-> On 15-06-21, 12:03, Daniel Lezcano wrote:
->>
->> [Cc Viresh]
->>
->> On 29/05/2021 19:09, Dmitry Osipenko wrote:
->>> All NVIDIA Tegra30 SoCs have a two-channel on-chip sensor unit which
->>> monitors temperature and voltage of the SoC. Sensors control CPU frequency
->>> throttling, which is activated by hardware once preprogrammed temperature
->>> level is breached, they also send signal to Power Management controller to
->>> perform emergency shutdown on a critical overheat of the SoC die. Add
->>> driver for the Tegra30 TSENSOR module, exposing it as a thermal sensor
->>> and a cooling device.
->>
->> IMO it does not make sense to expose the hardware throttling mechanism
->> as a cooling device because it is not usable anywhere from the thermal
->> framework.
->>
->> Moreover, that will collide with the thermal / cpufreq framework
->> mitigation (hardware sets the frequency but the software thinks the freq
->> is different), right ?
+The Allwinner SoCs feature an I2S controller across multiple SoC
+generations.
 
-H/w mitigation is additional and should be transparent to the software
-mitigation. The software mitigation is much more flexible, but it has
-latency. Software also could crash and hang.
+Signed-off-by: Ban Tao <fengzheng923@gmail.com>
+---
+ .../sound/allwinner,sun50i-h6-dmic.yaml       | 66 +++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
 
-Hardware mitigation doesn't have latency and it will continue to work
-regardless of the software state.
+diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+new file mode 100644
+index 000000000000..81d40c374e44
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/allwinner,sun50i-h6-dmic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Allwinner H6 DMIC Controller Device Tree Bindings
++
++maintainers:
++  - Ban Tao <fengzheng923@gmail.com>
++
++properties:
++  "#sound-dai-cells":
++    const: 0
++
++  compatible:
++    const: allwinner,sun50i-h6-dmic
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Bus Clock
++      - description: Module Clock
++
++  clock-names:
++    items:
++      - const: apb
++      - const: dmic
++
++  dmas:
++    maxItems: 1
++
++  dma-names:
++    const: rx
++
++  resets:
++    maxItems: 1
++
++required:
++  - "#sound-dai-cells"
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - dmas
++  - dma-names
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    spdif: spdif@5095000 {
++        #sound-dai-cells = <0>;
++        compatible = "allwinner,sun50i-h6-dmic";
++        reg = <0x05095000 0x400>;
++        clocks = <&ccu CLK_BUS_DMIC>, <&ccu CLK_DMIC>;
++        clock-names = "apb", "dmic";
++        dmas = <&dma 7>;
++        dma-names = "rx";
++        resets = <&ccu RST_BUS_DMIC>;
++    };
++
++...
+-- 
+2.29.0
 
-The CCF driver is aware about the h/w cooling status [1], hence software
-sees the actual frequency.
-
-[1]
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit?id=344d5df34f5abd468267daa98f041abf90b2f660
-
-> I am not even sure what the cooling device is doing here:
-> 
-> tegra_tsensor_set_cur_state() is not implemented and it says hardware
-> changed it by itself. What is the benefit you are getting out of the
-> cooling device here ?
-
-It allows userspace to check whether hardware cooling is active via the
-cooling_device sysfs. Otherwise we don't have ability to check whether
-h/w cooling is active, I think it's a useful information. It's also
-interesting to see the cooling_device stats, showing how many times h/w
-mitigation was active.
-
->> The hardware limiter should let know the cpufreq framework about the
->> frequency change.
->>
->> 	https://lkml.org/lkml/2021/6/8/1792
->>
->> May be post the sensor without the hw limiter for now and address that
->> in a separate series ?
-> 
-
-I wasn't aware about existence of the thermal pressure, thank you for
-pointing at it. At a quick glance it should be possible to benefit from
-the information about the additional pressure.
-
-Seems the current thermal pressure API assumes that there is only one
-user of the API. So it's impossible to aggregate the pressure from
-different sources, like software cpufreq pressure + h/w freq pressure.
-Correct? If yes, then please let me know yours thoughts about the best
-approach of supporting the aggregation.
-
-I'll factor out the h/w limiter from this patchset and prepare the v4.
-Thank you all for taking a look at the patches.
