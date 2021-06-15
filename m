@@ -2,188 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC5333A8639
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 18:18:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EC813A864C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 18:21:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbhFOQUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 12:20:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229734AbhFOQU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 12:20:29 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 567D7C061767
-        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 09:18:25 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id v9so2698000wrx.6
-        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 09:18:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1ZQF286KDf3vsAW/1vOHKbnKaEK4bPamrOWEdser+to=;
-        b=R8NtmSj/KkG3mZwDtMueKosy4Ydw4GrSJwNmFCP/2GAiGlPKGRrYuCH4M9tj1lzpdZ
-         TOQzAmKvUS8t+X/VHs3BmDJH2G11gZymuYsJjEzOuae3PctlCZBbm7TXTiH4qCAeA8XM
-         zbObW0fr3fxlVZDjAwR4LRTLCj9/G4Hd4L/cm4/59omnvLGiL4ScAwHoupztlmqyhwz8
-         iU8eLBA0ppEdUc9vlzOpFeefz+fLv9yeZQSajgNS89mmGX/EmOteYaGcFLuDSkj382Fv
-         Q2eaNToG4DnSQXV49vCehLHK3qjJ8EpC8gu3diPhxsFpv6ZpTCN3/txAmxqE2wRyNJvO
-         Vi7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1ZQF286KDf3vsAW/1vOHKbnKaEK4bPamrOWEdser+to=;
-        b=c6NnrqMu+p2xds/apJxifNL6rPLXYev07YzRxqyCx0+U24ol/BaKEzYsS8p8fS6+PR
-         TWrXKkCRYOpBYt3sg72dpxLP9vdDfHaM6yhAXngjW8b78Sxb9L8ktuPbHi4lfpc1VQ10
-         xYf8c2pNfYnSKG4uPyQZ6sW5z7HbV9uqopMx89o7DpJJNY8KPmNWfQdDGk5IUc0Zlshr
-         45EPDDlzYcN9/15m4oX78Xkkea6AuTTY9V6DBSwIjb3kflV8duywyJ27x1i9GV0VQSsX
-         XannJ7fbVqrXF1B79dcZatqEzYgNAiD3mSxEpYcXU/iX4cYSXDcBdT2ZDy85+dmN1oul
-         +wKg==
-X-Gm-Message-State: AOAM531TqIBSG6auGT2d3RUNQhzye4G7+OmAFoXUUdlmCZUvqU81z52m
-        OeeJlOyjJp24Gf8iYodPIqzUBA==
-X-Google-Smtp-Source: ABdhPJyDj5Em8ISoY6sbUQhzWQmsq+vp6ZTuVD0IHEcxEiux87fcQosE1ZHaKf/7wRcEOUNSE00SIg==
-X-Received: by 2002:adf:c393:: with SMTP id p19mr26505314wrf.92.1623773903610;
-        Tue, 15 Jun 2021 09:18:23 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:613a:6939:5f7f:dceb? ([2a01:e34:ed2f:f020:613a:6939:5f7f:dceb])
-        by smtp.googlemail.com with ESMTPSA id n6sm2473026wme.21.2021.06.15.09.18.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Jun 2021 09:18:23 -0700 (PDT)
-Subject: Re: [PATCH v3 4/7] thermal/drivers/tegra: Add driver for Tegra30
- thermal sensor
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Thara Gopinath <thara.gopinath@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Ihor Didenko <tailormoon@rambler.ru>,
-        Ion Agorria <ion@agorria.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <20210529170955.32574-1-digetx@gmail.com>
- <20210529170955.32574-5-digetx@gmail.com>
- <6f2b6290-095a-bd39-c160-1616a0ff89b1@linaro.org>
- <20210615102626.dja3agclwzxv2sj4@vireshk-i7>
- <595f5e53-b872-bcc6-e886-ed225e26e9fe@gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <fbdc3b56-4465-6d3e-74db-1d5082813b9c@linaro.org>
-Date:   Tue, 15 Jun 2021 18:18:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230364AbhFOQXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 12:23:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32890 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230064AbhFOQXA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 12:23:00 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7DF9361444;
+        Tue, 15 Jun 2021 16:20:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623774055;
+        bh=A//FjPnGORFN1egULK4FZVmE0QZM3H3vbfVdYalLmUc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ek5PoI3owNGFiVWfrlGzFsEjl1OXF8eMSZ+XnTlXa38ATH+k0MpBoDeJEtVTmoDVw
+         f+U1pAJrJmD6FnwIlw8aLpiB4gHpus0Bs22Kryciz+ZNnzlPMRSrYkcHbhBoOYIRQt
+         XSV8kTfkd/pQJh055pq/uVe6klnKmElVuyEg0jDpvH8sGApcEo/6J2D4cXz5mCLXSR
+         tYKtjO3uuRc32MYCToKKPESeIC0jy0F8XR3oBWU6R4bP76U48C2Slng0tV0SrPNfBV
+         CoO/xMgyXKoeZGe/V1R2cs4HNoJqY1oIiDS28dpnib9twl5obhiChJweu9De62vCfV
+         epbXJ1KHRBqJQ==
+Received: by mail-ed1-f52.google.com with SMTP id s6so51898363edu.10;
+        Tue, 15 Jun 2021 09:20:55 -0700 (PDT)
+X-Gm-Message-State: AOAM532KEg/WOQlsJTaOvFZJ1LmTm9XPJ4yIeketLdpQTxJV6VEZ3Slp
+        RdUsxQcsOYwaqjbKhRHTZq/3aRk+c7UiurcdcQ==
+X-Google-Smtp-Source: ABdhPJyBoxVJH3xF/WxVEUjQE0taHKPI2RIQWJ9pzI7pv0ojHASmCzM2k5cttEz8Fq9s6n+PeW9P9ZdJDmC15Fiqz5k=
+X-Received: by 2002:a05:6402:1911:: with SMTP id e17mr347145edz.62.1623774054092;
+ Tue, 15 Jun 2021 09:20:54 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <595f5e53-b872-bcc6-e886-ed225e26e9fe@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210509184519.15816-1-alex.nemirovsky@cortina-access.com>
+ <20210509184519.15816-2-alex.nemirovsky@cortina-access.com>
+ <YMiUpK/+PjsoCU1W@kroah.com> <CFD14D63-4537-4A91-861C-71B74E2CFAE6@cortina-access.com>
+ <YMi1jOL6y+eUK3Df@kroah.com> <B71C5D02-EDBE-4AAD-AF1B-2FD467BE075A@cortina-access.com>
+ <CAL_JsqKDf9W-1KHUoFFCoLareLKf0CAVMU6CXR22xW3hWM_8yg@mail.gmail.com> <9937DB34-7757-4A54-BCC6-AF5514FD7F1D@cortina-access.com>
+In-Reply-To: <9937DB34-7757-4A54-BCC6-AF5514FD7F1D@cortina-access.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 15 Jun 2021 10:20:42 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLHdi29Du1F=e1N471tnsziWpH7TPO_caDF3SrjvHS-iw@mail.gmail.com>
+Message-ID: <CAL_JsqLHdi29Du1F=e1N471tnsziWpH7TPO_caDF3SrjvHS-iw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: serial: Convert Cortina-Access UART
+ to json-schema
+To:     Alex Nemirovsky <Alex.Nemirovsky@cortina-access.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jason Li <jason.li@cortina-access.com>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2021 15:01, Dmitry Osipenko wrote:
-> 15.06.2021 13:26, Viresh Kumar пишет:
->> On 15-06-21, 12:03, Daniel Lezcano wrote:
->>>
->>> [Cc Viresh]
->>>
->>> On 29/05/2021 19:09, Dmitry Osipenko wrote:
->>>> All NVIDIA Tegra30 SoCs have a two-channel on-chip sensor unit which
->>>> monitors temperature and voltage of the SoC. Sensors control CPU frequency
->>>> throttling, which is activated by hardware once preprogrammed temperature
->>>> level is breached, they also send signal to Power Management controller to
->>>> perform emergency shutdown on a critical overheat of the SoC die. Add
->>>> driver for the Tegra30 TSENSOR module, exposing it as a thermal sensor
->>>> and a cooling device.
->>>
->>> IMO it does not make sense to expose the hardware throttling mechanism
->>> as a cooling device because it is not usable anywhere from the thermal
->>> framework.
->>>
->>> Moreover, that will collide with the thermal / cpufreq framework
->>> mitigation (hardware sets the frequency but the software thinks the freq
->>> is different), right ?
-> 
-> H/w mitigation is additional and should be transparent to the software
-> mitigation. The software mitigation is much more flexible, but it has
-> latency. Software also could crash and hang.
-> 
-> Hardware mitigation doesn't have latency and it will continue to work
-> regardless of the software state.
-
-Yes, I agree. Both solutions have their pros and cons. However, I don't
-think they can co-exist sanely.
-
-> The CCF driver is aware about the h/w cooling status [1], hence software
-> sees the actual frequency.
+On Tue, Jun 15, 2021 at 10:06 AM Alex Nemirovsky
+<Alex.Nemirovsky@cortina-access.com> wrote:
 >
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit?id=344d5df34f5abd468267daa98f041abf90b2f660
+>
+>
+> > On Jun 15, 2021, at 8:44 AM, Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Tue, Jun 15, 2021 at 8:39 AM Alex Nemirovsky
+> > <Alex.Nemirovsky@cortina-access.com> wrote:
+> >>
+> >>
+> >>
+> >>> On Jun 15, 2021, at 7:13 AM, Greg Kroah-Hartman <gregkh@linuxfoundati=
+on.org> wrote:
+> >>>
+> >>> On Tue, Jun 15, 2021 at 01:36:39PM +0000, Alex Nemirovsky wrote:
+> >>>> MAINTAINERS modification was made in the initial version 1.  We made=
+ no changes to it since then,
+> >>>> thus not sure what we could at to  Changelog which would add value o=
+r clarity for others
+> >>>> from the v1.
+> >>>>
+> >>>>> On Jun 15, 2021, at 4:53 AM, Greg Kroah-Hartman <gregkh@linuxfounda=
+tion.org> wrote:
+> >>>>>
+> >>>>> On Sun, May 09, 2021 at 11:45:17AM -0700, Alex Nemirovsky wrote:
+> >>>>>> From: Jason Li <jason.li@cortina-access.com>
+> >>>>>>
+> >>>>>> Convert the Cortina-Access UART binding to DT schema format.
+> >>>>>>
+> >>>>>> Signed-off-by: Jason Li <jason.li@cortina-access.com>
+> >>>>>> ---
+> >>>>>> .../serial/cortina-access,serial.yaml         | 46 +++++++++++++++=
+++++
+> >>>>>> .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+> >>>>>> MAINTAINERS                                   |  6 +++
+> >>>>>
+> >>>>> You are also adding a MAINTAINERS entry here, which is not listed i=
+n the
+> >>>>> changelog text, so I couldn't take it anyway :(
+> >>>
+> >>> Add the maintainers entry in the first patch, with the driver please.
+> >>
+> >> The change to MAINTAINERS here add a new file into the DT documentatio=
+n.
+> >> Should it not be grouped into the dt-binding portion and reviewed by t=
+he DT time for which this patch
+> >> is CC=E2=80=99ed to? Why would moving the DT documentation file that i=
+s introduced be into the first patch, which is the
+> >> serial driver itself be the correct approach?
+> >
+> > The binding doesn't actually need a MAINTAINERS entry (though having
+> > one is fine). get_maintainers.pl will also pull emails from the
+> > binding schema.
+> >
+> > Rob
+>
+> Hi Rob,
+> It sounds like you are find with patch 2/3 from a DT point of view.  Coul=
+d we review the rest from the DT point of view
+> to get either feedback for changes or ACK these, so we can unblock this s=
+eries?
 
-Ah interesting, thanks for the pointer.
+Can't say I've seen it as I only see replies in my mail. Did this
+originally go to the DT list? If not, it's never in my queue[1].
 
-What I'm worried about is the consistency with cpufreq.
+Rob
 
-Probably cpufreq_update_limits() should be called from the interrupt
-handler.
-
->> I am not even sure what the cooling device is doing here:
->>
->> tegra_tsensor_set_cur_state() is not implemented and it says hardware
->> changed it by itself. What is the benefit you are getting out of the
->> cooling device here ?
-> 
-> It allows userspace to check whether hardware cooling is active via the
-> cooling_device sysfs. Otherwise we don't have ability to check whether
-> h/w cooling is active, I think it's a useful information. It's also
-> interesting to see the cooling_device stats, showing how many times h/w
-> mitigation was active.
-
-Actually the stats are for software mitigation. For the driver, create a
-debugfs entry like what do the other drivers or a module parameter with
-the stats.
-
->>> The hardware limiter should let know the cpufreq framework about the
->>> frequency change.
->>>
->>> 	https://lkml.org/lkml/2021/6/8/1792
->>>
->>> May be post the sensor without the hw limiter for now and address that
->>> in a separate series ?
->>
-> 
-> I wasn't aware about existence of the thermal pressure, thank you for
-> pointing at it. At a quick glance it should be possible to benefit from
-> the information about the additional pressure.
-> 
-> Seems the current thermal pressure API assumes that there is only one
-> user of the API. So it's impossible to aggregate the pressure from
-> different sources, like software cpufreq pressure + h/w freq pressure.
-> Correct? If yes, then please let me know yours thoughts about the best
-> approach of supporting the aggregation.
-
-That is a good question. IMO, first step would be to call
-cpufreq_update_limits().
-
-[ Cc Thara who implemented the thermal pressure ]
-
-May be Thara has an idea about how to aggregate both? There is another
-series floating around with hardware limiter [1] and the same problematic.
-
- [1] https://lkml.org/lkml/2021/6/8/1791
-
-> I'll factor out the h/w limiter from this patchset and prepare the v4.
-> Thank you all for taking a look at the patches.
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+[1] https://patchwork.ozlabs.org/project/devicetree-bindings/list/
