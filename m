@@ -2,111 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1BA13A753E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 05:33:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7F713A75AD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 06:14:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231166AbhFODfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 23:35:03 -0400
-Received: from lucky1.263xmail.com ([211.157.147.130]:45396 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230168AbhFODfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 23:35:01 -0400
-Received: from localhost (unknown [192.168.167.16])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 08DE1D1B6F;
-        Tue, 15 Jun 2021 11:32:56 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P16485T139918997178112S1623727973863966_;
-        Tue, 15 Jun 2021 11:32:56 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <1cae7781f93ca7962ff2bd83330aa5a9>
-X-RL-SENDER: jon.lin@rock-chips.com
-X-SENDER: jon.lin@rock-chips.com
-X-LOGIN-NAME: jon.lin@rock-chips.com
-X-FST-TO: broonie@kernel.org
-X-RCPT-COUNT: 9
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Jon Lin <jon.lin@rock-chips.com>
-To:     broonie@kernel.org
-Cc:     jon.lin@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v8 6/6] spi: rockchip: Support SPI_CS_HIGH
-Date:   Tue, 15 Jun 2021 11:32:52 +0800
-Message-Id: <20210615033252.14555-2-jon.lin@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210615033252.14555-1-jon.lin@rock-chips.com>
-References: <20210615033213.14241-1-jon.lin@rock-chips.com>
- <20210615033252.14555-1-jon.lin@rock-chips.com>
+        id S229473AbhFOEQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 00:16:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40446 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229461AbhFOEQU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 00:16:20 -0400
+Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A0ECC061574
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 21:14:16 -0700 (PDT)
+Received: by mail-qk1-x72b.google.com with SMTP id g19so7948344qkk.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 21:14:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YDA/6rYFbIzGwN3DJJ3v30Ilg60B464lccTuq9RZZyA=;
+        b=fMG07OU4hKhOT0Ejr3qOHcrU08EN3G1+RpniZ8liKpsJESj8tYmvpPMQZbf905Arqa
+         jTNjk7/cw8NTc05aXCrTOb4W4H63TAdnEqedfWvkUqde8aQCNzpKVfF+WTvNV5ptv2qS
+         TsIum45Bdbkm1pBXJPvJDobZEXMxEtOKj24Zc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YDA/6rYFbIzGwN3DJJ3v30Ilg60B464lccTuq9RZZyA=;
+        b=pKRhjeKdWCH1SwDZWg08U7jNdLUTgJqaIpEPvZr53ITh0zwQhLe1+FmuF93o0PWQqi
+         VkDtOiTiOgX9D9q8RKUp60O1YK2d6YqCu++oeqe4wBmrHJu5UK+Toh7LyVClonFJqo3/
+         oyeBON3eDkXEgUf1ViPK4MLdymckvDh+YPQpVchHBWfv3q2PqRYFpoZEFaGMpH6Ih7JX
+         uy0CLoIt7/+Hu81PYdtlgnQlkDbenvrKH9OLegZr7E8rdkYYWYB9glM7B70i61RQuWZf
+         PQwtAX5HiDDH/mCRKgkCXUBD/8pQl4U75Vs7b+N86lipBFsP0z5xNFHsZWE1TWOsO8IG
+         T68g==
+X-Gm-Message-State: AOAM532jZ32nCP3xgn3dgZizCoxoNYzDVH7QKc1XmOiU7dR2Ajk4qEmS
+        XkC+MifOAJISeyYr4w2l8p5WpLvxmJnlHA==
+X-Google-Smtp-Source: ABdhPJxLrp4HI6NuLlWJcSBQS550mgCX7cjLpWnOowFG1zSBU2uPUbOKZwzSs+u07puQUG7iG5QfOg==
+X-Received: by 2002:a37:44cc:: with SMTP id r195mr16077674qka.478.1623730455221;
+        Mon, 14 Jun 2021 21:14:15 -0700 (PDT)
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com. [209.85.160.178])
+        by smtp.gmail.com with ESMTPSA id f9sm11669310qkl.46.2021.06.14.21.14.14
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jun 2021 21:14:14 -0700 (PDT)
+Received: by mail-qt1-f178.google.com with SMTP id p21so10279998qtw.6
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 21:14:14 -0700 (PDT)
+X-Received: by 2002:a02:384b:: with SMTP id v11mr19686288jae.90.1623729977741;
+ Mon, 14 Jun 2021 21:06:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <20210611152659.2142983-1-tientzu@chromium.org>
+ <20210611152659.2142983-2-tientzu@chromium.org> <20210614061644.GA28343@lst.de>
+In-Reply-To: <20210614061644.GA28343@lst.de>
+From:   Claire Chang <tientzu@chromium.org>
+Date:   Tue, 15 Jun 2021 12:06:06 +0800
+X-Gmail-Original-Message-ID: <CALiNf29cE-T7xf+nUZF2pjT8osaXj+wb4MibtdSkAU_K13wuMw@mail.gmail.com>
+Message-ID: <CALiNf29cE-T7xf+nUZF2pjT8osaXj+wb4MibtdSkAU_K13wuMw@mail.gmail.com>
+Subject: Re: [PATCH v9 01/14] swiotlb: Refactor swiotlb init functions
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        grant.likely@arm.com, xypron.glpk@gmx.de,
+        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
+        bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
+        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
+        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-1.Add standard spi-cs-high support
-2.Refer to spi-controller.yaml for details
+On Mon, Jun 14, 2021 at 2:16 PM Christoph Hellwig <hch@lst.de> wrote:
+>
+> On Fri, Jun 11, 2021 at 11:26:46PM +0800, Claire Chang wrote:
+> > +     spin_lock_init(&mem->lock);
+> > +     for (i = 0; i < mem->nslabs; i++) {
+> > +             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> > +             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> > +             mem->slots[i].alloc_size = 0;
+> > +     }
+> > +
+> > +     if (memory_decrypted)
+> > +             set_memory_decrypted((unsigned long)vaddr, bytes >> PAGE_SHIFT);
+> > +     memset(vaddr, 0, bytes);
+>
+> We don't really need to do this call before the memset.  Which means we
+> can just move it to the callers that care instead of having a bool
+> argument.
+>
+> Otherwise looks good:
+>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
 
-Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
----
-
-Changes in v8: None
-Changes in v7: None
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-
- drivers/spi/spi-rockchip.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/spi/spi-rockchip.c b/drivers/spi/spi-rockchip.c
-index 48b666d42d8a..d64cca34eef7 100644
---- a/drivers/spi/spi-rockchip.c
-+++ b/drivers/spi/spi-rockchip.c
-@@ -108,6 +108,8 @@
- #define CR0_OPM_MASTER				0x0
- #define CR0_OPM_SLAVE				0x1
- 
-+#define CR0_SOI_OFFSET				23
-+
- #define CR0_MTM_OFFSET				0x21
- 
- /* Bit fields in SER, 2bit */
-@@ -238,7 +240,7 @@ static void rockchip_spi_set_cs(struct spi_device *spi, bool enable)
- {
- 	struct spi_controller *ctlr = spi->controller;
- 	struct rockchip_spi *rs = spi_controller_get_devdata(ctlr);
--	bool cs_asserted = !enable;
-+	bool cs_asserted = spi->mode & SPI_CS_HIGH ? enable : !enable;
- 
- 	/* Return immediately for no-op */
- 	if (cs_asserted == rs->cs_asserted[spi->chip_select])
-@@ -509,6 +511,8 @@ static int rockchip_spi_config(struct rockchip_spi *rs,
- 	cr0 |= (spi->mode & 0x3U) << CR0_SCPH_OFFSET;
- 	if (spi->mode & SPI_LSB_FIRST)
- 		cr0 |= CR0_FBM_LSB << CR0_FBM_OFFSET;
-+	if (spi->mode & SPI_CS_HIGH)
-+		cr0 |= BIT(spi->chip_select) << CR0_SOI_OFFSET;
- 
- 	if (xfer->rx_buf && xfer->tx_buf)
- 		cr0 |= CR0_XFM_TR << CR0_XFM_OFFSET;
-@@ -787,7 +791,7 @@ static int rockchip_spi_probe(struct platform_device *pdev)
- 
- 	ctlr->auto_runtime_pm = true;
- 	ctlr->bus_num = pdev->id;
--	ctlr->mode_bits = SPI_CPOL | SPI_CPHA | SPI_LOOP | SPI_LSB_FIRST;
-+	ctlr->mode_bits = SPI_CPOL | SPI_CPHA | SPI_LOOP | SPI_LSB_FIRST | SPI_CS_HIGH;
- 	if (slave_mode) {
- 		ctlr->mode_bits |= SPI_NO_CS;
- 		ctlr->slave_abort = rockchip_spi_slave_abort;
--- 
-2.17.1
-
-
-
+Thanks for the review. Will wait more days for other reviews and send
+v10 to address the comments in this and other patches.
