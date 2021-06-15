@@ -2,55 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F8673A7606
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 06:41:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 306ED3A760E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 06:43:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229520AbhFOEnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 00:43:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46432 "EHLO
+        id S229728AbhFOEp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 00:45:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbhFOEnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 00:43:46 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA62C0613A2
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 21:41:43 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id 6-20020a9d07860000b02903e83bf8f8fcso13049393oto.12
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 21:41:43 -0700 (PDT)
+        with ESMTP id S229493AbhFOEp4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 00:45:56 -0400
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C44B8C061574
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 21:43:52 -0700 (PDT)
+Received: by mail-ot1-x329.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso13070406otu.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 21:43:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=wEg+VoqwL+a1eo1ktmnPpcNUwlMmnMzGqqtS4STsyQM=;
-        b=hJ0/5WyG+8/NR9t7aDL0awG0SsSTahlq4na9Ll+lOD1M88IJAo7R3IICOZZETF7QB7
-         stDCm5tF/Jsgc6iL4gwUou+mJRDTRRv6Av6PeOMML+/w13dSyGQC3IWd2fc153btcLJW
-         9zpZ0DIZFhKjS8YlsUIL1xqGeFetm8c84skQKwE4YIIecOgdCIHZ+7TruyBFc0z6JAgJ
-         1KsV9Gcvcqd5zBFBEE7RtzLT2X6SaNb6/SCxdhQrZQ/NCNJwdAcmXuLymA0prqdrDslE
-         4/zTGtdpItnVBIk+l10QuTQZ0Rmy6bsCBl2CGeJlqS9/pDsievWkh11gUDhyI8xgPIyr
-         ylIA==
+        bh=JyaUkQuIyJoeFM+aEDlAzk2ObFHbusZSFKanutxk4Kk=;
+        b=FY6KP3tPfSi18hxKQz/dPNKtBWBY9us3tn3qr64LmdnwNoD9Qygd1BfC9C5JhRkCuJ
+         KuxFdsqfmhktKgnwigHusnqRy4qmHb91U95rwe5Hjvo7eLzDeNMt2/KXQdyYipEty1Lp
+         +RASGmRooIjliky3xwViIhxwoItf2gNgzxh/NP1BBpMG4QXBD11UJ86eWU+PvCAjEtEw
+         FICAKGgenEpLUf5VRdwUP6r7+i6/DgXrv2jbKi/NfiBqXWB+6OgTgCieb+HZqUai8nOt
+         A2Iv/Ow79hksfJ5HtOM1JbFzqtm37Xr3gsBVxoQSae9kmJUvR2gCg6Gu3fjnNgEvWNsr
+         iXBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=wEg+VoqwL+a1eo1ktmnPpcNUwlMmnMzGqqtS4STsyQM=;
-        b=INP+4k8HJGeb2hX4j/ebT93QvGMFYKOrVEqezY18RFY/JK4sj9mXp/BvtsRQMAf724
-         LxVsNYmTn2D7gwDsoaYvC07TybzQyYSdLt3Gel9X9r6Ne8jQTM5BNsaZb3eecmjZeD+/
-         hY+GfDbSP1zMYH5eeDY68Yq8MLh8FS4e3QIH+3raNkPN4OSxa8aai6XhGHX4j6WZqcqS
-         P6H2YKjZrrw0uLcl12dFq3JW8ix+nkc2AyQO8uK3WuQvmWO3F1VOXlo/a+9ccYFfnGl7
-         RynLGZA18SwmPKJ4g2rDcZoCmrP1zhnx8pAQW+jnqDeUyN88Ns3667FICubbfqo3SpEG
-         XzgA==
-X-Gm-Message-State: AOAM532sUYz4kJ3SumtKZTWEQeyAlUkULKdwUwu1iabRp28VzjWDlS+Q
-        scVD09psLShHkMgZSeUY7LZbGxvJy/n2mhJm9nH03Q==
-X-Google-Smtp-Source: ABdhPJzOZz+3JAdGaUZujLoYtRIssOq5IDy2Ja04KYFxPa+nq7/kRp+YlyQKRLWlQ8X0NNXpnRW930PBNGPvA2H/Y4E=
-X-Received: by 2002:a9d:74d4:: with SMTP id a20mr15877413otl.28.1623732102331;
- Mon, 14 Jun 2021 21:41:42 -0700 (PDT)
+        bh=JyaUkQuIyJoeFM+aEDlAzk2ObFHbusZSFKanutxk4Kk=;
+        b=XtvTzH1v4ev4vNtjkJdp2oXzuQQb0EH421styFZwD+rxBgt3P7p0UwnLJbIIdKuY+7
+         9cENSgaka2pb9RBGegEIUYM4wJ8nM7FQdf1X+im34iWifXWexdz0lYVNkkadTlyL364P
+         RdOQwAfsTqbHlFL5at0aP8YZyc4lZp3SfoIFtiGodt0abaDB4rrWgw+vGB6brUnwueur
+         rh+8yWqGtH1nA+WdFoR0EONPIWURfUw3pD+Y/coQpDFq/x6rgbaTmd2xOjfVDIPtoomb
+         0VP6M1LjPQXyeQpwBdRsBKD04/gsWt2To06otVPt2ZGYN3KkC9LrDGtsilgs20v0KZAK
+         echg==
+X-Gm-Message-State: AOAM532urbv90hpGVQuu+Taxt5b34oEKbTxSHNpH5Tlo+d3hFGuSUJwl
+        WZwk+By1F8HWPc3IhT0bMrq0GBPxxD439b4vrVHJmA==
+X-Google-Smtp-Source: ABdhPJwrsLZmevUqafP568aS8yI0DiAgzYfRC7baS3F8SVzDZEKsHINDgwEGHDGQM0JUnXSZZbn7/xcJ77K0LCRj0a8=
+X-Received: by 2002:a9d:74d4:: with SMTP id a20mr15883836otl.28.1623732231944;
+ Mon, 14 Jun 2021 21:43:51 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210607113840.15435-1-bhupesh.sharma@linaro.org>
- <20210607113840.15435-9-bhupesh.sharma@linaro.org> <YMLJsieGd+G+/kxK@builder.lan>
-In-Reply-To: <YMLJsieGd+G+/kxK@builder.lan>
+ <20210607113840.15435-2-bhupesh.sharma@linaro.org> <YMLO56Rr7UGUy8vo@builder.lan>
+ <CAH=2NtyV=qMn32d9nE7qBheTscUejF1UwVZSc99uiv_P65S03Q@mail.gmail.com> <YMeDuToX+YG8CJEa@yoga>
+In-Reply-To: <YMeDuToX+YG8CJEa@yoga>
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Tue, 15 Jun 2021 10:11:31 +0530
-Message-ID: <CAH=2Ntyi=a0tiyW0D-MvGW+dDdWjNVS4EAcrWZBc=fU8bRphng@mail.gmail.com>
-Subject: Re: [PATCH 8/8] arm64: dts: qcom: sa8155p-adp: Add base dts file
+Date:   Tue, 15 Jun 2021 10:13:41 +0530
+Message-ID: <CAH=2NtzKniw9tdnVFXk35qEmvXcKQMR3=DqamQwjP+wsCGpT1Q@mail.gmail.com>
+Subject: Re: [PATCH 1/8] dt-bindings: qcom: rpmh-regulator: Add compatible for
+ SA8155p-adp board pmics
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org,
         Linus Walleij <linus.walleij@linaro.org>,
@@ -67,98 +69,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Jun 2021 at 07:55, Bjorn Andersson
+On Mon, 14 Jun 2021 at 21:58, Bjorn Andersson
 <bjorn.andersson@linaro.org> wrote:
 >
-> On Mon 07 Jun 06:38 CDT 2021, Bhupesh Sharma wrote:
+> On Mon 14 Jun 03:05 CDT 2021, Bhupesh Sharma wrote:
 >
-> > Add base DTS file for sa8155p-adp and enable boot to console,
->
-> Please spell out "sa8155-adp", i.e. "Add base DTS for SA8155p Automotive
-> Development Platform."
->
-> > tlmm reserved range and also include pmic file(s).
+> > Hello Bjorn,
 > >
-> > SA8155p-adp board is based on sm8150 Qualcomm Snapdragon SoC.
+> > Thanks for the review comments.
+> >
+> > On Fri, 11 Jun 2021 at 08:18, Bjorn Andersson
+> > <bjorn.andersson@linaro.org> wrote:
+> > >
+> > > On Mon 07 Jun 06:38 CDT 2021, Bhupesh Sharma wrote:
+> > >
+> > > > Add compatible strings for pmm8155au_1 and pmm8155au_2 pmics
+> > > > found on SA8155p-adp board.
+> > > >
+> > > > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > > > Cc: Liam Girdwood <lgirdwood@gmail.com>
+> > > > Cc: Mark Brown <broonie@kernel.org>
+> > > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > Cc: Vinod Koul <vkoul@kernel.org>
+> > > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > > Cc: Andy Gross <agross@kernel.org>
+> > > > Cc: devicetree@vger.kernel.org
+> > > > Cc: linux-kernel@vger.kernel.org
+> > > > Cc: linux-gpio@vger.kernel.org
+> > > > Cc: bhupesh.linux@gmail.com
+> > > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > > > ---
+> > > >  .../devicetree/bindings/regulator/qcom,rpmh-regulator.yaml      | 2 ++
+> > > >  1 file changed, 2 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> > > > index e561a5b941e4..ea5cd71aa0c7 100644
+> > > > --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> > > > +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.yaml
+> > > > @@ -55,6 +55,8 @@ properties:
+> > > >        - qcom,pm8009-1-rpmh-regulators
+> > > >        - qcom,pm8150-rpmh-regulators
+> > > >        - qcom,pm8150l-rpmh-regulators
+> > > > +      - qcom,pmm8155au-1-rpmh-regulators
+> > > > +      - qcom,pmm8155au-2-rpmh-regulators
+> > >
+> > > Looking at the component documentation and the schematics I think the
+> > > component is "PMM8155AU" and we have two of them.
+> > >
+> > > Unless I'm mistaken we should have the compatible describe the single
+> > > component and we should have DT describe the fact that we have 2 of
+> > > them.
+> >
+> > If we refer to the PM8155AU device specifications, there are two
+> > regulators mentioned there PMM8155AU_1 and PMM8155AU_2. Although most
+> > parameters of the regulators seem similar the smps regulator summary
+> > for both appear different (Transient Load, mA ratings etc).
+> >
+> > Although most of these differences don't probably matter to the Linux
+> > world, others like the gpios on the pmic are different.
+> >
+> > So, IMO, it makes sense to mention the different pmic types on the board.
+> >
+> > Please let me know your views on the same.
 > >
 >
-> It's not based on sm8150, it's based on sa8155p, so let's express this
-> as "The SA8155p platform is similar to the SM8150, so use this as base
-> for now", to document why we decided to do this.
+> Afaict, they are both physically the same component, but there is some
+> configuration differences between them. I don't see any differences that
+> will show up in Linux, but afaict we would capture those in the DT
+> anyways.
 >
-> > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > Cc: Liam Girdwood <lgirdwood@gmail.com>
-> > Cc: Mark Brown <broonie@kernel.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Vinod Koul <vkoul@kernel.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Andy Gross <agross@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: linux-gpio@vger.kernel.org
-> > Cc: bhupesh.linux@gmail.com
+> Let me know if you see anything I'm missing, but I think we should have
+> a single compatible.
 
-<..snip..>
+As discussed on IRC, let's go with the approach you suggested (I can
+propose followup patches if I find something amiss). I will send a v2
+shortly.
 
-> > +&apps_rsc {
-> > +     pmm8155au-1-rpmh-regulators {
-> > +             compatible = "qcom,pmm8155au-1-rpmh-regulators";
-> > +             qcom,pmic-id = "a";
-> > +
-> > +             vdd-s1-supply = <&vreg_3p3>;
-> > +             vdd-s2-supply = <&vreg_3p3>;
-> > +             vdd-s3-supply = <&vreg_3p3>;
-> > +             vdd-s4-supply = <&vreg_3p3>;
-> > +             vdd-s5-supply = <&vreg_3p3>;
-> > +             vdd-s6-supply = <&vreg_3p3>;
-> > +             vdd-s7-supply = <&vreg_3p3>;
-> > +             vdd-s8-supply = <&vreg_3p3>;
-> > +             vdd-s9-supply = <&vreg_3p3>;
-> > +             vdd-s10-supply = <&vreg_3p3>;
-> > +
-> > +             vdd-l1-l8-l11-supply = <&vreg_s6a_0p92>;
-> > +             vdd-l2-l10-supply = <&vreg_3p3>;
-> > +             vdd-l3-l4-l5-l18-supply = <&vreg_s6a_0p92>;
-> > +             vdd-l6-l9-supply = <&vreg_s6a_0p92>;
-> > +             vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-> > +             vdd-l13-l16-l17-supply = <&vreg_3p3>;
-> > +
-> > +             vreg_s5a_2p04: smps5 {
-> > +                     regulator-min-microvolt = <1904000>;
-> > +                     regulator-max-microvolt = <2000000>;
-> > +             };
-> > +
-> > +             vreg_s6a_0p92: smps6 {
-> > +                     regulator-min-microvolt = <920000>;
-> > +                     regulator-max-microvolt = <1128000>;
-> > +             };
-> > +
-> > +             vdda_wcss_pll:
->
-> This is the "label" of the pad which the regulator typically is
-> connected to (rather than a denotion of which regulator it is). So even
-> though we have these in some of the other boards, I would prefer if you
-> skip them and only use the vreg_xyz_abc variant.
-
-Lets keep the 'vdd_xx_abc labels' though which are used as input
-supply pads for peripherals, for e.g.:
-
-&usb_1_hsphy {
-    status = "okay";
-    vdda-pll-supply = <&vdd_usb_hs_core>;
-    vdda33-supply = <&vdda_usb_hs_3p1>;
-    vdda18-supply = <&vdda_usb_hs_1p8>;
-};
-
-IMO, here it makes sense to retain labels 'vdda_usb_hs_3p1' and
-'vdda_usb_hs_1p8' in the dts (also making it easier to trace the same
-in schematics).
-
-I will send the v2 with the other suggested changes shortly.
-
-Regards,
+Thanks,
 Bhupesh
-
-
-
-<..snip..>
