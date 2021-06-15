@@ -2,111 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7330F3A8705
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 19:00:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C78263A874A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 19:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230321AbhFORC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 13:02:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbhFORC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 13:02:56 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB587C061574
-        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 10:00:51 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id r16so18518093oiw.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 10:00:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OrHpiQTn+IqOBIYO5Pq4UHsLozqCibN36fNoW8gNRD0=;
-        b=w4V+qXiieefOcxwFgrf2VCnoMsgBVXMXyzgY8AURZ60wzDRJPA5ZnwPqtLaoxik+Bm
-         8fnW4ktgfh9cmf77AhchNONIO460nlmJi998joD1MZiXXz+lBlSKrWuuh6cWa0VNUaKt
-         cJo9nMufzTPQtClv0yJ6GGnfXW+Lvgf7eA+50GrQ9RaFKRB8CcvWvPGfrimQZMjCvIpg
-         nd6LJ7BRNrhnS5LCuSvMmbkFwQpdZ0fqcKsMrJpENRAsYEXBvTZOfcFmIb9PlkTLLznc
-         QtEQLqmr1Ywhf6CfQPYZt5aTGvs4fUbh+RRzbexCiMePG6hm9X+TzZoqJ93FFwndXj49
-         HNzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OrHpiQTn+IqOBIYO5Pq4UHsLozqCibN36fNoW8gNRD0=;
-        b=oRHIe6XZBOadzhXIPIHdO6jrsQY/2sv+xlyuFbB4KLJ8D54ED2okdSZCkdd5W6FYwe
-         GxOBs757x9My+sBrj0K67dJTV5K0ElBzVJoJG6oouWDUh+fyJv+YJYjtPwr9PXSc9OXj
-         DBOABIwRrd4q/A3dhMBhiVmeLD+lsBHU8KAyQHJxUCeAQxAmndLmBg3pLpOV6Q6tQSvL
-         p7Nphi/pe2z3fZ6UC7Fd6CRUG1brHeV5BEtcPdj80xxKju/j1yrDUjCH1wImN1lTb5sx
-         3F7tOrS1JzJog1wQTUQ3Glas41bdhaY5AVgHQ4TLLclgywYpdk7BEPAE8ze0mbKxSUhx
-         5/GQ==
-X-Gm-Message-State: AOAM533buEqQXEJ9gKEOjlXx29uLqUB6Fe6XZJhlS2qE+Wz7pcJdVxk5
-        EsGgdLspcBxR01u7zg3jxsUOqEhbA+yoVGWL4rJ1SQ==
-X-Google-Smtp-Source: ABdhPJxCnnNnCWSfH0VDaXkPF/u1L+nchxayekHp7hO0jMhZ49QfQK6sS4x7wI7zPaj50rP+V4rbyDHzeAJ3rdd9dHA=
-X-Received: by 2002:aca:4bd7:: with SMTP id y206mr117111oia.40.1623776450766;
- Tue, 15 Jun 2021 10:00:50 -0700 (PDT)
+        id S229613AbhFORRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 13:17:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49832 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229557AbhFORRY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 13:17:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 911B561420;
+        Tue, 15 Jun 2021 17:15:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1623777320;
+        bh=Jtec2saajfBJb2/jk1pYQMMJxuk7X+g6wO32rKBrHoA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=0sIh5a0Ekt+FeloEwZPNhnUOiPxmy4gHTmZNpRVpBKnwSrjEHAF4gNqnqrvawgIAU
+         8WrPHvl/9blaevfSio/13rEci4ae9AKQAxuZvp2wCta7giQT+Yk54jDg9sZCwAbgho
+         NbxM6evanN2TUIYhKRGVaLsuPzt595BEJydFCl2w=
+Date:   Tue, 15 Jun 2021 19:15:17 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Alex Nemirovsky <alex.nemirovsky@cortina-access.com>
+Cc:     devicetree@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
+        Jason Li <jason.li@cortina-access.com>,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] tty: serial: Add UART driver for Cortina-Access
+ platform
+Message-ID: <YMjgJYdjmCoCER7l@kroah.com>
+References: <20210615165750.31261-1-alex.nemirovsky@cortina-access.com>
 MIME-Version: 1.0
-References: <20210615074543.26700-1-bhupesh.sharma@linaro.org>
- <20210615074543.26700-11-bhupesh.sharma@linaro.org> <0b012d77-8d61-f852-f455-8b6cceb03ebf@somainline.org>
-In-Reply-To: <0b012d77-8d61-f852-f455-8b6cceb03ebf@somainline.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Tue, 15 Jun 2021 22:30:39 +0530
-Message-ID: <CAH=2NtzOzA9HmxFUUuhX9Vy=KW3iRSx5HiuD9Cf11v+eijEWsQ@mail.gmail.com>
-Subject: Re: [PATCH v2 10/10] arm64: dts: qcom: sa8155p-adp: Add base dts file
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210615165750.31261-1-alex.nemirovsky@cortina-access.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
+On Tue, Jun 15, 2021 at 09:57:48AM -0700, Alex Nemirovsky wrote:
+> From: Jason Li <jason.li@cortina-access.com>
+> 
+> This driver supports Cortina Access UART IP integrated
+> in most all CAXXXX line of SoCs. Earlycom is also supported
+> 
+> Signed-off-by: Jason Li <jason.li@cortina-access.com>
+> ---
 
-Thanks for the review.
+I only received 2 patches, here 1/3 and 2/3.  What happened to 3/3?
 
-On Tue, 15 Jun 2021 at 20:23, Konrad Dybcio
-<konrad.dybcio@somainline.org> wrote:
->
-> Hi,
->
->
-> > +
-> > +     reset-gpios = <&tlmm 175 GPIO_ACTIVE_LOW>;
-> > +
-> > +     vcc-supply = <&vreg_l10a_2p96>;
-> > +     vcc-max-microamp = <750000>;
-> > +     vccq-supply = <&vreg_l5c_1p2>;
-> > +     vccq-max-microamp = <700000>;
-> > +     vccq2-supply = <&vreg_s4a_1p8>;
-> > +     vccq2-max-microamp = <750000>;
->
-> You need to add "regulator-allow-set-load;" to the mentioned supplies,
->
-> as you're controlling the amperage here.
+And please use 'git send-email' to properly thread your patches so our
+tools can correctly pick up the whole series when wanting to do things
+with them.
 
-Ok, I will fix this in v3.
+Can you fix that up and resend?
 
-> > +};
-> > +
-> > +&ufs_mem_phy {
-> > +     status = "okay";
-> > +
-> > +     vdda-phy-supply = <&vreg_l8c_1p2>;
-> > +     vdda-max-microamp = <87100>;
-> > +     vdda-pll-supply = <&vreg_l5a_0p88>;
-> > +     vdda-pll-max-microamp = <18300>;
->
-> Ditto
+thanks,
 
-Sure, I will fix it in v3.
-
-Thanks,
-Bhupesh
+greg k-h
