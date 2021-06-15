@@ -2,82 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E34D3A8AB5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 23:09:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 173893A8AB1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 23:09:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231384AbhFOVLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 17:11:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50002 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231230AbhFOVLT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 17:11:19 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1F0BB613C7;
-        Tue, 15 Jun 2021 21:09:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623791354;
-        bh=XPZFATeT6O1TSS3iPQi0I85I8kVNARs+UfjO8U3dfVU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pPA+xbPwkHvD/bRBsqIYaropPUgzP0KRUX71yffRfdKMlT/fWysCvoLdreNOuzDYZ
-         jfryhOoN7kI5G/puKCbf+W21R7hEc5ohnGEOBEuHS5m0k4EWdQdBWyR/c8cTtAdXv1
-         +QIONcpJ82r85IRnqVzeKg5EHZ6ljaYX/IFxIh6qSjxJCLQRo/o2Dzw08SJFQtmKqI
-         KB0+U7a+IBrTIdk/Kq03p0Zv0ClsMDjRKsS/1R/Dtugzc2TY4I++m8dO+LU1yqhCZd
-         SE9pE+W8tWpE0tbYrdr1SzcOp++7jpcL4G2avlE8mXfwYFJjq+mJ0JChjaqnfpNxF/
-         ij9pYyK4nHG1w==
-Received: by mail-ed1-f41.google.com with SMTP id t7so7751550edd.5;
-        Tue, 15 Jun 2021 14:09:14 -0700 (PDT)
-X-Gm-Message-State: AOAM533mEukABkC/Efgr+n8RUc8Vs/YiVvLX0Iw1AD7RA0ygOSrfPEQQ
-        5OKnZ+VYIczWhceRzkAuRC9tTAdcUEAdI9OqkA==
-X-Google-Smtp-Source: ABdhPJw414bzNY20+um3YrNRtQXFNYn5br7a3HAvmXNIDiJkSz+f0qWYMHTTl029XmRnYhAh7UpWGbc/GfiHf7emSTc=
-X-Received: by 2002:aa7:dc4c:: with SMTP id g12mr161778edu.258.1623791352761;
- Tue, 15 Jun 2021 14:09:12 -0700 (PDT)
+        id S231180AbhFOVLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 17:11:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45574 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230144AbhFOVLL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 17:11:11 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 256E6C061574
+        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 14:09:06 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id 6-20020a9d07860000b02903e83bf8f8fcso269048oto.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 14:09:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=kzMEmz2OXCW/1o+aXglOTozC0nF/ZSVAupo9ucWR4vU=;
+        b=T990jFP+IwijkukoKSXyXlrXshyADa1CX10/HukXVERcLJDgAWmFeXrzX8UizkxWbS
+         DW9v3xWipSVA7fbVoQ1KksK3JZuHqDw5Acyrhm8Sr9Rl4gqfWldFiPXLsGWI3JCTNZrG
+         pXD28wo8OyGXUxDbVpt9uP2Y52QNUjMLO6ih+GIZzQmxWMrzQe0D26V9D3aBUB7VA7AH
+         HG44+XQliWFTV6/Vl8618p5ZVEEzwd/JsNkNsyztStA50AzoUbUvmXc38sCLVXWx1syk
+         oG31ddpBvCWxwyaGZSzU5HoY3g5FSQaG3we12IY7ztgrtzyiRLuj3yyXAE8o+beWaSfo
+         CFmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kzMEmz2OXCW/1o+aXglOTozC0nF/ZSVAupo9ucWR4vU=;
+        b=Iidfp2GD0wfrcDq8V1scnM4jcu1TGxJ/qtC57iGUCJsK09DWXrWXOUPZCKzQce3uIU
+         9EHcPTt3rt6CUQlga9EPW9HJnh6IInY99tu81M9MzZJpvrOG21/tYfMV5kTqhBqN9Pg8
+         9LQqWyQo6v+2xT+39L0vmEuihJhTSC+hRqtX46k2pM9T7Mm6orRX2zBEJ3vB8g38QBD/
+         bjE7/YQjX5tMil8YH8HG1GhUUOwNye5L1ciNeM3KaoKbbiYwfRQX69Y+ZIQ1Xr7sIcTk
+         Q+Xx/SRxDg3K7swE5Nl5K5PqoY4go+tKOV0KkBoHfMV0ecsQzcJBTJWV1l+ICu+FVxIp
+         5ULg==
+X-Gm-Message-State: AOAM530eX7Zste4o90lcObMLsWYLKxjH/nMUsbRIaR/Q6PCn0MA+fm0P
+        FAiu8/Rn7tl1pFQyPoCShiMwow==
+X-Google-Smtp-Source: ABdhPJykEXexN/P95Qyl3OwaOoGgkRtyFJa8KjUcymogwEnqNlaEQp9MYNXDaaAgBxm41YjbqTa4GA==
+X-Received: by 2002:a9d:29:: with SMTP id 38mr1019535ota.30.1623791345507;
+        Tue, 15 Jun 2021 14:09:05 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id m10sm15552oig.9.2021.06.15.14.09.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Jun 2021 14:09:05 -0700 (PDT)
+Date:   Tue, 15 Jun 2021 16:09:03 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>
+Subject: Re: [PATCH v2 09/10] arm64: dts: qcom: pmm8155au_2: Add base dts file
+Message-ID: <YMkW720UIjG9aqhI@builder.lan>
+References: <20210615074543.26700-1-bhupesh.sharma@linaro.org>
+ <20210615074543.26700-10-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-References: <20210607154044.26074-1-srikanth.thokala@intel.com> <20210607154044.26074-3-srikanth.thokala@intel.com>
-In-Reply-To: <20210607154044.26074-3-srikanth.thokala@intel.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Jun 2021 15:09:01 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJmLz2TChWYGtEGtHpd5aO4hp+zvx8cExb760PDsx-nRg@mail.gmail.com>
-Message-ID: <CAL_JsqJmLz2TChWYGtEGtHpd5aO4hp+zvx8cExb760PDsx-nRg@mail.gmail.com>
-Subject: Re: [PATCH v10 2/2] PCI: keembay: Add support for Intel Keem Bay
-To:     srikanth.thokala@intel.com
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Mark Gross <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        mallikarjunappa.sangannavar@intel.com,
-        Krzysztof Wilczynski <kw@linux.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210615074543.26700-10-bhupesh.sharma@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 1:47 AM <srikanth.thokala@intel.com> wrote:
->
-> From: Srikanth Thokala <srikanth.thokala@intel.com>
->
-> Add driver for Intel Keem Bay SoC PCIe controller. This controller
-> is based on DesignWare PCIe core.
->
-> In Root Complex mode, only internal reference clock is possible for
-> Keem Bay A0. For Keem Bay B0, external reference clock can be used
-> and will be the default configuration. Currently, keembay_pcie_of_data
-> structure has one member. It will be expanded later to handle this
-> difference.
->
-> Endpoint mode link initialization is handled by the boot firmware.
->
-> Signed-off-by: Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-> Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Srikanth Thokala <srikanth.thokala@intel.com>
-> Reviewed-by: Krzysztof Wilczy=C5=84ski <kw@linux.com>
-> ---
->  MAINTAINERS                               |   7 +
->  drivers/pci/controller/dwc/Kconfig        |  28 ++
->  drivers/pci/controller/dwc/Makefile       |   1 +
->  drivers/pci/controller/dwc/pcie-keembay.c | 451 ++++++++++++++++++++++
->  4 files changed, 487 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-keembay.c
+On Tue 15 Jun 02:45 CDT 2021, Bhupesh Sharma wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> Add base DTS file for pmm8155au_2 along with GPIOs, power-on, rtc and vadc
+> nodes.
+> 
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Andy Gross <agross@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Regards,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi | 107 ++++++++++++++++++++++
+>  1 file changed, 107 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi b/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
+> new file mode 100644
+> index 000000000000..0c7d7a66c0b5
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
+> @@ -0,0 +1,107 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2021, Linaro Limited
+> + */
+> +
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/spmi/spmi.h>
+> +
+> +/ {
+> +	thermal-zones {
+> +		pmm8155au-2-thermal {
+> +			polling-delay-passive = <100>;
+> +			polling-delay = <0>;
+> +
+> +			thermal-sensors = <&pmm8155au_2_temp>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +
+> +				trip2 {
+> +					temperature = <145000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&spmi_bus {
+> +	pmic@4 {
+> +		compatible = "qcom,pmm8155au", "qcom,spmi-pmic";
+> +		reg = <0x4 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		power-on@800 {
+> +			compatible = "qcom,pm8916-pon";
+> +			reg = <0x0800>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		pmm8155au_2_temp: temp-alarm@2400 {
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0x2400>;
+> +			interrupts = <0x4 0x24 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			io-channels = <&pmm8155au_2_adc ADC5_DIE_TEMP>;
+> +			io-channel-names = "thermal";
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +
+> +		pmm8155au_2_adc: adc@3100 {
+> +			compatible = "qcom,spmi-adc5";
+> +			reg = <0x3100>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			#io-channel-cells = <1>;
+> +			interrupts = <0x4 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
+> +
+> +			ref-gnd@0 {
+> +				reg = <ADC5_REF_GND>;
+> +				qcom,pre-scaling = <1 1>;
+> +				label = "ref_gnd";
+> +			};
+> +
+> +			vref-1p25@1 {
+> +				reg = <ADC5_1P25VREF>;
+> +				qcom,pre-scaling = <1 1>;
+> +				label = "vref_1p25";
+> +			};
+> +
+> +			die-temp@6 {
+> +				reg = <ADC5_DIE_TEMP>;
+> +				qcom,pre-scaling = <1 1>;
+> +				label = "die_temp";
+> +			};
+> +		};
+> +
+> +		pmm8155au_2_gpios: gpio@c000 {
+> +			compatible = "qcom,pmm8155au-gpio";
+> +			reg = <0xc000>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+> +	pmic@5 {
+> +		compatible = "qcom,pmm8155au", "qcom,spmi-pmic";
+> +		reg = <0x5 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +	};
+> +};
+> -- 
+> 2.31.1
+> 
