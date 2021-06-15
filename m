@@ -2,89 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0330C3A87F4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 19:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BB693A8807
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 19:49:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231311AbhFORqI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 13:46:08 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57000 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231239AbhFORqH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 13:46:07 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15FHi08a014752;
-        Tue, 15 Jun 2021 12:44:00 -0500
+        id S230075AbhFORro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 13:47:44 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36678 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229976AbhFORrn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 13:47:43 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15FHjapU062259;
+        Tue, 15 Jun 2021 12:45:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623779040;
-        bh=QlxTDuZB0l/SSCJl0lXVKZaOlvRUTOjDkRIQ1NqXNrE=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Y5cjhYjHK+acPBK+HylHuTHoU8ELX9mcXuMjhcJEM3jehrSf+WlrLvuskXctSx+/j
-         UXObteQU+/B01VbpsdYW1dos/CtkLbU8w/yuaxVhCyRPwDanUlhb7ora1Pekb1oes+
-         32sZyLE8tH2vr7LTwhwNsHYOo3FblhSzqQkIKHqc=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15FHi0Pf023325
+        s=ti-com-17Q1; t=1623779136;
+        bh=xq8N0+Ag0aM5XxV7oawpiSjnWkX3GbNwWzSoJIYFQd8=;
+        h=Subject:CC:References:From:Date:In-Reply-To;
+        b=Su2d/xQ9Zdk3sxKs1sPPML8QQdiZOHiufpaJ6FKRMYdwHkWlOvPsAo0iIgCvWpZFb
+         Y6UIhcayMLy5Llt+7DvqRy0R5kxT4RBDQxa2c1GzUI2DFL1y8rpeH5/W9e5z80Eixe
+         /d2mahAMWrMQpuUZBIchf5hTuf81gNM//Z9ilAI8=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15FHjauL055665
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Jun 2021 12:44:00 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 15 Jun 2021 12:45:36 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 15
- Jun 2021 12:44:00 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2021 12:45:35 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 15 Jun 2021 12:44:00 -0500
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15FHhRGD009558;
-        Tue, 15 Jun 2021 12:43:53 -0500
-From:   Aswath Govindraju <a-govindraju@ti.com>
+ Frontend Transport; Tue, 15 Jun 2021 12:45:35 -0500
+Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15FHjUqq114642;
+        Tue, 15 Jun 2021 12:45:31 -0500
+Subject: Re: [PATCH v3 0/3] AM64: Update the locations of various elements in
+ SRAM
 CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
         Lokesh Vutla <lokeshvutla@ti.com>,
         Kishon Vijay Abraham I <kishon@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
         Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 3/3] arm64: dts: ti: k3-am64-main: Update the location of TF-A
-Date:   Tue, 15 Jun 2021 23:13:25 +0530
-Message-ID: <20210615174325.22853-4-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210615174325.22853-1-a-govindraju@ti.com>
-References: <20210615174325.22853-1-a-govindraju@ti.com>
+References: <20210615155115.28902-1-a-govindraju@ti.com>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <779294d5-e3e3-1c12-4ab7-7130341f41e1@ti.com>
+Date:   Tue, 15 Jun 2021 23:15:29 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20210615155115.28902-1-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to a limitation for USB DFU boot mode, SPL load address has to be less
-than  or equal to 0x70001000. So, load address of SPL and TF-A have been
-moved to 0x70000000 and 0x701c4000 respectively.
+Hi,
+On 15/06/21 9:21 pm, Aswath Govindraju wrote:
+> The following series of patches,
+> - Increase the maximum size of TF-A
+> - Update the location of TF-A due to a limitation for DFU boot
+> - Indicate reserved locations for DMSC code and secure proxy
+> 
+> changes since v2:
+> - split the patches into three
+> - added regions for indicating memory regions reserved for
+>   dmsc and secure proxy
+> - moved the TFA location to 0x701c4000
+> 
 
-Therefore, update TF-A's location in the device tree node.
+Posted respin(v4) after correcting the titles of patches 1 and 2.
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Thanks,
+Aswath
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-index 6a883f4349cb..7ab3652dfdfb 100644
---- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-@@ -24,8 +24,8 @@
- 		#size-cells = <1>;
- 		ranges = <0x0 0x00 0x70000000 0x200000>;
- 
--		tfa-sram@0 {
--			reg = <0x0 0x1c000>;
-+		tfa-sram@1c4000 {
-+			reg = <0x1c4000 0x1c000>;
- 		};
- 
- 		dmsc-sram@1e0000 {
--- 
-2.17.1
+> Aswath Govindraju (3):
+>   dts: ti: k3-am64-main: Update TF-A's maximum size and node name
+>   arm64: dts: ti: k3-am64-main: Indicate the memory reserved for
+>     DMSC-lite code and secure proxy communication buffer
+>   arm64: dts: ti: k3-am64-main: Update the location of TF-A
+> 
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
+> 
 
