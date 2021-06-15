@@ -2,180 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3C3C3A89D3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 21:55:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B8733A89DB
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 21:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229979AbhFOT5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 15:57:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35416 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229898AbhFOT5P (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 15:57:15 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E87B1613B3;
-        Tue, 15 Jun 2021 19:55:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623786910;
-        bh=bituzxZsqdopUSe7H+7dgGu7+/LuAeIRC6g+riCNdW4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pyYvj+5I7sSOM9PEvRIdjBFDj2k8DBIhVZ0dpMl9Nipibi6OTDUsR+HHdSA8FH1s9
-         wKsXp4YNj/fHsswHPFqu4J9FpHoL3GJdk3JzLSRK0bCEVSb6CQS/sqjKHR8Ryr/KJW
-         Lz0q+s8eV1flDjDJ7HvOA0+QJkSoZcGcx+ppvEfDDK01P/SdsZ7BDDF1kMJUuir8u0
-         95YKeKsTJglBnu6eo2NVMSA6UdQlm6XDYQchq5KC1KqRys978oCJt+rkf5vt3McavD
-         gBEl/MTUh6RpaTfwd/bqRgXsPAcwCUsgTrjwkBXnptgdWO+mjVLDIBODCv/zLZ9Te+
-         wwPMULhbckVjQ==
-Received: by mail-ej1-f41.google.com with SMTP id nd37so16738114ejc.3;
-        Tue, 15 Jun 2021 12:55:10 -0700 (PDT)
-X-Gm-Message-State: AOAM532XgPE24jdSvqQurgsHldCkzg9AXh2PLTlYq/BCRfPbweQhcBrx
-        CZiNngfErN76922LOJPKCOHOA678DSslG9ykFw==
-X-Google-Smtp-Source: ABdhPJwgw4hx5crsunBDkcPAMm2Nmrwncl6HIzcmyuFxYmWV/H4yT2u/a4jul9wKeNr6Pje8ZrIZBI9vMUxDEZ7ekHE=
-X-Received: by 2002:a17:907:2059:: with SMTP id pg25mr1310053ejb.130.1623786909575;
- Tue, 15 Jun 2021 12:55:09 -0700 (PDT)
+        id S229979AbhFOT7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 15:59:35 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:32782 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230144AbhFOT7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 15:59:34 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15FJvObA105581;
+        Tue, 15 Jun 2021 14:57:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623787044;
+        bh=2Gqzj70UQYOjQZBe/Kk9vAJwmvsc2ef+haBHXyrCq04=;
+        h=From:To:CC:Subject:Date;
+        b=JJayzESp01KP3uOyMiYOXaCjPn0R8jWz2UEAhF2QZ6mOaWTNjJ52GvCmvyiumKuyr
+         fCcE3omy34KeYnDlsawCpR7A36H/ZAk1d89iapAkQLqL3gH7G5CPqyE+QrJlrrnmkq
+         L3wr8xGYB02mzgd/j4c9xIOrHBHydQ7dwuzrOvq0=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15FJvO5F015543
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Jun 2021 14:57:24 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 15
+ Jun 2021 14:57:23 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 15 Jun 2021 14:57:23 -0500
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15FJvNM0123060;
+        Tue, 15 Jun 2021 14:57:23 -0500
+Received: from localhost ([10.250.35.153])
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 15FJvNUa095741;
+        Tue, 15 Jun 2021 14:57:23 -0500
+From:   Suman Anna <s-anna@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH v2 0/3] Add R5F nodes on TI K3 AM64x SoCs
+Date:   Tue, 15 Jun 2021 14:57:15 -0500
+Message-ID: <20210615195718.15898-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
-References: <cover.1623780059.git.geert+renesas@glider.be> <8661d652968d050489852ccb50df5ad4cc048900.1623780059.git.geert+renesas@glider.be>
-In-Reply-To: <8661d652968d050489852ccb50df5ad4cc048900.1623780059.git.geert+renesas@glider.be>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Jun 2021 13:54:57 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+Ozd_+__+v7LEsDjvydymuRF=+T9NnmOd-htqCQ22nCA@mail.gmail.com>
-Message-ID: <CAL_Jsq+Ozd_+__+v7LEsDjvydymuRF=+T9NnmOd-htqCQ22nCA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] of: fdt: Add generic support for parsing elf core
- header properties
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Nick Kossifidis <mick@ics.forth.gr>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 15, 2021 at 12:17 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> There are two methods to specify the location of the elf core header:
-> using the "elfcorehdr=" kernel parameter, as handled by generic code in
-> kernel/crash_dump.c, or using the "linux,elfcorehdr" property under the
-> "/chosen" node in the Device Tree, as handled by architecture-specific
-> code in arch/arm64/mm/init.c.
->
-> Extend support for "linux,elfcorehdr" to all platforms supporting DT by
-> adding platform-agnostic handling for parsing this property to the FDT
-> core code.  This can co-exist safely with the architecture-specific
-> handling, until the latter has been removed.
->
-> This requires moving the call to of_scan_flat_dt() up, as the code
-> scanning the "/chosen" node now needs to be aware of the values of
-> "#address-cells" and "#size-cells".
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/chosen.txt |  6 ++--
->  drivers/of/fdt.c                             | 37 ++++++++++++++++++--
->  2 files changed, 37 insertions(+), 6 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
-> index 45e79172a646c537..5b0b94eb2d04e79d 100644
-> --- a/Documentation/devicetree/bindings/chosen.txt
-> +++ b/Documentation/devicetree/bindings/chosen.txt
-> @@ -106,9 +106,9 @@ respectively, of the root node.
->  linux,elfcorehdr
->  ----------------
->
-> -This property (currently used only on arm64) holds the memory range,
-> -the address and the size, of the elf core header which mainly describes
-> -the panicked kernel's memory layout as PT_LOAD segments of elf format.
-> +This property holds the memory range, the address and the size, of the elf
-> +core header which mainly describes the panicked kernel's memory layout as
-> +PT_LOAD segments of elf format.
->  e.g.
->
->  / {
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index a03d43f95495d8e1..f13db831c8028cce 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -8,6 +8,7 @@
->
->  #define pr_fmt(fmt)    "OF: fdt: " fmt
->
-> +#include <linux/crash_dump.h>
->  #include <linux/crc32.h>
->  #include <linux/kernel.h>
->  #include <linux/initrd.h>
-> @@ -909,6 +910,35 @@ static inline void early_init_dt_check_for_initrd(unsigned long node)
->  }
->  #endif /* CONFIG_BLK_DEV_INITRD */
->
-> +#ifdef CONFIG_CRASH_DUMP
-> +/**
-> + * early_init_dt_check_for_elfcorehdr - Decode elfcorehdr location from flat
-> + * tree
-> + * @node: reference to node containing elfcorehdr location ('chosen')
-> + */
-> +static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
-> +{
-> +       const __be32 *prop;
-> +       int len;
-> +
-> +       pr_debug("Looking for elfcorehdr property... ");
-> +
-> +       prop = of_get_flat_dt_prop(node, "linux,elfcorehdr", &len);
-> +       if (!prop || (len < (dt_root_addr_cells + dt_root_size_cells)))
-> +               return;
-> +
-> +       elfcorehdr_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
-> +       elfcorehdr_size = dt_mem_next_cell(dt_root_size_cells, &prop);
+Hi Nishanth,
 
-If these declarations were moved outside the '#ifdef
-CONFIG_CRASH_DUMP' in crash_dump.h, then IS_ENABLED() could be used in
-this function.
+This is a rebased version of the K3 AM64x R5F node series posted previously.
+Please see the v1 cover-letter for all the functional details [1]. I have
+dropped Patch 4 [2] from the previous series as per the discussion and agreed
+upon in [2] until we align on the longer-term memory utilization of OCM RAM.
 
+Patches are on top of your latest staged ti-k3-dts-next branch commit
+d65f069e50a3 (arm64: dts: ti: Drop reg-io-width/reg-shift from UART nodes")
++ Aswath's [PATCH v4 0/3] AM64: Update the locations of various elements in SRAM
+series (can't see the links on lakml patchworks).
 
-> +
-> +       pr_debug("elfcorehdr_start=0x%llx elfcorehdr_size=0x%llx\n",
-> +                elfcorehdr_addr, elfcorehdr_size);
-> +}
-> +#else
-> +static inline void early_init_dt_check_for_elfcorehdr(unsigned long node)
-> +{
-> +}
-> +#endif
-> +
->  #ifdef CONFIG_SERIAL_EARLYCON
->
->  int __init early_init_dt_scan_chosen_stdout(void)
-> @@ -1057,6 +1087,7 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
->                 return 0;
->
->         early_init_dt_check_for_initrd(node);
-> +       early_init_dt_check_for_elfcorehdr(node);
->
->         /* Retrieve command line */
->         p = of_get_flat_dt_prop(node, "bootargs", &l);
-> @@ -1201,14 +1232,14 @@ void __init early_init_dt_scan_nodes(void)
->  {
->         int rc = 0;
->
-> +       /* Initialize {size,address}-cells info */
-> +       of_scan_flat_dt(early_init_dt_scan_root, NULL);
-> +
->         /* Retrieve various information from the /chosen node */
->         rc = of_scan_flat_dt(early_init_dt_scan_chosen, boot_command_line);
->         if (!rc)
->                 pr_warn("No chosen node found, continuing without\n");
->
-> -       /* Initialize {size,address}-cells info */
-> -       of_scan_flat_dt(early_init_dt_scan_root, NULL);
-> -
->         /* Setup memory, calling early_init_dt_add_memory_arch */
->         of_scan_flat_dt(early_init_dt_scan_memory, NULL);
->  }
-> --
-> 2.25.1
->
+Bjorn has staged a tag from remoteproc tree with just the bindings [3]
+that you can use for merging this series for v5.14. The driver support
+will come through remoteproc tree.
+
+I have validated the IPC functionality using System Firmware v2021.01a
+with appropriate U-Boot that goes along with Aswath's series and corresponding
+legacy PDK IPC example firmwares.
+
+regards
+Suman
+
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210528144718.25132-1-s-anna@ti.com/
+[2] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210528144718.25132-5-s-anna@ti.com/
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/andersson/remoteproc.git/log/?h=20210327143117.1840-2-s-anna@ti.com 
+
+Suman Anna (3):
+  arm64: dts: ti: k3-am64-main: Add MAIN domain R5F cluster nodes
+  arm64: dts: ti: k3-am642-evm/sk: Add mailboxes to R5Fs
+  arm64: dts: ti: k3-am642-evm/sk: Add DDR carveout memory nodes for
+    R5Fs
+
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 84 ++++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts  | 78 ++++++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts   | 78 ++++++++++++++++++++++
+ 3 files changed, 240 insertions(+)
+
+-- 
+2.30.1
+
