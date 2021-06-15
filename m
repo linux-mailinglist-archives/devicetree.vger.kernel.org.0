@@ -2,224 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 761023A8C37
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:06:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1CE93A8C48
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:14:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231216AbhFOXIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 19:08:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41652 "EHLO mail.kernel.org"
+        id S229898AbhFOXQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 19:16:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42520 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230481AbhFOXIE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 19:08:04 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3446061350;
-        Tue, 15 Jun 2021 23:05:59 +0000 (UTC)
+        id S229811AbhFOXQ3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 19:16:29 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C3ED36137D;
+        Tue, 15 Jun 2021 23:14:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623798359;
-        bh=gX2OAJ87Zhj6xcJSH+HSb/c9JiEnHEpm9jh8ZOCi7GE=;
+        s=k20201202; t=1623798864;
+        bh=fHZtWrarsnH1NG9vOVFLLDZo2mVyvlintqGnbzRbg2c=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=GYVRp0Z6E37g7ELIe7G+wNKp6tynscouCV1P20M8FAHBu5VtK1bhTuQZ0MNScOBy/
-         99s1+g4jjndvez16c5jL0LPvCqF6X0UNpKJR24uI2GjvgxTgdRX62oKPCsSYdaWJpM
-         tfT9DslNk/fYbSwpeXR2v9o+Y7oyx7mM1YUuX78/jOw6epRJTsZ4+6o0kTlCcT3NCY
-         BPj4yYseDb7W10wZ8GouJFeqf7siOXm42cSIJ4n2RrnF3ZfGhHGhrufyNreny97Y6c
-         Z0knBUlaqvaQhO4eFdYCz6PRpDa6IEFcBEpEQxcthBbkZZLj2bXbMobitZobmV+bdo
-         DmUf7Ci1pKx3Q==
-Received: by mail-ej1-f50.google.com with SMTP id og14so451837ejc.5;
-        Tue, 15 Jun 2021 16:05:59 -0700 (PDT)
-X-Gm-Message-State: AOAM5328b3ebu0SKwjqiHHjl7YR0+41BcxDSNnhBFzr8m6o3+ER8aZUo
-        cLbL4QrEBsW8Vpm1NcEpLev8gLOy4ptZvjZcYA==
-X-Google-Smtp-Source: ABdhPJzpHvXx18Z/9Nse3ofyzq8kUd/ug4pWPECTHvAcqbbUlWOKZtUfGLRKqUtnaDY1vjPghEZEvjkVMh2l9+9oqSE=
-X-Received: by 2002:a17:906:9419:: with SMTP id q25mr1926455ejx.341.1623798357795;
- Tue, 15 Jun 2021 16:05:57 -0700 (PDT)
+        b=XOqBFcDOZZZELWHZLPOLVAolVXVdM+GUUCmbh5xM+eyINgiorFkmf5Fq4uEgkoGrk
+         HWtEVtAKTUrKF4w8phabp6DHVkq4TtgwK81JUMv40Ndp+Ou7L4Qn7QiKU/Z/kzyyq6
+         SqCym6Sgz1ogie48kGOeTd40wJW8tiu7HlNyGeKbgQn08vXcBe3LfXqrZWuaZuUBEp
+         G3qlRtnRVlEXtWSxEtY5S51tGPGoiuA3vAnGSGBXUY5tR7B+r4SEOuFAil1SORoTxq
+         geym+XmOjCgtShFxFCtIOwQoInOZyG4vi2GqY6SJpQf31+JAf13XB8yeVl34R5KNX0
+         AFvwu9x+f6TZw==
+Received: by mail-ej1-f43.google.com with SMTP id gt18so427480ejc.11;
+        Tue, 15 Jun 2021 16:14:24 -0700 (PDT)
+X-Gm-Message-State: AOAM530lZCaHLF+2a2ciCmJOtRyphKMCfT+u6VyPZ0fmjMTuWNRR8yhC
+        aFuJAtKI9RZint55gXM1fD7jb5O+WxUtgt/xnw==
+X-Google-Smtp-Source: ABdhPJw3/gDFI5x2HFueMq3B9VYK1sY3WMe+9Pcj94vrZkWqoggoPGqEb4VUSE4jvvly4f7LQT4RV7ETSQlA+GtPq1E=
+X-Received: by 2002:a17:907:9620:: with SMTP id gb32mr1957537ejc.127.1623798863315;
+ Tue, 15 Jun 2021 16:14:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <1623690937-52389-1-git-send-email-zhouyanjie@wanyeetech.com> <1623690937-52389-2-git-send-email-zhouyanjie@wanyeetech.com>
-In-Reply-To: <1623690937-52389-2-git-send-email-zhouyanjie@wanyeetech.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Jun 2021 17:05:45 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+7v6GRMfxWhA6g2r0GaZSO_AztgSz7rheJsE9jKYd8uQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+7v6GRMfxWhA6g2r0GaZSO_AztgSz7rheJsE9jKYd8uQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: dwmac: Add bindings for new Ingenic SoCs.
-To:     =?UTF-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     David Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Giuseppe CAVALLARO <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+References: <20210615173233.26682-1-tinghan.shen@mediatek.com> <20210615173233.26682-16-tinghan.shen@mediatek.com>
+In-Reply-To: <20210615173233.26682-16-tinghan.shen@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 16 Jun 2021 07:14:12 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9M7bpvYM1bmZjkari=3f1uxAjOzs_UFhv10JTR0X4orw@mail.gmail.com>
+Message-ID: <CAAOTY_9M7bpvYM1bmZjkari=3f1uxAjOzs_UFhv10JTR0X4orw@mail.gmail.com>
+Subject: Re: [PATCH 16/27] arm64: dts: mt8195: add display node
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
         "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>, wenst@google.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Jason-JH Lin <jason-jh.lin@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 14, 2021 at 11:18 AM =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie)
-<zhouyanjie@wanyeetech.com> wrote:
+Hi, Tinghan:
+
+Tinghan Shen <tinghan.shen@mediatek.com> =E6=96=BC 2021=E5=B9=B46=E6=9C=881=
+6=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=885:37=E5=AF=AB=E9=81=93=EF=
+=BC=9A
 >
-> Add the dwmac bindings for the JZ4775 SoC, the X1000 SoC,
-> the X1600 SoC, the X1830 SoC and the X2000 SoC from Ingenic.
+> From: Jason-JH Lin <jason-jh.lin@mediatek.com>
 >
-> Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) <zhouyanjie@wany=
-eetech.com>
+> add display node.
+>
+> Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
 > ---
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 76 ++++++++++++++++++++++++
+>  1 file changed, 76 insertions(+)
 >
-> Notes:
->     v1->v2:
->     No change.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8195.dtsi
+> index 856b0e938009..f362288ad828 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1911,6 +1911,82 @@
+>                         #clock-cells =3D <1>;
+>                 };
 >
->     v2->v3:
->     Add "ingenic,mac.yaml" for Ingenic SoCs.
->
->  .../devicetree/bindings/net/ingenic,mac.yaml       | 76 ++++++++++++++++=
-++++++
->  .../devicetree/bindings/net/snps,dwmac.yaml        | 15 +++++
->  2 files changed, 91 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/ingenic,mac.yam=
-l
->
-> diff --git a/Documentation/devicetree/bindings/net/ingenic,mac.yaml b/Doc=
-umentation/devicetree/bindings/net/ingenic,mac.yaml
-> new file mode 100644
-> index 00000000..5fe2e81
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/ingenic,mac.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/ingenic,mac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for MAC in Ingenic SoCs
-> +
-> +maintainers:
-> +  - =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) <zhouyanjie@wanyeetech.com=
->
-> +
-> +description:
-> +  The Ethernet Media Access Controller in Ingenic SoCs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ingenic,jz4775-mac
-> +      - ingenic,x1000-mac
-> +      - ingenic,x1600-mac
-> +      - ingenic,x1830-mac
-> +      - ingenic,x2000-mac
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  interrupt-names:
-> +    const: macirq
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: stmmaceth
-> +
-> +  mode-reg:
-> +    description: An extra syscon register that control ethernet interfac=
-e and timing delay
+> +               vdosys_config@1c01a000 {
+> +                       compatible =3D "mediatek,mt8195-vdosys";
 
-Needs a vendor prefix and type.
+Where is the definition of this compatible?
 
+> +                       reg =3D <0 0x1c01a000 0 0x1000>;
+> +                       reg-names =3D "vdosys0_config";
+> +                       iommus =3D <&iommu_vdo M4U_PORT_L0_DISP_RDMA0>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +               };
 > +
-> +  rx-clk-delay-ps:
-> +    description: RGMII receive clock delay defined in pico seconds
-> +
-> +  tx-clk-delay-ps:
-> +    description: RGMII transmit clock delay defined in pico seconds
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - clocks
-> +  - clock-names
-> +  - mode-reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/x1000-cgu.h>
-> +
-> +    mac: ethernet@134b0000 {
-> +        compatible =3D "ingenic,x1000-mac", "snps,dwmac";
+> +               mutex: disp_mutex0@1c016000 {
+> +                       compatible =3D "mediatek,mt8195-disp-mutex";
 
-Doesn't match the schema.
+Ditto.
 
-> +        reg =3D <0x134b0000 0x2000>;
+> +                       reg =3D <0 0x1c016000 0 0x1000>;
+> +                       reg-names =3D "vdo0_mutex";
+> +                       clocks =3D <&vdosys0 CLK_VDO0_DISP_MUTEX0>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +                       clock-names =3D "vdo0_mutex";
+> +                       interrupts =3D <GIC_SPI 658 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +               };
 > +
-> +        interrupt-parent =3D <&intc>;
-> +        interrupts =3D <55>;
-> +        interrupt-names =3D "macirq";
+> +               ovl0: disp_ovl@1c000000 {
+> +                       compatible =3D "mediatek,mt8195-disp-ovl";
+
+Ditto.
+
+> +                       reg =3D <0 0x1c000000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 636 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       clocks =3D <&vdosys0 CLK_VDO0_DISP_OVL0>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +                       iommus =3D <&iommu_vdo M4U_PORT_L0_DISP_OVL0_RDMA=
+0>;
+> +               };
 > +
-> +        clocks =3D <&cgu X1000_CLK_MAC>;
-> +        clock-names =3D "stmmaceth";
+> +               rdma0: disp_rdma@1c002000 {
+> +                       compatible =3D "mediatek,mt8195-disp-rdma";
+
+Ditto.
+
+> +                       reg =3D <0 0x1c002000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 638 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       clocks =3D <&vdosys0 CLK_VDO0_DISP_RDMA0>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +                       iommus =3D <&iommu_vdo M4U_PORT_L0_DISP_RDMA0>;
+> +               };
 > +
-> +        mode-reg =3D <&mac_phy_ctrl>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Docu=
-mentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 2edd8be..9c0ce92 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -56,6 +56,11 @@ properties:
->          - amlogic,meson8m2-dwmac
->          - amlogic,meson-gxbb-dwmac
->          - amlogic,meson-axg-dwmac
-> +        - ingenic,jz4775-mac
-> +        - ingenic,x1000-mac
-> +        - ingenic,x1600-mac
-> +        - ingenic,x1830-mac
-> +        - ingenic,x2000-mac
->          - rockchip,px30-gmac
->          - rockchip,rk3128-gmac
->          - rockchip,rk3228-gmac
-> @@ -310,6 +315,11 @@ allOf:
->                - allwinner,sun8i-r40-emac
->                - allwinner,sun8i-v3s-emac
->                - allwinner,sun50i-a64-emac
-> +              - ingenic,jz4775-mac
-> +              - ingenic,x1000-mac
-> +              - ingenic,x1600-mac
-> +              - ingenic,x1830-mac
-> +              - ingenic,x2000-mac
->                - snps,dwxgmac
->                - snps,dwxgmac-2.10
->                - st,spear600-gmac
-> @@ -353,6 +363,11 @@ allOf:
->                - allwinner,sun8i-r40-emac
->                - allwinner,sun8i-v3s-emac
->                - allwinner,sun50i-a64-emac
-> +              - ingenic,jz4775-mac
-> +              - ingenic,x1000-mac
-> +              - ingenic,x1600-mac
-> +              - ingenic,x1830-mac
-> +              - ingenic,x2000-mac
->                - snps,dwmac-4.00
->                - snps,dwmac-4.10a
->                - snps,dwmac-4.20a
+> +               color0: disp_color@1c003000 {
+> +                       compatible =3D "mediatek,mt8195-disp-color";
+
+Ditto.
+
+> +                       reg =3D <0 0x1c003000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 639 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       clocks =3D <&vdosys0 CLK_VDO0_DISP_COLOR0>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +               };
+> +
+> +               ccorr0: disp_ccorr@1c004000 {
+> +                       compatible =3D "mediatek,mt8195-disp-ccorr";
+
+Ditto.
+
+> +                       reg =3D <0 0x1c004000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       clocks =3D <&vdosys0 CLK_VDO0_DISP_CCORR0>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +               };
+> +
+> +               aal0: disp_aal@1c005000 {
+> +                       compatible =3D "mediatek,mt8195-disp-aal";
+
+Ditto.
+
+> +                       reg =3D <0 0x1c005000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       clocks =3D <&vdosys0 CLK_VDO0_DISP_AAL0>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +               };
+> +
+> +               gamma0: disp_gamma@1c006000 {
+> +                       compatible =3D "mediatek,mt8195-disp-gamma";
+
+Ditto.
+
+> +                       reg =3D <0 0x1c006000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       clocks =3D <&vdosys0 CLK_VDO0_DISP_GAMMA0>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +               };
+> +
+> +               dither0: disp_dither@1c007000 {
+> +                       compatible =3D "mediatek,mt8195-disp-dither";
+
+Ditto.
+
+> +                       reg =3D <0 0x1c007000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 643 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       clocks =3D <&vdosys0 CLK_VDO0_DISP_DITHER0>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +               };
+> +
+>                 smi_common0: smi@1c01b000 {
+>                         compatible =3D "mediatek,mt8195-smi-common";
+
+Ditto.
+
+Regards,
+Chun-Kuang.
+
+>                         mediatek,common-id =3D <0>;
 > --
-> 2.7.4
->
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
