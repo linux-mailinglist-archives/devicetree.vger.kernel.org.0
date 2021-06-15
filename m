@@ -2,125 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EC813A864C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 18:21:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B78A73A8650
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 18:22:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230364AbhFOQXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 12:23:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32890 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230064AbhFOQXA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 12:23:00 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7DF9361444;
-        Tue, 15 Jun 2021 16:20:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623774055;
-        bh=A//FjPnGORFN1egULK4FZVmE0QZM3H3vbfVdYalLmUc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ek5PoI3owNGFiVWfrlGzFsEjl1OXF8eMSZ+XnTlXa38ATH+k0MpBoDeJEtVTmoDVw
-         f+U1pAJrJmD6FnwIlw8aLpiB4gHpus0Bs22Kryciz+ZNnzlPMRSrYkcHbhBoOYIRQt
-         XSV8kTfkd/pQJh055pq/uVe6klnKmElVuyEg0jDpvH8sGApcEo/6J2D4cXz5mCLXSR
-         tYKtjO3uuRc32MYCToKKPESeIC0jy0F8XR3oBWU6R4bP76U48C2Slng0tV0SrPNfBV
-         CoO/xMgyXKoeZGe/V1R2cs4HNoJqY1oIiDS28dpnib9twl5obhiChJweu9De62vCfV
-         epbXJ1KHRBqJQ==
-Received: by mail-ed1-f52.google.com with SMTP id s6so51898363edu.10;
-        Tue, 15 Jun 2021 09:20:55 -0700 (PDT)
-X-Gm-Message-State: AOAM532KEg/WOQlsJTaOvFZJ1LmTm9XPJ4yIeketLdpQTxJV6VEZ3Slp
-        RdUsxQcsOYwaqjbKhRHTZq/3aRk+c7UiurcdcQ==
-X-Google-Smtp-Source: ABdhPJyBoxVJH3xF/WxVEUjQE0taHKPI2RIQWJ9pzI7pv0ojHASmCzM2k5cttEz8Fq9s6n+PeW9P9ZdJDmC15Fiqz5k=
-X-Received: by 2002:a05:6402:1911:: with SMTP id e17mr347145edz.62.1623774054092;
- Tue, 15 Jun 2021 09:20:54 -0700 (PDT)
+        id S229528AbhFOQYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 12:24:53 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33586 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229659AbhFOQYx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 12:24:53 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15FGMh1f108085;
+        Tue, 15 Jun 2021 11:22:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623774163;
+        bh=wGVUQ55PmqJON7xlCT6V4UA7WmkkpWbU+WHVCO3D95I=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=S7l9NCrR96NAPvkrSbt+Ce9uxQ1lVh38XyRL35M2wUka90AW1BPLi/ORqu/igP24/
+         2hd5eGeVB69cRFPGZY+7FxFX6mjZXs5+1+IYmfs4XpSuSab/H3nAD5hgg4AZCL+n9D
+         WCkdKm5oNwWgwbUn8RuLW/OtRH1x3kEhqsqj7JEc=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15FGMhlB045507
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Jun 2021 11:22:43 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 15
+ Jun 2021 11:22:43 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 15 Jun 2021 11:22:43 -0500
+Received: from [10.250.35.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15FGMhr6021735;
+        Tue, 15 Jun 2021 11:22:43 -0500
+Subject: Re: [PATCH v3 1/3] dts: ti: k3-am64-main: Update TF-A's maximum size
+ and node name
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20210615155115.28902-1-a-govindraju@ti.com>
+ <20210615155115.28902-2-a-govindraju@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <879de360-f574-0d45-dd01-066578ff6458@ti.com>
+Date:   Tue, 15 Jun 2021 11:22:38 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210509184519.15816-1-alex.nemirovsky@cortina-access.com>
- <20210509184519.15816-2-alex.nemirovsky@cortina-access.com>
- <YMiUpK/+PjsoCU1W@kroah.com> <CFD14D63-4537-4A91-861C-71B74E2CFAE6@cortina-access.com>
- <YMi1jOL6y+eUK3Df@kroah.com> <B71C5D02-EDBE-4AAD-AF1B-2FD467BE075A@cortina-access.com>
- <CAL_JsqKDf9W-1KHUoFFCoLareLKf0CAVMU6CXR22xW3hWM_8yg@mail.gmail.com> <9937DB34-7757-4A54-BCC6-AF5514FD7F1D@cortina-access.com>
-In-Reply-To: <9937DB34-7757-4A54-BCC6-AF5514FD7F1D@cortina-access.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Jun 2021 10:20:42 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLHdi29Du1F=e1N471tnsziWpH7TPO_caDF3SrjvHS-iw@mail.gmail.com>
-Message-ID: <CAL_JsqLHdi29Du1F=e1N471tnsziWpH7TPO_caDF3SrjvHS-iw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: serial: Convert Cortina-Access UART
- to json-schema
-To:     Alex Nemirovsky <Alex.Nemirovsky@cortina-access.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jason Li <jason.li@cortina-access.com>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210615155115.28902-2-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 15, 2021 at 10:06 AM Alex Nemirovsky
-<Alex.Nemirovsky@cortina-access.com> wrote:
->
->
->
-> > On Jun 15, 2021, at 8:44 AM, Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Tue, Jun 15, 2021 at 8:39 AM Alex Nemirovsky
-> > <Alex.Nemirovsky@cortina-access.com> wrote:
-> >>
-> >>
-> >>
-> >>> On Jun 15, 2021, at 7:13 AM, Greg Kroah-Hartman <gregkh@linuxfoundati=
-on.org> wrote:
-> >>>
-> >>> On Tue, Jun 15, 2021 at 01:36:39PM +0000, Alex Nemirovsky wrote:
-> >>>> MAINTAINERS modification was made in the initial version 1.  We made=
- no changes to it since then,
-> >>>> thus not sure what we could at to  Changelog which would add value o=
-r clarity for others
-> >>>> from the v1.
-> >>>>
-> >>>>> On Jun 15, 2021, at 4:53 AM, Greg Kroah-Hartman <gregkh@linuxfounda=
-tion.org> wrote:
-> >>>>>
-> >>>>> On Sun, May 09, 2021 at 11:45:17AM -0700, Alex Nemirovsky wrote:
-> >>>>>> From: Jason Li <jason.li@cortina-access.com>
-> >>>>>>
-> >>>>>> Convert the Cortina-Access UART binding to DT schema format.
-> >>>>>>
-> >>>>>> Signed-off-by: Jason Li <jason.li@cortina-access.com>
-> >>>>>> ---
-> >>>>>> .../serial/cortina-access,serial.yaml         | 46 +++++++++++++++=
-++++
-> >>>>>> .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
-> >>>>>> MAINTAINERS                                   |  6 +++
-> >>>>>
-> >>>>> You are also adding a MAINTAINERS entry here, which is not listed i=
-n the
-> >>>>> changelog text, so I couldn't take it anyway :(
-> >>>
-> >>> Add the maintainers entry in the first patch, with the driver please.
-> >>
-> >> The change to MAINTAINERS here add a new file into the DT documentatio=
-n.
-> >> Should it not be grouped into the dt-binding portion and reviewed by t=
-he DT time for which this patch
-> >> is CC=E2=80=99ed to? Why would moving the DT documentation file that i=
-s introduced be into the first patch, which is the
-> >> serial driver itself be the correct approach?
-> >
-> > The binding doesn't actually need a MAINTAINERS entry (though having
-> > one is fine). get_maintainers.pl will also pull emails from the
-> > binding schema.
-> >
-> > Rob
->
-> Hi Rob,
-> It sounds like you are find with patch 2/3 from a DT point of view.  Coul=
-d we review the rest from the DT point of view
-> to get either feedback for changes or ACK these, so we can unblock this s=
-eries?
+On 6/15/21 10:51 AM, Aswath Govindraju wrote:
+> The maximum size of TF-A 2.5 has been increased to 0x1c000 [1]. Therefore,
+> update this accordingly in the device tree node.
+> 
+> Also, update the node name to "tfa-sram".
+> 
+> [1] - https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/?id=2fb5312f61a7de8b7a70e1639199c4f14a10b6f9
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> Reviewed-by: Suman Anna <s-anna@ti.com>
 
-Can't say I've seen it as I only see replies in my mail. Did this
-originally go to the DT list? If not, it's never in my queue[1].
+Patch title should start with arm64: following the standard convention.
+Sorry missed this in the prior review. Otherwise, everything LGTM.
 
-Rob
+regards
+Suman
 
-[1] https://patchwork.ozlabs.org/project/devicetree-bindings/list/
+> ---
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> index dec54243f454..693fe24e7f7a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+> @@ -24,8 +24,8 @@
+>  		#size-cells = <1>;
+>  		ranges = <0x0 0x00 0x70000000 0x200000>;
+>  
+> -		atf-sram@0 {
+> -			reg = <0x0 0x1a000>;
+> +		tfa-sram@0 {
+> +			reg = <0x0 0x1c000>;
+>  		};
+>  	};
+>  
+> 
+
