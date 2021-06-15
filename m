@@ -2,122 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E1983A8C7D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B98D3A8C85
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:30:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231143AbhFOXbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 19:31:36 -0400
-Received: from mailgate.ics.forth.gr ([139.91.1.2]:20892 "EHLO
-        mailgate.ics.forth.gr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230082AbhFOXbb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 19:31:31 -0400
-Received: from av3.ics.forth.gr (av3in.ics.forth.gr [139.91.1.77])
-        by mailgate.ics.forth.gr (8.15.2/ICS-FORTH/V10-1.8-GATE) with ESMTP id 15FNTPts058464
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 02:29:25 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; d=ics.forth.gr; s=av; c=relaxed/simple;
-        q=dns/txt; i=@ics.forth.gr; t=1623799760; x=1626391760;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ysvqs1/K9ONe++S7r+yMb/Oe/Rgd4xGI6L/tmzqZrik=;
-        b=BmPCIklcetMBqB07S7nUkB/zCCNdq6q9TT74SEG8aIJj+UwPy9eCcJj5j48XMZiX
-        AYKr30lgIDymdSumCyZ85PIJUDc/Y3tQI1bHMrr/iPbkwX/LmXPDqJtkIi4dvrlD
-        10Xh9i838pmKVpkoFQjM8oFdUoQMUxfqqOiYMnNzP13ihKCvt5jvAHTJ6EPuy0wr
-        Qp0ZI3vPRfeTSTTYar9tooQMlO38NGFafmuE6Ol+055P8bF/0203SBPSYc+acNBq
-        KM3xu+gSiKziOkAbwhz8JfhgJOXitxt1iO2iAABE+gdQCptk5gfNaBJKnmuvx4uP
-        doxY+aS3kJdLj9yvNF/ffQ==;
-X-AuditID: 8b5b014d-962f1700000067b6-5b-60c937d07ad1
-Received: from enigma.ics.forth.gr (enigma.ics.forth.gr [139.91.151.35])
-        by av3.ics.forth.gr (Symantec Messaging Gateway) with SMTP id 5D.05.26550.0D739C06; Wed, 16 Jun 2021 02:29:20 +0300 (EEST)
-X-ICS-AUTH-INFO: Authenticated user:  at ics.forth.gr
+        id S229966AbhFOXci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 19:32:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45366 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229898AbhFOXch (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 19:32:37 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4C0A961356;
+        Tue, 15 Jun 2021 23:30:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623799832;
+        bh=EhsENLIeeDjKwTAN8zz7rBUT0tnSjzg/HSQK5HpPxEw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=eU2fOUQo43Ho6rhJgc0WFrfRqjp3ph7sH6Yth2MReQPshU0dxXLFDUMzoF7d4W/dF
+         o4PCdLs8R5DD/cWn0oD+y2R+S3EXokKfwTMcL2N3YGaeJYMj0eGegjEUi5mAF9COgu
+         +q0cPeeUaRsBunJeqBQcfeESYC+42eRQyCytoiGkD8gRVN+md69pzn1WblfX8o0MoP
+         /wmV7rtkVL+wpoHZ0Psp7HEFGUGW7e4TMt9MHidQ4wiv5w1iCzkQ/q+qt0sdbOJgLT
+         iLJ0uosB4LaAZv/CUqtgTx0p/ydf/Bkm/GXlGmTUBZQMZH4IqBPIJLq8Cil1GmKKyf
+         jDZwerpPDGCnw==
+Received: by mail-ed1-f47.google.com with SMTP id s15so126163edt.13;
+        Tue, 15 Jun 2021 16:30:32 -0700 (PDT)
+X-Gm-Message-State: AOAM533b87+si5Bu73Pdl1Lsx53EmMYegUz5rQkGms2eCYGVfAo+vmI7
+        mB/Hmw4Px0o/ofs3y/Jv/TMffMXdi3a3tn53/g==
+X-Google-Smtp-Source: ABdhPJytJV5zNcgsmxY08WCj69qHXAC6m3v5c40a+y+FwBpdmI8H+LqghQfdUkMNHXhWjJXAV5v9T29CSZriZ8UegwI=
+X-Received: by 2002:aa7:db16:: with SMTP id t22mr666261eds.49.1623799830833;
+ Tue, 15 Jun 2021 16:30:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Wed, 16 Jun 2021 02:29:19 +0300
-From:   Nick Kossifidis <mick@ics.forth.gr>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 5/5] RISC-V: Add crash kernel support
-Organization: FORTH
-In-Reply-To: <CAL_JsqLHOmZ6az0bYGC3dg__YX3aq=+Un4_x4+R2nNksc0hM2g@mail.gmail.com>
-References: <20210419005539.22729-1-mick@ics.forth.gr>
- <20210419005539.22729-6-mick@ics.forth.gr>
- <CAMuHMdW=23SPXwqcjD+30M_d0azdze2=ChZM-PF1brf9bCNtrA@mail.gmail.com>
- <fe02eb618eee141e8bc021e8e30906fc@mailhost.ics.forth.gr>
- <CAMuHMdXtT1L3yfzkTkbhqz3zgUQj89Bcm7mqz+m126NprAsK8Q@mail.gmail.com>
- <CAL_JsqLHOmZ6az0bYGC3dg__YX3aq=+Un4_x4+R2nNksc0hM2g@mail.gmail.com>
-Message-ID: <a488d802940f7fc2ae34a4fe583ec187@mailhost.ics.forth.gr>
-X-Sender: mick@mailhost.ics.forth.gr
-User-Agent: Roundcube Webmail/1.3.16
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrELMWRmVeSWpSXmKPExsXSHT1dWfeC+ckEg+NnRCzmHznHavHs1l4m
-        i8u75rBZbPvcwmbR/O4cu8XLyz3MFm2z+C1a9x5hd+DwePPyJYvHw02XmDw2repk8zh0uIPR
-        Y/OSeo9LzdfZPT5vkgtgj+KySUnNySxLLdK3S+DKaLzxkq3gM2/Fzj+t7A2MT7m6GDk5JARM
-        JM6+vc7SxcjFISRwlFGia9kaFoiEqcTsvZ2MIDavgKDEyZlPwOLMAhYSU6/sZ4Sw5SWat85m
-        BrFZBFQlrmzbDVbDJqApMf/SQTBbREBFYsPzW8wgC5gFFjJLbGqcwgqSEBawkbi14AhYEb+A
-        sMSnuxfB4pwCgRJ90/aBLRAS+Mwk0b5TCOIIF4npbz4zQRynIvHh9wP2LkYODlEge/NcpQmM
-        grOQnDoLyamzkJy6gJF5FaNAYpmxXmZysV5aflFJhl560SZGcDQw+u5gvL35rd4hRiYOxkOM
-        EhzMSiK8usUnEoR4UxIrq1KL8uOLSnNSiw8xSnOwKInz8upNiBcSSE8sSc1OTS1ILYLJMnFw
-        SjUwWZtYB72fs+ZY+caL2j/vh7Nka6TyvfXnO3dqQkXNtQSxMrXJxTzthqcfvX0s2dicWjLn
-        kepi3mXWV9VTpkxSurBKatf6/Wa8BulXNX7MXdoWHd37V4X9+4f62yyKuf8PejTuyT54dNfM
-        0+H3Nz3OWubd+SetYbH7/wKujAXf7QpmlZwuubN3/96GG32MoUI/zQp76z/GNaan9zH8z2v8
-        PmVu/Ytjjf57j0RNenPi++m5f04rzujpcufRW/bg/uKc/PCt7/c95Steu9Yl9ZaAzp05xYm6
-        RS3rbCIYyg7P8E5ymbBJ5JbRkv138+ey/XRYfLaWNffj1SVHkw9ucRQoLLC+Xvl0p9f2htAT
-        QY7MU5RYijMSDbWYi4oTAWVGe4v1AgAA
+References: <20210615173233.26682-1-tinghan.shen@mediatek.com> <20210615173233.26682-22-tinghan.shen@mediatek.com>
+In-Reply-To: <20210615173233.26682-22-tinghan.shen@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 16 Jun 2021 07:30:19 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__cE+wz3hjOobWNDNjie29NsDQiytP=mocbLJxuOF2+4Q@mail.gmail.com>
+Message-ID: <CAAOTY__cE+wz3hjOobWNDNjie29NsDQiytP=mocbLJxuOF2+4Q@mail.gmail.com>
+Subject: Re: [PATCH 22/27] arm64: dts: mt8195: add edp nodes
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>, wenst@google.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Jitao Shi <jitao.shi@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Στις 2021-06-15 22:21, Rob Herring έγραψε:
-> On Tue, Jun 15, 2021 at 12:48 PM Geert Uytterhoeven
-> <geert@linux-m68k.org> wrote:
->> 
->> Hi Nick,
->> 
->> On Tue, Jun 15, 2021 at 8:29 PM Nick Kossifidis <mick@ics.forth.gr> 
->> wrote:
->> > Στις 2021-06-15 16:19, Geert Uytterhoeven έγραψε:
->> > > This does not match
->> > > https://github.com/devicetree-org/dt-schema/blob/master/schemas/chosen.yaml#L77:
->> > >
->> > >     $ref: types.yaml#/definitions/uint64-array
->> > >     maxItems: 2
->> > >     description:
->> > >       This property (currently used only on arm64) holds the memory
->> > > range,
->> > >       the address and the size, of the elf core header which mainly
->> > > describes
->> > >       the panicked kernel\'s memory layout as PT_LOAD segments of elf
->> > > format.
->> > >
->> > > Hence "linux,elfcorehdr" should be a property of the /chosen node,
->> > > instead of a memory node with a compatible value of "linux,elfcorehdr".
->> > >
->> >
->> > That's a binding for a property on the /chosen node, that as the text
->> > says it's defined for arm64 only and the code that handled it was also
->> 
->> That doesn't mean it must not be used on other architectures ;-)
->> Arm64 was just the first one to use it...
-> 
-> It is used on arm64 because memory is often passed by UEFI tables and
-> not with /memory node. As riscv is also supporting EFI, I'd think they
-> would do the same.
-> 
+Hi, Tinghan:
 
-We've had this discussion before, riscv uses /memory for now and even if 
-we switched to getting memory from ACPI/UEFI tables, the elf core header 
-is passed from the crashed kernel to the kdump kernel, it has nothing to 
-do with UEFI since the bootloader is the kernel itself. Am I missing 
-something ?
+Tinghan Shen <tinghan.shen@mediatek.com> =E6=96=BC 2021=E5=B9=B46=E6=9C=881=
+6=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=885:35=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> From: Jitao Shi <jitao.shi@mediatek.com>
+>
+> add edp nodes for mt8195
+>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 59 +++++++++++++++++++++++-
+>  1 file changed, 58 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8195.dtsi
+> index 256818c4c0bf..d7d2c2a8f461 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -23,6 +23,8 @@
+>
+>         aliases {
+>                 dpi1 =3D &disp_dpi1;
+> +               dp-intf0 =3D &dp_intf0;
+> +               dp-intf1 =3D &dp_intf1;
+>         };
+>
+>         clocks {
+> @@ -1155,6 +1157,29 @@
+>                         status =3D "disabled";
+>                 };
+>
+> +               disp_pwm0: disp_pwm0@1100e000 {
+> +                       compatible =3D "mediatek,mt8183-disp-pwm";
+
+You should use
+
+compatible =3D "mediatek,mt8195-disp-pwm", "mediatek,mt8183-disp-pwm";
+
+and add definition of "mediatek,mt8195-disp-pwm" in binding document.
+
+> +                       reg =3D <0 0x1100e000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 203 IRQ_TYPE_LEVEL_LOW 0>=
+;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> +                       #pwm-cells =3D <2>;
+> +                       clocks =3D <&topckgen CLK_TOP_DISP_PWM0_SEL>,
+> +                                       <&infracfg_ao CLK_INFRA_AO_DISP_P=
+WM>;
+> +                       clock-names =3D "main", "mm";
+> +                       status =3D "disabled";
+> +               };
+> +
+> +               disp_pwm1: disp_pwm1@1100f000 {
+> +                       compatible =3D "mediatek,mt8183-disp-pwm";
+
+Ditto.
+
+> +                       reg =3D <0 0x1100f000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 793 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       #pwm-cells =3D <2>;
+> +                       clocks =3D <&topckgen CLK_TOP_DISP_PWM1_SEL>,
+> +                               <&infracfg_ao CLK_INFRA_AO_DISP_PWM1>;
+> +                       clock-names =3D "main", "mm";
+> +                       status =3D "disabled";
+> +               };
+> +
+>                 spi1: spi@11010000 {
+>                         compatible =3D "mediatek,mt8195-spi",
+>                                      "mediatek,mt6765-spi";
+> @@ -2397,6 +2422,30 @@
+>                         status =3D "disabled";
+>                 };
+>
+> +               dp_intf1: dp_intf1@1c113000 {
+> +                       compatible =3D "mediatek,mt8195-dp-intf";
+
+Where is the definition of this compatible?
+
+> +                       reg =3D <0 0x1c113000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S1>;
+> +                       clocks =3D <&vdosys1 CLK_VDO1_DP_INTF0_MM>,
+> +                                <&vdosys1 CLK_VDO1_DPINTF>,
+> +                                <&topckgen CLK_TOP_DP_SEL>,
+> +                                <&topckgen CLK_TOP_TVDPLL2_D2>,
+> +                                <&topckgen CLK_TOP_TVDPLL2_D4>,
+> +                                <&topckgen CLK_TOP_TVDPLL2_D8>,
+> +                                <&topckgen CLK_TOP_TVDPLL2_D16>,
+> +                                <&topckgen CLK_TOP_TVDPLL2>;
+> +                       clock-names =3D "hf_fmm_ck",
+> +                                     "hf_fdp_ck",
+> +                                     "MUX_DP",
+> +                                     "TVDPLL_D2",
+> +                                     "TVDPLL_D4",
+> +                                     "TVDPLL_D8",
+> +                                     "TVDPLL_D16",
+> +                                     "DPI_CK";
+> +                       status =3D "disabled";
+> +               };
+> +
+>                 hdmi0: hdmi@1c300000 {
+>                         compatible =3D "mediatek,mt8195-hdmi";
+>                         reg =3D <0 0x1c300000 0 0x1000>;
+> @@ -2421,11 +2470,19 @@
+>
+>                 edp_tx: edp_tx@1c500000 {
+>                         status =3D "disabled";
+> -                       compatible =3D "mediatek,mt8195-dp_tx";
+> +                       compatible =3D "mediatek,mt8195-edp_tx";
+>                         reg =3D <0 0x1c500000 0 0x8000>;
+>                         power-domains =3D <&spm MT8195_POWER_DOMAIN_EPD_T=
+X>;
+>                         interrupts =3D <GIC_SPI 676 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+>                 };
+> +
+> +               dp_tx: dp_tx@1c600000 {
+> +                       compatible =3D "mediatek,mt8195-dp_tx";
+
+Ditto.
 
 Regards,
-Nick
+Chun-Kuang.
+
+> +                       reg =3D <0 0x1c600000 0 0x8000>;
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_DP_TX=
+>;
+> +                       interrupts =3D <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       status =3D "disabled";
+> +               };
+>         };
+>
+>         hdmiddc0: ddc_i2c {
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
