@@ -2,642 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F34423A794D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 10:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08DBF3A7964
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 10:51:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231145AbhFOItN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 04:49:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44350 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230332AbhFOItM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 04:49:12 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A2E1C061574
-        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 01:47:08 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: rcn)
-        with ESMTPSA id 894581F422F6
-From:   =?UTF-8?q?Ricardo=20Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-To:     laurent.pinchart@ideasonboard.com
-Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        xuwei5@hisilicon.com, michal.simek@xilinx.com,
-        mcoquelin.stm32@gmail.com, marex@denx.de
-Subject: [PATCH v4 3/3] dt-bindings: drm: bridge: adi,adv7511.txt: convert to yaml
-Date:   Tue, 15 Jun 2021 10:46:35 +0200
-Message-Id: <20210615084635.2113070-4-ricardo.canuelo@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210615084635.2113070-1-ricardo.canuelo@collabora.com>
-References: <20210615084635.2113070-1-ricardo.canuelo@collabora.com>
+        id S231251AbhFOIxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 04:53:02 -0400
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:33415 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231214AbhFOIxB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 04:53:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1623747057; x=1655283057;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=udrczPce4PAuPJ/OrHmUnKs40fAXn1kXcUahe3qlc7g=;
+  b=MVSnjf3jSDsknG0jNWi11h8qlugzgkokWGl7w8sK2NbWowvakSM1eUEV
+   nLpQWhGnWCqGA1ajeFqsi1gh+/ApUmbnHdXKqoPl6nivgVJTyZtRJIqIJ
+   ZlrgFfF5vWkNP6HHSCKOSEKnFB2IevOaR+LKml45dLPmU2frMvtpiS1T2
+   wbolN0t0Atit8mdby+qnPd0dmHw1Is0UVm2IEPEqIZcoUe191Xcifwhvn
+   Pcuq8gxG85oLU4ERl8Rb2p7HqCamDRutKe8qT1Vgaw8dIvKWVRxJhqT1R
+   OF6Twu+UxiW13zPJbX8d0gFQ3coPuE34b9S5PZ39CVcpVB3uu4zJsviB2
+   w==;
+IronPort-SDR: RV0EVdR7fpGriNyr9VMEVdDfACaW9BfNucjM9Awm3NIut+ji/kFrb5+E3IlDbccalNMfC9bVPF
+ oDIXnTZDLyiAeAXZfk4W8ifUGfMQLBGpNy6OKpqMpW7mWqWI95c1nfBfew07vYjSn1boYqL6G5
+ VEKbfE0JvqsG7aJJoxb/BTaa7gI9im7FMwEaBGcIyAVXAqF3BPyRhhtxP4ID6usYF1dLCTMWQO
+ BQ7l/X2zG/6wzYeTMnMP09SU+yYHM1QXPKtkteBTK6rGfEpp85/i/p0bNDqvC1V7zj17cBbj3W
+ jFE=
+X-IronPort-AV: E=Sophos;i="5.83,275,1616482800"; 
+   d="scan'208";a="118748336"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Jun 2021 01:50:56 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 15 Jun 2021 01:50:50 -0700
+Received: from den-dk-m31857.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Tue, 15 Jun 2021 01:50:46 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Device Tree List <devicetree@vger.kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Russell King <linux@armlinux.org.uk>,
+        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>,
+        Mark Einon <mark.einon@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Simon Horman" <simon.horman@netronome.com>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Lars Povlsen" <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH net-next v4 01/10] dt-bindings: net: sparx5: Add sparx5-switch bindings
+Date:   Tue, 15 Jun 2021 10:50:25 +0200
+Message-ID: <20210615085034.1262457-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210615085034.1262457-1-steen.hegelund@microchip.com>
+References: <20210615085034.1262457-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ADV7511/11w/13/33/35 DT bindings to json-schema. The
-original binding has been split into two files: adi,adv7511.yaml for
-ADV7511/11W/13 and adi,adv7533.yaml for ADV7533/35.
+Document the Sparx5 switch device driver bindings
 
-Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Signed-off-by: Bjarni Jonasson <bjarni.jonasson@microchip.com>
 Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- .../bindings/display/bridge/adi,adv7511.txt   | 143 -----------
- .../bindings/display/bridge/adi,adv7511.yaml  | 241 ++++++++++++++++++
- .../bindings/display/bridge/adi,adv7533.yaml  | 184 +++++++++++++
- 3 files changed, 425 insertions(+), 143 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/adi,adv7511.txt
- create mode 100644 Documentation/devicetree/bindings/display/bridge/adi,adv7511.yaml
- create mode 100644 Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
+ .../bindings/net/microchip,sparx5-switch.yaml | 226 ++++++++++++++++++
+ 1 file changed, 226 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/adi,adv7511.txt b/Documentation/devicetree/bindings/display/bridge/adi,adv7511.txt
-deleted file mode 100644
-index 659523f538bf..000000000000
---- a/Documentation/devicetree/bindings/display/bridge/adi,adv7511.txt
-+++ /dev/null
-@@ -1,143 +0,0 @@
--Analog Devices ADV7511(W)/13/33/35 HDMI Encoders
--------------------------------------------------
--
--The ADV7511, ADV7511W, ADV7513, ADV7533 and ADV7535 are HDMI audio and video
--transmitters compatible with HDMI 1.4 and DVI 1.0. They support color space
--conversion, S/PDIF, CEC and HDCP. ADV7533/5 supports the DSI interface for input
--pixels, while the others support RGB interface.
--
--Required properties:
--
--- compatible: Should be one of:
--		"adi,adv7511"
--		"adi,adv7511w"
--		"adi,adv7513"
--		"adi,adv7533"
--		"adi,adv7535"
--
--- reg: I2C slave addresses
--  The ADV7511 internal registers are split into four pages exposed through
--  different I2C addresses, creating four register maps. Each map has it own
--  I2C address and acts as a standard slave device on the I2C bus. The main
--  address is mandatory, others are optional and revert to defaults if not
--  specified.
--
--
--The ADV7511 supports a large number of input data formats that differ by their
--color depth, color format, clock mode, bit justification and random
--arrangement of components on the data bus. The combination of the following
--properties describe the input and map directly to the video input tables of the
--ADV7511 datasheet that document all the supported combinations.
--
--- adi,input-depth: Number of bits per color component at the input (8, 10 or
--  12).
--- adi,input-colorspace: The input color space, one of "rgb", "yuv422" or
--  "yuv444".
--- adi,input-clock: The input clock type, one of "1x" (one clock cycle per
--  pixel), "2x" (two clock cycles per pixel), "ddr" (one clock cycle per pixel,
--  data driven on both edges).
--
--The following input format properties are required except in "rgb 1x" and
--"yuv444 1x" modes, in which case they must not be specified.
--
--- adi,input-style: The input components arrangement variant (1, 2 or 3), as
--  listed in the input format tables in the datasheet.
--- adi,input-justification: The input bit justification ("left", "evenly",
--  "right").
--
--- avdd-supply: A 1.8V supply that powers up the AVDD pin on the chip.
--- dvdd-supply: A 1.8V supply that powers up the DVDD pin on the chip.
--- pvdd-supply: A 1.8V supply that powers up the PVDD pin on the chip.
--- dvdd-3v-supply: A 3.3V supply that powers up the pin called DVDD_3V
--  on the chip.
--- bgvdd-supply: A 1.8V supply that powers up the BGVDD pin. This is
--  needed only for ADV7511.
--
--The following properties are required for ADV7533 and ADV7535:
--
--- adi,dsi-lanes: Number of DSI data lanes connected to the DSI host. It should
--  be one of 1, 2, 3 or 4.
--- a2vdd-supply: 1.8V supply that powers up the A2VDD pin on the chip.
--- v3p3-supply: A 3.3V supply that powers up the V3P3 pin on the chip.
--- v1p2-supply: A supply that powers up the V1P2 pin on the chip. It can be
--  either 1.2V or 1.8V for ADV7533 but only 1.8V for ADV7535.
--
--Optional properties:
--
--- interrupts: Specifier for the ADV7511 interrupt
--- pd-gpios: Specifier for the GPIO connected to the power down signal
--
--- adi,clock-delay: Video data clock delay relative to the pixel clock, in ps
--  (-1200 ps .. 1600 ps). Defaults to no delay.
--- adi,embedded-sync: The input uses synchronization signals embedded in the
--  data stream (similar to BT.656). Defaults to separate H/V synchronization
--  signals.
--- adi,disable-timing-generator: Only for ADV7533 and ADV7535. Disables the
--  internal timing generator. The chip will rely on the sync signals in the
--  DSI data lanes, rather than generate its own timings for HDMI output.
--- clocks: from common clock binding: reference to the CEC clock.
--- clock-names: from common clock binding: must be "cec".
--- reg-names : Names of maps with programmable addresses.
--	It can contain any map needing a non-default address.
--	Possible maps names are : "main", "edid", "cec", "packet"
--
--Required nodes:
--
--The ADV7511 has two video ports. Their connections are modelled using the OF
--graph bindings specified in Documentation/devicetree/bindings/graph.txt.
--
--- Video port 0 for the RGB, YUV or DSI input. In the case of ADV7533/5, the
--  remote endpoint phandle should be a reference to a valid mipi_dsi_host device
--  node.
--- Video port 1 for the HDMI output
--- Audio port 2 for the HDMI audio input
--
--
--Example
---------
--
--	adv7511w: hdmi@39 {
--		compatible = "adi,adv7511w";
--		/*
--		 * The EDID page will be accessible on address 0x66 on the I2C
--		 * bus. All other maps continue to use their default addresses.
--		 */
--		reg = <0x39>, <0x66>;
--		reg-names = "main", "edid";
--		interrupt-parent = <&gpio3>;
--		interrupts = <29 IRQ_TYPE_EDGE_FALLING>;
--		clocks = <&cec_clock>;
--		clock-names = "cec";
--
--		adi,input-depth = <8>;
--		adi,input-colorspace = "rgb";
--		adi,input-clock = "1x";
--		adi,input-style = <1>;
--		adi,input-justification = "evenly";
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@0 {
--				reg = <0>;
--				adv7511w_in: endpoint {
--					remote-endpoint = <&dpi_out>;
--				};
--			};
--
--			port@1 {
--				reg = <1>;
--				adv7511_out: endpoint {
--					remote-endpoint = <&hdmi_connector_in>;
--				};
--			};
--
--			port@2 {
--				reg = <2>;
--				codec_endpoint: endpoint {
--					remote-endpoint = <&i2s0_cpu_endpoint>;
--				};
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/display/bridge/adi,adv7511.yaml b/Documentation/devicetree/bindings/display/bridge/adi,adv7511.yaml
+diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
 new file mode 100644
-index 000000000000..00a1b193862c
+index 000000000000..347b912a46bb
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/adi,adv7511.yaml
-@@ -0,0 +1,241 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+@@ -0,0 +1,226 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/display/bridge/adi,adv7511.yaml#
++$id: http://devicetree.org/schemas/net/microchip,sparx5-switch.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Analog Devices ADV7511/11W/13 HDMI Encoders
++title: Microchip Sparx5 Ethernet switch controller
 +
 +maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
++  - Steen Hegelund <steen.hegelund@microchip.com>
++  - Lars Povlsen <lars.povlsen@microchip.com>
 +
 +description: |
-+  The ADV7511, ADV7511W and ADV7513 are HDMI audio and video
-+  transmitters compatible with HDMI 1.4 and DVI 1.0. They support color
-+  space conversion, S/PDIF, CEC and HDCP. The transmitter input is
-+  parallel RGB or YUV data.
++  The SparX-5 Enterprise Ethernet switch family provides a rich set of
++  Enterprise switching features such as advanced TCAM-based VLAN and
++  QoS processing enabling delivery of differentiated services, and
++  security through TCAM-based frame processing using versatile content
++  aware processor (VCAP).
++
++  IPv4/IPv6 Layer 3 (L3) unicast and multicast routing is supported
++  with up to 18K IPv4/9K IPv6 unicast LPM entries and up to 9K IPv4/3K
++  IPv6 (S,G) multicast groups.
++
++  L3 security features include source guard and reverse path
++  forwarding (uRPF) tasks. Additional L3 features include VRF-Lite and
++  IP tunnels (IP over GRE/IP).
++
++  The SparX-5 switch family targets managed Layer 2 and Layer 3
++  equipment in SMB, SME, and Enterprise where high port count
++  1G/2.5G/5G/10G switching with 10G/25G aggregation links is required.
 +
 +properties:
++  $nodename:
++    pattern: "^switch@[0-9a-f]+$"
++
 +  compatible:
-+    enum:
-+      - adi,adv7511
-+      - adi,adv7511w
-+      - adi,adv7513
++    const: microchip,sparx5-switch
 +
 +  reg:
-+    description: |
-+      I2C slave addresses.
-+
-+      The ADV7511/11W/13 internal registers are split into four pages
-+      exposed through different I2C addresses, creating four register
-+      maps. Each map has it own I2C address and acts as a standard slave
-+      device on the I2C bus. The main address is mandatory, others are
-+      optional and revert to defaults if not specified.
-+    minItems: 1
-+    maxItems: 4
++    items:
++      - description: cpu target
++      - description: devices target
++      - description: general control block target
 +
 +  reg-names:
-+    description:
-+      Names of maps with programmable addresses. It can contain any map
-+      needing a non-default address.
-+    minItems: 1
-+    maxItems: 4
 +    items:
-+      - const: main
-+      - const: edid
-+      - const: cec
-+      - const: packet
-+
-+  clocks:
-+    description: Reference to the CEC clock.
-+    maxItems: 1
-+
-+  clock-names:
-+    const: cec
++      - const: cpu
++      - const: devices
++      - const: gcb
 +
 +  interrupts:
-+    maxItems: 1
++    minItems: 1
++    items:
++      - description: register based extraction
++      - description: frame dma based extraction
 +
-+  pd-gpios:
-+    description: GPIO connected to the power down signal.
-+    maxItems: 1
++  interrupt-names:
++    minItems: 1
++    items:
++      - const: xtr
++      - const: fdma
 +
-+  avdd-supply:
-+    description: A 1.8V supply that powers up the AVDD pin.
++  resets:
++    items:
++      - description: Reset controller used for switch core reset (soft reset)
 +
-+  dvdd-supply:
-+    description: A 1.8V supply that powers up the DVDD pin.
++  reset-names:
++    items:
++      - const: switch
 +
-+  pvdd-supply:
-+    description: A 1.8V supply that powers up the PVDD pin.
++  mac-address: true
 +
-+  dvdd-3v-supply:
-+    description: A 3.3V supply that powers up the DVDD_3V pin.
-+
-+  bgvdd-supply:
-+    description: A 1.8V supply that powers up the BGVDD pin.
-+
-+  adi,input-depth:
-+    description: Number of bits per color component at the input.
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/uint32
-+      - enum: [ 8, 10, 12 ]
-+
-+  adi,input-colorspace:
-+    description: Input color space.
-+    enum: [ rgb, yuv422, yuv444 ]
-+
-+  adi,input-clock:
-+    description: |
-+      Input clock type.
-+        "1x": one clock cycle per pixel
-+        "2x": two clock cycles per pixel
-+        "dd": one clock cycle per pixel, data driven on both edges
-+    enum: [ 1x, 2x, dd ]
-+
-+  adi,clock-delay:
-+    description:
-+      Video data clock delay relative to the pixel clock, in ps
-+      (-1200ps .. 1600 ps).
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+
-+  adi,embedded-sync:
-+    description:
-+      If defined, the input uses synchronization signals embedded in the
-+      data stream (similar to BT.656).
-+    type: boolean
-+
-+  adi,input-style:
-+    description:
-+      Input components arrangement variant as listed in the input
-+      format tables in the datasheet.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 1, 2, 3 ]
-+
-+  adi,input-justification:
-+    description: Input bit justification.
-+    enum: [ left, evenly, right ]
-+
-+  ports:
-+    description:
-+      The ADV7511(W)/13 has two video ports and one audio port. This node
-+      models their connections as documented in
-+      Documentation/devicetree/bindings/media/video-interfaces.txt
-+      Documentation/devicetree/bindings/graph.txt
++  ethernet-ports:
 +    type: object
-+    properties:
-+      port@0:
-+        description: Video port for the RGB or YUV input.
++    patternProperties:
++      "^port@[0-9a-f]+$":
 +        type: object
 +
-+      port@1:
-+        description: Video port for the HDMI output.
-+        type: object
++        properties:
++          '#address-cells':
++            const: 1
++          '#size-cells':
++            const: 0
 +
-+      port@2:
-+        description: Audio port for the HDMI output.
-+        type: object
++          reg:
++            description: Switch port number
 +
-+# adi,input-colorspace and adi,input-clock are required except in
-+# "rgb 1x" and "yuv444 1x" modes, in which case they must not be
-+# specified.
-+if:
-+  not:
-+    properties:
-+      adi,input-colorspace:
-+        contains:
-+          enum: [ rgb, yuv444 ]
-+      adi,input-clock:
-+        contains:
-+          const: 1x
++          phys:
++            maxItems: 1
++            description:
++              phandle of a Ethernet SerDes PHY.  This defines which SerDes
++              instance will handle the Ethernet traffic.
 +
-+then:
-+  required:
-+    - adi,input-style
-+    - adi,input-justification
++          phy-mode:
++            description:
++              This specifies the interface used by the Ethernet SerDes towards
++              the PHY or SFP.
 +
-+else:
-+  properties:
-+    adi,input-style: false
-+    adi,input-justification: false
++          microchip,bandwidth:
++            description: Specifies bandwidth in Mbit/s allocated to the port.
++            $ref: "/schemas/types.yaml#/definitions/uint32"
++            maximum: 25000
 +
++          phy-handle:
++            description:
++              phandle of a Ethernet PHY.  This is optional and if provided it
++              points to the cuPHY used by the Ethernet SerDes.
++
++          sfp:
++            description:
++              phandle of an SFP.  This is optional and used when not specifying
++              a cuPHY.  It points to the SFP node that describes the SFP used by
++              the Ethernet SerDes.
++
++          managed: true
++
++          microchip,sd-sgpio:
++            description:
++              Index of the ports Signal Detect SGPIO in the set of 384 SGPIOs
++              This is optional, and only needed if the default used index is
++              is not correct.
++            $ref: "/schemas/types.yaml#/definitions/uint32"
++            minimum: 0
++            maximum: 383
++
++        required:
++          - reg
++          - phys
++          - phy-mode
++          - microchip,bandwidth
++
++        oneOf:
++          - required:
++              - phy-handle
++          - required:
++              - sfp
++              - managed
 +
 +required:
 +  - compatible
 +  - reg
-+  - ports
-+  - adi,input-depth
-+  - adi,input-colorspace
-+  - adi,input-clock
-+  - avdd-supply
-+  - dvdd-supply
-+  - pvdd-supply
-+  - dvdd-3v-supply
-+  - bgvdd-supply
++  - reg-names
++  - interrupts
++  - interrupt-names
++  - resets
++  - reset-names
++  - ethernet-ports
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c@e6500000 {
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    switch: switch@600000000 {
++      compatible = "microchip,sparx5-switch";
++      reg =  <0 0x401000>,
++             <0x10004000 0x7fc000>,
++             <0x11010000 0xaf0000>;
++      reg-names = "cpu", "devices", "gcb";
++      interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
++      interrupt-names = "xtr";
++      resets = <&reset 0>;
++      reset-names = "switch";
++      ethernet-ports {
 +        #address-cells = <1>;
 +        #size-cells = <0>;
 +
-+        reg = <0 0xe6500000>;
-+
-+        adv7511w: hdmi@39 {
-+            compatible = "adi,adv7511w";
-+            /*
-+             * The EDID page will be accessible on address 0x66 on the I2C
-+             * bus. All other maps continue to use their default addresses.
-+             */
-+            reg = <0x39>, <0x66>;
-+            reg-names = "main", "edid";
-+            interrupt-parent = <&gpio3>;
-+            interrupts = <29 IRQ_TYPE_EDGE_FALLING>;
-+            clocks = <&cec_clock>;
-+            clock-names = "cec";
-+            avdd-supply = <&v1v8>;
-+            dvdd-supply = <&v1v8>;
-+            pvdd-supply = <&v1v8>;
-+            dvdd-3v-supply = <&v3v3>;
-+            bgvdd-supply = <&v1v8>;
-+
-+            adi,input-depth = <8>;
-+            adi,input-colorspace = "yuv422";
-+            adi,input-clock = "1x";
-+
-+            adi,input-style = <3>;
-+            adi,input-justification = "right";
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    adv7511w_in: endpoint {
-+                        remote-endpoint = <&dpi_out>;
-+                    };
-+                };
-+
-+                port@1 {
-+                    reg = <1>;
-+                    adv7511_out: endpoint {
-+                        remote-endpoint = <&hdmi_connector_in>;
-+                    };
-+                };
-+
-+                port@2 {
-+                    reg = <2>;
-+                    codec_endpoint: endpoint {
-+                        remote-endpoint = <&i2s0_cpu_endpoint>;
-+                    };
-+                };
-+            };
++        port0: port@0 {
++          reg = <0>;
++          microchip,bandwidth = <1000>;
++          phys = <&serdes 13>;
++          phy-handle = <&phy0>;
++          phy-mode = "qsgmii";
 +        };
++        /* ... */
++        /* Then the 25G interfaces */
++        port60: port@60 {
++          reg = <60>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 29>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth60>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <365>;
++        };
++        port61: port@61 {
++          reg = <61>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 30>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth61>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <369>;
++        };
++        port62: port@62 {
++          reg = <62>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 31>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth62>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <373>;
++        };
++        port63: port@63 {
++          reg = <63>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 32>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth63>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <377>;
++        };
++        /* Finally the Management interface */
++        port64: port@64 {
++          reg = <64>;
++          microchip,bandwidth = <1000>;
++          phys = <&serdes 0>;
++          phy-handle = <&phy64>;
++          phy-mode = "sgmii";
++          mac-address = [ 00 00 00 01 02 03 ];
++        };
++      };
 +    };
 +
 +...
-diff --git a/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml b/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
-new file mode 100644
-index 000000000000..422db1d9a1b3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
-@@ -0,0 +1,184 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/adi,adv7533.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADV7533/35 HDMI Encoders
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+
-+description: |
-+  The ADV7533 and ADV7535 are HDMI audio and video transmitters
-+  compatible with HDMI 1.4 and DVI 1.0. They support color space
-+  conversion, S/PDIF, CEC and HDCP. The transmitter input is MIPI DSI.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adv7533
-+      - adi,adv7535
-+
-+  reg:
-+    description: |
-+      I2C slave addresses.
-+
-+      The ADV7533/35 internal registers are split into four pages
-+      exposed through different I2C addresses, creating four register
-+      maps. Each map has it own I2C address and acts as a standard slave
-+      device on the I2C bus. The main address is mandatory, others are
-+      optional and revert to defaults if not specified.
-+    minItems: 1
-+    maxItems: 4
-+
-+  reg-names:
-+    description:
-+      Names of maps with programmable addresses. It can contain any map
-+      needing a non-default address.
-+    minItems: 1
-+    items:
-+      - const: main
-+      - const: edid
-+      - const: cec
-+      - const: packet
-+
-+  clocks:
-+    description: Reference to the CEC clock.
-+    maxItems: 1
-+
-+  clock-names:
-+    const: cec
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  pd-gpios:
-+    description: GPIO connected to the power down signal.
-+    maxItems: 1
-+
-+  avdd-supply:
-+    description: A 1.8V supply that powers up the AVDD pin.
-+
-+  dvdd-supply:
-+    description: A 1.8V supply that powers up the DVDD pin.
-+
-+  pvdd-supply:
-+    description: A 1.8V supply that powers up the PVDD pin.
-+
-+  a2vdd-supply:
-+    description: A 1.8V supply that powers up the A2VDD pin.
-+
-+  v3p3-supply:
-+    description: A 3.3V supply that powers up the V3P3 pin.
-+
-+  v1p2-supply:
-+    description:
-+      A supply that powers up the V1P2 pin. It can be either 1.2V
-+      or 1.8V for ADV7533 but only 1.8V for ADV7535.
-+
-+  adi,disable-timing-generator:
-+    description:
-+      Disables the internal timing generator. The chip will rely on the
-+      sync signals in the DSI data lanes, rather than generating its own
-+      timings for HDMI output.
-+    type: boolean
-+
-+  adi,dsi-lanes:
-+    description: Number of DSI data lanes connected to the DSI host.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 1, 2, 3, 4 ]
-+
-+  ports:
-+    description:
-+      The ADV7533/35 has two video ports and one audio port. This node
-+      models their connections as documented in
-+      Documentation/devicetree/bindings/media/video-interfaces.txt
-+      Documentation/devicetree/bindings/graph.txt
-+    type: object
-+    properties:
-+      port@0:
-+        description:
-+          Video port for the DSI input. The remote endpoint phandle
-+          should be a reference to a valid mipi_dsi_host_device.
-+        type: object
-+
-+      port@1:
-+        description: Video port for the HDMI output.
-+        type: object
-+
-+      port@2:
-+        description: Audio port for the HDMI output.
-+        type: object
-+
-+required:
-+  - compatible
-+  - reg
-+  - ports
-+  - adi,dsi-lanes
-+  - avdd-supply
-+  - dvdd-supply
-+  - pvdd-supply
-+  - a2vdd-supply
-+  - v3p3-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c@e6500000 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        reg = <0 0xe6500000>;
-+
-+        adv7533: hdmi@39 {
-+            compatible = "adi,adv7533";
-+            /*
-+             * The EDID page will be accessible on address 0x66 on the I2C
-+             * bus. All other maps continue to use their default addresses.
-+             */
-+            reg = <0x39>, <0x66>;
-+            reg-names = "main", "edid";
-+            interrupt-parent = <&gpio3>;
-+            interrupts = <29 IRQ_TYPE_EDGE_FALLING>;
-+            clocks = <&cec_clock>;
-+            clock-names = "cec";
-+            adi,dsi-lanes = <4>;
-+            avdd-supply = <&v1v8>;
-+            dvdd-supply = <&v1v8>;
-+            pvdd-supply = <&v1v8>;
-+            a2vdd-supply = <&v1v8>;
-+            v3p3-supply = <&v3v3>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    adv7533_in: endpoint {
-+                        remote-endpoint = <&dsi_out>;
-+                    };
-+                };
-+
-+                port@1 {
-+                    reg = <1>;
-+                    adv7533_out: endpoint {
-+                        remote-endpoint = <&hdmi_connector_in>;
-+                    };
-+                };
-+
-+                port@2 {
-+                    reg = <2>;
-+                    codec_endpoint: endpoint {
-+                        remote-endpoint = <&i2s0_cpu_endpoint>;
-+                    };
-+                };
-+            };
-+        };
-+    };
-+
-+...
++#  vim: set ts=2 sw=2 sts=2 tw=80 et cc=80 ft=yaml :
 -- 
-2.25.1
+2.32.0
 
