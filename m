@@ -2,155 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B7113A8CBC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AC8D3A8CC1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231169AbhFOXlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 19:41:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51024 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230082AbhFOXls (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 19:41:48 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE30C06175F
-        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 16:39:42 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id x196so432609oif.10
-        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 16:39:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Ul/bka2jdtYOr+6+mrjnF59qa6vN2c7evd5ICsLCQTY=;
-        b=k90rWATbXwMXpvZDjiDnSOm/OONvvKm1J+Frq6NYtOguQ5A9cHqRup9vYFd3s/Eg3X
-         7MEpMnZqPE7FUk87YQS2IYqIPebW9ccEEhnx3l4/cDYVfHeHxO0Ji3YMrK6+Yb9hqPpR
-         4j+LC7OI6Ic2m9P4DkH+bRkm5Wm+0q7BYtaYKhFtza3xYZAKa8lw4CtpT+wHzlQ6qD3z
-         rCt55BBaEKG8LX0ipDridUsoQnpGMrLRnfP5Ok5PuDBf2+fwWCQb4OCLhCyKfhCWkAb0
-         Id+PUAsXCSE7hDJrCxjyyDJbAhXtbw1FNGvUwXaK782FHmq9IpmIePIDVkr2ukQqfWYS
-         iuww==
+        id S231169AbhFOXm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 19:42:59 -0400
+Received: from mail-il1-f182.google.com ([209.85.166.182]:33789 "EHLO
+        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230039AbhFOXm6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 19:42:58 -0400
+Received: by mail-il1-f182.google.com with SMTP id z1so747774ils.0;
+        Tue, 15 Jun 2021 16:40:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Ul/bka2jdtYOr+6+mrjnF59qa6vN2c7evd5ICsLCQTY=;
-        b=beY1ezkEY2vJ6xs5W4byooSAnkSo9llUOd9eFKKEAa7bvCyHs9cms2ykwksSrdAcmT
-         VRuURqCYK2y2cvrBUPsAmRqUonu755XApwPateWAuUefJJXerM8Y1uqrc7hMoWa8ebPs
-         r2eJIwrOHUJPsRjNelnprEmJCczDgCtCWKWPVjVWDf7jd2fJO7COECdibaGCvWLf9gGl
-         ylN38Mix0J11F3p/ibTsA275iQeUWbVbia6UZsmnreeqBxVgKM/upKLZBKG+J5CHWRmM
-         rcde/vOFikEGieS//dxtPqqiETF97Na2aa6efG8FjNqf7ZwEuY/ZWWy7ncpos4dGRF2c
-         RbnA==
-X-Gm-Message-State: AOAM531LALPwXTnFp7YR5hcY3Z+Ek5BVvJaemCxbug3yHKGapRMepFzo
-        2Iz+mTI/9UMxmaSSvrAOD3Ix3A==
-X-Google-Smtp-Source: ABdhPJzDIW4lkQu/ywpISJIZTM6b/WRNsbdsG07oLqrkILQLbtGE/mwsdjzwqygLzfu76nKMwciakw==
-X-Received: by 2002:a05:6808:10a:: with SMTP id b10mr4823404oie.65.1623800381917;
-        Tue, 15 Jun 2021 16:39:41 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id l12sm92506oig.49.2021.06.15.16.39.41
+        bh=KktScGLfwYqDmTgp0+euNKnnKCv+ORCggyGnw//dZVE=;
+        b=t1lXUaij+heClw2LhpAfHBcHu/Fg2p2QzCbxc8x1FlpPg9aJLINxRS1fDvfo8VwZ0/
+         Ps1ojFpfUjxlP4zyi7ZlQ/o7TKBWL1NjSeibqFHqOzY0B8LsbAmlhklVYscaLJNh1mEX
+         NLHfqvtMQuvLx6rnlvyu6kGDXD/LkvbtGk6pbUHNmbKp55kbpK3fxfrvn3+ygzVUZ1AR
+         vri9i1JWvyMqFuWKfLlH5/0LUCGLIYrtKGopGLmPPPy+RnIvBuZJs4OvcxRBWom/hCvo
+         j43ARJY3D/HtfXTgKZ97IsFtOG+mlR2ASQPLzTfUo/VeYbe954gjeFvQvtNQBNJmZ0IZ
+         FWQg==
+X-Gm-Message-State: AOAM533T9kr+8ncafQ4MeOQ9E3oY8T4pm0zBngtzEIetxrZ3qEaZZ7qV
+        eN3QEwZYYz4GrTw8AxOQBw==
+X-Google-Smtp-Source: ABdhPJyJ2oSvUbWTQmXG9OJo4c9tMR9ZFoLJXABAWZda+rPw4vz7JbTFJdeejg8YGgC2q/DfhQ6/XA==
+X-Received: by 2002:a92:7510:: with SMTP id q16mr1347061ilc.291.1623800451982;
+        Tue, 15 Jun 2021 16:40:51 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id j18sm289799ioo.3.2021.06.15.16.40.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Jun 2021 16:39:41 -0700 (PDT)
-Date:   Tue, 15 Jun 2021 18:39:39 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: sm8250: Add SDHCI2 pinctrl
-Message-ID: <YMk6O1HVRfVvX79/@builder.lan>
-References: <20210612192358.62602-1-konrad.dybcio@somainline.org>
- <20210612192358.62602-2-konrad.dybcio@somainline.org>
+        Tue, 15 Jun 2021 16:40:51 -0700 (PDT)
+Received: (nullmailer pid 1680952 invoked by uid 1000);
+        Tue, 15 Jun 2021 23:40:48 -0000
+Date:   Tue, 15 Jun 2021 17:40:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Nelson Costa <Nelson.Costa@synopsys.com>
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Jose Abreu <Jose.Abreu@synopsys.com>
+Subject: Re: [PATCH 2/9] dt-bindings: media: Document Synopsys DesignWare
+ HDMI RX
+Message-ID: <20210615234048.GA1668783@robh.at.kernel.org>
+References: <cover.1622631488.git.nelson.costa@synopsys.com>
+ <a5a52c738db7a4b3125225ac27e5aaff19604aec.1622631488.git.nelson.costa@synopsys.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210612192358.62602-2-konrad.dybcio@somainline.org>
+In-Reply-To: <a5a52c738db7a4b3125225ac27e5aaff19604aec.1622631488.git.nelson.costa@synopsys.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 12 Jun 14:23 CDT 2021, Konrad Dybcio wrote:
-
-> Add required pins for SDHCI2, so that the interface can work reliably.
-> The configuration comes from a MTP board, which conveniently means it's
-> going to be correct for the vast majority of phones (and other devices).
+On Wed, Jun 02, 2021 at 01:24:20PM +0200, Nelson Costa wrote:
+> Document the device tree bindings for the Synopsys DesignWare HDMI RX
+> Controller.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Jose Abreu <jose.abreu@synopsys.com>
+> Signed-off-by: Nelson Costa <nelson.costa@synopsys.com>
 > ---
-> Changes since v1:
-> - Separate this into its own patch
+>  .../devicetree/bindings/media/snps,dw-hdmi-rx.yaml | 98 ++++++++++++++++++++++
+>  1 file changed, 98 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
 > 
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 32 ++++++++++++++++++++++++++++
->  1 file changed, 32 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index fc1049c2bb11..fe858abbff5d 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -8,6 +8,7 @@
->  #include <dt-bindings/clock/qcom,gcc-sm8250.h>
->  #include <dt-bindings/clock/qcom,gpucc-sm8250.h>
->  #include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interconnect/qcom,osm-l3.h>
->  #include <dt-bindings/interconnect/qcom,sm8250.h>
->  #include <dt-bindings/mailbox/qcom-ipcc.h>
-> @@ -2157,6 +2158,10 @@ sdhc_2: sdhci@8804000 {
->  			power-domains = <&rpmhpd SM8250_CX>;
->  			operating-points-v2 = <&sdhc2_opp_table>;
->  
-> +			cd-gpios = <&tlmm 77 GPIO_ACTIVE_HIGH>;
-> +			pinctrl-0 = <&sdc2_default_state &sdc2_card_det_n>;
-> +			pinctrl-names = "default";
+> diff --git a/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> new file mode 100644
+> index 0000000..4f2169e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/snps,dw-hdmi-rx.yaml
+> @@ -0,0 +1,98 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/snps,dw-hdmi-rx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  			status = "disabled";
->  
->  			sdhc2_opp_table: sdhc2-opp-table {
-> @@ -3401,6 +3406,33 @@ ws {
->  					output-high;
->  				};
->  			};
+> +title: Synopsys DesignWare HDMI RX Controller Device Tree Bindings
 > +
-> +			sdc2_default_state: sdc2-default {
-> +				clk {
-> +					pins = "sdc2_clk";
-> +					drive-strength = <16>;
-
-The fact that RB5 has these as 16/10/10 seems to show that these should
-be board-specific (as we typically have them). So please follow that.
-
-
-(The sleep state on other hand is not going to change, so that I'm okay
-with you define here for all boards to use).
-
-Regards,
-Bjorn
-
-> +					bias-disable;
-> +				};
+> +maintainers:
+> +  - Jose Abreu <jose.abreu@synopsys.com>
+> +  - Nelson Costa <nelson.costa@synopsys.com>
 > +
-> +				cmd {
-> +					pins = "sdc2_cmd";
-> +					drive-strength = <16>;
-> +					bias-pull-up;
-> +				};
+> +description: |
+> +  The Synopsys DesignWare HDMI RX Controller and PHYs e405/e406 is an HDMI 2.0
+> +  Receiver solution that is able to decode video and audio.
 > +
-> +				data {
-> +					pins = "sdc2_data";
-> +					drive-strength = <16>;
-> +					bias-pull-up;
-> +				};
-> +			};
+> +properties:
+> +  compatible:
+> +    const: snps,dw-hdmi-rx
 > +
-> +			sdc2_card_det_n: sd-card-det-n {
-> +				pins = "gpio77";
-> +				function = "gpio";
-> +				bias-pull-up;
-> +				drive-strength = <2>;
-> +			};
->  		};
->  
->  		apps_smmu: iommu@15000000 {
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: |
+> +      phandle to the configuration clock
+> +
+> +  clock-names:
+> +    const: cfg
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: |
+> +      phandle for the HDMI RX PHY
+> +
+> +  phy-names:
+> +    const: hdmi-phy
+
+You don't need *-names when there is only one generally.
+
+> +
+> +  port:
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +    description: |
+> +      Input port node, multiple endpoints describing the HDMI RX data connected
+> +      to the HDMI PHY receiver.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - phys
+> +  - phy-names
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    hdmi_rx: hdmi-rx@0 {
+> +        compatible = "snps,dw-hdmi-rx";
+> +        reg = <0x0 0x10000>;
+> +        interrupts = <1 2>;
+> +
+> +        clocks = <&dw_hdmi_refclk>;
+> +        clock-names = "cfg";
+> +
+> +        phys = <&hdmi_e406_phy>;
+> +        phy-names = "hdmi-phy";
+> +
+> +        port {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            hdmi_rx_0: endpoint@0 {
+> +                reg = <0>;
+> +                remote-endpoint = <&hdmi_e406_phy_0>;
+> +            };
+
+I don't get why you have a connection to the phy with 'phys' and OF 
+graph? The connection should be to the remote device generating the HDMI 
+data with a PHY being somewhat transparent to that data flow.
+
+> +
+> +            hdmi_rx_1: endpoint@1 {
+> +                reg = <1>;
+> +                remote-endpoint = <&hdmi_e406_phy_1>;
+> +            };
+> +
+> +            hdmi_rx_2: endpoint@2 {
+> +                reg = <2>;
+> +                remote-endpoint = <&hdmi_e406_phy_2>;
+> +            };
+> +
+> +            hdmi_rx_3: endpoint@3 {
+> +                reg = <3>;
+> +                remote-endpoint = <&hdmi_e406_phy_3>;
+> +            };
+> +        };
+> +    };
 > -- 
-> 2.32.0
-> 
+> 2.7.4
