@@ -2,194 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B143A7E00
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 14:18:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2FD43A7E29
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 14:25:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230267AbhFOMUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 08:20:17 -0400
-Received: from mail-vs1-f45.google.com ([209.85.217.45]:33345 "EHLO
-        mail-vs1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230225AbhFOMUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 08:20:16 -0400
-Received: by mail-vs1-f45.google.com with SMTP id j8so4772614vsd.0;
-        Tue, 15 Jun 2021 05:18:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jrlwSWatHznx383NLiMm7Z2IuN1e5i6noGzyC8CFebk=;
-        b=JXgz3Hk+7sIEaidPVL0SjP1aAxZguujDNAUK4cz9GPtzwTgirq8WWB3HoXQhkSYGkB
-         QOd9ExbCf3xlkp/alTx6m9LayVnrDGHGP7L2aI8qPwTYtew+pjUCQRvBwKRR7xL1zfYa
-         1Wtj+oFR79fULkbH6/2E6ANthEXHa1a7oeG7D6esCAXgT0MbLjWOPDDVSfeRJTfKAq22
-         O/7DZIjIn/1luKveEk2JbOX4/O2YTg1NY+GvBApFTiYiO2oM9SOWjw8FqROIVFW7k/tH
-         73EsJW8PpaC88s6oAAcWPw/C0euP014L7eEZjMedipVBhIE2AGzKVtK3Ud1UrewlNoYl
-         0f5Q==
-X-Gm-Message-State: AOAM530ruPR+f+h2nkXM7AH1VpzbH9kXv46gJ8JtRkrWWNMng0IhbR+6
-        HvYvu7P4J1SD26nrRjnH0CVDZOL/18/qbNTBbLM=
-X-Google-Smtp-Source: ABdhPJyWLBtsARFbraykVxhSly+mYdsijjLf5u4llpgj1CcBtHFQinLCCrvpCrriX7X558sqTXYumrMOgaLjD7ZGGnM=
-X-Received: by 2002:a05:6102:2011:: with SMTP id p17mr4770704vsr.40.1623759490847;
- Tue, 15 Jun 2021 05:18:10 -0700 (PDT)
+        id S230084AbhFOM1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 08:27:17 -0400
+Received: from foss.arm.com ([217.140.110.172]:34206 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229520AbhFOM1Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 08:27:16 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 40AF331B;
+        Tue, 15 Jun 2021 05:25:11 -0700 (PDT)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 068833F719;
+        Tue, 15 Jun 2021 05:25:08 -0700 (PDT)
+Date:   Tue, 15 Jun 2021 13:24:40 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+        Ondrej Jirman <megous@megous.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v6 03/17] dt-bindings: rtc: sun6i: Add H616 compatible
+ string
+Message-ID: <20210615132440.55793ec5@slackpad.fritz.box>
+In-Reply-To: <56ad752b-b1c2-cb05-be8b-71c29f271ec9@sholland.org>
+References: <20210519104152.21119-1-andre.przywara@arm.com>
+ <20210519104152.21119-4-andre.przywara@arm.com>
+ <99a2069b-99e9-9b47-12a6-aae01c7f59dc@sholland.org>
+ <20210607135910.63560ffc@slackpad.fritz.box>
+ <56ad752b-b1c2-cb05-be8b-71c29f271ec9@sholland.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-References: <20210221174930.27324-1-nramas@linux.microsoft.com> <20210221174930.27324-6-nramas@linux.microsoft.com>
-In-Reply-To: <20210221174930.27324-6-nramas@linux.microsoft.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 15 Jun 2021 14:17:59 +0200
-Message-ID: <CAMuHMdVSuNS4edh-zM0_sbC0i1AAjQ9Y0n_8Mjz=3CALkW4pgg@mail.gmail.com>
-Subject: Re: [PATCH v19 05/13] of: Add a common kexec FDT setup function
-To:     Lakshmi Ramasubramanian <nramas@linux.microsoft.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Mimi Zohar <zohar@linux.ibm.com>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        AKASHI Takahiro <takahiro.akashi@linaro.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        James Morse <james.morse@arm.com>,
-        Sasha Levin <sashal@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Vincenzo Frascino <vincenzo.frascino@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>, dmitry.kasatkin@gmail.com,
-        James Morris <jmorris@namei.org>,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        Pavel Tatashin <pasha.tatashin@soleen.com>,
-        Allison Randal <allison@lohutok.net>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com,
-        linux-integrity <linux-integrity@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lakshmi and Rob,
+On Mon, 7 Jun 2021 23:23:04 -0500
+Samuel Holland <samuel@sholland.org> wrote:
 
-On Sun, Feb 21, 2021 at 6:52 PM Lakshmi Ramasubramanian
-<nramas@linux.microsoft.com> wrote:
-> From: Rob Herring <robh@kernel.org>
->
-> Both arm64 and powerpc do essentially the same FDT /chosen setup for
-> kexec.  The differences are either omissions that arm64 should have
-> or additional properties that will be ignored.  The setup code can be
-> combined and shared by both powerpc and arm64.
->
-> The differences relative to the arm64 version:
->  - If /chosen doesn't exist, it will be created (should never happen).
->  - Any old dtb and initrd reserved memory will be released.
->  - The new initrd and elfcorehdr are marked reserved.
->  - "linux,booted-from-kexec" is set.
->
-> The differences relative to the powerpc version:
->  - "kaslr-seed" and "rng-seed" may be set.
->  - "linux,elfcorehdr" is set.
->  - Any existing "linux,usable-memory-range" is removed.
->
-> Combine the code for setting up the /chosen node in the FDT and updating
-> the memory reservation for kexec, for powerpc and arm64, in
-> of_kexec_alloc_and_setup_fdt() and move it to "drivers/of/kexec.c".
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
+Hi Samuel,
 
-> --- /dev/null
-> +++ b/drivers/of/kexec.c
+> On 6/7/21 7:59 AM, Andre Przywara wrote:
+> > On Thu, 20 May 2021 21:37:34 -0500
+> > Samuel Holland <samuel@sholland.org> wrote:
+> > 
+> > Hi,
+> >   
+> >> On 5/19/21 5:41 AM, Andre Przywara wrote:  
+> >>> Add the obvious compatible name to the existing RTC binding.
+> >>> The actual RTC part of the device uses a different day/month/year
+> >>> storage scheme, so it's not compatible with the previous devices.
+> >>>
+> >>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> >>> ---
+> >>>  .../devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml     | 5 ++++-
+> >>>  1 file changed, 4 insertions(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> >>> index b1b0ee769b71..178c955f88bf 100644
+> >>> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> >>> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> >>> @@ -26,6 +26,7 @@ properties:
+> >>>            - const: allwinner,sun50i-a64-rtc
+> >>>            - const: allwinner,sun8i-h3-rtc
+> >>>        - const: allwinner,sun50i-h6-rtc
+> >>> +      - const: allwinner,sun50i-h616-rtc
+> >>>  
+> >>>    reg:
+> >>>      maxItems: 1
+> >>> @@ -97,7 +98,9 @@ allOf:
+> >>>        properties:
+> >>>          compatible:
+> >>>            contains:
+> >>> -            const: allwinner,sun50i-h6-rtc
+> >>> +            enum:
+> >>> +              - allwinner,sun50i-h6-rtc
+> >>> +              - allwinner,sun50i-h616-rtc
+> >>>  
+> >>>      then:
+> >>>        properties:
+> >>>     
+> >>
+> >> This binding is missing a clock reference for the pll-periph0-2x input
+> >> to the 32kHz clock fanout.  
+> > 
+> > Right. So do I get this correctly that we don't model the OSC24M input
+> > explicitly so far in the DT? I only see one possible input clock, which
+> > is for an optional 32K crystal oscillator.
+> > And this means we need to change some code also? Because at the moment
+> > a clock specified is assumed to be the 32K OSC, and having this clock
+> > means we switch to the external 32K OSC.  
+> 
+> Right. The code would need updates to follow the binding.
 
-> +/*
-> + * of_kexec_alloc_and_setup_fdt - Alloc and setup a new Flattened Device Tree
-> + *
-> + * @image:             kexec image being loaded.
-> + * @initrd_load_addr:  Address where the next initrd will be loaded.
-> + * @initrd_len:                Size of the next initrd, or 0 if there will be none.
-> + * @cmdline:           Command line for the next kernel, or NULL if there will
-> + *                     be none.
-> + * @extra_fdt_size:    Additional size for the new FDT buffer.
-> + *
-> + * Return: fdt on success, or NULL errno on error.
-> + */
-> +void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
-> +                                  unsigned long initrd_load_addr,
-> +                                  unsigned long initrd_len,
-> +                                  const char *cmdline, size_t extra_fdt_size)
-> +{
+I changed the binding for now to not allow any clock, and the code to
+ignore any clocks when the H616 compatible is used. This way we can
+extend this later without breaking anything.
 
-> +       /* Did we boot using an initrd? */
-> +       prop = fdt_getprop(fdt, chosen_node, "linux,initrd-start", NULL);
-> +       if (prop) {
-> +               u64 tmp_start, tmp_end, tmp_size;
-> +
-> +               tmp_start = fdt64_to_cpu(*((const fdt64_t *) prop));
-> +
-> +               prop = fdt_getprop(fdt, chosen_node, "linux,initrd-end", NULL);
-> +               if (!prop) {
-> +                       ret = -EINVAL;
-> +                       goto out;
-> +               }
-> +
-> +               tmp_end = fdt64_to_cpu(*((const fdt64_t *) prop));
+> > And who would decide which clock source to use? What would be the
+> > reason to use PLL_PERIPH(2x) over the RC16M based clock or the
+> > divided down 24MHz?  
+> 
+> Because it would be more accurate. 24MHz/750 == 32000 Hz, while the RTC
+> expects 32768 Hz.
 
-Some kernel code assumes "linux,initrd-{start,end}" are 64-bit,
-other code assumes 32-bit.
-linux/Documentation/arm/uefi.rst says 64-bit,
-dt-schema/schemas/chosen.yaml says 32-bit.
+I thought about this as well, but this means there is no reason to not
+use the PLL? At least not for Linux (normal operation with PLLs
+running anyway)? This situation is different for the other SoCs, because
+boards *might* have a separate and more precise 32K crystal.
+So we could code this similar to the other SoCs: If we have a clock
+property defined, we assume it's pointing to the PLL and switch to use
+it?
 
-> +
-> +               /*
-> +                * kexec reserves exact initrd size, while firmware may
-> +                * reserve a multiple of PAGE_SIZE, so check for both.
-> +                */
-> +               tmp_size = tmp_end - tmp_start;
-> +               ret = fdt_find_and_del_mem_rsv(fdt, tmp_start, tmp_size);
-> +               if (ret == -ENOENT)
-> +                       ret = fdt_find_and_del_mem_rsv(fdt, tmp_start,
-> +                                                      round_up(tmp_size, PAGE_SIZE));
-> +               if (ret == -EINVAL)
-> +                       goto out;
-> +       }
-> +
-> +       /* add initrd-* */
-> +       if (initrd_load_addr) {
-> +               ret = fdt_setprop_u64(fdt, chosen_node, FDT_PROP_INITRD_START,
-> +                                     initrd_load_addr);
-> +               if (ret)
-> +                       goto out;
-> +
-> +               ret = fdt_setprop_u64(fdt, chosen_node, FDT_PROP_INITRD_END,
-> +                                     initrd_load_addr + initrd_len);
-> +               if (ret)
-> +                       goto out;
-> +
-> +               ret = fdt_add_mem_rsv(fdt, initrd_load_addr, initrd_len);
-> +               if (ret)
-> +                       goto out;
-> +
-> +       } else {
-> +               ret = fdt_delprop(fdt, chosen_node, FDT_PROP_INITRD_START);
-> +               if (ret && (ret != -FDT_ERR_NOTFOUND))
-> +                       goto out;
-> +
-> +               ret = fdt_delprop(fdt, chosen_node, FDT_PROP_INITRD_END);
-> +               if (ret && (ret != -FDT_ERR_NOTFOUND))
-> +                       goto out;
-> +       }
+But, looking at the diagram in the manual (and assuming it's
+correct), the PLL based clock can only be routed to the pad, but cannot
+be used for the RTC. That seems to be also the case for the T5, which
+has an external LOSC pin.
+ 
+> > So shall we ignore the PLL based input clock for now, put "0 input
+> > clocks" in the current binding, then later on extend this to allow
+> > choosing the PLL? And have it that way that having the PLL reference
+> > means we use it?  
+> 
+> No, the device tree represents the hardware, not whatever happens to be
+> used by Linux drivers at the time. It should be in the binding
+> regardless of what the driver does with it.
 
-Gr{oetje,eeting}s,
+I understand that very well, but was just looking for a solution where
+we can go ahead with an easier solution *now*. I am afraid implementing
+this annoying RTC special snowflake properly will just delay the whole
+series.
+In the long run your "D1 & friends" extra RTC clock driver looks the
+right way out, but it will probably take some more time to get this
+merged.
+ 
+> Though the circular dependency between the clock providers does cause
+> problems. We cannot get a clk_hw for the PLL-based clock, so we would
+> have to hardcode a global name for it, which means we aren't really
+> using the device tree.
 
-                        Geert
+I start to wonder how much business Linux really has in controlling all
+those RTC details. The current code happens to work, because everything
+is setup correctly already, on reset.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> We already see this "not really using the binding" with the other CCUs:
+> the H616 CCU hardcodes the name "osc24M", while the A100 CCU hardcodes
+> "dcxo24M" for the same clock. So moving that clock into the RTC clock
+> provider would require using both names in one clk_hw simultaneously (or
+> rather fixing the CCU drivers to get a clk_hw from the DT instead of
+> referencing by name).
+> 
+> And trying to deal with optional clocks by index is only going to get
+> more painful over time. For example, with the R329 and D1, the RTC has
+> the following inputs:
+>  * DCXO24M (unless you model it inside the RTC)
+>  * External OSC32k (optional!)
+>  * The RTC bus gate/reset from the PRCM
+>  * R-AHB from the PRCM for the RTC SPI clock domain
+> 
+> So it seems time to start using clock-names in the RTC binding.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yes, that sounds reasonable. It's just a shame that we keep changing
+the RTC bindings, and so creating a lot of incompatibility on the way.
+
+> >> It is also missing a clock reference to the RTC register gate (and that
+> >> clock is in turn missing from the r_ccu driver).  
+> > 
+> > Do you mean a gate bit somewhere in the PRCM? Do you have any
+> > pointer/documentation for that?  
+> 
+> Yes, it's bit 0 of PRCM+0x20c, documented in the BSP[1], used in
+> mainline[2], and verified by experiment.
+
+I can confirm this, also by experimentation. And the H6 seems to have
+the same bit.
+But what purpose would this bit solve? I don't see a good reason to
+describe this in the DT, it's more like a turn-off bit for firmware?
+
+Cheers,
+Andre
+
+ 
+> [1]:
+> https://github.com/orangepi-xunlong/linux-orangepi/blob/orange-pi-4.9-sun50iw9/drivers/clk/sunxi/clk-sun50iw9.h#L169
+> [2]:
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/sunxi-ng/ccu-sun50i-a100-r.c#n129
+> 
+> > Cheers,
+> > Andre  
+> 
+> Regards,
+> Samuel
+
