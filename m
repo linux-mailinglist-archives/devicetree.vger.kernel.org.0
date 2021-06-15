@@ -2,99 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E8D3A7489
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 05:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FD523A7513
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 05:26:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230301AbhFODDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 23:03:19 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:52191 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230239AbhFODDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 23:03:17 -0400
-X-UUID: a1200e2a633a473c888e2293e4ade251-20210615
-X-UUID: a1200e2a633a473c888e2293e4ade251-20210615
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <wenbin.mei@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1742974138; Tue, 15 Jun 2021 11:00:42 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 15 Jun 2021 11:00:39 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 15 Jun 2021 11:00:39 +0800
-From:   Wenbin Mei <wenbin.mei@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>
-Subject: [PATCH v1] dt-bindings: mmc: change compatiable string for MT8195 mmc host IP
-Date:   Tue, 15 Jun 2021 11:00:33 +0800
-Message-ID: <1623726033-16073-2-git-send-email-wenbin.mei@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1623726033-16073-1-git-send-email-wenbin.mei@mediatek.com>
-References: <1623726033-16073-1-git-send-email-wenbin.mei@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        id S231161AbhFOD2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 23:28:39 -0400
+Received: from lucky1.263xmail.com ([211.157.147.132]:38138 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229879AbhFOD2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 23:28:35 -0400
+Received: from localhost (unknown [192.168.167.16])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 26F02F4C8D;
+        Tue, 15 Jun 2021 11:26:24 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P16485T139919122814720S1623727582436580_;
+        Tue, 15 Jun 2021 11:26:23 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <2ae7b3ac56f8947e7a80825c06dfa1fa>
+X-RL-SENDER: jon.lin@rock-chips.com
+X-SENDER: jon.lin@rock-chips.com
+X-LOGIN-NAME: jon.lin@rock-chips.com
+X-FST-TO: broonie@kernel.org
+X-RCPT-COUNT: 9
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Jon Lin <jon.lin@rock-chips.com>
+To:     broonie@kernel.org
+Cc:     jon.lin@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org,
+        linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v7 0/6] Support ROCKCHIP SPI new feature
+Date:   Tue, 15 Jun 2021 11:26:14 +0800
+Message-Id: <20210615032620.24769-1-jon.lin@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210607111837.31074-1-jon.lin@rock-chips.com>
+References: <20210607111837.31074-1-jon.lin@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MT8195 mmc host IP is compatible with MT8183, and currently it shows:
-properties:
-  compatible:
-    oneOf:
-...
-      - items:
-         - const: mediatek,mt8192-mmc
-         - const: mediatek,mt8195-mmc
-         - const: mediatek,mt8183-mmc
-which means the compatible string in the device tree would be:
-	compatible = "mediatek,mt8192-mmc", "mediatek,mt8195-mmc",
-		     "mediatek,mt8183-mmc";
-The bindings is wrong and that isn't the result we want.
-instead we want:
-properties:
-  compatible:
-    oneOf:
-...
-      - items:
-         - const: mediatek,mt8192-mmc
-         - const: mediatek,mt8183-mmc
-      - items:
-         - const: mediatek,mt8195-mmc
-         - const: mediatek,mt8183-mmc
-which would give us:
-	compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
-and
-	compatible = "mediatek,mt8195-mmc", "mediatek,mt8183-mmc";
 
-Fixes: eb9cb7227e5c (dt-bindings: mmc: Add compatible for Mediatek MT8195)
-Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
----
- Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-index 8648d48..adaba90 100644
---- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-@@ -31,6 +31,8 @@ properties:
-           - const: mediatek,mt2701-mmc
-       - items:
-           - const: mediatek,mt8192-mmc
-+          - const: mediatek,mt8183-mmc
-+      - items:
-           - const: mediatek,mt8195-mmc
-           - const: mediatek,mt8183-mmc
- 
+Changes in v7:
+- Fall back "rockchip,rv1126-spi" to "rockchip,rk3066-spi"
+
+Changes in v6:
+- Consider to compatibility, the "rockchip,rk3568-spi" is removed in
+  Series-changes v5, so the commit massage should also remove the
+  corresponding information
+
+Changes in v5:
+- Change to leave one compatible id rv1126, and rk3568 is compatible
+  with rv1126
+
+Changes in v4:
+- Adjust the order patches
+- Simply commit massage like redundancy "application" content
+
+Changes in v3:
+- Fix compile error which is find by Sascha in [v2,2/8]
+
+Jon Lin (6):
+  dt-bindings: spi: spi-rockchip: add description for rv1126
+  spi: rockchip: add compatible string for rv1126
+  spi: rockchip: Set rx_fifo interrupt waterline base on transfer item
+  spi: rockchip: Wait for STB status in slave mode tx_xfer
+  spi: rockchip: Support cs-gpio
+  spi: rockchip: Support SPI_CS_HIGH
+
+ .../devicetree/bindings/spi/spi-rockchip.yaml |  1 +
+ drivers/spi/spi-rockchip.c                    | 95 +++++++++++++++----
+ 2 files changed, 80 insertions(+), 16 deletions(-)
+
 -- 
-1.9.1
+2.17.1
+
+
 
