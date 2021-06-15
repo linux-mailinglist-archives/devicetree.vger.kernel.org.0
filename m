@@ -2,74 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93D503A8783
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 19:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C8023A87BA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 19:35:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbhFORbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 13:31:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53452 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229492AbhFORbu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 13:31:50 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A0F9C6140B;
-        Tue, 15 Jun 2021 17:29:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623778186;
-        bh=nQ6dLrkLl3lmk53t/eWVpXauQeo5excqr23JPiTwhVs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DjkD6kuRbgxZKIgpzr8Bks7IP5xh6tl+7O//oOh+fbyv/t6FAnkwAbVDC7L9gydVn
-         v7g0FbdXcPfiS1ueDLT68yKA9P/RDAw9xHx8r/6Gp6U3bSWjtyUBAcLPoVTm77coRk
-         K7QCVZXoZ8rTTzOdd69A+kP2SYK2E6vKLBYN/RaWBouutacM7716RRHxDjo5tJWnTn
-         DGjJzQkEqZikXWj4hlCQIN5+oO5S5mNJaBPlsbIPKJOWMM8ttzu9R5EyD6gTcRkoCw
-         lpWFAILii6SwgcqBxBwMBqsPovbVPuh1atJ6VyCFzcxnff3EE3Yh72Pu55PxvUCROR
-         41VyeG/h5f5EA==
-From:   Mark Brown <broonie@kernel.org>
-To:     lee.jones@linaro.org, Alistair Francis <alistair@alistair23.me>,
-        linux-imx@nxp.com, lgirdwood@gmail.com, kernel@pengutronix.de,
-        robh+dt@kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alistair23@gmail.com
-Subject: Re: (subset) [PATCH v6 1/5] dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml
-Date:   Tue, 15 Jun 2021 18:29:17 +0100
-Message-Id: <162377794811.21860.17738475490023059029.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210615103400.946-1-alistair@alistair23.me>
-References: <20210615103400.946-1-alistair@alistair23.me>
+        id S231485AbhFORfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 13:35:13 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:34965 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231310AbhFORe7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 13:34:59 -0400
+X-UUID: bf25e5c96581468d96a59c8cc0e1598a-20210616
+X-UUID: bf25e5c96581468d96a59c8cc0e1598a-20210616
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1821328680; Wed, 16 Jun 2021 01:32:49 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 16 Jun 2021 01:32:42 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 16 Jun 2021 01:32:42 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        <seiya.wang@mediatek.com>, <wenst@google.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: arm64: dts: mt8195: Add Mediatek SoC MT8195 device nodes
+Date:   Wed, 16 Jun 2021 01:32:07 +0800
+Message-ID: <20210615173233.26682-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.15.GIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Jun 2021 20:33:56 +1000, Alistair Francis wrote:
-> Initial support for the Silergy SY7636A Power Management chip
-> and regulator.
+This series is a collection of device nodes for Mediatek SoC MT8195 and
+depends on patches[1][2][3].
 
-Applied to
+The dependency list is not complete.
+some dependencies are still under working.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+[1] arm64: dts: Add Mediatek SoC MT8195 and evaluation board dts and Makefile
+    https://patchwork.kernel.org/project/linux-mediatek/patch/20210601075350.31515-2-seiya.wang@mediatek.com/
 
-Thanks!
+[2] dt-bindings: power: Add MT8195 power domains
+    https://patchwork.kernel.org/project/linux-mediatek/patch/20210610023614.5375-3-chun-jie.chen@mediatek.com/
 
-[3/5] regulator: sy7636a: Initial commit
-      commit: 8c485bedfb7852fa4de2a34aac2a6fd911f539f4
+[3] dt-bindings: pinctrl: mt8195: add pinctrl file and binding document
+    https://patchwork.kernel.org/project/linux-mediatek/patch/20210413055702.27535-2-zhiyong.tao@mediatek.com/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
