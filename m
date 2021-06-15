@@ -2,92 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BB693A8807
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 19:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34DA63A885B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 20:17:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbhFORro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 13:47:44 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:36678 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229976AbhFORrn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 13:47:43 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15FHjapU062259;
-        Tue, 15 Jun 2021 12:45:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623779136;
-        bh=xq8N0+Ag0aM5XxV7oawpiSjnWkX3GbNwWzSoJIYFQd8=;
-        h=Subject:CC:References:From:Date:In-Reply-To;
-        b=Su2d/xQ9Zdk3sxKs1sPPML8QQdiZOHiufpaJ6FKRMYdwHkWlOvPsAo0iIgCvWpZFb
-         Y6UIhcayMLy5Llt+7DvqRy0R5kxT4RBDQxa2c1GzUI2DFL1y8rpeH5/W9e5z80Eixe
-         /d2mahAMWrMQpuUZBIchf5hTuf81gNM//Z9ilAI8=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15FHjauL055665
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Jun 2021 12:45:36 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 15
- Jun 2021 12:45:35 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 15 Jun 2021 12:45:35 -0500
-Received: from [10.250.235.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15FHjUqq114642;
-        Tue, 15 Jun 2021 12:45:31 -0500
-Subject: Re: [PATCH v3 0/3] AM64: Update the locations of various elements in
- SRAM
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210615155115.28902-1-a-govindraju@ti.com>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <779294d5-e3e3-1c12-4ab7-7130341f41e1@ti.com>
-Date:   Tue, 15 Jun 2021 23:15:29 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S230395AbhFOSTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 14:19:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35652 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229557AbhFOSTu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 14:19:50 -0400
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7148C061767
+        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 11:17:45 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:bda0:7de0:767e:26f9])
+        by michel.telenet-ops.be with bizsmtp
+        id HWHe2500A4N5gS306WHefl; Tue, 15 Jun 2021 20:17:42 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ltDd4-00HYOO-4w; Tue, 15 Jun 2021 20:17:38 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1ltDd3-005qAB-MU; Tue, 15 Jun 2021 20:17:37 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 0/3] Add generic-support for linux,elfcorehdr and fix riscv
+Date:   Tue, 15 Jun 2021 20:17:24 +0200
+Message-Id: <cover.1623780059.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210615155115.28902-1-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On 15/06/21 9:21 pm, Aswath Govindraju wrote:
-> The following series of patches,
-> - Increase the maximum size of TF-A
-> - Update the location of TF-A due to a limitation for DFU boot
-> - Indicate reserved locations for DMSC code and secure proxy
-> 
-> changes since v2:
-> - split the patches into three
-> - added regions for indicating memory regions reserved for
->   dmsc and secure proxy
-> - moved the TFA location to 0x701c4000
-> 
+	Hi all,
 
-Posted respin(v4) after correcting the titles of patches 1 and 2.
+While working on v4 of "[PATCH v3] ARM: Parse kdump DT properties", I
+noticed the recently (v5.13-rc1) introduced RISC-V crash kernel support
+uses "linux,elfcorehdr" in a non-standard way.  Instead of relying on a
+"linux,elfcorehdr" property under the "/chosen" node, RISC-V uses a
+reserved memory node with the "linux,elfcorehdr" compatible value.
 
-Thanks,
-Aswath
+As we may want to fix riscv before the release of v5.13, I decided not
+to wait until my full v4 is ready, but fast-track generic
+"linux,elfcorehdr" handling instead.
 
-> Aswath Govindraju (3):
->   dts: ti: k3-am64-main: Update TF-A's maximum size and node name
->   arm64: dts: ti: k3-am64-main: Indicate the memory reserved for
->     DMSC-lite code and secure proxy communication buffer
->   arm64: dts: ti: k3-am64-main: Update the location of TF-A
-> 
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 12 ++++++++++--
->  1 file changed, 10 insertions(+), 2 deletions(-)
-> 
+This series consists of 3 patches:
+  1. Generic handling of "linux,elfcorehdr", as requested by Rob in a
+     review comment for [1],
+  2. Drop the non-standard code from riscv.  It can just use the generic
+     code instead (needs corresponding changes to WIP kexec-tools),
+  3. Drop the now duplicate code from arm64.  This can be postponed, as
+     it can co-exist safely with the generic code.
 
+This has been tested on arm32 (with a WIP successor of [1]), and
+compile-tested on riscv64 and arm64.
+
+Thanks for your comments!
+
+[1] "[PATCH v3] ARM: Parse kdump DT properties"
+    https://lore.kernel.org/linux-devicetree/20210317113130.2554368-1-geert+renesas@glider.be/
+
+Geert Uytterhoeven (3):
+  of: fdt: Add generic support for parsing elf core header properties
+  riscv: Remove non-standard linux,elfcorehdr handling
+  arm64: kdump: Remove custom linux,elfcorehdr parsing
+
+ Documentation/devicetree/bindings/chosen.txt |  6 ++--
+ arch/arm64/mm/init.c                         | 21 -----------
+ arch/riscv/mm/init.c                         | 20 -----------
+ drivers/of/fdt.c                             | 37 ++++++++++++++++++--
+ 4 files changed, 37 insertions(+), 47 deletions(-)
+
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
