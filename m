@@ -2,175 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39D713A88C3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 20:47:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56AEA3A88CB
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 20:48:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbhFOStJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 14:49:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42250 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229943AbhFOStJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 14:49:09 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3968CC061574;
-        Tue, 15 Jun 2021 11:47:03 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 102-20020a9d0eef0000b02903fccc5b733fso15327514otj.4;
-        Tue, 15 Jun 2021 11:47:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:reply-to:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=M0jPcyN+0GksOscsUu1GV8Mpyh0R661ZmzEHh6E/AMs=;
-        b=AkDl/pWCrmnX6WAe8kjc7Wu2g9cEQcW98r+hZ/47zJliuKZ3xPv4lrcY57XTWjjCPN
-         TjDxOAuDg549gDq99JX8OINGoRcK9OMKQwzfF4EeKoPx+0wHS1mRdtircff8T97yLmkc
-         Vz3ZGBcK/nrDKZg/iaRS6UurBkq7EnJqDlo8mgG8s5pSPB9dG8sia604BeCydvudAoPv
-         qcb63CZN0VPQFmYzTsivOp3pohEJOvQJB6ZmSBWX/lxmFFm5R6W7LdFzgmp0ZKYeIEMQ
-         TDWvaOEEqRlZflUBxRXidrsGv+QaNPpu+/aRnHiURxqxmURv04tQxyOUaTyA+AarqVIs
-         ieNw==
+        id S229957AbhFOSuW convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 15 Jun 2021 14:50:22 -0400
+Received: from mail-vk1-f174.google.com ([209.85.221.174]:43650 "EHLO
+        mail-vk1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229749AbhFOSuW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 14:50:22 -0400
+Received: by mail-vk1-f174.google.com with SMTP id d13so47084vkl.10;
+        Tue, 15 Jun 2021 11:48:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :reply-to:references:mime-version:content-disposition:in-reply-to;
-        bh=M0jPcyN+0GksOscsUu1GV8Mpyh0R661ZmzEHh6E/AMs=;
-        b=fvzxlELhqMg8bsWGgZXb4j+K8KjVUzMgpZrQ7USfW2Kbq3iFU4nWCAJu96OWyOjywF
-         N9Ry5n4K4CBolKyn+32OgLxQ6wM/YO7K9Dlfg0RAmw9VSHFTe8vJo/3RNG/FZYQS0CU8
-         oNOQYqdiJQ4NrzNfvMhaOz7DGjD3DegcSVTpdkagRBbpGv2FX6bGF2gseCpmX0RMqN75
-         PS5pdch3q4JrcOZP85aTq/5qbqMmGo3wbJF732Ev4JU/9HtDDRUGK6K/rjbajHY6kG4K
-         pYW715E5TH/Y5Dpe7trrkZztM0mByA1Fpy3cf64wHRKoqCDMuQ19XzUL5/fiFN/rgNJj
-         be3A==
-X-Gm-Message-State: AOAM533u6cBAsctwZfRsTJGcdwRANnlTlOL861ysgf8KBdFpxS8OUeTX
-        5i0N7U6yUKGe2m+et91E8w==
-X-Google-Smtp-Source: ABdhPJxQ9rkGnGivDEkuBfraFu5hFHW+Mr+Pxscs4LsNz+yhlOVsSAou40KfWpqyzu7Hu5pbUpQVVw==
-X-Received: by 2002:a9d:6a03:: with SMTP id g3mr502028otn.189.1623782821114;
-        Tue, 15 Jun 2021 11:47:01 -0700 (PDT)
-Received: from serve.minyard.net ([47.184.156.158])
-        by smtp.gmail.com with ESMTPSA id r1sm4355328oth.19.2021.06.15.11.47.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Jun 2021 11:47:00 -0700 (PDT)
-Sender: Corey Minyard <tcminyard@gmail.com>
-Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:50dd:ab38:f475:bd86])
-        by serve.minyard.net (Postfix) with ESMTPSA id 258ED180293;
-        Tue, 15 Jun 2021 18:46:59 +0000 (UTC)
-Date:   Tue, 15 Jun 2021 13:46:57 -0500
-From:   Corey Minyard <minyard@acm.org>
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     openipmi-developer@lists.sourceforge.net, openbmc@lists.ozlabs.org,
-        devicetree@vger.kernel.org, tmaimon77@gmail.com,
-        linux-aspeed@lists.ozlabs.org, avifishman70@gmail.com,
-        venture@google.com, linux-kernel@vger.kernel.org,
-        tali.perry1@gmail.com, robh+dt@kernel.org,
-        chiawei_wang@aspeedtech.com, linux-arm-kernel@lists.infradead.org,
-        benjaminfair@google.com, arnd@arndb.de, zweiss@equinix.com,
-        joel@jms.id.au, KWLIU@nuvoton.com
-Subject: Re: [PATCH v4 00/16] ipmi: Allow raw access to KCS devices
-Message-ID: <20210615184657.GF2921206@minyard.net>
-Reply-To: minyard@acm.org
-References: <20210608104757.582199-1-andrew@aj.id.au>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=WGPi/wXiZjPo5w4DPHF3qlaSDaruBYsxDZl7JrnERyE=;
+        b=B3+g0pU00IZQP4X7tQaOCngXVEoTtgAJZnGTV9vxndMkQnpI5JsSNxfYrOrfAIuDvg
+         fcmqkTKrIWlaCjtvKAOxmNHEseG8rzxJIKFQBoKj0bhi/tKswE+2YJO5u/KKu0VQux4M
+         5KY12RdQvn0G5GjahOAJt9JcWw1VQIcjF/4HRZUkCmmuCLJMyw8wP+Jw1LgdHBIy6iD9
+         B+OgrlgCE/11KK1yIuwQXJS/86uCE+y2MAF3FQIpVpz/RJ/lzWZhkv+SILAgC1FBASke
+         hJNnKMLwzmhGxAEBy2oLWH97Nin94Fzg5RoY3wsfEBFCi8o3mzb9TkmYV5pSmQDW2FiM
+         kBtA==
+X-Gm-Message-State: AOAM531unPSb/iuEkiD1B83dp96jm969x/WiBJoRcKQTUIG7YaeU5pSq
+        SQaK6Lxhb23bbwWl+mysyAz6mawzSfgSW8ssC2s=
+X-Google-Smtp-Source: ABdhPJyw49VknPdSZNzySmsqz3tuP81/+LXhX25/+RNCDBWNub6bhsIxOQ6G6dXG++0p/CUhpt03g4wh6B0nCOy678U=
+X-Received: by 2002:a1f:ac45:: with SMTP id v66mr6243318vke.1.1623782896276;
+ Tue, 15 Jun 2021 11:48:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210608104757.582199-1-andrew@aj.id.au>
+References: <20210419005539.22729-1-mick@ics.forth.gr> <20210419005539.22729-6-mick@ics.forth.gr>
+ <CAMuHMdW=23SPXwqcjD+30M_d0azdze2=ChZM-PF1brf9bCNtrA@mail.gmail.com> <fe02eb618eee141e8bc021e8e30906fc@mailhost.ics.forth.gr>
+In-Reply-To: <fe02eb618eee141e8bc021e8e30906fc@mailhost.ics.forth.gr>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 15 Jun 2021 20:48:05 +0200
+Message-ID: <CAMuHMdXtT1L3yfzkTkbhqz3zgUQj89Bcm7mqz+m126NprAsK8Q@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] RISC-V: Add crash kernel support
+To:     Nick Kossifidis <mick@ics.forth.gr>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 08, 2021 at 08:17:41PM +0930, Andrew Jeffery wrote:
-> 
-> Hello,
-> 
-> This is the 4th spin of the series refactoring the keyboard-controller-style
-> device drivers in the IPMI subsystem.
+Hi Nick,
 
-Ok, no comments and everything looks good, I have this queued for the
-next Linux release.
+On Tue, Jun 15, 2021 at 8:29 PM Nick Kossifidis <mick@ics.forth.gr> wrote:
+> Στις 2021-06-15 16:19, Geert Uytterhoeven έγραψε:
+> > This does not match
+> > https://github.com/devicetree-org/dt-schema/blob/master/schemas/chosen.yaml#L77:
+> >
+> >     $ref: types.yaml#/definitions/uint64-array
+> >     maxItems: 2
+> >     description:
+> >       This property (currently used only on arm64) holds the memory
+> > range,
+> >       the address and the size, of the elf core header which mainly
+> > describes
+> >       the panicked kernel\'s memory layout as PT_LOAD segments of elf
+> > format.
+> >
+> > Hence "linux,elfcorehdr" should be a property of the /chosen node,
+> > instead of a memory node with a compatible value of "linux,elfcorehdr".
+> >
+>
+> That's a binding for a property on the /chosen node, that as the text
+> says it's defined for arm64 only and the code that handled it was also
 
-Thanks,
+That doesn't mean it must not be used on other architectures ;-)
+Arm64 was just the first one to use it...
 
--corey
+> on arm64. Instead the reserved-region binding I used is a standard
+> binding, if you don't like the name used for the compatible string
+> because it overlaps with that property we can change it. I want to use a
+> reserved-region for this because we'll have to reserve it anyway so
+> using a property on /chosen and then using that property to reserve the
+> region seemed suboptimal.
+>
+> >> v2:
+> >>  * Use linux,usable-memory on /memory instead of a new binding
+> >
+> > This part seems to have been removed in v3 and later?
+> > Note that "linux,usable-memory-range" should be a property of the
+> > /chosen node, too, cfr.
+> > https://github.com/devicetree-org/dt-schema/blob/master/schemas/chosen.yaml#L85
+> >
+>
+> No special handling is needed when using linux,usable-memory on /memory,
+> limiting the available memory is handled by generic code at
+> drivers/of/fdt.c
 
-> 
-> v3 can be found at:
-> 
-> https://lore.kernel.org/lkml/20210510054213.1610760-1-andrew@aj.id.au/
-> 
-> v4:
-> 
-> * Makes kcs_bmc_add_device() return an error if no client successfully
->   initialised with respect to the binding of the device driver
-> * Retains the existing single-open semantics (v3 allowed multiple-open)
-> * Fixes the OBE macro for the NPCM7xx KCS driver
-> * Cleans up Yoda-style masks (mask constant on the LHS rather than RHS)
-> * Cleans up includes in kcs_bmc_client.h
-> * Adds some comments to the SerIO adapter to clarify object lifetimes
-> 
-> Previously:
-> 
-> Changes in v3:
-> 
-> * The series was rebased onto v5.13-rc1
-> * v5.13-rc1 includes Chiawei's patches reworking the LPC devicetree bindings,
->   so they're no-longer required in the series.
-> * After some discussion with Arnd[1] and investigating the serio subsystem,
->   I've replaced the "raw" KCS driver (patch 16/21 in v2) with a serio adaptor
->   (patch 11/16 in this series). The adaptor allows us to take advantage of the
->   existing chardevs provided by serio.
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/37e75b07-a5c6-422f-84b3-54f2bea0b917@www.fastmail.com/
-> 
-> Changes in v2 include:
-> 
-> * A rebase onto v5.12-rc2
-> * Incorporation of off-list feedback on SerIRQ configuration from
->   Chiawei
-> * Further validation on hardware for ASPEED KCS devices 2, 3 and 4
-> * Lifting the existing single-open constraint of the IPMI chardev
-> * Fixes addressing Rob's feedback on the conversion of the ASPEED KCS
->   binding to dt-schema
-> * Fixes addressing Rob's feedback on the new aspeed,lpc-interrupts
->   property definition for the ASPEED KCS binding
-> 
-> Please test and review!
-> 
-> Andrew
-> 
-> Andrew Jeffery (16):
->   ipmi: kcs_bmc_aspeed: Use of match data to extract KCS properties
->   ipmi: kcs_bmc: Make status update atomic
->   ipmi: kcs_bmc: Rename {read,write}_{status,data}() functions
->   ipmi: kcs_bmc: Split out kcs_bmc_cdev_ipmi
->   ipmi: kcs_bmc: Turn the driver data-structures inside-out
->   ipmi: kcs_bmc: Split headers into device and client
->   ipmi: kcs_bmc: Strip private client data from struct kcs_bmc
->   ipmi: kcs_bmc: Decouple the IPMI chardev from the core
->   ipmi: kcs_bmc: Allow clients to control KCS IRQ state
->   ipmi: kcs_bmc: Enable IBF on open
->   ipmi: kcs_bmc: Add serio adaptor
->   dt-bindings: ipmi: Convert ASPEED KCS binding to schema
->   dt-bindings: ipmi: Add optional SerIRQ property to ASPEED KCS devices
->   ipmi: kcs_bmc_aspeed: Implement KCS SerIRQ configuration
->   ipmi: kcs_bmc_aspeed: Fix IBFIE typo from datasheet
->   ipmi: kcs_bmc_aspeed: Optionally apply status address
-> 
->  .../bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml | 106 +++
->  .../bindings/ipmi/aspeed-kcs-bmc.txt          |  33 -
->  drivers/char/ipmi/Kconfig                     |  27 +
->  drivers/char/ipmi/Makefile                    |   2 +
->  drivers/char/ipmi/kcs_bmc.c                   | 523 ++++-----------
->  drivers/char/ipmi/kcs_bmc.h                   |  92 +--
->  drivers/char/ipmi/kcs_bmc_aspeed.c            | 633 +++++++++++++-----
->  drivers/char/ipmi/kcs_bmc_cdev_ipmi.c         | 568 ++++++++++++++++
->  drivers/char/ipmi/kcs_bmc_client.h            |  45 ++
->  drivers/char/ipmi/kcs_bmc_device.h            |  22 +
->  drivers/char/ipmi/kcs_bmc_npcm7xx.c           |  92 ++-
->  drivers/char/ipmi/kcs_bmc_serio.c             | 157 +++++
->  12 files changed, 1594 insertions(+), 706 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/ipmi/aspeed,ast2400-kcs-bmc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/ipmi/aspeed-kcs-bmc.txt
->  create mode 100644 drivers/char/ipmi/kcs_bmc_cdev_ipmi.c
->  create mode 100644 drivers/char/ipmi/kcs_bmc_client.h
->  create mode 100644 drivers/char/ipmi/kcs_bmc_device.h
->  create mode 100644 drivers/char/ipmi/kcs_bmc_serio.c
-> 
-> -- 
-> 2.30.2
-> 
+It was my understanding both properties under /chosen are the
+recommended methods for new platforms... Let's see what Rob has
+to say...
+
+Anyway, I sent a patch series to switch to generic "linux,elfcorehdr"
+handling
+https://lore.kernel.org/r/cover.1623780059.git.geert+renesas@glider.be/
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
