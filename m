@@ -2,232 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96F683A7633
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 06:57:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 131D53A7655
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 07:16:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230028AbhFOE75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 00:59:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49964 "EHLO
+        id S230437AbhFOFS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 01:18:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbhFOE74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 00:59:56 -0400
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B793C061574;
-        Mon, 14 Jun 2021 21:57:52 -0700 (PDT)
-Received: by mail-pj1-x1029.google.com with SMTP id o88-20020a17090a0a61b029016eeb2adf66so828128pjo.4;
-        Mon, 14 Jun 2021 21:57:52 -0700 (PDT)
+        with ESMTP id S230400AbhFOFSX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 01:18:23 -0400
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 952D9C0617AF
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 22:16:18 -0700 (PDT)
+Received: by mail-pj1-x1034.google.com with SMTP id fy24-20020a17090b0218b029016c5a59021fso1071665pjb.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 22:16:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=w59JjuzuqUTD0+HNEEQ9W6FgI5MwsLGU6SFCtN9fgKE=;
-        b=AlJHVINvpXl/63CgtK/AN/bKNc0MKdD9QBrCgXIIC4K5X/NSFHhRC8qpmdL2FEcXje
-         Nk9Fh1tkYSMOK8OInulpEXB463O5KhXlTSuF1QyUDckxDJi2EzM3MIC1CWrAH1LskeMI
-         SRnp/Y5HdroTmPetMeQQjygc4f3XQA6Hh+PS6AJWp/9XEAiuIPk72+xVj6OAKSrLbQGz
-         QAM5mvSogP11DxMInlQ9uX5bAXGcGOLD5rOI9ZwGrdUbn7756oVYWLWupfiTur7gzt+R
-         +1+7773ZzEkb4oGk78m2P25M2DzSdkcq7EikVc3miQQ3whdF14W3VmOWlKGzTS9krGHE
-         uEVA==
+         :content-disposition:in-reply-to:user-agent;
+        bh=MF/9GnXqxvuZpa6ITiz3hC8SrxhwYLiu/agW3G5WgBY=;
+        b=sjZv+V7kIk0a7879L2xpzGWf8dhpSEDL+ygwsf10R4byp60E4h+FhJuiQb1i5PDVC7
+         tVST2s3orPfaYP4eWk2d3qoq8irlNmlwnkEke6k/G/Ky2nyVQMml4K4Z2Zroc3WqNkJu
+         QtfZaoOCvsAoKwp6nag4+sy8s6V6BammMpYkIjA55fdYPMX7RVZysXT9pyACQLQdrNX9
+         luFd4r465tBSQ+qjfEpgR1wYiwDYo8bwci1v8D1PF7gzpFF3qRjMu+SQq2VtmtiYlUpN
+         Rm71AIKWaiqMI2xBQyeFAuMUe/oHy2g11fgoGJB+jTKrG7UOmAVHMirKcJYo5Ugki78y
+         AjCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=w59JjuzuqUTD0+HNEEQ9W6FgI5MwsLGU6SFCtN9fgKE=;
-        b=FV3Mh78it+MR8eKtAqYL0VDqNn700IUNFsi2Ltd79j24vTQ99oGjwN50MIXG8Pa8kq
-         Ew721U3VKPmgsEDM7eCb2tjbyp+1QfVNbK62PBxM78Xpi2L73UwJ7386OoqTR0Ltmlq5
-         6R2v2zyuAoE9UAM9g4Vp1fnZwHbyjKzNKZq+6RGwcXJGS06SEBRk1a6Wk81JyGFskvZt
-         H1D21fUXykxAHwbfmf1OUy10RLyb6FwyJhPoCneKGG2OXHMZXBxwIQRA9jliUW5CqlIa
-         CUnM5PMtmovGSz3ch/wlMsinwaChL/+DPvxAVO+9ZjpPHUa2/uv3/Blp8cnbE6oGSbvt
-         hz2A==
-X-Gm-Message-State: AOAM531HKxfiAQFNB7L6Qsj0eIy6NcKos75YhnfH315oyPf0B3D2o/Dz
-        5SsCmnprqJ5EqDHKQRlPKRk=
-X-Google-Smtp-Source: ABdhPJzF59upPOJIhNKQNDqOWZzNQZF7W4jqeBruRos9KBBlqVnsy826wLzJPQaLygK0MPFu8uwLnA==
-X-Received: by 2002:a17:90a:c397:: with SMTP id h23mr2977837pjt.101.1623733071476;
-        Mon, 14 Jun 2021 21:57:51 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:2a26:15ba:dc71:c4ba])
-        by smtp.gmail.com with ESMTPSA id d23sm1004515pjz.15.2021.06.14.21.57.49
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=MF/9GnXqxvuZpa6ITiz3hC8SrxhwYLiu/agW3G5WgBY=;
+        b=gzQXY4V4HPGEdCvz+dEV1PZ/oyHCrLcdAFNCB8WHR29VpdpCQlkIEeIis4wBr4Qgrc
+         IhCHDUOuahtBoZM97uUaNA0DQY3rXr+7PCOUBIkKZzsui0jch4IeU/N+p9/SC9XuwqwY
+         vPb+g/SDpGBVpLK15mt4VGbkTlbePO7DRvgrwbwe4LrNA2rX1NhNZQrDWzK4/IKEfVi+
+         1N3FIGhoFZDUngxjpSjr7d1/6dFMgpHcMplljPNrpiNBeY25+5iGkk9EC2fejdGCZlEb
+         Tmeum89YRbRhLEbEF+nJNKKFyqOEo72vti3Zl3YQSIzEFi+I/G4QeNlZTM9tX4KRLVdC
+         JbHw==
+X-Gm-Message-State: AOAM530LlE/t+bn6aQM+jYKyndh/N9yc4T3Vq+/qSlUQTYUIu/3cpwET
+        rj4IFy9MDqGV/fxUcG3kA3brbw==
+X-Google-Smtp-Source: ABdhPJwkqPSy21YHAlu9KXouDIGVIWiNd+lplxfQA1z0yDh03lzNgcNVye1XHseNyBqlgDKyYlw5Sg==
+X-Received: by 2002:a17:902:aa04:b029:ec:f779:3a2b with SMTP id be4-20020a170902aa04b02900ecf7793a2bmr2674218plb.44.1623734178006;
+        Mon, 14 Jun 2021 22:16:18 -0700 (PDT)
+Received: from localhost ([136.185.134.182])
+        by smtp.gmail.com with ESMTPSA id a66sm14765359pfb.162.2021.06.14.22.16.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Jun 2021 21:57:50 -0700 (PDT)
-Date:   Mon, 14 Jun 2021 21:57:47 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Oleh Kravchenko <oleg@kaa.org.ua>
-Cc:     linux-input@vger.kernel.org,
-        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
-        Device Tree mailing list <devicetree@vger.kernel.org>,
-        Jiri Kosina <jikos@jikos.cz>,
-        Patchwork Bot <patchwork-bot@kernel.org>,
-        Rob Herring <robh@kernel.org>, Jeff LaBundy <jeff@labundy.com>
-Subject: Re: [PATCH 2/2 v4] input: add SparkFun Qwiic Joystick driver
-Message-ID: <YMgzS6FIh/byG8Q5@google.com>
-References: <20210608223130.16830-1-oleg@kaa.org.ua>
- <20210608223130.16830-2-oleg@kaa.org.ua>
+        Mon, 14 Jun 2021 22:16:17 -0700 (PDT)
+Date:   Tue, 15 Jun 2021 10:46:15 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Thara Gopinath <thara.gopinath@linaro.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, rjw@rjwysocki.net, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/5] cpufreq: qcom-cpufreq-hw: Add dcvs interrupt support
+Message-ID: <20210615051615.kiec62zmxomomv2l@vireshk-i7>
+References: <20210608222926.2707768-1-thara.gopinath@linaro.org>
+ <20210608222926.2707768-4-thara.gopinath@linaro.org>
+ <20210614103141.nnrd4sn756os52wh@vireshk-i7>
+ <5a8f1622-4964-a8e1-f8a1-1dbd38948d45@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210608223130.16830-2-oleg@kaa.org.ua>
+In-Reply-To: <5a8f1622-4964-a8e1-f8a1-1dbd38948d45@linaro.org>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Oleh,
+On 14-06-21, 21:58, Thara Gopinath wrote:
+> On 6/14/21 6:31 AM, Viresh Kumar wrote:
+> > On 08-06-21, 18:29, Thara Gopinath wrote:
+> > > +static void qcom_lmh_dcvs_notify(struct qcom_cpufreq_data *data)
+> > > +{
+> > > +	struct cpufreq_policy policy;
+> > > +	struct dev_pm_opp *opp;
+> > > +	struct device *dev;
+> > > +	unsigned long max_capacity, capacity, freq_hz;
+> > > +	unsigned int val, freq;
+> > > +
+> > > +	val = readl_relaxed(data->base + data->soc_data->reg_current_vote);
+> > > +	freq = qcom_lmh_vote_to_freq(val);
+> > > +	freq_hz = freq * HZ_PER_KHZ;
+> > > +
+> > > +	/* Do I need to calculate ceil and floor ? */
+> > 
+> > You don't know ?
+> 
+> stray comment! Will remove it.
+> 
+> > 
+> > > +	dev = get_cpu_device(cpumask_first(data->cpus));
+> > > +	opp = dev_pm_opp_find_freq_floor(dev, &freq_hz);
+> > > +	if (IS_ERR(opp) && PTR_ERR(opp) == -ERANGE)
+> > > +		opp = dev_pm_opp_find_freq_ceil(dev, &freq_hz);
+> > > +
+> > > +	data->throttled_freq = freq_hz / HZ_PER_KHZ;
+> > > +
+> > 
+> > What exactly are we trying to do here ? A comment would be good as
+> > well.
+> 
+> You want me to put a comment saying converting frequency in hz to khz ?
 
-On Wed, Jun 09, 2021 at 01:31:32AM +0300, Oleh Kravchenko wrote:
-> A simple analog joystick built on Low Power ATtiny85 Microcontroller.
-> Directional movements are measured with two 10 kΩ potentiometers
-> connected with a gimbal mechanism that separates the horizontal and
-> vertical movements. This joystick also has a select button that is actuated
-> when the joystick is pressed down.
-> 
-> Input events polled over the I2C bus.
-> 
-> Product page:
-> https://www.sparkfun.com/products/15168
-> Firmware and hardware sources:
-> https://github.com/sparkfun/Qwiic_Joystick
-> 
-> Tested on RPi4B and O4-iMX-NANO boards.
-> 
-> Cc: Benjamin Tissoires <benjamin.tissoires@redhat.com>
-> Cc: Device Tree mailing list <devicetree@vger.kernel.org>
-> Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> Cc: Jiri Kosina <jikos@jikos.cz>
-> Cc: Patchwork Bot <patchwork-bot@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
-> Reviewed-by: Jeff LaBundy <jeff@labundy.com>
-> ---
-> 
-> Changes for v4:
-> - alphabetize include headers.
-> 
-> Changes for v3:
-> - rebase patch for device tree before code.
-> 
-> Changes for v2:
-> - Separate patch for device tree bindings.
-> 
->  drivers/input/joystick/Kconfig          |   9 ++
->  drivers/input/joystick/Makefile         |   1 +
->  drivers/input/joystick/qwiic-joystick.c | 147 ++++++++++++++++++++++++
->  3 files changed, 157 insertions(+)
->  create mode 100644 drivers/input/joystick/qwiic-joystick.c
-> 
-> diff --git a/drivers/input/joystick/Kconfig b/drivers/input/joystick/Kconfig
-> index 5e38899058c1..7dfe8ea90923 100644
-> --- a/drivers/input/joystick/Kconfig
-> +++ b/drivers/input/joystick/Kconfig
-> @@ -372,6 +372,15 @@ config JOYSTICK_PXRC
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called pxrc.
->  
-> +config JOYSTICK_QWIIC
-> +	tristate "SparkFun Qwiic Joystick"
-> +	depends on I2C
-> +	help
-> +	  Say Y here if you want to use the SparkFun Qwiic Joystick.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called qwiic-joystick.
-> +
->  config JOYSTICK_FSIA6B
->  	tristate "FlySky FS-iA6B RC Receiver"
->  	select SERIO
-> diff --git a/drivers/input/joystick/Makefile b/drivers/input/joystick/Makefile
-> index 31d720c9e493..5174b8aba2dd 100644
-> --- a/drivers/input/joystick/Makefile
-> +++ b/drivers/input/joystick/Makefile
-> @@ -27,6 +27,7 @@ obj-$(CONFIG_JOYSTICK_MAPLE)		+= maplecontrol.o
->  obj-$(CONFIG_JOYSTICK_N64)		+= n64joy.o
->  obj-$(CONFIG_JOYSTICK_PSXPAD_SPI)	+= psxpad-spi.o
->  obj-$(CONFIG_JOYSTICK_PXRC)		+= pxrc.o
-> +obj-$(CONFIG_JOYSTICK_QWIIC)		+= qwiic-joystick.o
->  obj-$(CONFIG_JOYSTICK_SIDEWINDER)	+= sidewinder.o
->  obj-$(CONFIG_JOYSTICK_SPACEBALL)	+= spaceball.o
->  obj-$(CONFIG_JOYSTICK_SPACEORB)		+= spaceorb.o
-> diff --git a/drivers/input/joystick/qwiic-joystick.c b/drivers/input/joystick/qwiic-joystick.c
-> new file mode 100644
-> index 000000000000..557708e9e756
-> --- /dev/null
-> +++ b/drivers/input/joystick/qwiic-joystick.c
-> @@ -0,0 +1,147 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2021 Oleh Kravchenko <oleg@kaa.org.ua>
-> + *
-> + * SparkFun Qwiic Joystick
-> + * Product page:https://www.sparkfun.com/products/15168
-> + * Firmware and hardware sources:https://github.com/sparkfun/Qwiic_Joystick
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/i2c.h>
-> +#include <linux/input.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +
-> +#define DRV_NAME "qwiic-joystick"
-> +
-> +#define QWIIC_JSK_REG_VERS	1
-> +#define QWIIC_JSK_REG_DATA	3
-> +
-> +#define QWIIC_JSK_MAX_AXIS	GENMASK(9, 0)
-> +#define QWIIC_JSK_FUZZ		2
-> +#define QWIIC_JSK_FLAT		2
-> +#define QWIIC_JSK_POLL_INTERVAL	16
-> +#define QWIIC_JSK_POLL_MIN	8
-> +#define QWIIC_JSK_POLL_MAX	32
-> +
-> +struct qwiic_jsk {
-> +	char phys[32];
-> +	struct input_dev *dev;
-> +	struct i2c_client *client;
-> +};
-> +
-> +struct qwiic_ver {
-> +	u8 major;
-> +	u8 minor;
-> +};
-> +
-> +struct qwiic_data {
-> +	__be16 x;
-> +	__be16 y;
-> +	u8 thumb;
-> +} __packed;
+Not that, but for the entire routine. What exactly are we looking to
+do here and why?
 
-The members of this structure are naturally aligned, so there is no need
-to declare it as __packed.
+> > 
+> > > +	cpufreq_get_policy(&policy, cpumask_first(data->cpus));
+> > > +
+> > > +	/* Update thermal pressure */
+> > > +	max_capacity = arch_scale_cpu_capacity(cpumask_first(data->cpus));
+> > 
+> > Set capacity of a single CPU from a policy ?
+> 
+> Get maximum capacity of a cpu.
 
-> +
-> +static void qwiic_poll(struct input_dev *input)
-> +{
-> +	struct qwiic_jsk *priv;
-> +	struct qwiic_data data;
-> +	int err;
-> +
-> +	priv = input_get_drvdata(input);
-> +
-> +	err = i2c_smbus_read_i2c_block_data(priv->client, QWIIC_JSK_REG_DATA,
-> +					    sizeof(data), (u8 *)&data);
-> +	if (err != sizeof(data))
-> +		return;
-> +
-> +	input_report_abs(input, ABS_X, be16_to_cpu(data.x) >> 6);
-> +	input_report_abs(input, ABS_Y, be16_to_cpu(data.y) >> 6);
-> +	input_report_key(input, BTN_THUMBL, !data.thumb);
-> +	input_sync(input);
-> +}
-> +
-> +static int qwiic_probe(struct i2c_client *client,
-> +		       const struct i2c_device_id *id)
+Ahh, I thought you are setting it :(
 
-The probe() does not use the i2c_device_id parameter, so I will switch
-it to probe_new() to avoid the temptation of using it in the future.
+> > 
+> > > +	capacity = data->throttled_freq * max_capacity;
+> > > +	capacity /= policy.cpuinfo.max_freq;
+> > > +	/* Don't pass boost capacity to scheduler */
+> > > +	if (capacity > max_capacity)
+> > > +		capacity = max_capacity;
+> > > +	arch_set_thermal_pressure(data->cpus, max_capacity - capacity);
+> > 
+> > You should really be using policy->cpus instead of allocating
+> > data->cpus..
+> 
+> Yes I should be. But I still need data->cpus to get the policy.
 
-Please let me know if you disagree, otherwise I will go and apply (no
-need to resubmit).
+From the comment which comes later on, you shall get the policy here
+anyway.
+ 
+> > > +}
+> > > +
+> > > +static void qcom_lmh_dcvs_poll(struct work_struct *work)
+> > > +{
+> > > +	struct qcom_cpufreq_data *data;
+> > > +
+> > > +	data = container_of(work, struct qcom_cpufreq_data, lmh_dcvs_poll_work.work);
+> > > +
+> > > +	qcom_lmh_dcvs_notify(data);
+> > 
+> > You should really move the below stuff the disable_irq_nosync(), it
+> > will make your life easier.
 
-Thanks.
+Damn, s/disable_irq_nosync/qcom_lmh_dcvs_notify/
+
+> I don't understand your comment here. I want to disable irq. call notify.
+> Start polling. And in polling I want to call notify and if the thermal event
+> has passed stop polling else continue polling.
+
+Yeah, I messed up in the comment. I was asking to move the enable-irq
+and mod_delayed_work to qcom_lmh_dcvs_notify() itself.
+
+> > > +	/**
+> > > +	 * If h/w throttled frequency is higher than what cpufreq has requested for, stop
+> > > +	 * polling and switch back to interrupt mechanism
+> > > +	 */
+> > > +	if (data->throttled_freq >= qcom_cpufreq_hw_get(cpumask_first(data->cpus)))
+> > > +		/* Clear the existing interrupts and enable it back */
+> > > +		enable_irq(data->lmh_dcvs_irq);
+> > > +	else
+> > > +		mod_delayed_work(system_highpri_wq, &data->lmh_dcvs_poll_work,
+> > > +				 msecs_to_jiffies(10));
+> > > +}
+> > > +
+> > > +static irqreturn_t qcom_lmh_dcvs_handle_irq(int irq, void *data)
+> > > +{
+> > > +	struct qcom_cpufreq_data *c_data = data;
+> > > +
+> > > +	/* Disable interrupt and enable polling */
+> > > +	disable_irq_nosync(c_data->lmh_dcvs_irq);
+> > > +	qcom_lmh_dcvs_notify(c_data);
+> > > +	mod_delayed_work(system_highpri_wq, &c_data->lmh_dcvs_poll_work, msecs_to_jiffies(10));
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > >   static const struct qcom_cpufreq_soc_data qcom_soc_data = {
+> > >   	.reg_enable = 0x0,
+> > >   	.reg_freq_lut = 0x110,
+> > >   	.reg_volt_lut = 0x114,
+> > > +	.reg_current_vote = 0x704,
+> > 
+> > Should this be a different patch ?
+> 
+> Why ? This is the register to read the throttled frequency.
+
+Okay, it looked this is separate. Leave it.
+
+> > > +		ret = devm_request_irq(dev, data->lmh_dcvs_irq, qcom_lmh_dcvs_handle_irq,
+> > > +				       0, "dcvsh-irq", data);
+> > 
+> > I would rather pass policy as data here.
+> 
+> So policy for a cpu can change runtime, right ?
+
+No, it is allocated just once.
 
 -- 
-Dmitry
+viresh
