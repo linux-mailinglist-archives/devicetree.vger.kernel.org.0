@@ -2,103 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9791F3A8444
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 17:44:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D8043A8453
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 17:48:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231699AbhFOPqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 11:46:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43702 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230076AbhFOPqj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 11:46:39 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 237D2614A7;
-        Tue, 15 Jun 2021 15:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623771875;
-        bh=pOEn5q/kmABhBFpFTOXEU8WuQroDLJ8T62TFvhJF+zY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=SyET8KwSrB+3TuqBoaek+T6uSNLEqJGzUTJz4wXgshRBK9e30481PR1uXFAmn76/f
-         KGrUQsWqL4GUvs+waXuNXFJbB0Iywif3sZBPO5Wo9qYwAnJ0FNkmGSBIhl07xYSOb8
-         1rZ4D/vqb7I/CqUdiwXDiSaBYeBovNlEq3aQ26FHHn2CocjaYMV3fip/9ZH298g5Ip
-         WKazlXH2w6ncV+8SturWj8xIDfInWW9ugmlQ2senL3Rlbqbps9yvVlgYZ2r+8RYru2
-         tuHVAQjALvJ9fczw/JA+fqZ6ztS3vLcmo4JAxYXSsdxJqlojuPe9XERJ4HSMVtRJsU
-         hQj83zCdI1Dng==
-Received: by mail-ed1-f43.google.com with SMTP id w21so51700257edv.3;
-        Tue, 15 Jun 2021 08:44:35 -0700 (PDT)
-X-Gm-Message-State: AOAM5331M/j3mGQy07WF07oe0IHSjlLy+fFEDjfVTuVUraey5Wf7Pwoo
-        Ohz71z7347naG9/u+IXAhPW5KH4bORHzW65yNw==
-X-Google-Smtp-Source: ABdhPJyEHiHgZO7dCJ9YlVLUpCzRaubqbjF3N5ZTb8jhLJ1MP8MnsylXBdgxPESwHZF+8ttuDoaCdKcOj64tKfKGh7I=
-X-Received: by 2002:aa7:cac9:: with SMTP id l9mr21226edt.373.1623771873757;
- Tue, 15 Jun 2021 08:44:33 -0700 (PDT)
+        id S231589AbhFOPuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 11:50:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58088 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230267AbhFOPuE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 11:50:04 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E963CC061574
+        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 08:47:59 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id t11-20020a1cc30b0000b02901cec841b6a0so1136444wmf.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 08:47:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GBinx4Fgo45gvNb6Q+VwiPy/5uxor4+wH/XjaU7vEwU=;
+        b=fKBLKEpGGji1pJ8Chsxfvqljab6qo00YqyYLcs9KAIRVzcPyZyRS/9kYae9BQhnPkS
+         ZnpNaP5a2XEdbNdJeZViHbkyiIYIIILUexJwCWeSWF8fDuQSgpoe7MuUHFy0z4UazS32
+         sDdFgLVdGm9mG/b/9FD+ArxbRhqK74pHM2kr8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GBinx4Fgo45gvNb6Q+VwiPy/5uxor4+wH/XjaU7vEwU=;
+        b=iSJnqEifWtteFNfVTat3RKG77C0W08dZytkvCzsolb7r59zri2/RF+aIQMbUqABT6I
+         ahA701RE+vZO5CvjetBFNdYLjDv+GUp302KxlVA/0vgN/9CWL2uC059XdIZ+lShGxkE+
+         w2rRBu1Z3LLta+YfxeHit6s0kOIDs9IpyZ/P1gInm+Ql6ZuE4Lc90HLslPcnx+QJgD1B
+         DWyr8mbfYp3Vtp1foIZ7cErQ7TyKyncu+HImIBf+DkD/UzIDRlCoT6cR+zJthFfu3Ar2
+         NeQrlOWX7s306bQJlCK9PkviSLxzbHBh4zKl5VI99IuvbcGwBH8JiUrrcJ2I8zEZIvB7
+         tlFw==
+X-Gm-Message-State: AOAM531P5MEXI//eLIIScVK0j2SCK9Biz2jfCC91NoQsLbegQtqdvMRy
+        cHO6Q22Qqt13I5mtkvM6HEqMa+XbJHzL+s2gME7tPQ==
+X-Google-Smtp-Source: ABdhPJwUoEVW6kMYZC606PnYCEczrljMALiN96zNLd0kS0EL2UX5TDso3su7xUx2lhZdDpzedPnxBwH3c8Nmho87MO0=
+X-Received: by 2002:a7b:c5d2:: with SMTP id n18mr6083880wmk.97.1623772078396;
+ Tue, 15 Jun 2021 08:47:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210509184519.15816-1-alex.nemirovsky@cortina-access.com>
- <20210509184519.15816-2-alex.nemirovsky@cortina-access.com>
- <YMiUpK/+PjsoCU1W@kroah.com> <CFD14D63-4537-4A91-861C-71B74E2CFAE6@cortina-access.com>
- <YMi1jOL6y+eUK3Df@kroah.com> <B71C5D02-EDBE-4AAD-AF1B-2FD467BE075A@cortina-access.com>
-In-Reply-To: <B71C5D02-EDBE-4AAD-AF1B-2FD467BE075A@cortina-access.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Jun 2021 09:44:21 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKDf9W-1KHUoFFCoLareLKf0CAVMU6CXR22xW3hWM_8yg@mail.gmail.com>
-Message-ID: <CAL_JsqKDf9W-1KHUoFFCoLareLKf0CAVMU6CXR22xW3hWM_8yg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: serial: Convert Cortina-Access UART
- to json-schema
-To:     Alex Nemirovsky <Alex.Nemirovsky@cortina-access.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jason Li <jason.li@cortina-access.com>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20210526154704.114957-1-judyhsiao@chromium.org> <CA+Px+wXGjZCOhhAVh9eRw6L-g8g7Qi7Rf_3YHpHSCB2o=XQ+4g@mail.gmail.com>
+In-Reply-To: <CA+Px+wXGjZCOhhAVh9eRw6L-g8g7Qi7Rf_3YHpHSCB2o=XQ+4g@mail.gmail.com>
+From:   Cheng-yi Chiang <cychiang@chromium.org>
+Date:   Tue, 15 Jun 2021 23:47:30 +0800
+Message-ID: <CAFv8NwKkfGnpw_5PBwJSjVXsuw3L8=1RyEJ4PWdRX5-J75bk6A@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: max98357a: set channels_max to 4
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     Judy Hsiao <judyhsiao@chromium.org>,
+        Mark Brown <broonie@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Douglas Anderson <dianders@chromium.org>,
+        Dylan Reid <dgreid@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA development <alsa-devel@alsa-project.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 15, 2021 at 8:39 AM Alex Nemirovsky
-<Alex.Nemirovsky@cortina-access.com> wrote:
->
->
->
-> > On Jun 15, 2021, at 7:13 AM, Greg Kroah-Hartman <gregkh@linuxfoundation=
-.org> wrote:
-> >
-> > On Tue, Jun 15, 2021 at 01:36:39PM +0000, Alex Nemirovsky wrote:
-> >> MAINTAINERS modification was made in the initial version 1.  We made n=
-o changes to it since then,
-> >> thus not sure what we could at to  Changelog which would add value or =
-clarity for others
-> >> from the v1.
-> >>
-> >>> On Jun 15, 2021, at 4:53 AM, Greg Kroah-Hartman <gregkh@linuxfoundati=
-on.org> wrote:
-> >>>
-> >>> On Sun, May 09, 2021 at 11:45:17AM -0700, Alex Nemirovsky wrote:
-> >>>> From: Jason Li <jason.li@cortina-access.com>
-> >>>>
-> >>>> Convert the Cortina-Access UART binding to DT schema format.
-> >>>>
-> >>>> Signed-off-by: Jason Li <jason.li@cortina-access.com>
-> >>>> ---
-> >>>> .../serial/cortina-access,serial.yaml         | 46 +++++++++++++++++=
-++
-> >>>> .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
-> >>>> MAINTAINERS                                   |  6 +++
-> >>>
-> >>> You are also adding a MAINTAINERS entry here, which is not listed in =
-the
-> >>> changelog text, so I couldn't take it anyway :(
-> >
-> > Add the maintainers entry in the first patch, with the driver please.
->
-> The change to MAINTAINERS here add a new file into the DT documentation.
-> Should it not be grouped into the dt-binding portion and reviewed by the =
-DT time for which this patch
-> is CC=E2=80=99ed to? Why would moving the DT documentation file that is i=
-ntroduced be into the first patch, which is the
-> serial driver itself be the correct approach?
+Hi Tzung-Bi,
 
-The binding doesn't actually need a MAINTAINERS entry (though having
-one is fine). get_maintainers.pl will also pull emails from the
-binding schema.
+On a platform, the four max98357a amps will be controlled by only one
+codec device, as GPIO for SD_MODE is shared by all amps and is the
+only thing to be controlled.
+In this sense, I think we can treat max98357a DAI as if it supports
+four channels.
+I understand that this solution is not scalable, because one can
+control as many amps as they want.
+Theoretically, the number of supported channels by this codec device
+is unlimited.
+I found that rt1015.c has similar usage.
+Do you have a better suggestion to support this kind of use case ?
+Thanks!
 
-Rob
+
+
+
+On Tue, Jun 1, 2021 at 2:20 PM Tzung-Bi Shih <tzungbi@google.com> wrote:
+>
+> On Wed, May 26, 2021 at 11:47 PM Judy Hsiao <judyhsiao@chromium.org> wrote:
+> > Sets channels_max to 4 to support QUAD channel.
+>
+> Could you point out probably the up-to-date MAX98357A datasheet for
+> 4-channel support?
+>
+> On a related note, from the public datasheet I could find[1], "Table
+> 5" only shows 2 channel's configuration.
+>
+> [1]: https://pdf1.alldatasheet.com/datasheet-pdf/view/623796/MAXIM/MAX98357A.html
