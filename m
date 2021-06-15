@@ -2,173 +2,327 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D293A73B2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 04:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E2823A7427
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 04:41:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231776AbhFOCZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 22:25:44 -0400
-Received: from mail-eopbgr130070.outbound.protection.outlook.com ([40.107.13.70]:40195
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231715AbhFOCZi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Jun 2021 22:25:38 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nsrfGUV0I3DFgoirFjqH/scj0PxCGIX7Cf9bJ+RSECi1AyOOEt0rEzkoG9/hJgdU6Zt9RRorhwxs+2//vnFndaWPVvs+61Iigc3U/2TIHVgfLxdAkF4oNRV3IooVMeejFWjuhNCXzo0j9WLgqmRubOqfNbdRIhfrVs86yZ1i8BQHXlTXKOHnaRMzVbSEtdGZvIuVXPMAEiexDcOfbW7vfQf3Y79GCijiAq1lcGnIadQYBOCDri7AgQe/xbJo7zRMveAaLrxkruQtLbyOjFDUf1fvG5c6JwAIwR6aIwrzyTaaHeU6a6ncS0O/iTNgRdEBypvKzjGo2dzjg3kHkPwd5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=w4YrhForA6w/ND66WhGbTtRF8Y0sfAhLgkTM+Y7lfOM=;
- b=AopZ08hcAUgqLyv+9rmDh1TXYQG689VJYnx34X7oKd9Mt8b8ZtILgzxwDQHuWXqyF6QugS0P0m04vz51V8hIteiIGgzda1XRS59aACM7gkuEqiacTkU0EyGzNTbhO1aYc78Bz++bdiFHbT7+CKbiaYNuhPViKJ4GvUK54eu97zvz1suTmjzt/3IVv6lwwHhxglyqbCYSGfzhKP7xVQcd7gJxSa5tr9NdJ8oF09ECTy5Zq+Xb+U+FDe2XtQ6Wx3lPnElauUxyuV0zgW3YG2ZHEO19cwZKQKUXNCBZPZ+Qe97UaDEEaytoj+n1qnDuR03b4B/9yEG8nY8W2PQYSKrKJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=w4YrhForA6w/ND66WhGbTtRF8Y0sfAhLgkTM+Y7lfOM=;
- b=nArw1RXdKYmBmgFMAl+U1Hjlx2/rkTjtQVoG1/ythFOFmussIHXqYIx+FjHavT4BOIWBOkI23HsvXXnV5zlUYvK0PHdat3XYVd5mBNehRGRBqXBiRJDgIKcRjtmmiVJ5sVh4bRh5tNsyHK1FK38N9Alsp96u2DuWWzqfAd9tjyI=
-Received: from VE1PR04MB6688.eurprd04.prod.outlook.com (2603:10a6:803:127::25)
- by VI1PR04MB4736.eurprd04.prod.outlook.com (2603:10a6:803:5d::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.23; Tue, 15 Jun
- 2021 02:17:42 +0000
-Received: from VE1PR04MB6688.eurprd04.prod.outlook.com
- ([fe80::ed27:a6b2:74fc:8ef2]) by VE1PR04MB6688.eurprd04.prod.outlook.com
- ([fe80::ed27:a6b2:74fc:8ef2%6]) with mapi id 15.20.4219.025; Tue, 15 Jun 2021
- 02:17:42 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     Fabio Estevam <festevam@gmail.com>
-CC:     Vinod <vkoul@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Martin Fuzzey <martin.fuzzey@flowbird.group>,
-        =?iso-8859-1?Q?Uwe_Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH v14 00/12] add ecspi ERR009165 for i.mx6/7 soc family
-Thread-Topic: [PATCH v14 00/12] add ecspi ERR009165 for i.mx6/7 soc family
-Thread-Index: AQHXK33LUkqD6t3KUUabL8+87acFPqsUwNUAgAAAZTA=
-Date:   Tue, 15 Jun 2021 02:17:42 +0000
-Message-ID: <VE1PR04MB66885BAC7032D643F308A2F989309@VE1PR04MB6688.eurprd04.prod.outlook.com>
-References: <1617809456-17693-1-git-send-email-yibin.gong@nxp.com>
- <CAOMZO5CVyaOXNxwv9hKV3RB9Q4kzW4VchEeBj1=b9PvHkskcow@mail.gmail.com>
-In-Reply-To: <CAOMZO5CVyaOXNxwv9hKV3RB9Q4kzW4VchEeBj1=b9PvHkskcow@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.67]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d62242da-1f38-4689-a28e-08d92fa3c1cf
-x-ms-traffictypediagnostic: VI1PR04MB4736:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB47362705A8F24023B45F96A389309@VI1PR04MB4736.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ypTfiI2qd/XzEWzdgV9dTV1vyQiJ3YyqrqKTlzrOpuSb7ckYQRa+ZJg2OwyQoWUQj6M+kmmH+2ZDdOgyzRLIoEt9CIC5jeWneyN3C7wW19/dewViT7MOq9MytlGTqDlxDmu/Fkz+wCpzKwCeiVuKPPJoEqQbPhDGL06xZS46IckK7ida18Hu3ky2Lq84wTV0ACHH44tpsRkgCJ2IVJyFQzNx87YkDa0vdOJAvzMkoKG90O29bp4YgJXTdtKg4KWhhK1wx6stWSkbaC+NRqf3aoOcF0FDXoVRZRk2Sc9B4y6SCiOSSjfliiaB58idn04c1hGEDN3B8G8r6F/Pe1j55TN4cWd8M+fH2MgjNraXYmx1SKuXXJ0keRmBZIow2F/4jLEDMhvFaSJL8UMQ+dVG5IVmH3W+rB0VMQYIqhD5Zq8LBbIsfRelkiadEdNfgt9YD3Ohx2IiugZRvZQ2XVBIuSvAZ6/FvjIwwy1jY0oMIg24rYHQx1jRmFGLvzD0djYSVFX/E8p4suEKWjoEgmLN1elN7szD+SNbU63sTzO73cU4ZRui/gNE8fLvzZJvLxq/2QChH6DL1KuCqO83L1jQYIV173dCTXmBAwP+d5cvLap6yZHmuTWQv0R+sNeq9n0zUWMMckt6sO2rDD7UkO7xbrKYq9+s5uLrGSEbrzD2d7HKpxjKb0k6bHGkEBFSf9uXFzGhuX/e0FveCEMPdEz9nA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(396003)(136003)(376002)(366004)(346002)(478600001)(54906003)(38100700002)(122000001)(966005)(8676002)(7696005)(86362001)(316002)(2906002)(71200400001)(9686003)(26005)(76116006)(66446008)(66556008)(64756008)(33656002)(6916009)(8936002)(4326008)(66946007)(7416002)(66476007)(52536014)(5660300002)(6506007)(53546011)(83380400001)(186003)(55016002)(45080400002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?FtFFmobDRlwgcA6JIZjM+7/MtQM2vhyNZ5g09vLRpac/QH2bxjW1Lx38Zr?=
- =?iso-8859-1?Q?zH3R8fFhfhd4jJxOga7JWP9GXfXUlUOzukHWr94zOlHgjAHbE0AOW0WY1J?=
- =?iso-8859-1?Q?bdQRbwtsANwnDs3Iyx5pwRjIgyy3vD0EIOmPkZsmoRmQwsyD8QN9WN4YB3?=
- =?iso-8859-1?Q?LFW/8MXqf08/2h63Fy9ucg40kQZw2Isg/5+euWsURMo6lX1W/Vbyjuqv9G?=
- =?iso-8859-1?Q?+DDixREMAULXv+wwJkawcFjnvFLN2KBOLTe/g58L/9HdKZK9jOdGqyz2Xi?=
- =?iso-8859-1?Q?Qf8EEE3SaEA+jL9MlieDFfl4yP1h/O2jdpusbJtyF0p2DQLAmn/Lfh4Off?=
- =?iso-8859-1?Q?qEwYiZeVECDi3+XLVh0/R+hRp2NKelHMSMytVEn6SrTWqRj61UQ09eoBz4?=
- =?iso-8859-1?Q?ufAgZWhWLFceUC99pat2vhL7RFgeWZ/g6LKSWe8f1AThKU5hpDZPsyu1OR?=
- =?iso-8859-1?Q?UojArP2OWyafmlWHK+EH4+zEY7d2d4f9RoDrEyKW5di1C2Z4Yavj3pFtua?=
- =?iso-8859-1?Q?4zPp/f7494d8smAR24HF4e/VNT74zq7F5jlCWozUPF8KzOn0LvSTN0BQHM?=
- =?iso-8859-1?Q?PqqMffquXYo1tfzmwQpvMG6wSm9iBExUTUKwNPNHoG4cbW/wgWGA6yLEdo?=
- =?iso-8859-1?Q?JI5m4uxodhIHV+gFk5VQSYgsuAsFroefNV3w+8byz/FXAXHZSNsyCf7esF?=
- =?iso-8859-1?Q?OOHIHhrv2NlZ6W/sQ12e2TzLGL022cRvi8BFrcGLw+zniCXMMsgDMCRGoe?=
- =?iso-8859-1?Q?nJAxAZkR3EpsRWKppahEjN+16grKZ2G0l//1GAHgU1nchk7LJtfhZe03/u?=
- =?iso-8859-1?Q?NbC64dDr2U6JjZ8LJB0ZoZdqOZZ3eV5Z+k29YWDfb7CrldHJB2yGfn2q/m?=
- =?iso-8859-1?Q?sEeqnSow7QEby1bfiUCq+PbWqp0SmaahhhdqlKItXnnDq9zgFtlKia9AGw?=
- =?iso-8859-1?Q?mLsDrXoGE5GwybZYp3M+tcnlKW4mQ7JueriXfoXA67lbvn+nTj5EmuGicd?=
- =?iso-8859-1?Q?mF/YNrm0e7VcDO7NEeDzWOCMarAQ8QvvObmnP9xOrur6fLZqdd2kaRTZf1?=
- =?iso-8859-1?Q?w6S9g4dPJkRu+0ahyF1KhqM/oV6K3Y0pbYYPu496L78lc8Dd5yqAUWzB8N?=
- =?iso-8859-1?Q?Nxume3iNIJNdMYdpU8rPGDuba8m7SRcraE1TO5wvsyJ0yua5wx+jkUZ7Xj?=
- =?iso-8859-1?Q?yW00jc9oJG5+svLhcj8SDz7desK2xxGVF2u5jV1nk0/EI2oFRJAVJcjOmV?=
- =?iso-8859-1?Q?B4iYIascz0W+UEQsxZ2eXeTwhNIhjmdcitmGMXi/oareUresM2c1v9B3BI?=
- =?iso-8859-1?Q?iuPb+qbvSEJSwsFNmKMTsrqAQJivH5EF/m/efjA8sq+xA/kCuZLoLTHodv?=
- =?iso-8859-1?Q?dNr+QzHMSe?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S229980AbhFOCnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 22:43:24 -0400
+Received: from mail-qt1-f174.google.com ([209.85.160.174]:35608 "EHLO
+        mail-qt1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229734AbhFOCnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 22:43:21 -0400
+Received: by mail-qt1-f174.google.com with SMTP id g12so10191322qtb.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 19:41:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=O53gEWfH2MVe6PVxXbAaaJkGomJpiUiI0nzOZi1VeT4=;
+        b=ari/JPtxcjD1356HIyGGATsHHtSWUL83yblzZ1qQXrzE9aKC4qdmVYBcEAduXsg65w
+         iH3R3XRzVzGaaA8JHGP913q/bTcysYsnPfgic4E5JxnEJiP2gEi5KM5SaUsYp4pO3aWC
+         UCM6bRQbie3/GERjzCywogJOsYWAjY2PkZheMDuKZ1cftUfXjLtiDqJUv4N0sbb8h/EE
+         m/nhCAdnAjMPclKKExB6pKf8uFPsfyEKw/tvDWmBA0mLEy9CkrZsJui/7RaXLYH0h25Q
+         YzOSd+UF2+LRHmqa8Vqg3Yx589H2gTNpbeqryUiQtnN/RtsNzdecVPRyy8LUA0bdpFJo
+         M/jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=O53gEWfH2MVe6PVxXbAaaJkGomJpiUiI0nzOZi1VeT4=;
+        b=Xi2GVqWP9Iq8QDoHcgX4afjREk3itw0v8Jp5Smc43dZPUa82Pj9qiiQVJvvmS0OfD8
+         0IQOb2OOBhvoe7ZAJHVo4Jv829fshtETutWxpl77jzzsqUlZl9wBxWd48sSNThejdYms
+         r1Voa9Yqsa0PPRLc0/lH7R2jDlmPYAjC/yqH6v4ZH+9fliL+r4qxd0f59miVGx5ZyDzl
+         8Lmm7VxDp1WMNrj/lyoBGPLJKg8nnWqg/xlAd1fzg+GsFCpqGUV5t2jH21a+Xlx1xL9E
+         VUMi8Mxz9e7UvD6kugWMK99mu5XyzJ4OD4zkhOgh86/okOtzkbNC4jfg7xK+4/O8KVjI
+         Yw/g==
+X-Gm-Message-State: AOAM531o4UUvN40HU050GGbMVqnUkv9J61UkdkseGVgCM1ZQli2V2J0B
+        aYGu/4W8W/p9Zf9f9HLI/9D3qzqfcemRkA==
+X-Google-Smtp-Source: ABdhPJykLVHgEcNXRGmsiw+Gghaj3UFAO/+ACWLcRb5LGGkrwYT07tHo8yVXU4dF7o02rriG13mIbg==
+X-Received: by 2002:ac8:41d3:: with SMTP id o19mr19449923qtm.90.1623721081609;
+        Mon, 14 Jun 2021 18:38:01 -0700 (PDT)
+Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.gmail.com with ESMTPSA id y15sm708630qto.90.2021.06.14.18.38.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Jun 2021 18:38:01 -0700 (PDT)
+Subject: Re: [PATCH 2/5] thermal: qcom: Add support for LMh driver
+To:     Randy Dunlap <rdunlap@infradead.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, viresh.kumar@linaro.org,
+        rjw@rjwysocki.net, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210608222926.2707768-1-thara.gopinath@linaro.org>
+ <20210608222926.2707768-3-thara.gopinath@linaro.org>
+ <531fae77-f037-5e4a-be1e-ce21618fbd9d@infradead.org>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <7917d02c-034b-6bd9-0f65-f4c5009a313f@linaro.org>
+Date:   Mon, 14 Jun 2021 21:37:59 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6688.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d62242da-1f38-4689-a28e-08d92fa3c1cf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jun 2021 02:17:42.5571
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 76gPbrV31qxOIQz3MbSHXZhh0W5Ak1cChtqcBMXq/+CP0yljut7FSwKcq72TKC35DS+1RY1tDRAKUmNdMHFIGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4736
+In-Reply-To: <531fae77-f037-5e4a-be1e-ce21618fbd9d@infradead.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/15/21 10:13 Fabio Estevam <festevam@gmail.com> wrote:
-> Hi Robin,
->=20
-> On Wed, Apr 7, 2021 at 4:15 AM Robin Gong <yibin.gong@nxp.com> wrote:
-> >
-> > There is ecspi ERR009165 on i.mx6/7 soc family, which cause FIFO
-> > transfer to be send twice in DMA mode. Please get more information from=
-:
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fwww=
-.
-> >
-> nxp.com%2Fdocs%2Fen%2Ferrata%2FIMX6DQCE.pdf&amp;data=3D04%7C01%7
-> Cyibin.g
-> >
-> ong%40nxp.com%7C3c61a5cfd0574c1bc4eb08d92fa31257%7C686ea1d3bc2
-> b4c6fa92
-> >
-> cd99c5c301635%7C0%7C1%7C637593199700307681%7CUnknown%7CTWF
-> pbGZsb3d8eyJ
-> >
-> WIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7
-> C1000
-> >
-> &amp;sdata=3Dg2%2FwpDG22czIhj7ELil2kiiGPG0d74Ac7D8H3g0YtJc%3D&amp;r
-> eserv
-> > ed=3D0. The workaround is adding new sdma ram script which works in XCH
-> > mode as PIO inside sdma instead of SMC mode, meanwhile, 'TX_THRESHOLD'
-> > should be 0. The issue should be
->=20
-> Could you please confirm whether the sdma-imx7d.bin firmware available at
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit.k=
-ern
-> el.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Ffirmware%2Flinux-firmwa
-> re.git%2Flog%2Fimx%2Fsdma%2Fsdma-imx7d.bin&amp;data=3D04%7C01%7Cyi
-> bin.gong%40nxp.com%7C3c61a5cfd0574c1bc4eb08d92fa31257%7C686ea1d
-> 3bc2b4c6fa92cd99c5c301635%7C0%7C1%7C637593199700307681%7CUnkn
-> own%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1
-> haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D6UDEjl3ehC49af38OI%2FQhE
-> mbeLYgQSJB91Kriihw1Jk%3D&amp;reserved=3D0
->=20
-> contains the "new sdma ram script which works in XCH  mode as PIO inside
-> sdma instead of SMC mode" fix?
-Yes, it contains.
+Hi Randy,
+
+Thanks for the review. I somehow did not see your review earlier. I 
+noticed it today morning when Bjorn replied to this patch. Apologies for 
+the delay
+
+On 6/8/21 10:25 PM, Randy Dunlap wrote:
+> On 6/8/21 3:29 PM, Thara Gopinath wrote:
+>> Driver enabling various pieces of Limits Management Hardware(LMh) for cpu
+>> cluster0 and cpu cluster1 namely kick starting monitoring of temperature,
+>> current, battery current violations, enabling reliability algorithm and
+>> setting up various temperature limits.
+>>
+>> The following has been explained in the cover letter. I am including this
+>> here so that this remains in the commit message as well.
+>>
+>> LMh is a hardware infrastructure on some Qualcomm SoCs that can enforce
+>> temperature and current limits as programmed by software for certain IPs
+>> like CPU. On many newer SoCs LMh is configured by firmware/TZ and no
+>> programming is needed from the kernel side. But on certain SoCs like sdm845
+>> the firmware does not do a complete programming of the h/w. On such SoCs
+>> kernel software has to explicitly set up the temperature limits and turn on
+>> various monitoring and enforcing algorithms on the hardware.
+>>
+>> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+>> ---
+>>   drivers/thermal/qcom/Kconfig  |  10 ++
+>>   drivers/thermal/qcom/Makefile |   1 +
+>>   drivers/thermal/qcom/lmh.c    | 244 ++++++++++++++++++++++++++++++++++
+>>   3 files changed, 255 insertions(+)
+>>   create mode 100644 drivers/thermal/qcom/lmh.c
+>>
+>> diff --git a/drivers/thermal/qcom/Kconfig b/drivers/thermal/qcom/Kconfig
+>> index 8d5ac2df26dc..c95b95e254d7 100644
+>> --- a/drivers/thermal/qcom/Kconfig
+>> +++ b/drivers/thermal/qcom/Kconfig
+>> @@ -31,3 +31,13 @@ config QCOM_SPMI_TEMP_ALARM
+>>   	  trip points. The temperature reported by the thermal sensor reflects the
+>>   	  real time die temperature if an ADC is present or an estimate of the
+>>   	  temperature based upon the over temperature stage value.
+>> +
+>> +config QCOM_LMH
+>> +	tristate "Qualcomm Limits Management Hardware"
+>> +	depends on ARCH_QCOM
+>> +	help
+>> +	  This enables initialization of Qualcomm limits management
+>> +	  hardware(LMh). LMh allows for h/w enforced mitigation for cpus based on
+> 
+> 	                                hardware-enforced           CPUs
+> 
+>> +	  input from temperature and current sensors.  On many newer Qualcomm SoCs
+>> +	  LMH is configure in the firmware and this feature need not be enabled.
+> 
+> 	  LMh
+> 
+>> +	  However, on certain SoCs like sdm845 LMH has to be configured from HLOS.
+> 
+> 	                                       LMh
+> 
+> What is HLOS?
+
+High Level Operating System. But I will change it to Linux kernel.
+> 
+> 
+>> diff --git a/drivers/thermal/qcom/lmh.c b/drivers/thermal/qcom/lmh.c
+>> new file mode 100644
+>> index 000000000000..8741a36cb674
+>> --- /dev/null
+>> +++ b/drivers/thermal/qcom/lmh.c
+>> @@ -0,0 +1,244 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +
+>> +/*
+>> + * Copyright (C) 2021, Linaro Limited. All rights reserved.
+>> + */
+> 
+> [snip]
+> 
+>> +static int lmh_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev;
+>> +	struct device_node *np;
+>> +	struct lmh_hw_data *lmh_data;
+>> +	u32 node_id;
+>> +	int ret;
+>> +
+>> +	dev = &pdev->dev;
+>> +	np = dev->of_node;
+>> +	if (!np)
+>> +		return -EINVAL;
+>> +
+>> +	lmh_data = devm_kzalloc(dev, sizeof(*lmh_data), GFP_KERNEL);
+>> +	if (!lmh_data)
+>> +		return -ENOMEM;
+>> +
+>> +	lmh_data->base = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(lmh_data->base))
+>> +		return PTR_ERR(lmh_data->base);
+>> +
+>> +	ret = of_property_read_u32(np, "qcom,lmh-cpu-id", &lmh_data->cpu_id);
+>> +	if (ret)
+>> +		return -ENODEV;
+>> +
+>> +	/*
+>> +	 * Only sdm845 has lmh hardware currently enabled from hlos. If this is needed
+>> +	 * for other platforms, revisit this to check if the <cpu-id, node-id> should be part
+>> +	 * of a dt match table.
+>> +	 */
+>> +	if (lmh_data->cpu_id == 0) {
+>> +		node_id = LMH_CLUSTER0_NODE_ID;
+>> +	} else if (lmh_data->cpu_id == 4) {
+>> +		node_id = LMH_CLUSTER1_NODE_ID;
+>> +	} else {
+>> +		dev_err(dev, "Wrong cpu id associated with lmh node\n");
+> 
+> 		                    CPU                    LMh
+
+will fix it. Also will fix all the typos you have caught below.
+
+> 
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	/* Payload size is five bytes for now */
+>> +	lmh_data->payload_size = 5 * sizeof(u32);
+>> +
+>> +	platform_set_drvdata(pdev, lmh_data);
+>> +
+>> +	if (!qcom_scm_lmh_dcvsh_available())
+>> +		return -EINVAL;
+>> +
+>> +	/* Enable Thermal Algorithm */
+>> +	update_payload(lmh_data, LMH_SUB_FN_THERMAL, LMH_ALGO_MODE_ENABLE, 1);
+>> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+>> +				 LMH_NODE_DCVS, node_id, 0);
+>> +	if (ret) {
+>> +		dev_err(dev, "Error %d enabling thermal subfunction\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	/* Enable Current Sensing Algorithm */
+>> +	update_payload(lmh_data, LMH_SUB_FN_CRNT, LMH_ALGO_MODE_ENABLE, 1);
+>> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+>> +				 LMH_NODE_DCVS, node_id, 0);
+>> +	if (ret) {
+>> +		dev_err(dev, "Error %d enabling current subfunction\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	/* Enable Reliability Algorithm */
+>> +	update_payload(lmh_data, LMH_SUB_FN_REL, LMH_ALGO_MODE_ENABLE, 1);
+>> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+>> +				 LMH_NODE_DCVS, node_id, 0);
+>> +	if (ret) {
+>> +		dev_err(dev, "Error %d enabling reliability subfunction\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	/* Enable BCL Algorithm */
+>> +	update_payload(lmh_data, LMH_SUB_FN_BCL, LMH_ALGO_MODE_ENABLE, 1);
+>> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+>> +				 LMH_NODE_DCVS, node_id, 0);
+>> +	if (ret) {
+>> +		dev_err(dev, "Error %d enabling BCL subfunction\n", ret);
+> 
+> What is BCL?
+
+Battery Current Limits
+
+-- 
+Warm Regards
+Thara
+> 
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = qcom_scm_lmh_profile_change(0x1);
+>> +	if (ret) {
+>> +		dev_err(dev, "Error %d changing profile\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	/* Set default thermal trips */
+>> +	update_payload(lmh_data, LMH_SUB_FN_THERMAL, LMH_TH_ARM_THRESHOLD, LMH_TH_ARM_TEMP);
+>> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+>> +				 LMH_NODE_DCVS, node_id, 0);
+>> +	if (ret) {
+>> +		dev_err(dev, "Error setting thermal ARM thershold%d\n", ret);
+> 
+> 		                                        threshold
+> 
+>> +		return ret;
+>> +	}
+>> +
+>> +	update_payload(lmh_data, LMH_SUB_FN_THERMAL, LMH_TH_HI_THRESHOLD, LMH_TH_HI_TEMP);
+>> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+>> +				 LMH_NODE_DCVS, node_id, 0);
+>> +	if (ret) {
+>> +		dev_err(dev, "Error setting thermal HI thershold%d\n", ret);
+> 
+> 		                                       threshold
+> 
+>> +		return ret;
+>> +	}
+>> +	update_payload(lmh_data, LMH_SUB_FN_THERMAL, LMH_TH_LOW_THRESHOLD, LMH_TH_LOW_TEMP);
+>> +	ret = qcom_scm_lmh_dcvsh(lmh_data->payload, lmh_data->payload_size,
+>> +				 LMH_NODE_DCVS, node_id, 0);
+>> +	if (ret) {
+>> +		dev_err(dev, "Error setting thermal ARM thershold%d\n", ret);
+> 
+> 		                                        threshold
+> 
+>> +		return ret;
+>> +	}
+>> +
+>> +	lmh_data->irq = platform_get_irq(pdev, 0);
+>> +	lmh_data->domain = irq_domain_add_linear(np, 1, &lmh_irq_ops, lmh_data);
+>> +	if (!lmh_data->domain) {
+>> +		dev_err(dev, "Error adding irq_domain\n");
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	ret = devm_request_irq(dev, lmh_data->irq, lmh_handle_irq,
+>> +			       IRQF_TRIGGER_HIGH | IRQF_ONESHOT | IRQF_NO_SUSPEND,
+>> +			       "lmh-irq", lmh_data);
+>> +	if (ret) {
+>> +		dev_err(dev, "Error %d registering irq %x\n", ret, lmh_data->irq);
+>> +		irq_domain_remove(lmh_data->domain);
+>> +		return ret;
+>> +	}
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct of_device_id lmh_table[] = {
+>> +	{ .compatible = "qcom,msm-hw-limits", },
+>> +	{},
+>> +};
+>> +
+>> +static struct platform_driver lmh_driver = {
+>> +	.probe = lmh_probe,
+>> +	.driver = {
+>> +		.name = "qcom-lmh",
+>> +		.of_match_table = lmh_table,
+>> +	},
+>> +};
+>> +module_platform_driver(lmh_driver);
+>> +
+>> +MODULE_LICENSE("GPL v2");
+>> +MODULE_DESCRIPTION("QCOM LMH driver");
+> 
+>                              LMh
+> 
+> 
+> thanks.
+> 
+
+
