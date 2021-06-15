@@ -2,122 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7F713A75AD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 06:14:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A226E3A75BB
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 06:22:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229473AbhFOEQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 00:16:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40446 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbhFOEQU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 00:16:20 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A0ECC061574
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 21:14:16 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id g19so7948344qkk.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 21:14:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YDA/6rYFbIzGwN3DJJ3v30Ilg60B464lccTuq9RZZyA=;
-        b=fMG07OU4hKhOT0Ejr3qOHcrU08EN3G1+RpniZ8liKpsJESj8tYmvpPMQZbf905Arqa
-         jTNjk7/cw8NTc05aXCrTOb4W4H63TAdnEqedfWvkUqde8aQCNzpKVfF+WTvNV5ptv2qS
-         TsIum45Bdbkm1pBXJPvJDobZEXMxEtOKj24Zc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YDA/6rYFbIzGwN3DJJ3v30Ilg60B464lccTuq9RZZyA=;
-        b=pKRhjeKdWCH1SwDZWg08U7jNdLUTgJqaIpEPvZr53ITh0zwQhLe1+FmuF93o0PWQqi
-         VkDtOiTiOgX9D9q8RKUp60O1YK2d6YqCu++oeqe4wBmrHJu5UK+Toh7LyVClonFJqo3/
-         oyeBON3eDkXEgUf1ViPK4MLdymckvDh+YPQpVchHBWfv3q2PqRYFpoZEFaGMpH6Ih7JX
-         uy0CLoIt7/+Hu81PYdtlgnQlkDbenvrKH9OLegZr7E8rdkYYWYB9glM7B70i61RQuWZf
-         PQwtAX5HiDDH/mCRKgkCXUBD/8pQl4U75Vs7b+N86lipBFsP0z5xNFHsZWE1TWOsO8IG
-         T68g==
-X-Gm-Message-State: AOAM532jZ32nCP3xgn3dgZizCoxoNYzDVH7QKc1XmOiU7dR2Ajk4qEmS
-        XkC+MifOAJISeyYr4w2l8p5WpLvxmJnlHA==
-X-Google-Smtp-Source: ABdhPJxLrp4HI6NuLlWJcSBQS550mgCX7cjLpWnOowFG1zSBU2uPUbOKZwzSs+u07puQUG7iG5QfOg==
-X-Received: by 2002:a37:44cc:: with SMTP id r195mr16077674qka.478.1623730455221;
-        Mon, 14 Jun 2021 21:14:15 -0700 (PDT)
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com. [209.85.160.178])
-        by smtp.gmail.com with ESMTPSA id f9sm11669310qkl.46.2021.06.14.21.14.14
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Jun 2021 21:14:14 -0700 (PDT)
-Received: by mail-qt1-f178.google.com with SMTP id p21so10279998qtw.6
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 21:14:14 -0700 (PDT)
-X-Received: by 2002:a02:384b:: with SMTP id v11mr19686288jae.90.1623729977741;
- Mon, 14 Jun 2021 21:06:17 -0700 (PDT)
+        id S229520AbhFOEY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 00:24:26 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:13414 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229473AbhFOEYZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 00:24:25 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 15F482WE037072;
+        Tue, 15 Jun 2021 12:08:02 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from aspeedtech.com (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 15 Jun
+ 2021 12:22:16 +0800
+Date:   Tue, 15 Jun 2021 12:22:08 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+CC:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "Billy Tsai" <billy_tsai@aspeedtech.com>
+Subject: Re: [PATCH v5 06/10] gpio: gpio-aspeed-sgpio: Add AST2400 and
+ AST2500 platform data.
+Message-ID: <20210615042207.GB30360@aspeedtech.com>
+References: <20210608102547.4880-1-steven_lee@aspeedtech.com>
+ <20210608102547.4880-7-steven_lee@aspeedtech.com>
+ <6f87ccf4-9b8f-4c67-84a1-e83a2ee5103b@www.fastmail.com>
+ <20210609041227.GB14839@aspeedtech.com>
+ <1a4dc5a6-8035-4879-ba9d-b6d6afd48196@www.fastmail.com>
+ <CAMpxmJUMQg2tsO+GLzNDNwoEtm6G3OHcK5M3zPOt9A4LDmCyYw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20210611152659.2142983-1-tientzu@chromium.org>
- <20210611152659.2142983-2-tientzu@chromium.org> <20210614061644.GA28343@lst.de>
-In-Reply-To: <20210614061644.GA28343@lst.de>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Tue, 15 Jun 2021 12:06:06 +0800
-X-Gmail-Original-Message-ID: <CALiNf29cE-T7xf+nUZF2pjT8osaXj+wb4MibtdSkAU_K13wuMw@mail.gmail.com>
-Message-ID: <CALiNf29cE-T7xf+nUZF2pjT8osaXj+wb4MibtdSkAU_K13wuMw@mail.gmail.com>
-Subject: Re: [PATCH v9 01/14] swiotlb: Refactor swiotlb init functions
-To:     Christoph Hellwig <hch@lst.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <CAMpxmJUMQg2tsO+GLzNDNwoEtm6G3OHcK5M3zPOt9A4LDmCyYw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 15F482WE037072
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 14, 2021 at 2:16 PM Christoph Hellwig <hch@lst.de> wrote:
->
-> On Fri, Jun 11, 2021 at 11:26:46PM +0800, Claire Chang wrote:
-> > +     spin_lock_init(&mem->lock);
-> > +     for (i = 0; i < mem->nslabs; i++) {
-> > +             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-> > +             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-> > +             mem->slots[i].alloc_size = 0;
-> > +     }
-> > +
-> > +     if (memory_decrypted)
-> > +             set_memory_decrypted((unsigned long)vaddr, bytes >> PAGE_SHIFT);
-> > +     memset(vaddr, 0, bytes);
->
-> We don't really need to do this call before the memset.  Which means we
-> can just move it to the callers that care instead of having a bool
-> argument.
->
-> Otherwise looks good:
->
-> Reviewed-by: Christoph Hellwig <hch@lst.de>
+The 06/12/2021 03:02, Bartosz Golaszewski wrote:
+> On Wed, Jun 9, 2021 at 8:46 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+> >
+> >
+> >
+> > On Wed, 9 Jun 2021, at 13:42, Steven Lee wrote:
+> > > The 06/09/2021 08:55, Andrew Jeffery wrote:
+> > > >
+> > > >
+> > > > On Tue, 8 Jun 2021, at 19:55, Steven Lee wrote:
+> > > > > We use platform data to store GPIO pin mask and the max number of
+> > > > > available GPIO pins for AST2600.
+> > > > > Refactor driver to also add the platform data for AST2400/AST2500 and
+> > > > > remove unused MAX_NR_HW_SGPIO and ASPEED_SGPIO_PINS_MASK macros.
+> > > > >
+> > > > > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > > > > ---
+> > > > >  drivers/gpio/gpio-aspeed-sgpio.c | 34 +++++++++++---------------------
+> > > > >  1 file changed, 12 insertions(+), 22 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/gpio/gpio-aspeed-sgpio.c b/drivers/gpio/gpio-aspeed-sgpio.c
+> > > > > index ea20a0127748..7d0a4f6fd9d1 100644
+> > > > > --- a/drivers/gpio/gpio-aspeed-sgpio.c
+> > > > > +++ b/drivers/gpio/gpio-aspeed-sgpio.c
+> > > > > @@ -17,21 +17,8 @@
+> > > > >  #include <linux/spinlock.h>
+> > > > >  #include <linux/string.h>
+> > > > >
+> > > > > -/*
+> > > > > - * MAX_NR_HW_GPIO represents the number of actual hardware-supported GPIOs (ie,
+> > > > > - * slots within the clocked serial GPIO data). Since each HW GPIO is both an
+> > > > > - * input and an output, we provide MAX_NR_HW_GPIO * 2 lines on our gpiochip
+> > > > > - * device.
+> > > > > - *
+> > > > > - * We use SGPIO_OUTPUT_OFFSET to define the split between the inputs and
+> > > > > - * outputs; the inputs start at line 0, the outputs start at OUTPUT_OFFSET.
+> > > > > - */
+> > > > > -#define MAX_NR_HW_SGPIO                  80
+> > > > > -#define SGPIO_OUTPUT_OFFSET              MAX_NR_HW_SGPIO
+> > > > > -
+> > > > >  #define ASPEED_SGPIO_CTRL                0x54
+> > > > >
+> > > > > -#define ASPEED_SGPIO_PINS_MASK           GENMASK(9, 6)
+> > > > >  #define ASPEED_SGPIO_CLK_DIV_MASK        GENMASK(31, 16)
+> > > > >  #define ASPEED_SGPIO_ENABLE              BIT(0)
+> > > > >  #define ASPEED_SGPIO_PINS_SHIFT          6
+> > > > > @@ -484,6 +471,11 @@ static int aspeed_sgpio_setup_irqs(struct
+> > > > > aspeed_sgpio *gpio,
+> > > > >   return 0;
+> > > > >  }
+> > > > >
+> > > > > +static const struct aspeed_sgpio_pdata ast2400_sgpio_pdata = {
+> > > > > + .max_ngpios = 80,
+> > > > > + .pin_mask = GENMASK(9, 6),
+> > > > > +};
+> > > > > +
+> > > > >  static const struct aspeed_sgpio_pdata ast2600_sgpiom_128_pdata = {
+> > > > >   .max_ngpios = 128,
+> > > > >   .pin_mask = GENMASK(10, 6),
+> > > > > @@ -495,8 +487,8 @@ static const struct aspeed_sgpio_pdata
+> > > > > ast2600_sgpiom_80_pdata = {
+> > > > >  };
+> > > > >
+> > > > >  static const struct of_device_id aspeed_sgpio_of_table[] = {
+> > > > > - { .compatible = "aspeed,ast2400-sgpio" },
+> > > > > - { .compatible = "aspeed,ast2500-sgpio" },
+> > > > > + { .compatible = "aspeed,ast2400-sgpio", .data = &ast2400_sgpio_pdata,
+> > > > > },
+> > > > > + { .compatible = "aspeed,ast2500-sgpio", .data = &ast2400_sgpio_pdata,
+> > > > > },
+> > > > >   { .compatible = "aspeed,ast2600-sgpiom-128", .data =
+> > > > > &ast2600_sgpiom_128_pdata, },
+> > > > >   { .compatible = "aspeed,ast2600-sgpiom-80", .data =
+> > > > > &ast2600_sgpiom_80_pdata, },
+> > > > >   {}
+> > > > > @@ -521,13 +513,11 @@ static int __init aspeed_sgpio_probe(struct
+> > > > > platform_device *pdev)
+> > > > >           return PTR_ERR(gpio->base);
+> > > > >
+> > > > >   pdata = device_get_match_data(&pdev->dev);
+> > > > > - if (pdata) {
+> > > > > -         gpio->max_ngpios = pdata->max_ngpios;
+> > > > > -         pin_mask = pdata->pin_mask;
+> > > > > - } else {
+> > > > > -         gpio->max_ngpios = MAX_NR_HW_SGPIO;
+> > > > > -         pin_mask = ASPEED_SGPIO_PINS_MASK;
+> > > > > - }
+> > > > > + if (!pdata)
+> > > > > +         return -EINVAL;
+> > > > > +
+> > > > > + gpio->max_ngpios = pdata->max_ngpios;
+> > > > > + pin_mask = pdata->pin_mask;
+> > > >
+> > > > Hmm, okay, maybe just re-order the patches so this commit comes before the previous one. That way we don't immediately rip out this condition that we just introduced in the previous patch.
+> > > >
+> > > > I think I suggested squashing it into the previous patch, but with the removal of the comments and macros I think it's worth leaving it separate, just reordered.
+> > > >
+> > >
+> > > I was wondering if I can squash patch-05 and patch-06 into one patch
+> > > as this patch(patch-06) requires macros, structures, and functions that
+> > > modified in the previous patch(patch-05).
+> >
+> > Yeah, fair enough. Just squash them.
+> >
+> > Cheers,
+> >
+> > Andrew
+> 
+> I'm ready to pick this up as soon as you respin the series.
+> 
 
-Thanks for the review. Will wait more days for other reviews and send
-v10 to address the comments in this and other patches.
+Hi Bart,
+
+Per the discussion in the following mail threads, I may redesign
+aspeed sgpio driver for the new solution.
+
+https://lkml.org/lkml/2021/6/3/1507
+https://lkml.org/lkml/2021/6/10/240
+
+Patch02- Patch06 of this patch series will need to be modified for
+the new solution, although some of them have Reviewed-by tag.
+
+Thanks,
+Steven
+
+> Bart
