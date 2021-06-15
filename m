@@ -2,40 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03D9F3A87EE
+	by mail.lfdr.de (Postfix) with ESMTP id DE4393A87F0
 	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 19:43:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231161AbhFORpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 13:45:47 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:36244 "EHLO
+        id S231146AbhFORpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 13:45:53 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36252 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231146AbhFORpq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 13:45:46 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15FHhb2H061407;
-        Tue, 15 Jun 2021 12:43:37 -0500
+        with ESMTP id S231214AbhFORpw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 13:45:52 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15FHhjB0061430;
+        Tue, 15 Jun 2021 12:43:45 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623779017;
-        bh=vPeGId/PK7swPxAZM0MA5RZXvfuBt+wGji2VzqchpQs=;
-        h=From:To:CC:Subject:Date;
-        b=wZ+3eqeOvpfwNyxqA5X8THYeSW220CSV3NRxXKabnul4Xn8XpnrMmtlEVG8XA5Du2
-         B4c18R5pMHkrjoPe4z3YUWj3lR7R7WX4RpipyPeNE8+HyNBBb6NfmcJ6kpfI46vSoi
-         WPyN4NnqP/jZyJoKyhucNd+EeVg4RM5yhryYA+8M=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15FHhbvc097503
+        s=ti-com-17Q1; t=1623779025;
+        bh=dN/IldJMCljVtxYSJcvhsYvFDAnfQgPNmlWqjXmXHds=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=NeCrbHzwm5dwT4sbU11eDFqwilAvb7CNT6TdD7jubO1MPhhtDMNTd4oUz1sULmBZY
+         4h9bvUULvn76EswhAyRbzulHKzNwn/K+hxCRqmMGNf8dn+z+in2ZsXSEi91rUr+c+B
+         BiqVCIhmBz+pveZkUiqw7kQqYJmlJ9SFvq67Q0rw=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15FHhj6S023106
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Jun 2021 12:43:37 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 15 Jun 2021 12:43:45 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 15
- Jun 2021 12:43:36 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2021 12:43:44 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 15 Jun 2021 12:43:36 -0500
+ Frontend Transport; Tue, 15 Jun 2021 12:43:44 -0500
 Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15FHhRGA009558;
-        Tue, 15 Jun 2021 12:43:29 -0500
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15FHhRGB009558;
+        Tue, 15 Jun 2021 12:43:39 -0500
 From:   Aswath Govindraju <a-govindraju@ti.com>
 CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
         Lokesh Vutla <lokeshvutla@ti.com>,
@@ -45,10 +45,12 @@ CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 0/3] AM64: Update the locations of various elements in SRAM
-Date:   Tue, 15 Jun 2021 23:13:22 +0530
-Message-ID: <20210615174325.22853-1-a-govindraju@ti.com>
+Subject: [PATCH v4 1/3] arm64: dts: ti: k3-am64-main: Update TF-A's maximum size and node name
+Date:   Tue, 15 Jun 2021 23:13:23 +0530
+Message-ID: <20210615174325.22853-2-a-govindraju@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210615174325.22853-1-a-govindraju@ti.com>
+References: <20210615174325.22853-1-a-govindraju@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
@@ -57,29 +59,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following series of patches,
-- Increase the maximum size of TF-A
-- Update the location of TF-A due to a limitation for DFU boot
-- Indicate reserved locations for DMSC code and secure proxy
+The maximum size of TF-A 2.5 has been increased to 0x1c000 [1]. Therefore,
+update this accordingly in the device tree node.
 
-changes since v3:
-- fixed the title of patches 1 and 2
+Also, update the node name to "tfa-sram".
 
-changes since v2:
-- split the patches into three
-- added regions for indicating memory regions reserved for
-  dmsc and secure proxy
-- moved the TFA location to 0x701c4000
+[1] - https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/?id=2fb5312f61a7de8b7a70e1639199c4f14a10b6f9
 
-Aswath Govindraju (3):
-  arm64: dts: ti: k3-am64-main: Update TF-A's maximum size and node name
-  arm64: dts: ti: k3-am64-main: Reserve OCMRAM for DMSC-lite and secure
-    proxy communication
-  arm64: dts: ti: k3-am64-main: Update the location of TF-A
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+Reviewed-by: Suman Anna <s-anna@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+index dec54243f454..693fe24e7f7a 100644
+--- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+@@ -24,8 +24,8 @@
+ 		#size-cells = <1>;
+ 		ranges = <0x0 0x00 0x70000000 0x200000>;
+ 
+-		atf-sram@0 {
+-			reg = <0x0 0x1a000>;
++		tfa-sram@0 {
++			reg = <0x0 0x1c000>;
+ 		};
+ 	};
+ 
 -- 
 2.17.1
 
