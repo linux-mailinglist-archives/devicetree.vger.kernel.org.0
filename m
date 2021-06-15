@@ -2,114 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 831143A8C9F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:35:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C50873A8CA3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:36:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231476AbhFOXhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 19:37:12 -0400
-Received: from mail-il1-f174.google.com ([209.85.166.174]:46709 "EHLO
-        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231626AbhFOXhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 19:37:12 -0400
-Received: by mail-il1-f174.google.com with SMTP id i12so649795ila.13;
-        Tue, 15 Jun 2021 16:35:06 -0700 (PDT)
+        id S230331AbhFOXiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 19:38:10 -0400
+Received: from mail-io1-f46.google.com ([209.85.166.46]:45763 "EHLO
+        mail-io1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230039AbhFOXiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 19:38:09 -0400
+Received: by mail-io1-f46.google.com with SMTP id k5so992993iow.12;
+        Tue, 15 Jun 2021 16:36:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=M7mtpARxZOramxjxaW7DY3FJniUk5KYYeFWsUiBQS4s=;
-        b=fjSNvdgiXnv7cpBQKSKkpBLyU1Kf1efASmKSxyNAOglchJMiHmVRLTlboUUT5ZMPoU
-         SH7Ub5stQoCQs2WJjzSgs9qFpJeyvbGLyKhFXK0DwiAAX7Id2crkxnWvY6p2mB5FFm5P
-         UlleEbzgA0IrEReVhoOnbz3JLPDY1hrExIUx9QBt5kUu4khTXryKy5J+LopZsxwIUfX5
-         Zb2m+dLMtvcIUreHz6WtV8i5eHrcZk+Nv1vFZ8bi3w4JYdKk04me0Tx/o57ibg0TpH+d
-         YLXLVQbxYAQ2hZYH/XP2z6c4zgH9KKyDZ8rtogr6fQBUTI86FTEF9XGzs7RJ948w2VkE
-         4IKg==
-X-Gm-Message-State: AOAM532rJs6SWxWBm2rdMoNXO6ASBlon8VorYtdNixXNmZ2kDFiurDgs
-        7xQw3IpAO7UvnFpj3f/dDA==
-X-Google-Smtp-Source: ABdhPJzZpda2GZV56qSibl8HTwsctfk6cpz/tUqIyo+rWfUorW+b8tZ2HGW4F0404Loq2ti7RNgU4Q==
-X-Received: by 2002:a05:6e02:1d82:: with SMTP id h2mr1452459ila.180.1623800105906;
-        Tue, 15 Jun 2021 16:35:05 -0700 (PDT)
+        bh=SCqoOy6lCgJsJ/aVAuyAHAHzFoPjEiHAtXa8ezPZfTc=;
+        b=LbGRHpGR5XWBacjeifbZeezxHEzIVTh8tlv46JQghBqsBOfHC+TGg9fAFqNd1AZ+00
+         vcH+Lc51mIaDfHlyLy0BGgEsDKjcVhkq2BAWoLrk5/ZQbym1uc3DfA6YjGq3R6gcIWJF
+         xSMqGn+GkOg0pFwQtAc3FAxXj+534c+TYOKJ88YUExmnZT9j8f0ZtBRWCw5N79fTkvGC
+         8pyUXIRaazaIUihVXpKufA1dvV/i6fbPMIxLKktbkWgXQS31y0IYo/ZpvV6ZRALMMm55
+         GQJX0J5Xqd40/QcpBRQ6M6sPcq+maG3DX9UE8vyM7WiHBpT/RUUXb2dcIVEBnsN6rNPh
+         e5Ww==
+X-Gm-Message-State: AOAM533AgsBNF86hHLIl5jsbhguR6HanzMnMRFGu7i3j+fGfIDY6ICCq
+        9LNXbt72I8wA9VlVM3J3/TL9csMAPA==
+X-Google-Smtp-Source: ABdhPJyb+23mK8LdRdsRZMZm8Lkz8Ta6hp9UaZ1KLDsKMctrP6c5q0wWBMAb2clTScOu6DJjoapU6g==
+X-Received: by 2002:a02:956a:: with SMTP id y97mr1432416jah.58.1623800164529;
+        Tue, 15 Jun 2021 16:36:04 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id a17sm263693ilb.57.2021.06.15.16.35.03
+        by smtp.gmail.com with ESMTPSA id k12sm290618ioh.26.2021.06.15.16.36.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Jun 2021 16:35:05 -0700 (PDT)
-Received: (nullmailer pid 1649131 invoked by uid 1000);
-        Tue, 15 Jun 2021 23:35:02 -0000
-Date:   Tue, 15 Jun 2021 17:35:02 -0600
+        Tue, 15 Jun 2021 16:36:03 -0700 (PDT)
+Received: (nullmailer pid 1666084 invoked by uid 1000);
+        Tue, 15 Jun 2021 23:36:00 -0000
+Date:   Tue, 15 Jun 2021 17:36:00 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-rtc@vger.kernel.org
-Subject: Re: [PATCH v7 03/19] dt-bindings: rtc: sun6i: Add H616 compatible
- string
-Message-ID: <20210615233502.GA1630203@robh.at.kernel.org>
-References: <20210615110636.23403-1-andre.przywara@arm.com>
- <20210615110636.23403-4-andre.przywara@arm.com>
+To:     Nelson Costa <Nelson.Costa@synopsys.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jose Abreu <Jose.Abreu@synopsys.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Vinod Koul <vkoul@kernel.org>, linux-media@vger.kernel.org
+Subject: Re: [PATCH 1/9] dt-bindings: phy: Document Synopsys DesignWare HDMI
+ RX PHYs e405 and e406
+Message-ID: <20210615233600.GA1665956@robh.at.kernel.org>
+References: <cover.1622631488.git.nelson.costa@synopsys.com>
+ <570d5fa01a17be017346262b8a9b06d36bebe8f1.1622631488.git.nelson.costa@synopsys.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210615110636.23403-4-andre.przywara@arm.com>
+In-Reply-To: <570d5fa01a17be017346262b8a9b06d36bebe8f1.1622631488.git.nelson.costa@synopsys.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 15, 2021 at 12:06:20PM +0100, Andre Przywara wrote:
-> Add the obvious compatible name to the existing RTC binding.
-> The actual RTC part of the device uses a different day/month/year
-> storage scheme, so it's not compatible with the previous devices.
-> Also the clock part is quite different, as there is no external 32K LOSC
-> oscillator input.
+On Wed, 02 Jun 2021 13:24:19 +0200, Nelson Costa wrote:
+> Document the device tree bindings for the Synopsys DesignWare HDMI RX
+> PHYs e405 and e406.
 > 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Signed-off-by: Nelson Costa <nelson.costa@synopsys.com>
 > ---
->  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml     | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+>  .../bindings/phy/snps,phy-dw-hdmi-e40x.yaml        | 93 ++++++++++++++++++++++
+>  1 file changed, 93 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/snps,phy-dw-hdmi-e40x.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> index b1b0ee769b71..2c3fd72e17ee 100644
-> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
-> @@ -26,6 +26,7 @@ properties:
->            - const: allwinner,sun50i-a64-rtc
->            - const: allwinner,sun8i-h3-rtc
->        - const: allwinner,sun50i-h6-rtc
-> +      - const: allwinner,sun50i-h616-rtc
->  
->    reg:
->      maxItems: 1
-> @@ -105,6 +106,20 @@ allOf:
->            minItems: 3
->            maxItems: 3
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: allwinner,sun50i-h616-rtc
-> +
-> +    then:
-> +      properties:
-> +        clock-output-names:
-> +          minItems: 3
-> +          maxItems: 3
-> +        clocks:
-> +          maxItems: 0
 
-clocks: false
-
-if forbidding clocks is what you want.
-
-> +
->    - if:
->        properties:
->          compatible:
-> -- 
-> 2.17.5
+Reviewed-by: Rob Herring <robh@kernel.org>
