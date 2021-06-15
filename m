@@ -2,102 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B78A73A8650
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 18:22:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBD9D3A8694
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 18:35:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbhFOQYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 12:24:53 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33586 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229659AbhFOQYx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 12:24:53 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15FGMh1f108085;
-        Tue, 15 Jun 2021 11:22:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623774163;
-        bh=wGVUQ55PmqJON7xlCT6V4UA7WmkkpWbU+WHVCO3D95I=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=S7l9NCrR96NAPvkrSbt+Ce9uxQ1lVh38XyRL35M2wUka90AW1BPLi/ORqu/igP24/
-         2hd5eGeVB69cRFPGZY+7FxFX6mjZXs5+1+IYmfs4XpSuSab/H3nAD5hgg4AZCL+n9D
-         WCkdKm5oNwWgwbUn8RuLW/OtRH1x3kEhqsqj7JEc=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15FGMhlB045507
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Jun 2021 11:22:43 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 15
- Jun 2021 11:22:43 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 15 Jun 2021 11:22:43 -0500
-Received: from [10.250.35.153] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15FGMhr6021735;
-        Tue, 15 Jun 2021 11:22:43 -0500
-Subject: Re: [PATCH v3 1/3] dts: ti: k3-am64-main: Update TF-A's maximum size
- and node name
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20210615155115.28902-1-a-govindraju@ti.com>
- <20210615155115.28902-2-a-govindraju@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <879de360-f574-0d45-dd01-066578ff6458@ti.com>
-Date:   Tue, 15 Jun 2021 11:22:38 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S229993AbhFOQhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 12:37:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38126 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229557AbhFOQhQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 12:37:16 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 599536162F;
+        Tue, 15 Jun 2021 16:35:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623774912;
+        bh=KPwWGxmpg2+R/ZLS2IDl8iiCzE/7WD8JZk2bGE/QMts=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Nf0favd4DH8amnrkqvYZtkQsxecrIcgxrLVmUpQZ86PzvVVLINtyJ45MrWRej3GDG
+         nAtaJHtv01DWFr6rjxS1G2jWitSV6AknO1SdAd2m0hpE+cNxGOTuUzg22mRf541gBn
+         YjUyTpwlMQ6/eQFabXktOQ2tlvOF+15QyrTRQeCazzrEjOvDlHmQq4Kk1yOFqGpE48
+         g4la3mowcBBeE6H6XXpUGXgf6RyAJJPM89VpBMmLCqM+TL092qGoy1zgkrdYAfAJZg
+         3mJtr78hLntyDieS6N+tUK3Yern2ZiLzShW11po9rlaIvyPB51YoaorKUC7/Wsl7Gw
+         VuFEEkKmmUtmg==
+Received: by mail-lf1-f42.google.com with SMTP id r5so28066057lfr.5;
+        Tue, 15 Jun 2021 09:35:12 -0700 (PDT)
+X-Gm-Message-State: AOAM5312RAM0PWsZ1PQ9jyb2xxYvFJtxckMrbFXzwS01YX0UexGAkab1
+        bZsnqNiKUdalEDTmMCfiOF6g09yEi6aamHsmAQ==
+X-Google-Smtp-Source: ABdhPJzb1scuGBg1iwO9bred1d9KdCKkO1Pyyif8+6ImMU2HmLcKnkChTF+SHSnUN48zXPgPQaZ3dRPFNNA//lNpsiE=
+X-Received: by 2002:a50:9345:: with SMTP id n5mr354653eda.289.1623774900181;
+ Tue, 15 Jun 2021 09:35:00 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210615155115.28902-2-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20210221174930.27324-1-nramas@linux.microsoft.com>
+ <20210221174930.27324-6-nramas@linux.microsoft.com> <CAMuHMdVSuNS4edh-zM0_sbC0i1AAjQ9Y0n_8Mjz=3CALkW4pgg@mail.gmail.com>
+ <CAL_JsqJ2x7zbyP3fAacdfHOWjCVjg6XhraV2YkoBJdZ2jXAMEA@mail.gmail.com> <54efb4fce5aac7efbd0b1b3885e9098b1d4ea745.camel@linux.microsoft.com>
+In-Reply-To: <54efb4fce5aac7efbd0b1b3885e9098b1d4ea745.camel@linux.microsoft.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 15 Jun 2021 10:34:48 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJEucP043eViq0Y1kAeqWNTqP5fLjfjz7+ksYx7QP_V5w@mail.gmail.com>
+Message-ID: <CAL_JsqJEucP043eViq0Y1kAeqWNTqP5fLjfjz7+ksYx7QP_V5w@mail.gmail.com>
+Subject: Re: [PATCH v19 05/13] of: Add a common kexec FDT setup function
+To:     nramas <nramas@linux.microsoft.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        AKASHI Takahiro <takahiro.akashi@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        James Morse <james.morse@arm.com>,
+        Sasha Levin <sashal@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>, dmitry.kasatkin@gmail.com,
+        James Morris <jmorris@namei.org>,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        Pavel Tatashin <pasha.tatashin@soleen.com>,
+        Allison Randal <allison@lohutok.net>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        balajib@linux.microsoft.com,
+        linux-integrity <linux-integrity@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/15/21 10:51 AM, Aswath Govindraju wrote:
-> The maximum size of TF-A 2.5 has been increased to 0x1c000 [1]. Therefore,
-> update this accordingly in the device tree node.
-> 
-> Also, update the node name to "tfa-sram".
-> 
-> [1] - https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/commit/?id=2fb5312f61a7de8b7a70e1639199c4f14a10b6f9
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> Reviewed-by: Suman Anna <s-anna@ti.com>
+On Tue, Jun 15, 2021 at 10:13 AM nramas <nramas@linux.microsoft.com> wrote:
+>
+> On Tue, 2021-06-15 at 08:01 -0600, Rob Herring wrote:
+> > On Tue, Jun 15, 2021 at 6:18 AM Geert Uytterhoeven <
+> > geert@linux-m68k.org> wrote:
+> > >
+> > > > +void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
+> > > > +                                  unsigned long
+> > > > initrd_load_addr,
+> > > > +                                  unsigned long initrd_len,
+> > > > +                                  const char *cmdline, size_t
+> > > > extra_fdt_size)
+> > > > +{
+> > > > +       /* Did we boot using an initrd? */
+> > > > +       prop = fdt_getprop(fdt, chosen_node, "linux,initrd-
+> > > > start", NULL);
+> > > > +       if (prop) {
+> > > > +               u64 tmp_start, tmp_end, tmp_size;
+> > > > +
+> > > > +               tmp_start = fdt64_to_cpu(*((const fdt64_t *)
+> > > > prop));
+> > > > +
+> > > > +               prop = fdt_getprop(fdt, chosen_node,
+> > > > "linux,initrd-end", NULL);
+> > > > +               if (!prop) {
+> > > > +                       ret = -EINVAL;
+> > > > +                       goto out;
+> > > > +               }
+> > > > +
+> > > > +               tmp_end = fdt64_to_cpu(*((const fdt64_t *)
+> > > > prop));
+> > >
+> > > Some kernel code assumes "linux,initrd-{start,end}" are 64-bit,
+> > > other code assumes 32-bit.
+> >
+> > It can be either. The above code was a merge of arm64 and powerpc
+> > both
+> > of which use 64-bit and still only runs on those arches. It looks
+> > like
+> > some powerpc platforms may use 32-bit, but this would have been
+> > broken
+> > before.
+> of_kexec_alloc_and_setup_fdt() is called from elf_64.c (in
+> arch/powerpc/kexec) which is for 64-bit powerpc platform only.
 
-Patch title should start with arm64: following the standard convention.
-Sorry missed this in the prior review. Otherwise, everything LGTM.
+64-bit PPC could be writing 32-bit property values. The architecture
+size doesn't necessarily matter. And if the values came from the
+bootloader, who knows what size it used.
 
-regards
-Suman
+This code is 32-bit powerpc only?:
 
-> ---
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index dec54243f454..693fe24e7f7a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -24,8 +24,8 @@
->  		#size-cells = <1>;
->  		ranges = <0x0 0x00 0x70000000 0x200000>;
->  
-> -		atf-sram@0 {
-> -			reg = <0x0 0x1a000>;
-> +		tfa-sram@0 {
-> +			reg = <0x0 0x1c000>;
->  		};
->  	};
->  
-> 
+arch/powerpc/boot/main.c-       /* Tell the kernel initrd address via
+device tree */
+arch/powerpc/boot/main.c:       setprop_val(chosen,
+"linux,initrd-start", (u32)(initrd_addr));
+arch/powerpc/boot/main.c-       setprop_val(chosen,
+"linux,initrd-end", (u32)(initrd_addr+initrd_size));
 
+Rob
