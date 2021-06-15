@@ -2,251 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DC4B3A78E7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 10:17:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D8D63A792E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 10:39:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231146AbhFOITU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 04:19:20 -0400
-Received: from comms.puri.sm ([159.203.221.185]:48442 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230494AbhFOITT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 04:19:19 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 479C0E11DD;
-        Tue, 15 Jun 2021 01:17:15 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id RoN7WlA-jzVk; Tue, 15 Jun 2021 01:17:14 -0700 (PDT)
-Message-ID: <3e12f5d22e7940f4143cb9c55367724cb8cf349a.camel@puri.sm>
-Subject: Re: [PATCH v4.1 3/3] arm64: dts: imx8mq: add mipi csi phy and csi
- bridge descriptions
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-staging@lists.linux.dev, m.felsch@pengutronix.de,
-        mchehab@kernel.org, phone-devel@vger.kernel.org, robh@kernel.org,
-        shawnguo@kernel.org, slongerbeam@gmail.com
-Date:   Tue, 15 Jun 2021 10:17:06 +0200
-In-Reply-To: <YMfT+swqNAm67EmS@pendragon.ideasonboard.com>
-References: <20210614121522.2944593-4-martin.kepplinger@puri.sm>
-         <20210614122517.2945532-1-martin.kepplinger@puri.sm>
-         <YMfT+swqNAm67EmS@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
-Content-Transfer-Encoding: 8bit
+        id S231146AbhFOImB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 04:42:01 -0400
+Received: from lb3-smtp-cloud9.xs4all.net ([194.109.24.30]:37363 "EHLO
+        lb3-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230455AbhFOImB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 04:42:01 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id t4bwla9VIhg8Zt4bzlNaUe; Tue, 15 Jun 2021 10:39:55 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1623746395; bh=P272GEMadL8ZFN1YvcW3dMHdgber4KEpXLxvk//n2Ys=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=eICmrzWstZ7AN++H0c8Q/gITGcC0Xl09uqdVWcEQr3wJs5JdcQ8MZZYHWw1bqa0jd
+         mB4XJjN2bWix+VzzOFobdXIhsuRV7//yqYHjmppUZoICT2YmEu36F+K4ECSS0hKa4z
+         b0sgAd/9J9gTJ5PLZZi6tPz8a0M/QD/Ut9jAdyJhQMkumda9qdL69wnit/XyIoENtU
+         ovXpYJVM6h1/Dosx0Ik0kAdbSnJ5R8UEEJ9dO7bJ34MbqbbJ5DoINtnrd2oe2UXvuC
+         8hBBXcxZXVa1TXMEyFu4UoP6iWWERzihA4Gggbne1b9hoUHE1b7FcnNY7NVniJmpPT
+         obXpYYduipt5g==
+Subject: Re: [PATCH 7/9] media: v4l2-dv-timings: Add more CEA/CTA-861 video
+ format timings
+To:     Nelson Costa <Nelson.Costa@synopsys.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jose Abreu <Jose.Abreu@synopsys.com>
+References: <cover.1622631488.git.nelson.costa@synopsys.com>
+ <6a0dcbd4f6dae00c664e5ef80cde3f1eb530c382.1622631488.git.nelson.costa@synopsys.com>
+ <d4b681b1-7bac-7b6f-fd44-5beb68d3f820@xs4all.nl>
+ <MW3PR12MB4459A066F9B85A478CA92977C13D9@MW3PR12MB4459.namprd12.prod.outlook.com>
+ <c4122867-9b06-2a1f-a1a0-9176f6ae7b52@xs4all.nl>
+ <MW3PR12MB4459428F816C3816B1EBB583C1319@MW3PR12MB4459.namprd12.prod.outlook.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <a6f78f33-99b8-c02e-b58c-86eb1bd97969@xs4all.nl>
+Date:   Tue, 15 Jun 2021 10:39:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.0
+MIME-Version: 1.0
+In-Reply-To: <MW3PR12MB4459428F816C3816B1EBB583C1319@MW3PR12MB4459.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfL6NW/1ucZk6RvK/RGh8CVaFh54+iXNMlqxXjlwsZBIeh3ZfrQgmkhckOJAEgkCQdl9XEAmP4VtGW9Sx1loV8lsvjnFW0mPC6CfhxB6N21qu4NWNgG4/
+ eP2a4YSKhm0FphrbRrR5V+0gZG5zNxYPShxucWAfR+XxRb3j/kEtxm33UxARkfcGHgP7WvFCHgl9PIpppKxnmBCr1fH11Ox4A0MIg14axcf2v6JMwodlIqvD
+ U6qWmCnve9B97KT/2Gn9gXdpUD4OK9mo0via65pPfuXYT6mnKucrXggIEAnZQ6MufL1lpRqtAWTW5lT3ub6v7fa2mEje39PFW8Uz3t+cBEevVcQKDk1oTt35
+ QNDf2xk5LqWPgw4035G2/nP0xDfMrco/FCezFO3m2b1KtPenkR/ZQ990ORr26RAW5R0C7G2mhhtoEQeXrru2xihTNgllr+IF4LBWNZFGLKu5Y3cwd/w/LcJF
+ 4piFUojQj/OinvCHdGsBDPJYl6yd9kNmUBidP2i1Wfy7SxICY3yw6PNxZP4=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 15.06.2021 um 01:11 +0300 schrieb Laurent Pinchart:
-> Hi Martin,
+On 14/06/2021 19:04, Nelson Costa wrote:
+> Hi Hans,
 > 
-> Thank you for the patch.
+> Thanks for your comments!
 > 
-> On Mon, Jun 14, 2021 at 02:25:17PM +0200, Martin Kepplinger wrote:
-> > Describe the 2 available CSI interfaces on the i.MX8MQ with the
-> > MIPI-CSI2
-> > receiver and the CSI Bridge that provides the user buffers, where
-> > the
-> > existing driver can directly be used.
-> > 
-> > An image sensor is to be connected to the MIPIs' second port,
-> > described in
-> > board files.
-> > 
-> > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > ---
-> > 
-> > sorry, the csi compatible addition suggested by Marco was missing
-> > in
-> > v4 3/3. here is 3/3 updated.
-> > 
-> > 
-> > 
-> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 102
-> > ++++++++++++++++++++++
-> >  1 file changed, 102 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > index 91df9c5350ae..fa83e8294b20 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > @@ -1099,6 +1099,108 @@ uart4: serial@30a60000 {
-> >                                 status = "disabled";
-> >                         };
-> >  
-> > +                       mipi_csi1: csi@30a70000 {
-> > +                               compatible = "fsl,imx8mq-mipi-
-> > csi2";
-> > +                               reg = <0x30a70000 0x1000>;
-> > +                               clocks = <&clk
-> > IMX8MQ_CLK_CSI1_CORE>,
-> > +                                  <&clk IMX8MQ_CLK_CSI1_ESC>,
-> > +                                  <&clk IMX8MQ_CLK_CSI1_PHY_REF>,
-> > +                                  <&clk IMX8MQ_CLK_CLKO2>;
-> > +                               clock-names = "core", "esc", "pxl",
-> > "clko2";
+> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> Date: qua, jun 02, 2021 at 19:19:25
 > 
-> I can't figure out what the clko2 clock is used for based on the
-> datasheet. It seems to be a clock output by the SoC on GPIO1_IO15,
-> and
-> doesn't seem to belong here.
-
-oh, no it doesn't, I'm sorry, that was just a hack that I forgot about!
-That clock is only used by the sensor I'm using -.- I'll remove it
-here. thanks a lot for looking closely.
-
+>> On 02/06/2021 19:15, Nelson Costa wrote:
+>>> Hi Hans,
+>>>
+>>> Thanks for your comments and feedback!
+>>>
+>>> From: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+>>> Date: qua, jun 02, 2021 at 13:26:17
+>>>
+>>>> Hi Nelson,
+>>>>
+>>>> On 02/06/2021 13:24, Nelson Costa wrote:
+>>>>> This extends the support for more video format timings based
+>>>>> on SPECs CEA-861-F and CTA-861-G.
+>>>>>
+>>>>> NOTE: For the newer SPECs the CEA was unified to the CTA.
+>>>>> The CTA-861-G then includes the CEA-861-F timings besides
+>>>>> the new timings that are specified.
+>>>>>
+>>>>> CEA-861-F: Specifies the Video timings for VICs 1-107.
+>>>>> CTA-861-G: Specifies the Video timings for VICs 1-107, 108-127, 193-219.
+>>>>>
+>>>>> With this patch, the array v4l2_dv_timings_presets has support for
+>>>>> all video timings specified in CTA-861-G.
+>>>>>
+>>>>> Signed-off-by: Nelson Costa <nelson.costa@synopsys.com>
+>>>>> ---
+>>>>>  drivers/media/v4l2-core/v4l2-dv-timings.c |  139 +++
+>>>>>  include/uapi/linux/v4l2-dv-timings.h      | 1595 ++++++++++++++++++++++++++++-
+>>>>
+>>>> I prefer to split this up in two patches, one for each header.
+>>>>
+>>>
+>>> I agree! It will be addressed in the next patch series.
+>>>
+>>>> The v4l2-dv-timings.h changes look good (my compliments for all the
+>>>> work you put into that!).
+>>>>
+>>>
+>>> Thanks!
+>>>
+>>>> I am more concerned about adding all these timings to v4l2_dv_timings_presets.
+>>>>
+>>>> There are really two different things going on here: the v4l2_dv_timings_presets
+>>>> array is used both by v4l2_enum_dv_timings_cap() to list supported commonly used
+>>>> timings, or to match against timings parameters (v4l2_find_dv_timings_cap()), and
+>>>> as a lookup table when receiving a specific VIC code (v4l2_find_dv_timings_cea861_vic()).
+>>>>
+>>>> All the new timings you added are really only relevant in the last case when you
+>>>> have the vic code.
+>>>>
+>>>> I think it is better to create a second array v4l2_dv_timings_non_square_vics[]
+>>>> (or a better name!) that contains these timings.
+>>>>
+>>>
+>>> I understood.
+>>>
+>>> We can then create another array as you said. But when you say 
+>>> "non_square"
+>>> you mean that the vics have "Pixel Aspect Ratio != 1:1"?
+>>>
+>>> Because the new vics added have both kind of vics with "Pixel Aspect 
+>>> Ratio != 1:1"
+>>> and also "Pixel Aspect Ratio == 1:1".
+>>
+>> There are? It's confusing since for 1:1 pixel aspect ratios I expect that the
+>> picture aspect ratio is set to { 0, 0 }, instead they are all filled in.
+>>
+>> I think it will be clearer if I see a v2 where the picture aspect ratio and
+>> the V4L2_DV_FL_HAS_PICTURE_ASPECT flag are only set for the non-square pixel
+>> timings. Also, for the timings with 1:1 pixel aspect ratio you don't need to
+>> add the PA... suffix. That suffix only makes sense for non-square pixel aspect
+>> ratios. It's confusing otherwise.
+>>
 > 
-> Regarding core, esc and pix, do these clock correspond to the clk,
-> clk_esc and clk_ui listed in table 13-36 (section 13.8.3.3.1 "RX
-> Local
-> Interface Description") of the TRM ? If so, should they be renamed
-> accordingly, to either "clk", "clk_esc" and "clk_ui", or, if we want
-> to
-> drop the prefixes, "core", "esc" and "ui" ?
-
-yes, I think so.
-
+> It makes sense! That way it will assure coherence with the current 
+> implementation.
+> In the v2 patch series this will be addressed.
 > 
-> > +                               assigned-clocks = <&clk
-> > IMX8MQ_CLK_CSI1_CORE>,
-> > +                                   <&clk IMX8MQ_CLK_CSI1_PHY_REF>,
-> > +                                   <&clk IMX8MQ_CLK_CSI1_ESC>;
-> > +                               assigned-clock-rates = <266000000>,
-> > <333000000>, <66000000>;
-> > +                               assigned-clock-parents = <&clk
-> > IMX8MQ_SYS1_PLL_266M>,
-> > +                                       <&clk
-> > IMX8MQ_SYS2_PLL_1000M>,
-> > +                                       <&clk
-> > IMX8MQ_SYS1_PLL_800M>;
-> > +                               power-domains = <&pgc_mipi_csi1>;
-> > +                               resets = <&src>;
+>>>
+>>> So, for the new vics should we create a second array with name 
+>>> v4l2_dv_timings_extended_vics[]?
+>>
+>> The new vics with non-square pixel aspect ratios, or with pixel repetition.
+>>
 > 
-> The src node has #reset-cells set to 1, I think you're missing
-> something
-> here.
-
-yes, thank you!
-
+> You mean the new vics added that are square should be kept in the 
+> original array?
 > 
-> > +                               fsl,mipi-phy-gpr = <&iomuxc_gpr
-> > 0x88>;
-> > +                               interconnects = <&noc
-> > IMX8MQ_ICM_CSI1 &noc IMX8MQ_ICS_DRAM>;
-> > +                               interconnect-names = "dram";
-> > +                               status = "disabled";
-> > +
-> > +                               ports {
-> > +                                       #address-cells = <1>;
-> > +                                       #size-cells = <0>;
-> > +
-> > +                                       port@0 {
-> > +                                               reg = <0>;
-> > +
-> > +                                               csi1_mipi_ep:
-> > endpoint {
-> > +                                                       remote-
-> > endpoint = <&csi1_ep>;
-> > +                                               };
-> > +                                       };
-> > +                               };
-> > +                       };
-> > +
-> > +                       csi1: csi@30a90000 {
-> > +                               compatible = "fsl,imx8mq-csi",
-> > "fsl,imx7-csi";
-> > +                               reg = <0x30a90000 0x10000>;
-> > +                               interrupts = <GIC_SPI 42
-> > IRQ_TYPE_LEVEL_HIGH>;
-> > +                               clocks = <&clk
-> > IMX8MQ_CLK_CSI1_ROOT>;
-> > +                               clock-names = "mclk";
-> > +                               status = "disabled";
-> > +
-> > +                               port {
-> > +                                       csi1_ep: endpoint {
-> > +                                               remote-endpoint =
-> > <&csi1_mipi_ep>;
-> > +                                       };
-> > +                               };
-> > +                       };
-> > +
-> > +                       mipi_csi2: csi@30b60000 {
-> > +                               compatible = "fsl,imx8mq-mipi-
-> > csi2";
-> > +                               reg = <0x30b60000 0x1000>;
-> > +                               clocks = <&clk
-> > IMX8MQ_CLK_CSI2_CORE>,
-> > +                                  <&clk IMX8MQ_CLK_CSI2_ESC>,
-> > +                                  <&clk IMX8MQ_CLK_CSI2_PHY_REF>,
-> > +                                  <&clk IMX8MQ_CLK_CLKO2>;
-> > +                               clock-names = "core", "esc", "pxl",
-> > "clko2";
-> > +                               assigned-clocks = <&clk
-> > IMX8MQ_CLK_CSI2_CORE>,
-> > +                                   <&clk IMX8MQ_CLK_CSI2_PHY_REF>,
-> > +                                   <&clk IMX8MQ_CLK_CSI2_ESC>;
-> > +                               assigned-clock-rates = <266000000>,
-> > <333000000>, <66000000>;
-> > +                               assigned-clock-parents = <&clk
-> > IMX8MQ_SYS1_PLL_266M>,
-> > +                                       <&clk
-> > IMX8MQ_SYS2_PLL_1000M>,
-> > +                                       <&clk
-> > IMX8MQ_SYS1_PLL_800M>;
-> > +                               power-domains = <&pgc_mipi_csi2>;
-> > +                               resets = <&src>;
-> > +                               fsl,mipi-phy-gpr = <&iomuxc_gpr
-> > 0xa4>;
-> > +                               interconnects = <&noc
-> > IMX8MQ_ICM_CSI2 &noc IMX8MQ_ICS_DRAM>;
-> > +                               interconnect-names = "dram";
-> > +                               status = "disabled";
-> > +
-> > +                               ports {
-> > +                                       #address-cells = <1>;
-> > +                                       #size-cells = <0>;
-> > +
-> > +                                       port@0 {
-> > +                                               reg = <0>;
-> > +
-> > +                                               csi2_mipi_ep:
-> > endpoint {
-> > +                                                       remote-
-> > endpoint = <&csi2_ep>;
-> > +                                               };
-> > +                                       };
-> > +                               };
-> > +                       };
-> > +
-> > +                       csi2: csi@30b80000 {
-> > +                               compatible = "fsl,imx8mq-csi",
-> > "fsl,imx7-csi";
-> > +                               reg = <0x30b80000 0x10000>;
-> > +                               interrupts = <GIC_SPI 43
-> > IRQ_TYPE_LEVEL_HIGH>;
-> > +                               clocks = <&clk
-> > IMX8MQ_CLK_CSI2_ROOT>;
-> > +                               clock-names = "mclk";
-> > +                               status = "disabled";
-> > +
-> > +                               port {
-> > +                                       csi2_ep: endpoint {
-> > +                                               remote-endpoint =
-> > <&csi2_mipi_ep>;
-> > +                                       };
-> > +                               };
-> > +                       };
-> > +
-> >                         mu: mailbox@30aa0000 {
-> >                                 compatible = "fsl,imx8mq-mu",
-> > "fsl,imx6sx-mu";
-> >                                 reg = <0x30aa0000 0x10000>;
-> 
+> And only the new vics that are non-square or with pixel repetition should 
+> go to a second array?
 
+Correct.
 
+Regards,
+
+	Hans
