@@ -2,507 +2,631 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E323A3A75BD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 06:23:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F6133A75FF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 06:38:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230000AbhFOEZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 00:25:06 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:34976 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229473AbhFOEZF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 00:25:05 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1623730982; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=PC2BWi7/fj12EOdix7csJFfznHvJ1m/1LrgBWseNBFQ=; b=gIWCeRdEnfLbAcCOH6dGOXhwgMqX7Zh3UeBq75EVcG8JhuxKZbib1miodq7b+P/ZhDWKklFG
- zkqUuG1SnLMEupuEtDt5eDRI7XyzMRg/2DOH2+6r+tqCftxakYrSISYq6hK2uY8XK8UcMoOk
- lmTnDTf3zzlRB+en+KbkO/s2W8k=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 60c82b21abfd22a3dce239dc (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 15 Jun 2021 04:22:56
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id DE709C4360C; Tue, 15 Jun 2021 04:22:54 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.110.86.111] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4AE69C433F1;
-        Tue, 15 Jun 2021 04:22:50 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4AE69C433F1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-Subject: Re: [PATCH v9 0/5] Re-introduce TX FIFO resize for larger EP bursting
-To:     Ferry Toth <fntoth@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc:     Felipe Balbi <balbi@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        USB <linux-usb@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Jack Pham <jackp@codeaurora.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        John Youn <John.Youn@synopsys.com>
-References: <1621410561-32762-1-git-send-email-wcheng@codeaurora.org>
- <YLoUiO8tpRpmvcyU@kroah.com> <87k0n9btnb.fsf@kernel.org>
- <YLo6W5sKaXvy51eW@kroah.com>
- <c2daab34-1b25-7ee3-e203-a414c1e486d5@codeaurora.org>
- <874ke62i0v.fsf@kernel.org>
- <e5f231ca-6807-bcea-29c2-ab3926057310@codeaurora.org>
- <8735to29tt.fsf@kernel.org>
- <f1d57fca-3ac1-d8c8-bd23-cf525b366573@codeaurora.org>
- <87tum4zhc9.fsf@kernel.org> <YMNhnCBq2lb7oUZK@kuha.fi.intel.com>
- <CAHp75VeXTekvj88n2-v+tVUkDvR6rHtuHm3XuTGTrgOyU9wC7Q@mail.gmail.com>
- <33c6cecf-3dce-8c4f-2be2-55cc3c6c6830@gmail.com>
- <d5a9f4f8-949b-88f9-90e0-9e70b40ff9e0@codeaurora.org>
- <098b2211-c3cf-e4c3-c0bd-9b4f8253389b@gmail.com>
-From:   Wesley Cheng <wcheng@codeaurora.org>
-Message-ID: <0e9373ec-931b-f96a-b2c9-dbd532a823a6@codeaurora.org>
-Date:   Mon, 14 Jun 2021 21:22:49 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S229561AbhFOEkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 00:40:12 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:59412 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229494AbhFOEkM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 00:40:12 -0400
+X-UUID: 4694fbe59e514393844634c88ef90b64-20210615
+X-UUID: 4694fbe59e514393844634c88ef90b64-20210615
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 277926831; Tue, 15 Jun 2021 12:36:14 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 15 Jun 2021 12:36:13 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 15 Jun 2021 12:36:13 +0800
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Subject: [PATCH 1/4] soc: mediatek: pm-domains: Move power status offset to power domain data
+Date:   Tue, 15 Jun 2021 12:36:00 +0800
+Message-ID: <20210615043603.20412-2-chun-jie.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20210615043603.20412-1-chun-jie.chen@mediatek.com>
+References: <20210615043603.20412-1-chun-jie.chen@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <098b2211-c3cf-e4c3-c0bd-9b4f8253389b@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+MT8195 has more than 32 power domains so it needs
+two set of pwr_sta and pwr_sta2nd registers,
+so move the register offset from soc data into power domain data.
 
+Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+---
+ drivers/soc/mediatek/mt8167-pm-domains.h | 16 +++++++--
+ drivers/soc/mediatek/mt8173-pm-domains.h | 22 ++++++++++--
+ drivers/soc/mediatek/mt8183-pm-domains.h | 32 +++++++++++++++--
+ drivers/soc/mediatek/mt8192-pm-domains.h | 44 ++++++++++++++++++++++--
+ drivers/soc/mediatek/mtk-pm-domains.c    |  4 +--
+ drivers/soc/mediatek/mtk-pm-domains.h    |  4 +--
+ 6 files changed, 110 insertions(+), 12 deletions(-)
 
-On 6/14/2021 12:30 PM, Ferry Toth wrote:
-> 
-> Op 14-06-2021 om 20:58 schreef Wesley Cheng:
->>
->> On 6/12/2021 2:27 PM, Ferry Toth wrote:
->>> Hi
->>>
->>> Op 11-06-2021 om 15:21 schreef Andy Shevchenko:
->>>> On Fri, Jun 11, 2021 at 4:14 PM Heikki Krogerus
->>>> <heikki.krogerus@linux.intel.com> wrote:
->>>>> On Fri, Jun 11, 2021 at 04:00:38PM +0300, Felipe Balbi wrote:
->>>>>> Hi,
->>>>>>
->>>>>> Wesley Cheng <wcheng@codeaurora.org> writes:
->>>>>>>>>>>>> to be honest, I don't think these should go in (apart from
->>>>>>>>>>>>> the build
->>>>>>>>>>>>> failure) because it's likely to break instantiations of the
->>>>>>>>>>>>> core with
->>>>>>>>>>>>> differing FIFO sizes. Some instantiations even have some
->>>>>>>>>>>>> endpoints with
->>>>>>>>>>>>> dedicated functionality that requires the default FIFO size
->>>>>>>>>>>>> configured
->>>>>>>>>>>>> during coreConsultant instantiation. I know of at OMAP5 and
->>>>>>>>>>>>> some Intel
->>>>>>>>>>>>> implementations which have dedicated endpoints for processor
->>>>>>>>>>>>> tracing.
->>>>>>>>>>>>>
->>>>>>>>>>>>> With OMAP5, these endpoints are configured at the top of the
->>>>>>>>>>>>> available
->>>>>>>>>>>>> endpoints, which means that if a gadget driver gets loaded
->>>>>>>>>>>>> and takes
->>>>>>>>>>>>> over most of the FIFO space because of this resizing,
->>>>>>>>>>>>> processor tracing
->>>>>>>>>>>>> will have a hard time running. That being said, processor
->>>>>>>>>>>>> tracing isn't
->>>>>>>>>>>>> supported in upstream at this moment.
->>>>>>>>>>>>>
->>>>>>>>>>> I agree that the application of this logic may differ between
->>>>>>>>>>> vendors,
->>>>>>>>>>> hence why I wanted to keep this controllable by the DT
->>>>>>>>>>> property, so that
->>>>>>>>>>> for those which do not support this use case can leave it
->>>>>>>>>>> disabled.  The
->>>>>>>>>>> logic is there to ensure that for a given USB configuration,
->>>>>>>>>>> for each EP
->>>>>>>>>>> it would have at least 1 TX FIFO.  For USB configurations which
->>>>>>>>>>> don't
->>>>>>>>>>> utilize all available IN EPs, it would allow re-allocation of
->>>>>>>>>>> internal
->>>>>>>>>>> memory to EPs which will actually be in use.
->>>>>>>>>> The feature ends up being all-or-nothing, then :-) It sounds
->>>>>>>>>> like we can
->>>>>>>>>> be a little nicer in this regard.
->>>>>>>>>>
->>>>>>>>> Don't get me wrong, I think once those features become available
->>>>>>>>> upstream, we can improve the logic.  From what I remember when
->>>>>>>>> looking
->>>>>>>> sure, I support that. But I want to make sure the first cut isn't
->>>>>>>> likely
->>>>>>>> to break things left and right :)
->>>>>>>>
->>>>>>>> Hence, let's at least get more testing.
->>>>>>>>
->>>>>>> Sure, I'd hope that the other users of DWC3 will also see some
->>>>>>> pretty
->>>>>>> big improvements on the TX path with this.
->>>>>> fingers crossed
->>>>>>
->>>>>>>>> at Andy Shevchenko's Github, the Intel tracer downstream changes
->>>>>>>>> were
->>>>>>>>> just to remove physical EP1 and 2 from the DWC3 endpoint list.
->>>>>>>>> If that
->>>>>>>> right, that's the reason why we introduced the endpoint feature
->>>>>>>> flags. The end goal was that the UDC would be able to have custom
->>>>>>>> feature flags paired with ->validate_endpoint() or whatever before
->>>>>>>> allowing it to be enabled. Then the UDC driver could tell UDC
->>>>>>>> core to
->>>>>>>> skip that endpoint on that particular platform without
->>>>>>>> interefering with
->>>>>>>> everything else.
->>>>>>>>
->>>>>>>> Of course, we still need to figure out a way to abstract the
->>>>>>>> different
->>>>>>>> dwc3 instantiations.
->>>>>>>>
->>>>>>>>> was the change which ended up upstream for the Intel tracer
->>>>>>>>> then we
->>>>>>>>> could improve the logic to avoid re-sizing those particular EPs.
->>>>>>>> The problem then, just as I mentioned in the previous paragraph,
->>>>>>>> will be
->>>>>>>> coming up with a solution that's elegant and works for all
->>>>>>>> different
->>>>>>>> instantiations of dwc3 (or musb, cdns3, etc).
->>>>>>>>
->>>>>>> Well, at least for the TX FIFO resizing logic, we'd only be
->>>>>>> needing to
->>>>>>> focus on the DWC3 implementation.
->>>>>>>
->>>>>>> You bring up another good topic that I'll eventually needing to be
->>>>>>> taking a look at, which is a nice way we can handle vendor specific
->>>>>>> endpoints and how they can co-exist with other "normal"
->>>>>>> endpoints.  We
->>>>>>> have a few special HW eps as well, which we try to maintain
->>>>>>> separately
->>>>>>> in our DWC3 vendor driver, but it isn't the most convenient, or most
->>>>>>> pretty method :).
->>>>>> Awesome, as mentioned, the endpoint feature flags were added
->>>>>> exactly to
->>>>>> allow for these vendor-specific features :-)
->>>>>>
->>>>>> I'm more than happy to help testing now that I finally got our SM8150
->>>>>> Surface Duo device tree accepted by Bjorn ;-)
->>>>>>
->>>>>>>>> However, I'm not sure how the changes would look like in the end,
->>>>>>>>> so I
->>>>>>>>> would like to wait later down the line to include that :).
->>>>>>>> Fair enough, I agree. Can we get some more testing of $subject,
->>>>>>>> though?
->>>>>>>> Did you test $subject with upstream too? Which gadget drivers
->>>>>>>> did you
->>>>>>>> use? How did you test
->>>>>>>>
->>>>>>> The results that I included in the cover page was tested with the
->>>>>>> pure
->>>>>>> upstream kernel on our device.  Below was using the ConfigFS gadget
->>>>>>> w/ a
->>>>>>> mass storage only composition.
->>>>>>>
->>>>>>> Test Parameters:
->>>>>>>    - Platform: Qualcomm SM8150
->>>>>>>    - bMaxBurst = 6
->>>>>>>    - USB req size = 256kB
->>>>>>>    - Num of USB reqs = 16
->>>>>> do you mind testing with the regular request size (16KiB) and 250
->>>>>> requests? I think we can even do 15 bursts in that case.
->>>>>>
->>>>>>>    - USB Speed = Super-Speed
->>>>>>>    - Function Driver: Mass Storage (w/ ramdisk)
->>>>>>>    - Test Application: CrystalDiskMark
->>>>>>>
->>>>>>> Results:
->>>>>>>
->>>>>>> TXFIFO Depth = 3 max packets
->>>>>>>
->>>>>>> Test Case | Data Size | AVG tput (in MB/s)
->>>>>>> -------------------------------------------
->>>>>>> Sequential|1 GB x     |
->>>>>>> Read      |9 loops    | 193.60
->>>>>>>             |           | 195.86
->>>>>>>             |           | 184.77
->>>>>>>             |           | 193.60
->>>>>>> -------------------------------------------
->>>>>>>
->>>>>>> TXFIFO Depth = 6 max packets
->>>>>>>
->>>>>>> Test Case | Data Size | AVG tput (in MB/s)
->>>>>>> -------------------------------------------
->>>>>>> Sequential|1 GB x     |
->>>>>>> Read      |9 loops    | 287.35
->>>>>>>           |           | 304.94
->>>>>>>             |           | 289.64
->>>>>>>             |           | 293.61
->>>>>> I remember getting close to 400MiB/sec with Intel platforms without
->>>>>> resizing FIFOs and I'm sure the FIFO size was set to 2x1024,
->>>>>> though my
->>>>>> memory could be failing.
->>>>>>
->>>>>> Then again, I never ran with CrystalDiskMark, I was using my own tool
->>>>>> (it's somewhere in github. If you care, I can look up the URL).
->>>>>>
->>>>>>> We also have internal numbers which have shown similar
->>>>>>> improvements as
->>>>>>> well.  Those are over networking/tethering interfaces, so testing
->>>>>>> IPERF
->>>>>>> loopback over TCP/UDP.
->>>>>> loopback iperf? That would skip the wire, no?
->>>>>>
->>>>>>>>> size of 2 and TX threshold of 1, this would really be not
->>>>>>>>> beneficial to
->>>>>>>>> us, because we can only change the TX threshold to 2 at max,
->>>>>>>>> and at
->>>>>>>>> least in my observations, once we have to go out to system
->>>>>>>>> memory to
->>>>>>>>> fetch the next data packet, that latency takes enough time for the
->>>>>>>>> controller to end the current burst.
->>>>>>>> What I noticed with g_mass_storage is that we can amortize the
->>>>>>>> cost of
->>>>>>>> fetching data from memory, with a deeper request queue. Whenever I
->>>>>>>> test(ed) g_mass_storage, I was doing so with 250 requests. And
->>>>>>>> that was
->>>>>>>> enough to give me very good performance. Never had to poke at TX
->>>>>>>> FIFO
->>>>>>>> resizing. Did you try something like this too?
->>>>>>>>
->>>>>>>> I feel that allocating more requests is a far simpler and more
->>>>>>>> generic
->>>>>>>> method that changing FIFO sizes :)
->>>>>>>>
->>>>>>> I wish I had a USB bus trace handy to show you, which would make it
->>>>>>> very
->>>>>>> clear how the USB bus is currently utilized with TXFIFO size 2 vs
->>>>>>> 6.  So
->>>>>>> by increasing the number of USB requests, that will help if there
->>>>>>> was a
->>>>>>> bottleneck at the SW level where the application/function driver
->>>>>>> utilizing the DWC3 was submitting data much faster than the HW was
->>>>>>> processing them.
->>>>>>>
->>>>>>> So yes, this method of increasing the # of USB reqs will definitely
->>>>>>> help
->>>>>>> with situations such as HSUSB or in SSUSB when EP bursting isn't
->>>>>>> used.
->>>>>>> The TXFIFO resize comes into play for SSUSB, which utilizes endpoint
->>>>>>> bursting.
->>>>>> Hmm, that's not what I remember. Perhaps the TRB cache size plays a
->>>>>> role
->>>>>> here too. I have clear memories of testing this very scenario of
->>>>>> bursting (using g_mass_storage at the time) because I was curious
->>>>>> about
->>>>>> it. Back then, my tests showed no difference in behavior.
->>>>>>
->>>>>> It could be nice if Heikki could test Intel parts with and without
->>>>>> your
->>>>>> changes on g_mass_storage with 250 requests.
->>>>> Andy, you have a system at hand that has the DWC3 block enabled,
->>>>> right? Can you help out here?
->>>> I'm not sure if i will have time soon, I Cc'ed to Ferry who has a few
->>>> more test cases (I have only one or two) and maybe can help. But I'll
->>>> keep this in mind.
->>> I just tested on 5.13.0-rc4 on Intel Edison (x86_64). All 5 patches
->>> apply. Switching between host/gadget works, no connections dropping, no
->>> errors in dmesg.
->>>
->>> In host mode I connect a smsc9504 eth+4p hub. In gadget mode I have
->>> composite device created from configfs with gser / eem / mass_storage /
->>> uac2.
->>>
->>> Tested with iperf3 performance in host (93.6Mbits/sec) and gadget
->>> (207Mbits/sec) mode. Compared to v5.10.41 without patches host
->>> (93.4Mbits/sec) and gadget (198Mbits/sec).
->>>
->>> Gadget seems to be a little faster with the patches, but that might also
->>> be caused  by something else, on v5.10.41 I see the bitrate bouncing
->>> between 207 and 199.
->>>
->>> I saw a mention to test iperf3 to self (loopback). 3.09 Gbits/sec. With
->>> v5.10.41 3.07Gbits/sec. Not bad for a 500MHz device.
->>>
->>> With gnome-disks I did a read access benchmark 35.4MB/s, with v5.10.41
->>> 34.7MB/s. This might be limited by Edison's internal eMMC speed (when
->>> booting U-Boot reads the kernel with 21.4 MiB/s).
->>>
->> Hi Ferry,
->>
->> Thanks for the testing.  Just to double check, did you also enable the
->> property, which enabled the TXFIFO resize feature on the platform?  For
->> example, for the QCOM SM8150 platform, we're adding the following to our
->> device tree node:
->>
->> tx-fifo-resize
->>
->> If not, then your results at least confirms that w/o the property
->> present, the changes won't break anything :).  Thanks again for the
->> initial testing!
-> 
-> No I didn't. Afaik we don't have a devicetree property to set.
-> 
-> But I'd be happy to test that as well. But where to set the property?
-> 
-> dwc3_pci_mrfld_properties[] in dwc3-pci?
-> 
-Hi Ferry,
-
-Not too sure which DWC3 driver is used for the Intel platform, but I
-believe that should be the one. (if that's what is normally used)  We'd
-just need to add an entry w/ the below:
-
-PROPERTY_ENTRY_BOOL("tx-fifo-resize")
-
-Thanks
-Wesley Cheng
-
->> Thanks
->> Wesley Cheng
->>
->>>>>>> Now with endpoint bursting, if the function notifies the host that
->>>>>>> bursting is supported, when the host sends the ACK for the Data
->>>>>>> Packet,
->>>>>>> it should have a NumP value equal to the bMaxBurst reported in
->>>>>>> the EP
->>>>>> Yes and no. Looking back at the history, we used to configure NUMP
->>>>>> based
->>>>>> on bMaxBurst, but it was changed later in commit
->>>>>> 4e99472bc10bda9906526d725ff6d5f27b4ddca1 by yours truly because of a
->>>>>> problem reported by John Youn.
->>>>>>
->>>>>> And now we've come full circle. Because even if I believe more
->>>>>> requests
->>>>>> are enough for bursting, NUMP is limited by the RxFIFO size. This
->>>>>> ends
->>>>>> up supporting your claim that we need RxFIFO resizing if we want to
->>>>>> squeeze more throughput out of the controller.
->>>>>>
->>>>>> However, note that this is about RxFIFO size, not TxFIFO size. In
->>>>>> fact,
->>>>>> looking at Table 8-13 of USB 3.1 r1.0, we read the following about
->>>>>> NumP
->>>>>> (emphasis is mine):
->>>>>>
->>>>>>         "Number of Packets (NumP). This field is used to indicate the
->>>>>>         number of Data Packet buffers that the **receiver** can
->>>>>>         accept. The value in this field shall be less than or
->>>>>> equal to
->>>>>>         the maximum burst size supported by the endpoint as
->>>>>> determined
->>>>>>         by the value in the bMaxBurst field in the Endpoint Companion
->>>>>>         Descriptor (refer to Section 9.6.7)."
->>>>>>
->>>>>> So, NumP is for the receiver, not the transmitter. Could you clarify
->>>>>> what you mean here?
->>>>>>
->>>>>> /me keeps reading
->>>>>>
->>>>>> Hmm, table 8-15 tries to clarify:
->>>>>>
->>>>>>         "Number of Packets (NumP).
->>>>>>
->>>>>>         For an OUT endpoint, refer to Table 8-13 for the
->>>>>> description of
->>>>>>         this field.
->>>>>>
->>>>>>         For an IN endpoint this field is set by the endpoint to the
->>>>>>         number of packets it can transmit when the host resumes
->>>>>>         transactions to it. This field shall not have a value greater
->>>>>>         than the maximum burst size supported by the endpoint as
->>>>>>         indicated by the value in the bMaxBurst field in the Endpoint
->>>>>>         Companion Descriptor. Note that the value reported in this
->>>>>> field
->>>>>>         may be treated by the host as informative only."
->>>>>>
->>>>>> However, if I remember correctly (please verify dwc3 databook),
->>>>>> NUMP in
->>>>>> DCFG was only for receive buffers. Thin, John, how does dwc3 compute
->>>>>> NumP for TX/IN endpoints? Is that computed as a function of
->>>>>> DCFG.NUMP or
->>>>>> TxFIFO size?
->>>>>>
->>>>>>> desc.  If we have a TXFIFO size of 2, then normally what I have
->>>>>>> seen is
->>>>>>> that after 2 data packets, the device issues a NRDY.  So then we'd
->>>>>>> need
->>>>>>> to send an ERDY once data is available within the FIFO, and the same
->>>>>>> sequence happens until the USB request is complete.  With this
->>>>>>> constant
->>>>>>> NRDY/ERDY handshake going on, you actually see that the bus is under
->>>>>>> utilized.  When we increase an EP's FIFO size, then you'll see
->>>>>>> constant
->>>>>>> bursts for a request, until the request is done, or if the host
->>>>>>> runs out
->>>>>>> of RXFIFO. (ie no interruption [on the USB protocol level] during
->>>>>>> USB
->>>>>>> request data transfer)
->>>>>> Unfortunately I don't have access to a USB sniffer anymore :-(
->>>>>>
->>>>>>>>>>>> Good points.
->>>>>>>>>>>>
->>>>>>>>>>>> Wesley, what kind of testing have you done on this on
->>>>>>>>>>>> different devices?
->>>>>>>>>>>>
->>>>>>>>>>> As mentioned above, these changes are currently present on end
->>>>>>>>>>> user
->>>>>>>>>>> devices for the past few years, so its been through a lot of
->>>>>>>>>>> testing :).
->>>>>>>>>> all with the same gadget driver. Also, who uses USB on android
->>>>>>>>>> devices
->>>>>>>>>> these days? Most of the data transfer goes via WiFi or
->>>>>>>>>> Bluetooth, anyway
->>>>>>>>>> :-)
->>>>>>>>>>
->>>>>>>>>> I guess only developers are using USB during development to
->>>>>>>>>> flash dev
->>>>>>>>>> images heh.
->>>>>>>>>>
->>>>>>>>> I used to be a customer facing engineer, so honestly I did see
->>>>>>>>> some
->>>>>>>>> really interesting and crazy designs.  Again, we do have
->>>>>>>>> non-Android
->>>>>>>>> products that use the same code, and it has been working in there
->>>>>>>>> for a
->>>>>>>>> few years as well.  The TXFIFO sizing really has helped with
->>>>>>>>> multimedia
->>>>>>>>> use cases, which use isoc endpoints, since esp. in those lower
->>>>>>>>> end CPU
->>>>>>>>> chips where latencies across the system are much larger, and a
->>>>>>>>> missed
->>>>>>>>> ISOC interval leads to a pop in your ear.
->>>>>>>> This is good background information. Thanks for bringing this
->>>>>>>> up. Admitedly, we still have ISOC issues with dwc3. I'm
->>>>>>>> interested in
->>>>>>>> knowing if a deeper request queue would also help here.
->>>>>>>>
->>>>>>>> Remember dwc3 can accomodate 255 requests + link for each
->>>>>>>> endpoint. If
->>>>>>>> our gadget driver uses a low number of requests, we're never really
->>>>>>>> using the TRB ring in our benefit.
->>>>>>>>
->>>>>>> We're actually using both a deeper USB request queue + TX fifo
->>>>>>> resizing. :).
->>>>>> okay, great. Let's see what John and/or Thinh respond WRT dwc3 TX
->>>>>> Burst
->>>>>> behavior.
->>>>> -- 
->>>>> heikki
->>>>
-
+diff --git a/drivers/soc/mediatek/mt8167-pm-domains.h b/drivers/soc/mediatek/mt8167-pm-domains.h
+index 15559ddf26e4..4d6c32759606 100644
+--- a/drivers/soc/mediatek/mt8167-pm-domains.h
++++ b/drivers/soc/mediatek/mt8167-pm-domains.h
+@@ -18,6 +18,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8167[] = {
+ 		.name = "mm",
+ 		.sta_mask = PWR_STATUS_DISP,
+ 		.ctl_offs = SPM_DIS_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -30,6 +32,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8167[] = {
+ 		.name = "vdec",
+ 		.sta_mask = PWR_STATUS_VDEC,
+ 		.ctl_offs = SPM_VDE_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.caps = MTK_SCPD_ACTIVE_WAKEUP,
+@@ -38,6 +42,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8167[] = {
+ 		.name = "isp",
+ 		.sta_mask = PWR_STATUS_ISP,
+ 		.ctl_offs = SPM_ISP_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(13, 12),
+ 		.caps = MTK_SCPD_ACTIVE_WAKEUP,
+@@ -46,6 +52,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8167[] = {
+ 		.name = "mfg_async",
+ 		.sta_mask = MT8167_PWR_STATUS_MFG_ASYNC,
+ 		.ctl_offs = SPM_MFG_ASYNC_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = 0,
+ 		.sram_pdn_ack_bits = 0,
+ 		.bp_infracfg = {
+@@ -57,6 +65,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8167[] = {
+ 		.name = "mfg_2d",
+ 		.sta_mask = MT8167_PWR_STATUS_MFG_2D,
+ 		.ctl_offs = SPM_MFG_2D_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(15, 12),
+ 	},
+@@ -64,6 +74,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8167[] = {
+ 		.name = "mfg",
+ 		.sta_mask = PWR_STATUS_MFG,
+ 		.ctl_offs = SPM_MFG_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(15, 12),
+ 	},
+@@ -71,6 +83,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8167[] = {
+ 		.name = "conn",
+ 		.sta_mask = PWR_STATUS_CONN,
+ 		.ctl_offs = SPM_CONN_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = 0,
+ 		.caps = MTK_SCPD_ACTIVE_WAKEUP,
+@@ -85,8 +99,6 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8167[] = {
+ static const struct scpsys_soc_data mt8167_scpsys_data = {
+ 	.domains_data = scpsys_domain_data_mt8167,
+ 	.num_domains = ARRAY_SIZE(scpsys_domain_data_mt8167),
+-	.pwr_sta_offs = SPM_PWR_STATUS,
+-	.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ };
+ 
+ #endif /* __SOC_MEDIATEK_MT8167_PM_DOMAINS_H */
+diff --git a/drivers/soc/mediatek/mt8173-pm-domains.h b/drivers/soc/mediatek/mt8173-pm-domains.h
+index 654c717e5467..a4f58c2b44b1 100644
+--- a/drivers/soc/mediatek/mt8173-pm-domains.h
++++ b/drivers/soc/mediatek/mt8173-pm-domains.h
+@@ -15,6 +15,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ 		.name = "vdec",
+ 		.sta_mask = PWR_STATUS_VDEC,
+ 		.ctl_offs = SPM_VDE_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -22,6 +24,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ 		.name = "venc",
+ 		.sta_mask = PWR_STATUS_VENC,
+ 		.ctl_offs = SPM_VEN_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(15, 12),
+ 	},
+@@ -29,6 +33,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ 		.name = "isp",
+ 		.sta_mask = PWR_STATUS_ISP,
+ 		.ctl_offs = SPM_ISP_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(13, 12),
+ 	},
+@@ -36,6 +42,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ 		.name = "mm",
+ 		.sta_mask = PWR_STATUS_DISP,
+ 		.ctl_offs = SPM_DIS_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -47,6 +55,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ 		.name = "venc_lt",
+ 		.sta_mask = PWR_STATUS_VENC_LT,
+ 		.ctl_offs = SPM_VEN2_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(15, 12),
+ 	},
+@@ -54,6 +64,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ 		.name = "audio",
+ 		.sta_mask = PWR_STATUS_AUDIO,
+ 		.ctl_offs = SPM_AUDIO_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(15, 12),
+ 	},
+@@ -61,6 +73,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ 		.name = "usb",
+ 		.sta_mask = PWR_STATUS_USB,
+ 		.ctl_offs = SPM_USB_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(15, 12),
+ 		.caps = MTK_SCPD_ACTIVE_WAKEUP,
+@@ -69,6 +83,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ 		.name = "mfg_async",
+ 		.sta_mask = PWR_STATUS_MFG_ASYNC,
+ 		.ctl_offs = SPM_MFG_ASYNC_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = 0,
+ 	},
+@@ -76,6 +92,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ 		.name = "mfg_2d",
+ 		.sta_mask = PWR_STATUS_MFG_2D,
+ 		.ctl_offs = SPM_MFG_2D_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(13, 12),
+ 	},
+@@ -83,6 +101,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ 		.name = "mfg",
+ 		.sta_mask = PWR_STATUS_MFG,
+ 		.ctl_offs = SPM_MFG_PWR_CON,
++		.pwr_sta_offs = SPM_PWR_STATUS,
++		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ 		.sram_pdn_bits = GENMASK(13, 8),
+ 		.sram_pdn_ack_bits = GENMASK(21, 16),
+ 		.bp_infracfg = {
+@@ -97,8 +117,6 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8173[] = {
+ static const struct scpsys_soc_data mt8173_scpsys_data = {
+ 	.domains_data = scpsys_domain_data_mt8173,
+ 	.num_domains = ARRAY_SIZE(scpsys_domain_data_mt8173),
+-	.pwr_sta_offs = SPM_PWR_STATUS,
+-	.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND,
+ };
+ 
+ #endif /* __SOC_MEDIATEK_MT8173_PM_DOMAINS_H */
+diff --git a/drivers/soc/mediatek/mt8183-pm-domains.h b/drivers/soc/mediatek/mt8183-pm-domains.h
+index 98a9940d05fb..71b8757e552d 100644
+--- a/drivers/soc/mediatek/mt8183-pm-domains.h
++++ b/drivers/soc/mediatek/mt8183-pm-domains.h
+@@ -15,6 +15,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "audio",
+ 		.sta_mask = PWR_STATUS_AUDIO,
+ 		.ctl_offs = 0x0314,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(15, 12),
+ 	},
+@@ -22,6 +24,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "conn",
+ 		.sta_mask = PWR_STATUS_CONN,
+ 		.ctl_offs = 0x032c,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = 0,
+ 		.sram_pdn_ack_bits = 0,
+ 		.bp_infracfg = {
+@@ -33,6 +37,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "mfg_async",
+ 		.sta_mask = PWR_STATUS_MFG_ASYNC,
+ 		.ctl_offs = 0x0334,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = 0,
+ 		.sram_pdn_ack_bits = 0,
+ 	},
+@@ -40,6 +46,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "mfg",
+ 		.sta_mask = PWR_STATUS_MFG,
+ 		.ctl_offs = 0x0338,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.caps = MTK_SCPD_DOMAIN_SUPPLY,
+@@ -48,6 +56,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "mfg_core0",
+ 		.sta_mask = BIT(7),
+ 		.ctl_offs = 0x034c,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -55,6 +65,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "mfg_core1",
+ 		.sta_mask = BIT(20),
+ 		.ctl_offs = 0x0310,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -62,6 +74,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "mfg_2d",
+ 		.sta_mask = PWR_STATUS_MFG_2D,
+ 		.ctl_offs = 0x0348,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -75,6 +89,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "disp",
+ 		.sta_mask = PWR_STATUS_DISP,
+ 		.ctl_offs = 0x030c,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -94,6 +110,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "cam",
+ 		.sta_mask = BIT(25),
+ 		.ctl_offs = 0x0344,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(9, 8),
+ 		.sram_pdn_ack_bits = GENMASK(13, 12),
+ 		.bp_infracfg = {
+@@ -117,6 +135,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "isp",
+ 		.sta_mask = PWR_STATUS_ISP,
+ 		.ctl_offs = 0x0308,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(9, 8),
+ 		.sram_pdn_ack_bits = GENMASK(13, 12),
+ 		.bp_infracfg = {
+@@ -140,6 +160,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "vdec",
+ 		.sta_mask = BIT(31),
+ 		.ctl_offs = 0x0300,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_smi = {
+@@ -153,6 +175,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "venc",
+ 		.sta_mask = PWR_STATUS_VENC,
+ 		.ctl_offs = 0x0304,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(15, 12),
+ 		.bp_smi = {
+@@ -166,6 +190,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "vpu_top",
+ 		.sta_mask = BIT(26),
+ 		.ctl_offs = 0x0324,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -193,6 +219,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "vpu_core0",
+ 		.sta_mask = BIT(27),
+ 		.ctl_offs = 0x33c,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(13, 12),
+ 		.bp_infracfg = {
+@@ -211,6 +239,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ 		.name = "vpu_core1",
+ 		.sta_mask = BIT(28),
+ 		.ctl_offs = 0x0340,
++		.pwr_sta_offs = 0x0180,
++		.pwr_sta2nd_offs = 0x0184,
+ 		.sram_pdn_bits = GENMASK(11, 8),
+ 		.sram_pdn_ack_bits = GENMASK(13, 12),
+ 		.bp_infracfg = {
+@@ -230,8 +260,6 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8183[] = {
+ static const struct scpsys_soc_data mt8183_scpsys_data = {
+ 	.domains_data = scpsys_domain_data_mt8183,
+ 	.num_domains = ARRAY_SIZE(scpsys_domain_data_mt8183),
+-	.pwr_sta_offs = 0x0180,
+-	.pwr_sta2nd_offs = 0x0184
+ };
+ 
+ #endif /* __SOC_MEDIATEK_MT8183_PM_DOMAINS_H */
+diff --git a/drivers/soc/mediatek/mt8192-pm-domains.h b/drivers/soc/mediatek/mt8192-pm-domains.h
+index 543dda70de01..558c4ee4784a 100644
+--- a/drivers/soc/mediatek/mt8192-pm-domains.h
++++ b/drivers/soc/mediatek/mt8192-pm-domains.h
+@@ -15,6 +15,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "audio",
+ 		.sta_mask = BIT(21),
+ 		.ctl_offs = 0x0354,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -28,6 +30,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "conn",
+ 		.sta_mask = PWR_STATUS_CONN,
+ 		.ctl_offs = 0x0304,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = 0,
+ 		.sram_pdn_ack_bits = 0,
+ 		.bp_infracfg = {
+@@ -50,6 +54,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "mfg0",
+ 		.sta_mask = BIT(2),
+ 		.ctl_offs = 0x0308,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -57,6 +63,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "mfg1",
+ 		.sta_mask = BIT(3),
+ 		.ctl_offs = 0x030c,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -82,6 +90,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "mfg2",
+ 		.sta_mask = BIT(4),
+ 		.ctl_offs = 0x0310,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -89,6 +99,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "mfg3",
+ 		.sta_mask = BIT(5),
+ 		.ctl_offs = 0x0314,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -96,6 +108,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "mfg4",
+ 		.sta_mask = BIT(6),
+ 		.ctl_offs = 0x0318,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -103,6 +117,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "mfg5",
+ 		.sta_mask = BIT(7),
+ 		.ctl_offs = 0x031c,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -110,6 +126,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "mfg6",
+ 		.sta_mask = BIT(8),
+ 		.ctl_offs = 0x0320,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -117,6 +135,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "disp",
+ 		.sta_mask = BIT(20),
+ 		.ctl_offs = 0x0350,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -146,6 +166,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "ipe",
+ 		.sta_mask = BIT(14),
+ 		.ctl_offs = 0x0338,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -163,6 +185,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "isp",
+ 		.sta_mask = BIT(12),
+ 		.ctl_offs = 0x0330,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -180,6 +204,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "isp2",
+ 		.sta_mask = BIT(13),
+ 		.ctl_offs = 0x0334,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -197,6 +223,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "mdp",
+ 		.sta_mask = BIT(19),
+ 		.ctl_offs = 0x034c,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -214,6 +242,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "venc",
+ 		.sta_mask = BIT(17),
+ 		.ctl_offs = 0x0344,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -231,6 +261,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "vdec",
+ 		.sta_mask = BIT(15),
+ 		.ctl_offs = 0x033c,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -248,6 +280,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "vdec2",
+ 		.sta_mask = BIT(16),
+ 		.ctl_offs = 0x0340,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -255,6 +289,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "cam",
+ 		.sta_mask = BIT(23),
+ 		.ctl_offs = 0x035c,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 		.bp_infracfg = {
+@@ -284,6 +320,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "cam_rawa",
+ 		.sta_mask = BIT(24),
+ 		.ctl_offs = 0x0360,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -291,6 +329,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "cam_rawb",
+ 		.sta_mask = BIT(25),
+ 		.ctl_offs = 0x0364,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -298,6 +338,8 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ 		.name = "cam_rawc",
+ 		.sta_mask = BIT(26),
+ 		.ctl_offs = 0x0368,
++		.pwr_sta_offs = 0x016c,
++		.pwr_sta2nd_offs = 0x0170,
+ 		.sram_pdn_bits = GENMASK(8, 8),
+ 		.sram_pdn_ack_bits = GENMASK(12, 12),
+ 	},
+@@ -306,8 +348,6 @@ static const struct scpsys_domain_data scpsys_domain_data_mt8192[] = {
+ static const struct scpsys_soc_data mt8192_scpsys_data = {
+ 	.domains_data = scpsys_domain_data_mt8192,
+ 	.num_domains = ARRAY_SIZE(scpsys_domain_data_mt8192),
+-	.pwr_sta_offs = 0x016c,
+-	.pwr_sta2nd_offs = 0x0170,
+ };
+ 
+ #endif /* __SOC_MEDIATEK_MT8192_PM_DOMAINS_H */
+diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
+index 0af00efa0ef8..2689f02d7a41 100644
+--- a/drivers/soc/mediatek/mtk-pm-domains.c
++++ b/drivers/soc/mediatek/mtk-pm-domains.c
+@@ -60,10 +60,10 @@ static bool scpsys_domain_is_on(struct scpsys_domain *pd)
+ 	struct scpsys *scpsys = pd->scpsys;
+ 	u32 status, status2;
+ 
+-	regmap_read(scpsys->base, scpsys->soc_data->pwr_sta_offs, &status);
++	regmap_read(scpsys->base, pd->data->pwr_sta_offs, &status);
+ 	status &= pd->data->sta_mask;
+ 
+-	regmap_read(scpsys->base, scpsys->soc_data->pwr_sta2nd_offs, &status2);
++	regmap_read(scpsys->base, pd->data->pwr_sta2nd_offs, &status2);
+ 	status2 &= pd->data->sta_mask;
+ 
+ 	/* A domain is on when both status bits are set. */
+diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
+index 21a4e113bbec..8b86ed22ca56 100644
+--- a/drivers/soc/mediatek/mtk-pm-domains.h
++++ b/drivers/soc/mediatek/mtk-pm-domains.h
+@@ -94,13 +94,13 @@ struct scpsys_domain_data {
+ 	u8 caps;
+ 	const struct scpsys_bus_prot_data bp_infracfg[SPM_MAX_BUS_PROT_DATA];
+ 	const struct scpsys_bus_prot_data bp_smi[SPM_MAX_BUS_PROT_DATA];
++	int pwr_sta_offs;
++	int pwr_sta2nd_offs;
+ };
+ 
+ struct scpsys_soc_data {
+ 	const struct scpsys_domain_data *domains_data;
+ 	int num_domains;
+-	int pwr_sta_offs;
+-	int pwr_sta2nd_offs;
+ };
+ 
+ #endif /* __SOC_MEDIATEK_MTK_PM_DOMAINS_H */
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.18.0
+
