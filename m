@@ -2,146 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24D0D3A87BF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 19:35:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03D9F3A87EE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 19:43:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231202AbhFORfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 13:35:16 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:34916 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231371AbhFORfD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 13:35:03 -0400
-X-UUID: 1caaa7783bf846d3b6503ba572f258cc-20210616
-X-UUID: 1caaa7783bf846d3b6503ba572f258cc-20210616
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1925669352; Wed, 16 Jun 2021 01:32:49 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 16 Jun 2021 01:32:46 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 16 Jun 2021 01:32:46 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        id S231161AbhFORpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 13:45:47 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36244 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231146AbhFORpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 13:45:46 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15FHhb2H061407;
+        Tue, 15 Jun 2021 12:43:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623779017;
+        bh=vPeGId/PK7swPxAZM0MA5RZXvfuBt+wGji2VzqchpQs=;
+        h=From:To:CC:Subject:Date;
+        b=wZ+3eqeOvpfwNyxqA5X8THYeSW220CSV3NRxXKabnul4Xn8XpnrMmtlEVG8XA5Du2
+         B4c18R5pMHkrjoPe4z3YUWj3lR7R7WX4RpipyPeNE8+HyNBBb6NfmcJ6kpfI46vSoi
+         WPyN4NnqP/jZyJoKyhucNd+EeVg4RM5yhryYA+8M=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15FHhbvc097503
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Jun 2021 12:43:37 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 15
+ Jun 2021 12:43:36 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 15 Jun 2021 12:43:36 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15FHhRGA009558;
+        Tue, 15 Jun 2021 12:43:29 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <seiya.wang@mediatek.com>, <wenst@google.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        YT Lee <yt.lee@mediatek.corp-partner.google.com>
-Subject: [PATCH 27/27] arm64: dts: mt8195: add cpufreq device nodes
-Date:   Wed, 16 Jun 2021 01:32:33 +0800
-Message-ID: <20210615173233.26682-27-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.15.GIT
-In-Reply-To: <20210615173233.26682-1-tinghan.shen@mediatek.com>
-References: <20210615173233.26682-1-tinghan.shen@mediatek.com>
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/3] AM64: Update the locations of various elements in SRAM
+Date:   Tue, 15 Jun 2021 23:13:22 +0530
+Message-ID: <20210615174325.22853-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-MTK:  N
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: YT Lee <yt.lee@mediatek.corp-partner.google.com>
+The following series of patches,
+- Increase the maximum size of TF-A
+- Update the location of TF-A due to a limitation for DFU boot
+- Indicate reserved locations for DMSC code and secure proxy
 
-this 8195 cpufreq device nodes is based on below dt-bindings document
-https://patchwork.kernel.org/project/linux-mediatek/patch/1615549235-27700-3-git-send-email-hector.yuan@mediatek.com/
+changes since v3:
+- fixed the title of patches 1 and 2
 
-and it also rely on below patches to work
-[1]https://patchwork.kernel.org/project/linux-mediatek/patch/1615549235-27700-2-git-send-email-hector.yuan@mediatek.com/
-[2]https://patchwork.kernel.org/project/linux-pm/patch/20201105125001.32473-1-lukasz.luba@arm.com/
-[3]https://patchwork.kernel.org/project/linux-pm/patch/20201103090600.29053-3-lukasz.luba@arm.com/
-[4]https://patchwork.kernel.org/project/linux-pm/patch/20201103090600.29053-4-lukasz.luba@arm.com/
-[5]https://patchwork.kernel.org/project/linux-pm/patch/20201103090600.29053-5-lukasz.luba@arm.com/
+changes since v2:
+- split the patches into three
+- added regions for indicating memory regions reserved for
+  dmsc and secure proxy
+- moved the TFA location to 0x701c4000
 
-Signed-off-by: YT Lee <yt.lee@mediatek.corp-partner.google.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Aswath Govindraju (3):
+  arm64: dts: ti: k3-am64-main: Update TF-A's maximum size and node name
+  arm64: dts: ti: k3-am64-main: Reserve OCMRAM for DMSC-lite and secure
+    proxy communication
+  arm64: dts: ti: k3-am64-main: Update the location of TF-A
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 25a6ee7c6659..e5ebf8d663df 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -54,6 +54,7 @@
- 			compatible = "arm,cortex-a55", "arm,armv8";
- 			reg = <0x000>;
- 			enable-method = "psci";
-+			performance-domains = <&performance 0>;
- 			clock-frequency = <1701000000>;
- 			capacity-dmips-mhz = <578>;
- 			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-@@ -66,6 +67,7 @@
- 			compatible = "arm,cortex-a55", "arm,armv8";
- 			reg = <0x100>;
- 			enable-method = "psci";
-+			performance-domains = <&performance 0>;
- 			clock-frequency = <1701000000>;
- 			capacity-dmips-mhz = <578>;
- 			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-@@ -78,6 +80,7 @@
- 			compatible = "arm,cortex-a55", "arm,armv8";
- 			reg = <0x200>;
- 			enable-method = "psci";
-+			performance-domains = <&performance 0>;
- 			clock-frequency = <1701000000>;
- 			capacity-dmips-mhz = <578>;
- 			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-@@ -90,6 +93,7 @@
- 			compatible = "arm,cortex-a55", "arm,armv8";
- 			reg = <0x300>;
- 			enable-method = "psci";
-+			performance-domains = <&performance 0>;
- 			clock-frequency = <1701000000>;
- 			capacity-dmips-mhz = <578>;
- 			cpu-idle-states = <&cpuoff_l &clusteroff_l>;
-@@ -102,6 +106,7 @@
- 			compatible = "arm,cortex-a78", "arm,armv8";
- 			reg = <0x400>;
- 			enable-method = "psci";
-+			performance-domains = <&performance 1>;
- 			clock-frequency = <2171000000>;
- 			capacity-dmips-mhz = <1024>;
- 			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
-@@ -114,6 +119,7 @@
- 			compatible = "arm,cortex-a78", "arm,armv8";
- 			reg = <0x500>;
- 			enable-method = "psci";
-+			performance-domains = <&performance 1>;
- 			clock-frequency = <2171000000>;
- 			capacity-dmips-mhz = <1024>;
- 			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
-@@ -126,6 +132,7 @@
- 			compatible = "arm,cortex-a78", "arm,armv8";
- 			reg = <0x600>;
- 			enable-method = "psci";
-+			performance-domains = <&performance 1>;
- 			clock-frequency = <2171000000>;
- 			capacity-dmips-mhz = <1024>;
- 			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
-@@ -138,6 +145,7 @@
- 			compatible = "arm,cortex-a78", "arm,armv8";
- 			reg = <0x700>;
- 			enable-method = "psci";
-+			performance-domains = <&performance 1>;
- 			clock-frequency = <2171000000>;
- 			capacity-dmips-mhz = <1024>;
- 			cpu-idle-states = <&cpuoff_b &clusteroff_b>;
-@@ -257,6 +265,12 @@
- 		method = "smc";
- 	};
- 
-+	performance: performance-controller@11bc10 {
-+		compatible = "mediatek,cpufreq-hw";
-+		reg = <0 0x0011bc10 0 0x120>, <0 0x0011bd30 0 0x120>;
-+		#performance-domain-cells = <1>;
-+	};
-+
- 	timer: timer {
- 		compatible = "arm,armv8-timer";
- 		interrupt-parent = <&gic>;
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
+
 -- 
-2.18.0
+2.17.1
 
