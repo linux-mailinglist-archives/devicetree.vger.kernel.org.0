@@ -2,155 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F0693A830E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 16:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E5743A8341
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 16:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230410AbhFOOlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 10:41:24 -0400
-Received: from mail-eopbgr1310070.outbound.protection.outlook.com ([40.107.131.70]:10071
-        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230187AbhFOOlV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 10:41:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ipcr9jUeqj2UXoGOxN1reiTgFKwd2WMlCb1RLc++ntca2QSv54ieta/5E91rxsNtgXwNUn+gAhkyEI0eePSDaNt86+PAJ9vLhAnKR8UDDbKo205nOrbd9KQe6zsqhwtgMrWS5jj6Z+frYJMeU8jL0vEuXVIQ6k02yeaVsSsZAHyPMpJwUAUROAo38v7GDDWcdtcoZWyQBHmlQGL30F6azo+OER95L+mTurVS4cg0lRgWUJ8tHFjNv8BZJApEzDVVdAu4jmeD+F8ug2xRWqUwmU8AxYO2CkYWEYeUcAsf1C2oOJS8EYECFFNv6ga8FDiVObVL1AX0nOPkFGOoYULHwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PWvSlx4rnHrgxdKM/o47OjBfsA0vUPuueifJ1KxlUgc=;
- b=Yp05A0hGXjpdqWER5QGpLk1JKXfgNyTvRxcOjgND2gRjsXUTcnxFUxfacMk/Ux4QCKBr/5gqQDQXHaM+dq/psFknEnTt1VTZs2QkXBxXWRzfcxRRHoQDphDhbT8zPKQOkzbSUaIP+uOC7JHne1H95siS40xYZJerq/gQZDeR7FjWgXph4KoGlWi3S+GSOGp8IA5GPlgVURdX4lJy89DYs3YsMGJEANyCI45/PXUfShxXxHBOa5HWmcOdAA4wWQbAaB1xUAEv76pQW9kWYpmiGg4QNFWe68JkeIIOqstneC3LTXDxjKkyhUg6erJxkGstaNkhS5XXwFygD4zQZnMnAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cortina-access.com; dmarc=pass action=none
- header.from=cortina-access.com; dkim=pass header.d=cortina-access.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=CortinaAccess.onmicrosoft.com; s=selector2-CortinaAccess-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PWvSlx4rnHrgxdKM/o47OjBfsA0vUPuueifJ1KxlUgc=;
- b=ELKExIwcb0gCtnxX+7lAKWIIcLfyE2OZ7QsMrbj11r7hxG9de+LS0ReH8JPvShiteeFn7LX0ENSRa2Wonq040lmA857jRb5ymNc5131B3+L8hE7NL/3fihBinzdVaHcm4tkbvvHd303xboCREQS5vE6rp0NqZeX1AG0s/3Tt0yU=
-Received: from PS2PR01MB2504.apcprd01.prod.exchangelabs.com
- (2603:1096:300:3e::11) by PSBPR01MB3542.apcprd01.prod.exchangelabs.com
- (2603:1096:301:c::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.22; Tue, 15 Jun
- 2021 14:39:08 +0000
-Received: from PS2PR01MB2504.apcprd01.prod.exchangelabs.com
- ([fe80::e9b5:6b16:ec29:6101]) by PS2PR01MB2504.apcprd01.prod.exchangelabs.com
- ([fe80::e9b5:6b16:ec29:6101%2]) with mapi id 15.20.4195.032; Tue, 15 Jun 2021
- 14:39:08 +0000
-From:   Alex Nemirovsky <Alex.Nemirovsky@cortina-access.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Jason Li <jason.li@cortina-access.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 2/3] dt-bindings: serial: Convert Cortina-Access UART
- to json-schema
-Thread-Topic: [PATCH v4 2/3] dt-bindings: serial: Convert Cortina-Access UART
- to json-schema
-Thread-Index: AQHXRQOEXSJdPocm00OQib3aojINxasVL/wAgAAc6oCAAApRAIAAByaA
-Date:   Tue, 15 Jun 2021 14:39:08 +0000
-Message-ID: <B71C5D02-EDBE-4AAD-AF1B-2FD467BE075A@cortina-access.com>
-References: <20210509184519.15816-1-alex.nemirovsky@cortina-access.com>
- <20210509184519.15816-2-alex.nemirovsky@cortina-access.com>
- <YMiUpK/+PjsoCU1W@kroah.com>
- <CFD14D63-4537-4A91-861C-71B74E2CFAE6@cortina-access.com>
- <YMi1jOL6y+eUK3Df@kroah.com>
-In-Reply-To: <YMi1jOL6y+eUK3Df@kroah.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linuxfoundation.org; dkim=none (message not signed)
- header.d=none;linuxfoundation.org; dmarc=none action=none
- header.from=cortina-access.com;
-x-originating-ip: [70.58.207.205]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 261baa30-2db4-4865-6b3b-08d9300b5567
-x-ms-traffictypediagnostic: PSBPR01MB3542:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <PSBPR01MB35427898D0FD3D11BE7AA8FECB309@PSBPR01MB3542.apcprd01.prod.exchangelabs.com>
-x-ld-processed: 0694623c-6669-497c-89c3-3a32a9934313,ExtAddr
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: C3bfSO5hRpIw3Gy8ItYSsAYkO749b41lP6Hnx3jaa5erGQGtJv859Tsepzsudx54XG/OOTwQrnm0vnbtXTu7Zkh2UO4zs34C1gX0u/ioHp61WEovtfq5+sDGM83ceVA58OibQldBvhTUJ+aARp/06cayRNdHtnqiFpKHrQHOh+Mk0id6Y2I/OAzZ/oO09kvJD637Lwol7QjMEHVFVv4E6BgxPQ6uGxWOax2NsEOP8D/hBtOGDdaGBtuM1BZmQ4PBYpEh2ZWSC9XX0b0glqdbzElz0IhayYfpTjQ+0/NdfFcuoCdrKR2cxmyNjxG1hDTJbfHEYKEIuXXudGDxUqEd3fY8UtH4/D4qZYRsfhryOVTujlwK/vpFNInFjIrEkxtl2G0aUGXiom64DEQ8wa8YLk6pP/1rdDCSad6Brc57+c9moThsxnUjmlU+XmrJPw7GxLV+clI1V+ocp/6bqArptIY+7CNCqgl0JY7Q2Y+H5OHiSPApd4LmmVM5ID+MWXAcZ8PkSYBiEBk2Hc2Z9mJBxqMV0X69p2q8Tf4VwlLl56JAJ8VajoY9tLv/g4Q7XwEYTdmJ6VGroLivCC0oK+ItNBhWRuviNb8/Rfm3Ft13ygc=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PS2PR01MB2504.apcprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(26005)(4326008)(6512007)(2906002)(6486002)(6916009)(33656002)(498600001)(36756003)(2616005)(86362001)(186003)(83380400001)(64756008)(66556008)(66476007)(71200400001)(66446008)(53546011)(122000001)(6506007)(8676002)(54906003)(66946007)(5660300002)(91956017)(76116006)(38100700002)(8936002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?U1dJYXVJWExGODlab1owWUVHOSs5OW0ybldYN2lvejM1RFZDMk51TGJnak4w?=
- =?utf-8?B?c0tGVm1VSVA1SU0wUVB0T2haNW95b1JHYlpDMXR0cE1nT1RZOFhrN0ErTEJt?=
- =?utf-8?B?RE5ZM3kvcjFEMDh6Vk52L2N2VVE3cHRSb3NpSmxDRHV5QUNFeDI4bkU4NzZO?=
- =?utf-8?B?UnJlb2JONko2RmtZOEQ1bmJBUEhiRkVkaHZJM2J4VGxkMjVFaDB5QzNLYUlX?=
- =?utf-8?B?Q2VuSmJSWFV5VC8rZzBIK2JrWjI2cHVEZldXdHFlNUp1WXZnRncxZlhCUURs?=
- =?utf-8?B?V1hxVDBJUHZKNTVhZk00N3ZLYkc5ZWY5YXd4WEpHcWF0ajVmVHNxMG16V0ZI?=
- =?utf-8?B?NE9KbUxBQlIxNHI5N1ZVaVp6M1oxQUFnUDZWQ0xVRFBENUtMQWhwazRDc3Ir?=
- =?utf-8?B?UlZhVTAxZkhpdUdrbDAyZnNDU3dhYmM2UG9uNGJXUlBIOHNkL21mT0ZDVWlV?=
- =?utf-8?B?cnp3cE43UUlXODhtOTJEYVZkWU0xOVVBR2VMZUJDSU14enF2aDJOY3VqaFBX?=
- =?utf-8?B?OUl5QmpWSW05ejV4a1hDdHdBWUZlN2FGMkJyN1ZOMUNMd2pSUTZ1a25BcE1P?=
- =?utf-8?B?L29VNk0xUzNrUEFXWit1OHpKS0J2dUtqQnVEM1BpRHY2Y2VzZFRYVkJLb0d0?=
- =?utf-8?B?TFhFV3N4ZUY1NXhSV0ZaYkswZ1d4Z1dRM2FHQXY4bDlnM3JibWpjK1NCb2hG?=
- =?utf-8?B?TkczeUdROVh0d0lzUThoenZLZ2pLU2pRdFc1RHhUV0JzNGM5eW9ES1dDc2VS?=
- =?utf-8?B?L0QwQW1NbERRcmhIMDU5NU9VQmVPbHBBN1dnMHlXc3R1akFqNE1vb09ISlda?=
- =?utf-8?B?UENqZ3orS2ROcUdlaUo0ZERpZTFhc2EySHBvcEFhOFlYRVlLV1Jab05sWUNY?=
- =?utf-8?B?SXJJT3Q2WUVJdGFnMVhEMnF2U3hPSjFIVFMvRkxsUGFLMDBYb0gveENzbWsy?=
- =?utf-8?B?YkFlcnU2a3ZOYXVYOGN5VFkycXozS0V0NXNsRUxCSmIwSzhYbDNlRUxJR3Zp?=
- =?utf-8?B?dW1mOU02R2loclVuQ3c0eVpPL282aXBrOVZ1MW43L3Q2M21TNzg3VmxIQnF4?=
- =?utf-8?B?Ly9wR2orY0dJVXN6SGtSSzluK0tHMnR4eGJTNGQxb0R5RDI4Y2tOVEkwY1A0?=
- =?utf-8?B?Y1RHUXpNYmFTM2hNRWJXczFlRGt0SGNaSldlM1JuRGllQTZzQVF3TUwzdUI1?=
- =?utf-8?B?UlRRTGF3YjNMc2RjNS85TFNBWFE1TVdtV0pVNTMwek8rM3NYSHNMQlR1QnlB?=
- =?utf-8?B?UG9lR1Y2c2l2YlNJbXEvbFJYdDJBU2VlaFc3azRaMEF3U2tHRE4veXJxeE5F?=
- =?utf-8?B?d2pMem44dTBsSFVLU0QxQWcxb2dXMElGYmJKOGlPOGhNVy9IY3dtS01VanFF?=
- =?utf-8?B?WktyRlpmZjRRVHlmWmNVKzhKcE0wTEU2M2QxTCtZdEFkbW90Ym1YNWJGdXE4?=
- =?utf-8?B?ZVB3d1dDVWNuREVjM0wxZlZjamwySVNzUHFYa1BsV3RkeGxjR3A5QkdLOTVR?=
- =?utf-8?B?VStna2wwenVscnFOdXFBRmtYK0R0L2dCWlZGSklRQVM1TUtMbHBwM1NsT0JF?=
- =?utf-8?B?cmNPUG5MckNxK0tPWTduVVc1Ung0cFVublBLY0pKWlB6MWlyeDJ1OG4rTEFZ?=
- =?utf-8?B?ZmFtc0djakYra3liOW95L1hPaVJVTGMxU0lTTFZCRkx0WTBrT1FCNnc0cUNM?=
- =?utf-8?B?a0hWeXorT0U1WTlhRUs4V0ROekY5TWVJcmY5a05wamlQbUdiWWVxQlZ5Y21B?=
- =?utf-8?Q?BSjUNOCUR/KKqWix7G+d08Lptom/B/xAwF5uEl9?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1517E064A6EDFC4EA32F42C63C8070EB@apcprd01.prod.exchangelabs.com>
-Content-Transfer-Encoding: base64
+        id S231159AbhFOOxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 10:53:50 -0400
+Received: from mail-ua1-f46.google.com ([209.85.222.46]:39629 "EHLO
+        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230208AbhFOOxt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 10:53:49 -0400
+Received: by mail-ua1-f46.google.com with SMTP id c10so6771849uan.6;
+        Tue, 15 Jun 2021 07:51:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VRuDeOUfZ6B0u10ffnqTPMqKC8c9Vta/YzdAIyumZr4=;
+        b=nGB42WUcJGGEgEnVnicySd1EuOPCyqkDJV8+S+d92WWQ7l7SiNuPBP7N9xhEPEEmmX
+         /vHQMglWoQGDe2VhugJ48FZJhoi59uVo9ORF84Bxo89ottxpehC8q6SgWI2Vv5JU2AfY
+         G+IItPP71cFmZgaiyw3QRnq50elnJr2TYjYHUctkRdBM3GSFY2Q7ASauNCgOwx1AlKFa
+         otO3LHnUctOVGUn5YRsVtIjaISJ0pJ8yyeIQOB90KnOAp/S+PprOXEW0HsQ3729tLEva
+         yofPimzYDKXZhrZCN19lJ2CIkhpVkPH2n16I87w43W12n9i3NMokeT/7wRwQzGAHfluu
+         qQJw==
+X-Gm-Message-State: AOAM533ageoz5zc/SqzIhKtHkHb4nWdAhnMvSCKF/1yq9WGpx0rr6P32
+        njQGmpMyYy9BkEHXMWrwup1/UboIRIafWKg6NEU=
+X-Google-Smtp-Source: ABdhPJyMlEwcIPhRuOKgllmjsxF0JpzWIGKXY3MQGgAhU31dK3Mc0jsRrYJl2Yc0tBi6Y8M6CDuHe5zvmJbjZnwnuDg=
+X-Received: by 2002:ab0:63d9:: with SMTP id i25mr18418485uap.106.1623768704802;
+ Tue, 15 Jun 2021 07:51:44 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: CORTINA-ACCESS.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PS2PR01MB2504.apcprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 261baa30-2db4-4865-6b3b-08d9300b5567
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jun 2021 14:39:08.4111
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0694623c-6669-497c-89c3-3a32a9934313
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 242xywmcKpeVvlkaNtG20XvSRWWazUybL0oHGLk3hO4kFAcNU2QgKAviP2YsFPmkudxUvf2kNUTypdYSEVaMLhSowVLh8mmTxLr+ZxEHM50P4N0NK79FIrZ4W1YAPAuK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PSBPR01MB3542
+References: <20210317113130.2554368-1-geert+renesas@glider.be> <CAL_JsqL3NRDpzPbOxwvP6N+K76UXmrxs=e9-1rK-PbAKUx7f6w@mail.gmail.com>
+In-Reply-To: <CAL_JsqL3NRDpzPbOxwvP6N+K76UXmrxs=e9-1rK-PbAKUx7f6w@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 15 Jun 2021 16:51:33 +0200
+Message-ID: <CAMuHMdUdB-Ux9UpeaN3H0_UWDH7_9r3s72ZP01++XzOvrwavHg@mail.gmail.com>
+Subject: Re: [PATCH v3] ARM: Parse kdump DT properties
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Russell King <linux@armlinux.org.uk>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Nicolas Pitre <nico@fluxnic.net>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Simon Horman <horms@verge.net.au>,
+        Arnd Bergmann <arnd@arndb.de>, Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Lukasz Stelmach <l.stelmach@samsung.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        kexec@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gT24gSnVuIDE1LCAyMDIxLCBhdCA3OjEzIEFNLCBHcmVnIEtyb2FoLUhhcnRtYW4gPGdy
-ZWdraEBsaW51eGZvdW5kYXRpb24ub3JnPiB3cm90ZToNCj4gDQo+IE9uIFR1ZSwgSnVuIDE1LCAy
-MDIxIGF0IDAxOjM2OjM5UE0gKzAwMDAsIEFsZXggTmVtaXJvdnNreSB3cm90ZToNCj4+IE1BSU5U
-QUlORVJTIG1vZGlmaWNhdGlvbiB3YXMgbWFkZSBpbiB0aGUgaW5pdGlhbCB2ZXJzaW9uIDEuICBX
-ZSBtYWRlIG5vIGNoYW5nZXMgdG8gaXQgc2luY2UgdGhlbiwNCj4+IHRodXMgbm90IHN1cmUgd2hh
-dCB3ZSBjb3VsZCBhdCB0byAgQ2hhbmdlbG9nIHdoaWNoIHdvdWxkIGFkZCB2YWx1ZSBvciBjbGFy
-aXR5IGZvciBvdGhlcnMNCj4+IGZyb20gdGhlIHYxLg0KPj4gDQo+Pj4gT24gSnVuIDE1LCAyMDIx
-LCBhdCA0OjUzIEFNLCBHcmVnIEtyb2FoLUhhcnRtYW4gPGdyZWdraEBsaW51eGZvdW5kYXRpb24u
-b3JnPiB3cm90ZToNCj4+PiANCj4+PiBPbiBTdW4sIE1heSAwOSwgMjAyMSBhdCAxMTo0NToxN0FN
-IC0wNzAwLCBBbGV4IE5lbWlyb3Zza3kgd3JvdGU6DQo+Pj4+IEZyb206IEphc29uIExpIDxqYXNv
-bi5saUBjb3J0aW5hLWFjY2Vzcy5jb20+DQo+Pj4+IA0KPj4+PiBDb252ZXJ0IHRoZSBDb3J0aW5h
-LUFjY2VzcyBVQVJUIGJpbmRpbmcgdG8gRFQgc2NoZW1hIGZvcm1hdC4NCj4+Pj4gDQo+Pj4+IFNp
-Z25lZC1vZmYtYnk6IEphc29uIExpIDxqYXNvbi5saUBjb3J0aW5hLWFjY2Vzcy5jb20+DQo+Pj4+
-IC0tLQ0KPj4+PiAuLi4vc2VyaWFsL2NvcnRpbmEtYWNjZXNzLHNlcmlhbC55YW1sICAgICAgICAg
-fCA0NiArKysrKysrKysrKysrKysrKysrDQo+Pj4+IC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Zl
-bmRvci1wcmVmaXhlcy55YW1sICB8ICAyICsNCj4+Pj4gTUFJTlRBSU5FUlMgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIHwgIDYgKysrDQo+Pj4gDQo+Pj4gWW91IGFyZSBhbHNvIGFk
-ZGluZyBhIE1BSU5UQUlORVJTIGVudHJ5IGhlcmUsIHdoaWNoIGlzIG5vdCBsaXN0ZWQgaW4gdGhl
-DQo+Pj4gY2hhbmdlbG9nIHRleHQsIHNvIEkgY291bGRuJ3QgdGFrZSBpdCBhbnl3YXkgOigNCj4g
-DQo+IEFkZCB0aGUgbWFpbnRhaW5lcnMgZW50cnkgaW4gdGhlIGZpcnN0IHBhdGNoLCB3aXRoIHRo
-ZSBkcml2ZXIgcGxlYXNlLg0KDQpUaGUgY2hhbmdlIHRvIE1BSU5UQUlORVJTIGhlcmUgYWRkIGEg
-bmV3IGZpbGUgaW50byB0aGUgRFQgZG9jdW1lbnRhdGlvbi4gDQpTaG91bGQgaXQgbm90IGJlIGdy
-b3VwZWQgaW50byB0aGUgZHQtYmluZGluZyBwb3J0aW9uIGFuZCByZXZpZXdlZCBieSB0aGUgRFQg
-dGltZSBmb3Igd2hpY2ggdGhpcyBwYXRjaA0KaXMgQ0PigJllZCB0bz8gV2h5IHdvdWxkIG1vdmlu
-ZyB0aGUgRFQgZG9jdW1lbnRhdGlvbiBmaWxlIHRoYXQgaXMgaW50cm9kdWNlZCBiZSBpbnRvIHRo
-ZSBmaXJzdCBwYXRjaCwgd2hpY2ggaXMgdGhlIA0Kc2VyaWFsIGRyaXZlciBpdHNlbGYgYmUgdGhl
-IGNvcnJlY3QgYXBwcm9hY2g/DQoNCg==
+Hi Rob,
+
+On Mon, Mar 22, 2021 at 5:59 PM Rob Herring <robh+dt@kernel.org> wrote:
+> On Wed, Mar 17, 2021 at 5:31 AM Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+> > Parse the following DT properties in the crash dump kernel, to provide a
+> > modern interface between kexec and the crash dump kernel:
+> >   - linux,elfcorehdr: ELF core header segment, similar to the
+> >     "elfcorehdr=" kernel parameter.
+> >   - linux,usable-memory-range: Usable memory reserved for the crash dump
+> >     kernel.
+> >     This makes the memory reservation explicit.  If present, Linux no
+> >     longer needs to mask the program counter, and rely on the "mem="
+> >     kernel parameter to obtain the start and size of usable memory.
+> >
+> > For backwards compatibility, the traditional method to derive the start
+> > of memory is still used if "linux,usable-memory-range" is absent, and
+> > the "elfcorehdr=" and "mem=" kernel parameters are still parsed.
+> >
+> > Loosely based on the ARM64 version by Akashi Takahiro.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+> > --- a/arch/arm/mm/init.c
+> > +++ b/arch/arm/mm/init.c
+> > @@ -4,6 +4,7 @@
+> >   *
+> >   *  Copyright (C) 1995-2005 Russell King
+> >   */
+> > +#include <linux/crash_dump.h>
+> >  #include <linux/kernel.h>
+> >  #include <linux/errno.h>
+> >  #include <linux/swap.h>
+> > @@ -210,8 +211,95 @@ void check_cpu_icache_size(int cpuid)
+> >  }
+> >  #endif
+> >
+> > +#ifdef CONFIG_OF_EARLY_FLATTREE
+> > +static int __init early_init_dt_scan_usablemem(unsigned long node,
+> > +               const char *uname, int depth, void *data)
+> > +{
+> > +       struct memblock_region *usablemem = data;
+> > +       const __be32 *reg;
+> > +       int len;
+> > +
+> > +       if (depth != 1 || strcmp(uname, "chosen") != 0)
+> > +               return 0;
+>
+> We have libfdt now, just get the '/chosen' node rather than using
+> of_scan_flat_dt().
+>
+>
+> > +
+> > +       reg = of_get_flat_dt_prop(node, "linux,usable-memory-range", &len);
+> > +       if (!reg || (len < (dt_root_addr_cells + dt_root_size_cells)))
+> > +               return 1;
+> > +
+> > +       usablemem->base = dt_mem_next_cell(dt_root_addr_cells, &reg);
+> > +       usablemem->size = dt_mem_next_cell(dt_root_size_cells, &reg);
+> > +       return 1;
+> > +}
+> > +
+> > +static void __init fdt_enforce_memory_region(void)
+> > +{
+> > +       struct memblock_region reg = {
+> > +               .size = 0,
+> > +       };
+> > +
+> > +       of_scan_flat_dt(early_init_dt_scan_usablemem, &reg);
+> > +
+> > +       if (reg.size)
+> > +               memblock_cap_memory_range(reg.base, reg.size);
+>
+> We should be able to do this in the DT core code. It doesn't matter
+> that these properties are arm* only. Other arches won't find the
+> properties.
+>
+> Also, note that there is now a drivers/of/kexec.c (in -next) though
+> not sure if all this would go there or stay in fdt.c with the rest of
+> the memory parsing.
+
+It's gonna be the latter, as that file handles the FDT during early
+kernel startup, for both normal and kdump kernels.
+
+Despite the name, drivers/of/kexec.c is not for kexec, but for
+kexec_file.  This is the "new" fancy syscall that prepares the DTB
+for the new kernel itself, unlike the classic kexec syscall, where
+userspace is responsible for preparing the DTB for the new kernel.
+
+> > +#if defined(CONFIG_CRASH_DUMP) && defined(CONFIG_OF_EARLY_FLATTREE)
+> > +static int __init early_init_dt_scan_elfcorehdr(unsigned long node,
+> > +               const char *uname, int depth, void *data)
+>
+> Same comments as above.
+
+This one can indeed be handled easily by drivers/of/fdt.c.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
