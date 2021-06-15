@@ -2,77 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 650963A7CF7
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 13:14:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65AA33A7D8B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 13:50:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbhFOLQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 07:16:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49876 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229977AbhFOLQt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 07:16:49 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5031661019;
-        Tue, 15 Jun 2021 11:14:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623755684;
-        bh=do5/Ft0Ug2QKKV16pIjm1Cav55ZqsPnnwJ2SakLmvUs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=s5659nm7mU8dbxL5ejjETuQPnC819oWthIJGpuxoabBaVSQZEW67rqKNug+7bEK6p
-         70b7X9PRCzK5cXOMptsXhWm7vN/I3GRo9emqOZNo3amltpwwkP777VMUVTDwM4y91F
-         PCjbtDFwjk3B8zPdN3UxZCqMA7mcYd9LTEyglBgm092Z+smm3naHWPj9rUtJ7Uuefk
-         oWdwi+U/f+GbYFThQBY3oGcf8U/YDxZOT0yblQOqm2IPthiSWH59Vn5AA92gCztV81
-         bYOgY5bxw0QLMNv7nOt93OT4E8nAb2G8DoXLEiSDwehLcQQ/OFTxlM96TpaB/SkKuK
-         dSeNH+HRii2Pw==
-Date:   Tue, 15 Jun 2021 12:14:26 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Mason Zhang <mason.zhang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, wsd_upstream@mediatek.com,
-        hanks.chen@mediatek.com, linux-kernel@vger.kernel.org,
-        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-binding: mediatek: mt6779: update spi document
-Message-ID: <20210615111426.GC5149@sirena.org.uk>
-References: <1623721803.24597.9.camel@mbjsdccf07>
+        id S229557AbhFOLwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 07:52:06 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:46309 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229520AbhFOLwF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 07:52:05 -0400
+X-UUID: 2134e75a28344fc692e2cae3d9fa2cc9-20210615
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:Date:CC:To:From:Subject:Message-ID; bh=BQai6nPOMiPUv4Z4xtBBlvgjSddYYRIO1ZSIjhf4Hns=;
+        b=jISEheLo3L/jd5EqTxNRyxbR0yv1EVUZh/yzJZS5J2BQihrZ1PzdrW/Z4Q9dPZgR+9CQ0yS4bzhrpHXngA00JreNEi/+vAO/q+iaHYVKc1rPBvUxUhIAMujmQ7JmrnItAKzeNpsTA77+w2FfOHW841fZN5kvc1EZhRf5UPd/UlY=;
+X-UUID: 2134e75a28344fc692e2cae3d9fa2cc9-20210615
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <mason.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 497994196; Tue, 15 Jun 2021 19:49:57 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 15 Jun 2021 19:49:55 +0800
+Received: from [10.15.20.246] (10.15.20.246) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 15 Jun 2021 19:49:55 +0800
+Message-ID: <1623756935.15299.3.camel@mbjsdccf07>
+Subject: [PATCH v2 1/1] arm64: dts: mediatek: add MT6779 spi master dts node
+From:   Mason Zhang <mason.zhang@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <hanks.chen@mediatek.com>,
+        <wsd_upstream@mediatek.com>, Mason Zhang <Mason.Zhang@mediatek.com>
+Date:   Tue, 15 Jun 2021 19:35:35 +0800
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="s9fJI615cBHmzTOP"
-Content-Disposition: inline
-In-Reply-To: <1623721803.24597.9.camel@mbjsdccf07>
-X-Cookie: See store for details.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+DQpUaGlzIHBhdGNoIGFkZCBzcGkgbWFzdGVyIGR0cyBub2RlIGZvdCBNVDY3NzkgU09DLg0KDQpT
+aWduZWQtb2ZmLWJ5OiBNYXNvbiBaaGFuZyA8TWFzb24uWmhhbmdAbWVkaWF0ZWsuY29tPg0KLS0t
+DQogYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaSB8IDExMiArKysrKysr
+KysrKysrKysrKysrKysrKw0KIDEgZmlsZSBjaGFuZ2VkLCAxMTIgaW5zZXJ0aW9ucygrKQ0KDQpk
+aWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaSBiL2Fy
+Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2Nzc5LmR0c2kNCmluZGV4IDM3MGYzMDlkMzJk
+ZS4uYzgxZTc2ODY1ZDFiIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRl
+ay9tdDY3NzkuZHRzaQ0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3Nzku
+ZHRzaQ0KQEAgLTIxOSw2ICsyMTksMTE4IEBADQogCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCiAJ
+CX07DQogDQorCQlzcGkwOiBzcGkwQDExMDBhMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlh
+dGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCisJCQkj
+YWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQltZWRpYXRl
+ayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJlZyA9IDwwIDB4MTEwMGEwMDAgMCAweDEwMDA+Ow0K
+KwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNDMgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwkJ
+CWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCisJCQkJPCZ0b3Bj
+a2dlbiBDTEtfVE9QX1NQST4sDQorCQkJCTwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX1NQSTA+Ow0K
+KwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCisJ
+CX07DQorDQorCQlzcGkxOiBzcGkxQDExMDEwMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlh
+dGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCisJCQkj
+YWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQltZWRpYXRl
+ayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJlZyA9IDwwIDB4MTEwMTAwMDAgMCAweDEwMDA+Ow0K
+KwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNDcgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwkJ
+CWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCisJCQkJPCZ0b3Bj
+a2dlbiBDTEtfVE9QX1NQST4sDQorCQkJCTwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX1NQSTE+Ow0K
+KwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCisJ
+CX07DQorDQorCQlzcGkyOiBzcGkyQDExMDEyMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlh
+dGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCisJCQkj
+YWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQltZWRpYXRl
+ayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJlZyA9IDwwIDB4MTEwMTIwMDAgMCAweDEwMDA+Ow0K
+KwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNTIgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwkJ
+CWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCisJCQkJIDwmdG9w
+Y2tnZW4gQ0xLX1RPUF9TUEk+LA0KKwkJCQk8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9TUEkyPjsN
+CisJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQor
+CQl9Ow0KKw0KKwkJc3BpMzogc3BpM0AxMTAxMzAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRp
+YXRlayxtdDY3Nzktc3BpIiwNCisJCQkJICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQorCQkJ
+I2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJbWVkaWF0
+ZWsscGFkLXNlbGVjdCA9IDwwPjsNCisJCQlyZWcgPSA8MCAweDExMDEzMDAwIDAgMHgxMDAwPjsN
+CisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTUzIElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCisJ
+CQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQorCQkJCSA8JnRv
+cGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJIDwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX1NQSTM+
+Ow0KKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsN
+CisJCX07DQorDQorCQlzcGk0OiBzcGk0QDExMDE4MDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1l
+ZGlhdGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCisJ
+CQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQltZWRp
+YXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJlZyA9IDwwIDB4MTEwMTgwMDAgMCAweDEwMDA+
+Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNTYgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0K
+KwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCisJCQkJIDwm
+dG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KKwkJCQkgPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJ
+ND47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJzZWwtY2xrIiwgInNwaS1jbGsi
+Ow0KKwkJfTsNCisNCisJCXNwaTU6IHNwaTVAMTEwMTkwMDAgew0KKwkJCWNvbXBhdGlibGUgPSAi
+bWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0K
+KwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCW1l
+ZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0gPDAgMHgxMTAxOTAwMCAwIDB4MTAw
+MD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1NyBJUlFfVFlQRV9MRVZFTF9MT1cgMD47
+DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0KKwkJCQk8
+JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJ
+NT47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJzZWwtY2xrIiwgInNwaS1jbGsi
+Ow0KKwkJfTsNCisNCisJCXNwaTY6IHNwaTZAMTEwMWQwMDAgew0KKwkJCWNvbXBhdGlibGUgPSAi
+bWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0K
+KwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCW1l
+ZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0gPDAgMHgxMTAxZDAwMCAwIDB4MTAw
+MD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE0NCBJUlFfVFlQRV9MRVZFTF9MT1cgMD47
+DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0KKwkJCQkg
+PCZ0b3Bja2dlbiBDTEtfVE9QX1NQST4sDQorCQkJCSA8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9T
+UEk2PjsNCisJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNs
+ayI7DQorCQl9Ow0KKw0KKwkJc3BpNzogc3BpN0AxMTAxZTAwMCB7DQorCQkJY29tcGF0aWJsZSA9
+ICJtZWRpYXRlayxtdDY3Nzktc3BpIiwNCisJCQkJICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7
+DQorCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJ
+bWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCisJCQlyZWcgPSA8MCAweDExMDFlMDAwIDAgMHgx
+MDAwPjsNCisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTQ1IElSUV9UWVBFX0xFVkVMX0xPVyAw
+PjsNCisJCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQorCQkJ
+CSA8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJIDwmaW5mcmFjZmdfYW8gQ0xLX0lORlJB
+X1NQSTc+Ow0KKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGkt
+Y2xrIjsNCisJCX07DQorDQogCQlhdWRpbzogY2xvY2stY29udHJvbGxlckAxMTIxMDAwMCB7DQog
+CQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktYXVkaW8iLCAic3lzY29uIjsNCiAJCQly
+ZWcgPSA8MCAweDExMjEwMDAwIDAgMHgxMDAwPjsNCg0KDQpIaSBNYXR0aGlhczoNCg0KCUk7bSBz
+b3JyeSB0byBkaXN0dXJiIHlvdSBhZ2FpbiwNCglJIGhhdmUgdXBkYXRlIGNvbW1pdCBtZXNzYWdl
+IGZvciB0aGlzIHBhdGNoLCBJcyB0aGVyZSBhbnkgb3RoZXIgcXVlc3Rpb25zIGFib3V0IHRoaXMg
+cGF0Y2g/DQoNClRoYW5rcw0KTWFzb24NCg0K
 
---s9fJI615cBHmzTOP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jun 15, 2021 at 09:50:03AM +0800, Mason Zhang wrote:
->=20
-> this patch update spi document for MT6779 SOC.
-
-I don't have either patch 1 or a cover letter, what's the story with
-dependencies here?
-
---s9fJI615cBHmzTOP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDIi5EACgkQJNaLcl1U
-h9DQ+wf/Yux273+r+yGK72dvXlm0Ap8q0DbSKRRXYm+S8/dxa/Z4yP6+Oj994oi6
-AS5dArwtt0+KTpwXnxX/J9oEhOtSMfE2alLqgJ02tjbog38w1z00WH07fe34Ni1C
-XH49gqs9bN6JhcXFeDI1VgwzzKDS+6/ZG9CFWlv3394hE4pKtxs2s2plneaqj106
-voLcaPSGCJrwtiXG+xUmZO+KzBZhx/ZKAOYZ66k172OuC3eGzGbUANSDlnp7MdPv
-IuKwLhwGPQDzr721R7jq8/7zVfrj+hv4lzgrV9lDCBQvpwM/hR9sPFKBbCUM+S9l
-nh9imKNN80d/DKW/HQWZ2IwMTWhAyw==
-=ux+v
------END PGP SIGNATURE-----
-
---s9fJI615cBHmzTOP--
