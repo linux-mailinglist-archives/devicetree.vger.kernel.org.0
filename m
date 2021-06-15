@@ -2,127 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65AA33A7D8B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 13:50:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8C653A7D65
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 13:38:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbhFOLwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 07:52:06 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:46309 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229520AbhFOLwF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 07:52:05 -0400
-X-UUID: 2134e75a28344fc692e2cae3d9fa2cc9-20210615
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:Date:CC:To:From:Subject:Message-ID; bh=BQai6nPOMiPUv4Z4xtBBlvgjSddYYRIO1ZSIjhf4Hns=;
-        b=jISEheLo3L/jd5EqTxNRyxbR0yv1EVUZh/yzJZS5J2BQihrZ1PzdrW/Z4Q9dPZgR+9CQ0yS4bzhrpHXngA00JreNEi/+vAO/q+iaHYVKc1rPBvUxUhIAMujmQ7JmrnItAKzeNpsTA77+w2FfOHW841fZN5kvc1EZhRf5UPd/UlY=;
-X-UUID: 2134e75a28344fc692e2cae3d9fa2cc9-20210615
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <mason.zhang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 497994196; Tue, 15 Jun 2021 19:49:57 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 15 Jun 2021 19:49:55 +0800
-Received: from [10.15.20.246] (10.15.20.246) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 15 Jun 2021 19:49:55 +0800
-Message-ID: <1623756935.15299.3.camel@mbjsdccf07>
-Subject: [PATCH v2 1/1] arm64: dts: mediatek: add MT6779 spi master dts node
-From:   Mason Zhang <mason.zhang@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
+        id S229943AbhFOLkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 07:40:25 -0400
+Received: from szxga02-in.huawei.com ([45.249.212.188]:4916 "EHLO
+        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229557AbhFOLkZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 07:40:25 -0400
+Received: from dggemv703-chm.china.huawei.com (unknown [172.30.72.54])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4G45pM60H0z704Q;
+        Tue, 15 Jun 2021 19:35:07 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggemv703-chm.china.huawei.com (10.3.19.46) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 15 Jun 2021 19:38:16 +0800
+Received: from [127.0.0.1] (10.174.179.0) by dggpemm500006.china.huawei.com
+ (7.185.36.236) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Tue, 15 Jun
+ 2021 19:38:16 +0800
+Subject: Re: [PATCH 1/1] arm64: dts: lx2160a: Normalize the compatible string
+ of "arm, sbsa-uart"
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>,
+        Shawn Guo <shawnguo@kernel.org>
+CC:     <leoyang.li@nxp.com>, <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <hanks.chen@mediatek.com>,
-        <wsd_upstream@mediatek.com>, Mason Zhang <Mason.Zhang@mediatek.com>
-Date:   Tue, 15 Jun 2021 19:35:35 +0800
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        <devicetree@vger.kernel.org>, <vabhav.sharma@nxp.com>,
+        <linux@armlinux.org.uk>
+References: <20210524035244.8677-1-thunder.leizhen@huawei.com>
+ <5612f2cad25a3041@bloch.sibelius.xs4all.nl>
+ <52e44070-3b6f-b8ee-2f23-6059517755a8@huawei.com>
+ <20210612021057.GE29138@dragon> <56133c63c48700e7@bloch.sibelius.xs4all.nl>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <cba3a29f-92b5-072a-9a27-60240f072dad@huawei.com>
+Date:   Tue, 15 Jun 2021 19:38:15 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <56133c63c48700e7@bloch.sibelius.xs4all.nl>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.174.179.0]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpUaGlzIHBhdGNoIGFkZCBzcGkgbWFzdGVyIGR0cyBub2RlIGZvdCBNVDY3NzkgU09DLg0KDQpT
-aWduZWQtb2ZmLWJ5OiBNYXNvbiBaaGFuZyA8TWFzb24uWmhhbmdAbWVkaWF0ZWsuY29tPg0KLS0t
-DQogYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaSB8IDExMiArKysrKysr
-KysrKysrKysrKysrKysrKw0KIDEgZmlsZSBjaGFuZ2VkLCAxMTIgaW5zZXJ0aW9ucygrKQ0KDQpk
-aWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3NzkuZHRzaSBiL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ2Nzc5LmR0c2kNCmluZGV4IDM3MGYzMDlkMzJk
-ZS4uYzgxZTc2ODY1ZDFiIDEwMDY0NA0KLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRl
-ay9tdDY3NzkuZHRzaQ0KKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDY3Nzku
-ZHRzaQ0KQEAgLTIxOSw2ICsyMTksMTE4IEBADQogCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCiAJ
-CX07DQogDQorCQlzcGkwOiBzcGkwQDExMDBhMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlh
-dGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCisJCQkj
-YWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQltZWRpYXRl
-ayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJlZyA9IDwwIDB4MTEwMGEwMDAgMCAweDEwMDA+Ow0K
-KwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNDMgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwkJ
-CWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCisJCQkJPCZ0b3Bj
-a2dlbiBDTEtfVE9QX1NQST4sDQorCQkJCTwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX1NQSTA+Ow0K
-KwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCisJ
-CX07DQorDQorCQlzcGkxOiBzcGkxQDExMDEwMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlh
-dGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCisJCQkj
-YWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQltZWRpYXRl
-ayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJlZyA9IDwwIDB4MTEwMTAwMDAgMCAweDEwMDA+Ow0K
-KwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNDcgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwkJ
-CWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCisJCQkJPCZ0b3Bj
-a2dlbiBDTEtfVE9QX1NQST4sDQorCQkJCTwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX1NQSTE+Ow0K
-KwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsNCisJ
-CX07DQorDQorCQlzcGkyOiBzcGkyQDExMDEyMDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1lZGlh
-dGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCisJCQkj
-YWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQltZWRpYXRl
-ayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJlZyA9IDwwIDB4MTEwMTIwMDAgMCAweDEwMDA+Ow0K
-KwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNTIgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0KKwkJ
-CWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCisJCQkJIDwmdG9w
-Y2tnZW4gQ0xLX1RPUF9TUEk+LA0KKwkJCQk8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9TUEkyPjsN
-CisJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNsayI7DQor
-CQl9Ow0KKw0KKwkJc3BpMzogc3BpM0AxMTAxMzAwMCB7DQorCQkJY29tcGF0aWJsZSA9ICJtZWRp
-YXRlayxtdDY3Nzktc3BpIiwNCisJCQkJICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7DQorCQkJ
-I2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJbWVkaWF0
-ZWsscGFkLXNlbGVjdCA9IDwwPjsNCisJCQlyZWcgPSA8MCAweDExMDEzMDAwIDAgMHgxMDAwPjsN
-CisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTUzIElSUV9UWVBFX0xFVkVMX0xPVyAwPjsNCisJ
-CQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQorCQkJCSA8JnRv
-cGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJIDwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX1NQSTM+
-Ow0KKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGktY2xrIjsN
-CisJCX07DQorDQorCQlzcGk0OiBzcGk0QDExMDE4MDAwIHsNCisJCQljb21wYXRpYmxlID0gIm1l
-ZGlhdGVrLG10Njc3OS1zcGkiLA0KKwkJCQkgICAgICJtZWRpYXRlayxtdDY3NjUtc3BpIjsNCisJ
-CQkjYWRkcmVzcy1jZWxscyA9IDwxPjsNCisJCQkjc2l6ZS1jZWxscyA9IDwwPjsNCisJCQltZWRp
-YXRlayxwYWQtc2VsZWN0ID0gPDA+Ow0KKwkJCXJlZyA9IDwwIDB4MTEwMTgwMDAgMCAweDEwMDA+
-Ow0KKwkJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxNTYgSVJRX1RZUEVfTEVWRUxfTE9XIDA+Ow0K
-KwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NQUlOUExMX0Q1X0QyPiwNCisJCQkJIDwm
-dG9wY2tnZW4gQ0xLX1RPUF9TUEk+LA0KKwkJCQkgPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJ
-ND47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJzZWwtY2xrIiwgInNwaS1jbGsi
-Ow0KKwkJfTsNCisNCisJCXNwaTU6IHNwaTVAMTEwMTkwMDAgew0KKwkJCWNvbXBhdGlibGUgPSAi
-bWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0K
-KwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCW1l
-ZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0gPDAgMHgxMTAxOTAwMCAwIDB4MTAw
-MD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE1NyBJUlFfVFlQRV9MRVZFTF9MT1cgMD47
-DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0KKwkJCQk8
-JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfU1BJ
-NT47DQorCQkJY2xvY2stbmFtZXMgPSAicGFyZW50LWNsayIsICJzZWwtY2xrIiwgInNwaS1jbGsi
-Ow0KKwkJfTsNCisNCisJCXNwaTY6IHNwaTZAMTEwMWQwMDAgew0KKwkJCWNvbXBhdGlibGUgPSAi
-bWVkaWF0ZWssbXQ2Nzc5LXNwaSIsDQorCQkJCSAgICAgIm1lZGlhdGVrLG10Njc2NS1zcGkiOw0K
-KwkJCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KKwkJCSNzaXplLWNlbGxzID0gPDA+Ow0KKwkJCW1l
-ZGlhdGVrLHBhZC1zZWxlY3QgPSA8MD47DQorCQkJcmVnID0gPDAgMHgxMTAxZDAwMCAwIDB4MTAw
-MD47DQorCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDE0NCBJUlFfVFlQRV9MRVZFTF9MT1cgMD47
-DQorCQkJY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01BSU5QTExfRDVfRDI+LA0KKwkJCQkg
-PCZ0b3Bja2dlbiBDTEtfVE9QX1NQST4sDQorCQkJCSA8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9T
-UEk2PjsNCisJCQljbG9jay1uYW1lcyA9ICJwYXJlbnQtY2xrIiwgInNlbC1jbGsiLCAic3BpLWNs
-ayI7DQorCQl9Ow0KKw0KKwkJc3BpNzogc3BpN0AxMTAxZTAwMCB7DQorCQkJY29tcGF0aWJsZSA9
-ICJtZWRpYXRlayxtdDY3Nzktc3BpIiwNCisJCQkJICAgICAibWVkaWF0ZWssbXQ2NzY1LXNwaSI7
-DQorCQkJI2FkZHJlc3MtY2VsbHMgPSA8MT47DQorCQkJI3NpemUtY2VsbHMgPSA8MD47DQorCQkJ
-bWVkaWF0ZWsscGFkLXNlbGVjdCA9IDwwPjsNCisJCQlyZWcgPSA8MCAweDExMDFlMDAwIDAgMHgx
-MDAwPjsNCisJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTQ1IElSUV9UWVBFX0xFVkVMX0xPVyAw
-PjsNCisJCQljbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfTUFJTlBMTF9ENV9EMj4sDQorCQkJ
-CSA8JnRvcGNrZ2VuIENMS19UT1BfU1BJPiwNCisJCQkJIDwmaW5mcmFjZmdfYW8gQ0xLX0lORlJB
-X1NQSTc+Ow0KKwkJCWNsb2NrLW5hbWVzID0gInBhcmVudC1jbGsiLCAic2VsLWNsayIsICJzcGkt
-Y2xrIjsNCisJCX07DQorDQogCQlhdWRpbzogY2xvY2stY29udHJvbGxlckAxMTIxMDAwMCB7DQog
-CQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDY3NzktYXVkaW8iLCAic3lzY29uIjsNCiAJCQly
-ZWcgPSA8MCAweDExMjEwMDAwIDAgMHgxMDAwPjsNCg0KDQpIaSBNYXR0aGlhczoNCg0KCUk7bSBz
-b3JyeSB0byBkaXN0dXJiIHlvdSBhZ2FpbiwNCglJIGhhdmUgdXBkYXRlIGNvbW1pdCBtZXNzYWdl
-IGZvciB0aGlzIHBhdGNoLCBJcyB0aGVyZSBhbnkgb3RoZXIgcXVlc3Rpb25zIGFib3V0IHRoaXMg
-cGF0Y2g/DQoNClRoYW5rcw0KTWFzb24NCg0K
+
+
+On 2021/6/12 18:11, Mark Kettenis wrote:
+>> Date: Sat, 12 Jun 2021 10:10:58 +0800
+>> From: Shawn Guo <shawnguo@kernel.org>
+>>
+>> On Tue, May 25, 2021 at 10:00:30AM +0800, Leizhen (ThunderTown) wrote:
+>>>
+>>>
+>>> On 2021/5/25 1:36, Mark Kettenis wrote:
+>>>>> From: Zhen Lei <thunder.leizhen@huawei.com>
+>>>>> Date: Mon, 24 May 2021 11:52:44 +0800
+>>>>> Content-Type: text/plain; charset="us-ascii"
+>>>>>
+>>>>> The compatible string of ARM SBSA defined generic UART needs to contain
+>>>>> only "arm,sbsa-uart" and does not need to contain "arm,pl011". Otherwise,
+>>>>> the pl011.yaml will check it and falsely report many warnings similar to
+>>>>> the following:
+>>>>>
+>>>>> arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dt.yaml:
+>>>>>  serial@21c0000: compatible:0: 'arm,pl011' was expected
+>>>>>  serial@21c0000: compatible:1: 'arm,primecell' was expected
+>>>>>
+>>>>> Delete the redundant "arm,pl011" to fix it.
+>>>>
+>>>> According to its reference manual, the LX2160A has a full PL011
+>>>> implementation.  So I think this is the wrong "fix".
+>>>
+>>> No, No, Please refer: https://www.spinics.net/lists/devicetree/msg424054.html
+>>>
+>>> Now the "arm,sbsa-uart" driver is mixed with amba-pl011.c，It's impossible
+>>> "arm,pl011" is loaded but "arm,sbsa-uart" is not loaded. So it makes no sense
+>>> to append "arm, pl011" to the end of the compatible string as an alternative
+>>> driver.
+>>>
+>>> drivers/tty/serial/amba-pl011.c:2784:       { .compatible = "arm,sbsa-uart", },
+>>
+>> I guess Mark is suggesting the following fix.
+>>
+>>                 uart0: serial@21c0000 {
+>> -                       compatible = "arm,sbsa-uart","arm,pl011";
+>> +                       compatible = "arm,pl011", "arm,primecell";
+>>                         reg = <0x0 0x21c0000 0x0 0x1000>;
+>>                         interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+>> -                       current-speed = <115200>;
+>>                         status = "disabled";
+>>                 };
+>>
+>> I copied some folks who might help clarify whether LX2160A UART is a SBSA
+>> or a full PL011.
+> 
+> Sorry, I missed Leizhen's original reply.  But yes, that is what I
+> meant.  According to the NXP documentation, the LX2160A has a real
+> PL011 UART, so the correct fix is what Shawn suggests above.
+
+Okay, so I'll prepare v2 on the advice of Shawn.
+
+> 
+> Cheers,
+> 
+> Mark
+> 
+>>>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>>>>> ---
+>>>>>  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 8 ++++----
+>>>>>  1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>>>>> index 4fcc869c21a4..417546616d85 100644
+>>>>> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>>>>> @@ -920,7 +920,7 @@
+>>>>>  		};
+>>>>>  
+>>>>>  		uart0: serial@21c0000 {
+>>>>> -			compatible = "arm,sbsa-uart","arm,pl011";
+>>>>> +			compatible = "arm,sbsa-uart";
+>>>>>  			reg = <0x0 0x21c0000 0x0 0x1000>;
+>>>>>  			interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+>>>>>  			current-speed = <115200>;
+>>>>> @@ -928,7 +928,7 @@
+>>>>>  		};
+>>>>>  
+>>>>>  		uart1: serial@21d0000 {
+>>>>> -			compatible = "arm,sbsa-uart","arm,pl011";
+>>>>> +			compatible = "arm,sbsa-uart";
+>>>>>  			reg = <0x0 0x21d0000 0x0 0x1000>;
+>>>>>  			interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
+>>>>>  			current-speed = <115200>;
+>>>>> @@ -936,7 +936,7 @@
+>>>>>  		};
+>>>>>  
+>>>>>  		uart2: serial@21e0000 {
+>>>>> -			compatible = "arm,sbsa-uart","arm,pl011";
+>>>>> +			compatible = "arm,sbsa-uart";
+>>>>>  			reg = <0x0 0x21e0000 0x0 0x1000>;
+>>>>>  			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+>>>>>  			current-speed = <115200>;
+>>>>> @@ -944,7 +944,7 @@
+>>>>>  		};
+>>>>>  
+>>>>>  		uart3: serial@21f0000 {
+>>>>> -			compatible = "arm,sbsa-uart","arm,pl011";
+>>>>> +			compatible = "arm,sbsa-uart";
+>>>>>  			reg = <0x0 0x21f0000 0x0 0x1000>;
+>>>>>  			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+>>>>>  			current-speed = <115200>;
+>>>>> -- 
+>>>>> 2.21.1
+>>>>>
+>>>>>
+>>>>>
+>>>>> _______________________________________________
+>>>>> linux-arm-kernel mailing list
+>>>>> linux-arm-kernel@lists.infradead.org
+>>>>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+>>>>>
+>>>>
+>>>> .
+>>>>
+>>>
+>>
+> 
+> .
+> 
 
