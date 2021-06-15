@@ -2,95 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA7C3A811B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 15:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5F043A8144
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 15:46:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231493AbhFONpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 09:45:02 -0400
-Received: from verein.lst.de ([213.95.11.211]:49407 "EHLO verein.lst.de"
+        id S230208AbhFONsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 09:48:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60388 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231931AbhFONoQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 09:44:16 -0400
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id 3D5CB67373; Tue, 15 Jun 2021 15:42:09 +0200 (CEST)
-Date:   Tue, 15 Jun 2021 15:42:08 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Claire Chang <tientzu@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
-        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
-        daniel@ffwll.ch, airlied@linux.ie, dri-devel@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
-        jxgao@google.com, joonas.lahtinen@linux.intel.com,
-        linux-pci@vger.kernel.org, maarten.lankhorst@linux.intel.com,
-        matthew.auld@intel.com, rodrigo.vivi@intel.com,
-        thomas.hellstrom@linux.intel.com
-Subject: Re: [PATCH v10 10/12] swiotlb: Add restricted DMA alloc/free
- support
-Message-ID: <20210615134208.GJ20389@lst.de>
-References: <20210615132711.553451-1-tientzu@chromium.org> <20210615132711.553451-11-tientzu@chromium.org>
+        id S230106AbhFONsM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 09:48:12 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BC13761369;
+        Tue, 15 Jun 2021 13:46:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1623764767;
+        bh=/+gmgKcGaUl2w2pHI0RFsnXNGdAV3gE2Fa42rbSgcAY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=b2xoiRqX+DJ/Hr27SKsx9hbbHh814udQK1z3qctXfLGvFMsnDN150/opaDqR4JBiU
+         ucSKrU3q8epgf14UAW8anxxwHv4F20xYO3bTrWdfjSBZtNWsa6akMaN1tupRLOdhah
+         m1fI0L3LdDRQrEmthipACK4K7+ev2Y/hBPuz9lRw=
+Date:   Tue, 15 Jun 2021 15:46:04 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Yuwen Ng <yuwen.ng@mediatek.com>,
+        Eddie Hung <eddie.hung@mediatek.com>
+Subject: Re: [PATCH 00/23] Add support gadget (runtime) PM
+Message-ID: <YMivHG2hwqFZLj6/@kroah.com>
+References: <1623139069-8173-1-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210615132711.553451-11-tientzu@chromium.org>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+In-Reply-To: <1623139069-8173-1-git-send-email-chunfeng.yun@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 15, 2021 at 09:27:09PM +0800, Claire Chang wrote:
-> Add the functions, swiotlb_{alloc,free} to support the memory allocation
-> from restricted DMA pool.
-> 
-> The restricted DMA pool is preferred if available.
-> 
-> Note that since coherent allocation needs remapping, one must set up
-> another device coherent pool by shared-dma-pool and use
-> dma_alloc_from_dev_coherent instead for atomic coherent allocation.
+On Tue, Jun 08, 2021 at 03:57:26PM +0800, Chunfeng Yun wrote:
+> This series mainly adds support for gadget suspend/resume when the controller
+> works at device only mode or dual role mode, and also adds support runtime PM,
+> in order to fix the sequence issue about resume and role switch event arised
+> by extcon or role-switch, rebuild and unify the flow of dual role switch for
+> all three supported ways.
 
-Note: when applied this should go before the next patch to make sure
-bisection works fine.
+I've applied patches 5-13 here, as they did not mess with the DT stuff.
 
->  #ifdef CONFIG_DMA_RESTRICTED_POOL
-> +struct page *swiotlb_alloc(struct device *dev, size_t size)
-> +{
-> +	struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
-> +	phys_addr_t tlb_addr;
-> +	int index;
-> +
-> +	/*
-> +	 * Skip io_tlb_default_mem since swiotlb_alloc doesn't support atomic
-> +	 * coherent allocation. Otherwise might break existing devices.
-> +	 * One must set up another device coherent pool by shared-dma-pool and
-> +	 * use dma_alloc_from_dev_coherent instead for atomic coherent
-> +	 * allocation to avoid mempry remapping.
+I will have to wait for the DT developers to review the yaml changes
+before I can take the rest.
 
-s/mempry/memory/g
+thanks,
 
-Otherwise looks good:
-
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+greg k-h
