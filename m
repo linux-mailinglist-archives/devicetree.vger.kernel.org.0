@@ -2,147 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 729003A732D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 03:02:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E38EA3A73F1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 04:28:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230302AbhFOBEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Jun 2021 21:04:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53986 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230084AbhFOBEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 21:04:52 -0400
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 001F3C061574
-        for <devicetree@vger.kernel.org>; Mon, 14 Jun 2021 18:02:48 -0700 (PDT)
-Received: from [192.168.1.101] (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 0BDDA1F960;
-        Tue, 15 Jun 2021 03:02:46 +0200 (CEST)
-Subject: Re: [PATCH v4] arm64: dts: qcom: sc7280: Add venus DT node
-To:     Dikshita Agarwal <dikshita@codeaurora.org>, david.brown@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, stanimir.varbanov@linaro.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        vgarodia@codeaurora.org
-References: <1623650391-28144-1-git-send-email-dikshita@codeaurora.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <f78c3873-37aa-c744-6ebd-6595b9f0fbaa@somainline.org>
-Date:   Tue, 15 Jun 2021 03:02:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S230181AbhFOC35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Jun 2021 22:29:57 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:44245 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230017AbhFOC34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Jun 2021 22:29:56 -0400
+X-UUID: 1a1dd5c6154e4b4d9f47f18dae7ae266-20210615
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:Date:CC:To:From:Subject:Message-ID; bh=HgQEMPAQwFVw316F5Bb8QONY/lmsE8nLMBDtacQX7JI=;
+        b=t3LvgieWBiOCwyg6dSv+mDsiKdf3OzAtFRQhDIgA06QHvTwrwjODC8+0XU4Caf1YqPyQkJgI4BvzQf8zOiEVVe6CJsmU1ipIuD+CefYkbNfLqGJzsBzTqwDlMxjko9L2ivHs3VYUBvs4o9PvgavCYhdcswbuWScXKY8gwAe3nHE=;
+X-UUID: 1a1dd5c6154e4b4d9f47f18dae7ae266-20210615
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <mason.zhang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 405860223; Tue, 15 Jun 2021 09:51:21 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 15 Jun 2021 09:51:12 +0800
+Received: from [10.15.20.246] (10.15.20.246) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 15 Jun 2021 09:51:11 +0800
+Message-ID: <1623721012.24597.3.camel@mbjsdccf07>
+Subject: [PATCH 2/2] dt-binding: mediatek: mt6779: update spi document
+From:   Mason Zhang <mason.zhang@mediatek.com>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <devicetree@vger.kernel.org>,
+        Mason Zhang <Mason.Zhang@mediatek.com>,
+        <wsd_upstream@mediatek.com>, <hanks.chen@mediatek.com>,
+        <linux-kernel@vger.kernel.org>,
+        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Tue, 15 Jun 2021 09:36:52 +0800
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <1623650391-28144-1-git-send-email-dikshita@codeaurora.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-
-> @@ -850,6 +855,76 @@
->  			interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
->  		};
->  
-> +		venus: video-codec@0aa00000 {
-
-Please remove the leading 0 after the "@" sign
-
-
-
-> +			compatible = "qcom,sc7280-venus";
-> +			reg = <0 0x0aa00000 0 0xd0600>;
-> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			clocks = <&videocc VIDEO_CC_MVSC_CORE_CLK>,
-> +				 <&videocc VIDEO_CC_MVSC_CTL_AXI_CLK>,
-> +				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
-> +				 <&videocc VIDEO_CC_MVS0_CORE_CLK>,
-> +				 <&videocc VIDEO_CC_MVS0_AXI_CLK>;
-> +			clock-names = "core", "bus", "iface",
-> +				      "vcodec_core", "vcodec_bus";
-> +
-> +			power-domains = <&videocc MVSC_GDSC>,
-> +					<&videocc MVS0_GDSC>;
-> +					<&rpmhpd SC7280_CX>;
-> +			power-domain-names = "venus", "vcodec0", "cx";
-
-Unless there was a newer revision of [1], the cx pd will most likely
-
-be unused due to it not being specified under opp_pmdomain.
-
-
-
-> +			operating-points-v2 = <&venus_opp_table>;
-> +
-> +			interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_VENUS_CFG 0>,
-> +					<&mmss_noc MASTER_VIDEO_P0 0 &mc_virt SLAVE_EBI1 0>;
-> +			interconnect-names = "cpu-cfg", "video-mem";
-> +
-> +			iommus = <&apps_smmu 0x2180 0x20>,
-> +				 <&apps_smmu 0x2184 0x20>;
-> +			memory-region = <&video_mem>;
-> +
-> +			video-decoder {
-> +				compatible = "venus-decoder";
-> +			};
-> +
-> +			video-encoder {
-> +				compatible = "venus-encoder";
-> +			};
-> +
-> +			video-firmware {
-> +				iommus = <&apps_smmu 0x21a2 0x0>;
-> +			};
-> +
-> +			venus_opp_table: venus-opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-133330000 {
-> +					opp-hz = /bits/ 64 <133330000>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +				};
-> +
-> +				opp-240000000 {
-> +					opp-hz = /bits/ 64 <240000000>;
-> +					required-opps = <&rpmhpd_opp_svs>;
-> +				};
-> +
-> +				opp-335000000 {
-> +					opp-hz = /bits/ 64 <335000000>;
-> +					required-opps = <&rpmhpd_opp_svs_l1>;
-> +				};
-> +
-> +				opp-424000000 {
-> +					opp-hz = /bits/ 64 <424000000>;
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +				};
-> +
-> +				opp-460000000 {
-> +					opp-hz = /bits/ 64 <460000000>;
-> +					required-opps = <&rpmhpd_opp_turbo>;
-> +				};
-> +			};
-> +
-> +		};
->
->
-Is there a downstream kernel source available for sc7280 to compare against?
-
-I don't see it in sm8350 releases and it's hard to tell out of thin air what values
-
-should be in there.. Unless qcom decides to share some documentation ;)
-
-
-Besides that, I don't see the driver part being merged neither in linux-next, nor media-next but I may be looking at the wrong tree.
-
-
-[1] https://lkml.org/lkml/2021/5/19/364
-
-
-Konrad
+DQp0aGlzIHBhdGNoIHVwZGF0ZSBzcGkgZG9jdW1lbnQgZm9yIE1UNjc3OSBTT0MuDQoNClNpZ25l
+ZC1vZmYtYnk6IE1hc29uIFpoYW5nIDxNYXNvbi5aaGFuZ0BtZWRpYXRlay5jb20+DQotLS0NCiBE
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc3BpL3NwaS1tdDY1eHgudHh0IHwgMSAr
+DQogMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQoNCmRpZmYgLS1naXQgYS9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc3BpL3NwaS1tdDY1eHgudHh0IGIvRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NwaS9zcGktbXQ2NXh4LnR4dA0KaW5kZXggOWU0Mzcy
+MWZhN2Q2Li43YmFlN2VlZjI2YzcgMTAwNjQ0DQotLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3Mvc3BpL3NwaS1tdDY1eHgudHh0DQorKysgYi9Eb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3Mvc3BpL3NwaS1tdDY1eHgudHh0DQpAQCAtMTMsNiArMTMsNyBAQCBSZXF1
+aXJlZCBwcm9wZXJ0aWVzOg0KICAgICAtIG1lZGlhdGVrLG10ODE4My1zcGk6IGZvciBtdDgxODMg
+cGxhdGZvcm1zDQogICAgIC0gIm1lZGlhdGVrLG10ODE5Mi1zcGkiLCAibWVkaWF0ZWssbXQ2NzY1
+LXNwaSI6IGZvciBtdDgxOTIgcGxhdGZvcm1zDQogICAgIC0gIm1lZGlhdGVrLG10ODUxNi1zcGki
+LCAibWVkaWF0ZWssbXQyNzEyLXNwaSI6IGZvciBtdDg1MTYgcGxhdGZvcm1zDQorICAgIC0gIm1l
+ZGlhdGVrLG10Njc3OS1zcGkiLCAibWVkaWF0ZWssbXQ2NzY1LXNwaSI6IGZvciBtdDY3NzkgcGxh
+dGZvcm1zDQogDQogLSAjYWRkcmVzcy1jZWxsczogc2hvdWxkIGJlIDEuDQogDQoNCg0KSGkgTWFy
+ayAmJiBNYXR0aGlhczoNCg0KCUkgaGF2ZSBmaXhlZCBjb21taXQgbWVzc2FnZSwgdGhhbmtzfg0K
+DQpUaGFua3MNCk1hc29uDQo=
 
