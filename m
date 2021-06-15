@@ -2,162 +2,384 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C293A8C5E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:19:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D96A3A8C6A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:23:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231157AbhFOXV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 19:21:27 -0400
-Received: from mailgate.ics.forth.gr ([139.91.1.2]:37368 "EHLO
-        mailgate.ics.forth.gr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229966AbhFOXV1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 19:21:27 -0400
-Received: from av3.ics.forth.gr (av3in.ics.forth.gr [139.91.1.77])
-        by mailgate.ics.forth.gr (8.15.2/ICS-FORTH/V10-1.8-GATE) with ESMTP id 15FNJKB8058327
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 02:19:20 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; d=ics.forth.gr; s=av; c=relaxed/simple;
-        q=dns/txt; i=@ics.forth.gr; t=1623799155; x=1626391155;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=uwFXfKsUDq2hvWkMUShCCiVgWGg1LtvvqsBZuvGXYp0=;
-        b=LMz1xsXB6BGLWnG55k8/4KVd5f2tm9aH0Ier9huFlt/47D4vW0sg/ztO6pSrB4uf
-        PnP5v6Lk2IFZRfbxeRoVDbrfSiTG3RUvYI09ZSIPOtLY8Ipw8J+WFfznFmKDnrvJ
-        dGFWD2uHkO2EPf5eLhCGxZZ7e60j+5XaUEgrq1BiQZDmh/9DEickjKKmjGvwRSW0
-        fqXA8pZS0s7cU7pSVbEBuaVf4LhBFMTz//P2uBSS+eQQP8zYHd752GIG8RxC6dcf
-        nfMDiTNRe/eQE29a/poJC3vogvHlxsFpSLvZiO117EWH0jxRwPTOdGFCEAQU1pd1
-        y6HmTkZB3yzgPfAOx/1lhQ==;
-X-AuditID: 8b5b014d-96ef2700000067b6-12-60c93573b2c3
-Received: from enigma.ics.forth.gr (enigma.ics.forth.gr [139.91.151.35])
-        by av3.ics.forth.gr (Symantec Messaging Gateway) with SMTP id 87.05.26550.37539C06; Wed, 16 Jun 2021 02:19:15 +0300 (EEST)
-X-ICS-AUTH-INFO: Authenticated user:  at ics.forth.gr
+        id S231492AbhFOXZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 19:25:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44150 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231463AbhFOXZc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 19:25:32 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 74ABA6137D;
+        Tue, 15 Jun 2021 23:23:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623799407;
+        bh=8KaQxhUKyVIdleVI/MbJP9taXr9qf9QVrVaGV1lkISU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rQPJyyATzcYV/t8Ib0KRkwaOAtw1rbUTcyV1R52Fp0+Ubce5kGEgLD0ZnUwzcfhLL
+         DFnDygfcraHYjsc/VY4RLg0/4wKzNdypPXdY7K2LxM42ZwrIHxU4Evdxh8QoLNGs1B
+         olurORMqeSKk+BkufGX72W4ZMmubC257MazV/9ZF2UCCYAVXAn9JBQzT9RugcUjvwi
+         tlY2y33xgzMZ6+He8vf4zisYnyd+XeTBrZZSajKOYfDI09N01+n2u/0W+2FWl6fHTR
+         JIfiT9oX+EQtkWzaAQNZ/5IFFUqjc8xo5h+zA5MCFcqK/xVyzKMTKzwIKrCqa1c5Ax
+         y5LMi6r7mUEJQ==
+Received: by mail-ej1-f46.google.com with SMTP id l1so498881ejb.6;
+        Tue, 15 Jun 2021 16:23:27 -0700 (PDT)
+X-Gm-Message-State: AOAM531FfVB0RYum+h9h40rNgaQ8EDOf6Zym15//CkKUYI4cQRx7GB3s
+        SRpdgT80T6DuoFDWUfc575wCQf4l+T0CpwOW/Q==
+X-Google-Smtp-Source: ABdhPJwCY8zt1AkuPa9thT9oKOQeINHPR57mvEy+hPqwsX6YRXRQMX/bxwMAQRP2+p5YaAGP46x1JpBNjPLpL/v8Eb4=
+X-Received: by 2002:a17:907:9620:: with SMTP id gb32mr1989537ejc.127.1623799406003;
+ Tue, 15 Jun 2021 16:23:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Wed, 16 Jun 2021 02:19:14 +0300
-From:   Nick Kossifidis <mick@ics.forth.gr>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Nick Kossifidis <mick@ics.forth.gr>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] riscv: Remove non-standard linux,elfcorehdr handling
-Organization: FORTH
-In-Reply-To: <CAL_JsqLU7GWDxdnR2-Yd2vbj7w=5pNr_fFocDQgPbs17EpBG0g@mail.gmail.com>
-References: <cover.1623780059.git.geert+renesas@glider.be>
- <bcc5c666f4ada9a8bbc26f559751f0da67f769f8.1623780059.git.geert+renesas@glider.be>
- <abadee118c1945c44d9bff7675b12ec4@mailhost.ics.forth.gr>
- <CAL_JsqLU7GWDxdnR2-Yd2vbj7w=5pNr_fFocDQgPbs17EpBG0g@mail.gmail.com>
-Message-ID: <bdfbf7cc997a10a94331d77332dbe88e@mailhost.ics.forth.gr>
-X-Sender: mick@mailhost.ics.forth.gr
-User-Agent: Roundcube Webmail/1.3.16
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpjkeLIzCtJLcpLzFFi42Lpjp6urFtsejLB4M8yDYutv2exW7xf1sNo
-        Mf/IOVaLmW/+s1nMnT2J0WLT42usFpd3zWGz2Pa5hc2i+d05douXl3uYLdpm8Vu07j3CbtFy
-        x9SB12PNvDWMHm9evmTxONzxhd1j4lldj52z7rJ7PNx0iclj06pONo/NS+o9LjVfZ/f4vEku
-        gCuKyyYlNSezLLVI3y6BK+P99/WsBRdkK2adC21gfC/excjBISFgIrFqb14XIyeHkMBRRonF
-        TeEgtoSAqcTsvZ2MIDavgKDEyZlPWEBsZgELialX9jNC2PISzVtnM4PYLAKqEp2bVrKD2GwC
-        mhLzLx0EqxcRUJHY8PwWUA0XUP0+Fom2lyfAioQFfCV+zbwIZvMLCEt8unuRFcTmFAiUeH/5
-        GhNIg5DABCaJfV9usUFc4SLxrfU1G8R1KhIffj9gB3lAFMjePFdpAqPgLCS3zkJy6ywkty5g
-        ZF7FKJBYZqyXmVysl5ZfVJKhl160iREcVYy+Oxhvb36rd4iRiYPxEKMEB7OSCK9u8YkEId6U
-        xMqq1KL8+KLSnNTiQ4zSHCxK4ry8ehPihQTSE0tSs1NTC1KLYLJMHJxSDUyup6ex2j0Ib95W
-        YMqsevBi9b0W7UJt5e9vPnkGn7xrOkn/1+kZ7/i3nS5ZuG6tSF9Ye+eWZaceqUcXORt8Sjzx
-        7eLsBx3mAZOfTbrLa6riFmcmJ6dy5qCYd+B8HR9zS78ZCx9riKect7HYfcvabq3jwq1P7rCr
-        6X/d9iaSn+lnpuX+e5LWqdPu8EdfEJqYkpw/f+HDOzpbWqWvF0zgnS3cEubaLCg4UdZ7Wqni
-        xEvrvsyI2RD4cdvDd4fnR2pcyHt/P25jtIfx45B3m9ofz+tfvnqr7Pz9pQsurpdo9L+tuzzI
-        Q4NXTY774FY3lto/myepLmye2j9p94eqC+4RQsUpbKrV0y5yMfxZosh98IClEktxRqKhFnNR
-        cSIAWD8HaxkDAAA=
+References: <20210615173233.26682-1-tinghan.shen@mediatek.com> <20210615173233.26682-25-tinghan.shen@mediatek.com>
+In-Reply-To: <20210615173233.26682-25-tinghan.shen@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 16 Jun 2021 07:23:15 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9KtJCUKAvqP_AN+iLs3Zi7pg428=8MvxhiZXbt8DFfPg@mail.gmail.com>
+Message-ID: <CAAOTY_9KtJCUKAvqP_AN+iLs3Zi7pg428=8MvxhiZXbt8DFfPg@mail.gmail.com>
+Subject: Re: [PATCH 25/27] arm64: dts: mt8195: add vdosys1 support for MT8195
+To:     Tinghan Shen <tinghan.shen@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Seiya Wang <seiya.wang@mediatek.com>, wenst@google.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Nancy Lin <nancy.lin@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Στις 2021-06-15 22:54, Rob Herring έγραψε:
-> On Tue, Jun 15, 2021 at 12:40 PM Nick Kossifidis <mick@ics.forth.gr> 
-> wrote:
->> 
->> Στις 2021-06-15 21:17, Geert Uytterhoeven έγραψε:
->> > RISC-V uses platform-specific code to locate the elf core header in
->> > memory.  However, this does not conform to the standard
->> > "linux,elfcorehdr" DT bindings, as it relies on a reserved memory node
->> > with the "linux,elfcorehdr" compatible value, instead of on a
->> > "linux,elfcorehdr" property under the "/chosen" node.
->> >
->> > The non-compliant code can just be removed, as the standard behavior is
->> > already implemented by platform-agnostic handling in the FDT core code.
->> >
->> > Fixes: 5640975003d0234d ("RISC-V: Add crash kernel support")
->> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
->> 
->> NACK
->> 
->> There is nothing standard about "linux,elfcorehdr", it's an
-> 
-> It is and it is documented which is more than we can say for
-> "linux,elfcorehdr" as a node.
-> 
+Hi, Tinghan:
 
-Standard stuff goes on /drivers/of, not on /arch/arm64. The 
-reserved-memory binding I use is on /drivers/of, is definitely a 
-standard / documented binding and the only issue here is that the 
-compatible string I used matched that property from arm64.
+Tinghan Shen <tinghan.shen@mediatek.com> =E6=96=BC 2021=E5=B9=B46=E6=9C=881=
+6=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=885:39=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> From: Nancy Lin <nancy.lin@mediatek.com>
+>
+> add vdosys1 support for MT8195
+>
+> Signed-off-by: Nancy Lin <nancy.lin@mediatek.com>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 178 +++++++++++++++++++++--
+>  1 file changed, 169 insertions(+), 9 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/d=
+ts/mediatek/mt8195.dtsi
+> index e273833a49f8..a98609989905 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -26,6 +26,7 @@
+>                 dpi1 =3D &disp_dpi1;
+>                 dp-intf0 =3D &dp_intf0;
+>                 dp-intf1 =3D &dp_intf1;
+> +               merge5 =3D &merge5;
+>         };
+>
+>         clocks {
+> @@ -2241,22 +2242,27 @@
+>
+>                 vdosys_config@1c01a000 {
+>                         compatible =3D "mediatek,mt8195-vdosys";
+> -                       reg =3D <0 0x1c01a000 0 0x1000>;
+> -                       reg-names =3D "vdosys0_config";
+> +                       reg =3D <0 0x1c01a000 0 0x1000>,<0 0x1c100000 0 0=
+x1000>;
+> +                       reg-names =3D "vdosys0_config","vdosys1_config";
+>                         iommus =3D <&iommu_vdo M4U_PORT_L0_DISP_RDMA0>;
+>                         power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> -                       mboxes =3D <&gce1 0 0 CMDQ_THR_PRIO_4>;
+> +                       mboxes =3D <&gce1 0 0 CMDQ_THR_PRIO_4>,
+> +                                <&gce1 1 0 CMDQ_THR_PRIO_4>;
+>                 };
+>
+>                 mutex: disp_mutex0@1c016000 {
+>                         compatible =3D "mediatek,mt8195-disp-mutex";
+> -                       reg =3D <0 0x1c016000 0 0x1000>;
+> -                       reg-names =3D "vdo0_mutex";
+> -                       clocks =3D <&vdosys0 CLK_VDO0_DISP_MUTEX0>;
+> +                       reg =3D <0 0x1c016000 0 0x1000>,
+> +                             <0 0x1c101000 0 0x1000>;
+> +                       reg-names =3D "vdo0_mutex","vdo1_mutex";
+> +                       clocks =3D <&vdosys0 CLK_VDO0_DISP_MUTEX0>,
+> +                                <&vdosys1 CLK_VDO1_DISP_MUTEX>;
+>                         power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S0>;
+> -                       clock-names =3D "vdo0_mutex";
+> -                       interrupts =3D <GIC_SPI 658 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> -                       mediatek,gce-events =3D <CMDQ_EVENT_VDO0_DISP_STR=
+EAM_DONE_0>;
+> +                       clock-names =3D "vdo0_mutex","sub_mutex";
+> +                       interrupts =3D <GIC_SPI 658 IRQ_TYPE_LEVEL_HIGH 0=
+>,
+> +                                    <GIC_SPI 494 IRQ_TYPE_LEVEL_HIGH 0>;
+> +                       mediatek,gce-events =3D <CMDQ_EVENT_VDO0_DISP_STR=
+EAM_DONE_0>,
+> +                                              <CMDQ_EVENT_VDO1_STREAM_DO=
+NE_ENG_0>;
+>                 };
+>
+>                 ovl0: disp_ovl@1c000000 {
+> @@ -2446,6 +2452,92 @@
+>                         power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S1>;
+>                 };
+>
+> +               disp_pseudo_ovl0@1c104000 {
+> +                       compatible =3D "mediatek,mt8195-disp-pseudo-ovl";
 
->> arm64-specific property on /chosen and it's suboptimal, it gets the
->> addr/length of ELF core of the previous kernel through that property 
->> and
->> then goes on to reserve that region at:
->> https://elixir.bootlin.com/linux/v5.13-rc6/source/arch/arm64/mm/init.c#L155
->> 
->> Why on earth is this cleaner than just defining a reserved-region in 
->> the
->> first place (a standard binding) with and hook up a callback with
->> RESERVEDMEM_OF_DECLARE for it to also initialize elfcorehdr_addr/size 
->> ?
->> If you don't like the compatible string I'm ok to change it, but this
->> patch breaks kdump on riscv since that region won't be reserved any 
->> more
->> and kernel will corrupt it.
-> 
-> I might agree if we were designing this all from scratch, but we're
-> not. We've got powerpc doing /memreserve/ + kernel cmdline, arm64
-> using chosen, and RiscV a 3rd way.
-> 
+Where is the definition of this compatible?
 
-I get it and I'd also like to consolidate things, but forcing riscv to 
-use a suboptimal approach just because arm64 uses it doesn't make sense 
-either, the goal should be for all to use the best possible approach 
-(disclaimer: I'm not saying my approach is the best possible, I'm saying 
-it's cleaner than arm64's).
+> +                       reg =3D <0 0x1c104000 0 0x1000>,
+> +                             <0 0x1c105000 0 0x1000>,
+> +                             <0 0x1c106000 0 0x1000>,
+> +                             <0 0x1c107000 0 0x1000>,
+> +                             <0 0x1c108000 0 0x1000>,
+> +                             <0 0x1c109000 0 0x1000>,
+> +                             <0 0x1c10A000 0 0x1000>,
+> +                             <0 0x1c10B000 0 0x1000>,
+> +                             <0 0x1c10C000 0 0x1000>,
+> +                             <0 0x1c10D000 0 0x1000>,
+> +                             <0 0x1c10E000 0 0x1000>,
+> +                             <0 0x1c10F000 0 0x1000>,
+> +                             <0 0x1c100000 0 0x1000>;
+> +                       reg-names =3D "vdo1_mdp_rdma0","vdo1_mdp_rdma1","=
+vdo1_mdp_rdma2",
+> +                                   "vdo1_mdp_rdma3","vdo1_mdp_rdma4",
+> +                                   "vdo1_mdp_rdma5","vdo1_mdp_rdma6",
+> +                                   "vdo1_mdp_rdma7","vdo1_merge0",
+> +                                   "vdo1_merge1","vdo1_merge2","vdo1_mer=
+ge3","top";
+> +                       mediatek,gce-client-reg =3D <&gce1 SUBSYS_1c10XXX=
+X 0x4000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0x5000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0x6000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0x7000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0x8000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0x9000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0xA000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0xB000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0xC000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0xD000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0xE000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0xF000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0x0000 0x1000>;
+> +                       clocks =3D <&vdosys1 CLK_VDO1_MDP_RDMA0>,
+> +                                <&vdosys1 CLK_VDO1_MDP_RDMA1>,
+> +                                <&vdosys1 CLK_VDO1_MDP_RDMA2>,
+> +                                <&vdosys1 CLK_VDO1_MDP_RDMA3>,
+> +                                <&vdosys1 CLK_VDO1_MDP_RDMA4>,
+> +                                <&vdosys1 CLK_VDO1_MDP_RDMA5>,
+> +                                <&vdosys1 CLK_VDO1_MDP_RDMA6>,
+> +                                <&vdosys1 CLK_VDO1_MDP_RDMA7>,
+> +                                <&vdosys1 CLK_VDO1_VPP_MERGE0>,
+> +                                <&vdosys1 CLK_VDO1_VPP_MERGE1>,
+> +                                <&vdosys1 CLK_VDO1_VPP_MERGE2>,
+> +                                <&vdosys1 CLK_VDO1_VPP_MERGE3>,
+> +                                <&vdosys1 CLK_VDO1_MERGE0_DL_ASYNC>,
+> +                                <&vdosys1 CLK_VDO1_MERGE1_DL_ASYNC>,
+> +                                <&vdosys1 CLK_VDO1_MERGE2_DL_ASYNC>,
+> +                                <&vdosys1 CLK_VDO1_MERGE3_DL_ASYNC>;
+> +                       clock-names =3D "vdo1_mdp_rdma0","vdo1_mdp_rdma1"=
+,
+> +                                     "vdo1_mdp_rdma2","vdo1_mdp_rdma3",
+> +                                     "vdo1_mdp_rdma4","vdo1_mdp_rdma5",
+> +                                     "vdo1_mdp_rdma6","vdo1_mdp_rdma7",
+> +                                     "vdo1_merge0","vdo1_merge1",
+> +                                     "vdo1_merge2","vdo1_merge3",
+> +                                     "vdo1_merge0_async","vdo1_merge1_as=
+ync",
+> +                                     "vdo1_merge2_async","vdo1_merge3_as=
+ync";
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S1>;
+> +                       mediatek,larb =3D <&larb2>;
+> +                       mediatek,smi-id =3D <0>;
+> +                       iommus =3D <&iommu_vdo M4U_PORT_L2_MDP_RDMA0>;
+> +                       interrupts =3D <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH 0=
+>, /*rdma0*/
+> +                                    <GIC_SPI 496 IRQ_TYPE_LEVEL_HIGH 0>,=
+ /*rdma1*/
+> +                                    <GIC_SPI 497 IRQ_TYPE_LEVEL_HIGH 0>,=
+ /*rdma2*/
+> +                                    <GIC_SPI 498 IRQ_TYPE_LEVEL_HIGH 0>,=
+ /*rdma3*/
+> +                                    <GIC_SPI 499 IRQ_TYPE_LEVEL_HIGH 0>,=
+ /*rdma4*/
+> +                                    <GIC_SPI 500 IRQ_TYPE_LEVEL_HIGH 0>,=
+ /*rdma5*/
+> +                                    <GIC_SPI 501 IRQ_TYPE_LEVEL_HIGH 0>,=
+ /*rdma6*/
+> +                                    <GIC_SPI 502 IRQ_TYPE_LEVEL_HIGH 0>,=
+ /*rdma7*/
+> +                                    <GIC_SPI 503 IRQ_TYPE_LEVEL_HIGH 0>,=
+ /*merge0*/
+> +                                    <GIC_SPI 504 IRQ_TYPE_LEVEL_HIGH 0>,=
+ /*merge1*/
+> +                                    <GIC_SPI 505 IRQ_TYPE_LEVEL_HIGH 0>,=
+ /*merge2*/
+> +                                    <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH 0>;=
+ /*merge3*/
+> +               };
+> +
+> +               merge5: disp_vpp_merge5@1c110000 {
+> +                       compatible =3D "mediatek,mt8195-disp-merge";
 
-> What happens when/if RiscV wants to add an IMA buffer? That's no
-> different than this case. The 2 architectures supporting it both use
-> /chosen. Specifying an initrd is no different either.
+Ditto.
 
-Those two are already on drivers/of/fdt.c and drivers/of/kexec.c, it's 
-also interesting to note that for both of them, including 
-"linux,elfcorehdr", the newly added drivers/of/kexec.c adds an entry to 
-the fdt's memory reservation map when creating the fdt for the next 
-kernel, so they are all basically reserved regions. Why this was chosen 
-(a property on /chosen + an entry on the reservation map), effectively 
-adding each region twice on the fdt, instead of just adding a 
-reserved-memory node for each one beats me. Note that in case of arm64 
-this is not what happens on kexec-tools, which is probably the reason 
-why arm64 still reserves them in any case.
+> +                       reg =3D <0 0x1c110000 0 0x1000>;
+> +                       interrupts =3D <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH 0=
+>;
+> +                       clocks =3D <&vdosys1 CLK_VDO1_VPP_MERGE4>,
+> +                                <&vdosys1 CLK_VDO1_MERGE4_DL_ASYNC>;
+> +                       clock-names =3D "merge5","merge5_async";
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S1>;
+> +                       mediatek,gce-client-reg =3D <&gce1 SUBSYS_1c11XXX=
+X 0x0000 0x1000>;
+> +               };
+> +
+>                 disp_dpi1: disp_dpi1@1c112000 {
+>                         compatible =3D "mediatek,mt8195-dpi";
+>                         reg =3D <0 0x1c112000 0 0x1000>;
+> @@ -2478,6 +2570,54 @@
+>                         status =3D "disabled";
+>                 };
+>
+> +               disp_ethdr@1c114000 {
+> +                       compatible =3D "mediatek,mt8195-disp-ethdr";
 
-Anyway I guess switching arm64 to reserved-memory is too much to ask 
-since they would have to also change kexec-tools, handle different 
-versions etc, and although I don't like it consolidation is more 
-important than a duplicate region on the fdt, so let's go with 
-"linux,elfcorehdr" on /chosen + entry on the reservation map. I'll 
-update my kexec-tools patch instead.
+Ditto.
+
+> +                       reg =3D <0 0x1c114000 0 0x1000>,
+> +                             <0 0x1c115000 0 0x1000>,
+> +                             <0 0x1c117000 0 0x1000>,
+> +                             <0 0x1c119000 0 0x1000>,
+> +                             <0 0x1c11A000 0 0x1000>,
+> +                             <0 0x1c11B000 0 0x1000>,
+> +                             <0 0x1c11C000 0 0x1000>,
+> +                             <0 0x1c100000 0 0x1000>;
+> +                       reg-names =3D "hdr_disp_mixer","hdr_vdo_fe0","hdr=
+_vdo_fe1",
+> +                                   "hdr_gfx_fe0","hdr_gfx_fe1","hdr_vdo_=
+be",
+> +                                   "hdr_adl_ds","top";
+> +                       mediatek,gce-client-reg =3D <&gce1 SUBSYS_1c11XXX=
+X 0x4000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c11XXXX =
+0x5000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c11XXXX =
+0x7000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c11XXXX =
+0x9000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c11XXXX =
+0xA000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c11XXXX =
+0xB000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c11XXXX =
+0xC000 0x1000>,
+> +                                                 <&gce1 SUBSYS_1c10XXXX =
+0x0000 0x1000>;
+> +                       clocks =3D <&vdosys1 CLK_VDO1_DISP_MIXER>,
+> +                                <&vdosys1 CLK_VDO1_HDR_VDO_FE0>,
+> +                                <&vdosys1 CLK_VDO1_HDR_VDO_FE1>,
+> +                                <&vdosys1 CLK_VDO1_HDR_GFX_FE0>,
+> +                                <&vdosys1 CLK_VDO1_HDR_GFX_FE1>,
+> +                                <&vdosys1 CLK_VDO1_HDR_VDO_BE>,
+> +                                <&vdosys1 CLK_VDO1_26M_SLOW>,
+> +                                <&vdosys1 CLK_VDO1_HDR_VDO_FE0_DL_ASYNC>=
+,
+> +                                <&vdosys1 CLK_VDO1_HDR_VDO_FE1_DL_ASYNC>=
+,
+> +                                <&vdosys1 CLK_VDO1_HDR_GFX_FE0_DL_ASYNC>=
+,
+> +                                <&vdosys1 CLK_VDO1_HDR_GFX_FE1_DL_ASYNC>=
+,
+> +                                <&vdosys1 CLK_VDO1_HDR_VDO_BE_DL_ASYNC>,
+> +                                <&topckgen CLK_TOP_ETHDR_SEL>;
+> +                       clock-names =3D "hdr_disp_mixer","hdr_vdo_fe0","h=
+dr_vdo_fe1",
+> +                                     "hdr_gfx_fe0","hdr_gfx_fe1","hdr_vd=
+o_be",
+> +                                     "hdr_adl_ds","hdr_vdo_fe0_async",
+> +                                     "hdr_vdo_fe1_async","hdr_gfx_fe0_as=
+ync",
+> +                                     "hdr_gfx_fe1_async","hdr_vdo_be_asy=
+nc",
+> +                                     "ethdr_top";
+> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
+S1>;
+> +                       mediatek,larb =3D <&larb3>;
+> +                       mediatek,smi-id =3D <1>;
+> +                       iommus =3D <&iommu_vpp M4U_PORT_L3_HDR_DS>,
+> +                                <&iommu_vpp M4U_PORT_L3_HDR_ADL>;
+> +                       interrupts =3D <GIC_SPI 517 IRQ_TYPE_LEVEL_HIGH 0=
+>; /*disp mixer*/
+> +               };
+> +
+>                 hdmi0: hdmi@1c300000 {
+>                         compatible =3D "mediatek,mt8195-hdmi";
+>                         reg =3D <0 0x1c300000 0 0x1000>;
+> @@ -2517,6 +2657,26 @@
+>                 };
+>         };
+>
+> +       disp_pseudo_ovl_l2 {
+> +               compatible =3D "mediatek,mt8195-pseudo-ovl-larb";
+
+Ditto.
+
+> +               mediatek,larb-id =3D <2>;
+> +               power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
+> +               iommus =3D <&iommu_vdo M4U_PORT_L2_MDP_RDMA0>,
+> +                        <&iommu_vdo M4U_PORT_L2_MDP_RDMA2>,
+> +                        <&iommu_vdo M4U_PORT_L2_MDP_RDMA4>,
+> +                        <&iommu_vdo M4U_PORT_L2_MDP_RDMA6>;
+> +       };
+> +
+> +       disp_pseudo_ovl_l3 {
+> +               compatible =3D "mediatek,mt8195-pseudo-ovl-larb";
+
+Ditto.
 
 Regards,
-Nick
+Chun-Kuang.
 
-
+> +               mediatek,larb-id =3D <3>;
+> +               power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
+> +               iommus =3D <&iommu_vpp M4U_PORT_L3_MDP_RDMA1>,
+> +                        <&iommu_vpp M4U_PORT_L3_MDP_RDMA3>,
+> +                        <&iommu_vpp M4U_PORT_L3_MDP_RDMA5>,
+> +                        <&iommu_vpp M4U_PORT_L3_MDP_RDMA7>;
+> +       };
+> +
+>         hdmiddc0: ddc_i2c {
+>                 compatible =3D "mediatek,mt8195-hdmi-ddc";
+>                 clocks =3D <&clk26m>;
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
