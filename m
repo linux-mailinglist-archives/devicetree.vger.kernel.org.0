@@ -2,108 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D8043A8453
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 17:48:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 138333A858E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 17:54:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231589AbhFOPuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 11:50:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58088 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbhFOPuE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 11:50:04 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E963CC061574
-        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 08:47:59 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id t11-20020a1cc30b0000b02901cec841b6a0so1136444wmf.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 08:47:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GBinx4Fgo45gvNb6Q+VwiPy/5uxor4+wH/XjaU7vEwU=;
-        b=fKBLKEpGGji1pJ8Chsxfvqljab6qo00YqyYLcs9KAIRVzcPyZyRS/9kYae9BQhnPkS
-         ZnpNaP5a2XEdbNdJeZViHbkyiIYIIILUexJwCWeSWF8fDuQSgpoe7MuUHFy0z4UazS32
-         sDdFgLVdGm9mG/b/9FD+ArxbRhqK74pHM2kr8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GBinx4Fgo45gvNb6Q+VwiPy/5uxor4+wH/XjaU7vEwU=;
-        b=iSJnqEifWtteFNfVTat3RKG77C0W08dZytkvCzsolb7r59zri2/RF+aIQMbUqABT6I
-         ahA701RE+vZO5CvjetBFNdYLjDv+GUp302KxlVA/0vgN/9CWL2uC059XdIZ+lShGxkE+
-         w2rRBu1Z3LLta+YfxeHit6s0kOIDs9IpyZ/P1gInm+Ql6ZuE4Lc90HLslPcnx+QJgD1B
-         DWyr8mbfYp3Vtp1foIZ7cErQ7TyKyncu+HImIBf+DkD/UzIDRlCoT6cR+zJthFfu3Ar2
-         NeQrlOWX7s306bQJlCK9PkviSLxzbHBh4zKl5VI99IuvbcGwBH8JiUrrcJ2I8zEZIvB7
-         tlFw==
-X-Gm-Message-State: AOAM531P5MEXI//eLIIScVK0j2SCK9Biz2jfCC91NoQsLbegQtqdvMRy
-        cHO6Q22Qqt13I5mtkvM6HEqMa+XbJHzL+s2gME7tPQ==
-X-Google-Smtp-Source: ABdhPJwUoEVW6kMYZC606PnYCEczrljMALiN96zNLd0kS0EL2UX5TDso3su7xUx2lhZdDpzedPnxBwH3c8Nmho87MO0=
-X-Received: by 2002:a7b:c5d2:: with SMTP id n18mr6083880wmk.97.1623772078396;
- Tue, 15 Jun 2021 08:47:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210526154704.114957-1-judyhsiao@chromium.org> <CA+Px+wXGjZCOhhAVh9eRw6L-g8g7Qi7Rf_3YHpHSCB2o=XQ+4g@mail.gmail.com>
-In-Reply-To: <CA+Px+wXGjZCOhhAVh9eRw6L-g8g7Qi7Rf_3YHpHSCB2o=XQ+4g@mail.gmail.com>
-From:   Cheng-yi Chiang <cychiang@chromium.org>
-Date:   Tue, 15 Jun 2021 23:47:30 +0800
-Message-ID: <CAFv8NwKkfGnpw_5PBwJSjVXsuw3L8=1RyEJ4PWdRX5-J75bk6A@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: max98357a: set channels_max to 4
-To:     Tzung-Bi Shih <tzungbi@google.com>
-Cc:     Judy Hsiao <judyhsiao@chromium.org>,
-        Mark Brown <broonie@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        id S232799AbhFOP4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 11:56:17 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35752 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232431AbhFOPyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 11:54:18 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15FFpSk9013356;
+        Tue, 15 Jun 2021 10:51:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623772288;
+        bh=5++bWnGrM6go12A1rxx4sq9l6NaaQjKIeCVMXQCm6Nc=;
+        h=From:To:CC:Subject:Date;
+        b=l24C6CcaZLRbsY1Bbt9OlHLZ5mFsY62QgjX1RsUp6mewvSCjyyipUHxKWJEbuRlrf
+         XvyUdNXM6saFH/7gab1MQT87Corb1a0TCPw1Swc0ymxpH0fNAE9zGVgqH0GOH4Ki55
+         jx1Quic9RFnYtyMfWTQQOA3+pMeDx0G3EJW+WGWc=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15FFpSMq074025
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Jun 2021 10:51:28 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 15
+ Jun 2021 10:51:28 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 15 Jun 2021 10:51:28 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15FFpIZB031828;
+        Tue, 15 Jun 2021 10:51:19 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Douglas Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
         <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ALSA development <alsa-devel@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/3] AM64: Update the locations of various elements in SRAM
+Date:   Tue, 15 Jun 2021 21:21:12 +0530
+Message-ID: <20210615155115.28902-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tzung-Bi,
+The following series of patches,
+- Increase the maximum size of TF-A
+- Update the location of TF-A due to a limitation for DFU boot
+- Indicate reserved locations for DMSC code and secure proxy
 
-On a platform, the four max98357a amps will be controlled by only one
-codec device, as GPIO for SD_MODE is shared by all amps and is the
-only thing to be controlled.
-In this sense, I think we can treat max98357a DAI as if it supports
-four channels.
-I understand that this solution is not scalable, because one can
-control as many amps as they want.
-Theoretically, the number of supported channels by this codec device
-is unlimited.
-I found that rt1015.c has similar usage.
-Do you have a better suggestion to support this kind of use case ?
-Thanks!
+changes since v2:
+- split the patches into three
+- added regions for indicating memory regions reserved for
+  dmsc and secure proxy
+- moved the TFA location to 0x701c4000
 
+Aswath Govindraju (3):
+  dts: ti: k3-am64-main: Update TF-A's maximum size and node name
+  arm64: dts: ti: k3-am64-main: Indicate the memory reserved for
+    DMSC-lite code and secure proxy communication buffer
+  arm64: dts: ti: k3-am64-main: Update the location of TF-A
 
+ arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
+-- 
+2.17.1
 
-On Tue, Jun 1, 2021 at 2:20 PM Tzung-Bi Shih <tzungbi@google.com> wrote:
->
-> On Wed, May 26, 2021 at 11:47 PM Judy Hsiao <judyhsiao@chromium.org> wrote:
-> > Sets channels_max to 4 to support QUAD channel.
->
-> Could you point out probably the up-to-date MAX98357A datasheet for
-> 4-channel support?
->
-> On a related note, from the public datasheet I could find[1], "Table
-> 5" only shows 2 channel's configuration.
->
-> [1]: https://pdf1.alldatasheet.com/datasheet-pdf/view/623796/MAXIM/MAX98357A.html
