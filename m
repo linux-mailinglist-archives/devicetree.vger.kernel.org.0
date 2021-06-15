@@ -2,90 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA7BD3A8C8A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:33:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1065F3A8C90
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:33:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231189AbhFOXfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 19:35:16 -0400
-Received: from mail-il1-f175.google.com ([209.85.166.175]:34776 "EHLO
-        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229898AbhFOXfO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 19:35:14 -0400
-Received: by mail-il1-f175.google.com with SMTP id w14so710816ilv.1;
-        Tue, 15 Jun 2021 16:33:06 -0700 (PDT)
+        id S231557AbhFOXf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 19:35:57 -0400
+Received: from mail-il1-f173.google.com ([209.85.166.173]:35495 "EHLO
+        mail-il1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231510AbhFOXf4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 19:35:56 -0400
+Received: by mail-il1-f173.google.com with SMTP id b9so701040ilr.2;
+        Tue, 15 Jun 2021 16:33:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8Fz3AetKQEA77r3UIPjWBZbJ1RgLcNWRZBS0z/pKRfo=;
-        b=KVTk6Bd2xBvzbfXj9OA4kC6kX0U+g8pnEOUP9DtmZw3kqyoIVoCf5q23Bypf6LgoW/
-         sTalnO8eAdLn9umTU779ycvggHBnVP2pprJR5D3SEpQKgnDRPSukvZhPXBNYP60uxmqK
-         SVKPxg3QPRG48xIOYLrl3GDJOWO24XV5sQuh5Qoc83EhS3SX29uUmJwY32nbvJheRBll
-         j++19lDJJiNzNZb2WKJAvBoViCv5ApjnF29FS4m3GyIR+Qm7YbU0n2k2FkJkbgCkQUlZ
-         AvK4ijj7l0dsRxhAqvm1Quw/q1yqrRhfrwRO5evarKPqgbHDXzntinIAJOm+9W1ZxXPp
-         ehlg==
-X-Gm-Message-State: AOAM531jYvuwhN8p3s8DPlzy8JiCkh4ak1V7F4lfoYpC0Qjg5tal/ciU
-        /mnR9rQE0Y0cnboTAf7EAA==
-X-Google-Smtp-Source: ABdhPJwFYf76OVEZ+HNaaZsult7XHiKTmBkAHWs/gW1dtLaCbWM+Jk97PUvUZRACQLTXkJThIg+EGg==
-X-Received: by 2002:a92:5404:: with SMTP id i4mr1340945ilb.226.1623799985851;
-        Tue, 15 Jun 2021 16:33:05 -0700 (PDT)
+        bh=LyqHDdfMm/fHepQcQ8Q+GkviGnfZ8KOz9oxgfTRPU7I=;
+        b=nyCXLTMsPCjZIaeZLFXbzgwznH/W3rNBKa4C8WXCy6UaHH/rWgmPn7FC0sluzxfytO
+         07tEPeD5afIjXh2zAAOKD7+J/UitzbjP3SPA2+8CDJRQr/PIgjcITsoKjEdbemHABcQE
+         9QLLHKXtrpFnX/xOOF0QrQtHvnOTwkj0eJ+ur1PAPPFmp52NERjlDaGXpNc4UR7JyF5H
+         anMPMbeIpFOgwzFXsjfdx8K0qklz9l5X684xkfrUk3fBcXsfnTg/sbjdlfXxg+m5EU5v
+         ryjoe2C3lS+XpG/3wEDQHpQ2gLkIX31+br5f+DTh6OJVnQkKDdMzMYw5MZhFakbZGuMD
+         lVuA==
+X-Gm-Message-State: AOAM533sSlA1e2aJp5t2Mtv8ZY+UEHNyUwIAY9vi7e7EjXZWCgzxZp3f
+        jO7kB2B7GgG+bx/Uk9aVIA==
+X-Google-Smtp-Source: ABdhPJzbC5HKz5gHoX68oLX+Wabn/CX5CPYzUpZTV+qRkH3zirfL4w2wpZiZHDRNfvv71F9L/+x0lw==
+X-Received: by 2002:a92:bd06:: with SMTP id c6mr1398682ile.110.1623800030775;
+        Tue, 15 Jun 2021 16:33:50 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id m5sm251953iov.31.2021.06.15.16.33.04
+        by smtp.gmail.com with ESMTPSA id r11sm282870ilm.23.2021.06.15.16.33.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Jun 2021 16:33:05 -0700 (PDT)
-Received: (nullmailer pid 1624214 invoked by uid 1000);
-        Tue, 15 Jun 2021 23:33:03 -0000
-Date:   Tue, 15 Jun 2021 17:33:03 -0600
+        Tue, 15 Jun 2021 16:33:49 -0700 (PDT)
+Received: (nullmailer pid 1628454 invoked by uid 1000);
+        Tue, 15 Jun 2021 23:33:45 -0000
+Date:   Tue, 15 Jun 2021 17:33:45 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jon Lin <jon.lin@rock-chips.com>
-Cc:     broonie@kernel.org, linux-arm-kernel@lists.infradead.org,
-        heiko@sntech.de, devicetree@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 1/6] dt-bindings: spi: spi-rockchip: add description
- for rv1126
-Message-ID: <20210615233303.GA1623889@robh.at.kernel.org>
-References: <20210615033213.14241-1-jon.lin@rock-chips.com>
- <20210615033213.14241-2-jon.lin@rock-chips.com>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     linux-sunxi@googlegroups.com, Samuel Holland <samuel@sholland.org>,
+        linux-kernel@vger.kernel.org, Icenowy Zheng <icenowy@aosc.io>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Ondrej Jirman <megous@megous.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v7 01/19] dt-bindings: mfd: axp20x: Add AXP305 compatible
+ (plus optional IRQ)
+Message-ID: <20210615233345.GA1627887@robh.at.kernel.org>
+References: <20210615110636.23403-1-andre.przywara@arm.com>
+ <20210615110636.23403-2-andre.przywara@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210615033213.14241-2-jon.lin@rock-chips.com>
+In-Reply-To: <20210615110636.23403-2-andre.przywara@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Jun 2021 11:32:08 +0800, Jon Lin wrote:
-> The description below will be used for rv1126.dtsi or compatible one in
-> the future
+On Tue, 15 Jun 2021 12:06:18 +0100, Andre Przywara wrote:
+> The AXP305 PMIC used on many boards with the H616 SoC seems to be fully
+> compatible to the AXP805 PMIC, so add the proper chain of compatible
+> strings.
 > 
-> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+> Also at least on one board (Orangepi Zero2) there is no interrupt line
+> connected to the CPU, so make the "interrupts" property optional.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
-> 
-> Changes in v8:
-> - There is a problem with the version 7 mail format. resend it
-> 
-> Changes in v7:
-> - Fall back "rockchip,rv1126-spi" to "rockchip,rk3066-spi"
-> 
-> Changes in v6:
-> - Consider to compatibility, the "rockchip,rk3568-spi" is removed in
->   Series-changes v5, so the commit massage should also remove the
->   corresponding information
-> 
-> Changes in v5:
-> - Change to leave one compatible id rv1126, and rk3568 is compatible
->   with rv1126
-> 
-> Changes in v4:
-> - Adjust the order patches
-> - Simply commit massage like redundancy "application" content
-> 
-> Changes in v3:
-> - Fix compile error which is find by Sascha in [v2,2/8]
-> 
->  Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/mfd/axp20x.txt | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
