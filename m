@@ -2,318 +2,357 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB64A3A78BC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 10:06:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB42F3A78B9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Jun 2021 10:06:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230507AbhFOII4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 04:08:56 -0400
-Received: from mail-dm6nam11on2064.outbound.protection.outlook.com ([40.107.223.64]:43360
-        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        id S230451AbhFOIIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 04:08:50 -0400
+Received: from mail-eopbgr1400108.outbound.protection.outlook.com ([40.107.140.108]:60160
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230332AbhFOII4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 04:08:56 -0400
+        id S230332AbhFOIIs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 04:08:48 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MHBEN02DHC5ApdyHLIuDwVHTtwgDkvsKfd1jBvutKiTnf6IYhE0ykEN5ojx5lzYOJcNzZJMyo2/Ur+TvbQuoeEG2jcXqU58ljYcYNMlkbD0Nm1cEKGLsG7EnEQ7+xSfHbj2ZFHzL9YtEzYruq6Ax87mLzudYJkq2GXiRpDvummLJSKQLh1IAqm5H/8G22Cfci6SQv3pX4wIeOdEKoAIGXFzChuy7OMrwBSMrrNOkJn+ZU4YGmYaDyGFt5UukcsA4lonmYQgaib3YF852ior1sRx9Njhxzu70P0vOYyFoLKIRXtROsHd0ieVqLdsrkEAaBMjr23AKAavJZlZk7u8Fdw==
+ b=W1HmhGppKW4x/VXXyuG4c1oPX9ASDycJcNjkEqkA0ThSkcWcMzYCndMHvGUZFHgCX7i68PP/+d6w9vxRlfajywMF6NYsZuAQxbYVajWw5VQ95lJ8c4rTvDK41bPzx2dKeUCtK9k/xiUoEnuhrkcLYk/+EERlNulhb3I45sBQSNTN7xk4kagUcLZa8L6Gh3na/YHUi/hDp7TP43+rdc3sjMD7oTjvJfPyPSDKWSkoY1GKx+j2RGK6IztTcMISOQWy4X1YkaHbr0+Swqp2uJKbaKLNlYuHNTRA3PQZvhJKB0Ktn8WgNjbxzTVmffqlUW4PHv1Kl9sYBqSgBq2JnVLwaw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0z+ajz9oJTabMq/lg1C/vnSrptLSuNT9aIfqDf71ICI=;
- b=NzNIaYX97g6uHbN1RFGgtZAWZj87GrM33gvrvMWrGxzPXenHQJkFs8PrY5lDvllIoaFSoSGxEFmigvFyRNkz7UwN6Z318yCVLtWJ3e4/8MzJ3uV3LLleHf7V/mBzmR58wWxkZdcn7MXXUJq7sLGlm0KkpbziXDE8YIgsbKMFnzWT3GdswbjTexz+uXNWRjYoNGGQAhXuAYrU5bsZBADlmjlYlViORXjMYXTlh2mHVJna3QPecas3O9YniqC9beUM1M37GT0Y8RS6KD9zRgtgcxcYNZumBhweAvDKMy5AvOy1TxCnvs4FAF3o2UU2HR6YiXq0f6DkK6A6HRM1gDcoKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=linaro.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+ bh=OVB3WYdMl/3R82/4KBgXLuOxO4TJp5xVd+OU0vPaRW0=;
+ b=iS6gjhUskxYxeuOnJdPk0sSyLIvlD8D32HgVLjsTX53p0diiTTqlCaTQFHAC8sv8bqFTJYvGAXN5U7zu3sgQ+4mCmEhlcrxQBvibIL1bh5xuckxEz2iUe9t6DrHzt1ZTn9gPwtFkFK1OQ0b/zgtFEDiTaWjwNioRXLuBPjSlchtoI8PG4v15lwOC4P9X2ZnTJb5iAx3sr5pcM5owjHibXwze3eOijZQJK4BvV6RZtt86GtkOY0lGS3YPn9aqaVqDs0AXlAQV3GqN+P08ikiNl9Xw71P4gb4bkvosq1AnkkaaAtuKmEmsjMt2GoO3go3I4Geu9FtQsc1R8eneESHCLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0z+ajz9oJTabMq/lg1C/vnSrptLSuNT9aIfqDf71ICI=;
- b=M3gKXZ+L8IWDpGn1tgr0mL5A4fNQtTinYxcD7L60MdOxVvAA82Egep927P0LHvTB6YF8Uo9nTM8AEp/p91jjFhhpmaqj9ebNWArazotkyAvb8unzq7jaBtBK08UI7VBZLV4e8pdRxnpdA1htxMYD3eJ/9+EcPVkPldm+ThBi2aY=
-Received: from DM5PR13CA0030.namprd13.prod.outlook.com (2603:10b6:3:7b::16) by
- BL3PR02MB8185.namprd02.prod.outlook.com (2603:10b6:208:338::21) with
+ bh=OVB3WYdMl/3R82/4KBgXLuOxO4TJp5xVd+OU0vPaRW0=;
+ b=fiUga6SX6oj5Qoplh6TUwQePYqC/i4BpDXse8l284UNYYvhKi02smttGErKLB1FpH1Jr8wJhs2BzFla5N++aqio2h5LrjqAuXkpGjqree1zWmIm70hwryCZZsQmvGCtWsKMmD/PC8G93DexZ95lq3lkcFhqCAjtEy32WHvBnFv8=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
+ by OSBPR01MB2519.jpnprd01.prod.outlook.com (2603:1096:604:22::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.24; Tue, 15 Jun
- 2021 08:06:50 +0000
-Received: from DM3NAM02FT011.eop-nam02.prod.protection.outlook.com
- (2603:10b6:3:7b:cafe::19) by DM5PR13CA0030.outlook.office365.com
- (2603:10b6:3:7b::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.9 via Frontend
- Transport; Tue, 15 Jun 2021 08:06:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- DM3NAM02FT011.mail.protection.outlook.com (10.13.5.26) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4219.21 via Frontend Transport; Tue, 15 Jun 2021 08:06:50 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 15 Jun 2021 01:06:43 -0700
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Tue, 15 Jun 2021 01:06:43 -0700
-Envelope-to: git@xilinx.com,
- linus.walleij@linaro.org,
- bgolaszewski@baylibre.com,
- robh+dt@kernel.org,
- linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-Received: from [10.140.6.35] (port=43350 helo=xhdsaipava40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <piyush.mehta@xilinx.com>)
-        id 1lt45p-0002dn-UA; Tue, 15 Jun 2021 01:06:42 -0700
-From:   Piyush Mehta <piyush.mehta@xilinx.com>
-To:     <linus.walleij@linaro.org>, <bgolaszewski@baylibre.com>,
-        <robh+dt@kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>, <git@xilinx.com>,
-        <sgoud@xilinx.com>, <michal.simek@xilinx.com>,
-        Piyush Mehta <piyush.mehta@xilinx.com>
-Subject: [PATCH 2/2] gpio: modepin: Add driver support for modepin GPIO controller
-Date:   Tue, 15 Jun 2021 13:35:53 +0530
-Message-ID: <20210615080553.2021061-3-piyush.mehta@xilinx.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210615080553.2021061-1-piyush.mehta@xilinx.com>
-References: <20210615080553.2021061-1-piyush.mehta@xilinx.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.21; Tue, 15 Jun
+ 2021 08:06:34 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::b834:5e50:2ce8:9ae0]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::b834:5e50:2ce8:9ae0%3]) with mapi id 15.20.4219.025; Tue, 15 Jun 2021
+ 08:06:33 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chris Brandt <Chris.Brandt@renesas.com>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
+Thread-Topic: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
+Thread-Index: AQHXXrYS1Y35K9bUV02GRKgFCWvED6sTb4CAgAAIHiCAAB5YgIAAGraggAADZICAAABasIAAAroAgAAAsKCAABDLAIAA6wHw
+Date:   Tue, 15 Jun 2021 08:06:33 +0000
+Message-ID: <OS0PR01MB5922C23FE23E0D3BD4A71CBC86309@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20210611113642.18457-1-biju.das.jz@bp.renesas.com>
+ <20210611113642.18457-2-biju.das.jz@bp.renesas.com>
+ <CAMuHMdUQRHtVFhqmgi5EE2TNobspM3tNTP10gz-yPDJSK31ytA@mail.gmail.com>
+ <OS0PR01MB5922B2355864A98B14C6DE6D86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <YMdnzdCvX/ur9qVr@pendragon.ideasonboard.com>
+ <OS0PR01MB59227DFC38FD6CF6C568A90E86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <YMeBDfrVLZxSkVnL@pendragon.ideasonboard.com>
+ <OS0PR01MB592282EC4F5779A2169D6AB086319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <YMeDoj5RFZgbbRSO@pendragon.ideasonboard.com>
+ <OS0PR01MB5922D0054E5A5EEFF8B4A92F86319@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <YMeSTBzIPWTDQiJQ@pendragon.ideasonboard.com>
+In-Reply-To: <YMeSTBzIPWTDQiJQ@pendragon.ideasonboard.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: ideasonboard.com; dkim=none (message not signed)
+ header.d=none;ideasonboard.com; dmarc=none action=none
+ header.from=bp.renesas.com;
+x-originating-ip: [86.139.26.177]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9dde043e-ec0f-4e2d-aa5e-08d92fd47d9d
+x-ms-traffictypediagnostic: OSBPR01MB2519:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <OSBPR01MB2519BB5AAD081CAD908FBD1486309@OSBPR01MB2519.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: zdXYsYdiPUoy4fB5ucaSztrESkgQ8isP4zexBHvxwT8SmzX423WwHh8BA2wVkEaW5jV4Ir43oyGH8gYcPbcbudJMhBpP+b15QZUecjGX7a3JpNghu3xzKFgn2HDrqRLKo7Idtq4t9gt/qVp5Ibmd7pzEx8N9J4nwexuGVcrh9tJTBsJWMk32MS+SF9CYrrGL23VJVUma1b30uT/MYEgwdmbWRmagdT3MZZ2aKF5O6zdZ4iq7hntT7xknXXyx/xKz3B97wXFQY4k+txoEu+OjKCAPZFZT8Ahnx3j4wpmb6Ew1vRb0rgF1pvWd/KXuQDwlSpotKNMjCrXDY6Ye3Db3NRWOl9D8j6Vpnu/6TZuTWMHy32tWJrnziqjym8EbNZxoHYJSlX9c98DO0/edS2067Jsv2509s/FgWAlw/KoZh+Cx4yX5MRf8p8OUMI5hH1d2casBmcQeR4xHHbTbKGU+3yxA8SHNRRs3hu8RhD2jQfMtln8kkjEEe/wRFL6qGwyrvc+lsIautGq78UzFhrTzDzxVRtfd+eh1RzadTLXZGItXIRICcTJQgtj6XQC5SGlFIqmUXuhP/J2sGSVtuIpBkSL3DQb/AYSRi93kfepB0Ue9T7UeiUfRrNQq3sLlNxwTE0inI32vdSoLxL09f4jqe0LNMHFejf4hPlLuEljh56P1qGwjA+niQ1RHihye7puV5cpOJU94HCYLwKCFW91QIuLAZeL32DynxXlfByquIJk=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(39860400002)(366004)(136003)(4326008)(66946007)(8936002)(6916009)(33656002)(53546011)(66556008)(26005)(66476007)(6506007)(186003)(7696005)(66446008)(71200400001)(122000001)(316002)(2906002)(52536014)(83380400001)(76116006)(86362001)(9686003)(5660300002)(38100700002)(8676002)(478600001)(54906003)(64756008)(45080400002)(55016002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?vsSpyujHppnMMqsjskQ3zi8EPwOzXZFkEjDABlBRavktZAwF3TPvOFTTaxmR?=
+ =?us-ascii?Q?tK+tx/XjCbDxeQ+6gzpS6Haqi7/8RVVHD2iW8eA3hj7lSQdv2Q0CaYhVSYBm?=
+ =?us-ascii?Q?8G4EK41PPGPQmH+4vUsxbb5V7m4UAvfM5MD5x1YJ2qIrs5wJ/+IY+fYUq92Q?=
+ =?us-ascii?Q?r1chUC9wv63UNiXZLEMdq2hw6zgDyeQW3oP2U7uT2c22wwkWzWVbc8Ft9XYP?=
+ =?us-ascii?Q?2dmCiCZKizrTjIzopRBRZEhe5dkwTjcRYRaLHgx8EQgkMifxm2Jf8NmU9VbC?=
+ =?us-ascii?Q?0MDETi3nfi/EeZIJ76rBOqy+vjSJsKl3j7a4PCBKvauDBtMic/i+MvGkVNlP?=
+ =?us-ascii?Q?MEM2ZR0vOn8RId8vaCsTzJkRuBvgIwSbqnmyWwclHV8mbRHKPOdYqCzR6mqC?=
+ =?us-ascii?Q?iEjmaOgzHpmX+hMkr+a5FK2QF+tj5JgTHt8D7ww2b9yuNnnr8njyDqZTw0N5?=
+ =?us-ascii?Q?LYeYrAjYS+dD2JmBVyKrh6/t7gqaiR1qe4FhlcwIEX2DdnRqOgVIQebDU6Vr?=
+ =?us-ascii?Q?klc3YyFChjnAx2CgVSheC7gJNJS3O1soGS3+4gX8X/yzgsxU3Vhsm04C7MEU?=
+ =?us-ascii?Q?gkJmEmSDKr2BN8cD+SPdTwcVZWr3WB+Jc6Vby1NqzanAr//95ye3ZLmRMZJF?=
+ =?us-ascii?Q?+ww6Cu++n+XzCGBxhg45c0rkh/eUQYqda43Ij8g2OYWv/5EvBWPglOqFEpTT?=
+ =?us-ascii?Q?JDW11IrQx2Hudav3SO66siI5Cbm4AjHikr2Wvf6RWsUXnkH/muyIaLpWzhLx?=
+ =?us-ascii?Q?pXCFOepYznH/Tl+a5TB7kkxeQTl1uxpzgngSHacCToqHBgRfxn/MObuJFZDk?=
+ =?us-ascii?Q?rl8l+8cjdEknlp3eLu+ixEzSXWrH3dF+qUyrfic0qR35A/RjZfec1/qvtPOX?=
+ =?us-ascii?Q?COORRg72rUa9+cL4qP+K8QMESNvEjV3jt7lts3emEb/HaZXJxz2XJMG1f84Q?=
+ =?us-ascii?Q?dwJZJ8rzUveFzB+3kbRaRTBhyRUux3sV0+ul/tClHKZSeAerLWybMIT+EvOV?=
+ =?us-ascii?Q?3ZaFKi5tldlxco4PVrIZlqqmT1b3YlwjZy3Wluwmy0yol8xsHoU8lD7mDgGr?=
+ =?us-ascii?Q?sBQc4F39mfE3tFeUGXSs8oekomDYjITR8GS/BsaBXyWHyA8IvPepW6Iw7j7C?=
+ =?us-ascii?Q?P3mscpJKrkyugCaVOEbhYSsawFFCZXOr0BckkqCyronNu4IWS2V8rLyVXKJq?=
+ =?us-ascii?Q?VH3Q3kzd6OGLwXVojbIFzergNaLbP73/Ds0mWEUzL82CRESCm7i3ZPsgW2nL?=
+ =?us-ascii?Q?Kz6MicmjN7mUWzLpNBoDyIBESuNONp5T96V435W5iEdBO5iwgBTRCWm08R1z?=
+ =?us-ascii?Q?zJEnoPlgRgSn9go/93orYWuG?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6942f690-db2b-4194-9218-08d92fd487ad
-X-MS-TrafficTypeDiagnostic: BL3PR02MB8185:
-X-Microsoft-Antispam-PRVS: <BL3PR02MB8185A40BFC76586AE646EC30D4309@BL3PR02MB8185.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:229;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jgk+qwwWKEYohWMQbCl1lRPzjlhZMLPpVCvLwpLkV43oQIYuqljZSCQhT1rwW7HImZmVmr2JbUD1Y5wGpdq9/SuEcctuJvpydS5o86d4k6dCityw+2JQLdeoCboLon2P0OD9Yr6WuJ4ayevzDINCAggGFrt6lTIZxyVE+Hb9D5LGnLheO5C6xd7g3H6cHqFGaEWkO39qzk53t6MUzXEI7sPLx/V6zwc0sj1ZqtdAwX5exKlV/wIQQnQkWiW07196Cz7mbIfFPVMdOY8h7gAAQb7hZFnCAzwJVLiTzxg6tcgZPyk4aoMeA62L/GPAxl8k/drCWX1kdl3qcDZ25xvHFzwmuSfzYqxVK9dqN9H/laV4sAqFujk9mCCHa5xVaR9PTQ8NMgWxFHtuCacMFlGcptgsdEh5uisvYWnd9Q0SIbF5aw+7UnlMU2H6CNtb3kJBIV9xUsv6NRLDOcBxuQlFoShGyzvAXr0smz/DPHfRXUrZy7w2QhSxlf44ILR2sSehumX+PxgJToC+zf7oclQ2mvtd+XPey3jNjbIyo+4f8ss1JVE3rBItpOAdcmCIzc/X85/sRTNzktcIHenRUFVP00j1S1rRI3FHYcaRFlTXFlzA4BF9fSI54jR8BM/Czl+WcnsUQtwwTZxsY1bw0IyBHL2hc1dEYsdPc90/OEcqyFouWJB3QRbix8aDdj9Bnud7
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(346002)(376002)(39850400004)(396003)(136003)(36840700001)(46966006)(336012)(426003)(2616005)(6666004)(44832011)(478600001)(2906002)(186003)(54906003)(26005)(316002)(110136005)(8936002)(36906005)(7696005)(36860700001)(107886003)(4326008)(1076003)(8676002)(5660300002)(47076005)(36756003)(82310400003)(7636003)(70206006)(356005)(70586007)(9786002)(82740400003)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Jun 2021 08:06:50.4597
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9dde043e-ec0f-4e2d-aa5e-08d92fd47d9d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jun 2021 08:06:33.3467
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6942f690-db2b-4194-9218-08d92fd487ad
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT011.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR02MB8185
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Z/eF2fsoQO0irGp3T42nulGfhNaeZ8KNUf0ttxGYR6Mo3H8sFsf6DuTf339ns682df+txsUami5qmO3N9lehEPBJuf/fFhCtQk+nQ5kWxr8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB2519
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the mode pin GPIO controller. GPIO Modepin
-driver set and get the value and status of the PS_MODE pin, based on
-device-tree pin configuration. These 4-bits boot-mode pins are dedicated
-configurable as input/output. After the stabilization of the system,
-these mode pins are sampled.
+Hi Laurent,
 
-Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
----
- drivers/gpio/Kconfig               |  12 +++
- drivers/gpio/Makefile              |   1 +
- drivers/gpio/gpio-zynqmp-modepin.c | 154 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 167 insertions(+)
- create mode 100644 drivers/gpio/gpio-zynqmp-modepin.c
+Thanks for the feedback.
 
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index 1dd0ec6..30e0dbf 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -755,6 +755,18 @@ config GPIO_ZYNQ
- 	help
- 	  Say yes here to support Xilinx Zynq GPIO controller.
- 
-+config GPIO_ZYNQMP_MODEPIN
-+	tristate "ZynqMP ps-mode pin gpio configuration driver"
-+	depends on ZYNQMP_FIRMWARE
-+	default ZYNQMP_FIRMWARE
-+	help
-+	  Say yes here to support the ZynqMP ps-mode pin gpio configuration
-+	  driver.
-+
-+	  This ps-mode pin gpio driver is based on GPIO framework, PS_MODE
-+	  is 4-bits boot mode pins. It sets and gets the status of
-+	  the ps-mode pin. Every pin can be configured as input/output.
-+
- config GPIO_LOONGSON1
- 	tristate "Loongson1 GPIO support"
- 	depends on MACH_LOONGSON32
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index d7c81e1..62bfa73 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -182,3 +182,4 @@ obj-$(CONFIG_GPIO_XRA1403)		+= gpio-xra1403.o
- obj-$(CONFIG_GPIO_XTENSA)		+= gpio-xtensa.o
- obj-$(CONFIG_GPIO_ZEVIO)		+= gpio-zevio.o
- obj-$(CONFIG_GPIO_ZYNQ)			+= gpio-zynq.o
-+obj-$(CONFIG_GPIO_ZYNQMP_MODEPIN)	+= gpio-zynqmp-modepin.o
-diff --git a/drivers/gpio/gpio-zynqmp-modepin.c b/drivers/gpio/gpio-zynqmp-modepin.c
-new file mode 100644
-index 0000000..27052f0
---- /dev/null
-+++ b/drivers/gpio/gpio-zynqmp-modepin.c
-@@ -0,0 +1,154 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Driver for the ps-mode pin configuration.
-+ *
-+ * Copyright (c) 2021 Xilinx, Inc.
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/gpio/driver.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <linux/firmware/xlnx-zynqmp.h>
-+
-+#define MODE_PINS			4
-+#define GET_OUTEN_PIN(pin)		(1U << (pin))
-+
-+/*
-+ * modepin_gpio_get_value - Get the state of the specified pin of GPIO device
-+ * @chip:	gpio_chip instance to be worked on
-+ * @pin:	gpio pin number within the device
-+ *
-+ * This function reads the state of the specified pin of the GPIO device.
-+ *
-+ * Return: 0 if the pin is low, 1 if pin is high, -EINVAL wrong pin configured
-+ *         or error value.
-+ */
-+static int modepin_gpio_get_value(struct gpio_chip *chip, unsigned int pin)
-+{
-+	u32 out_en;
-+	u32 regval = 0;
-+	int ret;
-+
-+	out_en = GET_OUTEN_PIN(pin);
-+
-+	ret = zynqmp_pm_bootmode_read(&regval);
-+	if (ret) {
-+		pr_err("modepin: get value err %d\n", ret);
-+		return ret;
-+	}
-+
-+	return (out_en & (regval >> 8U)) ? 1 : 0;
-+}
-+
-+/*
-+ * modepin_gpio_set_value - Modify the state of the pin with specified value
-+ * @chip:	gpio_chip instance to be worked on
-+ * @pin:	gpio pin number within the device
-+ * @state:	value used to modify the state of the specified pin
-+ *
-+ * Return:	None.
-+ */
-+static void modepin_gpio_set_value(struct gpio_chip *chip, unsigned int pin,
-+				   int state)
-+{
-+	u32 out_en;
-+	u32 bootpin_val = 0;
-+	int ret;
-+
-+	out_en = GET_OUTEN_PIN(pin);
-+	state = state != 0 ? out_en : 0;
-+	bootpin_val = (state << (8U)) | out_en;
-+
-+	/* Configure bootpin value */
-+	ret = zynqmp_pm_bootmode_write(bootpin_val);
-+	if (ret)
-+		pr_err("modepin: %s failed\n", __func__);
-+}
-+
-+/*
-+ * modepin_gpio_dir_in - Set the direction of the specified GPIO pin as input
-+ * @chip:	gpio_chip instance to be worked on
-+ * @pin:	gpio pin number within the device
-+ *
-+ * Return: 0 always
-+ */
-+static int modepin_gpio_dir_in(struct gpio_chip *chip, unsigned int pin)
-+{
-+	return 0;
-+}
-+
-+/*
-+ * modepin_gpio_dir_out - Set the direction of the specified GPIO pin as output
-+ * @chip:	gpio_chip instance to be worked on
-+ * @pin:	gpio pin number within the device
-+ * @state:	value to be written to specified pin
-+ *
-+ * Return: 0 always
-+ */
-+static int modepin_gpio_dir_out(struct gpio_chip *chip, unsigned int pin,
-+				int state)
-+{
-+	return 0;
-+}
-+
-+/*
-+ * modepin_gpio_probe - Initialization method for modepin_gpio
-+ * @pdev:		platform device instance
-+ *
-+ * Return: 0 on success, negative error otherwise.
-+ */
-+static int modepin_gpio_probe(struct platform_device *pdev)
-+{
-+	struct gpio_chip *chip;
-+	int status;
-+
-+	chip = devm_kzalloc(&pdev->dev, sizeof(*chip), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, chip);
-+
-+	/* configure the gpio chip */
-+	chip->base = -1;
-+	chip->ngpio = MODE_PINS;
-+	chip->owner = THIS_MODULE;
-+	chip->parent = &pdev->dev;
-+	chip->get = modepin_gpio_get_value;
-+	chip->set = modepin_gpio_set_value;
-+	chip->direction_input = modepin_gpio_dir_in;
-+	chip->direction_output = modepin_gpio_dir_out;
-+	chip->label = dev_name(&pdev->dev);
-+
-+	/* modepin gpio registration */
-+	status = devm_gpiochip_add_data(&pdev->dev, chip, chip);
-+	if (status)
-+		dev_err_probe(&pdev->dev, status,
-+			      "Failed to add GPIO chip\n");
-+
-+	return status;
-+}
-+
-+static const struct of_device_id modepin_platform_id[] = {
-+	{ .compatible = "xlnx,zynqmp-gpio-modepin", },
-+	{ }
-+};
-+
-+static struct platform_driver modepin_platform_driver = {
-+	.driver = {
-+		.name = "modepin-gpio",
-+		.of_match_table = modepin_platform_id,
-+	},
-+	.probe = modepin_gpio_probe,
-+};
-+
-+module_platform_driver(modepin_platform_driver);
-+
-+MODULE_AUTHOR("Piyush Mehta <piyush.mehta@xilinx.com>");
-+MODULE_DESCRIPTION("ZynqMP Boot PS_MODE Configuration");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
+> Subject: Re: [PATCH 1/5] dt-bindings: dma: Document RZ/G2L bindings
+>=20
+> Hi Biju,
+>=20
+> On Mon, Jun 14, 2021 at 04:33:03PM +0000, Biju Das wrote:
+> > > On Mon, Jun 14, 2021 at 04:24:38PM +0000, Biju Das wrote:
+> > > > > On Mon, Jun 14, 2021 at 04:09:04PM +0000, Biju Das wrote:
+> > > > > > > On Mon, Jun 14, 2021 at 12:54:02PM +0000, Biju Das wrote:
+> > > > > > > > > On Fri, Jun 11, 2021 at 1:36 PM Biju Das wrote:
+> > > > > > > > > > Document RZ/G2L DMAC bindings.
+> > > > > > > > > >
+> > > > > > > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > > > > > > > > Reviewed-by: Lad Prabhakar
+> > > > > > > > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > > > > > >
+> > > > > > > > > Thanks for your patch!
+> > > > > > > > >
+> > > > > > > > > > --- /dev/null
+> > > > > > > > > > +++ b/Documentation/devicetree/bindings/dma/renesas,rz
+> > > > > > > > > > +++ -dma
+> > > > > > > > > > +++ c.ya
+> > > > > > > > > > +++ ml
+> > > > > > > > > > @@ -0,0 +1,132 @@
+> > > > > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR
+> > > > > > > > > > +BSD-2-Clause) %YAML
+> > > > > > > > > > +1.2
+> > > > > > > > > > +---
+> > > > > > > > > > +$id:
+> > > > > > > > > > +https://jpn01.safelinks.protection.outlook.com/?url=3D=
+h
+> > > > > > > > > > +ttp%
+> > > > > > > > > > +3A%2
+> > > > > > > > > > +F%2F
+> > > > > > > > > > +devi
+> > > > > > > > > > +cetree.org%2Fschemas%2Fdma%2Frenesas%2Crz-dmac.yaml%2
+> > > > > > > > > > +3&am
+> > > > > > > > > > +p;da
+> > > > > > > > > > +ta=3D0
+> > > > > > > > > > +4%7C
+> > > > > > > > > > +01%7Cbiju.das.jz%40bp.renesas.com%7C4b547e10cbe64b6f4
+> > > > > > > > > > +d850
+> > > > > > > > > > +8d92
+> > > > > > > > > > +f2da
+> > > > > > > > > > +0c0%
+> > > > > > > > > > +7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C63759269
+> > > > > > > > > > +5286
+> > > > > > > > > > +8468
+> > > > > > > > > > +09%7
+> > > > > > > > > > +CUnk
+> > > > > > > > > > +nown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMz
+> > > > > > > > > > +IiLC
+> > > > > > > > > > +JBTi
+> > > > > > > > > > +I6Ik
+> > > > > > > > > > +1haW
+> > > > > > > > > > +wiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D5Jh%2FxPaia5ZOY0Cr=
+V
+> > > > > > > > > > +iQCc
+> > > > > > > > > > +rNtz
+> > > > > > > > > > +uDej
+> > > > > > > > > > +p8wo
+> > > > > > > > > > +Nrx9iO0ht8%3D&amp;reserved=3D0
+> > > > > > > > > > +$schema:
+> > > > > > > > > > +https://jpn01.safelinks.protection.outlook.com/?url=3D=
+h
+> > > > > > > > > > +ttp%
+> > > > > > > > > > +3A%2
+> > > > > > > > > > +F%2F
+> > > > > > > > > > +devi
+> > > > > > > > > > +cetree.org%2Fmeta-
+> > > > > > > schemas%2Fcore.yaml%23&amp;data=3D04%7C01%7Cbiju.das.
+> > > > > > > > > > +jz%40bp.renesas.com%7C4b547e10cbe64b6f4d8508d92f2da0c
+> > > > > > > > > > +0%7C
+> > > > > > > > > > +53d8
+> > > > > > > > > > +2571
+> > > > > > > > > > +da19
+> > > > > > > > > > +47e49cb4625a166a4a2a%7C0%7C0%7C637592695286846809%7CU
+> > > > > > > > > > +nkno
+> > > > > > > > > > +wn%7
+> > > > > > > > > > +CTWF
+> > > > > > > > > > +pbGZ
+> > > > > > > > > > +sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1h
+> > > > > > > > > > +aWwi
+> > > > > > > > > > +LCJX
+> > > > > > > > > > +VCI6
+> > > > > > > > > > +Mn0%
+> > > > > > > > > > +3D%7C1000&amp;sdata=3D5qQ1PljM3e4Bn4%2FjdldYUHRBQL3jAr=
+J
+> > > > > > > > > > +gRIA
+> > > > > > > > > > +dLnh
+> > > > > > > > > > +Jraw
+> > > > > > > > > > +%3D&
+> > > > > > > > > > +amp;reserved=3D0
+> > > > > > >
+> > > > > > > *sigh*
+> > > > > > >
+> > > > > > > > > > +
+> > > > > > > > > > +title: Renesas RZ/G2L DMA Controller
+> > > > > > > > > > +
+> > > > > > > > > > +maintainers:
+> > > > > > > > > > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > > > > > > > > > +
+> > > > > > > > > > +allOf:
+> > > > > > > > > > +  - $ref: "dma-controller.yaml#"
+> > > > > > > > > > +
+> > > > > > > > > > +properties:
+> > > > > > > > > > +  compatible:
+> > > > > > > > > > +    items:
+> > > > > > > > > > +      - enum:
+> > > > > > > > > > +          - renesas,dmac-r9a07g044  # RZ/G2{L,LC}
+> > > > > > > > >
+> > > > > > > > > Please use "renesas,r9a07g044-dmac".
+> > > > > > > >
+> > > > > > > > OK. Will change.
+> > > > > > > >
+> > > > > > > > > > +      - const: renesas,rz-dmac
+> > > > > > > > >
+> > > > > > > > > Does this need many changes for RZ/A1H and RZ/A2M?
+> > > > > > > >
+> > > > > > > > It will work on both RZ/A1H and RZ/A2M. I have n't tested
+> since I don't have the board.
+> > > > > > > > There is some difference in MID bit size. Other wise both
+> identical.
+> > > > > > > >
+> > > > > > > > > > +  renesas,rz-dmac-slavecfg:
+> > > > > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32-arra=
+y
+> > > > > > > > > > +    description: |
+> > > > > > > > > > +      DMA configuration for a slave channel. Each
+> > > > > > > > > > + channel must have an array of
+> > > > > > > > > > +      3 items as below.
+> > > > > > > > > > +      first item in the array is MID+RID
+> > > > > > > > >
+> > > > > > > > > Already in dmas.
+> > > > > > > > >
+> > > > > > > > > > +      second item in the array is slave src or dst
+> > > > > > > > > > + address
+> > > > > > > > >
+> > > > > > > > > As pointed out by Rob, already known by the slave driver.
+> > > > > > > > >
+> > > > > > > > > > +      third item in the array is channel configuration
+> value.
+> > > > > > > > >
+> > > > > > > > > What exactly is this?
+> > > > > > >
+> > > > > > > What would prevent the DMA client from passing the
+> > > > > > > configuration to the DMA channel through the DMA engine API,
+> > > > > > > just like it passes the slave source or destination address ?
+> > > > > >
+> > > > > > On RZ/G2L, there is 1 case(SSIF ch2) where MID+RID is same for
+> both tx and rx.
+> > > > > > The only way we can distinguish it is from channel configuratio=
+n
+> value.
+> > > > >
+> > > > > Are those two different hardware DMA channels ? And
+> > > > > configuration values change between the two ?
+> > > >
+> > > > Yes, REQD is different, apart from this Rx have transfer source
+> > > > and Tx have Transfer destination.
+> > > > This particular SSIF ch2 is used only for half duplex compared to
+> > > > other SSIF channels.
+> > >
+> > > Does this mean there's a single DMA channel, used by two clients,
+> > > but not at the same time as it only supports half-duplex ?
+> >
+> > From hardware perspective, it is 2 channel. For eg:- playback/recording
+> use case.
+> > You cannot do simultaneous playback, but you can do playback or record
+> separately.
+>=20
+> If the two channels have the same MID+RID and only differ by the
+> direction, I'd add a cell in the dmas property with the direction only.
+> The source/destination address should be dropped, as it's already known b=
+y
+> the driver.
 
+I have cross checked the manual again and it seems it is same DMA Tranfer r=
+equest signal(ssif_dma_rt) for that
+particular Dma client (SSIF ch2). So it is just one DMA. SO I will drop cel=
+l2 and cell3 and just use cell1 with=20
+MID+RID values in next version.
+
+
+> This being said, in your example below, you have
+>=20
+> dmas =3D <&dmac 0x255 0x10049c18 CH_CFG(0x1,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>=
+,
+>        <&dmac 0x256 0x10049c1c CH_CFG(0x0,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>;
+> dma-names =3D "tx", "rx";
+>=20
+> This looks like different MID+RID values for the two channels.
+
+Yes, it is for SSIF ch0. Where it supports full duplex and it has DMA Tranf=
+er request signal
+ssif_dma_rx0 for receive and ssif_dma_tx0 for transmit.
+
+Thanks,
+Biju
+
+>=20
+> > > > > > > > > Does the R-Car DMAC have this too? If yes, how does its
+> > > > > > > > > driver handle it?
+> > > > > > > >
+> > > > > > > > On R-CAR DMAC, we have only MID + RID values. Where as
+> > > > > > > > here we have channel configuration value With different
+> > > > > > > > set of parameter as mentioned in Table 16.4.
+> > > > > > > >
+> > > > > > > > Please see Page 569, Table 16.4 On-Chip Module requests
+> section.
+> > > > > > > >
+> > > > > > > > For eg:- as per Rob's suggestion, I have modelled the
+> > > > > > > > driver with the below entries in ALSA driver for
+> playback/record use case.
+> > > > > > > >
+> > > > > > > > dmas =3D <&dmac 0x255 0x10049c18
+> CH_CFG(0x1,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>,
+> > > > > > > >        <&dmac 0x256 0x10049c1c
+> > > > > > > > CH_CFG(0x0,0x0,0x1,0x0,0x2,0x1,0x1,0x0)>;
+> > > > > > > > dma-names =3D "tx", "rx";
+> > > > > > > >
+> > > > > > > > Using first parameter, it gets dmac channel. using second
+> > > > > > > > and third parameter it configures the channel.
+>=20
+> --
+> Regards,
+>=20
+> Laurent Pinchart
