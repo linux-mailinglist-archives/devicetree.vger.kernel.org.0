@@ -2,203 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B98D3A8C85
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA7BD3A8C8A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 01:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229966AbhFOXci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 19:32:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45366 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229898AbhFOXch (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Jun 2021 19:32:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4C0A961356;
-        Tue, 15 Jun 2021 23:30:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623799832;
-        bh=EhsENLIeeDjKwTAN8zz7rBUT0tnSjzg/HSQK5HpPxEw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eU2fOUQo43Ho6rhJgc0WFrfRqjp3ph7sH6Yth2MReQPshU0dxXLFDUMzoF7d4W/dF
-         o4PCdLs8R5DD/cWn0oD+y2R+S3EXokKfwTMcL2N3YGaeJYMj0eGegjEUi5mAF9COgu
-         +q0cPeeUaRsBunJeqBQcfeESYC+42eRQyCytoiGkD8gRVN+md69pzn1WblfX8o0MoP
-         /wmV7rtkVL+wpoHZ0Psp7HEFGUGW7e4TMt9MHidQ4wiv5w1iCzkQ/q+qt0sdbOJgLT
-         iLJ0uosB4LaAZv/CUqtgTx0p/ydf/Bkm/GXlGmTUBZQMZH4IqBPIJLq8Cil1GmKKyf
-         jDZwerpPDGCnw==
-Received: by mail-ed1-f47.google.com with SMTP id s15so126163edt.13;
-        Tue, 15 Jun 2021 16:30:32 -0700 (PDT)
-X-Gm-Message-State: AOAM533b87+si5Bu73Pdl1Lsx53EmMYegUz5rQkGms2eCYGVfAo+vmI7
-        mB/Hmw4Px0o/ofs3y/Jv/TMffMXdi3a3tn53/g==
-X-Google-Smtp-Source: ABdhPJytJV5zNcgsmxY08WCj69qHXAC6m3v5c40a+y+FwBpdmI8H+LqghQfdUkMNHXhWjJXAV5v9T29CSZriZ8UegwI=
-X-Received: by 2002:aa7:db16:: with SMTP id t22mr666261eds.49.1623799830833;
- Tue, 15 Jun 2021 16:30:30 -0700 (PDT)
+        id S231189AbhFOXfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 19:35:16 -0400
+Received: from mail-il1-f175.google.com ([209.85.166.175]:34776 "EHLO
+        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229898AbhFOXfO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 19:35:14 -0400
+Received: by mail-il1-f175.google.com with SMTP id w14so710816ilv.1;
+        Tue, 15 Jun 2021 16:33:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8Fz3AetKQEA77r3UIPjWBZbJ1RgLcNWRZBS0z/pKRfo=;
+        b=KVTk6Bd2xBvzbfXj9OA4kC6kX0U+g8pnEOUP9DtmZw3kqyoIVoCf5q23Bypf6LgoW/
+         sTalnO8eAdLn9umTU779ycvggHBnVP2pprJR5D3SEpQKgnDRPSukvZhPXBNYP60uxmqK
+         SVKPxg3QPRG48xIOYLrl3GDJOWO24XV5sQuh5Qoc83EhS3SX29uUmJwY32nbvJheRBll
+         j++19lDJJiNzNZb2WKJAvBoViCv5ApjnF29FS4m3GyIR+Qm7YbU0n2k2FkJkbgCkQUlZ
+         AvK4ijj7l0dsRxhAqvm1Quw/q1yqrRhfrwRO5evarKPqgbHDXzntinIAJOm+9W1ZxXPp
+         ehlg==
+X-Gm-Message-State: AOAM531jYvuwhN8p3s8DPlzy8JiCkh4ak1V7F4lfoYpC0Qjg5tal/ciU
+        /mnR9rQE0Y0cnboTAf7EAA==
+X-Google-Smtp-Source: ABdhPJwFYf76OVEZ+HNaaZsult7XHiKTmBkAHWs/gW1dtLaCbWM+Jk97PUvUZRACQLTXkJThIg+EGg==
+X-Received: by 2002:a92:5404:: with SMTP id i4mr1340945ilb.226.1623799985851;
+        Tue, 15 Jun 2021 16:33:05 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id m5sm251953iov.31.2021.06.15.16.33.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Jun 2021 16:33:05 -0700 (PDT)
+Received: (nullmailer pid 1624214 invoked by uid 1000);
+        Tue, 15 Jun 2021 23:33:03 -0000
+Date:   Tue, 15 Jun 2021 17:33:03 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jon Lin <jon.lin@rock-chips.com>
+Cc:     broonie@kernel.org, linux-arm-kernel@lists.infradead.org,
+        heiko@sntech.de, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 1/6] dt-bindings: spi: spi-rockchip: add description
+ for rv1126
+Message-ID: <20210615233303.GA1623889@robh.at.kernel.org>
+References: <20210615033213.14241-1-jon.lin@rock-chips.com>
+ <20210615033213.14241-2-jon.lin@rock-chips.com>
 MIME-Version: 1.0
-References: <20210615173233.26682-1-tinghan.shen@mediatek.com> <20210615173233.26682-22-tinghan.shen@mediatek.com>
-In-Reply-To: <20210615173233.26682-22-tinghan.shen@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Wed, 16 Jun 2021 07:30:19 +0800
-X-Gmail-Original-Message-ID: <CAAOTY__cE+wz3hjOobWNDNjie29NsDQiytP=mocbLJxuOF2+4Q@mail.gmail.com>
-Message-ID: <CAAOTY__cE+wz3hjOobWNDNjie29NsDQiytP=mocbLJxuOF2+4Q@mail.gmail.com>
-Subject: Re: [PATCH 22/27] arm64: dts: mt8195: add edp nodes
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>, wenst@google.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Jitao Shi <jitao.shi@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210615033213.14241-2-jon.lin@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Tinghan:
-
-Tinghan Shen <tinghan.shen@mediatek.com> =E6=96=BC 2021=E5=B9=B46=E6=9C=881=
-6=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=885:35=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> From: Jitao Shi <jitao.shi@mediatek.com>
->
-> add edp nodes for mt8195
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+On Tue, 15 Jun 2021 11:32:08 +0800, Jon Lin wrote:
+> The description below will be used for rv1126.dtsi or compatible one in
+> the future
+> 
+> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
 > ---
->  arch/arm64/boot/dts/mediatek/mt8195.dtsi | 59 +++++++++++++++++++++++-
->  1 file changed, 58 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/d=
-ts/mediatek/mt8195.dtsi
-> index 256818c4c0bf..d7d2c2a8f461 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -23,6 +23,8 @@
->
->         aliases {
->                 dpi1 =3D &disp_dpi1;
-> +               dp-intf0 =3D &dp_intf0;
-> +               dp-intf1 =3D &dp_intf1;
->         };
->
->         clocks {
-> @@ -1155,6 +1157,29 @@
->                         status =3D "disabled";
->                 };
->
-> +               disp_pwm0: disp_pwm0@1100e000 {
-> +                       compatible =3D "mediatek,mt8183-disp-pwm";
+> 
+> Changes in v8:
+> - There is a problem with the version 7 mail format. resend it
+> 
+> Changes in v7:
+> - Fall back "rockchip,rv1126-spi" to "rockchip,rk3066-spi"
+> 
+> Changes in v6:
+> - Consider to compatibility, the "rockchip,rk3568-spi" is removed in
+>   Series-changes v5, so the commit massage should also remove the
+>   corresponding information
+> 
+> Changes in v5:
+> - Change to leave one compatible id rv1126, and rk3568 is compatible
+>   with rv1126
+> 
+> Changes in v4:
+> - Adjust the order patches
+> - Simply commit massage like redundancy "application" content
+> 
+> Changes in v3:
+> - Fix compile error which is find by Sascha in [v2,2/8]
+> 
+>  Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-You should use
-
-compatible =3D "mediatek,mt8195-disp-pwm", "mediatek,mt8183-disp-pwm";
-
-and add definition of "mediatek,mt8195-disp-pwm" in binding document.
-
-> +                       reg =3D <0 0x1100e000 0 0x1000>;
-> +                       interrupts =3D <GIC_SPI 203 IRQ_TYPE_LEVEL_LOW 0>=
-;
-> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
-S0>;
-> +                       #pwm-cells =3D <2>;
-> +                       clocks =3D <&topckgen CLK_TOP_DISP_PWM0_SEL>,
-> +                                       <&infracfg_ao CLK_INFRA_AO_DISP_P=
-WM>;
-> +                       clock-names =3D "main", "mm";
-> +                       status =3D "disabled";
-> +               };
-> +
-> +               disp_pwm1: disp_pwm1@1100f000 {
-> +                       compatible =3D "mediatek,mt8183-disp-pwm";
-
-Ditto.
-
-> +                       reg =3D <0 0x1100f000 0 0x1000>;
-> +                       interrupts =3D <GIC_SPI 793 IRQ_TYPE_LEVEL_HIGH 0=
->;
-> +                       #pwm-cells =3D <2>;
-> +                       clocks =3D <&topckgen CLK_TOP_DISP_PWM1_SEL>,
-> +                               <&infracfg_ao CLK_INFRA_AO_DISP_PWM1>;
-> +                       clock-names =3D "main", "mm";
-> +                       status =3D "disabled";
-> +               };
-> +
->                 spi1: spi@11010000 {
->                         compatible =3D "mediatek,mt8195-spi",
->                                      "mediatek,mt6765-spi";
-> @@ -2397,6 +2422,30 @@
->                         status =3D "disabled";
->                 };
->
-> +               dp_intf1: dp_intf1@1c113000 {
-> +                       compatible =3D "mediatek,mt8195-dp-intf";
-
-Where is the definition of this compatible?
-
-> +                       reg =3D <0 0x1c113000 0 0x1000>;
-> +                       interrupts =3D <GIC_SPI 513 IRQ_TYPE_LEVEL_HIGH 0=
->;
-> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_VDOSY=
-S1>;
-> +                       clocks =3D <&vdosys1 CLK_VDO1_DP_INTF0_MM>,
-> +                                <&vdosys1 CLK_VDO1_DPINTF>,
-> +                                <&topckgen CLK_TOP_DP_SEL>,
-> +                                <&topckgen CLK_TOP_TVDPLL2_D2>,
-> +                                <&topckgen CLK_TOP_TVDPLL2_D4>,
-> +                                <&topckgen CLK_TOP_TVDPLL2_D8>,
-> +                                <&topckgen CLK_TOP_TVDPLL2_D16>,
-> +                                <&topckgen CLK_TOP_TVDPLL2>;
-> +                       clock-names =3D "hf_fmm_ck",
-> +                                     "hf_fdp_ck",
-> +                                     "MUX_DP",
-> +                                     "TVDPLL_D2",
-> +                                     "TVDPLL_D4",
-> +                                     "TVDPLL_D8",
-> +                                     "TVDPLL_D16",
-> +                                     "DPI_CK";
-> +                       status =3D "disabled";
-> +               };
-> +
->                 hdmi0: hdmi@1c300000 {
->                         compatible =3D "mediatek,mt8195-hdmi";
->                         reg =3D <0 0x1c300000 0 0x1000>;
-> @@ -2421,11 +2470,19 @@
->
->                 edp_tx: edp_tx@1c500000 {
->                         status =3D "disabled";
-> -                       compatible =3D "mediatek,mt8195-dp_tx";
-> +                       compatible =3D "mediatek,mt8195-edp_tx";
->                         reg =3D <0 0x1c500000 0 0x8000>;
->                         power-domains =3D <&spm MT8195_POWER_DOMAIN_EPD_T=
-X>;
->                         interrupts =3D <GIC_SPI 676 IRQ_TYPE_LEVEL_HIGH 0=
->;
->                 };
-> +
-> +               dp_tx: dp_tx@1c600000 {
-> +                       compatible =3D "mediatek,mt8195-dp_tx";
-
-Ditto.
-
-Regards,
-Chun-Kuang.
-
-> +                       reg =3D <0 0x1c600000 0 0x8000>;
-> +                       power-domains =3D <&spm MT8195_POWER_DOMAIN_DP_TX=
->;
-> +                       interrupts =3D <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH 0=
->;
-> +                       status =3D "disabled";
-> +               };
->         };
->
->         hdmiddc0: ddc_i2c {
-> --
-> 2.18.0
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Acked-by: Rob Herring <robh@kernel.org>
