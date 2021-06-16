@@ -2,67 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C323A3A97C5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 12:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0D803A97EE
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 12:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232223AbhFPKlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 06:41:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52366 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231769AbhFPKlI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 06:41:08 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D0AB361245;
-        Wed, 16 Jun 2021 10:39:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623839942;
-        bh=MImfvo4eQR1r8uo+tH8braW8LKg4STkJAk+MyC8vGwA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r9lbvXtQi8vx+y3JEPjs+IOHgtOc/QcmlZta9fMtY+N99sFo2nH8AN4zMl1rnL9nU
-         LccQT8TRjvWTtEcfVdzfIFTc4LRDEcl2CKEju0a1XJkmrfxDzRCWRClnrBK3b+yjbN
-         FizReZp32xwWXsrHjhA3S1Cb0vDriJs0hUNVvJ1PyNbR33Q2CRVxFAOwb6phzGRPvW
-         zELBnxjNOjjXrkO/pauqLEJqH39X7gVtSquglgsnKtEIxnOXsse/lF1kkMEgvCoAOS
-         ZObsg3PeVtHWtZ7DiA2tGW/NQihT/bV5sW+Ak8shZqkBDX1rfaYPyl+drb9TTtk2e5
-         fRoeqkvLenJxg==
-Date:   Wed, 16 Jun 2021 16:08:59 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-sh@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/3] Remove shdma DT support
-Message-ID: <YMnUw80/rUCFtO24@vkoul-mobl>
-References: <cover.1623405675.git.geert+renesas@glider.be>
+        id S231922AbhFPKoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 06:44:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58318 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232306AbhFPKon (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 06:44:43 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56E18C061574
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 03:42:35 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1ltSzV-0004RW-VS; Wed, 16 Jun 2021 12:41:50 +0200
+Received: from pengutronix.de (unknown [IPv6:2a03:f580:87bc:d400:27:4a54:dbae:b593])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 9048463D23F;
+        Wed, 16 Jun 2021 10:41:36 +0000 (UTC)
+Date:   Wed, 16 Jun 2021 12:41:35 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-ide@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, dmaengine@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
+        alsa-devel@alsa-project.org, iommu@lists.linux-foundation.org,
+        linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
+        netdev@vger.kernel.org, linux-can@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Jens Axboe <axboe@kernel.dk>, Stephen Boyd <sboyd@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Vinod Koul <vkoul@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH] dt-bindings: Drop redundant minItems/maxItems
+Message-ID: <20210616104135.z5bjalhan4ui2ibz@pengutronix.de>
+References: <20210615191543.1043414-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="agvztsrh6izyn335"
 Content-Disposition: inline
-In-Reply-To: <cover.1623405675.git.geert+renesas@glider.be>
+In-Reply-To: <20210615191543.1043414-1-robh@kernel.org>
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-06-21, 12:18, Geert Uytterhoeven wrote:
-> 	Hi all,
-> 
-> Documentation/devicetree/bindings/dma/renesas,shdma.txt is one of the
-> few^W57% of the DT bindings that haven't been converted to json-schema
-> yet.  These bindings were originally intended to cover all SH/R-Mobile
-> SoCs, but the DMA multiplexer node and one DMA controller instance were
-> only ever added to one .dtsi file, for R-Mobile APE6.  Still, DMA
-> support for R-Mobile APE6 was never completed to the point that it would
-> actually work, cfr. commit a19788612f51b787 ("dmaengine: sh: Remove
-> R-Mobile APE6 support").  Later, the mux idea was dropped when
-> implementing support for DMA on (very similar) R-Car Gen2, cfr.
-> renesas,rcar-dmac.yaml.
-> 
-> Hence this series removes the Renesas SHDMA Device Tree bindings, the
-> SHDMA DMA multiplexer driver, and the corresponding description in the
-> R-Mobile APE6 DTS.
 
-Applied 1 & 2, thanks
+--agvztsrh6izyn335
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
--- 
-~Vinod
+On 15.06.2021 13:15:43, Rob Herring wrote:
+> If a property has an 'items' list, then a 'minItems' or 'maxItems' with t=
+he
+> same size as the list is redundant and can be dropped. Note that is DT
+> schema specific behavior and not standard json-schema behavior. The tooli=
+ng
+> will fixup the final schema adding any unspecified minItems/maxItems.
+>=20
+> This condition is partially checked with the meta-schema already, but
+> only if both 'minItems' and 'maxItems' are equal to the 'items' length.
+> An improved meta-schema is pending.
+[...]
+>  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml  | 2 --
+
+Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+--agvztsrh6izyn335
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAmDJ1V0ACgkQqclaivrt
+76nTUAf+NueTtFpURzEcaqcVzU9on1r9+EA8Cl4Mxhgg3Nw3TGp6enDeBSGPVR5B
+MaJtsub8PAEbECezUQxWPaNPa5uvS7dCW5eygZ2z3lDMGZGhYjtv67LVAJgCDq3q
+BWNuKMkKu25Ccsxl33ItHRrAmrlcwBcZMfzN+E9OgZ60GySlRv+AxcLR2XiwST9t
+kWlEW417Mj0P+cvwFo/3Ms4zRddEiw92YruesAK73pkxrB2u2xqaSy9BqNHZCG/J
+F9Q0VsjhTwLAI/7VQohXgcrL2yHsMRJt0M1+XMaxNncf1amrPNo8eWjyNDNbbIIi
+s6uvO8FoLgDLRqbX7Q14cLQ+uQmadw==
+=ZOig
+-----END PGP SIGNATURE-----
+
+--agvztsrh6izyn335--
