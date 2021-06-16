@@ -2,18 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1B263A9A37
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 14:27:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F463A9A3B
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 14:27:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232888AbhFPM31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 08:29:27 -0400
-Received: from relay03.th.seeweb.it ([5.144.164.164]:57635 "EHLO
-        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232864AbhFPM3Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 08:29:25 -0400
+        id S232878AbhFPM3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 08:29:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53766 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232501AbhFPM30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 08:29:26 -0400
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD6C1C061768
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 05:27:19 -0700 (PDT)
 Received: from localhost.localdomain (83.6.168.10.neoplus.adsl.tpnet.pl [83.6.168.10])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id ABCAC20055;
-        Wed, 16 Jun 2021 14:27:16 +0200 (CEST)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id C8B4D1FC51;
+        Wed, 16 Jun 2021 14:27:17 +0200 (CEST)
 From:   Konrad Dybcio <konrad.dybcio@somainline.org>
 To:     ~postmarketos/upstreaming@lists.sr.ht
 Cc:     martin.botka@somainline.org,
@@ -25,9 +28,9 @@ Cc:     martin.botka@somainline.org,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 5/6] arm64: dts: qcom: sm8250-edo: Enable GPI DMA
-Date:   Wed, 16 Jun 2021 14:27:07 +0200
-Message-Id: <20210616122708.144770-5-konrad.dybcio@somainline.org>
+Subject: [PATCH v2 6/6] arm64: dts: qcom: sm8250-edo: Add Samsung touchscreen
+Date:   Wed, 16 Jun 2021 14:27:08 +0200
+Message-Id: <20210616122708.144770-6-konrad.dybcio@somainline.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210616122708.144770-1-konrad.dybcio@somainline.org>
 References: <20210616122708.144770-1-konrad.dybcio@somainline.org>
@@ -37,36 +40,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable GPI DMA for Edo devices.
+Add Samsung touchscreen node and relevant pin configuration to make the phones
+actually interactable with.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 21 ++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-index a1028dec244f..3f08802100ca 100644
+index 3f08802100ca..8f2417db4a99 100644
 --- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-@@ -418,6 +418,18 @@ &cdsp {
- 	status = "okay";
- };
- 
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&gpi_dma2 {
-+	status = "okay";
-+};
-+
- &i2c1 {
+@@ -462,7 +462,18 @@ &i2c13 {
  	status = "okay";
  	clock-frequency = <400000>;
+ 
+-	/* Samsung touchscreen @ 48 */
++	touchscreen@48 {
++		compatible = "samsung,s6sy761";
++		reg = <0x48>;
++		interrupt-parent = <&tlmm>;
++		interrupts = <39 0x2008>;
++		/* It's "vddio" downstream but it works anyway! */
++		vdd-supply = <&vreg_l1c_1p8>;
++		avdd-supply = <&vreg_l10c_3p3>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&ts_int_default>;
++	};
+ };
+ 
+ &i2c15 {
+@@ -570,6 +581,14 @@ mdm2ap_default: mdm2ap-default {
+ 		bias-disable;
+ 	};
+ 
++	ts_int_default: ts-int-default {
++		pins = "gpio39";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disabled;
++		input-enable;
++	};
++
+ 	ap2mdm_default: ap2mdm-default {
+ 		pins = "gpio56", "gpio57";
+ 		function = "gpio";
 -- 
 2.32.0
 
