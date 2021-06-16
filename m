@@ -2,185 +2,368 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27E093A9650
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 11:36:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ACD33A96E3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 12:06:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232297AbhFPJix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 05:38:53 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:24908 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232303AbhFPJiw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 05:38:52 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20210616093644euoutp026db6620d088dc42d1d1dbb5de700ac97~JBmzBDivH2810728107euoutp02d
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 09:36:44 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20210616093644euoutp026db6620d088dc42d1d1dbb5de700ac97~JBmzBDivH2810728107euoutp02d
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1623836204;
-        bh=wW8MZ+uJeIfwvh/94TGH5oTGzJnnv/yEZfmpRzfEyRA=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=Ut9IJv19vlu6ofz3Pxi6MtHI9O51o+EumiMwUCOR29bC1CjbVs7esdFCP6Y3k4vMx
-         7xPEfAWSiPt8vF3UwKhlSFYIqtLycsC59FA/VAV2rO7idZlMtg1hgJdrqxAujQeHvh
-         zNPpSsDuBFFR6YQY6jvxj3dBSCzJ6cYrfoObXgw8=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20210616093644eucas1p29279367444c5360519fecf56264a9e2c~JBmy2_h9g1361513615eucas1p2o;
-        Wed, 16 Jun 2021 09:36:44 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 0A.FB.09444.C26C9C06; Wed, 16
-        Jun 2021 10:36:44 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20210616093644eucas1p2edfbd8b164059d77cd8f109eb80b161f~JBmyZ2Iu51360713607eucas1p29;
-        Wed, 16 Jun 2021 09:36:44 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20210616093644eusmtrp227d0c29e21469914b29d022e5aea7861~JBmyVOW9J0919909199eusmtrp2D;
-        Wed, 16 Jun 2021 09:36:44 +0000 (GMT)
-X-AuditID: cbfec7f4-dbdff700000024e4-60-60c9c62c3bda
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id B5.56.08705.B26C9C06; Wed, 16
-        Jun 2021 10:36:44 +0100 (BST)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20210616093643eusmtip1e01ea3df96ba5cd79bf0ed941a75903b~JBmx9osCs2395123951eusmtip1T;
-        Wed, 16 Jun 2021 09:36:43 +0000 (GMT)
-Subject: Re: [PATCH 1/3] of: Fix truncation of memory sizes on 32-bit
- platforms
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <0c2be5ec-8a22-d398-d455-847ddbcece86@samsung.com>
-Date:   Wed, 16 Jun 2021 11:36:42 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.11.0
+        id S231686AbhFPKI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 06:08:56 -0400
+Received: from foss.arm.com ([217.140.110.172]:60928 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231517AbhFPKI4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Jun 2021 06:08:56 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C89291042;
+        Wed, 16 Jun 2021 03:06:49 -0700 (PDT)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 120A53F70D;
+        Wed, 16 Jun 2021 03:06:47 -0700 (PDT)
+Date:   Wed, 16 Jun 2021 11:06:30 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 16/19] arm64: dts: allwinner: Add Allwinner H616
+ .dtsi file
+Message-ID: <20210616110630.54061205@slackpad.fritz.box>
+In-Reply-To: <20210616092355.ndhjelwcch6umdxg@gilmour>
+References: <20210615110636.23403-1-andre.przywara@arm.com>
+        <20210615110636.23403-17-andre.przywara@arm.com>
+        <20210616092355.ndhjelwcch6umdxg@gilmour>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <4a1117e72d13d26126f57be034c20dac02f1e915.1623835273.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SWUwTURSGvZ1pO9RULyPKSTWoVYkYioBIGm2IBhKJhsQtbg9ChQmobHZA
-        BKJBiFvFhQZZChR3sFiXUqEUZbMCoizSgATBVIUHUUTcNVG0jChv3/nvf5Y/uRRBn+JLqN2x
-        CYwqVhktFYjIisbv7TLPxodh3u8uLJAXW9v48vy3YwJ5UYEGyW2WQoH8yD2rcBU/OKtVFlyl
-        7RcGG/UnBMEfjW7ryR0iRQQTvXs/o1oaECaKGix6zY8fkxwwaJoFaahopho5UYD94ErLqECN
-        RBSNSxG0Wh/wuOITgrIGncDhovFHBJe7FRMdrYYMkjOVIGjPvoq4YhTBe/srocM1A2+Ap11V
-        pINdcCpk9NeMM4EV0GOwIQcLsA+oh9V/NlCUGAeAJXefQybxItBf6uU5eCYOhxFdHt/BYuwM
-        D/MHxsc44Z1grhwmuJFzoXK48C+7Qu9A8XgCwFYKKs+UIu7qICh+riM5ngFDTSYhx3NgrGqi
-        IQPBizaDkCsyEdjS8/52r4S+th/jlxLYA25alnLyajh9qQs5ZMDToGfYmTtiGmgqcglOFsPx
-        ozTndgdt041/a+s7OomzSKqdFE07KY52Uhzt/73nEalHrkwiGxPJsL6xTJIXq4xhE2MjvcLj
-        Yozoz4959KvpkxmVDI16NSAehRoQUITURSxjm8NocYQyOYVRxYWqEqMZtgHNpkipq3iX6Xoo
-        jSOVCcxeholnVBOvPMpJksZDRnvx5x9TPdLKM2fHYz/FSTqzZe0mVXXg7Uyd/WAvEkWnmEJq
-        LnYEmdY9AsmyZ7Wb23v6Io59xTGPnx6O6pyjCeiUyUuJaxs8njmlntnTVi4uTOjfp75zpf6L
-        1TduBUjoszxvpn7x/ZAWvcuWFmeTbO+d5Faf5dZVty2i1I07ktCI+rHtUL1Xd8mx7SUFrB/P
-        zVZd+U3juS3A3yfcYDBL6grnrRk0vekz625m+fqfmo7rXppy3rf/DPT2z1vYfEM/teKrsMpe
-        UQs1yqMhC765z/LdOnLX7YPiiZurJf/+Ce+fQY3zm0M79piXG7Kh1h6SQzXWld+iy6c8LzOe
-        S5eSbJTSZwmhYpW/ASOmgCygAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPIsWRmVeSWpSXmKPExsVy+t/xu7o6x04mGBxcwmQx/8g5VouZb/6z
-        WcydPYnR4vKuOWwWrXuPsDuwekw8q+uxc9Zddo9NqzrZPD5vkgtgidKzKcovLUlVyMgvLrFV
-        ija0MNIztLTQMzKx1DM0No+1MjJV0rezSUnNySxLLdK3S9DLeDr3JWvBf6mKtZNOsDUwzhXt
-        YuTkkBAwkTi7tpkFxBYSWMoocbbNHSIuI3FyWgMrhC0s8edaF1sXIxdQzXtGiTu/DrKBJIQF
-        AiWuX90J1iwiUC2x/tkjZhCbWcBG4sbay4wQDY8YJU5fuwXWwCZgKNH1FmQSBwevgJ3ErumF
-        IGEWAVWJVYtvMYHYogLJEj/Xt4OV8woISpyc+QRsPqdAnMSO7W+h5ptJzNv8EMqWl9j+dg6U
-        LS5x68l8pgmMQrOQtM9C0jILScssJC0LGFlWMYqklhbnpucWG+oVJ+YWl+al6yXn525iBMbU
-        tmM/N+9gnPfqo94hRiYOxkOMEhzMSiK8usUnEoR4UxIrq1KL8uOLSnNSiw8xmgL9M5FZSjQ5
-        HxjVeSXxhmYGpoYmZpYGppZmxkrivFvnrokXEkhPLEnNTk0tSC2C6WPi4JRqYGpJ6jeQ/Dwn
-        XeUezy+m5k2OHJoHlNLZ/RarP0707dpYK7BhpyHf4sci+4pKrY2FBR7t3urYMPHCtsLWKX/X
-        RZhw+Ya80y3Z3S68J+/6rsb9S7a4xbvYydTNPBR2fQbHhJONB3Zeyo6/H7/CQ771xxXBIn6+
-        WfNV3HdFfV6oPeutcbNKQOG6A6I2czx6nl4I/bfgM+e5ZsbFPo+9lyVcn2b1tWfpxiMuH2+w
-        Xn60RfTGWpUJ7hdlv19ctGHv/7g76ybNXxcw4aWDyw9+nZQ31fx7r5ZnzQuxNHDiTpg813Vh
-        4tRIX+EEq4tevL/SRac258UcmFEcbFNWYOGe8PQyU/gs2TPz1no859/WxNmVnqzEUpyRaKjF
-        XFScCADuygo1MgMAAA==
-X-CMS-MailID: 20210616093644eucas1p2edfbd8b164059d77cd8f109eb80b161f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20210616092756eucas1p2bc7078a1a343f83f416bf6ba3acbc9ff
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20210616092756eucas1p2bc7078a1a343f83f416bf6ba3acbc9ff
-References: <cover.1623835273.git.geert+renesas@glider.be>
-        <CGME20210616092756eucas1p2bc7078a1a343f83f416bf6ba3acbc9ff@eucas1p2.samsung.com>
-        <4a1117e72d13d26126f57be034c20dac02f1e915.1623835273.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.06.2021 11:27, Geert Uytterhoeven wrote:
-> Variable "size" has type "phys_addr_t", which can be either 32-bit or
-> 64-bit on 32-bit systems, while "unsigned long" is always 32-bit on
-> 32-bit systems.  Hence the cast in
->
->      (unsigned long)size / SZ_1M
->
-> may truncate a 64-bit size to 32-bit, as casts have a higher operator
-> precedence than divisions.
->
-> Fix this by inverting the order of the cast and division, which should
-> be safe for memory blocks smaller than 4 PiB.  Note that the division is
-> actually a shift, as SZ_1M is a power-of-two constant, hence there is no
-> need to use div_u64().
->
-> While at it, use "%lu" to format "unsigned long".
->
-> Fixes: e8d9d1f5485b52ec ("drivers: of: add initialization code for static reserved memory")
-> Fixes: 3f0c8206644836e4 ("drivers: of: add initialization code for dynamic reserved memory")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
->   drivers/of/fdt.c             | 8 ++++----
->   drivers/of/of_reserved_mem.c | 8 ++++----
->   2 files changed, 8 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index a03d43f95495d8e1..970fa8cdc9303195 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -510,11 +510,11 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
->   
->   		if (size &&
->   		    early_init_dt_reserve_memory_arch(base, size, nomap) == 0)
-> -			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %ld MiB\n",
-> -				uname, &base, (unsigned long)size / SZ_1M);
-> +			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
-> +				uname, &base, (unsigned long)(size / SZ_1M));
->   		else
-> -			pr_info("Reserved memory: failed to reserve memory for node '%s': base %pa, size %ld MiB\n",
-> -				uname, &base, (unsigned long)size / SZ_1M);
-> +			pr_info("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
-> +				uname, &base, (unsigned long)(size / SZ_1M));
->   
->   		len -= t_len;
->   		if (first) {
-> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-> index 4592b71aba5cf4a1..333d33bad59d7888 100644
-> --- a/drivers/of/of_reserved_mem.c
-> +++ b/drivers/of/of_reserved_mem.c
-> @@ -136,9 +136,9 @@ static int __init __reserved_mem_alloc_size(unsigned long node,
->   			ret = early_init_dt_alloc_reserved_memory_arch(size,
->   					align, start, end, nomap, &base);
->   			if (ret == 0) {
-> -				pr_debug("allocated memory for '%s' node: base %pa, size %ld MiB\n",
-> +				pr_debug("allocated memory for '%s' node: base %pa, size %lu MiB\n",
->   					uname, &base,
-> -					(unsigned long)size / SZ_1M);
-> +					(unsigned long)(size / SZ_1M));
->   				break;
->   			}
->   			len -= t_len;
-> @@ -148,8 +148,8 @@ static int __init __reserved_mem_alloc_size(unsigned long node,
->   		ret = early_init_dt_alloc_reserved_memory_arch(size, align,
->   							0, 0, nomap, &base);
->   		if (ret == 0)
-> -			pr_debug("allocated memory for '%s' node: base %pa, size %ld MiB\n",
-> -				uname, &base, (unsigned long)size / SZ_1M);
-> +			pr_debug("allocated memory for '%s' node: base %pa, size %lu MiB\n",
-> +				uname, &base, (unsigned long)(size / SZ_1M));
->   	}
->   
->   	if (base == 0) {
+On Wed, 16 Jun 2021 11:23:55 +0200
+Maxime Ripard <maxime@cerno.tech> wrote:
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+Hi Maxime,
 
+> On Tue, Jun 15, 2021 at 12:06:33PM +0100, Andre Przywara wrote:
+> > This (relatively) new SoC is similar to the H6, but drops the (broken)
+> > PCIe support and the USB 3.0 controller. It also gets the management
+> > controller removed, which in turn removes *some*, but not all of the
+> > devices formerly dedicated to the ARISC (CPUS).
+> > And while there is still the extra sunxi interrupt controller, the
+> > package lacks the corresponding NMI pin, so no interrupts for the PMIC.
+> > 
+> > The reserved memory node is actually handled by Trusted Firmware now,
+> > but U-Boot fails to propagate this to a separately loaded DTB, so we
+> > keep it in here for now, until U-Boot learns to do this properly.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  .../arm64/boot/dts/allwinner/sun50i-h616.dtsi | 735 ++++++++++++++++++
+> >  1 file changed, 735 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > 
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > new file mode 100644
+> > index 000000000000..021b8597cfb8
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
+> > @@ -0,0 +1,735 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +// Copyright (C) 2020 Arm Ltd.
+> > +// based on the H6 dtsi, which is:
+> > +//   Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
+> > +
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +#include <dt-bindings/clock/sun50i-h616-ccu.h>
+> > +#include <dt-bindings/clock/sun50i-h6-r-ccu.h>
+> > +#include <dt-bindings/reset/sun50i-h616-ccu.h>
+> > +#include <dt-bindings/reset/sun50i-h6-r-ccu.h>
+> > +
+> > +/ {
+> > +	interrupt-parent = <&gic>;
+> > +	#address-cells = <2>;
+> > +	#size-cells = <2>;
+> > +
+> > +	cpus {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		cpu0: cpu@0 {
+> > +			compatible = "arm,cortex-a53";
+> > +			device_type = "cpu";
+> > +			reg = <0>;
+> > +			enable-method = "psci";
+> > +			clocks = <&ccu CLK_CPUX>;
+> > +		};
+> > +
+> > +		cpu1: cpu@1 {
+> > +			compatible = "arm,cortex-a53";
+> > +			device_type = "cpu";
+> > +			reg = <1>;
+> > +			enable-method = "psci";
+> > +			clocks = <&ccu CLK_CPUX>;
+> > +		};
+> > +
+> > +		cpu2: cpu@2 {
+> > +			compatible = "arm,cortex-a53";
+> > +			device_type = "cpu";
+> > +			reg = <2>;
+> > +			enable-method = "psci";
+> > +			clocks = <&ccu CLK_CPUX>;
+> > +		};
+> > +
+> > +		cpu3: cpu@3 {
+> > +			compatible = "arm,cortex-a53";
+> > +			device_type = "cpu";
+> > +			reg = <3>;
+> > +			enable-method = "psci";
+> > +			clocks = <&ccu CLK_CPUX>;
+> > +		};
+> > +	};
+> > +
+> > +	reserved-memory {
+> > +		#address-cells = <2>;
+> > +		#size-cells = <2>;
+> > +		ranges;
+> > +
+> > +		/* 512KiB reserved for ARM Trusted Firmware (BL31) */
+> > +		secmon_reserved: secmon@40000000 {
+> > +			reg = <0x0 0x40000000 0x0 0x80000>;
+> > +			no-map;
+> > +		};
+> > +	};  
+> 
+> Can't this be added by ATF directly?
+
+It actually is, and if you use U-Boot's DT ($fdtcontroladdr), that
+actually works. But as it stands right now, U-Boot fails to propagate
+this to any DTB that gets *loaded*. Fixing this requires generic code
+fixes, so I can't just hack this in for sunxi quickly.
+So I wanted to keep this around for a while, as missing this is a
+showstopper for booting Linux.
+
+> > +	osc24M: osc24M_clk {  
+> 
+> underscores are not valid in the node names and trigger a DTC warning.
+
+Oops, sorry for that.
+
+> 
+> > +		#clock-cells = <0>;
+> > +		compatible = "fixed-clock";
+> > +		clock-frequency = <24000000>;
+> > +		clock-output-names = "osc24M";
+> > +	};
+> > +
+> > +	pmu {
+> > +		compatible = "arm,cortex-a53-pmu";
+> > +		interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
+> > +			     <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
+> > +			     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
+> > +			     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
+> > +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+> > +	};
+> > +
+> > +	psci {
+> > +		compatible = "arm,psci-0.2";
+> > +		method = "smc";
+> > +	};
+> > +
+> > +	timer {
+> > +		compatible = "arm,armv8-timer";
+> > +		arm,no-tick-in-suspend;
+> > +		interrupts = <GIC_PPI 13
+> > +			(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
+> > +			     <GIC_PPI 14
+> > +			(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
+> > +			     <GIC_PPI 11
+> > +			(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>,
+> > +			     <GIC_PPI 10
+> > +			(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> > +	};
+> > +
+> > +	soc {
+> > +		compatible = "simple-bus";
+> > +		#address-cells = <1>;
+> > +		#size-cells = <1>;
+> > +		ranges = <0x0 0x0 0x0 0x40000000>;
+> > +
+> > +		syscon: syscon@3000000 {
+> > +			compatible = "allwinner,sun50i-h616-system-control";
+> > +			reg = <0x03000000 0x1000>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <1>;
+> > +			ranges;
+> > +
+> > +			sram_c: sram@28000 {
+> > +				compatible = "mmio-sram";
+> > +				reg = <0x00028000 0x30000>;
+> > +				#address-cells = <1>;
+> > +				#size-cells = <1>;
+> > +				ranges = <0 0x00028000 0x30000>;
+> > +			};
+> > +		};
+> > +
+> > +		ccu: clock@3001000 {
+> > +			compatible = "allwinner,sun50i-h616-ccu";
+> > +			reg = <0x03001000 0x1000>;
+> > +			clocks = <&osc24M>, <&rtc 0>, <&rtc 2>;
+> > +			clock-names = "hosc", "losc", "iosc";
+> > +			#clock-cells = <1>;
+> > +			#reset-cells = <1>;
+> > +		};
+> > +
+> > +		watchdog: watchdog@30090a0 {
+> > +			compatible = "allwinner,sun50i-h616-wdt",
+> > +				     "allwinner,sun6i-a31-wdt";
+> > +			reg = <0x030090a0 0x20>;
+> > +			interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks = <&osc24M>;
+> > +			status = "okay";
+> > +		};
+> > +
+> > +		pio: pinctrl@300b000 {
+> > +			compatible = "allwinner,sun50i-h616-pinctrl";
+> > +			reg = <0x0300b000 0x400>;
+> > +			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks = <&ccu CLK_APB1>, <&osc24M>, <&rtc 0>;
+> > +			clock-names = "apb", "hosc", "losc";
+> > +			gpio-controller;
+> > +			#gpio-cells = <3>;
+> > +			interrupt-controller;
+> > +			#interrupt-cells = <3>;
+> > +
+> > +			ext_rgmii_pins: rgmii-pins {
+> > +				pins = "PI0", "PI1", "PI2", "PI3", "PI4",
+> > +				       "PI5", "PI7", "PI8", "PI9", "PI10",
+> > +				       "PI11", "PI12", "PI13", "PI14", "PI15",
+> > +				       "PI16";
+> > +				function = "emac0";
+> > +				drive-strength = <40>;
+> > +			};
+> > +
+> > +			i2c0_pins: i2c0-pins {
+> > +				pins = "PI6", "PI7";
+> > +				function = "i2c0";
+> > +			};
+> > +
+> > +			i2c3_ph_pins: i2c3-ph-pins {
+> > +				pins = "PH4", "PH5";
+> > +				function = "i2c3";
+> > +			};
+> > +
+> > +			ir_rx_pin: ir-rx-pin {
+> > +				pins = "PH10";
+> > +				function = "ir_rx";
+> > +			};
+> > +
+> > +			mmc0_pins: mmc0-pins {
+> > +				pins = "PF0", "PF1", "PF2", "PF3",
+> > +				       "PF4", "PF5";
+> > +				function = "mmc0";
+> > +				drive-strength = <30>;
+> > +				bias-pull-up;
+> > +			};
+> > +
+> > +			mmc1_pins: mmc1-pins {
+> > +				pins = "PG0", "PG1", "PG2", "PG3",
+> > +				       "PG4", "PG5";
+> > +				function = "mmc1";
+> > +				drive-strength = <30>;
+> > +				bias-pull-up;
+> > +			};
+> > +
+> > +			mmc2_pins: mmc2-pins {
+> > +				pins = "PC0", "PC1", "PC5", "PC6",
+> > +				       "PC8", "PC9", "PC10", "PC11",
+> > +				       "PC13", "PC14", "PC15", "PC16";
+> > +				function = "mmc2";
+> > +				drive-strength = <30>;
+> > +				bias-pull-up;
+> > +			};
+> > +
+> > +			spi0_pins: spi0-pins {
+> > +				pins = "PC0", "PC2", "PC3", "PC4";
+> > +				function = "spi0";
+> > +			};
+> > +
+> > +			spi1_pins: spi1-pins {
+> > +				pins = "PH6", "PH7", "PH8";
+> > +				function = "spi1";
+> > +			};
+> > +
+> > +			spi1_cs_pin: spi1-cs-pin {
+> > +				pins = "PH5";
+> > +				function = "spi1";
+> > +			};
+> > +
+> > +			uart0_ph_pins: uart0-ph-pins {
+> > +				pins = "PH0", "PH1";
+> > +				function = "uart0";
+> > +			};
+> > +
+> > +			uart1_pins: uart1-pins {
+> > +				pins = "PG6", "PG7";
+> > +				function = "uart1";
+> > +			};
+> > +
+> > +			uart1_rts_cts_pins: uart1-rts-cts-pins {
+> > +				pins = "PG8", "PG9";
+> > +				function = "uart1";
+> > +			};
+> > +		};
+> > +
+> > +		gic: interrupt-controller@3021000 {
+> > +			compatible = "arm,gic-400";
+> > +			reg = <0x03021000 0x1000>,
+> > +			      <0x03022000 0x2000>,
+> > +			      <0x03024000 0x2000>,
+> > +			      <0x03026000 0x2000>;
+> > +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> > +			interrupt-controller;
+> > +			#interrupt-cells = <3>;
+> > +		};
+> > +
+> > +		mmc0: mmc@4020000 {
+> > +			compatible = "allwinner,sun50i-h616-mmc",
+> > +				     "allwinner,sun50i-a100-mmc";
+> > +			reg = <0x04020000 0x1000>;
+> > +			clocks = <&ccu CLK_BUS_MMC0>, <&ccu CLK_MMC0>;
+> > +			clock-names = "ahb", "mmc";
+> > +			resets = <&ccu RST_BUS_MMC0>;
+> > +			reset-names = "ahb";
+> > +			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> > +			pinctrl-names = "default";
+> > +			pinctrl-0 = <&mmc0_pins>;
+> > +			status = "disabled";
+> > +			max-frequency = <150000000>;
+> > +			cap-sd-highspeed;
+> > +			cap-mmc-highspeed;
+> > +			mmc-ddr-3_3v;
+> > +			mmc-ddr-1_8v;  
+> 
+> This is not something you know in the DTSI? It entirely depends on how
+> the board has been designed.
+
+Are you referring just to the last property?
+This is copying what the driver unconditionally sets for the other
+SoCs at the moment (minus the H5 screwup):
+	mmc->caps      |= MMC_CAP_1_8V_DDR | MMC_CAP_3_3V_DDR;
+IIUC 1.8V operation requires a 1.8V regulator for vqmmc to actually
+work, so this property alone won't enable anything.
+But if it's just about the 1.8V property, I can of course move this to
+the board dts files.
+
+Cheers,
+Andre
