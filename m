@@ -2,156 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21BD83A992D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 13:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BCD33A993F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 13:29:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229503AbhFPL35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 07:29:57 -0400
-Received: from mail-eopbgr1300104.outbound.protection.outlook.com ([40.107.130.104]:47808
-        "EHLO APC01-HK2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229502AbhFPL34 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 07:29:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lq6MZay/oGPuR+hWz3Ga63hu6KVxj0QzmFmLr99tssPmHuxDU19e5RQaT+DuQvBeXPEyB0c7jc820iHWgWBEKZxKCb63wdnoGMKrHssCDhsTPMi0DpdEgNDi1Qj1dBG7Mq//Djghovzg0DIvf+tlZw/yCd4sDKI90LM5wucwqddBZTBogN+LnoAkKkfguxEJPoYm4WQHg4amt7oAXFjSeS+bjLSrugw/GDW6OxsTBQb7QjHWs5xLUjtSsR5YTc9HKDpy5OumpB25EECx2aVA4JWSP6Sg6YePF8d6Fz1gDIyLypHqTPOMFCKxSGDDJGElkgyGa0i660k8P5KfGbanCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KDw/FeIihC79Ww2jpybz8e5arrZH2RWHE4h7iyF/5Sg=;
- b=YNKfENLubCGUQONU3rzrQ7kJy5i78TqEyY8hRH3MrcLg1K1CzRRAOaM4UJ3DICCs7nw/nrzBWov5j/y4aLoaC6hUMeTsVFn7zKfyayKWyXTof93RvXS5nJJcfaq6Mrh3s8cACmVpxdZKVdDkac5+Nb6Rk141k02P7inTRqhj7D1CvTN3T9ZSvj29IZRwtiEzyF9ZHPdS24NU1tLFQd+BVmsOXyBvySks5ytBxzmnzFgrRNIJpcZPL2vWEBdDnv+IFl52TkzvGQAxlsRFp3Xr9gYNQ61wvYfOQDlstzAlPltvXk22cgii0bsf4+SgDV7vRrC645rbNdrUUzIBYYVVgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KDw/FeIihC79Ww2jpybz8e5arrZH2RWHE4h7iyF/5Sg=;
- b=fMUzeQPnY53inmEDepk8LnlcvSyTIVAjJkukoSiRoXKsK33zZmx4pWuCf/4dwFpqj1Rj1c3IM8LNRMGxEfueEsxjH+yzTZj3LrPKiE9ohTm+ZpglgbAPHeTy982MKxypJjstjMpEmiR4n9JGctwhRbUwV0DiEk7Ek7ZRqU7FAJM=
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
- by TY2PR01MB3113.jpnprd01.prod.outlook.com (2603:1096:404:78::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.16; Wed, 16 Jun
- 2021 11:27:48 +0000
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::4c5d:66ee:883a:72a5]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::4c5d:66ee:883a:72a5%6]) with mapi id 15.20.4219.025; Wed, 16 Jun 2021
- 11:27:48 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-CC:     "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: RE: [PATCH/RFC 14/14] arm64: dts: renesas: r8a779m3: Add Cortex-A57 2
- GHz opp
-Thread-Topic: [PATCH/RFC 14/14] arm64: dts: renesas: r8a779m3: Add Cortex-A57
- 2 GHz opp
-Thread-Index: AQHXXdxG80ARNcucDEKu/c2k5yKwv6sWiRHQ
-Date:   Wed, 16 Jun 2021 11:27:48 +0000
-Message-ID: <TY2PR01MB36929A8366B7F9DDD7D01CD6D80F9@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-References: <cover.1623315732.git.geert+renesas@glider.be>
- <6dbc16b1345913cb42d8824d1c0f7f5be7645cf9.1623315732.git.geert+renesas@glider.be>
-In-Reply-To: <6dbc16b1345913cb42d8824d1c0f7f5be7645cf9.1623315732.git.geert+renesas@glider.be>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: glider.be; dkim=none (message not signed)
- header.d=none;glider.be; dmarc=none action=none header.from=renesas.com;
-x-originating-ip: [240f:60:5f3e:1:81de:11c4:e195:fc55]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 78920c0e-d7e1-41e3-4061-08d930b9c515
-x-ms-traffictypediagnostic: TY2PR01MB3113:
-x-microsoft-antispam-prvs: <TY2PR01MB3113DCE2EBEC0F58449B53AED80F9@TY2PR01MB3113.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: vwzOwZrDYhz8gtOXZBN/ZyEdFJpLUom94+5anM3TlB37qf333K8Vk1mjuxk8BleI1F/dV9NG99aIf9/5mNG7Nbg370eleYoVgCdV6CZhVSMS40fZxbPqahcYa6bSB5o3IKdniVbMhb7k2kSTAPjzzEuMhPWE/fmrCqWHABJ8otZbyzTTsDZA2/h6Dmr7ICr26Y7ze1eCUG2+yT8cb042SjtHqSbF9EqDaJFx3xNOB01evuWUd6RD+MTyVVkRnao+QZeyxH8mh3YUGnMdH6yzhoOR2Zqa6DrmfMco2m1ylhd5umAGwIBvTPsHObbVRrQE+wfztTeRWRSIvPFgH+xdXiCE++/LkQQwKT0p7TX9nCcjGSvf1h6r9P7MYSR36uHFyREHDly9rKJaKomnKfbIW6CHp+UgZ6yP0cKHgpoN/H5zLXQm+fufkwL1C26aQzdLt5Oib4sUK2OSQyNng824TDLWzqgueCUeURL7cbHQXGKI/RflK6m51mIv3s6q2ii/scT6GnlUBYz8W4AyHdn8KgEv0EzF46chWFHAs0iMMHZVo7WCWlbKlxjDbj/29pkU1qkifTo1ZttRoVCsyr/zeu6nkoZ4EbCbVVDpkyzha3k=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(346002)(39860400002)(376002)(396003)(366004)(64756008)(66446008)(86362001)(4326008)(8676002)(66946007)(66476007)(66556008)(7696005)(54906003)(5660300002)(478600001)(52536014)(33656002)(76116006)(122000001)(55016002)(2906002)(8936002)(38100700002)(186003)(316002)(6506007)(71200400001)(9686003)(83380400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?qZ6qoM/gJorGn/unKBON+l2xwja1QyUNpa977St3ghWVJ+yHUZr9OWYHXVyX?=
- =?us-ascii?Q?CdgQdbiX8v9/idjtSaLMq3Pvs5sfuYjHYtkSeIX2kjrClVlzGUkMPyOAFB5y?=
- =?us-ascii?Q?DK1jvAzufgK0hNKH8ha2WDk+sJhhY+u4wj9dv/kEqqPfCCjLgPO6XrlU47dC?=
- =?us-ascii?Q?KsaT8BhATbx8FqTygo5Wou8z1fS25Dd7qVMbH3YxcrKN02Z9+NqSh2RKoCwT?=
- =?us-ascii?Q?l1so2mOMW6XL+9bRjHQaxtidXlDANRT0SU+6NohGT71lj0rRyzLTvknfjtyW?=
- =?us-ascii?Q?qMOQen052U11ctqOc1j+KLJEcp7X8BfHNUTeanqC4Zi0POp2VK0rYZOwRbht?=
- =?us-ascii?Q?bqAgdycPK0tgn2WqnaxY5fxE8C7hrKIpdTF7wU2rwBzrdG8cxwIuTymmvjfs?=
- =?us-ascii?Q?Jph0vIF50q3MxZMbvnLb18IglV9ccUWQxDcAfBwpikrO/ufysnZRYnkE171y?=
- =?us-ascii?Q?AVronS/RFx01MSKFUBjzUWLyRF1VQUhL4TzIABpgNUY63eDpgSq32j5AzMmW?=
- =?us-ascii?Q?nWpuMIddOGpFoVpuhyzERe2qddie7GVnI2hsTarWmwVj6NlQK6GRpQJFMN+D?=
- =?us-ascii?Q?YNOgV1zldIffARLnz0A1E5M6h7y/eWGPFug0b62oex+9fXbHj7d/Sx8rLBt5?=
- =?us-ascii?Q?IPRS69+efRWKHn2UnYhTt1tfmUtxnJaflTJHMhoPRfNGRRCF4GqhE11cvEKE?=
- =?us-ascii?Q?i7R3qA9ujkQClAdVfdmDhSGr2TURQSy9KRQMJtqGKqnvE/koYWeehYAwMBDu?=
- =?us-ascii?Q?QQilF0lsK+sbtfM3OH/K5HYSa+2OT5VYLfTje5SMREyn6Zdqo7WS38z9ok62?=
- =?us-ascii?Q?YOA4DGl3ExNLVQkV0AJSdBilvAeGqC+A7Skeb4Vz8CudgoGJIHwlEgUFeatP?=
- =?us-ascii?Q?JZKDdouWqKb3L4NraQM1tl8peeHVsBUr7AQUFatp57Q6/l3hIoib0VcQXtq0?=
- =?us-ascii?Q?ufIY4Ouu9cmeExo+yYoDy8uJW47BlEsAfIXIHpZ1MtpY9ww0ee5HHlVu3YJF?=
- =?us-ascii?Q?uzsHyYE3GQM/Smd+FfrCnfwWIlDAW+uNMgiMUtM17MlDqBTDFToE8zirPmbE?=
- =?us-ascii?Q?hJl26cH/A9c5Os35IqVi9dsqk3ZuEDzWdw+9Y0CCnOZ2J/OP7h88P7F5GNus?=
- =?us-ascii?Q?6JgBiJ9ClUN6XVh4nHmILTLqHSZxZ+o6AdPM98GDAeTgibykTnGACtKc4x0p?=
- =?us-ascii?Q?pbHBXnTGSAjUcdng2d5UJxQHcM2m4nmF6nU/fEcdNHw4AzcYub8QND3heAvC?=
- =?us-ascii?Q?G4x87e4tSjGtEyzvH9FVPZ5HL01K84WCJOfEm09ou2/u1nLNPk1DMRpL2xSX?=
- =?us-ascii?Q?TZP7FJ9vr+xYEkL3Xbig7GbOF7DPHp6fFx0yC1trasYeYMbh+O6IBxcbQe4Z?=
- =?us-ascii?Q?UtSx2ws=3D?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S232520AbhFPLbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 07:31:24 -0400
+Received: from foss.arm.com ([217.140.110.172]:34634 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232512AbhFPLbO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Jun 2021 07:31:14 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0DFAF1042;
+        Wed, 16 Jun 2021 04:29:08 -0700 (PDT)
+Received: from slackpad.fritz.box (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C861C3F70D;
+        Wed, 16 Jun 2021 04:29:05 -0700 (PDT)
+Date:   Wed, 16 Jun 2021 12:28:48 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+        Ondrej Jirman <megous@megous.com>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v6 03/17] dt-bindings: rtc: sun6i: Add H616 compatible
+ string
+Message-ID: <20210616122848.7e26cc68@slackpad.fritz.box>
+In-Reply-To: <20210616090700.hvwiaifo5luiwhnf@gilmour>
+References: <20210519104152.21119-1-andre.przywara@arm.com>
+        <20210519104152.21119-4-andre.przywara@arm.com>
+        <99a2069b-99e9-9b47-12a6-aae01c7f59dc@sholland.org>
+        <20210607135910.63560ffc@slackpad.fritz.box>
+        <56ad752b-b1c2-cb05-be8b-71c29f271ec9@sholland.org>
+        <20210615132440.55793ec5@slackpad.fritz.box>
+        <20210616090700.hvwiaifo5luiwhnf@gilmour>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78920c0e-d7e1-41e3-4061-08d930b9c515
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2021 11:27:48.1963
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: GVylhJP74D8LGxdiCYXeaPSZTIrrUKLB7ejf++U7iDmEXlTlA86s0r4mjL1cGQ3vIikj1jq7LmdKUNfNSMLHPY0Io6qVqsnG0MeTkF3Txns6FPESKcVKzDnRwroHBOMk
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB3113
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert-san,
+On Wed, 16 Jun 2021 11:07:00 +0200
+Maxime Ripard <maxime@cerno.tech> wrote:
 
-> From: Geert Uytterhoeven, Sent: Thursday, June 10, 2021 6:37 PM
->=20
-> Add a preliminary operating point for running the Cortex-A57 CPU cores
-> on R-Car M3e-2G at 2 GHz.
->=20
-> The opp-microvolt value depends on a future update of the Electrical
-> Characteristics for R-Car M3e-2G.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  arch/arm64/boot/dts/renesas/r8a779m3.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779m3.dtsi b/arch/arm64/boot/=
-dts/renesas/r8a779m3.dtsi
-> index 65bb6188ccf5470a..fa5e8ffdf7343739 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779m3.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779m3.dtsi
-> @@ -10,3 +10,12 @@
->  / {
->  	compatible =3D "renesas,r8a779m3", "renesas,r8a77961";
->  };
-> +
-> +&cluster0_opp {
-> +	opp-2000000000 {
-> +		opp-hz =3D /bits/ 64 <2000000000>;
-> +		opp-microvolt =3D <1020000>;	// FIXME TBC
+Hi,
 
-Like r8a779m1, I heard this is also <960000>.
+> On Tue, Jun 15, 2021 at 01:24:40PM +0100, Andre Przywara wrote:
+> > > On 6/7/21 7:59 AM, Andre Przywara wrote:  
+> > > > On Thu, 20 May 2021 21:37:34 -0500
+> > > > Samuel Holland <samuel@sholland.org> wrote:
+> > > > 
+> > > > Hi,
+> > > >     
+> > > >> On 5/19/21 5:41 AM, Andre Przywara wrote:    
+> > > >>> Add the obvious compatible name to the existing RTC binding.
+> > > >>> The actual RTC part of the device uses a different day/month/year
+> > > >>> storage scheme, so it's not compatible with the previous devices.
+> > > >>>
+> > > >>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > > >>> ---
+> > > >>>  .../devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml     | 5 ++++-
+> > > >>>  1 file changed, 4 insertions(+), 1 deletion(-)
+> > > >>>
+> > > >>> diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> > > >>> index b1b0ee769b71..178c955f88bf 100644
+> > > >>> --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> > > >>> +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> > > >>> @@ -26,6 +26,7 @@ properties:
+> > > >>>            - const: allwinner,sun50i-a64-rtc
+> > > >>>            - const: allwinner,sun8i-h3-rtc
+> > > >>>        - const: allwinner,sun50i-h6-rtc
+> > > >>> +      - const: allwinner,sun50i-h616-rtc
+> > > >>>  
+> > > >>>    reg:
+> > > >>>      maxItems: 1
+> > > >>> @@ -97,7 +98,9 @@ allOf:
+> > > >>>        properties:
+> > > >>>          compatible:
+> > > >>>            contains:
+> > > >>> -            const: allwinner,sun50i-h6-rtc
+> > > >>> +            enum:
+> > > >>> +              - allwinner,sun50i-h6-rtc
+> > > >>> +              - allwinner,sun50i-h616-rtc
+> > > >>>  
+> > > >>>      then:
+> > > >>>        properties:
+> > > >>>       
+> > > >>
+> > > >> This binding is missing a clock reference for the pll-periph0-2x input
+> > > >> to the 32kHz clock fanout.    
+> > > > 
+> > > > Right. So do I get this correctly that we don't model the OSC24M input
+> > > > explicitly so far in the DT? I only see one possible input clock, which
+> > > > is for an optional 32K crystal oscillator.
+> > > > And this means we need to change some code also? Because at the moment
+> > > > a clock specified is assumed to be the 32K OSC, and having this clock
+> > > > means we switch to the external 32K OSC.    
+> > > 
+> > > Right. The code would need updates to follow the binding.  
+> > 
+> > I changed the binding for now to not allow any clock, and the code to
+> > ignore any clocks when the H616 compatible is used. This way we can
+> > extend this later without breaking anything.  
+> 
+> I'm not really a fan of this: it just creates one more special case that
+> we'll have to take into account later on, complicating further the logic
+> that is already way too complicated.
 
-Best regards,
-Yoshihiro Shimoda
+I see your point, but that's why I made it a no-clock choice: we can
+add clocks any time later, older kernels finding them in newer DTs will
+ignore them, older DTs on newer kernels wouldn't instantiate them in
+the first place.
 
-> +		clock-latency-ns =3D <300000>;
-> +		turbo-mode;
-> +	};
-> +};
-> --
-> 2.25.1
+> 
+> > > > And who would decide which clock source to use? What would be the
+> > > > reason to use PLL_PERIPH(2x) over the RC16M based clock or the
+> > > > divided down 24MHz?    
+> > > 
+> > > Because it would be more accurate. 24MHz/750 == 32000 Hz, while the RTC
+> > > expects 32768 Hz.  
+> > 
+> > I thought about this as well, but this means there is no reason to not
+> > use the PLL? At least not for Linux (normal operation with PLLs
+> > running anyway)? This situation is different for the other SoCs, because
+> > boards *might* have a separate and more precise 32K crystal.
+> > So we could code this similar to the other SoCs: If we have a clock
+> > property defined, we assume it's pointing to the PLL and switch to use
+> > it?  
+> 
+> We have another option though: list all the clocks that could be
+> available for a 32khz source, call clk_get_accuracy on them, and then
+> use the clock with the best accuracy. We already have the accuracy
+> requirements in the datasheet for each crystal, so it shouldn't be too
+> hard to support.
 
+That would possibly be an option, yes. What makes this further
+complicated though is that there are several LOSC outputs: one going
+to the RTC, one going to other peripherals, one going to the pad. And
+they can have different sources, at least on the H616: the RTC and
+system clock can't be driven by the PLL or divided down HOSC, just by
+the RC oscillator. But all three of them can supply the clock to the
+pad. I guess another reason to separate clock and actual RTC.
+
+> > But, looking at the diagram in the manual (and assuming it's
+> > correct), the PLL based clock can only be routed to the pad, but cannot
+> > be used for the RTC. That seems to be also the case for the T5, which
+> > has an external LOSC pin.
+> >    
+> > > > So shall we ignore the PLL based input clock for now, put "0 input
+> > > > clocks" in the current binding, then later on extend this to allow
+> > > > choosing the PLL? And have it that way that having the PLL reference
+> > > > means we use it?    
+> > > 
+> > > No, the device tree represents the hardware, not whatever happens to be
+> > > used by Linux drivers at the time. It should be in the binding
+> > > regardless of what the driver does with it.  
+> > 
+> > I understand that very well, but was just looking for a solution where
+> > we can go ahead with an easier solution *now*. I am afraid implementing
+> > this annoying RTC special snowflake properly will just delay the whole
+> > series.
+> > In the long run your "D1 & friends" extra RTC clock driver looks the
+> > right way out, but it will probably take some more time to get this
+> > merged.  
+> 
+> To be honest, I'm not entirely sure why we need the rtc in the first
+> place. If your plan is to figure it out later anyway, why not just model
+> the 32kHz clock as a fixed clock, and change it later once it's been
+> entirely figured out?
+
+This would be a way out, at the cost of making newer DTs not work on
+this kernel (the H616 RTC compatible wouldn't be recognised). I have to
+check how fatal this is, IIRC pinctrl and CCU still work somehow (it's
+only needed for debounce, which is optional?)
+But if this is the price to pay to get it into 5.14 ... 
+ 
+> > > Though the circular dependency between the clock providers does cause
+> > > problems. We cannot get a clk_hw for the PLL-based clock, so we would
+> > > have to hardcode a global name for it, which means we aren't really
+> > > using the device tree.  
+> > 
+> > I start to wonder how much business Linux really has in controlling all
+> > those RTC details. The current code happens to work, because everything
+> > is setup correctly already, on reset.  
+> 
+> That's not true for all the SoCs.
+
+Yes, this was not meant to be an universal statement, but as you
+mention above, we get pretty far with ignoring the RTC completely, even.
+ 
+> > > We already see this "not really using the binding" with the other CCUs:
+> > > the H616 CCU hardcodes the name "osc24M", while the A100 CCU hardcodes
+> > > "dcxo24M" for the same clock. So moving that clock into the RTC clock
+> > > provider would require using both names in one clk_hw simultaneously (or
+> > > rather fixing the CCU drivers to get a clk_hw from the DT instead of
+> > > referencing by name).
+> > > 
+> > > And trying to deal with optional clocks by index is only going to get
+> > > more painful over time. For example, with the R329 and D1, the RTC has
+> > > the following inputs:
+> > >  * DCXO24M (unless you model it inside the RTC)
+> > >  * External OSC32k (optional!)
+> > >  * The RTC bus gate/reset from the PRCM
+> > >  * R-AHB from the PRCM for the RTC SPI clock domain
+> > > 
+> > > So it seems time to start using clock-names in the RTC binding.  
+> > 
+> > Yes, that sounds reasonable. It's just a shame that we keep changing
+> > the RTC bindings, and so creating a lot of incompatibility on the way.  
+> 
+> I mean, we keep changing it because the hardware keeps changing. The RTC
+> on the A20 had no clock at all. The A31 later on got only a single clock
+> input, and a single output. If your point is that we should have known
+> better 9 years ago what the current SoCs would look like, that's a bit
+> absurd, don't you think?
+
+I don't mean changing the binding between SoCs, this is of course not
+very reasonable, especially if dealing with Allwinner, who apparently
+have little regard to something like "compatibility" and like to spread
+new bits around various peripherals that happens to have free space.
+
+I was referring to changing existing bindings for one particular SoC,
+like we did in the past when adding the <&rtc 2> clock output.
+And I am just afraid this will happen again if we start to support the
+RTC "properly" now, for instance for the H6.
+
+Cheers,
+Andre
