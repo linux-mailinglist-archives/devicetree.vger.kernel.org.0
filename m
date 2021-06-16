@@ -2,88 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C4FC3A9E07
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:48:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EE403A9E19
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:51:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234035AbhFPOuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 10:50:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36084 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233914AbhFPOuF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 10:50:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E00D560C41;
-        Wed, 16 Jun 2021 14:47:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623854878;
-        bh=qwFzlNJ04k6sHwdqK2lPHiFKDvUxsyrimKNVrLGVNus=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BW+O+K34ZrUlK3Qeyn1xh0qNXfJmlW6xGP+wjvLG+7fob198unv8919jWdLy35gco
-         ECRpvSzZ1bsY415puegBVgstUjnypUyWHzIqXOe+4HutPZP597VMWdAOlXoZPL2JDV
-         GTKcVqqdXLN9ZguRSwz40nhavI2fcRTyxDoYBLUV+47L0XTmgKIS2oJugcc6V+HrbU
-         bsOXdW53Kb7JUmF1+XINpSL5LOdBxHWowya5AyS8NxPHbiJg9OVqFv3vVDTIkpHgjS
-         PggFG+CivK2OrxvEeGjmt0hvzf/GvxbMhQND0H3IfXkihosQuXcPvPInxSyS7yGqln
-         Axrk1ck0c877g==
-Received: by mail-ed1-f54.google.com with SMTP id z12so3089136edc.1;
-        Wed, 16 Jun 2021 07:47:58 -0700 (PDT)
-X-Gm-Message-State: AOAM533/MGi4yHA0oQFui/kmIxopqmZ6uiI3EGxf65qxg3ilzqrhCFA9
-        j+nk/ZABHnfcmShBwdETySG/tZctN9CClNW0ag==
-X-Google-Smtp-Source: ABdhPJz6uzVahBrIhJvzhgaD8yThinebto90daMlvuqzzG4qQ4bE0zduK+dYUvSlcpZgFhisvC9dMBrri3xqlqei3zU=
-X-Received: by 2002:aa7:dc4c:: with SMTP id g12mr4860375edu.258.1623854877530;
- Wed, 16 Jun 2021 07:47:57 -0700 (PDT)
+        id S234175AbhFPOxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 10:53:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58494 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233860AbhFPOxf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 10:53:35 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC939C061574
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:51:28 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id v9so3021149wrx.6
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:51:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=PO3bafkqYILWJqWytS8gUShKgfwibzvfh84wirCWy1s=;
+        b=bNYdxkGO+wjRgDRieFSzyn8BVGnlO2jMlt1eMjYjfu9AqzoKcL/bY6C6MHP63cIYRR
+         z2aF9F2dpjzPaKe6mgKittxuFMoQE+sRwEj7S9ViKIVkgLP1xz/KFxW2Cin8BdvYD9f0
+         cbssyNEcAj7R9pymnM7nnMwIWckb1U8VpxycM+Agm2AI8XbM3SRoqfZEubeiACeb+xA0
+         932QYj0TmtuJPPLUBKhjQvheDc+Fp8MeubxNkuJ0fkH6fiJfAuDZWm0mUWejCLPRJqDm
+         6a1GUetsm1tIrPbUUdOCcf/HrNbuXBWBdP7wS+KbMb+vlIHpgmAYIzmNfa+96AayfCC0
+         RuWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=PO3bafkqYILWJqWytS8gUShKgfwibzvfh84wirCWy1s=;
+        b=t/C6Af1jWJ7ig8mZRDyJ8gJCWmRPbGL19WQZr0JMjYDeXKAGjaF2LlnAQj/BPV48iX
+         KYefOlkgfBp1R/5rvTlU2kF0XIksmTidSgditRXNCxg11uDYdxMAD7y3kAdV6abPfzC3
+         8NETDwqmEe8DMJ8jAHb4KbkcYHsFiYu5ihmW/b7vtSrLel23glNZiEbv3P8IlmhKXH7c
+         M/LRZ6p91P6MrbcsLGKS15ljR7Ojuts8054eWiB723Ba/aTn3Va3RkFc1R97q1XnR9Wc
+         950tJqgTp5t2v92Tf1SDm0tTWn9TgdsJ05xQ4XosidH7bASXkZOljnsG8o3AU0Ut5nVW
+         VSsQ==
+X-Gm-Message-State: AOAM532/Otrcd4ks7pgU/RX1zrBCpv9crZgzmXLlYpsZLk7jDcYfrMfW
+        eAqpgbvoRCFiNfTx3tEmGQb7Cg==
+X-Google-Smtp-Source: ABdhPJzk1KnTJA4gbt6PFE3FyAoZUcCPSje/BGsicS9oi0jkDqPQyN2CpT46kCnDnRtJzXZty+TEWA==
+X-Received: by 2002:adf:9dd1:: with SMTP id q17mr5869188wre.402.1623855087572;
+        Wed, 16 Jun 2021 07:51:27 -0700 (PDT)
+Received: from dell ([91.110.221.170])
+        by smtp.gmail.com with ESMTPSA id x18sm2349887wrw.19.2021.06.16.07.51.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jun 2021 07:51:27 -0700 (PDT)
+Date:   Wed, 16 Jun 2021 15:51:25 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Min Li <min.li.xe@renesas.com>
+Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
+        "grant.likely@linaro.org" <grant.likely@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH mfd v2] mfd: Add Renesas Synchronization Management Unit
+ (SMU) support
+Message-ID: <YMoP7fdkyyYUrDf2@dell>
+References: <1622652224-19103-1-git-send-email-min.li.xe@renesas.com>
+ <YMiwEYLkbKocs8ux@dell>
+ <OS3PR01MB65939641C36B650A3B69DAADBA309@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+ <YMmuz0EVjfEi6MJj@dell>
+ <TYYPR01MB6603047A864DB37F111BDAD9BA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-References: <cover.1623780059.git.geert+renesas@glider.be> <bcc5c666f4ada9a8bbc26f559751f0da67f769f8.1623780059.git.geert+renesas@glider.be>
- <abadee118c1945c44d9bff7675b12ec4@mailhost.ics.forth.gr> <CAL_JsqLU7GWDxdnR2-Yd2vbj7w=5pNr_fFocDQgPbs17EpBG0g@mail.gmail.com>
- <bdfbf7cc997a10a94331d77332dbe88e@mailhost.ics.forth.gr> <CAMuHMdVRcN+y0kwxxEH8UGo6bRT9SvxRSLU8VzWJFx=yLQ5S0g@mail.gmail.com>
- <ef1a9a97e0238a0ff2d8e044487602a5@mailhost.ics.forth.gr>
-In-Reply-To: <ef1a9a97e0238a0ff2d8e044487602a5@mailhost.ics.forth.gr>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 16 Jun 2021 08:47:46 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKJgz=ixNAJProoVFmQXGEOsTYX=bXTdtf7RLQErL1VRg@mail.gmail.com>
-Message-ID: <CAL_JsqKJgz=ixNAJProoVFmQXGEOsTYX=bXTdtf7RLQErL1VRg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] riscv: Remove non-standard linux,elfcorehdr handling
-To:     Nick Kossifidis <mick@ics.forth.gr>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <TYYPR01MB6603047A864DB37F111BDAD9BA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 16, 2021 at 4:43 AM Nick Kossifidis <mick@ics.forth.gr> wrote:
->
-> =CE=A3=CF=84=CE=B9=CF=82 2021-06-16 10:56, Geert Uytterhoeven =CE=AD=CE=
-=B3=CF=81=CE=B1=CF=88=CE=B5:
-> >
-> > I can't comment on the duplication on arm64, but to me, /chosen
-> > sounds like the natural place for both "linux,elfcorehdr" and
-> > "linux,usable-memory-range".  First rule of DT is "DT describes
-> > hardware, not software policy", with /chosen describing some software
-> > configuration.
-> >
->
-> We already have "linux,usable-memory" on /memory node:
-> https://elixir.bootlin.com/linux/v5.13-rc6/source/drivers/of/fdt.c#L1011
-> and it makes perfect sense to be there since it overrides /memory's reg
-> property.
->
-> Why define another binding for the same thing on /chosen ?
+On Wed, 16 Jun 2021, Min Li wrote:
 
-Go look at the thread adding "linux,usable-memory-range". There were
-only 35 versions of it[1]. I wasn't happy with a 2nd way either, but
-as I've mentioned before we don't always have /memory node.
+> > 
+> > > >
+> > > > > +static struct mfd_cell rsmu_cm_devs[] = {
+> > > > > +	[RSMU_PHC] = {
+> > > > > +		.name = "idtcm-phc",
+> > > >
+> > > > Can't you have a nicer name?
+> > > >
+> > > Hi Lee
+> > >
+> > > I wonder which part of the name that you don't like? PHC stands from PTP
+> > Hardware Clock.
+> > > I was following the name convention like tps65912-regulator.
+> > > Do you accept "8a3400-phc"?
+> > 
+> > I think you're trying to put too much information into the device name.
+> > 
+> > Currently it's:
+> > 
+> >   idt <company name> cm <platform> - phc <exact device type>
+> > 
+> > Where usually we have, taking your example:
+> > 
+> >   tps65912 <chip> - regulator <subsystem>
+> > 
+> > So assuming the PTP HW Clock is just a clock it should be:
+> > 
+> >   8a3400 <chip> - clock <subsystem>
+> > 
+> > It's difficult to say without seeing the associated child device(s).
+> > When do you propose to upstream those?  Maybe they should be part of
+> > this initial set.  I think that would help a lot.
+> > 
+> 
+> Hi Lee
+> 
+> The PHC driver already existed in the current tree as drivers/ptp/ptp_clockmatrix.c and
+> ptp_idt82p33.c
+> 
+> Right now, they act as i2c driver. I plan to change them as a normal platform device driver
+> after this MFD change kicked in
+> 
+> That is why I would prefer the name "phc" instead of "clock" since the driver is not a normal clk driver
+> under drivers/clk but a ptp clock driver. And down the road, we will have our real clock driver and I wanna
+> reserve the name "clock" for the real clock driver.
 
-Rob
+I see.  To be honest, I wasn't aware of the PTP subsystem.
 
-[1] https://lore.kernel.org/linux-arm-kernel/20170403022606.12609-1-takahir=
-o.akashi@linaro.org/
+In which case, the name needs to match the one in the driver:
+
+ static struct i2c_driver idtcm_driver = {
+        .driver = {
+                .of_match_table = of_match_ptr(idtcm_dt_id),
+                .name           = "idtcm",
+        },
+        .probe          = idtcm_probe,
+        .remove         = idtcm_remove,
+        .id_table       = idtcm_i2c_id,
+ };
+
+So, "idtcm" in this case.
+
+How else will it match?
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
