@@ -2,71 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A18463AA78E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 01:36:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C3FD3AA796
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 01:40:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234638AbhFPXil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 19:38:41 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:41647 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234530AbhFPXil (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 19:38:41 -0400
-Received: by mail-io1-f42.google.com with SMTP id p66so1049737iod.8;
-        Wed, 16 Jun 2021 16:36:34 -0700 (PDT)
+        id S234632AbhFPXmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 19:42:23 -0400
+Received: from mail-il1-f181.google.com ([209.85.166.181]:33539 "EHLO
+        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234590AbhFPXmW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 19:42:22 -0400
+Received: by mail-il1-f181.google.com with SMTP id z1so3873389ils.0;
+        Wed, 16 Jun 2021 16:40:14 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=dBgSKzg+OG1fjJdv7NgXh988HzECY/j5M/Ly5wHlw50=;
-        b=NOgNjVudBpotjAYKuHYYjYLBLQ0dVENBBB06DA+xRQMFA5PapWrXftInosN+H1mtnK
-         3wCDEqOduTLMXHD5B7swk/2CCUAMMNUEijREq8ufeJ45Al/88ytzI+9coHCxrU2kjIWi
-         WLaH6dWtx8aMJ5GvzYRPCQZ3U54ZkYb942Hl69URGHL2y2CWSeQiQBGCF/8/wmq8fabR
-         7kiE/Jhe3F3R9O+bhTXAfy2LbsFkeruXYJtGIgeSmY3t/VIei3AmgLfP8Y5cR158+XJ8
-         yG3kEDASMbLjOpv2O2uB9+MWcO1YPsz4siSj0xEEYJspLd7kdmmj1WB+mZNuANdc5LLS
-         +FTw==
-X-Gm-Message-State: AOAM532BH1qlJ7j4MD2+rDL5Gwwafnrrzu8MoX9gGgpW94nOVPUjIFk5
-        un26/LaZ5uVXkfaQvt//HA==
-X-Google-Smtp-Source: ABdhPJzZEgtAl9jMW+KvMkV4aY/u5jKwWcr7UKyE6F4oyV4aZrmD4depkfFOTPMmLam4hNJ/m8LxNg==
-X-Received: by 2002:a02:c014:: with SMTP id y20mr1629995jai.107.1623886593845;
-        Wed, 16 Jun 2021 16:36:33 -0700 (PDT)
+        bh=kDYnmGlkYP2XTjPyujeKcLs7zkGku54gbQ2xEMwMzGQ=;
+        b=qmgjgw0zjwg1V8cyRGVmQj4yMw9dEausOXPT9map8w8YvYSDLVBbXMWl+4bFzCdxur
+         qFowg6KVIfal0UNUmXWCiZJPru9tRAQPv+I4icqMIwRq/chjLDkpMTM83GwJpP6EGS8m
+         S4yfWKsLV1VfqFNfuHmKrCzfLv2jzRREOwUrwjVD7tbAKZk7j5c3rpv2+hf252iOZ/Qm
+         n27X6lBDTinivNc1GYyI3NmM7VfoIxHNFDL9SwSu1znLrh3XY3/FmmfgHd2qAuwfB8G+
+         VR9raEbgrrCtMsj6HJRWAJDBDJrjsc75UG0cerihu+x80CGxUd92lvVOWAoP86Ok1qlo
+         JCcg==
+X-Gm-Message-State: AOAM533gcCUNDoRmy7IOCfCjnik85jONIjaSB0qdtsiotKbGTGvyr4Lb
+        41Gho4XVBqfn+LqQlwC+VQ==
+X-Google-Smtp-Source: ABdhPJxOVFOvxO+PfGwlEWm+SVTL4u/1b9+xCOaQxsYMANRsvdRArIUQpQn2YsRYLvV0yG3lnEellA==
+X-Received: by 2002:a92:bf10:: with SMTP id z16mr1547434ilh.304.1623886814437;
+        Wed, 16 Jun 2021 16:40:14 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id c22sm1939298ioz.24.2021.06.16.16.36.31
+        by smtp.gmail.com with ESMTPSA id h7sm1866831ilr.44.2021.06.16.16.40.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 16:36:33 -0700 (PDT)
-Received: (nullmailer pid 295461 invoked by uid 1000);
-        Wed, 16 Jun 2021 23:36:31 -0000
-Date:   Wed, 16 Jun 2021 17:36:31 -0600
+        Wed, 16 Jun 2021 16:40:13 -0700 (PDT)
+Received: (nullmailer pid 300348 invoked by uid 1000);
+        Wed, 16 Jun 2021 23:40:11 -0000
+Date:   Wed, 16 Jun 2021 17:40:11 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Cc:     michal.simek@xilinx.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        broonie@kernel.org, linux-arm-kernel@lists.infradead.org,
-        harinik@xilinx.com, robh+dt@kernel.org
-Subject: Re: [PATCH v2] dt-bindings: spi: convert Cadence SPI bindings to YAML
-Message-ID: <20210616233631.GA295427@robh.at.kernel.org>
-References: <20210605003811.858676-1-iwamatsu@nigauri.org>
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: Add SONY Synaptics JDI panel
+Message-ID: <20210616234011.GA295646@robh.at.kernel.org>
+References: <20210605104942.39487-1-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210605003811.858676-1-iwamatsu@nigauri.org>
+In-Reply-To: <20210605104942.39487-1-konrad.dybcio@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 05 Jun 2021 09:38:11 +0900, Nobuhiro Iwamatsu wrote:
-> Convert spi for Cadence SPI bindings documentation to YAML.
+On Sat, Jun 05, 2021 at 12:49:40PM +0200, Konrad Dybcio wrote:
+> Add bindings for the SONY Synaptics JDI panel used in
+> Xperia X, X Performance, X Compact, XZ and XZs smartphones.
 > 
-> Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+> Due to the nature of phone manufacturing and lack of any docs
+> whatsoever, replacement names have been used to indicate the
+> devices that this panel is used on.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 > ---
+> Changes since v1:
+> - gpio -> gpios
+> - description: |+ -> description: |
+> - remove redundant reset-gpio
+> - fix up indentation in the example
 > 
->  v2: Add ref and enum is-decoded-cs.
->      Add ref to num-cs.
+>  .../display/panel/sony,synaptics-jdi.yaml     | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml
 > 
->  .../devicetree/bindings/spi/spi-cadence.txt   | 30 ---------
->  .../devicetree/bindings/spi/spi-cadence.yaml  | 66 +++++++++++++++++++
->  2 files changed, 66 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-cadence.txt
->  create mode 100644 Documentation/devicetree/bindings/spi/spi-cadence.yaml
-> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml b/Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml
+> new file mode 100644
+> index 000000000000..81d841c049e8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/sony,synaptics-jdi.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/sony,synaptics-jdi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SONY Synaptics JDI panel
+> +
+> +maintainers:
+> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
+> +
+> +description: |+
+> +  This panel seems to only be found in SONY Xperia
+> +  X, X Performance, X Compact, XZ and XZs
+> +  smartphones and we have no straightforward way of
+> +  actually getting the correct model number,
+> +  as no schematics are released publicly.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - sony,synaptics-jdi-dora
+> +          - sony,synaptics-jdi-kagura
+> +          - sony,synaptics-jdi-keyaki
+> +          - sony,synaptics-jdi-kugo
+> +          - sony,synaptics-jdi-suzu
+> +
+> +  reg: true
+> +
+> +  reset-gpios: true
+> +
+> +  avdd-supply:
+> +    description: avdd supply
+> +
+> +  vddio-supply:
+> +    description: vddio supply
+> +
+> +  vsn-supply:
+> +    description: voltage negative supply
+> +
+> +  vsp-supply:
+> +    description: voltage positive supply
+> +
+> +  tvdd-supply:
+> +    description: tvdd supply
+> +
+> +  preset-gpio:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+'-gpios' is the preferred form.
+
+And needs 'maxItems: 1'
+
+> +    description: panel reset pin
+> +
+> +  pvddio-gpio:
+> +    description: panel vddio pin
+> +
+> +  treset-gpio:
+> +    description: touch reset pin
+
+Same for these.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - preset-gpio
+> +  - pvddio-gpio
+> +  - treset-gpio
+> +  - avdd-supply
+> +  - vddio-supply
+> +  - vsn-supply
+> +  - vsp-supply
+> +  - tvdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            panel: panel@0 {
+> +                    reg = <0>;
+> +
+
+Missing a compatible which means the above schema is never applied...
+
+> +                    pvddio-gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
+> +                    preset-gpio = <&tlmm 8 GPIO_ACTIVE_HIGH>;
+> +                    treset-gpio = <&tlmm 89 GPIO_ACTIVE_HIGH>;
+> +
+> +                    vddio-supply = <&pm8994_s4>;
+> +                    avdd-supply = <&pm8994_l2>;
+> +                    tvdd-supply = <&panel_tvdd>;
+> +
+> +                    backlight = <&pmi8994_wled>;
+> +
+> +                    port {
+
+and that would point out this is not documented. 
+
+> +                      panel_in: endpoint {
+> +                        remote-endpoint = <&dsi0_out>;
+> +                      };
+> +                    };
+> +            };
+> +    };
+> -- 
+> 2.31.1
