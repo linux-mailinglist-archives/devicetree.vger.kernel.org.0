@@ -2,77 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F12483AA2D1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 20:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 866433AA2DB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 20:05:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231319AbhFPSEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 14:04:52 -0400
-Received: from mail-io1-f44.google.com ([209.85.166.44]:45820 "EHLO
-        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230291AbhFPSEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 14:04:52 -0400
-Received: by mail-io1-f44.google.com with SMTP id k5so114576iow.12;
-        Wed, 16 Jun 2021 11:02:46 -0700 (PDT)
+        id S231526AbhFPSHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 14:07:12 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:47025 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231518AbhFPSHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 14:07:10 -0400
+Received: by mail-io1-f48.google.com with SMTP id b14so116768iow.13;
+        Wed, 16 Jun 2021 11:05:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=BwJG53yeIKpwmHLQ3ka5oXerXYUJ0GJWceYTPITcxG0=;
-        b=G8PF7SVH8texhIx/BwQMUBT1Aphw9z5PnDHCCL1aTjXU96D0FuREqEDB9UnhliKmg6
-         3DAq/HtKgf05HThVja7f9KwOLsCpgWfBcigMob9kmmY4DhETBrRmKhmXsW2wBgG8SwQN
-         Gj7A2eevXaTaB16gAeluc9va7iIxJMYJpcOGNNE39ycYWUGfei4BCjQp3V681gk+RI+F
-         fo3uypFb5CxfT4iiDCPGAFxFdbX6NHr5eU+tNNNYZ2YbT2kqgWV1fqG2rzImbnchv/f8
-         uc9YRgZU1Hjx9B5cGmk+ssEThD5kXCCHP1JA7xMAr/k68ol6XAkdf8yHXTT0Mu18p67r
-         sjdA==
-X-Gm-Message-State: AOAM533f29xGc1Z9Ia+Jz5SLdxMKpanrVSgbWkdSnAohkj38f034UpLY
-        1fVmnOgVarF7wEc5JBqYeyg0mYNyTg==
-X-Google-Smtp-Source: ABdhPJyNJ4hbhowQxMaqjBKIJh8+VQAdyz5O3aEnc7NVjg6pZ3FhmJ+XTvjahMVuYHzbCajW+WmBVw==
-X-Received: by 2002:a02:cc89:: with SMTP id s9mr575167jap.43.1623866565691;
-        Wed, 16 Jun 2021 11:02:45 -0700 (PDT)
+        bh=nhtnuVC7x8F0RxoCVWcLwvtiTsM/g+uKT2oI1c6E/88=;
+        b=Oea2304Drr8V32KZ/Jiv5z47OMz5OyBgmkdNHvwj6J+7XAi5RjWd4QotHBPPqFQra4
+         DXuNhsrMyNLZwRrS4PznbwZDPVutwEzMNDUtv8cwPTz1WAivcTl51lb3SU4EvekLVj4S
+         9y9dpDlirlRtirRYYM6oDykQcgiUWiR7X/UgNXuTUFflbkQli/9QsVweFGj77cwuF8n1
+         XC8ieTmXC2K4TBnG9VUV9ajr2CbolB4fZCgjvCjpXEU4Yy0wUvolMigD5kDmJlsl8aOX
+         fCqKUTe3PUeG6T0a2SYi7E5f/OV/NITxHjlYL09ITVarW3B0L9CmufJU18BRa4S7vgnF
+         lK5Q==
+X-Gm-Message-State: AOAM530xGm2EMscBl8VXeWlr4mFpfaP7g45RSFAa/kwLxGjlju0jCRq5
+        pp+YhfPxoxuRLSRaHXjybFwSeYB2Ag==
+X-Google-Smtp-Source: ABdhPJybX8rQs8eqkO4g6uGoYmsIFzEXphFF9HBytSufElRlNCgbbaU7NAYcEt/68rP06qeqi7BFJw==
+X-Received: by 2002:a5e:a515:: with SMTP id 21mr498451iog.175.1623866703813;
+        Wed, 16 Jun 2021 11:05:03 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id d7sm1397131ilv.79.2021.06.16.11.02.44
+        by smtp.gmail.com with ESMTPSA id p19sm1546416iob.7.2021.06.16.11.05.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 11:02:44 -0700 (PDT)
-Received: (nullmailer pid 3626047 invoked by uid 1000);
-        Wed, 16 Jun 2021 18:02:43 -0000
-Date:   Wed, 16 Jun 2021 12:02:43 -0600
+        Wed, 16 Jun 2021 11:05:03 -0700 (PDT)
+Received: (nullmailer pid 3629274 invoked by uid 1000);
+        Wed, 16 Jun 2021 18:05:01 -0000
+Date:   Wed, 16 Jun 2021 12:05:01 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, Joe Hung <joe_hung@ilitek.com>,
-        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
-Subject: Re: [PATCH] dt-bindings: input: touchscreen: ilitek_ts_i2c: Absorb
- ili2xxx bindings
-Message-ID: <20210616180243.GA3624758@robh.at.kernel.org>
-References: <c381ee2526074e02b6058c489f85cfdaee582713.1623419587.git.geert+renesas@glider.be>
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH 1/3] of: Fix truncation of memory sizes on 32-bit
+ platforms
+Message-ID: <20210616180501.GA3629188@robh.at.kernel.org>
+References: <cover.1623835273.git.geert+renesas@glider.be>
+ <4a1117e72d13d26126f57be034c20dac02f1e915.1623835273.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c381ee2526074e02b6058c489f85cfdaee582713.1623419587.git.geert+renesas@glider.be>
+In-Reply-To: <4a1117e72d13d26126f57be034c20dac02f1e915.1623835273.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Jun 2021 15:54:27 +0200, Geert Uytterhoeven wrote:
-> While Linux uses a different driver, the Ilitek
-> ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller Device Tree
-> binding documentation is very similar.
+On Wed, 16 Jun 2021 11:27:44 +0200, Geert Uytterhoeven wrote:
+> Variable "size" has type "phys_addr_t", which can be either 32-bit or
+> 64-bit on 32-bit systems, while "unsigned long" is always 32-bit on
+> 32-bit systems.  Hence the cast in
 > 
->   - Drop the fixed reg value, as some controllers use a different
->     address,
->   - Make reset-gpios optional, as it is not always wired.
+>     (unsigned long)size / SZ_1M
 > 
+> may truncate a 64-bit size to 32-bit, as casts have a higher operator
+> precedence than divisions.
+> 
+> Fix this by inverting the order of the cast and division, which should
+> be safe for memory blocks smaller than 4 PiB.  Note that the division is
+> actually a shift, as SZ_1M is a power-of-two constant, hence there is no
+> need to use div_u64().
+> 
+> While at it, use "%lu" to format "unsigned long".
+> 
+> Fixes: e8d9d1f5485b52ec ("drivers: of: add initialization code for static reserved memory")
+> Fixes: 3f0c8206644836e4 ("drivers: of: add initialization code for dynamic reserved memory")
 > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../bindings/input/ilitek,ili2xxx.txt         | 27 -------------------
->  .../input/touchscreen/ilitek_ts_i2c.yaml      |  7 +++--
->  2 files changed, 5 insertions(+), 29 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
+>  drivers/of/fdt.c             | 8 ++++----
+>  drivers/of/of_reserved_mem.c | 8 ++++----
+>  2 files changed, 8 insertions(+), 8 deletions(-)
 > 
 
-One driver or 2, I don't care from a binding perspective if sharing 
-works.
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
