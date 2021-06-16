@@ -2,145 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EE403A9E19
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:51:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 789973A9E43
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234175AbhFPOxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 10:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58494 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233860AbhFPOxf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 10:53:35 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC939C061574
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:51:28 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id v9so3021149wrx.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:51:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=PO3bafkqYILWJqWytS8gUShKgfwibzvfh84wirCWy1s=;
-        b=bNYdxkGO+wjRgDRieFSzyn8BVGnlO2jMlt1eMjYjfu9AqzoKcL/bY6C6MHP63cIYRR
-         z2aF9F2dpjzPaKe6mgKittxuFMoQE+sRwEj7S9ViKIVkgLP1xz/KFxW2Cin8BdvYD9f0
-         cbssyNEcAj7R9pymnM7nnMwIWckb1U8VpxycM+Agm2AI8XbM3SRoqfZEubeiACeb+xA0
-         932QYj0TmtuJPPLUBKhjQvheDc+Fp8MeubxNkuJ0fkH6fiJfAuDZWm0mUWejCLPRJqDm
-         6a1GUetsm1tIrPbUUdOCcf/HrNbuXBWBdP7wS+KbMb+vlIHpgmAYIzmNfa+96AayfCC0
-         RuWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=PO3bafkqYILWJqWytS8gUShKgfwibzvfh84wirCWy1s=;
-        b=t/C6Af1jWJ7ig8mZRDyJ8gJCWmRPbGL19WQZr0JMjYDeXKAGjaF2LlnAQj/BPV48iX
-         KYefOlkgfBp1R/5rvTlU2kF0XIksmTidSgditRXNCxg11uDYdxMAD7y3kAdV6abPfzC3
-         8NETDwqmEe8DMJ8jAHb4KbkcYHsFiYu5ihmW/b7vtSrLel23glNZiEbv3P8IlmhKXH7c
-         M/LRZ6p91P6MrbcsLGKS15ljR7Ojuts8054eWiB723Ba/aTn3Va3RkFc1R97q1XnR9Wc
-         950tJqgTp5t2v92Tf1SDm0tTWn9TgdsJ05xQ4XosidH7bASXkZOljnsG8o3AU0Ut5nVW
-         VSsQ==
-X-Gm-Message-State: AOAM532/Otrcd4ks7pgU/RX1zrBCpv9crZgzmXLlYpsZLk7jDcYfrMfW
-        eAqpgbvoRCFiNfTx3tEmGQb7Cg==
-X-Google-Smtp-Source: ABdhPJzk1KnTJA4gbt6PFE3FyAoZUcCPSje/BGsicS9oi0jkDqPQyN2CpT46kCnDnRtJzXZty+TEWA==
-X-Received: by 2002:adf:9dd1:: with SMTP id q17mr5869188wre.402.1623855087572;
-        Wed, 16 Jun 2021 07:51:27 -0700 (PDT)
-Received: from dell ([91.110.221.170])
-        by smtp.gmail.com with ESMTPSA id x18sm2349887wrw.19.2021.06.16.07.51.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 07:51:27 -0700 (PDT)
-Date:   Wed, 16 Jun 2021 15:51:25 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Min Li <min.li.xe@renesas.com>
-Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
-        "grant.likely@linaro.org" <grant.likely@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH mfd v2] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Message-ID: <YMoP7fdkyyYUrDf2@dell>
-References: <1622652224-19103-1-git-send-email-min.li.xe@renesas.com>
- <YMiwEYLkbKocs8ux@dell>
- <OS3PR01MB65939641C36B650A3B69DAADBA309@OS3PR01MB6593.jpnprd01.prod.outlook.com>
- <YMmuz0EVjfEi6MJj@dell>
- <TYYPR01MB6603047A864DB37F111BDAD9BA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
+        id S234142AbhFPO5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 10:57:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40994 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234087AbhFPO5W (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Jun 2021 10:57:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C1E176105A;
+        Wed, 16 Jun 2021 14:55:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623855316;
+        bh=AxlyDycZpX8N+vmFuWI19Sd23V+DuNrgeU3nJ9fSOlQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QbxJDVCXZCiJeF3/Q66YYkQXX8XrqQWunoHlN3fz7MvO3OBOJzfBaIE1+y9uV3EAJ
+         7ZOnQOUax/KFmkvtfDUou8wXJ0FfPxJ4kcKXYjibBCJdFoN5AgHrlcU9CuAk4qCvlw
+         zLTuWne2oMrfffRAnHML8LSecawZJ9nk0RmoqKCSYZh8Z9k8REa/NtJtsTmhlIcV+3
+         ZIDmMzY3L8+UFaPWf88q3/7ddG2zmUdCL/6pwINt3fHenvC3PuKC/nnYWq23IPE5Nm
+         lrqlsLz6YFDCi9nBadTiG2yRnNxG98sePhSk02i2zImkAJwuFwFs6frHPbEhyjfmgV
+         h1jU+qvK6TdTg==
+Received: by mail-ej1-f41.google.com with SMTP id ce15so4411016ejb.4;
+        Wed, 16 Jun 2021 07:55:16 -0700 (PDT)
+X-Gm-Message-State: AOAM531x7aUGMl6u3nY7EwpG0GTrXvjqxoPRQDu48/ZpAHSqHq3k+fLK
+        VCKUy2nhapZxTNAWvfcxbyydHuygUoP+2zjyuw==
+X-Google-Smtp-Source: ABdhPJwrM8JUB7d5DGbvDUmM8cwcGPrXjP07+dvcNQN2Yqm0+3CnQUECrHvdmK6ajaK5xuXmYOM66M46eB/vWGyFWYM=
+X-Received: by 2002:a17:906:9419:: with SMTP id q25mr163961ejx.341.1623855315390;
+ Wed, 16 Jun 2021 07:55:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <TYYPR01MB6603047A864DB37F111BDAD9BA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
+References: <20210419005539.22729-1-mick@ics.forth.gr> <20210419005539.22729-6-mick@ics.forth.gr>
+ <CAMuHMdW=23SPXwqcjD+30M_d0azdze2=ChZM-PF1brf9bCNtrA@mail.gmail.com>
+ <fe02eb618eee141e8bc021e8e30906fc@mailhost.ics.forth.gr> <CAMuHMdXtT1L3yfzkTkbhqz3zgUQj89Bcm7mqz+m126NprAsK8Q@mail.gmail.com>
+ <CAL_JsqLHOmZ6az0bYGC3dg__YX3aq=+Un4_x4+R2nNksc0hM2g@mail.gmail.com> <a488d802940f7fc2ae34a4fe583ec187@mailhost.ics.forth.gr>
+In-Reply-To: <a488d802940f7fc2ae34a4fe583ec187@mailhost.ics.forth.gr>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 16 Jun 2021 08:55:02 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+9eBSHUwzWBipgoSHNDvxqfrTuY4Un0PrRhoaAHugJNw@mail.gmail.com>
+Message-ID: <CAL_Jsq+9eBSHUwzWBipgoSHNDvxqfrTuY4Un0PrRhoaAHugJNw@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] RISC-V: Add crash kernel support
+To:     Nick Kossifidis <mick@ics.forth.gr>,
+        Ard Biesheuvel <ardb@kernel.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Jun 2021, Min Li wrote:
++Ard
 
-> > 
-> > > >
-> > > > > +static struct mfd_cell rsmu_cm_devs[] = {
-> > > > > +	[RSMU_PHC] = {
-> > > > > +		.name = "idtcm-phc",
-> > > >
-> > > > Can't you have a nicer name?
-> > > >
-> > > Hi Lee
-> > >
-> > > I wonder which part of the name that you don't like? PHC stands from PTP
-> > Hardware Clock.
-> > > I was following the name convention like tps65912-regulator.
-> > > Do you accept "8a3400-phc"?
-> > 
-> > I think you're trying to put too much information into the device name.
-> > 
-> > Currently it's:
-> > 
-> >   idt <company name> cm <platform> - phc <exact device type>
-> > 
-> > Where usually we have, taking your example:
-> > 
-> >   tps65912 <chip> - regulator <subsystem>
-> > 
-> > So assuming the PTP HW Clock is just a clock it should be:
-> > 
-> >   8a3400 <chip> - clock <subsystem>
-> > 
-> > It's difficult to say without seeing the associated child device(s).
-> > When do you propose to upstream those?  Maybe they should be part of
-> > this initial set.  I think that would help a lot.
-> > 
-> 
-> Hi Lee
-> 
-> The PHC driver already existed in the current tree as drivers/ptp/ptp_clockmatrix.c and
-> ptp_idt82p33.c
-> 
-> Right now, they act as i2c driver. I plan to change them as a normal platform device driver
-> after this MFD change kicked in
-> 
-> That is why I would prefer the name "phc" instead of "clock" since the driver is not a normal clk driver
-> under drivers/clk but a ptp clock driver. And down the road, we will have our real clock driver and I wanna
-> reserve the name "clock" for the real clock driver.
+On Tue, Jun 15, 2021 at 5:29 PM Nick Kossifidis <mick@ics.forth.gr> wrote:
+>
+> =CE=A3=CF=84=CE=B9=CF=82 2021-06-15 22:21, Rob Herring =CE=AD=CE=B3=CF=81=
+=CE=B1=CF=88=CE=B5:
+> > On Tue, Jun 15, 2021 at 12:48 PM Geert Uytterhoeven
+> > <geert@linux-m68k.org> wrote:
+> >>
+> >> Hi Nick,
+> >>
+> >> On Tue, Jun 15, 2021 at 8:29 PM Nick Kossifidis <mick@ics.forth.gr>
+> >> wrote:
+> >> > =CE=A3=CF=84=CE=B9=CF=82 2021-06-15 16:19, Geert Uytterhoeven =CE=AD=
+=CE=B3=CF=81=CE=B1=CF=88=CE=B5:
+> >> > > This does not match
+> >> > > https://github.com/devicetree-org/dt-schema/blob/master/schemas/ch=
+osen.yaml#L77:
+> >> > >
+> >> > >     $ref: types.yaml#/definitions/uint64-array
+> >> > >     maxItems: 2
+> >> > >     description:
+> >> > >       This property (currently used only on arm64) holds the memor=
+y
+> >> > > range,
+> >> > >       the address and the size, of the elf core header which mainl=
+y
+> >> > > describes
+> >> > >       the panicked kernel\'s memory layout as PT_LOAD segments of =
+elf
+> >> > > format.
+> >> > >
+> >> > > Hence "linux,elfcorehdr" should be a property of the /chosen node,
+> >> > > instead of a memory node with a compatible value of "linux,elfcore=
+hdr".
+> >> > >
+> >> >
+> >> > That's a binding for a property on the /chosen node, that as the tex=
+t
+> >> > says it's defined for arm64 only and the code that handled it was al=
+so
+> >>
+> >> That doesn't mean it must not be used on other architectures ;-)
+> >> Arm64 was just the first one to use it...
+> >
+> > It is used on arm64 because memory is often passed by UEFI tables and
+> > not with /memory node. As riscv is also supporting EFI, I'd think they
+> > would do the same.
+> >
+>
+> We've had this discussion before, riscv uses /memory for now and even if
+> we switched to getting memory from ACPI/UEFI tables, the elf core header
+> is passed from the crashed kernel to the kdump kernel, it has nothing to
+> do with UEFI since the bootloader is the kernel itself. Am I missing
+> something ?
 
-I see.  To be honest, I wasn't aware of the PTP subsystem.
+I believe if we originally booted using UEFI tables, then those are
+passed the kdump kernel as well. The original DT may have had a
+/memory node, but it's possible it didn't match what was in the UEFI
+tables. So using the DT /memory nodes for kdump could give surprising
+results. I think reserved regions also come from UEFI. Ard can
+probably comment better.
 
-In which case, the name needs to match the one in the driver:
-
- static struct i2c_driver idtcm_driver = {
-        .driver = {
-                .of_match_table = of_match_ptr(idtcm_dt_id),
-                .name           = "idtcm",
-        },
-        .probe          = idtcm_probe,
-        .remove         = idtcm_remove,
-        .id_table       = idtcm_i2c_id,
- };
-
-So, "idtcm" in this case.
-
-How else will it match?
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Rob
