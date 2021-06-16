@@ -2,40 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16DB13A9E53
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 902A13A9E63
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:00:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234295AbhFPO7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 10:59:40 -0400
-Received: from foss.arm.com ([217.140.110.172]:39482 "EHLO foss.arm.com"
+        id S234342AbhFPPCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 11:02:23 -0400
+Received: from foss.arm.com ([217.140.110.172]:39554 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234294AbhFPO7k (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 10:59:40 -0400
+        id S234293AbhFPPCW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Jun 2021 11:02:22 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2D6E431B;
-        Wed, 16 Jun 2021 07:57:34 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 53CBA31B;
+        Wed, 16 Jun 2021 08:00:16 -0700 (PDT)
 Received: from slackpad.fritz.box (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4CE8E3F719;
-        Wed, 16 Jun 2021 07:57:32 -0700 (PDT)
-Date:   Wed, 16 Jun 2021 15:57:15 +0100
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 514D93F694;
+        Wed, 16 Jun 2021 08:00:14 -0700 (PDT)
+Date:   Wed, 16 Jun 2021 15:59:58 +0100
 From:   Andre Przywara <andre.przywara@arm.com>
 To:     Rob Herring <robh@kernel.org>
-Cc:     linux-sunxi@googlegroups.com, Samuel Holland <samuel@sholland.org>,
-        linux-kernel@vger.kernel.org, Icenowy Zheng <icenowy@aosc.io>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Ondrej Jirman <megous@megous.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v7 01/19] dt-bindings: mfd: axp20x: Add AXP305
- compatible (plus optional IRQ)
-Message-ID: <20210616155715.7d8347c5@slackpad.fritz.box>
-In-Reply-To: <20210615233345.GA1627887@robh.at.kernel.org>
+        Icenowy Zheng <icenowy@aosc.io>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org
+Subject: Re: [PATCH v7 03/19] dt-bindings: rtc: sun6i: Add H616 compatible
+ string
+Message-ID: <20210616155958.7c7a6a33@slackpad.fritz.box>
+In-Reply-To: <20210615233502.GA1630203@robh.at.kernel.org>
 References: <20210615110636.23403-1-andre.przywara@arm.com>
-        <20210615110636.23403-2-andre.przywara@arm.com>
-        <20210615233345.GA1627887@robh.at.kernel.org>
+        <20210615110636.23403-4-andre.przywara@arm.com>
+        <20210615233502.GA1630203@robh.at.kernel.org>
 Organization: Arm Ltd.
 X-Mailer: Claws Mail 3.17.1 (GTK+ 2.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
@@ -45,35 +46,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Jun 2021 17:33:45 -0600
+On Tue, 15 Jun 2021 17:35:02 -0600
 Rob Herring <robh@kernel.org> wrote:
 
-> On Tue, 15 Jun 2021 12:06:18 +0100, Andre Przywara wrote:
-> > The AXP305 PMIC used on many boards with the H616 SoC seems to be fully
-> > compatible to the AXP805 PMIC, so add the proper chain of compatible
-> > strings.
-> > 
-> > Also at least on one board (Orangepi Zero2) there is no interrupt line
-> > connected to the CPU, so make the "interrupts" property optional.
+Hi,
+
+> On Tue, Jun 15, 2021 at 12:06:20PM +0100, Andre Przywara wrote:
+> > Add the obvious compatible name to the existing RTC binding.
+> > The actual RTC part of the device uses a different day/month/year
+> > storage scheme, so it's not compatible with the previous devices.
+> > Also the clock part is quite different, as there is no external 32K LOSC
+> > oscillator input.
 > > 
 > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > > ---
-> >  Documentation/devicetree/bindings/mfd/axp20x.txt | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >   
+> >  .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml     | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> > index b1b0ee769b71..2c3fd72e17ee 100644
+> > --- a/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> > +++ b/Documentation/devicetree/bindings/rtc/allwinner,sun6i-a31-rtc.yaml
+> > @@ -26,6 +26,7 @@ properties:
+> >            - const: allwinner,sun50i-a64-rtc
+> >            - const: allwinner,sun8i-h3-rtc
+> >        - const: allwinner,sun50i-h6-rtc
+> > +      - const: allwinner,sun50i-h616-rtc
+> >  
+> >    reg:
+> >      maxItems: 1
+> > @@ -105,6 +106,20 @@ allOf:
+> >            minItems: 3
+> >            maxItems: 3
+> >  
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: allwinner,sun50i-h616-rtc
+> > +
+> > +    then:
+> > +      properties:
+> > +        clock-output-names:
+> > +          minItems: 3
+> > +          maxItems: 3
+> > +        clocks:
+> > +          maxItems: 0  
 > 
+> clocks: false
 > 
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> If a tag was not added on purpose, please state why and what changed.
+> if forbidding clocks is what you want.
 
-Argh, sorry, I was still wondering whether I should try the YAML
-conversion, so didn't apply your tag right away - and then missed it
-when I decided to postpone this. Plus I actually fixed some blunder
-(copy&paste typo in the compatible), and I mostly drop tags upon
-changes.
+Yes, thanks for the hint!
 
 Cheers,
 Andre
+
+> 
+> > +
+> >    - if:
+> >        properties:
+> >          compatible:
+> > -- 
+> > 2.17.5  
+> 
+
