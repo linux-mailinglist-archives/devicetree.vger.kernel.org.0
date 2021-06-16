@@ -2,96 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B0E23A9274
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 08:28:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 584EC3A92A3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 08:30:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232011AbhFPGaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 02:30:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60008 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231611AbhFPG3y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 02:29:54 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F62061400;
-        Wed, 16 Jun 2021 06:27:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623824868;
-        bh=9+IwjkK9O4NibLgz3M7pCdhHS/M6MeKEeQDBWbnnZqM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oFnRs9ZTKF3/X/XE4/LGMzLixde3V13VBMFQGuc1CS68P6qS3HWgzLxkx0mVVL/sd
-         n4lkrKZ9bn8IljgXb8irelZITvg555ZNkAsIVwx96/QMRjVfHig3h2fv49MQJioZSH
-         eCf0tD2Qh6x7bl7c6htBvX+IHA9xN1fYLtwQAeqLKFVO6oMlgMNvz28NEzVbfQirK3
-         AowGLBlXc3+mIQoKINwBkDsmlBE1SxlXECzr7oVjogCftkrzsQ48yjWDyFWeCrKYoH
-         m7aDdlvFMri6k0/XaVucAOAjClMYKH4WQnRRvzBkGAo8sy07au+YeB8v/3+TQSOQ1J
-         uZUC/tUjq5n5A==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1ltP1e-004kJ0-D9; Wed, 16 Jun 2021 08:27:46 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Jonathan Corbet <corbet@lwn.net>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@protonmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 11/29] docs: devicetree: bindings: submitting-patches.rst: avoid using ReST :doc:`foo` markup
-Date:   Wed, 16 Jun 2021 08:27:26 +0200
-Message-Id: <0048c23d47b582dd1a1959628fd2b895209ac826.1623824363.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1623824363.git.mchehab+huawei@kernel.org>
-References: <cover.1623824363.git.mchehab+huawei@kernel.org>
+        id S231819AbhFPGdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 02:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56994 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231689AbhFPGcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 02:32:54 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDD0FC0610CE;
+        Tue, 15 Jun 2021 23:29:45 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dafna)
+        with ESMTPSA id 020571F4326D
+Subject: Re: [PATCH v3 10/10] media: rockchip: rkisp1: add support for px30
+ isp version
+To:     Heiko Stuebner <heiko@sntech.de>, mchehab@kernel.org,
+        hverkuil-cisco@xs4all.nl
+Cc:     ezequiel@collabora.com, helen.koike@collabora.com,
+        Laurent.pinchart@ideasonboard.com,
+        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+References: <20210615225023.3929434-1-heiko@sntech.de>
+ <20210615225023.3929434-11-heiko@sntech.de>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <02244fde-011b-6057-311a-7360d689114f@collabora.com>
+Date:   Wed, 16 Jun 2021 09:29:14 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+In-Reply-To: <20210615225023.3929434-11-heiko@sntech.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The :doc:`foo` tag is auto-generated via automarkup.py.
-So, use the filename at the sources, instead of :doc:`foo`.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../devicetree/bindings/submitting-patches.rst        | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
-index 104fa8fb2c17..8087780f1685 100644
---- a/Documentation/devicetree/bindings/submitting-patches.rst
-+++ b/Documentation/devicetree/bindings/submitting-patches.rst
-@@ -7,8 +7,8 @@ Submitting Devicetree (DT) binding patches
- I. For patch submitters
- =======================
- 
--  0) Normal patch submission rules from Documentation/process/submitting-patches.rst
--     applies.
-+  0) Normal patch submission rules from
-+     Documentation/process/submitting-patches.rst applies.
- 
-   1) The Documentation/ and include/dt-bindings/ portion of the patch should
-      be a separate patch. The preferred subject prefix for binding patches is::
-@@ -25,8 +25,8 @@ I. For patch submitters
- 
-        make dt_binding_check
- 
--     See Documentation/devicetree/bindings/writing-schema.rst for more details about
--     schema and tools setup.
-+     See Documentation/devicetree/bindings/writing-schema.rst for more details
-+     about schema and tools setup.
- 
-   3) DT binding files should be dual licensed. The preferred license tag is
-      (GPL-2.0-only OR BSD-2-Clause).
-@@ -84,7 +84,8 @@ II. For kernel maintainers
- III. Notes
- ==========
- 
--  0) Please see :doc:`ABI` for details regarding devicetree ABI.
-+  0) Please see Documentation/devicetree/bindings/ABI.rst for details
-+     regarding devicetree ABI.
- 
-   1) This document is intended as a general familiarization with the process as
-      decided at the 2013 Kernel Summit.  When in doubt, the current word of the
--- 
-2.31.1
+On 16.06.21 01:50, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> 
+> The px30 uses a V12 isp block so add compatible and matchdata
+> for it.
+> 
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> ---
+>   .../media/platform/rockchip/rkisp1/rkisp1-dev.c | 17 +++++++++++++++++
+>   1 file changed, 17 insertions(+)
+> 
+> diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
+> index ddc05189c62a..6e4c0710f3a3 100644
+> --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
+> +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
+> @@ -398,6 +398,19 @@ static irqreturn_t rkisp1_isr(int irq, void *ctx)
+>   	return IRQ_HANDLED;
+>   }
+>   
+> +static const char * const px30_isp_clks[] = {
+> +	"isp",
+> +	"aclk",
+> +	"hclk",
+> +	"pclk",
+> +};
+> +
+> +static const struct rkisp1_match_data px30_isp_match_data = {
+> +	.clks = px30_isp_clks,
+> +	.size = ARRAY_SIZE(px30_isp_clks),
+> +	.isp_ver = RKISP1_V12,
+> +};
+> +
+>   static const char * const rk3399_isp_clks[] = {
+>   	"isp",
+>   	"aclk",
+> @@ -411,6 +424,10 @@ static const struct rkisp1_match_data rk3399_isp_match_data = {
+>   };
+>   
+>   static const struct of_device_id rkisp1_of_match[] = {
+> +	{
+> +		.compatible = "rockchip,px30-cif-isp",
+> +		.data = &px30_isp_match_data,
+> +	},
+>   	{
+>   		.compatible = "rockchip,rk3399-cif-isp",
+>   		.data = &rk3399_isp_match_data,
+> 
+
+Hi, in order to avoid the if-else in patch 4/10 maybe we can do:
+
+```
+struct interrupt_to_isr {
+	char* name;
+	irqreturn_t isr(int irq, void *ctx);
+}
+
+interrupt_to_is px30_isrs[] {
+	{"isp", rkisp1_isp_isr}
+	{"mi",  rkisp1_capture_isr}
+	{"mipi", rkisp1_mipi_isr}
+}
+static const struct rkisp1_match_data px30_isp_match_data = {
+	.clks = px30_isp_clks,
+	.size = ARRAY_SIZE(px30_isp_clks),
+	.isp_ver = RKISP1_V12,
+	.isrs = px30_isrs
+};
+//and similar for rk3399
+```
+
+Then in the probe we just do
+```
+for each (name,isr) in isrs
+	irq = platform_get_irq_byname(name)
+	devm_request_irq(dev, irq, isr,...
+```
+
+
+Thanks,
+Dafna	
 
