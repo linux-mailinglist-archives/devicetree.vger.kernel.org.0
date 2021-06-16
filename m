@@ -2,139 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD8733AA156
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 18:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7EA03AA173
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 18:35:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235080AbhFPQdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 12:33:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39558 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232234AbhFPQdR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 12:33:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CECD361351;
-        Wed, 16 Jun 2021 16:31:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623861070;
-        bh=exkQJNSPkDaseMRDwokpCtaWrpnVtJkBzMN5rRvGQlo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CcrM6uikMWLtSBxw8H9H/2RY3qDvi+EYYeCjgHO3IJREBFMZI0Pd3wZ6OaIJGk+4N
-         lDguHLiRALRo7Z+MZgOBGkqFhvoeQcekyMghWGkQiFqZVBe/0FDS52/h86X4d/CCxe
-         CC8V6p1zS78I55C0TsuwMalmdvgQ9wrRekivnY6l5IlW6Sj74m5MmO87kgPug79KfJ
-         6JYfmHysfpYqP40QQ0G5/wNlAmnOj0mVxMgo35afLZ4b4etyX0sAy05mvHSib5b4z2
-         yeOWg2lCgxOh59vYBQq/TfJ5tSNzXOoe9fe94711BOMJha3rn6eUQkIF7JhIBU+hVP
-         od/YObWbZ+Itg==
-Received: by mail-ot1-f41.google.com with SMTP id w23-20020a9d5a970000b02903d0ef989477so3067349oth.9;
-        Wed, 16 Jun 2021 09:31:10 -0700 (PDT)
-X-Gm-Message-State: AOAM5305JSNPw4xbGPfQmRSNnEOZ2Xyd3I5tHIPDkueWTPx6Sua8swiz
-        VOAxjl3fNtVjJCSnEwrFcG5tfRi/N7htU2k4Tww=
-X-Google-Smtp-Source: ABdhPJx9WT46czKGqGKZTMvu1g4TggAjHcYFrL9Wpp+S02PENnTUGH/uK+7MSGI2Zj6GCjUZrEQ4dXYVZrT4krxuSyw=
-X-Received: by 2002:a9d:4c83:: with SMTP id m3mr638863otf.77.1623861070211;
- Wed, 16 Jun 2021 09:31:10 -0700 (PDT)
+        id S230205AbhFPQhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 12:37:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53962 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229673AbhFPQhv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 12:37:51 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A52DAC061574
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 09:35:43 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id y13-20020a1c4b0d0000b02901c20173e165so2093506wma.0
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 09:35:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=zS7RuUlJcHUs9ttjVxWOJPdiajaZF3G5dbHgPSXLs3o=;
+        b=jFsXmYTbfnJulEbJiGZ7OAzRc/ubvrabMa0le9Kgt5AUC+vQKOcECD0WXOjfQuFfeI
+         FdYDwfpTpGDR4kXLO6oxTiR6BsD4l5J9fGrjD6iyYCyPXm75k2QjGIZmn5FG+iSghVqR
+         30ZvFRQujiMJ7ubg+5RroDPt6Hjg0J1G0/lprtNEV4MH+XiBwW/h3qqKQ926wCQ40rLF
+         Obei1snoSBNs9UOrHycUfCfNwtarip2a+pBxSApz8v/5wweWAUN6C0Ri4TrbJGXTAmUS
+         HgtTHdhsndgM7tELVR/RvttWhqDttaFt+OELF2CbEeWvP+EKmbR20KqP/3QWNyCNgDnK
+         8pQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=zS7RuUlJcHUs9ttjVxWOJPdiajaZF3G5dbHgPSXLs3o=;
+        b=M0km7UN2opjzNqHgdNsCEetaOTqjX8ZD85c+DNwLIROTK4XT6ugqtWw48Ff+yZPwJr
+         X0iT13rwCEvkzBTpeVPM795hihI/JCxD+POcisPiI8k3RmZKrMrBELjoOczjLKAuJ2bp
+         khcS+pcafDsD8W5If1EXsaQgZ3pqYaZPLQYU0MypKZDpP5rCt6HlYDaD5rx9RPGy9iRn
+         v56HB5VTLG0PE6l/a/2nj7vy73azUI5j3nxh2QP7VpcwuHnKl3rfBOq3NHmO58UNWIcg
+         a+Dan2vOSoYcQTi6fB0fNguum4aht6lQA6VXzbRd/NB5gvR70zcmxfRwMxdSvCFZ+YLn
+         sX7A==
+X-Gm-Message-State: AOAM531lqmBNQTwwnhND69Clfygd2FsLZVlcK+2e43HkNF9aNi+epXUC
+        ajEV9whptPaAkgKlmlDuM2A6wQ==
+X-Google-Smtp-Source: ABdhPJwrvT30Z7kLQZLQ6Ed4sSIei3AFNUBLiNU7IdQ+zo6HFKeAaiYpViVRCGhSvctOdbCA3SnNcA==
+X-Received: by 2002:a7b:c4d0:: with SMTP id g16mr12280755wmk.147.1623861342227;
+        Wed, 16 Jun 2021 09:35:42 -0700 (PDT)
+Received: from dell ([91.110.221.170])
+        by smtp.gmail.com with ESMTPSA id 2sm2575130wrz.87.2021.06.16.09.35.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jun 2021 09:35:41 -0700 (PDT)
+Date:   Wed, 16 Jun 2021 17:35:39 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Min Li <min.li.xe@renesas.com>
+Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
+        "grant.likely@linaro.org" <grant.likely@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH mfd v2] mfd: Add Renesas Synchronization Management Unit
+ (SMU) support
+Message-ID: <YMooW5AALqdaGjXz@dell>
+References: <1622652224-19103-1-git-send-email-min.li.xe@renesas.com>
+ <YMiwEYLkbKocs8ux@dell>
+ <OS3PR01MB65937F621F5A7B6C855D3627BA0F9@OS3PR01MB6593.jpnprd01.prod.outlook.com>
 MIME-Version: 1.0
-References: <20210419005539.22729-1-mick@ics.forth.gr> <20210419005539.22729-6-mick@ics.forth.gr>
- <CAMuHMdW=23SPXwqcjD+30M_d0azdze2=ChZM-PF1brf9bCNtrA@mail.gmail.com>
- <fe02eb618eee141e8bc021e8e30906fc@mailhost.ics.forth.gr> <CAMuHMdXtT1L3yfzkTkbhqz3zgUQj89Bcm7mqz+m126NprAsK8Q@mail.gmail.com>
- <CAL_JsqLHOmZ6az0bYGC3dg__YX3aq=+Un4_x4+R2nNksc0hM2g@mail.gmail.com>
- <a488d802940f7fc2ae34a4fe583ec187@mailhost.ics.forth.gr> <CAL_Jsq+9eBSHUwzWBipgoSHNDvxqfrTuY4Un0PrRhoaAHugJNw@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+9eBSHUwzWBipgoSHNDvxqfrTuY4Un0PrRhoaAHugJNw@mail.gmail.com>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Wed, 16 Jun 2021 18:30:58 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXFfG5Sr+ix9xG3OBM8kgg8ARKNt0HFkL6MafB6vp2_xxQ@mail.gmail.com>
-Message-ID: <CAMj1kXFfG5Sr+ix9xG3OBM8kgg8ARKNt0HFkL6MafB6vp2_xxQ@mail.gmail.com>
-Subject: Re: [PATCH v4 5/5] RISC-V: Add crash kernel support
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Nick Kossifidis <mick@ics.forth.gr>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <OS3PR01MB65937F621F5A7B6C855D3627BA0F9@OS3PR01MB6593.jpnprd01.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Jun 2021 at 16:55, Rob Herring <robh+dt@kernel.org> wrote:
->
-> +Ard
->
-> On Tue, Jun 15, 2021 at 5:29 PM Nick Kossifidis <mick@ics.forth.gr> wrote=
-:
-> >
-> > =CE=A3=CF=84=CE=B9=CF=82 2021-06-15 22:21, Rob Herring =CE=AD=CE=B3=CF=
-=81=CE=B1=CF=88=CE=B5:
-> > > On Tue, Jun 15, 2021 at 12:48 PM Geert Uytterhoeven
-> > > <geert@linux-m68k.org> wrote:
-> > >>
-> > >> Hi Nick,
-> > >>
-> > >> On Tue, Jun 15, 2021 at 8:29 PM Nick Kossifidis <mick@ics.forth.gr>
-> > >> wrote:
-> > >> > =CE=A3=CF=84=CE=B9=CF=82 2021-06-15 16:19, Geert Uytterhoeven =CE=
-=AD=CE=B3=CF=81=CE=B1=CF=88=CE=B5:
-> > >> > > This does not match
-> > >> > > https://github.com/devicetree-org/dt-schema/blob/master/schemas/=
-chosen.yaml#L77:
-> > >> > >
-> > >> > >     $ref: types.yaml#/definitions/uint64-array
-> > >> > >     maxItems: 2
-> > >> > >     description:
-> > >> > >       This property (currently used only on arm64) holds the mem=
-ory
-> > >> > > range,
-> > >> > >       the address and the size, of the elf core header which mai=
-nly
-> > >> > > describes
-> > >> > >       the panicked kernel\'s memory layout as PT_LOAD segments o=
-f elf
-> > >> > > format.
-> > >> > >
-> > >> > > Hence "linux,elfcorehdr" should be a property of the /chosen nod=
-e,
-> > >> > > instead of a memory node with a compatible value of "linux,elfco=
-rehdr".
-> > >> > >
-> > >> >
-> > >> > That's a binding for a property on the /chosen node, that as the t=
-ext
-> > >> > says it's defined for arm64 only and the code that handled it was =
-also
-> > >>
-> > >> That doesn't mean it must not be used on other architectures ;-)
-> > >> Arm64 was just the first one to use it...
-> > >
-> > > It is used on arm64 because memory is often passed by UEFI tables and
-> > > not with /memory node. As riscv is also supporting EFI, I'd think the=
-y
-> > > would do the same.
-> > >
-> >
-> > We've had this discussion before, riscv uses /memory for now and even i=
-f
-> > we switched to getting memory from ACPI/UEFI tables, the elf core heade=
-r
-> > is passed from the crashed kernel to the kdump kernel, it has nothing t=
-o
-> > do with UEFI since the bootloader is the kernel itself. Am I missing
-> > something ?
->
-> I believe if we originally booted using UEFI tables, then those are
-> passed the kdump kernel as well. The original DT may have had a
-> /memory node, but it's possible it didn't match what was in the UEFI
-> tables. So using the DT /memory nodes for kdump could give surprising
-> results. I think reserved regions also come from UEFI. Ard can
-> probably comment better.
->
+On Wed, 16 Jun 2021, Min Li wrote:
 
-Anything that executes in the context of the UEFI boot firmware
-(loaders, drivers, etc) may use the UEFI memory allocation routines to
-allocate memory, and these allocations are communicated via the UEFI
-memory map, not via the /memory node.
+> > > diff --git a/drivers/mfd/rsmu_spi.c b/drivers/mfd/rsmu_spi.c
+> > > new file mode 100644
+> > > index 0000000..f3a087b
+> > > --- /dev/null
+> > > +++ b/drivers/mfd/rsmu_spi.c
+> > > @@ -0,0 +1,265 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * SPI driver for the IDT ClockMatrix(TM) and 82P33xxx families of
+> > > + * timing and synchronization devices.
+> > > + *
+> > > + * Copyright (C) 2019 Integrated Device Technology, Inc., a Renesas
+> > Company.
+> > > + */
+> > > +
+> > > +#include <linux/kernel.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/init.h>
+> > > +#include <linux/slab.h>
+> > > +#include <linux/spi/spi.h>
+> > > +#include <linux/regmap.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/mfd/core.h>
+> > > +#include <linux/mfd/rsmu.h>
+> > > +#include "rsmu_private.h"
+> > > +
+> > > +/*
+> > > + * 16-bit register address: the lower 7 bits of the register address come
+> > > + * from the offset addr byte and the upper 9 bits come from the page
+> > register.
+> > > + */
+> > > +#define	RSMU_CM_PAGE_ADDR		0x7C
+> > > +#define	RSMU_SABRE_PAGE_ADDR		0x7F
+> > > +#define	RSMU_HIGHER_ADDR_MASK		0xFF80
+> > > +#define	RSMU_HIGHER_ADDR_SHIFT		7
+> > > +#define	RSMU_LOWER_ADDR_MASK		0x7F
+> > > +
+> > > +static int rsmu_read_device(struct rsmu_dev *rsmu, u8 reg, u8 *buf,
+> > u16 bytes)
+> > > +{
+> > > +	struct spi_device *client = to_spi_device(rsmu->dev);
+> > > +	struct spi_transfer xfer = {0};
+> > > +	struct spi_message msg;
+> > > +	u8 cmd[256] = {0};
+> > > +	u8 rsp[256] = {0};
+> > > +	int ret;
+> > > +
+> > > +	cmd[0] = reg | 0x80;
+> > > +	xfer.rx_buf = rsp;
+> > > +	xfer.len = bytes + 1;
+> > > +	xfer.tx_buf = cmd;
+> > > +	xfer.bits_per_word = client->bits_per_word;
+> > > +	xfer.speed_hz = client->max_speed_hz;
+> > > +
+> > > +	spi_message_init(&msg);
+> > > +	spi_message_add_tail(&xfer, &msg);
+> > > +
+> > > +	ret = spi_sync(client, &msg);
+> > > +	if (ret >= 0)
+> > > +		memcpy(buf, &rsp[1], xfer.len-1);
+> > 
+> > What's at rsp[0]?  Worth a comment?
+> > 
+> 
+> I don't really know. This code is being used as is and tested working.
+> Can I find out and add the comment later?
 
-So it depends whether it matters if the kexec kernel tramples over
-those regions. For kdump scenarios, it might be reasonable, but in the
-general case, we should really respect what UEFI tells us about the
-memory map when booting via UEFI.
+Yes, please find out before you submit the next version.
+
+> > > +MODULE_LICENSE("GPL");
+> > > diff --git a/include/linux/mfd/idt82p33_reg.h
+> > b/include/linux/mfd/idt82p33_reg.h
+> > > new file mode 100644
+> > > index 0000000..fb41ab0
+> > > --- /dev/null
+> > > +++ b/include/linux/mfd/idt82p33_reg.h
+> > > @@ -0,0 +1,112 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0+ */
+> > > +/* idt82p33_reg.h
+> > 
+> > Remove the filename, they have a habit of becoming out of date.
+> > 
+> > > + *
+> > > + * Register Map - AN888_SMUforIEEE_SynchEther_82P33xxx_RevH.pdf
+> > > + *
+> > > + */
+> > 
+> > Copyright.
+> 
+> Sorry, what do you mean by this?
+
+This file is missing a copyright header/statement.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
