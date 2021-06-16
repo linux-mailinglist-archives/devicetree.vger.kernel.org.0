@@ -2,69 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 020E23AA2BA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 19:57:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 714AF3AA2C3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 19:58:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231484AbhFPR7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 13:59:53 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:37861 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231495AbhFPR7w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 13:59:52 -0400
-Received: by mail-io1-f50.google.com with SMTP id q15so135730ioi.4;
-        Wed, 16 Jun 2021 10:57:46 -0700 (PDT)
+        id S230377AbhFPSAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 14:00:55 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:47004 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231319AbhFPSAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 14:00:55 -0400
+Received: by mail-io1-f53.google.com with SMTP id b14so95006iow.13;
+        Wed, 16 Jun 2021 10:58:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2nI7BwNM49i6XeNNGXZCWBHU5+j8R0I/mZyPgtf/J9c=;
-        b=lFbOYzSzSCd+2GxB0jbpC39qwW3pLRMQo+QvNW8TRDjsPpfmL7H1T4M0RK/WzGKCfH
-         ugbsrJ0w1XKklAMni90ADWWhZSEdS9UITdTe9cHJAxC+3YzlR7dXtK8yaPCxn37olCt2
-         zN66wuiu+ttRvhyUMhgxx56donlzNQVhjtdBuq/e2883ZJtNExG6Yp3vGnn2R1JpPOjO
-         /BUgS59zbkXceanOwpRtaW2zsbpkKwnshfXw5rTS2+sHZDtlo1hzG/k3cbME2yeJyFgd
-         +6yzRzrHfcm6aPqkZXIkTtXgxnOGzxqpI2UD/QBr82BRrb6yVRnWaEfKjLSVM6jQpMnQ
-         OY+A==
-X-Gm-Message-State: AOAM530B7wx3kQYw7CyxxExclaNnU2D4fuS2w9AGhO0wb8pZWe3uwYrQ
-        G4+LBz8zG3Ri33lnBxuaSA==
-X-Google-Smtp-Source: ABdhPJw1vZAkLCfml358/opm1GwlrW7IRqGGUbZTSCQf3zfblv8ZlCIypxnkzmt81SuA6iHamPopEQ==
-X-Received: by 2002:a6b:8e97:: with SMTP id q145mr474002iod.144.1623866266249;
-        Wed, 16 Jun 2021 10:57:46 -0700 (PDT)
+        bh=lsCEWFAyd6sFNPZrRpU+nHEexyUYwQnz5xbDSvPsuhI=;
+        b=AO6pdSddXmcK1oZ58HVLdxykSYyXCBH9dOXqZ4Q34yFwXnhL66YoMZ4IoZmiw4Dfa7
+         iwHbBmlpQ8c+KOZoCbRn6a1nhqUPZK6SC7BUabSm/DiyE8qtt5I0LKpH/FTvN/nzUvKH
+         Ac7XnTOgPkknYJIXpT35UIbfnTeS5YMg8RnqGOcBJTB0WSnRmYNI1MGMTmMyMAyp3NlU
+         2c8l7w8tO8zYiMu+YEny0eLe0p7Ljk+ntc41r4FENKm63wcefn+E1I+hMlB/qISWGvpE
+         LGLLCzndhIo0EnCiscStC1/nmJzIhhCzM1t6YmS7Cj5s7CZOGWOFHDpXVAT+hSNyun/k
+         Jecg==
+X-Gm-Message-State: AOAM533jmOiz9Wvn12BKGN6J49nePZyaJBqrlgFmoxqm4PjUp75pnS7M
+        ZbzUmKUzxQaaZFHhfbap3bpRUS7R1A==
+X-Google-Smtp-Source: ABdhPJzn08JzGsjEi40/SYzXj8xShFLKLTEpIMTpSU6Rgkq5EV0d4J2gm0PPgcQ/RXte6fqQhMts+A==
+X-Received: by 2002:a6b:b554:: with SMTP id e81mr482359iof.163.1623866327443;
+        Wed, 16 Jun 2021 10:58:47 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p19sm1535944iob.7.2021.06.16.10.57.44
+        by smtp.gmail.com with ESMTPSA id n20sm1526418ioo.23.2021.06.16.10.58.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 10:57:45 -0700 (PDT)
-Received: (nullmailer pid 3618111 invoked by uid 1000);
-        Wed, 16 Jun 2021 17:57:43 -0000
-Date:   Wed, 16 Jun 2021 11:57:43 -0600
+        Wed, 16 Jun 2021 10:58:46 -0700 (PDT)
+Received: (nullmailer pid 3619554 invoked by uid 1000);
+        Wed, 16 Jun 2021 17:58:44 -0000
+Date:   Wed, 16 Jun 2021 11:58:44 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-clk@vger.kernel.org, Sergej Sawazki <ce3a@gmx.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: clock: gpio-mux-clock: Convert to
- json-schema
-Message-ID: <20210616175743.GA3618066@robh.at.kernel.org>
-References: <14cb3b4da446f26a4780e0bd1b58788eb6085d05.1623414619.git.geert+renesas@glider.be>
+Cc:     linux-rtc@vger.kernel.org, Biju Das <biju.das@bp.renesas.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Eric Nelson <eric@nelint.com>, devicetree@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rtc: nxp,pcf8563: Absorb pcf85263/pcf85363
+ bindings
+Message-ID: <20210616175844.GA3619453@robh.at.kernel.org>
+References: <e4f48d97f0e16d78a796f02b77ea3a0018904185.1623416431.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <14cb3b4da446f26a4780e0bd1b58788eb6085d05.1623414619.git.geert+renesas@glider.be>
+In-Reply-To: <e4f48d97f0e16d78a796f02b77ea3a0018904185.1623416431.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Jun 2021 14:30:47 +0200, Geert Uytterhoeven wrote:
-> Convert the simple GPIO clock multiplexer Device Tree binding
-> documentation to json-schema.
+On Fri, 11 Jun 2021 15:01:45 +0200, Geert Uytterhoeven wrote:
+> The NXP PCF85263/PCF85363 Real Time Clock is very similar to the NXP
+> PCF8563.
 > 
 > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../bindings/clock/gpio-mux-clock.txt         | 19 --------
->  .../bindings/clock/gpio-mux-clock.yaml        | 45 +++++++++++++++++++
->  2 files changed, 45 insertions(+), 19 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/gpio-mux-clock.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/gpio-mux-clock.yaml
+>  .../devicetree/bindings/rtc/nxp,pcf8563.yaml    |  4 +++-
+>  .../devicetree/bindings/rtc/pcf85363.txt        | 17 -----------------
+>  2 files changed, 3 insertions(+), 18 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/pcf85363.txt
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
