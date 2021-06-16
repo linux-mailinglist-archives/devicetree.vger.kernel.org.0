@@ -2,150 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3ECE3A8DBF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 02:40:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EF5C3A8DD1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 02:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231809AbhFPAmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 20:42:07 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:55269 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231165AbhFPAmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 20:42:06 -0400
-X-UUID: cf3d96e6e90145f8bff83e03c0d54937-20210616
-X-UUID: cf3d96e6e90145f8bff83e03c0d54937-20210616
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1628349775; Wed, 16 Jun 2021 08:39:57 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 16 Jun 2021 08:39:56 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 16 Jun 2021 08:39:56 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [PATCH v10 19/19] clk: mediatek: Add MT8192 vencsys clock support
-Date:   Wed, 16 Jun 2021 08:36:43 +0800
-Message-ID: <20210616003643.28648-20-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210616003643.28648-1-chun-jie.chen@mediatek.com>
-References: <20210616003643.28648-1-chun-jie.chen@mediatek.com>
+        id S231703AbhFPAsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 20:48:54 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43690 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230265AbhFPAsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 20:48:54 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15G0kiZ2084288;
+        Tue, 15 Jun 2021 19:46:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623804404;
+        bh=7rtfbVLXaE7PkbHl5uhDEpLyQlkGcTjAEC/u8n3uBzk=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=JaaVv/ifzJsTRBUAXkJ2qJg4fvaOPlZ4N9I9cSv6l+uMOzpctPFwBYr7oAOiFREAO
+         1qowiRh0t1L3s0lNsv/uQhJyN7cDPgkPZikLLP2YelXSmXDJtR6pHEBtNP29Uxt5Ow
+         A/MIOEck12yyRe7mf7OR0F7d5ZNJ9EEm2WAPmM7g=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15G0kiJL014393
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Jun 2021 19:46:44 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 15
+ Jun 2021 19:46:44 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Tue, 15 Jun 2021 19:46:44 -0500
+Received: from [10.250.35.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15G0ki55016273;
+        Tue, 15 Jun 2021 19:46:44 -0500
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: Fix compatible used in
+ ti,pruss-intc
+To:     Sudeep Holla <sudeep.holla@arm.com>, <devicetree@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>
+References: <20210607184257.2010276-1-sudeep.holla@arm.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <46d8d576-012b-dedc-02c6-283c75a170ce@ti.com>
+Date:   Tue, 15 Jun 2021 19:46:39 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <20210607184257.2010276-1-sudeep.holla@arm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MT8192 vencsys clock provider
+On 6/7/21 1:42 PM, Sudeep Holla wrote:
+> As per soc/ti/ti,pruss.yaml schema, only ti,am4376-pruss0 and
+> ti,am4376-pruss1 are valid compatibles. Replace ti,am4376-pruss with
+> ti,am4376-pruss1 based on example in soc/ti/ti,pruss.yaml
+> 
+> This fixes the below warning with 'make DT_CHECKER_FLAGS=-m dt_binding_check':
+> 
+>     interrupt-controller/ti,pruss-intc.example.dt.yaml:0:0: /example-1/pruss@0:
+>     failed to match any schema with compatible: ['ti,am4376-pruss']
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 
-Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
----
- drivers/clk/mediatek/Kconfig           |  6 +++
- drivers/clk/mediatek/Makefile          |  1 +
- drivers/clk/mediatek/clk-mt8192-venc.c | 53 ++++++++++++++++++++++++++
- 3 files changed, 60 insertions(+)
- create mode 100644 drivers/clk/mediatek/clk-mt8192-venc.c
+Thanks for catching and fixing this Sudeep.
 
-diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-index 31779f2c5c83..576babd86f98 100644
---- a/drivers/clk/mediatek/Kconfig
-+++ b/drivers/clk/mediatek/Kconfig
-@@ -574,6 +574,12 @@ config COMMON_CLK_MT8192_VDECSYS
- 	help
- 	  This driver supports MediaTek MT8192 vdecsys and vdecsys_soc clocks.
- 
-+config COMMON_CLK_MT8192_VENCSYS
-+	bool "Clock driver for MediaTek MT8192 vencsys"
-+	depends on COMMON_CLK_MT8192
-+	help
-+	  This driver supports MediaTek MT8192 vencsys clocks.
-+
- config COMMON_CLK_MT8516
- 	bool "Clock driver for MediaTek MT8516"
- 	depends on ARCH_MEDIATEK || COMPILE_TEST
-diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-index 887dd6bcf7f2..15bc045f0b71 100644
---- a/drivers/clk/mediatek/Makefile
-+++ b/drivers/clk/mediatek/Makefile
-@@ -79,5 +79,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_MMSYS) += clk-mt8192-mm.o
- obj-$(CONFIG_COMMON_CLK_MT8192_MSDC) += clk-mt8192-msdc.o
- obj-$(CONFIG_COMMON_CLK_MT8192_SCP_ADSP) += clk-mt8192-scp_adsp.o
- obj-$(CONFIG_COMMON_CLK_MT8192_VDECSYS) += clk-mt8192-vdec.o
-+obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
- obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
- obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
-diff --git a/drivers/clk/mediatek/clk-mt8192-venc.c b/drivers/clk/mediatek/clk-mt8192-venc.c
-new file mode 100644
-index 000000000000..c0d867bff09e
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt8192-venc.c
-@@ -0,0 +1,53 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// Copyright (c) 2021 MediaTek Inc.
-+// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+
-+#include <dt-bindings/clock/mt8192-clk.h>
-+
-+static const struct mtk_gate_regs venc_cg_regs = {
-+	.set_ofs = 0x4,
-+	.clr_ofs = 0x8,
-+	.sta_ofs = 0x0,
-+};
-+
-+#define GATE_VENC(_id, _name, _parent, _shift)	\
-+	GATE_MTK(_id, _name, _parent, &venc_cg_regs, _shift, &mtk_clk_gate_ops_setclr_inv)
-+
-+static const struct mtk_gate venc_clks[] = {
-+	GATE_VENC(CLK_VENC_SET0_LARB, "venc_set0_larb", "venc_sel", 0),
-+	GATE_VENC(CLK_VENC_SET1_VENC, "venc_set1_venc", "venc_sel", 4),
-+	GATE_VENC(CLK_VENC_SET2_JPGENC, "venc_set2_jpgenc", "venc_sel", 8),
-+	GATE_VENC(CLK_VENC_SET5_GALS, "venc_set5_gals", "venc_sel", 28),
-+};
-+
-+static const struct mtk_clk_desc venc_desc = {
-+	.clks = venc_clks,
-+	.num_clks = ARRAY_SIZE(venc_clks),
-+};
-+
-+static const struct of_device_id of_match_clk_mt8192_venc[] = {
-+	{
-+		.compatible = "mediatek,mt8192-vencsys",
-+		.data = &venc_desc,
-+	}, {
-+		/* sentinel */
-+	}
-+};
-+
-+static struct platform_driver clk_mt8192_venc_drv = {
-+	.probe = mtk_clk_simple_probe,
-+	.driver = {
-+		.name = "clk-mt8192-venc",
-+		.of_match_table = of_match_clk_mt8192_venc,
-+	},
-+};
-+
-+builtin_platform_driver(clk_mt8192_venc_drv);
--- 
-2.18.0
+Acked-by: Suman Anna <s-anna@ti.com>
+
+> ---
+>  .../devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+> index 9731dd4421a1..051beb45d998 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+> @@ -134,7 +134,7 @@ additionalProperties: false
+>      /* AM4376 PRU-ICSS */
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+>      pruss@0 {
+> -        compatible = "ti,am4376-pruss";
+> +        compatible = "ti,am4376-pruss1";
+>          reg = <0x0 0x40000>;
+>          #address-cells = <1>;
+>          #size-cells = <1>;
+> 
 
