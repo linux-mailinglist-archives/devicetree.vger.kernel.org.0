@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D5D3A9D12
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB6093A9D17
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:11:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233398AbhFPONc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 10:13:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49380 "EHLO
+        id S233885AbhFPONg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 10:13:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233789AbhFPONb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 10:13:31 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 036B9C061760
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:11:25 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id q5so2891722wrm.1
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:11:24 -0700 (PDT)
+        with ESMTP id S233856AbhFPONd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 10:13:33 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CBF6C061760
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:11:26 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id v9so2868154wrx.6
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:11:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ExFCaLr+DmH1KCjQVYY2iL4Mk5cBbz4oYRRMXRoKR7Q=;
-        b=DcbrMPdHGXOuKRR9j0hisCJtNx6QuqMdRjPtJlKvm708kE4iYNwUdifXOJjTPPTdsM
-         Gaf8eeuCHMQI4ywBV5fgTQdyOCYcWf1diws2p6F99w9QVMRMGQx09S0e0Ewf8PShQ9sZ
-         /mJA7CSgRMPUMMlgReF6r+N9op5G3fsZTYETFp6enRrADw/goxvnPSHO0hh049v6djeN
-         OlysLMCzVnQ0IqntvVBGc0HZXC29PN1d9j9gdMMQaZJAISYhX6wXViJS3zY9W5ORIMqI
-         WksKRiZkcaJ6g0iYPTFtoDYqWVwQa6oQsEwCcvu5q/gQGo5BnqKi4yFBCo1O3aF7F2t9
-         taEQ==
+        bh=u+LrLr5ScKl10ELD0o4ZHSHRjCSJkFhG5a8CEjAWpf0=;
+        b=dYpK2lVMhSj1JMnFOWz/gb2RgSQ9t3LSlBD8hDZoFpWqEbXwVv7r50EshsXzKmzhn6
+         072awUEOdcuOAgXuqQA0KuTntJ7Kn7/E+KCHdGP3FKz00v0YFP92hgm0b6s4/HzJHpqs
+         WtLiHIMATvbpu5T23XuQYsPiD9ryOJ4mTm09so9EWnffJTH7SNwdYNsRkLI7OYuVyBem
+         GKHDb5QhqirylTFQaQBTMMQ70WqTsqcB4X1QJ6ozCH90xyY+v6DAvbCozRY6MFokBuXO
+         sMSZXjy7L/LfVyrJocwVt4nWtqz0WKBOOTV32ocB8pgrFT5ysObzdPSNfrDqNH9NrhIN
+         ku+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ExFCaLr+DmH1KCjQVYY2iL4Mk5cBbz4oYRRMXRoKR7Q=;
-        b=Amx97/kNlG5I7HQbxdOiOBIcIyNxE2ssRgIP1eAdIMn9we7scSFIN2/TL+MoV2qLbD
-         K0Lk2doWrwnFBDJ5y4L32gqkqPuA1zM/l0pcUBXdILYSlFF2IJoz05Vh1N8mV7oYrsMO
-         Eu5HbD/r8JWcqmZS/kb576deZSR/CA24srGaRIu/LjhC6nCJNA2UEspqNVRP0IfTpVjj
-         VM9wmSTGWQqCqV+KxNTfq7lRBG7yDek2vV8nW0EabH0cFojbKYVZMskWHdJ/JrRCLwLc
-         i5LqJqOc80svV3hYNxkHE7QJ8g/nF8P9rsDvnohii6vBhaFjIh7aGBZxoNgxvSwkQigu
-         PjNA==
-X-Gm-Message-State: AOAM533XhJUJbRFzYgSomV+PQeGFeMrD8wBZhWPpzp+nH/dXYjwY9xac
-        UM5dW2OM1U8sTmnsWXpz9vnfTw==
-X-Google-Smtp-Source: ABdhPJy9DZ8SQCm5xfyIPPW0xc2GKhSiDIwGMeaMQ7aUf0K+z+MvTKPdVoc1QHq9hqVInYS+BWYe4w==
-X-Received: by 2002:adf:db4d:: with SMTP id f13mr5753551wrj.243.1623852683654;
-        Wed, 16 Jun 2021 07:11:23 -0700 (PDT)
+        bh=u+LrLr5ScKl10ELD0o4ZHSHRjCSJkFhG5a8CEjAWpf0=;
+        b=drwKw4D3KEz4HhatxyDp0c2uLkiYaRb8pwXr66taOysPS4G8idvtE8gikN2vZ5MzQm
+         Pz46lZVcC6j7geSXvJv1dxVnIHGHcOw+pdznorPbJOTGHVoQDemusUiVaSisvpFIpp7l
+         PxGPzS7lf8uXZCTAwcrE2TUmS4s+GYunW6svQjl8tog1anKtczMMfjzd9A83lDdwkVyE
+         IsMSO86U1aBuQ0z0xmZywjA76FmP5AC95TjvhIBoHMDqIBo8+9jq66vyosf3ZIsmeVaj
+         GjWXHmQdb8k0+89HETfCsPGwH8GFoeVK4rVJWVu2amRauTUtl7Nmp9OuC58Zk7v+khyz
+         0kvw==
+X-Gm-Message-State: AOAM531uSgFykgp3V3+siJnKjkMCgU8e8M4NRQiNHo3pBwoNOgPHq7GP
+        u4k+vn/cvXnx7pzJNisXjrjR3g==
+X-Google-Smtp-Source: ABdhPJxAFBS8WqjBJ74ngiCvh2qJQoU+yU7YGRzoWEqeCM9ZbvMyzePxiEBZodMpXcaaxATvaD5jqA==
+X-Received: by 2002:adf:a45a:: with SMTP id e26mr5804185wra.222.1623852684859;
+        Wed, 16 Jun 2021 07:11:24 -0700 (PDT)
 Received: from xps7590.fritz.box ([2a02:2454:3e5:b700:9df7:76e5:7e94:bf1e])
-        by smtp.gmail.com with ESMTPSA id g83sm1968375wma.10.2021.06.16.07.11.22
+        by smtp.gmail.com with ESMTPSA id g83sm1968375wma.10.2021.06.16.07.11.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 07:11:23 -0700 (PDT)
+        Wed, 16 Jun 2021 07:11:24 -0700 (PDT)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org,
         mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
@@ -55,9 +55,9 @@ To:     agross@kernel.org, bjorn.andersson@linaro.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Vinod Koul <vinod.koul@linaro.org>
 Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [RFC v1 02/11] clk: qcom: rcg2: Add support for flags
-Date:   Wed, 16 Jun 2021 16:10:58 +0200
-Message-Id: <20210616141107.291430-3-robert.foss@linaro.org>
+Subject: [RFC v1 03/11] clk: qcom: clk-alpha-pll: Fix typo in comment
+Date:   Wed, 16 Jun 2021 16:10:59 +0200
+Message-Id: <20210616141107.291430-4-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210616141107.291430-1-robert.foss@linaro.org>
 References: <20210616141107.291430-1-robert.foss@linaro.org>
@@ -67,44 +67,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These changes are ported from the downstream driver, and are used on SM8350
-for CAMCC, DISPCC, GCC, GPUCC & VIDEOCC.
+Substiture lucid for trion in comment, in order to conform to the
+function name.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- drivers/clk/qcom/clk-rcg.h  | 4 ++++
- drivers/clk/qcom/clk-rcg2.c | 3 +++
- 2 files changed, 7 insertions(+)
+ drivers/clk/qcom/clk-alpha-pll.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/clk/qcom/clk-rcg.h b/drivers/clk/qcom/clk-rcg.h
-index 99efcc7f8d88..a1f05281d950 100644
---- a/drivers/clk/qcom/clk-rcg.h
-+++ b/drivers/clk/qcom/clk-rcg.h
-@@ -149,6 +149,10 @@ struct clk_rcg2 {
- 	const struct freq_tbl	*freq_tbl;
- 	struct clk_regmap	clkr;
- 	u8			cfg_off;
-+	u8			flags;
-+#define FORCE_ENABLE_RCG	BIT(0)
-+#define HW_CLK_CTRL_MODE	BIT(1)
-+#define DFS_SUPPORT		BIT(2)
- };
+diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+index c6eb99169ddc..01090852ea76 100644
+--- a/drivers/clk/qcom/clk-alpha-pll.c
++++ b/drivers/clk/qcom/clk-alpha-pll.c
+@@ -1399,7 +1399,7 @@ const struct clk_ops clk_alpha_pll_postdiv_fabia_ops = {
+ EXPORT_SYMBOL_GPL(clk_alpha_pll_postdiv_fabia_ops);
  
- #define to_clk_rcg2(_hw) container_of(to_clk_regmap(_hw), struct clk_rcg2, clkr)
-diff --git a/drivers/clk/qcom/clk-rcg2.c b/drivers/clk/qcom/clk-rcg2.c
-index 42f13a2d1cc1..ed2c9b6659cc 100644
---- a/drivers/clk/qcom/clk-rcg2.c
-+++ b/drivers/clk/qcom/clk-rcg2.c
-@@ -295,6 +295,9 @@ static int __clk_rcg2_configure(struct clk_rcg2 *rcg, const struct freq_tbl *f)
- 	cfg |= rcg->parent_map[index].cfg << CFG_SRC_SEL_SHIFT;
- 	if (rcg->mnd_width && f->n && (f->m != f->n))
- 		cfg |= CFG_MODE_DUAL_EDGE;
-+	if (rcg->flags & HW_CLK_CTRL_MODE)
-+		cfg |= CFG_HW_CLK_CTRL_MASK;
-+
- 	return regmap_update_bits(rcg->clkr.regmap, RCG_CFG_OFFSET(rcg),
- 					mask, cfg);
- }
+ /**
+- * clk_lucid_pll_configure - configure the lucid pll
++ * clk_trion_pll_configure - configure the trion pll
+  *
+  * @pll: clk alpha pll
+  * @regmap: register map
 -- 
 2.30.2
 
