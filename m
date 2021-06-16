@@ -2,89 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94A5D3A98F9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 13:18:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D908D3A9952
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 13:31:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231921AbhFPLUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 07:20:36 -0400
-Received: from mail-ua1-f50.google.com ([209.85.222.50]:45728 "EHLO
-        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231741AbhFPLUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 07:20:36 -0400
-Received: by mail-ua1-f50.google.com with SMTP id v17so627201uar.12;
-        Wed, 16 Jun 2021 04:18:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KFppgdT7CLKOLDaLJGeivAUUwv8mpERUMDgjR5mFX2Q=;
-        b=BBeVsvoZ4AVSy+Y8yHwdEmm5VnqLTJRxB/oarkG9s8C2HRFpJvpV+Y7+gkXdhdzCYt
-         u4gaF3RUWOnSk7QWmQPj7ejeGSlZAeTfbC28/PXrdt8awQpGrlkRIoEhANUrvvRxSoyw
-         3eVOo93+6DEDuBDZ/KwPQHg++XM7nzuLRTtUggwGA+FqHWeU1femrCrTUarsi5PLXOf6
-         GcmwOWzKQsjK5jwTp2qkrJW7XbmWyRyHPOPTvkQ97OnIMc62PmAbzh7UsxsdoJ9f2ZEA
-         TZvaW2iEjYkB3/73sZqNGjJZQ6RjwwzWNqg+mp2U7n6mF48qBWrN2dxUZmKY34MKnAag
-         jY3Q==
-X-Gm-Message-State: AOAM530+WmRtpWEfnV0XLLJs/TZZdUYqwriS8gjlBz5xfdYJ1RlZxr6d
-        aDD8hRf3fwcCqIOFf6l9dyjmAdY/YbBvXisARXk=
-X-Google-Smtp-Source: ABdhPJy9W5ndu5bvPys51QNrj75YVXl0pvjisg4IJQA0U4LMfMINRJyD7Z5sYALWQifxuYErXQHn1iBe9VLGxsU9S+A=
-X-Received: by 2002:ab0:647:: with SMTP id f65mr3978118uaf.4.1623842308529;
- Wed, 16 Jun 2021 04:18:28 -0700 (PDT)
+        id S231921AbhFPLdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 07:33:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41162 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231158AbhFPLdb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 07:33:31 -0400
+X-Greylist: delayed 603 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 16 Jun 2021 04:31:25 PDT
+Received: from mx2.securetransport.de (mx2.securetransport.de [IPv6:2a03:4000:13:6c7::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E83CC061574
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 04:31:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
+        s=dhelectronicscom; t=1623842378;
+        bh=C1Voj2chiPoqhhte2ZbJcFpUi5azCaqVTcaFP8tmZfU=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=N7zROu4A6SiGjxj0r8LxdvvRiMgx8aPRgw41ksDWoDyS5XtwlQh8T9r8oV/VNqQqe
+         NyBbUos4j/juRMvqfL62D8SRn9KNoFPxj6+/OXBk9zPhCNmOSFy5wBGipbAebNZRWo
+         V7b4Ex+RO9dMF+oKxZbPHZp6ZcD1j4ywoYqvRZnjcvNXtaiz9OgUzvQrQtxmWCsDi4
+         Ih0AQbuMPSv/3jvkMVF+/acukTwKIk2lRAf0bjOAt0CIVwfopyas3lb4zVwSupQOl8
+         xHuxhRak6CKNc7ADAbc7CUj6G/7FZZYoRJgqD69TLTUlPIlZCjJjlO4/kimm8LSoQ0
+         wcfAVk/WvcU/g==
+X-secureTransport-forwarded: yes
+From:   Christoph Niedermaier <cniedermaier@dh-electronics.com>
+Complaints-To: abuse@cubewerk.de
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        kernel <kernel@dh-electronics.com>,
+        "festevam@gmail.com" <festevam@gmail.com>
+Subject: RE: [PATCH V2] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM
+ DRC02 boards
+Thread-Topic: [PATCH V2] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM
+ DRC02 boards
+Thread-Index: AQHXUXKxVloH3v/6CkGMRLXBETQyyKsBDI+AgBWQzrA=
+Date:   Wed, 16 Jun 2021 11:19:28 +0000
+Message-ID: <b765351a7c3542d2a66ab1168f1ff222@dh-electronics.com>
+References: <20210525143001.9298-1-cniedermaier@dh-electronics.com>
+ <20210602195009.GA3870858@robh.at.kernel.org>
+In-Reply-To: <20210602195009.GA3870858@robh.at.kernel.org>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <cover.1623405675.git.geert+renesas@glider.be> <0c6bdd6a-826c-6831-1477-3a1e782cced3@physik.fu-berlin.de>
-In-Reply-To: <0c6bdd6a-826c-6831-1477-3a1e782cced3@physik.fu-berlin.de>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 16 Jun 2021 13:18:17 +0200
-Message-ID: <CAMuHMdU_B4pRyaz4nhp3k0dtXy3A8tRYbdCpmYYaSpzeZCeWOw@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Remove shdma DT support
-To:     John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux-sh list <linux-sh@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Chris Brandt <Chris.Brandt@renesas.com>
-Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrian,
-
-On Wed, Jun 16, 2021 at 12:42 PM John Paul Adrian Glaubitz
-<glaubitz@physik.fu-berlin.de> wrote:
-> On 6/11/21 12:18 PM, Geert Uytterhoeven wrote:
-> > Hence this series removes the Renesas SHDMA Device Tree bindings, the
-> > SHDMA DMA multiplexer driver, and the corresponding description in the
-> > R-Mobile APE6 DTS.
-> Do these changes make life harder in case we want to convert SH to device
-> tree as already prepared by Yoshinori Sato? [1]
-
-Probably not. The only modern DT-aware DMAC drivers for Renesas
-hardware are drivers/dma/sh/{rcar,usb}-dmac.c.  Soon there will be
-drivers/dma/sh/rz-dmac.c, for RZ/G2L (and RZ/A1 and RZ/A2 later).
-Given the R-Car DMAC is very similar to the SH/R-Mobile DMAC, the
-latter may be made to work with rcar-dmac.c, if anyone is willing
-to spend cycles on that.  Likewise, the RZ/A DMAC probably has its
-roots in older SH SoCs, so that may be helpful for you, too.
-
-Chris (CCed) may know better...
-
-> > [1] https://lore.kernel.org/patchwork/cover/693910/
-
-None of these handle DMA?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+U2VuZCByZXBseSBhbHNvIHRvIFJvYiBIZXJyaW5ncyArZHQgZW1haWwgYWRkcmVzczoNCg0KRnJv
+bTogUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4NClNlbnQ6IFdlZG5lc2RheSwgSnVuZSAy
+LCAyMDIxIDk6NTAgUE0NCg0KPiBPbiBUdWUsIE1heSAyNSwgMjAyMSBhdCAwNDozMDowMVBNICsw
+MjAwLCBDaHJpc3RvcGggTmllZGVybWFpZXIgd3JvdGU6DQo+PiBBZGQgREggZWxlY3Ryb25pY3Mg
+REhDT00gUGljb0lUWCBhbmQgREhDT00gRFJDMDIgYm9hcmRzLg0KPj4NCj4+IFNpZ25lZC1vZmYt
+Ynk6IENocmlzdG9waCBOaWVkZXJtYWllciA8Y25pZWRlcm1haWVyQGRoLWVsZWN0cm9uaWNzLmNv
+bT4NCj4+IENjOiBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmcNCj4+IENjOiBs
+aW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnDQo+PiBDYzogcm9iaCtkdEBrZXJuZWwub3JnDQo+
+PiBDYzogU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPg0KPj4gQ2M6IGtlcm5lbEBkaC1l
+bGVjdHJvbmljcy5jb20NCj4+IFRvOiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZw0KPj4gLS0t
+DQo+PiBWMjogUmVtb3ZlIGxpbmUgd2l0aCBmc2wsaW14NnMgb24gdGhlIERSQzAyIEJvYXJkDQo+
+PiAtLS0NCj4+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZzbC55YW1s
+IHwgMTIgKysrKysrKysrKysrDQo+PiAgMSBmaWxlIGNoYW5nZWQsIDEyIGluc2VydGlvbnMoKykN
+Cj4+DQo+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Fy
+bS9mc2wueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnNsLnlh
+bWwNCj4+IGluZGV4IGZjZTJhODY3MGI0OS4uM2M0ZmY3OWEzYmU3IDEwMDY0NA0KPj4gLS0tIGEv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPj4gKysrIGIv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPj4gQEAgLTQw
+Nyw2ICs0MDcsMTIgQEAgcHJvcGVydGllczoNCj4+ICAgICAgICAgICAgLSBjb25zdDogZGZpLGZz
+NzAwZS1tNjANCj4+ICAgICAgICAgICAgLSBjb25zdDogZnNsLGlteDZkbA0KPj4NCj4+ICsgICAg
+ICAtIGRlc2NyaXB0aW9uOiBpLk1YNkRMIERIQ09NIFBpY29JVFggQm9hcmQNCj4+ICsgICAgICAg
+IGl0ZW1zOg0KPj4gKyAgICAgICAgICAtIGNvbnN0OiBkaCxpbXg2ZGwtZGhjb20tcGljb2l0eA0K
+Pj4gKyAgICAgICAgICAtIGNvbnN0OiBkaCxpbXg2ZGwtZGhjb20tc29tDQo+PiArICAgICAgICAg
+IC0gY29uc3Q6IGZzbCxpbXg2ZGwNCj4+ICsNCj4+ICAgICAgICAtIGRlc2NyaXB0aW9uOiBpLk1Y
+NkRMIEdhdGV3b3JrcyBWZW50YW5hIEJvYXJkcw0KPj4gICAgICAgICAgaXRlbXM6DQo+PiAgICAg
+ICAgICAgIC0gZW51bToNCj4+IEBAIC00NTgsNiArNDY0LDEyIEBAIHByb3BlcnRpZXM6DQo+PiAg
+ICAgICAgICAgIC0gY29uc3Q6IHRvcmFkZXgsY29saWJyaV9pbXg2ZGwgICAgICAgICAgIyBDb2xp
+YnJpIGlNWDYgTW9kdWxlDQo+PiAgICAgICAgICAgIC0gY29uc3Q6IGZzbCxpbXg2ZGwNCj4+DQo+
+PiArICAgICAgLSBkZXNjcmlwdGlvbjogaS5NWDZTIERIQ09NIERSQzAyIEJvYXJkDQo+PiArICAg
+ICAgICBpdGVtczoNCj4+ICsgICAgICAgICAgLSBjb25zdDogZGgsaW14NnMtZGhjb20tZHJjMDIN
+Cj4+ICsgICAgICAgICAgLSBjb25zdDogZGgsaW14NnMtZGhjb20tc29tDQo+PiArICAgICAgICAg
+IC0gY29uc3Q6IGZzbCxpbXg2ZGwNCj4gDQo+IGZzbCxpbXg2cz8NCg0KSW4gdGhlIGZpcnN0IHZl
+cnNpb24gSSBoYWQgaGVyZSBhbiBhZGRpdGlvbmFsIGxpbmUgd2l0aCAiZnNsLGlteDZzIiwNCmJ1
+dCBjdXJyZW50bHkgdGhlIGtlcm5lbCBpc24ndCBzdXBwb3J0aW5nIHRoYXQgY29tcGF0aWJsZS4g
+VGhlIGkuTVg2DQpTb2xvIGlzIGN1cnJlbnRseSBzdXBwb3J0ZWQgYnkgImZzbCxpbXg2ZGwiLiBT
+byBteSBpZGVhIHdhcyB0byBhZGQNCmJvdGggImZzbCxpbXg2ZGwiIGFuZCAiZnNsLGlteDZzIiB0
+byBtYXRjaCBpdCBtYXliZSBvbiBhIGxhdGVyIGtlcm5lbA0KdmVyc2lvbi4gSWYgdGhlcmUgaXMg
+bm8gbWF0Y2ggd2l0aCB0aGUgU29sbyBub3csIGl0IHdpbGwgZmFsbCBiYWNrIHRvDQp0aGUgaS5N
+WDYgRHVhbExpdGUuIFRoYXQgaXMgd2h5IEkgaGFkIGJvdGggZnNsLGlteDZzIGFuZCBmc2wsaW14
+NmRsDQppbiB0aGF0IG9yZGVyLiBPbiBGYWJpbydzIGFkdmljZSwgSSByZW1vdmVkIHRoZSBsaW5l
+IHdpdGggImZzbCxpbXg2cyINCmluIHZlcnNpb24gMi4NCklzIHRoaXMgd2hhdCB5b3UgbWVhbnQg
+YnkgeW91ciBjb21tZW50Pw0KDQo+IA0KPj4gKw0KPj4gICAgICAgIC0gZGVzY3JpcHRpb246IGku
+TVg2U0wgYmFzZWQgQm9hcmRzDQo+PiAgICAgICAgICBpdGVtczoNCj4+ICAgICAgICAgICAgLSBl
+bnVtOg0KPj4gLS0NCj4+IDIuMTEuMA0KDQpSZWdhcmRzDQpDaHJpc3RvcGgNCg==
