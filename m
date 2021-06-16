@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB6093A9D17
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AB183A9D1D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233885AbhFPONg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 10:13:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49400 "EHLO
+        id S233871AbhFPONk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 10:13:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233856AbhFPONd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 10:13:33 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CBF6C061760
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:11:26 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id v9so2868154wrx.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:11:26 -0700 (PDT)
+        with ESMTP id S233877AbhFPONe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 10:13:34 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A152C0617AE
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:11:27 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id r9so2849373wrz.10
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:11:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=u+LrLr5ScKl10ELD0o4ZHSHRjCSJkFhG5a8CEjAWpf0=;
-        b=dYpK2lVMhSj1JMnFOWz/gb2RgSQ9t3LSlBD8hDZoFpWqEbXwVv7r50EshsXzKmzhn6
-         072awUEOdcuOAgXuqQA0KuTntJ7Kn7/E+KCHdGP3FKz00v0YFP92hgm0b6s4/HzJHpqs
-         WtLiHIMATvbpu5T23XuQYsPiD9ryOJ4mTm09so9EWnffJTH7SNwdYNsRkLI7OYuVyBem
-         GKHDb5QhqirylTFQaQBTMMQ70WqTsqcB4X1QJ6ozCH90xyY+v6DAvbCozRY6MFokBuXO
-         sMSZXjy7L/LfVyrJocwVt4nWtqz0WKBOOTV32ocB8pgrFT5ysObzdPSNfrDqNH9NrhIN
-         ku+g==
+        bh=Xsn7+Lsp9NGdCiqtkjavVEDgvQSXhZBR2aAMSk2h6M4=;
+        b=AnHj7RoSOlzMjAE3O1GUyGBfuS688F5iiC4eV01XSE1Gy+uC5pLxY8uv3b7JlDvLSZ
+         ugznEp0TSBKX3aL0tZ71/34ec/JcffIxcCQxJlvvKrwvt5+Ufq++uTbyfGah9gNUlSlL
+         WT4YNvtfnwLpUlVyLVlPiLgiW/fAhjHcN4P6v3NqQUa3ymWa0h+j1H0l4dFoGl4vkiwF
+         /pIIbUR0H7c3OHOjdBRLNgD4JAnL/QlTNC3d+s3azQNrRY8TDsvBJMoj21oNwsheu/RG
+         l6tw3OiFHk1bIrhWohwSEiCTELJRSOyqOF31MshLuE04PNlqf2gI7MdCa+Qw/WfWFphz
+         VC8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=u+LrLr5ScKl10ELD0o4ZHSHRjCSJkFhG5a8CEjAWpf0=;
-        b=drwKw4D3KEz4HhatxyDp0c2uLkiYaRb8pwXr66taOysPS4G8idvtE8gikN2vZ5MzQm
-         Pz46lZVcC6j7geSXvJv1dxVnIHGHcOw+pdznorPbJOTGHVoQDemusUiVaSisvpFIpp7l
-         PxGPzS7lf8uXZCTAwcrE2TUmS4s+GYunW6svQjl8tog1anKtczMMfjzd9A83lDdwkVyE
-         IsMSO86U1aBuQ0z0xmZywjA76FmP5AC95TjvhIBoHMDqIBo8+9jq66vyosf3ZIsmeVaj
-         GjWXHmQdb8k0+89HETfCsPGwH8GFoeVK4rVJWVu2amRauTUtl7Nmp9OuC58Zk7v+khyz
-         0kvw==
-X-Gm-Message-State: AOAM531uSgFykgp3V3+siJnKjkMCgU8e8M4NRQiNHo3pBwoNOgPHq7GP
-        u4k+vn/cvXnx7pzJNisXjrjR3g==
-X-Google-Smtp-Source: ABdhPJxAFBS8WqjBJ74ngiCvh2qJQoU+yU7YGRzoWEqeCM9ZbvMyzePxiEBZodMpXcaaxATvaD5jqA==
-X-Received: by 2002:adf:a45a:: with SMTP id e26mr5804185wra.222.1623852684859;
-        Wed, 16 Jun 2021 07:11:24 -0700 (PDT)
+        bh=Xsn7+Lsp9NGdCiqtkjavVEDgvQSXhZBR2aAMSk2h6M4=;
+        b=AghJ8RcHAJ1k6hbUoePzwy2fAAqjQFhaR4DEH/tWkRJRFpfDhoEvkX1IaQN9UCRAqf
+         bywHva5/s7a3u3dgL6TB//MRjEqq7BSoHwJ7o3s5VdErW3xHTloyTJvExQc+eJyIzYtI
+         qGStSZvIGeu10++zd4M7YdA2uKRpMSMJJz3tsSS0X15uLQSbtW5gnOW5i+zsfDjIHoyr
+         hy0Kn/qSWfK7Y4adD2VnQ8PBy5juu+/wslQjAIMFCHsQbFE5yIP3qLb2qbApRniGN1C/
+         55XFkM000LfprtIHBqLX+drZIlPc8tL0XDr7xgYjZx9zxBU0exSTrymw5J6kxKNoEIU1
+         DUqQ==
+X-Gm-Message-State: AOAM530YiQDXtdq9KwT4WQ99o8dkEsvqaiOxe+I+kJLIL+I3YbE8APqj
+        DrXdvUeIWWSx50n3Pa01GTBaNw==
+X-Google-Smtp-Source: ABdhPJzeKOr/2wJKsYjkuqvXZQfV/09Ppyl5Kn6BkkkCEh+gpB2lRge69iJyjFP1rzu8mBE/Wz+UwA==
+X-Received: by 2002:a5d:4f8f:: with SMTP id d15mr5576503wru.85.1623852686174;
+        Wed, 16 Jun 2021 07:11:26 -0700 (PDT)
 Received: from xps7590.fritz.box ([2a02:2454:3e5:b700:9df7:76e5:7e94:bf1e])
-        by smtp.gmail.com with ESMTPSA id g83sm1968375wma.10.2021.06.16.07.11.23
+        by smtp.gmail.com with ESMTPSA id g83sm1968375wma.10.2021.06.16.07.11.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 07:11:24 -0700 (PDT)
+        Wed, 16 Jun 2021 07:11:25 -0700 (PDT)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org,
         mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
@@ -55,9 +55,9 @@ To:     agross@kernel.org, bjorn.andersson@linaro.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Vinod Koul <vinod.koul@linaro.org>
 Cc:     Robert Foss <robert.foss@linaro.org>
-Subject: [RFC v1 03/11] clk: qcom: clk-alpha-pll: Fix typo in comment
-Date:   Wed, 16 Jun 2021 16:10:59 +0200
-Message-Id: <20210616141107.291430-4-robert.foss@linaro.org>
+Subject: [RFC v1 04/11] clk: qcom: clk-alpha-pll: Add configuration support for LUCID 5LPE
+Date:   Wed, 16 Jun 2021 16:11:00 +0200
+Message-Id: <20210616141107.291430-5-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210616141107.291430-1-robert.foss@linaro.org>
 References: <20210616141107.291430-1-robert.foss@linaro.org>
@@ -67,27 +67,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Substiture lucid for trion in comment, in order to conform to the
-function name.
+Ported from the downstream driver. Used on SM8350 for
+DISPCC & VIDEOCC.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- drivers/clk/qcom/clk-alpha-pll.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/clk/qcom/clk-alpha-pll.c | 3 +++
+ drivers/clk/qcom/clk-alpha-pll.h | 5 +++++
+ 2 files changed, 8 insertions(+)
 
 diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-index c6eb99169ddc..01090852ea76 100644
+index 01090852ea76..71040d53d7d8 100644
 --- a/drivers/clk/qcom/clk-alpha-pll.c
 +++ b/drivers/clk/qcom/clk-alpha-pll.c
-@@ -1399,7 +1399,7 @@ const struct clk_ops clk_alpha_pll_postdiv_fabia_ops = {
- EXPORT_SYMBOL_GPL(clk_alpha_pll_postdiv_fabia_ops);
+@@ -115,6 +115,9 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
+ 		[PLL_OFF_STATUS] = 0x30,
+ 		[PLL_OFF_OPMODE] = 0x38,
+ 		[PLL_OFF_ALPHA_VAL] = 0x40,
++		[PLL_OFF_SSC_DELTA_ALPHA] = 0x48,
++		[PLL_OFF_SSC_NUM_STEPS] = 0x4c,
++		[PLL_OFF_SSC_UPDATE_RATE] = 0x50,
+ 	},
+ 	[CLK_ALPHA_PLL_TYPE_AGERA] =  {
+ 		[PLL_OFF_L_VAL] = 0x04,
+diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+index 6943e933be0f..9eb4589b6a02 100644
+--- a/drivers/clk/qcom/clk-alpha-pll.h
++++ b/drivers/clk/qcom/clk-alpha-pll.h
+@@ -37,6 +37,9 @@ enum {
+ 	PLL_OFF_OPMODE,
+ 	PLL_OFF_FRAC,
+ 	PLL_OFF_CAL_VAL,
++	PLL_OFF_SSC_DELTA_ALPHA,
++	PLL_OFF_SSC_NUM_STEPS,
++	PLL_OFF_SSC_UPDATE_RATE,
+ 	PLL_OFF_MAX_REGS
+ };
  
- /**
-- * clk_lucid_pll_configure - configure the lucid pll
-+ * clk_trion_pll_configure - configure the trion pll
-  *
-  * @pll: clk alpha pll
-  * @regmap: register map
+@@ -158,6 +161,8 @@ void clk_agera_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
+ 				const struct alpha_pll_config *config);
+ #define clk_lucid_pll_configure(pll, regmap, config) \
+ 	clk_trion_pll_configure(pll, regmap, config)
++#define clk_lucid_5lpe_pll_configure(pll, regmap, config) \
++	clk_trion_pll_configure(pll, regmap, config)
+ 
+ 
+ 
 -- 
 2.30.2
 
