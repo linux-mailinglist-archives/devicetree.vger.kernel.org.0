@@ -2,73 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42E3E3A8D36
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 02:07:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 292E53A8D3A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 02:08:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231723AbhFPAJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 20:09:50 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:34971 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231725AbhFPAJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 20:09:49 -0400
-X-UUID: e98eac024ef040cf86326b6133403fc9-20210616
-X-UUID: e98eac024ef040cf86326b6133403fc9-20210616
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 797003582; Wed, 16 Jun 2021 08:07:41 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 16 Jun 2021 08:07:40 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 16 Jun 2021 08:07:40 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [RESEND PATCH v2 4/4] soc: mediatek: pm-domains: Remove unused macro
-Date:   Wed, 16 Jun 2021 08:06:58 +0800
-Message-ID: <20210616000659.28347-5-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210616000659.28347-1-chun-jie.chen@mediatek.com>
-References: <20210616000659.28347-1-chun-jie.chen@mediatek.com>
+        id S231738AbhFPAKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 20:10:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57532 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230507AbhFPAKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 20:10:47 -0400
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3143BC061760
+        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 17:08:41 -0700 (PDT)
+Received: by mail-oi1-x230.google.com with SMTP id m137so522900oig.6
+        for <devicetree@vger.kernel.org>; Tue, 15 Jun 2021 17:08:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=qCmyEQVqii6LsyuSPV+QSKBL2P0pCYgAFr/Ibzjgluw=;
+        b=IMEhVAfO1aDyFd07H+YfV/YIDMH7VDz8G6IhfkgxvLbPEPtIGMoBmPDGZFzt2E2PRD
+         T+V8PIwDsUUlu6m8w1v02VT/9yCRR1Ll5POzI9ow0w/lj67tU+MeqHkGogIaZ63OH9/P
+         PD9VkyGBzZ4tdDSLqQLhXUAr61MMfkAHVmQWV3i6ym0TuGX2u+bamT5QtCTNwXe3pUI4
+         cYGL+0HgRhDmvWsw/+JaAOet7sxZeRH/0G5smCEhnM10id/AUz/hIjLR7XZv/+tDaHVs
+         Gl8g2UJg8CO4HJc+iydXoI84eYtLaln49Sr/EcwiONaYpDP8qddAE1HBG8QTDjR2qQ78
+         pRzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qCmyEQVqii6LsyuSPV+QSKBL2P0pCYgAFr/Ibzjgluw=;
+        b=JDhoKPIGHbVPfr+ykhDfxuGCSSSPbnha32fFQq6sZMnq51BHgyZT950L97Zj6B4+aB
+         qbFThgWAF5KdtRQf0i4IX8gccN70nnWoVCWUjIMDyO5zUgEdJBKikPudKL5nIoT9UaRJ
+         4DEgVbHpz0iVgZ0cajjZdkYnITACjEHkJO0yICXW7M6Sayn6SDugEdt2NUrcVRalXHH8
+         r9pemoFb9dS4741rTmpoLYgFIZXqgf5fEGTT4xT05iN3qHdDicZp4o0oznANAvVlMoE9
+         kDhPRhcCSl0FOy5G4j0qC88o9P6rN0V3gQhZm6kdWzJKxiXqtI5etjF/FMZ8hes2HIds
+         VpgQ==
+X-Gm-Message-State: AOAM5324pJHWW2jAVoUT/FZiYrIP0sWN1+U2fsi1Xix0obxntm00XHla
+        b5jZicnfmmuOsxpL8EpeWfb1Qc1zQq40zg==
+X-Google-Smtp-Source: ABdhPJy0fdhDuyBoO6v1WeQRUNwSbxlbhglg+X31disSsmVH0VXlYLbR2W0TGiw/QG0R+gKqyxay5g==
+X-Received: by 2002:aca:530f:: with SMTP id h15mr1175785oib.128.1623802120548;
+        Tue, 15 Jun 2021 17:08:40 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id b22sm108948oov.31.2021.06.15.17.08.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Jun 2021 17:08:40 -0700 (PDT)
+Date:   Tue, 15 Jun 2021 19:08:37 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     sbhanu@codeaurora.org
+Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, asutoshd@codeaurora.org,
+        stummala@codeaurora.org, vbadigan@codeaurora.org,
+        rampraka@codeaurora.org, sayalil@codeaurora.org,
+        sartgarg@codeaurora.org, rnayak@codeaurora.org,
+        saiprakash.ranjan@codeaurora.org, sibis@codeaurora.org,
+        okukatla@codeaurora.org, djakov@kernel.org, cang@codeaurora.org,
+        pragalla@codeaurora.org, nitirawa@codeaurora.org,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org
+Subject: Re: [PATCH V3] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD
+ card
+Message-ID: <YMlBBeT1VK5snsM7@builder.lan>
+References: <1623252028-20467-1-git-send-email-sbhanu@codeaurora.org>
+ <YMLbsZUojmYjM/j0@builder.lan>
+ <64166450ddc927d10ad4b37dadf218b6@codeaurora.org>
+ <0ce40daf1f8146f47b1877fb2c83cd95@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0ce40daf1f8146f47b1877fb2c83cd95@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to clk resource data will be allocated dynamically by
-searching parent count of clk in power domain node, so remove
-the unused marco MAX_SUBSYS_CLKS for static allocation.
+On Tue 15 Jun 03:56 CDT 2021, sbhanu@codeaurora.org wrote:
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
----
- drivers/soc/mediatek/mtk-pm-domains.h | 2 --
- 1 file changed, 2 deletions(-)
+> On 2021-06-14 17:00, sbhanu@codeaurora.org wrote:
+> > On 2021-06-11 09:12, Bjorn Andersson wrote:
+> > > On Wed 09 Jun 10:20 CDT 2021, Shaik Sajida Bhanu wrote:
+[..]
+> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+[..]
+> > > > +		sdhc_1: sdhci@7c4000 {
+[..]
+> > > > +			sdhc1_opp_table: sdhc1-opp-table {
+> > > 
+> > > No need for "sdhc1-" in the node name.
+> > ok
+> Hi,
+> 
+> For Sd card also we have opp-table info so if we remove "sdhc1-" here and
+> "sdhc2-" in Sd crad opp table we may have dublicate nodes so,
+> it is better to keep sdhc1 and sdhc2 in node numbers right.
+> 
 
-diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
-index caaa38100093..1b8967b9829e 100644
---- a/drivers/soc/mediatek/mtk-pm-domains.h
-+++ b/drivers/soc/mediatek/mtk-pm-domains.h
-@@ -72,8 +72,6 @@ struct scpsys_bus_prot_data {
- 	bool ignore_clr_ack;
- };
- 
--#define MAX_SUBSYS_CLKS 10
--
- /**
-  * struct scpsys_domain_data - scp domain data for power on/off flow
-  * @name: The name of the power domain.
--- 
-2.18.0
+Are you saying that /soc/sdhci@7c4000/opp-table needs to have a unique
+name to not collide with /soc/sdhci@8804000/opp-table?
 
+Regards,
+Bjorn
