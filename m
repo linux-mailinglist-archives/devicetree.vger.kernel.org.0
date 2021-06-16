@@ -2,149 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FAD3A9DA1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:33:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF7483A9DAB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 16:36:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233208AbhFPOfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 10:35:07 -0400
-Received: from mail-eopbgr1400134.outbound.protection.outlook.com ([40.107.140.134]:19040
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232825AbhFPOfG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 10:35:06 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lNFerKKD2nRp8dGVaUttQ+xO5VlXw41BKen7hwjIsmqgpk+P7PK6nxQEMtl6F8IxN/0c+6laGYo6I1iUpIAtezfBhr4Mseo/sn2Ewjic5L0Sjwcw/R8FpfADPyMEeRZOzqr/Wq78EMGIL/hnGDVmmpErWjM3T3jqS1c2g1CwJdJdMjISGleMMIX569Au9Z7+Sby+qLXLhFTxvqsXrMqtFfH5phSoaxyBUDePpFu2nZWf6mqxHkuyClqVklVz1xQC7SJzDKQPYOLMeYeHFmxq6vuEf0uw3nuN1c9PDo+QNORP/mts5MsakpjXzXntylASOfeqXOW9gUPMVLt5nczydw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=w1wq29GX46OzOKL+dFCKnxsNRoLaJQW+uN4LOIIKS6M=;
- b=fweZS51gSZOutJZiCDJfXEVDvOtAr6ZbIIAITZmIq98g/e+q+1LePJBhG3pxOsmDbWAhbp6giYFnBfKm6Gcn8OIaCmnmFIHOFgj5RaQuI8V09ruwcpKgFTw+bTaqcNgZSpWcfTOs3tN2wOyG79ohxOY+qf9GqqFF2oIvCs/rxGTCSf7VEVXLpnYxLScW3TFy8UwgfBuv9l9eUSDynXVcNrybzDNK1/bqgZAcXCN0qMSd+DELlkmXlDeXyF94rILkXG5hB4tKUb8FIWFU16eaKa0rix+L3o6ScZzhJ6COAybTIpO8hSxLlH1RKZ3kKaa46tWtHEs0xh3/FNKRgzEVjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
+        id S234046AbhFPOi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 10:38:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54988 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234049AbhFPOi1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 10:38:27 -0400
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8135BC06175F
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:36:20 -0700 (PDT)
+Received: by mail-qk1-x72e.google.com with SMTP id c138so2822935qkg.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 07:36:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=w1wq29GX46OzOKL+dFCKnxsNRoLaJQW+uN4LOIIKS6M=;
- b=d9IxdSYjDKH5vnfT8q9hIdhiW6BsJuHsM22r0K+QiJ/3kN3q6/NhQdU/uq+HF6CW0r+GgyhrbD1J4NTJzWp+fjQX6irDbC7uPf4hdxn/70V4gCY7gBRINrh+oJ6aUyALzkuxSoai9JQvoZWYLk5WR/yhX2NJI2MwdSFeJHdpjBs=
-Received: from TYYPR01MB6603.jpnprd01.prod.outlook.com (2603:1096:400:e0::9)
- by TYAPR01MB5948.jpnprd01.prod.outlook.com (2603:1096:404:8055::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.24; Wed, 16 Jun
- 2021 14:32:58 +0000
-Received: from TYYPR01MB6603.jpnprd01.prod.outlook.com
- ([fe80::788c:8a19:fea5:209d]) by TYYPR01MB6603.jpnprd01.prod.outlook.com
- ([fe80::788c:8a19:fea5:209d%9]) with mapi id 15.20.4242.019; Wed, 16 Jun 2021
- 14:32:57 +0000
-From:   Min Li <min.li.xe@renesas.com>
-To:     Lee Jones <lee.jones@linaro.org>
-CC:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
-        "grant.likely@linaro.org" <grant.likely@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH mfd v2] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Thread-Topic: [PATCH mfd v2] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Thread-Index: AQHXV86EpPNANrzU4UCJO/Td0zuOkKsVKxiAgAAsQzCAAQNqgIAAaN1A
-Date:   Wed, 16 Jun 2021 14:32:57 +0000
-Message-ID: <TYYPR01MB6603047A864DB37F111BDAD9BA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
-References: <1622652224-19103-1-git-send-email-min.li.xe@renesas.com>
- <YMiwEYLkbKocs8ux@dell>
- <OS3PR01MB65939641C36B650A3B69DAADBA309@OS3PR01MB6593.jpnprd01.prod.outlook.com>
- <YMmuz0EVjfEi6MJj@dell>
-In-Reply-To: <YMmuz0EVjfEi6MJj@dell>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linaro.org; dkim=none (message not signed)
- header.d=none;linaro.org; dmarc=none action=none header.from=renesas.com;
-x-originating-ip: [72.140.114.230]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 43322a9c-b5b0-4d90-d158-08d930d3a2e7
-x-ms-traffictypediagnostic: TYAPR01MB5948:
-x-microsoft-antispam-prvs: <TYAPR01MB594886DEF1287C5F7D79C30CBA0F9@TYAPR01MB5948.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +Q8n8dL63TJ0lzq3gTo1WFmuqfTMnrX73FMvjI/djN9OHoOvWrEqRUBRjd6vsv3TZ+GzORpUdCcXkN/ngS6KANEFKXuRsZb23XuY5kLyjHOHiFfNtmKk2JTWTm5Cqx8UoJFlhtLeCLT6mqE67Z6mR/kZv7JAI6pJzlgJa1xCav/CYeEGVox88KCZoc2i7zuPfnDTJyYIO23//kt6KxE67NyM1CPp6u9HIiYuJiNiLvMxyCLgvRoQ/5IhGuBEz8UoHkoDOdllp/Y1VSHBdFnfsPz8dd1Zun7+V2jUJIvaCHXk0UJ4EQH81S+19LOkwKaphoUQQuv9hQGVUvMDPlGyqOas4YxwSE9F9TFO79fCBxeneZ3sdKaK4+XANvqNdEYlqk11JbqWzwmNamb+Yq3H4kzMoM5VLQjMuxsv2A0LE0YlohanvJzF5vUbvd2nwFuRyiwPRoldRx4Lpyc8XSVQwA22SQuMjxpIeS7zBT4VyMKx8vq6KJQCuvo2cLiIwhsxPxZVABT4AltxhKO/mShbTFWqaBW8oWn6rZ878PzxSuNdZ/CyizxW/GjvNvKN8tPG7qLG/uen2wTcS3/ierENdBd5jkoCBdAWyfOyjwAdJDw=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYYPR01MB6603.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(396003)(346002)(136003)(366004)(376002)(122000001)(478600001)(54906003)(64756008)(52536014)(4326008)(38100700002)(9686003)(316002)(26005)(83380400001)(2906002)(71200400001)(8936002)(6506007)(33656002)(76116006)(7696005)(5660300002)(66946007)(66446008)(66556008)(8676002)(186003)(6916009)(86362001)(66476007)(55016002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?U3hka0dDQ213QlBVSmV3b0l2aG9PTXppSU9QSEJ5bmV4R2gwRVFiY0s2alcv?=
- =?utf-8?B?cTY4cWpMN3VSWjFFaHFSZUwydWIvcVA4SzFSY1orLzY4bVRZanV3RzRCdlVP?=
- =?utf-8?B?RUM2bnUrT1ZjakI1aFZ2VkR6Tm15VWNHb2tFcnNoNHdLenRvMWhaMTVVazBq?=
- =?utf-8?B?NUpQc3FmdVU0YU1kS2w3ZGtQSDJ0UkpXM0UySUdqNkFvR2l4R2k5Y1Z0R3Z1?=
- =?utf-8?B?YTNvK25qVnZBQmlqakJZUGM1TWtwNkJMbE1xQTVwNjIzRDRac0M2ZUE3eHB2?=
- =?utf-8?B?OFhEbDE5Y2NsUXFHYzhYeGlwUHhHTVQwRWdlSjNZbGlnYzRHcjErc3NSbVdU?=
- =?utf-8?B?N3JLbHB4RkhyMkYyOE1ERENoS2NQM1g5R056cHpQR2JBOW1UVjQ3cXdRWFZC?=
- =?utf-8?B?T2pNakZNTXJSZ3ZidHluYTI4VDgvRmZkaThwY0c1V3hTb29FaVBaaWNRVHVi?=
- =?utf-8?B?RERPTkozU2Fid3ZCVnZ3VFlFN0lsMHkvd20wcnMwdXBlTjZKMWxuNWw0RjFE?=
- =?utf-8?B?d0IrL2tMYXRDL0gwcCtBY0RiY3NLSWFxbXdCOTdscWp4SS9TZXh5ZFp1ZUZw?=
- =?utf-8?B?eDZEeXJXM3NJQzBTK0VtV2tHa3hQQ3R6Mk0zQklLSUU0b0tKWlZVVE5ZSnA2?=
- =?utf-8?B?UmFTZlgrbDBRV0lrdGZrTk13Y2l5MnpjcktORy9IYW96VVNya3dWT1JoV3dy?=
- =?utf-8?B?OXdLVmw3dTJSZjdla0wydUs3cW9aVk96eVRvc3c5azhYa1g1ZjJlUktGeitN?=
- =?utf-8?B?ZFRrZjY1anVZSEhwWU0zc1NXb0NjUnN5U2JZeDBFUWxDT3U1cmZOWENNcmVx?=
- =?utf-8?B?Wlp6US9qRnZMZG5MU2ZUNmlUeGM0dkhnMU1abUR6Mm9DWTVBWWQwY3NCUVdZ?=
- =?utf-8?B?WS8vNTN4aTM0OEdKZmo2VTBFWXRnQ1IrSzJ6OFpMVVhaa3hoVXZiRTBUM2du?=
- =?utf-8?B?cmdCRUcwMjVCckhFVkx4dXF4eWtwOWp5bG5JUVVGcVdRVXZmeitnUG9La0RH?=
- =?utf-8?B?akR6a3plY0FzL2pPNkQ4Ri9mU3VuQUVBS3hQSTd6dm4xUWpsSGZuRkZSNFRL?=
- =?utf-8?B?cmJHTFlGd2puQmduWVVEWEZlekV4aWN4bDhYWk1PUkxRdXZ3NCs2K0NESTlP?=
- =?utf-8?B?Z2JaaEppc2tKSlV4aVYxZnlLYkdEZ2VibWJxdHlSejkxWUp1OWFpUWdOdlNK?=
- =?utf-8?B?Um03Sm9KZ3RBOWFtMnlya1dVaFNCakRhNzBIM3VNNFJpYWE4eUJsVUMrVFlZ?=
- =?utf-8?B?NHdOTEd0UWJiTWFvdk1YTDl3MTBjTncrWVdueU9sNDNPQ0dpN2tHUEd5Ukhy?=
- =?utf-8?B?akFaMTVmR2tFNWRSdkc1L0Nubys5R3BFSUFXNy8ySERhZ2loMm1ZQ2luRnB6?=
- =?utf-8?B?ZjQvQVdYR2FZdldqbW9LWkFGWjJNeHdrb0JCbTlVbVZTUmMwdzJVRzY1VmhB?=
- =?utf-8?B?dXQvN0UzNzUyN3FqWmNTTTd6K09kUElSQ21YSkxFUFB3ZzJiMitHRjc4SkJw?=
- =?utf-8?B?RVYyaVNpc0czWXpoUmxqaUs4bk5QVWNxQmwrSTQzWUVRSmJFbXZVSlRjMUpY?=
- =?utf-8?B?R2xCMklwUFErL2FzbmRXR1l6dXFvQnlhb0hXcnd2aXMvMEp6dTZwTmczbFlZ?=
- =?utf-8?B?V0o2bjhrYVB2YU5JbmlaR2E5cGFVb01mSGl0dGlya29wL2xkR01wbFhJYzBC?=
- =?utf-8?B?NUVhMEZqYlVNWGVVOFVobU1zOFhEMVd0eWtwN1U2UFIvdkdOOWtXNExrYmwx?=
- =?utf-8?Q?3qzn45labavhogxbXD0lQ2bvDfbS5traOpFQBl/?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=C6N7ZLY1WhDSZqhuZcLY/QHujQYu6PkAlcx3M6QgT6k=;
+        b=lOsfCoqWux3C4DdeAMZTDNufs06iP6UqU1XS14MePe0Fxa/GAhcx+oN0u6vW5Ilm/X
+         lN4FSzc0CG9F8545wOn5VtuDBEFQ8kAASsbxlqYt5DcwEZVQrlG84VemH3pEcOzxbh/l
+         1pT4rMyWUfJs9Qsmta5CcXcQbaGUkzOQ8T4MoOs4SSnIUTOqD6KMLnTmSaj9kH/v3zKT
+         +pQZL2VHUxAl3cyJjef6Oxy27O9TRzG1Vvj9zeD2CF+gfrgcdVYm2GJIfs6POyw5LCeZ
+         c84PFBSGWQxHOfErl78EpnnNhWJS6WOkxZZzcNZmXRS3gcPOqJEZveBloOPo1Xt7TMw2
+         aYHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=C6N7ZLY1WhDSZqhuZcLY/QHujQYu6PkAlcx3M6QgT6k=;
+        b=HhBiKptkDoFZt4KSoNr7Hi5W4q/Pfb6VWPZO1qtwltuFjKPbSJ+gbPMwz/pMMPHZ+T
+         4hwlWhJgNpZDtzd88bchNtJGXQPIx8ijFkdOCFtzpvp5wtNJV/L37uGWsEYpDmKCSR8x
+         DmKGiahGykRY6cUQSstFjXBsPERvXWictmKk31fDQjRSgLLCB8GwSaGP2wsHNphmkT/e
+         2ILQvRfogWq+YFvHDvGHx/ISxgZF8MGxdmKDrmvQYUoRAaFtYOWGWDaizxpc6WrhVT4y
+         Njl8ks/oO1JUNfETvJMK04GpTDtj35336aHDgyqJeYOpzPrXvAGl1CxxxQrOZc6xb54R
+         4ZEg==
+X-Gm-Message-State: AOAM533E7VcjJyzNq1YSnVPmKuipeOhsmzupvlSGvs1MNxlPVZwd7rfH
+        9YOZYCzZkzCF8oCy9/FWgarf1A==
+X-Google-Smtp-Source: ABdhPJyQfSgTLuanvM52DFRrLyjJpWyc1bNVtB3kIaDVomzEZTehCLdam7DcZd2qn8FbX1cl+wfGsw==
+X-Received: by 2002:a05:620a:4da:: with SMTP id 26mr348132qks.336.1623854179605;
+        Wed, 16 Jun 2021 07:36:19 -0700 (PDT)
+Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.gmail.com with ESMTPSA id a3sm1675158qkc.109.2021.06.16.07.36.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Jun 2021 07:36:19 -0700 (PDT)
+Subject: Re: [PATCH v3 4/7] thermal/drivers/tegra: Add driver for Tegra30
+ thermal sensor
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Ihor Didenko <tailormoon@rambler.ru>,
+        Ion Agorria <ion@agorria.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <20210529170955.32574-1-digetx@gmail.com>
+ <20210529170955.32574-5-digetx@gmail.com>
+ <6f2b6290-095a-bd39-c160-1616a0ff89b1@linaro.org>
+ <20210615102626.dja3agclwzxv2sj4@vireshk-i7>
+ <595f5e53-b872-bcc6-e886-ed225e26e9fe@gmail.com>
+ <fbdc3b56-4465-6d3e-74db-1d5082813b9c@linaro.org>
+ <4c7b23c4-cf6a-0942-5250-63515be4a219@gmail.com>
+ <545974aa-bb0f-169b-6f31-6e8c2461343f@linaro.org>
+ <f06370e0-bfde-87d0-03b4-93c667f81817@gmail.com>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <14b6344b-3994-7977-6933-a2d2357d23d5@linaro.org>
+Date:   Wed, 16 Jun 2021 10:36:17 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYYPR01MB6603.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43322a9c-b5b0-4d90-d158-08d930d3a2e7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2021 14:32:57.6680
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xfV3ec9mErCb3e/E/9lNcrUYpcTwhQ0KUMcYHvgrauAHq9rNllKAceCP7d/mzSgTbzym86vd3CiCZc3bWfkeog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB5948
+In-Reply-To: <f06370e0-bfde-87d0-03b4-93c667f81817@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiANCj4gPiA+DQo+ID4gPiA+ICtzdGF0aWMgc3RydWN0IG1mZF9jZWxsIHJzbXVfY21fZGV2c1td
-ID0gew0KPiA+ID4gPiArCVtSU01VX1BIQ10gPSB7DQo+ID4gPiA+ICsJCS5uYW1lID0gImlkdGNt
-LXBoYyIsDQo+ID4gPg0KPiA+ID4gQ2FuJ3QgeW91IGhhdmUgYSBuaWNlciBuYW1lPw0KPiA+ID4N
-Cj4gPiBIaSBMZWUNCj4gPg0KPiA+IEkgd29uZGVyIHdoaWNoIHBhcnQgb2YgdGhlIG5hbWUgdGhh
-dCB5b3UgZG9uJ3QgbGlrZT8gUEhDIHN0YW5kcyBmcm9tIFBUUA0KPiBIYXJkd2FyZSBDbG9jay4N
-Cj4gPiBJIHdhcyBmb2xsb3dpbmcgdGhlIG5hbWUgY29udmVudGlvbiBsaWtlIHRwczY1OTEyLXJl
-Z3VsYXRvci4NCj4gPiBEbyB5b3UgYWNjZXB0ICI4YTM0MDAtcGhjIj8NCj4gDQo+IEkgdGhpbmsg
-eW91J3JlIHRyeWluZyB0byBwdXQgdG9vIG11Y2ggaW5mb3JtYXRpb24gaW50byB0aGUgZGV2aWNl
-IG5hbWUuDQo+IA0KPiBDdXJyZW50bHkgaXQnczoNCj4gDQo+ICAgaWR0IDxjb21wYW55IG5hbWU+
-IGNtIDxwbGF0Zm9ybT4gLSBwaGMgPGV4YWN0IGRldmljZSB0eXBlPg0KPiANCj4gV2hlcmUgdXN1
-YWxseSB3ZSBoYXZlLCB0YWtpbmcgeW91ciBleGFtcGxlOg0KPiANCj4gICB0cHM2NTkxMiA8Y2hp
-cD4gLSByZWd1bGF0b3IgPHN1YnN5c3RlbT4NCj4gDQo+IFNvIGFzc3VtaW5nIHRoZSBQVFAgSFcg
-Q2xvY2sgaXMganVzdCBhIGNsb2NrIGl0IHNob3VsZCBiZToNCj4gDQo+ICAgOGEzNDAwIDxjaGlw
-PiAtIGNsb2NrIDxzdWJzeXN0ZW0+DQo+IA0KPiBJdCdzIGRpZmZpY3VsdCB0byBzYXkgd2l0aG91
-dCBzZWVpbmcgdGhlIGFzc29jaWF0ZWQgY2hpbGQgZGV2aWNlKHMpLg0KPiBXaGVuIGRvIHlvdSBw
-cm9wb3NlIHRvIHVwc3RyZWFtIHRob3NlPyAgTWF5YmUgdGhleSBzaG91bGQgYmUgcGFydCBvZg0K
-PiB0aGlzIGluaXRpYWwgc2V0LiAgSSB0aGluayB0aGF0IHdvdWxkIGhlbHAgYSBsb3QuDQo+IA0K
-DQpIaSBMZWUNCg0KVGhlIFBIQyBkcml2ZXIgYWxyZWFkeSBleGlzdGVkIGluIHRoZSBjdXJyZW50
-IHRyZWUgYXMgZHJpdmVycy9wdHAvcHRwX2Nsb2NrbWF0cml4LmMgYW5kDQpwdHBfaWR0ODJwMzMu
-Yw0KDQpSaWdodCBub3csIHRoZXkgYWN0IGFzIGkyYyBkcml2ZXIuIEkgcGxhbiB0byBjaGFuZ2Ug
-dGhlbSBhcyBhIG5vcm1hbCBwbGF0Zm9ybSBkZXZpY2UgZHJpdmVyDQphZnRlciB0aGlzIE1GRCBj
-aGFuZ2Uga2lja2VkIGluDQoNClRoYXQgaXMgd2h5IEkgd291bGQgcHJlZmVyIHRoZSBuYW1lICJw
-aGMiIGluc3RlYWQgb2YgImNsb2NrIiBzaW5jZSB0aGUgZHJpdmVyIGlzIG5vdCBhIG5vcm1hbCBj
-bGsgZHJpdmVyDQp1bmRlciBkcml2ZXJzL2NsayBidXQgYSBwdHAgY2xvY2sgZHJpdmVyLiBBbmQg
-ZG93biB0aGUgcm9hZCwgd2Ugd2lsbCBoYXZlIG91ciByZWFsIGNsb2NrIGRyaXZlciBhbmQgSSB3
-YW5uYQ0KcmVzZXJ2ZSB0aGUgbmFtZSAiY2xvY2siIGZvciB0aGUgcmVhbCBjbG9jayBkcml2ZXIu
-DQoNClRoYW5rcw0KDQpNaW4NCg==
+
+
+On 6/16/21 6:47 AM, Dmitry Osipenko wrote:
+> 16.06.2021 05:50, Thara Gopinath пишет:
+> ...
+>>
+>> Hi,
+>>
+>> Thermal pressure is letting scheduler know that the max capacity
+>> available for a cpu to schedule tasks is reduced due to a thermal event.
+>> So you cannot have a h/w thermal pressure and s/w thermal pressure.
+>> There is eventually only one capping applied at h/w level and the
+>> frequency corresponding to this capping should be used for thermal
+>> pressure.
+>>
+>> Ideally you should not be having both s/w and h/w trying to throttle at
+>> the same time. Why is this a scenario and what prevents you from
+>> disabling s/w throttling when h/w throttling is enabled. Now if there
+>> has to a aggregation for whatever reason this should be done at the
+>> thermal driver level and passed to scheduler.
+> 
+> Hello,
+> 
+> The h/w mitigation is much more reactive than software, in the same time
+> it's much less flexible than software. It should provide additional
+> protection in a cases where software isn't doing a good job. Ideally h/w
+> mitigation should stay inactive all the time, nevertheless it should be
+> modeled properly by the driver.
+
+Ok. This is kind of opposite to what I am doing on the Qcom platform I 
+am working on. The h/w throttling is the default since like you 
+mentioned it is more reactive. And s/w does only critical trip management.
+
+> 
+>>>>
+>>>> That is a good question. IMO, first step would be to call
+>>>> cpufreq_update_limits().
+>>>
+>>> Right
+>>>
+>>>> [ Cc Thara who implemented the thermal pressure ]
+>>>>
+>>>> May be Thara has an idea about how to aggregate both? There is another
+>>>> series floating around with hardware limiter [1] and the same
+>>>> problematic.
+>>>>
+>>>>    [1] https://lkml.org/lkml/2021/6/8/1791
+>>>
+>>> Thanks, it indeed looks similar.
+>>>
+>>> I guess the common thermal pressure update code could be moved out into
+>>> a new special cpufreq thermal QoS handler (policy->thermal_constraints),
+>>> where handler will select the frequency constraint and set up the
+>>> pressure accordingly. So there won't be any races in the code.
+>>>
+>> It was a conscious decision to keep thermal pressure update out of qos
+>> max freq update because there are platforms that don't use the qos
+>> framework. For eg acpi uses cpufreq_update_policy.
+>> But you are right. We have two platforms now applying h/w throttling and
+>> cpufreq_cooling applying s/w throttling. So it does make sense to have
+>> one api doing all the computation to update thermal pressure. I am not
+>> sure how exactly/where exactly this will reside.
+> 
+> The generic cpufreq_cooling already uses QoS for limiting the CPU
+> frequency. It could be okay to use QoS for the OF drivers, this needs a
+> closer look.
+> 
+> We have the case where CPU frequency is changed by the thermal event and
+> the thermal pressure equation is the same for both s/w cpufreq_cooling
+> and h/w thermal driver. The pressure is calculated based on the QoS
+> cpufreq constraint that is already aggregated.
+> 
+> Hence what we may need to do on the thermal event is:
+> 
+> 1. Update the QoS request
+> 2. Update the thermal pressure
+> 3. Ensure that updates are not racing
+
+Yes. So the first two steps you mentioned is exactly what 
+cpufreq_cooling.c also does except for the fact that it is a s/w 
+mitigation. Now if you have two sources that is updating the max 
+frequency via qos, I think you can do either of the following before
+calculating thermal pressure
+1. Read the throttled frequency from h/w if  your h/w supports this feature.
+	or
+2. Use freq_qos_read_value to get the max frequency value.
+
+Either way only the correct throttled capacity should be passed to 
+scheduler.
+
+-- 
+Warm Regards
+Thara (She/Her/Hers)
+> 
+>> So for starters, I think you should replicate the update of thermal
+>> pressure in your h/w driver when you know that h/w is
+>> throttling/throttled the frequency. You can refer to cpufreq_cooling.c
+>> to see how it is done.
+>>
+>> Moving to a common api can be done as a separate patch series.
+>>
+> 
+> Thank you for the clarification and suggestion.
+> 
+
