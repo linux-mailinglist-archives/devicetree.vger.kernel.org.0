@@ -2,214 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 901A43AA672
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 00:02:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E548F3AA67B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 00:08:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233321AbhFPWE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 18:04:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41894 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233188AbhFPWEX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 18:04:23 -0400
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E19DC061574;
-        Wed, 16 Jun 2021 15:02:16 -0700 (PDT)
-Received: by mail-io1-xd35.google.com with SMTP id d9so865463ioo.2;
-        Wed, 16 Jun 2021 15:02:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=NikDp6q2vZyMWxVs5+WTfA2YvFZy7dXOJMsJLWLolUw=;
-        b=IM/omgH/wFzMaMvfVrjiYToVsbSlRKPm7w+zoGzoQ7dEtnY+HjOuaE0xaXvptBiQFs
-         if+kFninVspO/gflCmp10qvfcczKtJrSSlCiGDrYNXUTR/OWnu0A3kHMGWosud/BcPrr
-         Re5zNa5IEk1e/WU8M2qUJA6mL6Fn+XJ48BAHwiLHEdW2gB8bFwk6J4J4i0GNKwMblGia
-         JcbOl8hBURIuuwFBGaDBSAnblFyQianPwa6kJL0KzvDXV/O/0V2k1S+KocVp+hNYHwQG
-         DbmUecwcZdqKRtY1xmvXOsJhSPrsXvu4GK+/Lkm/+Rr2YD/8mrSuWqhGP5htWDWZRYST
-         rL0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=NikDp6q2vZyMWxVs5+WTfA2YvFZy7dXOJMsJLWLolUw=;
-        b=k6Cyw8BlBdiir6za4wh2COzZGhXyc05Zmzqnwrxf7YC7cnnHGD4QxwIGiBNfGPc6+d
-         j+VwnlHf66VkRt44rCuAA8A/HkE9H4Mt2+Ep0eaYaJaju/uheeQIO5sKMuPpdVCzDQIw
-         41UzGiemETxxvoziJzbPZSLxTu5Bll+hqOgGQa7ao9BYxCUJgP4W2Q0HZfnMyUa+pIqW
-         x3FgAMLnGSmXUas2f/MntiD/e7SPfD30GVmwh9xYBiSYMFCdtfiUxbYJQLy5q+OVg1a5
-         aTY/EOhFiKJCLEji7g+w/9zZ3AWgiNvJMrpL4rSBVffeb0IwEjkTaSiJ22syFFsdLldL
-         qq3A==
-X-Gm-Message-State: AOAM531exM1okgHIvxWCRn99oBTxOrBWledvOPrwdc6RgVXbXzWs0D9j
-        ty6LkH/uyqN5nuX28xY1bkzYEwBMLhMKlDi5ZX8=
-X-Google-Smtp-Source: ABdhPJwWLOHsyoArTJcDaDx+PHflZxO+RIAGsF4Akqd4ncxQHlVNlZRcBZpw1d04CxXrnqIIHxTIrdDDpX2N4c+y6CI=
-X-Received: by 2002:a05:6602:722:: with SMTP id g2mr1154673iox.118.1623880935595;
- Wed, 16 Jun 2021 15:02:15 -0700 (PDT)
+        id S233228AbhFPWKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 18:10:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36106 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230355AbhFPWKZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Jun 2021 18:10:25 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7D26961076;
+        Wed, 16 Jun 2021 22:08:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623881298;
+        bh=BD273yABex25SB8fv/8nERQkMbaDvLqsi8tVPEQWNxA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lyTzVCkN214gX28y3GVPDC8fHZU1LEr6mMirfhUpCiJSl6FfOvIynWXHzc5ZHmWzd
+         RJy5UPqwZcLHchkQuGHjZnNKA3fDizy7sWxMShxQG7DKGxF142tEM/oURyxNNbjnrC
+         vOm6eHH+rHzcsPPQM71p1IiQUEmMw98T/Eol+uFB+NB2I8UE2YB3B3z75tNe16ujy/
+         5u+Hr7PNIatSakz6jhG3WRgbAVEtGo2su06ahWklKO4nPAwMDWqoui6ibVaGytJIKn
+         YsNIeTB8GVr/1NxmZcnZYVMqVGqDg7+Tsor/57eJRPpTNKMcqaQSAPsClYr8kFu/FM
+         XnoEsCEQes9QA==
+Received: by mail-ed1-f46.google.com with SMTP id i13so1113499edb.9;
+        Wed, 16 Jun 2021 15:08:18 -0700 (PDT)
+X-Gm-Message-State: AOAM533Dp4tu4yKx3kOGPgB/Y4QCExozZD0isHHkxUuFdOlnnCRjgIMm
+        2VqYAf6iaeQekFYboXgWsPe+NDtiVPoiZnxwMA==
+X-Google-Smtp-Source: ABdhPJxCkllYiupo8FEv1dotZCuGq3DKtEY9a1vzJuNFz3aDURB/vEMfp9Hrd4spCvHyDfPmvTzJgapyTYbFxKLDtYI=
+X-Received: by 2002:a05:6402:1d0f:: with SMTP id dg15mr2292962edb.137.1623881297110;
+ Wed, 16 Jun 2021 15:08:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210615103400.946-1-alistair@alistair23.me> <20210615103400.946-2-alistair@alistair23.me>
- <YMnY7RLW6ml4Tq0g@dell>
-In-Reply-To: <YMnY7RLW6ml4Tq0g@dell>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Thu, 17 Jun 2021 08:01:49 +1000
-Message-ID: <CAKmqyKNs+Ebvd5MwtoKfKhNrMJVhTsBLjDhLXRuK8C+gs5MCcQ@mail.gmail.com>
-Subject: Re: [PATCH v6 2/5] mfd: sy7636a: Initial commit
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
-        Mark Brown <broonie@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <cover.1623824363.git.mchehab+huawei@kernel.org> <0048c23d47b582dd1a1959628fd2b895209ac826.1623824363.git.mchehab+huawei@kernel.org>
+In-Reply-To: <0048c23d47b582dd1a1959628fd2b895209ac826.1623824363.git.mchehab+huawei@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 16 Jun 2021 16:08:05 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLtZhox5-d81FnWywqM6waBv5fJ26z2n9rMw8wrn4aDqg@mail.gmail.com>
+Message-ID: <CAL_JsqLtZhox5-d81FnWywqM6waBv5fJ26z2n9rMw8wrn4aDqg@mail.gmail.com>
+Subject: Re: [PATCH v2 11/29] docs: devicetree: bindings: submitting-patches.rst:
+ avoid using ReST :doc:`foo` markup
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@protonmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 16, 2021 at 8:56 PM Lee Jones <lee.jones@linaro.org> wrote:
+On Wed, Jun 16, 2021 at 12:27 AM Mauro Carvalho Chehab
+<mchehab+huawei@kernel.org> wrote:
 >
-> On Tue, 15 Jun 2021, Alistair Francis wrote:
+> The :doc:`foo` tag is auto-generated via automarkup.py.
+> So, use the filename at the sources, instead of :doc:`foo`.
 >
-> > Initial support for the Silergy SY7636A Power Management chip.
-> >
-> > Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> > ---
-> >  drivers/mfd/Kconfig         |  9 ++++
-> >  drivers/mfd/Makefile        |  1 +
-> >  drivers/mfd/sy7636a.c       | 82 +++++++++++++++++++++++++++++++++++++
-> >  include/linux/mfd/sy7636a.h | 47 +++++++++++++++++++++
-> >  4 files changed, 139 insertions(+)
-> >  create mode 100644 drivers/mfd/sy7636a.c
-> >  create mode 100644 include/linux/mfd/sy7636a.h
-> >
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index 5c7f2b100191..7d6cf32b1549 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -1339,6 +1339,15 @@ config MFD_SYSCON
-> >         Select this option to enable accessing system control registers
-> >         via regmap.
-> >
-> > +config MFD_SY7636A
-> > +     tristate "Silergy SY7636A Power Management chip"
-> > +     select MFD_CORE
-> > +     select REGMAP_I2C
-> > +     depends on I2C
-> > +     help
-> > +       Select this option to enable support for the Silergy SY7636A
-> > +       Power Management chip.
-> > +
-> >  config MFD_DAVINCI_VOICECODEC
-> >       tristate
-> >       select MFD_CORE
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index 4f6d2b8a5f76..f95e1e725a95 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -265,6 +265,7 @@ obj-$(CONFIG_MFD_STMFX)   +=3D stmfx.o
-> >  obj-$(CONFIG_MFD_KHADAS_MCU)         +=3D khadas-mcu.o
-> >  obj-$(CONFIG_MFD_ACER_A500_EC)       +=3D acer-ec-a500.o
-> >
-> > +obj-$(CONFIG_MFD_SY7636A)    +=3D sy7636a.o
-> >  obj-$(CONFIG_SGI_MFD_IOC3)   +=3D ioc3.o
-> >  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)     +=3D simple-mfd-i2c.o
-> >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   +=3D intel-m10-bmc.o
-> > diff --git a/drivers/mfd/sy7636a.c b/drivers/mfd/sy7636a.c
-> > new file mode 100644
-> > index 000000000000..e08f29ea63f8
-> > --- /dev/null
-> > +++ b/drivers/mfd/sy7636a.c
-> > @@ -0,0 +1,82 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +//
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  .../devicetree/bindings/submitting-patches.rst        | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 >
-> Only the SPDX with C++ style comments please.
+> diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
+> index 104fa8fb2c17..8087780f1685 100644
+> --- a/Documentation/devicetree/bindings/submitting-patches.rst
+> +++ b/Documentation/devicetree/bindings/submitting-patches.rst
+> @@ -7,8 +7,8 @@ Submitting Devicetree (DT) binding patches
+>  I. For patch submitters
+>  =======================
 >
-> > +// MFD parent driver for SY7636A chip
+> -  0) Normal patch submission rules from Documentation/process/submitting-patches.rst
+> -     applies.
+> +  0) Normal patch submission rules from
+> +     Documentation/process/submitting-patches.rst applies.
 >
-> Drop the MFD part.  It's a Linuxisum that doesn't really exist.
+>    1) The Documentation/ and include/dt-bindings/ portion of the patch should
+>       be a separate patch. The preferred subject prefix for binding patches is::
+> @@ -25,8 +25,8 @@ I. For patch submitters
 >
-> > +// Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
-> > +//
-> > +// Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
-> > +//          Alistair Francis <alistair@alistair23.me>
-> > +//
-> > +// Based on the lp87565 driver by Keerthy <j-keerthy@ti.com>
-> > +
-> > +#include <linux/interrupt.h>
-> > +#include <linux/mfd/core.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +
-> > +#include <linux/mfd/sy7636a.h>
-> > +
-> > +static const struct regmap_config sy7636a_regmap_config =3D {
-> > +     .reg_bits =3D 8,
-> > +     .val_bits =3D 8,
-> > +};
-> > +
-> > +static const struct mfd_cell sy7636a_cells[] =3D {
-> > +     { .name =3D "sy7636a-regulator", },
-> > +     { .name =3D "sy7636a-temperature", },
-> > +     { .name =3D "sy7636a-thermal", },
-> > +};
-> > +
-> > +static const struct of_device_id of_sy7636a_match_table[] =3D {
-> > +     { .compatible =3D "silergy,sy7636a", },
-> > +     {}
-> > +};
-> > +MODULE_DEVICE_TABLE(of, of_sy7636a_match_table);
+>         make dt_binding_check
 >
-> Hold on.  This driver doesn't really do anything.  If you create OF
-> nodes for all the sub-devices, you can use simple-mfd-i2c.
->
-> Any reason you can't do that?
+> -     See Documentation/devicetree/bindings/writing-schema.rst for more details about
+> -     schema and tools setup.
+> +     See Documentation/devicetree/bindings/writing-schema.rst for more details
+> +     about schema and tools setup.
 
-Just to confirm, you mean something like this?
-
-diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts
-b/arch/arm/boot/dts/imx7d-remarkable2.dts
-index 9327d1c06c96..3577104b3853 100644
---- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-+++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-@@ -382,6 +382,21 @@ epd_pmic: sy7636a@62 {
-                pinctrl-0 =3D <&pinctrl_epdpmic>;
-                #thermal-sensor-cells =3D <0>;
-
-+               regulator@0 {
-+                       compatible =3D "sy7636a-regulator";
-+                       reg =3D <0>;
-+               };
-+
-+               temperature@0 {
-+                       compatible =3D "sy7636a-temperature";
-+                       reg =3D <0>;
-+               };
-+
-+               thermal@0 {
-+                       compatible =3D "sy7636a-thermal";
-+                       reg =3D <0>;
-+               };
-+
-                regulators {
-                        compatible =3D "silergy,sy7636a-regulator";
-diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
-index 87f684cff9a1..622a05318cff 100644
---- a/drivers/mfd/simple-mfd-i2c.c
-+++ b/drivers/mfd/simple-mfd-i2c.c
-@@ -39,6 +39,7 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
-
- static const struct of_device_id simple_mfd_i2c_of_match[] =3D {
-        { .compatible =3D "kontron,sl28cpld" },
-+       { .compatible =3D "silergy,sy7636a" },
-        {}
- };
- MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
-
-Alistair
+These don't match $subject.
 
 >
+>    3) DT binding files should be dual licensed. The preferred license tag is
+>       (GPL-2.0-only OR BSD-2-Clause).
+> @@ -84,7 +84,8 @@ II. For kernel maintainers
+>  III. Notes
+>  ==========
+>
+> -  0) Please see :doc:`ABI` for details regarding devicetree ABI.
+> +  0) Please see Documentation/devicetree/bindings/ABI.rst for details
+> +     regarding devicetree ABI.
+
+Is this new? You did review my oneliner adding ':doc:' not too long ago.
+
+>
+>    1) This document is intended as a general familiarization with the process as
+>       decided at the 2013 Kernel Summit.  When in doubt, the current word of the
 > --
-> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
-> Senior Technical Lead - Developer Services
-> Linaro.org =E2=94=82 Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+> 2.31.1
+>
