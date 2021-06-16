@@ -2,144 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78BC13A9953
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 13:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F00A53A997A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 13:45:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230262AbhFPLe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 07:34:59 -0400
-Received: from phobos.denx.de ([85.214.62.61]:54344 "EHLO phobos.denx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229503AbhFPLe5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 07:34:57 -0400
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id E87AE8035B;
-        Wed, 16 Jun 2021 13:32:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1623843170;
-        bh=T+Cs1AeQE7LkpU7A7afZ1a78WZrIIf6qmW2TwzpJZpo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=MBct9gtyk7PwHbCNWV+gq0y6jsEiTjz63p9FrCk1tHcGtm+2K0F2veZl1fau6uZkt
-         V9C24JhUjVF1bbjIcjXQmmZzQ0GlBlh+JogVkFnWVsxbfZosjFA1XEm2feUcyyUz5b
-         BCfqcHihZsyek4WOcpmIWtMJ3WDwFHIx54s3ceki3sTdjStkoQVlZ5lrvjlg+k2dK3
-         PJsVlkpK6bPEz7Pey79UCqPIt0t9NY4jK6DNl8anRHHZsvGMMb4gX3AyaP0KRsRFaG
-         XoIeJq9o+7R02l9PdYRR1colKndQN+KOYM8nerYsFWT6omtRzoPNig5nLuBgThQz/N
-         kHRrptdRZZMjg==
-Subject: Re: [PATCH V2] dt-bindings: arm: fsl: Add DHCOM PicoITX and DHCOM
- DRC02 boards
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        kernel <kernel@dh-electronics.com>,
-        "festevam@gmail.com" <festevam@gmail.com>
-References: <20210525143001.9298-1-cniedermaier@dh-electronics.com>
- <20210602195009.GA3870858@robh.at.kernel.org>
- <b765351a7c3542d2a66ab1168f1ff222@dh-electronics.com>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <bfbd70ca-b5a6-f7a7-4c7d-72ac86874227@denx.de>
-Date:   Wed, 16 Jun 2021 13:32:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S232622AbhFPLrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 07:47:18 -0400
+Received: from mail-vk1-f179.google.com ([209.85.221.179]:37523 "EHLO
+        mail-vk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232618AbhFPLrS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 07:47:18 -0400
+Received: by mail-vk1-f179.google.com with SMTP id u66so534055vkb.4;
+        Wed, 16 Jun 2021 04:45:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=C5xppwYgbbNCxTVa8+l3hCPLDPuKKTv39ehN8GGrI7U=;
+        b=ZfxZh9HYfi+BscZ6zAdlaBHdLQ4j+3D7HBDvjYEihWp5wOE8zLuH8rA08aGCkjym0h
+         OMCV4VwI8uUFqu333amPxAOquSwLFE1qoLsHolcooItCuc7X1Sd0Kh18AjI9mnp+DahT
+         5RgXZlft/EgWEvVhkCqDafAlGBZzrw+OYRN3KLBs9rm4qjcfr3u/akvERCYSIIlqe6eV
+         1589HKujFJXYXrYOxYWdk7X3T1d53a7ofHMVN9ITUNapv6/An8KMKzUO5X8oNBeVUieI
+         ChcE+0qFigkDo2hyOFnT4HHyxqk/M8ND3AiquUItw7uJUPjf4ZIJ7Q2oTPEKws7uDqtm
+         u1uw==
+X-Gm-Message-State: AOAM531EFEcQ+9in6NFYC2IdSnUg05H3gl9l5axCv8K7BMmXm9oW1d/0
+        xz7jpusdqfn2EfVHexlo010pwuqOFN1lBFgEAQA=
+X-Google-Smtp-Source: ABdhPJwZ6TT6OMmy6SWymg2li73H9PwHPEkS+Jh/3w8Q8Nu3JnWuVnB1heh2jXrTY/4YRd/lVwLIj72o+UD/CLTuj6Q=
+X-Received: by 2002:a1f:9505:: with SMTP id x5mr8721402vkd.6.1623843911751;
+ Wed, 16 Jun 2021 04:45:11 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <b765351a7c3542d2a66ab1168f1ff222@dh-electronics.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+References: <20210616105949.10215-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20210616105949.10215-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 16 Jun 2021 13:45:00 +0200
+Message-ID: <CAMuHMdUbWMbCLtTmTjv7KViObv8UxeVpQ93tvJyp-ziO55bfyw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clk: renesas: Update {ETH,SDHI,USB} CPG
+ Clock Definitions
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/16/21 1:19 PM, Christoph Niedermaier wrote:
-> Send reply also to Rob Herrings +dt email address:
-> 
-> From: Rob Herring <robh@kernel.org>
-> Sent: Wednesday, June 2, 2021 9:50 PM
-> 
->> On Tue, May 25, 2021 at 04:30:01PM +0200, Christoph Niedermaier wrote:
->>> Add DH electronics DHCOM PicoITX and DHCOM DRC02 boards.
->>>
->>> Signed-off-by: Christoph Niedermaier <cniedermaier@dh-electronics.com>
->>> Cc: linux-arm-kernel@lists.infradead.org
->>> Cc: linux-kernel@vger.kernel.org
->>> Cc: robh+dt@kernel.org
->>> Cc: Shawn Guo <shawnguo@kernel.org>
->>> Cc: kernel@dh-electronics.com
->>> To: devicetree@vger.kernel.org
->>> ---
->>> V2: Remove line with fsl,imx6s on the DRC02 Board
->>> ---
->>>   Documentation/devicetree/bindings/arm/fsl.yaml | 12 ++++++++++++
->>>   1 file changed, 12 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> index fce2a8670b49..3c4ff79a3be7 100644
->>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
->>> @@ -407,6 +407,12 @@ properties:
->>>             - const: dfi,fs700e-m60
->>>             - const: fsl,imx6dl
->>>
->>> +      - description: i.MX6DL DHCOM PicoITX Board
->>> +        items:
->>> +          - const: dh,imx6dl-dhcom-picoitx
->>> +          - const: dh,imx6dl-dhcom-som
->>> +          - const: fsl,imx6dl
->>> +
->>>         - description: i.MX6DL Gateworks Ventana Boards
->>>           items:
->>>             - enum:
->>> @@ -458,6 +464,12 @@ properties:
->>>             - const: toradex,colibri_imx6dl          # Colibri iMX6 Module
->>>             - const: fsl,imx6dl
->>>
->>> +      - description: i.MX6S DHCOM DRC02 Board
->>> +        items:
->>> +          - const: dh,imx6s-dhcom-drc02
->>> +          - const: dh,imx6s-dhcom-som
->>> +          - const: fsl,imx6dl
->>
->> fsl,imx6s?
-> 
-> In the first version I had here an additional line with "fsl,imx6s",
-> but currently the kernel isn't supporting that compatible. The i.MX6
-> Solo is currently supported by "fsl,imx6dl". So my idea was to add
-> both "fsl,imx6dl" and "fsl,imx6s" to match it maybe on a later kernel
-> version. If there is no match with the Solo now, it will fall back to
-> the i.MX6 DualLite. That is why I had both fsl,imx6s and fsl,imx6dl
-> in that order. On Fabio's advice, I removed the line with "fsl,imx6s"
-> in version 2.
-> Is this what you meant by your comment?
+Hi Biju,
 
-I didn't notice that at first myself, but I think what Rob means is
+On Wed, Jun 16, 2021 at 1:18 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Update {ETH, SDHI, USB} clock definitions, as they need special
+> handling.
+>
+> ETH has 2 clocks controlled by single bit.
+> USB has 4 clocks pclock is shared by USB Ch0 and USB Ch1.
+> SDHI has 4 clocks.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-- const: dh,imx6s-dhcom-drc02
-- const: dh,imx6s-dhcom-som
-- const: fsl,imx6dl <------ this should be consistent with the two above
+Thanks for your patch!
 
-that is
+> --- a/include/dt-bindings/clock/r9a07g044-cpg.h
+> +++ b/include/dt-bindings/clock/r9a07g044-cpg.h
+> @@ -39,51 +39,61 @@
+>  #define R9A07G044_CLK_SYSC             4
+>  #define R9A07G044_CLK_MTU              5
+>  #define R9A07G044_CLK_GPT              6
+> -#define R9A07G044_CLK_ETH0             7
+> -#define R9A07G044_CLK_ETH1             8
+> -#define R9A07G044_CLK_I2C0             9
+> -#define R9A07G044_CLK_I2C1             10
+> -#define R9A07G044_CLK_I2C2             11
+> -#define R9A07G044_CLK_I2C3             12
+> -#define R9A07G044_CLK_SCIF0            13
+> -#define R9A07G044_CLK_SCIF1            14
+> -#define R9A07G044_CLK_SCIF2            15
+> -#define R9A07G044_CLK_SCIF3            16
+> -#define R9A07G044_CLK_SCIF4            17
+> -#define R9A07G044_CLK_SCI0             18
+> -#define R9A07G044_CLK_SCI1             19
+> -#define R9A07G044_CLK_GPIO             20
+> -#define R9A07G044_CLK_SDHI0            21
+> -#define R9A07G044_CLK_SDHI1            22
+> -#define R9A07G044_CLK_USB0             23
+> -#define R9A07G044_CLK_USB1             24
+> -#define R9A07G044_CLK_CANFD            25
+> -#define R9A07G044_CLK_SSI0             26
+> -#define R9A07G044_CLK_SSI1             27
+> -#define R9A07G044_CLK_SSI2             28
+> -#define R9A07G044_CLK_SSI3             29
+> -#define R9A07G044_CLK_MHU              30
+> -#define R9A07G044_CLK_OSTM0            31
+> -#define R9A07G044_CLK_OSTM1            32
+> -#define R9A07G044_CLK_OSTM2            33
+> -#define R9A07G044_CLK_WDT0             34
+> -#define R9A07G044_CLK_WDT1             35
+> -#define R9A07G044_CLK_WDT2             36
+> -#define R9A07G044_CLK_WDT_PON          37
+> -#define R9A07G044_CLK_GPU              38
+> -#define R9A07G044_CLK_ISU              39
+> -#define R9A07G044_CLK_H264             40
+> -#define R9A07G044_CLK_CRU              41
+> -#define R9A07G044_CLK_MIPI_DSI         42
+> -#define R9A07G044_CLK_LCDC             43
+> -#define R9A07G044_CLK_SRC              44
+> -#define R9A07G044_CLK_RSPI0            45
+> -#define R9A07G044_CLK_RSPI1            46
+> -#define R9A07G044_CLK_RSPI2            47
+> -#define R9A07G044_CLK_ADC              48
+> -#define R9A07G044_CLK_TSU_PCLK         49
+> -#define R9A07G044_CLK_SPI              50
+> -#define R9A07G044_CLK_MIPI_DSI_V       51
+> -#define R9A07G044_CLK_MIPI_DSI_PIN     52
+> +#define ETH0_CLK_AXI                   7
+> +#define ETH0_CLK_CHI                   8
+> +#define ETH1_CLK_AXI                   9
+> +#define ETH1_CLK_CHI                   10
 
-  - const: dh,imx6s-dhcom-drc02
-  - const: dh,imx6s-dhcom-som
--- const: fsl,imx6dl
-+- const: fsl,imx6s
-               ^^^^^
+R9A07G044_ETH0_CLK_AXI etc.?
 
-But that is a bit odd here:
-- The MX6S is MX6DL with one CPU core disabled.
-- The DRC02 device can only house a SOM with MX6S and NOT with MX6DL
-(due to some thermal design consideration or something).
-- The kernel discerns the MX6S/MX6DL automatically based on the number 
-of cores it reads from some register, therefore it only has the 
-fsl,mx6dl compatible to cover both MX6S and MX6DL.
-So, the closest fallback compatible for this device really is the MX6DL, 
-i.e. fsl,imx6dl.
+> +#define R9A07G044_CLK_I2C0             11
+> +#define R9A07G044_CLK_I2C1             12
+> +#define R9A07G044_CLK_I2C2             13
+> +#define R9A07G044_CLK_I2C3             14
+> +#define R9A07G044_CLK_SCIF0            15
+> +#define R9A07G044_CLK_SCIF1            16
+> +#define R9A07G044_CLK_SCIF2            17
+> +#define R9A07G044_CLK_SCIF3            18
+> +#define R9A07G044_CLK_SCIF4            19
+> +#define R9A07G044_CLK_SCI0             20
+> +#define R9A07G044_CLK_SCI1             21
+> +#define R9A07G044_CLK_GPIO             22
+> +#define R9A07G044_CLK_SDHI0_IMCLK      23
+> +#define R9A07G044_CLK_SDHI0_IMCLK2     24
+> +#define R9A07G044_CLK_SDHI0_CLK_HS     25
+> +#define R9A07G044_CLK_SDHI0_ACLK       26
+> +#define R9A07G044_CLK_SDHI1_IMCLK      27
+> +#define R9A07G044_CLK_SDHI1_IMCLK2     28
+> +#define R9A07G044_CLK_SDHI1_CLK_HS     29
+> +#define R9A07G044_CLK_SDHI1_ACLK       30
+> +#define R9A07G044_CLK_USB_U2H0_HCLK    31
+> +#define R9A07G044_CLK_USB_U2H1_HCLK    32
+> +#define R9A07G044_CLK_HSUSB            33
+> +#define R9A07G044_CLK_USB_PCLK         34
 
-So I think this patch is correct as-is, no ?
+I think we should use the opportunity to
+  1. Split the remaining module clocks like R9A07G044_CLK_IA55 and
+     R9A07G044_CLK_DMAC,
+  2. Rename the definitions to match the "Clock Name" column in the
+     RZG2L clock list, with an "R9A07G044_" prefix,
+  3. Add all missing clocks, as listed in the RZG2L clock list.
+This will prevent similar issues from popping up later, when the DT
+bindings clock list is part of a released kernel version, and becomes
+cast in stone and append-only (so yes, step 3 could be postponed).
+
+Do you agree?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
