@@ -2,179 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A393AA70B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 00:51:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A8C73AA71B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 00:56:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234422AbhFPWxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 18:53:15 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:33980 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234407AbhFPWxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 18:53:06 -0400
-X-UUID: db5004e2cc154c4b9b8db8fa1c6c1a80-20210617
-X-UUID: db5004e2cc154c4b9b8db8fa1c6c1a80-20210617
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 55597283; Thu, 17 Jun 2021 06:50:57 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 17 Jun 2021 06:50:55 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Jun 2021 06:50:55 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [PATCH 22/22] clk: mediatek: Add MT8195 apusys clock support
-Date:   Thu, 17 Jun 2021 06:47:43 +0800
-Message-ID: <20210616224743.5109-23-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210616224743.5109-1-chun-jie.chen@mediatek.com>
-References: <20210616224743.5109-1-chun-jie.chen@mediatek.com>
+        id S231336AbhFPW60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 18:58:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53858 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231261AbhFPW6Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 18:58:25 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D10EDC061574;
+        Wed, 16 Jun 2021 15:56:18 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id e10so5348943ybb.7;
+        Wed, 16 Jun 2021 15:56:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1ktzrciVp8PDUDyfHCUWiDdgZR3bBYVG0fuSDVfTYG0=;
+        b=qKOD10Tgu4BRblFOlZbhaFW8lYbpgeWnzioSB3cfKLCk1QQxWR0r774hpSmbGWafHU
+         5O6hR7JijyPFHeyIK4QbOX1EQrTcNs7F7UPMv4X0Lr61la5R1lMlkosh9L1qRqv8RaW7
+         JJRSCxMHgLVYrkRC0i+0apZT7KNQy8afKnvH2ZymKlehT+Bs1hvm8+8YMnGOvNbgvcx3
+         H3zweqdOJke4rT5iSW7mXpdDDSuS5JUapjcq83M2LL5TC8i65qsTJd/rOli0yC5HYeFN
+         IyOQ7Kq/E75TiHH6nQFZxzbSchiGG5KFhmw6ppI555KMdYPlozEdW5REX1ALnr1WF9xx
+         3h4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1ktzrciVp8PDUDyfHCUWiDdgZR3bBYVG0fuSDVfTYG0=;
+        b=YWDW7XlpssHOzU1MiRp1EU91Q+zbUQ8MTpJTthu5X2K/u0m7YD0JceHM04KJLxp9NN
+         q83nYtv1wmT/NjIu0seD/2/Vh7zvDxuaPUUAeoDVrgAyIVfsqXfu3r2Es397AB2EqO/W
+         Vph4DMHdG4s8KBl6K1XO419XX77L8FsLN0t/5lD6BZrk0XQ4s2HaDI7wG+WhDdbGfSpl
+         gmgP0YUzbTu/i6qNiQbz0uKY+02E4mpI9Pin6hX8lMU4YUihx9j4ErbMDSj7lWC9NchT
+         DB0SUxdJuNRuxf7FNBOpr05A4NhuZgAixiio+EIB7yElRoVdYV+y1K2tMkD/0N1Wv5lR
+         ggSw==
+X-Gm-Message-State: AOAM533l9+yeh9d5OxOsFZYTSxHI/gc5uBeu5zlKMMS3CXYW+zbcADW9
+        2Vi0H7u5BLtTbs3+kwoOvE9rDf9NZ96pRZwexNo=
+X-Google-Smtp-Source: ABdhPJy2bYjcw+GuihyRCyKaLF4ubMehx74EDGkm1MsIat5q4cEpt8wfuO31nYmDN5SMlLzYIE7y12qKOEMMqbKltO4=
+X-Received: by 2002:a25:cf8f:: with SMTP id f137mr1995862ybg.314.1623884178196;
+ Wed, 16 Jun 2021 15:56:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <1592308864-30205-1-git-send-email-yash.shah@sifive.com>
+ <1592308864-30205-3-git-send-email-yash.shah@sifive.com> <CAEUhbmXKdukBwd0OL2ApOD67aQ9ytSPns3z=COtXTSP_mm3wvQ@mail.gmail.com>
+ <CAEn-LToZODMPLpsbKJcJXpksJSxTk0WSNpaR9N7uMekNriC+bg@mail.gmail.com>
+In-Reply-To: <CAEn-LToZODMPLpsbKJcJXpksJSxTk0WSNpaR9N7uMekNriC+bg@mail.gmail.com>
+From:   Bin Meng <bmeng.cn@gmail.com>
+Date:   Thu, 17 Jun 2021 06:56:06 +0800
+Message-ID: <CAEUhbmUUCprZ20rUUsiM4YWgH=WKsUh_WqnxXbyB7jQqdQB9Hw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] riscv: dts: fu540-c000: define hart clocks
+To:     David Abdurachmanov <david.abdurachmanov@gmail.com>
+Cc:     Yash Shah <yash.shah@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Sachin Ghadi <sachin.ghadi@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Green Wan <green.wan@sifive.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        lollivier@baylibre.com, deepa.kernel@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MT8195 apusys clock provider
+On Wed, Jun 16, 2021 at 11:14 PM David Abdurachmanov
+<david.abdurachmanov@gmail.com> wrote:
+>
+> On Wed, Jun 16, 2021 at 6:17 AM Bin Meng <bmeng.cn@gmail.com> wrote:
+> >
+> > On Tue, Jun 16, 2020 at 8:01 PM Yash Shah <yash.shah@sifive.com> wrote:
+> > >
+> > > Declare that each hart defined in the FU540 DT data is clocked by the
+> > > COREPLL. This is in preparation for enabling CPUFreq for the
+> > > FU540-C000 SoC on the HiFive Unleashed board.
+> > >
+> > > Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> > > ---
+> > >  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 5 +++++
+> > >  1 file changed, 5 insertions(+)
+> > >
+> >
+> > Any idea of why this patch was not applied?
+>
+> There was a decision not to upstream CPUFreq stuff for Unleashed thus
+> the whole series probably was abandoned. Not all Unleashed can operate
+> in a stable way at 1.4GHz. IIRC other issues could exist. See Palmer
+> reply for the whole series.
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
----
- drivers/clk/mediatek/Kconfig                 |  6 ++
- drivers/clk/mediatek/Makefile                |  1 +
- drivers/clk/mediatek/clk-mt8195-apusys_pll.c | 84 ++++++++++++++++++++
- 3 files changed, 91 insertions(+)
- create mode 100644 drivers/clk/mediatek/clk-mt8195-apusys_pll.c
+Thanks, but the DT change is still valid, and should be upstreamed.
 
-diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-index ade85a52b7ed..9bd1ebff61f2 100644
---- a/drivers/clk/mediatek/Kconfig
-+++ b/drivers/clk/mediatek/Kconfig
-@@ -690,6 +690,12 @@ config COMMON_CLK_MT8195_IMP_IIC_WRAP
- 	help
- 	  This driver supports MediaTek MT8195 imp_iic_wrap clocks.
- 
-+config COMMON_CLK_MT8195_APUSYS_PLL
-+	bool "Clock driver for MediaTek MT8195 apusys_pll"
-+	depends on COMMON_CLK_MT8195
-+	help
-+	  This driver supports MediaTek MT8195 apusys_pll clocks.
-+
- config COMMON_CLK_MT8516
- 	bool "Clock driver for MediaTek MT8516"
- 	depends on ARCH_MEDIATEK || COMPILE_TEST
-diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-index b10c6267ba98..676ed7d665b7 100644
---- a/drivers/clk/mediatek/Makefile
-+++ b/drivers/clk/mediatek/Makefile
-@@ -98,5 +98,6 @@ obj-$(CONFIG_COMMON_CLK_MT8195_VPPSYS0) += clk-mt8195-vpp0.o
- obj-$(CONFIG_COMMON_CLK_MT8195_VPPSYS1) += clk-mt8195-vpp1.o
- obj-$(CONFIG_COMMON_CLK_MT8195_WPESYS) += clk-mt8195-wpe.o
- obj-$(CONFIG_COMMON_CLK_MT8195_IMP_IIC_WRAP) += clk-mt8195-imp_iic_wrap.o
-+obj-$(CONFIG_COMMON_CLK_MT8195_APUSYS_PLL) += clk-mt8195-apusys_pll.o
- obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
- obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
-diff --git a/drivers/clk/mediatek/clk-mt8195-apusys_pll.c b/drivers/clk/mediatek/clk-mt8195-apusys_pll.c
-new file mode 100644
-index 000000000000..d9b49cf71281
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt8195-apusys_pll.c
-@@ -0,0 +1,84 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// Copyright (c) 2021 MediaTek Inc.
-+// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-+
-+#include <linux/clk-provider.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+
-+#include <dt-bindings/clock/mt8195-clk.h>
-+
-+#define MT8195_PLL_FMAX		(3800UL * MHZ)
-+#define MT8195_PLL_FMIN		(1500UL * MHZ)
-+#define MT8195_INTEGER_BITS	8
-+
-+#define PLL(_id, _name, _reg, _pwr_reg, _en_mask, _flags,	\
-+			_rst_bar_mask, _pcwbits, _pd_reg, _pd_shift,	\
-+			_tuner_reg, _tuner_en_reg, _tuner_en_bit,	\
-+			_pcw_reg, _pcw_shift, _pcw_chg_reg,				\
-+			_en_reg, _pll_en_bit) {					\
-+		.id = _id,						\
-+		.name = _name,						\
-+		.reg = _reg,						\
-+		.pwr_reg = _pwr_reg,					\
-+		.en_mask = _en_mask,					\
-+		.flags = _flags,					\
-+		.rst_bar_mask = _rst_bar_mask,				\
-+		.fmax = MT8195_PLL_FMAX,				\
-+		.fmin = MT8195_PLL_FMIN,				\
-+		.pcwbits = _pcwbits,					\
-+		.pcwibits = MT8195_INTEGER_BITS,			\
-+		.pd_reg = _pd_reg,					\
-+		.pd_shift = _pd_shift,					\
-+		.tuner_reg = _tuner_reg,				\
-+		.tuner_en_reg = _tuner_en_reg,				\
-+		.tuner_en_bit = _tuner_en_bit,				\
-+		.pcw_reg = _pcw_reg,					\
-+		.pcw_shift = _pcw_shift,				\
-+		.pcw_chg_reg = _pcw_chg_reg,				\
-+		.en_reg = _en_reg,					\
-+		.pll_en_bit = _pll_en_bit,				\
-+	}
-+
-+static const struct mtk_pll_data apusys_plls[] = {
-+	PLL(CLK_APUSYS_PLL_APUPLL, "apusys_pll_apupll", 0x008, 0x014, 0,
-+		0, 0, 22, 0x00c, 24, 0, 0, 0, 0x00c, 0, 0, 0, 0),
-+	PLL(CLK_APUSYS_PLL_NPUPLL, "apusys_pll_npupll", 0x018, 0x024, 0,
-+		0, 0, 22, 0x01c, 24, 0, 0, 0, 0x01c, 0, 0, 0, 0),
-+	PLL(CLK_APUSYS_PLL_APUPLL1, "apusys_pll_apupll1", 0x028, 0x034, 0,
-+		0, 0, 22, 0x02c, 24, 0, 0, 0, 0x02c, 0, 0, 0, 0),
-+	PLL(CLK_APUSYS_PLL_APUPLL2, "apusys_pll_apupll2", 0x038, 0x044, 0,
-+		0, 0, 22, 0x03c, 24, 0, 0, 0, 0x03c, 0, 0, 0, 0),
-+};
-+
-+static int clk_mt8195_apusys_pll_probe(struct platform_device *pdev)
-+{
-+	struct clk_onecell_data *clk_data;
-+	struct device_node *node = pdev->dev.of_node;
-+
-+	clk_data = mtk_alloc_clk_data(CLK_APUSYS_PLL_NR_CLK);
-+	if (!clk_data)
-+		return -ENOMEM;
-+
-+	mtk_clk_register_plls(node, apusys_plls, ARRAY_SIZE(apusys_plls), clk_data);
-+
-+	return of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
-+}
-+
-+static const struct of_device_id of_match_clk_mt8195_apusys_pll[] = {
-+	{ .compatible = "mediatek,mt8195-apusys_pll", },
-+	{}
-+};
-+
-+static struct platform_driver clk_mt8195_apusys_pll_drv = {
-+	.probe = clk_mt8195_apusys_pll_probe,
-+	.driver = {
-+		.name = "clk-mt8195-apusys_pll",
-+		.of_match_table = of_match_clk_mt8195_apusys_pll,
-+	},
-+};
-+
-+builtin_platform_driver(clk_mt8195_apusys_pll_drv);
--- 
-2.18.0
-
+Regards,
+Bin
