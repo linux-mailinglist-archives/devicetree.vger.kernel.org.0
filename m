@@ -2,105 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 335C23AA491
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 21:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6DA13AA4A0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 21:50:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232789AbhFPTvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 15:51:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54952 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229709AbhFPTvV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 15:51:21 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 12F616023C;
-        Wed, 16 Jun 2021 19:49:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623872955;
-        bh=V1c2oiAhwllBJsNOnuqfRkhRhp5+LBGbB0+KsLMNU/0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=R9U24BhAP23w2lxorpjvSW1AiTl1cuQV57e/XTSTt6eB7dX7K6+W7FR8L4Sj4YVmG
-         8g2Ovj/iap75GwocVdPhYt7itWUvYkq+8J5r0Ltfhwrts4SPflHY79G4w0TMg7zeYq
-         GMWjM/wy44NIhv43TGk1SDyt+1/4mX5wUiZSxD+sCKBtoYh76A2ypK0JA+V7BJ/ysu
-         N+rxow+953YocxQeB41BBL+QFMiv2pLpblGHyYIAMimgvlGA0DboAQP6Qwf7t84n+2
-         +n+4PhN2k4BDre0/Lj2B85UTHNfwSQufmVAkqe4ZFrvlncHJQFKtzlCvs6e/nKFOL+
-         rQYavdKh+u9bA==
-Received: by mail-ej1-f45.google.com with SMTP id ho18so5706700ejc.8;
-        Wed, 16 Jun 2021 12:49:14 -0700 (PDT)
-X-Gm-Message-State: AOAM530V49dna3kF5QyEJ/9vbVspdg+WuexvJlgZTWTDTpLuAG2sW4JQ
-        K56Ck8LoGBC2QNcvWRcS1Jegdhsq7sPoA+QoqA==
-X-Google-Smtp-Source: ABdhPJyh23HvZxYiCkKbIrPFDBjZJxZKd53XFwqzjUyqur0BZSP4hmcT9vv13l2nFPOSvbJQilQ/IctrdrK8EjJpG6E=
-X-Received: by 2002:a17:906:9419:: with SMTP id q25mr1173382ejx.341.1623872953640;
- Wed, 16 Jun 2021 12:49:13 -0700 (PDT)
+        id S231171AbhFPTxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 15:53:03 -0400
+Received: from mail-il1-f170.google.com ([209.85.166.170]:46685 "EHLO
+        mail-il1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230402AbhFPTxD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 15:53:03 -0400
+Received: by mail-il1-f170.google.com with SMTP id i12so3337307ila.13;
+        Wed, 16 Jun 2021 12:50:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=phu7v1JTWvxVrKFYkYrGvzIHVYTPjSMRARDstuVxMZM=;
+        b=HaSrRfVyXFls/R3h1UQzmR/Fm88D/FynoKsGKm4/ZaWdnjyno0MMztt2o38iLYMonf
+         g9R2JTZGpA2oWGNvE2AklxYK6KNtk9Da0FTauOFKYuZo38FQxMyPX8NZwL3gBhMC+J9r
+         jk1ukurtOHzq7VcIGXIE1MFrKFDq7kVGzmzLgXxbjcXyOn1d6sv2Db6dgMPXKQVNaTO0
+         BMBbfVrzadbEjXrdNCaZXblNrV/M600A7kTiXW/uIyCrAVw7aYalek8qd7mVSGPVZcxe
+         yxkNKhnbpy/IOxN0QwVO0lHDPely4XX1a+oQt4tpSz8+kITKKn/KJsNJ0yYmT/ngYTao
+         KjZg==
+X-Gm-Message-State: AOAM533jwGtSwgBfqeblMhUDSXdvTgTaAjMXHKZDhpDJm2FsEO1JIW+N
+        cyvMth+gYdpj1T9bCgvvStlBfcaHow==
+X-Google-Smtp-Source: ABdhPJw7DOClzWysJiLbJ/t+5Yrp5CWxy4JZjxk3+USZ7GS7k+SoLaqDvhZW9W9Nkx8K2G9Xya7qkA==
+X-Received: by 2002:a92:6b06:: with SMTP id g6mr887033ilc.270.1623873055362;
+        Wed, 16 Jun 2021 12:50:55 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id f16sm1148488ilc.53.2021.06.16.12.50.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jun 2021 12:50:54 -0700 (PDT)
+Received: (nullmailer pid 3827255 invoked by uid 1000);
+        Wed, 16 Jun 2021 19:50:50 -0000
+Date:   Wed, 16 Jun 2021 13:50:50 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 2/3] of: Remove superfluous casts when printing u64 values
+Message-ID: <20210616195050.GA3827179@robh.at.kernel.org>
+References: <cover.1623835273.git.geert+renesas@glider.be>
+ <ef3f4f78385b43230695ba0855d078290c958192.1623835273.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-References: <cover.1623835273.git.geert+renesas@glider.be> <a4e07a0c1efea913ce5a61136162b5b720b96b48.1623835273.git.geert+renesas@glider.be>
- <CAL_JsqKXWOb7i8aBOmRhsSUVad=v2r095uw7gFHMqf_+96eEyw@mail.gmail.com> <CAMuHMdUpuws0TRYVD9HPYO-K77VvhuqF-f1cQ5dH3p5zB_kS0A@mail.gmail.com>
-In-Reply-To: <CAMuHMdUpuws0TRYVD9HPYO-K77VvhuqF-f1cQ5dH3p5zB_kS0A@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 16 Jun 2021 13:49:01 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJLBU3FizWB+V_tcgYZLuA3B6LxKG2=znsJJY_X6yJ4DQ@mail.gmail.com>
-Message-ID: <CAL_JsqJLBU3FizWB+V_tcgYZLuA3B6LxKG2=znsJJY_X6yJ4DQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] of: kexec: Always use FDT_PROP_INITRD_START and FDT_PROP_INITRD_END
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ef3f4f78385b43230695ba0855d078290c958192.1623835273.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 16, 2021 at 1:36 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Rob,
->
-> On Wed, Jun 16, 2021 at 7:14 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > On Wed, Jun 16, 2021 at 3:27 AM Geert Uytterhoeven
-> > <geert+renesas@glider.be> wrote:
-> > > Commit b30be4dc733e5067 ("of: Add a common kexec FDT setup function")
-> > > introduced macros FDT_PROP_INITRD_* to refer to initrd properties, but
-> > > didn't use them everywhere.  Convert the remaining users from string
-> > > literals to macros.
-> >
-> > I'm not really a fan of the defines, so if anything I'd get rid of
->
-> Oh, as you authored that patch, I thought you liked them ;-)
-> And I was thinking of moving them to a header file, so they can be
-> used by other .c files, too...
->
-> Upon closer inspection, I see you just copied them from arm64, which
-> was not that visible due to commit ac10be5cdbfa8521 ("arm64: Use
-> common of_kexec_alloc_and_setup_fdt()") being a separate commit...
+On Wed, 16 Jun 2021 11:27:45 +0200, Geert Uytterhoeven wrote:
+> "u64" is "unsigned long long" on all architectures now.  Hence there is
+> no longer a need to use casts when formatting using the "ll" length
+> modifier.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  drivers/of/address.c | 14 ++++----------
+>  drivers/of/fdt.c     |  6 ++----
+>  2 files changed, 6 insertions(+), 14 deletions(-)
+> 
 
-That all was largely a 'this is what you need to implement' review.
-
-> > them. But the bigger problem is what you brought to light with the
-> > variable size. As I mentioned, we should refactor this and the fdt.c
->
-> The number of cells to use for the initrd properties doesn't seem to
-> be well-defined.
-> drivers/of/fdt.c derives it from the length of the property, which
-> more or less always works ("be strict when sending, be liberal when
-> receiving").  Some code hardcodes it to 1 or 2.
-
-The not well defined ship has sailed, so we need to support either.
-
-> I suspect (didn't
-> check) there's also code out there that uses the root number of cells?
-
-Given it's a single value, there's not really any need to do that.
-Unlike some of the kexec properties which combine the start and length
-for example.
-
-> > code to have a common function to read the initrd start and end.
->
-> What with code that needs to set the start and end?
-
-I'm not sure we can consolidate that as those are mostly in early arch
-boot code.
-
-> It needs to use what the receiving end will expect...
-
-That should be fine given fdt.c is flexible already.
-
-Rob
+Applied, thanks!
