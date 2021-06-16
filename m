@@ -2,105 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5CB3A8D55
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 02:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E107F3A8D5D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 02:23:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231143AbhFPAWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 20:22:14 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38524 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbhFPAWN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 20:22:13 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15G0K5ne074883;
-        Tue, 15 Jun 2021 19:20:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623802806;
-        bh=713m7ox17RpKP+zQNq94oDjsDSR0p1WGE2XZKVpjeZk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=IW/qZTBqL73SN2piaPHeg1gcLzjWYtt+WdiuYWPiou3g/xnEwgnKkYjsfHskdAk8D
-         X/cXhkyyO/iXhnP6pZSxc9ztfagEY8eYrVDcnklfcA86ANUlrxZc7aug/CV/ldd5lv
-         a17MLVe0iYqi2wQPJHzu3++7PivCEXOqjgVNjr8o=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15G0K5U8063611
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Jun 2021 19:20:05 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Tue, 15
- Jun 2021 19:20:05 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Tue, 15 Jun 2021 19:20:05 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15G0K5sX073612;
-        Tue, 15 Jun 2021 19:20:05 -0500
-Date:   Tue, 15 Jun 2021 19:20:05 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, Suman Anna <s-anna@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+        id S231617AbhFPAZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 20:25:33 -0400
+Received: from relay01.th.seeweb.it ([5.144.164.162]:56177 "EHLO
+        relay01.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230244AbhFPAZd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 20:25:33 -0400
+Received: from localhost.localdomain (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
+        by m-r1.th.seeweb.it (Postfix) with ESMTPA id 105AA1F91B;
+        Wed, 16 Jun 2021 02:23:26 +0200 (CEST)
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+To:     ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 3/3] arm64: dts: ti: k3-am64-main: Update the location
- of TF-A
-Message-ID: <20210616002005.c5vxes67pltuxiry@liking>
-References: <20210615174325.22853-1-a-govindraju@ti.com>
- <20210615174325.22853-4-a-govindraju@ti.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/4] arm64: dts: qcom: sm8250: Disable Adreno and Venus by default
+Date:   Wed, 16 Jun 2021 02:23:18 +0200
+Message-Id: <20210616002321.74155-1-konrad.dybcio@somainline.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20210615174325.22853-4-a-govindraju@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23:13-20210615, Aswath Govindraju wrote:
-> Due to a limitation for USB DFU boot mode, SPL load address has to be less
-> than  or equal to 0x70001000. So, load address of SPL and TF-A have been
-> moved to 0x70000000 and 0x701c4000 respectively.
-> 
-> Therefore, update TF-A's location in the device tree node.
+Components that rely on proprietary (not to mention signed!) firmware should
+not be enabled by default, as lack of the aforementioned firmware could cause
+various issues, from random errors to straight-up failing to boot.
 
-One additional topic to add is the dependency on bootloader update for
-this as well. I know things are chicken or egg kind of problem, but
-will be good to mention requires newer version than 2021.xx version of
-u-boot as this is an "breaking" change. And, if we block both regions
-off for bootloader compatibility, that is not feasible given the
-limited SRAM available as well.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+---
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 10 ++++++++++
+ arch/arm64/boot/dts/qcom/sm8250-hdk.dts  | 12 ++++++++++++
+ arch/arm64/boot/dts/qcom/sm8250-mtp.dts  | 10 ++++++++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi     |  6 ++++++
+ 4 files changed, 38 insertions(+)
 
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index 6a883f4349cb..7ab3652dfdfb 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -24,8 +24,8 @@
->  		#size-cells = <1>;
->  		ranges = <0x0 0x00 0x70000000 0x200000>;
->  
-> -		tfa-sram@0 {
-> -			reg = <0x0 0x1c000>;
-> +		tfa-sram@1c4000 {
-> +			reg = <0x1c4000 0x1c000>;
->  		};
->  
->  		dmsc-sram@1e0000 {
-> -- 
-> 2.17.1
-> 
-
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index 5f41de20aa22..a5b742325261 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -552,7 +552,13 @@ &dsi0_phy {
+ 	vdds-supply = <&vreg_l5a_0p88>;
+ };
+ 
++&gmu {
++	status = "okay";
++};
++
+ &gpu {
++	status = "okay";
++
+ 	zap-shader {
+ 		memory-region = <&gpu_mem>;
+ 		firmware-name = "qcom/sm8250/a650_zap.mbn";
+@@ -1352,6 +1358,10 @@ &vamacro {
+ 	qcom,dmic-sample-rate = <600000>;
+ };
+ 
++&venus {
++	status = "okay";
++};
++
+ /* PINCTRL - additions to nodes defined in sm8250.dtsi */
+ &qup_spi0_cs_gpio {
+ 	drive-strength = <6>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+index c3a2c5aa6fe9..397359ee2f85 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8250-hdk.dts
+@@ -365,6 +365,14 @@ vreg_l7f_1p8: ldo7 {
+ 	};
+ };
+ 
++&gmu {
++	status = "okay";
++};
++
++&gpu {
++	status = "okay";
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
+@@ -452,3 +460,7 @@ &usb_1_dwc3 {
+ &usb_2_dwc3 {
+ 	dr_mode = "host";
+ };
++
++&venus {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+index cfc4d1febe0f..062b944be91d 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
+@@ -465,7 +465,13 @@ &cdsp {
+ 	firmware-name = "qcom/sm8250/cdsp.mbn";
+ };
+ 
++&gmu {
++	status = "okay";
++};
++
+ &gpu {
++	status = "okay";
++
+ 	zap-shader {
+ 		memory-region = <&gpu_mem>;
+ 		firmware-name = "qcom/sm8250/a650_zap.mbn";
+@@ -691,3 +697,7 @@ &usb_2_qmpphy {
+ 	vdda-phy-supply = <&vreg_l9a_1p2>;
+ 	vdda-pll-supply = <&vreg_l18a_0p9>;
+ };
++
++&venus {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 4c0de12aaba6..fc1049c2bb11 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -1746,6 +1746,8 @@ gpu: gpu@3d00000 {
+ 
+ 			qcom,gmu = <&gmu>;
+ 
++			status = "disabled";
++
+ 			zap-shader {
+ 				memory-region = <&gpu_mem>;
+ 			};
+@@ -1819,6 +1821,8 @@ gmu: gmu@3d6a000 {
+ 
+ 			operating-points-v2 = <&gmu_opp_table>;
+ 
++			status = "disabled";
++
+ 			gmu_opp_table: opp-table {
+ 				compatible = "operating-points-v2";
+ 
+@@ -2323,6 +2327,8 @@ venus: video-codec@aa00000 {
+ 				 <&videocc VIDEO_CC_MVS0C_CLK_ARES>;
+ 			reset-names = "bus", "core";
+ 
++			status = "disabled";
++
+ 			video-decoder {
+ 				compatible = "venus-decoder";
+ 			};
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.32.0
+
