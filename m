@@ -2,103 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24A283A9EB4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 083303A9ED8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:21:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234488AbhFPPQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 11:16:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35508 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234458AbhFPPQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 11:16:25 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84AF3C061574;
-        Wed, 16 Jun 2021 08:14:17 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id a1so4801199lfr.12;
-        Wed, 16 Jun 2021 08:14:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WCUe9yfJi8lButFYN+6DXnGgFGVFnjhGmS6IdUFM/PE=;
-        b=P9gYjuYuzTOvvhKnAnjxUs0opTMMss9J94gjjllmYV1996b99XjsTVEPKMyuyQ2Csw
-         ZZl8Nun3vnmJqQSmBwIjjfm/mswaE8JDT8eNnZ5zxV0MI0hoyrYQiqJycTji6C3DdWr2
-         4H05z1nOd217vS0ByxBD0jtVLzXyDWwemSFbAKy6XrS1MNXbD8RYNHHgdV05OVU9lm08
-         xNXJwIH1H7hYnt8eJTRKZumddevouP7wQzaHIDQa0gKR3/cNv4wdGIyrXBtHJXaXiQRc
-         +0h37BsuW36iMqOk3Cy78yDO/SNdFoEOydZh9z/Kd58BlMAuuxtz1+WHZSfkI0UzqywC
-         jtwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WCUe9yfJi8lButFYN+6DXnGgFGVFnjhGmS6IdUFM/PE=;
-        b=sk6Oe/UtYioIJdjszZnu2PngK/WrPerPTWEo8+7Nbz/qt3LyVOuRdo0Plh6ccQ/h1x
-         R8JIsOWQutTUyEAXknk1kZFfup7whEo87dFexXI1smJMZkH/YH6BCb5qRYOgxLGRXT1Q
-         E+Xm/3ypifzQ4qY/rTY7xiym0bE2aXX3hv81vLvJte7EAlnwK7WerkmLvsonXW7sNNxu
-         bhGhRo0yFZcaSu8HV1buBD7eCQzpOX5fNcytBqLN3FNtPB+ho/6NoFVG95wz0kcSfK1J
-         og5gOFQg4EhVSNxn7xc/z3x8sOBwtyFfV6/43XF4jgyTId5O5NO6Qn7zjwnJejZ4a2+G
-         kAmw==
-X-Gm-Message-State: AOAM532VlnzvSnT/pZnOqlYuRBEZ4oPsb651c9FIANGSJD36coj7JfBY
-        WMynhGDaq0KSe7hYcO4eEgKIjxn44hUCSPg9rYA=
-X-Google-Smtp-Source: ABdhPJwIpMycqjcQSuT4OYUHdF/dfwOWq9xQzFw5rA040gQQSFuud2r0vCT1k8gg8ncNYf6VPFmHVufU57mjRtx+qcI=
-X-Received: by 2002:a19:4086:: with SMTP id n128mr140101lfa.464.1623856455921;
- Wed, 16 Jun 2021 08:14:15 -0700 (PDT)
+        id S234111AbhFPPXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 11:23:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46346 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234002AbhFPPXF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Jun 2021 11:23:05 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4C64161375;
+        Wed, 16 Jun 2021 15:20:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623856859;
+        bh=27eUZzjv41JFT/kKzRpcOFEIMGKaONkaM9MTgUB4lvc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=buypIobsBvwFCoYyKG42xHmi6qlL+WknZA0yV9zcssR1qukECIItvMs5lYF24rq39
+         7G2rK+9x62EOIbBxA0GYsKblM2k/E/zY2ttt9SmAeF7mvexO/3Tz9FULTJZ4xZ8hQp
+         qo21npzZcH3m2VJR+PEzbRav27lgret3OHmHLrMa+yzTf6uyIS2u06r0IfJ8J87NEX
+         OqsnNy+LYpdR4X0lEw0DFSgZR3N9ejKQ6K068cLLxzaz7UHmmGuIxDDU53pfou+Y7I
+         7PxjBInaO0mwtN8Ezuk56bJ2wt0T5Z4h3v7InClBkLr24pCiSYHUhSE/RiPZV2v6m+
+         JY0BVpsRsnbVg==
+Received: by mail-ej1-f46.google.com with SMTP id gt18so4491497ejc.11;
+        Wed, 16 Jun 2021 08:20:59 -0700 (PDT)
+X-Gm-Message-State: AOAM5319eO8cG75H/8uYamndOULFyyErZais8PlVoSTjOLana1TnjBwa
+        rjaRFRhYxc2qqxkxtffs1dJdMJmbZy5+VesZ+Q==
+X-Google-Smtp-Source: ABdhPJwVu+BsUV7DzrQnvv679MoG3zGD601vblw0HBeBpWUI8BezJDE8UWYZlHYd9yj6WnDUi1/TfNk1GXKkgoaWTXw=
+X-Received: by 2002:a17:907:2059:: with SMTP id pg25mr76098ejb.130.1623856857816;
+ Wed, 16 Jun 2021 08:20:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <1592308864-30205-1-git-send-email-yash.shah@sifive.com>
- <1592308864-30205-3-git-send-email-yash.shah@sifive.com> <CAEUhbmXKdukBwd0OL2ApOD67aQ9ytSPns3z=COtXTSP_mm3wvQ@mail.gmail.com>
-In-Reply-To: <CAEUhbmXKdukBwd0OL2ApOD67aQ9ytSPns3z=COtXTSP_mm3wvQ@mail.gmail.com>
-From:   David Abdurachmanov <david.abdurachmanov@gmail.com>
-Date:   Wed, 16 Jun 2021 18:13:40 +0300
-Message-ID: <CAEn-LToZODMPLpsbKJcJXpksJSxTk0WSNpaR9N7uMekNriC+bg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] riscv: dts: fu540-c000: define hart clocks
-To:     Bin Meng <bmeng.cn@gmail.com>
-Cc:     Yash Shah <yash.shah@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Sachin Ghadi <sachin.ghadi@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Green Wan <green.wan@sifive.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        lollivier@baylibre.com, deepa.kernel@gmail.com
+References: <20210608102547.4880-1-steven_lee@aspeedtech.com>
+ <20210608102547.4880-3-steven_lee@aspeedtech.com> <20210610162320.GA1910317@robh.at.kernel.org>
+ <f639f1bb-fe53-4c15-a6dd-91b45ea7eef1@www.fastmail.com>
+In-Reply-To: <f639f1bb-fe53-4c15-a6dd-91b45ea7eef1@www.fastmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 16 Jun 2021 09:20:44 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ_nwwyCBDg9p+AnriKw=9dC0WmLCw7dcz6qA87hRAu5g@mail.gmail.com>
+Message-ID: <CAL_JsqJ_nwwyCBDg9p+AnriKw=9dC0WmLCw7dcz6qA87hRAu5g@mail.gmail.com>
+Subject: Re: [PATCH v5 02/10] dt-bindings: aspeed-sgpio: Add ast2600 sgpio compatibles.
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     Steven Lee <steven_lee@aspeedtech.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Joel Stanley <joel@jms.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Hongwei Zhang <Hongweiz@ami.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Billy Tsai <billy_tsai@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 16, 2021 at 6:17 AM Bin Meng <bmeng.cn@gmail.com> wrote:
+On Thu, Jun 10, 2021 at 5:27 PM Andrew Jeffery <andrew@aj.id.au> wrote:
 >
-> On Tue, Jun 16, 2020 at 8:01 PM Yash Shah <yash.shah@sifive.com> wrote:
+>
+>
+> On Fri, 11 Jun 2021, at 01:53, Rob Herring wrote:
+> > On Tue, Jun 08, 2021 at 06:25:37PM +0800, Steven Lee wrote:
+> > > AST2600 SoC has 2 SGPIO master interfaces one with 128 pins another o=
+ne
+> > > with 80 pins. Add ast2600-sgpiom0-80 and ast2600-sgpiom-128 compatibl=
+es
+> > > and update descriptions to introduce the max number of available gpio
+> > > pins that AST2600 supported.
+> > >
+> > > Signed-off-by: Steven Lee <steven_lee@aspeedtech.com>
+> > > Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+> > > ---
+> > >  Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml | 9 ++++++-=
+--
+> > >  1 file changed, 6 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml=
+ b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> > > index b2ae211411ff..0e42eded3c1e 100644
+> > > --- a/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> > > +++ b/Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+> > > @@ -10,9 +10,10 @@ maintainers:
+> > >    - Andrew Jeffery <andrew@aj.id.au>
+> > >
+> > >  description:
+> > > -  This SGPIO controller is for ASPEED AST2500 SoC, it supports up to=
+ 80 full
+> > > -  featured Serial GPIOs. Each of the Serial GPIO pins can be program=
+med to
+> > > -  support the following options
+> > > +  This SGPIO controller is for ASPEED AST2400, AST2500 and AST2600 S=
+oC,
+> > > +  AST2600 have two sgpio master one with 128 pins another one with 8=
+0 pins,
+> > > +  AST2500/AST2400 have one sgpio master with 80 pins. Each of the Se=
+rial
+> > > +  GPIO pins can be programmed to support the following options
+> > >    - Support interrupt option for each input port and various interru=
+pt
+> > >      sensitivity option (level-high, level-low, edge-high, edge-low)
+> > >    - Support reset tolerance option for each output port
+> > > @@ -25,6 +26,8 @@ properties:
+> > >      enum:
+> > >        - aspeed,ast2400-sgpio
+> > >        - aspeed,ast2500-sgpio
+> > > +      - aspeed,ast2600-sgpiom-80
+> > > +      - aspeed,ast2600-sgpiom-128
 > >
-> > Declare that each hart defined in the FU540 DT data is clocked by the
-> > COREPLL. This is in preparation for enabling CPUFreq for the
-> > FU540-C000 SoC on the HiFive Unleashed board.
-> >
-> > Signed-off-by: Yash Shah <yash.shah@sifive.com>
-> > ---
-> >  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 5 +++++
-> >  1 file changed, 5 insertions(+)
+> > If the number of GPIOs is the only difference, then I don't think you
+> > should get rid of ngpios. It's one thing if it varies from one SoC to
+> > the next, but if something is per instance we should have a property.
 > >
 >
-> Any idea of why this patch was not applied?
-
-There was a decision not to upstream CPUFreq stuff for Unleashed thus
-the whole series probably was abandoned. Not all Unleashed can operate
-in a stable way at 1.4GHz. IIRC other issues could exist. See Palmer
-reply for the whole series.
-
-david
-
+> There are two issues:
 >
-> Regards,
-> Bin
+> 1. The maximum number of GPIOs supported by the controller
+> 2. The maximum number of GPIOs supported by the platform
 >
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> These are different because of what the controller does - here's some pre=
+vious discussion on the topic:
+>
+> https://lore.kernel.org/linux-gpio/f2875111-9ba9-43b7-b2a4-d00c8725f5a0@w=
+ww.fastmail.com/
+>
+> We've used ngpios to describe 2; this decision was made prior to the 2600=
+ design - the SGPIO controller for both the 2400 and 2500 supported a maxim=
+um of 80 GPIOs. With the 2600 we have to differentiate between the two SGPI=
+O controllers because they support a different maximum number of GPIOs. The=
+ proposed approach of different compatibles keeps the behaviour of ngpios t=
+he same across all controller implementations.
+
+Okay, that makes sense.
+
+Reviewed-by: Rob Herring <robh@kernel.org>
