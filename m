@@ -2,111 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FFD63AA605
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 23:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFDCA3AA657
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 23:52:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233945AbhFPVSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 17:18:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43912 "EHLO mail.kernel.org"
+        id S234142AbhFPVy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 17:54:29 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:60322 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233836AbhFPVSn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 17:18:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EEB65613DF;
-        Wed, 16 Jun 2021 21:16:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623878197;
-        bh=g0jleB/kEeeiGGDNq1Chp/dzNVZGcHFtnZ8EpEOi+lg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=LhfE3ydVx732Lk8ZAGuNehW4CtJ7CP+EGLJaXRG5cqlco3TT1Gxm25PByaM8S2Vlj
-         JHemkB/lt6CQ3kew15b0BZ18wY/qYbY3Jeheb+nsx6k1Vwn00wrS5/yP67dcDGdeMi
-         61KBaUNQ2/xrB4xa9TT1Jb4iRgmjyqxVHebUXgRnPz58nZVCt/c7C8Sis0EC7f/BeZ
-         o1AbmvKAmk3rEp4zs2aVS5lO3zjYB+fOOdhCED/AFQVBvz282hhrsMk7WIhRKKnflV
-         HTsyLyPOAD9md50qvx8h9WQ2W+/ARkK4dMZ5pWU53893wMqEW0mFTKEz40V+6FzNvk
-         5/bHuiY3CTipA==
-Date:   Wed, 16 Jun 2021 16:16:30 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-pci@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: Re: [PATCH v6 0/7] Add SR-IOV support in PCIe Endpoint Core
-Message-ID: <20210616211630.GA3007203@bjorn-Precision-5520>
+        id S234123AbhFPVy1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Jun 2021 17:54:27 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1ltdSH-0008QL-7h; Wed, 16 Jun 2021 23:52:13 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl
+Cc:     ezequiel@collabora.com, dafna.hirschfeld@collabora.com,
+        helen.koike@collabora.com, Laurent.pinchart@ideasonboard.com,
+        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+        heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v4 0/7] rkisp1 support for px30
+Date:   Wed, 16 Jun 2021 23:52:01 +0200
+Message-Id: <20210616215211.4002992-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d5bcf443-a0ee-fda5-5c5c-d69d25b53bb9@ti.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 16, 2021 at 07:35:33PM +0530, Kishon Vijay Abraham I wrote:
-> Hi Lorenzo, Bjorn,
-> 
-> On 17/05/21 1:17 pm, Kishon Vijay Abraham I wrote:
-> > Patch series
-> > *) Adds support to add virtual functions to enable endpoint controller
-> >    which supports SR-IOV capability
-> > *) Add support in Cadence endpoint driver to configure virtual functions
-> > *) Enable pci_endpoint_test driver to create pci_device for virtual
-> >    functions
-> > 
-> > v1 of the patch series can be found at [1]
-> > v2 of the patch series can be found at [2]
-> > v3 of the patch series can be found at [3]
-> > v4 of the patch series can be found at [4]
-> > v5 of the patch series can be found at [5]
-> > 
-> > Here both physical functions and virtual functions use the same
-> > pci_endpoint_test driver and existing pcitest utility can be used
-> > to test virtual functions as well.
-> > 
-> > Changes from v5:
-> > *) Rebased to 5.13-rc1
-> > 
-> > Changes from v4:
-> > *) Added a fix in Cadence driver which was overwriting BAR configuration
-> >    of physical function.
-> > *) Didn't include Tom's Acked-by since Cadence driver is modified in
-> >    this revision.
-> > 
-> > Changes from v3:
-> > *) Fixed Rob's comment and added his Reviewed-by as suggested by him.
-> > 
-> > Changes from v2:
-> > *) Fixed DT binding documentation comment by Rob
-> > *) Fixed the error check in pci-epc-core.c
-> > 
-> > Changes from v1:
-> > *) Re-based and Re-worked to latest kernel 5.10.0-rc2+ (now has generic
-> >    binding for EP)
-> > 
-> > [1] -> http://lore.kernel.org/r/20191231113534.30405-1-kishon@ti.com
-> > [2] -> http://lore.kernel.org/r/20201112175358.2653-1-kishon@ti.com
-> > [3] -> https://lore.kernel.org/r/20210305050410.9201-1-kishon@ti.com
-> > [4] -> http://lore.kernel.org/r/20210310160943.7606-1-kishon@ti.com
-> > [5] -> https://lore.kernel.org/r/20210419083401.31628-1-kishon@ti.com
-> 
-> Can this series be merged for 5.14? It already includes Ack from Rob for
-> dt-binding changes and Ack from Tom for Cadence driver changes.
+This series adds support for the slightly different v12
+variant of the ISP used for example in the px30 soc.
 
-Sorry, I think this was assigned to me in patchwork, but Lorenzo
-usually takes care of the endpoint stuff.  He's away this week, but no
-doubt will look at it when he returns.
+changes in v4:
+- clean up multi-irq case (Dafna)
+  Now each variant can have a list of interrupts
+  and their respective handlers, with or without
+  interrupt-names
 
-Bjorn
+changes in v3:
+- add necessary binding additions
+- fix pclk naming in binding
+- move v12 clk_ctrl register bits to v12 addition patch
+- fix rebase artefact with hst_enable
+
+changes in v2 (from rfc):
+- split out phy patch into a separate series
+- drop dts patches for now
+- split v12 addition and v10 prefixes into separate patches
+  to enable easier review (Dafna)
+- remove {stats,params}_config structs, we can just use the
+  correct constant (Dafna)
+- adapt to styling comments from Dafna and Helen
+- add patch to remove the unused irq variable in struct rkisp
+
+Heiko Stuebner (10):
+  media: rockchip: rkisp1: remove unused irq variable
+  dt-bindings: media: rkisp1: fix pclk clock-name
+  dt-bindings: media: rkisp1: document different irq possibilities
+  media: rockchip: rkisp1: allow separate interrupts
+  media: rockchip: rkisp1: make some isp-param functions variable
+  media: rockchip: rkisp1: make some isp-stats functions variable
+  media: rockchip: rkisp1: add prefixes for v10 specific parts
+  media: rockchip: rkisp1: add support for v12 isp variants
+  dt-bindings: media: rkisp1: document px30 isp compatible
+  media: rockchip: rkisp1: add support for px30 isp version
+
+ .../bindings/media/rockchip-isp1.yaml         |  15 +-
+ .../platform/rockchip/rkisp1/rkisp1-capture.c |   9 +-
+ .../platform/rockchip/rkisp1/rkisp1-common.h  |  44 +-
+ .../platform/rockchip/rkisp1/rkisp1-dev.c     |  71 ++-
+ .../platform/rockchip/rkisp1/rkisp1-isp.c     |  29 +-
+ .../platform/rockchip/rkisp1/rkisp1-params.c  | 557 ++++++++++++++----
+ .../platform/rockchip/rkisp1/rkisp1-regs.h    | 406 ++++++++-----
+ .../platform/rockchip/rkisp1/rkisp1-stats.c   | 107 +++-
+ 8 files changed, 959 insertions(+), 279 deletions(-)
+
+-- 
+2.29.2
+
