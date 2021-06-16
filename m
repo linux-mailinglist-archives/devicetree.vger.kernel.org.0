@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE9EC3AA2B5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 19:56:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 020E23AA2BA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 19:57:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231374AbhFPR6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 13:58:52 -0400
-Received: from mail-il1-f178.google.com ([209.85.166.178]:42668 "EHLO
-        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230291AbhFPR6w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 13:58:52 -0400
-Received: by mail-il1-f178.google.com with SMTP id h3so3076641ilc.9;
-        Wed, 16 Jun 2021 10:56:45 -0700 (PDT)
+        id S231484AbhFPR7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 13:59:53 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:37861 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231495AbhFPR7w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 13:59:52 -0400
+Received: by mail-io1-f50.google.com with SMTP id q15so135730ioi.4;
+        Wed, 16 Jun 2021 10:57:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/py5L9Q9HSWwFy0NUmVJdPgH/ue50u6DETIV0QpNLhU=;
-        b=hGZgSbBKR5Je6QJ/6EGvb+PgJ5v6H34ME2beldu6lcTZxbqln8Wz7Dn/mDSY812Jhx
-         U4btitBI0bi7LGMGo60VY7IexkSFDDIxsW2Mgpa5VVLQ8r+Pgs/iCvngyR8ESiObJ9Pp
-         awu7IOXIzS+POGa3myPwe3ot9xHeMXM/BV+35zlUJYEeA6/3DicXuoaOjZeK0P9Yt7Im
-         RZr+0fvT8VJMk/yWSSfNRLOIyqvW1KPNbqPHRde37F+TdKGKFG5Fw43urraBvYvb/5jh
-         k+dKIzXCe4bWFLqfuYM3ibr5be+bYsNyZoUteeonBlskYCp7HLm0qOnkkQH4W9M6A8lw
-         6cvQ==
-X-Gm-Message-State: AOAM530dLQccbPavgolf38IJA6daQxCza3SgsiGxHsGwLuh2c/HiNnaS
-        Mc5LWK9pK6c8m1uFkffMUw==
-X-Google-Smtp-Source: ABdhPJxLM7mtUE5wO0OfkXJfNJhh1g1eIoDeP8YYOXTqhfbSbWH63TbwS+zYyN8fRZCLPXHGek1YCQ==
-X-Received: by 2002:a92:6b06:: with SMTP id g6mr594663ilc.270.1623866205437;
-        Wed, 16 Jun 2021 10:56:45 -0700 (PDT)
+        bh=2nI7BwNM49i6XeNNGXZCWBHU5+j8R0I/mZyPgtf/J9c=;
+        b=lFbOYzSzSCd+2GxB0jbpC39qwW3pLRMQo+QvNW8TRDjsPpfmL7H1T4M0RK/WzGKCfH
+         ugbsrJ0w1XKklAMni90ADWWhZSEdS9UITdTe9cHJAxC+3YzlR7dXtK8yaPCxn37olCt2
+         zN66wuiu+ttRvhyUMhgxx56donlzNQVhjtdBuq/e2883ZJtNExG6Yp3vGnn2R1JpPOjO
+         /BUgS59zbkXceanOwpRtaW2zsbpkKwnshfXw5rTS2+sHZDtlo1hzG/k3cbME2yeJyFgd
+         +6yzRzrHfcm6aPqkZXIkTtXgxnOGzxqpI2UD/QBr82BRrb6yVRnWaEfKjLSVM6jQpMnQ
+         OY+A==
+X-Gm-Message-State: AOAM530B7wx3kQYw7CyxxExclaNnU2D4fuS2w9AGhO0wb8pZWe3uwYrQ
+        G4+LBz8zG3Ri33lnBxuaSA==
+X-Google-Smtp-Source: ABdhPJw1vZAkLCfml358/opm1GwlrW7IRqGGUbZTSCQf3zfblv8ZlCIypxnkzmt81SuA6iHamPopEQ==
+X-Received: by 2002:a6b:8e97:: with SMTP id q145mr474002iod.144.1623866266249;
+        Wed, 16 Jun 2021 10:57:46 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id i13sm1532726ilr.16.2021.06.16.10.56.43
+        by smtp.gmail.com with ESMTPSA id p19sm1535944iob.7.2021.06.16.10.57.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 10:56:44 -0700 (PDT)
-Received: (nullmailer pid 3616686 invoked by uid 1000);
-        Wed, 16 Jun 2021 17:56:43 -0000
-Date:   Wed, 16 Jun 2021 11:56:43 -0600
+        Wed, 16 Jun 2021 10:57:45 -0700 (PDT)
+Received: (nullmailer pid 3618111 invoked by uid 1000);
+        Wed, 16 Jun 2021 17:57:43 -0000
+Date:   Wed, 16 Jun 2021 11:57:43 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Vinod Koul <vkoul@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org,
-        Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
-        linux-sh@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH 1/3] dt-bindings: dmaengine: Remove SHDMA Device Tree
- bindings
-Message-ID: <20210616175643.GA3616655@robh.at.kernel.org>
-References: <cover.1623406640.git.geert+renesas@glider.be>
- <ba56b7199fcf3516f202389d2c8f836c9ec51e7a.1623406640.git.geert+renesas@glider.be>
+Cc:     linux-clk@vger.kernel.org, Sergej Sawazki <ce3a@gmx.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: clock: gpio-mux-clock: Convert to
+ json-schema
+Message-ID: <20210616175743.GA3618066@robh.at.kernel.org>
+References: <14cb3b4da446f26a4780e0bd1b58788eb6085d05.1623414619.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ba56b7199fcf3516f202389d2c8f836c9ec51e7a.1623406640.git.geert+renesas@glider.be>
+In-Reply-To: <14cb3b4da446f26a4780e0bd1b58788eb6085d05.1623414619.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Jun 2021 12:18:39 +0200, Geert Uytterhoeven wrote:
-> Remove the Renesas SHDMA Device Tree bindings, as they are unused.
-> The DMA multiplexer node and one DMA controller instance were added to
-> the R-Mobile APE6 .dtsi file, but DMA support was never fully enabled,
-> cfr. commit a19788612f51b787 ("dmaengine: sh: Remove R-Mobile APE6
-> support").
-> 
-> Note that the mux idea was dropped when implementing support for DMA on
-> R-Car Gen2, cfr. renesas,rcar-dmac.yaml.
+On Fri, 11 Jun 2021 14:30:47 +0200, Geert Uytterhoeven wrote:
+> Convert the simple GPIO clock multiplexer Device Tree binding
+> documentation to json-schema.
 > 
 > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../devicetree/bindings/dma/renesas,shdma.txt | 84 -------------------
->  1 file changed, 84 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/dma/renesas,shdma.txt
+>  .../bindings/clock/gpio-mux-clock.txt         | 19 --------
+>  .../bindings/clock/gpio-mux-clock.yaml        | 45 +++++++++++++++++++
+>  2 files changed, 45 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/gpio-mux-clock.txt
+>  create mode 100644 Documentation/devicetree/bindings/clock/gpio-mux-clock.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
