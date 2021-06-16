@@ -2,154 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC58E3A9EAB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24A283A9EB4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:14:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234458AbhFPPOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 11:14:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44886 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234537AbhFPPOk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 11:14:40 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5478361166;
-        Wed, 16 Jun 2021 15:12:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623856354;
-        bh=79yfQdKxv3qf+Uv+p6L1hNCWKPz5Fwg5T6U9zNgNXKw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BqW78zvfiJFX1WM3aDIknqlHXv25abiaKRQGWflPbVe5mHb8O9l3o/637flx39WEV
-         cxE5w+ImnzJWcupRqiIlSCdWw3mWk3Cx9zyVndQ6dkPj5t43AKjeBGVfcpsgenW4vb
-         OtKupuD0Ntu2vsfS9jGRg8LEs4BP2xDparQODe4NbrpL5Ifi5OWG2B4/P9HW70cQ+p
-         X/YEaHt+LUkVEt4USF3AMG74opsi25veGHPjoUFr0Y86T4K0ypaX1XE8w1CW0XHn0r
-         M7bIYHn+eSLwn7g9EpX8Xjv0jQ72wzH8eddElWFaUDVLoyT0S+osdrecHy6yxIijoO
-         vHMYPlo4SyQqg==
-Received: by mail-ed1-f53.google.com with SMTP id s15so3141786edt.13;
-        Wed, 16 Jun 2021 08:12:34 -0700 (PDT)
-X-Gm-Message-State: AOAM532lCtCMzVKAZETEBvNqLjW+kwqaIONtY78GGoD/rm4MyUFmoZhU
-        cQUSrR8lEzHQcUxRceMGzKqrL9sRZpb2GOWMHw==
-X-Google-Smtp-Source: ABdhPJxABYnhsAzimi3nTGL6QdJk0DeFkDzt1g0oue+DKcU8vorHRba5UMSdbzxFOM1x2Zy6FOyPf8RPn7FkPhkqUPU=
-X-Received: by 2002:a05:6402:cb0:: with SMTP id cn16mr69518edb.165.1623856342407;
- Wed, 16 Jun 2021 08:12:22 -0700 (PDT)
+        id S234488AbhFPPQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 11:16:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35508 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234458AbhFPPQZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 11:16:25 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84AF3C061574;
+        Wed, 16 Jun 2021 08:14:17 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id a1so4801199lfr.12;
+        Wed, 16 Jun 2021 08:14:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WCUe9yfJi8lButFYN+6DXnGgFGVFnjhGmS6IdUFM/PE=;
+        b=P9gYjuYuzTOvvhKnAnjxUs0opTMMss9J94gjjllmYV1996b99XjsTVEPKMyuyQ2Csw
+         ZZl8Nun3vnmJqQSmBwIjjfm/mswaE8JDT8eNnZ5zxV0MI0hoyrYQiqJycTji6C3DdWr2
+         4H05z1nOd217vS0ByxBD0jtVLzXyDWwemSFbAKy6XrS1MNXbD8RYNHHgdV05OVU9lm08
+         xNXJwIH1H7hYnt8eJTRKZumddevouP7wQzaHIDQa0gKR3/cNv4wdGIyrXBtHJXaXiQRc
+         +0h37BsuW36iMqOk3Cy78yDO/SNdFoEOydZh9z/Kd58BlMAuuxtz1+WHZSfkI0UzqywC
+         jtwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WCUe9yfJi8lButFYN+6DXnGgFGVFnjhGmS6IdUFM/PE=;
+        b=sk6Oe/UtYioIJdjszZnu2PngK/WrPerPTWEo8+7Nbz/qt3LyVOuRdo0Plh6ccQ/h1x
+         R8JIsOWQutTUyEAXknk1kZFfup7whEo87dFexXI1smJMZkH/YH6BCb5qRYOgxLGRXT1Q
+         E+Xm/3ypifzQ4qY/rTY7xiym0bE2aXX3hv81vLvJte7EAlnwK7WerkmLvsonXW7sNNxu
+         bhGhRo0yFZcaSu8HV1buBD7eCQzpOX5fNcytBqLN3FNtPB+ho/6NoFVG95wz0kcSfK1J
+         og5gOFQg4EhVSNxn7xc/z3x8sOBwtyFfV6/43XF4jgyTId5O5NO6Qn7zjwnJejZ4a2+G
+         kAmw==
+X-Gm-Message-State: AOAM532VlnzvSnT/pZnOqlYuRBEZ4oPsb651c9FIANGSJD36coj7JfBY
+        WMynhGDaq0KSe7hYcO4eEgKIjxn44hUCSPg9rYA=
+X-Google-Smtp-Source: ABdhPJwIpMycqjcQSuT4OYUHdF/dfwOWq9xQzFw5rA040gQQSFuud2r0vCT1k8gg8ncNYf6VPFmHVufU57mjRtx+qcI=
+X-Received: by 2002:a19:4086:: with SMTP id n128mr140101lfa.464.1623856455921;
+ Wed, 16 Jun 2021 08:14:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210221174930.27324-1-nramas@linux.microsoft.com>
- <20210221174930.27324-6-nramas@linux.microsoft.com> <CAMuHMdVSuNS4edh-zM0_sbC0i1AAjQ9Y0n_8Mjz=3CALkW4pgg@mail.gmail.com>
- <CAL_JsqJ2x7zbyP3fAacdfHOWjCVjg6XhraV2YkoBJdZ2jXAMEA@mail.gmail.com>
- <54efb4fce5aac7efbd0b1b3885e9098b1d4ea745.camel@linux.microsoft.com>
- <CAL_JsqJEucP043eViq0Y1kAeqWNTqP5fLjfjz7+ksYx7QP_V5w@mail.gmail.com> <87y2basg27.fsf@mpe.ellerman.id.au>
-In-Reply-To: <87y2basg27.fsf@mpe.ellerman.id.au>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 16 Jun 2021 09:12:10 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+6bKsEBLoUXDBXM3FyYoBxmVzg8divwhayVGmHbHLhFQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+6bKsEBLoUXDBXM3FyYoBxmVzg8divwhayVGmHbHLhFQ@mail.gmail.com>
-Subject: Re: [PATCH v19 05/13] of: Add a common kexec FDT setup function
-To:     Michael Ellerman <mpe@ellerman.id.au>
-Cc:     nramas <nramas@linux.microsoft.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
-        AKASHI Takahiro <takahiro.akashi@linaro.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        James Morse <james.morse@arm.com>,
-        Sasha Levin <sashal@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Vincenzo Frascino <vincenzo.frascino@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>, dmitry.kasatkin@gmail.com,
-        James Morris <jmorris@namei.org>,
-        "Serge E. Hallyn" <serge@hallyn.com>,
-        Pavel Tatashin <pasha.tatashin@soleen.com>,
-        Allison Randal <allison@lohutok.net>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Prakhar Srivastava <prsriva@linux.microsoft.com>,
-        balajib@linux.microsoft.com,
-        linux-integrity <linux-integrity@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+References: <1592308864-30205-1-git-send-email-yash.shah@sifive.com>
+ <1592308864-30205-3-git-send-email-yash.shah@sifive.com> <CAEUhbmXKdukBwd0OL2ApOD67aQ9ytSPns3z=COtXTSP_mm3wvQ@mail.gmail.com>
+In-Reply-To: <CAEUhbmXKdukBwd0OL2ApOD67aQ9ytSPns3z=COtXTSP_mm3wvQ@mail.gmail.com>
+From:   David Abdurachmanov <david.abdurachmanov@gmail.com>
+Date:   Wed, 16 Jun 2021 18:13:40 +0300
+Message-ID: <CAEn-LToZODMPLpsbKJcJXpksJSxTk0WSNpaR9N7uMekNriC+bg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] riscv: dts: fu540-c000: define hart clocks
+To:     Bin Meng <bmeng.cn@gmail.com>
+Cc:     Yash Shah <yash.shah@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Sachin Ghadi <sachin.ghadi@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Green Wan <green.wan@sifive.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Anup Patel <anup@brainfault.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        lollivier@baylibre.com, deepa.kernel@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 15, 2021 at 8:23 PM Michael Ellerman <mpe@ellerman.id.au> wrote:
+On Wed, Jun 16, 2021 at 6:17 AM Bin Meng <bmeng.cn@gmail.com> wrote:
 >
-> Rob Herring <robh@kernel.org> writes:
-> > On Tue, Jun 15, 2021 at 10:13 AM nramas <nramas@linux.microsoft.com> wrote:
-> >>
-> >> On Tue, 2021-06-15 at 08:01 -0600, Rob Herring wrote:
-> >> > On Tue, Jun 15, 2021 at 6:18 AM Geert Uytterhoeven <
-> >> > geert@linux-m68k.org> wrote:
-> >> > >
-> >> > > > +void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
-> >> > > > +                                  unsigned long
-> >> > > > initrd_load_addr,
-> >> > > > +                                  unsigned long initrd_len,
-> >> > > > +                                  const char *cmdline, size_t
-> >> > > > extra_fdt_size)
-> >> > > > +{
-> >> > > > +       /* Did we boot using an initrd? */
-> >> > > > +       prop = fdt_getprop(fdt, chosen_node, "linux,initrd-
-> >> > > > start", NULL);
-> >> > > > +       if (prop) {
-> >> > > > +               u64 tmp_start, tmp_end, tmp_size;
-> >> > > > +
-> >> > > > +               tmp_start = fdt64_to_cpu(*((const fdt64_t *)
-> >> > > > prop));
-> >> > > > +
-> >> > > > +               prop = fdt_getprop(fdt, chosen_node,
-> >> > > > "linux,initrd-end", NULL);
-> >> > > > +               if (!prop) {
-> >> > > > +                       ret = -EINVAL;
-> >> > > > +                       goto out;
-> >> > > > +               }
-> >> > > > +
-> >> > > > +               tmp_end = fdt64_to_cpu(*((const fdt64_t *)
-> >> > > > prop));
-> >> > >
-> >> > > Some kernel code assumes "linux,initrd-{start,end}" are 64-bit,
-> >> > > other code assumes 32-bit.
-> >> >
-> >> > It can be either. The above code was a merge of arm64 and powerpc >> > both
-> >> > of which use 64-bit and still only runs on those arches. It looks >> > like
-> >> > some powerpc platforms may use 32-bit, but this would have been >> > broken
-> >> > before.
->
-> >> of_kexec_alloc_and_setup_fdt() is called from elf_64.c (in
-> >> arch/powerpc/kexec) which is for 64-bit powerpc platform only.
+> On Tue, Jun 16, 2020 at 8:01 PM Yash Shah <yash.shah@sifive.com> wrote:
 > >
-> > 64-bit PPC could be writing 32-bit property values. The architecture
-> > size doesn't necessarily matter. And if the values came from the
-> > bootloader, who knows what size it used.
+> > Declare that each hart defined in the FU540 DT data is clocked by the
+> > COREPLL. This is in preparation for enabling CPUFreq for the
+> > FU540-C000 SoC on the HiFive Unleashed board.
 > >
-> > This code is 32-bit powerpc only?:
+> > Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> > ---
+> >  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 5 +++++
+> >  1 file changed, 5 insertions(+)
 > >
-> > arch/powerpc/boot/main.c-       /* Tell the kernel initrd address via device tree */
-> > arch/powerpc/boot/main.c:       setprop_val(chosen, "linux,initrd-start", (u32)(initrd_addr));
-> > arch/powerpc/boot/main.c-       setprop_val(chosen, "linux,initrd-end", (u32)(initrd_addr+initrd_size));
 >
-> Historically that code was always built 32-bit, even when used with a
-> 64-bit kernel.
+> Any idea of why this patch was not applied?
+
+There was a decision not to upstream CPUFreq stuff for Unleashed thus
+the whole series probably was abandoned. Not all Unleashed can operate
+in a stable way at 1.4GHz. IIRC other issues could exist. See Palmer
+reply for the whole series.
+
+david
+
 >
-> These days it is also built 64-bit (for ppc64le).
-
-How it is built is immaterial. It's always writing a 32-bit value due
-to the u32 cast.
-
-> It looks like the drivers/of/fdt.c code can handle either 64 or 32-bit,
-> so I guess that's why it seems to be working.
-
-Yes, that works, but that's not the issue. The question is does the
-main.c code run in combination with kexec. The kexec code above
-(copied straight from PPC code) would not work if linux,initrd-* are
-written by the main.c code.
-
-Rob
+> Regards,
+> Bin
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
