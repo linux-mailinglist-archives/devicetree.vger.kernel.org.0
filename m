@@ -2,89 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E6A43AA07C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F90E3AA0A0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:59:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234765AbhFPP6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 11:58:11 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:38103 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234753AbhFPP5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 11:57:32 -0400
-Received: from mwalle01.fritz.box (ip4d17858c.dynamic.kabel-deutschland.de [77.23.133.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        id S234552AbhFPQAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 12:00:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45454 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234843AbhFPQAh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 12:00:37 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D38FC0617A8;
+        Wed, 16 Jun 2021 08:58:30 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id A31C222288;
-        Wed, 16 Jun 2021 17:55:17 +0200 (CEST)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id EEDB722205;
+        Wed, 16 Jun 2021 17:58:28 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1623858917;
+        t=1623859109;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=Cb27ko3Q1yZ9bGSQiewzUMLPTntEDoVo8AEqnhcMysI=;
-        b=jdeMuoFoTFKAg0gtE3gOUUJgpMrtNHKtbVmuwyekU+UJbli81EBpotWNp60BOJ93s18p8t
-        FjxaK3ujTsgesBeSPBUm2Udo9Lw7DmVIgnTKTTCyO0q44z/u0zAdkPZPRfjN6pCcTkuK9h
-        TQGZmEhnElRaBChGtGbotwkoY7Z/QNk=
+        bh=/WWZ9Aqs3etDmaHBiKikC0++8so2FJWXOgjB33RqcPk=;
+        b=mVmzM63cDOCI7xMhDRYfDsU2QIkKbsfzTnkLurn63WtJwcFFvjMi/dvcSDt6Vn30R03Lb7
+        uQtC7ZCsjNPKXewGMEjnculttkeqjH/bDbmN8hcY7uShQySAcwNo4jLer3p1Af2gYUrr8H
+        mKGrx8UMNfQGdKU61Gl85D/7lsU4bw0=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 16 Jun 2021 17:58:28 +0200
 From:   Michael Walle <michael@walle.cc>
 To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Michal Simek <michal.simek@xilinx.com>,
         Russell King <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>, Michael Walle <michael@walle.cc>
-Subject: [PATCH 3/3] ARM: dts: ebaz4205: enable NAND support
-Date:   Wed, 16 Jun 2021 17:54:37 +0200
-Message-Id: <20210616155437.27378-4-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
+        Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH 0/3] ARM: add NAND support to Ebang EBAZ4205 board
 In-Reply-To: <20210616155437.27378-1-michael@walle.cc>
 References: <20210616155437.27378-1-michael@walle.cc>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <409ac89fa0ebdff66d7c40573d2d2454@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The board features a 128MiB NAND chip and recently linux gained support
-for the NAND controller on the Zynq SoC. Thus add the corresponding
-devicetree nodes.
+Am 2021-06-16 17:54, schrieb Michael Walle:
+> Thanks to Miguel,
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- arch/arm/boot/dts/zynq-ebaz4205.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Sorry for the typo, its Miquel!
 
-diff --git a/arch/arm/boot/dts/zynq-ebaz4205.dts b/arch/arm/boot/dts/zynq-ebaz4205.dts
-index b0b836aedd76..53fa6dbfd8fd 100644
---- a/arch/arm/boot/dts/zynq-ebaz4205.dts
-+++ b/arch/arm/boot/dts/zynq-ebaz4205.dts
-@@ -48,6 +48,14 @@
- 	pinctrl-0 = <&pinctrl_gpio0_default>;
- };
- 
-+&nfc0 {
-+	status = "okay";
-+
-+	nand@0 {
-+		reg = <0>;
-+	};
-+};
-+
- &pinctrl0 {
- 	pinctrl_gpio0_default: gpio0-default {
- 		mux {
-@@ -118,6 +126,10 @@
- 	};
- };
- 
-+&smcc {
-+	status = "okay";
-+};
-+
- &sdhci0 {
- 	status = "okay";
- 	disable-wp;
--- 
-2.20.1
-
+-michael
