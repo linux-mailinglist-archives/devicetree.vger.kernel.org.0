@@ -2,83 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 866433AA2DB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 20:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F343AA2FC
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 20:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231526AbhFPSHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 14:07:12 -0400
-Received: from mail-io1-f48.google.com ([209.85.166.48]:47025 "EHLO
-        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231518AbhFPSHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 14:07:10 -0400
-Received: by mail-io1-f48.google.com with SMTP id b14so116768iow.13;
-        Wed, 16 Jun 2021 11:05:04 -0700 (PDT)
+        id S230055AbhFPSSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 14:18:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48050 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231574AbhFPSSM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 14:18:12 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55054C061574;
+        Wed, 16 Jun 2021 11:16:05 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id t7so369330edd.5;
+        Wed, 16 Jun 2021 11:16:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=P+8h2g83qtLoWNEKi+lvDz0GDalziHy5ge6TIRqp0fw=;
+        b=ZYZ0/jf0tb6htGtlneyPf1sYtBxmgRZL/ek1xpfaHDuH9Oh+QrzqptaYCFqMhNn/ve
+         v4ylenGVJx8B4zBtFwsrbdRwx1MmUheAjZGttyCXyZR4K4t2I9UxAC7x7WhT7D3zqw7y
+         ACVw9AygwwOy8c/iwDjjjnTpDbMrb6GtL/7bH3h2TkH5cCsTqqIF01BQkSALPH6P9X0C
+         y4ryY0WdV1ZL7GJHunUH3br8UjrUhKXPixwTYcLig6imX/YwERnXtL0eBWH1ls8Irirn
+         nW6jFka4P+aTiVxZaqOnwlCSR8gtfeh+KPSeJfR0mjEWWlMSkdPsR9k2q7d6hSkrty5v
+         rqDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nhtnuVC7x8F0RxoCVWcLwvtiTsM/g+uKT2oI1c6E/88=;
-        b=Oea2304Drr8V32KZ/Jiv5z47OMz5OyBgmkdNHvwj6J+7XAi5RjWd4QotHBPPqFQra4
-         DXuNhsrMyNLZwRrS4PznbwZDPVutwEzMNDUtv8cwPTz1WAivcTl51lb3SU4EvekLVj4S
-         9y9dpDlirlRtirRYYM6oDykQcgiUWiR7X/UgNXuTUFflbkQli/9QsVweFGj77cwuF8n1
-         XC8ieTmXC2K4TBnG9VUV9ajr2CbolB4fZCgjvCjpXEU4Yy0wUvolMigD5kDmJlsl8aOX
-         fCqKUTe3PUeG6T0a2SYi7E5f/OV/NITxHjlYL09ITVarW3B0L9CmufJU18BRa4S7vgnF
-         lK5Q==
-X-Gm-Message-State: AOAM530xGm2EMscBl8VXeWlr4mFpfaP7g45RSFAa/kwLxGjlju0jCRq5
-        pp+YhfPxoxuRLSRaHXjybFwSeYB2Ag==
-X-Google-Smtp-Source: ABdhPJybX8rQs8eqkO4g6uGoYmsIFzEXphFF9HBytSufElRlNCgbbaU7NAYcEt/68rP06qeqi7BFJw==
-X-Received: by 2002:a5e:a515:: with SMTP id 21mr498451iog.175.1623866703813;
-        Wed, 16 Jun 2021 11:05:03 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p19sm1546416iob.7.2021.06.16.11.05.02
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=P+8h2g83qtLoWNEKi+lvDz0GDalziHy5ge6TIRqp0fw=;
+        b=f0xpL/JTpIUqbTO07Ykclzy7ndBoJEe5D/gLA4xggvcMIJN3zefJp3e6yx+B+aFwiE
+         3u6Ik5MPq6bnsBIwGnBqf8ofc2kP5Vw5KorpCWmkAiaG0shwl5I9W1SYGCbd81F/X1l2
+         25N/63TFC+OholWZMrs2XVzlU57Y741yWnYdK+o21MD28dclmy6GkqQkEqGqLmcPhHTs
+         g8b05fY9cGdojCoHPcwyyjlI/pe6Okc/iKuDco7kEw9GZRqhChINbMJvcyaOqZkcoJj6
+         DIqhwVP3p/QHW5lBnDUEOg/GRIC5HUGjWk4tkuR4fUYdWuBHxoSBPD293f609RMRAh9A
+         kkzg==
+X-Gm-Message-State: AOAM531Ruu+vggX5sa41a5oaKhkznV/+VhsCIFOyfygQXnXNNv+9iP8/
+        DSohpBsEzCawv5UFsrh+N+k=
+X-Google-Smtp-Source: ABdhPJw4q4goMYkai3VPWPGh8Y4YrUbpwyxSUApO9ILk3AzTZO+Sp3v7fkKPbu/FbALnRpX+gzYIiw==
+X-Received: by 2002:a05:6402:1103:: with SMTP id u3mr327127edv.342.1623867363912;
+        Wed, 16 Jun 2021 11:16:03 -0700 (PDT)
+Received: from stitch.. ([82.192.166.82])
+        by smtp.gmail.com with ESMTPSA id p10sm2439599edy.86.2021.06.16.11.16.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 11:05:03 -0700 (PDT)
-Received: (nullmailer pid 3629274 invoked by uid 1000);
-        Wed, 16 Jun 2021 18:05:01 -0000
-Date:   Wed, 16 Jun 2021 12:05:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
+        Wed, 16 Jun 2021 11:16:03 -0700 (PDT)
+Sender: Emil Renner Berthing <emil.renner.berthing@gmail.com>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH 1/3] of: Fix truncation of memory sizes on 32-bit
- platforms
-Message-ID: <20210616180501.GA3629188@robh.at.kernel.org>
-References: <cover.1623835273.git.geert+renesas@glider.be>
- <4a1117e72d13d26126f57be034c20dac02f1e915.1623835273.git.geert+renesas@glider.be>
+        Samin Guo <samin.guo@starfivetech.com>
+Cc:     Emil Renner Berthing <kernel@esmil.dk>,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] hwmon: Add StarFive JH7100 temperature sensor
+Date:   Wed, 16 Jun 2021 20:15:43 +0200
+Message-Id: <20210616181545.496149-1-kernel@esmil.dk>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4a1117e72d13d26126f57be034c20dac02f1e915.1623835273.git.geert+renesas@glider.be>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Jun 2021 11:27:44 +0200, Geert Uytterhoeven wrote:
-> Variable "size" has type "phys_addr_t", which can be either 32-bit or
-> 64-bit on 32-bit systems, while "unsigned long" is always 32-bit on
-> 32-bit systems.  Hence the cast in
-> 
->     (unsigned long)size / SZ_1M
-> 
-> may truncate a 64-bit size to 32-bit, as casts have a higher operator
-> precedence than divisions.
-> 
-> Fix this by inverting the order of the cast and division, which should
-> be safe for memory blocks smaller than 4 PiB.  Note that the division is
-> actually a shift, as SZ_1M is a power-of-two constant, hence there is no
-> need to use div_u64().
-> 
-> While at it, use "%lu" to format "unsigned long".
-> 
-> Fixes: e8d9d1f5485b52ec ("drivers: of: add initialization code for static reserved memory")
-> Fixes: 3f0c8206644836e4 ("drivers: of: add initialization code for dynamic reserved memory")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  drivers/of/fdt.c             | 8 ++++----
->  drivers/of/of_reserved_mem.c | 8 ++++----
->  2 files changed, 8 insertions(+), 8 deletions(-)
-> 
+This adds a driver for the temperature sensor on the JH7100, a RISC-V
+SoC by StarFive Technology Co. Ltd., and most likely also the upcoming
+JH7110 version of the chip.
 
-Applied, thanks!
+The SoC is used on the BeagleV Starlight board:
+https://github.com/beagleboard/beaglev-starlight
+
+Support for this SoC is not yet upstreamed so feel free to not merge yet
+but I'd love some early feedback.
+
+/Emil
+
+Emil Renner Berthing (2):
+  dt-bindings: hwmon: add starfive,jh7100-temp bindings
+  hwmon: (sfctemp) Add StarFive JH7100 temperature sensor
+
+ .../bindings/hwmon/starfive,jh7100-temp.yaml  |  43 +++
+ drivers/hwmon/Kconfig                         |   9 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/sfctemp.c                       | 309 ++++++++++++++++++
+ 4 files changed, 362 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/starfive,jh7100-temp.yaml
+ create mode 100644 drivers/hwmon/sfctemp.c
+
+-- 
+2.32.0
+
