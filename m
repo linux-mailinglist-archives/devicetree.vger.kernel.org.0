@@ -2,104 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D0473A9510
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 10:30:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05B633A9527
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 10:37:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231335AbhFPIdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 04:33:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56394 "EHLO
+        id S231468AbhFPIjz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 04:39:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231589AbhFPIdC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 04:33:02 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706A1C06175F
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 01:30:55 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id n17so2685788ljg.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 01:30:55 -0700 (PDT)
+        with ESMTP id S231318AbhFPIjy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 04:39:54 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C378CC06175F
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 01:37:48 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id b37so2624693ljr.13
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 01:37:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Xtx0D/JQrf9peJgocm4/e4qMNluWA8H4pEhH1El3BzQ=;
-        b=Qvm89n4LVQwKeGewmMIEPJ1PlvtmWGAwftSotHUv7x7O9RfZMXC9T29Rlla2HxSb55
-         egZqJNE0Jhw0VcP/XKW/0E7Iu/hAoSqyMEoc7IcZUGOax4T6mgqVZCYKE20kUKU9jXo4
-         lxQoOhXPkPRlF60OYw78Hvs94dlrN/2/LsiS8Tr5EK5ibCCfPzss7xKCcwGzypj+IWlu
-         tXc+Sxfsm+Hweg0l8ASZ2Sl6Qw/2ibBD+XRH7dHwnT8qZFxCu3UlPQ+IhzlvlYztHCAg
-         G5khlJQoN2QiSm5MP3nethiPx1BV9+CIcRAVb5OmIax7UcI7opkTU8ebeUKI+lt2TMw3
-         O0vQ==
+        bh=QJAc8B1lD7Sm5QPOtcUYZkUpiddw4Ax/wj4Rau0Ixfg=;
+        b=qvu43AOLgb3xHnM0yXAUrjFaCzKTcpte7hy9TbY39f5F7QzZ+wiTPUmavQMpx+Rt5R
+         45g7i68kXrjq53DeA4k7zOhUGKPahmopZKU6RqXDfO+rcsj5B1xwLjwMpAHCkhu3eEby
+         53qMKhYFGsFMJ/qHD/OyZ2e3+4xcFXjqL4f9uSlbQxC56dx18Lahm3U8atB60kgX6sif
+         EqYAUsWW8YdBB38HoPBiiP7BhjvjZ8mWG34htxZzmS+FZ68Eze0+llgFpBggaJfGNLxm
+         S9B78k6IYF+bpKFfw7mjvqJqrA0SdS7fd3H/EByu9Fs8yoTpFn1xPbTmeZ/qRocYSzK2
+         L6/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Xtx0D/JQrf9peJgocm4/e4qMNluWA8H4pEhH1El3BzQ=;
-        b=D3OXib9qOMIholgZS3tPj3wA/UFtrc8NXuuBQGCQnkmSEPgTsLNkC2yer59DXH33Xd
-         l07NWPW7h3iWXdUjkZgildkzRTEX5+LNnQw0c4yYQs2vBnz2tKG0/wBc6TF8coFMIZjH
-         0HPT3VSr+hwpZO702YkeklsWSmmqG6KwZrGRLCGbcnieaJcO/pBFDiesv1FVp0IMZEvL
-         FtSiQNk8HFoJcZeZ2+UMwVEG9AizgEi1mpNrJpgd4ZqRODySiC+gFGyJWwq754/s9pTY
-         K2R9OznOGQpl0lmR+KAWR8K1EWD3rlmKKccq2AE73shtygblYfbTlpa4o+60Nfi2kglo
-         4xkg==
-X-Gm-Message-State: AOAM5337z6ya0TwF32opQPLq+mQ4P7mofAOUI1cJphTQiiUXmFWdZ2sp
-        Et54jjKC48fhr6IUtzF0m4+uBu6vBl5sx0HEJPgZLQ==
-X-Google-Smtp-Source: ABdhPJyvTNRjOx83HPsiqhcRq2/Bk3bODAfL45ZU+TbpCvmtO9pDNtfz8UpZbD5cL08fxjHc/6TUVqte0AC1nPwPO1k=
-X-Received: by 2002:a2e:8046:: with SMTP id p6mr3393629ljg.401.1623832253740;
- Wed, 16 Jun 2021 01:30:53 -0700 (PDT)
+        bh=QJAc8B1lD7Sm5QPOtcUYZkUpiddw4Ax/wj4Rau0Ixfg=;
+        b=Jx/b9rm2vPiQMvARQ47xPjzI+rc/dT7t46j6+EgICQyyif9iaf5R0wopUXqWUW1ZJv
+         9GfO3Z2XXrh8ANV0WNeqWelP6Oo/93Rg+IzVs947cjlHrB+rXh+GIwLmNr6uxfq/6V24
+         AN5ILa4aKeevX1CrHkIlDnu5WQNSi/tjZGuBAai5di9gZUEjGj+ZNqLqx8TZHHa9WuJD
+         BsvWh/2+fT4jBaU3QZiFOtYwPJw3NdoM5vNnM1/v3pJjID5gQREGEc6zvw33hb6/3DHt
+         m5Ze8DSqp7QYzrIXnY7q0+HL4ozpbyoX5FNGc2klDSTZgzIg/VTOVSVfMWHLAlFylU1M
+         88kg==
+X-Gm-Message-State: AOAM531hsBAxqSCPyR8+NzNAhOcWnSMDn2yarLScoetn0qfrMwthKGaM
+        cIshugwue3UDkuIqJxplgZ4fQwEDEgjV3VCnjz8aig==
+X-Google-Smtp-Source: ABdhPJyGIIdMSJ7t5SYz1eX75j4utxyINk0hmhiwDZUkZw41Hdi0Yqko84xoZfLmn+D4f2IStcf6VQ88KZ/LjsmVKlE=
+X-Received: by 2002:a2e:9483:: with SMTP id c3mr3514844ljh.273.1623832667026;
+ Wed, 16 Jun 2021 01:37:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210529170955.32574-1-digetx@gmail.com> <20210529170955.32574-5-digetx@gmail.com>
- <6f2b6290-095a-bd39-c160-1616a0ff89b1@linaro.org> <20210615102626.dja3agclwzxv2sj4@vireshk-i7>
- <595f5e53-b872-bcc6-e886-ed225e26e9fe@gmail.com> <fbdc3b56-4465-6d3e-74db-1d5082813b9c@linaro.org>
- <4c7b23c4-cf6a-0942-5250-63515be4a219@gmail.com> <20210616080310.vhvauvo5y6m2sekz@vireshk-i7>
-In-Reply-To: <20210616080310.vhvauvo5y6m2sekz@vireshk-i7>
-From:   Vincent Guittot <vincent.guittot@linaro.org>
-Date:   Wed, 16 Jun 2021 10:30:42 +0200
-Message-ID: <CAKfTPtAxvj4_TBpFesjQxcVzvEi3QVUThccfSAJXwwrLtOH-xg@mail.gmail.com>
-Subject: Re: [PATCH v3 4/7] thermal/drivers/tegra: Add driver for Tegra30
- thermal sensor
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Ihor Didenko <tailormoon@rambler.ru>,
-        Ion Agorria <ion@agorria.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
+References: <20210614163150.7774-1-stephan@gerhold.net> <20210614163150.7774-2-stephan@gerhold.net>
+In-Reply-To: <20210614163150.7774-2-stephan@gerhold.net>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 16 Jun 2021 10:37:36 +0200
+Message-ID: <CACRpkdYPz4JOWgzynVzAmJXH1MWAXjvH16k_kwi0KqGE9_NnSQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: accel: bma255: Fix interrupt type
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-tegra@vger.kernel.org,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>
+        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Jun 2021 at 10:03, Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> +Vincent.
->
-> On 15-06-21, 22:32, Dmitry Osipenko wrote:
-> > IIUC, the cpufreq already should be prepared for the case where firmware
-> > may override frequency. Viresh, could you please clarify what are the
-> > possible implications of the frequency overriding?
->
-> The only implication is software would think hardware is running at
-> some other frequency, while it is not. Not sure if something may break
-> as a result of this.
->
-> The scheduler's view of CPUs will not be same though, i.e. scheduler
-> will see capacity as X, while in reality it has changed to Y.
+On Mon, Jun 14, 2021 at 6:34 PM Stephan Gerhold <stephan@gerhold.net> wrote:
 
-thermal_pressure is used by scheduler to balance the load between CPUs
-according to the actual max frequency. If the thermal pressure doesn't
-reflect reality, scheduler will end up enqueuing too many  tasks on a
-throttle CPU.
-
+> Bosch accelerometers similar to BMA255 are initially configured to
+> emit an active-high interrupt signal. This is currently not re-configured
+> in the bmc150-accel driver so the interrupt should most certainly be
+> IRQ_TYPE_EDGE_RISING (or potentially IRQ_TYPE_LEVEL_HIGH).
+> (Unless there is some kind of inverter installed on the board...)
 >
-> --
-> viresh
+> At the moment the bmc150-accel driver forcefully requests the IRQ
+> using IRQF_TRIGGER_RISING, which means that the IRQ type is currently
+> ignored in all existing device trees.
+>
+> Fixes: 6259551 ("iio: accel: bmc150-accel: Add DT bindings")
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+> However:
+>   1. We need to fix up several broken device trees first (I found
+>      IRQ_TYPE_LEVEL_LOW in some device trees).
+
+Oh this situation... Some are mine I bet (I can fix those,
+just poke me with something sharp.)
+
+>   2. Similarly, I'm not sure if this might break some ACPI devices
+>      in case they have the wrong IRQ type listed?
+
+I never figured this out but Andy and maybe Bastien Nocera
+knows more about this.
+
+> As a first step this patch just fixes the documentation.
+
+Fair enough, it makes things better.
+
+Yours,
+Linus Walleij
