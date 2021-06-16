@@ -2,103 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0305B3A9B27
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 14:53:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63C623A9B62
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 15:01:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232790AbhFPMzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 08:55:25 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:47210 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232403AbhFPMzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 08:55:24 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15GCrG42044621;
-        Wed, 16 Jun 2021 07:53:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1623847996;
-        bh=7YlCcdXJUV2VpWEd0FhMQzd3Mq9esRVlGdNAK2P+ZEU=;
-        h=Date:From:To:CC:Subject;
-        b=Lxwjcd15eEt5kf9dciJYIfikN4UabbuhlSd7+6NeRTnEh5oa+wK3W+F/A5SWEGjHa
-         D1rwkI2iWOcsOD8b2i0g9OZ1izd/abn9uTAgryBxCfnTxKeGw1K+99gPjnfNjxDCaK
-         rI9DL+UFU99obCnRazDAA0LnuVGV5Kw2H+NCLFGA=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15GCrG35104507
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 16 Jun 2021 07:53:16 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 16
- Jun 2021 07:53:15 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 16 Jun 2021 07:53:15 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15GCrFZL075193;
-        Wed, 16 Jun 2021 07:53:15 -0500
-Date:   Wed, 16 Jun 2021 18:23:14 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <devicetree@vger.kernel.org>
-Subject: Fixing up non-standard schema with DT tooling (was "Re: [PATCH]
- dt-bindings: Drop redundant minItems/maxItems")
-Message-ID: <20210616125314.65aufo3v2juiyeys@ti.com>
+        id S233060AbhFPNED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 09:04:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33602 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232558AbhFPNED (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 09:04:03 -0400
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01319C061574
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 06:01:55 -0700 (PDT)
+Received: from [192.168.1.79] (bband-dyn73.178-41-129.t-com.sk [178.41.129.73])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id B28843ED71;
+        Wed, 16 Jun 2021 15:01:53 +0200 (CEST)
+Date:   Wed, 16 Jun 2021 15:01:47 +0200
+From:   Martin Botka <martin.botka@somainline.org>
+Subject: Re: [PATCH v3 1/2] arch: arm64: dts: qcom: Add support for SM6125
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        konrad.dybcio@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Message-Id: <ZIPSUQ.3JME0AID86CV1@somainline.org>
+In-Reply-To: <YMlF/aPn+253UIHn@builder.lan>
+References: <20210613080522.25230-1-martin.botka@somainline.org>
+        <YMlF/aPn+253UIHn@builder.lan>
+X-Mailer: geary/40.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-I am splitting this message out as a separate thread because the 
-original one Cced lots of people and lists mainly because it touched 
-lots of subsystems. This discussion is more focussed on device tree side 
-of things.
 
-On 15/06/21 01:15PM, Rob Herring wrote:
-> If a property has an 'items' list, then a 'minItems' or 'maxItems' with the
-> same size as the list is redundant and can be dropped. Note that is DT
-> schema specific behavior and not standard json-schema behavior. The tooling
-> will fixup the final schema adding any unspecified minItems/maxItems.
+On Tue, Jun 15 2021 at 07:29:49 PM -0500, Bjorn Andersson 
+<bjorn.andersson@linaro.org> wrote:
+> On Sun 13 Jun 03:05 CDT 2021, Martin Botka wrote:
+> 
+>>  This commits adds the Device tree file for SM6125 SoC.
+>> 
+>>  Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> 
+> Thanks for your work on this Martin, just spotted a few minor 
+> finishing
+> touches below.
 
-Please understand that things like this have a hidden cost involved.
-
-For example, I was thoroughly confused a couple weeks back when I was 
-looking at the binding for spi/cdns,qspi-nor.yaml. It has 4 properties 
-for the subnode: 'cdns,read-delay', 'cdns,tshsl-ns', 'cdns,tsd2d-ns', 
-and 'cdns,tslch-ns'. The latter three are fine with just a description 
-and need nothing else to define their types. The first one needs a $ref 
-to uint32. I could not figure out why. I even looked at the processed 
-JSON schema and came out none the wiser.
-
-After banging my head on the table for some time, I finally came across 
-the dt-schema repo's property-units.yaml file which makes every property 
-ending in "-ns" a uint32-array.
-
-This is a neat feature and makes writing bindings slightly easier if you 
-know about it. But it makes reading bindings a very difficult process if 
-you don't know about it. The same applies to every little thing that the 
-tooling does in the background in the name of convenience.
-
-You are very familiar with the entire ecosystem so these things are 
-obvious for you. They aren't as obvious for most other developers who 
-don't deal with bindings or yaml or JSON schema on a regular basis. I 
-don't know enough about the ecosystem to prescribe whether this or some 
-other hidden behaviour is good or not. But I want you to keep this in 
-mind. The more things tooling does in the background, the more things 
-the average developer needs to know, and the harder it becomes to read 
-and write bindings.
+:)
 
 > 
-> This condition is partially checked with the meta-schema already, but
-> only if both 'minItems' and 'maxItems' are equal to the 'items' length.
-> An improved meta-schema is pending.
+>>  ---
+>>  Changes in V2:
+>>  Update compatibles for mailbox & pinctrl
+>>  Changes in V3:
+>>  Fix reg for sdhci1
+>>  Replace hc_mem with hc and core_mem with core
+>>   arch/arm64/boot/dts/qcom/sm6125.dtsi | 603 
+>> +++++++++++++++++++++++++++
+>>   1 file changed, 603 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/sm6125.dtsi
+>> 
+>>  diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+> [..]
+>>  +	soc {
+>>  +		#address-cells = <1>;
+>>  +		#size-cells = <1>;
+>>  +		ranges = <0x00 0x00 0x00 0xffffffff>;
+>>  +		compatible = "simple-bus";
+>>  +
+>>  +		tcsr_mutex_regs: syscon@340000 {
+> 
+> It's no longer valid to have a stray syscon like this, so please 
+> update
+> this in accordance with the tcsr mutex binding.
+> 
+> If this platform needs to poke at the registers at the end of the 
+> memory
+> region, you can do compatible = "qcom,tcsr-mutex", "syscon"; to make 
+> it
+> represent both things.
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+ack
+
+> 
+>>  +			compatible = "syscon";
+>>  +			reg = <0x00340000 0x20000>;
+>>  +		};
+>>  +
+>>  +		tlmm: pinctrl@500000 {
+>>  +			compatible = "qcom,sm6125-tlmm";
+>>  +			reg = <0x00500000 0x400000>,
+>>  +				<0x00900000 0x400000>,
+>>  +				<0x00d00000 0x400000>;
+>>  +			reg-names = "west", "south", "east";
+>>  +			interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+>>  +			gpio-controller;
+>>  +			gpio-ranges = <&tlmm 0 0 134>;
+>>  +			#gpio-cells = <2>;
+>>  +			interrupt-controller;
+>>  +			#interrupt-cells = <2>;
+>>  +
+>>  +			sdc2_state_on: sdc2-on {
+> 
+> As I just forced Konrad to move the on-state definition to the board
+> file, can you please do the same?
+
+ofc
+
+> 
+>>  +				clk {
+>>  +					pins = "sdc2_clk";
+>>  +					bias-disable;
+>>  +					drive-strength = <16>;
+>>  +				};
+>>  +
+>>  +				cmd {
+>>  +					pins = "sdc2_cmd";
+>>  +					bias-pull-up;
+>>  +					drive-strength = <10>;
+>>  +				};
+>>  +
+>>  +				data {
+>>  +					pins = "sdc2_data";
+>>  +					bias-pull-up;
+>>  +					drive-strength = <10>;
+>>  +				};
+>>  +
+>>  +				sd-cd {
+>>  +					pins = "gpio98";
+>>  +					bias-pull-up;
+>>  +					drive-strength = <2>;
+>>  +				};
+>>  +			};
+>>  +
+>>  +			sdc2_state_off: sdc2-off {
+> 
+> This should be common between all boards (except possibly the cd 
+> line),
+> so this is okay to share here.
+
+Do you want me to move the cd as well or
+do you want it to stay in here?
+
+> 
+>>  +				clk {
+>>  +					pins = "sdc2_clk";
+>>  +					bias-disable;
+>>  +					drive-strength = <2>;
+>>  +				};
+>>  +
+>>  +				cmd {
+>>  +					pins = "sdc2_cmd";
+>>  +					bias-pull-up;
+>>  +					drive-strength = <2>;
+>>  +				};
+>>  +
+>>  +				data {
+>>  +					pins = "sdc2_data";
+>>  +					bias-pull-up;
+>>  +					drive-strength = <2>;
+>>  +				};
+>>  +
+>>  +				sd-cd {
+>>  +					pins = "gpio98";
+>>  +					bias-disable;
+>>  +					drive-strength = <2>;
+>>  +				};
+>>  +			};
+>>  +		};
+>>  +
+> [..]
+>>  +
+>>  +		usb3: usb@4ef8800 {
+>>  +			compatible = "qcom,msm8996-dwc3", "qcom,dwc3";
+>>  +			reg = <0x04ef8800 0x400>;
+>>  +			#address-cells = <1>;
+>>  +			#size-cells = <1>;
+>>  +			ranges;
+>>  +
+>>  +			clocks = <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+>>  +				<&gcc GCC_SYS_NOC_USB3_PRIM_AXI_CLK>,
+>>  +				<&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
+>>  +				<&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+>>  +				<&gcc GCC_USB30_PRIM_SLEEP_CLK>,
+>>  +				<&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>;
+>>  +
+>>  +			assigned-clocks = <&gcc GCC_USB30_PRIM_MOCK_UTMI_CLK>,
+>>  +					  <&gcc GCC_USB30_PRIM_MASTER_CLK>;
+>>  +			assigned-clock-rates = <19200000>, <66666667>;
+>>  +
+>>  +			power-domains = <&gcc USB30_PRIM_GDSC>;
+>>  +			qcom,select-utmi-as-pipe-clk;
+> 
+> Stray space at the end of this line.
+
+Oopsie.
+
+> 
+>>  +			status = "disabled";
+>>  +
+>>  +			usb3_dwc3: dwc3@4e00000 {
+> 
+> These should be usb@ now.
+
+ack
+
+> 
+>>  +				compatible = "snps,dwc3";
+>>  +				reg = <0x04e00000 0xcd00>;
+>>  +				interrupts = <GIC_SPI 255 IRQ_TYPE_LEVEL_HIGH>;
+>>  +				phys = <&hsusb_phy1>;
+>>  +				phy-names = "usb2-phy";
+>>  +				snps,dis_u2_susphy_quirk;
+>>  +				snps,dis_enblslpm_quirk;
+>>  +				maximum-speed = "high-speed";
+>>  +				dr_mode = "peripheral";
+>>  +			};
+>>  +		};
+> 
+> Thanks,
+> Bjorn
+
+
