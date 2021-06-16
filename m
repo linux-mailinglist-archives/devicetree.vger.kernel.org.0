@@ -2,88 +2,303 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5133A3A8DF9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 02:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60C493A8E2C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 03:17:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231889AbhFPBBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 21:01:05 -0400
-Received: from relay06.th.seeweb.it ([5.144.164.167]:58781 "EHLO
-        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231854AbhFPBBB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 21:01:01 -0400
-Received: from localhost.localdomain (83.6.168.161.neoplus.adsl.tpnet.pl [83.6.168.161])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 4559F3EE8C;
-        Wed, 16 Jun 2021 02:58:53 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S231453AbhFPBTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 21:19:54 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:50638 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231270AbhFPBTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 21:19:54 -0400
+X-UUID: 80bc4c96ed994998a86bd30facedeae1-20210616
+X-UUID: 80bc4c96ed994998a86bd30facedeae1-20210616
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1655554615; Wed, 16 Jun 2021 09:17:46 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 16 Jun 2021 09:17:44 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 16 Jun 2021 09:17:44 +0800
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] arm64: dts: qcom: sm8250-edo: Add Samsung touchscreen
-Date:   Wed, 16 Jun 2021 02:58:43 +0200
-Message-Id: <20210616005843.79579-6-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210616005843.79579-1-konrad.dybcio@somainline.org>
-References: <20210616005843.79579-1-konrad.dybcio@somainline.org>
+        Nicolas Boichat <drinkcat@chromium.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Subject: [PATCH v4 1/2] arm64: dts: mediatek: Add mt8192 clock controllers
+Date:   Wed, 16 Jun 2021 09:15:50 +0800
+Message-ID: <20210616011551.29654-2-chun-jie.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20210616011551.29654-1-chun-jie.chen@mediatek.com>
+References: <20210616011551.29654-1-chun-jie.chen@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Samsung touchscreen node and relevant pin configuration to make the phones
-actually interactable with.
+Add clock controller nodes for SoC mt8192
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
 ---
- .../boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 21 ++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 163 +++++++++++++++++++++++
+ 1 file changed, 163 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-index f0b595cfea51..f62ff3ce974d 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-@@ -462,7 +462,18 @@ &i2c13 {
- 	status = "okay";
- 	clock-frequency = <400000>;
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index 9757138a8bbd..83f71d13ef9d 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -5,6 +5,7 @@
+  */
  
--	/* Samsung touchscreen @ 48 */
-+	touchscreen@48 {
-+		compatible = "samsung,s6sy761";
-+		reg = <0x48>;
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <39 0x2008>;
-+		/* It's "vddio" downstream but it works anyway! */
-+		vdd-supply = <&vreg_l1c_1p8>;
-+		avdd-supply = <&vreg_l10c_3p3>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_default>;
-+	};
- };
- 
- &i2c15 {
-@@ -563,6 +574,14 @@ data {
+ /dts-v1/;
++#include <dt-bindings/clock/mt8192-clk.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
+@@ -257,6 +258,24 @@
+ 			};
  		};
- 	};
  
-+	ts_int_default: ts-int-default {
-+		pins = "gpio39";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disabled;
-+		input-enable;
-+	};
++		topckgen: syscon@10000000 {
++			compatible = "mediatek,mt8192-topckgen", "syscon";
++			reg = <0 0x10000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
 +
- 	sdc2_card_det_n: sd-card-det-n {
- 		pins = "gpio77";
- 		function = "gpio";
++		infracfg: syscon@10001000 {
++			compatible = "mediatek,mt8192-infracfg", "syscon";
++			reg = <0 0x10001000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		pericfg: syscon@10003000 {
++			compatible = "mediatek,mt8192-pericfg", "syscon";
++			reg = <0 0x10003000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		pio: pinctrl@10005000 {
+ 			compatible = "mediatek,mt8192-pinctrl";
+ 			reg = <0 0x10005000 0 0x1000>,
+@@ -282,6 +301,12 @@
+ 			#interrupt-cells = <2>;
+ 		};
+ 
++		apmixedsys: syscon@1000c000 {
++			compatible = "mediatek,mt8192-apmixedsys", "syscon";
++			reg = <0 0x1000c000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		systimer: timer@10017000 {
+ 			compatible = "mediatek,mt8192-timer",
+ 				     "mediatek,mt6765-timer";
+@@ -291,6 +316,12 @@
+ 			clock-names = "clk13m";
+ 		};
+ 
++		scp_adsp: clock-controller@10720000 {
++			compatible = "mediatek,mt8192-scp_adsp";
++			reg = <0 0x10720000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		uart0: serial@11002000 {
+ 			compatible = "mediatek,mt8192-uart",
+ 				     "mediatek,mt6577-uart";
+@@ -311,6 +342,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		imp_iic_wrap_c: clock-controller@11007000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_c";
++			reg = <0 0x11007000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		spi0: spi@1100a000 {
+ 			compatible = "mediatek,mt8192-spi",
+ 				     "mediatek,mt6765-spi";
+@@ -436,6 +473,12 @@
+ 			status = "disable";
+ 		};
+ 
++		audsys: clock-controller@11210000 {
++			compatible = "mediatek,mt8192-audsys";
++			reg = <0 0x11210000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		i2c3: i2c3@11cb0000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11cb0000 0 0x1000>,
+@@ -449,6 +492,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		imp_iic_wrap_e: clock-controller@11cb1000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_e";
++			reg = <0 0x11cb1000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		i2c7: i2c7@11d00000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11d00000 0 0x1000>,
+@@ -488,6 +537,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		imp_iic_wrap_s: clock-controller@11d03000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_s";
++			reg = <0 0x11d03000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		i2c1: i2c1@11d20000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11d20000 0 0x1000>,
+@@ -527,6 +582,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		imp_iic_wrap_ws: clock-controller@11d23000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_ws";
++			reg = <0 0x11d23000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		i2c5: i2c5@11e00000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11e00000 0 0x1000>,
+@@ -540,6 +601,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		imp_iic_wrap_w: clock-controller@11e01000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_w";
++			reg = <0 0x11e01000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		i2c0: i2c0@11f00000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11f00000 0 0x1000>,
+@@ -565,5 +632,101 @@
+ 			#size-cells = <0>;
+ 			status = "disabled";
+ 		};
++
++		imp_iic_wrap_n: clock-controller@11f02000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_n";
++			reg = <0 0x11f02000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		msdc_top: clock-controller@11f10000 {
++			compatible = "mediatek,mt8192-msdc_top";
++			reg = <0 0x11f10000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		msdc: clock-controller@11f60000 {
++			compatible = "mediatek,mt8192-msdc";
++			reg = <0 0x11f60000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		mfgcfg: clock-controller@13fbf000 {
++			compatible = "mediatek,mt8192-mfgcfg";
++			reg = <0 0x13fbf000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		mmsys: clock-controller@14000000 {
++			compatible = "mediatek,mt8192-mmsys";
++			reg = <0 0x14000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		imgsys: clock-controller@15020000 {
++			compatible = "mediatek,mt8192-imgsys";
++			reg = <0 0x15020000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		imgsys2: clock-controller@15820000 {
++			compatible = "mediatek,mt8192-imgsys2";
++			reg = <0 0x15820000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vdecsys_soc: clock-controller@1600f000 {
++			compatible = "mediatek,mt8192-vdecsys_soc";
++			reg = <0 0x1600f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vdecsys: clock-controller@1602f000 {
++			compatible = "mediatek,mt8192-vdecsys";
++			reg = <0 0x1602f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vencsys: clock-controller@17000000 {
++			compatible = "mediatek,mt8192-vencsys";
++			reg = <0 0x17000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys: clock-controller@1a000000 {
++			compatible = "mediatek,mt8192-camsys";
++			reg = <0 0x1a000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_rawa: clock-controller@1a04f000 {
++			compatible = "mediatek,mt8192-camsys_rawa";
++			reg = <0 0x1a04f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_rawb: clock-controller@1a06f000 {
++			compatible = "mediatek,mt8192-camsys_rawb";
++			reg = <0 0x1a06f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_rawc: clock-controller@1a08f000 {
++			compatible = "mediatek,mt8192-camsys_rawc";
++			reg = <0 0x1a08f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		ipesys: clock-controller@1b000000 {
++			compatible = "mediatek,mt8192-ipesys";
++			reg = <0 0x1b000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		mdpsys: clock-controller@1f000000 {
++			compatible = "mediatek,mt8192-mdpsys";
++			reg = <0 0x1f000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
+ 	};
+ };
 -- 
-2.32.0
+2.18.0
 
