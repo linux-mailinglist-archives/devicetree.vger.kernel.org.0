@@ -2,103 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D120B3A9E72
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 611843A9E91
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:06:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234385AbhFPPEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 11:04:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32808 "EHLO
+        id S234448AbhFPPIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 11:08:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234368AbhFPPEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 11:04:30 -0400
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD4D1C061574
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 08:02:23 -0700 (PDT)
-Received: by mail-qk1-x729.google.com with SMTP id j184so2915258qkd.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 08:02:23 -0700 (PDT)
+        with ESMTP id S234446AbhFPPIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 11:08:32 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78525C06175F
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 08:06:25 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id h15so3439453ybm.13
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 08:06:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=benyossef-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=j51VtbWEsPmNthXDSqqlA/0JAvr0xhkR2POpSAUOx9c=;
-        b=ZUIi2qzqYGHwJx+79Fc4944r16x9UMQqqYLtcBz8HCOT0nsZkxfGcmRp23lvyNfAP+
-         2knAodSGIE5+PM0wcoqn9rQAvNIbG2+5Sas5+iUH6G+5iioPe8sGy4aqBr4h9MHBFQLA
-         j4DhsbCGODeTQCqVCt1gM8KYJ3xJ2R6oiax+o=
+         :cc:content-transfer-encoding;
+        bh=WnfyWeDtfp9wJ03e/Pygdz8GkYlJkHUmw4KuNZkZtsI=;
+        b=p3V/tsAvBKNW1/fLQw1cxjbLxmkzY+NCFM6sFUd5MYQR/I99nfYHtTeZ6GX29HX2fP
+         7B98Hz0iPFw7ln3a7oZUSV0D7wBHs3Nx8bP1yD75PLFbtaitHUMldchawAE3t6u9Gr4D
+         +thcqYz5DsdBNhUKylMKadu7gU+x9Y8f2HR9pkqCG44mo9Eiw3E0Ef0UBgaALPUnEwZM
+         OMSgYp3yI11h4BO8U2bJwEZbzXXy3AGA4tyIzRoWlJw5Et2h2p95BbZaXl2/0i99CK6D
+         VK4iEQKVOgzlpWTXxuWr4K4Kh5NwNdhEEHtoPFEUOX+aMGa4KVLNyO/kl/oNBYMPHM53
+         BQJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=j51VtbWEsPmNthXDSqqlA/0JAvr0xhkR2POpSAUOx9c=;
-        b=saeyrNljmbmT5pRggl5ITE1P1Gi7CJ00OBu+81anw2f1TLA1EVA1WuOMOdNA2eEm1m
-         DOaR9oDyF4bOWjfHI721oE+5LMeImiBF3w2KpM8mgg0CUf7TezBFP1rX47HwwvfXNsg0
-         F/UbfwjFHspcekWslwjUKbbQNq4dUxtSlq9H5t5lhB/T64HstA91G1qfCpetbtRLA7ib
-         h9MK6tP53UAhzk/q1HYcBYsvc3MHixnSZ8CKuSRovx7lSJ/cBRJdu3ACcMM/04ut0yp7
-         zo8840AwBNxB9N0kborvYEGNBGUvJ1HAF0wUyaf/vIgNnUyv/8ZuMf9eucQQzF6VqxaA
-         a0ZA==
-X-Gm-Message-State: AOAM531nEp3yOG9lVObORbaZYJb9pbiML7iy8pabM9ZKgDGnf7S/Qdlz
-        djt3a/ll4jXvCjCQQefKmruppzhZeCx/yA==
-X-Google-Smtp-Source: ABdhPJwg1Jn8zv5aNii1ivuBZLtzdw+2Lh+eq3I8hSa2R8TCVA7a+NYHgSLMeR1V2zDtB3Cr2M/hKg==
-X-Received: by 2002:a37:9f94:: with SMTP id i142mr478305qke.216.1623855742129;
-        Wed, 16 Jun 2021 08:02:22 -0700 (PDT)
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
-        by smtp.gmail.com with ESMTPSA id h12sm1423178qtn.44.2021.06.16.08.02.19
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jun 2021 08:02:21 -0700 (PDT)
-Received: by mail-yb1-f175.google.com with SMTP id g142so3449252ybf.9
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 08:02:19 -0700 (PDT)
-X-Received: by 2002:a5b:54a:: with SMTP id r10mr207252ybp.476.1623855739461;
- Wed, 16 Jun 2021 08:02:19 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=WnfyWeDtfp9wJ03e/Pygdz8GkYlJkHUmw4KuNZkZtsI=;
+        b=i/wCGHAmErRrJ4pdJG+x+cp4eSCxmPKca4NTVSrEk2/TBnmKWOHp2/yzhhlQuoh9sf
+         Puk254LP7WsWJeaTurs6v4d7MGMgR0Kh5Vn/JdnoiglWXbfosT3PoZtglf+pawrOaJ5K
+         Tz1x255E9FvE8Vfky3L56xuADLEXlVhYbhF1LxLmw95CZ3Wlh3ZOlACtrkopMdujXt/y
+         IKI50YANc0cKrbBrPNXco5RYDo2yd2WbjtyoP5BODfqtnHe+/ZBKh2KKkY8q+C5hbiDC
+         yVfzYnCM1r9gZMiCKCINFGmZKPE2WSrKOBUQcv2ItPCulHkuUmYV0dSX53NezmapAqig
+         o/0w==
+X-Gm-Message-State: AOAM533otBH71f4sg1rErce88Ec9FDkmGhpY37g7LOm9YK8WVOYgiyWB
+        ms0PNtD3pehk/MM3c42lDhl5HQSuRG2RxIeUIfPonA==
+X-Google-Smtp-Source: ABdhPJxsvfFKJlCl0Fv1Q0JQBOSrY9fTTPwXdoG5i6bwF+xZjcAotFA7K4MfWyuapR5FEhTmK4mSmAAff0KtXHI/vxk=
+X-Received: by 2002:a25:8088:: with SMTP id n8mr196816ybk.375.1623855984676;
+ Wed, 16 Jun 2021 08:06:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <1623499682-2140-1-git-send-email-rajeevny@codeaurora.org> <1623499682-2140-6-git-send-email-rajeevny@codeaurora.org>
-In-Reply-To: <1623499682-2140-6-git-send-email-rajeevny@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 16 Jun 2021 08:02:07 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V2_LJkXX-9v2ArSspKHy6PABn1E-hkCOeT=Dk5R0CQ+Q@mail.gmail.com>
-Message-ID: <CAD=FV=V2_LJkXX-9v2ArSspKHy6PABn1E-hkCOeT=Dk5R0CQ+Q@mail.gmail.com>
-Subject: Re: [v6 5/5] drm/panel-simple: Add Samsung ATNA33XC20
-To:     Rajeev Nandan <rajeevny@codeaurora.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
+References: <b4e3ac1e393dd3ec9d6086e3d216bf9d0fdfc0e8.1623835679.git.geert+renesas@glider.be>
+In-Reply-To: <b4e3ac1e393dd3ec9d6086e3d216bf9d0fdfc0e8.1623835679.git.geert+renesas@glider.be>
+From:   Gilad Ben-Yossef <gilad@benyossef.com>
+Date:   Wed, 16 Jun 2021 18:06:13 +0300
+Message-ID: <CAOtvUMcJzide=sinBSMGocKhyErECE3e0H-KGDX9RhXHeVhK4w@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: crypto: ccree: Convert to json-schema
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S . Miller" <davem@davemloft.net>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Clark <robdclark@gmail.com>, Lyude Paul <lyude@redhat.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rob Herring <robh@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Kalyan Thota <kalyan_t@codeaurora.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Sat, Jun 12, 2021 at 5:09 AM Rajeev Nandan <rajeevny@codeaurora.org> wrote:
+On Wed, Jun 16, 2021 at 12:29 PM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
 >
-> +static const struct panel_desc samsung_atna33xc20 = {
-> +       .modes = &samsung_atna33xc20_mode,
-> +       .num_modes = 1,
-> +       .bpc = 10,
-> +       .size = {
-> +               .width = 294,
-> +               .height = 165,
-> +       },
-> +       .delay = {
-> +               .disable_to_power_off = 150,
-> +               .power_to_enable = 150,
+> Convert the Arm TrustZone CryptoCell cryptographic engine Device Tree
+> binding documentation to json-schema.
+>
+> Document missing properties.
+> Update the example to match reality.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v2:
+>   - Use "SPDX-License-Identifier: GPL-2.0", as requested by Gilad.
 
-As per <https://crrev.com/c/2966167> it's apparently been discovered
-that these should be:
+Acked-by: Gilad Ben Yossef <gilad@benyossef.com>
 
-.disable_to_power_off = 200,
-.power_to_enable = 400,
+
+
+> ---
+>  .../bindings/crypto/arm,cryptocell.yaml       | 53 +++++++++++++++++++
+>  .../bindings/crypto/arm-cryptocell.txt        | 25 ---------
+>  2 files changed, 53 insertions(+), 25 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/arm,cryptoce=
+ll.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/crypto/arm-cryptoce=
+ll.txt
+>
+> diff --git a/Documentation/devicetree/bindings/crypto/arm,cryptocell.yaml=
+ b/Documentation/devicetree/bindings/crypto/arm,cryptocell.yaml
+> new file mode 100644
+> index 0000000000000000..b8331863ee754988
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/crypto/arm,cryptocell.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/crypto/arm,cryptocell.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Arm TrustZone CryptoCell cryptographic engine
+> +
+> +maintainers:
+> +  - Gilad Ben-Yossef <gilad@benyossef.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - arm,cryptocell-713-ree
+> +      - arm,cryptocell-703-ree
+> +      - arm,cryptocell-712-ree
+> +      - arm,cryptocell-710-ree
+> +      - arm,cryptocell-630p-ree
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  dma-coherent: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    arm_cc712: crypto@80000000 {
+> +            compatible =3D "arm,cryptocell-712-ree";
+> +            reg =3D <0x80000000 0x10000>;
+> +            interrupts =3D <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> diff --git a/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt =
+b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
+> deleted file mode 100644
+> index 6130e6eb4af89135..0000000000000000
+> --- a/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -Arm TrustZone CryptoCell cryptographic engine
+> -
+> -Required properties:
+> -- compatible: Should be one of -
+> -   "arm,cryptocell-713-ree"
+> -   "arm,cryptocell-703-ree"
+> -   "arm,cryptocell-712-ree"
+> -   "arm,cryptocell-710-ree"
+> -   "arm,cryptocell-630p-ree"
+> -- reg: Base physical address of the engine and length of memory mapped r=
+egion.
+> -- interrupts: Interrupt number for the device.
+> -
+> -Optional properties:
+> -- clocks: Reference to the crypto engine clock.
+> -- dma-coherent: Present if dma operations are coherent.
+> -
+> -Examples:
+> -
+> -       arm_cc712: crypto@80000000 {
+> -               compatible =3D "arm,cryptocell-712-ree";
+> -               interrupt-parent =3D <&intc>;
+> -               interrupts =3D < 0 30 4 >;
+> -               reg =3D < 0x80000000 0x10000 >;
+> -
+> -       };
+> --
+> 2.25.1
+>
+
+
+--=20
+Gilad Ben-Yossef
+Chief Coffee Drinker
+
+values of =CE=B2 will give rise to dom!
