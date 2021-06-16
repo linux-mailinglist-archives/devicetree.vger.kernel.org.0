@@ -2,127 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3079D3A9F11
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:28:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 787E13A9F21
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:33:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234598AbhFPPas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 11:30:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38748 "EHLO
+        id S234173AbhFPPfR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 11:35:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234579AbhFPPar (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 11:30:47 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 338BCC061574
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 08:28:40 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id h22-20020a05600c3516b02901a826f84095so1931068wmq.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 08:28:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=EbhkjQ5j2OcdBaFI2dnpODCHVTEU+UUtKdmpqCWFJRE=;
-        b=IrsFCOeRsye22mFWY64zEY/xcoZX1aX/aJs8wegxcX+91hdYXPwb5646PmscCeweMl
-         tTrOkUWmMGPkb2ksYi88LKfv44fuCIi7YU96VTqfhMBC8NWdwWk34fRu9YQ7eHVexak1
-         cAS6+nNpLh3pPIIe6UqWPqxx1OiJ/Wl6NMfy56J1fWp6MXNdL/Ys1xLwho2q7jvQ48HA
-         mjs0JgAkCC9QxDF/P1ve9ZaGofj3dQdAsdCX9k2d0PmCdeOsJWee+ET+gAlpINZGXXUR
-         vFA3ai4ENsW5SdgmfyJ33o88zms322CGNGZdASx4d8f2s3RLAEz9qDQJWrQRXJRwmbrh
-         YmlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=EbhkjQ5j2OcdBaFI2dnpODCHVTEU+UUtKdmpqCWFJRE=;
-        b=abeRGJFeno9pooFtJ1NESFKV/iNUh5H1fHn3BpAp9D0FFZ0neo1H6opMqiU82zUEjA
-         D1e3NGcWoI0g/ngWEfk8LdUF0dnnOGDEY9C5uM/jA3gD0p/bNNSHjS7tzwYEuFL1aHJ/
-         PDcGXP3J81jHlFs7if5xV0cO+xDFXJsVAaDHVwhxUr6gE91YFPYFhBN+TZ9GSgWZLJ4k
-         sEAo33Nnk404pP4WVMFxoArih5x6iQcsz4ohUrmq4yIO/TkjttHpr7/DtKLozfAY86HD
-         ZJptAmbLOhLf1kqWptuEFyBLBPbcGNOMroNfBYOC3/qYGmHnYc4e39ty8/Q9lUuPnrnA
-         omRA==
-X-Gm-Message-State: AOAM531xsoIKSrj72fEj1CPb1lsqBGdY3zF8nkCSOwaF7csFLVXNlolX
-        PQdWwDxHhRufyK2L49bVZ5Ps9Q==
-X-Google-Smtp-Source: ABdhPJxdji89qsbTpaGF5exaCUoQ9EnsLGw3iVWl12yCnTnq2YZi903Vr7k222qcewg5OWRStI/C4A==
-X-Received: by 2002:a7b:c4da:: with SMTP id g26mr12312570wmk.64.1623857318677;
-        Wed, 16 Jun 2021 08:28:38 -0700 (PDT)
-Received: from dell ([91.110.221.170])
-        by smtp.gmail.com with ESMTPSA id w8sm2399999wmi.45.2021.06.16.08.28.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 08:28:38 -0700 (PDT)
-Date:   Wed, 16 Jun 2021 16:28:36 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Min Li <min.li.xe@renesas.com>
-Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
-        "grant.likely@linaro.org" <grant.likely@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH mfd v2] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Message-ID: <YMoYpF13axL0EXFu@dell>
-References: <1622652224-19103-1-git-send-email-min.li.xe@renesas.com>
- <YMiwEYLkbKocs8ux@dell>
- <OS3PR01MB65939641C36B650A3B69DAADBA309@OS3PR01MB6593.jpnprd01.prod.outlook.com>
- <YMmuz0EVjfEi6MJj@dell>
- <TYYPR01MB6603047A864DB37F111BDAD9BA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
- <YMoP7fdkyyYUrDf2@dell>
- <TYYPR01MB6603D0473CF72D7EFB599D2CBA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
+        with ESMTP id S234332AbhFPPfQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 11:35:16 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9992CC061574;
+        Wed, 16 Jun 2021 08:33:10 -0700 (PDT)
+Received: from [192.168.1.101] (83.6.168.10.neoplus.adsl.tpnet.pl [83.6.168.10])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 92DB13F5F8;
+        Wed, 16 Jun 2021 17:33:06 +0200 (CEST)
+Subject: Re: [RFC v1 02/11] clk: qcom: rcg2: Add support for flags
+To:     Robert Foss <robert.foss@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org, jonathan@marek.ca,
+        tdas@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Vinod Koul <vinod.koul@linaro.org>
+References: <20210616141107.291430-1-robert.foss@linaro.org>
+ <20210616141107.291430-3-robert.foss@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+Message-ID: <780fd0b4-fffc-5afb-e546-86ba75bad9f9@somainline.org>
+Date:   Wed, 16 Jun 2021 17:33:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <20210616141107.291430-3-robert.foss@linaro.org>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <TYYPR01MB6603D0473CF72D7EFB599D2CBA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Jun 2021, Min Li wrote:
 
-> > >
-> > > Hi Lee
-> > >
-> > > The PHC driver already existed in the current tree as
-> > > drivers/ptp/ptp_clockmatrix.c and ptp_idt82p33.c
-> > >
-> > > Right now, they act as i2c driver. I plan to change them as a normal
-> > > platform device driver after this MFD change kicked in
-> > >
-> > > That is why I would prefer the name "phc" instead of "clock" since the
-> > > driver is not a normal clk driver under drivers/clk but a ptp clock
-> > > driver. And down the road, we will have our real clock driver and I wanna
-> > reserve the name "clock" for the real clock driver.
-> > 
-> > I see.  To be honest, I wasn't aware of the PTP subsystem.
-> > 
-> > In which case, the name needs to match the one in the driver:
-> > 
-> >  static struct i2c_driver idtcm_driver = {
-> >         .driver = {
-> >                 .of_match_table = of_match_ptr(idtcm_dt_id),
-> >                 .name           = "idtcm",
-> >         },
-> >         .probe          = idtcm_probe,
-> >         .remove         = idtcm_remove,
-> >         .id_table       = idtcm_i2c_id,
-> >  };
-> > 
-> > So, "idtcm" in this case.
-> > 
-> > How else will it match?
-> > 
-> 
-> Hi Lee
-> 
-> I actually like to comply with the mfd sub device naming convention by naming it 8a3400x-phc
-> About the names in ptp clock driver, I will have to change them anyways down the road to
-> make them work with the mfd driver
-> 
-> Another match doesn't exist in the current tree yet. It would be a normal platform device driver that I
-> will submit to drivers/misc a little later after this mfd change is merged.
+On 16.06.2021 16:10, Robert Foss wrote:
+> These changes are ported from the downstream driver, and are used on SM8350
+> for CAMCC, DISPCC, GCC, GPUCC & VIDEOCC.
+>
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> ---
+>  drivers/clk/qcom/clk-rcg.h  | 4 ++++
+>  drivers/clk/qcom/clk-rcg2.c | 3 +++
+>  2 files changed, 7 insertions(+)
+>
+> diff --git a/drivers/clk/qcom/clk-rcg.h b/drivers/clk/qcom/clk-rcg.h
+> index 99efcc7f8d88..a1f05281d950 100644
+> --- a/drivers/clk/qcom/clk-rcg.h
+> +++ b/drivers/clk/qcom/clk-rcg.h
+> @@ -149,6 +149,10 @@ struct clk_rcg2 {
+>  	const struct freq_tbl	*freq_tbl;
+>  	struct clk_regmap	clkr;
+>  	u8			cfg_off;
+> +	u8			flags;
+> +#define FORCE_ENABLE_RCG	BIT(0)
+> +#define HW_CLK_CTRL_MODE	BIT(1)
+> +#define DFS_SUPPORT		BIT(2)
+>  };
+>  
+>  #define to_clk_rcg2(_hw) container_of(to_clk_regmap(_hw), struct clk_rcg2, clkr)
+> diff --git a/drivers/clk/qcom/clk-rcg2.c b/drivers/clk/qcom/clk-rcg2.c
+> index 42f13a2d1cc1..ed2c9b6659cc 100644
+> --- a/drivers/clk/qcom/clk-rcg2.c
+> +++ b/drivers/clk/qcom/clk-rcg2.c
+> @@ -295,6 +295,9 @@ static int __clk_rcg2_configure(struct clk_rcg2 *rcg, const struct freq_tbl *f)
+>  	cfg |= rcg->parent_map[index].cfg << CFG_SRC_SEL_SHIFT;
+>  	if (rcg->mnd_width && f->n && (f->m != f->n))
+>  		cfg |= CFG_MODE_DUAL_EDGE;
+> +	if (rcg->flags & HW_CLK_CTRL_MODE)
+> +		cfg |= CFG_HW_CLK_CTRL_MASK;
+> +
+>  	return regmap_update_bits(rcg->clkr.regmap, RCG_CFG_OFFSET(rcg),
+>  					mask, cfg);
+>  }
 
-Okay, leave it as it is then.
+What about code for handling other flags? If it's not a part of the series,
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+I don't think it makes sense to define them. Or perhaps you sent the
+
+wrong revision?
+
+
+Konrad
+
