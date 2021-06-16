@@ -2,85 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5FC73A9F07
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3079D3A9F11
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 17:28:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234623AbhFPP2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 11:28:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48070 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234622AbhFPP2l (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 11:28:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B163E61356;
-        Wed, 16 Jun 2021 15:26:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623857195;
-        bh=3xXCvaDbNEswv4P3EZDSCt8erTYvLAXzHOYMuwuz1Ww=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HivM+S84zqbzmTFEAzqlT7DIlrD7ebnQZxgTFVz5lbtq+pTmi1WdNB2HTkn0yNdUt
-         cG1H1f0z5m4zSfT87xw8U+wiPep2IPvNOSl4cktPPnbgnbuVwjS3n7c1p/XSBSAHqV
-         JgOGUyqYTJuzAlapllhHUgY2SHDouwwNw003wFkE+vc40BCq9OOaIIIWPH+nBjEN2q
-         KRKo0HECZfgWedrP9iDhhNZ7iZv4xb3ZhL/HsWMVbjWjB8mN+qzDRI8z7q1Wczz2Xj
-         ZWKfXZ/KT8xJBsNv8zYXXrJiGftXDL0ZDikWgbVHRr4Qx4MoggGsWFVtaTwehnu8rA
-         7rxyz+gCub2DA==
-Received: by mail-ej1-f41.google.com with SMTP id g20so4652145ejt.0;
-        Wed, 16 Jun 2021 08:26:35 -0700 (PDT)
-X-Gm-Message-State: AOAM531m1qbsjN8eUJ+nLEQVO+OAXJhTFe8Ds5FNN6pFu/kZYNkwZylQ
-        O1mENsZz5x+/n9/s1OGlJeBSL5gFIfJv1SdK0A==
-X-Google-Smtp-Source: ABdhPJz8r9vTMquViBFbsmX0qPQixhx4R2ORqm9BLcnS6feAH4JsnSA0IHrStdQYLfDT+jhlfZCtJ6LSbmlkepogdvk=
-X-Received: by 2002:a17:907:264b:: with SMTP id ar11mr28912ejc.525.1623857194363;
- Wed, 16 Jun 2021 08:26:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210607111837.31074-1-jon.lin@rock-chips.com>
- <20210615032620.24769-1-jon.lin@rock-chips.com> <20210615032620.24769-2-jon.lin@rock-chips.com>
-In-Reply-To: <20210615032620.24769-2-jon.lin@rock-chips.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 16 Jun 2021 09:26:23 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJWzECC_=xm6OnB63ofnTQC_4VZZO-mhkiTJDYx=93fcw@mail.gmail.com>
-Message-ID: <CAL_JsqJWzECC_=xm6OnB63ofnTQC_4VZZO-mhkiTJDYx=93fcw@mail.gmail.com>
-Subject: Re: [PATCH v7 1/6] dt-bindings: spi: spi-rockchip: add description
- for rv1126
-To:     Jon Lin <jon.lin@rock-chips.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        "heiko@sntech.de" <heiko@sntech.de>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        id S234598AbhFPPas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 11:30:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38748 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234579AbhFPPar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 11:30:47 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 338BCC061574
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 08:28:40 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id h22-20020a05600c3516b02901a826f84095so1931068wmq.5
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 08:28:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=EbhkjQ5j2OcdBaFI2dnpODCHVTEU+UUtKdmpqCWFJRE=;
+        b=IrsFCOeRsye22mFWY64zEY/xcoZX1aX/aJs8wegxcX+91hdYXPwb5646PmscCeweMl
+         tTrOkUWmMGPkb2ksYi88LKfv44fuCIi7YU96VTqfhMBC8NWdwWk34fRu9YQ7eHVexak1
+         cAS6+nNpLh3pPIIe6UqWPqxx1OiJ/Wl6NMfy56J1fWp6MXNdL/Ys1xLwho2q7jvQ48HA
+         mjs0JgAkCC9QxDF/P1ve9ZaGofj3dQdAsdCX9k2d0PmCdeOsJWee+ET+gAlpINZGXXUR
+         vFA3ai4ENsW5SdgmfyJ33o88zms322CGNGZdASx4d8f2s3RLAEz9qDQJWrQRXJRwmbrh
+         YmlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=EbhkjQ5j2OcdBaFI2dnpODCHVTEU+UUtKdmpqCWFJRE=;
+        b=abeRGJFeno9pooFtJ1NESFKV/iNUh5H1fHn3BpAp9D0FFZ0neo1H6opMqiU82zUEjA
+         D1e3NGcWoI0g/ngWEfk8LdUF0dnnOGDEY9C5uM/jA3gD0p/bNNSHjS7tzwYEuFL1aHJ/
+         PDcGXP3J81jHlFs7if5xV0cO+xDFXJsVAaDHVwhxUr6gE91YFPYFhBN+TZ9GSgWZLJ4k
+         sEAo33Nnk404pP4WVMFxoArih5x6iQcsz4ohUrmq4yIO/TkjttHpr7/DtKLozfAY86HD
+         ZJptAmbLOhLf1kqWptuEFyBLBPbcGNOMroNfBYOC3/qYGmHnYc4e39ty8/Q9lUuPnrnA
+         omRA==
+X-Gm-Message-State: AOAM531xsoIKSrj72fEj1CPb1lsqBGdY3zF8nkCSOwaF7csFLVXNlolX
+        PQdWwDxHhRufyK2L49bVZ5Ps9Q==
+X-Google-Smtp-Source: ABdhPJxdji89qsbTpaGF5exaCUoQ9EnsLGw3iVWl12yCnTnq2YZi903Vr7k222qcewg5OWRStI/C4A==
+X-Received: by 2002:a7b:c4da:: with SMTP id g26mr12312570wmk.64.1623857318677;
+        Wed, 16 Jun 2021 08:28:38 -0700 (PDT)
+Received: from dell ([91.110.221.170])
+        by smtp.gmail.com with ESMTPSA id w8sm2399999wmi.45.2021.06.16.08.28.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jun 2021 08:28:38 -0700 (PDT)
+Date:   Wed, 16 Jun 2021 16:28:36 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Min Li <min.li.xe@renesas.com>
+Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
+        "grant.likely@linaro.org" <grant.likely@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH mfd v2] mfd: Add Renesas Synchronization Management Unit
+ (SMU) support
+Message-ID: <YMoYpF13axL0EXFu@dell>
+References: <1622652224-19103-1-git-send-email-min.li.xe@renesas.com>
+ <YMiwEYLkbKocs8ux@dell>
+ <OS3PR01MB65939641C36B650A3B69DAADBA309@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+ <YMmuz0EVjfEi6MJj@dell>
+ <TYYPR01MB6603047A864DB37F111BDAD9BA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
+ <YMoP7fdkyyYUrDf2@dell>
+ <TYYPR01MB6603D0473CF72D7EFB599D2CBA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <TYYPR01MB6603D0473CF72D7EFB599D2CBA0F9@TYYPR01MB6603.jpnprd01.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 14, 2021 at 9:26 PM Jon Lin <jon.lin@rock-chips.com> wrote:
->
-> The description below will be used for rv1126.dtsi or compatible one in
-> the future
->
-> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
-> ---
->
-> Changes in v7:
-> - Fall back "rockchip,rv1126-spi" to "rockchip,rk3066-spi"
->
-> Changes in v6:
-> - Consider to compatibility, the "rockchip,rk3568-spi" is removed in
->   Series-changes v5, so the commit massage should also remove the
->   corresponding information
->
-> Changes in v5:
-> - Change to leave one compatible id rv1126, and rk3568 is compatible
->   with rv1126
->
-> Changes in v4:
-> - Adjust the order patches
-> - Simply commit massage like redundancy "application" content
->
-> Changes in v3:
-> - Fix compile error which is find by Sascha in [v2,2/8]
->
->  Documentation/devicetree/bindings/spi/spi-rockchip.yaml | 1 +
->  1 file changed, 1 insertion(+)
+On Wed, 16 Jun 2021, Min Li wrote:
 
-Acked-by: Rob Herring <robh@kernel.org>
+> > >
+> > > Hi Lee
+> > >
+> > > The PHC driver already existed in the current tree as
+> > > drivers/ptp/ptp_clockmatrix.c and ptp_idt82p33.c
+> > >
+> > > Right now, they act as i2c driver. I plan to change them as a normal
+> > > platform device driver after this MFD change kicked in
+> > >
+> > > That is why I would prefer the name "phc" instead of "clock" since the
+> > > driver is not a normal clk driver under drivers/clk but a ptp clock
+> > > driver. And down the road, we will have our real clock driver and I wanna
+> > reserve the name "clock" for the real clock driver.
+> > 
+> > I see.  To be honest, I wasn't aware of the PTP subsystem.
+> > 
+> > In which case, the name needs to match the one in the driver:
+> > 
+> >  static struct i2c_driver idtcm_driver = {
+> >         .driver = {
+> >                 .of_match_table = of_match_ptr(idtcm_dt_id),
+> >                 .name           = "idtcm",
+> >         },
+> >         .probe          = idtcm_probe,
+> >         .remove         = idtcm_remove,
+> >         .id_table       = idtcm_i2c_id,
+> >  };
+> > 
+> > So, "idtcm" in this case.
+> > 
+> > How else will it match?
+> > 
+> 
+> Hi Lee
+> 
+> I actually like to comply with the mfd sub device naming convention by naming it 8a3400x-phc
+> About the names in ptp clock driver, I will have to change them anyways down the road to
+> make them work with the mfd driver
+> 
+> Another match doesn't exist in the current tree yet. It would be a normal platform device driver that I
+> will submit to drivers/misc a little later after this mfd change is merged.
+
+Okay, leave it as it is then.
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
