@@ -2,92 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D53383A8E5F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 03:30:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C451C3A8EC9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 04:23:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230488AbhFPBcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Jun 2021 21:32:16 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:57741 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230371AbhFPBcQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Jun 2021 21:32:16 -0400
-X-UUID: f15dd2272bc74643881fb656e8335aeb-20210616
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=bN1zFdu+kgnFsjJiRGRT8DKoz4fiLgKY4mbL1c8VCqU=;
-        b=qqQg9rdv09NK1kVK9mzM0bPxsZP1WSKYAWETMCKF2x77NhyCQfmWVm/eMgWFXAY3ueSHIGEGWbuaFHn0iir2VBIKJI80J1CYhxI5vRQWojUJJ74cGARuAOygb+Bps8JVZ3sMuksx2//k3gGFUohUhNLg3tk2UruyHb3xe3f6d8k=;
-X-UUID: f15dd2272bc74643881fb656e8335aeb-20210616
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <wenbin.mei@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1764266801; Wed, 16 Jun 2021 09:30:05 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs02n2.mediatek.inc
- (172.21.101.101) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 16 Jun
- 2021 09:30:03 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 16 Jun 2021 09:30:02 +0800
-Message-ID: <1623807002.15910.8.camel@mhfsdcap03>
-Subject: Re: [PATCH 12/27] arm64: dts: mt8195: fix mmc driver
-From:   Wenbin Mei <wenbin.mei@mediatek.com>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-CC:     <robh+dt@kernel.org>, <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <seiya.wang@mediatek.com>, <wenst@google.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 16 Jun 2021 09:30:02 +0800
-In-Reply-To: <20210615173233.26682-12-tinghan.shen@mediatek.com>
-References: <20210615173233.26682-1-tinghan.shen@mediatek.com>
-         <20210615173233.26682-12-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S231233AbhFPC0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Jun 2021 22:26:01 -0400
+Received: from ozlabs.org ([203.11.71.1]:56549 "EHLO ozlabs.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230454AbhFPC0B (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Jun 2021 22:26:01 -0400
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4G4TWn4TqHz9sWX;
+        Wed, 16 Jun 2021 12:23:49 +1000 (AEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ellerman.id.au;
+        s=201909; t=1623810234;
+        bh=P3MCetIfzZtPqhiTVaYvru4yq+FzxZnPf34lNt0JVNs=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=bFttHDSYDF8hs1GhcNrBuxC8r7YR1FbbNwSxkDAL7lQtIx4XxJMkGgJ7lrWjuZU9K
+         hHlMI3fju9iswEdIjo7GjpwxP1Gj1Fm/KYx+39MCmWGuFbgefyJ9+AnXWm5Gf/e/WE
+         A3rk+pmgQ4nYUF6AN4aESjVY9NcZzs/XD9grffQ9ZgTrSzGhxqLEc7HLOf2IyR5wUs
+         BEgh91+kA9k66Ony2Qct/YJq45j32aDa0BAlicNYsFLF+qSWSLxNmpFtktw78LYU6u
+         aLSqG0ucZiktlwstD97l1OxIipFzxib0Y/fOq3lYLMw7V3BV6g9i2RPMf7XTojDwDI
+         6cNIWLPIEvGYQ==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Rob Herring <robh@kernel.org>, nramas <nramas@linux.microsoft.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Mimi Zohar <zohar@linux.ibm.com>,
+        Thiago Jung Bauermann <bauerman@linux.ibm.com>,
+        AKASHI Takahiro <takahiro.akashi@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Will Deacon <will@kernel.org>, Joe Perches <joe@perches.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        James Morse <james.morse@arm.com>,
+        Sasha Levin <sashal@kernel.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Vincenzo Frascino <vincenzo.frascino@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>, dmitry.kasatkin@gmail.com,
+        James Morris <jmorris@namei.org>,
+        "Serge E. Hallyn" <serge@hallyn.com>,
+        Pavel Tatashin <pasha.tatashin@soleen.com>,
+        Allison Randal <allison@lohutok.net>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, tao.li@vivo.com,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Prakhar Srivastava <prsriva@linux.microsoft.com>,
+        balajib@linux.microsoft.com,
+        linux-integrity <linux-integrity@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Subject: Re: [PATCH v19 05/13] of: Add a common kexec FDT setup function
+In-Reply-To: <CAL_JsqJEucP043eViq0Y1kAeqWNTqP5fLjfjz7+ksYx7QP_V5w@mail.gmail.com>
+References: <20210221174930.27324-1-nramas@linux.microsoft.com>
+ <20210221174930.27324-6-nramas@linux.microsoft.com>
+ <CAMuHMdVSuNS4edh-zM0_sbC0i1AAjQ9Y0n_8Mjz=3CALkW4pgg@mail.gmail.com>
+ <CAL_JsqJ2x7zbyP3fAacdfHOWjCVjg6XhraV2YkoBJdZ2jXAMEA@mail.gmail.com>
+ <54efb4fce5aac7efbd0b1b3885e9098b1d4ea745.camel@linux.microsoft.com>
+ <CAL_JsqJEucP043eViq0Y1kAeqWNTqP5fLjfjz7+ksYx7QP_V5w@mail.gmail.com>
+Date:   Wed, 16 Jun 2021 12:23:44 +1000
+Message-ID: <87y2basg27.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIxLTA2LTE2IGF0IDAxOjMyICswODAwLCBUaW5naGFuIFNoZW4gd3JvdGU6DQo+
-IEZyb206IFdlbmJpbiBNZWkgPHdlbmJpbi5tZWlAbWVkaWF0ZWsuY29tPg0KPiANCj4gZml4IG1t
-YyBkcml2ZXIgd2l0aCBwcm9wZXIgY2xvY2sgZm9yIG10ODE5NSBTb0MuDQo+IA0KPiBTaWduZWQt
-b2ZmLWJ5OiBXZW5iaW4gTWVpIDx3ZW5iaW4ubWVpQG1lZGlhdGVrLmNvbT4NCj4gLS0tDQo+ICBh
-cmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5NS5kdHNpIHwgMTggKysrKysrKysrKysr
-KystLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgMTQgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMo
-LSkNCj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5
-NS5kdHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxOTUuZHRzaQ0KPiBpbmRl
-eCA1MzlmNDA1YTRmM2QuLjMyN2ZmMWI4NTZkMiAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm02NC9i
-b290L2R0cy9tZWRpYXRlay9tdDgxOTUuZHRzaQ0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRz
-L21lZGlhdGVrL210ODE5NS5kdHNpDQo+IEBAIC05MjYsMjIgKzkyNiwzMiBAQA0KPiAgCQl9Ow0K
-PiAgDQo+ICAJCW1tYzA6IG1tY0AxMTIzMDAwMCB7DQo+IC0JCQljb21wYXRpYmxlID0gIm1lZGlh
-dGVrLG10ODE5NS1tbWMiLCAibWVkaWF0ZWssbXQ4MTkyLW1tYyI7DQo+ICsJCQljb21wYXRpYmxl
-ID0gIm1lZGlhdGVrLG10ODE5NS1tbWMiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVrLG10ODE5Mi1t
-bWMiLA0KPiArCQkJCSAgICAgIm1lZGlhdGVrLG10ODE4My1tbWMiOw0KSSBoYXZlIHN1Ym1pdHRl
-ZCBhIHBhdGNoIHRvIGZpeCB0aGUNCmR0LWJpbmRpbmdzKGh0dHA6Ly9saXN0cy5pbmZyYWRlYWQu
-b3JnL3BpcGVybWFpbC9saW51eC1tZWRpYXRlay8yMDIxLUp1bmUvMDI1NDU2Lmh0bWwpLCBOb3cg
-d2hpY2ggc2hvdWxkIGJlOg0KCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTk1LW1tYyIsICJt
-ZWRpYXRlayxtdDgxODMtbW1jIjsNCj4gIAkJCXJlZyA9IDwwIDB4MTEyMzAwMDAgMCAweDEwMDAw
-PiwNCj4gIAkJCSAgICAgIDwwIDB4MTFmNTAwMDAgMCAweDEwMDA+Ow0KPiAgCQkJaW50ZXJydXB0
-cyA9IDxHSUNfU1BJIDEzMSBJUlFfVFlQRV9MRVZFTF9ISUdIIDA+Ow0KPiAtCQkJY2xvY2tzID0g
-PCZjbGsyNm0+LCA8JmNsazI2bT4sIDwmY2xrMjZtPjsNCj4gKwkJCWNsb2NrcyA9IDwmdG9wY2tn
-ZW4gQ0xLX1RPUF9NU0RDNTBfMF9TRUw+LA0KPiArCQkJCSA8JmluZnJhY2ZnX2FvIENMS19JTkZS
-QV9BT19NU0RDMD4sDQo+ICsJCQkJIDwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX0FPX01TREMwX1NS
-Qz47DQo+ICAJCQljbG9jay1uYW1lcyA9ICJzb3VyY2UiLCAiaGNsayIsICJzb3VyY2VfY2ciOw0K
-PiAgCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCj4gIAkJfTsNCj4gIA0KPiAgCQltbWMxOiBtbWNA
-MTEyNDAwMDAgew0KPiAtCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxOTUtbW1jIiwgIm1l
-ZGlhdGVrLG10ODE5Mi1tbWMiOw0KPiArCQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxOTUt
-bW1jIiwNCj4gKwkJCQkgICAgICJtZWRpYXRlayxtdDgxOTItbW1jIiwNCj4gKwkJCQkgICAgICJt
-ZWRpYXRlayxtdDgxODMtbW1jIjsNCkRpdHRvLCB0aGlzIHNob3VsZCBiZToNCgljb21wYXRpYmxl
-ID0gIm1lZGlhdGVrLG10ODE5NS1tbWMiLCAibWVkaWF0ZWssbXQ4MTgzLW1tYyI7DQo+ICAJCQly
-ZWcgPSA8MCAweDExMjQwMDAwIDAgMHgxMDAwPiwNCj4gIAkJCSAgICAgIDwwIDB4MTFjNzAwMDAg
-MCAweDEwMDA+Ow0KPiAgCQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDEzNSBJUlFfVFlQRV9MRVZF
-TF9ISUdIIDA+Ow0KPiAtCQkJY2xvY2tzID0gPCZjbGsyNm0+LCA8JmNsazI2bT4sIDwmY2xrMjZt
-PjsNCj4gKwkJCWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NU0RDMzBfMV9TRUw+LA0KPiAr
-CQkJCSA8JmluZnJhY2ZnX2FvIENMS19JTkZSQV9BT19NU0RDMT4sDQo+ICsJCQkJIDwmaW5mcmFj
-ZmdfYW8gQ0xLX0lORlJBX0FPX01TREMxX1NSQz47DQo+ICAJCQljbG9jay1uYW1lcyA9ICJzb3Vy
-Y2UiLCAiaGNsayIsICJzb3VyY2VfY2ciOw0KPiArCQkJYXNzaWduZWQtY2xvY2tzID0gPCZ0b3Bj
-a2dlbiBDTEtfVE9QX01TREMzMF8xX1NFTD47DQo+ICsJCQlhc3NpZ25lZC1jbG9jay1wYXJlbnRz
-ID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01TRENQTExfRDI+Ow0KPiAgCQkJc3RhdHVzID0gImRpc2Fi
-bGVkIjsNCj4gIAkJfTsNCj4gIA0KDQo=
+Rob Herring <robh@kernel.org> writes:
+> On Tue, Jun 15, 2021 at 10:13 AM nramas <nramas@linux.microsoft.com> wrote:
+>>
+>> On Tue, 2021-06-15 at 08:01 -0600, Rob Herring wrote:
+>> > On Tue, Jun 15, 2021 at 6:18 AM Geert Uytterhoeven <
+>> > geert@linux-m68k.org> wrote:
+>> > >
+>> > > > +void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
+>> > > > +                                  unsigned long
+>> > > > initrd_load_addr,
+>> > > > +                                  unsigned long initrd_len,
+>> > > > +                                  const char *cmdline, size_t
+>> > > > extra_fdt_size)
+>> > > > +{
+>> > > > +       /* Did we boot using an initrd? */
+>> > > > +       prop = fdt_getprop(fdt, chosen_node, "linux,initrd-
+>> > > > start", NULL);
+>> > > > +       if (prop) {
+>> > > > +               u64 tmp_start, tmp_end, tmp_size;
+>> > > > +
+>> > > > +               tmp_start = fdt64_to_cpu(*((const fdt64_t *)
+>> > > > prop));
+>> > > > +
+>> > > > +               prop = fdt_getprop(fdt, chosen_node,
+>> > > > "linux,initrd-end", NULL);
+>> > > > +               if (!prop) {
+>> > > > +                       ret = -EINVAL;
+>> > > > +                       goto out;
+>> > > > +               }
+>> > > > +
+>> > > > +               tmp_end = fdt64_to_cpu(*((const fdt64_t *)
+>> > > > prop));
+>> > >
+>> > > Some kernel code assumes "linux,initrd-{start,end}" are 64-bit,
+>> > > other code assumes 32-bit.
+>> >
+>> > It can be either. The above code was a merge of arm64 and powerpc >> > both
+>> > of which use 64-bit and still only runs on those arches. It looks >> > like
+>> > some powerpc platforms may use 32-bit, but this would have been >> > broken
+>> > before.
 
+>> of_kexec_alloc_and_setup_fdt() is called from elf_64.c (in
+>> arch/powerpc/kexec) which is for 64-bit powerpc platform only.
+>
+> 64-bit PPC could be writing 32-bit property values. The architecture
+> size doesn't necessarily matter. And if the values came from the
+> bootloader, who knows what size it used.
+>
+> This code is 32-bit powerpc only?:
+>
+> arch/powerpc/boot/main.c-       /* Tell the kernel initrd address via device tree */
+> arch/powerpc/boot/main.c:       setprop_val(chosen, "linux,initrd-start", (u32)(initrd_addr));
+> arch/powerpc/boot/main.c-       setprop_val(chosen, "linux,initrd-end", (u32)(initrd_addr+initrd_size));
+
+Historically that code was always built 32-bit, even when used with a
+64-bit kernel.
+
+These days it is also built 64-bit (for ppc64le).
+
+It looks like the drivers/of/fdt.c code can handle either 64 or 32-bit,
+so I guess that's why it seems to be working.
+
+Although I'm not sure how much testing the 64-bit case gets, because the
+distros tend to just use the vmlinux.
+
+cheers
