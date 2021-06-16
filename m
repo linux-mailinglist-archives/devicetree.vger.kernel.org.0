@@ -2,91 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 702063AA405
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 21:11:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8D113AA3C4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 21:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232349AbhFPTN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 15:13:26 -0400
-Received: from mga03.intel.com ([134.134.136.65]:39857 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232530AbhFPTNY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 15:13:24 -0400
-IronPort-SDR: xA/GS1uI8oTlRt0ZkDutN8YFPoCK+WzLIBTHet2pesEgUmrmRH2+jgutMi032ZH2ja7vNe6ACo
- B2NV2EWfM1Pw==
-X-IronPort-AV: E=McAfee;i="6200,9189,10016"; a="206278121"
-X-IronPort-AV: E=Sophos;i="5.83,278,1616482800"; 
-   d="scan'208";a="206278121"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2021 12:11:16 -0700
-IronPort-SDR: n6zRFDrwjIzQ47702ClxTmPuOe3ZO+JXUoWxQtosamnGyR9/uvZ608qFuQhnMUaTWvtcZYsAfp
- Ft5a6WSHOxlg==
-X-IronPort-AV: E=Sophos;i="5.83,278,1616482800"; 
-   d="scan'208";a="640104279"
-Received: from mindylam-mobl1.amr.corp.intel.com (HELO [10.213.182.47]) ([10.213.182.47])
-  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2021 12:11:14 -0700
-Subject: Re: [PATCH] ASoC: max98357a: set channels_max to 4
-To:     Cheng-yi Chiang <cychiang@chromium.org>
-Cc:     Taniya Das <tdas@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ALSA development <alsa-devel@alsa-project.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Tzung-Bi Shih <tzungbi@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Mark Brown <broonie@kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Judy Hsiao <judyhsiao@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20210526154704.114957-1-judyhsiao@chromium.org>
- <CA+Px+wXGjZCOhhAVh9eRw6L-g8g7Qi7Rf_3YHpHSCB2o=XQ+4g@mail.gmail.com>
- <CAFv8NwKkfGnpw_5PBwJSjVXsuw3L8=1RyEJ4PWdRX5-J75bk6A@mail.gmail.com>
- <3501e398-dfba-43b1-4638-325a158e860d@linux.intel.com>
- <CAFv8Nw+FNfmgwadeFMWjRiGbKFuO4JJ=9ggRHxG+Pq_OuHdmeA@mail.gmail.com>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <7748e621-ba54-db90-6b56-23e006eb1dbe@linux.intel.com>
-Date:   Wed, 16 Jun 2021 11:23:36 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S231157AbhFPTHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 15:07:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59092 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230239AbhFPTHh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 15:07:37 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A9E0C061574;
+        Wed, 16 Jun 2021 12:05:30 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id n17so5346332ljg.2;
+        Wed, 16 Jun 2021 12:05:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UtJY5flZe37khK4mqWdfiiEYsdpOKZYMDHCXniEQmfo=;
+        b=s27Yhv4wGkshgOvdJeLFBfIbEqtaqnjR05vIj/+jjNYu9vdFXfYezVZW+dFOGB7Ymg
+         p+7EsCB48hbFJbBAfoYZ9vB0n45QIcjpje8YZuNgyvVOkqtmdRErWaZ+jaLHUACfKurS
+         mUCHtc87iIiBZsVvkd/6J2/leNFBMTp/FHs4YZavx2gz2NixOIs6vmyCxNMagzjcnVXe
+         PEo/RArkcS78AbUbqfGDm3oZhwXKwmyUx06xfoXIvq2Wj/q/RRKyXLB3cM8LwblloKwl
+         TqQCzkphiWkv+7jM8K5aluD6H+Vg/CxPINuTvVeGPxFbK4sXjzmRDzoC92e6MockNt/p
+         YdzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UtJY5flZe37khK4mqWdfiiEYsdpOKZYMDHCXniEQmfo=;
+        b=sdcr9GWEVpiu6s5jo0BkVujIphgS2fevnl8Vd6mIoKme0b0fKtbOByRx1STpLsEG+d
+         h2hTGVb9xvtae21LmFg+Jf6kpk2EoqzxWkdJl9jKTsOmXBACGb64RsXb8lndYMnYmxxc
+         fm/HTmEHwgyvYPFMe/Z4hPShmQtYI3i0qYirUTUoOzCZ72GVr2g7q5YqqPbfGTVZQXx/
+         qhE9n7P5rnfm1wJJsSBuwKbckMFgMpPGxQjI0gTot65K/FIKmJsxK7bwlLTq1K0d7s83
+         9vsk9A+9rv8bMBRx71DdQsaJ8cfUkPBc28QIJ4WmTROTWEu3M68s2ycvs+VGZcHY1yJP
+         n2cw==
+X-Gm-Message-State: AOAM532n5u8OfAMEBbPSvPBWPq7Dd3ynhvo7bqIpE4BNfWb/Xs01mA28
+        fcJvHSxlEX3PxpQxxQ2MKYY=
+X-Google-Smtp-Source: ABdhPJxp9eXcNuLNvaf5Npy4dCg3qGjjED2cpTjcnQTJJ4Z4Smd0H9kVsgjjdt+JfsBACOQKCZm03Q==
+X-Received: by 2002:a2e:b5c8:: with SMTP id g8mr1197147ljn.204.1623870328322;
+        Wed, 16 Jun 2021 12:05:28 -0700 (PDT)
+Received: from localhost.localdomain (94-29-29-31.dynamic.spd-mgts.ru. [94.29.29.31])
+        by smtp.gmail.com with ESMTPSA id e20sm365951ljk.67.2021.06.16.12.05.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jun 2021 12:05:27 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Ihor Didenko <tailormoon@rambler.ru>,
+        Ion Agorria <ion@agorria.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: [PATCH v4 0/6] Add driver for NVIDIA Tegra30 SoC Thermal sensor
+Date:   Wed, 16 Jun 2021 22:04:11 +0300
+Message-Id: <20210616190417.32214-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <CAFv8Nw+FNfmgwadeFMWjRiGbKFuO4JJ=9ggRHxG+Pq_OuHdmeA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
->> I don't think it's correct to declare 4-channel support at the
->> individual codec DAI level when in practice each device will be provided
->> with a TDM mask that selects two slots.
-> 
-> On this platform there is no TDM support, so there were two I2S data lines.
-> 
->>
->> This is confusing device capabilities and TDM link configuration.
-> 
-> I see that in most of the use cases of multiple amps, we should use
-> codecs and num_codecs of the link.
-> But in this case we only want one codec to control the only GPIO
-> shared by 4 max98357a amps
-> I think we should be able to use 1 max98357 codec and 3 dummy codec to
-> fulfill this use case.
-> Not sure if the number of dummy codec would really matter.
-> With num_codec > 1 we should be able to bypass the channel checking
-> and just use the channel from CPU DAI.
+This series adds support for the thermal sensor that is found on NVIDIA
+Tegra30 SoC. Sensor monitors temperature and voltage of the SoC, it also
+emits signals to the power management and clock controllers that are
+performing the emergency shut down and the CPU frequency throttling
+when a pre-programmed temperature levels are reached.
 
-Interesting, I haven't seen such 'multi-lane' solutions so far for I2S.
+Changelog:
+
+v4: - Removed DIV2 CPU frequency throttling and cooling device part as was
+      suggested by Daniel Lezcano since we need to notify cpufreq about the
+      updated frequency and change the thermal pressure. The thermal pressure
+      change should co-exists with the cpufreq_cooling. This all needs some
+      more thought, so the DIV2 mitigation will come sometime later.
+
+    - Added ack from Thierry Reding.
+
+    - Changed default TZ trips in the device-tree to the silicon temperature
+      levels, instead of the average device levels.
+
+v3: - No code changes. CC'ed linux-pm, which was previously missed by accident.
+      Not sure how much that is important for the thermal patches, but won't
+      hurt to re-send since only DT binding was reviewed so far.
+
+v2: - Made a very minor improvement to one error message, it now prints
+      number of channel at which error occurred.
+
+    - Added r-b from Rob Herring to the binding.
+
+Dmitry Osipenko (6):
+  dt-bindings: thermal: Add binding for Tegra30 thermal sensor
+  thermal: thermal_of: Stop zone device before unregistering it
+  thermal/drivers/tegra: Add driver for Tegra30 thermal sensor
+  ARM: tegra_defconfig: Enable CONFIG_TEGRA30_TSENSOR
+  ARM: multi_v7_defconfig: Enable CONFIG_TEGRA30_TSENSOR
+  ARM: tegra: Add SoC thermal sensor to Tegra30 device-trees
+
+ .../thermal/nvidia,tegra30-tsensor.yaml       |  73 ++
+ arch/arm/boot/dts/tegra30.dtsi                |  87 ++-
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ arch/arm/configs/tegra_defconfig              |   1 +
+ drivers/thermal/tegra/Kconfig                 |   7 +
+ drivers/thermal/tegra/Makefile                |   1 +
+ drivers/thermal/tegra/tegra30-tsensor.c       | 673 ++++++++++++++++++
+ drivers/thermal/thermal_of.c                  |   3 +
+ 8 files changed, 842 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/nvidia,tegra30-tsensor.yaml
+ create mode 100644 drivers/thermal/tegra/tegra30-tsensor.c
+
+-- 
+2.30.2
 
