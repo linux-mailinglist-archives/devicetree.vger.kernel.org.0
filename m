@@ -2,180 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00FEE3AA320
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 20:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EDCD3AA351
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 20:42:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231818AbhFPSZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 14:25:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49698 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231802AbhFPSZ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 14:25:27 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E7D7C061767
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 11:23:20 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id h16so2232267pjv.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 11:23:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Qu5SD0l3J+MDZZbvAdUGnh9/5F/6cc6Lr04cR7Nq4MY=;
-        b=qqkpl6U0YvA+hUg7B593WU8MAe3Mdmoo4lgakJQH9B+Elgp1QTp5DQMnmQ0Jiangyy
-         iJ4m0CF7RecpNQXLkp24mXhEnH8FdkEbopyiHpoRJSGgOUuLKRw3IdNR6YW9A8Eh+c9e
-         O2N7tvzRD9CjQEp3Bn8m4FyW6HBlbAo5kA8R6kXmR0Ehtc+k8ejD27jTYigLkx6VR9Ia
-         LUpqt4N340nG8IiGSQDXAY1RkuNg/V1vD4+gFPdV/cReQxol/8v5FZns5uNjMiEEOCJS
-         LH7b0QG+XTzXg6ENVGReIzC7b9jkEN435ZILI0nzZ5Y7vyWjDsPORw9dnzRS/5XNXdKy
-         IOYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Qu5SD0l3J+MDZZbvAdUGnh9/5F/6cc6Lr04cR7Nq4MY=;
-        b=M8QYEfRAPi1yWPBEftPbKXYjCefYadWzalj1GDtIDowUeWMldaeHr/b/lbhK5foAnU
-         v68J91QV0bUezX+GvKHcrXPcePfcBAsYlS9mM0O/rWWHFhn8J3TKQZ4qUqHPKPi8e6sj
-         COtb7ia5ZPlAKGc2uadaPrDH0936a5qp4e54Q4KzzXH912gPS7VgXElgXAv8QfC7mP88
-         r64ZipODLaRKe/Q2U367EJ4YoXBK5CCfBO8Onk35UK0h5+QAM9/BnE7RiD1/H+PQ/9h+
-         CfH2KJL1yiHIj9ut7Rb7yZtmaVWLKF2VSNOLMVRvWE62TROuG6mdHYyAT519lc9h2MVn
-         vs3A==
-X-Gm-Message-State: AOAM532zX5+CbLa8s3stwcoyqX1OicCQrHb5kVHxpTVhIWEp/5TWY0/m
-        KNf+O6NCKaxbVowSgEgRuptP
-X-Google-Smtp-Source: ABdhPJzetd5O+MxiPg0+9m/TPgj/TWEUgQZPR/EkqFlN+HQBg2H7glLKdwH5AO+iAWSDdiICyY3IEA==
-X-Received: by 2002:a17:902:a60f:b029:11e:62b3:e454 with SMTP id u15-20020a170902a60fb029011e62b3e454mr770493plq.51.1623867799751;
-        Wed, 16 Jun 2021 11:23:19 -0700 (PDT)
-Received: from thinkpad ([2409:4072:17:2c05:a14f:78ce:1082:5556])
-        by smtp.gmail.com with ESMTPSA id t1sm2761822pjs.20.2021.06.16.11.23.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 11:23:19 -0700 (PDT)
-Date:   Wed, 16 Jun 2021 23:53:13 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     lorenzo.pieralisi@arm.com, robh@kernel.org, bhelgaas@google.com,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Siddartha Mohanadoss <smohanad@codeaurora.org>
-Subject: Re: [PATCH v2 2/3] PCI: dwc: Add Qualcomm PCIe Endpoint controller
- driver
-Message-ID: <20210616182313.GA152639@thinkpad>
-References: <20210603103814.95177-1-manivannan.sadhasivam@linaro.org>
- <20210603103814.95177-3-manivannan.sadhasivam@linaro.org>
- <YLw744UeM6fj/xoS@builder.lan>
- <20210609085152.GB15118@thinkpad>
+        id S231935AbhFPSoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 14:44:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42396 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231892AbhFPSoD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Jun 2021 14:44:03 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3914E610A3;
+        Wed, 16 Jun 2021 18:41:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623868917;
+        bh=A/u+qgoYDIfPJH2nR7TN1MVSs3c34aZySloJGmF3DxI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XW7Y4X4BrA5t9ijeAkMM5QcCdVYTcPYigARzxXFbf+hvb/uvp+9Mh4a34b6q7DC/i
+         sftLrmCBohcI5jLH7tRhCQG0oRbDHxXeJk4RnxcA6Ul46XtSEkqfRY8t/XGFaIFk86
+         qALO4rJMHfSIQDqcWwSZq03gCR35QANxOrYdPBiBe/2o4ooVhYHO++ff/Wjl3yD1k0
+         5+AqyA7gDeMM/vaNpWgsQ3+LVyhh+c7BqwX1vaXN+fU88HSnc2YCtVPrtUbPSvo8Oo
+         6qWAuSvjwilO69NivBQSK/Tx5fcLWTIvpS50NkVkCoknp6Umst4ITXs8YCSnSw0png
+         hRSa7JSohypWw==
+Date:   Wed, 16 Jun 2021 20:41:50 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-ide@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, dmaengine@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-iio@vger.kernel.org,
+        alsa-devel@alsa-project.org, iommu@lists.linux-foundation.org,
+        linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
+        netdev@vger.kernel.org, linux-can@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Jens Axboe <axboe@kernel.dk>, Stephen Boyd <sboyd@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Vinod Koul <vkoul@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH] dt-bindings: Drop redundant minItems/maxItems
+Message-ID: <YMpF7gkpbNQYX5EB@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-ide@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-iio@vger.kernel.org, alsa-devel@alsa-project.org,
+        iommu@lists.linux-foundation.org, linux-media@vger.kernel.org,
+        linux-mmc@vger.kernel.org, netdev@vger.kernel.org,
+        linux-can@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-rtc@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>, Ohad Ben-Cohen <ohad@wizery.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Brown <broonie@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+References: <20210615191543.1043414-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Ul4MnuDBL/PvPlAZ"
 Content-Disposition: inline
-In-Reply-To: <20210609085152.GB15118@thinkpad>
+In-Reply-To: <20210615191543.1043414-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 09, 2021 at 02:22:00PM +0530, Manivannan Sadhasivam wrote:
-> On Sat, Jun 05, 2021 at 10:07:15PM -0500, Bjorn Andersson wrote:
-> > On Thu 03 Jun 05:38 CDT 2021, Manivannan Sadhasivam wrote:
-> > 
-> > > Add driver support for Qualcomm PCIe Endpoint controller driver based on
-> > > the Designware core with added Qualcomm specific wrapper around the
-> > > core. The driver support is very basic such that it supports only
-> > > enumeration, PCIe read/write, and MSI. There is no ASPM and PM support
-> > > for now but these will be added later.
-> > > 
-> > > The driver is capable of using the PERST# and WAKE# side-band GPIOs for
-> > > operation and written on top of the DWC PCI framework.
-> > > 
-> > > Co-developed-by: Siddartha Mohanadoss <smohanad@codeaurora.org>
-> > > Signed-off-by: Siddartha Mohanadoss <smohanad@codeaurora.org>
-> > > [mani: restructured the driver and fixed several bugs for upstream]
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > 
-> > Really nice to see this working!
-> > 
-> > > ---
-> > >  drivers/pci/controller/dwc/Kconfig        |  10 +
-> > >  drivers/pci/controller/dwc/Makefile       |   1 +
-> > >  drivers/pci/controller/dwc/pcie-qcom-ep.c | 780 ++++++++++++++++++++++
-> > >  3 files changed, 791 insertions(+)
-> > >  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> > > index 423d35872ce4..32e735b1fd85 100644
-> > > --- a/drivers/pci/controller/dwc/Kconfig
-> > > +++ b/drivers/pci/controller/dwc/Kconfig
-> > > @@ -180,6 +180,16 @@ config PCIE_QCOM
-> > >  	  PCIe controller uses the DesignWare core plus Qualcomm-specific
-> > >  	  hardware wrappers.
-> > >  
-> > > +config PCIE_QCOM_EP
-> > > +	bool "Qualcomm PCIe controller - Endpoint mode"
-> > > +	depends on OF && (ARCH_QCOM || COMPILE_TEST)
-> > > +	depends on PCI_ENDPOINT
-> > > +	select PCIE_DW_EP
-> > > +	help
-> > > +	  Say Y here to enable support for the PCIe controllers on Qualcomm SoCs
-> > > +	  to work in endpoint mode. The PCIe controller uses the DesignWare core
-> > > +	  plus Qualcomm-specific hardware wrappers.
-> > > +
-> > >  config PCIE_ARMADA_8K
-> > >  	bool "Marvell Armada-8K PCIe controller"
-> > >  	depends on ARCH_MVEBU || COMPILE_TEST
-> > > diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> > > index eca805c1a023..abb27642d46b 100644
-> > > --- a/drivers/pci/controller/dwc/Makefile
-> > > +++ b/drivers/pci/controller/dwc/Makefile
-> > > @@ -12,6 +12,7 @@ obj-$(CONFIG_PCI_KEYSTONE) += pci-keystone.o
-> > >  obj-$(CONFIG_PCI_LAYERSCAPE) += pci-layerscape.o
-> > >  obj-$(CONFIG_PCI_LAYERSCAPE_EP) += pci-layerscape-ep.o
-> > >  obj-$(CONFIG_PCIE_QCOM) += pcie-qcom.o
-> > > +obj-$(CONFIG_PCIE_QCOM_EP) += pcie-qcom-ep.o
-> > >  obj-$(CONFIG_PCIE_ARMADA_8K) += pcie-armada8k.o
-> > >  obj-$(CONFIG_PCIE_ARTPEC6) += pcie-artpec6.o
-> > >  obj-$(CONFIG_PCIE_INTEL_GW) += pcie-intel-gw.o
-> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> > > new file mode 100644
-> > > index 000000000000..b68511bacc2a
-> > > --- /dev/null
-> > > +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> > > @@ -0,0 +1,780 @@
 
-[...]
+--Ul4MnuDBL/PvPlAZ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > > +static int qcom_pcie_ep_enable_irq_resources(struct platform_device *pdev,
-> > > +					     struct qcom_pcie_ep *pcie_ep)
-> > > +{
-> > > +	int irq, ret;
-> > > +
-> > > +	irq = platform_get_irq_byname(pdev, "global");
-> > > +	if (irq < 0) {
-> > > +		dev_err(&pdev->dev, "Failed to get Global IRQ\n");
-> > > +		return irq;
-> > > +	}
-> > > +
-> > > +	ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
-> > > +					qcom_pcie_ep_global_threaded_irq,
-> > > +					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-> > 
-> > Leave out the trigger and rely on DT.
-> > 
-> 
-> Okay
-> 
-> > > +					"global_irq", pcie_ep);
-> > > +	if (ret) {
-> > > +		dev_err(&pdev->dev, "Failed to request Global IRQ\n");
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	pcie_ep->perst_irq = gpiod_to_irq(pcie_ep->reset);
-> > > +	irq_set_status_flags(pcie_ep->perst_irq, IRQ_NOAUTOEN);
-> > 
-> > Is the global interrupt needed for dw_pcie_ep_init()? Or could this
-> > simply be done when things are ready to handle the interrupts?
-> > 
-> 
-> No it is not needed. I can move this after dw_pcie_ep_init().
-> 
+On Tue, Jun 15, 2021 at 01:15:43PM -0600, Rob Herring wrote:
+> If a property has an 'items' list, then a 'minItems' or 'maxItems' with t=
+he
+> same size as the list is redundant and can be dropped. Note that is DT
+> schema specific behavior and not standard json-schema behavior. The tooli=
+ng
+> will fixup the final schema adding any unspecified minItems/maxItems.
+>=20
+> This condition is partially checked with the meta-schema already, but
+> only if both 'minItems' and 'maxItems' are equal to the 'items' length.
+> An improved meta-schema is pending.
+>=20
+> Cc: Jens Axboe <axboe@kernel.dk>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Herbert Xu <herbert@gondor.apana.org.au>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> Cc: Kamal Dasu <kdasu.kdev@gmail.com>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Marc Zyngier <maz@kernel.org>
+> Cc: Joerg Roedel <joro@8bytes.org>
+> Cc: Jassi Brar <jassisinghbrar@gmail.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Wolfgang Grandegger <wg@grandegger.com>
+> Cc: Marc Kleine-Budde <mkl@pengutronix.de>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Vivien Didelot <vivien.didelot@gmail.com>
+> Cc: Vladimir Oltean <olteanv@gmail.com>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Kishon Vijay Abraham I <kishon@ti.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: "Uwe Kleine-K=C3=B6nig" <u.kleine-koenig@pengutronix.de>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Cc: Ohad Ben-Cohen <ohad@wizery.com>
+> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> Cc: Paul Walmsley <paul.walmsley@sifive.com>
+> Cc: Palmer Dabbelt <palmer@dabbelt.com>
+> Cc: Albert Ou <aou@eecs.berkeley.edu>
+> Cc: Alessandro Zummo <a.zummo@towertech.it>
+> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Zhang Rui <rui.zhang@intel.com>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-I don't know why but I'm seeing issues when this gets called after
-dw_pcie_ep_init(). So I'm keeping this function as it is for now.
+Acked-by: Wolfram Sang <wsa@kernel.org> # for I2C
 
-Thanks,
-Mani
+
+--Ul4MnuDBL/PvPlAZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmDKRekACgkQFA3kzBSg
+KbbFdA/+J6slaN90bvqrl9Kylr+F1vWPHBVKSRdA0mnhK09uqqdE0YEx3nLRBJYG
+zGjhfQY+0UCubghvsI8mYBKj+jv5fkzM8D2Mr13GL5b+zVFOML1f24o8y9Fwsi6A
+qbgTfoI0FaRdGTd1ocYLkYtywYrM9XmSeG9QuXBLIufeQsnOspjtQQ+WYRNM4qzw
+Qa+FkuAJZPED0sG7wbpPkzaA4eNfoKn0YQNwk8tIDdl5qvrw6W0cZ6lhog5v5kPB
+c3gC2OJzR4fXzt+uA2rIWWF9rujLHaiWT0nWXSz93ViX9pZPZ77kDSK4xEz8h3Rr
+mRX25SXmSnOf3xLGGkw6fx86sT5dZ6HlhWbhHbXdGzeYBeCfrgXwgj3wHXlyHA5S
+jIgGUlAeT9uMSmv3lmSQ4Lx3tUvKupZ8zX9N6/ay+2kiIei931x+sP73627hNjwz
+Tnbj1JBDeNgP0Oukiq6xMGyT5VxQk1rgh0garZvFZoPVEr/ae1Z5A8/mNKSwhOVj
+4PRKHuz72zpDbx7LuMaG6EnY5fzhDSGVRCSIeNs4yRX1cnVbtEGbsI7yOmrUx+wl
+3kAkYFZYbin5oRO36gDyYg5ZUyFDy4s+Jh5a8kPFANPY2ToOS8Ssa1hFNu0SSgve
+uONICGgcQoHO4Jbvea809td91bvqtiCieKCCX19GqJa37ktj2Ww=
+=EWxK
+-----END PGP SIGNATURE-----
+
+--Ul4MnuDBL/PvPlAZ--
