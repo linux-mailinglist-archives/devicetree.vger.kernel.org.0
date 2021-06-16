@@ -2,70 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C95633A97EA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 12:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEF063A97F1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Jun 2021 12:43:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232479AbhFPKoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 06:44:22 -0400
-Received: from outpost1.zedat.fu-berlin.de ([130.133.4.66]:42257 "EHLO
-        outpost1.zedat.fu-berlin.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232443AbhFPKoT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 06:44:19 -0400
-Received: from inpost2.zedat.fu-berlin.de ([130.133.4.69])
-          by outpost.zedat.fu-berlin.de (Exim 4.94)
-          with esmtps (TLS1.2)
-          tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-          (envelope-from <glaubitz@zedat.fu-berlin.de>)
-          id 1ltSzq-002My5-Iz; Wed, 16 Jun 2021 12:42:10 +0200
-Received: from suse-laptop.physik.fu-berlin.de ([160.45.32.140])
-          by inpost2.zedat.fu-berlin.de (Exim 4.94)
-          with esmtpsa (TLS1.2)
-          tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-          (envelope-from <glaubitz@physik.fu-berlin.de>)
-          id 1ltSzq-002Bca-Cr; Wed, 16 Jun 2021 12:42:10 +0200
-Subject: Re: [PATCH 0/3] Remove shdma DT support
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     Guennadi Liakhovetski <guennadi.liakhovetski@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-sh@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1623405675.git.geert+renesas@glider.be>
-From:   John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
-Message-ID: <0c6bdd6a-826c-6831-1477-3a1e782cced3@physik.fu-berlin.de>
-Date:   Wed, 16 Jun 2021 12:42:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S232177AbhFPKpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 06:45:47 -0400
+Received: from mailgate.ics.forth.gr ([139.91.1.2]:20542 "EHLO
+        mailgate.ics.forth.gr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232386AbhFPKpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 06:45:46 -0400
+Received: from av3.ics.forth.gr (av3in.ics.forth.gr [139.91.1.77])
+        by mailgate.ics.forth.gr (8.15.2/ICS-FORTH/V10-1.8-GATE) with ESMTP id 15GAhbd5078684
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 13:43:37 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; d=ics.forth.gr; s=av; c=relaxed/simple;
+        q=dns/txt; i=@ics.forth.gr; t=1623840212; x=1626432212;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=GvWDrpQ18tJYXKrSYhkofkZAxdsZKJZtHm7ZMn9f9q0=;
+        b=Ox7pnLZpX/WR/RaCMSSFZyDMCrbV7+K6Fr9YaX95rJM7mpa+VHMmbiIKifK6D5pb
+        vHZ74rjVGPrmiLeYPH52cBgB+M93USYDiDguv/5ykYyXnV8x2Z10ny3HJdlN2f6A
+        FH2CD9lF1P88oTSc9bU6AhTwr9tLV2eIF8nSMvuqBkELPEl/cYBv9MMN5yuDSoJp
+        WnpvgpbbnZ/RrR11EcHOyEBfPsKcGlk70+D+tJeQvkBDn30UYYaMwXq1bfvKEBFG
+        fB9csLoGiO+0g4JCohqLVP8np14NKV/PbikgrPjtSFzD/a/WbRSqNuNFiHjru4ww
+        X0nNMNpXzXYfBDSw314hJA==;
+X-AuditID: 8b5b014d-96ef2700000067b6-d2-60c9d5d4bb02
+Received: from enigma.ics.forth.gr (enigma.ics.forth.gr [139.91.151.35])
+        by av3.ics.forth.gr (Symantec Messaging Gateway) with SMTP id 89.7A.26550.4D5D9C06; Wed, 16 Jun 2021 13:43:32 +0300 (EEST)
+X-ICS-AUTH-INFO: Authenticated user:  at ics.forth.gr
 MIME-Version: 1.0
-In-Reply-To: <cover.1623405675.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Original-Sender: glaubitz@physik.fu-berlin.de
-X-Originating-IP: 160.45.32.140
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Wed, 16 Jun 2021 13:43:32 +0300
+From:   Nick Kossifidis <mick@ics.forth.gr>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Nick Kossifidis <mick@ics.forth.gr>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/3] riscv: Remove non-standard linux,elfcorehdr handling
+Organization: FORTH
+In-Reply-To: <CAMuHMdVRcN+y0kwxxEH8UGo6bRT9SvxRSLU8VzWJFx=yLQ5S0g@mail.gmail.com>
+References: <cover.1623780059.git.geert+renesas@glider.be>
+ <bcc5c666f4ada9a8bbc26f559751f0da67f769f8.1623780059.git.geert+renesas@glider.be>
+ <abadee118c1945c44d9bff7675b12ec4@mailhost.ics.forth.gr>
+ <CAL_JsqLU7GWDxdnR2-Yd2vbj7w=5pNr_fFocDQgPbs17EpBG0g@mail.gmail.com>
+ <bdfbf7cc997a10a94331d77332dbe88e@mailhost.ics.forth.gr>
+ <CAMuHMdVRcN+y0kwxxEH8UGo6bRT9SvxRSLU8VzWJFx=yLQ5S0g@mail.gmail.com>
+Message-ID: <ef1a9a97e0238a0ff2d8e044487602a5@mailhost.ics.forth.gr>
+X-Sender: mick@mailhost.ics.forth.gr
+User-Agent: Roundcube Webmail/1.3.16
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupkkeLIzCtJLcpLzFFi42Lpjp6urHvl6skEgzkPRCy2/p7FbvF+WQ+j
+        xfwj51gtZr75z2bx7NZeJotNj6+xWlzeNYfNYtvnFjaL5nfn2C1eXu5htmibxW/RuvcIu0XL
+        HVMHXo8189Ywerx5+ZLF43DHF3aPnbPusns83HSJyWPTqk42j0OHOxg9Ni+p97jUfJ3d4/Mm
+        uQCuKC6blNSczLLUIn27BK6Mn837WQq+sVX07L7A1sB4h7WLkZNDQsBE4v6kx8xdjFwcQgJH
+        GSUuf5jKApEwlZi9t5MRxOYVEJQ4OfMJWJxZwEJi6pX9jBC2vETz1tnMIDaLgKrE57+dYEPZ
+        BDQl5l86CFTPwSEioCsx5ycTyHxmgYmsEpv2zgGrERbwlfg18yI7iM0vICzx6e5FsDinQKDE
+        hFUH2SAOmsQs8fPVeRaII1wkrsxZyQxxnIrEh98P2EEWiALZm+cqTWAUnIXk1FlITp2F5NQF
+        jMyrGAUSy4z1MpOL9dLyi0oy9NKLNjGCY4vRdwfj7c1v9Q4xMnEwHmKU4GBWEuHVLT6RIMSb
+        klhZlVqUH19UmpNafIhRmoNFSZyXV29CvJBAemJJanZqakFqEUyWiYNTqoGJxT+6LTRK5EzI
+        IwXmXUYeiqUrtvmIsam93uS22E1vpT1TwMHCToGLjgccH+112Nm6Mj0//+T2hqPBR+0NN3T7
+        /HtbfuxCUfVz9ygZfmNWzcU+h2YEfPtieCowYoKP8EbDLRNv//hm+0Axbd+99VIm7z2m/pRs
+        vpOlV7pDQf/yvscs8xwN3j7Kc9w4d8ae3Wdm5laWvf5SdGI+z7OcibvtRdYLvf+UcnLzD57Z
+        1kb6Rnf0Dqxbxvx/zSXl/vqVySbdCVa5brXn97lLz7wzk/vC5+5tddPZs7ueXd2sFJbjOlOL
+        a9YCtkkLutV9bwvejP1c2rfrpk5ftEKO0fu1jrMqFyx1Lz25X2Kh9tv1GTIzlFiKMxINtZiL
+        ihMBoMjLOxwDAAA=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert!
+Στις 2021-06-16 10:56, Geert Uytterhoeven έγραψε:
+> 
+> I can't comment on the duplication on arm64, but to me, /chosen
+> sounds like the natural place for both "linux,elfcorehdr" and
+> "linux,usable-memory-range".  First rule of DT is "DT describes
+> hardware, not software policy", with /chosen describing some software
+> configuration.
+> 
 
-On 6/11/21 12:18 PM, Geert Uytterhoeven wrote:
-> Hence this series removes the Renesas SHDMA Device Tree bindings, the
-> SHDMA DMA multiplexer driver, and the corresponding description in the
-> R-Mobile APE6 DTS.
-Do these changes make life harder in case we want to convert SH to device
-tree as already prepared by Yoshinori Sato? [1]
+We already have "linux,usable-memory" on /memory node:
+https://elixir.bootlin.com/linux/v5.13-rc6/source/drivers/of/fdt.c#L1011
+and it makes perfect sense to be there since it overrides /memory's reg 
+property.
 
-Adrian
+Why define another binding for the same thing on /chosen ?
 
-> [1] https://lore.kernel.org/patchwork/cover/693910/
+> 
+> OK, thanks!
+> But do you need the entry on the reservation map?
+> 
 
--- 
- .''`.  John Paul Adrian Glaubitz
-: :' :  Debian Developer - glaubitz@debian.org
-`. `'   Freie Universitaet Berlin - glaubitz@physik.fu-berlin.de
-  `-    GPG: 62FF 8A75 84E0 2956 9546  0006 7426 3B37 F5B5 F913
+I'll add the entry from kexec-tools, so that the kernel will reserve the 
+region as part of:
+https://elixir.bootlin.com/linux/v5.13-rc6/source/drivers/of/fdt.c#L605
