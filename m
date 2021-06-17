@@ -2,154 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CD663AAA88
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 06:50:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38A173AAAB9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 07:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229915AbhFQEwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 00:52:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46802 "EHLO
+        id S229834AbhFQFTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 01:19:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229784AbhFQEwM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 00:52:12 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9130EC06175F;
-        Wed, 16 Jun 2021 21:50:03 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id u5-20020a7bc0450000b02901480e40338bso4181155wmc.1;
-        Wed, 16 Jun 2021 21:50:03 -0700 (PDT)
+        with ESMTP id S229580AbhFQFTq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 01:19:46 -0400
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 419A0C06175F
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 22:17:38 -0700 (PDT)
+Received: by mail-pj1-x102b.google.com with SMTP id 13-20020a17090a08cdb029016eed209ca4so3156053pjn.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 22:17:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ASVo2MLoqVP1mLF6Nd3xdMslTrtZKM7Mb5C6XqAN9Os=;
-        b=FHM8WTkrJ5sOVzzApmHO1kODYwLZheKZiN+Dv7007BCbcYQYVmxGSFAy+1wHvpZT8N
-         p/bJu+/TqfBIGRtpgsEPdqKOvltEjWjCmENWI3Uao9PnBs2UY/qhPgW0NLrFMQ3rCa93
-         I8Kia0V5WTLKTH4kUUQX7L/uQx7Zeh0q0wsp373RsupINBdP3zJ9DwflL7wG7NCoA7GI
-         TMtSErfAzbe3QZ5wet/jwyYhcm3KWSHYeifs/qVr9EXW9uaVhY1BgRsRAw+ikR7PIgoi
-         IoKltUU6dO0Ux/0r3fOj4ZeLfCD014ipoARQVFGvY8vRFyk1ZbCBmtV/l5VeU7x+xmKd
-         VhEg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bGMTr7YGGFoZgeDMLbeSkUvHS85PZtWqOqc9pHvL3I4=;
+        b=WwRzX0dTJ8oUULfRtohg3ikJtEaCI3dUZxPHVo0AhzfPjVveSGOvTjE/MoIgbBrQMh
+         FEQ+9x5JoLBcqiYExdja0VdB87PVHETqqQeFE5oXgkpYdyQ+4KQztT0YwWQtr19XoH4y
+         iCE3fXfFSAmyxizo8oa9pTXreKBGlV/J5ztOAw2aFWaqsWw0wH1G71lDKXxT9p3ERSLQ
+         l4+5EZEXuk29/exf+SogLVHJAK4yrBTLEQVX+yavmcI57FWEP1RM4mZQ0jymvEWtZI7N
+         eYZohPzKP6VsswLTlv/ulXupNiTjypW7HnzimF4WkiHoAB+Wm1kw08PvDeZYSaQyorWW
+         /0Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ASVo2MLoqVP1mLF6Nd3xdMslTrtZKM7Mb5C6XqAN9Os=;
-        b=Nqc4jC8Be43Vb0W6IpdGZL8VVPWwpF7rI6FibsSog8VZzPD2FpSniibDsasY7t8z+i
-         KRo/ckG/7Y66vUREl1qz4JYrOKALEMR7jqzgazk6Vi4xSZZZI36wUkBvScmBoOPtft14
-         jnm1G/5PMrGVCB+sCkbQPVdA69mYkbtWomM9TD5xxcLkbtcusNu1tfJ2Xfo2YXC+ZtGO
-         /47ECSD0bA29ST1DZe52VLRubr5Fnfl9W7U04Yy+GYJeLFsEZMIbKVvW1rl9aoAsLvCH
-         Z4HQ3a+PenVp/IgrUVJOUNJA18umHv1xmBkePd6Oz9AE+jTaMZn5PWqd7dov7rslRqmr
-         gcjQ==
-X-Gm-Message-State: AOAM531GA6waQI+1sL4nwCmAneTHQBVWwqqtTzK0613EaTnnb+byybDq
-        K+kWOLXhhIESLiJ2zYRu1w==
-X-Google-Smtp-Source: ABdhPJykCMd2j7kccm6Lk69DK/jMdpK2aAoJdzlwIytRotmEuFmHTkvf2l6vWkoFn0SfSipgLCeULw==
-X-Received: by 2002:a05:600c:3ba2:: with SMTP id n34mr2705531wms.120.1623905402247;
-        Wed, 16 Jun 2021 21:50:02 -0700 (PDT)
-Received: from localhost.localdomain (ip5b434b8b.dynamic.kabel-deutschland.de. [91.67.75.139])
-        by smtp.googlemail.com with ESMTPSA id n13sm4587460wrg.75.2021.06.16.21.50.01
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bGMTr7YGGFoZgeDMLbeSkUvHS85PZtWqOqc9pHvL3I4=;
+        b=btTmvAmToyEl8XCnohaXchAgFLk8NWbcvuwZXn3YYwamKSsxx77VvdFCj+L+TP7I3a
+         79+sSrebHuWJi1h+jZF4uPSs8SSfu1ukpP9zM1h+way7ZvCLF7k7TqJ2BicbQEnD+PXq
+         N5chEA+Ha1ulFKd6NKjowFg0RnY5kexH3OgUtihAWvVIEJ+TnA9avca1QLZxPtE0zDEc
+         Rg8TkAXgXi1030J0kt12TKiI2izWYr4unvdFwpxQd7LQkkBrWy5DMURvuEzUB1Xk97MQ
+         VMm4q0yBPhvHoWP618n6vc3hzxNIUN0kUvaHUtITWC7uFnB09lxaQnyX0/+TfIpsEKSB
+         sTQw==
+X-Gm-Message-State: AOAM5325aavczkUS+N1G3cQ4mZTckyPuuKZpRXAx2fSvX/QYTcIXojpF
+        nwqc6yb60y5XMaw3AJ5c//P3/w==
+X-Google-Smtp-Source: ABdhPJw0fzToV+OwzCzWXoJHSCBKNiIEx2uyMi+bjAaS0PSYEQMzQueXzHoj4ZT2bxEkUV3PhkvRNg==
+X-Received: by 2002:a17:90a:5106:: with SMTP id t6mr6212572pjh.231.1623907057547;
+        Wed, 16 Jun 2021 22:17:37 -0700 (PDT)
+Received: from localhost.name ([122.177.46.2])
+        by smtp.gmail.com with ESMTPSA id 188sm3900893pfz.146.2021.06.16.22.17.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 21:50:01 -0700 (PDT)
-From:   Alex Bee <knaerzche@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, balbi@kernel.org,
-        gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH 3/3] arm64: dts: rockchip: Add RK3399 Rock Pi 4b plus board
-Date:   Thu, 17 Jun 2021 06:49:55 +0200
-Message-Id: <20210617044955.598994-3-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210617044955.598994-1-knaerzche@gmail.com>
-References: <20210617044955.598994-1-knaerzche@gmail.com>
+        Wed, 16 Jun 2021 22:17:37 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: [PATCH v3 0/5] regulator: qcom,rpmh-regulator: Add support for pmic available on SA8155p-adp board
+Date:   Thu, 17 Jun 2021 10:47:07 +0530
+Message-Id: <20210617051712.345372-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rock Pi 4b plus board is the successor of Rock Pi 4b board.
+Changes since v2:
+-----------------
+- v2 series can be found here: https://lore.kernel.org/linux-arm-msm/20210615074543.26700-1-bhupesh.sharma@linaro.org/T/#m8303d27d561b30133992da88198abb78ea833e21 
+- Addressed review comments from Bjorn and Mark.
+- As per suggestion from Bjorn, seperated the patches in different
+  patchsets (specific to each subsystem) to ease review and patch application.
 
-Differences to the original version are
-- has RK3399 OP1 SoC revision
-- has eMMC (16 or 32 GB) soldered on board (no changes required,
-  since it is enabled in rk3399-rock-pi-4.dtsi)
-- dev boards have SPI flash soldered, but as per manufacturer response,
-  this won't be the case for mass production boards
+Changes since v1:
+-----------------
+- v1 series can be found here: https://lore.kernel.org/linux-arm-msm/20210607113840.15435-1-bhupesh.sharma@linaro.org/T/#mc524fe82798d4c4fb75dd0333318955e0406ad18
+- Addressed review comments from Bjorn and Vinod received on the v1
+  series.
 
-I didn't add yet another compatible, since the small set of differences
-are captured by the device tree.
+This series adds the regulator support code for SA8155p-adp board
+which is based on Qualcomm snapdragon sa8155p SoC which in turn is
+simiar to the sm8150 SoC. 
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../dts/rockchip/rk3399-rock-pi-4b-plus.dts   | 47 +++++++++++++++++++
- 2 files changed, 48 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
+This board supports a new PMIC PMM8155AU.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index dbd7d37950f1..e867e5889d44 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -45,6 +45,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a-plus.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4b.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4b-plus.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock960.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64-v2.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-new file mode 100644
-index 000000000000..ea68b8c9d9ba
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-@@ -0,0 +1,47 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Akash Gajjar <Akash_Gajjar@mentor.com>
-+ * Copyright (c) 2019 Pragnesh Patel <Pragnesh_Patel@mentor.com>
-+ */
-+
-+/dts-v1/;
-+#include "rk3399-rock-pi-4.dtsi"
-+#include "rk3399-op1-opp.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK Pi 4B plus";
-+	compatible = "radxa,rockpi4b", "radxa,rockpi4", "rockchip,rk3399";
-+
-+	aliases {
-+		mmc2 = &sdio0;
-+	};
-+};
-+
-+&sdio0 {
-+	status = "okay";
-+
-+	brcmf: wifi@1 {
-+		compatible = "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
-+		interrupt-names = "host-wake";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_host_wake_l>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm43438-bt";
-+		clocks = <&rk808 1>;
-+		clock-names = "ext_clock";
-+		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
-+		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-+	};
-+};
+While at it, also make some cosmetic changes to the regulator driver
+and dt-bindings to make sure the compatibles are alphabetical and also
+fix issues with extra comma(s) at the end of terminator line(s). 
+
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Bhupesh Sharma (5):
+  dt-bindings: regulator: qcom,rpmh-regulator: Arrange compatibles
+    alphabetically
+  dt-bindings: regulator: qcom,rpmh-regulator: Add compatible for
+    SA8155p-adp board pmic
+  regulator: qcom-rpmh: Cleanup terminator line commas
+  regulator: qcom-rpmh: Add terminator at the end of pm7325x_vreg_data[]
+    array
+  regulator: qcom-rpmh: Add new regulator found on SA8155p adp board
+
+ .../regulator/qcom,rpmh-regulator.yaml        | 17 ++---
+ drivers/regulator/qcom-rpmh-regulator.c       | 62 +++++++++++++++----
+ 2 files changed, 59 insertions(+), 20 deletions(-)
+
 -- 
-2.27.0
+2.31.1
 
