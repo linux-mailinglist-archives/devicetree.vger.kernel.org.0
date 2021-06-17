@@ -2,301 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1517E3AA7D3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 02:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C4813AA7DB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 02:02:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234838AbhFQACb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 20:02:31 -0400
-Received: from mail-il1-f174.google.com ([209.85.166.174]:37792 "EHLO
-        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234830AbhFQACa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 20:02:30 -0400
-Received: by mail-il1-f174.google.com with SMTP id x12so3862144ill.4;
-        Wed, 16 Jun 2021 17:00:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Q3wy77k7U+ym1xGosaNyR/K8lZY/em7vg0ko50zShvo=;
-        b=XWoJ5unFHDZ+tECkJD0ApaTjAM5k0HcVZH1DqRbUOgFKPASOA/MCCwtKRyaRysM+P1
-         N7Awiono+dF+5jVdvth+jR0Zak9c6sHXUpMoIgxvVtS/7HYRQxFMFgcnzXcJitZkjhzS
-         McK9VHFliZKpXOrbGk29jue5QS5HV919L4YbsWv9S5gjfykyUM0DTisNd2Hsmdxwwio3
-         BlyKVnlQgmEmsRUxS1bagiHUi23vyJWnOnodJQKMYnsZyOpmyDq+MNT+ovvo6IKiixJz
-         CotUABs47LdE9vVIMY3C+EudtEGKxa1nIsnX/Ro4YmYjuDFqcGke3MNhogrCJc04CtO2
-         rm2A==
-X-Gm-Message-State: AOAM530rkcsO1X+kYcVHjUPvcfD6y6H6p2IFzkmJWLG3U9cEyOJBy4Db
-        Cm/1LKzh+DkX74B7zq2tQQ==
-X-Google-Smtp-Source: ABdhPJwYl7LazyjQeknAyJE6FVZtc7k5TBJdLmJFPjMESumkwvwkzxk9PSd7FuojSbKpE1LeihuBdA==
-X-Received: by 2002:a05:6e02:1b06:: with SMTP id i6mr1396397ilv.101.1623888022660;
-        Wed, 16 Jun 2021 17:00:22 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p10sm1508345ilj.88.2021.06.16.17.00.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Jun 2021 17:00:21 -0700 (PDT)
-Received: (nullmailer pid 327679 invoked by uid 1000);
-        Thu, 17 Jun 2021 00:00:18 -0000
-Date:   Wed, 16 Jun 2021 18:00:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ming Qian <ming.qian@nxp.com>
-Cc:     mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 01/13] dt-bindings: media: imx8q: add imx video codec
- bindings
-Message-ID: <20210617000018.GA316656@robh.at.kernel.org>
-References: <cover.1623054584.git.ming.qian@nxp.com>
- <7cd02157f9a9cc7a773bd02137a92a04077638e5.1623054584.git.ming.qian@nxp.com>
+        id S234819AbhFQAEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 20:04:47 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:35550 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230481AbhFQAEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 20:04:47 -0400
+Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id BA888E53;
+        Thu, 17 Jun 2021 02:02:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1623888159;
+        bh=vMpmdDeMy2cFwrutYp/XAGNd7WXv6nEqX7IEH7vlbE0=;
+        h=Reply-To:To:Cc:References:From:Subject:Date:In-Reply-To:From;
+        b=DQyAOhrLj17rDAkGY2g7FvRunX4VyJrAFVP2j8MtsgVlKp29u37ypTi2yENnKZxY+
+         HPxA6nO+WWwk3KfSf8o8mf8y9SakScWbU9wv9GxDzOf6zTZp7HdlR9NKnaCvDZ8x95
+         v2GgQccwHWEK3OfcqivI5DJMP6Ej8JAIoyG9QUGU=
+Reply-To: kieran.bingham@ideasonboard.com
+To:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210419142345.53152-1-jacopo+renesas@jmondi.org>
+ <20210419142345.53152-4-jacopo+renesas@jmondi.org>
+From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
+Organization: Ideas on Board
+Subject: Re: [PATCH v5 3/7] media: i2c: max9286: Use "maxim,gpio-poc" property
+Message-ID: <fea0f6e4-cd24-4c2e-1470-d86957408254@ideasonboard.com>
+Date:   Thu, 17 Jun 2021 01:02:36 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7cd02157f9a9cc7a773bd02137a92a04077638e5.1623054584.git.ming.qian@nxp.com>
+In-Reply-To: <20210419142345.53152-4-jacopo+renesas@jmondi.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 07, 2021 at 04:42:48PM +0800, Ming Qian wrote:
-> Add devicetree binding documentation for IMX8Q Video Processing Unit IP
+Hi Jacopo,
+
+On 19/04/2021 15:23, Jacopo Mondi wrote:
+> The 'maxim,gpio-poc' property is used when the remote camera
+> power-over-coax is controlled by one of the MAX9286 gpio lines,
+> to instruct the driver about which line to use and what the line
+> polarity is.
 > 
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
-> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
+> Add to the max9286 driver support for parsing the newly introduced
+> property and use it if available in place of the usual supply, as it is
+> not possible to establish one as consumer of the max9286 gpio
+> controller.
+> 
+> If the new property is present, no gpio controller is registered and
+> 'poc-supply' is ignored.
+> 
+> In order to maximize code re-use, break out the max9286 gpio handling
+> function so that they can be used by the gpio controller through the
+> gpio-consumer API, or directly by the driver code.
+> 
+> Wrap the power up and power down routines to their own function to
+> be able to use either the gpio line directly or the supply. This will
+> make it easier to control the remote camera power at run time.
+
+I think I've seen Laurent's despair at the auxillary device bus already,
+but I can't help but feel it might be a way to register the gpio and
+regulator fully without having to handle any probe deferrals and allow
+the GPIO chip to be used as it's own regulator. (I.e. solve the issues I
+was facing last time I looked at it)
+
+But that said however, it's only a hypothesis having not yet fully
+investigated the option. It seems a shame to have to expose multiple
+ways of powering up the cameras, but I guess ultimately it's how the
+hardware is connected.
+
+Have we confirmed that the start up delays are no longer needed for the
+RDACM20 cameras? (which we've previously exposed as a regulator power up
+delay?)
+
+How would this handle those delays if required?
+
+
+> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
 > ---
->  .../bindings/media/nxp,imx8q-vpu.yaml         | 198 ++++++++++++++++++
->  1 file changed, 198 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
+>  drivers/media/i2c/max9286.c | 125 +++++++++++++++++++++++++++---------
+>  1 file changed, 94 insertions(+), 31 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml b/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
-> new file mode 100644
-> index 000000000000..058ca69c107a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
-> @@ -0,0 +1,198 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> diff --git a/drivers/media/i2c/max9286.c b/drivers/media/i2c/max9286.c
+> index 6fd4d59fcc72..99160aa68a5f 100644
+> --- a/drivers/media/i2c/max9286.c
+> +++ b/drivers/media/i2c/max9286.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/fwnode.h>
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/gpio/driver.h>
+> +#include <linux/gpio/machine.h>
+>  #include <linux/i2c.h>
+>  #include <linux/i2c-mux.h>
+>  #include <linux/module.h>
+> @@ -165,6 +166,9 @@ struct max9286_priv {
+>  
+>  	u32 reverse_channel_mv;
+>  
+> +	u32 gpio_poc;
+> +	u32 gpio_poc_flags;
 > +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/nxp,imx8q-vpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  	struct v4l2_ctrl_handler ctrls;
+>  	struct v4l2_ctrl *pixelrate;
+>  
+> @@ -1022,20 +1026,27 @@ static int max9286_setup(struct max9286_priv *priv)
+>  	return 0;
+>  }
+>  
+> -static void max9286_gpio_set(struct gpio_chip *chip,
+> -			     unsigned int offset, int value)
+> +static int max9286_gpio_set(struct max9286_priv *priv, unsigned int offset,
+> +			    int value)
+>  {
+> -	struct max9286_priv *priv = gpiochip_get_data(chip);
+> -
+>  	if (value)
+>  		priv->gpio_state |= BIT(offset);
+>  	else
+>  		priv->gpio_state &= ~BIT(offset);
+>  
+> -	max9286_write(priv, 0x0f, MAX9286_0X0F_RESERVED | priv->gpio_state);
+> +	return max9286_write(priv, 0x0f,
+> +			     MAX9286_0X0F_RESERVED | priv->gpio_state);
+> +}
 > +
-> +title: NXP i.MX8Q video encode and decode accelerators
+> +static void max9286_gpiochip_set(struct gpio_chip *chip,
+> +				 unsigned int offset, int value)
+> +{
+> +	struct max9286_priv *priv = gpiochip_get_data(chip);
 > +
-> +maintainers:
-> +  - Ming Qian <ming.qian@nxp.com>
-> +  - Shijie Qin <shijie.qin@nxp.com>
+> +	max9286_gpio_set(priv, offset, value);
+>  }
+>  
+> -static int max9286_gpio_get(struct gpio_chip *chip, unsigned int offset)
+> +static int max9286_gpiochip_get(struct gpio_chip *chip, unsigned int offset)
+>  {
+>  	struct max9286_priv *priv = gpiochip_get_data(chip);
+>  
+> @@ -1055,16 +1066,81 @@ static int max9286_register_gpio(struct max9286_priv *priv)
+>  	gpio->of_node = dev->of_node;
+>  	gpio->ngpio = 2;
+>  	gpio->base = -1;
+> -	gpio->set = max9286_gpio_set;
+> -	gpio->get = max9286_gpio_get;
+> +	gpio->set = max9286_gpiochip_set;
+> +	gpio->get = max9286_gpiochip_get;
+>  	gpio->can_sleep = true;
+>  
+> +	ret = devm_gpiochip_add_data(dev, gpio, priv);
+> +	if (ret)
+> +		dev_err(dev, "Unable to create gpio_chip\n");
 > +
-> +description: |-
-> +  The Amphion MXC video encoder(Windsor) and decoder(Malone) accelerators present
-> +  on NXP i.MX8Q SoCs.
+> +	return ret;
+> +}
 > +
-> +allOf:
-> +  - $ref: /schemas/simple-bus.yaml#
+> +static int max9286_parse_gpios(struct max9286_priv *priv)
+> +{
+> +	struct device *dev = &priv->client->dev;
+> +	u32 gpio_poc[2];
+> +	int ret;
+> +
+>  	/* GPIO values default to high */
+>  	priv->gpio_state = BIT(0) | BIT(1);
+>  
+> -	ret = devm_gpiochip_add_data(dev, gpio, priv);
+> +	/*
+> +	 * Parse the "gpio-poc" vendor property. If the camera power is
+> +	 * controlled by one of the MAX9286 gpio lines, do not register
+> +	 * the gpio controller and ignore 'poc-supply'.
+> +	 */
+> +	ret = of_property_read_u32_array(dev->of_node,
+> +					 "maxim,gpio-poc", gpio_poc, 2);
+> +	if (!ret) {
+> +		priv->gpio_poc = gpio_poc[0];
+> +		priv->gpio_poc_flags = gpio_poc[1];
+> +		if (priv->gpio_poc > 1 ||
+> +		    (priv->gpio_poc_flags != GPIO_ACTIVE_HIGH &&
+> +		     priv->gpio_poc_flags != GPIO_ACTIVE_LOW)) {
+> +			dev_err(dev, "Invalid 'gpio-poc': (%u %u)\n",
+> +				priv->gpio_poc, priv->gpio_poc_flags);
+> +			return -EINVAL;
+> +		}
+> +
+> +		return 0;
+> +	}
+> +
+> +	ret = max9286_register_gpio(priv);
+>  	if (ret)
+> -		dev_err(dev, "Unable to create gpio_chip\n");
+> +		return ret;
+> +
+> +	priv->regulator = devm_regulator_get(dev, "poc");
+> +	if (IS_ERR(priv->regulator)) {
+> +		if (PTR_ERR(priv->regulator) != -EPROBE_DEFER)
+> +			dev_err(dev, "Unable to get PoC regulator (%ld)\n",
+> +				PTR_ERR(priv->regulator));
+> +		return PTR_ERR(priv->regulator);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int max9286_poc_enable(struct max9286_priv *priv, bool enable)
+> +{
+> +	int ret;
+> +
+> +	/* If "poc-gpio" is used, toggle the line and do not use regulator. */
+> +	if (enable)
+> +		ret = priv->regulator
+> +		    ? regulator_enable(priv->regulator)
+> +		    : max9286_gpio_set(priv, priv->gpio_poc,
+> +				       enable ^ priv->gpio_poc_flags);
+> +	else
+> +		ret = priv->regulator
+> +		    ? regulator_disable(priv->regulator)
+> +		    : max9286_gpio_set(priv, priv->gpio_poc,
+> +				       enable ^ priv->gpio_poc_flags);
+> +
+> +	if (ret < 0)
+> +		dev_err(&priv->client->dev, "Unable to turn PoC %s\n",
+> +			enable ? "on" : "off");
+>  
+>  	return ret;
+>  }
+> @@ -1078,17 +1154,14 @@ static int max9286_init(struct device *dev)
+>  	client = to_i2c_client(dev);
+>  	priv = i2c_get_clientdata(client);
+>  
+> -	/* Enable the bus power. */
+> -	ret = regulator_enable(priv->regulator);
+> -	if (ret < 0) {
+> -		dev_err(&client->dev, "Unable to turn PoC on\n");
+> +	ret = max9286_poc_enable(priv, true);
+> +	if (ret)
+>  		return ret;
+> -	}
+>  
+>  	ret = max9286_setup(priv);
+>  	if (ret) {
+>  		dev_err(dev, "Unable to setup max9286\n");
+> -		goto err_regulator;
+> +		goto err_poc_disable;
+>  	}
+>  
+>  	/*
+> @@ -1098,7 +1171,7 @@ static int max9286_init(struct device *dev)
+>  	ret = max9286_v4l2_register(priv);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to register with V4L2\n");
+> -		goto err_regulator;
+> +		goto err_poc_disable;
+>  	}
+>  
+>  	ret = max9286_i2c_mux_init(priv);
+> @@ -1114,8 +1187,8 @@ static int max9286_init(struct device *dev)
+>  
+>  err_v4l2_register:
+>  	max9286_v4l2_unregister(priv);
+> -err_regulator:
+> -	regulator_disable(priv->regulator);
+> +err_poc_disable:
+> +	max9286_poc_enable(priv, false);
+>  
+>  	return ret;
+>  }
+> @@ -1286,20 +1359,10 @@ static int max9286_probe(struct i2c_client *client)
+>  	 */
+>  	max9286_configure_i2c(priv, false);
+>  
+> -	ret = max9286_register_gpio(priv);
+> +	ret = max9286_parse_gpios(priv);
+>  	if (ret)
+>  		goto err_powerdown;
+>  
+> -	priv->regulator = devm_regulator_get(&client->dev, "poc");
+> -	if (IS_ERR(priv->regulator)) {
+> -		if (PTR_ERR(priv->regulator) != -EPROBE_DEFER)
+> -			dev_err(&client->dev,
+> -				"Unable to get PoC regulator (%ld)\n",
+> -				PTR_ERR(priv->regulator));
+> -		ret = PTR_ERR(priv->regulator);
+> -		goto err_powerdown;
+> -	}
+> -
+>  	ret = max9286_parse_dt(priv);
+>  	if (ret)
+>  		goto err_powerdown;
+> @@ -1326,7 +1389,7 @@ static int max9286_remove(struct i2c_client *client)
+>  
+>  	max9286_v4l2_unregister(priv);
+>  
+> -	regulator_disable(priv->regulator);
+> +	max9286_poc_enable(priv, false);
+>  
+>  	gpiod_set_value_cansleep(priv->gpiod_pwdn, 0);
+>  
+> 
 
-This is not a 'simple-bus'. A simple bus doesn't have power-domains, 
-memory-region, or mailbox.
-
-simple-mfd maybe, but looks like there's dependencies here so you should 
-trigger probing yourself.
-
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^vpu-bus@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    contains:
-
-No, must be exact.
-
-> +      items:
-> +        - enum:
-> +            - nxp,imx8qm-vpu
-> +            - nxp,imx8qxp-vpu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  memory-region:
-> +    description:
-> +      Phandle to a node describing reserved memory used by VPU.
-> +      (see bindings/reserved-memory/reserved-memory.txt)
-> +
-> +  mailbox:
-
-This needs to be a pattern looking at the example.
-
-> +    description:
-> +      Each vpu encoder or decoder correspond a MU, which used for communication
-> +      between driver and firmware. Implement via mailbox on driver.
-> +      (see bindings/mailbox/fsl,mu.yaml)
-
-Do a $ref to the file.
-
-> +
-> +patternProperties:
-> +  "^vpu_[en, de]coder@[0-9a-f]+$":
-
-(en|de) 
-
-> +    type: object
-> +    description:
-> +      Each core correspond a decoder or encoder, need to configure them
-> +      separately. NXP i.MX8QM SoC has one decoder and two encoder, i.MX8QXP SoC
-> +      has one decoder and one encoder.
-> +
-> +    properties:
-> +      compatible:
-> +        oneOf:
-> +          - const: nxp,imx8q-vpu-decoder
-> +          - const: nxp,imx8q-vpu-encoder
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      power-domains:
-> +        maxItems: 1
-> +
-> +      mbox-names:
-> +        items:
-> +          - const: tx0
-> +          - const: tx1
-> +          - const: rx
-> +
-> +      mboxes:
-> +        description:
-> +          List of phandle of 2 MU channels for tx, 1 MU channel for rx.
-
-How many? (maxItems: 1 or an 'items' list needed)
-
-> +      boot-region:
-> +        description:
-> +          Phandle to a node describing reserved memory used by firmware
-> +          loading.
-> +
-> +      rpc-region:
-> +        description:
-> +          Phandle to a node describing reserved memory used by RPC shared
-> +          memory between firmware and driver.
-> +
-> +      print-offset:
-> +        description:
-> +          The memory offset from RPC address, used by reserve firmware log.
-
-These need vendor prefix and type ref.
-
-> +
-> +      id:
-> +        description: Index of vpu core.
-
-Nope. We don't do indexes.
-
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - power-domains
-> +      - mbox-names
-> +      - mboxes
-> +      - boot-region
-> +      - rpc-region
-> +      - print-offset
-> +      - id
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - power-domains
-> +  - memory-region
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  # Device node example for i.MX8QM platform:
-> +  - |
-> +    #include <dt-bindings/firmware/imx/rsrc.h>
-> +
-> +    vpu: vpu-bus@2c000000 {
-> +      compatible = "nxp,imx8qm-vpu", "simple-bus";
-> +      ranges = <0x2c000000 0x2c000000 0x2000000>;
-> +      reg = <0x2c000000 0x1000000>;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      power-domains = <&pd IMX_SC_R_VPU>;
-> +      memory-region = <&vpu_reserved>;
-> +
-> +      mu_m0: mailbox@2d000000 {
-> +        compatible = "fsl,imx6sx-mu";
-> +        reg = <0x2d000000 0x20000>;
-> +        interrupts = <0 472 4>;
-> +        #mbox-cells = <2>;
-> +        power-domains = <&pd IMX_SC_R_VPU_MU_0>;
-> +      };
-> +
-> +      mu1_m0: mailbox@2d020000 {
-> +        compatible = "fsl,imx6sx-mu";
-> +        reg = <0x2d020000 0x20000>;
-> +        interrupts = <0 473 4>;
-> +        #mbox-cells = <2>;
-> +        power-domains = <&pd IMX_SC_R_VPU_MU_1>;
-> +      };
-> +
-> +      mu2_m0: mailbox@2d040000 {
-> +        compatible = "fsl,imx6sx-mu";
-> +        reg = <0x2d040000 0x20000>;
-> +        interrupts = <0 474 4>;
-> +        #mbox-cells = <2>;
-> +        power-domains = <&pd IMX_SC_R_VPU_MU_2>;
-> +      };
-> +
-> +      vpu_core0: vpu_decoder@2d080000 {
-> +        compatible = "nxp,imx8q-vpu-decoder";
-> +        reg = <0x2d080000 0x10000>;
-> +        power-domains = <&pd IMX_SC_R_VPU_DEC_0>;
-> +        mbox-names = "tx0", "tx1", "rx";
-> +        mboxes = <&mu_m0 0 0
-> +                  &mu_m0 0 1
-> +                  &mu_m0 1 0>;
-> +        boot-region = <&decoder_boot>;
-> +        rpc-region = <&decoder_rpc>;
-> +        print-offset = <0x180000>;
-> +        id = <0>;
-> +      };
-> +
-> +      vpu_core1: vpu_encoder@2d090000 {
-> +        compatible = "nxp,imx8q-vpu-encoder";
-> +        reg = <0x2d090000 0x10000>;
-> +        power-domains = <&pd IMX_SC_R_VPU_ENC_0>;
-> +        mbox-names = "tx0", "tx1", "rx";
-> +        mboxes = <&mu1_m0 0 0
-> +                  &mu1_m0 0 1
-> +                  &mu1_m0 1 0>;
-> +        boot-region = <&encoder1_boot>;
-> +        rpc-region = <&encoder1_rpc>;
-> +        print-offset = <0x80000>;
-> +        id = <1>;
-> +      };
-> +
-> +      vpu_core2: vpu_encoder@2d0a0000 {
-> +        reg = <0x2d0a0000 0x10000>;
-> +        compatible = "nxp,imx8q-vpu-encoder";
-> +        power-domains = <&pd IMX_SC_R_VPU_ENC_1>;
-> +        mbox-names = "tx0", "tx1", "rx";
-> +        mboxes = <&mu2_m0 0 0
-> +                  &mu2_m0 0 1
-> +                  &mu2_m0 1 0>;
-> +        boot-region = <&encoder2_boot>;
-> +        rpc-region = <&encoder2_rpc>;
-> +        print-offset = <0x80000>;
-> +        id = <2>;
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.31.1
+-- 
+Regards
+--
+Kieran
