@@ -2,92 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 925503AB3A0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 14:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEFC03AB3B9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 14:38:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230459AbhFQMfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 08:35:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38272 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229887AbhFQMfj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 08:35:39 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B88C061574;
-        Thu, 17 Jun 2021 05:33:30 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id f30so10295344lfj.1;
-        Thu, 17 Jun 2021 05:33:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6TMY0Ris0xd33XDNMtO1/OKA7wTGbckkTFlmfjUs+FE=;
-        b=kzt09qghuwhLJ3PcfTreWVxftuSH4+tHY17/B7ivG8/W3IkO7elVr21a+bptTYgrdY
-         t7LV8WdmltahPuIngeIOj8jXa97K9Dt6IFTLdwTXI7I1XilrK/LI20MMpL6nM0xxxPNN
-         1wouV5RrKYCyZBth23A/sPKJHMHQcnYoFDbSpzB6lGZk64HuCes8iwUFZMIbFAc/aBFu
-         kW/Epmtttg0KzM4T/fYogRwIJB3w/KKfDAY1sFhlTtTkiXha9j2sXOuIchYQnCvUeo72
-         wIZ8Kj/uZ2g1eWl2saAFF/rgbdt6tL4V635B1qIhF04YCk+7LW8bYElDs9XRZkPCFTTA
-         xpZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6TMY0Ris0xd33XDNMtO1/OKA7wTGbckkTFlmfjUs+FE=;
-        b=Fom8rvUAVE2ujJqGDxnO9KYjlI9GWO0Hhol0UFJvlyPOEemFgZK56kkOFuMHt0r941
-         XBzfpDjkvUeFmnM+ywGOJFqNknDJmyd11Hv3vgXFQx5qfV3rm0o9cdl8GuL35L372ZZO
-         fJcTOJiv4tWAnTX2/OM5ABQuE7SBRcR72Y1tKEmlSvHoyk+ODoY7v8uTLN5T69WAfbSB
-         RnxOPw9tddVNTAoSMezNE6eszvt9YmtdXCQkx9wM2+S+6zBfmjsRmW3VzJSDQDYi5KQk
-         svI+8zmWMZjavIzOcNIXV0wsT9XAZVjL3sEjBPVFHIJjLZ8Mn1rgVKxp9wq5rF8Rrq2F
-         nTqw==
-X-Gm-Message-State: AOAM530epgKAYp9JOvPd2KRzeh4OCMqGaxFR2icfLSlGYhCzap+uab5p
-        QkyAlwI8PJ8C2rVRkTqIwmIAW+VX5cInIyUplmQ=
-X-Google-Smtp-Source: ABdhPJytaoOBIJu7cplCFpCp5urwyT83v0QuIL1KQKleC7kLlJy8GqijZr6F3pLRtGXj35sPSihLMmvQPsZpOIsbhc8=
-X-Received: by 2002:a05:6512:15a4:: with SMTP id bp36mr3321981lfb.539.1623933208976;
- Thu, 17 Jun 2021 05:33:28 -0700 (PDT)
+        id S230268AbhFQMkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 08:40:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40836 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230225AbhFQMkG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Jun 2021 08:40:06 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 252A7610CA;
+        Thu, 17 Jun 2021 12:37:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623933478;
+        bh=JXZlIvP9Jv7f57Wfb41hYAPLe3/lzlvn9IlwjLKbrf8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sLUpejLzm6khVyg99lx39uFIe+3YsyCNZ3x1fBTlmBClMnh7AasKRaTFw0zN3Ph+L
+         UVEBU6qGkRcIiGFZ3WF//KGW5U9ha0cxD8zbFjM7nNBPBUEvTpLjkMdej2B5d5nGOq
+         TvYunvw+D8eyjtjnaNC3Z/KxX5GN4QSscdln2aa2PcDoxJXO49SXw5tSCuNe/y223U
+         us4vSqdmNMTLwYsIy9IQYl9mtcFhkpuiq9JrFcJWekM4zvBRc/kt6jPGkHjX4yYqKZ
+         0L3LQQFeCGz8qp1SySWogVsfCBcVdtAPfPLUpH35shkgvkaRBVtjpzk0bQsrzQpObF
+         g4PoHrqb+poNA==
+Date:   Thu, 17 Jun 2021 13:37:38 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Petr Mladek <pmladek@suse.com>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Josef Bacik <josef@toxicpanda.com>,
+        Kai-Heng Feng <kai.heng.feng@canonical.com>,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH RESEND v10 00/11] Extend regulator notification support
+Message-ID: <20210617123738.GC5067@sirena.org.uk>
+References: <cover.1622628333.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-References: <20210612133134.2738-1-peng.fan@oss.nxp.com> <20210612133134.2738-5-peng.fan@oss.nxp.com>
- <CAHCN7x+bCVcfgb-MmOApBgM=69rz0G8WhsU171SHF3H-12wSfw@mail.gmail.com>
- <CAHCN7xK86pdcx_BouriGTchnBdamNN1Cjjh-UuF-Oy=abq7rrw@mail.gmail.com>
- <7683ab0b-f905-dff1-aa4f-76ad638da568@oss.nxp.com> <CAHCN7xLZZSwbjrUTb6uBOqWYWJdS_+nSr+iPDnh+dNLFSQOuLQ@mail.gmail.com>
- <AM5PR0402MB2756584781B774A75378D28F880E9@AM5PR0402MB2756.eurprd04.prod.outlook.com>
- <CAHCN7xL3CtNN9qY_gCt-pZhqjNf1YMhwTqRBQOWXuj_D2no9cg@mail.gmail.com>
-In-Reply-To: <CAHCN7xL3CtNN9qY_gCt-pZhqjNf1YMhwTqRBQOWXuj_D2no9cg@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 17 Jun 2021 09:33:17 -0300
-Message-ID: <CAOMZO5A770tLF5snNCpWs9-5gA0WGE-k7GyN_SfdMdQv6n+53w@mail.gmail.com>
-Subject: Re: [PATCH V7 4/4] soc: imx: Add blk-ctl driver for i.MX8MM
-To:     Adam Ford <aford173@gmail.com>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Marek Vasut <marex@denx.de>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Abel Vesa <abel.vesa@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kVXhAStRUZ/+rrGn"
+Content-Disposition: inline
+In-Reply-To: <cover.1622628333.git.matti.vaittinen@fi.rohmeurope.com>
+X-Cookie: But it does move!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
 
-On Thu, Jun 17, 2021 at 9:25 AM Adam Ford <aford173@gmail.com> wrote:
+--kVXhAStRUZ/+rrGn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Even with USB disabled, I was still having issues resuming from
-> suspend-to-ram.  I'll enable these and try again.
+On Thu, Jun 03, 2021 at 08:40:07AM +0300, Matti Vaittinen wrote:
+> Extend regulator notification support
+>=20
+> This series extends the regulator notification and error flag support.
+> Initial discussion on the topic can be found here:
+> https://lore.kernel.org/lkml/6046836e22b8252983f08d5621c35ececb97820d.cam=
+el@fi.rohmeurope.com/
 
-Could this be ATF version-related?
+Any thoughts on the reboot or thermal patches?  In the absence of any
+further feedback by the end of the week I might go ahead and apply
+things to the regulator tree if that's OK with people.
 
-Peng, could you please share the ATF version you used in your tests?
+--kVXhAStRUZ/+rrGn
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Cheers
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDLQhEACgkQJNaLcl1U
+h9CFGAf/URUmhopehFCmMlbpAU+UBOk0Mjr8Ko9s6KYYgB+p4HLxz0dSmuS1+iAo
++oMzCCE6wWOR8uFQ0UvnceyS0ixGE7O2QVds0nz+nk5Kl6rAgOFVx/DpWE238ZGi
+r5v5qjX2mo92x8fvYnQGMeH8rJtXhD92r/kN7vdu+E6Dt3+HPTGS4fSxiWwAq1Pg
+46t5I2wArFhOaGCZJ/68jQJg9BZ3+wE2ThPUWy4eWTB4wwqXmoiUKaLO6Tbsuna+
+G+JbnO2md5U205F15CDlppUAl4e9HpxEYpv8I6MaWhdpsmawHLSiS/us3tqGTZE1
+zBNA4Di/Ay7xzS6WIOA0cza2giFBRg==
+=D9Xy
+-----END PGP SIGNATURE-----
+
+--kVXhAStRUZ/+rrGn--
