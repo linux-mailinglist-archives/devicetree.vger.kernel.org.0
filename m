@@ -2,72 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C6703ABEE3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 00:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F75E3ABEE9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 00:30:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232279AbhFQW2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 18:28:40 -0400
-Received: from relay07.th.seeweb.it ([5.144.164.168]:58375 "EHLO
-        relay07.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231611AbhFQW2j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 18:28:39 -0400
-Received: from [192.168.1.101] (83.6.168.10.neoplus.adsl.tpnet.pl [83.6.168.10])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 97CE23F643;
-        Fri, 18 Jun 2021 00:26:29 +0200 (CEST)
-Subject: Re: [PATCH v3 5/5] arm64: dts: qcom: sa8155p-adp: Add base dts file
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     bhupesh.linux@gmail.com, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, agross@kernel.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-References: <20210617054548.353293-1-bhupesh.sharma@linaro.org>
- <20210617054548.353293-6-bhupesh.sharma@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-Message-ID: <017932d3-ad1d-976c-2be4-f2beab7df1bd@somainline.org>
-Date:   Fri, 18 Jun 2021 00:26:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S231611AbhFQWcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 18:32:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58466 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231224AbhFQWcX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 18:32:23 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32299C061574;
+        Thu, 17 Jun 2021 15:30:15 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id u24so5844923edy.11;
+        Thu, 17 Jun 2021 15:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wITVgltgJl5r151IxWILEHl3H0k8xMn+nPMIK1yBTco=;
+        b=A6KpSp9l167+m1JZaayN154StG1sIipUwxo4nt19Ogvbo5r8fOTD648WBix5qzfqB2
+         rRfHK83RMO2yQj+sD9D/INjL4zRpZ8vlhhrreqBmubzJHpnlbL2+81QTesPEiS5s8RiC
+         Ry4mSUdXdhD5g/9oA3H9jIJgy95lOwBY1tP2xSkv01gFeyScHy1ZA2EEDqglOzFpncx/
+         o6bYt+Q4lDgNcUvCQqukMLYFfLMJiJubiDOYYD31VMPiIcDTw9lYdEo7I9DeXKuiXfKr
+         Je7E0yYO6qIcQFGgpOa6VUZKRgzipbjmyso3dm0abHgaTHuGgAQ6v5HWbym10Wp9lIm/
+         Ui7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wITVgltgJl5r151IxWILEHl3H0k8xMn+nPMIK1yBTco=;
+        b=jqjMzdYrQCqXvGI6LkxkaIEpco1LtaLdSTADuKbkrsbNSWxQVfshr17jIqHPyOamWM
+         5OpP8rnEJsF5g2VuuNM4zXmSpriUoXcK/hPWqvE0oC22OcTDvDb1tfDUyeVaewg9HE+b
+         lqRAPX108hI0KkmpbigakrSRK+0kFbNlfsdgykTmn6MhBjUUpTRnm0R1U9E/9dTGFtCt
+         i7rV3lDEFbaIUnbgIziRr6mCCUyvToF/+mDLqMbNJiDgL8ysr5Ju7FFEkpDZGWd7Mow3
+         0/eyrfKfnLe1JeOm2eRPGlbQjVSzJJhHeaVXWqV5Nbi0JohStXm+qURniLcRp9Euic6w
+         16rQ==
+X-Gm-Message-State: AOAM530ue+23ybgTd/B2afvi0NSgRBaqrwlUWctYQ++533bdhmeQkyC4
+        1PzZsZZp1WOkAutU1IMbnp99UYktqF9jrs/KjxMNmAZI
+X-Google-Smtp-Source: ABdhPJxXu8wu2qt5mjrLbCpviDnEsgxqXyFVOpxp/qXDwJT4DGreJi/OxhCYS9+dnwJGKW06LqKY6P9GMHuhEfHq85g=
+X-Received: by 2002:a05:6402:1153:: with SMTP id g19mr741248edw.179.1623969013637;
+ Thu, 17 Jun 2021 15:30:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210617054548.353293-6-bhupesh.sharma@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <20210604190338.2248295-1-martin.blumenstingl@googlemail.com>
+ <20210604190338.2248295-2-martin.blumenstingl@googlemail.com> <20210616233109.GA285667@robh.at.kernel.org>
+In-Reply-To: <20210616233109.GA285667@robh.at.kernel.org>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Fri, 18 Jun 2021 00:30:02 +0200
+Message-ID: <CAFBinCCE8vmMJE-Y0dvGpT+1QFKVN0U9yKinF_2w+644GaXxYg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: Add the Amlogic Meson8 HDMI TX PHY bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, kishon@ti.com, vkoul@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-On 17.06.2021 07:45, Bhupesh Sharma wrote:
-> Add base DTS file for SA8155p Automotive Development Platform.
-> It enables boot to console, adds tlmm reserved range and ufs flash.
-> It also includes pmic file.
+On Thu, Jun 17, 2021 at 1:31 AM Rob Herring <robh@kernel.org> wrote:
+[...]
+> > +description: |+
+> > +  The HDMI TX PHY node should be the child of a syscon node with the
+> > +  required property:
+> > +
+> > +  compatible = "amlogic,meson-hhi-sysctrl", "simple-mfd", "syscon"
 >
-> SA8155p-adp board is based on sa8155p Qualcomm Snapdragon SoC.
-> SA8155p platform is similar to the SM8150, so use this as base
-> for now.
->
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Is there a sub range of registers for this functionality in
+> "amlogic,meson-hhi-sysctrl"? If so, please add a 'reg' property.
+yes, for this part of the HHI registers there's a dedicated sub range.
+I'll add a reg property with register offset and size
 
-> +
-> +&qupv3_id_1 {
-> +	status = "okay";
-> +};
->
-This tiny reference is unsorted,
+one question about .dts validation: at least the clock controller
+(which is also a sub-node of this) does not have a dedicated sub
+range.
+Is it still OK in this case to set #size-cells = <1> and
+#address-cells = <1> in the HHI node?
 
 
-besides that:
-
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-
-
-Konrad
-
+Best regards,
+Martin
