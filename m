@@ -2,69 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E10FA3AB456
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 15:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 778B43AB495
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 15:22:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232263AbhFQNMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 09:12:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46492 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbhFQNMU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 09:12:20 -0400
-Received: from mail.bugwerft.de (mail.bugwerft.de [IPv6:2a03:6000:1011::59])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 59827C06175F;
-        Thu, 17 Jun 2021 06:10:12 -0700 (PDT)
-Received: from [192.168.178.130] (p57bc9ba2.dip0.t-ipconnect.de [87.188.155.162])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id 082F84C00EA;
-        Thu, 17 Jun 2021 13:10:07 +0000 (UTC)
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock: cs2000-cp: Document
- aux-output-source
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-References: <20210519201551.690654-1-daniel@zonque.org>
- <20210519201551.690654-3-daniel@zonque.org>
- <CAMuHMdUmEWNCj6J43jwxE67K=ksRy53Eb9B82HjDfC++-YLw9g@mail.gmail.com>
-From:   Daniel Mack <daniel@zonque.org>
-Message-ID: <ceb82b22-6657-0003-561c-cf4d72b9d5d7@zonque.org>
-Date:   Thu, 17 Jun 2021 15:10:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S232512AbhFQNYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 09:24:50 -0400
+Received: from mslow1.mail.gandi.net ([217.70.178.240]:53053 "EHLO
+        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229931AbhFQNYu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 09:24:50 -0400
+Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
+        by mslow1.mail.gandi.net (Postfix) with ESMTP id 2B956E2511;
+        Thu, 17 Jun 2021 13:14:43 +0000 (UTC)
+Received: (Authenticated sender: gregory.clement@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 24805FF81E;
+        Thu, 17 Jun 2021 13:14:18 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Marcin Wojtas <mw@semihalf.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     andrew@lunn.ch, robh+dt@kernel.org, Marcin Wojtas <mw@semihalf.com>
+Subject: Re: [PATCH] arm64: dts: ensure backward compatibility of the AP807
+ Xenon
+In-Reply-To: <20210322003915.3199775-1-mw@semihalf.com>
+References: <20210322003915.3199775-1-mw@semihalf.com>
+Date:   Thu, 17 Jun 2021 15:14:18 +0200
+Message-ID: <87k0ms1vmd.fsf@BL-laptop>
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdUmEWNCj6J43jwxE67K=ksRy53Eb9B82HjDfC++-YLw9g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Marcin,
 
-Thanks for looking into this patch!
+> A recent switch to a dedicated AP807 compatible string for the Xenon
+> SD/MMC controller result in the driver not being probed when
+> using updated device tree with the older kernel revisions.
+> It may also be problematic for other OSs/firmware that use
+> Linux device tree sources as a reference. Resolve the problem
+> with backward compatibility by restoring a previous compatible
+> string as secondary one.
+>
+> Signed-off-by: Marcin Wojtas <mw@semihalf.com>
 
-On 6/11/21 2:18 PM, Geert Uytterhoeven wrote:
->> +  cirrus,aux-output-source:
->> +    description:
->> +      Specfies the function of the auxililary clock output pin
-> 
-> Specifies ... auxiliary
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum:
->> +      - 0 # CS2000CP_AUX_OUTPUT_REF_CLK:  ref_clk input
->> +      - 1 # CS2000CP_AUX_OUTPUT_CLK_IN:   clk_in input
->> +      - 2 # CS2000CP_AUX_OUTPUT_CLK_OUT:  clk_out output
->> +      - 3 # CS2000CP_AUX_OUTPUT_PLL_LOCK: pll lock status
-> 
-> Should the default be documented? "default: 0"?
+Applied on mvebu/dt64
 
-Both addressed. I will send a new series soon that supersedes this one
-and carries some more changes.
+Thanks,
 
+Gregory
 
-Daniel
+> ---
+>  arch/arm64/boot/dts/marvell/armada-ap807.dtsi | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> index d9bbbfa4b4eb..4a23f65d475f 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
+> @@ -29,6 +29,7 @@ cpu_clk: clock-cpu {
+>  };
+>  
+>  &ap_sdhci0 {
+> -	compatible = "marvell,armada-ap807-sdhci";
+> +	compatible = "marvell,armada-ap807-sdhci",
+> +		     "marvell,armada-ap806-sdhci"; /* Backward compatibility */
+>  };
+>  
+> -- 
+> 2.29.0
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
