@@ -2,73 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB2433AB06C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 11:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E786B3AB074
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 11:56:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232021AbhFQJ5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 05:57:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35608 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230288AbhFQJ5m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Jun 2021 05:57:42 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7B11861400;
-        Thu, 17 Jun 2021 09:55:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623923732;
-        bh=+qCEg5YO9xl4YV8Zb5YtPd5hoiY0UwinldP+ikR3DIw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=PJbFdhd8j62O66EXDRZ79oUIyjGRN3UXcwTnCR+7MOFcMTbsdvqA9jE0xAOVgzTnM
-         FFWfpUQn/ZBp+08GDO8PvdTTgPM87f69KtxEe6lPW/E1L9ZA84LAuOcPxXwSYwnyJq
-         CAG/vBr8XhfG8vLiYSL4ZL4D0nbsClZWLtqENO4zTA6XKmX01iUetO9Oxz2PU4jEpJ
-         uri+HUoU48EB3slogQMO1He82vYLQHTVYMRkyx2sRJNvdZVZZ65dzVFg4RanOz6i4/
-         76YD1RS6SKVmju5qS0PFfyGsZKxSLfLbhaD9DsV33MtR/LHnHxdF52KYrAkV1KLOSe
-         yR3kiEbObTHmA==
-Date:   Thu, 17 Jun 2021 11:55:27 +0200
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        pali@kernel.org
-Subject: Re: [PATCH] pinctrl: armada-37xx: Correct PWM pins definitions
-Message-ID: <20210617115527.0659a5ea@dellmb>
-In-Reply-To: <20210614222527.11237-1-kabel@kernel.org>
-References: <20210614222527.11237-1-kabel@kernel.org>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S232024AbhFQJ6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 05:58:19 -0400
+Received: from lb2-smtp-cloud8.xs4all.net ([194.109.24.25]:46941 "EHLO
+        lb2-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230272AbhFQJ6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Jun 2021 05:58:19 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud8.xs4all.net with ESMTPA
+        id tokll2ktChqlttokol03Pw; Thu, 17 Jun 2021 11:56:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1623923767; bh=sn759aJtkKVdyZtPUsdKiIGaaDc782nBKlFC8+/0BCg=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=COe6YrzHeUfruS5mF7O4oQslwUzLyhlQ48NSXpUXKuWpc5WWJwCRHxoq9DgbLtqBn
+         iIvIj5tBmI1ZhUMvXVvtnVphBaaxwyC9eZKAhomuusn8mmVom75jZxRU5hGvUrU/hN
+         ueWTSZhO2lsYc+nlEP+axeqSRAZjLHyjHJuZTqtXZnGMzHUj0GE9zeAdAGJJbDmRLk
+         BQPhcck4qNOAQWE681IT65bYfgAlAVbgi+Y67DsJes6UbVecEfaBUWxvffu9s1yXWs
+         STOHQSfkHA1ejuX3M9pBSwc7FHSm1aEMyD/qJhKToY651lpTgkJjDbIHpbKjLrNjL5
+         5K/OuXM9TQXLg==
+Subject: Re: [PATCH 1/7] media: admin-guide: add stm32-dma2d description
+To:     dillon.minfei@gmail.com, mchehab@kernel.org,
+        mchehab+huawei@kernel.org, ezequiel@collabora.com,
+        gnurou@gmail.com, pihsun@chromium.org, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@foss.st.com, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org
+Cc:     patrice.chotard@foss.st.com, hugues.fruchet@foss.st.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <1621508727-24486-1-git-send-email-dillon.minfei@gmail.com>
+ <1621508727-24486-2-git-send-email-dillon.minfei@gmail.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <0f3145ce-3a01-3a77-2b65-85450bf9d920@xs4all.nl>
+Date:   Thu, 17 Jun 2021 11:56:03 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1621508727-24486-2-git-send-email-dillon.minfei@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfKZ/8vYZsMKfy5XT9cFmXy4HeO2qsC/V3WkPyz7B36DxM96di6zumwxUBougCC6EByhNoRgZqZ8REIb9kFts/cYflP9N6yEJJXSgL7+cnpyL0o70RpuJ
+ NoHPE0boo9ic0ONSg+8vPd0c+UI/0TkSZB7EahYHNH9p03txRyj4c8tgC9P+/FEJ5loZ+qGYIjnt/TMrYrnGvn7zjsHUtTmkHHxCN2MLCCSznfx1fAD/CD/M
+ Gy3SEAo24WKx17d2G9wSfcSLur40RnmHEcBmReyfXadul7z+jWHwz02hCehQ7eBAvpOtirPtJD4cyc4wHCGmEzI95fiP7NbIiQnb6zVSUFn9YJR9Z9pvKxge
+ BHWleMCeBTNvYY7g6wv3tqgZ5nofuTBR1i08sTSUtkQh24Vde8LV4XyNMj9ZD5+IcvBCvivDEkIUbxHgV2BfQpRYzWgXVFuwBNiPc2Ded5SIyrmmZio4txvx
+ JbUIA0aArZbGSl8rK89FqblDTjp6vXfdrKYQU91EbKeS14Gck7h3lVN6S+JodmVS+Nv2G5jajw+ZvMb2x8sqfWEwDc8aWZIDCNmLqemLJ2iHhBCIhVm5crNq
+ uzHTZRbQL5jBZBZmUHmYlpynCcr+XHX2Vyj0pFmoSztkuISwxFA/bpQBNb4c4GNnaklKgREv0+Hkw4PmJdPDNnlg/JBZ8AdEzf58n6TYWd6M+NrqksYWjNmj
+ cpwa8ArguC6hl8rUCark07d9vOL70D9pfk8uTjvxlO4znPMpn/vLn8Btyqw4WFe4gNqUdbrHZjosPhHFkNHMa1P2kTmXgWI0n5h7bV3kwbZr3ued4AXEY4oi
+ ZcgxX48TQAj073KjPqGmVFdzrgpjFICbMvfCvDxlTO90RP8tAGYckn8bisnm5w==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Jun 2021 00:25:27 +0200
-Marek Beh=C3=BAn <kabel@kernel.org> wrote:
+On 20/05/2021 13:05, dillon.minfei@gmail.com wrote:
+> From: Dillon Min <dillon.minfei@gmail.com>
+> 
+> add stm32-dma2d description for dma2d driver
+> 
+> Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
+> ---
+>  Documentation/admin-guide/media/platform-cardlist.rst | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/admin-guide/media/platform-cardlist.rst b/Documentation/admin-guide/media/platform-cardlist.rst
+> index 261e7772eb3e..ac73c4166d1e 100644
+> --- a/Documentation/admin-guide/media/platform-cardlist.rst
+> +++ b/Documentation/admin-guide/media/platform-cardlist.rst
+> @@ -60,6 +60,7 @@ s5p-mfc            Samsung S5P MFC Video Codec
+>  sh_veu             SuperH VEU mem2mem video processing
+>  sh_vou             SuperH VOU video output
+>  stm32-dcmi         STM32 Digital Camera Memory Interface (DCMI)
+> +stm32-dma2d        STM32 Chrom-Art Accelerator Unit
 
-> The PWM pins on North Bridge on Armada 37xx can be configured into PWM
-> or GPIO functions. When in PWM function, each pin can also be
-> configured to drive low on 0 and tri-state on 1 (LED mode).
->=20
-> The current definitions handle this by declaring two pin groups for
-> each pin:
-> - group "pwmN" with functions "pwm" and "gpio"
-> - group "ledN_od" ("od" for open drain) with functions "led" and
-> "gpio"
->=20
-> This is semantically incorrect. The correct definition for each pin
-> should be one group with three functions: "pwm", "led" and "gpio".
->=20
-> Change the "pwmN" groups to support "led" function.
->=20
-> Remove "ledN_od" groups. This cannot break backwards compatibility
-> with older device trees: no device tree uses it since there is no PWM
-> driver for this SOC yet. Also "ledN_od" groups are not even
-> documented.
->=20
-> Signed-off-by: Marek Beh=C3=BAn <kabel@kernel.org>
+I have to ask: it is really 'Chrom-Art' and not Chrome-Art or Choma-Art?
 
-Should this also have a Fixes tag? (If it is accepted...?)
+It's probably correct, but I have to check this :-)
+
+Regards,
+
+	Hans
+
+>  sun4i-csi          Allwinner A10 CMOS Sensor Interface Support
+>  sun6i-csi          Allwinner V3s Camera Sensor Interface
+>  sun8i-di           Allwinner Deinterlace
+> 
+
