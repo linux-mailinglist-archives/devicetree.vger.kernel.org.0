@@ -2,92 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 546103AB9AB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 18:28:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E1023AB9B7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 18:29:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230473AbhFQQav (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 12:30:51 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:38240 "EHLO gloria.sntech.de"
+        id S232796AbhFQQbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 12:31:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49898 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230269AbhFQQav (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Jun 2021 12:30:51 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1ltus1-00057p-0S; Thu, 17 Jun 2021 18:27:57 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl
-Cc:     ezequiel@collabora.com, dafna.hirschfeld@collabora.com,
-        helen.koike@collabora.com, Laurent.pinchart@ideasonboard.com,
-        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
-        heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-Subject: [PATCH v5 10/10] media: rockchip: rkisp1: add support for px30 isp version
-Date:   Thu, 17 Jun 2021 18:27:45 +0200
-Message-Id: <20210617162745.4080975-11-heiko@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210617162745.4080975-1-heiko@sntech.de>
-References: <20210617162745.4080975-1-heiko@sntech.de>
+        id S232710AbhFQQbs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Jun 2021 12:31:48 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E294E613BA;
+        Thu, 17 Jun 2021 16:29:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1623947380;
+        bh=h8mWdalnwqOGxgPzDDjfRank/448I/bBBc4d6qKMLj8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LvZ0+KKAuAFqDjU/hLzVEd/T///kIjlioxINYjvjY7itetWi7+YvxllivGbc8WZCA
+         ORi9Vj+QxOVl5mxSGnXm3rnUbFdSJRtgVd3zyegtwCxVEeq3uHQVMZsoUFYEtUdzMm
+         AMHHcEKm/UdgfO/1cSxmAhUe/3ZPmUuhZjB0XkoSlesVpDNSsQclTVcEzCqUejVc3Z
+         hT0kUcrnqEfr44kKGRNLVCfuRtMItcmE6KXjzrWYYWb6lIIu5vLgXEUaKKtZC9nCfN
+         7g3gTL9VyYi/X6olvFozUsgvwlVkp06+lQKmQ1G2Vh5KzlXVbUztan/2qWZ/nSsFJ9
+         85uOir0giuq2Q==
+Date:   Thu, 17 Jun 2021 17:29:19 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     ChiYuan Huang <u0084500@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, lgirdwood@gmail.com,
+        matthias.bgg@gmail.com, gene_chen@richtek.com,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, cy_huang <cy_huang@richtek.com>,
+        gene.chen.richtek@gmail.com
+Subject: Re: [PATCH 1/2] regulator: mt6360: Add optional
+ mediatek.power-off-sequence in bindings document
+Message-ID: <20210617162919.GH5067@sirena.org.uk>
+References: <1622616875-22740-1-git-send-email-u0084500@gmail.com>
+ <20210611201643.GA1583875@robh.at.kernel.org>
+ <CADiBU39Prz99ZLtkYdcM9XDQsd0nKKeiEGjW3wq=u75JGjwX=g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4C6bbPZ6c/S1npyF"
+Content-Disposition: inline
+In-Reply-To: <CADiBU39Prz99ZLtkYdcM9XDQsd0nKKeiEGjW3wq=u75JGjwX=g@mail.gmail.com>
+X-Cookie: But it does move!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
 
-The px30 uses a V12 isp block so add compatible and matchdata
-for it.
+--4C6bbPZ6c/S1npyF
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
----
- .../platform/rockchip/rkisp1/rkisp1-dev.c     | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+On Mon, Jun 14, 2021 at 11:04:01PM +0800, ChiYuan Huang wrote:
+> Rob Herring <robh@kernel.org> =E6=96=BC 2021=E5=B9=B46=E6=9C=8812=E6=97=
+=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=884:16=E5=AF=AB=E9=81=93=EF=BC=9A
 
-diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-index a14a0bc39fb0..8a9bb97d334a 100644
---- a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-+++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-@@ -405,6 +405,27 @@ static irqreturn_t rkisp1_isr(int irq, void *ctx)
- 	return IRQ_HANDLED;
- }
- 
-+static const char * const px30_isp_clks[] = {
-+	"isp",
-+	"aclk",
-+	"hclk",
-+	"pclk",
-+};
-+
-+static const struct rkisp1_isr_data px30_isp_isrs[] = {
-+	{ "isp", rkisp1_isp_isr },
-+	{ "mi", rkisp1_capture_isr },
-+	{ "mipi", rkisp1_mipi_isr },
-+};
-+
-+static const struct rkisp1_match_data px30_isp_match_data = {
-+	.clks = px30_isp_clks,
-+	.size = ARRAY_SIZE(px30_isp_clks),
-+	.isrs = px30_isp_isrs,
-+	.isr_size = ARRAY_SIZE(px30_isp_isrs),
-+	.isp_ver = RKISP1_V12,
-+};
-+
- static const char * const rk3399_isp_clks[] = {
- 	"isp",
- 	"aclk",
-@@ -424,6 +445,10 @@ static const struct rkisp1_match_data rk3399_isp_match_data = {
- };
- 
- static const struct of_device_id rkisp1_of_match[] = {
-+	{
-+		.compatible = "rockchip,px30-cif-isp",
-+		.data = &px30_isp_match_data,
-+	},
- 	{
- 		.compatible = "rockchip,rk3399-cif-isp",
- 		.data = &rk3399_isp_match_data,
--- 
-2.29.2
+> > > Originally, we think it must write in platform dependent code like as=
+ bootloader.
+> > > But after the evaluation, it must write only when system normal HALT =
+or POWER_OFF.
+> > > For the other cases, just follow HW immediate off by default.
 
+> > Wouldn't this be handled by PSCI implementation?
+
+> No, the current application default on powers buck1/buck2/ldo7/ldo6
+> are for Dram power.
+> It's not the soc core power. It seems not appropriate  to implement
+> like as PSCI.
+> MT6360 play the role for the subpmic in the SOC application reference des=
+ign.
+
+If this is part of the overall system power off that seems like it fits
+well enough into what PSCI is doing - it's got operations like
+SYSTEM_OFF which talk about the system as a whole.
+
+--4C6bbPZ6c/S1npyF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDLeF8ACgkQJNaLcl1U
+h9DoNAf/ay42021AEwWsgvVf64PZ7bfN1VQtq5/Gvxa3qKXwvF2ElhI0rEWVv+TD
+ykW5worWSNVBlrmXT5e5pG0vDPAqQ4XSgOsubJCj7BWz/o8vebLSclpZz0PDQCav
+Dbt3qvsDnTcOMOMucTRf2X4u9SHAVgE06JDUiZTcEqprRk4Vd4ye6i6REqw2t2wX
+ydNjf2EsU1b9nzoVuyzhnLA9p1p5wiiYEzhCoFw+4x2BYypYNT4bk6xRQ/IitcIl
+ZrtklyKL+G3Ty7Ul9AREvr++U177bA902zg+5kCh2NvrmcPDwQahA3zx06NePexK
+B6Ch9wofiE4v/hRfzXuS7w4Q85k2Vg==
+=/WVl
+-----END PGP SIGNATURE-----
+
+--4C6bbPZ6c/S1npyF--
