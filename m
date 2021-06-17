@@ -2,98 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE2633AAC65
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 08:32:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DC8E3AAC75
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 08:35:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230064AbhFQGek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 02:34:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41482 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbhFQGec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 02:34:32 -0400
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25DC2C061574
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 23:32:25 -0700 (PDT)
-Received: by mail-io1-xd33.google.com with SMTP id s19so1916620ioc.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 23:32:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IqsCA/yjikDS1aCYzllqiH9HoLVcQQhYIn5qSeonABE=;
-        b=kDczImboY2eVAJ3+sYnRR25HrludaTlIxUHPV26t7zvADYlkn+EAot8vmNZFxS6ckk
-         NyqXP6vgSOkhkXMigW38BKTSHGkozev95CT8sd0RyYFWHSEXQf1vzK9yA5xbK5UPbuEq
-         Bn0NNhaz+a2zeBhstpYyx1baPQ8VKdD07y9nQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IqsCA/yjikDS1aCYzllqiH9HoLVcQQhYIn5qSeonABE=;
-        b=OV385Py9EKGnOHaVjEOvHkYtBsNTt9bRBNrYQzr+vJlFAqCAxUGls+kw/1bdrEum7p
-         SJn9c2YF3B9kAqoWYhy7RTllyDFX+vecQrlOU2lz1VUP8/V2LCr+irXQdMNA34EVGfx2
-         Gn3SYJXWIYewvCunmowIJZZkjFyCtp8KdgxR62pnckAEK4yh6hbhTTglCZnrRz0NzUa9
-         DucLWS1EGNU1f0IJVQm3p6cTy6Ze09oNR2suibvJaXu/OlQdUKcd2WLyVWazAwS5J09a
-         rnFYjMNU/XUGKeP7+dudYJ9jv5m5+ziySla/hrAgrtmr2Uz+Ixc0030TD7oeNZfhGn6r
-         RhGw==
-X-Gm-Message-State: AOAM532AI9SeLkB39SeiXRxnzUrk3ouvWmbRsHAWJnDCVyuTLEscQbuj
-        voW4vUoj4SkLLPOFx1rgw+/gqnvaUdb4HA==
-X-Google-Smtp-Source: ABdhPJzWs6QkxX0GcLQdaeIuqvGIBFSNwofloEbGFFfiBs3rn1259leZDlgoeeqz2ISXGBVDKsOrGA==
-X-Received: by 2002:a6b:103:: with SMTP id 3mr2577574iob.156.1623911544307;
-        Wed, 16 Jun 2021 23:32:24 -0700 (PDT)
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com. [209.85.166.43])
-        by smtp.gmail.com with ESMTPSA id l11sm1132730ilo.77.2021.06.16.23.32.22
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jun 2021 23:32:23 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id f10so1913942iok.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 23:32:22 -0700 (PDT)
-X-Received: by 2002:a92:c852:: with SMTP id b18mr352877ilq.18.1623911531698;
- Wed, 16 Jun 2021 23:32:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210617062635.1660944-1-tientzu@chromium.org>
-In-Reply-To: <20210617062635.1660944-1-tientzu@chromium.org>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Thu, 17 Jun 2021 14:32:00 +0800
-X-Gmail-Original-Message-ID: <CALiNf2_qF7OY0LHToNYx0E79BWMt2n7=nepPPLf+7YV3=KFEyw@mail.gmail.com>
-Message-ID: <CALiNf2_qF7OY0LHToNYx0E79BWMt2n7=nepPPLf+7YV3=KFEyw@mail.gmail.com>
-Subject: Re: [PATCH v13 00/12] Restricted DMA
-To:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
+        id S229616AbhFQGhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 02:37:22 -0400
+Received: from mout02.posteo.de ([185.67.36.66]:45559 "EHLO mout02.posteo.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229666AbhFQGhW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Jun 2021 02:37:22 -0400
+Received: from submission (posteo.de [89.146.220.130]) 
+        by mout02.posteo.de (Postfix) with ESMTPS id A0B0C2400FD
+        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 08:35:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+        t=1623911713; bh=Rix5p6l8HyutxEZr8GYcwxQSpTiMNmdvzeXhAkc/AME=;
+        h=Subject:From:To:Cc:Date:From;
+        b=EDrws93aNSb3qb7Jqr9jusfmok/e8fMoF1w3EZxbPb2GkEZX1M25vIywS6S3FU2Xu
+         XU+aoAdXmDkTu+yat+MZs/fvr4WzW09v0AtGxR4U6fbLrzXRCAun6M+0InOk4jkbad
+         oIQj+r7UqADZF35h7x8z3qP0gSpveEGmKhvUOy6joYx+hisZ9TU4tF/bh2QY6Vn+7c
+         8ceDwYY+qBs4YM7PoyiPHCy51XUgLysjwkd181r0vDcqFP4aB5DUudHVYnyfmTOhbr
+         nbwXtR7rgp3/W5ohzO0cb1O2r2G4Zi65KAaY1nlSS1rpfhUoXQGCDifWzH2yEr+suQ
+         qRK+vjnn45PYw==
+Received: from customer (localhost [127.0.0.1])
+        by submission (posteo.de) with ESMTPSA id 4G5C3N2bGNz6tm9;
+        Thu, 17 Jun 2021 08:35:12 +0200 (CEST)
+Message-ID: <4765dc6042a4c9fad7c33ffde9e802bcbace6282.camel@posteo.de>
+Subject: Re: [PATCH] dt-bindings: input: touchscreen: st1232: Convert to
+ json-schema
+From:   Martin Kepplinger <martink@posteo.de>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bastian Hecht <hechtb@gmail.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Date:   Thu, 17 Jun 2021 06:35:02 +0000
+In-Reply-To: <fbba650cff07780c28ad6dd8dbef5cc1451b7762.1623418065.git.geert+renesas@glider.be>
+References: <fbba650cff07780c28ad6dd8dbef5cc1451b7762.1623418065.git.geert+renesas@glider.be>
 Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v13: https://lore.kernel.org/patchwork/cover/1448001/
+Am Freitag, dem 11.06.2021 um 15:30 +0200 schrieb Geert Uytterhoeven:
+> Convert the Sitronix st1232/st1633 touchscreen controller Device Tree
+> binding documentation to json-schema.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  .../input/touchscreen/sitronix,st1232.yaml    | 50
+> +++++++++++++++++++
+>  .../input/touchscreen/sitronix-st1232.txt     | 28 -----------
+>  2 files changed, 50 insertions(+), 28 deletions(-)
+>  create mode 100644
+> Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.y
+> aml
+>  delete mode 100644
+> Documentation/devicetree/bindings/input/touchscreen/sitronix-
+> st1232.txt
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232
+> .yaml
+> b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232
+> .yaml
+> new file mode 100644
+> index 0000000000000000..1d8ca19fd37ae3fc
+> --- /dev/null
+> +++
+> b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232
+> .yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id:
+> http://devicetree.org/schemas/input/touchscreen/sitronix,st1232.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sitronix st1232 or st1633 touchscreen controller
+> +
+> +maintainers:
+> +  - Bastian Hecht <hechtb@gmail.com>
+> +
+> +allOf:
+> +  - $ref: touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sitronix,st1232
+> +      - sitronix,st1633
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  gpios:
+> +    description: A phandle to the reset GPIO
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            touchscreen@55 {
+> +                    compatible = "sitronix,st1232";
+> +                    reg = <0x55>;
+> +                    interrupts = <2 0>;
+> +                    gpios = <&gpio1 166 0>;
+> +            };
+> +    };
+> diff --git
+> a/Documentation/devicetree/bindings/input/touchscreen/sitronix-
+> st1232.txt
+> b/Documentation/devicetree/bindings/input/touchscreen/sitronix-
+> st1232.txt
+> deleted file mode 100644
+> index 019373253b28c08c..0000000000000000
+> --- a/Documentation/devicetree/bindings/input/touchscreen/sitronix-
+> st1232.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -* Sitronix st1232 or st1633 touchscreen controller
+> -
+> -Required properties:
+> -- compatible: must contain one of
+> -  * "sitronix,st1232"
+> -  * "sitronix,st1633"
+> -- reg: I2C address of the chip
+> -- interrupts: interrupt to which the chip is connected
+> -
+> -Optional properties:
+> -- gpios: a phandle to the reset GPIO
+> -
+> -For additional optional properties see: touchscreen.txt
+> -
+> -Example:
+> -
+> -       i2c@00000000 {
+> -               /* ... */
+> -
+> -               touchscreen@55 {
+> -                       compatible = "sitronix,st1232";
+> -                       reg = <0x55>;
+> -                       interrupts = <2 0>;
+> -                       gpios = <&gpio1 166 0>;
+> -               };
+> -
+> -               /* ... */
+> -       };
+
+Acked-by: Martin Kepplinger <martink@posteo.de>
+
+thank you!
+
