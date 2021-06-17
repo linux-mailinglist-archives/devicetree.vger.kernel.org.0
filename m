@@ -2,333 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD9E3AA899
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 03:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 549D73AA8CA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 03:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232025AbhFQBa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 21:30:27 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:56799 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231942AbhFQBa1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 21:30:27 -0400
-X-UUID: 49755c844c7b45bda04c84b8e1a123aa-20210617
-X-UUID: 49755c844c7b45bda04c84b8e1a123aa-20210617
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1670077071; Thu, 17 Jun 2021 09:28:15 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 17 Jun 2021 09:28:13 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Jun 2021 09:28:13 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [PATCH] arm64: dts: mediatek: Add mt8195 clock controllers
-Date:   Thu, 17 Jun 2021 09:28:03 +0800
-Message-ID: <20210617012803.5894-1-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S232217AbhFQBx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 21:53:57 -0400
+Received: from regular1.263xmail.com ([211.150.70.206]:43056 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232191AbhFQBx5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 21:53:57 -0400
+Received: from localhost (unknown [192.168.167.235])
+        by regular1.263xmail.com (Postfix) with ESMTP id 14F3B1B67;
+        Thu, 17 Jun 2021 09:51:47 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from [172.16.12.120] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P15326T140654340470528S1623894702990941_;
+        Thu, 17 Jun 2021 09:51:44 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <8676accae82e1e2e8682e39c204adf18>
+X-RL-SENDER: kever.yang@rock-chips.com
+X-SENDER: yk@rock-chips.com
+X-LOGIN-NAME: kever.yang@rock-chips.com
+X-FST-TO: macromorgan@hotmail.com
+X-RCPT-COUNT: 21
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: Re: [PATCH v7 1/9] dt-bindings: rockchip-sfc: Bindings for Rockchip
+ serial flash controller
+To:     Rob Herring <robh@kernel.org>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     Jon Lin <jon.lin@rock-chips.com>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        =?UTF-8?B?6buE5a626ZKX?= <hjc@rock-chips.com>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Sugar Zhang <sugar.zhang@rock-chips.com>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-mtd <linux-mtd@lists.infradead.org>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Chris Morgan <macroalpha82@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20210609140412.16058-1-jon.lin@rock-chips.com>
+ <20210609140412.16058-2-jon.lin@rock-chips.com>
+ <20210610024350.GA697147@robh.at.kernel.org>
+ <e8e7c8c1-4f71-538c-a8e1-b61a894bd4a8@rock-chips.com>
+ <CAAEAJfCyXWvcqswXfmgXBX-et0mq3vxoUacUmHGso9t+XoNqOg@mail.gmail.com>
+ <CAL_JsqL1Sb_TCw6TG7XGBDtmhMVD+_n7d-ii7N9N7w1+A627=w@mail.gmail.com>
+From:   Kever Yang <kever.yang@rock-chips.com>
+Message-ID: <e2be59ae-37a0-4455-e5a6-f7156da29e95@rock-chips.com>
+Date:   Thu, 17 Jun 2021 09:51:42 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <CAL_JsqL1Sb_TCw6TG7XGBDtmhMVD+_n7d-ii7N9N7w1+A627=w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clock controller nodes for SoC mt8195
+Hi Rob,
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
----
-This patch is based on 5.13-rc3 and [1], also depends on [2].
+On 2021/6/16 下午11:38, Rob Herring wrote:
+> On Fri, Jun 11, 2021 at 10:33 AM Ezequiel Garcia
+> <ezequiel@vanguardiasur.com.ar> wrote:
+>> Hi all,
+>>
+>> On Thu, 10 Jun 2021 at 00:04, Kever Yang <kever.yang@rock-chips.com> wrote:
+>>> Hi Rob,
+>>>
+>>> On 2021/6/10 上午10:43, Rob Herring wrote:
+>>>> On Wed, Jun 09, 2021 at 10:04:04PM +0800, Jon Lin wrote:
+>>>>> From: Chris Morgan <macromorgan@hotmail.com>
+>>>>>
+>>>>> Add bindings for the Rockchip serial flash controller. New device
+>>>>> specific parameter of rockchip,sfc-no-dma included in documentation.
+>>>>>
+>>>>> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+>>>>> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+>>>>> ---
+>>>>>
+>>>>> Changes in v7:
+>>>>> - Fix up the sclk_sfc parent error in rk3036
+>>>>> - Unify to "rockchip,sfc" compatible id because all the feature update
+>>>>>     will have a new IP version, so the driver is used for the SFC IP in
+>>>>>     all SoCs
+>>>>> - Change to use node "sfc" to name the SFC pinctrl group
+>>>>> - Add subnode reg property check
+>>>>> - Add rockchip_sfc_adjust_op_size to workaround in CMD + DUMMY case
+>>>>> - Limit max_iosize to 32KB
+>>>>>
+>>>>> Changes in v6:
+>>>>> - Add support in device trees for rv1126(Declared in series 5 but not
+>>>>>     submitted)
+>>>>> - Change to use "clk_sfc" "hclk_sfc" as clock lable, since it does not
+>>>>>     affect interpretation and has been widely used
+>>>>> - Support sfc tx_dual, tx_quad(Declared in series 5 but not submitted)
+>>>>> - Simplify the code, such as remove "rockchip_sfc_register_all"(Declared
+>>>>>     in series 5 but not submitted)
+>>>>> - Support SFC ver4 ver5(Declared in series 5 but not submitted)
+>>>>> - Add author Chris Morgan and Jon Lin to spi-rockchip-sfc.c
+>>>>> - Change to use devm_spi_alloc_master and spi_unregister_master
+>>>>>
+>>>>> Changes in v5:
+>>>>> - Add support in device trees for rv1126
+>>>>> - Support sfc tx_dual, tx_quad
+>>>>> - Simplify the code, such as remove "rockchip_sfc_register_all"
+>>>>> - Support SFC ver4 ver5
+>>>>>
+>>>>> Changes in v4:
+>>>>> - Changing patch back to an "RFC". An engineer from Rockchip
+>>>>>     reached out to me to let me know they are working on this patch for
+>>>>>     upstream, I am submitting this v4 for the community to see however
+>>>>>     I expect Jon Lin (jon.lin@rock-chips.com) will submit new patches
+>>>>>     soon and these are the ones we should pursue for mainlining. Jon's
+>>>>>     patch series should include support for more hardware than this
+>>>>>     series.
+>>>>> - Clean up documentation more and ensure it is correct per
+>>>>>     make dt_binding_check.
+>>>>> - Add support in device trees for rk3036, rk3308, and rv1108.
+>>>>> - Add ahb clock (hclk_sfc) support for rk3036.
+>>>>> - Change rockchip_sfc_wait_fifo_ready() to use a switch statement.
+>>>>> - Change IRQ code to only mark IRQ as handled if it handles the
+>>>>>     specific IRQ (DMA transfer finish) it is supposed to handle.
+>>>>>
+>>>>> Changes in v3:
+>>>>> - Changed the name of the clocks to sfc/ahb (from clk-sfc/clk-hsfc).
+>>>>> - Changed the compatible string from rockchip,sfc to
+>>>>>     rockchip,rk3036-sfc. A quick glance at the datasheets suggests this
+>>>>>     driver should work for the PX30, RK180x, RK3036, RK312x, RK3308 and
+>>>>>     RV1108 SoCs, and possibly more. However, I am currently only able
+>>>>>     to test this on a PX30 (an RK3326). The technical reference manuals
+>>>>>     appear to list the same registers for each device.
+>>>>> - Corrected devicetree documentation for formatting and to note these
+>>>>>     changes.
+>>>>> - Replaced the maintainer with Heiko Stuebner and myself, as we will
+>>>>>     take ownership of this going forward.
+>>>>> - Noted that the device (per the reference manual) supports 4 CS, but
+>>>>>     I am only able to test a single CS (CS 0).
+>>>>> - Reordered patches to comply with upstream rules.
+>>>>>
+>>>>> Changes in v2:
+>>>>> - Reimplemented driver using spi-mem subsystem.
+>>>>> - Removed power management code as I couldn't get it working properly.
+>>>>> - Added device tree bindings for Odroid Go Advance.
+>>>>>
+>>>>> Changes in v1:
+>>>>> hanges made in this new series versus the v8 of the old series:
+>>>>> - Added function to read spi-rx-bus-width from device tree, in the
+>>>>>     event that the SPI chip supports 4x mode but only has 2 pins
+>>>>>     wired (such as the Odroid Go Advance).
+>>>>> - Changed device tree documentation from txt to yaml format.
+>>>>> - Made "reset" message a dev_dbg from a dev_info.
+>>>>> - Changed read and write fifo functions to remove redundant checks.
+>>>>> - Changed the write and read from relaxed to non-relaxed when
+>>>>>     starting the DMA transfer or reading the DMA IRQ.
+>>>>> - Changed from dma_coerce_mask_and_coherent to just
+>>>>>     dma_set_mask_and_coherent.
+>>>>> - Changed name of get_if_type to rockchip_sfc_get_if_type.
+>>>>>
+>>>>>    .../devicetree/bindings/spi/rockchip-sfc.yaml | 88 +++++++++++++++++++
+>>>>>    1 file changed, 88 insertions(+)
+>>>>>    create mode 100644 Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml b/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..42e4198e92af
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
+>>>>> @@ -0,0 +1,88 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/spi/rockchip-sfc.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Rockchip Serial Flash Controller (SFC)
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Heiko Stuebner <heiko@sntech.de>
+>>>>> +  - Chris Morgan <macromorgan@hotmail.com>
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: spi-controller.yaml#
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    oneOf:
+>>>>> +      - const: rockchip,sfc
+>>>> Use 'enum' instead of oneOf+const.
+>>>>
+>>>> You need an SoC specific compatible.
+>>>
+>>> The rockchip sfc controller is a standalone IP with version register,
+>>> and the driver can
+>>>
+>>> handle all the feature difference inside the IP, so we would like to use
+>>> a more generic
+> Okay, if the version register can be relied on, then this is fine.
+> Just add a comment that further differentiation is done using a
+> version register.
 
-[1] Add Mediatek SoC MT8195 and evaluation board dts and Makefile
-    - https://patchwork.kernel.org/project/linux-mediatek/patch/20210601075350.31515-2-seiya.wang@mediatek.com/
-[2] Mediatek MT8195 clock support
-    - https://patchwork.kernel.org/project/linux-mediatek/list/?series=501923
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 218 ++++++++++++++++++++++-
- 1 file changed, 217 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index 8fc2af12c0f8..b0255c5aa019 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -5,7 +5,7 @@
-  */
- 
- /dts-v1/;
--
-+#include <dt-bindings/clock/mt8195-clk.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- 
-@@ -273,6 +273,18 @@
- 			};
- 		};
- 
-+		topckgen: syscon@10000000 {
-+			compatible = "mediatek,mt8195-topckgen", "syscon";
-+			reg = <0 0x10000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		infracfg_ao: syscon@10001000 {
-+			compatible = "mediatek,mt8195-infracfg_ao", "syscon";
-+			reg = <0 0x10001000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
- 		pio: pinctrl@10005000 {
- 			compatible = "mediatek,mt8195-pinctrl";
- 			reg = <0 0x10005000 0 0x1000>,
-@@ -299,6 +311,12 @@
- 			reg = <0 0x10007000 0 0x100>;
- 		};
- 
-+		apmixedsys: syscon@1000c000 {
-+			compatible = "mediatek,mt8195-apmixedsys", "syscon";
-+			reg = <0 0x1000c000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
- 		systimer: timer@10017000 {
- 			compatible = "mediatek,mt8195-timer", "mediatek,mt6765-timer";
- 			reg = <0 0x10017000 0 0x1000>;
-@@ -306,6 +324,30 @@
- 			clocks = <&clk26m>;
- 		};
- 
-+		nnasys: clock-controller@10211000 {
-+			compatible = "mediatek,mt8195-nnasys";
-+			reg = <0 0x10211000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		scp_adsp: clock-controller@10720000 {
-+			compatible = "mediatek,mt8195-scp_adsp";
-+			reg = <0 0x10720000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		audsys: clock-controller@10890000 {
-+			compatible = "mediatek,mt8195-audsys";
-+			reg = <0 0x10890000 0 0x10000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		audsys_src: clock-controller@108a0000 {
-+			compatible = "mediatek,mt8195-audsys_src";
-+			reg = <0 0x108a0000 0 0x2000>;
-+			#clock-cells = <1>;
-+		};
-+
- 		uart0: serial@11001100 {
- 			compatible = "mediatek,mt8195-uart", "mediatek,mt6577-uart";
- 			reg = <0 0x11001100 0 0x100>;
-@@ -368,6 +410,12 @@
- 			status = "disabled";
- 		};
- 
-+		pericfg_ao: syscon@11003000 {
-+			compatible = "mediatek,mt8195-pericfg_ao", "syscon";
-+			reg = <0 0x11003000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
- 		spi0: spi@1100a000 {
- 			compatible = "mediatek,mt8195-spi", "mediatek,mt6765-spi";
- 			reg = <0 0x1100a000 0 0x100>;
-@@ -505,6 +553,18 @@
- 			};
- 		};
- 
-+		imp_iic_wrap_s: clock-controller@11d03000 {
-+			compatible = "mediatek,mt8195-imp_iic_wrap_s";
-+			reg = <0 0x11d03000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		imp_iic_wrap_w: clock-controller@11e05000 {
-+			compatible = "mediatek,mt8195-imp_iic_wrap_w";
-+			reg = <0 0x11e05000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
- 		u3phy1: t-phy@11e30000 {
- 			compatible = "mediatek,mt8195-tphy", "mediatek,generic-tphy-v2";
- 			#address-cells = <1>;
-@@ -557,5 +617,161 @@
- 			#phy-cells = <0>;
- 			status = "disabled";
- 		};
-+
-+		mfgcfg: clock-controller@13fbf000 {
-+			compatible = "mediatek,mt8195-mfgcfg";
-+			reg = <0 0x13fbf000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vppsys0: clock-controller@14000000 {
-+			compatible = "mediatek,mt8195-vppsys0";
-+			reg = <0 0x14000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		wpesys: clock-controller@14e00000 {
-+			compatible = "mediatek,mt8195-wpesys";
-+			reg = <0 0x14e00000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		wpesys_vpp0: clock-controller@14e02000 {
-+			compatible = "mediatek,mt8195-wpesys_vpp0";
-+			reg = <0 0x14e02000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		wpesys_vpp1: clock-controller@14e03000 {
-+			compatible = "mediatek,mt8195-wpesys_vpp1";
-+			reg = <0 0x14e03000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vppsys1: clock-controller@14f00000 {
-+			compatible = "mediatek,mt8195-vppsys1";
-+			reg = <0 0x14f00000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		imgsys: clock-controller@15000000 {
-+			compatible = "mediatek,mt8195-imgsys";
-+			reg = <0 0x15000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		imgsys1_dip_top: clock-controller@15110000 {
-+			compatible = "mediatek,mt8195-imgsys1_dip_top";
-+			reg = <0 0x15110000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		imgsys1_dip_nr: clock-controller@15130000 {
-+			compatible = "mediatek,mt8195-imgsys1_dip_nr";
-+			reg = <0 0x15130000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		imgsys1_wpe: clock-controller@15220000 {
-+			compatible = "mediatek,mt8195-imgsys1_wpe";
-+			reg = <0 0x15220000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		ipesys: clock-controller@15330000 {
-+			compatible = "mediatek,mt8195-ipesys";
-+			reg = <0 0x15330000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		camsys: clock-controller@16000000 {
-+			compatible = "mediatek,mt8195-camsys";
-+			reg = <0 0x16000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		camsys_rawa: clock-controller@1604f000 {
-+			compatible = "mediatek,mt8195-camsys_rawa";
-+			reg = <0 0x1604f000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		camsys_yuva: clock-controller@1606f000 {
-+			compatible = "mediatek,mt8195-camsys_yuva";
-+			reg = <0 0x1606f000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		camsys_rawb: clock-controller@1608f000 {
-+			compatible = "mediatek,mt8195-camsys_rawb";
-+			reg = <0 0x1608f000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		camsys_yuvb: clock-controller@160af000 {
-+			compatible = "mediatek,mt8195-camsys_yuvb";
-+			reg = <0 0x160af000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		camsys_mraw: clock-controller@16140000 {
-+			compatible = "mediatek,mt8195-camsys_mraw";
-+			reg = <0 0x16140000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		ccusys: clock-controller@17200000 {
-+			compatible = "mediatek,mt8195-ccusys";
-+			reg = <0 0x17200000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vdecsys_soc: clock-controller@1800f000 {
-+			compatible = "mediatek,mt8195-vdecsys_soc";
-+			reg = <0 0x1800f000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vdecsys: clock-controller@1802f000 {
-+			compatible = "mediatek,mt8195-vdecsys";
-+			reg = <0 0x1802f000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vdecsys_core1: clock-controller@1803f000 {
-+			compatible = "mediatek,mt8195-vdecsys_core1";
-+			reg = <0 0x1803f000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		apusys_pll: clock-controller@190f3000 {
-+			compatible = "mediatek,mt8195-apusys_pll";
-+			reg = <0 0x190f3000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vencsys: clock-controller@1a000000 {
-+			compatible = "mediatek,mt8195-vencsys";
-+			reg = <0 0x1a000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vencsys_core1: clock-controller@1b000000 {
-+			compatible = "mediatek,mt8195-vencsys_core1";
-+			reg = <0 0x1b000000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vdosys0: clock-controller@1c01a000 {
-+			compatible = "mediatek,mt8195-vdosys0";
-+			reg = <0 0x1c01a000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
-+		vdosys1: clock-controller@1c100000 {
-+			compatible = "mediatek,mt8195-vdosys1";
-+			reg = <0 0x1c100000 0 0x1000>;
-+			#clock-cells = <1>;
-+		};
- 	};
- };
--- 
-2.18.0
+Thanks for your confirm, this will make things much simple for driver 
+maintain.
+
+@Jon, please update your patch per Rob's requirement.
+
+
+Thanks,
+- Kever
+
 
