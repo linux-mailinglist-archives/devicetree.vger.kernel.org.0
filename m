@@ -2,214 +2,466 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 046363AB047
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 11:51:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DB713AB064
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 11:55:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231847AbhFQJxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 05:53:35 -0400
-Received: from mail-eopbgr1410107.outbound.protection.outlook.com ([40.107.141.107]:33920
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231599AbhFQJxX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Jun 2021 05:53:23 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Lza8OpAKydzSy2bPQaTbbOeO5W3B2p26XCu+yioxb/DfLx2Xi2yeNM/p9sJHVdrkX/epsveVLptnl1gd3/XqzqczcNs9xE1tEqbXkqbUYMLCaNzh5Y4bdQeiKCqxnaaw3ylEX75O5wcsZXAku+9XPFzrjL6Pgz6pgrDcoo1eyXCXqPU9aDNqhgywAH9mQ0pO6TeSV2hChf3PXvc2eFCSzOZ1LfYbVK4dUnr0QegquVgBK1LvWEbpELQoivg8h0BjTazODGT3SBhLVzupJOBrXNvOukdg5pgvkZJyI1i5jxPf9/CKBdh51JPhqc29QPlEsVuedzSrykoBLJ/QyqWXng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gyY5LlgFDZbkIMh+NXTgIeN26Hcstn5BcB6THeyT324=;
- b=ifgnY3vwJWx9mk3PSuHRarR85c+VXKSUGFwx5Hx0eIJGqIWK/fBKMKRgctzjE1fjQDyECpriqr/wmy91zfNNIvRQ7pT6qXFp9d1vY8Gpm92nrUkyV7uLcGnJmcHGav5ZTPYyy5n4OQqvFjtreL6Hye6034HhlYSETAPGs4inGLhVqhkwNwWQPqMAAHpXzORf4mXMiFE3IvE/3V9sUQcy3pU5Pkjt9Dbk9lFRufgHdCZCiSXca0qEjJ1YXZb5dbnSxdzYS24kI1KbxIzLeBTUdg4Zlf0JjaZG0F83qpl4aRXBuaafHP8sJVblsZyGgGFF4TcVsOZpJqURhzMJbr+rHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gyY5LlgFDZbkIMh+NXTgIeN26Hcstn5BcB6THeyT324=;
- b=skBW4OzHUKfwMqBNHF1SBWBI3LFhFktr0lWQSRRDet2mdd2ue4QbjE6TMbjRBo027i4OM8cpBHC3m3hQkmGBQ3iX9cb/T9OwWIOMR6XFagAwf5awyVs1sMyaN33qOj91rclX/dQxffGJTgWy4krLT3EAA7qNSf7ls0swknqGzHg=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSBPR01MB4024.jpnprd01.prod.outlook.com (2603:1096:604:4b::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.24; Thu, 17 Jun
- 2021 09:51:11 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::b834:5e50:2ce8:9ae0]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::b834:5e50:2ce8:9ae0%3]) with mapi id 15.20.4242.019; Thu, 17 Jun 2021
- 09:51:11 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH] dt-bindings: clk: renesas: Update {ETH,SDHI,USB} CPG
- Clock Definitions
-Thread-Topic: [PATCH] dt-bindings: clk: renesas: Update {ETH,SDHI,USB} CPG
- Clock Definitions
-Thread-Index: AQHXYqFSvVhB9ZONyEOBttFIQvzu06sWhNAAgAFxwUA=
-Date:   Thu, 17 Jun 2021 09:51:11 +0000
-Message-ID: <OS0PR01MB5922ACFE895D578CB3CAD2B5860E9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20210616105949.10215-1-biju.das.jz@bp.renesas.com>
- <CAMuHMdUbWMbCLtTmTjv7KViObv8UxeVpQ93tvJyp-ziO55bfyw@mail.gmail.com>
-In-Reply-To: <CAMuHMdUbWMbCLtTmTjv7KViObv8UxeVpQ93tvJyp-ziO55bfyw@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linux-m68k.org; dkim=none (message not signed)
- header.d=none;linux-m68k.org; dmarc=none action=none
- header.from=bp.renesas.com;
-x-originating-ip: [86.139.26.177]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3d8de604-cc48-45d6-e301-08d93175707f
-x-ms-traffictypediagnostic: OSBPR01MB4024:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <OSBPR01MB40241219B363B072F9D264F0860E9@OSBPR01MB4024.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: DwG7XgjxJ6L1o64VLmYG96vxHdm26FC6J+zkDzk+UmL7cQOZ5bYw1dRqlc9zr+r3zaLIbrG6BDi7k889naBBvhnjRt3X2E7K6QkUkdgN039D1XpKJuVCfKFrDha6SNrhOAOwfLEHF96quc6NK/yy0NM//UPP9jtjCfzsjnAPL7+YXZ+yGxccqzDvPRo/Hz+ZOt1hcbMglMq6pfLy05BQux1gGVgHoonooObgD9cHa3WpFw+4NyuNpXqU3EXGb/7Zht5YhPPenWXQv0Ngd7jXj8quB1CMIisEGTW6B2aRx8rP3t+CrejX/AczISBO6mLpspAqf/7+j8Y/6s+HIjw7vunnrPCLFcqvK7EFgWKnpFi6M03qMYaBOnXucoD6j9yLGGhhJvHOBlFjKtCTIefpSh3F4Q1SJe/0UOqgHTLR+k7jBMT1Tg5C0NMhUPacp1dUtZ5yAqwbi+t5iVBerd+zjVSaKg/xEebFhRq7nsJY5Qd1/aLGvHZvcILdqSeWjKuCd77BGy0wtJaMAxEy06CLNnBFuYCQS6Vq8MZSq7Be5aLjHBeEZT0ezwerjPLp7FrdPXrS++y1kHKhlXgcRUGG3KPiUqo9UqXoDmRjAeb0rfE=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(366004)(136003)(376002)(39860400002)(86362001)(66946007)(7696005)(15650500001)(54906003)(26005)(6506007)(66446008)(53546011)(52536014)(83380400001)(64756008)(76116006)(38100700002)(122000001)(66476007)(66556008)(71200400001)(2906002)(4326008)(478600001)(186003)(316002)(8676002)(9686003)(33656002)(8936002)(5660300002)(55016002)(6916009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bkFJczBCcmVFTUt3RU5PVG5qTXBuZHIzYWZIZDFJSUo5VUw1ZlowSVdvQ3pS?=
- =?utf-8?B?NEdlT05hb1JNejJ4ejlHMW8wbklBbjVWQnpTSFB2dlhqQUk1TmF3UlNiS1hD?=
- =?utf-8?B?b1hLUlh5d21vczhNdHh5b0tqRWR3VHNCeVppTlpET2R6ejlnL29jTjZxUDdE?=
- =?utf-8?B?RXN0TGxGaWhnbklvWHg5MForejhvUm9VU045RUhrYmtvczB0M1NzbDFzb3FH?=
- =?utf-8?B?anl4OFBGeSttM1lpVTFPa0ZkOEhMc3dwTVBOM0h6WHZUb2FTWjV2SzBpaEFw?=
- =?utf-8?B?eCs4aDJaVlQvNGNvYWxNYUxkbUM1TGJsM3oxK3J5blVqaFpIblNiSGFMR0dn?=
- =?utf-8?B?S1lzQ2hUSDBWakxNZlNIQ0djZHBoRjVYQ1M4YldrdXUwVXZHKzl5NTE2N1lt?=
- =?utf-8?B?ZUVFTDdET2kvNk12SWRsVVBZMzdQMTFmMjFmK2dRZUVYcnVvS0taNFpuUFRM?=
- =?utf-8?B?SnJWR1pjemN4UGZtbks0V1N5MzE5Q0RUV2RQRXZ3S01RQTVCcWlVWU1FMFlp?=
- =?utf-8?B?NWh2RTRzVHg2NGsyWjJ3NmdCUmxxZUxLM0FUM1JyQWNTY2xyRnRtaFdXbzI4?=
- =?utf-8?B?OGZ4Qlh6NHY1bnNzRTZyTGRzODNyVWh6U0NGbVFRbDEwUmlZM210Mkg4UUpz?=
- =?utf-8?B?dXkxc2ZhZEsxWk9Sb3l4am5iOUlKdit4bHJlQUhqRmltV01YMUlreXhmTjdl?=
- =?utf-8?B?SitHSFhzTGkrZjl4UmpxamRPTVFLek9pMUJvR3NJTjNiaVM1dEtndk8zYWFG?=
- =?utf-8?B?bGRrYVpqbXlQTWJnckFFdDlxaHNZV3k4b1prY0x3dURnWWVpRFpMZ2VWUlox?=
- =?utf-8?B?b1pJYmpEb0pjRzlQWXZYUm1VZnVwekMvTldyZ2pWWnZxUldEZnJiTHhtbGlx?=
- =?utf-8?B?OERGeTB2RmNINkc5S2k0MGZIMlNBTFVMTG1iL0c0d2VYUUlZYkRCc3A5WVZw?=
- =?utf-8?B?cFRrRmpxSk5GellhYlA5MW1jT2dhYnBzb0pCNEphSWRhNnRLZmRhQnhCbmhk?=
- =?utf-8?B?YnQzekxsQ0FGU01oSk5GNFlsTUU2NjJxdTdYcEVQa08yQ1ErQlM3TVhicTAy?=
- =?utf-8?B?ZDVrSFlvMEtrNXdSZ1ZEYldFMnBDNDZMQW4zSjVvS2JQVUJzTTBVZjlBWnph?=
- =?utf-8?B?TDRsUWN5aDhZc1R0VXlGTWZoY0F3dUJNdXlmZFJPMUVYSHorTkF4YmtzeGlR?=
- =?utf-8?B?VVU1a0ZWSnJuUEhNMUttKzIzQTNpWlBOY29DZTVYMGYxV0RrTkRZcFhZbWRT?=
- =?utf-8?B?ZVFNSVVLMTI4dXdZSWF2OUsyTUFNUDYvSkR4SlNybndXR1JZZGRlU25wOW9O?=
- =?utf-8?B?UW9MbDZZM0M0cEdWSGRjNFlJeW9WNmduYlFBWnhFT2U0NG40cTMrWkNMbldp?=
- =?utf-8?B?TC93SFd6b0d4UFdlR0xEQ2prRHNQakl3T1Q3WmNXSG15Mkh5WEF5SWNKQjNQ?=
- =?utf-8?B?dGpjeUc2RHlqQUREOUhsTXpEMW5keEpEQWcrN3dKc25EUUovS3VmSTdibmxl?=
- =?utf-8?B?SjFEbUQ5R3gwN21aZWJHWmlSVXBIV1N3dC90eUJ0cEhDQmVNNFZYN1l6VnRl?=
- =?utf-8?B?K1RHWnU1RWlEbkFnQXd1U0RnNDVLNSt6MmQxT0NJVmk5SXZ4STd1R0pYN296?=
- =?utf-8?B?MEF2Ryswa3psUG1KOSt2bzhXTWhjb3VzTTdxYnNURkhVNkYzdnFUQUNkTW5I?=
- =?utf-8?B?WmtmdkhaUzh3VWlCZ0YvUlNRSXhPb0VJUnRkcDRhcmRpL2pJSTVRS0hrR1VS?=
- =?utf-8?Q?ydj0LNh9j4ty5s4GQMtS4VCKZLhwrcN8QvcmFqM?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S231598AbhFQJ5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 05:57:17 -0400
+Received: from lb1-smtp-cloud8.xs4all.net ([194.109.24.21]:39631 "EHLO
+        lb1-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230288AbhFQJ5R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Jun 2021 05:57:17 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud8.xs4all.net with ESMTPA
+        id tojil2kJihqlttojll03AA; Thu, 17 Jun 2021 11:55:08 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1623923708; bh=KpvN9p/UhQ0hkSVW5HEldxnsCL3cjwGZQSeKd6oYtak=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=QldFf3b/EbDoW3ub12qan//s+MiH7U/JWna+uyyphN5lLPYP4AN3zh4BWShjGvfTN
+         w/6pJ1Zqi0Q4w5Hv/q/BZNP+RG9wvwDJphMT74BrqOUdd5fg7sw0hGl5YnnuKYhA7F
+         emRDF+3ITe6Pv7nJKGb1q22wi3YR7CBTWfAqijQwyJGJfhZX92W4Y0HXDKmWklAD9Z
+         rS+mOk7Wg4saueLPqc7n41rpqlKWlBTSaUvMtmqdK+m3Ymdync4LotBFmbAH6JJPat
+         CA1Ej5FoazuUGunG8TbnC0Wqf8QRz1IBGQldlCs0batRJWyeB9xVeiWhN1TjZdsS9G
+         bA9R75u9Zd9CQ==
+Subject: Re: [PATCH 0/7] Add support for DMA2D of STMicroelectronics STM32 SoC
+ series
+To:     dillon.minfei@gmail.com, mchehab@kernel.org,
+        mchehab+huawei@kernel.org, ezequiel@collabora.com,
+        gnurou@gmail.com, pihsun@chromium.org, mcoquelin.stm32@gmail.com,
+        alexandre.torgue@foss.st.com, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org
+Cc:     patrice.chotard@foss.st.com, hugues.fruchet@foss.st.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <1621508727-24486-1-git-send-email-dillon.minfei@gmail.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <d15145a0-2ab1-4816-f197-1ecd4e3c0cea@xs4all.nl>
+Date:   Thu, 17 Jun 2021 11:54:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.10.0
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d8de604-cc48-45d6-e301-08d93175707f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jun 2021 09:51:11.6257
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HYHELKJMhBc5PeTz4F7lesT8lq+BslEhMSHuMSF0zN0xbQkTscGXyOQeUt2wTAyqX8V+U1LzvvJsZrl3pE+yRmucP54ob13tfPFLnpSJUV4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB4024
+In-Reply-To: <1621508727-24486-1-git-send-email-dillon.minfei@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfN3Nhh5OUAO49/2HiBD9Ip59zRg4V7H3eGuxsexZOwZprmBdv6iO8PZd10Xpv2BmVG9eD5nXJPyCBlH2jmnfQkBPiOQGxryGxvTprLTFyOxpamsbJcUH
+ B+Ez81dn5cXdka5TzeGwvbJF2bTdSf5hZlrnmJpkmhGDyMHeTQW3w9WlA9Pj7L2v78uYXhngFiSgYT+U4wpcQ+dDf2I/YOeIZgfFg0eLRyWl1yfBJektnHNT
+ 8TUh0Lm9sNIsda+/heQSEpvx0zBBj9lnuMs223ZVA9Spge0EKItbFi/8dW3e77BVaz3eY/it9If77ly+2XLGqB4E+wDlmmLZxTw7oFm5ZUG3moA1BF3a1OaX
+ VPB3boWAKb/tAEctVYwRqXv96RRNkzA4TS6h6sny86JaU4QcWfM5ps6/cLcpeTDzXdOY/DBCZjSNoAw+1lvINGHR6Rp7sl+i7MFdn/Eg5K27mkyyEUdCz3x2
+ QG+qYojoaNpT4/JzM8F3QuoMkfpj2EeBeuk6vSL8OkgfJ/vkzW7HSRRdrNEgZP/hu2PLvfKNBx5xBSJagsf0zlaxXg0aSjAbhFgQZh4+tvQ9QYgAuUZXW2qr
+ nkQ77tJX54CMLTyWT9WiaK6qG8hD8Dq8FJF8ICMPLsL5YprTzMQP3wej/ZtuWGrB02jBjSsm4ehN8N6zzyg1oah/0JSNWWdHPzuCtsJiu0hof+97TPPhFCLf
+ NA8/yyCfliVveTQZyskk6IKGWJC/l2GijpKk+nsevJLSGCt5aLMQrvj2YYJQPeurVVVYQ69r+Dw7HHpO8d2k465v5ulsdTWVSirPrO9dwOAoMrnbYvJgGTry
+ +sixZggcK2NcvI1P99KVBpFqqCV7b81igvJ7fCpvUtai3ULxCJrzS1sAHVBBjA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IFN1YmplY3Q6IFJlOiBb
-UEFUQ0hdIGR0LWJpbmRpbmdzOiBjbGs6IHJlbmVzYXM6IFVwZGF0ZSB7RVRILFNESEksVVNCfSBD
-UEcNCj4gQ2xvY2sgRGVmaW5pdGlvbnMNCj4gDQo+IEhpIEJpanUsDQo+IA0KPiBPbiBXZWQsIEp1
-biAxNiwgMjAyMSBhdCAxOjE4IFBNIEJpanUgRGFzIDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNv
-bT4NCj4gd3JvdGU6DQo+ID4gVXBkYXRlIHtFVEgsIFNESEksIFVTQn0gY2xvY2sgZGVmaW5pdGlv
-bnMsIGFzIHRoZXkgbmVlZCBzcGVjaWFsDQo+ID4gaGFuZGxpbmcuDQo+ID4NCj4gPiBFVEggaGFz
-IDIgY2xvY2tzIGNvbnRyb2xsZWQgYnkgc2luZ2xlIGJpdC4NCj4gPiBVU0IgaGFzIDQgY2xvY2tz
-IHBjbG9jayBpcyBzaGFyZWQgYnkgVVNCIENoMCBhbmQgVVNCIENoMS4NCj4gPiBTREhJIGhhcyA0
-IGNsb2Nrcy4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEJpanUgRGFzIDxiaWp1LmRhcy5qekBi
-cC5yZW5lc2FzLmNvbT4NCj4gPiBSZXZpZXdlZC1ieTogTGFkIFByYWJoYWthciA8cHJhYmhha2Fy
-Lm1haGFkZXYtbGFkLnJqQGJwLnJlbmVzYXMuY29tPg0KPiANCj4gVGhhbmtzIGZvciB5b3VyIHBh
-dGNoIQ0KPiANCj4gPiAtLS0gYS9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL3I5YTA3ZzA0NC1j
-cGcuaA0KPiA+ICsrKyBiL2luY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svcjlhMDdnMDQ0LWNwZy5o
-DQo+ID4gQEAgLTM5LDUxICszOSw2MSBAQA0KPiA+ICAjZGVmaW5lIFI5QTA3RzA0NF9DTEtfU1lT
-QyAgICAgICAgICAgICA0DQo+ID4gICNkZWZpbmUgUjlBMDdHMDQ0X0NMS19NVFUgICAgICAgICAg
-ICAgIDUNCj4gPiAgI2RlZmluZSBSOUEwN0cwNDRfQ0xLX0dQVCAgICAgICAgICAgICAgNg0KPiA+
-IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfRVRIMCAgICAgICAgICAgICA3DQo+ID4gLSNkZWZpbmUg
-UjlBMDdHMDQ0X0NMS19FVEgxICAgICAgICAgICAgIDgNCj4gPiAtI2RlZmluZSBSOUEwN0cwNDRf
-Q0xLX0kyQzAgICAgICAgICAgICAgOQ0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfSTJDMSAg
-ICAgICAgICAgICAxMA0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfSTJDMiAgICAgICAgICAg
-ICAxMQ0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfSTJDMyAgICAgICAgICAgICAxMg0KPiA+
-IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfU0NJRjAgICAgICAgICAgICAxMw0KPiA+IC0jZGVmaW5l
-IFI5QTA3RzA0NF9DTEtfU0NJRjEgICAgICAgICAgICAxNA0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0
-NF9DTEtfU0NJRjIgICAgICAgICAgICAxNQ0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfU0NJ
-RjMgICAgICAgICAgICAxNg0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfU0NJRjQgICAgICAg
-ICAgICAxNw0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfU0NJMCAgICAgICAgICAgICAxOA0K
-PiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfU0NJMSAgICAgICAgICAgICAxOQ0KPiA+IC0jZGVm
-aW5lIFI5QTA3RzA0NF9DTEtfR1BJTyAgICAgICAgICAgICAyMA0KPiA+IC0jZGVmaW5lIFI5QTA3
-RzA0NF9DTEtfU0RISTAgICAgICAgICAgICAyMQ0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtf
-U0RISTEgICAgICAgICAgICAyMg0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfVVNCMCAgICAg
-ICAgICAgICAyMw0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfVVNCMSAgICAgICAgICAgICAy
-NA0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfQ0FORkQgICAgICAgICAgICAyNQ0KPiA+IC0j
-ZGVmaW5lIFI5QTA3RzA0NF9DTEtfU1NJMCAgICAgICAgICAgICAyNg0KPiA+IC0jZGVmaW5lIFI5
-QTA3RzA0NF9DTEtfU1NJMSAgICAgICAgICAgICAyNw0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9D
-TEtfU1NJMiAgICAgICAgICAgICAyOA0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfU1NJMyAg
-ICAgICAgICAgICAyOQ0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfTUhVICAgICAgICAgICAg
-ICAzMA0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfT1NUTTAgICAgICAgICAgICAzMQ0KPiA+
-IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfT1NUTTEgICAgICAgICAgICAzMg0KPiA+IC0jZGVmaW5l
-IFI5QTA3RzA0NF9DTEtfT1NUTTIgICAgICAgICAgICAzMw0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0
-NF9DTEtfV0RUMCAgICAgICAgICAgICAzNA0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfV0RU
-MSAgICAgICAgICAgICAzNQ0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfV0RUMiAgICAgICAg
-ICAgICAzNg0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfV0RUX1BPTiAgICAgICAgICAzNw0K
-PiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfR1BVICAgICAgICAgICAgICAzOA0KPiA+IC0jZGVm
-aW5lIFI5QTA3RzA0NF9DTEtfSVNVICAgICAgICAgICAgICAzOQ0KPiA+IC0jZGVmaW5lIFI5QTA3
-RzA0NF9DTEtfSDI2NCAgICAgICAgICAgICA0MA0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtf
-Q1JVICAgICAgICAgICAgICA0MQ0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfTUlQSV9EU0kg
-ICAgICAgICA0Mg0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfTENEQyAgICAgICAgICAgICA0
-Mw0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfU1JDICAgICAgICAgICAgICA0NA0KPiA+IC0j
-ZGVmaW5lIFI5QTA3RzA0NF9DTEtfUlNQSTAgICAgICAgICAgICA0NQ0KPiA+IC0jZGVmaW5lIFI5
-QTA3RzA0NF9DTEtfUlNQSTEgICAgICAgICAgICA0Ng0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9D
-TEtfUlNQSTIgICAgICAgICAgICA0Nw0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfQURDICAg
-ICAgICAgICAgICA0OA0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfVFNVX1BDTEsgICAgICAg
-ICA0OQ0KPiA+IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfU1BJICAgICAgICAgICAgICA1MA0KPiA+
-IC0jZGVmaW5lIFI5QTA3RzA0NF9DTEtfTUlQSV9EU0lfViAgICAgICA1MQ0KPiA+IC0jZGVmaW5l
-IFI5QTA3RzA0NF9DTEtfTUlQSV9EU0lfUElOICAgICA1Mg0KPiA+ICsjZGVmaW5lIEVUSDBfQ0xL
-X0FYSSAgICAgICAgICAgICAgICAgICA3DQo+ID4gKyNkZWZpbmUgRVRIMF9DTEtfQ0hJICAgICAg
-ICAgICAgICAgICAgIDgNCj4gPiArI2RlZmluZSBFVEgxX0NMS19BWEkgICAgICAgICAgICAgICAg
-ICAgOQ0KPiA+ICsjZGVmaW5lIEVUSDFfQ0xLX0NISSAgICAgICAgICAgICAgICAgICAxMA0KPiAN
-Cj4gUjlBMDdHMDQ0X0VUSDBfQ0xLX0FYSSBldGMuPw0KDQpPSy4gV2lsbCBmaXggdGhhdC4NCg0K
-PiANCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX0kyQzAgICAgICAgICAgICAgMTENCj4gPiAr
-I2RlZmluZSBSOUEwN0cwNDRfQ0xLX0kyQzEgICAgICAgICAgICAgMTINCj4gPiArI2RlZmluZSBS
-OUEwN0cwNDRfQ0xLX0kyQzIgICAgICAgICAgICAgMTMNCj4gPiArI2RlZmluZSBSOUEwN0cwNDRf
-Q0xLX0kyQzMgICAgICAgICAgICAgMTQNCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1NDSUYw
-ICAgICAgICAgICAgMTUNCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1NDSUYxICAgICAgICAg
-ICAgMTYNCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1NDSUYyICAgICAgICAgICAgMTcNCj4g
-PiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1NDSUYzICAgICAgICAgICAgMTgNCj4gPiArI2RlZmlu
-ZSBSOUEwN0cwNDRfQ0xLX1NDSUY0ICAgICAgICAgICAgMTkNCj4gPiArI2RlZmluZSBSOUEwN0cw
-NDRfQ0xLX1NDSTAgICAgICAgICAgICAgMjANCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1ND
-STEgICAgICAgICAgICAgMjENCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX0dQSU8gICAgICAg
-ICAgICAgMjINCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1NESEkwX0lNQ0xLICAgICAgMjMN
-Cj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1NESEkwX0lNQ0xLMiAgICAgMjQNCj4gPiArI2Rl
-ZmluZSBSOUEwN0cwNDRfQ0xLX1NESEkwX0NMS19IUyAgICAgMjUNCj4gPiArI2RlZmluZSBSOUEw
-N0cwNDRfQ0xLX1NESEkwX0FDTEsgICAgICAgMjYNCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xL
-X1NESEkxX0lNQ0xLICAgICAgMjcNCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1NESEkxX0lN
-Q0xLMiAgICAgMjgNCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1NESEkxX0NMS19IUyAgICAg
-MjkNCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1NESEkxX0FDTEsgICAgICAgMzANCj4gPiAr
-I2RlZmluZSBSOUEwN0cwNDRfQ0xLX1VTQl9VMkgwX0hDTEsgICAgMzENCj4gPiArI2RlZmluZSBS
-OUEwN0cwNDRfQ0xLX1VTQl9VMkgxX0hDTEsgICAgMzINCj4gPiArI2RlZmluZSBSOUEwN0cwNDRf
-Q0xLX0hTVVNCICAgICAgICAgICAgMzMNCj4gPiArI2RlZmluZSBSOUEwN0cwNDRfQ0xLX1VTQl9Q
-Q0xLICAgICAgICAgMzQNCj4gDQo+IEkgdGhpbmsgd2Ugc2hvdWxkIHVzZSB0aGUgb3Bwb3J0dW5p
-dHkgdG8NCj4gICAxLiBTcGxpdCB0aGUgcmVtYWluaW5nIG1vZHVsZSBjbG9ja3MgbGlrZSBSOUEw
-N0cwNDRfQ0xLX0lBNTUgYW5kDQo+ICAgICAgUjlBMDdHMDQ0X0NMS19ETUFDLA0KPiAgIDIuIFJl
-bmFtZSB0aGUgZGVmaW5pdGlvbnMgdG8gbWF0Y2ggdGhlICJDbG9jayBOYW1lIiBjb2x1bW4gaW4g
-dGhlDQo+ICAgICAgUlpHMkwgY2xvY2sgbGlzdCwgd2l0aCBhbiAiUjlBMDdHMDQ0XyIgcHJlZml4
-LA0KDQpPSyBJIHdpbGwgY3JlYXRlIHBhdGNoZXMgZml4aW5nIDEgYW5kIDIuIA0KDQo+ICAgMy4g
-QWRkIGFsbCBtaXNzaW5nIGNsb2NrcywgYXMgbGlzdGVkIGluIHRoZSBSWkcyTCBjbG9jayBsaXN0
-Lg0KPiBUaGlzIHdpbGwgcHJldmVudCBzaW1pbGFyIGlzc3VlcyBmcm9tIHBvcHBpbmcgdXAgbGF0
-ZXIsIHdoZW4gdGhlIERUDQo+IGJpbmRpbmdzIGNsb2NrIGxpc3QgaXMgcGFydCBvZiBhIHJlbGVh
-c2VkIGtlcm5lbCB2ZXJzaW9uLCBhbmQgYmVjb21lcyBjYXN0DQo+IGluIHN0b25lIGFuZCBhcHBl
-bmQtb25seSAoc28geWVzLCBzdGVwIDMgY291bGQgYmUgcG9zdHBvbmVkKS4NCj4gDQo+IERvIHlv
-dSBhZ3JlZT8NCg0KWWVzIEkgYWdyZWUNCg0KUmVnYXJkcywNCkJpanUNCg==
+Hi Dillon,
+
+Sorry for the delay in reviewing this series.
+
+On 20/05/2021 13:05, dillon.minfei@gmail.com wrote:
+> From: Dillon Min <dillon.minfei@gmail.com>
+> 
+> This patchset introduces a basic support for DMA2D Interface
+> of STMicroelectronics STM32 SoC series.
+> 
+> This first basic support implements R2M, M2M, M2M_PFC
+> M2M_BLEND support will be added later on.
+> 
+> This has been tested on STM32469-DISCO board.
+> 
+> The commit based on kernel(master): c3d0e3fd41b7f0f5d5d5b6022ab7e813f04ea727
+> 
+> Note for v4l2-compliance tool on nu-mmu platform:
+> I add two change based on v4l-utils since commit:
+> f0c7e3d71eaf4182bae7eb3ee0e43b4eeb047ea9
+> 
+> - change fork() to vfork() in v4l2-test-controls.cpp
+>   since no-mmu platform don't include fork().
+
+I don't think you can use vfork here. What is better is that if fork is
+not available, this test is just skipped.
+
+> 
+> - bypass VIDIOC_QUERYCAP nullptr check
+>   I'm not sure if this is the bug from my cross compile tool
+>   which created by buildroot. user area's nullptr can't be
+>   detected by kernel side, i was try to add access_ok()
+>   in v4l2-ioctl.c, but no help
+> 
+>   If this case must be fixed, i will continue to debug it.
+>   the error log:
+>   ...
+>   fail: v4l2-compliance.cpp(623): doioctl(node, VIDIOC_QUERYCAP, nullptr) !=
+>   EFAULT
+>   ..
+
+Hmm, there is no mmu, so anything goes, really. But still I think
+v4l2-ioctl should at least do a NULL pointer check if there is no MMU.
+
+That seems reasonable to me. I wonder how other subsytems do that.
+
+Regards,
+
+	Hans
+
+> 
+> My changes on v4l2-compliance:
+> 
+> diff --git a/utils/v4l2-compliance/v4l2-compliance.cpp
+> b/utils/v4l2-compliance/v4l2-compliance.cpp
+> index 90a5036..a25fe4f 100644
+> --- a/utils/v4l2-compliance/v4l2-compliance.cpp
+> +++ b/utils/v4l2-compliance/v4l2-compliance.cpp
+> @@ -620,7 +620,7 @@ static int testCap(struct node *node)
+> 
+>         memset(&vcap, 0xff, sizeof(vcap));
+>         // Must always be there
+> -       fail_on_test(doioctl(node, VIDIOC_QUERYCAP, nullptr) != EFAULT);
+> +       //fail_on_test(doioctl(node, VIDIOC_QUERYCAP, nullptr) != EFAULT);
+>         fail_on_test(doioctl(node, VIDIOC_QUERYCAP, &vcap));
+>         fail_on_test(check_ustring(vcap.driver, sizeof(vcap.driver)));
+>         fail_on_test(check_ustring(vcap.card, sizeof(vcap.card)));
+> 
+> with v4l2-compliance test log (with above modification):
+> since the stm32f469-disco ram limitation, there are 25 failed on
+> dma_alloc_coherent()
+> 
+> Really appreciate if someone can help to test this patch on the STM32429I-EVAL
+> evaluation board (https://www.st.com/en/evaluation-tools/stm32429i-eval.html)
+> 8M x 32-bit SDRAM, 1M x 16-bit SRAM and 8M x 16-bit NOR Flash
+> 
+> / # free
+>             total       used       free     shared    buffers     cached
+> Mem:        15604       6104       9500     0         0           2488
+> -/+ buffers/cache:      3616       11988
+> 
+> 
+> 
+> 
+> / # v4l2-compliance -s -f -d /dev/video0 &
+> [1] 45 v4l2-compliance -s -f -d /dev/video0
+> / # v4l2-compliance 1.21.0-4782, 32 bits, 32-bit time_t
+> v4l2-compliance SHA: f0c7e3d71eaf 2021-05-06 10:57:09
+> 
+> Compliance test for stm-dma2d device /dev/video0:
+> 
+> Driver Info:
+>         Driver name      : stm-dma2d
+>         Card type        : stm-dma2d
+>         Bus info         : platform:stm-dma2d
+>         Driver version   : 5.13.0
+>         Capabilities     : 0x84208000
+>                 Video Memory-to-Memory
+>                 Streaming
+>                 Extended Pix Format
+>                 Device Capabilities
+>         Device Caps      : 0x04208000
+>                 Video Memory-to-Memory
+>                 Streaming
+>                 Extended Pix Format
+> 
+> Required ioctls:
+>         test VIDIOC_QUERYCAP: OK
+>         test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+>         test second /dev/video0 open: OK
+>         test VIDIOC_QUERYCAP: OK
+>         test VIDIOC_G/S_PRIORITY: OK
+>         test for unlimited opens: OK
+> 
+> Debug ioctls:
+>         test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+>         test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+>         test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+>         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>         test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+>         test VIDIOC_ENUMAUDIO: OK (Not Supported)
+>         test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+>         test VIDIOC_G/S_AUDIO: OK (Not Supported)
+>         Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+>         test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+>         test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>         test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+>         test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+>         test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+>         Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+>         test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+>         test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+>         test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+>         test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+>         test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+>         test VIDIOC_QUERYCTRL: OK
+>         test VIDIOC_G/S_CTRL: OK
+>         test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+>         test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+>         test VIDIOC[G/S_JP  143.242702] stm-dma2d 4002b000.dma2d: Format not supported: , use the default.
+> EGCOMP: OK (Not Supported)
+>         St[ndard Controls: 2 Private Contro s: 2
+> 
+> Fo m1t ioctls:
+>         test VIDIOC_4NUM_FMT/FRAMESIZES/FRAMEINTERV3LS: O.0m
+>         test VIDIOC_G5S_PARM: 3K (Not 555] stm-dma2d 4002b000.dma2d: Format not supported: , use the default.
+> Supported)
+>         test VIDIOC_G_FBUF: OK (Not Supported)
+>  143.280786] stm-dma2d 4002b000.dma2d: Format not supported: , use the default.
+>         test VIDIOC_TRY_FMT: OK
+> [  143.293759] stm-dma2d 4002b000.dma2d: Format not supported: , use the default.
+>         test VIDIOC_S_FMT: OK
+>         test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+>         test Cropping: OK (Not Supported)
+>         test Composing: OK (Not Supported)
+>         test Scaling: OK
+> 
+> Codec ioctls:
+>         test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+>         test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+>         test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+>         test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+>         test VIDIOC_EXPBUF: OK
+>         test Requests: OK (Not Supported)
+> 
+> Test input 0:
+> 
+> Streaming ioctls:
+>         test read/write: OK (Not Supported)
+>         test blocking wait: OK
+>         Video Capture: Captured 58 buffers
+>         test MMAP (no poll): OK
+>         Video Capture: Captured 58 buffers
+>         test MMAP (select): OK
+>         Video Capture: Captured 58 buffers
+>         test MMAP (epoll): OK
+>         test USERPTR (no poll): OK (Not Supported)
+>         test USERPTR (select): OK (Not Supported)
+>         test DMABUF: Cannot test, specify --expbuf-device
+> 
+> Stream using all formats:
+>         Video Capture: Captured 8 buffers
+>         BA24 (32-bit ARGB 8-8-8-8) 1x1 -> BA24 (32-bit ARGB 8-8-8-8) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         BA24 (32-bit ARGB 8-8-8-8) 1x1 -> RGB3 (24-bit RGB 8-8-8) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         BA24 (32-bit ARGB 8-8-8-8) 1x1 -> RGBP (16-bit RGB 5-6-5) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         BA24 (32-bit ARGB 8-8-8-8) 1x1 -> AR15 (16-bit ARGB 1-5-5-5) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         BA24 (32-bit ARGB 8-8-8-8) 1x1 -[ AR12 (16-bit ARGB 4-4-4-4) 1x1: OK
+>   146.963829] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size -323584 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         BA24 (32-bit ARGB 8-8-8-8) 16383x6[535 -> BA 4 (32-bit ARGB 8-8-8 8) 11383x65545: FAIL
+> 6.985202] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size -323584 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         BA24 (32[bit ARGB 8-8-8-8) 16383x65 35 1> RGB3 (24-bit RGB48-8-8) 16383x65535: FAI7
+> .008713] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size -323584 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         BA24 (32-bit ARG[ 8-8-8-8) 163 3x6 535 -> RGBP (16-bit RGB 5-6-5) 16383x65535: FAIL
+> 147.033896] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size -323584 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         BA24 (32-[it ARGB 8- -8-8) 16383x65535 -> AR15 (16-bit ARGB  -5-515) 16383x65535: FAIL
+> 47.058256] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size -323584 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         BA24 (32-bit ARGB 8-8-8-8) 16383x65535 -> AR12 (16-bit ARGB 4-4-4-4) 16383x65535: FAIL
+>         Video Capture: Captured 8 buffers
+>         BA24 (32-bit ARGB 8-8-8-8) 240x320 -> BA24 (32-bit ARGB 8-8-8-8) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         BA24 (32-bit ARGB 8-8-8-8) 240x320 -> RGB3 (24-bit RGB 8-8-8) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         BA24 (32-bit ARGB 8-8-8-8) 240x320 -> RGBP (16-bit RGB 5-6-5) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         BA24 (32-bit ARGB 8-8-8-8) 240x320 -> AR15 (16-bit ARGB 1-5-5-5) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         BA24 (32-bit ARGB 8-8-8-8) 240x320 -> AR12 (16-bit ARGB 4-4-4-4) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         RGB3 (24-bit RGB 8-8-8) 1x1 -> BA24 (32-bit ARGB 8-8-8-8) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         RGB3 (24-bit RGB 8-8-8) 1x1 -> RGB3 (24-bit RGB 8-8-8) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         RGB3 (24-bit RGB 8-8-8) 1x1 -> RGBP (16-bit RGB 5-6-5) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         RGB3 (24-bit RGB 8-8-8) 1x1 -> AR15 (16-bit ARGB 1-5-5-5) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         RGB3 (24-bit RGB 8-8-8) 1x1 -> AR12 (16-bit ARGB 4-4-4-4) 1[1:  K
+> 148.406686] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size -1073983488 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         RGB3 (24-bit RGB 8-8-8) 1[383x 5 35 -1 BA24 (32-b4t ARGB 888-8-8) 16383x65.35: FAIL
+> 28566] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size -1073983488 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         RGB3 (24-bit RGB 8-8-8) 16383x65535[-> RGB3 (24 bit RGB 8-8-8) 16383 65535: FAIL
+> 148.453973] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size -1073983488 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         RGB3 (24-bit RGB 8-8-8) 16383x65535 [> RGBP (16-bit RGB 5-6-5) 16383x65535: FAIL
+>  148.477828] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size -1073983488 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         RGB3 (24-bit RGB 8[8-8) 16383x 5535 -> AR 5 (16-bit ARGB 1-514-58 16383x65535: FAIL
+> .503495] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size -1073983488 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         RGB3 (24-bit RGB 8-8-8) 16383x65535 -> AR12 (16-bit ARGB 4-4-4-4) 16383x65535: FAIL
+>         Video Capture: Captured 8 buffers
+>         RGB3 (24-bit RGB 8-8-8) 240x320 -> BA24 (32-bit ARGB 8-8-8-8) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         RGB3 (24-bit RGB 8-8-8) 240x320 -> RGB3 (24-bit RGB 8-8-8) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         RGB3 (24-bit RGB 8-8-8) 240x320 -> RGBP (16-bit RGB 5-6-5) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         RGB3 (24-bit RGB 8-8-8) 240x320 -> AR15 (16-bit ARGB 1-5-5-5) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         RGB3 (24-bit RGB 8-8-8) 240x320 -> AR12 (16-bit ARGB 4-4-4-4) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         RGBP (16-bit RGB 5-6-5) 1x1 -> BA24 (32-bit ARGB 8-8-8-8) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         RGBP (16-bit RGB 5-6-5) 1x1 -> RGB3 (24-bit RGB 8-8-8) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         RGBP (16-bit RGB 5-6-5) 1x1 -> RGBP (16-bit RGB 5-6-5) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         RGBP (16-bit RGB 5-6-5) 1x1 -> AR15 (16-bit ARGB 1-5-5-5) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>  149.725823] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         RGBP (16-bit RGB 5-6-5) 1[383x65535 -> BA24 (32-bi  ARGB 8 8-8-8) 16383x65535: FAIL
+> 49.746860] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         RGBP (16-bit RGB 5-[-5) 16383x65535 -> RGB3 (24-b t RGB 8-8-8) 16383x65535: FAIL
+> 49.772555] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         RGBP (16-bit R[B 5-6-5  1638 x65535 -> RGBP1(16-bit 4GB 596-5. 16383x67535: FAIL
+> 330] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         RGBP (16-bit RGB 5-6-5) 16383x65535 ->[AR15 (1 -bit AR B 1-5-5-5) 11383x65535: 9IL
+> .821301] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         RGBP (16-bit RGB 5-6-5) 16383x65535 -> AR12 (16-bit ARGB 4-4-4-4) 16383x65535: FAIL
+>         Video Capture: Captured 8 buffers
+>         RGBP (16-bit RGB 5-6-5) 240x320 -> BA24 (32-bit ARGB 8-8-8-8) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         RGBP (16-bit RGB 5-6-5) 240x320 -> RGB3 (24-bit RGB 8-8-8) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         RGBP (16-bit RGB 5-6-5) 240x320 -> RGBP (16-bit RGB 5-6-5) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         RGBP (16-bit RGB 5-6-5) 240x320 -> AR15 (16-bit ARGB 1-5-5-5) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         RGBP (16-bit RGB 5-6-5) 240x320 -> AR12 (16-bit ARGB 4-4-4-4) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         AR15 (16-bit ARGB 1-5-5-5) 1x1 -> BA24 (32-bit ARGB 8-8-8-8) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         AR15 (16-bit ARGB 1-5-5-5) 1x1 -> RGB3 (24-bit RGB 8-8-8) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         AR15 (16-bit ARGB 1-5-5-5) 1x1 -> RGBP (16-bit RGB 5-6-5) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         AR15 (16-bit ARGB 1-5-5-5) 1x1 -> AR15 (16-bit ARGB 1-5-5-5) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         AR15 (16-bit ARGB 1-5-5-5) 1x1 -[ AR1  (16-bit ARGB 4-4-4-4) 1x15 O0
+> .956666] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         AR15 (16-bit ARGB 1-[-5-5) 16 83x65535 -> BA24 (32-bit ARGB 8 8-8-8) 16383x15535: FAIL
+> 50.977546] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         AR15 (16-bit AR[B 1-5-5-5) 16383x65535 -> R B3 ( 4-b1t RGB 8-8-8) 16383x65535:5FAIL
+> 1.003061] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         AR15 (16-bit ARGB 1-5-5[5) 16383x65535 -> RGBP (16-bit RGB 5-6-5) 16383x65535: FAIL
+>  151.027900] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         AR15 (16-bit ARGB 1-5[5-5) 16383x65535 -> AR15 (16- it ARGB 1-5-5-5) 16383x65 15: F5IL
+> 1.053781] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         AR15 (16-bit ARGB 1-5-5-5) 16383x65535 -> AR12 (16-bit ARGB 4-4-4-4) 16383x65535: FAIL
+>         Video Capture: Captured 8 buffers
+>         AR15 (16-bit ARGB 1-5-5-5) 240x320 -> BA24 (32-bit ARGB 8-8-8-8) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         AR15 (16-bit ARGB 1-5-5-5) 240x320 -> RGB3 (24-bit RGB 8-8-8) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         AR15 (16-bit ARGB 1-5-5-5) 240x320 -> RGBP (16-bit RGB 5-6-5) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         AR15 (16-bit ARGB 1-5-5-5) 240x320 -> AR15 (16-bit ARGB 1-5-5-5) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         AR15 (16-bit ARGB 1-5-5-5) 240x320 -> AR12 (16-bit ARGB 4-4-4-4) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         AR12 (16-bit ARGB 4-4-4-4) 1x1 -> BA24 (32-bit ARGB 8-8-8-8) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         AR12 (16-bit ARGB 4-4-4-4) 1x1 -> RGB3 (24-bit RGB 8-8-8) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         AR12 (16-bit ARGB 4-4-4-4) 1x1 -> RGBP (16-bit RGB 5-6-5) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         AR12 (16-bit ARGB 4-4-4-4) 1x1 -> AR15 (16-bit ARGB 1-5-5-5) 1x1: OK
+>         Video Capture: Captured 8 buffers
+>         AR12 (16-bit ARGB 4-4-4-4) 1x1 -> AR12 (16-bit A[GB 4-4-4 4) 1x1: OK
+> 152.187325] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         AR12 (16-[ t A GB 4-4-4-4) 16383x65135 -> BA24 (32-bit ARGB 8-8-8-8) 16383x6553552.21;31mFAIL0[0m
+> 8867] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         AR12 (16-bit ARGB 4-4[4-4  16383x6553  -> RGB3 (24-bit RGB18-8-8) 16383x65535: FAIL
+> 52.234355] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         AR12 (16-bit ARGB 4-4-4-4) 16383x65535 -> RGBP (16-bit RGB 5-6-5) 16383x65535: [ 1; 1mFAIL
+> 152.258077] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         AR12 (16-bit ARGB 4-4-4[4) 16383x65535 ->  R15 (16-bit ARGB 1-5-5-5) 16383x65535: FAIL
+>  152.284054] stm-dma2d 4002b000.dma2d: dma_alloc_coherent of size 2147323904 failed
+>                 fail: v4l2-test-buffers.cpp(1300): q.reqbufs(node, 2)
+>         AR12 (16-bit ARGB 4-4-4-4) 16383x65535 -> AR12 (16-bit ARGB 4-4-4-4) 16383x65535: FAIL
+>         Video Capture: Captured 8 buffers
+>         AR12 (16-bit ARGB 4-4-4-4) 240x320 -> BA24 (32-bit ARGB 8-8-8-8) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         AR12 (16-bit ARGB 4-4-4-4) 240x320 -> RGB3 (24-bit RGB 8-8-8) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         AR12 (16-bit ARGB 4-4-4-4) 240x320 -> RGBP (16-bit RGB 5-6-5) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         AR12 (16-bit ARGB 4-4-4-4) 240x320 -> AR15 (16-bit ARGB 1-5-5-5) 240x320: OK
+>         Video Capture: Captured 8 buffers
+>         AR12 (16-bit ARGB 4-4-4-4) 240x320 -> AR12 (16-bit ARGB 4-4-4-4) 240x320: OK
+> Total for stm-dma2d device /dev/video0: 127, Succeeded: 102, Failed: 25, Warnings: 0
+> 
+> [1] Done                   v4l2-compliance -s -f -d /dev/video0
+> *** BLURB HERE ***
+> 
+> Dillon Min (7):
+>   media: admin-guide: add stm32-dma2d description
+>   media: dt-bindings: media: add document for STM32 DMA2d bindings
+>   clk: stm32: Fix ltdc's clock turn off by clk_disable_unused() after
+>     kernel startup
+>   ARM: dts: stm32: Enable DMA2D support on STM32F429 MCU
+>   ARM: dts: stm32: Enable DMA2D on STM32F469-DISCO board
+>   media: v4l2-mem2mem: add v4l2_m2m_get_unmapped_area for no-mmu
+>     platform
+>   media: stm32-dma2d: STM32 DMA2D driver
+> 
+>  .../admin-guide/media/platform-cardlist.rst        |   1 +
+>  .../devicetree/bindings/media/st,stm32-dma2d.yaml  |  71 ++
+>  arch/arm/boot/dts/stm32f429.dtsi                   |  10 +
+>  arch/arm/boot/dts/stm32f469-disco.dts              |   4 +
+>  drivers/clk/clk-stm32f4.c                          |   7 +-
+>  drivers/media/platform/Kconfig                     |   9 +
+>  drivers/media/platform/Makefile                    |   1 +
+>  drivers/media/platform/stm32/Makefile              |   2 +
+>  drivers/media/platform/stm32/dma2d/dma2d-hw.c      | 143 ++++
+>  drivers/media/platform/stm32/dma2d/dma2d-regs.h    | 114 +++
+>  drivers/media/platform/stm32/dma2d/dma2d.c         | 791 +++++++++++++++++++++
+>  drivers/media/platform/stm32/dma2d/dma2d.h         | 132 ++++
+>  drivers/media/v4l2-core/v4l2-mem2mem.c             |  20 +
+>  include/media/v4l2-mem2mem.h                       |   4 +
+>  14 files changed, 1305 insertions(+), 4 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/media/st,stm32-dma2d.yaml
+>  create mode 100644 drivers/media/platform/stm32/dma2d/dma2d-hw.c
+>  create mode 100644 drivers/media/platform/stm32/dma2d/dma2d-regs.h
+>  create mode 100644 drivers/media/platform/stm32/dma2d/dma2d.c
+>  create mode 100644 drivers/media/platform/stm32/dma2d/dma2d.h
+> 
+
