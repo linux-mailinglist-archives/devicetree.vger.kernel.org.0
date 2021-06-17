@@ -2,74 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85BB03ABDCA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 23:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6E513ABDF9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 23:26:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232864AbhFQVKv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 17:10:51 -0400
-Received: from foss.arm.com ([217.140.110.172]:60168 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232580AbhFQVKv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Jun 2021 17:10:51 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4F84D13A1;
-        Thu, 17 Jun 2021 14:08:43 -0700 (PDT)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 965AD3F694;
-        Thu, 17 Jun 2021 14:08:42 -0700 (PDT)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: nomadik: Fix up interrupt controller node names
-Date:   Thu, 17 Jun 2021 22:08:25 +0100
-Message-Id: <20210617210825.3064367-2-sudeep.holla@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210617210825.3064367-1-sudeep.holla@arm.com>
-References: <20210617210825.3064367-1-sudeep.holla@arm.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S232964AbhFQV2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 17:28:53 -0400
+Received: from mail-io1-f46.google.com ([209.85.166.46]:36780 "EHLO
+        mail-io1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232939AbhFQV2w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 17:28:52 -0400
+Received: by mail-io1-f46.google.com with SMTP id s19so4764699ioc.3;
+        Thu, 17 Jun 2021 14:26:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=WRkbRg9Bf/LCif0asWJibTLvFQ8qESLyCcw61Dt7ZUI=;
+        b=PtAuGTxAqQ8Aqjf0zJBT7FZxVR9JokISEjcyk5YgWnVwr+BnxmvVjyZBd2Fz3qyAd+
+         rqyssWCqD4pSHWoepaoz3nzdaOXcbQf5yK6aA3TM6+9Le7pAfM21HeWMXhse1fB8kh9R
+         Xt3voQcWJ6+88yKV4tZH63WS1eYT9EAdVd0CHj4bhfcG+dyaBtWwXPM1Hi1+jt4NfWFe
+         H9iquSC3zZqG1axXyeVqs5ftqhBMCqV0GDcpM/Eakn8IKXDtQgITy5tWUxX0IXkOXRAt
+         YxvNMs6y3OV37FXj3xuNR5uyMT1Ak9E5ORb2EGJjHNOMxPp6yXUH2W2gIA2P360YwyMy
+         s8Nw==
+X-Gm-Message-State: AOAM5336bzuuSyopsRqARnkiLdnLqtl96r9Z8fKttN8VruE6eHeXwJ7G
+        QkF1nGCAjtEM9Xv+Zz9XQUN8BlFy4A==
+X-Google-Smtp-Source: ABdhPJz2qR9tCm9/RgsjEGUFcsdmjgfskMAzB3MZ0zAiG+SDMl2EubL2S4imr4UV7CvSdcCsKP3zNg==
+X-Received: by 2002:a05:6638:168d:: with SMTP id f13mr242927jat.124.1623965203489;
+        Thu, 17 Jun 2021 14:26:43 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id n2sm3559875iod.54.2021.06.17.14.26.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Jun 2021 14:26:42 -0700 (PDT)
+Received: (nullmailer pid 3336119 invoked by uid 1000);
+        Thu, 17 Jun 2021 21:26:24 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Ban Tao <fengzheng923@gmail.com>
+Cc:     mripard@kernel.org, robh+dt@kernel.org,
+        linux-sunxi@lists.linux.dev, lgirdwood@gmail.com,
+        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
+        broonie@kernel.org, wens@csie.org, linux-kernel@vger.kernel.org,
+        jernej.skrabec@gmail.com, devicetree@vger.kernel.org
+In-Reply-To: <20210617131005.2416-1-fengzheng923@gmail.com>
+References: <20210617131005.2416-1-fengzheng923@gmail.com>
+Subject: Re: [PATCH v2 2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings for DMIC controller
+Date:   Thu, 17 Jun 2021 15:26:24 -0600
+Message-Id: <1623965184.555815.3336118.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Once the new schema interrupt-controller/arm,vic.yaml is added, we get
-the below warnings:
+On Thu, 17 Jun 2021 21:10:05 +0800, Ban Tao wrote:
+> DT binding documentation for this new ASoC driver.
+> 
+> Signed-off-by: Ban Tao <fengzheng923@gmail.com>
+> ---
+>  .../sound/allwinner,sun50i-h6-dmic.yaml       | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+> 
 
-	arch/arm/boot/dts/ste-nomadik-nhk15.dt.yaml:
-	intc@10140000: $nodename:0: 'intc@10140000' does not match
-	'^interrupt-controller(@[0-9a-f,]+)*$'
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Fix the node names for the interrupt controller to conform
-to the standard node name interrupt-controller@..
+yamllint warnings/errors:
 
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
----
- arch/arm/boot/dts/ste-nomadik-stn8815.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.example.dt.yaml: dmic@5095000: #sound-dai-cells:0:0: 0 was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+\ndoc reference errors (make refcheckdocs):
 
-diff --git a/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi b/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
-index c9b906432341..1815361fe73c 100644
---- a/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
-+++ b/arch/arm/boot/dts/ste-nomadik-stn8815.dtsi
-@@ -755,14 +755,14 @@ clcd@10120000 {
- 			status = "disabled";
- 		};
- 
--		vica: intc@10140000 {
-+		vica: interrupt-controller@10140000 {
- 			compatible = "arm,versatile-vic";
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
- 			reg = <0x10140000 0x20>;
- 		};
- 
--		vicb: intc@10140020 {
-+		vicb: interrupt-controller@10140020 {
- 			compatible = "arm,versatile-vic";
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
--- 
-2.25.1
+See https://patchwork.ozlabs.org/patch/1493498
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
