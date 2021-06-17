@@ -2,117 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7E773AB987
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 18:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 133D33AB99C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 18:28:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232521AbhFQQ04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 12:26:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46824 "EHLO mail.kernel.org"
+        id S230167AbhFQQaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 12:30:10 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:38152 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232519AbhFQQ04 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Jun 2021 12:26:56 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4B70B613B9;
-        Thu, 17 Jun 2021 16:24:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623947088;
-        bh=INq4nssCgYsIEKzYkC0Op/vH8B8aE187QI5AyGhlWxE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RtPaz8GQTTMVVgSDQIOJ+S+7TxupFal78/odxYuTkiSTyDWOtO9O73BHhefzoqrJB
-         VfailCngQHg8/m/NNIvvS+L3dfcVVEvXhNsz+jPmILsuEZspNOtPc7/MW+U1psbjzT
-         oLXqRwNwJ9DyoQdS8tSxnYjdSjWzUlTpaUA/mljCDV6mZNlUCeZIJw4inR3hTrhIRr
-         DOzlUfyLd4cu5tCrkNBUgeHBUQ45h4fikdS3ZmGnfYTOz7FBOS3f+2rUJSijUwD0dw
-         aNnF00p0XOEclfzSMbrEDAeHL0I6RBy+sd9NJ5SeJwAhvYaFgnLvrqthn9PGYKcyfr
-         60KVvSVaNxZDg==
-Date:   Thu, 17 Jun 2021 17:24:28 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     cy_huang <u0084500@gmail.com>, lgirdwood@gmail.com,
-        matthias.bgg@gmail.com, gene_chen@richtek.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        cy_huang@richtek.com, gene.chen.richtek@gmail.com
-Subject: Re: [PATCH 1/2] regulator: mt6360: Add optional
- mediatek.power-off-sequence in bindings document
-Message-ID: <20210617162428.GG5067@sirena.org.uk>
-References: <1622616875-22740-1-git-send-email-u0084500@gmail.com>
- <20210611201643.GA1583875@robh.at.kernel.org>
+        id S230269AbhFQQaH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Jun 2021 12:30:07 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lturw-00057p-Ps; Thu, 17 Jun 2021 18:27:52 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl
+Cc:     ezequiel@collabora.com, dafna.hirschfeld@collabora.com,
+        helen.koike@collabora.com, Laurent.pinchart@ideasonboard.com,
+        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+        heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v5 0/7] rkisp1 support for px30
+Date:   Thu, 17 Jun 2021 18:27:35 +0200
+Message-Id: <20210617162745.4080975-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2E/hm+v6kSLEYT3h"
-Content-Disposition: inline
-In-Reply-To: <20210611201643.GA1583875@robh.at.kernel.org>
-X-Cookie: But it does move!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds support for the slightly different v12
+variant of the ISP used for example in the px30 soc.
 
---2E/hm+v6kSLEYT3h
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+changes in v5:
+- handle interrupt-names as conditional required property (Dafna)
+- add second example for showing interrupt-names (Dafna)
 
-On Fri, Jun 11, 2021 at 02:16:43PM -0600, Rob Herring wrote:
-> On Wed, Jun 02, 2021 at 02:54:34PM +0800, cy_huang wrote:
+changes in v4:
+- clean up multi-irq case (Dafna)
+  Now each variant can have a list of interrupts
+  and their respective handlers, with or without
+  interrupt-names
 
-> > Originally, we think it must write in platform dependent code like as b=
-ootloader.
-> > But after the evaluation, it must write only when system normal HALT or=
- POWER_OFF.
-> > For the other cases, just follow HW immediate off by default.
+changes in v3:
+- add necessary binding additions
+- fix pclk naming in binding
+- move v12 clk_ctrl register bits to v12 addition patch
+- fix rebase artefact with hst_enable
 
-> Wouldn't this be handled by PSCI implementation?
+changes in v2 (from rfc):
+- split out phy patch into a separate series
+- drop dts patches for now
+- split v12 addition and v10 prefixes into separate patches
+  to enable easier review (Dafna)
+- remove {stats,params}_config structs, we can just use the
+  correct constant (Dafna)
+- adapt to styling comments from Dafna and Helen
+- add patch to remove the unused irq variable in struct rkisp
 
-Ideally I think...
+Heiko Stuebner (10):
+  media: rockchip: rkisp1: remove unused irq variable
+  dt-bindings: media: rkisp1: fix pclk clock-name
+  dt-bindings: media: rkisp1: document different irq possibilities
+  media: rockchip: rkisp1: allow separate interrupts
+  media: rockchip: rkisp1: make some isp-param functions variable
+  media: rockchip: rkisp1: make some isp-stats functions variable
+  media: rockchip: rkisp1: add prefixes for v10 specific parts
+  media: rockchip: rkisp1: add support for v12 isp variants
+  dt-bindings: media: rkisp1: document px30 isp compatible
+  media: rockchip: rkisp1: add support for px30 isp version
 
-> > +  mediatek,power-off-sequence:
-> > +    description: |
-> > +      Power off sequence time selection for BUCK1/BUCK2/LDO7/LDO6, res=
-petively.
-> > +      Cause these regulators are all default-on power. Each value from=
- 0 to 63,
-> > +      and step is 1. Each step means 2 millisecond delay.
-> > +      Therefore, the power off sequence delay time range is from 0ms t=
-o 126ms.
-> > +    $ref: "/schemas/types.yaml#/definitions/uint8-array"
-> > +    minItems: 4
-> > +    maxItems: 4
+ .../bindings/media/rockchip-isp1.yaml         | 113 +++-
+ .../platform/rockchip/rkisp1/rkisp1-capture.c |   9 +-
+ .../platform/rockchip/rkisp1/rkisp1-common.h  |  44 +-
+ .../platform/rockchip/rkisp1/rkisp1-dev.c     |  71 ++-
+ .../platform/rockchip/rkisp1/rkisp1-isp.c     |  29 +-
+ .../platform/rockchip/rkisp1/rkisp1-params.c  | 557 ++++++++++++++----
+ .../platform/rockchip/rkisp1/rkisp1-regs.h    | 406 ++++++++-----
+ .../platform/rockchip/rkisp1/rkisp1-stats.c   | 107 +++-
+ 8 files changed, 1044 insertions(+), 292 deletions(-)
 
-> So this is the delay between BUCK1 and BUCK2, then BUCK2 to LDO7, etcc?=
-=20
-> If we wanted to express this in DT, we'd made this generic which would=20
-> need to be more flexible. A poweroff delay in each regulator (similar to=
-=20
-> the existing power on delay) would be sufficient for what you need I=20
-> think.
+-- 
+2.29.2
 
-It's not exactly a delay that's being described there - it's a series of
-timeslots, each regulator getting assigned to a timeslot.  You could
-possibly do a general binding by specifying a delay from the start of
-the power off sequence and then (for this device) having the driver work
-out a mapping of those times to timeslots.  That feels genericish, you
-might also have things like mode changes but it'd cover a lot of the
-cases.
-
-On the other hand this is the sort of thing that is often just not
-configurable and where people often make weird and inflexible hardware
-so things that do implement it are likely to end up wanting to add a
-bunch of constraints which might be a lot of hassle.
-
---2E/hm+v6kSLEYT3h
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDLdzsACgkQJNaLcl1U
-h9Cy9wf/ROgBTEBrrxZAUNZNi+NXNQw980J3z3LZGhLX5EOkMxzPPXdy0EuF0ek6
-NJuBOiyrmSj8i1YDSY9CVcR5TSDjqL8oJGzCo5KBtfW6dXEOxHfAhlQNhIlKBgVI
-YLd6Zg+D7L1EfCNx4yf98DBXaqqZuVHe4aOLP8HmjR6+8QoJBlYso0DeM7CqLKo2
-jpe6mV/ihm73qeSa0WMQ9/lEln/DZ1q/xivNbYjmLqchXIp8/KilF0vw6yuVLlJY
-QY2I012mnmGL/MtWmJohwU7aWZaTK+J8PMpKjglre25GCf2i/29PL68q9xwwwB4r
-5VVzFXJo0iqqEAShFU6/dgitjQRSGw==
-=eGjM
------END PGP SIGNATURE-----
-
---2E/hm+v6kSLEYT3h--
