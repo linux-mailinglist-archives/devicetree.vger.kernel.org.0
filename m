@@ -2,86 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3E263ABDEF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 23:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AF373ABE5A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 23:48:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbhFQV2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 17:28:42 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:47027 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232630AbhFQV2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 17:28:41 -0400
-Received: by mail-io1-f54.google.com with SMTP id b14so4728616iow.13;
-        Thu, 17 Jun 2021 14:26:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=BK4/yKFERPq5Q5JT9ah7IGyXargZYodEJ6e9CzGiy3M=;
-        b=UenFnamiUDIznudDVz6/ZgG0DONGhQ1XSEBhuRoG8jFFHzRTJlYSbs+7rD69fLGuqx
-         hqOgmsPpjZjHnrEfaVZyZeIXI5RgXnbW4dPANp6XocH3IDwShKthMCK9FeWxHnBUw/pB
-         UEBKqqcN1SK7ej8ZdbRthkxO5xuP4F6n0cDSfx9TDIHuomBW2i6jUOZqKEMjs7kqK/Yh
-         NSK9C4Mgh4w3AyC9VXhKBHC16J+Qy7JDVfCxqtfN+4Hp+ow/A0+tk7FCXIOqrrjPSOtb
-         koQmSyEz+/VJxkuzZEKn+zX1S5LEAbHYuG6nm7q5NS2ppKYvJWsGYtnxVpgjFjVLsRwD
-         f7SQ==
-X-Gm-Message-State: AOAM531FiIXxXfavS3u/Jk6ENPynsChkcIWHCWE8cb73qfIJWuPZjE11
-        c8udwtoh8XzCITmuiL/hQw==
-X-Google-Smtp-Source: ABdhPJyJjIjZ7icIf3FV7WOoRfpkfxMCTq875Gptr5kBUuCdwKnKUEr+eYj/VVIB+lEYT3uweNNoOg==
-X-Received: by 2002:a5e:940a:: with SMTP id q10mr5487243ioj.19.1623965192578;
-        Thu, 17 Jun 2021 14:26:32 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id x18sm84588ilm.86.2021.06.17.14.26.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Jun 2021 14:26:31 -0700 (PDT)
-Received: (nullmailer pid 3336123 invoked by uid 1000);
-        Thu, 17 Jun 2021 21:26:24 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     robh+dt@kernel.org, hverkuil-cisco@xs4all.nl,
-        linux-media@vger.kernel.org, mchehab@kernel.org,
-        ezequiel@collabora.com, devicetree@vger.kernel.org,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Laurent.pinchart@ideasonboard.com, dafna.hirschfeld@collabora.com,
-        helen.koike@collabora.com, linux-rockchip@lists.infradead.org
-In-Reply-To: <20210617162745.4080975-10-heiko@sntech.de>
-References: <20210617162745.4080975-1-heiko@sntech.de> <20210617162745.4080975-10-heiko@sntech.de>
-Subject: Re: [PATCH v5 09/10] dt-bindings: media: rkisp1: document px30 isp compatible
-Date:   Thu, 17 Jun 2021 15:26:24 -0600
-Message-Id: <1623965184.614652.3336122.nullmailer@robh.at.kernel.org>
+        id S230390AbhFQVuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 17:50:54 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:64822 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231181AbhFQVuy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 17:50:54 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1623966526; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=eATf/nMRgpGYmlXyMTtnhQYqD5pqdm6H+bv15GdGkHU=; b=CIpG3lcw4dTPIp8cu4NXcojQwJjHf4hA1D32uHzIIrGaoQibxSaRGzGdua1/7f2jjo4Sv7d9
+ nAOZGq+SqHgLZr7BZ0Wh7GtjeKQJ3AwIfUMHJ0IgOiSRxgCOi8NpOu486WdHxzkLqUybNIAT
+ /c2zpm93kFTA1hMbhx5xJqPmBdk=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 60cbc33af726fa4188fc5a61 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 17 Jun 2021 21:48:42
+ GMT
+Sender: wcheng=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 37DE0C4338A; Thu, 17 Jun 2021 21:48:41 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.2 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [10.110.94.190] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 91D65C433F1;
+        Thu, 17 Jun 2021 21:48:38 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 91D65C433F1
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
+Subject: Re: [PATCH v10 0/6] Re-introduce TX FIFO resize for larger EP
+ bursting
+To:     Ferry Toth <fntoth@gmail.com>, balbi@kernel.org,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, frowand.list@gmail.com
+Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        jackp@codeaurora.org, heikki.krogerus@linux.intel.com,
+        andy.shevchenko@gmail.com
+References: <1623923899-16759-1-git-send-email-wcheng@codeaurora.org>
+ <cfb83fe4-369c-ec72-7887-3bcb0f20fe15@gmail.com>
+From:   Wesley Cheng <wcheng@codeaurora.org>
+Message-ID: <ec8050c5-c013-4af6-b39e-69779c009a9c@codeaurora.org>
+Date:   Thu, 17 Jun 2021 14:48:37 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <cfb83fe4-369c-ec72-7887-3bcb0f20fe15@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Jun 2021 18:27:44 +0200, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+Hi,
+
+On 6/17/2021 2:01 PM, Ferry Toth wrote:
+> Hi
 > 
-> Add the compatible for the px30-variant of the rkisp
-> 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-> ---
->  .../bindings/media/rockchip-isp1.yaml         | 66 ++++++++++++++++++-
->  1 file changed, 65 insertions(+), 1 deletion(-)
-> 
+> Op 17-06-2021 om 11:58 schreef Wesley Cheng:
+>> Changes in V10:
+>>   - Fixed compilation errors in config where OF is not used (error due to
+>>     unknown symbol for of_add_property()).  Add of_add_property() stub.
+>>   - Fixed compilation warning for incorrect argument being passed to
+>> dwc3_mdwidth
+> This fixes the OOPS I had in V9. I do not see any change in performance
+> on Merrifield though.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I see...thanks Ferry! With your testing, are you writing to the device's
+internal storage (ie UFS, eMMC, etc...), or did you use a ramdisk as well?
 
-yamllint warnings/errors:
+If not with a ramdisk, we might want to give that a try to avoid the
+storage path being the bottleneck.  You can use "dd" to create an empty
+file, and then just use that as the LUN's backing file.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/media/rockchip-isp1.example.dt.yaml:0:0: /example-1/parent/i2c/camera@36: failed to match any schema with compatible: ['ovti,ov5695']
-\ndoc reference errors (make refcheckdocs):
+echo ramdisk.img >
+/sys/kernel/config/usb_gadget/g1/functions/mass_storage.0/lun.0/file
 
-See https://patchwork.ozlabs.org/patch/1493733
+Thanks
+Wesley Cheng
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+>> Changes in V9:
+>>   - Fixed incorrect patch in series.  Removed changes in DTSI, as
+>> dwc3-qcom will
+>>     add the property by default from the kernel.
+>>
+>> Changes in V8:
+>>   - Rebased to usb-testing
+>>   - Using devm_kzalloc for adding txfifo property in dwc3-qcom
+>>   - Removed DWC3 QCOM ACPI property for enabling the txfifo resize
+>>
+>> Changes in V7:
+>>   - Added a new property tx-fifo-max-num for limiting how much fifo
+>> space the
+>>     resizing logic can allocate for endpoints with large burst
+>> values.  This
+>>     can differ across platforms, and tie in closely with overall
+>> system latency.
+>>   - Added recommended checks for DWC32.
+>>   - Added changes to set the tx-fifo-resize property from dwc3-qcom by
+>> default
+>>     instead of modifying the current DTSI files.
+>>   - Added comments on all APIs/variables introduced.
+>>   - Updated the DWC3 YAML to include a better description of the
+>> tx-fifo-resize
+>>     property and added an entry for tx-fifo-max-num.
+>>
+>> Changes in V6:
+>>   - Rebased patches to usb-testing.
+>>   - Renamed to PATCH series instead of RFC.
+>>   - Checking for fs_descriptors instead of ss_descriptors for
+>> determining the
+>>     endpoint count for a particular configuration.
+>>   - Re-ordered patch series to fix patch dependencies.
+>>
+>> Changes in V5:
+>>   - Added check_config() logic, which is used to communicate the
+>> number of EPs
+>>     used in a particular configuration.  Based on this, the DWC3
+>> gadget driver
+>>     has the ability to know the maximum number of eps utilized in all
+>> configs.
+>>     This helps reduce unnecessary allocation to unused eps, and will
+>> catch fifo
+>>     allocation issues at bind() time.
+>>   - Fixed variable declaration to single line per variable, and
+>> reverse xmas.
+>>   - Created a helper for fifo clearing, which is used by ep0.c
+>>
+>> Changes in V4:
+>>   - Removed struct dwc3* as an argument for dwc3_gadget_resize_tx_fifos()
+>>   - Removed WARN_ON(1) in case we run out of fifo space
+>>   Changes in V3:
+>>   - Removed "Reviewed-by" tags
+>>   - Renamed series back to RFC
+>>   - Modified logic to ensure that fifo_size is reset if we pass the
+>> minimum
+>>     threshold.  Tested with binding multiple FDs requesting 6 FIFOs.
+>>
+>> Changes in V2:
+>>   - Modified TXFIFO resizing logic to ensure that each EP is reserved a
+>>     FIFO.
+>>   - Removed dev_dbg() prints and fixed typos from patches
+>>   - Added some more description on the dt-bindings commit message
+>>
+>> Currently, there is no functionality to allow for resizing the
+>> TXFIFOs, and
+>> relying on the HW default setting for the TXFIFO depth.  In most
+>> cases, the
+>> HW default is probably sufficient, but for USB compositions that contain
+>> multiple functions that require EP bursting, the default settings
+>> might not be enough.  Also to note, the current SW will assign an EP to a
+>> function driver w/o checking to see if the TXFIFO size for that
+>> particular
+>> EP is large enough. (this is a problem if there are multiple HW defined
+>> values for the TXFIFO size)
+>>
+>> It is mentioned in the SNPS databook that a minimum of TX FIFO depth = 3
+>> is required for an EP that supports bursting.  Otherwise, there may be
+>> frequent occurences of bursts ending.  For high bandwidth functions,
+>> such as data tethering (protocols that support data aggregation), mass
+>> storage, and media transfer protocol (over FFS), the bMaxBurst value
+>> can be
+>> large, and a bigger TXFIFO depth may prove to be beneficial in terms
+>> of USB
+>> throughput. (which can be associated to system access latency,
+>> etc...)  It
+>> allows for a more consistent burst of traffic, w/o any interruptions, as
+>> data is readily available in the FIFO.
+>>
+>> With testing done using the mass storage function driver, the results
+>> show
+>> that with a larger TXFIFO depth, the bandwidth increased significantly.
+>>
+>> Test Parameters:
+>>   - Platform: Qualcomm SM8150
+>>   - bMaxBurst = 6
+>>   - USB req size = 256kB
+>>   - Num of USB reqs = 16
+>>   - USB Speed = Super-Speed
+>>   - Function Driver: Mass Storage (w/ ramdisk)
+>>   - Test Application: CrystalDiskMark
+>>
+>> Results:
+>>
+>> TXFIFO Depth = 3 max packets
+>>
+>> Test Case | Data Size | AVG tput (in MB/s)
+>> -------------------------------------------
+>> Sequential|1 GB x     |
+>> Read      |9 loops    | 193.60
+>>       |           | 195.86
+>>            |           | 184.77
+>>            |           | 193.60
+>> -------------------------------------------
+>>
+>> TXFIFO Depth = 6 max packets
+>>
+>> Test Case | Data Size | AVG tput (in MB/s)
+>> -------------------------------------------
+>> Sequential|1 GB x     |
+>> Read      |9 loops    | 287.35
+>>       |           | 304.94
+>>            |           | 289.64
+>>            |           | 293.61
+>> -------------------------------------------
+>>
+>> Wesley Cheng (6):
+>>    usb: gadget: udc: core: Introduce check_config to verify USB
+>>      configuration
+>>    usb: gadget: configfs: Check USB configuration before adding
+>>    usb: dwc3: Resize TX FIFOs to meet EP bursting requirements
+>>    of: Add stub for of_add_property()
+>>    usb: dwc3: dwc3-qcom: Enable tx-fifo-resize property by default
+>>    dt-bindings: usb: dwc3: Update dwc3 TX fifo properties
+>>
+>>   .../devicetree/bindings/usb/snps,dwc3.yaml         |  15 +-
+>>   drivers/usb/dwc3/core.c                            |   9 +
+>>   drivers/usb/dwc3/core.h                            |  15 ++
+>>   drivers/usb/dwc3/dwc3-qcom.c                       |   9 +
+>>   drivers/usb/dwc3/ep0.c                             |   2 +
+>>   drivers/usb/dwc3/gadget.c                          | 212
+>> +++++++++++++++++++++
+>>   drivers/usb/gadget/configfs.c                      |  22 +++
+>>   drivers/usb/gadget/udc/core.c                      |  25 +++
+>>   include/linux/of.h                                 |   5 +
+>>   include/linux/usb/gadget.h                         |   5 +
+>>   10 files changed, 317 insertions(+), 2 deletions(-)
+>>
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
