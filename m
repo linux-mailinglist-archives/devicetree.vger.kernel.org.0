@@ -2,119 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DDAD3AB7B3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 17:40:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 513F63AB7CA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 17:42:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233353AbhFQPmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 11:42:13 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:46723 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232638AbhFQPmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 11:42:12 -0400
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 17061E000E;
-        Thu, 17 Jun 2021 15:40:00 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     kostap@marvell.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     vladimir.vid@sartura.hr, tmn505@gmail.com, luka.kovacic@sartura.hr,
-        sebastian.hesselbarth@gmail.com, andrew@lunn.ch,
-        robh+dt@kernel.org, vkoul@kernel.org, kishon@ti.com,
-        miquel.raynal@bootlin.com, mw@semihalf.com, jaz@semihalf.com,
-        nadavh@marvell.com, stefanc@marvell.com, bpeled@marvell.com,
-        Konstantin Porotchkin <kostap@marvell.com>
-Subject: Re: [PATCH v4 0/5] DTS updates for Marvell Armada CN913x platforms
-In-Reply-To: <20210209134610.19904-1-kostap@marvell.com>
-References: <20210209134610.19904-1-kostap@marvell.com>
-Date:   Thu, 17 Jun 2021 17:40:00 +0200
-Message-ID: <87h7hw1ovj.fsf@BL-laptop>
+        id S231398AbhFQPo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 11:44:59 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:57367 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229584AbhFQPo7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Jun 2021 11:44:59 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id E224C580660;
+        Thu, 17 Jun 2021 11:42:46 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Thu, 17 Jun 2021 11:42:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=SWPnTQRfkaFfu4vFG9vDxCIwimL
+        XicsHLsu00NcXCJE=; b=yrq+ST+lglXwSlhjUG2LssImGLAFgbLfENV6a7ng0TO
+        Gj98VK0znk1e4z4Q1Tj4lNT4TlXuPNpqxQcNGKpmYt0MLnDzewHo6bGs69LhM/cV
+        IdGKmW45YS9FHiLXZdP93iNdCB9qIvHHpyPLrklbfzyXi1sBfbh6886OL7mPce2L
+        yLypTFumadCLS4Z6OaXGa7IjT5J3t20gDB1O5fZvGutrDr6+UL77qxbUeVEUcfu0
+        LC92kmSJU23zAKgPZYnwcl6XsVq7qGa1peg0BCi9xs1csDYyYP/ClYfEpEbJ/hct
+        cjvD62V5w/mDH9bwOGgfGh32g+kaGpsOGJECTw+eZMg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=SWPnTQ
+        RfkaFfu4vFG9vDxCIwimLXicsHLsu00NcXCJE=; b=CcBmOiq53FpEGuzUH6keei
+        CE37FFHy5iJWYyMTEzMybAub78ZzE2fEyNooKa6W1it1n/MB9rVomvhPzAg413ha
+        TkVH5EkgHicxMV7NUQ84mSe0W8ZjQYtlwsSa5AELpUfbOFUOj3bNqbmVUEDCs6/a
+        Xb9EbyvxCESXpTJtMoJKxG9KxqOQVHHBTxFI8grlE35siGuRshBbbzJd74rwKad0
+        0VNdLLtwAQUMjGAM8XRYT2hbsrGocFP2FeIYDk5fsz8FcDT+jGALUflsA30hOXvv
+        liRms8/bGyW1EmBWjSxMpNzquwyR5Tm0EW4nezm55AgoihjT9G9DzQl59VYHu2eg
+        ==
+X-ME-Sender: <xms:dW3LYNyOw6Yakw00h6WDsPJ913WPVkPCNsBR2kuz2H5_efirezC0QQ>
+    <xme:dW3LYNSXY3bL9g4jeVci2H5XRKOD7tvhFPj8aThN-EBgGQpdFZlOXOCeGgG3u1xkL
+    NOCWWMDZ4AYLjABpEE>
+X-ME-Received: <xmr:dW3LYHV1oKkWd9vx74QX2nBXPZwci1w3d2GMDmwhpMIez29_HbUNLKJyD3L_mkQx2HS2BJVsaiVUcGuClFTpkHSu3IvDXitpYYqf>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeefuddgledtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:dW3LYPiMmGX6U5iYGNTDrpekWKb9SjMfv-2o-E8SEUYsOYA14kz_Hw>
+    <xmx:dW3LYPCZfpERer1OXdwCdhUISuR3w5G2T0_iZFnjrjvd4D9slu8MOg>
+    <xmx:dW3LYILHWzscVG--yAowNHJ7MrI5_CWzIFu4BbVpDpvkSMqP317_Aw>
+    <xmx:dm3LYD6Ifz-XBkfYaTPon3mI5H2_uiaqv_Jr5k9kBqfxqkFoqo7Igw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 17 Jun 2021 11:42:44 -0400 (EDT)
+Date:   Thu, 17 Jun 2021 17:42:42 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh@kernel.org>, Icenowy Zheng <icenowy@aosc.io>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@googlegroups.com,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Ondrej Jirman <megous@megous.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 16/19] arm64: dts: allwinner: Add Allwinner H616 .dtsi
+ file
+Message-ID: <20210617154242.iovbze64up4u7wba@gilmour>
+References: <20210615110636.23403-1-andre.przywara@arm.com>
+ <20210615110636.23403-17-andre.przywara@arm.com>
+ <20210616092355.ndhjelwcch6umdxg@gilmour>
+ <20210616110630.54061205@slackpad.fritz.box>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="t7w22vggbyprtpeo"
+Content-Disposition: inline
+In-Reply-To: <20210616110630.54061205@slackpad.fritz.box>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
 
-> From: Konstantin Porotchkin <kostap@marvell.com>
->
-> This patch series contains the following changes/fixes:
-> 1. Add support for Armada CN913x Development Board topology "B"
-> 2. Add support for Armada CN913x Reference Design boards (CRB)
-> 3. Fixes the CP11X references in PHY binding document
-> 4. Fixes the NAND paritioninig scheme in DTS eliminating gap between
-> consecutive partitions
-> All above changes are already intergated into Marvell official SDK sources
->
-> v2:
-> - extract common nodes from DB boards to separate DTSI files
-> - disable eth2 on CRB boards until the required phy mode support is added
-> - mention the switch part ID in CRB board description
->
-> v3:
-> - do not rename setup A DTS files for DB variants
-> - fix a couple of wrong include names
->
-> v4:
-> - Rebase on top of Linus master branch (v5.11-rc7)
-> - Remove HS400 timing from CRB AP SDHCI (not supported by connected eMMC)
-> - Add cd-gpio entry to CP0 SDHCI for SD card support
-> - Add a comment to CN9130-CRB patch about the required defconfig
->   changes for supporting the onboard i2c expander
-> - Add Stefan's patch to enable 10G port on CN9130-DB platforms
->
-> Grzegorz Jaszczyk (1):
->   Documentation/bindings: phy: update references to cp11x
->
-> Konstantin Porotchkin (3):
->   arch/arm64/boot/dts/marvell: fix NAND partitioning scheme
->   arm64: dts: cn913x: add device trees for topology B boards
->   arm64: dts: add support for Marvell cn9130-crb platform
->
-> Stefan Chulski (1):
->   dts: marvell: Enable 10G interface on 9130-DB board
->
+--t7w22vggbyprtpeo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I've applied patches 1 and 2, but I have issue with patch 3, there was some
-changes around the phys and I am not sure of the correct way to modify
-the patch.
+On Wed, Jun 16, 2021 at 11:06:30AM +0100, Andre Przywara wrote:
+> > > +	reserved-memory {
+> > > +		#address-cells =3D <2>;
+> > > +		#size-cells =3D <2>;
+> > > +		ranges;
+> > > +
+> > > +		/* 512KiB reserved for ARM Trusted Firmware (BL31) */
+> > > +		secmon_reserved: secmon@40000000 {
+> > > +			reg =3D <0x0 0x40000000 0x0 0x80000>;
+> > > +			no-map;
+> > > +		};
+> > > +	}; =20
+> >=20
+> > Can't this be added by ATF directly?
+>=20
+> It actually is, and if you use U-Boot's DT ($fdtcontroladdr), that
+> actually works. But as it stands right now, U-Boot fails to propagate
+> this to any DTB that gets *loaded*. Fixing this requires generic code
+> fixes, so I can't just hack this in for sunxi quickly.
+> So I wanted to keep this around for a while, as missing this is a
+> showstopper for booting Linux.
 
-Could you rebase it on v5.13-c1 and fix the merge issue ?
+It looks like we didn't need it for the H6, what makes it any different?
 
-Thanks,
+> > > +		mmc0: mmc@4020000 {
+> > > +			compatible =3D "allwinner,sun50i-h616-mmc",
+> > > +				     "allwinner,sun50i-a100-mmc";
+> > > +			reg =3D <0x04020000 0x1000>;
+> > > +			clocks =3D <&ccu CLK_BUS_MMC0>, <&ccu CLK_MMC0>;
+> > > +			clock-names =3D "ahb", "mmc";
+> > > +			resets =3D <&ccu RST_BUS_MMC0>;
+> > > +			reset-names =3D "ahb";
+> > > +			interrupts =3D <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			pinctrl-names =3D "default";
+> > > +			pinctrl-0 =3D <&mmc0_pins>;
+> > > +			status =3D "disabled";
+> > > +			max-frequency =3D <150000000>;
+> > > +			cap-sd-highspeed;
+> > > +			cap-mmc-highspeed;
+> > > +			mmc-ddr-3_3v;
+> > > +			mmc-ddr-1_8v; =20
+> >=20
+> > This is not something you know in the DTSI? It entirely depends on how
+> > the board has been designed.
+>=20
+> Are you referring just to the last property?
 
-Gregory
+Initially, yes, but the argument is for both...
 
->  .../bindings/phy/phy-mvebu-comphy.txt         |  12 +-
->  arch/arm64/boot/dts/marvell/Makefile          |   5 +
->  arch/arm64/boot/dts/marvell/cn9130-crb-A.dts  |  38 ++
->  arch/arm64/boot/dts/marvell/cn9130-crb-B.dts  |  46 ++
->  arch/arm64/boot/dts/marvell/cn9130-crb.dtsi   | 221 ++++++++++
->  arch/arm64/boot/dts/marvell/cn9130-db-B.dts   |  22 +
->  arch/arm64/boot/dts/marvell/cn9130-db.dts     | 393 +----------------
->  arch/arm64/boot/dts/marvell/cn9130-db.dtsi    | 402 ++++++++++++++++++
->  arch/arm64/boot/dts/marvell/cn9131-db-B.dts   |  22 +
->  arch/arm64/boot/dts/marvell/cn9131-db.dts     | 192 +--------
->  arch/arm64/boot/dts/marvell/cn9131-db.dtsi    | 201 +++++++++
->  arch/arm64/boot/dts/marvell/cn9132-db-B.dts   |  22 +
->  arch/arm64/boot/dts/marvell/cn9132-db.dts     | 211 +--------
->  arch/arm64/boot/dts/marvell/cn9132-db.dtsi    | 220 ++++++++++
->  14 files changed, 1223 insertions(+), 784 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb-A.dts
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb-B.dts
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db-B.dts
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db.dtsi
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db-B.dts
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db.dtsi
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db-B.dts
->  create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db.dtsi
->
-> -- 
-> 2.17.1
->
+> This is copying what the driver unconditionally sets for the other
+> SoCs at the moment (minus the H5 screwup):
+> 	mmc->caps      |=3D MMC_CAP_1_8V_DDR | MMC_CAP_3_3V_DDR;
+> IIUC 1.8V operation requires a 1.8V regulator for vqmmc to actually
+> work, so this property alone won't enable anything.
+> But if it's just about the 1.8V property, I can of course move this to
+> the board dts files.
 
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+=2E.. Since we've seen boards with only 3.3v or 1.8v wired to vqmmc, so we
+should really just push this to the boards for new SoCs
+
+Maxime
+
+--t7w22vggbyprtpeo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYMttcgAKCRDj7w1vZxhR
+xYuxAQC4DK94cK//kqLdN06cPTgsn+qQG/7QfkvwdrEDvnBzbgD/fYWoEpCgghlW
+xMt7mnfP2LovSgcCpR1FSHcmleg/Ywg=
+=3fMO
+-----END PGP SIGNATURE-----
+
+--t7w22vggbyprtpeo--
