@@ -2,150 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9AF13AABB2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 08:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD8803AABD5
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 08:26:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbhFQGMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 02:12:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36450 "EHLO
+        id S229897AbhFQG2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 02:28:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229580AbhFQGMU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 02:12:20 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 947F8C06175F
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 23:10:13 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id j18so2424929wms.3
-        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 23:10:13 -0700 (PDT)
+        with ESMTP id S229716AbhFQG2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 02:28:54 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96A61C061760
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 23:26:46 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id e7so2378699plj.7
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 23:26:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PdEN2Vn0ZqAgaea6WuXSDsvEZZIPmQuRgjxrGHUy6RU=;
-        b=WbEGeUkgSbDt4H0SwzDELXB6Cp96hE7OnIhoEx0zLDHwluepBNsHXSRVpOKDOLlW32
-         efy5FMPhuYY4ZwFud67ZBHuzs8jSYxt1lsku8UFm5PtXJeiDcqQ/64BqDJE2dBEY/WL8
-         flZ2Lo9nAAirZ6+dxcMEqWyeE+lGPwwcvmwquTKaIIkhukceh7WSUKtrvfR4D37b/TG2
-         oaVbQ3DBp4fXqULFCAz6S5CgYmjMm5GZB8nywEHYSDdr/7TdBQPJxTEVc+5PZ/LdYRp9
-         Ft2+A4pEWf1vEFFOoY2SwDuy3uha3NQFxbozXXYHdGYiDFVFEad3T2XTFn/U04sGDrPz
-         DEYA==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T2FafqXgYHBid0ZBe1+1JDcoq2ITMR3qeR/772URNKQ=;
+        b=IVV/5fAzJUboV2IX/WhvyfcG+Tda0hKqJwIbJhxk8/euHe8sF9QY7sPB101n4t3pq0
+         xCibs0rYhiNNqIGSKpxDHiRDbTJYqM6ZAdTvt7xU72VktjPhLVAhBUBErzgE8kE16i9D
+         Mr8MI74zoNL4jiAa52zvQRyTf9JTWT/AWijSs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PdEN2Vn0ZqAgaea6WuXSDsvEZZIPmQuRgjxrGHUy6RU=;
-        b=FrM7/dsg0n0UX68bo4tUfGJ7veMpWJHlVW0haHkpWjofHCUXCgxtvqU6LtHR6aREJE
-         J+RpSkNsQTPAbg9CPYM5Do0rz/gbHpj65RSv9ozeI24Yt4YAcoCE+Z4cn5K6LcC+kE1S
-         CgyRFlOdhRWgJqqTCkUzZsRYjruflEOKONdQzH6EHWUkQjFEaU8St3illB1fkEpGBt2W
-         64bVa8HXdlKmmMYoHioR9Gd+Uvav4G9XgHLOxCEddpqn2nWoinK2S8RG+Ehfq2tAaZ0z
-         m45YCJwp5GwhBDAnSZlbMmPDpUFbg8igo9GASpDghtrt3Q0mkhcgw8xV8XtaY5Qza7vf
-         CNsA==
-X-Gm-Message-State: AOAM531Y9YKrHLhAViNxzKNtBdix8uTNnTxCJPPc/F/DJ2P9U9dqHFIR
-        02JKH8oMrMeN60YTBb4gzWPfxUcAXzS+NyGfX2uKkA==
-X-Google-Smtp-Source: ABdhPJxKf3z6pwh4Nj+hbrkpDJZquWEKfvj17MQeD0zeMW7fLPQBjUMEL0NaBMr98rlCUkZPZO5E7qv9oDvS/kylg+U=
-X-Received: by 2002:a7b:c853:: with SMTP id c19mr3097635wml.30.1623910212010;
- Wed, 16 Jun 2021 23:10:12 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T2FafqXgYHBid0ZBe1+1JDcoq2ITMR3qeR/772URNKQ=;
+        b=JKSMcSqFrkQg5Mt9AarnksHKX57V+sYceZ2V/553LsFR4iiKOR49rMfgjh1QJGudsI
+         QTZrmN9/2HeuNx4jibqxi+9O00jRhxfSjJAcBoXrVtLTb250Cd+G3+0vNCay7/zke8DD
+         /9otbXwgyqnGINFdYodpZOP5yWRpTCldTT6NrQm1BjtLLlU/byqHI/+Lbdy8/m6pKDP5
+         dMsmm3IdKQwDZKKR8wWt1IVmlYhwnB6qPV47o7215G6/KmCihBlPL7DgJ/z/RNYobCeq
+         oL+dNLHgfb3f7w92u1uZcbqzCK7mOMCON9xQ21y+G0PfPhoPnFmTYlipLuxcoHsrAnxp
+         o73A==
+X-Gm-Message-State: AOAM5306aO+Rrw5BJnvCnBqnGkhk2DMkTtAetmNjJMpCKJJlNaFHBNGb
+        UChBXs9pMiUNJhLeOB4cbtX8Ig==
+X-Google-Smtp-Source: ABdhPJy0c6CkeYmIknk2P7/qxll1LLLQMygbBdhbTcld1tRPD8L5OQgaDNVXxbwz0PNAcGxSRbzFDA==
+X-Received: by 2002:a17:90b:502:: with SMTP id r2mr15134236pjz.18.1623911205862;
+        Wed, 16 Jun 2021 23:26:45 -0700 (PDT)
+Received: from localhost ([2401:fa00:95:205:e349:a6ae:d3d0:1621])
+        by smtp.gmail.com with UTF8SMTPSA id i128sm4164159pfc.142.2021.06.16.23.26.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Jun 2021 23:26:45 -0700 (PDT)
+From:   Claire Chang <tientzu@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        grant.likely@arm.com, xypron.glpk@gmx.de,
+        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
+        bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
+        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
+        tientzu@chromium.org, daniel@ffwll.ch, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, jxgao@google.com,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
+Subject: [PATCH v13 00/12] Restricted DMA
+Date:   Thu, 17 Jun 2021 14:26:23 +0800
+Message-Id: <20210617062635.1660944-1-tientzu@chromium.org>
+X-Mailer: git-send-email 2.32.0.288.g62a8d224e6-goog
 MIME-Version: 1.0
-References: <20210616103649.2662395-1-jens.wiklander@linaro.org> <CAFA6WYMrxNfR09doWQgYKCQSYKyUMVKqSTPuRYn=-nueY9pSvQ@mail.gmail.com>
-In-Reply-To: <CAFA6WYMrxNfR09doWQgYKCQSYKyUMVKqSTPuRYn=-nueY9pSvQ@mail.gmail.com>
-From:   Jens Wiklander <jens.wiklander@linaro.org>
-Date:   Thu, 17 Jun 2021 08:10:01 +0200
-Message-ID: <CAHUa44EeAENHv+CxtXeLuqX_NGWW6w-6P8D-BLsb69+XmGaqEQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/7] Asynchronous notifications from secure world
-To:     Sumit Garg <sumit.garg@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Ard Biesheuvel <ardb@kernel.org>, Marc Zyngier <maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sumit,
+This series implements mitigations for lack of DMA access control on
+systems without an IOMMU, which could result in the DMA accessing the
+system memory at unexpected times and/or unexpected addresses, possibly
+leading to data leakage or corruption.
 
-On Thu, Jun 17, 2021 at 6:33 AM Sumit Garg <sumit.garg@linaro.org> wrote:
->
-> Hi Jens,
->
-> On Wed, 16 Jun 2021 at 16:07, Jens Wiklander <jens.wiklander@linaro.org> wrote:
-> >
-> > Hi all,
-> >
-> > This adds support for asynchronous notifications from OP-TEE in secure
-> > world to the OP-TEE driver. This allows a design with a top half and bottom
-> > half type of driver where the top half runs in secure interrupt context and
-> > a notifications tells normal world to schedule a yielding call to do the
-> > bottom half processing.
-> >
-> > An interrupt is used to notify the driver that there are asynchronous
-> > notifications pending.
-> >
->
-> It looks like a nice feature. I would like to get hands on with this.
-> Can I test this feature on Qemu?
+For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
+not behind an IOMMU. As PCI-e, by design, gives the device full access to
+system memory, a vulnerability in the Wi-Fi firmware could easily escalate
+to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
+full chain of exploits; [2], [3]).
 
-Absolutely, you can get this into the normal OP-TEE development repo setup with:
-repo init -u https://github.com/OP-TEE/manifest.git -m default.xml
-repo sync
-Update optee_os with
-https://github.com/jenswi-linaro/optee_os/tree/async_notif_v2
-Update linux with https://github.com/jenswi-linaro/linux-1/tree/async_notif_v2
-cd build
-make all -j...
-make run-only
+To mitigate the security concerns, we introduce restricted DMA. Restricted
+DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
+specially allocated region and does memory allocation from the same region.
+The feature on its own provides a basic level of protection against the DMA
+overwriting buffer contents at unexpected times. However, to protect
+against general data leakage and system memory corruption, the system needs
+to provide a way to restrict the DMA to a predefined memory region (this is
+usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
 
-If you type anything at the secure console you'll notice how it
-changes behaviour once the Linux kernel has booted.
+[1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
+[1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
+[2] https://blade.tencent.com/en/advisories/qualpwn/
+[3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
+[4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
 
-Cheers,
-Jens
+v13:
+- Fix xen-swiotlb issues
+  - memset in patch 01/12
+  - is_swiotlb_force_bounce in patch 06/12
+- Fix the dts example typo in reserved-memory.txt
+- Add Stefano and Will's Tested-by tag from v12
 
->
-> -Sumit
->
-> > v2:
-> > * Added documentation
-> > * Converted optee bindings to json-schema and added interrupt property
-> > * Configure notification interrupt from DT instead of getting it
-> >   from secure world, suggested by Ard Biesheuvel <ardb@kernel.org>.
-> >
-> > Thanks,
-> > Jens
-> >
-> > Jens Wiklander (7):
-> >   docs: staging/tee.rst: add a section on OP-TEE notifications
-> >   dt-bindings: arm: Convert optee binding to json-schema
-> >   dt-bindings: arm: optee: add interrupt property
-> >   tee: fix put order in teedev_close_context()
-> >   tee: add tee_dev_open_helper() primitive
-> >   optee: separate notification functions
-> >   optee: add asynchronous notifications
-> >
-> >  .../bindings/arm/firmware/linaro,optee-tz.txt |  31 ---
-> >  .../arm/firmware/linaro,optee-tz.yaml         |  57 +++++
-> >  Documentation/staging/tee.rst                 |  27 +++
-> >  drivers/tee/optee/Makefile                    |   1 +
-> >  drivers/tee/optee/call.c                      |  27 +++
-> >  drivers/tee/optee/core.c                      |  87 +++++--
-> >  drivers/tee/optee/notif.c                     | 226 ++++++++++++++++++
-> >  drivers/tee/optee/optee_msg.h                 |   9 +
-> >  drivers/tee/optee/optee_private.h             |  23 +-
-> >  drivers/tee/optee/optee_rpc_cmd.h             |  31 +--
-> >  drivers/tee/optee/optee_smc.h                 |  75 +++++-
-> >  drivers/tee/optee/rpc.c                       |  73 +-----
-> >  drivers/tee/tee_core.c                        |  37 ++-
-> >  include/linux/tee_drv.h                       |  27 +++
-> >  14 files changed, 576 insertions(+), 155 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
-> >  create mode 100644 Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> >  create mode 100644 drivers/tee/optee/notif.c
-> >
-> > --
-> > 2.31.1
-> >
+v12:
+Split is_dev_swiotlb_force into is_swiotlb_force_bounce (patch 06/12) and
+is_swiotlb_for_alloc (patch 09/12)
+https://lore.kernel.org/patchwork/cover/1447254/
+
+v11:
+- Rebase against swiotlb devel/for-linus-5.14
+- s/mempry/memory/g
+- exchange the order of patch 09/12 and 10/12
+https://lore.kernel.org/patchwork/cover/1447216/
+
+v10:
+Address the comments in v9 to
+  - fix the dev->dma_io_tlb_mem assignment
+  - propagate swiotlb_force setting into io_tlb_default_mem->force
+  - move set_memory_decrypted out of swiotlb_init_io_tlb_mem
+  - move debugfs_dir declaration into the main CONFIG_DEBUG_FS block
+  - add swiotlb_ prefix to find_slots and release_slots
+  - merge the 3 alloc/free related patches
+  - move the CONFIG_DMA_RESTRICTED_POOL later
+https://lore.kernel.org/patchwork/cover/1446882/
+
+v9:
+Address the comments in v7 to
+  - set swiotlb active pool to dev->dma_io_tlb_mem
+  - get rid of get_io_tlb_mem
+  - dig out the device struct for is_swiotlb_active
+  - move debugfs_create_dir out of swiotlb_create_debugfs
+  - do set_memory_decrypted conditionally in swiotlb_init_io_tlb_mem
+  - use IS_ENABLED in kernel/dma/direct.c
+  - fix redefinition of 'of_dma_set_restricted_buffer'
+https://lore.kernel.org/patchwork/cover/1445081/
+
+v8:
+- Fix reserved-memory.txt and add the reg property in example.
+- Fix sizeof for of_property_count_elems_of_size in
+  drivers/of/address.c#of_dma_set_restricted_buffer.
+- Apply Will's suggestion to try the OF node having DMA configuration in
+  drivers/of/address.c#of_dma_set_restricted_buffer.
+- Fix typo in the comment of drivers/of/address.c#of_dma_set_restricted_buffer.
+- Add error message for PageHighMem in
+  kernel/dma/swiotlb.c#rmem_swiotlb_device_init and move it to
+  rmem_swiotlb_setup.
+- Fix the message string in rmem_swiotlb_setup.
+https://lore.kernel.org/patchwork/cover/1437112/
+
+v7:
+Fix debugfs, PageHighMem and comment style in rmem_swiotlb_device_init
+https://lore.kernel.org/patchwork/cover/1431031/
+
+v6:
+Address the comments in v5
+https://lore.kernel.org/patchwork/cover/1423201/
+
+v5:
+Rebase on latest linux-next
+https://lore.kernel.org/patchwork/cover/1416899/
+
+v4:
+- Fix spinlock bad magic
+- Use rmem->name for debugfs entry
+- Address the comments in v3
+https://lore.kernel.org/patchwork/cover/1378113/
+
+v3:
+Using only one reserved memory region for both streaming DMA and memory
+allocation.
+https://lore.kernel.org/patchwork/cover/1360992/
+
+v2:
+Building on top of swiotlb.
+https://lore.kernel.org/patchwork/cover/1280705/
+
+v1:
+Using dma_map_ops.
+https://lore.kernel.org/patchwork/cover/1271660/
+
+Claire Chang (12):
+  swiotlb: Refactor swiotlb init functions
+  swiotlb: Refactor swiotlb_create_debugfs
+  swiotlb: Set dev->dma_io_tlb_mem to the swiotlb pool used
+  swiotlb: Update is_swiotlb_buffer to add a struct device argument
+  swiotlb: Update is_swiotlb_active to add a struct device argument
+  swiotlb: Use is_swiotlb_force_bounce for swiotlb data bouncing
+  swiotlb: Move alloc_size to swiotlb_find_slots
+  swiotlb: Refactor swiotlb_tbl_unmap_single
+  swiotlb: Add restricted DMA alloc/free support
+  swiotlb: Add restricted DMA pool initialization
+  dt-bindings: of: Add restricted DMA pool
+  of: Add plumbing for restricted DMA pool
+
+ .../reserved-memory/reserved-memory.txt       |  36 ++-
+ drivers/base/core.c                           |   4 +
+ drivers/gpu/drm/i915/gem/i915_gem_internal.c  |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_ttm.c         |   2 +-
+ drivers/iommu/dma-iommu.c                     |  12 +-
+ drivers/of/address.c                          |  33 +++
+ drivers/of/device.c                           |   3 +
+ drivers/of/of_private.h                       |   6 +
+ drivers/pci/xen-pcifront.c                    |   2 +-
+ drivers/xen/swiotlb-xen.c                     |   4 +-
+ include/linux/device.h                        |   4 +
+ include/linux/swiotlb.h                       |  51 +++-
+ kernel/dma/Kconfig                            |  14 +
+ kernel/dma/direct.c                           |  59 +++--
+ kernel/dma/direct.h                           |   8 +-
+ kernel/dma/swiotlb.c                          | 250 +++++++++++++-----
+ 16 files changed, 387 insertions(+), 103 deletions(-)
+
+-- 
+2.32.0.288.g62a8d224e6-goog
+
