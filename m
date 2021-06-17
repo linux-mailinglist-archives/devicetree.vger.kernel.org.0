@@ -2,246 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 120C03AA80B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 02:22:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECC4E3AA816
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 02:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234960AbhFQAZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 20:25:00 -0400
-Received: from relay06.th.seeweb.it ([5.144.164.167]:58365 "EHLO
-        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230241AbhFQAY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 20:24:58 -0400
-Received: from localhost.localdomain (83.6.168.10.neoplus.adsl.tpnet.pl [83.6.168.10])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id ADD143F42D;
-        Thu, 17 Jun 2021 02:22:48 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S230167AbhFQA2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 20:28:42 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:35726 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234961AbhFQA2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 20:28:41 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 665C7E70;
+        Thu, 17 Jun 2021 02:26:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1623889593;
+        bh=PNdeAbSGjDYRWWzRKChi7o0Ql5JqjZi3LFCmHH3SHgE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Vc/MddP1+huJ9HjXePQQ1JT6262quSnzLPpcNh25dz1cxniQyifRRIT34wyhBj4wX
+         /F8abYtUmfpEmn+mISDzoOg6EwFjWcsxBpR8wnFTza3vZsLj/51dtCEg4NW9rQlyOn
+         RLdwxUHx6CuLdLJhQ8RnsQOiivJUCcqmhH+7aXUk=
+Date:   Thu, 17 Jun 2021 03:26:12 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jeffrey Hugo <jhugo@codeaurora.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] clk: qcom: mmcc-msm8994: Add MSM8992 support
-Date:   Thu, 17 Jun 2021 02:22:36 +0200
-Message-Id: <20210617002236.80428-3-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210617002236.80428-1-konrad.dybcio@somainline.org>
-References: <20210617002236.80428-1-konrad.dybcio@somainline.org>
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 3/7] media: i2c: max9286: Use "maxim,gpio-poc" property
+Message-ID: <YMqWpJfAwPlSgC/d@pendragon.ideasonboard.com>
+References: <20210419142345.53152-1-jacopo+renesas@jmondi.org>
+ <20210419142345.53152-4-jacopo+renesas@jmondi.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210419142345.53152-4-jacopo+renesas@jmondi.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8992 features less clocks & GDSCS and has different
-freq tables for some of them.
+Hi Jacopo,
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
- drivers/clk/qcom/mmcc-msm8994.c | 126 ++++++++++++++++++++++++++++++++
- 1 file changed, 126 insertions(+)
+Thank you for the patch.
 
-diff --git a/drivers/clk/qcom/mmcc-msm8994.c b/drivers/clk/qcom/mmcc-msm8994.c
-index 8ba66e975837..3d148ba29413 100644
---- a/drivers/clk/qcom/mmcc-msm8994.c
-+++ b/drivers/clk/qcom/mmcc-msm8994.c
-@@ -329,6 +329,14 @@ static const struct freq_tbl ftbl_axi_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_axi_clk_src_8992[] = {
-+	F(75000000, P_GPLL0, 8, 0, 0),
-+	F(150000000, P_GPLL0, 4, 0, 0),
-+	F(300000000, P_GPLL0, 2, 0, 0),
-+	F(404000000, P_MMPLL1, 2, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 axi_clk_src = {
- 	.cmd_rcgr = 0x5040,
- 	.hid_width = 5,
-@@ -349,6 +357,12 @@ static const struct freq_tbl ftbl_csi0_1_2_3_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_csi0_1_2_3_clk_src_8992[] = {
-+	F(100000000, P_GPLL0, 6, 0, 0),
-+	F(266670000, P_MMPLL0, 3, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 csi0_clk_src = {
- 	.cmd_rcgr = 0x3090,
- 	.hid_width = 5,
-@@ -375,6 +389,16 @@ static const struct freq_tbl ftbl_vcodec0_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_vcodec0_clk_src_8992[] = {
-+	F(66670000, P_GPLL0, 9, 0, 0),
-+	F(100000000, P_GPLL0, 6, 0, 0),
-+	F(133330000, P_GPLL0, 4.5, 0, 0),
-+	F(200000000, P_MMPLL0, 4, 0, 0),
-+	F(320000000, P_MMPLL0, 2.5, 0, 0),
-+	F(510000000, P_MMPLL3, 2, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 vcodec0_clk_src = {
- 	.cmd_rcgr = 0x1000,
- 	.mnd_width = 8,
-@@ -440,6 +464,16 @@ static const struct freq_tbl ftbl_vfe0_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_vfe0_1_clk_src_8992[] = {
-+	F(80000000, P_GPLL0, 7.5, 0, 0),
-+	F(100000000, P_GPLL0, 6, 0, 0),
-+	F(200000000, P_GPLL0, 3, 0, 0),
-+	F(320000000, P_MMPLL0, 2.5, 0, 0),
-+	F(480000000, P_MMPLL4, 2, 0, 0),
-+	F(600000000, P_GPLL0, 1, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 vfe0_clk_src = {
- 	.cmd_rcgr = 0x3600,
- 	.hid_width = 5,
-@@ -486,6 +520,15 @@ static const struct freq_tbl ftbl_cpp_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_cpp_clk_src_8992[] = {
-+	F(100000000, P_GPLL0, 6, 0, 0),
-+	F(200000000, P_GPLL0, 3, 0, 0),
-+	F(320000000, P_MMPLL0, 2.5, 0, 0),
-+	F(480000000, P_MMPLL4, 2, 0, 0),
-+	F(640000000, P_MMPLL4, 1.5, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 cpp_clk_src = {
- 	.cmd_rcgr = 0x3640,
- 	.hid_width = 5,
-@@ -601,6 +644,17 @@ static const struct freq_tbl ftbl_mdp_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_mdp_clk_src_8992[] = {
-+	F(85710000, P_GPLL0, 7, 0, 0),
-+	F(171430000, P_GPLL0, 3.5, 0, 0),
-+	F(200000000, P_GPLL0, 3, 0, 0),
-+	F(240000000, P_GPLL0, 2.5, 0, 0),
-+	F(266670000, P_MMPLL0, 3, 0, 0),
-+	F(320000000, P_MMPLL0, 2.5, 0, 0),
-+	F(400000000, P_MMPLL0, 2, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 mdp_clk_src = {
- 	.cmd_rcgr = 0x2040,
- 	.hid_width = 5,
-@@ -654,6 +708,16 @@ static const struct freq_tbl ftbl_ocmemnoc_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_ocmemnoc_clk_src_8992[] = {
-+	F(19200000, P_XO, 1, 0, 0),
-+	F(75000000, P_GPLL0, 8, 0, 0),
-+	F(100000000, P_GPLL0, 6, 0, 0),
-+	F(150000000, P_GPLL0, 4, 0, 0),
-+	F(320000000, P_MMPLL0, 2.5, 0, 0),
-+	F(400000000, P_MMPLL0, 2, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 ocmemnoc_clk_src = {
- 	.cmd_rcgr = 0x5090,
- 	.hid_width = 5,
-@@ -766,6 +830,35 @@ static const struct freq_tbl ftbl_mclk0_1_2_3_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_mclk0_clk_src_8992[] = {
-+	F(4800000, P_XO, 4, 0, 0),
-+	F(6000000, P_MMPLL4, 10, 1, 16),
-+	F(8000000, P_MMPLL4, 10, 1, 12),
-+	F(9600000, P_XO, 2, 0, 0),
-+	F(12000000, P_MMPLL4, 10, 1, 8),
-+	F(16000000, P_MMPLL4, 10, 1, 6),
-+	F(19200000, P_XO, 1, 0, 0),
-+	F(24000000, P_MMPLL4, 10, 1, 4),
-+	F(32000000, P_MMPLL4, 10, 1, 3),
-+	F(48000000, P_MMPLL4, 10, 1, 2),
-+	F(64000000, P_MMPLL4, 15, 0, 0),
-+	{ }
-+};
-+
-+static const struct freq_tbl ftbl_mclk1_2_3_clk_src_8992[] = {
-+	F(4800000, P_XO, 4, 0, 0),
-+	F(6000000, P_MMPLL4, 10, 1, 16),
-+	F(8000000, P_MMPLL4, 10, 1, 12),
-+	F(9600000, P_XO, 2, 0, 0),
-+	F(16000000, P_MMPLL4, 10, 1, 6),
-+	F(19200000, P_XO, 1, 0, 0),
-+	F(24000000, P_MMPLL4, 10, 1, 4),
-+	F(32000000, P_MMPLL4, 10, 1, 3),
-+	F(48000000, P_MMPLL4, 10, 1, 2),
-+	F(64000000, P_MMPLL4, 15, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 mclk0_clk_src = {
- 	.cmd_rcgr = 0x3360,
- 	.mnd_width = 8,
-@@ -2470,6 +2563,39 @@ static int mmcc_msm8994_probe(struct platform_device *pdev)
- {
- 	struct regmap *regmap;
- 
-+	if (of_device_is_compatible(pdev->dev.of_node, "qcom,mmcc-msm8992")) {
-+		/* MSM8992 features less clocks and some have different freq tables */
-+		mmcc_msm8994_desc.clks[CAMSS_JPEG_JPEG1_CLK] = 0;
-+		mmcc_msm8994_desc.clks[CAMSS_JPEG_JPEG2_CLK] = 0;
-+		mmcc_msm8994_desc.clks[FD_CORE_CLK_SRC] = 0;
-+		mmcc_msm8994_desc.clks[FD_CORE_CLK] = 0;
-+		mmcc_msm8994_desc.clks[FD_CORE_UAR_CLK] = 0;
-+		mmcc_msm8994_desc.clks[FD_AXI_CLK] = 0;
-+		mmcc_msm8994_desc.clks[FD_AHB_CLK] = 0;
-+		mmcc_msm8994_desc.clks[JPEG1_CLK_SRC] = 0;
-+		mmcc_msm8994_desc.clks[JPEG2_CLK_SRC] = 0;
-+		mmcc_msm8994_desc.clks[VENUS0_CORE2_VCODEC_CLK] = 0;
-+
-+		mmcc_msm8994_desc.gdscs[FD_GDSC] = 0;
-+		mmcc_msm8994_desc.gdscs[VENUS_CORE2_GDSC] = 0;
-+
-+		axi_clk_src.freq_tbl = ftbl_axi_clk_src_8992;
-+		cpp_clk_src.freq_tbl = ftbl_cpp_clk_src_8992;
-+		csi0_clk_src.freq_tbl = ftbl_csi0_1_2_3_clk_src_8992;
-+		csi1_clk_src.freq_tbl = ftbl_csi0_1_2_3_clk_src_8992;
-+		csi2_clk_src.freq_tbl = ftbl_csi0_1_2_3_clk_src_8992;
-+		csi3_clk_src.freq_tbl = ftbl_csi0_1_2_3_clk_src_8992;
-+		mclk0_clk_src.freq_tbl = ftbl_mclk0_clk_src_8992;
-+		mclk1_clk_src.freq_tbl = ftbl_mclk1_2_3_clk_src_8992;
-+		mclk2_clk_src.freq_tbl = ftbl_mclk1_2_3_clk_src_8992;
-+		mclk3_clk_src.freq_tbl = ftbl_mclk1_2_3_clk_src_8992;
-+		mdp_clk_src.freq_tbl = ftbl_mdp_clk_src_8992;
-+		ocmemnoc_clk_src.freq_tbl = ftbl_ocmemnoc_clk_src_8992;
-+		vcodec0_clk_src.freq_tbl = ftbl_vcodec0_clk_src_8992;
-+		vfe0_clk_src.freq_tbl = ftbl_vfe0_1_clk_src_8992;
-+		vfe1_clk_src.freq_tbl = ftbl_vfe0_1_clk_src_8992;
-+	}
-+
- 	regmap = qcom_cc_map(pdev, &mmcc_msm8994_desc);
- 	if (IS_ERR(regmap))
- 		return PTR_ERR(regmap);
+On Mon, Apr 19, 2021 at 04:23:41PM +0200, Jacopo Mondi wrote:
+> The 'maxim,gpio-poc' property is used when the remote camera
+> power-over-coax is controlled by one of the MAX9286 gpio lines,
+> to instruct the driver about which line to use and what the line
+> polarity is.
+> 
+> Add to the max9286 driver support for parsing the newly introduced
+> property and use it if available in place of the usual supply, as it is
+> not possible to establish one as consumer of the max9286 gpio
+> controller.
+> 
+> If the new property is present, no gpio controller is registered and
+> 'poc-supply' is ignored.
+> 
+> In order to maximize code re-use, break out the max9286 gpio handling
+> function so that they can be used by the gpio controller through the
+> gpio-consumer API, or directly by the driver code.
+> 
+> Wrap the power up and power down routines to their own function to
+> be able to use either the gpio line directly or the supply. This will
+> make it easier to control the remote camera power at run time.
+> 
+> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+>  drivers/media/i2c/max9286.c | 125 +++++++++++++++++++++++++++---------
+>  1 file changed, 94 insertions(+), 31 deletions(-)
+> 
+> diff --git a/drivers/media/i2c/max9286.c b/drivers/media/i2c/max9286.c
+> index 6fd4d59fcc72..99160aa68a5f 100644
+> --- a/drivers/media/i2c/max9286.c
+> +++ b/drivers/media/i2c/max9286.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/fwnode.h>
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/gpio/driver.h>
+> +#include <linux/gpio/machine.h>
+>  #include <linux/i2c.h>
+>  #include <linux/i2c-mux.h>
+>  #include <linux/module.h>
+> @@ -165,6 +166,9 @@ struct max9286_priv {
+>  
+>  	u32 reverse_channel_mv;
+>  
+> +	u32 gpio_poc;
+> +	u32 gpio_poc_flags;
+> +
+>  	struct v4l2_ctrl_handler ctrls;
+>  	struct v4l2_ctrl *pixelrate;
+>  
+> @@ -1022,20 +1026,27 @@ static int max9286_setup(struct max9286_priv *priv)
+>  	return 0;
+>  }
+>  
+> -static void max9286_gpio_set(struct gpio_chip *chip,
+> -			     unsigned int offset, int value)
+> +static int max9286_gpio_set(struct max9286_priv *priv, unsigned int offset,
+> +			    int value)
+>  {
+> -	struct max9286_priv *priv = gpiochip_get_data(chip);
+> -
+>  	if (value)
+>  		priv->gpio_state |= BIT(offset);
+>  	else
+>  		priv->gpio_state &= ~BIT(offset);
+>  
+> -	max9286_write(priv, 0x0f, MAX9286_0X0F_RESERVED | priv->gpio_state);
+> +	return max9286_write(priv, 0x0f,
+> +			     MAX9286_0X0F_RESERVED | priv->gpio_state);
+> +}
+> +
+> +static void max9286_gpiochip_set(struct gpio_chip *chip,
+> +				 unsigned int offset, int value)
+> +{
+> +	struct max9286_priv *priv = gpiochip_get_data(chip);
+> +
+> +	max9286_gpio_set(priv, offset, value);
+>  }
+>  
+> -static int max9286_gpio_get(struct gpio_chip *chip, unsigned int offset)
+> +static int max9286_gpiochip_get(struct gpio_chip *chip, unsigned int offset)
+>  {
+>  	struct max9286_priv *priv = gpiochip_get_data(chip);
+>  
+> @@ -1055,16 +1066,81 @@ static int max9286_register_gpio(struct max9286_priv *priv)
+>  	gpio->of_node = dev->of_node;
+>  	gpio->ngpio = 2;
+>  	gpio->base = -1;
+> -	gpio->set = max9286_gpio_set;
+> -	gpio->get = max9286_gpio_get;
+> +	gpio->set = max9286_gpiochip_set;
+> +	gpio->get = max9286_gpiochip_get;
+>  	gpio->can_sleep = true;
+>  
+> +	ret = devm_gpiochip_add_data(dev, gpio, priv);
+> +	if (ret)
+> +		dev_err(dev, "Unable to create gpio_chip\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int max9286_parse_gpios(struct max9286_priv *priv)
+> +{
+> +	struct device *dev = &priv->client->dev;
+> +	u32 gpio_poc[2];
+> +	int ret;
+> +
+>  	/* GPIO values default to high */
+>  	priv->gpio_state = BIT(0) | BIT(1);
+>  
+> -	ret = devm_gpiochip_add_data(dev, gpio, priv);
+> +	/*
+> +	 * Parse the "gpio-poc" vendor property. If the camera power is
+> +	 * controlled by one of the MAX9286 gpio lines, do not register
+> +	 * the gpio controller and ignore 'poc-supply'.
+> +	 */
+> +	ret = of_property_read_u32_array(dev->of_node,
+> +					 "maxim,gpio-poc", gpio_poc, 2);
+> +	if (!ret) {
+> +		priv->gpio_poc = gpio_poc[0];
+> +		priv->gpio_poc_flags = gpio_poc[1];
+> +		if (priv->gpio_poc > 1 ||
+> +		    (priv->gpio_poc_flags != GPIO_ACTIVE_HIGH &&
+> +		     priv->gpio_poc_flags != GPIO_ACTIVE_LOW)) {
+> +			dev_err(dev, "Invalid 'gpio-poc': (%u %u)\n",
+> +				priv->gpio_poc, priv->gpio_poc_flags);
+> +			return -EINVAL;
+> +		}
+> +
+> +		return 0;
+> +	}
+> +
+> +	ret = max9286_register_gpio(priv);
+>  	if (ret)
+> -		dev_err(dev, "Unable to create gpio_chip\n");
+> +		return ret;
+> +
+> +	priv->regulator = devm_regulator_get(dev, "poc");
+> +	if (IS_ERR(priv->regulator)) {
+> +		if (PTR_ERR(priv->regulator) != -EPROBE_DEFER)
+> +			dev_err(dev, "Unable to get PoC regulator (%ld)\n",
+> +				PTR_ERR(priv->regulator));
+> +		return PTR_ERR(priv->regulator);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int max9286_poc_enable(struct max9286_priv *priv, bool enable)
+> +{
+> +	int ret;
+> +
+> +	/* If "poc-gpio" is used, toggle the line and do not use regulator. */
+> +	if (enable)
+> +		ret = priv->regulator
+> +		    ? regulator_enable(priv->regulator)
+> +		    : max9286_gpio_set(priv, priv->gpio_poc,
+> +				       enable ^ priv->gpio_poc_flags);
+> +	else
+> +		ret = priv->regulator
+> +		    ? regulator_disable(priv->regulator)
+> +		    : max9286_gpio_set(priv, priv->gpio_poc,
+> +				       enable ^ priv->gpio_poc_flags);
+> +
+> +	if (ret < 0)
+> +		dev_err(&priv->client->dev, "Unable to turn PoC %s\n",
+> +			enable ? "on" : "off");
+>  
+>  	return ret;
+>  }
+> @@ -1078,17 +1154,14 @@ static int max9286_init(struct device *dev)
+>  	client = to_i2c_client(dev);
+>  	priv = i2c_get_clientdata(client);
+>  
+> -	/* Enable the bus power. */
+> -	ret = regulator_enable(priv->regulator);
+> -	if (ret < 0) {
+> -		dev_err(&client->dev, "Unable to turn PoC on\n");
+> +	ret = max9286_poc_enable(priv, true);
+> +	if (ret)
+>  		return ret;
+> -	}
+>  
+>  	ret = max9286_setup(priv);
+>  	if (ret) {
+>  		dev_err(dev, "Unable to setup max9286\n");
+> -		goto err_regulator;
+> +		goto err_poc_disable;
+>  	}
+>  
+>  	/*
+> @@ -1098,7 +1171,7 @@ static int max9286_init(struct device *dev)
+>  	ret = max9286_v4l2_register(priv);
+>  	if (ret) {
+>  		dev_err(dev, "Failed to register with V4L2\n");
+> -		goto err_regulator;
+> +		goto err_poc_disable;
+>  	}
+>  
+>  	ret = max9286_i2c_mux_init(priv);
+> @@ -1114,8 +1187,8 @@ static int max9286_init(struct device *dev)
+>  
+>  err_v4l2_register:
+>  	max9286_v4l2_unregister(priv);
+> -err_regulator:
+> -	regulator_disable(priv->regulator);
+> +err_poc_disable:
+> +	max9286_poc_enable(priv, false);
+>  
+>  	return ret;
+>  }
+> @@ -1286,20 +1359,10 @@ static int max9286_probe(struct i2c_client *client)
+>  	 */
+>  	max9286_configure_i2c(priv, false);
+>  
+> -	ret = max9286_register_gpio(priv);
+> +	ret = max9286_parse_gpios(priv);
+>  	if (ret)
+>  		goto err_powerdown;
+>  
+> -	priv->regulator = devm_regulator_get(&client->dev, "poc");
+> -	if (IS_ERR(priv->regulator)) {
+> -		if (PTR_ERR(priv->regulator) != -EPROBE_DEFER)
+> -			dev_err(&client->dev,
+> -				"Unable to get PoC regulator (%ld)\n",
+> -				PTR_ERR(priv->regulator));
+> -		ret = PTR_ERR(priv->regulator);
+> -		goto err_powerdown;
+> -	}
+> -
+>  	ret = max9286_parse_dt(priv);
+>  	if (ret)
+>  		goto err_powerdown;
+> @@ -1326,7 +1389,7 @@ static int max9286_remove(struct i2c_client *client)
+>  
+>  	max9286_v4l2_unregister(priv);
+>  
+> -	regulator_disable(priv->regulator);
+> +	max9286_poc_enable(priv, false);
+>  
+>  	gpiod_set_value_cansleep(priv->gpiod_pwdn, 0);
+>  
+
 -- 
-2.32.0
+Regards,
 
+Laurent Pinchart
