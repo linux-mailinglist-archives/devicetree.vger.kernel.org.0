@@ -2,183 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F2B23AAF78
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 11:15:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 371D23AAF94
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 11:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231591AbhFQJRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 05:17:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49688 "EHLO
+        id S231398AbhFQJW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 05:22:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231519AbhFQJRL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 05:17:11 -0400
-Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72420C0617AD
-        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 02:15:02 -0700 (PDT)
-Received: by mail-vs1-xe2a.google.com with SMTP id j8so2626767vsd.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 02:15:02 -0700 (PDT)
+        with ESMTP id S231559AbhFQJWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 05:22:24 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CACBAC061574
+        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 02:20:15 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id c9so5920272wrt.5
+        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 02:20:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=NiiU6fiVLbE4syulfvGQUEnbQNZvmtFPXY1KRGZ4VKs=;
-        b=tspUddDmWP1nXGb8dYzDapkXukDhtaQZ8yVoZQOykE4MszNmnQ2Jc7pAu3v7qBcemT
-         UyLs98rU9nEy8e3wRIJkxsl8g3L8Eb/AvQODxlfCIA8Y+SqSVtbG2msAYvDIZFEizfbY
-         20UD8As6h7+oRqO/LBfp1JKzos5qS4bIZn22juJCAEEZOMhbhqM1f/S6KCbcFkkK35Tr
-         P7laFgsJQmqhNYip+ALRHKPPvbOtIHBYtRpZR/hgm9hpO06Ne5Y1MzvmGVRytTLSpocX
-         +CLKqhQk6OUYMP0R+b/JJQ4/QkH+6e5JGgp8Hm8OfSHuZ6CIo4hVwTpj+jWWd51a3cq+
-         7N8A==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=Gg51Q69vrN78iTSnv1/PsihkpNXe4WPLDinOYLcaROs=;
+        b=qWH4u6RrabufIDV68j4RR4vPjqayf56RX6DeizHWxExOv3eczT7/5G5eKSrhteSBMC
+         XhmVVaIVT/elM+UqYM2LG4nsFJVe9+9cpeG2/Cks7+L/Ph6U082RlEXC1QgBO/7t69ca
+         viVUwT0KhKy9fQP5MRewnYlpz7C+IVZlQj6rJ/zASyowndGxweWyz6iDuilMbBmxiyUI
+         ENGJTWEBXnX+ddv8JmRcQvHP7StZjxvRRM2y5h6oKl/zbfz4axNUCXfCCgX8eEMdfxB5
+         UHAiYeZmvKrUW2WdbrvcoSBgggSugUO1NeqwGzw/TeZy3jopBSyrq0QrzYlRn4Y80tUC
+         rajQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=NiiU6fiVLbE4syulfvGQUEnbQNZvmtFPXY1KRGZ4VKs=;
-        b=J7Hcknn9qMcTXSxS7gI7vMzfGeJdDgvqnLdDz+Oc31IR1YQ7RghusggeQXAhOdptz4
-         ztr4Bv+xZwZSst+lfdCWaNgCMJNz2cGFEfXwvvbocDFpeZEfcHedpNWDwBfXarM95Zk2
-         FHZfHjPR1QWzVDoFwmCv5CuF3SsXOkbYd0yQUlg+3xrXSpBhE2HvtWSNYvc7HBBuzEke
-         pGB1YWm+FfPyOxhvfP/DKH1Ec+tT+a78ihFRM/wvLMg0klNcMUNT7VhqAzfCuGAqQ5Qn
-         lp4QpsvwVo7ECByW+rqXOVc6523W5ByBJ905xnfiGKgC3iwYjBb0GtijavX/5m8nUM5s
-         v7KA==
-X-Gm-Message-State: AOAM531zkjt8i5n3tPOFkpj1E72SO+AyZpznCCuq5H00PrscRvFNtLcq
-        uxB6VZl6Rp/BMe5y1NPKaRpXIzZQMrpcJ8gGoxSaaA==
-X-Google-Smtp-Source: ABdhPJyDDRUn2syWiuy8XigFtL3iDYKz59Ub/6ekAvgFfmAY9tRuxX/nulbHrrDC8J99+RHvCUQeMQ9XnjKDaURJSR4=
-X-Received: by 2002:a05:6102:2159:: with SMTP id h25mr3349328vsg.19.1623921301368;
- Thu, 17 Jun 2021 02:15:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210615191543.1043414-1-robh@kernel.org>
-In-Reply-To: <20210615191543.1043414-1-robh@kernel.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 17 Jun 2021 11:14:25 +0200
-Message-ID: <CAPDyKFrY4UOO5CbZ8Bj7AH2+3Wo1PRpUv+Zs96tub=MzGuGrrQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Drop redundant minItems/maxItems
-To:     Rob Herring <robh@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-ide@vger.kernel.org, linux-clk <linux-clk@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-crypto@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-iio@vger.kernel.org, alsa-devel@alsa-project.org,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>, linux-can@vger.kernel.org,
-        Linux PCI <linux-pci@vger.kernel.org>,
-        linux-phy@lists.infradead.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-pwm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-rtc@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-spi@vger.kernel.org, Linux PM <linux-pm@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-watchdog@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Vinod Koul <vkoul@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Gg51Q69vrN78iTSnv1/PsihkpNXe4WPLDinOYLcaROs=;
+        b=IzZBeUZ4sxtjH6TLPEkTFCepslTNJLRPmYazaAJ568hq0hk7O60TICL9ovBIiaHCZB
+         ExQWoR375yIQjUzmNzubA3KoqDiWHLu1v+mwNRa+4izlqellhBrJfDV3LGlj9rxCCo4K
+         wgRCghPDuJTJnswQKSdXi8gLVWrjnRdro6qBhXwtZUsGZ8AYpxIcHYHVA/BeHSDFoktB
+         ulTb6n5DsC+Xu4U95F88bv2HiQgb1rFjkpAEn/TPrlJCqmAioZC/suwYXJGYZuoFnHZo
+         WXKV9zb2rB3EmsgNcydma8inWewwngCAyBWdLUVAfD1X655p5Xjg+0ZnmQIDbB2ZNUzO
+         IiGQ==
+X-Gm-Message-State: AOAM530T3kcwaF1AUK5O400TeaHqtuFbeP4XGE0t/VNqa82npiEl8CR4
+        V1mCJKjW2EpeYX1VcZiEAx/14w==
+X-Google-Smtp-Source: ABdhPJxq93DYMrfuYvKb9tchO3VMLFI9awrucbrsw0UT/oQEHi6hN6pr4j61x7bI1vBVyWlSHHOLfA==
+X-Received: by 2002:adf:cd8d:: with SMTP id q13mr4376313wrj.78.1623921614314;
+        Thu, 17 Jun 2021 02:20:14 -0700 (PDT)
+Received: from dell ([91.110.221.170])
+        by smtp.gmail.com with ESMTPSA id k16sm4000285wmr.42.2021.06.17.02.20.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Jun 2021 02:20:13 -0700 (PDT)
+Date:   Thu, 17 Jun 2021 10:20:11 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Alistair Francis <alistair23@gmail.com>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
         Mark Brown <broonie@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 2/5] mfd: sy7636a: Initial commit
+Message-ID: <YMsTy3QnYzjrFSFg@dell>
+References: <20210615103400.946-1-alistair@alistair23.me>
+ <20210615103400.946-2-alistair@alistair23.me>
+ <YMnY7RLW6ml4Tq0g@dell>
+ <CAKmqyKNs+Ebvd5MwtoKfKhNrMJVhTsBLjDhLXRuK8C+gs5MCcQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAKmqyKNs+Ebvd5MwtoKfKhNrMJVhTsBLjDhLXRuK8C+gs5MCcQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Jun 2021 at 21:15, Rob Herring <robh@kernel.org> wrote:
->
-> If a property has an 'items' list, then a 'minItems' or 'maxItems' with t=
-he
-> same size as the list is redundant and can be dropped. Note that is DT
-> schema specific behavior and not standard json-schema behavior. The tooli=
-ng
-> will fixup the final schema adding any unspecified minItems/maxItems.
->
-> This condition is partially checked with the meta-schema already, but
-> only if both 'minItems' and 'maxItems' are equal to the 'items' length.
-> An improved meta-schema is pending.
->
-> Cc: Jens Axboe <axboe@kernel.dk>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-> Cc: Kamal Dasu <kdasu.kdev@gmail.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Marc Zyngier <maz@kernel.org>
-> Cc: Joerg Roedel <joro@8bytes.org>
-> Cc: Jassi Brar <jassisinghbrar@gmail.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Jakub Kicinski <kuba@kernel.org>
-> Cc: Wolfgang Grandegger <wg@grandegger.com>
-> Cc: Marc Kleine-Budde <mkl@pengutronix.de>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Vivien Didelot <vivien.didelot@gmail.com>
-> Cc: Vladimir Oltean <olteanv@gmail.com>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: "Uwe Kleine-K=C3=B6nig" <u.kleine-koenig@pengutronix.de>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: Ohad Ben-Cohen <ohad@wizery.com>
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> Cc: Paul Walmsley <paul.walmsley@sifive.com>
-> Cc: Palmer Dabbelt <palmer@dabbelt.com>
-> Cc: Albert Ou <aou@eecs.berkeley.edu>
-> Cc: Alessandro Zummo <a.zummo@towertech.it>
-> Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Zhang Rui <rui.zhang@intel.com>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Wim Van Sebroeck <wim@linux-watchdog.org>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Thu, 17 Jun 2021, Alistair Francis wrote:
 
-Acked-by: Ulf Hansson <ulf.hansson@linaro.org> # for MMC
+> On Wed, Jun 16, 2021 at 8:56 PM Lee Jones <lee.jones@linaro.org> wrote:
+> >
+> > On Tue, 15 Jun 2021, Alistair Francis wrote:
+> >
+> > > Initial support for the Silergy SY7636A Power Management chip.
+> > >
+> > > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > > ---
+> > >  drivers/mfd/Kconfig         |  9 ++++
+> > >  drivers/mfd/Makefile        |  1 +
+> > >  drivers/mfd/sy7636a.c       | 82 +++++++++++++++++++++++++++++++++++++
+> > >  include/linux/mfd/sy7636a.h | 47 +++++++++++++++++++++
+> > >  4 files changed, 139 insertions(+)
+> > >  create mode 100644 drivers/mfd/sy7636a.c
+> > >  create mode 100644 include/linux/mfd/sy7636a.h
+> > >
+> > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > > index 5c7f2b100191..7d6cf32b1549 100644
+> > > --- a/drivers/mfd/Kconfig
+> > > +++ b/drivers/mfd/Kconfig
+> > > @@ -1339,6 +1339,15 @@ config MFD_SYSCON
+> > >         Select this option to enable accessing system control registers
+> > >         via regmap.
+> > >
+> > > +config MFD_SY7636A
+> > > +     tristate "Silergy SY7636A Power Management chip"
+> > > +     select MFD_CORE
+> > > +     select REGMAP_I2C
+> > > +     depends on I2C
+> > > +     help
+> > > +       Select this option to enable support for the Silergy SY7636A
+> > > +       Power Management chip.
+> > > +
+> > >  config MFD_DAVINCI_VOICECODEC
+> > >       tristate
+> > >       select MFD_CORE
+> > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > > index 4f6d2b8a5f76..f95e1e725a95 100644
+> > > --- a/drivers/mfd/Makefile
+> > > +++ b/drivers/mfd/Makefile
+> > > @@ -265,6 +265,7 @@ obj-$(CONFIG_MFD_STMFX)   += stmfx.o
+> > >  obj-$(CONFIG_MFD_KHADAS_MCU)         += khadas-mcu.o
+> > >  obj-$(CONFIG_MFD_ACER_A500_EC)       += acer-ec-a500.o
+> > >
+> > > +obj-$(CONFIG_MFD_SY7636A)    += sy7636a.o
+> > >  obj-$(CONFIG_SGI_MFD_IOC3)   += ioc3.o
+> > >  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)     += simple-mfd-i2c.o
+> > >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
+> > > diff --git a/drivers/mfd/sy7636a.c b/drivers/mfd/sy7636a.c
+> > > new file mode 100644
+> > > index 000000000000..e08f29ea63f8
+> > > --- /dev/null
+> > > +++ b/drivers/mfd/sy7636a.c
+> > > @@ -0,0 +1,82 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +//
+> >
+> > Only the SPDX with C++ style comments please.
+> >
+> > > +// MFD parent driver for SY7636A chip
+> >
+> > Drop the MFD part.  It's a Linuxisum that doesn't really exist.
+> >
+> > > +// Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
+> > > +//
+> > > +// Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
+> > > +//          Alistair Francis <alistair@alistair23.me>
+> > > +//
+> > > +// Based on the lp87565 driver by Keerthy <j-keerthy@ti.com>
+> > > +
+> > > +#include <linux/interrupt.h>
+> > > +#include <linux/mfd/core.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of_device.h>
+> > > +
+> > > +#include <linux/mfd/sy7636a.h>
+> > > +
+> > > +static const struct regmap_config sy7636a_regmap_config = {
+> > > +     .reg_bits = 8,
+> > > +     .val_bits = 8,
+> > > +};
+> > > +
+> > > +static const struct mfd_cell sy7636a_cells[] = {
+> > > +     { .name = "sy7636a-regulator", },
+> > > +     { .name = "sy7636a-temperature", },
+> > > +     { .name = "sy7636a-thermal", },
+> > > +};
+> > > +
+> > > +static const struct of_device_id of_sy7636a_match_table[] = {
+> > > +     { .compatible = "silergy,sy7636a", },
+> > > +     {}
+> > > +};
+> > > +MODULE_DEVICE_TABLE(of, of_sy7636a_match_table);
+> >
+> > Hold on.  This driver doesn't really do anything.  If you create OF
+> > nodes for all the sub-devices, you can use simple-mfd-i2c.
+> >
+> > Any reason you can't do that?
+> 
+> Just to confirm, you mean something like this?
+> 
+> diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts
+> b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> index 9327d1c06c96..3577104b3853 100644
+> --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
+> +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> @@ -382,6 +382,21 @@ epd_pmic: sy7636a@62 {
+>                 pinctrl-0 = <&pinctrl_epdpmic>;
+>                 #thermal-sensor-cells = <0>;
+> 
+> +               regulator@0 {
+> +                       compatible = "sy7636a-regulator";
+> +                       reg = <0>;
+> +               };
+> +
+> +               temperature@0 {
+> +                       compatible = "sy7636a-temperature";
+> +                       reg = <0>;
+> +               };
+> +
+> +               thermal@0 {
+> +                       compatible = "sy7636a-thermal";
+> +                       reg = <0>;
+> +               };
+> +
+>                 regulators {
+>                         compatible = "silergy,sy7636a-regulator";
+> diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.c
+> index 87f684cff9a1..622a05318cff 100644
+> --- a/drivers/mfd/simple-mfd-i2c.c
+> +++ b/drivers/mfd/simple-mfd-i2c.c
+> @@ -39,6 +39,7 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2c)
+> 
+>  static const struct of_device_id simple_mfd_i2c_of_match[] = {
+>         { .compatible = "kontron,sl28cpld" },
+> +       { .compatible = "silergy,sy7636a" },
+>         {}
+>  };
+>  MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
 
-[...]
+Essentially.  Take a look at how the other users are implementing.
 
-Kind regards
-Uffe
+The reg entries look bogus to me though.  Maybe just leave them out?
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
