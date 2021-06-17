@@ -2,214 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D32273AAB8B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 08:00:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD91D3AABA4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 08:07:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229616AbhFQGCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 02:02:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbhFQGCv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 02:02:51 -0400
-Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89161C061574;
-        Wed, 16 Jun 2021 23:00:38 -0700 (PDT)
-Received: by mail-ua1-x935.google.com with SMTP id o3so1676623uaw.5;
-        Wed, 16 Jun 2021 23:00:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nI7yEuG2ARK23uejO9nhB9zAo4xzWVauJN211Odr0ag=;
-        b=S3EyK0G1UBktsOleWFm/MmnmHW2LeOl67vQAXqw+sSV/y6rb5Kzn8/0e/P2xbwqove
-         boggjxcWiH4UnbuXOGKNbuBU364gWdeijLrnuQcI0aolnbkvF1MpdshBPi3W5GZI26iZ
-         VE9ZJQxmSB86xzPT3SBE+PqwKbppwEuqNlhk8NyjiCGmSJ1ifz8JtJgtojOY+/fgtanv
-         MOqv7LVJox0XJ2d1NN6HtmRUwyXaxp5pbsEH0rADbHrlKrejuIDhoW6G+0RbmMIUKvCu
-         sDLKjaYJtfQ0HG+UyfHs6y04Ob8slrJFvpRTMSB3UomwoLt+0xr94/dR3ExVLicO83w6
-         dxGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nI7yEuG2ARK23uejO9nhB9zAo4xzWVauJN211Odr0ag=;
-        b=Yyv8EU0czP3abKR+Mgo9oHWGNnoILneJSZluLd6P0zGTzmw+qrTyoGIEdauv3her9Y
-         RnGXiPMvDsepY8LUjghHiZyZ6G2C3l+yk1PEcc36v+wGbUGMyOV3bKSwPpabc/FrN3oM
-         2QfvX+6Za9gPvIkdwztPOzadCMs1ShM3qQO4K7mb3VNmeBskGRD5+Cvf4FlzmszrNBkE
-         dysSZJFukEprQuQgaZbpDBelhaEisrzcvBfXAJnuWFh17gWsxOC7F9aUY1tBXo8La4AZ
-         /kirxAckK6jobNr2c9MDKe0h4m4rkiwFVDZFws1Pu+0gtkZe2/56LBZfetVkPSgGaTsX
-         +kMA==
-X-Gm-Message-State: AOAM533WQ0xMO5WAGi2ThkBow4KSlR7lDkkV8FBKHScKHDZo8Hrntuv+
-        jizV53iOkkTyqTyoIIDQlxCNvZZ3D7mjFX8q5PeFajlY2iVwxg==
-X-Google-Smtp-Source: ABdhPJyRLlGAMJvGoiPaWvpNElF/xJHOqBPZOWBpR2vkSoib2df0R18MIhqUWtQohPkb7vDP4sEy/87V/xLthopwClk=
-X-Received: by 2002:ab0:49aa:: with SMTP id e39mr3733325uad.0.1623909637178;
- Wed, 16 Jun 2021 23:00:37 -0700 (PDT)
+        id S229580AbhFQGJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 02:09:44 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:58781 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229515AbhFQGJn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Jun 2021 02:09:43 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1623910057; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=8lksUp1qCJXiBU12bEnLm7XV+ucQTovs88KOZ7ewuHk=;
+ b=lK4K4wDZxs9FPUk/1qJaCNVvzBcIX6f5YSg2aBpY8RNZEJrg8Od30HJyR1lU6uViL7fi+qIM
+ Mev8Hiwky7Z7Eau29YjlEoHazvEscb6xYxL76Ki059wLZoq69i9y5F1ronbkb6emOGBycEGy
+ dvnz2RJDIhMSC9tf7au7Poy5580=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 60cae6a7e27c0cc77fdb1f93 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 17 Jun 2021 06:07:35
+ GMT
+Sender: schowdhu=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 58756C433D3; Thu, 17 Jun 2021 06:07:34 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: schowdhu)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3F905C433F1;
+        Thu, 17 Jun 2021 06:07:33 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210609140159.20476-1-sergio.paracuellos@gmail.com>
-In-Reply-To: <20210609140159.20476-1-sergio.paracuellos@gmail.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Thu, 17 Jun 2021 08:00:25 +0200
-Message-ID: <CAMhs-H9659uAEb9A-xxfOEqcsUuFE1tNTu_VAj+AskwKUUD8dw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] PCI: mt7621: Add MediaTek MT7621 PCIe host
- controller driver
-To:     linux-pci@vger.kernel.org
-Cc:     "open list:MIPS" <linux-mips@vger.kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-staging@lists.linux.dev,
-        Greg KH <gregkh@linuxfoundation.org>,
-        NeilBrown <neil@brown.name>,
-        Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 17 Jun 2021 11:37:33 +0530
+From:   schowdhu@codeaurora.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
+Subject: Re: [PATCH V4 0/4] Add driver support for Data Capture and Compare
+ Engine(DCC) for SM8150
+In-Reply-To: <cover.1620056206.git.schowdhu@codeaurora.org>
+References: <cover.1620056206.git.schowdhu@codeaurora.org>
+Message-ID: <24c249da2766c7add71ce1ecfb99234e@codeaurora.org>
+X-Sender: schowdhu@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 2021-05-03 21:47, Souradeep Chowdhury wrote:
+> DCC(Data Capture and Compare) is a DMA engine designed for debugging
+> purposes.In case of a system
+> crash or manual software triggers by the user the DCC hardware stores
+> the value at the register
+> addresses which can be used for debugging purposes.The DCC driver
+> provides the user with sysfs
+> interface to configure the register addresses.The options that the DCC
+> hardware provides include
+> reading from registers,writing to registers,first reading and then
+> writing to registers and looping
+> through the values of the same register.
+> 
+> In certain cases a register write needs to be executed for accessing
+> the rest of the registers,
+> also the user might want to record the changing values of a register
+> with time for which he has the
+> option to use the loop feature.
+> 
+> The options mentioned above are exposed to the user by sysfs files
+> once the driver is probed.The
+> details and usage of this sysfs files are documented in
+> Documentation/ABI/testing/sysfs-driver-dcc.
+> 
+> As an example let us consider a couple of debug scenarios where DCC
+> has been proved to be effective
+> for debugging purposes:-
+> 
+> i)TimeStamp Related Issue
+> 
+> On SC7180, there was a coresight timestamp issue where it would
+> occasionally be all 0 instead of proper
+> timestamp values.
+> 
+> Proper timestamp:
+> Idx:3373; ID:10; I_TIMESTAMP : Timestamp.; Updated val =
+> 0x13004d8f5b7aa; CC=0x9e
+> 
+> Zero timestamp:
+> Idx:3387; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x0; CC=0xa2
+> 
+> Now this is a non-fatal issue and doesn't need a system reset, but 
+> still needs
+> to be rootcaused and fixed for those who do care about coresight etm 
+> traces.
+> Since this is a timestamp issue, we would be looking for any timestamp 
+> related
+> clocks and such.
+> 
+> o we get all the clk register details from IP documentation and 
+> configure it
+> via DCC config syfs node. Before that we set the current linked list.
+> 
+> /* Set the current linked list */
+> echo 3 > /sys/bus/platform/devices/10a2000.dcc/curr_list
+> 
+> /* Program the linked list with the addresses */
+> echo 0x10c004 > /sys/bus/platform/devices/10a2000.dcc/config
+> echo 0x10c008 > /sys/bus/platform/devices/10a2000.dcc/config
+> echo 0x10c00c > /sys/bus/platform/devices/10a2000.dcc/config
+> echo 0x10c010 > /sys/bus/platform/devices/10a2000.dcc/config
+> ..... and so on for other timestamp related clk registers
+> 
+> /* Other way of specifying is in "addr len" pair, in below case it
+> specifies to capture 4 words starting 0x10C004 */
+> 
+> echo 0x10C004 4 > /sys/bus/platform/devices/10a2000.dcc/config
+> 
+> /* Enable DCC */
+> echo 1 > /sys/bus/platform/devices/10a2000.dcc/enable
+> 
+> /* Run the timestamp test for working case */
+> 
+> /* Send SW trigger */
+> echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
+> 
+> /* Read SRAM */
+> cat /dev/dcc_sram > dcc_sram1.bin
+> 
+> /* Run the timestamp test for non-working case */
+> 
+> /* Send SW trigger */
+> echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
+> 
+> /* Read SRAM */
+> cat /dev/dcc_sram > dcc_sram2.bin
+> 
+> Get the parser from [1] and checkout the latest branch.
+> 
+> /* Parse the SRAM bin */
+> python dcc_parser.py -s dcc_sram1.bin --v2 -o output/
+> python dcc_parser.py -s dcc_sram2.bin --v2 -o output/
+> 
+> Sample parsed output of dcc_sram1.bin:
+> 
+> <hwioDump version="1">
+>         <timestamp>03/14/21</timestamp>
+>             <generator>Linux DCC Parser</generator>
+>                 <chip name="None" version="None">
+>                 <register address="0x0010c004" value="0x80000000" />
+>                 <register address="0x0010c008" value="0x00000008" />
+>                 <register address="0x0010c00c" value="0x80004220" />
+>                 <register address="0x0010c010" value="0x80000000" />
+>             </chip>
+>     <next_ll_offset>next_ll_offset : 0x1c </next_ll_offset>
+> </hwioDump>
+> 
+> ii)NOC register errors
+> 
+> A particular class of registers called NOC which are functional
+> registers was reporting
+> errors while logging the values.To trace these errors the DCC has been
+> used effectively.
+> The steps followed were similar to the ones mentioned above.
+> In addition to NOC registers a few other dependent registers were
+> configured in DCC to
+> monitor it's values during a crash. A look at the dependent register
+> values revealed that
+> the crash was happening due to a secured access to one of these
+> dependent registers.
+> All these debugging activity and finding the root cause was achieved 
+> using DCC.
+> 
+> DCC parser is available at the following open source location
+> 
+> https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/tools/tree/dcc_parser
+> 
+> Changes in v4:
+> 
+> *Implement all the comments on v3 of the patch.
+> *Incorporate code change for handling multiple SoCs.
+> *Incorporate code change for DCC_SRAM content to persist across warm 
+> reboots.
+> *Fixed the issue with the Makefile in v3 of the patch.
+> 
+> Souradeep Chowdhury (4):
+>   dt-bindings: Added the yaml bindings for DCC
+>   soc: qcom: dcc:Add driver support for Data Capture and Compare
+>     unit(DCC)
+>   MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
+>     support
+>   arm64: dts: qcom: sm8150: Add Data Capture and Compare(DCC) support
+>     node
+> 
+>  Documentation/ABI/testing/sysfs-driver-dcc         |  114 ++
+>  .../devicetree/bindings/arm/msm/qcom,dcc.yaml      |   40 +
+>  MAINTAINERS                                        |    8 +
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi               |    6 +
+>  drivers/soc/qcom/Kconfig                           |    8 +
+>  drivers/soc/qcom/Makefile                          |    1 +
+>  drivers/soc/qcom/dcc.c                             | 1534 
+> ++++++++++++++++++++
+>  7 files changed, 1711 insertions(+)
+>  create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
+>  create mode 100644 
+> Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
+>  create mode 100644 drivers/soc/qcom/dcc.c
 
-On Wed, Jun 9, 2021 at 4:02 PM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
->
-> MediaTek MT7621 PCIe subsys supports single Root complex (RC)
-> with 3 Root Ports. Each Root Ports supports a Gen1 1-lane Link.
-> Topology is as follows:
->
->                           MT7621 PCIe HOST Topology
->
->                                    .-------.
->                                    |       |
->                                    |  CPU  |
->                                    |       |
->                                    '-------'
->                                        |
->                                        |
->                                        |
->                                        v
->                               .------------------.
->                   .-----------|  HOST/PCI Bridge |------------.
->                   |           '------------------'            |     Type1
->          BUS0     |                     |                     |    Access
->                   v                     v                     v    On Bus0
->           .-------------.        .-------------.       .-------------.
->           | VIRTUAL P2P |        | VIRTUAL P2P |       | VIRTUAL P2P |
->           |    BUS0     |        |    BUS0     |       |    BUS0     |
->           |    DEV0     |        |    DEV1     |       |    DEV2     |
->           '-------------'        '-------------'       '-------------'
->     Type0        |          Type0       |         Type0       |
->    Access   BUS1 |         Access   BUS2|        Access   BUS3|
->    On Bus1       v         On Bus2      v        On Bus3      v
->            .----------.           .----------.          .----------.
->            | Device 0 |           | Device 0 |          | Device 0 |
->            |  Func 0  |           |  Func 0  |          |  Func 0  |
->            '----------'           '----------'          '----------'
->
-> This driver has been very long time in staging and I have been cleaning
-> it from its first versions where there was code kaos and PCI_LEGACY support.
-> Original code came probably from openWRT based on mediatek's SDK code. There
-> is no documentation at all about the mt7621 PCI subsystem.
-> I have been cleaning it targeting mt7621 SoC which is the one I use in
-> my GNUBee PC1 board and HiLink HLK-MT7621A evaluation board.
->
-> Now I think is clean enough to be moved into 'drivers/pci/controller'.
-> This driver is mips/ralink architecture and need 'mips_cps_numiocu()'
-> to properly configure iocu regions for mips.
->
-> This driver also uses already mainlined pci phy driver located in
-> 'drivers/phy/ralink/phy-mt7621-pci.c'. There are two instances of
-> the phy being the first one dual ported for pci0 and pci1, and the
-> second one not dual ported dedicated to pci2. Because of writing twice
-> some phy registers of the dual-ported one sometimes become in not
-> confident boot cycles we have to take care of this when device link
-> is checked here in controller driver. We power on the dual ported-phy
-> if there is something connected in pcie0 or pcie1. In the same manner
-> we have to properly disable it only if nothing is connected in of both
-> pcie0 and pcie1 slots.
->
-> Another thing that must be mentioned is that this driver uses IO
-> in physical address 0x001e160000. IO_SPACE_LIMIT for MIPS is 0xffff
-> so some generic PCI functions (like of_pci_range_to_resource) won't
-> work and the resource ranges part for IO is set manually.
-
-This has been fixed and now there is no need to set io resources manually.
-See [0].
-
->
-> Changes in v2:
->     - Make one commit moving driver directly from staging into
->      'drivers/pci/controllers' instead of two commits making
->      one add and a later remove.
->     - Update binding documentation moving 'clocks', 'resets' and
->      'phys' properties to child root bridge nodes.
->     - Update code to properly be able to use new bindings.
->     - Kconfig: add || (MIPS && COMPILE_TEST).
->     - Use {read/write}_relaxed versions.
->     - Use 'PCI_BASE_ADDRESS_0' instead of a custom definition.
->     - Avoid to set 'PCI_COMMAND_MASTER' and re-do functions
->      'mt7621_pcie_enable_ports' and 'mt7621_pcie_enable_port'.
-
-I forgot to comment that all of these changes are rebased on the top
-of staging-next.
-Since this is a 'git mv' as I was told to do by Bjorn, last version of
-the code is available
-here [1] with the following added changes to the ones listed above
-from previously submitted v1 series:
-
-- Define PCI_IOBASE for mips (spaces.h) to avoid parsing io resources manually
-so 'mt7621_pci_parse_request_of_pci_ranges' is not needed anymore.
-- Don't store resources in driver private data but just get them to properly
-set io window register and mips iocu memory regions.
-
-Thanks in advance for your time.
-
-Best regards,
-    Sergio Paracuellos
-
-[0]: https://lore.kernel.org/linux-staging/20210614100617.28753-1-sergio.paracuellos@gmail.com/T/#t
-[1]: https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git/tree/drivers/staging/mt7621-pci/pci-mt7621.c?h=staging-next
-
->
-> NOTE: Greg, I have maintained your Acked-by from previous series in
-> delete driver commit and added in the one which is moving code here
-> and delete the remaining stuff. If you are not ok with this, just
-> let me now and I'll drop it and resend.
->
-> Thanks in advance for your time.
->
-> Best regards,
->     Sergio Paracuellos
->
-> Sergio Paracuellos (3):
->   dt-bindings: mt7621-pci: PCIe binding documentation for MT7621 SoCs
->   PCI: mt7621: Add MediaTek MT7621 PCIe host controller driver
->   MAINTAINERS: add myself as maintainer of the MT7621 PCI controller
->     driver
->
->  .../bindings/pci/mediatek,mt7621-pci.yaml     | 142 ++++++++++++++++++
->  MAINTAINERS                                   |   6 +
->  arch/mips/ralink/Kconfig                      |   2 +-
->  drivers/pci/controller/Kconfig                |   8 +
->  drivers/pci/controller/Makefile               |   1 +
->  .../controller}/pci-mt7621.c                  |   0
->  drivers/staging/Kconfig                       |   2 -
->  drivers/staging/Makefile                      |   1 -
->  drivers/staging/mt7621-pci/Kconfig            |   8 -
->  drivers/staging/mt7621-pci/Makefile           |   2 -
->  drivers/staging/mt7621-pci/TODO               |   4 -
->  .../mt7621-pci/mediatek,mt7621-pci.txt        | 104 -------------
->  12 files changed, 158 insertions(+), 122 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/mediatek,mt7621-pci.yaml
->  rename drivers/{staging/mt7621-pci => pci/controller}/pci-mt7621.c (100%)
->  delete mode 100644 drivers/staging/mt7621-pci/Kconfig
->  delete mode 100644 drivers/staging/mt7621-pci/Makefile
->  delete mode 100644 drivers/staging/mt7621-pci/TODO
->  delete mode 100644 drivers/staging/mt7621-pci/mediatek,mt7621-pci.txt
->
-> --
-> 2.25.1
->
+Gentle Ping
