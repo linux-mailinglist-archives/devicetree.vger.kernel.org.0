@@ -2,169 +2,333 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44D643AA83F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 02:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AD9E3AA899
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 03:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231570AbhFQAtQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 20:49:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60956 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231496AbhFQAtQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 20:49:16 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C7A2B613B9;
-        Thu, 17 Jun 2021 00:47:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623890829;
-        bh=WCzGPQl/aym123sINb8QnvJYTwJNBRaVx2zLf3Bv1N8=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=rMohPe+tbKQa0AYXnI+IW3OaFUpO6B0eUu0gZForopqzfrCjPyFI1Ewjobgur6/dk
-         bLRtb8PIYvryWZweFMXTwAbMWtg0nctMUoV8kxk6uELmUKnBiVw5LeKCqL5SBhOByE
-         jiTek0nnewDrHmhCidXDSQ3WaahCsU5g4GDabRezUbSedVXgMEydAYEHuXFwzTS91g
-         cJMCyter7dx77I2E16IUKEfK8pcdYqTSbuwilDTS8T+uuTkXRJvXElaDgqvBEXf5YU
-         0wAWL6nOk87f0a1jJqezXJtxglL4nvT9peSjxOtxRa83ff4UqBDa3CGXSoXj4TqnFN
-         tHVw/jZbmu50w==
-Date:   Wed, 16 Jun 2021 17:47:07 -0700 (PDT)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
-To:     Claire Chang <tientzu@chromium.org>
-cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
-        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
-        daniel@ffwll.ch, airlied@linux.ie, dri-devel@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
-        jxgao@google.com, joonas.lahtinen@linux.intel.com,
-        linux-pci@vger.kernel.org, maarten.lankhorst@linux.intel.com,
-        matthew.auld@intel.com, rodrigo.vivi@intel.com,
-        thomas.hellstrom@linux.intel.com
-Subject: Re: [PATCH v12 06/12] swiotlb: Use is_swiotlb_force_bounce for
- swiotlb data bouncing
-In-Reply-To: <20210616062157.953777-7-tientzu@chromium.org>
-Message-ID: <alpine.DEB.2.21.2106161711030.24906@sstabellini-ThinkPad-T480s>
-References: <20210616062157.953777-1-tientzu@chromium.org> <20210616062157.953777-7-tientzu@chromium.org>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+        id S232025AbhFQBa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 21:30:27 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:56799 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231942AbhFQBa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 21:30:27 -0400
+X-UUID: 49755c844c7b45bda04c84b8e1a123aa-20210617
+X-UUID: 49755c844c7b45bda04c84b8e1a123aa-20210617
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1670077071; Thu, 17 Jun 2021 09:28:15 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 17 Jun 2021 09:28:13 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 17 Jun 2021 09:28:13 +0800
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Subject: [PATCH] arm64: dts: mediatek: Add mt8195 clock controllers
+Date:   Thu, 17 Jun 2021 09:28:03 +0800
+Message-ID: <20210617012803.5894-1-chun-jie.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Jun 2021, Claire Chang wrote:
-> Propagate the swiotlb_force into io_tlb_default_mem->force_bounce and
-> use it to determine whether to bounce the data or not. This will be
-> useful later to allow for different pools.
-> 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> ---
->  include/linux/swiotlb.h | 11 +++++++++++
->  kernel/dma/direct.c     |  2 +-
->  kernel/dma/direct.h     |  2 +-
->  kernel/dma/swiotlb.c    |  4 ++++
->  4 files changed, 17 insertions(+), 2 deletions(-)
-> 
-> diff --git a/include/linux/swiotlb.h b/include/linux/swiotlb.h
-> index dd1c30a83058..8d8855c77d9a 100644
-> --- a/include/linux/swiotlb.h
-> +++ b/include/linux/swiotlb.h
-> @@ -84,6 +84,7 @@ extern enum swiotlb_force swiotlb_force;
->   *		unmap calls.
->   * @debugfs:	The dentry to debugfs.
->   * @late_alloc:	%true if allocated using the page allocator
-> + * @force_bounce: %true if swiotlb bouncing is forced
->   */
->  struct io_tlb_mem {
->  	phys_addr_t start;
-> @@ -94,6 +95,7 @@ struct io_tlb_mem {
->  	spinlock_t lock;
->  	struct dentry *debugfs;
->  	bool late_alloc;
-> +	bool force_bounce;
->  	struct io_tlb_slot {
->  		phys_addr_t orig_addr;
->  		size_t alloc_size;
-> @@ -109,6 +111,11 @@ static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
->  	return mem && paddr >= mem->start && paddr < mem->end;
->  }
->  
-> +static inline bool is_swiotlb_force_bounce(struct device *dev)
-> +{
-> +	return dev->dma_io_tlb_mem->force_bounce;
-> +}
->  void __init swiotlb_exit(void);
->  unsigned int swiotlb_max_segment(void);
->  size_t swiotlb_max_mapping_size(struct device *dev);
-> @@ -120,6 +127,10 @@ static inline bool is_swiotlb_buffer(struct device *dev, phys_addr_t paddr)
->  {
->  	return false;
->  }
-> +static inline bool is_swiotlb_force_bounce(struct device *dev)
-> +{
-> +	return false;
-> +}
->  static inline void swiotlb_exit(void)
->  {
->  }
-> diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-> index 7a88c34d0867..a92465b4eb12 100644
-> --- a/kernel/dma/direct.c
-> +++ b/kernel/dma/direct.c
-> @@ -496,7 +496,7 @@ size_t dma_direct_max_mapping_size(struct device *dev)
->  {
->  	/* If SWIOTLB is active, use its maximum mapping size */
->  	if (is_swiotlb_active(dev) &&
-> -	    (dma_addressing_limited(dev) || swiotlb_force == SWIOTLB_FORCE))
-> +	    (dma_addressing_limited(dev) || is_swiotlb_force_bounce(dev)))
->  		return swiotlb_max_mapping_size(dev);
->  	return SIZE_MAX;
->  }
-> diff --git a/kernel/dma/direct.h b/kernel/dma/direct.h
-> index 13e9e7158d94..4632b0f4f72e 100644
-> --- a/kernel/dma/direct.h
-> +++ b/kernel/dma/direct.h
-> @@ -87,7 +87,7 @@ static inline dma_addr_t dma_direct_map_page(struct device *dev,
->  	phys_addr_t phys = page_to_phys(page) + offset;
->  	dma_addr_t dma_addr = phys_to_dma(dev, phys);
->  
-> -	if (unlikely(swiotlb_force == SWIOTLB_FORCE))
-> +	if (is_swiotlb_force_bounce(dev))
->  		return swiotlb_map(dev, phys, size, dir, attrs);
->
->  	if (unlikely(!dma_capable(dev, dma_addr, size, true))) {
+Add clock controller nodes for SoC mt8195
 
-Should we also make the same change in
-drivers/xen/swiotlb-xen.c:xen_swiotlb_map_page ?
+Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+---
+This patch is based on 5.13-rc3 and [1], also depends on [2].
 
-If I make that change, I can see that everything is working as
-expected for a restricted-dma device with Linux running as dom0 on Xen.
-However, is_swiotlb_force_bounce returns non-zero even for normal
-non-restricted-dma devices. That shouldn't happen, right?
+[1] Add Mediatek SoC MT8195 and evaluation board dts and Makefile
+    - https://patchwork.kernel.org/project/linux-mediatek/patch/20210601075350.31515-2-seiya.wang@mediatek.com/
+[2] Mediatek MT8195 clock support
+    - https://patchwork.kernel.org/project/linux-mediatek/list/?series=501923
+---
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi | 218 ++++++++++++++++++++++-
+ 1 file changed, 217 insertions(+), 1 deletion(-)
 
-It looks like struct io_tlb_slot is not zeroed on allocation.
-Adding memset(mem, 0x0, struct_size) in swiotlb_late_init_with_tbl
-solves the issue.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+index 8fc2af12c0f8..b0255c5aa019 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+@@ -5,7 +5,7 @@
+  */
+ 
+ /dts-v1/;
+-
++#include <dt-bindings/clock/mt8195-clk.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ 
+@@ -273,6 +273,18 @@
+ 			};
+ 		};
+ 
++		topckgen: syscon@10000000 {
++			compatible = "mediatek,mt8195-topckgen", "syscon";
++			reg = <0 0x10000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		infracfg_ao: syscon@10001000 {
++			compatible = "mediatek,mt8195-infracfg_ao", "syscon";
++			reg = <0 0x10001000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		pio: pinctrl@10005000 {
+ 			compatible = "mediatek,mt8195-pinctrl";
+ 			reg = <0 0x10005000 0 0x1000>,
+@@ -299,6 +311,12 @@
+ 			reg = <0 0x10007000 0 0x100>;
+ 		};
+ 
++		apmixedsys: syscon@1000c000 {
++			compatible = "mediatek,mt8195-apmixedsys", "syscon";
++			reg = <0 0x1000c000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		systimer: timer@10017000 {
+ 			compatible = "mediatek,mt8195-timer", "mediatek,mt6765-timer";
+ 			reg = <0 0x10017000 0 0x1000>;
+@@ -306,6 +324,30 @@
+ 			clocks = <&clk26m>;
+ 		};
+ 
++		nnasys: clock-controller@10211000 {
++			compatible = "mediatek,mt8195-nnasys";
++			reg = <0 0x10211000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		scp_adsp: clock-controller@10720000 {
++			compatible = "mediatek,mt8195-scp_adsp";
++			reg = <0 0x10720000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		audsys: clock-controller@10890000 {
++			compatible = "mediatek,mt8195-audsys";
++			reg = <0 0x10890000 0 0x10000>;
++			#clock-cells = <1>;
++		};
++
++		audsys_src: clock-controller@108a0000 {
++			compatible = "mediatek,mt8195-audsys_src";
++			reg = <0 0x108a0000 0 0x2000>;
++			#clock-cells = <1>;
++		};
++
+ 		uart0: serial@11001100 {
+ 			compatible = "mediatek,mt8195-uart", "mediatek,mt6577-uart";
+ 			reg = <0 0x11001100 0 0x100>;
+@@ -368,6 +410,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		pericfg_ao: syscon@11003000 {
++			compatible = "mediatek,mt8195-pericfg_ao", "syscon";
++			reg = <0 0x11003000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		spi0: spi@1100a000 {
+ 			compatible = "mediatek,mt8195-spi", "mediatek,mt6765-spi";
+ 			reg = <0 0x1100a000 0 0x100>;
+@@ -505,6 +553,18 @@
+ 			};
+ 		};
+ 
++		imp_iic_wrap_s: clock-controller@11d03000 {
++			compatible = "mediatek,mt8195-imp_iic_wrap_s";
++			reg = <0 0x11d03000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		imp_iic_wrap_w: clock-controller@11e05000 {
++			compatible = "mediatek,mt8195-imp_iic_wrap_w";
++			reg = <0 0x11e05000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		u3phy1: t-phy@11e30000 {
+ 			compatible = "mediatek,mt8195-tphy", "mediatek,generic-tphy-v2";
+ 			#address-cells = <1>;
+@@ -557,5 +617,161 @@
+ 			#phy-cells = <0>;
+ 			status = "disabled";
+ 		};
++
++		mfgcfg: clock-controller@13fbf000 {
++			compatible = "mediatek,mt8195-mfgcfg";
++			reg = <0 0x13fbf000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vppsys0: clock-controller@14000000 {
++			compatible = "mediatek,mt8195-vppsys0";
++			reg = <0 0x14000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		wpesys: clock-controller@14e00000 {
++			compatible = "mediatek,mt8195-wpesys";
++			reg = <0 0x14e00000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		wpesys_vpp0: clock-controller@14e02000 {
++			compatible = "mediatek,mt8195-wpesys_vpp0";
++			reg = <0 0x14e02000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		wpesys_vpp1: clock-controller@14e03000 {
++			compatible = "mediatek,mt8195-wpesys_vpp1";
++			reg = <0 0x14e03000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vppsys1: clock-controller@14f00000 {
++			compatible = "mediatek,mt8195-vppsys1";
++			reg = <0 0x14f00000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		imgsys: clock-controller@15000000 {
++			compatible = "mediatek,mt8195-imgsys";
++			reg = <0 0x15000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		imgsys1_dip_top: clock-controller@15110000 {
++			compatible = "mediatek,mt8195-imgsys1_dip_top";
++			reg = <0 0x15110000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		imgsys1_dip_nr: clock-controller@15130000 {
++			compatible = "mediatek,mt8195-imgsys1_dip_nr";
++			reg = <0 0x15130000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		imgsys1_wpe: clock-controller@15220000 {
++			compatible = "mediatek,mt8195-imgsys1_wpe";
++			reg = <0 0x15220000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		ipesys: clock-controller@15330000 {
++			compatible = "mediatek,mt8195-ipesys";
++			reg = <0 0x15330000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys: clock-controller@16000000 {
++			compatible = "mediatek,mt8195-camsys";
++			reg = <0 0x16000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_rawa: clock-controller@1604f000 {
++			compatible = "mediatek,mt8195-camsys_rawa";
++			reg = <0 0x1604f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_yuva: clock-controller@1606f000 {
++			compatible = "mediatek,mt8195-camsys_yuva";
++			reg = <0 0x1606f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_rawb: clock-controller@1608f000 {
++			compatible = "mediatek,mt8195-camsys_rawb";
++			reg = <0 0x1608f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_yuvb: clock-controller@160af000 {
++			compatible = "mediatek,mt8195-camsys_yuvb";
++			reg = <0 0x160af000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_mraw: clock-controller@16140000 {
++			compatible = "mediatek,mt8195-camsys_mraw";
++			reg = <0 0x16140000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		ccusys: clock-controller@17200000 {
++			compatible = "mediatek,mt8195-ccusys";
++			reg = <0 0x17200000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vdecsys_soc: clock-controller@1800f000 {
++			compatible = "mediatek,mt8195-vdecsys_soc";
++			reg = <0 0x1800f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vdecsys: clock-controller@1802f000 {
++			compatible = "mediatek,mt8195-vdecsys";
++			reg = <0 0x1802f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vdecsys_core1: clock-controller@1803f000 {
++			compatible = "mediatek,mt8195-vdecsys_core1";
++			reg = <0 0x1803f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		apusys_pll: clock-controller@190f3000 {
++			compatible = "mediatek,mt8195-apusys_pll";
++			reg = <0 0x190f3000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vencsys: clock-controller@1a000000 {
++			compatible = "mediatek,mt8195-vencsys";
++			reg = <0 0x1a000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vencsys_core1: clock-controller@1b000000 {
++			compatible = "mediatek,mt8195-vencsys_core1";
++			reg = <0 0x1b000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vdosys0: clock-controller@1c01a000 {
++			compatible = "mediatek,mt8195-vdosys0";
++			reg = <0 0x1c01a000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vdosys1: clock-controller@1c100000 {
++			compatible = "mediatek,mt8195-vdosys1";
++			reg = <0 0x1c100000 0 0x1000>;
++			#clock-cells = <1>;
++		};
+ 	};
+ };
+-- 
+2.18.0
 
-With those two changes, the series passes my tests and you can add my
-tested-by.
