@@ -2,83 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 778B43AB495
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 15:22:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51CB93AB4E9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 15:37:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232512AbhFQNYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 09:24:50 -0400
-Received: from mslow1.mail.gandi.net ([217.70.178.240]:53053 "EHLO
-        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229931AbhFQNYu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 09:24:50 -0400
-Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id 2B956E2511;
-        Thu, 17 Jun 2021 13:14:43 +0000 (UTC)
-Received: (Authenticated sender: gregory.clement@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 24805FF81E;
-        Thu, 17 Jun 2021 13:14:18 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Marcin Wojtas <mw@semihalf.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     andrew@lunn.ch, robh+dt@kernel.org, Marcin Wojtas <mw@semihalf.com>
-Subject: Re: [PATCH] arm64: dts: ensure backward compatibility of the AP807
- Xenon
-In-Reply-To: <20210322003915.3199775-1-mw@semihalf.com>
-References: <20210322003915.3199775-1-mw@semihalf.com>
-Date:   Thu, 17 Jun 2021 15:14:18 +0200
-Message-ID: <87k0ms1vmd.fsf@BL-laptop>
+        id S232307AbhFQNkE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 09:40:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52688 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229783AbhFQNj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 09:39:57 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C13E8C0617AF
+        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 06:37:48 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id k6so4999580pfk.12
+        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 06:37:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8YG5vMsHcsKskVBXOdCn/5yj+uSIqvs9d62rb4CfcBI=;
+        b=pAQrP36eVxCnDjZJVxSfZlsst+euC5ETQKztJTtQiBJe9y7pBMWSkiFCjOz31wersS
+         qrYfyryK0ZF8gOBA6xEyKq8ssrKJ57JlRdRNBdALA8GvpnYhIdskDmJjPOtbsn57sQEQ
+         MAqhrDNKLXIAh+9UJcBAoMSkddQu8eTG7hxpojJHHsuNKVWcNhXNh4O8MeyEhQQmiriH
+         F8dgfcngNCnHBkwtMxg30itxCAN6hSZDR9ZiKAYWj8pcGwLIb732Fijq1WertcIKYNp7
+         aLBJYJHuMAckljlO4LGMN1I+JFSiu5pzfY2TjvU2A5LbKPKGr94kswXqL7xVL4TNsFmF
+         BA0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8YG5vMsHcsKskVBXOdCn/5yj+uSIqvs9d62rb4CfcBI=;
+        b=Fq2X1xBLygVCwS+8hXjyYX6DBrOmjs089DIGswNMoebQ+6lPhOElYx6bEmmMty3ST4
+         POxrpNoXHrdSeTn1U6yopAJ0OlMS9D2iOSpJbloCc7AGBXmgs8KI98wFns55Uhx8rjVB
+         ORt1iAoffsIOUAxwdz3w9k1bRUQ5IkXTlGQhqO7wQ+pk3Uz6ckzWg5IcGopHsrM8T3xR
+         qjlI3Umyn/RkfxvybNI24VQcoNClkm3izpUN9tzPnpdT9iTvZXsmwiN859p3+4JtRLju
+         Mb07m7yxk58ZAmQXthlNzsq2K6RfKMAYo5vfZD/FflohgMWPBcnIg4GRFyhfPH41el0n
+         ZO6w==
+X-Gm-Message-State: AOAM532jsMsthiiTS+cKy3UxLlQ8hL5+bRlnNLFlEv9ODDv068SHUm+u
+        IBXDUz5NkuCFF9LLMVpzDyloPmCitGS4qOPLieMipw==
+X-Google-Smtp-Source: ABdhPJxECzb3IPGjfMCeGl0qZ7eQVlp4fcsIfD2py++9U+ua348j/EMjO1vQQ/RlmIG0u4epWhC9GegcDa3f/NQsXSA=
+X-Received: by 2002:a63:5a08:: with SMTP id o8mr982718pgb.120.1623937068323;
+ Thu, 17 Jun 2021 06:37:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20210616141107.291430-1-robert.foss@linaro.org>
+ <20210616141107.291430-3-robert.foss@linaro.org> <b48198ff-a954-4941-32d6-65c992b345e7@linaro.org>
+In-Reply-To: <b48198ff-a954-4941-32d6-65c992b345e7@linaro.org>
+From:   Robert Foss <robert.foss@linaro.org>
+Date:   Thu, 17 Jun 2021 15:37:37 +0200
+Message-ID: <CAG3jFyubcKP71_w83WWxTX9y3aTz+osTKxbq6Mo+hDTfxbf=WQ@mail.gmail.com>
+Subject: Re: [RFC v1 02/11] clk: qcom: rcg2: Add support for flags
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Taniya Das <tdas@codeaurora.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Vinod Koul <vinod.koul@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marcin,
-
-> A recent switch to a dedicated AP807 compatible string for the Xenon
-> SD/MMC controller result in the driver not being probed when
-> using updated device tree with the older kernel revisions.
-> It may also be problematic for other OSs/firmware that use
-> Linux device tree sources as a reference. Resolve the problem
-> with backward compatibility by restoring a previous compatible
-> string as secondary one.
+On Wed, 16 Jun 2021 at 18:07, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+> > diff --git a/drivers/clk/qcom/clk-rcg.h b/drivers/clk/qcom/clk-rcg.h
+> > index 99efcc7f8d88..a1f05281d950 100644
+> > --- a/drivers/clk/qcom/clk-rcg.h
+> > +++ b/drivers/clk/qcom/clk-rcg.h
+> > @@ -149,6 +149,10 @@ struct clk_rcg2 {
+> >       const struct freq_tbl   *freq_tbl;
+> >       struct clk_regmap       clkr;
+> >       u8                      cfg_off;
+> > +     u8                      flags;
+> > +#define FORCE_ENABLE_RCG     BIT(0)
+> > +#define HW_CLK_CTRL_MODE     BIT(1)
 >
-> Signed-off-by: Marcin Wojtas <mw@semihalf.com>
+> Downstream also has these flags for 8250, but the upstream driver ended
+> up not using them for the dispcc clocks. Could you please check that you
+> realy need HW_CLK_CTRL for dispcc clocks?
 
-Applied on mvebu/dt64
+HW_CLK_CTRL being flagged in dispcc causes the CFG_HW_CLK_CTRL flag to
+be set in the RCG_CFG registers of dispcc.
 
-Thanks,
+This flag simply marks the clock as having hardware control enabled or disabled.
 
-Gregory
+As for the question if it is really needed, I can't answer that since
+no documentation or downstream comments explain the exact behaviour.
+As far as I know the only way to figure out if it is required is
+disabling the flag and checking for bugs. I did find this[1] patch,
+which enabled HW_CLK_CTRL_MODE.
 
-> ---
->  arch/arm64/boot/dts/marvell/armada-ap807.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-> index d9bbbfa4b4eb..4a23f65d475f 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-ap807.dtsi
-> @@ -29,6 +29,7 @@ cpu_clk: clock-cpu {
->  };
->  
->  &ap_sdhci0 {
-> -	compatible = "marvell,armada-ap807-sdhci";
-> +	compatible = "marvell,armada-ap807-sdhci",
-> +		     "marvell,armada-ap806-sdhci"; /* Backward compatibility */
->  };
->  
-> -- 
-> 2.29.0
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Should I err on the side of the downstream implementation, or try to
+create a minimum functional driver based on the downstream driver?
 
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+[1] https://patchwork.kernel.org/project/linux-arm-msm/patch/1514877987-8082-2-git-send-email-anischal@codeaurora.org/
