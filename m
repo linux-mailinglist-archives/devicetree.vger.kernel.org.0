@@ -2,259 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 343E13AAAF0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 07:18:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25CE23AAB0C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 07:34:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230452AbhFQFU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 01:20:56 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:42034 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230167AbhFQFUv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Jun 2021 01:20:51 -0400
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15H5GSHt012688;
-        Thu, 17 Jun 2021 07:18:28 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=selector1;
- bh=2tw5rWDfT+FJwGEPhSvgZcYVGhDJ7j9Ro7MEVoXtTbc=;
- b=INJqfm8QXWOQLOEJNWr+GkcJxaJ8NgeQ8FZyzjtEbdnuJOHVT9kyBO2SXWyd1LANIUyB
- TGBHaQ4CVbSafw7pvfcu0pUnMND31XKpsCS+U4A6BarHDdHGg4UNEFPB8FCaAmZbBsWL
- gVCOhGn2RkO/n6NdOJx5GFl6YKiYTAbI5f3mMZeNAq0qnCd7rGxAFZR9PKjewNiZTMCh
- ICHDa4ZJFLFAV2hXXeT3kLxsGzXvbSgAt23xcJ/zzJ5OB2pIqWsOXAtFcXy+PvfpMOUN
- ByW0K/QdcfEPij4GC+pNEmMVxLOiIzzi8/Y8cUrwYNKOkoznZKPQk1I13BgTHCR504qj RQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 397mmvatk4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 17 Jun 2021 07:18:28 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0F4D710002A;
-        Thu, 17 Jun 2021 07:18:28 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F17E3211278;
-        Thu, 17 Jun 2021 07:18:27 +0200 (CEST)
-Received: from localhost (10.75.127.47) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 17 Jun 2021 07:18:27
- +0200
-From:   <gabriel.fernandez@foss.st.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Etienne Carriere <etienne.carriere@foss.st.com>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
-        <marex@denx.de>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [RESEND PATCH v3 11/11] clk: stm32mp1: new compatible for secure RCC support
-Date:   Thu, 17 Jun 2021 07:18:14 +0200
-Message-ID: <20210617051814.12018-12-gabriel.fernandez@foss.st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210617051814.12018-1-gabriel.fernandez@foss.st.com>
-References: <20210617051814.12018-1-gabriel.fernandez@foss.st.com>
+        id S229872AbhFQFgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 01:36:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56684 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229565AbhFQFgv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 01:36:51 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C86C061760
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 22:34:42 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id k15so4068555pfp.6
+        for <devicetree@vger.kernel.org>; Wed, 16 Jun 2021 22:34:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5vymR9vEe1gwFyB1z0N/gT3waUjY8ME8wV8pdxM/FA4=;
+        b=gdm7KB+XnV2iwLdfceOGNsWjtIxYaeqOY89xhyab9IFBN5WTkxN+zAoZ+ljSWyjJHm
+         oPdczqKf12eYRW4tEN1K9vM2J5hioDyKNQo7WBbqShjzcQYtvf3HwyHp7kOKwg3nwuZp
+         aVdQJySvYAdGXDAB3rDPjKaeB6QbIR0eWvgEDzLeGQX9cW2Qcga7VKkv6u1YxN2r4KSD
+         z5AKp6RPpzgf67pFJmwH6ZxOg0+gFBL7fLLdYf/F8+4lME5aNS5gozxIwSyZ8AztAlC1
+         CS4K55CMckfXAsYkk5dr+vnSvRRgz8ly17Lket8WhF+aWeUukl+Iukp//9c6YfgekSoL
+         N1PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5vymR9vEe1gwFyB1z0N/gT3waUjY8ME8wV8pdxM/FA4=;
+        b=Xc3sYoErVEFTp6Y0Js7ZKC0qp0u3Z6M1hvm9zxrpVegdGBRpH8BM+QexvmIPE4OEcq
+         wHGdFj1mCfbpTp+dAJ8A/Agv1el2gmQvNM4tQwsgJj5kQdkq4IbnTJxnIZ7YV9oATlBV
+         GkbLuxpt/LfIHwga48oi10/ZJLgKoEp8rMBDpDG0NvQPKeeUcRxcgt7gfoo5EcJ3ZZNZ
+         6DXW11QLcWFzH9TtyUI9mVFazYKjvhiu3arNskKhGzvyF2nPk1RyEyeLCWNJoL8YJ9rX
+         pF+wYGNiocccWpWRDWJdRhhr2+YSFOkNt478f5SU81yMtfjG7prNE1LTUQIisDJxcVlG
+         jx5A==
+X-Gm-Message-State: AOAM5301GA6hVZ7MF8jbjLDYboTIksnkoRPUz9+h/pUFN12xmyeBNTEM
+        tU4YR38QSl0mxVG+sQCXiwQbwA==
+X-Google-Smtp-Source: ABdhPJzp3Zjon4xOYV28bQpQM+rS40C5QGV1ys7Wdo8Mri8ZAyc2BtPPzujTjS3udRism8J2LvXRkA==
+X-Received: by 2002:a63:3c17:: with SMTP id j23mr3311249pga.281.1623908082292;
+        Wed, 16 Jun 2021 22:34:42 -0700 (PDT)
+Received: from localhost.name ([122.177.46.2])
+        by smtp.gmail.com with ESMTPSA id m126sm4056405pfb.15.2021.06.16.22.34.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Jun 2021 22:34:41 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, lgirdwood@gmail.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: [PATCH v3 0/4] pinctrl: qcom/pinctrl-spmi-gpio: Add support for pmic-gpio on SA8155p-adp
+Date:   Thu, 17 Jun 2021 11:04:28 +0530
+Message-Id: <20210617053432.350486-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG1NODE1.st.com (10.75.127.1) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-06-17_01:2021-06-15,2021-06-17 signatures=0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+Changes since v2:
+-----------------
+- v2 series can be found here: https://lore.kernel.org/linux-arm-msm/20210615074543.26700-1-bhupesh.sharma@linaro.org/T/#m8303d27d561b30133992da88198abb78ea833e21 
+- Addressed review comments from Bjorn and Mark.
+- As per suggestion from Bjorn, separated the patches in different
+  patchsets (specific to each subsystem) to ease review and patch application.
 
-Platform STM32MP1 can be used in configuration where some clock
-resources cannot be accessed by Linux kernel when executing in non-secure
-state of the CPU(s).
-In such configuration, the RCC clock driver must not register clocks
-it cannot access.
-They are expected to be registered from another clock driver such
-as the SCMI clock driver.
-This change uses specific compatible string "st,stm32mp1-rcc-secure"
-to specify RCC clock driver configuration where RCC is secure.
+Changes since v1:
+-----------------
+- v1 series can be found here: https://lore.kernel.org/linux-arm-msm/20210607113840.15435-1-bhupesh.sharma@linaro.org/T/#mc524fe82798d4c4fb75dd0333318955e0406ad18
+- Addressed review comments from Bjorn and Vinod received on the v1
+  series.
 
-Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
----
- drivers/clk/Kconfig        |  10 ++++
- drivers/clk/clk-stm32mp1.c | 101 ++++++++++++++++++++++++++++++++++++-
- 2 files changed, 110 insertions(+), 1 deletion(-)
+This series adds the pmic-gpio support code for SA8155p-adp board
+which is based on Qualcomm snapdragon sa8155p SoC which in turn is
+simiar to the sm8150 SoC. 
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index e80918be8e9c..e367a033e121 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -335,6 +335,16 @@ config COMMON_CLK_STM32MP157
- 	help
- 	  Support for stm32mp157 SoC family clocks
- 
-+config COMMON_CLK_STM32MP157_SCMI
-+	bool "stm32mp157 Clock driver with Trusted Firmware"
-+	depends on COMMON_CLK_STM32MP157
-+	select COMMON_CLK_SCMI
-+	select ARM_SCMI_PROTOCOL
-+	default y
-+	help
-+	  Support for stm32mp157 SoC family clocks with Trusted Firmware using
-+	  SCMI protocol.
-+
- config COMMON_CLK_STM32F
- 	def_bool COMMON_CLK && (MACH_STM32F429 || MACH_STM32F469 || MACH_STM32F746)
- 	help
-diff --git a/drivers/clk/clk-stm32mp1.c b/drivers/clk/clk-stm32mp1.c
-index 6d3a36f81b2d..6adc625e79cb 100644
---- a/drivers/clk/clk-stm32mp1.c
-+++ b/drivers/clk/clk-stm32mp1.c
-@@ -2056,11 +2056,61 @@ static const struct clock_config stm32mp1_clock_cfg[] = {
- 		  _DIV(RCC_DBGCFGR, 0, 3, 0, ck_trace_div_table)),
- };
- 
-+static const u32 stm32mp1_clock_secured[] = {
-+	CK_HSE,
-+	CK_HSI,
-+	CK_CSI,
-+	CK_LSI,
-+	CK_LSE,
-+	PLL1,
-+	PLL2,
-+	PLL1_P,
-+	PLL2_P,
-+	PLL2_Q,
-+	PLL2_R,
-+	CK_MPU,
-+	CK_AXI,
-+	SPI6,
-+	I2C4,
-+	I2C6,
-+	USART1,
-+	RTCAPB,
-+	TZC1,
-+	TZC2,
-+	TZPC,
-+	IWDG1,
-+	BSEC,
-+	STGEN,
-+	GPIOZ,
-+	CRYP1,
-+	HASH1,
-+	RNG1,
-+	BKPSRAM,
-+	RNG1_K,
-+	STGEN_K,
-+	SPI6_K,
-+	I2C4_K,
-+	I2C6_K,
-+	USART1_K,
-+	RTC,
-+};
-+
-+static bool stm32_check_security(const struct clock_config *cfg)
-+{
-+	int i;
-+
-+	for (i = 0; i < ARRAY_SIZE(stm32mp1_clock_secured); i++)
-+		if (cfg->id == stm32mp1_clock_secured[i])
-+			return true;
-+	return false;
-+}
-+
- struct stm32_rcc_match_data {
- 	const struct clock_config *cfg;
- 	unsigned int num;
- 	unsigned int maxbinding;
- 	u32 clear_offset;
-+	bool (*check_security)(const struct clock_config *cfg);
- };
- 
- static struct stm32_rcc_match_data stm32mp1_data = {
-@@ -2070,11 +2120,23 @@ static struct stm32_rcc_match_data stm32mp1_data = {
- 	.clear_offset	= RCC_CLR,
- };
- 
-+static struct stm32_rcc_match_data stm32mp1_data_secure = {
-+	.cfg		= stm32mp1_clock_cfg,
-+	.num		= ARRAY_SIZE(stm32mp1_clock_cfg),
-+	.maxbinding	= STM32MP1_LAST_CLK,
-+	.clear_offset	= RCC_CLR,
-+	.check_security = &stm32_check_security
-+};
-+
- static const struct of_device_id stm32mp1_match_data[] = {
- 	{
- 		.compatible = "st,stm32mp1-rcc",
- 		.data = &stm32mp1_data,
- 	},
-+	{
-+		.compatible = "st,stm32mp1-rcc-secure",
-+		.data = &stm32mp1_data_secure,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, stm32mp1_match_data);
-@@ -2234,6 +2296,9 @@ static int stm32_rcc_clock_init(struct device *dev, void __iomem *base,
- 		hws[n] = ERR_PTR(-ENOENT);
- 
- 	for (n = 0; n < data->num; n++) {
-+		if (data->check_security && data->check_security(&data->cfg[n]))
-+			continue;
-+
- 		err = stm32_register_hw_clk(dev, clk_data, base, &rlock,
- 					    &data->cfg[n]);
- 		if (err) {
-@@ -2301,11 +2366,45 @@ static int stm32mp1_rcc_init(struct device *dev)
- 	return ret;
- }
- 
-+static int get_clock_deps(struct device *dev)
-+{
-+	static const char * const clock_deps_name[] = {
-+		"hsi", "hse", "csi", "lsi", "lse",
-+	};
-+	size_t deps_size = sizeof(struct clk *) * ARRAY_SIZE(clock_deps_name);
-+	struct clk **clk_deps;
-+	int i;
-+
-+	clk_deps = devm_kzalloc(dev, deps_size, GFP_KERNEL);
-+	if (!clk_deps)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < ARRAY_SIZE(clock_deps_name); i++) {
-+		struct clk *clk = of_clk_get_by_name(dev_of_node(dev),
-+						     clock_deps_name[i]);
-+
-+		if (IS_ERR(clk)) {
-+			if (PTR_ERR(clk) != -EINVAL && PTR_ERR(clk) != -ENOENT)
-+				return PTR_ERR(clk);
-+		} else {
-+			/* Device gets a reference count on the clock */
-+			clk_deps[i] = devm_clk_get(dev, __clk_get_name(clk));
-+			clk_put(clk);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int stm32mp1_rcc_clocks_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-+	int ret = get_clock_deps(dev);
-+
-+	if (!ret)
-+		ret = stm32mp1_rcc_init(dev);
- 
--	return stm32mp1_rcc_init(dev);
-+	return ret;
- }
- 
- static int stm32mp1_rcc_clocks_remove(struct platform_device *pdev)
+This board supports a new PMIC -> PMM8155AU.
+
+While at it, also make some cosmetic changes to the qcom pinctrl-spmi-gpio
+driver and dt-bindings to make sure the compatibles are 
+in alphabetical order.
+
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Bhupesh Sharma (4):
+  dt-bindings: pinctrl: qcom,pmic-gpio: Arrange compatibles
+    alphabetically
+  dt-bindings: pinctrl: qcom,pmic-gpio: Add compatible for SA8155p-adp
+  pinctrl: qcom/pinctrl-spmi-gpio: Arrange compatibles alphabetically
+  pinctrl: qcom/pinctrl-spmi-gpio: Add compatible for pmic-gpio on
+    SA8155p-adp
+
+ .../bindings/pinctrl/qcom,pmic-gpio.txt       | 60 ++++++++++---------
+ drivers/pinctrl/qcom/pinctrl-spmi-gpio.c      | 33 +++++-----
+ 2 files changed, 48 insertions(+), 45 deletions(-)
+
 -- 
-2.17.1
+2.31.1
 
