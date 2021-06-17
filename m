@@ -2,149 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAE1B3AA7E0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 02:09:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E14553AA7F4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 02:11:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234847AbhFQALk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 20:11:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56328 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230481AbhFQALj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Jun 2021 20:11:39 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 70EFE61351;
-        Thu, 17 Jun 2021 00:09:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1623888572;
-        bh=mN2okVVdTICmc/8v91DABSXp7kK2mc41VelpLLMzraM=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=ZYuvhN96769HVBf9HwXfEMrx5h2joXFESxJj/lRenrF7yXWLZjtrg1PWIka+vT/Q0
-         oFtXyOpOZ9yR7QPt6WZ9qiVwYGYEJ72zE5pEW7HiR62r0bK1cPffUlPeluSwwsGV++
-         8riMe4sA8jh8H05UnuJF58KJLPG9dNHhkmEpW63Symhvau9C6X5CTpmeRZXg03FBNA
-         YdmM71is91QiA8p/farR5qTSk/+kZjwaUjrHEt7/cAUyCA79A0OF17vUa8D0c+gd+H
-         nwIEeujLTdx4sfeAu0ptJEutsq4BmObXoP4A9/HlakW6ogsicBITdzMemlH7LIUWJw
-         GZfH7kl1LZ6XQ==
-Date:   Wed, 16 Jun 2021 17:09:29 -0700 (PDT)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
-To:     Claire Chang <tientzu@chromium.org>
-cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
-        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
-        daniel@ffwll.ch, airlied@linux.ie, dri-devel@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
-        jxgao@google.com, joonas.lahtinen@linux.intel.com,
-        linux-pci@vger.kernel.org, maarten.lankhorst@linux.intel.com,
-        matthew.auld@intel.com, rodrigo.vivi@intel.com,
-        thomas.hellstrom@linux.intel.com
-Subject: Re: [PATCH v12 11/12] dt-bindings: of: Add restricted DMA pool
-In-Reply-To: <20210616062157.953777-12-tientzu@chromium.org>
-Message-ID: <alpine.DEB.2.21.2106161651290.24906@sstabellini-ThinkPad-T480s>
-References: <20210616062157.953777-1-tientzu@chromium.org> <20210616062157.953777-12-tientzu@chromium.org>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+        id S232320AbhFQANX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 20:13:23 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47448 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234889AbhFQANW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 20:13:22 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15H0B9X5104835;
+        Wed, 16 Jun 2021 19:11:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623888669;
+        bh=IjmD2rvhHBdo8T/6BDCNc/0PrvTw3vejTU3n4e8Wb7g=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=owemCsNkobLsTYaqa1HFex+MDL+YC9fS3FLdozpdo6Z3Kgbf7BUpgty9ySjQJN6be
+         eeG94u7VsqUdh1/QYJrW5HUw2IspWqGyf0MhXh3bOghq4+xTOGk0tip1f82khNN0mF
+         Oa3Rrito2oHymBtGUrvqtG+1XOcAKT8smborGx7o=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15H0B9sJ057820
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Jun 2021 19:11:09 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 16
+ Jun 2021 19:11:09 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 16 Jun 2021 19:11:09 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15H0B9bZ028397;
+        Wed, 16 Jun 2021 19:11:09 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Kishon Vijay Abraham I <kishon@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, Suman Anna <s-anna@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 0/3] AM64: Update the locations of various elements in SRAM
+Date:   Wed, 16 Jun 2021 19:11:08 -0500
+Message-ID: <162388856677.17633.14731996075089826400.b4-ty@ti.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210616171224.24635-1-a-govindraju@ti.com>
+References: <20210616171224.24635-1-a-govindraju@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Jun 2021, Claire Chang wrote:
-> Introduce the new compatible string, restricted-dma-pool, for restricted
-> DMA. One can specify the address and length of the restricted DMA memory
-> region by restricted-dma-pool in the reserved-memory node.
+On Wed, 16 Jun 2021 22:42:21 +0530, Aswath Govindraju wrote:
+> The following series of patches,
+> - Increase the maximum size of TF-A
+> - Update the location of TF-A due to a limitation for DFU boot
+> - Indicate reserved locations for DMSC code and secure proxy
 > 
-> Signed-off-by: Claire Chang <tientzu@chromium.org>
-> ---
->  .../reserved-memory/reserved-memory.txt       | 36 +++++++++++++++++--
->  1 file changed, 33 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> index e8d3096d922c..46804f24df05 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> @@ -51,6 +51,23 @@ compatible (optional) - standard definition
->            used as a shared pool of DMA buffers for a set of devices. It can
->            be used by an operating system to instantiate the necessary pool
->            management subsystem if necessary.
-> +        - restricted-dma-pool: This indicates a region of memory meant to be
-> +          used as a pool of restricted DMA buffers for a set of devices. The
-> +          memory region would be the only region accessible to those devices.
-> +          When using this, the no-map and reusable properties must not be set,
-> +          so the operating system can create a virtual mapping that will be used
-> +          for synchronization. The main purpose for restricted DMA is to
-> +          mitigate the lack of DMA access control on systems without an IOMMU,
-> +          which could result in the DMA accessing the system memory at
-> +          unexpected times and/or unexpected addresses, possibly leading to data
-> +          leakage or corruption. The feature on its own provides a basic level
-> +          of protection against the DMA overwriting buffer contents at
-> +          unexpected times. However, to protect against general data leakage and
-> +          system memory corruption, the system needs to provide way to lock down
-> +          the memory access, e.g., MPU. Note that since coherent allocation
-> +          needs remapping, one must set up another device coherent pool by
-> +          shared-dma-pool and use dma_alloc_from_dev_coherent instead for atomic
-> +          coherent allocation.
->          - vendor specific string in the form <vendor>,[<device>-]<usage>
->  no-map (optional) - empty property
->      - Indicates the operating system must not create a virtual mapping
-> @@ -85,10 +102,11 @@ memory-region-names (optional) - a list of names, one for each corresponding
->  
->  Example
->  -------
-> -This example defines 3 contiguous regions are defined for Linux kernel:
-> +This example defines 4 contiguous regions for Linux kernel:
->  one default of all device drivers (named linux,cma@72000000 and 64MiB in size),
-> -one dedicated to the framebuffer device (named framebuffer@78000000, 8MiB), and
-> -one for multimedia processing (named multimedia-memory@77000000, 64MiB).
-> +one dedicated to the framebuffer device (named framebuffer@78000000, 8MiB),
-> +one for multimedia processing (named multimedia-memory@77000000, 64MiB), and
-> +one for restricted dma pool (named restricted_dma_reserved@0x50000000, 64MiB).
->  
->  / {
->  	#address-cells = <1>;
-> @@ -120,6 +138,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
->  			compatible = "acme,multimedia-memory";
->  			reg = <0x77000000 0x4000000>;
->  		};
-> +
-> +		restricted_dma_reserved: restricted_dma_reserved {
-> +			compatible = "restricted-dma-pool";
-> +			reg = <0x50000000 0x4000000>;
-> +		};
->  	};
->  
->  	/* ... */
-> @@ -138,4 +161,11 @@ one for multimedia processing (named multimedia-memory@77000000, 64MiB).
->  		memory-region = <&multimedia_reserved>;
->  		/* ... */
->  	};
-> +
-> +	pcie_device: pcie_device@0,0 {
-> +		reg = <0x83010000 0x0 0x00000000 0x0 0x00100000
-> +		       0x83010000 0x0 0x00100000 0x0 0x00100000>;
-> +		memory-region = <&restricted_dma_mem_reserved>;
+> Link to corresponding U-Boot series that makes these changes:
+> - https://patchwork.ozlabs.org/project/uboot/list/?series=249235
+> 
+> [...]
 
-Shouldn't it be &restricted_dma_reserved ?
+Hi Aswath Govindraju,
+
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+
+NOTE: I updated the $subject of patch #3 to be:
+arm64: dts: ti: k3-am64-main: Update TF-A load address to workaround USB DFU
+limitation
+
+[1/3] arm64: dts: ti: k3-am64-main: Update TF-A's maximum size and node name
+      commit: 263820efa3fb08cc606736b68290d9be9c46e2e5
+[2/3] arm64: dts: ti: k3-am64-main: Reserve OCMRAM for DMSC-lite and secure proxy communication
+      commit: 454a9d4aaacb89daea350d21628992bb83de649f
+[3/3] arm64: dts: ti: k3-am64-main: Update TF-A load address to workaround USB DFU limitation
+      commit: 3de27ef12ccb50205e602d92f29d082429aa2964
+
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
