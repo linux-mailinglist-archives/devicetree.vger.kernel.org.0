@@ -2,258 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FD0A3AA824
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 02:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3FA53AA83D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 02:45:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231749AbhFQAce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Jun 2021 20:32:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46510 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231322AbhFQAce (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 20:32:34 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91EBCC061574;
-        Wed, 16 Jun 2021 17:30:27 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 10257E53;
-        Thu, 17 Jun 2021 02:30:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1623889826;
-        bh=JBDmNnImH82BqV+2ZChPRpqr7p0yLYXLmBnOswUqrwo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=v9lJ/R6if8PMlIj3BcExEbbI4OiRFQt96oudUfepQyJ6uQ3qp1so6mMZAj2eztCTk
-         z6Hx8GW84GS86U4LWp3dl0VFHu0pGwI9yRLLmNijX74V7trZCaUq3/rGZdMiukvJAU
-         /dA4LuyQ51huvBBvE8dnvV6W1GQI893MX9D46Cdo=
-Date:   Thu, 17 Jun 2021 03:30:05 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 6/7] arm64: dts: renesas: eagle: Add GMSL .dtsi
-Message-ID: <YMqXjZREJbIEJxs5@pendragon.ideasonboard.com>
-References: <20210419142345.53152-1-jacopo+renesas@jmondi.org>
- <20210419142345.53152-7-jacopo+renesas@jmondi.org>
+        id S231530AbhFQArG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Jun 2021 20:47:06 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:54302 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231521AbhFQArF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Jun 2021 20:47:05 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15H0infY117855;
+        Wed, 16 Jun 2021 19:44:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1623890689;
+        bh=GBE0nuKiBXUYhWyfOR7h43cJhXBx+qW8wWGD0dfteKg=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=OkuH4iNF0hpS7sjt6U/+zCoCSp4aST+qA59J8NtEsZXhJXVUzyAvzAaCAX81WBm4/
+         78zVywGu4avXpJlj+OAGv4qToZaJOgyg92hlx41bfDN5VXFXZawlUZ8cGKsYMyiHNo
+         HQWdB7CymLy+XfHjRdjZPi9WYdZPXx9jqSKnEbHs=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15H0inFn015881
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Jun 2021 19:44:49 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 16
+ Jun 2021 19:44:48 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Wed, 16 Jun 2021 19:44:49 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15H0imP3098691;
+        Wed, 16 Jun 2021 19:44:48 -0500
+Date:   Wed, 16 Jun 2021 19:44:48 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh@kernel.org>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Subject: Re: [PATCH v2 3/3] arm64: dts: ti: k3-am642-evm/sk: Add DDR carveout
+ memory nodes for R5Fs
+Message-ID: <20210617004448.aozqtxu5smg57vr5@exterior>
+References: <20210615195718.15898-1-s-anna@ti.com>
+ <20210615195718.15898-4-s-anna@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20210419142345.53152-7-jacopo+renesas@jmondi.org>
+In-Reply-To: <20210615195718.15898-4-s-anna@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo and Kieran,
-
-Thank you for the patch.
-
-On Mon, Apr 19, 2021 at 04:23:44PM +0200, Jacopo Mondi wrote:
-> From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+On 14:57-20210615, Suman Anna wrote:
+[...]
 > 
-> Describe the FAKRA connector available on Eagle board that allows
-> connecting GMSL camera modules such as IMI RDACM20 and RDACM21.
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts | 62 +++++++++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am642-sk.dts  | 62 +++++++++++++++++++++++++
+>  2 files changed, 124 insertions(+)
 > 
-> Signed-off-by: Kieran Bingham <kieran.bingham@ideasonboard.com>
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> ---
->  arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi | 178 ++++++++++++++++++++
->  1 file changed, 178 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi b/arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi
-> new file mode 100644
-> index 000000000000..d2e48dc3e820
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/eagle-gmsl.dtsi
-> @@ -0,0 +1,178 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Device Tree Source (overlay) for the Eagle V3M GMSL connectors
-> + *
-> + * Copyright (C) 2017 Ideas on Board <kieran.bingham@ideasonboard.com>
-> + * Copyright (C) 2021 Jacopo Mondi <jacopo+renesas@jmondi.org>
-> + *
-> + * This overlay allows you to define GMSL cameras connected to the FAKRA
-> + * connectors on the Eagle-V3M (or compatible) board.
-> + *
-> + * The following cameras are currently supported: RDACM20 and RDACM21.
-> + *
-> + * The board .dts files that include this select which cameras are in use
-> + * by specifying the camera model with:
-> + *
-> + * #define GMSL_CAMERA_RDACM20
-> + * or
-> + * #define GMSL_CAMERA_RDACM21
-> + *
-> + * And which cameras are connected to the board by defining:
-> + * #define GMSL_CAMERA_0
-> + * #define GMSL_CAMERA_1
-> + * #define GMSL_CAMERA_2
-> + * #define GMSL_CAMERA_3
-> + */
+> diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> index 2e75cd68f8b7..030712221188 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
+> @@ -38,6 +38,60 @@ secure_ddr: optee@9e800000 {
+>  			alignment = <0x1000>;
+>  			no-map;
+>  		};
 > +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/* Validate the board file settings. */
-> +#if !defined(GMSL_CAMERA_RDACM20) && !defined(GMSL_CAMERA_RDACM21)
-> +#error "Camera model should be defined by the board file"
-> +#endif
-> +
-> +#if defined(GMSL_CAMERA_RDACM20) && defined(GMSL_CAMERA_RDACM21)
-> +#error "A single camera model should be selected"
-> +#endif
+[...]
+> +		main_r5fss1_core1_memory_region: r5f-memory@a3100000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0xa3100000 0x00 0xf00000>;
+> +			no-map;
+> +		};
+arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:0:0: /reserved-memory/r5f-dma-memory@a0000000: failed to match any schema with compatible: ['shared-dma-pool']
+arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:0:0: /reserved-memory/r5f-memory@a0100000: failed to match any schema with compatible: ['shared-dma-pool']
+arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:0:0: /reserved-memory/r5f-dma-memory@a1000000: failed to match any schema with compatible: ['shared-dma-pool']
+arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:0:0: /reserved-memory/r5f-memory@a1100000: failed to match any schema with compatible: ['shared-dma-pool']
+arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:0:0: /reserved-memory/r5f-dma-memory@a2000000: failed to match any schema with compatible: ['shared-dma-pool']
+arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:0:0: /reserved-memory/r5f-memory@a2100000: failed to match any schema with compatible: ['shared-dma-pool']
+arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:0:0: /reserved-memory/r5f-dma-memory@a3000000: failed to match any schema with compatible: ['shared-dma-pool']
+arch/arm64/boot/dts/ti/k3-am642-evm.dt.yaml:0:0: /reserved-memory/r5f-memory@a3100000: failed to match any schema with compatible: ['shared-dma-pool']
 
-This won't scale when we'll support more than two different cameras, but
-we'll switch to overlays then :-)
+ughh..
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt is
+not converted to yaml.
 
-> +
-> +#if !defined(GMSL_CAMERA_0) && !defined(GMSL_CAMERA_1) && \
-> +    !defined(GMSL_CAMERA_2) && !defined(GMSL_CAMERA_3)
-> +#error "At least one camera should be selected"
-> +#endif
-> +
-> +#if defined(GMSL_CAMERA_RDACM20)
-> +#define GMSL_CAMERA_MODEL "imi,rdacm20"
-> +#elif defined(GMSL_CAMERA_RDACM21)
-> +#define GMSL_CAMERA_MODEL "imi,rdacm21"
-> +#endif
-> +
-> +&vin0 {
-> +	status = "okay";
-> +};
-> +
-> +&vin1 {
-> +	status = "okay";
-> +};
-> +
-> +&vin2 {
-> +	status = "okay";
-> +};
-> +
-> +&vin3 {
-> +	status = "okay";
-> +};
-> +
-> +&gmsl {
-> +	status = "okay";
-> +
-> +#if defined(GMSL_CAMERA_RDACM21)
-> +	maxim,reverse-channel-microvolt = <100000>;
-> +#endif
-> +
-> +	ports {
-> +#ifdef GMSL_CAMERA_0
-> +		port@0 {
-> +			max9286_in0: endpoint {
-> +				remote-endpoint = <&fakra_con0>;
-> +			};
-> +		};
-> +#endif
-> +
-> +#ifdef GMSL_CAMERA_1
-> +		port@1 {
-> +			max9286_in1: endpoint{
-> +				remote-endpoint = <&fakra_con1>;
-> +			};
-> +
-> +		};
-> +#endif
-> +
-> +#ifdef GMSL_CAMERA_2
-> +		port@2 {
-> +			max9286_in2: endpoint {
-> +				remote-endpoint = <&fakra_con2>;
-> +			};
-> +
-> +		};
-> +#endif
-> +
-> +#ifdef GMSL_CAMERA_3
-> +		port@3 {
-> +			max9286_in3: endpoint {
-> +				remote-endpoint = <&fakra_con3>;
-> +			};
-> +
-> +		};
-> +#endif
-> +	};
-> +
-> +	i2c-mux {
-> +#ifdef GMSL_CAMERA_0
-> +		i2c@0 {
-> +			status = "okay";
-> +
-> +			camera@51 {
-> +				compatible = GMSL_CAMERA_MODEL;
-> +				reg = <0x51>, <0x61>;
-> +
-> +				port {
-> +					fakra_con0: endpoint {
-> +						remote-endpoint = <&max9286_in0>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +#endif
-> +
-> +#ifdef GMSL_CAMERA_1
-> +		i2c@1 {
-> +			status = "okay";
-> +
-> +			camera@52 {
-> +				compatible = GMSL_CAMERA_MODEL;
-> +				reg = <0x52>, <0x62>;
-> +
-> +				port {
-> +					fakra_con1: endpoint {
-> +						remote-endpoint = <&max9286_in1>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +#endif
-> +
-> +#ifdef GMSL_CAMERA_2
-> +		i2c@2 {
-> +			status = "okay";
-> +
-> +			camera@53 {
-> +				compatible = GMSL_CAMERA_MODEL;
-> +				reg = <0x53>, <0x63>;
-> +
-> +				port {
-> +					fakra_con2: endpoint {
-> +						remote-endpoint = <&max9286_in2>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +#endif
-> +
-> +#ifdef GMSL_CAMERA_3
-> +		i2c@3 {
-> +			status = "okay";
-> +
-> +			camera@54 {
-> +				compatible = GMSL_CAMERA_MODEL;
-> +				reg = <0x54>, <0x64>;
-> +
-> +				port {
-> +					fakra_con3: endpoint {
-> +						remote-endpoint = <&max9286_in3>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +#endif
-> +	};
-> +};
+Rob, Arnd,
 
+I am considering to pick this series up this friday given the scale
+of other platforms that are using the same property and since I see
+for example commit 0fe0fbc867115659bbd9a0ab107d1fe9bcc432e8 (MIPS)
+in next-20210616. Unfortunately [1] does'nt give me much precedence
+either in immediate recent history.
+
+Let me know if you think we should wait on this.
+
+[1] https://lore.kernel.org/linux-arm-kernel/?q=shared-dma-pool
 -- 
 Regards,
-
-Laurent Pinchart
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
