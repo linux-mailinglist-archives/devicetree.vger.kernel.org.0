@@ -2,79 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE9723AB65D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 16:46:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 421B73AB6FB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 17:09:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231684AbhFQOsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 10:48:50 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:39840 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231434AbhFQOsu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 10:48:50 -0400
-Received: by mail-io1-f42.google.com with SMTP id f10so3433434iok.6
-        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 07:46:41 -0700 (PDT)
+        id S233170AbhFQPL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 11:11:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45460 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233167AbhFQPL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 11:11:56 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C797C061574
+        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 08:09:48 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id g4so2224909qkl.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 08:09:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mv9m1rL1gQr7Cq6u236MxatHLn2/MqViMk2h6WZTmRo=;
+        b=RhAoT19vBPzCi+padM6Q7iUPclE2KxhFlLSP1W5hes8qWZnAztDI26Z4FvXDDMqucP
+         W5JQJ+LluUo4CVKtD8Ou8W9THwUmW9uFmpyN3w2O2DiGqJ9c9w5qOv4G7lMqAWbtPSZp
+         +nyS2rvds2wuW0Ui9tRUgXAuNyit+DxYJ1V15wv1mGoktZaDq1vY71NXD3TfnghhBhbv
+         h+DJXG0YSEZWCrAXmeVKZICdwmo7FfJUXXYVxAW6TJiqNh2N/cumtG8td2dd8ZUuVSEn
+         aUJCPlFNmXTtK6SA3cqG/jqEwAX6jgcpYxIn8IIscqfbcKtHCLut+1uODkwneV6eaqwx
+         DkGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=x6IdEwBKiBUtJUwLTSGxbs60wgwZJL60UOT7ikRhPwA=;
-        b=FXLnXtESt4gk/TL0TzNmeSsMqSQLKAn1H5dTtoXSsZaAoTAoX4DVLEZ17v5PpILpa+
-         G20i5k8NyCj9y/2mt1Y3iWETHCjYc8gfrmwhA2lRNbPZS2VUbRoLO6A+8ZIUHfXeld1M
-         mGLEGdzj03flE4JTGzzc77shbCHq9sewKrszhGHpgKYCw7F5O++IZI5DlA88MWNoCDCx
-         DptGTvtzc3ow1FZG//g6iXMOWlHiOQU/hYMqWYC9YrGyXJjqxJbXm2rxs2ime/E+saUM
-         PpxaW2/8GSYVgqz5+bWx6t3lWab9Bda2FbuyhOXjOm0kwoPT5+NTXXomFtbXS7XOqnJx
-         s8/w==
-X-Gm-Message-State: AOAM531QZqZ25yEojp3wlvoTuRMTUxDeG9ml+cc/2FUw1aBGPQJFtbIf
-        Go+7WkCzYcbEBaaRHrlv+A==
-X-Google-Smtp-Source: ABdhPJzSOyhFZ5TMJXuzbAMfAla1KVm1erC65BiV6zMEfDTf39W4zUwrnvTVgwIbL4+3wwXzgYwIpQ==
-X-Received: by 2002:a05:6602:114:: with SMTP id s20mr4374208iot.98.1623941201028;
-        Thu, 17 Jun 2021 07:46:41 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id b9sm2745586ilj.33.2021.06.17.07.46.38
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mv9m1rL1gQr7Cq6u236MxatHLn2/MqViMk2h6WZTmRo=;
+        b=tvm2B+l1WR+EdeiseLjsED/5/ZvhZ4dWJ1bfw8/QfaYHNkzFeDma68wwgkPoRu0mYU
+         ElHA7DoR1KZN+z+R3GvKI47Koa/Vtohp47YsXWzg2rEDJ66Jvuy3rTmfJX89VvNCUeh9
+         SXMM20egcraxh4/PCH/MwDxFv29LyZFM80iny56kFx+M1nmUKu0vWrn25YDiU7mEdENr
+         pPhNvNKnhLFcJuXS6WJY5+6GY4oqMmN82+gas+69NigC037v1RccQE68WyYgKf+EN9ss
+         4sac7a6+IntWIdsuxqaC70JS8b1XT4KLGjCYsN2ThqAWUbkEiCEKeDea0qyJfBmMN2ak
+         2gng==
+X-Gm-Message-State: AOAM533Ql+k9Nh3iqGHeU6qDYoav07S0j25ICBDE75a8KCLqoI9AZyx1
+        kSgFwcBkc35DVf3+9ysehPXbnQ==
+X-Google-Smtp-Source: ABdhPJzglu2BOkfTCvKDZ/8MRUxwg51FjvnIad48oEPHqJArDCQJiVaaZHhuk7PmsZdUyA3nUjVIJw==
+X-Received: by 2002:a05:620a:13c5:: with SMTP id g5mr4349545qkl.464.1623942587689;
+        Thu, 17 Jun 2021 08:09:47 -0700 (PDT)
+Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
+        by smtp.gmail.com with ESMTPSA id g82sm1915427qke.119.2021.06.17.08.09.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Jun 2021 07:46:40 -0700 (PDT)
-Received: (nullmailer pid 2197242 invoked by uid 1000);
-        Thu, 17 Jun 2021 14:46:35 -0000
-Date:   Thu, 17 Jun 2021 08:46:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ricardo =?iso-8859-1?Q?Ca=F1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     laurent.pinchart@ideasonboard.com, airlied@linux.ie,
-        xuwei5@hisilicon.com, mcoquelin.stm32@gmail.com, marex@denx.de,
-        alexandre.torgue@foss.st.com, daniel@ffwll.ch,
-        michal.simek@xilinx.com, kernel@collabora.com,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [RESEND PATCH v4 3/3] dt-bindings: drm: bridge: adi,adv7511.txt:
- convert to yaml
-Message-ID: <20210617144635.GA2197058@robh.at.kernel.org>
-References: <20210615131333.2272473-1-ricardo.canuelo@collabora.com>
- <20210615131333.2272473-4-ricardo.canuelo@collabora.com>
+        Thu, 17 Jun 2021 08:09:47 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     freedreno@lists.freedesktop.org
+Cc:     Abhinav Kumar <abhinavk@codeaurora.org>,
+        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
+        Bernard Zhao <bernard@vivo.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        dri-devel@lists.freedesktop.org (open list:DRM DRIVER FOR MSM ADRENO
+        GPU), Jordan Crouse <jordan@cosmicpenguin.net>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-arm-msm@vger.kernel.org (open list:DRM DRIVER FOR MSM ADRENO GPU),
+        linux-kernel@vger.kernel.org (open list),
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Sean Paul <sean@poorly.run>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+Subject: [PATCH v4 0/3] drm/msm/dsi: support CPHY mode for 7nm pll/phy
+Date:   Thu, 17 Jun 2021 10:43:32 -0400
+Message-Id: <20210617144349.28448-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210615131333.2272473-4-ricardo.canuelo@collabora.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Jun 2021 15:13:33 +0200, Ricardo Cañuelo wrote:
-> Convert the ADV7511/11w/13/33/35 DT bindings to json-schema. The
-> original binding has been split into two files: adi,adv7511.yaml for
-> ADV7511/11W/13 and adi,adv7533.yaml for ADV7533/35.
-> 
-> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../bindings/display/bridge/adi,adv7511.txt   | 143 -----------
->  .../bindings/display/bridge/adi,adv7511.yaml  | 241 ++++++++++++++++++
->  .../bindings/display/bridge/adi,adv7533.yaml  | 184 +++++++++++++
->  3 files changed, 425 insertions(+), 143 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/bridge/adi,adv7511.txt
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/adi,adv7511.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
-> 
+Add the required changes to support 7nm pll/phy in CPHY mode.
 
-Applied, thanks!
+This adds a "qcom,dsi-phy-cphy-mode" property for the PHY node to enable
+the CPHY mode.
+
+v2:
+ - rebased on DSI PHY reworks
+ - reworked getting cphy_mode in dsi_host.c
+ - documentation change in separate patch
+
+v3:
+ - yaml bindings
+ - changed binding to "phy-type = <PHY_TYPE_DSI_CPHY>;"
+
+v4:
+ - PHY_TYPE_{DPHY,CPHY} instead of PHY_TYPE_DSI_{DPHY,CPHY}
+ - use enum/default for phy-type property
+ - remove a stray semicolon in dts example
+
+Jonathan Marek (3):
+  dt-bindings: msm: dsi: add missing 7nm bindings
+  dt-bindings: msm: dsi: document phy-type property for 7nm dsi phy
+  drm/msm/dsi: support CPHY mode for 7nm pll/phy
+
+ .../bindings/display/msm/dsi-phy-7nm.yaml     |  71 +++++++++
+ drivers/gpu/drm/msm/dsi/dsi.xml.h             |   2 +
+ drivers/gpu/drm/msm/dsi/dsi_host.c            |  34 +++-
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c         |  49 ++++++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h         |   3 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c     | 145 ++++++++++++------
+ include/dt-bindings/phy/phy.h                 |   2 +
+ 7 files changed, 259 insertions(+), 47 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+
+-- 
+2.26.1
+
