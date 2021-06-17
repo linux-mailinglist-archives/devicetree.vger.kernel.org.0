@@ -2,122 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A3F03AAD39
-	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 09:18:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F8493AAD66
+	for <lists+devicetree@lfdr.de>; Thu, 17 Jun 2021 09:23:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230047AbhFQHU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 03:20:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51800 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbhFQHU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 03:20:57 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323FBC06175F;
-        Thu, 17 Jun 2021 00:18:50 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id e22so4193699pgv.10;
-        Thu, 17 Jun 2021 00:18:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=urMPTkRkijNnq1YTyn7+SteYdXmaIXj2TQZnikbLXEs=;
-        b=QqObbYwhOZtqYEGImDxe+JckngZqWKDW5ifZeQZHpAT2cUvDYK9vPjzhVmpB/kqK52
-         2X3S9uCa7ue7j8/8gfXNgSPHy1sxELuEscsFso3LNqZzVFY0+NDKXrrHjOSxMf+r2exn
-         QbJNxB60BtXOkBCpuHrrI8uct9Dllx7DkRCqcMBPaKaCp35J67z/suX2RPxAK2gJh756
-         GWaULDDll06gMPHK98NYmCIyZoveoTay00oiUrhIoASXFYKPNWcOF2ULvow+OO+c+Uki
-         yaNCUAPaNywRt4FccsYisu7PauB8M2yLH1c1bIeeLIsUODO13oioO66Gvc02yJA6WWVp
-         3kBQ==
+        id S229741AbhFQHZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 03:25:11 -0400
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:40638 "EHLO
+        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231157AbhFQHY7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 03:24:59 -0400
+Received: by mail-ua1-f42.google.com with SMTP id r9so403792ual.7;
+        Thu, 17 Jun 2021 00:22:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=urMPTkRkijNnq1YTyn7+SteYdXmaIXj2TQZnikbLXEs=;
-        b=LCCdy+qyzYQmp8Bx262P7IfjfsbzWi+b/7+FWazlgeE0g57UXCuwiPXQVixCJyH5/F
-         t78h3fO40FvijMNx29IJfX1aVDSenARCFQwVJ7S4fRjtJZljlj6aKFTfK7JQrVq/TPth
-         JIIn3iQSRbEsXOZiidXPZF+QeDTZZvzZx7Gl5ZVZseZvrljJz0uXdE7GA3nkPDtS6rrd
-         sP259EiAFllpgFknk/OhBjSeV3tgsJcenfZ65qzmaVGeVHejbp044AHxz2Vaip18G0Gh
-         tWQj8sFWCm3bvgRlutPBaYox6Qy/m6d4eyuEl/bIIKY5IwlVz1X5NoQX/p/yG8Aqlal5
-         t0hw==
-X-Gm-Message-State: AOAM531693jck7bzN7EDgAqQPmdQc05urFl/hI454B39uCK6WtqSyeha
-        kX+POVubucBDs8cB5pu1E0U4PsRr0kpViD28IWw=
-X-Google-Smtp-Source: ABdhPJx2RTT5n7WoD6XIYmdUVuUkAr7Ak0SI+3gHXobSWPWtgaEpjpZDq+n+Q8TxsRLysqNXPXyy3uccfjbLXXtvYTA=
-X-Received: by 2002:a63:b00d:: with SMTP id h13mr3732496pgf.74.1623914329647;
- Thu, 17 Jun 2021 00:18:49 -0700 (PDT)
+        bh=cEv8QQ6il/6NkwppAWjKCYYqz8xPWh7pjmkGPTD+a34=;
+        b=WFcpUkbVv+huLPjolyFl3pyD2jSXz1EWKtHwdFT3O2mTkgoRO08UNFW1d1g1QRSdOl
+         9ii3T/CI0a5aZVOaqVf851Blx7iw3DpUSiRg1TlBPLKXqsaZOlu2RkRqHRzj/DayM/wi
+         rFLLPeLTsDddM0SYS8fw8ic7BM/LHgTwbg/cf7xwhA8RGuGiQWk23f1dQkAeYG1Ra6YQ
+         ac/VVlR+eCCvsL/dmZ4fUu2MjUu9j9RfhttkttK2M53YcpF+kq3ovcOs5qIq7NYnllRD
+         N9+ZW4z9Co9l+Pj34abGVa+6cWBrLe8dZ/dMO/kFdO5vRBNIHJfQu9WSp7fCf7szKo8n
+         lOnQ==
+X-Gm-Message-State: AOAM530Kn0kW8iHFqMpEKqf/mS56bdsSsI0Pq32BrtmoD3eRqa2ZjJOW
+        LEyS+YC64dVRoWnrDPWi5uo8ZlBlB3krUu0aGbpv4AeXt+2yvg==
+X-Google-Smtp-Source: ABdhPJwMcA0YpYRPCJAZ9bnGz/2Pg25idgRHpclYxTS0kaMVMyFb5dPU4W1UkU43d9V5qdplDXdplYoI8kdY08U/tJ4=
+X-Received: by 2002:ab0:70b3:: with SMTP id q19mr3877741ual.2.1623914572130;
+ Thu, 17 Jun 2021 00:22:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <1619080202-31924-1-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <1619080202-31924-4-git-send-email-lakshmi.sai.krishna.potthuri@xilinx.com>
- <CAHp75VfCbbnN-TBJiYFb=6Rhf30jA-Hz1p1UORsubF7UG6-ATw@mail.gmail.com>
- <DM5PR02MB3877B234F85F3B4887DF3A95BD429@DM5PR02MB3877.namprd02.prod.outlook.com>
- <CAHp75VfugGqLNU8LKJ_K3dPr=-eh6LHx75eV=33jH9OnryBoGA@mail.gmail.com>
- <DM5PR02MB387726AB4144F0DB28105007BD409@DM5PR02MB3877.namprd02.prod.outlook.com>
- <DM5PR02MB38771A8BEEB3E01006B14E46BD539@DM5PR02MB3877.namprd02.prod.outlook.com>
- <MW2PR02MB388198021497399F280A374EBD0E9@MW2PR02MB3881.namprd02.prod.outlook.com>
-In-Reply-To: <MW2PR02MB388198021497399F280A374EBD0E9@MW2PR02MB3881.namprd02.prod.outlook.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 17 Jun 2021 10:18:33 +0300
-Message-ID: <CAHp75VdPuGqsKqAMipzaAf11OQi_kBfPeLH3vsxTot_OgUiDtg@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] pinctrl: Add Xilinx ZynqMP pinctrl driver support
-To:     Sai Krishna Potthuri <lakshmis@xilinx.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        git <git@xilinx.com>,
-        "saikrishna12468@gmail.com" <saikrishna12468@gmail.com>
+References: <2da75fd2e971dfab8dd05a2a28bb1d6d9cbe5adb.1619700420.git.geert+renesas@glider.be>
+ <YIrU+tdcfQ/6ODRz@pendragon.ideasonboard.com> <YMqsAkFfAU02t4oD@pendragon.ideasonboard.com>
+In-Reply-To: <YMqsAkFfAU02t4oD@pendragon.ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 17 Jun 2021 09:22:40 +0200
+Message-ID: <CAMuHMdWe-84ga-f4GC7h+jZnAPu5ayvV=xnB7mNgQs3XqRVW=w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: renesas,du: Make resets optional on
+ R-Car H1
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 17, 2021 at 9:37 AM Sai Krishna Potthuri
-<lakshmis@xilinx.com> wrote:
-> Ping!
+Hi Laurent,
 
-Do not top-post.
-Do not ping for the sake of pings.
+On Thu, Jun 17, 2021 at 3:57 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Thu, Apr 29, 2021 at 06:47:06PM +0300, Laurent Pinchart wrote:
+> > On Thu, Apr 29, 2021 at 02:47:31PM +0200, Geert Uytterhoeven wrote:
+> > > The "resets" property is not present on R-Car Gen1 SoCs.
+> > > Supporting it would require migrating from renesas,cpg-clocks to
+> > > renesas,cpg-mssr.
+> > >
+> > > Reflect this in the DT bindings by removing the global "required:
+> > > resets".  All SoCs that do have "resets" properties already have
+> > > SoC-specific rules making it required.
+> >
+> > Should we drop the
+> >
+> >         resets:
+> >         maxItems: 1
+> >
+> > from renesas,du-r8a7779 then ? And maybe the
+> >
+> >   resets: true
+> >
+> > in the general case ?
+>
+> Any opinion on this ?
 
-> > From: Sai Krishna Potthuri <lakshmis@xilinx.com>
-> > Sent: Tuesday, May 11, 2021 6:08 PM
-> > > From: Sai Krishna Potthuri
-> > > Sent: Wednesday, April 28, 2021 11:04 AM
-> > > > From: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > > > Sent: Monday, April 26, 2021 7:35 PM
+Oops, I did reply to this on April 29, but accidentally dropped
+all CCs, which made it disappear from your radar, too?
 
-...
+| R-Car H1 does have a reset controller, we just don't have support for
+| it in the DT bindings and Linux driver yet.  So from that point of view
+| it makes sense to keep it.
+|
+| Of course we can remove it, and re-add it later if we ever add support,
+| as at that time we probably will want to change the bindings anyway
+| to make it required again.
 
-> > > > > > > +               ret = zynqmp_pm_pinctrl_get_config(pin, param, &arg);
-> > > > > > > +               if (arg != PM_PINCTRL_BIAS_PULL_UP)
-> > > > > > > +                       return -EINVAL;
-> > > > > >
-> > > > > > Error code being shadowed. Instead check it here properly.
-> > > >
-> > > > > Are you mentioning the case where ret is also a non-zero?
-> > > > > If yes, then I will update this check to if (!ret && arg !=
-> > > > > PM_PINCTRL_BIAS_PULL_UP)
-> > > > >         return -EINVAL;
-> > > >
-> > > > No, this is wrong in the same way.
-> > > >
-> > > > > ret non-zero case, we are handling at the end of switch case.
-> > > >
-> > > > I meant that you need to pass the real return code to the (upper) caller.
-> > > Here we are checking for valid argument and not the return value of the
-> > API.
-> > > If the read value(argument) is not valid and return value of the API
-> > > is zero (SUCCESS) then framework expects driver to be returned with
-> > > '-EINVAL' and it is a legal error code in this case.
-> > Do you agree on this?
-> > I am ready with the other changes, will send out the patch to address your
-> > comments.
+And you replied on April 30, also in private:
 
-If you are ready, drop a new version (note, ~1w is a good time to send
-a new version if no one answered the doubts in your previous one,
-which means "silent agreement").
+|> R-Car H1 does have a reset controller, we just don't have support for
+| > it in the DT bindings and Linux driver yet.  So from that point of view
+| > it makes sense to keep it.
+|
+| Not sure what we would "keep", given that there's no reset controller
+| available :-)
+|
+| > Of course we can remove it, and re-add it later if we ever add support,
+| > as at that time we probably will want to change the bindings anyway
+| > to make it required again.
+|
+| Let's not bother. I doubt H1 will get support for a reset controller as
+| that's an old platform, and the DT bindings thus don't matter too much.
+| I'll take this patch as-is.
+|
+| Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> > > Fixes: 99d66127fad25ebb ("dt-bindings: display: renesas,du: Convert binding to YAML")
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > ---
+> > >  Documentation/devicetree/bindings/display/renesas,du.yaml | 1 -
+> > >  1 file changed, 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> > > index 552a99ce4f1280d7..e955034da53b86e2 100644
+> > > --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> > > @@ -89,7 +89,6 @@ required:
+> > >    - reg
+> > >    - clocks
+> > >    - interrupts
+> > > -  - resets
+> > >    - ports
+> > >
+> > >  allOf:
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
