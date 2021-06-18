@@ -2,74 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC9273AD459
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 23:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0E503AD45F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 23:23:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234579AbhFRVVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 17:21:21 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:43998 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234573AbhFRVVU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 17:21:20 -0400
-Received: by mail-ot1-f44.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso11034131otu.10
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 14:19:11 -0700 (PDT)
+        id S232536AbhFRVZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 17:25:21 -0400
+Received: from mail-oo1-f51.google.com ([209.85.161.51]:38482 "EHLO
+        mail-oo1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231631AbhFRVZV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 17:25:21 -0400
+Received: by mail-oo1-f51.google.com with SMTP id 128-20020a4a11860000b029024b19a4d98eso2454577ooc.5;
+        Fri, 18 Jun 2021 14:23:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=l9X3y+oTgc/s2ZKvtLg5eTECZ40y9Q5YZF/VApYDZBQ=;
-        b=OoApouKj0J9vVin8xX3wnV++6QQkMIUZjG5Pr5v/e4fH5q06c1I7xtue0j7Yob+R5e
-         mxIKlOVAbQoO34JE+we2F3CTo3pJe09+PlDb8dKcTSzE5DDVSUwNtlRSo2Dj4t/4dd6B
-         mxC4yxl8ulah9ZJZnGM4RIb0oKI4lYU5/teThVuzlea8/m7SIDPe/VAw/XrXbWxRHTON
-         U/ZUBrv/vaW8H+wI1OES9QSSGQB8coElCniiYZJRrzCCOCgrlo12/FPVjVhIFQ4rVi/W
-         oDW/PcoTFPP1r326kTsTX7w60wkALfu9U0/W/5nchcFPdWTLZEdfIm9Ba+35gmKFeip/
-         jPEw==
-X-Gm-Message-State: AOAM533CC7U42yOhOhlBYMx+tJ9pU+f+lZf2iT4aSDcus0mk3Ij8SXpH
-        6n6N+96C/xDZI47nOD6xag==
-X-Google-Smtp-Source: ABdhPJzmhQMJ0CZuK+9aZ2YQsXhrGQtK/6F7eadkW7wgdNpSwDHyCtr4t3BoZWIZ5CFVWk+qHiDeiQ==
-X-Received: by 2002:a05:6830:90c:: with SMTP id v12mr10672467ott.7.1624051150835;
-        Fri, 18 Jun 2021 14:19:10 -0700 (PDT)
+        bh=kYoCBUO/qNSFVFgUTNAWzs4qPs6wB1qFv3sYx6H1ziI=;
+        b=FxULBYxezd38EG5R1tb4Oii/nqOUQAsHiciVIMu3ql/y9rqOEtEhy5WLY+kSlcoMKO
+         tjTjBfKluewnU1ePU0UJq9Z3KnCJKyjL8fY2yiZFSbBN/pccUbzkI9A8j6zSJ3I/Ue6t
+         ubbM5fAnpyfQlhNfVIDo1XDNitNhPaLlc/B+/gn7CcJ4l8ME2jgVbsf93JuL9XBjq+DN
+         GzvY/VT3bqO2FhHRBFOejwDQHTSoj7tj5JC7lDyHoY/LtvOcV/b+oZykldZlLgA59sAv
+         oy3jkgL3xVe6fCDXEeu1/QkeDViiOLtjiRRt3mpzRvR+/limkWEZicaez1ByRrKxr+2t
+         X7Fg==
+X-Gm-Message-State: AOAM530P/FZZoB09mXu1MTwV69js+Xzjb7AB8Ulf3DyLQ4mERpLUGYFG
+        m1tWKMj9NqnzRG9hlQUOJmuM9+h7Bw==
+X-Google-Smtp-Source: ABdhPJxeFOklfhnq7gh7GeiKckVtnqu4iMl8LSexWvHP/MG1WDOviieQMO1RNP1DbjSX+HKxRFkCUw==
+X-Received: by 2002:a4a:c287:: with SMTP id b7mr10738061ooq.8.1624051390156;
+        Fri, 18 Jun 2021 14:23:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id h7sm2368212ots.44.2021.06.18.14.19.08
+        by smtp.gmail.com with ESMTPSA id k84sm2033251oia.8.2021.06.18.14.23.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 14:19:09 -0700 (PDT)
-Received: (nullmailer pid 2927088 invoked by uid 1000);
-        Fri, 18 Jun 2021 21:19:08 -0000
-Date:   Fri, 18 Jun 2021 15:19:08 -0600
+        Fri, 18 Jun 2021 14:23:09 -0700 (PDT)
+Received: (nullmailer pid 2939070 invoked by uid 1000);
+        Fri, 18 Jun 2021 21:23:04 -0000
+Date:   Fri, 18 Jun 2021 15:23:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        "Ryan J . Barnett" <ryan.barnett@collins.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-        Richard Weinberger <richard@nod.at>
-Subject: Re: [PATCH] dt-bindings: mtd: gpmc: Fix the ECC bytes vs. OOB bytes
- equation
-Message-ID: <20210618211908.GA2927042@robh.at.kernel.org>
-References: <20210610143945.3504781-1-miquel.raynal@bootlin.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Lukas Wunner <lukas@wunner.de>, Petr Stetiar <ynezz@true.cz>,
+        linux@dh-electronics.com, netdev@vger.kernel.org
+Subject: Re: [PATCH V2] dt-bindings: net: ks8851: Convert to YAML schema
+Message-ID: <20210618212304.GA2927502@robh.at.kernel.org>
+References: <20210610145954.29719-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210610143945.3504781-1-miquel.raynal@bootlin.com>
+In-Reply-To: <20210610145954.29719-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Jun 2021 16:39:45 +0200, Miquel Raynal wrote:
-> "PAGESIZE / 512" is the number of ECC chunks.
-> "ECC_BYTES" is the number of bytes needed to store a single ECC code.
-> "2" is the space reserved by the bad block marker.
+On Thu, Jun 10, 2021 at 04:59:54PM +0200, Marek Vasut wrote:
+> Convert the Micrel KSZ8851 DT bindings to YAML schema.
 > 
-> "2 + (PAGESIZE / 512) * ECC_BYTES" should of course be lower or equal
-> than the total number of OOB bytes, otherwise it won't fit.
-> 
-> Fix the equation by substituting s/>=/<=/.
-> 
-> Suggested-by: Ryan J. Barnett <ryan.barnett@collins.com>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: David S. Miller <davem@davemloft.net>
+> Cc: Lukas Wunner <lukas@wunner.de>
+> Cc: Petr Stetiar <ynezz@true.cz>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: linux@dh-electronics.com
+> Cc: netdev@vger.kernel.org
+> To: devicetree@vger.kernel.org
 > ---
->  Documentation/devicetree/bindings/mtd/gpmc-nand.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> V2: - Explicitly state the bindings are for both SPI and parallel bus options
+>     - Switch the license to (GPL-2.0-only OR BSD-2-Clause)
+> ---
+>  .../bindings/net/micrel,ks8851.yaml           | 94 +++++++++++++++++++
+>  .../devicetree/bindings/net/micrel-ks8851.txt | 18 ----
+>  2 files changed, 94 insertions(+), 18 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/micrel,ks8851.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/micrel-ks8851.txt
 > 
+> diff --git a/Documentation/devicetree/bindings/net/micrel,ks8851.yaml b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
+> new file mode 100644
+> index 000000000000..3a3fc61baac3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/micrel,ks8851.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Micrel KS8851 Ethernet MAC (SPI and Parallel bus options)
+> +
+> +maintainers:
+> +  - Marek Vasut <marex@denx.de>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: "micrel,ks8851"      # SPI bus option
+> +      - const: "micrel,ks8851-mll"  # Parallel bus option
 
-Acked-by: Rob Herring <robh@kernel.org>
+Don't need quotes and use 'enum' rather than 'oneOf+const'.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
+
+Need to define what each entry is when more than 1.
+
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      The reset_n input pin
+> +
+> +  vdd-supply:
+> +    description: |
+> +      Analog 3.3V supply for Ethernet MAC (see regulator/regulator.yaml)
+
+Drop (see regulator/regulator.yaml). (If we want that, we should 
+generate the cross ref).
+
+> +
+> +  vdd-io-supply:
+> +    description: |
+> +      Digital 1.8V IO supply for Ethernet MAC (see regulator/regulator.yaml)
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: "micrel,ks8851"
+
+Drop quotes
+
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: "micrel,ks8851-mll"
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    /* SPI bus option */
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        ethernet@0 {
+> +            compatible = "micrel,ks8851";
+> +            reg = <0>;
+> +            interrupt-parent = <&msmgpio>;
+> +            interrupts = <90 8>;
+> +            vdd-supply = <&ext_l2>;
+> +            vdd-io-supply = <&pm8921_lvs6>;
+> +            reset-gpios = <&msmgpio 89 0>;
+> +        };
+> +    };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    /* Parallel bus option */
+> +    memory-controller {
+> +        #address-cells = <2>;
+> +        #size-cells = <1>;
+> +        ethernet@1,0 {
+> +            compatible = "micrel,ks8851-mll";
+> +            reg = <1 0x0 0x2>, <1 0x2 0x20000>;
+> +            interrupt-parent = <&gpioc>;
+> +            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/net/micrel-ks8851.txt b/Documentation/devicetree/bindings/net/micrel-ks8851.txt
+> deleted file mode 100644
+> index bbdf9a7359a2..000000000000
+> --- a/Documentation/devicetree/bindings/net/micrel-ks8851.txt
+> +++ /dev/null
+> @@ -1,18 +0,0 @@
+> -Micrel KS8851 Ethernet mac (MLL)
+> -
+> -Required properties:
+> -- compatible = "micrel,ks8851-mll" of parallel interface
+> -- reg : 2 physical address and size of registers for data and command
+> -- interrupts : interrupt connection
+> -
+> -Micrel KS8851 Ethernet mac (SPI)
+> -
+> -Required properties:
+> -- compatible = "micrel,ks8851" or the deprecated "ks8851"
+> -- reg : chip select number
+> -- interrupts : interrupt connection
+> -
+> -Optional properties:
+> -- vdd-supply: analog 3.3V supply for Ethernet mac
+> -- vdd-io-supply: digital 1.8V IO supply for Ethernet mac
+> -- reset-gpios: reset_n input pin
+> -- 
+> 2.30.2
+> 
+> 
