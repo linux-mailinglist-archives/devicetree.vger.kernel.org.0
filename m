@@ -2,118 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 885913ACE2E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 16:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 888A63ACEC8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 17:24:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234777AbhFRPBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 11:01:07 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33548 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234183AbhFRPBH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 11:01:07 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15IEwrOF033831;
-        Fri, 18 Jun 2021 09:58:53 -0500
+        id S232882AbhFRP0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 11:26:51 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:42886 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234405AbhFRPYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 11:24:46 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15IFMVIS104643;
+        Fri, 18 Jun 2021 10:22:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1624028333;
-        bh=28kpjwOrxZwjFnnykZ/LWOKqAgGivGqzeZuR3h0J3Vw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=eTahUdwUXcMmbWSjIeIswtwgYffyRbqtowH4ntZ6jkl3xD36nQGkZXbaohCrkjCGO
-         qru2Pi+mo2930kZyK+LLtBz9i0y5ZwlzCTc35oC5juE8CAGOXUop4o18sNdhVoNaKc
-         TYJ4sGzs132L/yqO+yJuONq9uSxNZ2CkzwUB6d5U=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15IEwr91100760
+        s=ti-com-17Q1; t=1624029751;
+        bh=LJeWp9ecNco3an3cJzx2tQNMcRP7TVNUhvlcf24+KVM=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=dWG9X/Cd2o9hP1recwShzxzCDJAdaznv30T/L/j/R7n+Q2Le7RUimmAcN/ymOnXlz
+         xaOlAS2WW5lqag/2PZeP5Xuwbbpino/rTj5hyW1wjVjQp0PiDfhUeJMw78mXiFN1Ca
+         6bS0XF2wAP0XzkkAhDCfImU3GqaKS00NrU5rR7qo=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15IFMUCq029401
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 18 Jun 2021 09:58:53 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 18 Jun 2021 10:22:30 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Fri, 18
- Jun 2021 09:58:52 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2021 10:22:30 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Fri, 18 Jun 2021 09:58:52 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15IEwq2W117708;
-        Fri, 18 Jun 2021 09:58:52 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Suman Anna <s-anna@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
+ Frontend Transport; Fri, 18 Jun 2021 10:22:30 -0500
+Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15IFMRVK027988;
+        Fri, 18 Jun 2021 10:22:27 -0500
+Subject: Re: [PATCH v2] dt-bindings: serial: Move omap-serial.txt to YAML
+ schema
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Hari <hnagalla@ti.com>
-Subject: Re: [PATCH v2 0/3] Add R5F nodes on TI K3 AM64x SoCs
-Date:   Fri, 18 Jun 2021 09:58:51 -0500
-Message-ID: <162402789600.25544.13955211751661856760.b4-ty@ti.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210615195718.15898-1-s-anna@ti.com>
-References: <20210615195718.15898-1-s-anna@ti.com>
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+References: <20210610182227.2480-1-vigneshr@ti.com>
+ <CAL_JsqLjqtUapkr6ARyaeTduhSghJL-q7hBWGFPm7ubbvqCmJw@mail.gmail.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <5ef04ae5-e07e-5162-7dad-ace3e2fdeb0d@ti.com>
+Date:   Fri, 18 Jun 2021 20:52:26 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <CAL_JsqLjqtUapkr6ARyaeTduhSghJL-q7hBWGFPm7ubbvqCmJw@mail.gmail.com>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Jun 2021 14:57:15 -0500, Suman Anna wrote:
-> This is a rebased version of the K3 AM64x R5F node series posted previously.
-> Please see the v1 cover-letter for all the functional details [1]. I have
-> dropped Patch 4 [2] from the previous series as per the discussion and agreed
-> upon in [2] until we align on the longer-term memory utilization of OCM RAM.
+
+
+On 6/18/21 8:28 PM, Rob Herring wrote:
+> On Thu, Jun 10, 2021 at 12:22 PM Vignesh Raghavendra <vigneshr@ti.com> wrote:
+>>
+>> Convert serial-omap.txt to YAML schema for better checks and documentation.
+>>
+>> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+>> ---
+>>
+>> v2:
+>> *Drop reg-io-width and reg-shift as they are constant and documented in
+>>  txt bindings (also not used by driver).
+>> *Drop unused label in example.
+>> *Rename file to 8250_omap.yaml to be more generic as IP is present in
+>> varies families of TI SoCs.
+>> *Add description for interrupt entries
+>>
+>>  .../devicetree/bindings/serial/8250_omap.yaml | 118 ++++++++++++++++++
+>>  .../bindings/serial/omap_serial.txt           |  40 ------
+>>  2 files changed, 118 insertions(+), 40 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/serial/8250_omap.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/serial/omap_serial.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+>> new file mode 100644
+>> index 000000000000..1c826fcf5828
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+>> @@ -0,0 +1,118 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/serial/8250_omap.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Bindings for 8250 compliant UARTs on TI's OMAP2+ and K3 SoCs
+>> +
+>> +maintainers:
+>> +  - Vignesh Raghavendra <vigneshr@ti.com>
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/serial/serial.yaml#
+>> +  - $ref: /schemas/serial/rs485.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - enum:
+>> +          - ti,am3352-uart
+>> +          - ti,am4372-uart
+>> +          - ti,am654-uart
+>> +          - ti,dra742-uart
+>> +          - ti,omap2-uart
+>> +          - ti,omap3-uart
+>> +          - ti,omap4-uart
+>> +      - items:
+>> +          - enum:
+>> +              - ti,am64-uart
+>> +              - ti,j721e-uart
+>> +          - const: ti,am654-uart
+>> +
+>> +  ti,hwmods:
+>> +    description:
+>> +      Must be "uart<n>", n being the instance number (1-based)
+>> +      This property is applicable only on legacy platforms mainly omap2/3
+>> +      and ti81xx and should not be used on other platforms.
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    deprecated: true
+>> +
+>> +  dmas:
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +
+>> +  dma-names:
+>> +    items:
+>> +      - const: tx
+>> +      - const: rx
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +    description:
+>> +      First entry is module IRQ required for normal IO operation.
+>> +      Second entry is optional and corresponds to system wakeup IRQ
+>> +      where supported.
 > 
-> Patches are on top of your latest staged ti-k3-dts-next branch commit
-> d65f069e50a3 (arm64: dts: ti: Drop reg-io-width/reg-shift from UART nodes")
-> + Aswath's [PATCH v4 0/3] AM64: Update the locations of various elements in SRAM
-> series (can't see the links on lakml patchworks).
+> interrupts:
+>   minItems: 1
+>   items:
+>     - description: module IRQ required for normal IO operation
+>     - description: system wakeup IRQ
 > 
-> [...]
 
-Hi Suman Anna,
+OK, will send a follow up fix as the patch is already queued.
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    const: fclk
+>> +
+>> +  rts-gpios: true
+>> +  cts-gpios: true
+>> +  dtr-gpios: true
+>> +  dsr-gpios: true
+>> +  rng-gpios: true
+>> +  dcd-gpios: true
+>> +  rs485-rts-delay: true
+>> +  rs485-rts-active-low: true
+>> +  rs485-rx-during-tx: true
+>> +  rs485-rts-active-high: true
+>> +  linux,rs485-enabled-at-boot-time: true
+>> +  rts-gpio: true
+>> +  power-domains: true
+>> +  clock-frequency: true
+>> +  current-speed: true
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +
+>> +additionalProperties: false
+> 
+> Do you want to support serial attached devices? If so, you need:
+> 
+> unevaluatedProperties: false
+> 
 
-NOTE:
-* I have pulled in yaml tag from Bjorn[2] prior to your patches. (cced him as
-  well FYI - Thanks Bjorn for facilitating this)
-* As discussed in [3], the shared-dma-pool dtbs_check warnings - I am merging
-  since there is at least one precedence in this merge window, but as we have
-  been discussing in prior threads as well, we will not do this in the 5.15
-  window. In the future, please give a headsup in patch if such issues are
-  introduced.
+Yes, support for serial client devices is desired, but I see that with
+"unevaluatedProperties: false" there are no warnings if DT has a
+property not documented in the schema? Did I miss something?
 
-[1/3] arm64: dts: ti: k3-am64-main: Add MAIN domain R5F cluster nodes
-      commit: a4f221cd68b306d6311237e47b531d21fab8dfa4
-[2/3] arm64: dts: ti: k3-am642-evm/sk: Add mailboxes to R5Fs
-      commit: 0afadba435892c8d330e3238b9cc7f9ee8b20e90
-[3/3] arm64: dts: ti: k3-am642-evm/sk: Add DDR carveout memory nodes for R5Fs
-      commit: d71abfcc6c050b72ba735b74f3e3848ce07ddd15
+> You can also drop listing all the inherited properties from the
+> included schemas.
 
+Yes, this can be done with "unevaluatedProperties: false".
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/andersson/remoteproc.git/tag/?h=20210327143117.1840-2-s-anna@ti.com
-[3] https://lore.kernel.org/linux-devicetree/20210617004448.aozqtxu5smg57vr5@exterior/
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+Regards
+Vignesh
