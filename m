@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C86D63AD35C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 22:05:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F08443AD365
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 22:07:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230433AbhFRUIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 16:08:02 -0400
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:43841 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232763AbhFRUIA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 16:08:00 -0400
-Received: by mail-ot1-f42.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso10847791otu.10;
-        Fri, 18 Jun 2021 13:05:50 -0700 (PDT)
+        id S229848AbhFRUKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 16:10:08 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:41697 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229768AbhFRUKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 16:10:07 -0400
+Received: by mail-ot1-f44.google.com with SMTP id v22-20020a0568301416b029044e2d8e855eso1663322otp.8;
+        Fri, 18 Jun 2021 13:07:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ROPFWJUa9urWqeDhZ2jrqeoT00Ti8THuW8SgyGYM7bA=;
-        b=rongGxsfQGPr14GLp7Usm78kio0mcI7HlNDdlyUK27NddL+0wFiZ8wFidwZKxkeu1N
-         HTE8yKYlfnyG17zCBBPWNQARzrDDniG97KlzniD/DBgWnFjSZHpfpPggMmVTuYx7OYd3
-         HxhaDcOHoOiQbflVlbHaRPXNzsjSmZHTf4WSm4uzkR3GbyjkT2pIN1RsfaTEA8yrXoQr
-         yly8E1RvixtODaDlmJY7xRoIEz0fUqH+WXf5/mT8GdFy7p1ywFo98JdWqcP3gvURZ0gr
-         5pMKGnuUWlHmbxlOZRf8WKCOMAOXM+T64kzfXzx+sBJ25nUfH84V/ywnCJnDqgE0zNEj
-         P1QA==
-X-Gm-Message-State: AOAM533riS2ovT1CUHbE02YT3ylvZoqKzU4zppGRcx3fYVQdtcEoadTr
-        2VtD3mI2m/fKbsx/5nXb5ln1avgRyw==
-X-Google-Smtp-Source: ABdhPJybdK1Y0q6cV+6l+ynYsFVXFfgv7pvT+VRhPT20KEdAAT6fljSQ9L8zl066BzUXNknGWnoYkg==
-X-Received: by 2002:a05:6830:30a8:: with SMTP id g8mr11248528ots.122.1624046749862;
-        Fri, 18 Jun 2021 13:05:49 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=6XB5kaEUWj8mAPfwEHQtLrrBX7VPygB1nsRewZ4nFEs=;
+        b=c1dMvN2i3WRomLMa+i958QHJqbpL/cRiucKENtZdieJ8lOCpf+oIzDd3XKat2nYsr9
+         mQ8gAgELbjhRqp+/Tb1mQjybJJWzpr+IZ5P0LWQoiCxXGdhGJGLQtVDIcPSumzye2Z4g
+         hGea8+5e0DQJ/94JeqZkh/TP1u15nheCfd77BAMZIS6ekvhyjIvsigoYFcT0pSmaT5Cz
+         3PLGAsB+T1CuyTvGFWFy+7r6+t5qUIiuZ5a/A+bGbjbdUhjHu/vEDsNfO/bLEnHgoE1J
+         OB5fqQC4nApC6IFoOXzHOayFOKkH6qBauHmi6GcKxQpkI1B86TdC06DpSddgD85xPILM
+         kjIw==
+X-Gm-Message-State: AOAM5302REYT8RQhtxXyuJ+X4TCjT39+zo44d51dKUiWUHg/Z7ysLGk0
+        HhcaZEZ0Ur5epC9kN84hYg==
+X-Google-Smtp-Source: ABdhPJylt3V8jimpEyL3PZh/942fiiPeLRK/GFv7exT2gwb2wR9vvY9S1LYmxFM8qwSe8DywHHWzPw==
+X-Received: by 2002:a05:6830:14cc:: with SMTP id t12mr4832945otq.79.1624046877570;
+        Fri, 18 Jun 2021 13:07:57 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j7sm2004762oij.25.2021.06.18.13.05.47
+        by smtp.gmail.com with ESMTPSA id w22sm1779119oou.36.2021.06.18.13.07.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 13:05:49 -0700 (PDT)
-Received: (nullmailer pid 2792052 invoked by uid 1000);
-        Fri, 18 Jun 2021 20:05:47 -0000
-Date:   Fri, 18 Jun 2021 14:05:47 -0600
+        Fri, 18 Jun 2021 13:07:56 -0700 (PDT)
+Received: (nullmailer pid 2795960 invoked by uid 1000);
+        Fri, 18 Jun 2021 20:07:53 -0000
+Date:   Fri, 18 Jun 2021 14:07:53 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Mack <daniel@zonque.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        sboyd@kernel.org, kuninori.morimoto.gx@renesas.com,
-        mturquette@baylibre.com, robh+dt@kernel.org
-Subject: Re: [PATCH v3 2/9] dt-bindings: clock: cs2000-cp: Document
- aux-output-source
-Message-ID: <20210618200547.GA2791857@robh.at.kernel.org>
-References: <20210617190912.262809-1-daniel@zonque.org>
- <20210617190912.262809-3-daniel@zonque.org>
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Subject: Re: [PATCH V2 RESEND] dt-bindings: timer: renesas,tmu: add r8a779a0
+ TMU support
+Message-ID: <20210618200753.GA2795862@robh.at.kernel.org>
+References: <20210607124828.1984-1-wsa+renesas@sang-engineering.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20210617190912.262809-3-daniel@zonque.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210607124828.1984-1-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Jun 2021 21:09:05 +0200, Daniel Mack wrote:
-> This new optional property can be used to control the function of the
-> auxiliary output pin. Introduce a new dt-bindings include file that
-> contains the numerical values.
-> 
-> Signed-off-by: Daniel Mack <daniel@zonque.org>
+On Mon, 07 Jun 2021 14:48:28 +0200, Wolfram Sang wrote:
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../bindings/clock/cirrus,cs2000-cp.yaml           | 14 ++++++++++++++
->  include/dt-bindings/clock/cirrus,cs2000-cp.h       | 14 ++++++++++++++
->  2 files changed, 28 insertions(+)
->  create mode 100644 include/dt-bindings/clock/cirrus,cs2000-cp.h
+> 
+> Changes since v1:
+> * rebased to -next (other SoCs have been added meanwhile)
+>   rebased second time for the resend
+> * added tags from Niklas and Geert (thanks!)
+> 
+>  Documentation/devicetree/bindings/timer/renesas,tmu.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
