@@ -2,79 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AE863ACD95
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 16:32:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52E763ACE2A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 16:58:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234552AbhFROe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 10:34:27 -0400
-Received: from verein.lst.de ([213.95.11.211]:35190 "EHLO verein.lst.de"
+        id S234873AbhFRPAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 11:00:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47992 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233642AbhFROe1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Jun 2021 10:34:27 -0400
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id 64B2C68D08; Fri, 18 Jun 2021 16:32:12 +0200 (CEST)
-Date:   Fri, 18 Jun 2021 16:32:12 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Tom Lendacky <thomas.lendacky@amd.com>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
-        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
-Subject: Re: [PATCH v13 01/12] swiotlb: Refactor swiotlb init functions
-Message-ID: <20210618143212.GA19284@lst.de>
-References: <20210617062635.1660944-1-tientzu@chromium.org> <20210617062635.1660944-2-tientzu@chromium.org> <alpine.DEB.2.21.2106171434480.24906@sstabellini-ThinkPad-T480s> <CALiNf29SJ0jXirWVDhJw4BUNvkjUeGPyGNJK9m8c30OPX41=5Q@mail.gmail.com> <741a34cc-547c-984d-8af4-2f309880acfa@amd.com>
+        id S234850AbhFRPAt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Jun 2021 11:00:49 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D986E613E2;
+        Fri, 18 Jun 2021 14:58:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624028319;
+        bh=gvrE5ecmlT4/FJKe+nQLJWvVfWI7v2fx8UJbL88CJ6c=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=svMQTztnr9GKpMNR9Y/NwF8epArs/6gpDgjNvAHOwxcwN43nSKdwNZ5E2KLpl47IS
+         g9B0ZsU4NMePu8tYu+5aUXUIO4qBODIBU0vQn49jzDM1m93Xta40Zro/KzYoQO0M9l
+         b3dWG0wuUFAYO7/AQKKJBMnCvQQgMIF9JWETDJNbZdvp2QeGu3tKCY4DgHIG+BVktL
+         TLSQDIyz4hVPO/zKt9628GmUtQKGQJo7/j0Es9CeK/nBt+C531F83f/eWNROPrLzAQ
+         omtgg8VQDMVogAFa2F6/mdqWctbO2q/xdrvL2D4CgmCG1kzm+DG835djNimxyJXkW9
+         OW7nKhnkWliGA==
+Received: by mail-ed1-f41.google.com with SMTP id z12so9093116edc.1;
+        Fri, 18 Jun 2021 07:58:39 -0700 (PDT)
+X-Gm-Message-State: AOAM531dsyGeZWDr98BHWVLaezI06X65W+TH0RcqmlaFDrMHIQGELmzY
+        ImcMLb17ladRfR58j4ZUh4/KE2lSW3UEZE0NuQ==
+X-Google-Smtp-Source: ABdhPJzjuPtUFgRoKPpwhgygmJo+XsY1mLgW7cvQlyXBImHd5SJrSyJAg5MMSnN+gKu8gb6MezHJJaAsCFWdWGhbg3E=
+X-Received: by 2002:aa7:cac9:: with SMTP id l9mr5414748edt.373.1624028318425;
+ Fri, 18 Jun 2021 07:58:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <741a34cc-547c-984d-8af4-2f309880acfa@amd.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+References: <20210610182227.2480-1-vigneshr@ti.com>
+In-Reply-To: <20210610182227.2480-1-vigneshr@ti.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 18 Jun 2021 08:58:26 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLjqtUapkr6ARyaeTduhSghJL-q7hBWGFPm7ubbvqCmJw@mail.gmail.com>
+Message-ID: <CAL_JsqLjqtUapkr6ARyaeTduhSghJL-q7hBWGFPm7ubbvqCmJw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: serial: Move omap-serial.txt to YAML schema
+To:     Vignesh Raghavendra <vigneshr@ti.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Tony Lindgren <tony@atomide.com>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 18, 2021 at 09:09:17AM -0500, Tom Lendacky wrote:
-> > swiotlb_init_with_tbl uses memblock_alloc to allocate the io_tlb_mem
-> > and memblock_alloc[1] will do memset in memblock_alloc_try_nid[2], so
-> > swiotlb_init_with_tbl is also good.
-> > I'm happy to add the memset in swiotlb_init_io_tlb_mem if you think
-> > it's clearer and safer.
-> 
-> On x86, if the memset is done before set_memory_decrypted() and memory
-> encryption is active, then the memory will look like ciphertext afterwards
-> and not be zeroes. If zeroed memory is required, then a memset must be
-> done after the set_memory_decrypted() calls.
+On Thu, Jun 10, 2021 at 12:22 PM Vignesh Raghavendra <vigneshr@ti.com> wrote:
+>
+> Convert serial-omap.txt to YAML schema for better checks and documentation.
+>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+> ---
+>
+> v2:
+> *Drop reg-io-width and reg-shift as they are constant and documented in
+>  txt bindings (also not used by driver).
+> *Drop unused label in example.
+> *Rename file to 8250_omap.yaml to be more generic as IP is present in
+> varies families of TI SoCs.
+> *Add description for interrupt entries
+>
+>  .../devicetree/bindings/serial/8250_omap.yaml | 118 ++++++++++++++++++
+>  .../bindings/serial/omap_serial.txt           |  40 ------
+>  2 files changed, 118 insertions(+), 40 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/serial/8250_omap.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/serial/omap_serial.txt
+>
+> diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> new file mode 100644
+> index 000000000000..1c826fcf5828
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> @@ -0,0 +1,118 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/serial/8250_omap.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bindings for 8250 compliant UARTs on TI's OMAP2+ and K3 SoCs
+> +
+> +maintainers:
+> +  - Vignesh Raghavendra <vigneshr@ti.com>
+> +
+> +allOf:
+> +  - $ref: /schemas/serial/serial.yaml#
+> +  - $ref: /schemas/serial/rs485.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - ti,am3352-uart
+> +          - ti,am4372-uart
+> +          - ti,am654-uart
+> +          - ti,dra742-uart
+> +          - ti,omap2-uart
+> +          - ti,omap3-uart
+> +          - ti,omap4-uart
+> +      - items:
+> +          - enum:
+> +              - ti,am64-uart
+> +              - ti,j721e-uart
+> +          - const: ti,am654-uart
+> +
+> +  ti,hwmods:
+> +    description:
+> +      Must be "uart<n>", n being the instance number (1-based)
+> +      This property is applicable only on legacy platforms mainly omap2/3
+> +      and ti81xx and should not be used on other platforms.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    deprecated: true
+> +
+> +  dmas:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  dma-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +    description:
+> +      First entry is module IRQ required for normal IO operation.
+> +      Second entry is optional and corresponds to system wakeup IRQ
+> +      where supported.
 
-Which should be fine - we don't care that the memory is cleared to 0,
-just that it doesn't leak other data.  Maybe a comment would be useful,
-though,
+interrupts:
+  minItems: 1
+  items:
+    - description: module IRQ required for normal IO operation
+    - description: system wakeup IRQ
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: fclk
+> +
+> +  rts-gpios: true
+> +  cts-gpios: true
+> +  dtr-gpios: true
+> +  dsr-gpios: true
+> +  rng-gpios: true
+> +  dcd-gpios: true
+> +  rs485-rts-delay: true
+> +  rs485-rts-active-low: true
+> +  rs485-rx-during-tx: true
+> +  rs485-rts-active-high: true
+> +  linux,rs485-enabled-at-boot-time: true
+> +  rts-gpio: true
+> +  power-domains: true
+> +  clock-frequency: true
+> +  current-speed: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+
+Do you want to support serial attached devices? If so, you need:
+
+unevaluatedProperties: false
+
+You can also drop listing all the inherited properties from the
+included schemas.
+
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      oneOf:
+> +        - const: ti,omap2-uart
+> +        - const: ti,omap3-uart
+> +        - const: ti,omap4-uart
+> +
+> +then:
+> +  properties:
+> +    ti,hwmods:
+> +      items:
+> +        - pattern: "^uart([1-9])$"
+> +
+> +else:
+> +  properties:
+> +    ti,hwmods: false
+> +
+> +examples:
+> +  - |
+> +          serial@49042000 {
+> +            compatible = "ti,omap3-uart";
+> +            reg = <0x49042000 0x400>;
+> +            interrupts = <80>;
+> +            dmas = <&sdma 81 &sdma 82>;
+> +            dma-names = "tx", "rx";
+> +            ti,hwmods = "uart4";
+> +            clock-frequency = <48000000>;
+> +          };
+> diff --git a/Documentation/devicetree/bindings/serial/omap_serial.txt b/Documentation/devicetree/bindings/serial/omap_serial.txt
+> deleted file mode 100644
+> index c2db8cabf2ab..000000000000
+> --- a/Documentation/devicetree/bindings/serial/omap_serial.txt
+> +++ /dev/null
+> @@ -1,40 +0,0 @@
+> -OMAP UART controller
+> -
+> -Required properties:
+> -- compatible : should be "ti,am64-uart", "ti,am654-uart" for AM64 controllers
+> -- compatible : should be "ti,j721e-uart", "ti,am654-uart" for J721E controllers
+> -- compatible : should be "ti,am654-uart" for AM654 controllers
+> -- compatible : should be "ti,omap2-uart" for OMAP2 controllers
+> -- compatible : should be "ti,omap3-uart" for OMAP3 controllers
+> -- compatible : should be "ti,omap4-uart" for OMAP4 controllers
+> -- compatible : should be "ti,am4372-uart" for AM437x controllers
+> -- compatible : should be "ti,am3352-uart" for AM335x controllers
+> -- compatible : should be "ti,dra742-uart" for DRA7x controllers
+> -- reg : address and length of the register space
+> -- interrupts or interrupts-extended : Should contain the uart interrupt
+> -                                      specifier or both the interrupt
+> -                                      controller phandle and interrupt
+> -                                      specifier.
+> -- ti,hwmods : Must be "uart<n>", n being the instance number (1-based)
+> -
+> -Optional properties:
+> -- clock-frequency : frequency of the clock input to the UART
+> -- dmas : DMA specifier, consisting of a phandle to the DMA controller
+> -         node and a DMA channel number.
+> -- dma-names : "rx" for receive channel, "tx" for transmit channel.
+> -- rs485-rts-delay, rs485-rx-during-tx, linux,rs485-enabled-at-boot-time: see rs485.txt
+> -- rs485-rts-active-high: drive RTS high when sending (default is low).
+> -- clocks: phandle to the functional clock as per
+> -  Documentation/devicetree/bindings/clock/clock-bindings.txt
+> -
+> -Example:
+> -
+> -                uart4: serial@49042000 {
+> -                        compatible = "ti,omap3-uart";
+> -                        reg = <0x49042000 0x400>;
+> -                        interrupts = <80>;
+> -                        dmas = <&sdma 81 &sdma 82>;
+> -                        dma-names = "tx", "rx";
+> -                        ti,hwmods = "uart4";
+> -                        clock-frequency = <48000000>;
+> -                };
+> --
+> 2.32.0
+>
