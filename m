@@ -2,73 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AAC13AD3E4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 22:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC3793AD3F5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 22:55:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234121AbhFRUw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 16:52:26 -0400
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:42918 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234095AbhFRUw0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 16:52:26 -0400
-Received: by mail-oi1-f171.google.com with SMTP id s23so11916014oiw.9;
-        Fri, 18 Jun 2021 13:50:15 -0700 (PDT)
+        id S234249AbhFRU5x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 16:57:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48198 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234250AbhFRU5w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 16:57:52 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FC6BC061574
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 13:55:42 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id n7so12127108wri.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 13:55:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qLy32YRyoZ5czfNPvX937n5z68mS5Dt/8atvgtKFvwQ=;
+        b=o/CxikdrQRF61Z372ZRwM8wBTTiCxbifjXJIC3UGwCkgtcL13kW7xV0v/vTJs2Sr3F
+         vlPtDKAg8kJYDqOmDjgxNdAFaCR04GmBfkXNUhPrev9TOHVMZeL2+Wfov/QhfOVKLFOG
+         jegTkNUcslewWDomJoVX0T5ZLe11r3JNKcolewJTcbOv3wd/6iWA2vA/rjaZhwb41Szx
+         DioqP02R44mK7ygcc3qEswJDNyUigoT/UOHVudcQEn0rfOEvffu5wczNPas/qR+79Svl
+         BmP/XDKP2/FnlaZ7ShvOX9ZXNhkXWdEbRYqVl2JDUslwtDVdmgSvGyWu1DVzK3CtcCat
+         P4NA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=L4LtPggW7wvPnjUlNRBXXdn1hi2ZE+tMVWYTEK9xv38=;
-        b=DJ3VLXMvDhsCaguYPRg7XJjnweDhuoD6R+3DHjALYSm/D3Md3ZQ0lJxxP83cwrWmT9
-         DTXlU1PWlVF4UTp81Xt1uWCSv8V+PeL3hcKwMlIq6FwuR+l2fPXetJhSosmvtl8JUh4U
-         QTt/u74UWtux+kbVs9n0ONb17XNcu/HPC6CqyGHlsuI+zCNUmUPlN9wxdqlxgb/1j3NE
-         EZX60CvK3IQUsHga0+iwdUUK03oHhXmGTlSxzmupamIKz2UEmGsKRzZefHTeNwhHbZeN
-         56zO1/D5mtkUaR1YvmK72pog+/3uaeOdRQUsI9g+WIMmds1dYCLqPhQoGA9ZiJJFwSvu
-         fsZg==
-X-Gm-Message-State: AOAM532gNBR/b9bpipp5FEFcTrNQJHnRrBHIU2YDTaUEp1Qf7kQt2E1r
-        SBm+IN84ACuojGJb/LqTAw==
-X-Google-Smtp-Source: ABdhPJwCOlKuuRdR95kemB3u4Pg0nnwc98yxBEAvptV6v0cIeDEJeZgovpBvppTduCWTCRcJMHui2w==
-X-Received: by 2002:aca:d603:: with SMTP id n3mr8740640oig.17.1624049414979;
-        Fri, 18 Jun 2021 13:50:14 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id o20sm2187997otl.2.2021.06.18.13.50.12
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qLy32YRyoZ5czfNPvX937n5z68mS5Dt/8atvgtKFvwQ=;
+        b=iRk7kuFG+LW8wXlV8CSJdmjRqjiLzywXgie//fsUBIwA/LHz+Lp6LwOD7xP9AjY2Eg
+         vYWpZzrb7DlRn0RB44x/VJUeLIcEp0CO9xkxz+2+k12/pTCu/HYKCEsLKUHWd0uONLhN
+         JUTk8e4rzhy3+kaaTSRsa/1/AeklaZM3SNEGgQkabH3OyH3izcdFjdsRVzdTkCgPaZil
+         Vgqc3mc5TfmhWGWjSgmx7MYeVLLJTTa1S56kIN0pNNQ/sZU8EYfj2pGveXXeIrYlI+Kx
+         n4wOIn/I0ZW0AKBcKW/MXRaHL9jwfsKXizXtCoAmZ/d+BnoaGY2iyBbtdwnqFOpB67oN
+         t47A==
+X-Gm-Message-State: AOAM531KlNCmbI3K/yX3znwUjWzbMKQTlaoSkOOlJcm7o9TJAQVL72Rk
+        tblCSRFiTpYWEPM7pjbmmzjHvA==
+X-Google-Smtp-Source: ABdhPJwvWUKDVSAk9UEA2yUXUvp1Q8PkiE4s34baCHlp7pzILntItWvnWGhPX6sz0+OyVzlYwdJe+g==
+X-Received: by 2002:adf:ee52:: with SMTP id w18mr14828957wro.37.1624049740671;
+        Fri, 18 Jun 2021 13:55:40 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id j12sm9745476wrt.69.2021.06.18.13.55.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 13:50:14 -0700 (PDT)
-Received: (nullmailer pid 2851931 invoked by uid 1000);
-        Fri, 18 Jun 2021 20:50:11 -0000
-Date:   Fri, 18 Jun 2021 14:50:11 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: qcom: pas: Add SC8180X
- adsp, cdsp and mpss
-Message-ID: <20210618205011.GA2851898@robh.at.kernel.org>
-References: <20210608174944.2045215-1-bjorn.andersson@linaro.org>
+        Fri, 18 Jun 2021 13:55:40 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     arnd@arndb.de, linus.walleij@linaro.org, olof@lixom.net,
+        robh+dt@kernel.org, soc@kernel.org, ulli.kroll@googlemail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v2 0/5] ARM: gemini: add two more board
+Date:   Fri, 18 Jun 2021 20:55:28 +0000
+Message-Id: <20210618205533.1527384-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210608174944.2045215-1-bjorn.andersson@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Jun 2021 10:49:43 -0700, Bjorn Andersson wrote:
-> Add compatibles for the Audio DSP, Compute DSP and Modem subsystem found
-> in the Qualcomm SC8180x to the Peripheral Authentication Service
-> remoteproc binding.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-> 
-> Changes since v1:
-> - "Rebased" on yaml conversion
-> 
->  .../devicetree/bindings/remoteproc/qcom,adsp.yaml     | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
+I have two boards with a SL3516 SoC. Both are NAS box.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Changes since v1:
+- ssi1328 use now redboot-fis partitions
+- added pinctrl as asked by Linus Walleij
+
+Corentin Labbe (5):
+  ARM: dts: gemini: add labels for USB, IDE, flash and ethernet
+  dt-bindings: add vendor prefix for edimax
+  dt-bindings: add vendor prefix for ssi
+  ARM: gemini: add device tree for edimax NS2502
+  ARM: gemini: add device tree for ssi1328
+
+ .../devicetree/bindings/vendor-prefixes.yaml  |   4 +
+ arch/arm/boot/dts/Makefile                    |   2 +
+ arch/arm/boot/dts/gemini-ns2502.dts           | 148 ++++++++++++++++++
+ arch/arm/boot/dts/gemini-ssi1328.dts          | 138 ++++++++++++++++
+ arch/arm/boot/dts/gemini.dtsi                 |  12 +-
+ 5 files changed, 298 insertions(+), 6 deletions(-)
+ create mode 100644 arch/arm/boot/dts/gemini-ns2502.dts
+ create mode 100644 arch/arm/boot/dts/gemini-ssi1328.dts
+
+-- 
+2.31.1
+
