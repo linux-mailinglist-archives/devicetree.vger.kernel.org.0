@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3866B3AD393
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 22:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E7D13AD397
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 22:26:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232690AbhFRU1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 16:27:53 -0400
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:36709 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230430AbhFRU1w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 16:27:52 -0400
-Received: by mail-oi1-f180.google.com with SMTP id r16so11887359oiw.3;
-        Fri, 18 Jun 2021 13:25:42 -0700 (PDT)
+        id S233571AbhFRU3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 16:29:05 -0400
+Received: from mail-oo1-f41.google.com ([209.85.161.41]:45867 "EHLO
+        mail-oo1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230430AbhFRU3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 16:29:04 -0400
+Received: by mail-oo1-f41.google.com with SMTP id q20-20020a4a6c140000b029024915d1bd7cso2741793ooc.12;
+        Fri, 18 Jun 2021 13:26:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=WVZFxq0uwab/s1SzBZaz7rJYhU+TMH4wQVGntZpYwYw=;
-        b=T5ObHyUloSllXMRsOZg8bOOQ6+1Xg6YVC3e90a0taQeYgj7CuAbyY61IVnPGJeTDPA
-         bWMjdn4I0xLJUBkOa97omtfwPeihAskdBB1KNtlXuMOTP+ehraFA+lXCC8z1hpBSjLMD
-         er1OfitWK96VPNtntwzoEpBCXNPnECAzhOi8Wq1Luh845+9qmsjIWAniULA5ypUfutpb
-         WWE1iqWfo2R0k4icuacEwvE1AXqdVnrUoLlxrqAfyzX+cxHeQB2nmeUJzbw1b3K9edMB
-         jB3jZz096ktlNMmOFdhyhOKrun6gSpVAB4XUNcxfWMK+WrK+Be5iAbGyFkxzmA4FnQOw
-         v1ZQ==
-X-Gm-Message-State: AOAM5301Fr/bpa7np/32y9tChoBvegqO9aWYn5wT5es3Vgakxztsz37A
-        QyB40wHEdZUZQvI4nYr/sw==
-X-Google-Smtp-Source: ABdhPJxFKFsQb927hYOCKVZGkpQgWv9cj77tBwO/Ytkk9skPRgKEjJO81E0tgzUBO0Djq6r6Drc1ew==
-X-Received: by 2002:a05:6808:141:: with SMTP id h1mr8789395oie.15.1624047941887;
-        Fri, 18 Jun 2021 13:25:41 -0700 (PDT)
+        bh=JMDE9d2OpIzJqsllrrrtxy56jEAPV/w1C8zIX1Y/20U=;
+        b=QklpDEdKdyf2CNZz5+orHl7+bXf2cYcMbvb3uZ2l1lCec/pCS8uITYKqpSCj55luSC
+         /2eESG6DlSTcTG9pOqqrkd7sydIUxjetyunUtUprCCb1AG5wy+1jRcRtWs5LZ4Wj6cVN
+         0XMdHQgSHM44n/F5SGkINOUErpoaaFye2vIYi6HznuyPcXRW7545HW+Nf962+S9Rci9f
+         WD5+nj/+eQcA8Wb56gxZofuP6xYu/pKfIah27U0ZOJ4T527ngblIlGMX8URYBzlXq/Ak
+         TFmstzByGU+7wkDc7iC9bhQbp0dr2MKS9c3VrDD+QC00AR8sdMJPD31t9OKH+v/6GjcY
+         7SNg==
+X-Gm-Message-State: AOAM532+yd3G4kj0/AjBPb8cvC7/rTe7WswT5gOx18NqVNBAIpCUlu7x
+        5OADkLUX9CrBFG5w+oPQzg==
+X-Google-Smtp-Source: ABdhPJyytXcuNEdcTO3D6XaXoeBf5Sq7GTsJY431hfKsxXxjTTIv8i5IC/1wfRtxizuae9jmNnDJGQ==
+X-Received: by 2002:a4a:5246:: with SMTP id d67mr10453244oob.33.1624048014122;
+        Fri, 18 Jun 2021 13:26:54 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p65sm2037712oop.0.2021.06.18.13.25.37
+        by smtp.gmail.com with ESMTPSA id l18sm2194412otr.50.2021.06.18.13.26.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 13:25:41 -0700 (PDT)
-Received: (nullmailer pid 2819508 invoked by uid 1000);
-        Fri, 18 Jun 2021 20:25:35 -0000
-Date:   Fri, 18 Jun 2021 14:25:35 -0600
+        Fri, 18 Jun 2021 13:26:53 -0700 (PDT)
+Received: (nullmailer pid 2821367 invoked by uid 1000);
+        Fri, 18 Jun 2021 20:26:52 -0000
+Date:   Fri, 18 Jun 2021 14:26:52 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     ulf.hansson@linaro.org, rjw@rjwysocki.net,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org, ohad@wizery.com,
-        mathieu.poirier@linaro.org, rishabhb@codeaurora.org,
-        dianders@chromium.org, sidgup@codeaurora.org, agross@kernel.org,
-        devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 12/13] dt-bindings: msm/dp: Remove aoss-qmp header
-Message-ID: <20210618202535.GA2819457@robh.at.kernel.org>
-References: <1623080372-13521-1-git-send-email-sibis@codeaurora.org>
- <1623080372-13521-13-git-send-email-sibis@codeaurora.org>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-clk@vger.kernel.org, Adam Ford <aford173@gmail.com>,
+        devicetree@vger.kernel.org, Luca Ceresoli <luca@lucaceresoli.net>
+Subject: Re: [PATCH] dt-bindings: clk: vc5: Fix example
+Message-ID: <20210618202652.GA2821316@robh.at.kernel.org>
+References: <20210607190546.2616259-1-sean.anderson@seco.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1623080372-13521-13-git-send-email-sibis@codeaurora.org>
+In-Reply-To: <20210607190546.2616259-1-sean.anderson@seco.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Jun 2021 21:09:31 +0530, Sibi Sankar wrote:
-> Remove the unused aoss-qmp header from the list of includes.
+On Mon, 07 Jun 2021 15:05:46 -0400, Sean Anderson wrote:
+> The example properties do not match the binding. Fix them, and prohibit
+> undocumented properties in clock nodes to prevent this from happening in
+> the future.
 > 
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> Fixes: 766e1b8608bf ("dt-bindings: clk: versaclock5: convert to yaml")
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
 > ---
->  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 1 -
->  1 file changed, 1 deletion(-)
+> 
+>  .../devicetree/bindings/clock/idt,versaclock5.yaml         | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
