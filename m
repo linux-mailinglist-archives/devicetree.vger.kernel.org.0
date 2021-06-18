@@ -2,102 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 030E13ACD6C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 16:22:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AE863ACD95
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 16:32:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234507AbhFROYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 10:24:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43782 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234503AbhFROYL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 10:24:11 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 453E5C061574;
-        Fri, 18 Jun 2021 07:22:02 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id f16-20020a05600c1550b02901b00c1be4abso8835854wmg.2;
-        Fri, 18 Jun 2021 07:22:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/biPioDVeS+IYbxYtzg7Tz6IEPtjr5QXhP/AdQlfO84=;
-        b=P4/4h2b8qp4XU9blbA89ELz8vd5WafBNDUFlcZ1rj6cknCBtbZrc20qCrXCo/NAQ+0
-         IzaZPkavTJrdzjocPjtmceGDDcolEMj/M7faIc99CL3xJ2dRr4YYi6ogQ2e+YlQw54oQ
-         413krdch49fpbem9cgIxN7ox0jAl2jZnuQmVBGp5AoW2CX3wrGSkCg8iola01SIFn/ch
-         D5swQzJBZx72+6P4nMYOUmQmVWCTlrFylwfmtWCKGiK3Do/WTPNIIlGHmXOiy0fNKp4R
-         9ECjXAHpoNYBRlYjnvans2huDbtNpNkcEC4/VIdWqzKzDeOIDWjiqrgACJhaO98P5riJ
-         TLiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/biPioDVeS+IYbxYtzg7Tz6IEPtjr5QXhP/AdQlfO84=;
-        b=XJ2p83RTVkmVNRMXIa83iH0XqjxfALplr5C4nXspE8PX/imZDXJIGa/82vwhgteygn
-         r705NmUy904ebkFY6MsaNnI9cnsDYNkVAPQiy6STl9DwCyhcKZEbPEeWiYipGzLCstPz
-         j82gsyDffOoEAWjeGLMVeDi8avzivFxD/56bxiXgQWCpQ3bkI1xOtgNI71AorxwPsI2u
-         qRq9sD+qlgOf1OyhGb3CuiqMl/jqmos81RlsEiFWyvMxjWGrlR+iPPrbF7wmbmpIAl1o
-         BHU+Qe2WuQecQN/mhKYnwLgg91Qa2LXgLIX+DfWnQupP0PjT0tbqx+ZkBJkcM7GiXPQW
-         ButQ==
-X-Gm-Message-State: AOAM531A2/5RBUqUOwx5emZlRjCpdTz8tSi06Zib1NMQcPG83rAxRwAk
-        7iCXBNFxZSVWrlxHYMntfjvzgxNW4tVX1A==
-X-Google-Smtp-Source: ABdhPJyKstre3DomrgnI/Zr73Kb9mawHY+FIwq0XyXEcaToktorCgbIDII2H5TgRhE1qLHB74af1bw==
-X-Received: by 2002:a1c:5413:: with SMTP id i19mr12213783wmb.12.1624026120589;
-        Fri, 18 Jun 2021 07:22:00 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id x18sm8583826wrw.19.2021.06.18.07.21.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Jun 2021 07:22:00 -0700 (PDT)
-Subject: Re: arm64: dts: mt8195: Add Mediatek SoC MT8195 device nodes
-To:     Tinghan Shen <tinghan.shen@mediatek.com>, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        srv_heupstream@mediatek.com, seiya.wang@mediatek.com,
-        wenst@google.com, Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20210615173233.26682-1-tinghan.shen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <b1ee64c4-eeb6-a664-ebcd-4a0cc62e2ded@gmail.com>
-Date:   Fri, 18 Jun 2021 16:21:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+        id S234552AbhFROe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 10:34:27 -0400
+Received: from verein.lst.de ([213.95.11.211]:35190 "EHLO verein.lst.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233642AbhFROe1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Jun 2021 10:34:27 -0400
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id 64B2C68D08; Fri, 18 Jun 2021 16:32:12 +0200 (CEST)
+Date:   Fri, 18 Jun 2021 16:32:12 +0200
+From:   Christoph Hellwig <hch@lst.de>
+To:     Tom Lendacky <thomas.lendacky@amd.com>
+Cc:     Claire Chang <tientzu@chromium.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
+        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
+        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
+        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
+        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
+Subject: Re: [PATCH v13 01/12] swiotlb: Refactor swiotlb init functions
+Message-ID: <20210618143212.GA19284@lst.de>
+References: <20210617062635.1660944-1-tientzu@chromium.org> <20210617062635.1660944-2-tientzu@chromium.org> <alpine.DEB.2.21.2106171434480.24906@sstabellini-ThinkPad-T480s> <CALiNf29SJ0jXirWVDhJw4BUNvkjUeGPyGNJK9m8c30OPX41=5Q@mail.gmail.com> <741a34cc-547c-984d-8af4-2f309880acfa@amd.com>
 MIME-Version: 1.0
-In-Reply-To: <20210615173233.26682-1-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <741a34cc-547c-984d-8af4-2f309880acfa@amd.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tnghan,
+On Fri, Jun 18, 2021 at 09:09:17AM -0500, Tom Lendacky wrote:
+> > swiotlb_init_with_tbl uses memblock_alloc to allocate the io_tlb_mem
+> > and memblock_alloc[1] will do memset in memblock_alloc_try_nid[2], so
+> > swiotlb_init_with_tbl is also good.
+> > I'm happy to add the memset in swiotlb_init_io_tlb_mem if you think
+> > it's clearer and safer.
+> 
+> On x86, if the memset is done before set_memory_decrypted() and memory
+> encryption is active, then the memory will look like ciphertext afterwards
+> and not be zeroes. If zeroed memory is required, then a memset must be
+> done after the set_memory_decrypted() calls.
 
-It looks like as if you send a whole bunch of device tree files which don't have
-any binding description yet.
-
-Can you please filter and only send these patches that actually have a binding
-entry? That would make my life much easier.
-
-Apart from that it would be good if you could ask internally to get some advice
-how to improve Signed-off-by tags (I spotted at least one patch where yours was
-missing) or how to improve commit messages.
-
-Thanks!
-Matthias
-
-On 15/06/2021 19:32, Tinghan Shen wrote:
-> This series is a collection of device nodes for Mediatek SoC MT8195 and
-> depends on patches[1][2][3].
-> 
-> The dependency list is not complete.
-> some dependencies are still under working.
-> 
-> [1] arm64: dts: Add Mediatek SoC MT8195 and evaluation board dts and Makefile
->     https://patchwork.kernel.org/project/linux-mediatek/patch/20210601075350.31515-2-seiya.wang@mediatek.com/
-> 
-> [2] dt-bindings: power: Add MT8195 power domains
->     https://patchwork.kernel.org/project/linux-mediatek/patch/20210610023614.5375-3-chun-jie.chen@mediatek.com/
-> 
-> [3] dt-bindings: pinctrl: mt8195: add pinctrl file and binding document
->     https://patchwork.kernel.org/project/linux-mediatek/patch/20210413055702.27535-2-zhiyong.tao@mediatek.com/
-> 
-> 
+Which should be fine - we don't care that the memory is cleared to 0,
+just that it doesn't leak other data.  Maybe a comment would be useful,
+though,
