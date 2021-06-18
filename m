@@ -2,100 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E17EE3AC111
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 04:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AEBF3AC150
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 05:28:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231691AbhFRC4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 22:56:08 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:39824 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231651AbhFRC4I (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Jun 2021 22:56:08 -0400
-Received: from localhost.localdomain (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxv0CzCsxgVnITAA--.632S5;
-        Fri, 18 Jun 2021 10:53:47 +0800 (CST)
-From:   Qing Zhang <zhangqing@loongson.cn>
-To:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Huacai Chen <chenhc@lemote.com>, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: [PATCH 4/4] dt-bindings: dwmac: Add bindings for new Loongson SoC and bridge chip
-Date:   Fri, 18 Jun 2021 10:53:37 +0800
-Message-Id: <20210618025337.5705-4-zhangqing@loongson.cn>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210618025337.5705-1-zhangqing@loongson.cn>
-References: <20210618025337.5705-1-zhangqing@loongson.cn>
+        id S231960AbhFRDbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 23:31:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38812 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230484AbhFRDbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 23:31:03 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0940C061574;
+        Thu, 17 Jun 2021 20:28:54 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id r16so12001070ljk.9;
+        Thu, 17 Jun 2021 20:28:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=KU0XIwJ0XXrc92jT9YLWiEwSpSoGcMOVK76Rj0AjqYE=;
+        b=p50ZkJy8Px6CQI47WEA9P7w5S12ZlUR4qZMAJ1jBHmahMP0ijF98QnO18pKdc/w/3Y
+         9A+gh/mOFAG0E1z0oq/zuCPwDZwpjjjBknFg4qWs0b6rXGDpj99bnPIrxTs/gBANuxoT
+         DsiC7qpOOqZbESsfjuIuCeWRWOb4Wt50ODKbJHQzmoMHbHF1qdzLsiN73zRHh0vpTh0S
+         qklC/oQbKwBfuV4VobOIB4PanGDU4dh1tG/sMo+jQpKaaQwjCXTGGSqNl8fqSEGDeICa
+         KqJn2Xz2P3wmkcOwlUSkwXVzJZ/0Xnjz4TNXM4V+heS+gvT6nzJcZCo1v3MQ+GWhj13F
+         pp7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=KU0XIwJ0XXrc92jT9YLWiEwSpSoGcMOVK76Rj0AjqYE=;
+        b=uKIaE2+H2oN7ZHBujdy5c1QCkcv/Y7GPW+Gt/FfdFnWzt7fPfv7ycITDEkbgYZiq8b
+         0XADp0e8OB+n+wMRRNpgTtnaSGxu39MFxHoiNeNSHaCErFCB6Mv8ibNVqCn4yV+7SUnj
+         sX0CrdVvYBu5IjiZpdQZySm7mJ3L5YoDjWfsHGpXdzYfKVwIQarFWD46nykOykMMvqVt
+         ILiloKmDjUK4oK03+M+mfGBO1UCfLgB2Zrg4OJtA90eASNjUDt/VBM3dxce3k78bl3S0
+         kA6n9WUEhZQY5MgmRVojOopcsIK1i2YYY23s5ig9vOaPO5+VJ4cTYwxI7gdWZTbdQv/z
+         T+Ig==
+X-Gm-Message-State: AOAM531T6PpS6OK/lQ8hJ1Wl6G/BVw97CnMCKaPm7s6rJPWXXB+TF8tx
+        LbViVHjAklNAG058yd/hqnUUqSeJxW8Kw4aWyhXADbOX
+X-Google-Smtp-Source: ABdhPJw9OuwMCESWUrDgrF6XLH+4Rsb+54yvZX5ftkDs5+pzB/f5YhbOu4aeL+7uEtI5hxmTOeAQPVQBsov8IFIUCCc=
+X-Received: by 2002:a2e:8542:: with SMTP id u2mr7580839ljj.141.1623986932876;
+ Thu, 17 Jun 2021 20:28:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf9Dxv0CzCsxgVnITAA--.632S5
-X-Coremail-Antispam: 1UD129KBjvJXoW7WrWktry3Ar1UZrWrJrW3trb_yoW8JF4xpr
-        sxCFn3Kr1FyF47Zwn5tF1rCrW7Xr95Jr4xJFs7t3WIqF1kJa1vgw4Fgws8JFW5ur4xZFW2
-        vryS9F4YgFy0kw7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUPvb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
-        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI
-        8067AKxVWUWwA2048vs2IY020Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF
-        64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8IcV
-        CY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280
-        aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzV
-        Aqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWUtwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S
-        6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7Mx
-        kIecxEwVAFwVW8JwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s02
-        6c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw
-        0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvE
-        c7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67
-        AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuY
-        vjxUcYiiDUUUU
-X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
+References: <1622616875-22740-1-git-send-email-u0084500@gmail.com>
+ <20210611201643.GA1583875@robh.at.kernel.org> <CADiBU39Prz99ZLtkYdcM9XDQsd0nKKeiEGjW3wq=u75JGjwX=g@mail.gmail.com>
+ <20210617162919.GH5067@sirena.org.uk>
+In-Reply-To: <20210617162919.GH5067@sirena.org.uk>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Fri, 18 Jun 2021 11:28:41 +0800
+Message-ID: <CADiBU39-HA518TP=7_i8bYQWfhAUK_pj+Gn0O6rTKEZxq6GR1A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] regulator: mt6360: Add optional mediatek.power-off-sequence
+ in bindings document
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, lgirdwood@gmail.com,
+        matthias.bgg@gmail.com, gene_chen@richtek.com,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, cy_huang <cy_huang@richtek.com>,
+        gene.chen.richtek@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the dwmac bindings for the Loongson-2K SoC and the LS7A
-bridge chip.
+Mark Brown <broonie@kernel.org> =E6=96=BC 2021=E5=B9=B46=E6=9C=8818=E6=97=
+=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=8812:29=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Mon, Jun 14, 2021 at 11:04:01PM +0800, ChiYuan Huang wrote:
+> > Rob Herring <robh@kernel.org> =E6=96=BC 2021=E5=B9=B46=E6=9C=8812=E6=97=
+=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=884:16=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> > > > Originally, we think it must write in platform dependent code like =
+as bootloader.
+> > > > But after the evaluation, it must write only when system normal HAL=
+T or POWER_OFF.
+> > > > For the other cases, just follow HW immediate off by default.
+>
+> > > Wouldn't this be handled by PSCI implementation?
+>
+> > No, the current application default on powers buck1/buck2/ldo7/ldo6
+> > are for Dram power.
+> > It's not the soc core power. It seems not appropriate  to implement
+> > like as PSCI.
+> > MT6360 play the role for the subpmic in the SOC application reference d=
+esign.
+>
+> If this is part of the overall system power off that seems like it fits
+> well enough into what PSCI is doing - it's got operations like
+> SYSTEM_OFF which talk about the system as a whole.
 
-Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
----
- Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 2edd8bea993e..9631bbbb6f69 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -56,6 +56,8 @@ properties:
-         - amlogic,meson8m2-dwmac
-         - amlogic,meson-gxbb-dwmac
-         - amlogic,meson-axg-dwmac
-+        - loongson,ls2k-dwmac
-+        - loongson,ls7a-dwmac
-         - rockchip,px30-gmac
-         - rockchip,rk3128-gmac
-         - rockchip,rk3228-gmac
-@@ -310,6 +312,8 @@ allOf:
-               - allwinner,sun8i-r40-emac
-               - allwinner,sun8i-v3s-emac
-               - allwinner,sun50i-a64-emac
-+              - loongson,ls2k-dwmac
-+              - loongson,ls7a-dwmac
-               - snps,dwxgmac
-               - snps,dwxgmac-2.10
-               - st,spear600-gmac
-@@ -353,6 +357,8 @@ allOf:
-               - allwinner,sun8i-r40-emac
-               - allwinner,sun8i-v3s-emac
-               - allwinner,sun50i-a64-emac
-+              - loongson,ls2k-dwmac
-+              - loongson,ls7a-dwmac
-               - snps,dwmac-4.00
-               - snps,dwmac-4.10a
-               - snps,dwmac-4.20a
--- 
-2.31.0
-
+Thanks, I'll check and survey the PSCI about the SYSTEM_OFF.
+I think it may work.
