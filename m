@@ -2,70 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC3543ACB8D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 15:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05D653ACB9A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 15:03:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230471AbhFRNDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 09:03:06 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:44350 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230315AbhFRNDF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 09:03:05 -0400
-Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:4cb:a870:141f:c87a:873e:7b6f])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id D2ED41F448BD;
-        Fri, 18 Jun 2021 14:00:54 +0100 (BST)
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     will@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
-        xxm@rock-chips.com, robin.murphy@arm.com, joro@8bytes.org,
-        dan.carpenter@oracle.com
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v2] iommu: rockchip: Fix physical address decoding
-Date:   Fri, 18 Jun 2021 15:00:47 +0200
-Message-Id: <20210618130047.547986-1-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.25.1
+        id S232271AbhFRNFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 09:05:01 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:45088 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231184AbhFRNE5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Jun 2021 09:04:57 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1luE8u-0001y0-3W; Fri, 18 Jun 2021 15:02:40 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl
+Cc:     ezequiel@collabora.com, dafna.hirschfeld@collabora.com,
+        helen.koike@collabora.com, Laurent.pinchart@ideasonboard.com,
+        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+        heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v6 0/7] rkisp1 support for px30
+Date:   Fri, 18 Jun 2021 15:02:28 +0200
+Message-Id: <20210618130238.4171196-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Restore bits 39 to 32 at correct position.
-It reverses the operation done in rk_dma_addr_dte_v2().
+This series adds support for the slightly different v12
+variant of the ISP used for example in the px30 soc.
 
-Fixes: c55356c534aa ("iommu: rockchip: Add support for iommu v2")
+changes in v6:
+- camera compatible in px30 binding example (Rob's bot)
+- move a last wrong positionen constant define (a v12 addition
+  should not be added in the v10-prefix change) (Dafna)
+- rename size to clk_size in match-data struct (Dafna)
 
-Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
----
- drivers/iommu/rockchip-iommu.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+changes in v5:
+- handle interrupt-names as conditional required property (Dafna)
+- add second example for showing interrupt-names (Dafna)
 
-diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
-index 94b9d8e5b9a40..9febfb7f3025b 100644
---- a/drivers/iommu/rockchip-iommu.c
-+++ b/drivers/iommu/rockchip-iommu.c
-@@ -544,12 +544,14 @@ static inline u32 rk_dma_addr_dte(dma_addr_t dt_dma)
- }
- 
- #define DT_HI_MASK GENMASK_ULL(39, 32)
-+#define DTE_BASE_HI_MASK GENMASK(11, 4)
- #define DT_SHIFT   28
- 
- static inline phys_addr_t rk_dte_addr_phys_v2(u32 addr)
- {
--	return (phys_addr_t)(addr & RK_DTE_PT_ADDRESS_MASK) |
--	       ((addr & DT_HI_MASK) << DT_SHIFT);
-+	u64 addr64 = addr;
-+	return (phys_addr_t)(addr64 & RK_DTE_PT_ADDRESS_MASK) |
-+	       ((addr64 & DTE_BASE_HI_MASK) << DT_SHIFT);
- }
- 
- static inline u32 rk_dma_addr_dte_v2(dma_addr_t dt_dma)
+changes in v4:
+- clean up multi-irq case (Dafna)
+  Now each variant can have a list of interrupts
+  and their respective handlers, with or without
+  interrupt-names
+
+changes in v3:
+- add necessary binding additions
+- fix pclk naming in binding
+- move v12 clk_ctrl register bits to v12 addition patch
+- fix rebase artefact with hst_enable
+
+changes in v2 (from rfc):
+- split out phy patch into a separate series
+- drop dts patches for now
+- split v12 addition and v10 prefixes into separate patches
+  to enable easier review (Dafna)
+- remove {stats,params}_config structs, we can just use the
+  correct constant (Dafna)
+- adapt to styling comments from Dafna and Helen
+- add patch to remove the unused irq variable in struct rkisp
+
+Heiko Stuebner (10):
+  media: rockchip: rkisp1: remove unused irq variable
+  dt-bindings: media: rkisp1: fix pclk clock-name
+  dt-bindings: media: rkisp1: document different irq possibilities
+  media: rockchip: rkisp1: allow separate interrupts
+  media: rockchip: rkisp1: make some isp-param functions variable
+  media: rockchip: rkisp1: make some isp-stats functions variable
+  media: rockchip: rkisp1: add prefixes for v10 specific parts
+  media: rockchip: rkisp1: add support for v12 isp variants
+  dt-bindings: media: rkisp1: document px30 isp compatible
+  media: rockchip: rkisp1: add support for px30 isp version
+
+ .../bindings/media/rockchip-isp1.yaml         | 114 +++-
+ .../platform/rockchip/rkisp1/rkisp1-capture.c |   9 +-
+ .../platform/rockchip/rkisp1/rkisp1-common.h  |  44 +-
+ .../platform/rockchip/rkisp1/rkisp1-dev.c     |  81 ++-
+ .../platform/rockchip/rkisp1/rkisp1-isp.c     |  29 +-
+ .../platform/rockchip/rkisp1/rkisp1-params.c  | 557 ++++++++++++++----
+ .../platform/rockchip/rkisp1/rkisp1-regs.h    | 406 ++++++++-----
+ .../platform/rockchip/rkisp1/rkisp1-stats.c   | 107 +++-
+ 8 files changed, 1050 insertions(+), 297 deletions(-)
+
 -- 
-2.25.1
+2.29.2
 
