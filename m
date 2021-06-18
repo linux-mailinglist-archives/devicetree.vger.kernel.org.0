@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D76C23AD49A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 23:53:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6BD93AD4A1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 23:55:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234694AbhFRVz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 17:55:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32996 "EHLO
+        id S234717AbhFRV5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 17:57:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234687AbhFRVzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 17:55:24 -0400
-Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6B7AC061767
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 14:53:14 -0700 (PDT)
-Received: by mail-qt1-x833.google.com with SMTP id o20so8665198qtr.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 14:53:14 -0700 (PDT)
+        with ESMTP id S234716AbhFRV5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 17:57:31 -0400
+Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA05C061767
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 14:55:21 -0700 (PDT)
+Received: by mail-qk1-x730.google.com with SMTP id q190so11833297qkd.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 14:55:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tlfC7guzHnGUhI3CYP6SsQ3L2F2bpnWxpAP26B/r4lE=;
-        b=c1PJM9IMsmEV7WTgP5glA28gcryVt11Yy9rOy4sMWcHpuAuYctnhMoRA/TnndaEXu9
-         Rbcd4FhRPcC5JhriCLMuoqQm3ez0POjKf7G/OaRDnad4p2XwpEGRFybzjb5qAh+5I9wx
-         V9zRDm2/O+uNQtirG2wWc6MwxGhSbuqdaBDhxZUayBY84NvbB1/47euOL7Jy8HDPhdrU
-         joJ/K5EijUK5LXR60pm/3S8eJNDlO93A/vTG9eNu2UIt/j+Wbt51cqiXirPWCDO08Wts
-         pJzlIn37eTLTSKfOrUKBIPiWrVe0DbvU3D0cueSAOYhR4zhKuHuIC1ulTai/nATOxii4
-         iAsQ==
+        bh=nF8NeUljq4C2NCfttpjUfqcwd2814FwpZLu1UqPsH7c=;
+        b=w5qTdpCgve7Txzi1+CWpuew+k/v1jhh9E4oMXi4gNZ7mdergFslhDKw4en5qhwJo2k
+         UvvXpW6XVp1bbPdnSFGKZORMEINM4pe+H2WUJ0jUJoiqNi2Xv08nDy4RCM6RUfPu0vsN
+         2FF5LMg7ekh6TmR28Aa40v2U7GWH4N+rUglA9fBBt8ace/AJtVDOOVmEZMmzdSenbaIn
+         LaBKJhpvhchz9esn2bRC0Z82LNbK7jdc8bQ0vg9O6piwnEJcJJTapHhljEr73lIROT9A
+         pwEFAYcMsNnJjt+B0mbWQiu3hqe+4EtI+iavkilWWdiyFRzltqqpfetyhLUCcIoGaO85
+         6SKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=tlfC7guzHnGUhI3CYP6SsQ3L2F2bpnWxpAP26B/r4lE=;
-        b=V2CGON9xrvXHRPNhLEW2he63j+uHyswhWQ2J4cYoiJxgGzebUO3INHXLfquUlfBO1F
-         ImpfxES9+dzms/bxtjxl8ue8EcsTONnFCbhpae7M7kvnK+rz7bs3GkDAzMWZCXG0kR8H
-         4EkBlyuSEDsrR40mqiw07LRYXWngQEpfaEUsy4NgDjdBcC95qJt5DOkUJr19MgoHGRhl
-         YB0BknDlRDmvRS4fUXUuNC7r5opD+HkkVyfBGVKvNVfG4QEf+ilZd277hkh6/6KYDmnm
-         RhcwM0tm/Y5UTrV+RNZ+0Yh+kcsbpAp6e2wJZF69G1YVuiMz+JLDO9dK4R3OgjoL4Tar
-         /4EA==
-X-Gm-Message-State: AOAM5309X0C5WTUfeOuXSkm1neuOG8ufqxoeBgX/faEch3hjiYG2o6v2
-        nzSRUJzRwR8CQZiiah2wdaEiJKfDOsQMpg==
-X-Google-Smtp-Source: ABdhPJwE91wGSAlfUJ9FU4CUkiG2NiKNvaCkaB0RyBPbh6dTpxuRmWrOGkt55gHzGx6RZk5nygbmMQ==
-X-Received: by 2002:a05:622a:40b:: with SMTP id n11mr12438838qtx.60.1624053193550;
-        Fri, 18 Jun 2021 14:53:13 -0700 (PDT)
+        bh=nF8NeUljq4C2NCfttpjUfqcwd2814FwpZLu1UqPsH7c=;
+        b=QcGp6fLscbqdZm2kBLycB0o118pqU2GbwpmzEbP+6PiYn7B1jvymMVx+0SXS4+dNh3
+         JVxZpDgEh29AmCfW+M8BOVGQXm0f939GjURznBruhaz0olLzwkqzjAsOLAZPPbA+uQzv
+         Sub6KuTQ3xh/Lpi9eO79qw2XwZsPLkmysbl9OAZmJ/StdfzqQDJBf+QiYxHjdTg1h4Kc
+         YuKnAd/nJB47z4Nxws4ZCvSDSA55Elj4fWzpMvyIJhQbYAWpzV18MFFnmscZFEf2mXmq
+         9eUHDNSz0NyGRrjlVyVZ+FJ91mBsJV/vBLCv0GZdNv424719MJCSSUjlT7DoxG7rjx87
+         V6FA==
+X-Gm-Message-State: AOAM531IU2DS7K5RorJrnU/et/aIXEIOLXYwRGvSGP1d1A9BwQJTbVgU
+        CpHJexb4fovItJMW0ZgViu1Gr/zuAZI01A==
+X-Google-Smtp-Source: ABdhPJy93brvNdosgkB7q9Q/j9iGHd8JELUI0RZqZgV2RWevhaynBKYXWCQRtDyMrsZ0FX1b/PgP+w==
+X-Received: by 2002:a05:620a:1a88:: with SMTP id bl8mr10936410qkb.480.1624053320398;
+        Fri, 18 Jun 2021 14:55:20 -0700 (PDT)
 Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id w8sm4761888qkp.136.2021.06.18.14.53.12
+        by smtp.gmail.com with ESMTPSA id m3sm2455132qkk.27.2021.06.18.14.55.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Jun 2021 14:53:12 -0700 (PDT)
-Subject: Re: [PATCH 2/5] thermal: qcom: Add support for LMh driver
+        Fri, 18 Jun 2021 14:55:20 -0700 (PDT)
+Subject: Re: [PATCH 3/5] cpufreq: qcom-cpufreq-hw: Add dcvs interrupt support
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     agross@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
         viresh.kumar@linaro.org, rjw@rjwysocki.net, robh+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20210608222926.2707768-1-thara.gopinath@linaro.org>
- <20210608222926.2707768-3-thara.gopinath@linaro.org>
- <YMfBtSap7fR3rdku@builder.lan>
- <4996de55-daa9-18a4-3c03-cf194d85500e@linaro.org>
- <YMzd5OEhG4PYYv+E@builder.lan>
+ <20210608222926.2707768-4-thara.gopinath@linaro.org>
+ <YMzjBvkbITbSIzwf@builder.lan>
 From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <be5f133e-5fae-9a61-3cf5-7e611a17bc77@linaro.org>
-Date:   Fri, 18 Jun 2021 17:53:11 -0400
+Message-ID: <4e6f96c0-5f9c-bd35-7b6a-95ac6e907dab@linaro.org>
+Date:   Fri, 18 Jun 2021 17:55:18 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <YMzd5OEhG4PYYv+E@builder.lan>
+In-Reply-To: <YMzjBvkbITbSIzwf@builder.lan>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -75,48 +73,82 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 6/18/21 1:54 PM, Bjorn Andersson wrote:
-> On Mon 14 Jun 20:38 CDT 2021, Thara Gopinath wrote:
->> On 6/14/21 4:53 PM, Bjorn Andersson wrote:
->>> On Tue 08 Jun 17:29 CDT 2021, Thara Gopinath wrote:
->>>> diff --git a/drivers/thermal/qcom/Makefile b/drivers/thermal/qcom/Makefile
+On 6/18/21 2:16 PM, Bjorn Andersson wrote:
+> On Tue 08 Jun 17:29 CDT 2021, Thara Gopinath wrote:
+>> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
 > [..]
->>>> +static irqreturn_t lmh_handle_irq(int hw_irq, void *data)
->>>> +{
->>>> +	struct lmh_hw_data *lmh_data = data;
->>>> +	int irq = irq_find_mapping(lmh_data->domain, 0);
->>>> +
->>>> +	/*
->>>> +	 * Disable interrupt and call the cpufreq driver to handle the interrupt
->>>> +	 * cpufreq will enable the interrupt once finished processing.
->>>> +	 */
->>>> +	disable_irq_nosync(lmh_data->irq);
->>>
->>> The contract between this driver's disabling of the IRQ and the
->>> cpufreq-hw driver's enabling it when we're done polling does worry me.
->>>
->>> In the case of EPSS, don't we disable the interrupt during the polling
->>> there as well? If that's the case wouldn't it be better to implement
->>> irq_chip->irq_disable and have the cpufreq-hw driver do the disable in
->>> both cases?
->>
->> Yes. You are right. In case of EPSS, the cpufreq-hw will have to disable the
->> interrupt. I did think of the approach you suggested here. My only issue is
->> that we will dispatch the interrupt to cpufreq-hw without it disabling it
->> and hence the interrupt could fire again, right ?
->>
+>> @@ -305,6 +383,8 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>>   
+>>   	index = args.args[0];
+>>   
+>> +	lmh_mitigation_enabled = of_property_read_bool(pdev->dev.of_node, "qcom,support-lmh");
 > 
-> Does it fire again before you INTR_CLK it?
+> Rather than adding a new interrupt _and_ a flag to tell the driver that
+> this new interrupt should be used, wouldn't it be sufficient to just see
+> if the interrupt is specified?
 
-You mean clear it ? I couldn't reproduce it either way. I did not try 
-the irq_chip->irq_disable either. So I will give it a try and if my 
-tests pass , I will post it.
-
-> 
-> Regards,
-> Bjorn
-> 
+Yes. you are right. It should be. Though when I wrote it there was some 
+reason which I forget now. I will remove it.
 
 -- 
 Warm Regards
 Thara (She/Her/Hers)
+
+> 
+>> +
+>>   	res = platform_get_resource(pdev, IORESOURCE_MEM, index);
+>>   	if (!res) {
+>>   		dev_err(dev, "failed to get mem resource %d\n", index);
+>> @@ -329,6 +409,11 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>>   		goto unmap_base;
+>>   	}
+>>   
+>> +	if (!alloc_cpumask_var(&data->cpus, GFP_KERNEL)) {
+>> +		ret = -ENOMEM;
+>> +		goto unmap_base;
+>> +	}
+>> +
+>>   	data->soc_data = of_device_get_match_data(&pdev->dev);
+>>   	data->base = base;
+>>   	data->res = res;
+>> @@ -347,6 +432,7 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>>   		goto error;
+>>   	}
+>>   
+>> +	cpumask_copy(data->cpus, policy->cpus);
+>>   	policy->driver_data = data;
+>>   
+>>   	ret = qcom_cpufreq_hw_read_lut(cpu_dev, policy);
+>> @@ -370,6 +456,20 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>>   			dev_warn(cpu_dev, "failed to enable boost: %d\n", ret);
+>>   	}
+>>   
+>> +	if (lmh_mitigation_enabled) {
+>> +		data->lmh_dcvs_irq = platform_get_irq(pdev, index);
+>> +		if (data->lmh_dcvs_irq < 0) {
+> 
+> This will be -ENXIO if the interrupt isn't specified and <0 for other
+> errors, so you should be able to distinguish the two failure cases.
+> 
+> Regards,
+> Bjorn
+> 
+>> +			ret = data->lmh_dcvs_irq;
+>> +			goto error;
+>> +		}
+>> +		ret = devm_request_irq(dev, data->lmh_dcvs_irq, qcom_lmh_dcvs_handle_irq,
+>> +				       0, "dcvsh-irq", data);
+>> +		if (ret) {
+>> +			dev_err(dev, "Error %d registering irq %x\n", ret, data->lmh_dcvs_irq);
+>> +			goto error;
+>> +		}
+>> +		INIT_DEFERRABLE_WORK(&data->lmh_dcvs_poll_work, qcom_lmh_dcvs_poll);
+>> +	}
+>>   	return 0;
+>>   error:
+>>   	kfree(data);
+>> -- 
+>> 2.25.1
+>>
+
+
