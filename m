@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1107B3AC41B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 08:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 668C23AC41C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 08:45:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232554AbhFRGrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 02:47:07 -0400
-Received: from mail-eopbgr50060.outbound.protection.outlook.com ([40.107.5.60]:16256
+        id S232573AbhFRGrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 02:47:17 -0400
+Received: from mail-eopbgr50089.outbound.protection.outlook.com ([40.107.5.89]:43396
         "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232519AbhFRGrH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Jun 2021 02:47:07 -0400
+        id S232519AbhFRGrQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Jun 2021 02:47:16 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Hev5k4aH3OhCKy+Ay3z5OPh2pL6GjRInJozVd7oFzDdjpmUZcC3O4fWCA+vE3Pv3LBnRH88NmL4SSLy1eaVleugrhirIv9cVmsuWb/KWb7httduJS316s2F5+Y3E4rMhhIrXzPcQJLKaYNlwBZI8k2+7uwrQ1E+AXlM9D+g2HMtuduSmCL/WPaMOoyOAgkgy2Ep0xqv2em9uwEnuVMEx45faCWgQ3R1ajIwlPfvGb0zq2fgW7IioNs/XPpy71XYT9tYIyaMz2NykhwQbiifhuWBbhJ/xj3btR/MozFut5xJzKehkpjQrb0vhp84wgPZzyRr2yBp468RqmB1GGomjkw==
+ b=JGSSD0pEQLTMyoMr8TI3lJ+Y6kR3F2MBilXcm+ITSKmkkDf+XI4yTWPESM9nTzZlxeVppaKrglResvzLFJ9+voK1LGNP5FXMPLUD8ak1hjCDwr+B82qTtKO+gFp7C6CJuV9zVUBWOwz9f/uo5seb2kYA7XhlRhgCPQcZSF3lv0u9t4jKwQQyWGA0ReOWgV5DBwFmcKs0SYqVxP6GCRAcb0FMYSZDaRmUfyZFFbkoc17t69jXq2aRuONDw5Sw74DT3n9MWvwYPXi0SQoBmm/PLa0poQD/z+f+6MR697w77d53WuJhHKiqRaB64Hfs0qE3crjUeBptlGWsQntFfLV5cQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XWVBev2FvF5yxP76GWaZS8EmVXEiySPc1fb1nCo4gUQ=;
- b=PkOFe6GSn3KUBCSaNIKtxqaHIxziZJqhhjAwxHAtuvhb0u1xQ4JEpq7QFYRtmCHx4DpN0RnZ3kqrY6jvFG4jb0/ZSIN3feCtcgriQbZxRzynAf+uAvPfbKhUbuD/RXK5mJDyDkcMZM9CLqhkDfAMNSM/7B8FwSVRg6gG0FF/PCE8nAQH0xs9LiYdj3vTTXT2y4DtFqtOfS6n8+sMvUPvbnsFx/O33WUIxbq69BMFcF4yYTqmSkgoVTBJOPZuHfVbZlCVZvG9/UqrIK/RLhN+YIubif/ZZnsSu8+JQNnBkguehSUiI/mnP6vArTMq2wRuIGAehGa/TfbtL4AhpuRwzQ==
+ bh=34FthGDCUsCl8bkHkLqeOfedEoVdt/AeMo6d3ZqXklw=;
+ b=P1bm5I0qTjsoJNc6XnDfcR/A7tPwCVxMrEhKcNU3GfDyb4u0zntkFt2aVae6m2lK+yjTz05C0OW/yUus26+ccp6vu7VtwugSmi89cfk3o2r9V5iCRocKmZpEmxkoXvjFSH/55yokeZk79xE1qmIV7fORU6j3dGT3sC/2m/5KJkWA9ZVZ+smI9WMuXm0DZ7mYOTXAYxiasJdpepjanGnmBZNrxbbSraQqTO7A1i6zU+eeO1PEksl6tPBiRnY+C6JLab/Y6wFD4hjjgNxe5Vmx1IjAxZW8TlwEr/BgYKglDYtl8oYMgJzPnONWiNuBHAzghkMZtH83XL7epAwfuT5Vtw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XWVBev2FvF5yxP76GWaZS8EmVXEiySPc1fb1nCo4gUQ=;
- b=gcDoqEf98Q7TfTGp3w43qtwBa5LSxtNlUyGp5RY/q6rTMMl0GMEvGk/r4JZ2+OExCpljS+sDkhGxHANvlKxLu0lp3OAt4+B81Fa4wDG+mGglP6WST3PdKjbD9thOGRnUjp6UBJEq5LnKFeYrrrzrxZzypaWl/fCDFkNTgWYfJHY=
+ bh=34FthGDCUsCl8bkHkLqeOfedEoVdt/AeMo6d3ZqXklw=;
+ b=MmYnr0nmzH6tRfRjFzxr090aofTvY6htvlcZM3xed07vVn3BxlDy4oGUwoQee0+umeUPYgdJqqgEHp3a16GyMvrWMbq6qHiHSunWdD8lbnRVfpVemnmSypw+gOroa2S4o1vyMc5d/s0o7fVn6Yc4TGdy2SLL2s+qkEqJikhqwKo=
 Authentication-Results: kernel.org; dkim=none (message not signed)
  header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
 Received: from DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
  by DB9PR04MB8140.eurprd04.prod.outlook.com (2603:10a6:10:249::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.15; Fri, 18 Jun
- 2021 06:44:56 +0000
+ 2021 06:45:01 +0000
 Received: from DBBPR04MB7930.eurprd04.prod.outlook.com
  ([fe80::3164:e047:376d:4a4f]) by DBBPR04MB7930.eurprd04.prod.outlook.com
  ([fe80::3164:e047:376d:4a4f%7]) with mapi id 15.20.4242.021; Fri, 18 Jun 2021
- 06:44:56 +0000
+ 06:45:01 +0000
 From:   Jacky Bai <ping.bai@nxp.com>
 To:     robh+dt@kernel.org, shawnguo@kernel.org, sboyd@kernel.org,
         s.hauer@pengutronix.de, linus.walleij@linaro.org,
         aisheng.dong@nxp.com
 Cc:     festevam@gmail.com, kernel@pengutronix.de, linux-imx@nxp.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 09/11] dt-bindings: clock: Add imx8ulp clock support
-Date:   Fri, 18 Jun 2021 14:54:21 +0800
-Message-Id: <20210618065423.3424938-10-ping.bai@nxp.com>
+Subject: [PATCH v2 10/11] arm64: dts: imx8ulp: Add the basic dtsi file for imx8ulp
+Date:   Fri, 18 Jun 2021 14:54:22 +0800
+Message-Id: <20210618065423.3424938-11-ping.bai@nxp.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20210618065423.3424938-1-ping.bai@nxp.com>
 References: <20210618065423.3424938-1-ping.bai@nxp.com>
@@ -57,414 +57,1542 @@ X-ClientProxiedBy: MAXPR0101CA0046.INDPRD01.PROD.OUTLOOK.COM
  (2603:10a6:10:1ea::12)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by MAXPR0101CA0046.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:d::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.18 via Frontend Transport; Fri, 18 Jun 2021 06:44:52 +0000
+Received: from localhost.localdomain (119.31.174.71) by MAXPR0101CA0046.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:d::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.18 via Frontend Transport; Fri, 18 Jun 2021 06:44:57 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 66cb7b66-4326-41b3-a02e-08d932249588
+X-MS-Office365-Filtering-Correlation-Id: e50bd0b3-2add-4d48-8639-08d932249868
 X-MS-TrafficTypeDiagnostic: DB9PR04MB8140:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB9PR04MB8140A72D9865B20CE3A96232870D9@DB9PR04MB8140.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3826;
+X-Microsoft-Antispam-PRVS: <DB9PR04MB8140BB9AD8499C120BF5A13C870D9@DB9PR04MB8140.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zZg09w+is++ylVFOJ0K34r0jdi1dpR0h+o7sA+ja26aGTQUdqs+AdHS8Bt69N/+xNaCiERXYKHExPzTvknl01zvdQB3FP7SXVL+pqAvr5QKcqcX2j8H0WUZk7gyHiX2hoteAWWbXpySR8FmGtP1G93yPrqV9O0B8/w7cyzq+/j+GFhEDP/2pdJvTaY5gWlxYMkwi8r13dlSmcDirCVvIxWfW1sREtiF3pgmn3o/bkmrLOyOoqlIOGhMOGeoxbvvL1cgkMIV0Lx3/bhZr10xTK2RCfc9XG/LWN3WldFk9JNxPGb8ZleZZqZsC5H38gdsQf4iiZhrrrAH2wuHmPwpyH+KIxPbfU70xcEsMEp+Ht8u0JsGMkpRPW0D1na7/KLoH3tlxZyfse2ggfykUEOKGnMDA25sdqJk8cOLsU9m7TfVlPorS2aG/WKz/zsN0nl3AXZX1L+v8p5NCx9o+LXJD8/M9cOP1f7yLC8kAozGuY9njzquQHkSYgF9CyY3X63qkkbBqa9OEgB/nvvY7TNtRpYH8cpP0NFPvMoLJiYfJZMBtIdLE7tsksJjB1odOSkpOEcyxFzLRnLYg+Q4BPNSSACZSKMGBlMxLuDi+JwvMboN9xSw3EkGMIb9hf30L6Mv7BeYpZ5mEoJ9QcNUyv8chiBvu3E9aIqqyV/7qBfS/Z6KP+nrfY+7b8TFLzU9uoyYEkfp5tt+x0A2TYSuQBMXsJ9bgGhdPc8t1S3J+lPMU8/x6xeAK1yD/QNvn1PGJMId8QXf0LT7rszHQPUSnp1GAq4I8RZZoG9jz2nM84GYQycvLE7Uv1dSQIpWUBSsGzj4imRSsV1qoKF4mWdF9f4rbbTe7vTdxY3xoMwMt7LHJQOcsLhLVMZeap4I7EiQFRITH
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7930.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(39860400002)(136003)(366004)(6666004)(6506007)(316002)(66476007)(86362001)(186003)(66556008)(26005)(1076003)(8936002)(16526019)(6486002)(83380400001)(30864003)(66946007)(8676002)(36756003)(6512007)(5660300002)(2906002)(956004)(2616005)(52116002)(478600001)(4326008)(6636002)(966005)(38100700002)(38350700002)(69590400013)(32563001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: Nvg2Oijwpzb27+HVlMc1J5ezhO+1SrU8t2go/OBmNsLw0TQPHVPOp1JyoxupiZz3QP4CA9ku3ObBIKwqrSfyEu8qdk4oWe+ZD9uJSGnCr+oDQ7IJtt5K/SBKs3odohBAJPJsG1buhad4qU3EcJ7u6bKZRD5emqiYHZi8RKfCyy5cFc/DRqKv6bzbKluj0RFzyewXdgr0sbTH1SFTcH4Hvo1WZ4bhQjB/U6gIJ75PmXp01TCHJZhRY9QeErlLFcOm63h5pkSuTG6J+QpCIL5Ctcilzxa9VXgViwq/01miB6jCD84VYCXnAYl7MLH126DY3DHBI+fUwO9LyQ7OJGz0es1SJ0szggqxy+ybIcRlYN3zL4cIjNYvjtV5EQ/9bP4nn4k0MC1bD1KErXlsGohfZw1Dc7gmd4dt0Cz37YNOZBXr9q1LliAcS6ggsKD2n4FQJ5aks/V00MbdCJwQAfY879LnQ4MFKs1/fR9Axfv8XV+Zppgsbl72JxKCtVdVIsJdr8x9KytYscbzr6JTMbugDLDTSuSNKwn9X/cbQAZQl3DazoFmZ5mmBn9haBZF8Zz7XQIYAwzUIVPjijOMw8Hqk9uZdiwNL7KU75AU6lS8XOP6tMiHk9+j3L2anRAowYmiN8iP/w6/lH9EbFPrMAywp0FeoRxrHen0MNAcYHwcb4sSeeZ95KHuzAs8HBXqpNeXbaIWBhUUzVVBFaPk8Yu9wA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7930.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(39860400002)(136003)(366004)(6666004)(6506007)(316002)(66476007)(86362001)(186003)(66556008)(26005)(1076003)(8936002)(16526019)(6486002)(83380400001)(30864003)(66946007)(8676002)(36756003)(6512007)(5660300002)(2906002)(956004)(2616005)(52116002)(478600001)(4326008)(6636002)(38100700002)(38350700002)(69590400013)(32563001)(579004)(559001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KdHhr55keIt7QclWVR886BlTtXPQiqOY34hITO1WWr+PkqRnFfpPT8EIRHWs?=
- =?us-ascii?Q?L5UwuQSPF77/4ZybgLIHBcb0dpyMETgDCqYbn59gu3uVkT8NEEXMWGjChzgl?=
- =?us-ascii?Q?8R6cZrOg3JFJ7AEgPA4+4kcoBwneFOpAO+thglwkP4OGbJFiRB0wOKC9Ll+C?=
- =?us-ascii?Q?QDAEMm06Srll+aOBhukvRB6pAsKZKtE8V0KBjVrm/yu6I611DjOY8D6oAayn?=
- =?us-ascii?Q?Kq1zVttuHd5Xbug96QDMH0raNWjOefCdQTWnI8NFRqoEpOrOJD48mnYdXwiE?=
- =?us-ascii?Q?7hJ59Di55eoXf1P3dUkn7mlJrk6hne+tcRIEltTYCHLRPg34vlV9FdRNtvSa?=
- =?us-ascii?Q?Tt0v8bhjp5xdrZiLtTORI0ESF19XWLRBgZHbPyojsKIeuv0Uv/T/xRvqKhG8?=
- =?us-ascii?Q?F9n1D7Z9sWEqfg92Aj0NyvZCiuLZDYOZP5an5mH9NIDDEmyq3mmpBi6S5EjF?=
- =?us-ascii?Q?JIO9FRcBFuuipmmcKhrw9NbGhz0K8rg+blbYiE1jtReYgldY+dGCBYOdKKj/?=
- =?us-ascii?Q?boQg+MN6GxGkfgzsZV83rY1f5qlNlZW+RAEzq5puPiGSBGwl+JrqZxi/xeYY?=
- =?us-ascii?Q?jGL2y2AAXiNkHBsXKwOR7bpeJAoFcgt+a9c7mgmN/bbyEWswKSsPWULfO40R?=
- =?us-ascii?Q?9IA7xb/rveGWqhwQOB2L2VMG8hqwt+pYxMFTPQQy4Xm7bUMF3rjEsmmpFz1z?=
- =?us-ascii?Q?OiC9Te4/WLnMvCN2/bgoBhjDpF6Me9dL7m1ZqCR1W23Fbffl4PbRfJ1T14g5?=
- =?us-ascii?Q?W819hmzE1I3GVPBR/O0KZ4AGpltuXzUWj26h+5BMxbor3hMD+XPALzVuFzFi?=
- =?us-ascii?Q?0nd4RPomsHVlnJCCvr3mNPq5PTOY0fc2IDDXkGhh0FIbp51WmxSJZ47oSXTd?=
- =?us-ascii?Q?2CwjAyiBJrbXgLQsASV0TiVI72wWai2w9TrZuPu9EEFonIMqh2dhQVcW4NE9?=
- =?us-ascii?Q?lUxw3sJRwpselEOpJ/buLPEM/DrmDxbE5ytoHgbCno+Rs7ODfrkm5e5uIv0C?=
- =?us-ascii?Q?8Nkw6uJ21jN2/IHNQ8HkcOmexRRv4wGCGVkW3HF/5Njv8bEaT44EaM6h+D+i?=
- =?us-ascii?Q?13L3JEWuKZEZGdjFIVdTUmrwQzpaMFyl2lraLItgww6LgnXFmPpffeVqN5Pt?=
- =?us-ascii?Q?tQuw5y/qyHTOd5Nlx91OdvQiAcJZpwb6M4mLtVrQgzZyPsGaUlOKYDNeCi8h?=
- =?us-ascii?Q?PZc02c4FqN1mPOtLVKW6ZIPBadvvA3luON4P5a/lV0FtLoYXp4YVP3vL78Rf?=
- =?us-ascii?Q?/Pbc4btcWrBpSDoaHMvMFkOSN4sMchwPb4e7lMjgviBPXn+NE0O2DxFaFXsK?=
- =?us-ascii?Q?agjoXQnD0GFAzn3JHU4SEZ4t?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?h72ZGMQ8jFYVp1ustqtxB9vhl0ZD7WxMgkgaCqpjV/oZ3tzd9y2bOTv9m4wN?=
+ =?us-ascii?Q?S1Gq/3ytW3CjUfFcnbMzlvhFT8dPGXmM/KS7P8uxwRUMqKIEW418LwXhmFw6?=
+ =?us-ascii?Q?qHPnke5M7g/PF/6nFyHKZRvy6DQB9stB0dNiTo2OQCEm62dcQGCJPz9jhkiZ?=
+ =?us-ascii?Q?jDzE9lci9MLkcSpJzwz57fXfH4OrkZzGbp3oftgtEWd3eJT2lV4zTj4Mx1A/?=
+ =?us-ascii?Q?E6DgJYdeGTjGiFD9D2fI2SM7EqWvbyUUW5dyvsjhUQnVi2GsXmJMY7xMReMq?=
+ =?us-ascii?Q?yybMkjqQzQ6xIBqxxII+qzB6yVrWEx+soOJFQJgcSt3ZdLu4Z1Ac4l6yl7Ia?=
+ =?us-ascii?Q?lBYls2gi53cAB5hygXO86T5dZbBOtrlVgDbMCtGgXpSFF0nvb41xM3IOpNU5?=
+ =?us-ascii?Q?4/9bsbY2pCOdKa0DodM+DPor9V370JNG/jYcEXXaAVaYV7zY2rhQgxT8ZwBh?=
+ =?us-ascii?Q?W7avf8dUNRRh95EDpIyvYrtLvcm6d9XWxNNTCIT7V9g9T0+d9gBpV6JKI0cW?=
+ =?us-ascii?Q?dnAtyE1L/vQtNNk7pG5NBJOgl1NjoipxdHwjJEkh0hzlfOni+FtOwbZ1Q9VJ?=
+ =?us-ascii?Q?PCwLD0hHzm86Svnj+NS1qQczxmlbWXfI8YAwNa7INiYMjnwtPykBHjL+feld?=
+ =?us-ascii?Q?vI2yw7+Z38SEBNCUnUuD3G9N/e97O8dt+9u7f5mZIglrCkzWc7FzseeGpiGk?=
+ =?us-ascii?Q?OzLXGtFGisHNt03J/t1wJsmnDvsgxatz6eIaB3bYCxFLfsU+c2pC2dOkSTYC?=
+ =?us-ascii?Q?94Ccotsspq1Em54Z6ua4utb85QnO4p9AaDs1laUDUGBRQ7aqYJZTIaBNdzlL?=
+ =?us-ascii?Q?bE56vHuhm9+naA/Z3LFSyUQBDxVhSH46qtUaG8niWAQhtp5aJvVFaH0bWjCT?=
+ =?us-ascii?Q?87nfieBbMwcMKOsCNfhxNSnbTz3J8LiOp7qHHX9TeyXq4LH1U4ybCgj5dlfC?=
+ =?us-ascii?Q?/rqhC0jgrSaUIkHK3i2/rYf64YiBPsXRzlYoO+JBdOh/w8TXTl8ABKIX/Mf3?=
+ =?us-ascii?Q?aUoKDENCa5Gdi4TVtGkTFW9pWK1hpjsxF69lfxC7+7q/3v5b7V8futL/izr/?=
+ =?us-ascii?Q?JEtefmzODBC4gS9724eT1YQV3mGsHf0h7PG3RRPYWduqt+yrChl5pFGuMWro?=
+ =?us-ascii?Q?egt0R3ZJMMS979jiwco5NiZGMR4Z0E+aUWTohaZXxDZ3ArPnQ3jZj+HMo0Q5?=
+ =?us-ascii?Q?gQxo49nCbcfnCCIvHn3c1h3AY7qBRtLe/yp+kzB7js0fJj6/nFyKQNi+nfmH?=
+ =?us-ascii?Q?KbAgUn5jwbWd2AYDxiPl9tcbcbsr0w9tzIk3M+pg18+PlOwL/TybxEuo4ga4?=
+ =?us-ascii?Q?n3vlIadRas6/dLw7/9JVZFlB?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 66cb7b66-4326-41b3-a02e-08d932249588
+X-MS-Exchange-CrossTenant-Network-Message-Id: e50bd0b3-2add-4d48-8639-08d932249868
 X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7930.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2021 06:44:56.1702
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2021 06:45:01.2638
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HYKXwlUFsg+Os5JyewCKF4ZV7xecWLukJklVlMT6ESjAoQAo6HzcJSt83XykVDNDCC3BoPFjfq+IvzyHhpeUAA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: OKqBd2dF7CfXyGwluO5gfDz4XRBAb9xw0nHU3a9C4e2ktPIiI/Iyq+zPU6DndooqSvcQKkufDwXxu9mphysIuw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8140
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the clock dt-binding file for i.MX8ULP.
+Add the basic dtsi support for i.MX8ULP.
+
+i.MX 8ULP is part of the ULP family with emphasis on extreme
+low-power techniques using the 28 nm fully depleted silicon on
+insulator process. Like i.MX 7ULP, i.MX 8ULP continues to be
+based on asymmetric architecture, however will add a third DSP
+domain for advanced voice/audio capability and a Graphics domain
+where it is possible to access graphics resources from the
+application side or the realtime side.
 
 Signed-off-by: Jacky Bai <ping.bai@nxp.com>
 ---
  - v2 changes:
    update the license
+   update the compatible property for usb related node
 ---
- .../bindings/clock/imx8ulp-clock.yaml         |  72 +++++
- include/dt-bindings/clock/imx8ulp-clock.h     | 261 ++++++++++++++++++
- 2 files changed, 333 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/imx8ulp-clock.yaml
- create mode 100644 include/dt-bindings/clock/imx8ulp-clock.h
+ .../boot/dts/freescale/imx8ulp-pinfunc.h      | 978 ++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi    | 474 +++++++++
+ 2 files changed, 1452 insertions(+)
+ create mode 100755 arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8ulp.dtsi
 
-diff --git a/Documentation/devicetree/bindings/clock/imx8ulp-clock.yaml b/Documentation/devicetree/bindings/clock/imx8ulp-clock.yaml
-new file mode 100644
-index 000000000000..b47d09ed4a57
+diff --git a/arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h b/arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h
+new file mode 100755
+index 000000000000..b204ac79b449
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/imx8ulp-clock.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/imx8ulp-clock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP i.MX8ULP Clock Control Module Binding
-+
-+maintainers:
-+  - Jacky Bai <ping.bai@nxp.com>
-+
-+description: |
-+  On i.MX8ULP, The clock sources generation, distribution and management is
-+  under the control of several CGCs & PCCs modules. The CGC modules generate
-+  and distribute clocks on the device. PCC modules control clock selection,
-+  optional division and clock gating mode for peripherals
-+
-+properties:
-+  compatible:
-+    enum:
-+      - fsl,imx8ulp-cgc1
-+      - fsl,imx8ulp-cgc2
-+      - fsl,imx8ulp-pcc3
-+      - fsl,imx8ulp-pcc4
-+      - fsl,imx8ulp-pcc5
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description:
-+      specify the external clocks used by the CGC module, the clocks
-+      are rosc, sosc, frosc, lposc
-+    maxItems: 4
-+
-+  clock-names:
-+    description:
-+      specify the external clocks names used by the CGC module. the valid
-+      clock names should rosc, sosc, frosc, lposc.
-+    maxItems: 4
-+
-+  '#clock-cells':
-+    const: 1
-+    description:
-+      The clock consumer should specify the desired clock by having the clock
-+      ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8ulp-clock.h
-+      for the full list of i.MX8ULP clock IDs.
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  # Clock Control Module node:
-+  - |
-+    clock-controller@292c0000 {
-+        compatible = "fsl,imx8ulp-cgc1";
-+        reg = <0x292c0000 0x10000>;
-+        clocks = <&rosc>, <&sosc>, <&frosc>, <&lposc>;
-+        clock-names = "rosc", "sosc", "frosc", "lposc";
-+        #clock-cells = <1>;
-+    };
-+
-+  - |
-+    clock-controller@292d0000 {
-+        compatible = "fsl,imx8ulp-pcc3";
-+        reg = <0x292d0000 0x10000>;
-+        #clock-cells = <1>;
-+    };
-diff --git a/include/dt-bindings/clock/imx8ulp-clock.h b/include/dt-bindings/clock/imx8ulp-clock.h
-new file mode 100644
-index 000000000000..5bd2044633d3
---- /dev/null
-+++ b/include/dt-bindings/clock/imx8ulp-clock.h
-@@ -0,0 +1,261 @@
++++ b/arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h
+@@ -0,0 +1,978 @@
 +/* SPDX-License-Identifier: GPL-2.0+ OR MIT */
 +/*
 + * Copyright 2021 NXP
 + */
 +
-+#ifndef __DT_BINDINGS_CLOCK_IMX8ULP_H
-+#define __DT_BINDINGS_CLOCK_IMX8ULP_H
++#ifndef __DTS_IMX8ULP_PINFUNC_H
++#define __DTS_IMX8ULP_PINFUNC_H
 +
-+#define IMX8ULP_CLK_DUMMY			0
-+#define IMX8ULP_CLK_ROSC			1
-+#define IMX8ULP_CLK_FROSC			2
-+#define IMX8ULP_CLK_LPOSC			3
-+#define IMX8ULP_CLK_SOSC			4
++/*
++ * The pin function ID is a tuple of
++ * <mux_reg input_reg mux_mode input_val>
++ */
++#define MX8ULP_PAD_PTD0__PTD0                                        0x0000 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD0__I2S6_RX_BCLK                                0x0000 0x0B44 0x7 0x1
++#define MX8ULP_PAD_PTD0__SDHC0_RESET_B                               0x0000 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD0__FLEXSPI2_B_DQS                              0x0000 0x0974 0x9 0x1
++#define MX8ULP_PAD_PTD0__CLKOUT2                                     0x0000 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD0__EPDC0_SDCLK_B                               0x0000 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD0__LP_APD_DBG_MUX_0                            0x0000 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD0__CLKOUT1                                     0x0000 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTD0__DEBUG_MUX0_0                                0x0000 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD0__DEBUG_MUX1_0                                0x0000 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD1__PTD1                                        0x0004 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD1__I2S6_RX_FS                                  0x0004 0x0B48 0x7 0x1
++#define MX8ULP_PAD_PTD1__SDHC0_CMD                                   0x0004 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD1__FLEXSPI2_B_DATA7                            0x0004 0x0970 0x9 0x1
++#define MX8ULP_PAD_PTD1__EPDC0_SDCLK                                 0x0004 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD1__DPI0_PCLK                                   0x0004 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD1__LP_APD_DBG_MUX_1                            0x0004 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTD1__DEBUG_MUX0_1                                0x0004 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD1__DEBUG_MUX1_1                                0x0004 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD2__PTD2                                        0x0008 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD2__I2S6_RXD0                                   0x0008 0x0B34 0x7 0x1
++#define MX8ULP_PAD_PTD2__SDHC0_CLK                                   0x0008 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD2__FLEXSPI2_B_DATA6                            0x0008 0x096C 0x9 0x1
++#define MX8ULP_PAD_PTD2__EPDC0_SDLE                                  0x0008 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD2__DPI0_HSYNC                                  0x0008 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD2__LP_APD_DBG_MUX_2                            0x0008 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTD2__DEBUG_MUX0_2                                0x0008 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD2__DEBUG_MUX1_2                                0x0008 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD3__PTD3                                        0x000C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD3__I2S6_RXD1                                   0x000C 0x0B38 0x7 0x1
++#define MX8ULP_PAD_PTD3__SDHC0_D7                                    0x000C 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD3__FLEXSPI2_B_DATA5                            0x000C 0x0968 0x9 0x1
++#define MX8ULP_PAD_PTD3__EPDC0_GDSP                                  0x000C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD3__DPI0_VSYNC                                  0x000C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD3__LP_APD_DBG_MUX_3                            0x000C 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTD3__DEBUG_MUX0_3                                0x000C 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD3__DEBUG_MUX1_3                                0x000C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD4__PTD4                                        0x0010 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD4__EXT_AUD_MCLK3                               0x0010 0x0B14 0x4 0x1
++#define MX8ULP_PAD_PTD4__SDHC0_VS                                    0x0010 0x0000 0x5 0x0
++#define MX8ULP_PAD_PTD4__TPM8_CH5                                    0x0010 0x0B2C 0x6 0x1
++#define MX8ULP_PAD_PTD4__I2S6_MCLK                                   0x0010 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTD4__SDHC0_D6                                    0x0010 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD4__FLEXSPI2_B_DATA4                            0x0010 0x0964 0x9 0x1
++#define MX8ULP_PAD_PTD4__EPDC0_SDCE0                                 0x0010 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD4__DPI0_DE                                     0x0010 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD4__LP_APD_DBG_MUX_4                            0x0010 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTD4__DEBUG_MUX0_4                                0x0010 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD4__DEBUG_MUX1_4                                0x0010 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD5__PTD5                                        0x0014 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD5__SDHC0_CD                                    0x0014 0x0000 0x5 0x0
++#define MX8ULP_PAD_PTD5__TPM8_CH4                                    0x0014 0x0B28 0x6 0x1
++#define MX8ULP_PAD_PTD5__I2S6_TX_BCLK                                0x0014 0x0B4C 0x7 0x1
++#define MX8ULP_PAD_PTD5__SDHC0_D5                                    0x0014 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD5__FLEXSPI2_B_SS0_B                            0x0014 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD5__FLEXSPI2_B_SCLK_B                           0x0014 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD5__EPDC0_D0                                    0x0014 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD5__DPI0_D0                                     0x0014 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD5__LP_APD_DBG_MUX_5                            0x0014 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTD5__DEBUG_MUX0_5                                0x0014 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD5__DEBUG_MUX1_5                                0x0014 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD6__PTD6                                        0x0018 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD6__SDHC0_WP                                    0x0018 0x0000 0x5 0x0
++#define MX8ULP_PAD_PTD6__TPM8_CH3                                    0x0018 0x0B24 0x6 0x1
++#define MX8ULP_PAD_PTD6__I2S6_TX_FS                                  0x0018 0x0B50 0x7 0x1
++#define MX8ULP_PAD_PTD6__SDHC0_D4                                    0x0018 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD6__FLEXSPI2_B_SCLK                             0x0018 0x0978 0x9 0x1
++#define MX8ULP_PAD_PTD6__EPDC0_D1                                    0x0018 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD6__DPI0_D1                                     0x0018 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD6__LP_APD_DBG_MUX_6                            0x0018 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTD6__DEBUG_MUX0_6                                0x0018 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD6__DEBUG_MUX1_6                                0x0018 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD7__PTD7                                        0x001C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD7__TPM8_CH2                                    0x001C 0x0B20 0x6 0x1
++#define MX8ULP_PAD_PTD7__I2S6_TXD0                                   0x001C 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTD7__SDHC0_D3                                    0x001C 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD7__FLEXSPI2_B_DATA3                            0x001C 0x0960 0x9 0x1
++#define MX8ULP_PAD_PTD7__EPDC0_D2                                    0x001C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD7__DPI0_D2                                     0x001C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD7__LP_APD_DBG_MUX_7                            0x001C 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTD7__DEBUG_MUX0_7                                0x001C 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD7__DEBUG_MUX1_7                                0x001C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD8__PTD8                                        0x0020 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD8__TPM8_CH1                                    0x0020 0x0B1C 0x6 0x1
++#define MX8ULP_PAD_PTD8__I2S6_TXD1                                   0x0020 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTD8__SDHC0_D2                                    0x0020 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD8__FLEXSPI2_B_DATA2                            0x0020 0x095C 0x9 0x1
++#define MX8ULP_PAD_PTD8__EPDC0_D3                                    0x0020 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD8__DPI0_D3                                     0x0020 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD8__LP_APD_DBG_MUX_8                            0x0020 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD8__DEBUG_MUX1_8                                0x0020 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD9__PTD9                                        0x0024 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD9__TPM8_CLKIN                                  0x0024 0x0B30 0x6 0x1
++#define MX8ULP_PAD_PTD9__I2S6_TXD2                                   0x0024 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTD9__SDHC0_D1                                    0x0024 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD9__FLEXSPI2_B_DATA1                            0x0024 0x0958 0x9 0x1
++#define MX8ULP_PAD_PTD9__EPDC0_D4                                    0x0024 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD9__DPI0_D4                                     0x0024 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD9__LP_APD_DBG_MUX_9                            0x0024 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD9__DEBUG_MUX1_9                                0x0024 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD10__PTD10                                      0x0028 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD10__TPM8_CH0                                   0x0028 0x0B18 0x6 0x1
++#define MX8ULP_PAD_PTD10__I2S6_TXD3                                  0x0028 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTD10__SDHC0_D0                                   0x0028 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD10__FLEXSPI2_B_DATA0                           0x0028 0x0954 0x9 0x1
++#define MX8ULP_PAD_PTD10__EPDC0_D5                                   0x0028 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD10__DPI0_D5                                    0x0028 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD10__LP_APD_DBG_MUX_10                          0x0028 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTD10__DEBUG_MUX1_10                              0x0028 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD11__PTD11                                      0x002C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD11__TPM8_CH5                                   0x002C 0x0B2C 0x6 0x2
++#define MX8ULP_PAD_PTD11__I2S6_RXD2                                  0x002C 0x0B3C 0x7 0x1
++#define MX8ULP_PAD_PTD11__SDHC0_DQS                                  0x002C 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD11__FLEXSPI2_B_SS0_B                           0x002C 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD11__FLEXSPI2_A_SS1_B                           0x002C 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD11__EPDC0_D6                                   0x002C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD11__DPI0_D6                                    0x002C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD11__LP_APD_DBG_MUX_11                          0x002C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD12__PTD12                                      0x0030 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD12__USB0_ID                                    0x0030 0x0AC8 0x5 0x1
++#define MX8ULP_PAD_PTD12__SDHC2_D3                                   0x0030 0x0AA4 0x6 0x1
++#define MX8ULP_PAD_PTD12__I2S7_RX_BCLK                               0x0030 0x0B64 0x7 0x1
++#define MX8ULP_PAD_PTD12__SDHC1_DQS                                  0x0030 0x0A84 0x8 0x1
++#define MX8ULP_PAD_PTD12__FLEXSPI2_A_SS0_B                           0x0030 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD12__FLEXSPI2_B_SS1_B                           0x0030 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD12__EPDC0_D7                                   0x0030 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD12__DPI0_D7                                    0x0030 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD12__LP_APD_DBG_MUX_12                          0x0030 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD13__PTD13                                      0x0034 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD13__SPDIF_IN3                                  0x0034 0x0B80 0x4 0x1
++#define MX8ULP_PAD_PTD13__USB0_PWR                                   0x0034 0x0000 0x5 0x0
++#define MX8ULP_PAD_PTD13__SDHC2_D2                                   0x0034 0x0AA0 0x6 0x1
++#define MX8ULP_PAD_PTD13__I2S7_RX_FS                                 0x0034 0x0B68 0x7 0x1
++#define MX8ULP_PAD_PTD13__SDHC1_RESET_B                              0x0034 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTD13__FLEXSPI2_A_SCLK                            0x0034 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD13__CLKOUT2                                    0x0034 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD13__EPDC0_D8                                   0x0034 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD13__DPI0_D8                                    0x0034 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD13__CLKOUT1                                    0x0034 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTD13__LP_APD_DBG_MUX_13                          0x0034 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD14__PTD14                                      0x0038 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD14__SPDIF_OUT3                                 0x0038 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTD14__USB0_OC                                    0x0038 0x0AC0 0x5 0x1
++#define MX8ULP_PAD_PTD14__SDHC2_D1                                   0x0038 0x0A9C 0x6 0x1
++#define MX8ULP_PAD_PTD14__I2S7_RXD0                                  0x0038 0x0B54 0x7 0x1
++#define MX8ULP_PAD_PTD14__SDHC1_D7                                   0x0038 0x0A80 0x8 0x1
++#define MX8ULP_PAD_PTD14__FLEXSPI2_A_DATA3                           0x0038 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD14__TRACE0_D7                                  0x0038 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD14__EPDC0_D9                                   0x0038 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD14__DPI0_D9                                    0x0038 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD14__LP_APD_DBG_MUX_14                          0x0038 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD15__PTD15                                      0x003C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD15__SPDIF_IN2                                  0x003C 0x0B7C 0x4 0x1
++#define MX8ULP_PAD_PTD15__SDHC1_VS                                   0x003C 0x0000 0x5 0x0
++#define MX8ULP_PAD_PTD15__SDHC2_D0                                   0x003C 0x0A98 0x6 0x1
++#define MX8ULP_PAD_PTD15__I2S7_TX_BCLK                               0x003C 0x0B6C 0x7 0x1
++#define MX8ULP_PAD_PTD15__SDHC1_D6                                   0x003C 0x0A7C 0x8 0x1
++#define MX8ULP_PAD_PTD15__FLEXSPI2_A_DATA2                           0x003C 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD15__TRACE0_D6                                  0x003C 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD15__EPDC0_D10                                  0x003C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD15__DPI0_D10                                   0x003C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD15__LP_APD_DBG_MUX_15                          0x003C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD16__PTD16                                      0x0040 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD16__FXIO1_D31                                  0x0040 0x08A0 0x2 0x1
++#define MX8ULP_PAD_PTD16__LPSPI4_PCS1                                0x0040 0x08F8 0x3 0x1
++#define MX8ULP_PAD_PTD16__SPDIF_OUT2                                 0x0040 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTD16__SDHC1_CD                                   0x0040 0x0A58 0x5 0x1
++#define MX8ULP_PAD_PTD16__SDHC2_CLK                                  0x0040 0x0A90 0x6 0x1
++#define MX8ULP_PAD_PTD16__I2S7_TX_FS                                 0x0040 0x0B70 0x7 0x1
++#define MX8ULP_PAD_PTD16__SDHC1_D5                                   0x0040 0x0A78 0x8 0x1
++#define MX8ULP_PAD_PTD16__FLEXSPI2_A_DATA1                           0x0040 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD16__TRACE0_D5                                  0x0040 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD16__EPDC0_D11                                  0x0040 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD16__DPI0_D11                                   0x0040 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD16__LP_APD_DBG_MUX_16                          0x0040 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD17__PTD17                                      0x0044 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD17__FXIO1_D30                                  0x0044 0x089C 0x2 0x1
++#define MX8ULP_PAD_PTD17__LPSPI4_PCS2                                0x0044 0x08FC 0x3 0x1
++#define MX8ULP_PAD_PTD17__EXT_AUD_MCLK3                              0x0044 0x0B14 0x4 0x2
++#define MX8ULP_PAD_PTD17__SDHC1_WP                                   0x0044 0x0A88 0x5 0x1
++#define MX8ULP_PAD_PTD17__SDHC2_CMD                                  0x0044 0x0A94 0x6 0x1
++#define MX8ULP_PAD_PTD17__I2S7_TXD0                                  0x0044 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTD17__SDHC1_D4                                   0x0044 0x0A74 0x8 0x1
++#define MX8ULP_PAD_PTD17__FLEXSPI2_A_DATA0                           0x0044 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD17__TRACE0_D4                                  0x0044 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD17__EPDC0_D12                                  0x0044 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD17__DPI0_D12                                   0x0044 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD17__LP_APD_DBG_MUX_17                          0x0044 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD18__PTD18                                      0x0048 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD18__FXIO1_D29                                  0x0048 0x0894 0x2 0x1
++#define MX8ULP_PAD_PTD18__LPSPI4_PCS3                                0x0048 0x0900 0x3 0x1
++#define MX8ULP_PAD_PTD18__SPDIF_CLK                                  0x0048 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTD18__EXT_AUD_MCLK3                              0x0048 0x0B14 0x5 0x3
++#define MX8ULP_PAD_PTD18__TPM8_CH0                                   0x0048 0x0B18 0x6 0x2
++#define MX8ULP_PAD_PTD18__I2S7_MCLK                                  0x0048 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTD18__SDHC1_D3                                   0x0048 0x0A70 0x8 0x1
++#define MX8ULP_PAD_PTD18__FLEXSPI2_A_DQS                             0x0048 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD18__TRACE0_D3                                  0x0048 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD18__EPDC0_D13                                  0x0048 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD18__DPI0_D13                                   0x0048 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD18__LP_APD_DBG_MUX_18                          0x0048 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD19__PTD19                                      0x004C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD19__FXIO1_D28                                  0x004C 0x0890 0x2 0x1
++#define MX8ULP_PAD_PTD19__SPDIF_IN0                                  0x004C 0x0B74 0x4 0x1
++#define MX8ULP_PAD_PTD19__TPM8_CH1                                   0x004C 0x0B1C 0x6 0x2
++#define MX8ULP_PAD_PTD19__I2S6_RXD3                                  0x004C 0x0B40 0x7 0x1
++#define MX8ULP_PAD_PTD19__SDHC1_D2                                   0x004C 0x0A6C 0x8 0x1
++#define MX8ULP_PAD_PTD19__FLEXSPI2_A_DATA7                           0x004C 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD19__TRACE0_D2                                  0x004C 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD19__EPDC0_D14                                  0x004C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD19__DPI0_D14                                   0x004C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD19__LP_APD_DBG_MUX_19                          0x004C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD20__PTD20                                      0x0050 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD20__FXIO1_D27                                  0x0050 0x088C 0x2 0x1
++#define MX8ULP_PAD_PTD20__LPSPI4_SIN                                 0x0050 0x0908 0x3 0x1
++#define MX8ULP_PAD_PTD20__SPDIF_OUT0                                 0x0050 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTD20__TPM8_CLKIN                                 0x0050 0x0B30 0x6 0x2
++#define MX8ULP_PAD_PTD20__I2S7_RXD1                                  0x0050 0x0B58 0x7 0x1
++#define MX8ULP_PAD_PTD20__SDHC1_D1                                   0x0050 0x0A68 0x8 0x1
++#define MX8ULP_PAD_PTD20__FLEXSPI2_A_DATA6                           0x0050 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD20__TRACE0_D1                                  0x0050 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD20__EPDC0_D15                                  0x0050 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTD20__DPI0_D15                                   0x0050 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD20__LP_APD_DBG_MUX_20                          0x0050 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD21__PTD21                                      0x0054 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD21__FXIO1_D26                                  0x0054 0x0888 0x2 0x1
++#define MX8ULP_PAD_PTD21__LPSPI4_SOUT                                0x0054 0x090C 0x3 0x1
++#define MX8ULP_PAD_PTD21__SPDIF_IN1                                  0x0054 0x0B78 0x4 0x1
++#define MX8ULP_PAD_PTD21__USB1_PWR                                   0x0054 0x0000 0x5 0x0
++#define MX8ULP_PAD_PTD21__TPM8_CH2                                   0x0054 0x0B20 0x6 0x2
++#define MX8ULP_PAD_PTD21__I2S7_TXD1                                  0x0054 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTD21__SDHC1_D0                                   0x0054 0x0A64 0x8 0x1
++#define MX8ULP_PAD_PTD21__FLEXSPI2_A_DATA5                           0x0054 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD21__TRACE0_D0                                  0x0054 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD21__DPI0_D16                                   0x0054 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD21__WDOG5_RST                                  0x0054 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTD21__LP_APD_DBG_MUX_21                          0x0054 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD22__PTD22                                      0x0058 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD22__FXIO1_D25                                  0x0058 0x0884 0x2 0x1
++#define MX8ULP_PAD_PTD22__LPSPI4_SCK                                 0x0058 0x0904 0x3 0x1
++#define MX8ULP_PAD_PTD22__SPDIF_OUT1                                 0x0058 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTD22__USB1_OC                                    0x0058 0x0AC4 0x5 0x1
++#define MX8ULP_PAD_PTD22__TPM8_CH3                                   0x0058 0x0B24 0x6 0x2
++#define MX8ULP_PAD_PTD22__I2S7_TXD2                                  0x0058 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTD22__SDHC1_CLK                                  0x0058 0x0A5C 0x8 0x1
++#define MX8ULP_PAD_PTD22__FLEXSPI2_A_DATA4                           0x0058 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD22__TRACE0_CLKOUT                              0x0058 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD22__DPI0_D17                                   0x0058 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD22__LP_APD_DBG_MUX_22                          0x0058 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTD23__PTD23                                      0x005C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTD23__FXIO1_D24                                  0x005C 0x0880 0x2 0x1
++#define MX8ULP_PAD_PTD23__LPSPI4_PCS0                                0x005C 0x08F4 0x3 0x1
++#define MX8ULP_PAD_PTD23__USB1_ID                                    0x005C 0x0ACC 0x5 0x1
++#define MX8ULP_PAD_PTD23__TPM8_CH4                                   0x005C 0x0B28 0x6 0x2
++#define MX8ULP_PAD_PTD23__I2S7_TXD3                                  0x005C 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTD23__SDHC1_CMD                                  0x005C 0x0A60 0x8 0x1
++#define MX8ULP_PAD_PTD23__FLEXSPI2_A_SS0_B                           0x005C 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTD23__FLEXSPI2_A_SCLK_B                          0x005C 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTD23__DPI0_D18                                   0x005C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTD23__LP_APD_DBG_MUX_23                          0x005C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE0__PTE0                                        0x0080 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE0__FXIO1_D23                                   0x0080 0x087C 0x2 0x1
++#define MX8ULP_PAD_PTE0__SPDIF_IN3                                   0x0080 0x0B80 0x3 0x2
++#define MX8ULP_PAD_PTE0__LPUART4_CTS_B                               0x0080 0x08DC 0x4 0x1
++#define MX8ULP_PAD_PTE0__LPI2C4_SCL                                  0x0080 0x08C8 0x5 0x1
++#define MX8ULP_PAD_PTE0__TPM8_CLKIN                                  0x0080 0x0B30 0x6 0x3
++#define MX8ULP_PAD_PTE0__I2S7_RXD2                                   0x0080 0x0B5C 0x7 0x1
++#define MX8ULP_PAD_PTE0__SDHC2_D1                                    0x0080 0x0A9C 0x8 0x2
++#define MX8ULP_PAD_PTE0__FLEXSPI2_B_DQS                              0x0080 0x0974 0x9 0x2
++#define MX8ULP_PAD_PTE0__ENET0_CRS                                   0x0080 0x0AE8 0xa 0x1
++#define MX8ULP_PAD_PTE0__DBI0_WRX                                    0x0080 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE0__DPI0_D19                                    0x0080 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE0__WUU1_P0                                     0x0080 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE0__DEBUG_MUX0_8                                0x0080 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE0__DEBUG_MUX1_11                               0x0080 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE1__PTE1                                        0x0084 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE1__FXIO1_D22                                   0x0084 0x0878 0x2 0x1
++#define MX8ULP_PAD_PTE1__SPDIF_OUT3                                  0x0084 0x0000 0x3 0x0
++#define MX8ULP_PAD_PTE1__LPUART4_RTS_B                               0x0084 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTE1__LPI2C4_SDA                                  0x0084 0x08CC 0x5 0x1
++#define MX8ULP_PAD_PTE1__TPM8_CH0                                    0x0084 0x0B18 0x6 0x3
++#define MX8ULP_PAD_PTE1__I2S7_RXD3                                   0x0084 0x0B60 0x7 0x1
++#define MX8ULP_PAD_PTE1__SDHC2_D0                                    0x0084 0x0A98 0x8 0x2
++#define MX8ULP_PAD_PTE1__FLEXSPI2_B_DATA7                            0x0084 0x0970 0x9 0x2
++#define MX8ULP_PAD_PTE1__ENET0_COL                                   0x0084 0x0AE4 0xa 0x1
++#define MX8ULP_PAD_PTE1__DBI0_CSX                                    0x0084 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE1__DPI0_D20                                    0x0084 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE1__WUU1_P1                                     0x0084 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE1__DEBUG_MUX0_9                                0x0084 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE1__DEBUG_MUX1_12                               0x0084 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE2__PTE2                                        0x0088 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE2__FXIO1_D21                                   0x0088 0x0874 0x2 0x1
++#define MX8ULP_PAD_PTE2__SPDIF_IN2                                   0x0088 0x0B7C 0x3 0x2
++#define MX8ULP_PAD_PTE2__LPUART4_TX                                  0x0088 0x08E4 0x4 0x1
++#define MX8ULP_PAD_PTE2__LPI2C4_HREQ                                 0x0088 0x08C4 0x5 0x1
++#define MX8ULP_PAD_PTE2__TPM8_CH1                                    0x0088 0x0B1C 0x6 0x3
++#define MX8ULP_PAD_PTE2__EXT_AUD_MCLK3                               0x0088 0x0B14 0x7 0x4
++#define MX8ULP_PAD_PTE2__SDHC2_CLK                                   0x0088 0x0A90 0x8 0x2
++#define MX8ULP_PAD_PTE2__FLEXSPI2_B_DATA6                            0x0088 0x096C 0x9 0x2
++#define MX8ULP_PAD_PTE2__ENET0_TXER                                  0x0088 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTE2__DBI0_DCX                                    0x0088 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE2__DPI0_D21                                    0x0088 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE2__LP_HV_DBG_MUX_0                             0x0088 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE2__DEBUG_MUX0_10                               0x0088 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE2__DEBUG_MUX1_13                               0x0088 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE3__PTE3                                        0x008C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE3__FXIO1_D20                                   0x008C 0x0870 0x2 0x1
++#define MX8ULP_PAD_PTE3__SPDIF_OUT2                                  0x008C 0x0000 0x3 0x0
++#define MX8ULP_PAD_PTE3__LPUART4_RX                                  0x008C 0x08E0 0x4 0x1
++#define MX8ULP_PAD_PTE3__TPM8_CH2                                    0x008C 0x0B20 0x6 0x3
++#define MX8ULP_PAD_PTE3__I2S6_MCLK                                   0x008C 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE3__SDHC2_CMD                                   0x008C 0x0A94 0x8 0x2
++#define MX8ULP_PAD_PTE3__FLEXSPI2_B_DATA5                            0x008C 0x0968 0x9 0x2
++#define MX8ULP_PAD_PTE3__ENET0_TXCLK                                 0x008C 0x0B10 0xa 0x1
++#define MX8ULP_PAD_PTE3__DBI0_RWX                                    0x008C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE3__DPI0_D22                                    0x008C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE3__WUU1_P2                                     0x008C 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE3__DEBUG_MUX0_11                               0x008C 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE3__DEBUG_MUX1_14                               0x008C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE4__PTE4                                        0x0090 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE4__FXIO1_D19                                   0x0090 0x0868 0x2 0x1
++#define MX8ULP_PAD_PTE4__SPDIF_CLK                                   0x0090 0x0000 0x3 0x0
++#define MX8ULP_PAD_PTE4__LPUART5_CTS_B                               0x0090 0x08E8 0x4 0x1
++#define MX8ULP_PAD_PTE4__LPI2C5_SCL                                  0x0090 0x08D4 0x5 0x1
++#define MX8ULP_PAD_PTE4__TPM8_CH3                                    0x0090 0x0B24 0x6 0x3
++#define MX8ULP_PAD_PTE4__I2S6_RX_BCLK                                0x0090 0x0B44 0x7 0x2
++#define MX8ULP_PAD_PTE4__SDHC2_D3                                    0x0090 0x0AA4 0x8 0x2
++#define MX8ULP_PAD_PTE4__FLEXSPI2_B_DATA4                            0x0090 0x0964 0x9 0x2
++#define MX8ULP_PAD_PTE4__ENET0_TXD3                                  0x0090 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTE4__DBI0_E                                      0x0090 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE4__DPI0_D23                                    0x0090 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE4__WUU1_P3                                     0x0090 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE4__DEBUG_MUX0_12                               0x0090 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE4__DEBUG_MUX1_15                               0x0090 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE5__PTE5                                        0x0094 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE5__FXIO1_D18                                   0x0094 0x0864 0x2 0x1
++#define MX8ULP_PAD_PTE5__SPDIF_IN0                                   0x0094 0x0B74 0x3 0x2
++#define MX8ULP_PAD_PTE5__LPUART5_RTS_B                               0x0094 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTE5__LPI2C5_SDA                                  0x0094 0x08D8 0x5 0x1
++#define MX8ULP_PAD_PTE5__TPM8_CH4                                    0x0094 0x0B28 0x6 0x3
++#define MX8ULP_PAD_PTE5__I2S6_RX_FS                                  0x0094 0x0B48 0x7 0x2
++#define MX8ULP_PAD_PTE5__SDHC2_D2                                    0x0094 0x0AA0 0x8 0x2
++#define MX8ULP_PAD_PTE5__FLEXSPI2_B_SS0_B                            0x0094 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTE5__ENET0_TXD2                                  0x0094 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTE5__DBI0_D0                                     0x0094 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE5__LP_HV_DBG_MUX_1                             0x0094 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE5__DEBUG_MUX0_13                               0x0094 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE5__DEBUG_MUX1_16                               0x0094 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE6__PTE6                                        0x0098 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE6__FXIO1_D17                                   0x0098 0x0860 0x2 0x1
++#define MX8ULP_PAD_PTE6__SPDIF_OUT0                                  0x0098 0x0000 0x3 0x0
++#define MX8ULP_PAD_PTE6__LPUART5_TX                                  0x0098 0x08F0 0x4 0x1
++#define MX8ULP_PAD_PTE6__LPI2C5_HREQ                                 0x0098 0x08D0 0x5 0x1
++#define MX8ULP_PAD_PTE6__TPM8_CH5                                    0x0098 0x0B2C 0x6 0x3
++#define MX8ULP_PAD_PTE6__I2S6_RXD0                                   0x0098 0x0B34 0x7 0x2
++#define MX8ULP_PAD_PTE6__SDHC2_D4                                    0x0098 0x0AA8 0x8 0x1
++#define MX8ULP_PAD_PTE6__FLEXSPI2_B_SCLK                             0x0098 0x0978 0x9 0x2
++#define MX8ULP_PAD_PTE6__ENET0_RXCLK                                 0x0098 0x0B0C 0xa 0x1
++#define MX8ULP_PAD_PTE6__DBI0_D1                                     0x0098 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE6__LP_HV_DBG_MUX_2                             0x0098 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE6__WDOG5_RST                                   0x0098 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE6__DEBUG_MUX0_14                               0x0098 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE6__DEBUG_MUX1_17                               0x0098 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE7__PTE7                                        0x009C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE7__FXIO1_D16                                   0x009C 0x085C 0x2 0x1
++#define MX8ULP_PAD_PTE7__SPDIF_IN1                                   0x009C 0x0B78 0x3 0x2
++#define MX8ULP_PAD_PTE7__LPUART5_RX                                  0x009C 0x08EC 0x4 0x1
++#define MX8ULP_PAD_PTE7__LPI2C6_HREQ                                 0x009C 0x09B4 0x5 0x1
++#define MX8ULP_PAD_PTE7__TPM4_CLKIN                                  0x009C 0x081C 0x6 0x1
++#define MX8ULP_PAD_PTE7__I2S6_RXD1                                   0x009C 0x0B38 0x7 0x2
++#define MX8ULP_PAD_PTE7__SDHC2_D5                                    0x009C 0x0AAC 0x8 0x1
++#define MX8ULP_PAD_PTE7__FLEXSPI2_B_DATA3                            0x009C 0x0960 0x9 0x2
++#define MX8ULP_PAD_PTE7__ENET0_RXD3                                  0x009C 0x0B04 0xa 0x1
++#define MX8ULP_PAD_PTE7__DBI0_D2                                     0x009C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE7__EPDC0_BDR1                                  0x009C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE7__WUU1_P4                                     0x009C 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE7__DEBUG_MUX0_15                               0x009C 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE7__DEBUG_MUX1_18                               0x009C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE8__PTE8                                        0x00A0 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE8__FXIO1_D15                                   0x00A0 0x0858 0x2 0x1
++#define MX8ULP_PAD_PTE8__LPSPI4_PCS1                                 0x00A0 0x08F8 0x3 0x2
++#define MX8ULP_PAD_PTE8__LPUART6_CTS_B                               0x00A0 0x09CC 0x4 0x1
++#define MX8ULP_PAD_PTE8__LPI2C6_SCL                                  0x00A0 0x09B8 0x5 0x1
++#define MX8ULP_PAD_PTE8__TPM4_CH0                                    0x00A0 0x0804 0x6 0x1
++#define MX8ULP_PAD_PTE8__I2S6_RXD2                                   0x00A0 0x0B3C 0x7 0x2
++#define MX8ULP_PAD_PTE8__SDHC2_D6                                    0x00A0 0x0AB0 0x8 0x1
++#define MX8ULP_PAD_PTE8__FLEXSPI2_B_DATA2                            0x00A0 0x095C 0x9 0x2
++#define MX8ULP_PAD_PTE8__ENET0_RXD2                                  0x00A0 0x0B00 0xa 0x1
++#define MX8ULP_PAD_PTE8__DBI0_D3                                     0x00A0 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE8__EPDC0_BDR0                                  0x00A0 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE8__LP_HV_DBG_MUX_3                             0x00A0 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE8__DEBUG_MUX1_19                               0x00A0 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE9__PTE9                                        0x00A4 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE9__FXIO1_D14                                   0x00A4 0x0854 0x2 0x1
++#define MX8ULP_PAD_PTE9__LPSPI4_PCS2                                 0x00A4 0x08FC 0x3 0x2
++#define MX8ULP_PAD_PTE9__LPUART6_RTS_B                               0x00A4 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTE9__LPI2C6_SDA                                  0x00A4 0x09BC 0x5 0x1
++#define MX8ULP_PAD_PTE9__TPM4_CH1                                    0x00A4 0x0808 0x6 0x1
++#define MX8ULP_PAD_PTE9__I2S6_RXD3                                   0x00A4 0x0B40 0x7 0x2
++#define MX8ULP_PAD_PTE9__SDHC2_D7                                    0x00A4 0x0AB4 0x8 0x1
++#define MX8ULP_PAD_PTE9__FLEXSPI2_B_DATA1                            0x00A4 0x0958 0x9 0x2
++#define MX8ULP_PAD_PTE9__ENET0_1588_TMR3                             0x00A4 0x0AE0 0xa 0x1
++#define MX8ULP_PAD_PTE9__DBI0_D4                                     0x00A4 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE9__EPDC0_VCOM1                                 0x00A4 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE9__LP_HV_DBG_MUX_4                             0x00A4 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE9__DEBUG_MUX1_20                               0x00A4 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE10__PTE10                                      0x00A8 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE10__FXIO1_D13                                  0x00A8 0x0850 0x2 0x1
++#define MX8ULP_PAD_PTE10__LPSPI4_PCS3                                0x00A8 0x0900 0x3 0x2
++#define MX8ULP_PAD_PTE10__LPUART6_TX                                 0x00A8 0x09D4 0x4 0x1
++#define MX8ULP_PAD_PTE10__I3C2_SCL                                   0x00A8 0x08BC 0x5 0x1
++#define MX8ULP_PAD_PTE10__TPM4_CH2                                   0x00A8 0x080C 0x6 0x1
++#define MX8ULP_PAD_PTE10__I2S6_TX_BCLK                               0x00A8 0x0B4C 0x7 0x2
++#define MX8ULP_PAD_PTE10__SDHC2_DQS                                  0x00A8 0x0AB8 0x8 0x1
++#define MX8ULP_PAD_PTE10__FLEXSPI2_B_DATA0                           0x00A8 0x0954 0x9 0x2
++#define MX8ULP_PAD_PTE10__ENET0_1588_TMR2                            0x00A8 0x0ADC 0xa 0x1
++#define MX8ULP_PAD_PTE10__DBI0_D5                                    0x00A8 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE10__EPDC0_VCOM0                                0x00A8 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE10__LP_HV_DBG_MUX_5                            0x00A8 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTE10__DEBUG_MUX1_21                              0x00A8 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE11__PTE11                                      0x00AC 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE11__FXIO1_D12                                  0x00AC 0x084C 0x2 0x1
++#define MX8ULP_PAD_PTE11__SPDIF_OUT1                                 0x00AC 0x0000 0x3 0x0
++#define MX8ULP_PAD_PTE11__LPUART6_RX                                 0x00AC 0x09D0 0x4 0x1
++#define MX8ULP_PAD_PTE11__I3C2_SDA                                   0x00AC 0x08C0 0x5 0x1
++#define MX8ULP_PAD_PTE11__TPM4_CH3                                   0x00AC 0x0810 0x6 0x1
++#define MX8ULP_PAD_PTE11__I2S6_TX_FS                                 0x00AC 0x0B50 0x7 0x2
++#define MX8ULP_PAD_PTE11__FLEXSPI2_B_SCLK_B                          0x00AC 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTE11__FLEXSPI2_B_SS0_B                           0x00AC 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTE11__ENET0_1588_TMR1                            0x00AC 0x0AD8 0xa 0x1
++#define MX8ULP_PAD_PTE11__DBI0_D6                                    0x00AC 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE11__EPDC0_PWRCTRL0                             0x00AC 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE11__LP_HV_DBG_MUX_6                            0x00AC 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE12__PTE12                                      0x00B0 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE12__FXIO1_D11                                  0x00B0 0x0848 0x2 0x1
++#define MX8ULP_PAD_PTE12__LPSPI4_SIN                                 0x00B0 0x0908 0x3 0x2
++#define MX8ULP_PAD_PTE12__LPUART7_CTS_B                              0x00B0 0x09D8 0x4 0x1
++#define MX8ULP_PAD_PTE12__LPI2C7_SCL                                 0x00B0 0x09C4 0x5 0x1
++#define MX8ULP_PAD_PTE12__TPM4_CH4                                   0x00B0 0x0814 0x6 0x1
++#define MX8ULP_PAD_PTE12__I2S6_TXD0                                  0x00B0 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE12__SDHC2_RESET_B                              0x00B0 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTE12__FLEXSPI2_B_SS1_B                           0x00B0 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTE12__ENET0_1588_TMR0                            0x00B0 0x0AD4 0xa 0x1
++#define MX8ULP_PAD_PTE12__DBI0_D7                                    0x00B0 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE12__EPDC0_PWRCTRL1                             0x00B0 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE12__WUU1_P5                                    0x00B0 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE13__PTE13                                      0x00B4 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE13__FXIO1_D10                                  0x00B4 0x0844 0x2 0x1
++#define MX8ULP_PAD_PTE13__LPSPI4_SOUT                                0x00B4 0x090C 0x3 0x2
++#define MX8ULP_PAD_PTE13__LPUART7_RTS_B                              0x00B4 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTE13__LPI2C7_SDA                                 0x00B4 0x09C8 0x5 0x1
++#define MX8ULP_PAD_PTE13__TPM4_CH5                                   0x00B4 0x0818 0x6 0x1
++#define MX8ULP_PAD_PTE13__I2S6_TXD1                                  0x00B4 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE13__SDHC1_WP                                   0x00B4 0x0A88 0x8 0x2
++#define MX8ULP_PAD_PTE13__ENET0_1588_CLKIN                           0x00B4 0x0AD0 0xa 0x1
++#define MX8ULP_PAD_PTE13__DBI0_D8                                    0x00B4 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE13__EPDC0_PWRCTRL2                             0x00B4 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE13__LP_HV_DBG_MUX_7                            0x00B4 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE14__PTE14                                      0x00B8 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE14__FXIO1_D9                                   0x00B8 0x08B8 0x2 0x1
++#define MX8ULP_PAD_PTE14__LPSPI4_SCK                                 0x00B8 0x0904 0x3 0x2
++#define MX8ULP_PAD_PTE14__LPUART7_TX                                 0x00B8 0x09E0 0x4 0x1
++#define MX8ULP_PAD_PTE14__LPI2C7_HREQ                                0x00B8 0x09C0 0x5 0x1
++#define MX8ULP_PAD_PTE14__TPM5_CLKIN                                 0x00B8 0x0838 0x6 0x1
++#define MX8ULP_PAD_PTE14__I2S6_TXD2                                  0x00B8 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE14__SDHC1_CD                                   0x00B8 0x0A58 0x8 0x2
++#define MX8ULP_PAD_PTE14__ENET0_MDIO                                 0x00B8 0x0AF0 0xa 0x1
++#define MX8ULP_PAD_PTE14__DBI0_D9                                    0x00B8 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE14__EPDC0_PWRCTRL3                             0x00B8 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE14__LP_HV_DBG_MUX_8                            0x00B8 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE15__PTE15                                      0x00BC 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE15__FXIO1_D8                                   0x00BC 0x08B4 0x2 0x1
++#define MX8ULP_PAD_PTE15__LPSPI4_PCS0                                0x00BC 0x08F4 0x3 0x2
++#define MX8ULP_PAD_PTE15__LPUART7_RX                                 0x00BC 0x09DC 0x4 0x1
++#define MX8ULP_PAD_PTE15__I3C2_PUR                                   0x00BC 0x0000 0x5 0x0
++#define MX8ULP_PAD_PTE15__TPM5_CH0                                   0x00BC 0x0820 0x6 0x1
++#define MX8ULP_PAD_PTE15__I2S6_TXD3                                  0x00BC 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE15__MQS1_LEFT                                  0x00BC 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTE15__ENET0_MDC                                  0x00BC 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTE15__DBI0_D10                                   0x00BC 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE15__EPDC0_PWRCOM                               0x00BC 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE15__WUU1_P6                                    0x00BC 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE16__PTE16                                      0x00C0 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE16__FXIO1_D7                                   0x00C0 0x08B0 0x2 0x1
++#define MX8ULP_PAD_PTE16__LPSPI5_PCS1                                0x00C0 0x0914 0x3 0x1
++#define MX8ULP_PAD_PTE16__LPUART4_CTS_B                              0x00C0 0x08DC 0x4 0x2
++#define MX8ULP_PAD_PTE16__LPI2C4_SCL                                 0x00C0 0x08C8 0x5 0x2
++#define MX8ULP_PAD_PTE16__TPM5_CH1                                   0x00C0 0x0824 0x6 0x1
++#define MX8ULP_PAD_PTE16__MQS1_LEFT                                  0x00C0 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE16__MQS1_RIGHT                                 0x00C0 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTE16__USB0_ID                                    0x00C0 0x0AC8 0x9 0x2
++#define MX8ULP_PAD_PTE16__ENET0_TXEN                                 0x00C0 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTE16__DBI0_D11                                   0x00C0 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE16__EPDC0_PWRIRQ                               0x00C0 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE16__WDOG3_RST                                  0x00C0 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE16__LP_HV_DBG_MUX_9                            0x00C0 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE17__PTE17                                      0x00C4 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE17__FXIO1_D6                                   0x00C4 0x08AC 0x2 0x1
++#define MX8ULP_PAD_PTE17__LPSPI5_PCS2                                0x00C4 0x0918 0x3 0x1
++#define MX8ULP_PAD_PTE17__LPUART4_RTS_B                              0x00C4 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTE17__LPI2C4_SDA                                 0x00C4 0x08CC 0x5 0x2
++#define MX8ULP_PAD_PTE17__MQS1_RIGHT                                 0x00C4 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE17__SDHC1_VS                                   0x00C4 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTE17__USB0_PWR                                   0x00C4 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTE17__ENET0_RXER                                 0x00C4 0x0B08 0xa 0x1
++#define MX8ULP_PAD_PTE17__DBI0_D12                                   0x00C4 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE17__EPDC0_PWRSTAT                              0x00C4 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE17__LP_HV_DBG_MUX_10                           0x00C4 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE18__PTE18                                      0x00C8 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE18__FXIO1_D5                                   0x00C8 0x08A8 0x2 0x1
++#define MX8ULP_PAD_PTE18__LPSPI5_PCS3                                0x00C8 0x091C 0x3 0x1
++#define MX8ULP_PAD_PTE18__LPUART4_TX                                 0x00C8 0x08E4 0x4 0x2
++#define MX8ULP_PAD_PTE18__LPI2C4_HREQ                                0x00C8 0x08C4 0x5 0x2
++#define MX8ULP_PAD_PTE18__I2S7_TX_BCLK                               0x00C8 0x0B6C 0x7 0x2
++#define MX8ULP_PAD_PTE18__USB0_OC                                    0x00C8 0x0AC0 0x9 0x2
++#define MX8ULP_PAD_PTE18__ENET0_CRS_DV                               0x00C8 0x0AEC 0xa 0x1
++#define MX8ULP_PAD_PTE18__DBI0_D13                                   0x00C8 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE18__EPDC0_PWRWAKE                              0x00C8 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE18__LP_HV_DBG_MUX_11                           0x00C8 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE19__PTE19                                      0x00CC 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE19__FXIO1_D4                                   0x00CC 0x08A4 0x2 0x1
++#define MX8ULP_PAD_PTE19__LPUART4_RX                                 0x00CC 0x08E0 0x4 0x2
++#define MX8ULP_PAD_PTE19__LPI2C5_HREQ                                0x00CC 0x08D0 0x5 0x2
++#define MX8ULP_PAD_PTE19__I3C2_PUR                                   0x00CC 0x0000 0x6 0x0
++#define MX8ULP_PAD_PTE19__I2S7_TX_FS                                 0x00CC 0x0B70 0x7 0x2
++#define MX8ULP_PAD_PTE19__USB1_PWR                                   0x00CC 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTE19__ENET0_REFCLK                               0x00CC 0x0AF4 0xa 0x1
++#define MX8ULP_PAD_PTE19__DBI0_D14                                   0x00CC 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE19__EPDC0_GDCLK                                0x00CC 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE19__WUU1_P7                                    0x00CC 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE20__PTE20                                      0x00D0 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE20__FXIO1_D3                                   0x00D0 0x0898 0x2 0x1
++#define MX8ULP_PAD_PTE20__LPSPI5_SIN                                 0x00D0 0x0924 0x3 0x1
++#define MX8ULP_PAD_PTE20__LPUART5_CTS_B                              0x00D0 0x08E8 0x4 0x2
++#define MX8ULP_PAD_PTE20__LPI2C5_SCL                                 0x00D0 0x08D4 0x5 0x2
++#define MX8ULP_PAD_PTE20__I2S7_TXD0                                  0x00D0 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE20__USB1_OC                                    0x00D0 0x0AC4 0x9 0x2
++#define MX8ULP_PAD_PTE20__ENET0_RXD1                                 0x00D0 0x0AFC 0xa 0x1
++#define MX8ULP_PAD_PTE20__DBI0_D15                                   0x00D0 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTE20__EPDC0_GDOE                                 0x00D0 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE20__LP_HV_DBG_MUX_12                           0x00D0 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE21__PTE21                                      0x00D4 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE21__FXIO1_D2                                   0x00D4 0x086C 0x2 0x1
++#define MX8ULP_PAD_PTE21__LPSPI5_SOUT                                0x00D4 0x0928 0x3 0x1
++#define MX8ULP_PAD_PTE21__LPUART5_RTS_B                              0x00D4 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTE21__LPI2C5_SDA                                 0x00D4 0x08D8 0x5 0x2
++#define MX8ULP_PAD_PTE21__TPM6_CLKIN                                 0x00D4 0x0994 0x6 0x1
++#define MX8ULP_PAD_PTE21__I2S7_TXD1                                  0x00D4 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE21__USB1_ID                                    0x00D4 0x0ACC 0x9 0x2
++#define MX8ULP_PAD_PTE21__ENET0_RXD0                                 0x00D4 0x0AF8 0xa 0x1
++#define MX8ULP_PAD_PTE21__EPDC0_GDRL                                 0x00D4 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE21__WDOG4_RST                                  0x00D4 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE21__LP_HV_DBG_MUX_13                           0x00D4 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE22__PTE22                                      0x00D8 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE22__FXIO1_D1                                   0x00D8 0x0840 0x2 0x1
++#define MX8ULP_PAD_PTE22__LPSPI5_SCK                                 0x00D8 0x0920 0x3 0x1
++#define MX8ULP_PAD_PTE22__LPUART5_TX                                 0x00D8 0x08F0 0x4 0x2
++#define MX8ULP_PAD_PTE22__I3C2_SCL                                   0x00D8 0x08BC 0x5 0x2
++#define MX8ULP_PAD_PTE22__TPM6_CH0                                   0x00D8 0x097C 0x6 0x1
++#define MX8ULP_PAD_PTE22__I2S7_TXD2                                  0x00D8 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE22__EXT_AUD_MCLK3                              0x00D8 0x0B14 0x9 0x5
++#define MX8ULP_PAD_PTE22__ENET0_TXD1                                 0x00D8 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTE22__EPDC0_SDOED                                0x00D8 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE22__CLKOUT2                                    0x00D8 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE22__LP_HV_DBG_MUX_14                           0x00D8 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTE23__PTE23                                      0x00DC 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTE23__FXIO1_D0                                   0x00DC 0x083C 0x2 0x1
++#define MX8ULP_PAD_PTE23__LPSPI5_PCS0                                0x00DC 0x0910 0x3 0x1
++#define MX8ULP_PAD_PTE23__LPUART5_RX                                 0x00DC 0x08EC 0x4 0x2
++#define MX8ULP_PAD_PTE23__I3C2_SDA                                   0x00DC 0x08C0 0x5 0x2
++#define MX8ULP_PAD_PTE23__TPM6_CH1                                   0x00DC 0x0980 0x6 0x1
++#define MX8ULP_PAD_PTE23__I2S7_TXD3                                  0x00DC 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTE23__EXT_AUD_MCLK2                              0x00DC 0x0800 0x9 0x1
++#define MX8ULP_PAD_PTE23__ENET0_TXD0                                 0x00DC 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTE23__EPDC0_SDOEZ                                0x00DC 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTE23__CLKOUT1                                    0x00DC 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTE23__LP_HV_DBG_MUX_15                           0x00DC 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF0__PTF0                                        0x0100 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF0__FXIO1_D0                                    0x0100 0x083C 0x2 0x2
++#define MX8ULP_PAD_PTF0__LPUART6_CTS_B                               0x0100 0x09CC 0x4 0x2
++#define MX8ULP_PAD_PTF0__LPI2C6_SCL                                  0x0100 0x09B8 0x5 0x2
++#define MX8ULP_PAD_PTF0__I2S7_RX_BCLK                                0x0100 0x0B64 0x7 0x2
++#define MX8ULP_PAD_PTF0__SDHC1_D1                                    0x0100 0x0A68 0x8 0x2
++#define MX8ULP_PAD_PTF0__ENET0_RXD1                                  0x0100 0x0AFC 0x9 0x2
++#define MX8ULP_PAD_PTF0__USB1_ID                                     0x0100 0x0ACC 0xa 0x3
++#define MX8ULP_PAD_PTF0__EPDC0_SDOE                                  0x0100 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF0__DPI0_D23                                    0x0100 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF0__WUU1_P8                                     0x0100 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF1__PTF1                                        0x0104 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF1__FXIO1_D1                                    0x0104 0x0840 0x2 0x2
++#define MX8ULP_PAD_PTF1__LPUART6_RTS_B                               0x0104 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTF1__LPI2C6_SDA                                  0x0104 0x09BC 0x5 0x2
++#define MX8ULP_PAD_PTF1__I2S7_RX_FS                                  0x0104 0x0B68 0x7 0x2
++#define MX8ULP_PAD_PTF1__SDHC1_D0                                    0x0104 0x0A64 0x8 0x2
++#define MX8ULP_PAD_PTF1__ENET0_RXD0                                  0x0104 0x0AF8 0x9 0x2
++#define MX8ULP_PAD_PTF1__LP_HV_DBG_MUX_16                            0x0104 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF1__EPDC0_SDSHR                                 0x0104 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF1__DPI0_D22                                    0x0104 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF1__WDOG3_RST                                   0x0104 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF1__DEBUG_MUX0_16                               0x0104 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF1__DEBUG_MUX1_22                               0x0104 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF2__PTF2                                        0x0108 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF2__FXIO1_D2                                    0x0108 0x086C 0x2 0x2
++#define MX8ULP_PAD_PTF2__LPUART6_TX                                  0x0108 0x09D4 0x4 0x2
++#define MX8ULP_PAD_PTF2__LPI2C6_HREQ                                 0x0108 0x09B4 0x5 0x2
++#define MX8ULP_PAD_PTF2__I2S7_RXD0                                   0x0108 0x0B54 0x7 0x2
++#define MX8ULP_PAD_PTF2__SDHC1_CLK                                   0x0108 0x0A5C 0x8 0x2
++#define MX8ULP_PAD_PTF2__ENET0_TXD1                                  0x0108 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTF2__USB0_ID                                     0x0108 0x0AC8 0xa 0x3
++#define MX8ULP_PAD_PTF2__EPDC0_SDCE9                                 0x0108 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF2__DPI0_D21                                    0x0108 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF2__LP_HV_DBG_MUX_17                            0x0108 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF2__DEBUG_MUX0_17                               0x0108 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF2__DEBUG_MUX1_23                               0x0108 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF3__PTF3                                        0x010C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF3__FXIO1_D3                                    0x010C 0x0898 0x2 0x2
++#define MX8ULP_PAD_PTF3__LPUART6_RX                                  0x010C 0x09D0 0x4 0x2
++#define MX8ULP_PAD_PTF3__LPI2C7_HREQ                                 0x010C 0x09C0 0x5 0x2
++#define MX8ULP_PAD_PTF3__I2S7_RXD1                                   0x010C 0x0B58 0x7 0x2
++#define MX8ULP_PAD_PTF3__SDHC1_CMD                                   0x010C 0x0A60 0x8 0x2
++#define MX8ULP_PAD_PTF3__ENET0_TXD0                                  0x010C 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTF3__USB0_PWR                                    0x010C 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF3__EPDC0_SDCE8                                 0x010C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF3__DPI0_D20                                    0x010C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF3__WUU1_P9                                     0x010C 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF3__DEBUG_MUX1_24                               0x010C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF4__PTF4                                        0x0110 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF4__FXIO1_D4                                    0x0110 0x08A4 0x2 0x2
++#define MX8ULP_PAD_PTF4__LPSPI4_PCS1                                 0x0110 0x08F8 0x3 0x3
++#define MX8ULP_PAD_PTF4__LPUART7_CTS_B                               0x0110 0x09D8 0x4 0x2
++#define MX8ULP_PAD_PTF4__LPI2C7_SCL                                  0x0110 0x09C4 0x5 0x2
++#define MX8ULP_PAD_PTF4__TPM7_CLKIN                                  0x0110 0x09B0 0x6 0x1
++#define MX8ULP_PAD_PTF4__I2S7_RXD2                                   0x0110 0x0B5C 0x7 0x2
++#define MX8ULP_PAD_PTF4__SDHC1_D3                                    0x0110 0x0A70 0x8 0x2
++#define MX8ULP_PAD_PTF4__ENET0_TXEN                                  0x0110 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTF4__USB0_OC                                     0x0110 0x0AC0 0xa 0x3
++#define MX8ULP_PAD_PTF4__EPDC0_SDCE7                                 0x0110 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF4__DPI0_D19                                    0x0110 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF4__WUU1_P10                                    0x0110 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF4__DEBUG_MUX1_25                               0x0110 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF5__PTF5                                        0x0114 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF5__FXIO1_D5                                    0x0114 0x08A8 0x2 0x2
++#define MX8ULP_PAD_PTF5__LPSPI4_PCS2                                 0x0114 0x08FC 0x3 0x3
++#define MX8ULP_PAD_PTF5__LPUART7_RTS_B                               0x0114 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTF5__LPI2C7_SDA                                  0x0114 0x09C8 0x5 0x2
++#define MX8ULP_PAD_PTF5__TPM7_CH0                                    0x0114 0x0998 0x6 0x1
++#define MX8ULP_PAD_PTF5__I2S7_RXD3                                   0x0114 0x0B60 0x7 0x2
++#define MX8ULP_PAD_PTF5__SDHC1_D2                                    0x0114 0x0A6C 0x8 0x2
++#define MX8ULP_PAD_PTF5__ENET0_RXER                                  0x0114 0x0B08 0x9 0x2
++#define MX8ULP_PAD_PTF5__USB1_PWR                                    0x0114 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF5__EPDC0_SDCE6                                 0x0114 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF5__DPI0_D18                                    0x0114 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF5__LP_HV_DBG_MUX_18                            0x0114 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF5__DEBUG_MUX0_18                               0x0114 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF5__DEBUG_MUX1_26                               0x0114 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF6__LP_HV_DBG_MUX_19                            0x0118 0x0000 0x0 0x0
++#define MX8ULP_PAD_PTF6__PTF6                                        0x0118 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF6__FXIO1_D6                                    0x0118 0x08AC 0x2 0x2
++#define MX8ULP_PAD_PTF6__LPSPI4_PCS3                                 0x0118 0x0900 0x3 0x3
++#define MX8ULP_PAD_PTF6__LPUART7_TX                                  0x0118 0x09E0 0x4 0x2
++#define MX8ULP_PAD_PTF6__I3C2_SCL                                    0x0118 0x08BC 0x5 0x3
++#define MX8ULP_PAD_PTF6__TPM7_CH1                                    0x0118 0x099C 0x6 0x1
++#define MX8ULP_PAD_PTF6__I2S7_MCLK                                   0x0118 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF6__SDHC1_D4                                    0x0118 0x0A74 0x8 0x2
++#define MX8ULP_PAD_PTF6__ENET0_CRS_DV                                0x0118 0x0AEC 0x9 0x2
++#define MX8ULP_PAD_PTF6__USB1_OC                                     0x0118 0x0AC4 0xa 0x3
++#define MX8ULP_PAD_PTF6__EPDC0_SDCE5                                 0x0118 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF6__DPI0_D17                                    0x0118 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF6__WDOG4_RST                                   0x0118 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF6__DEBUG_MUX0_19                               0x0118 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF6__DEBUG_MUX1_27                               0x0118 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF7__PTF7                                        0x011C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF7__FXIO1_D7                                    0x011C 0x08B0 0x2 0x2
++#define MX8ULP_PAD_PTF7__LPUART7_RX                                  0x011C 0x09DC 0x4 0x2
++#define MX8ULP_PAD_PTF7__I3C2_SDA                                    0x011C 0x08C0 0x5 0x3
++#define MX8ULP_PAD_PTF7__TPM7_CH2                                    0x011C 0x09A0 0x6 0x1
++#define MX8ULP_PAD_PTF7__MQS1_LEFT                                   0x011C 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF7__SDHC1_D5                                    0x011C 0x0A78 0x8 0x2
++#define MX8ULP_PAD_PTF7__ENET0_REFCLK                                0x011C 0x0AF4 0x9 0x2
++#define MX8ULP_PAD_PTF7__TRACE0_D15                                  0x011C 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF7__EPDC0_SDCE4                                 0x011C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF7__DPI0_D16                                    0x011C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF7__WUU1_P11                                    0x011C 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF7__DEBUG_MUX1_28                               0x011C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF8__PTF8                                        0x0120 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF8__FXIO1_D8                                    0x0120 0x08B4 0x2 0x2
++#define MX8ULP_PAD_PTF8__LPSPI4_SIN                                  0x0120 0x0908 0x3 0x3
++#define MX8ULP_PAD_PTF8__LPUART4_CTS_B                               0x0120 0x08DC 0x4 0x3
++#define MX8ULP_PAD_PTF8__LPI2C4_SCL                                  0x0120 0x08C8 0x5 0x3
++#define MX8ULP_PAD_PTF8__TPM7_CH3                                    0x0120 0x09A4 0x6 0x1
++#define MX8ULP_PAD_PTF8__MQS1_RIGHT                                  0x0120 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF8__SDHC1_D6                                    0x0120 0x0A7C 0x8 0x2
++#define MX8ULP_PAD_PTF8__ENET0_MDIO                                  0x0120 0x0AF0 0x9 0x2
++#define MX8ULP_PAD_PTF8__TRACE0_D14                                  0x0120 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF8__EPDC0_D15                                   0x0120 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF8__DPI0_D15                                    0x0120 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF8__LP_HV_DBG_MUX_24                            0x0120 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF8__DEBUG_MUX1_29                               0x0120 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF9__PTF9                                        0x0124 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF9__FXIO1_D9                                    0x0124 0x08B8 0x2 0x2
++#define MX8ULP_PAD_PTF9__LPSPI4_SOUT                                 0x0124 0x090C 0x3 0x3
++#define MX8ULP_PAD_PTF9__LPUART4_RTS_B                               0x0124 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTF9__LPI2C4_SDA                                  0x0124 0x08CC 0x5 0x3
++#define MX8ULP_PAD_PTF9__TPM7_CH4                                    0x0124 0x09A8 0x6 0x1
++#define MX8ULP_PAD_PTF9__EXT_AUD_MCLK2                               0x0124 0x0800 0x7 0x2
++#define MX8ULP_PAD_PTF9__SDHC1_D7                                    0x0124 0x0A80 0x8 0x2
++#define MX8ULP_PAD_PTF9__ENET0_MDC                                   0x0124 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTF9__TRACE0_D13                                  0x0124 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF9__EPDC0_D14                                   0x0124 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF9__DPI0_D14                                    0x0124 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF9__LP_HV_DBG_MUX_25                            0x0124 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF9__DEBUG_MUX1_30                               0x0124 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF10__LP_HV_DBG_MUX_26                           0x0128 0x0000 0x0 0x0
++#define MX8ULP_PAD_PTF10__PTF10                                      0x0128 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF10__FXIO1_D10                                  0x0128 0x0844 0x2 0x2
++#define MX8ULP_PAD_PTF10__LPSPI4_SCK                                 0x0128 0x0904 0x3 0x3
++#define MX8ULP_PAD_PTF10__LPUART4_TX                                 0x0128 0x08E4 0x4 0x3
++#define MX8ULP_PAD_PTF10__LPI2C4_HREQ                                0x0128 0x08C4 0x5 0x3
++#define MX8ULP_PAD_PTF10__TPM7_CH5                                   0x0128 0x09AC 0x6 0x1
++#define MX8ULP_PAD_PTF10__I2S4_RX_BCLK                               0x0128 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF10__SDHC1_DQS                                  0x0128 0x0A84 0x8 0x2
++#define MX8ULP_PAD_PTF10__ENET0_1588_CLKIN                           0x0128 0x0AD0 0x9 0x2
++#define MX8ULP_PAD_PTF10__TRACE0_D12                                 0x0128 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF10__EPDC0_D13                                  0x0128 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF10__DPI0_D13                                   0x0128 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF10__DEBUG_MUX0_20                              0x0128 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF10__DEBUG_MUX1_31                              0x0128 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF11__PTF11                                      0x012C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF11__FXIO1_D11                                  0x012C 0x0848 0x2 0x2
++#define MX8ULP_PAD_PTF11__LPSPI4_PCS0                                0x012C 0x08F4 0x3 0x3
++#define MX8ULP_PAD_PTF11__LPUART4_RX                                 0x012C 0x08E0 0x4 0x3
++#define MX8ULP_PAD_PTF11__TPM4_CLKIN                                 0x012C 0x081C 0x6 0x2
++#define MX8ULP_PAD_PTF11__I2S4_RX_FS                                 0x012C 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF11__SDHC1_RESET_B                              0x012C 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTF11__ENET0_1588_TMR0                            0x012C 0x0AD4 0x9 0x2
++#define MX8ULP_PAD_PTF11__TRACE0_D11                                 0x012C 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF11__EPDC0_D12                                  0x012C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF11__DPI0_D12                                   0x012C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF11__LP_HV_DBG_MUX_27                           0x012C 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF11__DEBUG_MUX1_32                              0x012C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF12__PTF12                                      0x0130 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF12__FXIO1_D12                                  0x0130 0x084C 0x2 0x2
++#define MX8ULP_PAD_PTF12__LPSPI5_PCS1                                0x0130 0x0914 0x3 0x2
++#define MX8ULP_PAD_PTF12__LPUART5_CTS_B                              0x0130 0x08E8 0x4 0x3
++#define MX8ULP_PAD_PTF12__LPI2C5_SCL                                 0x0130 0x08D4 0x5 0x3
++#define MX8ULP_PAD_PTF12__TPM4_CH0                                   0x0130 0x0804 0x6 0x2
++#define MX8ULP_PAD_PTF12__I2S4_RXD0                                  0x0130 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF12__SDHC2_WP                                   0x0130 0x0ABC 0x8 0x1
++#define MX8ULP_PAD_PTF12__ENET0_1588_TMR1                            0x0130 0x0AD8 0x9 0x2
++#define MX8ULP_PAD_PTF12__TRACE0_D10                                 0x0130 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF12__EPDC0_D11                                  0x0130 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF12__DPI0_D11                                   0x0130 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF12__LP_HV_DBG_MUX_28                           0x0130 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF12__DEBUG_MUX1_33                              0x0130 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF13__PTF13                                      0x0134 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF13__FXIO1_D13                                  0x0134 0x0850 0x2 0x2
++#define MX8ULP_PAD_PTF13__LPSPI5_PCS2                                0x0134 0x0918 0x3 0x2
++#define MX8ULP_PAD_PTF13__LPUART5_RTS_B                              0x0134 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTF13__LPI2C5_SDA                                 0x0134 0x08D8 0x5 0x3
++#define MX8ULP_PAD_PTF13__TPM4_CH1                                   0x0134 0x0808 0x6 0x2
++#define MX8ULP_PAD_PTF13__I2S4_RXD1                                  0x0134 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF13__SDHC2_CD                                   0x0134 0x0A8C 0x8 0x1
++#define MX8ULP_PAD_PTF13__ENET0_1588_TMR2                            0x0134 0x0ADC 0x9 0x2
++#define MX8ULP_PAD_PTF13__TRACE0_D9                                  0x0134 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF13__EPDC0_D10                                  0x0134 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF13__DPI0_D10                                   0x0134 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF13__DEBUG_MUX0_21                              0x0134 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF13__LP_HV_DBG_MUX_29                           0x0134 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF14__PTF14                                      0x0138 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF14__FXIO1_D14                                  0x0138 0x0854 0x2 0x2
++#define MX8ULP_PAD_PTF14__LPSPI5_PCS3                                0x0138 0x091C 0x3 0x2
++#define MX8ULP_PAD_PTF14__LPUART5_TX                                 0x0138 0x08F0 0x4 0x3
++#define MX8ULP_PAD_PTF14__LPI2C5_HREQ                                0x0138 0x08D0 0x5 0x3
++#define MX8ULP_PAD_PTF14__TPM4_CH2                                   0x0138 0x080C 0x6 0x2
++#define MX8ULP_PAD_PTF14__I2S4_MCLK                                  0x0138 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF14__SDHC2_VS                                   0x0138 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTF14__ENET0_1588_TMR3                            0x0138 0x0AE0 0x9 0x2
++#define MX8ULP_PAD_PTF14__TRACE0_D8                                  0x0138 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF14__EPDC0_D9                                   0x0138 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF14__DPI0_D9                                    0x0138 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF14__DEBUG_MUX0_22                              0x0138 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF14__LP_HV_DBG_MUX_30                           0x0138 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF15__PTF15                                      0x013C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF15__FXIO1_D15                                  0x013C 0x0858 0x2 0x2
++#define MX8ULP_PAD_PTF15__LPUART5_RX                                 0x013C 0x08EC 0x4 0x3
++#define MX8ULP_PAD_PTF15__TPM4_CH3                                   0x013C 0x0810 0x6 0x2
++#define MX8ULP_PAD_PTF15__I2S4_TX_BCLK                               0x013C 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF15__SDHC2_D1                                   0x013C 0x0A9C 0x8 0x3
++#define MX8ULP_PAD_PTF15__ENET0_RXD2                                 0x013C 0x0B00 0x9 0x2
++#define MX8ULP_PAD_PTF15__TRACE0_D7                                  0x013C 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF15__EPDC0_D8                                   0x013C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF15__DPI0_D8                                    0x013C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF15__LP_HV_DBG_MUX_31                           0x013C 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF16__PTF16                                      0x0140 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF16__FXIO1_D16                                  0x0140 0x085C 0x2 0x2
++#define MX8ULP_PAD_PTF16__LPSPI5_SIN                                 0x0140 0x0924 0x3 0x2
++#define MX8ULP_PAD_PTF16__LPUART6_CTS_B                              0x0140 0x09CC 0x4 0x3
++#define MX8ULP_PAD_PTF16__LPI2C6_SCL                                 0x0140 0x09B8 0x5 0x3
++#define MX8ULP_PAD_PTF16__TPM4_CH4                                   0x0140 0x0814 0x6 0x2
++#define MX8ULP_PAD_PTF16__I2S4_TX_FS                                 0x0140 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF16__SDHC2_D0                                   0x0140 0x0A98 0x8 0x3
++#define MX8ULP_PAD_PTF16__ENET0_RXD3                                 0x0140 0x0B04 0x9 0x2
++#define MX8ULP_PAD_PTF16__TRACE0_D6                                  0x0140 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF16__EPDC0_D7                                   0x0140 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF16__DPI0_D7                                    0x0140 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF16__LP_HV_DBG_MUX_32                           0x0140 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF17__PTF17                                      0x0144 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF17__FXIO1_D17                                  0x0144 0x0860 0x2 0x2
++#define MX8ULP_PAD_PTF17__LPSPI5_SOUT                                0x0144 0x0928 0x3 0x2
++#define MX8ULP_PAD_PTF17__LPUART6_RTS_B                              0x0144 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTF17__LPI2C6_SDA                                 0x0144 0x09BC 0x5 0x3
++#define MX8ULP_PAD_PTF17__TPM4_CH5                                   0x0144 0x0818 0x6 0x2
++#define MX8ULP_PAD_PTF17__I2S4_TXD0                                  0x0144 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF17__SDHC2_CLK                                  0x0144 0x0A90 0x8 0x3
++#define MX8ULP_PAD_PTF17__ENET0_RXCLK                                0x0144 0x0B0C 0x9 0x2
++#define MX8ULP_PAD_PTF17__TRACE0_D5                                  0x0144 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF17__EPDC0_D6                                   0x0144 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF17__DPI0_D6                                    0x0144 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF17__DEBUG_MUX0_23                              0x0144 0x0000 0xe 0x0
++#define MX8ULP_PAD_PTF17__LP_HV_DBG_MUX_33                           0x0144 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF18__PTF18                                      0x0148 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF18__FXIO1_D18                                  0x0148 0x0864 0x2 0x2
++#define MX8ULP_PAD_PTF18__LPSPI5_SCK                                 0x0148 0x0920 0x3 0x2
++#define MX8ULP_PAD_PTF18__LPUART6_TX                                 0x0148 0x09D4 0x4 0x3
++#define MX8ULP_PAD_PTF18__LPI2C6_HREQ                                0x0148 0x09B4 0x5 0x3
++#define MX8ULP_PAD_PTF18__TPM5_CLKIN                                 0x0148 0x0838 0x6 0x2
++#define MX8ULP_PAD_PTF18__I2S4_TXD1                                  0x0148 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF18__SDHC2_CMD                                  0x0148 0x0A94 0x8 0x3
++#define MX8ULP_PAD_PTF18__ENET0_TXD2                                 0x0148 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTF18__TRACE0_D4                                  0x0148 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF18__EPDC0_D5                                   0x0148 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF18__DPI0_D5                                    0x0148 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF19__PTF19                                      0x014C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF19__FXIO1_D19                                  0x014C 0x0868 0x2 0x2
++#define MX8ULP_PAD_PTF19__LPSPI5_PCS0                                0x014C 0x0910 0x3 0x2
++#define MX8ULP_PAD_PTF19__LPUART6_RX                                 0x014C 0x09D0 0x4 0x3
++#define MX8ULP_PAD_PTF19__TPM5_CH0                                   0x014C 0x0820 0x6 0x2
++#define MX8ULP_PAD_PTF19__I2S5_RX_BCLK                               0x014C 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF19__SDHC2_D3                                   0x014C 0x0AA4 0x8 0x3
++#define MX8ULP_PAD_PTF19__ENET0_TXD3                                 0x014C 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTF19__TRACE0_D3                                  0x014C 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF19__EPDC0_D4                                   0x014C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF19__DPI0_D4                                    0x014C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF20__PTF20                                      0x0150 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF20__FXIO1_D20                                  0x0150 0x0870 0x2 0x2
++#define MX8ULP_PAD_PTF20__LPUART7_CTS_B                              0x0150 0x09D8 0x4 0x3
++#define MX8ULP_PAD_PTF20__LPI2C7_SCL                                 0x0150 0x09C4 0x5 0x3
++#define MX8ULP_PAD_PTF20__TPM5_CH1                                   0x0150 0x0824 0x6 0x2
++#define MX8ULP_PAD_PTF20__I2S5_RX_FS                                 0x0150 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF20__SDHC2_D2                                   0x0150 0x0AA0 0x8 0x3
++#define MX8ULP_PAD_PTF20__ENET0_TXCLK                                0x0150 0x0B10 0x9 0x2
++#define MX8ULP_PAD_PTF20__TRACE0_D2                                  0x0150 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF20__EPDC0_D3                                   0x0150 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF20__DPI0_D3                                    0x0150 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF21__PTF21                                      0x0154 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF21__FXIO1_D21                                  0x0154 0x0874 0x2 0x2
++#define MX8ULP_PAD_PTF21__SPDIF_CLK                                  0x0154 0x0000 0x3 0x0
++#define MX8ULP_PAD_PTF21__LPUART7_RTS_B                              0x0154 0x0000 0x4 0x0
++#define MX8ULP_PAD_PTF21__LPI2C7_SDA                                 0x0154 0x09C8 0x5 0x3
++#define MX8ULP_PAD_PTF21__TPM6_CLKIN                                 0x0154 0x0994 0x6 0x2
++#define MX8ULP_PAD_PTF21__I2S5_RXD0                                  0x0154 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF21__SDHC2_D4                                   0x0154 0x0AA8 0x8 0x2
++#define MX8ULP_PAD_PTF21__ENET0_CRS                                  0x0154 0x0AE8 0x9 0x2
++#define MX8ULP_PAD_PTF21__TRACE0_D1                                  0x0154 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF21__EPDC0_D2                                   0x0154 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF21__DPI0_D2                                    0x0154 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF22__PTF22                                      0x0158 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF22__FXIO1_D22                                  0x0158 0x0878 0x2 0x2
++#define MX8ULP_PAD_PTF22__SPDIF_IN0                                  0x0158 0x0B74 0x3 0x3
++#define MX8ULP_PAD_PTF22__LPUART7_TX                                 0x0158 0x09E0 0x4 0x3
++#define MX8ULP_PAD_PTF22__LPI2C7_HREQ                                0x0158 0x09C0 0x5 0x3
++#define MX8ULP_PAD_PTF22__TPM6_CH0                                   0x0158 0x097C 0x6 0x2
++#define MX8ULP_PAD_PTF22__I2S5_RXD1                                  0x0158 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF22__SDHC2_D5                                   0x0158 0x0AAC 0x8 0x2
++#define MX8ULP_PAD_PTF22__ENET0_COL                                  0x0158 0x0AE4 0x9 0x2
++#define MX8ULP_PAD_PTF22__TRACE0_D0                                  0x0158 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF22__EPDC0_D1                                   0x0158 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF22__DPI0_D1                                    0x0158 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF23__PTF23                                      0x015C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF23__FXIO1_D23                                  0x015C 0x087C 0x2 0x2
++#define MX8ULP_PAD_PTF23__SPDIF_OUT0                                 0x015C 0x0000 0x3 0x0
++#define MX8ULP_PAD_PTF23__LPUART7_RX                                 0x015C 0x09DC 0x4 0x3
++#define MX8ULP_PAD_PTF23__I3C2_PUR                                   0x015C 0x0000 0x5 0x0
++#define MX8ULP_PAD_PTF23__TPM6_CH1                                   0x015C 0x0980 0x6 0x2
++#define MX8ULP_PAD_PTF23__I2S5_RXD2                                  0x015C 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF23__SDHC2_D6                                   0x015C 0x0AB0 0x8 0x2
++#define MX8ULP_PAD_PTF23__ENET0_TXER                                 0x015C 0x0000 0x9 0x0
++#define MX8ULP_PAD_PTF23__TRACE0_CLKOUT                              0x015C 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF23__EPDC0_D0                                   0x015C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF23__DPI0_D0                                    0x015C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF24__PTF24                                      0x0160 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF24__FXIO1_D24                                  0x0160 0x0880 0x2 0x2
++#define MX8ULP_PAD_PTF24__SPDIF_IN1                                  0x0160 0x0B78 0x3 0x3
++#define MX8ULP_PAD_PTF24__I3C2_SCL                                   0x0160 0x08BC 0x5 0x4
++#define MX8ULP_PAD_PTF24__I2S5_RXD3                                  0x0160 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF24__SDHC2_D7                                   0x0160 0x0AB4 0x8 0x2
++#define MX8ULP_PAD_PTF24__DBI0_WRX                                   0x0160 0x0000 0xa 0x0
++#define MX8ULP_PAD_PTF24__EPDC0_SDCLK                                0x0160 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF24__DPI0_PCLK                                  0x0160 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF24__WUU1_P12                                   0x0160 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF25__PTF25                                      0x0164 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF25__FXIO1_D25                                  0x0164 0x0884 0x2 0x2
++#define MX8ULP_PAD_PTF25__SPDIF_OUT1                                 0x0164 0x0000 0x3 0x0
++#define MX8ULP_PAD_PTF25__I3C2_SDA                                   0x0164 0x08C0 0x5 0x4
++#define MX8ULP_PAD_PTF25__TPM7_CH5                                   0x0164 0x09AC 0x6 0x2
++#define MX8ULP_PAD_PTF25__I2S5_MCLK                                  0x0164 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF25__SDHC2_DQS                                  0x0164 0x0AB8 0x8 0x2
++#define MX8ULP_PAD_PTF25__EXT_AUD_MCLK2                              0x0164 0x0800 0x9 0x3
++#define MX8ULP_PAD_PTF25__EPDC0_GDSP                                 0x0164 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF25__DPI0_VSYNC                                 0x0164 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF25__WUU1_P13                                   0x0164 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF26__PTF26                                      0x0168 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF26__FXIO1_D26                                  0x0168 0x0888 0x2 0x2
++#define MX8ULP_PAD_PTF26__SPDIF_IN2                                  0x0168 0x0B7C 0x3 0x3
++#define MX8ULP_PAD_PTF26__TPM7_CLKIN                                 0x0168 0x09B0 0x6 0x2
++#define MX8ULP_PAD_PTF26__I2S5_TX_BCLK                               0x0168 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF26__SDHC2_RESET_B                              0x0168 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTF26__EPDC0_SDLE                                 0x0168 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF26__DPI0_HSYNC                                 0x0168 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF26__WUU1_P14                                   0x0168 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF27__PTF27                                      0x016C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF27__FXIO1_D27                                  0x016C 0x088C 0x2 0x2
++#define MX8ULP_PAD_PTF27__SPDIF_OUT2                                 0x016C 0x0000 0x3 0x0
++#define MX8ULP_PAD_PTF27__TPM7_CH0                                   0x016C 0x0998 0x6 0x2
++#define MX8ULP_PAD_PTF27__I2S5_TX_FS                                 0x016C 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF27__SDHC2_WP                                   0x016C 0x0ABC 0x8 0x2
++#define MX8ULP_PAD_PTF27__EPDC0_SDCE0                                0x016C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF27__DPI0_DE                                    0x016C 0x0000 0xc 0x0
++#define MX8ULP_PAD_PTF27__WUU1_P15                                   0x016C 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF28__PTF28                                      0x0170 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF28__FXIO1_D28                                  0x0170 0x0890 0x2 0x2
++#define MX8ULP_PAD_PTF28__SPDIF_IN3                                  0x0170 0x0B80 0x3 0x3
++#define MX8ULP_PAD_PTF28__TPM7_CH1                                   0x0170 0x099C 0x6 0x2
++#define MX8ULP_PAD_PTF28__I2S5_TXD0                                  0x0170 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF28__SDHC2_CD                                   0x0170 0x0A8C 0x8 0x2
++#define MX8ULP_PAD_PTF28__EPDC0_SDCLK_B                              0x0170 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF28__LP_HV_DBG_MUX_20                           0x0170 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF29__PTF29                                      0x0174 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF29__FXIO1_D29                                  0x0174 0x0894 0x2 0x2
++#define MX8ULP_PAD_PTF29__SPDIF_OUT3                                 0x0174 0x0000 0x3 0x0
++#define MX8ULP_PAD_PTF29__TPM7_CH2                                   0x0174 0x09A0 0x6 0x2
++#define MX8ULP_PAD_PTF29__I2S5_TXD1                                  0x0174 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF29__SDHC2_VS                                   0x0174 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTF29__EPDC0_SDCE1                                0x0174 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF29__WDOG3_RST                                  0x0174 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF29__LP_HV_DBG_MUX_21                           0x0174 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF30__PTF30                                      0x0178 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF30__FXIO1_D30                                  0x0178 0x089C 0x2 0x2
++#define MX8ULP_PAD_PTF30__TPM7_CH3                                   0x0178 0x09A4 0x6 0x2
++#define MX8ULP_PAD_PTF30__I2S5_TXD2                                  0x0178 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF30__MQS1_LEFT                                  0x0178 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTF30__EPDC0_SDCE2                                0x0178 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF30__WDOG4_RST                                  0x0178 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF30__LP_HV_DBG_MUX_22                           0x0178 0x0000 0xf 0x0
++#define MX8ULP_PAD_PTF31__PTF31                                      0x017C 0x0000 0x1 0x0
++#define MX8ULP_PAD_PTF31__FXIO1_D31                                  0x017C 0x08A0 0x2 0x2
++#define MX8ULP_PAD_PTF31__TPM7_CH4                                   0x017C 0x09A8 0x6 0x2
++#define MX8ULP_PAD_PTF31__I2S5_TXD3                                  0x017C 0x0000 0x7 0x0
++#define MX8ULP_PAD_PTF31__MQS1_RIGHT                                 0x017C 0x0000 0x8 0x0
++#define MX8ULP_PAD_PTF31__EPDC0_SDCE3                                0x017C 0x0000 0xb 0x0
++#define MX8ULP_PAD_PTF31__WDOG5_RST                                  0x017C 0x0000 0xd 0x0
++#define MX8ULP_PAD_PTF31__LP_HV_DBG_MUX_23                           0x017C 0x0000 0xf 0x0
++#define MX8ULP_PAD_BOOT_MODE0__BOOT_MODE0                            0x0400 0x0000 0x0 0x0
++#define MX8ULP_PAD_BOOT_MODE1__BOOT_MODE1                            0x0404 0x0000 0x0 0x0
 +
-+/* CGC1 */
-+#define IMX8ULP_CLK_SPLL2			5
-+#define IMX8ULP_CLK_SPLL3			6
-+#define IMX8ULP_CLK_A35_SEL			7
-+#define IMX8ULP_CLK_A35_DIV			8
-+#define IMX8ULP_CLK_SPLL2_PRE_SEL		9
-+#define IMX8ULP_CLK_SPLL3_PRE_SEL		10
-+#define IMX8ULP_CLK_SPLL3_PFD0			11
-+#define IMX8ULP_CLK_SPLL3_PFD1			12
-+#define IMX8ULP_CLK_SPLL3_PFD2			13
-+#define IMX8ULP_CLK_SPLL3_PFD3			14
-+#define IMX8ULP_CLK_SPLL3_PFD0_DIV1		15
-+#define IMX8ULP_CLK_SPLL3_PFD0_DIV2		16
-+#define IMX8ULP_CLK_SPLL3_PFD1_DIV1		17
-+#define IMX8ULP_CLK_SPLL3_PFD1_DIV2		18
-+#define IMX8ULP_CLK_SPLL3_PFD2_DIV1		19
-+#define IMX8ULP_CLK_SPLL3_PFD2_DIV2		20
-+#define IMX8ULP_CLK_SPLL3_PFD3_DIV1		21
-+#define IMX8ULP_CLK_SPLL3_PFD3_DIV2		22
-+#define IMX8ULP_CLK_NIC_SEL			23
-+#define IMX8ULP_CLK_NIC_AD_DIVPLAT		24
-+#define IMX8ULP_CLK_NIC_PER_DIVPLAT		25
-+#define IMX8ULP_CLK_XBAR_SEL			26
-+#define IMX8ULP_CLK_XBAR_AD_DIVPLAT		27
-+#define IMX8ULP_CLK_XBAR_DIVBUS			28
-+#define IMX8ULP_CLK_XBAR_AD_SLOW		29
-+#define IMX8ULP_CLK_SOSC_DIV1			30
-+#define IMX8ULP_CLK_SOSC_DIV2			31
-+#define IMX8ULP_CLK_SOSC_DIV3			32
-+#define IMX8ULP_CLK_FROSC_DIV1			33
-+#define IMX8ULP_CLK_FROSC_DIV2			34
-+#define IMX8ULP_CLK_FROSC_DIV3			35
-+#define IMX8ULP_CLK_SPLL3_VCODIV		36
-+#define IMX8ULP_CLK_SPLL3_PFD0_DIV1_GATE	37
-+#define IMX8ULP_CLK_SPLL3_PFD0_DIV2_GATE	38
-+#define IMX8ULP_CLK_SPLL3_PFD1_DIV1_GATE	39
-+#define IMX8ULP_CLK_SPLL3_PFD1_DIV2_GATE	40
-+#define IMX8ULP_CLK_SPLL3_PFD2_DIV1_GATE	41
-+#define IMX8ULP_CLK_SPLL3_PFD2_DIV2_GATE	42
-+#define IMX8ULP_CLK_SPLL3_PFD3_DIV1_GATE	43
-+#define IMX8ULP_CLK_SPLL3_PFD3_DIV2_GATE	44
-+#define IMX8ULP_CLK_SOSC_DIV1_GATE		45
-+#define IMX8ULP_CLK_SOSC_DIV2_GATE		46
-+#define IMX8ULP_CLK_SOSC_DIV3_GATE		47
-+#define IMX8ULP_CLK_FROSC_DIV1_GATE		48
-+#define IMX8ULP_CLK_FROSC_DIV2_GATE		49
-+#define IMX8ULP_CLK_FROSC_DIV3_GATE		50
-+#define IMX8ULP_CLK_SAI4_SEL			51
-+#define IMX8ULP_CLK_SAI5_SEL			52
-+#define IMX8ULP_CLK_AUD_CLK1			53
-+#define IMX8ULP_CLK_ARM				54
-+#define IMX8ULP_CLK_ENET_TS_SEL			55
++#endif /* __DTS_IMX8ULP_PINFUNC_H */
+diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+new file mode 100644
+index 000000000000..face5a272e4f
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+@@ -0,0 +1,474 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2021 NXP
++ */
 +
-+#define IMX8ULP_CLK_CGC1_END			56
++#include <dt-bindings/clock/imx8ulp-clock.h>
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+/* CGC2 */
-+#define IMX8ULP_CLK_PLL4_PRE_SEL	0
-+#define IMX8ULP_CLK_PLL4		1
-+#define IMX8ULP_CLK_PLL4_VCODIV		2
-+#define IMX8ULP_CLK_DDR_SEL		3
-+#define IMX8ULP_CLK_DDR_DIV		4
-+#define IMX8ULP_CLK_LPAV_AXI_SEL	5
-+#define IMX8ULP_CLK_LPAV_AXI_DIV	6
-+#define IMX8ULP_CLK_LPAV_AHB_DIV	7
-+#define IMX8ULP_CLK_LPAV_BUS_DIV	8
-+#define IMX8ULP_CLK_PLL4_PFD0		9
-+#define IMX8ULP_CLK_PLL4_PFD1		10
-+#define IMX8ULP_CLK_PLL4_PFD2		11
-+#define IMX8ULP_CLK_PLL4_PFD3		12
-+#define IMX8ULP_CLK_PLL4_PFD0_DIV1_GATE	13
-+#define IMX8ULP_CLK_PLL4_PFD0_DIV2_GATE	14
-+#define IMX8ULP_CLK_PLL4_PFD1_DIV1_GATE	15
-+#define IMX8ULP_CLK_PLL4_PFD1_DIV2_GATE	16
-+#define IMX8ULP_CLK_PLL4_PFD2_DIV1_GATE	17
-+#define IMX8ULP_CLK_PLL4_PFD2_DIV2_GATE	18
-+#define IMX8ULP_CLK_PLL4_PFD3_DIV1_GATE	19
-+#define IMX8ULP_CLK_PLL4_PFD3_DIV2_GATE	20
-+#define IMX8ULP_CLK_PLL4_PFD0_DIV1	21
-+#define IMX8ULP_CLK_PLL4_PFD0_DIV2	22
-+#define IMX8ULP_CLK_PLL4_PFD1_DIV1	23
-+#define IMX8ULP_CLK_PLL4_PFD1_DIV2	24
-+#define IMX8ULP_CLK_PLL4_PFD2_DIV1	25
-+#define IMX8ULP_CLK_PLL4_PFD2_DIV2	26
-+#define IMX8ULP_CLK_PLL4_PFD3_DIV1	27
-+#define IMX8ULP_CLK_PLL4_PFD3_DIV2	28
-+#define IMX8ULP_CLK_CGC2_SOSC_DIV1_GATE	29
-+#define IMX8ULP_CLK_CGC2_SOSC_DIV2_GATE	30
-+#define IMX8ULP_CLK_CGC2_SOSC_DIV3_GATE	31
-+#define IMX8ULP_CLK_CGC2_SOSC_DIV1	32
-+#define IMX8ULP_CLK_CGC2_SOSC_DIV2	33
-+#define IMX8ULP_CLK_CGC2_SOSC_DIV3	34
-+#define IMX8ULP_CLK_CGC2_FROSC_DIV1_GATE	35
-+#define IMX8ULP_CLK_CGC2_FROSC_DIV2_GATE	36
-+#define IMX8ULP_CLK_CGC2_FROSC_DIV3_GATE	37
-+#define IMX8ULP_CLK_CGC2_FROSC_DIV1	38
-+#define IMX8ULP_CLK_CGC2_FROSC_DIV2	39
-+#define IMX8ULP_CLK_CGC2_FROSC_DIV3	40
-+#define IMX8ULP_CLK_AUD_CLK2		41
-+#define IMX8ULP_CLK_SAI6_SEL		42
-+#define IMX8ULP_CLK_SAI7_SEL		43
-+#define IMX8ULP_CLK_SPDIF_SEL		44
-+#define IMX8ULP_CLK_HIFI_SEL		45
-+#define IMX8ULP_CLK_HIFI_DIVCORE	46
-+#define IMX8ULP_CLK_HIFI_DIVPLAT	47
-+#define IMX8ULP_CLK_DSI_PHY_REF		48
++#include "imx8ulp-pinfunc.h"
 +
-+#define IMX8ULP_CLK_CGC2_END		49
++/ {
++	interrupt-parent = <&gic>;
++	#address-cells = <2>;
++	#size-cells = <2>;
 +
-+/* PCC3 */
-+#define IMX8ULP_CLK_WDOG3		0
-+#define IMX8ULP_CLK_WDOG4		1
-+#define IMX8ULP_CLK_LPIT1		2
-+#define IMX8ULP_CLK_TPM4		3
-+#define IMX8ULP_CLK_TPM5		4
-+#define IMX8ULP_CLK_FLEXIO1		5
-+#define IMX8ULP_CLK_I3C2		6
-+#define IMX8ULP_CLK_LPI2C4		7
-+#define IMX8ULP_CLK_LPI2C5		8
-+#define IMX8ULP_CLK_LPUART4		9
-+#define IMX8ULP_CLK_LPUART5		10
-+#define IMX8ULP_CLK_LPSPI4		11
-+#define IMX8ULP_CLK_LPSPI5		12
-+#define IMX8ULP_CLK_DMA1_MP		13
-+#define IMX8ULP_CLK_DMA1_CH0		14
-+#define IMX8ULP_CLK_DMA1_CH1		15
-+#define IMX8ULP_CLK_DMA1_CH2		16
-+#define IMX8ULP_CLK_DMA1_CH3		17
-+#define IMX8ULP_CLK_DMA1_CH4		18
-+#define IMX8ULP_CLK_DMA1_CH5		19
-+#define IMX8ULP_CLK_DMA1_CH6		20
-+#define IMX8ULP_CLK_DMA1_CH7		21
-+#define IMX8ULP_CLK_DMA1_CH8		22
-+#define IMX8ULP_CLK_DMA1_CH9		23
-+#define IMX8ULP_CLK_DMA1_CH10		24
-+#define IMX8ULP_CLK_DMA1_CH11		25
-+#define IMX8ULP_CLK_DMA1_CH12		26
-+#define IMX8ULP_CLK_DMA1_CH13		27
-+#define IMX8ULP_CLK_DMA1_CH14		28
-+#define IMX8ULP_CLK_DMA1_CH15		29
-+#define IMX8ULP_CLK_DMA1_CH16		30
-+#define IMX8ULP_CLK_DMA1_CH17		31
-+#define IMX8ULP_CLK_DMA1_CH18		32
-+#define IMX8ULP_CLK_DMA1_CH19		33
-+#define IMX8ULP_CLK_DMA1_CH20		34
-+#define IMX8ULP_CLK_DMA1_CH21		35
-+#define IMX8ULP_CLK_DMA1_CH22		36
-+#define IMX8ULP_CLK_DMA1_CH23		37
-+#define IMX8ULP_CLK_DMA1_CH24		38
-+#define IMX8ULP_CLK_DMA1_CH25		39
-+#define IMX8ULP_CLK_DMA1_CH26		40
-+#define IMX8ULP_CLK_DMA1_CH27		41
-+#define IMX8ULP_CLK_DMA1_CH28		42
-+#define IMX8ULP_CLK_DMA1_CH29		43
-+#define IMX8ULP_CLK_DMA1_CH30		44
-+#define IMX8ULP_CLK_DMA1_CH31		45
-+#define IMX8ULP_CLK_MU3_A		46
++	aliases {
++		ethernet0 = &fec;
++		gpio0 = &gpiod;
++		gpio1 = &gpioe;
++		gpio2 = &gpiof;
++		mmc0 = &usdhc0;
++		mmc1 = &usdhc1;
++		mmc2 = &usdhc2;
++		serial0 = &lpuart4;
++		serial1 = &lpuart5;
++		serial2 = &lpuart6;
++		serial3 = &lpuart7;
++		usbphy0 = &usbphy1;
++		usbphy1 = &usbphy2;
++	};
 +
-+#define IMX8ULP_CLK_PCC3_END		47
++	cpus {
++		#address-cells = <2>;
++		#size-cells = <0>;
 +
-+/* PCC4 */
-+#define IMX8ULP_CLK_FLEXSPI2		0
-+#define IMX8ULP_CLK_TPM6		1
-+#define IMX8ULP_CLK_TPM7		2
-+#define IMX8ULP_CLK_LPI2C6		3
-+#define IMX8ULP_CLK_LPI2C7		4
-+#define IMX8ULP_CLK_LPUART6		5
-+#define IMX8ULP_CLK_LPUART7		6
-+#define IMX8ULP_CLK_SAI4		7
-+#define IMX8ULP_CLK_SAI5		8
-+#define IMX8ULP_CLK_PCTLE		9
-+#define IMX8ULP_CLK_PCTLF		10
-+#define IMX8ULP_CLK_USDHC0		11
-+#define IMX8ULP_CLK_USDHC1		12
-+#define IMX8ULP_CLK_USDHC2		13
-+#define IMX8ULP_CLK_USB0		14
-+#define IMX8ULP_CLK_USB0_PHY		15
-+#define IMX8ULP_CLK_USB1		16
-+#define IMX8ULP_CLK_USB1_PHY		17
-+#define IMX8ULP_CLK_USB_XBAR		18
-+#define IMX8ULP_CLK_ENET		19
-+#define IMX8ULP_CLK_SFA1		20
-+#define IMX8ULP_CLK_RGPIOE		21
-+#define IMX8ULP_CLK_RGPIOF		22
++		A35_0: cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35";
++			reg = <0x0 0x0>;
++			enable-method = "psci";
++			next-level-cache = <&A35_L2>;
++		};
 +
-+#define IMX8ULP_CLK_PCC4_END		23
++		A35_1: cpu@1 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a35";
++			reg = <0x0 0x1>;
++			enable-method = "psci";
++			next-level-cache = <&A35_L2>;
++		};
 +
-+/* PCC5 */
-+#define IMX8ULP_CLK_TPM8		0
-+#define IMX8ULP_CLK_SAI6		1
-+#define IMX8ULP_CLK_SAI7		2
-+#define IMX8ULP_CLK_SPDIF		3
-+#define IMX8ULP_CLK_ISI			4
-+#define IMX8ULP_CLK_CSI_REGS 		5
-+#define IMX8ULP_CLK_PCTLD		6
-+#define IMX8ULP_CLK_CSI			7
-+#define IMX8ULP_CLK_DSI			8
-+#define IMX8ULP_CLK_WDOG5		9
-+#define IMX8ULP_CLK_EPDC		10
-+#define IMX8ULP_CLK_PXP			11
-+#define IMX8ULP_CLK_SFA2		12
-+#define IMX8ULP_CLK_GPU2D		13
-+#define IMX8ULP_CLK_GPU3D		14
-+#define IMX8ULP_CLK_DC_NANO		15
-+#define IMX8ULP_CLK_CSI_CLK_UI 		16
-+#define IMX8ULP_CLK_CSI_CLK_ESC		17
-+#define IMX8ULP_CLK_RGPIOD		18
-+#define IMX8ULP_CLK_DMA2_MP		19
-+#define IMX8ULP_CLK_DMA2_CH0		20
-+#define IMX8ULP_CLK_DMA2_CH1		21
-+#define IMX8ULP_CLK_DMA2_CH2		22
-+#define IMX8ULP_CLK_DMA2_CH3		23
-+#define IMX8ULP_CLK_DMA2_CH4		24
-+#define IMX8ULP_CLK_DMA2_CH5		25
-+#define IMX8ULP_CLK_DMA2_CH6		26
-+#define IMX8ULP_CLK_DMA2_CH7		27
-+#define IMX8ULP_CLK_DMA2_CH8		28
-+#define IMX8ULP_CLK_DMA2_CH9		29
-+#define IMX8ULP_CLK_DMA2_CH10		30
-+#define IMX8ULP_CLK_DMA2_CH11		31
-+#define IMX8ULP_CLK_DMA2_CH12		32
-+#define IMX8ULP_CLK_DMA2_CH13		33
-+#define IMX8ULP_CLK_DMA2_CH14		34
-+#define IMX8ULP_CLK_DMA2_CH15		35
-+#define IMX8ULP_CLK_DMA2_CH16		36
-+#define IMX8ULP_CLK_DMA2_CH17		37
-+#define IMX8ULP_CLK_DMA2_CH18		38
-+#define IMX8ULP_CLK_DMA2_CH19		39
-+#define IMX8ULP_CLK_DMA2_CH20		40
-+#define IMX8ULP_CLK_DMA2_CH21		41
-+#define IMX8ULP_CLK_DMA2_CH22		42
-+#define IMX8ULP_CLK_DMA2_CH23		43
-+#define IMX8ULP_CLK_DMA2_CH24		44
-+#define IMX8ULP_CLK_DMA2_CH25		45
-+#define IMX8ULP_CLK_DMA2_CH26		46
-+#define IMX8ULP_CLK_DMA2_CH27		47
-+#define IMX8ULP_CLK_DMA2_CH28		48
-+#define IMX8ULP_CLK_DMA2_CH29		49
-+#define IMX8ULP_CLK_DMA2_CH30		50
-+#define IMX8ULP_CLK_DMA2_CH31		51
-+#define IMX8ULP_CLK_MU2_B		52
-+#define IMX8ULP_CLK_MU3_B		53
-+#define IMX8ULP_CLK_AVD_SIM		54
-+#define IMX8ULP_CLK_DSI_TX_ESC		55
++		A35_L2: l2-cache0 {
++			compatible = "cache";
++		};
++	};
 +
-+#define IMX8ULP_CLK_PCC5_END		56
++	gic: interrupt-controller@2d400000 {
++		compatible = "arm,gic-v3";
++		reg = <0x0 0x2d400000 0 0x10000>, /* GIC Dist */
++		      <0x0 0x2d440000 0 0xc0000>; /* GICR (RD_base + SGI_base) */
++		#interrupt-cells = <3>;
++		interrupt-controller;
++		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
++	};
 +
-+#endif
++	psci {
++		compatible = "arm,psci-1.0";
++		method = "smc";
++	};
++
++	timer {
++		compatible = "arm,armv8-timer";
++		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>, /* Physical Secure */
++			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>, /* Physical Non-Secure */
++			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>, /* Virtual */
++			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>; /* Hypervisor */
++	};
++
++	frosc: clock-frosc {
++		compatible = "fixed-clock";
++		clock-frequency = <192000000>;
++		clock-output-names = "frosc";
++		#clock-cells = <0>;
++	};
++
++	lposc: clock-lposc {
++		compatible = "fixed-clock";
++		clock-frequency = <1000000>;
++		clock-output-names = "lposc";
++		#clock-cells = <0>;
++	};
++
++	rosc: clock-rosc {
++		compatible = "fixed-clock";
++		clock-frequency = <32768>;
++		clock-output-names = "rosc";
++		#clock-cells = <0>;
++	};
++
++	sosc: clock-sosc {
++		compatible = "fixed-clock";
++		clock-frequency = <24000000>;
++		clock-output-names = "sosc";
++		#clock-cells = <0>;
++	};
++
++	soc@0 {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x0 0x0 0x0 0x40000000>;
++
++		per_bridge3: bus@29000000 {
++			compatible = "simple-bus";
++			reg = <0x29000000 0x800000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges;
++
++			wdog3: watchdog@292a0000 {
++				compatible = "fsl,imx8ulp-wdt", "fsl,imx7ulp-wdt";
++				reg = <0x292a0000 0x10000>;
++				interrupts = <GIC_SPI 76 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc3 IMX8ULP_CLK_WDOG3>;
++				assigned-clocks = <&pcc3 IMX8ULP_CLK_WDOG3>;
++				assigned-clocks-parents = <&cgc1 IMX8ULP_CLK_SOSC_DIV2>;
++				timeout-sec = <40>;
++			};
++
++			cgc1: clock-controller@292c0000 {
++				compatible = "fsl,imx8ulp-cgc1";
++				reg = <0x292c0000 0x10000>;
++				clocks = <&rosc>, <&sosc>, <&frosc>, <&lposc>;
++				clock-names = "rosc", "sosc", "frosc", "lposc";
++				#clock-cells = <1>;
++			};
++
++			pcc3: clock-controller@292d0000 {
++				compatible = "fsl,imx8ulp-pcc3";
++				reg = <0x292d0000 0x10000>;
++				#clock-cells = <1>;
++			};
++
++			tpm5: tpm@29340000 {
++				compatible = "fsl,imx8ulp-tpm", "fsl,imx7ulp-tpm";
++				reg = <0x29340000 0x1000>;
++				interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc3 IMX8ULP_CLK_TPM5>,
++					 <&pcc3 IMX8ULP_CLK_TPM5>;
++				clock-names = "ipg", "per";
++				status = "disabled";
++			};
++
++			lpi2c4: i2c@29370000 {
++				compatible = "fsl,imx8ulp-lpi2c", "fsl,imx7ulp-lpi2c";
++				reg = <0x29370000 0x10000>;
++				interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc3 IMX8ULP_CLK_LPI2C4>,
++					 <&pcc3 IMX8ULP_CLK_LPI2C4>;
++				clock-names = "per", "ipg";
++				assigned-clocks = <&pcc3 IMX8ULP_CLK_LPI2C4>;
++				assigned-clock-parents = <&cgc1 IMX8ULP_CLK_XBAR_DIVBUS>;
++				assigned-clock-rates = <48000000>;
++				status = "disabled";
++			};
++
++			lpi2c5: i2c@29380000 {
++				compatible = "fsl,imx8ulp-lpi2c", "fsl,imx7ulp-lpi2c";
++				reg = <0x29380000 0x10000>;
++				interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc3 IMX8ULP_CLK_LPI2C5>,
++					 <&pcc3 IMX8ULP_CLK_LPI2C5>;
++				clock-names = "per", "ipg";
++				assigned-clocks = <&pcc3 IMX8ULP_CLK_LPI2C5>;
++				assigned-clock-parents = <&cgc1 IMX8ULP_CLK_XBAR_DIVBUS>;
++				assigned-clock-rates = <48000000>;
++				status = "disabled";
++			};
++
++			lpuart4: serial@29390000 {
++				compatible = "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
++				reg = <0x29390000 0x1000>;
++				interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc3 IMX8ULP_CLK_LPUART4>;
++				clock-names = "ipg";
++				status = "disabled";
++			};
++
++			lpuart5: serial@293a0000 {
++				compatible = "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
++				reg = <0x293a0000 0x1000>;
++				interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc3 IMX8ULP_CLK_LPUART5>;
++				clock-names = "ipg";
++				status = "disabled";
++			};
++
++			lpspi4: spi@293b0000 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				compatible = "fsl,imx8ulp-spi", "fsl,imx7ulp-spi";
++				reg = <0x293b0000 0x10000>;
++				interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc3 IMX8ULP_CLK_LPSPI4>,
++					 <&pcc3 IMX8ULP_CLK_LPSPI4>;
++				clock-names = "per", "ipg";
++				assigned-clocks = <&pcc3 IMX8ULP_CLK_LPSPI4>;
++				assigned-clock-parents = <&cgc1 IMX8ULP_CLK_XBAR_DIVBUS>;
++				assigned-clock-rates = <16000000>;
++				status = "disabled";
++			};
++
++			lpspi5: spi@293c0000 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				compatible = "fsl,imx8ulp-spi", "fsl,imx7ulp-spi";
++				reg = <0x293c0000 0x10000>;
++				interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc3 IMX8ULP_CLK_LPSPI5>,
++					 <&pcc3 IMX8ULP_CLK_LPSPI5>;
++				clock-names = "per", "ipg";
++				assigned-clocks = <&pcc3 IMX8ULP_CLK_LPSPI5>;
++				assigned-clock-parents = <&cgc1 IMX8ULP_CLK_XBAR_DIVBUS>;
++				assigned-clock-rates = <16000000>;
++				status = "disabled";
++			};
++		};
++
++		per_bridge4: bus@29800000 {
++			compatible = "simple-bus";
++			reg = <0x29800000 0x800000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges;
++
++			pcc4: clock-controller@29800000 {
++				compatible = "fsl,imx8ulp-pcc4";
++				reg = <0x29800000 0x10000>;
++				#clock-cells = <1>;
++			};
++
++			lpi2c6: i2c@29840000 {
++				compatible = "fsl,imx8ulp-lpi2c", "fsl,imx7ulp-lpi2c";
++				reg = <0x29840000 0x10000>;
++				interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc4 IMX8ULP_CLK_LPI2C6>,
++					 <&pcc4 IMX8ULP_CLK_LPI2C6>;
++				clock-names = "per", "ipg";
++				assigned-clocks = <&pcc4 IMX8ULP_CLK_LPI2C6>;
++				assigned-clock-parents = <&cgc1 IMX8ULP_CLK_XBAR_DIVBUS>;
++				assigned-clock-rates = <48000000>;
++				status = "disabled";
++			};
++
++			lpi2c7: i2c@29850000 {
++				compatible = "fsl,imx8ulp-lpi2c", "fsl,imx7ulp-lpi2c";
++				reg = <0x29850000 0x10000>;
++				interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc4 IMX8ULP_CLK_LPI2C7>,
++					 <&pcc4 IMX8ULP_CLK_LPI2C7>;
++				clock-names = "per", "ipg";
++				assigned-clocks = <&pcc4 IMX8ULP_CLK_LPI2C7>;
++				assigned-clock-parents = <&cgc1 IMX8ULP_CLK_XBAR_DIVBUS>;
++				assigned-clock-rates = <48000000>;
++				status = "disabled";
++			};
++
++			lpuart6: serial@29860000 {
++				compatible = "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
++				reg = <0x29860000 0x1000>;
++				interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc4 IMX8ULP_CLK_LPUART6>;
++				clock-names = "ipg";
++				status = "disabled";
++			};
++
++			lpuart7: serial@29870000 {
++				compatible = "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart";
++				reg = <0x29870000 0x1000>;
++				interrupts = <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc4 IMX8ULP_CLK_LPUART7>;
++				clock-names = "ipg";
++				status = "disabled";
++			};
++
++			iomuxc1: pinctrl@298c0000 {
++				compatible = "fsl,imx8ulp-iomuxc1";
++				reg = <0x298c0000 0x10000>;
++			};
++
++			usdhc0: mmc@298d0000 {
++				compatible = "fsl,imx8ulp-usdhc", "fsl,imx8mm-usdhc";
++				reg = <0x298d0000 0x10000>;
++				interrupts = <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&cgc1 IMX8ULP_CLK_XBAR_DIVBUS>,
++					 <&cgc1 IMX8ULP_CLK_XBAR_AD_DIVPLAT>,
++					 <&pcc4 IMX8ULP_CLK_USDHC0>;
++				clock-names = "ipg", "ahb", "per";
++				fsl,tuning-start-tap = <20>;
++				fsl,tuning-step= <2>;
++				bus-width = <4>;
++				status = "disabled";
++			};
++
++			usdhc1: mmc@298e0000 {
++				compatible = "fsl,imx8ulp-usdhc", "fsl,imx8mm-usdhc";
++				reg = <0x298e0000 0x10000>;
++				interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&cgc1 IMX8ULP_CLK_XBAR_DIVBUS>,
++					 <&cgc1 IMX8ULP_CLK_NIC_PER_DIVPLAT>,
++					 <&pcc4 IMX8ULP_CLK_USDHC1>;
++				clock-names = "ipg", "ahb", "per";
++				fsl,tuning-start-tap = <20>;
++				fsl,tuning-step= <2>;
++				bus-width = <4>;
++				status = "disabled";
++			};
++
++			usdhc2: mmc@298f0000 {
++				compatible = "fsl,imx8ulp-usdhc", "fsl,imx8mm-usdhc";
++				reg = <0x298f0000 0x10000>;
++				interrupts = <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&cgc1 IMX8ULP_CLK_XBAR_DIVBUS>,
++					 <&cgc1 IMX8ULP_CLK_NIC_PER_DIVPLAT>,
++					 <&pcc4 IMX8ULP_CLK_USDHC2>;
++				clock-names = "ipg", "ahb", "per";
++				fsl,tuning-start-tap = <20>;
++				fsl,tuning-step= <2>;
++				bus-width = <4>;
++				status = "disabled";
++			};
++
++			usbotg1: usb@29900000 {
++				compatible = "fsl,imx8ulp-usb", "fsl,imx7ulp-usb";
++				reg = <0x29900000 0x200>;
++				interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc4 IMX8ULP_CLK_USB0>;
++				phys = <&usbphy1>;
++				fsl,usbmisc = <&usbmisc1 0>;
++				ahb-burst-config = <0x0>;
++				tx-burst-size-dword = <0x8>;
++				rx-burst-size-dword = <0x8>;
++				status = "disabled";
++			};
++
++			usbmisc1: usbmisc@29900200 {
++				compatible = "fsl,imx8ulp-usbmisc", "fsl,imx7ulp-usbmisc";
++				#index-cells = <1>;
++				reg = <0x29900200 0x200>;
++				status = "disabled";
++			};
++
++			usbphy1: usb-phy@29910000 {
++				compatible = "fsl,imx8ulp-usbphy", "fsl,imx7ulp-usbphy";
++				reg = <0x29910000 0x10000>;
++				interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc4 IMX8ULP_CLK_USB0_PHY>;
++				#phy-cells = <0>;
++				status = "disabled";
++			};
++
++			usbotg2: usb@29920000 {
++				compatible = "fsl,imx8ulp-usb", "fsl,imx7ulp-usb";
++				reg = <0x29920000 0x200>;
++				interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc4 IMX8ULP_CLK_USB1>;
++				phys = <&usbphy2>;
++				fsl,usbmisc = <&usbmisc2 0>;
++				ahb-burst-config = <0x0>;
++				tx-burst-size-dword = <0x8>;
++				rx-burst-size-dword = <0x8>;
++				status = "disabled";
++			};
++
++			usbmisc2: usbmisc@29920200 {
++				compatible = "fsl,imx8ulp-usbmisc", "fsl,imx7ulp-usbmisc";
++				#index-cells = <1>;
++				reg = <0x29920200 0x200>;
++				status = "disabled";
++			};
++
++			usbphy2: usb-phy@29930000 {
++				compatible = "fsl,imx8ulp-usbphy", "fsl,imx7ulp-usbphy";
++				reg = <0x29930000 0x10000>;
++				interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&pcc4 IMX8ULP_CLK_USB1_PHY>;
++				#phy-cells = <0>;
++				status = "disabled";
++			};
++
++			fec: ethernet@29950000 {
++				compatible = "fsl,imx8ulp-fec", "fsl,imx6ul-fec";
++				reg = <0x29950000 0x10000>;
++				interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-names = "int0";
++				clocks = <&pcc4 IMX8ULP_CLK_ENET>,
++					 <&pcc4 IMX8ULP_CLK_ENET>,
++					 <&cgc1 IMX8ULP_CLK_ENET_TS_SEL>;
++				clock-names = "ipg", "ahb", "ptp";
++				assigned-clocks = <&cgc1 IMX8ULP_CLK_ENET_TS_SEL>;
++				assigned-clock-parents = <&cgc1 IMX8ULP_CLK_SOSC>;
++				assigned-clock-rates = <24000000>;
++				fsl,num-tx-queues = <1>;
++				fsl,num-rx-queues = <1>;
++				status = "disabled";
++			};
++		};
++
++		gpioe: gpio@2d000000 {
++				compatible = "fsl,imx8ulp-gpio", "fsl,imx7ulp-gpio";
++				reg = <0x2d000080 0x1000>, <0x2d000040 0x40>;
++				gpio-controller;
++				#gpio-cells = <2>;
++				interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				clocks = <&pcc4 IMX8ULP_CLK_RGPIOE>,
++					 <&pcc4 IMX8ULP_CLK_PCTLE>;
++				clock-names = "gpio", "port";
++				gpio-ranges = <&iomuxc1 0 32 24>;
++		};
++
++		gpiof: gpio@2d010000 {
++				compatible = "fsl,imx8ulp-gpio", "fsl,imx7ulp-gpio";
++				reg = <0x2d010080 0x1000>, <0x2d010040 0x40>;
++				gpio-controller;
++				#gpio-cells = <2>;
++				interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
++				clocks = <&pcc4 IMX8ULP_CLK_RGPIOF>,
++					 <&pcc4 IMX8ULP_CLK_PCTLF>;
++				clock-names = "gpio", "port";
++				gpio-ranges = <&iomuxc1 0 64 32>;
++		};
++
++		per_bridge5: bus@2d800000 {
++			compatible = "simple-bus";
++			reg = <0x2d800000 0x800000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges;
++
++			cgc2: clock-controller@2da60000 {
++				compatible = "fsl,imx8ulp-cgc2";
++				reg = <0x2da60000 0x10000>;
++				clocks = <&sosc>, <&frosc>;
++				clock-names = "sosc", "frosc";
++				#clock-cells = <1>;
++			};
++
++			pcc5: clock-controller@2da70000 {
++				compatible = "fsl,imx8ulp-pcc5";
++				reg = <0x2da70000 0x10000>;
++				#clock-cells = <1>;
++			};
++		};
++
++		gpiod: gpio@2e200000 {
++			compatible = "fsl,imx8ulp-gpio", "fsl,imx7ulp-gpio";
++			reg = <0x2e200080 0x1000>, <0x2e200040 0x40>;
++			gpio-controller;
++			#gpio-cells = <2>;
++			interrupts = <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			clocks = <&pcc5 IMX8ULP_CLK_RGPIOD>,
++				 <&pcc5 IMX8ULP_CLK_RGPIOD>;
++			clock-names = "gpio", "port";
++			gpio-ranges = <&iomuxc1 0 0 24>;
++		};
++	};
++};
 -- 
 2.26.2
 
