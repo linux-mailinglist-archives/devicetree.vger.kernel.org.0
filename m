@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF8093AD40A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 22:59:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1AE23AD416
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 23:04:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234294AbhFRVBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 17:01:42 -0400
-Received: from mail-ot1-f54.google.com ([209.85.210.54]:42507 "EHLO
-        mail-ot1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232431AbhFRVBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 17:01:41 -0400
-Received: by mail-ot1-f54.google.com with SMTP id w23-20020a9d5a970000b02903d0ef989477so10973954oth.9;
-        Fri, 18 Jun 2021 13:59:31 -0700 (PDT)
+        id S232159AbhFRVGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 17:06:20 -0400
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:46048 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230437AbhFRVGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 17:06:19 -0400
+Received: by mail-oi1-f178.google.com with SMTP id w127so11980794oig.12;
+        Fri, 18 Jun 2021 14:04:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fxuu1SlR00O4JYHpGmnvASug0gVCRNmL3ZS7usO7Ju0=;
-        b=pNTPzoOabho2hDywhkSpEcgLbxxkW8+PAJk97s6TGpM6KHW1OOQMgcJSKv80xIDY8T
-         sd8bAAC2g2XGlBAJ1myv/wQrUfCnojAe8NJSSGwhMsCKVDlbu+zifQ7H9Q8Zd1rQmAQy
-         URFsYNdPyCCli7nZPZrkcNd+GeiHvF66J66IgfaSiO6nVV4Q+AzR9Fcmy/+UgkB79m8M
-         kCq3azrmD1uBfTCTd6EksV4x7a44FDN1pXcI5d1MYDkJ2FsR8F1PvaWfOE9lmrqu0TQO
-         ZUy6QbBTTfgidnU0zN27xe/cvf1+Hk3CY3PGDgIzuq4JslOcd9Zw3e3rrP2OzhOeBBbs
-         ujVw==
-X-Gm-Message-State: AOAM530C4OLOYK9vgEJxZvmpi0qcve5bxAXaTz6/EXYLTt+QNOKcrY+8
-        a5Yg57ukJoMmXWN/5Ez0Kg==
-X-Google-Smtp-Source: ABdhPJzgMu6Dq+QyQC3ugTfOKRbyXl64THAQvcc4/kPxTHEwhFyDac3jVKWcnUlscY6aFq282Zw+4g==
-X-Received: by 2002:a05:6830:3490:: with SMTP id c16mr10915272otu.80.1624049971527;
-        Fri, 18 Jun 2021 13:59:31 -0700 (PDT)
+        bh=TqQpsaLK+esgXTn20wN1XoitRPv/E5tklHK/5Zb8GAs=;
+        b=npaSkGVpniIpI3E34Udf1Na+CKh43MEtjyd1rS6xradVYRq9PH2uRt3z9BtM7vqwT4
+         nJeBPgeRVsYLYMj49bsAa/+IqjGevNR8aykY9hlsjcl1KTNilUbR6iTaOJMm4yIIhF8x
+         MFI15lhzEFy0tqfYgG3l0TQz9cdSs3NJbfqj4nEUncJCuT/oYg8EyQI4pGIr88+7Uw/2
+         cNYLBH9teTxqRHqE+XxHumdRZ6m1RUIJfBUE9kmvlrNuTNhzgnEmvQb0Z0duw99ythfI
+         R1UQM7rpqJ3kJFzQ47Zxnenwjuw8mJ4Cgs4Ul/x7XVloXmdh7SvyWtt9TjQkgcIGbWIG
+         uHxw==
+X-Gm-Message-State: AOAM530SET/K9jCGgkhY7ViaBhdyR09klLUHWUsZlL481lq8A7YNt+sI
+        JqolnIxuYU/9cB03fyLXDg==
+X-Google-Smtp-Source: ABdhPJwVHrWrW873t5oh335FCxM/fUMQjEYLop6U4lSN3JFuKUjH2QkeI7wm6zxpuGA8uF6XQP1yzw==
+X-Received: by 2002:aca:3904:: with SMTP id g4mr15687596oia.129.1624050248616;
+        Fri, 18 Jun 2021 14:04:08 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id q26sm2075987ood.7.2021.06.18.13.59.27
+        by smtp.gmail.com with ESMTPSA id a25sm238415otp.40.2021.06.18.14.04.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 13:59:30 -0700 (PDT)
-Received: (nullmailer pid 2864619 invoked by uid 1000);
-        Fri, 18 Jun 2021 20:59:26 -0000
-Date:   Fri, 18 Jun 2021 14:59:26 -0600
+        Fri, 18 Jun 2021 14:04:07 -0700 (PDT)
+Received: (nullmailer pid 2870738 invoked by uid 1000);
+        Fri, 18 Jun 2021 21:04:05 -0000
+Date:   Fri, 18 Jun 2021 15:04:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Zhang Rui <rui.zhang@intel.com>, linux-kernel@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>
-Subject: Re: [PATCH] dt-bindings: thermal: tsens: Add sc8180x compatible
-Message-ID: <20210618205926.GA2864590@robh.at.kernel.org>
-References: <20210608201638.2136344-1-bjorn.andersson@linaro.org>
+To:     Jonathan Marek <jonathan@marek.ca>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        robert.foss@linaro.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, andrey.konovalov@linaro.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock: add QCOM SM8250 camera clock
+ bindings
+Message-ID: <20210618210405.GA2870695@robh.at.kernel.org>
+References: <20210609022051.2171-1-jonathan@marek.ca>
+ <20210609022051.2171-3-jonathan@marek.ca>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210608201638.2136344-1-bjorn.andersson@linaro.org>
+In-Reply-To: <20210609022051.2171-3-jonathan@marek.ca>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Jun 2021 13:16:38 -0700, Bjorn Andersson wrote:
-> The Qualcomm sc8180x platform has the usual tsens blocks, add compatible
-> for this.
+On Tue, 08 Jun 2021 22:20:47 -0400, Jonathan Marek wrote:
+> Add device tree bindings for camera clock controller for
+> Qualcomm Technology Inc's SM8250 SoC.
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
 > ---
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/clock/qcom,camcc-sm8250.yaml     |  68 +++++++++
+>  include/dt-bindings/clock/qcom,camcc-sm8250.h | 138 ++++++++++++++++++
+>  2 files changed, 206 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,camcc-sm8250.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,camcc-sm8250.h
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
