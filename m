@@ -2,87 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 391953AC75B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 11:23:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A45E23AC771
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 11:29:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232271AbhFRJZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 05:25:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60952 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231876AbhFRJZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 05:25:51 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB991C061760
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 02:23:41 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id p7so15460094lfg.4
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 02:23:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zUmaAdhvpCE8rTi8Nu21lM0leDt0J+C5lHTAMCRYdmY=;
-        b=Px4mkWvksGAe4XErN0YNWZAu3VO2QDBQBRJ6C6S+BjDtcGkiQ4MeYp2NSzWb/E01V/
-         2ogun+mOFHugk8lFwz6+BrHmax4HKlmlvXpEXfWvc/mGBAhyQM6jvP333WhMYODzsa16
-         YymPuLhJD64brpUHQbE5YMyR2KFdUtz7Fu5QXSMCf41NdZeCwRKjgL5jBnKqun55ND8Q
-         VtxHUbtufK0PAtHJ6hFJ+iQujI/6ONwIUkGf3aHwO/VCoGD/Ynqk6x7xajEz0NMxY1D5
-         qFHTBCJTawXnBxwutXyMjyduAGeyjCTyD5IJ2wpEqpO8ji9rQFuv9kk1JHXVWmZNeIDg
-         G4BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zUmaAdhvpCE8rTi8Nu21lM0leDt0J+C5lHTAMCRYdmY=;
-        b=el6kFthzsr43SYRrTh++FDuztjAf8WOSsMXpbdCzq5aXAIHOc8RVF6ggzBy8ZGQKh5
-         JktFOGMtmWW4RTqD1TZfLxHMykVWJFEhzd2i3bkCMpQfidNvYfBSZtkox2Cvsjtfh/RD
-         cOAXSCkjBoedp775uGS0uaK45KcZcYVt7IatFJWQ73rvvuH09AeS+yikCi67rhN0Ez6n
-         my2459sJ7rQFvRBq4QZmDDSYudjUjiMI53whBLvtxRRM4eWzuHqNqeDzGctyIuozVk7Y
-         2f1bvWMkT2FAuces7e09AWi4L2fv1uPUGsYqP0N99LkaURr/78pVjuCFESJ0oCPpIppI
-         iDQw==
-X-Gm-Message-State: AOAM5334847F5vPW/jmq2+kA8/wRMNW/7DBtyXQ7heJP2w1Vb+3t344I
-        J3MzRaa9p0ghVY4P3+2wwg5ntxghP0Cuk2liaLETWw==
-X-Google-Smtp-Source: ABdhPJylOphVSuNKFsbcLlcxR0J/hdcDmlDJGNN2iITcAv1mAOg0RrezfzSnr1lvVBcUTFMUmgahGNc3x5RgUoVgjxc=
-X-Received: by 2002:a05:6512:2105:: with SMTP id q5mr2364148lfr.649.1624008219992;
- Fri, 18 Jun 2021 02:23:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210614172713.558192-1-martin.botka@somainline.org> <20210614172713.558192-2-martin.botka@somainline.org>
-In-Reply-To: <20210614172713.558192-2-martin.botka@somainline.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 18 Jun 2021 11:23:29 +0200
-Message-ID: <CACRpkdaYjskpgUUkJgHu9jjwDY7sy-EMcmpU6pNmJVp7mu861Q@mail.gmail.com>
-Subject: Re: [PATCH V5 2/2] drivers: qcom: pinctrl: Add pinctrl driver for sm6125
-To:     Martin Botka <martin.botka@somainline.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-        <devicetree@vger.kernel.org>, Hans de Goede <hdegoede@redhat.com>, Andy
-        Shevchenko <andy.shevchenko@gmail.com>," 
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S232755AbhFRJby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 05:31:54 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:28305 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232691AbhFRJby (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 05:31:54 -0400
+X-UUID: 82c1d2694efe41b3a6c05af464e5c586-20210618
+X-UUID: 82c1d2694efe41b3a6c05af464e5c586-20210618
+Received: from mtkmrs31.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 775335094; Fri, 18 Jun 2021 17:29:33 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 18 Jun 2021 17:29:21 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 18 Jun 2021 17:29:19 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Felipe Balbi <balbi@kernel.org>
+CC:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 00/13] Add support mtu3 gadget (runtime) PM
+Date:   Fri, 18 Jun 2021 17:29:05 +0800
+Message-ID: <1624008558-16949-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
+MIME-Version: 1.0
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 26C31FCAC5283B28118C0F50593B1879843ACA62262EFAA58B5F54223CBFBE622000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 14, 2021 at 7:27 PM Martin Botka
-<martin.botka@somainline.org> wrote:
+This series mainly adds support for mtu3 gadget suspend/resume when
+the controller works at device only mode or dual role mode, and also
+adds support runtime PM.
 
-> This patch adds pinctrl driver for sm6125.
->
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+v2:
+  Change the comment of cover letter and its title.
 
-Patch applied.
+  In order to help review, v2 drops the patches about role-switch
+  rebuilding which are applied, and the left ones are identical.
 
-Especially happy to apply patches from somainline.org, keep up
-the good work folks!
 
-Yours,
-Linus Walleij
+Chunfeng Yun (13):
+  dt-bindings: usb: mtu3: remove support VBUS detection of extcon
+  dt-bindings: usb: mtu3: add optional property to disable usb2 ports
+  dt-bindings: usb: mtu3: add support property role-switch-default-mode
+  dt-bindings: usb: mtu3: add wakeup interrupt
+  usb: common: add helper to get role-switch-default-mode
+  usb: dwc3: drd: use helper to get role-switch-default-mode
+  usb: mtu3: support property role-switch-default-mode
+  usb: mtu3: support option to disable usb2 ports
+  usb: mtu3: add new helpers for host suspend/resume
+  usb: mtu3: support runtime PM for host mode
+  usb: mtu3: add helper to power on/down device
+  usb: mtu3: support suspend/resume for device mode
+  usb: mtu3: support suspend/resume for dual-role mode
+
+ .../bindings/usb/mediatek,mtu3.yaml           |  47 ++++-
+ drivers/usb/common/common.c                   |  20 +++
+ drivers/usb/dwc3/drd.c                        |   8 +-
+ drivers/usb/mtu3/mtu3.h                       |   8 +
+ drivers/usb/mtu3/mtu3_core.c                  | 115 ++++++++++--
+ drivers/usb/mtu3/mtu3_dr.c                    |  26 ++-
+ drivers/usb/mtu3/mtu3_dr.h                    |  30 +++-
+ drivers/usb/mtu3/mtu3_gadget.c                |   5 +
+ drivers/usb/mtu3/mtu3_host.c                  | 106 +++++++++--
+ drivers/usb/mtu3/mtu3_plat.c                  | 164 +++++++++++++++---
+ include/linux/usb/otg.h                       |   1 +
+ 11 files changed, 456 insertions(+), 74 deletions(-)
+
+-- 
+2.18.0
+
