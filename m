@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA2BD3AD44F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 23:18:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC9273AD459
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 23:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234552AbhFRVUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 17:20:54 -0400
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:38831 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233969AbhFRVUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 17:20:54 -0400
-Received: by mail-ot1-f53.google.com with SMTP id j11-20020a9d738b0000b02903ea3c02ded8so11043462otk.5;
-        Fri, 18 Jun 2021 14:18:44 -0700 (PDT)
+        id S234579AbhFRVVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 17:21:21 -0400
+Received: from mail-ot1-f44.google.com ([209.85.210.44]:43998 "EHLO
+        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234573AbhFRVVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 17:21:20 -0400
+Received: by mail-ot1-f44.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso11034131otu.10
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 14:19:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1tTAvbzUxCMolhXVAQzs0vDAJPIKYPpd5x8wrOjw/wM=;
-        b=rwDKrDtg512A7ey1pO0oMUDRR86EcrrPuCN48OnjriUfobUohfJpmqSd7zfxCb31qf
-         J81t6nsp8400BFM0EPsVelLJdEd4NE9gVzJrvNmWudVadyIdAIlV9HJu+ksZRzwi56tL
-         Lilb3QnRLIW1G9AlvKy03Lj9lU5evHVEkYZcA+Myd22SFjbJzUqKXzRc++wEpTz4/hNo
-         UigP5z6IbMFihqYBprzbFpZH75snLRcDAJikKyMU2Eg7Pp4Rjymu986tVzofPLfiq0ve
-         X895mCYUsKYxCR7kHTogbRCSNM7zDVeiUt3i2epk6uIZEfEn8JyX1RE5ryJBeCSnsayR
-         5PLg==
-X-Gm-Message-State: AOAM532pUaylyPNgXEkZsqYdEDlbN8JsWB/a2o0E12uflbE6e+s2Eao1
-        19k7b5CU+GE7k1R2RiFoOQ==
-X-Google-Smtp-Source: ABdhPJyjmEd4UJKkTLlkwPJWWRoeQK5msJvyvKkN7b5+w2zTRr+Mf802XN2MbPXGoWn3T1PADoLVqA==
-X-Received: by 2002:a9d:5d11:: with SMTP id b17mr11351394oti.216.1624051124012;
-        Fri, 18 Jun 2021 14:18:44 -0700 (PDT)
+        bh=l9X3y+oTgc/s2ZKvtLg5eTECZ40y9Q5YZF/VApYDZBQ=;
+        b=OoApouKj0J9vVin8xX3wnV++6QQkMIUZjG5Pr5v/e4fH5q06c1I7xtue0j7Yob+R5e
+         mxIKlOVAbQoO34JE+we2F3CTo3pJe09+PlDb8dKcTSzE5DDVSUwNtlRSo2Dj4t/4dd6B
+         mxC4yxl8ulah9ZJZnGM4RIb0oKI4lYU5/teThVuzlea8/m7SIDPe/VAw/XrXbWxRHTON
+         U/ZUBrv/vaW8H+wI1OES9QSSGQB8coElCniiYZJRrzCCOCgrlo12/FPVjVhIFQ4rVi/W
+         oDW/PcoTFPP1r326kTsTX7w60wkALfu9U0/W/5nchcFPdWTLZEdfIm9Ba+35gmKFeip/
+         jPEw==
+X-Gm-Message-State: AOAM533CC7U42yOhOhlBYMx+tJ9pU+f+lZf2iT4aSDcus0mk3Ij8SXpH
+        6n6N+96C/xDZI47nOD6xag==
+X-Google-Smtp-Source: ABdhPJzmhQMJ0CZuK+9aZ2YQsXhrGQtK/6F7eadkW7wgdNpSwDHyCtr4t3BoZWIZ5CFVWk+qHiDeiQ==
+X-Received: by 2002:a05:6830:90c:: with SMTP id v12mr10672467ott.7.1624051150835;
+        Fri, 18 Jun 2021 14:19:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r2sm2261326otd.54.2021.06.18.14.18.42
+        by smtp.gmail.com with ESMTPSA id h7sm2368212ots.44.2021.06.18.14.19.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 14:18:43 -0700 (PDT)
-Received: (nullmailer pid 2925425 invoked by uid 1000);
-        Fri, 18 Jun 2021 21:18:41 -0000
-Date:   Fri, 18 Jun 2021 15:18:41 -0600
+        Fri, 18 Jun 2021 14:19:09 -0700 (PDT)
+Received: (nullmailer pid 2927088 invoked by uid 1000);
+        Fri, 18 Jun 2021 21:19:08 -0000
+Date:   Fri, 18 Jun 2021 15:19:08 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Matthew Hagan <mnhagan88@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH RESEND 2/2] dt-bindings: net: stmmac: add ahb reset to
- example
-Message-ID: <20210618211841.GA2925338@robh.at.kernel.org>
-References: <20210609230946.1294326-1-mnhagan88@gmail.com>
- <20210609230946.1294326-3-mnhagan88@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        "Ryan J . Barnett" <ryan.barnett@collins.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>
+Subject: Re: [PATCH] dt-bindings: mtd: gpmc: Fix the ECC bytes vs. OOB bytes
+ equation
+Message-ID: <20210618211908.GA2927042@robh.at.kernel.org>
+References: <20210610143945.3504781-1-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210609230946.1294326-3-mnhagan88@gmail.com>
+In-Reply-To: <20210610143945.3504781-1-miquel.raynal@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Jun 2021 00:09:45 +0100, Matthew Hagan wrote:
-> Add ahb reset to the reset properties within the example GMAC node.
+On Thu, 10 Jun 2021 16:39:45 +0200, Miquel Raynal wrote:
+> "PAGESIZE / 512" is the number of ECC chunks.
+> "ECC_BYTES" is the number of bytes needed to store a single ECC code.
+> "2" is the space reserved by the bad block marker.
 > 
-> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+> "2 + (PAGESIZE / 512) * ECC_BYTES" should of course be lower or equal
+> than the total number of OOB bytes, otherwise it won't fit.
+> 
+> Fix the equation by substituting s/>=/<=/.
+> 
+> Suggested-by: Ryan J. Barnett <ryan.barnett@collins.com>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  Documentation/devicetree/bindings/net/ipq806x-dwmac.txt | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/mtd/gpmc-nand.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
