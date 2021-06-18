@@ -2,183 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28F2C3ACA20
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 13:41:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF1C3ACA5D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 13:46:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233752AbhFRLn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 07:43:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35486 "EHLO
+        id S234174AbhFRLsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 07:48:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232692AbhFRLnW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 07:43:22 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF3A4C061767
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 04:41:12 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id r9so10420006wrz.10
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 04:41:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=2+aVtjIZPMWAlSORuslJEgy3WIqb0GMm7Q4JpdPCkC0=;
-        b=TId1KcZQnz4L0hbs4WelnUMqcvwWWi1WzMVQ5EOOM2NgW6Xi2Y9wwFhhDRFn7VX7hS
-         uaWIZNTtdUL8kzuGdo494lwZEYt1+LEw4vydd790n69r7iz8DfD7JaO7PGii2coZFaFh
-         yzwVf0YskKDyzKyEjLltHqA4Vr3uihuQDYJ5v7F8idCcAlrZHEyC9Rk7wz/4PGECRTZE
-         SgiSuE0hgiaVyqmmRMmk/d0P4vWxXeuq86Z54X7DqS99MZDUg+GXaXmQbDbr09Ly71D3
-         gJYwRPPhUaTgiZ7jpnwXEhGdJRcnZhSvRhyD6WxXpeNeVABMkSj9k00eauzED27LCSpn
-         fejQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2+aVtjIZPMWAlSORuslJEgy3WIqb0GMm7Q4JpdPCkC0=;
-        b=KUXzQkMYfOvZtxY7MC46y7kxh/KUEuM6as/Jy7zVSeMauXX58NUSKzf5hjYSF9A+Bg
-         +dIMiSFulB+yoFClYhlWwnwjw1t4FD9eyNCZPZaiNSj0hcrvxZgzpFf4terpwcPORX/W
-         QRCOhJt5sobudGl4bo+tnXpLYpYY80BVya9l3S4TDkvJ8GWSxGjs0jS/bI4oZ8RHKvvY
-         PusGw/TeU1/oqHZhHPLJE8CezmpZNXLx3S6xtxWtagHhPBt16IUJxz4oV0TYLlNoLfAV
-         D6I2hpcfcIOnZ1wh5E508au0Gm9W1yPAj3cPdJWcFxMUHr/LYj+wE9rqa35k2zw0X3zn
-         FtCA==
-X-Gm-Message-State: AOAM532go8d1PlJMRPc7wWEbHP98NzlArNRwUPD8CSdchUvuRj2Z6zSR
-        gDjszrYJH+qGafGNUrWtVpGlmQ==
-X-Google-Smtp-Source: ABdhPJwhkaQHejxBMQnTClcBCXFQ2/K58vup9P7+dj81rIrBztuammVJmK/4c3JNzjsIcgV4Cbj5PQ==
-X-Received: by 2002:a5d:6849:: with SMTP id o9mr11612861wrw.44.1624016471416;
-        Fri, 18 Jun 2021 04:41:11 -0700 (PDT)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id u15sm8553491wmq.1.2021.06.18.04.41.09
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 18 Jun 2021 04:41:10 -0700 (PDT)
-Subject: Re: [PATCH v3] ASoC: qcom: Fix for DMA interrupt clear reg
- overwriting
-To:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-References: <20210609072310.26099-1-srivasam@codeaurora.org>
- <CGME20210617193537eucas1p217b93d091ae8795581b30931ad8c7467@eucas1p2.samsung.com>
- <5ae06ccb-ffd4-ca9f-5a88-1f8bf8b48d37@samsung.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <83be2add-2fa7-a16e-4250-95520e80c514@linaro.org>
-Date:   Fri, 18 Jun 2021 12:41:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        with ESMTP id S234100AbhFRLse (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 07:48:34 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3F5BC061574
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 04:46:25 -0700 (PDT)
+Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:4cb:a870:141f:c87a:873e:7b6f])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 39D9B1F40891;
+        Fri, 18 Jun 2021 12:46:23 +0100 (BST)
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To:     will@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
+        xxm@rock-chips.com, robin.murphy@arm.com, joro@8bytes.org,
+        dan.carpenter@oracle.com
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH] iommu: rockchip: Fix physical address decoding
+Date:   Fri, 18 Jun 2021 13:46:15 +0200
+Message-Id: <20210618114615.443961-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <5ae06ccb-ffd4-ca9f-5a88-1f8bf8b48d37@samsung.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Restore bits 39 to 32 at correct position.
+It reverses the operation done in rk_dma_addr_dte_v2().
 
-Thanks for testing next and reporting this back.
+Fixes: c55356c534aa ("iommu: rockchip: Add support for iommu v2")
 
-On 17/06/2021 20:35, Marek Szyprowski wrote:
-> Hi,
-> 
-> On 09.06.2021 09:23, Srinivasa Rao Mandadapu wrote:
->> The DMA interrupt clear register overwritten during
->> simultaneous playback and capture in lpass platform
->> interrupt handler. It's causing playback or capture stuck
->> in similtaneous plaback on speaker and capture on dmic test.
->> Update appropriate reg fields of corresponding channel instead
->> of entire register write.
->>
->> Fixes: commit c5c8635a04711 ("ASoC: qcom: Add LPASS platform driver")
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> 
-> This patch landed recently in linux-next as commit da0363f7bfd3 ("ASoC:
-> qcom: Fix for DMA interrupt clear reg overwriting"). It breaks ALSA
-> playback on DragonBoard 410c (arch/arm64/boot/dts/qcom/apq8016-sbc.dts).
-> After applying this patch, running 'speaker-test -l1' never finishes.
-> There is no error nor kernel warning message. Before that commit, the
-> playback worked fine on that board.
+Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+---
+ drivers/iommu/rockchip-iommu.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-TBH, I should have looked at the hw register description that is being 
-updated in the patch. This is a software write only and hardware 
-readable register for which update_bits really does not make sense at 
-all. While digging out I found an issue with regmap_cache reads which 
-should have reported an error while attempting to even do this. I sent 
-out a patch to fix this.
+diff --git a/drivers/iommu/rockchip-iommu.c b/drivers/iommu/rockchip-iommu.c
+index 94b9d8e5b9a40..e55482a477080 100644
+--- a/drivers/iommu/rockchip-iommu.c
++++ b/drivers/iommu/rockchip-iommu.c
+@@ -544,12 +544,13 @@ static inline u32 rk_dma_addr_dte(dma_addr_t dt_dma)
+ }
+ 
+ #define DT_HI_MASK GENMASK_ULL(39, 32)
++#define DTE_BASE_HI_MASK GENMASK(11, 4)
+ #define DT_SHIFT   28
+ 
+ static inline phys_addr_t rk_dte_addr_phys_v2(u32 addr)
+ {
+ 	return (phys_addr_t)(addr & RK_DTE_PT_ADDRESS_MASK) |
+-	       ((addr & DT_HI_MASK) << DT_SHIFT);
++	       ((addr & DTE_BASE_HI_MASK) << DT_SHIFT);
+ }
+ 
+ static inline u32 rk_dma_addr_dte_v2(dma_addr_t dt_dma)
+-- 
+2.25.1
 
-Now for this patch itself, We should send a patch to revert it.
-
-
-thanks,
-srini
-
-
-> 
->> ---
->> Changes since v2:
->> 	-- Removed redundant variables.
->> Changes since v1:
->> 	-- Subject lines changed.
->>    sound/soc/qcom/lpass-platform.c | 12 ++++++------
->>    1 file changed, 6 insertions(+), 6 deletions(-)
->>
->> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
->> index 0df9481ea4c6..f9df76d37858 100644
->> --- a/sound/soc/qcom/lpass-platform.c
->> +++ b/sound/soc/qcom/lpass-platform.c
->> @@ -526,7 +526,7 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
->>    			return -EINVAL;
->>    		}
->>    
->> -		ret = regmap_write(map, reg_irqclr, val_irqclr);
->> +		ret = regmap_update_bits(map, reg_irqclr, val_irqclr, val_irqclr);
->>    		if (ret) {
->>    			dev_err(soc_runtime->dev, "error writing to irqclear reg: %d\n", ret);
->>    			return ret;
->> @@ -650,10 +650,11 @@ static irqreturn_t lpass_dma_interrupt_handler(
->>    	struct lpass_variant *v = drvdata->variant;
->>    	irqreturn_t ret = IRQ_NONE;
->>    	int rv;
->> -	unsigned int reg = 0, val = 0;
->> +	unsigned int reg, val, mask;
->>    	struct regmap *map;
->>    	unsigned int dai_id = cpu_dai->driver->id;
->>    
->> +	mask = LPAIF_IRQ_ALL(chan);
->>    	switch (dai_id) {
->>    	case LPASS_DP_RX:
->>    		map = drvdata->hdmiif_map;
->> @@ -676,8 +677,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
->>    	return -EINVAL;
->>    	}
->>    	if (interrupts & LPAIF_IRQ_PER(chan)) {
->> -
->> -		rv = regmap_write(map, reg, LPAIF_IRQ_PER(chan) | val);
->> +		rv = regmap_update_bits(map, reg, mask, (LPAIF_IRQ_PER(chan) | val));
->>    		if (rv) {
->>    			dev_err(soc_runtime->dev,
->>    				"error writing to irqclear reg: %d\n", rv);
->> @@ -688,7 +688,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
->>    	}
->>    
->>    	if (interrupts & LPAIF_IRQ_XRUN(chan)) {
->> -		rv = regmap_write(map, reg, LPAIF_IRQ_XRUN(chan) | val);
->> +		rv = regmap_update_bits(map, reg, mask, (LPAIF_IRQ_XRUN(chan) | val));
->>    		if (rv) {
->>    			dev_err(soc_runtime->dev,
->>    				"error writing to irqclear reg: %d\n", rv);
->> @@ -700,7 +700,7 @@ static irqreturn_t lpass_dma_interrupt_handler(
->>    	}
->>    
->>    	if (interrupts & LPAIF_IRQ_ERR(chan)) {
->> -		rv = regmap_write(map, reg, LPAIF_IRQ_ERR(chan) | val);
->> +		rv = regmap_update_bits(map, reg, mask, (LPAIF_IRQ_ERR(chan) | val));
->>    		if (rv) {
->>    			dev_err(soc_runtime->dev,
->>    				"error writing to irqclear reg: %d\n", rv);
-> 
-> Best regards
-> 
