@@ -2,112 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2ABA3AC267
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 06:35:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 488063AC2F4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 07:53:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231858AbhFREhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 00:37:55 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:26605 "EHLO m43-7.mailgun.net"
+        id S232605AbhFRFzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 01:55:07 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:55320 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231789AbhFREhy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Jun 2021 00:37:54 -0400
+        id S232622AbhFRFzH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Jun 2021 01:55:07 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1623990945; h=In-Reply-To: Content-Type: MIME-Version:
- References: Message-ID: Subject: Cc: To: From: Date: Sender;
- bh=VS50oBO1Adu4g9icjdy9gPt5cwaT+R969SEWKsp0mcY=; b=V5v+cGwR/DKQJg2TVqOrm0Poi1dDH8nsLKNtFwwcfOJn/oFIEf4lXyv8iU/2LYOv0H1uzFsd
- 7gFNi66FFU4xQ9jCuBIGonmqNP3G0yWHMhSEhez/Xd1okv3hawfhRq9VBoGYAaWbhQGuWW7M
- 8Hrz14otvBCA1UWhz2JtBtgTeSw=
+ s=smtp; t=1623995578; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=9WIqUSuKCeA4a7nGZlVezbJMr5o9Xyi76lV6kdDhfPM=;
+ b=R11PRy0kZnrJxU9TKBBLUGNQg88wYpTb87z2uS7wj17be2ftZok9xEYyHls07tY1ewWhxlso
+ ihDPIV0xr/sjV8nGPWepgMMQ8f1Ttb6hHWZXbG3Z/0oIq+YpoIeqp6rRqMrqCMBfsydGYKcZ
+ UfNrqzp+QvObCQ5XfC71EtwYwy8=
 X-Mailgun-Sending-Ip: 69.72.43.7
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 60cc22a1b6ccaab75306dc0f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Jun 2021 04:35:45
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 60cc34a1ed59bf69cc3e2e01 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Jun 2021 05:52:33
  GMT
-Sender: jackp=codeaurora.org@mg.codeaurora.org
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0C512C4338A; Fri, 18 Jun 2021 04:35:45 +0000 (UTC)
+        id B1AC8C4360C; Fri, 18 Jun 2021 05:52:33 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: jackp)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6DDF3C433D3;
-        Fri, 18 Jun 2021 04:35:42 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6DDF3C433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jackp@codeaurora.org
-Date:   Thu, 17 Jun 2021 21:35:38 -0700
-From:   Jack Pham <jackp@codeaurora.org>
-To:     Wesley Cheng <wcheng@codeaurora.org>
-Cc:     kernel test robot <lkp@intel.com>, balbi@kernel.org,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, frowand.list@gmail.com,
-        kbuild-all@lists.01.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v10 5/6] usb: dwc3: dwc3-qcom: Enable tx-fifo-resize
- property by default
-Message-ID: <20210618043538.GD25299@jackp-linux.qualcomm.com>
-References: <1623923899-16759-6-git-send-email-wcheng@codeaurora.org>
- <202106180154.U0by7POV-lkp@intel.com>
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 627E5C433D3;
+        Fri, 18 Jun 2021 05:52:32 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <202106180154.U0by7POV-lkp@intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 18 Jun 2021 11:22:32 +0530
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, bhelgaas@google.com, robh+dt@kernel.org,
+        swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mgautam@codeaurora.org,
+        dianders@chromium.org, mka@chromium.org, sanm@codeaurora.org
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: sc7280: Add PCIe and PHY related
+ nodes
+In-Reply-To: <YLwyVh4xyEyvXKDU@builder.lan>
+References: <1622904059-21244-1-git-send-email-pmaliset@codeaurora.org>
+ <1622904059-21244-3-git-send-email-pmaliset@codeaurora.org>
+ <YLwyVh4xyEyvXKDU@builder.lan>
+Message-ID: <b9beccabc8ba88e889d6f6317afecd05@codeaurora.org>
+X-Sender: pmaliset@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wesley,
+On 2021-06-06 07:56, Bjorn Andersson wrote:
+> On Sat 05 Jun 09:40 CDT 2021, Prasad Malisetty wrote:
+> 
+>> Add PCIe controller and PHY nodes for sc7280 SOC.
+>> 
+>> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 138 
+>> +++++++++++++++++++++++++++++++++++
+>>  1 file changed, 138 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> index 0b6f119..9e8414d 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>> @@ -15,6 +15,7 @@
+>>  #include <dt-bindings/reset/qcom,sdm845-pdc.h>
+>>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>>  #include <dt-bindings/thermal/thermal.h>
+>> +#include <dt-bindings/gpio/gpio.h>
+>> 
+>>  / {
+>>  	interrupt-parent = <&intc>;
+>> @@ -484,6 +485,117 @@
+>>  			#power-domain-cells = <1>;
+>>  		};
+>> 
+>> +		pcie1: pci@1c08000 {
+> 
+> Does this name imply that you have a pcie0 as well? Please introduce it
+> while you're at it.
+> 
+>> We are not using pcie0 for HLOS.
 
-On Fri, Jun 18, 2021 at 02:04:40AM +0800, kernel test robot wrote:
-> Hi Wesley,
+>> +			compatible = "qcom,pcie-sc7280", "qcom,pcie-sm8250", 
+>> "snps,dw-pcie";
+>> +			reg = <0 0x01c08000 0 0x3000>,
+>> +			      <0 0x40000000 0 0xf1d>,
+>> +			      <0 0x40000f20 0 0xa8>,
+>> +			      <0 0x40001000 0 0x1000>,
+>> +			      <0 0x40100000 0 0x100000>;
+>> +
+>> +			reg-names = "parf", "dbi", "elbi", "atu", "config";
+>> +			device_type = "pci";
+>> +			linux,pci-domain = <1>;
+>> +			bus-range = <0x00 0xff>;
+>> +			num-lanes = <2>;
+>> +
+>> +			#address-cells = <3>;
+>> +			#size-cells = <2>;
+>> +
+>> +			ranges = <0x01000000 0x0 0x40200000 0x0 0x40200000 0x0 0x100000>,
+>> +				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x1fd00000>;
+>> +
+>> +			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "msi";
+>> +			#interrupt-cells = <1>;
+>> +			interrupt-map-mask = <0 0 0 0x7>;
+>> +			interrupt-map = <0 0 0 1 &intc 0 434 IRQ_TYPE_LEVEL_HIGH>, /* 
+>> int_a */
+>> +					<0 0 0 2 &intc 0 435 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+>> +					<0 0 0 3 &intc 0 438 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+>> +					<0 0 0 4 &intc 0 439 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+>> +
+>> +			clocks = <&gcc GCC_PCIE_1_PIPE_CLK>,
+>> +				 <&gcc GCC_PCIE_1_PIPE_CLK_SRC>,
+>> +				 <&pcie1_lane 0>,
+>> +				 <&rpmhcc RPMH_CXO_CLK>,
+>> +				 <&gcc GCC_PCIE_1_AUX_CLK>,
+>> +				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
+>> +				 <&gcc GCC_PCIE_1_MSTR_AXI_CLK>,
+>> +				 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
+>> +				 <&gcc GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
+>> +				 <&gcc GCC_AGGRE_NOC_PCIE_TBU_CLK>,
+>> +				 <&gcc GCC_DDRSS_PCIE_SF_CLK>;
+>> +
+>> +			clock-names = "pipe",
+>> +				      "pipe_src",
+>> +				      "pipe_ext",
+>> +				      "ref",
+>> +				      "aux",
+>> +				      "cfg",
+>> +				      "bus_master",
+>> +				      "bus_slave",
+>> +				      "slave_q2a",
+>> +				      "tbu",
+>> +				      "ddrss_sf_tbu";
+>> +
+>> +			assigned-clocks = <&gcc GCC_PCIE_1_AUX_CLK>;
+>> +			assigned-clock-rates = <19200000>;
+>> +
+>> +			resets = <&gcc GCC_PCIE_1_BCR>;
+>> +			reset-names = "pci";
+>> +
+>> +			power-domains = <&gcc GCC_PCIE_1_GDSC>;
+>> +
+>> +			phys = <&pcie1_lane>;
+>> +			phy-names = "pciephy";
+>> +
+>> +			perst-gpio = <&tlmm 2 GPIO_ACTIVE_LOW>;
+>> +			pinctrl-names = "default";
+>> +			pinctrl-0 = <&pcie1_default_state>;
+>> +
+>> +			iommus = <&apps_smmu 0x1c80 0x1>;
+>> +
+>> +			iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
+>> +				    <0x100 &apps_smmu 0x1c81 0x1>;
+>> +
+>> +			status = "disabled";
+>> +		};
+>> +
+>> +		pcie1_phy: phy@1c0e000 {
+>> +			compatible = "qcom,sm8250-qmp-gen3x2-pcie-phy";
 > 
-> Thank you for the patch! Yet something to improve:
+> No, you don't have a sm8250-qmp-gen3x2-pcie-phy in your sc7280.
 > 
-> [auto build test ERROR on usb/usb-testing]
-> [also build test ERROR on robh/for-next v5.13-rc6 next-20210617]
-> [cannot apply to balbi-usb/testing/next]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch]
-> 
-> url:    https://github.com/0day-ci/linux/commits/Wesley-Cheng/Re-introduce-TX-FIFO-resize-for-larger-EP-bursting/20210617-180037
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
-> config: csky-randconfig-s031-20210617 (attached as .config)
-> compiler: csky-linux-gcc (GCC) 9.3.0
-> reproduce:
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # apt-get install sparse
->         # sparse version: v0.6.3-341-g8af24329-dirty
->         # https://github.com/0day-ci/linux/commit/54b6eb3d44464c519a4546e9a2c3041eeced1009
->         git remote add linux-review https://github.com/0day-ci/linux
->         git fetch --no-tags linux-review Wesley-Cheng/Re-introduce-TX-FIFO-resize-for-larger-EP-bursting/20210617-180037
->         git checkout 54b6eb3d44464c519a4546e9a2c3041eeced1009
->         # save the attached .config to linux build tree
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' W=1 ARCH=csky 
-> 
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> 
-> All errors (new ones prefixed by >>, old ones prefixed by <<):
-> 
-> >> ERROR: modpost: "of_add_property" [drivers/usb/dwc3/dwc3-qcom.ko] undefined!
+>> Both are having same PHY sequence.
 
-*sigh* this symbol is not EXPORTed...so you can't call it from a module.
+>> +			status = "disabled";
+>> +			reg = <0 0x01c0e000 0 0x1c0>;
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges;
+>> +			clocks = <&gcc GCC_PCIE_1_AUX_CLK>,
+>> +				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
+>> +				 <&gcc GCC_PCIE_CLKREF_EN>,
+>> +				 <&gcc GCC_PCIE1_PHY_RCHNG_CLK>;
+>> +			clock-names = "aux", "cfg_ahb", "ref", "refgen";
+>> +
+>> +			resets = <&gcc GCC_PCIE_1_PHY_BCR>;
+>> +			reset-names = "phy";
+>> +
+>> +			assigned-clocks = <&gcc GCC_PCIE1_PHY_RCHNG_CLK>;
+>> +			assigned-clock-rates = <100000000>;
+>> +
+>> +			pcie1_lane: lanes@1c0e200 {
+>> +				reg = <0 0x01c0e200 0 0x170>,
+>> +				      <0 0x01c0e400 0 0x200>,
+>> +				      <0 0x01c0ea00 0 0x1f0>,
+>> +				      <0 0x01c0e600 0 0x170>,
+>> +				      <0 0x01c0e800 0 0x200>,
+>> +				      <0 0x01c0ee00 0 0xf4>;
+>> +				clocks = <&rpmhcc RPMH_CXO_CLK>;
+>> +				clock-names = "pipe0";
+>> +
+>> +				#phy-cells = <0>;
+>> +				#clock-cells = <1>;
+>> +				clock-output-names = "pcie_1_pipe_clk";
+>> +			};
+>> +		};
+>> +
+>>  		stm@6002000 {
+>>  			compatible = "arm,coresight-stm", "arm,primecell";
+>>  			reg = <0 0x06002000 0 0x1000>,
+>> @@ -1102,6 +1214,32 @@
+>>  				pins = "gpio46", "gpio47";
+>>  				function = "qup13";
+>>  			};
+>> +
+>> +			pcie1_default_state: pcie1-default {
+> 
+> Per the binding the name has to end with "-pins", although I would like
+> us to change that to "-state". Either way, this is not correct.
+> 
+>> +				clkreq {
+>> +					pins = "gpio79";
+>> +					function = "pcie1_clkreqn";
+>> +				};
+>> +
+>> +				reset-n {
+>> +					pins = "gpio2";
+>> +					function = "gpio";
+>> +
+>> +					drive-strength = <16>;
+>> +					output-low;
+>> +					bias-disable;
+>> +				};
+>> +
+>> +				wake-n {
+>> +					pins = "gpio3";
+>> +					function = "gpio";
+>> +				};
+>> +
+>> +				nvme-n {
+> 
+> This doesn't look like a standard PCIe pin, is it perhaps the enable 
+> pin
+> for the regulator powering your NVME, or something along those lines?
+> 
+> If so you should describe it as a fixed-regulator...and either way I
+> suspect it should be moved to the device specific file.
+> 
+> Regards,
+> Bjorn
+> 
+> Agree, will move into board specific file.
 
-Actually couldn't we just use device_add_properties() instead? And drop
-patch 4/6 as well.
-
-Jack
--- 
-The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+>> +					pins = "gpio19";
+>> +					function = "gpio";
+>> +				};
+>> +			};
+>>  		};
+>> 
+>>  		apps_smmu: iommu@15000000 {
+>> --
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+>> Forum,
+>> a Linux Foundation Collaborative Project
+>> 
