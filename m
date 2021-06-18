@@ -2,103 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB3443AC850
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 12:01:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70EF93AC88E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 12:12:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233017AbhFRKDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 06:03:08 -0400
-Received: from mga02.intel.com ([134.134.136.20]:20412 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232553AbhFRKDG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Jun 2021 06:03:06 -0400
-IronPort-SDR: /K5YjHuk7cdga+czhL4InLIIpySyQ0tRspGoChJRXfVqhp+RuBBJwRDxmrRG2E/LYrLKV88TeJ
- ev0CMuwrYbkA==
-X-IronPort-AV: E=McAfee;i="6200,9189,10018"; a="193659193"
-X-IronPort-AV: E=Sophos;i="5.83,283,1616482800"; 
-   d="scan'208";a="193659193"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2021 03:00:57 -0700
-IronPort-SDR: 5gdfw7IuCHm/YLPTg4K/dBM62CuMxNb7JWSCYMa71bVWYnVFOyYu4OCNjIT6DXZ8053gWgdzHe
- xoIJAgLxSW1w==
-X-IronPort-AV: E=Sophos;i="5.83,283,1616482800"; 
-   d="scan'208";a="416401095"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2021 03:00:51 -0700
-Received: from andy by smile with local (Exim 4.94.2)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1luBIt-003ZLy-Lb; Fri, 18 Jun 2021 13:00:47 +0300
-Date:   Fri, 18 Jun 2021 13:00:47 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Jamin Lin <jamin_lin@aspeedtech.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Arnd Bergmann <arnd@arndb.de>, Jean Delvare <jdelvare@suse.de>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-        Khalil Blaiech <kblaiech@mellanox.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Bence =?iso-8859-1?B?Q3Pza+Fz?= <bence98@sch.bme.hu>,
-        Yicong Yang <yangyicong@hisilicon.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
-        <linux-aspeed@lists.ozlabs.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        ChiaWei Wang <chiawei_wang@aspeedtech.com>,
-        Troy Lee <troy_lee@aspeedtech.com>,
-        Steven Lee <steven_lee@aspeedtech.com>
-Subject: Re: [PATCH 3/3] i2c:support new register set for ast2600
-Message-ID: <YMxuz03aTijWH6uj@smile.fi.intel.com>
-References: <20210617094424.27123-1-jamin_lin@aspeedtech.com>
- <20210617094424.27123-4-jamin_lin@aspeedtech.com>
- <YMslyzUKp/7J0ncu@smile.fi.intel.com>
- <20210618035855.GB31659@aspeedtech.com>
+        id S233336AbhFRKPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 06:15:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43956 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233278AbhFRKPB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 06:15:01 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33F34C061767
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 03:12:51 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id 7-20020a9d0d070000b0290439abcef697so9193607oti.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 03:12:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ziEgOzcP1HByIwM5tzkw38PrntEO3ToJbYWi+oRdGcs=;
+        b=PdJl0ncgrhfekyPHp+KqwLByDJx2Zx1fUgbF2xiq4jALmjPa09pYQTcwt9o5SZ3FDq
+         +mmWaE4r4lH84yr6Q/F09ayO2bq98b2RuKnwAaqZzUXy1D5F6sNGkfD1cdXOPGC+eBXT
+         3QnVHBsPfKkchYlmwi850FIBz+aseO7hgkfjWNoCil1YxCXyhg1OzuIstRmIUAoLA1gE
+         T41vAbLC7LANLbus+TouLLqdAVDBCRPb5Yoihh14+97GnWw+k8u/txz2z7884qrYQeue
+         NiQEl77YaIM5a9ZxsLj3JTYo+Y8GqNm4LfOvYqwVnXVzPbUQCSeROhWaZo8FGGC8D4Vt
+         9v9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ziEgOzcP1HByIwM5tzkw38PrntEO3ToJbYWi+oRdGcs=;
+        b=NcyaKpIhw34QjNwbNEa00dw/PTP2DF/gWrpZRQKpj6e4D7wl6Uw4HAXfhFiRZo1YP7
+         sTg+XMGbixHB7GZzx/3E5n0DCK/QJHqI1tMWyXudmC9T6n397xsd4cN/jpEofHu9iMMF
+         /ztX/W9iwZNxU95iQhcqOvUI+iobgmVJvqnuOcfuZU0YfVGM6MkgpiMCrdEBGLfWC/TX
+         mnScMe9j39/ZSSs613S2RR5NoBw2DfuVMJK09jBxz/sr8wvVsUKfsGEfbjjH/Pb/ghr+
+         ldiQ3r/Vlm+1qRmuKb2h+Ku9cCSKNCdxebTiTIJadfSUaHBgXgMMencS0MBcMHCIDkA2
+         cFyg==
+X-Gm-Message-State: AOAM5322dK1DhNUMSPrDzyTebnMz36S6M6fhxevvJRrLY4TYKFmIczIA
+        oRxPjHrAUZjuCCsEZnfuHV5eu6hhuHf4+3ivqpVa5g==
+X-Google-Smtp-Source: ABdhPJzA9Ime81OAPZIz8ZFv0L/PCg9uztC6yCsFB33iXVicxGaKxCR3bjdzuMVRn5C3JruCfUO7TrEKZB+nh/CFwRo=
+X-Received: by 2002:a9d:74d4:: with SMTP id a20mr8644554otl.28.1624011170558;
+ Fri, 18 Jun 2021 03:12:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210618035855.GB31659@aspeedtech.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20210617054548.353293-1-bhupesh.sharma@linaro.org>
+ <20210617054548.353293-5-bhupesh.sharma@linaro.org> <6011130d-8ce8-420b-6e55-5d168fef0347@somainline.org>
+In-Reply-To: <6011130d-8ce8-420b-6e55-5d168fef0347@somainline.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Fri, 18 Jun 2021 15:42:39 +0530
+Message-ID: <CAH=2Ntw5uZOLmc8b3oB5CizYQQ_Oxie3Hk_Z68WwHb=u2Xx05w@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] arm64: dts: qcom: pmm8155au_2: Add base dts file
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Mark Brown <broonie@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 18, 2021 at 11:58:55AM +0800, Jamin Lin wrote:
-> The 06/17/2021 10:36, Andy Shevchenko wrote:
-> > On Thu, Jun 17, 2021 at 05:43:40PM +0800, Jamin Lin wrote:
-> > > Add i2c new driver to support new register set for AST2600.
-> > > AST2600 support three modes for data transfer which are
-> > > byte mode, buffer mode and dma mode, respectively.
-> > > The global driver of i2c is used to set the new register
-> > > mode and define the base clock frequency
-> > > of baseclk_1~baseclk_4.
+Hi Konrad,
 
-> >  - shrink the code base by at least ~15% (it's possible), i.e. -200 LOCs
-> Can you describe it more detail?
-> Do you mean I should separate the patch file to fix size limitation? 
+Thanks for your review.
 
-No. Based on my brief review you introduce to many redundant LOCs (lines of
-code). Remove them, refactor the code, make it small and neat and easy to read
-and understand. It is possible to achieve!
-
-> >  - rethink how you do calculations and bit operations
-> >  - better code style
+On Fri, 18 Jun 2021 at 04:02, Konrad Dybcio
+<konrad.dybcio@somainline.org> wrote:
+>
+>
+> > Add base DTS file for pmm8155au_2 along with GPIOs, power-on, rtc and vadc
+> > nodes.
 > >
-> Thanks for your review and very good suggestion
-> I will update them and sent patch again.
-> By the way, I received test failed email from Robot due to compiling
-> warning. I will fix them, too.
+> > Cc: Mark Brown <broonie@kernel.org>
+> > Cc: Vinod Koul <vkoul@kernel.org>
+> > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi | 107 ++++++++++++++++++++++
+> >  1 file changed, 107 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi b/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
+> > new file mode 100644
+> > index 000000000000..0c7d7a66c0b5
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/pmm8155au_2.dtsi
+> > @@ -0,0 +1,107 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (c) 2021, Linaro Limited
+> > + */
+> > +
+> > +#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/interrupt-controller/irq.h>
+> > +#include <dt-bindings/spmi/spmi.h>
+> > +
+> > +/ {
+> > +     thermal-zones {
+> > +             pmm8155au-2-thermal {
+> > +                     polling-delay-passive = <100>;
+> > +                     polling-delay = <0>;
+> > +
+> > +                     thermal-sensors = <&pmm8155au_2_temp>;
+> > +
+> > +                     trips {
+> > +                             trip0 {
+> > +                                     temperature = <95000>;
+> > +                                     hysteresis = <0>;
+> > +                                     type = "passive";
+> > +                             };
+> > +
+> > +                             trip1 {
+> > +                                     temperature = <115000>;
+> > +                                     hysteresis = <0>;
+> > +                                     type = "hot";
+> > +                             };
+> > +
+> > +                             trip2 {
+> > +                                     temperature = <145000>;
+> > +                                     hysteresis = <0>;
+> > +                                     type = "critical";
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&spmi_bus {
+> > +     pmic@4 {
+> > +             compatible = "qcom,pmm8155au", "qcom,spmi-pmic";
+> > +             reg = <0x4 SPMI_USID>;
+> > +             #address-cells = <1>;
+> > +             #size-cells = <0>;
+> > +
+> > +             power-on@800 {
+> > +                     compatible = "qcom,pm8916-pon";
+> > +                     reg = <0x0800>;
+>
+> No common debounce, interrupts, bias- property or pwrkey key code?
+>
+> Besides, (as a question to Bjorn and others) do we pad reg to 4 digits in PMIC DTs now?
 
--- 
-With Best Regards,
-Andy Shevchenko
+Maybe Bjorn can pitch in with his thoughts here.
 
+> > +
+> > +                     status = "disabled";
+> > +             };
+> > +
+> > +             pmm8155au_2_temp: temp-alarm@2400 {
+> > +                     compatible = "qcom,spmi-temp-alarm";
+> > +                     reg = <0x2400>;
+> > +                     interrupts = <0x4 0x24 0x0 IRQ_TYPE_EDGE_BOTH>;
+> > +                     io-channels = <&pmm8155au_2_adc ADC5_DIE_TEMP>;
+> > +                     io-channel-names = "thermal";
+> > +                     #thermal-sensor-cells = <0>;
+> > +             };
+> > +
+> > +             pmm8155au_2_adc: adc@3100 {
+> > +                     compatible = "qcom,spmi-adc5";
+> > +                     reg = <0x3100>;
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <0>;
+> > +                     #io-channel-cells = <1>;
+> > +                     interrupts = <0x4 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
+> > +
+> > +                     ref-gnd@0 {
+> > +                             reg = <ADC5_REF_GND>;
+> > +                             qcom,pre-scaling = <1 1>;
+> > +                             label = "ref_gnd";
+> > +                     };
+> > +
+> > +                     vref-1p25@1 {
+> > +                             reg = <ADC5_1P25VREF>;
+> > +                             qcom,pre-scaling = <1 1>;
+> > +                             label = "vref_1p25";
+> > +                     };
+> > +
+> > +                     die-temp@6 {
+> > +                             reg = <ADC5_DIE_TEMP>;
+> > +                             qcom,pre-scaling = <1 1>;
+> > +                             label = "die_temp";
+> > +                     };
+> > +             };
+> > +
+> > +             pmm8155au_2_gpios: gpio@c000 {
+> > +                     compatible = "qcom,pmm8155au-gpio";
+> > +                     reg = <0xc000>;
+> > +                     gpio-controller;
+> > +                     #gpio-cells = <2>;
+> > +                     interrupt-controller;
+> > +                     #interrupt-cells = <2>;
+> > +             };
+>
+> Don't we do gpio-ranges anymore?
 
+Maybe Bjorn can pitch in with his thoughts here as he may have more
+historical context, but I personally think that since the mapping
+between the  pin controller local number space and the pins in the
+GPIO controller local number space is 1:1 (same) here, adding
+gpio-ranges property here is optional (as it provides little
+additional information).
+
+But I might have missed something here, so I will wait for more
+thoughts from Bjorn.
+
+Thanks,
+Bhupesh
+
+>
+>
+> > +     };
+> > +
+> > +     pmic@5 {
+> > +             compatible = "qcom,pmm8155au", "qcom,spmi-pmic";
+> > +             reg = <0x5 SPMI_USID>;
+> > +             #address-cells = <1>;
+> > +             #size-cells = <0>;
+> > +     };
+> > +};
+>
+>
+> Konrad
+>
