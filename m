@@ -2,102 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D22D3AC216
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 06:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2ABA3AC267
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 06:35:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231168AbhFRE1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 00:27:04 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:39706 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230361AbhFRE1D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 00:27:03 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dafna)
-        with ESMTPSA id 710BF1F446D3
-Subject: Re: [PATCH v5 10/10] media: rockchip: rkisp1: add support for px30
- isp version
-To:     Heiko Stuebner <heiko@sntech.de>, mchehab@kernel.org,
-        hverkuil-cisco@xs4all.nl
-Cc:     ezequiel@collabora.com, helen.koike@collabora.com,
-        Laurent.pinchart@ideasonboard.com,
-        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
-References: <20210617162745.4080975-1-heiko@sntech.de>
- <20210617162745.4080975-11-heiko@sntech.de>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <74192794-d153-924f-960f-42d1be88f73b@collabora.com>
-Date:   Fri, 18 Jun 2021 07:24:50 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S231858AbhFREhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 00:37:55 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:26605 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231789AbhFREhy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Jun 2021 00:37:54 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1623990945; h=In-Reply-To: Content-Type: MIME-Version:
+ References: Message-ID: Subject: Cc: To: From: Date: Sender;
+ bh=VS50oBO1Adu4g9icjdy9gPt5cwaT+R969SEWKsp0mcY=; b=V5v+cGwR/DKQJg2TVqOrm0Poi1dDH8nsLKNtFwwcfOJn/oFIEf4lXyv8iU/2LYOv0H1uzFsd
+ 7gFNi66FFU4xQ9jCuBIGonmqNP3G0yWHMhSEhez/Xd1okv3hawfhRq9VBoGYAaWbhQGuWW7M
+ 8Hrz14otvBCA1UWhz2JtBtgTeSw=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 60cc22a1b6ccaab75306dc0f (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Jun 2021 04:35:45
+ GMT
+Sender: jackp=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 0C512C4338A; Fri, 18 Jun 2021 04:35:45 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: jackp)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 6DDF3C433D3;
+        Fri, 18 Jun 2021 04:35:42 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 6DDF3C433D3
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=jackp@codeaurora.org
+Date:   Thu, 17 Jun 2021 21:35:38 -0700
+From:   Jack Pham <jackp@codeaurora.org>
+To:     Wesley Cheng <wcheng@codeaurora.org>
+Cc:     kernel test robot <lkp@intel.com>, balbi@kernel.org,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, frowand.list@gmail.com,
+        kbuild-all@lists.01.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v10 5/6] usb: dwc3: dwc3-qcom: Enable tx-fifo-resize
+ property by default
+Message-ID: <20210618043538.GD25299@jackp-linux.qualcomm.com>
+References: <1623923899-16759-6-git-send-email-wcheng@codeaurora.org>
+ <202106180154.U0by7POV-lkp@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20210617162745.4080975-11-heiko@sntech.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202106180154.U0by7POV-lkp@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Wesley,
 
-
-
-On 17.06.21 19:27, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+On Fri, Jun 18, 2021 at 02:04:40AM +0800, kernel test robot wrote:
+> Hi Wesley,
 > 
-> The px30 uses a V12 isp block so add compatible and matchdata
-> for it.
+> Thank you for the patch! Yet something to improve:
 > 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> [auto build test ERROR on usb/usb-testing]
+> [also build test ERROR on robh/for-next v5.13-rc6 next-20210617]
+> [cannot apply to balbi-usb/testing/next]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Wesley-Cheng/Re-introduce-TX-FIFO-resize-for-larger-EP-bursting/20210617-180037
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+> config: csky-randconfig-s031-20210617 (attached as .config)
+> compiler: csky-linux-gcc (GCC) 9.3.0
+> reproduce:
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # apt-get install sparse
+>         # sparse version: v0.6.3-341-g8af24329-dirty
+>         # https://github.com/0day-ci/linux/commit/54b6eb3d44464c519a4546e9a2c3041eeced1009
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review Wesley-Cheng/Re-introduce-TX-FIFO-resize-for-larger-EP-bursting/20210617-180037
+>         git checkout 54b6eb3d44464c519a4546e9a2c3041eeced1009
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' W=1 ARCH=csky 
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>, old ones prefixed by <<):
+> 
+> >> ERROR: modpost: "of_add_property" [drivers/usb/dwc3/dwc3-qcom.ko] undefined!
 
-Reviewed-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+*sigh* this symbol is not EXPORTed...so you can't call it from a module.
 
-> ---
->   .../platform/rockchip/rkisp1/rkisp1-dev.c     | 25 +++++++++++++++++++
->   1 file changed, 25 insertions(+)
-> 
-> diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-> index a14a0bc39fb0..8a9bb97d334a 100644
-> --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-> +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-dev.c
-> @@ -405,6 +405,27 @@ static irqreturn_t rkisp1_isr(int irq, void *ctx)
->   	return IRQ_HANDLED;
->   }
->   
-> +static const char * const px30_isp_clks[] = {
-> +	"isp",
-> +	"aclk",
-> +	"hclk",
-> +	"pclk",
-> +};
-> +
-> +static const struct rkisp1_isr_data px30_isp_isrs[] = {
-> +	{ "isp", rkisp1_isp_isr },
-> +	{ "mi", rkisp1_capture_isr },
-> +	{ "mipi", rkisp1_mipi_isr },
-> +};
-> +
-> +static const struct rkisp1_match_data px30_isp_match_data = {
-> +	.clks = px30_isp_clks,
-> +	.size = ARRAY_SIZE(px30_isp_clks),
-> +	.isrs = px30_isp_isrs,
-> +	.isr_size = ARRAY_SIZE(px30_isp_isrs),
-> +	.isp_ver = RKISP1_V12,
-> +};
-> +
->   static const char * const rk3399_isp_clks[] = {
->   	"isp",
->   	"aclk",
-> @@ -424,6 +445,10 @@ static const struct rkisp1_match_data rk3399_isp_match_data = {
->   };
->   
->   static const struct of_device_id rkisp1_of_match[] = {
-> +	{
-> +		.compatible = "rockchip,px30-cif-isp",
-> +		.data = &px30_isp_match_data,
-> +	},
->   	{
->   		.compatible = "rockchip,rk3399-cif-isp",
->   		.data = &rk3399_isp_match_data,
-> 
+Actually couldn't we just use device_add_properties() instead? And drop
+patch 4/6 as well.
+
+Jack
+-- 
+The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
