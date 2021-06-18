@@ -2,212 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACA703AC3D6
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 08:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 315593AC3EE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 08:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231270AbhFRG2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 02:28:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49278 "EHLO
+        id S231631AbhFRGes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 02:34:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230243AbhFRG2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 02:28:10 -0400
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5768EC061574
-        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 23:26:00 -0700 (PDT)
-Received: by mail-qv1-xf31.google.com with SMTP id 5so3039724qvf.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 23:26:00 -0700 (PDT)
+        with ESMTP id S231282AbhFRGes (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 02:34:48 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B71DC061574
+        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 23:32:38 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id x24so14692460lfr.10
+        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 23:32:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=K4gmwVrd4ipCgh7Pt4U3qK6zM5RZFqVsfT+5m/JaTNY=;
-        b=b3TOMvQ1kXF7QuAFyHdOkvmT8LXOEbUEDAbnT1VD77ESf6dWqJqkel2pij6H8qazUH
-         qeKiHzooTElNu69H2pMv9jI9D4woaiXlDH7E4nc1glsurOz9EYewwC9YHW+cnkiHTax7
-         tbypLVBnZif7y60KH97lEwI+rEiH+ILoO0+Go=
+        bh=FcqiM6OKoI9kz5wi4xxOdBHKAWW28rWhb54WENTCYlg=;
+        b=as0jcEU2Kw4vkeFE9aQYOArqSa433Qcii85hTVwoWOm1lj5H2Q/pzP+059YsRJhLdC
+         eTERXFkcC+sRTzDUKybkwsVujdqr+hY3rO8f4j0L2lPXNbNldXWJ0Xa2hkgr+/X/6xF7
+         DmxiDcEMOvsQdahRV0GMXc8McRfczsfsUqGbc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=K4gmwVrd4ipCgh7Pt4U3qK6zM5RZFqVsfT+5m/JaTNY=;
-        b=myLdtPoKSwNWryabYPEqLUQ16ZwOzImzxi8g3hXTmdaYQkoM2Vizwi48/IVqM6bPdE
-         UQSWdVS3cm0WvG6UIf30izL4MM3HfVyCi+VRLHACd0rGVnHk0bLlmyvgo1TOYpi0FobR
-         XCHWQ8MBFNiBfBWYuHVT3oQb5J8oG4u8fQa08nW2VRXRWddmZU/eQL9+H/m0CEey9bD+
-         x9moAtJwgki6YXp01bjH3SDxq7jpBsNbTrKo4aB/STLhZlv1rL82t/h7yyjyyPut4QQG
-         8p9bVqu+W7txVhokpH6xcZMxL9keBh9/NKzZT9Ti41WdJL1wZvrV4CgjWHMtoU07awQW
-         D/Og==
-X-Gm-Message-State: AOAM530n+m9O4thUq1jPC3V/VBhMWy6dOnvGOzBYz7I1D/STfRMQCYgw
-        xJsml2raG3pxwJqxkCCcUDFzFi/tnfPoyA==
-X-Google-Smtp-Source: ABdhPJwsnjP7yYQvW6BHYJHSzcmODwVfR0HOLaXWOH+WTUx5iCeH7qqqGjl0bNXYSWxKWLCGV/qo9Q==
-X-Received: by 2002:ad4:4704:: with SMTP id k4mr4048748qvz.13.1623997559172;
-        Thu, 17 Jun 2021 23:25:59 -0700 (PDT)
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com. [209.85.222.170])
-        by smtp.gmail.com with ESMTPSA id w133sm3255535qkb.105.2021.06.17.23.25.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Jun 2021 23:25:58 -0700 (PDT)
-Received: by mail-qk1-f170.google.com with SMTP id g4so7126389qkl.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Jun 2021 23:25:58 -0700 (PDT)
-X-Received: by 2002:a02:384b:: with SMTP id v11mr1842282jae.90.1623997548077;
- Thu, 17 Jun 2021 23:25:48 -0700 (PDT)
+        bh=FcqiM6OKoI9kz5wi4xxOdBHKAWW28rWhb54WENTCYlg=;
+        b=VmhdSVtGisiOM19qQADWjzUx7WzimPw4ohCOfxJq9Pz7kbrwYv6II7ShlU0n2YXsMY
+         u9ksWrMGWw+hRBteih6wywD06zX4bncGByK5aCjYC+VbgyMBYxtK/nmVifrn6SDXlT3F
+         SruJm6+9nWPyrsX+X2CXgttIT2Fw2P48gI/ZISVf7U6ahYnScVMydVGfVVyKd4uoNj7i
+         wpbs6FtR6DP+F67BjoAUQ0g+YqSdjwikOQXWyTQSXVouvvh1TZ/I55OZBLdF62xfvH62
+         STbR7Y0Vd3DuzL/Xt0CLca4gR4+QQEgrJjoe+BE0/S9smkGvTMSuih78PfWBBrMtkCS2
+         B41w==
+X-Gm-Message-State: AOAM532GumPogsPpv/osO+AQV7ojSYbM+WGE/YwzWuJkqDdVdprLFc4b
+        SY6NrbORo2oshxXJgL/1kbmCtIVz9k6pcCC9sqmtBQ==
+X-Google-Smtp-Source: ABdhPJz9n25XQXeae5FgmLVYRSWumiYzvEvvgvJUqRLfLsqolm6mHnftZfZe24scZrNt+nSJwTtlDhigDROdPGjiHR4=
+X-Received: by 2002:a19:f809:: with SMTP id a9mr1983941lff.342.1623997956967;
+ Thu, 17 Jun 2021 23:32:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210617062635.1660944-1-tientzu@chromium.org>
- <20210617062635.1660944-2-tientzu@chromium.org> <alpine.DEB.2.21.2106171434480.24906@sstabellini-ThinkPad-T480s>
-In-Reply-To: <alpine.DEB.2.21.2106171434480.24906@sstabellini-ThinkPad-T480s>
-From:   Claire Chang <tientzu@chromium.org>
-Date:   Fri, 18 Jun 2021 14:25:37 +0800
-X-Gmail-Original-Message-ID: <CALiNf29SJ0jXirWVDhJw4BUNvkjUeGPyGNJK9m8c30OPX41=5Q@mail.gmail.com>
-Message-ID: <CALiNf29SJ0jXirWVDhJw4BUNvkjUeGPyGNJK9m8c30OPX41=5Q@mail.gmail.com>
-Subject: Re: [PATCH v13 01/12] swiotlb: Refactor swiotlb init functions
-To:     Stefano Stabellini <sstabellini@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
-        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+References: <20210524122053.17155-1-chun-jie.chen@mediatek.com>
+ <20210524122053.17155-2-chun-jie.chen@mediatek.com> <20210602171201.GA3566462@robh.at.kernel.org>
+ <66e017401ab93aa02c5d2bbf11be9589b36649ac.camel@mediatek.com>
+ <1f59ed31-4a0e-9719-bf84-1fe4cdd6c57d@gmail.com> <162334689784.9598.2709970788186333494@swboyd.mtv.corp.google.com>
+ <de082c64-ace3-30b5-7404-1f4b607a83e1@gmail.com> <c8e8535cef67adeaefcfe943bbd8287806921e03.camel@mediatek.com>
+In-Reply-To: <c8e8535cef67adeaefcfe943bbd8287806921e03.camel@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 18 Jun 2021 14:32:25 +0800
+Message-ID: <CAGXv+5HcV6jbyDdZGzRX-2NHMztSONBKxmLxLQX6k+aQrwJ1ww@mail.gmail.com>
+Subject: Re: [PATCH v9 01/22] dt-bindings: ARM: Mediatek: Add new document
+ bindings of imp i2c wrapper controller
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh@kernel.org>,
         Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Weiyi Lu <weiyi.lu@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 18, 2021 at 7:30 AM Stefano Stabellini
-<sstabellini@kernel.org> wrote:
+On Wed, Jun 16, 2021 at 2:34 AM Chun-Jie Chen
+<chun-jie.chen@mediatek.com> wrote:
 >
-> On Thu, 17 Jun 2021, Claire Chang wrote:
-> > Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
-> > initialization to make the code reusable.
+> On Fri, 2021-06-11 at 11:56 +0200, Matthias Brugger wrote:
 > >
-> > Signed-off-by: Claire Chang <tientzu@chromium.org>
-> > Reviewed-by: Christoph Hellwig <hch@lst.de>
-> > Tested-by: Stefano Stabellini <sstabellini@kernel.org>
-> > Tested-by: Will Deacon <will@kernel.org>
-> > ---
-> >  kernel/dma/swiotlb.c | 50 ++++++++++++++++++++++----------------------
-> >  1 file changed, 25 insertions(+), 25 deletions(-)
+> > On 10/06/2021 19:41, Stephen Boyd wrote:
+> > > Quoting Matthias Brugger (2021-06-08 07:45:49)
+> > > >
+> > > >
+> > > > On 07/06/2021 07:20, Chun-Jie Chen wrote:
+> > > > > On Wed, 2021-06-02 at 12:12 -0500, Rob Herring wrote:
+> > > > > > > +
+> > > > > > > +description:
+> > > > > > > +  The Mediatek imp i2c wrapper controller provides
+> > > > > > > functional
+> > > > > > > configurations and clocks to the system.
+> > > > > > > +
+> > > > > > > +properties:
+> > > > > > > +  compatible:
+> > > > > > > +    items:
+> > > > > > > +      - enum:
+> > > > > > > +          - mediatek,mt8192-imp_iic_wrap_c
+> > > > > > > +          - mediatek,mt8192-imp_iic_wrap_e
+> > > > > > > +          - mediatek,mt8192-imp_iic_wrap_s
+> > > > > > > +          - mediatek,mt8192-imp_iic_wrap_ws
+> > > > > > > +          - mediatek,mt8192-imp_iic_wrap_w
+> > > > > > > +          - mediatek,mt8192-imp_iic_wrap_n
+> > > > > >
+> > > > > > Looks to me like these are all the same h/w, but just have
+> > > > > > differing
+> > > > > > sets of clocks. That's not really a reason to have different
+> > > > > > compatibles.
+> > > > > >
+> > > > > > If you need to know what clocks are present, you can walk the
+> > > > > > DT for
+> > > > > > all 'clocks' properties matching this clock controller
+> > > > > > instance. Or
+> > > > > > use
+> > > > > > 'clock-indices' to define which ones are present.
+> > >
+> > > Is the idea to use clock-indices and then list all the clock ids in
+> > > there and match them up at driver probe time to register the clocks
+> > > provided by the IO region? Feels like we'll do a lot of parsing at
+> > > each
+> > > boot to match up structures and register clks with the clk
+> > > framework.
+> > >
+> > > If it's like other SoCs then the clk id maps to a hard macro for a
+> > > type
+> > > of clk, and those hard macros have been glued together with other
+> > > clks
+> > > and then partitioned into different IO regions to make up a clock
+> > > controller. Or maybe in this case, those clk hard macros have been
+> > > scattered into each IP block like SPI, i2c, uart, etc. so that the
+> > > clock
+> > > controller doesn't really exist and merely the gates and rate
+> > > control
+> > > (mux/divider) for the clk that's clocking some particular IP block
+> > > all
+> > > live inside the IP wrapper. If it's this case then I hope there are
+> > > a
+> > > bunch of PLLs that are fixed rate so that the i2c clk doesn't have
+> > > to go
+> > > outside the wrapper to change frequency (of which there should be
+> > > two
+> > > "standard" frequencies anyway).
+> > >
+> > > > > >
+> > > > > > Rob
+> > > > >
+> > > > > Some module is divided to sub-modules which are designed in
+> > > > > different
+> > > > > h/w blocks for different usage, and if we want to use the same
+> > > > > compatible to present these h/w blocks, we need to move the
+> > > > > clock data
+> > > > > provided by these h/w blocks to dts, but we usually use
+> > > > > different
+> > > > > compatible to get the h/w blocks data in
+> > > > > Mediatek's clock driver, so do you suggest to register clock
+> > > > > provided
+> > > > > by different h/w blocks using same compatible?
+> > > > >
+> > > >
+> > > > The mapping of them is as following:
+> > > > imp_iic_wrap_c:  11007000
+> > > > imp_iic_wrap_e:  11cb1000
+> > > > imp_iic_wrap_s:  11d03000
+> > > > imp_iic_wrap_ws: 11d23000
+> > > > imp_iic_wrap_w:  11e01000
+> > > > imp_iic_wrap_n:  11f02000
+> > > >
+> > >
+> > > Sure. What is their purpose though? Are they simply a bunch of
+> > > different
+> > > i2c clks?
+> > >
 > >
-> > diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
-> > index 52e2ac526757..47bb2a766798 100644
-> > --- a/kernel/dma/swiotlb.c
-> > +++ b/kernel/dma/swiotlb.c
-> > @@ -168,9 +168,28 @@ void __init swiotlb_update_mem_attributes(void)
-> >       memset(vaddr, 0, bytes);
-> >  }
+> > That would be need to be answered by MediaTek as I don't have access
+> > to any
+> > documentation.
 > >
-> > -int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
-> > +static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
-> > +                                 unsigned long nslabs, bool late_alloc)
-> >  {
-> > +     void *vaddr = phys_to_virt(start);
-> >       unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
-> > +
-> > +     mem->nslabs = nslabs;
-> > +     mem->start = start;
-> > +     mem->end = mem->start + bytes;
-> > +     mem->index = 0;
-> > +     mem->late_alloc = late_alloc;
-> > +     spin_lock_init(&mem->lock);
-> > +     for (i = 0; i < mem->nslabs; i++) {
-> > +             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-> > +             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-> > +             mem->slots[i].alloc_size = 0;
-> > +     }
-> > +     memset(vaddr, 0, bytes);
-> > +}
-> > +
-> > +int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
-> > +{
-> >       struct io_tlb_mem *mem;
-> >       size_t alloc_size;
-> >
-> > @@ -186,16 +205,8 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
-> >       if (!mem)
-> >               panic("%s: Failed to allocate %zu bytes align=0x%lx\n",
-> >                     __func__, alloc_size, PAGE_SIZE);
-> > -     mem->nslabs = nslabs;
-> > -     mem->start = __pa(tlb);
-> > -     mem->end = mem->start + bytes;
-> > -     mem->index = 0;
-> > -     spin_lock_init(&mem->lock);
-> > -     for (i = 0; i < mem->nslabs; i++) {
-> > -             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-> > -             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-> > -             mem->slots[i].alloc_size = 0;
-> > -     }
-> > +
-> > +     swiotlb_init_io_tlb_mem(mem, __pa(tlb), nslabs, false);
-> >
-> >       io_tlb_default_mem = mem;
-> >       if (verbose)
-> > @@ -282,8 +293,8 @@ swiotlb_late_init_with_default_size(size_t default_size)
-> >  int
-> >  swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
-> >  {
-> > -     unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
-> >       struct io_tlb_mem *mem;
-> > +     unsigned long bytes = nslabs << IO_TLB_SHIFT;
-> >
-> >       if (swiotlb_force == SWIOTLB_NO_FORCE)
-> >               return 0;
-> > @@ -297,20 +308,9 @@ swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
-> >       if (!mem)
-> >               return -ENOMEM;
-> >
-> > -     mem->nslabs = nslabs;
-> > -     mem->start = virt_to_phys(tlb);
-> > -     mem->end = mem->start + bytes;
-> > -     mem->index = 0;
-> > -     mem->late_alloc = 1;
-> > -     spin_lock_init(&mem->lock);
-> > -     for (i = 0; i < mem->nslabs; i++) {
-> > -             mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
-> > -             mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
-> > -             mem->slots[i].alloc_size = 0;
-> > -     }
-> > -
-> > +     memset(mem, 0, sizeof(*mem));
-> > +     swiotlb_init_io_tlb_mem(mem, virt_to_phys(tlb), nslabs, true);
-> >       set_memory_decrypted((unsigned long)tlb, bytes >> PAGE_SHIFT);
-> > -     memset(tlb, 0, bytes);
+> > Regards,
+> > Matthias
 >
-> This is good for swiotlb_late_init_with_tbl. However I have just noticed
-> that mem could also be allocated from swiotlb_init_with_tbl, in which
-> case the zeroing is missing. I think we need another memset in
-> swiotlb_init_with_tbl as well. Or maybe it could be better to have a
-> single memset at the beginning of swiotlb_init_io_tlb_mem instead. Up to
-> you.
+> We describe which clock controllers are exist in dts and
+> get the clock data provided by clock controller in driver data
+> by matching device compatible.
+>
+> The clock data contains several clocks which includes the clock index,
+> parent clock source and the details of reg control inside the IP block
+> of clock controller.
+>
+> In MT8192 platform, some IP block is divide to several sub-blocks and
+> each sub-block provides clock control by itself.
 
-swiotlb_init_with_tbl uses memblock_alloc to allocate the io_tlb_mem
-and memblock_alloc[1] will do memset in memblock_alloc_try_nid[2], so
-swiotlb_init_with_tbl is also good.
-I'm happy to add the memset in swiotlb_init_io_tlb_mem if you think
-it's clearer and safer.
+Some more information:
 
-[1] https://elixir.bootlin.com/linux/v5.13-rc6/source/include/linux/memblock.h#L407
-[2] https://elixir.bootlin.com/linux/v5.13-rc6/source/mm/memblock.c#L1555
+Based on what I read in the datasheets, I'm guessing that MediaTek groups
+the I2C controllers into several groups and places them in different parts
+of the die. The suffix of imp_iic_wrap_XXX is likely pointing to the
+placement of the group. And the imp_iic_wrap_XXX is what the name suggests
+a wrapper around the group of I2C controllers. The wrapper contains clock
+and reset controls, as well as other things that I can't make out.
+
+
+ChenYu
