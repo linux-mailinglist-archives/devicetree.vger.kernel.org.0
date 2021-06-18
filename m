@@ -2,106 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 419D73ACBBB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 15:08:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 072D53ACC1A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 15:25:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbhFRNKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 09:10:44 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:45216 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230430AbhFRNKn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Jun 2021 09:10:43 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1luEEZ-00022y-QZ; Fri, 18 Jun 2021 15:08:31 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Alex Bee <knaerzche@gmail.com>
-Cc:     devicetree@vger.kernel.org, balbi@kernel.org,
-        gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alex Bee <knaerzche@gmail.com>
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Add RK3399 Rock Pi 4a plus board
-Date:   Fri, 18 Jun 2021 15:08:31 +0200
-Message-ID: <4545451.QWXsJ6tzlI@diego>
-In-Reply-To: <20210617044955.598994-2-knaerzche@gmail.com>
-References: <20210617044955.598994-1-knaerzche@gmail.com> <20210617044955.598994-2-knaerzche@gmail.com>
+        id S232806AbhFRN13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 09:27:29 -0400
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:8084 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232546AbhFRN12 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Jun 2021 09:27:28 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15IDDV7W029190;
+        Fri, 18 Jun 2021 15:25:01 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=TGRIuYa1RneAyuabvPhXlPbKaYa/GapaD9l0+sSWxuw=;
+ b=dYE9THOnJzJSBCZl456P8kNA/msyy19+tGQb5Vx6BD38esDf/EU4cnqS7tsS6PhHm/CA
+ tWTYLmsUyq58RsUrUbDSsVekrCj4lN3+BEED0Hd8z1W8lTsHS0rh8ItWTz1KI1lsjhue
+ yzPC/OGmaNq6/Ye0Lrb2vveUo/H7/2X6tuvgJpGb0FY/Vy+WhXUlFtIMShGDNmoHYMLn
+ 5/LQN6xCeSTh47SvBfT3sTjgwlRDJiYFBrXikeLb2NZz3B75r92EzmmIz1Qh/xEdQJ2E
+ TA58zqL77NJyFzTMkU5IZ9peZnUbaaQY6zl8MeYN5/yxwvvdFLfJ/vBeCec/T4SGTeGP RA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 398qqg9nvu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 18 Jun 2021 15:25:01 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8259E10002A;
+        Fri, 18 Jun 2021 15:25:00 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 60ED122B9C0;
+        Fri, 18 Jun 2021 15:25:00 +0200 (CEST)
+Received: from lmecxl0572.lme.st.com (10.75.127.45) by SFHDAG2NODE3.st.com
+ (10.75.127.6) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 18 Jun
+ 2021 15:24:59 +0200
+Subject: Re: [RESEND PATCH v3 11/11] clk: stm32mp1: new compatible for secure
+ RCC support
+To:     Marek Vasut <marex@denx.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Etienne Carriere <etienne.carriere@foss.st.com>
+CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20210617051814.12018-1-gabriel.fernandez@foss.st.com>
+ <20210617051814.12018-12-gabriel.fernandez@foss.st.com>
+ <14a81ad2-d646-30ca-46f0-d2078b09c4f2@denx.de>
+From:   "gabriel.fernandez@foss.st.com" <gabriel.fernandez@foss.st.com>
+Message-ID: <e7952251-b3bb-5042-65bd-7ab7ef37ac93@foss.st.com>
+Date:   Fri, 18 Jun 2021 15:24:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+In-Reply-To: <14a81ad2-d646-30ca-46f0-d2078b09c4f2@denx.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE3.st.com
+ (10.75.127.6)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-06-18_07:2021-06-18,2021-06-18 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, 17. Juni 2021, 06:49:54 CEST schrieb Alex Bee:
-> Rock Pi 4a plus board is the successor of Rock Pi 4a board.
+Yes we could have considered it as a feature but we think it's better to 
+manage it as a layer of our driver via a compatible.
+
+On 6/17/21 8:46 AM, Marek Vasut wrote:
+> On 6/17/21 7:18 AM, gabriel.fernandez@foss.st.com wrote:
+>> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+>>
+>> Platform STM32MP1 can be used in configuration where some clock
+>> resources cannot be accessed by Linux kernel when executing in non-secure
+>> state of the CPU(s).
+>> In such configuration, the RCC clock driver must not register clocks
+>> it cannot access.
+>> They are expected to be registered from another clock driver such
+>> as the SCMI clock driver.
+>> This change uses specific compatible string "st,stm32mp1-rcc-secure"
+>> to specify RCC clock driver configuration where RCC is secure.
 > 
-> Differences to the original version are
-> - has RK3399 OP1 SoC revision
-> - has eMMC (16 or 32 GB) soldered on board (no changes required,
->   since it is enabled in rk3399-rock-pi-4.dtsi)
-> - dev boards have SPI flash soldered, but as per manufacturer response,
->   this won't be the case for mass production boards
-> 
-> I didn't add yet another compatible, since the small set of differences
-> are captured by the device tree.
-> 
-> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile              |  1 +
->  .../boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts   | 14 ++++++++++++++
->  2 files changed, 15 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index c3e00c0e2db7..dbd7d37950f1 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -43,6 +43,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-puma-haikou.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a-plus.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4b.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4c.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock960.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts
-> new file mode 100644
-> index 000000000000..2deaab7f9307
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts
-> @@ -0,0 +1,14 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 Akash Gajjar <Akash_Gajjar@mentor.com>
-> + * Copyright (c) 2019 Pragnesh Patel <Pragnesh_Patel@mentor.com>
-> + */
-> +
-> +/dts-v1/;
-> +#include "rk3399-rock-pi-4.dtsi"
-> +#include "rk3399-op1-opp.dtsi"
-> +
-> +/ {
-> +	model = "Radxa ROCK Pi 4A plus";
-> +	compatible = "radxa,rockpi4a", "radxa,rockpi4", "rockchip,rk3399";
-
-hmm, I don't really follow why you're re-using the radxa,rockpi4a
-compatible. I'd assume this should be radxa,rockpi4a+ or something?
-
-I.e. if a bootloader needs to select the matching devicetree from a list
-of available devicetrees, this could end up running a regular rockpi4a
-(without +) using the OP1 operating points and thus at way too high
-frequencies.
-
-
-Heiko
-
-
-> +};
-> 
-
-
-
-
+> Should this really be a new compatible string or rather a DT property ? 
+> I think the later, since this is the same clock IP, only operating in 
+> different "mode" , no ?
