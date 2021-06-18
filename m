@@ -2,149 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29B623AD1C7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 20:06:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48A083AD1DF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 20:13:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234873AbhFRSIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 14:08:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38154 "EHLO
+        id S235068AbhFRSPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 14:15:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234492AbhFRSIz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 14:08:55 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5A13C061760
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 11:06:44 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id v22-20020a0568301416b029044e2d8e855eso1320204otp.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 11:06:44 -0700 (PDT)
+        with ESMTP id S229816AbhFRSPM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 14:15:12 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2004CC061574;
+        Fri, 18 Jun 2021 11:13:03 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id l7-20020a05600c1d07b02901b0e2ebd6deso6270531wms.1;
+        Fri, 18 Jun 2021 11:13:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=OEKJM9vIqp0HzyKXj3PmRgH2R1YDj6D4MPV9OcuTS9o=;
-        b=a3ckPvSP/3evWGcvch+X4B/q2twhoRag+Kw7B/APoE2ES7pLi52jI/cKMD6xwk7u/S
-         mDVI+JJjy9RfZsbkbFj6iVB6+eOIpDU7hx/FKrTSocLzsy3kKHOBy5dIr1I/Qe9nnksV
-         3mtOXVsLr4dcelH+dWmV+I1jtsgoVZtsDrTDuREIuPv2BVBGYX66QzqP8G/5zC3q7XJC
-         3O4sMyq90iD8cKgbIu8K4KxKFWbLSfIEDX+Ck85+0PUiWJMxNT9yiRcpJNY81VnjDkxD
-         giEmxia8Y7cFk46n7QNqKK3VaJMVg8I+//iRyawfatcPly1WaGG1CRVv0H/a3J0LGkLZ
-         K2Wg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K98EYWEUrUiQZaYXU/th664Hrf+PPLxMaWShDbXXluI=;
+        b=MagQyTCH6HKucF9M5MPjQOtjWLH5BVKOy3z+P6fS8qm/GxQkX1sdrEJfjjCTsPb7mk
+         Wo6W+qwF+/gPPDBAHXFtYBZgygw4Oxk4b3ZmLQggQh6HLvlaX0yHfSeETlmDIRxXb+4N
+         q9GaC3Hcs2q7yXQFSv8f/VoDdX1m+bSX/BLwXotMwPxD5dMPv/SRXA2cI7SHGnXDr9Wr
+         FGjsc1c4DwVDXWxTDWOmwT4LuyhIRVqHgYPutZ+nU/3foiKwxL3wCCBdkARAS5TsFKHs
+         5WRJe0bXrdLAY2wfChXOCH5mFjMRZM27ZpJEi0EePdUOSheOv+x6AsDfH81L9IqMoJK9
+         Jc8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OEKJM9vIqp0HzyKXj3PmRgH2R1YDj6D4MPV9OcuTS9o=;
-        b=FG9zNfCVDURUC3CFRzt7Q2vLfRry85xwLCe81Busij7oGE7FLaCLIiI1kbq3pJa6HF
-         IpYX3L45yqxi3Yo8ZSEA74kHeGHW144DKnQpCuetg1Pg6XQXiRrm50xxT4BhnNtZze6V
-         kPrbbkqwdG1luqFQoOgwbO2h3yLWUSnJPImLVQXc7t46dIliyWIXqj4H4K6ZqGRibncx
-         9ho9YbMJnYmb3nu2RhiDz01zlBW+GEFZR/ltQrNvWhO279aEZGqePf0/d9HvkD7VusIS
-         nHEAiYH5xnWLNbOWqAeV+54b7u8MzmFYhI6FRbwlyteNJp3zMQsVkC01fkWWIg6jh9GX
-         f86Q==
-X-Gm-Message-State: AOAM532dezauuJ+9/xJi+i+SY58mzmAwNSRzW60Okkajt7mRU61knZKG
-        kMmC2WM6FIlNBk7tkFamrzqn3w==
-X-Google-Smtp-Source: ABdhPJzBzlY9T26KUGOr/F4uK6/WOLYLE33cfL2bZqHmXN/Dv/pWim6wpK9xUU+I+wbqFy8X287D9g==
-X-Received: by 2002:a9d:585:: with SMTP id 5mr10634495otd.12.1624039604035;
-        Fri, 18 Jun 2021 11:06:44 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id h11sm1949471otg.43.2021.06.18.11.06.43
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K98EYWEUrUiQZaYXU/th664Hrf+PPLxMaWShDbXXluI=;
+        b=snFL2FsjiagXLr4H5humygTG4mEeoxoBIcawwXmaXcaL6Tr21HddgI71WSU/XkMZk/
+         h7YeNeZ/5nQ3B6DfX8CuoZyMb+VOq+Fjm56BJp7sFFvYPZEpRpBZ6g3923CO81m4LLJ4
+         mj8a45G1G/qRpFJDECtjmaJBwCNlPsalr4Tt5cATAjUIk3tbAIBvtfEbUfHBEW6/tyz5
+         ptqTr0R5X92MxvlCdwSwQc8SVgPGZtvXhrp0FToJSQ452llntaGLi52ICoZ9MtVBsM8m
+         n1nY6aWXqkj1kbm4hQ3tP7jvjhl8haLPCcijt1m4Qx4jsndo5JPRTyqQf0E+f52TYdA/
+         Bu0w==
+X-Gm-Message-State: AOAM530gOWj7X5ccFarJWW80osOeRoh04sNosMTfF/ni8e8eRiX7q58+
+        cYuCeAHOCuO2MsS0ITqM8w==
+X-Google-Smtp-Source: ABdhPJyy8iHBbsu57j9eptw73dfQDpL/8ILy4+jW+ngV7ZBRnAfUd4HJTMW6O3/lPCP+LW2Hxq9nCg==
+X-Received: by 2002:a05:600c:410c:: with SMTP id j12mr12895602wmi.117.1624039981706;
+        Fri, 18 Jun 2021 11:13:01 -0700 (PDT)
+Received: from localhost.localdomain (ip5b434b8b.dynamic.kabel-deutschland.de. [91.67.75.139])
+        by smtp.googlemail.com with ESMTPSA id l10sm9306782wrv.82.2021.06.18.11.13.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 11:06:43 -0700 (PDT)
-Date:   Fri, 18 Jun 2021 13:06:41 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v3 5/5] regulator: qcom-rpmh: Add new regulator found on
- SA8155p adp board
-Message-ID: <YMzgsRdrhGZonzd1@builder.lan>
-References: <20210617051712.345372-1-bhupesh.sharma@linaro.org>
- <20210617051712.345372-6-bhupesh.sharma@linaro.org>
+        Fri, 18 Jun 2021 11:13:01 -0700 (PDT)
+From:   Alex Bee <knaerzche@gmail.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>
+Cc:     Johan Jonker <jbx6244@gmail.com>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alex Bee <knaerzche@gmail.com>
+Subject: [PATCH v2 0/5] Updates for Radxa ROCK Pi 4
+Date:   Fri, 18 Jun 2021 20:12:51 +0200
+Message-Id: <20210618181256.27992-1-knaerzche@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210617051712.345372-6-bhupesh.sharma@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 17 Jun 00:17 CDT 2021, Bhupesh Sharma wrote:
+Hi list,
 
-> SA8155p-adp board supports a new regulator - pmm8155au.
-> 
-> The output power management circuits in this regulator include:
-> - FTS510 smps,
-> - HFS510 smps, and
-> - LDO510 linear regulators
-> 
-> Add support for the same.
-> 
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+This series adds support for 2 new revisions of Radxa's ROCK Pi 4,
+namely ROCK Pi 4A+ and ROCK Pi 4B+. While most things are in common
+with the previous 4A and 4B revisions, they have OP1 revision of
+the SoC and eMMC soldered on board.
+Patch 4 and 5 add SPDIF and anlog Codec to the common device tree,
+since they are in place in previous revisions as well.
+It superseeds
+https://lore.kernel.org/linux-rockchip/d4e4e06e-6ddd-4707-232d-b829c1d646e6@gmail.com/
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+There is no example (which I could find) for Rockchip on how to
+deal with "+" revisions - so I looked up other SoCs and the rule
+seems to be to use the "+" for the model name (which is the "offical"
+name), but use "-plus" for compatible name and device tree files names
+(see "Raspberry Pi Model A+", for instance).
 
-Regards,
-Bjorn
+A short node for testing ES8316 codec:
+The driver disables the headphone jack by default - for testing
+one would have to enable it via amixer with:
+amixer [card index] 'Right Headphone Mixer Right DAC' on
+amixer [card index] 'Left Headphone Mixer Left DAC' on
 
-> ---
->  drivers/regulator/qcom-rpmh-regulator.c | 36 +++++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
-> 
-> diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
-> index af41a517da99..6cca910a76de 100644
-> --- a/drivers/regulator/qcom-rpmh-regulator.c
-> +++ b/drivers/regulator/qcom-rpmh-regulator.c
-> @@ -883,6 +883,38 @@ static const struct rpmh_vreg_init_data pm8150l_vreg_data[] = {
->  	{}
->  };
->  
-> +static const struct rpmh_vreg_init_data pmm8155au_vreg_data[] = {
-> +	RPMH_VREG("smps1",  "smp%s1",  &pmic5_ftsmps510, "vdd-s1"),
-> +	RPMH_VREG("smps2",  "smp%s2",  &pmic5_ftsmps510, "vdd-s2"),
-> +	RPMH_VREG("smps3",  "smp%s3",  &pmic5_ftsmps510, "vdd-s3"),
-> +	RPMH_VREG("smps4",  "smp%s4",  &pmic5_hfsmps510, "vdd-s4"),
-> +	RPMH_VREG("smps5",  "smp%s5",  &pmic5_hfsmps510, "vdd-s5"),
-> +	RPMH_VREG("smps6",  "smp%s6",  &pmic5_ftsmps510, "vdd-s6"),
-> +	RPMH_VREG("smps7",  "smp%s7",  &pmic5_ftsmps510, "vdd-s7"),
-> +	RPMH_VREG("smps8",  "smp%s8",  &pmic5_ftsmps510, "vdd-s8"),
-> +	RPMH_VREG("smps9",  "smp%s9",  &pmic5_ftsmps510, "vdd-s9"),
-> +	RPMH_VREG("smps10", "smp%s10", &pmic5_ftsmps510, "vdd-s10"),
-> +	RPMH_VREG("ldo1",   "ldo%s1",  &pmic5_nldo,      "vdd-l1-l8-l11"),
-> +	RPMH_VREG("ldo2",   "ldo%s2",  &pmic5_pldo,      "vdd-l2-l10"),
-> +	RPMH_VREG("ldo3",   "ldo%s3",  &pmic5_nldo,      "vdd-l3-l4-l5-l18"),
-> +	RPMH_VREG("ldo4",   "ldo%s4",  &pmic5_nldo,      "vdd-l3-l4-l5-l18"),
-> +	RPMH_VREG("ldo5",   "ldo%s5",  &pmic5_nldo,      "vdd-l3-l4-l5-l18"),
-> +	RPMH_VREG("ldo6",   "ldo%s6",  &pmic5_nldo,      "vdd-l6-l9"),
-> +	RPMH_VREG("ldo7",   "ldo%s7",  &pmic5_pldo_lv,   "vdd-l7-l12-l14-l15"),
-> +	RPMH_VREG("ldo8",   "ldo%s8",  &pmic5_nldo,      "vdd-l1-l8-l11"),
-> +	RPMH_VREG("ldo9",   "ldo%s9",  &pmic5_nldo,      "vdd-l6-l9"),
-> +	RPMH_VREG("ldo10",  "ldo%s10", &pmic5_pldo,      "vdd-l2-l10"),
-> +	RPMH_VREG("ldo11",  "ldo%s11", &pmic5_nldo,      "vdd-l1-l8-l11"),
-> +	RPMH_VREG("ldo12",  "ldo%s12", &pmic5_pldo_lv,   "vdd-l7-l12-l14-l15"),
-> +	RPMH_VREG("ldo13",  "ldo%s13", &pmic5_pldo,      "vdd-l13-l16-l17"),
-> +	RPMH_VREG("ldo14",  "ldo%s14", &pmic5_pldo_lv,   "vdd-l7-l12-l14-l15"),
-> +	RPMH_VREG("ldo15",  "ldo%s15", &pmic5_pldo_lv,   "vdd-l7-l12-l14-l15"),
-> +	RPMH_VREG("ldo16",  "ldo%s16", &pmic5_pldo,      "vdd-l13-l16-l17"),
-> +	RPMH_VREG("ldo17",  "ldo%s17", &pmic5_pldo,      "vdd-l13-l16-l17"),
-> +	RPMH_VREG("ldo18",  "ldo%s18", &pmic5_nldo,      "vdd-l3-l4-l5-l18"),
-> +	{}
-> +};
-> +
->  static const struct rpmh_vreg_init_data pm8350_vreg_data[] = {
->  	RPMH_VREG("smps1",  "smp%s1",  &pmic5_ftsmps510, "vdd-s1"),
->  	RPMH_VREG("smps2",  "smp%s2",  &pmic5_ftsmps510, "vdd-s2"),
-> @@ -1177,6 +1209,10 @@ static const struct of_device_id __maybe_unused rpmh_regulator_match_table[] = {
->  		.compatible = "qcom,pmc8180c-rpmh-regulators",
->  		.data = pm8150l_vreg_data,
->  	},
-> +	{
-> +		.compatible = "qcom,pmm8155au-rpmh-regulators",
-> +		.data = pmm8155au_vreg_data,
-> +	},
->  	{
->  		.compatible = "qcom,pmx55-rpmh-regulators",
->  		.data = pmx55_vreg_data,
-> -- 
-> 2.31.1
-> 
+Alex
+
+Changes in v2:
+- added additional compatibles for the new revisions (Heiko)
+- renamed ES8316 audio card name to "Analog" (Johan)
+- added patch for SPDIF
+- aligned spelling of board name(s)
+
+Alex Bee (5):
+  dt-bindings: Add doc for ROCK Pi 4 A+ and B+
+  arm64: dts: rockchip: Add RK3399 ROCK Pi 4A+ board
+  arm64: dts: rockchip: Add RK3399 ROCK Pi 4B+ board
+  arm64: dts: rockchip: add ES8316 codec for ROCK Pi 4
+  arm64: dts: rockchip: add SPDIF node for ROCK Pi 4
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  4 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |  2 +
+ .../boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 54 +++++++++++++++++++
+ .../dts/rockchip/rk3399-rock-pi-4a-plus.dts   | 14 +++++
+ .../dts/rockchip/rk3399-rock-pi-4b-plus.dts   | 47 ++++++++++++++++
+ 5 files changed, 120 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a-plus.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
+
+
+base-commit: 009c9aa5be652675a06d5211e1640e02bbb1c33d
+-- 
+2.27.0
+
