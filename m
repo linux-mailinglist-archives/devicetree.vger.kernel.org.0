@@ -2,155 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B43923ACFA4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 18:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB5BF3AD02C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 18:15:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230393AbhFRQEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 12:04:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38252 "EHLO
+        id S235790AbhFRQRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 12:17:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230340AbhFRQEu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 12:04:50 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CE1C061574;
-        Fri, 18 Jun 2021 09:02:40 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id z12so9368008edc.1;
-        Fri, 18 Jun 2021 09:02:40 -0700 (PDT)
+        with ESMTP id S235833AbhFRQRC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 12:17:02 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80850C0617A8;
+        Fri, 18 Jun 2021 09:14:47 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id e22so7776034wrc.1;
+        Fri, 18 Jun 2021 09:14:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FeMZkRKu8I2r+KYH6VOSJibXy1W5BhFH+qkTYQAet8Y=;
-        b=sNSc/wZA6DmbhwyM4CkUU7yJakpjTZIkuQp1YDLnjhqsmGOZsDH46jPfudG+4FV+dP
-         szsKW+IE9CJr7hW9udjKxrJsO2eE/nGvhfqzFkFtQ7tcdrr3vFIfoDAqvM6f8Iczl4uY
-         e115xA0YJlr6GngzNFOvPTB12oAsCp/jZVQ6syGNo+XwZiQiQRK2XjvtEfsCF8xDFHHb
-         NAX1BUZ+k0eldKPEwzfGDok84QCdAA/SFjBiDfP3rk41q0rwPX46fEyjjn902jH9O2va
-         35wuLRcUJNIIeX4XCU06P15aXDtrRm84ouKFAm8fIK2OBqptgHbnt0FPfClBK5R390Vq
-         fltA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=sJ6tmXCDWjYjTczKpyWz/c7MXBSmbvzpLSbj8oATx1Q=;
+        b=bzfqVe75gKphpiq2mBVpRUpqbWAfNiGGhYiKv5KnyMBkGwdeRYT2HRmSIgt1eazns8
+         x185YYf5Bi4dJW5Dj6VQk0m9RiQKxqNJT26JeeJqUqNxgUJ0/R7X6J3y3SAv7Beh1UaM
+         R7S3EjGfqLAqWstc2RBaKjRF666GRtuA/W6pNCvgsvP2Xm5jkKwDzbLFuGeMCUb+VB7l
+         vpN5DK9ilJs+L6uQ88Ma7RHwFd/K49zAnfdb3lIkxwp1lYG/ZeM01blEPOKkpwdtltlU
+         3UJGg9oa7dNdPa7pklG7IeZlXaUAqACPHwPbQjk51YtRynr11vB4c+b/Rw+k/ElBTp8V
+         okVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FeMZkRKu8I2r+KYH6VOSJibXy1W5BhFH+qkTYQAet8Y=;
-        b=FGOM8nrK6i1vouwWwAedHi5j5CUJ+70TydpP4T3d0xQKzVukJrXdp1h3E2OaWTBFIW
-         uvByN8rfgNmd+b6cULOPaW0Ab/Wu9/qPJdVPR3h/xIOBKU/3C+jqS2J2ljARH1aD5LxY
-         WhZv05FyspsI59FJnUmE6Si/STBbtyMfY/eXs4hi+747IJdeZg6r+0WQUa2wN2TrbRF3
-         9Ri3+VMmfgTTE96VQ6LtCjIe5jFbKPL/SB7tbG5VrGmnhbgrnlH3e1wuueevvtDg+BYI
-         I5HfjmmJZwKNRW/eLAH5aij3W3Y++x266KPhwGnHmXX+Vw9iDHRB0FO6vuee4TSBiBT6
-         ZyBg==
-X-Gm-Message-State: AOAM533qMIIdzCUxPBXdDtv3TLzWxZFVDtgnKgpetUflMWxROvH2Bop/
-        Bd/5WW5YKd597AKj+xrssxSkPZrt0ZqC6rb+Gh4=
-X-Google-Smtp-Source: ABdhPJyObSdlRTyvAUv6DlfwyKzuLyz0w1veDZeaI9nH49gN+3gAji451IYtR9ou1VtmQx29+xPR4YwfD9sMPMGXBxQ=
-X-Received: by 2002:aa7:dccb:: with SMTP id w11mr5862932edu.96.1624032158864;
- Fri, 18 Jun 2021 09:02:38 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=sJ6tmXCDWjYjTczKpyWz/c7MXBSmbvzpLSbj8oATx1Q=;
+        b=G7dNo6aXSQtUXWE1X3Bja+3PueSvxaQbwtwYPOgKrN2kyG/S0nUaohVGLSol9NMPsp
+         G5yegsR/c1Go3Z464HVlNHAQA2GoaBjcCxSFm+kZidRX8KJ9vFtuX1+CaIHun9vLchVl
+         CjvrGn7RNsdiZ40ecNkLyxoDaCeud/nsxZN/CueAW06ExieDlQLrjm4MVXTpeX8n23KM
+         x4ze5LaavNfuoENSpmYS5kfIJCHb4NfqEiAHuJxoaZr8iiJorn/cM8Wb3kcGsPd/q5Ur
+         7nvU97xTvirmITCchQUwDB7bybmbcYPRpGKPBQVcUewGY3YIJdbk8W5JNQ0gwwn8NrVt
+         y6ig==
+X-Gm-Message-State: AOAM532iZOYyTuhFKlSTVIzw3t0TIBI9kd4jWfl28wQGFjydPUm9yXYB
+        UTATUGfdvjnDqYPKipgDEg==
+X-Google-Smtp-Source: ABdhPJzyRQ3tfsoH1rSyh/EmkjzS6/pApI0k24VzPoJ3O+CU+eYsyrsdp2T0S+bhgTosH5J7ozEfcg==
+X-Received: by 2002:adf:ea49:: with SMTP id j9mr13474888wrn.366.1624032886125;
+        Fri, 18 Jun 2021 09:14:46 -0700 (PDT)
+Received: from [192.168.200.247] (ip5b434b8b.dynamic.kabel-deutschland.de. [91.67.75.139])
+        by smtp.gmail.com with ESMTPSA id w18sm9053618wrt.55.2021.06.18.09.14.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Jun 2021 09:14:45 -0700 (PDT)
+Subject: Re: [PATCH 1/3] arm64: dts: rockchip: add ES8316 codec for Rock Pi4
+To:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, balbi@kernel.org,
+        gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20210617044955.598994-1-knaerzche@gmail.com>
+ <d562b025-23cc-f26d-b118-e269501f459b@gmail.com>
+From:   Alex Bee <knaerzche@gmail.com>
+Message-ID: <d4e4e06e-6ddd-4707-232d-b829c1d646e6@gmail.com>
+Date:   Fri, 18 Jun 2021 18:14:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210617093330.9179-1-paul.barker@sancloud.com> <20210617093330.9179-4-paul.barker@sancloud.com>
-In-Reply-To: <20210617093330.9179-4-paul.barker@sancloud.com>
-From:   Robert Nelson <robertcnelson@gmail.com>
-Date:   Fri, 18 Jun 2021 11:02:12 -0500
-Message-ID: <CAOCHtYjEn+F+_chyMQ0cppA0y=ZeHrme3c66A2Z5U6pJf9a8_w@mail.gmail.com>
-Subject: Re: [PATCH 3/4] ARM: dts: am335x-sancloud-bbe-lite: New devicetree
-To:     Paul Barker <paul.barker@sancloud.com>
-Cc:     =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Marc Murphy <marc.murphy@sancloud.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <d562b025-23cc-f26d-b118-e269501f459b@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Hi Johan,
 
-On Thu, Jun 17, 2021 at 4:35 AM Paul Barker <paul.barker@sancloud.com> wrote:
+Am 18.06.21 um 11:54 schrieb Johan Jonker:
+> Hi Alex,
 >
-> This adds support for the Sancloud BBE Lite which shares a common
-> hardware base with the non-Lite version of the BBE.
+> On 6/17/21 6:49 AM, Alex Bee wrote:
+>> Rock Pi4 boards have the codec connected to i2s0 and it is accessible
+>> via i2c1 address 0x11.
+>> Add an audio-graph-card it.
+>>
+>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>> ---
+>>   .../boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 28 +++++++++++++++++++
+>>   1 file changed, 28 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+>> index 7d0a7c697703..e5c1083174ff 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+>> @@ -36,6 +36,12 @@ sdio_pwrseq: sdio-pwrseq {
+>>   		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
+>>   	};
+>>   
+>> +	sound {
+>> +		compatible = "audio-graph-card";
+>> +		label = "rockchip,rk3399";
+> See previous discussion:
 >
-> Signed-off-by: Paul Barker <paul.barker@sancloud.com>
-> ---
->  arch/arm/boot/dts/Makefile                    |  1 +
->  .../arm/boot/dts/am335x-sancloud-bbe-lite.dts | 51 +++++++++++++++++++
->  2 files changed, 52 insertions(+)
->  create mode 100644 arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts
+> https://lore.kernel.org/linux-rockchip/e5ab2c62-ad00-4cdf-8b0a-24fda59c980b@gmail.com/
 >
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index f8f09c5066e7..8629c941f573 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -834,6 +834,7 @@ dtb-$(CONFIG_SOC_AM33XX) += \
->         am335x-pocketbeagle.dtb \
->         am335x-regor-rdk.dtb \
->         am335x-sancloud-bbe.dtb \
-> +       am335x-sancloud-bbe-lite.dtb \
->         am335x-shc.dtb \
->         am335x-sbc-t335.dtb \
->         am335x-sl50.dtb \
-> diff --git a/arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts b/arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts
-> new file mode 100644
-> index 000000000000..9c311bd106f6
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/am335x-sancloud-bbe-lite.dts
-> @@ -0,0 +1,51 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2012 Texas Instruments Incorporated - http://www.ti.com/
-> + * Copyright (C) 2021 SanCloud Ltd
-> + */
-> +/dts-v1/;
-> +
-> +#include "am33xx.dtsi"
-> +#include "am335x-bone-common.dtsi"
-> +#include "am335x-boneblack-common.dtsi"
-> +#include "am335x-sancloud-bbe-common.dtsi"
-> +
-> +/ {
-> +       model = "SanCloud BeagleBone Enhanced Lite";
-> +       compatible = "sancloud,am335x-boneenhanced",
-> +                    "ti,am335x-bone-black",
-> +                    "ti,am335x-bone",
-> +                    "ti,am33xx";
-> +};
-> +
-> +&am33xx_pinmux {
-> +       bb_spi0_pins: pinmux_bb_spi0_pins {
-> +               pinctrl-single,pins = <
-> +                       AM33XX_PADCONF(AM335X_PIN_SPI0_SCLK, PIN_INPUT, MUX_MODE0)
-> +                       AM33XX_PADCONF(AM335X_PIN_SPI0_D0, PIN_INPUT, MUX_MODE0)
-> +                       AM33XX_PADCONF(AM335X_PIN_SPI0_D1, PIN_INPUT, MUX_MODE0)
-> +                       AM33XX_PADCONF(AM335X_PIN_SPI0_CS0, PIN_INPUT, MUX_MODE0)
-> +               >;
-> +       };
-> +};
-> +
-> +&spi0 {
-> +       #address-cells = <1>;
-> +       #size-cells = <0>;
-> +
-> +       status = "okay";
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&bb_spi0_pins>;
-> +
-> +       channel@0 {
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               compatible = "micron,spi-authenta";
-> +               symlink = "spi/0.0";
+> It seems that aplay/linux? adds "-1" to it and removes the comma and
+> "-", so we get:
+>
+> hdmisound
+> rockchiprk3399
+> rockchiprk339_1
+>
+> Shouldn't we label it with something that reflect the function/output.
+> Shouldn't we standardize to SPDIF, HDMI and Analog similar to rk3318/rk3328?
+> Make a shorter label without spaces or special chars, so that chars
+> don't get removed?
+>
+> Proposal:
+>
+> Analog
+> HDMI
+> ES8316 <---
+> SPDIF
 
-Sorry, this "symlink" is an undocumented "feature" of the
-BeagleBoard.org tree.. We use it to help "identity" spi/usart/i2c
-nodes names when they dynamically change node numbers based on kernel
-versions or even 'drivers'....
+OK - thanks for that, I wasn't aware.
 
-https://github.com/beagleboard/customizations/blob/master/etc/udev/rules.d/10-of-symlink.rules
+I'll go for "Analog", since that seems to be the accepted solution for 
+RockPro64 board and I think we should keep it the same across boards (on 
+distro side it can get annoying if you need a couple of alsa configs 
+with the same contents, just because audio card names are different).
 
-For 'mainline' we need to remove it..
+Alex.
 
-Regards,
-
--- 
-Robert Nelson
-https://rcn-ee.com/
+>
+>
+> Possible example solutions:
+>
+> [PATCH] arm64: dts: rockchip: more user friendly name of sound nodes
+> https://lore.kernel.org/lkml/20210110151913.3615326-1-katsuhiro@katsuster.net/
+>
+> ===
+>
+> Johan
+>
+>> +		dais = <&i2s0_p0>;
+>> +	};
+>> +
+>>   	vcc12v_dcin: dc-12v {
+>>   		compatible = "regulator-fixed";
+>>   		regulator-name = "vcc12v_dcin";
+>> @@ -422,6 +428,20 @@ &i2c1 {
+>>   	i2c-scl-rising-time-ns = <300>;
+>>   	i2c-scl-falling-time-ns = <15>;
+>>   	status = "okay";
+>> +
+>> +	es8316: codec@11 {
+>> +		compatible = "everest,es8316";
+>> +		reg = <0x11>;
+>> +		clocks = <&cru SCLK_I2S_8CH_OUT>;
+>> +		clock-names = "mclk";
+>> +		#sound-dai-cells = <0>;
+>> +
+>> +		port {
+>> +			es8316_p0_0: endpoint {
+>> +				remote-endpoint = <&i2s0_p0_0>;
+>> +			};
+>> +		};
+>> +	};
+>>   };
+>>   
+>>   &i2c3 {
+>> @@ -441,6 +461,14 @@ &i2s0 {
+>>   	rockchip,capture-channels = <2>;
+>>   	rockchip,playback-channels = <2>;
+>>   	status = "okay";
+>> +
+>> +	i2s0_p0: port {
+>> +		i2s0_p0_0: endpoint {
+>> +			dai-format = "i2s";
+>> +			mclk-fs = <256>;
+>> +			remote-endpoint = <&es8316_p0_0>;
+>> +		};
+>> +	};
+>>   };
+>>   
+>>   &i2s1 {
+>>
