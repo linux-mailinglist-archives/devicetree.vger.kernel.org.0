@@ -2,150 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A21D3ACB59
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 14:49:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D665E3ACB8A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 15:00:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230338AbhFRMv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 08:51:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50842 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231585AbhFRMvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 08:51:55 -0400
-Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63415C061574;
-        Fri, 18 Jun 2021 05:49:45 -0700 (PDT)
-Received: by mail-oo1-xc30.google.com with SMTP id x22-20020a4a62160000b0290245cf6b7feeso2419219ooc.13;
-        Fri, 18 Jun 2021 05:49:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gYRQQqkflstokbPMQ45EOzFFXs3cNTWmXdnRNdqXloc=;
-        b=EfWWbdEB7R4vC8/JNVZrzmPs2b0Lrk5xFdvgVOkGZNtXPLiBcnD9WGYIogCKJi8RyQ
-         ft70CvqyLzeUFrs5Eq+xMAwhu9Mai+9jh3kUOMYXm+V5rCQ8WGRh6ORbsqTpCtYch6Rg
-         GdJCgPBbFHq3lLDGLp3ejWzlHdyhzpaY7yOfkV0pRri1HqU0I59pSwcu1Pemc9RdF/PF
-         u7SyMC5//oe4mmhUVqRmX/XEeQgFrWTAD4+24xYgLf9/h/mvFhNHlUxcA4DM3vYw3JqH
-         pI24vSWnm9gbcZRoEgtSwZE+LH4KHsnMj5skC5Wg1FN8dXD4SXis/QzT3wIM8AgvuQqp
-         WFCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gYRQQqkflstokbPMQ45EOzFFXs3cNTWmXdnRNdqXloc=;
-        b=OFxxdEnRuulN0g0pU5FUuugIQZF62v6K0ZTAOasmtTT+ryQidyN3soaxR5IMn5gtjd
-         LD95ctp+Fg/SpTnUAJX1DICPJGjOoQVDAjDlthIZUJSAc+xGcciFnAeXQtbGAdsdhryB
-         dmWChIA539o+YTdmmrzK5vbMchCMQhabPqQG1jFv+qeruzLjyPm+X8SMPFN4aCYd1yqx
-         HXWG1Amepjp0q316dO1AZlNmHMMpm/HEDS/V6q7RigZ7gJ3aTtC/8KChTHuBRvbRLRXj
-         vb8u3VDdZ38NdoCwcq85DKXyOFiWZjM9ibRm/xeOHqZUDdMPKJMw0tjHmoFqPSJ1yrUF
-         yM0A==
-X-Gm-Message-State: AOAM533T+iZJkPRDHtWsN07C8/RcNkae+pEgK2xGRL8oZk2bLA2IokZq
-        xsvvUehDoepJ66yNsIcQHHkqjXNxSTn5OSqE1pU=
-X-Google-Smtp-Source: ABdhPJxsNeYFNOtY5YWE85ME1DVFAJSS5hj3Ki4PDhCvGsj1DvzdeE8fSkfp5o2vm2uyoJbf3MY6e5TjxyQis22ggOc=
-X-Received: by 2002:a4a:b1c2:: with SMTP id j2mr8926777ooo.78.1624020584775;
- Fri, 18 Jun 2021 05:49:44 -0700 (PDT)
+        id S231985AbhFRNC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 09:02:29 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:41804 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231676AbhFRNC1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Jun 2021 09:02:27 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1624021218; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=tD4U/RzNqFGWpjdS5wnIrcWZDQlWRWp1xuR2I5dn0+o=;
+ b=mk5eSoYAX0Z2Rvqx8qWKizWV/66hIUR+lkk1PmaMD6gDYP3XilAouVzscWUMILQpPEHft8vv
+ cunqlKYatqwiwDYBJsXLlLbaq4nGrzBFeUtf0c2YHMu5UUiQX6p7bg+B8cCMdGmox//RsIJW
+ 1hvyphKojjJW5kup8fG/ZBSrZ68=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 60cc98d3e27c0cc77f72ae57 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Jun 2021 13:00:03
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id A2BF0C43217; Fri, 18 Jun 2021 13:00:02 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id F3DDDC4338A;
+        Fri, 18 Jun 2021 13:00:01 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210522211055.15988-1-mirela.rabulea@oss.nxp.com>
- <20210522211055.15988-3-mirela.rabulea@oss.nxp.com> <DB9PR04MB8477D8F7DC86E67F74D5D9F780269@DB9PR04MB8477.eurprd04.prod.outlook.com>
- <e4c174afd7c55c56c68afbe69276b41c3f574964.camel@nxp.com> <CAA+hA=TEi3iZ+nOfff=aN1FrLGb6+OHfx23aWaa1J7YfZRRgtA@mail.gmail.com>
- <15d5728aeb7895f81f833e7f7e281861c1fcef9a.camel@collabora.com>
-In-Reply-To: <15d5728aeb7895f81f833e7f7e281861c1fcef9a.camel@collabora.com>
-From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Fri, 18 Jun 2021 20:47:57 +0800
-Message-ID: <CAA+hA=RB_va3TRhjFBSofVqDEpj_LxLfUM84ead5D2LLZ3KRwA@mail.gmail.com>
-Subject: Re: [PATCH v13 2/2] arm64: dts: imx: Add jpeg encoder/decoder nodes
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     Mirela Rabulea <mirela.rabulea@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "G.n. Zhou" <guoniu.zhou@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 18 Jun 2021 18:30:01 +0530
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     agross@kernel.org, bhelgaas@google.com, bjorn.andersson@linaro.org,
+        lorenzo.pieralisi@arm.com, robh+dt@kernel.org,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mgautam@codeaurora.org,
+        dianders@chromium.org, mka@chromium.org, sanm@codeaurora.org
+Subject: Re: [PATCH v2 3/4] PCIe: qcom: Add support to control pipe clk mux
+In-Reply-To: <CAE-0n50WxF_S7Zo4MhFqppjSELTFo7nOEtmCXJ4DoqvhF7kMQw@mail.gmail.com>
+References: <1622904059-21244-1-git-send-email-pmaliset@codeaurora.org>
+ <1622904059-21244-4-git-send-email-pmaliset@codeaurora.org>
+ <CAE-0n50WxF_S7Zo4MhFqppjSELTFo7nOEtmCXJ4DoqvhF7kMQw@mail.gmail.com>
+Message-ID: <915d51888c2577cc3266370bfda603e8@codeaurora.org>
+X-Sender: pmaliset@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 11:01 PM Ezequiel Garcia <ezequiel@collabora.com> wrote:
->
-> On Fri, 2021-06-11 at 21:33 +0800, Dong Aisheng wrote:
-> > [...]
-> >
-> > > > > +img_subsys: bus@58000000 {
-> > > > > +   compatible = "simple-bus";
-> > > > > +   #address-cells = <1>;
-> > > > > +   #size-cells = <1>;
-> > > > > +   ranges = <0x58000000 0x0 0x58000000 0x1000000>;
-> > > > > +
-> > > > > +   img_ipg_clk: clock-img-ipg {
-> > > > > +           compatible = "fixed-clock";
-> > > > > +           #clock-cells = <0>;
-> > > > > +           clock-frequency = <200000000>;
-> > > > > +           clock-output-names = "img_ipg_clk";
-> > > > > +   };
-> > > > > +
-> > > > > +   jpegdec: jpegdec@58400000 {
-> > > >
-> > > > Node should be disabled by default.
-> > > > And enable it in board dts including LPCG.
-> > >
-> > > At version v5 of this patch, the node was disabled by default, and I
-> > > received this feedback from Ezequiel Garcia:
-> > >
-> > > "Pure memory-to-memory are typically not enabled per-board, but just
-> > > per-platform.
-> > > So you can drop the disabled status here."
-> > >
-> > > So, in v6 I made it enabled by default.
-> > >
-> > > Any strong reasons for enabled/disabled per platform?
-> >
-> > AFAIK we usually only enable system basic features and let other
-> > user selectable features disabled by default in dts.
-> > Even for device LPCG clocks, if it's enabled by default and later
-> > enter runtime suspend if no users, it still consumes power.
-> >
->
-> Well-written drivers shouldn't draw any power if not used.
->
+On 2021-06-06 02:56, Stephen Boyd wrote:
+> Quoting Prasad Malisetty (2021-06-05 07:40:58)
+>> In PCIe driver pipe-clk mux needs to switch between pipe_clk
+>> and XO for GDSC enable. This is done by setting pipe_clk mux
+>> as parent of pipe_clk after phy init.
+> 
+> Just to confirm, we can't set this parent via assigned-clock-parents
+> property in DT?
+> 
+>> 
+This clock setting need be done after phy init.
 
-LPCG won't draw power when not used. But the power domain used by LPCG
-will still draw power when enter idle state.
+>> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+>> ---
+>>  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
+>>  1 file changed, 22 insertions(+)
+>> 
+>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c 
+>> b/drivers/pci/controller/dwc/pcie-qcom.c
+>> index 8a7a300..5cbbea4 100644
+>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>> @@ -166,6 +166,9 @@ struct qcom_pcie_resources_2_7_0 {
+>>         struct regulator_bulk_data supplies[2];
+>>         struct reset_control *pci_reset;
+>>         struct clk *pipe_clk;
+>> +       struct clk *pipe_clk_mux;
+>> +       struct clk *pipe_ext_src;
+>> +       struct clk *ref_clk_src;
+>>  };
+>> 
+>>  union qcom_pcie_resources {
+>> @@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct 
+>> qcom_pcie *pcie)
+>>         if (ret < 0)
+>>                 return ret;
+>> 
+>> +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) 
+>> {
+>> +               res->pipe_clk_mux = devm_clk_get(dev, "pipe_src");
+>> +               if (IS_ERR(res->pipe_clk_mux))
+>> +                       return PTR_ERR(res->pipe_clk_mux);
+>> +
+>> +               res->pipe_ext_src = devm_clk_get(dev, "pipe_ext");
+>> +               if (IS_ERR(res->pipe_ext_src))
+>> +                       return PTR_ERR(res->pipe_ext_src);
+>> +
+>> +               res->ref_clk_src = devm_clk_get(dev, "ref");
+> 
+> Is this going to be used by any code?
+> 
+Yes, ref clock will be used in system suspend case. currently system 
+suspend changes are in under validation.
 
-> And DT is about hardware-description, not about usage-description.
-> Which means, at the soc.dtsi level you disable devices that need
-> some board-level hardware thing to be enabled (e.g. a physical
-> connected, a regulator, etc.).
-> A pure memory-to-memory should be enabled by default, because
-> in practice you can't predict what the users a board will want
-> to use, nor the DT is the place for that.
-
-It makes sense to me. Thanks
-
-Mirela,
-Please follow up with Ezequiel's suggestion.
-For LPCGS used by jpeg, you can keep it enabled by default.
-
-Regards
-Aisheng
-
->
-> Sticking to hardware description is the best way to get DT right :-)
->
-> Cheers,
-> Ezequiel
->
+>> +               if (IS_ERR(res->ref_clk_src))
+>> +                       return PTR_ERR(res->ref_clk_src);
+>> +       }
+>> +
+>>         res->pipe_clk = devm_clk_get(dev, "pipe");
+>>         return PTR_ERR_OR_ZERO(res->pipe_clk);
+>>  }
+>> @@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct 
+>> qcom_pcie *pcie)
+>>  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>>  {
+>>         struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+>> +       struct dw_pcie *pci = pcie->pci;
+>> +       struct device *dev = pci->dev;
+>> +
+>> +       if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
+>> +               clk_set_parent(res->pipe_clk_mux, res->pipe_ext_src);
+>> 
+>>         return clk_prepare_enable(res->pipe_clk);
+>>  }
+>> --
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
+>> Forum,
+>> a Linux Foundation Collaborative Project
+>> 
