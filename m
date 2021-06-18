@@ -2,109 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B0663AC576
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 09:55:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 338EC3AC607
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 10:25:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229915AbhFRH6A convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Jun 2021 03:58:00 -0400
-Received: from mail-vk1-f173.google.com ([209.85.221.173]:43773 "EHLO
-        mail-vk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229671AbhFRH57 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 03:57:59 -0400
-Received: by mail-vk1-f173.google.com with SMTP id d13so1946440vkl.10;
-        Fri, 18 Jun 2021 00:55:50 -0700 (PDT)
+        id S233734AbhFRI1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 04:27:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47802 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233628AbhFRI1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 04:27:46 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68F84C061768
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 01:25:35 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id v9so9784653wrx.6
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 01:25:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=4yp7aW76jFlM4QGK/SoDKL6wd3P2t/udl1+SDe7k800=;
+        b=BG0Nfd0nx1VHlxLzdTQQ3ED2RabTSSG48wjdiktWarSyDtWH7wtp8Y1jYIrLy7OMQl
+         /uF5LWaFesJdjieJXeNov6439Vdf77ldaBKjP0JhiQstT4R1KUFcararw3iTBQ8Xk7eQ
+         1mWOi9Qj50S9gcm2aftPRMri//xgOSdQ+cpyuBMTv702gnxQt3JQSYIOPsPFkgioT4RF
+         TK9R+pLbiXomEAZ5gGXFX8nD4EQl44c/2KUw4IBPQnHJe3xbtRHz2qQjqZh43ye+t69V
+         WB0MnQasYrm7AHeQfDJ/QEmnwNJlXq25RvMH3TUk18nZIXpxzneC/e0ESgKf6Ls1QLeh
+         abqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=NE8Py0Gf3v4b0MqJSvb9EF4dYm1+tpkvdTqN3nc3VVM=;
-        b=Fk2ptkofVtU9iIBJfGBCyZAo/i2L39jXEe2Q/mH/B25RPs8/AIanKPEMfXXiqnpO+f
-         XDnhhQLUnp0GF6BVGTPcBnpNMqQi6Z1ivEy/+40gdtCCotP6vHLMbutpuCzIawpr73qM
-         OPTBteBvm8Sc83x3yNCADRT8KrghGXxAdJMl+3U3ClzgDySlpyTzjWFF2mGUNVb4bPgZ
-         8/T+tvzMJlgiYnwgjjjFW0zqaYaQlMp2Se4s8z7S4NNoTXRT3+9Eic9jxhTtKMFxoy+O
-         CJ5Q4jNWD6dwsI3S0W94aBxhj7K8j6mMNA/rnb6zdQHKbUZGIRub2u8JU0b1E91JeutD
-         PkyQ==
-X-Gm-Message-State: AOAM533ViptLS6ujv8OREJgOXHtBuAQyCU9kguWfIuIwuKKBUHPYGKfh
-        UO7BgJK/Y3/nrLqC0C9kYpby5gcuMLjy8YqYqRE=
-X-Google-Smtp-Source: ABdhPJx43PZctNreiC7SzE2DHQBZ8qTyJ51SFteog7CwZpiL6AnPx2FDnjUiL41vWOQrxlnWS6EEV3MRDQmKfhEGNY0=
-X-Received: by 2002:a1f:9505:: with SMTP id x5mr4848233vkd.6.1624002949944;
- Fri, 18 Jun 2021 00:55:49 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=4yp7aW76jFlM4QGK/SoDKL6wd3P2t/udl1+SDe7k800=;
+        b=opTjeati80CqkJUdd5eLq8LedBZbQnEVgMMT66ikVFaSaJe+jksDEXVcXDy76fUmHG
+         bgyfeHS3I6fhBUdXPwlNtAcuQU7x7sEkXXl+HLLNzsMEBa1od0ixAUtz4k5VILWMnyJm
+         XkG9eviPzYzTcwEfDyHvuPpNQvVBC1n0c52UNZjkqCI8wtJXRDAyK5uFlDNsG7pxEamW
+         FZNu0Tp3//OgkzYovil6Mk9fFGyDQEYXJ99w12z9OEAowO80P92RdXXBKhAS9OOt+Kim
+         sRbjvab7txNexsqdO9XehrHKR4uMpbYO9zw8npofzg8zUhGPKnQcLDDuUUBbsSPugmON
+         32hw==
+X-Gm-Message-State: AOAM5314aJtir3v0V/CfeCQcegZ8mBMkw00QKr+cRAct8HYCqUD/W4PD
+        vpETFA+Tgy7BDRLO3ReCoAKE7w==
+X-Google-Smtp-Source: ABdhPJyTirQETOkkN7vwg+3NJQ/zG57MMk4RQWhF6OW951WA7/4o1C6UqRnF1tjfF87SdRedMYT15A==
+X-Received: by 2002:a5d:5683:: with SMTP id f3mr11126026wrv.61.1624004733764;
+        Fri, 18 Jun 2021 01:25:33 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:1042:9733:3014:e2b4? ([2a01:e34:ed2f:f020:1042:9733:3014:e2b4])
+        by smtp.googlemail.com with ESMTPSA id r10sm3805289wrq.17.2021.06.18.01.25.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Jun 2021 01:25:33 -0700 (PDT)
+Subject: Re: [PATCH RESEND v10 02/11] reboot: Add hardware protection
+ power-off
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Kees Cook <keescook@chromium.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "agross@kernel.org" <agross@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Petr Mladek <pmladek@suse.com>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Josef Bacik <josef@toxicpanda.com>,
+        Kai-Heng Feng <kai.heng.feng@canonical.com>,
+        linux-pm@vger.kernel.org
+References: <cover.1622628333.git.matti.vaittinen@fi.rohmeurope.com>
+ <e83ec1ca9408f90c857ea9dcdc57b14d9037b03f.1622628333.git.matti.vaittinen@fi.rohmeurope.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <cb86a545-69d9-9fc0-6fa6-8ed2f786c5ae@linaro.org>
+Date:   Fri, 18 Jun 2021 10:25:30 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <20210615131333.2272473-1-ricardo.canuelo@collabora.com> <20210615131333.2272473-4-ricardo.canuelo@collabora.com>
-In-Reply-To: <20210615131333.2272473-4-ricardo.canuelo@collabora.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 18 Jun 2021 09:55:38 +0200
-Message-ID: <CAMuHMdU8ZC3LrhVLnZgOc_ZtNNcHbAHjEgP_5QpF8UEsbatGgA@mail.gmail.com>
-Subject: Re: [RESEND PATCH v4 3/3] dt-bindings: drm: bridge: adi,adv7511.txt:
- convert to yaml
-To:     =?UTF-8?Q?Ricardo_Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Michal Simek <michal.simek@xilinx.com>,
-        alexandre.torgue@foss.st.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <e83ec1ca9408f90c857ea9dcdc57b14d9037b03f.1622628333.git.matti.vaittinen@fi.rohmeurope.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ricardo,
+On 03/06/2021 07:40, Matti Vaittinen wrote:
+> There can be few cases when we need to shut-down the system in order to
+> protect the hardware. Currently this is done at least by the thermal core
+> when temperature raises over certain limit.
+> 
+> Some PMICs can also generate interrupts for example for over-current or
+> over-voltage, voltage drops, short-circuit, ... etc. On some systems
+> these are a sign of hardware failure and only thing to do is try to
+> protect the rest of the hardware by shutting down the system.
+> 
+> Add shut-down logic which can be used by all subsystems instead of
+> implementing the shutdown in each subsystem. The logic is stolen from
+> thermal_core with difference of using atomic_t instead of a mutex in
+> order to allow calls directly from IRQ context and changing the WARN()
+> to pr_emerg() as discussed here:
+> https://lore.kernel.org/lkml/YJuPwAZroVZ%2Fw633@alley/
+> and here:
+> https://lore.kernel.org/linux-iommu/20210331093104.383705-4-geert+renesas@glider.be/
+> 
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 
-On Tue, Jun 15, 2021 at 3:15 PM Ricardo Cañuelo
-<ricardo.canuelo@collabora.com> wrote:
-> Convert the ADV7511/11w/13/33/35 DT bindings to json-schema. The
-> original binding has been split into two files: adi,adv7511.yaml for
-> ADV7511/11W/13 and adi,adv7533.yaml for ADV7533/35.
->
-> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
-Thanks for your patch, which is now commit cfe34bb7a770c5d8
-("dt-bindings: drm: bridge: adi,adv7511.txt: convert to yaml")
-in robh/for-next.
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/adi,adv7511.yaml
-
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ports
-> +  - adi,input-depth
-> +  - adi,input-colorspace
-> +  - adi,input-clock
-> +  - avdd-supply
-> +  - dvdd-supply
-> +  - pvdd-supply
-> +  - dvdd-3v-supply
-> +  - bgvdd-supply
-
-This causes lots of failures like:
-
-    arm/boot/dts/r8a7743-iwg20d-q7-dbcm-ca.dt.yaml: hdmi@39:
-'avdd-supply' is a required property
-
-Should all supplies be required?
-Looking at the driver, missing supplies are automatically replaced by
-dummy regulators by the regulator framework.
-
-Gr{oetje,eeting}s,
-
-                        Geert
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
