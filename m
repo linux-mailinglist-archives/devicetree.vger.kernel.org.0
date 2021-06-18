@@ -2,78 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F08443AD365
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 22:07:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFDA13AD371
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 22:16:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229848AbhFRUKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 16:10:08 -0400
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:41697 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229768AbhFRUKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 16:10:07 -0400
-Received: by mail-ot1-f44.google.com with SMTP id v22-20020a0568301416b029044e2d8e855eso1663322otp.8;
-        Fri, 18 Jun 2021 13:07:57 -0700 (PDT)
+        id S231128AbhFRUSg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 16:18:36 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:37529 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230136AbhFRUSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 16:18:36 -0400
+Received: by mail-ot1-f41.google.com with SMTP id 102-20020a9d0eef0000b02903fccc5b733fso10887681otj.4;
+        Fri, 18 Jun 2021 13:16:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=6XB5kaEUWj8mAPfwEHQtLrrBX7VPygB1nsRewZ4nFEs=;
-        b=c1dMvN2i3WRomLMa+i958QHJqbpL/cRiucKENtZdieJ8lOCpf+oIzDd3XKat2nYsr9
-         mQ8gAgELbjhRqp+/Tb1mQjybJJWzpr+IZ5P0LWQoiCxXGdhGJGLQtVDIcPSumzye2Z4g
-         hGea8+5e0DQJ/94JeqZkh/TP1u15nheCfd77BAMZIS6ekvhyjIvsigoYFcT0pSmaT5Cz
-         3PLGAsB+T1CuyTvGFWFy+7r6+t5qUIiuZ5a/A+bGbjbdUhjHu/vEDsNfO/bLEnHgoE1J
-         OB5fqQC4nApC6IFoOXzHOayFOKkH6qBauHmi6GcKxQpkI1B86TdC06DpSddgD85xPILM
-         kjIw==
-X-Gm-Message-State: AOAM5302REYT8RQhtxXyuJ+X4TCjT39+zo44d51dKUiWUHg/Z7ysLGk0
-        HhcaZEZ0Ur5epC9kN84hYg==
-X-Google-Smtp-Source: ABdhPJylt3V8jimpEyL3PZh/942fiiPeLRK/GFv7exT2gwb2wR9vvY9S1LYmxFM8qwSe8DywHHWzPw==
-X-Received: by 2002:a05:6830:14cc:: with SMTP id t12mr4832945otq.79.1624046877570;
-        Fri, 18 Jun 2021 13:07:57 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=lBtHIzlhVk8sJY83HR9VHHtDV8zU8qEhN6lMMc8ccAQ=;
+        b=gizWLcVjwlD36k+jLMoURodueIdTD4wcSXUVal0/kA40+BUpWw2hKqvfDJOK/DtAKX
+         46JbFeTuAPcTk6oGiH7kAqoJSF56E+SujF9jI9xFW3hD8GhBMX+dRkqk3pykJ3uqFD5j
+         +C1xtp07QtFHVH2BdlplrnRvkuer1P7Zxc/1d6NomSjPS/yxpuTgIWBhDW5bPiOT8t9a
+         ySGTKSOcAOZX6J8J7z271wjDIV9BGzAUPWWd0KFy0xihIEjqA6co/QngGEa0VZ3U9/0I
+         F3a3IhOfygnAF0YKbuqG1PmpslyP3BE58lwYgxwAsacIJktlqAICwpWbowq00K9yBofM
+         dSBA==
+X-Gm-Message-State: AOAM530H/q94RmPMdtB4FAIN/HJGK+OLbh7JyI7yLzn2g+R+Fx4UJJsy
+        QKFW1X7/tbEqNhXLFrsL8A==
+X-Google-Smtp-Source: ABdhPJyxP4UQValuX9uYfay5qm8ASFvM1GL7mD27tgWSBBiyyj2DP4FOmSEom/6h9O3OOXV6G3LOZw==
+X-Received: by 2002:a9d:4b02:: with SMTP id q2mr11111358otf.370.1624047386315;
+        Fri, 18 Jun 2021 13:16:26 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id w22sm1779119oou.36.2021.06.18.13.07.54
+        by smtp.gmail.com with ESMTPSA id j3sm1981852oii.46.2021.06.18.13.16.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 13:07:56 -0700 (PDT)
-Received: (nullmailer pid 2795960 invoked by uid 1000);
-        Fri, 18 Jun 2021 20:07:53 -0000
-Date:   Fri, 18 Jun 2021 14:07:53 -0600
+        Fri, 18 Jun 2021 13:16:25 -0700 (PDT)
+Received: (nullmailer pid 2807200 invoked by uid 1000);
+        Fri, 18 Jun 2021 20:16:21 -0000
+Date:   Fri, 18 Jun 2021 14:16:21 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: Re: [PATCH V2 RESEND] dt-bindings: timer: renesas,tmu: add r8a779a0
- TMU support
-Message-ID: <20210618200753.GA2795862@robh.at.kernel.org>
-References: <20210607124828.1984-1-wsa+renesas@sang-engineering.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     bjorn.andersson@linaro.org, broonie@kernel.org,
+        plai@codeaurora.org, tiwai@suse.de, devicetree@vger.kernel.org,
+        perex@perex.cz, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        bgoswami@codeaurora.org
+Subject: Re: [RFC PATCH 03/13] ASoC: qcom: dt-bindings: add bindings Audio
+ Processing manager
+Message-ID: <20210618201621.GA2801502@robh.at.kernel.org>
+References: <20210607152836.17154-1-srinivas.kandagatla@linaro.org>
+ <20210607152836.17154-4-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210607124828.1984-1-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20210607152836.17154-4-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Jun 2021 14:48:28 +0200, Wolfram Sang wrote:
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Mon, Jun 07, 2021 at 04:28:26PM +0100, Srinivas Kandagatla wrote:
+> This patch adds bindings support for Qualcomm Audio Processing Manager
+> service in Audio DSP.
+> 
+> Audio Process Manager is one of the static service in DSP which is
+> responsible for Command/response handling, graph Management
+> and Control/Event management between modules.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
+>  .../devicetree/bindings/sound/qcom,q6apm.yaml | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
 > 
-> Changes since v1:
-> * rebased to -next (other SoCs have been added meanwhile)
->   rebased second time for the resend
-> * added tags from Niklas and Geert (thanks!)
-> 
->  Documentation/devicetree/bindings/timer/renesas,tmu.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+> new file mode 100644
+> index 000000000000..9906ef935206
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/sound/qcom,q6apm.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Qualcomm Audio Process Manager binding
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +
+> +description: |
+> +  This binding describes the Qualcomm Audio Process Manager service in DSP
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,q6apm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +#APM Services
+> +patternProperties:
+> +  "^.*@[0-9a-f]+$":
 
-Applied, thanks!
+You can drop '^.*'.
+
+> +    type: object
+> +    description:
+> +      APM devices use subnodes for services.
+> +
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - qcom,q6apm-dai
+> +          - qcom,q6apm-bedai
+> +
+> +      iommus:
+> +        maxItems: 1
+> +
+> +      "#sound-dai-cels":
+
+cells?
+
+How is this optional?
+
+> +        const: 1
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: true
+
+This needs to be false and fix whatever is missing.
+
+> +
+> +examples:
+> +  - |
+> +    gpr {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        gprservice@1 {
+> +          compatible = "qcom,q6apm";
+> +          reg = <1>;
+> +
+> +          q6apm-dai {
+
+This doesn't match what you have in the schema at all.
+
+> +            compatible = "qcom,q6apm-dai";
+> +            #sound-dai-cels = <1>;
+> +          };
+> +
+> +          q6apm-bedai {
+> +            compatible = "qcom,q6apm-bedai";
+> +            #sound-dai-cels = <1>;
+> +          };
+> +        };
+> +    };
+> -- 
+> 2.21.0
+> 
+> 
