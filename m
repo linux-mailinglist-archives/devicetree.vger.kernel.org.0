@@ -2,149 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 043CB3AD486
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 23:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D76C23AD49A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 23:53:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234630AbhFRVoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 17:44:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58640 "EHLO
+        id S234694AbhFRVz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 17:55:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232453AbhFRVoD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 17:44:03 -0400
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DE74C061574
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 14:41:53 -0700 (PDT)
-Received: by mail-oi1-x22e.google.com with SMTP id x196so12065052oif.10
-        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 14:41:53 -0700 (PDT)
+        with ESMTP id S234687AbhFRVzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 17:55:24 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6B7AC061767
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 14:53:14 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id o20so8665198qtr.8
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 14:53:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=HEAuigaKYRmeY+WM5XLEktX0+rBVmYO66uMcr8Tpv8k=;
-        b=qKuYzrv6j4NzmU3yjTgh08cBfgpCmtwmdOO7VGZ7x0Wpyin21OENhZDu7wYnqoPHs0
-         HSf75CkxWeZDgoBEaPxChHYUt5+6a/LZp+UQfFNLL72O/1pm3JfnKtHcimfPf1wvGFsK
-         poM9I5TIeRpi+AimpmuU9P+DEjUlJCP5DvFRLmNJ3ohBlA38DBiGpq/qbXooI+RTeqE2
-         QEZBQesKMQb1KSBaVQP/GcKcH5JDJNePOIK0Tjz2UnVD/BrvTieA7bjgoJJ7mSpQILtx
-         pegolu/d0kmopoCrWrq8d+aWTjSm/xsplTaxmVBEc1adWHwRzLxv8kFO639cXh2f2XTX
-         R9Uw==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=tlfC7guzHnGUhI3CYP6SsQ3L2F2bpnWxpAP26B/r4lE=;
+        b=c1PJM9IMsmEV7WTgP5glA28gcryVt11Yy9rOy4sMWcHpuAuYctnhMoRA/TnndaEXu9
+         Rbcd4FhRPcC5JhriCLMuoqQm3ez0POjKf7G/OaRDnad4p2XwpEGRFybzjb5qAh+5I9wx
+         V9zRDm2/O+uNQtirG2wWc6MwxGhSbuqdaBDhxZUayBY84NvbB1/47euOL7Jy8HDPhdrU
+         joJ/K5EijUK5LXR60pm/3S8eJNDlO93A/vTG9eNu2UIt/j+Wbt51cqiXirPWCDO08Wts
+         pJzlIn37eTLTSKfOrUKBIPiWrVe0DbvU3D0cueSAOYhR4zhKuHuIC1ulTai/nATOxii4
+         iAsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HEAuigaKYRmeY+WM5XLEktX0+rBVmYO66uMcr8Tpv8k=;
-        b=R/aATLPCDoQ9qacb34MGnL9Qyubxmt0xOLFQvSvZONx9l/nlw+5d01SNylckgRve7x
-         ISxy6ZL9wWGxfni55pmrYKOsPfkAIPtECS0JRCnANLRsawcriMzdVwmvtTJbI1sfm40T
-         PRXPIyVJCoqmcwUUPeDZc4AFO72PKirV6G9+bqWVqVd1vDnkBCIkzUFoaY4Fmuyw0mCG
-         QIbnJj9Jt3ICxL8rECgWPPVVhyjWNceJGjlp8geATN2Sxx55rNZa8YX2uTXagCENN2tC
-         tFW+1CrCaOt7q+qEz3l5HBDtDgT417M/3Nd/fZdPqJvk+zeoKTJK0sBBWTfWb408mBNB
-         LvsQ==
-X-Gm-Message-State: AOAM531fwmgzHHSOx8W3CpcgoyM7Z4So9io840yul/4PvXwXmY5UoobS
-        3IDj5NNhK5QnHJ7+aONfsUlUVw==
-X-Google-Smtp-Source: ABdhPJw+EvH62tnCFbU9WxcWHYUQU643zznk/FLKiDJaeLJ8T0g0z4cu85QEzzdO6spdx+DKHd9AHQ==
-X-Received: by 2002:aca:de07:: with SMTP id v7mr15863677oig.8.1624052512628;
-        Fri, 18 Jun 2021 14:41:52 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 94sm2251023otj.33.2021.06.18.14.41.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 14:41:51 -0700 (PDT)
-Date:   Fri, 18 Jun 2021 16:41:50 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     khsieh@codeaurora.org, robdclark@gmail.com, sean@poorly.run,
-        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
-        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
-Message-ID: <YM0THrlJlv7ADW8w@builder.lan>
-References: <ef1879fa7ecfefaf0c70c7a4782240a9@codeaurora.org>
- <YL6sY/1E5wLzMiP/@yoga>
- <CAE-0n50-X03sMyJdsw7s=Ue0dWXBo=iHOc0HxDQm5yh2J-uS3A@mail.gmail.com>
- <YL/uj+t+BFkII1Fh@yoga>
- <CAE-0n50WP25kRQkWMVdDZGsZWBXwfbVSTFKyBLF7f8Mp3x2Wfg@mail.gmail.com>
- <YL/wWdRs6e/eECiC@yoga>
- <CAE-0n51GM65rZVJgXuHy6FerJorHeHKf2W31GijG8sDEhaX_KQ@mail.gmail.com>
- <YL/41hWz8xB+jSeO@yoga>
- <21dc5c9fc2efdc1a0ba924354bfd9d75@codeaurora.org>
- <CAE-0n52J_mLsmXLS+skZn2u3k9dhn+GcHeXi0B2BeQyQxEUL9A@mail.gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=tlfC7guzHnGUhI3CYP6SsQ3L2F2bpnWxpAP26B/r4lE=;
+        b=V2CGON9xrvXHRPNhLEW2he63j+uHyswhWQ2J4cYoiJxgGzebUO3INHXLfquUlfBO1F
+         ImpfxES9+dzms/bxtjxl8ue8EcsTONnFCbhpae7M7kvnK+rz7bs3GkDAzMWZCXG0kR8H
+         4EkBlyuSEDsrR40mqiw07LRYXWngQEpfaEUsy4NgDjdBcC95qJt5DOkUJr19MgoHGRhl
+         YB0BknDlRDmvRS4fUXUuNC7r5opD+HkkVyfBGVKvNVfG4QEf+ilZd277hkh6/6KYDmnm
+         RhcwM0tm/Y5UTrV+RNZ+0Yh+kcsbpAp6e2wJZF69G1YVuiMz+JLDO9dK4R3OgjoL4Tar
+         /4EA==
+X-Gm-Message-State: AOAM5309X0C5WTUfeOuXSkm1neuOG8ufqxoeBgX/faEch3hjiYG2o6v2
+        nzSRUJzRwR8CQZiiah2wdaEiJKfDOsQMpg==
+X-Google-Smtp-Source: ABdhPJwE91wGSAlfUJ9FU4CUkiG2NiKNvaCkaB0RyBPbh6dTpxuRmWrOGkt55gHzGx6RZk5nygbmMQ==
+X-Received: by 2002:a05:622a:40b:: with SMTP id n11mr12438838qtx.60.1624053193550;
+        Fri, 18 Jun 2021 14:53:13 -0700 (PDT)
+Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.gmail.com with ESMTPSA id w8sm4761888qkp.136.2021.06.18.14.53.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Jun 2021 14:53:12 -0700 (PDT)
+Subject: Re: [PATCH 2/5] thermal: qcom: Add support for LMh driver
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        viresh.kumar@linaro.org, rjw@rjwysocki.net, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20210608222926.2707768-1-thara.gopinath@linaro.org>
+ <20210608222926.2707768-3-thara.gopinath@linaro.org>
+ <YMfBtSap7fR3rdku@builder.lan>
+ <4996de55-daa9-18a4-3c03-cf194d85500e@linaro.org>
+ <YMzd5OEhG4PYYv+E@builder.lan>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <be5f133e-5fae-9a61-3cf5-7e611a17bc77@linaro.org>
+Date:   Fri, 18 Jun 2021 17:53:11 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-0n52J_mLsmXLS+skZn2u3k9dhn+GcHeXi0B2BeQyQxEUL9A@mail.gmail.com>
+In-Reply-To: <YMzd5OEhG4PYYv+E@builder.lan>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 18 Jun 15:49 CDT 2021, Stephen Boyd wrote:
 
-> Quoting khsieh@codeaurora.org (2021-06-10 09:54:05)
-> > On 2021-06-08 16:10, Bjorn Andersson wrote:
-> > > On Tue 08 Jun 17:44 CDT 2021, Stephen Boyd wrote:
-> > >
-> > >> Honestly I suspect the DP PHY is _not_ in the CX domain as CX is for
-> > >> digital logic. Probably the PLL is the hardware that has some minimum
-> > >> CX
-> > >> requirement, and that flows down into the various display clks like
-> > >> the
-> > >> link clk that actually clock the DP controller hardware. The mdss_gdsc
-> > >> probably gates CX for the display subsystem (mdss) so if we had proper
-> > >> corner aggregation logic we could indicate that mdss_gdsc is a child
-> > >> of
-> > >> the CX domain and then make requests from the DP driver for particular
-> > >> link frequencies on the mdss_gdsc and then have that bubble up to CX
-> > >> appropriately. I don't think any of that sort of code is in place
-> > >> though, right?
-> > >
-> > > I haven't checked sc7180, but I'm guessing that it's following the
-> > > other
-> > > modern platforms, where all the MDSS related pieces (including e.g.
-> > > dispcc) lives in the MMCX domain, which is separate from CX.
-> > >
-> > > So the parent of MDSS_GDSC should be MMCX, while Kuogee's answer (and
-> > > the dp-opp-table) tells us that the PLL lives in the CX domain.
+
+On 6/18/21 1:54 PM, Bjorn Andersson wrote:
+> On Mon 14 Jun 20:38 CDT 2021, Thara Gopinath wrote:
+>> On 6/14/21 4:53 PM, Bjorn Andersson wrote:
+>>> On Tue 08 Jun 17:29 CDT 2021, Thara Gopinath wrote:
+>>>> diff --git a/drivers/thermal/qcom/Makefile b/drivers/thermal/qcom/Makefile
+> [..]
+>>>> +static irqreturn_t lmh_handle_irq(int hw_irq, void *data)
+>>>> +{
+>>>> +	struct lmh_hw_data *lmh_data = data;
+>>>> +	int irq = irq_find_mapping(lmh_data->domain, 0);
+>>>> +
+>>>> +	/*
+>>>> +	 * Disable interrupt and call the cpufreq driver to handle the interrupt
+>>>> +	 * cpufreq will enable the interrupt once finished processing.
+>>>> +	 */
+>>>> +	disable_irq_nosync(lmh_data->irq);
+>>>
+>>> The contract between this driver's disabling of the IRQ and the
+>>> cpufreq-hw driver's enabling it when we're done polling does worry me.
+>>>
+>>> In the case of EPSS, don't we disable the interrupt during the polling
+>>> there as well? If that's the case wouldn't it be better to implement
+>>> irq_chip->irq_disable and have the cpufreq-hw driver do the disable in
+>>> both cases?
+>>
+>> Yes. You are right. In case of EPSS, the cpufreq-hw will have to disable the
+>> interrupt. I did think of the approach you suggested here. My only issue is
+>> that we will dispatch the interrupt to cpufreq-hw without it disabling it
+>> and hence the interrupt could fire again, right ?
+>>
 > 
-> Isn't MMCX a "child" of CX? At least my understanding is that MMCX is
-> basically a GDSC that clamps all of multimedia hardware block power
-> logic so that the leakage is minimized when multimedia isn't in use,
-> i.e. the device is suspended. In terms of bumping up the voltage we have
-> to pin that on CX though as far as I know because that's the only power
-> domain that can actually change voltage, while MMCX merely gates that
-> voltage for multimedia.
+> Does it fire again before you INTR_CLK it?
+
+You mean clear it ? I couldn't reproduce it either way. I did not try 
+the irq_chip->irq_disable either. So I will give it a try and if my 
+tests pass , I will post it.
+
+> 
+> Regards,
+> Bjorn
 > 
 
-No, MMCX is a separate rail from CX, which powers the display blocks and
-is parent of MDSS_GDSC. But I see in rpmhpd that sc7180 is not one of
-these platforms, so I presume this means that the displayport controller
-thereby sits in MDSS_GDSC parented by CX.
-
-But in line with what you're saying, the naming of the supplies to the
-QMP indicates that the power for the PLLs is static. As such the only
-moving things would be the clock rates in the DP controller and as such
-that's what needs to scale the voltage.
-
-So if the resources we're scaling is the clocks in the DP controller
-then the gist of the patch is correct. The only details I see is that
-the DP controller actually sits in MDSS_GDSC - while it should control
-the level of its parent (CX). Not sure if we can describe that in a
-simple way.
-
-
-PS. Why does the node name of the opp-table have to be globally unique?
-
-Regards,
-Bjorn
-
-> > >
-> > >
-> > > PS. While this goes for the QMPs the DSI and eDP/DP PHYs (and PLLs)
-> > > seems to live in MMCX.
-> > >
-> > > Regards,
-> > > Bjorn
-> >
-> > Dp link clock rate is sourced from phy/pll (vco). However it is possible
-> > that different link clock rate
-> > are sourced from same vco (phy/pll) rate. Therefore I think CX rail
-> > voltage level is more proper to
-> > be decided base on link clock rate.
-> >
+-- 
+Warm Regards
+Thara (She/Her/Hers)
