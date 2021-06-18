@@ -2,125 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE7333AD1EA
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 20:13:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CBF23AD1F1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 20:16:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236235AbhFRSPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 14:15:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39726 "EHLO
+        id S235245AbhFRSSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 14:18:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235139AbhFRSPk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 14:15:40 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D1F5C06175F;
-        Fri, 18 Jun 2021 11:13:29 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id y7so11641680wrh.7;
-        Fri, 18 Jun 2021 11:13:29 -0700 (PDT)
+        with ESMTP id S235085AbhFRSSv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 14:18:51 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1610C061767
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 11:16:41 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id c13so11433882oib.13
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 11:16:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FRadAAJthazKXCs3EEyrRLqIIy1SFHZ81iHPWgmnJRI=;
-        b=ny3LB6aXzm8w8C3+A9jf74tf+BJ986neHs79X76TCRusy5yLSp0LO3EWdBMg0srLNh
-         KIeluN/0svlz2LiKKVdBMwWQ2tyMAriywQiW9cqmW/LaGjqjtfbb5d9ECq2MWH2UpXmA
-         mE6DQTzTQIrkOc82FAufn5lZ0UHmzBzzD1yoHZVQcKa45Wx/8lkFLyAy0o/QBW0MQVj0
-         myGns/y4E4h/zzLtvcglLgvzg/Hz2drPsNPJpYYhgYi86j3gEAvx12/a7cnDoZUI+2bT
-         n013PLal7MkOMd3BP6gE7OervN1873OvazXnpI1urafITd3UmANw62uMjEBfKxdlGmwt
-         jWSQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=7nPUjc8QA8UoxeQQWsD1UQARcs1YVj1sKwBdqRAk8Q8=;
+        b=PHiVcGzVJuHJlg20MflDvGrcV6QmQqNDQPo1eXlcu0MkkFtxNyjn/o4p5oCK6CQ98y
+         qvsuDygUlGKFnIHlmDQ7SmgVxktLOCFAeqtlGXmiWlJia9u5L8pzgrv6ZNT40hGdlGjU
+         Jhk9eMCcOeNK0Sn86SmZgLAJDo3gtoQCDSxtnvePgM6VNT7R+4xZW/zvTTGbv3XQKySp
+         gbJ6CguaXCVTsvr/xNFhoCFq7ZqIAkAH7zZ+A+M259FRh1hOxtnmt0ioYcFSHXCuruZS
+         FikDCXnejHBAVd+SUz4O1uh1QDDAXv5z2lUNxBnNi38OfWZ+TeOIftu3gwv+9NCOyYEY
+         87MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FRadAAJthazKXCs3EEyrRLqIIy1SFHZ81iHPWgmnJRI=;
-        b=I0gg4u+OrJkXftvpua79qkrNud/zEy75k5H5/H+YgH1C9Kun11Ra0OgCOaJok8EuQa
-         1UlzA1ywR1r4WfI8+qauAeWfLvQfOdhQiZF3QlYeX9aiDjDEwkGlM7geu2kk20dTD6Zr
-         fZfrgoZEbEbQSV8qAqrJp9aKw6PTCPBMKMs+c9mxx7Hxq61us72rqlERftok1cDgefEs
-         cXZED29NNs9RnmdFiLMIIthYn5gHD1+Q0I7LaxdShNzuIVr+AvkxxwV2Kgws8e/B3XZ2
-         wLvSoQZKAlre8SVxKLhWzf38r4+WniDxmxmvac+mYzFxzxJPqPw5jyeRkNstXSoF7H05
-         T0Cw==
-X-Gm-Message-State: AOAM533HlWtET3mE5LsljYWpGJAnWVNoYwP6oYZw+5piCkIltGN35XMz
-        ROk8O5x4t4MHzsvD7YybmA==
-X-Google-Smtp-Source: ABdhPJxwYQRQMqECTGWplAPGQubZuPc+DAoMbIBgAWiqVlg7kAw1Gi3FbNatZS9UZrU2FM6mBdz28w==
-X-Received: by 2002:adf:d4cc:: with SMTP id w12mr13871170wrk.216.1624040007816;
-        Fri, 18 Jun 2021 11:13:27 -0700 (PDT)
-Received: from localhost.localdomain (ip5b434b8b.dynamic.kabel-deutschland.de. [91.67.75.139])
-        by smtp.googlemail.com with ESMTPSA id l10sm9306782wrv.82.2021.06.18.11.13.27
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7nPUjc8QA8UoxeQQWsD1UQARcs1YVj1sKwBdqRAk8Q8=;
+        b=UvqSLVZR6NydMn107XCbSYT1hthjfR8EUferRinTupTmvWye8HLeOLuwa9qGm/FPkx
+         HO7ILUrI9yMSTVuKNfsomINYZuEZdKWsdbhMkdE+nZnDB7LXsm8zFMBbidoPlpzbyfzd
+         KXY9IfhaxOaBqIkT8FUz4btrhIssa3RrBIsS8UFHqZtN5udDdUBe65G1q5E3GGBiBleJ
+         ZB28owAkio7PmNmpQPtwHPcLc7y4bFfpvBHV2c0wbYYJw+yWtyV2PwXap/1jMwIw2aMl
+         mZVPV/Xs4/119xZin2eWUY+8tzLW0wgOm0yKlUXGa4jOKTbsYdUXlivOjuhVoLwPXLp3
+         Ukpw==
+X-Gm-Message-State: AOAM530fC4WoqyN/g2uvQcUbe+ZjM4mUMgi/bFrwX58V9K9PP7Oc6ls+
+        kQyIDLNqivwbj0uJIWAdKIS4kQ==
+X-Google-Smtp-Source: ABdhPJyJXeeqVdpN6DYy0aD5HSeiFIYVMzlBgxfttmArEwuGWH+9xVpFuzfw2Fm0sJnXavoJbWdrFA==
+X-Received: by 2002:a05:6808:1148:: with SMTP id u8mr8092340oiu.125.1624040201036;
+        Fri, 18 Jun 2021 11:16:41 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id c12sm1949076oov.11.2021.06.18.11.16.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 11:13:27 -0700 (PDT)
-From:   Alex Bee <knaerzche@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>
-Cc:     Johan Jonker <jbx6244@gmail.com>,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH v2 5/5] arm64: dts: rockchip: add SPDIF node for ROCK Pi 4
-Date:   Fri, 18 Jun 2021 20:12:56 +0200
-Message-Id: <20210618181256.27992-6-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210618181256.27992-1-knaerzche@gmail.com>
-References: <20210618181256.27992-1-knaerzche@gmail.com>
+        Fri, 18 Jun 2021 11:16:40 -0700 (PDT)
+Date:   Fri, 18 Jun 2021 13:16:38 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Thara Gopinath <thara.gopinath@linaro.org>
+Cc:     agross@kernel.org, rui.zhang@intel.com, daniel.lezcano@linaro.org,
+        viresh.kumar@linaro.org, rjw@rjwysocki.net, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/5] cpufreq: qcom-cpufreq-hw: Add dcvs interrupt support
+Message-ID: <YMzjBvkbITbSIzwf@builder.lan>
+References: <20210608222926.2707768-1-thara.gopinath@linaro.org>
+ <20210608222926.2707768-4-thara.gopinath@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210608222926.2707768-4-thara.gopinath@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a SPDIF audio-graph-card to ROCK Pi 4 device tree.
+On Tue 08 Jun 17:29 CDT 2021, Thara Gopinath wrote:
+> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+[..]
+> @@ -305,6 +383,8 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  
+>  	index = args.args[0];
+>  
+> +	lmh_mitigation_enabled = of_property_read_bool(pdev->dev.of_node, "qcom,support-lmh");
 
-It's not enabled by default since all dma channels are used by
-the (already) enabled i2s0/1/2 and the pin is muxed with GPIO4_C5
-which might be in use already.
-If enabled SPDIF_TX will be available at pin #15.
+Rather than adding a new interrupt _and_ a flag to tell the driver that
+this new interrupt should be used, wouldn't it be sufficient to just see
+if the interrupt is specified?
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
----
- .../boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+> +
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, index);
+>  	if (!res) {
+>  		dev_err(dev, "failed to get mem resource %d\n", index);
+> @@ -329,6 +409,11 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  		goto unmap_base;
+>  	}
+>  
+> +	if (!alloc_cpumask_var(&data->cpus, GFP_KERNEL)) {
+> +		ret = -ENOMEM;
+> +		goto unmap_base;
+> +	}
+> +
+>  	data->soc_data = of_device_get_match_data(&pdev->dev);
+>  	data->base = base;
+>  	data->res = res;
+> @@ -347,6 +432,7 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  		goto error;
+>  	}
+>  
+> +	cpumask_copy(data->cpus, policy->cpus);
+>  	policy->driver_data = data;
+>  
+>  	ret = qcom_cpufreq_hw_read_lut(cpu_dev, policy);
+> @@ -370,6 +456,20 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  			dev_warn(cpu_dev, "failed to enable boost: %d\n", ret);
+>  	}
+>  
+> +	if (lmh_mitigation_enabled) {
+> +		data->lmh_dcvs_irq = platform_get_irq(pdev, index);
+> +		if (data->lmh_dcvs_irq < 0) {
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-index 80925a58e470..b5b8a79116fd 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-@@ -42,6 +42,23 @@ sound {
- 		dais = <&i2s0_p0>;
- 	};
- 
-+	sound-dit {
-+		compatible = "audio-graph-card";
-+		label = "SPDIF";
-+		dais = <&spdif_p0>;
-+	};
-+
-+	spdif-dit {
-+		compatible = "linux,spdif-dit";
-+		#sound-dai-cells = <0>;
-+
-+		port {
-+			dit_p0_0: endpoint {
-+				remote-endpoint = <&spdif_p0_0>;
-+			};
-+		};
-+	};
-+
- 	vcc12v_dcin: dc-12v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc12v_dcin";
-@@ -632,6 +649,15 @@ &sdhci {
- 	status = "okay";
- };
- 
-+&spdif {
-+
-+	spdif_p0: port {
-+		spdif_p0_0: endpoint {
-+			remote-endpoint = <&dit_p0_0>;
-+		};
-+	};
-+};
-+
- &tcphy0 {
- 	status = "okay";
- };
--- 
-2.27.0
+This will be -ENXIO if the interrupt isn't specified and <0 for other
+errors, so you should be able to distinguish the two failure cases.
 
+Regards,
+Bjorn
+
+> +			ret = data->lmh_dcvs_irq;
+> +			goto error;
+> +		}
+> +		ret = devm_request_irq(dev, data->lmh_dcvs_irq, qcom_lmh_dcvs_handle_irq,
+> +				       0, "dcvsh-irq", data);
+> +		if (ret) {
+> +			dev_err(dev, "Error %d registering irq %x\n", ret, data->lmh_dcvs_irq);
+> +			goto error;
+> +		}
+> +		INIT_DEFERRABLE_WORK(&data->lmh_dcvs_poll_work, qcom_lmh_dcvs_poll);
+> +	}
+>  	return 0;
+>  error:
+>  	kfree(data);
+> -- 
+> 2.25.1
+> 
