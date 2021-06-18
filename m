@@ -2,249 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D71383AC99C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 13:14:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 597BE3AC9DC
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 13:29:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233970AbhFRLRC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 07:17:02 -0400
-Received: from relay07.th.seeweb.it ([5.144.164.168]:34393 "EHLO
-        relay07.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233972AbhFRLQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 07:16:57 -0400
-Received: from localhost.localdomain (83.6.168.10.neoplus.adsl.tpnet.pl [83.6.168.10])
-        by m-r2.th.seeweb.it (Postfix) with ESMTPA id 8BA783EE72;
-        Fri, 18 Jun 2021 13:14:44 +0200 (CEST)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S233294AbhFRLbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 07:31:31 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:64592 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232847AbhFRLb1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Jun 2021 07:31:27 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1624015758; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=Yp9X5e7tXhi6t3RVS409EFzc0RId5Ks2PPH2uhFd4JI=; b=mgIQiLMI18zhfsskiR7cd6ZLZr583A8yEYIjfa7duLDr2i4ChmmRViV9uRljxUgNj32DBRmO
+ pnN85sAWJDtJ7Xu4iKYEwIuvcSsw1L/ujS2qwz63i2XPSO5ygDtW8wUf+P8zwhY4iyl4QqIw
+ /0ADjhWIjmRsKblixMyCgfpq1hk=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 60cc838d8491191eb37bf6a3 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Jun 2021 11:29:17
+ GMT
+Sender: okukatla=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 80FA7C433F1; Fri, 18 Jun 2021 11:29:17 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from okukatla1-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: okukatla)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4BF72C43217;
+        Fri, 18 Jun 2021 11:29:10 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4BF72C43217
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=okukatla@codeaurora.org
+From:   Odelu Kukatla <okukatla@codeaurora.org>
+To:     georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
+        evgreen@google.com, Andy Gross <agross@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jeffrey Hugo <jhugo@codeaurora.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Sibi Sankar <sibis@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/3] clk: qcom: mmcc-msm8994: Add MSM8992 support
-Date:   Fri, 18 Jun 2021 13:14:34 +0200
-Message-Id: <20210618111435.595689-3-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210618111435.595689-1-konrad.dybcio@somainline.org>
-References: <20210618111435.595689-1-konrad.dybcio@somainline.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Cc:     sboyd@kernel.org, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-arm-msm-owner@vger.kernel.org,
+        Odelu Kukatla <okukatla@codeaurora.org>
+Subject: [V4 1/3] dt-bindings: interconnect: Add EPSS L3 DT binding on SC7280
+Date:   Fri, 18 Jun 2021 16:58:52 +0530
+Message-Id: <1624015734-16778-2-git-send-email-okukatla@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1624015734-16778-1-git-send-email-okukatla@codeaurora.org>
+References: <1624015734-16778-1-git-send-email-okukatla@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8992 features less clocks & GDSCS and has different
-freq tables for some of them.
+Add Epoch Subsystem (EPSS) L3 interconnect provider binding on SC7280
+SoCs.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
 ---
-Changes since v2:
-- Use NULL instead of 0 for disabled clocks
+ .../devicetree/bindings/interconnect/qcom,osm-l3.yaml          |  9 ++++++++-
+ include/dt-bindings/interconnect/qcom,osm-l3.h                 | 10 +++++++++-
+ 2 files changed, 17 insertions(+), 2 deletions(-)
 
- drivers/clk/qcom/mmcc-msm8994.c | 126 ++++++++++++++++++++++++++++++++
- 1 file changed, 126 insertions(+)
-
-diff --git a/drivers/clk/qcom/mmcc-msm8994.c b/drivers/clk/qcom/mmcc-msm8994.c
-index 7f65c0e61908..89c5f5fa7d9a 100644
---- a/drivers/clk/qcom/mmcc-msm8994.c
-+++ b/drivers/clk/qcom/mmcc-msm8994.c
-@@ -329,6 +329,14 @@ static const struct freq_tbl ftbl_axi_clk_src[] = {
- 	{ }
- };
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+index d6a95c3..9f67c8e 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
+@@ -18,12 +18,19 @@ properties:
+   compatible:
+     enum:
+       - qcom,sc7180-osm-l3
++      - qcom,sc7280-epss-l3
+       - qcom,sdm845-osm-l3
+       - qcom,sm8150-osm-l3
+       - qcom,sm8250-epss-l3
  
-+static const struct freq_tbl ftbl_axi_clk_src_8992[] = {
-+	F(75000000, P_GPLL0, 8, 0, 0),
-+	F(150000000, P_GPLL0, 4, 0, 0),
-+	F(300000000, P_GPLL0, 2, 0, 0),
-+	F(404000000, P_MMPLL1, 2, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 axi_clk_src = {
- 	.cmd_rcgr = 0x5040,
- 	.hid_width = 5,
-@@ -349,6 +357,12 @@ static const struct freq_tbl ftbl_csi0_1_2_3_clk_src[] = {
- 	{ }
- };
+   reg:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 4
++    items:
++      - description: OSM clock domain-0 base address and size
++      - description: OSM clock domain-1 base address and size
++      - description: OSM clock domain-2 base address and size
++      - description: OSM clock domain-3 base address and size
  
-+static const struct freq_tbl ftbl_csi0_1_2_3_clk_src_8992[] = {
-+	F(100000000, P_GPLL0, 6, 0, 0),
-+	F(266670000, P_MMPLL0, 3, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 csi0_clk_src = {
- 	.cmd_rcgr = 0x3090,
- 	.hid_width = 5,
-@@ -375,6 +389,16 @@ static const struct freq_tbl ftbl_vcodec0_clk_src[] = {
- 	{ }
- };
+   clocks:
+     items:
+diff --git a/include/dt-bindings/interconnect/qcom,osm-l3.h b/include/dt-bindings/interconnect/qcom,osm-l3.h
+index 61ef649..99534a5 100644
+--- a/include/dt-bindings/interconnect/qcom,osm-l3.h
++++ b/include/dt-bindings/interconnect/qcom,osm-l3.h
+@@ -1,6 +1,6 @@
+ /* SPDX-License-Identifier: GPL-2.0 */
+ /*
+- * Copyright (C) 2019 The Linux Foundation. All rights reserved.
++ * Copyright (C) 2019, 2021 The Linux Foundation. All rights reserved.
+  */
  
-+static const struct freq_tbl ftbl_vcodec0_clk_src_8992[] = {
-+	F(66670000, P_GPLL0, 9, 0, 0),
-+	F(100000000, P_GPLL0, 6, 0, 0),
-+	F(133330000, P_GPLL0, 4.5, 0, 0),
-+	F(200000000, P_MMPLL0, 4, 0, 0),
-+	F(320000000, P_MMPLL0, 2.5, 0, 0),
-+	F(510000000, P_MMPLL3, 2, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 vcodec0_clk_src = {
- 	.cmd_rcgr = 0x1000,
- 	.mnd_width = 8,
-@@ -440,6 +464,16 @@ static const struct freq_tbl ftbl_vfe0_clk_src[] = {
- 	{ }
- };
+ #ifndef __DT_BINDINGS_INTERCONNECT_QCOM_OSM_L3_H
+@@ -11,5 +11,13 @@
  
-+static const struct freq_tbl ftbl_vfe0_1_clk_src_8992[] = {
-+	F(80000000, P_GPLL0, 7.5, 0, 0),
-+	F(100000000, P_GPLL0, 6, 0, 0),
-+	F(200000000, P_GPLL0, 3, 0, 0),
-+	F(320000000, P_MMPLL0, 2.5, 0, 0),
-+	F(480000000, P_MMPLL4, 2, 0, 0),
-+	F(600000000, P_GPLL0, 1, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 vfe0_clk_src = {
- 	.cmd_rcgr = 0x3600,
- 	.hid_width = 5,
-@@ -486,6 +520,15 @@ static const struct freq_tbl ftbl_cpp_clk_src[] = {
- 	{ }
- };
+ #define MASTER_EPSS_L3_APPS	0
+ #define SLAVE_EPSS_L3_SHARED	1
++#define SLAVE_EPSS_L3_CPU0	2
++#define SLAVE_EPSS_L3_CPU1	3
++#define SLAVE_EPSS_L3_CPU2	4
++#define SLAVE_EPSS_L3_CPU3	5
++#define SLAVE_EPSS_L3_CPU4	6
++#define SLAVE_EPSS_L3_CPU5	7
++#define SLAVE_EPSS_L3_CPU6	8
++#define SLAVE_EPSS_L3_CPU7	9
  
-+static const struct freq_tbl ftbl_cpp_clk_src_8992[] = {
-+	F(100000000, P_GPLL0, 6, 0, 0),
-+	F(200000000, P_GPLL0, 3, 0, 0),
-+	F(320000000, P_MMPLL0, 2.5, 0, 0),
-+	F(480000000, P_MMPLL4, 2, 0, 0),
-+	F(640000000, P_MMPLL4, 1.5, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 cpp_clk_src = {
- 	.cmd_rcgr = 0x3640,
- 	.hid_width = 5,
-@@ -601,6 +644,17 @@ static const struct freq_tbl ftbl_mdp_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_mdp_clk_src_8992[] = {
-+	F(85710000, P_GPLL0, 7, 0, 0),
-+	F(171430000, P_GPLL0, 3.5, 0, 0),
-+	F(200000000, P_GPLL0, 3, 0, 0),
-+	F(240000000, P_GPLL0, 2.5, 0, 0),
-+	F(266670000, P_MMPLL0, 3, 0, 0),
-+	F(320000000, P_MMPLL0, 2.5, 0, 0),
-+	F(400000000, P_MMPLL0, 2, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 mdp_clk_src = {
- 	.cmd_rcgr = 0x2040,
- 	.hid_width = 5,
-@@ -654,6 +708,16 @@ static const struct freq_tbl ftbl_ocmemnoc_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_ocmemnoc_clk_src_8992[] = {
-+	F(19200000, P_XO, 1, 0, 0),
-+	F(75000000, P_GPLL0, 8, 0, 0),
-+	F(100000000, P_GPLL0, 6, 0, 0),
-+	F(150000000, P_GPLL0, 4, 0, 0),
-+	F(320000000, P_MMPLL0, 2.5, 0, 0),
-+	F(400000000, P_MMPLL0, 2, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 ocmemnoc_clk_src = {
- 	.cmd_rcgr = 0x5090,
- 	.hid_width = 5,
-@@ -767,6 +831,35 @@ static const struct freq_tbl ftbl_mclk0_1_2_3_clk_src[] = {
- 	{ }
- };
- 
-+static const struct freq_tbl ftbl_mclk0_clk_src_8992[] = {
-+	F(4800000, P_XO, 4, 0, 0),
-+	F(6000000, P_MMPLL4, 10, 1, 16),
-+	F(8000000, P_MMPLL4, 10, 1, 12),
-+	F(9600000, P_XO, 2, 0, 0),
-+	F(12000000, P_MMPLL4, 10, 1, 8),
-+	F(16000000, P_MMPLL4, 10, 1, 6),
-+	F(19200000, P_XO, 1, 0, 0),
-+	F(24000000, P_MMPLL4, 10, 1, 4),
-+	F(32000000, P_MMPLL4, 10, 1, 3),
-+	F(48000000, P_MMPLL4, 10, 1, 2),
-+	F(64000000, P_MMPLL4, 15, 0, 0),
-+	{ }
-+};
-+
-+static const struct freq_tbl ftbl_mclk1_2_3_clk_src_8992[] = {
-+	F(4800000, P_XO, 4, 0, 0),
-+	F(6000000, P_MMPLL4, 10, 1, 16),
-+	F(8000000, P_MMPLL4, 10, 1, 12),
-+	F(9600000, P_XO, 2, 0, 0),
-+	F(16000000, P_MMPLL4, 10, 1, 6),
-+	F(19200000, P_XO, 1, 0, 0),
-+	F(24000000, P_MMPLL4, 10, 1, 4),
-+	F(32000000, P_MMPLL4, 10, 1, 3),
-+	F(48000000, P_MMPLL4, 10, 1, 2),
-+	F(64000000, P_MMPLL4, 15, 0, 0),
-+	{ }
-+};
-+
- static struct clk_rcg2 mclk0_clk_src = {
- 	.cmd_rcgr = 0x3360,
- 	.mnd_width = 8,
-@@ -2468,6 +2561,39 @@ static int mmcc_msm8994_probe(struct platform_device *pdev)
- {
- 	struct regmap *regmap;
- 
-+	if (of_device_is_compatible(pdev->dev.of_node, "qcom,mmcc-msm8992")) {
-+		/* MSM8992 features less clocks and some have different freq tables */
-+		mmcc_msm8994_desc.clks[CAMSS_JPEG_JPEG1_CLK] = NULL;
-+		mmcc_msm8994_desc.clks[CAMSS_JPEG_JPEG2_CLK] = NULL;
-+		mmcc_msm8994_desc.clks[FD_CORE_CLK_SRC] = NULL;
-+		mmcc_msm8994_desc.clks[FD_CORE_CLK] = NULL;
-+		mmcc_msm8994_desc.clks[FD_CORE_UAR_CLK] = NULL;
-+		mmcc_msm8994_desc.clks[FD_AXI_CLK] = NULL;
-+		mmcc_msm8994_desc.clks[FD_AHB_CLK] = NULL;
-+		mmcc_msm8994_desc.clks[JPEG1_CLK_SRC] = NULL;
-+		mmcc_msm8994_desc.clks[JPEG2_CLK_SRC] = NULL;
-+		mmcc_msm8994_desc.clks[VENUS0_CORE2_VCODEC_CLK] = NULL;
-+
-+		mmcc_msm8994_desc.gdscs[FD_GDSC] = NULL;
-+		mmcc_msm8994_desc.gdscs[VENUS_CORE2_GDSC] = NULL;
-+
-+		axi_clk_src.freq_tbl = ftbl_axi_clk_src_8992;
-+		cpp_clk_src.freq_tbl = ftbl_cpp_clk_src_8992;
-+		csi0_clk_src.freq_tbl = ftbl_csi0_1_2_3_clk_src_8992;
-+		csi1_clk_src.freq_tbl = ftbl_csi0_1_2_3_clk_src_8992;
-+		csi2_clk_src.freq_tbl = ftbl_csi0_1_2_3_clk_src_8992;
-+		csi3_clk_src.freq_tbl = ftbl_csi0_1_2_3_clk_src_8992;
-+		mclk0_clk_src.freq_tbl = ftbl_mclk0_clk_src_8992;
-+		mclk1_clk_src.freq_tbl = ftbl_mclk1_2_3_clk_src_8992;
-+		mclk2_clk_src.freq_tbl = ftbl_mclk1_2_3_clk_src_8992;
-+		mclk3_clk_src.freq_tbl = ftbl_mclk1_2_3_clk_src_8992;
-+		mdp_clk_src.freq_tbl = ftbl_mdp_clk_src_8992;
-+		ocmemnoc_clk_src.freq_tbl = ftbl_ocmemnoc_clk_src_8992;
-+		vcodec0_clk_src.freq_tbl = ftbl_vcodec0_clk_src_8992;
-+		vfe0_clk_src.freq_tbl = ftbl_vfe0_1_clk_src_8992;
-+		vfe1_clk_src.freq_tbl = ftbl_vfe0_1_clk_src_8992;
-+	}
-+
- 	regmap = qcom_cc_map(pdev, &mmcc_msm8994_desc);
- 	if (IS_ERR(regmap))
- 		return PTR_ERR(regmap);
+ #endif
 -- 
-2.32.0
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
