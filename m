@@ -2,99 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 124BC3AC30B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 08:03:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 575EB3AC315
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 08:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232573AbhFRGF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 02:05:29 -0400
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:41697 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232250AbhFRGF2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Jun 2021 02:05:28 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 3F2BB5C0138;
-        Fri, 18 Jun 2021 02:03:19 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Fri, 18 Jun 2021 02:03:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm3; bh=rFN1Isa+gtwR+R9fDmDDjGykid
-        10VpuGsivirIWLYTc=; b=gHnChd0AppeS/zLSfPThfZJ8XJ3JOHpVGyw76G9LgZ
-        zX7DQiFiFVR+iRxruvwLMNIu7BcaBai1LwdSz2v9JD5GQAIJ2iK+dPGKcdo+sb/D
-        7cNRZPRIRFuKFsTwtk8bLNvL+9/2EvprhyTS81vQL2CwRV9PfkOu6Q8Whd/tH4A3
-        ivf70XYcK+QD2EryLoeHIqnaPhzxCKeJBsEYCtqK5Jy59ubt4SfBSmtVV/aiWrZV
-        qF9806UiM1yINbvT5xTJ6x6ZJR1uD9Lsf0ZQcUhTb9FnGvyxERA3CrBmhnLsDxLw
-        FH4IDBBjcgvMPVqGNNz5r7Y1eM5YYb5s2L2kLfcjfxCw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=rFN1Isa+gtwR+R9fD
-        mDDjGykid10VpuGsivirIWLYTc=; b=JtppSal1I0GnycNhJdo/PhzOn8h6ZFFBD
-        nLhZjKw1UqWNdhA5idN4L/11bOsJ0+2PiU0NQ74XISYwoSC0cJblfxK85O+C7xSc
-        ABryj8L28vRjI7Ytx2dKqdtUzikxn9/nJ1+Pg4L377oKx7Pr8wE1FVG+a7G0VaST
-        JdqIK6y3eJsWCcKxSlh+52aem+MPDcQ1wlExAQQHs9yQrGPetLjv/4zW4InATC4W
-        AfzBpAWuuUBoRatFo6EHf7JSgXSoYxZu6/EP3aUV5kC5SWvvAIDW0hqTSt2TLCus
-        hTzmpljlXHMjTNPwN4Wp/NMC+iEIaKmJe9z6tFGWYSgKhuWXOo5BQ==
-X-ME-Sender: <xms:JjfMYIp4o58s19lHc2EQRVdNN2OdW6XKqdJZUQkjjlcP8Ca89bekPg>
-    <xme:JjfMYOpqFOo8AvIwK9pTSZEQbE9ZN8aN1ki8r4zA5H0Spoc3IvT9k4dcQKfdXvHIx
-    yU9ibDyAZ6b9nk1SA>
-X-ME-Received: <xmr:JjfMYNMZ2HUbGkVUb5lYmyKKGbUxWBkxLYBlRahSMkkLElo-UiTXhR6wu4rxxMgMIKvCZpVEFJMJS_UHqLibAeOB9_CE1hYbPDXrtsnMtKvtwgaTw5h_3_CR>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeefvddgleelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
-    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
-    ihgurdgruheqnecuggftrfgrthhtvghrnhepkefhieffjeevfeevhedtieeihfefvdejle
-    dvvddthefftedujeethfeuueelfedtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghr
-    rghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:JjfMYP78nWFeeCR1CwsUxcE5UeRLRdVpgaUP-Yof5kYo5mTZQOaB2g>
-    <xmx:JjfMYH6w_DtttQp7toWUqC4FzzbN323B46-uCLPDMu792YREYNy9Lg>
-    <xmx:JjfMYPj1NgpwO5wx15u8FZv4DbpUxAPZe4iR7oEifJ6WLbY3kAQrvg>
-    <xmx:JzfMYK3Qgsnsdc5-eSNAQo24c5QBg4DOZnDzq_Zk__c_ywESKiybuw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 18 Jun 2021 02:03:15 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     joel@jms.id.au
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: rainier: Enable KCS channels 2 and 3
-Date:   Fri, 18 Jun 2021 15:33:05 +0930
-Message-Id: <20210618060305.4031224-1-andrew@aj.id.au>
-X-Mailer: git-send-email 2.30.2
+        id S232761AbhFRGJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 02:09:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45048 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232250AbhFRGJA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 02:09:00 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D01A0C061574;
+        Thu, 17 Jun 2021 23:06:51 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id v13so4127369ple.9;
+        Thu, 17 Jun 2021 23:06:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5hfOEVHeqp/F96H8QwGZO/5tf7mEcB8EA6gsOtfXfaM=;
+        b=TFUr3dRc/3aZWb+Uxh1AmlwZHsequWgjNcy04MyvFn9uFODpQSc88GQ4NbXI8iLZmX
+         Tu5HHxielGH7Bsy2ZC8N6moC9jvmHg5jiI57fvH3UD50LLXkzl7mGsYB9kiiCUd7DYx9
+         fTrB1gaQk8IpTXBeqvtzpVzUdweSMAvFgf0hfwWL4TDW5H7iGwh3CKu8owFUQ6ybK5TK
+         azFdyV92GTJRpEqztceeVWq3xrCPvmtt+1ru4C7APYgrQFN2YA1WfVnkP1luZC7AGwiP
+         9P9jeKrDQbmoVtF7kQkVshfP+OgBj2BqYWDXSHO7+0+3SFwtKQsCcW8RMmSXmtxpo7Yf
+         cw6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5hfOEVHeqp/F96H8QwGZO/5tf7mEcB8EA6gsOtfXfaM=;
+        b=tGeAYg4cxvwJyJ+DCx6HA6h3IznygvhF9NbJfJL03iZodrJJauPBLU2FapBiPHYKg2
+         0zEJlT9V7OxsxR4UAMRFH7qo6S+6Y5GEXG58rozHFG9Lqb0Y8CS2p1vsz9KzCzA7lAJ4
+         SYIVvbkRNLjoU7ypEzr1dla4fe0bwsdGGfqvFEzGqI16Dn9sRCxWTs/OIPU+jvm4cbT0
+         +UwyJq5hQLRUVSeStHaRJh3gf1YR1LIeaniKQX/JHPtwbzeetEsOB14yqF0QEVI/DJuK
+         TrMtojhw/lEy7GqmZdgGaueWgH7QLG8/nhehKYU2F4paDFskiVA/42Ab8ofhLUp5WTYc
+         OElg==
+X-Gm-Message-State: AOAM533hqtwwTwhFdKEbZ/i62DrI+FJJRa+TTxLQ+QC+0O0msO41zBU3
+        LAqSzk9rC8nRqCzZN3WkaPJ3apLUaaf5
+X-Google-Smtp-Source: ABdhPJxo2Rn9xs4aEtaHUWG7j/ziHyoqCT2P1sDRe2eiMH7wVHihb3upu70yewa+CiB10lnog1D02g==
+X-Received: by 2002:a17:90b:4f81:: with SMTP id qe1mr9355789pjb.9.1623996411207;
+        Thu, 17 Jun 2021 23:06:51 -0700 (PDT)
+Received: from INTERNET-129.allwinnertech.com ([223.197.233.48])
+        by smtp.gmail.com with ESMTPSA id l201sm6975082pfd.183.2021.06.17.23.06.48
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 17 Jun 2021 23:06:50 -0700 (PDT)
+From:   Ban Tao <fengzheng923@gmail.com>
+To:     fengzheng923@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, mripard@kernel.org, wens@csie.org,
+        jernej.skrabec@gmail.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings for DMIC controller
+Date:   Fri, 18 Jun 2021 14:06:44 +0800
+Message-Id: <20210618060644.2830-1-fengzheng923@gmail.com>
+X-Mailer: git-send-email 2.22.0.windows.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-KCS 2 and 3 are used as out-of-band signalling channels between the host
-and the BMC on the Rainier platform.
+DT binding documentation for this new ASoC driver.
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+Signed-off-by: Ban Tao <fengzheng923@gmail.com>
+
 ---
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+v1->v2:
+1.Fix some build errors.
+---
+v2->v3:
+1.Fix some build errors.
+---
+ .../sound/allwinner,sun50i-h6-dmic.yaml       | 68 +++++++++++++++++++
+ 1 file changed, 68 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-index 941c0489479a..38aad878d482 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-@@ -1780,3 +1780,14 @@ &xdma {
- 	status = "okay";
- 	memory-region = <&vga_memory>;
- };
+diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+new file mode 100644
+index 000000000000..d9107685b78d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/allwinner,sun50i-h6-dmic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+&kcs2 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca8 0xcac>;
-+};
++title: Allwinner H6 DMIC Device Tree Bindings
 +
-+&kcs3 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca2>;
-+	aspeed,lpc-interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+};
++maintainers:
++  - Ban Tao <fengzheng923@gmail.com>
++
++properties:
++  "#sound-dai-cells":
++    const: 0
++
++  compatible:
++    const: allwinner,sun50i-h6-dmic
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Bus Clock
++      - description: Module Clock
++
++  clock-names:
++    items:
++      - const: bus
++      - const: mod
++
++  dmas:
++    items:
++      - description: RX DMA Channel
++
++  dma-names:
++    items:
++      - const: rx
++
++  resets:
++    maxItems: 1
++
++required:
++  - "#sound-dai-cells"
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - dmas
++  - dma-names
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    dmic: dmic@5095000 {
++      #sound-dai-cells = <0>;
++      compatible = "allwinner,sun50i-h6-dmic";
++      reg = <0x05095000 0x400>;
++      clocks = <&ccu 101>, <&ccu 100>;
++      clock-names = "bus", "mod";
++      dmas = <&dma 7>;
++      dma-names = "rx";
++      resets = <&ccu 42>;
++    };
++
++...
 -- 
-2.30.2
+2.29.0
 
