@@ -2,173 +2,324 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A5B43AC094
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 03:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0EC13AC11C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 04:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233549AbhFRBnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 21:43:43 -0400
-Received: from mail-db8eur05on2049.outbound.protection.outlook.com ([40.107.20.49]:51681
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        id S232129AbhFRC4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 22:56:18 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:39854 "EHLO loongson.cn"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233475AbhFRBnn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Jun 2021 21:43:43 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T/IElhSH3Pb7ecijMllQ6I7QWotCaR+yxui/AuijyEgSjfLS0NJVhwtib0o5c93JT9z/CcdAVi1/sYibJjM2O8GP6qspMKq4UMn1af46IlkPAdZNL8S/R71KkCx1YPyjXKUmz8RhqTgM86xGdq4wh15vc0X6IITN1jgVWLqm6OzVNs8ZwJyILrIb0hS0cQ+lsvpTaOolJNFC1TMX4S1MuYSVataFtGOHj5ePYSavp/trvQAnJwOUSiElhBDzy6TeYX5iulfK9TmYKaiOuRTgIhTTrN32+yDs/Gv5/KS1Yd3H+HJocOZ00PpFk/t2mSlghfYCG/zoRG2sz2BKt6JLOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H8HlkfxdlqXgjg+HF3Mlp4elkipBJcoC+svd5C/wYiA=;
- b=kPF7t9hoZuNSWQMmcj5hg23Yl+PxZiWH+Cz2nWQhyr95IQR/CUolMkzciU3le2TTpMfdeKe1Y4c8Te2aIzY3PaaglQQMGWIJk677cT/LNTuI7DKKIuI+wGn0fnu3znTGbrRm/q5jvzM2v9dG2iJ0Je94VPwAywIq3TOY4oSdwuyQsmvCeF+4R3ZGHjHqiojVyGueOwUGpl99ACU9RkfbVnRDcGC8gYw9S57cstUQ8DzdhkwX/6oBN9idQtpChuJ5aRKTtvTHgkPml9WctXjG0M9WEzFFamqT/sJCXgtM5zDL1f2qn78s+Z9IaA0bwSwfw0COAxdQyaM07YFB2wFxqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H8HlkfxdlqXgjg+HF3Mlp4elkipBJcoC+svd5C/wYiA=;
- b=QWyxKBXkLnql1xmw+DqBp7WB3C6rSmqcoyByN5iFgLp6O4dn3MEpLg0qKtPsXV3CDzNb5HogeVOlgA5Ik2Hd7OniB58zhx3xB1HdBvI3SyVrm+bZkNPVMLNL6I+D0IUNEMQPOGynP0Tp7Y7nOOgdNqxASpwJkC2lgsm11vBHbK4=
-Received: from DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
- by DB8PR04MB6857.eurprd04.prod.outlook.com (2603:10a6:10:114::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19; Fri, 18 Jun
- 2021 01:41:31 +0000
-Received: from DBBPR04MB7930.eurprd04.prod.outlook.com
- ([fe80::3164:e047:376d:4a4f]) by DBBPR04MB7930.eurprd04.prod.outlook.com
- ([fe80::3164:e047:376d:4a4f%7]) with mapi id 15.20.4242.021; Fri, 18 Jun 2021
- 01:41:31 +0000
-From:   Jacky Bai <ping.bai@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH 10/11] arm64: dts: imx8ulp: Add the basic dtsi file for
- imx8ulp
-Thread-Topic: [PATCH 10/11] arm64: dts: imx8ulp: Add the basic dtsi file for
- imx8ulp
-Thread-Index: AQHXW3dhtwkR0OiIlUGYwWN82zQfNasXXiiAgACYhkCAARYmMA==
-Date:   Fri, 18 Jun 2021 01:41:31 +0000
-Message-ID: <DBBPR04MB7930F4169C57476C73FD924E870D9@DBBPR04MB7930.eurprd04.prod.outlook.com>
-References: <20210607083921.2668568-1-ping.bai@nxp.com>
- <20210607083921.2668568-11-ping.bai@nxp.com>
- <20210616235137.GA311711@robh.at.kernel.org>
- <DBBPR04MB7930670926DD2CB2A474DDAD870E9@DBBPR04MB7930.eurprd04.prod.outlook.com>
-In-Reply-To: <DBBPR04MB7930670926DD2CB2A474DDAD870E9@DBBPR04MB7930.eurprd04.prod.outlook.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fbcf6301-090e-45c3-53a4-08d931fa3302
-x-ms-traffictypediagnostic: DB8PR04MB6857:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB8PR04MB6857247C7C23540B2AF8580B870D9@DB8PR04MB6857.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: c5RJuTclH//mmxeKom+ZZQdaQ0w8duqboo0l2rXOjFUqQjx6nsx5L0rrCMkG2UtAihTO3SK0n29cPihpNjusJNAbqBnOeqkbABThTP1RUz0YLmjrhj35zGJVHh6Vmej275y0I1hqC01gUxfuSQmTO8sxQMVj8TwH2W15ymQC9CSJQ+P1p1+xlDuphFyPRYnGF8YIWh0XCd/nbtjbEAaDkkxUuee/QPBx5H2o3/VeCgj6kXxn4Gnl00OW4jT0PHXIWlSi71ptrsp3j73gYv6FOsyj1akS0DhKwSHf9MJtcFGCM9oEfw+oBir7S+E4N3eq99nrsDo3oLFm6lNSDuLaV2lbI/+TuGNrJ33++r60f/6JiXF2Y2AHpQ+B9j/wysnlrX+wJV5tj1pGuUYLxNGJS9HaDFTFS8WGpZkVD/AKiXgDinPVBgRo2lxuxSGkepe/Pwz5d0cdx96kwWWnNtWBChPgF7dDcTEFqiQu1YMaRj1OdNus0pAzA2GgyPcn4VnYBC8eMnZvqEbuhFc3qhjuhSY6EfEDCSA33OfHxGXOWARPe0+SmoPFfco9/mT3NrQkr7yfDA9lrYnKEX4yJuEplzovUGqUTmmxxgHHm2mcQaNrFzh4F3fOfv/sJVzy0LcCLEMTexA7fBk9AqRAZ7XjTw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7930.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(136003)(366004)(376002)(39860400002)(26005)(6506007)(7696005)(2906002)(186003)(122000001)(66946007)(64756008)(66446008)(52536014)(66476007)(66556008)(55016002)(33656002)(86362001)(9686003)(6916009)(54906003)(316002)(478600001)(8936002)(5660300002)(4326008)(83380400001)(38100700002)(71200400001)(8676002)(76116006)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NW1LMEpINWd1RmpzZFpNVzFlNkRhcmJTT1JKMWlHVzBUdDhJSkRGTmRtUmNj?=
- =?utf-8?B?RzR4Y1p1SkZWckE4TFhqMlFVZ0NJNkRrUWF3RGVqVzQwVHhIVVVPRHVDb25K?=
- =?utf-8?B?RmtxbHBBZzFKTWplNGVPZGZxWGJMWFhHdDFLQXhMSktxdkxSQmd5aExxSE1K?=
- =?utf-8?B?dW5SZmVZdW8vZFlDYTRWV0hMb1pyUDNQN0RrMjRlZkxGeGhhMVVpQ0pDL3Ew?=
- =?utf-8?B?ZjZ6K1A5VytkU1QvL0JwcUdpc0RYM0FkeTB3dEoyQVhBaGdnNm8vczcyZW5v?=
- =?utf-8?B?eTV0bHEyWEM2NzkxVlJNVENwMXRlT0FuY1ovM3BuazFyVmJEOHQ2R1Bhc1lz?=
- =?utf-8?B?ZnNiNkFTRWFJVU81Y2xHeEdFREp6RmtXZjFMM2w0MVdzOEh0L29MRmY5Q2k2?=
- =?utf-8?B?WTZ5Q25pN0dvMUVuUEZmTU43QURsYko3YktNWlAyWDg2UTRiV1hra1FwdmpV?=
- =?utf-8?B?cndHSFpSK29RMVJsQjV6L25UTVY5SERxbG5DbVNVaEpWNHo1U054bEVMUS9p?=
- =?utf-8?B?NWFrVWJNVTY0UGhoQ09rNXpvYXNXRlZsV0ozTnVLVHZPVWhOS1RyZmhJbEZZ?=
- =?utf-8?B?akFEZWRnbUNtSytmckI0czF2ZDJ5QzhQQjdEWGJIVm0vaGRZSTFpRVFPOGEz?=
- =?utf-8?B?bjhKcTBERnh3c3ozWFRodVR6eHNXeU1XcnFnL25oQjB2c0pQVFJqVG1XSE5R?=
- =?utf-8?B?Ri9lQ28zT2lqbm51NlU0OHlVR0F0emVGTUg3aHNMdXllL1hjTkhTT0J4bUlN?=
- =?utf-8?B?bUplRE5yeFd1bWdQcHZCMEg3a0ZzdTh0WkRUeXB6UnE5Nm1MMFVpUmM0My9R?=
- =?utf-8?B?dVNRTTZuQXFZd3dDdXAwNThZWXRsODMwaEJpOFFWMXh3c0Rkc2ZTZGR2NUZ4?=
- =?utf-8?B?YjhTOXM2eStlSlR1ZDJZd2VCbWJIb0JJRmgrTFArVW55Z09QeHI5WUdqcWFh?=
- =?utf-8?B?SjJIemZnMzMyZlZhTXBoVG41TEJrcmN6Q1FTYUJYaHVQemhiNWd4ZGpaMDdw?=
- =?utf-8?B?SXNKWXBpZ3pYWjVMSzVYU0NXMTRTNEFXMzlNdXM5WW5ocS9zZUNWRzhIek5O?=
- =?utf-8?B?UkFYdjVHVTIwVk9tcVJyaXdRcnByM1I5U21KOEh2TWRLQVNzRTljUy9WV1Er?=
- =?utf-8?B?RUpLQ0NiN0dzVzZLV0R1SjdlMy9JdTJHUkMvT2pUb3lGT2pnTXN1M2NOTmtV?=
- =?utf-8?B?Vlg1SERQMEdkQ0ozYitEdnZmcXg5ZU9IeDFRV25wbEVkb0sxMzRjZCs5N0d0?=
- =?utf-8?B?SUd5SVA4ZUpseWxUMGFOdEZaSDk4TnFVSnp3MU1DZERSRVBvMldwZjRQUFVr?=
- =?utf-8?B?OENXQitTOXpsL29YS2tEUWYxU2tlME9uN0U4V3o0SzVBdndGZlNidkRZN3dQ?=
- =?utf-8?B?RENpTForaW13Yk5KTlJPRVhOdFg5TEZpaDhCRHlFNVZkcUNEenQyZkFNeitU?=
- =?utf-8?B?MkRIbWd6cUFqOFovUjlmSko0OU9DUEhrclM0WUlPbXZxVlM4VUI4OEFaK3Bt?=
- =?utf-8?B?SkZNWENyeHoybGlYdWVxbFZQR2lnc1hkdXQ0MXgxVDFPQXFYTnh5OFQ5OUps?=
- =?utf-8?B?YTJNclZuNGZqdW9nS1Y0RmhkdHJLREZSL0wzWStpZEZZTVk4WDRwY0ZRc3VK?=
- =?utf-8?B?Z2pVWnNaY3dzOTJOSTlwL3hVYndaYS9zc2F0RDdRVHN6SXdNSlZSYXRiSUkr?=
- =?utf-8?B?aTVRVHU3L1R0QUJPd2hXNGhpVEl0ZHY3UlpubisxZE9nZ29BcU5VT0JFR3Nm?=
- =?utf-8?Q?OSFFrCGdjA3b8YkKNyDC8looo0ugvTBQRbnCowq?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S232072AbhFRC4N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Jun 2021 22:56:13 -0400
+Received: from localhost.localdomain (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxv0CzCsxgVnITAA--.632S2;
+        Fri, 18 Jun 2021 10:53:41 +0800 (CST)
+From:   Qing Zhang <zhangqing@loongson.cn>
+To:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Huacai Chen <chenhc@lemote.com>, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: [PATCH 1/4] stmmac: pci: Add dwmac support for Loongson
+Date:   Fri, 18 Jun 2021 10:53:34 +0800
+Message-Id: <20210618025337.5705-1-zhangqing@loongson.cn>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7930.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fbcf6301-090e-45c3-53a4-08d931fa3302
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jun 2021 01:41:31.6364
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yY7UIDAwbrqNgS9lYz6qFryr23dhUENYnHM8CgZcQUP2qDZH2Sw1VZW8GlFmrzUCiYZKY+Qg7xIbAf9WghAFNg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6857
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf9Dxv0CzCsxgVnITAA--.632S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxuFW3Cry3Ar18CF45XF1rXrb_yoW3XFWDpa
+        1fAas0gr97Xr4xGws5Ar4DJF98uayav3y0g3yIkwna9FZYyrWqqwn5KFWYyF97CrWkWw1a
+        qF4jkF48uF4DJa7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUvGb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+        A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xII
+        jxv20xvEc7CjxVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4
+        vEx4A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
+        F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r4j6F
+        4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACI402YVCY1x02628vn2kI
+        c2xKxwCY02Avz4vE14v_Gr1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+        1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+        14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+        IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWrJr0_WFyUJwCI42IY
+        6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa
+        73UjIFyTuYvjxUcD73DUUUU
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBTdWJqZWN0OiBSRTogW1BBVENIIDEwLzExXSBhcm02NDogZHRzOiBpbXg4dWxwOiBBZGQgdGhl
-IGJhc2ljIGR0c2kgZmlsZSBmb3INCj4gaW14OHVscA0KPiANCj4gPiBTdWJqZWN0OiBSZTogW1BB
-VENIIDEwLzExXSBhcm02NDogZHRzOiBpbXg4dWxwOiBBZGQgdGhlIGJhc2ljIGR0c2kNCj4gPiBm
-aWxlIGZvciBpbXg4dWxwDQo+ID4NCj4gPiBPbiBNb24sIEp1biAwNywgMjAyMSBhdCAwNDozOToy
-MFBNICswODAwLCBKYWNreSBCYWkgd3JvdGU6DQo+ID4gPiBBZGQgdGhlIGJhc2ljIGR0c2kgc3Vw
-cG9ydCBmb3IgaS5NWDhVTFAuDQo+ID4gPg0KPiA+ID4gaS5NWCA4VUxQIGlzIHBhcnQgb2YgdGhl
-IFVMUCBmYW1pbHkgd2l0aCBlbXBoYXNpcyBvbiBleHRyZW1lDQo+ID4gPiBsb3ctcG93ZXIgdGVj
-aG5pcXVlcyB1c2luZyB0aGUgMjggbm0gZnVsbHkgZGVwbGV0ZWQgc2lsaWNvbiBvbg0KPiA+ID4g
-aW5zdWxhdG9yIHByb2Nlc3MuIExpa2UgaS5NWCA3VUxQLCBpLk1YIDhVTFAgY29udGludWVzIHRv
-IGJlIGJhc2VkDQo+ID4gPiBvbiBhc3ltbWV0cmljIGFyY2hpdGVjdHVyZSwgaG93ZXZlciB3aWxs
-IGFkZCBhIHRoaXJkIERTUCBkb21haW4gZm9yDQo+ID4gPiBhZHZhbmNlZCB2b2ljZS9hdWRpbyBj
-YXBhYmlsaXR5IGFuZCBhIEdyYXBoaWNzIGRvbWFpbiB3aGVyZSBpdCBpcw0KPiA+ID4gcG9zc2li
-bGUgdG8gYWNjZXNzIGdyYXBoaWNzIHJlc291cmNlcyBmcm9tIHRoZSBhcHBsaWNhdGlvbiBzaWRl
-IG9yDQo+ID4gPiB0aGUgcmVhbHRpbWUgc2lkZS4NCj4gPiA+DQo+ID4gPiBTaWduZWQtb2ZmLWJ5
-OiBKYWNreSBCYWkgPHBpbmcuYmFpQG54cC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+ICAuLi4vYm9v
-dC9kdHMvZnJlZXNjYWxlL2lteDh1bHAtcGluZnVuYy5oICAgICAgfCA5NzgNCj4gPiArKysrKysr
-KysrKysrKysrKysNCj4gPiA+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4dWxw
-LmR0c2kgICAgfCA0NzQgKysrKysrKysrDQo+ID4gPiAgMiBmaWxlcyBjaGFuZ2VkLCAxNDUyIGlu
-c2VydGlvbnMoKykgIGNyZWF0ZSBtb2RlIDEwMDc1NQ0KPiA+ID4gYXJjaC9hcm02NC9ib290L2R0
-cy9mcmVlc2NhbGUvaW14OHVscC1waW5mdW5jLmgNCj4gPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQg
-YXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHVscC5kdHNpDQo+ID4gPg0KPiA+ID4g
-ZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDh1bHAtcGluZnVu
-Yy5oDQo+ID4gPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDh1bHAtcGluZnVu
-Yy5oDQo+ID4gPiBuZXcgZmlsZSBtb2RlIDEwMDc1NQ0KPiA+ID4gaW5kZXggMDAwMDAwMDAwMDAw
-Li5mYWE3MDI2MzRhMzgNCj4gPiA+IC0tLSAvZGV2L251bGwNCj4gPiA+ICsrKyBiL2FyY2gvYXJt
-NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDh1bHAtcGluZnVuYy5oDQo+ID4gPiBAQCAtMCwwICsx
-LDk3OCBAQA0KPiA+ID4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wKyAqLw0K
-PiA+DQo+ID4NCj4gPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2Fs
-ZS9pbXg4dWxwLmR0c2kNCj4gPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14
-OHVscC5kdHNpDQo+ID4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+ID4gaW5kZXggMDAwMDAw
-MDAwMDAwLi40NjljMmRjZDQ2MzYNCj4gPiA+IC0tLSAvZGV2L251bGwNCj4gPiA+ICsrKyBiL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDh1bHAuZHRzaQ0KPiA+ID4gQEAgLTAsMCAr
-MSw0NzQgQEANCj4gPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjArIE9S
-IE1JVCkNCj4gPg0KPiA+IEhvdyBjYW4gSSB1c2UgTUlUIHdoZW4gR1BMIG9ubHkgaGVhZGVyIGlz
-IGluY2x1ZGVkPyBEdWFsIGxpY2Vuc2UgdGhlDQo+ID4gaGVhZGVyIHBsZWFzZS4NCj4gPg0KPiAN
-Cj4gT2ssIHdpbGwgYWRkIER1YWwgbGljZW5zZSBpbiB0aGUgYWJvdmUgZmlsZS4NCj4gDQo+ID4g
-QW5kIE5YUCBpcyBnb29kIHdpdGggR1BMdjMsIEdQTHY0LCBldGMuPw0KPiANCj4gSXQgc2VlbXMg
-bm8gZmlsZSB1c2UgR1BMdjMgaW4gbGF0ZXN0IGtlcm5lbCwgSSB3aWxsIGtlZXAgdXNlIEdQTHYy
-IGZvciBub3csIGlzIGl0DQo+IG9rPw0KDQpTb3JyeSwgUm9iLCBpdCBzZWVtcyBJIG1pc3VuZGVy
-c3RhbmQgd2hhdCB5b3UgbWVhbiBeX14uIEkganVzdCBjaGVja2VkIHRoZSBOWFAgbGljZW5zZSBw
-b2xpY3ksIEdQTHYyIG9yIGxhdGVyIGlzIG9rLg0KDQpCUg0KSmFja3kgQmFpDQo+IA0KPiBCUg0K
-PiBKYWNreSBCYWkNCj4gPg0KPiA+ID4gKy8qDQo+ID4gPiArICogQ29weXJpZ2h0IDIwMjEgTlhQ
-DQo+ID4gPiArICovDQo+ID4gPiArDQo+ID4gPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2Nsb2Nr
-L2lteDh1bHAtY2xvY2suaD4NCj4gPiA+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvZ3Bpby9ncGlv
-Lmg+DQo+ID4gPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2Fy
-bS1naWMuaD4NCj4gPiA+ICsNCj4gPiA+ICsjaW5jbHVkZSAiaW14OHVscC1waW5mdW5jLmgiDQo=
+This GMAC module is integrated into the Loongson-2K SoC and the LS7A
+bridge chip.
+
+Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+---
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |   9 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-loongson.c  | 218 ++++++++++++++++++
+ 3 files changed, 228 insertions(+)
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-loongson.c
+
+diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+index 7737e4d0bb9e..0fc4532a2caa 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
++++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+@@ -238,6 +238,15 @@ config DWMAC_INTEL
+ 	  This selects the Intel platform specific bus support for the
+ 	  stmmac driver. This driver is used for Intel Quark/EHL/TGL.
+ 
++config DWMAC_LOONGSON
++	tristate "Loongson PCI DWMAC support"
++	default MACH_LOONGSON64
++	depends on STMMAC_ETH && PCI
++	depends on COMMON_CLK
++	help
++	  This selects the LOONGSON PCI bus support for the stmmac driver,
++	  Support for ethernet controller on Loongson-2K1000 SoC and LS7A1000 bridge.
++
+ config STMMAC_PCI
+ 	tristate "STMMAC PCI bus support"
+ 	depends on STMMAC_ETH && PCI
+diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
+index f2e478b884b0..56d0d536859c 100644
+--- a/drivers/net/ethernet/stmicro/stmmac/Makefile
++++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+@@ -36,4 +36,5 @@ dwmac-altr-socfpga-objs := altr_tse_pcs.o dwmac-socfpga.o
+ 
+ obj-$(CONFIG_STMMAC_PCI)	+= stmmac-pci.o
+ obj-$(CONFIG_DWMAC_INTEL)	+= dwmac-intel.o
++obj-$(CONFIG_DWMAC_LOONGSON)	+= dwmac-loongson.o
+ stmmac-pci-objs:= stmmac_pci.o
+diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson.c
+new file mode 100644
+index 000000000000..8cd4e2e8ec40
+--- /dev/null
++++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson.c
+@@ -0,0 +1,218 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Copyright (c) 2020, Loongson Corporation
++ */
++
++#include <linux/clk-provider.h>
++#include <linux/pci.h>
++#include <linux/dmi.h>
++#include <linux/device.h>
++#include <linux/of_irq.h>
++#include "stmmac.h"
++
++static int loongson_default_data(struct plat_stmmacenet_data *plat)
++{
++	plat->clk_csr = 2;	/* clk_csr_i = 20-35MHz & MDC = clk_csr_i/16 */
++	plat->has_gmac = 1;
++	plat->force_sf_dma_mode = 1;
++
++	/* Set default value for multicast hash bins */
++	plat->multicast_filter_bins = HASH_TABLE_SIZE;
++
++	/* Set default value for unicast filter entries */
++	plat->unicast_filter_entries = 1;
++
++	/* Set the maxmtu to a default of JUMBO_LEN */
++	plat->maxmtu = JUMBO_LEN;
++
++	/* Set default number of RX and TX queues to use */
++	plat->tx_queues_to_use = 1;
++	plat->rx_queues_to_use = 1;
++
++	/* Disable Priority config by default */
++	plat->tx_queues_cfg[0].use_prio = false;
++	plat->rx_queues_cfg[0].use_prio = false;
++
++	/* Disable RX queues routing by default */
++	plat->rx_queues_cfg[0].pkt_route = 0x0;
++
++	/* Default to phy auto-detection */
++	plat->phy_addr = -1;
++
++	plat->dma_cfg->pbl = 32;
++	plat->dma_cfg->pblx8 = true;
++
++	plat->multicast_filter_bins = 256;
++	return 0;
++}
++
++static int loongson_dwmac_probe(struct pci_dev *pdev, const struct pci_device_id *id)
++{
++	struct plat_stmmacenet_data *plat;
++	struct stmmac_resources res;
++	int ret, i, mdio;
++	struct device_node *np;
++
++	np = dev_of_node(&pdev->dev);
++
++	if (!np) {
++		pr_info("dwmac_loongson_pci: No OF node\n");
++		return -ENODEV;
++	}
++
++	if (!of_device_is_compatible(np, "loongson, pci-gmac")) {
++		pr_info("dwmac_loongson_pci: Incompatible OF node\n");
++		return -ENODEV;
++	}
++
++	plat = devm_kzalloc(&pdev->dev, sizeof(*plat), GFP_KERNEL);
++	if (!plat)
++		return -ENOMEM;
++
++	if (plat->mdio_node) {
++		dev_err(&pdev->dev, "Found MDIO subnode\n");
++		mdio = true;
++	}
++
++	if (mdio) {
++		plat->mdio_bus_data = devm_kzalloc(&pdev->dev,
++						   sizeof(*plat->mdio_bus_data),
++						   GFP_KERNEL);
++		if (!plat->mdio_bus_data)
++			return -ENOMEM;
++		plat->mdio_bus_data->needs_reset = true;
++	}
++
++	plat->dma_cfg = devm_kzalloc(&pdev->dev, sizeof(*plat->dma_cfg), GFP_KERNEL);
++	if (!plat->dma_cfg)
++		return -ENOMEM;
++
++	/* Enable pci device */
++	ret = pci_enable_device(pdev);
++	if (ret) {
++		dev_err(&pdev->dev, "%s: ERROR: failed to enable device\n", __func__);
++		return ret;
++	}
++
++	/* Get the base address of device */
++	for (i = 0; i < PCI_STD_NUM_BARS; i++) {
++		if (pci_resource_len(pdev, i) == 0)
++			continue;
++		ret = pcim_iomap_regions(pdev, BIT(0), pci_name(pdev));
++		if (ret)
++			return ret;
++		break;
++	}
++
++	plat->bus_id = of_alias_get_id(np, "ethernet");
++	if (plat->bus_id < 0)
++		plat->bus_id = pci_dev_id(pdev);
++
++	plat->phy_interface = device_get_phy_mode(&pdev->dev);
++	if (plat->phy_interface < 0)
++		dev_err(&pdev->dev, "phy_mode not found\n");
++
++	plat->interface = PHY_INTERFACE_MODE_GMII;
++
++	pci_set_master(pdev);
++
++	loongson_default_data(plat);
++	pci_enable_msi(pdev);
++	memset(&res, 0, sizeof(res));
++	res.addr = pcim_iomap_table(pdev)[0];
++
++	res.irq = of_irq_get_byname(np, "macirq");
++	if (res.irq < 0) {
++		dev_err(&pdev->dev, "IRQ macirq not found\n");
++		ret = -ENODEV;
++	}
++
++	res.wol_irq = of_irq_get_byname(np, "eth_wake_irq");
++	if (res.wol_irq < 0) {
++		dev_info(&pdev->dev, "IRQ eth_wake_irq not found, using macirq\n");
++		res.wol_irq = res.irq;
++	}
++
++	res.lpi_irq = of_irq_get_byname(np, "eth_lpi");
++	if (res.lpi_irq < 0) {
++		dev_err(&pdev->dev, "IRQ eth_lpi not found\n");
++		ret = -ENODEV;
++	}
++
++	return stmmac_dvr_probe(&pdev->dev, plat, &res);
++}
++
++static void loongson_dwmac_remove(struct pci_dev *pdev)
++{
++	int i;
++
++	stmmac_dvr_remove(&pdev->dev);
++
++	for (i = 0; i < PCI_STD_NUM_BARS; i++) {
++		if (pci_resource_len(pdev, i) == 0)
++			continue;
++		pcim_iounmap_regions(pdev, BIT(i));
++		break;
++	}
++
++	pci_disable_device(pdev);
++}
++
++static int __maybe_unused loongson_dwmac_suspend(struct device *dev)
++{
++	struct pci_dev *pdev = to_pci_dev(dev);
++	int ret;
++
++	ret = stmmac_suspend(dev);
++	if (ret)
++		return ret;
++
++	ret = pci_save_state(pdev);
++	if (ret)
++		return ret;
++
++	pci_disable_device(pdev);
++	pci_wake_from_d3(pdev, true);
++	return 0;
++}
++
++static int __maybe_unused loongson_dwmac_resume(struct device *dev)
++{
++	struct pci_dev *pdev = to_pci_dev(dev);
++	int ret;
++
++	pci_restore_state(pdev);
++	pci_set_power_state(pdev, PCI_D0);
++
++	ret = pci_enable_device(pdev);
++	if (ret)
++		return ret;
++
++	pci_set_master(pdev);
++
++	return stmmac_resume(dev);
++}
++
++static SIMPLE_DEV_PM_OPS(loongson_dwmac_pm_ops, loongson_dwmac_suspend,
++			 loongson_dwmac_resume);
++
++static const struct pci_device_id loongson_dwmac_id_table[] = {
++	{ PCI_VDEVICE(LOONGSON, 0x7a03) },
++	{}
++};
++MODULE_DEVICE_TABLE(pci, loongson_dwmac_id_table);
++
++struct pci_driver loongson_dwmac_driver = {
++	.name = "dwmac-loongson-pci",
++	.id_table = loongson_dwmac_id_table,
++	.probe = loongson_dwmac_probe,
++	.remove = loongson_dwmac_remove,
++	.driver = {
++		.pm = &loongson_dwmac_pm_ops,
++	},
++};
++
++module_pci_driver(loongson_dwmac_driver);
++
++MODULE_DESCRIPTION("Loongson DWMAC PCI driver");
++MODULE_AUTHOR("Qing Zhang <zhangqing@loongson.cn>");
++MODULE_LICENSE("GPL v2");
+-- 
+2.31.0
+
