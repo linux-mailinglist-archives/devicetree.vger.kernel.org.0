@@ -2,167 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C891A3AC8F6
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 12:39:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3219A3AC961
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 13:04:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232427AbhFRKl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Jun 2021 06:41:29 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:25161 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbhFRKl3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 06:41:29 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1624012760; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=4fG1y8WDPrYtBMq9UfTcY0OGD8AEXRPSN4vcguMIVpM=;
- b=hM9Gp4811nlQerq7VsPYBgtKBagW3wRe0FX/zT+hpja8LgnEPgPalU+zm1VFNGuXlf5LCb6L
- u6BWtkzKmHiunn/9njmTj5tSfCaKb7A0hLzADjkUz3o2hBTsSbtMGHY7uQ+isXsUUd3/HrkZ
- mYlgJhGqj6zU1Ca6/ifqbqUeb2g=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 60cc77d751f29e6bae2a4a6e (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Jun 2021 10:39:19
- GMT
-Sender: rajeevny=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 04CA2C4338A; Fri, 18 Jun 2021 10:39:19 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: rajeevny)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4116CC433D3;
-        Fri, 18 Jun 2021 10:39:17 +0000 (UTC)
+        id S233912AbhFRLGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Jun 2021 07:06:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55364 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233006AbhFRLG0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Jun 2021 07:06:26 -0400
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17124C0613A2
+        for <devicetree@vger.kernel.org>; Fri, 18 Jun 2021 04:04:16 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:104a:f93d:b771:fc40])
+        by laurent.telenet-ops.be with bizsmtp
+        id Jb4C2500J47PYg101b4CXF; Fri, 18 Jun 2021 13:04:13 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1luCIG-000yA4-8t; Fri, 18 Jun 2021 13:04:12 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1luCIF-007GWL-Lu; Fri, 18 Jun 2021 13:04:11 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2 0/5] renesas,iic: Fixes and DT binding to json-schema conversion
+Date:   Fri, 18 Jun 2021 13:04:06 +0200
+Message-Id: <cover.1624013644.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Date:   Fri, 18 Jun 2021 16:09:17 +0530
-From:   rajeevny@codeaurora.org
-To:     Jonathan Marek <jonathan@marek.ca>
-Cc:     Rob Herring <robh@kernel.org>, robh+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
-        abhinavk@codeaurora.org, kalyan_t@codeaurora.org,
-        mkrishn@codeaurora.org
-Subject: Re: [v1 1/3] dt-bindings: msm/dsi: Add yaml schema for 7nm DSI PHY
-In-Reply-To: <a453734a-ab1f-bf35-9272-0b94c713f05b@marek.ca>
-References: <1622468035-8453-1-git-send-email-rajeevny@codeaurora.org>
- <1622468035-8453-2-git-send-email-rajeevny@codeaurora.org>
- <20210601205848.GA1025498@robh.at.kernel.org>
- <ec1bcb4e734b784ab17c4fc558a5fab9@codeaurora.org>
- <27dec6f881a3b8bd5e13ba32990f975b@codeaurora.org>
- <a453734a-ab1f-bf35-9272-0b94c713f05b@marek.ca>
-Message-ID: <a736c5e48907bc2da064f98d94dff9da@codeaurora.org>
-X-Sender: rajeevny@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+	Hi all,
 
-On 17-06-2021 20:37, Jonathan Marek wrote:
-> On 6/16/21 1:50 AM, rajeevny@codeaurora.org wrote:
->> On 03-06-2021 01:32, rajeevny@codeaurora.org wrote:
->>> On 02-06-2021 02:28, Rob Herring wrote:
->>>> On Mon, May 31, 2021 at 07:03:53PM +0530, Rajeev Nandan wrote:
->>> 
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    oneOf:
->>>>> +      - const: qcom,dsi-phy-7nm
->>>> 
->>>> When would one use this?
->>> This is for SM8250.
->>> 
->>>> 
->>>>> +      - const: qcom,dsi-phy-7nm-7280
->>>>> +      - const: qcom,dsi-phy-7nm-8150
->>>> 
->>>> These don't look like full SoC names (sm8150?) and it's
->>>> <vendor>,<soc>-<block>.
->>> 
->>> Thanks, Rob, for the review.
->>> 
->>> I just took the `compatible` property currently used in the DSI PHY 
->>> driver
->>> (drivers/gpu/drm/msm/dsi/phy/dsi_phy.c), and added a new entry for 
->>> sc7280.
->>> A similar pattern of `compatible` names are used in other variants of 
->>> the
->>> DSI PHY driver e.g. qcom,qcom,dsi-phy-10nm-8998, 
->>> qcom,dsi-phy-14nm-660 etc.
->>> 
->>> The existing compatible names "qcom,dsi-phy-7nm-8150" (SoC at the 
->>> end) make
->>> some sense, if we look at the organization of the dsi phy driver 
->>> code.
->>> I am new to this and don't know the reason behind the current code
->>> organization and this naming.
->>> 
->>> Yes, I agree with you, we should use full SoC names. Adding
->>> the SoC name at the end does not feel very convincing, so I will 
->>> change this
->>> to the suggested format e.g. "qcom,sm8250-dsi-phy-7nm", and will 
->>> rename the
->>> occurrences in the driver and device tree accordingly.
->>> Do I need to make changes for 10nm, 14nm, 20nm, and 28nm DSI PHY too?
->>> Bindings doc for these PHYs recently got merged to msm-next [1]
->>> 
->>> 
->>> [1]
->>> https://gitlab.freedesktop.org/drm/msm/-/commit/8fc939e72ff80116c090aaf03952253a124d2a8e
->> 
->> Hi Rob,
->> 
->> I missed adding "robh+dt@kernel.org" earlier in this thread.
->> 
->> Please check my response to your review comments. Regarding your 
->> suggestion to use <vendor>,<soc>-<block> format for compatible 
->> property, should I also upload a new patch to make changes in 10nm, 
->> 14nm, 20nm, and 28nm DSI PHY DT bindings?
->> 
->> Thanks,
->> Rajeev
->> 
-> 
-> Hi,
-> 
-> I missed this and ended up sending a similar patch a week later (as
-> part of my cphy series, because I needed it to add a "phy-type"
-> property).
-> 
-> "qcom,dsi-phy-7nm" and "qcom,dsi-phy-7nm-8150" aren't new compatibles,
-> they were previously documented in the .txt bindings, which are
-> getting removed, but the new .yaml bindings didn't include them.
-> Documenting them is just a fixup to that patch [1] which is already
-> R-B'd by RobH (and has similar compatibles such as "qcom,dsi-phy-10nm"
-> and "qcom,dsi-phy-10nm-8998
-> ").
-> 
-> You can use a different/better naming scheme for sc7280, but changing
-> the others has nothing to do with adding support for sc7280.
-> 
-> [1]
-> https://gitlab.freedesktop.org/drm/msm/-/commit/8fc939e72ff80116c090aaf03952253a124d2a8e
+According to the Hardware User's Manual, automatic transmission for PMIC
+control (DVFS) is not available on RZ/G1, R-Car E3, and RZ/G2E SoC.
+Thanks to various experiments by Wolfram (thanks a lot!) and me, we
+devised this really means that support for automatic DVFS is not
+present, while the IIC automatic transmission feature itself is still
+available, albeit not super useful.
 
-Hi Jonathan,
+Hence this patch series updates the renesas,iic DT bindings and DTS
+files to always consider all variants and instances compatible with the
+family-specific and generic versions, and converts the bindings to
+json-schema.
 
-I will discard this patch and will add the bindings for the sc7280 on 
-top of your patch [1].
+Changes compared to v1[1][2]:
+    - Consider all variants and instances compatible with the
+      family-specific and generic versions.
 
-[1] 
-https://lore.kernel.org/linux-arm-msm/20210617144349.28448-2-jonathan@marek.ca/
+I plan to queue patches 2-4 in renesas-devel for v5.15.
 
+Thanks for your comments!
 
-Thanks,
-Rajeev
+[1] "[PATCH/RFC 4/6] dt-bindings: i2c: renesas,iic: Convert to json-schema"
+    https://lore.kernel.org/r/ecfaf6be5e8c285db2bcc823bb1dd89931fa5c29.1620138454.git.geert+renesas@glider.be
+[2] "[PATCH 0/2] ARM: dts: r8a7745,r8a7794: Remove generic compatible
+    strings from iic blocks"
+    https://lore.kernel.org/r/cover.1620139307.git.geert+renesas@glider.be
+
+Geert Uytterhoeven (5):
+  dt-bindings: i2c: renesas,iic: Always declare generic compatibility
+  ARM: dts: rzg1: Add generic compatible strings to IIC nodes
+  arm64: dts: renesas: r8a774c0: Add generic compatible string to IIC
+    node
+  arm64: dts: renesas: r8a77990: Add generic compatible string to IIC
+    node
+  dt-bindings: i2c: renesas,iic: Convert to json-schema
+
+ .../devicetree/bindings/i2c/renesas,iic.txt   |  72 ---------
+ .../bindings/i2c/renesas,rmobile-iic.yaml     | 149 ++++++++++++++++++
+ MAINTAINERS                                   |   2 +-
+ arch/arm/boot/dts/r8a7742.dtsi                |   4 +-
+ arch/arm/boot/dts/r8a7743.dtsi                |   4 +-
+ arch/arm/boot/dts/r8a7744.dtsi                |   4 +-
+ arch/arm64/boot/dts/renesas/r8a774c0.dtsi     |   6 +-
+ arch/arm64/boot/dts/renesas/r8a77990.dtsi     |   6 +-
+ 8 files changed, 167 insertions(+), 80 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/renesas,iic.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/renesas,rmobile-iic.yaml
+
+-- 
+2.25.1
+
