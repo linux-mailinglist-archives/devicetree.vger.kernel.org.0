@@ -2,269 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B47B3AC068
-	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 03:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A5B43AC094
+	for <lists+devicetree@lfdr.de>; Fri, 18 Jun 2021 03:41:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233430AbhFRBGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Jun 2021 21:06:22 -0400
-Received: from szxga02-in.huawei.com ([45.249.212.188]:7479 "EHLO
-        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233463AbhFRBGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Jun 2021 21:06:21 -0400
-Received: from dggeme755-chm.china.huawei.com (unknown [172.30.72.55])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4G5gbY71flzZhlv;
-        Fri, 18 Jun 2021 09:01:13 +0800 (CST)
-Received: from [10.40.166.221] (10.40.166.221) by
- dggeme755-chm.china.huawei.com (10.3.19.101) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2176.2; Fri, 18 Jun 2021 09:04:10 +0800
-Message-ID: <60CBF10A.6020304@hisilicon.com>
-Date:   Fri, 18 Jun 2021 09:04:10 +0800
-From:   Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+        id S233549AbhFRBnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Jun 2021 21:43:43 -0400
+Received: from mail-db8eur05on2049.outbound.protection.outlook.com ([40.107.20.49]:51681
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233475AbhFRBnn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Jun 2021 21:43:43 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=T/IElhSH3Pb7ecijMllQ6I7QWotCaR+yxui/AuijyEgSjfLS0NJVhwtib0o5c93JT9z/CcdAVi1/sYibJjM2O8GP6qspMKq4UMn1af46IlkPAdZNL8S/R71KkCx1YPyjXKUmz8RhqTgM86xGdq4wh15vc0X6IITN1jgVWLqm6OzVNs8ZwJyILrIb0hS0cQ+lsvpTaOolJNFC1TMX4S1MuYSVataFtGOHj5ePYSavp/trvQAnJwOUSiElhBDzy6TeYX5iulfK9TmYKaiOuRTgIhTTrN32+yDs/Gv5/KS1Yd3H+HJocOZ00PpFk/t2mSlghfYCG/zoRG2sz2BKt6JLOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H8HlkfxdlqXgjg+HF3Mlp4elkipBJcoC+svd5C/wYiA=;
+ b=kPF7t9hoZuNSWQMmcj5hg23Yl+PxZiWH+Cz2nWQhyr95IQR/CUolMkzciU3le2TTpMfdeKe1Y4c8Te2aIzY3PaaglQQMGWIJk677cT/LNTuI7DKKIuI+wGn0fnu3znTGbrRm/q5jvzM2v9dG2iJ0Je94VPwAywIq3TOY4oSdwuyQsmvCeF+4R3ZGHjHqiojVyGueOwUGpl99ACU9RkfbVnRDcGC8gYw9S57cstUQ8DzdhkwX/6oBN9idQtpChuJ5aRKTtvTHgkPml9WctXjG0M9WEzFFamqT/sJCXgtM5zDL1f2qn78s+Z9IaA0bwSwfw0COAxdQyaM07YFB2wFxqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H8HlkfxdlqXgjg+HF3Mlp4elkipBJcoC+svd5C/wYiA=;
+ b=QWyxKBXkLnql1xmw+DqBp7WB3C6rSmqcoyByN5iFgLp6O4dn3MEpLg0qKtPsXV3CDzNb5HogeVOlgA5Ik2Hd7OniB58zhx3xB1HdBvI3SyVrm+bZkNPVMLNL6I+D0IUNEMQPOGynP0Tp7Y7nOOgdNqxASpwJkC2lgsm11vBHbK4=
+Received: from DBBPR04MB7930.eurprd04.prod.outlook.com (2603:10a6:10:1ea::12)
+ by DB8PR04MB6857.eurprd04.prod.outlook.com (2603:10a6:10:114::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19; Fri, 18 Jun
+ 2021 01:41:31 +0000
+Received: from DBBPR04MB7930.eurprd04.prod.outlook.com
+ ([fe80::3164:e047:376d:4a4f]) by DBBPR04MB7930.eurprd04.prod.outlook.com
+ ([fe80::3164:e047:376d:4a4f%7]) with mapi id 15.20.4242.021; Fri, 18 Jun 2021
+ 01:41:31 +0000
+From:   Jacky Bai <ping.bai@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 10/11] arm64: dts: imx8ulp: Add the basic dtsi file for
+ imx8ulp
+Thread-Topic: [PATCH 10/11] arm64: dts: imx8ulp: Add the basic dtsi file for
+ imx8ulp
+Thread-Index: AQHXW3dhtwkR0OiIlUGYwWN82zQfNasXXiiAgACYhkCAARYmMA==
+Date:   Fri, 18 Jun 2021 01:41:31 +0000
+Message-ID: <DBBPR04MB7930F4169C57476C73FD924E870D9@DBBPR04MB7930.eurprd04.prod.outlook.com>
+References: <20210607083921.2668568-1-ping.bai@nxp.com>
+ <20210607083921.2668568-11-ping.bai@nxp.com>
+ <20210616235137.GA311711@robh.at.kernel.org>
+ <DBBPR04MB7930670926DD2CB2A474DDAD870E9@DBBPR04MB7930.eurprd04.prod.outlook.com>
+In-Reply-To: <DBBPR04MB7930670926DD2CB2A474DDAD870E9@DBBPR04MB7930.eurprd04.prod.outlook.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fbcf6301-090e-45c3-53a4-08d931fa3302
+x-ms-traffictypediagnostic: DB8PR04MB6857:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB8PR04MB6857247C7C23540B2AF8580B870D9@DB8PR04MB6857.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: c5RJuTclH//mmxeKom+ZZQdaQ0w8duqboo0l2rXOjFUqQjx6nsx5L0rrCMkG2UtAihTO3SK0n29cPihpNjusJNAbqBnOeqkbABThTP1RUz0YLmjrhj35zGJVHh6Vmej275y0I1hqC01gUxfuSQmTO8sxQMVj8TwH2W15ymQC9CSJQ+P1p1+xlDuphFyPRYnGF8YIWh0XCd/nbtjbEAaDkkxUuee/QPBx5H2o3/VeCgj6kXxn4Gnl00OW4jT0PHXIWlSi71ptrsp3j73gYv6FOsyj1akS0DhKwSHf9MJtcFGCM9oEfw+oBir7S+E4N3eq99nrsDo3oLFm6lNSDuLaV2lbI/+TuGNrJ33++r60f/6JiXF2Y2AHpQ+B9j/wysnlrX+wJV5tj1pGuUYLxNGJS9HaDFTFS8WGpZkVD/AKiXgDinPVBgRo2lxuxSGkepe/Pwz5d0cdx96kwWWnNtWBChPgF7dDcTEFqiQu1YMaRj1OdNus0pAzA2GgyPcn4VnYBC8eMnZvqEbuhFc3qhjuhSY6EfEDCSA33OfHxGXOWARPe0+SmoPFfco9/mT3NrQkr7yfDA9lrYnKEX4yJuEplzovUGqUTmmxxgHHm2mcQaNrFzh4F3fOfv/sJVzy0LcCLEMTexA7fBk9AqRAZ7XjTw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7930.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(136003)(366004)(376002)(39860400002)(26005)(6506007)(7696005)(2906002)(186003)(122000001)(66946007)(64756008)(66446008)(52536014)(66476007)(66556008)(55016002)(33656002)(86362001)(9686003)(6916009)(54906003)(316002)(478600001)(8936002)(5660300002)(4326008)(83380400001)(38100700002)(71200400001)(8676002)(76116006)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NW1LMEpINWd1RmpzZFpNVzFlNkRhcmJTT1JKMWlHVzBUdDhJSkRGTmRtUmNj?=
+ =?utf-8?B?RzR4Y1p1SkZWckE4TFhqMlFVZ0NJNkRrUWF3RGVqVzQwVHhIVVVPRHVDb25K?=
+ =?utf-8?B?RmtxbHBBZzFKTWplNGVPZGZxWGJMWFhHdDFLQXhMSktxdkxSQmd5aExxSE1K?=
+ =?utf-8?B?dW5SZmVZdW8vZFlDYTRWV0hMb1pyUDNQN0RrMjRlZkxGeGhhMVVpQ0pDL3Ew?=
+ =?utf-8?B?ZjZ6K1A5VytkU1QvL0JwcUdpc0RYM0FkeTB3dEoyQVhBaGdnNm8vczcyZW5v?=
+ =?utf-8?B?eTV0bHEyWEM2NzkxVlJNVENwMXRlT0FuY1ovM3BuazFyVmJEOHQ2R1Bhc1lz?=
+ =?utf-8?B?ZnNiNkFTRWFJVU81Y2xHeEdFREp6RmtXZjFMM2w0MVdzOEh0L29MRmY5Q2k2?=
+ =?utf-8?B?WTZ5Q25pN0dvMUVuUEZmTU43QURsYko3YktNWlAyWDg2UTRiV1hra1FwdmpV?=
+ =?utf-8?B?cndHSFpSK29RMVJsQjV6L25UTVY5SERxbG5DbVNVaEpWNHo1U054bEVMUS9p?=
+ =?utf-8?B?NWFrVWJNVTY0UGhoQ09rNXpvYXNXRlZsV0ozTnVLVHZPVWhOS1RyZmhJbEZZ?=
+ =?utf-8?B?akFEZWRnbUNtSytmckI0czF2ZDJ5QzhQQjdEWGJIVm0vaGRZSTFpRVFPOGEz?=
+ =?utf-8?B?bjhKcTBERnh3c3ozWFRodVR6eHNXeU1XcnFnL25oQjB2c0pQVFJqVG1XSE5R?=
+ =?utf-8?B?Ri9lQ28zT2lqbm51NlU0OHlVR0F0emVGTUg3aHNMdXllL1hjTkhTT0J4bUlN?=
+ =?utf-8?B?bUplRE5yeFd1bWdQcHZCMEg3a0ZzdTh0WkRUeXB6UnE5Nm1MMFVpUmM0My9R?=
+ =?utf-8?B?dVNRTTZuQXFZd3dDdXAwNThZWXRsODMwaEJpOFFWMXh3c0Rkc2ZTZGR2NUZ4?=
+ =?utf-8?B?YjhTOXM2eStlSlR1ZDJZd2VCbWJIb0JJRmgrTFArVW55Z09QeHI5WUdqcWFh?=
+ =?utf-8?B?SjJIemZnMzMyZlZhTXBoVG41TEJrcmN6Q1FTYUJYaHVQemhiNWd4ZGpaMDdw?=
+ =?utf-8?B?SXNKWXBpZ3pYWjVMSzVYU0NXMTRTNEFXMzlNdXM5WW5ocS9zZUNWRzhIek5O?=
+ =?utf-8?B?UkFYdjVHVTIwVk9tcVJyaXdRcnByM1I5U21KOEh2TWRLQVNzRTljUy9WV1Er?=
+ =?utf-8?B?RUpLQ0NiN0dzVzZLV0R1SjdlMy9JdTJHUkMvT2pUb3lGT2pnTXN1M2NOTmtV?=
+ =?utf-8?B?Vlg1SERQMEdkQ0ozYitEdnZmcXg5ZU9IeDFRV25wbEVkb0sxMzRjZCs5N0d0?=
+ =?utf-8?B?SUd5SVA4ZUpseWxUMGFOdEZaSDk4TnFVSnp3MU1DZERSRVBvMldwZjRQUFVr?=
+ =?utf-8?B?OENXQitTOXpsL29YS2tEUWYxU2tlME9uN0U4V3o0SzVBdndGZlNidkRZN3dQ?=
+ =?utf-8?B?RENpTForaW13Yk5KTlJPRVhOdFg5TEZpaDhCRHlFNVZkcUNEenQyZkFNeitU?=
+ =?utf-8?B?MkRIbWd6cUFqOFovUjlmSko0OU9DUEhrclM0WUlPbXZxVlM4VUI4OEFaK3Bt?=
+ =?utf-8?B?SkZNWENyeHoybGlYdWVxbFZQR2lnc1hkdXQ0MXgxVDFPQXFYTnh5OFQ5OUps?=
+ =?utf-8?B?YTJNclZuNGZqdW9nS1Y0RmhkdHJLREZSL0wzWStpZEZZTVk4WDRwY0ZRc3VK?=
+ =?utf-8?B?Z2pVWnNaY3dzOTJOSTlwL3hVYndaYS9zc2F0RDdRVHN6SXdNSlZSYXRiSUkr?=
+ =?utf-8?B?aTVRVHU3L1R0QUJPd2hXNGhpVEl0ZHY3UlpubisxZE9nZ29BcU5VT0JFR3Nm?=
+ =?utf-8?Q?OSFFrCGdjA3b8YkKNyDC8looo0ugvTBQRbnCowq?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-To:     Hao Fang <fanghao11@huawei.com>, <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <prime.zeng@hisilicon.com>
-Subject: Re: [PATCH] arm64: dts: hisilicon: use the correct HiSilicon copyright
-References: <1621678832-14924-1-git-send-email-fanghao11@huawei.com>
-In-Reply-To: <1621678832-14924-1-git-send-email-fanghao11@huawei.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.40.166.221]
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- dggeme755-chm.china.huawei.com (10.3.19.101)
-X-CFilter-Loop: Reflected
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7930.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbcf6301-090e-45c3-53a4-08d931fa3302
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jun 2021 01:41:31.6364
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yY7UIDAwbrqNgS9lYz6qFryr23dhUENYnHM8CgZcQUP2qDZH2Sw1VZW8GlFmrzUCiYZKY+Qg7xIbAf9WghAFNg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6857
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hao Fang,
-
-On 2021/5/22 18:20, Hao Fang wrote:
-> s/Hisilicon/HiSilicon/.
-> It should use capital S, according to the official website
-> https://www.hisilicon.com/en.
-> 
-> Signed-off-by: Hao Fang <fanghao11@huawei.com>
-
-Thanks!
-Applied to the hisilicon arm64 dt tree.
-
-Best Regards,
-Wei
-
-> ---
->  arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi | 2 +-
->  arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts   | 2 +-
->  arch/arm64/boot/dts/hisilicon/hi3660.dtsi           | 2 +-
->  arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts   | 2 +-
->  arch/arm64/boot/dts/hisilicon/hi3670.dtsi           | 2 +-
->  arch/arm64/boot/dts/hisilicon/hi6220-coresight.dtsi | 2 +-
->  arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts      | 2 +-
->  arch/arm64/boot/dts/hisilicon/hi6220.dtsi           | 2 +-
->  arch/arm64/boot/dts/hisilicon/hip05-d02.dts         | 2 +-
->  arch/arm64/boot/dts/hisilicon/hip05.dtsi            | 2 +-
->  arch/arm64/boot/dts/hisilicon/hip06-d03.dts         | 2 +-
->  arch/arm64/boot/dts/hisilicon/hip06.dtsi            | 2 +-
->  arch/arm64/boot/dts/hisilicon/hip07-d05.dts         | 2 +-
->  arch/arm64/boot/dts/hisilicon/hip07.dtsi            | 2 +-
->  include/dt-bindings/pinctrl/hisi.h                  | 2 +-
->  15 files changed, 15 insertions(+), 15 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi
-> index d607f2f..79a55a0f 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660-coresight.dtsi
-> @@ -3,7 +3,7 @@
->  /*
->   * dtsi for Hisilicon Hi3660 Coresight
->   *
-> - * Copyright (C) 2016-2018 Hisilicon Ltd.
-> + * Copyright (C) 2016-2018 HiSilicon Ltd.
->   *
->   * Author: Wanglai Shi <shiwanglai@hisilicon.com>
->   *
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-> index 963300e..f68580d 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-> @@ -2,7 +2,7 @@
->  /*
->   * dts file for Hisilicon HiKey960 Development Board
->   *
-> - * Copyright (C) 2016, Hisilicon Ltd.
-> + * Copyright (C) 2016, HiSilicon Ltd.
->   *
->   */
->  
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> index cab89dc..f1ec87c 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-> @@ -2,7 +2,7 @@
->  /*
->   * dts file for Hisilicon Hi3660 SoC
->   *
-> - * Copyright (C) 2016, Hisilicon Ltd.
-> + * Copyright (C) 2016, HiSilicon Ltd.
->   */
->  
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> index 7f9f988..d8abf44 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> @@ -2,7 +2,7 @@
->  /*
->   * dts file for Hisilicon HiKey970 Development Board
->   *
-> - * Copyright (C) 2016, Hisilicon Ltd.
-> + * Copyright (C) 2016, HiSilicon Ltd.
->   * Copyright (C) 2018, Linaro Ltd.
->   *
->   */
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> index 8830795..20698cf 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-> @@ -2,7 +2,7 @@
->  /*
->   * dts file for Hisilicon Hi3670 SoC
->   *
-> - * Copyright (C) 2016, Hisilicon Ltd.
-> + * Copyright (C) 2016, HiSilicon Ltd.
->   * Copyright (C) 2018, Linaro Ltd.
->   */
->  
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-coresight.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220-coresight.dtsi
-> index 7b3010f..3f387f4 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi6220-coresight.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi6220-coresight.dtsi
-> @@ -2,7 +2,7 @@
->  /*
->   * dtsi file for Hisilicon Hi6220 coresight
->   *
-> - * Copyright (C) 2017 Hisilicon Ltd.
-> + * Copyright (C) 2017 HiSilicon Ltd.
->   *
->   * Author: Pengcheng Li <lipengcheng8@huawei.com>
->   *         Leo Yan <leo.yan@linaro.org>
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-> index 91d0867..3df2afb 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-> @@ -2,7 +2,7 @@
->  /*
->   * dts file for Hisilicon HiKey Development Board
->   *
-> - * Copyright (C) 2015, Hisilicon Ltd.
-> + * Copyright (C) 2015, HiSilicon Ltd.
->   *
->   */
->  
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-> index d426c6c..dde9371 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-> @@ -2,7 +2,7 @@
->  /*
->   * dts file for Hisilicon Hi6220 SoC
->   *
-> - * Copyright (C) 2015, Hisilicon Ltd.
-> + * Copyright (C) 2015, HiSilicon Ltd.
->   */
->  
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip05-d02.dts b/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
-> index 369b69b..40f3e00 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
-> @@ -2,7 +2,7 @@
->  /**
->   * dts file for Hisilicon D02 Development Board
->   *
-> - * Copyright (C) 2014,2015 Hisilicon Ltd.
-> + * Copyright (C) 2014,2015 HiSilicon Ltd.
->   */
->  
->  /dts-v1/;
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip05.dtsi b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> index 4aed8d4..7b2abd1 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> @@ -2,7 +2,7 @@
->  /**
->   * dts file for Hisilicon D02 Development Board
->   *
-> - * Copyright (C) 2014,2015 Hisilicon Ltd.
-> + * Copyright (C) 2014,2015 HiSilicon Ltd.
->   */
->  
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip06-d03.dts b/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
-> index 9f4a930..35af5d3 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
-> @@ -2,7 +2,7 @@
->  /**
->   * dts file for Hisilicon D03 Development Board
->   *
-> - * Copyright (C) 2016 Hisilicon Ltd.
-> + * Copyright (C) 2016 HiSilicon Ltd.
->   */
->  
->  /dts-v1/;
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip06.dtsi b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-> index 7deca5f..70d7732 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-> @@ -2,7 +2,7 @@
->  /**
->   * dts file for Hisilicon D03 Development Board
->   *
-> - * Copyright (C) 2016 Hisilicon Ltd.
-> + * Copyright (C) 2016 HiSilicon Ltd.
->   */
->  
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip07-d05.dts b/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
-> index 81a2312..c3df678 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
-> @@ -2,7 +2,7 @@
->  /**
->   * dts file for Hisilicon D05 Development Board
->   *
-> - * Copyright (C) 2016 Hisilicon Ltd.
-> + * Copyright (C) 2016 HiSilicon Ltd.
->   */
->  
->  /dts-v1/;
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip07.dtsi b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-> index 2172d80..6baf6a6 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-> @@ -2,7 +2,7 @@
->  /**
->   * dts file for Hisilicon D05 Development Board
->   *
-> - * Copyright (C) 2016 Hisilicon Ltd.
-> + * Copyright (C) 2016 HiSilicon Ltd.
->   */
->  
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> diff --git a/include/dt-bindings/pinctrl/hisi.h b/include/dt-bindings/pinctrl/hisi.h
-> index 0359bfd..93064c7 100644
-> --- a/include/dt-bindings/pinctrl/hisi.h
-> +++ b/include/dt-bindings/pinctrl/hisi.h
-> @@ -1,7 +1,7 @@
->  /*
->   * This header provides constants for hisilicon pinctrl bindings.
->   *
-> - * Copyright (c) 2015 Hisilicon Limited.
-> + * Copyright (c) 2015 HiSilicon Limited.
->   * Copyright (c) 2015 Linaro Limited.
->   *
->   * This program is free software; you can redistribute it and/or modify
-> 
+PiBTdWJqZWN0OiBSRTogW1BBVENIIDEwLzExXSBhcm02NDogZHRzOiBpbXg4dWxwOiBBZGQgdGhl
+IGJhc2ljIGR0c2kgZmlsZSBmb3INCj4gaW14OHVscA0KPiANCj4gPiBTdWJqZWN0OiBSZTogW1BB
+VENIIDEwLzExXSBhcm02NDogZHRzOiBpbXg4dWxwOiBBZGQgdGhlIGJhc2ljIGR0c2kNCj4gPiBm
+aWxlIGZvciBpbXg4dWxwDQo+ID4NCj4gPiBPbiBNb24sIEp1biAwNywgMjAyMSBhdCAwNDozOToy
+MFBNICswODAwLCBKYWNreSBCYWkgd3JvdGU6DQo+ID4gPiBBZGQgdGhlIGJhc2ljIGR0c2kgc3Vw
+cG9ydCBmb3IgaS5NWDhVTFAuDQo+ID4gPg0KPiA+ID4gaS5NWCA4VUxQIGlzIHBhcnQgb2YgdGhl
+IFVMUCBmYW1pbHkgd2l0aCBlbXBoYXNpcyBvbiBleHRyZW1lDQo+ID4gPiBsb3ctcG93ZXIgdGVj
+aG5pcXVlcyB1c2luZyB0aGUgMjggbm0gZnVsbHkgZGVwbGV0ZWQgc2lsaWNvbiBvbg0KPiA+ID4g
+aW5zdWxhdG9yIHByb2Nlc3MuIExpa2UgaS5NWCA3VUxQLCBpLk1YIDhVTFAgY29udGludWVzIHRv
+IGJlIGJhc2VkDQo+ID4gPiBvbiBhc3ltbWV0cmljIGFyY2hpdGVjdHVyZSwgaG93ZXZlciB3aWxs
+IGFkZCBhIHRoaXJkIERTUCBkb21haW4gZm9yDQo+ID4gPiBhZHZhbmNlZCB2b2ljZS9hdWRpbyBj
+YXBhYmlsaXR5IGFuZCBhIEdyYXBoaWNzIGRvbWFpbiB3aGVyZSBpdCBpcw0KPiA+ID4gcG9zc2li
+bGUgdG8gYWNjZXNzIGdyYXBoaWNzIHJlc291cmNlcyBmcm9tIHRoZSBhcHBsaWNhdGlvbiBzaWRl
+IG9yDQo+ID4gPiB0aGUgcmVhbHRpbWUgc2lkZS4NCj4gPiA+DQo+ID4gPiBTaWduZWQtb2ZmLWJ5
+OiBKYWNreSBCYWkgPHBpbmcuYmFpQG54cC5jb20+DQo+ID4gPiAtLS0NCj4gPiA+ICAuLi4vYm9v
+dC9kdHMvZnJlZXNjYWxlL2lteDh1bHAtcGluZnVuYy5oICAgICAgfCA5NzgNCj4gPiArKysrKysr
+KysrKysrKysrKysNCj4gPiA+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4dWxw
+LmR0c2kgICAgfCA0NzQgKysrKysrKysrDQo+ID4gPiAgMiBmaWxlcyBjaGFuZ2VkLCAxNDUyIGlu
+c2VydGlvbnMoKykgIGNyZWF0ZSBtb2RlIDEwMDc1NQ0KPiA+ID4gYXJjaC9hcm02NC9ib290L2R0
+cy9mcmVlc2NhbGUvaW14OHVscC1waW5mdW5jLmgNCj4gPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQg
+YXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OHVscC5kdHNpDQo+ID4gPg0KPiA+ID4g
+ZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDh1bHAtcGluZnVu
+Yy5oDQo+ID4gPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDh1bHAtcGluZnVu
+Yy5oDQo+ID4gPiBuZXcgZmlsZSBtb2RlIDEwMDc1NQ0KPiA+ID4gaW5kZXggMDAwMDAwMDAwMDAw
+Li5mYWE3MDI2MzRhMzgNCj4gPiA+IC0tLSAvZGV2L251bGwNCj4gPiA+ICsrKyBiL2FyY2gvYXJt
+NjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDh1bHAtcGluZnVuYy5oDQo+ID4gPiBAQCAtMCwwICsx
+LDk3OCBAQA0KPiA+ID4gKy8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wKyAqLw0K
+PiA+DQo+ID4NCj4gPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2Fs
+ZS9pbXg4dWxwLmR0c2kNCj4gPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14
+OHVscC5kdHNpDQo+ID4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+ID4gaW5kZXggMDAwMDAw
+MDAwMDAwLi40NjljMmRjZDQ2MzYNCj4gPiA+IC0tLSAvZGV2L251bGwNCj4gPiA+ICsrKyBiL2Fy
+Y2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2lteDh1bHAuZHRzaQ0KPiA+ID4gQEAgLTAsMCAr
+MSw0NzQgQEANCj4gPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjArIE9S
+IE1JVCkNCj4gPg0KPiA+IEhvdyBjYW4gSSB1c2UgTUlUIHdoZW4gR1BMIG9ubHkgaGVhZGVyIGlz
+IGluY2x1ZGVkPyBEdWFsIGxpY2Vuc2UgdGhlDQo+ID4gaGVhZGVyIHBsZWFzZS4NCj4gPg0KPiAN
+Cj4gT2ssIHdpbGwgYWRkIER1YWwgbGljZW5zZSBpbiB0aGUgYWJvdmUgZmlsZS4NCj4gDQo+ID4g
+QW5kIE5YUCBpcyBnb29kIHdpdGggR1BMdjMsIEdQTHY0LCBldGMuPw0KPiANCj4gSXQgc2VlbXMg
+bm8gZmlsZSB1c2UgR1BMdjMgaW4gbGF0ZXN0IGtlcm5lbCwgSSB3aWxsIGtlZXAgdXNlIEdQTHYy
+IGZvciBub3csIGlzIGl0DQo+IG9rPw0KDQpTb3JyeSwgUm9iLCBpdCBzZWVtcyBJIG1pc3VuZGVy
+c3RhbmQgd2hhdCB5b3UgbWVhbiBeX14uIEkganVzdCBjaGVja2VkIHRoZSBOWFAgbGljZW5zZSBw
+b2xpY3ksIEdQTHYyIG9yIGxhdGVyIGlzIG9rLg0KDQpCUg0KSmFja3kgQmFpDQo+IA0KPiBCUg0K
+PiBKYWNreSBCYWkNCj4gPg0KPiA+ID4gKy8qDQo+ID4gPiArICogQ29weXJpZ2h0IDIwMjEgTlhQ
+DQo+ID4gPiArICovDQo+ID4gPiArDQo+ID4gPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2Nsb2Nr
+L2lteDh1bHAtY2xvY2suaD4NCj4gPiA+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvZ3Bpby9ncGlv
+Lmg+DQo+ID4gPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2Fy
+bS1naWMuaD4NCj4gPiA+ICsNCj4gPiA+ICsjaW5jbHVkZSAiaW14OHVscC1waW5mdW5jLmgiDQo=
