@@ -2,51 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B1B3ADBD8
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jun 2021 23:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3B6B3ADBF3
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 00:11:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbhFSWAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Jun 2021 18:00:54 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:51424 "EHLO gloria.sntech.de"
+        id S229585AbhFSWNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Jun 2021 18:13:34 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:51582 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229521AbhFSWAx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Jun 2021 18:00:53 -0400
-Received: from p508fcd5b.dip0.t-ipconnect.de ([80.143.205.91] helo=phil.fritz.box)
+        id S229477AbhFSWNd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 19 Jun 2021 18:13:33 -0400
+Received: from p508fcd5b.dip0.t-ipconnect.de ([80.143.205.91] helo=phil.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1luiz8-0000U7-AG; Sat, 19 Jun 2021 23:58:38 +0200
+        id 1lujBJ-0000aH-CD; Sun, 20 Jun 2021 00:11:13 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Alex Bee <knaerzche@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Markus Reichl <m.reichl@fivetechno.de>
-Subject: Re: [PATCH] arm64: dts: rockchip: Re-add regulator-boot-on, regulator-always-on for vdd_gpu on rk3399-roc-pc
-Date:   Sat, 19 Jun 2021 23:58:35 +0200
-Message-Id: <162413990967.13616.2556235400488148466.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210619121446.7802-1-knaerzche@gmail.com>
-References: <20210619121446.7802-1-knaerzche@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Tianling Shen <cnsztl@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Marty Jones <mj8263788@gmail.com>,
+        Jensen Huang <jensenhuang@friendlyarm.com>,
+        Chen-Yu Tsai <wens@csie.org>, Tianling Shen <cnsztl@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: rockchip: add EEPROM node for NanoPi R4S
+Date:   Sun, 20 Jun 2021 00:11:12 +0200
+Message-ID: <4448985.BddDVKsqQX@phil>
+In-Reply-To: <20210610091357.6780-1-cnsztl@gmail.com>
+References: <20210610091357.6780-1-cnsztl@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 19 Jun 2021 14:14:46 +0200, Alex Bee wrote:
-> This might be a limitation of either the current panfrost driver
-> devfreq implementation or how the gpu is implemented in RK3399 SoC.
-> The gpu regulator must never get disabled or the registers get
-> (randomly?) inaccessable by the driver. (see all other RK3399 boards)
+Hi,
 
-Applied, thanks!
+Am Donnerstag, 10. Juni 2021, 11:13:57 CEST schrieb Tianling Shen:
+> NanoPi R4S has a EEPROM attached to the 2nd I2C bus (U92), which
+> stores the MAC address.
+> 
+> Changes in v2:
+> - Added the size of EEPROM
+> - Added `mac-address` cell to pass the MAC address to kernel
+> - Removed `read-only` property in EEPROM node
+> 
+> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
 
-[1/1] arm64: dts: rockchip: Re-add regulator-boot-on, regulator-always-on for vdd_gpu on rk3399-roc-pc
-      commit: 06b2818678d9b35102c9816ffaf6893caf306ed0
+this produces errors when building the dtb:
+  DTC     arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dtb
+../arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts:84.4-22: Warning (reg_format): /i2c@ff120000/eeprom@51/mac-address@fa:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+../arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts:83.31-85.5: Warning (avoid_default_addr_size): /i2c@ff120000/eeprom@51/mac-address@fa: Relying on default #address-cells value
+../arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts:83.31-85.5: Warning (avoid_default_addr_size): /i2c@ff120000/eeprom@51/mac-address@fa: Relying on default #size-cells value
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+in the eeprom node you'll need to define #address-cells and #size-cells
+for this to work.
+
+Thanks
+Heiko
+
+
+> ---
+>  .../boot/dts/rockchip/rk3399-nanopi-r4s.dts    | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+> index cef4d18b599d..50d3b11eb925 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
+> @@ -68,6 +68,24 @@
+>  	status = "disabled";
+>  };
+>  
+> +&gmac {
+> +	nvmem-cells = <&mac_address>;
+> +	nvmem-cells-names = "mac-address";
+> +};
+> +
+> +&i2c2 {
+> +	eeprom@51 {
+> +		compatible = "microchip,24c02", "atmel,24c02";
+> +		reg = <0x51>;
+> +		pagesize = <16>;
+> +		size = <256>;
+> +
+> +		mac_address: mac-address@fa {
+> +			reg = <0xfa 0x06>;
+> +		};
+> +	};
+> +};
+> +
+>  &i2c4 {
+>  	status = "disabled";
+>  };
+> 
+
+
+
+
