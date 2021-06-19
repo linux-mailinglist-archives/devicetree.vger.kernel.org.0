@@ -2,65 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBCE63ADA78
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jun 2021 16:42:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CBCA3ADAC3
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jun 2021 17:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234525AbhFSOoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Jun 2021 10:44:32 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:56110 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233240AbhFSOob (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Jun 2021 10:44:31 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: ezequiel)
-        with ESMTPSA id EA0FD1F43FFD
-Message-ID: <4c178505a73b47d08c17915aa43b5f4239a8c30c.camel@collabora.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: rockchip-thermal: Support the
- RK3568 SoC compatible
-From:   Ezequiel Garcia <ezequiel@collabora.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        kernel@collabora.com, linux-pm@vger.kernel.org,
-        Zhang Rui <rui.zhang@intel.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Finley Xiao <finley.xiao@rock-chips.com>,
-        linux-rockchip@lists.infradead.org
-Date:   Sat, 19 Jun 2021 11:42:09 -0300
-In-Reply-To: <196b01a730d236a6eda99b42f18939692bc7ffcc.camel@collabora.com>
-References: <20210506175514.168365-1-ezequiel@collabora.com>
-         <20210506175514.168365-4-ezequiel@collabora.com>
-         <20210506214452.GA853809@robh.at.kernel.org>
-         <196b01a730d236a6eda99b42f18939692bc7ffcc.camel@collabora.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.2-1 
+        id S234685AbhFSP5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Jun 2021 11:57:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43006 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234665AbhFSP5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Jun 2021 11:57:51 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E038BC061574
+        for <devicetree@vger.kernel.org>; Sat, 19 Jun 2021 08:55:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
+        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
+        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
+        Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Vittaj5sOJEfeo9ZvwVSPJoRPela2MzSdhI9sYKDpDw=; b=LOzY/HAZuDZ79V+3Y0FTbFTEvL
+        ZAqsCDY+GGpM5uAMihmeg24GGspkgSKVu+9K4Khdb4KWFQ/BJ24+zSnTkUgWy8HEEio9VaQJBmT42
+        De0RFYybhZg2fFYi28HHqyjKRsWFx8BniJiczrSDnqgSPfyEaTiIDWmPyKm3cbI6zJ7Mo8JnJoeXJ
+        bh/TO4CsKnY4oBHlgFs0d56Fnzil1gouicQQPkJSb3+/XtFdjyr0Zfkzl/yhiyC01XziYwu3e1XvZ
+        Mzu2waXFK9rRzzvv9ypLnknARwxDSz+w9kmeZsnLf65VJu8+dv4wyo/1Ijh9K1AUpWqJTMfLdL5Gy
+        F4jgAvIw==;
+Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:56500 helo=rmk-PC.armlinux.org.uk)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <rmk@armlinux.org.uk>)
+        id 1ludJe-0002ao-Kq; Sat, 19 Jun 2021 16:55:26 +0100
+Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <rmk@armlinux.org.uk>)
+        id 1ludJe-0001rQ-8c; Sat, 19 Jun 2021 16:55:26 +0100
+From:   "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Li Yang <leoyang.li@nxp.com>
+Subject: [PATCH 1/2] dt-bindings: arm: fsl: add SolidSense boards
 MIME-Version: 1.0
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <E1ludJe-0001rQ-8c@rmk-PC.armlinux.org.uk>
+Sender: Russell King <rmk@armlinux.org.uk>
+Date:   Sat, 19 Jun 2021 16:55:26 +0100
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 2021-06-19 at 11:40 -0300, Ezequiel Garcia wrote:
-> Hi Daniel,
-> 
-> On Thu, 2021-05-06 at 16:44 -0500, Rob Herring wrote:
-> > On Thu, 06 May 2021 14:55:13 -0300, Ezequiel Garcia wrote:
-> > > Add a new compatible for the thermal sensor device on RK3568 SoCs.
-> > > 
-> > > Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/thermal/rockchip-thermal.yaml | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > > 
-> > 
-> > Acked-by: Rob Herring <robh@kernel.org>
->         
-> Gentle ping for 3/4 and 4/4 in this series.
-> 
+Add SolidRun SolidSense boards.
 
-Actually, it's patches 2/4, 3/4 and 4/4.
+Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thanks!
-Ezequiel
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 297c87f45db8..24b6d75c11ad 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -223,6 +223,7 @@ title: Freescale i.MX Platforms Device Tree Bindings
+               - solidrun,cubox-i/q        # SolidRun Cubox-i Dual/Quad
+               - solidrun,hummingboard/q
+               - solidrun,hummingboard2/q
++              - solidrun,solidsense/q     # SolidRun SolidSense Dual/Quad
+               - tbs,imx6q-tbs2910         # TBS2910 Matrix ARM mini PC
+               - technexion,imx6q-pico-dwarf   # TechNexion i.MX6Q Pico-Dwarf
+               - technexion,imx6q-pico-hobbit  # TechNexion i.MX6Q Pico-Hobbit
+@@ -379,6 +380,7 @@ title: Freescale i.MX Platforms Device Tree Bindings
+               - solidrun,cubox-i/dl            # SolidRun Cubox-i Solo/DualLite
+               - solidrun,hummingboard/dl
+               - solidrun,hummingboard2/dl      # SolidRun HummingBoard2 Solo/DualLite
++              - solidrun,solidsense/dl         # SolidRun SolidSense Solo/DualLite
+               - technexion,imx6dl-pico-dwarf   # TechNexion i.MX6DL Pico-Dwarf
+               - technexion,imx6dl-pico-hobbit  # TechNexion i.MX6DL Pico-Hobbit
+               - technexion,imx6dl-pico-nymph   # TechNexion i.MX6DL Pico-Nymph
+-- 
+2.20.1
 
