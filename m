@@ -2,167 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95A953AD95B
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jun 2021 12:17:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59C243AD98A
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jun 2021 12:41:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229945AbhFSKTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Jun 2021 06:19:21 -0400
-Received: from mout.gmx.net ([212.227.17.22]:39075 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229475AbhFSKTU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Jun 2021 06:19:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1624097824;
-        bh=pUWqg54W1aADz7YDfDz1OgtQ7oXBYT2s7PJeI3X1NW4=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=JUfgaKxxGBrGh3bibpkb4jw9Ul3cu88f/87nLiHJS/q7DWEW+VpaKdAqR++NI45lT
-         C2VO+U6lYJ05BhQtV+5YXtf73oDB9VopMyWzKppztQo19JftxzjpYpGVguajqR/UCA
-         AttW9xLRW7Jp1HdllAY2sXV2NrC+b5Llyf3qLSgs=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.214.247]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Mv2xU-1l3XuK0AEq-00qyG7; Sat, 19
- Jun 2021 12:17:04 +0200
-Date:   Sat, 19 Jun 2021 12:17:03 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        openbmc@lists.ozlabs.org, Tomer Maimon <tmaimon77@gmail.com>,
-        Joel Stanley <joel@jms.id.au>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/8] dt-bindings: pinctrl: Add Nuvoton WPCM450
-Message-ID: <YM3EH6Cu2GsLjd3O@latitude>
-References: <20210602120329.2444672-1-j.neuschaefer@gmx.net>
- <20210602120329.2444672-5-j.neuschaefer@gmx.net>
- <20210615234558.GA1684841@robh.at.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Gfvb67XozB+au/Ks"
-Content-Disposition: inline
-In-Reply-To: <20210615234558.GA1684841@robh.at.kernel.org>
-X-Provags-ID: V03:K1:ySRazohGAFjgQt775MkM8h6zUwRgArurfbV/FAqh42AIuk3U7yW
- Fb0ralSgR/vtJr2LlzMViqSG1CVldpEBTBY5/Hhr+FLFydjBZ35nFLyFp+mAJjFeTEu+0qd
- vEK9EiqAzA4/dvJ89IjiUbyAc1fQ0RbbXP6Jkv6neBGGiHlSlk1u1DxuuSGZTJIfvbP6q7k
- TLYslpMhHMGkyftuFjEjA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:R+G/zDXiB5Y=:mzD+Gg1RkHyUMfjgSFULEN
- Lhcsp/UOYvEBlDu+62yqP4w+2VgOoz+vxp34vqKIbNfhrp88s6PtTL7iG+EeLGYv0Q5N2Ts9N
- 4NOg2lb7vnA4+nfxQvU2fIn/GkDQ5v/F0d8PENZkAdcR0CwrEzMqNuFCL5llLRsNCiZgcwwu8
- ve+rmpy9fC/n3QT8hdl/rV4M+OiEBXHdxx/DbFxCVzUFvb8wayw3xGsSEbdQQlL0rf4Az3J4a
- 8iDDAaDiK8TH8yNC6h9r2chJu56Vty29g0NFYIZUIx1mgRn/F7NdPPdFGgUGR1zMTpiKPs4lP
- O4fjqKbPX5MWw885tDEV2HhsqvjpSZK20/BUx86/qFJ70nexOABvn70s6CXngpASr0hMfhY8G
- wWNusDA3oGslqWvu4/sBFcpwzdcpZ22oKyTyIAbjDjcBEl6xG2ThRuNzKmjTaesOY7XqoI7iW
- 9V/AyVmS2QXJ3iVZDK62XOeuzSEXe3jmpABpnK4xZcUmOatDAiipiTUdfs3lPDPf5gctvwMSb
- RXklePKMy4H0kW7uX1Z8BV+fmgfm9UW+Y+QxKRDOoruVLaPsnKnohxKTRZUShecS+sxy6U+jH
- 6OW8DF8i7p6ON9EcR3KIp1GrYeQLYiLlzyuhGmbHRJirBoVMU64vT4DBmdW2NKkJ8dFzSX/0V
- hZ8lhfwZaakvHB8NCabO2Ovzt8ffWLNj995r7yqbI1nCnvv2YTLU/CdM9SwsJ5IAmbtNHw4uH
- uiU4MoiDH700XKqNDwMstmhQb1eNFm8qZ+OfTCLmpLRMR3CuKPL8zBqvb+P8u2PlfcUewZbI9
- otua6hLfA5nhlKdKATBmaxmo79GCqjjYCgQYttDDfEzLSyAOPPYTikEawc7+lTTH3VOmko06h
- KMsoUm9tsyb5/jRO9gVxirgZ671lfzXnThUuOX9esFevbGKI2PKOZASwRwxO/2i4dOaCdX4XA
- 1J+A5Y1/Z8HG6OzAMtA7bEq2sGL2QnTyPBajykRINY5Pgd7SC81qJgXgYQdQ4gWJR8AcxSR9N
- D2HMGhSksUE0ti7fRsFgyeGzkd4X8R/6NryvGpwj0kM0libxAxOW9iceuXmIyPixNgiu1ps/p
- iEcQ/jdEcJEUUL9htl/Ir0s7DWkezcdkw+Ubcy84ifNf7AltMObULh0zA==
+        id S232288AbhFSKnk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Jun 2021 06:43:40 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:64758 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231940AbhFSKne (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Jun 2021 06:43:34 -0400
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 19 Jun 2021 03:41:23 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 19 Jun 2021 03:41:22 -0700
+X-QCInternal: smtphost
+Received: from rajeevny-linux.qualcomm.com ([10.204.66.121])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 19 Jun 2021 16:10:34 +0530
+Received: by rajeevny-linux.qualcomm.com (Postfix, from userid 2363605)
+        id 3B519214FC; Sat, 19 Jun 2021 16:10:33 +0530 (IST)
+From:   Rajeev Nandan <rajeevny@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Rajeev Nandan <rajeevny@codeaurora.org>,
+        linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
+        sam@ravnborg.org, robdclark@gmail.com, dianders@chromium.org,
+        lyude@redhat.com, jani.nikula@intel.com, robh@kernel.org,
+        laurent.pinchart@ideasonboard.com, a.hajda@samsung.com,
+        daniel.thompson@linaro.org, hoegsberg@chromium.org,
+        abhinavk@codeaurora.org, seanpaul@chromium.org,
+        kalyan_t@codeaurora.org, mkrishn@codeaurora.org,
+        lee.jones@linaro.org, jingoohan1@gmail.com,
+        linux-fbdev@vger.kernel.org
+Subject: [v7 0/5] drm: Support basic DPCD backlight in panel-simple and add a new panel ATNA33XC20
+Date:   Sat, 19 Jun 2021 16:10:25 +0530
+Message-Id: <1624099230-20899-1-git-send-email-rajeevny@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds the support for the eDP panel that needs the backlight
+controlling over the DP AUX channel using DPCD registers of the panel
+as per the VESA's standard.
 
---Gfvb67XozB+au/Ks
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series also adds support for the Samsung eDP AMOLED panel that
+needs DP AUX to control the backlight, and introduces new delays in the
+@panel_desc.delay to support this panel.
 
-On Tue, Jun 15, 2021 at 05:45:58PM -0600, Rob Herring wrote:
-> On Wed, Jun 02, 2021 at 02:03:25PM +0200, Jonathan Neusch=C3=A4fer wrote:
-> > This binding is heavily based on the one for NPCM7xx, because the
-> > hardware is similar. One notable difference is that there are no
-> > sub-nodes for GPIO banks, because the GPIO registers are arranged
-> > differently.
-> >=20
-> > Certain pins support blink patterns in hardware. This is currently not
-> > modelled in the DT binding.
-> >=20
-> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> > ---
-[...]
-> > +properties:
-> > +  compatible:
-> > +    const: "nuvoton,wpcm450-pinctrl"
->=20
-> Don't need quotes.
+This patch series depends on the following two series:
+- Doug's series [1], exposed the DP AUX channel to the panel-simple.
+- Lyude's series [2], introduced new drm helper functions for DPCD
+  backlight.
 
-Ok, I'll remove them.
+This series is the logical successor to the series [3].
 
->=20
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  gpio-controller: true
-> > +
-> > +  '#gpio-cells':
-> > +    const: 2
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  "#interrupt-cells":
-> > +    const: 2
+Changes in v1:
+- Created dpcd backlight helper with very basic functionality, added
+  backlight registration in the ti-sn65dsi86 bridge driver.
 
-and I just noticed the inconsistency in quotes here. I'll fix it.
+Changes in v2:
+- Created a new DisplayPort aux backlight driver and moved the code from
+  drm_dp_aux_backlight.c (v1) to the new driver.
 
-> > +
-> > +  interrupts: true
-> > +
-> > +patternProperties:
-> > +  # There are two kinds of subnodes:
-> > +  # 1. a pinmux node configures pin muxing for a group of pins (e.g. r=
-mii2)
-> > +  # 2. a pinctrl node configures properties of a single pin
-> > +  "^.*$":
-> > +    if:
-> > +      type: object
-> > +    then:
->=20
-> Don't do this hack for new bindings. Pick a node name pattern you can=20
-> match on.
+Changes in v3:
+- Fixed module compilation (kernel test bot).
 
-Ok.
+Changes in v4:
+- Added basic DPCD backlight support in panel-simple.
+- Added support for a new Samsung panel ATNA33XC20 that needs DPCD
+  backlight controlling and has a requirement of delays between enable
+  GPIO and regulator.
 
->=20
-> > +      allOf:
-> > +        - $ref: pincfg-node.yaml#
-> > +        - $ref: pinmux-node.yaml#
-> > +      properties:
-[...]
-> > +        phandle: true
->=20
-> Needing this should be fixed now.
+Changes in v5:
+Addressed review suggestions from Douglas:
+- Created a new API drm_panel_dp_aux_backlight() in drm_panel.c
+- Moved DP AUX backlight functions from panel-simple.c to drm_panel.c
+- panel-simple probe() calls drm_panel_dp_aux_backlight() to create
+  backlight when the backlight phandle is not specified in panel DT
+  and DP AUX channel is present.
+- Added check for drm_edp_backlight_supported() before registering.
+- Removed the @uses_dpcd_backlight flag from panel_desc as this
+  should be auto-detected.
+- Updated comments/descriptions.
 
-Ok, I'll drop it.
+Changes in v6:
+- Rebased
+- Updated wanrning messages, fixed word wrapping in comments.
+- Fixed ordering of memory allocation
 
+Changes in v7:
+- Updated the disable_to_power_off and power_to_enable panel delays
+as discovered at <https://crrev.com/c/2966167> (Douglas)
 
+[1] https://lore.kernel.org/dri-devel/20210525000159.3384921-1-dianders@chromium.org/
+[2] https://lore.kernel.org/dri-devel/20210514181504.565252-1-lyude@redhat.com/
+[3] https://lore.kernel.org/dri-devel/1619416756-3533-1-git-send-email-rajeevny@codeaurora.org/
 
-Thanks,
-Jonathan Neusch=C3=A4fer
+Rajeev Nandan (5):
+  drm/panel: add basic DP AUX backlight support
+  drm/panel-simple: Support DP AUX backlight
+  drm/panel-simple: Support for delays between GPIO & regulator
+  dt-bindings: display: simple: Add Samsung ATNA33XC20
+  drm/panel-simple: Add Samsung ATNA33XC20
 
---Gfvb67XozB+au/Ks
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../bindings/display/panel/panel-simple.yaml       |   2 +
+ drivers/gpu/drm/drm_panel.c                        | 108 +++++++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c               |  67 +++++++++++++
+ include/drm/drm_panel.h                            |  15 ++-
+ 4 files changed, 188 insertions(+), 4 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.7.4
 
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmDNxB4ACgkQCDBEmo7z
-X9tBKw/9E2aL/JEYtxWOl9pHdUKEQ1dWghDn5bM+5blODa9NL2r2wE7ZqdSyMxwc
-g20MY053o4XwFt0S/ctzDonBtbhktpJLUaJAM6eXplC1atSdR0IGGGA7bNnCrQ0t
-G9vXW8attJAK1+1eINYK3HLLehSw5zRtkY7iO7XacCf+mAEplRtvh5GPyPj7VNt3
-vSdwEzdaM/uW/7wtkAbzUqtBG1zCSqCTtXn5Bd96yCVwBWPlyDEsecRTCqiDo3HG
-qCcME+UuzM4T70fy1heABFX2HeRehVvJ5f1pyZWsBAQB/XIA4SL8IFr4T3DXJwxn
-9mwdU6+NAGisGBqBowy9OZZ8KFUUXB7xNtr01SVLB/+LUYSG9XD1uM+Xq9c6LMsY
-0xS1Pqyv7BRA7LQzZkztclciHdtKbTCa0XLZ22xMd2V9xh/y1IeVFuraP4zExy24
-7LCX0XTK7Qy2lnpZMablJ9aAqK2syoC94/xSGXtvuROP57itM/FxdQ/wfYFKtbxQ
-eUcm/ifS2Bhg83U63SAKjLzBt+igIAMAlH8GmQL+eGfBapXJeUEeW6YBXoB+vb4u
-c0WPFbdKY6b/zuG60ZdnELqPEk92A1oBBPznlrUhtdALkBxLUaQSvd9pdNYCgsjm
-if4OeP/aKBz0tfhZOb+QFKMjhlAuewPosV8UQYGqH0uSxxoAe2M=
-=eRq1
------END PGP SIGNATURE-----
-
---Gfvb67XozB+au/Ks--
