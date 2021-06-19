@@ -2,380 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AEC43ADAC4
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jun 2021 17:55:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2635E3ADAE3
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jun 2021 18:28:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234665AbhFSP5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Jun 2021 11:57:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43008 "EHLO
+        id S234728AbhFSQaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Jun 2021 12:30:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234678AbhFSP5v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Jun 2021 11:57:51 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F71C061756
-        for <devicetree@vger.kernel.org>; Sat, 19 Jun 2021 08:55:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Date:Sender:Message-Id:Content-Type:
-        Content-Transfer-Encoding:MIME-Version:Subject:Cc:To:From:Reply-To:Content-ID
-        :Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:
-        Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=11hWEKVraBqzWamipddQUAOyitNWIvObdCnXrogAero=; b=qnI3hbp9SIdSl+EgzDCvI9TlmA
-        P/zX9G9wVZl4CYj8f10fDAyqqpIOsCgKgMZ7ZfxAK8dddfSTTf5mMFlocqvJUjCxJqW5mtrhIMGfE
-        e4pkkm1FfOSpKd6hK5k7ISWfQf6B26ZqQ3qYrEBJXBqzJXbCY5LlbAFEYrzBpX57G/ka6WlCdCbsk
-        WvnKMNIWGlVkEnoITPTUJkA7I4njwTH6jCJIUVcA6khNGrkGc80GwB+81SBwIGBlHvcJ9wqMbHAa4
-        KNMGSR/fYluJ5jHQcORVoeD4Lj2ZwNfh4CYxkCbaumg4303i+Z3aMX/jxiIluvOxISR/BfpS3RpDR
-        y6yzBhgg==;
-Received: from e0022681537dd.dyn.armlinux.org.uk ([fd8f:7570:feb6:1:222:68ff:fe15:37dd]:56504 helo=rmk-PC.armlinux.org.uk)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1ludJj-0002b3-PP; Sat, 19 Jun 2021 16:55:31 +0100
-Received: from rmk by rmk-PC.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <rmk@armlinux.org.uk>)
-        id 1ludJj-0001rl-GY; Sat, 19 Jun 2021 16:55:31 +0100
-From:   Russell King <rmk+kernel@armlinux.org.uk>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: add SolidRun SolidSense support
+        with ESMTP id S232959AbhFSQaL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Jun 2021 12:30:11 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D2D3C061574;
+        Sat, 19 Jun 2021 09:27:59 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id hv20so15043265ejc.12;
+        Sat, 19 Jun 2021 09:27:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lW8P034mJuoO9/n8/vxpCs/CxHgMLpd5lKfr+WkihzU=;
+        b=u/6/X5PEqtIAiinN1SY9A4nz7A6SKbkQhloYdjTkrsxOcmsTK2hY1/lTjbvPuep63S
+         YeY1qCKc/bx2jBHa/UkyyqUQ/WHZ2nPwQObOQRNgdDUPF5vtNkFGVRE+0XrNt5wq3b15
+         WVcwWcaAT7zjd836Khee+M9H4dsjA+kQziowM0iPGSFs6S+QfgunqWtCkz1gMldybKL1
+         6+D9R/cyXyLnV9AOv1TopZSP6Zea2dtw2hecC5q8yiOj+TnnmNdrZ22swgfhlsJQnqk1
+         85HsKRGPUdZwha7y/EfM0g6pqSl7jmY49lsYKgRnLLTNJM3zbU9Df7C/J37F8cA2XbF0
+         hN7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lW8P034mJuoO9/n8/vxpCs/CxHgMLpd5lKfr+WkihzU=;
+        b=qxnXuLYQGpiMMMW1Ut93Lt7ZRlNKKn8rjxcmEUjb4M78nfv34pWCStyxmYULTs/Wpk
+         BGK4AbBb/ur1Yqe29QhsdLiuytnVel1QSOSRCd5vnilQ9/Pg/p6TVbZW/mLmYrAuIngv
+         aVcQuE/tXu4z+JmCgh4h1uqUD3dmUar5Ho0J4JN3oeY2m8bCSrCCcw7DxXW7OlWmjwiT
+         9GUdusMu6xfpcuEenSAZpWXHLhPMby6TjyC7qB6fQ0tEETF4kAqYNaMGuA3nT/ZndLtt
+         W482ZuztjpmkDogQllAcUwIsTqy41Fy/DHtvD6KwrbCx/2VHCuM2EGT921Z9wLZaRLHi
+         c38A==
+X-Gm-Message-State: AOAM530YfgL43FGdYmWGNN+C3GeeYdC1hT8Am2Ya4/M36X9vkJDIJObz
+        +yKoMtbRzERuMntbyJiXlwI=
+X-Google-Smtp-Source: ABdhPJyZLGWOIqEaT70/yOHvoyck69CYgikbWxSnZqgXMjUImvlXeCa33X/vUeLi67D3AKKnlLK+Ag==
+X-Received: by 2002:a17:907:c16:: with SMTP id ga22mr16448264ejc.116.1624120077787;
+        Sat, 19 Jun 2021 09:27:57 -0700 (PDT)
+Received: from localhost.localdomain (dh207-99-202.xnet.hr. [88.207.99.202])
+        by smtp.googlemail.com with ESMTPSA id s11sm7399248edd.65.2021.06.19.09.27.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Jun 2021 09:27:57 -0700 (PDT)
+From:   Robert Marko <robimarko@gmail.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Robert Marko <robimarko@gmail.com>
+Subject: [PATCH] arm64: dts: ipq8074: Add QUP6 I2C node
+Date:   Sat, 19 Jun 2021 18:27:51 +0200
+Message-Id: <20210619162751.2336974-1-robimarko@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="utf-8"
-Message-Id: <E1ludJj-0001rl-GY@rmk-PC.armlinux.org.uk>
-Sender: Russell King <rmk@armlinux.org.uk>
-Date:   Sat, 19 Jun 2021 16:55:31 +0100
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the SolidRun SolidSense platform, which is a
-Hummingboard2 with a daughter card with two Nordic software defined
-radios and a couple of bi-color LEDs.
+Add node to support the QUP6 I2C controller inside
+of IPQ8074.
+It is exactly the same as QUP2 and QUP3 controllers.
 
-Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
+Some routers like Xiaomi AX9000 and Netgear RBK850
+use this bus.
+
+Signed-off-by: Robert Marko <robimarko@gmail.com>
 ---
- arch/arm/boot/dts/Makefile                |   2 +
- arch/arm/boot/dts/imx6dl-solidsense.dts   |  54 ++++++++
- arch/arm/boot/dts/imx6q-solidsense.dts    |  54 ++++++++
- arch/arm/boot/dts/imx6qdl-solidsense.dtsi | 160 ++++++++++++++++++++++
- 4 files changed, 270 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-solidsense.dts
- create mode 100644 arch/arm/boot/dts/imx6q-solidsense.dts
- create mode 100644 arch/arm/boot/dts/imx6qdl-solidsense.dtsi
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index ce0dc6076370..08cf5d1d7591 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -473,6 +473,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-sabrelite.dtb \
- 	imx6dl-sabresd.dtb \
- 	imx6dl-savageboard.dtb \
-+	imx6dl-solidsense.dtb \
- 	imx6dl-ts4900.dtb \
- 	imx6dl-ts7970.dtb \
- 	imx6dl-tx6dl-comtft.dtb \
-@@ -570,6 +571,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6q-sabresd.dtb \
- 	imx6q-savageboard.dtb \
- 	imx6q-sbc6x.dtb \
-+	imx6q-solidsense.dtb \
- 	imx6q-tbs2910.dtb \
- 	imx6q-ts4900.dtb \
- 	imx6q-ts7970.dtb \
-diff --git a/arch/arm/boot/dts/imx6dl-solidsense.dts b/arch/arm/boot/dts/imx6dl-solidsense.dts
-new file mode 100644
-index 000000000000..2a3699adbed0
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-solidsense.dts
-@@ -0,0 +1,54 @@
-+/*
-+ * Copyright (C) 2015 Rabeeh Khoury <rabeeh@solid-run.com>
-+ * Based on dt work by Russell King
-+ *
-+ * This file is dual-licensed: you can use it either under the terms
-+ * of the GPL or the X11 license, at your option. Note that this dual
-+ * licensing only applies to this file, and not this project as a
-+ * whole.
-+ *
-+ *  a) This file is free software; you can redistribute it and/or
-+ *     modify it under the terms of the GNU General Public License
-+ *     version 2 as published by the Free Software Foundation.
-+ *
-+ *     This file is distributed in the hope that it will be useful,
-+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ *     GNU General Public License for more details.
-+ *
-+ * Or, alternatively,
-+ *
-+ *  b) Permission is hereby granted, free of charge, to any person
-+ *     obtaining a copy of this software and associated documentation
-+ *     files (the "Software"), to deal in the Software without
-+ *     restriction, including without limitation the rights to use,
-+ *     copy, modify, merge, publish, distribute, sublicense, and/or
-+ *     sell copies of the Software, and to permit persons to whom the
-+ *     Software is furnished to do so, subject to the following
-+ *     conditions:
-+ *
-+ *     The above copyright notice and this permission notice shall be
-+ *     included in all copies or substantial portions of the Software.
-+ *
-+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-+ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-+ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-+ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-+ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ *     OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+/dts-v1/;
-+
-+#include "imx6dl.dtsi"
-+#include "imx6qdl-sr-som.dtsi"
-+#include "imx6qdl-sr-som-emmc.dtsi"
-+#include "imx6qdl-sr-som-ti.dtsi"
-+#include "imx6qdl-hummingboard2.dtsi"
-+#include "imx6qdl-solidsense.dtsi"
-+
-+/ {
-+	model = "SolidRun SolidSense Solo/DualLite (1.5som+emmc)";
-+	compatible = "solidrun,solidsense/dl", "fsl,imx6dl";
-+};
-diff --git a/arch/arm/boot/dts/imx6q-solidsense.dts b/arch/arm/boot/dts/imx6q-solidsense.dts
-new file mode 100644
-index 000000000000..0e6a325df363
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6q-solidsense.dts
-@@ -0,0 +1,54 @@
-+/*
-+ * Copyright (C) 2015 Rabeeh Khoury <rabeeh@solid-run.com>
-+ * Based on dt work by Russell King
-+ *
-+ * This file is dual-licensed: you can use it either under the terms
-+ * of the GPL or the X11 license, at your option. Note that this dual
-+ * licensing only applies to this file, and not this project as a
-+ * whole.
-+ *
-+ *  a) This file is free software; you can redistribute it and/or
-+ *     modify it under the terms of the GNU General Public License
-+ *     version 2 as published by the Free Software Foundation.
-+ *
-+ *     This file is distributed in the hope that it will be useful,
-+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ *     GNU General Public License for more details.
-+ *
-+ * Or, alternatively,
-+ *
-+ *  b) Permission is hereby granted, free of charge, to any person
-+ *     obtaining a copy of this software and associated documentation
-+ *     files (the "Software"), to deal in the Software without
-+ *     restriction, including without limitation the rights to use,
-+ *     copy, modify, merge, publish, distribute, sublicense, and/or
-+ *     sell copies of the Software, and to permit persons to whom the
-+ *     Software is furnished to do so, subject to the following
-+ *     conditions:
-+ *
-+ *     The above copyright notice and this permission notice shall be
-+ *     included in all copies or substantial portions of the Software.
-+ *
-+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-+ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-+ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-+ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-+ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ *     OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+/dts-v1/;
-+
-+#include "imx6q.dtsi"
-+#include "imx6qdl-sr-som.dtsi"
-+#include "imx6qdl-sr-som-emmc.dtsi"
-+#include "imx6qdl-sr-som-ti.dtsi"
-+#include "imx6qdl-hummingboard2.dtsi"
-+#include "imx6qdl-solidsense.dtsi"
-+
-+/ {
-+	model = "SolidRun SolidSense Dual/Quad (1.5som+emmc)";
-+	compatible = "solidrun,solidsense/q", "fsl,imx6q";
-+};
-diff --git a/arch/arm/boot/dts/imx6qdl-solidsense.dtsi b/arch/arm/boot/dts/imx6qdl-solidsense.dtsi
-new file mode 100644
-index 000000000000..16ba29259cb0
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6qdl-solidsense.dtsi
-@@ -0,0 +1,160 @@
-+/*
-+ * Copyright (C) 2021 Russell King <rmk@armlinux.org.uk>
-+ *
-+ * This file is dual-licensed: you can use it either under the terms
-+ * of the GPL or the X11 license, at your option. Note that this dual
-+ * licensing only applies to this file, and not this project as a
-+ * whole.
-+ *
-+ *  a) This file is free software; you can redistribute it and/or
-+ *     modify it under the terms of the GNU General Public License
-+ *     version 2 as published by the Free Software Foundation.
-+ *
-+ *     This file is distributed in the hope that it will be useful,
-+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ *     GNU General Public License for more details.
-+ *
-+ * Or, alternatively,
-+ *
-+ *  b) Permission is hereby granted, free of charge, to any person
-+ *     obtaining a copy of this software and associated documentation
-+ *     files (the "Software"), to deal in the Software without
-+ *     restriction, including without limitation the rights to use,
-+ *     copy, modify, merge, publish, distribute, sublicense, and/or
-+ *     sell copies of the Software, and to permit persons to whom the
-+ *     Software is furnished to do so, subject to the following
-+ *     conditions:
-+ *
-+ *     The above copyright notice and this permission notice shall be
-+ *     included in all copies or substantial portions of the Software.
-+ *
-+ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-+ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-+ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-+ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-+ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-+ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ *     OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_solidsense_leds>;
-+
-+		/* Red/Green LED1 - next to WiFi SMA */
-+		led-11 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <0>;
-+			gpios = <&gpio2 26 GPIO_ACTIVE_LOW>;
+diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+index a5b16e151485..07404cdbf697 100644
+--- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+@@ -455,6 +455,21 @@ blsp1_i2c3: i2c@78b7000 {
+ 			status = "disabled";
+ 		};
+ 
++		blsp1_i2c6: i2c@78ba000 {
++			compatible = "qcom,i2c-qup-v2.2.1";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x078ba000 0x600>;
++			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&gcc GCC_BLSP1_AHB_CLK>,
++				 <&gcc GCC_BLSP1_QUP6_I2C_APPS_CLK>;
++			clock-names = "iface", "core";
++			clock-frequency = <100000>;
++			dmas = <&blsp_dma 23>, <&blsp_dma 22>;
++			dma-names = "rx", "tx";
++			status = "disabled";
 +		};
 +
-+		led-12 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <0>;
-+			gpios = <&gpio2 23 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		/* Red/Green LED2 - next to GPS SMA */
-+		led-21 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <1>;
-+			gpios = <&gpio2 25 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-22 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_INDICATOR;
-+			function-enumerator = <1>;
-+			gpios = <&gpio2 24 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&audio {
-+	status = "disabled";
-+};
-+
-+&ecspi2 {
-+	status = "disabled";
-+};
-+
-+&i2c3 {
-+	status = "disabled";
-+};
-+
-+&iomuxc {
-+	pinctrl-0 = <&pinctrl_hog>, <&pinctrl_solidsense_hog>;
-+
-+	solidsense {
-+		pinctrl_solidsense_hog: solidsense-hog {
-+			fsl,pins = <
-+				/* Nordic RESET_N */
-+				MX6QDL_PAD_GPIO_9__GPIO1_IO09 0x400130b1
-+				/* Nordic Chip 1 SWDIO - GPIO 125 */
-+				MX6QDL_PAD_DISP0_DAT8__GPIO4_IO29 0x400130b1
-+				/* Nordic Chip 1 SWDCLK - GPIO 59 */
-+				/* already claimed in the HB2 hogs */
-+				/* MX6QDL_PAD_EIM_LBA__GPIO2_IO27 0x400130b1 */
-+				/* Nordic Chip 2 SWDIO - GPIO 81 */
-+				MX6QDL_PAD_EIM_D17__GPIO3_IO17 0x400130b1
-+				/* Nordic Chip 2 SWCLK - GPIO 82 */
-+				MX6QDL_PAD_EIM_D18__GPIO3_IO18 0x400130b1
-+			>;
-+		};
-+
-+		pinctrl_solidsense_leds: solidsense-leds {
-+			fsl,pins = <
-+				/* Red LED 1 - GPIO 58 */
-+				MX6QDL_PAD_EIM_RW__GPIO2_IO26 0x400130b1
-+				/* Green LED 1 - GPIO 55 */
-+				MX6QDL_PAD_EIM_CS0__GPIO2_IO23 0x400130b1
-+				/* Red LED 2 - GPIO 57 */
-+				MX6QDL_PAD_EIM_OE__GPIO2_IO25 0x400130b1
-+				/* Green LED 2 - GPIO 56 */
-+				MX6QDL_PAD_EIM_CS1__GPIO2_IO24 0x400130b1
-+			>;
-+		};		
-+
-+		pinctrl_solidsense_uart2: solidsense-uart2 {
-+			fsl,pins = <
-+				MX6QDL_PAD_SD4_DAT7__UART2_TX_DATA	0x1b0b1
-+				MX6QDL_PAD_SD4_DAT4__UART2_RX_DATA	0x1b0b1
-+			>;
-+		};
-+
-+		pinctrl_solidsense_uart3: solidsense-uart3 {
-+			fsl,pins = <
-+				MX6QDL_PAD_EIM_D24__UART3_TX_DATA	0x1b0b1
-+				MX6QDL_PAD_EIM_D25__UART3_RX_DATA	0x1b0b1
-+			>;
-+		};
-+	};
-+};
-+
-+&pwm1 {
-+	status = "disabled";
-+};
-+
-+&sgtl5000 {
-+	status = "disabled";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_solidsense_uart2>;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_solidsense_uart3>;
-+	status = "okay";
-+};
+ 		qpic_bam: dma-controller@7984000 {
+ 			compatible = "qcom,bam-v1.7.0";
+ 			reg = <0x07984000 0x1a000>;
 -- 
-2.20.1
+2.31.1
 
