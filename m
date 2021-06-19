@@ -2,77 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 587A53AD7DD
-	for <lists+devicetree@lfdr.de>; Sat, 19 Jun 2021 06:39:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CE3F3AD860
+	for <lists+devicetree@lfdr.de>; Sat, 19 Jun 2021 09:11:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231131AbhFSElV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Jun 2021 00:41:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37238 "EHLO
+        id S231757AbhFSHNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Jun 2021 03:13:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229971AbhFSElU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Jun 2021 00:41:20 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94C14C061574;
-        Fri, 18 Jun 2021 21:39:09 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id x22so4172491pll.11;
-        Fri, 18 Jun 2021 21:39:09 -0700 (PDT)
+        with ESMTP id S231286AbhFSHNw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Jun 2021 03:13:52 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0449C061574
+        for <devicetree@vger.kernel.org>; Sat, 19 Jun 2021 00:11:41 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id v7so9747077pgl.2
+        for <devicetree@vger.kernel.org>; Sat, 19 Jun 2021 00:11:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=iyt/u0jv88QbcDTXxMYPiGMZ2lbJ769BQa65qiSt3+I=;
-        b=PWWjroFi8DJuu/g1kd9BLqWBaSCLeB7Kh4YEJpDee2qeWP9I313BYpyQ0XOLTuT3Gp
-         sEk4j3KDxdSh/GN3Bre10sDzX/CamOfW9Hc40NyShDaBYwYcXRPDEHGxCBpExny24E7+
-         H3X3W9p4sHUZ8FRoZ29ItH5OaxBpPDBhQrZtqhZ+B2ZtzdiJYRlVSjFzFfq2O2p1mwcL
-         +Ipst2JYQHc6yj6ztGw1BlSArKbtNOBm5Kp3BONMizf05CHWH4rgXfYUcYY22Sn3WJlV
-         YMtAbbwFTiK6huJ9cmfpSrnPTFvvE6k5U6VU43Q7PnSmaLgQGm7DvQhswLWSNWvmto5B
-         /RWw==
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=J5596F94Ds1nTlu/rsVNxmZfDQIuq2fmNSy1PA4+8/M=;
+        b=WnZqQ1zC5M4OAHcX6oeeQaOB2g1TNNExyECx5vtP7FQP3VsW5cWBCQjXYQYuiSH8Ag
+         STMLyMWi8mXF6xv//Urx19NfBXRpDuPK4WNjfDqJbaa0Zxt6cKjGn6AUL6LFNHWhjxxj
+         ct5hlmj4x7Xpj+qTf9Xwp8C6RkTqda4N/dS62P0FQBRLNUqiWXXwapIiec1eNACHKBrY
+         JfrFOXWg+TMmZByxHbx5iV2syICOdLBKgKZAU/ZFWDMCW94P47RLT6hEv0lMkpDUqTuJ
+         5OeiupmOSkqTOzADw2au7LgxQaKMRFjILMwBdKatRn87auiJEULPCkV0Xw4WSkyGWgX+
+         sEyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iyt/u0jv88QbcDTXxMYPiGMZ2lbJ769BQa65qiSt3+I=;
-        b=G4dq+R3g0CE2dm4JV/MWgOF+e4NQ4N5mHDwsV1M9HOl+LUKdL6BMlYdv5vQOpGNkAL
-         iTT/rV81RrSzwN9u2vtL2tyrvpgtfcroxW6dHZG82YEML0QZ1BJAgUo3vcTjtMoKE74h
-         fqp20w3+nATIenhfS2uDULZnMzIr9ukIOrT4C3eik1nPnEANNyQklJjqAq+YuuKIVDek
-         2PJZdjkugp2Jk7aSDxkep5RTLnpcDlmsG5f7bS680kS1sVJ/1+NYcHsXTT8sn7ZY9Eix
-         J3dWAEwvnBbH46XaLNBR8Wyg4g6HoP12iM/JG7LaLt7CMgwAFK5AGU6ohY88E8n25HEk
-         o9rQ==
-X-Gm-Message-State: AOAM5331CbPU4XHQTT1s89AJYj00brTzI6nHUdER8ndL5+mVYuU0Xw2S
-        /XAH+eiKa1iRoEKp/USoo2k=
-X-Google-Smtp-Source: ABdhPJwPqSnvVnqHoI2MsnY7GW5M9bLxDRGh6JTIQ26ZFojwKt0a94ksr/PB/hmoaQ+Qo3ncbSJPYg==
-X-Received: by 2002:a17:90a:390d:: with SMTP id y13mr25120531pjb.133.1624077548304;
-        Fri, 18 Jun 2021 21:39:08 -0700 (PDT)
-Received: from google.com ([2620:15c:202:201:4b8:6c70:14fd:a727])
-        by smtp.gmail.com with ESMTPSA id o72sm3958677pfg.102.2021.06.18.21.39.06
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=J5596F94Ds1nTlu/rsVNxmZfDQIuq2fmNSy1PA4+8/M=;
+        b=jKzTNlDoKbs8uyy1KdX6wboUAJEPgtpJCt65iTDNONMLkdMTq/j1nzrmWZDzS2jk1M
+         0boWcF+TCWxCRNlxHIvNbXFDlcsiiSUwJ1bCe2HQac+kTXUgCF/7dQM+DWUIcLizFKGH
+         Ov/W2bvbly84c7YOzIlTnkf6Nig6ikq8DDR7341bCyEloYwW969OyQ9axDXoOozZKUzQ
+         c6XZHcwMju3S42bedeXK1PjfgLktBebYlYmIWLd7I3PzjT7JhEHC/u7GOuBeKXrUTc+m
+         bM6Dc1MCaQRAtQOMzwfQ8yK5m36fIs1+mIrg+n8vfHMpJfri8nqvg7e5wbGdBeiNXCro
+         3SJQ==
+X-Gm-Message-State: AOAM532jzSctL2D/z1NHIwXSysaYE7AXOy/Tzu81M1m7GrPXWngird7M
+        KLdaaPubG7prhkk8aPAz1rBDPg==
+X-Google-Smtp-Source: ABdhPJxmgcopJ1xX08zjUasKt2M2w7Q+YgZo0A4zz/YOl5/wRc7Z60c1aCKUPuPlbDQOHOUhfxjSLQ==
+X-Received: by 2002:a63:2ac4:: with SMTP id q187mr13709152pgq.370.1624086701254;
+        Sat, 19 Jun 2021 00:11:41 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id t14sm11960512pgm.9.2021.06.19.00.11.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Jun 2021 21:39:07 -0700 (PDT)
-Date:   Fri, 18 Jun 2021 21:39:04 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>, Bastian Hecht <hechtb@gmail.com>,
-        Martin Kepplinger <martink@posteo.de>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: touchscreen: st1232: Convert to
- json-schema
-Message-ID: <YM106GBekX7aPxer@google.com>
-References: <fbba650cff07780c28ad6dd8dbef5cc1451b7762.1623418065.git.geert+renesas@glider.be>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fbba650cff07780c28ad6dd8dbef5cc1451b7762.1623418065.git.geert+renesas@glider.be>
+        Sat, 19 Jun 2021 00:11:40 -0700 (PDT)
+Date:   Sat, 19 Jun 2021 00:11:40 -0700 (PDT)
+X-Google-Original-Date: Sat, 19 Jun 2021 00:11:37 PDT (-0700)
+Subject:     Re: [PATCH] riscv: dts: fu740: fix cache-controller interrupts
+In-Reply-To: <CAEn-LTrcLL7EvdskX3+f_Youi0ApC8-0p6u8r8LpyATKCOKA9g@mail.gmail.com>
+CC:     david.abdurachmanov@sifive.com, robh+dt@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, greentime.hu@sifive.com,
+        lorenzo.pieralisi@arm.com, yash.shah@sifive.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel-team@android.com
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     david.abdurachmanov@gmail.com
+Message-ID: <mhng-a7cf1c8e-a740-43fb-bd41-c24a4e7c47d3@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 11, 2021 at 03:30:05PM +0200, Geert Uytterhoeven wrote:
-> Convert the Sitronix st1232/st1633 touchscreen controller Device Tree
-> binding documentation to json-schema.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Tue, 15 Jun 2021 04:54:22 PDT (-0700), david.abdurachmanov@gmail.com wrote:
+> On Sun, Jun 13, 2021 at 3:51 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+>>
+>> From: David Abdurachmanov <david.abdurachmanov@sifive.com>
+>>
+>> The order of interrupt numbers is incorrect.
+>>
+>> The order for FU740 is: DirError, DataError, DataFail, DirFail
+>>
+>> From SiFive FU740-C000 Manual:
+>> 19 - L2 Cache DirError
+>> 20 - L2 Cache DirFail
+>> 21 - L2 Cache DataError
+>> 22 - L2 Cache DataFail
+>>
+>> Signed-off-by: David Abdurachmanov <david.abdurachmanov@sifive.com>
+>> Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
+>> ---
+>> Olof pointed me to
+>> https://raw.githubusercontent.com/sifive/meta-sifive/2021.03/recipes-kernel/linux/files/unmatched/0009-riscv-dts-fu740-fix-cache-controller-interrupts.patch
+>>
+>> This appears necessary to make the FU740 function properly, but hasn't been
+>> posted on the mailing lists.  Given the age I'm hoping it's just slipped
+>> through the cracks somewhere, but I figured I'd send it out to give David a
+>> chance to comment if there's a different plan.
+>
+> There are a bunch of stuff that need to be cleaned up and synced with
+> U-Boot copy of DT for Unmatched.
+>
+> This patch is required to boot.
 
-Applied, thank you.
+OK, I'm going to take it on fixes.  It seems this is an SOC issue while 
+the others are board issues, and given that it's needed to boot I'd 
+prefer to just take it.
 
--- 
-Dmitry
+> There are others patches that do:
+> - Change compat string for CPUs to report U74MC instead of bullet0.
+
+You guys should just pick one there, the naming scheme is pretty 
+inconsistent between the various projects/IPs.  I don't really care 
+which one you pick, though, and even though I generally consider DT to 
+be ABI-stable it sounds like this one landed a bit prematurely so I'm OK 
+changing it.
+
+> - Change memory to 16GB from 8GB.
+
+Are you sure there are no boards out in the wild with 8GB of RAM?  If 
+there are then we should have a DT for them, but if they're only in the 
+lab then I'm fine simplifying things and just having one of them.
+
+> - Change regulator values to match what's in the Rev3 board.
+
+OK, though again I'd like to know that there aren't any pre-rev3 boards 
+in the wild.
+
+> - Add PWM LEDs nodes.
+
+Seems reasonable to me.
+
+> - Add a gpio-poweroff node (this could change depending on what
+> OpenSBI wants to do).
+
+Maybe it's best to hold off on that until there's agreement?
+
+> And most likely the "a00" part should go away from compat strings and
+> filenames. "A00" was most likely a copy & paste from FU540 / Unleashed
+> board. Regulator block probably could also go away from DT as Linux
+> doesn't need to touch it, basically it just runs whatever is
+> configured in OTP.
+>
+> I believe the current DT that landed was written for Rev1, but a few
+> revisions happened afterwards. You can only buy Rev3 boards.
+>
+> I wonder if we should modify the existing DT file and rename it
+> "hifive-unmatched.dts" + new compat strings to remove "A00".
+
+This is one of those things I never understood: if there are revision 
+numbers printed on the boards, then why is there another hidden revision 
+underneath that's not indicated directly anywhere.  We had this same 
+issue with the Unleashed, where there were a whole bunch of different 
+boards all of which were revision A00.
+
+If you're sure that none of these other boards made it into the wild 
+then I'm fine dropping the A00, but if there are boards that won't work 
+with this DT in the wild then we should have something for those.  I 
+don't know (and don't really care that much about) the naming scheme, 
+just that it's unique and that users can tell which flavor they have.
+
+I have one of these, but I haven't opened the box.  Is there some way to 
+tell which version I have?
+
+>> ---
+>>  arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+>> index 8eef82e4199f..abbb960f90a0 100644
+>> --- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+>> +++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
+>> @@ -273,7 +273,7 @@ ccache: cache-controller@2010000 {
+>>                         cache-size = <2097152>;
+>>                         cache-unified;
+>>                         interrupt-parent = <&plic0>;
+>> -                       interrupts = <19 20 21 22>;
+>> +                       interrupts = <19 21 22 20>;
+>>                         reg = <0x0 0x2010000 0x0 0x1000>;
+>>                 };
+>>                 gpio: gpio@10060000 {
+>> --
+>> 2.32.0.272.g935e593368-goog
+>>
+>>
+>> _______________________________________________
+>> linux-riscv mailing list
+>> linux-riscv@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-riscv
