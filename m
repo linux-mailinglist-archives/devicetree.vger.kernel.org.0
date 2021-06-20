@@ -2,103 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F26673ADE9D
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 15:32:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85D6B3AE038
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 22:22:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbhFTNfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Jun 2021 09:35:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39698 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbhFTNfJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Jun 2021 09:35:09 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C89CC061760
-        for <devicetree@vger.kernel.org>; Sun, 20 Jun 2021 06:32:56 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id f10so4974924plg.0
-        for <devicetree@vger.kernel.org>; Sun, 20 Jun 2021 06:32:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=D7l/Y2nU4ivOXB3kYNarWKNDy1SUWuawPt7q4q/Bhv4=;
-        b=dH2qs8pOGF97K/MQd5HAAEkctrLeUXolqVtlebnH1HSZZsayuSoXQZJ4VeDtyGBk35
-         Er12oSb6eiSpX3j3YRGQme8wMBbhqvVIiLsP0bULwKabV2oKC6f2nFG6PRq13JX1MFuR
-         hRxUfpXYD9rRZyjTB4nCGoKhvgkA4LgvHHMteBR2lKS/6fg6zjdUPnG6+U+5q2Y8NJ+C
-         n+rlJIk0aCGSQy8BRp/YVaGW7Bo5OFwcOMbLT4nKLI6l8IU29cd2mlieWGjeuqsMq0Zv
-         8i7Ul4h31oRA2STp8EGplMegye6Io98EUPhfD5Y3hHIuHcMJ6LPd4crXM6HgS/mV28Rp
-         W6iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=D7l/Y2nU4ivOXB3kYNarWKNDy1SUWuawPt7q4q/Bhv4=;
-        b=fJu/NO89HDA5eqGCQyjbYxbBSnXFy5EUb2C3ODArOVXF4ZsDe9/N9hy9XRobwwiQaJ
-         3M5nql5+sdSN/mGl48ROjMRVBkIemLKyV0QnPOWrYFpTk8Aqbfezq5xOhlzS0Aji7feY
-         ZCOc0QRY4RH52YuFH55JYShTs/7bWjcT0TjNonqNvpB2vVMIFcZdRw+ujHskbbxELJKJ
-         HfLA6OxE1X5n7xcfTY1ywYOPkWso/fpRKenWys+8pJqREksvrGY7L83KQUCeHerGxCa+
-         BJuPBdKjdGfet4fZM/UBH8VFoB2xbT+Tbv/UTKtzlE6LsgBMZVX01/f7rBBVEYkUAwe0
-         ocyw==
-X-Gm-Message-State: AOAM5304FOw7+VdVC3iWy0cwluZaLGBlieng4jygkiMcXaC6ccxYf2ax
-        E3kNjq9FadDA5kyGQwaerNzjh/rsFvXUTFKFmXk=
-X-Google-Smtp-Source: ABdhPJx00tt/7aabVQcW6POE0TvfdiIkkIAZCpBR/30vjscsjT3jKr9zw9m3MkwyQc9oGQLSVkB5HYsPhxhU3CS3v6I=
-X-Received: by 2002:a17:90b:3842:: with SMTP id nl2mr32192239pjb.227.1624195975552;
- Sun, 20 Jun 2021 06:32:55 -0700 (PDT)
+        id S230031AbhFTUYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Jun 2021 16:24:52 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:42037 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229632AbhFTUYv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Jun 2021 16:24:51 -0400
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 0B8191BF204;
+        Sun, 20 Jun 2021 20:22:35 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, linux-pm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        devicetree@vger.kernel.org
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Subject: Re: (subset) [PATCH v2 0/7] mfd/power/rtc: Do not enforce (incorrect) interrupt trigger type
+Date:   Sun, 20 Jun 2021 22:22:35 +0200
+Message-Id: <162422055082.1088008.17353011796840416475.b4-ty@bootlin.com>
+X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
+References: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Received: by 2002:a17:90b:38c4:0:0:0:0 with HTTP; Sun, 20 Jun 2021 06:32:55
- -0700 (PDT)
-Reply-To: sarahkoffi389@yahoo.co.jp
-From:   Sarah Koffi <william.p15179@gmail.com>
-Date:   Sun, 20 Jun 2021 15:32:55 +0200
-Message-ID: <CAGDeiXHSJFkD=4+MH2yCevC190Es0W98OwPTSfKNw23HQDt3Cw@mail.gmail.com>
-Subject: Greetings From Mrs. Sarah Koffi
-To:     sarahkoffi389@yahoo.co.jp
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings From Mrs. Sarah Koffi
+On Wed, 26 May 2021 13:20:29 -0400, Krzysztof Kozlowski wrote:
+> This is a v2 with only minor changes:
+> 1. Drop patches which landed in mainline.
+> 2. Add acks.
+> 3. Rebase max17040 power supply (dtschema conversion).
+> 
+> Patches are independent and there are no external dependencies, so
+> please pick up freely.
+> 
+> [...]
 
-I'm contacting you based on your good profiles I read and for a good
-reasons, I am in search of a property to buy in your country as I
-intended to come over to your
-country for investment, Though I have not meet with you before but I
-believe that one has to risk confiding in someone to succeed sometimes
-in life.
+Applied, thanks!
 
-My name is Mrs. Sarah Koffi. My late husband deals on Crude Oil with
-Federal Government of Sudan and he has a personal Oil firm in Bentiu
-Oil zone town and Upper
-Nile city. What I have experience physically, I don't wish to
-experience it again in my life due to the recent civil Ethnic war
-cause by our President Mr. Salva Kiir
-and the rebel leader Mr Riek Machar, I have been Under United Nation
-refuge camp in chad to save my life and that of my little daughter.
+[5/7] rtc: max77686: Do not enforce (incorrect) interrupt trigger type
+      commit: 742b0d7e15c333303daad4856de0764f4bc83601
 
-Though, I do not know how you will feel to my proposal, but the truth
-is that I sneaked into Chad our neighboring country where I am living
-now as a refugee.
-I escaped with my little daughter when the rebels bust into our house
-and killed my husband as one of the big oil dealers in the country,
-ever since then, I have being on the run.
-
-I left my country and move to Chad our neighboring country with the
-little ceasefire we had, due to the face to face peace meeting accord
-coordinated by the US Secretary of State, Mr John Kerry and United
-Nations in Ethiopia (Addis Ababa) between our President Mr Salva Kiir
-and the rebel leader Mr Riek Machar to stop this war.
-
-I want to solicit for your partnership with trust to invest the $8
-million dollars deposited by my late husband in Bank because my life
-is no longer safe in our country, since the rebels are looking for the
-families of all the oil business men in the country to kill, saying
-that they are they one that is milking the country dry.
-
-I will offer you 20% of the total fund for your help while I will
-partner with you for the investment in your country.
-If I get your reply.
-
-I will wait to hear from you so as to give you details.With love from
-
- i need you to contact me here sarahkoffi389@yahoo.co.jp
-
-Mrs. Sarah Koffi
+Best regards,
+-- 
+Alexandre Belloni <alexandre.belloni@bootlin.com>
