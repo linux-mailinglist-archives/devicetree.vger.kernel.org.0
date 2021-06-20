@@ -2,143 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEA713ADCE2
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 06:41:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69F483ADD69
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 09:22:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229482AbhFTEnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Jun 2021 00:43:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38368 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbhFTEnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Jun 2021 00:43:52 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63EC8C061574;
-        Sat, 19 Jun 2021 21:41:39 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id u11so9084763ljh.2;
-        Sat, 19 Jun 2021 21:41:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eQIafI1N7mjXxp3LAVwoSKl9w56iiYhETX/yM5Qkk24=;
-        b=SVtK2CyTmyg1plwJNmyDeAbTqa3x5YAJ/WVA2TwgFQm9ZOIqdwtoclFf1yNjoMqz1a
-         Gg+RWjOjUGQZeuD05pPi3Y5fHALGeU8ncWQ710CMfETDltN+052a8ZPeuQqRfN3vja0o
-         zCMHGMqZ2YrFYYX3+bV/hjWyQ8EYK4EZWhlTAnCfJgAZWLJsBDcznTIRjebn0/vSyUwb
-         G3ItxLleyLDe9aoviS/xLP+QOcMgAH68KStEPMytOhsayf/L0vns7TTznMokJeqppyWg
-         OW4QYRmnOUWTvZKwf89mEqU4bcnsi8NnJZmBcbUQkEV+s0LIUQeDdIcoanjQ3tN4NzDP
-         EoSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eQIafI1N7mjXxp3LAVwoSKl9w56iiYhETX/yM5Qkk24=;
-        b=rmsBqs1Oji0Btlu+48Okom4SxpZ0Aem7/I4atSFwD/bQc9LRwmYyhk83IK8/HLQdWw
-         7IblqrPpdwQP1dHnnFsgVFxAaJTkXdR/sV36Vx8iY8gFqgE5YNpWSjpIbbFbadmehF8p
-         EBa5XL03e/d5qJdNCzWiNw2N55EqbPGWxJbOKruuhhLdgc7JNENkAGq5au/gYoso6RYd
-         6KJe07BTqyRJZlUYfVqNp6NtVl/uSprg4QflaRZh/8w31NlGDp364GlzmbnoVIEC3gzP
-         oFF81WVqw/Ns40VH01+34KgUiAd5leoXyzttNsXc0bgezCJkeCgw2Wgw/U7lpanAmvjC
-         aupQ==
-X-Gm-Message-State: AOAM532vm6Mk+eHY4CdYGemv9NpRKOQT/4cK+yNgppt3rgFWFQYe8PfG
-        6opOcrdbevxzgDwlVnnrUCIKjvAK9MKkoNgt/B1909b6zc4=
-X-Google-Smtp-Source: ABdhPJz22ETIbOAUVHSeyZDBJygZsTtsDcL2NDGUCUqCaojgtaGjtPMi66K3pjkpKBqnER1/ZArOrSaU6Y3KYllI0k4=
-X-Received: by 2002:a05:651c:111:: with SMTP id a17mr16371960ljb.151.1624164095734;
- Sat, 19 Jun 2021 21:41:35 -0700 (PDT)
+        id S229618AbhFTHYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Jun 2021 03:24:12 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:34608 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229615AbhFTHYM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Jun 2021 03:24:12 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dafna)
+        with ESMTPSA id 7CF471F40F28
+Subject: Re: [PATCH v6 05/10] media: rockchip: rkisp1: make some isp-param
+ functions variable
+To:     Heiko Stuebner <heiko@sntech.de>, mchehab@kernel.org,
+        hverkuil-cisco@xs4all.nl
+Cc:     ezequiel@collabora.com, helen.koike@collabora.com,
+        Laurent.pinchart@ideasonboard.com,
+        linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+References: <20210618130238.4171196-1-heiko@sntech.de>
+ <20210618130238.4171196-6-heiko@sntech.de>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <5808a366-3f4d-c02a-9c14-cca61f26d2f3@collabora.com>
+Date:   Sun, 20 Jun 2021 10:21:50 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210610091357.6780-1-cnsztl@gmail.com> <4448985.BddDVKsqQX@phil>
-In-Reply-To: <4448985.BddDVKsqQX@phil>
-From:   Tianling Shen <cnsztl@gmail.com>
-Date:   Sun, 20 Jun 2021 12:41:23 +0800
-Message-ID: <CAOP2_TgO98D5T8TfYNjKzD3cZR1Hcp9=RYS56_WKtta_GZ85-g@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: add EEPROM node for NanoPi R4S
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Marty Jones <mj8263788@gmail.com>,
-        Jensen Huang <jensenhuang@friendlyarm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210618130238.4171196-6-heiko@sntech.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
 
-On Sun, Jun 20, 2021 at 6:11 AM Heiko Stuebner <heiko@sntech.de> wrote:
->
-> Hi,
->
-> Am Donnerstag, 10. Juni 2021, 11:13:57 CEST schrieb Tianling Shen:
-> > NanoPi R4S has a EEPROM attached to the 2nd I2C bus (U92), which
-> > stores the MAC address.
-> >
-> > Changes in v2:
-> > - Added the size of EEPROM
-> > - Added `mac-address` cell to pass the MAC address to kernel
-> > - Removed `read-only` property in EEPROM node
-> >
-> > Signed-off-by: Tianling Shen <cnsztl@gmail.com>
->
-> this produces errors when building the dtb:
->   DTC     arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4a.dtb
-> ../arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts:84.4-22: Warning (reg_format): /i2c@ff120000/eeprom@51/mac-address@fa:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-> arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-> arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-> arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-> ../arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts:83.31-85.5: Warning (avoid_default_addr_size): /i2c@ff120000/eeprom@51/mac-address@fa: Relying on default #address-cells value
-> ../arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts:83.31-85.5: Warning (avoid_default_addr_size): /i2c@ff120000/eeprom@51/mac-address@fa: Relying on default #size-cells value
->
-> in the eeprom node you'll need to define #address-cells and #size-cells
-> for this to work.
 
-Thanks for pointing this out, added in v3.
+On 18.06.21 16:02, Heiko Stuebner wrote:
+> From: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
+> 
+> The isp block evolved in subsequent socs, so some functions
+> will behave differently on newer variants.
+> 
+> Therefore make it possible to override the needed params functions.
+> 
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@theobroma-systems.com>
 
-Thanks,
-Tianling.
+Reviewed-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
 
->
-> Thanks
-> Heiko
->
->
-> > ---
-> >  .../boot/dts/rockchip/rk3399-nanopi-r4s.dts    | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> > index cef4d18b599d..50d3b11eb925 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-r4s.dts
-> > @@ -68,6 +68,24 @@
-> >       status = "disabled";
-> >  };
-> >
-> > +&gmac {
-> > +     nvmem-cells = <&mac_address>;
-> > +     nvmem-cells-names = "mac-address";
-> > +};
-> > +
-> > +&i2c2 {
-> > +     eeprom@51 {
-> > +             compatible = "microchip,24c02", "atmel,24c02";
-> > +             reg = <0x51>;
-> > +             pagesize = <16>;
-> > +             size = <256>;
-> > +
-> > +             mac_address: mac-address@fa {
-> > +                     reg = <0xfa 0x06>;
-> > +             };
-> > +     };
-> > +};
-> > +
-> >  &i2c4 {
-> >       status = "disabled";
-> >  };
-> >
->
->
->
->
+> ---
+>   .../platform/rockchip/rkisp1/rkisp1-common.h  | 25 +++++++
+>   .../platform/rockchip/rkisp1/rkisp1-params.c  | 67 +++++++++++--------
+>   2 files changed, 65 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h b/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h
+> index 25dd5c93620e..74ddd8256366 100644
+> --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h
+> +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-common.h
+> @@ -254,11 +254,35 @@ struct rkisp1_stats {
+>   	struct v4l2_format vdev_fmt;
+>   };
+>   
+> +struct rkisp1_params;
+> +struct rkisp1_params_ops {
+> +	void (*lsc_matrix_config)(struct rkisp1_params *params,
+> +				  const struct rkisp1_cif_isp_lsc_config *pconfig);
+> +	void (*goc_config)(struct rkisp1_params *params,
+> +			   const struct rkisp1_cif_isp_goc_config *arg);
+> +	void (*awb_meas_config)(struct rkisp1_params *params,
+> +				const struct rkisp1_cif_isp_awb_meas_config *arg);
+> +	void (*awb_meas_enable)(struct rkisp1_params *params,
+> +				const struct rkisp1_cif_isp_awb_meas_config *arg,
+> +				bool en);
+> +	void (*awb_gain_config)(struct rkisp1_params *params,
+> +				const struct rkisp1_cif_isp_awb_gain_config *arg);
+> +	void (*aec_config)(struct rkisp1_params *params,
+> +			   const struct rkisp1_cif_isp_aec_config *arg);
+> +	void (*hst_config)(struct rkisp1_params *params,
+> +			   const struct rkisp1_cif_isp_hst_config *arg);
+> +	void (*hst_enable)(struct rkisp1_params *params,
+> +			   const struct rkisp1_cif_isp_hst_config *arg, bool en);
+> +	void (*afm_config)(struct rkisp1_params *params,
+> +			   const struct rkisp1_cif_isp_afc_config *arg);
+> +};
+> +
+>   /*
+>    * struct rkisp1_params - ISP input parameters device
+>    *
+>    * @vnode:		video node
+>    * @rkisp1:		pointer to the rkisp1 device
+> + * @ops:		pointer to the variant-specific operations
+>    * @config_lock:	locks the buffer list 'params'
+>    * @params:		queue of rkisp1_buffer
+>    * @vdev_fmt:		v4l2_format of the metadata format
+> @@ -268,6 +292,7 @@ struct rkisp1_stats {
+>   struct rkisp1_params {
+>   	struct rkisp1_vdev_node vnode;
+>   	struct rkisp1_device *rkisp1;
+> +	struct rkisp1_params_ops *ops;
+>   
+>   	spinlock_t config_lock; /* locks the buffers list 'params' */
+>   	struct list_head params;
+> diff --git a/drivers/media/platform/rockchip/rkisp1/rkisp1-params.c b/drivers/media/platform/rockchip/rkisp1/rkisp1-params.c
+> index b6beddd988d0..1aab2720ffa2 100644
+> --- a/drivers/media/platform/rockchip/rkisp1/rkisp1-params.c
+> +++ b/drivers/media/platform/rockchip/rkisp1/rkisp1-params.c
+> @@ -185,8 +185,8 @@ static void rkisp1_bls_config(struct rkisp1_params *params,
+>   
+>   /* ISP LS correction interface function */
+>   static void
+> -rkisp1_lsc_correct_matrix_config(struct rkisp1_params *params,
+> -				 const struct rkisp1_cif_isp_lsc_config *pconfig)
+> +rkisp1_lsc_matrix_config(struct rkisp1_params *params,
+> +			 const struct rkisp1_cif_isp_lsc_config *pconfig)
+>   {
+>   	unsigned int isp_lsc_status, sram_addr, isp_lsc_table_sel, i, j, data;
+>   
+> @@ -265,7 +265,7 @@ static void rkisp1_lsc_config(struct rkisp1_params *params,
+>   	lsc_ctrl = rkisp1_read(params->rkisp1, RKISP1_CIF_ISP_LSC_CTRL);
+>   	rkisp1_param_clear_bits(params, RKISP1_CIF_ISP_LSC_CTRL,
+>   				RKISP1_CIF_ISP_LSC_CTRL_ENA);
+> -	rkisp1_lsc_correct_matrix_config(params, arg);
+> +	params->ops->lsc_matrix_config(params, arg);
+>   
+>   	for (i = 0; i < RKISP1_CIF_ISP_LSC_SECTORS_TBL_SIZE / 2; i++) {
+>   		/* program x size tables */
+> @@ -955,7 +955,7 @@ rkisp1_isp_isr_other_config(struct rkisp1_params *params,
+>   
+>   	/* update awb gains */
+>   	if (module_cfg_update & RKISP1_CIF_ISP_MODULE_AWB_GAIN)
+> -		rkisp1_awb_gain_config(params, &new_params->others.awb_gain_config);
+> +		params->ops->awb_gain_config(params, &new_params->others.awb_gain_config);
+>   
+>   	if (module_en_update & RKISP1_CIF_ISP_MODULE_AWB_GAIN) {
+>   		if (module_ens & RKISP1_CIF_ISP_MODULE_AWB_GAIN)
+> @@ -1010,8 +1010,7 @@ rkisp1_isp_isr_other_config(struct rkisp1_params *params,
+>   
+>   	/* update goc config */
+>   	if (module_cfg_update & RKISP1_CIF_ISP_MODULE_GOC)
+> -		rkisp1_goc_config(params,
+> -				  &new_params->others.goc_config);
+> +		params->ops->goc_config(params, &new_params->others.goc_config);
+>   
+>   	if (module_en_update & RKISP1_CIF_ISP_MODULE_GOC) {
+>   		if (module_ens & RKISP1_CIF_ISP_MODULE_GOC)
+> @@ -1081,17 +1080,17 @@ static void rkisp1_isp_isr_meas_config(struct rkisp1_params *params,
+>   
+>   	/* update awb config */
+>   	if (module_cfg_update & RKISP1_CIF_ISP_MODULE_AWB)
+> -		rkisp1_awb_meas_config(params, &new_params->meas.awb_meas_config);
+> +		params->ops->awb_meas_config(params, &new_params->meas.awb_meas_config);
+>   
+>   	if (module_en_update & RKISP1_CIF_ISP_MODULE_AWB)
+> -		rkisp1_awb_meas_enable(params,
+> -				       &new_params->meas.awb_meas_config,
+> -				       !!(module_ens & RKISP1_CIF_ISP_MODULE_AWB));
+> +		params->ops->awb_meas_enable(params,
+> +					     &new_params->meas.awb_meas_config,
+> +					     !!(module_ens & RKISP1_CIF_ISP_MODULE_AWB));
+>   
+>   	/* update afc config */
+>   	if (module_cfg_update & RKISP1_CIF_ISP_MODULE_AFC)
+> -		rkisp1_afm_config(params,
+> -				  &new_params->meas.afc_config);
+> +		params->ops->afm_config(params,
+> +					&new_params->meas.afc_config);
+>   
+>   	if (module_en_update & RKISP1_CIF_ISP_MODULE_AFC) {
+>   		if (module_ens & RKISP1_CIF_ISP_MODULE_AFC)
+> @@ -1106,18 +1105,18 @@ static void rkisp1_isp_isr_meas_config(struct rkisp1_params *params,
+>   
+>   	/* update hst config */
+>   	if (module_cfg_update & RKISP1_CIF_ISP_MODULE_HST)
+> -		rkisp1_hst_config(params,
+> -				  &new_params->meas.hst_config);
+> +		params->ops->hst_config(params,
+> +					&new_params->meas.hst_config);
+>   
+>   	if (module_en_update & RKISP1_CIF_ISP_MODULE_HST)
+> -		rkisp1_hst_enable(params,
+> -				  &new_params->meas.hst_config,
+> -				  !!(module_ens & RKISP1_CIF_ISP_MODULE_HST));
+> +		params->ops->hst_enable(params,
+> +					&new_params->meas.hst_config,
+> +					!!(module_ens & RKISP1_CIF_ISP_MODULE_HST));
+>   
+>   	/* update aec config */
+>   	if (module_cfg_update & RKISP1_CIF_ISP_MODULE_AEC)
+> -		rkisp1_aec_config(params,
+> -				  &new_params->meas.aec_config);
+> +		params->ops->aec_config(params,
+> +					&new_params->meas.aec_config);
+>   
+>   	if (module_en_update & RKISP1_CIF_ISP_MODULE_AEC) {
+>   		if (module_ens & RKISP1_CIF_ISP_MODULE_AEC)
+> @@ -1218,20 +1217,20 @@ static void rkisp1_params_config_parameter(struct rkisp1_params *params)
+>   {
+>   	struct rkisp1_cif_isp_hst_config hst = rkisp1_hst_params_default_config;
+>   
+> -	rkisp1_awb_meas_config(params, &rkisp1_awb_params_default_config);
+> -	rkisp1_awb_meas_enable(params, &rkisp1_awb_params_default_config,
+> -			       true);
+> +	params->ops->awb_meas_config(params, &rkisp1_awb_params_default_config);
+> +	params->ops->awb_meas_enable(params, &rkisp1_awb_params_default_config,
+> +				     true);
+>   
+> -	rkisp1_aec_config(params, &rkisp1_aec_params_default_config);
+> +	params->ops->aec_config(params, &rkisp1_aec_params_default_config);
+>   	rkisp1_param_set_bits(params, RKISP1_CIF_ISP_EXP_CTRL,
+>   			      RKISP1_CIF_ISP_EXP_ENA);
+>   
+> -	rkisp1_afm_config(params, &rkisp1_afc_params_default_config);
+> +	params->ops->afm_config(params, &rkisp1_afc_params_default_config);
+>   	rkisp1_param_set_bits(params, RKISP1_CIF_ISP_AFM_CTRL,
+>   			      RKISP1_CIF_ISP_AFM_ENA);
+>   
+>   	memset(hst.hist_weight, 0x01, sizeof(hst.hist_weight));
+> -	rkisp1_hst_config(params, &hst);
+> +	params->ops->hst_config(params, &hst);
+>   	rkisp1_param_set_bits(params, RKISP1_CIF_ISP_HIST_PROP,
+>   			      rkisp1_hst_params_default_config.mode);
+>   
+> @@ -1275,7 +1274,7 @@ void rkisp1_params_disable(struct rkisp1_params *params)
+>   				RKISP1_CIF_ISP_DEMOSAIC_BYPASS);
+>   	rkisp1_param_clear_bits(params, RKISP1_CIF_ISP_FILT_MODE,
+>   				RKISP1_CIF_ISP_FLT_ENA);
+> -	rkisp1_awb_meas_enable(params, NULL, false);
+> +	params->ops->awb_meas_enable(params, NULL, false);
+>   	rkisp1_param_clear_bits(params, RKISP1_CIF_ISP_CTRL,
+>   				RKISP1_CIF_ISP_CTRL_ISP_AWB_ENA);
+>   	rkisp1_param_clear_bits(params, RKISP1_CIF_ISP_EXP_CTRL,
+> @@ -1283,7 +1282,7 @@ void rkisp1_params_disable(struct rkisp1_params *params)
+>   	rkisp1_ctk_enable(params, false);
+>   	rkisp1_param_clear_bits(params, RKISP1_CIF_C_PROC_CTRL,
+>   				RKISP1_CIF_C_PROC_CTR_ENABLE);
+> -	rkisp1_hst_enable(params, NULL, false);
+> +	params->ops->hst_enable(params, NULL, false);
+>   	rkisp1_param_clear_bits(params, RKISP1_CIF_ISP_AFM_CTRL,
+>   				RKISP1_CIF_ISP_AFM_ENA);
+>   	rkisp1_ie_enable(params, false);
+> @@ -1291,6 +1290,18 @@ void rkisp1_params_disable(struct rkisp1_params *params)
+>   				RKISP1_CIF_ISP_DPF_MODE_EN);
+>   }
+>   
+> +static struct rkisp1_params_ops rkisp1_params_ops = {
+> +	.lsc_matrix_config = rkisp1_lsc_matrix_config,
+> +	.goc_config = rkisp1_goc_config,
+> +	.awb_meas_config = rkisp1_awb_meas_config,
+> +	.awb_meas_enable = rkisp1_awb_meas_enable,
+> +	.awb_gain_config = rkisp1_awb_gain_config,
+> +	.aec_config = rkisp1_aec_config,
+> +	.hst_config = rkisp1_hst_config,
+> +	.hst_enable = rkisp1_hst_enable,
+> +	.afm_config = rkisp1_afm_config,
+> +};
+> +
+>   static int rkisp1_params_enum_fmt_meta_out(struct file *file, void *priv,
+>   					   struct v4l2_fmtdesc *f)
+>   {
+> @@ -1457,6 +1468,8 @@ static void rkisp1_init_params(struct rkisp1_params *params)
+>   		V4L2_META_FMT_RK_ISP1_PARAMS;
+>   	params->vdev_fmt.fmt.meta.buffersize =
+>   		sizeof(struct rkisp1_params_cfg);
+> +
+> +	params->ops = &rkisp1_params_ops;
+>   }
+>   
+>   int rkisp1_params_register(struct rkisp1_device *rkisp1)
+> 
