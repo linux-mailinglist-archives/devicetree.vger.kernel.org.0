@@ -2,201 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EC123AE08B
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 23:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FBFC3AE090
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 23:08:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230087AbhFTVKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Jun 2021 17:10:00 -0400
-Received: from phobos.denx.de ([85.214.62.61]:39232 "EHLO phobos.denx.de"
+        id S230286AbhFTVK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Jun 2021 17:10:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33506 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230051AbhFTVKA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 20 Jun 2021 17:10:00 -0400
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 246A7800B2;
-        Sun, 20 Jun 2021 23:07:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1624223265;
-        bh=ZNUN7SzjM1tvOh5JWGNk0MaBKe/RjNUyY/rlFYKjXXM=;
-        h=From:To:Cc:Subject:Date:From;
-        b=j5GpeAQSeWOEVms/tw39mULNYThSWsAqU3qm9RYCbZ7iZBfkSCTS+8Qp7pVXZk8oh
-         7RhEImPBexw3iOXGFC2J/M+qheKiuWEUWS2UffqNtlQFJCzxpuugAaSIVgsaKBjczF
-         MsqcD9ZQmcGMB0ATcdCYlFI7NnOW7lZ4gvbce3NzIGy4s0B6YhvzYvpxa1f2LTwhyG
-         cCj698pk4P2Ie2FtkceZsD6edfXQ7fMd9qOjiDt7qURw6LhyJxCgPvdyXSBHc+xGyb
-         uEEo3w+FyINpY3WhBVjQ7SZePK9mDhl4Pqzt/tG0e3bRqnngH0nkC7jmqLKFqWd+E/
-         P8jC48XhMuuXg==
-From:   Marek Vasut <marex@denx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Lukas Wunner <lukas@wunner.de>, Petr Stetiar <ynezz@true.cz>,
-        Rob Herring <robh+dt@kernel.org>, linux@dh-electronics.com,
-        netdev@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: net: ks8851: Convert to YAML schema
-Date:   Sun, 20 Jun 2021 23:07:41 +0200
-Message-Id: <20210620210741.100206-1-marex@denx.de>
-X-Mailer: git-send-email 2.30.2
+        id S230211AbhFTVK5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 20 Jun 2021 17:10:57 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8CF3C610EA;
+        Sun, 20 Jun 2021 21:08:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624223324;
+        bh=RV1dRe0q665rCNfncnH89ttrqFNtElN2unqX84acxys=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vCmKbaXvanXPec+PW1+BZooyGCUSyt4KNHWz5AQ/cxQrd8zooIkSvV3NVjDcVy1M0
+         lev8GonTnS6dA5tZcayI4PxkXuJhnhljHIVpA/itbL6f3Hy3rM1srP/s0yFR9mn71h
+         sOSjfQcEtX2rtb29fvtC0W7he5nriw5NU4S2j9lLX8OvqFWdfH4XpfMRbiVpmk7wb0
+         HS4RbaWpQMLswvjL3fLh9kmIKF0YfQcdAbDM97gN/oDe1GVh7/nT2WozhPr1wJb486
+         zORZrhVcBf5n1i4hJzCl6xrqGOTily1gQrpBUnIfn+Oamgvj6keBnnso+aDJA9lK6X
+         D5Sd9fuYoMXiw==
+Date:   Sun, 20 Jun 2021 23:08:41 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Darren Hart <dvhart@infradead.org>,
+        Andy Shevchenko <andy@infradead.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        "H . Peter Anvin" <hpa@zytor.com>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, x86@kernel.org,
+        linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org,
+        platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: ce4100: Replace "ti,pcf8575" by
+ "nxp,pcf8575"
+Message-ID: <YM+uWXoCvi7Y/s24@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Darren Hart <dvhart@infradead.org>,
+        Andy Shevchenko <andy@infradead.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        "H . Peter Anvin" <hpa@zytor.com>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, x86@kernel.org,
+        linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org,
+        platform-driver-x86@vger.kernel.org
+References: <cover.1622560799.git.geert+renesas@glider.be>
+ <9b560b7f5ded90430c989a211f2aee009aefc595.1622560799.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yGK4jxv6o8Tg62fU"
+Content-Disposition: inline
+In-Reply-To: <9b560b7f5ded90430c989a211f2aee009aefc595.1622560799.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Micrel KSZ8851 DT bindings to YAML schema.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: David S. Miller <davem@davemloft.net>
-Cc: Lukas Wunner <lukas@wunner.de>
-Cc: Petr Stetiar <ynezz@true.cz>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: linux@dh-electronics.com
-Cc: netdev@vger.kernel.org
-To: devicetree@vger.kernel.org
----
-V2: - Explicitly state the bindings are for both SPI and parallel bus options
-    - Switch the license to (GPL-2.0-only OR BSD-2-Clause)
-V3: - Drop quotes, use enum: instead of oneOf+const
-    - Add reg: items list describing what each reg entry is
-    - Drop regulator.yaml reference
----
- .../bindings/net/micrel,ks8851.yaml           | 97 +++++++++++++++++++
- .../devicetree/bindings/net/micrel-ks8851.txt | 18 ----
- 2 files changed, 97 insertions(+), 18 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/micrel,ks8851.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/micrel-ks8851.txt
+--yGK4jxv6o8Tg62fU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/net/micrel,ks8851.yaml b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
-new file mode 100644
-index 000000000000..98f022cdd44d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/micrel,ks8851.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Micrel KS8851 Ethernet MAC (SPI and Parallel bus options)
-+
-+maintainers:
-+  - Marek Vasut <marex@denx.de>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - micrel,ks8851      # SPI bus option
-+      - micrel,ks8851-mll  # Parallel bus option
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+    items:
-+      - description: SPI or Parallel bus hardware address
-+      - description: Parallel bus command mode address
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      The reset_n input pin
-+
-+  vdd-supply:
-+    description: |
-+      Analog 3.3V supply for Ethernet MAC
-+
-+  vdd-io-supply:
-+    description: |
-+      Digital 1.8V IO supply for Ethernet MAC
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+allOf:
-+  - $ref: ethernet-controller.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: micrel,ks8851
-+    then:
-+      properties:
-+        reg:
-+          maxItems: 1
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: micrel,ks8851-mll
-+    then:
-+      properties:
-+        reg:
-+          minItems: 2
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    /* SPI bus option */
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        ethernet@0 {
-+            compatible = "micrel,ks8851";
-+            reg = <0>;
-+            interrupt-parent = <&msmgpio>;
-+            interrupts = <90 8>;
-+            vdd-supply = <&ext_l2>;
-+            vdd-io-supply = <&pm8921_lvs6>;
-+            reset-gpios = <&msmgpio 89 0>;
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    /* Parallel bus option */
-+    memory-controller {
-+        #address-cells = <2>;
-+        #size-cells = <1>;
-+        ethernet@1,0 {
-+            compatible = "micrel,ks8851-mll";
-+            reg = <1 0x0 0x2>, <1 0x2 0x20000>;
-+            interrupt-parent = <&gpioc>;
-+            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/micrel-ks8851.txt b/Documentation/devicetree/bindings/net/micrel-ks8851.txt
-deleted file mode 100644
-index bbdf9a7359a2..000000000000
---- a/Documentation/devicetree/bindings/net/micrel-ks8851.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--Micrel KS8851 Ethernet mac (MLL)
--
--Required properties:
--- compatible = "micrel,ks8851-mll" of parallel interface
--- reg : 2 physical address and size of registers for data and command
--- interrupts : interrupt connection
--
--Micrel KS8851 Ethernet mac (SPI)
--
--Required properties:
--- compatible = "micrel,ks8851" or the deprecated "ks8851"
--- reg : chip select number
--- interrupts : interrupt connection
--
--Optional properties:
--- vdd-supply: analog 3.3V supply for Ethernet mac
--- vdd-io-supply: digital 1.8V IO supply for Ethernet mac
--- reset-gpios: reset_n input pin
--- 
-2.30.2
+On Tue, Jun 01, 2021 at 05:25:44PM +0200, Geert Uytterhoeven wrote:
+> The TI part is equivalent to the NXP part, and its compatible value is
+> not documented in the DT bindings.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+Applied to for-next, thanks!
+
+
+--yGK4jxv6o8Tg62fU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmDPrlkACgkQFA3kzBSg
+KbZFSRAAlvHQWYn7WuznFBAm3WzUAuqHEpUbbz32vQiJxtrX+3RgQ2ylWfaEi30P
+LwMnfIUuQxQYUhNF5f+Q/zYIdcHyscL8YdYlbMl2grtmKa68Lm1SeUZj0kJbBZ6c
+0hv7k4yT0/2wRFc3pNOi2E5fnU9oKKKdXEB+7J5zrfotCIcyOfMSmekVfcg7e/Lc
+dPm3MxH4Aixm2eNxuPRiXAXRvn4WXaf42EEdwERYx/OTIEe+ndm+OmhoQFB4PsqP
+7aglnSl+5mCrlGw3mU6/qt9gE+zXd36c1Y1DOMdu6ArMOc0zRugPon57oBSWrAA1
+IwvTDnrCAtY2Z8MnDFyYT+BCrxeWHs6y66nFT1M/w9m2t6YBB0r2ZsbstRkYHzK6
+4YE3UcZc6bvulO2ds+LZPSdLD6U0CqWjMi/Wv/1tsIz1eHuwl54J/SSneY4R+fU1
+k7pzOZF6sVk1MwvZ7iGKIxXakQ0q5YLgTFHrX1XTSAmO9tKFWwaz5tP1qrP7psnY
+p6BBWNdxYDqYnyGyzV/ujdoLT/OOHWizJceV+afJNL24fj5NDJU0ERpEH+HnwA0U
+vdubHHZN7Feqm059L3EFEA/B5f9yNSpfc359yCR4jE7HbIRiFz5fgVwIF78Q8RUf
+Dbf03mWpY2Z4GKdcxPxS7D3Pmq9qtxoLF1tK+ENHSbY1mZ9QvS8=
+=fIsi
+-----END PGP SIGNATURE-----
+
+--yGK4jxv6o8Tg62fU--
