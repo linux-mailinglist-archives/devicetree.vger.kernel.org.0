@@ -2,39 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85D6B3AE038
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 22:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04A553AE04D
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 22:33:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230031AbhFTUYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Jun 2021 16:24:52 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:42037 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229632AbhFTUYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Jun 2021 16:24:51 -0400
+        id S230107AbhFTUfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Jun 2021 16:35:48 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:50877 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230083AbhFTUfq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Jun 2021 16:35:46 -0400
 Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 0B8191BF204;
-        Sun, 20 Jun 2021 20:22:35 +0000 (UTC)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 767C440004;
+        Sun, 20 Jun 2021 20:33:31 +0000 (UTC)
 From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        devicetree@vger.kernel.org
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: (subset) [PATCH v2 0/7] mfd/power/rtc: Do not enforce (incorrect) interrupt trigger type
-Date:   Sun, 20 Jun 2021 22:22:35 +0200
-Message-Id: <162422055082.1088008.17353011796840416475.b4-ty@bootlin.com>
+To:     devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>, kernel@dh-electronics.com,
+        linux-rtc@vger.kernel.org
+Subject: Re: [PATCH V2] dt-bindings: rtc: rx8900: Convert to YAML schema
+Date:   Sun, 20 Jun 2021 22:33:24 +0200
+Message-Id: <162422118505.1090685.1886612416736440175.b4-ty@bootlin.com>
 X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
-References: <20210526172036.183223-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20210610150044.29792-1-marex@denx.de>
+References: <20210610150044.29792-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -42,21 +32,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 May 2021 13:20:29 -0400, Krzysztof Kozlowski wrote:
-> This is a v2 with only minor changes:
-> 1. Drop patches which landed in mainline.
-> 2. Add acks.
-> 3. Rebase max17040 power supply (dtschema conversion).
-> 
-> Patches are independent and there are no external dependencies, so
-> please pick up freely.
-> 
-> [...]
+On Thu, 10 Jun 2021 17:00:44 +0200, Marek Vasut wrote:
+> Convert the Epson RX8900 DT bindings to YAML schema.
 
 Applied, thanks!
 
-[5/7] rtc: max77686: Do not enforce (incorrect) interrupt trigger type
-      commit: 742b0d7e15c333303daad4856de0764f4bc83601
+[1/1] dt-bindings: rtc: rx8900: Convert to YAML schema
+      commit: 7e124917809705f05e0c9f0f72a38102e6aa4eff
 
 Best regards,
 -- 
