@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5277B3AE088
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 23:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EC123AE08B
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 23:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230071AbhFTVJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Jun 2021 17:09:32 -0400
-Received: from phobos.denx.de ([85.214.62.61]:36194 "EHLO phobos.denx.de"
+        id S230087AbhFTVKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Jun 2021 17:10:00 -0400
+Received: from phobos.denx.de ([85.214.62.61]:39232 "EHLO phobos.denx.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230051AbhFTVJb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 20 Jun 2021 17:09:31 -0400
+        id S230051AbhFTVKA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 20 Jun 2021 17:10:00 -0400
 Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id DB30F800B2;
-        Sun, 20 Jun 2021 23:07:16 +0200 (CEST)
+        by phobos.denx.de (Postfix) with ESMTPSA id 246A7800B2;
+        Sun, 20 Jun 2021 23:07:45 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1624223237;
-        bh=fllZnftIcVJajq/vV7VV4xYVuAx6Ki13fNQtt68JPco=;
+        s=phobos-20191101; t=1624223265;
+        bh=ZNUN7SzjM1tvOh5JWGNk0MaBKe/RjNUyY/rlFYKjXXM=;
         h=From:To:Cc:Subject:Date:From;
-        b=VBtTru811O7I9iEmQRuKDU5fOA78LswVrcmC43yF5Ut7QVjpItAo6vc922DznXjz4
-         MGDiNUCW5pKqoHyWoYIAgPXXMWPCeglOew7JiUGnfU8TNLoU+AlE/5DdZjqJvFDq59
-         CYYm2QWb6uCXCssm6w25duvu3CsUU+jItZ1uwraq+PEvzlU3hr8lJpfQj1yaZ9IONf
-         R6S0k4GszqYfRNSPAfE+ju2xjfII3eetcv+VgH1cjjNUnvT7jhQGrUFY2knGe/uD8z
-         +T77p3al/06vZGtR40Us1JrnQbIazmRlZSk6OXfpd9jmeXwiJAnX+2raqoCuy3DyLk
-         d/9mVTTzCXfyQ==
+        b=j5GpeAQSeWOEVms/tw39mULNYThSWsAqU3qm9RYCbZ7iZBfkSCTS+8Qp7pVXZk8oh
+         7RhEImPBexw3iOXGFC2J/M+qheKiuWEUWS2UffqNtlQFJCzxpuugAaSIVgsaKBjczF
+         MsqcD9ZQmcGMB0ATcdCYlFI7NnOW7lZ4gvbce3NzIGy4s0B6YhvzYvpxa1f2LTwhyG
+         cCj698pk4P2Ie2FtkceZsD6edfXQ7fMd9qOjiDt7qURw6LhyJxCgPvdyXSBHc+xGyb
+         uEEo3w+FyINpY3WhBVjQ7SZePK9mDhl4Pqzt/tG0e3bRqnngH0nkC7jmqLKFqWd+E/
+         P8jC48XhMuuXg==
 From:   Marek Vasut <marex@denx.de>
 To:     devicetree@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Michael Welling <mwelling@ieee.org>,
-        Rob Herring <robh+dt@kernel.org>, kernel@dh-electronics.com,
-        linux-input@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: input: tsc2005: Convert to YAML schema
-Date:   Sun, 20 Jun 2021 23:07:08 +0200
-Message-Id: <20210620210708.100147-1-marex@denx.de>
+Cc:     Marek Vasut <marex@denx.de>, Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Lukas Wunner <lukas@wunner.de>, Petr Stetiar <ynezz@true.cz>,
+        Rob Herring <robh+dt@kernel.org>, linux@dh-electronics.com,
+        netdev@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: net: ks8851: Convert to YAML schema
+Date:   Sun, 20 Jun 2021 23:07:41 +0200
+Message-Id: <20210620210741.100206-1-marex@denx.de>
 X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -46,231 +46,157 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the TI TSC2004/TSC2005 DT bindings to YAML schema.
+Convert the Micrel KSZ8851 DT bindings to YAML schema.
 
 Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Michael Welling <mwelling@ieee.org>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: David S. Miller <davem@davemloft.net>
+Cc: Lukas Wunner <lukas@wunner.de>
+Cc: Petr Stetiar <ynezz@true.cz>
 Cc: Rob Herring <robh+dt@kernel.org>
-Cc: kernel@dh-electronics.com
-Cc: linux-input@vger.kernel.org
+Cc: linux@dh-electronics.com
+Cc: netdev@vger.kernel.org
 To: devicetree@vger.kernel.org
 ---
-V2: - Switch the license to (GPL-2.0-only OR BSD-2-Clause)
+V2: - Explicitly state the bindings are for both SPI and parallel bus options
+    - Switch the license to (GPL-2.0-only OR BSD-2-Clause)
 V3: - Drop quotes, use enum: instead of oneOf+const
-    - Add maxItems to reg: and reset-gpios:
-    - Drop ref uint32
+    - Add reg: items list describing what each reg entry is
+    - Drop regulator.yaml reference
 ---
- .../input/touchscreen/ti,tsc2005.yaml         | 128 ++++++++++++++++++
- .../bindings/input/touchscreen/tsc2005.txt    |  64 ---------
- 2 files changed, 128 insertions(+), 64 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
- delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/tsc2005.txt
+ .../bindings/net/micrel,ks8851.yaml           | 97 +++++++++++++++++++
+ .../devicetree/bindings/net/micrel-ks8851.txt | 18 ----
+ 2 files changed, 97 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/micrel,ks8851.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/micrel-ks8851.txt
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
+diff --git a/Documentation/devicetree/bindings/net/micrel,ks8851.yaml b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
 new file mode 100644
-index 000000000000..938aab016cc2
+index 000000000000..98f022cdd44d
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/ti,tsc2005.yaml
-@@ -0,0 +1,128 @@
++++ b/Documentation/devicetree/bindings/net/micrel,ks8851.yaml
+@@ -0,0 +1,97 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/input/touchscreen/ti,tsc2005.yaml#
++$id: http://devicetree.org/schemas/net/micrel,ks8851.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Texas Instruments TSC2004 and TSC2005 touchscreen controller bindings
++title: Micrel KS8851 Ethernet MAC (SPI and Parallel bus options)
 +
 +maintainers:
 +  - Marek Vasut <marex@denx.de>
-+  - Michael Welling <mwelling@ieee.org>
 +
 +properties:
-+  $nodename:
-+    pattern: "^touchscreen(@.*)?$"
-+
 +  compatible:
 +    enum:
-+      - ti,tsc2004
-+      - ti,tsc2005
-+
-+  reg:
-+    maxItems: 1
-+    description: |
-+      I2C address when used on the I2C bus, or the SPI chip select index
-+      when used on the SPI bus
++      - micrel,ks8851      # SPI bus option
++      - micrel,ks8851-mll  # Parallel bus option
 +
 +  interrupts:
 +    maxItems: 1
 +
++  reg:
++    minItems: 1
++    maxItems: 2
++    items:
++      - description: SPI or Parallel bus hardware address
++      - description: Parallel bus command mode address
++
 +  reset-gpios:
 +    maxItems: 1
-+    description: GPIO specifier for the controller reset line
++    description:
++      The reset_n input pin
 +
-+  spi-max-frequency:
-+    description: TSC2005 SPI bus clock frequency.
-+    maximum: 25000000
-+
-+  ti,x-plate-ohms:
-+    description: resistance of the touchscreen's X plates in ohm (defaults to 280)
-+
-+  ti,esd-recovery-timeout-ms:
++  vdd-supply:
 +    description: |
-+        if the touchscreen does not respond after the configured time
-+        (in milli seconds), the driver will reset it. This is disabled
-+        by default.
++      Analog 3.3V supply for Ethernet MAC
 +
-+  vio-supply:
-+    description: Regulator specifier
-+
-+  touchscreen-fuzz-pressure: true
-+  touchscreen-fuzz-x: true
-+  touchscreen-fuzz-y: true
-+  touchscreen-max-pressure: true
-+  touchscreen-size-x: true
-+  touchscreen-size-y: true
-+
-+allOf:
-+  - $ref: touchscreen.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: ti,tsc2004
-+    then:
-+      properties:
-+        spi-max-frequency: false
-+
-+additionalProperties: false
++  vdd-io-supply:
++    description: |
++      Digital 1.8V IO supply for Ethernet MAC
 +
 +required:
 +  - compatible
 +  - reg
 +  - interrupts
 +
++allOf:
++  - $ref: ethernet-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: micrel,ks8851
++    then:
++      properties:
++        reg:
++          maxItems: 1
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: micrel,ks8851-mll
++    then:
++      properties:
++        reg:
++          minItems: 2
++
++unevaluatedProperties: false
++
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        touchscreen@48 {
-+            compatible = "ti,tsc2004";
-+            reg = <0x48>;
-+            vio-supply = <&vio>;
-+
-+            reset-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>;
-+            interrupts-extended = <&gpio1 27 IRQ_TYPE_EDGE_RISING>;
-+
-+            touchscreen-fuzz-x = <4>;
-+            touchscreen-fuzz-y = <7>;
-+            touchscreen-fuzz-pressure = <2>;
-+            touchscreen-size-x = <4096>;
-+            touchscreen-size-y = <4096>;
-+            touchscreen-max-pressure = <2048>;
-+
-+            ti,x-plate-ohms = <280>;
-+            ti,esd-recovery-timeout-ms = <8000>;
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
++    /* SPI bus option */
 +    spi {
 +        #address-cells = <1>;
 +        #size-cells = <0>;
-+        touchscreen@0 {
-+            compatible = "ti,tsc2005";
-+            spi-max-frequency = <6000000>;
++        ethernet@0 {
++            compatible = "micrel,ks8851";
 +            reg = <0>;
-+
-+            vio-supply = <&vio>;
-+
-+            reset-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>; /* 104 */
-+            interrupts-extended = <&gpio4 4 IRQ_TYPE_EDGE_RISING>; /* 100 */
-+
-+            touchscreen-fuzz-x = <4>;
-+            touchscreen-fuzz-y = <7>;
-+            touchscreen-fuzz-pressure = <2>;
-+            touchscreen-size-x = <4096>;
-+            touchscreen-size-y = <4096>;
-+            touchscreen-max-pressure = <2048>;
-+
-+            ti,x-plate-ohms = <280>;
-+            ti,esd-recovery-timeout-ms = <8000>;
++            interrupt-parent = <&msmgpio>;
++            interrupts = <90 8>;
++            vdd-supply = <&ext_l2>;
++            vdd-io-supply = <&pm8921_lvs6>;
++            reset-gpios = <&msmgpio 89 0>;
 +        };
 +    };
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/tsc2005.txt b/Documentation/devicetree/bindings/input/touchscreen/tsc2005.txt
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    /* Parallel bus option */
++    memory-controller {
++        #address-cells = <2>;
++        #size-cells = <1>;
++        ethernet@1,0 {
++            compatible = "micrel,ks8851-mll";
++            reg = <1 0x0 0x2>, <1 0x2 0x20000>;
++            interrupt-parent = <&gpioc>;
++            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/net/micrel-ks8851.txt b/Documentation/devicetree/bindings/net/micrel-ks8851.txt
 deleted file mode 100644
-index b80c04b0e5c0..000000000000
---- a/Documentation/devicetree/bindings/input/touchscreen/tsc2005.txt
+index bbdf9a7359a2..000000000000
+--- a/Documentation/devicetree/bindings/net/micrel-ks8851.txt
 +++ /dev/null
-@@ -1,64 +0,0 @@
--* Texas Instruments tsc2004 and tsc2005 touchscreen controllers
+@@ -1,18 +0,0 @@
+-Micrel KS8851 Ethernet mac (MLL)
 -
 -Required properties:
-- - compatible		      : "ti,tsc2004" or "ti,tsc2005"
-- - reg			      : Device address
-- - interrupts		      : IRQ specifier
-- - spi-max-frequency	      : Maximum SPI clocking speed of the device
--			        (for tsc2005)
+-- compatible = "micrel,ks8851-mll" of parallel interface
+-- reg : 2 physical address and size of registers for data and command
+-- interrupts : interrupt connection
+-
+-Micrel KS8851 Ethernet mac (SPI)
+-
+-Required properties:
+-- compatible = "micrel,ks8851" or the deprecated "ks8851"
+-- reg : chip select number
+-- interrupts : interrupt connection
 -
 -Optional properties:
-- - vio-supply		      : Regulator specifier
-- - reset-gpios		      : GPIO specifier for the controller reset line
-- - ti,x-plate-ohms	      : integer, resistance of the touchscreen's X plates
--				in ohm (defaults to 280)
-- - ti,esd-recovery-timeout-ms : integer, if the touchscreen does not respond after
--				the configured time (in milli seconds), the driver
--				will reset it. This is disabled by default.
-- - properties defined in touchscreen.txt
--
--Example:
--
--&i2c3 {
--	tsc2004@48 {
--		compatible = "ti,tsc2004";
--		reg = <0x48>;
--		vio-supply = <&vio>;
--
--		reset-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>;
--		interrupts-extended = <&gpio1 27 IRQ_TYPE_EDGE_RISING>;
--
--		touchscreen-fuzz-x = <4>;
--		touchscreen-fuzz-y = <7>;
--		touchscreen-fuzz-pressure = <2>;
--		touchscreen-size-x = <4096>;
--		touchscreen-size-y = <4096>;
--		touchscreen-max-pressure = <2048>;
--
--		ti,x-plate-ohms = <280>;
--		ti,esd-recovery-timeout-ms = <8000>;
--	};
--}
--
--&mcspi1 {
--	tsc2005@0 {
--		compatible = "ti,tsc2005";
--		spi-max-frequency = <6000000>;
--		reg = <0>;
--
--		vio-supply = <&vio>;
--
--		reset-gpios = <&gpio4 8 GPIO_ACTIVE_HIGH>; /* 104 */
--		interrupts-extended = <&gpio4 4 IRQ_TYPE_EDGE_RISING>; /* 100 */
--
--		touchscreen-fuzz-x = <4>;
--		touchscreen-fuzz-y = <7>;
--		touchscreen-fuzz-pressure = <2>;
--		touchscreen-size-x = <4096>;
--		touchscreen-size-y = <4096>;
--		touchscreen-max-pressure = <2048>;
--
--		ti,x-plate-ohms = <280>;
--		ti,esd-recovery-timeout-ms = <8000>;
--	};
--}
+-- vdd-supply: analog 3.3V supply for Ethernet mac
+-- vdd-io-supply: digital 1.8V IO supply for Ethernet mac
+-- reset-gpios: reset_n input pin
 -- 
 2.30.2
 
