@@ -2,76 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F350D3ADE54
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 14:39:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F26673ADE9D
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 15:32:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229591AbhFTMlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Jun 2021 08:41:18 -0400
-Received: from out28-4.mail.aliyun.com ([115.124.28.4]:53201 "EHLO
-        out28-4.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbhFTMlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Jun 2021 08:41:15 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.09709191|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0132484-0.00553607-0.981215;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047213;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=18;RT=18;SR=0;TI=SMTPD_---.KVAnlIH_1624192730;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KVAnlIH_1624192730)
-          by smtp.aliyun-inc.com(10.147.44.129);
-          Sun, 20 Jun 2021 20:38:58 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com
-Subject: [PATCH 2/2] net: stmmac: Ingenic: Remove unused variables.
-Date:   Sun, 20 Jun 2021 20:38:50 +0800
-Message-Id: <1624192730-43276-3-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1624192730-43276-1-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1624192730-43276-1-git-send-email-zhouyanjie@wanyeetech.com>
+        id S229767AbhFTNfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Jun 2021 09:35:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39698 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229618AbhFTNfJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Jun 2021 09:35:09 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C89CC061760
+        for <devicetree@vger.kernel.org>; Sun, 20 Jun 2021 06:32:56 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id f10so4974924plg.0
+        for <devicetree@vger.kernel.org>; Sun, 20 Jun 2021 06:32:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=D7l/Y2nU4ivOXB3kYNarWKNDy1SUWuawPt7q4q/Bhv4=;
+        b=dH2qs8pOGF97K/MQd5HAAEkctrLeUXolqVtlebnH1HSZZsayuSoXQZJ4VeDtyGBk35
+         Er12oSb6eiSpX3j3YRGQme8wMBbhqvVIiLsP0bULwKabV2oKC6f2nFG6PRq13JX1MFuR
+         hRxUfpXYD9rRZyjTB4nCGoKhvgkA4LgvHHMteBR2lKS/6fg6zjdUPnG6+U+5q2Y8NJ+C
+         n+rlJIk0aCGSQy8BRp/YVaGW7Bo5OFwcOMbLT4nKLI6l8IU29cd2mlieWGjeuqsMq0Zv
+         8i7Ul4h31oRA2STp8EGplMegye6Io98EUPhfD5Y3hHIuHcMJ6LPd4crXM6HgS/mV28Rp
+         W6iQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=D7l/Y2nU4ivOXB3kYNarWKNDy1SUWuawPt7q4q/Bhv4=;
+        b=fJu/NO89HDA5eqGCQyjbYxbBSnXFy5EUb2C3ODArOVXF4ZsDe9/N9hy9XRobwwiQaJ
+         3M5nql5+sdSN/mGl48ROjMRVBkIemLKyV0QnPOWrYFpTk8Aqbfezq5xOhlzS0Aji7feY
+         ZCOc0QRY4RH52YuFH55JYShTs/7bWjcT0TjNonqNvpB2vVMIFcZdRw+ujHskbbxELJKJ
+         HfLA6OxE1X5n7xcfTY1ywYOPkWso/fpRKenWys+8pJqREksvrGY7L83KQUCeHerGxCa+
+         BJuPBdKjdGfet4fZM/UBH8VFoB2xbT+Tbv/UTKtzlE6LsgBMZVX01/f7rBBVEYkUAwe0
+         ocyw==
+X-Gm-Message-State: AOAM5304FOw7+VdVC3iWy0cwluZaLGBlieng4jygkiMcXaC6ccxYf2ax
+        E3kNjq9FadDA5kyGQwaerNzjh/rsFvXUTFKFmXk=
+X-Google-Smtp-Source: ABdhPJx00tt/7aabVQcW6POE0TvfdiIkkIAZCpBR/30vjscsjT3jKr9zw9m3MkwyQc9oGQLSVkB5HYsPhxhU3CS3v6I=
+X-Received: by 2002:a17:90b:3842:: with SMTP id nl2mr32192239pjb.227.1624195975552;
+ Sun, 20 Jun 2021 06:32:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a17:90b:38c4:0:0:0:0 with HTTP; Sun, 20 Jun 2021 06:32:55
+ -0700 (PDT)
+Reply-To: sarahkoffi389@yahoo.co.jp
+From:   Sarah Koffi <william.p15179@gmail.com>
+Date:   Sun, 20 Jun 2021 15:32:55 +0200
+Message-ID: <CAGDeiXHSJFkD=4+MH2yCevC190Es0W98OwPTSfKNw23HQDt3Cw@mail.gmail.com>
+Subject: Greetings From Mrs. Sarah Koffi
+To:     sarahkoffi389@yahoo.co.jp
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove unused variables in ingenic_mac_suspend() and
-ingenic_mac_resume().
+Greetings From Mrs. Sarah Koffi
 
-Fixes: 2bb4b98b60d7 ("net: stmmac: Add Ingenic SoCs MAC support.")
+I'm contacting you based on your good profiles I read and for a good
+reasons, I am in search of a property to buy in your country as I
+intended to come over to your
+country for investment, Though I have not meet with you before but I
+believe that one has to risk confiding in someone to succeed sometimes
+in life.
 
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-ingenic.c | 4 ----
- 1 file changed, 4 deletions(-)
+My name is Mrs. Sarah Koffi. My late husband deals on Crude Oil with
+Federal Government of Sudan and he has a personal Oil firm in Bentiu
+Oil zone town and Upper
+Nile city. What I have experience physically, I don't wish to
+experience it again in my life due to the recent civil Ethnic war
+cause by our President Mr. Salva Kiir
+and the rebel leader Mr Riek Machar, I have been Under United Nation
+refuge camp in chad to save my life and that of my little daughter.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-ingenic.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-ingenic.c
-index 667ed46..9a6d819 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-ingenic.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-ingenic.c
-@@ -311,9 +311,6 @@ static int ingenic_mac_probe(struct platform_device *pdev)
- #ifdef CONFIG_PM_SLEEP
- static int ingenic_mac_suspend(struct device *dev)
- {
--	struct net_device *ndev = dev_get_drvdata(dev);
--	struct stmmac_priv *priv = netdev_priv(ndev);
--	struct ingenic_mac *mac = priv->plat->bsp_priv;
- 	int ret;
- 
- 	ret = stmmac_suspend(dev);
-@@ -325,7 +322,6 @@ static int ingenic_mac_resume(struct device *dev)
- {
- 	struct net_device *ndev = dev_get_drvdata(dev);
- 	struct stmmac_priv *priv = netdev_priv(ndev);
--	struct ingenic_mac *mac = priv->plat->bsp_priv;
- 	int ret;
- 
- 	ret = ingenic_mac_init(priv->plat);
--- 
-2.7.4
+Though, I do not know how you will feel to my proposal, but the truth
+is that I sneaked into Chad our neighboring country where I am living
+now as a refugee.
+I escaped with my little daughter when the rebels bust into our house
+and killed my husband as one of the big oil dealers in the country,
+ever since then, I have being on the run.
 
+I left my country and move to Chad our neighboring country with the
+little ceasefire we had, due to the face to face peace meeting accord
+coordinated by the US Secretary of State, Mr John Kerry and United
+Nations in Ethiopia (Addis Ababa) between our President Mr Salva Kiir
+and the rebel leader Mr Riek Machar to stop this war.
+
+I want to solicit for your partnership with trust to invest the $8
+million dollars deposited by my late husband in Bank because my life
+is no longer safe in our country, since the rebels are looking for the
+families of all the oil business men in the country to kill, saying
+that they are they one that is milking the country dry.
+
+I will offer you 20% of the total fund for your help while I will
+partner with you for the investment in your country.
+If I get your reply.
+
+I will wait to hear from you so as to give you details.With love from
+
+ i need you to contact me here sarahkoffi389@yahoo.co.jp
+
+Mrs. Sarah Koffi
