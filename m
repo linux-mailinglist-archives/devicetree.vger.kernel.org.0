@@ -2,90 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFBC73AE06D
-	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 22:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A206D3AE07A
+	for <lists+devicetree@lfdr.de>; Sun, 20 Jun 2021 22:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229984AbhFTUsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Jun 2021 16:48:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57680 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229905AbhFTUsp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 20 Jun 2021 16:48:45 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 454E36109F;
-        Sun, 20 Jun 2021 20:46:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624221992;
-        bh=Ld8DsLuN9uxyfxOIjiJtuRFKzCbOVD9P45An2hX0fLE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ODlAsUemSl9Qu5lwmSdExvzujHRyL8qYs0KcT1NZD2TVMZy4sPGkHZji/Qm/bZooU
-         vtrjcqdkU9TSRV+emzAJSXMO3QeVcsntW7b+iurlHdgt3OPzVGBtNybbwO0ok1w7Et
-         FkVuEggFhY+E+aAq0QvPP3eWqz5SzhGxj1i+nhlkUvKHlkdJn/xkAE3uX4Ahj51HLc
-         7egyRuzRjYEApoFHWAZrygIjEWXUa5HTlnxwbpz/Mr1FCRkOnP4DWbEFEwDtFkxcvs
-         aIXSqGv+O3LNFqR+wdnZb5fOc7t4aQNaJS5h6IWWrU4/nk9Ck31fqaj6OEqfiMnblw
-         y2YSjtRnCJNnw==
-Date:   Sun, 20 Jun 2021 22:46:29 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Jonathan Marek <jonathan@marek.ca>
-Cc:     linux-arm-msm@vger.kernel.org, robert.foss@linaro.org,
-        andrey.konovalov@linaro.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:QUALCOMM I2C CCI DRIVER" <linux-i2c@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] i2c: qcom-cci: add sm8250 compatible
-Message-ID: <YM+pJSOULPmlITIc@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org,
-        robert.foss@linaro.org, andrey.konovalov@linaro.org,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:QUALCOMM I2C CCI DRIVER" <linux-i2c@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20210513175518.6023-1-jonathan@marek.ca>
+        id S230144AbhFTU6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Jun 2021 16:58:02 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:32794 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229845AbhFTU6B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Jun 2021 16:58:01 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 8BC201C0B82; Sun, 20 Jun 2021 22:55:47 +0200 (CEST)
+Date:   Sun, 20 Jun 2021 22:55:47 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rtc: ti,bq32k: Convert to json-schema
+Message-ID: <20210620205546.GA17070@amd>
+References: <42d9c71b4ee1f120e0cdcf6b266547d29d1fb9a4.1623851377.git.geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="QiJGXfUyvzMgjqNF"
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="y0ulUmNC+osPPQO6"
 Content-Disposition: inline
-In-Reply-To: <20210513175518.6023-1-jonathan@marek.ca>
+In-Reply-To: <42d9c71b4ee1f120e0cdcf6b266547d29d1fb9a4.1623851377.git.geert+renesas@glider.be>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---QiJGXfUyvzMgjqNF
+--y0ulUmNC+osPPQO6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, May 13, 2021 at 01:55:17PM -0400, Jonathan Marek wrote:
-> SM8250 CCI is the same as SDM845, add an equivalent compatible for SM8250.
+Hi!
+
+> Convert the TI BQ32000 I2C Serial Real-Time Clock Device Tree binding
+> documentation to json-schema.
 >=20
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+> Document missing properties.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-For the record: Applied to for-next on 2021-05-21, thanks!
+> index 0000000000000000..392bd71bd1bee25c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/ti,bq32000.yaml
+> @@ -0,0 +1,49 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/ti,bq32000.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI BQ32000 I2C Serial Real-Time Clock
+> +
+> +maintainers:
+> +  - Pavel Machek <pavel@ucw.cz>
 
+I'm not sure why I'm listed here, but I probably should not be. I
+don't have access to that hardware any more.
 
---QiJGXfUyvzMgjqNF
+Best regards,
+								Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--y0ulUmNC+osPPQO6
 Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmDPqSQACgkQFA3kzBSg
-KbaJVA/+PYq/2WzJj/80zSo/kaLH08GAfxSYvoch0h7HPkkufpYjzeBzkdVF19Qd
-dPhzOxDqy9Z8zDP05ttEAtPPtKPHXUOxP7B5Sx3fXJ+ypv5OJznpMmFdvT6P9KpH
-XHzxokK5PYg4J7feHKBS9hbM5gvq97WiYtD7xPb+iBDc1S4LSL38J0fdWHB19PWw
-mpeA6Ummb4/jkhxHYMl0hay2NijxndTPBKa+uNvwRvOl++gV9bVM6KGDWZbv6dVI
-/sbtT2Id+U0XYEijj8+eroEAGaCfJdWRYIPknCc0/aUU0nETwK1qLmE+KQ01Kbf3
-ieiloxHmF95WdrNy5pnAu29sEAIvLPMdGqi8NCdP5UV4hepA5tzhmTYIUDqck6UC
-Gpw0swi/nsR9NtcimJUVdICkVrSeLtler57PGJm1pOB9L7+2f585yl3USc9TM+qa
-4JO+Be2ECa8VpSudcSOHC9DDkMIchKWCm0WUFoW07rxSEHUtiB3uyjAW+JX2cZG3
-RdBwby5JNzSEzPHXg3IMGJVgmGsjv7m72+4V5IkDIRYMlLHrMvmtvqNIolIsKr3g
-X4oaWDVTPWEcUzqPQXYo7VwsyWKdT9ehK7vnUKZrvAb+OfvhN26fESQ4VkiCX/H6
-d/yMK77dKJfn6DB+fsgZIH2vfmWZCrid6Tmv65mFvVL7x6n2tbo=
-=mqe+
+iEYEARECAAYFAmDPq1IACgkQMOfwapXb+vII/ACfeeS/6nYeSpaDAuJ7dFSn9p7Z
+fDcAnjkOxmjx5fnxYNKT8tDw7G8wlyc9
+=J16w
 -----END PGP SIGNATURE-----
 
---QiJGXfUyvzMgjqNF--
+--y0ulUmNC+osPPQO6--
