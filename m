@@ -2,116 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0FE73AE566
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 10:56:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3317B3AE56E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 10:58:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230175AbhFUI7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 04:59:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40202 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229618AbhFUI7L (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Jun 2021 04:59:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1C83260FE9;
-        Mon, 21 Jun 2021 08:56:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624265817;
-        bh=YExwmU+u6BVwXlkye/63k32gjtySTQvDE+hPHrJjKNk=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=pboonfM18U3V0GS3mu/bTPSqa4S2oqxmJuOXhFBkxFvyoxGc614j0BJZYZvuhMyYz
-         m8sjfPLk5Zs9uUnNbfeoIDciiPx9vCwbWsOLkDg24IfIh5EzGWgTXIEjIumj4/cmjN
-         Eet87/OikJWM/eKxSaQ5JJSxYvYfJb04ZV0W92U1oAoQK9DSl7URNcyfAeOXnBqF/m
-         minlx75YLi8mds3zKlFWilVYdNF7D2uch2TeFECavlNO8QrnYes9fYo8vg3+7hn9sc
-         NWwXHtj3Ol54MG+S0TvGIns9mugI6or1MWqS8X82lqy2amm4oupRkXyhNlv5/AoUIF
-         6gO6xNOr/B14w==
-Subject: Re: [PATCH V2] arm64: dts: qcom: sc7180: bus votes for eMMC and SD
- card
-To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        bjorn.andersson@linaro.org
-Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
-        vbadigan@codeaurora.org, rampraka@codeaurora.org,
-        sayalil@codeaurora.org, sartgarg@codeaurora.org,
-        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        sibis@codeaurora.org, okukatla@codeaurora.org, cang@codeaurora.org,
-        pragalla@codeaurora.org, nitirawa@codeaurora.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        agross@kernel.org, adrian.hunter@intel.com, ulf.hansson@linaro.org,
-        robh+dt@kernel.org
-References: <1623835344-29607-1-git-send-email-sbhanu@codeaurora.org>
-From:   Georgi Djakov <djakov@kernel.org>
-Message-ID: <3229daff-9a32-bced-7e02-c557f7f8b572@kernel.org>
-Date:   Mon, 21 Jun 2021 11:56:48 +0300
-MIME-Version: 1.0
-In-Reply-To: <1623835344-29607-1-git-send-email-sbhanu@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S230321AbhFUJAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 05:00:52 -0400
+Received: from lucky1.263xmail.com ([211.157.147.131]:45062 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230102AbhFUJAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 05:00:51 -0400
+Received: from localhost (unknown [192.168.167.235])
+        by lucky1.263xmail.com (Postfix) with ESMTP id B2A80BD161;
+        Mon, 21 Jun 2021 16:58:30 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P23590T139719874688768S1624265906651790_;
+        Mon, 21 Jun 2021 16:58:28 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <e2de2f217429aed61d5ffef89dbc5fbb>
+X-RL-SENDER: jon.lin@rock-chips.com
+X-SENDER: jon.lin@rock-chips.com
+X-LOGIN-NAME: jon.lin@rock-chips.com
+X-FST-TO: broonie@kernel.org
+X-RCPT-COUNT: 9
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Jon Lin <jon.lin@rock-chips.com>
+To:     broonie@kernel.org
+Cc:     jon.lin@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org,
+        linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v9 0/6] Support ROCKCHIP SPI new feature
+Date:   Mon, 21 Jun 2021 16:58:18 +0800
+Message-Id: <20210621085824.10081-1-jon.lin@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.06.21 12:22, Shaik Sajida Bhanu wrote:
-> Update peak bandwidth and average bandwidth vote values for eMMC and
-> SDCard. This patch calculates the new votes as per the comments from
-> https://lore.kernel.org/patchwork/patch/1399453/#1619566.
-> 
-> Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
 
-Reviewed-by: Georgi Djakov <djakov@kernel.org>
 
-> ---
-> 
-> Changes since V1:
-> 	- Updated the commit message with proper information.
-> ---
->   arch/arm64/boot/dts/qcom/sc7180.dtsi | 20 ++++++++++----------
->   1 file changed, 10 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index fb1d9ad..a5d58eb 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -727,15 +727,15 @@
->   				opp-100000000 {
->   					opp-hz = /bits/ 64 <100000000>;
->   					required-opps = <&rpmhpd_opp_low_svs>;
-> -					opp-peak-kBps = <100000 100000>;
-> -					opp-avg-kBps = <100000 50000>;
-> +					opp-peak-kBps = <1800000 600000>;
-> +					opp-avg-kBps = <100000 0>;
->   				};
->   
->   				opp-384000000 {
->   					opp-hz = /bits/ 64 <384000000>;
-> -					required-opps = <&rpmhpd_opp_svs_l1>;
-> -					opp-peak-kBps = <600000 900000>;
-> -					opp-avg-kBps = <261438 300000>;
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +					opp-peak-kBps = <5400000 1600000>;
-> +					opp-avg-kBps = <390000 0>;
->   				};
->   			};
->   		};
-> @@ -2585,15 +2585,15 @@
->   				opp-100000000 {
->   					opp-hz = /bits/ 64 <100000000>;
->   					required-opps = <&rpmhpd_opp_low_svs>;
-> -					opp-peak-kBps = <160000 100000>;
-> -					opp-avg-kBps = <80000 50000>;
-> +					opp-peak-kBps = <1800000 600000>;
-> +					opp-avg-kBps = <100000 0>;
->   				};
->   
->   				opp-202000000 {
->   					opp-hz = /bits/ 64 <202000000>;
-> -					required-opps = <&rpmhpd_opp_svs_l1>;
-> -					opp-peak-kBps = <200000	120000>;
-> -					opp-avg-kBps = <100000 60000>;
-> +					required-opps = <&rpmhpd_opp_nom>;
-> +					opp-peak-kBps = <5400000 1600000>;
-> +					opp-avg-kBps = <200000 0>;
->   				};
->   			};
->   		};
-> 
+Changes in v9:
+- Conver to use CS GPIO description
+
+Changes in v8:
+- There is a problem with the version 7 mail format. resend it
+
+Changes in v7:
+- Fall back "rockchip,rv1126-spi" to "rockchip,rk3066-spi"
+
+Changes in v6:
+- Consider to compatibility, the "rockchip,rk3568-spi" is removed in
+  Series-changes v5, so the commit massage should also remove the
+  corresponding information
+
+Changes in v5:
+- Change to leave one compatible id rv1126, and rk3568 is compatible
+  with rv1126
+
+Changes in v4:
+- Adjust the order patches
+- Simply commit massage like redundancy "application" content
+
+Changes in v3:
+- Fix compile error which is find by Sascha in [v2,2/8]
+
+Jon Lin (6):
+  dt-bindings: spi: spi-rockchip: add description for rv1126
+  spi: rockchip: add compatible string for rv1126
+  spi: rockchip: Set rx_fifo interrupt waterline base on transfer item
+  spi: rockchip: Wait for STB status in slave mode tx_xfer
+  spi: rockchip: Support cs-gpio
+  spi: rockchip: Support SPI_CS_HIGH
+
+ .../devicetree/bindings/spi/spi-rockchip.yaml |  1 +
+ drivers/spi/spi-rockchip.c                    | 49 +++++++++++++------
+ 2 files changed, 34 insertions(+), 16 deletions(-)
+
+-- 
+2.17.1
+
+
 
