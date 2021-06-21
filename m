@@ -2,81 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 259003AF2C9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 19:54:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDFD43AF301
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 19:57:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233147AbhFUR4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 13:56:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39108 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232070AbhFURzN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Jun 2021 13:55:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B367561378;
-        Mon, 21 Jun 2021 17:52:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624297977;
-        bh=GHk/7znoJ06sxET6U+HlMgG+SebJ6C1htOLeASBDXB4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=j4RCFwqoneSQ7RkkkTG57d0KaKYhdHVZhDZZB2OJRbEzKfcE0EWFPr3Czti5hMD1a
-         HkNCbbKqnkdgn5MHfLKaeggL9oamGOcg2nLG9Xa3a0BdZF6RZDXjH+T3fSkcK5fjMP
-         l6YG2Hc8dCYe8GgBAuprffg7LiTkxWAm53JJdZE9UCxXZk/gSUL3284KrKVF7/Ort6
-         JjxgQhlBACjF1/+MaxO46cSztK5cuQMaqhSojoFDXowqJIYzqeK7Bnig6J9wR/hrU4
-         dwePUPYBz8qlRuo/776ji4KyILNEWcsnzGbWoMzYrIRsSn1rVgWNkSwsURcmE3g4Ze
-         MGWpc5HZKSBxA==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     David Abdurachmanov <david.abdurachmanov@sifive.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.12 39/39] riscv: dts: fu740: fix cache-controller interrupts
-Date:   Mon, 21 Jun 2021 13:51:55 -0400
-Message-Id: <20210621175156.735062-39-sashal@kernel.org>
+        id S233041AbhFUR6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 13:58:23 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:51002 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232995AbhFUR4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 13:56:18 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id B88371F42680
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 06D1E4800C6; Mon, 21 Jun 2021 19:54:00 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Ian Ray <ian.ray@ge.com>,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@collabora.com,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: [PATCHv5 0/5] GE Healthcare PPD firmware upgrade driver for ACHC
+Date:   Mon, 21 Jun 2021 19:53:54 +0200
+Message-Id: <20210621175359.126729-1-sebastian.reichel@collabora.com>
 X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210621175156.735062-1-sashal@kernel.org>
-References: <20210621175156.735062-1-sashal@kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Abdurachmanov <david.abdurachmanov@sifive.com>
+Hi,
 
-[ Upstream commit 7ede12b01b59dc67bef2e2035297dd2da5bfe427 ]
+The PPD has a secondary processor (NXP Kinetis K20), which can be
+programmed from the main system. It is connected to the main processor
+by having it's EzPort interface connected to the SPI bus. Currently
+both (normal and EzPort) interfaces are simply exposed to userspace.
+This does not work for the EzPort, since EzPort usage requires a device
+reset. The proper solution is to do the flashing from kernel space
+with properly timed toggling of EzPort chip-select and reset line. In
+PATCHv2 it was suggested, that this should happen via an SPI ancillary
+device, so this is how it has been implemented now.
 
-The order of interrupt numbers is incorrect.
+Changes since PATCHv4:
+ * https://lore.kernel.org/lkml/20210609151235.48964-1-sebastian.reichel@collabora.com/
+ * Add Rob's Acked-by to ge-achc binding update
+ * Don't use of_property_read_u32_index() in of_spi_parse_dt()
+ * Don't build separate module for EzPort code
+ * Use GPL2-only for the header
+ * ACHC_MAX_FREQ -> ACHC_MAX_FREQ_HZ
+ * Only accept '1' for the sysfs files, not any data
+ * Update sysfs file documentation
+ * Rebased to spi-next tree (b8f9dce0f4eb)
 
-The order for FU740 is: DirError, DataError, DataFail, DirFail
+Changes since PATCHv3:
+ * https://lore.kernel.org/lkml/20210528113346.37137-1-sebastian.reichel@collabora.com/
+ * Add Rob's Acked-by to 2nd patch
+ * use GPL-2-only instead of GPL-2+
+ * use %zu for printing a size_t
+ * use driver's .dev_groups to register sysfs group
+ * Add sysfs property documentation
+ * split EzPort and ACHC drivers into separate patches
+ * drop minItems/maxItems from achc binding, which seems to fix the problems
+   reported by dt_binding_check. The information of two items being required
+   is implied by the explicit item list.
+ * drop spidev functionality for the main SPI interface. The current firmware
+   communicates via UART and adding spidev support is complex. If future firmware
+   releases start using it, spidev support for the main interface can be added
+   later.
 
-From SiFive FU740-C000 Manual:
-19 - L2 Cache DirError
-20 - L2 Cache DirFail
-21 - L2 Cache DataError
-22 - L2 Cache DataFail
+Changes since PATCHv2:
+ * https://lore.kernel.org/lkml/20180327135259.30890-1-sebastian.reichel@collabora.co.uk/
+ * add SPI core support for ancillary devices
+ * modify ACHC binding to make use of ancillary device
+ * rewrite driver to use ancillary device
+ * rebased to 5.13-rc1
 
-Signed-off-by: David Abdurachmanov <david.abdurachmanov@sifive.com>
-Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/riscv/boot/dts/sifive/fu740-c000.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since PATCHv1:
+ * https://lore.kernel.org/lkml/20180320172201.2065-1-sebastian.reichel@collabora.co.uk/
+ * split DT binding update into its own patch
+ * add sysfs attribute documentation
+ * fix problem reported by kbuild test robot
 
-diff --git a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-index eeb4f8c3e0e7..d0d206cdb999 100644
---- a/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu740-c000.dtsi
-@@ -272,7 +272,7 @@ ccache: cache-controller@2010000 {
- 			cache-size = <2097152>;
- 			cache-unified;
- 			interrupt-parent = <&plic0>;
--			interrupts = <19 20 21 22>;
-+			interrupts = <19 21 22 20>;
- 			reg = <0x0 0x2010000 0x0 0x1000>;
- 		};
- 		gpio: gpio@10060000 {
+-- Sebastian
+
+Sebastian Reichel (5):
+  spi: add ancillary device support
+  spi: dt-bindings: support devices with multiple chipselects
+  dt-bindings: misc: ge-achc: Convert to DT schema format
+  ARM: dts: imx53-ppd: Fix ACHC entry
+  misc: gehc-achc: new driver
+
+ .../ABI/testing/sysfs-driver-ge-achc          |  14 +
+ .../devicetree/bindings/misc/ge-achc.txt      |  26 -
+ .../devicetree/bindings/misc/ge-achc.yaml     |  65 +++
+ .../bindings/spi/spi-controller.yaml          |   7 +-
+ arch/arm/boot/dts/imx53-ppd.dts               |  23 +-
+ drivers/misc/Kconfig                          |  11 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/gehc-achc.c                      | 136 +++++
+ drivers/misc/nxp-ezport.c                     | 469 ++++++++++++++++++
+ drivers/misc/nxp-ezport.h                     |   9 +
+ drivers/spi/spi.c                             | 137 +++--
+ drivers/spi/spidev.c                          |   1 -
+ include/linux/spi/spi.h                       |   2 +
+ 13 files changed, 831 insertions(+), 70 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-ge-achc
+ delete mode 100644 Documentation/devicetree/bindings/misc/ge-achc.txt
+ create mode 100644 Documentation/devicetree/bindings/misc/ge-achc.yaml
+ create mode 100644 drivers/misc/gehc-achc.c
+ create mode 100644 drivers/misc/nxp-ezport.c
+ create mode 100644 drivers/misc/nxp-ezport.h
+
 -- 
 2.30.2
 
