@@ -2,133 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 200E03AE576
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 10:58:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14A2C3AE57D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 11:01:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230204AbhFUJA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 05:00:59 -0400
-Received: from lucky1.263xmail.com ([211.157.147.133]:60604 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbhFUJA5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 05:00:57 -0400
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id B423ECE909;
-        Mon, 21 Jun 2021 16:58:41 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P23590T139719874688768S1624265906651790_;
-        Mon, 21 Jun 2021 16:58:39 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <fd14a5d7c691f5c5f1996296e1dea1c4>
-X-RL-SENDER: jon.lin@rock-chips.com
-X-SENDER: jon.lin@rock-chips.com
-X-LOGIN-NAME: jon.lin@rock-chips.com
-X-FST-TO: broonie@kernel.org
-X-RCPT-COUNT: 9
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Jon Lin <jon.lin@rock-chips.com>
-To:     broonie@kernel.org
-Cc:     jon.lin@rock-chips.com, heiko@sntech.de, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v9 4/6] spi: rockchip: Wait for STB status in slave mode tx_xfer
-Date:   Mon, 21 Jun 2021 16:58:22 +0800
-Message-Id: <20210621085824.10081-5-jon.lin@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210621085824.10081-1-jon.lin@rock-chips.com>
-References: <20210621085824.10081-1-jon.lin@rock-chips.com>
+        id S229943AbhFUJDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 05:03:46 -0400
+Received: from foss.arm.com ([217.140.110.172]:58858 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229618AbhFUJDp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Jun 2021 05:03:45 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B521E1FB;
+        Mon, 21 Jun 2021 02:01:31 -0700 (PDT)
+Received: from e120937-lin (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2A6D13F718;
+        Mon, 21 Jun 2021 02:01:29 -0700 (PDT)
+Date:   Mon, 21 Jun 2021 10:01:26 +0100
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Peter Hilber <peter.hilber@opensynergy.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Igor Skalkin <igor.skalkin@opensynergy.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        souvik.chakravarty@arm.com, alex.bennee@linaro.org,
+        jean-philippe@linaro.org, mikhail.golubev@opensynergy.com,
+        anton.yakovlev@opensynergy.com,
+        Vasyl Vavrychuk <Vasyl.Vavrychuk@opensynergy.com>,
+        Andriy Tryshnivskyy <Andriy.Tryshnivskyy@opensynergy.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Subject: Re: [RFC PATCH v3 01/12] firmware: arm_scmi, smccc, mailbox: Make
+ shmem based transports optional
+Message-ID: <20210621090126.GA50227@e120937-lin>
+References: <20210511002040.802226-1-peter.hilber@opensynergy.com>
+ <20210511002040.802226-2-peter.hilber@opensynergy.com>
+ <CABb+yY2q8Vw90=qEiNSOUZ39ZmX0ECShTvSidLoYCuZ-xGy-Mg@mail.gmail.com>
+ <20210621085431.whk5z3gohk3pb6j7@bogus>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210621085431.whk5z3gohk3pb6j7@bogus>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After ROCKCHIP_SPI_VER2_TYPE2, SR->STB is a more accurate judgment
-bit for spi slave transmition.
+Hi,
 
-Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
----
+On Mon, Jun 21, 2021 at 09:54:31AM +0100, Sudeep Holla wrote:
+> On Sun, Jun 20, 2021 at 11:09:21PM -0500, Jassi Brar wrote:
+> > On Mon, May 10, 2021 at 7:22 PM Peter Hilber
+> > <peter.hilber@opensynergy.com> wrote:
+> > 
+> > .....
+> > 
+> > > --- a/drivers/mailbox/Kconfig
+> > > +++ b/drivers/mailbox/Kconfig
+> > > @@ -1,6 +1,7 @@
+> > >  # SPDX-License-Identifier: GPL-2.0-only
+> > >  menuconfig MAILBOX
+> > >         bool "Mailbox Hardware Support"
+> > > +       select ARM_SCMI_HAVE_SHMEM
+> > >         help
+> > >           Mailbox is a framework to control hardware communication between
+> > >           on-chip processors through queued messages and interrupt driven
+> > >
+> > Isn't this too generic?
+> > Not all platforms, with a mailbox controller, use SCMI as the protocol.
+> >
+> 
+> Yikes! I agree Jassi, this looks super hack.
+> 
 
-Changes in v9: None
-Changes in v8: None
-Changes in v7: None
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
+Yes indeed, I have still to rework this part of the series.
 
- drivers/spi/spi-rockchip.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+(@Jassi: I'm reworking this series starting from the work done by Peter up to
+V3, since it needed some core SCMI transport rework to ease implememtation of
+virtio-scmi transport)
 
-diff --git a/drivers/spi/spi-rockchip.c b/drivers/spi/spi-rockchip.c
-index 0887b19ef3ad..950d3bce443b 100644
---- a/drivers/spi/spi-rockchip.c
-+++ b/drivers/spi/spi-rockchip.c
-@@ -116,13 +116,14 @@
- #define BAUDR_SCKDV_MIN				2
- #define BAUDR_SCKDV_MAX				65534
- 
--/* Bit fields in SR, 5bit */
--#define SR_MASK						0x1f
-+/* Bit fields in SR, 6bit */
-+#define SR_MASK						0x3f
- #define SR_BUSY						(1 << 0)
- #define SR_TF_FULL					(1 << 1)
- #define SR_TF_EMPTY					(1 << 2)
- #define SR_RF_EMPTY					(1 << 3)
- #define SR_RF_FULL					(1 << 4)
-+#define SR_SLAVE_TX_BUSY				(1 << 5)
- 
- /* Bit fields in ISR, IMR, ISR, RISR, 5bit */
- #define INT_MASK					0x1f
-@@ -197,13 +198,19 @@ static inline void spi_enable_chip(struct rockchip_spi *rs, bool enable)
- 	writel_relaxed((enable ? 1U : 0U), rs->regs + ROCKCHIP_SPI_SSIENR);
- }
- 
--static inline void wait_for_idle(struct rockchip_spi *rs)
-+static inline void wait_for_tx_idle(struct rockchip_spi *rs, bool slave_mode)
- {
- 	unsigned long timeout = jiffies + msecs_to_jiffies(5);
- 
- 	do {
--		if (!(readl_relaxed(rs->regs + ROCKCHIP_SPI_SR) & SR_BUSY))
--			return;
-+		if (slave_mode) {
-+			if (!(readl_relaxed(rs->regs + ROCKCHIP_SPI_SR) & SR_SLAVE_TX_BUSY) &&
-+			    !((readl_relaxed(rs->regs + ROCKCHIP_SPI_SR) & SR_BUSY)))
-+				return;
-+		} else {
-+			if (!(readl_relaxed(rs->regs + ROCKCHIP_SPI_SR) & SR_BUSY))
-+				return;
-+		}
- 	} while (!time_after(jiffies, timeout));
- 
- 	dev_warn(rs->dev, "spi controller is in busy state!\n");
-@@ -383,7 +390,7 @@ static void rockchip_spi_dma_txcb(void *data)
- 		return;
- 
- 	/* Wait until the FIFO data completely. */
--	wait_for_idle(rs);
-+	wait_for_tx_idle(rs, ctlr->slave);
- 
- 	spi_enable_chip(rs, false);
- 	spi_finalize_current_transfer(ctlr);
-@@ -545,7 +552,7 @@ static int rockchip_spi_config(struct rockchip_spi *rs,
- 	else
- 		writel_relaxed(rs->fifo_len / 2 - 1, rs->regs + ROCKCHIP_SPI_RXFTLR);
- 
--	writel_relaxed(rs->fifo_len / 2, rs->regs + ROCKCHIP_SPI_DMATDLR);
-+	writel_relaxed(rs->fifo_len / 2 - 1, rs->regs + ROCKCHIP_SPI_DMATDLR);
- 	writel_relaxed(rockchip_spi_calc_burst_size(xfer->len / rs->n_bytes) - 1,
- 		       rs->regs + ROCKCHIP_SPI_DMARDLR);
- 	writel_relaxed(dmacr, rs->regs + ROCKCHIP_SPI_DMACR);
--- 
-2.17.1
+Thanks,
+Cristian
 
-
-
+> -- 
+> Regards,
+> Sudeep
