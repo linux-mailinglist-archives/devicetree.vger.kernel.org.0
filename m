@@ -2,113 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C0FB3AE4D6
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 10:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE99E3AE50F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 10:38:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229890AbhFUIdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 04:33:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35014 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229789AbhFUIdL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Jun 2021 04:33:11 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3567B611B0;
-        Mon, 21 Jun 2021 08:30:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624264258;
-        bh=Pcp9QiM+wz7CqD5bvb3BMwJt+gIRXZRnTztLDJ83g+w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QHSxNvauWjwV7G/MVQCUFDF4AEQQxLF+0R7Xab0uLxKtcbFyoJFSahAm7ZnQELhpj
-         UoHMAo+cJSsWyj2PAj88Ev1g1nJZB/gRPwwekwBvYOn+MGzEOj238IZ6TiU6LQT/ot
-         PNGM/Rwx9wwORH9PYFs1AiM+LeHqwEFQyDoVvueUkyxkhwIseMGsOJAGu+MhGdZwbt
-         /vfQc6GNgi/YFLDESSULQLas3Dl0Ex1W2R/SdmNHmANFMmz7VSPItrqakLvecHzB1Z
-         2Q9zFCRPBB4QU2RrA4aSXaReL3fRIqhirpge5uwJdStnaHNyiVUTJOWva99iwB/Xu+
-         XcvRQcu6kUP6g==
-Received: by mail-ej1-f51.google.com with SMTP id ho18so27378744ejc.8;
-        Mon, 21 Jun 2021 01:30:58 -0700 (PDT)
-X-Gm-Message-State: AOAM530M5csFxItKB7p+d/FUm9PUIukQ70xg+g59fi3t4h7bL8dFBN+5
-        im69b/sXXoKwMkn8YF6jPlSL7Ddu9HVpl/Qmtg==
-X-Google-Smtp-Source: ABdhPJxibsmUgw7bInJG+XOFJhr1Nt7qCfnwC1CYZF9N3JnhGELXNshHIqQDQ+WlAFaPaLzrPKSpgopFFw64Q3Y4LO0=
-X-Received: by 2002:a17:906:dbcd:: with SMTP id yc13mr23909438ejb.267.1624264256796;
- Mon, 21 Jun 2021 01:30:56 -0700 (PDT)
+        id S230121AbhFUIki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 04:40:38 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:17619 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230202AbhFUIkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 04:40:37 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1624264703; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=zkZFX1WS+/7fa88RZ+e2bW+9prmrxb8QWu3yvtkdX7c=;
+ b=Z6DyaZwvIVkZHyxaB04fRVXbk5UZme3OFkaMghzRNtOcYnm6Apd5h5XWHqzHRsB8Y+XchGUM
+ VQllwGZlg1sgqF5y9WbmJgEj46fpagaBkZsuIBr7T28urAJlR+qR7kG75FP29xnXvbauYBD6
+ prxmcAzKQdWc5Xvc51+2SUGy994=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 60d04ffb8491191eb3505ed7 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 21 Jun 2021 08:38:19
+ GMT
+Sender: rajeevny=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 4E3CFC4360C; Mon, 21 Jun 2021 08:38:19 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: rajeevny)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B591AC433F1;
+        Mon, 21 Jun 2021 08:38:17 +0000 (UTC)
 MIME-Version: 1.0
-References: <1624187698-29040-1-git-send-email-yongqiang.niu@mediatek.com> <1624187698-29040-2-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1624187698-29040-2-git-send-email-yongqiang.niu@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 21 Jun 2021 16:30:43 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-UJ0N7pzASDMS3ca4xf9HFpi9ZN_hTx2ND2WZk3ddz+A@mail.gmail.com>
-Message-ID: <CAAOTY_-UJ0N7pzASDMS3ca4xf9HFpi9ZN_hTx2ND2WZk3ddz+A@mail.gmail.com>
-Subject: Re: [PATCH v6, 1/2] soc: mediatek: mmsys: add comp OVL_2L2/POSTMASK/RDMA4
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 21 Jun 2021 14:08:17 +0530
+From:   rajeevny@codeaurora.org
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
+        robdclark@gmail.com, dianders@chromium.org, lyude@redhat.com,
+        jani.nikula@intel.com, robh@kernel.org,
+        laurent.pinchart@ideasonboard.com, a.hajda@samsung.com,
+        daniel.thompson@linaro.org, hoegsberg@chromium.org,
+        abhinavk@codeaurora.org, seanpaul@chromium.org,
+        kalyan_t@codeaurora.org, mkrishn@codeaurora.org,
+        lee.jones@linaro.org, jingoohan1@gmail.com,
+        linux-fbdev@vger.kernel.org
+Subject: Re: [v7 1/5] drm/panel: add basic DP AUX backlight support
+In-Reply-To: <20210620093141.GA703072@ravnborg.org>
+References: <1624099230-20899-1-git-send-email-rajeevny@codeaurora.org>
+ <1624099230-20899-2-git-send-email-rajeevny@codeaurora.org>
+ <20210620093141.GA703072@ravnborg.org>
+Message-ID: <ebf5581759daee9596c2f092ca836ecb@codeaurora.org>
+X-Sender: rajeevny@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+Hi Sam,
 
-Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B46=E6=9C=
-=8820=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=887:15=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> This patch add some more ddp component
-> OVL_2L2 is ovl which include 2 layers overlay
-> POSTMASK control round corner for display frame
-> RDMA4 read dma buffer
->
-> Change-Id: I464ea2dce6a312de8fad2cdbd94a4c71ab45af8f
+On 20-06-2021 15:01, Sam Ravnborg wrote:
+> Hi Rajeev
+> 
+> On Sat, Jun 19, 2021 at 04:10:26PM +0530, Rajeev Nandan wrote:
+>> Some panels support backlight control over DP AUX channel using
+>> VESA's standard backlight control interface.
+>> Using new DRM eDP backlight helpers, add support to create and
+>> register a backlight for those panels in drm_panel to simplify
+>> the panel drivers.
+>> 
+>> The panel driver with access to "struct drm_dp_aux" can create and
+>> register a backlight device using following code snippet in its
+>> probe() function:
+>> 
+>> 	err = drm_panel_dp_aux_backlight(panel, aux);
+>> 	if (err)
+>> 		return err;
+> 
+> IT very good to have this supported by drm_panel, so we avoid
+> bolierplate in various drivers.
+> 
+>> 
+>> Then drm_panel will handle backlight_(enable|disable) calls
+>> similar to the case when drm_panel_of_backlight() is used.
+>> 
+>> Currently, we are not supporting one feature where the source
+>> device can combine the backlight brightness levels set through
+>> DP AUX and the BL_PWM_DIM eDP connector pin. Since it's not
+>> required for the basic backlight controls, it can be added later.
+>> 
+>> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
+>> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+>> Reviewed-by: Lyude Paul <lyude@redhat.com>
+>> ---
+>> 
+>> (no changes since v6)
+>> 
+>> Changes in v5:
+>> - New
+>> 
+>> Changes in v6:
+>> - Fixed ordering of memory allocation (Douglas)
+>> - Updated word wrapping in a comment (Douglas)
+>> 
+>>  drivers/gpu/drm/drm_panel.c | 108 
+>> ++++++++++++++++++++++++++++++++++++++++++++
+>>  include/drm/drm_panel.h     |  15 ++++--
+>>  2 files changed, 119 insertions(+), 4 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
+>> index f634371..9e65342 100644
+>> --- a/drivers/gpu/drm/drm_panel.c
+>> +++ b/drivers/gpu/drm/drm_panel.c
+>> @@ -26,12 +26,20 @@
+>>  #include <linux/module.h>
+>> 
+>>  #include <drm/drm_crtc.h>
+>> +#include <drm/drm_dp_helper.h>
+>>  #include <drm/drm_panel.h>
+>>  #include <drm/drm_print.h>
+>> 
+>>  static DEFINE_MUTEX(panel_lock);
+>>  static LIST_HEAD(panel_list);
+>> 
+>> +struct dp_aux_backlight {
+>> +	struct backlight_device *base;
+>> +	struct drm_dp_aux *aux;
+>> +	struct drm_edp_backlight_info info;
+>> +	bool enabled;
+>> +};
+>> +
+>>  /**
+>>   * DOC: drm panel
+>>   *
+>> @@ -342,6 +350,106 @@ int drm_panel_of_backlight(struct drm_panel 
+>> *panel)
+>>  	return 0;
+>>  }
+>>  EXPORT_SYMBOL(drm_panel_of_backlight);
+>> +
+>> +static int dp_aux_backlight_update_status(struct backlight_device 
+>> *bd)
+>> +{
+>> +	struct dp_aux_backlight *bl = bl_get_data(bd);
+>> +	u16 brightness = backlight_get_brightness(bd);
+> backlight_get_brightness() returns an int, so using u16 seems wrong.
+> But then drm_edp_backlight_enable() uses u16 for level - so I guess it
+> is OK.
+> We use unsigned long, int, u16 for brightness. Looks like something one
+> could look at one day, but today is not that day.
+> 
+>> +	int ret = 0;
+>> +
+>> +	if (brightness > 0) {
+> Use backlight_is_blank(bd) here, as this is really what you test for.
 
-Remove this.
+The backlight_get_brightness() used above has the backlight_is_blank() 
+check and returns brightness 0 when the backlight_is_blank(bd) is true.
+So, instead of calling backlight_is_blank(bd), we are checking 
+brightness value here.
+I took the reference from pwm_backlight_update_status() of the PWM 
+backlight driver (drivers/video/backlight/pwm_bl.c)
 
-Regards,
-Chun-Kuang.
+Yes, we can change this _if_ condition to use backlight_is_blank(bd), as 
+this is an inline function, and is more meaningful.
+With this, there would be one change in the behavior of 
+_backlight_update_status function in the following case:
 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  include/linux/soc/mediatek/mtk-mmsys.h | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/m=
-ediatek/mtk-mmsys.h
-> index 2228bf6..4bba275 100644
-> --- a/include/linux/soc/mediatek/mtk-mmsys.h
-> +++ b/include/linux/soc/mediatek/mtk-mmsys.h
-> @@ -29,13 +29,16 @@ enum mtk_ddp_comp_id {
->         DDP_COMPONENT_OVL0,
->         DDP_COMPONENT_OVL_2L0,
->         DDP_COMPONENT_OVL_2L1,
-> +       DDP_COMPONENT_OVL_2L2,
->         DDP_COMPONENT_OVL1,
-> +       DDP_COMPONENT_POSTMASK0,
->         DDP_COMPONENT_PWM0,
->         DDP_COMPONENT_PWM1,
->         DDP_COMPONENT_PWM2,
->         DDP_COMPONENT_RDMA0,
->         DDP_COMPONENT_RDMA1,
->         DDP_COMPONENT_RDMA2,
-> +       DDP_COMPONENT_RDMA4,
->         DDP_COMPONENT_UFOE,
->         DDP_COMPONENT_WDMA0,
->         DDP_COMPONENT_WDMA1,
-> --
-> 1.8.1.1.dirty
->
+- Setting brightness=0 when the backlight is not blank:
+In the current case setting brightness=0 is disabling the backlight.
+In the new case, setting brightness=0 will set the brightness to 0 and 
+will do nothing to backlight disable.
+
+I think that should not be a problem?
+
+> 
+> I cannot see why you need the extra check on ->enabled?
+> Would it be sufficient to check backlight_is_blank() only?
+
+This extra check on bl->enabled flag is added to avoid 
+enabling/disabling backlight again if it is already enabled/disabled.
+Using this flag way can know the transition between backlight blank and 
+un-blank, and decide when to enable/disable the backlight.
+
+> 
+>> +		if (!bl->enabled) {
+>> +			drm_edp_backlight_enable(bl->aux, &bl->info, brightness);
+>> +			bl->enabled = true;
+>> +			return 0;
+>> +		}
+>> +		ret = drm_edp_backlight_set_level(bl->aux, &bl->info, brightness);
+>> +	} else {
+>> +		if (bl->enabled) {
+>> +			drm_edp_backlight_disable(bl->aux, &bl->info);
+>> +			bl->enabled = false;
+>> +		}
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+> 
+> 	Sam
+
+Thanks,
+Rajeev
