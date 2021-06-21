@@ -2,245 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEA073AE3E5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 09:10:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 625A93AE40D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 09:24:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbhFUHMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 03:12:36 -0400
-Received: from smtp-out2.suse.de ([195.135.220.29]:35298 "EHLO
-        smtp-out2.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbhFUHMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 03:12:36 -0400
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
-        (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id C044F1FD2A;
-        Mon, 21 Jun 2021 07:10:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1624259420; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=5m0iVoYDgordNTBtr/EcNJ2J1FOuGv0SNPXM6WL94yY=;
-        b=IPRMhQ8PrMXGkRybmZaiUGf27HPLzx3Ockf/QPf32laZW7r+iEoWGydBa6HrD9LKnSZxag
-        mm+0BDRMDaLJVmdYwaEYPtZ4uqy/adSYyFFJZSuYQ/z3tHSU6tFPecXxrl/m42iWeoT4Xv
-        1Tl8tTAqIGzRNIo5aKLm66XANOXENqg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1624259420;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=5m0iVoYDgordNTBtr/EcNJ2J1FOuGv0SNPXM6WL94yY=;
-        b=rYcqTu1LfBdEI36WasoSScnB4kVkzC8WN+4Z1fvA0ugfbDaHKl3aT71EXoLxa4cRrYkDvl
-        /6EqSvY5uD+IoRCA==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
-        by imap.suse.de (Postfix) with ESMTP id 7C0B1118DD;
-        Mon, 21 Jun 2021 07:10:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1624259420; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=5m0iVoYDgordNTBtr/EcNJ2J1FOuGv0SNPXM6WL94yY=;
-        b=IPRMhQ8PrMXGkRybmZaiUGf27HPLzx3Ockf/QPf32laZW7r+iEoWGydBa6HrD9LKnSZxag
-        mm+0BDRMDaLJVmdYwaEYPtZ4uqy/adSYyFFJZSuYQ/z3tHSU6tFPecXxrl/m42iWeoT4Xv
-        1Tl8tTAqIGzRNIo5aKLm66XANOXENqg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1624259420;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=5m0iVoYDgordNTBtr/EcNJ2J1FOuGv0SNPXM6WL94yY=;
-        b=rYcqTu1LfBdEI36WasoSScnB4kVkzC8WN+4Z1fvA0ugfbDaHKl3aT71EXoLxa4cRrYkDvl
-        /6EqSvY5uD+IoRCA==
-Received: from director2.suse.de ([192.168.254.72])
-        by imap3-int with ESMTPSA
-        id h5NiHVw70GC2fgAALh3uQQ
-        (envelope-from <tzimmermann@suse.de>); Mon, 21 Jun 2021 07:10:20 +0000
-Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
-To:     Tomohito Esaki <etom@igel.co.jp>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     dri-devlel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-References: <20210621062742.26073-1-etom@igel.co.jp>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
-Date:   Mon, 21 Jun 2021 09:10:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S230075AbhFUH0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 03:26:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46600 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230215AbhFUH0y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 03:26:54 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C4B6C061574
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 00:24:39 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id m2so13420099pgk.7
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 00:24:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4Mz90SrmvetiiKOz2FA2/q5WPVb/5Mateql9uC1osYI=;
+        b=LH6roB4QN50Ss3fd6q+CBK16FfSLRV/++biPwO3AeQTv8PFz5YsC987Yl5PrPtbQUR
+         grYaD4IXKWdJJOg4dF6BckzRXAb951oI2Olp611oMhF3JgfviD5I5Jhy/q+gsRLvIMqk
+         koZVmpZYLZherETZSArj4lMgsAiX7fGYNfJ8E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4Mz90SrmvetiiKOz2FA2/q5WPVb/5Mateql9uC1osYI=;
+        b=IuMrXpzAxl9GsvlWtZhEoVYgaMP0Z6HdlUncOYKZGCizpoKvwb6v9rqRmowNl4tWX2
+         HQYD3HgYk3E+SWOytSXlTAvtly03HmO0CjcFczRg4AWxIZBupmEBw09s400GAcXw5/XH
+         p/9ak6n31ZbTN2aYGaFLkdD8/BAbHoMcPsVpjbvpv3gb1Pe6MOYShK99r97mHBwLbd8u
+         Z+vLnwqMi+KZ3MBpQeCLMGMPjqtEBTbwmyxGtHJRVnXQj/ZfMzY1z4ti87ySrrB0RbCK
+         y+Y7b1MGi0NMyDn8+jwU6Sa9CHMkE1nVkPRupyoa05Q/SF7oIjkSJSOVImjcPU++mFT1
+         oPcg==
+X-Gm-Message-State: AOAM533WseUD8BuhvnnF/gIBsDzfGqMJ+gSG6N3gn6BSRFboflMOitBJ
+        Lw1HhRhzqsuyivf4k1wZ6dMLbg==
+X-Google-Smtp-Source: ABdhPJxiCxvGt4Lvg95BHdbOmEwOZrpqM6XZznMkEdEE3H9U0aYNeyTH/9EQGYu7BduM/FJvQrX1Kg==
+X-Received: by 2002:a63:ef04:: with SMTP id u4mr22267854pgh.429.1624260278855;
+        Mon, 21 Jun 2021 00:24:38 -0700 (PDT)
+Received: from localhost.localdomain ([2405:201:c00a:a884:139:e97f:a55d:7f66])
+        by smtp.gmail.com with ESMTPSA id 21sm13951294pfh.103.2021.06.21.00.24.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Jun 2021 00:24:38 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Tomasz Figa <t.figa@samsung.com>,
+        Fancy Fang <chen.fang@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org,
+        linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula@amarulasolutions.com,
+        Anthony Brandon <anthony@amarulasolutions.com>,
+        Francis Laniel <francis.laniel@amarulasolutions.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Milco Pratesi <milco.pratesi@engicam.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [RFC PATCH 0/9] arm64: imx8mm: Add MIPI DSI support
+Date:   Mon, 21 Jun 2021 12:54:15 +0530
+Message-Id: <20210621072424.111733-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20210621062742.26073-1-etom@igel.co.jp>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="S9N95scXUmHLEhoTHR8oPdrgimcVQbCM2"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---S9N95scXUmHLEhoTHR8oPdrgimcVQbCM2
-Content-Type: multipart/mixed; boundary="xZPPBxBixwOsT2lETaomCXgoCiFxTTQES";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Tomohito Esaki <etom@igel.co.jp>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc: dri-devlel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org
-Message-ID: <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
-Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
-References: <20210621062742.26073-1-etom@igel.co.jp>
-In-Reply-To: <20210621062742.26073-1-etom@igel.co.jp>
+This series support MIPI DSI on i.MX8MM.
 
---xZPPBxBixwOsT2lETaomCXgoCiFxTTQES
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+It worked directly with existing mxsfb driver but the SEC DSIM
+timings has to be validate and tested through all platforms, 
+ie reason I'm sending it as RFC.
 
-Hi
+Tested on Engicam i.Core MX8M Mini SoM.
 
-Am 21.06.21 um 08:27 schrieb Tomohito Esaki:
-> Virtual DRM splits the overlay planes of a display controller into mult=
-iple
-> virtual devices to allow each plane to be accessed by each process.
->=20
-> This makes it possible to overlay images output from multiple processes=
- on a
-> display. For example, one process displays the camera image without com=
-positor
-> while another process overlays the UI.
+patch 1: dt-bindings for SEC MIPI DSIM
 
-I briefly looked over your patches. I didn't understand how this is=20
-different to the functionality of a compositor? Shouldn't this be solved =
+patch 2: SEC MIPI DSIM bridge driver
 
-in userspace?
+patch 3: dt-bindings for SEC DSIM DPHY
 
-Best regards
-Thomas
+patch 4: SEC DSIM DPHY driver
 
->=20
-> Virtual DRM driver doesn=E2=80=99t directly control the display hardwar=
-e and has no
-> access to the physical bus. Instead, the virtual DRM driver issues requ=
-ests to
-> the standard=C2=A0DRM device driver (parent) when the hardware=C2=A0nee=
-ds to be
-> controlled. The parent is modified to notify the virtual DRM driver of
-> interruptevents from the display hardware. Therefore, in order to use v=
-irtual
-> DRM, each DRM device driver needs to add code to support virutal DRM.
->=20
-> The only driver supported in this patch series is rcar-du. This patch s=
-eries
-> is divided into multiple. The first patch adds vDRM feature to DRM, and=
- the
-> second patch support vDRM for the rcar-du driver. The other patches add=
+patch 5: MIPI DPHY reset enable in blk-ctl
 
-> documentation.
->=20
-> In particular, I would appreciate your advice on the following points:
-> * virtual DRM generalization
->    I've only tested with rcar-du, is there anything I should consider t=
-o make
->    virtual DRM work with other drivers?
->=20
-> * Integration to upstream
->    I think it is a good idea to add virtual DRM to the DRM core functio=
-nality,
->    but I would appreciate any suggestions on what needs to be improved =
-for
->    integration to upstream.
->=20
-> * dumb_create and fb_create callback
->    I think that the dumb_create and fb_create callbacks need to be done=
- by the
->    parent, and it is preferable to use the parent's callbacks as they a=
-re.
->    However, since the dumb buffer needs to be registered in the parent =
-and
->    the fb handle needs to be registered in the drm_file of the vDRM, th=
-e
->    dumb_create callbacks from the parent driver cannot be used as is.
->    Therefore, the current implementation of the dumb_create callback is=
+patch 6: display mix blk ctl node
 
->    workarround.
->    What do you think is the best way to deal with this issue?
->=20
->=20
-> Tomohito Esaki (4):
->    Add Virtual DRM device driver
->    rcar-du: Add support virtual DRM device
->    dt-bindings: display: Add virtual DRM
->    doc-rst: Add virtual DRM documentation
->=20
->   .../devicetree/bindings/display/vdrm.yaml     |  67 ++
->   Documentation/gpu/drivers.rst                 |   1 +
->   Documentation/gpu/vdrm.rst                    |  51 ++
->   drivers/gpu/drm/Kconfig                       |   7 +
->   drivers/gpu/drm/Makefile                      |   1 +
->   drivers/gpu/drm/rcar-du/Kconfig               |   4 +
->   drivers/gpu/drm/rcar-du/Makefile              |   1 +
->   drivers/gpu/drm/rcar-du/rcar_du_crtc.c        |  42 +
->   drivers/gpu/drm/rcar-du/rcar_du_crtc.h        |  13 +
->   drivers/gpu/drm/rcar-du/rcar_du_drv.c         |  13 +
->   drivers/gpu/drm/rcar-du/rcar_du_drv.h         |   3 +
->   drivers/gpu/drm/rcar-du/rcar_du_vdrm.c        | 191 ++++
->   drivers/gpu/drm/rcar-du/rcar_du_vdrm.h        |  67 ++
->   drivers/gpu/drm/rcar-du/rcar_du_vsp.c         |  22 +
->   drivers/gpu/drm/rcar-du/rcar_du_vsp.h         |   1 +
->   drivers/gpu/drm/vdrm/vdrm_api.h               |  68 ++
->   drivers/gpu/drm/vdrm/vdrm_drv.c               | 859 +++++++++++++++++=
-+
->   drivers/gpu/drm/vdrm/vdrm_drv.h               |  80 ++
->   18 files changed, 1491 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/display/vdrm.yam=
-l
->   create mode 100644 Documentation/gpu/vdrm.rst
->   create mode 100644 drivers/gpu/drm/rcar-du/rcar_du_vdrm.c
->   create mode 100644 drivers/gpu/drm/rcar-du/rcar_du_vdrm.h
->   create mode 100644 drivers/gpu/drm/vdrm/vdrm_api.h
->   create mode 100644 drivers/gpu/drm/vdrm/vdrm_drv.c
->   create mode 100644 drivers/gpu/drm/vdrm/vdrm_drv.h
->=20
+patch 7: eLCDIF node
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+patch 8: MIPI DSI pipeline nodes
 
+patch 9: Enable LVDS panel on EDIMM2.2
 
---xZPPBxBixwOsT2lETaomCXgoCiFxTTQES--
+Note:
+- all these patches on top of Peng Fan's blk-ctl driver.
+- anyone interest, please have a look on this repo
+  https://github.com/openedev/linux/commits/imx8mm
 
---S9N95scXUmHLEhoTHR8oPdrgimcVQbCM2
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+Any inputs?
+Jagan.
 
------BEGIN PGP SIGNATURE-----
+Jagan Teki (9):
+  dt-bindings: display: bridge: Add Samsung SEC MIPI DSIM bindings
+  drm: bridge: Add Samsung SEC MIPI DSIM bridge driver
+  dt-bindings: phy: Add SEC DSIM DPHY bindings
+  phy: samsung: Add SEC DSIM DPHY driver
+  soc: imx8mm: blk-ctl: Add MIPI DPHY reset enable
+  arm64: dts: imx8mm: Add display mix blk ctl
+  arm64: dts: imx8mm: Add eLCDIF node support
+  arm64: dts: imx8mm: Add MIPI DSI pipeline
+  arm64: dts: imx8mm-icore: Enable LVDS panel for EDIMM2.2
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDQO1sFAwAAAAAACgkQlh/E3EQov+BO
-ww/+JSg2yM4DLoyTmdRGBmAqoTupW9z+mVAhODjxiLs4gp1OhiFbhUATISPKa0vwVijcB/7zM5On
-c8D7xEPj7RHnrCE6P2nIZ4Nf/wNkUsvPioqrzqOUhG+Jmx4CD4vV0VBcap0RAr8ww/wfeRDpnjaw
-XG57aPs2hQI7cXx73jyiJEoSVuNUqTajiZDzzBUnRpMJa+OeIivYw+0CKg80uB402eVyOFK3GU1L
-Cl2s0uruISMxRAC8guQXhonzPiVf70Dq/8e/qIPb+4ZQ0JkA0eQmgfHWnbQ0Prmd8bnSbjUIizkF
-bP80O04bZShSs4VKwXCWWjUrDskRcbLLm2xt10SKm3hrE3+Luh18IbWh2Woh7TBKLeJ+hVduo4n4
-iRviOZ0snSeNxJp5PsdY+LOeLtmquyoJboDif1/VrMyU/eYEBgNOmGhgD6yETQWK2ThN3K61uTIs
-ja/fV7+hneFNfocCT0BSaFV8YDsHixbtpzilY9Ne45aXgOE+v9WsbgRHqb4EUfJ3PUZsKnEsvh6R
-nZgNLsANN9TovxFQ4770a4u2/1yhXzOC/rqokh4gwl3lQZYlfkiL6HFnkuVS2AOA4yG0SlDj1FyZ
-8WPZycS/XjiRMHMEfWtaieTQ/rh43+rax698aG8qeRsqVlq/bZcNP0Y9ySgbNDsYninpxUX9Oemk
-W7o=
-=IgJD
------END PGP SIGNATURE-----
+ .../display/bridge/samsung,sec-dsim.yaml      |  184 ++
+ .../bindings/phy/samsung,sec-dsim-dphy.yaml   |   56 +
+ .../freescale/imx8mm-icore-mx8mm-edimm2.2.dts |   90 +
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  104 ++
+ drivers/gpu/drm/bridge/Kconfig                |   15 +
+ drivers/gpu/drm/bridge/Makefile               |    1 +
+ drivers/gpu/drm/bridge/sec-dsim.c             | 1535 +++++++++++++++++
+ drivers/phy/samsung/Kconfig                   |    9 +
+ drivers/phy/samsung/Makefile                  |    1 +
+ drivers/phy/samsung/phy-sec-dsim-dphy.c       |  236 +++
+ drivers/soc/imx/blk-ctl-imx8mm.c              |    4 +
+ include/dt-bindings/power/imx8mm-power.h      |    5 +-
+ 12 files changed, 2238 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/samsung,sec-dsim.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/samsung,sec-dsim-dphy.yaml
+ create mode 100644 drivers/gpu/drm/bridge/sec-dsim.c
+ create mode 100644 drivers/phy/samsung/phy-sec-dsim-dphy.c
 
---S9N95scXUmHLEhoTHR8oPdrgimcVQbCM2--
+-- 
+2.25.1
+
