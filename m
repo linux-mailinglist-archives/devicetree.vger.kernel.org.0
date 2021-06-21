@@ -2,60 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3292E3AEAA2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 15:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D1C83AEAD5
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 16:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229790AbhFUOBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 10:01:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51580 "EHLO
+        id S230239AbhFUONv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 10:13:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229736AbhFUOBA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 10:01:00 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A450C061574
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 06:58:45 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id j1so2578243wrn.9
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 06:58:45 -0700 (PDT)
+        with ESMTP id S230225AbhFUONt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 10:13:49 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 387CFC061574;
+        Mon, 21 Jun 2021 07:11:33 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id h21-20020a1ccc150000b02901d4d33c5ca0so71887wmb.3;
+        Mon, 21 Jun 2021 07:11:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+p+TgaX+cjsRrYhlo9eaS/AjH4uGF+T77t1kVIwioV4=;
-        b=roxCxTrOd1dMyX2YglDM1HLLJlkqVEAsORboDhYP7ZG2hVfdrF4hXki5Z6POpADPBj
-         JzWPF4yJfiRN/M+mD1QGQDd1KBwrtn/Me6Wc4mVoXfWabSKnKN7aerPqgjA9dlck2ncz
-         EQ+KN7fETCutCbEIqD94mXexNyZYZPDh/1XIHYBSa/46v3JdQF7A+Lx9E8vVF2Gnj+NC
-         yFglcytXNA3dKUYeeYqO6hsYShyRAa8NT9XTUVYRKgUTuPD21Wr6kGdPsfMpJE0Z1Hbs
-         5jcnRkxSl6iyCd7iO+n2d5poim23DBmiqhCjXtHM1mhK67zBFnsKXdjDT/vSRro2iZAD
-         gbQw==
+        bh=SdGiCNkhBuL+OIE+P10VzLCe1hptfAhJdgsupjreUXA=;
+        b=aN+s+IzSaufFbA4kwq5oTJprJTJMRkr6q6vE6oACYlNyBHdf7aMoFhD1n1Cr3L75NI
+         YAbmsNPq8pbrG/Zo0s1kGankarWpq6ODBn9HU062pgHRrJkthzkx12A/Lv+/UnIPZvG2
+         ZM/GMgr2tgjY56dAFg8tyrqP4kPtEksqeVtHwppWfYCcPxs0cHb87iHOtLYPC8QxjR7P
+         bf4PQ/6Vtm3uq7gcQZeDSofChuqhNiQLNMz8OnJTD0qvJ6k3TsfALOFhAvG8AExlXV4w
+         7w3c+Z5qrYiA/kZoC9jmbfcOihiCyDzhg9YQr4l8mYp4RLq6hg1d7355rTQFQYM2+BHf
+         hKaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+p+TgaX+cjsRrYhlo9eaS/AjH4uGF+T77t1kVIwioV4=;
-        b=if7dmBcUXg9n2TES6q31uDA3XybQ1XeG6JYepHb8BzmS3fUrsWnlFORexTMZBm+eED
-         1QWzF0LOxzXQnJwJkNq8BoON2U7eh1D7cxlJyP7OHgqb98wZAhUNathiEXAlhyYzJvQi
-         /RhWxBeu9ITrj/PakdutJr9cxpmZ7X8ivtpxIwbb7WHjoQTJMnFAHnIoBoLCv62AN1g3
-         6C5EiRnoaJCrp4T5rnjOimfZfIEqcOpCX1Y7V98loBcEccebYzSXgOE+BnE8pIBFLTNT
-         ad0z0tV/g7DKZUz6VW2A43Ur8sigxbHCxQeC+EzFjNTwb/w6L/5NAkGKCniTBnFPIreH
-         68LQ==
-X-Gm-Message-State: AOAM533LyFqZa4oPJWJHi+K6Tkoq16erINYu4OMritAbjEge/q40+VmP
-        6LyrjaK+ZD6x8f0RiqLDUCQ=
-X-Google-Smtp-Source: ABdhPJzwO7wl+RPE7Nx+g9DxMIPsQupg3909rly3rdMjuD1D6FHkghJiDZYzX5lLka8Wa0nqYY5Y6g==
-X-Received: by 2002:a5d:5402:: with SMTP id g2mr27795226wrv.226.1624283924261;
-        Mon, 21 Jun 2021 06:58:44 -0700 (PDT)
+        bh=SdGiCNkhBuL+OIE+P10VzLCe1hptfAhJdgsupjreUXA=;
+        b=a0Jn5dQ3QvzF7QDNKzJS3Qzt8zxfbhaGmmDKQ8ZPv0NbN9AVLJTpt00Ils4bdtZzem
+         rTV4Ru0Wxw5NTKTmP7QPcRV/iU00kAMOJX5YbxmlGHIkKLxjrArmqpJCQOA6xue1E13v
+         hyuayWgmlDcKwGDOAtO2IRPgXh55DfQxWLI3yIiENh+bResgS97/Mis63/ki1HPOPF2y
+         ZsuHtpd9ejFergEccYCnSHgdGx6d8QEEyot6wuR7resrIREYiIiAVjzGyif9KpycW7QE
+         wh5fBKwj4BM72ymR31F4NXAJhJ+SX7LaajNYW1Er5/6gd2aymRNvBHxPaddKiDjZwqqg
+         2eTg==
+X-Gm-Message-State: AOAM530USbxrysA5cbaNfo9kda1gj6qFaJk4EMj4Igbs5jcC2soE0D45
+        68iXThHFb8cWR5zbn0gcUX8=
+X-Google-Smtp-Source: ABdhPJybf27OxyYb4zuJIDKInjj+JNVO3Lb5zWh3YIdoUSwKAeYrxdZk0QR5uVDqLTJ6MM25z1KU1g==
+X-Received: by 2002:a05:600c:2051:: with SMTP id p17mr14280552wmg.35.1624284691843;
+        Mon, 21 Jun 2021 07:11:31 -0700 (PDT)
 Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id c13sm18261292wrb.5.2021.06.21.06.58.43
+        by smtp.gmail.com with ESMTPSA id d4sm5667446wmd.42.2021.06.21.07.11.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Jun 2021 06:58:43 -0700 (PDT)
+        Mon, 21 Jun 2021 07:11:30 -0700 (PDT)
 From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH] dt-bindings: arm-smmu: Fix json-schema syntax
-Date:   Mon, 21 Jun 2021 16:00:36 +0200
-Message-Id: <20210621140036.2879563-1-thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] ARM: tegra: Remove useless usb-ehci compatible string
+Date:   Mon, 21 Jun 2021 16:13:26 +0200
+Message-Id: <20210621141327.2880579-1-thierry.reding@gmail.com>
 X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -65,40 +63,138 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Thierry Reding <treding@nvidia.com>
 
-Commit 4287861dca9d ("dt-bindings: arm-smmu: Add Tegra186 compatible
-string") introduced a jsonschema syntax error as a result of a rebase
-gone wrong. Fix it.
+There's no such thing as a generic USB EHCI controller. The EHCI
+controllers found on Tegra SoCs are instantiations that need Tegra-
+specific glue to work properly, so drop the generic compatible string
+and keep only the Tegra-specific ones.
 
-Fixes: 4287861dca9d ("dt-bindings: arm-smmu: Add Tegra186 compatible string")
-Reported-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Thierry Reding <treding@nvidia.com>
 ---
- Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ arch/arm/boot/dts/tegra114.dtsi | 4 ++--
+ arch/arm/boot/dts/tegra124.dtsi | 6 +++---
+ arch/arm/boot/dts/tegra20.dtsi  | 7 +++----
+ arch/arm/boot/dts/tegra30.dtsi  | 6 +++---
+ 4 files changed, 11 insertions(+), 12 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 1181b590db71..03f2b2d4db30 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -52,16 +52,14 @@ properties:
-         items:
-           - const: marvell,ap806-smmu-500
-           - const: arm,mmu-500
--      - description: NVIDIA SoCs that program two ARM MMU-500s identically
--        items:
-       - description: NVIDIA SoCs that require memory controller interaction
-           and may program multiple ARM MMU-500s identically with the memory
-           controller interleaving translations between multiple instances
-           for improved performance.
-         items:
-           - enum:
--              - const: nvidia,tegra194-smmu
--              - const: nvidia,tegra186-smmu
-+              - nvidia,tegra194-smmu
-+              - nvidia,tegra186-smmu
-           - const: nvidia,smmu-500
-       - items:
-           - const: arm,mmu-500
+diff --git a/arch/arm/boot/dts/tegra114.dtsi b/arch/arm/boot/dts/tegra114.dtsi
+index fb99b3e971c3..e743fdf29cc3 100644
+--- a/arch/arm/boot/dts/tegra114.dtsi
++++ b/arch/arm/boot/dts/tegra114.dtsi
+@@ -691,7 +691,7 @@ mmc@78000600 {
+ 	};
+ 
+ 	usb@7d000000 {
+-		compatible = "nvidia,tegra114-ehci", "nvidia,tegra30-ehci", "usb-ehci";
++		compatible = "nvidia,tegra114-ehci", "nvidia,tegra30-ehci";
+ 		reg = <0x7d000000 0x4000>;
+ 		interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "utmi";
+@@ -729,7 +729,7 @@ phy1: usb-phy@7d000000 {
+ 	};
+ 
+ 	usb@7d008000 {
+-		compatible = "nvidia,tegra114-ehci", "nvidia,tegra30-ehci", "usb-ehci";
++		compatible = "nvidia,tegra114-ehci", "nvidia,tegra30-ehci";
+ 		reg = <0x7d008000 0x4000>;
+ 		interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "utmi";
+diff --git a/arch/arm/boot/dts/tegra124.dtsi b/arch/arm/boot/dts/tegra124.dtsi
+index 8b38f123f554..64140c09451a 100644
+--- a/arch/arm/boot/dts/tegra124.dtsi
++++ b/arch/arm/boot/dts/tegra124.dtsi
+@@ -1079,7 +1079,7 @@ tegra_i2s4: i2s@70301400 {
+ 	};
+ 
+ 	usb@7d000000 {
+-		compatible = "nvidia,tegra124-ehci", "nvidia,tegra30-ehci", "usb-ehci";
++		compatible = "nvidia,tegra124-ehci", "nvidia,tegra30-ehci";
+ 		reg = <0x0 0x7d000000 0x0 0x4000>;
+ 		interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "utmi";
+@@ -1117,7 +1117,7 @@ phy1: usb-phy@7d000000 {
+ 	};
+ 
+ 	usb@7d004000 {
+-		compatible = "nvidia,tegra124-ehci", "nvidia,tegra30-ehci", "usb-ehci";
++		compatible = "nvidia,tegra124-ehci", "nvidia,tegra30-ehci";
+ 		reg = <0x0 0x7d004000 0x0 0x4000>;
+ 		interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "utmi";
+@@ -1154,7 +1154,7 @@ phy2: usb-phy@7d004000 {
+ 	};
+ 
+ 	usb@7d008000 {
+-		compatible = "nvidia,tegra124-ehci", "nvidia,tegra30-ehci", "usb-ehci";
++		compatible = "nvidia,tegra124-ehci", "nvidia,tegra30-ehci";
+ 		reg = <0x0 0x7d008000 0x0 0x4000>;
+ 		interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "utmi";
+diff --git a/arch/arm/boot/dts/tegra20.dtsi b/arch/arm/boot/dts/tegra20.dtsi
+index 6ce498178105..d60d048ea245 100644
+--- a/arch/arm/boot/dts/tegra20.dtsi
++++ b/arch/arm/boot/dts/tegra20.dtsi
+@@ -744,11 +744,10 @@ pci@2,0 {
+ 	};
+ 
+ 	usb@c5000000 {
+-		compatible = "nvidia,tegra20-ehci", "usb-ehci";
++		compatible = "nvidia,tegra20-ehci";
+ 		reg = <0xc5000000 0x4000>;
+ 		interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "utmi";
+-		nvidia,has-legacy-mode;
+ 		clocks = <&tegra_car TEGRA20_CLK_USBD>;
+ 		resets = <&tegra_car 22>;
+ 		reset-names = "usb";
+@@ -783,7 +782,7 @@ phy1: usb-phy@c5000000 {
+ 	};
+ 
+ 	usb@c5004000 {
+-		compatible = "nvidia,tegra20-ehci", "usb-ehci";
++		compatible = "nvidia,tegra20-ehci";
+ 		reg = <0xc5004000 0x4000>;
+ 		interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "ulpi";
+@@ -809,7 +808,7 @@ phy2: usb-phy@c5004000 {
+ 	};
+ 
+ 	usb@c5008000 {
+-		compatible = "nvidia,tegra20-ehci", "usb-ehci";
++		compatible = "nvidia,tegra20-ehci";
+ 		reg = <0xc5008000 0x4000>;
+ 		interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "utmi";
+diff --git a/arch/arm/boot/dts/tegra30.dtsi b/arch/arm/boot/dts/tegra30.dtsi
+index c577c191be4b..e4a5966ae341 100644
+--- a/arch/arm/boot/dts/tegra30.dtsi
++++ b/arch/arm/boot/dts/tegra30.dtsi
+@@ -943,7 +943,7 @@ mmc@78000600 {
+ 	};
+ 
+ 	usb@7d000000 {
+-		compatible = "nvidia,tegra30-ehci", "usb-ehci";
++		compatible = "nvidia,tegra30-ehci";
+ 		reg = <0x7d000000 0x4000>;
+ 		interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "utmi";
+@@ -983,7 +983,7 @@ phy1: usb-phy@7d000000 {
+ 	};
+ 
+ 	usb@7d004000 {
+-		compatible = "nvidia,tegra30-ehci", "usb-ehci";
++		compatible = "nvidia,tegra30-ehci";
+ 		reg = <0x7d004000 0x4000>;
+ 		interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "utmi";
+@@ -1021,7 +1021,7 @@ phy2: usb-phy@7d004000 {
+ 	};
+ 
+ 	usb@7d008000 {
+-		compatible = "nvidia,tegra30-ehci", "usb-ehci";
++		compatible = "nvidia,tegra30-ehci";
+ 		reg = <0x7d008000 0x4000>;
+ 		interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>;
+ 		phy_type = "utmi";
 -- 
 2.32.0
 
