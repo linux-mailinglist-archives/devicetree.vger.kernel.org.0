@@ -2,110 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C83EE3AEBB9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 16:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 930C33AEC69
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 17:31:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229807AbhFUOwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 10:52:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35172 "EHLO
+        id S230283AbhFUPeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 11:34:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbhFUOwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 10:52:07 -0400
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B4D4C061760;
-        Mon, 21 Jun 2021 07:49:51 -0700 (PDT)
-Received: by mail-io1-xd32.google.com with SMTP id k16so16067869ios.10;
-        Mon, 21 Jun 2021 07:49:51 -0700 (PDT)
+        with ESMTP id S230274AbhFUPd7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 11:33:59 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1CCC06175F;
+        Mon, 21 Jun 2021 08:31:44 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id j1so2949534wrn.9;
+        Mon, 21 Jun 2021 08:31:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KWerBli4ZjJRwrbEo97Cp5HhRgHSf15dtXn9Sfu0Hv4=;
-        b=HFnXl+FdFZ8V0Dw4aJXqgtMls6s5Z+pcKkBs9rm32pJNa1omPENtYomfG9S9UWlkFe
-         JZtGOpaHmrbi2c6IWh+uDJfqJ/v5Y3W7e+GzJNdcWswTo3fTByCUMYRZHcg0oqvv0SSV
-         4LAUVcRg2mQW4TGbXfIni9wv53OJOhTkZCUvAhYwZ1Vsc6wXwOk25uQUrSJWQlcsBacS
-         OotUUtFjBIym+oCfW9sqfoVuo0zuModcyUjlQ1AdQlz75HdIczXWxusR+lworS8D2B6C
-         b1Slq76+ekknvhon7sDZQjCw2ctmkLgLUTgT7HC4xvuSt977HZaQW+ZRI2T9FGkWoIM3
-         S/hQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5Avdk1cUnyC3+7ojOpNcEOTf+b0zh4pnCSxeUUKvMgU=;
+        b=pb7zUMh4jKMQrXlWGF+7NuVNDCPEG6tfXli5PjjwPOJ6HZl6kEKtEt31V353GSH8N9
+         azwWA9imwKfh5CyHXlWxxZBRs0P0k3+3BnlbFbjrBWqaFJJ0CclGEblfvKg+SDGE8oRf
+         y94s2Ixn2moENrpLEj/jHRig8K260Bft0Q34xERqDtL4hFYOj0GujA/2FIfC+jFoTI1x
+         WF3KUpkLkdCgn5OGezzuRkZ0oFfywS1Bggv9Ux0hseaBKLSZZ9MAdNzkWmfYrrdEwtBf
+         QCcojUWBn1A567DX5L7JjLnC1o81ffrGqH2MG8blB7i7fWalU/5Kd1jgpybsAnlJLRmY
+         ByiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KWerBli4ZjJRwrbEo97Cp5HhRgHSf15dtXn9Sfu0Hv4=;
-        b=eK8l8MqO71i9yuGNegUCMkuxPC7jUHSQPWE0feMYgfdmfbk8OkY0ixER8jfCkQTpFv
-         3qCo50oAEQzsl3B/T+4ZfMKgzF+GBJN/n/jr9TVWXCPhepTYktPNSnRqE9talxUMt1ad
-         oU7uQZsi+MEDKdNa+VFeIg58NXYKf8e4tbKsnFIjWc2yJkJ1ir/A3ZFW7oDOonqaXD5u
-         0aiVcqoDhundOhF5SkbpcG/hYyDSNlamfjYaVYXxqncaFwiOHR8cuWK/waH1OwSQyvIC
-         oTbQOurjRv212oIsTxWX06VWmQWoD+zG56x0Phe9mvzXltVkHY15J6YbD9cfLOARneNl
-         HxiQ==
-X-Gm-Message-State: AOAM5329aJ4o/vaUIOsbonMsWTZ/Y8BtB5gPQWkXrVR+4ciMJnm79Fc8
-        lV96sG5LNft411cUNHTZF9iTHrFlhDBofzzv1mA=
-X-Google-Smtp-Source: ABdhPJzjkcw1agZaLbr1f1Dclm4JHyoVvH794DFFZD1kGSKXtTFEHrJNTk6oW26RPU53Rt41dBE1FKZF+nRXJ+GHITc=
-X-Received: by 2002:a05:6638:33a2:: with SMTP id h34mr17713039jav.60.1624286990945;
- Mon, 21 Jun 2021 07:49:50 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5Avdk1cUnyC3+7ojOpNcEOTf+b0zh4pnCSxeUUKvMgU=;
+        b=AHTfrnGkFznHpK678pFXwXS634JU1YUkR1o8QUhIdL1hjDfYXi5O8jmfM2AnJSxyAV
+         WjB0qAyMJVJlZRorzgkkRJIYkGI0g33V/m9xQe7bI5RW1pQeGlosncAJ/eixldBUSait
+         wrrM80fOyDk3z0JdXB2OCre/GGo2lGKIuFoGHY7zHGeNNQrBpZH9f399+EwuZOvl8r3E
+         J9neGgRTjO5u2Gxs3pCgz0lBGLaYcMb48TxhaSXMl0n7ttoBV7YcV9evGuFCI7rSLyTU
+         zK9fg6MZfkBv/My3cqC+KlKr0vCNCEKPeo61RSMqUwwelPhTjapVkd0vJbPmP2dqTOy2
+         4tew==
+X-Gm-Message-State: AOAM533BPvk+I5FfALI2DpzYuljqxTWrQd0sjBrjEVcjdR54TvFZ+Gow
+        ByP7HDaKWpmm8MFQHhxRItM=
+X-Google-Smtp-Source: ABdhPJwsdPv8YPaJiJ+psK8OYI/7K0cxWXu8s9IqZypjDJJHlYTbHy6awnRQ23P4LyPYJmXCXSph3A==
+X-Received: by 2002:a5d:5401:: with SMTP id g1mr29225427wrv.373.1624289503156;
+        Mon, 21 Jun 2021 08:31:43 -0700 (PDT)
+Received: from ziggy.stardust (81.172.61.185.dyn.user.ono.com. [81.172.61.185])
+        by smtp.gmail.com with ESMTPSA id k13sm4506181wrp.73.2021.06.21.08.31.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Jun 2021 08:31:42 -0700 (PDT)
+Subject: Re: [PATCH 2/2] dt-binding: mediatek: mt6779: update spi document
+To:     Mark Brown <broonie@kernel.org>,
+        Mason Zhang <mason.zhang@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        wsd_upstream@mediatek.com, hanks.chen@mediatek.com,
+        linux-kernel@vger.kernel.org,
+        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <1623721803.24597.9.camel@mbjsdccf07>
+ <20210615111426.GC5149@sirena.org.uk>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <732a8061-e8be-5c8a-ea75-6da87947db02@gmail.com>
+Date:   Mon, 21 Jun 2021 17:31:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.2
 MIME-Version: 1.0
-References: <20210503081334.17143-1-shawn.guo@linaro.org> <20210503081334.17143-3-shawn.guo@linaro.org>
- <20210523060009.GA29015@dragon> <CABb+yY3CA+gvRJi7nyA4wxwP3-XtbfDhq51eP8Q+vL7TbMncUQ@mail.gmail.com>
- <20210621063309.GA8666@dragon>
-In-Reply-To: <20210621063309.GA8666@dragon>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Mon, 21 Jun 2021 09:49:40 -0500
-Message-ID: <CABb+yY3T=LkcjarGbZ4KEY_JS5R9iV-X_21gX_VheqsWBUHGDg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] mailbox: qcom: Add MSM8939 APCS support
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Benjamin Li <benl@squareup.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210615111426.GC5149@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 21, 2021 at 1:33 AM Shawn Guo <shawn.guo@linaro.org> wrote:
->
-> On Sun, Jun 20, 2021 at 11:27:49PM -0500, Jassi Brar wrote:
-> > On Sun, May 23, 2021 at 1:00 AM Shawn Guo <shawn.guo@linaro.org> wrote:
-> > >
-> > > On Mon, May 03, 2021 at 04:13:34PM +0800, Shawn Guo wrote:
-> > > > MSM8939 has 3 APCS instances for Cluster0 (little cores), Cluster1 (big
-> > > > cores) and CCI (Cache Coherent Interconnect).  Although only APCS of
-> > > > Cluster0 and Cluster1 have IPC bits, each of 3 APCS has A53PLL clock
-> > > > control bits.  That said, we need to register 3 'qcom-apcs-msm8916-clk'
-> > > > devices to instantiate all 3 clocks.  Let's use PLATFORM_DEVID_AUTO
-> > > > rather than PLATFORM_DEVID_NONE for platform_device_register_data()
-> > > > call.  Otherwise, the second A53PLL clock registration will fail due
-> > > > to duplicate device name.
-> > > >
-> > > > [    0.519657] sysfs: cannot create duplicate filename '/bus/platform/devices/qcom-apcs-msm8916-clk'
-> > > > ...
-> > > > [    0.661158] qcom_apcs_ipc b111000.mailbox: failed to register APCS clk
-> > > >
-> > > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > > > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > >
-> > > Hi Jassi,
-> > >
-> > > Any comment on this patch?
-> > >
-> > 1)  I was not on the CC list, so I don't have this patch in my mbox.
->
-> That's strange.  The patch series was sent with your address
-> <jassisinghbrar@gmail.com> on "To:" field.  And that can be seen on
-> patch archive [1].
->
-Sorry, yes you are right. But I still can't find it in my inbox (and
-neither in spam).... perhaps I nuked it by mistake. anyways...
 
-> > 2)  Shouldn't this patch be broken into a fix and an enablement patch?
->
-> MSM8939 is the only platform that I know has multiple clusters and uses
-> APCS driver.  So the change becomes a fix only when MSM8939 is enabled.
-> But if you prefer to separate the change, I will do so.
->
-Yes, please.
 
-thanks.
+On 15/06/2021 13:14, Mark Brown wrote:
+> On Tue, Jun 15, 2021 at 09:50:03AM +0800, Mason Zhang wrote:
+>>
+>> this patch update spi document for MT6779 SOC.
+> 
+> I don't have either patch 1 or a cover letter, what's the story with
+> dependencies here?
+> 
+
+No dependency. The dt-bindings was just send a second patch in the series. First
+one can be found here:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20210613055458.6073-1-mason.zhang@mediatek.com/
+
+Regards,
+Matthias
