@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA263AE64A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 11:40:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6451B3AE652
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 11:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbhFUJmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 05:42:39 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:19399 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S230429AbhFUJmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Jun 2021 05:42:37 -0400
-X-IronPort-AV: E=Sophos;i="5.83,289,1616425200"; 
-   d="scan'208";a="84924742"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 21 Jun 2021 18:40:22 +0900
-Received: from localhost.localdomain (unknown [10.226.92.241])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 20F9B400C9E2;
-        Mon, 21 Jun 2021 18:40:19 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 11/11] arm64: dts: renesas: r9a07g044: Add USB2.0 device support
-Date:   Mon, 21 Jun 2021 10:39:43 +0100
-Message-Id: <20210621093943.12143-12-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210621093943.12143-1-biju.das.jz@bp.renesas.com>
-References: <20210621093943.12143-1-biju.das.jz@bp.renesas.com>
+        id S229765AbhFUJrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 05:47:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50206 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229651AbhFUJrF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 05:47:05 -0400
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7293CC061574
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 02:44:50 -0700 (PDT)
+Received: by mail-io1-xd36.google.com with SMTP id l64so15001390ioa.7
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 02:44:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=B1TJ7i7KgvD4fdVHGJRMyrwZBOAJHAbvbRMumj5+UHU=;
+        b=oEH8oXFU370Br9g3znCrw/jxIio1QtFBa5A6CP3kUeuS19QSTY3vKt9nrCSZuKBVTi
+         5brliEyrr6r8ljXgjJMpyq43ews7qe56KFUuDJxzbJcL9WSPWymyu7oXKRvhk4GiAZ+3
+         bLG9WD/aVpzce5J7dH9/+j18PKYirkUpWvUcEIhoSXGcnRXKncDUz+2KoxSQHajjMtrh
+         Lj2MfwxZGzKGt4KClbBqfBPz1ThE/6Od+9F61Wqk66CGQnRf+k+tV6cvO/iQ8cWlxUWf
+         12ef7wufrr92vtA4YaUgHSigOr78dB94tlRU6ur0x/lc4ColXAz8QnaAIRXtcVd4jLQd
+         Knbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=B1TJ7i7KgvD4fdVHGJRMyrwZBOAJHAbvbRMumj5+UHU=;
+        b=aQtDvRFQ+GYZ+QNr1FSh45v4HoxbepS+69LE7C0ZqC8eBOkGo3smO/XJHyxUmpSCay
+         7mTkvv27/UAYuGFzOftaODJEXvkScy2zxpIXQNr1LNarKgiF2HGuePJtHRFEJWm2bAt1
+         TwhjCDDvKjgd1E16ncj7AwfsMO7IIJ8Pf4XjUOB/JJ/NxucXZeM09dNXyzBiOE11uKVE
+         vFPILMvJP3Kfn9abjpe2rO6pf5AAD5av7n6UqnfwQUCtpN8u5PC/X9JYuivF88HdBkMu
+         EG7CHEPJF3UGDG1yfD7Ot5IxOuVlk+NSySIU6OdN/G2FHpBTEXOOx5gfLN8uFo9k6q7o
+         thbQ==
+X-Gm-Message-State: AOAM533OxJDR5ZLXvsAcN/2XNFR38I5YfO/MLkVxsA13fK4R0Hq7zj/I
+        trNQ5gdsHbPetk2uqvr/DM026SK4yXu3Tn6dy42R2w==
+X-Google-Smtp-Source: ABdhPJy2/hr3Yxo3hr85EvZD23OIDokym52uhxrGItyfkdlVu4ZgoBws3YJE2JUHydA3ekG2826MMN/wIxMICXR4ifo=
+X-Received: by 2002:a6b:5908:: with SMTP id n8mr1139742iob.185.1624268689710;
+ Mon, 21 Jun 2021 02:44:49 -0700 (PDT)
+MIME-Version: 1.0
+References: <1624266114-21539-1-git-send-email-kewei.xu@mediatek.com> <1624266114-21539-4-git-send-email-kewei.xu@mediatek.com>
+In-Reply-To: <1624266114-21539-4-git-send-email-kewei.xu@mediatek.com>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Mon, 21 Jun 2021 17:44:38 +0800
+Message-ID: <CA+Px+wXx8eyh2QFRHbkf3ESdXzBw8LNqP=jMihju+jV0TpQvhw@mail.gmail.com>
+Subject: Re: [PATCH V2 3/3] i2c: mediatek: Isolate speed setting via dts for
+ special devices
+To:     kewei.xu@mediatek.com
+Cc:     bbrezillon@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-i3c@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
+        qii.wang@mediatek.com, liguo.zhang@mediatek.com,
+        xinping.qian@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add USB2.0 device support to RZ/G2L SoC DT.
-
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index ae71404c6238..ef48b023b41a 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -336,6 +336,25 @@
- 			power-domains = <&cpg>;
- 			status = "disabled";
- 		};
-+
-+		hsusb: usb@11c60000 {
-+			compatible = "renesas,usbhs-r9a07g044",
-+				     "renesas,rza2-usbhs";
-+			reg = <0 0x11c60000 0 0x10000>;
-+			interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>,
-+				 <&cpg CPG_MOD R9A07G044_USB_U2P_EXR_CPUCLK>;
-+			resets = <&cpg R9A07G044_USB_PCLK>,
-+				 <&cpg R9A07G044_USB_U2P_EXR_CPUCLK>;
-+			renesas,buswait = <7>;
-+			phys = <&usbphyctrl 0>, <&usb2_phy0 3>;
-+			phy-names = "usbphyctrl", "usb";
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
- 	};
- 
- 	timer {
--- 
-2.17.1
-
+On Mon, Jun 21, 2021 at 5:03 PM <kewei.xu@mediatek.com> wrote:
+> @@ -1293,8 +1355,8 @@ static int mtk_i2c_parse_dt(struct device_node *np, struct mtk_i2c *i2c)
+>         i2c->have_pmic = of_property_read_bool(np, "mediatek,have-pmic");
+>         i2c->use_push_pull =
+>                 of_property_read_bool(np, "mediatek,use-push-pull");
+> -
+> -       i2c_parse_fw_timings(i2c->dev, &i2c->timing_info, true);
+Looks like the patch removes the line accidentally.
