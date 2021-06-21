@@ -2,151 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF0993AE33A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 08:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 011033AE345
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 08:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230306AbhFUGcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 02:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34270 "EHLO
+        id S229937AbhFUGfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 02:35:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230347AbhFUGcD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 02:32:03 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53776C061767
-        for <devicetree@vger.kernel.org>; Sun, 20 Jun 2021 23:29:48 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id c15so7888849pls.13
-        for <devicetree@vger.kernel.org>; Sun, 20 Jun 2021 23:29:48 -0700 (PDT)
+        with ESMTP id S229887AbhFUGfb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 02:35:31 -0400
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB61CC061574
+        for <devicetree@vger.kernel.org>; Sun, 20 Jun 2021 23:33:16 -0700 (PDT)
+Received: by mail-pj1-x1033.google.com with SMTP id x21-20020a17090aa395b029016e25313bfcso9645414pjp.2
+        for <devicetree@vger.kernel.org>; Sun, 20 Jun 2021 23:33:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=igel-co-jp.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MByV6cpfz5xYL+DMP3l1hiWnj/Gzo6aYK3LpWdzWngw=;
-        b=INBgOxS5FqMrlNPVd6fydqECStt/0aXOX0ms8c86Xm9H5Czt0SAQViPwSHhxqBbA6L
-         qRcQJRg1tLpFi1jd3YRlM9TPQAZEe9vlHLhIUZG2/tofLM97F6HSJ+0V8vqo94igM0QH
-         Ve8BQkLBbpytMccLcNA83ZAOnFZ+Me8pWT90vJexeneqr1mlK5lFROQo4VxlAEaL/0z8
-         renQqq6zpBQB/+AYALWZ0i2wq0qJiZfNmj1jhfTdYDUTyUEd2UWY4AglxcN1qo03oekA
-         YqZftYh5Yp6gT59Hg90rmIGFE1TTTFn7I2zjPlvTg7dVjOBkzngLkwHezWdFVpAckuai
-         8vtQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=sH9B4JXMU6pBU116AVjmwqKeXZxuzhWGilSwUDAabeY=;
+        b=McbJ9v5VHijOHyZNrGX9U9ZDYKfepy+yP/134VXnlBAfzKONENUkqQV6BKIfNEp/Dy
+         IZNbWEenEtH7z6uzyYeXyQWL2nbHRUK7pl+VeFRG3ur/BR+f+UFjI2mJ9fcZoIrFhfXJ
+         p9yaRNpkD2wfcpPS6McWbk6Uqy+o/jisVZtjjQTDsGAa+BwLeZgvO9NX7QiAr//rfMEg
+         g0TGgo/DF3/BYdo6J/aKhYZ/c2ezUQkrEX8GaSAvk4U4HK9zZ4rBSN8/E1o98PNnbCAE
+         N6TZQYsDzdC456yV3A+idq/kPiwYIsnjbfS6vGW9ciVCKVCnKicJoXzC7vDHjpUFNQWG
+         4tgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MByV6cpfz5xYL+DMP3l1hiWnj/Gzo6aYK3LpWdzWngw=;
-        b=ZbYsbrP/PAGpm1+1sFtgHd0MV2DdihrLWCc+3F0YkSby/8Wire4KC1kv3hgFEuavq3
-         jNCHa6Un7iZxqJt1iHtt3n9rKjyB/lFOtctZVAaxqdj4Mn9F+DuY+UQPRt610mWDcJSK
-         WXWLnu73mCs+rCW8ZxQHg7jP34nHggVGM5WaXr3rSPEhQtKl+i3FUbiYJQO8aMlNdEDi
-         r4vg4iggxRaGrxU5Z5TxZXVcgdGB15hcYlo2FH2RvJ+XALswBDTCkIYhAaF5cI38DJt4
-         g4EaHj/2bw2cb4TriCKkWlag4JdE+zB1dWJZrEiCTtahGKtFwrYh+ftpfRreOMWD2NeM
-         q4TQ==
-X-Gm-Message-State: AOAM533yhME7thlAbz0KnKaLAUBa8PwZALsZj69VrpZVj4PVGx2Xh5nm
-        9Mzr3RWBA6kfCzC93djJjN/urA==
-X-Google-Smtp-Source: ABdhPJxHNpA+XwXUTcAq7QFgOE6z6xDf29WT9IIQdU5CA8Phncg6Mo0Y0WvZ8pH33A0XVv1phS5WIg==
-X-Received: by 2002:a17:90a:ab96:: with SMTP id n22mr25432272pjq.92.1624256987850;
-        Sun, 20 Jun 2021 23:29:47 -0700 (PDT)
-Received: from localhost.localdomain ([240b:10:c9a0:ca00:61b8:26ec:dc30:8823])
-        by smtp.gmail.com with ESMTPSA id j19sm15266018pgm.44.2021.06.20.23.29.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Jun 2021 23:29:47 -0700 (PDT)
-From:   Tomohito Esaki <etom@igel.co.jp>
-To:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     dri-devlel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        Tomohito Esaki <etom@igel.co.jp>
-Subject: [PATH 4/4] doc-rst: Add virtual DRM documentation
-Date:   Mon, 21 Jun 2021 15:27:42 +0900
-Message-Id: <20210621062742.26073-5-etom@igel.co.jp>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210621062742.26073-1-etom@igel.co.jp>
-References: <20210621062742.26073-1-etom@igel.co.jp>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=sH9B4JXMU6pBU116AVjmwqKeXZxuzhWGilSwUDAabeY=;
+        b=QUy8bHPV86ZBawszZLk4VUA9vFuDH3mygt4limTN5SXlTGi6Jy6Tnc4zuvLp8gJWeT
+         KB2CMjN1B9X2tMKH15UAGoC5oY5R8ahWoDI2Awae/afJEnHD+psHuW6L1dcQ/3t5NS2H
+         e1W38MMMJXCxRcym8EPJVOljIDXbUFQstrxKfmJnmC/M4sCvef6/yQuoLlfsdn738A5O
+         k/flcmP+1fpiJwRMxH39CEQ/H5MV5ZQuaMTvpvAN8s5AUngY7/xOK+tPZlYCZnBcS9de
+         pEq77fgDpGx+4Vb5lvQZmI25xrSKRTNSEPtuztHqK4qL4dbtFARZb7IyHuinVnMuwfTY
+         rPQw==
+X-Gm-Message-State: AOAM533yXvvJnpCyNoAhrDbX+NoCGXrcD7vY1X85Hp+UzHEnIGVa4WTe
+        myPR8E8dXlBMcUJA76FyUFsFrA==
+X-Google-Smtp-Source: ABdhPJzYmB83PD1BwJ3go3vvcDYMQKpkjkZ8RYpwE98U43biZcu6J8ihom6u1l0UtZiuXgA/WoQfbw==
+X-Received: by 2002:a17:90a:70c7:: with SMTP id a7mr30651222pjm.31.1624257196245;
+        Sun, 20 Jun 2021 23:33:16 -0700 (PDT)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id d189sm7273860pfa.28.2021.06.20.23.33.13
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 20 Jun 2021 23:33:15 -0700 (PDT)
+Date:   Mon, 21 Jun 2021 14:33:10 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Benjamin Li <benl@squareup.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] mailbox: qcom: Add MSM8939 APCS support
+Message-ID: <20210621063309.GA8666@dragon>
+References: <20210503081334.17143-1-shawn.guo@linaro.org>
+ <20210503081334.17143-3-shawn.guo@linaro.org>
+ <20210523060009.GA29015@dragon>
+ <CABb+yY3CA+gvRJi7nyA4wxwP3-XtbfDhq51eP8Q+vL7TbMncUQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CABb+yY3CA+gvRJi7nyA4wxwP3-XtbfDhq51eP8Q+vL7TbMncUQ@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Tomohito Esaki <etom@igel.co.jp>
----
- Documentation/gpu/drivers.rst |  1 +
- Documentation/gpu/vdrm.rst    | 51 +++++++++++++++++++++++++++++++++++
- 2 files changed, 52 insertions(+)
- create mode 100644 Documentation/gpu/vdrm.rst
+On Sun, Jun 20, 2021 at 11:27:49PM -0500, Jassi Brar wrote:
+> On Sun, May 23, 2021 at 1:00 AM Shawn Guo <shawn.guo@linaro.org> wrote:
+> >
+> > On Mon, May 03, 2021 at 04:13:34PM +0800, Shawn Guo wrote:
+> > > MSM8939 has 3 APCS instances for Cluster0 (little cores), Cluster1 (big
+> > > cores) and CCI (Cache Coherent Interconnect).  Although only APCS of
+> > > Cluster0 and Cluster1 have IPC bits, each of 3 APCS has A53PLL clock
+> > > control bits.  That said, we need to register 3 'qcom-apcs-msm8916-clk'
+> > > devices to instantiate all 3 clocks.  Let's use PLATFORM_DEVID_AUTO
+> > > rather than PLATFORM_DEVID_NONE for platform_device_register_data()
+> > > call.  Otherwise, the second A53PLL clock registration will fail due
+> > > to duplicate device name.
+> > >
+> > > [    0.519657] sysfs: cannot create duplicate filename '/bus/platform/devices/qcom-apcs-msm8916-clk'
+> > > ...
+> > > [    0.661158] qcom_apcs_ipc b111000.mailbox: failed to register APCS clk
+> > >
+> > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> > > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >
+> > Hi Jassi,
+> >
+> > Any comment on this patch?
+> >
+> 1)  I was not on the CC list, so I don't have this patch in my mbox.
 
-diff --git a/Documentation/gpu/drivers.rst b/Documentation/gpu/drivers.rst
-index b4a0ed3ca961..bad0226de972 100644
---- a/Documentation/gpu/drivers.rst
-+++ b/Documentation/gpu/drivers.rst
-@@ -19,6 +19,7 @@ GPU Driver Documentation
-    xen-front
-    afbc
-    komeda-kms
-+   vdrm
- 
- .. only::  subproject and html
- 
-diff --git a/Documentation/gpu/vdrm.rst b/Documentation/gpu/vdrm.rst
-new file mode 100644
-index 000000000000..2ab1699c2f42
---- /dev/null
-+++ b/Documentation/gpu/vdrm.rst
-@@ -0,0 +1,51 @@
-+=============================
-+ drm/vdrm virtual DRM driver
-+=============================
-+
-+Virtual DRM splits the overlay planes of a display controller into multiple
-+virtual devices to allow each plane to be accessed by each process.
-+
-+This makes it possible to overlay images output from multiple processes on a
-+display. For example, one process displays the camera image without compositor
-+while another process overlays the UI.
-+
-+The virtual DRM creates standalone virtual device and make DRM planes from a
-+master device (e.g. card0) accessible via one or more virtual device. However,
-+these plane are no longer accessible from the original device.
-+Each virtual device (and plane) can be accessed via a separate device file.
-+
-+The virtual DRM driver doesn't directly control the display hardware and has
-+no access to the physical bus. Instead, the virtual DRM driver issues requests
-+to the standard DRM device driver ("master" driver) when the hardware needs to
-+be controlled. The master driver is modified to notify the virtual DRM driver
-+of interrupt events from the display hardware.
-+
-+Plane position and size
-+=======================
-+The initial position, size and z-position of the plane used in virtual DRM is
-+specified in the device tree. The position and size of the planes are set as
-+properties and can be updated. The name of each property is as
-+follows:
-+* vdrm_offset_x: x-coordinate of the left-top of the plane on the screen
-+* vdrm_offset_y: y-coordinate of the left-top of the plane on the screen
-+* vdrm_width: width of the plane
-+* vdrm_height: height of the plane
-+
-+Virtual DRM Functions Reference
-+===============================
-+
-+.. kernel-doc:: drivers/gpu/drm/vdrm/vdrm_api.h
-+    :internal:
-+
-+.. kernel-doc:: drivers/gpu/drm/vdrm/vdrm_drv.c
-+    :export:
-+
-+Driver limitations
-+==================
-+1. Each virtual DRM device only supports one plane per CRTC.
-+
-+2. Virtual DRM doesn't support hot plug connector.
-+
-+3. If virtual DRM has multiple CRTCs, the initial position and size of the
-+   virtual DRM planes is the same for all planes, since they cannot be set
-+   for each plane in the device tree.
--- 
-2.25.1
+That's strange.  The patch series was sent with your address
+<jassisinghbrar@gmail.com> on "To:" field.  And that can be seen on
+patch archive [1].
 
+> 2)  Shouldn't this patch be broken into a fix and an enablement patch?
+
+MSM8939 is the only platform that I know has multiple clusters and uses
+APCS driver.  So the change becomes a fix only when MSM8939 is enabled.
+But if you prefer to separate the change, I will do so.
+
+Shawn 
+
+[1] https://lore.kernel.org/patchwork/patch/1420808/
