@@ -2,94 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A7073AE852
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 13:46:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EA563AE85C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 13:49:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229719AbhFULsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 07:48:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59262 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229576AbhFULsX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Jun 2021 07:48:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 020A261042;
-        Mon, 21 Jun 2021 11:46:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624275969;
-        bh=o2BrqAEzQ18i2RIwqxFr1jTlLo7zkIjHvzpelLDjh5g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=K0qeyHxscw0e50hQ1s4ED722x4ZoOQjFFfsw0bWIPNhKjWZhfm5c13usRjMnlrK0P
-         KxF1nkH1kSePSbHmLqwh2jDQ1AAWasPKgyzxs6xTuACig8sAFCViRWG9OjCC6Oss7E
-         PGCxK9d9LgwILRJ59h6sjRc/E1NBkS+SdzLrHn+D4WyCYWLPCXRGp0SZM7xr2/teK8
-         GEvmYHfpL58vyn5V93I1pLYWMplk9O1pPzbW0Nqk+jT+Pgx1kjGHFsHZ/oeoMZvphT
-         kbtexOUdUKqV2ohEX99Hvbst8tFH138C42EhTLQGYBYgqJ0l1Y2xW1tHzusiYUsOtU
-         3Fmpe0865cpkA==
-Date:   Mon, 21 Jun 2021 12:45:46 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Judy Hsiao <judyhsiao@chromium.org>
-Cc:     Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
-        dgreid@chromium.org, cychiang@google.com, judyhsiao@google.com,
-        tzungbi@chromium.org, swboyd@chromium.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH] ASoC: snd-soc-dummy: add Device Tree support
-Message-ID: <20210621114546.GD4094@sirena.org.uk>
-References: <20210621074152.306362-1-judyhsiao@chromium.org>
+        id S229804AbhFULvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 07:51:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50062 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229621AbhFULvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 07:51:17 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A108C061574
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 04:49:02 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id f70so29505071qke.13
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 04:49:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LnBL+vptI3I6KjyPlIzvkKAcoA1lR6IalfQcXXx2bYk=;
+        b=bMdyLGDKaakhLdlYiIljq6p9X3YHMhY6rInfieIeDfePplm7RM/e2I4r1/4m1NXYBR
+         QZ+PaNzJgeq3Cz06E5mAynCiqOUczmtpsYW7xsf9g8cBevggjW1VPUmvRWf7ObdlwXgf
+         oFwoCR4q81NuA7TE2NHJHlQ3Yolxt0ySmJXiS1E6c+0UfknavmAYMMpmBaDyG6ulzmUv
+         8OvTomxrP53ReJrKp5GS9bXKpXtyGmZBwHbqMyOxD23a+gyvUtivcwayHSEUIIVffPnv
+         49/w63jOT04g91cwzhGZfLUkCXp+Jf7j++lQen+VPAymWxWD7XXpFjEC6jR+kuSilkI+
+         Zmnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LnBL+vptI3I6KjyPlIzvkKAcoA1lR6IalfQcXXx2bYk=;
+        b=lXzgJrbWxKmwjZNlqb/CDDf1gvZhLG0Bmc78lVlC4CbLAmSTA/w/L9ckxT3aWJNSdG
+         PEo9xAULUdl/sno60n8BmA/4NDO/JX5UPxPNP+PD4w6JxzRXjSFr2UI64PglDps9/ho2
+         QqoUg+Js1XRQwWAAePLLPRtJI1SQccODLgok+36zhD9UWLGeWF64Q6zxcggLyMT2yPnZ
+         1Pa1eKNHOn4OVbQQCq/QARPfDz9enqivAnR0qPeu0w6l6nZaJ1X9hBKV0+luh8j1SqmH
+         UGFtxhrpQQYgXr6XKW7VEt7+OoJgM6t89N429zjj3SRNVe4ItOuIA1+/GeCY/DJK5/7J
+         5hbw==
+X-Gm-Message-State: AOAM532K8nbci5D7oU5V+d1lphcWX3eFA3axdwgJvlU/424tBdliE1Dh
+        QamkjPKwVU+aeasKLnpFwytsVNyLAfgRAZqhZS/L3w==
+X-Google-Smtp-Source: ABdhPJy/vLtNB65s1Azazu0Tw4biDqHPk4Hy2vsO4yVwz3Njc/MfXssOn8tl5KBocMvamRrT4h66ksv1MNoJVbTGV5w=
+X-Received: by 2002:a25:740a:: with SMTP id p10mr31157644ybc.312.1624276141481;
+ Mon, 21 Jun 2021 04:49:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Qrgsu6vtpU/OV/zm"
-Content-Disposition: inline
-In-Reply-To: <20210621074152.306362-1-judyhsiao@chromium.org>
-X-Cookie: I hate dying.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210524151955.8008-1-a-govindraju@ti.com> <f011d613-0fe6-e921-91e9-79367f185284@ti.com>
+In-Reply-To: <f011d613-0fe6-e921-91e9-79367f185284@ti.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Mon, 21 Jun 2021 13:48:50 +0200
+Message-ID: <CAMpxmJVHV9cLzWmUMbYn2656p-dBKzRtxVacTMSqKQ=LrWP0Mw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/2] dt-bindings: gpio: davinci: Convert to json-schema
+To:     Aswath Govindraju <a-govindraju@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, Keerthy <j-keerthy@ti.com>,
+        David Lechner <david@lechnology.com>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Jun 20, 2021 at 9:29 AM Aswath Govindraju <a-govindraju@ti.com> wrote:
+>
+> Hi Bart, Linus,
+>
+> On 24/05/21 8:49 pm, Aswath Govindraju wrote:
+> > Convert the davinci GPIO device tree binding documentation to json-schema.
+> > The GPIO hog node names are defined to end with a 'hog' suffix.
+> >
+> > All existing GPIO hogs are fixed to follow above naming convention
+> > before changing the binding to avoid dtbs_check warnings.
+> >
+> > changes since v2:
+> > - Used gpio-hog.yaml for gpio-hog property
+> > - Added constraints on gpio-hog node name
+> > - Corrected the gpio hog dt node names to align
+> >   with the dt-schema
+> >
+>
+> May I know if the following series is okay to be merged ?
+>
+> Thanks,
+> Aswath
+>
 
---Qrgsu6vtpU/OV/zm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I applied the dt-bindings patch. Sekhar normally takes DTS patches for davinci.
 
-On Mon, Jun 21, 2021 at 03:41:52PM +0800, Judy Hsiao wrote:
-
-> Support for loading the snd-soc-dummy via DeviceTree.
-> This is useful to create dummy codec devices where we need to have some
-> DAI links without a real Codec.
-
-Why would it be useful to create DAI links to a dummy device that has
-no properties?  If you've got a device with no software control it's
-still going to have some limits on things like what formats and sample
-rates it can accept so you should describe that in DT.
-
-Please try to keep the CC lists for patches you are submitting relevant
-to the patch, people get a lot of mail and reviews for irrelevant
-patches add to the noise.
-
---Qrgsu6vtpU/OV/zm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDQe+oACgkQJNaLcl1U
-h9DvcAf+OEQdZ8mpmDx64FNAM+JYbFmXKYuVAq6hARBk0HPXzJvIOIs9QeQtvj8d
-GObICfD9GNrHXO+4+QWsToFDBSEff+lwDBMZ/fQtTLQIOwsFSiGGz6T940Ln5PnD
-l3XErztXHn8QfavfE5pnQX5pU9vlXZ8GCucUa7jCn0rTko1Qp0WrUEuE35+3Sl/3
-rMohutM+1vubyep03x3pRR7dPMyL3EOlq08bGXqzKkfO56oZ/RVrOKCx0ytG97tb
-x0Ef9xlJalRgDK0s1xASY6KK4we8ses7pbHrsJ3zLV6SI72ND4HrnkdNiylxou9O
-PCISf/t7SFF7MvLP5norF8md0ihGgg==
-=PlEf
------END PGP SIGNATURE-----
-
---Qrgsu6vtpU/OV/zm--
+Bart
