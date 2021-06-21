@@ -2,664 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E82A83AF4BF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 20:15:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A26A3AF421
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 20:05:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232135AbhFUSSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 14:18:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53638 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232823AbhFUSRT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 14:17:19 -0400
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 900A3C08ED8D
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 10:56:37 -0700 (PDT)
-Received: by mail-il1-x12b.google.com with SMTP id z1so6173189ils.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 10:56:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FsAurCoNFFJayoeiLx6rofwwsjk1qR9gtCLQMlN5NdA=;
-        b=zduiZR3a2hwthG/uvXbBl1BwtfLILzjgki15moIehapr9EevwYAR1UjWWK1MZVWUtq
-         sETdu4l0qi05VoaeOMoyf9USVSjgUu+WzLfqxDNlnCsBF8fsC0EFEIXAJT3CJifhvlsE
-         zNDJFuR7MyPBjiFivnHg7JgE+boLglIzoQ8WIxe1sKMAsP4ei66zOObXqM2XYENB8gQi
-         JRTSkIBd+E8dmFKORIQA3MN1qMhlDIgDEjKxTM24E5hsPjMYDuqtTTlt0e658ncIK5Cy
-         +1VKeomToQNCj35KnWbQyTtTPptIqi72U7hkSN4b6SIH8X1A8Uu2m8BabRHfB40OeNYI
-         OnOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FsAurCoNFFJayoeiLx6rofwwsjk1qR9gtCLQMlN5NdA=;
-        b=tFYq3C8GXiHv9UimxI8bTXKzyZ2s4xbl0V6YHuRXH1n2OQixDbIjf16knfRpa1r0A9
-         XhXekbMTUbyAClvbEL9dDD3tC4qTT+9gs4g5yz5xXrRjI0QQaORvxV+Q6/aL3rKIYe5u
-         FVJKY8y4t1NoX1so5m/vieLHBlE2wTd1FYf+QBSOeBQ2myJ3nUKPdBcGmpifDTaMwBxj
-         gzHmLM0tMby6ZH634BY1aTBgGvJCKrgf+ctxKRhVezzD5Ekwp0/NJ5/BYZu/0HPTdlFn
-         0XFi6MS5aIvX48HaWvi3J6Z18wtzdp7Sq1PsB14NDZfoIpdCjudiZc8hitk+Pq8g1yRm
-         oGNg==
-X-Gm-Message-State: AOAM5307lnkQkFce1v4btHA/3kWqOtpvPnhfW5mOSiuM6d2Nt9iKP9UB
-        lKUmMITItJBA5Tww4TrwKerktw==
-X-Google-Smtp-Source: ABdhPJxTcQ+Uh6wh8PPbLoBUVdYH1ICynPtmdNPXywY9Mtj87L3QAbWs5vXv6WFEa6rgWrxlyz0Jaw==
-X-Received: by 2002:a05:6e02:1be1:: with SMTP id y1mr19727287ilv.204.1624298196914;
-        Mon, 21 Jun 2021 10:56:36 -0700 (PDT)
-Received: from presto.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
-        by smtp.gmail.com with ESMTPSA id m13sm6259264iob.35.2021.06.21.10.56.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Jun 2021 10:56:36 -0700 (PDT)
-From:   Alex Elder <elder@linaro.org>
-To:     davem@davemloft.net, kuba@kernel.org
-Cc:     robh+dt@kernel.org, angelogioacchino.delregno@somainline.org,
-        jamipkettunen@gmail.com, bjorn.andersson@linaro.org,
-        agross@kernel.org, elder@kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 6/6] net: ipa: add IPA v3.1 configuration data
-Date:   Mon, 21 Jun 2021 12:56:27 -0500
-Message-Id: <20210621175627.238474-7-elder@linaro.org>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210621175627.238474-1-elder@linaro.org>
-References: <20210621175627.238474-1-elder@linaro.org>
+        id S232001AbhFUSGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 14:06:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45322 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234341AbhFUSFG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Jun 2021 14:05:06 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 94438611CE;
+        Mon, 21 Jun 2021 17:59:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624298362;
+        bh=y8attfyCFvmhE/rEq1lKuxtMSlY+L9uu0zEo4FMjkv8=;
+        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+        b=nVdx/hwygYr/MG4oSfAecQoTkcAWFsVr6dFhXJUhFXwqSbH08hcJcQHHaJ6yNTgwJ
+         WFFrnk+RLaMbXPz1Xtr0MorwwBCBRCnNVEqXP2tUXHhGV2Usf3U4gjEu3zxeInr5od
+         B9ktxTxXUHFXTSVy1nFGEpPSBK9O5Aws7oD7ucKaVc2hx8hm7IAXVZOQ8U1l9ZRj62
+         sEXsTrg9MCBDzVl47wBX5+3xzZhCsWmVRvgAWZv47Xmzv8udI19xFqd0CjGvBvgqzh
+         BtSw3vV40r9z2Jdokw3+RVbueWCN8P3KLA5YE9ZkG0ZSqiTJvVk9SGjw4FEHT8nF7N
+         esGUOKjtCMepQ==
+Date:   Mon, 21 Jun 2021 10:59:20 -0700 (PDT)
+From:   Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
+To:     Christoph Hellwig <hch@lst.de>
+cc:     Tom Lendacky <thomas.lendacky@amd.com>,
+        Claire Chang <tientzu@chromium.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
+        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
+        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
+        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
+        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com
+Subject: Re: [PATCH v13 01/12] swiotlb: Refactor swiotlb init functions
+In-Reply-To: <20210618143212.GA19284@lst.de>
+Message-ID: <alpine.DEB.2.21.2106211052270.24906@sstabellini-ThinkPad-T480s>
+References: <20210617062635.1660944-1-tientzu@chromium.org> <20210617062635.1660944-2-tientzu@chromium.org> <alpine.DEB.2.21.2106171434480.24906@sstabellini-ThinkPad-T480s> <CALiNf29SJ0jXirWVDhJw4BUNvkjUeGPyGNJK9m8c30OPX41=5Q@mail.gmail.com>
+ <741a34cc-547c-984d-8af4-2f309880acfa@amd.com> <20210618143212.GA19284@lst.de>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the MSM8998 SoC, which includes IPA version 3.1.
+On Fri, 18 Jun 2021, Christoph Hellwig wrote:
+> On Fri, Jun 18, 2021 at 09:09:17AM -0500, Tom Lendacky wrote:
+> > > swiotlb_init_with_tbl uses memblock_alloc to allocate the io_tlb_mem
+> > > and memblock_alloc[1] will do memset in memblock_alloc_try_nid[2], so
+> > > swiotlb_init_with_tbl is also good.
+> > > I'm happy to add the memset in swiotlb_init_io_tlb_mem if you think
+> > > it's clearer and safer.
+> > 
+> > On x86, if the memset is done before set_memory_decrypted() and memory
+> > encryption is active, then the memory will look like ciphertext afterwards
+> > and not be zeroes. If zeroed memory is required, then a memset must be
+> > done after the set_memory_decrypted() calls.
+> 
+> Which should be fine - we don't care that the memory is cleared to 0,
+> just that it doesn't leak other data.  Maybe a comment would be useful,
+> though,
 
-Originally proposed by AngeloGioacchino Del Regno.
+Just as a clarification: I was referring to the zeroing of "mem" in
+swiotlb_late_init_with_tbl and swiotlb_init_with_tbl. While it looks
+like Tom and Christoph are talking about the zeroing of "tlb".
 
-Link: https://lore.kernel.org/netdev/20210211175015.200772-6-angelogioacchino.delregno@somainline.org
-Signed-off-by: Alex Elder <elder@linaro.org>
----
- drivers/net/ipa/Makefile        |   6 +-
- drivers/net/ipa/ipa_data-v3.1.c | 533 ++++++++++++++++++++++++++++++++
- drivers/net/ipa/ipa_data.h      |   1 +
- drivers/net/ipa/ipa_main.c      |   4 +
- 4 files changed, 541 insertions(+), 3 deletions(-)
- create mode 100644 drivers/net/ipa/ipa_data-v3.1.c
+The zeroing of "mem" is required as some fields of struct io_tlb_mem
+need to be initialized to zero. While the zeroing of "tlb" is not
+required except from the point of view of not leaking sensitive data as
+Christoph mentioned.
 
-diff --git a/drivers/net/ipa/Makefile b/drivers/net/ipa/Makefile
-index bd34fce8f6e63..506f8d5cd4eeb 100644
---- a/drivers/net/ipa/Makefile
-+++ b/drivers/net/ipa/Makefile
-@@ -10,6 +10,6 @@ ipa-y			:=	ipa_main.o ipa_clock.o ipa_reg.o ipa_mem.o \
- 				ipa_resource.o ipa_qmi.o ipa_qmi_msg.o \
- 				ipa_sysfs.o
- 
--ipa-y			+=	ipa_data-v3.5.1.o ipa_data-v4.2.o \
--				ipa_data-v4.5.o ipa_data-v4.9.o \
--				ipa_data-v4.11.o
-+ipa-y			+=	ipa_data-v3.1.o ipa_data-v3.5.1.o \
-+				ipa_data-v4.2.o ipa_data-v4.5.o \
-+				ipa_data-v4.9.o ipa_data-v4.11.o
-diff --git a/drivers/net/ipa/ipa_data-v3.1.c b/drivers/net/ipa/ipa_data-v3.1.c
-new file mode 100644
-index 0000000000000..4c28189462a70
---- /dev/null
-+++ b/drivers/net/ipa/ipa_data-v3.1.c
-@@ -0,0 +1,533 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/* Copyright (c) 2012-2018, The Linux Foundation. All rights reserved.
-+ * Copyright (C) 2019-2021 Linaro Ltd.
-+ */
-+
-+#include <linux/log2.h>
-+
-+#include "gsi.h"
-+#include "ipa_data.h"
-+#include "ipa_endpoint.h"
-+#include "ipa_mem.h"
-+
-+/** enum ipa_resource_type - IPA resource types for an SoC having IPA v3.1 */
-+enum ipa_resource_type {
-+	/* Source resource types; first must have value 0 */
-+	IPA_RESOURCE_TYPE_SRC_PKT_CONTEXTS		= 0,
-+	IPA_RESOURCE_TYPE_SRC_HDR_SECTORS,
-+	IPA_RESOURCE_TYPE_SRC_HDRI1_BUFFER,
-+	IPA_RESOURCE_TYPE_SRC_DESCRIPTOR_LISTS,
-+	IPA_RESOURCE_TYPE_SRC_DESCRIPTOR_BUFF,
-+	IPA_RESOURCE_TYPE_SRC_HDRI2_BUFFERS,
-+	IPA_RESOURCE_TYPE_SRC_HPS_DMARS,
-+	IPA_RESOURCE_TYPE_SRC_ACK_ENTRIES,
-+
-+	/* Destination resource types; first must have value 0 */
-+	IPA_RESOURCE_TYPE_DST_DATA_SECTORS		= 0,
-+	IPA_RESOURCE_TYPE_DST_DATA_SECTOR_LISTS,
-+	IPA_RESOURCE_TYPE_DST_DPS_DMARS,
-+};
-+
-+/* Resource groups used for an SoC having IPA v3.1 */
-+enum ipa_rsrc_group_id {
-+	/* Source resource group identifiers */
-+	IPA_RSRC_GROUP_SRC_UL		= 0,
-+	IPA_RSRC_GROUP_SRC_DL,
-+	IPA_RSRC_GROUP_SRC_DIAG,
-+	IPA_RSRC_GROUP_SRC_DMA,
-+	IPA_RSRC_GROUP_SRC_UNUSED,
-+	IPA_RSRC_GROUP_SRC_UC_RX_Q,
-+	IPA_RSRC_GROUP_SRC_COUNT,	/* Last in set; not a source group */
-+
-+	/* Destination resource group identifiers */
-+	IPA_RSRC_GROUP_DST_UL		= 0,
-+	IPA_RSRC_GROUP_DST_DL,
-+	IPA_RSRC_GROUP_DST_DIAG_DPL,
-+	IPA_RSRC_GROUP_DST_DMA,
-+	IPA_RSRC_GROUP_DST_Q6ZIP_GENERAL,
-+	IPA_RSRC_GROUP_DST_Q6ZIP_ENGINE,
-+	IPA_RSRC_GROUP_DST_COUNT,	/* Last; not a destination group */
-+};
-+
-+/* QSB configuration data for an SoC having IPA v3.1 */
-+static const struct ipa_qsb_data ipa_qsb_data[] = {
-+	[IPA_QSB_MASTER_DDR] = {
-+		.max_writes	= 8,
-+		.max_reads	= 8,
-+	},
-+	[IPA_QSB_MASTER_PCIE] = {
-+		.max_writes	= 2,
-+		.max_reads	= 8,
-+	},
-+};
-+
-+/* Endpoint data for an SoC having IPA v3.1 */
-+static const struct ipa_gsi_endpoint_data ipa_gsi_endpoint_data[] = {
-+	[IPA_ENDPOINT_AP_COMMAND_TX] = {
-+		.ee_id		= GSI_EE_AP,
-+		.channel_id	= 6,
-+		.endpoint_id	= 22,
-+		.toward_ipa	= true,
-+		.channel = {
-+			.tre_count	= 256,
-+			.event_count	= 256,
-+			.tlv_count	= 18,
-+		},
-+		.endpoint = {
-+			.config = {
-+				.resource_group	= IPA_RSRC_GROUP_SRC_UL,
-+				.dma_mode	= true,
-+				.dma_endpoint	= IPA_ENDPOINT_AP_LAN_RX,
-+				.tx = {
-+					.seq_type = IPA_SEQ_DMA,
-+				},
-+			},
-+		},
-+	},
-+	[IPA_ENDPOINT_AP_LAN_RX] = {
-+		.ee_id		= GSI_EE_AP,
-+		.channel_id	= 7,
-+		.endpoint_id	= 15,
-+		.toward_ipa	= false,
-+		.channel = {
-+			.tre_count	= 256,
-+			.event_count	= 256,
-+			.tlv_count	= 8,
-+		},
-+		.endpoint = {
-+			.config = {
-+				.resource_group	= IPA_RSRC_GROUP_SRC_UL,
-+				.aggregation	= true,
-+				.status_enable	= true,
-+				.rx = {
-+					.pad_align	= ilog2(sizeof(u32)),
-+				},
-+			},
-+		},
-+	},
-+	[IPA_ENDPOINT_AP_MODEM_TX] = {
-+		.ee_id		= GSI_EE_AP,
-+		.channel_id	= 5,
-+		.endpoint_id	= 3,
-+		.toward_ipa	= true,
-+		.channel = {
-+			.tre_count	= 512,
-+			.event_count	= 512,
-+			.tlv_count	= 16,
-+		},
-+		.endpoint = {
-+			.filter_support	= true,
-+			.config = {
-+				.resource_group	= IPA_RSRC_GROUP_SRC_UL,
-+				.checksum	= true,
-+				.qmap		= true,
-+				.status_enable	= true,
-+				.tx = {
-+					.seq_type = IPA_SEQ_2_PASS_SKIP_LAST_UC,
-+					.status_endpoint =
-+						IPA_ENDPOINT_MODEM_AP_RX,
-+				},
-+			},
-+		},
-+	},
-+	[IPA_ENDPOINT_AP_MODEM_RX] = {
-+		.ee_id		= GSI_EE_AP,
-+		.channel_id	= 8,
-+		.endpoint_id	= 16,
-+		.toward_ipa	= false,
-+		.channel = {
-+			.tre_count	= 256,
-+			.event_count	= 256,
-+			.tlv_count	= 8,
-+		},
-+		.endpoint = {
-+			.config = {
-+				.resource_group	= IPA_RSRC_GROUP_DST_DL,
-+				.checksum	= true,
-+				.qmap		= true,
-+				.aggregation	= true,
-+				.rx = {
-+					.aggr_close_eof	= true,
-+				},
-+			},
-+		},
-+	},
-+	[IPA_ENDPOINT_MODEM_LAN_TX] = {
-+		.ee_id		= GSI_EE_MODEM,
-+		.channel_id	= 4,
-+		.endpoint_id	= 9,
-+		.toward_ipa	= true,
-+		.endpoint = {
-+			.filter_support	= true,
-+		},
-+	},
-+	[IPA_ENDPOINT_MODEM_AP_TX] = {
-+		.ee_id		= GSI_EE_MODEM,
-+		.channel_id	= 0,
-+		.endpoint_id	= 5,
-+		.toward_ipa	= true,
-+		.endpoint = {
-+			.filter_support	= true,
-+		},
-+	},
-+	[IPA_ENDPOINT_MODEM_AP_RX] = {
-+		.ee_id		= GSI_EE_MODEM,
-+		.channel_id	= 5,
-+		.endpoint_id	= 18,
-+		.toward_ipa	= false,
-+	},
-+};
-+
-+/* Source resource configuration data for an SoC having IPA v3.1 */
-+static const struct ipa_resource ipa_resource_src[] = {
-+	[IPA_RESOURCE_TYPE_SRC_PKT_CONTEXTS] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 3,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 3,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-+			.min = 1,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-+			.min = 1,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-+			.min = 2,	.max = 255,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_HDR_SECTORS] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-+			.min = 0,	.max = 255,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_HDRI1_BUFFER] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-+			.min = 0,	.max = 255,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_DESCRIPTOR_LISTS] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 14,	.max = 14,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 16,	.max = 16,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-+			.min = 5,	.max = 5,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-+			.min = 5,	.max = 5,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-+			.min = 8,	.max = 8,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_DESCRIPTOR_BUFF] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 19,	.max = 19,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 26,	.max = 26,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-+			.min = 5,	.max = 5,	/* 3 downstream */
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-+			.min = 5,	.max = 5,	/* 7 downstream */
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-+			.min = 8,	.max = 8,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_HDRI2_BUFFERS] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-+			.min = 0,	.max = 255,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_HPS_DMARS] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-+			.min = 0,	.max = 255,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_SRC_ACK_ENTRIES] = {
-+		.limits[IPA_RSRC_GROUP_SRC_UL] = {
-+			.min = 19,	.max = 19,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DL] = {
-+			.min = 26,	.max = 26,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DIAG] = {
-+			.min = 5,	.max = 5,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_DMA] = {
-+			.min = 5,	.max = 5,
-+		},
-+		.limits[IPA_RSRC_GROUP_SRC_UC_RX_Q] = {
-+			.min = 8,	.max = 8,
-+		},
-+	},
-+};
-+
-+/* Destination resource configuration data for an SoC having IPA v3.1 */
-+static const struct ipa_resource ipa_resource_dst[] = {
-+	[IPA_RESOURCE_TYPE_DST_DATA_SECTORS] = {
-+		.limits[IPA_RSRC_GROUP_DST_UL] = {
-+			.min = 3,	.max = 3,	/* 2 downstream */
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DL] = {
-+			.min = 3,	.max = 3,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DIAG_DPL] = {
-+			.min = 1,	.max = 1,	/* 0 downstream */
-+		},
-+		/* IPA_RSRC_GROUP_DST_DMA uses 2 downstream */
-+		.limits[IPA_RSRC_GROUP_DST_Q6ZIP_GENERAL] = {
-+			.min = 3,	.max = 3,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_Q6ZIP_ENGINE] = {
-+			.min = 3,	.max = 3,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_DST_DATA_SECTOR_LISTS] = {
-+		.limits[IPA_RSRC_GROUP_DST_UL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DIAG_DPL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DMA] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_Q6ZIP_GENERAL] = {
-+			.min = 0,	.max = 255,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_Q6ZIP_ENGINE] = {
-+			.min = 0,	.max = 255,
-+		},
-+	},
-+	[IPA_RESOURCE_TYPE_DST_DPS_DMARS] = {
-+		.limits[IPA_RSRC_GROUP_DST_UL] = {
-+			.min = 1,	.max = 1,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DL] = {
-+			.min = 1,	.max = 1,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DIAG_DPL] = {
-+			.min = 1,	.max = 1,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_DMA] = {
-+			.min = 1,	.max = 1,
-+		},
-+		.limits[IPA_RSRC_GROUP_DST_Q6ZIP_GENERAL] = {
-+			.min = 1,	.max = 1,
-+		},
-+	},
-+};
-+
-+/* Resource configuration data for an SoC having IPA v3.1 */
-+static const struct ipa_resource_data ipa_resource_data = {
-+	.rsrc_group_src_count	= IPA_RSRC_GROUP_SRC_COUNT,
-+	.rsrc_group_dst_count	= IPA_RSRC_GROUP_DST_COUNT,
-+	.resource_src_count	= ARRAY_SIZE(ipa_resource_src),
-+	.resource_src		= ipa_resource_src,
-+	.resource_dst_count	= ARRAY_SIZE(ipa_resource_dst),
-+	.resource_dst		= ipa_resource_dst,
-+};
-+
-+/* IPA-resident memory region data for an SoC having IPA v3.1 */
-+static const struct ipa_mem ipa_mem_local_data[] = {
-+	{
-+		.id		= IPA_MEM_UC_SHARED,
-+		.offset		= 0x0000,
-+		.size		= 0x0080,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_UC_INFO,
-+		.offset		= 0x0080,
-+		.size		= 0x0200,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_V4_FILTER_HASHED,
-+		.offset		= 0x0288,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V4_FILTER,
-+		.offset		= 0x0308,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V6_FILTER_HASHED,
-+		.offset		= 0x0388,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V6_FILTER,
-+		.offset		= 0x0408,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V4_ROUTE_HASHED,
-+		.offset		= 0x0488,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V4_ROUTE,
-+		.offset		= 0x0508,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V6_ROUTE_HASHED,
-+		.offset		= 0x0588,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_V6_ROUTE,
-+		.offset		= 0x0608,
-+		.size		= 0x0078,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_MODEM_HEADER,
-+		.offset		= 0x0688,
-+		.size		= 0x0140,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_MODEM_PROC_CTX,
-+		.offset		= 0x07d0,
-+		.size		= 0x0200,
-+		.canary_count	= 2,
-+	},
-+	{
-+		.id		= IPA_MEM_AP_PROC_CTX,
-+		.offset		= 0x09d0,
-+		.size		= 0x0200,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_MODEM,
-+		.offset		= 0x0bd8,
-+		.size		= 0x1424,
-+		.canary_count	= 0,
-+	},
-+	{
-+		.id		= IPA_MEM_END_MARKER,
-+		.offset		= 0x2000,
-+		.size		= 0,
-+		.canary_count	= 1,
-+	},
-+};
-+
-+/* Memory configuration data for an SoC having IPA v3.1 */
-+static const struct ipa_mem_data ipa_mem_data = {
-+	.local_count	= ARRAY_SIZE(ipa_mem_local_data),
-+	.local		= ipa_mem_local_data,
-+	.imem_addr	= 0x146bd000,
-+	.imem_size	= 0x00002000,
-+	.smem_id	= 497,
-+	.smem_size	= 0x00002000,
-+};
-+
-+/* Interconnect bandwidths are in 1000 byte/second units */
-+static const struct ipa_interconnect_data ipa_interconnect_data[] = {
-+	{
-+		.name			= "memory",
-+		.peak_bandwidth		= 640000,	/* 640 MBps */
-+		.average_bandwidth	= 80000,	/* 80 MBps */
-+	},
-+	{
-+		.name			= "imem",
-+		.peak_bandwidth		= 640000,	/* 640 MBps */
-+		.average_bandwidth	= 80000,	/* 80 MBps */
-+	},
-+	/* Average bandwidth is unused for the next interconnect */
-+	{
-+		.name			= "config",
-+		.peak_bandwidth		= 80000,	/* 80 MBps */
-+		.average_bandwidth	= 0,		/* unused */
-+	},
-+};
-+
-+/* Clock and interconnect configuration data for an SoC having IPA v3.1 */
-+static const struct ipa_clock_data ipa_clock_data = {
-+	.core_clock_rate	= 16 * 1000 * 1000,	/* Hz */
-+	.interconnect_count	= ARRAY_SIZE(ipa_interconnect_data),
-+	.interconnect_data	= ipa_interconnect_data,
-+};
-+
-+/* Configuration data for an SoC having IPA v3.1 */
-+const struct ipa_data ipa_data_v3_1 = {
-+	.version	= IPA_VERSION_3_1,
-+	.backward_compat = BCR_CMDQ_L_LACK_ONE_ENTRY_FMASK,
-+	.qsb_count	= ARRAY_SIZE(ipa_qsb_data),
-+	.qsb_data	= ipa_qsb_data,
-+	.endpoint_count	= ARRAY_SIZE(ipa_gsi_endpoint_data),
-+	.endpoint_data	= ipa_gsi_endpoint_data,
-+	.resource_data	= &ipa_resource_data,
-+	.mem_data	= &ipa_mem_data,
-+	.clock_data	= &ipa_clock_data,
-+};
-diff --git a/drivers/net/ipa/ipa_data.h b/drivers/net/ipa/ipa_data.h
-index 5c4c8d72d7d87..5bc244c8f94e7 100644
---- a/drivers/net/ipa/ipa_data.h
-+++ b/drivers/net/ipa/ipa_data.h
-@@ -300,6 +300,7 @@ struct ipa_data {
- 	const struct ipa_clock_data *clock_data;
- };
- 
-+extern const struct ipa_data ipa_data_v3_1;
- extern const struct ipa_data ipa_data_v3_5_1;
- extern const struct ipa_data ipa_data_v4_2;
- extern const struct ipa_data ipa_data_v4_5;
-diff --git a/drivers/net/ipa/ipa_main.c b/drivers/net/ipa/ipa_main.c
-index 20a83c7f671f3..9810c61a03202 100644
---- a/drivers/net/ipa/ipa_main.c
-+++ b/drivers/net/ipa/ipa_main.c
-@@ -578,6 +578,10 @@ static int ipa_firmware_load(struct device *dev)
- }
- 
- static const struct of_device_id ipa_match[] = {
-+	{
-+		.compatible	= "qcom,msm8998-ipa",
-+		.data		= &ipa_data_v3_1,
-+	},
- 	{
- 		.compatible	= "qcom,sdm845-ipa",
- 		.data		= &ipa_data_v3_5_1,
--- 
-2.27.0
-
+Either way, Claire's v14 patch 01/12 looks fine to me.
