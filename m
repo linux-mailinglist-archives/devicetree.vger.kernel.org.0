@@ -2,135 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4BCE3AE7D1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 13:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76EA93AE7FB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 13:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229710AbhFULDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 07:03:04 -0400
-Received: from mail-bn7nam10on2059.outbound.protection.outlook.com ([40.107.92.59]:39809
-        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229651AbhFULDE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Jun 2021 07:03:04 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UeqhlItdJ4FD4S8ULuktmEKDroJLh8rMGmlVSiS+8D1wrjCpgD+ChLyDafNgJ2VL2eed8J6QnUoyB9tmfuL4BnQwaqxNublLvmD9E3pGL8MliLfe3lwcZr1WY7+GnYomxsI/7YsGNa1yc6kS3shXI33CfYNNoh6s/qf8nrzbvt35DkJfCjbvbHRty63GAg87zrN0Om7PJGGJUnUTOYolZwVORVxVWLC/0pK/WjSfYK249qhB2phgiGsqRLSxON9AgkYepxG+C259wQgHo9Eb7l/8pG+SJaaCYkySQ2ZDl++YXG66lQp+47lexGPu80DRRlXJXCUyt8gRxu/RmYrAlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dWgzBPoO0VEBMZZcZZZNzJSB6SNd368MUG1O+/jsDBY=;
- b=OgizJGvvCINBxIlXUJ5N37MDbew1yGzGBH4upfTHU43QIWHFAVOdhEflkVRdzEgo4+pkXHEEIBOrFdKAy4hQy0TQV0iv/YdrryfNFYqKN9DdEYXwpy2gIiTBMAX9+HplnsBixzVgG9nrF6djjJDCW8MdKkqqHJN1IRMY4zauAKyi3ZW8VHH8qh8tLshfvxg2R4/SX90fHvUOrYPOpJ2bn2rfMBEUDSYSKIBPLLocuConsJByHTtRN5N9pvOPIWrZIzy4LDBv9W2uSWCi7FrA0q1SrNH5hdROAvqaexwslmi9rjOacQAFJbi63rEgRb5PCawMFjo4zBuL2LCNezOLLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=arndb.de smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        id S229641AbhFULTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 07:19:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43038 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229747AbhFULTv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 07:19:51 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E467C061756
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 04:17:36 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id n7so19204655wri.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 04:17:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dWgzBPoO0VEBMZZcZZZNzJSB6SNd368MUG1O+/jsDBY=;
- b=KHsmKRs+Y8A8AoPiSnsj5ByCALitWd+/yQ8idOdiIM3cIakh19TL/WLJqxyk1gJKCtpQrY0+kawZFLpe7KdpyhBjXs9dwuwsdtY4ITKk67enm3IuH4AyXu3ToVJGdCSEhvwFlV4+tI81HBdgyc/hah6MJW+L/rfZm8xH3PJoWfo=
-Received: from SN4PR0201CA0070.namprd02.prod.outlook.com
- (2603:10b6:803:20::32) by SA0PR02MB7179.namprd02.prod.outlook.com
- (2603:10b6:806:e6::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.21; Mon, 21 Jun
- 2021 11:00:47 +0000
-Received: from SN1NAM02FT0030.eop-nam02.prod.protection.outlook.com
- (2603:10b6:803:20:cafe::84) by SN4PR0201CA0070.outlook.office365.com
- (2603:10b6:803:20::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.21 via Frontend
- Transport; Mon, 21 Jun 2021 11:00:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; arndb.de; dkim=none (message not signed)
- header.d=none;arndb.de; dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0030.mail.protection.outlook.com (10.97.5.194) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4242.16 via Frontend Transport; Mon, 21 Jun 2021 11:00:47 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 21 Jun 2021 04:00:46 -0700
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Mon, 21 Jun 2021 04:00:46 -0700
-Envelope-to: arnd@arndb.de,
- linux@armlinux.org.uk,
- robh+dt@kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- michael@walle.cc
-Received: from [172.30.17.109] (port=45816)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1lvHfa-0006R2-4q; Mon, 21 Jun 2021 04:00:46 -0700
-Subject: Re: [PATCH 0/3] ARM: add NAND support to Ebang EBAZ4205 board
-To:     Michael Walle <michael@walle.cc>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>
-References: <20210616155437.27378-1-michael@walle.cc>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <407a3259-6526-4c7d-6bec-bce1fd91ea01@xilinx.com>
-Date:   Mon, 21 Jun 2021 13:00:43 +0200
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=vIId8K2X0cg04va2SpbcSoJb2/1oMnQwPdbB65aNKlU=;
+        b=EDo7uTCSwYO6tXzuq8jJ+QbGzLI4DK6DECBy0vtHTBWcb9rPTimZFEiBqHhkHQT2L0
+         rFhgFtqJddKzYplsMRuZqDMRQppdcaZf0PGnXxQiV1dC0eWkapEnteGK4Ln/WO4YQTMW
+         ryk2OAi8NqxXcHNkJA94p2Yar3eCIPi/4xYr+JBUANL0PynflWaXPGfBGxvt8E7oxk/I
+         QwgBcZFIidPc3JfSZlSBJ/0nvsObacHhfYZJ56/hGtJ/Ji+d0AIF13jt0Nr3/oKy67UG
+         86OJVK21NZGh+xU+rZ0S/XITBU/hACliGamMweEEUtnkyzMYSoziEE803l/EP4RPHAdK
+         SxrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=vIId8K2X0cg04va2SpbcSoJb2/1oMnQwPdbB65aNKlU=;
+        b=R7i4uAq5ldoIqhr0CgW2+jQvFlORQtsj0qkZXH5784+Oda9EI9oQ9+AkZkOgGEIpQN
+         HxQT3BIOlYz3OKzcgEMIcCh/UCLjc71naeok1TSpQXS0rQvp1chZa3t6OGsQKXfaBLhk
+         qcpv3O/Y6EyXPUBaG4UHqD9wsbWz3D0W0jEdzdgpHaALPmeMH5A3cW1YXWm9p57UdCX0
+         F2llvaU90jusPz58/7ErvnV9OrQqx0vCN+fbjLi5tcLvNQi73g9qmZ60ikurwQCY6+Uv
+         +Nm7e0p84REl1OtgAjQIaT5XA8C19CYHwxPq8LoVH+/DrEwjHnVVcnpo96+dJszCVq07
+         Q5Wg==
+X-Gm-Message-State: AOAM530heuc2B3tsUbBDh60+oFXD/t63KvbovgUYzgNDZ+FDrD4AUyiN
+        1wRJBbTmwXG5R5EQEPWhjvzCGg==
+X-Google-Smtp-Source: ABdhPJykG3GgJZt4zAIgBQXMeH/COPGhCNvEyfqZmxNGqdOdbRQqkjoDnd7dGcpS5E2lZu+Z2IMDng==
+X-Received: by 2002:a5d:69cb:: with SMTP id s11mr6891104wrw.240.1624274254528;
+        Mon, 21 Jun 2021 04:17:34 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:5ebd:8bd9:d549:4211? ([2a01:e34:ed2f:f020:5ebd:8bd9:d549:4211])
+        by smtp.googlemail.com with ESMTPSA id e15sm3183114wrm.60.2021.06.21.04.17.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Jun 2021 04:17:33 -0700 (PDT)
+Subject: Re: [RESEND PATCH v2 2/2] cpuidle: qcom: Add SPM register data for
+ MSM8226
+To:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        David Sterba <dsterba@suse.com>, Jens Axboe <axboe@kernel.dk>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+Cc:     Stephan Gerhold <stephan@gerhold.net>
+References: <20210612205335.9730-1-bartosz.dudziak@snejp.pl>
+ <20210612205335.9730-3-bartosz.dudziak@snejp.pl>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <8d23a3b3-61ad-fabb-fa95-e0bebac2e0ee@linaro.org>
+Date:   Mon, 21 Jun 2021 13:17:32 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-In-Reply-To: <20210616155437.27378-1-michael@walle.cc>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20210612205335.9730-3-bartosz.dudziak@snejp.pl>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1018ae16-6607-4d29-5ba6-08d934a3d2fb
-X-MS-TrafficTypeDiagnostic: SA0PR02MB7179:
-X-Microsoft-Antispam-PRVS: <SA0PR02MB71798951979468DB542C4565C60A9@SA0PR02MB7179.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: myJ6uEt7vuBaI0s10qG6WU5zIKzNE2fxqJHLYCI9+8Xh8bvGriABwAdVhqbaaYeAUBTSaojXwRGyWpRFbc/lSkAOd87p7SXH6kHCWMR009Tmo5MT6KGFZmu0+GzkKkEOJgS0yN77ZklBmq4ibRBsKbPiO5ytQzdMM2MfEqdCfhUMMWf2MkmFqmlcqd6YzjCrfsI3oW1RqS1mLRMhiXMw/kdlQSL+NcnIsvyt4IJkoIN3bZci1KOlTuVyscbGt+qw5yJwBU2KFbkdXWZwcSAPXmzumMonYiwNK9s819K20Of9sj93+IWirOOPJGxjG3p3/19L1wbL6KI6qL7nR+3ke1UgjjtW1kDLA3awOaucViJ/FyT4JkbWbQXmpPIrQwrcN0hDJE3SOxgBSfZReZje4GnCdiYLV72Ey9Yuzzco8xm+gL3dF5r/7ljd/8n3kA1QNCcAplONmlEAKKfYCh1Z5l+twTrAUDp2eRm8k5jBPvIQlw8r31BP/GxaJyLOvGP1XRB/1TEnM69U1CKQI3pLk7un3i0nX1vMuM2sbTtIcFidQTIaaW5FExPXnqBcLvl6c7ToJZBuO3XgiFjsRG7Hj11VZpM0s88KwBvs4TrSIbDpXMi/Az7BqSzKU/XUofsXdBvjvbokh0jKdThvL24Ivoa08GfyitKOfxrGFTQ+gtHWXZzn6SftUV7JVlWljfF3glsSph9FKcWitw34ch7DcOuikj1OhTqtqWixoNuGxw4=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(346002)(396003)(136003)(376002)(39850400004)(36840700001)(46966006)(36860700001)(36756003)(26005)(4744005)(82310400003)(316002)(47076005)(6666004)(8676002)(2906002)(5660300002)(54906003)(4326008)(8936002)(31686004)(336012)(53546011)(70206006)(70586007)(356005)(478600001)(36906005)(31696002)(82740400003)(110136005)(7636003)(186003)(44832011)(426003)(9786002)(2616005)(50156003)(43740500002)(2101003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jun 2021 11:00:47.2798
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1018ae16-6607-4d29-5ba6-08d934a3d2fb
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0030.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR02MB7179
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/06/2021 22:53, Bartosz Dudziak wrote:
+> Add MSM8226 register data to SPM AVS Wrapper 2 (SAW2) power controller
+> driver.
+> 
+> Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+
+Bjorn ? Andy ?
+
+> ---
+>  drivers/cpuidle/cpuidle-qcom-spm.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/drivers/cpuidle/cpuidle-qcom-spm.c b/drivers/cpuidle/cpuidle-qcom-spm.c
+> index adf91a6e4d..c0e7971da2 100644
+> --- a/drivers/cpuidle/cpuidle-qcom-spm.c
+> +++ b/drivers/cpuidle/cpuidle-qcom-spm.c
+> @@ -87,6 +87,18 @@ static const struct spm_reg_data spm_reg_8974_8084_cpu  = {
+>  	.start_index[PM_SLEEP_MODE_SPC] = 3,
+>  };
+>  
+> +/* SPM register data for 8226 */
+> +static const struct spm_reg_data spm_reg_8226_cpu  = {
+> +	.reg_offset = spm_reg_offset_v2_1,
+> +	.spm_cfg = 0x0,
+> +	.spm_dly = 0x3C102800,
+> +	.seq = { 0x60, 0x03, 0x60, 0x0B, 0x0F, 0x20, 0x10, 0x80, 0x30, 0x90,
+> +		0x5B, 0x60, 0x03, 0x60, 0x3B, 0x76, 0x76, 0x0B, 0x94, 0x5B,
+> +		0x80, 0x10, 0x26, 0x30, 0x0F },
+> +	.start_index[PM_SLEEP_MODE_STBY] = 0,
+> +	.start_index[PM_SLEEP_MODE_SPC] = 5,
+> +};
+> +
+>  static const u8 spm_reg_offset_v1_1[SPM_REG_NR] = {
+>  	[SPM_REG_CFG]		= 0x08,
+>  	[SPM_REG_SPM_CTL]	= 0x20,
+> @@ -259,6 +271,8 @@ static struct spm_driver_data *spm_get_drv(struct platform_device *pdev,
+>  }
+>  
+>  static const struct of_device_id spm_match_table[] = {
+> +	{ .compatible = "qcom,msm8226-saw2-v2.1-cpu",
+> +	  .data = &spm_reg_8226_cpu },
+>  	{ .compatible = "qcom,msm8974-saw2-v2.1-cpu",
+>  	  .data = &spm_reg_8974_8084_cpu },
+>  	{ .compatible = "qcom,apq8084-saw2-v2.1-cpu",
+> 
 
 
-On 6/16/21 5:54 PM, Michael Walle wrote:
-> Thanks to Miguel, there is finally a NAND driver for this SoC and we can
-> now support the NAND device on the EBAZ4205.
-> 
-> Btw. I'm not sure how often the PL35x NAND controller is used in SoC and
-> if it qualifies to add it to the multi_v7 defconfig.
-> 
-> Michael Walle (3):
->   ARM: configs: multi_v7: enable PL35x NAND controller
->   ARM: dts: zynq: add NAND flash controller node
->   ARM: dts: ebaz4205: enable NAND support
-> 
->  arch/arm/boot/dts/zynq-7000.dtsi    | 21 +++++++++++++++++++++
->  arch/arm/boot/dts/zynq-ebaz4205.dts | 12 ++++++++++++
->  arch/arm/configs/multi_v7_defconfig |  1 +
->  3 files changed, 34 insertions(+)
-> 
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Queue.
-
-Thanks,
-Michal
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
