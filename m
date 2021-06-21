@@ -2,131 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 179483AE5F7
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 11:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5442C3AE611
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 11:31:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230225AbhFUJ1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 05:27:14 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:39661 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230175AbhFUJ1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Jun 2021 05:27:13 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 27B8E580729;
-        Mon, 21 Jun 2021 05:24:59 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Mon, 21 Jun 2021 05:24:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=QxyRCw56RmwfC4S1d/yB2NPnff0
-        BTF8jycj1UZFZOJo=; b=npjXHHvytKMSpcHy05FREqM6WoH2QfHaRWOwoh1gTJI
-        +P897+R0OniZWpBHMj9k+WJltAyyrpa6Yp+2/MP5r/bP+eNP+AQAPDprewP+3/yu
-        g/OgybLvwOM2yn4dIzUnzEkK024WlgwpkF3X+hY4Dtr5HEfOW7RMjRuZk/TsuXIw
-        u6ogHxxUOkDo3A4ahIHkKu0dcIgyZrM2YofZK0WRODW7D2tSVB9AF48kBU4NrXYc
-        Gp6xb8U5Hwe2PyQP8oSoDk05eDoRlgMczrr3igl2+Z+H1s0HdpImoRqXjtsCToLC
-        7MTKEtfQC/adkCZkT4+gv6z7RhSemxIkXI6d2gVF1jQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=QxyRCw
-        56RmwfC4S1d/yB2NPnff0BTF8jycj1UZFZOJo=; b=M48pTmlIx68Lnx1QR85eFG
-        Zwirpl1+Ql7Ue8l5TzNtlAxuTKvF8uZkgXPhUL6SYTaMXEMwzkzDs9j7sq7KG3Zz
-        hCcQ59ufyWliuzam7l3L2K/YTZ/8lYpfd7nydQuX837KZQC6T+MTLqGYUBE7YCWv
-        EYrEKMtrIVxw5LVLKAAXbpYPhEsNc8wD3YYxJ6Fcil1B1VvY6nL8FE4Dl0QSrSz/
-        CJ/kLly3Kz1PBo/LevXybi2yBr95P4B/979iVvexZDK9JOI9fD99GA6XAALqwjir
-        6LgKmK82gGRelYox0cvSCYVx6Vwi0L3HvgEdybLLs80K+jxRYB7Ib1Odr+ziOAeQ
-        ==
-X-ME-Sender: <xms:6FrQYN1fMBgyxnejtjwDiDUmGWoArg3IOR1Icv8LWs7JYFKeA9CrCQ>
-    <xme:6FrQYEF7axDha0Qwas79kvOP82YbN3QtP5OeZfm1ScKbMb2QkbR20kcHlWpS06hIk
-    YFUtyD9zbY-zyirE7I>
-X-ME-Received: <xmr:6FrQYN44zIPubjZytZ67_2R1ybQBDgBuDhjaXPhM04YsfnaFUtaBhGASZg7F77ASIy5p3OJrvXt78jIVwvU6GnnRrhoulqZAyHWx>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeefledgudeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:6FrQYK0Wl87_Xs__Vs_2d1BZLkXeyN8sKhgNI5CJu5zN4IjsshyEPg>
-    <xmx:6FrQYAHac96gY3gmP-yAvwfg3Lgeiw7AMJKGlxcj_2DSobH7ltxCJA>
-    <xmx:6FrQYL9UAyVtYBm1Hm3YnFUVGMOmLZr1p3JGgl4PrDQHAJUGHqQGzA>
-    <xmx:61rQYI_u-BujOaCITJgA5pOANeuHUhQNrNjwiEp81SBTaApWjb2Vnw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 21 Jun 2021 05:24:56 -0400 (EDT)
-Date:   Mon, 21 Jun 2021 11:24:54 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Tomohito Esaki <etom@igel.co.jp>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        dri-devlel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
-Message-ID: <20210621092454.jvdmelk2h427jn5v@gilmour>
-References: <20210621062742.26073-1-etom@igel.co.jp>
- <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
+        id S229641AbhFUJeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 05:34:09 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33718 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229597AbhFUJeI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 05:34:08 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15L9VrYN009045;
+        Mon, 21 Jun 2021 04:31:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1624267913;
+        bh=iLXOHigeBfCtwhWP1up5+ZpOgMa0GIQ92inE02LlXek=;
+        h=From:To:CC:Subject:Date;
+        b=XPYj1GkW+wGv30cio/I830hdRmodkYeLd0iI4fJzANr25JvQFxHBe1HhYBq+l44dx
+         Qly1eagiBSU57YMAd1s21cwaYpOHwtl68hbj24L2zv8nLkusE85lwtIegap/7h58Iq
+         sV/uXNOsf8GaefP8smIfntu0luQ3/mzuVoNCzbhA=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15L9Vrwc012436
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 21 Jun 2021 04:31:53 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 21
+ Jun 2021 04:31:53 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 21 Jun 2021 04:31:53 -0500
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15L9Vi5w105998;
+        Mon, 21 Jun 2021 04:31:46 -0500
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3] dt-bindings: spi: omap-spi: Convert to json-schema
+Date:   Mon, 21 Jun 2021 14:58:58 +0530
+Message-ID: <20210621092900.951-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xz4kqr3jldf7e74a"
-Content-Disposition: inline
-In-Reply-To: <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert omap-spi dt-binding documentation from txt to yaml format.
 
---xz4kqr3jldf7e74a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+---
 
-Hi,
+changes since v2:
+- added myself as the maintainer
+- added reference to spi-controller.yaml
+- removed properties already defined in spi-controller.yaml
+- removed unused labels in dt example
+- changed additionalProperties to unevaluatedProperties
+  as a reference is used
 
-On Mon, Jun 21, 2021 at 09:10:19AM +0200, Thomas Zimmermann wrote:
-> Am 21.06.21 um 08:27 schrieb Tomohito Esaki:
-> > Virtual DRM splits the overlay planes of a display controller into mult=
-iple
-> > virtual devices to allow each plane to be accessed by each process.
-> >=20
-> > This makes it possible to overlay images output from multiple processes=
- on a
-> > display. For example, one process displays the camera image without com=
-positor
-> > while another process overlays the UI.
->=20
-> I briefly looked over your patches. I didn't understand how this is
-> different to the functionality of a compositor? Shouldn't this be solved =
-in
-> userspace?
+changes since v1:
+- split the series according to their respective trees
 
-I think there could be a bunch of use-cases for something that could
-"steal" a plane without the compositor knowing.
+link to v1:
+https://lore.kernel.org/patchwork/project/lkml/list/?series=502255
 
-Something I'd really like to work at some point for example is that the
-downstream RaspberryPi display driver has a visual clue when it's
-running too hot or is in over-current.
+ .../devicetree/bindings/spi/omap-spi.txt      |  48 -------
+ .../devicetree/bindings/spi/omap-spi.yaml     | 117 ++++++++++++++++++
+ 2 files changed, 117 insertions(+), 48 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/omap-spi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/omap-spi.yaml
 
-I don't think this is the right solution though. The DT binding makes it
-far too static, and if there's a compositor I'd assume it would want to
-know about it somehow (at least if it's from the userspace) ?
+diff --git a/Documentation/devicetree/bindings/spi/omap-spi.txt b/Documentation/devicetree/bindings/spi/omap-spi.txt
+deleted file mode 100644
+index 487208c256c0..000000000000
+--- a/Documentation/devicetree/bindings/spi/omap-spi.txt
++++ /dev/null
+@@ -1,48 +0,0 @@
+-OMAP2+ McSPI device
+-
+-Required properties:
+-- compatible :
+-  - "ti,am654-mcspi" for AM654.
+-  - "ti,omap2-mcspi" for OMAP2 & OMAP3.
+-  - "ti,omap4-mcspi" for OMAP4+.
+-- ti,spi-num-cs : Number of chipselect supported  by the instance.
+-- ti,hwmods: Name of the hwmod associated to the McSPI
+-- ti,pindir-d0-out-d1-in: Select the D0 pin as output and D1 as
+-			  input. The default is D0 as input and
+-			  D1 as output.
+-
+-Optional properties:
+-- dmas: List of DMA specifiers with the controller specific format
+-	as described in the generic DMA client binding. A tx and rx
+-	specifier is required for each chip select.
+-- dma-names: List of DMA request names. These strings correspond
+-	1:1 with the DMA specifiers listed in dmas. The string naming
+-	is to be "rxN" and "txN" for RX and TX requests,
+-	respectively, where N equals the chip select number.
+-
+-Examples:
+-
+-[hwmod populated DMA resources]
+-
+-mcspi1: mcspi@1 {
+-    #address-cells = <1>;
+-    #size-cells = <0>;
+-    compatible = "ti,omap4-mcspi";
+-    ti,hwmods = "mcspi1";
+-    ti,spi-num-cs = <4>;
+-};
+-
+-[generic DMA request binding]
+-
+-mcspi1: mcspi@1 {
+-    #address-cells = <1>;
+-    #size-cells = <0>;
+-    compatible = "ti,omap4-mcspi";
+-    ti,hwmods = "mcspi1";
+-    ti,spi-num-cs = <2>;
+-    dmas = <&edma 42
+-	    &edma 43
+-	    &edma 44
+-	    &edma 45>;
+-    dma-names = "tx0", "rx0", "tx1", "rx1";
+-};
+diff --git a/Documentation/devicetree/bindings/spi/omap-spi.yaml b/Documentation/devicetree/bindings/spi/omap-spi.yaml
+new file mode 100644
+index 000000000000..e55538186cf6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/omap-spi.yaml
+@@ -0,0 +1,117 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/omap-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: SPI controller bindings for OMAP and K3 SoCs
++
++maintainers:
++  - Aswath Govindraju <a-govindraju@ti.com>
++
++allOf:
++  - $ref: spi-controller.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - ti,am654-mcspi
++              - ti,am4372-mcspi
++          - const: ti,omap4-mcspi
++      - items:
++          - enum:
++              - ti,omap2-mcspi
++              - ti,omap4-mcspi
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++  ti,spi-num-cs:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Number of chipselect supported  by the instance.
++    minimum: 1
++    maximum: 4
++
++  ti,hwmods:
++    $ref: /schemas/types.yaml#/definitions/string
++    description:
++      Must be "mcspi<n>", n being the instance number (1-based).
++      This property is applicable only on legacy platforms mainly omap2/3
++      and ti81xx and should not be used on other platforms.
++    deprecated: true
++
++  ti,pindir-d0-out-d1-in:
++    description:
++      Select the D0 pin as output and D1 as input. The default is D0
++      as input and D1 as output.
++    type: boolean
++
++  dmas:
++    description:
++      List of DMA specifiers with the controller specific format as
++      described in the generic DMA client binding. A tx and rx
++      specifier is required for each chip select.
++    minItems: 1
++    maxItems: 8
++
++  dma-names:
++    description:
++      List of DMA request names. These strings correspond 1:1 with
++      the DMA sepecifiers listed in dmas. The string names is to be
++      "rxN" and "txN" for RX and TX requests, respectively. Where N
++      is the chip select number.
++    minItems: 1
++    maxItems: 8
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++if:
++  properties:
++    compatible:
++      oneOf:
++        - const: ti,omap2-mcspi
++        - const: ti,omap4-mcspi
++
++then:
++  properties:
++    ti,hwmods:
++      items:
++        - pattern: "^mcspi([1-9])$"
++
++else:
++  properties:
++    ti,hwmods: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/soc/ti,sci_pm_domain.h>
++
++    spi@2100000 {
++      compatible = "ti,am654-mcspi","ti,omap4-mcspi";
++      reg = <0x2100000 0x400>;
++      interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
++      clocks = <&k3_clks 137 1>;
++      power-domains = <&k3_pds 137 TI_SCI_PD_EXCLUSIVE>;
++      #address-cells = <1>;
++      #size-cells = <0>;
++      dmas = <&main_udmap 0xc500>, <&main_udmap 0x4500>;
++      dma-names = "tx0", "rx0";
++    };
+-- 
+2.17.1
 
-Maxime
-
---xz4kqr3jldf7e74a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYNBa5gAKCRDj7w1vZxhR
-xSSHAQDsK7MmbKj9NbX4esOTIjfHi+miWdtqwdA1VXPu7OAU+wEAsmJeTq9Unwha
-ZjKrYBAvq23DkfZ79MOPlRjn2sRbjA4=
-=pjsJ
------END PGP SIGNATURE-----
-
---xz4kqr3jldf7e74a--
