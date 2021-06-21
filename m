@@ -2,211 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 469613AE42D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 09:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68EE23AE450
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 09:42:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230515AbhFUH17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 03:27:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230509AbhFUH1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 03:27:55 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58A11C06175F
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 00:25:41 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id e33so13437100pgm.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 00:25:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=lTGm4JdvD3Vra2uimR9VdWCccBLfDRHg1bYd/TgBubU=;
-        b=PFJ+240oebdQnrjo/n/RAYbIElojZ4FKbPovvcLEqUz4yBbkyVuFvAOGUWXkm30rfe
-         75bW0/Ce4RgwAgC4v3Vrk7kmCKD6qi1mkuF5f0eGUUYyW6TGPpMB4W5gED+bP1XNgU3J
-         fcUqMyXjuP9ETuCKYHTX4nrwrmYudt7xQPSBo=
+        id S230144AbhFUHoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 03:44:23 -0400
+Received: from mail-vk1-f169.google.com ([209.85.221.169]:42602 "EHLO
+        mail-vk1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229937AbhFUHoV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 03:44:21 -0400
+Received: by mail-vk1-f169.google.com with SMTP id y30so2647659vke.9;
+        Mon, 21 Jun 2021 00:41:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=lTGm4JdvD3Vra2uimR9VdWCccBLfDRHg1bYd/TgBubU=;
-        b=Xq+z3Z/kF30Y8nm+ZqBIW/3twJryoOgJVhnFa4xEP/UR6FTUgLXMxqLvfmOBJlnRXd
-         uGsfVvw3Fp91OANaLbelGDw6s3+I+FJK9ci5PoGECzrKQMsrU3HAVV48J9DevOzo7Dzb
-         20bxgh/M6NPuZDKBWcvSx2pJuQmS8r1HQBRksn9QgunNqakr+kfGELC+qgoBDSY1iEt8
-         DnrxtPVFbGKh48p0oulEEsJGSbwWIjd6RoxAsZQjzAc2YTOEY+kz+ftxYWL6WdYA6H7u
-         Twg/c5THnIAtTKBgXuotJWJ8/yKK848FCFgKuIu7i8ajnt1bzuutbm/nc2rXyEqiHYyi
-         U3dQ==
-X-Gm-Message-State: AOAM530ErgWQGNIepWUV9GsL23uu3oY+XPD+IXDHJ7vV8QCK4Nc4SzW0
-        5B5W2u5LsFeim7J80igxVEM1O2vfnSdYvw==
-X-Google-Smtp-Source: ABdhPJySHSLKRyuhIZrudYf++tyEsD+0GgBX+hyzQUfgAdzn15cvpKaHOeRlq0FvEo+n97tiu5R9dg==
-X-Received: by 2002:a63:185b:: with SMTP id 27mr23058306pgy.164.1624260340808;
-        Mon, 21 Jun 2021 00:25:40 -0700 (PDT)
-Received: from localhost.localdomain ([2405:201:c00a:a884:139:e97f:a55d:7f66])
-        by smtp.gmail.com with ESMTPSA id 21sm13951294pfh.103.2021.06.21.00.25.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Jun 2021 00:25:40 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Tomasz Figa <t.figa@samsung.com>,
-        Fancy Fang <chen.fang@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula@amarulasolutions.com,
-        Anthony Brandon <anthony@amarulasolutions.com>,
-        Francis Laniel <francis.laniel@amarulasolutions.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Milco Pratesi <milco.pratesi@engicam.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [RFC PATCH 9/9] arm64: dts: imx8mm-icore: Enable LVDS panel for EDIMM2.2
-Date:   Mon, 21 Jun 2021 12:54:24 +0530
-Message-Id: <20210621072424.111733-10-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210621072424.111733-1-jagan@amarulasolutions.com>
-References: <20210621072424.111733-1-jagan@amarulasolutions.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3+Xam//Oc2mo0N99zqv9MSYzVFrmCg9uwZC0FSTjR2E=;
+        b=BK7Z8nxWXkInW0IcXMVJiUiZdW9fORp1v2qpwazKGnigyJ+RlrOUXwOT2T8hiz7c60
+         my++PsCuIR/0X1ahk4jGObjt8q9SXnen7L3iH8pWbnTuJsqi2rmA0ZeisVo7GKNbnGYG
+         HJeH13kP+IxUY4Xu+mgy07jBcJjx+i8OUTqzfxtoyKn/bLg/TCSlCj/z8vs4Mk3avJDl
+         KbAIBr+wQ4FfxkJ+yngt7aQse3y27E771Q1oQQsaqRjNe31pvuIEpBwRfjGTpkGTrGT1
+         AZCR62XZUDsvLCEJj6NwcQlW/fw0DryfV3u3I5GnITHlLOJwUurglEmzO+ftrtPEpxKT
+         I5+w==
+X-Gm-Message-State: AOAM533LDZFtvIRho/ZrR847GnHRtIG/gynKBMBfriop+3O+e3r/lA68
+        5S8eD2ACEjRKHcDpf+XMueJ+vPKiYqLKXjEz7PU=
+X-Google-Smtp-Source: ABdhPJwUGiA4tn0aGijm5qAD0hIQnS2zruY7gbs5BsxC4o+uPMK5G+PUTK+B6Ys6LtrPsmax4PMha9TzjKL5RC9IN4A=
+X-Received: by 2002:a1f:1a41:: with SMTP id a62mr13252035vka.5.1624261282759;
+ Mon, 21 Jun 2021 00:41:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <42d9c71b4ee1f120e0cdcf6b266547d29d1fb9a4.1623851377.git.geert+renesas@glider.be>
+ <20210620205546.GA17070@amd>
+In-Reply-To: <20210620205546.GA17070@amd>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 21 Jun 2021 09:41:11 +0200
+Message-ID: <CAMuHMdXwjpwe_mTXtEC7rKkCty7qmS8pjUAWwpY3pE-BPV+C_g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: rtc: ti,bq32k: Convert to json-schema
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-rtc@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable LVDS Panel for Engicam i.Core MX8MMini EDIMM2.2 board.
+Hi Pavel,
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
- .../freescale/imx8mm-icore-mx8mm-edimm2.2.dts | 90 +++++++++++++++++++
- 1 file changed, 90 insertions(+)
+On Sun, Jun 20, 2021 at 10:55 PM Pavel Machek <pavel@ucw.cz> wrote:
+> > Convert the TI BQ32000 I2C Serial Real-Time Clock Device Tree binding
+> > documentation to json-schema.
+> >
+> > Document missing properties.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> > index 0000000000000000..392bd71bd1bee25c
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/rtc/ti,bq32000.yaml
+> > @@ -0,0 +1,49 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/rtc/ti,bq32000.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: TI BQ32000 I2C Serial Real-Time Clock
+> > +
+> > +maintainers:
+> > +  - Pavel Machek <pavel@ucw.cz>
+>
+> I'm not sure why I'm listed here, but I probably should not be. I
+> don't have access to that hardware any more.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts b/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
-index a4a2ada14835..f1256c9c9bd7 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-icore-mx8mm-edimm2.2.dts
-@@ -14,9 +14,51 @@ / {
- 	compatible = "engicam,icore-mx8mm-edimm2.2", "engicam,icore-mx8mm",
- 		     "fsl,imx8mm";
- 
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pwm1>;
-+		pwms = <&pwm1 0 1000000>;
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <7>;
-+	};
-+
- 	chosen {
- 		stdout-path = &uart2;
- 	};
-+
-+	panel {
-+		compatible = "yes-optoelectronics,ytc700tlag-05-201c";
-+		backlight = <&backlight>;
-+		data-mapping = "vesa-24";
-+
-+		port {
-+			panel_out_bridge: endpoint {
-+				remote-endpoint = <&bridge_out_panel>;
-+			};
-+		};
-+	};
-+};
-+
-+&dphy {
-+	status = "okay";
-+};
-+
-+&dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+
-+			dsi_out_bridge: endpoint {
-+				remote-endpoint = <&bridge_in_dsi>;
-+				data-lanes = <0 1>;
-+			};
-+		};
-+	};
- };
- 
- &fec1 {
-@@ -35,9 +77,43 @@ &i2c4 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_i2c4>;
- 	status = "okay";
-+
-+	bridge@2c {
-+		compatible = "ti,sn65dsi84";
-+		reg = <0x2c>;
-+		enable-gpios = <&gpio3 9  GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_dsi_bridge_enable>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				bridge_in_dsi: endpoint {
-+					remote-endpoint = <&dsi_out_bridge>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				bridge_out_panel: endpoint {
-+					remote-endpoint = <&panel_out_bridge>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &iomuxc {
-+	pinctrl_dsi_bridge_enable: dsibridgeenablegrp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_NAND_DATA03_GPIO3_IO9	0x19
-+			MX8MM_IOMUXC_NAND_DATA02_GPIO3_IO8	0x19
-+		>;
-+	};
-+
- 	pinctrl_i2c2: i2c2grp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
-@@ -52,6 +128,12 @@ MX8MM_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001c3
- 		>;
- 	};
- 
-+	pinctrl_pwm1: pwm1grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_SPDIF_EXT_CLK_PWM1_OUT     0x19
-+		>;
-+	};
-+
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
-@@ -77,6 +159,14 @@ MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d0
- 	};
- };
- 
-+&lcdif {
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
- &uart2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart2>;
+You wrote the bindings, and are the only person who ever modified
+the file before.
+I see Alexandre has already assumed maintainership in the mean time.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.25.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
