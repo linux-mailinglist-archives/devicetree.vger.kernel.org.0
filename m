@@ -2,102 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D72C3AE81F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 13:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A7073AE852
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 13:46:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbhFUL2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 07:28:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45064 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229789AbhFUL2l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 07:28:41 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7824DC06175F
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 04:26:27 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id w13so3622574wmc.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 04:26:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:subject:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VQIndBF+raV4yH/uAef42b9tgSUc/q1HIDoWGC5a4rI=;
-        b=RTrAlXf9cKXMVWwPGTX1Kwgjh+eL5clejf7gh7Vjpa/nemnps6a40jTvvUVsfcT6HU
-         UOzJzgyK9BDJKzXsF6CcygNTm7Unq1YvMT50PDBrYefsKVO2/anOsOfeDx03Xi5/WxGQ
-         GhrK+l+kGMq/eeUNIMEu3tX4itq5fJbgbc9jF7BKYGFoVeBfZMen60pt0XxNCMLHFK4I
-         lySoWPGXX3GwLDZuYgFrpa0qzqU0hixPCFJ32zDR3CAhZsY5mKrDXnko3xzXM2IZDgP/
-         G/lBWjB5hIEDalX/aYWlHoajEdXb7vm8ziSv3a6/2ewgh/4YJibXy35JIRiBweMngetG
-         zAsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VQIndBF+raV4yH/uAef42b9tgSUc/q1HIDoWGC5a4rI=;
-        b=cwe+VVYpCeGTuh0JqL89b7HYs4WkyEQf1vAOgVEvJa6MM4qPMrwYuLgqwTwlSRlWcW
-         2uVDE8oB8PEGT5tcH1hTnkQQYig9BR8qL/M9MQmRbmZZzY6CNBa1BcKrFcV/uxG8O7PW
-         dlWtchcvl1l2hIqA3MMU6AvMY32JvSbZb9P5bYymYi4Wv3GOZE7gLmgBTgFmXMD9uDRI
-         YMO335nPaRrqFOY3DgvdSNO4Jf0BHkF6T0klpJ0mh4OwQR8WjvenBpulkbLwknUJ0F0M
-         c3SJ/B7An3D/fipMcK5hsAjbjimWQ4RFDG99OZ5A/+WIaIkaB00QzrOnJerGXp/WN7Ae
-         EPgA==
-X-Gm-Message-State: AOAM530j06IemqalIrl2Vic81WTRoP9NWd1U66fX2Iv7FBSI3l9ZuYbG
-        g/xb7iCM6oxJWVDZKSEseFaeHg==
-X-Google-Smtp-Source: ABdhPJzBf/rLzdPhlwdeWkxppRCDDwZPEvglk1oWay5c9Zwsnkp4D3mNVDvM1mQNffoDwpamZ2GZ+Q==
-X-Received: by 2002:a05:600c:88a:: with SMTP id l10mr26901650wmp.7.1624274785928;
-        Mon, 21 Jun 2021 04:26:25 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:5ebd:8bd9:d549:4211? ([2a01:e34:ed2f:f020:5ebd:8bd9:d549:4211])
-        by smtp.googlemail.com with ESMTPSA id s5sm18556352wrn.38.2021.06.21.04.26.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Jun 2021 04:26:25 -0700 (PDT)
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: Re: [PATCH v5 2/3] thermal: mediatek: Add LVTS drivers for SoC
- theraml zones
-To:     Ben Tseng <ben.tseng@mediatek.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        srv_heupstream@mediatek.com
-Cc:     Eduardo Valentin <edubezval@gmail.com>,
+        id S229719AbhFULsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 07:48:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59262 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229576AbhFULsX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Jun 2021 07:48:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 020A261042;
+        Mon, 21 Jun 2021 11:46:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624275969;
+        bh=o2BrqAEzQ18i2RIwqxFr1jTlLo7zkIjHvzpelLDjh5g=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=K0qeyHxscw0e50hQ1s4ED722x4ZoOQjFFfsw0bWIPNhKjWZhfm5c13usRjMnlrK0P
+         KxF1nkH1kSePSbHmLqwh2jDQ1AAWasPKgyzxs6xTuACig8sAFCViRWG9OjCC6Oss7E
+         PGCxK9d9LgwILRJ59h6sjRc/E1NBkS+SdzLrHn+D4WyCYWLPCXRGp0SZM7xr2/teK8
+         GEvmYHfpL58vyn5V93I1pLYWMplk9O1pPzbW0Nqk+jT+Pgx1kjGHFsHZ/oeoMZvphT
+         kbtexOUdUKqV2ohEX99Hvbst8tFH138C42EhTLQGYBYgqJ0l1Y2xW1tHzusiYUsOtU
+         3Fmpe0865cpkA==
+Date:   Mon, 21 Jun 2021 12:45:46 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Judy Hsiao <judyhsiao@chromium.org>
+Cc:     Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>, hsinyi@chromium.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
+        dgreid@chromium.org, cychiang@google.com, judyhsiao@google.com,
+        tzungbi@chromium.org, swboyd@chromium.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Michael Kao <michael.kao@mediatek.com>,
-        Yu-Chia Chang <ethan.chang@mediatek.com>
-References: <20210617114707.10618-1-ben.tseng@mediatek.com>
- <20210617114707.10618-3-ben.tseng@mediatek.com>
-Message-ID: <06b1804c-4675-2997-8c5c-bcdffbcfc4a1@linaro.org>
-Date:   Mon, 21 Jun 2021 13:26:24 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH] ASoC: snd-soc-dummy: add Device Tree support
+Message-ID: <20210621114546.GD4094@sirena.org.uk>
+References: <20210621074152.306362-1-judyhsiao@chromium.org>
 MIME-Version: 1.0
-In-Reply-To: <20210617114707.10618-3-ben.tseng@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Qrgsu6vtpU/OV/zm"
+Content-Disposition: inline
+In-Reply-To: <20210621074152.306362-1-judyhsiao@chromium.org>
+X-Cookie: I hate dying.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2021 13:47, Ben Tseng wrote:
-> From: Michael Kao <michael.kao@mediatek.com>
-> 
-> Add a LVTS (Low voltage thermal sensor) driver to report junction
-> temperatures in Mediatek SoC and register the maximum temperature
-> of sensors and each sensor as a thermal zone.
 
-I think we already talked about that. We don't want a thermal sensor
-driver to aggregate the temperatures but create some kindof virtual
-sensor with a property (min, max, avg, ...) which is usable by anyone.
+--Qrgsu6vtpU/OV/zm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-[ ... ]
+On Mon, Jun 21, 2021 at 03:41:52PM +0800, Judy Hsiao wrote:
 
+> Support for loading the snd-soc-dummy via DeviceTree.
+> This is useful to create dummy codec devices where we need to have some
+> DAI links without a real Codec.
 
+Why would it be useful to create DAI links to a dummy device that has
+no properties?  If you've got a device with no software control it's
+still going to have some limits on things like what formats and sample
+rates it can accept so you should describe that in DT.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Please try to keep the CC lists for patches you are submitting relevant
+to the patch, people get a lot of mail and reviews for irrelevant
+patches add to the noise.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+--Qrgsu6vtpU/OV/zm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDQe+oACgkQJNaLcl1U
+h9DvcAf+OEQdZ8mpmDx64FNAM+JYbFmXKYuVAq6hARBk0HPXzJvIOIs9QeQtvj8d
+GObICfD9GNrHXO+4+QWsToFDBSEff+lwDBMZ/fQtTLQIOwsFSiGGz6T940Ln5PnD
+l3XErztXHn8QfavfE5pnQX5pU9vlXZ8GCucUa7jCn0rTko1Qp0WrUEuE35+3Sl/3
+rMohutM+1vubyep03x3pRR7dPMyL3EOlq08bGXqzKkfO56oZ/RVrOKCx0ytG97tb
+x0Ef9xlJalRgDK0s1xASY6KK4we8ses7pbHrsJ3zLV6SI72ND4HrnkdNiylxou9O
+PCISf/t7SFF7MvLP5norF8md0ihGgg==
+=PlEf
+-----END PGP SIGNATURE-----
+
+--Qrgsu6vtpU/OV/zm--
