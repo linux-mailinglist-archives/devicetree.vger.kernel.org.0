@@ -2,76 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D6493AE55A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 10:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0FE73AE566
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 10:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230367AbhFUI5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 04:57:07 -0400
-Received: from foss.arm.com ([217.140.110.172]:58774 "EHLO foss.arm.com"
+        id S230175AbhFUI7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 04:59:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40202 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230272AbhFUI5H (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Jun 2021 04:57:07 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A31371FB;
-        Mon, 21 Jun 2021 01:54:53 -0700 (PDT)
-Received: from bogus (unknown [10.57.36.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1A9C13F718;
-        Mon, 21 Jun 2021 01:54:50 -0700 (PDT)
-Date:   Mon, 21 Jun 2021 09:54:31 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Peter Hilber <peter.hilber@opensynergy.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Igor Skalkin <igor.skalkin@opensynergy.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        souvik.chakravarty@arm.com, alex.bennee@linaro.org,
-        jean-philippe@linaro.org, mikhail.golubev@opensynergy.com,
-        anton.yakovlev@opensynergy.com,
-        Vasyl Vavrychuk <Vasyl.Vavrychuk@opensynergy.com>,
-        Andriy Tryshnivskyy <Andriy.Tryshnivskyy@opensynergy.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Subject: Re: [RFC PATCH v3 01/12] firmware: arm_scmi, smccc, mailbox: Make
- shmem based transports optional
-Message-ID: <20210621085431.whk5z3gohk3pb6j7@bogus>
-References: <20210511002040.802226-1-peter.hilber@opensynergy.com>
- <20210511002040.802226-2-peter.hilber@opensynergy.com>
- <CABb+yY2q8Vw90=qEiNSOUZ39ZmX0ECShTvSidLoYCuZ-xGy-Mg@mail.gmail.com>
+        id S229618AbhFUI7L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Jun 2021 04:59:11 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1C83260FE9;
+        Mon, 21 Jun 2021 08:56:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624265817;
+        bh=YExwmU+u6BVwXlkye/63k32gjtySTQvDE+hPHrJjKNk=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=pboonfM18U3V0GS3mu/bTPSqa4S2oqxmJuOXhFBkxFvyoxGc614j0BJZYZvuhMyYz
+         m8sjfPLk5Zs9uUnNbfeoIDciiPx9vCwbWsOLkDg24IfIh5EzGWgTXIEjIumj4/cmjN
+         Eet87/OikJWM/eKxSaQ5JJSxYvYfJb04ZV0W92U1oAoQK9DSl7URNcyfAeOXnBqF/m
+         minlx75YLi8mds3zKlFWilVYdNF7D2uch2TeFECavlNO8QrnYes9fYo8vg3+7hn9sc
+         NWwXHtj3Ol54MG+S0TvGIns9mugI6or1MWqS8X82lqy2amm4oupRkXyhNlv5/AoUIF
+         6gO6xNOr/B14w==
+Subject: Re: [PATCH V2] arm64: dts: qcom: sc7180: bus votes for eMMC and SD
+ card
+To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
+        bjorn.andersson@linaro.org
+Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
+        vbadigan@codeaurora.org, rampraka@codeaurora.org,
+        sayalil@codeaurora.org, sartgarg@codeaurora.org,
+        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
+        sibis@codeaurora.org, okukatla@codeaurora.org, cang@codeaurora.org,
+        pragalla@codeaurora.org, nitirawa@codeaurora.org,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, adrian.hunter@intel.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org
+References: <1623835344-29607-1-git-send-email-sbhanu@codeaurora.org>
+From:   Georgi Djakov <djakov@kernel.org>
+Message-ID: <3229daff-9a32-bced-7e02-c557f7f8b572@kernel.org>
+Date:   Mon, 21 Jun 2021 11:56:48 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CABb+yY2q8Vw90=qEiNSOUZ39ZmX0ECShTvSidLoYCuZ-xGy-Mg@mail.gmail.com>
+In-Reply-To: <1623835344-29607-1-git-send-email-sbhanu@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 20, 2021 at 11:09:21PM -0500, Jassi Brar wrote:
-> On Mon, May 10, 2021 at 7:22 PM Peter Hilber
-> <peter.hilber@opensynergy.com> wrote:
+On 16.06.21 12:22, Shaik Sajida Bhanu wrote:
+> Update peak bandwidth and average bandwidth vote values for eMMC and
+> SDCard. This patch calculates the new votes as per the comments from
+> https://lore.kernel.org/patchwork/patch/1399453/#1619566.
 > 
-> .....
+> Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+
+Reviewed-by: Georgi Djakov <djakov@kernel.org>
+
+> ---
 > 
-> > --- a/drivers/mailbox/Kconfig
-> > +++ b/drivers/mailbox/Kconfig
-> > @@ -1,6 +1,7 @@
-> >  # SPDX-License-Identifier: GPL-2.0-only
-> >  menuconfig MAILBOX
-> >         bool "Mailbox Hardware Support"
-> > +       select ARM_SCMI_HAVE_SHMEM
-> >         help
-> >           Mailbox is a framework to control hardware communication between
-> >           on-chip processors through queued messages and interrupt driven
-> >
-> Isn't this too generic?
-> Not all platforms, with a mailbox controller, use SCMI as the protocol.
->
+> Changes since V1:
+> 	- Updated the commit message with proper information.
+> ---
+>   arch/arm64/boot/dts/qcom/sc7180.dtsi | 20 ++++++++++----------
+>   1 file changed, 10 insertions(+), 10 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index fb1d9ad..a5d58eb 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -727,15 +727,15 @@
+>   				opp-100000000 {
+>   					opp-hz = /bits/ 64 <100000000>;
+>   					required-opps = <&rpmhpd_opp_low_svs>;
+> -					opp-peak-kBps = <100000 100000>;
+> -					opp-avg-kBps = <100000 50000>;
+> +					opp-peak-kBps = <1800000 600000>;
+> +					opp-avg-kBps = <100000 0>;
+>   				};
+>   
+>   				opp-384000000 {
+>   					opp-hz = /bits/ 64 <384000000>;
+> -					required-opps = <&rpmhpd_opp_svs_l1>;
+> -					opp-peak-kBps = <600000 900000>;
+> -					opp-avg-kBps = <261438 300000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +					opp-peak-kBps = <5400000 1600000>;
+> +					opp-avg-kBps = <390000 0>;
+>   				};
+>   			};
+>   		};
+> @@ -2585,15 +2585,15 @@
+>   				opp-100000000 {
+>   					opp-hz = /bits/ 64 <100000000>;
+>   					required-opps = <&rpmhpd_opp_low_svs>;
+> -					opp-peak-kBps = <160000 100000>;
+> -					opp-avg-kBps = <80000 50000>;
+> +					opp-peak-kBps = <1800000 600000>;
+> +					opp-avg-kBps = <100000 0>;
+>   				};
+>   
+>   				opp-202000000 {
+>   					opp-hz = /bits/ 64 <202000000>;
+> -					required-opps = <&rpmhpd_opp_svs_l1>;
+> -					opp-peak-kBps = <200000	120000>;
+> -					opp-avg-kBps = <100000 60000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +					opp-peak-kBps = <5400000 1600000>;
+> +					opp-avg-kBps = <200000 0>;
+>   				};
+>   			};
+>   		};
+> 
 
-Yikes! I agree Jassi, this looks super hack.
-
--- 
-Regards,
-Sudeep
