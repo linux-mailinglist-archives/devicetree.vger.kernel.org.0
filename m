@@ -2,96 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EA563AE85C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 13:49:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAA2A3AE86B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 13:53:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229804AbhFULvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 07:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50062 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbhFULvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 07:51:17 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A108C061574
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 04:49:02 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id f70so29505071qke.13
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 04:49:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LnBL+vptI3I6KjyPlIzvkKAcoA1lR6IalfQcXXx2bYk=;
-        b=bMdyLGDKaakhLdlYiIljq6p9X3YHMhY6rInfieIeDfePplm7RM/e2I4r1/4m1NXYBR
-         QZ+PaNzJgeq3Cz06E5mAynCiqOUczmtpsYW7xsf9g8cBevggjW1VPUmvRWf7ObdlwXgf
-         oFwoCR4q81NuA7TE2NHJHlQ3Yolxt0ySmJXiS1E6c+0UfknavmAYMMpmBaDyG6ulzmUv
-         8OvTomxrP53ReJrKp5GS9bXKpXtyGmZBwHbqMyOxD23a+gyvUtivcwayHSEUIIVffPnv
-         49/w63jOT04g91cwzhGZfLUkCXp+Jf7j++lQen+VPAymWxWD7XXpFjEC6jR+kuSilkI+
-         Zmnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LnBL+vptI3I6KjyPlIzvkKAcoA1lR6IalfQcXXx2bYk=;
-        b=lXzgJrbWxKmwjZNlqb/CDDf1gvZhLG0Bmc78lVlC4CbLAmSTA/w/L9ckxT3aWJNSdG
-         PEo9xAULUdl/sno60n8BmA/4NDO/JX5UPxPNP+PD4w6JxzRXjSFr2UI64PglDps9/ho2
-         QqoUg+Js1XRQwWAAePLLPRtJI1SQccODLgok+36zhD9UWLGeWF64Q6zxcggLyMT2yPnZ
-         1Pa1eKNHOn4OVbQQCq/QARPfDz9enqivAnR0qPeu0w6l6nZaJ1X9hBKV0+luh8j1SqmH
-         UGFtxhrpQQYgXr6XKW7VEt7+OoJgM6t89N429zjj3SRNVe4ItOuIA1+/GeCY/DJK5/7J
-         5hbw==
-X-Gm-Message-State: AOAM532K8nbci5D7oU5V+d1lphcWX3eFA3axdwgJvlU/424tBdliE1Dh
-        QamkjPKwVU+aeasKLnpFwytsVNyLAfgRAZqhZS/L3w==
-X-Google-Smtp-Source: ABdhPJy/vLtNB65s1Azazu0Tw4biDqHPk4Hy2vsO4yVwz3Njc/MfXssOn8tl5KBocMvamRrT4h66ksv1MNoJVbTGV5w=
-X-Received: by 2002:a25:740a:: with SMTP id p10mr31157644ybc.312.1624276141481;
- Mon, 21 Jun 2021 04:49:01 -0700 (PDT)
+        id S229617AbhFUL4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 07:56:08 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:34544 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229576AbhFUL4I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 07:56:08 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15LBrhKW059771;
+        Mon, 21 Jun 2021 06:53:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1624276423;
+        bh=5nHxsBQDy/Mqy9USBF2x599r8UPBoh7zt5PsD3t1noc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=JyPQS0WmUIN/kJyxrN8beSAIN6FIcJRcYrh7UVd53T2p6hrvlRtHyIQwrbZEseTQI
+         WioROAxiUrnFnH/FF34FdOT19yzhK1rPwHkPC3WDhJKFg7nbS/iB3vM5riVn5bmP3i
+         N41kI4NltTLoLXEnCl2qYRlCznl+BvJUZIqFtukI=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15LBrhQD127220
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 21 Jun 2021 06:53:43 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 21
+ Jun 2021 06:53:42 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 21 Jun 2021 06:53:42 -0500
+Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15LBrYSx040876;
+        Mon, 21 Jun 2021 06:53:37 -0500
+Subject: Re: [PATCH 0/2] dt-bindings: pwm: pwm-tiecap: Convert to json schema
+To:     <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
+        <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>
+CC:     <tony@atomide.com>, Vignesh R <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>, <linux-pwm@vger.kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux OMAP Mailing List <linux-omap@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+References: <20210601102804.22152-1-lokeshvutla@ti.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <a84a1fcb-b85d-975f-1763-03cd533855f1@ti.com>
+Date:   Mon, 21 Jun 2021 17:23:33 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20210524151955.8008-1-a-govindraju@ti.com> <f011d613-0fe6-e921-91e9-79367f185284@ti.com>
-In-Reply-To: <f011d613-0fe6-e921-91e9-79367f185284@ti.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Mon, 21 Jun 2021 13:48:50 +0200
-Message-ID: <CAMpxmJVHV9cLzWmUMbYn2656p-dBKzRtxVacTMSqKQ=LrWP0Mw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] dt-bindings: gpio: davinci: Convert to json-schema
-To:     Aswath Govindraju <a-govindraju@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, Keerthy <j-keerthy@ti.com>,
-        David Lechner <david@lechnology.com>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20210601102804.22152-1-lokeshvutla@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 20, 2021 at 9:29 AM Aswath Govindraju <a-govindraju@ti.com> wrote:
->
-> Hi Bart, Linus,
->
-> On 24/05/21 8:49 pm, Aswath Govindraju wrote:
-> > Convert the davinci GPIO device tree binding documentation to json-schema.
-> > The GPIO hog node names are defined to end with a 'hog' suffix.
-> >
-> > All existing GPIO hogs are fixed to follow above naming convention
-> > before changing the binding to avoid dtbs_check warnings.
-> >
-> > changes since v2:
-> > - Used gpio-hog.yaml for gpio-hog property
-> > - Added constraints on gpio-hog node name
-> > - Corrected the gpio hog dt node names to align
-> >   with the dt-schema
-> >
->
-> May I know if the following series is okay to be merged ?
->
-> Thanks,
-> Aswath
->
+Hi Thierry,
 
-I applied the dt-bindings patch. Sekhar normally takes DTS patches for davinci.
+On 01/06/21 3:58 pm, Lokesh Vutla wrote:
+> This series:
+> - converts tiecap to DT schema format using json-schema
+> - Add new compatible for AM64 SoC.
 
-Bart
+If there are no objections, can we merge this series?
+
+Thanks and regards,
+Lokesh
+
+> 
+> Lokesh Vutla (2):
+>   dt-bindings: pwm: pwm-tiecap: Convert to json schema
+>   dt-bindings: pwm: pwm-tiecap: Add compatible string for AM64 SoC
+> 
+>  .../devicetree/bindings/pwm/pwm-tiecap.txt    | 51 ---------------
+>  .../devicetree/bindings/pwm/pwm-tiecap.yaml   | 64 +++++++++++++++++++
+>  2 files changed, 64 insertions(+), 51 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-tiecap.txt
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-tiecap.yaml
+> 
