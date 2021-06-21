@@ -2,147 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3143C3AF515
-	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 20:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF9483AF520
+	for <lists+devicetree@lfdr.de>; Mon, 21 Jun 2021 20:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231390AbhFUSbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 14:31:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56956 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231241AbhFUSbd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 14:31:33 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835BFC061756
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 11:29:18 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id f2so20716414wri.11
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 11:29:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=0h7qTLw7iVbT8QbSsm0zBOuy3gLWBPfMMVwH84B0A6E=;
-        b=caiwhYlEUQbVaBms76Ua1Mcy5TQCvcHwN38R360aXilH1yWBuoBB8JY8yyujL7w+hg
-         VOImO6JkzqlIgksrbB3BQMozaFUGQt9EYsVrMPVnIRtlfx8aVEA/SwmskHMol70MZ76E
-         oKCuZzxhLaJR8vlkVWhkQsFJC2gsxDNuBeGZsVDobXcjHtuqKJQrUsehVro3YvlgMo4H
-         WlW9QIF3GPIyHpV4+IpxTRU/wUX0SCKEKGdahd9sEGndFurOZztjbZQIhcUW9b8HUJZq
-         0+fdRjvNgsMi//qVrnjuhIiW11BZulbBkDiim3gaUL4TXoZzA1rU5PUMMtOzEzz7uHTP
-         0fuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=0h7qTLw7iVbT8QbSsm0zBOuy3gLWBPfMMVwH84B0A6E=;
-        b=VDtyyePV/oZVdfz3Ti+UJ9evuwghMoYZn+QmRSKUCIetFM9hhcOQPbsrrl4AnjhPgo
-         ZCse1xqNX/WuQ+HwSsKd4UCKMZ0du2aPyA9iV62E6tHCSQqGjnKHO/MXfbIRsF910mJZ
-         azFuCP7eWqzsmj0znEHSXH97RE+PuMgrGc1F/c/gRGnhNTPN1yyHCtYQs1U1dQ/QGkwo
-         DIzBnfmaNDxtLDhYkfKK6KHywJlunAIX8Jp5uE/Q19/lCwcaoFrwJZb9ydqq7PAFYNlK
-         1eOCh5EzNVczJ3NH5XsJ3aZq2CU5f+Oa9dWETuTGXkpss+rb5+xRydII9lsNYfn7Sbhf
-         HvGg==
-X-Gm-Message-State: AOAM533m14JoLgRAqrr3HP6lDfJkiX2cvr2+7c3Y3Yhkhq+dd/1XDSpx
-        wkJ3RY2Yz/MdilNAVg3bC0DZcA==
-X-Google-Smtp-Source: ABdhPJwPxfVG4w0Lz2q4SXNxbZfRCeQ5g1BryLvFq3XRveWZT/82P4U5rh+6QPi4nV7uOkjbCWj7eA==
-X-Received: by 2002:a05:6000:50d:: with SMTP id a13mr29289561wrf.130.1624300156936;
-        Mon, 21 Jun 2021 11:29:16 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:5ebd:8bd9:d549:4211? ([2a01:e34:ed2f:f020:5ebd:8bd9:d549:4211])
-        by smtp.googlemail.com with ESMTPSA id k2sm18235911wrw.93.2021.06.21.11.29.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Jun 2021 11:29:16 -0700 (PDT)
-Subject: Re: [PATCH] Fix mt7622.dtsi thermal cpu
-To:     ericwouds@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210619121927.32699-1-ericwouds@gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org>
-Date:   Mon, 21 Jun 2021 20:29:13 +0200
+        id S231822AbhFUSeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 14:34:13 -0400
+Received: from mout.kundenserver.de ([212.227.126.134]:45633 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232144AbhFUSeL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 14:34:11 -0400
+Received: from [192.168.1.155] ([95.118.106.223]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1Mum6l-1l5DWs4Ayp-00rlVR; Mon, 21 Jun 2021 20:31:46 +0200
+Subject: Re: [PATCH v5 2/2] gpio: gpio-cascade: add generic GPIO cascade
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Mauri Sandberg <maukka@ext.kapsi.fi>
+Cc:     Mauri Sandberg <sandberg@mailfence.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Drew Fustini <drew@beagleboard.org>
+References: <20210325122832.119147-1-sandberg@mailfence.com>
+ <20210621172053.107045-1-maukka@ext.kapsi.fi>
+ <20210621172053.107045-3-maukka@ext.kapsi.fi>
+ <CAHp75VcjGpveAHNAW7Xf7d_Zf6LGSSyD6+qBiF9xxvb+EKs3tg@mail.gmail.com>
+From:   "Enrico Weigelt, metux IT consult" <lkml@metux.net>
+Message-ID: <8d28463e-7a67-229a-6934-e3a59a8ab330@metux.net>
+Date:   Mon, 21 Jun 2021 20:31:44 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210619121927.32699-1-ericwouds@gmail.com>
+In-Reply-To: <CAHp75VcjGpveAHNAW7Xf7d_Zf6LGSSyD6+qBiF9xxvb+EKs3tg@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Language: tl
 Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:Hhh5/Dq8916GL3BChU1V2Gm++0xp8Eo4qOFj6Wdbl/qy6ca3y5L
+ qQLzqRtOLSMTzrNJFUd5sWHeCzRqLmrXnmfr4s+BvMNjtJcLZ3gDzxxqTBfrMWbL2yOvlrq
+ dJ8hRCzdxOUeF7+ln3MfdUnETyWz7i7y/rY/mu/px6oYA9sWEV51xu6432pbSKgrG3yGazQ
+ npjycJdxAcAgpHTS/0t9A==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:7nCPMQ8NwI0=:yMIWa4LDmTY1Bd4Hbnefai
+ rdfJ/Hi7aRSVziZZ6lbqaoi3/JD+YwPFT58QctvFDZa66TnISBoHUcnkD3Fvy0shwKQ+AlmMG
+ XYvIZXQ10qZAz9+M01hEaClcTJWcIaOI35/ftJhJKI0dpHjMospVK78uLtkbgq/n/hDSGZlje
+ tlAVVbgjMimwDEYcePXVwHU1rlu1GstaAnDOb8D332Dzf18fmw6+ODejPMw7Gn69Pt9mWsXE+
+ u7SiSHCKg1qcqOlPpHr+urkONSrFk1HPxCEafXJTJETSq8PHI/YIIATpl8i/kqa0scJZT6ljm
+ PhrJ+IDSFYwLciIP2TWLyv5xmV+GmuTNgxIPfk+m5pkAwopgHByKptxrY/7kF6Q4vzOjarQSW
+ BYOR/Reo878icO9+ebRrf+maGbPo7+3MyQ5zZkaCSU7g+28+92zNP8FMSu05V2rQXoKs+cRHZ
+ Ab41eZ0ddGhCXJ4b8Ea9IWNCUARfDGH2d1Wcc0YEe9nBHxmNdwBbpPRzkAKELRP6LyxDr0p5f
+ 1AUSOQw5EjbIWiBDHrv2Jo=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2021 14:19, ericwouds@gmail.com wrote:
-> From: Eric Woudstra <ericwouds@gmail.com>
-> 
-> Cpu-thermal is set to use all frequencies already at 47 degrees. 
-> Using the CPU at 50 for a minute, the CPU has reached 48 degrees, is 
-> throttled back to lowest setting, making the mt7622 terrribly slow. 
-> Even at this low speed, the CPU does not cool down lower then 47 so
-> the CPU is stuck at lowest possible frequency until it shut down and
-> stays off for 15 minutes.
-> 
-> cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->                  <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> 
-> This should not be set al every cooling map. It should only be set at
-> the highest cooling map. Same as in the example:
-> 
-> https://www.kernel.org/doc/Documentation/devicetree/bindings/
-> thermal/thermal.txt  line 272
-> 
-> But then without the fan and added a third map.
-> 
-> Now temperature will be regulated at 87 degrees celcius. At temperatures
-> lower then 87, all frequencies can be used.
+On 21.06.21 19:43, Andy Shevchenko wrote:
 
-47°C is really a too low temperature and this performance drop is normal.
+> Since in parallel there is a discussion about the virtio-gpio
+> interface, how will this work with it?
 
-I would not remove the passive mitigation but try by increasing the CPU
-temp to 70°C and by changing the active trip point to 80°C. If it works
-fine, try 75°C and 85°C.
+Haven't really understood what this is actually doing. A multiplexer
+where only external line is connected to some actual gpio at a time ?
+Or does it merge multiple inputs into one (eg. logical OR) ?
 
-To test, the thermal killer is dhrystone (one thread per cpu).
+Is that about real hardware mux chips or just a software only ?
 
-With a 75°C passive trip point, the step wise thermal governor, I think
-the mitigation will happen smoothly providing better performances, and
-probably the fan won't fire.
+What is the actual use case ?
 
-> Also see the post:
-> 
-> http://forum.banana-pi.org/t/bpi-r64-only-10-cpu-speed-at-already-48-
-> degrees-celcius-speed-not-increasing-anymore/12262
-> 
-> Signed-off-by: Eric Woudstra <ericwouds@gmail.com>
-> ---
->  arch/arm64/boot/dts/mediatek/mt7622.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-> index 890a942ec..b779c7aa6 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-> @@ -170,14 +170,14 @@ cpu-crit {
->  			cooling-maps {
->  				map0 {
->  					trip = <&cpu_passive>;
-> -					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> -							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +					cooling-device = <&cpu0 0 0>,
-> +							 <&cpu1 0 0>;
->  				};
->  
->  				map1 {
->  					trip = <&cpu_active>;
-> -					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> -							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +					cooling-device = <&cpu0 0 0>,
-> +							 <&cpu1 0 0>;
->  				};
->  
->  				map2 {
-> 
+For now, I don't see any relation to virtio-gpio. Correct me if I'm
+wrong.
 
+
+--mtx
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+---
+Hinweis: unverschlüsselte E-Mails können leicht abgehört und manipuliert
+werden ! Für eine vertrauliche Kommunikation senden Sie bitte ihren
+GPG/PGP-Schlüssel zu.
+---
+Enrico Weigelt, metux IT consult
+Free software and Linux embedded engineering
+info@metux.net -- +49-151-27565287
