@@ -2,39 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AE023B1062
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 01:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 421BD3B10BC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 01:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229812AbhFVXOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 19:14:09 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:55038 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbhFVXOJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 19:14:09 -0400
+        id S229818AbhFVXpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 19:45:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58794 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229826AbhFVXpT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 19:45:19 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67121C061756;
+        Tue, 22 Jun 2021 16:43:03 -0700 (PDT)
 Received: from Monstersaurus.local (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EA95AA66;
-        Wed, 23 Jun 2021 01:11:50 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7B98BB63;
+        Wed, 23 Jun 2021 01:43:01 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1624403511;
-        bh=uZC7sopp+vxOG159NLgXzUDh0pD0kUjE7c7PBO1aBVM=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Frv+m2psrQ+tK1MZ8xrRj1vJWI35m5nq3IillypB1dETwmc179uNaaUeouJJlHp5i
-         O3BKC26iRNyJ6FO3YU/2nwAlw+2DR1NgHfMv2XwbskhyGCJTKsT9ZcC6DA0dEyQIy0
-         BRM/B4B9CL52sFqGzxeB25wljAVcOz4qJpNe6XfQ=
+        s=mail; t=1624405382;
+        bh=v2nG9gAQCC7at95auWsH0XYs5hHNHzghep7TSHgz0qY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=b8rw56Nz3pY/ta/w1wYK5OzFBf5f5oQH7NXuMP6jSXyzp3NL5tDfGENmpGAspjI/m
+         tbuhZlnGHD+CjxwCRY0ZVf5HOYf7zmPSia8LDV0rBNU15nt/BfFu1+3DU74ewbqblc
+         viI0/Gusb31HoBuaR4dG2YTGVjOS+ZcAQkcMNyts=
 From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert@glider.be>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>
 Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org (open list:DRM DRIVERS FOR RENESAS),
-        linux-renesas-soc@vger.kernel.org (open list:DRM DRIVERS FOR RENESAS),
+        linux-renesas-soc@vger.kernel.org (open list:ARM/RENESAS ARM64
+        ARCHITECTURE),
         devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
         DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] dt-bindings: display: renesas,du: Provide bindings for r8a779a0
-Date:   Wed, 23 Jun 2021 00:11:46 +0100
-Message-Id: <20210622231146.3208404-1-kieran.bingham@ideasonboard.com>
+Subject: [PATCH 1/3] arm64: dts: renesas: r8a779a0: Add DU support
+Date:   Wed, 23 Jun 2021 00:42:55 +0100
+Message-Id: <20210622234257.3228634-2-kieran.bingham@ideasonboard.com>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210622234257.3228634-1-kieran.bingham@ideasonboard.com>
+References: <20210622234257.3228634-1-kieran.bingham@ideasonboard.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -43,83 +49,55 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 
-Extend the Renesas DU display bindings to support the r8a779a0 V3U.
+Provide the device nodes for the DU on the V3U platforms.
 
 Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 ---
- .../bindings/display/renesas,du.yaml          | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
+ arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 31 +++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
-index 121596f106da..febbd89a646e 100644
---- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-+++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-@@ -39,6 +39,7 @@ properties:
-       - renesas,du-r8a77980 # for R-Car V3H compatible DU
-       - renesas,du-r8a77990 # for R-Car E3 compatible DU
-       - renesas,du-r8a77995 # for R-Car D3 compatible DU
-+      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
+diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+index 78ca75f619f6..24476886e498 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+@@ -1142,6 +1142,37 @@ vspd1: vsp@fea28000 {
+ 			renesas,fcp = <&fcpvd1>;
+ 		};
  
-   reg:
-     maxItems: 1
-@@ -774,6 +775,57 @@ allOf:
-         - reset-names
-         - renesas,vsps
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,du-r8a779a0
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Functional clock for DU0
-+            - description: Functional clock for DU1
++		du: display@feb00000 {
++			compatible = "renesas,du-r8a779a0";
++			reg = <0 0xfeb00000 0 0x40000>;
++			interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 411>,
++				 <&cpg CPG_MOD 411>;
++			clock-names = "du.0", "du.1";
++			power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++			resets = <&cpg 411>;
++			vsps = <&vspd0 0>, <&vspd1 0>;
++			status = "disabled";
 +
-+        clock-names:
-+          items:
-+            - const: du.0
-+            - const: du.1
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
 +
-+        interrupts:
-+          maxItems: 2
++				port@0 {
++					reg = <0>;
++					du_out_dsi0: endpoint {
++					};
++				};
 +
-+        resets:
-+          maxItems: 1
++				port@1 {
++					reg = <1>;
++					du_out_dsi1: endpoint {
++					};
++				};
++			};
++		};
 +
-+        reset-names:
-+          items:
-+            - const: du.0
-+
-+        ports:
-+          properties:
-+            port@0:
-+              description: DSI 0
-+            port@1:
-+              description: DSI 1
-+            port@2: false
-+            port@3: false
-+
-+          required:
-+            - port@0
-+            - port@1
-+
-+        renesas,vsps:
-+          minItems: 2
-+
-+      required:
-+        - clock-names
-+        - interrupts
-+        - resets
-+        - reset-names
-+        - renesas,vsps
-+
- additionalProperties: false
- 
- examples:
+ 		prr: chipid@fff00044 {
+ 			compatible = "renesas,prr";
+ 			reg = <0 0xfff00044 0 4>;
 -- 
 2.30.2
 
