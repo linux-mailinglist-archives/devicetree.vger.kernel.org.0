@@ -2,149 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5551D3B0A4A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 18:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 368C63B0A65
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 18:32:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbhFVQ2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 12:28:50 -0400
-Received: from mail-0201.mail-europe.com ([51.77.79.158]:55386 "EHLO
-        mail-0201.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbhFVQ2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 12:28:49 -0400
-Date:   Tue, 22 Jun 2021 16:25:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1624379159;
-        bh=5b5dUwQT3nm9vu4Z3kg4cBfPOPJyMZz55OI5e2pxiEg=;
-        h=Date:To:From:Cc:Reply-To:Subject:From;
-        b=tpLS3aUQkHNX0XV5iX9zFy97XNlUyLT0tTfhachW5i0/9bYe4OoCaPbn+aqUgK2f0
-         ZidOezViprnDRdjVbfCeU6pQwHYvCKNjlF2VpO0AATLFfp8SC9hakbTnLfN2TbrvCz
-         n75rSTbzAGGT7wz/85S+C/G64t3FlcxshMp0tbnY=
-To:     Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-From:   Yassine Oudjana <y.oudjana@protonmail.com>
-Cc:     Yassine Oudjana <y.oudjana@protonmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Reply-To: Yassine Oudjana <y.oudjana@protonmail.com>
-Subject: [PATCH] media: dt-bindings: media: venus: Add firmware-name
-Message-ID: <g0d8gVNl7d2Tg4YiBAGKcaAGTSdNE4gZ0OJYXnkfE@cp3-web-016.plabs.ch>
+        id S229791AbhFVQey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 12:34:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55410 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229758AbhFVQex (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Jun 2021 12:34:53 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CF8FE6128C;
+        Tue, 22 Jun 2021 16:32:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624379557;
+        bh=hjyVJnOdEZqzAPfZnyXpthZyL9vLhmDK9eAX7f4SQoQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XdvjxTh/x33tgyjeSua/WxHx6CX/Z8fbmROHPvKhx6FJzP/hbtyQwKgJjIxSzjBUV
+         NJGmngW1Ozfv/U/ii8r2zU5iJr4E6sEjex3wOa5BxRWyn0HacHBv1W2TlSqGfuYoUR
+         IuKMGX5HfsHxZpoGY5DLVqrTuokgFC1NgZhUaVpg6JQm+816lMizq85KLE5K43UIhJ
+         3M1JU0knFUuVUtuskru7QwwybaoD8LdbmnYfvVECg4kdc63XOop/P4Rxqb5STf4qk4
+         T4LuKnMYwOCfTIyku+U/a/x3wHy93j7nN7ojtZiW3r+BIO/f7npiKE4vR/M9twP5oy
+         PoFaI/8ZM4SSA==
+Received: by mail-ed1-f43.google.com with SMTP id h2so10999891edt.3;
+        Tue, 22 Jun 2021 09:32:37 -0700 (PDT)
+X-Gm-Message-State: AOAM5311Xmyk3RWUB08BleCBRh+Uh8lDl7yYXKWJMZsCaJ/9yW45c2T0
+        z+VxJXeupj0+XJk5SSGVlsd7mrESaTJx9TwNKQ==
+X-Google-Smtp-Source: ABdhPJxxQapL8PkfmPsjO1kcuZ+0y3MTO9HP7WDJgKLpAJgU2qC//3PcHqm3+2zb0zETxf1CxhTde9KtOEmqngcdge0=
+X-Received: by 2002:aa7:cac9:: with SMTP id l9mr6175791edt.373.1624379556398;
+ Tue, 22 Jun 2021 09:32:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+References: <20210622134055.3861582-1-thierry.reding@gmail.com>
+In-Reply-To: <20210622134055.3861582-1-thierry.reding@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 22 Jun 2021 10:32:24 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+0M5PrRHW51pD0-ZfsC_iHe4tHVD-ccfHa3gWsFM=SOg@mail.gmail.com>
+Message-ID: <CAL_Jsq+0M5PrRHW51pD0-ZfsC_iHe4tHVD-ccfHa3gWsFM=SOg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net: dwmac: ingenic: Drop snps,dwmac compatible
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     =?UTF-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>, devicetree@vger.kernel.org,
+        netdev <netdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support for parsing the firmware-name property was added a while ago [1],
-but the dt-bindings were never updated with the new property. This patch
-adds it to all venus dt-bindings.
+On Tue, Jun 22, 2021 at 7:39 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+>
+> From: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
+There's another fix already[1], but I think your commit message is better.
 
-[1]: https://lore.kernel.org/linux-arm-msm/20210126084252.238078-1-stanimir=
-.varbanov@linaro.org/
----
- .../devicetree/bindings/media/qcom,msm8916-venus.yaml        | 5 +++++
- .../devicetree/bindings/media/qcom,msm8996-venus.yaml        | 5 +++++
- .../devicetree/bindings/media/qcom,sc7180-venus.yaml         | 5 +++++
- .../devicetree/bindings/media/qcom,sdm845-venus-v2.yaml      | 5 +++++
- .../devicetree/bindings/media/qcom,sdm845-venus.yaml         | 5 +++++
- 5 files changed, 25 insertions(+)
+> The DT binding doesn't specify snps,dwmac as a valid compatible string,
+> so remove it from the example to avoid validation failures.
+>
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yam=
-l b/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-index 59ab16ad12f1..cb1b866d9c37 100644
---- a/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,msm8916-venus.yaml
-@@ -80,6 +80,11 @@ properties:
-     required:
-       - iommus
-=20
-+  firmware-name:
-+    maxItems: 1
-+    description: |
-+      Relative firmware image path for venus.
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/media/qcom,msm8996-venus.yam=
-l b/Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml
-index 199f45217b4a..b8809325138f 100644
---- a/Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,msm8996-venus.yaml
-@@ -107,6 +107,11 @@ properties:
-     required:
-       - iommus
-=20
-+  firmware-name:
-+    maxItems: 1
-+    description: |
-+      Relative firmware image path for venus.
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml=
- b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-index 04013e5dd044..ffd3e2850366 100644
---- a/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sc7180-venus.yaml
-@@ -99,6 +99,11 @@ properties:
-     required:
-       - iommus
-=20
-+  firmware-name:
-+    maxItems: 1
-+    description: |
-+      Relative firmware image path for venus.
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.y=
-aml b/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-index 04b9af4db191..cd7a5e1374ce 100644
---- a/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sdm845-venus-v2.yaml
-@@ -94,6 +94,11 @@ properties:
-     required:
-       - iommus
-=20
-+  firmware-name:
-+    maxItems: 1
-+    description: |
-+      Relative firmware image path for venus.
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-venus.yaml=
- b/Documentation/devicetree/bindings/media/qcom,sdm845-venus.yaml
-index 680f37726fdf..ae256238a637 100644
---- a/Documentation/devicetree/bindings/media/qcom,sdm845-venus.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sdm845-venus.yaml
-@@ -108,6 +108,11 @@ properties:
-     required:
-       - iommus
-=20
-+  firmware-name:
-+    maxItems: 1
-+    description: |
-+      Relative firmware image path for venus.
-+
- required:
-   - compatible
-   - reg
---=20
-2.32.0
+Fixes: 3b8401066e5a ("dt-bindings: dwmac: Add bindings for new Ingenic SoCs.")
+
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  Documentation/devicetree/bindings/net/ingenic,mac.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+
+Acked-by: Rob Herring <robh@kernel.org>
 
 
+[1] https://lore.kernel.org/r/1624192730-43276-2-git-send-email-zhouyanjie@wanyeetech.com
