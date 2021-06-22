@@ -2,124 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C1CF3AFCA4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 07:27:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C2143AFCA7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 07:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbhFVFaA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 01:30:00 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:59770 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbhFVF3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 01:29:55 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1624339660; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=d4DXAvBzd+NblqWuAC/vQM0I4ES2Q8ZE7I6FHwueUdY=; b=n4ymqlfupxsiVMVKB/1kpsc99NJ/jEzKq3XpafGcIL7LUs74C0eQoTj5ZfWQNK60RQn6F2DI
- gLYjEAofzUl3g8ijhPvf4tSo5jf4s2yJSEv9g3g9Nx5hx7sbrn7AcmAnsX20gN6NMwZ/ESsw
- K3Kd4oCX9Zt0c0th7Lyxlz57buA=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 60d174b6e570c05619c1bb1d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 22 Jun 2021 05:27:18
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id CE58AC4338A; Tue, 22 Jun 2021 05:27:18 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.110.90.136] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 487C2C433D3;
-        Tue, 22 Jun 2021 05:27:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 487C2C433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-Subject: Re: [PATCH v10 3/6] usb: dwc3: Resize TX FIFOs to meet EP bursting
- requirements
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     balbi@kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, frowand.list@gmail.com,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        jackp@codeaurora.org, fntoth@gmail.com,
-        heikki.krogerus@linux.intel.com, andy.shevchenko@gmail.com
-References: <1623923899-16759-1-git-send-email-wcheng@codeaurora.org>
- <1623923899-16759-4-git-send-email-wcheng@codeaurora.org>
- <YMstrL1aQYGe7NB0@kroah.com>
-From:   Wesley Cheng <wcheng@codeaurora.org>
-Message-ID: <1a979c61-e996-b94a-c986-a9721d3b3297@codeaurora.org>
-Date:   Mon, 21 Jun 2021 22:27:13 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S229952AbhFVFam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 01:30:42 -0400
+Received: from mail-vi1eur05on2045.outbound.protection.outlook.com ([40.107.21.45]:14593
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229917AbhFVFal (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Jun 2021 01:30:41 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=byE67l146TBvuOB2cW87t7s+d5q+8gk1yHdHpcD3TpJ6+Oh1+Z0P89duUYj84lkhHmNT3nWpTvXsdz3Z6uUbcclx8b4ZT/AyLfcV2Wq+GLhOyIvOSp2EZ5DQ4aq+5yyxn/1dilEw/dj3QxQA+46lvayut5LuNx8PBecDj5iiYtQYK2OG8gFQ983db9JjicfUUtHNso9XSaB2miUnaxAaZ1wm8b5vzYr3YH4KIVPIdIfvlWrt0Cam1IeBChvDZpLxpzbTLGoI3TvzAalNcbELi3fwqayKTxJInEZLQnThDHBpyoqqCg70Aejg8frC0Ug3dgc6tiTqhnSWD0zJfcU/wQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9EvS1provBgvWd6RTu1jI+e4uqATEpWmDgP80Eg6rPc=;
+ b=KF3TRMeDxN77fSJDCoOcb8JC2cF40KBnmHOkulDJgRdPG0SB8VjYS9R/wubiRTRVQZ5TjRcxHOqUMqtW1HtVzbP90c9eK8gJAqq6HugjIRUCYojbtr5Wl6uB96x70QVeXxFzeK1wHB5F+dzUyb68tFKaYBLOdVWHfI/V0qofSoPXbuh6JlTxi7ioW2U41Bb6gEDG/tQ2RIJVm0fHNMipM5b0kXVP4NugXVyUkJ99xEu14x2y9TDGOHREU0B8P1wqun19ZCE9fWoSlo7kGM5o10NkMgBPmExcy6HMKi2hyAZewMtHPJahMBZD67Zqb+rI/Cu1FaQ5X38lxOAAaAVvbQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9EvS1provBgvWd6RTu1jI+e4uqATEpWmDgP80Eg6rPc=;
+ b=VX2Iu1GYNuEZirHO4uyU7YbDxndHWhniUQESKguedY7ncqHB1wydhKdZQNmUkOCjhahuZhxL6og3M/xYss0rAyd4VoN1V65JHPlzGgUb0mnuUhUcxNFRoZROfJYN97DkTELyYOgcnnhQPTpCuOWroXarkrIPnBJJzgzBYMiCOXs=
+Authentication-Results: wizery.com; dkim=none (message not signed)
+ header.d=none;wizery.com; dmarc=none action=none header.from=oss.nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB3PR0402MB3659.eurprd04.prod.outlook.com (2603:10a6:8:5::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.21; Tue, 22 Jun
+ 2021 05:28:23 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c445:d742:eb76:86dd]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::c445:d742:eb76:86dd%9]) with mapi id 15.20.4242.023; Tue, 22 Jun 2021
+ 05:28:23 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, o.rempel@pengutronix.de,
+        robh+dt@kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V3 0/2] remoteproc: imx_rproc: support i.MX8ULP
+Date:   Tue, 22 Jun 2021 14:01:46 +0800
+Message-Id: <20210622060148.18411-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.30.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: SG2PR03CA0133.apcprd03.prod.outlook.com (2603:1096:4:c8::6)
+ To DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-In-Reply-To: <YMstrL1aQYGe7NB0@kroah.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from linux-1xn6.ap.freescale.net (119.31.174.71) by SG2PR03CA0133.apcprd03.prod.outlook.com (2603:1096:4:c8::6) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.10 via Frontend Transport; Tue, 22 Jun 2021 05:28:18 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: df0e2a23-4d25-4c56-478d-08d9353e8d72
+X-MS-TrafficTypeDiagnostic: DB3PR0402MB3659:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB3PR0402MB36590C7F5A2725D25423064FC9099@DB3PR0402MB3659.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: t6Aa/Ip2zZGL1NWPM++4iNfh+jLBNvY0p1sE+LwxcJVZ3ErlS1KjKLTvbc3eGCN85jaCd3/2VJuXjxpaQaU1wg7en31tcUxhQqm/MsrodbAyVCqVPbJyF6xSslZII+HsZ1Jsc/RQNGuD1z4qO85sBPEVkZyegJvjSiFd/KCLA2T0OngxispxcXorzpK+9YY9PKB1q/8fWxl5cCogvoEob66rBt1PAZHrRtXGhOHorEtfIlFg+26+i89j9dY8Gt5k7+uh0ERNab1UstbOIxLe2kTdmpnLkHdPCFVa35IA4dnjsV5uEUHOQPBjSP1pL1rDiqWbD/S9k3Se+qwN9mcqlx2v3sSVXQ2GE6mBK3eYj5lJRqn+vAUxp7rs/OfhJGmFLN1Ysmj8Rj8yTYdeAdvMVKkdyqeiHGRSzpRjGoG4/9I+0uhuAXlybCSntgp15VPZhaMkRgPtf09rIP1GPgpQGuOhIrD1SMqiFv8ilMcxwZE5QdW42zs9FRdzDINUn8EP8/UTirbEXOW4KxwOb5xVZ/0H4EWqhp4WzavbkOiaClyVbngtdr8gQVAEPWmZX7Br+hT0KJVorXcSJt21UuPSpUrKNOkO2zRPd8G6ugzg4QUQ3U36DGo5DpuD6XzpzeVtznQ6Fb06ScgFkAeMnG716N6uz/GFTbjy0HuE0Nmzpz8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(366004)(346002)(396003)(136003)(39860400002)(5660300002)(52116002)(83380400001)(38350700002)(38100700002)(1076003)(6666004)(7416002)(16526019)(6506007)(26005)(186003)(6486002)(4326008)(86362001)(4744005)(478600001)(2906002)(316002)(8936002)(66556008)(8676002)(66946007)(66476007)(6512007)(2616005)(956004);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1izzfViBOkO4XR0Hfb7IrP0rdJzfTLoByqS70e8XI+u35Joikt4PRBDZoMb4?=
+ =?us-ascii?Q?MV1BUD1ocs1NVkQlViiVAYN/goj+A5UzVi++vGU+25kQbLV042H5vAsGZGwn?=
+ =?us-ascii?Q?WaF+nnkpBeKJnhbiWyKCeuzTSVHMZDlzw9FU1bY/40FCZmTJbYKdqCwcGIip?=
+ =?us-ascii?Q?lkz5ljf3VaxqeN9gG3scGED1q8B3dKQ5wOF/Fm2OU8bGO43TWBGEBtM5s952?=
+ =?us-ascii?Q?cX93KQ+F3SV9QSH3+pKEtWqXlDfCIL/re+JgXDvHpckklCbdvNpP9sJ+ctqb?=
+ =?us-ascii?Q?H3f246WeofTOqeAjLDWK2dtmrH3gUa2Uu2oCdh8hSbvK8sF7BCgFWgp45Rb6?=
+ =?us-ascii?Q?HQvBUhauWEqGLiXZ6ie00ZI2MgUxGWbntvsk+p7Be47GQdpJgRtwQnp8g4KF?=
+ =?us-ascii?Q?iaMEgGMALFvlhC2CSKCPvBeMnsjFMp2w77hwfmFiTPibZlBQMuExS5eeEVf9?=
+ =?us-ascii?Q?MCMwVc/vQ86Ccgti/PtRhKnlFjRZC7O7A75Nu0Y8xRWHVdwFhiPUgC6ilh+V?=
+ =?us-ascii?Q?HubB789kW3pB2Y/PcfIp4FlTrhfvebiLfYUcGPHHKRcQ+ETui/bSYMNLRFsH?=
+ =?us-ascii?Q?q/m0XKxHMbISaYNmdsZRGoIwZeG/A21TJtRpOTzvDmVurquVmvBXgGbwasLO?=
+ =?us-ascii?Q?7y2W3H54HqCB4yA9Dh7ipa42Z81mtZ+X4tyJNkzeNQKkYJaNUaUzdn2+tU+W?=
+ =?us-ascii?Q?eM2WH3ZfhUcCJRpEHS0qhAI/BVuPIg2Uo+/UL8YXD4e8WJXqGbCCdu+hanZ4?=
+ =?us-ascii?Q?SvQEFN4AVP5V62Bd3f6vXITzhBME3awBBUtfAup0+bAsQvV1G7DWtGc938Ip?=
+ =?us-ascii?Q?uhjVm2bPSSvrpLjnbKZSv4X8/i1Z0OTHxUPv581BIXSim9pJhJV0DPFCdmu5?=
+ =?us-ascii?Q?xPv/6iQ2gr6tlnlSLEoqPDy0GOr8sIZ4gDGR4ri+cpVl6gJ6FKUXhA5Q3iuS?=
+ =?us-ascii?Q?O2wlvQjGvrOAlpBCITqYMAUj/jaKKK6E4FWh6GW28w/yyQ/ygOGyyYM76Zy2?=
+ =?us-ascii?Q?lkCmu2eJJjEEM3H8xQUi2poPRTYWp61KOrXxCutei5LF/dnP+TGhESn84qLS?=
+ =?us-ascii?Q?YSRQLPn4fJIUQTYs+DleUaFy1MboGIim6+H8+PqM4cqTy8AjWkr1kFgvHZiC?=
+ =?us-ascii?Q?AJoLw952nb/VIDjhTb6ZDuHaTTZe3Y3Ok3NhbS3InQW0eHkOqE91/g+pwUN0?=
+ =?us-ascii?Q?gaD39uruA3duURmKZt8v4+tKtie8xsxdB5byhhVX7KmD1N7NuxIDSXMM1NxR?=
+ =?us-ascii?Q?f3Uzq5KgpIQdkM6IDB8ZTNVCalv4fgcd8EkXTdG/ov0+uWsvxoVf88H948C8?=
+ =?us-ascii?Q?axtOtbPaCUoJHWNZzHbOPRBsG9wgPAtLnDg7Bu0nuFiObA=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: df0e2a23-4d25-4c56-478d-08d9353e8d72
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2021 05:28:23.2534
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LZACMV/1GjeCek3ebou85Mwr87Cs4/Ro57rzX+VNYbXvcEhZ8yUrau8YcyCiPdu16uHQhAFApl9BSmxnl1WJ0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3659
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Peng Fan <peng.fan@nxp.com>
 
+V3:
+ Per Fabio's comment, keep the entries in alphabetical order in Patch 1.
 
-On 6/17/2021 4:10 AM, Greg KH wrote:
-> On Thu, Jun 17, 2021 at 02:58:16AM -0700, Wesley Cheng wrote:
->> +static int dwc3_gadget_check_config(struct usb_gadget *g, unsigned long ep_map)
->> +{
->> +	struct dwc3 *dwc = gadget_to_dwc(g);
->> +	unsigned long in_ep_map;
->> +	int fifo_size = 0;
->> +	int ram1_depth;
->> +	int ep_num;
->> +
->> +	if (!dwc->do_fifo_resize)
->> +		return 0;
->> +
->> +	/* Only interested in the IN endpoints */
->> +	in_ep_map = ep_map >> 16;
+V2:
+ Add R-b from Mathieu
+ Add Rob in Cc for dt-bindings
 
-Hi Greg,
+i.MX8ULP features a M33 core + dual A35 core, M33 is kicked by ROM,
+so like 7ULP, A35 only communicate with M33.
 
-> 
-> Wait, this "map" is split up into 16/16 somehow?  So it's only 32bits
-> big?
->
+Based linux-next/master 6-22
 
-Yes, correct. Upper 16 carries IN eps, lower 16 carries OUT eps.  Will
-fix that based off your other comment.
+Peng Fan (2):
+  dt-bindings: remoteproc: imx_rproc: support i.MX8ULP
+  remoteproc: imx_rproc: support i.MX8ULP
 
-> Where did you document this map structure?  Why is it needed at all, you
-> have the gadget, don't you have access to the full list of endpoints
-> here as well?
-> 
-> confused,
-> 
-
-Unfortunately, we do not have the entire list of endpoints for each
-function until the composite driver receives the SET_CONFIG packet from
-the host.  By this time, if we incorrectly allowed the configuration to
-start enumeration w/ the host, and there were some EPs which have no
-FIFO memory allocated, that would lead to those interfaces/functions
-being broken.
-
-The USB UDC driver does have the in_epnum and out_epnum, but those are
-currently only being incremented in case we don't match EPs by string.
-(in usb_ep_autoconfig_ss())
-
-Thanks
-Wesley Cheng
-
-> greg k-h
-> 
+ .../bindings/remoteproc/fsl,imx-rproc.yaml          |  1 +
+ drivers/remoteproc/imx_rproc.c                      | 13 +++++++++++++
+ 2 files changed, 14 insertions(+)
 
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.30.0
+
