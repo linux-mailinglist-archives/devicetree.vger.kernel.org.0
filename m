@@ -2,97 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 580553AFB7C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 05:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F47A3AFB7F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 05:44:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230032AbhFVDpP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 23:45:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39504 "EHLO
+        id S230188AbhFVDqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 23:46:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229904AbhFVDpP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 23:45:15 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF605C061574;
-        Mon, 21 Jun 2021 20:42:58 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id i1so6618480lfe.6;
-        Mon, 21 Jun 2021 20:42:58 -0700 (PDT)
+        with ESMTP id S229904AbhFVDqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 23:46:31 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57B87C061574;
+        Mon, 21 Jun 2021 20:44:16 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id a11so21880125wrt.13;
+        Mon, 21 Jun 2021 20:44:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gOJ2XOwgzJaAX7+MzbRKuet1BGzeJOpemDowi0aJYVk=;
-        b=Y7wi6lmvHQpbJ7EK6nvbdgGT7ZZZ9ntJh/8i58YRNY+ghJTPVRBjVbnHyg7ZMvYVvz
-         VV9geBnpzZibZb9HXbUnjL1d2dh0n7tq9cYohruTCEQj8mWXG7essiSRQ0pVVWJV2Yox
-         4NcGXTglSFe0wovTxsZGWSUbPkPSmDh7oS/6oiPKexfY9naEFZuDFKCsVpOWvDTKKDaj
-         F3tKOwkwD7ICxgz/L0AjG7HyEYaWEFGC9ZPDsRh2YRKPw0CQMudXanLTawYW44//Ftu0
-         Cf8fh5BAZRXYupjdmauRylodpdbCgvt5EtUvL6WlJzEkbJjfvsdjU5/t0zPIOaS895h/
-         gA9w==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qphhSffFgD8BhonTHuKpBOZ/SPCjT8/2a4OdhjdUj1g=;
+        b=TNDI25CblwWlvCRny/GsqGX1elEI+KQSPpm3hO2OFSBfhbOlTfAngmIYS5ewYw0lUx
+         1L7gZSAWd1I6HBBLPD1lQTScqEwZbRLbdhmr1ukN4ESk1j8otJN37+FBL3Pbkq73hzbb
+         dnqJ2l5rFTNL2YrM7AptuEeoZQ94IgXhog8vx/s1Ir1E9WDzCBaJoyph3oSB6M7BnnNa
+         UaXoz2LiNM9V3wm2GSZM3ltHfAnrLfH9UaVBUnrS5Mm4i787Fk31knhizkFoqftBBRtN
+         ROZrkbQ/hOWXdjikIO4Sml/2eaWXSCtCd3MWe9bZV+k2o2pMZbyW5gNdTWYaiZ+6EWb2
+         GEtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gOJ2XOwgzJaAX7+MzbRKuet1BGzeJOpemDowi0aJYVk=;
-        b=bZjNqX45ars/kjmb/N4X/u4/qQ22bp777GgXBARGfyn3coa1jY9yTiv0dZnPF67Bhx
-         FLguRvoO/vuhFJUdINQVqxNSCse1K3daLos2hss4Zyb7lAZ/mbOdeX3u5clcmakHw43h
-         j1rFc+e4L0PTkLA9FF6xrwDibZYmkT3O78fM/aYK0DrIq23dCiWvJjxjUZ0rnkTOnbbC
-         lUujq1VFI1vR9UuMSf5p58lQqZv9gZLUk92EjZmqJtn+Aj91oDQwL87DlKjGiJu/1FEx
-         /97VZvQTj54lDGTMDda18CNxJZTqW/rzjEVIzrkQqEXYQ3cCVZEjXE8lHjvt2aSnzsUD
-         I3xQ==
-X-Gm-Message-State: AOAM5333GYCQakivEFilnJynvkop6NpY5p8hlCWiAnJA9fUYzuKnGAkn
-        Ir2KlHwsEES9GhCoPUuuRJzhaaye8tawGFzQarE=
-X-Google-Smtp-Source: ABdhPJzIbryMsmYkjd9L2BdMlA/D3pcFpJV/SJ93tJJyjfEfOHMWCvl9svIm2JLcUO6tXqw8kwsE+Txv4D9szW8bla8=
-X-Received: by 2002:a05:6512:219:: with SMTP id a25mr1224607lfo.295.1624333377086;
- Mon, 21 Jun 2021 20:42:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210622041413.16992-1-peng.fan@oss.nxp.com> <20210622041413.16992-2-peng.fan@oss.nxp.com>
-In-Reply-To: <20210622041413.16992-2-peng.fan@oss.nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 22 Jun 2021 00:42:45 -0300
-Message-ID: <CAOMZO5AkBd1M69G_bjjS_um=BUVTGxj7-o1eU6dAmV7JbukADg@mail.gmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: remoteproc: imx_rproc: support i.MX8ULP
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     Ohad Ben Cohen <ohad@wizery.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qphhSffFgD8BhonTHuKpBOZ/SPCjT8/2a4OdhjdUj1g=;
+        b=OqtzeJ+D/MBasrBH5I2Q3PygXHkIFyyBbkNU0tQsnQXWKrsZ7sslOXUB/1hyPCmpoZ
+         wSOhaP8Dv0GJ9kkStybTiabfmqmBXAc9p8H/E3CbUdqDfXzZOxK/IgMiXs5JqbZBZ7F2
+         O6hVqqr2T4kMpBAAL6jPmVlmU9gPQPmGE2xNQok5Vz1Fw/NSz3tz0VQydbCGBiDdViBU
+         XhHV3fGt2h2uCKuJ8+iec9DoU6WX5Ny2DzTWB3KJcEuPaesfPh7rw+9TUxBD5UWHo+ko
+         IcOiP/1hMtOWRaYbAy1UtqUqKtbhxrOQJsaRiBZ/aOTF+F5BMTN1120YatZohAHAH/hZ
+         wV2Q==
+X-Gm-Message-State: AOAM530Ir3wlF46MVB/T5rj4z1MWNdD1Ak+4DvZ5jmwWueptC6B/hpjP
+        EkxOqgSo/aVxGRgQnwsdpDMzFsJEpl2JLA==
+X-Google-Smtp-Source: ABdhPJy6eM1ddTgY/26a4FXFOiC1t1sYYZgq42rdEq7RLsiIRX9hBMU350XboRgtxYa+2LhXCd6gSQ==
+X-Received: by 2002:a5d:4d50:: with SMTP id a16mr1968076wru.133.1624333454905;
+        Mon, 21 Jun 2021 20:44:14 -0700 (PDT)
+Received: from dell5510.suse.de (gw.ms-free.net. [95.85.240.250])
+        by smtp.gmail.com with ESMTPSA id o203sm885305wmo.36.2021.06.21.20.44.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Jun 2021 20:44:14 -0700 (PDT)
+From:   Petr Vorel <petr.vorel@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Petr Vorel <petr.vorel@gmail.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-remoteproc@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: qcom: msm8994-angler: Disable memory@3800000
+Date:   Tue, 22 Jun 2021 05:44:08 +0200
+Message-Id: <20210622034408.24904-1-petr.vorel@gmail.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peng,
+It prevents booting angler.
 
-On Tue, Jun 22, 2021 at 12:40 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> Add i.MX8ULP remote processor(Cortex-M33) compatible string
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index 1dc34cf5a4ea..c28b767d246f 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -15,6 +15,7 @@ maintainers:
->  properties:
->    compatible:
->      enum:
-> +      - fsl,imx8ulp-cm33
->        - fsl,imx8mq-cm4
+cont_splash_mem was introduced in 74d6d0a145835, but the problem
+manifested after 86588296acbf ("fdt: Properly handle "no-map" field
+in the memory region").
 
-Please keep the entries in alphabetical order.
+Fixes: 74d6d0a145835 ("arm64: dts: qcom: msm8994/8994-kitakami: Fix up
+the memory map")
+
+Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
+---
+Hi,
+
+not sure if cont_splash_mem memory@3800000 is msm8994 specific.
+BTW I haven't found it in LineageOS git [1]
+
+Maybe it should go to msm8994-sony-xperia-kitakami.dtsi.
+And I suppose it breaks also bullhead, thus this probably should go also
+to msm8992-bullhead-rev-101.dts.
+
+Kind regards,
+Petr
+
+[1] https://github.com/LineageOS/android_kernel_sony_msm8994
+
+ arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+index ffe1a9bd8f70..af5ff9badec9 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
++++ b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+ /* Copyright (c) 2015, Huawei Inc. All rights reserved.
+  * Copyright (c) 2016, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021, Petr Vorel <petr.vorel@gmail.com>
+  */
+ 
+ /dts-v1/;
+@@ -31,6 +32,10 @@ serial@f991e000 {
+ 			pinctrl-1 = <&blsp1_uart2_sleep>;
+ 		};
+ 	};
++
++	reserved-memory {
++		/delete-node/ memory@3800000;
++	};
+ };
+ 
+ &tlmm {
+-- 
+2.32.0
+
