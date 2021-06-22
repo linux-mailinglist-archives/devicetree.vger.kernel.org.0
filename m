@@ -2,166 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A85DA3B02B3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 13:24:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D9303B02B9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 13:28:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229668AbhFVL1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 07:27:00 -0400
-Received: from ni.piap.pl ([195.187.100.5]:53334 "EHLO ni.piap.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229567AbhFVL07 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Jun 2021 07:26:59 -0400
-X-Greylist: delayed 363 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Jun 2021 07:26:58 EDT
-Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
-        (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ni.piap.pl (Postfix) with ESMTPSA id 68C0C4A0049;
-        Tue, 22 Jun 2021 13:18:35 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl 68C0C4A0049
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
-        t=1624360715; bh=sZjIwY1MUZOdG4VMiblwq5+l7pMZ4eFjBDVTy0ETrYI=;
-        h=From:To:Cc:Subject:Date:From;
-        b=k4mb0FdX7fhvz3U3RGqrvC7EhPBZY4czSygN6NmlbHDSr7eckxtvXRFATndcSOoUH
-         JckG1XFBOD07G/wDUKpkv1MuUyY24MNBZpcR9mFtdjZFy/MQtnqXhaolMXoTx3ZBh5
-         MDLE3XMZBoVYcTGsAgDIALTkAsSTCzum0ZK3ffdE=
-From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
-To:     devicetree@vger.kernel.org
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [RFC v2] dt-binding: media: document ON Semi AR0521 sensor bindings
-Sender: khalasa@piap.pl
-Date:   Tue, 22 Jun 2021 13:18:35 +0200
-Message-ID: <m3y2b25er8.fsf@t19.piap.pl>
+        id S229886AbhFVLae convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Jun 2021 07:30:34 -0400
+Received: from mail-ua1-f50.google.com ([209.85.222.50]:40861 "EHLO
+        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229567AbhFVLae (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 07:30:34 -0400
+Received: by mail-ua1-f50.google.com with SMTP id r9so6170724ual.7;
+        Tue, 22 Jun 2021 04:28:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=/cdIiccgG5jxWjPE+ludHp9/DNq5RJZLWtlTIZf2YpU=;
+        b=n5FWcCSrvEVtiPW6l3FmZKbrU9eAeD6UO9N0PdPHV8bNizWFtI8JXTidjQUKXkd/22
+         LJEVWWJctQEzZa0A7f1TAo4bY914M0bAHz4vkMMPvSV4rp6+rtWpE3jM0QSOIs0cxV04
+         meQdR/ii+k3MigQl8ziagl6tEPKlMD5y8HF3FDH7ZYRxavzeRHmJNkAY8BWqM13LQ/S7
+         nVWlO0ANF/BBntdoZMDD4HwqEmNY+EfIAi9U/wsii2b/bXwS1Takiedw0K+klwTT1ke7
+         lCho60I65Ndz11SIYMMgRAbxYT6Wc1TPwegnoGqoM8HqJN9aSQ7pIPMK1Wk5iPn5lxOD
+         1eiQ==
+X-Gm-Message-State: AOAM531Wf3Dkf8MP7GGTrXmGwJGL0mC+n3B0uYQr38d2Phagy2gdrKvJ
+        lwj7Bg2mixJvP7xgUzrY7RfYlrItOeEbb2sNFFs=
+X-Google-Smtp-Source: ABdhPJyuU46d59XF2UZN2pHmabdDyGsE9QRXUyv16gvV0JFM5/+ESuZ7FIv1Kf6/jvL+6qaaLtPVwPxVteMCJrBZINQ=
+X-Received: by 2002:ab0:70b3:: with SMTP id q19mr2805173ual.2.1624361297367;
+ Tue, 22 Jun 2021 04:28:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-KLMS-Rule-ID: 4
-X-KLMS-Message-Action: skipped
-X-KLMS-AntiSpam-Status: not scanned, whitelist
-X-KLMS-AntiPhishing: not scanned, whitelist
-X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, not scanned, whitelist
+References: <20210509184519.15816-1-alex.nemirovsky@cortina-access.com>
+ <20210509184519.15816-2-alex.nemirovsky@cortina-access.com>
+ <YMiUpK/+PjsoCU1W@kroah.com> <CFD14D63-4537-4A91-861C-71B74E2CFAE6@cortina-access.com>
+ <YMi1jOL6y+eUK3Df@kroah.com> <B71C5D02-EDBE-4AAD-AF1B-2FD467BE075A@cortina-access.com>
+ <CAL_JsqKDf9W-1KHUoFFCoLareLKf0CAVMU6CXR22xW3hWM_8yg@mail.gmail.com>
+ <9937DB34-7757-4A54-BCC6-AF5514FD7F1D@cortina-access.com> <CAL_JsqLHdi29Du1F=e1N471tnsziWpH7TPO_caDF3SrjvHS-iw@mail.gmail.com>
+In-Reply-To: <CAL_JsqLHdi29Du1F=e1N471tnsziWpH7TPO_caDF3SrjvHS-iw@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 22 Jun 2021 13:28:06 +0200
+Message-ID: <CAMuHMdXA9-ajoAza2JAW5879ECieMm1dbBbKHgJhDa7=3kWu3w@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: serial: Convert Cortina-Access UART
+ to json-schema
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Alex Nemirovsky <Alex.Nemirovsky@cortina-access.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jason Li <jason.li@cortina-access.com>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This file documents DT bindings for the AR0521 camera sensor driver.
-Changes from v1:
-- added power management (power supplies).
-- small fixes
+On Tue, Jun 15, 2021 at 6:21 PM Rob Herring <robh+dt@kernel.org> wrote:
+> On Tue, Jun 15, 2021 at 10:06 AM Alex Nemirovsky
+> <Alex.Nemirovsky@cortina-access.com> wrote:
+> > > On Jun 15, 2021, at 8:44 AM, Rob Herring <robh+dt@kernel.org> wrote:
+> > > On Tue, Jun 15, 2021 at 8:39 AM Alex Nemirovsky
+> > > <Alex.Nemirovsky@cortina-access.com> wrote:
+> > >>
+> > >>
+> > >>
+> > >>> On Jun 15, 2021, at 7:13 AM, Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
+> > >>>
+> > >>> On Tue, Jun 15, 2021 at 01:36:39PM +0000, Alex Nemirovsky wrote:
+> > >>>> MAINTAINERS modification was made in the initial version 1.  We made no changes to it since then,
+> > >>>> thus not sure what we could at to  Changelog which would add value or clarity for others
+> > >>>> from the v1.
+> > >>>>
+> > >>>>> On Jun 15, 2021, at 4:53 AM, Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
+> > >>>>>
+> > >>>>> On Sun, May 09, 2021 at 11:45:17AM -0700, Alex Nemirovsky wrote:
+> > >>>>>> From: Jason Li <jason.li@cortina-access.com>
+> > >>>>>>
+> > >>>>>> Convert the Cortina-Access UART binding to DT schema format.
+> > >>>>>>
+> > >>>>>> Signed-off-by: Jason Li <jason.li@cortina-access.com>
+> > >>>>>> ---
+> > >>>>>> .../serial/cortina-access,serial.yaml         | 46 +++++++++++++++++++
+> > >>>>>> .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+> > >>>>>> MAINTAINERS                                   |  6 +++
+> > >>>>>
+> > >>>>> You are also adding a MAINTAINERS entry here, which is not listed in the
+> > >>>>> changelog text, so I couldn't take it anyway :(
+> > >>>
+> > >>> Add the maintainers entry in the first patch, with the driver please.
+> > >>
+> > >> The change to MAINTAINERS here add a new file into the DT documentation.
+> > >> Should it not be grouped into the dt-binding portion and reviewed by the DT time for which this patch
+> > >> is CC’ed to? Why would moving the DT documentation file that is introduced be into the first patch, which is the
+> > >> serial driver itself be the correct approach?
+> > >
+> > > The binding doesn't actually need a MAINTAINERS entry (though having
+> > > one is fine). get_maintainers.pl will also pull emails from the
+> > > binding schema.
+> > >
+> > > Rob
+> >
+> > Hi Rob,
+> > It sounds like you are find with patch 2/3 from a DT point of view.  Could we review the rest from the DT point of view
+> > to get either feedback for changes or ACK these, so we can unblock this series?
+>
+> Can't say I've seen it as I only see replies in my mail. Did this
+> originally go to the DT list? If not, it's never in my queue[1].
+>
+> Rob
+>
+> [1] https://patchwork.ozlabs.org/project/devicetree-bindings/list/
 
-The question still stands: is there a way to reliably put national
-unicode characters into:
-- commit messages for patches submitted via email,
-- C and other source files (comments and stuff like MODULE_AUTHOR).
+None of the patches in this series ended up on a mailing list or on
+lore, so no one could comment on them, except for people CCed directly.
 
-Yes, I know I can commit it myself correctly, but then propagating it
-upstream is problematic. Perhaps a pullable tree would be better?
-I guess I need to renew my old kernel.org account.
+The driver has been accepted in tty-next, commit b61c8bf4694b5115
+("tty: serial: Add UART driver for Cortina-Access platform").  From a
+quick glance, it could have used some review.
 
-Signed-off-by: Krzysztof Halasa <khalasa@piap.pl>
+The driver is using the compatible value "cortina-access,serial", so I
+guess the binding patch added "cortina-access" to vendor-prefixes.yaml.
+According to https://www.cortina-access.com/news-and-events, this is
+the same company as Cortina Systems, which already has the "cortina"
+vendor prefix.  In 2015, it was acquired by Realtek, so perhaps it
+should use the "realtek" prefix instead for new development?
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml b=
-/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
-new file mode 100644
-index 000000000000..29421daacc87
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/onnn,ar0521.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ON Semiconductor AR0521 MIPI CSI-2 sensor
-+
-+maintainers:
-+  - Krzysztof Halasa <khalasa@piap.pl>
-+
-+description: |-
-+  The AR0521 is a raw CMOS image sensor with MIPI CSI-2 and
-+  I2C-compatible control interface.
-+
-+properties:
-+  compatible:
-+    const: onnn,ar0521
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    description: reference to the xclk clock
-+    maxItems: 1
-+
-+  clock-names:
-+    const: xclk
-+
-+  vdd_io-supply:
-+    description:
-+      Definition of the regulator used as digital I/O (1.8 V) voltage supp=
-ly.
-+
-+  vdd_core-supply:
-+    description:
-+      Definition of the regulator used as digital core (1.2 V) voltage sup=
-ply.
-+
-+  vcc_analog-supply:
-+    description:
-+      Definition of the regulator used as analog (2.7 V) voltage supply.
-+
-+  reset-gpios:
-+    description: reset GPIO, usually active low
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/properties/port
-+    description: |
-+      Output video port: 1, 2 or 4 lanes.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/clock/imx6qdl-clock.h>
-+
-+    i2c {
-+            #address-cells =3D <1>;
-+            #size-cells =3D <0>;
-+
-+            ar0521: camera-sensor@36 {
-+                    compatible =3D "onnn,ar0521";
-+                    reg =3D <0x36>;
-+                    pinctrl-names =3D "default";
-+                    pinctrl-0 =3D <&pinctrl_mipi_camera>;
-+
-+                    clocks =3D <&clks IMX6QDL_CLK_CKO>;
-+                    clock-names =3D "xclk";
-+
-+                    reset-gpios =3D <&gpio1 7 GPIO_ACTIVE_LOW>;
-+
-+                    port {
-+                           mipi_camera_to_mipi_csi2: endpoint {
-+                                    remote-endpoint =3D <&mipi_csi2_in>;
-+                                    data-lanes =3D <1 2 3 4>;
-+                            };
-+                    };
-+            };
-+    };
+The SERIAL_CORTINA_ACCESS symbol doesn't depend on anything, so
+it will show up on everyone's oldconfig radar soon, regardless of
+building a kernel for a Cortina Access system or not.
+I wanted to change it to something like:
 
---=20
-Krzysztof Ha=C5=82asa
+     config SERIAL_CORTINA_ACCESS
+            tristate "Cortina-Access serial port support"
+    +       depends on FIXME || COMPILE_TEST
+            select SERIAL_CORE
+            help
+              This driver is for Cortina-Access SoC's UART. If you
+have a machine
+              based on the Cortina-Access SoC and wish to use the serial port,
+              say 'Y' here. Otherwise, say 'N'.
 
-Sie=C4=87 Badawcza =C5=81ukasiewicz
-Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
+but given there is no evidence of patches to add support for the
+CAXXXX line of SoCs, there's no symbol to depend on...
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
