@@ -2,96 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A7EE3AFC23
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 06:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3555F3AFC36
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 06:49:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbhFVEqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 00:46:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52834 "EHLO
+        id S229574AbhFVEvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 00:51:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229787AbhFVEqI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 00:46:08 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A69C061574;
-        Mon, 21 Jun 2021 21:43:52 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id i4so6082726plt.12;
-        Mon, 21 Jun 2021 21:43:52 -0700 (PDT)
+        with ESMTP id S229835AbhFVEvm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 00:51:42 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D607FC06175F
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 21:49:25 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id d11so19614444wrm.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 21:49:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=caIQJ1mUw/Qq9RPSpDxrIHGCVaQe3qBahSzrBXQocF8=;
-        b=c69jBUXPH5lSnMFPSZ5QtjVkOFfoGLO8g/NWjmEelanP4ibDUGn+jSqsroEJYY/Qhs
-         Y59eNY1NqkJkZT/28WGjOdpDkq0bcK2GzCeMdopf8dKGlRT+QivU2rXT5NJyMf74G+Vp
-         txh4hs0fD0Om5jC2rTqswlTxrbkpgxPNmO6fklMcd5Dez4QP45awQ83ABmwIujAKQe4n
-         0RNop3pp2jxZK/Iaxnp96ABBalq15M0uB0onZDNCtDYuIYaULlSXItszFz4ic4YWiJN0
-         UrIgus6i5KmV73rZF5Vnt+ah9JNU1HBszWDC7sWzEGTNFm8nqZJMeopD7MgwQ0dUUE6I
-         xDvg==
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LZDUAnqEXjRVZWh1a1xJ1KodfKynosGX+MGHfcnE+kU=;
+        b=bH4f1th7fB3/XSYd6w/iVmgPpxVgsJ3aJmbLqWedYwp9i75zoJ/imdZCICERT9g3fF
+         YULFqKNz6F/epgqr5mdJIh8/upyxVLtWGUfYbRCK/VCu95PPVKJPY4c6VsKfGmpqKBSt
+         fln5qvXh9p+ilYo7R3rYscL4zn+fiFxs6ol9N82k4JbR0NeYyqMJ573O18CNCM+YGeoN
+         xADdUH/x4BzN63KiLgP5XXLurHCsRxXwOPZEwIUXZeyVOQUewlaS2srVZxhuWXsz/28o
+         ENV3xIu69pdHqngak3AEYJSHE07V/kUTq+c8mhLcDhI25noNGdNYh/sJLGE9WQeawOhQ
+         WU7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=caIQJ1mUw/Qq9RPSpDxrIHGCVaQe3qBahSzrBXQocF8=;
-        b=cGtAM5TrnvoxdAtoTxdQdW5pc7PrDrlYnPFsC1ytn+9+NI5Nvr/lWB8eYjkdqJSzxW
-         wOgX4T0ED1FNgrU5uif7QGpA5wB+Jp6PCDJVKQys5qyULqZfZOnrhGUVwpeFqX9WYPaF
-         VYecFURPEtpphnRbldTj3eUfq2s/RjO7uBQynuwH4d8C3W9RrI/66o72uwOBxDO2GMu8
-         2+sS6sIXIZN6CRcNb5ym45LaEeI/2toUyv2QGVvlqReiOxZNvwHul8Pd97rsJ3nCVw4o
-         aa5g55PxzO33fhEw+9V3aDAFJsbnAkcEY9xiAqYk1WgYiA6G/FeqMEoUJsnwzp7X+8GN
-         4qUQ==
-X-Gm-Message-State: AOAM531n4NaRbKc6RtQKa52pL36yEzXt9yJeuckXiv6CWTydvPFYrrgR
-        jt/2Kg6VIvlad6gHjh/p9nA=
-X-Google-Smtp-Source: ABdhPJwpqKeV1sZnIB2l/74DjTgWY6b5ubBtObEhV4nqB0CGPBqdzBr+reFoiW+7mBQeMDudq9qLIA==
-X-Received: by 2002:a17:90a:66cc:: with SMTP id z12mr1940520pjl.93.1624337032080;
-        Mon, 21 Jun 2021 21:43:52 -0700 (PDT)
-Received: from localhost.localdomain (104.194.74.249.16clouds.com. [104.194.74.249])
-        by smtp.gmail.com with ESMTPSA id v129sm8686909pfc.31.2021.06.21.21.43.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Jun 2021 21:43:51 -0700 (PDT)
-From:   Artem Lapkin <email2tema@gmail.com>
-X-Google-Original-From: Artem Lapkin <art@khadas.com>
-To:     narmstrong@baylibre.com
-Cc:     khilman@baylibre.com, robh+dt@kernel.org, jbrunet@baylibre.com,
-        christianshewitt@gmail.com, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        art@khadas.com, nick@khadas.com, gouwa@khadas.com
-Subject: [PATCH 2/2] arm64: dts: meson: improve gxm-khadas-vim2 wifi
-Date:   Tue, 22 Jun 2021 12:43:34 +0800
-Message-Id: <20210622044334.769791-2-art@khadas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210622044334.769791-1-art@khadas.com>
-References: <20210622044334.769791-1-art@khadas.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LZDUAnqEXjRVZWh1a1xJ1KodfKynosGX+MGHfcnE+kU=;
+        b=tQaIM9YmDvOnroOtUBGWHY4eVYIKev52Cd+7NXUYStrud4P1415E7TdYe8uGMz5QJE
+         PCsvB4P53oGuBq4QxeZeWCuFJgRe+wUSuYjAsw+vkMHDEAU7d36l+Frqb/7E+YpjcwAr
+         T5+fXDCQyXWIEiJz4wuPVVfO0VkkMDFucDiskK9FMzpc7WkOxKgA0joiwaH1GwWYOE8Q
+         RyBPGP9Rn/HERP8toD5Kp+u1cKOUPjOf17n+zpVL2vjvABNx3MEdELmcIymXRH7Mt5Zr
+         Cy5eYTZNTfSmymQN8Gt5RmCoNg9bqWGBPBgQfwItUzBNt642eDfGNd6isolOAPPREN8X
+         +zYA==
+X-Gm-Message-State: AOAM533300+kwA8FgC98IHAkeeYw6Hh2cRL9moyo9ODX2dBCLH6dWYUz
+        QCLMbe3b0YkKXwYxrFbZzQ3aSNwPTiXmUoAnou1yIw==
+X-Google-Smtp-Source: ABdhPJwH28VdMClZV5cXRWjOAW5ajVp3FB9zxBUuvaVaxTUHQtU/5jIhNmSJ1wgDKuI5HeKx8JSfTJqVrJOC3H7w8IY=
+X-Received: by 2002:a5d:6e81:: with SMTP id k1mr2226740wrz.144.1624337362425;
+ Mon, 21 Jun 2021 21:49:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210610052221.39958-1-anup.patel@wdc.com>
+In-Reply-To: <20210610052221.39958-1-anup.patel@wdc.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Tue, 22 Jun 2021 10:19:11 +0530
+Message-ID: <CAAhSdy00KAqg37PCAGwNXt_2HTpxGY68yTPNHDEbrSwdiLa2jw@mail.gmail.com>
+Subject: Re: [PATCH v7 0/8] RISC-V CPU Idle Support
+To:     Anup Patel <anup.patel@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Improve gxm-khadas-vim2 wifi performance
-* change freq from 60Mhz to 100Mhz
-* add cap-sd-highspeed param
+Hi Palmer,
 
-100Mhz works well same as in meson-khadas-vim3.dtsi
+On Thu, Jun 10, 2021 at 10:52 AM Anup Patel <anup.patel@wdc.com> wrote:
+>
+> This series adds RISC-V CPU Idle support using SBI HSM suspend function.
+> The RISC-V SBI CPU idle driver added by this series is highly inspired
+> from the ARM PSCI CPU idle driver.
+>
+> At high-level, this series includes the following changes:
+> 1) Preparatory arch/riscv patches (Patches 1 to 3)
+> 2) Defines for RISC-V SBI HSM suspend (Patch 4)
+> 3) Preparatory patch to share code between RISC-V SBI CPU idle driver
+>    and ARM PSCI CPU idle driver (Patch 5)
+> 4) RISC-V SBI CPU idle driver and related DT bindings (Patches 6 to 7)
+>
+> These patches can be found in riscv_sbi_hsm_suspend_v7 branch at
+> https://github.com/avpatel/linux
+>
+> Special thanks Sandeep Tripathy for providing early feeback on SBI HSM
+> support in all above projects (RISC-V SBI specification, OpenSBI, and
+> Linux RISC-V).
+>
+> Changes since v6:
+>  - Fixed error reported by "make DT_CHECKER_FLAGS=-m dt_binding_check"
+>
+> Changes since v5:
+>  - Rebased on Linux-5.13-rc5
+>  - Removed unnecessary exports from PATCH5
+>  - Removed stray ";" from PATCH5
+>  - Moved sbi_cpuidle_pd_power_off() under "#ifdef CONFIG_DT_IDLE_GENPD"
+>    in PATCH6
+>
+> Changes since v4:
+>  - Rebased on Linux-5.13-rc2
+>  - Renamed all dt_idle_genpd functions to have "dt_idle_" prefix
+>  - Added MAINTAINERS file entry for dt_idle_genpd
+>
+> Changes since v3:
+>  - Rebased on Linux-5.13-rc2
+>  - Fixed __cpu_resume_enter() which was broken due to XIP kernel support
+>  - Removed "struct dt_idle_genpd_ops" abstraction which simplifies code
+>    sharing between ARM PSCI and RISC-V SBI drivers in PATCH5
+>
+> Changes since v2:
+>  - Rebased on Linux-5.12-rc3
+>  - Updated PATCH7 to add common DT bindings for both ARM and RISC-V
+>    idle states
+>  - Added "additionalProperties = false" for both idle-states node and
+>    child nodes in PATCH7
+>
+> Changes since v1:
+>  - Fixex minor typo in PATCH1
+>  - Use just "idle-states" as DT node name for CPU idle states
+>  - Added documentation for "cpu-idle-states" DT property in
+>    devicetree/bindings/riscv/cpus.yaml
+>  - Added documentation for "riscv,sbi-suspend-param" DT property in
+>    devicetree/bindings/riscv/idle-states.yaml
+>
+> Anup Patel (8):
+>   RISC-V: Enable CPU_IDLE drivers
+>   RISC-V: Rename relocate() and make it global
+>   RISC-V: Add arch functions for non-retentive suspend entry/exit
+>   RISC-V: Add SBI HSM suspend related defines
+>   cpuidle: Factor-out power domain related code from PSCI domain driver
+>   cpuidle: Add RISC-V SBI CPU idle driver
+>   dt-bindings: Add common bindings for ARM and RISC-V idle states
+>   RISC-V: Enable RISC-V SBI CPU Idle driver for QEMU virt machine
 
-Signed-off-by: Artem Lapkin <art@khadas.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Can you please review this series ?
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index 18a4b7a6c5df..86bdc0baf032 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -307,7 +307,8 @@ &sd_emmc_a {
- 	#size-cells = <0>;
- 
- 	bus-width = <4>;
--	max-frequency = <60000000>;
-+	cap-sd-highspeed;
-+	max-frequency = <100000000>;
- 
- 	non-removable;
- 	disable-wp;
--- 
-2.25.1
+It would be nice to consider this series for Linux-5.14.
 
+Regards,
+Anup
+
+>
+>  .../bindings/arm/msm/qcom,idle-state.txt      |   2 +-
+>  .../devicetree/bindings/arm/psci.yaml         |   2 +-
+>  .../bindings/{arm => cpu}/idle-states.yaml    | 228 ++++++-
+>  .../devicetree/bindings/riscv/cpus.yaml       |   6 +
+>  MAINTAINERS                                   |  14 +
+>  arch/riscv/Kconfig                            |   7 +
+>  arch/riscv/Kconfig.socs                       |   3 +
+>  arch/riscv/configs/defconfig                  |  13 +-
+>  arch/riscv/configs/rv32_defconfig             |   6 +-
+>  arch/riscv/include/asm/asm.h                  |  17 +
+>  arch/riscv/include/asm/cpuidle.h              |  24 +
+>  arch/riscv/include/asm/sbi.h                  |  27 +-
+>  arch/riscv/include/asm/suspend.h              |  35 +
+>  arch/riscv/kernel/Makefile                    |   2 +
+>  arch/riscv/kernel/asm-offsets.c               |   3 +
+>  arch/riscv/kernel/cpu_ops_sbi.c               |   2 +-
+>  arch/riscv/kernel/head.S                      |  18 +-
+>  arch/riscv/kernel/process.c                   |   3 +-
+>  arch/riscv/kernel/suspend.c                   |  86 +++
+>  arch/riscv/kernel/suspend_entry.S             | 123 ++++
+>  drivers/cpuidle/Kconfig                       |   9 +
+>  drivers/cpuidle/Kconfig.arm                   |   1 +
+>  drivers/cpuidle/Kconfig.riscv                 |  15 +
+>  drivers/cpuidle/Makefile                      |   5 +
+>  drivers/cpuidle/cpuidle-psci-domain.c         | 138 +---
+>  drivers/cpuidle/cpuidle-psci.h                |  15 +-
+>  drivers/cpuidle/cpuidle-sbi.c                 | 626 ++++++++++++++++++
+>  drivers/cpuidle/dt_idle_genpd.c               | 177 +++++
+>  drivers/cpuidle/dt_idle_genpd.h               |  50 ++
+>  29 files changed, 1472 insertions(+), 185 deletions(-)
+>  rename Documentation/devicetree/bindings/{arm => cpu}/idle-states.yaml (74%)
+>  create mode 100644 arch/riscv/include/asm/cpuidle.h
+>  create mode 100644 arch/riscv/include/asm/suspend.h
+>  create mode 100644 arch/riscv/kernel/suspend.c
+>  create mode 100644 arch/riscv/kernel/suspend_entry.S
+>  create mode 100644 drivers/cpuidle/Kconfig.riscv
+>  create mode 100644 drivers/cpuidle/cpuidle-sbi.c
+>  create mode 100644 drivers/cpuidle/dt_idle_genpd.c
+>  create mode 100644 drivers/cpuidle/dt_idle_genpd.h
+>
+> --
+> 2.25.1
+>
