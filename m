@@ -2,147 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED0433B0B87
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 19:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F24EC3B0C9A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 20:11:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231655AbhFVRim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 13:38:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60798 "EHLO
+        id S230338AbhFVSN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 14:13:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbhFVRim (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 13:38:42 -0400
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B638C061574;
-        Tue, 22 Jun 2021 10:36:26 -0700 (PDT)
-Received: by mail-qk1-x72c.google.com with SMTP id o6so6232601qkh.4;
-        Tue, 22 Jun 2021 10:36:26 -0700 (PDT)
+        with ESMTP id S230146AbhFVSN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 14:13:29 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FAC3C061574;
+        Tue, 22 Jun 2021 11:11:12 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id a11so24725263wrt.13;
+        Tue, 22 Jun 2021 11:11:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=zStx7piADl+l65PWbMM4TKMoh0TDURz0qm5Waha0vmI=;
-        b=EQa7eNyCLAAOs5+jWSbYSfFEl2PFlhs9NTX3v0a1jFPg02gG5WsmP3S4rsKxM13xeq
-         E9s3D0k93HlKuEwEzp1UcvcyDG7QesjYnAQb5gew1OThq7+1pBfR4lioOFtyMHaWp7wo
-         fywIS/sjD8sVblFsAuclySmoJiosSwzMBnNRi2YTYItKJwkcsfQ+vVrdnQh1gQk0I9Jl
-         cNBKeaJJFh4KuVBOUXP04y8ZIzIjviuIBNowSgUZWXGftDSDs5aGKG9PuvLrubIfpXpe
-         b+h8Ttp4uMCc13ceqPISTSzjBmdhAlnUFX71Z8RlldzTT2gflNC9BcXrIXHsCw0nYGh8
-         AAow==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mRsBA0uRgRgTVs3k/X6tNJ3otxf/okSIPDMgMCIvWuM=;
+        b=hDTH528GEBKhaiY+kO+AX56J/lFypAYDhPjI5NCgTvUO2JtcyhygC6HypDNC/tfbTX
+         k2oI9dGuWfFcA6XbFW1Ouq0vgZ1GsyKUUeqR9ZySNGWG3zH7A2MLLkY/cL2fvNn/G1Oe
+         XqiHS3qYe64K4oO3DrjEPYLzON1MY2F4s/igERXuE/krwFAFMxTvKNDoUNP1VFtfyC/7
+         5CPmAxIRMhC3HdajrcNkHGAnbmh9qogEP5g+UExydm45W9n+ROfSNQfsVQbPXwQ4exu5
+         raDi6JYn61GtTmIOHsc0Os4Wb8qTMXwjFtvM6ifuYZPBYKbYYyRFOegR+e7kWX8aD5g3
+         3wDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=zStx7piADl+l65PWbMM4TKMoh0TDURz0qm5Waha0vmI=;
-        b=HCTCXfb05kZEAwv6tTRI9/UoUdAhT+pWAdAIl6OTOBExs5nhzsOLKoxC37hhy0GWsD
-         lDof3rgf/WzEGgt197+suHyQdn+AKI7tneswqi+y9dqcKGAPzmCAub+SLQsy41yFCIux
-         K54v2vLtwQP6b/+Bq8v3BZWTbPU9MOqlQznDKDahGT1+irVhra4yesujpwBLXGm0PJG4
-         YufmNr4MMkVIVEX++KeoNlieCcH4CsEQH0iDWx88lsQp3r/D2Iei3fPLtaeRUHcDQAyS
-         9On4kZPXNtlBXySm4mF558AbCakZ1dccSevaSc3goF2UHBE31bjiD3/m/dWqyi3W1TLq
-         mCgQ==
-X-Gm-Message-State: AOAM530rcIpJTQ27SOa2sTBYhkQRDMHjLsS2TaPGQtVqIC4glQJh/1o/
-        pz0TNfzVtAQeA/SPzs+X6DM=
-X-Google-Smtp-Source: ABdhPJyW3LjIo8WfhP56QAdoS4/dFxorrsN76q4vDPWRo1b1SeCOBjhkB0yyXm8gZeDLZgMVzH8gjw==
-X-Received: by 2002:a37:6703:: with SMTP id b3mr5591932qkc.107.1624383384943;
-        Tue, 22 Jun 2021 10:36:24 -0700 (PDT)
-Received: from marsc.168.1.7 ([2804:30c:933:eb00:4f35:a781:9a0c:3ae7])
-        by smtp.gmail.com with ESMTPSA id q3sm1874521qkn.15.2021.06.22.10.36.22
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mRsBA0uRgRgTVs3k/X6tNJ3otxf/okSIPDMgMCIvWuM=;
+        b=U/oY957uzgoI0Zjk1I9GBRDfaOPPe6q+ieXwe7pdSYSmKZiypKzwn+6rIzoXN9e/Hi
+         Nf91ixSuB72oqzR0ZI2YM7ooaxQmG0Cq0CD+T++6spuGEUTPsO0tixMaaElLoI/r9l9y
+         dkXVCfLNwdJVD9+2ObrBMekQEPRE9NslhCS0rExHygdB+xRwMunhtLbylZDbGaYdeEBZ
+         H+G9YjrZze5yqbh3oEryIF0qEfie2kFtsOo+Fy7fMu9LzjUvYMacsvCu6MxKGBDOL3/2
+         wr0O5pZY5nsbSBkz4ZPv+XiRlFisiZ3v9CGX6/AITvVFocRWo90HYL754dxLt03j7V6E
+         DCwA==
+X-Gm-Message-State: AOAM530Qyh85dwsqqOcRmblzSrR5B440rilxio25lR3DtuZ2Cp1wAOrB
+        zvdgIQ41sVjurisCY8jszpjHA5oRioHOzw==
+X-Google-Smtp-Source: ABdhPJyUmGdxien2QJ0hTCW0croLndpvZtRZ91FwDmGD2WVQ6b0m80HAqFFkF9CvZZJcCyyEDXdXlg==
+X-Received: by 2002:a5d:5181:: with SMTP id k1mr6240404wrv.415.1624385470745;
+        Tue, 22 Jun 2021 11:11:10 -0700 (PDT)
+Received: from dell5510.suse.de (gw.ms-free.net. [95.85.240.250])
+        by smtp.gmail.com with ESMTPSA id o2sm109974wrx.59.2021.06.22.11.11.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jun 2021 10:36:24 -0700 (PDT)
-Date:   Tue, 22 Jun 2021 14:36:17 -0300
-From:   Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Michael.Hennerich@analog.com, lars@metafoo.de,
-        devicetree@vger.kernel.org, Nuno Sa <Nuno.Sa@analog.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 00/17] iio:adc:ad7280a Cleanup and proposed staging
- graduation.
-Message-ID: <YNIfkaRZtWIXPbAj@marsc.168.1.7>
-References: <20210614113507.897732-1-jic23@kernel.org>
+        Tue, 22 Jun 2021 11:11:10 -0700 (PDT)
+From:   Petr Vorel <petr.vorel@gmail.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Petr Vorel <petr.vorel@gmail.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/1] arm64: dts: qcom: msm8994-angler: Fix cont_splash_mem
+Date:   Tue, 22 Jun 2021 20:10:56 +0200
+Message-Id: <20210622181056.27632-1-petr.vorel@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210614113507.897732-1-jic23@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Jonathan,
+As the default definition breaks booting angler:
 
-On 06/14, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> 
-> Hi All,
-> 
-> This one proved an interesting diversion.
-> 
-> Work done against a somewhat hacked up QEMU emulation of 3 daisy chained
-> ad7280a devices (18 channels).  Note that the emulation isn't complete
-> but does do chaining, CRC, and readout of channels etc in a fashion that
-> worked with the original driver (up to the bug in patch 1) and continues
-> to work with the updated version. I've not intention to upstream the
-> emulation (as would need to make it more completed and flexible), but
-> happy to share it with anyone who is interested.
+[    1.862561] printk: console [ttyMSM0] enabled
+[    1.872260] msm_serial: driver initialized
+D -     15524 - pm_driver_init, Delta
 
-I'm interested in seeing your device emulation with QEMU.
-I was looking at the ad7150 emulation you shared earlier this year but had
-some trouble getting the i2c slave created.
+cont_splash_mem was introduced in 74d6d0a145835, but the problem
+manifested after 86588296acbf ("fdt: Properly handle "no-map" field
+in the memory region").
 
-Being able to see it running, I may feel more confident to provide a review
-for this set :)
+Using new definition from downstream kernel:
+[    0.000000] cma: Found cont_splash_mem@0, memory base 0x0000000000000000, size 16 MiB, limit 0x0000000000000000
+[    0.000000] cma: CMA: reserved 16 MiB at 0x0000000000000000 for cont_splash_mem
 
-Regards,
+Fixes: 74d6d0a145835 ("arm64: dts: qcom: msm8994/8994-kitakami: Fix up
+the memory map")
 
-Marcelo
-> 
-> I briefly flirted with posting a patch to just drop the driver entirely,
-> but the part is still available and it looked like fun + isn't going
-> to greatly impact maintainability of the subsystem long term so is low
-> cost even if it goes obsolete sometime soonish.
-> 
-> There are lots of things we could do after this set to improved the driver
-> and make things more flexible, but it should basically 'just work'
-> 
-> Anyhow, as normal for staging graduations, last patch has rename detection
-> turned off so that people can easily see what I am proposing we move
-> out of staging.
-> 
-> Jonathan Cameron (17):
->   staging:iio:adc:ad7280a: Fix handing of device address bit reversing.
->   staging:iio:adc:ad7280a: Register define cleanup.
->   staging:iio:adc:ad7280a: rename _read() to _read_reg()
->   staging:iio:adc:ad7280a: Split buff[2] into tx and rx parts
->   staging:iio:adc:ad7280a: Use bitfield ops to managed fields in
->     transfers.
->   staging:iio:adc:ad7280a: Switch to standard event control
->   staging:iio:adc:ad7280a: Standardize extended ABI naming
->   staging:iio:adc:ad7280a: Drop unused timestamp channel.
->   staging:iio:adc:ad7280a: Trivial comment formatting cleanup
->   staging:iio:adc:ad7280a: Make oversampling_ratio a runtime control
->   staging:iio:adc:ad7280a: Cleanup includes
->   staging:iio:ad7280a: Reflect optionality of irq in ABI
->   staging:iio:adc:ad7280a: Use a local dev pointer to avoid &spi->dev
->   staging:iio:adc:ad7280a: Use device properties to replace platform
->     data.
->   dt-bindings:iio:adc:ad7280a: Add binding
->   iio:adc:ad7280a: Document ABI for cell balance switches
->   iio:adc:ad7280a: Move out of staging
-> 
->  .../ABI/testing/sysfs-bus-iio-adc-ad7280a     |   14 +
->  .../bindings/iio/adc/adi,ad7280a.yaml         |   87 ++
->  drivers/iio/adc/Kconfig                       |   11 +
->  drivers/iio/adc/Makefile                      |    1 +
->  drivers/iio/adc/ad7280a.c                     | 1116 +++++++++++++++++
->  drivers/staging/iio/adc/Kconfig               |   11 -
->  drivers/staging/iio/adc/Makefile              |    1 -
->  drivers/staging/iio/adc/ad7280a.c             | 1044 ---------------
->  drivers/staging/iio/adc/ad7280a.h             |   37 -
->  9 files changed, 1229 insertions(+), 1093 deletions(-)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad7280a
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7280a.yaml
->  create mode 100644 drivers/iio/adc/ad7280a.c
->  delete mode 100644 drivers/staging/iio/adc/ad7280a.c
->  delete mode 100644 drivers/staging/iio/adc/ad7280a.h
-> 
-> -- 
-> 2.32.0
-> 
+Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
+---
+Changes v1->v2:
+* redefine address instead of deleting it (as suggested by Konrad)
+
+Kind regards,
+Petr
+
+[1] https://wiki.postmarketos.org/wiki/Google_Nexus_5X_(lg-bullhead)
+
+ arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+index ffe1a9bd8f70..4f8a5f5cbbaa 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
++++ b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0-only
+ /* Copyright (c) 2015, Huawei Inc. All rights reserved.
+  * Copyright (c) 2016, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2021, Petr Vorel <petr.vorel@gmail.com>
+  */
+ 
+ /dts-v1/;
+@@ -31,6 +32,15 @@ serial@f991e000 {
+ 			pinctrl-1 = <&blsp1_uart2_sleep>;
+ 		};
+ 	};
++
++	reserved-memory {
++		/delete-node/ memory@3800000;
++
++		cont_splash_mem: memory@0 {
++			reg = <0 0 0 0x1600000>;
++			no-map;
++		};
++	};
+ };
+ 
+ &tlmm {
+-- 
+2.32.0
+
