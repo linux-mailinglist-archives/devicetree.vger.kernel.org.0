@@ -2,94 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4F683B0780
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 16:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BD943B0793
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 16:38:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231799AbhFVOjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 10:39:06 -0400
-Received: from mail-io1-f52.google.com ([209.85.166.52]:41680 "EHLO
-        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230047AbhFVOjD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 10:39:03 -0400
-Received: by mail-io1-f52.google.com with SMTP id i189so600164ioa.8;
-        Tue, 22 Jun 2021 07:36:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=Of/VzMGz855Wz34Tuq2SD5JHgkJPelGIgUky1xC77Tg=;
-        b=f2P9Ju/nRipalVBCvcFIEd3vVqsZkieUEEVS15OZfaBjxP2cgdbBvneYGJ3gq3r/TN
-         1NnAr2Kl4ygHuurvfQbpmHDl8EXSdrOL0YqiAkLqyqiSmFg8pdWxHfG/tzVQiH866OTc
-         nkRMrtSkgfGQ7iu8kFifb1w9KZjYVzlFlOIU/oommX+WdbHzJEo9/Psx2LZRUXi8SsEA
-         oTvp78X3kMC9LpX6AOFl2c72niXvY8UTEBTMuA8nJfXdckchmTx2HJkMUL9BeihQCd/s
-         GuG6+KX2coM2MDLznFUn41voj2VL7KlrCsITKWDgzMc46kd4xIaR7nzTm3kAlztKO7J9
-         oqTA==
-X-Gm-Message-State: AOAM532z4QpewjUp82ZidKE4N7VncXW+vHAjY5gr+tVkP6zZp6mJ40x/
-        dqw1lywdd5xcch7VHQLJXUt9nViVPg==
-X-Google-Smtp-Source: ABdhPJziqbME6LQR9cT2xsvCNevM8ONjOtoYNfKtB2kAz1pz9qVbzDiyel+JGMXGJMZhR7ZJXiFoKA==
-X-Received: by 2002:a05:6638:3896:: with SMTP id b22mr4300070jav.37.1624372607096;
-        Tue, 22 Jun 2021 07:36:47 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id e2sm9917641iot.50.2021.06.22.07.36.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jun 2021 07:36:45 -0700 (PDT)
-Received: (nullmailer pid 3566365 invoked by uid 1000);
-        Tue, 22 Jun 2021 14:36:40 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     phone-devel@vger.kernel.org, jeffrey.l.hugo@gmail.com,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        rjw@rjwysocki.net, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        jami.kettunen@somainline.org, agross@kernel.org
-In-Reply-To: <20210621181016.365009-3-angelogioacchino.delregno@somainline.org>
-References: <20210621181016.365009-1-angelogioacchino.delregno@somainline.org> <20210621181016.365009-3-angelogioacchino.delregno@somainline.org>
-Subject: Re: [PATCH v6 2/5] dt-bindings: soc: qcom: Add devicetree binding for QCOM SPM
-Date:   Tue, 22 Jun 2021 08:36:40 -0600
-Message-Id: <1624372600.481255.3566364.nullmailer@robh.at.kernel.org>
+        id S231765AbhFVOkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 10:40:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52674 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230047AbhFVOkv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Jun 2021 10:40:51 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 1CA2461378;
+        Tue, 22 Jun 2021 14:38:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624372715;
+        bh=MyhNL+c9sQXrWYKNAjOcAvrFWHv6tfoPr73JTbBBYCc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=C02DTrauRo62YzP44ABo7c0pzCl4EsyYfOE/OEXOr5EtyROY6obZKYheMpCJxGKBA
+         UD9eAap2mHtoqFjVu+WFBUUvgqu/Km0Nth+WRcEfyQSA1XYGIIU7uODy6VtRlJkt6j
+         1pnO3njuqtG8Q/40453JmY79piYWfbNm9O3HdCnLnHPVFz7A0z49rtTS5DEa5XLBVL
+         q9Q0gk6bzJV5MhXf4cUJgzoeJILNjthrtfuz2WneP+xo0XsYQdInWt4bcCMBnPmfVT
+         raca3KcSbKuefLfuaSVmdTBDOBb9FD8sJfCeXbKqgngOA48pLnQbcKefW8H0rEHKQ2
+         ptQtG68JBrvLg==
+Date:   Tue, 22 Jun 2021 15:38:12 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-bluetooth@vger.kernel.org
+Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
+ powerup sequence
+Message-ID: <20210622143812.GE4574@sirena.org.uk>
+References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
+ <20210621223141.1638189-3-dmitry.baryshkov@linaro.org>
+ <20210622112843.GB4574@sirena.org.uk>
+ <CAA8EJpoTdg3O6dzpTaNS5fJRbtb1Fndv0mEuO+e4b6XCmuvzhQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="0H629O+sVkh21xTi"
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpoTdg3O6dzpTaNS5fJRbtb1Fndv0mEuO+e4b6XCmuvzhQ@mail.gmail.com>
+X-Cookie: fortune: not found
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Jun 2021 20:10:13 +0200, AngeloGioacchino Del Regno wrote:
-> Add devicetree binding for Qualcomm Subsystem Power Manager (SPM).
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> ---
->  .../bindings/soc/qcom/qcom,spm.yaml           | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
-> 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+--0H629O+sVkh21xTi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-yamllint warnings/errors:
+On Tue, Jun 22, 2021 at 05:17:28PM +0300, Dmitry Baryshkov wrote:
+> On Tue, 22 Jun 2021 at 14:29, Mark Brown <broonie@kernel.org> wrote:
+> > On Tue, Jun 22, 2021 at 01:31:36AM +0300, Dmitry Baryshkov wrote:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,spm.example.dt.yaml: power-controller@f9089000: compatible: ['qcom,msm8974-saw2-v2.1-cpu', 'qcom,saw2'] is too long
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,spm.example.dt.yaml: power-controller@f9089000: compatible: Additional items are not allowed ('qcom,saw2' was unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/soc/qcom/qcom,spm.example.dt.yaml: power-controller@f9089000: '#power-domain-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/power-domain.yaml
-Documentation/devicetree/bindings/soc/qcom/qcom,spm.example.dt.yaml:0:0: /example-0/power-controller@f9089000: failed to match any schema with compatible: ['qcom,msm8974-saw2-v2.1-cpu', 'qcom,saw2']
-\ndoc reference errors (make refcheckdocs):
+> > > Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
+> > > being controlled through the UART and WiFi being present on PCIe
+> > > bus. Both blocks share common power sources. Add device driver handling
+> > > power sequencing of QCA6390/1.
 
-See https://patchwork.ozlabs.org/patch/1495264
+> > Are you sure this is a regulator and not a MFD?  It appears to be a
+> > consumer driver that turns on and off a bunch of regulators en masse
+> > which for some reason exposes that on/off control as a single supply.
+> > This looks like it'd be much more appropriate to implement as a MFD or
+> > possibly power domain with the subdevices using runtime PM, it's clearly
+> > not a regulator.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+> First attempt was designed to be an MFD. And Lee clearly stated that
+> this is wrong:
+> "This is not an MFD, since it utilised neither the MFD API nor
+> of_platform_populate() to register child devices." [1]
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Well, perhaps it should do one of those things then?  Like I say this is
+very clearly not a regulator, it looks like a consumer of some kind.
+The regulator API isn't there just to absorb things that need reference
+counting, it's there to represent things providing supplies.  This seems
+to be very clearly not a supply given that it's grouping together a
+bunch of other supplies and switching them on and off together without
+providing a clear output supply.
 
-pip3 install dtschema --upgrade
+> I've tried following Rob's suggestions on implementing things clearly,
+> but doing so results in too big restructure just for a single device.
 
-Please check and re-submit.
+I don't know what that suggestion was?  If there's only one device that
+uses this why is it not implemented as part of that device?
 
+> > > +static int qca6390_enable(struct regulator_dev *rdev)
+> > > +{
+> > > +     struct qca6390_data *data = rdev_get_drvdata(rdev);
+> > > +     int ret;
+
+> > > +     ret = regulator_bulk_enable(data->num_vregs, data->regulators);
+> > > +     if (ret) {
+> > > +             dev_err(data->dev, "Failed to enable regulators");
+> > > +             return ret;
+> > > +     }
+
+> > The regulator API is *not* recursive, I am astonished this works.
+
+> It does, even with lockdep enabled. Moreover BT regularly does disable
+> and enable this regulator, so both enable and disable paths were well
+> tested.
+> Should I change this into some internal call to remove API recursiveness?
+
+You should not be implementing this as a regulator at all.
+
+--0H629O+sVkh21xTi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDR9dMACgkQJNaLcl1U
+h9B2Hwf/X35x6Prj+oZAglRHpnyQgOLNQJQckoFKWi7U7UMLqoQa8sFfKYgY53gK
+JsoduanV5yqSrjSC/BGK2LNnz5wN0kDvD95QSbLxqchC6jPIAu2ZLy5/Pr/EI1VM
+nqsM0GmiJbWfDREnpANqjEnXJkDuxEZyS6niP8o8MqvNWmLEtj6tQiSUQG1xAlzk
+5IDiZn4fkE+JchdmX7yYViglpvZJ9qM4QsDitbUSD9DmfJg5xwk2t5ZPbi8aOKgV
+XSfQzYPxoTMM9r4vXHc9Eav1M1O/NU1+Jv6HYR1FrsNMePSmc0U5FamJMiPWhQTf
++uvsq4/+X5hXZ3frFLglZk9PUnTfjQ==
+=Nwo6
+-----END PGP SIGNATURE-----
+
+--0H629O+sVkh21xTi--
