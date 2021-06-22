@@ -2,90 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 999883B0128
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 12:18:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07B2D3B0159
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 12:27:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229668AbhFVKUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 06:20:20 -0400
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:15265 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229915AbhFVKUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 06:20:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1624357082; x=1655893082;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=HDo7+dEIV2AQMejAUxlNUXe4B9kHDn8VG83f//59U2o=;
-  b=K0nHKMI2pNm8Hf9Te+5MXk216PCZ36o/5cZgCFdgrCrU/Zz8ta0Wsy4j
-   xkcShQ3LlAepNQiECi6+hTaIo22T4MU0Z7NU5Uv+Sfl6eo01/e3NbwFKz
-   wCmsQ5G5MYMbMM1xkHgZ2lUkA6M8xeRiBIxAXzbg7h9P757L7UPHVksVj
-   Mob0L/4uw/Esl/DQBy0nuM0mErffIDC1j+ie2cPip1PVytujwaUIZFQ24
-   XHRNkR2ZSBgP6k1FO/E65hUFD7YDwLrdam/t3fl0M7nD2WD9L6jI231i6
-   zj3awh73PxQYApznGAznzrEiKp47cPqJ2JwSVw5zCF3Q90QCAmRbN0y7A
-   A==;
-IronPort-SDR: j2YIpKSr/HFUTI9ZJMmIer6BbL2zKdDGrigwUQPipr1vv6hEOYlLcvLZpYHTpki5Wv68AAwv8X
- zD8VasrBfCFIG7EYgu8sGLiag0eUUKFzA8CQjF5psHjed/TXpUMQilWktw1qPy1uGvyn9JxrNW
- e5Ze7szutWBVSDy5F6ezQ4c1T6S8xt7wx7PgtpJ7hJTY2JCxbBXJ8Ps+HprZqRC1JCs62fAr6L
- sH1+QZdd6m2MZ8vZoDz6DqcCj7pVnfQbkbeP9RiijymaghY7nUbxCmcvaRfGUqaMN1k2lWLZSC
- 2Q4=
-X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; 
-   d="scan'208";a="125617644"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Jun 2021 03:17:59 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Tue, 22 Jun 2021 03:17:58 -0700
-Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Tue, 22 Jun 2021 03:17:52 -0700
-From:   Eugen Hristev <eugen.hristev@microchip.com>
-To:     <robh+dt@kernel.org>, <nicolas.ferre@microchip.com>
-CC:     <alexandre.belloni@bootlin.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <ludovic.desroches@microchip.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>
-Subject: [PATCH] ARM: dts: at91: sama5d27_som1_ek: enable ADC node
-Date:   Tue, 22 Jun 2021 13:17:42 +0300
-Message-ID: <20210622101742.14535-1-eugen.hristev@microchip.com>
-X-Mailer: git-send-email 2.25.1
+        id S229828AbhFVK3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 06:29:33 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:42046 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229807AbhFVK31 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Jun 2021 06:29:27 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1lvdcE-00030O-By; Tue, 22 Jun 2021 12:26:46 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     jay.xu@rock-chips.com, "cl@rock-chips.com" <cl@rock-chips.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>, jamie@jamieiles.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        jagan@amarulasolutions.com, huangtao@rock-chips.com, wens@csie.org,
+        jbx6244@gmail.com, wim@linux-watchdog.org, uwe@kleine-koenig.org,
+        david.wu@rock-chips.com, jensenhuang@friendlyarm.com,
+        linux-kernel@vger.kernel.org, maz@kernel.org,
+        zhangqing@rock-chips.com, linux-rockchip@lists.infradead.org,
+        linux@roeck-us.net, linux-i2c@vger.kernel.org,
+        linux-mmc@vger.kernel.org, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, cnsztl@gmail.com,
+        linux-arm-kernel@lists.infradead.org, shawn.lin@rock-chips.com,
+        linux-watchdog@vger.kernel.org, gregkh@linuxfoundation.org,
+        michael@amarulasolutions.com, mail@david-bauer.net
+Subject: Re: (subset) [PATCH v5 0/4] arm64: dts: rockchip: add basic dtsi/dts files for RK3568 SoC
+Date:   Tue, 22 Jun 2021 12:26:30 +0200
+Message-Id: <162435742917.99007.5058927510330896859.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210622020517.13100-1-cl@rock-chips.com>
+References: <20210622020517.13100-1-cl@rock-chips.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the ADC for AN pins on Mikrobus1 and Mikrobus2 on the board.
-These correspond to channels AD6 and AD7 in the controller.
+On Tue, 22 Jun 2021 10:05:13 +0800, cl@rock-chips.com wrote:
+> v1:
+> 1. add some dt-bindings for RK3568 devices.
+> 2. add core dtsi for RK3568 SoC.
+> 3. add basic dts for RK3568 EVB
+> 
+> v2:
+> 1. sort device nodes by some rules.
+> 
+> [...]
 
- # cat /sys/bus/iio/devices/iio\:device0/in_voltage6_raw
- 240
- # cat /sys/bus/iio/devices/iio\:device0/in_voltage7_raw
- 16380
+Applied, thanks!
 
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
----
- arch/arm/boot/dts/at91-sama5d27_som1_ek.dts | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+I've dropped the pwm and watchdog nodes as their binding changes
+haven't been applied yet - see followup patches I'll post in a minute.
 
-diff --git a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
-index a9e6fee55a2a..261a7dbcfdee 100644
---- a/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
-+++ b/arch/arm/boot/dts/at91-sama5d27_som1_ek.dts
-@@ -224,8 +224,10 @@ i2c1: i2c@fc028000 {
- 			adc: adc@fc030000 {
- 				vddana-supply = <&vddana>;
- 				vref-supply = <&advref>;
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&pinctrl_mikrobus1_an &pinctrl_mikrobus2_an>;
- 
--				status = "disabled";
-+				status = "okay";
- 			};
- 
- 			pinctrl@fc038000 {
+I've also droppen the debounce clocks from the gpio nodes, as Jianqun
+is still working on that.
+
+That way the yaml dtbscheck is pretty happy with the result :-)
+
+Let's see if this can still make it into 5.14.
+
+[2/4] arm64: dts: rockchip: add generic pinconfig settings used by most Rockchip socs
+      commit: ef0bff8ba8dfa53780fca0fd5c369f9c78fc30cf
+[3/4] arm64: dts: rockchip: add core dtsi for RK3568 SoC
+      commit: a3adc0b9071d880dcceb78b5e921843502f272bd
+[4/4] arm64: dts: rockchip: add basic dts for RK3568 EVB
+      commit: 01610a24cefa182b155a17e38cd0b84f8a3f0529
+
+Best regards,
 -- 
-2.25.1
-
+Heiko Stuebner <heiko@sntech.de>
