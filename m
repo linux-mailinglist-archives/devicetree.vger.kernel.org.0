@@ -2,94 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6415A3B0EEA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 22:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 369C43B0F2C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 23:03:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230016AbhFVUkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 16:40:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45714 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230014AbhFVUkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 16:40:25 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3B49C061574;
-        Tue, 22 Jun 2021 13:38:08 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id hc16so362105ejc.12;
-        Tue, 22 Jun 2021 13:38:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3eHW4g0M+AtLmkacetNHIg50NRsqFDHflmrAnbT9il8=;
-        b=flVMOnNjJRyPppFooo5QIN/uNAstzkdl9q4zMNTVmwoYaX1twIO7XvbX5KQChzW7GS
-         KH+EZVhgYgfVbPalrDjvH7hkYg8Ig0LSCZAGl8TFcefcSv0oHWxz9M24C/MvEcZrWIqk
-         i94vIVpoqGSANjgbm193RtuZ4kBI10TvMkE9uiYATQKinlb7wJ4WmDBNHSlSUXXJnCv4
-         ZzVkb60tB+O0qH7SJhPjP9UAbmzlfGXxGajYupO7vs6mnDdu+1bE/1hm51WppeQQKaGo
-         DDmibUEIKdewZ5kiYqJjn8khQOpa1fZ/+oMlRiNq+Hng0XFWby7GOiR7NldbK9BFHt4p
-         NskQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3eHW4g0M+AtLmkacetNHIg50NRsqFDHflmrAnbT9il8=;
-        b=gkpk3xqOiG/mjBCkVPUwT9LpaY6THB944NgEIju0pNhwW0mveCI4JJ5BE1Yh3+0eo6
-         jQ88xo3LSTvoKLSSe3Jb0VPK6MGYeq+cS0Cg+PuyeVEfg+Z71CfCrcUxqDDWqptCEtxd
-         wGGUQBD7LQ8HDFSNfC9QVvD7IJCh9cNE/C2PMMD5/PkRm6J1qZv3c7JpGT9Agl/iAa0a
-         jX9QZCiV1kiraItZK+nIoHT2wYQ2A4k9bqCYEWmhZyIvUVynpnBmdG6lKVwqMuOKUiH+
-         3DFMCTyeyJEjtHPZw+9EzOhPBjkuvdZx3gw7V2YIyB4qMRL3+LMXbTzlXRjEVZRPnnMk
-         hxPQ==
-X-Gm-Message-State: AOAM531+eK+TcRs+vGqM8U0BNMHSUecc1avfXuk8qQP9lykXlWZg52h8
-        1sqRF6OwpquM0rMFXMs1PyQ=
-X-Google-Smtp-Source: ABdhPJynHOmJhiqJUTvOS6tHqbMRixF8LIO7dqBT3McCL9Z5zU385sROGZchDxO6GRFyLpZCYV7atQ==
-X-Received: by 2002:a17:906:a3d7:: with SMTP id ca23mr6057062ejb.176.1624394287273;
-        Tue, 22 Jun 2021 13:38:07 -0700 (PDT)
-Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
-        by smtp.gmail.com with ESMTPSA id ck2sm3939813edb.72.2021.06.22.13.38.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Jun 2021 13:38:06 -0700 (PDT)
-From:   Iskren Chernev <iskren.chernev@gmail.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Iskren Chernev <iskren.chernev@gmail.com>
-Subject: [PATCH v1 2/2] mailbox: qcom: Add support for sm4125 sm6115 APCS IPC
-Date:   Tue, 22 Jun 2021 23:37:59 +0300
-Message-Id: <20210622203759.566716-2-iskren.chernev@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210622203759.566716-1-iskren.chernev@gmail.com>
-References: <20210622203759.566716-1-iskren.chernev@gmail.com>
+        id S229612AbhFVVFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 17:05:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45280 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230157AbhFVVFR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Jun 2021 17:05:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B82596108E;
+        Tue, 22 Jun 2021 21:02:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624395780;
+        bh=v96U5qnlOhDf3w1FKsu7SjrxREMp2X2HSv3JOsCkgmU=;
+        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+        b=jp86WFjWXckU//EExyz6NMfilYlNSGD/Sp+e74iycIMnJPnrnvb2f/IMZhcf30u/Y
+         nZN/eIYPHlNFb7aaAK4BGrzQ8h60A0DeuaUctP8s9mDpf/LCXTiw3xhjYNzVwnhtzX
+         TCr/gTHfn3WY41P/JfXANtN8uFlsPQPDxHmgwY0xOxtbMzYm2w8bezm6pQenS5mO9T
+         QACOuqiKoEaVeTvNfrREoxgLiMZfrcQDhTBPBD0g1ngPW8KyWNjA64wNxxoLTDCtna
+         okD7zfnO67pIIlP+aLcNDcQOeKWv20TpkQkk9C2UIZdw5p+0AdNoxQDYVfglebC4DR
+         9wbHzTawfV26w==
+Date:   Tue, 22 Jun 2021 14:02:58 -0700 (PDT)
+From:   Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
+To:     Claire Chang <tientzu@chromium.org>
+cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        grant.likely@arm.com, xypron.glpk@gmx.de,
+        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
+        bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
+        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
+        daniel@ffwll.ch, airlied@linux.ie, dri-devel@lists.freedesktop.org,
+        intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
+        jxgao@google.com, joonas.lahtinen@linux.intel.com,
+        linux-pci@vger.kernel.org, maarten.lankhorst@linux.intel.com,
+        matthew.auld@intel.com, rodrigo.vivi@intel.com,
+        thomas.hellstrom@linux.intel.com, thomas.lendacky@amd.com
+Subject: Re: [PATCH v14 01/12] swiotlb: Refactor swiotlb init functions
+In-Reply-To: <20210619034043.199220-2-tientzu@chromium.org>
+Message-ID: <alpine.DEB.2.21.2106221402390.24906@sstabellini-ThinkPad-T480s>
+References: <20210619034043.199220-1-tientzu@chromium.org> <20210619034043.199220-2-tientzu@chromium.org>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM4125 and SM6115, codename bengal, have APCS mailbox setup similar to
-msm8998 and msm8916.
+On Sat, 19 Jun 2021, Claire Chang wrote:
+> Add a new function, swiotlb_init_io_tlb_mem, for the io_tlb_mem struct
+> initialization to make the code reusable.
+> 
+> Signed-off-by: Claire Chang <tientzu@chromium.org>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
+> Tested-by: Stefano Stabellini <sstabellini@kernel.org>
+> Tested-by: Will Deacon <will@kernel.org>
 
-Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
----
- drivers/mailbox/qcom-apcs-ipc-mailbox.c | 2 ++
- 1 file changed, 2 insertions(+)
+Acked-by: Stefano Stabellini <sstabellini@kernel.org>
 
-diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-index f25324d03842..1a4d8cca5881 100644
---- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-+++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
-@@ -166,6 +166,8 @@ static const struct of_device_id qcom_apcs_ipc_of_match[] = {
- 	{ .compatible = "qcom,sc8180x-apss-shared", .data = &apps_shared_apcs_data },
- 	{ .compatible = "qcom,sdm660-apcs-hmss-global", .data = &sdm660_apcs_data },
- 	{ .compatible = "qcom,sdm845-apss-shared", .data = &apps_shared_apcs_data },
-+	{ .compatible = "qcom,sm4250-apcs-hmss-global", .data = &sdm660_apcs_data },
-+	{ .compatible = "qcom,sm6115-apcs-hmss-global", .data = &sdm660_apcs_data },
- 	{ .compatible = "qcom,sm8150-apss-shared", .data = &apps_shared_apcs_data },
- 	{ .compatible = "qcom,sdx55-apcs-gcc", .data = &sdx55_apcs_data },
- 	{}
--- 
-2.31.1
 
+> ---
+>  kernel/dma/swiotlb.c | 50 ++++++++++++++++++++++----------------------
+>  1 file changed, 25 insertions(+), 25 deletions(-)
+> 
+> diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+> index 52e2ac526757..1f9b2b9e7490 100644
+> --- a/kernel/dma/swiotlb.c
+> +++ b/kernel/dma/swiotlb.c
+> @@ -168,9 +168,28 @@ void __init swiotlb_update_mem_attributes(void)
+>  	memset(vaddr, 0, bytes);
+>  }
+>  
+> -int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+> +static void swiotlb_init_io_tlb_mem(struct io_tlb_mem *mem, phys_addr_t start,
+> +				    unsigned long nslabs, bool late_alloc)
+>  {
+> +	void *vaddr = phys_to_virt(start);
+>  	unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
+> +
+> +	mem->nslabs = nslabs;
+> +	mem->start = start;
+> +	mem->end = mem->start + bytes;
+> +	mem->index = 0;
+> +	mem->late_alloc = late_alloc;
+> +	spin_lock_init(&mem->lock);
+> +	for (i = 0; i < mem->nslabs; i++) {
+> +		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> +		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> +		mem->slots[i].alloc_size = 0;
+> +	}
+> +	memset(vaddr, 0, bytes);
+> +}
+> +
+> +int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+> +{
+>  	struct io_tlb_mem *mem;
+>  	size_t alloc_size;
+>  
+> @@ -186,16 +205,8 @@ int __init swiotlb_init_with_tbl(char *tlb, unsigned long nslabs, int verbose)
+>  	if (!mem)
+>  		panic("%s: Failed to allocate %zu bytes align=0x%lx\n",
+>  		      __func__, alloc_size, PAGE_SIZE);
+> -	mem->nslabs = nslabs;
+> -	mem->start = __pa(tlb);
+> -	mem->end = mem->start + bytes;
+> -	mem->index = 0;
+> -	spin_lock_init(&mem->lock);
+> -	for (i = 0; i < mem->nslabs; i++) {
+> -		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> -		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> -		mem->slots[i].alloc_size = 0;
+> -	}
+> +
+> +	swiotlb_init_io_tlb_mem(mem, __pa(tlb), nslabs, false);
+>  
+>  	io_tlb_default_mem = mem;
+>  	if (verbose)
+> @@ -282,8 +293,8 @@ swiotlb_late_init_with_default_size(size_t default_size)
+>  int
+>  swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+>  {
+> -	unsigned long bytes = nslabs << IO_TLB_SHIFT, i;
+>  	struct io_tlb_mem *mem;
+> +	unsigned long bytes = nslabs << IO_TLB_SHIFT;
+>  
+>  	if (swiotlb_force == SWIOTLB_NO_FORCE)
+>  		return 0;
+> @@ -297,20 +308,9 @@ swiotlb_late_init_with_tbl(char *tlb, unsigned long nslabs)
+>  	if (!mem)
+>  		return -ENOMEM;
+>  
+> -	mem->nslabs = nslabs;
+> -	mem->start = virt_to_phys(tlb);
+> -	mem->end = mem->start + bytes;
+> -	mem->index = 0;
+> -	mem->late_alloc = 1;
+> -	spin_lock_init(&mem->lock);
+> -	for (i = 0; i < mem->nslabs; i++) {
+> -		mem->slots[i].list = IO_TLB_SEGSIZE - io_tlb_offset(i);
+> -		mem->slots[i].orig_addr = INVALID_PHYS_ADDR;
+> -		mem->slots[i].alloc_size = 0;
+> -	}
+> -
+> +	memset(mem, 0, sizeof(*mem));
+>  	set_memory_decrypted((unsigned long)tlb, bytes >> PAGE_SHIFT);
+> -	memset(tlb, 0, bytes);
+> +	swiotlb_init_io_tlb_mem(mem, virt_to_phys(tlb), nslabs, true);
+>  
+>  	io_tlb_default_mem = mem;
+>  	swiotlb_print_info();
+> -- 
+> 2.32.0.288.g62a8d224e6-goog
+> 
