@@ -2,81 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 590323B07DA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 16:48:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBCF43B07F9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 16:57:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230304AbhFVOuf convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Jun 2021 10:50:35 -0400
-Received: from out28-2.mail.aliyun.com ([115.124.28.2]:44388 "EHLO
-        out28-2.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230185AbhFVOuf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 10:50:35 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.439722|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00839472-0.000267861-0.991337;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047213;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=8;RT=8;SR=0;TI=SMTPD_---.KWJick0_1624373295;
-Received: from zhouyanjie-virtual-machine(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KWJick0_1624373295)
-          by smtp.aliyun-inc.com(10.147.40.26);
-          Tue, 22 Jun 2021 22:48:15 +0800
-Date:   Tue, 22 Jun 2021 22:48:14 +0800
-From:   =?UTF-8?B?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, list@opendingux.net
-Subject: Re: [PATCH v2 0/6] clk: Ingenic JZ4760(B) support
-Message-ID: <20210622224814.288587ac@zhouyanjie-virtual-machine>
-In-Reply-To: <20210530164923.18134-1-paul@crapouillou.net>
-References: <20210530164923.18134-1-paul@crapouillou.net>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+        id S230304AbhFVO7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 10:59:30 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:58342 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229988AbhFVO7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 10:59:30 -0400
+X-Greylist: delayed 302 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Jun 2021 10:59:29 EDT
+X-UUID: f765637cec204e339ef47fcb8543a4b4-20210622
+X-UUID: f765637cec204e339ef47fcb8543a4b4-20210622
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <christine.zhu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1255020816; Tue, 22 Jun 2021 22:52:09 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 22 Jun 2021 22:52:08 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 22 Jun 2021 22:52:08 +0800
+From:   Christine Zhu <Christine.Zhu@mediatek.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <inux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <seiya.wang@mediatek.com>
+Subject: [v2,0/3] watchdog: mt8195: add wdt support
+Date:   Tue, 22 Jun 2021 22:50:11 +0800
+Message-ID: <20210622145013.28846-1-Christine.Zhu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Change since v2:
+  - Remove the unneeded tag
+  - Add other proper prefixes on title
+  - Add mt8195 of_device_id
 
-A gentle ping :)
+Change since v1:
+  - Supports MT8195 watchdog device
+  - Supports MT8195 watchdog reset-controller
 
-Here are some new patches that need to be based on this series.
+christine.zhu (3):
+  dt-binding: mediatek: mt8195: update mtk-wdt document
+  dt-binding: reset: mt8195: add toprgu reset-controller head file
+  watchdog: mediatek: mt8195: add wdt support
 
-Thanks and best regards!
+ .../devicetree/bindings/watchdog/mtk-wdt.txt       |  2 +-
+ drivers/watchdog/mtk_wdt.c                         |  6 +++++
+ .../dt-bindings/reset-controller/mt8195-resets.h   | 29 ++++++++++++++++++++++
+ 3 files changed, 36 insertions(+), 1 deletion(-)
+ create mode 100644 include/dt-bindings/reset-controller/mt8195-resets.h
 
-于 Sun, 30 May 2021 17:49:17 +0100
-Paul Cercueil <paul@crapouillou.net> 写道:
-
-> Hi,
-> 
-> Here is (finally) my v2 of the JZ4760(B) patchset.
-> 
-> Patches 1-5 are the exact same as in v1.
-> 
-> Patch 6's algorithm was updated with Zhou's feedback.
-> 
-> Cheers,
-> -Paul
-> 
-> Paul Cercueil (6):
->   dt-bindings: clock: ingenic: Add ingenic,jz4760{,b}-cgu compatibles
->   clk: Support bypassing dividers
->   clk: ingenic: Read bypass register only when there is one
->   clk: ingenic: Remove pll_info.no_bypass_bit
->   clk: ingenic: Support overriding PLLs M/N/OD calc algorithm
->   clk: ingenic: Add support for the JZ4760
-> 
->  .../bindings/clock/ingenic,cgu.yaml           |   4 +
->  drivers/clk/ingenic/Kconfig                   |  10 +
->  drivers/clk/ingenic/Makefile                  |   1 +
->  drivers/clk/ingenic/cgu.c                     |  92 ++--
->  drivers/clk/ingenic/cgu.h                     |  12 +-
->  drivers/clk/ingenic/jz4725b-cgu.c             |  12 +-
->  drivers/clk/ingenic/jz4740-cgu.c              |  12 +-
->  drivers/clk/ingenic/jz4760-cgu.c              | 428
-> ++++++++++++++++++ drivers/clk/ingenic/jz4770-cgu.c              |
-> 15 +- drivers/clk/ingenic/tcu.c                     |   2 +
->  include/dt-bindings/clock/jz4760-cgu.h        |  54 +++
->  11 files changed, 586 insertions(+), 56 deletions(-)
->  create mode 100644 drivers/clk/ingenic/jz4760-cgu.c
->  create mode 100644 include/dt-bindings/clock/jz4760-cgu.h
-> 
 
