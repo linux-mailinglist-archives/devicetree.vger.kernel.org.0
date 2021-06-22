@@ -2,271 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEB923B0751
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 16:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EFCE3B0788
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 16:36:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231811AbhFVOZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 10:25:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44038 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231621AbhFVOZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 10:25:02 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60183C061756;
-        Tue, 22 Jun 2021 07:22:46 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id q14so2621876eds.5;
-        Tue, 22 Jun 2021 07:22:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gKFa9cbppvuSzICTPCyOrCLDkwJRcl6t3DzrxGzA/dw=;
-        b=I+uKF56Gn/CjXdVBmgDr0ESzogsO8XEg4sPLQ28pDtZiDI0lek/jseRmmLijm1SPye
-         1SIKihRWsiDqfXSuoj7H/PmhWTVVhZtR2xa7T993kj45Q55oSfDShmgx3+ITp6QkQR9p
-         sNsZ5xr5X10g+2uQ4cWgKCFEJUsBBXBfDZMUEaNb/zPFXcsScuS4iHIrAFn9yav8yaNR
-         lQqWSlbrvWT5ZBdN9hzb654yQz0PMtn2kmF3gTXHaLVg3H/0ZeUYI2bK1Kz3ufT62+F5
-         t/2p9R+hq/u6rA3DNjZOqLQFBsAJjpoSH8pKeWGLZLTOknjFgDYl+j9L1/CBNsGYnNRh
-         fpQg==
+        id S231898AbhFVOjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 10:39:10 -0400
+Received: from mail-il1-f179.google.com ([209.85.166.179]:44026 "EHLO
+        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231860AbhFVOjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 10:39:09 -0400
+Received: by mail-il1-f179.google.com with SMTP id q18so18610718ile.10;
+        Tue, 22 Jun 2021 07:36:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gKFa9cbppvuSzICTPCyOrCLDkwJRcl6t3DzrxGzA/dw=;
-        b=TYerjw9gorvocKOs2bkoRJ+0Rp8ceqQekSQlFCiXdLGzTbn7N7BPSbZHOKeUDhZsJi
-         ibeayjWzeIWXl/vz1U57q38a3eGXdAxDgAkQQYMcxPOk5/zjFXCVZKD0lNXsIhHECmgW
-         ENAnPrg3xUQia7yZF2TyaLoD+aDuJxzxQi63+Zy2DPiSouAERh4vroAGXIhDUSFOttRG
-         fmnvtqt+KV72BMb7EtZzSCZ/P0H7W1dLigkPv+DGgYQfnHrZydBr6f8wjCkfEi9HSzsG
-         Pq650jxrkmvnPzCmK/puLc9UcALQYp+9ppQdMYaXtImrnRfuocSUptffCwZkdNOxT9Tf
-         EUlQ==
-X-Gm-Message-State: AOAM532UB+y+HoNyutJ9ECWLami+t6Je6GuP/qAu/QQ3G5Um1zi50Qgt
-        oxFwFJUfmWEpM8Q6ldekJE0=
-X-Google-Smtp-Source: ABdhPJxHuIeC+bfIDGXEWab2/pNXQbgJwer0PCekKjMU5VnJeSCiOaJiwRV3CkZIQbYdd/PHv4n3QQ==
-X-Received: by 2002:a05:6402:3492:: with SMTP id v18mr5342791edc.130.1624371765004;
-        Tue, 22 Jun 2021 07:22:45 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id j19sm2748996ejo.3.2021.06.22.07.22.43
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=zOeQKdyOXah3VV0EelxuSLVcqrkzjeqR3cfPi6bJjF4=;
+        b=YNAGvnM3IRi+owCXCJxJSopVr9+LOBRn8yN69NQKZa1GAbF9Pvpx/26mks6keoHglm
+         Pi1t+TRVxvRUpHLifNdQZUQR8YnG1iMITx1bqxZNSIg60Wc4KevGvNqpdD1MAXf8F5GE
+         5wYYJHZRlOeZZc1nlpmiX0nJoRdKqYm3H2ec3XUI5MtwS4hUTq/P9nOUXQmCGyt91doI
+         mXRzcLxbDDoY4BZ98JcU4SUiYhmap4//mWo7DIgs+kE/0Px/3UnlerGXdPAW1aXn3I1E
+         m+JrunT88FqpuXxPhNSCZwS8c3geHfRj57aUKNWFQqb8C/qu4Jtuoj3iDyla5BAgnHGc
+         HlHA==
+X-Gm-Message-State: AOAM530crUAi3yctsGpQRy5CoDoEjcAZa5g+kGIUoSXIxoz6ZCxvpXzl
+        hdy1kqiMWNKMsK+3oCRqmkvZ8iEroA==
+X-Google-Smtp-Source: ABdhPJzEyRd7o5rIAPVeB5UMUP7Zye1uKUBirPzK4G6V5f06Vk/QK1q1b5zdkhzhCFfh6ZnphebibQ==
+X-Received: by 2002:a92:8e45:: with SMTP id k5mr3016527ilh.116.1624372611596;
+        Tue, 22 Jun 2021 07:36:51 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id x16sm7897382ilq.57.2021.06.22.07.36.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jun 2021 07:22:44 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: usb: tegra: Convert to json-schema
-Date:   Tue, 22 Jun 2021 16:24:36 +0200
-Message-Id: <20210622142436.4014610-2-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210622142436.4014610-1-thierry.reding@gmail.com>
-References: <20210622142436.4014610-1-thierry.reding@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Tue, 22 Jun 2021 07:36:50 -0700 (PDT)
+Received: (nullmailer pid 3566368 invoked by uid 1000);
+        Tue, 22 Jun 2021 14:36:40 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Robert Marko <robert.marko@sartura.hr>,
+        linux-pwm@vger.kernel.org,
+        Balaji Prakash J <bjagadee@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+In-Reply-To: <bf56a9968149a7a70e6ef747ff054ee3728b467c.1624348502.git.baruch@tkos.co.il>
+References: <f97c32aa98c9cdd977fac22cd504ad97448949e9.1624348502.git.baruch@tkos.co.il> <bf56a9968149a7a70e6ef747ff054ee3728b467c.1624348502.git.baruch@tkos.co.il>
+Subject: Re: [PATCH v3 2/3] dt-bindings: pwm: add IPQ6018 binding
+Date:   Tue, 22 Jun 2021 08:36:40 -0600
+Message-Id: <1624372600.495807.3566367.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Tue, 22 Jun 2021 10:55:01 +0300, Baruch Siach wrote:
+> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
+> 
+> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
+> ---
+> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
+> 
+> v2: Make #pwm-cells const (Rob Herring)
+> ---
+>  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
+> 
 
-Convert the old plain-text device tree bindings for the USB EHCI
-controller found on NVIDIA Tegra SoCs to the json-schema format.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
-Changes in v2:
-- drop unneeded clock-names property
-- fix indentation issues
+yamllint warnings/errors:
 
- .../bindings/usb/nvidia,tegra20-ehci.txt      |  23 ---
- .../bindings/usb/nvidia,tegra20-ehci.yaml     | 150 ++++++++++++++++++
- 2 files changed, 150 insertions(+), 23 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra20-ehci.txt
- create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra20-ehci.yaml
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/pwm/ipq-pwm.example.dt.yaml:0:0: /example-0/soc/pwm@1941010: failed to match any schema with compatible: ['qcom,pwm-ipq6018']
+\ndoc reference errors (make refcheckdocs):
 
-diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra20-ehci.txt b/Documentation/devicetree/bindings/usb/nvidia,tegra20-ehci.txt
-deleted file mode 100644
-index f60785f73d3d..000000000000
---- a/Documentation/devicetree/bindings/usb/nvidia,tegra20-ehci.txt
-+++ /dev/null
-@@ -1,23 +0,0 @@
--Tegra SOC USB controllers
--
--The device node for a USB controller that is part of a Tegra
--SOC is as described in the document "Open Firmware Recommended
--Practice : Universal Serial Bus" with the following modifications
--and additions :
--
--Required properties :
-- - compatible : For Tegra20, must contain "nvidia,tegra20-ehci".
--   For Tegra30, must contain "nvidia,tegra30-ehci".  Otherwise, must contain
--   "nvidia,<chip>-ehci" plus at least one of the above, where <chip> is
--   tegra114, tegra124, tegra132, or tegra210.
-- - nvidia,phy : phandle of the PHY that the controller is connected to.
-- - clocks : Must contain one entry, for the module clock.
--   See ../clocks/clock-bindings.txt for details.
-- - resets : Must contain an entry for each entry in reset-names.
--   See ../reset/reset.txt for details.
-- - reset-names : Must include the following entries:
--   - usb
--
--Optional properties:
-- - nvidia,needs-double-reset : boolean is to be set for some of the Tegra20
--   USB ports, which need reset twice due to hardware issues.
-diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra20-ehci.yaml b/Documentation/devicetree/bindings/usb/nvidia,tegra20-ehci.yaml
-new file mode 100644
-index 000000000000..079cae44b8d9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/nvidia,tegra20-ehci.yaml
-@@ -0,0 +1,150 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/usb/nvidia,tegra20-ehci.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Device tree binding for NVIDIA Tegra USB controllers
-+
-+description: |
-+  The device node for a USB controller that is part of a Tegra SOC is as
-+  described in the document "Open Firmware Recommended Practice : Universal
-+  Serial Bus". Modifications and additions are detailed in this document.
-+
-+maintainers:
-+  - Thierry Reding <treding@nvidia.com>
-+  - Jon Hunter <jonathanh@nvidia.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - nvidia,tegra210-ehci
-+              - nvidia,tegra124-ehci
-+              - nvidia,tegra114-ehci
-+          - const: nvidia,tegra30-ehci
-+      - items:
-+          - const: nvidia,tegra30-ehci
-+      - items:
-+          - const: nvidia,tegra20-ehci
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  phy_type:
-+    $ref: /schemas/types.yaml#/definitions/string
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: usb
-+
-+  nvidia,phy:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      phandle of the PHY that the controller is connected to
-+
-+  nvidia,needs-double-reset:
-+    type: boolean
-+    description:
-+      This must be set for some instances of the USB controller found on
-+      Tegra20 that need to be reset twice due to some hardware issue.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - resets
-+  - reset-names
-+  - phy_type
-+  - nvidia,phy
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/tegra20-car.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    usb@c5000000 {
-+        compatible = "nvidia,tegra20-ehci";
-+        reg = <0xc5000000 0x4000>;
-+        interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-+        phy_type = "utmi";
-+        clocks = <&tegra_car TEGRA20_CLK_USBD>;
-+        resets = <&tegra_car 22>;
-+        reset-names = "usb";
-+        nvidia,needs-double-reset;
-+        nvidia,phy = <&phy1>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/clock/tegra30-car.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    usb@7d000000 {
-+        compatible = "nvidia,tegra30-ehci";
-+        reg = <0x7d000000 0x4000>;
-+        interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-+        phy_type = "utmi";
-+        clocks = <&tegra_car TEGRA30_CLK_USBD>;
-+        resets = <&tegra_car 22>;
-+        reset-names = "usb";
-+        nvidia,needs-double-reset;
-+        nvidia,phy = <&phy1>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/clock/tegra114-car.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    usb@7d000000 {
-+        compatible = "nvidia,tegra114-ehci", "nvidia,tegra30-ehci";
-+        reg = <0x7d000000 0x4000>;
-+        interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-+        phy_type = "utmi";
-+        clocks = <&tegra_car TEGRA114_CLK_USBD>;
-+        resets = <&tegra_car 22>;
-+        reset-names = "usb";
-+        nvidia,phy = <&phy1>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/clock/tegra124-car.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    usb@7d000000 {
-+        compatible = "nvidia,tegra124-ehci", "nvidia,tegra30-ehci";
-+        reg = <0x7d000000 0x4000>;
-+        interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-+        phy_type = "utmi";
-+        clocks = <&tegra_car TEGRA124_CLK_USBD>;
-+        resets = <&tegra_car 22>;
-+        reset-names = "usb";
-+        nvidia,phy = <&phy1>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/clock/tegra210-car.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    usb@7d000000 {
-+        compatible = "nvidia,tegra210-ehci", "nvidia,tegra30-ehci";
-+        reg = <0x7d000000 0x4000>;
-+        interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-+        phy_type = "utmi";
-+        clocks = <&tegra_car TEGRA210_CLK_USBD>;
-+        resets = <&tegra_car 22>;
-+        reset-names = "usb";
-+        nvidia,phy = <&phy1>;
-+    };
--- 
-2.32.0
+See https://patchwork.ozlabs.org/patch/1495481
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
