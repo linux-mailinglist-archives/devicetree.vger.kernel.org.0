@@ -2,123 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFCD83B04E9
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 14:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23D083B04EF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 14:43:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbhFVMpY convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Jun 2021 08:45:24 -0400
-Received: from mslow1.mail.gandi.net ([217.70.178.240]:35047 "EHLO
-        mslow1.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229818AbhFVMpX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 08:45:23 -0400
-Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id C5E59C2485;
-        Tue, 22 Jun 2021 12:39:38 +0000 (UTC)
-Received: (Authenticated sender: paul@opendingux.net)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 5BBB8FF808;
-        Tue, 22 Jun 2021 12:39:09 +0000 (UTC)
-Date:   Tue, 22 Jun 2021 13:39:02 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 4/4] MIPS: CI20: Reduce MSC0 frequency and add second
- percpu timer for SMP.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com
-Message-Id: <2HS3VQ.DXNKJZKKQIX81@crapouillou.net>
-In-Reply-To: <1624347445-88070-5-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1624347445-88070-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1624347445-88070-5-git-send-email-zhouyanjie@wanyeetech.com>
-X-Mailer: geary/40.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+        id S231775AbhFVMp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 08:45:29 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:46591 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231698AbhFVMp2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 08:45:28 -0400
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 22 Jun 2021 05:43:09 -0700
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 22 Jun 2021 05:43:07 -0700
+X-QCInternal: smtphost
+Received: from rajeevny-linux.qualcomm.com ([10.204.66.121])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 22 Jun 2021 18:12:35 +0530
+Received: by rajeevny-linux.qualcomm.com (Postfix, from userid 2363605)
+        id 5AD7F20FA1; Tue, 22 Jun 2021 18:12:34 +0530 (IST)
+From:   Rajeev Nandan <rajeevny@codeaurora.org>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Rajeev Nandan <rajeevny@codeaurora.org>,
+        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
+        robh+dt@kernel.org, robh@kernel.org, abhinavk@codeaurora.org,
+        kalyan_t@codeaurora.org, mkrishn@codeaurora.org, jonathan@marek.ca,
+        dmitry.baryshkov@linaro.org
+Subject: [v2 0/3] drm/msm/dsi: Add display DSI support for SC7280 target
+Date:   Tue, 22 Jun 2021 18:12:25 +0530
+Message-Id: <1624365748-24224-1-git-send-email-rajeevny@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
+Changes in this series add support for MSM display DSI CTRL & PHY drivers
+for the SC7280 SoC, which has DSI controller v2.5.0 and DSI PHY v4.1.
 
-Le mar., juin 22 2021 at 15:37:25 +0800, 周琰杰 (Zhou Yanjie) 
-<zhouyanjie@wanyeetech.com> a écrit :
-> 1.On the hardware of CI20 v1, when the MSC0 clock is 50MHz, there is
->   a certain probability that the communication with the SD card will
->   be abnormal, and the file system will be damaged in severe cases.
->   Limiting the maximum MSC0 clock frequency to 25MHz can solve this
->   problem.
+Changes in v2:
+- Dropped patch #1 (dt-bindings: msm/dsi: Add yaml schema for 7nm DSI PHY) and
+  reused Jonathan's patch [1] (dt-bindings: msm: dsi: add missing 7nm bindings)
+- Added new patch (dt-bindings: msm/dsi: Add sc7280 7nm dsi phy)
+  Now using <vendor>,<soc>-<block> format for "compatible" property (Rob)
+- Fixed clang warning for max_pll_rate as per [2] (Dmitry Baryshkov)
+- Fixed num_dsi_phy and io_start (Dmitry Baryshkov)
 
-That doesn't prevent anything, since you could very well use a recent 
-kernel with an older device tree.
+[1] https://lore.kernel.org/linux-arm-msm/20210617144349.28448-2-jonathan@marek.ca/
+[2] https://lore.kernel.org/linux-arm-msm/20210514213032.575161-1-arnd@kernel.org/
 
-Besides, the PM does say that 50 MHz bus clock is supported, so I 
-suspect that your problem is actually a driver issue.
+Rajeev Nandan (3):
+  dt-bindings: msm/dsi: Add sc7280 7nm dsi phy
+  drm/msm/dsi: Add PHY configuration for SC7280
+  drm/msm/dsi: Add DSI support for SC7280
 
-The proper way to work around it, temporarily or not, would be to set 
-the max frequency to 25 MHz in the driver itself, if the board's 
-compatible strings matches ingenic,ci20.
+ .../bindings/display/msm/dsi-phy-7nm.yaml          |  1 +
+ drivers/gpu/drm/msm/Kconfig                        |  6 ++---
+ drivers/gpu/drm/msm/dsi/dsi_cfg.c                  | 20 +++++++++++++++++
+ drivers/gpu/drm/msm/dsi/dsi_cfg.h                  |  1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |  2 ++
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy.h              |  1 +
+ drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c          | 26 ++++++++++++++++++++++
+ 7 files changed, 54 insertions(+), 3 deletions(-)
 
-Cheers,
--Paul
-
-> 2.Add a new TCU channel as the percpu timer of core1, this is to
->   prepare for the subsequent SMP support. The newly added channel
->   will not adversely affect the current single-core state.
-> 3.Adjust the position of TCU node to make it consistent with the
->   order in jz4780.dtsi file.
-> 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> ---
->  arch/mips/boot/dts/ingenic/ci20.dts | 23 ++++++++++++-----------
->  1 file changed, 12 insertions(+), 11 deletions(-)
-> 
-> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts 
-> b/arch/mips/boot/dts/ingenic/ci20.dts
-> index 8877c62..58123e0 100644
-> --- a/arch/mips/boot/dts/ingenic/ci20.dts
-> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
-> @@ -118,11 +118,22 @@
->  	assigned-clock-rates = <48000000>;
->  };
-> 
-> +&tcu {
-> +	/*
-> +	 * 750 kHz for the system timers and 3 MHz for the clocksources,
-> +	 * use channel #0 and #1 for the per cpu system timers, and use
-> +	 * channel #2 for the clocksource.
-> +	 */
-> +	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
-> +					  <&tcu TCU_CLK_TIMER2>, <&tcu TCU_CLK_OST>;
-> +	assigned-clock-rates = <750000>, <750000>, <3000000>, <3000000>;
-> +};
-> +
->  &mmc0 {
->  	status = "okay";
-> 
->  	bus-width = <4>;
-> -	max-frequency = <50000000>;
-> +	max-frequency = <25000000>;
-> 
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&pins_mmc0>;
-> @@ -522,13 +533,3 @@
->  		bias-disable;
->  	};
->  };
-> -
-> -&tcu {
-> -	/*
-> -	 * 750 kHz for the system timer and 3 MHz for the clocksource,
-> -	 * use channel #0 for the system timer, #1 for the clocksource.
-> -	 */
-> -	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
-> -					  <&tcu TCU_CLK_OST>;
-> -	assigned-clock-rates = <750000>, <3000000>, <3000000>;
-> -};
-> --
-> 2.7.4
-> 
-
+-- 
+2.7.4
 
