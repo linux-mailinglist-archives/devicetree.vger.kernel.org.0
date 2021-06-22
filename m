@@ -2,63 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0B7F3B0846
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 17:09:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5540C3B0865
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 17:14:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231987AbhFVPLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 11:11:38 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:39821 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231680AbhFVPLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 11:11:37 -0400
-X-UUID: 973e2495fcbb4f89aa0581e71711c862-20210622
-X-UUID: 973e2495fcbb4f89aa0581e71711c862-20210622
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <christine.zhu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 337160652; Tue, 22 Jun 2021 23:09:20 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 22 Jun 2021 23:09:20 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 22 Jun 2021 23:09:19 +0800
-From:   Christine Zhu <Christine.Zhu@mediatek.com>
-To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
-        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
-CC:     <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <inux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <seiya.wang@mediatek.com>
-Subject: [v2,0/3] watchdog: mt8195: add wdt support 
-Date:   Tue, 22 Jun 2021 23:09:14 +0800
-Message-ID: <20210622150917.29137-1-Christine.Zhu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S231248AbhFVPQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 11:16:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37374 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230047AbhFVPQr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Jun 2021 11:16:47 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C8A5160BD3;
+        Tue, 22 Jun 2021 15:14:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624374871;
+        bh=dIEj6vfhrqa5OP3Nq3q/gHd4h8zOVuJeHSwbVbftx5g=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=aHHem3Uhcn/p9N1YyU7v6pNb3g0kM0vOqV0C0Pnr3pMZIw8U68tsMuZovZ6fJrR20
+         SF3K4MX9EkEb+85jQuGrNzuLB7x7Ad0l5pW7Hs0ECxCbvi9Zm6UQ1djPLidS6Umc3Q
+         axbuiGlD4J1MZ7zsawXnw7k1sdY/k2DSN5WYnteDW+qusebP/0Fmy8KbCIty+JClC5
+         c25FpeNxXJnS+SYYvuTeUxp3tqJRnoW/d2ttKjjn67EhGw/YtvflLk6vqtoLz0ITJS
+         gKjUzaVCcJKBdJKYli0NKPMT9oxWFqU7TB2AykEHLyEEsDDxoy6qtb6qytTdI5+oOK
+         KecOfgnz/57cg==
+From:   Mark Brown <broonie@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Ian Ray <ian.ray@ge.com>, linux-spi@vger.kernel.org
+Subject: Re: (subset) [PATCHv4 0/6] GE Healthcare PPD firmware upgrade driver for ACHC
+Date:   Tue, 22 Jun 2021 16:14:01 +0100
+Message-Id: <162437400236.2387.7235966827416614752.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210609151235.48964-1-sebastian.reichel@collabora.com>
+References: <20210609151235.48964-1-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Supports MT8195 watchdog device. Supports MT8195 watchdog reset-controller feature.
+On Wed, 9 Jun 2021 17:12:29 +0200, Sebastian Reichel wrote:
+> The PPD has a secondary processor (NXP Kinetis K20), which can be
+> programmed from the main system. It is connected to the main processor
+> by having it's EzPort interface connected to the SPI bus. Currently
+> both (normal and EzPort) interfaces are simply exposed to userspace.
+> This does not work for the EzPort, since EzPort usage requires a device
+> reset. The proper solution is to do the flashing from kernel space
+> with properly timed toggling of EzPort chip-select and reset line. In
+> PATCHv2 it was suggested, that this should happen via an SPI ancillary
+> device, so this is how it has been implemented now.
+> 
+> [...]
 
-Change since v1:
-  -remove the unneeded tag in [v1,1/3] [v1,2/3] [v1,3/3]
-  -add of_device_id of MT8195 in [v1,3/3]
-  -use more proper prefixes, such as "dt-bindings: mediatek: mt8195:"
-  -provide more information in the cover letter
+Applied to
 
-christine.zhu (3):
-  dt-binding: mediatek: mt8195: update mtk-wdt document
-  dt-binding: reset: mt8195: add toprgu reset-controller head file
-  watchdog: mediatek: mt8195: add wdt support
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
- .../devicetree/bindings/watchdog/mtk-wdt.txt       |  2 +-
- drivers/watchdog/mtk_wdt.c                         |  6 +++++
- .../dt-bindings/reset-controller/mt8195-resets.h   | 29 ++++++++++++++++++++++
- 3 files changed, 36 insertions(+), 1 deletion(-)
- create mode 100644 include/dt-bindings/reset-controller/mt8195-resets.h
+Thanks!
 
+[1/6] spi: add ancillary device support
+      commit: 0c79378c01999bd60057c475f163ec807c24891f
+[2/6] spi: dt-bindings: support devices with multiple chipselects
+      commit: d90609a4b72dbfe42da2a55f3078c35e669948e0
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
