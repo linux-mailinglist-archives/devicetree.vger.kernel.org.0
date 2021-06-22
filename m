@@ -2,147 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BAB53B024F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 13:05:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A85DA3B02B3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 13:24:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229831AbhFVLHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 07:07:39 -0400
-Received: from foss.arm.com ([217.140.110.172]:47060 "EHLO foss.arm.com"
+        id S229668AbhFVL1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 07:27:00 -0400
+Received: from ni.piap.pl ([195.187.100.5]:53334 "EHLO ni.piap.pl"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229682AbhFVLHh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Jun 2021 07:07:37 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0069231B;
-        Tue, 22 Jun 2021 04:05:21 -0700 (PDT)
-Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5302E3F694;
-        Tue, 22 Jun 2021 04:05:19 -0700 (PDT)
-Date:   Tue, 22 Jun 2021 12:05:17 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Jianjun Wang <jianjun.wang@mediatek.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Randy Wu <Randy.Wu@mediatek.com>, youlin.pei@mediatek.com
-Subject: Re: [PATCH 1/2] dt-bindings: PCI: mediatek-gen3: Add support for
- MT8195
-Message-ID: <20210622110517.GB24565@lpieralisi>
-References: <20210601024408.24485-1-jianjun.wang@mediatek.com>
- <20210601024408.24485-2-jianjun.wang@mediatek.com>
- <CAGXv+5G-8+ppafiUnqWm2UeiL+edHJ2zYZvU-S7mz_NdrM3YsA@mail.gmail.com>
- <1622526594.9054.6.camel@mhfsdcap03>
- <CAGXv+5GMTbC5TTgURhPAvxBEY18S6-T-BZ9CpXsO91Trim7TXw@mail.gmail.com>
- <db62910b-febd-6cba-8a72-2bf718f7b110@gmail.com>
+        id S229567AbhFVL07 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Jun 2021 07:26:59 -0400
+X-Greylist: delayed 363 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Jun 2021 07:26:58 EDT
+Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
+        (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ni.piap.pl (Postfix) with ESMTPSA id 68C0C4A0049;
+        Tue, 22 Jun 2021 13:18:35 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl 68C0C4A0049
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
+        t=1624360715; bh=sZjIwY1MUZOdG4VMiblwq5+l7pMZ4eFjBDVTy0ETrYI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=k4mb0FdX7fhvz3U3RGqrvC7EhPBZY4czSygN6NmlbHDSr7eckxtvXRFATndcSOoUH
+         JckG1XFBOD07G/wDUKpkv1MuUyY24MNBZpcR9mFtdjZFy/MQtnqXhaolMXoTx3ZBh5
+         MDLE3XMZBoVYcTGsAgDIALTkAsSTCzum0ZK3ffdE=
+From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
+To:     devicetree@vger.kernel.org
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [RFC v2] dt-binding: media: document ON Semi AR0521 sensor bindings
+Sender: khalasa@piap.pl
+Date:   Tue, 22 Jun 2021 13:18:35 +0200
+Message-ID: <m3y2b25er8.fsf@t19.piap.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <db62910b-febd-6cba-8a72-2bf718f7b110@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-KLMS-Rule-ID: 4
+X-KLMS-Message-Action: skipped
+X-KLMS-AntiSpam-Status: not scanned, whitelist
+X-KLMS-AntiPhishing: not scanned, whitelist
+X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, not scanned, whitelist
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 02, 2021 at 01:33:07PM +0200, Matthias Brugger wrote:
-> 
-> 
-> On 01/06/2021 08:07, Chen-Yu Tsai wrote:
-> > Hi,
-> > 
-> > On Tue, Jun 1, 2021 at 1:50 PM Jianjun Wang <jianjun.wang@mediatek.com> wrote:
-> >>
-> >> On Tue, 2021-06-01 at 11:53 +0800, Chen-Yu Tsai wrote:
-> >>> Hi,
-> >>>
-> >>> On Tue, Jun 1, 2021 at 10:50 AM Jianjun Wang <jianjun.wang@mediatek.com> wrote:
-> >>>>
-> >>>> MT8195 is an ARM platform SoC which has the same PCIe IP with MT8192.
-> >>>
-> >>> Based on what I'm seeing internally, there seems to be some inconsistency
-> >>> across the MediaTek platform on whether new compatible strings should be
-> >>> introduced for "fully compatible" IP blocks.
-> >>>
-> >>> If this hardware block in MT8195 is "the same" as the one in MT8192, do we
-> >>> really need the new compatible string? Are there any concerns?
-> >>
-> >> Hi Chen-Yu,
-> >>
-> >> It's ok to reuse the compatible string with MT8192, but I think this
-> >> will be easier to find which platforms this driver is compatible with,
-> >> especially when we have more and more platforms in the future.
-> > 
-> > If it's just for informational purposes, then having the MT8192 compatible
-> > as a fallback would work, and we wouldn't need to make changes to the driver.
-> > This works better especially if we have to support multiple operating systems
-> > that use device tree.
-> > 
-> > So we would want
-> > 
-> >     "mediatek,mt8195-pcie", "mediatek,mt8192-pcie"
-> > 
-> > and
-> > 
-> >     "mediatek,mt8192-pcie"
-> > 
-> > be the valid options.
-> > 
-> > Personally I'm not seeing enough value to justify adding the compatible string
-> > just for informational purposes though. One could easily discern which hardware
-> > is used by looking at the device tree.
-> > 
-> 
-> I agree, if no differences between the two chips are known, adding a
-> binding withe new compatible and a fallback is a good thing. If we
-> later on realize that mt8195 PCI block has differences, we can add the
-> matching to the driver.
+This file documents DT bindings for the AR0521 camera sensor driver.
+Changes from v1:
+- added power management (power supplies).
+- small fixes
 
-So this series can be dropped, right ?
+The question still stands: is there a way to reliably put national
+unicode characters into:
+- commit messages for patches submitted via email,
+- C and other source files (comments and stuff like MODULE_AUTHOR).
 
-Thanks,
-Lorenzo
+Yes, I know I can commit it myself correctly, but then propagating it
+upstream is problematic. Perhaps a pullable tree would be better?
+I guess I need to renew my old kernel.org account.
 
-> Regards,
-> Matthias
-> 
-> > 
-> > Regards
-> > ChenYu
-> > 
-> > 
-> >> Thanks.
-> >>>
-> >>>
-> >>> Thanks
-> >>> ChenYu
-> >>>
-> >>>
-> >>>> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> >>>> ---
-> >>>>  Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml | 4 +++-
-> >>>>  1 file changed, 3 insertions(+), 1 deletion(-)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> >>>> index e7b1f9892da4..d5e4a3e63d97 100644
-> >>>> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> >>>> @@ -48,7 +48,9 @@ allOf:
-> >>>>
-> >>>>  properties:
-> >>>>    compatible:
-> >>>> -    const: mediatek,mt8192-pcie
-> >>>> +    oneOf:
-> >>>> +      - const: mediatek,mt8192-pcie
-> >>>> +      - const: mediatek,mt8195-pcie
-> >>>>
-> >>>>    reg:
-> >>>>      maxItems: 1
-> >>>> --
-> >>>> 2.18.0
-> >>>> _______________________________________________
-> >>>> Linux-mediatek mailing list
-> >>>> Linux-mediatek@lists.infradead.org
-> >>>> http://lists.infradead.org/mailman/listinfo/linux-mediatek
-> >>
+Signed-off-by: Krzysztof Halasa <khalasa@piap.pl>
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml b=
+/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
+new file mode 100644
+index 000000000000..29421daacc87
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
+@@ -0,0 +1,87 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/onnn,ar0521.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ON Semiconductor AR0521 MIPI CSI-2 sensor
++
++maintainers:
++  - Krzysztof Halasa <khalasa@piap.pl>
++
++description: |-
++  The AR0521 is a raw CMOS image sensor with MIPI CSI-2 and
++  I2C-compatible control interface.
++
++properties:
++  compatible:
++    const: onnn,ar0521
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: reference to the xclk clock
++    maxItems: 1
++
++  clock-names:
++    const: xclk
++
++  vdd_io-supply:
++    description:
++      Definition of the regulator used as digital I/O (1.8 V) voltage supp=
+ly.
++
++  vdd_core-supply:
++    description:
++      Definition of the regulator used as digital core (1.2 V) voltage sup=
+ply.
++
++  vcc_analog-supply:
++    description:
++      Definition of the regulator used as analog (2.7 V) voltage supply.
++
++  reset-gpios:
++    description: reset GPIO, usually active low
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++    description: |
++      Output video port: 1, 2 or 4 lanes.
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/clock/imx6qdl-clock.h>
++
++    i2c {
++            #address-cells =3D <1>;
++            #size-cells =3D <0>;
++
++            ar0521: camera-sensor@36 {
++                    compatible =3D "onnn,ar0521";
++                    reg =3D <0x36>;
++                    pinctrl-names =3D "default";
++                    pinctrl-0 =3D <&pinctrl_mipi_camera>;
++
++                    clocks =3D <&clks IMX6QDL_CLK_CKO>;
++                    clock-names =3D "xclk";
++
++                    reset-gpios =3D <&gpio1 7 GPIO_ACTIVE_LOW>;
++
++                    port {
++                           mipi_camera_to_mipi_csi2: endpoint {
++                                    remote-endpoint =3D <&mipi_csi2_in>;
++                                    data-lanes =3D <1 2 3 4>;
++                            };
++                    };
++            };
++    };
+
+--=20
+Krzysztof Ha=C5=82asa
+
+Sie=C4=87 Badawcza =C5=81ukasiewicz
+Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
+Al. Jerozolimskie 202, 02-486 Warszawa
