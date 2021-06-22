@@ -2,169 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F071E3AFB78
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 05:41:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C19B83AFB8B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 06:03:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231478AbhFVDnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 23:43:16 -0400
-Received: from mail-am6eur05on2052.outbound.protection.outlook.com ([40.107.22.52]:3072
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229904AbhFVDnO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Jun 2021 23:43:14 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dxNULeSJHoC9kfXi8i1xYARenyyMuouTZYTPbKjcQjMabEnRYXi0G6V38aImzTuddwNYtm3tMvGdfyj1bEZBP6kDClPCOBQiVsbJGhc/tsfNQDD+asgRsJEM2iqU/L/VDJVjWPtLXgp7x7soPXQTU9jXSAHQlYeLiUwYORq0V93eEAJB93agSbuL/ROumrzvsFT9oYLG+pvA6WprvUTBipUERt8xJDhTKXHF//7REMbmh1M1MAqImMfMg8pCd66lAg2iGJRAo/96+yVyztCDb5bckG84AKS6i+PM7J/lwUrkfS2O/eIVBLYSpcp4qSEwgujIqwluiMYLKdiMfuyhVw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u6LcrYlHUUy57grtv113HTQzAhM1n7uKEIUTGYEoOrs=;
- b=awiZ4DJoDUwzhHrvlJm/dLoHRTI8Ms6zYjvj7zmW/jW5n/Ao+Bd/Pr87YdiQk4O9lyAowI6FhCvJbuCoV9l343IgQbe8wWeZMEmPo4FkONP/T6QZylBdtvSx4HmjcC7r4XwudaSlrNJOkGeJ7ZfQSrW2NvRQZiyoYF29pnzVF5vSoFxrOa4Op2j/sWrCWjpdHHWNqCWrXSglXZuyZX4i5nLXLVkF+NDaC2hnU6nK3HPLzffSF1lDAI9EcFU1MAPPd4GFrdP/wnAZAKli3IocSrLtIZgQYmwjokf1jy2APEy3Yc7O4sIoF8ElEOJPSTdTWvaApiftarARqhYm4NI6bg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=u6LcrYlHUUy57grtv113HTQzAhM1n7uKEIUTGYEoOrs=;
- b=Le3qcNc+zuSKXhh98Em3rgqvP0v9gw9o1xJgNC4j+bUPKm+3cOwJQHFtheJWvNYWI3ElAh4+0V5NeVJsaoLI/1bMbBpQQHLB0DXBLYir3aYWJuRBrp/C61v2fL5jBLSxY3nKVADEv4vKaSOHuRNuwhX+P8Yf0Lq9NDA9yxmsDcI=
-Authentication-Results: wizery.com; dkim=none (message not signed)
- header.d=none;wizery.com; dmarc=none action=none header.from=oss.nxp.com;
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DB3PR0402MB3913.eurprd04.prod.outlook.com (2603:10a6:8:3::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.19; Tue, 22 Jun
- 2021 03:40:55 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c445:d742:eb76:86dd]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c445:d742:eb76:86dd%9]) with mapi id 15.20.4242.023; Tue, 22 Jun 2021
- 03:40:55 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, o.rempel@pengutronix.de,
-        robh+dt@kernel.org
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH V2 2/2] remoteproc: imx_rproc: support i.MX8ULP
-Date:   Tue, 22 Jun 2021 12:14:13 +0800
-Message-Id: <20210622041413.16992-3-peng.fan@oss.nxp.com>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210622041413.16992-1-peng.fan@oss.nxp.com>
-References: <20210622041413.16992-1-peng.fan@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: SG2PR0302CA0014.apcprd03.prod.outlook.com
- (2603:1096:3:2::24) To DB6PR0402MB2760.eurprd04.prod.outlook.com
- (2603:10a6:4:a1::14)
+        id S229555AbhFVEFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 00:05:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43884 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229490AbhFVEFU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 00:05:20 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71F6EC06175F
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 21:03:05 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id n12so7246444pgs.13
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 21:03:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=igel-co-jp.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=LCU0yJ9k9lkuiH4BXOzJ8l7LNMuqUv70T9bND/kl8Tc=;
+        b=2IRIENBoxAqdiYLU9/rOfm8louoM9XJGUrNr4bDU2GLRrypkgatHI8hkFkeTbyRLbG
+         GT8Nb16qpHMXS+sHckMEspeY/jRj+8I0oJ+xQDQY5gwUOxmGciFsHz3INa2KoN5DLghx
+         887kkP0AQGfaUA7l3YlEg0I4iq//vGSCtuiTAZpnAOyBu3j7nNkuE0F3ZHhE1m/ZRszu
+         YsdAHz3Cv5q0n9L2hHkLVzqTOCsD3GXOzpOyjxV34rQc12+D55Tva5Rpcj3R7b7qcXn5
+         Y1pc9qLwY7Lt6RKJIVyCzGTtxHovj1ReEzkFjNi5lnJ9NA39zpgHg7q+s9topcsVBFe9
+         rOjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=LCU0yJ9k9lkuiH4BXOzJ8l7LNMuqUv70T9bND/kl8Tc=;
+        b=fUaTI2TBU4Ai+1xCwdGrFlIjopZFq9+1dAhlLAtVNJ9oCnmTGvr4l16ctr2XHdzMD2
+         NEGITKfnHf7m7ULfWxGl3W4Fqj8+dI+3IEzlQ9z5B7T639ud2sv3BHOyEgvLd0z6uyKK
+         YEj8++hkVhnrQhwCQWZA3E/hqTgN7rBaFH6f1+F4WuVhD7OIPIZ3jBFtHSD0nRJqwlEF
+         QEjsp8vJQy+kmQ9GOLmIJEkCwhYb+PUiEd+tH2xTZvfxL7ItHSB7x6VlrTgT6zJbtlcQ
+         qTsGNEtzmD5BDk+uJNbcqxiaJHZdWTN2rbHfXRsS1rfop/D5juKA1QQpzDzffKNGdpZp
+         4duA==
+X-Gm-Message-State: AOAM533FfjkzoEJqo9OmMXaxiMMKInOpYPDOyVJlKRhZX7L8/0enD37Q
+        1uO/4yt0/uOHCz5xfDOpTsD1dg==
+X-Google-Smtp-Source: ABdhPJyKj/BVU5tSTB/YxCiCQydfHrVE81rBbCx40oGNuZ57J9fDCnwKUCuoM0Jyxaso51VahEdMJw==
+X-Received: by 2002:a05:6a00:1515:b029:2f1:d29:2a44 with SMTP id q21-20020a056a001515b02902f10d292a44mr1605587pfu.51.1624334584489;
+        Mon, 21 Jun 2021 21:03:04 -0700 (PDT)
+Received: from ?IPv6:240b:10:c9a0:ca00:5192:32ad:e5be:23cd? ([240b:10:c9a0:ca00:5192:32ad:e5be:23cd])
+        by smtp.gmail.com with ESMTPSA id x20sm16719962pfh.112.2021.06.21.21.03.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Jun 2021 21:03:03 -0700 (PDT)
+Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org,
+        Damian Hobson-Garcia <dhobsong@igel.co.jp>,
+        Takanari Hayama <taki@igel.co.jp>
+References: <20210621062742.26073-1-etom@igel.co.jp>
+ <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
+From:   Esaki Tomohito <etom@igel.co.jp>
+Message-ID: <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
+Date:   Tue, 22 Jun 2021 13:02:59 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from linux-1xn6.ap.freescale.net (119.31.174.71) by SG2PR0302CA0014.apcprd03.prod.outlook.com (2603:1096:3:2::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.9 via Frontend Transport; Tue, 22 Jun 2021 03:40:50 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5418d4dc-5974-4fb5-e8a2-08d9352f8a45
-X-MS-TrafficTypeDiagnostic: DB3PR0402MB3913:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB3PR0402MB39134C416904FDBF97963DDEC9099@DB3PR0402MB3913.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:421;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HmbVVy/b6Y3sTPy8OyWhLXxE69nQVZFihxXhFiyopQycG6s+sSJGmEXYW3tkljW6TEwMWkyicmQGp5Ug7OKZbzACuTLdBRelgUKLsqykeW1R8dsJ8GVwuVl13cyiFzkhUdrS6XXe9zihUUYU0eX24JMsRMbA7VsZUAnjgvOsEwBzRUpLvDT4zaYiXT3nA4vUHZvpctrlVBhTQ0YxKSiUsQAkDwXhODcYBJmQ1Ku169SU9fnXOTzqxOtt01nYy3L0ndp1EjOcajEyUWNddjdyuuQdzEibe6lY44Wk1++TMirn8Uz8PMgrCjAIPomBAvXScjQD7fhNC1pdREVWQKtJG0WOlSS5xqTUIMttd6QatbQ/nkCq3LiLXZ/moxlNF4j5G9VPuU+quuh1s2TcfPMRhYALycOvqy3vT9S1xfaCyb+3GRaIN/MJ/v3Do2ItLoDfbDQjsAHVp4hdXGu8TcgbpyUqQSuW/D6waatXgJFX1gkZuKtFHuN2VtgsQ6eX8d3LpwepJKw7jb2okrQRyMROtBWR2TyjEvHoa//0uxaKTekDgMVQ17a4Ov4gsX+/U1Hj0jcQhRON19IQV4mDgHmNZiF/bTnylLhRMYKANv18SglTY9AdwPuMq7lV+JQvky736QA/EXGD7P4oW+DN0K0uUA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39860400002)(396003)(346002)(366004)(376002)(66556008)(66476007)(66946007)(6486002)(8936002)(956004)(7416002)(8676002)(2616005)(316002)(6666004)(186003)(6506007)(52116002)(16526019)(26005)(6512007)(2906002)(5660300002)(86362001)(4326008)(478600001)(38100700002)(1076003)(38350700002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Up5oTWyGr7Ho17LTbKjhsGaPzNiWJgxJcmrCGUYTMXRIGJ4u4f9TjkFRInra?=
- =?us-ascii?Q?/OH1FB9Enlz1GpY4yi8Ur0KktkBzAamG5/wZxnwrVG4gm57EV8LAXUb51Dqj?=
- =?us-ascii?Q?LQGioaBj3OEU+p7bj854rOdhZq01GPfNckz33mbPiaWWEYfoMTfT7q8jDcod?=
- =?us-ascii?Q?uPKKnrl6L9DXD6WjqTfyTuEGNJPlNkORpK4QdAwUrgYPxlw6kp3ne3sQgD1R?=
- =?us-ascii?Q?nglR5RXWoncFNOunB5puSeBqBQ01F5Op3Q+nRnwSAKnA+2DrhhHCWTOW/y08?=
- =?us-ascii?Q?vFk7S7zk9SWg6KFyjhe90tj0vcMnVnXwN47lzlXivupR4MSBqCfLLH0meJvU?=
- =?us-ascii?Q?RgwzQw7rEWoxhg42AEcipTdhCZbC2duOTHojVJElM+Loa9/EwTCJ0jKxvTmR?=
- =?us-ascii?Q?CWBXVVB4hq8JsARRkRoZIoZAIonKe/qXz0RhrtsCxcjd73E3oOaKigvyejA5?=
- =?us-ascii?Q?dVB0LIWWMuIzEDmR/ewILwoiGIoR3B0fVZN+fGrsq1FaePgFeJNjuZ0x6qmR?=
- =?us-ascii?Q?/QEElU6NMHAU3pdMw/BwTLNtaTGOFPIk40KgLcE4u/cdyhpcaqFptqUH+U5l?=
- =?us-ascii?Q?lJhPHuQv561ewzY8wM0+yCZbt1oUDvmQ9zsfAkn8lLUcKCKfptkckfqG+jHG?=
- =?us-ascii?Q?Pi9b6TCiRFvj3FyhPPUBg38mr2kFUQA5iSZQ3G7pJNvlgrrGPJ0RfdBtD4uv?=
- =?us-ascii?Q?Xt9o3+W8mV0Ph9gJ9LJDoJCBR7HVr6z/hI8BoY7jWVtDNGwZKOVdETzJSuak?=
- =?us-ascii?Q?8bjXImv2/vNHMuIaadD4xoA8Xcb2OmZDLJWJSZ8xwLKIoqoHGaQiHR7mUe8e?=
- =?us-ascii?Q?ZIWyZuaaRelrFNSXrwzDw2nk0wfZnF+On4v59P+NftfUpmaK4J/HzRVzzNRH?=
- =?us-ascii?Q?hTke2ZWy05K18bAMwxdMQr/QfTT+1pWPZPVArcBo0ke9q6xx+0tfmxjY4ahC?=
- =?us-ascii?Q?Aa38MC13ys6nbNxSly4iNzwePS9f7t0cSWwfhXbSNKEeXMfPGKq/KEyG31ZX?=
- =?us-ascii?Q?gzmfSKYMr8EnAKSWrG8VlgU+k/kdhcqZYbaTxL4RDdMc6tLsoAw5+V+kQocc?=
- =?us-ascii?Q?P6spBt9gdx8Qbqfg3d/FFUm+y+hgulC0Bp50Tr/5BAiDfkjf0goHPJX14UHG?=
- =?us-ascii?Q?PhTTNr3iU89H5azxdoZOxrPNJFWsY3UJpkwP5KZ1nov4DNhq+sS7GB40bk/B?=
- =?us-ascii?Q?142j8P9XPHtF8ISolAofS++siZbZs/8jM9Kap2g5STTT7ag3FeBMnPIobKA2?=
- =?us-ascii?Q?bDyxfgpPyUmjx5DotniAPM07hw8wcc2WNIfU/mmD/wyT7YVDdkm/cEIwL/h0?=
- =?us-ascii?Q?Tu9823rbRo3XjTMp9Yqt24VN?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5418d4dc-5974-4fb5-e8a2-08d9352f8a45
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2021 03:40:55.1317
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2rBoyab1MfblG6wH17qyNGZZqk9NTWU6HEuxj/To3HktGUBgIenEXw2YcvUFBM8rr/sZOdY4btNXy3C0LOPQOg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3913
+In-Reply-To: <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Peng Fan <peng.fan@nxp.com>
+Hi, Thomas
+Thank you for reply.
 
-i.MX8ULP is a new SoC with Ultra low power support, it has a Cortex-M33
-core and two Cortex-A35 cores. We need to add new configuration because
-it could not reuse the previous i.MX7/8 configuration.
+On 2021/06/21 16:10, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 21.06.21 um 08:27 schrieb Tomohito Esaki:
+>> Virtual DRM splits the overlay planes of a display controller into
+>> multiple
+>> virtual devices to allow each plane to be accessed by each process.
+>>
+>> This makes it possible to overlay images output from multiple
+>> processes on a
+>> display. For example, one process displays the camera image without
+>> compositor
+>> while another process overlays the UI.
+> 
+> I briefly looked over your patches. I didn't understand how this is
+> different to the functionality of a compositor? Shouldn't this be solved
+> in userspace?
 
-i.MX8ULP M33 core is kicked by ROM, it is not under control of A35 core.
-So need to mark the method is IMX_RPROC_NONE.
+I think when latency is important (e.g., AR, VR, for displaying camera
+images in IVI systems), there may be use cases where the compositor
+cannot be used.
+Normally, when the image is passed through the compositor, it is
+displayed after 2 VSYNC at most, because the compositor combines the
+image with VSYNC synchronization. On the other hand, if we use vDRM, the
+image will be displayed at the next VSYNC, so it will be displayed after
+1 VSYNC at most.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
----
- drivers/remoteproc/imx_rproc.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Also, since the compositor is a single point of failure, we may not want
+to make it dependent on it.
 
-diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-index 7cc0cadea1cc..d88f76f5305e 100644
---- a/drivers/remoteproc/imx_rproc.c
-+++ b/drivers/remoteproc/imx_rproc.c
-@@ -172,6 +172,12 @@ static const struct imx_rproc_att imx_rproc_att_imx8mq[] = {
- 	{ 0x40000000, 0x40000000, 0x80000000, 0 },
- };
- 
-+static const struct imx_rproc_att imx_rproc_att_imx8ulp[] = {
-+	{0x1FFC0000, 0x1FFC0000, 0xC0000, ATT_OWN},
-+	{0x21000000, 0x21000000, 0x10000, ATT_OWN},
-+	{0x80000000, 0x80000000, 0x60000000, 0}
-+};
-+
- static const struct imx_rproc_att imx_rproc_att_imx7ulp[] = {
- 	{0x1FFD0000, 0x1FFD0000, 0x30000, ATT_OWN},
- 	{0x20000000, 0x20000000, 0x10000, ATT_OWN},
-@@ -246,6 +252,12 @@ static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mq = {
- 	.method		= IMX_RPROC_MMIO,
- };
- 
-+static const struct imx_rproc_dcfg imx_rproc_cfg_imx8ulp = {
-+	.att		= imx_rproc_att_imx8ulp,
-+	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8ulp),
-+	.method		= IMX_RPROC_NONE,
-+};
-+
- static const struct imx_rproc_dcfg imx_rproc_cfg_imx7ulp = {
- 	.att		= imx_rproc_att_imx7ulp,
- 	.att_size	= ARRAY_SIZE(imx_rproc_att_imx7ulp),
-@@ -824,6 +836,7 @@ static const struct of_device_id imx_rproc_of_match[] = {
- 	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
- 	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
- 	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
-+	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, imx_rproc_of_match);
--- 
-2.30.0
-
+Best regards
+Tomohito Esaki
