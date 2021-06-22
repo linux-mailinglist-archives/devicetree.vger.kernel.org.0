@@ -2,124 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EF8D3AFF70
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 10:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFFA73AFFFF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 11:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230298AbhFVIoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 04:44:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50032 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230013AbhFVIoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 04:44:13 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C35EC061574
-        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 01:41:57 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id m41-20020a05600c3b29b02901dcd3733f24so1179027wms.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 01:41:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XA1+Rp5LATzXW9X3kNyiTeCwcY/WbQj5ki86deqlRUU=;
-        b=sye6DyVz9MMCkgM9C3JDj8Y0rVLYcm0XFgOqxYtiFqjc0BWAP68Nw1Ylqdc9NUyYee
-         sZXg1PYVnjy5I+wWdRUXEpdzFjOxlwZgj2WyykKs7elysMO6C+3JUpwfiTCIQLrB9Eet
-         FjEnoZjoTbDeVAQr90p8EgEn6M80nF8C5dk/xrqA4fpnO76UQfMNRN2PGpqSX0tqdloG
-         obFLjnP/UYZJ4ot5zDO1/PX6gCNCH+lA0eqkXpGwo/6v+yprO4aMEGGwwgRy668Heclh
-         xxFLKLBe5xUKAzE9xKZtuGjwjQUASGc5TFa5s+jqI/7ikvjmxVl8yJOromKXOhXe6mSF
-         ruBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XA1+Rp5LATzXW9X3kNyiTeCwcY/WbQj5ki86deqlRUU=;
-        b=BnGFvQLbIbHXle1nZV7uJE3gdHayzzfiFsCPOZMGvFgsRrUA3ZtigcXkwwSidf58YS
-         rlvJAUwTO9+QVeqSNjCxf5aan+GVxUGjFfPoonV1sVgqmPw+GSaFu4DNPBTabNYAJe1F
-         8A+j4CEcVMyjpMLZT/EmG+gY17FDJBnJJswT1368GbAffSgK5x5MSsIc2NXuCnqGpcDy
-         /399WweJvzI2XNaDoFRsMJgGz2i1M+sGJVstUqW5p//aUJJYsyPVXkU+vnDJR78TldNz
-         4ErPiy8LHZf+4/4DGY08TRd904RmXsL7hdPLF5zIcy7SOxqNoGiQBRWqhh9zMi7/kG9p
-         zfGA==
-X-Gm-Message-State: AOAM53226tSt7L3+i7+Sb6RhlDV9rl/z5UyxXt4tvImjgP9MMVtz/Vd7
-        qGzWcylSWejd57Rdi+1cjm8tCbRF34H+eJHWdIN4wA==
-X-Google-Smtp-Source: ABdhPJxyCBE2yf8JDZ6qOcKTBwdJou1Exjeh1KfsRwQRi8kJtfXDva4rXzVv5tE/owN4PIcSyHguZ6uWW6Xf0QPDVs0=
-X-Received: by 2002:a1c:7219:: with SMTP id n25mr3008537wmc.3.1624351315897;
- Tue, 22 Jun 2021 01:41:55 -0700 (PDT)
+        id S229702AbhFVJOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 05:14:34 -0400
+Received: from smtp-out2.suse.de ([195.135.220.29]:35348 "EHLO
+        smtp-out2.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229486AbhFVJOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 05:14:33 -0400
+Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
+        (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 197A01FD64;
+        Tue, 22 Jun 2021 09:12:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1624353137; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=2S1GZjVV0O2eW26D/C5mP/xBfS/QZ8D4wdzglA9JkS8=;
+        b=HLJG32V+C+He6nAcw1Um3uc6J4JQOnkewLRaltCeI0XGxogyC+/ibRFrxfMTwE5Sb8cL8L
+        s8eZ7teby7ePFxxBgJXIdO0eyofNl6winiaJi/6+B8KF+K3gRfGNhIe5dEcJVG0hgk7Qju
+        1oR/WmGhVOr5j41+AIGs2RLBo8kBm50=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1624353137;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=2S1GZjVV0O2eW26D/C5mP/xBfS/QZ8D4wdzglA9JkS8=;
+        b=m6G4l+FIBEhqEn2P3pVAPi9Edtrz0lBR/DREKWmORwciEtiaVRFWXCxavfNB2vfqQHrq3f
+        agIbKULr9+h1IkDg==
+Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
+        by imap.suse.de (Postfix) with ESMTP id D3F75118DD;
+        Tue, 22 Jun 2021 09:12:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1624353137; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=2S1GZjVV0O2eW26D/C5mP/xBfS/QZ8D4wdzglA9JkS8=;
+        b=HLJG32V+C+He6nAcw1Um3uc6J4JQOnkewLRaltCeI0XGxogyC+/ibRFrxfMTwE5Sb8cL8L
+        s8eZ7teby7ePFxxBgJXIdO0eyofNl6winiaJi/6+B8KF+K3gRfGNhIe5dEcJVG0hgk7Qju
+        1oR/WmGhVOr5j41+AIGs2RLBo8kBm50=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1624353137;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=2S1GZjVV0O2eW26D/C5mP/xBfS/QZ8D4wdzglA9JkS8=;
+        b=m6G4l+FIBEhqEn2P3pVAPi9Edtrz0lBR/DREKWmORwciEtiaVRFWXCxavfNB2vfqQHrq3f
+        agIbKULr9+h1IkDg==
+Received: from director2.suse.de ([192.168.254.72])
+        by imap3-int with ESMTPSA
+        id KiC9MnCp0WASIwAALh3uQQ
+        (envelope-from <tzimmermann@suse.de>); Tue, 22 Jun 2021 09:12:16 +0000
+Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
+To:     Esaki Tomohito <etom@igel.co.jp>
+Cc:     devicetree@vger.kernel.org, Takanari Hayama <taki@igel.co.jp>,
+        linux-doc@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Damian Hobson-Garcia <dhobsong@igel.co.jp>
+References: <20210621062742.26073-1-etom@igel.co.jp>
+ <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
+ <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <bd64733a-d45c-a985-d99d-0fa70bacb001@suse.de>
+Date:   Tue, 22 Jun 2021 11:12:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-References: <20210616103649.2662395-1-jens.wiklander@linaro.org>
- <20210616103649.2662395-4-jens.wiklander@linaro.org> <20210616160557.GB3472903@robh.at.kernel.org>
-In-Reply-To: <20210616160557.GB3472903@robh.at.kernel.org>
-From:   Jens Wiklander <jens.wiklander@linaro.org>
-Date:   Tue, 22 Jun 2021 10:41:45 +0200
-Message-ID: <CAHUa44ELTefa32oa3Zq+gFG+G1hfjMyMY9sf_fDPFmphf9-APw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/7] dt-bindings: arm: optee: add interrupt property
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Sumit Garg <sumit.garg@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Ard Biesheuvel <ardb@kernel.org>, Marc Zyngier <maz@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="WlcHhU6hex4h9Z0LOqBGwvBjeuF1z7K0S"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 16, 2021 at 6:06 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Jun 16, 2021 at 12:36:45PM +0200, Jens Wiklander wrote:
-> > Adds an optional interrupt property to the optee binding.
-> >
-> > Signed-off-by: Jens Wiklander <jens.wiklander@linaro.org>
-> > ---
-> >  .../devicetree/bindings/arm/firmware/linaro,optee-tz.yaml | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> > index c931b030057f..3efbe11b637d 100644
-> > --- a/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> > @@ -24,6 +24,9 @@ properties:
-> >              for the reference implementation maintained by Linaro.
-> >            const: linaro,optee-tz
-> >
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> >    method:
-> >      description: The method of calling the OP-TEE Trusted OS.
-> >      $ref: /schemas/types.yaml#/definitions/string-array
-> > @@ -37,6 +40,10 @@ properties:
-> >            in drivers/tee/optee/optee_smc.h
-> >          const: hvc
-> >
-> > +required:
-> > +  - compatible
-> > +  - method
-> > +
->
-> This should go in the first patch.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--WlcHhU6hex4h9Z0LOqBGwvBjeuF1z7K0S
+Content-Type: multipart/mixed; boundary="Kk1kL8IpnwdpIdgA1q2JbHjX2dsQ44t2z";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Esaki Tomohito <etom@igel.co.jp>
+Cc: devicetree@vger.kernel.org, Takanari Hayama <taki@igel.co.jp>,
+ linux-doc@vger.kernel.org, David Airlie <airlied@linux.ie>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Damian Hobson-Garcia <dhobsong@igel.co.jp>
+Message-ID: <bd64733a-d45c-a985-d99d-0fa70bacb001@suse.de>
+Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
+References: <20210621062742.26073-1-etom@igel.co.jp>
+ <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
+ <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
+In-Reply-To: <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
 
-OK, that will be covered when I rebase the next patch set on what's
-now be78329717e4 ("dt-bindings: arm: firmware: Convert linaro,optee-tz
-to json schema") in linux-next.
+--Kk1kL8IpnwdpIdgA1q2JbHjX2dsQ44t2z
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-Jens
+Hi
 
->
-> >  additionalProperties: false
-> >
-> >  examples:
-> > @@ -45,5 +52,6 @@ examples:
-> >        optee {
-> >          compatible = "linaro,optee-tz";
-> >          method = "smc";
-> > +        interrupts = <0 187 4>;
-> >        };
-> >      };
-> > --
-> > 2.31.1
+Am 22.06.21 um 06:02 schrieb Esaki Tomohito:
+> Hi, Thomas
+> Thank you for reply.
+>=20
+> On 2021/06/21 16:10, Thomas Zimmermann wrote:
+>> Hi
+>>
+>> Am 21.06.21 um 08:27 schrieb Tomohito Esaki:
+>>> Virtual DRM splits the overlay planes of a display controller into
+>>> multiple
+>>> virtual devices to allow each plane to be accessed by each process.
+>>>
+>>> This makes it possible to overlay images output from multiple
+>>> processes on a
+>>> display. For example, one process displays the camera image without
+>>> compositor
+>>> while another process overlays the UI.
+>>
+>> I briefly looked over your patches. I didn't understand how this is
+>> different to the functionality of a compositor? Shouldn't this be solv=
+ed
+>> in userspace?
+>=20
+> I think when latency is important (e.g., AR, VR, for displaying camera
+> images in IVI systems), there may be use cases where the compositor
+> cannot be used.
+> Normally, when the image is passed through the compositor, it is
+> displayed after 2 VSYNC at most, because the compositor combines the
+> image with VSYNC synchronization. On the other hand, if we use vDRM, th=
+e
+> image will be displayed at the next VSYNC, so it will be displayed afte=
+r
+> 1 VSYNC at most.
+
+Other commenters already addressed these points.
+
+>=20
+> Also, since the compositor is a single point of failure, we may not wan=
+t
+> to make it dependent on it.
+
+The kernel is also a single point of failure.
+
+TBH I don't think this feature should be merged until there's a clear=20
+use case that cannot be solved in userspace idiomatically.
+
+Best regards
+Thomas
+
+>=20
+> Best regards
+> Tomohito Esaki
+>=20
+
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+
+
+--Kk1kL8IpnwdpIdgA1q2JbHjX2dsQ44t2z--
+
+--WlcHhU6hex4h9Z0LOqBGwvBjeuF1z7K0S
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDRqXAFAwAAAAAACgkQlh/E3EQov+Af
+LhAAl2DsZ+2q/Kykruu+aUiljCoeGL+fehatgi3Qbz9LHotnb+8lcZL8qNGjphWQxLpooqeO9ZDr
+WPop9s6a4mSHD9nyyvXrdWLdid5wYpmetCMH6SVXHMlVWh+n/qw9v49DtqxHEADDk5VixNgh9cxQ
+RbRmOVg88YT8Z40zAZw2I6MlmIpS0SSDE5yjR3JHE6zOI6bniAdGiiCKojqoIS/Md/9g4MBjsIk2
+lro7eW7ulINyEuoDnbY3M241s/cZnP/ZShARtgScL5bVhoQZ6s7YO8OISYhYdkg+eF1qi1AdsqZY
+pmDLtAhZ95arQa5OIVTGewxxCG/uzbIDUh4v4lJSgBSF0SUtakCJF9Q9AhjCvW1+era0253MfyCy
+/F5sndCQh/Iaqt6hpqe6ijC5RgA4Le7IUBBZV+HE48/9hRv6QqZSEVz61LvpbK2mFihJYxFPfTwS
+xxa1E/+HvWDuEgUeehAWqaL07ytWPoaQBqn9nSvAtXTNPbXiknOWqW7Vq3vUMmf/zpF6mkd8R89U
+um6D6/bEIu0Vd9ZK5blNbuzoX+g/qJpWU+As8jkXF1uR0tDHPq2OsokaWQ2IsDkoJT4DBzzgFcl9
+RaTrRoKwCoEGIZfu1Bg4cfMPi6T0BmXiWs+psao3lp1Dwpiz8FMMRG6ObJ/0hcZ5g5B6+gugbqjb
+/Og=
+=+9bo
+-----END PGP SIGNATURE-----
+
+--WlcHhU6hex4h9Z0LOqBGwvBjeuF1z7K0S--
