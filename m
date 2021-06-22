@@ -2,186 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B0473AFAE1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 04:06:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0439E3AFAEB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 04:11:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231449AbhFVCIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 22:08:31 -0400
-Received: from lucky1.263xmail.com ([211.157.147.130]:38266 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231464AbhFVCI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 22:08:29 -0400
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 7AFBCD31F5;
-        Tue, 22 Jun 2021 10:06:11 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P14866T140098544858880S1624327520607083_;
-        Tue, 22 Jun 2021 10:05:34 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <92165e3b04c47fd725e2744e8f5757b0>
-X-RL-SENDER: cl@rock-chips.com
-X-SENDER: cl@rock-chips.com
-X-LOGIN-NAME: cl@rock-chips.com
-X-FST-TO: heiko@sntech.de
-X-RCPT-COUNT: 30
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   <cl@rock-chips.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
-        uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
-        cnsztl@gmail.com, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
-        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        cl@rock-chips.com, wim@linux-watchdog.org, linux@roeck-us.net,
-        jamie@jamieiles.com, linux-watchdog@vger.kernel.org, maz@kernel.org
-Subject: [PATCH v5 4/4] arm64: dts: rockchip: add basic dts for RK3568 EVB
-Date:   Tue, 22 Jun 2021 10:05:17 +0800
-Message-Id: <20210622020517.13100-5-cl@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210622020517.13100-1-cl@rock-chips.com>
-References: <20210622020517.13100-1-cl@rock-chips.com>
+        id S230311AbhFVCNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 22:13:23 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:46256 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229663AbhFVCNX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Jun 2021 22:13:23 -0400
+Received: from [10.130.0.191] (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9BxIOKSRtFgxZ4VAA--.3572S3;
+        Tue, 22 Jun 2021 10:10:40 +0800 (CST)
+Subject: Re: [PATCH 1/4] stmmac: pci: Add dwmac support for Loongson
+To:     Andrew Lunn <andrew@lunn.ch>
+References: <20210618025337.5705-1-zhangqing@loongson.cn>
+ <YM//kGGAp3vz8OYb@lunn.ch>
+Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Huacai Chen <chenhc@lemote.com>, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
+From:   zhangqing <zhangqing@loongson.cn>
+Message-ID: <d66e6af7-7384-41aa-76a7-7017f27d43cb@loongson.cn>
+Date:   Tue, 22 Jun 2021 10:10:26 +0800
+User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
+ Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <YM//kGGAp3vz8OYb@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf9BxIOKSRtFgxZ4VAA--.3572S3
+X-Coremail-Antispam: 1UD129KBjvJXoW7CF4ftw17JryxXw1xArykuFg_yoW8JF4fpa
+        srGa9xKFZFgFyxCr1FqFWkXFyvvr4Skay0k3y2yFnxK3ZYyrWfX34jgrWUCas3CFZ5Cw45
+        Zw1jgr48Wa4kKrDanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUU9Kb7Iv0xC_Zr1lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+        A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+        jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4
+        vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
+        Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJV
+        W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
+        wI1lc7I2V7IY0VAS07AlzVAYIcxG8wCY02Avz4vE14v_Gr1l42xK82IYc2Ij64vIr41l4I
+        8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
+        xVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
+        AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
+        cIk0rVWrJr0_WFyUJwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14
+        v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU7NBMDUUUU
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Liang Chen <cl@rock-chips.com>
-
-This patch add rk3568-evb1-v10.dts for RK3568 evaluation board.
-add uart/emmc/i2c/rk809 node for basic function.
-
-Signed-off-by: Liang Chen <cl@rock-chips.com>
----
- .../devicetree/bindings/arm/rockchip.yaml     |  5 ++
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 79 +++++++++++++++++++
- 3 files changed, 85 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 4a6f772c1043..6546b015fc62 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -600,6 +600,11 @@ properties:
-           - const: zkmagic,a95x-z2
-           - const: rockchip,rk3318
- 
-+      - description: Rockchip RK3568 Evaluation board
-+        items:
-+          - const: rockchip,rk3568-evb1-v10
-+          - const: rockchip,rk3568
-+
- additionalProperties: true
- 
- ...
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index c3e00c0e2db7..7fdb41de01ec 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -51,3 +51,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rockpro64.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-sapphire.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-sapphire-excavator.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-new file mode 100644
-index 000000000000..69786557093d
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-@@ -0,0 +1,79 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-+ *
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include "rk3568.dtsi"
-+
-+/ {
-+	model = "Rockchip RK3568 EVB1 DDR4 V10 Board";
-+	compatible = "rockchip,rk3568-evb1-v10", "rockchip,rk3568";
-+
-+	chosen: chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	dc_12v: dc-12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dc_12v";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vcc3v3_sys: vcc3v3-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&dc_12v>;
-+	};
-+
-+	vcc5v0_sys: vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_12v>;
-+	};
-+
-+	vcc3v3_lcd0_n: vcc3v3-lcd0-n {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_lcd0_n";
-+		regulator-boot-on;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	vcc3v3_lcd1_n: vcc3v3-lcd1-n {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_lcd1_n";
-+		regulator-boot-on;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
--- 
-2.17.1
 
 
+On 06/21/2021 10:55 AM, Andrew Lunn wrote:
+>> +static int loongson_dwmac_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+>> +{
+>> +	struct plat_stmmacenet_data *plat;
+>> +	struct stmmac_resources res;
+>> +	int ret, i, mdio;
+>> +	struct device_node *np;
+>> +
+>> +	np = dev_of_node(&pdev->dev);
+>> +
+>> +	if (!np) {
+>> +		pr_info("dwmac_loongson_pci: No OF node\n");
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	if (!of_device_is_compatible(np, "loongson, pci-gmac")) {
+>> +		pr_info("dwmac_loongson_pci: Incompatible OF node\n");
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	plat = devm_kzalloc(&pdev->dev, sizeof(*plat), GFP_KERNEL);
+>> +	if (!plat)
+>> +		return -ENOMEM;
+>> +
+>> +	if (plat->mdio_node) {
+>> +		dev_err(&pdev->dev, "Found MDIO subnode\n");
+> It is an error is an MDIO node is found?
+
+Hi，Andrew
+
+Thanks for your advice,
+
+Using dev_ DEG () is appropriate,
+
+and other issues I will fix in v2.
+
+Thanks,
+
+-Qing
+
+>
+>> +		mdio = true;
+>> +	}
+>> +
+> ...
+>
+>> +
+>> +	plat->phy_interface = device_get_phy_mode(&pdev->dev);
+>> +	if (plat->phy_interface < 0)
+>> +		dev_err(&pdev->dev, "phy_mode not found\n");
+>> +
+>> +	plat->interface = PHY_INTERFACE_MODE_GMII;
+> Seems odd you call device_get_phy_mode() but then have this hard coded
+> PHY_INTERFACE_MODE_GMII?
+>
+> 	Andrew
 
