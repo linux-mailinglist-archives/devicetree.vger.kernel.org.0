@@ -2,93 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC6313B0634
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 15:51:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 275CB3B063B
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 15:53:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbhFVNxm convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Jun 2021 09:53:42 -0400
-Received: from out28-101.mail.aliyun.com ([115.124.28.101]:56882 "EHLO
-        out28-101.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229907AbhFVNxl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 09:53:41 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.08888309|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0726204-0.00257395-0.924806;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047188;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.KWIJ6dl_1624369880;
-Received: from zhouyanjie-virtual-machine(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KWIJ6dl_1624369880)
-          by smtp.aliyun-inc.com(10.147.41.158);
-          Tue, 22 Jun 2021 21:51:21 +0800
-Date:   Tue, 22 Jun 2021 21:51:19 +0800
-From:   =?UTF-8?B?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-To:     Paul Cercueil <paul@opendingux.net>
-Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com
-Subject: Re: [PATCH 3/4] MIPS: GCW0: Adjust pinctrl related code in device
- tree.
-Message-ID: <20210622215119.18a49cf9@zhouyanjie-virtual-machine>
-In-Reply-To: <9US3VQ.SK89X0OFZC2Z2@opendingux.net>
-References: <1624347445-88070-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1624347445-88070-4-git-send-email-zhouyanjie@wanyeetech.com>
-        <9US3VQ.SK89X0OFZC2Z2@opendingux.net>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+        id S229907AbhFVNz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 09:55:56 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:36424 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229786AbhFVNz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 09:55:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1624370020; x=1655906020;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=N+sS5iWqomWqs35o/HzwmRYlU0AVuRGn1OIuvMkrR0w=;
+  b=kDtPrTJD/qXXchy82z3zYTqZ3rEbwnM4rStWS5w0rLWz7mScN5e+oGqn
+   0N8DAD2UvTzXyVq05kKQ5nnbLZIVUf/rlcfVyOmBVz8ofm2ko3FVPrJ0J
+   ak1hJB/JCSACANtA4NiPvZ5rRo5mbaXw+5Hsbw5UylVfwIJfdfMTPPdL1
+   nrT5RLf3Pd7644nac4fA1y1VdqbQqvCwjhK1wj8+GU/Rzm5PKEefFA6TU
+   PRkAu3frpecISuxqMYjMbSW2UIuHlFveWLJiKYRqrRdWuBjEzjiP9OvwX
+   o/HitMUCqtU+QXbh/8z2nkblJRW8vsEaNmM0hXg9fn767fqTk7ZtfJjWb
+   Q==;
+IronPort-SDR: xOwIE68OalmjixTRvD/jNNVt1J4e+XBTrI4QdB7hrVFK6nL+LiELAWwHjBvxuvqw8x/YzeFIoS
+ atspCSmkG+IfRkkqqDD3aNcC/NXGbiH/T5kMJ6gTeb1IALoAQZXGb4J/Vxn2chaYP/mAZHREe5
+ aljW01qHXb2aaZW9AdTTAywyo3sf6Dwtf0vMrN5Yjg3A1JiGKeCEG568MRht5Phz7TLGM7fEvW
+ SwMsTYZfpnaNuQh9BuVH0jckJrHQYcnol8LVmFzsKUsdVNFuHIC80IJTE3YXHei8OmL5IDKZyF
+ jUU=
+X-IronPort-AV: E=Sophos;i="5.83,291,1616482800"; 
+   d="scan'208";a="126209312"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Jun 2021 06:53:40 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Tue, 22 Jun 2021 06:53:40 -0700
+Received: from [10.171.246.67] (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Tue, 22 Jun 2021 06:53:38 -0700
+Subject: Re: [PATCH] ARM: dts: at91: sama5d4_xplained: Mark optional
+ AT25DF321A as disabled
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>
+CC:     <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20210622134222.107806-1-tudor.ambarus@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+Message-ID: <4d631b4c-7d0c-3a04-5ab6-00d09c792438@microchip.com>
+Date:   Tue, 22 Jun 2021 15:53:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20210622134222.107806-1-tudor.ambarus@microchip.com>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Hi Tudor,
 
-于 Tue, 22 Jun 2021 13:46:57 +0100
-Paul Cercueil <paul@opendingux.net> 写道:
-
-> Hi Zhou,
+On 22/06/2021 at 15:42, Tudor Ambarus wrote:
+> sama5d4_xplained has an optional on-board serial DataFlash (AT25DF321A),
+> which does not come populated on board by default. Mark it as disabled
+> to avoid the following probe error:
+> spi-nor spi0.0: unrecognized JEDEC id bytes: 00 00 00 00 00 00
 > 
-> Le mar., juin 22 2021 at 15:37:24 +0800, 周琰杰 (Zhou Yanjie) 
-> <zhouyanjie@wanyeetech.com> a écrit :
-> > Change the "lcd-24bit" in the pinctrl groups to "lcd-8bit",
-> > "lcd-16bit", "lcd-18bit", "lcd-24bit", since the pinctrl
-> > driver has done the necessary splitting of the lcd group,
-> > and it is convenient to further streamline the lcd-24bit
-> > group in the subsequent pinctrl driver.
-> > 
-> > Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> > ---
-> >  arch/mips/boot/dts/ingenic/gcw0.dts | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/mips/boot/dts/ingenic/gcw0.dts 
-> > b/arch/mips/boot/dts/ingenic/gcw0.dts
-> > index f4c04f2..dec3ba6f 100644
-> > --- a/arch/mips/boot/dts/ingenic/gcw0.dts
-> > +++ b/arch/mips/boot/dts/ingenic/gcw0.dts
-> > @@ -393,7 +393,7 @@
-> >  &pinctrl {
-> >  	pins_lcd: lcd {
-> >  		function = "lcd";
-> > -		groups = "lcd-24bit";
-> > +		groups = "lcd-8bit", "lcd-16bit", "lcd-18bit",
-> > "lcd-24bit";  
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+> ---
+>   arch/arm/boot/dts/at91-sama5d4_xplained.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> No, I'm pretty sure this won't work, since "lcd-24bit" contains pins 
-> that are also contained by the other groups.
-> 
+> diff --git a/arch/arm/boot/dts/at91-sama5d4_xplained.dts b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+> index 0b3ad1b580b8..f397e2a68e5c 100644
+> --- a/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+> +++ b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
+> @@ -40,7 +40,7 @@ uart0: serial@f8004000 {
+>   
+>   			spi0: spi@f8010000 {
+>   				cs-gpios = <&pioC 3 0>, <0>, <0>, <0>;
+> -				status = "okay";
+> +				status = "disabled";
+>   				m25p80@0 {
+>   					compatible = "atmel,at25df321a";
+>   					spi-max-frequency = <50000000>;
 
-Sure, it seems that we should modify the pinctrl first, then modify the
-dts, and then put them in the same series, so as to ensure that they do
-not cause damage.
+What about keeping SPI enabled and just having the status of m25p80 as 
+disabled: honestly, I don't know if it works and if it's desirable, but 
+might be closer to reality.
 
-Thanks and best regards!
+Tell me what you think.
 
-> -Paul
-> 
-> >  	};
-> > 
-> >  	pins_uart2: uart2 {
-> > --
-> > 2.7.4
-> >   
-> 
+Regards,
+   Nicolas
 
+
+-- 
+Nicolas Ferre
