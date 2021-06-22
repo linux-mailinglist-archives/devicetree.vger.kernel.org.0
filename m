@@ -2,112 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 576CF3B0DF0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 21:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1C403B0E0E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 22:05:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232823AbhFVT77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 15:59:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36388 "EHLO
+        id S231888AbhFVUHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 16:07:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232464AbhFVT77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 15:59:59 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B22DC061574;
-        Tue, 22 Jun 2021 12:57:41 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id l1so240528ejb.6;
-        Tue, 22 Jun 2021 12:57:41 -0700 (PDT)
+        with ESMTP id S231597AbhFVUHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 16:07:49 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C53C061574;
+        Tue, 22 Jun 2021 13:05:32 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id ho18so257846ejc.8;
+        Tue, 22 Jun 2021 13:05:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Eovzw/udn4hicrC407R2X9SrTc2QGxyjor98KY9344o=;
-        b=ofg0zEesjw/TVIggXvcIPH9DhGxXKSu3YWaBmok3qYhCzDJdLDF2FsMeqpMBwexpQ/
-         ksHDL089XVMVKt9O40sZVVDvQBckA/2cpF9IeuFFXqS4ubOEH3x1LiIXWt8x5IdqEw2n
-         rVm53TetQoqR93n+1YkQuSikga5VtiWvaGy+qQg5lQkmI1y9gFFwmxC17kfi+TejkrGV
-         6JS26EHtHAtIs2d54h/qG0RYACCtShPOI2ByFu6zYIdaDcQ9n6pfJPTaAw8zqNCk4YE6
-         t8BGqlqrkWWaTQN2Gk3MI9chqPSmFQC0tIYlhYPAykP7D7bGVQ+rOC4+OH97GwnxU6Tu
-         uwBA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9sEyzusIpIoy6ANws7r+aDKjofKDHA4aYLWNi0lUzC8=;
+        b=rHbE31+btfAAqxgvgAYEL2ibYvqiem8S6X4P8lh5BLYvA7EYnc0euBDI9TFLyrA+Yj
+         jm9NNGM+0U0O52SIi2AZsn/xFIeb+PnIkdN9j/FBuVKYUAnwh5hbSy6FP/DnVz25Qimi
+         iVHboShrzhkbl2hDkwIfaA5fDM1s+3IqbOBdNOKOTWTFQVADJgUZUTyVYlK/NTF/TSVW
+         0XGWuEY3Ycn+j1lmxScVplQxdCXvMr6/8LDDGHD/gsixa1KV0GMfq1qO79FDT9iD4b1B
+         Eol2ez+r7t05FbLZpUdhwLhkalBvbs+ZVX1ktJTADBd5tNRRcZza+UbPbt+AKmQQFayN
+         cKAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Eovzw/udn4hicrC407R2X9SrTc2QGxyjor98KY9344o=;
-        b=avJXnHK9E561N/ve6Lz4fEx7STvcheORLl4U4hFSv+2qQJkcomifg6AI9tTg35PNOp
-         PIZa9cvLbiNRZAwii7+CH8fFn8zYgkbZlCwimIrLeRigWa7sVaaIb4b6kI1q51Rr3Snz
-         8zADe0o6x9hIi0qCwsHzje5CAOx1d9ONiS+3wWRORJdLgo91RtKaQLKbfeaCMZlfSb5E
-         qASDmw+kP/qgX3dT1WDqwowoEz85pi1CelCKeAgYOU/1NyuvljF31YlCI57TA6eLys8Y
-         wAaXPlsYbk7TVt2Qvy8OUqZaBUoOQjngPKnLKbjXmsiAb54rnwyLZcxwxj3H7pilgAZ7
-         bnxw==
-X-Gm-Message-State: AOAM532UMWigkEQUvktdopd8qWewluqjxTZByJC0YkS3pjsx/xoujA6J
-        bz4b0P/hwqqZyIFGOraPpL3up4cErqascaVijio=
-X-Google-Smtp-Source: ABdhPJyKd7e5C4Ph84g4B35RZoEdjwc6rb5o8Q7KdW9xfBBwAEDRGr7WOP7Jo/YB2xiUfT0KiK2lMC5guhRIKZ2smks=
-X-Received: by 2002:a17:906:f188:: with SMTP id gs8mr5734432ejb.527.1624391859989;
- Tue, 22 Jun 2021 12:57:39 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9sEyzusIpIoy6ANws7r+aDKjofKDHA4aYLWNi0lUzC8=;
+        b=q+FtQ6FSG+OPaFmahtYZae2KSX9XUomg9z9qv0zOFGpB7hX86AHFmJG9PAN1hv1WF5
+         42uL2n4Qjx+xLTFAq1RprL7I6dVtzNfy2n/ypvObzaX/7l9HkmHrjFn38cj8zH5A74rd
+         cFLSzhhH+jcUqwdR19A/lsSmok4z/yoSTgXH+ot3u3r+8Pxi34+586d0cMhorlmQfLQC
+         AP8EBACHR2l8LL6q+q82lBc7tENHH6go2WOKG3CweRSFYbQnNDOGFE4VMdpjAo8JclkP
+         zh7aRiPmeGcDtPscDzI7mLesa8CYooECKtiuyB6pTpmHNXefME992oFLdTsgVg+/d8nM
+         yfIw==
+X-Gm-Message-State: AOAM533nkNWWBvlmTzaj3jV2k5VQ8Fa7ndLqCAHrshhZEId7dyGzigS0
+        86NG4jt2aOnAXrsnwDV4ZMw=
+X-Google-Smtp-Source: ABdhPJwwteP3LmrIsB8wx1COQ/ortvzt7nJzuBnDlKy1aTPseYVJrs2NgyFYUx/YcKRaVSn8jdX1qg==
+X-Received: by 2002:a17:906:5294:: with SMTP id c20mr5917072ejm.76.1624392331352;
+        Tue, 22 Jun 2021 13:05:31 -0700 (PDT)
+Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id a2sm6468972ejp.1.2021.06.22.13.05.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Jun 2021 13:05:30 -0700 (PDT)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH v1 0/2] Add GCC for SM4250 and SM6115
+Date:   Tue, 22 Jun 2021 23:05:06 +0300
+Message-Id: <20210622200508.525669-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20210604190338.2248295-1-martin.blumenstingl@googlemail.com>
- <20210604190338.2248295-3-martin.blumenstingl@googlemail.com> <YNAvItt8BQH1QmQT@vkoul-mobl>
-In-Reply-To: <YNAvItt8BQH1QmQT@vkoul-mobl>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 22 Jun 2021 21:57:28 +0200
-Message-ID: <CAFBinCAOi0EuucaQcJvgzV3o9fu=26u2ivAiQVidrmXTzQRQfg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] phy: amlogic: Add a new driver for the HDMI TX PHY on Meson8/8b/8m2
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     robh+dt@kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        kishon@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+This patch adds support for the Global Clock Controller on QCom SM4250 and
+SM6115, codename bengal. The code is taken from OnePlus repo [1], and the
+keyword bengal corresponds to sm4250 and sm6115, so I'm adding both compat
+strings.
 
-thanks for taking the time to review this!
+[1]: https://github.com/OnePlusOSS/android_kernel_oneplus_sm4250
 
-On Mon, Jun 21, 2021 at 8:18 AM Vinod Koul <vkoul@kernel.org> wrote:
->
-> On 04-06-21, 21:03, Martin Blumenstingl wrote:
-> > Amlogic Meson8/8b/8m2 have a built-in HDMI PHY in the HHI register
-> > region. Unfortunately only few register bits are documented. For
-> > HHI_HDMI_PHY_CNTL0 the magic numbers are taken from the 3.10 vendor
-> > kernel.
-> >
-> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > ---
-> >  drivers/phy/amlogic/Kconfig              |  11 ++
-> >  drivers/phy/amlogic/Makefile             |   1 +
-> >  drivers/phy/amlogic/phy-meson8-hdmi-tx.c | 150 +++++++++++++++++++++++
-> >  3 files changed, 162 insertions(+)
-> >  create mode 100644 drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-> >
-> > diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-> > index db5d0cd757e3..e6c3a2a8b769 100644
-> > --- a/drivers/phy/amlogic/Kconfig
-> > +++ b/drivers/phy/amlogic/Kconfig
-> > @@ -2,6 +2,17 @@
-> >  #
-> >  # Phy drivers for Amlogic platforms
-> >  #
-> > +config PHY_MESON8_HDMI_TX
-> > +     tristate "Meson8, Meson8b and Meson8m2 HDMI TX PHY driver"
-> > +     default ARCH_MESON
-> > +     depends on (ARCH_MESON && ARM) || COMPILE_TEST
->
-> depends on ARM seems redundant..
-config ARCH_MESON exists in arch/arm as well as arch/arm64
-my idea was to hide it from the 64-bit SoCs since it's not used there
+Iskren Chernev (2):
+  dt-bindings: clk: qcom: gcc-sm6115: Document SM6115 GCC
+  clk: qcom: Add Global Clock controller (GCC) driver for SM6115
 
-While reading your comment I spotted something for myself:
-I think "default ARCH_MESON" should not be there.
-
-> > + * Meson8, Meson8b and Meson8m2 HDMI TX PHY.
-> > + *
-> > + * Copyright (C) 2020 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-> 2021..
-good catch, I'll fix this in v2
+ .../bindings/clock/qcom,gcc-sm6115.yaml       |   74 +
+ drivers/clk/qcom/Kconfig                      |    7 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-sm6115.c                 | 3624 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sm4250.h   |   11 +
+ include/dt-bindings/clock/qcom,gcc-sm6115.h   |  201 +
+ 6 files changed, 3918 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sm6115.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sm6115.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sm4250.h
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sm6115.h
 
 
-Best regards,
-Martin
+base-commit: e71e3a48a7e89fa71fb70bf4602367528864d2ff
+--
+2.31.1
+
