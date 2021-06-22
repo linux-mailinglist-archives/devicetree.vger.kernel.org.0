@@ -2,196 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFFA73AFFFF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 11:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7170E3B001C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 11:22:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229702AbhFVJOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 05:14:34 -0400
-Received: from smtp-out2.suse.de ([195.135.220.29]:35348 "EHLO
-        smtp-out2.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229486AbhFVJOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 05:14:33 -0400
-Received: from imap.suse.de (imap-alt.suse-dmz.suse.de [192.168.254.47])
-        (using TLSv1.2 with cipher ECDHE-ECDSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id 197A01FD64;
-        Tue, 22 Jun 2021 09:12:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1624353137; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=2S1GZjVV0O2eW26D/C5mP/xBfS/QZ8D4wdzglA9JkS8=;
-        b=HLJG32V+C+He6nAcw1Um3uc6J4JQOnkewLRaltCeI0XGxogyC+/ibRFrxfMTwE5Sb8cL8L
-        s8eZ7teby7ePFxxBgJXIdO0eyofNl6winiaJi/6+B8KF+K3gRfGNhIe5dEcJVG0hgk7Qju
-        1oR/WmGhVOr5j41+AIGs2RLBo8kBm50=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1624353137;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=2S1GZjVV0O2eW26D/C5mP/xBfS/QZ8D4wdzglA9JkS8=;
-        b=m6G4l+FIBEhqEn2P3pVAPi9Edtrz0lBR/DREKWmORwciEtiaVRFWXCxavfNB2vfqQHrq3f
-        agIbKULr9+h1IkDg==
-Received: from imap3-int (imap-alt.suse-dmz.suse.de [192.168.254.47])
-        by imap.suse.de (Postfix) with ESMTP id D3F75118DD;
-        Tue, 22 Jun 2021 09:12:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1624353137; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=2S1GZjVV0O2eW26D/C5mP/xBfS/QZ8D4wdzglA9JkS8=;
-        b=HLJG32V+C+He6nAcw1Um3uc6J4JQOnkewLRaltCeI0XGxogyC+/ibRFrxfMTwE5Sb8cL8L
-        s8eZ7teby7ePFxxBgJXIdO0eyofNl6winiaJi/6+B8KF+K3gRfGNhIe5dEcJVG0hgk7Qju
-        1oR/WmGhVOr5j41+AIGs2RLBo8kBm50=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1624353137;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=2S1GZjVV0O2eW26D/C5mP/xBfS/QZ8D4wdzglA9JkS8=;
-        b=m6G4l+FIBEhqEn2P3pVAPi9Edtrz0lBR/DREKWmORwciEtiaVRFWXCxavfNB2vfqQHrq3f
-        agIbKULr9+h1IkDg==
-Received: from director2.suse.de ([192.168.254.72])
-        by imap3-int with ESMTPSA
-        id KiC9MnCp0WASIwAALh3uQQ
-        (envelope-from <tzimmermann@suse.de>); Tue, 22 Jun 2021 09:12:16 +0000
-Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
-To:     Esaki Tomohito <etom@igel.co.jp>
-Cc:     devicetree@vger.kernel.org, Takanari Hayama <taki@igel.co.jp>,
-        linux-doc@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Damian Hobson-Garcia <dhobsong@igel.co.jp>
-References: <20210621062742.26073-1-etom@igel.co.jp>
- <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
- <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <bd64733a-d45c-a985-d99d-0fa70bacb001@suse.de>
-Date:   Tue, 22 Jun 2021 11:12:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S229682AbhFVJYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 05:24:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59268 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229612AbhFVJYs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 05:24:48 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1535CC061756
+        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 02:22:33 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id j2so12219604wrs.12
+        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 02:22:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6VJLwpfX/aFjwt/MygIJ1XfrYdorqygCe7i+QCHuVDk=;
+        b=nS/IsSEloNFNgx0eKkUBfOE0E5w+IN1mYHZeZFh1J9NJa3WRxyZx9rnh5+KFpQIpsn
+         kQsXeSOse1TIb5jFxyLioM5Dbe+vYJ4ADWU5/7qZ/EfE2uJAlD5TiqKRulIUYNPPs5ck
+         cOUZcjgTU4op2Apf5dQMPBFfQQIPheZRcrlNiRjRZ5giQkuc/3OETMQQQaXy5HQTyOyx
+         MZHySG0jN8WKdX/bYw35PcZTz5yUrb8cu6e9qY6PwKHv98aAfE6FS2l4FnmmfmJsbqTr
+         0Hpe00dJKF7QrUozpA3bVMMnF4QKPHCrGF5Fh/vrX9T4AW2oHgXRMFSUehLsBdw+2/u3
+         PPjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6VJLwpfX/aFjwt/MygIJ1XfrYdorqygCe7i+QCHuVDk=;
+        b=FoFS2wntnXxV98O9z/1Enng2PGM/T8YNutjusDDM3RS+3/dYdlS2IEGz3tiT0ijdpX
+         HxNUCMibGEvr86+ty1F1T+qfFbly960YaIEWSOr93vIcLzlTuWYnSddsgmOsNO7PK7ng
+         ZjEAeqtZJHynIR5fatfCOxE8obBKB0856QGY/uwCXsQpXhNUUdsnHJvQWWTC2QZsl46H
+         sj+QZTYW6txMH9JGRJzug5ZAlpvzzbFNWbE/hZhfdF7Hy6EcWbADNhZpj2fWT2Ud9O7W
+         r9F5QLHJ1DCLEYuMVFsIp5ZCcwsU6oOZkLfwti6NJjyoJUT2LLdZD9DxM7rvXzvNspf0
+         wyjQ==
+X-Gm-Message-State: AOAM531r8JoWSCJeEZDvMMO2JrHmArOVUvUECY7ACF4QGr6omjAUUp0Q
+        9TbpbotXZoVy2hnMsTgu/ljk6w==
+X-Google-Smtp-Source: ABdhPJw5Ys0vZ5VL8BspxnKvGfYT0n0SNJzBm/f6dky2dNdWOKzgTA75cNI1mC5WfvtbF0JOkgL1PQ==
+X-Received: by 2002:a5d:698a:: with SMTP id g10mr3396424wru.129.1624353751594;
+        Tue, 22 Jun 2021 02:22:31 -0700 (PDT)
+Received: from google.com (105.168.195.35.bc.googleusercontent.com. [35.195.168.105])
+        by smtp.gmail.com with ESMTPSA id n10sm19413600wri.77.2021.06.22.02.22.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Jun 2021 02:22:31 -0700 (PDT)
+Date:   Tue, 22 Jun 2021 09:22:28 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        KarimAllah Ahmed <karahmed@amazon.de>,
+        linux-mm <linux-mm@kvack.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Dong Aisheng <dongas86@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] of: of_reserved_mem: mark nomap memory instead of
+ removing
+Message-ID: <YNGr1AlWV0AYnL1d@google.com>
+References: <20210611131153.3731147-1-aisheng.dong@nxp.com>
+ <20210611131153.3731147-2-aisheng.dong@nxp.com>
+ <CAL_JsqJMyY4iEcJi1z0o7pZdCASYHjnVjf6+fQDqa_ucb-M-MA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="WlcHhU6hex4h9Z0LOqBGwvBjeuF1z7K0S"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJMyY4iEcJi1z0o7pZdCASYHjnVjf6+fQDqa_ucb-M-MA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---WlcHhU6hex4h9Z0LOqBGwvBjeuF1z7K0S
-Content-Type: multipart/mixed; boundary="Kk1kL8IpnwdpIdgA1q2JbHjX2dsQ44t2z";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Esaki Tomohito <etom@igel.co.jp>
-Cc: devicetree@vger.kernel.org, Takanari Hayama <taki@igel.co.jp>,
- linux-doc@vger.kernel.org, David Airlie <airlied@linux.ie>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Damian Hobson-Garcia <dhobsong@igel.co.jp>
-Message-ID: <bd64733a-d45c-a985-d99d-0fa70bacb001@suse.de>
-Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
-References: <20210621062742.26073-1-etom@igel.co.jp>
- <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
- <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
-In-Reply-To: <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
+On Friday 11 Jun 2021 at 11:10:36 (-0600), Rob Herring wrote:
+> On Fri, Jun 11, 2021 at 7:13 AM Dong Aisheng <aisheng.dong@nxp.com> wrote:
+> >
+> > Since commit 86588296acbf ("fdt: Properly handle "no-map" field in the memory region"),
+> > nomap memory is changed to call memblock_mark_nomap() instead of
+> > memblock_remove(). But it only changed the reserved memory with fixed
+> > addr and size case in early_init_dt_reserve_memory_arch(), not
+> > including the dynamical allocation by size case in
+> > early_init_dt_alloc_reserved_memory_arch().
+> >
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> 
+> Good practice is to Cc the people involved in referenced commits.
+> Adding them now. This code is a minefield so I'd like other eyes on
+> it.
 
---Kk1kL8IpnwdpIdgA1q2JbHjX2dsQ44t2z
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Apologies for the delayed reply -- was away last week.
 
-Hi
+I've been starring at this for 15 minutes, and still can't see how it
+could go wrong, so FWIW:
 
-Am 22.06.21 um 06:02 schrieb Esaki Tomohito:
-> Hi, Thomas
-> Thank you for reply.
->=20
-> On 2021/06/21 16:10, Thomas Zimmermann wrote:
->> Hi
->>
->> Am 21.06.21 um 08:27 schrieb Tomohito Esaki:
->>> Virtual DRM splits the overlay planes of a display controller into
->>> multiple
->>> virtual devices to allow each plane to be accessed by each process.
->>>
->>> This makes it possible to overlay images output from multiple
->>> processes on a
->>> display. For example, one process displays the camera image without
->>> compositor
->>> while another process overlays the UI.
->>
->> I briefly looked over your patches. I didn't understand how this is
->> different to the functionality of a compositor? Shouldn't this be solv=
-ed
->> in userspace?
->=20
-> I think when latency is important (e.g., AR, VR, for displaying camera
-> images in IVI systems), there may be use cases where the compositor
-> cannot be used.
-> Normally, when the image is passed through the compositor, it is
-> displayed after 2 VSYNC at most, because the compositor combines the
-> image with VSYNC synchronization. On the other hand, if we use vDRM, th=
-e
-> image will be displayed at the next VSYNC, so it will be displayed afte=
-r
-> 1 VSYNC at most.
+Reviewed-by: Quentin Perret <qperret@google.com>
 
-Other commenters already addressed these points.
+Thanks,
+Quentin
 
->=20
-> Also, since the compositor is a single point of failure, we may not wan=
-t
-> to make it dependent on it.
-
-The kernel is also a single point of failure.
-
-TBH I don't think this feature should be merged until there's a clear=20
-use case that cannot be solved in userspace idiomatically.
-
-Best regards
-Thomas
-
->=20
-> Best regards
-> Tomohito Esaki
->=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---Kk1kL8IpnwdpIdgA1q2JbHjX2dsQ44t2z--
-
---WlcHhU6hex4h9Z0LOqBGwvBjeuF1z7K0S
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDRqXAFAwAAAAAACgkQlh/E3EQov+Af
-LhAAl2DsZ+2q/Kykruu+aUiljCoeGL+fehatgi3Qbz9LHotnb+8lcZL8qNGjphWQxLpooqeO9ZDr
-WPop9s6a4mSHD9nyyvXrdWLdid5wYpmetCMH6SVXHMlVWh+n/qw9v49DtqxHEADDk5VixNgh9cxQ
-RbRmOVg88YT8Z40zAZw2I6MlmIpS0SSDE5yjR3JHE6zOI6bniAdGiiCKojqoIS/Md/9g4MBjsIk2
-lro7eW7ulINyEuoDnbY3M241s/cZnP/ZShARtgScL5bVhoQZ6s7YO8OISYhYdkg+eF1qi1AdsqZY
-pmDLtAhZ95arQa5OIVTGewxxCG/uzbIDUh4v4lJSgBSF0SUtakCJF9Q9AhjCvW1+era0253MfyCy
-/F5sndCQh/Iaqt6hpqe6ijC5RgA4Le7IUBBZV+HE48/9hRv6QqZSEVz61LvpbK2mFihJYxFPfTwS
-xxa1E/+HvWDuEgUeehAWqaL07ytWPoaQBqn9nSvAtXTNPbXiknOWqW7Vq3vUMmf/zpF6mkd8R89U
-um6D6/bEIu0Vd9ZK5blNbuzoX+g/qJpWU+As8jkXF1uR0tDHPq2OsokaWQ2IsDkoJT4DBzzgFcl9
-RaTrRoKwCoEGIZfu1Bg4cfMPi6T0BmXiWs+psao3lp1Dwpiz8FMMRG6ObJ/0hcZ5g5B6+gugbqjb
-/Og=
-=+9bo
------END PGP SIGNATURE-----
-
---WlcHhU6hex4h9Z0LOqBGwvBjeuF1z7K0S--
+> > Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> > ---
+> >  drivers/of/of_reserved_mem.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+> > index 367f298a83b2..ebba88395bf8 100644
+> > --- a/drivers/of/of_reserved_mem.c
+> > +++ b/drivers/of/of_reserved_mem.c
+> > @@ -42,7 +42,7 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
+> >
+> >         *res_base = base;
+> >         if (nomap)
+> > -               return memblock_remove(base, size);
+> > +               return memblock_mark_nomap(base, size);
+> >
+> >         return memblock_reserve(base, size);
+> >  }
+> > @@ -276,7 +276,7 @@ void __init fdt_init_reserved_mem(void)
+> >                                 pr_info("node %s compatible matching fail\n",
+> >                                         rmem->name);
+> >                                 if (nomap)
+> > -                                       memblock_add(rmem->base, rmem->size);
+> > +                                       memblock_clear_nomap(rmem->base, rmem->size);
+> >                                 else
+> >                                         memblock_free(rmem->base, rmem->size);
+> >                         }
+> > --
+> > 2.25.1
+> >
