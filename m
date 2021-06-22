@@ -2,93 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6DDE3B01D6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 12:53:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E57983B0265
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 13:07:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229702AbhFVK4E convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Jun 2021 06:56:04 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:42486 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229831AbhFVK4A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Jun 2021 06:56:00 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1lve26-0003AI-SA; Tue, 22 Jun 2021 12:53:30 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     cl@rock-chips.com
-Cc:     robh+dt@kernel.org, jagan@amarulasolutions.com, wens@csie.org,
-        uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
-        cnsztl@gmail.com, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
-        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        cl@rock-chips.com, wim@linux-watchdog.org, linux@roeck-us.net,
-        jamie@jamieiles.com, linux-watchdog@vger.kernel.org, maz@kernel.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: pwm: rockchip: add description for rk3568
-Date:   Tue, 22 Jun 2021 12:53:29 +0200
-Message-ID: <4912561.MVdQ21Qd56@diego>
-In-Reply-To: <20210622020517.13100-2-cl@rock-chips.com>
-References: <20210622020517.13100-1-cl@rock-chips.com> <20210622020517.13100-2-cl@rock-chips.com>
+        id S229912AbhFVLKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 07:10:13 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:54284 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229682AbhFVLKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 07:10:12 -0400
+X-Greylist: delayed 301 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Jun 2021 07:10:12 EDT
+X-UUID: 2c21d4b1c5b047739e124e140322a535-20210622
+X-UUID: 2c21d4b1c5b047739e124e140322a535-20210622
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 944409304; Tue, 22 Jun 2021 19:02:35 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 22 Jun 2021 19:02:30 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 22 Jun 2021 19:02:29 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v7, 0/2] soc: mediatek: mmsys: add mt8192 mmsys support
+Date:   Tue, 22 Jun 2021 19:02:25 +0800
+Message-ID: <1624359747-25567-1-git-send-email-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liang,
+base 5.13-rc1
 
-Am Dienstag, 22. Juni 2021, 04:05:14 CEST schrieb cl@rock-chips.com:
-> From: Liang Chen <cl@rock-chips.com>
-> 
-> add "rockchip,rk3568-pwm", "rockchip,rk3328-pwm" for pwm nodes on
-> a rk3568 platform to pwm-rockchip.yaml.
-> 
-> Signed-off-by: Liang Chen <cl@rock-chips.com>
+Change since v5:
+- remove change id
 
-$ scripts/get_maintainer.pl drivers/pwm
+Yongqiang Niu (2):
+  soc: mediatek: mmsys: add comp OVL_2L2/POSTMASK/RDMA4
+  soc: mediatek: mmsys: Add mt8192 mmsys routing table
 
-returns
+ drivers/soc/mediatek/mt8192-mmsys.h    | 68 ++++++++++++++++++++++++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c       | 11 ++++++
+ include/linux/soc/mediatek/mtk-mmsys.h |  3 ++
+ 3 files changed, 82 insertions(+)
+ create mode 100644 drivers/soc/mediatek/mt8192-mmsys.h
 
-Thierry Reding <thierry.reding@gmail.com> (maintainer:PWM SUBSYSTEM)
-"Uwe Kleine-König" <u.kleine-koenig@pengutronix.de> (reviewer:PWM SUBSYSTEM)
-Lee Jones <lee.jones@linaro.org> (maintainer:PWM SUBSYSTEM)
-linux-pwm@vger.kernel.org (open list:PWM SUBSYSTEM)
-linux-kernel@vger.kernel.org (open list)
-
-
-though I only see Uwe in the lists of recipients. You may want to resend
-the binding and maybe pick up the pwm node patch with it to keep them
-together.
-
-
-Heiko
-
-> ---
->  Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
-> index 5596bee70509..81a54a4e8e3e 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-rockchip.yaml
-> @@ -29,6 +29,7 @@ properties:
->            - enum:
->                - rockchip,px30-pwm
->                - rockchip,rk3308-pwm
-> +              - rockchip,rk3568-pwm
->            - const: rockchip,rk3328-pwm
->  
->    reg:
-> 
-
-
-
+-- 
+1.8.1.1.dirty
 
