@@ -2,119 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D099C3B02C7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 13:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 671463B02D2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 13:31:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230121AbhFVLbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 07:31:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48042 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229668AbhFVLbV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Jun 2021 07:31:21 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B3E7161369;
-        Tue, 22 Jun 2021 11:29:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624361346;
-        bh=O63HMcCcWtEueNvIeLFcow7esesD5gVu8wMOrXI9q2w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WIUt193jhMx+MlBXaUMUutP8+/nyDaP4lOVTDH+hC3sgHeuiPDoFpd8sybKkOqLtj
-         sU7P3yytonzfgctuwuezAa0+jmQqlyTK9NwW2xwcM21xiJiyXXIQncSV611/5kjodP
-         O5mEyv36RZVJ1W+tiBzL6OM2EenuvwtWYyirkq5p6MNaqjoRLlTiTeYB92WQLYDgfC
-         HGJdrukzxKyBpWO+bCVTesyi0C78q5gU9k6Z2I/jOdXgD+esb8kBDKH3vXI8yYDTEk
-         UiUYsKnCt0KFncqdsRG2IPsUWQV5x8wbi4xvEiVbF19M5mefcq9nTC1WICUo+F5ILt
-         AFuUro0BQeNeg==
-Date:   Tue, 22 Jun 2021 12:28:43 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-bluetooth@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
- powerup sequence
-Message-ID: <20210622112843.GB4574@sirena.org.uk>
-References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
- <20210621223141.1638189-3-dmitry.baryshkov@linaro.org>
+        id S229853AbhFVLdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 07:33:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60374 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229849AbhFVLdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 07:33:50 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A400C061574;
+        Tue, 22 Jun 2021 04:31:33 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id i94so23214232wri.4;
+        Tue, 22 Jun 2021 04:31:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IQWYBDsWnVgNYb0J/ARy4jiGyFTiN2ezb1XU1B2YfnM=;
+        b=ASpNCLwOhv0lmYh3wU/v7hdREVqRgRO4c/API7MZJyrQGjfZ1sHc/+9zZD4S3pxGqk
+         l74j1khng1fheQbWuV93DiwhSP028ecCP39oini8gKeqQkqmd+1RuN/8IhgPDS3yi0e0
+         qxJrsH3tunCDENBcdCZn2v8+tVDkqSwrgibOb23yWdy+1KAEp8Gi3hXyg3m8X7KHo6zz
+         9celprROrwFeZpDVCUXdyqSZVnji0K0VsRVGBJw0S/ouwL55GSh3IyiRdjc0tDC8cMoT
+         aKEKJUWg71L1uscc4oSUuek1dZmPlCPh7YVe1+SLnkFRCc9TKCyCa7Ew3sGyxMG1qtRx
+         jDLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IQWYBDsWnVgNYb0J/ARy4jiGyFTiN2ezb1XU1B2YfnM=;
+        b=aB+6o7+vAVT6TXF6qG4Cz0Pc823u0CQK+hPma65OcXTEpeI4lHf3wVBob7HyTYs7W6
+         oRzQTtOoTPnnVn7FGBVfNNadPrWIiHwo40cqo64lz30Oecl6ChKDbZMlbed8o55872gT
+         xz1s3rmZiClO7fMj7hM9iMwIhGM86RTUsjxp3SnylGnsGgZp6WBd/4tGrGoih3dlJX1S
+         /8CRJ/X5TvHWumOSLelobwCcwUlNx6kERZjdEEWsp+Sm8C9ykN/NCzWHMpql8zlDGAzk
+         KHaJLCaQQft+A8ewRheVmlU4XYX7n3N/5RnCUz+/ZE9E5v7L/0b+9YHdX7/Tj1ZgKbJO
+         QzOA==
+X-Gm-Message-State: AOAM5307rYhUhpTSLk03pOpDjtdDtPV9FD7528Zivgsy9uW+6PBKDPf1
+        3oOiiSFhLsbQeRDkOFdoLBc=
+X-Google-Smtp-Source: ABdhPJxjuZ8dpiFSTPP7pdi029NIXE1hjGNARIe7j7ENpZCOCfB2fU1p3EqUTTDplnxf4UJe83ZBRQ==
+X-Received: by 2002:adf:ff8e:: with SMTP id j14mr4089268wrr.374.1624361492103;
+        Tue, 22 Jun 2021 04:31:32 -0700 (PDT)
+Received: from localhost (pd9e51d70.dip0.t-ipconnect.de. [217.229.29.112])
+        by smtp.gmail.com with ESMTPSA id u12sm21911104wrr.40.2021.06.22.04.31.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Jun 2021 04:31:31 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org
+Subject: [PATCH] dt-bindings: net: dsa: sja1105: Fix indentation warnings
+Date:   Tue, 22 Jun 2021 13:33:27 +0200
+Message-Id: <20210622113327.3613595-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="O5XBE6gyVG5Rl6Rj"
-Content-Disposition: inline
-In-Reply-To: <20210621223141.1638189-3-dmitry.baryshkov@linaro.org>
-X-Cookie: fortune: not found
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
---O5XBE6gyVG5Rl6Rj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Some of the lines aren't properly indented, causing yamllint to warn
+about them:
 
-On Tue, Jun 22, 2021 at 01:31:36AM +0300, Dmitry Baryshkov wrote:
+    .../nxp,sja1105.yaml:70:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
 
-> Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
-> being controlled through the UART and WiFi being present on PCIe
-> bus. Both blocks share common power sources. Add device driver handling
-> power sequencing of QCA6390/1.
+Use the proper indentation to fix those warnings.
 
-Are you sure this is a regulator and not a MFD?  It appears to be a
-consumer driver that turns on and off a bunch of regulators en masse
-which for some reason exposes that on/off control as a single supply.
-This looks like it'd be much more appropriate to implement as a MFD or
-possibly power domain with the subdevices using runtime PM, it's clearly
-not a regulator.
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2021, Linaro Limited
-> + */
+diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+index 0b8a05dd52e6..f978f8719d8e 100644
+--- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
+@@ -67,8 +67,8 @@ properties:
+           reg:
+             oneOf:
+               - enum:
+-                - 0
+-                - 1
++                  - 0
++                  - 1
+ 
+         required:
+           - compatible
+-- 
+2.32.0
 
-Please make the entire comment a C++ one so things look more
-intentional.
-
-> +static int qca6390_enable(struct regulator_dev *rdev)
-> +{
-> +	struct qca6390_data *data = rdev_get_drvdata(rdev);
-> +	int ret;
-> +
-> +	ret = regulator_bulk_enable(data->num_vregs, data->regulators);
-> +	if (ret) {
-> +		dev_err(data->dev, "Failed to enable regulators");
-> +		return ret;
-> +	}
-
-The regulator API is *not* recursive, I am astonished this works.
-
-> +	/* Wait for 1ms before toggling enable pins. */
-> +	usleep_range(1000, 2000);
-
-There's core support for delays after power on, better to use it.
-
-> +	data->enable_counter++;
-
-You shouldn't assume that enable and disable calls are matched.
-
---O5XBE6gyVG5Rl6Rj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDRyWoACgkQJNaLcl1U
-h9Avhgf8DH8yAQTnnRzSSpHRKE5XpuOSXrGEKhggWkn6wpBkg/LNUERaMFDf2LRM
-ws7VUbElGDdECoiy18JOCdgYpZkIx5I13OUS3PyroAnRpmzp5bPa9lwneI/icl3n
-wT16PP28Ta2VaOb66njp/4ESWY+UuAvHH0JXwo8v0jPc61GpYOXketQCX0xk4j4G
-Ps8HahDYAJ3wT3UrVi6EbXvLRLvj3i1CU9kkvfxt9mj5/bj4WS4VO+4cJmIqMXZc
-FhkdtDBOfhtfetDO1jhxBz8Wg8Ww88udy6HqiQuzkeON094p4qtU/LU3/IEcgJAH
-w1PXR5PlM4oV3w/nDGtGZ1EWe+Bqfg==
-=7i/2
------END PGP SIGNATURE-----
-
---O5XBE6gyVG5Rl6Rj--
