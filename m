@@ -2,122 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 415463B0D7B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 21:10:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C97C23B0D85
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 21:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230146AbhFVTMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 15:12:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54160 "EHLO
+        id S232663AbhFVTPN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 15:15:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229786AbhFVTMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 15:12:51 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E9B4C061574;
-        Tue, 22 Jun 2021 12:10:34 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id a13so3107733wrf.10;
-        Tue, 22 Jun 2021 12:10:33 -0700 (PDT)
+        with ESMTP id S232635AbhFVTPN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 15:15:13 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 278DDC061760
+        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 12:12:57 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id h9so544548oih.4
+        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 12:12:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rX6KIvYnLjrPDo/eaefN8OjY3RSfelT8qPY3zziO7bo=;
-        b=a1WX3f6TzwkauIrHoo2NMwjXcBeQe7WmRfhuIJVvrgRKzuismp1I/+qEUmC7//lqte
-         90u6gKGt60Ps0iYVijXYAbVPMhxFW6GjwI4ztaaLhucXj+CtU51BxYlBm2CyfPBsilGO
-         eS4ZQz2gU92GKweNDJaDDo12nr9i093XI+GnjwnCUttJvpe0ISLOdURqAm6ls52pzh2l
-         A2SRYqNurjDClsNGjHDgLTvB3+TdtokLZcYz+7KG9FAQPmWGuDoldNM0hZixB595Qm0M
-         WhUNWzMuiQOt4u7zMlDTwL/gy93LpMJWUOtJElYluFrIj9p8EgB0cOo4XtV71wfxYv1t
-         fv7A==
+        d=ffwll.ch; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=w+PkCKWzFX6ch68xMO5vdAGxWd4TzqP1oTkPZJt/SU8=;
+        b=ekUmPFB2M5VXXbkvlmuIKKlnSZHE29amdGhmgguDVqbcLNLaIs1QogG56KPe2c/vyH
+         47uJ2q9OZDaYEG6CEUo7/rardPggTELJZvSoOfm61uUlH+6CfCG34FrFSWa9h55lCXn0
+         VhP3FsAkxvxFYJIxZtygDVHH2mDIhjNb+GaYA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rX6KIvYnLjrPDo/eaefN8OjY3RSfelT8qPY3zziO7bo=;
-        b=kg+HLJWE0SfawC5roawfTlqP4eVBO1T1rAaiNfe5Rgd6np6M0wC427dZSBDom8zxNs
-         yNIOQ8NIneQxb8wrZc5PUWVXrwd9EPjJCjhIgI4i8CLwVh0n8cIGKyv6w6ZSX0f/1dLa
-         yzacj5OxCORKfuMDDsrUwZ+GcchYS85LDKOiEdU1dihncDpBT4L7PEVYVFdmSPQqozOn
-         jBMicOFmob+ARnb1haLjmv+iqT6YJCEzKN8Z0qNTJ3pi4wp3s/7KT/7YVlHGzr6wm0Nx
-         okBlQ5x6wkNmHANlpnI9WHPJf9yH/ulr+eMReRCBSpE9/R4Xg6aK85FZj33+MzjfMbL8
-         WVyQ==
-X-Gm-Message-State: AOAM532X1LbuPa8Qb4KRTickxDz9jZz2ppDXN2QVdX8DXPPz9+0VvCfE
-        T0fOWFBPC1krmHRkMJLgFqdgTctPsCKJHA==
-X-Google-Smtp-Source: ABdhPJxjJMJF51K+qxzDXc7DqHgtetS7uVmcOQez8ncBMjmjk2b2b0Ds0L5XCR23eEfcmUvZgJ54dw==
-X-Received: by 2002:a5d:6daf:: with SMTP id u15mr6720139wrs.400.1624389032596;
-        Tue, 22 Jun 2021 12:10:32 -0700 (PDT)
-Received: from dell5510.suse.de (gw.ms-free.net. [95.85.240.250])
-        by smtp.gmail.com with ESMTPSA id f12sm284021wru.81.2021.06.22.12.10.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jun 2021 12:10:32 -0700 (PDT)
-From:   Petr Vorel <petr.vorel@gmail.com>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Petr Vorel <petr.vorel@gmail.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v4 1/1] arm64: dts: qcom: msm8994-angler: Disable cont_splash_mem
-Date:   Tue, 22 Jun 2021 21:10:19 +0200
-Message-Id: <20210622191019.23771-1-petr.vorel@gmail.com>
-X-Mailer: git-send-email 2.32.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=w+PkCKWzFX6ch68xMO5vdAGxWd4TzqP1oTkPZJt/SU8=;
+        b=L8jYbdWGECvzQABzC1oQ9espCsTjtrZnRtrBTwfN5XVnRBb4m341CNYCfUsfBJHBql
+         XcPfwiGypJmRv1V9uhvbTmTZBgAsDq1Lg6psGY+JAK3l98bR1rpsBroe6vfsbHbrQtVa
+         ZWX26VWcJW8PmVfKvF1bPvZDqpnpUL/5iR1L+xa38iCSen6E+sbzwKKnu5LAUs2q4Wff
+         /YZPIOykFOUO/tiC/mGwEtJu0xRqxjC2/NzIbU8Vz9Tg6XPu1r+xMa8SxQC++f0fQC/S
+         ogOSPLurU1YeMDELCKYY+3xjzuh0646Hv993omchuyJUhzQFcFNV0VG5CVEWbr/m+CQ0
+         8ojw==
+X-Gm-Message-State: AOAM530SPBrXrnpLEhoWCClwSYNxskSeU334shF2uKxA9rUlq1NoBlx0
+        XrJ3KSUGtvS0+riAgpi3BxPDcpUAjDmAJDJPAOffdg==
+X-Google-Smtp-Source: ABdhPJz/k3FiF0tgCVxa1om8nqMYiaOhW6/mWSjaPKKrNyT19R2NPRvfMrw2F8iAAUjfxj0wnpihMIckW3pT3vGMqhU=
+X-Received: by 2002:aca:1a0c:: with SMTP id a12mr253218oia.14.1624389176394;
+ Tue, 22 Jun 2021 12:12:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210621062742.26073-1-etom@igel.co.jp> <7cde82a9-c60c-e527-eeac-eaad0c5842a1@metux.net>
+ <1cfab5f9-f275-aa53-00de-5da3fcea71c5@igel.co.jp> <20210622111239.73aa87aa@eldfell>
+In-Reply-To: <20210622111239.73aa87aa@eldfell>
+From:   Daniel Vetter <daniel@ffwll.ch>
+Date:   Tue, 22 Jun 2021 21:12:45 +0200
+Message-ID: <CAKMK7uGhx0O4yFESWxoN1nDnEFH24cC6pRRDEBYDWHrnci_j+Q@mail.gmail.com>
+Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
+To:     Pekka Paalanen <ppaalanen@gmail.com>
+Cc:     Esaki Tomohito <etom@igel.co.jp>,
+        devicetree <devicetree@vger.kernel.org>,
+        Takanari Hayama <taki@igel.co.jp>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:DRM DRIVERS FOR RENESAS" 
+        <linux-renesas-soc@vger.kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        "Enrico Weigelt, metux IT consult" <lkml@metux.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Damian Hobson-Garcia <dhobsong@igel.co.jp>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As the default definition breaks booting angler:
-[    1.862561] printk: console [ttyMSM0] enabled
-[    1.872260] msm_serial: driver initialized
-D -     15524 - pm_driver_init, Delta
+On Tue, Jun 22, 2021 at 10:12 AM Pekka Paalanen <ppaalanen@gmail.com> wrote:
+>
+> On Tue, 22 Jun 2021 13:03:39 +0900
+> Esaki Tomohito <etom@igel.co.jp> wrote:
+>
+> > Hi, Enrico Weigelt
+> > Thank you for reply.
+> >
+> > On 2021/06/22 1:05, Enrico Weigelt, metux IT consult wrote:
+> > > On 21.06.21 08:27, Tomohito Esaki wrote:
+> > >
+> > > Hi,
+> > >
+> > >> Virtual DRM splits the overlay planes of a display controller into multiple
+> > >> virtual devices to allow each plane to be accessed by each process.
+> > >>
+> > >> This makes it possible to overlay images output from multiple processes on a
+> > >> display. For example, one process displays the camera image without compositor
+> > >> while another process overlays the UI.
+> > >
+> > > Are you attempting to create an simple in-kernel compositor ?
+> >
+> > I think the basic idea is the same as DRMlease.
+>
+> Hi,
+>
+> indeed. Why not use DRM leases instead?
+>
+> > We want to separate the resources from the master in units of planes,
+> > so we proposed virtual DRM.
+> > I think the advantage of vDRM is that you can use general DRM APIs
+> > in userland.
+>
+> You do that with DRM leases too.
+>
+> > > I don't think that's not the way to go, at least not by touching each
+> > > single display driver, and not hardcoding the planes in DT.
+> >
+> > Thank you for comment. I will reconsider about DT.
+> >
+> > > What's the actual use case you're doing that for ? Why not using some
+> > > userland compositor ?
+> >
+> > I think when latency is important (e.g., AR, VR, for displaying camera
+> > images in IVI systems), there may be use cases where the compositor
+> > cannot be used.
+> > Normally, when the image is passed through the compositor, it is
+> > displayed after 2 VSYNC at most, because the compositor combines the
+> > image with VSYNC synchronization. On the other hand, if we use vDRM, the
+> > image will be displayed at the next VSYNC, so it will be displayed after
+> > 1 VSYNC at most.
+>
+> As I said in my other email, this is false in the general sense.
+>
+> > Also, since the compositor is a single point of failure, we may not want
+> > to make it dependent on it.
+>
+> This... I'm not quite sure I buy it. If any of all the programs using
+> virtual KMS crashes, you still lose some crucial components from your
+> display. Maybe that program, while crashing, uploads such a bad state
+> to its very own KMS plane, that it causes other KMS planes to
+> malfunction. Then you need to detect this situation and still restart
+> everything, not just the crashed program.
 
-cont_splash_mem was introduced in 74d6d0a145835, but the problem
-manifested after 86588296acbf ("fdt: Properly handle "no-map" field
-in the memory region").
+This, a hundred times. At least in general it's impossible to
+guarantee resource isolation between different parts of a kms device -
+everything is shared at least in some driver in funny ways.
 
-Disabling it because Angler's firmware does not report where the memory
-is allocated (dmesg from downstream kernel):
-[    0.000000] cma: Found cont_splash_mem@0, memory base 0x0000000000000000, size 16 MiB, limit 0x0000000000000000
-[    0.000000] cma: CMA: reserved 16 MiB at 0x0000000000000000 for cont_splash_mem
+The only thing we try to guarantee is that if you keep flipping the
+same plane with same pixel format, stride, offset, absolutely
+everything except the memory block unchanged, then that's guaranteed
+to work. Everything else is off the table.
 
-Similar issue might be on Google Nexus 5X (lg-bullhead). Other MSM8992/4
-are known to report correct address.
+This is why the drm-lease design ended up with revoke support, because
+if something goes wrong a superior instance (the compositor, the
+kernel can't decide that for userspace) needs to decide whom to shoot
+and revoke their access.
 
-Fixes: 74d6d0a145835 ("arm64: dts: qcom: msm8994/8994-kitakami: Fix up
-the memory map")
+> I would think a userspace compositor approach is actually more
+> reliable. You write the compositor to be extremely robust. Exactly
+> because the compositor is in control of the complete display device and
+> not just little pieces of it, it can see what is happening and it can
+> mitigate problems. If you have more unreliable components needing
+> access to display, make those clients to the compositor, so they can
+> crash and malfunction on their own without potentially killing the
+> whole display device. If you are as concerned about latency as XR
+> people are, then use DRM leases.
+>
+> Also, what if your virtual KMS driver has a bug? Restarting the kernel
+> is much harder that restarting a userspace compositor that hands out
+> DRM leases.
+>
+> The userspace compositor could even be such that it does nothing more
+> than handing out DRM leases. However, DRM leases have the problem that
+> there is no single entity responsible for keeping the display device
+> working, but that responsibility is split between several processes and
+> none of them sees the whole picture.
 
-Suggested-by: Konrad Dybcio <konradybcio@gmail.com>
-Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
----
-Changes v3->v4:
-* add a comment in dts (asked by Konrad)
+Yeah I think a compositor for this use-case, written in Rust and
+heavily audited/proofed is probably a lot more reliable than cobbling
+ill-defined kernel driver code on top of barely-defined hw semantics
+in resource-sharing cases.
 
-Kind regards,
-Petr
+> Btw. VKMS is an existing DRM driver, so your name choice is conflicting.
 
- arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-index ffe1a9bd8f70..c096b7758aa0 100644
---- a/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dts
-@@ -1,12 +1,16 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /* Copyright (c) 2015, Huawei Inc. All rights reserved.
-  * Copyright (c) 2016, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2021, Petr Vorel <petr.vorel@gmail.com>
-  */
- 
- /dts-v1/;
- 
- #include "msm8994.dtsi"
- 
-+/* Angler's firmware does not report where the memory is allocated */
-+/delete-node/ &cont_splash_mem;
-+
- / {
- 	model = "Huawei Nexus 6P";
- 	compatible = "huawei,angler", "qcom,msm8994";
+Yeah that too :-)
+-Daniel
 -- 
-2.32.0
-
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
