@@ -2,155 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A2C93B0AF7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 18:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3C0C3B0B22
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 19:08:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbhFVRBO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 13:01:14 -0400
-Received: from mail-il1-f175.google.com ([209.85.166.175]:33742 "EHLO
-        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbhFVRBO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 13:01:14 -0400
-Received: by mail-il1-f175.google.com with SMTP id z1so9137294ils.0;
-        Tue, 22 Jun 2021 09:58:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LsZRslTqg7fuj2glyUnRDUtW0t7V3r4Eh+jP25psiYA=;
-        b=cArNuoH4FXfC/kD0jl6+CVoSS5PaCVBtlPLNhI1oVocNOv3sqnMJPPcS8mDnl+Gtb3
-         usyy2AifZBHDFSD7N3yI4k/vELCW3JoOixky2xopAfn6RrLZHspHd3pOuFm1iokdqWtW
-         x+hrPmkRF7n/74P51ZwLCcHe4HjLE0jhKxJBhbNc0boEX56Rrwr9EQDgUHsUd8aDPs7R
-         uey+G35NCGFBPToMWmmgI9tth94LQI45QTc6Ax+RT5irGMYmQmzIR9NsjUqz47QTwblW
-         QnliDKD5VtuoIeTtRTj4WLS0TevLQLs+TmgEc2jacToh7HTRCs7bBgqcKkZ0/ZJsz/Qs
-         1dbg==
-X-Gm-Message-State: AOAM531lsTy2u+gug8XxjuLsTDxAuDky6agn360d62Y8oWTN7Tn0HS+d
-        /XpvrUR13x00TTm3lAvYIA==
-X-Google-Smtp-Source: ABdhPJzgjRJsYlROHHbtiBHKPUccSnwLseG1lY6GPKVUd6HQM/6j52GqK8QKMC64yih29uRWItX9wQ==
-X-Received: by 2002:a92:3f01:: with SMTP id m1mr3416158ila.122.1624381137433;
-        Tue, 22 Jun 2021 09:58:57 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id k21sm360710ios.0.2021.06.22.09.58.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jun 2021 09:58:56 -0700 (PDT)
-Received: (nullmailer pid 3843418 invoked by uid 1000);
-        Tue, 22 Jun 2021 16:58:51 -0000
-Date:   Tue, 22 Jun 2021 10:58:51 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 01/11] dt-bindings: phy: renesas: Document RZ/G2L USB
- PHY Control bindings
-Message-ID: <20210622165851.GA3840386@robh.at.kernel.org>
-References: <20210621093943.12143-1-biju.das.jz@bp.renesas.com>
- <20210621093943.12143-2-biju.das.jz@bp.renesas.com>
+        id S230167AbhFVRLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 13:11:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37420 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230076AbhFVRLC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Jun 2021 13:11:02 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6DA5A61360;
+        Tue, 22 Jun 2021 17:08:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624381726;
+        bh=c8HGlAjch/gVhdi7JaBrw2jhwA9rmnpGC/Hcq+DPDdg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MqQktpEn56WA/G+vQRSUUQhb6eXMNQ9sMzwGcpbdNN67bMefV2mvku6nYqVArMaI4
+         2+zzqnRaWG/+lLqsZ+xaPje1lzJCrsy7EltBUyNgLfY5/+Rk8mtTGz52OvFCloayvr
+         sBTKGBR01iTgmPvp2J/2DLEkuv3LYWqD6P70XiLKWM6xJvON7h4Xf6SKdVlIFEVVDb
+         GMWWls/1dTTLCMEIMgxpGZ8BCyx5neqQdkhMBv27xf67+dqTVUZK2BFrQn4uOuUPKQ
+         G6sUSkEy46GqC5Pw3EJSgVc+cFBxRf4H7K3TmKs98AroQlrx/udari8FpOwucysh0x
+         8PJoVkziDTFOg==
+Date:   Tue, 22 Jun 2021 18:08:22 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        linux-bluetooth@vger.kernel.org
+Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
+ powerup sequence
+Message-ID: <20210622170822.GI4574@sirena.org.uk>
+References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
+ <20210621223141.1638189-3-dmitry.baryshkov@linaro.org>
+ <20210622112843.GB4574@sirena.org.uk>
+ <CAA8EJpoTdg3O6dzpTaNS5fJRbtb1Fndv0mEuO+e4b6XCmuvzhQ@mail.gmail.com>
+ <20210622143812.GE4574@sirena.org.uk>
+ <CAA8EJpoeYUOPLKca5oJNKdyOvOmoLX6FvsTbdmC7W9mLsyyVmw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="k9xkV0rc9XGsukaG"
 Content-Disposition: inline
-In-Reply-To: <20210621093943.12143-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <CAA8EJpoeYUOPLKca5oJNKdyOvOmoLX6FvsTbdmC7W9mLsyyVmw@mail.gmail.com>
+X-Cookie: fortune: not found
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 21, 2021 at 10:39:33AM +0100, Biju Das wrote:
-> Add device tree binding document for RZ/G2L USB PHY control driver.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> V1->V2:
->  * Add clock properties
-> ---
->  .../phy/renesas,rzg2l-usbphyctrl.yaml         | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/renesas,rzg2l-usbphyctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/renesas,rzg2l-usbphyctrl.yaml b/Documentation/devicetree/bindings/phy/renesas,rzg2l-usbphyctrl.yaml
-> new file mode 100644
-> index 000000000000..8e8ba43f595d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/renesas,rzg2l-usbphyctrl.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/renesas,rzg2l-usbphyctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas RZ/G2L USB2.0 PHY Control
-> +
-> +maintainers:
-> +  - Biju Das <biju.das.jz@bp.renesas.com>
-> +
-> +description:
-> +  The RZ/G2L USB2.0 PHY Control mainly controls reset and power down of the
-> +  USB/PHY.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,r9a07g044-usbphyctrl # RZ/G2{L,LC}
-> +      - const: renesas,rzg2l-usbphyctrl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  '#phy-cells':
-> +    # see phy-bindings.txt in the same directory
-> +    const: 1
-> +    description: |
-> +      The phandle's argument in the PHY specifier is the phy reset control bit
-> +      of usb phy control.
-> +      0 = Port 1 Phy reset
-> +      1 = Port 2 Phy reset
-> +    enum: [ 0, 1 ]
 
-You already have the const, so this doesn't do anything.
+--k9xkV0rc9XGsukaG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - '#phy-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
-> +
-> +    usbphyctrl@11c40000 {
+On Tue, Jun 22, 2021 at 07:46:08PM +0300, Dmitry Baryshkov wrote:
+> On Tue, 22 Jun 2021 at 17:38, Mark Brown <broonie@kernel.org> wrote:
 
-usb-phy@...
+> > Well, perhaps it should do one of those things then?
 
-> +        compatible = "renesas,r9a07g044-usbphyctrl",
-> +                     "renesas,rzg2l-usbphyctrl";
-> +        reg = <0x11c40000 0x10000>;
-> +        clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>;
-> +        resets = <&cpg R9A07G044_USB_PCLK>;
-> +        power-domains = <&cpg>;
-> +        #phy-cells = <1>;
-> +    };
-> -- 
-> 2.17.1
-> 
-> 
+> I don't think so. BT part is just a serdev sitting on top of UART,
+> WiFi is PCIe device (for qca6390). So using MFD API (which primarily
+> targets platform devices) does not seem logical and feasible.
+
+That really does sound like a MFD - AIUI it's a single chip with
+multiple interfaces that needs some glue logic to hold it together.  It
+doesn't fit well with the current framework that MFD offers but it's
+definitely the same sort of one chip in multiple Linux frameworks sort
+of thing.  The only other thing I can think might fit is handling it
+like a plug in module for a development board (eg, RPi hats) but we've
+not been doing so great at getting them supported upstream.
+
+--k9xkV0rc9XGsukaG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDSGQUACgkQJNaLcl1U
+h9BJwQf/S9os6LnqYb2q1/RMKcv1FwE6Jze9TX0xNc3AXqXxIIxK4VAQ4mhBf1ne
+7j63Gq/t3jtZ1lqGlXj0Tso7CjQgH/UxdqmhzBYRRwDmMKrL6Vr5ON3JvHjjjQoF
+N7k2CARqOEAAVMjLkhMWhTblaRuhfLjAe68vR0ZXTttY2ES8n2+Csa5AbEHvOxdl
+lHJsSz2C2ZR7nsl0KhmO17w0H3KcHxupzCbh6IqJllXZBy985FDCl8UllCYFL8hC
+nqSfXuTXfUNrWnaAlwWAIss69Et/PqtbuGFAUsP6U+OCRSMsQJ2QBAFQavwkHEip
+ooGQW6CJaf3Es4RU8JmTEMWiRhiaEw==
+=staA
+-----END PGP SIGNATURE-----
+
+--k9xkV0rc9XGsukaG--
