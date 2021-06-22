@@ -2,120 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2FBD3B0672
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 16:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABCD53B0704
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 16:11:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbhFVOHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 10:07:54 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:59441 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229988AbhFVOHy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 10:07:54 -0400
-Received: (Authenticated sender: paul@opendingux.net)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 666DD200014;
-        Tue, 22 Jun 2021 14:05:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=opendingux.net;
-        s=gm1; t=1624370737;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=I2wA2alxKMX6rKejmxalDth4J3jLfgnXP/ip+6g6EO8=;
-        b=dl7oZJRv4if/QBGoQuTlMlEqmeh1ZO2jHZDGVpLFDiR2+gly7UIokRSKTh7udiynJdonhK
-        pmXmAWbAM0EPb1SKfBHUmQ2vc5CURtaQyYhRM6lLRwOdcwsDGEzKSjExLvjoU/cCaryZah
-        OKZivsesfTGaFFbnIf8QEqj4fye4RTXm5jun3x83ZQvwnNJMcVMiQEg2oXSzrIcQccFYUk
-        lXCk4HoWdkHJ4fH59NjaR9mk5xUDk3Y5bATcbKQmG+aBHitEIWEe1KDHgHHLYBwMUf/gDl
-        xU2K9Kb9eMRvIrji0kgWYeN1YPpb0FcPpT2nd47VSkZllnB8YFhh2W/FLEReiQ==
-Date:   Tue, 22 Jun 2021 15:05:25 +0100
-From:   Paul Cercueil <paul@opendingux.net>
-Subject: Re: [PATCH 3/4] MIPS: GCW0: Adjust pinctrl related code in device
- tree.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com
-Message-Id: <1HW3VQ.OQVPDYR5D5RR1@opendingux.net>
-In-Reply-To: <20210622215119.18a49cf9@zhouyanjie-virtual-machine>
-References: <1624347445-88070-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1624347445-88070-4-git-send-email-zhouyanjie@wanyeetech.com>
-        <9US3VQ.SK89X0OFZC2Z2@opendingux.net>
-        <20210622215119.18a49cf9@zhouyanjie-virtual-machine>
-X-Mailer: geary/40.0
+        id S231417AbhFVONr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 10:13:47 -0400
+Received: from relay03.th.seeweb.it ([5.144.164.164]:44365 "EHLO
+        relay03.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230047AbhFVONq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 10:13:46 -0400
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 1E9991F9C8;
+        Tue, 22 Jun 2021 16:11:26 +0200 (CEST)
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+To:     bjorn.andersson@linaro.org
+Cc:     agross@kernel.org, daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com,
+        jami.kettunen@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, stephan@gerhold.net,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: [PATCH v7 0/5] Implement SPM/SAW for MSM8998 and SDM6xx
+Date:   Tue, 22 Jun 2021 16:11:12 +0200
+Message-Id: <20210622141117.358893-1-angelogioacchino.delregno@somainline.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
+Changes in v7:
+- Fixed functionality breakage on ARM for cpuidle-qcom-spm... now it works :))
+- Reworded description of patch 1/5
 
-Le mar., juin 22 2021 at 21:51:19 +0800, =E5=91=A8=E7=90=B0=E6=9D=B0=20
-<zhouyanjie@wanyeetech.com> a =C3=A9crit :
-> Hi Paul,
->=20
-> =E4=BA=8E Tue, 22 Jun 2021 13:46:57 +0100
-> Paul Cercueil <paul@opendingux.net> =E5=86=99=E9=81=93:
->=20
->>  Hi Zhou,
->>=20
->>  Le mar., juin 22 2021 at 15:37:24 +0800, =E5=91=A8=E7=90=B0=E6=9D=B0 (Z=
-hou Yanjie)
->>  <zhouyanjie@wanyeetech.com> a =C3=A9crit :
->>  > Change the "lcd-24bit" in the pinctrl groups to "lcd-8bit",
->>  > "lcd-16bit", "lcd-18bit", "lcd-24bit", since the pinctrl
->>  > driver has done the necessary splitting of the lcd group,
->>  > and it is convenient to further streamline the lcd-24bit
->>  > group in the subsequent pinctrl driver.
->>  >
->>  > Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) <zhouyanjie@=
-wanyeetech.com>
->>  > ---
->>  >  arch/mips/boot/dts/ingenic/gcw0.dts | 2 +-
->>  >  1 file changed, 1 insertion(+), 1 deletion(-)
->>  >
->>  > diff --git a/arch/mips/boot/dts/ingenic/gcw0.dts
->>  > b/arch/mips/boot/dts/ingenic/gcw0.dts
->>  > index f4c04f2..dec3ba6f 100644
->>  > --- a/arch/mips/boot/dts/ingenic/gcw0.dts
->>  > +++ b/arch/mips/boot/dts/ingenic/gcw0.dts
->>  > @@ -393,7 +393,7 @@
->>  >  &pinctrl {
->>  >  	pins_lcd: lcd {
->>  >  		function =3D "lcd";
->>  > -		groups =3D "lcd-24bit";
->>  > +		groups =3D "lcd-8bit", "lcd-16bit", "lcd-18bit",
->>  > "lcd-24bit";
->>=20
->>  No, I'm pretty sure this won't work, since "lcd-24bit" contains pins
->>  that are also contained by the other groups.
->>=20
->=20
-> Sure, it seems that we should modify the pinctrl first, then modify=20
-> the
-> dts, and then put them in the same series, so as to ensure that they=20
-> do
-> not cause damage.
+Changes in v6:
+- Moved cpuidle_driver to be private to cpuidle-qcom-spm (unused in spm.c),
+  now we are assigning the cpuidle_driver structure fields inside of the
+  spm_cpuidle_register function; this also fixes the cpumask assignment
+  issue from v5
+- Fixed another contamination from 2/3 in 1/3 (argh!! :])
+- Added dt-bindings documentation for the SPM driver
 
-No, the "lcd-24bit" group is ABI now. We can't change it...
+Changes in v5:
+- Fixed contamination from patch 2/3 in patch 1/3
+- Fixed missing bits in cpuidle-qcom-spm (thanks Stephan)
 
--Paul
+Changes in v4:
+- Huge patch series has been split for better reviewability,
+  as suggested by Bjorn
 
->=20
-> Thanks and best regards!
->=20
->>  -Paul
->>=20
->>  >  	};
->>  >
->>  >  	pins_uart2: uart2 {
->>  > --
->>  > 2.7.4
->>  >
->>=20
->=20
+Changes in v3:
+- Rebased (no changes - was in previous series' v3)
 
+Changes in v2:
+- Fixed MSM8998 SAW parameters on SPM driver
+
+Tested on the following smartphones:
+- Sony Xperia XA2        (SDM630)
+- Sony Xperia XA2 Ultra  (SDM630)
+- Sony Xperia 10         (SDM630)
+- Sony Xperia XZ Premium (MSM8998)
+- F(x)Tec Pro 1          (MSM8998)
+
+This is a component that we can find on very old
+chips, like MSM8974; there, it has been used to actually do the
+power scaling basically "on its own" - sending the cores in a specific
+sleep mode to save power.
+On the newer ones, including MSM8998, SDM630, 660 and others, it is still
+present! Though, this time, it's being used for the cluster caches and it
+has a different firmware (and maybe it's also slightly different HW),
+implementing the SAWv4.1 set and getting controlled *not by the OS* but
+by other controllers in the SoC (like the OSM).
+
+Contrary from MSM8974 and the like, this new version of the SPM just
+requires us to set the initial parameters for AVS and *nothing else*, as
+its states will be totally managed internally.
+
+AngeloGioacchino Del Regno (5):
+  cpuidle: qcom_spm: Detach state machine from main SPM handling
+  dt-bindings: soc: qcom: Add devicetree binding for QCOM SPM
+  soc: qcom: spm: Implement support for SAWv4.1, SDM630/660 L2 AVS
+  soc: qcom: spm: Add compatible for MSM8998 SAWv4.1 L2
+  dt-bindings: soc: qcom: spm: Document SDM660 and MSM8998 compatibles
+
+ .../bindings/soc/qcom/qcom,spm.yaml           |  76 +++++
+ drivers/cpuidle/Kconfig.arm                   |   1 +
+ drivers/cpuidle/cpuidle-qcom-spm.c            | 304 ++++--------------
+ drivers/soc/qcom/Kconfig                      |   9 +
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/spm.c                        | 240 ++++++++++++++
+ include/soc/qcom/spm.h                        |  43 +++
+ 7 files changed, 438 insertions(+), 236 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,spm.yaml
+ create mode 100644 drivers/soc/qcom/spm.c
+ create mode 100644 include/soc/qcom/spm.h
+
+-- 
+2.32.0
 
