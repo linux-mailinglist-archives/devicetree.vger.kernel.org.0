@@ -2,93 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 671463B02D2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 13:31:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1381B3B02EB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 13:39:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbhFVLdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 07:33:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60374 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229849AbhFVLdu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 07:33:50 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A400C061574;
-        Tue, 22 Jun 2021 04:31:33 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id i94so23214232wri.4;
-        Tue, 22 Jun 2021 04:31:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IQWYBDsWnVgNYb0J/ARy4jiGyFTiN2ezb1XU1B2YfnM=;
-        b=ASpNCLwOhv0lmYh3wU/v7hdREVqRgRO4c/API7MZJyrQGjfZ1sHc/+9zZD4S3pxGqk
-         l74j1khng1fheQbWuV93DiwhSP028ecCP39oini8gKeqQkqmd+1RuN/8IhgPDS3yi0e0
-         qxJrsH3tunCDENBcdCZn2v8+tVDkqSwrgibOb23yWdy+1KAEp8Gi3hXyg3m8X7KHo6zz
-         9celprROrwFeZpDVCUXdyqSZVnji0K0VsRVGBJw0S/ouwL55GSh3IyiRdjc0tDC8cMoT
-         aKEKJUWg71L1uscc4oSUuek1dZmPlCPh7YVe1+SLnkFRCc9TKCyCa7Ew3sGyxMG1qtRx
-         jDLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IQWYBDsWnVgNYb0J/ARy4jiGyFTiN2ezb1XU1B2YfnM=;
-        b=aB+6o7+vAVT6TXF6qG4Cz0Pc823u0CQK+hPma65OcXTEpeI4lHf3wVBob7HyTYs7W6
-         oRzQTtOoTPnnVn7FGBVfNNadPrWIiHwo40cqo64lz30Oecl6ChKDbZMlbed8o55872gT
-         xz1s3rmZiClO7fMj7hM9iMwIhGM86RTUsjxp3SnylGnsGgZp6WBd/4tGrGoih3dlJX1S
-         /8CRJ/X5TvHWumOSLelobwCcwUlNx6kERZjdEEWsp+Sm8C9ykN/NCzWHMpql8zlDGAzk
-         KHaJLCaQQft+A8ewRheVmlU4XYX7n3N/5RnCUz+/ZE9E5v7L/0b+9YHdX7/Tj1ZgKbJO
-         QzOA==
-X-Gm-Message-State: AOAM5307rYhUhpTSLk03pOpDjtdDtPV9FD7528Zivgsy9uW+6PBKDPf1
-        3oOiiSFhLsbQeRDkOFdoLBc=
-X-Google-Smtp-Source: ABdhPJxjuZ8dpiFSTPP7pdi029NIXE1hjGNARIe7j7ENpZCOCfB2fU1p3EqUTTDplnxf4UJe83ZBRQ==
-X-Received: by 2002:adf:ff8e:: with SMTP id j14mr4089268wrr.374.1624361492103;
-        Tue, 22 Jun 2021 04:31:32 -0700 (PDT)
-Received: from localhost (pd9e51d70.dip0.t-ipconnect.de. [217.229.29.112])
-        by smtp.gmail.com with ESMTPSA id u12sm21911104wrr.40.2021.06.22.04.31.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jun 2021 04:31:31 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH] dt-bindings: net: dsa: sja1105: Fix indentation warnings
-Date:   Tue, 22 Jun 2021 13:33:27 +0200
-Message-Id: <20210622113327.3613595-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.32.0
+        id S230059AbhFVLlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 07:41:37 -0400
+Received: from relay07.th.seeweb.it ([5.144.164.168]:60237 "EHLO
+        relay07.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229849AbhFVLlg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 07:41:36 -0400
+Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 634BF3E7C0;
+        Tue, 22 Jun 2021 13:39:16 +0200 (CEST)
+Subject: Re: [PATCH v6 1/5] cpuidle: qcom_spm: Detach state machine from main
+ SPM handling
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
+        daniel.lezcano@linaro.org, rjw@rjwysocki.net,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
+        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
+        martin.botka@somainline.org, jeffrey.l.hugo@gmail.com,
+        jami.kettunen@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
+References: <20210621181016.365009-1-angelogioacchino.delregno@somainline.org>
+ <20210621181016.365009-2-angelogioacchino.delregno@somainline.org>
+ <YND/2qJhUB1Iwk1X@gerhold.net>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Message-ID: <229488fe-00ef-ea7e-27d4-6f24fdea1383@somainline.org>
+Date:   Tue, 22 Jun 2021 13:39:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <YND/2qJhUB1Iwk1X@gerhold.net>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+Il 21/06/21 23:08, Stephan Gerhold ha scritto:
+> On Mon, Jun 21, 2021 at 08:10:12PM +0200, AngeloGioacchino Del Regno wrote:
+>> In commit a871be6b8eee ("cpuidle: Convert Qualcomm SPM driver to a generic
+>> CPUidle driver") the SPM driver has been converted to a
+>> generic CPUidle driver: that was mainly made to simplify the
+>> driver and that was a great accomplishment;
+>> Though, it was ignored that the SPM driver is not used only
+>> on the ARM architecture.
+>>
+> 
+> I don't really understand why you insist on writing that I deliberately
+> "ignored" your use case when converting the driver. This is not true.
+> Perhaps that's not actually what you meant but that's how it sounds to
+> me.
+> 
 
-Some of the lines aren't properly indented, causing yamllint to warn
-about them:
+So much noise for one single word. I will change it since it seems to be
+that much of a deal, and I'm sorry if that hurt you in any way.
 
-    .../nxp,sja1105.yaml:70:17: [warning] wrong indentation: expected 18 but found 16 (indentation)
+For the records, though, I really don't see anything offensive in that,
+and anyway I didn't mean to be offensive in any way.
 
-Use the proper indentation to fix those warnings.
+>> In preparation for the enablement of SPM features on AArch64/ARM64,
+>> split the cpuidle-qcom-spm driver in two: the CPUIdle related
+>> state machine (currently used only on ARM SoCs) stays there, while
+>> the SPM communication handling lands back in soc/qcom/spm.c and
+>> also making sure to not discard the simplifications that were
+>> introduced in the aforementioned commit.
+>>
+>> Since now the "two drivers" are split, the SCM dependency in the
+>> main SPM handling is gone and for this reason it was also possible
+>> to move the SPM initialization early: this will also make sure that
+>> whenever the SAW CPUIdle driver is getting initialized, the SPM
+>> driver will be ready to do the job.
+>>
+>> Please note that the anticipation of the SPM initialization was
+>> also done to optimize the boot times on platforms that have their
+>> CPU/L2 idle states managed by other means (such as PSCI), while
+>> needing SAW initialization for other purposes, like AVS control.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+>> ---
+>>   drivers/cpuidle/Kconfig.arm        |   1 +
+>>   drivers/cpuidle/cpuidle-qcom-spm.c | 324 +++++++----------------------
+>>   drivers/soc/qcom/Kconfig           |   9 +
+>>   drivers/soc/qcom/Makefile          |   1 +
+>>   drivers/soc/qcom/spm.c             | 198 ++++++++++++++++++
+>>   include/soc/qcom/spm.h             |  41 ++++
+>>   6 files changed, 325 insertions(+), 249 deletions(-)
+>>   create mode 100644 drivers/soc/qcom/spm.c
+>>   create mode 100644 include/soc/qcom/spm.h
+>>
+>> diff --git a/drivers/cpuidle/cpuidle-qcom-spm.c b/drivers/cpuidle/cpuidle-qcom-spm.c
+>> index adf91a6e4d7d..091453135ea6 100644
+>> --- a/drivers/cpuidle/cpuidle-qcom-spm.c
+>> +++ b/drivers/cpuidle/cpuidle-qcom-spm.c
+>> [...]
+>> +static int spm_cpuidle_register(int cpu)
+>>   {
+>> +	struct platform_device *pdev = NULL;
+>> +	struct device_node *cpu_node, *saw_node;
+>> +	struct cpuidle_qcom_spm_data data = {
+>> +		.cpuidle_driver = {
+>> +			.name = "qcom_spm",
+>> +			.owner = THIS_MODULE,
+>> +			.cpumask = (struct cpumask *)cpumask_of(cpu),
+>> +			.states[0] = {
+>> +				.enter			= spm_enter_idle_state,
+>> +				.exit_latency		= 1,
+>> +				.target_residency	= 1,
+>> +				.power_usage		= UINT_MAX,
+>> +				.name			= "WFI",
+>> +				.desc			= "ARM WFI",
+>> +			}
+>> +		}
+>> +	};
+> 
+> The stack is gone after the function returns.
+> 
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-index 0b8a05dd52e6..f978f8719d8e 100644
---- a/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/nxp,sja1105.yaml
-@@ -67,8 +67,8 @@ properties:
-           reg:
-             oneOf:
-               - enum:
--                - 0
--                - 1
-+                  - 0
-+                  - 1
- 
-         required:
-           - compatible
--- 
-2.32.0
-
+Argh, I wrongly assumed that cpuidle was actually copying this locally.
+Okay, let's see what else looking clean I can come up with.
