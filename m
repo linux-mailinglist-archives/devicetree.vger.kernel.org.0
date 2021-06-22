@@ -2,120 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0439E3AFAEB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 04:11:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE3F13AFB3D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 05:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230311AbhFVCNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Jun 2021 22:13:23 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:46256 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229663AbhFVCNX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Jun 2021 22:13:23 -0400
-Received: from [10.130.0.191] (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9BxIOKSRtFgxZ4VAA--.3572S3;
-        Tue, 22 Jun 2021 10:10:40 +0800 (CST)
-Subject: Re: [PATCH 1/4] stmmac: pci: Add dwmac support for Loongson
-To:     Andrew Lunn <andrew@lunn.ch>
-References: <20210618025337.5705-1-zhangqing@loongson.cn>
- <YM//kGGAp3vz8OYb@lunn.ch>
-Cc:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Huacai Chen <chenhc@lemote.com>, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
-From:   zhangqing <zhangqing@loongson.cn>
-Message-ID: <d66e6af7-7384-41aa-76a7-7017f27d43cb@loongson.cn>
-Date:   Tue, 22 Jun 2021 10:10:26 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:45.0) Gecko/20100101
- Thunderbird/45.4.0
+        id S230267AbhFVDFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Jun 2021 23:05:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58954 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230188AbhFVDFT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Jun 2021 23:05:19 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A9D8C061574;
+        Mon, 21 Jun 2021 20:03:03 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id dm5so19679946ejc.9;
+        Mon, 21 Jun 2021 20:03:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=da+4q6NaLwSyvJdC1cHJtymWI03kW2GYkjWCT/Y1A3w=;
+        b=gy2k2zUS3vvHEeFT8K/t1uw/Ik/U8ZjUSwaAI78IZK/2Rh/hXPm53jDGu00N38dqVb
+         P7KTGSKmzPTTjnJAEK90CsQmtG21Jn/o5sHd8Dj3OioiQK05/j0iRwsDhQfgz07f5L6H
+         H9HmdFf7PCTnybtXIG0QvMxU+nFamIAImlTZd2cnHZDCyttjql5Q83/QZyMxPsfJqM3C
+         Fi4G5aYI45nB04c6Ov7qhTQDnXYERb7MZzt5PxkZBH51RKmi8pbtSvZxzaX/40cpZQHJ
+         uiN3fboLR2B5IXVKdhFMK9YApdP2tAUgwFl5TJYg4xsbBLUKSm7KtraCAtlgxiKYJ9gc
+         OOMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=da+4q6NaLwSyvJdC1cHJtymWI03kW2GYkjWCT/Y1A3w=;
+        b=NYFr0Dig42C0dak51Bh2IhyOrjku9AMwg4woJ6xRc1AcOai0toG+B+fFHqsMj+EuQ0
+         EHftkhwvHhI8S4vpj79h5+LQFfdkpMm/wmgoKneQG9Fvf7vdtI6gYgR3oul4DzQy+EVs
+         l8w0jo3MKqcsb0Ur/4znwCG0vFAl95vcVMqivK9DjhtdUffWV5vLPSKPpZY8MkR0vaIU
+         SaMAlMTtP6KQPoLIgQVBNXSHVTxtUX3pf+ncB+LXlwXlVLmjA2J61RlVCfzsSKXUDpp0
+         vt8gxGnuZZztAHUmplNNUdh5PDaukLTKiJfwv1UI9Gub47l/XKmpjSXv0bt/kSzu3AUN
+         H86Q==
+X-Gm-Message-State: AOAM530BPyalghvAjY7NvX+FSmymwm0o17s7XIoNW10urSXvZK6Gr3rF
+        uXTj9ZAh3Og76gVGRnJBcJMmc1x6CUFctP/vNTw=
+X-Google-Smtp-Source: ABdhPJwTpZSUk7a7ji8GbDsL0O3cqdtmO37/E7ZrMLkoLP94ZzbbS+wlrcGNOVyZFoXHv/hgM50vJA0TdhnuoPUoPI4=
+X-Received: by 2002:a17:906:244d:: with SMTP id a13mr1416742ejb.551.1624330981487;
+ Mon, 21 Jun 2021 20:03:01 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YM//kGGAp3vz8OYb@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf9BxIOKSRtFgxZ4VAA--.3572S3
-X-Coremail-Antispam: 1UD129KBjvJXoW7CF4ftw17JryxXw1xArykuFg_yoW8JF4fpa
-        srGa9xKFZFgFyxCr1FqFWkXFyvvr4Skay0k3y2yFnxK3ZYyrWfX34jgrWUCas3CFZ5Cw45
-        Zw1jgr48Wa4kKrDanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUU9Kb7Iv0xC_Zr1lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-        A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
-        jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4
-        vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
-        Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJV
-        W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
-        wI1lc7I2V7IY0VAS07AlzVAYIcxG8wCY02Avz4vE14v_Gr1l42xK82IYc2Ij64vIr41l4I
-        8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AK
-        xVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcV
-        AFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8I
-        cIk0rVWrJr0_WFyUJwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14
-        v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU7NBMDUUUU
-X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
+References: <20210621072424.111733-1-jagan@amarulasolutions.com> <20210621072424.111733-9-jagan@amarulasolutions.com>
+In-Reply-To: <20210621072424.111733-9-jagan@amarulasolutions.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 21 Jun 2021 22:02:50 -0500
+Message-ID: <CAHCN7xKNarHo6DaAN-J=QLAsfTXOvChOuLR68h6CPgRe-q+rmA@mail.gmail.com>
+Subject: Re: [RFC PATCH 8/9] arm64: dts: imx8mm: Add MIPI DSI pipeline
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Tomasz Figa <t.figa@samsung.com>,
+        Fancy Fang <chen.fang@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Francis Laniel <francis.laniel@amarulasolutions.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Milco Pratesi <milco.pratesi@engicam.com>,
+        Anthony Brandon <anthony@amarulasolutions.com>,
+        linux-phy@lists.infradead.org, linux-amarula@amarulasolutions.com,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 06/21/2021 10:55 AM, Andrew Lunn wrote:
->> +static int loongson_dwmac_probe(struct pci_dev *pdev, const struct pci_device_id *id)
->> +{
->> +	struct plat_stmmacenet_data *plat;
->> +	struct stmmac_resources res;
->> +	int ret, i, mdio;
->> +	struct device_node *np;
->> +
->> +	np = dev_of_node(&pdev->dev);
->> +
->> +	if (!np) {
->> +		pr_info("dwmac_loongson_pci: No OF node\n");
->> +		return -ENODEV;
->> +	}
->> +
->> +	if (!of_device_is_compatible(np, "loongson, pci-gmac")) {
->> +		pr_info("dwmac_loongson_pci: Incompatible OF node\n");
->> +		return -ENODEV;
->> +	}
->> +
->> +	plat = devm_kzalloc(&pdev->dev, sizeof(*plat), GFP_KERNEL);
->> +	if (!plat)
->> +		return -ENOMEM;
->> +
->> +	if (plat->mdio_node) {
->> +		dev_err(&pdev->dev, "Found MDIO subnode\n");
-> It is an error is an MDIO node is found?
-
-Hi，Andrew
-
-Thanks for your advice,
-
-Using dev_ DEG () is appropriate,
-
-and other issues I will fix in v2.
-
-Thanks,
-
--Qing
-
+On Mon, Jun 21, 2021 at 2:25 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
 >
->> +		mdio = true;
->> +	}
->> +
-> ...
+> Add MIPI DSI pipeline for i.MX8MM.
 >
->> +
->> +	plat->phy_interface = device_get_phy_mode(&pdev->dev);
->> +	if (plat->phy_interface < 0)
->> +		dev_err(&pdev->dev, "phy_mode not found\n");
->> +
->> +	plat->interface = PHY_INTERFACE_MODE_GMII;
-> Seems odd you call device_get_phy_mode() but then have this hard coded
-> PHY_INTERFACE_MODE_GMII?
+> Video pipeline start from eLCDIF to MIPI DSI and respective
+> Panel or Bridge on the backend side.
 >
-> 	Andrew
+> Add support for it.
+>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 59 +++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index 5f68182ed3a6..bc09fce0f6a9 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -1047,6 +1047,65 @@ lcdif: lcdif@32e00000 {
+>                                 interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+>                                 power-domains = <&dispmix_blk_ctl IMX8MM_BLK_CTL_PD_DISPMIX_LCDIF>;
+>                                 status = "disabled";
+> +
+> +                               port {
+> +                                       lcdif_out_dsi: endpoint {
+> +                                               remote-endpoint = <&dsi_in_lcdif>;
+> +                                       };
+> +                               };
+> +                       };
+> +
+> +                       dsi: dsi@32e10000 {
+> +                               compatible = "fsl,imx8mm-sec-dsim";
+> +                               reg = <0x32e10000 0xa0>;
+> +                               clocks = <&clk IMX8MM_CLK_DSI_CORE>,
+> +                                        <&clk IMX8MM_CLK_DSI_PHY_REF>;
+> +                               clock-names = "bus", "phy_ref";
+> +                               assigned-clocks = <&clk IMX8MM_CLK_DSI_CORE>,
+> +                                                 <&clk IMX8MM_VIDEO_PLL1_OUT>,
+> +                                                 <&clk IMX8MM_CLK_DSI_PHY_REF>;
+> +                               assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_266M>,
+> +                                                        <&clk IMX8MM_VIDEO_PLL1_BYPASS>,
+> +                                                        <&clk IMX8MM_VIDEO_PLL1_OUT>;
+> +                               assigned-clock-rates = <266000000>, <594000000>, <27000000>;
+> +                               interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
+> +                               phys = <&dphy>;
+> +                               phy-names = "dphy";
+> +                               power-domains = <&dispmix_blk_ctl IMX8MM_BLK_CTL_PD_DISPMIX_MIPI_DSI>;
+> +                               samsung,burst-clock-frequency = <891000000>;
+> +                               samsung,esc-clock-frequency = <54000000>;
+> +                               samsung,pll-clock-frequency = <27000000>;
+> +                               status = "disabled";
+> +
+> +                               ports {
+> +                                       #address-cells = <1>;
+> +                                       #size-cells = <0>;
+> +
+> +                                       port@0 {
+> +                                               reg = <0>;
+> +                                               #address-cells = <1>;
+> +                                               #size-cells = <0>;
+> +
+> +                                               dsi_in_lcdif: endpoint@0 {
+> +                                                       reg = <0>;
 
+When I build this with W=1, I get a warning:
+
+Warning (graph_child_address):
+/soc@0/bus@32c00000/dsi@32e10000/ports/port@0: graph node has single
+child node 'endpoint@0', #address-cells/#size-cells are not necessary
+
+Are there supposed to be two endpoints for port@0?
+
+> +                                                       remote-endpoint = <&lcdif_out_dsi>;
+> +                                               };
+> +                                       };
+> +
+> +                                       port@1 {
+> +                                               reg = <1>;
+> +                                       };
+> +                               };
+> +                       };
+> +
+> +                       dphy: dphy@32e100a4 {
+> +                               compatible = "fsl,imx8mm-sec-dsim-dphy";
+> +                               reg = <0x32e100a4 0xbc>;
+> +                               clocks = <&clk IMX8MM_CLK_DSI_PHY_REF>;
+> +                               clock-names = "phy_ref";
+> +                               #phy-cells = <0>;
+> +                               power-domains = <&dispmix_blk_ctl IMX8MM_BLK_CTL_PD_DISPMIX_MIPI_DPHY>;
+> +                               status = "disabled";
+>                         };
+>
+>                         dispmix_blk_ctl: blk-ctl@32e28000 {
+> --
+> 2.25.1
+>
