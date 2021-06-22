@@ -2,193 +2,262 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3555F3AFC36
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 06:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E32333AFC55
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 07:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbhFVEvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 00:51:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54066 "EHLO
+        id S229854AbhFVFEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 01:04:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbhFVEvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 00:51:42 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D607FC06175F
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 21:49:25 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id d11so19614444wrm.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 21:49:25 -0700 (PDT)
+        with ESMTP id S229612AbhFVFEe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 01:04:34 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 546AFC061574
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 22:02:18 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id m137so22473437oig.6
+        for <devicetree@vger.kernel.org>; Mon, 21 Jun 2021 22:02:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LZDUAnqEXjRVZWh1a1xJ1KodfKynosGX+MGHfcnE+kU=;
-        b=bH4f1th7fB3/XSYd6w/iVmgPpxVgsJ3aJmbLqWedYwp9i75zoJ/imdZCICERT9g3fF
-         YULFqKNz6F/epgqr5mdJIh8/upyxVLtWGUfYbRCK/VCu95PPVKJPY4c6VsKfGmpqKBSt
-         fln5qvXh9p+ilYo7R3rYscL4zn+fiFxs6ol9N82k4JbR0NeYyqMJ573O18CNCM+YGeoN
-         xADdUH/x4BzN63KiLgP5XXLurHCsRxXwOPZEwIUXZeyVOQUewlaS2srVZxhuWXsz/28o
-         ENV3xIu69pdHqngak3AEYJSHE07V/kUTq+c8mhLcDhI25noNGdNYh/sJLGE9WQeawOhQ
-         WU7Q==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2VziDaVw7AQP16cHBrR18mCTRK6FsXt1uYtJ2gwusbU=;
+        b=pPGuVJF76xVB2bzNF7+KpG9ySpQ63uqucA2lIyaIxOejbovl2hflHS5j6x2m+1wks3
+         xsKrSo/G/P+967X1zeBjzyYxSgFvywqj2H6T0xmFxOoO0gMYi3YLpWAK+inV8On9kHce
+         G55hlDLU9DK/joos5kXBICqjTCKFBpWNrhPHxjWyW4VAXeRbZQKLg3BwUr5yj8joDdw1
+         Vz4CV9BZOW6IreB8f+TGRPz+36Y2MYMbFFtTPlubiysqlbXl7EXkKYwATrx0zJBH4bJh
+         XaN0slhvVz7t9f69vAEpxJZM2Rt7LT0dhSuKOajLW0JX+isc9wR+tbdi256Iu/b6c04q
+         oyrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LZDUAnqEXjRVZWh1a1xJ1KodfKynosGX+MGHfcnE+kU=;
-        b=tQaIM9YmDvOnroOtUBGWHY4eVYIKev52Cd+7NXUYStrud4P1415E7TdYe8uGMz5QJE
-         PCsvB4P53oGuBq4QxeZeWCuFJgRe+wUSuYjAsw+vkMHDEAU7d36l+Frqb/7E+YpjcwAr
-         T5+fXDCQyXWIEiJz4wuPVVfO0VkkMDFucDiskK9FMzpc7WkOxKgA0joiwaH1GwWYOE8Q
-         RyBPGP9Rn/HERP8toD5Kp+u1cKOUPjOf17n+zpVL2vjvABNx3MEdELmcIymXRH7Mt5Zr
-         Cy5eYTZNTfSmymQN8Gt5RmCoNg9bqWGBPBgQfwItUzBNt642eDfGNd6isolOAPPREN8X
-         +zYA==
-X-Gm-Message-State: AOAM533300+kwA8FgC98IHAkeeYw6Hh2cRL9moyo9ODX2dBCLH6dWYUz
-        QCLMbe3b0YkKXwYxrFbZzQ3aSNwPTiXmUoAnou1yIw==
-X-Google-Smtp-Source: ABdhPJwH28VdMClZV5cXRWjOAW5ajVp3FB9zxBUuvaVaxTUHQtU/5jIhNmSJ1wgDKuI5HeKx8JSfTJqVrJOC3H7w8IY=
-X-Received: by 2002:a5d:6e81:: with SMTP id k1mr2226740wrz.144.1624337362425;
- Mon, 21 Jun 2021 21:49:22 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2VziDaVw7AQP16cHBrR18mCTRK6FsXt1uYtJ2gwusbU=;
+        b=pYhZcQl8TwVCBd/Hr/je/VL/EfUq8UX//9w64s5Df67VeN2gxLCgzw3nCEfdgK1gVp
+         gFW96g7mylAitsjUmHmwUjBE5Gb/gM1+Li6pQHZ0OJ7f+zB0YKpOOmuKZ5Et38DiAPgb
+         m5a4QCnNQE1AQANcqbIyNAc6K3Z41oOs/BKxR+htBa693NBU3FXrcTGaxSojaZo5hvC2
+         uf/IfZfo8JVYdV7Cjr1Pwit0Ne+De7eRaBHsq6/GOpiGvHWtDmtykMXW2YWZFmeGSe3l
+         LPq7ctOZ/BtS4ieDtw6tCtnI2GCQlB/deRVP04iT5GAGdAhFUvdAsv9q4XZi+IxxhyFv
+         +IRw==
+X-Gm-Message-State: AOAM531jKxhcrdfHYzfu9YbceCb6/bKZxhdQsT3AdndIde0Dk1Vp+OIX
+        zymDWM1J17Y/btOM6DpiGSQbSw==
+X-Google-Smtp-Source: ABdhPJzVyxUHTq5HYCviGIxsaNDPDKjrHra6qqs2ESHXRX2xZuPTTs7Iq+GsticursNOjejx4Dxocw==
+X-Received: by 2002:aca:5a04:: with SMTP id o4mr1710761oib.33.1624338137650;
+        Mon, 21 Jun 2021 22:02:17 -0700 (PDT)
+Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id r1sm4467744oth.19.2021.06.21.22.02.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Jun 2021 22:02:17 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pwm@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>
+Subject: [PATCH v8 1/2] dt-bindings: leds: Add Qualcomm Light Pulse Generator binding
+Date:   Mon, 21 Jun 2021 22:01:11 -0700
+Message-Id: <20210622050113.231902-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20210610052221.39958-1-anup.patel@wdc.com>
-In-Reply-To: <20210610052221.39958-1-anup.patel@wdc.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Tue, 22 Jun 2021 10:19:11 +0530
-Message-ID: <CAAhSdy00KAqg37PCAGwNXt_2HTpxGY68yTPNHDEbrSwdiLa2jw@mail.gmail.com>
-Subject: Re: [PATCH v7 0/8] RISC-V CPU Idle Support
-To:     Anup Patel <anup.patel@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Sandeep Tripathy <milun.tripathy@gmail.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Liush <liush@allwinnertech.com>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Palmer,
+This adds the binding document describing the three hardware blocks
+related to the Light Pulse Generator found in a wide range of Qualcomm
+PMICs.
 
-On Thu, Jun 10, 2021 at 10:52 AM Anup Patel <anup.patel@wdc.com> wrote:
->
-> This series adds RISC-V CPU Idle support using SBI HSM suspend function.
-> The RISC-V SBI CPU idle driver added by this series is highly inspired
-> from the ARM PSCI CPU idle driver.
->
-> At high-level, this series includes the following changes:
-> 1) Preparatory arch/riscv patches (Patches 1 to 3)
-> 2) Defines for RISC-V SBI HSM suspend (Patch 4)
-> 3) Preparatory patch to share code between RISC-V SBI CPU idle driver
->    and ARM PSCI CPU idle driver (Patch 5)
-> 4) RISC-V SBI CPU idle driver and related DT bindings (Patches 6 to 7)
->
-> These patches can be found in riscv_sbi_hsm_suspend_v7 branch at
-> https://github.com/avpatel/linux
->
-> Special thanks Sandeep Tripathy for providing early feeback on SBI HSM
-> support in all above projects (RISC-V SBI specification, OpenSBI, and
-> Linux RISC-V).
->
-> Changes since v6:
->  - Fixed error reported by "make DT_CHECKER_FLAGS=-m dt_binding_check"
->
-> Changes since v5:
->  - Rebased on Linux-5.13-rc5
->  - Removed unnecessary exports from PATCH5
->  - Removed stray ";" from PATCH5
->  - Moved sbi_cpuidle_pd_power_off() under "#ifdef CONFIG_DT_IDLE_GENPD"
->    in PATCH6
->
-> Changes since v4:
->  - Rebased on Linux-5.13-rc2
->  - Renamed all dt_idle_genpd functions to have "dt_idle_" prefix
->  - Added MAINTAINERS file entry for dt_idle_genpd
->
-> Changes since v3:
->  - Rebased on Linux-5.13-rc2
->  - Fixed __cpu_resume_enter() which was broken due to XIP kernel support
->  - Removed "struct dt_idle_genpd_ops" abstraction which simplifies code
->    sharing between ARM PSCI and RISC-V SBI drivers in PATCH5
->
-> Changes since v2:
->  - Rebased on Linux-5.12-rc3
->  - Updated PATCH7 to add common DT bindings for both ARM and RISC-V
->    idle states
->  - Added "additionalProperties = false" for both idle-states node and
->    child nodes in PATCH7
->
-> Changes since v1:
->  - Fixex minor typo in PATCH1
->  - Use just "idle-states" as DT node name for CPU idle states
->  - Added documentation for "cpu-idle-states" DT property in
->    devicetree/bindings/riscv/cpus.yaml
->  - Added documentation for "riscv,sbi-suspend-param" DT property in
->    devicetree/bindings/riscv/idle-states.yaml
->
-> Anup Patel (8):
->   RISC-V: Enable CPU_IDLE drivers
->   RISC-V: Rename relocate() and make it global
->   RISC-V: Add arch functions for non-retentive suspend entry/exit
->   RISC-V: Add SBI HSM suspend related defines
->   cpuidle: Factor-out power domain related code from PSCI domain driver
->   cpuidle: Add RISC-V SBI CPU idle driver
->   dt-bindings: Add common bindings for ARM and RISC-V idle states
->   RISC-V: Enable RISC-V SBI CPU Idle driver for QEMU virt machine
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
 
-Can you please review this series ?
+Changes since v7:
+- Added qcom,pmc8180c-lpg
+- Defined constraints for qcom,power-source
+- Changes qcom,dtest to matrix and added constraints
+- Changed example from LED_COLOR_ID_MULTI to LED_COLOR_ID_RGB
 
-It would be nice to consider this series for Linux-5.14.
+ .../bindings/leds/leds-qcom-lpg.yaml          | 164 ++++++++++++++++++
+ 1 file changed, 164 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
 
-Regards,
-Anup
+diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+new file mode 100644
+index 000000000000..10aee61a7ffc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+@@ -0,0 +1,164 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/leds-qcom-lpg.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Light Pulse Generator
++
++maintainers:
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++description: >
++  The Qualcomm Light Pulse Generator consists of three different hardware blocks;
++  a ramp generator with lookup table, the light pulse generator and a three
++  channel current sink. These blocks are found in a wide range of Qualcomm PMICs.
++
++properties:
++  compatible:
++    enum:
++      - qcom,pm8150b-lpg
++      - qcom,pm8150l-lpg
++      - qcom,pm8916-pwm
++      - qcom,pm8941-lpg
++      - qcom,pm8994-lpg
++      - qcom,pmc8180c-lpg
++      - qcom,pmi8994-lpg
++      - qcom,pmi8998-lpg
++
++  "#pwm-cells":
++    const: 2
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  qcom,power-source:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      power-source used to drive the output, as defined in the datasheet.
++      Should be specified if the TRILED block is present
++    enum: [0, 1, 3]
++
++  qcom,dtest:
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    description: >
++      A list of integer pairs, where each pair represent the dtest line the
++      particular channel should be connected to and the flags denoting how the
++      value should be outputed, as defined in the datasheet. The number of
++      pairs should be the same as the number of channels.
++    items:
++      items:
++        - description: dtest line to attach
++        - description: flags for the attachment
++
++  multi-led:
++    type: object
++    $ref: leds-class-multicolor.yaml#
++    properties:
++      "#address-cells":
++        const: 1
++
++      "#size-cells":
++        const: 0
++
++      "^led@[0-9a-f]$":
++        type: object
++        $ref: common.yaml#
++
++patternProperties:
++  "^led@[0-9a-f]$":
++    type: object
++    $ref: common.yaml#
++
++    properties:
++      reg: true
++
++    required:
++      - reg
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
++
++    lpg {
++      compatible = "qcom,pmi8994-lpg";
++
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      qcom,power-source = <1>;
++
++      qcom,dtest = <0 0>,
++                   <0 0>,
++                   <0 0>,
++                   <4 1>;
++
++      led@1 {
++        reg = <1>;
++        label = "green:user1";
++      };
++
++      led@2 {
++        reg = <2>;
++        label = "green:user0";
++        default-state = "on";
++      };
++
++      led@3 {
++        reg = <3>;
++        label = "green:user2";
++      };
++
++      led@4 {
++        reg = <4>;
++        label = "green:user3";
++      };
++    };
++  - |
++    #include <dt-bindings/leds/common.h>
++
++    lpg {
++      compatible = "qcom,pmi8994-lpg";
++
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      qcom,power-source = <1>;
++
++      multi-led {
++        color = <LED_COLOR_ID_RGB>;
++        function = LED_FUNCTION_STATUS;
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        led@1 {
++          reg = <1>;
++          color = <LED_COLOR_ID_RED>;
++        };
++
++        led@2 {
++          reg = <2>;
++          color = <LED_COLOR_ID_GREEN>;
++        };
++
++        led@3 {
++          reg = <3>;
++          color = <LED_COLOR_ID_BLUE>;
++        };
++      };
++    };
++  - |
++    lpg {
++      compatible = "qcom,pm8916-pwm";
++      #pwm-cells = <2>;
++    };
++...
+-- 
+2.29.2
 
->
->  .../bindings/arm/msm/qcom,idle-state.txt      |   2 +-
->  .../devicetree/bindings/arm/psci.yaml         |   2 +-
->  .../bindings/{arm => cpu}/idle-states.yaml    | 228 ++++++-
->  .../devicetree/bindings/riscv/cpus.yaml       |   6 +
->  MAINTAINERS                                   |  14 +
->  arch/riscv/Kconfig                            |   7 +
->  arch/riscv/Kconfig.socs                       |   3 +
->  arch/riscv/configs/defconfig                  |  13 +-
->  arch/riscv/configs/rv32_defconfig             |   6 +-
->  arch/riscv/include/asm/asm.h                  |  17 +
->  arch/riscv/include/asm/cpuidle.h              |  24 +
->  arch/riscv/include/asm/sbi.h                  |  27 +-
->  arch/riscv/include/asm/suspend.h              |  35 +
->  arch/riscv/kernel/Makefile                    |   2 +
->  arch/riscv/kernel/asm-offsets.c               |   3 +
->  arch/riscv/kernel/cpu_ops_sbi.c               |   2 +-
->  arch/riscv/kernel/head.S                      |  18 +-
->  arch/riscv/kernel/process.c                   |   3 +-
->  arch/riscv/kernel/suspend.c                   |  86 +++
->  arch/riscv/kernel/suspend_entry.S             | 123 ++++
->  drivers/cpuidle/Kconfig                       |   9 +
->  drivers/cpuidle/Kconfig.arm                   |   1 +
->  drivers/cpuidle/Kconfig.riscv                 |  15 +
->  drivers/cpuidle/Makefile                      |   5 +
->  drivers/cpuidle/cpuidle-psci-domain.c         | 138 +---
->  drivers/cpuidle/cpuidle-psci.h                |  15 +-
->  drivers/cpuidle/cpuidle-sbi.c                 | 626 ++++++++++++++++++
->  drivers/cpuidle/dt_idle_genpd.c               | 177 +++++
->  drivers/cpuidle/dt_idle_genpd.h               |  50 ++
->  29 files changed, 1472 insertions(+), 185 deletions(-)
->  rename Documentation/devicetree/bindings/{arm => cpu}/idle-states.yaml (74%)
->  create mode 100644 arch/riscv/include/asm/cpuidle.h
->  create mode 100644 arch/riscv/include/asm/suspend.h
->  create mode 100644 arch/riscv/kernel/suspend.c
->  create mode 100644 arch/riscv/kernel/suspend_entry.S
->  create mode 100644 drivers/cpuidle/Kconfig.riscv
->  create mode 100644 drivers/cpuidle/cpuidle-sbi.c
->  create mode 100644 drivers/cpuidle/dt_idle_genpd.c
->  create mode 100644 drivers/cpuidle/dt_idle_genpd.h
->
-> --
-> 2.25.1
->
