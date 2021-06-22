@@ -2,135 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BD943B0793
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 16:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E9A63B07A5
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 16:41:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231765AbhFVOkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 10:40:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52674 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230047AbhFVOkv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Jun 2021 10:40:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1CA2461378;
-        Tue, 22 Jun 2021 14:38:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624372715;
-        bh=MyhNL+c9sQXrWYKNAjOcAvrFWHv6tfoPr73JTbBBYCc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=C02DTrauRo62YzP44ABo7c0pzCl4EsyYfOE/OEXOr5EtyROY6obZKYheMpCJxGKBA
-         UD9eAap2mHtoqFjVu+WFBUUvgqu/Km0Nth+WRcEfyQSA1XYGIIU7uODy6VtRlJkt6j
-         1pnO3njuqtG8Q/40453JmY79piYWfbNm9O3HdCnLnHPVFz7A0z49rtTS5DEa5XLBVL
-         q9Q0gk6bzJV5MhXf4cUJgzoeJILNjthrtfuz2WneP+xo0XsYQdInWt4bcCMBnPmfVT
-         raca3KcSbKuefLfuaSVmdTBDOBb9FD8sJfCeXbKqgngOA48pLnQbcKefW8H0rEHKQ2
-         ptQtG68JBrvLg==
-Date:   Tue, 22 Jun 2021 15:38:12 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        linux-bluetooth@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
- powerup sequence
-Message-ID: <20210622143812.GE4574@sirena.org.uk>
-References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
- <20210621223141.1638189-3-dmitry.baryshkov@linaro.org>
- <20210622112843.GB4574@sirena.org.uk>
- <CAA8EJpoTdg3O6dzpTaNS5fJRbtb1Fndv0mEuO+e4b6XCmuvzhQ@mail.gmail.com>
+        id S231901AbhFVOoE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Jun 2021 10:44:04 -0400
+Received: from out28-75.mail.aliyun.com ([115.124.28.75]:56975 "EHLO
+        out28-75.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230510AbhFVOoE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 10:44:04 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07639962|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.203167-0.00545665-0.791376;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047199;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.KWJToea_1624372904;
+Received: from zhouyanjie-virtual-machine(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KWJToea_1624372904)
+          by smtp.aliyun-inc.com(10.147.44.129);
+          Tue, 22 Jun 2021 22:41:45 +0800
+Date:   Tue, 22 Jun 2021 22:41:43 +0800
+From:   =?UTF-8?B?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+To:     Paul Cercueil <paul@opendingux.net>
+Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com
+Subject: Re: [PATCH 3/4] MIPS: GCW0: Adjust pinctrl related code in device
+ tree.
+Message-ID: <20210622224143.72d063dc@zhouyanjie-virtual-machine>
+In-Reply-To: <1HW3VQ.OQVPDYR5D5RR1@opendingux.net>
+References: <1624347445-88070-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1624347445-88070-4-git-send-email-zhouyanjie@wanyeetech.com>
+        <9US3VQ.SK89X0OFZC2Z2@opendingux.net>
+        <20210622215119.18a49cf9@zhouyanjie-virtual-machine>
+        <1HW3VQ.OQVPDYR5D5RR1@opendingux.net>
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0H629O+sVkh21xTi"
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpoTdg3O6dzpTaNS5fJRbtb1Fndv0mEuO+e4b6XCmuvzhQ@mail.gmail.com>
-X-Cookie: fortune: not found
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Paul,
 
---0H629O+sVkh21xTi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+于 Tue, 22 Jun 2021 15:05:25 +0100
+Paul Cercueil <paul@opendingux.net> 写道:
 
-On Tue, Jun 22, 2021 at 05:17:28PM +0300, Dmitry Baryshkov wrote:
-> On Tue, 22 Jun 2021 at 14:29, Mark Brown <broonie@kernel.org> wrote:
-> > On Tue, Jun 22, 2021 at 01:31:36AM +0300, Dmitry Baryshkov wrote:
+> Hi Zhou,
+> 
+> Le mar., juin 22 2021 at 21:51:19 +0800, 周琰杰 
+> <zhouyanjie@wanyeetech.com> a écrit :
+> > Hi Paul,
+> > 
+> > 于 Tue, 22 Jun 2021 13:46:57 +0100
+> > Paul Cercueil <paul@opendingux.net> 写道:
+> >   
+> >>  Hi Zhou,
+> >> 
+> >>  Le mar., juin 22 2021 at 15:37:24 +0800, 周琰杰 (Zhou Yanjie)
+> >>  <zhouyanjie@wanyeetech.com> a écrit :  
+> >>  > Change the "lcd-24bit" in the pinctrl groups to "lcd-8bit",
+> >>  > "lcd-16bit", "lcd-18bit", "lcd-24bit", since the pinctrl
+> >>  > driver has done the necessary splitting of the lcd group,
+> >>  > and it is convenient to further streamline the lcd-24bit
+> >>  > group in the subsequent pinctrl driver.
+> >>  >
+> >>  > Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+> >>  > ---
+> >>  >  arch/mips/boot/dts/ingenic/gcw0.dts | 2 +-
+> >>  >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>  >
+> >>  > diff --git a/arch/mips/boot/dts/ingenic/gcw0.dts
+> >>  > b/arch/mips/boot/dts/ingenic/gcw0.dts
+> >>  > index f4c04f2..dec3ba6f 100644
+> >>  > --- a/arch/mips/boot/dts/ingenic/gcw0.dts
+> >>  > +++ b/arch/mips/boot/dts/ingenic/gcw0.dts
+> >>  > @@ -393,7 +393,7 @@
+> >>  >  &pinctrl {
+> >>  >  	pins_lcd: lcd {
+> >>  >  		function = "lcd";
+> >>  > -		groups = "lcd-24bit";
+> >>  > +		groups = "lcd-8bit", "lcd-16bit", "lcd-18bit",
+> >>  > "lcd-24bit";  
+> >> 
+> >>  No, I'm pretty sure this won't work, since "lcd-24bit" contains
+> >> pins that are also contained by the other groups.
+> >>   
+> > 
+> > Sure, it seems that we should modify the pinctrl first, then modify 
+> > the
+> > dts, and then put them in the same series, so as to ensure that
+> > they do
+> > not cause damage.  
+> 
+> No, the "lcd-24bit" group is ABI now. We can't change it...
+> 
 
-> > > Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
-> > > being controlled through the UART and WiFi being present on PCIe
-> > > bus. Both blocks share common power sources. Add device driver handling
-> > > power sequencing of QCA6390/1.
+Sure.
 
-> > Are you sure this is a regulator and not a MFD?  It appears to be a
-> > consumer driver that turns on and off a bunch of regulators en masse
-> > which for some reason exposes that on/off control as a single supply.
-> > This looks like it'd be much more appropriate to implement as a MFD or
-> > possibly power domain with the subdevices using runtime PM, it's clearly
-> > not a regulator.
+Thanks and best regards!
 
-> First attempt was designed to be an MFD. And Lee clearly stated that
-> this is wrong:
-> "This is not an MFD, since it utilised neither the MFD API nor
-> of_platform_populate() to register child devices." [1]
+> -Paul
+> 
+> > 
+> > Thanks and best regards!
+> >   
+> >>  -Paul
+> >>   
+> >>  >  	};
+> >>  >
+> >>  >  	pins_uart2: uart2 {
+> >>  > --
+> >>  > 2.7.4
+> >>  >  
+> >>   
+> >   
+> 
 
-Well, perhaps it should do one of those things then?  Like I say this is
-very clearly not a regulator, it looks like a consumer of some kind.
-The regulator API isn't there just to absorb things that need reference
-counting, it's there to represent things providing supplies.  This seems
-to be very clearly not a supply given that it's grouping together a
-bunch of other supplies and switching them on and off together without
-providing a clear output supply.
-
-> I've tried following Rob's suggestions on implementing things clearly,
-> but doing so results in too big restructure just for a single device.
-
-I don't know what that suggestion was?  If there's only one device that
-uses this why is it not implemented as part of that device?
-
-> > > +static int qca6390_enable(struct regulator_dev *rdev)
-> > > +{
-> > > +     struct qca6390_data *data = rdev_get_drvdata(rdev);
-> > > +     int ret;
-
-> > > +     ret = regulator_bulk_enable(data->num_vregs, data->regulators);
-> > > +     if (ret) {
-> > > +             dev_err(data->dev, "Failed to enable regulators");
-> > > +             return ret;
-> > > +     }
-
-> > The regulator API is *not* recursive, I am astonished this works.
-
-> It does, even with lockdep enabled. Moreover BT regularly does disable
-> and enable this regulator, so both enable and disable paths were well
-> tested.
-> Should I change this into some internal call to remove API recursiveness?
-
-You should not be implementing this as a regulator at all.
-
---0H629O+sVkh21xTi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDR9dMACgkQJNaLcl1U
-h9B2Hwf/X35x6Prj+oZAglRHpnyQgOLNQJQckoFKWi7U7UMLqoQa8sFfKYgY53gK
-JsoduanV5yqSrjSC/BGK2LNnz5wN0kDvD95QSbLxqchC6jPIAu2ZLy5/Pr/EI1VM
-nqsM0GmiJbWfDREnpANqjEnXJkDuxEZyS6niP8o8MqvNWmLEtj6tQiSUQG1xAlzk
-5IDiZn4fkE+JchdmX7yYViglpvZJ9qM4QsDitbUSD9DmfJg5xwk2t5ZPbi8aOKgV
-XSfQzYPxoTMM9r4vXHc9Eav1M1O/NU1+Jv6HYR1FrsNMePSmc0U5FamJMiPWhQTf
-+uvsq4/+X5hXZ3frFLglZk9PUnTfjQ==
-=Nwo6
------END PGP SIGNATURE-----
-
---0H629O+sVkh21xTi--
