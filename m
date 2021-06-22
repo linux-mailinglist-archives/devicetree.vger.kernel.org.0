@@ -2,215 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B33413B0E7A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 22:17:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA6F3B0E8A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 22:22:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232236AbhFVUUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 16:20:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41070 "EHLO
+        id S229667AbhFVUYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 16:24:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231234AbhFVUUL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 16:20:11 -0400
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9A43C061756
-        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 13:17:54 -0700 (PDT)
-Received: by mail-oi1-x22d.google.com with SMTP id h9so760987oih.4
-        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 13:17:54 -0700 (PDT)
+        with ESMTP id S229567AbhFVUYT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 16:24:19 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F37C061574;
+        Tue, 22 Jun 2021 13:22:01 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id hz1so395114ejc.1;
+        Tue, 22 Jun 2021 13:22:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=cpA2xD2FjsLrzZmU0oN2BW/VHUt5Zn6smoNUos5bsDI=;
-        b=bnjFPTNRqg6zdQLI/eYX+f1Y6x45HgGfYF17XiAkOccY1E9PIaTYP29EJcPKJb3Cxm
-         EUs7JZCgrUPIiz9gsF4o0/slLya1YIiXkYE/ZshviO8gcvHST8wyNWlk3Cif7+SdQH2j
-         G6rAHR0a4jN3Ig4mOaz/qzdonUnpEl/WUGqXU=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M15yn6s2Mcz269EcBxKciBEhAVPDMUBBoYrbvRk9oQw=;
+        b=ui7wZzk918DiJ71cWHChLQUQVeB59qo5fD4iA5DrGXkvTjgucK9BkXLclKsY9N0Gkb
+         7EWrXENDZHpzWc97w6LY6sNCG+SpmX70nQwcA79krZBsph099hy+bswYFGITjMLs8owI
+         NcRzGU+nJoLDN4+upq9Y2gA1QgetTdLYMBa4ideNryRD7wYVfoc8EzWGqg832FnOU9lz
+         7IqU0EDBQP2baslI40qR8xsEzaOWQZBHE1hPjMrw7VzajfPA3c0M66vd/FqF8r7qIMMO
+         IGI1XEfmoNB/etI4P+SVVw05/lA9dDQgE2TRg8F+f80Ht4S7tBHu96MjNd09tgF+GSNU
+         OnFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=cpA2xD2FjsLrzZmU0oN2BW/VHUt5Zn6smoNUos5bsDI=;
-        b=InfHiApKtk+ZMtkdgd2MAyEnplwvruFaJGVH8E9ewUOcF4Kfft5kF5wVWK7r2rhnq2
-         xJcJZ6fIJZ48AqUjyUevdD42jmZinAMCTP4YA6UnLNrsw2+mGgytCq8l9kBOQR0iDBfc
-         hwOqPBE6MCGEKlnHlFn+w2605XWhHuaDE1KAQxxMIkQSRNrZIWg+R1kLIb9kbv8yrZEx
-         zcmOXoZljRx+mB/lP31AyV52OuPnQMDVAG/wK3UcSr08LIPf98fCR7h2aQ6CJ/ZvkSbs
-         1XBdkIlXH2w57F0ot5PtfaC1EHXh+NN7JsJ5R4B3m+KQzl+3q7ojMhdU9odu9oyY2r7G
-         7EYg==
-X-Gm-Message-State: AOAM533SjA4eUaD7zc2YnTL8Nma7JSK/JBsjw4kTxd1EKrdbK00NtMP1
-        5CWgpP/HVaSefztIs2npXzqCcU0HS8ZU/u9bhr8oWw==
-X-Google-Smtp-Source: ABdhPJwde6azm9PoH3w6YvHb1B6Z71He6eFgrE5OOKljQKBwKbyM2R1pxvBRnnhFinnpFgCCltBuKyuuzlmbj1i21zE=
-X-Received: by 2002:a54:4802:: with SMTP id j2mr418352oij.125.1624393074182;
- Tue, 22 Jun 2021 13:17:54 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 22 Jun 2021 13:17:53 -0700
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M15yn6s2Mcz269EcBxKciBEhAVPDMUBBoYrbvRk9oQw=;
+        b=G2RsMyt9f45TKfA2emeVip/8GXfs4mK4buUY402OopaDoz9uAm1n+G86GNW+PwS7u+
+         Sb0VfDZfq3jiv5zGgXLplGkN2mtKizCWwNfl0StdRb1FBIn2096b9HqhxmlANOpyTpiF
+         NSyRzsB9pMVWSHSAduHxA4K5lgiKj22PJsGfOkgE2FtVmi6yiAYcOuw2sXeWtCn0Gu6F
+         OBqpKbpDXYZoyKGE/v2ptTr65oYEzCM86uMZXRllsMI31AIBkxbgJz9e+WRwKLnUayAZ
+         eYRkuFQOr6dCCJxZLVabY2lDSqNN+OtmHPUrhR5azBCq8NJU7KAHaOC5rGGmTbkuek6J
+         fE+w==
+X-Gm-Message-State: AOAM531/Sdk0rSiYR2DyLmatVqy0H/UF3NZpMUUnXCuMcgPp1GldvKyM
+        rlQ5TMQ3r4dkSxXbODOeKgM=
+X-Google-Smtp-Source: ABdhPJz9iNKrPzMtewjjPia6Lfys1fuWzcCxald8vUSvDUXtw1/xktxhsBjEjcogyuPPtn6iNwiAQA==
+X-Received: by 2002:a17:907:2bc7:: with SMTP id gv7mr5962165ejc.417.1624393320499;
+        Tue, 22 Jun 2021 13:22:00 -0700 (PDT)
+Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id p13sm6467883ejr.87.2021.06.22.13.21.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Jun 2021 13:22:00 -0700 (PDT)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Kathiravan T <kathirav@codeaurora.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH v1 0/5] Add rpmcc and rpmpd for SM4250/6115
+Date:   Tue, 22 Jun 2021 23:21:51 +0300
+Message-Id: <20210622202156.546718-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <1623835381-29696-1-git-send-email-sbhanu@codeaurora.org>
-References: <1623835381-29696-1-git-send-email-sbhanu@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Tue, 22 Jun 2021 13:17:53 -0700
-Message-ID: <CAE-0n52KyStCcQ1QPFJBUvrTVB-NuBcQ9qnPhnzQj6PFiXPLGg@mail.gmail.com>
-Subject: Re: [PATCH V4] arm64: dts: qcom: sc7280: Add nodes for eMMC and SD card
-To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>,
-        adrian.hunter@intel.com, robh+dt@kernel.org, ulf.hansson@linaro.org
-Cc:     asutoshd@codeaurora.org, stummala@codeaurora.org,
-        vbadigan@codeaurora.org, rampraka@codeaurora.org,
-        sayalil@codeaurora.org, sartgarg@codeaurora.org,
-        rnayak@codeaurora.org, saiprakash.ranjan@codeaurora.org,
-        sibis@codeaurora.org, okukatla@codeaurora.org, djakov@kernel.org,
-        cang@codeaurora.org, pragalla@codeaurora.org,
-        nitirawa@codeaurora.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Shaik Sajida Bhanu (2021-06-16 02:23:01)
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> index 3900cfc..0f63cac 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> @@ -11,6 +11,7 @@
->  #include <dt-bindings/iio/qcom,spmi-adc7-pmr735b.h>
->  #include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
->  #include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-> +#include <dt-bindings/gpio/gpio.h>
+This patch adds support for the RPM clocks and power domains on QCom SM4250 and
+SM6115, codename bengal. The rpmcc code is converted from downstream code
+(OnePlus repo [1]), and the rpmpd is converted from downstream DT extracted
+from OnePlus Nord N100.
 
-The letter g comes before i, please move this higher in the list.
+The downstream code has additional voter clocks, which let consumers vote and
+the driver to select the highest desired clock rate for a given (real) parent
+clock [2]. I might port that as well in the near future, let me know if there
+is a more elegant solution.
 
->  #include "sc7280.dtsi"
->  #include "pm7325.dtsi"
->  #include "pmr735a.dtsi"
-> @@ -272,6 +273,34 @@
->         status = "okay";
->  };
->
-> +&sdhc_1 {
-> +       status = "okay";
-> +
-> +       pinctrl-names = "default", "sleep";
-> +       pinctrl-0 = <&sdc1_on>;
-> +       pinctrl-1 = <&sdc1_off>;
-> +
-> +       non-removable;
-> +       no-sd;
-> +       no-sdio;
-> +
-> +       vmmc-supply = <&vreg_l7b_2p9>;
-> +       vqmmc-supply = <&vreg_l19b_1p8>;
-> +};
-> +
-> +&sdhc_2 {
-> +       status = "okay";
-> +
-> +       pinctrl-names = "default", "sleep";
-> +       pinctrl-0 = <&sdc2_on>;
-> +       pinctrl-1 = <&sdc2_off>;
-> +
-> +       vmmc-supply = <&vreg_l9c_2p9>;
-> +       vqmmc-supply = <&vreg_l6c_2p9>;
-> +
-> +       cd-gpios = <&tlmm 91 GPIO_ACTIVE_LOW>;
-> +};
-> +
->  &uart5 {
->         status = "okay";
->  };
-> @@ -291,3 +320,55 @@
->                 bias-pull-up;
->         };
->  };
-> +
-> +&tlmm {
-> +       sdc1_on: sdc1-on {
-> +               clk {
-> +                       pins = "sdc1_clk";
+[1]: https://github.com/OnePlusOSS/android_kernel_oneplus_sm4250
+[2]: https://source.codeaurora.org/quic/server/kernel/commit/?h=v4.9.137&id=6a4951a8308c5729ae8e502787cb705477c94251
 
-Can the pins property at least be moved into sc7280.dtsi? Then this can
-add bias and drive strength overrides in the board file?
+Iskren Chernev (5):
+  dt-bindings: soc: qcom: smd-rpm: Add SM4250,6115 compatible
+  dt-bindings: clock: qcom: rpmcc: Document SM6115,SM4250 compatible
+  clk: qcom: smd: Add support for SM6115 rpm clocks
+  dt-bindings: power: rpmpd: Add SM4250,SM6115 to rpmpd binding
+  drivers: soc: qcom: rpmpd: Add SM6115 RPM Power Domains
 
-> +                       bias-disable;
-> +                       drive-strength = <16>;
-> +               };
-> +
-> +               cmd {
-> +                       pins = "sdc1_cmd";
-> +                       bias-pull-up;
-> +                       drive-strength = <10>;
-> +               };
-> +
-> +               data {
-> +                       pins = "sdc1_data";
-> +                       bias-pull-up;
-> +                       drive-strength = <10>;
-> +               };
-> +
-> +               rclk {
-> +                       pins = "sdc1_rclk";
-> +                       bias-pull-down;
-> +               };
-> +       };
-> +
-> +       sdc2_on: sdc2-on {
-> +               clk {
-> +                       pins = "sdc2_clk";
-> +                       bias-disable;
-> +                       drive-strength = <16>;
-> +               };
-> +
-> +               cmd {
-> +                       pins = "sdc2_cmd";
-> +                       bias-pull-up;
-> +                       drive-strength = <10>;
-> +               };
-> +
-> +               data {
-> +                       pins = "sdc2_data";
-> +                       bias-pull-up;
-> +                       drive-strength = <10>;
-> +               };
-> +
-> +               sd-cd {
-> +                       pins = "gpio91";
-> +                       bias-pull-up;
-> +               };
-> +       };
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index d600bca..16d8e17 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -974,6 +1033,51 @@
->                         };
->                 };
->
-> +               sdhc_2: sdhci@8804000 {
-> +                       compatible = "qcom,sc7280-sdhci", "qcom,sdhci-msm-v5";
-> +                       status = "disabled";
-> +
-> +                       reg = <0 0x08804000 0 0x1000>;
-> +
-> +                       iommus = <&apps_smmu 0x100 0x0>;
-> +                       interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupt-names = "hc_irq", "pwr_irq";
-> +
-> +                       clocks = <&gcc GCC_SDCC2_APPS_CLK>,
-> +                                <&gcc GCC_SDCC2_AHB_CLK>,
-> +                                <&rpmhcc RPMH_CXO_CLK>;
-> +                       clock-names = "core", "iface", "xo";
-> +                       interconnects = <&aggre1_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
-> +                                       <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_SDCC_2 0>;
-> +                       interconnect-names = "sdhc-ddr","cpu-sdhc";
-> +                       power-domains = <&rpmhpd SC7280_CX>;
-> +                       operating-points-v2 = <&sdhc2_opp_table>;
-> +
-> +                       bus-width = <4>;
-> +
-> +                       qcom,dll-config = <0x0007642c>;
-> +
-> +                       sdhc2_opp_table: sdhc2-opp-table {
+ .../devicetree/bindings/clock/qcom,rpmcc.txt  |  2 +
+ .../devicetree/bindings/power/qcom,rpmpd.yaml |  2 +
+ .../bindings/soc/qcom/qcom,smd-rpm.yaml       |  2 +
+ drivers/clk/qcom/clk-smd-rpm.c                | 64 +++++++++++++++++++
+ drivers/soc/qcom/rpmpd.c                      | 29 +++++++++
+ drivers/soc/qcom/smd-rpm.c                    |  2 +
+ include/dt-bindings/clock/qcom,rpmcc.h        | 10 +++
+ include/dt-bindings/power/qcom-rpmpd.h        | 20 ++++++
+ include/linux/soc/qcom/smd-rpm.h              |  1 +
+ 9 files changed, 132 insertions(+)
 
-Any reason the node shouldn't be called opp-table?
+
+base-commit: e71e3a48a7e89fa71fb70bf4602367528864d2ff
+-- 
+2.31.1
+
