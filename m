@@ -2,105 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 227443B04F4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 14:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 160A03B051C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Jun 2021 14:47:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231176AbhFVMpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 08:45:31 -0400
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:47368 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231766AbhFVMp2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 08:45:28 -0400
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 22 Jun 2021 05:43:12 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 22 Jun 2021 05:43:11 -0700
-X-QCInternal: smtphost
-Received: from rajeevny-linux.qualcomm.com ([10.204.66.121])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 22 Jun 2021 18:12:41 +0530
-Received: by rajeevny-linux.qualcomm.com (Postfix, from userid 2363605)
-        id 5194420FA1; Tue, 22 Jun 2021 18:12:40 +0530 (IST)
-From:   Rajeev Nandan <rajeevny@codeaurora.org>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Rajeev Nandan <rajeevny@codeaurora.org>,
-        linux-kernel@vger.kernel.org, sean@poorly.run, robdclark@gmail.com,
-        robh+dt@kernel.org, robh@kernel.org, abhinavk@codeaurora.org,
-        kalyan_t@codeaurora.org, mkrishn@codeaurora.org, jonathan@marek.ca,
-        dmitry.baryshkov@linaro.org
-Subject: [v2 3/3] drm/msm/dsi: Add DSI support for SC7280
-Date:   Tue, 22 Jun 2021 18:12:28 +0530
-Message-Id: <1624365748-24224-4-git-send-email-rajeevny@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1624365748-24224-1-git-send-email-rajeevny@codeaurora.org>
-References: <1624365748-24224-1-git-send-email-rajeevny@codeaurora.org>
+        id S231617AbhFVMt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 08:49:28 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:50251 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230397AbhFVMt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 08:49:27 -0400
+Received: (Authenticated sender: paul@opendingux.net)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 53E4224000E;
+        Tue, 22 Jun 2021 12:47:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=opendingux.net;
+        s=gm1; t=1624366031;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=5Fg52cHZ8AYWCOlvnT9/rzD91lLNJNWlx68bSKeiMiQ=;
+        b=CzO5LgUTT3jZVexcv7oHANYinHOBaFGY8FAEpT0fq4AyGXACfhv3ThZ8vl0xvzOvMoP/lK
+        LGvzDiOWpEUgKHJ6ieyMFwxFEfCdArgb3/l9jffzd5dxOj8Vkr2sddRCCmuE13TiMyZXt+
+        GU9zMibjQuVrQQ+7oVgU8P3hNILL21gMAtD+m4oZ8XqeAguZxuR/wF4r4Js5NXS025noeW
+        xN9GyHcz8HyCsm6nkR5Iy2vHjqMWGSWNc3rOUzq9aTF6xc7ZjJnqkrHxrrgUnB7V5hSooA
+        fHj82lVSLEmjdcDRlGSgDmPvhj67/oTjC+tsOqGpZh+rXnOjNkt9DouEwGUKlg==
+Date:   Tue, 22 Jun 2021 13:46:57 +0100
+From:   Paul Cercueil <paul@opendingux.net>
+Subject: Re: [PATCH 3/4] MIPS: GCW0: Adjust pinctrl related code in device
+ tree.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com
+Message-Id: <9US3VQ.SK89X0OFZC2Z2@opendingux.net>
+In-Reply-To: <1624347445-88070-4-git-send-email-zhouyanjie@wanyeetech.com>
+References: <1624347445-88070-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1624347445-88070-4-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: geary/40.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for v2.5.0 DSI block in the SC7280 SoC.
+Hi Zhou,
 
-Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
+Le mar., juin 22 2021 at 15:37:24 +0800, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou =
+Yanjie)=20
+<zhouyanjie@wanyeetech.com> a =C3=A9crit :
+> Change the "lcd-24bit" in the pinctrl groups to "lcd-8bit",
+> "lcd-16bit", "lcd-18bit", "lcd-24bit", since the pinctrl
+> driver has done the necessary splitting of the lcd group,
+> and it is convenient to further streamline the lcd-24bit
+> group in the subsequent pinctrl driver.
+>=20
+> Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) <zhouyanjie@wany=
+eetech.com>
+> ---
+>  arch/mips/boot/dts/ingenic/gcw0.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/arch/mips/boot/dts/ingenic/gcw0.dts=20
+> b/arch/mips/boot/dts/ingenic/gcw0.dts
+> index f4c04f2..dec3ba6f 100644
+> --- a/arch/mips/boot/dts/ingenic/gcw0.dts
+> +++ b/arch/mips/boot/dts/ingenic/gcw0.dts
+> @@ -393,7 +393,7 @@
+>  &pinctrl {
+>  	pins_lcd: lcd {
+>  		function =3D "lcd";
+> -		groups =3D "lcd-24bit";
+> +		groups =3D "lcd-8bit", "lcd-16bit", "lcd-18bit", "lcd-24bit";
 
-(no changes since v1)
+No, I'm pretty sure this won't work, since "lcd-24bit" contains pins=20
+that are also contained by the other groups.
 
- drivers/gpu/drm/msm/dsi/dsi_cfg.c | 20 ++++++++++++++++++++
- drivers/gpu/drm/msm/dsi/dsi_cfg.h |  1 +
- 2 files changed, 21 insertions(+)
+-Paul
 
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-index f3f1c03..d76a680 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-+++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-@@ -200,6 +200,24 @@ static const struct msm_dsi_config sc7180_dsi_cfg = {
- 	.num_dsi = 1,
- };
- 
-+static const char * const dsi_sc7280_bus_clk_names[] = {
-+	"iface", "bus",
-+};
-+
-+static const struct msm_dsi_config sc7280_dsi_cfg = {
-+	.io_offset = DSI_6G_REG_SHIFT,
-+	.reg_cfg = {
-+		.num = 1,
-+		.regs = {
-+			{"vdda", 8350, 0 },	/* 1.2 V */
-+		},
-+	},
-+	.bus_clk_names = dsi_sc7280_bus_clk_names,
-+	.num_bus_clks = ARRAY_SIZE(dsi_sc7280_bus_clk_names),
-+	.io_start = { 0xae94000 },
-+	.num_dsi = 1,
-+};
-+
- static const struct msm_dsi_host_cfg_ops msm_dsi_v2_host_ops = {
- 	.link_clk_set_rate = dsi_link_clk_set_rate_v2,
- 	.link_clk_enable = dsi_link_clk_enable_v2,
-@@ -267,6 +285,8 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
- 		&sdm845_dsi_cfg, &msm_dsi_6g_v2_host_ops},
- 	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_4_1,
- 		&sc7180_dsi_cfg, &msm_dsi_6g_v2_host_ops},
-+	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_5_0,
-+		&sc7280_dsi_cfg, &msm_dsi_6g_v2_host_ops},
- };
- 
- const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-index ade9b60..b2c4d5e 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-+++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-@@ -24,6 +24,7 @@
- #define MSM_DSI_6G_VER_MINOR_V2_3_0	0x20030000
- #define MSM_DSI_6G_VER_MINOR_V2_4_0	0x20040000
- #define MSM_DSI_6G_VER_MINOR_V2_4_1	0x20040001
-+#define MSM_DSI_6G_VER_MINOR_V2_5_0	0x20050000
- 
- #define MSM_DSI_V2_VER_MINOR_8064	0x0
- 
--- 
-2.7.4
+>  	};
+>=20
+>  	pins_uart2: uart2 {
+> --
+> 2.7.4
+>=20
+
 
