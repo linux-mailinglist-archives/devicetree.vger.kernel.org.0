@@ -2,166 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 277763B10C1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 01:43:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 283BA3B1170
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 03:51:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230107AbhFVXpV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 19:45:21 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:55372 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbhFVXpV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 19:45:21 -0400
-Received: from Monstersaurus.local (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CFC71A66;
-        Wed, 23 Jun 2021 01:43:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1624405383;
-        bh=r4Kc4gwJEr7RgyM2A9nibVhkYspAI6L1Ihzyx0kFhKo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KS/HJSAzIVI4MCwW6rXPqGLuaWtUxT2egL60iSyOv8udwggm04Km9DQAHOAobmHpA
-         zM7zE6Rd+6j8RMI9zCnRGGanx99qwjBYRQMEMoaLMOFHS8TOnyUg/pxH6IdSZ2lbnj
-         fYw3k6WryOwqaYDGzSis6t81f+YkxL+FzOD7sfnU=
-From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@glider.be>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org (open list:ARM/RENESAS ARM64
-        ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 3/3] arm64: dts: renesas: falcon-cpu: Add DSI display output
-Date:   Wed, 23 Jun 2021 00:42:57 +0100
-Message-Id: <20210622234257.3228634-4-kieran.bingham@ideasonboard.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210622234257.3228634-1-kieran.bingham@ideasonboard.com>
-References: <20210622234257.3228634-1-kieran.bingham@ideasonboard.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S229907AbhFWBxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 21:53:32 -0400
+Received: from mx.socionext.com ([202.248.49.38]:50449 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229769AbhFWBxc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Jun 2021 21:53:32 -0400
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 23 Jun 2021 10:51:14 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id E02672043ACA;
+        Wed, 23 Jun 2021 10:51:14 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Wed, 23 Jun 2021 10:51:14 +0900
+Received: from plum.e01.socionext.com (unknown [10.212.243.119])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 59BC2B62AB;
+        Wed, 23 Jun 2021 10:51:14 +0900 (JST)
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        Keiji Hayashibara <hayashibara.keiji@socionext.com>,
+        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Subject: [PATCH] dt-bindings: nvmem: Convert UniPhier eFuse bindings to json-schema
+Date:   Wed, 23 Jun 2021 10:50:58 +0900
+Message-Id: <1624413058-17338-1-git-send-email-hayashi.kunihiko@socionext.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Convert the UniPhier eFuse binding to DT schema format.
 
-Provide the display output using the sn65dsi86 MIPI DSI bridge.
-
-Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Cc: Keiji Hayashibara <hayashibara.keiji@socionext.com>
+Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 ---
- .../boot/dts/renesas/r8a779a0-falcon-cpu.dtsi | 84 +++++++++++++++++++
- 1 file changed, 84 insertions(+)
+ .../bindings/nvmem/socionext,uniphier-efuse.yaml   | 109 +++++++++++++++++++++
+ .../devicetree/bindings/nvmem/uniphier-efuse.txt   |  49 ---------
+ 2 files changed, 109 insertions(+), 49 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml
+ delete mode 100644 Documentation/devicetree/bindings/nvmem/uniphier-efuse.txt
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-index a0a1a1da0d87..5530bb82de6b 100644
---- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-@@ -66,6 +66,15 @@ memory@700000000 {
- 		reg = <0x7 0x00000000 0x0 0x80000000>;
- 	};
- 
-+	reg_1p2v: regulator-1p2v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.2V";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
+diff --git a/Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml b/Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml
+new file mode 100644
+index 0000000..e03c1ed
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/socionext,uniphier-efuse.yaml
+@@ -0,0 +1,109 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/socionext,uniphier-efuse.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	reg_1p8v: regulator-1p8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "fixed-1.8V";
-@@ -83,6 +92,46 @@ reg_3p3v: regulator-3p3v {
- 		regulator-boot-on;
- 		regulator-always-on;
- 	};
++title: Socionext UniPhier eFuse bindings
 +
-+	mini-dp-con {
-+		compatible = "dp-connector";
-+		label = "CN5";
-+		type = "mini";
++maintainers:
++  - Keiji Hayashibara <hayashibara.keiji@socionext.com>
++  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 +
-+		port {
-+			mini_dp_con_in: endpoint {
-+				remote-endpoint = <&sn65dsi86_out>;
-+			};
-+		};
-+	};
++allOf:
++  - $ref: "nvmem.yaml#"
 +
-+	sn65dsi86_refclk: sn65dsi86-refclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <38400000>;
-+	};
-+};
++properties:
++  "#address-cells": true
++  "#size-cells": true
 +
-+&dsi0 {
-+	status = "okay";
++  compatible:
++    const: socionext,uniphier-efuse
 +
-+	clocks = <&cpg CPG_MOD 415>,
-+		 <&cpg CPG_CORE R8A779A0_CLK_DSI>,
-+		 <&extal_clk>;
-+	clock-names = "fck", "dsi", "extal";
++  reg:
++    maxItems: 1
 +
-+	ports {
-+		port@1 {
-+			endpoint {
-+				remote-endpoint = <&sn65dsi86_in>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
-+};
++patternProperties:
++  "^.*@[0-9a-f]+,[0-9]+$":
++    type: object
 +
-+&du {
-+	status = "okay";
- };
- 
- &extal_clk {
-@@ -114,6 +163,41 @@ &i2c1 {
- 
- 	status = "okay";
- 	clock-frequency = <400000>;
++    properties:
++      reg:
++        maxItems: 1
 +
-+	sn65dsi86@2c {
-+		compatible = "ti,sn65dsi86";
-+		reg = <0x2c>;
++      bits:
++        maxItems: 1
 +
-+		clocks = <&sn65dsi86_refclk>;
-+		clock-names = "refclk";
++    required:
++      - reg
 +
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <24 IRQ_TYPE_LEVEL_HIGH>;
++required:
++  - compatible
++  - reg
 +
-+		vccio-supply = <&reg_1p8v>;
-+		vpll-supply = <&reg_1p8v>;
-+		vcca-supply = <&reg_1p2v>;
-+		vcc-supply = <&reg_1p2v>;
++additionalProperties: false
 +
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++examples:
++  - |
++    // The UniPhier eFuse should be a subnode of a "soc-glue" node.
 +
-+			port@0 {
-+				reg = <0>;
-+				sn65dsi86_in: endpoint {
-+					remote-endpoint = <&dsi0_out>;
-+				};
-+			};
++    soc-glue@5f900000 {
++        compatible = "simple-mfd";
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges = <0x0 0x5f900000 0x2000>;
 +
-+			port@1 {
-+				reg = <1>;
-+				sn65dsi86_out: endpoint {
-+					remote-endpoint = <&mini_dp_con_in>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &i2c6 {
++        efuse@100 {
++            compatible = "socionext,uniphier-efuse";
++            reg = <0x100 0x28>;
++        };
++
++        efuse@200 {
++            compatible = "socionext,uniphier-efuse";
++            reg = <0x200 0x68>;
++            #address-cells = <1>;
++            #size-cells = <1>;
++
++            /* Data cells */
++            usb_rterm0: trim@54,4 {
++                reg = <0x54 1>;
++                bits = <4 2>;
++            };
++            usb_rterm1: trim@55,4 {
++                reg = <0x55 1>;
++                bits = <4 2>;
++            };
++            usb_rterm2: trim@58,4 {
++                reg = <0x58 1>;
++                bits = <4 2>;
++            };
++            usb_rterm3: trim@59,4 {
++                reg = <0x59 1>;
++                bits = <4 2>;
++            };
++            usb_sel_t0: trim@54,0 {
++                reg = <0x54 1>;
++                bits = <0 4>;
++            };
++            usb_sel_t1: trim@55,0 {
++                reg = <0x55 1>;
++                bits = <0 4>;
++            };
++            usb_sel_t2: trim@58,0 {
++                reg = <0x58 1>;
++                bits = <0 4>;
++            };
++            usb_sel_t3: trim@59,0 {
++                reg = <0x59 1>;
++                bits = <0 4>;
++            };
++            usb_hs_i0: trim@56,0 {
++                reg = <0x56 1>;
++                bits = <0 4>;
++            };
++            usb_hs_i2: trim@5a,0 {
++                reg = <0x5a 1>;
++                bits = <0 4>;
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/nvmem/uniphier-efuse.txt b/Documentation/devicetree/bindings/nvmem/uniphier-efuse.txt
+deleted file mode 100644
+index eccf490..0000000
+--- a/Documentation/devicetree/bindings/nvmem/uniphier-efuse.txt
++++ /dev/null
+@@ -1,49 +0,0 @@
+-= UniPhier eFuse device tree bindings =
+-
+-This UniPhier eFuse must be under soc-glue.
+-
+-Required properties:
+-- compatible: should be "socionext,uniphier-efuse"
+-- reg: should contain the register location and length
+-
+-= Data cells =
+-Are child nodes of efuse, bindings of which as described in
+-bindings/nvmem/nvmem.txt
+-
+-Example:
+-
+-	soc-glue@5f900000 {
+-		compatible = "socionext,uniphier-ld20-soc-glue-debug",
+-			     "simple-mfd";
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges = <0x0 0x5f900000 0x2000>;
+-
+-		efuse@100 {
+-			compatible = "socionext,uniphier-efuse";
+-			reg = <0x100 0x28>;
+-		};
+-
+-		efuse@200 {
+-			compatible = "socionext,uniphier-efuse";
+-			reg = <0x200 0x68>;
+-			#address-cells = <1>;
+-			#size-cells = <1>;
+-
+-			/* Data cells */
+-			usb_mon: usb-mon@54 {
+-				reg = <0x54 0xc>;
+-			};
+-		};
+-	};
+-
+-= Data consumers =
+-Are device nodes which consume nvmem data cells.
+-
+-Example:
+-
+-	usb {
+-		...
+-		nvmem-cells = <&usb_mon>;
+-		nvmem-cell-names = "usb_mon";
+-	}
 -- 
-2.30.2
+2.7.4
 
