@@ -2,86 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F4EB3B196E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 13:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 103013B197A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 13:59:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230299AbhFWMAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 08:00:22 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:13508 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230163AbhFWMAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 08:00:21 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1624449484; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=AHMt0GzCvHn4hyYD7cdhM7SJoQ7X95tIMSwPoZD5d7s=; b=jbyG9iTmfMSVGq+8tleX9/L0E9OijYr2f9vBrDtk+EUw3Ozs9SF6A71XF8c51l9D9cdD9sFK
- +kyrCn2eYoW/CE1sJ8pZ+PEqCE8GxL3wJiqXmZomJjy/sq46Ug7Q5GyIUZI2/7kzCkReACqn
- uANeSiEeGxDIexuQ03WM9W81QGc=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 60d321cadc4628fe7eb49d97 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 23 Jun 2021 11:58:02
- GMT
-Sender: tdas=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 11E66C4338A; Wed, 23 Jun 2021 11:58:02 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from tdas-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: tdas)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 00A2DC433D3;
-        Wed, 23 Jun 2021 11:57:57 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 00A2DC433D3
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=tdas@codeaurora.org
-From:   Taniya Das <tdas@codeaurora.org>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
-        Taniya Das <tdas@codeaurora.org>
-Subject: [PATCH v2] clk: qcom: gcc: Add support for a new frequency for SC7280
-Date:   Wed, 23 Jun 2021 17:27:51 +0530
-Message-Id: <1624449471-9984-1-git-send-email-tdas@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S230189AbhFWMB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 08:01:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53616 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230121AbhFWMBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 08:01:55 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 449D9C061574;
+        Wed, 23 Jun 2021 04:59:37 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id h21-20020a1ccc150000b02901d4d33c5ca0so1163003wmb.3;
+        Wed, 23 Jun 2021 04:59:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Xzw/4c3zYIVYrIQdBbMBp4EEh/m3aAvDBYr8K6MbN2U=;
+        b=FDdt0PMX1Os97ku1lM/T7xZsc+mCtqRZhdLHnnWOX6Mcu+7YHQ61oZguWkC1ASwsw1
+         vgP/GdS60Mv0otXIjYI+11IrHNRwHgSvogVwoXkzZFI4pWHj4XYRtmLb0DOaC7myQHZ3
+         dvnzmb2vnxLrvM2L/cKoN16dXdIGgLhUWzU9NasBNFll6ZJ2jaCZjPY1WpNz/fE5jxij
+         fQ5xIDr/NONAcdrSxu1QTTRj0V5DOylYeyt/vNWS7yp8SHaDHyPxX8B/2xF94Rt23Nbk
+         DL25dX5NipeqRkLBdq1JbekayStncreY4QzOnL/Ik9g0N2HyU+Okgvs2nRzHwB5ZJde5
+         w0aA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Xzw/4c3zYIVYrIQdBbMBp4EEh/m3aAvDBYr8K6MbN2U=;
+        b=uY1PV6Ao3jtj/vCY9TmdU4MyiSXzsDSvg+c3fJYOPubls/oHUwvSn5IKC4jihWHYJ6
+         OK6sKbsDHeZPeYhCP+W7DOIqYbXNCu7lPrmcO0f9I2c9RuZbg4pyetrf5Jm/9xMurCJg
+         24RP/Unbl34KXXP20wkeuEJEHMC6zX3YpKFpc3wbPV8MjCvkYX8vTmt43UEtPlD2sPB7
+         R6x+ShXBz3vxLPoZ3hk7j+5fcgAcYNDf0dHAWd0dsOvfFr7BLpqRsUgSmMGJaTxlgQ+f
+         exsE954XTRecOXN05zi33F1MHb7i5Jhvg0Cdvvxgh6lzUJqVYlTn/bHSAqYRpSk1LxLh
+         O1YA==
+X-Gm-Message-State: AOAM532OHHcdLHKZrQCmayxi0hORHAh7FFwv2OjPvVCcm4tUk04XuM3H
+        61qu0h/FCvSlGYWUbgClwA==
+X-Google-Smtp-Source: ABdhPJwZuK8Va11JBkM37YotH8BmGlV0DaMaCUiNgAghs6DU2efC15zigmOSaUc5v6PneRTKxNyebg==
+X-Received: by 2002:a7b:ce8e:: with SMTP id q14mr10204347wmj.33.1624449575836;
+        Wed, 23 Jun 2021 04:59:35 -0700 (PDT)
+Received: from localhost.localdomain (ip5b434b8b.dynamic.kabel-deutschland.de. [91.67.75.139])
+        by smtp.googlemail.com with ESMTPSA id o3sm2661265wrj.94.2021.06.23.04.59.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Jun 2021 04:59:35 -0700 (PDT)
+From:   Alex Bee <knaerzche@gmail.com>
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alex Bee <knaerzche@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Fix GPU register width for RK3328
+Date:   Wed, 23 Jun 2021 13:59:26 +0200
+Message-Id: <20210623115926.164861-1-knaerzche@gmail.com>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a requirement to support 52MHz for qup clocks for bluetooth
-usecase, thus update the frequency table to support the frequency.
+As can be seen in RK3328's TRM the register range for the GPU is
+0xff300000 to 0xff330000.
+It would (and does in vendor kernel) overlap with the registers of
+the HEVC encoder (node/driver do not exist yet in upstream kernel).
+See already existing h265e_mmu node.
 
-Fixes: a3cc092196ef ("clk: qcom: Add Global Clock controller (GCC) driver for SC7280")
-Signed-off-by: Taniya Das <tdas@codeaurora.org>
+Fixes: 752fbc0c8da7 ("arm64: dts: rockchip: add rk3328 mali gpu node")
+Signed-off-by: Alex Bee <knaerzche@gmail.com>
 ---
-[v2]
- * Update commit message and subject "Add"/"bluetooth".
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/clk/qcom/gcc-sc7280.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/clk/qcom/gcc-sc7280.c b/drivers/clk/qcom/gcc-sc7280.c
-index ef734db..6cefcdc 100644
---- a/drivers/clk/qcom/gcc-sc7280.c
-+++ b/drivers/clk/qcom/gcc-sc7280.c
-@@ -716,6 +716,7 @@ static const struct freq_tbl ftbl_gcc_qupv3_wrap0_s2_clk_src[] = {
- 	F(29491200, P_GCC_GPLL0_OUT_EVEN, 1, 1536, 15625),
- 	F(32000000, P_GCC_GPLL0_OUT_EVEN, 1, 8, 75),
- 	F(48000000, P_GCC_GPLL0_OUT_EVEN, 1, 4, 25),
-+	F(52174000, P_GCC_GPLL0_OUT_MAIN, 1, 2, 23),
- 	F(64000000, P_GCC_GPLL0_OUT_EVEN, 1, 16, 75),
- 	F(75000000, P_GCC_GPLL0_OUT_EVEN, 4, 0, 0),
- 	F(80000000, P_GCC_GPLL0_OUT_EVEN, 1, 4, 15),
---
-Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
-of the Code Aurora Forum, hosted by the  Linux Foundation.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 8c821acb21ff..da84be6f4715 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -599,7 +599,7 @@ saradc: adc@ff280000 {
+ 
+ 	gpu: gpu@ff300000 {
+ 		compatible = "rockchip,rk3328-mali", "arm,mali-450";
+-		reg = <0x0 0xff300000 0x0 0x40000>;
++		reg = <0x0 0xff300000 0x0 0x30000>;
+ 		interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>,
+ 			     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>,
+-- 
+2.27.0
 
