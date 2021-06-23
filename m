@@ -2,146 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32A3A3B1828
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 12:34:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 081F93B1831
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 12:41:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230031AbhFWKgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 06:36:51 -0400
-Received: from mail-eopbgr1320105.outbound.protection.outlook.com ([40.107.132.105]:43808
-        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229833AbhFWKgu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Jun 2021 06:36:50 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cIensxMkLiiboWmRGZ+/yjVZwg1vkfVKtv+eyXviBa/br91RhCKLgawIrP6tp9XdY0428Oe5CHKjxVrMKlR/dHnu5dzqy44b4AmW6v+FlZ3LcQYTTo2zFyB9/311gQllJBG1fRbvUP36VYKkeTldKW+b8SmRpVa3YnkJoVPpSvc/ksJtV/EzTVWIgZSJ9cKLxjUiOtwxe8ysSPbPyKhyBNMMWhu1cJA8CWT7SfpyDRunIqan6sBz9GI6ltzm3oSE+HTbmTjTSLaxeTgdhivikwcL6oc9uLV8xDzZS9GnX3jLKO/eUUMPd3Yz50HvtqganejhT89pCJItj6C8Hj9x/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RHB4Q18NoYcYe5U9QCbHvq96GwiIl+8TP5d55GE0EQw=;
- b=h/xIhpyUz46uDrmSyoRxkTKznTW8jwHoRCOxlP/jZNAjYmRc6F/5jHH1mpdskDqu6UaQtCOi7dgnJl5vEPh9b8rFMrICb31ORxxPlm4Pyr2X+2lrYw1LOPTlx7UdQc7XgIkzQdb1zTPownlXKY1X6oLvtCc2rnf5rmvXOk/52kWiew+c7S461PeWOQ3Izh9o9supQokD0ql8YX+f9gyVVZfJZMwJB1yYMvdqoOJEcZA8GcXc9wQEAlZDJNbbmZDXVRD/AoT8HN0+/4BYtoWmsxi8q/H/Dm7p0E7YTvK1tvjDZ7jXRGOxNmaiAivxgi/vh46Nhj6MfpXUtjD1oMxz8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RHB4Q18NoYcYe5U9QCbHvq96GwiIl+8TP5d55GE0EQw=;
- b=crRDC4NLYmFuV3z7naD2x8crrzIo0+OmtD2/gXutip4lacgqBxwF+Xeol9pjuBPo+xwwGA5gLeqqPlKknurkE4NM05WCdUTjW3VAiVbCMs/fkHhFn9sw41kkilWCrbse0e231oA4/0zahEJS1yZ371IUH94CrKe8fW/xTEF0dO4=
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
- by TY2PR01MB3514.jpnprd01.prod.outlook.com (2603:1096:404:e0::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.18; Wed, 23 Jun
- 2021 10:34:29 +0000
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::4c5d:66ee:883a:72a5]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::4c5d:66ee:883a:72a5%6]) with mapi id 15.20.4242.024; Wed, 23 Jun 2021
- 10:34:29 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 03/14] pinctrl: renesas: Fix pin control matching on R-Car
- H3e-2G
-Thread-Topic: [PATCH 03/14] pinctrl: renesas: Fix pin control matching on
- R-Car H3e-2G
-Thread-Index: AQHXXdxGBfJJC7BEGEm1oOMO0AG256shefKA
-Date:   Wed, 23 Jun 2021 10:34:29 +0000
-Message-ID: <TY2PR01MB36928C52ADEDDC289FF1318ED8089@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-References: <cover.1623315732.git.geert+renesas@glider.be>
- <ab1acd836e990c536ff3a8c715ce57363d3ff8cb.1623315732.git.geert+renesas@glider.be>
-In-Reply-To: <ab1acd836e990c536ff3a8c715ce57363d3ff8cb.1623315732.git.geert+renesas@glider.be>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: glider.be; dkim=none (message not signed)
- header.d=none;glider.be; dmarc=none action=none header.from=renesas.com;
-x-originating-ip: [124.210.22.195]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e215dca6-ee60-4d71-ab56-08d936327b5a
-x-ms-traffictypediagnostic: TY2PR01MB3514:
-x-microsoft-antispam-prvs: <TY2PR01MB3514E589950D52C6BA9DB6CBD8089@TY2PR01MB3514.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 9fd7Sxq4GBnBjAG19Jg/0ikBjBSlPwswiHxNkoFQmACSdhNHIXUD3ZLD5RHdNayC5tRNztVoC8KsIovT4SCtWcq8slRQtJ/iklwRoYHGDOMvZEvHYJZcRbEhGpQpI0jKymflVsSw4kVYwtU0GnbDvt3r0zDlYmvZcIl7L5duxn28qMhGZ9H4g/+i3v/dPl5tPA9CjSyAI0JWU5zwr6mw6WJHUPhD7d2C33eThfhX1fc+eckiko6le7s8RQe4pZvKth+5XIpgALMXagjVC6a0ZhRKPPEWofJtcgJxp10VQyE0QTPNWtwTsxF4vp64mo7AVu///y60cLuFdmor7RkW7Y8KPxBMCHO25H6ezsh8LM9oqQbWdgsn9ncZcpQKg1ObzcC0e/p0JAZEVtZYbpfxLo3HtyOiCRGgBJl8bEQkyM9DaY7/U1pLn2DeukeJUYi/h8QLacsJ8m8iUn3SD5vHVl6/DSWdgI88Po9RYZEpLKBzNlM1qayiR9xobcQ9zI4HOwD3P/5UWEEXd/lS+QVxMLnbu4ds60aBENMp+swTXDWvOl5fgONzmFPF9jgpHo7NJFoKUaxn/gIRJ4ClisjdgHxZpGxkM45bdEa+bQGxMc0=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39860400002)(366004)(376002)(346002)(396003)(5660300002)(9686003)(8936002)(8676002)(66946007)(64756008)(66556008)(55016002)(66446008)(66476007)(76116006)(52536014)(110136005)(478600001)(86362001)(7696005)(6506007)(54906003)(55236004)(26005)(186003)(316002)(2906002)(38100700002)(122000001)(33656002)(71200400001)(4326008);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?AdKvfcKj/QKJB1F2ACU/cC82imi86rmSDs9hzWLC69DA8oJoqVIRw/xWgQKv?=
- =?us-ascii?Q?n7T3lk5aQuyOqhQ1bxFlCU5dRYr9uAvWKRGE+CRv3zK1Ynb5A1JPb62ye36i?=
- =?us-ascii?Q?OA7cq6YT7IMCPCJF3+BxJKnooxZpnFpRsfdi+L89Mag//hF020MjhwHbZhGC?=
- =?us-ascii?Q?3CpcsWkm0ULSDcufsFDiMx1giEcPFxHNJzIGGjm56tvghovJnJi4irHb+Br3?=
- =?us-ascii?Q?b3sJRPSAWMu/fmISwFxziHzFWdsYba8pH2arQgc2gYZj77TlRy0xJjLqtpwm?=
- =?us-ascii?Q?aFTQSySjWEmJCL3hFwYIvkSBP/P6dacnosP7CsZ6O6XPnP6Sf3qUJHmlwRXJ?=
- =?us-ascii?Q?TKGfJOPtQ/P6Pvt4V0DXkRHxYMEvtGV6WrLJioYxWEJX3zD8252h3ccrjLaK?=
- =?us-ascii?Q?6FtFKl75aEq6TSMv/TpMsW3NFL0GJ31SiwHtZ0xvU5r4fITCWsQFS+Ca8ff+?=
- =?us-ascii?Q?feuQSyWfrJnVhSl2mmtjTf11T0TO7ECQYVaErekpfnapjw6uHnDXOJ3Gk5y3?=
- =?us-ascii?Q?F6lQlTzpY50TlTS2vGiFizMJi7nKpaPQevTQOKA1yut5Z4LYyCSpxEG9W6/t?=
- =?us-ascii?Q?FeVNAwY9va0Yym0+47gREMbr1qZQeQfiE5asU8hXeIGeMp9myP/qaSRAIVYN?=
- =?us-ascii?Q?bbAbsHiZSKakoVmrV1KkZ8vhHY6MrbmXbqawS3h+uuKBBANx08q6HYbeYLI5?=
- =?us-ascii?Q?jz+awUZbFYaAt14plYiKmJkPaVqtbk/IBDlkEwOhtXqS0tD/3c4EUqOpU4e9?=
- =?us-ascii?Q?UyHePjYQg/D2eQwIHiGtEk/xZy7MGZxdZI0MX7jDOkizRcHDiisau0ZMd+ic?=
- =?us-ascii?Q?NwpGRPhFPXDt8yJXzUL+uC0wCqvSkA4QJS5xK0eGC+ZaHrXsUkGjQrlap9pG?=
- =?us-ascii?Q?9pkFTwAF89F1qXVmdZkcbifOIVuEBSUskD0qJSVkH553+QCTkJw5O6M88jqU?=
- =?us-ascii?Q?+qVuWJZDEa4S+DDz/59y5PDLREVnvVJaO6avPwkjGscthkup9GTD2DFFTu/F?=
- =?us-ascii?Q?foZHJPU+5nXryTFITucwQbBiJJo1Xh6GSFCDAO/g79YWfsKeutf6hDURJAmd?=
- =?us-ascii?Q?nc7FxQocs2pGCIicN32vLawTUqgyfU1kYW8BZzBuU6oJDyGxNkmZekPj5GN+?=
- =?us-ascii?Q?lgISgmVHMV8vHZkWy54Mes1Id/fvpWD9AxhnIxp+CVTWAjLG4NAqIowRO6lK?=
- =?us-ascii?Q?l0H03HiAa4gSgHD+a8oGhWNLZ3Gxcbz6ZscNmWLr/OeJsBnx5mOy/k3jo2Ny?=
- =?us-ascii?Q?O3JOek4kQuYq2tr3wYEH2JLGrTbwbieV9AeHAgEvcI4Y4bwOfsTiPHfd8JTT?=
- =?us-ascii?Q?7we9f4HDLpqTnpMKjR3RbBta?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S230031AbhFWKns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 06:43:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54330 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229833AbhFWKnr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Jun 2021 06:43:47 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8121E611CE;
+        Wed, 23 Jun 2021 10:41:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624444890;
+        bh=SfXOgGuAgO7vhYwOC+JWO72WGhlYb92qO1wdzr6JfjY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Jehgj2UonYKDScnD8sbwVPx4GPv5iK62nD1TFX2M/7zKn0Umj/aaoS6tOsa3DrINW
+         Tu6wp60Yk+lmoG/gvt+55a0wLHYAPk5/TF4ptXcmJ7pUNxdDE2n+atf9qLutW6lwmd
+         URrsLiGi+05a0Wv6vDxv9F2Pzs/vYX6RSt4VWRNwqUsYJZMiFPIGc8TDvSQIQEGMp2
+         GbsNNY17Qrnb6A2cPTkjcuD9+sdBCQSlN964HhYbFYC5Dmp4BrVz3RaPiUvLHTE+jx
+         HV4w0jbfyaAPk+8dm29o/HbHDastI0N94VPJIKgme37Vd3wYQK565XeN32MsKCZ3KA
+         sBQzwXPw9wraw==
+Received: by mail-ed1-f44.google.com with SMTP id h2so2795064edt.3;
+        Wed, 23 Jun 2021 03:41:30 -0700 (PDT)
+X-Gm-Message-State: AOAM530k4ab0OI2pmI9sBCWVVq0x3g+g7CSyoO1a6QC7Jx0nnXvBxCsN
+        0Dg1Yu3Mli67chcpMQUlIJ4CLrd9LPchxN+j7w==
+X-Google-Smtp-Source: ABdhPJwOOBSZ371QrvZL98gwzM7omrKAK7M04wdMFnvogwkefUJzh8wJIMDIyi8edPUHRmaxCXzfHELNYL4NBeuR0Yk=
+X-Received: by 2002:a05:6402:1777:: with SMTP id da23mr11259427edb.72.1624444888919;
+ Wed, 23 Jun 2021 03:41:28 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e215dca6-ee60-4d71-ab56-08d936327b5a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2021 10:34:29.4490
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DZsLCJDk9mH9YKM6n27MlmWd07yD4V8FRgW/ICWpnNM10lH7vExU/HQ1i68dGQUY1cyyz6rQKq9eoTv2CuyoJPdgL5D5cvc6SisDlgSuG+tPhyn+phfvHRhZ+RmMJMBM
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB3514
+References: <20210623073549.24170-1-moudy.ho@mediatek.com>
+In-Reply-To: <20210623073549.24170-1-moudy.ho@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Wed, 23 Jun 2021 18:41:18 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9dhqYutP3EfNe8tPZ0GTPU04s5zGfyT-As74wLE6Zyrg@mail.gmail.com>
+Message-ID: <CAAOTY_9dhqYutP3EfNe8tPZ0GTPU04s5zGfyT-As74wLE6Zyrg@mail.gmail.com>
+Subject: Re: [RFC PATCH V0 01/10] media: mtk-mdp3: Add Mediatek MDP Driver
+To:     Moudy Ho <moudy.ho@mediatek.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Nicolas Boichat <drinkcat@chromium.org>, acourbot@chromium.org,
+        Pi-Hsun Shih <pihsun@chromium.org>, menghui.lin@mediatek.com,
+        =?UTF-8?B?U2ogSHVhbmcgKOm7g+S/oeeSiyk=?= <sj.huang@mediatek.com>,
+        ben.lok@mediatek.com, randy.wu@mediatek.com,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
+        <frederic.chen@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert-san,
+Hi, Moudy:
 
-> From: Geert Uytterhoeven, Sent: Thursday, June 10, 2021 6:37 PM
->=20
-> As R-Car H3 ES1.x (R8A77950) and R-Car ES2.0+ (R8A77951) use the same
-> compatible value, the pin control driver relies on soc_device_match()
-> with soc_id =3D "r8a7795" and the (non)matching of revision =3D "ES1.*" t=
-o
-> match with and distinguish between the two SoC variants.  The
-> corresponding entries in the normal of_match_table are present only to
-> make the optional sanity checks work.
->=20
-> The R-Car H3e-2G (R8A779M1) SoC is a different grading of the R-Car H3
-> ES3.0 (R8A77951) SoC.  It uses the same compatible values for individual
-> devices, but has an additional compatible value for the root node.
-> When running on an R-Car H3e-2G SoC, soc_device_match() with soc_id =3D
-> "r8a7795" does not return a match.  Hence the pin control driver falls
-> back to the normal of_match_table, and, as the R8A77950 entry is listed
-> first, incorrectly uses the sub-driver for R-Car H3 ES1.x.
->=20
-> Fix this by moving the entry for R8A77951 before the entry for R8A77950.
+Moudy Ho <moudy.ho@mediatek.com> =E6=96=BC 2021=E5=B9=B46=E6=9C=8823=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:46=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> From: mtk18742 <moudy.ho@mediatek.com>
+>
+> Add MDP driver for MT8183
+>
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
 
-Thank you for the patch! After that, IIUC, we can remove an entry of r8a779=
-51
-from quirks[] in the sh_pfc_quirk_match().
+[snip]
 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> +
+> +#endif  // __MMSYS_CONFIG_H__
+> diff --git a/drivers/media/platform/mtk-mdp3/mmsys_mutex.h b/drivers/medi=
+a/platform/mtk-mdp3/mmsys_mutex.h
+> new file mode 100644
+> index 000000000000..fb8c179f11af
+> --- /dev/null
+> +++ b/drivers/media/platform/mtk-mdp3/mmsys_mutex.h
+> @@ -0,0 +1,35 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2019 MediaTek Inc.
+> + * Author: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+> + */
+> +
+> +#ifndef __MMSYS_MUTEX_H__
+> +#define __MMSYS_MUTEX_H__
+> +
+> +#include "mmsys_reg_base.h"
+> +#include "mdp-platform.h"
+> +
+> +#define MM_MUTEX_INTEN              0x00
+> +#define MM_MUTEX_INTSTA             0x04
+> +#define MM_MUTEX_CFG                0x08
+> +
+> +#define MM_MUTEX_EN                 (0x20 + mutex_id * 0x20)
+> +#define MM_MUTEX_GET                (0x24 + mutex_id * 0x20)
+> +#define MM_MUTEX_RST                (0x28 + mutex_id * 0x20)
+> +#define MM_MUTEX_MOD                (MM_MUTEX_MOD_OFFSET + mutex_id * 0x=
+20)
+> +#define MM_MUTEX_SOF                (MM_MUTEX_SOF_OFFSET + mutex_id * 0x=
+20)
 
-Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+mtk_mutex driver is in drivers/soc/mediatek/mtk-mutex.c, so the
+mtk_mutex control should be placed there.
 
-Best regards,
-Yoshihiro Shimoda
+> +
+> +// MASK
+> +#define MM_MUTEX_INTEN_MASK         0x0fff
+> +#define MM_MUTEX_INTSTA_MASK        0x0fff
+> +#define MM_MUTEX_DEBUG_OUT_SEL_MASK 0x03
+> +#define MM_MUTEX_CFG_MASK           0x01
+> +
+> +#define MM_MUTEX_EN_MASK            0x01
+> +#define MM_MUTEX_GET_MASK           0x03
+> +#define MM_MUTEX_RST_MASK           0x01
+> +#define MM_MUTEX_MOD_MASK           0x07ffffff
+> +#define MM_MUTEX_SOF_MASK           0x0f
+> +
 
+[snip]
+
+> +int mdp_cmdq_send(struct mdp_dev *mdp, struct mdp_cmdq_param *param)
+> +{
+> +       struct mdp_cmd cmd;
+> +       struct mdp_path path;
+> +       int i, ret;
+> +
+> +       if (atomic_read(&mdp->suspended))
+> +               return -ECANCELED;
+> +
+> +       atomic_inc(&mdp->job_count);
+> +
+> +       cmd.pkt =3D cmdq_pkt_create(mdp->cmdq_clt, SZ_16K);
+> +       if (IS_ERR(cmd.pkt)) {
+> +               atomic_dec(&mdp->job_count);
+> +               wake_up(&mdp->callback_wq);
+> +               return PTR_ERR(cmd.pkt);
+> +       }
+> +       cmd.event =3D &mdp->event[0];
+> +
+> +       path.mdp_dev =3D mdp;
+> +       path.config =3D param->config;
+> +       path.param =3D param->param;
+> +       for (i =3D 0; i < param->param->num_outputs; i++) {
+> +               path.bounds[i].left =3D 0;
+> +               path.bounds[i].top =3D 0;
+> +               path.bounds[i].width =3D
+> +                       param->param->outputs[i].buffer.format.width;
+> +               path.bounds[i].height =3D
+> +                       param->param->outputs[i].buffer.format.height;
+> +               path.composes[i] =3D param->composes[i] ?
+> +                       param->composes[i] : &path.bounds[i];
+> +       }
+> +       ret =3D mdp_path_config(mdp, &cmd, &path);
+> +       if (ret) {
+> +               atomic_dec(&mdp->job_count);
+> +               wake_up(&mdp->callback_wq);
+> +               return ret;
+> +       }
+> +
+> +       // TODO: engine conflict dispatch
+> +       for (i =3D 0; i < param->config->num_components; i++)
+> +               mdp_comp_clock_on(&mdp->pdev->dev, path.comps[i].comp);
+> +
+> +       if (param->wait) {
+> +               ret =3D cmdq_pkt_flush(cmd.pkt);
+
+cmdq_pkt_flush() is removed in latest kernel, please rebase this
+series onto latest kernel before you send patches.
+
+Regards,
+Chun-Kuang.
+
+> +#ifdef MDP_DEBUG
+> +               if (ret) {
+> +                       struct mdp_func_struct *p_func =3D mdp_get_func()=
+;
+> +
+> +                       p_func->mdp_dump_mmsys_config();
+> +                       mdp_dump_info(~0, 1);
+> +               }
+> +#endif
+> +               if (param->mdp_ctx)
+> +                       mdp_m2m_job_finish(param->mdp_ctx);
+> +               cmdq_pkt_destroy(cmd.pkt);
+> +               for (i =3D 0; i < param->config->num_components; i++)
+> +                       mdp_comp_clock_off(&mdp->pdev->dev, path.comps[i]=
+.comp);
+> +
+> +               atomic_dec(&mdp->job_count);
+> +               wake_up(&mdp->callback_wq);
+> +       } else {
+> +               struct mdp_cmdq_cb_param *cb_param;
+> +               struct mdp_comp *comps;
+> +
+> +               cb_param =3D kzalloc(sizeof(*cb_param), GFP_KERNEL);
+> +               if (!cb_param)
+> +                       return -ENOMEM;
+> +               comps =3D kcalloc(param->config->num_components, sizeof(*=
+comps),
+> +                               GFP_KERNEL);
+> +               if (!comps) {
+> +                       kfree(cb_param);
+> +                       mdp_err("%s:comps alloc fail!\n", __func__);
+> +                       return -ENOMEM;
+> +               }
+> +
+> +               for (i =3D 0; i < param->config->num_components; i++)
+> +                       memcpy(&comps[i], path.comps[i].comp,
+> +                              sizeof(struct mdp_comp));
+> +               cb_param->mdp =3D mdp;
+> +               cb_param->user_cmdq_cb =3D param->cmdq_cb;
+> +               cb_param->user_cb_data =3D param->cb_data;
+> +               cb_param->pkt =3D cmd.pkt;
+> +               cb_param->comps =3D comps;
+> +               cb_param->num_comps =3D param->config->num_components;
+> +               cb_param->mdp_ctx =3D param->mdp_ctx;
+> +
+> +               ret =3D cmdq_pkt_flush_async(cmd.pkt,
+> +                                          mdp_handle_cmdq_callback,
+> +                                          (void *)cb_param);
+> +               if (ret) {
+> +                       mdp_err("%s:cmdq_pkt_flush_async fail!\n", __func=
+__);
+> +                       kfree(cb_param);
+> +                       kfree(comps);
+> +               }
+> +       }
+> +       return ret;
+> +}
+> +
+
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
