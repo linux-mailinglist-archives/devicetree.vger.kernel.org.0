@@ -2,116 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85B7E3B1AE6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 15:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF9513B1AF9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 15:21:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230206AbhFWNRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 09:17:32 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:38832 "EHLO
+        id S230505AbhFWNYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 09:24:11 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:38922 "EHLO
         perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbhFWNRb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 09:17:31 -0400
+        with ESMTP id S230234AbhFWNYJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 09:24:09 -0400
 Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EDAA69AA;
-        Wed, 23 Jun 2021 15:15:11 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7D977EE;
+        Wed, 23 Jun 2021 15:21:50 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1624454112;
-        bh=GVMK38SrPGTYbsOKUOPXSrEWY3ARN0rb2JGcAOPGBtQ=;
+        s=mail; t=1624454510;
+        bh=tD3yAfBocRoh42iKv+1nU6GmJxJgj3qdpSr0sTecR8g=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sd76KXBNzmD/7FV+Gt4wR9mi4Lxk/zMoruxdN9MF5tC8iXo8ltWBUF35E1592qlms
-         jN8Na4J3N87rM+phQYcEEJTQ1uGI1z0adgrZhbaygPV3/NXk9Co5H+OQZsMDv3lMJ0
-         XmoXHC9TPgp4lAqcG56vFOC6WVe7hFc/7DIUThxE=
-Date:   Wed, 23 Jun 2021 16:14:42 +0300
+        b=J6PkKp5wWllwRTlRLAOdU1u0BsEBrC0wvoH4QXTTJaX/3lZ35HDadPXZoIdUpUv3O
+         kkL0aHDUKZbaspama8on3DCH4QHoxN0L5R2est5e0t6Ef6A9j4jXRsAAaYuBPcCT2A
+         Nldqf8ApmICAWBV5JPT6x5kbpbvNOKvZjSQ+WBLo=
+Date:   Wed, 23 Jun 2021 16:21:21 +0300
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:DRM DRIVERS FOR RENESAS" <dri-devel@lists.freedesktop.org>,
-        "open list:DRM DRIVERS FOR RENESAS" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: display: renesas,du: Provide bindings for
- r8a779a0
-Message-ID: <YNMzwtTqhfOzdJ56@pendragon.ideasonboard.com>
-References: <20210622231146.3208404-1-kieran.bingham@ideasonboard.com>
- <CAMuHMdW8vYC3+gVCv5eG_vkX79vU8RQL-6fSJd9McetDzikzSA@mail.gmail.com>
- <YNMv2KSjbwX5aAK2@pendragon.ideasonboard.com>
- <CAMuHMdXJTCyfMX3nN6pbAHeqqf5OCqJR4+7GJ=71+o1iKRrHhg@mail.gmail.com>
+To:     Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>
+Cc:     devicetree@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC v2] dt-binding: media: document ON Semi AR0521 sensor
+ bindings
+Message-ID: <YNM1UeZ7aw0hWUE2@pendragon.ideasonboard.com>
+References: <m3y2b25er8.fsf@t19.piap.pl>
+ <YNHVbFp2+Ow8CyCV@pendragon.ideasonboard.com>
+ <m3im255e1a.fsf@t19.piap.pl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdXJTCyfMX3nN6pbAHeqqf5OCqJR4+7GJ=71+o1iKRrHhg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <m3im255e1a.fsf@t19.piap.pl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On Wed, Jun 23, 2021 at 03:09:06PM +0200, Geert Uytterhoeven wrote:
-> On Wed, Jun 23, 2021 at 2:58 PM Laurent Pinchart wrote:
-> > On Wed, Jun 23, 2021 at 02:53:33PM +0200, Geert Uytterhoeven wrote:
-> > > On Wed, Jun 23, 2021 at 1:11 AM Kieran Bingham wrote:
-> > > > From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> > > >
-> > > > Extend the Renesas DU display bindings to support the r8a779a0 V3U.
-> > > >
-> > > > Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> > >
-> > > Thanks for your patch!
-> > >
-> > > > --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > > > +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> > > > @@ -39,6 +39,7 @@ properties:
-> > > >        - renesas,du-r8a77980 # for R-Car V3H compatible DU
-> > > >        - renesas,du-r8a77990 # for R-Car E3 compatible DU
-> > > >        - renesas,du-r8a77995 # for R-Car D3 compatible DU
-> > > > +      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
-> > > >
-> > > >    reg:
-> > > >      maxItems: 1
-> > > > @@ -774,6 +775,57 @@ allOf:
-> > > >          - reset-names
-> > > >          - renesas,vsps
-> > > >
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          contains:
-> > > > +            enum:
-> > > > +              - renesas,du-r8a779a0
-> > > > +    then:
-> > > > +      properties:
-> > > > +        clocks:
-> > > > +          items:
-> > > > +            - description: Functional clock for DU0
-> > > > +            - description: Functional clock for DU1
-> > > > +
-> > > > +        clock-names:
-> > > > +          items:
-> > > > +            - const: du.0
-> > > > +            - const: du.1
-> > >
-> > > The hardware block has only a single function clock for both channels,
-> > > like on R-Car H1.
-> > >
-> > > And what about DU_DOTCLKIN?
-> >
-> > As far as I can tell, there's no DU_DOTCLKIN in V3U.
+On Wed, Jun 23, 2021 at 07:46:25AM +0200, Krzysztof Hałasa wrote:
+> Laurent Pinchart <laurent.pinchart@ideasonboard.com> writes:
 > 
-> See Table 6.13 of the Hardware User's Manual, pin IPC_CLKIN.
+> >> The question still stands: is there a way to reliably put national
+> >> unicode characters into:
+> >> - commit messages for patches submitted via email,
+> >
+> > This shouldn't be too much of a problem, as long as you MUA and MTA
+> > don't mess up encoding.
+> 
+> Maybe it's better now. I had mixed results in the past, but maybe it was
+> 10+ years ago. Then I stopped using non-ASCII as they weren't very
+> essential.
+> Apparently there was no such problems with drivers/net, at least from
+> the time I started using non-ASCII characters.
 
-Maybe that's incorrect ? There's no mention of DU_DOTCLKIN anywhere
-else, and the DU bits that allow selection of the input clocks list the
-value documented for Gen3 SoCs as selected DU_DOTCLKIN as reserved.
-
-> Note that the register bits to configure it are present in
-> drivers/pinctrl/renesas/pfc-r8a779a0.c, but the actual pin group is
-> missing.
+I think it should be better, yes. As long as there's no MS Exchange
+along the way of course ;-)
 
 -- 
 Regards,
