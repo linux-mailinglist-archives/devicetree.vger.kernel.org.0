@@ -2,253 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4007C3B207A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 20:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4147D3B208B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 20:45:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbhFWSoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 14:44:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60172 "EHLO
+        id S229948AbhFWSra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 14:47:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbhFWSoG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 14:44:06 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26774C06124C
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 11:41:47 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id p9so2533475pgb.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 11:41:47 -0700 (PDT)
+        with ESMTP id S229523AbhFWSr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 14:47:29 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4117C061574;
+        Wed, 23 Jun 2021 11:45:10 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id c7so4857617edn.6;
+        Wed, 23 Jun 2021 11:45:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=LVFYrJf0SbKe+l3A1ZMIARjay6lYO/IuRc/B4iKkse8=;
-        b=fFVGlIjx6p++mGufEPPfJLrUCsVBix1RfYopOSqBBLkrC1BxtwMX6PVvlN0SaWQFkR
-         aJKJiVg51ac5XHKW9/STqUW2g5YpPIR0quO8lH6sy0AXILA/4ADywRg6fnaIWtujOGMM
-         5TTYDtQzzGsq9MK1nw3gwFp3P0P4fpcOsdtaI=
+        d=gmail.com; s=20161025;
+        h=in-reply-to:references:thread-topic:user-agent:mime-version
+         :content-transfer-encoding:subject:from:date:to:cc:message-id;
+        bh=ah7pBnbhzP9GnkQ3rGPkhU3+DWS7Z2OsFCqpYUElow8=;
+        b=BpaIaUQ0ce5ob/JOAjBlVv9KSNyieeU75lx7Oa5EBtX0KVeCAmDz32DP88jgmxyEuV
+         f9Q6pdyYTGNeDZBwzAyVuO3q5iE9Zp8faxFfC0qdZ3nV8JYztbuUQ1jL+RBf5cR6DrCz
+         qpPnh7RMD0a6a8ENUr3R+YDmAymdkAlE/HoH2NBRDWz2ZCpWP5phK87DdN838uUFlHe2
+         4V5DXvhm46VPf1n/pW+DFn0mRfefTPgz2tGgBtYp4+eeXNObwoSE2lTd0IVokYf+vqTG
+         48axfLBYdyUw0jryfa0OCMnhUpBHS7S15VzedNegaqWU+URoq8Ast6I5N3pXnG867Bu6
+         dLpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=LVFYrJf0SbKe+l3A1ZMIARjay6lYO/IuRc/B4iKkse8=;
-        b=W2hDrTHKFpr1SJCaPohzeKBOfXsLJJ4tllEWDFd26x4GhUjIdIvYqRMEa/mUJWFUgt
-         NFw4YSP2YCu7q6tmw4LgG8tAXe7R5hq6PbRU4dIi1RKkboKg0zotZ1GILfMtG7EXS5bM
-         iRr/qQQuDTQoQNbnpZHPJ2Rb5hi2NYGiXv3nkJi/XNoW763sVnMuDw74dJaGeXxDf9+c
-         TXX7457FYIysaH7CCB8gif9kjDjcc5QY1LPs4DaMqpw9/3CurnLqT/XvwSu0x1YYIUhk
-         OpFz9xvWCOhrqsvl3nwgY4Ek37f8vAnmHUypp47wQaqw33q2gFeqfPSZIRvO/mXh3GZ+
-         GakA==
-X-Gm-Message-State: AOAM530PsfXpCfG+TEra45WfQOOB39Ccy5aXavctDlGr/2vhlAlSaFx0
-        aXUisCGqPM0O/m8EM1RVlH5wug==
-X-Google-Smtp-Source: ABdhPJzXGWXgWeK4+pxVL/YZVoB9mG08v7ieINM5lw8j6sWMOB3ENPuMG1/j69pJ1UPcpLNaLRXPqg==
-X-Received: by 2002:a63:530a:: with SMTP id h10mr839495pgb.98.1624473706672;
-        Wed, 23 Jun 2021 11:41:46 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:d440:232:5e25:41f4])
-        by smtp.gmail.com with UTF8SMTPSA id ne11sm5875873pjb.40.2021.06.23.11.41.45
+        h=x-gm-message-state:in-reply-to:references:thread-topic:user-agent
+         :mime-version:content-transfer-encoding:subject:from:date:to:cc
+         :message-id;
+        bh=ah7pBnbhzP9GnkQ3rGPkhU3+DWS7Z2OsFCqpYUElow8=;
+        b=Xn0aQXoIdvcVTq/jOiF0vxt4x+1Ptq00ERGn2AhsSfLWVDLhY2ExRmt9OdkiTu6b1e
+         SR+aCIntwCqxn8+TFLw9NrdoMchPLhIEnzi6sMpGQBnZz/FovcO6wop55l+iMmSAaX6x
+         xjco5CQWjtMiCF4/K0/J/Rxx4KDzhoXevIV7Ni4Y2cZ6KIr5vQNH262xXFI5v81H2kYl
+         UdFk+HPgV8RUHFAurQxqfVRonGf4jMnAU60IRnkFSkfnchfkoAQMg3WAG2TAoXiYfpYo
+         ivUFIVhfg/8am/nJ0T7TMvHUQL64E/I900ty5fazlmmNv13A8m5VO0JupUdjW91D66+y
+         5MPA==
+X-Gm-Message-State: AOAM531XnuLY8BUh1fI62PKdiQc9KwKGRCsego6ogNJFu9TU3OleDNEb
+        5aYeQn9wDn+V4i8v3wUhYSU=
+X-Google-Smtp-Source: ABdhPJzDkrQhtZZC+CyPDsfo0g8ANdWq9ib6iNs7UYbxId9ryLzi0Ubw98iPpKpjsPeS1sq4mAl06w==
+X-Received: by 2002:aa7:dbc3:: with SMTP id v3mr1656874edt.63.1624473909523;
+        Wed, 23 Jun 2021 11:45:09 -0700 (PDT)
+Received: from 2001-1c01-471c-ce00-7d60-ae46-0c29-c0bb.cable.dynamic.v6.ziggo.nl (2001-1c01-471c-ce00-7d60-ae46-0c29-c0bb.cable.dynamic.v6.ziggo.nl. [2001:1c01:471c:ce00:7d60:ae46:c29:c0bb])
+        by smtp.gmail.com with ESMTPSA id c6sm460084ede.17.2021.06.23.11.45.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Jun 2021 11:41:46 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Michal Simek <michal.simek@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: [PATCH v13 7/7] arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
-Date:   Wed, 23 Jun 2021 11:41:23 -0700
-Message-Id: <20210623114025.v13.7.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
-X-Mailer: git-send-email 2.32.0.288.g62a8d224e6-goog
-In-Reply-To: <20210623184124.3504047-1-mka@chromium.org>
-References: <20210623184124.3504047-1-mka@chromium.org>
+        Wed, 23 Jun 2021 11:45:08 -0700 (PDT)
+In-Reply-To: <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org>
+References: <20210619121927.32699-1-ericwouds@gmail.com> <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org> <56fb5540-fb86-4e6a-a596-1276026b37e5@gmail.com> <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org>
+X-Referenced-Uid: 5591
+Thread-Topic: Re: [PATCH] Fix mt7622.dtsi thermal cpu
+User-Agent: Android
+X-Is-Generated-Message-Id: true
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+X-Local-Message-Id: <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
+Content-Type: text/plain;
+ charset=UTF-8
+Subject: Re: [PATCH] Fix mt7622.dtsi thermal cpu
+From:   Eric Woudstra <ericwouds@gmail.com>
+Date:   Wed, 23 Jun 2021 20:43:15 +0200
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Message-ID: <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add nodes for the onboard USB hub on trogdor devices. Remove the
-'always-on' property from the hub regulator, since the regulator
-is now managed by the onboard_usb_hub driver.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+I choose "hot" before, because 87 degrees seems ok to start frequency thro=
+ttling=2E But, yes, it should be passive=2E
 
-Changes in v13:
-- none
+87 is still quite low if I com=
+pare this temperature with the wrt3200acm Marvell dual core arm soc=2E They=
+ even went above 100 degrees so I feel for an arm processor inside a router=
+ box it is fine to use 87 degrees But maybe someone at Mediatek can give so=
+me more details about operating temperatures=2E
 
-Changes in v12:
-- none
+It may be possible to leav=
+e the active map in the device tree as some users of the bananapi might cho=
+ose to install a fan as it is one of the options=2E
 
-Changes in v11:
-- rebased on qcom/arm64-for-5.14 (with the rest of the series)
+=E2=81=A3Get BlueMail =
+for Android =E2=80=8B
 
-Changes in v10:
-- keep 'regulator-boot-on' property
-- updated commit message
+On Jun 23, 2021, 5:58 PM, at 5:58 PM, Daniel Lezcano=
+ <daniel=2Elezcano@linaro=2Eorg> wrote:
+>On 23/06/2021 17:35, Eric Woudstra=
+ wrote:
+>> It is only useful to set 1 map with the regulated temperature fo=
+r cpu
+>> frequency throttling=2E Same as in the kernel document example=2E
+=
+>> 
+>> 
+>> It has no use to set frequency scaling on 2 different temperatur=
+e
+>> trip points, as the lowest one makes sure the higher one(s) are never
+=
+>> reached=2E
+>
+>I looked more closely the DT and there is a misunderstandi=
+ng of the
+>thermal framework in the definition=2E
+>
+>There is one trip poin=
+t with the passive type and the cpu cooling
+>device, followed by a second t=
+rip point with the active type *but* the
+>same cpu cooling device=2E That i=
+s wrong=2E
+>
+>And finally, there is the hot trip point as a third mapping a=
+nd the
+>same
+>cooling device=2E
+>
+>The hot trip point is only there to noti=
+fy userspace and let it take an
+>immediate action to prevent an emergency s=
+hutdown when reaching the
+>critical temperature=2E
+>
+>> It can be applied o=
+nly at 1 trip point=2E Multiple trip points
+>> is only usefully for fan con=
+trol to make sure the fan is not too
+>> noisy when it is not necessary to b=
+e noisy=2E
+>> 
+>> 
+>> The CPU will almost come to a dead stop when it start=
+s to pass the
+>> lowest thermal map with frequency throttling=2E
+>> 
+>> Thi=
+s is why it is a bug and needs a fix, not only adjustment=2E
+>
+>Yes, you ar=
+e right=2E It should be something like (verbatim copy):
+>
+>diff --git a/arc=
+h/arm64/boot/dts/mediatek/mt7622=2Edtsi
+>b/arch/arm64/boot/dts/mediatek/mt7=
+622=2Edtsi
+>index 890a942ec608=2E=2E88c81d24f4ff 100644
+>--- a/arch/arm64/b=
+oot/dts/mediatek/mt7622=2Edtsi
+>+++ b/arch/arm64/boot/dts/mediatek/mt7622=
+=2Edtsi
+>@@ -136,24 +136,18 @@ secmon_reserved: secmon@43000000 {
+>
+> 	ther=
+mal-zones {
+> 		cpu_thermal: cpu-thermal {
+>-			polling-delay-passive =3D <=
+1000>;
+>+			polling-delay-passive =3D <250>;
+> 			polling-delay =3D <1000>;=
 
-Changes in v9:
-- none
+>
+> 			thermal-sensors =3D <&thermal 0>;
+>
+> 			trips {
+> 				cpu_passive:=
+ cpu-passive {
+>-					temperature =3D <47000>;
+>+					temperature =3D <7700=
+0>;
+> 					hysteresis =3D <2000>;
+> 					type =3D "passive";
+> 				};
+>
+>-	=
+			cpu_active: cpu-active {
+>-					temperature =3D <67000>;
+>-					hysteres=
+is =3D <2000>;
+>-					type =3D "active";
+>-				};
+>-
+> 				cpu_hot: cpu-hot=
+ {
+> 					temperature =3D <87000>;
+> 					hysteresis =3D <2000>;
+>@@ -173,1=
+8 +167,6 @@ map0 {
+> 					cooling-device =3D <&cpu0 THERMAL_NO_LIMIT THERMA=
+L_NO_LIMIT>,
+> 							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> 				};
+=
+>-
+>-				map1 {
+>-					trip =3D <&cpu_active>;
+>-					cooling-device =3D <&=
+cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>-							 <&cpu1 THERMAL_NO_LIMIT =
+THERMAL_NO_LIMIT>;
+>-				};
+>-
+>-				map2 {
+>-					trip =3D <&cpu_hot>;
+>-	=
+				cooling-device =3D <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>-							=
+ <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>-				};
+> 			};
+> 		};
+> 	};
+>=
 
-Changes in v8:
-- none
-
-Changes in v7:
-- rebased on qcom/arm64-for-5.13 (with the rest of the series)
-
-Changes in v6:
-- added 'companion-hub' entry to both USB devices
-- added 'vdd-supply' also to hub@2
-
-Changes in v5:
-- patch added to the series
-
- .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 19 ++++++++-----------
- .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 12 +++++-------
- .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts | 19 ++++++++-----------
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 19 ++++++++++++++++++-
- 4 files changed, 39 insertions(+), 30 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-index 30e3e769d2b4..5fb8e12af1a0 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-@@ -14,17 +14,6 @@ / {
- 	compatible = "google,lazor-rev0", "qcom,sc7180";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
--
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
--};
--
- &sn65dsi86_out {
- 	/*
- 	 * Lane 0 was incorrectly mapped on the cable, but we've now decided
-@@ -33,3 +22,11 @@ &sn65dsi86_out {
- 	 */
- 	lane-polarities = <1 0>;
- };
-+
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-index c2ef06367baf..1dae714250f5 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-@@ -14,13 +14,11 @@ / {
- 	compatible = "google,lazor-rev1", "google,lazor-rev2", "qcom,sc7180";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
-+
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
- 
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
- };
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-index 2b522f9e0d8f..2f5263e3d1b9 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-@@ -42,17 +42,6 @@ &panel {
- 	compatible = "auo,b116xa01";
- };
- 
--&pp3300_hub {
--	/* pp3300_l7c is used to power the USB hub */
--	/delete-property/regulator-always-on;
--	/delete-property/regulator-boot-on;
--};
--
--&pp3300_l7c {
--	regulator-always-on;
--	regulator-boot-on;
--};
--
- &sdhc_2 {
- 	status = "okay";
- };
-@@ -61,6 +50,14 @@ &trackpad {
- 	interrupts = <58 IRQ_TYPE_EDGE_FALLING>;
- };
- 
-+&usb_hub_2_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
-+&usb_hub_3_0 {
-+	 vdd-supply = <&pp3300_l7c>;
-+};
-+
- /* PINCTRL - modifications to sc7180-trogdor.dtsi */
- 
- &trackpad_int_1v8_odl {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index a4cbdc36c306..3345ca650a4c 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -202,7 +202,6 @@ pp3300_hub: pp3300-hub {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&en_pp3300_hub>;
- 
--		regulator-always-on;
- 		regulator-boot-on;
- 
- 		vin-supply = <&pp3300_a>;
-@@ -903,6 +902,24 @@ &usb_1 {
- 
- &usb_1_dwc3 {
- 	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* 2.0 hub on port 1 */
-+	usb_hub_2_0: hub@1 {
-+		compatible = "usbbda,5411";
-+		reg = <1>;
-+		vdd-supply = <&pp3300_hub>;
-+		companion-hub = <&usb_hub_3_0>;
-+	};
-+
-+	/* 3.0 hub on port 2 */
-+	usb_hub_3_0: hub@2 {
-+		compatible = "usbbda,411";
-+		reg = <2>;
-+		vdd-supply = <&pp3300_hub>;
-+		companion-hub = <&usb_hub_2_0>;
-+	};
- };
- 
- &usb_1_hsphy {
--- 
-2.32.0.288.g62a8d224e6-goog
+>
+>-- 
+><http://www=2Elinaro=2Eorg/> Linaro=2Eorg =E2=94=82 Open source so=
+ftware for ARM SoCs
+>
+>Follow Linaro:  <http://www=2Efacebook=2Ecom/pages/L=
+inaro> Facebook |
+><http://twitter=2Ecom/#!/linaroorg> Twitter |
+><http://w=
+ww=2Elinaro=2Eorg/linaro-blog/> Blog
 
