@@ -2,96 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A0E53B1C79
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 16:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C0B63B1C7E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 16:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231185AbhFWObq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 10:31:46 -0400
-Received: from mail-vk1-f177.google.com ([209.85.221.177]:37499 "EHLO
-        mail-vk1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230182AbhFWObp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 10:31:45 -0400
-Received: by mail-vk1-f177.google.com with SMTP id o198so551041vkc.4;
-        Wed, 23 Jun 2021 07:29:27 -0700 (PDT)
+        id S231265AbhFWObs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 10:31:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59862 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231239AbhFWObr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 10:31:47 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9345C061574
+        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 07:29:28 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id i24so3775597edx.4
+        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 07:29:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=NwEPWicXEScGAJ5xVFnITtqbN5ZVd/S2/99HIs4jcak=;
+        b=GoIaYqmVekjEn37Cxpn5CKQXmVjMm4MFdz0pM0djdApdRBwJI7kswcPMRRvBpFGk5y
+         0QkqmWQIFyIwvnyUDc1DYzBBDZtvYKkRk5iV9mPFUqO7Ud2Uf2BcgCfl5he7C4xyxYvd
+         RJRtTIR5NQ4rffFIL2UHo/soK2fIyb6S25Wno=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4zLP8Lzz+0qOLc6xIklg3T8AfAgg7V88EpKSHAjjsNY=;
-        b=VwlRDXQhFReFAB4NqYHCDs7uFtBfAknzupf2ycUzsCxSimlM6qYoY5vFVZpzP8UGjd
-         bmr2wk0D319GN08fkx5Qi0qEZKoZYETp/8CUa+7TwsZmntmiYGM/diOrxtfzCoYYag6M
-         pRvIs4YhUZu7cVs4ZWgzzgAVKxvCYwlwDhXMwAgBHKZSTHAahquhUjlKmWk3gkh7tIQE
-         HZ1jswNQO27l/37PiZb5rfR9R3uEqhGG0FFv1FlytGJmb2v+yNsQ3HrRzh2u3a/MVR6i
-         D6wSrT8BaBJPMyWKH+TnpzZg589ZzJkQkzD5JS8PkXyO2M8LA1Xwukb7Jqhc+oOj3Sye
-         HFGw==
-X-Gm-Message-State: AOAM532duGJF5hjWRlVGuRk657gyhzzCUD1mddQEbbY5jjBxPL9nMYRx
-        MhD1Mbi0azKt/NgNOvMj5JUyC2kiPit+zqeoY70=
-X-Google-Smtp-Source: ABdhPJwKQtxd9FI1MugpOvBaepnBWwy2HkNEuTC9CSN+34BNYMxIsa2iKwG2XysCM5/jB0JFoMhjcf0gJS7M4lhpZXo=
-X-Received: by 2002:a1f:1a41:: with SMTP id a62mr337115vka.5.1624458566857;
- Wed, 23 Jun 2021 07:29:26 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=NwEPWicXEScGAJ5xVFnITtqbN5ZVd/S2/99HIs4jcak=;
+        b=PynwmKt/Yni+QvneLBGrROncU8bNGDHVHUx8D1hu/tNvxfo2mqR5C3REWeDlMsu+Kl
+         tWYYKHsc8zCpXB2nXjbJWyAgNgg6v83RF/o6BubTdZB6Hes8wUL655QugOidzKJ0KqSR
+         tWNOoqI4z2KIsowengIojjrkIr2x01fMX9SLHgEOwCyxi8rXTSOkBvZhIcX7vsnC1Y82
+         LdQ8e7t+2kzPC/cFXdsGqqgQxGAv2utvGXRkGnD52ExhSK1CAxflxeh3vH0wgfb2p8fd
+         JAr5aN4Ty65Id9ibapNfJu3Z5MRPbdocjx5TZlHeL3c1J7WJlDp4Jjzi7MZRoT/79ZQy
+         +WiQ==
+X-Gm-Message-State: AOAM531vVhfRymYWm5VeaIYorIn+OskhhYFH4PYmdRutXGs/CNd4EsI9
+        VPdbI3TTet3v8EybHIH1u3roq9ebEcx36Zk69WV+tA==
+X-Google-Smtp-Source: ABdhPJyeMsLNi/QXkqaDM0G+bcsAZpsb5ooggnwbRoIqJuWmxNuU8EYrYKhlFeoc/Wp1w0w5f+3LNTU6B6JSdunayAY=
+X-Received: by 2002:a50:afe2:: with SMTP id h89mr13086751edd.308.1624458567386;
+ Wed, 23 Jun 2021 07:29:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210621093943.12143-1-biju.das.jz@bp.renesas.com>
- <20210621093943.12143-2-biju.das.jz@bp.renesas.com> <20210622165851.GA3840386@robh.at.kernel.org>
- <OS0PR01MB5922ECC2B573F1F8E170744F86089@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CAL_JsqK_6_LUD-ffkDCuDEds2RiYftJfynZyPN4io3Lt3MnQ4g@mail.gmail.com>
-In-Reply-To: <CAL_JsqK_6_LUD-ffkDCuDEds2RiYftJfynZyPN4io3Lt3MnQ4g@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 23 Jun 2021 16:29:15 +0200
-Message-ID: <CAMuHMdV0YrdUL6WGBTwxi1jQvakfmKNTB-8dv1LcAqMz-w356g@mail.gmail.com>
-Subject: Re: [PATCH v2 01/11] dt-bindings: phy: renesas: Document RZ/G2L USB
- PHY Control bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
+References: <20210621074152.306362-1-judyhsiao@chromium.org>
+ <20210621114546.GD4094@sirena.org.uk> <CAJXt+b-eRLKORqPOX1cJM3xzEyJhdeuj+w9-btpZSmy7v4U6Sw@mail.gmail.com>
+ <20210622162307.GF4574@sirena.org.uk>
+In-Reply-To: <20210622162307.GF4574@sirena.org.uk>
+From:   Judy Hsiao <judyhsiao@chromium.org>
+Date:   Wed, 23 Jun 2021 22:29:15 +0800
+Message-ID: <CAJXt+b_15SEFW9ztg=CaYHfVJk-q+u46eLVgdPm+2ugjwajc1g@mail.gmail.com>
+Subject: Re: [PATCH] ASoC: snd-soc-dummy: add Device Tree support
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Douglas Anderson <dianders@chromium.org>,
+        Dylan Reid <dgreid@chromium.org>,
+        Jimmy Cheng-Yi Chiang <cychiang@google.com>,
+        Judy Hsiao <judyhsiao@google.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Wed, Jun 23, 2021 at 4:13 PM Rob Herring <robh@kernel.org> wrote:
-> On Wed, Jun 23, 2021 at 7:38 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > Subject: Re: [PATCH v2 01/11] dt-bindings: phy: renesas: Document RZ/G2L
-> > > USB PHY Control bindings
-> > >
-> > > On Mon, Jun 21, 2021 at 10:39:33AM +0100, Biju Das wrote:
-> > > > Add device tree binding document for RZ/G2L USB PHY control driver.
-> > > >
-> > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-> > > > +        compatible = "renesas,r9a07g044-usbphyctrl",
-> > > > +                     "renesas,rzg2l-usbphyctrl";
-> > > > +        reg = <0x11c40000 0x10000>;
-> > > > +        clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>;
-> > > > +        resets = <&cpg R9A07G044_USB_PCLK>;
-> > > > +        power-domains = <&cpg>;
+On Wed, Jun 23, 2021 at 12:23 AM Mark Brown <broonie@kernel.org> wrote:
 >
-> Also, are these all resources of the usbphyctrl block and not just
-> resources you happen to want in the driver? For example, the
-> power-domain should be the power island that this block resides in.
+> On Wed, Jun 23, 2021 at 12:10:53AM +0800, Judy Hsiao wrote:
+>
+> > Thanks for your review comment.
+> > This patch is used to support multi-channel where we want one codec to
+> > control the only GPIO shared by 4 amps.
+>
+> So you've got 4 instances of the same CODEC?  Then I'd expect to see
+> those all individually represented in DT.  Or if there's a single
+> physical CODEC then I'm not sure what the dummies are for?
+>
+> > In snd_soc_runtime_calc_hw(), by creating dummy codecs that share a
+> > DAI link with a real codec:
+> >   1. The min/ max channel of  CPU DAI will be directly adopted.
+> >   2. The formats and sample rates of the DAI link will be determined
+> > by the real codec unless the real codec supports the rate
+> >       and format that do not intersect with the rate and format of
+> > snd-soc-dummy.
+> > That is the reason why we don=E2=80=99t specify the format and sample r=
+ates of
+> > the dummy codec with the real codec determining the properties .
+>
+> It's not clear to me why you'd not just describe the actual CODECs here
+> rather than using a dummy CODEC, the fact that the dummy CODEC is doing
+> what you want is just an accident of the implementation rather than a
+> description of the hardware.
 
-It's a clock domain, not a power area: the block goes into power-save
-mode by stopping the module clock controlled by the CPG.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks for your inputs. Specifying four codes for the multi-channel works f=
+ine.
+We have not thought of specifying four codes before as we want to avoid loa=
+ding
+the codec driver multiple times, but actually loading the
+snd-soc-dummy just has the
+similar cost. By specifying four codes, the dtsi file describes the
+real hardware schematic.
+I will specify four codec in the dtsi file to support the four channel
+use case and this
+snd-soc-dummy patch is not needed. Thanks for the discussion!
