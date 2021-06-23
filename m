@@ -2,56 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 982313B1B56
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 15:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80A133B1B7E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 15:46:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbhFWNmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 09:42:54 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:55668 "EHLO gloria.sntech.de"
+        id S230357AbhFWNsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 09:48:47 -0400
+Received: from foss.arm.com ([217.140.110.172]:35622 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230061AbhFWNmy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Jun 2021 09:42:54 -0400
-Received: from [95.90.166.74] (helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1lw37H-0001rM-12; Wed, 23 Jun 2021 15:40:31 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Alex Bee <knaerzche@gmail.com>, wens@kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: Add sdmmc_ext for RK3328
-Date:   Wed, 23 Jun 2021 15:40:30 +0200
-Message-ID: <6327455.haC6HkEk0m@diego>
-In-Reply-To: <CAGb2v67K-BRhQ_a1yXtdPCX8T30FJPLojueJ2cvpXmGUskOLjA@mail.gmail.com>
-References: <20210623120001.164920-1-knaerzche@gmail.com> <CAGb2v67K-BRhQ_a1yXtdPCX8T30FJPLojueJ2cvpXmGUskOLjA@mail.gmail.com>
+        id S230206AbhFWNsr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Jun 2021 09:48:47 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C7A04ED1;
+        Wed, 23 Jun 2021 06:46:29 -0700 (PDT)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 90BBA3F718;
+        Wed, 23 Jun 2021 06:46:28 -0700 (PDT)
+Date:   Wed, 23 Jun 2021 14:46:23 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, patchwork-lst@pengutronix.de
+Subject: Re: [PATCH 1/7] PCI: imx6: Move i.MX8MQ controller instance check to
+ correct case statement
+Message-ID: <20210623134623.GA14289@lpieralisi>
+References: <20210510141509.929120-1-l.stach@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210510141509.929120-1-l.stach@pengutronix.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 23. Juni 2021, 15:11:12 CEST schrieb Chen-Yu Tsai:
-> On Wed, Jun 23, 2021 at 8:00 PM Alex Bee <knaerzche@gmail.com> wrote:
-> >
-> > RK3328 SoC has a fourth mmc controller called SDMMC_EXT. Some
-> > boards have sdio wifi connected to it. In order to use it
-> > one would have to add the pinctrls from sdmmc0ext group which
-> > is done on board level.
-> >
-> > While at that also add the reset controls for the other mmc
-> > controllers.
+On Mon, May 10, 2021 at 04:15:03PM +0200, Lucas Stach wrote:
+> While the i.MX8MQ case falls through to the i.MX7D case, it's quite confusing
+> to have the i.MX8MQ specific controller instance check in that statement.
+> Move it to the 8MQ case.
 > 
-> I recommend splitting this part into a separate patch, and
-> adding an appropriate "Fixes" tag to it.
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+>  drivers/pci/controller/dwc/pci-imx6.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-I'm with you on that. Adding the resets to the existing controllers
-should be a separate patch.
+Hi Lucas,
 
-Heiko
+it looks like some of the patches in this series need a respin,
+therefore I will mark it as "Changes Requested" unless there
+are some patches I can cherry pick - please let me know your plan.
 
+Thanks,
+Lorenzo
 
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 0cf1333c0440..46b5f070939e 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -1060,11 +1060,11 @@ static int imx6_pcie_probe(struct platform_device *pdev)
+>  		if (IS_ERR(imx6_pcie->pcie_aux))
+>  			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
+>  					     "pcie_aux clock source missing or invalid\n");
+> -		fallthrough;
+> -	case IMX7D:
+>  		if (dbi_base->start == IMX8MQ_PCIE2_BASE_ADDR)
+>  			imx6_pcie->controller_id = 1;
+>  
+> +		fallthrough;
+> +	case IMX7D:
+>  		imx6_pcie->pciephy_reset = devm_reset_control_get_exclusive(dev,
+>  									    "pciephy");
+>  		if (IS_ERR(imx6_pcie->pciephy_reset)) {
+> -- 
+> 2.29.2
+> 
