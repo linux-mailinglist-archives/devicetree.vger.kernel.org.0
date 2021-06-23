@@ -2,152 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59F393B1B9C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 15:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98CCE3B1C27
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 16:13:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230274AbhFWNzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 09:55:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51376 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230243AbhFWNzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 09:55:39 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 311ECC061574;
-        Wed, 23 Jun 2021 06:53:21 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id u5-20020a7bc0450000b02901480e40338bso3273031wmc.1;
-        Wed, 23 Jun 2021 06:53:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=pKJo2zfQJAto+H7on6ydNnW2a5qzcSImZ5tu6Hz8SPs=;
-        b=Ax5amtes4QHAh5hFHrs1nlkfPyuUGwzzAv1QPZ+CsoH50Xgyw/7JKR+P+GtUWWaSgA
-         LiGgeYD93qjaZ9qlcD8BQYq3AbD/B6XtbKuu+CLCzjyKzUbz5/GGDF/zoXXSwVVOGF1y
-         UnJBK3s0JXaeEYup+j5MgnOxc5tg5IJ0VSPPiiXkxll3ptUcEABrWbKu+trMyHnvn5SI
-         7aqoE23wqwLp8KgTj4uV3ib+W7KRpVMDmKZeM95amRPuVRWF/NBuQDLqFYnaiJUq5dEu
-         N3DNyMno4cj84YUSDj7vdOMlIswvYpmHq6E/6umWyWlzBabP5RLPpcbiwu3SEVLCwLp3
-         IWyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=pKJo2zfQJAto+H7on6ydNnW2a5qzcSImZ5tu6Hz8SPs=;
-        b=mL4khqoFTMlQNOd6iLQYKaLlnXebrZJ7IVakhO4WeeAuEYtMBjnJKbKwJmq2x+1k18
-         gTmrCcK0kzzTzZ37mPPbJ7uzoBQw817HbZe2Z//+tQm0Y0Ng+Aau22rmynW6ZDqMrOgg
-         47D9qMUk4mP4g646UK+NgAUtI5wxtaRFiBf5TUipkhLHAWPlVsYEy/aXiqTFVfo+bNIG
-         uVqPGIPv4U/harUQZYdCUg5cB+AGawiGtbyxr60GhUo0bgWx4lEp4S77MaqNuW0ptZtE
-         DtRbL5Da614ojlANlSgxS38A7v4ojGFPUnTG6q32agnaG3XbYJwTfSswLg9gqUq6mj1a
-         DWJw==
-X-Gm-Message-State: AOAM530ocVy48go1N3foKkHogpwMZ85vS+KPc5wrpqp71IHWBdO5yMr9
-        yd8Y9tEaBjnkaBiImDV3/A8CjfWLR6oc
-X-Google-Smtp-Source: ABdhPJx6MegljGgLzjeJ/OV84M5roMM/v+iHCm4FMq3beu+lQ7zyxaZd9zVURsttRoq10p/dwncWrQ==
-X-Received: by 2002:a05:600c:ada:: with SMTP id c26mr11165067wmr.189.1624456399786;
-        Wed, 23 Jun 2021 06:53:19 -0700 (PDT)
-Received: from [192.168.200.247] (ip5b434b8b.dynamic.kabel-deutschland.de. [91.67.75.139])
-        by smtp.gmail.com with ESMTPSA id t82sm36707wmf.22.2021.06.23.06.53.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Jun 2021 06:53:19 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: rockchip: Add sdmmc_ext for RK3328
-To:     Johan Jonker <jbx6244@gmail.com>, Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210623120001.164920-1-knaerzche@gmail.com>
- <c30377a1-90aa-d79e-a60a-5bc1a8e18c44@gmail.com>
-From:   Alex Bee <knaerzche@gmail.com>
-Message-ID: <b534795a-fc1d-3e89-7ea9-0606297cd9b1@gmail.com>
-Date:   Wed, 23 Jun 2021 15:53:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230182AbhFWOPd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 10:15:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52450 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230061AbhFWOPd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Jun 2021 10:15:33 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 134546113B;
+        Wed, 23 Jun 2021 14:13:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624457596;
+        bh=2D9bXMvM+JmMYhWz55X1lQn63XVa0lNjGb8sbsPeUlI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=e1NaCKVSyFS1N6pMZhNWdW9qczwx1qgT9qQOMG9kGt0vbXJmg7rnMN+Oo/pl+hbpw
+         6f5EXxJCRsWEd4TvsXAm3wf+SmmWjh1bjRCqhZfcWc9kHglKc64Hit6Mp8c2XXev8D
+         q+Swu+5mPd8Ty6gmBOVQvBH0An/BhT46xYDVkXnip3lztUJGZQYtJ7o42GtB7fwtek
+         gS+b1Za7CUGdZHQD5z4WuaCOEI8uYdNppZLc7Fp+09K5Kw7Qh3SgAiho7wLmonlNyD
+         n+Qmhw4BGETjGmXCpk2MiDPgM6wKtq0kvnW0n3NsLcpJzMn5Fqv+7CwaKQqv1diMjO
+         qzwFnlGSXLTqw==
+Received: by mail-ej1-f48.google.com with SMTP id hq39so4264636ejc.5;
+        Wed, 23 Jun 2021 07:13:15 -0700 (PDT)
+X-Gm-Message-State: AOAM531KI3O1XuNBur8aeIoMEKJtOAVK8MAP6qZjMf6+K3B07uTZXiVT
+        tooON5N8JEVbeZGDOSbuQcB+hO0KnHf8SojH0w==
+X-Google-Smtp-Source: ABdhPJxJXNM8p40jL+1hduziK5Lfzt6kOH+YKNP84M1NQTiMMnmsEQwdG6ThBH+2icXPIffhLBoOqvfAupbq/dOrDHM=
+X-Received: by 2002:a17:906:1951:: with SMTP id b17mr233230eje.468.1624457594568;
+ Wed, 23 Jun 2021 07:13:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <c30377a1-90aa-d79e-a60a-5bc1a8e18c44@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <20210621093943.12143-1-biju.das.jz@bp.renesas.com>
+ <20210621093943.12143-2-biju.das.jz@bp.renesas.com> <20210622165851.GA3840386@robh.at.kernel.org>
+ <OS0PR01MB5922ECC2B573F1F8E170744F86089@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922ECC2B573F1F8E170744F86089@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 23 Jun 2021 08:13:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK_6_LUD-ffkDCuDEds2RiYftJfynZyPN4io3Lt3MnQ4g@mail.gmail.com>
+Message-ID: <CAL_JsqK_6_LUD-ffkDCuDEds2RiYftJfynZyPN4io3Lt3MnQ4g@mail.gmail.com>
+Subject: Re: [PATCH v2 01/11] dt-bindings: phy: renesas: Document RZ/G2L USB
+ PHY Control bindings
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Johan,
-
-Am 23.06.21 um 14:53 schrieb Johan Jonker:
-> Hi Alex,
+On Wed, Jun 23, 2021 at 7:38 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
 >
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
+> Hi Rob,
 >
-> On 6/23/21 2:00 PM, Alex Bee wrote:
->> RK3328 SoC has a fourth mmc controller called SDMMC_EXT. Some
->> boards have sdio wifi connected to it. In order to use it
->> one would have to add the pinctrls from sdmmc0ext group which
->> is done on board level.
->>
->> While at that also add the reset controls for the other mmc
->> controllers.
->>
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
->> ---
->>   arch/arm64/boot/dts/rockchip/rk3328.dtsi | 20 ++++++++++++++++++++
->>   1 file changed, 20 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->> index da84be6f4715..c13fa2f3f4cd 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->> @@ -858,6 +858,8 @@ sdmmc: mmc@ff500000 {
->>   		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
->>   		fifo-depth = <0x100>;
->>   		max-frequency = <150000000>;
->> +		resets = <&cru SRST_MMC0>;
->> +		reset-names = "reset";
->>   		status = "disabled";
->>   	};
->>   
->> @@ -870,6 +872,8 @@ sdio: mmc@ff510000 {
->>   		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
->>   		fifo-depth = <0x100>;
->>   		max-frequency = <150000000>;
->> +		resets = <&cru SRST_SDIO>;
->> +		reset-names = "reset";
->>   		status = "disabled";
->>   	};
->>   
->> @@ -882,6 +886,8 @@ emmc: mmc@ff520000 {
->>   		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
->>   		fifo-depth = <0x100>;
->>   		max-frequency = <150000000>;
->> +		resets = <&cru SRST_EMMC>;
->> +		reset-names = "reset";
->>   		status = "disabled";
->>   	};
->>   
->> @@ -980,6 +986,20 @@ usb_host0_ohci: usb@ff5d0000 {
->>   		status = "disabled";
->>   	};
->>   
->> +	sdmmc_ext: dwmmc@ff5f0000 {
-> /arch/arm64/boot/dts/rockchip/rk3328-evb.dt.yaml: dwmmc@ff5f0000:
-> $nodename:0: 'dwmmc@ff5f0000' does not match '^mmc(@.*)?$'
+> Thanks for the feedback.
+>
+> > Subject: Re: [PATCH v2 01/11] dt-bindings: phy: renesas: Document RZ/G2L
+> > USB PHY Control bindings
+> >
+> > On Mon, Jun 21, 2021 at 10:39:33AM +0100, Biju Das wrote:
+> > > Add device tree binding document for RZ/G2L USB PHY control driver.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > ---
+> > > V1->V2:
+> > >  * Add clock properties
+> > > ---
+> > >  .../phy/renesas,rzg2l-usbphyctrl.yaml         | 65 +++++++++++++++++++
+> > >  1 file changed, 65 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/phy/renesas,rzg2l-usbphyctrl.yaml
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/phy/renesas,rzg2l-usbphyctrl.yaml
+> > > b/Documentation/devicetree/bindings/phy/renesas,rzg2l-usbphyctrl.yaml
+> > > new file mode 100644
+> > > index 000000000000..8e8ba43f595d
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/phy/renesas,rzg2l-usbphyctrl.y
+> > > +++ aml
+> > > @@ -0,0 +1,65 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > > +---
+> > > +$id:
+> > > +https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
+> > > +cetree.org%2Fschemas%2Fphy%2Frenesas%2Crzg2l-usbphyctrl.yaml%23&amp;d
+> > > +ata=04%7C01%7Cbiju.das.jz%40bp.renesas.com%7Cc6bbf5f6ce334eaa722a08d9
+> > > +359f07ad%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%7C637599779421910
+> > > +039%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBT
+> > > +iI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=Jcf6Om4DehifCe1KO1rmt5LxTB
+> > > +6jtGoQLD1MoqWGM%2F0%3D&amp;reserved=0
+> > > +$schema:
+> > > +https://jpn01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
+> > > +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cbiju.das.
+> > > +jz%40bp.renesas.com%7Cc6bbf5f6ce334eaa722a08d9359f07ad%7C53d82571da19
+> > > +47e49cb4625a166a4a2a%7C0%7C0%7C637599779421910039%7CUnknown%7CTWFpbGZ
+> > > +sb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%
+> > > +3D%7C1000&amp;sdata=LlqPRLf9%2BGrEdSapxCFhwxVKcXTVh9ECr%2FXPN0SIzi4%3
+> > > +D&amp;reserved=0
+> > > +
+> > > +title: Renesas RZ/G2L USB2.0 PHY Control
+> > > +
+> > > +maintainers:
+> > > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > > +
+> > > +description:
+> > > +  The RZ/G2L USB2.0 PHY Control mainly controls reset and power down
+> > > +of the
+> > > +  USB/PHY.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - enum:
+> > > +          - renesas,r9a07g044-usbphyctrl # RZ/G2{L,LC}
+> > > +      - const: renesas,rzg2l-usbphyctrl
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  resets:
+> > > +    maxItems: 1
+> > > +
+> > > +  power-domains:
+> > > +    maxItems: 1
+> > > +
+> > > +  '#phy-cells':
+> > > +    # see phy-bindings.txt in the same directory
+> > > +    const: 1
+> > > +    description: |
+> > > +      The phandle's argument in the PHY specifier is the phy reset
+> > control bit
+> > > +      of usb phy control.
+> > > +      0 = Port 1 Phy reset
+> > > +      1 = Port 2 Phy reset
+> > > +    enum: [ 0, 1 ]
+> >
+> > You already have the const, so this doesn't do anything.
+>
+> OK, will take out const.
 
-Argh: I submitted the pre-dtbs_check version. Thanks for checking.
+No, 'const' is correct. This is the value of '#phy-cells', not the
+contents (we don't have a way to express schema for that).
 
-Alex.
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - '#phy-cells'
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> > > +
+> > > +    usbphyctrl@11c40000 {
+> >
+> > usb-phy@...
+>
+> The IP is called USBPHY control. It mainly controls reset and power down of the USB2.0/PHY.
 
->> +		compatible = "rockchip,rk3328-dw-mshc", "rockchip,rk3288-dw-mshc";
->> +		reg = <0x0 0xff5f0000 0x0 0x4000>;
->> +		interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
->> +		clocks = <&cru HCLK_SDMMC_EXT>, <&cru SCLK_SDMMC_EXT>,
->> +			 <&cru SCLK_SDMMC_EXT_DRV>, <&cru SCLK_SDMMC_EXT_SAMPLE>;
->> +		clock-names = "biu", "ciu", "ciu-drive", "ciu-sample";
->> +		fifo-depth = <0x100>;
->> +		max-frequency = <150000000>;
->> +		resets = <&cru SRST_SDMMCEXT>;
->> +		reset-names = "reset";
->> +		status = "disabled";
->> +	};
->> +
->>   	usbdrd3: usb@ff600000 {
->>   		compatible = "rockchip,rk3328-dwc3", "snps,dwc3";
->>   		reg = <0x0 0xff600000 0x0 0x100000>;
->>
+Sounds like it should be using the reset binding...
+
+>
+> So not sure usb-phy is right one here ? I prefer usb-phy-ctrl instead. Is it ok? Please let me know.
+
+A node with #phy-cells should use the standard phy node names unless
+it has other controls. As I said, this doesn't seem to be a phy, so
+using #phy-cells here is what seems wrong.
+
+> > > +        compatible = "renesas,r9a07g044-usbphyctrl",
+> > > +                     "renesas,rzg2l-usbphyctrl";
+> > > +        reg = <0x11c40000 0x10000>;
+> > > +        clocks = <&cpg CPG_MOD R9A07G044_USB_PCLK>;
+> > > +        resets = <&cpg R9A07G044_USB_PCLK>;
+> > > +        power-domains = <&cpg>;
+
+Also, are these all resources of the usbphyctrl block and not just
+resources you happen to want in the driver? For example, the
+power-domain should be the power island that this block resides in.
+
+> > > +        #phy-cells = <1>;
+> > > +    };
+> > > --
+> > > 2.17.1
+> > >
+> > >
