@@ -2,46 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6041E3B1AA6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 15:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9094B3B1AC6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 15:09:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230354AbhFWNDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 09:03:16 -0400
-Received: from mail-vs1-f53.google.com ([209.85.217.53]:36584 "EHLO
-        mail-vs1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230304AbhFWNDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 09:03:14 -0400
-Received: by mail-vs1-f53.google.com with SMTP id z7so1379704vso.3;
-        Wed, 23 Jun 2021 06:00:56 -0700 (PDT)
+        id S230430AbhFWNLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 09:11:37 -0400
+Received: from mail-ua1-f45.google.com ([209.85.222.45]:40545 "EHLO
+        mail-ua1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230163AbhFWNLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 09:11:36 -0400
+Received: by mail-ua1-f45.google.com with SMTP id r9so828025ual.7;
+        Wed, 23 Jun 2021 06:09:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=xaXLQDrbGWUnh9xp3TUFpWQ0H0nFeLXUr5XokkbfgPI=;
-        b=CaxiW1bFLIzJ4Wbnzc4zMqPAOR+jAWxYEAXTdJDSBh0oRK0QNDnMXIXoHgALSZzZ9O
-         TMCO5mTkthuc1i5mHoV6JyuHai/ApJfrwSWRDBTrUZmAQZF9ANCZcMsamWftFNbgdl1a
-         RZFdIiJqNi1Iu87dneMirs5swnoHeAxmWf9h5+4kjMuTYqAwPD8u2ljRjGJe1y/4XmeQ
-         huDi6aWUVnKo+5RU6oVXaNzAdrcUOkCkWmZyVIFtuo0/S7EtxVsBvrZxczko9RUcrluC
-         TPfqsBcCYNvcyHYJFuZaTI4qPhP9V1sf495uFYnAgWJRQjqGrCIOe7I8whVaF3oUaKKV
-         JW7Q==
-X-Gm-Message-State: AOAM532kgbesdYnuUogbr/1p0BflJ8n16HyP4DwoDOsq0zwCDElUhZoN
-        m0PVGzasXHdtJh4fR7TG2Z/4SOGjKXE718BosqE=
-X-Google-Smtp-Source: ABdhPJxnV9hQz/Siv4piSeWZ99D+KjrN7luG/cn+F33NA4nyK6kywwKCgWiWggLOwM7W8LVr9HOBIcKmthPtQOl7h4s=
-X-Received: by 2002:a67:7787:: with SMTP id s129mr23548043vsc.40.1624453255715;
- Wed, 23 Jun 2021 06:00:55 -0700 (PDT)
+        bh=2GyvRMqzd0j7dU3QjG5cKA3SND3uzGcIE5fba+nRyaE=;
+        b=VSmcRh4MftvCjl9E1F1HLcutSXjgX9Vt474J0i55jARkgepTWyfhCb4LDCikvqS9uG
+         VX0DbKBXly9p2BfiWzCDsSYNO7BFSDyQmhoEHWMyT1CcrgFkDj183O8qrhnUZCoJr9du
+         IhD7hId0I2qZMD+0NgKQO/JS6WkVAH9EAjHYvlAWfSZ69aP/xndgx7wr4XEax+8Jeoi+
+         oDZ9/nt3q9FAuE4qxxtxQ6ms/KNb67+zkpvye02ZRQrnZ2Z57asV3xfkXlItorYuB4qr
+         7zW3GS9XbExwT6DnSQqcGTybtxmz4wIGIZb0eRSTQAtioTkSUB/R0eCErPZJR6Phtk6C
+         YZjg==
+X-Gm-Message-State: AOAM533ng+XxvaNb0bBgtD9tRMM8GTKv0ZomdnQohh2Ds5DR0S1uuOMy
+        Qhp/SQdhXkjM7UFTjdtGMzxyOjl5cM4CJpchA2E=
+X-Google-Smtp-Source: ABdhPJy7fEj+42hR8loz80KZeBpk8m6cSVSkPMGaM+vOPsqzJ7EuBgra5HjzbA2XO5FoOuNmfwqhB3mqOHbBdX7nzSE=
+X-Received: by 2002:ab0:1e4c:: with SMTP id n12mr4441015uak.58.1624453757600;
+ Wed, 23 Jun 2021 06:09:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210622234257.3228634-1-kieran.bingham@ideasonboard.com> <20210622234257.3228634-2-kieran.bingham@ideasonboard.com>
-In-Reply-To: <20210622234257.3228634-2-kieran.bingham@ideasonboard.com>
+References: <20210622231146.3208404-1-kieran.bingham@ideasonboard.com>
+ <CAMuHMdW8vYC3+gVCv5eG_vkX79vU8RQL-6fSJd9McetDzikzSA@mail.gmail.com> <YNMv2KSjbwX5aAK2@pendragon.ideasonboard.com>
+In-Reply-To: <YNMv2KSjbwX5aAK2@pendragon.ideasonboard.com>
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 23 Jun 2021 15:00:44 +0200
-Message-ID: <CAMuHMdXMB-qSCWbGnSG+ZZSQc9SVaD31R6mRYoqX8D9TD8ARNA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: renesas: r8a779a0: Add DU support
-To:     Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+Date:   Wed, 23 Jun 2021 15:09:06 +0200
+Message-ID: <CAMuHMdXJTCyfMX3nN6pbAHeqqf5OCqJR4+7GJ=71+o1iKRrHhg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: display: renesas,du: Provide bindings for r8a779a0
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:ARM/RENESAS ARM64 ARCHITECTURE" 
+        "open list:DRM DRIVERS FOR RENESAS" <dri-devel@lists.freedesktop.org>,
+        "open list:DRM DRIVERS FOR RENESAS" 
         <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
@@ -51,39 +54,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kieran,
+Hi Laurent,
 
-On Wed, Jun 23, 2021 at 1:43 AM Kieran Bingham
-<kieran.bingham@ideasonboard.com> wrote:
-> From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+On Wed, Jun 23, 2021 at 2:58 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Wed, Jun 23, 2021 at 02:53:33PM +0200, Geert Uytterhoeven wrote:
+> > On Wed, Jun 23, 2021 at 1:11 AM Kieran Bingham wrote:
+> > > From: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> > >
+> > > Extend the Renesas DU display bindings to support the r8a779a0 V3U.
+> > >
+> > > Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> > > @@ -39,6 +39,7 @@ properties:
+> > >        - renesas,du-r8a77980 # for R-Car V3H compatible DU
+> > >        - renesas,du-r8a77990 # for R-Car E3 compatible DU
+> > >        - renesas,du-r8a77995 # for R-Car D3 compatible DU
+> > > +      - renesas,du-r8a779a0 # for R-Car V3U compatible DU
+> > >
+> > >    reg:
+> > >      maxItems: 1
+> > > @@ -774,6 +775,57 @@ allOf:
+> > >          - reset-names
+> > >          - renesas,vsps
+> > >
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - renesas,du-r8a779a0
+> > > +    then:
+> > > +      properties:
+> > > +        clocks:
+> > > +          items:
+> > > +            - description: Functional clock for DU0
+> > > +            - description: Functional clock for DU1
+> > > +
+> > > +        clock-names:
+> > > +          items:
+> > > +            - const: du.0
+> > > +            - const: du.1
+> >
+> > The hardware block has only a single function clock for both channels,
+> > like on R-Car H1.
+> >
+> > And what about DU_DOTCLKIN?
 >
-> Provide the device nodes for the DU on the V3U platforms.
->
-> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> As far as I can tell, there's no DU_DOTCLKIN in V3U.
 
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> @@ -1142,6 +1142,37 @@ vspd1: vsp@fea28000 {
->                         renesas,fcp = <&fcpvd1>;
->                 };
->
-> +               du: display@feb00000 {
-> +                       compatible = "renesas,du-r8a779a0";
-> +                       reg = <0 0xfeb00000 0 0x40000>;
-> +                       interrupts = <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&cpg CPG_MOD 411>,
-> +                                <&cpg CPG_MOD 411>;
-> +                       clock-names = "du.0", "du.1";
-> +                       power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
-> +                       resets = <&cpg 411>;
-> +                       vsps = <&vspd0 0>, <&vspd1 0>;
-> +                       status = "disabled";
-
-Modulo my comments on the clock part of the bindings:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+See Table 6.13 of the Hardware User's Manual, pin IPC_CLKIN.
+Note that the register bits to configure it are present in
+drivers/pinctrl/renesas/pfc-r8a779a0.c, but the actual pin group is
+missing.
 
 Gr{oetje,eeting}s,
 
