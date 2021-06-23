@@ -2,75 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 292723B1214
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 05:17:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 279113B123F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 05:33:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230339AbhFWDTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Jun 2021 23:19:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49236 "EHLO
+        id S230273AbhFWDfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Jun 2021 23:35:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230379AbhFWDTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 23:19:11 -0400
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B9B1C061574
-        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 20:16:53 -0700 (PDT)
-Received: by mail-il1-x132.google.com with SMTP id a11so1233055ilf.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 20:16:53 -0700 (PDT)
+        with ESMTP id S229995AbhFWDfY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Jun 2021 23:35:24 -0400
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9AD1C06175F
+        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 20:33:06 -0700 (PDT)
+Received: by mail-ot1-x336.google.com with SMTP id o17-20020a9d76510000b02903eabfc221a9so627031otl.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 20:33:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Gwyk7uli6oIz3rIWuS93ZiR/95eoNtAhejgjw8V2c7g=;
-        b=avVKkKEQPXbX8szL6W+xHS+ytLCq2BWNqxMK9GEjcewzrreXGygKiJm008njmzuq65
-         +SWBWp0oNN2jRB6aWjUJqcfuDXId0DEEV3xib0KEeE062n2iE3HNC+mFky2wDt54VNFL
-         7rAnRH+0GILJJWCzxRk+sa6IYtUe3G8/ZGBZSXTUhUnRwuUjKVyQXyK13Te4BysOSy2Y
-         B/HOnLH1aitT9UMUwhF2OPwwdIHrQFvesSrnHPz3noinYhvvJfqINRTYbq9l0X8COuSl
-         549txwfUsNnTU8ZusF2GaQnQjAsgVwYxLt/h9mbhikUtKQjYpOc1TewyHWX7HmaYoVCR
-         SLqQ==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=LUc/CMzwyAMmIfBZUm64TD1gM42DNa6BTHTCy82+BB4=;
+        b=tFPFCIwzK9k5OT6bjBwGn4U/IGsIEyokHOPXQHFUffgdiAMlMbaueq/64zZKYFavWk
+         oU1UGiE00REnZdfrxutQma2JlV+eAvVtvSFlXGjuk0ZFhp47NVSyzUM+oDj3yqEvUuN+
+         bSjN1FbCS8t6dqqhtkiXdgd0zJ+0J5Gszi7i3mnzhoAAvvN63ArKuMIKWqZfuOFyAYoe
+         YJqxQg1HSJXwwJ/lx9BE6HfJG5AoEo5FUVQvv101Jaxe97BqlfUWO7TrGzEJbicYPxOG
+         HrC1iAxgAmc9wWwGQwr7nWHTkpHxJIm8hXNaKKc72fQuD8efAxIb9l9KFh+TgWRhx15P
+         jX6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Gwyk7uli6oIz3rIWuS93ZiR/95eoNtAhejgjw8V2c7g=;
-        b=uknAr7uPOfZ8jtT0sNypAzSOa1Y3OcbSi7arI6VAdKdCUsDfYgAo/CofPl3rNdIboq
-         OwR8LmwJ0MN7QNZkltTVs/FDRA3cR9/pyX0fmbpK5IhkRy+XBD6WJGqPXqekN8OmNeHi
-         mXvWO7OLXv7gOec6oDIp9iFQye091Ff8HX6sLGbkAOTs0SFSjNpTqfmN+8UXPAgRHdK3
-         71oAzXLGhzhOFGUmfPjYLf9mH8NVY/xEbax43IojH7Ng6WoCH65QzxlWt/ak+A26Nrs2
-         lXGWfl8WFYICLoK88JajOS3JXPxZ+0DUUD0KkqbQBjb0VGt/9rSfYLFvJb4TJ3VbIh0C
-         WLiQ==
-X-Gm-Message-State: AOAM531LWNmqdtIw4EeHvyKu2HhSTE500aGxmHqNAPehmGGOrNb2TR1c
-        GzfgvOVx151D1yaSlsO9+r/XeI3PHJjfNmKJ3OGehw==
-X-Google-Smtp-Source: ABdhPJwDUOZOr0sb7xGTIyDuC/tlmAEbEEUDUVcs8ySJRF91dcjveUjtvj2sMOPkvNe7zxFjvxgPTdywtnclmsqcv1Q=
-X-Received: by 2002:a05:6e02:1be1:: with SMTP id y1mr1377528ilv.204.1624418212873;
- Tue, 22 Jun 2021 20:16:52 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LUc/CMzwyAMmIfBZUm64TD1gM42DNa6BTHTCy82+BB4=;
+        b=jP4j0mBZmCER/GMB2BcBxoMUg48zix8hNT+WBO7sOaWQMafLG1L7Sq7K97QmdJ2zbG
+         Wnuxzb/yGr1M70iei3uFgXpxTiD9pSWlnG6oCx+2FFgJ0gmmNCVfllRiSHiAQRfRST6/
+         DWCHIPa7p0k1mIsHO5O9p3Qb4TYtAIeqcyezXx0tcJgUAmFrXvlU+0K76suK8ZR27QYO
+         1qM/nAA/txVXE6LzZBMAybU7RMUOkJbF8jEZ6WLpaU3yGLhgUTqAMSZJaB1pNsIiddIP
+         okaOj7Q9Y+xWCNv+HV/Uo7d50so7aPg3Elw9v468cTRcjRZufB7q1o9hB7JMwVfHX7Mt
+         e/wA==
+X-Gm-Message-State: AOAM532Jqs3UVWeb5qkoTkCpF5dkNjs2CGIz6mZS+doCtTBCKt4Xo4uj
+        iAlBF44/V+7lv20itp310yDX/A==
+X-Google-Smtp-Source: ABdhPJx1m0AwnV2HEPSrpLkiEUal21OY6y3ubUm4VHFMNPSoK67PWwBu8/tbipA+psRLFC/HzCaIuw==
+X-Received: by 2002:a05:6830:270b:: with SMTP id j11mr5807089otu.161.1624419186186;
+        Tue, 22 Jun 2021 20:33:06 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id b198sm4735924oii.19.2021.06.22.20.33.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Jun 2021 20:33:05 -0700 (PDT)
+Date:   Tue, 22 Jun 2021 22:33:03 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Iskren Chernev <iskren.chernev@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v1 1/3] dt-bindings: usb: qcom,dwc3: Add bindings for
+ sm6115/4250
+Message-ID: <YNKrb4/X/1EIgnsI@yoga>
+References: <20210622203240.559979-1-iskren.chernev@gmail.com>
+ <20210622203240.559979-2-iskren.chernev@gmail.com>
 MIME-Version: 1.0
-References: <20210622151734.29429-1-Christine.Zhu@mediatek.com>
-In-Reply-To: <20210622151734.29429-1-Christine.Zhu@mediatek.com>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Wed, 23 Jun 2021 11:16:42 +0800
-Message-ID: <CA+Px+wV7fZ_8-GfdjshKcBV+VaiFNxTq4dcKUK8EoHxzyuZVww@mail.gmail.com>
-Subject: Re: [v2,0/3] watchdog: mt8195: add wdt support
-To:     Christine Zhu <christine.zhu@mediatek.com>
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        seiya.wang@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210622203240.559979-2-iskren.chernev@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 22, 2021 at 11:18 PM Christine Zhu
-<Christine.Zhu@mediatek.com> wrote:
-> christine.zhu (3):
->   dt-binding: mediatek: mt8195: update mtk-wdt document
->   dt-binding: reset: mt8195: add toprgu reset-controller head file
-See [1] as a reference, "dt-bindings" is preferred.
+On Tue 22 Jun 15:32 CDT 2021, Iskren Chernev wrote:
 
->   watchdog: mediatek: mt8195: add wdt support
-If the commit messages in the 3 patches are sentences, they should end
-with a period (i.e. ".").
+> Add the compatible string for SM6115/4250 SoC from Qualcomm.
+> 
+> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
 
-[1]: https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Regards,
+Bjorn
+
+> ---
+>  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> index 413299b5fe2b..4e6451789806 100644
+> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
+> @@ -19,6 +19,8 @@ properties:
+>            - qcom,sc7280-dwc3
+>            - qcom,sdm845-dwc3
+>            - qcom,sdx55-dwc3
+> +          - qcom,sm4250-dwc3
+> +          - qcom,sm6115-dwc3
+>            - qcom,sm8150-dwc3
+>            - qcom,sm8250-dwc3
+>            - qcom,sm8350-dwc3
+> -- 
+> 2.31.1
+> 
