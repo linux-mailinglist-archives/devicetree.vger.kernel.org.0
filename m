@@ -2,101 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2EFF3B1F8A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 19:32:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9FA73B1FD8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 19:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229818AbhFWRfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 13:35:09 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:37208 "EHLO
+        id S229688AbhFWRul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 13:50:41 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:39592 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbhFWRfJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 13:35:09 -0400
+        with ESMTP id S229660AbhFWRuk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 13:50:40 -0400
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15NHWhWd051373;
-        Wed, 23 Jun 2021 12:32:43 -0500
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15NHmGQX056111;
+        Wed, 23 Jun 2021 12:48:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1624469563;
-        bh=gvlnXVFcZfJehSU6KC3iEsNhb53rQyk2kBKfxDIOHGI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=iOE8IyszeCZ33EW1oVgJTbtP23Vivib+B6Cui8k3WBd76SKJgZLq5/8pp1LHPM5Gv
-         WRDNFBzuy7T96x8H97ucJhLT2PBlGJDTjvnBXyvJCDHPMh3dzSONsWzq17c3XfjYWw
-         DCfnG5ZHvdDp2G3A8wD6Wi6M4D+/b91sg40Tc9PU=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15NHWhGf083268
+        s=ti-com-17Q1; t=1624470496;
+        bh=EP1URvb8pTsnQtMOqc4qF/i5jNGfwgWvCXyojXtfqPM=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=VysaeR0EZv+gxl7dNiHp4ZQUF6u3Ry69UMeClrTUB94g+gCEF7c0BphyCIwiO4Y3C
+         Y33GnD6bAwFF/o6i363plWbpBU7rAg0pBROmQEI9p3t+g6Qz9QtkKRSMREtutxjYKP
+         kiH864xK0ZV+4tfQnr6hliXeyQ30djTiCkvtehGM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15NHmGtd103964
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 23 Jun 2021 12:32:43 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 23 Jun 2021 12:48:16 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 23
- Jun 2021 12:32:43 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2021 12:48:15 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Wed, 23 Jun 2021 12:32:43 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15NHWh7g122984;
-        Wed, 23 Jun 2021 12:32:43 -0500
-Received: from localhost ([10.250.33.41])
-        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 15NHWhAp028855;
-        Wed, 23 Jun 2021 12:32:43 -0500
-From:   Suman Anna <s-anna@ti.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Frontend Transport; Wed, 23 Jun 2021 12:48:15 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15NHmCO3019777;
+        Wed, 23 Jun 2021 12:48:13 -0500
+Subject: Re: [PATCH 1/2] dt-bindings: soc: ti: pruss: Update bindings for K3
+ AM64x SoCs
+To:     Suman Anna <s-anna@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
         Rob Herring <robh+dt@kernel.org>
-CC:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
+CC:     <devicetree@vger.kernel.org>,
         Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
         Jan Kiszka <jan.kiszka@siemens.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 2/2] remoteproc: pru: Add support for various PRU cores on K3 AM64x SoCs
-Date:   Wed, 23 Jun 2021 12:32:42 -0500
-Message-ID: <20210623173243.7862-3-s-anna@ti.com>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210623173243.7862-1-s-anna@ti.com>
-References: <20210623173243.7862-1-s-anna@ti.com>
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20210623165032.31223-1-s-anna@ti.com>
+ <20210623165032.31223-2-s-anna@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <5bc8ecab-d5b4-fba3-b79f-dee3e8e65977@ti.com>
+Date:   Wed, 23 Jun 2021 20:48:04 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+In-Reply-To: <20210623165032.31223-2-s-anna@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The K3 AM64x family of SoCs have a ICSSG IP that is similar to the
-version on AM65x SR2.0 SoCs with some minor differences. The AM64x
-SoCs contain two instances of this newer ICSSG IP. Each ICSSG processor
-subsystem contains 2 primary PRU cores, 2 auxiliary PRU cores called
-RTUs, and 2 new auxiliary cores called Transmit PRUs (Tx_PRUs).
 
-Enhance the existing PRU remoteproc driver to support all these PRU,
-RTU and Tx_PRU cores by using specific compatibles. The cores have the
-same memory copying limitations as on AM65x, so reuses the custom memcpy
-function within the driver's ELF loader implementation. The initial
-names for the firmware images for each PRU core are retrieved from
-DT nodes, and can be adjusted through sysfs if required.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
- drivers/remoteproc/pru_rproc.c | 3 +++
- 1 file changed, 3 insertions(+)
+On 23/06/2021 19:50, Suman Anna wrote:
+> The K3 AM64x SoCs also have the Gigabit Ethernet capable PRU-ICSS IP
+> that is present on existing K3 AM65x and J721E SoCs (ICSSG). The IP
+> is similar to the ones used on K3 J721E or AM65x SR2.0 SoCs.
+> 
+> Update the PRUSS bindings for these ICSSG instances.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+>   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 6 ++++--
+>   1 file changed, 4 insertions(+), 2 deletions(-)
+> 
 
-diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-index e5778e476245..0ecf2675f5eb 100644
---- a/drivers/remoteproc/pru_rproc.c
-+++ b/drivers/remoteproc/pru_rproc.c
-@@ -894,6 +894,9 @@ static const struct of_device_id pru_rproc_match[] = {
- 	{ .compatible = "ti,j721e-pru",		.data = &k3_pru_data },
- 	{ .compatible = "ti,j721e-rtu",		.data = &k3_rtu_data },
- 	{ .compatible = "ti,j721e-tx-pru",	.data = &k3_tx_pru_data },
-+	{ .compatible = "ti,am642-pru",		.data = &k3_pru_data },
-+	{ .compatible = "ti,am642-rtu",		.data = &k3_rtu_data },
-+	{ .compatible = "ti,am642-tx-pru",	.data = &k3_tx_pru_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, pru_rproc_match);
+Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+
 -- 
-2.30.1
-
+Best regards,
+grygorii
