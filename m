@@ -2,129 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 118C13B15C1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 10:21:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0409C3B15FC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 10:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230061AbhFWIXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 04:23:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60724 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230072AbhFWIXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 04:23:46 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A468C061760
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 01:21:28 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id bb20so1071386pjb.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 01:21:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=igel-co-jp.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=/vpjqLnLja8zZg9F85wBmeicNZJ5E0kfTwub6S5I0nY=;
-        b=qyjoMEneFPyQG6FmpAm+blLv6qUuFnSfiHq9cwsD6vkL+N14a/IYUIUTUqOY2t15qU
-         orTFA+SzPPKYQEg/vg6aUJWkEx4TNqvO2RtgVWJyvQui+pZ/TnKX2y/OlFv2vaDUb+hu
-         VkuvJASiJfLUZ1yJJ2NAquzoKz2lDAduMIwIg8GEvgocPlEJinWAs1aMnQ9o5SDiwVWA
-         Tb+Cfp7SYSHZRtDLkBPMD1NQlBDQEHQ3ig7VsNPKaUOn3isd1x2Ziyr37iLaozV2eDeS
-         lGHyBldZdyHiqvHwnT6yiHmAVW525lIsaTkLsMit19GQWxbdY/vVswfJvppCEZBlKmwE
-         JnGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=/vpjqLnLja8zZg9F85wBmeicNZJ5E0kfTwub6S5I0nY=;
-        b=SeU9FT4VjgHlCQncuSg5DAjvjnjMWON+600jwrWioKQmx3nTqlNUb4phMsfCGGl77Y
-         bLVzJ3Dxr3KXg2m0COFmAA/BFc9MbVAYADrhq+wboSde5UUW+4vuJdtC0UNASWGBkTHm
-         nu0Th7JOJC9Af9fzLa8hGWfSx/dGulSQm5EXnuVnNMb11NLdC/2npvgsqwKiN2q0D19g
-         Lv4FIJ/SgcvIRsexA574cbVpD9qFfowHf46Zaga3WpqiMuV5fafdfSGaFtYxoXxaw02r
-         UeM0g+GxSvddeScZsb32DGUEJ9M3EccjhRUeVpu/Qcx3U9BIugaR+vw/UnK3HD4qiXHx
-         M/wg==
-X-Gm-Message-State: AOAM533K0pr67lHMFJisHVZnMf4kjtb8/a8NAXRQetQ5tH+E6BGTBcdw
-        0Bmfa5mj5riWQr+uanP8vHV/2w==
-X-Google-Smtp-Source: ABdhPJyYaZ9+qPtqUGE0ix2e6z0tzu895F8iK8HYriQ9ex3rYbT2jDNvHbujgnZHhKfsy+6HIyxy5A==
-X-Received: by 2002:a17:90a:4ec8:: with SMTP id v8mr8506910pjl.178.1624436487667;
-        Wed, 23 Jun 2021 01:21:27 -0700 (PDT)
-Received: from ?IPv6:240b:10:c9a0:ca00:1102:c007:eee:4478? ([240b:10:c9a0:ca00:1102:c007:eee:4478])
-        by smtp.gmail.com with ESMTPSA id d13sm1552726pfn.136.2021.06.23.01.21.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Jun 2021 01:21:26 -0700 (PDT)
-Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
-To:     =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>,
-        Pekka Paalanen <ppaalanen@gmail.com>
-Cc:     devicetree@vger.kernel.org, Takanari Hayama <taki@igel.co.jp>,
-        linux-doc@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Damian Hobson-Garcia <dhobsong@igel.co.jp>
-References: <20210621062742.26073-1-etom@igel.co.jp>
- <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
- <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
- <20210622105757.2b9dec32@eldfell>
- <01a20860-8fe2-2762-5678-d9a75f70e20a@daenzer.net>
-From:   Esaki Tomohito <etom@igel.co.jp>
-Message-ID: <0fd18324-f396-ba76-1c8b-d048e5b72dca@igel.co.jp>
-Date:   Wed, 23 Jun 2021 17:21:24 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S229999AbhFWIkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 04:40:15 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3302 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229833AbhFWIkL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 04:40:11 -0400
+Received: from fraeml735-chm.china.huawei.com (unknown [172.18.147.201])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4G8xGY0qJJz6H7Vw;
+        Wed, 23 Jun 2021 16:27:49 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml735-chm.china.huawei.com (10.206.15.216) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Wed, 23 Jun 2021 10:37:51 +0200
+Received: from localhost (10.47.69.138) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Wed, 23 Jun
+ 2021 09:37:50 +0100
+Date:   Wed, 23 Jun 2021 09:37:41 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+CC:     Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>, <Michael.Hennerich@analog.com>,
+        <lars@metafoo.de>, <devicetree@vger.kernel.org>,
+        Nuno Sa <Nuno.Sa@analog.com>
+Subject: Re: [PATCH 00/17] iio:adc:ad7280a Cleanup and proposed staging
+ graduation.
+Message-ID: <20210623093741.00007d1d@Huawei.com>
+In-Reply-To: <YNIfkaRZtWIXPbAj@marsc.168.1.7>
+References: <20210614113507.897732-1-jic23@kernel.org>
+        <YNIfkaRZtWIXPbAj@marsc.168.1.7>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-In-Reply-To: <01a20860-8fe2-2762-5678-d9a75f70e20a@daenzer.net>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.69.138]
+X-ClientProxiedBy: lhreml746-chm.china.huawei.com (10.201.108.196) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 22 Jun 2021 14:36:17 -0300
+Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
 
-On 2021/06/23 17:04, Michel Dänzer wrote:
-> On 2021-06-22 9:57 a.m., Pekka Paalanen wrote:
->> On Tue, 22 Jun 2021 13:02:59 +0900
->> Esaki Tomohito <etom@igel.co.jp> wrote:
->>
->>> Hi, Thomas
->>> Thank you for reply.
->>>
->>> On 2021/06/21 16:10, Thomas Zimmermann wrote:
->>>> Hi
->>>>
->>>> Am 21.06.21 um 08:27 schrieb Tomohito Esaki:  
->>>>> Virtual DRM splits the overlay planes of a display controller into
->>>>> multiple
->>>>> virtual devices to allow each plane to be accessed by each process.
->>>>>
->>>>> This makes it possible to overlay images output from multiple
->>>>> processes on a
->>>>> display. For example, one process displays the camera image without
->>>>> compositor
->>>>> while another process overlays the UI.  
->>>>
->>>> I briefly looked over your patches. I didn't understand how this is
->>>> different to the functionality of a compositor? Shouldn't this be solved
->>>> in userspace?  
->>>
->>> I think when latency is important (e.g., AR, VR, for displaying camera
->>> images in IVI systems), there may be use cases where the compositor
->>> cannot be used.
->>
->> Hi,
->>
->>> Normally, when the image is passed through the compositor, it is
->>> displayed after 2 VSYNC at most, because the compositor combines the
->>> image with VSYNC synchronization.
->>
->> This is not a universal fact. You can write a Wayland compositor that
->> consistently reaches app-to-screen latency of less than one monitor
->> refresh cycle, while also using KMS planes.
->>
->> I believe Weston succeeds in this already if you write the Wayland
->> application accordingly.
+> Hey Jonathan,
 > 
-> For a specific example, https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1620 allows app-to-screen latency as low as ~6 ms (including a fixed 2 ms buffer to avoid skipped frames). mutter doesn't use KMS planes yet, but if anything I'd expect that to help rather than hurt for latency (if the compositor doesn't need to draw anything).
+> On 06/14, Jonathan Cameron wrote:
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > 
+> > Hi All,
+> > 
+> > This one proved an interesting diversion.
+> > 
+> > Work done against a somewhat hacked up QEMU emulation of 3 daisy chained
+> > ad7280a devices (18 channels).  Note that the emulation isn't complete
+> > but does do chaining, CRC, and readout of channels etc in a fashion that
+> > worked with the original driver (up to the bug in patch 1) and continues
+> > to work with the updated version. I've not intention to upstream the
+> > emulation (as would need to make it more completed and flexible), but
+> > happy to share it with anyone who is interested.  
+> 
+> I'm interested in seeing your device emulation with QEMU.
+> I was looking at the ad7150 emulation you shared earlier this year but had
+> some trouble getting the i2c slave created.
 
-Thank you for providing specific examples.
+Sure.  Let me do a bit of tidying up they I'll push a suitable branch out.
+(probably will still have lots of stuff missing!)
 
-Best regards
-Esaki
+Might take a little while to get to this though.
+
+> 
+> Being able to see it running, I may feel more confident to provide a review
+> for this set :)
+
+:)
+
+> 
+> Regards,
+> 
+> Marcelo
+> > 
+> > I briefly flirted with posting a patch to just drop the driver entirely,
+> > but the part is still available and it looked like fun + isn't going
+> > to greatly impact maintainability of the subsystem long term so is low
+> > cost even if it goes obsolete sometime soonish.
+> > 
+> > There are lots of things we could do after this set to improved the driver
+> > and make things more flexible, but it should basically 'just work'
+> > 
+> > Anyhow, as normal for staging graduations, last patch has rename detection
+> > turned off so that people can easily see what I am proposing we move
+> > out of staging.
+> > 
+> > Jonathan Cameron (17):
+> >   staging:iio:adc:ad7280a: Fix handing of device address bit reversing.
+> >   staging:iio:adc:ad7280a: Register define cleanup.
+> >   staging:iio:adc:ad7280a: rename _read() to _read_reg()
+> >   staging:iio:adc:ad7280a: Split buff[2] into tx and rx parts
+> >   staging:iio:adc:ad7280a: Use bitfield ops to managed fields in
+> >     transfers.
+> >   staging:iio:adc:ad7280a: Switch to standard event control
+> >   staging:iio:adc:ad7280a: Standardize extended ABI naming
+> >   staging:iio:adc:ad7280a: Drop unused timestamp channel.
+> >   staging:iio:adc:ad7280a: Trivial comment formatting cleanup
+> >   staging:iio:adc:ad7280a: Make oversampling_ratio a runtime control
+> >   staging:iio:adc:ad7280a: Cleanup includes
+> >   staging:iio:ad7280a: Reflect optionality of irq in ABI
+> >   staging:iio:adc:ad7280a: Use a local dev pointer to avoid &spi->dev
+> >   staging:iio:adc:ad7280a: Use device properties to replace platform
+> >     data.
+> >   dt-bindings:iio:adc:ad7280a: Add binding
+> >   iio:adc:ad7280a: Document ABI for cell balance switches
+> >   iio:adc:ad7280a: Move out of staging
+> > 
+> >  .../ABI/testing/sysfs-bus-iio-adc-ad7280a     |   14 +
+> >  .../bindings/iio/adc/adi,ad7280a.yaml         |   87 ++
+> >  drivers/iio/adc/Kconfig                       |   11 +
+> >  drivers/iio/adc/Makefile                      |    1 +
+> >  drivers/iio/adc/ad7280a.c                     | 1116 +++++++++++++++++
+> >  drivers/staging/iio/adc/Kconfig               |   11 -
+> >  drivers/staging/iio/adc/Makefile              |    1 -
+> >  drivers/staging/iio/adc/ad7280a.c             | 1044 ---------------
+> >  drivers/staging/iio/adc/ad7280a.h             |   37 -
+> >  9 files changed, 1229 insertions(+), 1093 deletions(-)
+> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad7280a
+> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7280a.yaml
+> >  create mode 100644 drivers/iio/adc/ad7280a.c
+> >  delete mode 100644 drivers/staging/iio/adc/ad7280a.c
+> >  delete mode 100644 drivers/staging/iio/adc/ad7280a.h
+> > 
+> > -- 
+> > 2.32.0
+> >   
+
