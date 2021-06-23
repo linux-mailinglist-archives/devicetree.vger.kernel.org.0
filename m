@@ -2,104 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB463B1588
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 10:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 847243B157A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 10:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230152AbhFWIQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 04:16:43 -0400
-Received: from mail.netline.ch ([148.251.143.180]:51934 "EHLO
-        netline-mail3.netline.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230135AbhFWIQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 04:16:42 -0400
-X-Greylist: delayed 566 seconds by postgrey-1.27 at vger.kernel.org; Wed, 23 Jun 2021 04:16:40 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by netline-mail3.netline.ch (Postfix) with ESMTP id A5F4F20201B;
-        Wed, 23 Jun 2021 10:04:55 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at netline-mail3.netline.ch
-Received: from netline-mail3.netline.ch ([127.0.0.1])
-        by localhost (netline-mail3.netline.ch [127.0.0.1]) (amavisd-new, port 10024)
-        with LMTP id 79HC0Bm0bZjt; Wed, 23 Jun 2021 10:04:54 +0200 (CEST)
-Received: from thor (24.99.2.85.dynamic.wline.res.cust.swisscom.ch [85.2.99.24])
-        by netline-mail3.netline.ch (Postfix) with ESMTPA id 9EB0E20201A;
-        Wed, 23 Jun 2021 10:04:53 +0200 (CEST)
-Received: from localhost ([::1])
-        by thor with esmtp (Exim 4.94.2)
-        (envelope-from <michel@daenzer.net>)
-        id 1lvxsN-000klp-H7; Wed, 23 Jun 2021 10:04:47 +0200
-To:     Pekka Paalanen <ppaalanen@gmail.com>,
-        Esaki Tomohito <etom@igel.co.jp>
-Cc:     devicetree@vger.kernel.org, Takanari Hayama <taki@igel.co.jp>,
-        linux-doc@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Damian Hobson-Garcia <dhobsong@igel.co.jp>
-References: <20210621062742.26073-1-etom@igel.co.jp>
- <9853d0a9-6053-db64-9c79-40b7e0689eec@suse.de>
- <85593f2f-5aa9-6023-ecba-c5275a468b71@igel.co.jp>
- <20210622105757.2b9dec32@eldfell>
-From:   =?UTF-8?Q?Michel_D=c3=a4nzer?= <michel@daenzer.net>
-Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
-Message-ID: <01a20860-8fe2-2762-5678-d9a75f70e20a@daenzer.net>
-Date:   Wed, 23 Jun 2021 10:04:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S230028AbhFWINS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 04:13:18 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:60684 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230004AbhFWINR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 04:13:17 -0400
+X-UUID: 9b9dcc76c44b4ad1811df79c25a60cec-20210623
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=SKYmo8MiSbxF2eqHWz+6lxTmMnXCOR0tQK4sP3HO040=;
+        b=rVG575ii9f1xM7j1pmpejioH7gVYeKy5k0I1vmBZYtxlCgigpgN2mTps7t1SMP5B6wcyIfsz8T2CcABLAVchfRzF5Vkz7glGqCoYhMTyLMBEFz7Ld1pDYf0my0C/ZbpKLSqkgfdAQzXYlq2SY57nwZJo3PIxEFYM0zoY20l1K+I=;
+X-UUID: 9b9dcc76c44b4ad1811df79c25a60cec-20210623
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 754862258; Wed, 23 Jun 2021 16:10:58 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 23 Jun 2021 16:10:56 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 23 Jun 2021 16:10:56 +0800
+Message-ID: <8344d089562052a6f9ee3245856bbc8516bb6619.camel@mediatek.com>
+Subject: Re: [PATCH 6/8] dt-bindings: mediatek: mt8195: add audio afe
+ document
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <broonie@kernel.org>, <bicycle.tsai@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
+        <cychiang@google.com>, <jiaxin.yu@mediatek.com>, <tiwai@suse.com>,
+        <matthias.bgg@gmail.com>
+Date:   Wed, 23 Jun 2021 16:10:56 +0800
+In-Reply-To: <1623965184.501241.3336112.nullmailer@robh.at.kernel.org>
+References: <20210617054740.8081-1-trevor.wu@mediatek.com>
+         <20210617054740.8081-7-trevor.wu@mediatek.com>
+         <1623965184.501241.3336112.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <20210622105757.2b9dec32@eldfell>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-CA
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-06-22 9:57 a.m., Pekka Paalanen wrote:
-> On Tue, 22 Jun 2021 13:02:59 +0900
-> Esaki Tomohito <etom@igel.co.jp> wrote:
-> 
->> Hi, Thomas
->> Thank you for reply.
->>
->> On 2021/06/21 16:10, Thomas Zimmermann wrote:
->>> Hi
->>>
->>> Am 21.06.21 um 08:27 schrieb Tomohito Esaki:  
->>>> Virtual DRM splits the overlay planes of a display controller into
->>>> multiple
->>>> virtual devices to allow each plane to be accessed by each process.
->>>>
->>>> This makes it possible to overlay images output from multiple
->>>> processes on a
->>>> display. For example, one process displays the camera image without
->>>> compositor
->>>> while another process overlays the UI.  
->>>
->>> I briefly looked over your patches. I didn't understand how this is
->>> different to the functionality of a compositor? Shouldn't this be solved
->>> in userspace?  
->>
->> I think when latency is important (e.g., AR, VR, for displaying camera
->> images in IVI systems), there may be use cases where the compositor
->> cannot be used.
-> 
-> Hi,
-> 
->> Normally, when the image is passed through the compositor, it is
->> displayed after 2 VSYNC at most, because the compositor combines the
->> image with VSYNC synchronization.
-> 
-> This is not a universal fact. You can write a Wayland compositor that
-> consistently reaches app-to-screen latency of less than one monitor
-> refresh cycle, while also using KMS planes.
-> 
-> I believe Weston succeeds in this already if you write the Wayland
-> application accordingly.
+T24gVGh1LCAyMDIxLTA2LTE3IGF0IDE1OjI2IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gVGh1LCAxNyBKdW4gMjAyMSAxMzo0NzozNyArMDgwMCwgVHJldm9yIFd1IHdyb3RlOg0KPiA+
+IFRoaXMgcGF0Y2ggYWRkcyBtdDgxOTUgYXVkaW8gYWZlIGRvY3VtZW50Lg0KPiA+IA0KPiA+IFNp
+Z25lZC1vZmYtYnk6IFRyZXZvciBXdSA8dHJldm9yLnd1QG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0N
+Cj4gPiAgLi4uL2JpbmRpbmdzL3NvdW5kL210ODE5NS1hZmUtcGNtLnlhbWwgICAgICAgIHwgNzIN
+Cj4gPiArKysrKysrKysrKysrKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA3MiBpbnNlcnRp
+b25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3Mvc291bmQvbXQ4MTk1LQ0KPiA+IGFmZS1wY20ueWFtbA0KPiA+IA0KPiANCj4gTXkg
+Ym90IGZvdW5kIGVycm9ycyBydW5uaW5nICdtYWtlIERUX0NIRUNLRVJfRkxBR1M9LW0NCj4gZHRf
+YmluZGluZ19jaGVjaycNCj4gb24geW91ciBwYXRjaCAoRFRfQ0hFQ0tFUl9GTEFHUyBpcyBuZXcg
+aW4gdjUuMTMpOg0KPiANCj4geWFtbGxpbnQgd2FybmluZ3MvZXJyb3JzOg0KPiAuL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3VuZC9tdDgxOTUtYWZlLXBjbS55YW1sOjEwOjQ6
+DQo+IFt3YXJuaW5nXSB3cm9uZyBpbmRlbnRhdGlvbjogZXhwZWN0ZWQgMiBidXQgZm91bmQgMyAo
+aW5kZW50YXRpb24pDQo+IC4vRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5k
+L210ODE5NS1hZmUtcGNtLnlhbWw6MTQ6NzoNCj4gW3dhcm5pbmddIHdyb25nIGluZGVudGF0aW9u
+OiBleHBlY3RlZCA0IGJ1dCBmb3VuZCA2IChpbmRlbnRhdGlvbikNCj4gDQo+IGR0c2NoZW1hL2R0
+YyB3YXJuaW5ncy9lcnJvcnM6DQo+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9z
+b3VuZC9tdDgxOTUtYWZlLQ0KPiBwY20uZXhhbXBsZS5kdHM6MTk6MTg6IGZhdGFsIGVycm9yOiBk
+dC1iaW5kaW5ncy9jbG9jay9tdDgxOTUtY2xrLmg6DQo+IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3Rv
+cnkNCj4gICAgMTkgfCAgICAgICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9jay9tdDgxOTUt
+Y2xrLmg+DQo+ICAgICAgIHwgICAgICAgICAgICAgICAgICBefn5+fn5+fn5+fn5+fn5+fn5+fn5+
+fn5+fn5+fn5+fg0KPiBjb21waWxhdGlvbiB0ZXJtaW5hdGVkLg0KPiBtYWtlWzFdOiAqKiogW3Nj
+cmlwdHMvTWFrZWZpbGUubGliOjM4MDoNCj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL3NvdW5kL210ODE5NS1hZmUtDQo+IHBjbS5leGFtcGxlLmR0LnlhbWxdIEVycm9yIDENCj4g
+bWFrZVsxXTogKioqIFdhaXRpbmcgZm9yIHVuZmluaXNoZWQgam9icy4uLi4NCj4gbWFrZTogKioq
+IFtNYWtlZmlsZToxNDE2OiBkdF9iaW5kaW5nX2NoZWNrXSBFcnJvciAyDQo+IFxuZG9jIHJlZmVy
+ZW5jZSBlcnJvcnMgKG1ha2UgcmVmY2hlY2tkb2NzKToNCj4gDQo+IFNlZSBodHRwczovL3BhdGNo
+d29yay5vemxhYnMub3JnL3BhdGNoLzE0OTMxOTcNCj4gDQo+IFRoaXMgY2hlY2sgY2FuIGZhaWwg
+aWYgdGhlcmUgYXJlIGFueSBkZXBlbmRlbmNpZXMuIFRoZSBiYXNlIGZvciBhDQo+IHBhdGNoDQo+
+IHNlcmllcyBpcyBnZW5lcmFsbHkgdGhlIG1vc3QgcmVjZW50IHJjMS4NCj4gDQo+IElmIHlvdSBh
+bHJlYWR5IHJhbiAnbWFrZSBkdF9iaW5kaW5nX2NoZWNrJyBhbmQgZGlkbid0IHNlZSB0aGUgYWJv
+dmUNCj4gZXJyb3IocyksIHRoZW4gbWFrZSBzdXJlICd5YW1sbGludCcgaXMgaW5zdGFsbGVkIGFu
+ZCBkdC1zY2hlbWEgaXMgdXANCj4gdG8NCj4gZGF0ZToNCj4gDQo+IHBpcDMgaW5zdGFsbCBkdHNj
+aGVtYSAtLXVwZ3JhZGUNCj4gDQo+IFBsZWFzZSBjaGVjayBhbmQgcmUtc3VibWl0Lg0KPiANCg0K
+U29ycnksIEkgbWlzc2VkIHRoZSBkZXBlbmRlbmN5IGRlY2xhcmF0aW9uIGluIHRoZSBwYXRjaCBh
+bmQgSSBkaWRuJ3QNCmluc3RhbGwgeW1hbGxpbnQsIHNvIEkgY291bGRuJ3QgZmluZCBpbmRlbnRh
+dGlvbiBwcm9ibGVtcy4NCkkgd2lsbCBmaXggYWxsIGJpbmRpbmcgcHJvYmxlbXMgb24gdjIuDQoN
+ClRoYW5rcywNClRyZXZvcg0K
 
-For a specific example, https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1620 allows app-to-screen latency as low as ~6 ms (including a fixed 2 ms buffer to avoid skipped frames). mutter doesn't use KMS planes yet, but if anything I'd expect that to help rather than hurt for latency (if the compositor doesn't need to draw anything).
-
-
--- 
-Earthling Michel Dänzer               |               https://redhat.com
-Libre software enthusiast             |             Mesa and X developer
