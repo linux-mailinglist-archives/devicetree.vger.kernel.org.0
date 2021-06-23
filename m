@@ -2,174 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BD3E3B1604
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 10:39:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D0EE3B1660
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 11:01:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229918AbhFWIlw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 04:41:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36576 "EHLO
+        id S229920AbhFWJD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 05:03:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229833AbhFWIlw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 04:41:52 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C3D4C061574;
-        Wed, 23 Jun 2021 01:39:34 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id a16so1890931ljq.3;
-        Wed, 23 Jun 2021 01:39:34 -0700 (PDT)
+        with ESMTP id S229881AbhFWJD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 05:03:56 -0400
+Received: from mail-qv1-xf2d.google.com (mail-qv1-xf2d.google.com [IPv6:2607:f8b0:4864:20::f2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239FAC061574
+        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 02:01:39 -0700 (PDT)
+Received: by mail-qv1-xf2d.google.com with SMTP id fq1so521624qvb.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 02:01:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :mime-version;
-        bh=JVVPmMsCMUJTTUxP116vddvjsDYb2XLODOyPNo5b6Q0=;
-        b=U8eroileOWi5RjAvTJj2sDllrmRnJd7CJ2xXyOXYrz7nigB3aytLM82H7a1DPsBH3V
-         Hsw69y+VTcpUOUHJs29X501UsAhEHWI9msIuuNmEws/tq6hY6Ckgi1BPMfnKY53vE7LJ
-         /TaUi+TAQv1+NYS5MR40NHlrd3xKxQtvJe8efbcBJN0rFhiakjMSlZ/7Ni+FOwsaaqfY
-         96xCgqOaa0WiOonkcri+JXw/VVlO7/X6NnQiEVL3H8K4R4SMbtxIo+CqoVBewweUauvl
-         5GGQ/lQHolXyiT/zVi8qRMBZa1nF8GiVwsKtUr/91gEM430Azg2ZBJHUN5Ff4MBINR/x
-         J1IQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=13Gr0i1MTKRVJOLYjbaQS0t+sJQavN2HZYVSf9igv0I=;
+        b=SA9G17LOrb34DyVZWPMTTHIONdcJ/5ZbZWqssqBb4aWqa4vseTx3+V6CkFU4RvePBr
+         YNNS8jqCGxfTDXRduKfQQMwLt3JL1m3nr4PNVWIksCr6YiJm78aGWUxZDo4V4hXGS1bN
+         zAH4ZuRlx4WIbGetsYgzQvT1yucBC3KtrF3U0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:mime-version;
-        bh=JVVPmMsCMUJTTUxP116vddvjsDYb2XLODOyPNo5b6Q0=;
-        b=N/x5FAByvnW44j5s/i+UNlfKZ91UolmbSRVB4HyMhsmbACHS5hLUmK9RRhksWXTdVm
-         ECl57RT4MN5lJw/KnEu+RiPzINHGNNoSQBJufvIxHpxFMNhyiBhi5WWV4gh9/3g9IlHR
-         K1oBaDivlAZyDB+raCNuQVgEuqRrx1f5NlIw8GPmaalPuxwPu1JFF8VYyoC+9erzxrMP
-         LCkYVoJoDUI7WihfxmPpctPeOre6OEbVvGDmvfw1lJ2n/21hk3HTzNBYVDFl8LLA0t+H
-         Zd6pwajWdRjYd0yat2EMtmssyXY6rnnrzvUgsRb1UcDPeN2p0x38F4+5uRTZCSEHKYBT
-         7Xvw==
-X-Gm-Message-State: AOAM531h6b0YqYk6ZGQjs88H+AhCO2UhB66V/PZA+vehzNaafLurowqQ
-        u8MESpB9e+K11fnfSD2oG/g=
-X-Google-Smtp-Source: ABdhPJzRh29FsphJLIFAyu1GAlHco4CplOxueTqhR9EahKY4LwtLyMQ1B/Fxt5QvKOBHup6q/XrY0w==
-X-Received: by 2002:a2e:b88b:: with SMTP id r11mr7013293ljp.24.1624437572620;
-        Wed, 23 Jun 2021 01:39:32 -0700 (PDT)
-Received: from eldfell ([194.136.85.206])
-        by smtp.gmail.com with ESMTPSA id v13sm400428lfo.33.2021.06.23.01.39.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Jun 2021 01:39:32 -0700 (PDT)
-Date:   Wed, 23 Jun 2021 11:39:22 +0300
-From:   Pekka Paalanen <ppaalanen@gmail.com>
-To:     Esaki Tomohito <etom@igel.co.jp>
-Cc:     "Enrico Weigelt, metux IT consult" <lkml@metux.net>,
-        devicetree@vger.kernel.org, Takanari Hayama <taki@igel.co.jp>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-doc@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Damian Hobson-Garcia <dhobsong@igel.co.jp>
-Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
-Message-ID: <20210623113922.1e603139@eldfell>
-In-Reply-To: <ee0161b5-c88b-40ce-c02f-86e0927b70bb@igel.co.jp>
-References: <20210621062742.26073-1-etom@igel.co.jp>
-        <7cde82a9-c60c-e527-eeac-eaad0c5842a1@metux.net>
-        <1cfab5f9-f275-aa53-00de-5da3fcea71c5@igel.co.jp>
-        <20210622111239.73aa87aa@eldfell>
-        <ee0161b5-c88b-40ce-c02f-86e0927b70bb@igel.co.jp>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=13Gr0i1MTKRVJOLYjbaQS0t+sJQavN2HZYVSf9igv0I=;
+        b=HJsiX9CsBoz3+etW28YDcT1Y8DBlY5zD6oEf2CJPFw3TlML2iAkYaBR7+snxSWllaU
+         OAtFk9OIAF9BR7P9uNCnEZPelAcn3QySTGnboMruI+mXcQd8b7pMH9xTph7i/OLo3hqR
+         6TAmUkTRjrc0KlhFZ5LJykJn/HbIGRpJTcltSrNB5AuXU5qFJIN2G/W1FlCBfQitddWH
+         W6EEurfPbYGEP9Mej+LBFSZy9du8SesrXgrMFgX+1pPMtZn4EoTEouEsPP4UD8qAB3GH
+         5jfRAzL9pziCXA6D0tdlznYQG3QQOlMvFz/Euv5VehbAYa9Ir4B0VcVaP+RJqXpHMC8Z
+         Nnsg==
+X-Gm-Message-State: AOAM533mgmYr6+ZRHY/bvEbznUEfL+6D+DEeQfU3Q8ywlJatkYqW0l8O
+        D+fs9nlgdS7seOgO0Yoz0p+GFyshP1Ssew==
+X-Google-Smtp-Source: ABdhPJz6nzF9xk/8ack1e5UvZvJ+UU6paVKDgXiqdJOVuroBtH7zZPS6merYvgmmDG0guri4fnb2rA==
+X-Received: by 2002:a0c:e802:: with SMTP id y2mr3492461qvn.2.1624438897939;
+        Wed, 23 Jun 2021 02:01:37 -0700 (PDT)
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com. [209.85.222.171])
+        by smtp.gmail.com with ESMTPSA id x8sm14840082qkh.130.2021.06.23.02.01.37
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Jun 2021 02:01:37 -0700 (PDT)
+Received: by mail-qk1-f171.google.com with SMTP id j184so3310815qkd.6
+        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 02:01:37 -0700 (PDT)
+X-Received: by 2002:a02:4b46:: with SMTP id q67mr7991027jaa.84.1624438886886;
+ Wed, 23 Jun 2021 02:01:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/R+0wtRr6C.FPOSdHFeGxePL";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+References: <20210619034043.199220-1-tientzu@chromium.org> <YNLy7z0Zq1AXKLng@char.us.oracle.com>
+In-Reply-To: <YNLy7z0Zq1AXKLng@char.us.oracle.com>
+From:   Claire Chang <tientzu@chromium.org>
+Date:   Wed, 23 Jun 2021 17:01:16 +0800
+X-Gmail-Original-Message-ID: <CALiNf28U9xaqth99u=hB45b=qWMYaSoe2DGgNVFrHXze6wNmdQ@mail.gmail.com>
+Message-ID: <CALiNf28U9xaqth99u=hB45b=qWMYaSoe2DGgNVFrHXze6wNmdQ@mail.gmail.com>
+Subject: Re: [PATCH v14 00/12] Restricted DMA
+To:     Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
+        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
+        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
+        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
+        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+        Tom Lendacky <thomas.lendacky@amd.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/R+0wtRr6C.FPOSdHFeGxePL
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+On Wed, Jun 23, 2021 at 4:38 PM Konrad Rzeszutek Wilk
+<konrad.wilk@oracle.com> wrote:
+>
+> On Sat, Jun 19, 2021 at 11:40:31AM +0800, Claire Chang wrote:
+> > This series implements mitigations for lack of DMA access control on
+> > systems without an IOMMU, which could result in the DMA accessing the
+> > system memory at unexpected times and/or unexpected addresses, possibly
+> > leading to data leakage or corruption.
+> >
+> > For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
+> > not behind an IOMMU. As PCI-e, by design, gives the device full access to
+> > system memory, a vulnerability in the Wi-Fi firmware could easily escalate
+> > to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
+> > full chain of exploits; [2], [3]).
+> >
+> > To mitigate the security concerns, we introduce restricted DMA. Restricted
+> > DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
+> > specially allocated region and does memory allocation from the same region.
+> > The feature on its own provides a basic level of protection against the DMA
+> > overwriting buffer contents at unexpected times. However, to protect
+> > against general data leakage and system memory corruption, the system needs
+> > to provide a way to restrict the DMA to a predefined memory region (this is
+> > usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
+> >
+> > [1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
+> > [1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
+> > [2] https://blade.tencent.com/en/advisories/qualpwn/
+> > [3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
+> > [4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
+>
+> Heya Claire,
+>
+> I put all your patches on
+> https://git.kernel.org/pub/scm/linux/kernel/git/konrad/swiotlb.git/log/?h=devel/for-linus-5.14
+>
+> Please double-check that they all look ok.
+>
+> Thank you!
 
-On Wed, 23 Jun 2021 15:56:05 +0900
-Esaki Tomohito <etom@igel.co.jp> wrote:
-
-> Hi,
-> Thank you all for your comments.
->=20
-> On 2021/06/22 17:12, Pekka Paalanen wrote:
-> > On Tue, 22 Jun 2021 13:03:39 +0900
-> > Esaki Tomohito <etom@igel.co.jp> wrote:
-> >  =20
-> >> Hi, Enrico Weigelt
-> >> Thank you for reply.
-> >>
-> >> On 2021/06/22 1:05, Enrico Weigelt, metux IT consult wrote: =20
-> >>> On 21.06.21 08:27, Tomohito Esaki wrote:
-> >>>
-> >>> Hi,
-> >>>    =20
-> >>>> Virtual DRM splits the overlay planes of a display controller into m=
-ultiple
-> >>>> virtual devices to allow each plane to be accessed by each process.
-> >>>>
-> >>>> This makes it possible to overlay images output from multiple proces=
-ses on a
-> >>>> display. For example, one process displays the camera image without =
-compositor
-> >>>> while another process overlays the UI.   =20
-> >>>
-> >>> Are you attempting to create an simple in-kernel compositor ?   =20
-> >>
-> >> I think the basic idea is the same as DRMlease. =20
-> >=20
-> > Hi,
-> >=20
-> > indeed. Why not use DRM leases instead?
-> >  =20
->=20
-> In this use case, I understand that this is not possible with DRM lease,
-> am I wrong?
-> I understand that it=E2=80=99s not possible to lease a plane and update p=
-lanes
-> on the same output independently from different processes in current DRM
-> lease.
->=20
-> If this is correct, what do you think of adding support for plane leases
-> to the DRM lease to handle this case?
-
-Hi,
-
-I would love to see support added for leasing individual planes,
-especially to replace the virtual DRM proposal which seems to be
-eradicating everything that atomic modesetting and nuclear pageflip
-have built over the many years.
-
-However, please note that "on the same output independently" is
-physically impossible. Semantically, the planes define what a CRTC
-scans out, and the CRTC defines the scanout timings. Therefore it is not
-possible to update individual planes independently, they will all
-always share the timings of the CRTC.
-
-That combined with KMS not allowing multiple updates to be queued at
-the same time for the same CRTC (atomic commits and legacy pageflips
-returning EBUSY) makes the plane updates very much inter-dependent.
-
-If you want to avoid EBUSY and have planes update on the vblank you
-intended, you really need a userspace compositor to pull everything
-together *before* submitting anything to the kernel.
-
-
-Thanks,
-pq
-
---Sig_/R+0wtRr6C.FPOSdHFeGxePL
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIyBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmDS8zoACgkQI1/ltBGq
-qqc/5g/3ak40wL+VtqFnrsfVD4HOtihTdvbodwtvOR+di7hRg9DyAo4acZgCylm/
-XDsoSrLQtUQZIhlub+nSt4937wJFkhBLdhKJIAXQ6EYJHlizAWvzh1UE949lz70T
-p5pvLlXbzr1tBj7ekgLuU3J1Tk5EywMB5/nCtEfivvrSAbW4t624kR731VgFPua5
-p70PRiQeNWAxwXsMhK6ujD7B0egngvnKzXCA6f8zjT8t8psi4cduGujo8v5tmGoj
-wDh1HcMmtlU2eXSxaiNjq/nP+d6MV6WAeVghFzbDg8H883PB5UPLby1TAZugqO17
-vcysXxj9knf4jVGO2glafuxPyQD62X2bcSbSv8EX4gEVSggseht/Lq3ZPWr+CMG2
-3yGPKr3bn+MW8S2X5N0T/UQm6umxJS/3Gu0AiruVCZ2CG999CUKIc+O7cLW+EvQP
-sCol/K0/fbJamuPE5wE0REj9RkpEADNM4+i/Iv1Xh9RXecetKXLuOBX2lkVZrbdr
-XSU8mCVBx+D7Bhp9rGYv7uy4MP3R2m19D4UfWt1BEDEX/oF3Tv53fbIkw7U685YX
-ZRQcnrMxExYyM6AZtXNs2cH1jelablm8fDPr8QLCoCDya06iAZK2F43hag0HOm3B
-+ny7k73O/3HeUyehS0uFaUh+BnPLI2lHvWjURHhWlOqtNzVl2w==
-=dkL2
------END PGP SIGNATURE-----
-
---Sig_/R+0wtRr6C.FPOSdHFeGxePL--
+They look fine. Thank you!
