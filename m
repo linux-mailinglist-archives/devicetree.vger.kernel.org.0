@@ -2,79 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8B073B1735
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 11:48:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D43713B179E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 12:01:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230288AbhFWJuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 05:50:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52182 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbhFWJun (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 05:50:43 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60627C061574
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 02:48:25 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id r5so3086427lfr.5
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 02:48:25 -0700 (PDT)
+        id S230102AbhFWKD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 06:03:29 -0400
+Received: from mail-eopbgr1410101.outbound.protection.outlook.com ([40.107.141.101]:47472
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230064AbhFWKD3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Jun 2021 06:03:29 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kI4hLRCRglO1FiiRcgjY5GqkKJhkNF9iFtaHreFFzo8co9ATlpZX59t5zGqni9J6k8V6t8K3F9iHVcXMMxMEp0kjTzklcglzuD8zqjQ+tiIPG8aVU90sR5UqHT2QkYX3tTooh64vz7V8q5vCHFaAIU9EMSMNgNtnTpV96o5Ro8xbTf9rb1aHM7Z92KskBC5c0Oefs/cCIEKfx8KWPLfNDT5WYGPmoHuu3TNSz/aGqUbM/GySnK3JBndjGZwrbDOlEth2udwqAlFy6dxOkowKCA45sZHXxa4dCByNMcSSjl89Jc+ca/lOOCa+dO15KFD5hw/ev52r2GrsS1XiTu7ROg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iBHOpj6vGmV6G1otyQh4YHKlxvySAsrm3I8YL+6SVHI=;
+ b=H9GbHhygznp/1vV9MZs0HkqH/9q1EIZfROnk/nfC/RNslblB9T9qAMNXVKBk0Jn7PdzyXXFpDoUpX4vgwE5nzRF0l4gmoiU9NfpgquUDoj84Ot8Gv1fjCnB8/62GB6/c0wHseujrV25d/Qc6gj1pCFHwdNL37dVf+o6nCdsYUXeDDw3dBdTQB1HhCcjkAmVFzJtVIZyVEugki59lNNmE+Ge77nEl8JD/1dKSwr+lQqIr/hjjcx6JxfB1qAUN0qMR+WP8nIWpAVpNeixoY/E6Qb3cikbWhD1EENaHr8AzhpUcIqrWVpl4YzALKQEj6wfBCzVLkGR8xnCQSmK9XNggTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fKjqUJhszdXpyl10YQ4tIa0Xd7F4iUZDn2xLPlegnEI=;
-        b=FE9pvkD16UFCog6pYfw+v3pkk22K4ZVJ0zpA40ZmsTACa8+HUEKertA/5DIJQRH7oZ
-         s/mXcY3jEIW+TEtrd4Q/ywwl3JyabAooIGA70VZESqb8GpqY1Dl0WzM2rpBR+iONY1af
-         xlfT5kjs6Rz5lX4/gGFffB/Kj9SU8ZuHIo/YI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fKjqUJhszdXpyl10YQ4tIa0Xd7F4iUZDn2xLPlegnEI=;
-        b=c9rZCCe8rOgsv/bdHgireZ3Mr0evLiKsKRNKHHGT7zPS+xs3vaTJ5jtQokWWEr/As6
-         NYM+8nSVycc2Fv9+2ZeettIjroXSwEl90vIH9asZEm7t8beKZq4d4bCq936hLehjoiP3
-         Ii6NQeujC9DOZTSqC3mgCsvAgsja8x4YUJIGM2rtL1ri3dIJwrd9CPPQNRk6qtszW7W7
-         HQFj1MwsKqg9XcuwyG0BhI+9Q+xKcZm+RNlN2H/eajftV+E3rxAZaUuDVgbM8XfYn/YB
-         zXe0NOLFohDKkVFMQxo2AeqOO7XTZCuQnoctCuVPW2fRH00hEJjbTR6qWPb226l6kcm8
-         wZ9w==
-X-Gm-Message-State: AOAM532vkLDJOg/0YOyt0W/MAnkxdMmvoLHjRNKycXHQZOcAIXY2Y3lX
-        sVgLF7zW2eGsE99+UVYMJJIoItcZJPton7VrPRxMEw==
-X-Google-Smtp-Source: ABdhPJwFufLUGkeN2pDvzmj2Ujaq8TRsFGO5abB0KNvd6vttc1EzSYrcmK6EwOHYKsjU7Jyh6LNg/R9FGuatMvavY5U=
-X-Received: by 2002:a05:6512:3f13:: with SMTP id y19mr6314168lfa.444.1624441703656;
- Wed, 23 Jun 2021 02:48:23 -0700 (PDT)
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iBHOpj6vGmV6G1otyQh4YHKlxvySAsrm3I8YL+6SVHI=;
+ b=nkYyr257trBvrYoizOTTCu7JiV4CuMnKnA+ckn7bIe1HXrz4Ueui4mGrDsuUjsKpvmUhQ2qgZLNt5Fdz6KBi6WQ5vO4bLnRb5j9kJlX5IVgJ6F2dJ7JBoognl9GjuctzclKrmu6j12IH760LKo9DmZRMjqSo8b36KiTYXMkKiHQ=
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
+ by TYCPR01MB6429.jpnprd01.prod.outlook.com (2603:1096:400:92::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4242.16; Wed, 23 Jun
+ 2021 10:01:09 +0000
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::4c5d:66ee:883a:72a5]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::4c5d:66ee:883a:72a5%6]) with mapi id 15.20.4242.024; Wed, 23 Jun 2021
+ 10:01:09 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 01/14] dt-bindings: arm: renesas: Document R-Car H3e-2G
+ and M3e-2G SoCs and boards
+Thread-Topic: [PATCH 01/14] dt-bindings: arm: renesas: Document R-Car H3e-2G
+ and M3e-2G SoCs and boards
+Thread-Index: AQHXXdxGXQcHvm/zkk6EidcV6ivjeKshcVyQ
+Date:   Wed, 23 Jun 2021 10:01:08 +0000
+Message-ID: <TY2PR01MB369291D8DC384944F16103FFD8089@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+References: <cover.1623315732.git.geert+renesas@glider.be>
+ <f79841c1881f8b9a2c10fadb3d3ad6cb5fccc6a5.1623315732.git.geert+renesas@glider.be>
+In-Reply-To: <f79841c1881f8b9a2c10fadb3d3ad6cb5fccc6a5.1623315732.git.geert+renesas@glider.be>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: glider.be; dkim=none (message not signed)
+ header.d=none;glider.be; dmarc=none action=none header.from=renesas.com;
+x-originating-ip: [124.210.22.195]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: bfffdde8-80b4-40ab-bb50-08d9362dd349
+x-ms-traffictypediagnostic: TYCPR01MB6429:
+x-microsoft-antispam-prvs: <TYCPR01MB642910E11177421AFE8AD7CDD8089@TYCPR01MB6429.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 77Hn06CX9csVe7qoIJPMKaBpNPGeoywfVxvtvetJcX7EfrKQfKW+NqBhffJXpjKHPBPhhEroMef/9s7nN1lQqHk+UUY6O4Oz6G1OtY+0b2W5DCqoXmKOQQvwpppLp5gJ4GCftYr6u246NzmqAe1UDTz59Chi9r2PaEjKm6eoIeNCNdTAjEdg8eT+xlyMZ95RPiY73epiO+6TBze98M6YQkR0FRIzWoA9pxKFu5AKVTGBTRa3ePvz+Ru6E1AaO6+gz9lcEN6zEXsYDbmusLDLnuOLvBH6yz+mUYSwR8CzCsoLEl/XRLYYqfBzwWyfFHn54LaZzAh+5Wd12+zICbzMxSsJdTUHonxrXdkum75/KVdruHnKGIyDLAOWO7w4jXRxeecRytGSKGBxKDppshwI/lceWdI2xjWET9m5IIoelvNPVSb0e32DJS6y6+bFllQNlWD65wA0zHljOZ44zZ4Wql7Kxi9ozdG2WFiC7rj8oCHR+Jie9fNbk8tgCyfsU4J72s0I3U+hM0XRgae6MRNYwcSUfejTwfGuOmPK53I2Xx+zvwEHoaQLZEtyjngbV9Q9JzFC6Ye2OHptOuunhIOKrnmuu4FXvVZwvXetLy7/0vE=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(4636009)(346002)(39860400002)(376002)(136003)(396003)(366004)(55016002)(9686003)(71200400001)(38100700002)(2906002)(33656002)(122000001)(66946007)(66556008)(66476007)(7696005)(76116006)(478600001)(54906003)(55236004)(4744005)(5660300002)(64756008)(26005)(8676002)(8936002)(86362001)(4326008)(316002)(6506007)(186003)(52536014)(110136005)(66446008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?E9YE9YHgPo6fBp3efOBvx9hEG3UhK/KSObDPQimIey9Xa3JUwOgS7iq5ELaD?=
+ =?us-ascii?Q?686hn18F7jE5KHP6m0vKJvllIvcynld+yuGmHvvbMCd30vHVF+4JdMiXjg7L?=
+ =?us-ascii?Q?WBlte1W7tYG3OBGL8kGbb+7R4G4XFGaI5zeNnz8y3PAzF3wYAdUgRci3+7as?=
+ =?us-ascii?Q?L4xW5XGWpT4F9ZyIGbL+86zIvHz9M66yBL2kjpxDmkANubh8RiVsSVzgrOE9?=
+ =?us-ascii?Q?UV+BnOxMfj5nCDCvXcmLOjzW0PXU+fFu9Lva7nrMVVTKYIGEZQ+UDRF35Bur?=
+ =?us-ascii?Q?dEGNL6equu2iVG6jJs5HdExGt4Ib88cGm1vvHIcA7cbKXOo0zpIOofRXwDav?=
+ =?us-ascii?Q?kDINKSF8xOs8n5ApnxFn2ABHGj58X98m79ycwy3817FspF0aRgVR+/G5gBgn?=
+ =?us-ascii?Q?2FbcT2xUMapa/oGBcc4vQPeLxH3FPuuhHIor5qyg5D4TwG703QwlZP+zKhxB?=
+ =?us-ascii?Q?frWdopmDb4Tw7XsLwsGJ9GIHuDcKCKcp9Avq2ayT+9jGGEYaK47FsbWxePgk?=
+ =?us-ascii?Q?Ak7L5tFUiN5fnEX+Si62nVD4kVrWqQgv9JQqvHDOJ8qSuAhlvgQ7oCoL9+fG?=
+ =?us-ascii?Q?pX7CxYa1ajj2iDr2CcyuNQXTL6xCWj3yveCzKoGwOQH7hX5I1pP0+BaaRbKR?=
+ =?us-ascii?Q?ykTQHCNga5gr69yTy3j9RrqM2Ho2EBZYhbD4HcWoz1SUrTCbha3s6LF6rSUn?=
+ =?us-ascii?Q?V5kTldo3DSg5GqVXLKsiZgWQnBGm2kpN3v5jSp9FWvcgNz0d8MKYVC0/+srx?=
+ =?us-ascii?Q?Bz/iuYrPTA44iqB79ewFbAI51mi7HtcDtx5PL4vU+jCDiPtSY6hkHuldrqAx?=
+ =?us-ascii?Q?jhyHiXbpP4oRp0Uwa8wDpifVI8qBl3xy3xrQn3ALQViq0Xh8I/4QImoRY41b?=
+ =?us-ascii?Q?nLZZ/DCGq6cywYZHB/nLIj0g9W9sYYlcYP6YN8CEBc4jU41mqe16bnILMezL?=
+ =?us-ascii?Q?sNejuhaZfcD4y/tyVBSOBG+gFMVPOgzu8gedy1IVRlURT0+K7EYtx7dLaOW8?=
+ =?us-ascii?Q?esEe8RdSugqoG+sm7lGmN5dw5fl/+qwbL4+aufkw7xJgHHHBGt/yayTGZ9Jw?=
+ =?us-ascii?Q?QStKvHcB3QLReE28frq9eyD/DFPx7O9dLBIetuYnH3K+9+Bv8s6LC74BCc+n?=
+ =?us-ascii?Q?2nE4hCb95Tq3T3717qgjms6CHSu7MIJrXiPqK3CGhgOPXT5yj4iSi3kdbXek?=
+ =?us-ascii?Q?hZrHGIsvVonlIWaYNdheK9P+u0ts4lpPvFox+PoZ5smBHRDNvNieKdVFZIc9?=
+ =?us-ascii?Q?hjBIbCVm1txHImTy32OBC3IL2QgYFVUMkfve6L7FQKzgAPdt+e9PgtIjbrwn?=
+ =?us-ascii?Q?201MKdt1xfG73LdnpkeYlIEO?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20210623092917.4447-1-Christine.Zhu@mediatek.com> <20210623092917.4447-2-Christine.Zhu@mediatek.com>
-In-Reply-To: <20210623092917.4447-2-Christine.Zhu@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Wed, 23 Jun 2021 17:48:12 +0800
-Message-ID: <CAGXv+5GXfabPk4NV=d8YxQD1UHeqE9M7bgCeG-FT0Ef1n5ECgw@mail.gmail.com>
-Subject: Re: [v3,1/3] dt-bindings: mediatek: mt8195: update mtk-wdt document
-To:     Christine Zhu <Christine.Zhu@mediatek.com>
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        seiya.wang@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfffdde8-80b4-40ab-bb50-08d9362dd349
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jun 2021 10:01:09.3520
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: aGtHKX3/YA3HVmGqjSPstJBW8hYJ8jk/f1vh2pOqtELNOXpQhntSWCfiE7DthQ+zkqPTa2qctay8UW9oXezhzVOcJMS+ZjDac41FgMOu6c/YQUyFwFo9XEug8vEiNKDL
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6429
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Geert-san,
 
-On Wed, Jun 23, 2021 at 5:30 PM Christine Zhu
-<Christine.Zhu@mediatek.com> wrote:
->
-> From: "christine.zhu" <Christine.Zhu@mediatek.com>
->
-> Update mtk-wdt document for MT8195 platform.
->
-> Signed-off-by: christine.zhu <Christine.Zhu@mediatek.com>
+> From: Geert Uytterhoeven, Sent: Thursday, June 10, 2021 6:37 PM
+>=20
+> Document the compatible values for the R-Car H3e-2G (R8A779M1) and
+> M3e-2G (R8A779M3) SoCs.  These are different gradings of the R-Car H3
+> ES3.0 (R8A77951) and M3-W+ (R8A77961) SoCs.
+>=20
+> All R-Car Gen3e on-SoC devices are identical to the devices on the
+> corresponding R-Car Gen3 SoCs, and thus just use the compatible values
+> for the latter.  The root compatible properties do gain an additional
+> value, to sort out integration issues if they ever arise.
+>=20
+> Document the use of these SoCs on the Salvator-XS and ULCB (with and
+> without Kingfisher) development boards.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Please fix your name formatting in your Signed-off-bys and author
-for all the patches, and in your overall git setup.
+Thank you for the patch!
 
-It should read "Christine Zhu", like your sender info on this
-email, not "christine.zhu" like an account name.
+Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-ChenYu
+Best regards,
+Yoshihiro Shimoda
+
