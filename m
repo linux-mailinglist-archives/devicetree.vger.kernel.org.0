@@ -2,76 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 652233B138F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 07:56:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 722423B13C2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 08:12:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229801AbhFWF7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 01:59:00 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:47849 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229794AbhFWF67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 01:58:59 -0400
-Received: from mail-wr1-f69.google.com ([209.85.221.69])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lvvsP-0002Gu-Dy
-        for devicetree@vger.kernel.org; Wed, 23 Jun 2021 05:56:41 +0000
-Received: by mail-wr1-f69.google.com with SMTP id j1-20020adfb3010000b02901232ed22e14so640684wrd.5
-        for <devicetree@vger.kernel.org>; Tue, 22 Jun 2021 22:56:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Y1jDlUMkwrAiNSpYqmp6DTWEmsBUMLxkuAWlef8a84E=;
-        b=QsGz4ZYvlyNrw/R6x2sJxaWcSiRq8mI4TXkWqto2ix9bTMu/Dhi1zOIM0urGQYZbAu
-         EL48fRD89LDZM94ay7d6cfloH6IFRsMT4QhIxk+FxisSse1SWymHT6MMaUmlvjGvGYJk
-         IM9OW0rMfW0BUqHWUN8cls6IFwlvCMj2p2EIforsA2T3Uef0Ebu8Mhg5rOP2q3N7iZC+
-         M+DJ6pn464BlqhqOJhgpI8RNRa8p4VCKdYnn33ycnhYMcw0O2wVwpEpUi1KeDApYu1d0
-         864HPYP+KiLdpPQClCHBlT9ZOy5yGXn2b/3ndX8E3YorpKYAS55d6T2l456QL3SWEeCo
-         LIfg==
-X-Gm-Message-State: AOAM533PlwFrwic2emSc7kjhFPezNTG4WwwJ4Q8WR6R0M+OLrSdRTDpK
-        4HeU+lDc+j/8MW2rTrWof/r9p+FbNvg/DdSeiMICRaMIiTtaYKrJhzSUzk8/+vB5EZH9ZQ3nhrL
-        HQaAK/999+T/BjQznrs3HK5CygxcMyWU/rEunZEA=
-X-Received: by 2002:a05:600c:2e53:: with SMTP id q19mr8945299wmf.39.1624427801155;
-        Tue, 22 Jun 2021 22:56:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyze8HeAsFtSsdRC1iygn/4uNoruW16F+7eeE14pFIaQkDBttwj9NY01uUA8WINYMF7R2Dr4w==
-X-Received: by 2002:a05:600c:2e53:: with SMTP id q19mr8945284wmf.39.1624427801039;
-        Tue, 22 Jun 2021 22:56:41 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-177-222.adslplus.ch. [188.155.177.222])
-        by smtp.gmail.com with ESMTPSA id r3sm4301005wmq.8.2021.06.22.22.56.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Jun 2021 22:56:40 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will@kernel.org>,
-        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Joerg Roedel <joro@8bytes.org>
-Subject: Re: [PATCH] dt-bindings: arm-smmu: Fix json-schema syntax
-Date:   Wed, 23 Jun 2021 07:56:37 +0200
-Message-Id: <162442779339.5511.14827117243689906234.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210621140036.2879563-1-thierry.reding@gmail.com>
-References: <20210621140036.2879563-1-thierry.reding@gmail.com>
+        id S229665AbhFWGOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 02:14:20 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:45028 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229660AbhFWGOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 02:14:19 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: rcn)
+        with ESMTPSA id 75EF81F42F80
+Message-ID: <52caf3779aa5b764bf193264cd5c5b8a542dea0a.camel@collabora.com>
+Subject: Re: [RESEND PATCH v4 3/3] dt-bindings: drm: bridge:
+ adi,adv7511.txt: convert to yaml
+From:   Ricardo =?ISO-8859-1?Q?Ca=F1uelo?= <ricardo.canuelo@collabora.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Michal Simek <michal.simek@xilinx.com>,
+        alexandre.torgue@foss.st.com,
+        Collabora Kernel ML <kernel@collabora.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Date:   Wed, 23 Jun 2021 08:11:51 +0200
+In-Reply-To: <YMxekschULB87LKa@pendragon.ideasonboard.com>
+References: <20210615131333.2272473-1-ricardo.canuelo@collabora.com>
+         <20210615131333.2272473-4-ricardo.canuelo@collabora.com>
+         <CAMuHMdU8ZC3LrhVLnZgOc_ZtNNcHbAHjEgP_5QpF8UEsbatGgA@mail.gmail.com>
+         <YMxekschULB87LKa@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5-0ubuntu1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Jun 2021 16:00:36 +0200, Thierry Reding wrote:
-> Commit 4287861dca9d ("dt-bindings: arm-smmu: Add Tegra186 compatible
-> string") introduced a jsonschema syntax error as a result of a rebase
-> gone wrong. Fix it.
+Hi,
+ 
+> On Fri, Jun 18, 2021 at 09:55:38AM +0200, Geert Uytterhoeven wrote:
+> > This causes lots of failures like:
+> > 
+> >     arm/boot/dts/r8a7743-iwg20d-q7-dbcm-ca.dt.yaml: hdmi@39:
+> > 'avdd-supply' is a required property
+> > 
+> > Should all supplies be required?
+> > Looking at the driver, missing supplies are automatically replaced by
+> > dummy regulators by the regulator framework.
+> 
+> Generally speaking, I like DT bindings to be descriptive of the
+> hardware, and thus require power supplies that are needed for the device
+> to function, even if they are fixed supplies.
+> 
+> This being said, I think there's also room to group some power supplies
+> together in the bindings, when they are not meant by the device to be
+> controlled separately. In this specific case, we also need to take into
+> account that the adv7511 and adv7533 have different supplies.
 
-Applied, thanks!
+Thanks for the review, guys. Yes, there were some dtbs check warnings to
+be expected, the consensus in a previous version of the patch was that
+that shouldn't be a blocker for a binding conversion and that the *.dts
+definitions should eventually be fixed to comply with the binding, which
+is, IMO, a more reasonable process to keep the binding conversion
+effort progressing.
 
-[1/1] dt-bindings: arm-smmu: Fix json-schema syntax
-      commit: bf3ec9deaa33889630722c47f7bb86ba58872ea7
+Cheers,
+Ricardo
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
