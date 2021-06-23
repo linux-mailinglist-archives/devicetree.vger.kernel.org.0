@@ -2,193 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9C53B2196
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 22:08:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC60B3B21A4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 22:13:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230101AbhFWUKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 16:10:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230062AbhFWUKp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 16:10:45 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 409E3C061756
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 13:08:26 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id y7so3978564wrh.7
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 13:08:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=fDQ/n6QIAJKpmUfoND9p8+BLVwwuVL87V6voHYHsC3k=;
-        b=xS24CJ1rpozxgSv2uvbmxNlR6VjqJjNAoq0xRU5s7zEgdffkyFfqUGPU/kA1BUeHFW
-         ekbNh9nuFH8qBAiN+SC7ybGJ0T03RON6wtBnPJ8vVY79o33Q71CO4OCVyxu/f9qI14Nh
-         Ba2k318cFUqxEw0A0U0Ubo7bzVs9NnWspNLRAkqGQSQWL0NhJu10wDEl8iFBw7vTuZyL
-         HuVC9us/qDN/V3pU5K3gvxmPmL9WzpE2sVIjZi8pMIk+POOIcD10ZQvChWtFntcTN4rt
-         ipaE8LndyDLAJYOB1ww3UtMbV963oPYesaBNHOEFoGfM3zfhKwyt94s1LN8X8RuOTcaV
-         8u5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=fDQ/n6QIAJKpmUfoND9p8+BLVwwuVL87V6voHYHsC3k=;
-        b=dZGfdF9uqtyx728fQfC52BHXVbwLf2r0OAIuQrFE42SEx9/A6ovlZJi3F85blcK5gV
-         oDrjJQEOznRhOGXtd8wo03hkhlphCyUuiApfR0NpsB5cSrhhxxk5+cBLe2EjCTo80sx7
-         h/ku9Sa0YlMG4wy9uLLmLSYfv3Onvcp8wjNW5STYxOIJ5CFHQbdTtZ9ms4xLv7wAdJWH
-         pBe80qoscxbucn09iGYPUuBA9sK3B0egMplZhoA6IgyNObG+UxlqI4BGw4p8lUTljtas
-         KBgrwx8F+u1nZ9m7Dmgl+HKVXE74ud5Mq/izlD5a+Gb6ygCMDrsdu23R3e7fi0AxYTsC
-         xM5A==
-X-Gm-Message-State: AOAM530YiHbFvg53o5Ui5sYSnoXD3cC0jeJuyvWgHUe5e2hDN263kkSi
-        SpBSTDWK2tqpdx4jxotrdghUYg==
-X-Google-Smtp-Source: ABdhPJzgEUk2+RPzZJqOl3cQbMW9bslLbEqgO2qiPaZiG8680/7vFCtrFsXwnRmsb2adqROD476/4A==
-X-Received: by 2002:adf:ea4f:: with SMTP id j15mr2157777wrn.409.1624478904577;
-        Wed, 23 Jun 2021 13:08:24 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:a562:3d0a:cd98:9ffd? ([2a01:e34:ed2f:f020:a562:3d0a:cd98:9ffd])
-        by smtp.googlemail.com with ESMTPSA id f13sm984756wrt.86.2021.06.23.13.08.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Jun 2021 13:08:24 -0700 (PDT)
-Subject: Re: [PATCH] Fix mt7622.dtsi thermal cpu
-To:     Eric Woudstra <ericwouds@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210619121927.32699-1-ericwouds@gmail.com>
- <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org>
- <56fb5540-fb86-4e6a-a596-1276026b37e5@gmail.com>
- <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org>
- <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <fb633034-96e5-6165-b43f-290ae1a65cfd@linaro.org>
-Date:   Wed, 23 Jun 2021 22:08:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S229906AbhFWUQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 16:16:08 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:35382 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229726AbhFWUQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 16:16:07 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id A5A461C0B76; Wed, 23 Jun 2021 22:13:48 +0200 (CEST)
+Date:   Wed, 23 Jun 2021 22:13:48 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [RFC 2/2] ARM: dts: imx6dl-yapp4: Fix lp5562 driver probe
+Message-ID: <20210623201347.GC8540@amd>
+References: <1621003477-11250-1-git-send-email-michal.vokac@ysoft.com>
+ <1621003477-11250-3-git-send-email-michal.vokac@ysoft.com>
 MIME-Version: 1.0
-In-Reply-To: <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="i7F3eY7HS/tUJxUd"
+Content-Disposition: inline
+In-Reply-To: <1621003477-11250-3-git-send-email-michal.vokac@ysoft.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2021 20:43, Eric Woudstra wrote:
-> 
-> I choose "hot" before, because 87 degrees seems ok to start frequency
-> throttling. But, yes, it should be passive.
-> 
-> 87 is still quite low if I compare this temperature with the
-> wrt3200acm Marvell dual core arm soc. They even went above 100
-> degrees so I feel for an arm processor inside a router box it is fine
-> to use 87 degrees But maybe someone at Mediatek can give some more
-> details about operating temperatures.
 
-Sometimes, the SoC vendor puts a high temperature in the DT just to
-export the thermal zone and deal with it from userspace. So putting the
-high temp allow the userspace (usually a thermal engine - Android stuff)
-to deal with the mitigation without a kernel interaction.
+--i7F3eY7HS/tUJxUd
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Having more than 100°C could be this kind of setup. Only the operating
-temperature from the hardware documentation will tell the safe
-temperature for the silicon.
+On Fri 2021-05-14 16:44:37, Michal Vok=C3=A1=C4=8D wrote:
+> Since the LED multicolor framework support was added in commit
+> 92a81562e695 ("leds: lp55xx: Add multicolor framework support to lp55xx")
+> LEDs on this platform stopped working.
+>=20
+> Author of the framework attempted to accommodate this DT to the
+> framework in commit b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg proper=
+ty
+> to the lp5562 channel node") but that is not sufficient. A color property
+> is now required even if the multicolor framework is not used, otherwise
+> the driver probe fails:
+>=20
+>   lp5562: probe of 1-0030 failed with error -22
+>=20
+> Add the color property to fix this and remove the actually unused white
+> channel.
+>=20
+> Fixes: b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property to the lp5=
+562 channel node")
 
-IMO, 77°C is a good compromise until getting the documented temp. 87°C
-sounds to me a bit too hot.
+I believe this is for arm maintainers to take...
 
-> It may be possible to leave the active map in the device tree as some
-> users of the bananapi might choose to install a fan as it is one of
-> the options.
+> diff --git a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi b/arch/arm/boot/d=
+ts/imx6dl-yapp4-common.dtsi
+> index 7d2c72562c73..3107bf7fbce5 100644
+> --- a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+> +++ b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+> @@ -5,6 +5,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/pwm/pwm.h>
+> =20
+>  / {
+> @@ -271,6 +272,7 @@
+>  			led-cur =3D /bits/ 8 <0x20>;
+>  			max-cur =3D /bits/ 8 <0x60>;
+>  			reg =3D <0>;
+> +			color =3D <LED_COLOR_ID_RED>;
+>  		};
+> =20
+>  		chan@1 {
+> @@ -278,6 +280,7 @@
+>  			led-cur =3D /bits/ 8 <0x20>;
+>  			max-cur =3D /bits/ 8 <0x60>;
+>  			reg =3D <1>;
+> +			color =3D <LED_COLOR_ID_GREEN>;
+>  		};
+> =20
+>  		chan@2 {
+> @@ -285,13 +288,7 @@
+>  			led-cur =3D /bits/ 8 <0x20>;
+>  			max-cur =3D /bits/ 8 <0x60>;
+>  			reg =3D <2>;
+> -		};
+> -
+> -		chan@3 {
+> -			chan-name =3D "W";
+> -			led-cur =3D /bits/ 8 <0x0>;
+> -			max-cur =3D /bits/ 8 <0x0>;
+> -			reg =3D <3>;
+> +			color =3D <LED_COLOR_ID_BLUE>;
+>  		};
+>  	};
+> =20
 
-The active trip only makes sense if the cooling device is a fan (or any
-active device), so the mapping points to a fan node, like:
+What is going on here? "White" channel seems to have disappeared?
 
-https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi#n192
+Best regards,
+							Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
 
-If there is no such [pwm] fan output on the board, no active trip point
-should be added.
+--i7F3eY7HS/tUJxUd
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-> ⁣Get BlueMail for Android ​
-> 
-> On Jun 23, 2021, 5:58 PM, at 5:58 PM, Daniel Lezcano
-> <daniel.lezcano@linaro.org> wrote:
->> On 23/06/2021 17:35, Eric Woudstra wrote:
->>> It is only useful to set 1 map with the regulated temperature for
->>> cpu frequency throttling. Same as in the kernel document
->>> example.
->>> 
->>> 
->>> It has no use to set frequency scaling on 2 different
->>> temperature trip points, as the lowest one makes sure the higher
->>> one(s) are never reached.
->> 
->> I looked more closely the DT and there is a misunderstanding of
->> the thermal framework in the definition.
->> 
->> There is one trip point with the passive type and the cpu cooling 
->> device, followed by a second trip point with the active type *but*
->> the same cpu cooling device. That is wrong.
->> 
->> And finally, there is the hot trip point as a third mapping and
->> the same cooling device.
->> 
->> The hot trip point is only there to notify userspace and let it
->> take an immediate action to prevent an emergency shutdown when
->> reaching the critical temperature.
->> 
->>> It can be applied only at 1 trip point. Multiple trip points is
->>> only usefully for fan control to make sure the fan is not too 
->>> noisy when it is not necessary to be noisy.
->>> 
->>> 
->>> The CPU will almost come to a dead stop when it starts to pass
->>> the lowest thermal map with frequency throttling.
->>> 
->>> This is why it is a bug and needs a fix, not only adjustment.
->> 
->> Yes, you are right. It should be something like (verbatim copy):
->> 
->> diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi 
->> b/arch/arm64/boot/dts/mediatek/mt7622.dtsi index
->> 890a942ec608..88c81d24f4ff 100644 ---
->> a/arch/arm64/boot/dts/mediatek/mt7622.dtsi +++
->> b/arch/arm64/boot/dts/mediatek/mt7622.dtsi @@ -136,24 +136,18 @@
->> secmon_reserved: secmon@43000000 {
->> 
->> thermal-zones { cpu_thermal: cpu-thermal { -
->> polling-delay-passive = <1000>; +			polling-delay-passive = <250>; 
->> polling-delay = <1000>;
->> 
->> thermal-sensors = <&thermal 0>;
->> 
->> trips { cpu_passive: cpu-passive { -					temperature = <47000>; +
->> temperature = <77000>; hysteresis = <2000>; type = "passive"; };
->> 
->> -				cpu_active: cpu-active { -					temperature = <67000>; -
->> hysteresis = <2000>; -					type = "active"; -				}; - cpu_hot:
->> cpu-hot { temperature = <87000>; hysteresis = <2000>; @@ -173,18
->> +167,6 @@ map0 { cooling-device = <&cpu0 THERMAL_NO_LIMIT
->> THERMAL_NO_LIMIT>, <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>; }; - 
->> -				map1 { -					trip = <&cpu_active>; -					cooling-device =
->> <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>, -							 <&cpu1
->> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>; -				}; - -				map2 { -
->> trip = <&cpu_hot>; -					cooling-device = <&cpu0 THERMAL_NO_LIMIT
->> THERMAL_NO_LIMIT>, -							 <&cpu1 THERMAL_NO_LIMIT
->> THERMAL_NO_LIMIT>; -				}; }; }; };
->> 
->> 
->> -- <http://www.linaro.org/> Linaro.org │ Open source software for
->> ARM SoCs
->> 
->> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook | 
->> <http://twitter.com/#!/linaroorg> Twitter | 
->> <http://www.linaro.org/linaro-blog/> Blog
-> 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
+iEYEARECAAYFAmDTlfsACgkQMOfwapXb+vKDiQCgtAHVU0b0Z46fbRCOpxwGZ6qT
+kzEAoLQzIKhTs9F7ZzphvFOCfHKy02CU
+=XyKw
+-----END PGP SIGNATURE-----
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+--i7F3eY7HS/tUJxUd--
