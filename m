@@ -2,104 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 912503B205A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 20:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD5B3B2063
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 20:41:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbhFWSkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 14:40:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58450 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229523AbhFWSkF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Jun 2021 14:40:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3C1E061185;
-        Wed, 23 Jun 2021 18:37:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624473468;
-        bh=K9ctSOOXg/HLNG/KMzo+bt+uXbhOKksVK31vHq8QEAc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pew0mCStiOrsU0bWjM0b54f2cDTk0BFJYuT7oL0Hl93RfndilrrpZ00P5EcbMTEX/
-         /lbkdoUtJfhzG6xhgO6NWycBIcDRvmNhEJGTWAKSFbeL2aFhOe2jpLrVodVSrKGkzr
-         gHxURUCJo+Bry9z+VHTZDIOT/ABoSs0DN2Tjo7IL/UHU38iukI2V/m5xdJIYc7NUws
-         7NMVKjT7vcMuSIu2fy0OZOLVI8+LwwecPlMOHv27TBpClMax/sAEQmgzVN3VS5iIlB
-         HGiL4Uzn3xHn2voW7eTXBh/NjM9NO32LN+GkhPpRHj+kINjyQizH9+P5WDGveYcADU
-         kFBCzfquuEa8w==
-Date:   Wed, 23 Jun 2021 19:37:37 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Qian Cai <quic_qiancai@quicinc.com>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>,
+        id S229759AbhFWSnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 14:43:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60096 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229523AbhFWSns (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 14:43:48 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0546FC06175F
+        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 11:41:30 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id h4so2522831pgp.5
+        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 11:41:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CmSxjVifvEvCqk0+9pO7z5s7Ge6oi3hKkOZK5hFSWaY=;
+        b=LluFmH6faSDsy5zNPOC5XgyCUGC49cppIjUOhBK4h233TCJkZWz8/u5xK1rXIwOYCo
+         yVLlUiH5GK0vEd/wmbZNVQMgsmh2HhDr8g9afDiLFHfbW9tVgc12KVqsowWpu7GKLodA
+         bWvCkzmbQyGs8TGr/1M28YzaLi4LdwQFGH24A=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CmSxjVifvEvCqk0+9pO7z5s7Ge6oi3hKkOZK5hFSWaY=;
+        b=IpQoxRMHlC86g/SATtXsqq3RqaTsgCb5P+VMAlVZrmiwmV6d1IP9xHS3n8ZpYp4+Q6
+         kP43gH5KjoUwQ0HaJKyWtpk08AdGEWQ3YV3VZqPov26GCj3JCxWt54LVcLgMKO5FPr/A
+         zfgeHiZalheXObSrRMZQJqmIy6IosFnEL7GNxKGrdWnS5mdPiX+RlA7sV16IOTHMUsl9
+         pbJszugaN7NyqxGhLrrEkoRbJWy2DzFrmyQBkRA4K3vPrawvtHRG4zQmTESWyWlG96zV
+         SPNhohiQ7JCaFDS72wDx2E/kYlL1oy0CDiObUImUDu1lpOp2VK9XyWhGex7TqAgIquY2
+         PPAg==
+X-Gm-Message-State: AOAM530/1TrFnx9A3JS+dd15QyXw4dyHqLK/KmS/EGFvDwcGc/qiYL9y
+        sZdbWf8mwvJVoFOD/WN/KTnA5w==
+X-Google-Smtp-Source: ABdhPJwoZ9MJ9mzv9yFsoY9HMcrNs70l8450M7S+Sm3N1iyk6cCgVPMpRYCShxwgBwdfEoJcwVikWQ==
+X-Received: by 2002:a63:31cc:: with SMTP id x195mr792039pgx.99.1624473689165;
+        Wed, 23 Jun 2021 11:41:29 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:d440:232:5e25:41f4])
+        by smtp.gmail.com with UTF8SMTPSA id v13sm978597pja.44.2021.06.23.11.41.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Jun 2021 11:41:28 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
-        peterz@infradead.org, benh@kernel.crashing.org,
-        joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
-        chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
-        mingo@kernel.org, jxgao@google.com, sstabellini@kernel.org,
-        Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        bskeggs@redhat.com, linux-pci@vger.kernel.org,
-        xen-devel@lists.xenproject.org,
-        Thierry Reding <treding@nvidia.com>,
-        intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
-        linux-devicetree <devicetree@vger.kernel.org>, daniel@ffwll.ch,
-        airlied@linux.ie, maarten.lankhorst@linux.intel.com,
-        linuxppc-dev@lists.ozlabs.org, jani.nikula@linux.intel.com,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        rodrigo.vivi@intel.com, bhelgaas@google.com,
-        Dan Williams <dan.j.williams@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        thomas.lendacky@amd.com, Robin Murphy <robin.murphy@arm.com>,
-        bauerman@linux.ibm.com
-Subject: Re: [PATCH v14 06/12] swiotlb: Use is_swiotlb_force_bounce for
- swiotlb data bouncing
-Message-ID: <20210623183736.GA472@willie-the-truck>
-References: <20210619034043.199220-1-tientzu@chromium.org>
- <20210619034043.199220-7-tientzu@chromium.org>
- <76c3343d-72e5-9df3-8924-5474ee698ef4@quicinc.com>
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Michal Simek <michal.simek@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Peter Chen <peter.chen@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Al Cooper <alcooperx@gmail.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Andy Gross <agross@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Michael Walle <michael@walle.cc>, Nishanth Menon <nm@ti.com>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org
+Subject: [PATCH v13 0/7] usb: misc: Add onboard_usb_hub driver
+Date:   Wed, 23 Jun 2021 11:41:16 -0700
+Message-Id: <20210623184124.3504047-1-mka@chromium.org>
+X-Mailer: git-send-email 2.32.0.288.g62a8d224e6-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <76c3343d-72e5-9df3-8924-5474ee698ef4@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 23, 2021 at 12:39:29PM -0400, Qian Cai wrote:
-> 
-> 
-> On 6/18/2021 11:40 PM, Claire Chang wrote:
-> > Propagate the swiotlb_force into io_tlb_default_mem->force_bounce and
-> > use it to determine whether to bounce the data or not. This will be
-> > useful later to allow for different pools.
-> > 
-> > Signed-off-by: Claire Chang <tientzu@chromium.org>
-> > Reviewed-by: Christoph Hellwig <hch@lst.de>
-> > Tested-by: Stefano Stabellini <sstabellini@kernel.org>
-> > Tested-by: Will Deacon <will@kernel.org>
-> > Acked-by: Stefano Stabellini <sstabellini@kernel.org>
-> 
-> Reverting the rest of the series up to this patch fixed a boot crash with NVMe on today's linux-next.
+This series adds:
+- the onboard_usb_hub_driver
+- glue in the xhci-plat driver to create and destroy the
+  onboard_usb_hub platform devices if needed
+- a device tree binding for the Realtek RTS5411 USB hub controller
+- device tree changes that add RTS5411 entries for the QCA SC7180
+  based boards trogdor and lazor
+- a couple of stubs for platform device functions to avoid
+  unresolved symbols with certain kernel configs
 
-Hmm, so that makes patch 7 the suspicious one, right?
+The main issue the driver addresses is that a USB hub needs to be
+powered before it can be discovered. For discrete onboard hubs (an
+example for such a hub is the Realtek RTS5411) this is often solved
+by supplying the hub with an 'always-on' regulator, which is kind
+of a hack. Some onboard hubs may require further initialization
+steps, like changing the state of a GPIO or enabling a clock, which
+requires even more hacks. This driver creates a platform device
+representing the hub which performs the necessary initialization.
+Currently it only supports switching on a single regulator, support
+for multiple regulators or other actions can be added as needed.
+Different initialization sequences can be supported based on the
+compatible string.
 
-Looking at that one more closely, it looks like swiotlb_find_slots() takes
-'alloc_size + offset' as its 'alloc_size' parameter from
-swiotlb_tbl_map_single() and initialises 'mem->slots[i].alloc_size' based
-on 'alloc_size + offset', which looks like a change in behaviour from the
-old code, which didn't include the offset there.
+Besides performing the initialization the driver can be configured
+to power the hub off during system suspend. This can help to extend
+battery life on battery powered devices which have no requirements
+to keep the hub powered during suspend. The driver can also be
+configured to leave the hub powered when a wakeup capable USB device
+is connected when suspending, and power it off otherwise.
 
-swiotlb_release_slots() then adds the offset back on afaict, so we end up
-accounting for it twice and possibly unmap more than we're supposed to?
+Changes in v13:
+- added patch "usb: Specify dependency on USB_XHCI_PLATFORM with
+  'depends on'" to the series to avoid Kconfig conflicts
+- added patch "arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM"
+  to the series to keep effective defconfig unchanged
 
-Will
+Changes in v12:
+- onboard_hub driver: use IS_ENABLED(CONFIG_USB_ONBOARD_HUB_MODULE)
+  in onboard_hub.h to also check for the driver built as module
+- onboard_hub_driver: include onboard_hub.h again to make sure there
+  are prototype declarations for the public functions
+
+Changes in v11:
+- support multiple onboard hubs connected to the same parent
+- don't include ‘onboard_hub.h’ from the onboard hub driver
+
+Changes in v10:
+- always use of_is_onboard_usb_hub() stub unless ONBOARD_USB_HUB=y/m
+- keep 'regulator-boot-on' property for pp3300_hub
+
+Changes in v9:
+- added dependency on ONBOARD_USB_HUB (or !!ONBOARD_USB_HUB) to
+  USB_PLATFORM_XHCI
+
+Changes in v7:
+- updated DT binding
+- series rebased on qcom/arm64-for-5.13
+
+Changes in v6:
+- updated summary
+
+Changes in v5:
+- cover letter added
+
+Matthias Kaehlcke (7):
+  dt-bindings: usb: Add binding for Realtek RTS5411 hub controller
+  usb: misc: Add onboard_usb_hub driver
+  of/platform: Add stubs for of_platform_device_create/destroy()
+  arm64: defconfig: Explicitly enable USB_XHCI_PLATFORM
+  usb: Specify dependencies on USB_XHCI_PLATFORM with 'depends on'
+  usb: host: xhci-plat: Create platform device for onboard hubs in
+    probe()
+  arm64: dts: qcom: sc7180-trogdor: Add nodes for onboard USB hub
+
+ .../sysfs-bus-platform-onboard-usb-hub        |   8 +
+ .../bindings/usb/realtek,rts5411.yaml         |  62 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts |  19 +-
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts |  12 +-
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  19 +-
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  |  19 +-
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/usb/cdns3/Kconfig                     |   2 +-
+ drivers/usb/dwc3/Kconfig                      |   3 +-
+ drivers/usb/host/Kconfig                      |   5 +-
+ drivers/usb/host/xhci-plat.c                  |   6 +
+ drivers/usb/host/xhci.h                       |   2 +
+ drivers/usb/misc/Kconfig                      |  17 +
+ drivers/usb/misc/Makefile                     |   1 +
+ drivers/usb/misc/onboard_usb_hub.c            | 497 ++++++++++++++++++
+ include/linux/of_platform.h                   |  22 +-
+ include/linux/usb/onboard_hub.h               |  18 +
+ 18 files changed, 682 insertions(+), 38 deletions(-)
+ create mode 100644 Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
+ create mode 100644 Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+ create mode 100644 drivers/usb/misc/onboard_usb_hub.c
+ create mode 100644 include/linux/usb/onboard_hub.h
+
+-- 
+2.32.0.288.g62a8d224e6-goog
+
