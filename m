@@ -2,174 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B6F73B170D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 11:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8B073B1735
+	for <lists+devicetree@lfdr.de>; Wed, 23 Jun 2021 11:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbhFWJlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 05:41:18 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:22153 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229833AbhFWJlR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Jun 2021 05:41:17 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1624441140; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=iQUbJJkTYH21v/zV2fd4UAhlsRo8LDHs+RWxQUQeX/c=; b=hixDRz0EmoNL2zmOmPA6NlVIBVEf9ULdA74to5Xv8J5XpgaDetLoKQzOUY8We/uRMzAMCORV
- 30/K7SbhRk8vSbcwftfVl4gfsnE+vegjtRYUWsTLMffUUxRl+5qg5fwziKcYwEMaN3TLbvT6
- PN/NQLQCqcRkUd7qZonA1uo72dI=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 60d30133638039e997b35dc8 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 23 Jun 2021 09:38:59
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 77D2DC433F1; Wed, 23 Jun 2021 09:38:59 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.110.11.224] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9947EC4338A;
-        Wed, 23 Jun 2021 09:38:56 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 9947EC4338A
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-Subject: Re: [PATCH v10 2/6] usb: gadget: configfs: Check USB configuration
- before adding
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     balbi@kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, frowand.list@gmail.com,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        jackp@codeaurora.org, fntoth@gmail.com,
-        heikki.krogerus@linux.intel.com, andy.shevchenko@gmail.com
-References: <1623923899-16759-1-git-send-email-wcheng@codeaurora.org>
- <1623923899-16759-3-git-send-email-wcheng@codeaurora.org>
- <YMss5tFFBjokk1k6@kroah.com>
- <012b0264-107a-5596-d73f-3a2fd20470cf@codeaurora.org>
- <YNF9kv0kWAz6Pp00@kroah.com>
-From:   Wesley Cheng <wcheng@codeaurora.org>
-Message-ID: <afe0c718-1c16-1b20-4b0c-d8592a13af42@codeaurora.org>
-Date:   Wed, 23 Jun 2021 02:38:55 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S230288AbhFWJuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 05:50:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52182 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230290AbhFWJun (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 05:50:43 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60627C061574
+        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 02:48:25 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id r5so3086427lfr.5
+        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 02:48:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fKjqUJhszdXpyl10YQ4tIa0Xd7F4iUZDn2xLPlegnEI=;
+        b=FE9pvkD16UFCog6pYfw+v3pkk22K4ZVJ0zpA40ZmsTACa8+HUEKertA/5DIJQRH7oZ
+         s/mXcY3jEIW+TEtrd4Q/ywwl3JyabAooIGA70VZESqb8GpqY1Dl0WzM2rpBR+iONY1af
+         xlfT5kjs6Rz5lX4/gGFffB/Kj9SU8ZuHIo/YI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fKjqUJhszdXpyl10YQ4tIa0Xd7F4iUZDn2xLPlegnEI=;
+        b=c9rZCCe8rOgsv/bdHgireZ3Mr0evLiKsKRNKHHGT7zPS+xs3vaTJ5jtQokWWEr/As6
+         NYM+8nSVycc2Fv9+2ZeettIjroXSwEl90vIH9asZEm7t8beKZq4d4bCq936hLehjoiP3
+         Ii6NQeujC9DOZTSqC3mgCsvAgsja8x4YUJIGM2rtL1ri3dIJwrd9CPPQNRk6qtszW7W7
+         HQFj1MwsKqg9XcuwyG0BhI+9Q+xKcZm+RNlN2H/eajftV+E3rxAZaUuDVgbM8XfYn/YB
+         zXe0NOLFohDKkVFMQxo2AeqOO7XTZCuQnoctCuVPW2fRH00hEJjbTR6qWPb226l6kcm8
+         wZ9w==
+X-Gm-Message-State: AOAM532vkLDJOg/0YOyt0W/MAnkxdMmvoLHjRNKycXHQZOcAIXY2Y3lX
+        sVgLF7zW2eGsE99+UVYMJJIoItcZJPton7VrPRxMEw==
+X-Google-Smtp-Source: ABdhPJwFufLUGkeN2pDvzmj2Ujaq8TRsFGO5abB0KNvd6vttc1EzSYrcmK6EwOHYKsjU7Jyh6LNg/R9FGuatMvavY5U=
+X-Received: by 2002:a05:6512:3f13:: with SMTP id y19mr6314168lfa.444.1624441703656;
+ Wed, 23 Jun 2021 02:48:23 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <YNF9kv0kWAz6Pp00@kroah.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20210623092917.4447-1-Christine.Zhu@mediatek.com> <20210623092917.4447-2-Christine.Zhu@mediatek.com>
+In-Reply-To: <20210623092917.4447-2-Christine.Zhu@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Wed, 23 Jun 2021 17:48:12 +0800
+Message-ID: <CAGXv+5GXfabPk4NV=d8YxQD1UHeqE9M7bgCeG-FT0Ef1n5ECgw@mail.gmail.com>
+Subject: Re: [v3,1/3] dt-bindings: mediatek: mt8195: update mtk-wdt document
+To:     Christine Zhu <Christine.Zhu@mediatek.com>
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        seiya.wang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On Wed, Jun 23, 2021 at 5:30 PM Christine Zhu
+<Christine.Zhu@mediatek.com> wrote:
+>
+> From: "christine.zhu" <Christine.Zhu@mediatek.com>
+>
+> Update mtk-wdt document for MT8195 platform.
+>
+> Signed-off-by: christine.zhu <Christine.Zhu@mediatek.com>
 
-On 6/21/2021 11:05 PM, Greg KH wrote:
-> On Mon, Jun 21, 2021 at 10:27:09PM -0700, Wesley Cheng wrote:
->>
->>
->> On 6/17/2021 4:07 AM, Greg KH wrote:
->>> On Thu, Jun 17, 2021 at 02:58:15AM -0700, Wesley Cheng wrote:
->>>> Ensure that the USB gadget is able to support the configuration being
->>>> added based on the number of endpoints required from all interfaces.  This
->>>> is for accounting for any bandwidth or space limitations.
->>>>
->>>> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
->>>> ---
->>>>  drivers/usb/gadget/configfs.c | 22 ++++++++++++++++++++++
->>>>  1 file changed, 22 insertions(+)
->>>>
->>>> diff --git a/drivers/usb/gadget/configfs.c b/drivers/usb/gadget/configfs.c
->>>> index 15a607c..76b9983 100644
->>>> --- a/drivers/usb/gadget/configfs.c
->>>> +++ b/drivers/usb/gadget/configfs.c
->>>> @@ -1374,6 +1374,7 @@ static int configfs_composite_bind(struct usb_gadget *gadget,
->>>>  		struct usb_function *f;
->>>>  		struct usb_function *tmp;
->>>>  		struct gadget_config_name *cn;
->>>> +		unsigned long ep_map = 0;
->>>>  
->>>>  		if (gadget_is_otg(gadget))
->>>>  			c->descriptors = otg_desc;
->>>> @@ -1403,7 +1404,28 @@ static int configfs_composite_bind(struct usb_gadget *gadget,
->>>>  				list_add(&f->list, &cfg->func_list);
->>>>  				goto err_purge_funcs;
->>>>  			}
->>>> +			if (f->fs_descriptors) {
->>>> +				struct usb_descriptor_header **d;
->>>> +
->>>> +				d = f->fs_descriptors;
->>>> +				for (; *d; ++d) {
->>
->> Hi Greg,
->>
->> Thanks for the review and feedback.
->>
->>>
->>> With this check, there really is not a need to check for
->>> f->fs_descriptors above in the if statement, right?
->>>
->>
->> f->fs_descriptor will carry the table of descriptors that a particular
->> function driver has assigned to it.  The for loop here, will dereference
->> the individual descriptors within that descriptor array, so we need to
->> first ensure the descriptor array is present before traversing through
->> the individual entries/elements.
-> 
-> Ah, it's a dereference of an array element.  Subtle.  Tricky.  Messy :(
-> 
->>>> +					struct usb_endpoint_descriptor *ep;
->>>> +					int addr;
->>>> +
->>>> +					if ((*d)->bDescriptorType != USB_DT_ENDPOINT)
->>>> +						continue;
->>>> +
->>>> +					ep = (struct usb_endpoint_descriptor *)*d;
->>>> +					addr = ((ep->bEndpointAddress & 0x80) >> 3) |
->>>> +						(ep->bEndpointAddress & 0x0f);
->>>
->>> Don't we have direction macros for this type of check?
->>>
->>
->> I don't believe we have a macro which would be able to convert the
->> bEndpointAddress field into the bit which needs to be set, assuming that
->> the 32bit ep_map has the lower 16bits carrying OUT EPs, and the upper
->> 16bits carrying the IN EPs.
+Please fix your name formatting in your Signed-off-bys and author
+for all the patches, and in your overall git setup.
 
-Hi Greg,
+It should read "Christine Zhu", like your sender info on this
+email, not "christine.zhu" like an account name.
 
-> 
-> We have macros to tell if an endpoint is IN or OUT, please use those.
-> 
-> And this "cram the whole thing into 64 bits" is not obvious at all.
-> Just pass around the original pointer to the descriptors if someone
-> wants to use it or not, don't make up yet-another-data-structure here
-> for no good reason.  We aren't so memory constrained we need to pack
-> stuff into bits here.
-> 
-
-Hmm ok, what I can do is to move this logic into the check_config()
-callback itself, which is implemented by the UDC driver.  So now, the
-DWC3 will have to do something similar to what is done here, ie loop the
-EP descriptors for each function to determine the number of IN endpoints
-being used.
-
-Thanks
-Wesley Cheng
-
-> thanks,
-> 
-> greg k-h
-> 
-
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+ChenYu
