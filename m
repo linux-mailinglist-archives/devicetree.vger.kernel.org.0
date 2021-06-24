@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2EB43B38C7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 23:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AD903B38D1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 23:34:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232582AbhFXVgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 17:36:14 -0400
-Received: from mail-io1-f43.google.com ([209.85.166.43]:43706 "EHLO
-        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232300AbhFXVgN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 17:36:13 -0400
-Received: by mail-io1-f43.google.com with SMTP id k16so10037994ios.10;
-        Thu, 24 Jun 2021 14:33:53 -0700 (PDT)
+        id S232760AbhFXVgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 17:36:46 -0400
+Received: from mail-il1-f172.google.com ([209.85.166.172]:46984 "EHLO
+        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232460AbhFXVgp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 17:36:45 -0400
+Received: by mail-il1-f172.google.com with SMTP id i12so7770055ila.13;
+        Thu, 24 Jun 2021 14:34:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CcolHmV+A3vjz1+53DqCoiq9IMwj46wy61et/vhg6pY=;
-        b=ZAqiueXjgLRX13M/AUa8gXcXRF1RBrWWwAmZrayYFzZxsZQ2Suh1Ic+Hoz2z6Zv9Fi
-         M6B2ZdtfvquYm1j6zJJ0BphIB6jjbQVB1j79yB8iy4mZVfrU94F0kxcfL80vnLVwgfIs
-         ZYnoZGCUjvv2WneRnW/CTxariB0wNOZawZM2yFN+d32DDBjxACTYh1v3rQ5pzBlL2iKN
-         OJjxrSuHgNqXoUbeI7kD1lrXRdy054EkP3ZZy5exGHxtdN3lgKPghVNnDi0fA55iuBTO
-         jZHJFQKfgpaD9/DfdLyA1UhEK2IUAnqCl84XtPs3LCu8JscXphB4C+3CJa6JoDiwAyRO
-         ee9w==
-X-Gm-Message-State: AOAM530w8TF58HY3CLfxmLcAqSVlVu9+UGdJo2wVqappXm2YYB8Tbhhc
-        FWluW+cBNQLUKkE7iznUYA==
-X-Google-Smtp-Source: ABdhPJw9/4FJDiDsT9sieSnmZ0wZSc6oA7B9xp6tVoFjU9t+ea/pC597FWOzIvdxCHKqPn/MSGnYnQ==
-X-Received: by 2002:a02:a99e:: with SMTP id q30mr6459649jam.69.1624570432679;
-        Thu, 24 Jun 2021 14:33:52 -0700 (PDT)
+        bh=lA9u/NU6RXqXrtO+WlVIvTvKekwJRd3nPzF7YBgfJeI=;
+        b=NsQOVq/116pZ8WOdBwAmJ3264eqBjxCyXK70juND4ZwAeOID9ZKaKsumYMAQSJpcrD
+         y9iJCgn4p7nVGVSdNxBccgleWObRMhjtHvgl+wb71qf/nm6kPlFFptnCkBWUnirDOcf3
+         PsckGJ/HIKIlWp6OtXc13jnRRPdjOTPdRCTCLOh9sA+b0sRB+/ti4N9x2OmsEVWIeO6w
+         D+FkW6JNXka5K6ZWkJXAY9NV9JGUMvbD7JeFBNeZ/p1pfIkK1jdXjbRtLRnqmP1SsMKn
+         gZxNLRhaw7pblyYQcMilPmVs6yGBcJy6bHgMVSOMEeV662znAlUyDhDuTYPcU5vluZsO
+         c+1g==
+X-Gm-Message-State: AOAM530YNoOmTUBLooj+EPwpH6KQRVcs2LKD6CmNWfFhgwVV/R4dtU8h
+        okalISu52HlXCIhuv40jP5kA97DJBA==
+X-Google-Smtp-Source: ABdhPJxP+3zxw6fnxzDP+ne8xz4SO2x8bXnM36vvMiioO4ws8dPCA0v8WTJALCRARGKJfh1BiNnYBw==
+X-Received: by 2002:a05:6e02:1147:: with SMTP id o7mr3727553ill.97.1624570465718;
+        Thu, 24 Jun 2021 14:34:25 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id q8sm2125659iot.30.2021.06.24.14.33.49
+        by smtp.gmail.com with ESMTPSA id c22sm2022425ioz.24.2021.06.24.14.34.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 14:33:52 -0700 (PDT)
-Received: (nullmailer pid 2023922 invoked by uid 1000);
-        Thu, 24 Jun 2021 21:33:47 -0000
-Date:   Thu, 24 Jun 2021 15:33:47 -0600
+        Thu, 24 Jun 2021 14:34:24 -0700 (PDT)
+Received: (nullmailer pid 2024761 invoked by uid 1000);
+        Thu, 24 Jun 2021 21:34:21 -0000
+Date:   Thu, 24 Jun 2021 15:34:21 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Mack <daniel@zonque.org>
-Cc:     robh+dt@kernel.org, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, kuninori.morimoto.gx@renesas.com,
-        devicetree@vger.kernel.org, sboyd@kernel.org
-Subject: Re: [PATCH v3 4/9] dt-bindings: clock: cs2000-cp: document
- cirrus,clock-skip flag
-Message-ID: <20210624213347.GA2023874@robh.at.kernel.org>
-References: <20210617190912.262809-1-daniel@zonque.org>
- <20210617190912.262809-5-daniel@zonque.org>
+To:     Olivier Dautricourt <olivier.dautricourt@orolia.com>
+Cc:     Stefan Roese <sr@denx.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        dmaengine@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: dma: altera-msgdma: make response port
+ optional
+Message-ID: <20210624213421.GA2024713@robh.at.kernel.org>
+References: <cover.1623898678.git.olivier.dautricourt@orolia.com>
+ <fb28146a23a182be9e5435c1d3e5cac36b372294.1623898678.git.olivier.dautricourt@orolia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210617190912.262809-5-daniel@zonque.org>
+In-Reply-To: <fb28146a23a182be9e5435c1d3e5cac36b372294.1623898678.git.olivier.dautricourt@orolia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Jun 2021 21:09:07 +0200, Daniel Mack wrote:
-> Signed-off-by: Daniel Mack <daniel@zonque.org>
+On Thu, 17 Jun 2021 21:52:32 +0200, Olivier Dautricourt wrote:
+> Response port is not required in some configuration of the IP core.
+> 
+> Signed-off-by: Olivier Dautricourt <olivier.dautricourt@orolia.com>
 > ---
->  .../devicetree/bindings/clock/cirrus,cs2000-cp.yaml         | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  Documentation/devicetree/bindings/dma/altr,msgdma.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
