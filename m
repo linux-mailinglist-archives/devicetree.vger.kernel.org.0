@@ -2,117 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 608CF3B71F7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 14:19:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2BB13B72AE
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 14:55:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233589AbhF2MWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 08:22:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44488 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233278AbhF2MV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 08:21:59 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36078C061760;
-        Tue, 29 Jun 2021 05:19:32 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id s137so9395845pfc.4;
-        Tue, 29 Jun 2021 05:19:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LbbWX3kzjiR8qd3C6tMA1iMcCJEbQrwW1wisqFEE6eo=;
-        b=CiwrAGbBBkL09wtznxor+hUawt4GMD+TAkpbAhW9CEWWlP9Ru2jLMxVNUPAvfBChCv
-         rYDOPDhCo5wSXqKraUIZLSKSglwd8WEurGvSpIHkP/spzMrtsm0GSPE23P/TonQ52Z/4
-         qNZCTzkIVPBTyj6O1mcJbB/0Xc47w00n4H/53wgV+SvHjINdH21anWu7snAwjeS0qHWX
-         +UcZJEMaUyEKk3pnGwX8HPnFCJAR5kr9tiLGEFRs+qOKTfPhr7SS8mgmHrSdNaZN7kBV
-         ZBGFIzQ3efamjm7nk8QP2gCZ3TXsb8T02S/1pdavlqdD5w+S4Q2iwN4ABMIKqHOIcNUs
-         c4ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=LbbWX3kzjiR8qd3C6tMA1iMcCJEbQrwW1wisqFEE6eo=;
-        b=TvdUGLl407ZbV9hLyKK81zsb5SqXYAgBCoP3Gl8aI0Karm4V1QphrmvguRcXDO6W04
-         QkHz1IvN/a8GIWcdzCMt9FajFP9ieQNrk3zA2sG1DO9324u/vBNzqOtq1WDTOtWOze4j
-         /roXLbpveGt0Z+KBGPOCgtR441kJ24lsGGhzRAdYhfXpZVO9K3OhtVncmslyDBKo/9bH
-         MWN6yrlEKrt5G1Tvww/JvmnB91TsZwGuTQxxEeIauyADqN8AfA9qaWrEXZgMiBV+XDef
-         u8WcWKxDc8jx/6XaWkI/+4/iGKykWOQBd1u2UiLfCvbWTRmyGpuLV7KxsGI05vNElUeX
-         U5qA==
-X-Gm-Message-State: AOAM531bd0l+RKK4u/3PQIKdJHwFLNZq2WXT76hch8sZ0vZJCbSqm8V/
-        pc8wUafuX4yzWA71HfCeT/Y=
-X-Google-Smtp-Source: ABdhPJwgEWD9yoqfctTRjncqD3b1L4F/TJFDXJAVBNMjtgkexqbPnBFFhHtf1MWe8URlnVLgjXJmSA==
-X-Received: by 2002:a63:df0f:: with SMTP id u15mr327288pgg.57.1624969171830;
-        Tue, 29 Jun 2021 05:19:31 -0700 (PDT)
-Received: from archl-c2lm.. ([103.51.72.37])
-        by smtp.gmail.com with ESMTPSA id gg5sm8314730pjb.42.2021.06.29.05.19.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Jun 2021 05:19:31 -0700 (PDT)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Anand Moon <linux.amoon@gmail.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCHv1] arm64: amlogic: Fix the pwm regulator supply property in node
-Date:   Tue, 29 Jun 2021 12:18:47 +0000
-Message-Id: <20210629121848.6527-1-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.31.1
+        id S232944AbhF2M5o convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 29 Jun 2021 08:57:44 -0400
+Received: from [218.75.92.58] ([218.75.92.58]:49193 "EHLO WIN-VTPUBHNS72V"
+        rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232755AbhF2M5o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Jun 2021 08:57:44 -0400
+Received: from [192.168.43.47] (Unknown [197.210.85.75])
+        by WIN-VTPUBHNS72V with ESMTPA
+        ; Thu, 24 Jun 2021 20:46:56 +0800
+Message-ID: <2A435363-CF2B-455A-AC40-6C3345A7E76E@WIN-VTPUBHNS72V>
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: URGENT ATTENTION
+To:     Recipients <wjjt@wjjt.cn>
+From:   "Andres Auchincloss" <wjjt@wjjt.cn>
+Date:   Thu, 24 Jun 2021 14:46:31 +0200
+Reply-To: andresauchincloss926@gmail.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On enable CONFIG_REGULATOR_DEBUG=y we observer below debug logs.
-Changes help link VDDCPU_A and VDDCPU_B pwm regulator to 12V regulator
-supply instead of dummy regulator.
+Hi,
 
-[    4.147196] VDDCPU_A: will resolve supply early: pwm
-[    4.147216] pwm-regulator regulator-vddcpu-a: Looking up pwm-supply from device tree
-[    4.147227] pwm-regulator regulator-vddcpu-a: Looking up pwm-supply property in node /regulator-vddcpu-a failed
-[    4.147258] VDDCPU_A: supplied by regulator-dummy
-[    4.147288] regulator-dummy: could not add device link regulator.12: -ENOENT
-[    4.147353] VDDCPU_A: 721 <--> 1022 mV at 871 mV, enabled
-[    4.152014] VDDCPU_B: will resolve supply early: pwm
-[    4.152035] pwm-regulator regulator-vddcpu-b: Looking up pwm-supply from device tree
-[    4.152047] pwm-regulator regulator-vddcpu-b: Looking up pwm-supply property in node /regulator-vddcpu-b failed
-[    4.152079] VDDCPU_B: supplied by regulator-dummy
-[    4.152108] regulator-dummy: could not add device link regulator.13: -ENOENT
+I will like to use this opportunity to wish you a productive time in 2021 and also confide in you to finalize this transaction of mutual benefits. It may seem strange to you, but it is real. This is a transaction that has no risk at all, due process shall be followed and it shall be carried out under the ambit of the financial laws. Being the Chief Financial Officer, BP Plc. I want to trust and put in your care Eighteen Million British Pounds Sterling, The funds were acquired from an over-invoiced payment from a past contract executed in one of my departments.
 
-Fixes: d14734a04a8a ("arm64: dts: meson-g12b-odroid-n2: enable DVFS")
+I can't successfully achieve this transaction without presenting you as foreign contractor who will provide a bank account to receive the funds.
 
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Documentation for the claim of the funds will be legally processed and documented, so I will need your full cooperation on this matter for our mutual benefits. We will discuss details if you are interested to work with me to secure this funds. I will appreciate your prompt response in every bit of our communication. Stay Blessed and Stay Safe.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 344573e157a7..4f33820aba1f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -130,7 +130,7 @@ vddcpu_a: regulator-vddcpu-a {
- 		regulator-min-microvolt = <721000>;
- 		regulator-max-microvolt = <1022000>;
- 
--		vin-supply = <&main_12v>;
-+		pwm-supply = <&main_12v>;
- 
- 		pwms = <&pwm_ab 0 1250 0>;
- 		pwm-dutycycle-range = <100 0>;
-@@ -149,7 +149,7 @@ vddcpu_b: regulator-vddcpu-b {
- 		regulator-min-microvolt = <721000>;
- 		regulator-max-microvolt = <1022000>;
- 
--		vin-supply = <&main_12v>;
-+		pwm-supply = <&main_12v>;
- 
- 		pwms = <&pwm_AO_cd 1 1250 0>;
- 		pwm-dutycycle-range = <100 0>;
--- 
-2.31.1
+
+
+Best Regards
+
+
+
+
+Tel: +1 (587) 770-0485
+Andres .B. Auchincloss
+Chief financial officerBP Petroleum p.l.c.
+
+
+
+
+                                  Copyright ©? 1996-2021
 
