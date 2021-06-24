@@ -2,92 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C40D93B2530
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 04:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AA2D3B2539
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 04:56:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbhFXCvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 22:51:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55548 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbhFXCvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 22:51:04 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE980C061574;
-        Wed, 23 Jun 2021 19:48:44 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id i13so7603913lfc.7;
-        Wed, 23 Jun 2021 19:48:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5gXOkfW5QLdmxd3Wj2w+c9EViV9eI5MsnrUKf2z8FYs=;
-        b=RUUtNGr5bfoevPXn+E3jhYX17ZhytUijcdcizuV5g4jQ4csAcRk/aeza4+qR2lvWm2
-         nApl7i4P87KW/V3VmdWmT5rnNucE6KyVawrkZY/mYM6BrTB22om8kojGB0aoqBrGivyD
-         ablP9MZHGlP/9wsmaXfsHq6WuEEMnrJMmmoJHij/4TS+w5DTgKyVWjOVbirOyDH7zKC4
-         CW0N7U316rWwH6l4ydjxnV6Tes4O/Wgx6zcPcGySg2HNEfV5tFcYL5ymVYDAjIkY8+fZ
-         mPEekWg9dqIadP4zouGwK4hPDmzZAQ0OO5uNK8m4HyR0np44kKJi6eE+jR92wFXrpABb
-         UElA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5gXOkfW5QLdmxd3Wj2w+c9EViV9eI5MsnrUKf2z8FYs=;
-        b=pF5vNfpcLJUFdxZ7B3rgWzN4gd0+aIoag2Vw6VWW6YF8vm6nElAJdpZoGDZtn/kdfD
-         A1RufWed6f5sOsdgX99Lj7/VZYpu9k1AegCxhEmQls5H8nKnhcFyLzhNtPfDr4qFZnbH
-         G9nn1GCVSoDVH8XwZdO6QDSnwsH1Kt/0GzOmgheKwdiBLIXxa4DVxtCn/dCN6sQNzH1Q
-         m8XWUCt8xb9xaCx2zVpPA3UYihuJJd0u8PkuXGYTk4ONd31xOenSSW6Ga560rofxvJd8
-         /0yV/UYrnuFsGu+6wp46FkYzU9A5gEonShGtiSiE/zOIxDxoJc6d4TDGfc4XN4sMqgVZ
-         SPhA==
-X-Gm-Message-State: AOAM533CwNYpBOaTtjRWHk6EGcpME/V1ymlf6VvefPyfTHIKmICFtZU+
-        6sjmbgecLm6Ol5wcFas/sqp3yqjL2J3CZ3vyWoVFs0x+Iad5Zw==
-X-Google-Smtp-Source: ABdhPJx3C4pME09Z+lCozESHkQ/9SDrguEu+2in3VcwEc05cxMVQ7T7rVyGEQn/CiFUVy/CuhM/rCWbxw+m+VilD2fQ=
-X-Received: by 2002:a05:6512:3b24:: with SMTP id f36mr1930656lfv.443.1624502923336;
- Wed, 23 Jun 2021 19:48:43 -0700 (PDT)
+        id S229800AbhFXC67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 22:58:59 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:46753 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229907AbhFXC64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Jun 2021 22:58:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1624503398;
+        h=from:from:reply-to:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=2eSA6/HlHvadNSOU/l/uauEc2fo4rHElHGAVhTWFqfg=;
+        b=hI2qLnSlyUevs6SkqqHWuTINXyzAltnkrpBf2WKe16k4c587VgT3Rxhyf69w7ld+4V9djv
+        zNklHF7CqjeK52cLQSMr6fursPtovyev51sN9sjcc0LQEigMNLHt236MIo6GgWL4Xh/gXX
+        8tdOs1EU/HuQ5ugZzCpMApVel6jL9c0=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-475-pBXycZq0PzWfpTXSRvXuVQ-1; Wed, 23 Jun 2021 22:56:36 -0400
+X-MC-Unique: pBXycZq0PzWfpTXSRvXuVQ-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com [10.5.11.22])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 49F86802C88;
+        Thu, 24 Jun 2021 02:56:35 +0000 (UTC)
+Received: from [10.64.54.70] (vpn2-54-70.bne.redhat.com [10.64.54.70])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 64B0A1001281;
+        Thu, 24 Jun 2021 02:56:33 +0000 (UTC)
+Reply-To: Gavin Shan <gshan@redhat.com>
+Subject: Re: [PATCH] Documentation, dt, numa: Add note to empty NUMA node
+To:     Randy Dunlap <rdunlap@infradead.org>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        drjones@redhat.com, shan.gavin@gmail.com
+References: <20210624033740.20862-1-gshan@redhat.com>
+ <a6cdc518-3bd7-2b66-acd0-c4d53d360eae@infradead.org>
+From:   Gavin Shan <gshan@redhat.com>
+Message-ID: <435d4707-3871-26fe-e0e4-df93931ba49d@redhat.com>
+Date:   Thu, 24 Jun 2021 14:58:02 +1000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.0
 MIME-Version: 1.0
-References: <20210621072424.111733-1-jagan@amarulasolutions.com>
- <20210621072424.111733-3-jagan@amarulasolutions.com> <YNO0LHNVSWjrh1ZS@pendragon.ideasonboard.com>
-In-Reply-To: <YNO0LHNVSWjrh1ZS@pendragon.ideasonboard.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 23 Jun 2021 23:48:32 -0300
-Message-ID: <CAOMZO5Ahbu4mohtMDOQOv_y5B_TDesbdYEUZTF1RL7_y-bS+RA@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/9] drm: bridge: Add Samsung SEC MIPI DSIM bridge driver
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Michael Tretter <m.tretter@pengutronix.de>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Francis Laniel <francis.laniel@amarulasolutions.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Tomasz Figa <t.figa@samsung.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Milco Pratesi <milco.pratesi@engicam.com>,
-        Anthony Brandon <anthony@amarulasolutions.com>,
-        linux-phy@lists.infradead.org, Fancy Fang <chen.fang@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <a6cdc518-3bd7-2b66-acd0-c4d53d360eae@infradead.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan/Laurent,
+On 6/24/21 12:14 PM, Randy Dunlap wrote:
+> On 6/23/21 8:37 PM, Gavin Shan wrote:
+>> The empty NUMA nodes, where no memory resides in, are allowed. For
+>> these empty NUMA nodes, the 'len' of 'reg' property is zero. These
+>> empty NUMA node IDs are still valid and parsed. I finds difficulty
+>> to get where it's properly documented.
+>>
+>> So lets add note to empty NUMA nodes in the NUMA binding doc.
+>>
+>> Signed-off-by: Gavin Shan <gshan@redhat.com>
+>> ---
+>>   Documentation/devicetree/bindings/numa.txt | 4 ++++
+>>   1 file changed, 4 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+>> index 21b35053ca5a..c564705c0eac 100644
+>> --- a/Documentation/devicetree/bindings/numa.txt
+>> +++ b/Documentation/devicetree/bindings/numa.txt
+>> @@ -109,6 +109,10 @@ Example:
+>>   Dual socket system consists of 2 boards connected through ccn bus and
+>>   each board having one socket/soc of 8 cpus, memory and pci bus.
+>>   
+>> +Note that the empty NUMA nodes, which no memory resides in, are allowed
+> 
+> Missing period at end of the sentence above.
+> 
 
-On Wed, Jun 23, 2021 at 7:23 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
+Oh, Yes. Thanks, Randy. I will replace "resides in" with "resides in period"
+in v2.
 
-> Looking at the register set, it seems to match the Exynos 5433,
-> supported by drivers/gpu/drm/exynos/exynos_drm_dsi.c. Can we leverage
-> that driver instead of adding a new one for the same IP core ?
+>> +Their NUMA node IDs are still valid so that memory can be added into these
+>> +NUMA nodes through hotplug afterwards.
+>> +
+>>   	memory@c00000 {
+>>   		device_type = "memory";
+>>   		reg = <0x0 0xc00000 0x0 0x80000000>;
 
-Yes. there was an attempt from Michael in this direction:
-https://patchwork.kernel.org/project/dri-devel/cover/20200911135413.3654800-1-m.tretter@pengutronix.de/
+By the way, I have one more question to check with you if I can. I'm not sure
+if dummy and invalid 'unit-address' is allowed in the empty memory node name,
+which follows the format "memory@unit-address'.
 
-Cheers
+(1) The 'unit-address' is same thing as to 'base address' for memory node,
+     as specified in device-tree specification. I'm not sure if 'base address'
+     can be dummy and invalid one since empty memory node doesn't have memory
+     at all.
+
+     https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#node-names
+
+(2) I don't find the 'unit-address' is used in linux, but I'm not sure other
+     software component like firmware uses it or not.
+
+Thanks,
+Gavin
+
