@@ -2,197 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F0CF3B265F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 06:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 725203B26A2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 06:56:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229772AbhFXEfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 00:35:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50444 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229721AbhFXEfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 00:35:01 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C4FC061756
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 21:32:42 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id s17-20020a17090a8811b029016e89654f93so5113024pjn.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 21:32:42 -0700 (PDT)
+        id S229508AbhFXE60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 00:58:26 -0400
+Received: from mail-eopbgr1320092.outbound.protection.outlook.com ([40.107.132.92]:36067
+        "EHLO APC01-PU1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229464AbhFXE6Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Jun 2021 00:58:25 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gcURCDMoqyZAA3pGUMtvkU8tnic8gZrnKY8S0cXWV2Ns+xcKuWGGyr9QM91WbCAfXpS5TkYQGyzigm3eSLcuuMEe+DIa/aJ/T16SLIr46q91tOGdHNnC0alUtHdXMN15Ssswp+aMXLPRLmDrVICHT+mKvmH+B8f8ur3v6fgKgNQiL5vCgqHmHJ/0GzS0h8p7cQY5yKontnlUgKsYvdzSv/0AOPdYfJYqLAvpq5JbJzypCG7H391Q1Q4mP/7QF0N8XN8FltSM5IWqf8rMhcnCP6tHVX0b/4xqRZwYo/8zuK93Gtz5sH4QvdnAI0UbWzvPGOV6k+CMzke3XvcPoLWb6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2KcVzzXmtEJhDPNN1iQIERABqcDcQHIFjObjalFUb6k=;
+ b=hBLMI7xi812vxC7Qc1yjPkpBcD9oIpy/lYGeM/UcsjtazMfsOymlzQOvvLX9+D/D1cy4Yn10EGx/h7Jxticc2olrGfZd6SJHl3M1AJPH2xN4+05QVxHJ+T4U/Cn3Jjlrh192S9UXfPFg0wg8U5HzS6tvbxXFEkds+ppW23y1aOoKspJ5RlXQzo5vTYE0ne1izO/DGFUUT7l79CGJgsir5SSv3rRciL+DGQoXswMU6orpFj3Y0GqLKebufXduqEsTHC7FoRohbt7U14SD9r7R6Lr5UX5ogdnBeF177gPhyQz14CzVbaG/VmLSMw8JTcout5NYVrW3ip03hZJ+O3geBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=lTTd4C04SA2E3AghdMNSGn7s0cIff6cdMlZ1vAXtDSA=;
-        b=gen7iuSa1fQaov27zr35RQ3fadV1bVakwExJvyoiz/2bAisC/EC2AoCmrVyvbgzPwD
-         4nlY18J9+uD30MzVgmESRnwG7KFHNjSUm/oMxYcJ59RgRczKUQERiJGKHqOviBzoxTL6
-         0DMxTW3MAk0v0ymifRwSsciaXB//wR52cMlxJYQytRE+5McqSQDKGO7tH4DZkxUOuSo0
-         /cwV8keRsZwMejvLjCpil20D/D9pR2P9xM7WhBEGNGM+14jxF7KzzVBhbeHotw0I9eEk
-         R6U0KXym1XeZAv1klhqYuOW+UDK8YKQP4tcXjo2hn0YGW7q4CIwqvgSLLeMY6Uo7g/9H
-         h0Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lTTd4C04SA2E3AghdMNSGn7s0cIff6cdMlZ1vAXtDSA=;
-        b=tIcDm7k8r2lMi4jSGX2qgF2o3alu65ATvNcTC69Uv76m3+56cBHjQOI3WSBtI2G4qt
-         QSYN9EToDn40EJaoue7MSHu3wGtkjOPbKmW38K1aqaNORXFoHI7p+Y4ACckWa1qP1OxQ
-         3ecNC7/lF4EoG8lmzObDADYQqvtQIseL4VKZH1k+nerZEO9ZJB4MXMW+QI0et2bVBMdP
-         drga3mWkcUTMtRTq+KDYcf8moPkF15mm9SgiXOJWHd2F9W0FJTQzqqpq8nW1hRE3jGLO
-         BrQSt1iKCwpDgD0IQBC4KMpM2ppBEBetMWWVRd50EXxUQ6aytH7Ua7kpAmIX4aUGbRiX
-         +s1g==
-X-Gm-Message-State: AOAM530ysFwNNCWZLLDTKzFtd2Ae8Q8LQrndr5SufV+O254xECD3uk+W
-        /Z5UL61/YZi9F1piRIvDnjjTrQ==
-X-Google-Smtp-Source: ABdhPJzz6vn2zWUKB2ryOpIaYUVQnrSaiXXW5UhtPCB+tqvxcPK98S7Q9smW66yPLcbeUXDhds9k9Q==
-X-Received: by 2002:a17:90a:de84:: with SMTP id n4mr8712489pjv.62.1624509162441;
-        Wed, 23 Jun 2021 21:32:42 -0700 (PDT)
-Received: from localhost ([136.185.134.182])
-        by smtp.gmail.com with ESMTPSA id 76sm1231543pfu.131.2021.06.23.21.32.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Jun 2021 21:32:41 -0700 (PDT)
-Date:   Thu, 24 Jun 2021 10:02:40 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Yangtao Li <tiny.windzz@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Georgi Djakov <djakov@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] dt-bindings: opp: Convert to DT schema
-Message-ID: <20210624043240.n6m3cdftz75lhm3t@vireshk-i7>
-References: <20210623230722.3545986-1-robh@kernel.org>
- <20210623230722.3545986-3-robh@kernel.org>
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2KcVzzXmtEJhDPNN1iQIERABqcDcQHIFjObjalFUb6k=;
+ b=MxZuH5wmGP4R92JR8oUSoOBoga+798E+u738Zd1HMNIw0+Iozpi/KBEYJ+i4LWdcbKES6Igb/DwOr2w2QfnhH+neGpsmayLehsx4+FJ4pq6Rul5xkvnsQ9zHHEiq9U4SiZeDyiXBrXjcA68dlrILQcU356tcn7R9EmgZd1ILooY=
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
+ by TY2PR01MB4300.jpnprd01.prod.outlook.com (2603:1096:404:10b::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.19; Thu, 24 Jun
+ 2021 04:56:04 +0000
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::4c5d:66ee:883a:72a5]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::4c5d:66ee:883a:72a5%6]) with mapi id 15.20.4242.024; Thu, 24 Jun 2021
+ 04:56:04 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 05/14] arm64: dts: renesas: Add Renesas R8A779M1 SoC
+ support
+Thread-Topic: [PATCH 05/14] arm64: dts: renesas: Add Renesas R8A779M1 SoC
+ support
+Thread-Index: AQHXXdxG3XhmU3Ghv0CO+jMJ1d2pUKsirlzg
+Date:   Thu, 24 Jun 2021 04:56:04 +0000
+Message-ID: <TY2PR01MB36928C65463E91D028BB5F64D8079@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+References: <cover.1623315732.git.geert+renesas@glider.be>
+ <96a1cfd2e8d86e10364fa330c6053b5136e82939.1623315732.git.geert+renesas@glider.be>
+In-Reply-To: <96a1cfd2e8d86e10364fa330c6053b5136e82939.1623315732.git.geert+renesas@glider.be>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: glider.be; dkim=none (message not signed)
+ header.d=none;glider.be; dmarc=none action=none header.from=renesas.com;
+x-originating-ip: [124.210.22.195]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f52049a6-cd95-4ecf-c4ce-08d936cc5ee6
+x-ms-traffictypediagnostic: TY2PR01MB4300:
+x-microsoft-antispam-prvs: <TY2PR01MB430094C43E8116E8B660F1B1D8079@TY2PR01MB4300.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EPrCdWMTq8FI4ROwnEcSSA/jIz3xhI2Xl9D5qlxbiTw0lKmfTbKJLtVqE0sZRXrL01aLFm5zk80tCe+10R8KhpcLHdSuGhs3l+treDRthUHovpqCOfcdcJGgaX/YN/HkNZklaUxWbqMKY0+lJM5IH8K9UwcUgYosO7Rug6C6lnuQltisVTBWh21qxi1fCkSW+dy7m5mY6xus6RsWpI6qMuW8rehEjhlZq/jZhOR8vtO5rwt8wQwh3hDRy2hbt8l4k20LxAxSInltJOki/EIYdqiotf5c5xpGlgk0WHPz5P44ZYRbabvAsPQffsjnEUd5kakCu2C8Pw9PC6Jwn7+QLM+XhqZ5IoPndtEowxUZ+1xMr9cB+EDfWpCztrMEnaYMIiYEPawbzdf7ZPY9OMTbpvYMHYn6cPCpNO5Nvj3hySuAoJgLiLNI7YEDng3BHvEQzAIXJArI0R+gof0TlSnsVPj2ABa6MxvteKZbyiznhIJxhlqyIygkqj5aiASqsAuI3o2SgvLA9ZaiQMobWu4VQrQpvFZVlEZ5eUTUWpZFFvFb/u/aGJt0atuIwF//iOJQeWJyCNsUtqDFwfTtkyZRLiUHsmdSTPBjt3pOssnJtIy4H3pHNKYeAhV8aWvRMlhovIaLZ+M0ANZ/h2iltyYVHg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(136003)(396003)(366004)(376002)(478600001)(66476007)(66556008)(64756008)(66446008)(4744005)(76116006)(66946007)(54906003)(110136005)(6506007)(122000001)(316002)(9686003)(7696005)(52536014)(5660300002)(38100700002)(86362001)(186003)(71200400001)(55236004)(2906002)(8936002)(4326008)(26005)(55016002)(8676002)(33656002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ZClC++Sio4K+Mc2ake1hTHDdIfGolItNZiZSRVDMJa06AUNPHAR2c7AmPJjX?=
+ =?us-ascii?Q?PezKHRxMTLairgPCVUyt9LmK8Q1IownByPOmVUbETTCOAHFBjGWBFxptjnFH?=
+ =?us-ascii?Q?9FDls93q78/IHgYJinRWwWnB2Ao1liMbcLqrPRO0aPFwE2K69zCn8LKsgSjE?=
+ =?us-ascii?Q?pgnD3VK4lmpHMWeGTqyu32104d0Rx6cyV76XcFaG8UD1ErE6mANpj/36cQwW?=
+ =?us-ascii?Q?qGZlKivIEJSPc66lFQaADN9zIX0A4ia6CtSCLpiFOBvi2UkJPnkhGalnJ3RQ?=
+ =?us-ascii?Q?6sfg41PdmM7HBY5O5gezp+gOV1eGASQM4suuySz95U/S6mGnXdj4bCKMxbHN?=
+ =?us-ascii?Q?TXqXMp4Op9hunQh6UgZmoEzj6EqHYGHiEj7uYXe2u3zbF7tQQgcq2yiDmXaI?=
+ =?us-ascii?Q?W71mwrrPo1FoQtEMXAZjhXG3FvFM98dG3T9f4M4r0qZleq5xSaxLILWlY83O?=
+ =?us-ascii?Q?xAjGx8e6u5OlEzRFUhKjbDIsRvA8Nur3tvaKNmGSOPJvllYdJLC25PHvHiyD?=
+ =?us-ascii?Q?kPfKf83E4EDopFPRmsyMw7+j9bXsWl3FZr5da5UaYULxmiTCiucq7iEPyEL+?=
+ =?us-ascii?Q?8FaEaJ8saFAAyAtuk1GeV1/KO920AsXJQ8CRJpFbZWWANdHwNvRNYGy1zPrX?=
+ =?us-ascii?Q?W+f2vZpmYCCK0sCjHZO30luaM7NxscY9M/QAgqoG6AOdHOF438xBdFhDcCXW?=
+ =?us-ascii?Q?cyWS1rTIo6nysH4t4Y/xVtmymxWzM7ocQ8L+/yyjx55517KHfDbFSFQinlcT?=
+ =?us-ascii?Q?Nk3eUXUMmRnUO57V8QqrjUbildUFTe3bK3vTbL6nQJN6uOsF3L6FGjzvQlYl?=
+ =?us-ascii?Q?cNIxOwqO6sZBskO2LWgZra3SdxD/bV6RjSFBUo1JmUN3PAu8sNVvGnLBnzem?=
+ =?us-ascii?Q?VusdDUF39HgKZyJBShx3021oLEwihlFkfP8ASuROXfkll6xUsrwTCB/BVIjK?=
+ =?us-ascii?Q?ELB2maWTphMo3A2KTxHAsnTLbj57sRuq2gaQd7vpbNhbjPODLtQCvrXL+Gzk?=
+ =?us-ascii?Q?v79oe3mOR96g7nsHWRKZGAB2i/pVZuPoyhyvYD/pdxbRWI7N0fSoNYx3tBXn?=
+ =?us-ascii?Q?VVGTsgb00NleVZCuIlguvUdPqX18zSM4BmBggbjKdQpxD41OD1wnxYPbbrEo?=
+ =?us-ascii?Q?GPAZrNkDwP/f2xI8iKckfzezor6EPIqhD6lPo+NVzohBzVAV5PI2q3Sn1OF1?=
+ =?us-ascii?Q?rhycYDWRG2UhuMvzB3IsPa+LhWmSlqSpU+DCbqb2bLXFq9tGeR8HXlFSk9mS?=
+ =?us-ascii?Q?GMF5kH/b15dgl3u/FaYiVEti2oB+D+xe15mzbCkC3dXBrKiYDl+AiiylQPs8?=
+ =?us-ascii?Q?ZxGKoH/fprShe597fBMwBuyB?=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210623230722.3545986-3-robh@kernel.org>
-User-Agent: NeoMutt/20180716-391-311a52
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f52049a6-cd95-4ecf-c4ce-08d936cc5ee6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2021 04:56:04.2236
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3of58VxeXF6ux2/+YTeyDkrHEh9NECJsRBRF5WfkloyHZA0PVjox2RjvjStfS2bL2XKSw37aA8HAryFYPmOcOG4SHq9yX6H0f0vyimoGdV0qmjHCElPdjcBBn2oyo5J4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB4300
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for taking it up :)
+Hi Geert-san,
 
-On 23-06-21, 17:07, Rob Herring wrote:
-> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> +$id: http://devicetree.org/schemas/opp/opp-v2-base.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic OPP (Operating Performance Points) Common Binding
-> +
-> +maintainers:
-> +  - Viresh Kumar <viresh.kumar@linaro.org>
-> +
-> +description: |
-> +  Devices work at voltage-current-frequency combinations and some implementations
-> +  have the liberty of choosing these. These combinations are called Operating
-> +  Performance Points aka OPPs. This document defines bindings for these OPPs
-> +  applicable across wide range of devices. For illustration purpose, this document
-> +  uses CPU as a device.
-> +
-> +  This describes the OPPs belonging to a device.
-> +
-> +select: false
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: '^opp-table(-[a-z0-9]+)?$'
-> +
-> +  opp-shared:
-> +    description:
-> +      Indicates that device nodes using this OPP Table Node's phandle switch
-> +      their DVFS state together, i.e. they share clock/voltage/current lines.
-> +      Missing property means devices have independent clock/voltage/current
-> +      lines, but they share OPP tables.
-> +    type: boolean
-> +
-> +patternProperties:
-> +  '^opp-?[0-9]+$':
-> +    type: object
-> +    description:
-> +      One or more OPP nodes describing voltage-current-frequency combinations.
-> +      Their name isn't significant but their phandle can be used to reference an
-> +      OPP. These are mandatory except for the case where the OPP table is
-> +      present only to indicate dependency between devices using the opp-shared
-> +      property.
-> +
-> +    properties:
-> +      opp-hz:
-> +        description:
-> +          Frequency in Hz, expressed as a 64-bit big-endian integer. This is a
-> +          required property for all device nodes, unless another "required"
-> +          property to uniquely identify the OPP nodes exists. Devices like power
-> +          domains must have another (implementation dependent) property.
-> +
-> +      opp-peak-kBps:
-> +        description:
-> +          Peak bandwidth in kilobytes per second, expressed as an array of
-> +          32-bit big-endian integers. Each element of the array represents the
-> +          peak bandwidth value of each interconnect path. The number of elements
-> +          should match the number of interconnect paths.
-> +        minItems: 1
-> +        maxItems: 32  # Should be enough
+> From: Geert Uytterhoeven, Sent: Thursday, June 10, 2021 6:37 PM
+>=20
+> Add support for the Renesas R-Car H3e-2G (R8A779M1) SoC, which is a
+> different grading of the R-Car H3 ES3.0 (R8A77951) SoC.
+>=20
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Can we move this down, closer to opp-avg-kBps ?
+Thank you for the patch!
 
-> +
-> +      opp-microvolt:
-> +        description: |
-> +          Voltage for the OPP
-> +
-> +          A single regulator's voltage is specified with an array of size one or three.
-> +          Single entry is for target voltage and three entries are for <target min max>
-> +          voltages.
-> +
-> +          Entries for multiple regulators shall be provided in the same field separated
-> +          by angular brackets <>. The OPP binding doesn't provide any provisions to
-> +          relate the values to their power supplies or the order in which the supplies
-> +          need to be configured and that is left for the implementation specific
-> +          binding.
-> +
-> +          Entries for all regulators shall be of the same size, i.e. either all use a
-> +          single value or triplets.
-> +        minItems: 1
-> +        maxItems: 8
+Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-For consistency with rest of the doc, maybe add
+Best regards,
+Yoshihiro Shimoda
 
-# Should be enough regulators
-
-> +        items:
-> +          minItems: 1
-> +          maxItems: 3
-> +
-> +      opp-microamp:
-> +        description: |
-> +          The maximum current drawn by the device in microamperes considering
-> +          system specific parameters (such as transients, process, aging,
-> +          maximum operating temperature range etc.) as necessary. This may be
-> +          used to set the most efficient regulator operating mode.
-> +
-> +          Should only be set if opp-microvolt(-name)? is set for the OPP.
-
-What is the significance of '?' here ?
-
-> +
-> +          Entries for multiple regulators shall be provided in the same field
-> +          separated by angular brackets <>. If current values aren't required
-> +          for a regulator, then it shall be filled with 0. If current values
-> +          aren't required for any of the regulators, then this field is not
-> +          required. The OPP binding doesn't provide any provisions to relate the
-> +          values to their power supplies or the order in which the supplies need
-> +          to be configured and that is left for the implementation specific
-> +          binding.
-> +        minItems: 1
-> +        maxItems: 8   # Should be enough regulators
-> +        items:
-> +          minItems: 1
-> +          maxItems: 3
-
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
-
--- 
-viresh
