@@ -2,86 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C8893B2A47
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 10:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46D7F3B2A5F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 10:30:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231861AbhFXIZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 04:25:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34794 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231826AbhFXIZg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Jun 2021 04:25:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5BBF0613E8;
-        Thu, 24 Jun 2021 08:23:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624522997;
-        bh=6+8DC4IpeSttLdmm9MiRqdcSoNk3uI+zKuzqUGGQ0tI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PR8eWWcZxoaaR3PHZ+0yx3IkvkyHx21mNtuv5xgJeJmyJs1W6r+CbjgA+yHVKMkJL
-         IWcK4EfdmE/lIZi3VujgYuhGPySCBnosd2qQI+fYUfVdERvbY9tIbkozvfgIs0K+mH
-         NeknLrIKOm8FSkTEwJCOyJaRWzxUGIZWcQUhpnh/0R87DkzXQ6A83jGnlQ3CY2qapc
-         6Y524qcucOMYihsEQ3UmMrIIZVWLU2OS2drXflYz1gIiWN5Cdc1/Jr3YltLXaNFlL+
-         06A4yN2o82WCKI4p3tJU3nxEQ/cmtFBI9mG+HZopzmHC4TmIbRTBYnGYF335qDu6+I
-         4PQuN+yfZaSlw==
-Received: by pali.im (Postfix)
-        id E3C5780E; Thu, 24 Jun 2021 10:23:14 +0200 (CEST)
-Date:   Thu, 24 Jun 2021 10:23:14 +0200
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     xxm <xxm@rock-chips.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        kernel test robot <lkp@intel.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>
-Subject: Re: [PATCH v9 2/2] PCI: rockchip: Add Rockchip RK356X host
- controller driver
-Message-ID: <20210624082314.mw3ilcufswmb635m@pali>
-References: <20210506023448.169146-1-xxm@rock-chips.com>
- <20210506023544.169196-1-xxm@rock-chips.com>
- <20210623143333.GA15104@lpieralisi>
- <46b3f277-2bde-321d-b616-3f3b41259e4d@rock-chips.com>
+        id S231936AbhFXIdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 04:33:15 -0400
+Received: from youngberry.canonical.com ([91.189.89.112]:57473 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231835AbhFXIdP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 04:33:15 -0400
+Received: from mail-ej1-f70.google.com ([209.85.218.70])
+        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <krzysztof.kozlowski@canonical.com>)
+        id 1lwKlD-0005IZ-DT
+        for devicetree@vger.kernel.org; Thu, 24 Jun 2021 08:30:55 +0000
+Received: by mail-ej1-f70.google.com with SMTP id w13-20020a170906384db02903d9ad6b26d8so1743372ejc.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 01:30:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=FWf1/8cps0f2orI5AbiDd3FTEBu65FvivubU0HnKemc=;
+        b=SSzC2HchDBEQixh9QZReACnJ1eebAh3v2P9IrQ5FxLH59uyeU6RpIBn0hSGOmOPIu2
+         NWrTCYpGHLMLxxpMokklUXx3vg4OJYnRU7pNZ2HxzjOuZuZyjRBWtupe64LX0mnt1b5e
+         81UTV9yV53N+qiZcXdGNCpep/OknvG2GTnHJvo+TA30wH3XAD4VmXwj4pK/h0pxIzNYB
+         y3RZf2fVJFbnE13KagjeJKDrOecG/LIK0TdMf0Y8Ls/mLEy/7gM3LpstvAw+IGA+TaSu
+         xucZoK1t+6sFbAkJYuGI5M2+YcmIH4ZbO/9mopobrIWoDR7R1dCHrZVgsF2fyFN/tBw+
+         rVyQ==
+X-Gm-Message-State: AOAM530oyiDCgeD/u/inv7w6Cto9KGmq6MGbHqrrIuUODz4O7+o9EMul
+        XTOLM5pubRC6MMStFPHGOv00eoVl+dr6LIykcp3hvuUS8RDdGzscAPq6iY3q+MBXaTIspQLa6rU
+        zrGUdfI0TIV88P9/HO+dWN0+xy7NslLio4Q91E6E=
+X-Received: by 2002:a17:906:dbd5:: with SMTP id yc21mr4064950ejb.233.1624523455172;
+        Thu, 24 Jun 2021 01:30:55 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyE9NG70Q0R7WlldJgiju8y4R6tNhr+XdnWHXcuF262S4ipiZ1rkQiFP2aNPfY2SEkDu6zFjg==
+X-Received: by 2002:a17:906:dbd5:: with SMTP id yc21mr4064931ejb.233.1624523455018;
+        Thu, 24 Jun 2021 01:30:55 -0700 (PDT)
+Received: from [192.168.1.115] (xdsl-188-155-177-222.adslplus.ch. [188.155.177.222])
+        by smtp.gmail.com with ESMTPSA id a3sm1417424edu.61.2021.06.24.01.30.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Jun 2021 01:30:54 -0700 (PDT)
+Subject: Re: [RFC PATCH 2/9] drm: bridge: Add Samsung SEC MIPI DSIM bridge
+ driver
+To:     Fabio Estevam <festevam@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michael Tretter <m.tretter@pengutronix.de>
+Cc:     Jagan Teki <jagan@amarulasolutions.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Francis Laniel <francis.laniel@amarulasolutions.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Tomasz Figa <t.figa@samsung.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        Milco Pratesi <milco.pratesi@engicam.com>,
+        Anthony Brandon <anthony@amarulasolutions.com>,
+        linux-phy@lists.infradead.org, Fancy Fang <chen.fang@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+References: <20210621072424.111733-1-jagan@amarulasolutions.com>
+ <20210621072424.111733-3-jagan@amarulasolutions.com>
+ <YNO0LHNVSWjrh1ZS@pendragon.ideasonboard.com>
+ <CAOMZO5Ahbu4mohtMDOQOv_y5B_TDesbdYEUZTF1RL7_y-bS+RA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Message-ID: <2decfea3-3659-2a3b-7706-326c97f57f8e@canonical.com>
+Date:   Thu, 24 Jun 2021 10:30:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <CAOMZO5Ahbu4mohtMDOQOv_y5B_TDesbdYEUZTF1RL7_y-bS+RA@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <46b3f277-2bde-321d-b616-3f3b41259e4d@rock-chips.com>
-User-Agent: NeoMutt/20180716
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thursday 24 June 2021 10:08:54 xxm wrote:
-> 在 2021/6/23 22:33, Lorenzo Pieralisi 写道:
-> > On Thu, May 06, 2021 at 10:35:44AM +0800, Simon Xue wrote:
-> > > +static int rockchip_pcie_start_link(struct dw_pcie *pci)
-> > > +{
-> > > +	struct rockchip_pcie *rockchip = to_rockchip_pcie(pci);
-> > > +
-> > > +	/* Reset device */
-> > > +	gpiod_set_value_cansleep(rockchip->rst_gpio, 0);
-> > > +
-> > > +	rockchip_pcie_enable_ltssm(rockchip);
-> > > +
-> > > +	/*
-> > > +	 * PCIe requires the refclk to be stable for 100µs prior to releasing
-> > > +	 * PERST. See table 2-4 in section 2.6.2 AC Specifications of the PCI
-> > > +	 * Express Card Electromechanical Specification, 1.1. However, we don't
-> > > +	 * know if the refclk is coming from RC's PHY or external OSC. If it's
-> > > +	 * from RC, so enabling LTSSM is the just right place to release #PERST.
-> > > +	 * We need more extra time as before, rather than setting just
-> > > +	 * 100us as we don't know how long should the device need to reset.
-> > > +	 */
-> > > +	msleep(100);
-> > Any rationale behind the time chosen ?
-> We found some device need about 30ms, so 100ms here just leave more room for
-> other devices.
+On 24/06/2021 04:48, Fabio Estevam wrote:
+> Hi Jagan/Laurent,
+> 
+> On Wed, Jun 23, 2021 at 7:23 PM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+> 
+>> Looking at the register set, it seems to match the Exynos 5433,
+>> supported by drivers/gpu/drm/exynos/exynos_drm_dsi.c. Can we leverage
+>> that driver instead of adding a new one for the same IP core ?
+> 
+> Yes. there was an attempt from Michael in this direction:
+> https://patchwork.kernel.org/project/dri-devel/cover/20200911135413.3654800-1-m.tretter@pengutronix.de/
 
-Can you share information which PCIe card needs 30ms?
+That's the proper direction (maybe as Marek suggested - sharing common
+code like for Analogix DP), not duplicating a driver.
 
-Last year I did tests with more WiFi AC cards and "the slowest" one was
-Compex WLE1216 which needed about 11ms (more than 10ms). All other cards
-were happy with just 1-2ms.
+
+Best regards,
+Krzysztof
