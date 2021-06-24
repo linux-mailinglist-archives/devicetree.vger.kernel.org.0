@@ -2,112 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BBEA3B372A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 21:41:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 562C03B372E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 21:43:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232592AbhFXTn2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 15:43:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59550 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232789AbhFXTn2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 15:43:28 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBCD4C06175F
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 12:41:07 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id w15so1040088pgk.13
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 12:41:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=+xafYqSgVD8nUH+DnQ+8KYkIuJ1/DagxEHzExEHv1Yk=;
-        b=s1ELRsJ1L3/affpkUOzjF8ZJlTUHW0ZrN/RcHFSj4l2+sYgfbmXfU24TmlKgOmSCQk
-         FQL1L17D95/uRY/UEILoJRT16xm0mbvWMkboQYmaJXXXukYIIDAcy0XHxIrdvbbywQGB
-         15l9Ii95uFNiMZoqSA4ufg2Wnbi/pvMszX1on4/IFXOvcs+fVZJ3VRczx2d9PlshXNpr
-         lpfTlnxOpL51j8c/p+xq2Y1oR392KHHfa74lrgoPFjeGGrVDVrv4Vo8hK4N3o+f8GLiF
-         4YfDkoAoOJT9WwNMGbirr0Yly+LqTGTnJm7q0hzxF1mN1GdRuflsOWMmN9y+Mn4eNTXp
-         dydw==
+        id S232528AbhFXTpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 15:45:18 -0400
+Received: from mail-io1-f42.google.com ([209.85.166.42]:33572 "EHLO
+        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232178AbhFXTpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 15:45:18 -0400
+Received: by mail-io1-f42.google.com with SMTP id a6so9783505ioe.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 12:42:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+xafYqSgVD8nUH+DnQ+8KYkIuJ1/DagxEHzExEHv1Yk=;
-        b=ZDY27te0mviUG6gWUOX5UgsdnOvsjoDOaENjVNvaj4gf6TJQOhdoo9yXIDvWy/lisY
-         /a2Xe39pzCB+Bl1b67gVMGBXso1jBQ87FXhTICAuBd9bPgF5gThHHQkTUdu5Gj4FcQIg
-         /mA9WlR/BqvC2nWpBSXBFrs+FlDqKuRNJ8XyxxKyXEeKcSnsT8gQJ5H4tP1yfXvu18zn
-         GOqVr9Znomp/fI1F51l32DBuhIi93JrZcsUm+CTkGdzB/qtcGFOOT2ma9n97hyddKCm5
-         OavjBAgYmhjtaV/PtWi8qvgDd06v1Oj4Hd+SP6u/2j2IlBulz6792ENvXV9QcOqTkQA5
-         ehxg==
-X-Gm-Message-State: AOAM532Cy8Hc6MMPPE56wzvmtntWMp7pIP1mDSrijCQRm/9G1clk2b/w
-        /eQqNg3MLqlg65k8LyKMn48vUw==
-X-Google-Smtp-Source: ABdhPJwUVFpzX28kDds82ZORVhxGs12hO3Flayw0ggl9RAz91JOqJAMu9/GsvdTHoLtcOZIXf44n1A==
-X-Received: by 2002:a62:1d84:0:b029:304:5af1:65f6 with SMTP id d126-20020a621d840000b02903045af165f6mr4825181pfd.80.1624563667240;
-        Thu, 24 Jun 2021 12:41:07 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id cu4sm3364755pjb.40.2021.06.24.12.41.05
+        bh=THfvJkAueSmNMFmfgmtn+SZkItyt6FrEjnkmqGS/Sxw=;
+        b=NjRjgRsjmORGSw6+ed5xRAjk30vxuqeFqBpwPmpPH97NOxuIvuWPvQ9qcl+TyV5pcO
+         vgMzQysyslK3Sq2r/esmNGOjB1CMpPcyw/FIh+hgATCwx/NVF+omFQqRzT38QW09Aw4D
+         B5Opd5aqGvBDbMZabB6kQmuWAPa4+dOIIHlRcuG+60ndTfCNR5S3DhQJUY/MyyPpBuOs
+         ZO2ERvzjSC5p2GOC+tf5r3BheZZmLOGN4S6LMzbuWjM1PcFawy8vbFmFeEHbhikH8Nan
+         Vp7W2pdX5pd4PoBMipVCGSyi0LRsuqLDTbo44C3s/v2Klc5r2hQ6hKA9p/9fesrp+dxj
+         Sb/w==
+X-Gm-Message-State: AOAM533J/iV9Hl8m5Drc1KSia/95SSoZdSPaA1I7Gltw0Gqa8R1EAchq
+        CnweVchvf4INrj2OnclxrVOcGx3fqw==
+X-Google-Smtp-Source: ABdhPJxPTiJVjXEVlqlbTHze08iGbxs03FGnRpR1KT7nfbxUeVMFDqUt6JHztbNFQzQQ6dRBK+Ki/g==
+X-Received: by 2002:a5d:948a:: with SMTP id v10mr5444385ioj.37.1624563778689;
+        Thu, 24 Jun 2021 12:42:58 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id i1sm1774450iol.16.2021.06.24.12.42.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 12:41:06 -0700 (PDT)
-Date:   Thu, 24 Jun 2021 13:41:04 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] remoteproc: pru: Add support for various PRU cores
- on K3 AM64x SoCs
-Message-ID: <20210624194104.GB1090275@p14s>
-References: <20210623173243.7862-1-s-anna@ti.com>
- <20210623173243.7862-3-s-anna@ti.com>
+        Thu, 24 Jun 2021 12:42:57 -0700 (PDT)
+Received: (nullmailer pid 1869205 invoked by uid 1000);
+        Thu, 24 Jun 2021 19:42:54 -0000
+Date:   Thu, 24 Jun 2021 13:42:54 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: interrupt-controller: Convert ARM VIC to
+ json-schema
+Message-ID: <20210624194254.GA1869153@robh.at.kernel.org>
+References: <20210617205317.3060163-1-sudeep.holla@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210623173243.7862-3-s-anna@ti.com>
+In-Reply-To: <20210617205317.3060163-1-sudeep.holla@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 23, 2021 at 12:32:42PM -0500, Suman Anna wrote:
-> The K3 AM64x family of SoCs have a ICSSG IP that is similar to the
-> version on AM65x SR2.0 SoCs with some minor differences. The AM64x
-> SoCs contain two instances of this newer ICSSG IP. Each ICSSG processor
-> subsystem contains 2 primary PRU cores, 2 auxiliary PRU cores called
-> RTUs, and 2 new auxiliary cores called Transmit PRUs (Tx_PRUs).
+On Thu, 17 Jun 2021 21:53:17 +0100, Sudeep Holla wrote:
+> Convert the ARM VIC binding document to DT schema format using
+> json-schema.
 > 
-> Enhance the existing PRU remoteproc driver to support all these PRU,
-> RTU and Tx_PRU cores by using specific compatibles. The cores have the
-> same memory copying limitations as on AM65x, so reuses the custom memcpy
-> function within the driver's ELF loader implementation. The initial
-> names for the firmware images for each PRU core are retrieved from
-> DT nodes, and can be adjusted through sysfs if required.
-> 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
 > ---
->  drivers/remoteproc/pru_rproc.c | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/interrupt-controller/arm,vic.txt | 41 ----------
+>  .../interrupt-controller/arm,vic.yaml         | 81 +++++++++++++++++++
+>  2 files changed, 81 insertions(+), 41 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/arm,vic.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
 > 
-> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-> index e5778e476245..0ecf2675f5eb 100644
-> --- a/drivers/remoteproc/pru_rproc.c
-> +++ b/drivers/remoteproc/pru_rproc.c
-> @@ -894,6 +894,9 @@ static const struct of_device_id pru_rproc_match[] = {
->  	{ .compatible = "ti,j721e-pru",		.data = &k3_pru_data },
->  	{ .compatible = "ti,j721e-rtu",		.data = &k3_rtu_data },
->  	{ .compatible = "ti,j721e-tx-pru",	.data = &k3_tx_pru_data },
-> +	{ .compatible = "ti,am642-pru",		.data = &k3_pru_data },
-> +	{ .compatible = "ti,am642-rtu",		.data = &k3_rtu_data },
-> +	{ .compatible = "ti,am642-tx-pru",	.data = &k3_tx_pru_data },
->  	{},
-
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-
->  };
->  MODULE_DEVICE_TABLE(of, pru_rproc_match);
-> -- 
-> 2.30.1
+> v2[2]->v3:
+> 	- Dropped unnecessary maxItems and description fields as suggested
+> 	- Used enum instead of oneOf
+> 	- Reverted back to GPL-2.0
 > 
+> v1[1]->v2[2]:
+> 	- Added arm,versatile-vic to the list of compatibles as suggested
+> 	  by Linus W and added his review tag
+> 	- Updated the SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> 
+> [1] https://lore.kernel.org/r/20210610135717.2782793-1-sudeep.holla@arm.com/
+> [2] https://lore.kernel.org/r/20210611111033.2818949-1-sudeep.holla@arm.com/
+> 
+
+Applied, thanks!
