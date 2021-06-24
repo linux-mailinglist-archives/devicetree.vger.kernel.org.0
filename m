@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C395F3B379E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 22:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78D133B37BA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 22:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232582AbhFXUNn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 16:13:43 -0400
-Received: from mail-io1-f45.google.com ([209.85.166.45]:33666 "EHLO
-        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232178AbhFXUNn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 16:13:43 -0400
-Received: by mail-io1-f45.google.com with SMTP id a6so9885337ioe.0;
-        Thu, 24 Jun 2021 13:11:23 -0700 (PDT)
+        id S232498AbhFXUZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 16:25:04 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:40505 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232120AbhFXUZE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 16:25:04 -0400
+Received: by mail-io1-f50.google.com with SMTP id r12so9854634ioa.7;
+        Thu, 24 Jun 2021 13:22:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=S9irpCnuj1ZxG7TlFe7Eh6Y0jfUyNIBwZnYE8DiyvqU=;
-        b=nz8JxyZIJdhnkxFTCz63RbZMK+WQTv/lwOp2U3JMvhLiZNyBsCLv1QBNA3+wDmoYJv
-         NSljCHcMiHfkhiZaMi3NMfr4EUHyx/F3caHk2lvt2droGD9p4Rj0fik/TdNAGS7xjby5
-         mR75v4FeEvKFT6+6AX2iiYn+avUGgNvUFfAshmQak0ywdTkOFDcbOhe1FipExJdw4ceg
-         5ilLCn9LCy6Rtd+9wNadQKz3Dwut0CaExk7aoeWWypgSmbsgweMTEdlD6/Yr2IssOtbD
-         0DFNyWD7s57W5bYyHC+QNXX/jVe6o3ugMb0akH1eg/VC4iLYEFAti7nsk1HjsTLS9LqW
-         5txA==
-X-Gm-Message-State: AOAM530dnoWkkj/7PbarmzK4aVgDO2kUHJf6k3XeUuCcq4oa+HEmsm8w
-        EE6yLgD+alL/VCIiTP8F4OciJLwk/g==
-X-Google-Smtp-Source: ABdhPJyXmKDgOwuseRMR7wsWDhzG+o9xoMFIcJHgRJ2CRkwT3ZBOp4K08i0OO8HA5azAlDTA+hTrsw==
-X-Received: by 2002:a02:5b45:: with SMTP id g66mr6351558jab.62.1624565483419;
-        Thu, 24 Jun 2021 13:11:23 -0700 (PDT)
+        bh=knEwkp+Z8llmgr1VJTsCXisfmU+yU/tJNLrDFp/f5Bg=;
+        b=XKvuzSr9XouvH9KvsUOnFi645eSpgkgqDiVpTnkQfQqwLqbrlWiFG1Jf85Qm15VGeu
+         eHJn3MH/WjmNLfZbDqsJPXv3B0wy7yF1FeFYKvC/VcaYSC61856Q0eIdN9Tys3533oF9
+         pJcymSklUJWAsikm71U39KcpSXT+TPFinc4Gk8fBv+/cZEen/3Xlc1Bk05CV2vUmliVL
+         eR/qrOUwCZV/ttT6D3qQf691+G1VfPZf2UoUIk5bfBjXkLkfDWR/8t9aXyRAp9jbgGs/
+         hjvUF0o0LhfhZHO1IzXuleZp7k8KXa1t2vSpQJAyezPPexbu7TJQ9YSV2jQ6Kh/gVMND
+         G7xg==
+X-Gm-Message-State: AOAM533zQkoU3iuSSL6sXX4rVJUb7vbzbM/lhQxdgzOt0hwNw056zM+4
+        sNsVWzU2XpQ8jIlTIw3GMw==
+X-Google-Smtp-Source: ABdhPJwobF8PdC0NO8payPPWkGXZGT2rK/e9rI/graPZ4wi+ob3vqdYIhC/ZQ9+WAp50FD9qqZtjMw==
+X-Received: by 2002:a5d:8b8b:: with SMTP id p11mr5674403iol.77.1624566163505;
+        Thu, 24 Jun 2021 13:22:43 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id p25sm2086831ioj.18.2021.06.24.13.11.19
+        by smtp.gmail.com with ESMTPSA id g8sm1954736iop.31.2021.06.24.13.22.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 13:11:22 -0700 (PDT)
-Received: (nullmailer pid 1911579 invoked by uid 1000);
-        Thu, 24 Jun 2021 20:11:18 -0000
-Date:   Thu, 24 Jun 2021 14:11:18 -0600
+        Thu, 24 Jun 2021 13:22:42 -0700 (PDT)
+Received: (nullmailer pid 1927038 invoked by uid 1000);
+        Thu, 24 Jun 2021 20:22:37 -0000
+Date:   Thu, 24 Jun 2021 14:22:37 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        angelogioacchino.delregno@somainline.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        jamipkettunen@somainline.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, marijn.suijten@somainline.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add bindings for
- MDM9607
-Message-ID: <20210624201118.GA1911377@robh.at.kernel.org>
-References: <20210624191743.617073-1-konrad.dybcio@somainline.org>
+To:     Matthew Hagan <mnhagan88@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Geert Uytterhoeven <geert+renesas@glider.be>, soc@kernel.org,
+        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Scott Branden <sbranden@broadcom.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com
+Subject: Re: [PATCH v3 4/4] dt-bindings: arm: bcm: NSP: add Meraki MX64/MX65
+Message-ID: <20210624202237.GA1926990@robh.at.kernel.org>
+References: <20210613101658.3242777-1-mnhagan88@gmail.com>
+ <20210613101658.3242777-5-mnhagan88@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210624191743.617073-1-konrad.dybcio@somainline.org>
+In-Reply-To: <20210613101658.3242777-5-mnhagan88@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Jun 2021 21:17:40 +0200, Konrad Dybcio wrote:
-> Document the newly added MDM9607 pinctrl driver.
+On Sun, 13 Jun 2021 11:16:48 +0100, Matthew Hagan wrote:
+> Add bindings for the Meraki MX64/MX65 series. Note this patch should be
+> applied on top of "dt-bindings: arm: bcm: add NSP devices to SoCs".
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
 > ---
-> Changes since v3:
-> - Use the correct compatible in the example
-> 
->  .../pinctrl/qcom,mdm9607-pinctrl.yaml         | 133 ++++++++++++++++++
->  1 file changed, 133 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,mdm9607-pinctrl.yaml
+>  Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
