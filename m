@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1E833B3699
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 21:06:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1C943B369C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 21:07:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232502AbhFXTIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 15:08:25 -0400
-Received: from mail-il1-f179.google.com ([209.85.166.179]:35353 "EHLO
-        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232417AbhFXTIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 15:08:24 -0400
-Received: by mail-il1-f179.google.com with SMTP id a11so7431588ilf.2;
-        Thu, 24 Jun 2021 12:06:04 -0700 (PDT)
+        id S232502AbhFXTJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 15:09:37 -0400
+Received: from mail-io1-f49.google.com ([209.85.166.49]:43897 "EHLO
+        mail-io1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232029AbhFXTJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 15:09:36 -0400
+Received: by mail-io1-f49.google.com with SMTP id k16so9535403ios.10;
+        Thu, 24 Jun 2021 12:07:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=sASZIh0JylD5nlffYVNx6Q2qk0hslOsxCidZn+CssBE=;
-        b=umL6sQhl5HZD3O3PpEjqmOlhLccyc+N5YKxKGN+0bcxgLNRvpTdV5emgBkyVXEsv4x
-         GLTJfoZoTpXRVkk9ZFVOOy+Yxz0w0gOQYJrfxQKcYTSKnjoS3eDCkYmuuOxjw7ZCTKK5
-         +Dc8BK+y0vK184JRMAzEb3vlmT/6002nuHcmZkru0f/ihNPuC7AF5kj7t0Nz4Dd6R4Nu
-         a/pwYLCEGHJIhQKwdZAH0jjvgn/PW5kutZp4e+JP2lQTWVEtL+ssExgT5+bllQX/uhul
-         hwE1IsOrq4IXSb+/Qk4lkiMsx71tNM2gFtwZF7PE0es8KE76o5YjYULCsN7U+zAEAQeg
-         /3Xw==
-X-Gm-Message-State: AOAM532xmQ0FcXsxbJGrgK6HbumxnO4IhAmzrDX9p8NSO+6iokOV4/YG
-        yvrN3DxGU9xYEtOjt+6ZDQ==
-X-Google-Smtp-Source: ABdhPJxiwyiyjZcStomRiRQofvBh6rElZg/J0wGTTpumXIvqvLnGEtvk/m1fPQNTbXqxoAPf9KEGDg==
-X-Received: by 2002:a05:6e02:1aa7:: with SMTP id l7mr4537589ilv.187.1624561564334;
-        Thu, 24 Jun 2021 12:06:04 -0700 (PDT)
+        bh=xeM6BF+kmfhSHu1ypq6fM0NbpYMNvzRJ0qbkk31usLE=;
+        b=YFqjpMUvxTliEPULm+gXjuQ6xeM9EiQE29ySDhSiJb4NRxFXMha6sYopIXRriD65MN
+         /U147g50xAPYyQs3UMmeYB81wV2VgcS7uKKyBTnu+MG1A/tCKanDiIgfVjynkxhzDucT
+         stb0ZtddOmOs6e/42qexjY27pSeKkieUka+oCUQscwSS3AZDYM9iPj0XjX7ue0jkQjY+
+         i9JOxqXcSIMBNcxvtD3qgn4PW8iaR4Axbjg/gD98jWaoX0s83ruWQyjcFJvFykcslnx2
+         dh/FX4sbZDze4gFB6WpNob0Rcq5Cn6UEW0P8W/5Pgg/VVQaq3Zt6FNLzq+kjffMrBgLr
+         j+nQ==
+X-Gm-Message-State: AOAM5313Yc5PN+6cetDFGJXH5KFisZClxufXmTcp6jzvcESKO2AMaKFF
+        FqdXnxyPaz+asHBVredhPg==
+X-Google-Smtp-Source: ABdhPJynUegQswgABTawywZBs8oFR7DNJUPy2c6rkvU/vbFfFl2W/mhG9gTV+7gSjT1cO8dFw31q4w==
+X-Received: by 2002:a02:9f8a:: with SMTP id a10mr6092348jam.136.1624561636036;
+        Thu, 24 Jun 2021 12:07:16 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id h8sm975531ile.45.2021.06.24.12.06.00
+        by smtp.gmail.com with ESMTPSA id j25sm1818105iog.47.2021.06.24.12.07.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 12:06:02 -0700 (PDT)
-Received: (nullmailer pid 1820092 invoked by uid 1000);
-        Thu, 24 Jun 2021 19:05:58 -0000
-Date:   Thu, 24 Jun 2021 13:05:58 -0600
+        Thu, 24 Jun 2021 12:07:14 -0700 (PDT)
+Received: (nullmailer pid 1821869 invoked by uid 1000);
+        Thu, 24 Jun 2021 19:07:12 -0000
+Date:   Thu, 24 Jun 2021 13:07:12 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     linux-mm@kvack.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        dongas86@gmail.com, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] of: of_reserved_mem: only call memblock_free for
- normal reserved memory
-Message-ID: <20210624190558.GA1819995@robh.at.kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, dongas86@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] of: of_reserved_mem: mark nomap memory instead of
+ removing
+Message-ID: <20210624190712.GA1821687@robh.at.kernel.org>
 References: <20210611131153.3731147-1-aisheng.dong@nxp.com>
+ <20210611131153.3731147-2-aisheng.dong@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210611131153.3731147-1-aisheng.dong@nxp.com>
+In-Reply-To: <20210611131153.3731147-2-aisheng.dong@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Jun 2021 21:11:52 +0800, Dong Aisheng wrote:
-> For nomap case, the memory block will be removed by memblock_remove()
-> in early_init_dt_alloc_reserved_memory_arch(). So it's meaningless to
-> call memblock_free() on error path.
+On Fri, 11 Jun 2021 21:11:53 +0800, Dong Aisheng wrote:
+> Since commit 86588296acbf ("fdt: Properly handle "no-map" field in the memory region"),
+> nomap memory is changed to call memblock_mark_nomap() instead of
+> memblock_remove(). But it only changed the reserved memory with fixed
+> addr and size case in early_init_dt_reserve_memory_arch(), not
+> including the dynamical allocation by size case in
+> early_init_dt_alloc_reserved_memory_arch().
 > 
 > Cc: Rob Herring <robh+dt@kernel.org>
 > Cc: devicetree@vger.kernel.org
 > Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 > ---
->  drivers/of/of_reserved_mem.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  drivers/of/of_reserved_mem.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
 Applied, thanks!
