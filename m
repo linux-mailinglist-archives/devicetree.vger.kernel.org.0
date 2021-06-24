@@ -2,80 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A69D3B243E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 02:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 834B53B248E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 03:36:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbhFXAWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 20:22:12 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:54726 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229755AbhFXAWL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 20:22:11 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 998B087F;
-        Thu, 24 Jun 2021 02:19:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1624493991;
-        bh=Lyd4UG+bl/FJcP2caLE6wao83RTH9G+tTygdmnYaQQM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Etz8nwNQ6PnvCM72b9Ge+gvocueZTZbz1r3oPiefghIaprV8+fQvTKGdL/89gg7Vo
-         fJAptxE4XbTvPtg7ei/ndTJNwQbfHaCncgmTpw4jIgLW85o2iBxHxzD84aRBTlKloq
-         rE7c3anCaBJ7ebzatlcK18lfHKclSa7dTUHEQvrc=
-Date:   Thu, 24 Jun 2021 03:19:21 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: renesas,du: Fix 'ports' reference
-Message-ID: <YNPPiSzu9THj0PnH@pendragon.ideasonboard.com>
-References: <20210623164308.2570164-1-robh@kernel.org>
+        id S229774AbhFXBih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 21:38:37 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:59495 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229831AbhFXBih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Jun 2021 21:38:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1624498578;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=MWyyy9NSRWYF/IIOd9RfJwjKp0KmO/I0ymT6gR07HiY=;
+        b=VZYa00ddQ1OjZUlWIwpD5PNLITk5Z+I+BHTK9yS3kLFiA4hLiXb4RJ+A5V3gHFco+9lxid
+        33l8PQYXe9HKcH1y5XBEOO0HYfDT9ZSwVxcjlnhSGWQLANGaWCR+gpr3aad0OSwxrZJAMR
+        FdI1s53un77Zv9cLY2d/8Mm+DhSCHEQ=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-46-O8Z27GltM5Wg0YAVBsHl6w-1; Wed, 23 Jun 2021 21:36:17 -0400
+X-MC-Unique: O8Z27GltM5Wg0YAVBsHl6w-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com [10.5.11.14])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 2BA741084F53;
+        Thu, 24 Jun 2021 01:36:16 +0000 (UTC)
+Received: from gshan.redhat.com (vpn2-54-70.bne.redhat.com [10.64.54.70])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id B4EA85D9C6;
+        Thu, 24 Jun 2021 01:36:14 +0000 (UTC)
+From:   Gavin Shan <gshan@redhat.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        drjones@redhat.com, shan.gavin@gmail.com
+Subject: [PATCH] Documentation, dt, numa: Add note to empty NUMA node
+Date:   Thu, 24 Jun 2021 11:37:40 +0800
+Message-Id: <20210624033740.20862-1-gshan@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20210623164308.2570164-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The empty NUMA nodes, where no memory resides in, are allowed. For
+these empty NUMA nodes, the 'len' of 'reg' property is zero. These
+empty NUMA node IDs are still valid and parsed. I finds difficulty
+to get where it's properly documented.
 
-Thank you for the patch.
+So lets add note to empty NUMA nodes in the NUMA binding doc.
 
-On Wed, Jun 23, 2021 at 10:43:08AM -0600, Rob Herring wrote:
-> Fix the renesas,du binding 'ports' schema which is referencing the 'port'
-> schema instead of the 'ports' schema.
-> 
-> Fixes: 99d66127fad2 ("dt-bindings: display: renesas,du: Convert binding to YAML")
-> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Gavin Shan <gshan@redhat.com>
+---
+ Documentation/devicetree/bindings/numa.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-Should I take the patch in my tree, or can you merge it ?
-
-> ---
->  Documentation/devicetree/bindings/display/renesas,du.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> index 121596f106da..5f4345d43020 100644
-> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-> @@ -55,7 +55,7 @@ properties:
->      maxItems: 1
->  
->    ports:
-> -    $ref: /schemas/graph.yaml#/properties/port
-> +    $ref: /schemas/graph.yaml#/properties/ports
->      description: |
->        The connections to the DU output video ports are modeled using the OF
->        graph bindings specified in Documentation/devicetree/bindings/graph.txt.
-
+diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+index 21b35053ca5a..c564705c0eac 100644
+--- a/Documentation/devicetree/bindings/numa.txt
++++ b/Documentation/devicetree/bindings/numa.txt
+@@ -109,6 +109,10 @@ Example:
+ Dual socket system consists of 2 boards connected through ccn bus and
+ each board having one socket/soc of 8 cpus, memory and pci bus.
+ 
++Note that the empty NUMA nodes, which no memory resides in, are allowed
++Their NUMA node IDs are still valid so that memory can be added into these
++NUMA nodes through hotplug afterwards.
++
+ 	memory@c00000 {
+ 		device_type = "memory";
+ 		reg = <0x0 0xc00000 0x0 0x80000000>;
 -- 
-Regards,
+2.23.0
 
-Laurent Pinchart
