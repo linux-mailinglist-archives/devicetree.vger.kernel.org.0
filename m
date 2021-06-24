@@ -2,185 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F0713B2CFB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 12:54:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6226B3B2CFD
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 12:55:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232213AbhFXK5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 06:57:00 -0400
-Received: from mail-eopbgr1310124.outbound.protection.outlook.com ([40.107.131.124]:3027
-        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231294AbhFXK47 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Jun 2021 06:56:59 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jObYbCCqagJFpGuGID6n9rJmiXWgHj1d0zqUDpyFn+eZ9cx0aZJKIAEAxZJk19W2NOs/PU639HY4qNhD7FIQ16MF6yg5hOXHdtOce66IrpPXH/iVlb0VlqLvKh07FzjmNxCksFqK3xe0q0hwF2bYltOG33g6YjoFeTBivrwvR9Oe7YjFzykQLVfkYrUy5sKBrzNCFVQ60EKkcTdIIYJvRMp6AQeOHBJjml6+ZCQ14lRto7ZT7XW4qquWcW8AOOO+66V6z6g6Ma57m+sCczxNpD90b97r44OSXtR6+obgKbH41scI1nziFpgvl/Mz0BJgcDsQi2rGR1eDrLCAoxXkfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fqHVzsOjYZ4btvmUHuezNlhisjD65locvBqPLGjqQhg=;
- b=B7m2FU7fQAZEyzsK1HNLx5IQ0b1sLZEauB6Y2s5FvjbLP7VTf823xFYFyxIrvRe7RPRKChJzMeBkpyUGgDi1FWxIUtHPxc6L+lymi3ID+d+2NVaIn98Hg5BQGZbWl5Ctcomi4nz1KcF0x8w5zOUF4sJd6y+PEsK4A7wWNJc/rDTq0FpuPP8p1r3sI2ZahIOk1hLeYAFKCO7LuhBltgUEwgcRJm1qHrZBIpkvDlpHxQ8/d3stSXZqZ3N004M2lVH97i0s8qBB+PAoBrxw+K/Ov3MraJte9bt5Z/95HYwxG5RUnLZjsgpEc73aP6nkoa9CHvh1XGWhnQdbMqanGtxQcw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
+        id S232274AbhFXK5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 06:57:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51604 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231294AbhFXK5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 06:57:44 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3B6FC061756
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 03:55:25 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id m15-20020a17090a5a4fb029016f385ffad0so3255275pji.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 03:55:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fqHVzsOjYZ4btvmUHuezNlhisjD65locvBqPLGjqQhg=;
- b=VGS160Pug7sHXBAeT6nOLgMhuTRQFZBkmUziVHQoBONXuC2HiJiKUd0xfTDyG2noBauHCS1ISAHOe5b5KgcByVffw3uScTYYcntxlOgt9+kyKjZpYoOp6jWR51XLKaartge7FsNEGXrIEnLWZ6x5PBzbz4BkROD9wD599a6SNR4=
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
- by TY2PR01MB4027.jpnprd01.prod.outlook.com (2603:1096:404:db::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.20; Thu, 24 Jun
- 2021 10:54:34 +0000
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::4c5d:66ee:883a:72a5]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::4c5d:66ee:883a:72a5%6]) with mapi id 15.20.4242.024; Thu, 24 Jun 2021
- 10:54:34 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Wolfram Sang <wsa@kernel.org>
-CC:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 04/14] mmc: renesas_sdhi: Add support for R-Car H3e-2G and
- M3e-2G
-Thread-Topic: [PATCH 04/14] mmc: renesas_sdhi: Add support for R-Car H3e-2G
- and M3e-2G
-Thread-Index: AQHXXdxGVxnXORnr0UKfnp2dzw5A3KsT3joAgAAN+YCADpPUcIAARLKAgABJHXA=
-Date:   Thu, 24 Jun 2021 10:54:34 +0000
-Message-ID: <TY2PR01MB36927B0CCE7C557A3115E481D8079@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-References: <cover.1623315732.git.geert+renesas@glider.be>
- <22b4c393bf5074b53791d2797d8fe74deb8ea9a7.1623315732.git.geert+renesas@glider.be>
- <YMei/rKwEyicfx+H@pendragon.ideasonboard.com>
- <CAMuHMdUJQCv7Qe01Km=6F=yUjcNoo_OvOBrYpPcC3SbhX0Ru5Q@mail.gmail.com>
- <TY2PR01MB36929E0DE956A374B8CF5EE7D8079@TY2PR01MB3692.jpnprd01.prod.outlook.com>
- <YNQi0w4zsG01ezgu@kunai>
-In-Reply-To: <YNQi0w4zsG01ezgu@kunai>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=renesas.com;
-x-originating-ip: [124.210.22.195]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 20c86595-4d37-4d83-ebe4-08d936fe7436
-x-ms-traffictypediagnostic: TY2PR01MB4027:
-x-microsoft-antispam-prvs: <TY2PR01MB40276B8A00AFBA6E3B68C292D8079@TY2PR01MB4027.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jtZ6tY1kRp4NYnAC+gIgCnmz+z3B+4wo5NVnvKai4QwnrQiB23DVCe0Mi0XYZI3xPNAOzUCND+d7TyWqovFN5AsfDiQGs7UuwZj100JxVjWjghH8xFQECy/LRxkMCru1l3qJ5IdHify/xLi5OU4RbkQyXAp35Ak5TOAAficrJ626dmgDuIOyRzQMYOIN2rNyAIi7hHr37TWPX47tC+JCIRfTXF+R9OqCjxk9ja3A3MG+CyUJSegLkHqXJAk8XWTVfCQx7yvae6aKbej5NzDxFIUIBARqy0qfdJ76LssmjoR5fWT7/g1zUEBhMtvGqUSnudXqrBfOX3EuHS5PBgGPpBpxBbxC/Oz7/frCo5wW+3hQGcFC/sKH0wn4R1Nc/X3+wZD9QbcqT67dnpcuaJqbOkUxu3NzuqV2H/9NOwEur5S3xnIB9k5MAbAG/1HCkmz5+ysPJ3ptdBwl1flw5wqsnJvvBppf9yiTWO5pIb/+04dUlN/sah22FDfn62QEXJ6t93Ro27rV1RFBmL8Epk+kCID342SVoYp1FlW2svdnXGrd/KpeAJw8Z0Db8tc/H4v/U70GazVAnys5PNi3Ho4jz6gAvYrJw3xKCH5Yx9D3ENEeyvd4Z2VUhP8jVK2qsPpfZf5iRgGJDbnS8bpZACbqpw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(366004)(39860400002)(346002)(396003)(52536014)(122000001)(186003)(33656002)(66446008)(64756008)(66476007)(66946007)(66556008)(8936002)(8676002)(38100700002)(71200400001)(26005)(6506007)(5660300002)(7696005)(55236004)(76116006)(4326008)(55016002)(2906002)(9686003)(86362001)(6916009)(316002)(478600001)(54906003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?b0/n2t6C/gPL76lpS5CT4O71cm5cP9SJUduChVdDQ5WF4GdEeuZNe7ra7kvZ?=
- =?us-ascii?Q?At00baDXhJ9uQx2jrWR0jhEqdyiOFL992mC+u7WfvstfN3vPThede155xcd/?=
- =?us-ascii?Q?yo+RP2Qmvgy2hvMo3CK8sVruia1jFnjzNZi4cVTMstgv03NynInfn5n7MV7i?=
- =?us-ascii?Q?Td1MbduxiinDzfWQSQQApee97KNx3vJGSz3swjOMETSZP50KNhXGmDG8L0hS?=
- =?us-ascii?Q?CG1Vns1csZFvZravFYfmhU8p+UdVA7HQvUfpeBawT1pBltYMNmSV5o43eQL1?=
- =?us-ascii?Q?e7g2AvufPbEMBsRZ9K8tGzyhIx+MpS/z/cXa/o5DPsgIEV4IuEL0eyeSLjzu?=
- =?us-ascii?Q?J8hpl67L0EGNe7NbLj/8oRV6Tn2Y/gOw+IXoMKDqHDaa6B1oI3G94kezZf0d?=
- =?us-ascii?Q?yQwoErNdwsMf2qHCGcjZ/rmotuB8Zg2H0UO3BrDdPSRwc4ghsFLyEe7xQIu0?=
- =?us-ascii?Q?pFqQUSywlmJE/Of2q8K/oxJAJooE4R2J6NYggSuns6c767+CgiWOiRCB/T4X?=
- =?us-ascii?Q?sSnGjTNpfc9N5jyTk5wLlS7//2Jxo11tSJFw3pyKFD6ZxqjHLiDhT2GRmx2D?=
- =?us-ascii?Q?N0EWJc+NjwjC3NJiM1J+MLfg/a4vdUsrNTAdyC6CBEDQIgRyhUAwqowLnfaj?=
- =?us-ascii?Q?JyB+VYjD7NgGnilJWYfESLJObh6cNzemWQJwl0PtZQ92bIyul14pcmzCJ5E0?=
- =?us-ascii?Q?BV4uEaysNccoGUuvCbGhgGS+qZBGP1Snm5L1l5X029CPVBycGog7z0boyaOE?=
- =?us-ascii?Q?5pfuYQ40dYDAxJoizSva5CODJ33hTw6aQAGs1miZtFRDuwvyS563Q9gwtgt/?=
- =?us-ascii?Q?GYk7uHF3kbXo1wdxAO5VxINgJYDAHVzJTTn0jz+oAFqPFW6oesz2nJBJnDLz?=
- =?us-ascii?Q?SKH70GyWUzXyRPjQrq1fsfgxnpg6ncRPjrQ4Cef9H+PlhHJXH+ZD/mJcqH9W?=
- =?us-ascii?Q?WfeN0JB/ob6WL9s1DanPOi0oWWScbQgKvfMH7tZgSNqgFdCPLYZL5VMbZQvb?=
- =?us-ascii?Q?hi4Dwua+vtaBU+FXwntTRr/5U9cViSgZSFNlU0yeOczLummNdaw68ZMRKLVc?=
- =?us-ascii?Q?YGa1KIO1w+kFrOjNW8f3GF8fHeZKCKwH6lg/WaE4zPS+x99Qtutm0y6aa9eY?=
- =?us-ascii?Q?NHqeFc2HCs2PD/Zf1hvNoSwRW0AsOsZ3gQBxZwp+TwZ6g54nkV8MkQe0BUor?=
- =?us-ascii?Q?r7OyXWjkt8y+puJm8fP6pwofb3DcZ/hB/gibaV2SROehhYkqAB8vZsfI8KEu?=
- =?us-ascii?Q?upZVjvj2NV7NplGJ9jQ6u33CWIfHRdwtxBDICSmkkUeZgnsHhwlIABXc6zCT?=
- =?us-ascii?Q?XciXIOx3lDKv+5/uATry8Dlq?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rnIAh2hPB7B+BtBFv50UAdABz25b6rhSMrigayaoL/w=;
+        b=IWB64TBCWgtTTW17Ubh7eiZ7IP4zYCa72NohftlLNitROFeeZXycY0r+sxrjEbsr+Z
+         saKpny7PqLN81J++Pp9rJNTwPgnmlKnpRDgZ6UMlc5Ykh70/IDQPZj4dJTaRqFT42+yJ
+         y+dgpKVHv17dsiwM89c94knTQxUjqLekWZJTU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rnIAh2hPB7B+BtBFv50UAdABz25b6rhSMrigayaoL/w=;
+        b=tPgiowu6i70M8T08t5gVabLmqxKouluBknr+0hFzHJuHd/IKcgb1Dp5yO9TAkBOqjK
+         fyrwAasfWqGvKn+ePyND/iPMOxQwQCdB3XYmLGRx0LR3t2b6dQwkjqMlboter/meQkRY
+         tQW66NxbnQkHHBfRKD114F99Pu9ivza8hWPe1ejS7GtXpuSKyNYcoqlkJmCnLeX+9j6u
+         zy5lu8P8QLka5vajccg+vorUAOOfXcwh1V7GcuPLykjnrC5GBEwj8YpGx2gnGuVMmWit
+         6q8jk3677p5jTm1FTILZIXlkMZ7kEcAZ0fB4/p7lVOQIau4KmKRgpTaWLxeP6VOqFgTN
+         Tb2Q==
+X-Gm-Message-State: AOAM533jMl/YE0jkobls2n3xWRBDR+Kkwvhxp1t2UIzPPn1cFax80By4
+        ZmXL4+4umC7tWCSSV/xbsMgBmg==
+X-Google-Smtp-Source: ABdhPJyKWuBj46CJmmw9hKVtXOsyxtVopzZR7lmqI2aJ0D1A586N/RMQyvb8MYE5iRIfvQXPLa4+AA==
+X-Received: by 2002:a17:902:ec8c:b029:127:756b:1ee7 with SMTP id x12-20020a170902ec8cb0290127756b1ee7mr4084234plg.4.1624532124722;
+        Thu, 24 Jun 2021 03:55:24 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:368f:686c:969:1f38])
+        by smtp.gmail.com with ESMTPSA id t7sm2212536pgh.52.2021.06.24.03.55.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Jun 2021 03:55:24 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     dri-devel@lists.freedesktop.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        intel-gfx@lists.freedesktop.org
+Cc:     Sean Paul <sean@poorly.run>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v6 RESEND 1/3] gpu: drm: separate panel orientation property creating and value setting
+Date:   Thu, 24 Jun 2021 18:55:15 +0800
+Message-Id: <20210624105517.3886963-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.32.0.288.g62a8d224e6-goog
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20c86595-4d37-4d83-ebe4-08d936fe7436
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2021 10:54:34.8005
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pCibwsTEp76En4X+DKQun4hUPe/9u8xReFNWDvn6eGMrAr9Hvq4SQy6bY5uFnPnMrzbitsSrZZCYvs8EMqoySrZL7EghM0Wj8ZJowilULK5K4ZRhN8Kw4EY7Ud2enSPO
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB4027
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram-san,
+drm_dev_register() sets connector->registration_state to
+DRM_CONNECTOR_REGISTERED and dev->registered to true. If
+drm_connector_set_panel_orientation() is first called after
+drm_dev_register(), it will fail several checks and results in following
+warning.
 
-> From: Wolfram Sang, Sent: Thursday, June 24, 2021 3:15 PM
->=20
-> Hi all,
->=20
-> > > > > --- a/drivers/mmc/host/renesas_sdhi_core.c
-> > > > > +++ b/drivers/mmc/host/renesas_sdhi_core.c
-> > > > > @@ -943,6 +943,8 @@ static const struct soc_device_attribute sdhi=
-_quirks_match[]  =3D {
-> > > > >       { .soc_id =3D "r8a77965", .data =3D &sdhi_quirks_r8a77965 }=
-,
-> > > > >       { .soc_id =3D "r8a77980", .data =3D &sdhi_quirks_nohs400 },
-> > > > >       { .soc_id =3D "r8a77990", .data =3D &sdhi_quirks_r8a77990 }=
-,
-> > > > > +     { .soc_id =3D "r8a779m1", .data =3D &sdhi_quirks_bad_taps23=
-67 },
-> > > > > +     { .soc_id =3D "r8a779m3", .data =3D &sdhi_quirks_bad_taps13=
-57 },
-> > > >
-> > > > Could we reuse the entries for H3 and M3 instead, by dropping the
-> > > > "ES3.*" revision ?
-> > >
-> > > We cannot reuse the H3 ES3.0 entry, as soc_device_match()
-> > > works differently than of_machine_is_compatible(): the former doesn't
-> > > consider "r8a779m1" and "r8a7795" equivalent, the latter does.
-> > > Same for M3-W+ (no explicit ES3.0 there) and M3e-2G.
-> > >
-> > > It's a pity we still don't have a "quirk-free" SDHI version on H3
-> > > and M3-W class SoCs (waiting for ES4.0?), as that would allow us to
-> > > just match on "renesas,sdhi-r8a7795" resp. "renesas,sdhi-r8a77961"
-> > > through the driver's .of_match_table[] instead, which would work for
-> > > H3e-2G and M3e-2G, too.
-> >
-> > Perhaps, ES4.0 will not be released. So, we can refactor the driver's
-> > .of_match_table[] now. I investigated this a little, and it seems
-> > we need many renesas_sdhi_of_data for each SoC instead of
-> > of_rcar_gen3_compatible. But, I guess such modification is better
-> > than adding sdhi_quirks_match entries.
-> >
-> > Wolfram-san, what do you thinks?
->=20
-> I don't fully understand how the refactoring should look like? Is it
-> moving 'struct renesas_sdhi_quirks' to renesas_sdhi_internal_dmac.c and
-> merge it there with renesas_sdhi_of_data? Is it really better to copy
-> this struct per SoC? Most of the data is the same.
+Add a function to create panel orientation property and set default value
+to UNKNOWN, so drivers can call this function to init the property earlier
+, and let the panel set the real value later.
 
-I also have the same concern. But, I guess we can refactor
-the renesas_sdhi_of_data like below to avoid increasing data size:
+[    4.480976] ------------[ cut here ]------------
+[    4.485603] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:45 __drm_mode_object_add+0xb4/0xbc
+<snip>
+[    4.609772] Call trace:
+[    4.612208]  __drm_mode_object_add+0xb4/0xbc
+[    4.616466]  drm_mode_object_add+0x20/0x2c
+[    4.620552]  drm_property_create+0xdc/0x174
+[    4.624723]  drm_property_create_enum+0x34/0x98
+[    4.629241]  drm_connector_set_panel_orientation+0x64/0xa0
+[    4.634716]  boe_panel_get_modes+0x88/0xd8
+[    4.638802]  drm_panel_get_modes+0x2c/0x48
+[    4.642887]  panel_bridge_get_modes+0x1c/0x28
+[    4.647233]  drm_bridge_connector_get_modes+0xa0/0xd4
+[    4.652273]  drm_helper_probe_single_connector_modes+0x218/0x700
+[    4.658266]  drm_mode_getconnector+0x1b4/0x45c
+[    4.662699]  drm_ioctl_kernel+0xac/0x128
+[    4.666611]  drm_ioctl+0x268/0x410
+[    4.670002]  drm_compat_ioctl+0xdc/0xf0
+[    4.673829]  __arm64_compat_sys_ioctl+0xc8/0x100
+[    4.678436]  el0_svc_common+0xf4/0x1c0
+[    4.682174]  do_el0_svc_compat+0x28/0x3c
+[    4.686088]  el0_svc_compat+0x10/0x1c
+[    4.689738]  el0_sync_compat_handler+0xa8/0xcc
+[    4.694171]  el0_sync_compat+0x178/0x180
+[    4.698082] ---[ end trace b4f2db9d9c88610b ]---
+[    4.702721] ------------[ cut here ]------------
+[    4.707329] WARNING: CPU: 5 PID: 369 at drivers/gpu/drm/drm_mode_object.c:243 drm_object_attach_property+0x48/0xb8
+<snip>
+[    4.833830] Call trace:
+[    4.836266]  drm_object_attach_property+0x48/0xb8
+[    4.840958]  drm_connector_set_panel_orientation+0x84/0xa0
+[    4.846432]  boe_panel_get_modes+0x88/0xd8
+[    4.850516]  drm_panel_get_modes+0x2c/0x48
+[    4.854600]  panel_bridge_get_modes+0x1c/0x28
+[    4.858946]  drm_bridge_connector_get_modes+0xa0/0xd4
+[    4.863984]  drm_helper_probe_single_connector_modes+0x218/0x700
+[    4.869978]  drm_mode_getconnector+0x1b4/0x45c
+[    4.874410]  drm_ioctl_kernel+0xac/0x128
+[    4.878320]  drm_ioctl+0x268/0x410
+[    4.881711]  drm_compat_ioctl+0xdc/0xf0
+[    4.885536]  __arm64_compat_sys_ioctl+0xc8/0x100
+[    4.890142]  el0_svc_common+0xf4/0x1c0
+[    4.893879]  do_el0_svc_compat+0x28/0x3c
+[    4.897791]  el0_svc_compat+0x10/0x1c
+[    4.901441]  el0_sync_compat_handler+0xa8/0xcc
+[    4.905873]  el0_sync_compat+0x178/0x180
+[    4.909783] ---[ end trace b4f2db9d9c88610c ]---
 
-struct renesas_sdhi_of_data_with_quirks {
-	const struct renesas_sdhi_of_data *of_data;
-	const struct renesas_sdhi_quirks *quirks;
-};
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Sean Paul <seanpaul@chromium.org>
+---
+ drivers/gpu/drm/drm_connector.c         | 58 ++++++++++++++++++-------
+ drivers/gpu/drm/i915/display/icl_dsi.c  |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c |  1 +
+ drivers/gpu/drm/i915/display/vlv_dsi.c  |  1 +
+ include/drm/drm_connector.h             |  2 +
+ 5 files changed, 47 insertions(+), 16 deletions(-)
 
-And then, we can keep of_rcar_gen3_compatible and
-we can add each SoC's renesas_sdhi_of_data_with_quirks
-and set it to the .data.
-
-Best regards,
-Yoshihiro Shimoda
-
-> Thanks,
->=20
->    Wolfram
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 7631f76e7f345..7189baaabf416 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -1210,7 +1210,7 @@ static const struct drm_prop_enum_list dp_colorspaces[] = {
+  *	INPUT_PROP_DIRECT) will still map 1:1 to the actual LCD panel
+  *	coordinates, so if userspace rotates the picture to adjust for
+  *	the orientation it must also apply the same transformation to the
+- *	touchscreen input coordinates. This property is initialized by calling
++ *	touchscreen input coordinates. This property value is set by calling
+  *	drm_connector_set_panel_orientation() or
+  *	drm_connector_set_panel_orientation_with_quirk()
+  *
+@@ -2173,8 +2173,8 @@ EXPORT_SYMBOL(drm_connector_set_vrr_capable_property);
+  * @connector: connector for which to set the panel-orientation property.
+  * @panel_orientation: drm_panel_orientation value to set
+  *
+- * This function sets the connector's panel_orientation and attaches
+- * a "panel orientation" property to the connector.
++ * This function sets the connector's panel_orientation value. If the property
++ * doesn't exist, it will return an error.
+  *
+  * Calling this function on a connector where the panel_orientation has
+  * already been set is a no-op (e.g. the orientation has been overridden with
+@@ -2205,19 +2205,11 @@ int drm_connector_set_panel_orientation(
+ 	info->panel_orientation = panel_orientation;
+ 
+ 	prop = dev->mode_config.panel_orientation_property;
+-	if (!prop) {
+-		prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
+-				"panel orientation",
+-				drm_panel_orientation_enum_list,
+-				ARRAY_SIZE(drm_panel_orientation_enum_list));
+-		if (!prop)
+-			return -ENOMEM;
+-
+-		dev->mode_config.panel_orientation_property = prop;
+-	}
++	if (WARN_ON(!prop))
++		return -EINVAL;
+ 
+-	drm_object_attach_property(&connector->base, prop,
+-				   info->panel_orientation);
++	drm_object_property_set_value(&connector->base, prop,
++				      info->panel_orientation);
+ 	return 0;
+ }
+ EXPORT_SYMBOL(drm_connector_set_panel_orientation);
+@@ -2225,7 +2217,7 @@ EXPORT_SYMBOL(drm_connector_set_panel_orientation);
+ /**
+  * drm_connector_set_panel_orientation_with_quirk -
+  *	set the connector's panel_orientation after checking for quirks
+- * @connector: connector for which to init the panel-orientation property.
++ * @connector: connector for which to set the panel-orientation property.
+  * @panel_orientation: drm_panel_orientation value to set
+  * @width: width in pixels of the panel, used for panel quirk detection
+  * @height: height in pixels of the panel, used for panel quirk detection
+@@ -2252,6 +2244,40 @@ int drm_connector_set_panel_orientation_with_quirk(
+ }
+ EXPORT_SYMBOL(drm_connector_set_panel_orientation_with_quirk);
+ 
++/**
++ * drm_connector_init_panel_orientation_property -
++ * 	create the connector's panel orientation property
++ *
++ * This function attaches a "panel orientation" property to the connector
++ * and initializes its value to DRM_MODE_PANEL_ORIENTATION_UNKNOWN.
++ *
++ * The value of the property can be set by drm_connector_set_panel_orientation()
++ * or drm_connector_set_panel_orientation_with_quirk() later.
++ *
++ * Returns:
++ * Zero on success, negative errno on failure.
++ */
++int drm_connector_init_panel_orientation_property(
++	struct drm_connector *connector)
++{
++	struct drm_device *dev = connector->dev;
++	struct drm_property *prop;
++
++	prop = drm_property_create_enum(dev, DRM_MODE_PROP_IMMUTABLE,
++			"panel orientation",
++			drm_panel_orientation_enum_list,
++			ARRAY_SIZE(drm_panel_orientation_enum_list));
++	if (!prop)
++		return -ENOMEM;
++
++	dev->mode_config.panel_orientation_property = prop;
++	drm_object_attach_property(&connector->base, prop,
++				   DRM_MODE_PANEL_ORIENTATION_UNKNOWN);
++
++	return 0;
++}
++EXPORT_SYMBOL(drm_connector_init_panel_orientation_property);
++
+ int drm_connector_set_obj_prop(struct drm_mode_object *obj,
+ 				    struct drm_property *property,
+ 				    uint64_t value)
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 9282978060b08..5ac4538e42833 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1903,6 +1903,7 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
+ 
+ 	connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+ 
++	drm_connector_init_panel_orientation_property(&connector->base);
+ 	drm_connector_set_panel_orientation_with_quirk(&connector->base,
+ 				intel_dsi_get_panel_orientation(connector),
+ 				connector->panel.fixed_mode->hdisplay,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index a5231ac3443aa..f1d664e5abb28 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5263,6 +5263,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	intel_panel_setup_backlight(connector, pipe);
+ 
+ 	if (fixed_mode) {
++		drm_connector_init_panel_orientation_property(connector);
+ 		drm_connector_set_panel_orientation_with_quirk(connector,
+ 				dev_priv->vbt.orientation,
+ 				fixed_mode->hdisplay, fixed_mode->vdisplay);
+diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+index 9bee99fe54954..853855482af14 100644
+--- a/drivers/gpu/drm/i915/display/vlv_dsi.c
++++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+@@ -1632,6 +1632,7 @@ static void vlv_dsi_add_properties(struct intel_connector *connector)
+ 
+ 		connector->base.state->scaling_mode = DRM_MODE_SCALE_ASPECT;
+ 
++		drm_connector_init_panel_orientation_property(&connector->base);
+ 		drm_connector_set_panel_orientation_with_quirk(
+ 				&connector->base,
+ 				intel_dsi_get_panel_orientation(connector),
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 1922b278ffadf..4396c1c4a5dbc 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -1696,6 +1696,8 @@ int drm_connector_set_panel_orientation_with_quirk(
+ 	struct drm_connector *connector,
+ 	enum drm_panel_orientation panel_orientation,
+ 	int width, int height);
++int drm_connector_init_panel_orientation_property(
++	struct drm_connector *connector);
+ int drm_connector_attach_max_bpc_property(struct drm_connector *connector,
+ 					  int min, int max);
+ 
+-- 
+2.32.0.288.g62a8d224e6-goog
 
