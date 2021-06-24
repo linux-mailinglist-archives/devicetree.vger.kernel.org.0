@@ -2,223 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 262F43B2EAB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 14:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F27663B2EB2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 14:13:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230308AbhFXMNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 08:13:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40888 "EHLO
+        id S231162AbhFXMPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 08:15:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230028AbhFXMNq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 08:13:46 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC245C061756
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 05:11:27 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id i24so8178277edx.4
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 05:11:27 -0700 (PDT)
+        with ESMTP id S230110AbhFXMPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 08:15:15 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C92C061574
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 05:12:56 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id i24so8183954edx.4
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 05:12:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Hl72FS2y9n4jB9a1L7Hg43gY2B5zO77yYR8Igj/hYDI=;
-        b=Nf6mocvXO8NeZN8KVnMZdEwN0VGtlu+nF63Hc3crZMEB2Pa88argC2qEH737O17A8t
-         Mdt8H36DcAhBkk3FQNKViV8IKxUqV0Uj3qixjwf2n9qZmfcXTn7QQe/u3gVFOFrcQry8
-         0ckG508FS/iQx+qUUVHHJn4RFaUABamSFqZWc=
+        bh=00qJhUhsSLmie5on9fHVkXswl7GglVNf9S3IawNPKpM=;
+        b=LFHTlf5beKsNbpsxpkkS7V5dXdKTpBIrVD4foDj+FdxKHL3klGfzF2ZNY8wPxslgv2
+         b+q18nUxWppzyqAbC8zxa3HkuEqel6xx0h3CW75ZhmePnPERpOv3A/UK68F8D6pXZ7IN
+         hhPXxXVWdAgEp3q7sAt2VrAtY/D3bz2rC8umk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Hl72FS2y9n4jB9a1L7Hg43gY2B5zO77yYR8Igj/hYDI=;
-        b=o8hSDFkD/uyEn/FWQ77FSTcfUR+0v+sVpA13mwvbRRIfbMBSJeo54meIYd37kGolsB
-         M8npNfixv5CtqfC4PUTeLzdfyy2in9P2180AUalZzE/3E0JkmWr3MRoH7j9ri5L2SUWf
-         yjqefDsAeD/EtAelN/G4W24Y6L0yY/uUOx3Gc+xsp0KgDELMTQGzp3LRDDV/YqZ3+p4J
-         tFYEyRjJ+Quif+3wfGhK0WaRjj/WBVlGl8xMHXZk4Dzgi1V9x7gvaYas1PEDCAkrteNj
-         baBUTq1oVZgDQ8fMrHTv34elzeebe2ahwCoTyCo/LBwf/wcCyGCz3dEDbGGPEhnqMd+3
-         I4lg==
-X-Gm-Message-State: AOAM530AnnE6o7K8DIliJdIzmLzET6RSrdiP4+utj/8I2R0QdjgAlQ6E
-        XPsaRGEBQJ1Y6lbUV/2Iki9piBB1RW653cpxWs7TMQ==
-X-Google-Smtp-Source: ABdhPJwqpXFeexELh7KyE5nGxtsdMgSuFak/f1DLFia8mgKPPcd1rTqdF6kez5LClGR9uYcVsP2D2Hk5itPE6rlPQDI=
-X-Received: by 2002:aa7:cf03:: with SMTP id a3mr6764586edy.27.1624536686322;
- Thu, 24 Jun 2021 05:11:26 -0700 (PDT)
+        bh=00qJhUhsSLmie5on9fHVkXswl7GglVNf9S3IawNPKpM=;
+        b=F2H+kRLaF+KfJ5OxJwL8ybaM0z40VnBqqWKmHyGNcbXgpbqo/d+RLgO8/QAcXPkw4g
+         jl0uaBE34Rx6yMUnWBtODPLx3oPYglQvYk4CYDdPMbYzo8EIDwcJoQrn1reMsIuIeZW7
+         IAMCscibZC3yyaTLQfN9VnnpCw0OwGV98k/c/gAX10lAdt3GDqRTvTFX7nDlYaJ3a4kO
+         MGDaW9Zr98kE1UuyHInLjghI382GXO9bwIWrkI4yVAO+1fC3F3TtkudNrDTgfSm81VFX
+         UaYBP3iJqxtgScfoQXrXTITcZyLaxn26OlbzxE4F4/wTKV89v/wMaDBHhzsqvIqNnzqq
+         BlvA==
+X-Gm-Message-State: AOAM533cQsQRqj6SZuSSSwyA6+om6R97JIKIUEcot8u6UH0zPJMBz+CM
+        AwHw2eI7ZKDcl4dtPCy4p2x/6Gucp/tSVLvGR5Qlsw==
+X-Google-Smtp-Source: ABdhPJwH6wzxQh/EgARmUBUCU45D6SQC4arfqhFGQNZ2Zi25gX0SJv2dx4JOvDj7503wKBJOz/+Q/kaHBNGL0ZXDpfI=
+X-Received: by 2002:a05:6402:1d55:: with SMTP id dz21mr6499192edb.338.1624536774634;
+ Thu, 24 Jun 2021 05:12:54 -0700 (PDT)
 MIME-Version: 1.0
 References: <20210621072424.111733-1-jagan@amarulasolutions.com>
  <20210621072424.111733-3-jagan@amarulasolutions.com> <YNO0LHNVSWjrh1ZS@pendragon.ideasonboard.com>
-In-Reply-To: <YNO0LHNVSWjrh1ZS@pendragon.ideasonboard.com>
+ <CAOMZO5Ahbu4mohtMDOQOv_y5B_TDesbdYEUZTF1RL7_y-bS+RA@mail.gmail.com>
+In-Reply-To: <CAOMZO5Ahbu4mohtMDOQOv_y5B_TDesbdYEUZTF1RL7_y-bS+RA@mail.gmail.com>
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Thu, 24 Jun 2021 17:41:14 +0530
-Message-ID: <CAMty3ZDmzPha7zdWVHkcuRCjA_LsWqSLyWQMhkOiRMmQmTNXjA@mail.gmail.com>
+Date:   Thu, 24 Jun 2021 17:42:43 +0530
+Message-ID: <CAMty3ZAtObU-bf6FuxvSBaZn2cotj_NxASW9g9on-kBJ7iW3OA@mail.gmail.com>
 Subject: Re: [RFC PATCH 2/9] drm: bridge: Add Samsung SEC MIPI DSIM bridge driver
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Tomasz Figa <t.figa@samsung.com>,
-        Fancy Fang <chen.fang@nxp.com>,
-        devicetree <devicetree@vger.kernel.org>,
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>,
         Francis Laniel <francis.laniel@amarulasolutions.com>,
         Matteo Lisi <matteo.lisi@engicam.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Tomasz Figa <t.figa@samsung.com>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
+        Robert Foss <robert.foss@linaro.org>,
         Andrzej Hajda <a.hajda@samsung.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
         Milco Pratesi <milco.pratesi@engicam.com>,
         Anthony Brandon <anthony@amarulasolutions.com>,
-        linux-phy@lists.infradead.org,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+        linux-phy@lists.infradead.org, Fancy Fang <chen.fang@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+Hi Fabio,
 
-On Thu, Jun 24, 2021 at 3:53 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
+On Thu, Jun 24, 2021 at 8:18 AM Fabio Estevam <festevam@gmail.com> wrote:
 >
-> Hi Jagan,
+> Hi Jagan/Laurent,
 >
-> Thank you for the patch.
+> On Wed, Jun 23, 2021 at 7:23 PM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
 >
-> On Mon, Jun 21, 2021 at 12:54:17PM +0530, Jagan Teki wrote:
-> > Samsung SEC MIPI DSIM Bridge controller is MIPI DSI bridge
-> > available in NXP's i.MX8M Mini and Nano Processors.
-> >
-> > Add bridge driver for it.
-> >
-> > Cc: Andrzej Hajda <a.hajda@samsung.com>
-> > Cc: Neil Armstrong <narmstrong@baylibre.com>
-> > Cc: Robert Foss <robert.foss@linaro.org>
-> > Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > ---
-> >  drivers/gpu/drm/bridge/Kconfig    |   15 +
-> >  drivers/gpu/drm/bridge/Makefile   |    1 +
-> >  drivers/gpu/drm/bridge/sec-dsim.c | 1535 +++++++++++++++++++++++++++++
-> >  3 files changed, 1551 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/bridge/sec-dsim.c
-> >
-> > diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> > index 19109c0b5481..a183eb165a35 100644
-> > --- a/drivers/gpu/drm/bridge/Kconfig
-> > +++ b/drivers/gpu/drm/bridge/Kconfig
-> > @@ -189,6 +189,21 @@ config DRM_PARADE_PS8640
-> >         The PS8640 is a high-performance and low-power
-> >         MIPI DSI to eDP converter
-> >
-> > +config DRM_SEC_MIPI_DSIM
-> > +     tristate "Samsung SEC MIPI DSIM Bridge controller"
-> > +     depends on DRM
-> > +     depends on COMMON_CLK
-> > +     depends on OF && HAS_IOMEM
-> > +     select DRM_KMS_HELPER
-> > +     select DRM_MIPI_DSI
-> > +     select DRM_PANEL_BRIDGE
-> > +     select GENERIC_PHY_MIPI_DPHY
-> > +     select MFD_SYSCON
-> > +     select REGMAP_MMIO
-> > +     help
-> > +       This enables the Samsung SEC MIPI DSIM Bridge controller as
-> > +       for example found on NXP's i.MX8M Mini and Nano Processors.
-> > +
-> >  config DRM_SIL_SII8620
-> >       tristate "Silicon Image SII8620 HDMI/MHL bridge"
-> >       depends on OF
-> > diff --git a/drivers/gpu/drm/bridge/Makefile b/drivers/gpu/drm/bridge/Makefile
-> > index 88e4edf81087..ff802a4ffe65 100644
-> > --- a/drivers/gpu/drm/bridge/Makefile
-> > +++ b/drivers/gpu/drm/bridge/Makefile
-> > @@ -12,6 +12,7 @@ obj-$(CONFIG_DRM_MEGACHIPS_STDPXXXX_GE_B850V3_FW) += megachips-stdpxxxx-ge-b850v
-> >  obj-$(CONFIG_DRM_NXP_PTN3460) += nxp-ptn3460.o
-> >  obj-$(CONFIG_DRM_PARADE_PS8622) += parade-ps8622.o
-> >  obj-$(CONFIG_DRM_PARADE_PS8640) += parade-ps8640.o
-> > +obj-$(CONFIG_DRM_SEC_MIPI_DSIM) += sec-dsim.o
-> >  obj-$(CONFIG_DRM_SIL_SII8620) += sil-sii8620.o
-> >  obj-$(CONFIG_DRM_SII902X) += sii902x.o
-> >  obj-$(CONFIG_DRM_SII9234) += sii9234.o
-> > diff --git a/drivers/gpu/drm/bridge/sec-dsim.c b/drivers/gpu/drm/bridge/sec-dsim.c
-> > new file mode 100644
-> > index 000000000000..5b6645bb94e7
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/bridge/sec-dsim.c
-> > @@ -0,0 +1,1535 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Samsung SEC MIPI DSIM Bridge
-> > + *
-> > + * Copyright (C) 2018 NXP
-> > + * Copyright (c) 2014 Samsung Electronics Co., Ltd
-> > + * Copyright (C) 2021 Amarula Solutions(India)
-> > + *
-> > + * Based on the drivers/gpu/drm/exynos/exynos_drm_dsi.c
-> > + *
-> > + * Authors:
-> > + * Tomasz Figa <t.figa@samsung.com>
-> > + * Andrzej Hajda <a.hajda@samsung.com>
-> > + * Fancy Fang <chen.fang@nxp.com>
-> > + * Jagan Teki <jagan@amarulasolutions.com>
-> > + */
-> > +
-> > +#include <asm/unaligned.h>
-> > +#include <linux/bitfield.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/completion.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/of_graph.h>
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#include <drm/drm_atomic_helper.h>
-> > +#include <drm/drm_bridge.h>
-> > +#include <drm/drm_mipi_dsi.h>
-> > +#include <drm/drm_panel.h>
-> > +#include <drm/drm_of.h>
-> > +#include <drm/drm_print.h>
-> > +
-> > +#include <video/mipi_display.h>
-> > +
-> > +#define DRIVER_NAME                  "sec-dsim"
-> > +
-> > +/* dsim registers */
-> > +#define DSIM_VERSION                 0x00
-> > +#define DSIM_STATUS                  0x04
-> > +#define DSIM_RGB_STATUS                      0x08
-> > +#define DSIM_SWRST                   0x0c
-> > +#define DSIM_CLKCTRL                 0x10
-> > +#define DSIM_TIMEOUT                 0x14
-> > +#define DSIM_CONFIG                  0x18
-> > +#define DSIM_ESCMODE                 0x1c
-> > +#define DSIM_MDRESOL                 0x20
-> > +#define DSIM_MVPORCH                 0x24
-> > +#define DSIM_MHPORCH                 0x28
-> > +#define DSIM_MSYNC                   0x2c
-> > +#define DSIM_SDRESOL                 0x30
-> > +#define DSIM_INTSRC                  0x34
-> > +#define DSIM_INTMSK                  0x38
-> > +#define DSIM_PKTHDR                  0x3c
-> > +#define DSIM_PAYLOAD                 0x40
-> > +#define DSIM_RXFIFO                  0x44
-> > +#define DSIM_FIFOTHLD                        0x48
-> > +#define DSIM_FIFOCTRL                        0x4c
-> > +#define DSIM_MEMACCHR                        0x50
-> > +#define DSIM_MULTI_PKT                       0x78
-> > +#define DSIM_PLLCTRL_1G                      0x90
-> > +#define DSIM_PLLCTRL                 0x94
-> > +#define DSIM_PLLCTRL1                        0x98
-> > +#define DSIM_PLLCTRL2                        0x9c
-> > +#define DSIM_PLLTMR                  0xa0
+> > Looking at the register set, it seems to match the Exynos 5433,
+> > supported by drivers/gpu/drm/exynos/exynos_drm_dsi.c. Can we leverage
+> > that driver instead of adding a new one for the same IP core ?
 >
-> Looking at the register set, it seems to match the Exynos 5433,
-> supported by drivers/gpu/drm/exynos/exynos_drm_dsi.c. Can we leverage
-> that driver instead of adding a new one for the same IP core ?
+> Yes. there was an attempt from Michael in this direction:
+> https://patchwork.kernel.org/project/dri-devel/cover/20200911135413.3654800-1-m.tretter@pengutronix.de/
 
-I thought the same initially, but the PLLOut computation seems
-different than the one in the i.MX8MM Reference Manual. I need to find
-whether this exynos_dsi is compatible or working on my i.MX8MM
-platform and send the next version changes accordingly. thanks.
+Thanks for the reference, I will check it out and see I can send any
+updated versions wrt my i.MX8MM platform.
 
---
-Jagan Teki,
+Jagan.
