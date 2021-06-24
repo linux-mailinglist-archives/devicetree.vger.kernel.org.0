@@ -2,290 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89F483B367E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 21:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37F2B3B3696
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 21:04:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232761AbhFXTEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 15:04:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50426 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232762AbhFXTEJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 15:04:09 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E113C061760
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 12:01:50 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id v5-20020a0568301bc5b029045c06b14f83so6641827ota.13
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 12:01:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=niCJas6DLKYQ2aRdEe9ef7yZyU9hP5wpZvDJtvC0Zfw=;
-        b=JFgdAv/Vghn65RudbuJtZe0WSoMp5z9gp8dgd1PkJOw/ZzTiMkrIWIv0EH03x+SIkY
-         B7nh/Z7QOUBTshACf3w9CzENnoO1F04STqdvQewvqM1K4Uhby9P7cJL6LYwfUatt01Rp
-         Re/e0QiqvmCrSweuO7J30L7FLhAT2wG87tC7q789iFx3SyOV9tWCN3ohoDwuylUcRNCf
-         4TlSLQqcnNSCfWuh4w/AjwzA0SFCevl02EnyM/ACnxCkT7Kajnt77lEf41GAeNRyYUTB
-         mA9SnpIhobvaYJB/Ukr/Fbq0YWh1HE4w88Qa8KKBmYAIj06ItLIa93xWu5CQ2pCX35tg
-         VnhQ==
+        id S232626AbhFXTGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 15:06:37 -0400
+Received: from mail-io1-f47.google.com ([209.85.166.47]:33696 "EHLO
+        mail-io1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232417AbhFXTGh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 15:06:37 -0400
+Received: by mail-io1-f47.google.com with SMTP id a6so9642696ioe.0;
+        Thu, 24 Jun 2021 12:04:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=niCJas6DLKYQ2aRdEe9ef7yZyU9hP5wpZvDJtvC0Zfw=;
-        b=lJ96MQMOLSTIkGWZt6JxCgVRusGk2b2TACpP0Sj3PrFYy/SJkHs2C7E7gXsgzC3BXz
-         meEZA/ElVOcoYpAP1TOKHClyX9AAecWz4oJ1G3ac8QB+5qDbYH8h+DDD2kZDmtfnfF3q
-         lzvjrmBaoDLHyPADD/iRgZMjJCg/WyiTqD2V4Nf+Bb5YUdsrSD80mYFyG514z/efdIrr
-         mj9kpDAj28z/FQIKGOwsFQHBybEFIs/5faAeRV5JX0VUKNUZzsZcTtPEqqSqFQ6CQ05j
-         R16rXEwJYYwVQ9In1lMIhDHbBaha571x+DJDL3yiLcSQ5v/JQOPUGLcWjrFXDaythvQ6
-         ALFw==
-X-Gm-Message-State: AOAM530MhuGE6jOUhFS+zta9oSvx+d57Fe8SYuUaEQ0DZ1qHl6riKujb
-        aor/sVaGj297/0E6ItNpuUcsnQ==
-X-Google-Smtp-Source: ABdhPJwNRLa5BzfvWSWwXXa9RsJN+K766evyrPB+27whsst0ko7CEOu+X9m7lixSuMQGzjMiolB8WQ==
-X-Received: by 2002:a9d:a09:: with SMTP id 9mr6003334otg.126.1624561309069;
-        Thu, 24 Jun 2021 12:01:49 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id h11sm805451oov.8.2021.06.24.12.01.48
+        bh=RNyR7WJkBi+j5cZSpglBt7CMB4kjHG9lY9GO1xbTvDI=;
+        b=ZXo45QX8U+A3TzQIo/cFley6OfM/RGH+0OaTOvkH5lk8DWrb9vjPp/hRVJ9GvXcGT8
+         3rlmtYMEDedPdvaA3h37SkbOZCkTVA9tj7e/Xqhv1vzNqrYnyRQS2hGxLmNVxU/p+BdO
+         vXsmldTMyIaJaMfjHippUWsDE/edgxCPQJH7XENNwH+aifidA1MwWq9M8CL2baPjLjpu
+         ZLqf/8WGGDQyKiXrZn4M7eoZ6KTBmJ4ktu99GXjCm5OAUZye5XboXiT5NNKQzdyY+2K8
+         i7UPzjwSZlhl/oSYg08IxnZDcF7MqzwXfH41zuRMfLe6T/1k3x/IPSRCNrVgSkaa/N4X
+         M93A==
+X-Gm-Message-State: AOAM532Nu6VnO5d1KyIONjody+jE/1IZzeMZAOTGMSdMf3KrmQsVMyM4
+        EIaziIyAmFU7ru6JvMlxiA==
+X-Google-Smtp-Source: ABdhPJwXCSzJsbLCsA/ceit/PNBn7MfOoeDC+bW/W0gnmgK2bxUazXXMLP+69M/mtI5Mukc063Xldg==
+X-Received: by 2002:a5d:9549:: with SMTP id a9mr5209403ios.152.1624561456623;
+        Thu, 24 Jun 2021 12:04:16 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id t21sm1773281ioj.10.2021.06.24.12.04.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 12:01:48 -0700 (PDT)
-Date:   Thu, 24 Jun 2021 14:01:46 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Iskren Chernev <iskren.chernev@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v1 1/2] dt-bindings: pinctrl: qcom: Add SM6115 pinctrl
- bindings
-Message-ID: <YNTWmpqq1UGv+7pY@yoga>
-References: <20210622201054.532979-1-iskren.chernev@gmail.com>
- <20210622201054.532979-2-iskren.chernev@gmail.com>
+        Thu, 24 Jun 2021 12:04:15 -0700 (PDT)
+Received: (nullmailer pid 1817466 invoked by uid 1000);
+        Thu, 24 Jun 2021 19:04:09 -0000
+Date:   Thu, 24 Jun 2021 13:04:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jon Lin <jon.lin@rock-chips.com>
+Cc:     linux-spi@vger.kernel.org, broonie@kernel.org, heiko@sntech.de,
+        jbx6244@gmail.com, hjc@rock-chips.com, yifeng.zhao@rock-chips.com,
+        sugar.zhang@rock-chips.com, linux-rockchip@lists.infradead.org,
+        linux-mtd@lists.infradead.org, p.yadav@ti.com,
+        macroalpha82@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH v8 1/9] dt-bindings: rockchip-sfc: Bindings for Rockchip
+ serial flash controller
+Message-ID: <20210624190409.GA1815079@robh.at.kernel.org>
+References: <20210611061134.31369-1-jon.lin@rock-chips.com>
+ <20210611061134.31369-2-jon.lin@rock-chips.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210622201054.532979-2-iskren.chernev@gmail.com>
+In-Reply-To: <20210611061134.31369-2-jon.lin@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 22 Jun 15:10 CDT 2021, Iskren Chernev wrote:
-
-> Add device tree binding Documentation details for Qualcomm SM6115 and
-> SM4250 pinctrl.
+On Fri, Jun 11, 2021 at 02:11:26PM +0800, Jon Lin wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
+> Add bindings for the Rockchip serial flash controller. New device
+> specific parameter of rockchip,sfc-no-dma included in documentation.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
 > ---
->  .../bindings/pinctrl/qcom,sm6115-pinctrl.yaml | 172 ++++++++++++++++++
->  1 file changed, 172 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6115-pinctrl.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-pinctrl.yaml
+> Changes in v8:
+> - Fix indent 4 to 2 in yaml
+
+My comments from v7 remain.
+
+> 
+> Changes in v7:
+> - Fix up the sclk_sfc parent error in rk3036
+> - Unify to "rockchip,sfc" compatible id because all the feature update
+>   will have a new IP version, so the driver is used for the SFC IP in
+>   all SoCs
+> - Change to use node "sfc" to name the SFC pinctrl group
+> - Add subnode reg property check
+> - Add rockchip_sfc_adjust_op_size to workaround in CMD + DUMMY case
+> - Limit max_iosize to 32KB
+> 
+> Changes in v6:
+> - Add support in device trees for rv1126(Declared in series 5 but not
+>   submitted)
+> - Change to use "clk_sfc" "hclk_sfc" as clock lable, since it does not
+>   affect interpretation and has been widely used
+> - Support sfc tx_dual, tx_quad(Declared in series 5 but not submitted)
+> - Simplify the code, such as remove "rockchip_sfc_register_all"(Declared
+>   in series 5 but not submitted)
+> - Support SFC ver4 ver5(Declared in series 5 but not submitted)
+> - Add author Chris Morgan and Jon Lin to spi-rockchip-sfc.c
+> - Change to use devm_spi_alloc_master and spi_unregister_master
+> 
+> Changes in v5:
+> - Add support in device trees for rv1126
+> - Support sfc tx_dual, tx_quad
+> - Simplify the code, such as remove "rockchip_sfc_register_all"
+> - Support SFC ver4 ver5
+> 
+> Changes in v4:
+> - Changing patch back to an "RFC". An engineer from Rockchip
+>   reached out to me to let me know they are working on this patch for
+>   upstream, I am submitting this v4 for the community to see however
+>   I expect Jon Lin (jon.lin@rock-chips.com) will submit new patches
+>   soon and these are the ones we should pursue for mainlining. Jon's
+>   patch series should include support for more hardware than this
+>   series.
+> - Clean up documentation more and ensure it is correct per
+>   make dt_binding_check.
+> - Add support in device trees for rk3036, rk3308, and rv1108.
+> - Add ahb clock (hclk_sfc) support for rk3036.
+> - Change rockchip_sfc_wait_fifo_ready() to use a switch statement.
+> - Change IRQ code to only mark IRQ as handled if it handles the
+>   specific IRQ (DMA transfer finish) it is supposed to handle.
+> 
+> Changes in v3:
+> - Changed the name of the clocks to sfc/ahb (from clk-sfc/clk-hsfc).
+> - Changed the compatible string from rockchip,sfc to
+>   rockchip,rk3036-sfc. A quick glance at the datasheets suggests this
+>   driver should work for the PX30, RK180x, RK3036, RK312x, RK3308 and
+>   RV1108 SoCs, and possibly more. However, I am currently only able
+>   to test this on a PX30 (an RK3326). The technical reference manuals
+>   appear to list the same registers for each device.
+> - Corrected devicetree documentation for formatting and to note these
+>   changes.
+> - Replaced the maintainer with Heiko Stuebner and myself, as we will
+>   take ownership of this going forward.
+> - Noted that the device (per the reference manual) supports 4 CS, but
+>   I am only able to test a single CS (CS 0).
+> - Reordered patches to comply with upstream rules.
+> 
+> Changes in v2:
+> - Reimplemented driver using spi-mem subsystem.
+> - Removed power management code as I couldn't get it working properly.
+> - Added device tree bindings for Odroid Go Advance.
+> 
+> Changes in v1:
+> hanges made in this new series versus the v8 of the old series:
+> - Added function to read spi-rx-bus-width from device tree, in the
+>   event that the SPI chip supports 4x mode but only has 2 pins
+>   wired (such as the Odroid Go Advance).
+> - Changed device tree documentation from txt to yaml format.
+> - Made "reset" message a dev_dbg from a dev_info.
+> - Changed read and write fifo functions to remove redundant checks.
+> - Changed the write and read from relaxed to non-relaxed when
+>   starting the DMA transfer or reading the DMA IRQ.
+> - Changed from dma_coerce_mask_and_coherent to just
+>   dma_set_mask_and_coherent.
+> - Changed name of get_if_type to rockchip_sfc_get_if_type.
+> 
+>  .../devicetree/bindings/spi/rockchip-sfc.yaml | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml b/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
 > new file mode 100644
-> index 000000000000..461edb7c5a1d
+> index 000000000000..162993a97290
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm6115-pinctrl.yaml
-> @@ -0,0 +1,172 @@
+> +++ b/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
+> @@ -0,0 +1,88 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,sm6115-pinctrl.yaml#
+> +$id: http://devicetree.org/schemas/spi/rockchip-sfc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Qualcomm Technologies, Inc. SM6115, SM4250 TLMM block
+> +title: Rockchip Serial Flash Controller (SFC)
 > +
 > +maintainers:
-> +  - Iskren Chernev <iskren.chernev@gmail.com>
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +  - Chris Morgan <macromorgan@hotmail.com>
 > +
-> +description: |
-
-The '|' denotes that you want to keep the formatting, but there's no
-need for that in your description.
-
-> +  This binding describes the Top Level Mode Multiplexer block found in the
-> +  SM6115 and SM4250 platforms.
+> +allOf:
+> +  - $ref: spi-controller.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - qcom,sm4250-tlmm
-> +      - qcom,sm6115-tlmm
+> +    oneOf:
+> +      - const: rockchip,sfc
 > +
 > +  reg:
-> +    minItems: 3
-> +    maxItems: 3
-> +
-> +  reg-names:
-> +    items:
-> +      - const: "west"
-> +      - const: "south"
-> +      - const: "east"
+> +    maxItems: 1
 > +
 > +  interrupts:
-> +    description: Specifies the TLMM summary IRQ
 > +    maxItems: 1
 > +
-> +  interrupt-controller: true
+> +  clocks:
+> +    items:
+> +      - description: Bus Clock
+> +      - description: Module Clock
 > +
-> +  '#interrupt-cells':
-> +    description:
-> +      Specifies the PIN numbers and Flags, as defined in defined in
-> +      include/dt-bindings/interrupt-controller/irq.h
-> +    const: 2
+> +  clock-names:
+> +    items:
+> +      - const: clk_sfc
+> +      - const: hclk_sfc
 > +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description: Specifying the pin number and flags, as defined in
-> +      include/dt-bindings/gpio/gpio.h
-> +    const: 2
-> +
-> +  gpio-ranges:
+> +  power-domains:
 > +    maxItems: 1
 > +
-> +  wakeup-parent:
-> +    maxItems: 1
+> +  rockchip,sfc-no-dma:
+> +    description: Disable DMA and utilize FIFO mode only
+> +    type: boolean
 > +
-> +#PIN CONFIGURATION NODES
 > +patternProperties:
-> +  '^.*$':
-> +    if:
-> +      type: object
-> +    then:
-
-This doesn't cover the ability to define pinctrl state both in immediate
-nodes and nested one level down. So please mimic how this is done in
-
-Documentation/devicetree/bindings/pinctrl/qcom,sc8180x-pinctrl.yaml
-
-> +      properties:
-> +        pins:
-> +          description:
-> +            List of gpio pins affected by the properties specified in this
-> +            subnode.
-> +          items:
-> +            oneOf:
-> +              - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-7][0-9])$"
-
-This says that gpio0-9, gpio10-99 and gpio100-179 are valid, but the
-driver only presents gpio0-112, so this should be:
-
-^gpio([0-9]|[1-9][0-9]|10[0-9]|11[0-2]$
-
-> +              - enum: [ sdc1_rclk, sdc1_clk, sdc1_cmd, sdc1_data,
-> +                        sdc2_clk, sdc2_cmd, sdc2_data, ufs_reset ]
-> +          minItems: 1
-> +          maxItems: 36
-> +
-> +        function:
-> +          description:
-> +            Specify the alternative function to be configured for the specified
-> +            pins.
-> +
-> +          enum: [ qup0, gpio, ddr_bist, phase_flag0, qdss_gpio8, atest_tsens,
-> +                  mpm_pwr, m_voc, phase_flag1, qdss_gpio9, atest_tsens2,
-> +                  phase_flag2, qdss_gpio10, dac_calib0, atest_usb10,
-> +                  phase_flag3, qdss_gpio11, dac_calib1, atest_usb11, qup1,
-> +                  cri_trng0, phase_flag4, dac_calib2, atest_usb12, cri_trng1,
-> +                  phase_flag5, dac_calib3, atest_usb13, qup2, phase_flag6,
-> +                  dac_calib4, atest_usb1, qup3, pbs_out, pll_bist, qdss_gpio,
-> +                  tsense_pwm, agera_pll, pbs0, qdss_gpio0, pbs1, qdss_gpio1,
-> +                  qup4, tgu_ch0, tgu_ch1, qup5, tgu_ch2, phase_flag7,
-> +                  qdss_gpio4, dac_calib5, tgu_ch3, phase_flag8, qdss_gpio5,
-> +                  dac_calib6, phase_flag9, qdss_gpio6, dac_calib7,
-> +                  phase_flag10, qdss_gpio7, dac_calib8, sdc2_tb, cri_trng,
-> +                  pbs2, qdss_gpio2, sdc1_tb, pbs3, qdss_gpio3, cam_mclk, pbs4,
-> +                  adsp_ext, pbs5, cci_i2c, prng_rosc, pbs6, phase_flag11,
-> +                  dac_calib9, atest_usb20, pbs7, phase_flag12, dac_calib10,
-> +                  atest_usb21, cci_timer1, gcc_gp1, pbs8, phase_flag13,
-> +                  dac_calib11, atest_usb22, cci_async, cci_timer0, pbs9,
-> +                  phase_flag14, dac_calib12, atest_usb23, pbs10, phase_flag15,
-> +                  dac_calib13, atest_usb2, vsense_trigger, qdss_cti,
-> +                  cci_timer2, phase_flag16, dac_calib14, atest_char,
-> +                  phase_flag17, dac_calib15, atest_char0, gp_pdm0,
-> +                  phase_flag18, dac_calib16, atest_char1, cci_timer3, gp_pdm1,
-> +                  phase_flag19, dac_calib17, atest_char2, gp_pdm2,
-> +                  phase_flag20, dac_calib18, atest_char3, phase_flag21,
-> +                  phase_flag22, nav_gpio, phase_flag23, phase_flag24,
-> +                  phase_flag25, pbs14, qdss_gpio14, vfr_1, pbs15, qdss_gpio15,
-> +                  pa_indicator, gsm1_tx, ssbi_wtr1, pll_bypassnl, pll_reset,
-> +                  phase_flag26, ddr_pxi0, gsm0_tx, phase_flag27, gcc_gp2,
-> +                  qdss_gpio12, ddr_pxi1, gcc_gp3, qdss_gpio13, dbg_out,
-> +                  uim2_data, uim2_clk, uim2_reset, uim2_present, uim1_data,
-> +                  uim1_clk, uim1_reset, uim1_present, dac_calib19, mdp_vsync,
-> +                  mdp_vsync_out_0, mdp_vsync_out_1, dac_calib20, dac_calib21,
-> +                  atest_bbrx1, pbs11, usb_phy, atest_bbrx0, mss_lte, pbs12,
-> +                  pbs13, wlan1_adc0, wlan1_adc1, sd_write, jitter_bist,
-> +                  atest_gpsadc_dtest0_native, atest_gpsadc_dtest1_native,
-> +                  phase_flag28, dac_calib22, ddr_pxi2, phase_flag29,
-> +                  dac_calib23, phase_flag30, dac_calib24, ddr_pxi3,
-> +                  phase_flag31, dac_calib25 ]
-> +
-> +        drive-strength:
-> +          enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +          default: 2
-> +          description:
-> +            Selects the drive strength for the specified pins, in mA.
-> +
-> +        bias-pull-down: true
-> +
-> +        bias-pull-up: true
-> +
-> +        bias-disable: true
-> +
-> +        output-high: true
-> +
-> +        output-low: true
-> +
-> +      required:
-> +        - pins
-> +        - function
-> +
-> +      additionalProperties: false
+> +  "^flash@[0-3]$":
+> +    type: object
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 3
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - reg-names
 > +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +  - gpio-ranges
+> +  - clocks
+> +  - clock-names
 > +
-> +additionalProperties: false
+> +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        pinctrl@500000 {
-> +                compatible = "qcom,sm4250-tlmm";
-> +                reg = <0x500000 0x400000>,
-> +                        <0x900000 0x400000>,
-> +                        <0xd00000 0x400000>;
-> +                reg-names = "west", "south", "east";
-> +                interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +                interrupt-controller;
-> +                #interrupt-cells = <2>;
-> +                gpio-ranges = <&tlmm 0 0 121>;
-
-You only have 114 (113 GPIOs + UFS_RESET) gpios.
-
-Doesn't the &tlmm need to be defined in the example as well?
-
-> +                wakeup-parent = <&intc>;
-
-The wakeup-parent should most likely be &pdc, but feel free to omit
-"wakup-parent" from the example if that helps.
-
-Regards,
-Bjorn
-
-> +        }
+> +    #include <dt-bindings/clock/px30-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/px30-power.h>
 > +
+> +    sfc: spi@ff3a0000 {
+> +        compatible = "rockchip,sfc";
+> +        reg = <0xff3a0000 0x4000>;
+> +        interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cru SCLK_SFC>, <&cru HCLK_SFC>;
+> +        clock-names = "clk_sfc", "hclk_sfc";
+> +        pinctrl-0 = <&sfc_clk &sfc_cs &sfc_bus2>;
+> +        pinctrl-names = "default";
+> +        power-domains = <&power PX30_PD_MMC_NAND>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        flash@0 {
+> +            compatible = "jedec,spi-nor";
+> +            reg = <0>;
+> +            spi-max-frequency = <108000000>;
+> +            spi-rx-bus-width = <2>;
+> +            spi-tx-bus-width = <2>;
+> +        };
+> +    };
+> +
+> +...
 > -- 
-> 2.31.1
+> 2.17.1
+> 
+> 
+> 
 > 
