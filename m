@@ -2,86 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBA4A3B313E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 16:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3535C3B314A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 16:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231194AbhFXO2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 10:28:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60392 "EHLO mail.kernel.org"
+        id S231942AbhFXO3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 10:29:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33270 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230170AbhFXO2T (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Jun 2021 10:28:19 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1AB7B6024A;
-        Thu, 24 Jun 2021 14:26:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624544760;
-        bh=g4nK/+OEJMNnj0M0Sp0XY47oCV+wxBV8N6nu9t8TV80=;
+        id S230056AbhFXO3j (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Jun 2021 10:29:39 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AA9516024A;
+        Thu, 24 Jun 2021 14:27:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1624544840;
+        bh=/W7GGtFuHznE/k7ogBLCPm6Nks6yk9xFc5/56IqkYuI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=AoaFk4wIXu15ykoDaVQ85lXeLgPoLv1GVS7whQVRfWpNulJYJ+TZ7zvXYOpYFtuk9
-         g95HwCpM7MnmA2zpKwhSaR17NVo6NZ3dh+c89kP5q0k5Q4YIXCNGbzVV9SG6dHDfwv
-         rIVvgmH+FLdOLJu4Yl7sAEMb8ais0oWVCYBIsIIs12cUp9MFElHrywLks1H2bCuTh7
-         51wWM2MrsAvjgQt11CI74Mw1j1VSsGHf8HdSK6wrkXAh+35dyuydNZW8aBsa8+U52u
-         OZ4E8ldOJkYajALOndRtFa5GLObiS36t8UTx2KPkJzY/TVI4ZvQgbVlvnDAH+WuewL
-         MHuEVUw14AHxw==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1lwQIq-0007Nc-70; Thu, 24 Jun 2021 16:26:00 +0200
-Date:   Thu, 24 Jun 2021 16:26:00 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH RESEND v6 6/8] mfd: hi6421-spmi-pmic: move driver from
- staging
-Message-ID: <YNSV+N0h7NoRpo/w@hovoldconsulting.com>
-References: <cover.1624525118.git.mchehab+huawei@kernel.org>
- <1ad2cbbd182d18ba2cae716fb5f1497b1cabbdbe.1624525118.git.mchehab+huawei@kernel.org>
- <YNRrISOGujxcJAGR@dell>
- <20210624143605.153e1e34@coco.lan>
- <YNSRwIMr8+m9Sxk3@dell>
+        b=ew3Cd6sRv4GTber3Mwcl4FY/kn++KMhFdnWMjvGeRwF3Zg/e62KkqObHKHYxz3jxR
+         GbQtjl67gpqsf4MDjWDK/iy8SjQ2a5p/14jNBAbei8L+eUEZtro02p2WdUl9va9u88
+         +IEzNp43tUARi8d4yXhRqj/Wx47IAm638mAEwNQ0=
+Date:   Thu, 24 Jun 2021 16:27:18 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-staging@lists.linux.dev,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v7 0/8] Move Hisilicon 6421v600 SPMI and USB drivers out
+ of staging
+Message-ID: <YNSWRlCjJ6WlrM/6@kroah.com>
+References: <cover.1624542940.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YNSRwIMr8+m9Sxk3@dell>
+In-Reply-To: <cover.1624542940.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 24, 2021 at 03:08:00PM +0100, Lee Jones wrote:
-> On Thu, 24 Jun 2021, Mauro Carvalho Chehab wrote:
+On Thu, Jun 24, 2021 at 04:01:29PM +0200, Mauro Carvalho Chehab wrote:
+> Hi Greg,
 > 
-> > Em Thu, 24 Jun 2021 12:33:28 +0100
-> > Lee Jones <lee.jones@linaro.org> escreveu:
-
-> > > > --- /dev/null
-> > > > +++ b/drivers/mfd/hi6421-spmi-pmic.c
-> > > > @@ -0,0 +1,316 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0
-> > > > +/*
-> > > > + * Device driver for regulators in HISI PMIC IC
-> > > > + *
-> > > > + * Copyright (c) 2013 Linaro Ltd.
-> > > > + * Copyright (c) 2011 Hisilicon.
-> > > > + * Copyright (c) 2020-2021 Huawei Technologies Co., Ltd  
-> > > 
-> > > Can this be updated?
-> > 
-> > Do you mean updating the copyrights to cover this year? E.g.
-> > something like this:
-> > 
-> > 	 * Copyright (c) 2013-2021 Linaro Ltd.
-> > 	 * Copyright (c) 2011-2021 Hisilicon.
-> > 	 * Copyright (c) 2020-2021 Huawei Technologies Co., Ltd  
-> > 
-> > Right? Or are you meaning something else?
+> Those are the remaining patches that are needed for the USB to work
+> with Hikey970.
 > 
-> Yes, that's it.  I know this is just a move, but to MFD, it's new.
+> This series address the comments made on v5. Sorry for taking so long to
+> return back on this. Got sidetracked by other unrelated stuff.
 
-That's not how copyright works. Unless Linaro and Hisilicon made
-nontrivial changes every year from 2011/2013 to 2021 you should not
-change those lines like this.
+I took the first 2 patches in here.
 
-Johan
+thanks,
+
+greg k-h
