@@ -2,122 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09AF03B2F07
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 14:33:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC3A73B2F0F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 14:36:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231294AbhFXMfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 08:35:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45826 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbhFXMfI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 08:35:08 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28922C061574
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 05:32:49 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id bu12so9359690ejb.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 05:32:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1pdNyGnwu73Y/M+lRxwYbfC63xdRtvOG341evPVloL4=;
-        b=VT4Xbs/6+8YEG5ok69Cp66JqzZQH90fw7I76MXbLk3uomJANwnomPoo574oC5hjoQ4
-         EKQdDKf9yDx4L7r2cF62JOT40zbd68qIkBdugdNROO5ALrOarxqS15JpQUzu+iBlP/bO
-         FZoTBAM7u3HhTjWJ9SuTe5GD1eTpfsr8wdQVE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1pdNyGnwu73Y/M+lRxwYbfC63xdRtvOG341evPVloL4=;
-        b=aYJDYTUo3Dqa9O5SJqdir81ZOrpt11EBfT6UIagZT67OJUq1GsQSJeqAfQT1LRcMu+
-         DDRLkZLLAXhCG5f4nFq02ir2GKDk7z3Gdm9/IR5LegAuqOIm7WXq7+wSOrc9M/0bIs7U
-         KzBKE4qX5JDU6ueS4pFULysKWMQZQTWjPK11IbFMZNOpa15UtV84ZI6Ru/zayO6p9nrb
-         qU5pUjBhClClu2TKahIkVyvQRVS7Mzki63PqBTQ50BD7WQU6j3D7kHe5uvJS0OQYNfFY
-         d7CTr5EgZEdISnN0idNq7+894Q3+2nSEPMXqXiZ4JFTeHtHHKLYAP2EgKNMgro8vw5fA
-         neqw==
-X-Gm-Message-State: AOAM532U5Z9+9srNqsF+ziElHIEeYn4rF3L0ON+ZKXC1kjGuQ0UWw3I0
-        2p73MnGOzc/w3yT0m1R/4uIH6xcr4fr+F5ZvRu2Mlw==
-X-Google-Smtp-Source: ABdhPJy9346wJ7pgPh41de3TKx9jGsDYkXgGD+VTQowScqmus3DWBHWMTQtjBZGWKBfvb/2N8Rflzvh3mC8Utrm9SqA=
-X-Received: by 2002:a17:906:718b:: with SMTP id h11mr5091976ejk.418.1624537967775;
- Thu, 24 Jun 2021 05:32:47 -0700 (PDT)
+        id S230028AbhFXMg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 08:36:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38080 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229573AbhFXMg1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Jun 2021 08:36:27 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 652DB6054E;
+        Thu, 24 Jun 2021 12:34:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624538048;
+        bh=Er8ubAq/u/gMOKagrmoA7/dlBihkdrrliqivnhX7g40=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=d0+yeM1Rgyx+FBX0sCsPHZZqpJGJvNCT2flya3NglKDuBV8GbApWxOI80HrcZzSwx
+         2/CW0Tdod3ArxyWy9L04kR7GrU0qwnbO1gp97QdNLL3b2TwlvKlAZLpJeXqzyUtfz+
+         DhPm2oU5LDRm7QMeW0qLXLbXaUUxB60XQw/UBt/KS4mE1ny9u8jGEg1IRd5R92W2l/
+         6uPIYkC1kTytoUdO+7RxXTv+F8Uv9ChQOFKq9Y5FHvKG/Opc1py0DQ6rZplSMx4CW+
+         gtdQg9rxaM5g8LEtbKEmTXshxAZ0ZNJbUHf3cMMJHjWxzXFkQvDapUS9tgmDRFkjSL
+         xg1fgznNOZs4A==
+Date:   Thu, 24 Jun 2021 13:33:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Kuldeep Singh <kuldeep.singh@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RESEND] dt-bindings: spi: Convert NXP flexspi to json schema
+Message-ID: <20210624123344.GC3912@sirena.org.uk>
+References: <20210428102417.1936520-1-kuldeep.singh@nxp.com>
+ <DB6PR0402MB275878B7DE63625FC5E05DDEE0079@DB6PR0402MB2758.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20210621072424.111733-1-jagan@amarulasolutions.com>
- <20210621072424.111733-3-jagan@amarulasolutions.com> <YNO0LHNVSWjrh1ZS@pendragon.ideasonboard.com>
- <CAOMZO5Ahbu4mohtMDOQOv_y5B_TDesbdYEUZTF1RL7_y-bS+RA@mail.gmail.com>
- <CAMty3ZAtObU-bf6FuxvSBaZn2cotj_NxASW9g9on-kBJ7iW3OA@mail.gmail.com> <YNR37NWkxq0mZyq5@pendragon.ideasonboard.com>
-In-Reply-To: <YNR37NWkxq0mZyq5@pendragon.ideasonboard.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Thu, 24 Jun 2021 18:02:36 +0530
-Message-ID: <CAMty3ZA=1xreRB+SZOwj6khH6+nLsE_ND5599xfV8J=LzGFYYQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/9] drm: bridge: Add Samsung SEC MIPI DSIM bridge driver
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Francis Laniel <francis.laniel@amarulasolutions.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Milco Pratesi <milco.pratesi@engicam.com>,
-        Anthony Brandon <anthony@amarulasolutions.com>,
-        linux-phy@lists.infradead.org, Fancy Fang <chen.fang@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="L6iaP+gRLNZHKoI4"
+Content-Disposition: inline
+In-Reply-To: <DB6PR0402MB275878B7DE63625FC5E05DDEE0079@DB6PR0402MB2758.eurprd04.prod.outlook.com>
+X-Cookie: World War III?  No thanks!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
 
-On Thu, Jun 24, 2021 at 5:48 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Jagan,
->
-> On Thu, Jun 24, 2021 at 05:42:43PM +0530, Jagan Teki wrote:
-> > On Thu, Jun 24, 2021 at 8:18 AM Fabio Estevam wrote:
-> > > On Wed, Jun 23, 2021 at 7:23 PM Laurent Pinchart wrote:
-> > >
-> > > > Looking at the register set, it seems to match the Exynos 5433,
-> > > > supported by drivers/gpu/drm/exynos/exynos_drm_dsi.c. Can we leverage
-> > > > that driver instead of adding a new one for the same IP core ?
-> > >
-> > > Yes. there was an attempt from Michael in this direction:
-> > > https://patchwork.kernel.org/project/dri-devel/cover/20200911135413.3654800-1-m.tretter@pengutronix.de/
-> >
-> > Thanks for the reference, I will check it out and see I can send any
-> > updated versions wrt my i.MX8MM platform.
->
-> Thanks.
->
-> I had a brief look at the exynos driver, and I think it should be turned
-> into a DRM bridge as part of this rework to be used with the i.MX8MM.
->
-> Is there someone from Samsung who could assist, at least to test the
-> changes ?
+--L6iaP+gRLNZHKoI4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I have hardware to verify it on i.MX8MM but from exynos I don't have
-any contact from Samsung to suggest or test. Maybe I can add Tomasz
-Figa while sending the changes?
+On Thu, Jun 24, 2021 at 12:31:19PM +0000, Kuldeep Singh wrote:
 
-I understand that there are 2 key implementations.
+> This patch has been in queue for a long time. Could you please help in pi=
+cking this up.
+> Please note, this is a resend version and previous version[1] was already=
+ reviewed by Rob.
 
-1. Adjust the exynos_drm_dsi.c by dropping component_ops as i.MX8MM
-flow with LCDIF doesn't have component_ops (make sure it works with
-exynos platform first)
-2. Sec DSIM Bridge driver common cross Exynos and i.MX8MM platform
-drivers or only one Sec DSIM bridge driver to handle both the
-platforms by differentiating compatible and driver data
+Please don't send content free pings and please allow a reasonable time
+for review.  People get busy, go on holiday, attend conferences and so=20
+on so unless there is some reason for urgency (like critical bug fixes)
+please allow at least a couple of weeks for review.  If there have been
+review comments then people may be waiting for those to be addressed.
 
-Any more suggestions would be appreciated?
+Sending content free pings adds to the mail volume (if they are seen at
+all) which is often the problem and since they can't be reviewed
+directly if something has gone wrong you'll have to resend the patches
+anyway, so sending again is generally a better approach though there are
+some other maintainers who like them - if in doubt look at how patches
+for the subsystem are normally handled.
 
-Jagan.
+Please fix your mail client to word wrap within paragraphs at something
+substantially less than 80 columns.  Doing this makes your messages much
+easier to read and reply to.
+
+--L6iaP+gRLNZHKoI4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDUe6cACgkQJNaLcl1U
+h9AW5wgAgD+wDR2Gp6/PRpKa1NKzJDt8uxtSVIUZuEF2fdTuMYnHHWwSPenmos+H
+yLf0Ns1XpuDRELJzTnqxWolyojLQq66RBu2vJP8eAl8rEuzr+r/kCHNwkbbYyJWH
+D1gf2u3YceaviJXoHZ0D9p8UjJ+LhZSabBmTKt8VOTd2klgjvfvy6Pyfl9eN1P3F
+z64diq3W9AMZhlhA1UjD4jyqCjNIbjTGBHypHx8T0NLv1gVyx/SG5SFRpkAuWQIH
+mg+VKZCIXLeXW7ZB+ixiIegjSzsWAlkrIUelOMQbiIVJGkuLZrTjGRF61akcm/EE
+5ePaS6zjUnpXBZCtg5qfE/GR713cKg==
+=nn/M
+-----END PGP SIGNATURE-----
+
+--L6iaP+gRLNZHKoI4--
