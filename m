@@ -2,149 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5F3C3B29C5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 09:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17BD23B29E9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 10:07:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231705AbhFXH4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 03:56:53 -0400
-Received: from uho.ysoft.cz ([81.19.3.130]:32101 "EHLO uho.ysoft.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231630AbhFXH4x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Jun 2021 03:56:53 -0400
-Received: from [10.0.28.232] (unknown [10.0.28.232])
-        by uho.ysoft.cz (Postfix) with ESMTP id BC3ADA569F;
-        Thu, 24 Jun 2021 09:54:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1624521272;
-        bh=NLbC23T/7+8xoV0rmoXID7prCSKbvpa0QbG1PLnUIew=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=TEC7utTQy3A7Yr8msK6gXy1ad1IgOVo/x4eSaE4l954cF7MCxyH68lLTofBWWCOs+
-         e1rJa/UDIA2MB8wv1dFQcxuOJru11Y0gty+hTtT/UdQAv0OeA8Y+kfZpUHvB02lo6V
-         qFit4l2SxdKK51tolQ0c7V/fiCOVoqTqVphjSTuY=
-Subject: Re: [RFC 2/2] ARM: dts: imx6dl-yapp4: Fix lp5562 driver probe
-To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        stable@vger.kernel.org
-References: <1621003477-11250-1-git-send-email-michal.vokac@ysoft.com>
- <1621003477-11250-3-git-send-email-michal.vokac@ysoft.com>
- <20210623201347.GC8540@amd>
-From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-Message-ID: <bca714c6-9bdd-ae20-9427-c2ea77a31f99@ysoft.com>
-Date:   Thu, 24 Jun 2021 09:54:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S231867AbhFXIJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 04:09:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41730 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231860AbhFXIJh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 04:09:37 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BDF2C061756
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 01:07:17 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id m41-20020a05600c3b29b02901dcd3733f24so5623654wms.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 01:07:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=bQUxqYvEQbwrTWwOlp2uFZwQKid1HyK+PsBGEywKHpY=;
+        b=g6764K3VIcCw92DYKTdMZuBHRgJ72tPzvbRx1mXxynnKxSX0ZOL/65BNZDSUJpTh5B
+         ahvO8Kn2ie7YcNnKfdK9B1fUVZIOgcTVuaiJunJarY4AG+iP3fIDjzHBNfw0AeE8lA3h
+         w9aLIh8v24GhWDVOVJUkgPG9WnJHKyueyTvMjZg3Ra9WfkhEwmTsaJxPsBCGm3mdN7QK
+         lLCEh+1ihXvlpbmVaeVmLethjuHjqrAd0kEaIDE76t1BQH+yLORTShklKl3DHbOa9H1v
+         5TEe3mH/tWOaNJgxcauZXQY9lAexoWY6HcNRmtBY2IsSmsdGqjWLVkDM20T8qGkccUfr
+         PEjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=bQUxqYvEQbwrTWwOlp2uFZwQKid1HyK+PsBGEywKHpY=;
+        b=a+9Des8dxmBxCW4beowlMPDiBaodtHgh6SsjoBi/ljbtAyy/alwc/Ves/w7vd2cp6n
+         uX2yi0i8CHuLcB2NWbSI2eMZAH8NSIY7Wt1zExydIin/R+pXU6+I2RA6HWhLOiStUIbV
+         CgiIJ+tctZV1u4BqGO9PAWRn+BhBnoH5dGFxSrDRiJNoqRvrk6lOq94dJXc603MoRZNK
+         pEAflMNMV3ruOo5ct5Cx8o/+9u91Y353zXdHfPtkmre/mBPY/tcJSvS33XccK+Xrscg1
+         2LCAD850CdltD2xwaHHVQTqPwETAMg2BZsV7d44o1SWZqamsBVyR+DUzCXXSn5sHSrjz
+         Xl8g==
+X-Gm-Message-State: AOAM533MLAnD8hszDCKABo4rnzRsxEK+uxfVxVrYQhoqjbzngltTF0n8
+        jI1qHfzDuRGz0wGE+SlBWaROTg==
+X-Google-Smtp-Source: ABdhPJwsOTnSwpzVm8hMKH9H6prTnCOoRYe7RmNEfVUVOEm1yvJUlMngkwEynAChqq727y+Stp+d5Q==
+X-Received: by 2002:a1c:2601:: with SMTP id m1mr2810880wmm.185.1624522035835;
+        Thu, 24 Jun 2021 01:07:15 -0700 (PDT)
+Received: from dell (92.40.180.82.threembb.co.uk. [92.40.180.82])
+        by smtp.gmail.com with ESMTPSA id g15sm2309146wri.75.2021.06.24.01.07.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Jun 2021 01:07:15 -0700 (PDT)
+Date:   Thu, 24 Jun 2021 09:07:12 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v6 6/8] mfd: hi6421-spmi-pmic: move driver from staging
+Message-ID: <YNQ9MPXTamQL46uT@dell>
+References: <cover.1624442566.git.mchehab+huawei@kernel.org>
+ <1ad2cbbd182d18ba2cae716fb5f1497b1cabbdbe.1624442566.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20210623201347.GC8540@amd>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1ad2cbbd182d18ba2cae716fb5f1497b1cabbdbe.1624442566.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23. 06. 21 22:13, Pavel Machek wrote:
-> On Fri 2021-05-14 16:44:37, Michal Vokáč wrote:
->> Since the LED multicolor framework support was added in commit
->> 92a81562e695 ("leds: lp55xx: Add multicolor framework support to lp55xx")
->> LEDs on this platform stopped working.
->>
->> Author of the framework attempted to accommodate this DT to the
->> framework in commit b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property
->> to the lp5562 channel node") but that is not sufficient. A color property
->> is now required even if the multicolor framework is not used, otherwise
->> the driver probe fails:
->>
->>    lp5562: probe of 1-0030 failed with error -22
->>
->> Add the color property to fix this and remove the actually unused white
->> channel.
->>
->> Fixes: b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property to the lp5562 channel node")
+On Wed, 23 Jun 2021, Mauro Carvalho Chehab wrote:
+
+> This driver is ready for mainstream. So, move it out of staging.
 > 
-> I believe this is for arm maintainers to take...
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> ---
+>  .../mfd}/hisilicon,hi6421-spmi-pmic.yaml      |  0
+>  MAINTAINERS                                   |  7 +++++++
+>  drivers/mfd/Kconfig                           | 16 ++++++++++++++++
+>  drivers/mfd/Makefile                          |  1 +
+>  .../hikey9xx => mfd}/hi6421-spmi-pmic.c       |  0
 
-Hi Pavel,
+I can't review a hidden patch.
 
-Thank you for your reply.
-As described in the cover letter, my primary intention was to bring
-attention to the problem. Addition of the multicolor framework broke
-devicetree forward compatibility. The old devicetrees does not work
-with newer kernels. Addition of the multicolor framework caused the
-color property to become a required one even if the framework is
-not enabled in kernel config nor used in the dts. So the reality and
-the dt-bindings documentation do not match.
+Please re-submit without '-M'.
 
-IMO this could be fixed in two ways. First is adapt the dt-binding
-documentation to match the reality. State that the color property is
-always required. With this we need to fix all the examples and dts
-files by adding the color property. This is quite tricky because we
-do not always know the color and it also becomes required for the
-led-controller node. See the error reported by Rob's bot for patch 1/2:
+TIA
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-lp55xx.example.dt.yaml: led-controller@32: 'color' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+>  drivers/staging/Kconfig                       |  2 --
+>  drivers/staging/Makefile                      |  1 -
+>  drivers/staging/hikey9xx/Kconfig              | 19 -------------------
+>  drivers/staging/hikey9xx/Makefile             |  3 ---
+>  drivers/staging/hikey9xx/TODO                 |  5 -----
+>  10 files changed, 24 insertions(+), 30 deletions(-)
+>  rename {drivers/staging/hikey9xx => Documentation/devicetree/bindings/mfd}/hisilicon,hi6421-spmi-pmic.yaml (100%)
+>  rename drivers/{staging/hikey9xx => mfd}/hi6421-spmi-pmic.c (100%)
+>  delete mode 100644 drivers/staging/hikey9xx/Kconfig
+>  delete mode 100644 drivers/staging/hikey9xx/Makefile
+>  delete mode 100644 drivers/staging/hikey9xx/TODO
 
-Second option is to fix this in the LED driver. The driver should not
-require the color property if the multicolor framework is not enabled.
-
-I would really like to know Rob's opinion here.
-  
->> diff --git a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
->> index 7d2c72562c73..3107bf7fbce5 100644
->> --- a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
->> +++ b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
->> @@ -5,6 +5,7 @@
->>   #include <dt-bindings/gpio/gpio.h>
->>   #include <dt-bindings/interrupt-controller/irq.h>
->>   #include <dt-bindings/input/input.h>
->> +#include <dt-bindings/leds/common.h>
->>   #include <dt-bindings/pwm/pwm.h>
->>   
->>   / {
->> @@ -271,6 +272,7 @@
->>   			led-cur = /bits/ 8 <0x20>;
->>   			max-cur = /bits/ 8 <0x60>;
->>   			reg = <0>;
->> +			color = <LED_COLOR_ID_RED>;
->>   		};
->>   
->>   		chan@1 {
->> @@ -278,6 +280,7 @@
->>   			led-cur = /bits/ 8 <0x20>;
->>   			max-cur = /bits/ 8 <0x60>;
->>   			reg = <1>;
->> +			color = <LED_COLOR_ID_GREEN>;
->>   		};
->>   
->>   		chan@2 {
->> @@ -285,13 +288,7 @@
->>   			led-cur = /bits/ 8 <0x20>;
->>   			max-cur = /bits/ 8 <0x60>;
->>   			reg = <2>;
->> -		};
->> -
->> -		chan@3 {
->> -			chan-name = "W";
->> -			led-cur = /bits/ 8 <0x0>;
->> -			max-cur = /bits/ 8 <0x0>;
->> -			reg = <3>;
->> +			color = <LED_COLOR_ID_BLUE>;
->>   		};
->>   	};
->>   
-> 
-> What is going on here? "White" channel seems to have disappeared?
-
-Yes, it is described in the commit message. I know this is not optimal.
-The white channel is actually not used on this platform. So the right
-approach would be to add the white color property in this fix commit
-and remove the whole chan@3 node in next commit. I can do it that way.
-
-Michal
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
