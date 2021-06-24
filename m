@@ -2,112 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AA2D3B2539
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 04:56:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A66C3B25A5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 05:44:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbhFXC67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Jun 2021 22:58:59 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:46753 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229907AbhFXC64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Jun 2021 22:58:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1624503398;
-        h=from:from:reply-to:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=2eSA6/HlHvadNSOU/l/uauEc2fo4rHElHGAVhTWFqfg=;
-        b=hI2qLnSlyUevs6SkqqHWuTINXyzAltnkrpBf2WKe16k4c587VgT3Rxhyf69w7ld+4V9djv
-        zNklHF7CqjeK52cLQSMr6fursPtovyev51sN9sjcc0LQEigMNLHt236MIo6GgWL4Xh/gXX
-        8tdOs1EU/HuQ5ugZzCpMApVel6jL9c0=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-475-pBXycZq0PzWfpTXSRvXuVQ-1; Wed, 23 Jun 2021 22:56:36 -0400
-X-MC-Unique: pBXycZq0PzWfpTXSRvXuVQ-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com [10.5.11.22])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        id S230109AbhFXDqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 23:46:23 -0400
+Received: from mo-csw1515.securemx.jp ([210.130.202.154]:60518 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230037AbhFXDqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 23:46:22 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1515) id 15O3hoZm008744; Thu, 24 Jun 2021 12:43:50 +0900
+X-Iguazu-Qid: 34tKJKyAEIlkXGoIh2
+X-Iguazu-QSIG: v=2; s=0; t=1624506229; q=34tKJKyAEIlkXGoIh2; m=J0MUdtpFRbncz17pRVSKtPU49zbXEpmBn7LFuWh9sw4=
+Received: from imx12-a.toshiba.co.jp (imx12-a.toshiba.co.jp [61.202.160.135])
+        by relay.securemx.jp (mx-mr1511) id 15O3hmUZ030804
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Thu, 24 Jun 2021 12:43:49 +0900
+Received: from enc02.toshiba.co.jp (enc02.toshiba.co.jp [61.202.160.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 49F86802C88;
-        Thu, 24 Jun 2021 02:56:35 +0000 (UTC)
-Received: from [10.64.54.70] (vpn2-54-70.bne.redhat.com [10.64.54.70])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 64B0A1001281;
-        Thu, 24 Jun 2021 02:56:33 +0000 (UTC)
-Reply-To: Gavin Shan <gshan@redhat.com>
-Subject: Re: [PATCH] Documentation, dt, numa: Add note to empty NUMA node
-To:     Randy Dunlap <rdunlap@infradead.org>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        drjones@redhat.com, shan.gavin@gmail.com
-References: <20210624033740.20862-1-gshan@redhat.com>
- <a6cdc518-3bd7-2b66-acd0-c4d53d360eae@infradead.org>
-From:   Gavin Shan <gshan@redhat.com>
-Message-ID: <435d4707-3871-26fe-e0e4-df93931ba49d@redhat.com>
-Date:   Thu, 24 Jun 2021 14:58:02 +1000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.0
+        by imx12-a.toshiba.co.jp (Postfix) with ESMTPS id 0B81F10010D;
+        Thu, 24 Jun 2021 12:43:48 +0900 (JST)
+Received: from hop101.toshiba.co.jp ([133.199.85.107])
+        by enc02.toshiba.co.jp  with ESMTP id 15O3hlsh012590;
+        Thu, 24 Jun 2021 12:43:47 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Subject: [PATCH v3 0/4] clk: visconti: Add support common clock driver and reset driver
+Date:   Thu, 24 Jun 2021 12:43:33 +0900
+X-TSB-HOP: ON
+Message-Id: <20210624034337.282386-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <a6cdc518-3bd7-2b66-acd0-c4d53d360eae@infradead.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/24/21 12:14 PM, Randy Dunlap wrote:
-> On 6/23/21 8:37 PM, Gavin Shan wrote:
->> The empty NUMA nodes, where no memory resides in, are allowed. For
->> these empty NUMA nodes, the 'len' of 'reg' property is zero. These
->> empty NUMA node IDs are still valid and parsed. I finds difficulty
->> to get where it's properly documented.
->>
->> So lets add note to empty NUMA nodes in the NUMA binding doc.
->>
->> Signed-off-by: Gavin Shan <gshan@redhat.com>
->> ---
->>   Documentation/devicetree/bindings/numa.txt | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
->> index 21b35053ca5a..c564705c0eac 100644
->> --- a/Documentation/devicetree/bindings/numa.txt
->> +++ b/Documentation/devicetree/bindings/numa.txt
->> @@ -109,6 +109,10 @@ Example:
->>   Dual socket system consists of 2 boards connected through ccn bus and
->>   each board having one socket/soc of 8 cpus, memory and pci bus.
->>   
->> +Note that the empty NUMA nodes, which no memory resides in, are allowed
-> 
-> Missing period at end of the sentence above.
-> 
+Hi,
 
-Oh, Yes. Thanks, Randy. I will replace "resides in" with "resides in period"
-in v2.
+This series is PLL, clock and reset driver for Toshiba's ARM SoC, Visconti[0].
+Since the clock driver and reset driver are provided as one function, they are
+provided in cooperation with the clock driver.
 
->> +Their NUMA node IDs are still valid so that memory can be added into these
->> +NUMA nodes through hotplug afterwards.
->> +
->>   	memory@c00000 {
->>   		device_type = "memory";
->>   		reg = <0x0 0xc00000 0x0 0x80000000>;
+This provides DT binding documentation, device driver, MAINTAINER files.
 
-By the way, I have one more question to check with you if I can. I'm not sure
-if dummy and invalid 'unit-address' is allowed in the empty memory node name,
-which follows the format "memory@unit-address'.
+Best regards,
+  Nobuhiro
 
-(1) The 'unit-address' is same thing as to 'base address' for memory node,
-     as specified in device-tree specification. I'm not sure if 'base address'
-     can be dummy and invalid one since empty memory node doesn't have memory
-     at all.
+[0]:
+https://toshiba.semicon-storage.com/ap-en/semiconductor/product/image-recognition-processors-visconti.html
 
-     https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#node-names
+  clk: visconti: Add support common clock driver and reset driver
+    v2 -> v3:
+       - Fix return value in visconti_register_pll().
+       - Remove initialization of flags used by spin_lock_irqsave().
+       - Change function name from *7708* to *770x*.
+       - Fix some coding style.
+    v1 -> v2:
+       - Fix warning with W=1
 
-(2) I don't find the 'unit-address' is used in linux, but I'm not sure other
-     software component like firmware uses it or not.
+  dt-bindings: clock: Add DT bindings for PLL of Toshiba Visconti TMPV770x SoC
+    v2 -> v3:
+       - Change file name.
+    v1 -> v2:
+       - Update subject.
 
-Thanks,
-Gavin
+  dt-bindings: clock: Add DT bindings for SMU of Toshiba Visconti TMPV770x SoC
+    v2 -> v3:
+       - Change file name.
+    v1 -> v2:
+       - Update subject.
 
+  MAINTAINERS: Add entries for Toshiba Visconti PLL and clock controller
+    v2 -> v3:
+       - Change path of DT binding files.
+    v1 -> v2:
+       - no update.
+
+Nobuhiro Iwamatsu (4):
+  clk: visconti: Add support common clock driver and reset driver
+  dt-bindings: clock: Add DT bindings for PLL of Toshiba Visconti TMPV770x SoC
+  dt-bindings: clock: Add DT bindings for SMU of Toshiba Visconti TMPV770x SoC
+  MAINTAINERS: Add entries for Toshiba Visconti PLL and clock controller
+
+ .../clock/toshiba,tmpv770x-pipllct.yaml       |  49 +++
+ .../clock/toshiba,tmpv770x-pismu.yaml         |  50 +++
+ MAINTAINERS                                   |   3 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/visconti/Makefile                 |   5 +
+ drivers/clk/visconti/clkc-tmpv770x.c          | 246 ++++++++++++
+ drivers/clk/visconti/clkc.c                   | 220 +++++++++++
+ drivers/clk/visconti/clkc.h                   |  75 ++++
+ drivers/clk/visconti/pll-tmpv770x.c           |  96 +++++
+ drivers/clk/visconti/pll.c                    | 369 ++++++++++++++++++
+ drivers/clk/visconti/pll.h                    |  63 +++
+ drivers/clk/visconti/reset.c                  | 111 ++++++
+ drivers/clk/visconti/reset.h                  |  35 ++
+ include/dt-bindings/clock/toshiba,tmpv770x.h  | 181 +++++++++
+ include/dt-bindings/reset/toshiba,tmpv770x.h  |  41 ++
+ 15 files changed, 1545 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
+ create mode 100644 drivers/clk/visconti/Makefile
+ create mode 100644 drivers/clk/visconti/clkc-tmpv770x.c
+ create mode 100644 drivers/clk/visconti/clkc.c
+ create mode 100644 drivers/clk/visconti/clkc.h
+ create mode 100644 drivers/clk/visconti/pll-tmpv770x.c
+ create mode 100644 drivers/clk/visconti/pll.c
+ create mode 100644 drivers/clk/visconti/pll.h
+ create mode 100644 drivers/clk/visconti/reset.c
+ create mode 100644 drivers/clk/visconti/reset.h
+ create mode 100644 include/dt-bindings/clock/toshiba,tmpv770x.h
+ create mode 100644 include/dt-bindings/reset/toshiba,tmpv770x.h
+
+-- 
+2.32.0
