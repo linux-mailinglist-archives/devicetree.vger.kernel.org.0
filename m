@@ -2,238 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 107EF3B2C5A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 12:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E84FC3B2C89
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 12:36:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232194AbhFXKXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 06:23:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43846 "EHLO
+        id S232195AbhFXKia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 06:38:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231561AbhFXKXd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 06:23:33 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE90C061574
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 03:21:13 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id j11-20020a05600c1c0bb02901e23d4c0977so5255840wms.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 03:21:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=a908WLTP46nDNm7SCDuYPdnHQENHhuim4bqnFOxZpAk=;
-        b=MMa/xIIwkruT/appFbtoPVsAwuLDlAzpzSJCF3LAZuRmc7Hw9q4giEWHQQOHNG+SHx
-         2oYJmbGGQeMRhCOqPCB8MwrBOpTh91c1TMQsclbwOFu53v7tDnGmQJJsVkjlAvb3YgaS
-         NfgnefGcCvIjcgMrp9fQ/At9Za2GNL/DRzYhHdiuV62NcGw3yF5ldzSQ3Tp/RGX0Ccvg
-         HqKu52HgHW7WeAYgFi1eqPN1XrUvLkaotXM7vDJyQdXaW0MCAp4oyWC7Wyjnrmq/ow02
-         9PKpGSny2VRfIiR4vWIEm5Fy6HkJO0ustS5WnjcZRJg1O3ALA8TEooCqseWk9zmyKUIw
-         WyGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=a908WLTP46nDNm7SCDuYPdnHQENHhuim4bqnFOxZpAk=;
-        b=PsQtT+mTg67ePKutb3+EIT8DPOkGwf7CoQP3mS3BKnk2qdlSXSk+nQZpcKfjRp0itg
-         Fx/i+uh6OIB0m/QtZbbHV55LeXwtDm5Xfxsd4nqtrReqohULx0bFTqAhkfcOCt5k2C+X
-         3Do7kV7wmE8sKbkCvKFHereQaqpf12Wqs1YqG9H/oLV5pBRM9ZT2gLvgqATnInI+jJop
-         ix1G+gTkWxW13SLmVJqntP16sI70ogydRFuKOxhRRW8PBzVk/9DrJEF46WrLB60Gn4ar
-         ky0WztejYQrRcO7NE66oazg+NHjH7yzxhSgZL17qW7FuOUR5IxyW912bu2Ntnjg+MvY5
-         SnZA==
-X-Gm-Message-State: AOAM533zRPurG/4pFVAqQ/nm7yG/5Kbwim7wB1qm7zaV43SmMI/aV16S
-        Ny6akkyAQinUIB9gT+PzqMHi+Q==
-X-Google-Smtp-Source: ABdhPJw032EjZ6nZx0f++iW0xeOXlSOcRbN9ml8vMUHjVwjcQnRj3F9Wrq2UvdUmzN6TH7CnXi2viA==
-X-Received: by 2002:a1c:f215:: with SMTP id s21mr3412276wmc.179.1624530071940;
-        Thu, 24 Jun 2021 03:21:11 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:8bf5:5c8b:9833:401c? ([2a01:e34:ed2f:f020:8bf5:5c8b:9833:401c])
-        by smtp.googlemail.com with ESMTPSA id e15sm2873907wrm.60.2021.06.24.03.21.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Jun 2021 03:21:11 -0700 (PDT)
-Subject: Re: [PATCH] Fix mt7622.dtsi thermal cpu
-To:     Eric Woudstra <ericwouds@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20210619121927.32699-1-ericwouds@gmail.com>
- <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org>
- <56fb5540-fb86-4e6a-a596-1276026b37e5@gmail.com>
- <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org>
- <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
- <fb633034-96e5-6165-b43f-290ae1a65cfd@linaro.org>
- <189b52d5-b103-43e1-a64f-1e627fbc75af@gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <173e6bab-9d21-eb28-9b91-a5f80c01fd03@linaro.org>
-Date:   Thu, 24 Jun 2021 12:21:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S231373AbhFXKia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 06:38:30 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D609C061574
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 03:36:11 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1lwMiK-0007jE-Cs; Thu, 24 Jun 2021 12:36:04 +0200
+Message-ID: <b8ce9abd075a65272bdbe6142c9cd877fa25c701.camel@pengutronix.de>
+Subject: Re: [EXT] regression due to soc_device_match not handling defer
+ (Was: [PATCH v4 4/4] soc: imx8m: change to use platform driver)
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Peng Fan <peng.fan@nxp.com>,
+        Dominique MARTINET <dominique.martinet@atmark-techno.com>,
+        "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Date:   Thu, 24 Jun 2021 12:36:02 +0200
+In-Reply-To: <DB6PR0402MB27607D28703D8C3E614E2F2A884D9@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+References: <20201120101112.31819-4-alice.guo@nxp.com>
+         <YGGZJjAxA1IO+/VU@atmark-techno.com>
+         <AM6PR04MB60536EF0DEEE6EB64CF29390E27D9@AM6PR04MB6053.eurprd04.prod.outlook.com>
+         <YHeWnuDQo76rYoz5@atmark-techno.com>
+         <DB6PR0402MB27607D28703D8C3E614E2F2A884D9@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
 MIME-Version: 1.0
-In-Reply-To: <189b52d5-b103-43e1-a64f-1e627fbc75af@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/06/2021 11:59, Eric Woudstra wrote:
+Hi all,
+
+Am Donnerstag, dem 15.04.2021 um 01:33 +0000 schrieb Peng Fan:
+> > (Was: [PATCH v4 4/4] soc: imx8m: change to use platform driver)
+> > 
+> > Alice Guo (OSS) wrote on Tue, Mar 30, 2021 at 02:41:23AM +0000:
+> > > Thanks for reporting this issue, I'll check and add a fix to handle defer probe.
+> > 
+> > I haven't seen any follow up on this, have you had a chance to take a look?
 > 
-> For Marvell:
+> We are trying to find a proper solution for this.
 > 
-> https://www.google.com/url?sa=t&source=web&rct=j&url=https://wiki.kobol.io/helios4/files/som/brochure_a38x_microsom_2017-09-05.pdf
+> The proper method might be make soc_device_match return probe defer,
+> and take early soc attr into consideration, but I am not sure this would win
+> maintainer's vote.
 > 
-> Armada38x maximum die temperature 115 degrees Celcius. They really get hotter then 100.
+> > If this won't make it for 5.12 (in a couple of week probably?) would it make
+> > sense to revert 7d981405d0fd ("soc: imx8m: change to use platform
+> > driver") for now?
 > 
-> But for mt7622 I cannot find this value
-
-Found that:
-
-https://download.kamami.pl/p579344-MT7622A_Datasheet_for_BananaPi_Only%281%29.pdf
-
-Chapter 3.3 - Thermal Characteristics
-
-Given the values I suggest:
-
- - Passive - 80°C
-
- - Hot - 90°C
-
- - Critical - 100°C
-
-And passive polling set to 250ms.
-
-It sounds like the sensor is not supporting the interrupt mode yet, so a
-big gap is needed with the Tj IMO to give the time to detect the trip
-point crossing with the polling.
-
-> ⁣Get BlueMail for Android ​
+> Please no. We are targeting android GKI, make driver as modules.
+> And reverting to original method will also break kexec.
 > 
-> On Jun 23, 2021, 10:08 PM, at 10:08 PM, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
->> On 23/06/2021 20:43, Eric Woudstra wrote:
->>>
->>> I choose "hot" before, because 87 degrees seems ok to start frequency
->>> throttling. But, yes, it should be passive.
->>>
->>> 87 is still quite low if I compare this temperature with the
->>> wrt3200acm Marvell dual core arm soc. They even went above 100
->>> degrees so I feel for an arm processor inside a router box it is fine
->>> to use 87 degrees But maybe someone at Mediatek can give some more
->>> details about operating temperatures.
->>
->> Sometimes, the SoC vendor puts a high temperature in the DT just to
->> export the thermal zone and deal with it from userspace. So putting the
->> high temp allow the userspace (usually a thermal engine - Android
->> stuff)
->> to deal with the mitigation without a kernel interaction.
->>
->> Having more than 100°C could be this kind of setup. Only the operating
->> temperature from the hardware documentation will tell the safe
->> temperature for the silicon.
->>
->> IMO, 77°C is a good compromise until getting the documented temp. 87°C
->> sounds to me a bit too hot.
->>
->>> It may be possible to leave the active map in the device tree as some
->>> users of the bananapi might choose to install a fan as it is one of
->>> the options.
->>
->> The active trip only makes sense if the cooling device is a fan (or any
->> active device), so the mapping points to a fan node, like:
->>
->> https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi#n192
->>
->> If there is no such [pwm] fan output on the board, no active trip point
->> should be added.
->>
->>> ⁣Get BlueMail for Android ​
->>>
->>> On Jun 23, 2021, 5:58 PM, at 5:58 PM, Daniel Lezcano
->>> <daniel.lezcano@linaro.org> wrote:
->>>> On 23/06/2021 17:35, Eric Woudstra wrote:
->>>>> It is only useful to set 1 map with the regulated temperature for
->>>>> cpu frequency throttling. Same as in the kernel document
->>>>> example.
->>>>>
->>>>>
->>>>> It has no use to set frequency scaling on 2 different
->>>>> temperature trip points, as the lowest one makes sure the higher
->>>>> one(s) are never reached.
->>>>
->>>> I looked more closely the DT and there is a misunderstanding of
->>>> the thermal framework in the definition.
->>>>
->>>> There is one trip point with the passive type and the cpu cooling 
->>>> device, followed by a second trip point with the active type *but*
->>>> the same cpu cooling device. That is wrong.
->>>>
->>>> And finally, there is the hot trip point as a third mapping and
->>>> the same cooling device.
->>>>
->>>> The hot trip point is only there to notify userspace and let it
->>>> take an immediate action to prevent an emergency shutdown when
->>>> reaching the critical temperature.
->>>>
->>>>> It can be applied only at 1 trip point. Multiple trip points is
->>>>> only usefully for fan control to make sure the fan is not too 
->>>>> noisy when it is not necessary to be noisy.
->>>>>
->>>>>
->>>>> The CPU will almost come to a dead stop when it starts to pass
->>>>> the lowest thermal map with frequency throttling.
->>>>>
->>>>> This is why it is a bug and needs a fix, not only adjustment.
->>>>
->>>> Yes, you are right. It should be something like (verbatim copy):
->>>>
->>>> diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi 
->>>> b/arch/arm64/boot/dts/mediatek/mt7622.dtsi index
->>>> 890a942ec608..88c81d24f4ff 100644 ---
->>>> a/arch/arm64/boot/dts/mediatek/mt7622.dtsi +++
->>>> b/arch/arm64/boot/dts/mediatek/mt7622.dtsi @@ -136,24 +136,18 @@
->>>> secmon_reserved: secmon@43000000 {
->>>>
->>>> thermal-zones { cpu_thermal: cpu-thermal { -
->>>> polling-delay-passive = <1000>; +			polling-delay-passive = <250>; 
->>>> polling-delay = <1000>;
->>>>
->>>> thermal-sensors = <&thermal 0>;
->>>>
->>>> trips { cpu_passive: cpu-passive { -					temperature = <47000>; +
->>>> temperature = <77000>; hysteresis = <2000>; type = "passive"; };
->>>>
->>>> -				cpu_active: cpu-active { -					temperature = <67000>; -
->>>> hysteresis = <2000>; -					type = "active"; -				}; - cpu_hot:
->>>> cpu-hot { temperature = <87000>; hysteresis = <2000>; @@ -173,18
->>>> +167,6 @@ map0 { cooling-device = <&cpu0 THERMAL_NO_LIMIT
->>>> THERMAL_NO_LIMIT>, <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>; }; - 
->>>> -				map1 { -					trip = <&cpu_active>; -					cooling-device =
->>>> <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>, -							 <&cpu1
->>>> THERMAL_NO_LIMIT THERMAL_NO_LIMIT>; -				}; - -				map2 { -
->>>> trip = <&cpu_hot>; -					cooling-device = <&cpu0 THERMAL_NO_LIMIT
->>>> THERMAL_NO_LIMIT>, -							 <&cpu1 THERMAL_NO_LIMIT
->>>> THERMAL_NO_LIMIT>; -				}; }; }; };
->>>>
->>>>
->>>> -- <http://www.linaro.org/> Linaro.org │ Open source software for
->>>> ARM SoCs
->>>>
->>>> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook | 
->>>> <http://twitter.com/#!/linaroorg> Twitter | 
->>>> <http://www.linaro.org/linaro-blog/> Blog
->>>
->>
->>
->> -- 
->> <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
->>
->> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
->> <http://twitter.com/#!/linaroorg> Twitter |
->> <http://www.linaro.org/linaro-blog/> Blog
-> 
+> I am on IRC #linux-imx, we could take more if you would like to.
 
+It seems this stalled. This regression totally breaks the kernel boot
+on all i.MX8M devices including the CAAM. 5.13 is about to be released,
+as the second upstream kernel release after 5.12 without a fix for this
+issue. What's the plan here?
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+If there is no good solution small enough to be ported to the stable
+kernels in sight, I think the only sensible option here is to revert
+this change.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Regards,
+Lucas
+
