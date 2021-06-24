@@ -2,86 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 03FEB3B380F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 22:43:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B38823B3811
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 22:44:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232284AbhFXUpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 16:45:54 -0400
-Received: from mail-io1-f43.google.com ([209.85.166.43]:33761 "EHLO
-        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230116AbhFXUpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 16:45:53 -0400
-Received: by mail-io1-f43.google.com with SMTP id a6so9990253ioe.0;
-        Thu, 24 Jun 2021 13:43:33 -0700 (PDT)
+        id S232310AbhFXUqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 16:46:32 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:40576 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230116AbhFXUqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 16:46:32 -0400
+Received: by mail-io1-f53.google.com with SMTP id r12so9926084ioa.7;
+        Thu, 24 Jun 2021 13:44:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=kT7rK5sc+dKix955eFVx5gPXvat2NwiKhdWbIUjTAuM=;
-        b=pHKDwcjqn0oVSnmPWI5unJYZLzlVwYN8Uyv5FoqksEX23BlD+Eh4B4XE4G2D38fnOZ
-         NYb3aXfHcU8IagekfFbOjI+MiAHzRJkhQ70tdLHrd1zqsHcPF5pE5p63toNpcVDnn2zo
-         hICfL5PCvTrcCXNGjnPcKEV0e7cNo4Ec4LEi6fV4GMufNHVkQIEv798PPfCFcDI4U01g
-         IJ2rUc60p07QD8SAF1awswBgpL4PaFN/QDDtkBW189j7MsRGlTKSeRB+Vlr/HMwPGvJj
-         hNIL5EwaDVmaAJJ7X6sJ+/wcxqo4nEdqlEQgXlzG8SaZzL6zX7HlxNu3EV/asfsffjjJ
-         iNWA==
-X-Gm-Message-State: AOAM531+Agzmd3YkCDIfaIp2XwDFwuMVynENYHYo9QGO0iXd1XPPBpVD
-        UFAIiXsWoeLoF4RKqkT7RA==
-X-Google-Smtp-Source: ABdhPJxE3JC6Ln0Nr0LFkH5NYNUwQkMHm84HO3+NqZ3uBQC2cgcYVYbrRvaK9ruZJaeY1CcqhYqVkw==
-X-Received: by 2002:a02:3781:: with SMTP id r123mr3243868jar.26.1624567413103;
-        Thu, 24 Jun 2021 13:43:33 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=Jb61FtgXv62RyoPttvhABXLLkGLociNax0eiMMTdeoE=;
+        b=V1sfiGoyavLl05DN8KYhJW/XqQpLqHebVkabWwxEWQx3Bn67XpKXtI1/SXBZlBE9uE
+         DcdwZFuHyJB5l0YgydEWtUSs+u/YA8aT2KCXGp0LfHkh3aI7kBUw2iSus7LS8QvlrQNw
+         xiaHsqdHSUrjY+LWy28oajCWROc5roPACVj8QORKRQDsus+AYMyTAbycavKJ6D9BeL2/
+         jNc2Ka3YD3j9F9Eh+P0bTnHUnbnESp7L22/cJfi1TzPd2XAQ/x2uVOBApJ04KPBC2RJT
+         F3AyGBE5L4uGiLEEgV9NoJ3W9KdSWQYuUyB6kMjnl4w6FlWWNiWP7pjRMN8THrA1vjP2
+         meDw==
+X-Gm-Message-State: AOAM532AmHtnnMKFitW/o+/Qx6+W03NRHyNvL6+9t6DXB94OTUmOaY4q
+        M3pk15oYgGC01adZbR5G2w==
+X-Google-Smtp-Source: ABdhPJwDbvlT7rWgdyoBcZio9FNtPl/yvT7KQ36PlsskLaNPsJwYVXasDTbSOux0xym+jdlTH05d5Q==
+X-Received: by 2002:a02:8246:: with SMTP id q6mr6390809jag.130.1624567451624;
+        Thu, 24 Jun 2021 13:44:11 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id d2sm683047ioy.33.2021.06.24.13.43.29
+        by smtp.gmail.com with ESMTPSA id j18sm2014229ila.9.2021.06.24.13.44.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 13:43:32 -0700 (PDT)
-Received: (nullmailer pid 1956153 invoked by uid 1000);
-        Thu, 24 Jun 2021 20:43:27 -0000
-Date:   Thu, 24 Jun 2021 14:43:27 -0600
+        Thu, 24 Jun 2021 13:44:10 -0700 (PDT)
+Received: (nullmailer pid 1957082 invoked by uid 1000);
+        Thu, 24 Jun 2021 20:44:05 -0000
+Date:   Thu, 24 Jun 2021 14:44:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        pali@kernel.org, linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-Subject: Re: [PATCH] pinctrl: armada-37xx: Correct PWM pins definitions
-Message-ID: <20210624204327.GA1956119@robh.at.kernel.org>
-References: <20210614222527.11237-1-kabel@kernel.org>
+To:     Mason Zhang <mason.zhang@mediatek.com>
+Cc:     wsd_upstream@mediatek.com,
+        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        hanks.chen@mediatek.com, linux-kernel@vger.kernel.org,
+        Mason Zhang <Mason.Zhang@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH 2/2] dt-binding: mediatek: mt6779: update spi document
+Message-ID: <20210624204405.GA1956999@robh.at.kernel.org>
+References: <1623721803.24597.9.camel@mbjsdccf07>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210614222527.11237-1-kabel@kernel.org>
+In-Reply-To: <1623721803.24597.9.camel@mbjsdccf07>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Jun 2021 00:25:27 +0200, Marek Behún wrote:
-> The PWM pins on North Bridge on Armada 37xx can be configured into PWM
-> or GPIO functions. When in PWM function, each pin can also be configured
-> to drive low on 0 and tri-state on 1 (LED mode).
+On Tue, 15 Jun 2021 09:50:03 +0800, Mason Zhang wrote:
 > 
-> The current definitions handle this by declaring two pin groups for each
-> pin:
-> - group "pwmN" with functions "pwm" and "gpio"
-> - group "ledN_od" ("od" for open drain) with functions "led" and "gpio"
+> this patch update spi document for MT6779 SOC.
 > 
-> This is semantically incorrect. The correct definition for each pin
-> should be one group with three functions: "pwm", "led" and "gpio".
-> 
-> Change the "pwmN" groups to support "led" function.
-> 
-> Remove "ledN_od" groups. This cannot break backwards compatibility with
-> older device trees: no device tree uses it since there is no PWM driver
-> for this SOC yet. Also "ledN_od" groups are not even documented.
-> 
-> Signed-off-by: Marek Behún <kabel@kernel.org>
+> Signed-off-by: Mason Zhang <Mason.Zhang@mediatek.com>
 > ---
->  .../pinctrl/marvell,armada-37xx-pinctrl.txt      |  8 ++++----
->  drivers/pinctrl/mvebu/pinctrl-armada-37xx.c      | 16 ++++++++--------
->  2 files changed, 12 insertions(+), 12 deletions(-)
+>  Documentation/devicetree/bindings/spi/spi-mt65xx.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
