@@ -2,68 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 301003B37D1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 22:28:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 204FE3B37D4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 22:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232163AbhFXUbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 16:31:16 -0400
-Received: from mail-io1-f52.google.com ([209.85.166.52]:44610 "EHLO
-        mail-io1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230116AbhFXUbP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 16:31:15 -0400
-Received: by mail-io1-f52.google.com with SMTP id h2so9857536iob.11;
-        Thu, 24 Jun 2021 13:28:56 -0700 (PDT)
+        id S232310AbhFXUcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 16:32:04 -0400
+Received: from mail-io1-f51.google.com ([209.85.166.51]:36445 "EHLO
+        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229525AbhFXUcE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 16:32:04 -0400
+Received: by mail-io1-f51.google.com with SMTP id s19so9869744ioc.3;
+        Thu, 24 Jun 2021 13:29:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=XGjkqdWMJk8hr3ylOB03Y00XZ2KWJfOU+B9pPQnUdw8=;
-        b=iS7ISSpN0PLMbQev+ds/IhZLdXMzr/pX2vXPwKkjVJNopJNQydlgoAKXqiDDTeXgh9
-         W+1GOEN/pHcnvlCSZPnQ/RlmL+9RHAME2U+cHCPu+G5KsM7DX9qzF9BolmBQNUfTC6hH
-         qp+pv6tlRY7fCnSoeu94GUdE1Bo+fOqXhBYYHdbINQMQFR/oKPpGVm8dmZX0TNaNrjjb
-         V6rNOZX36idXnX795dsddc+TrA03J9e+Q/ZGepgjgPcRstRz+z7fhLc4fmDcgAsdeugw
-         e5v9I5vd64TQYuewYivMQN4AmO0ozbKC+iR0CGAUKPIUXaAZhMgYD4g4NDE4aW3BmUVl
-         ydMg==
-X-Gm-Message-State: AOAM532B2BVJvy4tCT25QOfVqCdKfvnod8JIgnooYe3kmZDXjdYOW3e6
-        kUpbZfE3pH/kiMwwAdUufQ==
-X-Google-Smtp-Source: ABdhPJzwMEC6jd7wJ673WAnl5B+OHlyH2s7timnEek7N882Z54GTDxw4SMD2sVgqfioQCqDo8IvmYg==
-X-Received: by 2002:a5d:87c4:: with SMTP id q4mr5360950ios.141.1624566536152;
-        Thu, 24 Jun 2021 13:28:56 -0700 (PDT)
+        bh=XnibS50Q0CBOvEMl46nwSYw4OcAKBfEOQazrskVjqjY=;
+        b=NYFRDr0Do5uzmDGFur1V3odPenjaiUAVJp7fk+nAJmbCWkb7u1Xois7NTibk5UvNKl
+         HchKbETrTssvN+tnGhYBK98+XE0WMGGrTcfo/0uxQnOIJgQmtI236hTc9+NO41xUR4XK
+         xj2alTj/ppLNgXsMswU3pevV5Qb960zj6IVZLKB/yAvyO3iaaTV3acOtXSM1gmphjgzr
+         PMeBXa965yd9FEAhnxMtRQWj1qDFpe9X/D5j8a6FmTbvoe7+LYgm3ALrBDVQ0FV47cig
+         LT37QbuaCkcRSHTBjjhi+nqxb0i+1EeOJdiJXJJjJPcHMu88dhzl2NMcJ57wsbwchbqY
+         OQgQ==
+X-Gm-Message-State: AOAM530kfmIuGx+FFEOmHSu2O6qUsmQaKlUovnbm0NuFv+8/TWPZ1RbW
+        yt5U98OIE484JdaL7AjKEw==
+X-Google-Smtp-Source: ABdhPJxSAKYnzPEeTZsNmHL4KajVliP6DlriQJmZLFMV8u3yLHsbqwQz8hp6LBg8Bft5Jxc+K2vjpQ==
+X-Received: by 2002:a6b:fd12:: with SMTP id c18mr5713673ioi.182.1624566584246;
+        Thu, 24 Jun 2021 13:29:44 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id k4sm1963191ior.55.2021.06.24.13.28.53
+        by smtp.gmail.com with ESMTPSA id c19sm2464332ili.62.2021.06.24.13.29.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 13:28:55 -0700 (PDT)
-Received: (nullmailer pid 1935915 invoked by uid 1000);
-        Thu, 24 Jun 2021 20:28:51 -0000
-Date:   Thu, 24 Jun 2021 14:28:51 -0600
+        Thu, 24 Jun 2021 13:29:42 -0700 (PDT)
+Received: (nullmailer pid 1937094 invoked by uid 1000);
+        Thu, 24 Jun 2021 20:29:40 -0000
+Date:   Thu, 24 Jun 2021 14:29:40 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Michael.Hennerich@analog.com, linux-iio@vger.kernel.org,
-        Nuno Sa <Nuno.Sa@analog.com>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        devicetree@vger.kernel.org, lars@metafoo.de
-Subject: Re: [PATCH 15/17] dt-bindings:iio:adc:ad7280a: Add binding
-Message-ID: <20210624202851.GA1935863@robh.at.kernel.org>
-References: <20210614113507.897732-1-jic23@kernel.org>
- <20210614113507.897732-16-jic23@kernel.org>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>, monstr@monstr.eu,
+        git@xilinx.com, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Viresh Kumar <viresh.kumar@linaro.org>,
+        Michael Walle <michael@walle.cc>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 30/33] arm64: zynqmp: Add support for zcu102-rev1.1
+ board
+Message-ID: <20210624202940.GA1937058@robh.at.kernel.org>
+References: <cover.1623684253.git.michal.simek@xilinx.com>
+ <38bbbeb885f4d9ba466c43ab9b4d25190a3552fb.1623684253.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210614113507.897732-16-jic23@kernel.org>
+In-Reply-To: <38bbbeb885f4d9ba466c43ab9b4d25190a3552fb.1623684253.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Jun 2021 12:35:05 +0100, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Mon, 14 Jun 2021 17:25:38 +0200, Michal Simek wrote:
+> zcu102 rev1.1 compare to rev1.0 is using by default different DDR memory
+> which requires different configuration. The reason for adding this file to
+> Linux kernel is that U-Boot fdtfile variable is composed based on board
+> revision (in eeprom) and dtb file should exist in standard distibutions for
+> passing it to Linux kernel.
 > 
-> Add a binding for this Lithium Ion Battery monitoring chip/chain of chips
-> as it is now clean and ready to move out of staging.
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
->  .../bindings/iio/adc/adi,ad7280a.yaml         | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
+> 
+> Changes in v2: None
+> 
+>  Documentation/devicetree/bindings/arm/xilinx.yaml |  1 +
+>  arch/arm64/boot/dts/xilinx/Makefile               |  1 +
+>  .../boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts      | 15 +++++++++++++++
+>  3 files changed, 17 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dts
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
