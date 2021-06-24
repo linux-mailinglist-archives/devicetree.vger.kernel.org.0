@@ -2,126 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 209A93B2DA5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 13:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0FBF3B2DCA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 13:24:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232227AbhFXLV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 07:21:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33474 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232005AbhFXLV0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Jun 2021 07:21:26 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6D5C7613C1;
-        Thu, 24 Jun 2021 11:18:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624533547;
-        bh=fyQk9K7V5mi+iulKCuVouHY96p/8l9exJzzlUIeSpn8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bw4AVsGwRrbnlqsX5CZZBCGVkLRWbVSBBROzH0cW0WxgQnoyiN2SkbZT9Y0qsOq8u
-         JL8IIrlYNHTHfBROv+myGIoSXn3V0Qajeyu6WrQ15CejRET9x4mwWpuBCwWkKgfe+I
-         +cOMFFna8tPSjLTq48KMyVkK5wGgtDdocNICZALKyCcFBQrrDac4GVZrs41lrwovdH
-         A7+mTUl4b8SpYL5RZSXQGAdCk4J4xBM23HuRVgN0YiE8QMME9/0wtATNSKneCXnM3U
-         aM6IUBXxfGBIajg731amXfhwP7wHdtJMySWai/ROQfVX1amjwBJVAnH3akjkMUY271
-         lYvk5WkbaBLcQ==
-Date:   Thu, 24 Jun 2021 12:18:56 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Christoph Hellwig <hch@lst.de>,
-        Qian Cai <quic_qiancai@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
-        peterz@infradead.org, benh@kernel.crashing.org,
-        joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
-        chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
-        mingo@kernel.org, Jianxiong Gao <jxgao@google.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        bskeggs@redhat.com, linux-pci@vger.kernel.org,
-        xen-devel@lists.xenproject.org,
-        Thierry Reding <treding@nvidia.com>,
-        intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        maarten.lankhorst@linux.intel.com, linuxppc-dev@lists.ozlabs.org,
-        jani.nikula@linux.intel.com,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        rodrigo.vivi@intel.com, Bjorn Helgaas <bhelgaas@google.com>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tom Lendacky <thomas.lendacky@amd.com>, bauerman@linux.ibm.com
-Subject: Re: [PATCH v14 06/12] swiotlb: Use is_swiotlb_force_bounce for
- swiotlb data bouncing
-Message-ID: <20210624111855.GA1382@willie-the-truck>
-References: <20210619034043.199220-1-tientzu@chromium.org>
- <20210619034043.199220-7-tientzu@chromium.org>
- <76c3343d-72e5-9df3-8924-5474ee698ef4@quicinc.com>
- <20210623183736.GA472@willie-the-truck>
- <19d4c7a2-744d-21e0-289c-a576e1f0e6f3@quicinc.com>
- <20210624054315.GA25381@lst.de>
- <CALiNf288ZLMhY3E8E3N+z9rkwi1viWNLm1wwMEwT4rNwh3FfwQ@mail.gmail.com>
- <364e6715-eafd-fc4a-e0af-ce2a042756b4@arm.com>
+        id S232473AbhFXL0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 07:26:34 -0400
+Received: from mail-vs1-f47.google.com ([209.85.217.47]:44731 "EHLO
+        mail-vs1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232350AbhFXL0d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 07:26:33 -0400
+Received: by mail-vs1-f47.google.com with SMTP id y21so851816vsm.11;
+        Thu, 24 Jun 2021 04:24:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lVDFM2egDpvqnDo30q1IPYbxI0B4Ih+sEd5+e011q5M=;
+        b=mNjwajiMNZjOetYajKbUpKEGvcRF3iFrynkLyKwl0+/AtMDJSjtH7JWbic/8L5aZ/L
+         rW/USZJ+DNTnLdLc5EFCqsPOd/C7ZnTjwABrE1crsurxRbt1omg8vP7oj1CiK0FXTJD3
+         gXXy4k8TT3e1IYsoAmO9i21WElYgnmmn2iQDL4eOfMHZoAQ1Aq6YIjmB3BpGAb9Pshk9
+         CBDMLwSAH94Hwq0Fq0IrzmTvRCWX6MbnKgmgi7YeBVY+JTqcCE4ulTFXp5N4KnQl6OoZ
+         pLi+XLTGut+NvvUujiJ1Q+ISYgI5ji8+iBLIizs2Pd8T0CElsAaOkM5p2YNVN/eI+i69
+         BBtA==
+X-Gm-Message-State: AOAM531TILFuH8UcbHohxeKyUfWYhDWYO0q9c3+HnHWObbMfe1+zZHW2
+        G/rEg3wmdE4YclIBSuV8tCECvto4s/DibAkfIXE=
+X-Google-Smtp-Source: ABdhPJwA1CABlFUl6laeiRuNOWNPw1TAWvmkoUaSFwr8okRvwOZJ8lcaUCWt+U/3kUZmWvhrxPVt0Bck8wAPZnaurNE=
+X-Received: by 2002:a05:6102:301c:: with SMTP id s28mr1364307vsa.18.1624533854391;
+ Thu, 24 Jun 2021 04:24:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <364e6715-eafd-fc4a-e0af-ce2a042756b4@arm.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210616132641.29087-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210616132641.29087-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210616132641.29087-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 24 Jun 2021 13:24:03 +0200
+Message-ID: <CAMuHMdX67Ghrw4mHt6hT+QrMtEjuOTtirHWv17Eix4XnnwMHkw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] pinctrl: renesas: Add pins/groups/functions for I2C,
+ SCIF and USB supported by RZ/G2L SoC
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 24, 2021 at 12:14:39PM +0100, Robin Murphy wrote:
-> On 2021-06-24 07:05, Claire Chang wrote:
-> > On Thu, Jun 24, 2021 at 1:43 PM Christoph Hellwig <hch@lst.de> wrote:
-> > > 
-> > > On Wed, Jun 23, 2021 at 02:44:34PM -0400, Qian Cai wrote:
-> > > > is_swiotlb_force_bounce at /usr/src/linux-next/./include/linux/swiotlb.h:119
-> > > > 
-> > > > is_swiotlb_force_bounce() was the new function introduced in this patch here.
-> > > > 
-> > > > +static inline bool is_swiotlb_force_bounce(struct device *dev)
-> > > > +{
-> > > > +     return dev->dma_io_tlb_mem->force_bounce;
-> > > > +}
-> > > 
-> > > To me the crash looks like dev->dma_io_tlb_mem is NULL.  Can you
-> > > turn this into :
-> > > 
-> > >          return dev->dma_io_tlb_mem && dev->dma_io_tlb_mem->force_bounce;
-> > > 
-> > > for a quick debug check?
-> > 
-> > I just realized that dma_io_tlb_mem might be NULL like Christoph
-> > pointed out since swiotlb might not get initialized.
-> > However,  `Unable to handle kernel paging request at virtual address
-> > dfff80000000000e` looks more like the address is garbage rather than
-> > NULL?
-> > I wonder if that's because dev->dma_io_tlb_mem is not assigned
-> > properly (which means device_initialize is not called?).
-> 
-> What also looks odd is that the base "address" 0xdfff800000000000 is held in
-> a couple of registers, but the offset 0xe looks too small to match up to any
-> relevant structure member in that dereference chain :/
+Hi Prabhakar,
 
-FWIW, I've managed to trigger a NULL dereference locally when swiotlb hasn't
-been initialised but we dereference 'dev->dma_io_tlb_mem', so I think
-Christoph's suggestion is needed regardless. But I agree that it won't help
-with the issue reported by Qian Cai.
+On Wed, Jun 16, 2021 at 3:27 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add pins/groups/functions for I2C, SCIF and USB supported by RZ/G2L SoC and
+> bind it with RZ/G2L PFC core.
+>
+> Based on a patch in the BSP by Hien Huynh <hien.huynh.px@renesas.com>.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Qian Cai: please can you share your .config and your command line?
+Thanks for your patch!
 
-Thanks,
+> --- /dev/null
+> +++ b/drivers/pinctrl/renesas/pfc-r9a07g044.c
+> @@ -0,0 +1,362 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * R9A07G044 processor support - pinctrl GPIO hardware block.
+> + *
+> + * Copyright (C) 2021 Renesas Electronics Corp.
+> + */
+> +
+> +#include "pinctrl-rzg2l.h"
+> +
+> +#define RZG2L_GPIO_PIN_CONF    (0)
+> +
+> +static const struct {
+> +       struct pinctrl_pin_desc pin_gpio[392];
+> +} pinmux_pins = {
+> +       .pin_gpio = {
+> +               RZ_G2L_PINCTRL_PIN_GPIO(0, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(1, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(2, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(3, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(4, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(5, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(6, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(7, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(8, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(9, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(10, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(11, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(12, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(13, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(14, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(15, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(16, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(17, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(18, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(19, RZG2L_GPIO_PIN_CONF),
 
-Will
+RZG2L_GPIO_PIN_CONF is 0, ike all of the below?
+
+> +               RZ_G2L_PINCTRL_PIN_GPIO(20, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(21, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(22, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(23, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(24, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(25, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(26, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(27, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(28, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(29, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(30, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(31, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(32, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(33, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(34, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(35, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(36, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(37, 0),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(38, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(39, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(40, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(41, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(42, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(43, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(44, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(45, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(46, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(47, RZG2L_GPIO_PIN_CONF),
+> +               RZ_G2L_PINCTRL_PIN_GPIO(48, RZG2L_GPIO_PIN_CONF),
+> +       },
+> +};
+
+Doesn't the above belong in pinctrl-rzg2l.c?
+
+> +
+> +/* - RIIC2 ------------------------------------------------------------------ */
+> +static int i2c2_a_pins[] = {
+> +       /* SDA, SCL */
+> +       RZ_G2L_PIN(3, 0), RZ_G2L_PIN(3, 1),
+> +};
+> +static int i2c2_b_pins[] = {
+> +       /* SDA, SCL */
+> +       RZ_G2L_PIN(19, 0), RZ_G2L_PIN(19, 1),
+> +};
+> +static int i2c2_c_pins[] = {
+> +       /* SDA, SCL */
+> +       RZ_G2L_PIN(42, 3), RZ_G2L_PIN(42, 4),
+> +};
+> +static int i2c2_d_pins[] = {
+> +       /* SDA, SCL */
+> +       RZ_G2L_PIN(46, 0), RZ_G2L_PIN(46, 1),
+> +};
+> +static int i2c2_e_pins[] = {
+> +       /* SDA, SCL */
+> +       RZ_G2L_PIN(48, 0), RZ_G2L_PIN(48, 1),
+> +};
+
+[...]
+
+> +static struct group_desc pinmux_groups[] = {
+> +       RZ_G2L_PINCTRL_PIN_GROUP(i2c2_a, 2),
+> +       RZ_G2L_PINCTRL_PIN_GROUP(i2c2_b, 4),
+> +       RZ_G2L_PINCTRL_PIN_GROUP(i2c2_c, 1),
+> +       RZ_G2L_PINCTRL_PIN_GROUP(i2c2_d, 4),
+> +       RZ_G2L_PINCTRL_PIN_GROUP(i2c2_e, 3),
+
+[...]
+
+As RZ/G2L, unlike R-Car, does not have the concept of pin groups, I'm
+wondering why you are defining these groups? The pin function list
+spreadsheet also doesn't have the "a" to "e" names of the possible
+alternatives.
+While I agree it makes it a little bit easier to describe in DT the
+use of a group with lots of pins, it does prevent other use cases.
+As register configuration is per-pin, I believe the hardware supports
+the use of pins from multiple groups (e.g. SDA from the first group,
+and SCL from the second group), and thus the board designer may decide
+to make use of that.
+
+With pinmux_pins[] moved, and the groups removed, this file becomes
+empty?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
