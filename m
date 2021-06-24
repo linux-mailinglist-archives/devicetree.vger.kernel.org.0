@@ -2,135 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD8ED3B3222
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 17:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3104E3B3220
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 17:00:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232313AbhFXPDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 11:03:22 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:43334 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbhFXPDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 11:03:21 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15OF0I1n070523;
-        Thu, 24 Jun 2021 10:00:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1624546818;
-        bh=pxpiC6BVI9g4NL2xx5Bt4qIO5YjlhGqvffc+sdE9s40=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=d/BKExzlYgQhjb7mEOLnCHqbh7Jwg0po/7SK2j+9iw8KJTH8zl0YJc2UJRPUhr1pf
-         Xl6h4MelEyxRtlXlI1RmXdNzFEwBoTcsuLTWUdGm16WygZFFLDQjmJBR0WLKAgAR+b
-         KHX17RYAFD3KkF17LFfxfgdPXWdyNAa0Jv13sOYs=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15OF0IEw033674
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 24 Jun 2021 10:00:18 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 24
- Jun 2021 10:00:17 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 24 Jun 2021 10:00:17 -0500
-Received: from [10.250.232.28] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15OF0AKN061030;
-        Thu, 24 Jun 2021 10:00:11 -0500
-Subject: Re: [PATCH v6 0/7] Add SR-IOV support in PCIe Endpoint Core
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-pci@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>,
-        <linux-rockchip@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-References: <20210616211630.GA3007203@bjorn-Precision-5520>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <0fd19e28-e0a6-fd79-672a-b588fb2763ba@ti.com>
-Date:   Thu, 24 Jun 2021 20:30:09 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S230377AbhFXPDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 11:03:14 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:45849 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232313AbhFXPDN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 11:03:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1624546854; x=1656082854;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=0/Em9gZ8ZJxYKhhpEi1Tc8CIu8VuC4kqpPuHiHOkjHo=;
+  b=R/qeMKkUs1tnATpTp1inVrlaA2YlnkPII9u4T5P1FRpEnw0uaY2QZYgk
+   uKFYJVG2H7jJc5pb3urpR6QJvnWXJ0AFig7+ndJCU8zk1mtDtsr9vBFuN
+   C4V0TJx2zwOAyzxJ241RlSLLWozJKNiFqgullUDSkBFlMbIZLyC6fi5YT
+   r4dNjdKIjJufdzcJCv7vIqMI8BNdNQzP/THTdUdVGzmTdhitLmGCAht0m
+   7ZaHKZzdqEeNxbzKXs/fHNazK+n2Qgw329X0BsmthpDY0EiqBlA0edpne
+   d/acK5VaK1R4Qz0m+5ZQp1AH4qVv5xiXBk1XtvwvAi3pxsiu7tbBge2V9
+   A==;
+IronPort-SDR: JWdD7EhyvrUooZOGHJ7p7VwzXHcKnKD/t75JMixZhunBRGQ9NRGa5wrLxvjjcjM5zXxF3ROScb
+ x2Bip6zWOtXQDGBba6/ilrMHT9EhQVR1G7y/oOCJRSIzLrPoFsA/I2nO24D6qwiXQpBgCsev3M
+ 7OH9tZdxZALC+zBAsk9aaooRpNO6M+BuQHG2mBtG177sb0zoslCVxDeQmT7SNmydckugyKVM7s
+ hivUNzYz/EFjg8mgslu4ae8Si9bPwsx3tBT1Kqqbl6yCE4gF9wO0JdXwZo/HFvSNA/X0L1gaDl
+ tPE=
+X-IronPort-AV: E=Sophos;i="5.83,296,1616482800"; 
+   d="scan'208";a="133328660"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Jun 2021 08:00:53 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 24 Jun 2021 08:00:44 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.2 via Frontend
+ Transport; Thu, 24 Jun 2021 08:00:42 -0700
+From:   <conor.dooley@microchip.com>
+To:     <robh+dt@kernel.org>, <damien.lemoal@wdc.com>,
+        <jassisinghbrar@gmail.com>, <aou@eecs.berkeley.edu>,
+        <paul.walmsley@sifive.com>, <palmer@dabbelt.com>,
+        <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <j.neuschaefer@gmx.net>, <sfr@canb.auug.org.au>
+CC:     <lewis.hanly@microchip.com>, <cyril.jean@microchip.com>,
+        <daire.mcnamara@microchip.com>, <atish.patra@wdc.com>,
+        <anup.patel@wdc.com>, <david.abdurachmanov@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v9 0/5] Add support for the PolarFire SoC system controller
+Date:   Thu, 24 Jun 2021 16:00:41 +0100
+Message-ID: <20210624150041.11136-1-conor.dooley@microchip.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210616211630.GA3007203@bjorn-Precision-5520>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lorenzo,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On 17/06/21 2:46 am, Bjorn Helgaas wrote:
-> On Wed, Jun 16, 2021 at 07:35:33PM +0530, Kishon Vijay Abraham I wrote:
->> Hi Lorenzo, Bjorn,
->>
->> On 17/05/21 1:17 pm, Kishon Vijay Abraham I wrote:
->>> Patch series
->>> *) Adds support to add virtual functions to enable endpoint controller
->>>    which supports SR-IOV capability
->>> *) Add support in Cadence endpoint driver to configure virtual functions
->>> *) Enable pci_endpoint_test driver to create pci_device for virtual
->>>    functions
->>>
->>> v1 of the patch series can be found at [1]
->>> v2 of the patch series can be found at [2]
->>> v3 of the patch series can be found at [3]
->>> v4 of the patch series can be found at [4]
->>> v5 of the patch series can be found at [5]
->>>
->>> Here both physical functions and virtual functions use the same
->>> pci_endpoint_test driver and existing pcitest utility can be used
->>> to test virtual functions as well.
->>>
->>> Changes from v5:
->>> *) Rebased to 5.13-rc1
->>>
->>> Changes from v4:
->>> *) Added a fix in Cadence driver which was overwriting BAR configuration
->>>    of physical function.
->>> *) Didn't include Tom's Acked-by since Cadence driver is modified in
->>>    this revision.
->>>
->>> Changes from v3:
->>> *) Fixed Rob's comment and added his Reviewed-by as suggested by him.
->>>
->>> Changes from v2:
->>> *) Fixed DT binding documentation comment by Rob
->>> *) Fixed the error check in pci-epc-core.c
->>>
->>> Changes from v1:
->>> *) Re-based and Re-worked to latest kernel 5.10.0-rc2+ (now has generic
->>>    binding for EP)
->>>
->>> [1] -> http://lore.kernel.org/r/20191231113534.30405-1-kishon@ti.com
->>> [2] -> http://lore.kernel.org/r/20201112175358.2653-1-kishon@ti.com
->>> [3] -> https://lore.kernel.org/r/20210305050410.9201-1-kishon@ti.com
->>> [4] -> http://lore.kernel.org/r/20210310160943.7606-1-kishon@ti.com
->>> [5] -> https://lore.kernel.org/r/20210419083401.31628-1-kishon@ti.com
->>
->> Can this series be merged for 5.14? It already includes Ack from Rob for
->> dt-binding changes and Ack from Tom for Cadence driver changes.
-> 
-> Sorry, I think this was assigned to me in patchwork, but Lorenzo
-> usually takes care of the endpoint stuff.  He's away this week, but no
-> doubt will look at it when he returns.
+This patch series adds support for the system controller on
+the PolarFire SoC, using the mailbox framework. A Microchip directory
+in the SoC subsystem has been created to hold the mailbox client
+driver and will be used for future service drivers.
 
-Can you consider merging this series for 5.14?
+These drivers are gated by the kconfig option:
+CONFIG_SOC_MICROCHIP_POLARFIRE, so this patch series depends on Atish
+Patra's PolarFire SoC support patches which introduce it (this series is in 5.13-rc7).
 
-Thank You,
-Kishon
+The following link, which is a direct download of a pdf, contains documentation
+for the system controller:
+https://www.microsemi.com/document-portal/doc_download/1244853-ug0905-polarfire-soc-fpga-system-services-user-guide
+
+Changes from v8:
+* Change GENMASK to GENMASK_ULL to avoid shift count over warnings on other arm & microblaze
+* Check return value of mutex lock acquistion
+
+Changes from v7:
+* Remove functions in header that are redundant without service drivers to avoid test failure
+
+Changes from v6:
+* Re-add the maintainers section that was removed from base pfsoc support patch series
+* Removed Cyril Jean from maintainers entry.
+
+Changes from v5:
+* Removed excess functions, cleanup in mailbox-mpfs.c
+
+Changes from v4:
+* Changed dt binding from Rob Herring's feedback
+* Shortened some verbose variable names
+* Reordered binding patches
+* Write directly into response array, rather than allocate in controller isr and memcpy in client
+
+Changes from v3:
+* Fixed mboxes reference in dt binding for mailbox client
+* Bug fixes and cleanup from Jonathan Neuschäfer's feedback on
+  mailbox-mpfs.c & mpfs-sys-controller.c
+* Renamed dt binding files to match compatible strings
+* Removed PFSoC gating condition on drivers/soc/microchip subdirectory
+* Converted all size based operations to bytes for consistency
+* Converted response array to a structure, enabling support for more
+  complex services that return a status instead of/alongside a payload.
+
+Changes from v2:
+* Further reworked dt bindings to satisfy errors and feedback
+  (hopefully phandle array is the correct type for the mboxes)
+* Full maintainers entry moved to Atish's PFSoC support series, this series now only adds mailbox driver
+* Converted config options from MPFS to POLARFIRE_SOC so they are more recognisable
+* Further simplified driver code from feedback
+
+Changes from v1:
+* Squashed header into first patch
+* Fixed DT binding warnings & small fixes
+* Cleaned up drivers from feedback
+
+Conor Dooley (5):
+  dt-bindings: add bindings for polarfire soc mailbox
+  mbox: add polarfire soc system controller mailbox
+  dt-bindings: add bindings for polarfire soc system controller
+  soc: add polarfire soc system controller
+  MAINTAINERS: add entry for polarfire soc mailbox
+
+ .../microchip,polarfire-soc-mailbox.yaml      |  47 ++++
+ ...icrochip,polarfire-soc-sys-controller.yaml |  35 +++
+ MAINTAINERS                                   |   8 +
+ drivers/mailbox/Kconfig                       |  12 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mailbox-mpfs.c                | 251 ++++++++++++++++++
+ drivers/soc/Kconfig                           |   1 +
+ drivers/soc/Makefile                          |   1 +
+ drivers/soc/microchip/Kconfig                 |  10 +
+ drivers/soc/microchip/Makefile                |   1 +
+ drivers/soc/microchip/mpfs-sys-controller.c   | 121 +++++++++
+ include/soc/microchip/mpfs.h                  |  43 +++
+ 12 files changed, 532 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,polarfire-soc-mailbox.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
+ create mode 100644 drivers/mailbox/mailbox-mpfs.c
+ create mode 100644 drivers/soc/microchip/Kconfig
+ create mode 100644 drivers/soc/microchip/Makefile
+ create mode 100644 drivers/soc/microchip/mpfs-sys-controller.c
+ create mode 100644 include/soc/microchip/mpfs.h
+
+-- 
+2.31.1
+
