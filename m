@@ -2,120 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2780B3B2B95
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 11:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CDED3B2BCA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 11:48:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232010AbhFXJmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 05:42:40 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:21690 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232004AbhFXJmj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Jun 2021 05:42:39 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15O9c7k6004760;
-        Thu, 24 Jun 2021 11:40:05 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=9K0el6v2S3oKMB5e1ZaxFrvwWS0dlKkQ3UZ872NGc4Y=;
- b=AdVlWRK2w8f7UVERcqRWi4Mzb445fmvGbq+ovAx28WncX4MndbuJMve8H3gyGSftpxgR
- 9UXTMlvDMD0g9lI6fLZsj5PChu0tKJ7T8akQDTCvGgHsEC8hPGk/wF90ev4QdXT8mFmd
- prWKYFOmg3dBW42DDbYFLXrkw8FveOZ0ebLoNR9w1qqsAfdrRuHFmTC7a2Z6tBjbjmPT
- HVhatxSscaZv60jKozTRjV01vNW1fl8OQhHLbgJwVgAdIStOFWqVTfYrptl5KELXmcWq
- vvUs82xEsGcJAJiQebHZvNE+7NAvkqzRRPeG3PluV4vftSU+s8595MD48zFrrR0Tcbg3 DQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 39chf6jsvd-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 24 Jun 2021 11:40:05 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2D9AA100034;
-        Thu, 24 Jun 2021 11:40:05 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag2node3.st.com [10.75.127.6])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1377921B518;
-        Thu, 24 Jun 2021 11:40:05 +0200 (CEST)
-Received: from localhost (10.75.127.47) by SFHDAG2NODE3.st.com (10.75.127.6)
- with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 24 Jun 2021 11:40:04
- +0200
-From:   Amelie Delaunay <amelie.delaunay@foss.st.com>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>,
-        Pierre-Yves Mordret <pierre-yves.mordret@foss.st.com>
-Subject: [PATCH 2/2] dmaengine: stm32-dma: add alternate REQ/ACK protocol management
-Date:   Thu, 24 Jun 2021 11:39:59 +0200
-Message-ID: <20210624093959.142265-3-amelie.delaunay@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210624093959.142265-1-amelie.delaunay@foss.st.com>
-References: <20210624093959.142265-1-amelie.delaunay@foss.st.com>
+        id S232052AbhFXJvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 05:51:04 -0400
+Received: from mail-ua1-f47.google.com ([209.85.222.47]:45631 "EHLO
+        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232043AbhFXJvE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 05:51:04 -0400
+Received: by mail-ua1-f47.google.com with SMTP id c20so1968997uar.12;
+        Thu, 24 Jun 2021 02:48:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/kroWqcKlXWFFemZQ/NRzbiGg9xEeZfy1xoLaGDU8GA=;
+        b=PdO5VS++jkgz2JRcGxjSjdLq4YVhm7cFfidPA97d5eQ7hvDD1CpWVxoLrF2qGR7jYY
+         vp/aslcGiGbtQm06MyJVQ1JJWF3kpLjY+jf8Dh1Br44LSov1rnMVVHZXMi05B3QpmSn3
+         6X4yH8rYNnqJTDaHVnSmzFgmuqIEbK+7+k+2ynTVGAPWQ6X6vlE7Aj3b8wCjzzrgon4w
+         RiDQ/yeqdHSwygQo1hhRY3KWAC0IVeLnpDvSLFRWJZ2Ek9g97YpmVbn1pyrrBWoVf5VM
+         Mk3D/dsX1bPY6RGj0qR9sqQ86Ne0NjG+pj9z6jBeGBg1nBL6mAmEXwbV/WqVEZ/Dd9l3
+         LHqA==
+X-Gm-Message-State: AOAM530LzX+3uie/WDwaz7uBq+2QT/DkbiSB3gzUL6IjH/TJF+cbWTL1
+        4EnxH+h4tKZLuosgHUs8VfnKHFejbJHNcdooe7o=
+X-Google-Smtp-Source: ABdhPJx8eLZCaQK4JJwT1wiEqQ3kpv3yUbtFJCq1izK+isDq95Iy/KbQ3PFmqEMo0o5JCpRXTr+PiKGGRgOL7pk+SYI=
+X-Received: by 2002:ab0:3734:: with SMTP id s20mr4456679uag.106.1624528123937;
+ Thu, 24 Jun 2021 02:48:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE3.st.com
- (10.75.127.6)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-06-24_06:2021-06-24,2021-06-24 signatures=0
+References: <20210616132641.29087-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210616132641.29087-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20210616132641.29087-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 24 Jun 2021 11:48:32 +0200
+Message-ID: <CAMuHMdXp_QS3TXDA4m5w-rY9Q+UYmKKZpzt+OzyBwuj2ax+3+A@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Add DT
+ bindings for RZ/G2L pinctrl
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Brandt <Chris.Brandt@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-STM32 USART/UART is not managing correctly the default DMA REQ/ACK protocol
-leading to possibly lock the DMA stream.
-Default protocol consists in maintaining ACK signal up to the removal of
-REQuest and the transfer completion.
-In case of alternative REQ/ACK protocol, ACK de-assertion does not wait the
-removal of the REQuest, but only the transfer completion.
+Hi Prabhakar,
 
-This patch retrieves the need of the alternative protocol through the
-device tree, and sets the protocol accordingly.
-It also unwrap STM32_DMA_DIRECT_MODE_GET macro definition for consistency
-with new STM32_DMA_ALT_ACK_MODE_GET macro definition.
+On Wed, Jun 16, 2021 at 3:27 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add device tree binding documentation and header file for Renesas
+> RZ/G2L pinctrl.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
----
- drivers/dma/stm32-dma.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+Thanks for your patch!
 
-diff --git a/drivers/dma/stm32-dma.c b/drivers/dma/stm32-dma.c
-index f54ecb123a52..d3aa34b3d2f7 100644
---- a/drivers/dma/stm32-dma.c
-+++ b/drivers/dma/stm32-dma.c
-@@ -60,6 +60,7 @@
- #define STM32_DMA_SCR_PSIZE_GET(n)	((n & STM32_DMA_SCR_PSIZE_MASK) >> 11)
- #define STM32_DMA_SCR_DIR_MASK		GENMASK(7, 6)
- #define STM32_DMA_SCR_DIR(n)		((n & 0x3) << 6)
-+#define STM32_DMA_SCR_TRBUFF		BIT(20) /* Bufferable transfer for USART/UART */
- #define STM32_DMA_SCR_CT		BIT(19) /* Target in double buffer */
- #define STM32_DMA_SCR_DBM		BIT(18) /* Double Buffer Mode */
- #define STM32_DMA_SCR_PINCOS		BIT(15) /* Peripheral inc offset size */
-@@ -138,8 +139,9 @@
- #define STM32_DMA_THRESHOLD_FTR_MASK	GENMASK(1, 0)
- #define STM32_DMA_THRESHOLD_FTR_GET(n)	((n) & STM32_DMA_THRESHOLD_FTR_MASK)
- #define STM32_DMA_DIRECT_MODE_MASK	BIT(2)
--#define STM32_DMA_DIRECT_MODE_GET(n)	(((n) & STM32_DMA_DIRECT_MODE_MASK) \
--					 >> 2)
-+#define STM32_DMA_DIRECT_MODE_GET(n)	(((n) & STM32_DMA_DIRECT_MODE_MASK) >> 2)
-+#define STM32_DMA_ALT_ACK_MODE_MASK	BIT(4)
-+#define STM32_DMA_ALT_ACK_MODE_GET(n)	(((n) & STM32_DMA_ALT_ACK_MODE_MASK) >> 4)
- 
- enum stm32_dma_width {
- 	STM32_DMA_BYTE,
-@@ -1252,6 +1254,8 @@ static void stm32_dma_set_config(struct stm32_dma_chan *chan,
- 	chan->threshold = STM32_DMA_THRESHOLD_FTR_GET(cfg->features);
- 	if (STM32_DMA_DIRECT_MODE_GET(cfg->features))
- 		chan->threshold = STM32_DMA_FIFO_THRESHOLD_NONE;
-+	if (STM32_DMA_ALT_ACK_MODE_GET(cfg->features))
-+		chan->chan_reg.dma_scr |= STM32_DMA_SCR_TRBUFF;
- }
- 
- static struct dma_chan *stm32_dma_of_xlate(struct of_phandle_args *dma_spec,
--- 
-2.25.1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml
+> @@ -0,0 +1,121 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/renesas,rzg2l-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G2L combined Pin and GPIO controller
+> +
+> +maintainers:
+> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +
+> +description:
+> +  The Renesas SoCs of the RZ/G2L series feature a combined Pin and GPIO
+> +  controller.
+> +  Pin multiplexing and GPIO configuration is performed on a per-pin basis.
+> +  Each port features up to 8 pins, each of them configurable for GPIO function
+> +  (port mode) or in alternate function mode.
+> +  Up to 8 different alternate function modes exist for each single pin.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,r9a07g044-pinctrl # RZ/G2{L,LC}
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +    description:
+> +      The first cell contains the global GPIO port index, constructed using the
+> +      RZG2L_GPIO() helper macro in <dt-bindings/pinctrl/pinctrl-rzg2l.h> and the
 
+<dt-bindings/pinctrl/rzg2l-pinctrl.h>, for consistency with other Renesas
+header files?
+
+> +      second cell represents consumer flag as mentioned in ../gpio/gpio.txt
+> +      E.g. "RZG2L_GPIO(39, 1)" for P39_1.
+> +
+> +  gpio-ranges:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +additionalProperties:
+> +  anyOf:
+> +    - type: object
+> +      allOf:
+> +        - $ref: pincfg-node.yaml#
+> +        - $ref: pinmux-node.yaml#
+> +
+> +      description:
+> +        Pin controller client devices use pin configuration subnodes (children
+> +        and grandchildren) for desired pin configuration.
+> +        Client device subnodes use below standard properties.
+> +
+> +      properties:
+> +        phandle: true
+> +        function: true
+> +        groups: true
+
+RZ/G2L uses per-pin configuration, and, unlike R-Car, the configuration
+registers do not have the concept of pin groups.  Hence I'm wondering
+why you are using "function" and "group" properties, and not per-pin
+"pinmux" properties, like RZ/A2?
+
+> +        pins: true
+> +        bias-disable: true
+> +        bias-pull-down: true
+> +        bias-pull-up: true
+> +        drive-strength:
+> +          enum: [ 2, 4, 8, 12 ]
+> +        power-source:
+> +          enum: [ 1800, 2500, 3300 ]
+> +        slew-rate: true
+> +        gpio-hog: true
+> +        gpios: true
+> +        input-enable: true
+> +        output-high: true
+> +        output-low: true
+> +        line-name: true
+
+> --- /dev/null
+> +++ b/include/dt-bindings/pinctrl/pinctrl-rzg2l.h
+
+include/dt-bindings/pinctrl/rzg2l-pinctrl.h, for consistency?
+
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * This header provides constants for Renesas RZ/G2{L,LC} pinctrl bindings.
+> + *
+> + * Copyright (C) 2021 Renesas Electronics Corp.
+> + *
+> + */
+> +
+> +#ifndef __DT_BINDINGS_PINCTRL_RZG2L_H
+> +#define __DT_BINDINGS_PINCTRL_RZG2L_H
+
+__DT_BINDINGS_RZG2L_PINCTRL_H
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
