@@ -2,90 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C50FD3B23DC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 01:07:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A69D3B243E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 02:19:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230286AbhFWXKJ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 23 Jun 2021 19:10:09 -0400
-Received: from us-smtp-delivery-44.mimecast.com ([205.139.111.44]:37745 "EHLO
-        us-smtp-delivery-44.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230109AbhFWXJz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Jun 2021 19:09:55 -0400
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-588-_x1M5uONPgmc64xROrd67w-1; Wed, 23 Jun 2021 19:07:31 -0400
-X-MC-Unique: _x1M5uONPgmc64xROrd67w-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com [10.5.11.12])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 5154B1084F54;
-        Wed, 23 Jun 2021 23:07:30 +0000 (UTC)
-Received: from dreyauc.ausil.us.com (ovpn-112-58.phx2.redhat.com [10.3.112.58])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id F2B2060CCC;
-        Wed, 23 Jun 2021 23:07:28 +0000 (UTC)
-From:   Dennis Gilmore <dennis@ausil.us>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Dennis Gilmore <dgilmore@redhat.com>
-Subject: [PATCH] dts: arm: helios4, set aliases for spi and i2c, and enable spi
-Date:   Wed, 23 Jun 2021 18:07:26 -0500
-Message-Id: <20210623230726.366706-1-dennis@ausil.us>
+        id S229853AbhFXAWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Jun 2021 20:22:12 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:54726 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229755AbhFXAWL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Jun 2021 20:22:11 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 998B087F;
+        Thu, 24 Jun 2021 02:19:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1624493991;
+        bh=Lyd4UG+bl/FJcP2caLE6wao83RTH9G+tTygdmnYaQQM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Etz8nwNQ6PnvCM72b9Ge+gvocueZTZbz1r3oPiefghIaprV8+fQvTKGdL/89gg7Vo
+         fJAptxE4XbTvPtg7ei/ndTJNwQbfHaCncgmTpw4jIgLW85o2iBxHxzD84aRBTlKloq
+         rE7c3anCaBJ7ebzatlcK18lfHKclSa7dTUHEQvrc=
+Date:   Thu, 24 Jun 2021 03:19:21 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: display: renesas,du: Fix 'ports' reference
+Message-ID: <YNPPiSzu9THj0PnH@pendragon.ideasonboard.com>
+References: <20210623164308.2570164-1-robh@kernel.org>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=dennis@ausil.us
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: ausil.us
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="US-ASCII"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210623164308.2570164-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dennis Gilmore <dgilmore@redhat.com>
+Hi Rob,
 
-set aliases for spi1, i2c0, and i2c1
-set status to okay for spi
+Thank you for the patch.
 
-Signed-off-by: Dennis Gilmore <dgilmore@redhat.com>
----
- arch/arm/boot/dts/armada-388-helios4.dts | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+On Wed, Jun 23, 2021 at 10:43:08AM -0600, Rob Herring wrote:
+> Fix the renesas,du binding 'ports' schema which is referencing the 'port'
+> schema instead of the 'ports' schema.
+> 
+> Fixes: 99d66127fad2 ("dt-bindings: display: renesas,du: Convert binding to YAML")
+> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-diff --git a/arch/arm/boot/dts/armada-388-helios4.dts b/arch/arm/boot/dts/armada-388-helios4.dts
-index ec134e22bae3..ec9388c3d7c8 100644
---- a/arch/arm/boot/dts/armada-388-helios4.dts
-+++ b/arch/arm/boot/dts/armada-388-helios4.dts
-@@ -22,8 +22,11 @@ memory {
- 	};
- 
- 	aliases {
--		/* So that mvebu u-boot can update the MAC addresses */
-+		/* So that mvebu u-boot can update the MAC address */
- 		ethernet1 = &eth0;
-+		spi1 = &spi1;
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
- 	};
- 
- 	chosen {
-@@ -322,3 +325,11 @@ microsom_spi1_cs_pins: spi1-cs-pins {
- 		};
- 	};
- };
-+
-+&w25q32 {
-+	status = "okay";
-+};
-+
-+&spi1 {
-+	status = "okay";
-+};
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+Should I take the patch in my tree, or can you merge it ?
+
+> ---
+>  Documentation/devicetree/bindings/display/renesas,du.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> index 121596f106da..5f4345d43020 100644
+> --- a/Documentation/devicetree/bindings/display/renesas,du.yaml
+> +++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
+> @@ -55,7 +55,7 @@ properties:
+>      maxItems: 1
+>  
+>    ports:
+> -    $ref: /schemas/graph.yaml#/properties/port
+> +    $ref: /schemas/graph.yaml#/properties/ports
+>      description: |
+>        The connections to the DU output video ports are modeled using the OF
+>        graph bindings specified in Documentation/devicetree/bindings/graph.txt.
+
 -- 
-2.31.1
+Regards,
 
+Laurent Pinchart
