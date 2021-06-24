@@ -2,70 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B38823B3811
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 22:44:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50CFF3B381F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 22:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232310AbhFXUqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 16:46:32 -0400
-Received: from mail-io1-f53.google.com ([209.85.166.53]:40576 "EHLO
-        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230116AbhFXUqc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 16:46:32 -0400
-Received: by mail-io1-f53.google.com with SMTP id r12so9926084ioa.7;
-        Thu, 24 Jun 2021 13:44:11 -0700 (PDT)
+        id S232284AbhFXUtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 16:49:20 -0400
+Received: from mail-io1-f44.google.com ([209.85.166.44]:33768 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229525AbhFXUtU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 16:49:20 -0400
+Received: by mail-io1-f44.google.com with SMTP id a6so10002036ioe.0;
+        Thu, 24 Jun 2021 13:47:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Jb61FtgXv62RyoPttvhABXLLkGLociNax0eiMMTdeoE=;
-        b=V1sfiGoyavLl05DN8KYhJW/XqQpLqHebVkabWwxEWQx3Bn67XpKXtI1/SXBZlBE9uE
-         DcdwZFuHyJB5l0YgydEWtUSs+u/YA8aT2KCXGp0LfHkh3aI7kBUw2iSus7LS8QvlrQNw
-         xiaHsqdHSUrjY+LWy28oajCWROc5roPACVj8QORKRQDsus+AYMyTAbycavKJ6D9BeL2/
-         jNc2Ka3YD3j9F9Eh+P0bTnHUnbnESp7L22/cJfi1TzPd2XAQ/x2uVOBApJ04KPBC2RJT
-         F3AyGBE5L4uGiLEEgV9NoJ3W9KdSWQYuUyB6kMjnl4w6FlWWNiWP7pjRMN8THrA1vjP2
-         meDw==
-X-Gm-Message-State: AOAM532AmHtnnMKFitW/o+/Qx6+W03NRHyNvL6+9t6DXB94OTUmOaY4q
-        M3pk15oYgGC01adZbR5G2w==
-X-Google-Smtp-Source: ABdhPJwDbvlT7rWgdyoBcZio9FNtPl/yvT7KQ36PlsskLaNPsJwYVXasDTbSOux0xym+jdlTH05d5Q==
-X-Received: by 2002:a02:8246:: with SMTP id q6mr6390809jag.130.1624567451624;
-        Thu, 24 Jun 2021 13:44:11 -0700 (PDT)
+        bh=F0x4IyKT2x+eXf6Aevlji6hFmmkziyiUYw8K70PDgcc=;
+        b=WaIhv0iy648C4MlmzPSgg8I9lrXIRBe+8KAULYY/bRermCCNnQyw2i2W36AM1jNS+k
+         4I/0KJ59FAopQEDIbByFALMFxu3gQLv1HIrGTUHQOTRwhE5vLAh3+ggqeZ2joakh2qgQ
+         hCdDOdAeIbyzw8ACdtFDP9wP3taUUYt4QrJe1OdNqeWiHlXjaLaPuVjhsDZP+qcuE+yC
+         m2KAwimnc7/iVu0UTl8q9E8qluID9Wj5N/J+OzcWg9njqf+oXTUtEvJERVVukEKM7EVI
+         WVcQDnki6WN30u7M63N/W2jXLmrXtTaz6ahlYD2TLnF3j381Ci88ZaYFu3DI0ZVJqodL
+         FG8w==
+X-Gm-Message-State: AOAM530QWpfMb/B4ZxdkB0atre/i/D4AdjFxwiRdsxCG+0b8flRC5B6e
+        SrI8zK2wVfuUN0iYUkuygg==
+X-Google-Smtp-Source: ABdhPJxP/WQNIhGKFN6SWUFmmpwOJftdPFMIatfnXDGwKcwWhakNCpsdPciM/vUKfsSrKJLq/dXC4w==
+X-Received: by 2002:a02:c6d9:: with SMTP id r25mr6248042jan.137.1624567620217;
+        Thu, 24 Jun 2021 13:47:00 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id j18sm2014229ila.9.2021.06.24.13.44.08
+        by smtp.gmail.com with ESMTPSA id q7sm1883511iob.49.2021.06.24.13.46.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 13:44:10 -0700 (PDT)
-Received: (nullmailer pid 1957082 invoked by uid 1000);
-        Thu, 24 Jun 2021 20:44:05 -0000
-Date:   Thu, 24 Jun 2021 14:44:05 -0600
+        Thu, 24 Jun 2021 13:46:58 -0700 (PDT)
+Received: (nullmailer pid 1960808 invoked by uid 1000);
+        Thu, 24 Jun 2021 20:46:55 -0000
+Date:   Thu, 24 Jun 2021 14:46:55 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Mason Zhang <mason.zhang@mediatek.com>
-Cc:     wsd_upstream@mediatek.com,
-        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        hanks.chen@mediatek.com, linux-kernel@vger.kernel.org,
-        Mason Zhang <Mason.Zhang@mediatek.com>,
+To:     Wenbin Mei <wenbin.mei@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        devicetree@vger.kernel.org, linux-mmc@vger.kernel.org,
+        srv_heupstream@mediatek.com, linux-kernel@vger.kernel.org,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         linux-mediatek@lists.infradead.org,
-        Mark Brown <broonie@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH 2/2] dt-binding: mediatek: mt6779: update spi document
-Message-ID: <20210624204405.GA1956999@robh.at.kernel.org>
-References: <1623721803.24597.9.camel@mbjsdccf07>
+Subject: Re: [PATCH v1] dt-bindings: mmc: change compatiable string for
+ MT8195 mmc host IP
+Message-ID: <20210624204655.GA1960751@robh.at.kernel.org>
+References: <1623726033-16073-1-git-send-email-wenbin.mei@mediatek.com>
+ <1623726033-16073-2-git-send-email-wenbin.mei@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1623721803.24597.9.camel@mbjsdccf07>
+In-Reply-To: <1623726033-16073-2-git-send-email-wenbin.mei@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Jun 2021 09:50:03 +0800, Mason Zhang wrote:
+On Tue, 15 Jun 2021 11:00:33 +0800, Wenbin Mei wrote:
+> MT8195 mmc host IP is compatible with MT8183, and currently it shows:
+> properties:
+>   compatible:
+>     oneOf:
+> ...
+>       - items:
+>          - const: mediatek,mt8192-mmc
+>          - const: mediatek,mt8195-mmc
+>          - const: mediatek,mt8183-mmc
+> which means the compatible string in the device tree would be:
+> 	compatible = "mediatek,mt8192-mmc", "mediatek,mt8195-mmc",
+> 		     "mediatek,mt8183-mmc";
+> The bindings is wrong and that isn't the result we want.
+> instead we want:
+> properties:
+>   compatible:
+>     oneOf:
+> ...
+>       - items:
+>          - const: mediatek,mt8192-mmc
+>          - const: mediatek,mt8183-mmc
+>       - items:
+>          - const: mediatek,mt8195-mmc
+>          - const: mediatek,mt8183-mmc
+> which would give us:
+> 	compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
+> and
+> 	compatible = "mediatek,mt8195-mmc", "mediatek,mt8183-mmc";
 > 
-> this patch update spi document for MT6779 SOC.
-> 
-> Signed-off-by: Mason Zhang <Mason.Zhang@mediatek.com>
+> Fixes: eb9cb7227e5c (dt-bindings: mmc: Add compatible for Mediatek MT8195)
+> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/spi/spi-mt65xx.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
