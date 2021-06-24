@@ -2,103 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65B673B2891
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 09:26:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5F3C3B29C5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 09:54:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231635AbhFXH2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 03:28:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231585AbhFXH2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 03:28:30 -0400
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4654DC061787
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 00:26:09 -0700 (PDT)
-Received: by mail-pj1-x102d.google.com with SMTP id x21-20020a17090aa395b029016e25313bfcso2925769pjp.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 00:26:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=MBGbqvseaowVXgAUsLtxjTmL1uju2aQqqvQPrdOEUMI=;
-        b=rfeNjALnsdRnocOgQep2/GLYnJGjRc1WjxIn1Xc02z4Wk6smdmyeDss8WDcsTLPIfL
-         Myr57xBgLa0KylpBWSZXBKQVvSTRuJF8pJtWd2XRkxmzm9vJeAtYlRm/EeTI5kPejveX
-         YUmv4GI8LCPqbS/zIX1fCe2IXo1MR4AnGEUJ4sE0B4PpSYs7LxofCZwig44hSKLNHUrB
-         YB9EwLXewAx6BQYeCyyGZ9iNaihebdvwvtaEPErNYiZetLqJVFg1iKec/QT8bCUDEH0y
-         2mhdXGndkdexIRV1t4Gcvyf0idaUv1OQWbAof50y9n5zh1BIxOdRpee3Ynzc4BU4JOh4
-         o+TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=MBGbqvseaowVXgAUsLtxjTmL1uju2aQqqvQPrdOEUMI=;
-        b=JIoUB+4I5g/1OSj1iLC5b/UqBq/D3CeUwBcbEKv9OzXlKau789h4toTFhfICLKFOo2
-         kGCzoIRd07vtKxTHv+qEUUigSSYSbaxqbrrlwTAt3T+QEP74KkXHjEZqyzAn6MVeBcfa
-         J+2hBoG235lvtmzJES6acRL22fCWPI8BaKqTiyMjH3/jKPvRbXjQbmAo/DQ3LbHPqJ+x
-         Ltr5ViU4xRLwB07vtYMINBlzOJoipVCn6gFrb+dSfesMEgJSZTWWEuCbX+Akk+6+CJ1c
-         PLNqDORnCN+IO/4CoAG0iaWCpywhlggkyvuA3GTFRWmjIM0zDUv+xxoneu8mxXWoeVHj
-         91Pg==
-X-Gm-Message-State: AOAM533/t+D+jlTkSd3MpxCQ6RuK3v8c41dzo/clViFsiUj6HHK4sQgk
-        djifcQn8UgsxBYyWprASQU1+
-X-Google-Smtp-Source: ABdhPJzs3r+zSCr6iGhCazDTh+Irhpi94KXfvEQ6RKy0/fdm/RMDCeFfNHrtUd2/lxyVGF9iNc+faA==
-X-Received: by 2002:a17:902:a981:b029:116:a139:6054 with SMTP id bh1-20020a170902a981b0290116a1396054mr3143757plb.60.1624519568820;
-        Thu, 24 Jun 2021 00:26:08 -0700 (PDT)
-Received: from localhost.localdomain ([120.138.12.173])
-        by smtp.gmail.com with ESMTPSA id g13sm1923802pfv.65.2021.06.24.00.26.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 00:26:08 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     kishon@ti.com, lorenzo.pieralisi@arm.com, bhelgaas@google.com,
-        robh@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        hemantk@codeaurora.org, smohanad@codeaurora.org,
-        bjorn.andersson@linaro.org, sallenki@codeaurora.org,
-        skananth@codeaurora.org, vpernami@codeaurora.org,
-        vbadigan@codeaurora.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v4 3/3] MAINTAINERS: Add entry for Qualcomm PCIe Endpoint driver and binding
-Date:   Thu, 24 Jun 2021 12:55:34 +0530
-Message-Id: <20210624072534.21191-4-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210624072534.21191-1-manivannan.sadhasivam@linaro.org>
-References: <20210624072534.21191-1-manivannan.sadhasivam@linaro.org>
+        id S231705AbhFXH4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 03:56:53 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:32101 "EHLO uho.ysoft.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231630AbhFXH4x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Jun 2021 03:56:53 -0400
+Received: from [10.0.28.232] (unknown [10.0.28.232])
+        by uho.ysoft.cz (Postfix) with ESMTP id BC3ADA569F;
+        Thu, 24 Jun 2021 09:54:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1624521272;
+        bh=NLbC23T/7+8xoV0rmoXID7prCSKbvpa0QbG1PLnUIew=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=TEC7utTQy3A7Yr8msK6gXy1ad1IgOVo/x4eSaE4l954cF7MCxyH68lLTofBWWCOs+
+         e1rJa/UDIA2MB8wv1dFQcxuOJru11Y0gty+hTtT/UdQAv0OeA8Y+kfZpUHvB02lo6V
+         qFit4l2SxdKK51tolQ0c7V/fiCOVoqTqVphjSTuY=
+Subject: Re: [RFC 2/2] ARM: dts: imx6dl-yapp4: Fix lp5562 driver probe
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        stable@vger.kernel.org
+References: <1621003477-11250-1-git-send-email-michal.vokac@ysoft.com>
+ <1621003477-11250-3-git-send-email-michal.vokac@ysoft.com>
+ <20210623201347.GC8540@amd>
+From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Message-ID: <bca714c6-9bdd-ae20-9427-c2ea77a31f99@ysoft.com>
+Date:   Thu, 24 Jun 2021 09:54:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
+In-Reply-To: <20210623201347.GC8540@amd>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Qualcomm PCIe Endpoint driver and its
-devicetree binding. While at it, let's also fix the PCIE RC entry to
-cover only the RC driver.
+On 23. 06. 21 22:13, Pavel Machek wrote:
+> On Fri 2021-05-14 16:44:37, Michal Vokáč wrote:
+>> Since the LED multicolor framework support was added in commit
+>> 92a81562e695 ("leds: lp55xx: Add multicolor framework support to lp55xx")
+>> LEDs on this platform stopped working.
+>>
+>> Author of the framework attempted to accommodate this DT to the
+>> framework in commit b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property
+>> to the lp5562 channel node") but that is not sufficient. A color property
+>> is now required even if the multicolor framework is not used, otherwise
+>> the driver probe fails:
+>>
+>>    lp5562: probe of 1-0030 failed with error -22
+>>
+>> Add the color property to fix this and remove the actually unused white
+>> channel.
+>>
+>> Fixes: b86d3d21cd4c ("ARM: dts: imx6dl-yapp4: Add reg property to the lp5562 channel node")
+> 
+> I believe this is for arm maintainers to take...
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- MAINTAINERS | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Hi Pavel,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bd7aff0c120f..cdd370138b9f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14254,7 +14254,15 @@ M:	Stanimir Varbanov <svarbanov@mm-sol.com>
- L:	linux-pci@vger.kernel.org
- L:	linux-arm-msm@vger.kernel.org
- S:	Maintained
--F:	drivers/pci/controller/dwc/*qcom*
-+F:	drivers/pci/controller/dwc/pcie-qcom.c
-+
-+PCIE ENDPOINT DRIVER FOR QUALCOMM
-+M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+L:	linux-pci@vger.kernel.org
-+L:	linux-arm-msm@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-+F:	drivers/pci/controller/dwc/pcie-qcom-ep.c
- 
- PCIE DRIVER FOR ROCKCHIP
- M:	Shawn Lin <shawn.lin@rock-chips.com>
--- 
-2.25.1
+Thank you for your reply.
+As described in the cover letter, my primary intention was to bring
+attention to the problem. Addition of the multicolor framework broke
+devicetree forward compatibility. The old devicetrees does not work
+with newer kernels. Addition of the multicolor framework caused the
+color property to become a required one even if the framework is
+not enabled in kernel config nor used in the dts. So the reality and
+the dt-bindings documentation do not match.
 
+IMO this could be fixed in two ways. First is adapt the dt-binding
+documentation to match the reality. State that the color property is
+always required. With this we need to fix all the examples and dts
+files by adding the color property. This is quite tricky because we
+do not always know the color and it also becomes required for the
+led-controller node. See the error reported by Rob's bot for patch 1/2:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-lp55xx.example.dt.yaml: led-controller@32: 'color' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+
+Second option is to fix this in the LED driver. The driver should not
+require the color property if the multicolor framework is not enabled.
+
+I would really like to know Rob's opinion here.
+  
+>> diff --git a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+>> index 7d2c72562c73..3107bf7fbce5 100644
+>> --- a/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+>> +++ b/arch/arm/boot/dts/imx6dl-yapp4-common.dtsi
+>> @@ -5,6 +5,7 @@
+>>   #include <dt-bindings/gpio/gpio.h>
+>>   #include <dt-bindings/interrupt-controller/irq.h>
+>>   #include <dt-bindings/input/input.h>
+>> +#include <dt-bindings/leds/common.h>
+>>   #include <dt-bindings/pwm/pwm.h>
+>>   
+>>   / {
+>> @@ -271,6 +272,7 @@
+>>   			led-cur = /bits/ 8 <0x20>;
+>>   			max-cur = /bits/ 8 <0x60>;
+>>   			reg = <0>;
+>> +			color = <LED_COLOR_ID_RED>;
+>>   		};
+>>   
+>>   		chan@1 {
+>> @@ -278,6 +280,7 @@
+>>   			led-cur = /bits/ 8 <0x20>;
+>>   			max-cur = /bits/ 8 <0x60>;
+>>   			reg = <1>;
+>> +			color = <LED_COLOR_ID_GREEN>;
+>>   		};
+>>   
+>>   		chan@2 {
+>> @@ -285,13 +288,7 @@
+>>   			led-cur = /bits/ 8 <0x20>;
+>>   			max-cur = /bits/ 8 <0x60>;
+>>   			reg = <2>;
+>> -		};
+>> -
+>> -		chan@3 {
+>> -			chan-name = "W";
+>> -			led-cur = /bits/ 8 <0x0>;
+>> -			max-cur = /bits/ 8 <0x0>;
+>> -			reg = <3>;
+>> +			color = <LED_COLOR_ID_BLUE>;
+>>   		};
+>>   	};
+>>   
+> 
+> What is going on here? "White" channel seems to have disappeared?
+
+Yes, it is described in the commit message. I know this is not optimal.
+The white channel is actually not used on this platform. So the right
+approach would be to add the white color property in this fix commit
+and remove the whole chan@3 node in next commit. I can do it that way.
+
+Michal
