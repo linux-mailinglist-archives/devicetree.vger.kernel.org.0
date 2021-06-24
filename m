@@ -2,105 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A21893B2777
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 08:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEB923B283C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 09:08:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231262AbhFXGiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 02:38:17 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:53536 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231132AbhFXGiR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 02:38:17 -0400
-Received: from mail-wm1-f72.google.com ([209.85.128.72])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lwIxx-0004lh-Oi
-        for devicetree@vger.kernel.org; Thu, 24 Jun 2021 06:35:57 +0000
-Received: by mail-wm1-f72.google.com with SMTP id w186-20020a1cdfc30000b02901ced88b501dso2649594wmg.2
-        for <devicetree@vger.kernel.org>; Wed, 23 Jun 2021 23:35:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=R0aLcGzQ8alnnx9N3rRdFLtO2M7ctE9WWithaXsLLWI=;
-        b=JPSafYWmuvA+OCsq7qjuUqMd4t0vPbZwK4SlXCq5ZztUXRVgVY5Vw3WbGKm6SIf6rQ
-         umDfkjO4lxVT6lB9w37srPo9IrF09q29UwIGy6UTcyC4Lysaj2puOK3u86Ne7g7A3BF1
-         3HTmOVVKbOs4AFWyr1ObYpS/eYHiLY93NRP15Fa9SdbZCkx6kSMLMgcoiBdpeslkXPVi
-         730P0c+38NW1wvtABrjvjW9Aenx9/gn1uIvvkFa2HvYrqKyNJSZjTJ4MbxWcZeQrmTPH
-         n264LuEnsFflAEaY2YREo0hS6iF+KLCayrGAOmSVEnQ3312gpBO18KqzeWvVDn1EQVqI
-         RnVA==
-X-Gm-Message-State: AOAM533/YTsYHnXehlKPsfyO3QXrYZtPkg30gAonYiBgeshPSV/ljfFi
-        rwVbZW8Q+JEQBTgw6gAgsBP5xqciq0DY+SkjQ8gxO6/fV8CVf3tOgTH2bGXXVGkIQi1ZgG3pe7D
-        nOPGZkLNy1wN9TSFpLA8CuQsYnNFaPQK+ddsVP4U=
-X-Received: by 2002:a1c:a597:: with SMTP id o145mr2277257wme.53.1624516557584;
-        Wed, 23 Jun 2021 23:35:57 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJx7R5Kid8X3SyYMWnamWceIwi3ZiQ7MY/ZL5RhUroHzBxtla7y73sqnE4+q/iG5Y5wgPNqwng==
-X-Received: by 2002:a1c:a597:: with SMTP id o145mr2277246wme.53.1624516557384;
-        Wed, 23 Jun 2021 23:35:57 -0700 (PDT)
-Received: from [192.168.1.115] (xdsl-188-155-177-222.adslplus.ch. [188.155.177.222])
-        by smtp.gmail.com with ESMTPSA id m184sm1893490wmm.26.2021.06.23.23.35.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Jun 2021 23:35:57 -0700 (PDT)
-Subject: Re: [PATCH] dt-bindings: Fix 'unevaluatedProperties' errors in DT
- graph users
-To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "Paul J. Murphy" <paul.j.murphy@intel.com>,
-        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-        =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund@ragnatech.se>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <20210623164344.2571043-1-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <0fbde9aa-03c1-0343-3b6f-5a7945fd8df8@canonical.com>
-Date:   Thu, 24 Jun 2021 08:35:56 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S230137AbhFXHKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 03:10:35 -0400
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:1843 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230132AbhFXHKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 03:10:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1624518496; x=1656054496;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=udrczPce4PAuPJ/OrHmUnKs40fAXn1kXcUahe3qlc7g=;
+  b=GALAW/HBct0fainlmiwPEHKeeAW7v7ISN2Vv90bsIPEGFNNkRHqFvVg8
+   1VpFjOcESic4fLzKpbp97gzzKTW0hyKjNptCvfWH8V/rky6Hcr9n60oTK
+   iNr7HyfTfmLsFYcBTrlOG8C8pHtqMwZbm7j56pRg4FSKSaPUkQxvC8+/3
+   FUqVqCV8+Ip4xthY8ucSOoPt5JlRpMFSdfv9ZhGj5NcEgMQVsA8meOaUD
+   ofoVlSLcVVSFSCYYMh7MUrEj6pYOALy0KFleg1lEetrRAOWB0wg3DLEgA
+   OhR7fHCR5kPpVwmHA3epzpkiX1tMhz++ZULVYd5Fgb6XBJn06lKRKH/Wz
+   Q==;
+IronPort-SDR: 2bT+Tq4YxY6+/x51wf3Zi3p/x2UvfYhOYr26CJV15B5ICXkyCJGTuqB64t3150UKHAOLvzNWRV
+ hHMf8Nr7tQQTsY4vNPuL6RD085n7p9tBQJRjPyuxTmoWbCBXuZVFFodG0pPAkxGBehQpjK/2QB
+ s2O080YkneATQFoSeIavWABCQT3zzX+LiIlXVzs5VezF/T+yLOiORdIPmzksRRSOfR7GcKjEOp
+ u2rZ+Nyo60bpQJYXm7lRUiq1ECbSEDWhJPONwCfJFed6CTtW2grKMMyAFm9wmxBPdoXuhnr9uF
+ wkQ=
+X-IronPort-AV: E=Sophos;i="5.83,295,1616482800"; 
+   d="scan'208";a="133280027"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Jun 2021 00:08:11 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Thu, 24 Jun 2021 00:08:11 -0700
+Received: from den-dk-m31857.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Thu, 24 Jun 2021 00:08:07 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Device Tree List <devicetree@vger.kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Russell King <linux@armlinux.org.uk>,
+        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Madalin Bucur <madalin.bucur@oss.nxp.com>,
+        Mark Einon <mark.einon@gmail.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Simon Horman" <simon.horman@netronome.com>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Lars Povlsen" <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH net-next v5 01/10] dt-bindings: net: sparx5: Add sparx5-switch bindings
+Date:   Thu, 24 Jun 2021 09:07:49 +0200
+Message-ID: <20210624070758.515521-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210624070758.515521-1-steen.hegelund@microchip.com>
+References: <20210624070758.515521-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-In-Reply-To: <20210623164344.2571043-1-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2021 18:43, Rob Herring wrote:
-> In testing out under development json-schema 2020-12 support, there's a
-> few issues with 'unevaluatedProperties' and the graph schema. If
-> 'graph.yaml#/properties/port' is used, then neither the port nor the
-> endpoint(s) can have additional properties. 'graph.yaml#/$defs/port-base'
-> needs to be used instead.
-> 
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: "Paul J. Murphy" <paul.j.murphy@intel.com>
-> Cc: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> Cc: "Niklas Söderlund" <niklas.soderlund@ragnatech.se>
-> Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> Cc: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-media@vger.kernel.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/display/bridge/lontium,lt8912b.yaml    | 3 ++-
->  Documentation/devicetree/bindings/media/i2c/imx258.yaml        | 2 +-
->  Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml   | 2 +-
->  Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml   | 2 +-
->  Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml   | 2 +-
->  Documentation/devicetree/bindings/media/renesas,vin.yaml       | 3 ++-
->  6 files changed, 8 insertions(+), 6 deletions(-)
-> 
+Document the Sparx5 switch device driver bindings
 
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Signed-off-by: Bjarni Jonasson <bjarni.jonasson@microchip.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/net/microchip,sparx5-switch.yaml | 226 ++++++++++++++++++
+ 1 file changed, 226 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+new file mode 100644
+index 000000000000..347b912a46bb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+@@ -0,0 +1,226 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/microchip,sparx5-switch.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip Sparx5 Ethernet switch controller
++
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
++  - Lars Povlsen <lars.povlsen@microchip.com>
++
++description: |
++  The SparX-5 Enterprise Ethernet switch family provides a rich set of
++  Enterprise switching features such as advanced TCAM-based VLAN and
++  QoS processing enabling delivery of differentiated services, and
++  security through TCAM-based frame processing using versatile content
++  aware processor (VCAP).
++
++  IPv4/IPv6 Layer 3 (L3) unicast and multicast routing is supported
++  with up to 18K IPv4/9K IPv6 unicast LPM entries and up to 9K IPv4/3K
++  IPv6 (S,G) multicast groups.
++
++  L3 security features include source guard and reverse path
++  forwarding (uRPF) tasks. Additional L3 features include VRF-Lite and
++  IP tunnels (IP over GRE/IP).
++
++  The SparX-5 switch family targets managed Layer 2 and Layer 3
++  equipment in SMB, SME, and Enterprise where high port count
++  1G/2.5G/5G/10G switching with 10G/25G aggregation links is required.
++
++properties:
++  $nodename:
++    pattern: "^switch@[0-9a-f]+$"
++
++  compatible:
++    const: microchip,sparx5-switch
++
++  reg:
++    items:
++      - description: cpu target
++      - description: devices target
++      - description: general control block target
++
++  reg-names:
++    items:
++      - const: cpu
++      - const: devices
++      - const: gcb
++
++  interrupts:
++    minItems: 1
++    items:
++      - description: register based extraction
++      - description: frame dma based extraction
++
++  interrupt-names:
++    minItems: 1
++    items:
++      - const: xtr
++      - const: fdma
++
++  resets:
++    items:
++      - description: Reset controller used for switch core reset (soft reset)
++
++  reset-names:
++    items:
++      - const: switch
++
++  mac-address: true
++
++  ethernet-ports:
++    type: object
++    patternProperties:
++      "^port@[0-9a-f]+$":
++        type: object
++
++        properties:
++          '#address-cells':
++            const: 1
++          '#size-cells':
++            const: 0
++
++          reg:
++            description: Switch port number
++
++          phys:
++            maxItems: 1
++            description:
++              phandle of a Ethernet SerDes PHY.  This defines which SerDes
++              instance will handle the Ethernet traffic.
++
++          phy-mode:
++            description:
++              This specifies the interface used by the Ethernet SerDes towards
++              the PHY or SFP.
++
++          microchip,bandwidth:
++            description: Specifies bandwidth in Mbit/s allocated to the port.
++            $ref: "/schemas/types.yaml#/definitions/uint32"
++            maximum: 25000
++
++          phy-handle:
++            description:
++              phandle of a Ethernet PHY.  This is optional and if provided it
++              points to the cuPHY used by the Ethernet SerDes.
++
++          sfp:
++            description:
++              phandle of an SFP.  This is optional and used when not specifying
++              a cuPHY.  It points to the SFP node that describes the SFP used by
++              the Ethernet SerDes.
++
++          managed: true
++
++          microchip,sd-sgpio:
++            description:
++              Index of the ports Signal Detect SGPIO in the set of 384 SGPIOs
++              This is optional, and only needed if the default used index is
++              is not correct.
++            $ref: "/schemas/types.yaml#/definitions/uint32"
++            minimum: 0
++            maximum: 383
++
++        required:
++          - reg
++          - phys
++          - phy-mode
++          - microchip,bandwidth
++
++        oneOf:
++          - required:
++              - phy-handle
++          - required:
++              - sfp
++              - managed
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts
++  - interrupt-names
++  - resets
++  - reset-names
++  - ethernet-ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    switch: switch@600000000 {
++      compatible = "microchip,sparx5-switch";
++      reg =  <0 0x401000>,
++             <0x10004000 0x7fc000>,
++             <0x11010000 0xaf0000>;
++      reg-names = "cpu", "devices", "gcb";
++      interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
++      interrupt-names = "xtr";
++      resets = <&reset 0>;
++      reset-names = "switch";
++      ethernet-ports {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        port0: port@0 {
++          reg = <0>;
++          microchip,bandwidth = <1000>;
++          phys = <&serdes 13>;
++          phy-handle = <&phy0>;
++          phy-mode = "qsgmii";
++        };
++        /* ... */
++        /* Then the 25G interfaces */
++        port60: port@60 {
++          reg = <60>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 29>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth60>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <365>;
++        };
++        port61: port@61 {
++          reg = <61>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 30>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth61>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <369>;
++        };
++        port62: port@62 {
++          reg = <62>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 31>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth62>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <373>;
++        };
++        port63: port@63 {
++          reg = <63>;
++          microchip,bandwidth = <25000>;
++          phys = <&serdes 32>;
++          phy-mode = "10gbase-r";
++          sfp = <&sfp_eth63>;
++          managed = "in-band-status";
++          microchip,sd-sgpio = <377>;
++        };
++        /* Finally the Management interface */
++        port64: port@64 {
++          reg = <64>;
++          microchip,bandwidth = <1000>;
++          phys = <&serdes 0>;
++          phy-handle = <&phy64>;
++          phy-mode = "sgmii";
++          mac-address = [ 00 00 00 01 02 03 ];
++        };
++      };
++    };
++
++...
++#  vim: set ts=2 sw=2 sts=2 tw=80 et cc=80 ft=yaml :
+-- 
+2.32.0
 
-
-Best regards,
-Krzysztof
