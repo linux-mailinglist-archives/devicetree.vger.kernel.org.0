@@ -2,232 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 285BF3B37DB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 22:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 617143B37EF
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 22:36:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232284AbhFXUeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 16:34:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42738 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbhFXUeJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 16:34:09 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F33E6C061574
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 13:31:49 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id q10so8778830oij.5
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 13:31:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=XgAsJj7C9T76NU1B0bOa1mVJ87wXi7syliEm45egb6Y=;
-        b=B4a5r7KnAA8BYJ/GERhUsKrBdsqhcKOmvEB0/QayGSDvmUH70AmLdb7OiCXFMJLZCn
-         uHUR9R2N4AFku6e3NTriD6LICTWRgDQqn3iJd0nvColka2MLLuYDYZ4txwxHR2e6o4Ty
-         G7N6epPb4epmMX+aQt6CkeH0+KKkhEwGLHzmmTj08JUoBtPZo8hTcDEb58WEFssdwseU
-         zisSuXu3KGnG5ms4K4P0faq5sw7BM4mByRWXeUJCrDQwTMEt/jK+L1iARftAQBh6vY40
-         gK+9BdqUas0aQideLqqax1AepL+xV06YBoqZtLaio0avjmGYfSzHCwLDFIpfFMHztIth
-         5BbQ==
+        id S230116AbhFXUi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 16:38:28 -0400
+Received: from mail-il1-f178.google.com ([209.85.166.178]:34530 "EHLO
+        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229525AbhFXUi2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 16:38:28 -0400
+Received: by mail-il1-f178.google.com with SMTP id s19so7676303ilj.1;
+        Thu, 24 Jun 2021 13:36:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XgAsJj7C9T76NU1B0bOa1mVJ87wXi7syliEm45egb6Y=;
-        b=oIM2XwyQpFY0SHDtWtFGZ0Oq/bVyH954tuqiRaTRPXkNUY2QA6g9iGlI69l27eoeq6
-         r8EcJXdExyYMNiGh2UgzLhI2XayjR6W8QAfX4zZHLadNShSKrjwMGBkJcjqApKu9bVrP
-         ZSoFDu42QbeBw4wB+V9IZoM0z+VVORbEzWtVBpVI0ACGWp17AHilzijr9La1XBuYhCtY
-         hjbtaARzUhEQ9Pb4nJvu2IlXEA/mOzvjen5p/YtkM6EUcdACn7dmZIiom6MkQvKGfWIv
-         ntd1xL36A7IpOgWXEiJLVv91z7kMVXCoozs5L9fyXUhSxA71aj3g2FnDUoW9EZnIZ0LP
-         0dGw==
-X-Gm-Message-State: AOAM531TRfOCj4MqR36fY6wVz7Zl88zVh+hWFQDHawsCdhLk7EqhPoi4
-        saQRliaZq8ZzIEANzpOLM/0tow==
-X-Google-Smtp-Source: ABdhPJxuDqamnMQfipBIEa89h8SsypLm8sYTFwiCtCl04x5gN5NFYPrUeAx18zoL+HwVanissXPA0Q==
-X-Received: by 2002:aca:d9c4:: with SMTP id q187mr8847248oig.95.1624566709351;
-        Thu, 24 Jun 2021 13:31:49 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k26sm347150ook.0.2021.06.24.13.31.48
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=IeekNEyohZN6MzkTx+KjqVqtCEsePcgyWKrRxyLzyeU=;
+        b=WY/+YOQc1wG50T6XHnSqSwmleYWO7OgdbOI+qtPBTZjLSjiieJ/pjN4QLaBIH5xcdB
+         WBjAUxQ+rOYUL37oZ7qfy3pNZV/HfrttqtIE5GVnhr6yK+zChW9LYDF+dF/MOh4NrQnE
+         qLLnhBtCBtunhaBRKCNupfNb8LLyp1e+uAFHqz0lWZezMdSRqDW6V0F7kKQSsfJTKZK1
+         o4ID27TX6xCHpn1Pm9A9DsXNHQcGEIZyKcOJ60jrXivXdscN5C7UmK06ROf+HysWBBdy
+         /rwjE/AtPnuMY2eebOL+kNRJV8H1lGdRR1asetd7CYxJERaJShafGa+lDNoCtcAJ8cFX
+         N7sg==
+X-Gm-Message-State: AOAM531HePhgTLGiNh+KcEpvDRcPT7AsnEsQoSLy+HmndS1fZWniHZZr
+        +Dk8+oWTX7MOrTIshj+uFw==
+X-Google-Smtp-Source: ABdhPJz4oc9MraAAsoi//hl+eNtAShBWVt6pwObPCXgdsqt1R0tzuLvf3l3gYVGV9xs0YZaYlwG22g==
+X-Received: by 2002:a92:cbd0:: with SMTP id s16mr4891741ilq.19.1624566968324;
+        Thu, 24 Jun 2021 13:36:08 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id z19sm1870730ioc.29.2021.06.24.13.36.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 13:31:48 -0700 (PDT)
-Date:   Thu, 24 Jun 2021 15:31:46 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: pinctrl: qcom: Add bindings for
- MDM9607
-Message-ID: <YNTrsqJEoTHVjF9S@yoga>
-References: <20210624191743.617073-1-konrad.dybcio@somainline.org>
+        Thu, 24 Jun 2021 13:36:07 -0700 (PDT)
+Received: (nullmailer pid 1945446 invoked by uid 1000);
+        Thu, 24 Jun 2021 20:36:04 -0000
+Date:   Thu, 24 Jun 2021 14:36:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 33/33] arm64: zynqmp: Add support for Xilinx Kria SOM
+ board
+Message-ID: <20210624203604.GA1938341@robh.at.kernel.org>
+References: <cover.1623684253.git.michal.simek@xilinx.com>
+ <97588ccfcdc21c53f732d3948ae85abed6539256.1623684253.git.michal.simek@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20210624191743.617073-1-konrad.dybcio@somainline.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <97588ccfcdc21c53f732d3948ae85abed6539256.1623684253.git.michal.simek@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 24 Jun 14:17 CDT 2021, Konrad Dybcio wrote:
-
-> Document the newly added MDM9607 pinctrl driver.
+On Mon, Jun 14, 2021 at 05:25:41PM +0200, Michal Simek wrote:
+> There are couple of revisions of SOMs (k26) and associated carrier cards
+> (kv260).
+> SOM itself has two major versions:
+> sm-k26 - SOM with EMMC
+> smk-k26 - SOM without EMMC used on starter kit with preprogrammed firmware
+> in QSPI.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Regards,
-Bjorn
-
+> SOMs are describing only devices available on the SOM or connections which
+> are described in specification (for example UART, fwuen).
+> 
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
-> Changes since v3:
-> - Use the correct compatible in the example
 > 
->  .../pinctrl/qcom,mdm9607-pinctrl.yaml         | 133 ++++++++++++++++++
->  1 file changed, 133 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,mdm9607-pinctrl.yaml
+> Changes in v2:
+> - Use sugar syntax - reported by Geert
+> - Update copyright years
+> - Fix SD3.0 comment alignment
+> - Remove one newline from Makefile
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,mdm9607-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,mdm9607-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..3b02dc6626ed
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,mdm9607-pinctrl.yaml
-> @@ -0,0 +1,133 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,mdm9607-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. MDM9607 TLMM block
-> +
-> +maintainers:
-> +  - Konrad Dybcio <konrad.dybcio@somainline.org>
-> +
-> +description: |
-> +  This binding describes the Top Level Mode Multiplexer block found in the
-> +  MDM9607 platform.
-> +
-> +allOf:
-> +  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,mdm9607-tlmm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts: true
-> +  interrupt-controller: true
-> +  '#interrupt-cells': true
-> +  gpio-controller: true
-> +  gpio-reserved-ranges: true
-> +  '#gpio-cells': true
-> +  gpio-ranges: true
-> +  wakeup-parent: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +patternProperties:
-> +  '-state$':
-> +    oneOf:
-> +      - $ref: "#/$defs/qcom-mdm9607-tlmm-state"
-> +      - patternProperties:
-> +          ".*":
-> +            $ref: "#/$defs/qcom-mdm9607-tlmm-state"
-> +
-> +'$defs':
-> +  qcom-mdm9607-tlmm-state:
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
+> https://www.xilinx.com/products/som/kria.html
+> ---
+>  .../devicetree/bindings/arm/xilinx.yaml       |  31 ++
+>  arch/arm64/boot/dts/xilinx/Makefile           |  10 +
+>  .../boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts  | 335 ++++++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts  | 318 +++++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-sm-k26-revA.dts    | 289 +++++++++++++++
+>  .../boot/dts/xilinx/zynqmp-smk-k26-revA.dts   |  21 ++
+
+It does not appear to me that the schema matches the dts files. You did 
+check that, right?
+
+>  6 files changed, 1004 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+>  create mode 100644 arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dts
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/xilinx.yaml b/Documentation/devicetree/bindings/arm/xilinx.yaml
+> index a0b1ae6e3e71..1a4a03dfaf7f 100644
+> --- a/Documentation/devicetree/bindings/arm/xilinx.yaml
+> +++ b/Documentation/devicetree/bindings/arm/xilinx.yaml
+> @@ -116,6 +116,37 @@ properties:
+>            - const: xlnx,zynqmp-zcu111
+>            - const: xlnx,zynqmp
+>  
+> +      - description: Xilinx Kria SOMs
 > +        items:
-> +          oneOf:
-> +            - pattern: "^gpio([1-9]|[1-7][0-9]|80)$"
-> +            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd,
-> +                      sdc2_data, qdsd_cmd, qdsd_data0, qdsd_data1, qdsd_data2,
-> +                      qdsd_data3 ]
-> +        minItems: 1
-> +        maxItems: 16
+> +          - const: xlnx,zynqmp-sm-k26-rev1
+> +          - const: xlnx,zynqmp-sm-k26-revB
+> +          - const: xlnx,zynqmp-sm-k26-revA
+
+So rev1 is compatible with revB is compatible with revA, but revA and 
+revB don't exist on their own?
+
+> +          - const: xlnx,zynqmp-sm-k26
+> +          - const: xlnx,zynqmp
 > +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
+> +      - description: Xilinx Kria SOMs (starter)
+> +        items:
+> +          - const: xlnx,zynqmp-smk-k26-rev1
+> +          - const: xlnx,zynqmp-smk-k26-revB
+> +          - const: xlnx,zynqmp-smk-k26-revA
+> +          - const: xlnx,zynqmp-smk-k26
+> +          - const: xlnx,zynqmp
 > +
-> +        enum: [ adsp_ext, atest_bbrx0, atest_bbrx1, atest_char, atest_char0,
-> +                atest_char1, atest_char2, atest_char3,
-> +                atest_combodac_to_gpio_native, atest_gpsadc_dtest0_native,
-> +                atest_gpsadc_dtest1_native, atest_tsens, backlight_en_b,
-> +                bimc_dte0, bimc_dte1, blsp1_spi, blsp2_spi, blsp3_spi,
-> +                blsp_i2c1, blsp_i2c2, blsp_i2c3, blsp_i2c4, blsp_i2c5,
-> +                blsp_i2c6, blsp_spi1, blsp_spi2, blsp_spi3, blsp_spi4,
-> +                blsp_spi5, blsp_spi6, blsp_uart1, blsp_uart2, blsp_uart3,
-> +                blsp_uart4, blsp_uart5, blsp_uart6, blsp_uim1, blsp_uim2,
-> +                codec_int, codec_rst, coex_uart, cri_trng, cri_trng0,
-> +                cri_trng1, dbg_out, ebi0_wrcdc, ebi2_a, ebi2_a_d_8_b,
-> +                ebi2_lcd, ebi2_lcd_cs_n_b, ebi2_lcd_te_b, eth_irq, eth_rst,
-> +                gcc_gp1_clk_a, gcc_gp1_clk_b, gcc_gp2_clk_a, gcc_gp2_clk_b,
-> +                gcc_gp3_clk_a, gcc_gp3_clk_b, gcc_plltest, gcc_tlmm, gmac_mdio,
-> +                gpio, gsm0_tx, lcd_rst, ldo_en, ldo_update, m_voc, modem_tsync,
-> +                nav_ptp_pps_in_a, nav_ptp_pps_in_b, nav_tsync_out_a,
-> +                nav_tsync_out_b, pa_indicator, pbs0, pbs1, pbs2,
-> +                pri_mi2s_data0_a, pri_mi2s_data1_a, pri_mi2s_mclk_a,
-> +                pri_mi2s_sck_a, pri_mi2s_ws_a, prng_rosc, ptp_pps_out_a,
-> +                ptp_pps_out_b, pwr_crypto_enabled_a, pwr_crypto_enabled_b,
-> +                pwr_modem_enabled_a, pwr_modem_enabled_b, pwr_nav_enabled_a,
-> +                pwr_nav_enabled_b, qdss_cti_trig_in_a0, qdss_cti_trig_in_a1,
-> +                qdss_cti_trig_in_b0, qdss_cti_trig_in_b1, qdss_cti_trig_out_a0,
-> +                qdss_cti_trig_out_a1, qdss_cti_trig_out_b0, qdss_cti_trig_out_b1,
-> +                qdss_traceclk_a, qdss_traceclk_b, qdss_tracectl_a,
-> +                qdss_tracectl_b, qdss_tracedata_a, qdss_tracedata_b, rcm_marker1,
-> +                rcm_marker2, sd_write, sec_mi2s, sensor_en, sensor_int2,
-> +                sensor_int3, sensor_rst, ssbi1, ssbi2, touch_rst, ts_int,
-> +                uim1_clk, uim1_data, uim1_present, uim1_reset, uim2_clk,
-> +                uim2_data, uim2_present, uim2_reset, uim_batt, wlan_en1, ]
+> +      - description: Xilinx Kria Carrier Cards (revA/Y/Z)
+> +        items:
+> +          - const: xlnx,zynqmp-sk-kv260-revZ
+> +          - const: xlnx,zynqmp-sk-kv260-revY
+> +          - const: xlnx,zynqmp-sk-kv260-revA
+> +          - const: xlnx,zynqmp-sk-k260
+> +          - const: xlnx,zynqmp
 > +
-> +      bias-disable: true
-> +      bias-pull-down: true
-> +      bias-pull-up: true
-> +      drive-strength: true
-> +      input-enable: true
-> +      output-high: true
-> +      output-low: true
+> +      - description: Xilinx Kria Carrier Cards (revB/1)
+> +        items:
+> +          - const: xlnx,zynqmp-sk-kv260-rev1
+> +          - const: xlnx,zynqmp-sk-kv260-revB
+> +          - const: xlnx,zynqmp-sk-k260
+> +          - const: xlnx,zynqmp
 > +
-> +    required:
-> +      - pins
-> +      - function
+>  additionalProperties: true
+>  
+>  ...
+> diff --git a/arch/arm64/boot/dts/xilinx/Makefile b/arch/arm64/boot/dts/xilinx/Makefile
+> index 083ed52337fd..8e43bef2c57e 100644
+> --- a/arch/arm64/boot/dts/xilinx/Makefile
+> +++ b/arch/arm64/boot/dts/xilinx/Makefile
+> @@ -17,3 +17,13 @@ dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revA.dtb
+>  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu104-revC.dtb
+>  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu106-revA.dtb
+>  dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-zcu111-revA.dtb
 > +
-> +    additionalProperties: false
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-sm-k26-revA.dtb
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += zynqmp-smk-k26-revA.dtb
 > +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        tlmm: pinctrl@1000000 {
-> +          compatible = "qcom,mdm9607-tlmm";
-> +          reg = <0x01000000 0x300000>;
-> +          interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +          gpio-controller;
-> +          gpio-ranges = <&msmgpio 0 0 80>;
-> +          #gpio-cells = <2>;
-> +          interrupt-controller;
-> +          #interrupt-cells = <2>;
-> +        };
-> -- 
-> 2.32.0
-> 
+> +som-AA-dtbs := zynqmp-sm-k26-revA.dtb zynqmp-sck-kv-g-revA.dtbo
+> +som-AB-dtbs := zynqmp-sm-k26-revA.dtb zynqmp-sck-kv-g-revB.dtbo
+> +starter-AA-dtbs := zynqmp-smk-k26-revA.dtb zynqmp-sck-kv-g-revA.dtbo
+> +starter-AB-dtbs := zynqmp-smk-k26-revA.dtb zynqmp-sck-kv-g-revB.dtbo
+> +
+> +dtb-$(CONFIG_ARCH_ZYNQMP) += som-AA.dtb som-AB.dtb starter-AA.dtb starter-AB.dtb
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
+> new file mode 100644
+> index 000000000000..59d5751e0634
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dts
+> @@ -0,0 +1,335 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * dts file for KV260 revA Carrier Card
+> + *
+> + * (C) Copyright 2020 - 2021, Xilinx, Inc.
+> + *
+> + * SD level shifter:
+> + * "A" – A01 board un-modified (NXP)
+> + * "Y" – A01 board modified with legacy interposer (Nexperia)
+> + * "Z" – A01 board modified with Diode interposer
+> + *
+> + * Michal Simek <michal.simek@xilinx.com>
+> + */
+> +
+> + #include <dt-bindings/gpio/gpio.h>
+> + #include <dt-bindings/net/ti-dp83867.h>
+> + #include <dt-bindings/phy/phy.h>
+> + #include <dt-bindings/pinctrl/pinctrl-zynqmp.h>
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +&{/} {
+> +	compatible = "xlnx,zynqmp-sk-kv260-revA",
+> +		     "xlnx,zynqmp-sk-kv260-revY",
+> +		     "xlnx,zynqmp-sk-kv260-revZ",
+
+The order above is Z, Y, A.
+
+> +		     "xlnx,zynqmp-sk-kv260", "xlnx,zynqmp";
+> +};
