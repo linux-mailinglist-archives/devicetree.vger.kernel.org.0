@@ -2,79 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F23D03B386B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 23:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78B983B387F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Jun 2021 23:18:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232600AbhFXVQO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 17:16:14 -0400
-Received: from mail-il1-f182.google.com ([209.85.166.182]:34497 "EHLO
-        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232591AbhFXVQN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 17:16:13 -0400
-Received: by mail-il1-f182.google.com with SMTP id s19so7775390ilj.1;
-        Thu, 24 Jun 2021 14:13:53 -0700 (PDT)
+        id S232741AbhFXVVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 17:21:08 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:35489 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232300AbhFXVVI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 17:21:08 -0400
+Received: by mail-io1-f53.google.com with SMTP id d9so10058021ioo.2;
+        Thu, 24 Jun 2021 14:18:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=47hUBuaqzfJJncm6RtEipODGGyZplZhj4icIYj/zpRs=;
-        b=gjOdURXYCoOytvAT38Bv/PhoQ7AQNnRoJx436mOPFhfvzNTMwIqovZlL+6opfR4zT5
-         afGTx6PwbTIxj8NtRArzoFne3/TkVp0le6iXGUEGNndq2Wqpj1QD5t863m/hgo49As6i
-         ljnjJfikmMY6VHZNtMj/ttBSfPA9WB0AInX5DFKDVSDJMp9nHzAJy4nMnpbmqzDWm38J
-         Jc7KvHfXNW9rwYGRK+AebYaYK0WbbMnZQ5jvPTW1gOaNphRCc0Y09eFWwsJAizOce9Xb
-         KvdBZfEV/VtEnRyVh94moSsVRbOS3GqWo+dJ8/VDSl9eg6xxpIAsMsorJ9fYf6aiCNIC
-         Ldaw==
-X-Gm-Message-State: AOAM53229kVi4pzqFQF40mva1LJPp7p6Ivqs9Sry55GdM1jJmbG+hbGF
-        DOifqZT0u/dC/GJ7NuesVg==
-X-Google-Smtp-Source: ABdhPJzXf/oo5u3B5EKv4LYB8gPOkFme6FZjtb+ncnezHDcwNH7+HV0lE+tkL+Dii4TAQiGhxLJC7A==
-X-Received: by 2002:a92:6509:: with SMTP id z9mr5007087ilb.184.1624569232997;
-        Thu, 24 Jun 2021 14:13:52 -0700 (PDT)
+        bh=nZlEZYSKc3oO2sTQkZ0lk3b/QG+ychRfrA05xmk4U1A=;
+        b=S9mO+Ie4ZueK+eIZmi9PHmzIHxq8FqgXyj5SRnnDbNCSfvF++yv3vvw9P9rvAFpBcZ
+         4Oqld4Cgdt/D3eYWdP3DGl3IC8e6qCKd/2LBjKQrkXtwgZSw859HVA3wrMUMkmcSXAO5
+         v2DuC27CMGInCkTb6YEHootw6tk16jizGUjXfqzV9yntHOXshwULrMgpLNzPvCuhBMnZ
+         m30KpeupPGYUyW033UIsg92qcmSsIANWVNkXqu2SGWSSn0FZsxeSVFNxXs1yj4vMGTqw
+         p+F0C2bjulLVd0Q93ji6OV0BV7dvYSi/USdhQkAZup33uiL3uI1gqlo7yUGZxx1zvC/t
+         G7+g==
+X-Gm-Message-State: AOAM532d52MBNnztglv7XsDTbuT2JLKJ1N9//AGINaNvVH5cP71OShqO
+        VJGivUjrOPun3JHFqdyAFg==
+X-Google-Smtp-Source: ABdhPJzWuI2kqqnHoUDw9mpmjIrbsr+DLFmdTJdQ/gieXMaJDSNkZftGMwMsNtLpUiOyjbx4P1WTTg==
+X-Received: by 2002:a05:6602:2014:: with SMTP id y20mr5816080iod.166.1624569527549;
+        Thu, 24 Jun 2021 14:18:47 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r8sm2398602iln.35.2021.06.24.14.13.50
+        by smtp.gmail.com with ESMTPSA id w7sm2572890ilu.74.2021.06.24.14.18.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Jun 2021 14:13:52 -0700 (PDT)
-Received: (nullmailer pid 1996913 invoked by uid 1000);
-        Thu, 24 Jun 2021 21:13:48 -0000
-Date:   Thu, 24 Jun 2021 15:13:48 -0600
+        Thu, 24 Jun 2021 14:18:46 -0700 (PDT)
+Received: (nullmailer pid 2003352 invoked by uid 1000);
+        Thu, 24 Jun 2021 21:18:44 -0000
+Date:   Thu, 24 Jun 2021 15:18:44 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-renesas-soc@vger.kernel.org,
-        Gilad Ben-Yossef <gilad@benyossef.com>
-Subject: Re: [PATCH] dt-bindings: crypto: ccree: Convert to json-schema
-Message-ID: <20210624211348.GA1991366@robh.at.kernel.org>
-References: <ab361a862755e281f5fef67b3f678d66ae201781.1623413974.git.geert+renesas@glider.be>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, jonathan@marek.ca,
+        tdas@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Vinod Koul <vinod.koul@linaro.org>
+Subject: Re: [RFC v1 05/11] dt-bindings: clock: Add QCOM SM8350 display clock
+ bindings
+Message-ID: <20210624211844.GA1997615@robh.at.kernel.org>
+References: <20210616141107.291430-1-robert.foss@linaro.org>
+ <20210616141107.291430-6-robert.foss@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ab361a862755e281f5fef67b3f678d66ae201781.1623413974.git.geert+renesas@glider.be>
+In-Reply-To: <20210616141107.291430-6-robert.foss@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Jun 2021 14:20:17 +0200, Geert Uytterhoeven wrote:
-> Convert the Arm TrustZone CryptoCell cryptographic engine Device Tree
-> binding documentation to json-schema.
+On Wed, Jun 16, 2021 at 04:11:01PM +0200, Robert Foss wrote:
+> Add device tree bindings for display clock controller for
+> Qualcomm Technology Inc's SM8350 SoC.
 > 
-> Document missing properties.
-> Update the example to match reality.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
 > ---
->  .../bindings/crypto/arm,cryptocell.yaml       | 53 +++++++++++++++++++
->  .../bindings/crypto/arm-cryptocell.txt        | 25 ---------
->  2 files changed, 53 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/crypto/arm,cryptocell.yaml
->  delete mode 100644 Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
+>  .../bindings/clock/qcom,dispcc-sm8x50.yaml    |  6 +-
+>  .../dt-bindings/clock/qcom,dispcc-sm8350.h    | 77 +++++++++++++++++++
+>  2 files changed, 81 insertions(+), 2 deletions(-)
+>  create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm8350.h
 > 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+> index 0cdf53f41f84..c10eefd024f6 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+> @@ -4,24 +4,26 @@
+>  $id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8x50.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250
+> +title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250/SM8350
+>  
+>  maintainers:
+>    - Jonathan Marek <jonathan@marek.ca>
+>  
+>  description: |
+>    Qualcomm display clock control module which supports the clocks, resets and
+> -  power domains on SM8150 and SM8250.
+> +  power domains on SM8150, SM8250 and SM8350.
+>  
+>    See also:
+>      dt-bindings/clock/qcom,dispcc-sm8150.h
+>      dt-bindings/clock/qcom,dispcc-sm8250.h
+> +    dt-bindings/clock/qcom,dispcc-sm8350.h
+>  
+>  properties:
+>    compatible:
+>      enum:
+>        - qcom,sm8150-dispcc
+>        - qcom,sm8250-dispcc
+> +      - qcom,sm8350-dispcc
+>  
+>    clocks:
+>      items:
+> diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8350.h b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
+> new file mode 100644
+> index 000000000000..361ef27de585
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
+> @@ -0,0 +1,77 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
-I'm applying this version which is dual licensed as that is the 
-preference of my employeer, Arm, who is the copyright holder here. I'll 
-sort this out internally with Gilad.
+I'm tired of saying this for QCom bindings given it's been QCom I've 
+gotten complaints on DT licensing, but dual license please. Spread the 
+word.
 
-Besides, for the bulk of the new file Geert is the copyright holder.
+I'm sure if someone audited licenses of headers and dts files they'd 
+find a mess.
 
 Rob
