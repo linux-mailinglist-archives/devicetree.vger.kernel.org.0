@@ -2,133 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04DE43B44D6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 15:51:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 707BC3B4570
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 16:21:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230031AbhFYNx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 09:53:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48934 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbhFYNx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 09:53:57 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5EF0C061766
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 06:51:36 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id t19-20020a17090ae513b029016f66a73701so8002065pjy.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 06:51:36 -0700 (PDT)
+        id S229782AbhFYOX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 10:23:27 -0400
+Received: from mail-eopbgr1410128.outbound.protection.outlook.com ([40.107.141.128]:28111
+        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229700AbhFYOX1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Jun 2021 10:23:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ao6aNbCcIx94XYaGDRgI4YgsKJPL19s2xYKFzygWB5PkZuLX4PASjFXxGKj2MR9uEf2nJh+Z3mNfzK7OSY728OANG0ZiwxvhMWcxPTyhYGu/ph3qdCa/jRyks5Y0/nOWmfyLGlvv4wliOmtHTouPF5Z7yAFadnSo8CovxUEgPFce3AbskxhbOBR+rkPehUY63bLqIEwvh0FFXf4jAn7x6Et8KLi/O+PMdh0ZzDZ2gLnyrShdzL8UsnPZOLFfaKer23ubwJbqAT+d9V9+n2dvI06DTPblBN3i9jc0WK5kOv9dD/77pmS0a0fohlr7q3Tf/87CYztNqyhZ0nWPCQi9kA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RosX2/L2oPRypuZqL2hxk0j4aZ6L4GenKqR+SaNI87M=;
+ b=lliGrMDJ1lHcIXbjagVlCpwEtD4wNt1/FVXh2d/zvEMrwQj7YxzsC79fnoQJN9PZSXAOAVYDyQnlYYSFgnGmbSbPaoSYvrOS22rQYZNiAXZVkjAqGJZ54sXPvG8PEeQ2pqtlxq3vv/KUloDaplSbevZbPWMup6ul1BPSyyF37Q6qDFX7771iRprINVyXRhTEAOZzdtif+S8TSdnCggtEMnN+d4zN+QLQQMnGsHl3d+qu7YjdiFQGaK9ogcS3+TkeeZMoEnQR6C8Tasp2CDP+snZe8X3l7CZUXAl1VEp2H0wv3a40dkp/LSci6+8m3h1IE6bf2/6hnDkk02GiXy5XUA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gOFfzzfB3icWGJyf7fd7qOAkUBx8OfOCfNvo7lnaGYw=;
-        b=YM80se/wfZcmjIUdSKV47UrLjX0M4qEqOF+kSIH9NkEhkj0yQiBb7w4qYWVko38Po0
-         +UcQV6+bQAwiG0LlFHrtwIR6WQ8ib+jtJw3sE2sCTWGz5LI71qoT1WOs1UoblBmHoSvd
-         nEtaUVmFlrU9gZGzrJIt6+TPwwXmub1PBArekQu22fZbwy+/GLqObMyYgtdx9t7n4ElA
-         UMIw+NQu/OK6eZWTIbF7HQsBks+i7bl4iLg7NWfGjahETY4p8bNUFa2ZIKGy+UUFKPNu
-         3fzQHaMHzYAnYEkhhUxWvrLbtZNnQbPWSRUiBzWbeEZK4YhcuDY6XGoYVaRjd6KcJ1ks
-         c7Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gOFfzzfB3icWGJyf7fd7qOAkUBx8OfOCfNvo7lnaGYw=;
-        b=AbnB8DaMc7DYzP8AQhCqB3Mp8k6//OOy85fvzNLB/PyviPZoWq0YDZLBEUfFplM189
-         jbN3tI3yj68kOfTwAssX40unLAOsR91sx+EztROOhkV+5JmnXoGXA8T4dtoLQAaiZGgj
-         ypcV9dpx1vC+wnF3RDAlZvl1zZf9O3mw5GVlE0lerkozvvGrprIr+XhKNlqf6yJleDJo
-         gp988MRiNMzkD+JqGhOobqgh4vy8vgCi9aKHcb67fL2FSqbXnme7jYRd+xyaFXFu/dlh
-         +GUsK5YzUqui76gv9DrfbzDF7VS7st71U+FY4RJf+LhYHG0CZD5+TC3akM+AG/mI3IMk
-         dqUw==
-X-Gm-Message-State: AOAM532BZ4UfHqN8K1B7UzKew5BRsUYKRuGB/HbhCCXg57biNlE8hJx4
-        rR5PfUs1nWexmLxbsCT4q7qJEeIfOVuY+WEvTrlQCw==
-X-Google-Smtp-Source: ABdhPJxQYINbrnkbID4F3k8iJOHCoCXHacOfFXlPSJpossaqYKp4Q8nwrksZOualbPoua2Grp4gvm+09tDaR1QbMJAU=
-X-Received: by 2002:a17:90a:c394:: with SMTP id h20mr20745388pjt.222.1624629096164;
- Fri, 25 Jun 2021 06:51:36 -0700 (PDT)
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RosX2/L2oPRypuZqL2hxk0j4aZ6L4GenKqR+SaNI87M=;
+ b=XqkosJthFAcU7PLWYY8mldnXaVmnYVdHcfwww/RMmLlHk+enMRsJCjdDk5m3VlCBVI64qa/bLXzpzwsgNMZB4/3XNcM2VuLa++8LpN0v68mAic4izASutzGVDO+vQjW02vA9WhRwK7sjM6I0bOKSWXjxb29/f0GISHX26Lep+ts=
+Received: from OS3PR01MB6593.jpnprd01.prod.outlook.com (2603:1096:604:101::7)
+ by OS3PR01MB5990.jpnprd01.prod.outlook.com (2603:1096:604:d3::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.19; Fri, 25 Jun
+ 2021 14:21:04 +0000
+Received: from OS3PR01MB6593.jpnprd01.prod.outlook.com
+ ([fe80::a53c:198f:9145:903b]) by OS3PR01MB6593.jpnprd01.prod.outlook.com
+ ([fe80::a53c:198f:9145:903b%8]) with mapi id 15.20.4264.023; Fri, 25 Jun 2021
+ 14:21:04 +0000
+From:   Min Li <min.li.xe@renesas.com>
+To:     Min Li <min.li.xe@renesas.com>,
+        "sameo@linux.intel.com" <sameo@linux.intel.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "grant.likely@linaro.org" <grant.likely@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH mfd v3] mfd: Add Renesas Synchronization Management Unit
+ (SMU) support
+Thread-Topic: [PATCH mfd v3] mfd: Add Renesas Synchronization Management Unit
+ (SMU) support
+Thread-Index: AQHXZGBI73dhrC6Hl0qCeqEere9Wyask0ZCw
+Date:   Fri, 25 Jun 2021 14:21:03 +0000
+Message-ID: <OS3PR01MB659309124542B0D712FC9DEBBA069@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+References: <1624034232-7952-1-git-send-email-min.li.xe@renesas.com>
+In-Reply-To: <1624034232-7952-1-git-send-email-min.li.xe@renesas.com>
+Accept-Language: en-CA, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: renesas.com; dkim=none (message not signed)
+ header.d=none;renesas.com; dmarc=none action=none header.from=renesas.com;
+x-originating-ip: [72.140.114.230]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8c774beb-75d7-45f8-cb56-08d937e47734
+x-ms-traffictypediagnostic: OS3PR01MB5990:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <OS3PR01MB5990046CCC9399CD1204FBDFBA069@OS3PR01MB5990.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2512;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: D0MVwmEjZXEMEyiu6r7AblGrcZcbY0UQ+cMYRbhCW8y3bGxV4aYnPiXtHWOT1pVim1qTQSLBAccylosphW9ms7xDGtWczXG2CAsXXaZJxuHVvG2rPX6a3oi9WINOXAS6oNX+fIIJEHwDt2tbF7z/RvGNyJuBmY1bifaVks2XEmS64YHDw3RncosgXw8K1MDlgVBO9qoOx6wdHYZIWZGaO14lsPXWx0o5Xo+0wN76cequ/UG+W70rFvc0IFTokkxzWu5FeSvpwx5t6/vQu7g/wrpH85eMRzsNPUPnK1Bj8+a1tcoKtp8EUoVtBD8F26ZoPhC6eg2+Ejn6UDYfL5GbLaS/dNFAeVNv/Dj6Xq4jxvpABKAD/RqaFVLwYrDmQ3I97iXWVkHWOrzECRSDYY81/654G/GZ/VxbVenqqIxFDxEzCxNq+UgdM+8lAHwIVdEerDCtKeEijscU6d4Ig/KuSL79VgGoZnVwGn0U1xk6qwgNHpNFicbbovZTIsk1O6g4vrJHuN8s+xKmt7lVXiv+CF0ND7bcJkzgMnOzOWb7xIzjRKtwGf7H+PXOkNjkgfbnfvOs0uzKWhDMbx+jg+RXfrxjBMtheGnda2D+1P6MRVU=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS3PR01MB6593.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(366004)(396003)(39860400002)(346002)(136003)(110136005)(6506007)(64756008)(66446008)(66476007)(54906003)(38100700002)(2906002)(8676002)(33656002)(122000001)(66556008)(558084003)(86362001)(76116006)(71200400001)(8936002)(66946007)(5660300002)(55016002)(83380400001)(26005)(316002)(478600001)(52536014)(4326008)(186003)(7696005)(9686003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?irLVtjl7XxVcwIm+bc3wl/mqJAELDgYE9WEUi4F9Pzo7G4lPfaaiylNPZvkp?=
+ =?us-ascii?Q?L3g/F0lHMK+ZD6VisuB5RkXIFHQBPFl/RSujAwQWYqrzu2KlLbuNyek245Yt?=
+ =?us-ascii?Q?1VJzsEolRyMwODZXBNSN4JydxT6aMo1r60GjQ4i0vhk4xOvEYHTY46kSFZob?=
+ =?us-ascii?Q?8ZJorBLC3p5rKoGEe3/xfgC+o7QBbbM5XHYQTZDYc6oQEtcu6BJLZWIrxMPR?=
+ =?us-ascii?Q?nZjp4A1UszY7DqcD+Id9b4NqU1TrLZ0Ar7rwL3ZzWR8/QAFpis9TD7HQ9y2j?=
+ =?us-ascii?Q?rCjjJwTpBtz+xIdAhqBDDZTdrBGZ2PYapNYLtL0cNMBIC4Am5Ouah66e984T?=
+ =?us-ascii?Q?5RYi8a3z6xrdgMfMadUlaN681UiBtfZJaq9cCDXwcHIspZ/fzBVYR9qOihpS?=
+ =?us-ascii?Q?P3cyZoYtWnfbVyZERDWCWqwnqe/soPIY0jFVcRr5tuRtrcohW4BpTh4ovviy?=
+ =?us-ascii?Q?gMVa1JqGLphC39BG4Fb4jpgGA/+97kY98F3/D8QcA/HA1l3CAPY+X0aD6mL7?=
+ =?us-ascii?Q?D4F5bNpCV4KfWwDwPObhM7maMZSzd/YBcK4LqNMHh0Wenw2cMUtoxDQ7r9dS?=
+ =?us-ascii?Q?UGeNNkJGK5+Sd2wN/ZpYoGxiiMc/kcjdh9kdzZQN5/KD8PjKhqmvfpm8lnSV?=
+ =?us-ascii?Q?yPN6Y/m7bVsHXi4l4MhYcHej+zxVy6y++DjHg33ZYFcQSSNRM4OQVd+1322f?=
+ =?us-ascii?Q?QHSDgJHLuyzq3aeFi3mhbyPUJ3MyRHIVanwWPmHYhwkV8E09xD0i4aJ9bpGG?=
+ =?us-ascii?Q?XD6MaAaLVt5tOapYnfrI9eRjnnAt12S/OTnB79QXzczzvGCTJ0l55ovOv7UT?=
+ =?us-ascii?Q?afclEUPzQpR61I21pdY+l/YdO7J7s0BR1Eqt+1Mryd7UBF402krpAncteTcr?=
+ =?us-ascii?Q?84gt3hiNwi1+n94GXzsbGrCZGg+0urQXkkxkD2U4R1AGg9aYw8qsRN+YeITQ?=
+ =?us-ascii?Q?RXnGth7sK7xRBU6rzlfLpj/PTIqVdrsfnwi6U6rr+S8dPQKTHwU82IwuGAAc?=
+ =?us-ascii?Q?SLepraOy5/qPp6tWRrdbxzWvRtQFS2l44dxhFwafE5tn4OFX2hV26n9zZo45?=
+ =?us-ascii?Q?Ez6Vhb/KTsuiB6+cA6Srae3ws0StX387t91vHeAnPWjJau5cViBFGG2NAS28?=
+ =?us-ascii?Q?rRqnKIq/ZeL1sGmFUbzn5Rq1jrMKFYvUIOHYigpyESnbhVqu4DPUJao6Yz78?=
+ =?us-ascii?Q?JhPYDmut97TvxHmw6JBBlOp4kFvL7rXh47L4avc7B/QOfI3XiZ+dImi412Um?=
+ =?us-ascii?Q?kb0v5A3/Hg+nqXZbGRUyAmSSPndLp3eBO7AffsiTJU2en0+V/WrJjfqaDB5g?=
+ =?us-ascii?Q?4sBrLSJxC0DzH5WgWlXRO0gt?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20210616141107.291430-1-robert.foss@linaro.org>
- <20210616141107.291430-6-robert.foss@linaro.org> <20210624211844.GA1997615@robh.at.kernel.org>
-In-Reply-To: <20210624211844.GA1997615@robh.at.kernel.org>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Fri, 25 Jun 2021 15:51:24 +0200
-Message-ID: <CAG3jFyv3aMt-P+vCExhncBR4n1xYKARhAoO_m+9xsqhp2nwarg@mail.gmail.com>
-Subject: Re: [RFC v1 05/11] dt-bindings: clock: Add QCOM SM8350 display clock bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Taniya Das <tdas@codeaurora.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Vinod Koul <vinod.koul@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS3PR01MB6593.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8c774beb-75d7-45f8-cb56-08d937e47734
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jun 2021 14:21:03.8947
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lm+wydwZbLJC5R9vbit5BW4h1VuuhTNAdKe1HNgby9RMXqnET/Rhp+4Ft2q72wmOuxTe7Ayw9D3U0gOo5sqVEg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB5990
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Jun 2021 at 23:18, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Jun 16, 2021 at 04:11:01PM +0200, Robert Foss wrote:
-> > Add device tree bindings for display clock controller for
-> > Qualcomm Technology Inc's SM8350 SoC.
-> >
-> > Signed-off-by: Robert Foss <robert.foss@linaro.org>
-> > ---
-> >  .../bindings/clock/qcom,dispcc-sm8x50.yaml    |  6 +-
-> >  .../dt-bindings/clock/qcom,dispcc-sm8350.h    | 77 +++++++++++++++++++
-> >  2 files changed, 81 insertions(+), 2 deletions(-)
-> >  create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm8350.h
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> > index 0cdf53f41f84..c10eefd024f6 100644
-> > --- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> > @@ -4,24 +4,26 @@
-> >  $id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8x50.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >
-> > -title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250
-> > +title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250/SM8350
-> >
-> >  maintainers:
-> >    - Jonathan Marek <jonathan@marek.ca>
-> >
-> >  description: |
-> >    Qualcomm display clock control module which supports the clocks, resets and
-> > -  power domains on SM8150 and SM8250.
-> > +  power domains on SM8150, SM8250 and SM8350.
-> >
-> >    See also:
-> >      dt-bindings/clock/qcom,dispcc-sm8150.h
-> >      dt-bindings/clock/qcom,dispcc-sm8250.h
-> > +    dt-bindings/clock/qcom,dispcc-sm8350.h
-> >
-> >  properties:
-> >    compatible:
-> >      enum:
-> >        - qcom,sm8150-dispcc
-> >        - qcom,sm8250-dispcc
-> > +      - qcom,sm8350-dispcc
-> >
-> >    clocks:
-> >      items:
-> > diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8350.h b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
-> > new file mode 100644
-> > index 000000000000..361ef27de585
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/qcom,dispcc-sm8350.h
-> > @@ -0,0 +1,77 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
->
-> I'm tired of saying this for QCom bindings given it's been QCom I've
-> gotten complaints on DT licensing, but dual license please. Spread the
-> word.
->
-> I'm sure if someone audited licenses of headers and dts files they'd
-> find a mess.
+Hi Lee
 
-Thanks for pointing this out. I'll keep an eye out and change it to
-(GPL-2.0-only OR BSD-2-Clause).
+This is Min. I am wondering if you have had a chance to review my latest pa=
+tch?
+
+Thanks
+
+Min
