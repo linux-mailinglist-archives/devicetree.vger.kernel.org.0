@@ -2,207 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 614713B439B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 14:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F0B83B43B2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 14:59:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229712AbhFYMxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 08:53:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35232 "EHLO
+        id S231610AbhFYNBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 09:01:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbhFYMxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 08:53:06 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD35DC061766
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 05:50:45 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id r3so1661457wmq.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 05:50:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3q2hj4q9wB8qmp/YlfpN0DitbMNMAnSRweZBDiZqwXI=;
-        b=nCMQS4V942hTCkeHgxA5/hEOu5cPVhFPhcac/zVO69YAnYxFN/NndoZcso0bfuYydH
-         evwv7ssyZd15LAc0o0n7VyiK5oa5Adt1MqboygueCw425lfHchnTOs8B57YnjvNcyBfH
-         kCn2U6NXctjo6zE8t02d0a76AfURC4hX8frMXKo73+oGd2X0TcGZcc2IZRMMTS/4QzjZ
-         EkzM4vMS5Hdicav8JSuHPiBk4XRQ/CNpJ1aJwFu5V2CpfNmxhgdXAY7CEbKJ2nrzPalm
-         mvrzmzWrV4WX2rjjtrtd7cIyXGlsiJHcMF1P75EWSiSHrwSEZ2HPFdUXU/H2DeRhuUWS
-         6HWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3q2hj4q9wB8qmp/YlfpN0DitbMNMAnSRweZBDiZqwXI=;
-        b=syTqYWEcFyyxLXOfl3nCL9UwVPQSvroRSKY+PZ5mO3zgil71kp4pf6dlDPRQIXmyXw
-         oQ6plot+RhqHvIiuUUu0hhtWSjk5nOf4XuR67c0ep2JS4EYQO184bqu4HwEkYoEpomjl
-         FQZqp1G8LJvGFyO+C819UK/c/71c5L06LgYE9r+GXdRv3da5Imv++TNLbZbXMb2JI8rS
-         4UaUI6fehgNMNrdvM8Ahlg5KJhF0zA8wUiPxwsqU+eYkobo2rSt0lVuUUB02ieAgbM57
-         w9QB3sUKalC3GLeibzezLiLck0DUSKPwfIrCHQPtTVurienn+/KTyaPSEvjCrOvkSmRR
-         pPmA==
-X-Gm-Message-State: AOAM532p9x87NNNa749/VDw4C+ms72/WZ41No4ajQo+PHQSN1waMipwA
-        fF2v46PnEgFt7yjJBfbnZ3ZTYw==
-X-Google-Smtp-Source: ABdhPJwepCnbNjUznqf4+se6+PE93Avwc76AApO0H/TB3qvRp25uhoHT+KCcmO076e1O/A//zhMUAg==
-X-Received: by 2002:a1c:f215:: with SMTP id s21mr10500015wmc.179.1624625444006;
-        Fri, 25 Jun 2021 05:50:44 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:c52d:3cc5:c823:ade0? ([2a01:e34:ed2f:f020:c52d:3cc5:c823:ade0])
-        by smtp.googlemail.com with ESMTPSA id s5sm6177768wrn.38.2021.06.25.05.50.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jun 2021 05:50:43 -0700 (PDT)
-Subject: Re: Aw: Re: Re: Re: [PATCH] Fix mt7622.dtsi thermal cpu
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Eric Woudstra <ericwouds@gmail.com>,
+        with ESMTP id S231516AbhFYNBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 09:01:38 -0400
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29897C061767
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 05:59:16 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:1476:ce84:e216:add8])
+        by baptiste.telenet-ops.be with bizsmtp
+        id MQzC250052B1U9901QzC7K; Fri, 25 Jun 2021 14:59:13 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lwlQN-003TM9-PD; Fri, 25 Jun 2021 14:59:11 +0200
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1lwlQN-004sPw-Dn; Fri, 25 Jun 2021 14:59:11 +0200
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Robin van der Gracht <robin@protonic.nl>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sean Wang <sean.wang@mediatek.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Daniel Golle <daniel@makrotopia.org>
-References: <20210619121927.32699-1-ericwouds@gmail.com>
- <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org>
- <56fb5540-fb86-4e6a-a596-1276026b37e5@gmail.com>
- <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org>
- <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
- <fb633034-96e5-6165-b43f-290ae1a65cfd@linaro.org>
- <189b52d5-b103-43e1-a64f-1e627fbc75af@gmail.com>
- <173e6bab-9d21-eb28-9b91-a5f80c01fd03@linaro.org>
- <3dd22cf2-1186-4870-aa49-e5cddc18c6e9@gmail.com>
- <trinity-7580d955-3187-41e5-9297-1ac8f628a9d5-1624609003739@3c-app-gmx-bs66>
- <8b27246b-721e-fa0e-5c2b-b1b4b4d6fdd3@linaro.org>
- <trinity-2eb7c0ac-d9dc-446c-8907-69b5f4df6838-1624618996538@3c-app-gmx-bs66>
- <915b101a-6bea-ae96-78ed-d27fa5bfce3a@linaro.org>
- <trinity-59bd4461-3429-4382-9754-90cf20287cad-1624624111998@3c-app-gmx-bs66>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <67107afb-6ed9-9681-6fce-0d52e567ea12@linaro.org>
-Date:   Fri, 25 Jun 2021 14:50:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>
+Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH v2 00/18] auxdisplay: ht16k33: Add character display support
+Date:   Fri, 25 Jun 2021 14:58:44 +0200
+Message-Id: <20210625125902.1162428-1-geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <trinity-59bd4461-3429-4382-9754-90cf20287cad-1624624111998@3c-app-gmx-bs66>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/06/2021 14:28, Frank Wunderlich wrote:
->> Gesendet: Freitag, 25. Juni 2021 um 13:47 Uhr
->> Von: "Daniel Lezcano" <daniel.lezcano@linaro.org>
-> 
->>> but we need to disable the passive trip as cpu-trotteling starts there...the higher temperature trips are currently not reached
->>
->> Sorry, can you rephrase it ? I'm not getting the point.
-> 
-> the problem currently is that passive is at 47degress Celsius and
-> trottles cpu, active (67°C) and hot points are never reached this way.
-> so at least we need to change temperatures in dtsi, and maybe disable
-> cpu-trotteling on passive trip. imho fan will never start if it is in
-> active and cpu is trottled before in passive
+	Hi all,
 
-Ok, thanks for the clarification.
+The Holtek HT16K33 LED controller is not only used for driving
+dot-matrix displays, but also for driving segment displays.
+The current auxdisplay driver is limited to dot-matrix displays, which
+are exposed as a frame buffer device.
 
->>> summary
->>>
->>> moving fan and cpu_thermal-override to bananapi-r64.dts
->>>
->>> passive-trip: cooling-device = <&cpu0/1 0 0> as in erics Patch
->>> active trip: cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>> the other 2 unchanged
->>>
->>> but i suggest changing the temperature points in mt7622 dtsi as this is SoC specific
->>>
->>> so basicly:
->>>
->>> --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
->>> @@ -143,13 +143,13 @@ cpu_thermal: cpu-thermal {
->>>
->>>                         trips {
->>>                                 cpu_passive: cpu-passive {
->>> -                                       temperature = <47000>;
->>> +                                       temperature = <70000>;
->>
->> May be increase the passive temp to 75°C.
->>
->>>                                         hysteresis = <2000>;
->>>                                         type = "passive";
->>>                                 };
->>>
->>>                                 cpu_active: cpu-active {
->>> -                                       temperature = <67000>;
->>> +                                       temperature = <80000>;
->>>                                         hysteresis = <2000>;
->>>                                         type = "active";
->>>                                 };
->>
->> Move the active trip 'cpu_active' to mt7622-bananapi-bpi-r64.dts. and
->> set it to 70°C in the mt7622-bananapi-bpi-r64.dts, so the fan will act
->> before the cpu throttling.
->>
->> The behavior should be the following: The temperature reaches 70°C, the
->> fan will start, if the temperature continues to increase, it will
->> increase the speed. If the temperature reaches 75°C, the fan is still
->> rotating at full speed but the cpu begins to be throttled.
-> 
-> passive to 75 and active lower to 70? is this as intended that active comes before passive?
+This patch series extends the driver to 4-digit 7-segment and quad
+14-segment alphanumeric displays, allowing the user to display and
+scroll text messages.
 
-Yes. So there is a default passive mitigation temp for the SoC at 75°C.
-And the bpi has a setup with a fan mitigating before the cpu throttling.
+List of patches:
+  - Patch 1 provides font data for displaying ASCII characters on
+    14-segment displays,
+  - Patch 2 updates the HT16K33 DT bindings for segment displays,
+  - Patches 3-5 contain a bug fix and small improvements for the
+    Imagination Technologies ASCII LCD Display driver,
+  - Patch 6 extracts the character line display core support from the
+    Imagination Technologies ASCII LCD Display driver, for reuse,
+  - Patches 7-8 contain cleanups and improvements for the character line
+    display core driver,
+  - Patches 9-16 contain a bug fix, cleanups and improvements for the
+    HT16K33 driver, to prepare for segment display support,
+  - Patch 17 adds support for 7/14-segment displays to the HT16K33
+    driver,
+  - Patch 18 adds segment display LED support to the HT16K33 driver,
+    to make use of hardware blinking, and to expose display color.
 
-> mt7622-bananapi-bpi-r64.dts:
-> 
-> &cpu_thermal {
-> 	trips {
-> 		cpu_passive: cpu-passive {
-> 			temperature = <75000>;
-> 			hysteresis = <2000>;
-> 			type = "passive";
-> 		};
+Changes compared to v1[1]:
+  - Fix type of color to uint32,
+  - "refresh-rate-hz" is still required for dot-matrix displays.
+  - Move "select LINEDISP" for HT16K33 symbol to correct patch,
+  - Add backwards compatibility "message" symlink to img-ascii-lcd,
+  - Connect backlight to fbdev in ht16k33 dot-matrix mode,
+  - Set "err = -EINVAL" in switch() case that cannot happen,
+  - Use "auxdisplay" instead of DRIVER_NAME in LED name.
 
-No need to add this trip point, it should be changed to 75°C in SoC DT
-mt7622.dtsi. This fragment of DT will concatenate with the previous one.
+This series has been tested using an Adafruit 0.54" Quad Alphanumeric
+Red FeatherWing Display, plugged into an OrangeCrab ECP5-based FPGA
+board running linux-on-litex-vexriscv.
+7-segment display support is based purely on schematics, and has not
+been tested on actual hardware.  The changes to img-ascii-lcd.c are also
+untested, due to lack of hardware.
 
-> 		cpu_active: cpu-active {
-> 			temperature = <70000>;
-> 			hysteresis = <2000>;
-> 			type = "active";
-> 		};
-> 	};
-> 
-> 	cooling-maps {
-> 		map1 {
-> 			trip = <&cpu_active>;
-> 			cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> 		};
-> 	};
-> };
-> 
-> 
->> AFAIU, it is a Cortex-A53 running @1.35GH, so except the board is in a
->> black metal box under the sun, I don't see how we can reach this thermal
->> limits.
->>
->>> @@ -170,8 +170,8 @@ cpu-crit {
->>>                         cooling-maps {
->>>                                 map0 {
->>>                                         trip = <&cpu_passive>;
->>> -                                       cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
->>> -                                                        <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->>> +                                       cooling-device = <&cpu0 0 0>,
->>> +                                                        <&cpu1 0 0>;
->>
->> You should keep it untouched.
-> 
-> then cpu is trottled at passive point (currently 47°C) and imho fan does not start at active
-> 
->>>                                 };
-> 
+Thanks for your comments!
 
+[1] "[PATCH 00/17] auxdisplay: ht16k33: Add character display support"
+    https://lore.kernel.org/r/20210322144848.1065067-1-geert@linux-m68k.org/
+
+Geert Uytterhoeven (18):
+  uapi: Add <linux/map_to_14segment.h>
+  dt-bindings: auxdisplay: ht16k33: Document Adafruit segment displays
+  auxdisplay: img-ascii-lcd: Fix lock-up when displaying empty string
+  auxdisplay: img-ascii-lcd: Add helper variable dev
+  auxdisplay: img-ascii-lcd: Convert device attribute to sysfs_emit()
+  auxdisplay: Extract character line display core support
+  auxdisplay: linedisp: Use kmemdup_nul() helper
+  auxdisplay: linedisp: Add support for changing scroll rate
+  auxdisplay: ht16k33: Connect backlight to fbdev
+  auxdisplay: ht16k33: Use HT16K33_FB_SIZE in ht16k33_initialize()
+  auxdisplay: ht16k33: Remove unneeded error check in keypad probe()
+  auxdisplay: ht16k33: Convert to simple i2c probe function
+  auxdisplay: ht16k33: Add helper variable dev
+  auxdisplay: ht16k33: Move delayed work
+  auxdisplay: ht16k33: Extract ht16k33_brightness_set()
+  auxdisplay: ht16k33: Extract frame buffer probing
+  auxdisplay: ht16k33: Add support for segment displays
+  auxdisplay: ht16k33: Add segment display LED support
+
+ .../bindings/auxdisplay/holtek,ht16k33.yaml   |  31 +-
+ drivers/auxdisplay/Kconfig                    |   8 +
+ drivers/auxdisplay/Makefile                   |   1 +
+ drivers/auxdisplay/ht16k33.c                  | 458 ++++++++++++++----
+ drivers/auxdisplay/img-ascii-lcd.c            | 206 ++------
+ drivers/auxdisplay/line-display.c             | 261 ++++++++++
+ drivers/auxdisplay/line-display.h             |  43 ++
+ include/uapi/linux/map_to_14segment.h         | 239 +++++++++
+ 8 files changed, 989 insertions(+), 258 deletions(-)
+ create mode 100644 drivers/auxdisplay/line-display.c
+ create mode 100644 drivers/auxdisplay/line-display.h
+ create mode 100644 include/uapi/linux/map_to_14segment.h
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.25.1
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
