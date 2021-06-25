@@ -2,290 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 041D83B42AE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 13:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B2223B42B2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 13:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230114AbhFYLsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 07:48:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49002 "EHLO
+        id S229934AbhFYLuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 07:50:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230056AbhFYLsl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 07:48:41 -0400
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09511C061574
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 04:46:19 -0700 (PDT)
-Received: by mail-il1-x131.google.com with SMTP id v5so9436220ilo.5
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 04:46:19 -0700 (PDT)
+        with ESMTP id S229573AbhFYLuV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 07:50:21 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 829EAC061574
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 04:48:00 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id f15so10264081wro.8
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 04:48:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tgDi0FCKsZnwX7VsEbSy0smaMpEVsSOVOBoh4nlMGXs=;
-        b=03M16gCQh193nryv5d4WNf74IV+IJgJIPDtE7SeiPN3RlDHUVdB1/BH6LBnMJVBe7a
-         Xeu2k0EB3oFvuA3070Mzg0skVcFzdyY1b1QUUB/z3V1zKkUW+Ag3yL9XX4zCHMpbIkTX
-         JDURYYR8waDrYDLa+Hh+uhkma8FJdQ+y022bFT5EGZ8ErRb59FQNcFmCCW8gXs/j7152
-         NHkMeu9uzkq5AS3Jx50pGeW0hZAfUNxoU23dlmJK78xE+TTWJxM6NaILwXDCiZjzL9zt
-         9wUAiLh/Zljpgmc2Wg9Lfnq69HYLY5S0w1t/bMR3dRWsykvSYYt4nH9cBfmhXDl4WupD
-         1WdA==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Kwcx9otKeRLrPfoujiGcv2pQL5iszSvQBvkikrZdgJ8=;
+        b=qRWLJiX0JpHuLPVS/tsP1icZ/nNWiBpH/TQJnwa4S+y4rHPQTSSfRG7guZURO3rhRe
+         ZNDaECZcynKUwMfpHkIzWWTjrdVlJlgr7u9dm9WpSpIwkcUK9LZdDvB+/lL1QWGFnhSE
+         KQICngDxp8tDRBm81R43MzQO/eFrRrPdtav4Kuc91QxyxvlMk9LCqGNqXmfX/EjYx3MY
+         ARdKNXoLuL2Yf2XywcbGcPWFn/lzZB+IR1I1LOZw0ih1iquHvTd8cIPnfwnXGoqqOBhP
+         cRjTYmq12qjZY59gB3Pc8kr645aisuwJw4m8va8rIEaEaGITqBurUuz1hfdcV7m9YV9o
+         gvzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tgDi0FCKsZnwX7VsEbSy0smaMpEVsSOVOBoh4nlMGXs=;
-        b=cbZY+egEDODeFa1i/I7O1ZSE0FCfnWSEdYWsKuDFJf5pYKbbtQN85/PRh3oTIdso7o
-         xosg0XeZQXDGS9PAWcewudoGGH+YcRoBsJ33d5neQyIBSTrxrGGki+JgdSr55XQm0YP5
-         MK6+Xqzg7+vGg5ASitgTKDN+K0q/76ewEwvk4D6ZyEVwVOHwY1KntgV1XIruVuoi7uPg
-         fD15dLl9IYWKvOwhf0haWdWgAyU3cIr+chWFT3pVG4gcg5jSPdhpS40DfdmXrEMRMkcU
-         ZhY1x8YZ7rczxkl3o1j2vF8cxC9xpiiHMXLQ1iljh+Yi5cob5h4HaHnUKkx6CUW1eWm6
-         mI2g==
-X-Gm-Message-State: AOAM532weNh/FK3sptoWXW1tjBmfIW8MbghRbRMYxi3RV3LC8Bxd2DPo
-        L6EPccg1pV6xhU263NS4y5GtdHYNSkrWaFZioKwcBg==
-X-Google-Smtp-Source: ABdhPJwfX8xjOUkxO91ZcEJg9NpMZfuHjfbio/a600BrQVKMg+GSP0qU27UWh2vlLA+FnNta6XP8f+nFJZyhFTktiBY=
-X-Received: by 2002:a92:dcc4:: with SMTP id b4mr7083720ilr.183.1624621579349;
- Fri, 25 Jun 2021 04:46:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210607123317.3242031-1-robert.marko@sartura.hr> <20210607123317.3242031-5-robert.marko@sartura.hr>
-In-Reply-To: <20210607123317.3242031-5-robert.marko@sartura.hr>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Fri, 25 Jun 2021 13:46:08 +0200
-Message-ID: <CA+HBbNH7wcpfQOX2=vZmW78GoWy_WL3Pz-dMKe0N0ebZDp+oUw@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Kwcx9otKeRLrPfoujiGcv2pQL5iszSvQBvkikrZdgJ8=;
+        b=FENyeYU078N9Q2nmYE5Z0Fi90QsIfea38oeWU0L9AYgdbLYsXV4QMVTZLE+OmpDNVi
+         E98eNEx0kp6DoGsvD6UH9q3BAe51IXgLm8Osq/jplW8YcgvWfMHPXEDrS85oyerpz0pj
+         VOJEPnRIH8p6oWuyJkqfJPgym1ciV2+iZZJPp7K4YBGl0zIlXqhO3fo2ybOUyRTxZGwD
+         1Z7Y52ShTMFgwupIPJKh4YW3b2beu3wjntBYaQ/HxPhlWWCxBr9knX8HUWQ9yC6+QH+4
+         5rDAW4Ejoh3lM9WkDBmEyEZoskXARnXnQomB8LzUsEb3nnG0ind8f6gaAeL7vTkqCPhK
+         GPGg==
+X-Gm-Message-State: AOAM531NAvMkRQaJoRbQyziswLudLOOa1oWIDP5Hydbn4bQiKATjlgkI
+        N7Yn6OZDH1Kxk2W/e4v3Tau2xg==
+X-Google-Smtp-Source: ABdhPJy5Gp4yNbeL/MczZpciQZE1+Pu7WBKPslzvha7jWE7uLGxGLe067X+TbgN8DO7YaMaJ9DInJw==
+X-Received: by 2002:a05:6000:128b:: with SMTP id f11mr10668163wrx.171.1624621678949;
+        Fri, 25 Jun 2021 04:47:58 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:c52d:3cc5:c823:ade0? ([2a01:e34:ed2f:f020:c52d:3cc5:c823:ade0])
+        by smtp.googlemail.com with ESMTPSA id s23sm5862861wmh.5.2021.06.25.04.47.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Jun 2021 04:47:58 -0700 (PDT)
+Subject: Re: Aw: Re: Re: [PATCH] Fix mt7622.dtsi thermal cpu
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Eric Woudstra <ericwouds@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Cc:     Luka Perkov <luka.perkov@sartura.hr>, jmp@epiphyte.org,
-        Paul Menzel <pmenzel@molgen.mpg.de>,
-        Donald Buczek <buczek@molgen.mpg.de>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sean Wang <sean.wang@mediatek.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Daniel Golle <daniel@makrotopia.org>
+References: <20210619121927.32699-1-ericwouds@gmail.com>
+ <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org>
+ <56fb5540-fb86-4e6a-a596-1276026b37e5@gmail.com>
+ <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org>
+ <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
+ <fb633034-96e5-6165-b43f-290ae1a65cfd@linaro.org>
+ <189b52d5-b103-43e1-a64f-1e627fbc75af@gmail.com>
+ <173e6bab-9d21-eb28-9b91-a5f80c01fd03@linaro.org>
+ <3dd22cf2-1186-4870-aa49-e5cddc18c6e9@gmail.com>
+ <trinity-7580d955-3187-41e5-9297-1ac8f628a9d5-1624609003739@3c-app-gmx-bs66>
+ <8b27246b-721e-fa0e-5c2b-b1b4b4d6fdd3@linaro.org>
+ <trinity-2eb7c0ac-d9dc-446c-8907-69b5f4df6838-1624618996538@3c-app-gmx-bs66>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <915b101a-6bea-ae96-78ed-d27fa5bfce3a@linaro.org>
+Date:   Fri, 25 Jun 2021 13:47:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <trinity-2eb7c0ac-d9dc-446c-8907-69b5f4df6838-1624618996538@3c-app-gmx-bs66>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 7, 2021 at 2:33 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> Add binding documents for the Delta TN48M CPLD drivers.
->
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
-> Changes in v3:
-> * Include bindings for reset driver
->
-> Changes in v2:
-> * Implement MFD as a simple I2C MFD
-> * Add GPIO bindings as separate
->
->  .../bindings/gpio/delta,tn48m-gpio.yaml       | 42 +++++++++
->  .../bindings/mfd/delta,tn48m-cpld.yaml        | 90 +++++++++++++++++++
->  .../bindings/reset/delta,tn48m-reset.yaml     | 35 ++++++++
->  3 files changed, 167 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
->  create mode 100644 Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
->
-> diff --git a/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> new file mode 100644
-> index 000000000000..aca646aecb12
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/delta,tn48m-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Delta Networks TN48M CPLD GPIO controller
-> +
-> +maintainers:
-> +  - Robert Marko <robert.marko@sartura.hr>
-> +
-> +description: |
-> +  This module is part of the Delta TN48M multi-function device. For more
-> +  details see ../mfd/delta,tn48m-cpld.yaml.
-> +
-> +  GPIO controller module provides GPIO-s for the SFP slots.
-> +  It is split into 3 controllers, one output only for the SFP TX disable
-> +  pins, one input only for the SFP present pins and one input only for
-> +  the SFP LOS pins.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - delta,tn48m-gpio-sfp-tx-disable
-> +      - delta,tn48m-gpio-sfp-present
-> +      - delta,tn48m-gpio-sfp-los
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#gpio-cells"
-> +  - gpio-controller
-> +
-> +additionalProperties: false
-> diff --git a/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> new file mode 100644
-> index 000000000000..2c6e2adf73ca
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/delta,tn48m-cpld.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Delta Networks TN48M CPLD controller
-> +
-> +maintainers:
-> +  - Robert Marko <robert.marko@sartura.hr>
-> +
-> +description: |
-> +  Lattice CPLD onboard the TN48M switches is used for system
-> +  management.
-> +
-> +  It provides information about the hardware model, revision,
-> +  PSU status etc.
-> +
-> +  It is also being used as a GPIO expander for the SFP slots and
-> +  reset controller for the switch MAC-s and other peripherals.
-> +
-> +properties:
-> +  compatible:
-> +    const: delta,tn48m-cpld
-> +
-> +  reg:
-> +    description:
-> +      I2C device address.
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +patternProperties:
-> +  "^gpio(@[0-9a-f]+)?$":
-> +    $ref: ../gpio/delta,tn48m-gpio.yaml
-> +
-> +  "^reset-controller?$":
-> +    $ref: ../reset/delta,tn48m-reset.yaml
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        cpld@41 {
-> +            compatible = "delta,tn48m-cpld";
-> +            reg = <0x41>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            gpio@31 {
-> +                compatible = "delta,tn48m-gpio-sfp-tx-disable";
-> +                reg = <0x31>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +            };
-> +
-> +            gpio@3a {
-> +                compatible = "delta,tn48m-gpio-sfp-present";
-> +                reg = <0x3a>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +            };
-> +
-> +            gpio@40 {
-> +                compatible = "delta,tn48m-gpio-sfp-los";
-> +                reg = <0x40>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +            };
-> +
-> +            reset-controller {
-> +              compatible = "delta,tn48m-reset";
-> +              #reset-cells = <1>;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml b/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
-> new file mode 100644
-> index 000000000000..0e5ee8decc0d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
-> @@ -0,0 +1,35 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/delta,tn48m-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Delta Networks TN48M CPLD reset controller
-> +
-> +maintainers:
-> +  - Robert Marko <robert.marko@sartura.hr>
-> +
-> +description: |
-> +  This module is part of the Delta TN48M multi-function device. For more
-> +  details see ../mfd/delta,tn48m-cpld.yaml.
-> +
-> +  Reset controller modules provides resets for the following:
-> +  * 88F7040 SoC
-> +  * 88F6820 SoC
-> +  * 98DX3265 switch MAC-s
-> +  * 88E1680 PHY-s
-> +  * 88E1512 PHY
-> +  * PoE PSE controller
-> +
-> +properties:
-> +  compatible:
-> +    const: delta,tn48m-reset
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - "#reset-cells"
-> +
-> +additionalProperties: false
-> --
-> 2.31.1
->
+On 25/06/2021 13:03, Frank Wunderlich wrote:
+> Hi
+> 
+>> Gesendet: Freitag, 25. Juni 2021 um 11:57 Uhr
+>> Von: "Daniel Lezcano" <daniel.lezcano@linaro.org>
+> 
+>> You should not add the fan in the mt7622.dtsi itself but in the board
+>> specific file where there is a fan output on it. mt7622.dtsi is supposed
+>> to be the SoC itself AFAICT.
+>>
+>> For instance:
+>>
+>> https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi#n39
+>>
+>> https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi#n164
+> 
+>>> @@ -170,14 +177,12 @@
+>>>  			cooling-maps {
+>>>  				map0 {
+>>>  					trip = <&cpu_passive>;
+>>> -					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>>> -							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>> +					cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>>>  				};
+>>
+>> fan == active trip point
+>>
+>> This is referring to the passive trip point. So it should point to the
+>> CPU as it is now. Note the order of mitigation is inverted regarding the
+>> proposal description.
+> 
+> but we need to disable the passive trip as cpu-trotteling starts there...the higher temperature trips are currently not reached
 
-Are there any issues with the bindings?
-The patch series is depending on this as the rest has been reviewed.
+Sorry, can you rephrase it ? I'm not getting the point.
 
-Regards,
-Robert
+
+> summary
+> 
+> moving fan and cpu_thermal-override to bananapi-r64.dts
+> 
+> passive-trip: cooling-device = <&cpu0/1 0 0> as in erics Patch
+> active trip: cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> the other 2 unchanged
+> 
+> but i suggest changing the temperature points in mt7622 dtsi as this is SoC specific
+> 
+> so basicly:
+> 
+> --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> @@ -143,13 +143,13 @@ cpu_thermal: cpu-thermal {
+> 
+>                         trips {
+>                                 cpu_passive: cpu-passive {
+> -                                       temperature = <47000>;
+> +                                       temperature = <70000>;
+
+May be increase the passive temp to 75°C.
+
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+>                                 };
+> 
+>                                 cpu_active: cpu-active {
+> -                                       temperature = <67000>;
+> +                                       temperature = <80000>;
+>                                         hysteresis = <2000>;
+>                                         type = "active";
+>                                 };
+
+Move the active trip 'cpu_active' to mt7622-bananapi-bpi-r64.dts. and
+set it to 70°C in the mt7622-bananapi-bpi-r64.dts, so the fan will act
+before the cpu throttling.
+
+The behavior should be the following: The temperature reaches 70°C, the
+fan will start, if the temperature continues to increase, it will
+increase the speed. If the temperature reaches 75°C, the fan is still
+rotating at full speed but the cpu begins to be throttled.
+
+AFAIU, it is a Cortex-A53 running @1.35GH, so except the board is in a
+black metal box under the sun, I don't see how we can reach this thermal
+limits.
+
+> @@ -170,8 +170,8 @@ cpu-crit {
+>                         cooling-maps {
+>                                 map0 {
+>                                         trip = <&cpu_passive>;
+> -                                       cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> -                                                        <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +                                       cooling-device = <&cpu0 0 0>,
+> +                                                        <&cpu1 0 0>;
+
+You should keep it untouched.
+
+>                                 };
+> 
+>                                 map1 {
+> @@ -428,6 +428,7 @@ uart3: serial@11005000 {
+>         pwm: pwm@11006000 {
+>                 compatible = "mediatek,mt7622-pwm";
+>                 reg = <0 0x11006000 0 0x1000>;
+> +               #pwm-cells = <3>;
+>                 interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_LOW>;
+>                 clocks = <&topckgen CLK_TOP_PWM_SEL>,
+>                          <&pericfg CLK_PERI_PWM_PD>,
+> 
+> --- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+> @@ -37,6 +37,13 @@ cpu@1 {
+>                 };
+>         };
+> 
+> +       fan0: pwm-fan {
+> +               compatible = "pwm-fan";
+> +               #cooling-cells = <2>;
+> +               pwms = <&pwm 2 10000 0>;
+> +               cooling-levels = <0 102 170 230>;
+> +       };
+> +
+>         gpio-keys {
+>                 compatible = "gpio-keys";
+> 
+> @@ -582,6 +589,29 @@ &u3phy {
+>         status = "okay";
+>  };
+> 
+> +&cpu_thermal {
+> +       cooling-maps {
+> +               map1 {
+> +                       trip = <&cpu_active>;
+> +                       cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +               };
+> +       };
+> +};
+> +
+>  &uart0 {
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&uart0_pins>;
+> 
+
+
 -- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
