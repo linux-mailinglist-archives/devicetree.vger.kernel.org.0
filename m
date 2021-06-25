@@ -2,305 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C623B4785
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 18:40:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 308323B47BA
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 18:57:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229997AbhFYQmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 12:42:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58838 "EHLO
+        id S230149AbhFYQ7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 12:59:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229950AbhFYQmU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 12:42:20 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C742FC061574
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 09:39:58 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id y14so8037044pgs.12
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 09:39:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=SBlU3FmazlByBy7OHLdn1ScUHY89iP5N5Z0k4Z9L/VM=;
-        b=hEL46Gg5Tb/L+hmyNJUMKOARy2IhwsQNOeZuydpIngFzU8V/bhjN45zsHBsz7kuviY
-         dVFzJbI5jequMkHRz91ltno55g0xIHhNXJKUyAbY4CM8tWB4FKyXZ8oLDzr6DyD5QZse
-         Mq2UHiHfLJ3xfQSp5yilfjqZ3V/1r/uv/xijI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SBlU3FmazlByBy7OHLdn1ScUHY89iP5N5Z0k4Z9L/VM=;
-        b=McA1J3cKaNcD7ga4eWdvCP6eE1cRS27uzvAEpmzyu8ZQHUKBRbZuKEtn/eiRdK8e50
-         PkFXWOsC3ac5rHwOC19iETDyeCuVEYFrIuB5oGuCnYqgmni7vz4jPkFsVQqiDFAvqsd2
-         C5FEEr38HpcqGgH/E5J4WjN1QKCuB/Rcc7by+8+I2Fl7+iaO8IcsWH+P/vuZ/An1qVst
-         84Dapb1S9cqk2HEntENW3piWddJYqRrewrdSCEjxMplGnvLJitLAtjF/A7XqDWE3oSQP
-         eGQFcOIGhVsTqeOBv2NZgPl/K/zwRl5aXNbAcjPCGi3jjeDqdruKCis8tIf9i82Uurac
-         b4JA==
-X-Gm-Message-State: AOAM531KIEbdvKtwbstJCc3F7C9y991mcwa1Bb7P+rOaNcsSGoAKkW1j
-        7j6TdctqYcAAOwdDXMi46oYTTw==
-X-Google-Smtp-Source: ABdhPJwp9EQbysYWlsvBRzN2DZlXYyVDXXNV+frWB56nArpzWdTzmCavnqZXAJIqk/FRUol53TE5Tw==
-X-Received: by 2002:a62:6d07:0:b029:2e9:1e3c:ad54 with SMTP id i7-20020a626d070000b02902e91e3cad54mr11456357pfc.46.1624639198128;
-        Fri, 25 Jun 2021 09:39:58 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:cc13:a7dd:f4b5:2160])
-        by smtp.gmail.com with UTF8SMTPSA id 71sm6731020pfw.13.2021.06.25.09.39.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jun 2021 09:39:57 -0700 (PDT)
-Date:   Fri, 25 Jun 2021 09:39:55 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, will@kernel.org,
-        saiprakash.ranjan@codeaurora.org, ohad@wizery.com,
-        agross@kernel.org, mathieu.poirier@linaro.org,
-        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org
-Subject: Re: [PATCH 5/9] remoteproc: mss: q6v5-mss: Add modem support on
- SC7280
-Message-ID: <YNYG200n8Zh9vDWL@google.com>
-References: <1624564058-24095-1-git-send-email-sibis@codeaurora.org>
- <1624564058-24095-6-git-send-email-sibis@codeaurora.org>
- <YNUkw5GDrHwTVcC5@google.com>
- <73f9814fb4f3aa2abeee0ece3aa26312@codeaurora.org>
+        with ESMTP id S230170AbhFYQ7J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 12:59:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF441C061767
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 09:56:47 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lwp8G-0008Sy-IH; Fri, 25 Jun 2021 18:56:44 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lwp8E-0003Jw-Rq; Fri, 25 Jun 2021 18:56:42 +0200
+Date:   Fri, 25 Jun 2021 18:56:42 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, michal.simek@xilinx.com,
+        Alvaro Gamez <alvaro.gamez@hazent.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 3/3] pwm: Add support for Xilinx AXI Timer
+Message-ID: <20210625165642.5iuorl5guuq5c7gc@pengutronix.de>
+References: <20210528214522.617435-1-sean.anderson@seco.com>
+ <20210528214522.617435-3-sean.anderson@seco.com>
+ <20210625061958.yeaxjltuq7q2t7i7@pengutronix.de>
+ <a748143d-f157-562e-795d-dcd9a0cf9d85@seco.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="3zxyysw7boxvafm5"
 Content-Disposition: inline
-In-Reply-To: <73f9814fb4f3aa2abeee0ece3aa26312@codeaurora.org>
+In-Reply-To: <a748143d-f157-562e-795d-dcd9a0cf9d85@seco.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sibi,
 
-On Fri, Jun 25, 2021 at 07:51:38PM +0530, Sibi Sankar wrote:
-> Hey Matthias,
-> Thanks for taking time to review the patch
-> series.
-> 
-> On 2021-06-25 06:05, Matthias Kaehlcke wrote:
-> > Hi Sibi,
-> > 
-> > On Fri, Jun 25, 2021 at 01:17:34AM +0530, Sibi Sankar wrote:
-> > > Add out of reset sequence support for modem sub-system on SC7280 SoCs.
-> > > It requires access to an additional set of qaccept registers, external
-> > > power/clk control registers and halt vq6 register to put the modem
-> > > back
-> > > into reset.
-> > > 
-> > > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> > > ---
-> > >  drivers/remoteproc/qcom_q6v5_mss.c | 245
-> > > ++++++++++++++++++++++++++++++++++++-
-> > >  1 file changed, 241 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/remoteproc/qcom_q6v5_mss.c
-> > > b/drivers/remoteproc/qcom_q6v5_mss.c
-> > > index 5d21084004cb..4e32811e0025 100644
-> > > --- a/drivers/remoteproc/qcom_q6v5_mss.c
-> > > +++ b/drivers/remoteproc/qcom_q6v5_mss.c
-> > > @@ -77,6 +77,14 @@
-> > > 
-> > >  #define HALT_ACK_TIMEOUT_US		100000
-> > > 
-> > > +/* QACCEPT Register Offsets */
-> > > +#define QACCEPT_ACCEPT_REG		0x0
-> > > +#define QACCEPT_ACTIVE_REG		0x4
-> > > +#define QACCEPT_DENY_REG		0x8
-> > > +#define QACCEPT_REQ_REG			0xC
-> > > +
-> > > +#define QACCEPT_TIMEOUT_US		50
-> > > +
-> > >  /* QDSP6SS_RESET */
-> > >  #define Q6SS_STOP_CORE			BIT(0)
-> > >  #define Q6SS_CORE_ARES			BIT(1)
-> > > @@ -143,6 +151,9 @@ struct rproc_hexagon_res {
-> > >  	bool has_alt_reset;
-> > >  	bool has_mba_logs;
-> > >  	bool has_spare_reg;
-> > > +	bool has_qaccept_regs;
-> > > +	bool has_ext_cntl_regs;
-> > > +	bool has_vq6;
-> > >  };
-> > > 
-> > >  struct q6v5 {
-> > > @@ -158,8 +169,18 @@ struct q6v5 {
-> > >  	u32 halt_q6;
-> > >  	u32 halt_modem;
-> > >  	u32 halt_nc;
-> > > +	u32 halt_vq6;
-> > >  	u32 conn_box;
-> > > 
-> > > +	u32 qaccept_mdm;
-> > > +	u32 qaccept_cx;
-> > > +	u32 qaccept_axi;
-> > > +
-> > > +	u32 axim1_clk_off;
-> > > +	u32 crypto_clk_off;
-> > > +	u32 force_clk_on;
-> > > +	u32 rscc_disable;
-> > > +
-> > >  	struct reset_control *mss_restart;
-> > >  	struct reset_control *pdc_reset;
-> > > 
-> > > @@ -201,6 +222,9 @@ struct q6v5 {
-> > >  	bool has_alt_reset;
-> > >  	bool has_mba_logs;
-> > >  	bool has_spare_reg;
-> > > +	bool has_qaccept_regs;
-> > > +	bool has_ext_cntl_regs;
-> > > +	bool has_vq6;
-> > >  	int mpss_perm;
-> > >  	int mba_perm;
-> > >  	const char *hexagon_mdt_image;
-> > > @@ -213,6 +237,7 @@ enum {
-> > >  	MSS_MSM8996,
-> > >  	MSS_MSM8998,
-> > >  	MSS_SC7180,
-> > > +	MSS_SC7280,
-> > >  	MSS_SDM845,
-> > >  };
-> > > 
-> > > @@ -473,6 +498,12 @@ static int q6v5_reset_assert(struct q6v5 *qproc)
-> > >  		regmap_update_bits(qproc->conn_map, qproc->conn_box,
-> > >  				   AXI_GATING_VALID_OVERRIDE, 0);
-> > >  		ret = reset_control_deassert(qproc->mss_restart);
-> > > +	} else if (qproc->has_ext_cntl_regs) {
-> > > +		regmap_write(qproc->conn_map, qproc->rscc_disable, 0);
-> > > +		reset_control_assert(qproc->pdc_reset);
-> > > +		reset_control_assert(qproc->mss_restart);
-> > > +		reset_control_deassert(qproc->pdc_reset);
-> > > +		ret = reset_control_deassert(qproc->mss_restart);
-> > >  	} else {
-> > >  		ret = reset_control_assert(qproc->mss_restart);
-> > >  	}
-> > > @@ -490,7 +521,7 @@ static int q6v5_reset_deassert(struct q6v5 *qproc)
-> > >  		ret = reset_control_reset(qproc->mss_restart);
-> > >  		writel(0, qproc->rmb_base + RMB_MBA_ALT_RESET);
-> > >  		reset_control_deassert(qproc->pdc_reset);
-> > > -	} else if (qproc->has_spare_reg) {
-> > > +	} else if (qproc->has_spare_reg || qproc->has_ext_cntl_regs) {
-> > >  		ret = reset_control_reset(qproc->mss_restart);
-> > >  	} else {
-> > >  		ret = reset_control_deassert(qproc->mss_restart);
-> > > @@ -604,7 +635,7 @@ static int q6v5proc_reset(struct q6v5 *qproc)
-> > >  		}
-> > > 
-> > >  		goto pbl_wait;
-> > > -	} else if (qproc->version == MSS_SC7180) {
-> > > +	} else if (qproc->version == MSS_SC7180 || qproc->version ==
-> > > MSS_SC7280) {
-> > >  		val = readl(qproc->reg_base + QDSP6SS_SLEEP);
-> > >  		val |= Q6SS_CBCR_CLKEN;
-> > >  		writel(val, qproc->reg_base + QDSP6SS_SLEEP);
-> > > @@ -787,6 +818,82 @@ static int q6v5proc_reset(struct q6v5 *qproc)
-> > >  	return ret;
-> > >  }
-> > > 
-> > > +static int q6v5proc_enable_qchannel(struct q6v5 *qproc, struct
-> > > regmap *map, u32 offset)
-> > > +{
-> > > +	unsigned int val;
-> > > +	int ret;
-> > > +
-> > > +	if (!qproc->has_qaccept_regs)
-> > > +		return 0;
-> > > +
-> > > +	if (qproc->has_ext_cntl_regs) {
-> > > +		regmap_write(qproc->conn_map, qproc->rscc_disable, 0);
-> > > +		regmap_write(qproc->conn_map, qproc->force_clk_on, 1);
-> > > +
-> > > +		ret = regmap_read_poll_timeout(qproc->halt_map,
-> > > qproc->axim1_clk_off, val,
-> > > +					       !val, 1, Q6SS_CBCR_TIMEOUT_US);
-> > > +		if (ret) {
-> > > +			dev_err(qproc->dev, "failed to enable axim1 clock\n");
-> > > +			return -ETIMEDOUT;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	regmap_write(map, offset + QACCEPT_REQ_REG, 1);
-> > > +
-> > > +	/* Wait for accept */
-> > > +	ret = regmap_read_poll_timeout(map, offset + QACCEPT_ACCEPT_REG,
-> > > val, val, 5,
-> > > +				       QACCEPT_TIMEOUT_US);
-> > > +	if (ret) {
-> > > +		dev_err(qproc->dev, "qchannel enable failed\n");
-> > > +		return -ETIMEDOUT;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static void q6v5proc_disable_qchannel(struct q6v5 *qproc, struct
-> > > regmap *map, u32 offset)
-> > > +{
-> > > +	int ret;
-> > > +	unsigned int val, retry;
-> > > +	unsigned int nretry = 10;
-> > > +	bool takedown_complete = false;
-> > > +
-> > > +	if (!qproc->has_qaccept_regs)
-> > > +		return;
-> > > +
-> > > +	while (!takedown_complete && nretry) {
-> > > +		nretry--;
-> > > +
-> > > +		regmap_read_poll_timeout(map, offset + QACCEPT_ACTIVE_REG, val,
-> > > !val, 5,
-> > > +					 QACCEPT_TIMEOUT_US);
-> > > +
-> > > +		regmap_write(map, offset + QACCEPT_REQ_REG, 0);
-> 
-> Sure I'll add more comments to this func.
-> After lowering the request ^^ we wait
-> for deny to go high or accept to go low.
-> If it's the former then we do a request
-> high and repeat the entire process again.
-> If it's the latter then its considered
-> that the takedown is success.
+--3zxyysw7boxvafm5
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The above essentially is a transcript of the code into prose. For a reader
-who isn't familiar with the hardware and might not have access to the
-corresponding documentation the exact roles of the ACCEPT registers might
-not be evident.
+Hello Sean,
 
-I was looking for something slightly higher level, a one liner here and
-there might be enough. E.g. something like 'request to disable the channel
-denied, re-enable it' in the loop below, if that is semantically correct.
-Is there a typical reason why such a request would be denied, maybe because
-the channel was busy? Also why is re-enabling actually required if the
-request to disable was denied?
+On Fri, Jun 25, 2021 at 11:13:33AM -0400, Sean Anderson wrote:
+> On 6/25/21 2:19 AM, Uwe Kleine-K=F6nig wrote:
+> > On Fri, May 28, 2021 at 05:45:22PM -0400, Sean Anderson wrote:
+> >> + * Hardware limitations:
 
-> Let me know if you feel any other parts of the patch requires more
-comments as well.
+Please make this "* Limitations:" to match what the other drivers do and
+so ease grepping for this info.
 
-For now it's mainly the code involving the ACCEPT registers and
-_disable_channel() in particular.
+> >> + * - When changing both duty cycle and period, we may end up with one=
+ cycle
+> >> + *   with the old duty cycle and the new period.
+> >
+> > That means it doesn't reset the counter when a new period is set, right?
+>=20
+> Correct. The only way to write to the counter is to stop the timer and
+> restart it.
 
-> 
-> > > +
-> > > +		retry = 10;
-> > > +		while (retry) {
-> > > +			usleep_range(5, 10);
-> > > +			retry--;
-> > > +			ret = regmap_read(map, offset + QACCEPT_DENY_REG, &val);
-> > > +			if (!ret && val) {
-> > > +				regmap_write(map, offset + QACCEPT_REQ_REG, 1);
-> > > +				break;
-> > > +			}
-> > > +
-> > > +			ret = regmap_read(map, offset + QACCEPT_ACCEPT_REG, &val);
-> > > +			if (!ret && !val) {
-> > > +				takedown_complete = true;
-> > > +				break;
-> > > +			}
-> > 
-> > A bit of commentary in this branch would do no harm. From the code flow
-> > I can guess that disabling the channel failed when QACCEPT_DENY_REG !=
-> > 0,
-> > and hence the channel is re-enabled (?) for the next try, and apparently
-> > things are fine when QACCEPT_ACCEPT_REG is 0 after disabling the
-> > channel.
-> > Would be good to be a bit more explicit about what all that actually
-> > means.
+ok.
+
+> >> + * - Cannot produce 100% duty cycle.
+> >
+> > Can it produce a 0% duty cycle? Below you're calling
+> > xilinx_timer_tlr_period(..., ..., ..., 0) then which returns -ERANGE.
+>=20
+> Yes. This is what you get when you try to specify 100% duty cycle (e.g.
+> TLR0 =3D=3D TLR1).
+
+OK, so the hardware can do it, but your driver doesn't make use of it,
+right?
+
+> >> + * - Only produces "normal" output.
+> >
+> > Does the output emit a low level when it's disabled?
+>=20
+> I believe so.
+
+Is there a possibility to be sure? I'd like to know that to complete my
+picture about the behaviour of the supported PWMs.
+
+> >> + */
+> >> +
+> >> [...]
+> >> +static int xilinx_pwm_apply(struct pwm_chip *chip, struct pwm_device =
+*unused,
+> >> +			    const struct pwm_state *state)
+> >> +{
+> >> +	int ret;
+> >> +	struct xilinx_timer_priv *priv =3D xilinx_pwm_chip_to_priv(chip);
+> >> +	u32 tlr0, tlr1;
+> >> +	u32 tcsr0 =3D xilinx_timer_read(priv, TCSR0);
+> >> +	u32 tcsr1 =3D xilinx_timer_read(priv, TCSR1);
+> >> +	bool enabled =3D xilinx_timer_pwm_enabled(tcsr0, tcsr1);
+> >> +
+> >> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> >> +		return -EINVAL;
+> >> +
+> >> +	ret =3D xilinx_timer_tlr_period(priv, &tlr0, tcsr0, state->period);
+> >> +	if (ret)
+> >> +		return ret;
+> >
+> > The implementation of xilinx_timer_tlr_period (in patch 2/3) returns
+> > -ERANGE for big periods. The good behaviour to implement is to cap to
+> > the biggest period possible in this case.
+>=20
+> Ok. Is this documented anywhere?
+
+I tried but Thierry didn't like the result and I didn't retry. The
+problem is also that many drivers we already have in the tree don't
+behave like this (because for a long time nobody cared). That new
+drivers should behave this way is my effort to get some consistent
+behaviour.
+
+> And wouldn't this result in the wrong duty cycle? E.g. say the max
+> value is 100 and I try to apply a period of 150 and a duty_cycle of 75
+> (for a 50% duty cycle). If we cap at 100, then I will instead have a
+> 75% duty cycle, and there will be no error.
+
+Yes that is right. That there is no feedback is a problem that we have
+for a long time. I have a prototype patch that implements a
+pwm_round_state() function that lets a consumer know the result of
+applying a certain pwm_state in advance. But we're not there yet.
+
+> So I will silently get the wrong duty cycle, even when that duty cycle
+> is probably more important than the period.
+
+It depends on the use case and every policy is wrong for some cases. So
+I picked the policy I already explained because it is a) easy to
+implement for lowlevel drivers and b) it's easy to work with for
+consumers once we have pwm_round_state().
+
+> > Also note that state->period is an u64 but it is casted to unsigned int
+> > as this is the type of the forth parameter of xilinx_timer_tlr_period.
+>=20
+> Hm, it looks like I immediately cast period to a u64. I will change the
+> signature for this function next revision.
+
+Then note that period * clk_get_rate(priv->clk) might overflow.
+=20
+> >> +	ret =3D xilinx_timer_tlr_period(priv, &tlr1, tcsr1, state->duty_cycl=
+e);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	xilinx_timer_write(priv, tlr0, TLR0);
+> >> +	xilinx_timer_write(priv, tlr1, TLR1);
+> >> +
+> >> +	if (state->enabled) {
+> >> +		/* Only touch the TCSRs if we aren't already running */
+> >> +		if (!enabled) {
+> >> +			/* Load TLR into TCR */
+> >> +			xilinx_timer_write(priv, tcsr0 | TCSR_LOAD, TCSR0);
+> >> +			xilinx_timer_write(priv, tcsr1 | TCSR_LOAD, TCSR1);
+> >> +			/* Enable timers all at once with ENALL */
+> >> +			tcsr0 =3D (TCSR_PWM_SET & ~TCSR_ENT) | (tcsr0 & TCSR_UDT);
+> >> +			tcsr1 =3D TCSR_PWM_SET | TCSR_ENALL | (tcsr1 & TCSR_UDT);
+> >> +			xilinx_timer_write(priv, tcsr0, TCSR0);
+> >> +			xilinx_timer_write(priv, tcsr1, TCSR1);
+> >> +		}
+> >> +	} else {
+> >> +		xilinx_timer_write(priv, 0, TCSR0);
+> >> +		xilinx_timer_write(priv, 0, TCSR1);
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static void xilinx_pwm_get_state(struct pwm_chip *chip,
+> >> +				 struct pwm_device *unused,
+> >> +				 struct pwm_state *state)
+> >> +{
+> >> +	struct xilinx_timer_priv *priv =3D xilinx_pwm_chip_to_priv(chip);
+> >> +	u32 tlr0 =3D xilinx_timer_read(priv, TLR0);
+> >> +	u32 tlr1 =3D xilinx_timer_read(priv, TLR1);
+> >> +	u32 tcsr0 =3D xilinx_timer_read(priv, TCSR0);
+> >> +	u32 tcsr1 =3D xilinx_timer_read(priv, TCSR1);
+> >> +
+> >> +	state->period =3D xilinx_timer_get_period(priv, tlr0, tcsr0);
+> >> +	state->duty_cycle =3D xilinx_timer_get_period(priv, tlr1, tcsr1);
+> >> +	state->enabled =3D xilinx_timer_pwm_enabled(tcsr0, tcsr1);
+> >> +	state->polarity =3D PWM_POLARITY_NORMAL;
+> >
+> > Are the values returned here sensible if the hardware isn't in PWM mode?
+>=20
+> Yes. If the hardware isn't in PWM mode, then state->enabled will be
+> false.
+
+Ah right. Good enough.
+
+> >> +	else if (pwm_cells)
+> >> +		return dev_err_probe(dev, -EINVAL, "#pwm-cells must be 0\n");
+> >
+> > What is the rationale here to not support #pwm-cells =3D <2>?
+>=20
+> Only one PWM is supported. But otherwise there is no particular
+> reason.
+
+The usual binding is to have 3 additional parameters.
+ 1) chip-local pwm number (which can only be 0 for a pwmchip having
+    .npwm =3D 1)
+ 2) the "typical" period
+ 3) some flags (like PWM_POLARITY_*)
+
+I don't care much if you implement it with or without 1), but 2) and 3)
+should IMHO be here. If you don't want 1),
+http://patchwork.ozlabs.org/project/linux-pwm/patch/20210622030948.966748-1=
+-bjorn.andersson@linaro.org/
+might be interesting for you. (But note, Thierry didn't give feedback to
+this yet, it might be possible he wants 1)-3) for new drivers.)
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--3zxyysw7boxvafm5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDWCscACgkQwfwUeK3K
+7AkDIQf/TV7EB3dZy+PUjYdTIhuIgqUzB/j6cxlnHCfHMehLbF3hPzo4ONQSKMqo
+lQaZUgbbEu1WIXOz3CgrpiL8GA9z6+d+xFWQynPJrkfwhBMYWA/MKTr/iPJ1lvvG
+W3Lb0V3Wtz461AEhYF9KRiqyKFHbfxuEKSoudxOaTac5RTQvxxoy0cW0XpnnbYLk
+8UqFXTjFVdCCcqLDfoB9mjiD6hkhu15saaAK5ykOH2R82fG2+NTRv3aYEkfuAg2y
+wwsdYYvPhTZaT5gISXAYvbe3Df9ufnxuCh4CReVI3txtYUfLquMw/o3TAkwtQPS5
+B+iukDSUGDOFKwYfDbEug70vYXlBgg==
+=weBO
+-----END PGP SIGNATURE-----
+
+--3zxyysw7boxvafm5--
