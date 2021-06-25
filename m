@@ -2,94 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 714183B410F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 12:01:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E2943B4123
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 12:09:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbhFYKD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 06:03:57 -0400
-Received: from mout.kundenserver.de ([212.227.126.131]:34331 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230072AbhFYKDz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 06:03:55 -0400
-Received: from mail-wm1-f44.google.com ([209.85.128.44]) by
- mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
- 1MAwsT-1m7Oom25ft-00BOEN; Fri, 25 Jun 2021 12:01:33 +0200
-Received: by mail-wm1-f44.google.com with SMTP id j11-20020a05600c1c0bb02901e23d4c0977so7454231wms.0;
-        Fri, 25 Jun 2021 03:01:33 -0700 (PDT)
-X-Gm-Message-State: AOAM530fqcPGyhm5ElcwnuJ28aGPwk3gP2KIEDObl0U1wgVVYKTT/N0D
-        UysqdouorJcwylwU7qQui56OggFtQSD6fcFxQSo=
-X-Google-Smtp-Source: ABdhPJyRRakIybOAARLEqgqFsAKTsqLCItavkxySt7puA/r0GJ3aVYwMKoJP0QL2cw8hz9fbIr1BZHd9ZDHu2XJ9KFw=
-X-Received: by 2002:a1c:c90f:: with SMTP id f15mr9700348wmb.142.1624615293093;
- Fri, 25 Jun 2021 03:01:33 -0700 (PDT)
+        id S230126AbhFYKLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 06:11:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55118 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229940AbhFYKLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 06:11:34 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AA0CC061574
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 03:09:12 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id nb6so14249161ejc.10
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 03:09:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DTHgculPydhzpEVBph2GMT4tKo+Bdruk5MQJ3Xil02M=;
+        b=iYwJpzc2B1Vz6C+1VFuga00mnTGnb9YkGQ/i60e24srUZeXEivl90uhEWHDaJdJdZl
+         KAzTXfCP1HsostkzLKSNkcqzvh761bcFXJlvAuEcnKTdvLVOEw4iKFyeLOUgsTVIicbR
+         6DM31e2rJS4bq7LbZAzi05Pn6ATJrDukYOReg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DTHgculPydhzpEVBph2GMT4tKo+Bdruk5MQJ3Xil02M=;
+        b=SOFHNhwXUQJNkIoc2DW9Eiqn1E4pD50SJSJIIoXyi4RiT+ohNonIpMyE29k7q66/F2
+         Ya6h3PHRLB3OO1KBiH7LhXCg1zwSCyn8NUY/8LJwjSn/CvgLUHI6inebTchGvfEaDb7z
+         peB1Q2Qfb96yu1bbDBK8TXzILMmH3twZ5pLJMaIl920x3bJJvpin8TfZwJkyEHAiXJFK
+         whsJdIjRB+//xCwcBM70YRd+rbqFzaYTartM4aSXj2MgkYwpu77+6n5HczmHtHj8x/3I
+         XIAp3XMFpjiMvmwcyrmSJ7DQc1BwgwdyiFNUnEE7kdTERmBpvlujsYtJYSdfw393bQka
+         6yqw==
+X-Gm-Message-State: AOAM533PrTzDVmMmwBozkBkMc3YBn38LnFdmtqM09QAPtbm6uYixocKR
+        L76ME2EANcTZWr57EVePXs5pgChg1vJZeUhCbq26Aw==
+X-Google-Smtp-Source: ABdhPJx5YzGyXwGKXbBwpGfmUZFM2l/3b+DgX10TOcWtu9LgUc8/68VvsFeIkZnC3ePSCoBaMYF/unXbPoA2N3GfeR0=
+X-Received: by 2002:a17:906:bb10:: with SMTP id jz16mr6339523ejb.252.1624615750910;
+ Fri, 25 Jun 2021 03:09:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210625095000.3358973-1-mnhagan88@gmail.com> <20210625095000.3358973-3-mnhagan88@gmail.com>
-In-Reply-To: <20210625095000.3358973-3-mnhagan88@gmail.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 25 Jun 2021 11:59:08 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a3NAOgBa1j+Zsm6FwSm2ux49rFcnTEYJJsmSF8TggRnYA@mail.gmail.com>
-Message-ID: <CAK8P3a3NAOgBa1j+Zsm6FwSm2ux49rFcnTEYJJsmSF8TggRnYA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] ARM: dts: NSP: Add DT files for Meraki MX64 series
-To:     Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20210621072424.111733-1-jagan@amarulasolutions.com>
+ <20210621072424.111733-3-jagan@amarulasolutions.com> <YNO0LHNVSWjrh1ZS@pendragon.ideasonboard.com>
+ <CAOMZO5Ahbu4mohtMDOQOv_y5B_TDesbdYEUZTF1RL7_y-bS+RA@mail.gmail.com>
+ <CAMty3ZAtObU-bf6FuxvSBaZn2cotj_NxASW9g9on-kBJ7iW3OA@mail.gmail.com>
+ <YNR37NWkxq0mZyq5@pendragon.ideasonboard.com> <fdd446c6-c8ce-9dae-f7ac-e06241f76250@canonical.com>
+In-Reply-To: <fdd446c6-c8ce-9dae-f7ac-e06241f76250@canonical.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Fri, 25 Jun 2021 15:38:59 +0530
+Message-ID: <CAMty3ZCEQeRi53yuLYyWVU8o=Lo2ZKy+kgjU+9PC33QJEq2LQg@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/9] drm: bridge: Add Samsung SEC MIPI DSIM bridge driver
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Francis Laniel <francis.laniel@amarulasolutions.com>,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        Milco Pratesi <milco.pratesi@engicam.com>,
+        Anthony Brandon <anthony@amarulasolutions.com>,
+        linux-phy@lists.infradead.org, Fancy Fang <chen.fang@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:cPZZH1H8tLkJZhzYVyg54dlhPrzq22n2d6a2s0M2uflfJSYFDxj
- 8NO4E2VzN4gP0vhm7WVIIx06T/iI44gy0cIldB0ENBNcx/BUkHGScDNXtM7f3pPiAZHrwC8
- AXRThtPcrGn538z/EE+K7B7gVnbeZsTYRk2M7xzDiBHuaoGcp2ZkJZEDFGhmnrJstrr9s8q
- U5rKXEvk5LkNOEkAt8olA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:fdZn1ST4yvo=:43VghYItvo8WWSMEG/1RpZ
- xifz/d9vVILF7xi7WX6uv3vbTXMQ6dYmKehEHVeeNu+gOhJbjBn9S9F/6hi/s5Ks0MqSjUNDZ
- dfaoj/8JFnhKyOF6oa4obXkLcDK93EUUxy+MtJ4foFLR3MR8uBxKwlYpq5vvRriFd5+QP7mlG
- +4hyAamO5VKqItVCCsvL5MnkrjR57tZn4COWaVFbyoAPpQTR52+nkBpFme75q+nLZWcK1EMtu
- 79D0WrJRX80CgzYQTLymng5xPWv6yjguvIphcKUYQRrdudFlmF4yKCBCuGsCf1E0CgnquF6xW
- 0jk6grm7UlA/F5o3oq+0K26bBvSUjusN0r750C599fyDMiZrwWsmJpANsWXTsXwnthmHcEWdY
- ebiDt78AzV1q8G8k5alVVoYIb37FzUnQFcpIFY0T4nFyOancc3otpnaO39UDAG6kUI7yYA2pX
- NrMm+XOS3oX4/Q650JZDbP9inf9G9VajQBGw7OPxuk2hmOG0JxC6RHcByJkspRSX/CChaNmjS
- qFxjqps9FgQAmVrmQLWpmxLdykLFGLYb3GBd0elJnbyGP9BVG9q80rBsGsMZi2nUFTDogBtmw
- Q1N+cWUqHibyHWhqbqWVpeAX03C9nLYzPpi59tXqrXX++Sbse+AZCZ1rILRSU3U1l8+lc441u
- 9UcU=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 25, 2021 at 11:52 AM Matthew Hagan <mnhagan88@gmail.com> wrote:
->
-> MX64 & MX64W Hardware info:
->   - CPU: Broadcom BCM58625 Cortex A9 @ 1200Mhz
->   - RAM: 2 GB (4 x 4Gb SK Hynix H5TC4G83CFR)
->   - Storage: 1 GB (Micron MT29F8G08ABACA)
->   - Networking: BCM58625 internal switch (5x 1GbE ports)
->   - USB: 1x USB2.0
->   - Serial: Internal header
->   - WLAN(MX64W only): 2x Broadcom BCM43520KMLG on the PCI bus
->
-> This patch adds the Meraki MX64 series-specific bindings. Since some
-> devices make use of the older A0 SoC, changes need to be made to
-> accommodate this case, including removal of coherency options and
-> modification to the secondary-boot-reg.
->
-> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+Hi Krzysztof,
 
-Removing the dma-coherent flags in the dts file seemed really odd until
-I read the text above. It would seem more logical to me to have a .dtsi file
-that has all the a0 revision specific changes, and include that from the
-dts file.
+On Fri, Jun 25, 2021 at 2:51 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On Thu, 24 Jun 2021 at 14:19, Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+> >
+> > Hi Jagan,
+> >
+> > On Thu, Jun 24, 2021 at 05:42:43PM +0530, Jagan Teki wrote:
+> > > On Thu, Jun 24, 2021 at 8:18 AM Fabio Estevam wrote:
+> > > > On Wed, Jun 23, 2021 at 7:23 PM Laurent Pinchart wrote:
+> > > >
+> > > > > Looking at the register set, it seems to match the Exynos 5433,
+> > > > > supported by drivers/gpu/drm/exynos/exynos_drm_dsi.c. Can we leverage
+> > > > > that driver instead of adding a new one for the same IP core ?
+> > > >
+> > > > Yes. there was an attempt from Michael in this direction:
+> > > > https://patchwork.kernel.org/project/dri-devel/cover/20200911135413.3654800-1-m.tretter@pengutronix.de/
+> > >
+> > > Thanks for the reference, I will check it out and see I can send any
+> > > updated versions wrt my i.MX8MM platform.
+> >
+> > Thanks.
+> >
+> > I had a brief look at the exynos driver, and I think it should be turned
+> > into a DRM bridge as part of this rework to be used with the i.MX8MM.
+> >
+> > Is there someone from Samsung who could assist, at least to test the
+> > changes ?
+>
+> Yes, I mentioned few guys in reply to PHY. Around the DRM drivers you
+> can get in touch with:
+> Inki Dae <inki.dae@samsung.com>
+> Seung-Woo Kim <sw0312.kim@samsung.com>
+> Marek Szyprowski <m.szyprowski@samsung.com>
+> Andrzej Hajda <a.hajda@samsung.com>
 
-On the other hand, the /chosen, /aliases and  /memory nodes that you have
-in the .dtsi file should probably get moved into the .dts files, as these tend
-to be board specific settings, even if the examples you have are all
-the same.
+Thanks for the information.
 
-       Arnd
+>
+> The easiest testing of the display stack would be on Hardkernel's Odroid
+> XU4 (https://www.hardkernel.com/shop/odroid-xu4-special-price/) however
+> you will not test the DSI/DSIM directly (it has only HDMI port).
+
+Look like I found one board with Exynos5430 with DSI. Does this SoC is
+same as mainline Exynos5433?
+
+Jagan.
