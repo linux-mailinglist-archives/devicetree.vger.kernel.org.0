@@ -2,141 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 462D03B3BBD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 06:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54BEF3B3BC1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 06:49:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230282AbhFYEuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 00:50:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38994 "EHLO
+        id S230139AbhFYEv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 00:51:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230139AbhFYEuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 00:50:02 -0400
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8324C061760
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 21:47:41 -0700 (PDT)
-Received: by mail-pf1-x42e.google.com with SMTP id w71so7068835pfd.4
-        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 21:47:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=AtTk+6QGKLof6Gu7Ev3cepmH8O53Op63rhLICrg+Eb8=;
-        b=Ypvg0mxaCTrsJqr5D08KpxEGYnjPnrEGE5Lh4jwDezc7RcM4boEj6VNfkBWXT6s2RG
-         cjVNCpIWtse8LclIVCXFHfO2ti1XDt1uetqT5HrM7mGwNdWweyQLrMh7YcG3i/W2581W
-         6FbDNYtQnoNtDWink9Se4Uyk8MeRqzmTWaavQx4XGEYLgXBbPhTVyDerI9rk26H7X3zC
-         wMEq9P7FRsayfNklJM1ThVWFB9eArF6yf57HXFgd6fE3NrKmhPyAoJ3Hez0/Lh4w8u8l
-         bZ9GNhZYZ8wDl45+l9hZExGj6jg1lLcFLjRW9VVKXkIuUmPJ39vMdQmEk2Y5CAHb3e9M
-         n5YQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=AtTk+6QGKLof6Gu7Ev3cepmH8O53Op63rhLICrg+Eb8=;
-        b=oaonC+HfZrhMUxFmoVQm8TSzR00d9zWJceq8WGz3Dd9jUsSrfsLWPIutHXfZrMqnyZ
-         R4ghoOC+szmj+cPgTomovk4JI466sgOX4kEplUQN/6KkRYCTjXqNcqaa/Cv+ChEuuR7w
-         gKYHC75JkBLDE9BbKDo8CVRxmjCmNzDPt0Fhfq08yntpsQmt2ggjvpbOY1i0RNwm4g3s
-         MpzF9cYbeVUSfDNV0Xpwr7zqQB9LuI+Go8d+GU5G3sdqpXYF7MkNZdA4m5/ceIec47cL
-         MUSWUdCTtDZ9X86jQZ4+9J03UzHi5OaMqW0Lu8kmXJ0de18aU7CmT6jwhbOMvffZkGJH
-         9WuA==
-X-Gm-Message-State: AOAM532CWNg5BQ15EzmaDL+mtXVEpAF9nBbCTZg17Bo3CwAIJewmZVtG
-        gfhagJnrzmz7VQgHG7+AMSI4
-X-Google-Smtp-Source: ABdhPJwUiAiC28y9PI+2/abF+jcevjyqTqZv/OpN1QqH+yTCJOdS3d6tJgjgTSSUsBqDDHj0sKZVPA==
-X-Received: by 2002:a63:5d66:: with SMTP id o38mr7961955pgm.444.1624596460826;
-        Thu, 24 Jun 2021 21:47:40 -0700 (PDT)
-Received: from workstation ([120.138.13.204])
-        by smtp.gmail.com with ESMTPSA id y7sm4487159pfy.153.2021.06.24.21.47.37
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 24 Jun 2021 21:47:40 -0700 (PDT)
-Date:   Fri, 25 Jun 2021 10:17:36 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] remoteproc: qcom: pas: Add SC8180X adsp, cdsp and
- mpss
-Message-ID: <20210625044736.GA4974@workstation>
-References: <20210608174944.2045215-1-bjorn.andersson@linaro.org>
- <20210608174944.2045215-2-bjorn.andersson@linaro.org>
+        with ESMTP id S230097AbhFYEv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 00:51:26 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B97A8C061574;
+        Thu, 24 Jun 2021 21:49:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=T6yWviVRgbLrzRABmzLM9v7RQmJuSHF1UP5Tn0iggiY=; b=Rdz2Cm0eDhd9u0ZTVUn5gmw1gA
+        HmV9ERIqSmm2pbs0Lfbu8wWuFQ5eqiPFGQYaliFRbh6hHlY3CpINFNg3xrOYUbN9ksy6eforGD1eP
+        yL+95B55st3SiMpWK4bkieKjm1X+Ae0EqJRtnIxYlm7n/9P06JtGy0YTPjq9JIDekYock4sE2UMF7
+        aaOmOilK0IoY7uR4ELxhJY38VJKaUEdKIxAlZEbqFbgURXqzr0bYkdEnSbEvZVqOeNWUAnnH3wZtk
+        nNyOKeNH5cNWHm+p/KYbB5FE27qUH9IdJABMoYFXEQYfEuGRhl1GYXfpfnq1bIr9rKRy5W3AzEzjF
+        Pu+lFEQA==;
+Received: from [2601:1c0:6280:3f0::aefb]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1lwdm4-00HGp7-7h; Fri, 25 Jun 2021 04:49:04 +0000
+Subject: Re: [PATCH v3] Documentation, dt, numa: Add note to empty NUMA node
+To:     Gavin Shan <gshan@redhat.com>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        drjones@redhat.com, shan.gavin@gmail.com
+References: <20210625043025.47469-1-gshan@redhat.com>
+ <874bcd17-29b6-658b-fa11-7854b1300d30@infradead.org>
+ <2973ca46-c092-3ffe-b14a-7481e479012e@redhat.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <3e7eb6ca-6f4c-2a85-8ff2-f7daf186d7a1@infradead.org>
+Date:   Thu, 24 Jun 2021 21:49:03 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210608174944.2045215-2-bjorn.andersson@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <2973ca46-c092-3ffe-b14a-7481e479012e@redhat.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 08, 2021 at 10:49:44AM -0700, Bjorn Andersson wrote:
-> The Qualcomm SC8180X has the typical ADSP, CDSP and MPSS remote
-> processors operated using the PAS interface, add support for these.
+On 6/24/21 9:32 PM, Gavin Shan wrote:
+> On 6/25/21 1:47 PM, Randy Dunlap wrote:
+>> On 6/24/21 9:30 PM, Gavin Shan wrote:
+>>> The empty NUMA nodes, where no memory resides in, are allowed. For
+>>> these empty NUMA nodes, the 'len' of 'reg' property is zero. These
+>>> empty NUMA node IDs are still valid and parsed. I finds difficulty
+>>> to get where it's properly documented.
+>>>
+>>> So lets add note to empty NUMA nodes in the NUMA binding doc.
+>>>
+>>> Signed-off-by: Gavin Shan <gshan@redhat.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/numa.txt | 4 ++++
+>>>   1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+>>> index 21b35053ca5a..edf728cff155 100644
+>>> --- a/Documentation/devicetree/bindings/numa.txt
+>>> +++ b/Documentation/devicetree/bindings/numa.txt
+>>> @@ -109,6 +109,10 @@ Example:
+>>>   Dual socket system consists of 2 boards connected through ccn bus and
+>>>   each board having one socket/soc of 8 cpus, memory and pci bus.
+>>>   +Note that the empty NUMA nodes, which no memory resides in, are allowed.
+>>
+>> I would write that without "the":
+>>
+>> +Note that empty NUMA nodes, which no memory resides in, are allowed.
+>>
+>> BTW, AFAIK, NUMA nodes may contain memory, CPU(s), or I/O -- any one, two, or
+>> three, without the other types of resources being present.
+>>
 > 
-> Attempts to configuring mss.lvl is failing, so a new adsp_data is
-> provided that skips this resource, for now.
+> Sure, I will drop "the" in v4.
 > 
-
-What is the impact of this skipped resource? I guess it is enabled by
-the bootloader so we can't change it in runtime?
-
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Given that adsp remoteproc works without configuring mss power domain,
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Thanks,
-Mani
-
-> ---
+> The NUMA nodes here are memory nodes here. Since the NUMA node usually means
+> memory node. I'm not sure if I change the term "NUMA node" to "NUMA memory
+> node" in v4. If you agree, I would have something like this:
 > 
-> Changes since v1:
-> - None
-> 
->  drivers/remoteproc/qcom_q6v5_pas.c | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-> index b921fc26cd04..a79bee901e9b 100644
-> --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-> @@ -689,6 +689,25 @@ static const struct adsp_data mpss_resource_init = {
->  	.ssctl_id = 0x12,
->  };
->  
-> +static const struct adsp_data sc8180x_mpss_resource = {
-> +	.crash_reason_smem = 421,
-> +	.firmware_name = "modem.mdt",
-> +	.pas_id = 4,
-> +	.has_aggre2_clk = false,
-> +	.auto_boot = false,
-> +	.active_pd_names = (char*[]){
-> +		"load_state",
-> +		NULL
-> +	},
-> +	.proxy_pd_names = (char*[]){
-> +		"cx",
-> +		NULL
-> +	},
-> +	.ssr_name = "mpss",
-> +	.sysmon_name = "modem",
-> +	.ssctl_id = 0x12,
-> +};
-> +
->  static const struct adsp_data slpi_resource_init = {
->  		.crash_reason_smem = 424,
->  		.firmware_name = "slpi.mdt",
-> @@ -811,6 +830,9 @@ static const struct of_device_id adsp_of_match[] = {
->  	{ .compatible = "qcom,qcs404-cdsp-pas", .data = &cdsp_resource_init },
->  	{ .compatible = "qcom,qcs404-wcss-pas", .data = &wcss_resource_init },
->  	{ .compatible = "qcom,sc7180-mpss-pas", .data = &mpss_resource_init},
-> +	{ .compatible = "qcom,sc8180x-adsp-pas", .data = &sm8150_adsp_resource},
-> +	{ .compatible = "qcom,sc8180x-cdsp-pas", .data = &sm8150_cdsp_resource},
-> +	{ .compatible = "qcom,sc8180x-mpss-pas", .data = &sc8180x_mpss_resource},
->  	{ .compatible = "qcom,sdm845-adsp-pas", .data = &adsp_resource_init},
->  	{ .compatible = "qcom,sdm845-cdsp-pas", .data = &cdsp_resource_init},
->  	{ .compatible = "qcom,sdx55-mpss-pas", .data = &sdx55_mpss_resource},
-> -- 
-> 2.29.2
-> 
+> Note that empty memory nodes, which no memory resides in, are allowed.
+> The NUMA node IDs in these empty memory nodes are still valid, but memory
+> can be added into them through hotplug afterwards.
+
+OK, that sounds fine to me.
+
+thanks.
+-- 
+~Randy
+
