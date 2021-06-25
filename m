@@ -2,234 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 908443B40FA
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 11:57:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 714183B410F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 12:01:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230112AbhFYJ72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 05:59:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52444 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230010AbhFYJ72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 05:59:28 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A276CC061760
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 02:57:07 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id p8-20020a7bcc880000b02901dbb595a9f1so5444787wma.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 02:57:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=LXR0Jto15p9D6SXD9so7u+A/IVvd9POUcHlyax5EA1Q=;
-        b=cjBsefTsH+8iWqNb5tJUjU4+p/+aBifMkCkjwOnqsHUn6jefOgZXyp07SoXTLVv3UJ
-         0b0XViNGme3bChT6OpT/zVbW6U/4y6ZFzxq/JrxuzmAFcrlXZdYf3dEoQrRsqNqKVW9o
-         4giDfrGrz3KWCO+DAGaqyVfkbNvcjNKfR6rxVKqR8l8CosCTp23YIbDVvCD22X4WQpdT
-         uG8pzSCMirxNPqR22ZQpYonP+lLYdkLcq/0C4y7maHhj/8bh3wol5zk9LajHaJ7Rl9bT
-         nchMxhtET2fuxSuvDURU9KAudg0AUgcYIq+ZrO0D1Jof/26BempxFRQ64ktO8U2LoZkx
-         cOqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=LXR0Jto15p9D6SXD9so7u+A/IVvd9POUcHlyax5EA1Q=;
-        b=cYMMRdQUv34v74mljLRx60TuQuFBEVIMJKyPvR0k/AwS3Rht1tSoO0g3XU8q16m/1S
-         MkEo+lhxgecH7wwIBhCHqqc/at4ZwlBXRWLevZ1EgDaXzzp7eFy0ykJaHe6hQoncDE6V
-         gst1yBSSm0lFcvnx/ldEQM/UgcCDlHJ+RJ4IoB0X7Ri4eVjsIX79k0oEtXojHrJBjVex
-         XpEc2UCSfsXHaHui78D+uGxOrZBdxhmHth420nfmAdPlHB6hrCO/iLicEitiBgj5vgrv
-         UBW+bzlRBnDZzqgLFAZy0iVezdVBwqMkwlj1Eg+qgpFTr9HBmzXwlAesFscSWpC7g5S3
-         4hPA==
-X-Gm-Message-State: AOAM533bWxxAYSkMu83AsJFsd4nmiKbFhHF67yVwJdv52of95hWpDw/p
-        L3q+inyziPaYyRAmNTdi7vf11Q==
-X-Google-Smtp-Source: ABdhPJw08HAiAJAuqs2vuWjjX1R7qU+vfjz0Pw1It39O79illPxSUSjz0ErIOOIUdhwWa3pTWaLZ7A==
-X-Received: by 2002:a7b:cbc5:: with SMTP id n5mr9734097wmi.148.1624615025903;
-        Fri, 25 Jun 2021 02:57:05 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:c52d:3cc5:c823:ade0? ([2a01:e34:ed2f:f020:c52d:3cc5:c823:ade0])
-        by smtp.googlemail.com with ESMTPSA id v22sm4851249wmh.40.2021.06.25.02.57.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jun 2021 02:57:05 -0700 (PDT)
-Subject: Re: Aw: Re: [PATCH] Fix mt7622.dtsi thermal cpu
-To:     Frank Wunderlich <frank-w@public-files.de>,
-        Eric Woudstra <ericwouds@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sean Wang <sean.wang@mediatek.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Daniel Golle <daniel@makrotopia.org>
-References: <20210619121927.32699-1-ericwouds@gmail.com>
- <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org>
- <56fb5540-fb86-4e6a-a596-1276026b37e5@gmail.com>
- <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org>
- <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
- <fb633034-96e5-6165-b43f-290ae1a65cfd@linaro.org>
- <189b52d5-b103-43e1-a64f-1e627fbc75af@gmail.com>
- <173e6bab-9d21-eb28-9b91-a5f80c01fd03@linaro.org>
- <3dd22cf2-1186-4870-aa49-e5cddc18c6e9@gmail.com>
- <trinity-7580d955-3187-41e5-9297-1ac8f628a9d5-1624609003739@3c-app-gmx-bs66>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <8b27246b-721e-fa0e-5c2b-b1b4b4d6fdd3@linaro.org>
-Date:   Fri, 25 Jun 2021 11:57:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S230126AbhFYKD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 06:03:57 -0400
+Received: from mout.kundenserver.de ([212.227.126.131]:34331 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230072AbhFYKDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 06:03:55 -0400
+Received: from mail-wm1-f44.google.com ([209.85.128.44]) by
+ mrelayeu.kundenserver.de (mreue010 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MAwsT-1m7Oom25ft-00BOEN; Fri, 25 Jun 2021 12:01:33 +0200
+Received: by mail-wm1-f44.google.com with SMTP id j11-20020a05600c1c0bb02901e23d4c0977so7454231wms.0;
+        Fri, 25 Jun 2021 03:01:33 -0700 (PDT)
+X-Gm-Message-State: AOAM530fqcPGyhm5ElcwnuJ28aGPwk3gP2KIEDObl0U1wgVVYKTT/N0D
+        UysqdouorJcwylwU7qQui56OggFtQSD6fcFxQSo=
+X-Google-Smtp-Source: ABdhPJyRRakIybOAARLEqgqFsAKTsqLCItavkxySt7puA/r0GJ3aVYwMKoJP0QL2cw8hz9fbIr1BZHd9ZDHu2XJ9KFw=
+X-Received: by 2002:a1c:c90f:: with SMTP id f15mr9700348wmb.142.1624615293093;
+ Fri, 25 Jun 2021 03:01:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <trinity-7580d955-3187-41e5-9297-1ac8f628a9d5-1624609003739@3c-app-gmx-bs66>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20210625095000.3358973-1-mnhagan88@gmail.com> <20210625095000.3358973-3-mnhagan88@gmail.com>
+In-Reply-To: <20210625095000.3358973-3-mnhagan88@gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Fri, 25 Jun 2021 11:59:08 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a3NAOgBa1j+Zsm6FwSm2ux49rFcnTEYJJsmSF8TggRnYA@mail.gmail.com>
+Message-ID: <CAK8P3a3NAOgBa1j+Zsm6FwSm2ux49rFcnTEYJJsmSF8TggRnYA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] ARM: dts: NSP: Add DT files for Meraki MX64 series
+To:     Matthew Hagan <mnhagan88@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:cPZZH1H8tLkJZhzYVyg54dlhPrzq22n2d6a2s0M2uflfJSYFDxj
+ 8NO4E2VzN4gP0vhm7WVIIx06T/iI44gy0cIldB0ENBNcx/BUkHGScDNXtM7f3pPiAZHrwC8
+ AXRThtPcrGn538z/EE+K7B7gVnbeZsTYRk2M7xzDiBHuaoGcp2ZkJZEDFGhmnrJstrr9s8q
+ U5rKXEvk5LkNOEkAt8olA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:fdZn1ST4yvo=:43VghYItvo8WWSMEG/1RpZ
+ xifz/d9vVILF7xi7WX6uv3vbTXMQ6dYmKehEHVeeNu+gOhJbjBn9S9F/6hi/s5Ks0MqSjUNDZ
+ dfaoj/8JFnhKyOF6oa4obXkLcDK93EUUxy+MtJ4foFLR3MR8uBxKwlYpq5vvRriFd5+QP7mlG
+ +4hyAamO5VKqItVCCsvL5MnkrjR57tZn4COWaVFbyoAPpQTR52+nkBpFme75q+nLZWcK1EMtu
+ 79D0WrJRX80CgzYQTLymng5xPWv6yjguvIphcKUYQRrdudFlmF4yKCBCuGsCf1E0CgnquF6xW
+ 0jk6grm7UlA/F5o3oq+0K26bBvSUjusN0r750C599fyDMiZrwWsmJpANsWXTsXwnthmHcEWdY
+ ebiDt78AzV1q8G8k5alVVoYIb37FzUnQFcpIFY0T4nFyOancc3otpnaO39UDAG6kUI7yYA2pX
+ NrMm+XOS3oX4/Q650JZDbP9inf9G9VajQBGw7OPxuk2hmOG0JxC6RHcByJkspRSX/CChaNmjS
+ qFxjqps9FgQAmVrmQLWpmxLdykLFGLYb3GBd0elJnbyGP9BVG9q80rBsGsMZi2nUFTDogBtmw
+ Q1N+cWUqHibyHWhqbqWVpeAX03C9nLYzPpi59tXqrXX++Sbse+AZCZ1rILRSU3U1l8+lc441u
+ 9UcU=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 25, 2021 at 11:52 AM Matthew Hagan <mnhagan88@gmail.com> wrote:
+>
+> MX64 & MX64W Hardware info:
+>   - CPU: Broadcom BCM58625 Cortex A9 @ 1200Mhz
+>   - RAM: 2 GB (4 x 4Gb SK Hynix H5TC4G83CFR)
+>   - Storage: 1 GB (Micron MT29F8G08ABACA)
+>   - Networking: BCM58625 internal switch (5x 1GbE ports)
+>   - USB: 1x USB2.0
+>   - Serial: Internal header
+>   - WLAN(MX64W only): 2x Broadcom BCM43520KMLG on the PCI bus
+>
+> This patch adds the Meraki MX64 series-specific bindings. Since some
+> devices make use of the older A0 SoC, changes need to be made to
+> accommodate this case, including removal of coherency options and
+> modification to the secondary-boot-reg.
+>
+> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
 
-Hi Frank,
+Removing the dma-coherent flags in the dts file seemed really odd until
+I read the text above. It would seem more logical to me to have a .dtsi file
+that has all the a0 revision specific changes, and include that from the
+dts file.
 
-On 25/06/2021 10:16, Frank Wunderlich wrote:
-> Hi,
-> 
+On the other hand, the /chosen, /aliases and  /memory nodes that you have
+in the .dtsi file should probably get moved into the .dts files, as these tend
+to be board specific settings, even if the examples you have are all
+the same.
 
->> Gesendet: Donnerstag, 24. Juni 2021 um 15:29 Uhr Von: "Eric
->> Woudstra" <ericwouds@gmail.com> The SOC runs unthrotlled slowly to
->> 80 degrees. This takes minutes.
-Polling interval 1 second or less does not matter much when looking at
-these temperature rise times
->> 
->> After that in more then an hour it slowly creeps up to 85. I
->> believe
-the design is so that the SOC, under normal circumstances, can run at
-1.35 GHz without throttling frequency, without heatsink. It just needs a
-safeguard for different circumstances.
->> 
->> Most of these SOCs can also run in industrial grade circumstances,
-which means up to 85 degrees ambient temperature already . If not
-industrial then this would be 60 degrees ambient already
->> 
->> But only someone at Mediatek can confirm this
-> 
-> maybe Matthias knows anybody? get_maintainers-script shows no mtk
-> employee for mtk_thermal driver,
-added Sean and Ryder as common Linux-Contacts...
-> 
-> Daniel from openwrt have some other mt7622 Boards maybe he can test
-the Fan approach below
-> 
->> On Jun 24, 2021, 12:21 PM, at 12:21 PM, Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
->>> Found that:
->>> 
->>> 
-https://download.kamami.pl/p579344-MT7622A_Datasheet_for_BananaPi_Only%281%29.pdf
->>> 
->>> Chapter 3.3 - Thermal Characteristics
->>> 
->>> Given the values I suggest:
->>> 
->>> - Passive - 80°C
->>> 
->>> - Hot - 90°C
->>> 
->>> - Critical - 100°C
-> 
-> maybe adding FAN (r64, don't know for other mt7622 boards) for lower
-> 2
-trips (with adjusted temperature points) and cpu-throtteling for upper 2
-trips
-
-It depends what you want to achieve first:
-
- - better / sustained performance, then fan before
-
- - quiet device or power saving (on battery) then cpu throttling before
-
-That is board specific, it should be tuned on DT board specific file.
-
-Some comments below:
-
-> something like this (used the 70/80 trip points discussed before):
-> --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
-
-You should not add the fan in the mt7622.dtsi itself but in the board
-specific file where there is a fan output on it. mt7622.dtsi is supposed
-to be the SoC itself AFAICT.
-
-For instance:
-
-https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi#n39
-
-https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi#n164
-
-> @@ -134,6 +134,13 @@
->  		};
->  	};
->  
-> +	fan0: pwm-fan {
-> +		compatible = "pwm-fan";
-> +		#cooling-cells = <2>;
-> +		pwms = <&pwm 2 10000 0>;
-> +		cooling-levels = <0 102 170 230>;
-> +	};
-> +
->  	thermal-zones {
->  		cpu_thermal: cpu-thermal {
->  			polling-delay-passive = <1000>;
-> @@ -143,13 +150,13 @@
->  
->  			trips {
->  				cpu_passive: cpu-passive {
-> -					temperature = <47000>;
-> +					temperature = <70000>;
->  					hysteresis = <2000>;
->  					type = "passive";
->  				};
->  
->  				cpu_active: cpu-active {
-> -					temperature = <67000>;
-> +					temperature = <80000>;
->  					hysteresis = <2000>;
->  					type = "active";
->  				};
-> @@ -170,14 +177,12 @@
->  			cooling-maps {
->  				map0 {
->  					trip = <&cpu_passive>;
-> -					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> -							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +					cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->  				};
-
-fan == active trip point
-
-This is referring to the passive trip point. So it should point to the
-CPU as it is now. Note the order of mitigation is inverted regarding the
-proposal description.
-
->  				map1 {
->  					trip = <&cpu_active>;
-> -					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> -							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +					cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->  				};
->  
->  				map2 {
-> @@ -428,6 +433,7 @@
->  	pwm: pwm@11006000 {
->  		compatible = "mediatek,mt7622-pwm";
->  		reg = <0 0x11006000 0 0x1000>;
-> +		#pwm-cells = <3>;
->  		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_LOW>;
->  		clocks = <&topckgen CLK_TOP_PWM_SEL>,
->  			 <&pericfg CLK_PERI_PWM_PD>,
-> 
-> 
-> regards Frank
-> 
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+       Arnd
