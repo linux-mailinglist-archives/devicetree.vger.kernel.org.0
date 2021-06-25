@@ -2,95 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B31393B4152
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 12:17:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAA9F3B415B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 12:18:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231429AbhFYKTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 06:19:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56960 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231436AbhFYKTa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 06:19:30 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF5DC061760
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 03:17:07 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id j1so9967329wrn.9
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 03:17:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cIJcZ1Hi3DoEF/1CqsW4mJpJl8hECj9iLa8Ln8QVFSo=;
-        b=U7cy1h0cVWptDWWUfpU4ico2RksrM6E1SfL/eAHUZUdgMGsizxx2HClHmoQafPXGG9
-         3i+jVIgS/hqvcM4onNMG8u4MgqATSVltVqBsprLIgK6Bb9pZ7F3CEz3d4M8Bhkfb/ib4
-         jfUhketbQby9lGJ/zCMVPpTERDPGqR9xDh2wa2s5pvXZ9fzXmVEK2bzct6MWXSD/9P9A
-         4qhZx90viYFxl60oUkhuMQ0s8IYmsjc76FJHXWbrrgWIT3O1q3wRx00/4LVLStDgOr1h
-         lDPRm8kFzoKLFqq1/1BLDWLNbsAI85izjGDmwUv4crTiELVC13QxKjMVJFccCpEGWv2a
-         BE9A==
+        id S229956AbhFYKUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 06:20:50 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:25410 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231193AbhFYKUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Jun 2021 06:20:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1624616308;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=j4JjaRWxUDx5AdOtHK4Ew9qGgb8hCuqA6q+y3PqBTgY=;
+        b=KXos5XysV6RyJAD0+1KJuEpBBtLTSTX7rHQBE0M9ivBX6TVq1sQoyxnJTEFuisWFNtZpSe
+        RnkrM1BDNXOXPNd9zKosX3MECZJygtz7npBhA8TZR6KyhjRSg1ZCYMtAKL5kmYP2q+8PC3
+        vdhDP0h8R7k/P36QBqgWFEhS1dogGIA=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-543-jIBLCx5WOnSMb1sZO3RPXw-1; Fri, 25 Jun 2021 06:18:24 -0400
+X-MC-Unique: jIBLCx5WOnSMb1sZO3RPXw-1
+Received: by mail-ed1-f70.google.com with SMTP id l9-20020a0564022549b0290394bafbfbcaso4931905edb.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 03:18:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cIJcZ1Hi3DoEF/1CqsW4mJpJl8hECj9iLa8Ln8QVFSo=;
-        b=NgDz3ORqDYaXtSmVBnEZkbJ+9HUnYJ9+vYpjRR+10gDi58LGujrfjw1HPT5yVCSVZW
-         /HReXkZZXZBRAqly8N1SmUm5VPZrhakXPLhehThLGJ72YQEBsVQzgY1Ru43jLQvYrhmu
-         6/2cVLi6rFcURW5L9PLSBUWZndkL4Lej6D1kO/rEEYKcx2Zk2HG2J162qJ1wbD9W7rkX
-         Gc1Fdo5+pXgtmbWDaUPSmAijgw0wtZAD2hGIUhtzAPEK4ImRX4UGIQ/Nj/qSgC8SM27Y
-         WFyeXrZ75p+PHSzrqcXcnammfU5TVUq80tXuxsr+00IshnPLgUbn1FzUy0bQz2YO5Wk/
-         fq5A==
-X-Gm-Message-State: AOAM5305+h+rt5gp6GNO3nwMpmya/o/Xwfj+D5GPEYuy46aRgOyt1ewN
-        yLdnu6I1LFo2px8hzCn5OGY=
-X-Google-Smtp-Source: ABdhPJxeqsKJWHHGkmrWZgB5l5AlihSE0DYgHzBqRaUowI3qYFtG6+88oK9iZhepTpRmQt7/GoCtpA==
-X-Received: by 2002:a5d:4703:: with SMTP id y3mr9720719wrq.321.1624616226487;
-        Fri, 25 Jun 2021 03:17:06 -0700 (PDT)
-Received: from morpheus.roving-it.com.com (f.c.9.1.f.e.c.d.1.e.0.0.2.b.5.5.1.8.6.2.1.1.b.f.0.b.8.0.1.0.0.2.ip6.arpa. [2001:8b0:fb11:2681:55b2:e1:dcef:19cf])
-        by smtp.googlemail.com with ESMTPSA id 204sm5462736wma.30.2021.06.25.03.17.05
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=j4JjaRWxUDx5AdOtHK4Ew9qGgb8hCuqA6q+y3PqBTgY=;
+        b=cycJwWGr4N+StLcvmisjWoejje0OhM6Jl2YmzTs3rAZzypF0kwmgSowRhcZE9kmkgf
+         DdmDNpb/U9aGyKgtAlB8pIGV6CdfXzsbNj1PWkhYY7YmCs4MnN8ouOtq8kHV1ITJjRCW
+         8+Jho0edCg8X3wGPqI6d0jaJcFDLRy/qhSdKIa8aVBNBJ2gDR780TsumUI3ne4vqJuAT
+         G/Ta+Huszr4nx7Wa+IIK9Q6v7RB0Zu3C3kPSrXvNBLfcdlmF3BUOxBvLUiPpRv9Zhp6F
+         pTa1gVIgZr3OELHSTdVOmyzUnpkrHKoFT6n835WSpRIDprvNV7QdiOXInEjZxQKgDAMQ
+         TH6A==
+X-Gm-Message-State: AOAM530JyYIXnaZVhjSNOBGto2e/pCGd5+ErPbUib0wtxogYqlJ0W+iC
+        11nMRcgHILC1ueREY7wYq/iSUryNTTQnq0M70MsFD23RxstBiWWm1esf+biAj3tM/iK90qE8SHV
+        JRHZgeVp/4olBXVMhUvHZDA==
+X-Received: by 2002:a05:6402:1205:: with SMTP id c5mr825481edw.68.1624616303496;
+        Fri, 25 Jun 2021 03:18:23 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzZ2VSyWKHxXfWjdEbJqwFfP1+cB72b3Qml5NrsRAiLAiJuSsz8pxPlIKRyTD4YB8/ZhtdlSg==
+X-Received: by 2002:a05:6402:1205:: with SMTP id c5mr825463edw.68.1624616303266;
+        Fri, 25 Jun 2021 03:18:23 -0700 (PDT)
+Received: from gator (cst2-174-132.cust.vodafone.cz. [31.30.174.132])
+        by smtp.gmail.com with ESMTPSA id s18sm2526921ejh.12.2021.06.25.03.18.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Jun 2021 03:17:05 -0700 (PDT)
-From:   Peter Robinson <pbrobinson@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>,
-        Tobias Schramm <t.schramm@manjaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Cc:     Peter Robinson <pbrobinson@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: rockchip: Don't enable i2c3 on Pinebook Pro
-Date:   Fri, 25 Jun 2021 11:17:03 +0100
-Message-Id: <20210625101703.3290934-2-pbrobinson@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210625101703.3290934-1-pbrobinson@gmail.com>
-References: <20210625101703.3290934-1-pbrobinson@gmail.com>
+        Fri, 25 Jun 2021 03:18:22 -0700 (PDT)
+Date:   Fri, 25 Jun 2021 12:18:21 +0200
+From:   Andrew Jones <drjones@redhat.com>
+To:     Gavin Shan <gshan@redhat.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rdunlap@infradead.org, robh+dt@kernel.org, shan.gavin@gmail.com
+Subject: Re: [PATCH v4] Documentation, dt, numa: Add note to empty NUMA node
+Message-ID: <20210625101821.3t3vgj2pnw3hqpzm@gator>
+References: <20210625052338.4875-1-gshan@redhat.com>
+ <20210625070217.4ffmfe7nwlusbbjc@gator>
+ <20210625070656.j373hveemf5cdch4@gator>
+ <41643136-798b-a0f3-aee7-b6af94a2fc67@redhat.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <41643136-798b-a0f3-aee7-b6af94a2fc67@redhat.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Pinebook Pro doesn't have anything connected to the i2c3 interface
-so there's no need to enable it in the device tree.
+On Fri, Jun 25, 2021 at 06:36:48PM +1000, Gavin Shan wrote:
+> On 6/25/21 5:06 PM, Andrew Jones wrote:
+> > On Fri, Jun 25, 2021 at 09:02:17AM +0200, Andrew Jones wrote:
+> > > On Fri, Jun 25, 2021 at 01:23:38PM +0800, Gavin Shan wrote:
+> > > > The empty memory nodes, where no memory resides in, are allowed.
+> > > > For these empty memory nodes, the 'len' of 'reg' property is zero.
+> > > > The NUMA node IDs are still valid and parsed, but memory can be
+> > > > added to them through hotplug afterwards. I finds difficulty to
+> > > > get where it's properly documented.
+> > > > 
+> > > > So lets add note to empty memory nodes in the NUMA binding doc.
+> > > > 
+> > > > Signed-off-by: Gavin Shan <gshan@redhat.com>
+> > > > ---
+> > > >   Documentation/devicetree/bindings/numa.txt | 4 ++++
+> > > >   1 file changed, 4 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+> > > > index 21b35053ca5a..0fc882e44270 100644
+> > > > --- a/Documentation/devicetree/bindings/numa.txt
+> > > > +++ b/Documentation/devicetree/bindings/numa.txt
+> > > > @@ -109,6 +109,10 @@ Example:
+> > > >   Dual socket system consists of 2 boards connected through ccn bus and
+> > > >   each board having one socket/soc of 8 cpus, memory and pci bus.
+> > > > +Note that empty memory nodes, which no memory resides in, are allowed.
+> > > > +The NUMA node IDs in these empty memory nodes are still valid, but
+> > > > +memory can be added into them through hotplug afterwards.
+> > > 
+> > > Please change the second sentence to:
+> > > 
+> > >    The NUMA node IDs in these empty memory nodes are still valid and
+> > >    memory may be added into them through hotplug afterwards.
+> > > 
+> > > But, this doesn't look like the right place for this paragraph. You're
+> > > adding the paragraph to the example section, but the example doesn't have
+> > > any empty memory nodes.
+> > > 
+> > > I think the paragraph should be added to section "2 - numa-node-id" and an
+> > 
+> > Or maybe even create a new section for it.
+> > 
+> > > example empty memory node should be provided. Also, the commit message
+> > > talks about the length of 'reg' being zero, which is an important
+> > > distinction which should also be documented.
+> > > 
+> 
+> Drew, thanks for your comments. Yeah, it sounds sensible to create
+> a new section for it and an example would be more helpful. Please
+> check if below changes are fine to you. I probably need Randy's review
+> again.
+> 
+> I'm trying to avoid too many revisions for this sort of trivial patch,
+> even though I already had. However, it's time frame for v5.14 and I'm
+> pushing this to be merged during the cycle.
 
-Fixes: 5a65505a6988 ("arm64: dts: rockchip: Add initial support for Pinebook Pro")
-Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 6 ------
- 1 file changed, 6 deletions(-)
+We must revise until we're satisfied... Also, I wouldn't call writing
+specifications trivial.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-index f584d08a63f0..e02f6b5cc49e 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-@@ -685,12 +685,6 @@ es8316: es8316@11 {
- 	};
- };
- 
--&i2c3 {
--	i2c-scl-falling-time-ns = <15>;
--	i2c-scl-rising-time-ns = <450>;
--	status = "okay";
--};
--
- &i2c4 {
- 	i2c-scl-falling-time-ns = <20>;
- 	i2c-scl-rising-time-ns = <600>;
--- 
-2.31.1
+> 
+> --- a/Documentation/devicetree/bindings/numa.txt
+> +++ b/Documentation/devicetree/bindings/numa.txt
+> @@ -103,7 +103,65 @@ Example:
+>  		};
+>  ==============================================================================
+> -4 - Example dts
+> +4 - Empty memory node
+
+nodes
+
+> +==============================================================================
+> +
+> +Empty memory nodes, which no memory resides in, are allowed. The 'length'
+> +field of 'reg' property is zero, but 'base-address' is dummy and invalid
+
+ is a dummy address and is invalid.
+
+> +for these empty memory nodes.
+
+Can drop this "for these empty memory nodes" that's clear from the
+context.
+
+> However, the NUMA node IDs and distance maps
+> +for them are still valid, but memory may be added into them through hotplug
+   ^ drop 'for them'         ^ Again, this should be "and". "but" is a
+contrastive conjunction. We want to express that the nodes are valid *and*
+may have memory hotplugged later.
+
+> +afterwards.
+
+I'll just rewrite it:
+
+ Empty memory nodes, which no memory resides in, are allowed. The 'length'
+ field of the 'reg' property is zero, but the 'base-address' is a dummy
+ address and invalid. However, the NUMA node IDs and distance maps are
+ still valid and memory may be added into them through hotplug afterwards.
+
+> +
+> +Example:
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x80000000>;
+> +		numa-node-id = <0>;
+> +	};
+> +
+> +	memory@0x80000000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x80000000 0x0 0x80000000>;
+> +		numa-node-id = <1>;
+> +	};
+> +
+> +	/* Empty memory node */
+
+You should write how you've selected the dummy addresses for the empty
+memory nodes, perhaps here in the /* Empty memory node */ comments or
+above in the paragraph or both.
+
+> +	memory@0x100000000 {
+> +		device_type = "memory";
+> +		reg = <0x1 0x0 0x0 0x0>;
+> +		numa-node-id = <2>;
+> +	};
+> +
+> +	/* Empty memory node */
+> +	memory@0x180000000 {
+> +		device_type = "memory";
+> +		reg = <0x1 0x80000000 0x0 0x0>;
+> +		numa-node-id = <3>;
+> +	};
+> +
+> +	distance-map {
+> +		compatible = "numa-distance-map-v1";
+> +		distance-matrix = <0 0  10>,
+> +				  <0 1  20>,
+> +				  <0 2  40>,
+> +				  <0 3  20>,
+> +				  <1 0  20>,
+> +				  <1 1  10>,
+> +				  <1 2  20>,
+> +				  <1 3  40>,
+> +				  <2 0  40>,
+> +				  <2 1  20>,
+> +				  <2 2  10>,
+> +				  <2 3  20>,
+> +				  <3 0  20>,
+> +				  <3 1  40>,
+> +				  <3 2  20>,
+> +				  <3 3  10>;
+> +	};
+> +
+> +==============================================================================
+> +5 - Example dts
+>  ==============================================================================
+>  Dual socket system consists of 2 boards connected through ccn bus and
+> 
+> 
+> Thanks,
+> Gavin
+> 
+>
+
+Thanks,
+drew
 
