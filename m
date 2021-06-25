@@ -2,91 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CFE63B3B4D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 05:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0B6E3B3BA9
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 06:27:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233080AbhFYDto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 23:49:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54074 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233068AbhFYDto (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 23:49:44 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29C6AC061574;
-        Thu, 24 Jun 2021 20:47:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=XlZ/3rzzY7rPc2FtHStq/k//1hM/cEEnSyPTEf25P34=; b=Tjt98dozfSBm7/bzkAL1uWHL6T
-        cCauF6Uxt6LMT7u4Pw0xLe3SOs46mDh2lyu5GACOnk0ni+LmjW01xw1sT/eFQpVDHSWt6Drpl1rBG
-        gC/sjWgpWyxuHTIjFL1QL4flFaA9e6C49O79IzvyVzHI3jXUzelrILEQDDgVURlv0HysSMSYqXmNF
-        /WOXTYFjTMmPUYGnZ3ZTeHJlz67xex7EcJadKLe31o1FwuTyCvF9yqFJWaK0iRQWV5kX7GH/QUYrF
-        KNcaystELY4RtKT5n0rXS3lZb3hPjMKQrZ1670n4o7qgDgv/3saNUYAfqPzO6s9dTmug2IUBVjPEu
-        3hAeMAiQ==;
-Received: from [2601:1c0:6280:3f0::aefb]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1lwcoK-00HCBG-75; Fri, 25 Jun 2021 03:47:20 +0000
-Subject: Re: [PATCH v3] Documentation, dt, numa: Add note to empty NUMA node
-To:     Gavin Shan <gshan@redhat.com>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        drjones@redhat.com, shan.gavin@gmail.com
-References: <20210625043025.47469-1-gshan@redhat.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <874bcd17-29b6-658b-fa11-7854b1300d30@infradead.org>
-Date:   Thu, 24 Jun 2021 20:47:19 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S230192AbhFYEaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 00:30:08 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:29203 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230097AbhFYEaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 00:30:07 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1624595267; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=FyAYtbaok2H9V9sa1YDKM09HjyZfcS10U+iEyrt8ZqU=;
+ b=VX2agA43RM8owgma+M9Vfi3223iNviJxNRvwZwHwtbGWqhbR+ebc7ql0dS69/zNZXQDhhn3J
+ fimsbcfa10A9k5P5Dqd3WSA7kzSS/Cxye+c0ry9rguBBq2KtoaMBMSUMVOXXISz6/HjRFywi
+ 9PCVwnM14iR5x7UMMZ78o00n/R0=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 60d55b3a7b2963a282f721f9 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 25 Jun 2021 04:27:38
+ GMT
+Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B9480C4338A; Fri, 25 Jun 2021 04:27:37 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D32A2C433D3;
+        Fri, 25 Jun 2021 04:27:36 +0000 (UTC)
 MIME-Version: 1.0
-In-Reply-To: <20210625043025.47469-1-gshan@redhat.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Date:   Fri, 25 Jun 2021 09:57:36 +0530
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, will@kernel.org,
+        ohad@wizery.com, agross@kernel.org, mathieu.poirier@linaro.org,
+        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org
+Subject: Re: [PATCH 4/9] iommu/arm-smmu-qcom: Request direct mapping for modem
+ device
+In-Reply-To: <1624564058-24095-5-git-send-email-sibis@codeaurora.org>
+References: <1624564058-24095-1-git-send-email-sibis@codeaurora.org>
+ <1624564058-24095-5-git-send-email-sibis@codeaurora.org>
+Message-ID: <dd64ccda508175b6b276314bb0798e89@codeaurora.org>
+X-Sender: saiprakash.ranjan@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/24/21 9:30 PM, Gavin Shan wrote:
-> The empty NUMA nodes, where no memory resides in, are allowed. For
-> these empty NUMA nodes, the 'len' of 'reg' property is zero. These
-> empty NUMA node IDs are still valid and parsed. I finds difficulty
-> to get where it's properly documented.
+On 2021-06-25 01:17, Sibi Sankar wrote:
+> The SID configuration requirement for Modem on SC7280 is similar to the
+> ones found on SC7180/SDM845 SoCs. So, add the SC7280 modem compatible 
+> to
+> the list to defer the programming of the modem SIDs to the kernel.
 > 
-> So lets add note to empty NUMA nodes in the NUMA binding doc.
-> 
-> Signed-off-by: Gavin Shan <gshan@redhat.com>
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
 > ---
->  Documentation/devicetree/bindings/numa.txt | 4 ++++
->  1 file changed, 4 insertions(+)
+>  drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
-> index 21b35053ca5a..edf728cff155 100644
-> --- a/Documentation/devicetree/bindings/numa.txt
-> +++ b/Documentation/devicetree/bindings/numa.txt
-> @@ -109,6 +109,10 @@ Example:
->  Dual socket system consists of 2 boards connected through ccn bus and
->  each board having one socket/soc of 8 cpus, memory and pci bus.
->  
-> +Note that the empty NUMA nodes, which no memory resides in, are allowed.
+> diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> index 7771d40176de..90d471a387bf 100644
+> --- a/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> +++ b/drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c
+> @@ -179,6 +179,7 @@ static const struct of_device_id
+> qcom_smmu_client_of_match[] __maybe_unused = {
+>  	{ .compatible = "qcom,sc7180-mdss" },
+>  	{ .compatible = "qcom,sc7180-mss-pil" },
+>  	{ .compatible = "qcom,sc7280-mdss" },
+> +	{ .compatible = "qcom,sc7280-mss-pil" },
+>  	{ .compatible = "qcom,sc8180x-mdss" },
+>  	{ .compatible = "qcom,sdm845-mdss" },
+>  	{ .compatible = "qcom,sdm845-mss-pil" },
 
-I would write that without "the":
+Reviewed-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
 
-+Note that empty NUMA nodes, which no memory resides in, are allowed.
-
-BTW, AFAIK, NUMA nodes may contain memory, CPU(s), or I/O -- any one, two, or
-three, without the other types of resources being present.
-
-
-> +Their NUMA node IDs are still valid so that memory can be added into these
-> +NUMA nodes through hotplug afterwards.
-> +
->  	memory@c00000 {
->  		device_type = "memory";
->  		reg = <0x0 0xc00000 0x0 0x80000000>;
-
-
-OT: is your system clock off by a couple of hours?
-Your emails seem to be from in the future.
-
-Thanks.
-
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
+member
+of Code Aurora Forum, hosted by The Linux Foundation
