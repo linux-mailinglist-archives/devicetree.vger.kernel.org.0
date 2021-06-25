@@ -2,85 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E153B427F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 13:26:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4DB43B428E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 13:31:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229573AbhFYL23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 07:28:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43918 "EHLO mail.kernel.org"
+        id S230439AbhFYLdv convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 25 Jun 2021 07:33:51 -0400
+Received: from aposti.net ([89.234.176.197]:39726 "EHLO aposti.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229458AbhFYL23 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 07:28:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6C6B561483;
-        Fri, 25 Jun 2021 11:26:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624620368;
-        bh=5gGlFkG5ejd5XqK39wO+xof0g27mNIXfwL4EcnWkZIE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TOvqvDd09a5EaIbb7zxlefl62wNMvE/KjEeeQCnCIVk4vgQP+tWLc/idfafcor625
-         zrPm14rgtbxoeUVODbsFTGyXWjZn+G1ggCVJewDk2vgYlvmOGsre/dftdvYYpLGYZJ
-         xto3Q7lXgmhKxrfe37+FCw9apLHmi9GR4sLpOFrhHC3siVHQ8odA/B/91vqzuk1ldP
-         U7rCHBxDenkSuG+svsY+a7n4r9r0nuuFNPUUyhRAK65b/eeTe1ahbRNPsYG1j6oeQX
-         GGuZXN6knJLskd8QFqRPrm3/OyuwuhIEi71/a+DdCsK3lXvqtMsowMVfcT8KAdoQB6
-         9Et9SeGSXj5BA==
-Date:   Fri, 25 Jun 2021 12:25:44 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Mason Zhang <mason.zhang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        wsd_upstream@mediatek.com, hanks.chen@mediatek.com,
-        linux-kernel@vger.kernel.org,
-        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] dt-binding: mediatek: mt6779: update spi document
-Message-ID: <20210625112544.GB4492@sirena.org.uk>
-References: <1623721803.24597.9.camel@mbjsdccf07>
- <20210615111426.GC5149@sirena.org.uk>
- <732a8061-e8be-5c8a-ea75-6da87947db02@gmail.com>
+        id S229458AbhFYLdu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Jun 2021 07:33:50 -0400
+Date:   Fri, 25 Jun 2021 12:31:17 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v3 4/4] MIPS: CI20: Add second percpu timer for SMP.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com
+Message-Id: <5C99VQ.EJKI9MPO7XXO1@crapouillou.net>
+In-Reply-To: <1624547189-61079-5-git-send-email-zhouyanjie@wanyeetech.com>
+References: <1624547189-61079-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1624547189-61079-5-git-send-email-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wzJLGUyc3ArbnUjN"
-Content-Disposition: inline
-In-Reply-To: <732a8061-e8be-5c8a-ea75-6da87947db02@gmail.com>
-X-Cookie: HELLO, everybody, I'm a HUMAN!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Zhou,
 
---wzJLGUyc3ArbnUjN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Le jeu., juin 24 2021 at 23:06:29 +0800, 周琰杰 (Zhou Yanjie) 
+<zhouyanjie@wanyeetech.com> a écrit :
+> 1.Add a new TCU channel as the percpu timer of core1, this is to
+>   prepare for the subsequent SMP support. The newly added channel
+>   will not adversely affect the current single-core state.
+> 2.Adjust the position of TCU node to make it consistent with the
+>   order in jz4780.dtsi file.
 
-On Mon, Jun 21, 2021 at 05:31:41PM +0200, Matthias Brugger wrote:
-> On 15/06/2021 13:14, Mark Brown wrote:
+That's a bit superfluous, the order matters when adding new nodes, but 
+once they are added, moving them around only cause annoyance.
 
-> > I don't have either patch 1 or a cover letter, what's the story with
-> > dependencies here?
+> 
+> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+> ---
+> 
+> Notes:
+>     v2:
+>     New patch.
+> 
+>     v2->v3:
+>     No change.
+> 
+>  arch/mips/boot/dts/ingenic/ci20.dts | 21 +++++++++++----------
+>  1 file changed, 11 insertions(+), 10 deletions(-)
+> 
+> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts 
+> b/arch/mips/boot/dts/ingenic/ci20.dts
+> index 8877c62..70005cc 100644
+> --- a/arch/mips/boot/dts/ingenic/ci20.dts
+> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
+> @@ -118,6 +118,17 @@
+>  	assigned-clock-rates = <48000000>;
+>  };
+> 
+> +&tcu {
+> +	/*
+> +	 * 750 kHz for the system timers and 3 MHz for the clocksources,
+> +	 * use channel #0 and #1 for the per cpu system timers, and use
+> +	 * channel #2 for the clocksource.
+> +	 */
+> +	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
+> +					  <&tcu TCU_CLK_TIMER2>, <&tcu TCU_CLK_OST>;
+> +	assigned-clock-rates = <750000>, <750000>, <3000000>, <3000000>;
 
-> No dependency. The dt-bindings was just send a second patch in the series. First
-> one can be found here:
+Ideally you'd set TIMER1 to 3 MHz and TIMER2 to 750 kHz, otherwise it 
+kind of breaks support for older kernels (they would still boot, but 
+with a very slow clocksource). So in the new DTS you could use the 
+timer0 clock for CPU #0, timer1 for the clocksource, and timer2+ for 
+cpus > 0.
 
-The point here is that if you're sending a series that's generally
-because there's some dependencies so it's important to copy people on
-enough of what's going on (generally at least the cover letter) so that
-they know what the story is.
+Cheers,
+-Paul
 
---wzJLGUyc3ArbnUjN
-Content-Type: application/pgp-signature; name="signature.asc"
+> +};
+> +
+>  &mmc0 {
+>  	status = "okay";
+> 
+> @@ -522,13 +533,3 @@
+>  		bias-disable;
+>  	};
+>  };
+> -
+> -&tcu {
+> -	/*
+> -	 * 750 kHz for the system timer and 3 MHz for the clocksource,
+> -	 * use channel #0 for the system timer, #1 for the clocksource.
+> -	 */
+> -	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
+> -					  <&tcu TCU_CLK_OST>;
+> -	assigned-clock-rates = <750000>, <3000000>, <3000000>;
+> -};
+> --
+> 2.7.4
+> 
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDVvTcACgkQJNaLcl1U
-h9BHrQf9F5/P+HsqVqRSUY1U2QheeUKbq475n6BZxva5qfaOSn478e0/IRiOu9zM
-pnYfiilc8Ut5OlZQQ0634J2LZZydDSIYarRrPxXXFXxUNUIEDCIjJGHn0dkrBsUm
-VjpWGlGAbl1lLkIzFWb9O19H7Uo7rOzTb5AtPO4Uo5EPg0y40dPYFXZFZ0HYA1mS
-1aQT41fHHPHsZohCWwiLkjIYn1iMFco+Z3n8pwp+1pgsOcbIkcFLFB2FzkO4QU9z
-IRgwgWTVZ7sMMw7t/zPtYbRO4WoDfys7qtRwkF/ORU5LjjPlSgaH0FAo8c+8sp+8
-QBTEM350xjoF50d5SX2HBUOg7onqlw==
-=D5wu
------END PGP SIGNATURE-----
-
---wzJLGUyc3ArbnUjN--
