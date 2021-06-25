@@ -2,381 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 542A23B42E9
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 14:11:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED01B3B42F5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 14:14:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230274AbhFYMNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 08:13:25 -0400
-Received: from aposti.net ([89.234.176.197]:43556 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230235AbhFYMNZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 08:13:25 -0400
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, list@opendingux.net,
-        Christophe Branchereau <cbranchereau@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>
-Subject: [PATCH 2/2] drm/panel: Add Innolux EJ030NA 3.0" 320x480 panel
-Date:   Fri, 25 Jun 2021 13:10:45 +0100
-Message-Id: <20210625121045.81711-2-paul@crapouillou.net>
-In-Reply-To: <20210625121045.81711-1-paul@crapouillou.net>
-References: <20210625121045.81711-1-paul@crapouillou.net>
+        id S229958AbhFYMQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 08:16:21 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:36135 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229712AbhFYMQU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 08:16:20 -0400
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 8348F40004;
+        Fri, 25 Jun 2021 12:13:57 +0000 (UTC)
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Russell King <linux@armlinux.org.uk>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        thomas.petazzoni@bootlin.com, herve.codina@bootlin.com,
+        devicetree@vger.kernel.org
+Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: imx6qdl-sr-som: Increase the PHY reset duration to 10ms
+Date:   Fri, 25 Jun 2021 14:13:53 +0200
+Message-Id: <20210625121353.3698240-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.25.4
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christophe Branchereau <cbranchereau@gmail.com>
+The AR803x PHY used on this modules seems to require the reset line to
+be asserted for around 10ms in order to avoid rare cases where the PHY
+gets stuck in an incoherent state that prevents it to function
+correctly.
 
-Add support for the Innolux/Chimei EJ030NA 3.0"
-320x480 TFT panel.
+The previous value of 2ms was found to be problematic on some setups,
+causing intermittent issues where the PHY would be unresponsive
+every once in a while on some sytems, with a low occurrence (it typically
+took around 30 consecutive reboots to encounter the issue).
 
-This panel can be found in the LDKs, RS97 V2.1 and RG300 (non IPS)
-handheld gaming consoles.
+Bumping the delay to the 10ms makes the issue dissapear, with more than
+2500 consecutive reboots performed without the issue showing-up.
 
-While being 320x480, it is actually a horizontal 4:3
-panel with non-square pixels in delta arrangement.
-
-Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+Fixes: 208d7baf8085 ("ARM: imx: initial SolidRun HummingBoard support")
+Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Tested-by: Hervé Codina <herve.codina@bootlin.com>
 ---
- drivers/gpu/drm/panel/Kconfig                 |   9 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- drivers/gpu/drm/panel/panel-innolux-ej030na.c | 289 ++++++++++++++++++
- 3 files changed, 299 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-innolux-ej030na.c
+This V2 was quickly resent, since the commit-log was incorrect.
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 09acd18b3592..bfc6c23b2509 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -134,6 +134,15 @@ config DRM_PANEL_ILITEK_ILI9881C
- 	  Say Y if you want to enable support for panels based on the
- 	  Ilitek ILI9881c controller.
+v2 : Reworded the commit-log to remove an incorrect mention of the
+datasheet. Add a comment to the DT to explicitly explain the issue.
+
+ arch/arm/boot/dts/imx6qdl-sr-som.dtsi | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
+index 0ad8ccde0cf8..f86efd0ccc40 100644
+--- a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
+@@ -54,7 +54,13 @@ &fec {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_microsom_enet_ar8035>;
+ 	phy-mode = "rgmii-id";
+-	phy-reset-duration = <2>;
++
++	/*
++	 * The PHY seems to require a long-enough reset duration to avoid
++	 * some rare issues where the PHY gets stuck in an inconsistent and
++	 * non-functional state at boot-up. 10ms proved to be fine .
++	 */
++	phy-reset-duration = <10>;
+ 	phy-reset-gpios = <&gpio4 15 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
  
-+config DRM_PANEL_INNOLUX_EJ030NA
-+        tristate "Innolux EJ030NA 320x480 LCD panel"
-+        depends on OF && SPI
-+        select REGMAP_SPI
-+        help
-+          Say Y here to enable support for the Innolux/Chimei EJ030NA
-+          320x480 3.0" panel as found in the RS97 V2.1, RG300(non-ips)
-+          and LDK handheld gaming consoles.
-+
- config DRM_PANEL_INNOLUX_P079ZCA
- 	tristate "Innolux P079ZCA panel"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index a350e0990d17..1b865e8ea7c9 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -12,6 +12,7 @@ obj-$(CONFIG_DRM_PANEL_FEIXIN_K101_IM2BA02) += panel-feixin-k101-im2ba02.o
- obj-$(CONFIG_DRM_PANEL_FEIYANG_FY07024DI26A30D) += panel-feiyang-fy07024di26a30d.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_IL9322) += panel-ilitek-ili9322.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9881C) += panel-ilitek-ili9881c.o
-+obj-$(CONFIG_DRM_PANEL_INNOLUX_EJ030NA) += panel-innolux-ej030na.o
- obj-$(CONFIG_DRM_PANEL_INNOLUX_P079ZCA) += panel-innolux-p079zca.o
- obj-$(CONFIG_DRM_PANEL_JDI_LT070ME05000) += panel-jdi-lt070me05000.o
- obj-$(CONFIG_DRM_PANEL_KHADAS_TS050) += panel-khadas-ts050.o
-diff --git a/drivers/gpu/drm/panel/panel-innolux-ej030na.c b/drivers/gpu/drm/panel/panel-innolux-ej030na.c
-new file mode 100644
-index 000000000000..4160b99ef544
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-innolux-ej030na.c
-@@ -0,0 +1,289 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Innolux/Chimei EJ030NA TFT LCD panel driver
-+ *
-+ * Copyright (C) 2020, Paul Cercueil <paul@crapouillou.net>
-+ * Copyright (C) 2020, Christophe Branchereau <cbranchereau@gmail.com>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/media-bus-format.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/spi/spi.h>
-+
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+
-+struct ej030na_info {
-+	const struct drm_display_mode *display_modes;
-+	unsigned int num_modes;
-+	u16 width_mm, height_mm;
-+	u32 bus_format, bus_flags;
-+};
-+
-+struct ej030na {
-+	struct drm_panel panel;
-+	struct spi_device *spi;
-+	struct regmap *map;
-+
-+	const struct ej030na_info *panel_info;
-+
-+	struct regulator *supply;
-+	struct gpio_desc *reset_gpio;
-+};
-+
-+static inline struct ej030na *to_ej030na(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct ej030na, panel);
-+}
-+
-+static const struct reg_sequence ej030na_init_sequence[] = {
-+	{ 0x05, 0x1e },
-+	{ 0x05, 0x5c },
-+	{ 0x02, 0x14 },
-+	{ 0x03, 0x40 },
-+	{ 0x04, 0x07 },
-+	{ 0x06, 0x12 },
-+	{ 0x07, 0xd2 },
-+	{ 0x0c, 0x06 },
-+	{ 0x0d, 0x40 },
-+	{ 0x0e, 0x40 },
-+	{ 0x0f, 0x40 },
-+	{ 0x10, 0x40 },
-+	{ 0x11, 0x40 },
-+	{ 0x2f, 0x40 },
-+	{ 0x5a, 0x02 },
-+
-+	{ 0x30, 0x07 },
-+	{ 0x31, 0x57 },
-+	{ 0x32, 0x53 },
-+	{ 0x33, 0x77 },
-+	{ 0x34, 0xb8 },
-+	{ 0x35, 0xbd },
-+	{ 0x36, 0xb8 },
-+	{ 0x37, 0xe7 },
-+	{ 0x38, 0x04 },
-+	{ 0x39, 0xff },
-+
-+	{ 0x40, 0x0b },
-+	{ 0x41, 0xb8 },
-+	{ 0x42, 0xab },
-+	{ 0x43, 0xb9 },
-+	{ 0x44, 0x6a },
-+	{ 0x45, 0x56 },
-+	{ 0x46, 0x61 },
-+	{ 0x47, 0x08 },
-+	{ 0x48, 0x0f },
-+	{ 0x49, 0x0f },
-+
-+	{ 0x2b, 0x01 },
-+};
-+
-+static int ej030na_prepare(struct drm_panel *panel)
-+{
-+	struct ej030na *priv = to_ej030na(panel);
-+	struct device *dev = &priv->spi->dev;
-+	int err;
-+
-+	err = regulator_enable(priv->supply);
-+	if (err) {
-+		dev_err(dev, "Failed to enable power supply: %d\n", err);
-+		return err;
-+	}
-+
-+	/* Reset the chip */
-+	gpiod_set_value_cansleep(priv->reset_gpio, 1);
-+	usleep_range(50, 150);
-+	gpiod_set_value_cansleep(priv->reset_gpio, 0);
-+	usleep_range(50, 150);
-+
-+	err = regmap_multi_reg_write(priv->map, ej030na_init_sequence,
-+				     ARRAY_SIZE(ej030na_init_sequence));
-+	if (err) {
-+		dev_err(dev, "Failed to init registers: %d\n", err);
-+		goto err_disable_regulator;
-+	}
-+
-+	msleep(120);
-+
-+	return 0;
-+
-+err_disable_regulator:
-+	regulator_disable(priv->supply);
-+	return err;
-+}
-+
-+static int ej030na_unprepare(struct drm_panel *panel)
-+{
-+	struct ej030na *priv = to_ej030na(panel);
-+
-+	gpiod_set_value_cansleep(priv->reset_gpio, 1);
-+	regulator_disable(priv->supply);
-+
-+	return 0;
-+}
-+
-+static int ej030na_get_modes(struct drm_panel *panel,
-+				struct drm_connector *connector)
-+{
-+	struct ej030na *priv = to_ej030na(panel);
-+	const struct ej030na_info *panel_info = priv->panel_info;
-+	struct drm_display_mode *mode;
-+	unsigned int i;
-+
-+	for (i = 0; i < panel_info->num_modes; i++) {
-+		mode = drm_mode_duplicate(connector->dev,
-+					  &panel_info->display_modes[i]);
-+		if (!mode)
-+			return -ENOMEM;
-+
-+		drm_mode_set_name(mode);
-+
-+		mode->type = DRM_MODE_TYPE_DRIVER;
-+		if (panel_info->num_modes == 1)
-+			mode->type |= DRM_MODE_TYPE_PREFERRED;
-+
-+		drm_mode_probed_add(connector, mode);
-+	}
-+
-+	connector->display_info.bpc = 8;
-+	connector->display_info.width_mm = panel_info->width_mm;
-+	connector->display_info.height_mm = panel_info->height_mm;
-+
-+	drm_display_info_set_bus_formats(&connector->display_info,
-+					 &panel_info->bus_format, 1);
-+	connector->display_info.bus_flags = panel_info->bus_flags;
-+
-+	return panel_info->num_modes;
-+}
-+
-+static const struct drm_panel_funcs ej030na_funcs = {
-+	.prepare	= ej030na_prepare,
-+	.unprepare	= ej030na_unprepare,
-+	.get_modes	= ej030na_get_modes,
-+};
-+
-+static const struct regmap_config ej030na_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = 0x5a,
-+};
-+
-+static int ej030na_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct ej030na *priv;
-+	int err;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->spi = spi;
-+	spi_set_drvdata(spi, priv);
-+
-+	priv->map = devm_regmap_init_spi(spi, &ej030na_regmap_config);
-+	if (IS_ERR(priv->map)) {
-+		dev_err(dev, "Unable to init regmap\n");
-+		return PTR_ERR(priv->map);
-+	}
-+
-+	priv->panel_info = of_device_get_match_data(dev);
-+	if (!priv->panel_info)
-+		return -EINVAL;
-+
-+	priv->supply = devm_regulator_get(dev, "power");
-+	if (IS_ERR(priv->supply)) {
-+		dev_err(dev, "Failed to get power supply\n");
-+		return PTR_ERR(priv->supply);
-+	}
-+
-+	priv->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(priv->reset_gpio)) {
-+		dev_err(dev, "Failed to get reset GPIO\n");
-+		return PTR_ERR(priv->reset_gpio);
-+	}
-+
-+	drm_panel_init(&priv->panel, dev, &ej030na_funcs,
-+		       DRM_MODE_CONNECTOR_DPI);
-+
-+	err = drm_panel_of_backlight(&priv->panel);
-+	if (err)
-+		return err;
-+
-+	drm_panel_add(&priv->panel);
-+
-+	return 0;
-+}
-+
-+static int ej030na_remove(struct spi_device *spi)
-+{
-+	struct ej030na *priv = spi_get_drvdata(spi);
-+
-+	drm_panel_remove(&priv->panel);
-+	drm_panel_disable(&priv->panel);
-+	drm_panel_unprepare(&priv->panel);
-+
-+	return 0;
-+}
-+
-+static const struct drm_display_mode ej030na_modes[] = {
-+	{ /* 60 Hz */
-+		.clock = 14400,
-+		.hdisplay = 320,
-+		.hsync_start = 320 + 10,
-+		.hsync_end = 320 + 10 + 37,
-+		.htotal = 320 + 10 + 37 + 33,
-+		.vdisplay = 480,
-+		.vsync_start = 480 + 102,
-+		.vsync_end = 480 + 102 + 9 + 9,
-+		.vtotal = 480 + 102 + 9 + 9,
-+		.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+	},
-+	{ /* 50 Hz */
-+		.clock = 12000,
-+		.hdisplay = 320,
-+		.hsync_start = 320 + 10,
-+		.hsync_end = 320 + 10 + 37,
-+		.htotal = 320 + 10 + 37 + 33,
-+		.vdisplay = 480,
-+		.vsync_start = 480 + 102,
-+		.vsync_end = 480 + 102 + 9,
-+		.vtotal = 480 + 102 + 9 + 9,
-+		.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+	},
-+};
-+
-+static const struct ej030na_info ej030na_info = {
-+	.display_modes = ej030na_modes,
-+	.num_modes = ARRAY_SIZE(ej030na_modes),
-+	.width_mm = 70,
-+	.height_mm = 51,
-+	.bus_format = MEDIA_BUS_FMT_RGB888_3X8_DELTA,
-+	.bus_flags = DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE | DRM_BUS_FLAG_DE_LOW,
-+};
-+
-+static const struct of_device_id ej030na_of_match[] = {
-+	{ .compatible = "innolux,ej030na", .data = &ej030na_info },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, ej030na_of_match);
-+
-+static struct spi_driver ej030na_driver = {
-+	.driver = {
-+		.name = "panel-innolux-ej030na",
-+		.of_match_table = ej030na_of_match,
-+	},
-+	.probe = ej030na_probe,
-+	.remove = ej030na_remove,
-+};
-+module_spi_driver(ej030na_driver);
-+
-+MODULE_AUTHOR("Paul Cercueil <paul@crapouillou.net>");
-+MODULE_AUTHOR("Christophe Branchereau <cbranchereau@gmail.com>");
-+MODULE_LICENSE("GPL v2");
 -- 
-2.30.2
+2.25.4
 
