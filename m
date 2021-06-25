@@ -2,130 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B93083B403B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 11:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEBE73B40B3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 11:40:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230326AbhFYJX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 05:23:58 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:37581 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbhFYJX5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 05:23:57 -0400
-Received: from mail-ej1-f70.google.com ([209.85.218.70])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lwi1o-0002eb-BC
-        for devicetree@vger.kernel.org; Fri, 25 Jun 2021 09:21:36 +0000
-Received: by mail-ej1-f70.google.com with SMTP id p5-20020a17090653c5b02903db1cfa514dso2887546ejo.13
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 02:21:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=QsPyFBqPfdmelbWnXguclm9JevGGaBII5W3HvpNQ+C8=;
-        b=V9LOX8/NEepKh1VuP5FqvjhYYmZgLEgaBUeu957DlBoHc/eVFfzj9jE6k4IB7HQBAO
-         zlLfoGx0EDh33hJooalrwNQL2f7Vbr0mE+Xo5FzoF6xZFDCHRnDgFRjzraRb8Oa7GARU
-         P4ro5pI3fvJWntWphKgQkHuYHpIVj4gWo9IE7F6tXeJ4GEVEmTvySVch6gdIaWlrv3np
-         s/mqatnLZAgWWngBjfXl2BLSOVVZ7na28bpto+NqLJVEg9Du2+RtPpTn299yvVAxda6d
-         njO1yfb7T4FlkMiIPcBb5DrpAzTnZkrJgitfR+RmHZf0acF5rr5j4/4VF/xB/oJOgCku
-         TtwQ==
-X-Gm-Message-State: AOAM531vvHVXP5bVDifjn8nZp2CwxIg02l1THVEzKYuBD6SCC5fM86A5
-        btq9v/A0SK3Jp8qjCjpJggqKfnFHgcwfDR74UpIx8KdYrM3CznQ45ObNFP7OfaAMv+PkZjmAqYO
-        oDGekBr4y0VV/9JCmSh3jte9EvQZoJc64NSpJ70Y=
-X-Received: by 2002:aa7:d34f:: with SMTP id m15mr12772180edr.311.1624612896126;
-        Fri, 25 Jun 2021 02:21:36 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw+TM38F4Yr0eNdERAI2zb41U3+ytlASbW0YpW0+yf9XGf8E0tFDX/OQzorcP9sXyGgE3SWQg==
-X-Received: by 2002:aa7:d34f:: with SMTP id m15mr12772163edr.311.1624612895982;
-        Fri, 25 Jun 2021 02:21:35 -0700 (PDT)
-Received: from [192.168.1.115] (xdsl-188-155-177-222.adslplus.ch. [188.155.177.222])
-        by smtp.gmail.com with ESMTPSA id hz14sm2415400ejc.107.2021.06.25.02.21.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jun 2021 02:21:35 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [RFC PATCH 2/9] drm: bridge: Add Samsung SEC MIPI DSIM bridge
- driver
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Francis Laniel <francis.laniel@amarulasolutions.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        Milco Pratesi <milco.pratesi@engicam.com>,
-        Anthony Brandon <anthony@amarulasolutions.com>,
-        linux-phy@lists.infradead.org, Fancy Fang <chen.fang@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-References: <20210621072424.111733-1-jagan@amarulasolutions.com>
- <20210621072424.111733-3-jagan@amarulasolutions.com>
- <YNO0LHNVSWjrh1ZS@pendragon.ideasonboard.com>
- <CAOMZO5Ahbu4mohtMDOQOv_y5B_TDesbdYEUZTF1RL7_y-bS+RA@mail.gmail.com>
- <CAMty3ZAtObU-bf6FuxvSBaZn2cotj_NxASW9g9on-kBJ7iW3OA@mail.gmail.com>
- <YNR37NWkxq0mZyq5@pendragon.ideasonboard.com>
-Message-ID: <fdd446c6-c8ce-9dae-f7ac-e06241f76250@canonical.com>
-Date:   Fri, 25 Jun 2021 11:21:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+        id S229940AbhFYJmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 05:42:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48636 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229902AbhFYJmg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 05:42:36 -0400
+X-Greylist: delayed 1045 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 25 Jun 2021 02:40:16 PDT
+Received: from fudo.makrotopia.org (fudo.makrotopia.org [IPv6:2a07:2ec0:3002::71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E2DC061574;
+        Fri, 25 Jun 2021 02:40:16 -0700 (PDT)
+Received: from local
+        by fudo.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.94.2)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1lwi2t-0000zB-Rr; Fri, 25 Jun 2021 11:22:44 +0200
+Date:   Fri, 25 Jun 2021 11:22:31 +0200
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Eric Woudstra <ericwouds@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Sean Wang <sean.wang@mediatek.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+Subject: Re: Re: [PATCH] Fix mt7622.dtsi thermal cpu
+Message-ID: <YNWgVxvNbwNcT3B8@makrotopia.org>
+References: <20210619121927.32699-1-ericwouds@gmail.com>
+ <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org>
+ <56fb5540-fb86-4e6a-a596-1276026b37e5@gmail.com>
+ <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org>
+ <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
+ <fb633034-96e5-6165-b43f-290ae1a65cfd@linaro.org>
+ <189b52d5-b103-43e1-a64f-1e627fbc75af@gmail.com>
+ <173e6bab-9d21-eb28-9b91-a5f80c01fd03@linaro.org>
+ <3dd22cf2-1186-4870-aa49-e5cddc18c6e9@gmail.com>
+ <trinity-7580d955-3187-41e5-9297-1ac8f628a9d5-1624609003739@3c-app-gmx-bs66>
 MIME-Version: 1.0
-In-Reply-To: <YNR37NWkxq0mZyq5@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <trinity-7580d955-3187-41e5-9297-1ac8f628a9d5-1624609003739@3c-app-gmx-bs66>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Jun 2021 at 14:19, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Jagan,
->
-> On Thu, Jun 24, 2021 at 05:42:43PM +0530, Jagan Teki wrote:
-> > On Thu, Jun 24, 2021 at 8:18 AM Fabio Estevam wrote:
-> > > On Wed, Jun 23, 2021 at 7:23 PM Laurent Pinchart wrote:
+On Fri, Jun 25, 2021 at 10:16:43AM +0200, Frank Wunderlich wrote:
+> Hi,
+> 
+> > Gesendet: Donnerstag, 24. Juni 2021 um 15:29 Uhr
+> > Von: "Eric Woudstra" <ericwouds@gmail.com>
+> > The SOC runs unthrotlled slowly to 80 degrees. This takes minutes. Polling interval 1 second or less does not matter much when looking at these temperature rise times 
+> > 
+> > After that in more then an hour it slowly creeps up to 85. I believe the design is so that the SOC, under normal circumstances, can run at 1.35 GHz without throttling frequency, without heatsink. It just needs a safeguard for different circumstances.
+> > 
+> > Most of these SOCs can also run in industrial grade circumstances, which means up to 85 degrees ambient temperature already . If not industrial then this would be 60 degrees ambient already 
+> > 
+> > But only someone at Mediatek can confirm this 
+> 
+> maybe Matthias knows anybody?
+> get_maintainers-script shows no mtk employee for mtk_thermal driver, added Sean and Ryder as common Linux-Contacts...
+> 
+> Daniel from openwrt have some other mt7622 Boards maybe he can test the Fan approach below
+
+I got Linksys E8450 aka. Belkin RT3200 ( https://fcc.io/K7S-03571 ) as
+well as Ubiquiti UniFi 6 LR ( https://fcc.io/SWX-U6LR ). Both got quite
+massive customized heatsinks (see internal photos on FCC submission),
+which results in much better heat dissipation than just having the
+naked chip like on the BPi-R64.
+Hence I also can't test the fan approach on boards other than the R64.
+
+
+> 
+> > On Jun 24, 2021, 12:21 PM, at 12:21 PM, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
+> > >Found that:
 > > >
-> > > > Looking at the register set, it seems to match the Exynos 5433,
-> > > > supported by drivers/gpu/drm/exynos/exynos_drm_dsi.c. Can we leverage
-> > > > that driver instead of adding a new one for the same IP core ?
+> > >https://download.kamami.pl/p579344-MT7622A_Datasheet_for_BananaPi_Only%281%29.pdf
 > > >
-> > > Yes. there was an attempt from Michael in this direction:
-> > > https://patchwork.kernel.org/project/dri-devel/cover/20200911135413.3654800-1-m.tretter@pengutronix.de/
-> >
-> > Thanks for the reference, I will check it out and see I can send any
-> > updated versions wrt my i.MX8MM platform.
->
-> Thanks.
->
-> I had a brief look at the exynos driver, and I think it should be turned
-> into a DRM bridge as part of this rework to be used with the i.MX8MM.
->
-> Is there someone from Samsung who could assist, at least to test the
-> changes ?
-
-Yes, I mentioned few guys in reply to PHY. Around the DRM drivers you
-can get in touch with:
-Inki Dae <inki.dae@samsung.com>
-Seung-Woo Kim <sw0312.kim@samsung.com>
-Marek Szyprowski <m.szyprowski@samsung.com>
-Andrzej Hajda <a.hajda@samsung.com>
-
-The easiest testing of the display stack would be on Hardkernel's Odroid
-XU4 (https://www.hardkernel.com/shop/odroid-xu4-special-price/) however
-you will not test the DSI/DSIM directly (it has only HDMI port).
-
-Best regards,
-Krzysztof
-Best regards,
-Krzysztof
+> > >Chapter 3.3 - Thermal Characteristics
+> > >
+> > >Given the values I suggest:
+> > >
+> > > - Passive - 80°C
+> > >
+> > > - Hot - 90°C
+> > >
+> > > - Critical - 100°C
+> 
+> maybe adding FAN (r64, don't know for other mt7622 boards) for lower 2 trips (with adjusted temperature points) and cpu-throtteling for upper 2 trips
+> 
+> something like this (used the 70/80 trip points discussed before):
+> 
+> --- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> @@ -134,6 +134,13 @@
+>  		};
+>  	};
+>  
+> +	fan0: pwm-fan {
+> +		compatible = "pwm-fan";
+> +		#cooling-cells = <2>;
+> +		pwms = <&pwm 2 10000 0>;
+> +		cooling-levels = <0 102 170 230>;
+> +	};
+> +
+>  	thermal-zones {
+>  		cpu_thermal: cpu-thermal {
+>  			polling-delay-passive = <1000>;
+> @@ -143,13 +150,13 @@
+>  
+>  			trips {
+>  				cpu_passive: cpu-passive {
+> -					temperature = <47000>;
+> +					temperature = <70000>;
+>  					hysteresis = <2000>;
+>  					type = "passive";
+>  				};
+>  
+>  				cpu_active: cpu-active {
+> -					temperature = <67000>;
+> +					temperature = <80000>;
+>  					hysteresis = <2000>;
+>  					type = "active";
+>  				};
+> @@ -170,14 +177,12 @@
+>  			cooling-maps {
+>  				map0 {
+>  					trip = <&cpu_passive>;
+> -					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> -							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +					cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>  				};
+>  
+>  				map1 {
+>  					trip = <&cpu_active>;
+> -					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> -							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +					cooling-device = <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>  				};
+>  
+>  				map2 {
+> @@ -428,6 +433,7 @@
+>  	pwm: pwm@11006000 {
+>  		compatible = "mediatek,mt7622-pwm";
+>  		reg = <0 0x11006000 0 0x1000>;
+> +		#pwm-cells = <3>;
+>  		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_LOW>;
+>  		clocks = <&topckgen CLK_TOP_PWM_SEL>,
+>  			 <&pericfg CLK_PERI_PWM_PD>,
+> 
+> 
+> regards Frank
