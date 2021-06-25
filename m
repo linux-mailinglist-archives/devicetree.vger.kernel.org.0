@@ -2,113 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4DB43B428E
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 13:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 245E13B429E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 13:36:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230439AbhFYLdv convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 25 Jun 2021 07:33:51 -0400
-Received: from aposti.net ([89.234.176.197]:39726 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229458AbhFYLdu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 07:33:50 -0400
-Date:   Fri, 25 Jun 2021 12:31:17 +0100
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v3 4/4] MIPS: CI20: Add second percpu timer for SMP.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com
-Message-Id: <5C99VQ.EJKI9MPO7XXO1@crapouillou.net>
-In-Reply-To: <1624547189-61079-5-git-send-email-zhouyanjie@wanyeetech.com>
-References: <1624547189-61079-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1624547189-61079-5-git-send-email-zhouyanjie@wanyeetech.com>
+        id S229498AbhFYLjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 07:39:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46914 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229458AbhFYLjJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 07:39:09 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25C28C061766
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 04:36:48 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id z22so12063760ljh.8
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 04:36:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mFVix5hj4qMWkWTebg8/V8+S9K9ne/G74p8v6BIfU6o=;
+        b=I2So+MXmqnpvFXypMoaFVV6uKyzK7GRRg14dhmjcbQaxRXBweaj2GX5hHc00YS6YRc
+         kqNOoF7S4ESkn2VDsouQFHdx5zMYdbQaHyS1Zouc4VTgJkpdWiyIJHNqK9g91PxbpGRr
+         xustDbI3DEeAOrO8FxjI7O/HA+SC/n2gefMOGdr+DoCU3ihT4wyi8+fmL0XGCq5qcUtk
+         P1tbAxddEoFqC4FFN3rBSJIfI5TkD0WVbng42trX0B0Uy196AUuxCEOQT8l7NzT4mbM/
+         QINoGWYJ2T1KicpeY3kAKyc/rhBfX6kebAjGkl4e4FXYBUSYeu7+P1Gd2oH4g8fLtdfv
+         Jt6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mFVix5hj4qMWkWTebg8/V8+S9K9ne/G74p8v6BIfU6o=;
+        b=kGZkCFixZi3XXEZIAZ+2BsB/yEXb1+d53M/5W74YSYK1vOecfkukQpEsg8g+sQNZIU
+         gAiCjxOt0m/t0jFV/CBzEdwGfjxvsM/5VDjcyTlVVRDgZXjc1jLmp/xPghjD8hQRS4vU
+         y2XbH40GJcQf/yuM+JOd4R0crI4btUUSKM3Sc8irkd/wp8MOlaTsOQkVfcWbUV0++dCU
+         IjqqpndQpEx8MpxFP21WyLlULlj+2xXNDcGg62lCqw8mVSnxx9P+857KmjLstXTE/in1
+         +18gnhPaw236C4C+MYtAekhIzAfL2DizXRjIUj4Sehyw2ZEZMXcm+Bi44T3kKE4E6dKu
+         3eOw==
+X-Gm-Message-State: AOAM531E+xOKVfD5w35ipazXaEP26+3PLnpyo9e60uRi0i+oeydDY5NS
+        mZ6FiCNFmyCH0bI2O8BFnF7wVQ==
+X-Google-Smtp-Source: ABdhPJyhgY8f/6Jz/KKUMwRU1cFzxqjiaNfbIahMe0T7VNKkBkdz3XX3DHfDtNLtGxzoKRkwCUkFIA==
+X-Received: by 2002:a2e:8ecd:: with SMTP id e13mr38921ljl.193.1624621006511;
+        Fri, 25 Jun 2021 04:36:46 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id g24sm489682lfv.228.2021.06.25.04.36.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Jun 2021 04:36:46 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        phone-devel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: input/ts/zinitix: Convert to YAML, fix and extend
+Date:   Fri, 25 Jun 2021 13:34:34 +0200
+Message-Id: <20210625113435.2539282-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
+This converts the Zinitix BT4xx and BT5xx touchscreen bindings to YAML, fix
+them up a bit and extends them.
 
-Le jeu., juin 24 2021 at 23:06:29 +0800, 周琰杰 (Zhou Yanjie) 
-<zhouyanjie@wanyeetech.com> a écrit :
-> 1.Add a new TCU channel as the percpu timer of core1, this is to
->   prepare for the subsequent SMP support. The newly added channel
->   will not adversely affect the current single-core state.
-> 2.Adjust the position of TCU node to make it consistent with the
->   order in jz4780.dtsi file.
+We list all the existing BT4xx and BT5xx components with compatible strings.
+These are all similar, use the same bindings and work in similar ways.
 
-That's a bit superfluous, the order matters when adding new nodes, but 
-once they are added, moving them around only cause annoyance.
+We rename the supplies from the erroneous vdd/vddo to the actual supply
+names vcca/vdd as specified on the actual component. It is long established
+that supplies shall be named after the supply pin names of a component.
+The confusion probably stems from that in a certain product the rails to the
+component were named vdd/vddo. Drop some notes on how OS implementations should
+avoid confusion by first looking for vddo, and if that exists assume the
+legacy binding pair and otherwise use vcca/vdd.
 
-> 
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> ---
-> 
-> Notes:
->     v2:
->     New patch.
-> 
->     v2->v3:
->     No change.
-> 
->  arch/mips/boot/dts/ingenic/ci20.dts | 21 +++++++++++----------
->  1 file changed, 11 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts 
-> b/arch/mips/boot/dts/ingenic/ci20.dts
-> index 8877c62..70005cc 100644
-> --- a/arch/mips/boot/dts/ingenic/ci20.dts
-> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
-> @@ -118,6 +118,17 @@
->  	assigned-clock-rates = <48000000>;
->  };
-> 
-> +&tcu {
-> +	/*
-> +	 * 750 kHz for the system timers and 3 MHz for the clocksources,
-> +	 * use channel #0 and #1 for the per cpu system timers, and use
-> +	 * channel #2 for the clocksource.
-> +	 */
-> +	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
-> +					  <&tcu TCU_CLK_TIMER2>, <&tcu TCU_CLK_OST>;
-> +	assigned-clock-rates = <750000>, <750000>, <3000000>, <3000000>;
+Add reset-gpios as sometimes manufacturers pulls a GPIO line to the reset
+line on the chip.
 
-Ideally you'd set TIMER1 to 3 MHz and TIMER2 to 750 kHz, otherwise it 
-kind of breaks support for older kernels (they would still boot, but 
-with a very slow clocksource). So in the new DTS you could use the 
-timer0 clock for CPU #0, timer1 for the clocksource, and timer2+ for 
-cpus > 0.
+Add optional touchscreen-fuzz-x and touchscreen-fuzz-y properties.
 
-Cheers,
--Paul
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Michael Srba <Michael.Srba@seznam.cz>
+Cc: phone-devel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ .../input/touchscreen/zinitix,bt400.yaml      | 115 ++++++++++++++++++
+ .../bindings/input/touchscreen/zinitix.txt    |  40 ------
+ 2 files changed, 115 insertions(+), 40 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
+ delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
 
-> +};
-> +
->  &mmc0 {
->  	status = "okay";
-> 
-> @@ -522,13 +533,3 @@
->  		bias-disable;
->  	};
->  };
-> -
-> -&tcu {
-> -	/*
-> -	 * 750 kHz for the system timer and 3 MHz for the clocksource,
-> -	 * use channel #0 for the system timer, #1 for the clocksource.
-> -	 */
-> -	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
-> -					  <&tcu TCU_CLK_OST>;
-> -	assigned-clock-rates = <750000>, <3000000>, <3000000>;
-> -};
-> --
-> 2.7.4
-> 
-
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml b/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
+new file mode 100644
+index 000000000000..6e8b4dede9d7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml
+@@ -0,0 +1,115 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/touchscreen/zinitix,bt400.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Zinitix BT4xx and BT5xx series touchscreen controller bindings
++
++description: The Zinitix BT4xx and BT5xx series of touchscreen controllers
++  are Korea-produced touchscreens with embedded microcontrollers. The
++  BT4xx series was produced 2010-2013 and the BT5xx series 2013-2014.
++
++maintainers:
++  - Michael Srba <Michael.Srba@seznam.cz>
++  - Linus Walleij <linus.walleij@linaro.org>
++
++allOf:
++  - $ref: touchscreen.yaml#
++
++properties:
++  $nodename:
++    pattern: "^touchscreen(@.*)?$"
++
++  compatible:
++    oneOf:
++      - const: zinitix,bt402
++      - const: zinitix,bt403
++      - const: zinitix,bt404
++      - const: zinitix,bt412
++      - const: zinitix,bt413
++      - const: zinitix,bt431
++      - const: zinitix,bt432
++      - const: zinitix,bt531
++      - const: zinitix,bt532
++      - const: zinitix,bt538
++      - const: zinitix,bt541
++      - const: zinitix,bt548
++      - const: zinitix,bt554
++      - const: zinitix,at100
++
++  reg:
++    description: I2C address on the I2C bus
++
++  clock-frequency:
++    description: I2C client clock frequency, defined for host when using
++      the device on the I2C bus
++    minimum: 0
++    maximum: 400000
++
++  interrupts:
++    description: Interrupt to host
++    maxItems: 1
++
++  vcca-supply:
++    description: Analog power supply regulator on the VCCA pin
++
++  vdd-supply:
++    description: Digital power supply regulator on the VDD pin.
++      In older device trees this can be the accidental name for the analog
++      supply on the VCCA pin, and in that case the deprecated vddo-supply is
++      used for the digital power supply.
++
++  vddo-supply:
++    description: Deprecated name for the digital power supply, use vdd-supply
++      as this reflects the real name of the pin. If this supply is present,
++      the vdd-supply represents VCCA instead of VDD. Implementers should first
++      check for this property, and if it is present assume that the vdd-supply
++      represents the analog supply.
++    deprecated: true
++
++  reset-gpios:
++    description: Reset line for the touchscreen, should be tagged
++      as GPIO_ACTIVE_LOW
++
++  zinitix,mode:
++    description: Mode of reporting touch points. Some modes may not work
++      with a particular ts firmware for unknown reasons. Available modes are
++      1 and 2. Mode 2 is the default and preferred.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2]
++
++  touchscreen-size-x: true
++  touchscreen-size-y: true
++  touchscreen-fuzz-x: true
++  touchscreen-fuzz-y: true
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - touchscreen-size-x
++  - touchscreen-size-y
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      touchscreen@20 {
++        compatible = "zinitix,bt541";
++        reg = <0x20>;
++        interrupt-parent = <&gpio>;
++        interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
++        vcca-supply = <&reg_vcca_tsp>;
++        vdd-supply = <&reg_vdd_tsp>;
++        touchscreen-size-x = <540>;
++        touchscreen-size-y = <960>;
++        zinitix,mode = <2>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt b/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
+deleted file mode 100644
+index 446efb9f5f55..000000000000
+--- a/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
++++ /dev/null
+@@ -1,40 +0,0 @@
+-Device tree bindings for Zinitx BT541 touchscreen controller
+-
+-Required properties:
+-
+- - compatible		: Should be "zinitix,bt541"
+- - reg			: I2C address of the chip. Should be 0x20
+- - interrupts		: Interrupt to which the chip is connected
+-
+-Optional properties:
+-
+- - vdd-supply		: Analog power supply regulator on VCCA pin
+- - vddo-supply		: Digital power supply regulator on VDD pin
+- - zinitix,mode		: Mode of reporting touch points. Some modes may not work
+-			  with a particular ts firmware for unknown reasons. Available
+-			  modes are 1 and 2. Mode 2 is the default and preferred.
+-
+-The touchscreen-* properties are documented in touchscreen.txt in this
+-directory.
+-
+-Example:
+-
+-	i2c@00000000 {
+-		/* ... */
+-
+-		bt541@20 {
+-			compatible = "zinitix,bt541";
+-			reg = <0x20>;
+-			interrupt-parent = <&msmgpio>;
+-			interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&tsp_default>;
+-			vdd-supply = <&reg_vdd_tsp>;
+-			vddo-supply = <&pm8916_l6>;
+-			touchscreen-size-x = <540>;
+-			touchscreen-size-y = <960>;
+-			zinitix,mode = <2>;
+-		};
+-
+-		/* ... */
+-	};
+-- 
+2.31.1
 
