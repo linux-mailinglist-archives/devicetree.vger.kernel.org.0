@@ -2,148 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CAD93B4987
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 21:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71F933B49CD
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 22:39:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbhFYT5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 15:57:47 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:8739 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S229741AbhFYT5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 15:57:47 -0400
-X-IronPort-AV: E=Sophos;i="5.83,299,1616425200"; 
-   d="scan'208";a="85449089"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 26 Jun 2021 04:55:25 +0900
-Received: from localhost.localdomain (unknown [10.226.92.12])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id CD8DC40E685A;
-        Sat, 26 Jun 2021 04:55:23 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 10/10] arm64: dts: renesas: r9a07g044: Add I2C nodes
-Date:   Fri, 25 Jun 2021 20:54:55 +0100
-Message-Id: <20210625195455.3607-11-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210625195455.3607-1-biju.das.jz@bp.renesas.com>
-References: <20210625195455.3607-1-biju.das.jz@bp.renesas.com>
+        id S229794AbhFYUlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 16:41:39 -0400
+Received: from lists.nic.cz ([217.31.204.67]:49216 "EHLO mail.nic.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229629AbhFYUlj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Jun 2021 16:41:39 -0400
+Received: from thinkpad (unknown [172.20.6.87])
+        by mail.nic.cz (Postfix) with ESMTPSA id D251C140A51;
+        Fri, 25 Jun 2021 22:39:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
+        t=1624653557; bh=u6EMeSK1Qnlc29tD+E2egIEvb4ysZ1mRyK+uKuoRxgM=;
+        h=Date:From:To;
+        b=PY0v4FA6SF/ENMySW5FyqcEySryDtRT1HDaHe8RbkVoFR+l7QHRIyh31TQ0XClzsu
+         8QW2FStFeiJWtKarsepfUSun4pyoxxYRsSN/Tl/nGjBdzniUhampNA/1rAmeVxjN/t
+         ZuiD/7pzr9DyQpllBPGrc1Zi4eMDNZrb+KLDD5FI=
+Date:   Fri, 25 Jun 2021 22:39:16 +0200
+From:   Marek Behun <marek.behun@nic.cz>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Robin van der Gracht <robin@protonic.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org,
+        linux-leds@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 18/18] auxdisplay: ht16k33: Add segment display LED
+ support
+Message-ID: <20210625223916.7e00e710@thinkpad>
+In-Reply-To: <20210625125902.1162428-19-geert@linux-m68k.org>
+References: <20210625125902.1162428-1-geert@linux-m68k.org>
+        <20210625125902.1162428-19-geert@linux-m68k.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,
+        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
+        autolearn=disabled version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add I2C{0,1,2,3} nodes to RZ/G2L (R9A07G044) SoC DTSI.
+On Fri, 25 Jun 2021 14:59:02 +0200
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v2->v3:
- * Added Geert's Rb tab
- * Fixes extra space in interrupt property
-v1->v2:
- * Updated reset entries.
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 80 ++++++++++++++++++++++
- 1 file changed, 80 insertions(+)
+> Instantiate a single LED for a segment display.  This allows the user to
+> control display brightness and blinking through the LED class API and
+> triggers, and exposes the display color.
+> The LED will be named "auxdisplay:<color>:backlight".
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 01482d227506..9a7489dc70d1 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -89,6 +89,86 @@
- 			status = "disabled";
- 		};
- 
-+		i2c0: i2c@10058000 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058000 0 0x400>;
-+			interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 348 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 349 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 351 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_I2C0_PCLK>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_I2C0_MRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		i2c1: i2c@10058400 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058400 0 0x400>;
-+			interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 356 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 357 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 362 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_I2C1_PCLK>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_I2C1_MRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		i2c2: i2c@10058800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058800 0 0x400>;
-+			interrupts = <GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 364 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 365 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_I2C2_PCLK>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_I2C2_MRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		i2c3: i2c@10058c00 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058c00 0 0x400>;
-+			interrupts = <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 372 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 373 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 376 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_I2C3_PCLK>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_I2C3_MRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
- 		cpg: clock-controller@11010000 {
- 			compatible = "renesas,r9a07g044-cpg";
- 			reg = <0 0x11010000 0 0x10000>;
--- 
-2.17.1
+What if there are multiple "auxdisplay"s ?
+Doesn't this subsystem have IDs? So that you can use auxdisplayN for
+device name, for example?
 
+
+> +	of_property_read_u32(node, "color", &color);
+> +	seg->led.name = devm_kasprintf(dev, GFP_KERNEL,
+> +			"auxdisplay:%s:" LED_FUNCTION_BACKLIGHT,
+> +			color < LED_COLOR_ID_MAX ? led_colors[color] : "");
+
+If you use devm_led_classdev_register_ext and pass struct
+led_init_data, LED core will generate name of the LED itself.
+
+Marek
