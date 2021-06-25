@@ -2,177 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 160403B4772
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 18:32:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7C623B4785
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 18:40:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbhFYQfR convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 25 Jun 2021 12:35:17 -0400
-Received: from out28-171.mail.aliyun.com ([115.124.28.171]:33674 "EHLO
-        out28-171.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbhFYQfR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 12:35:17 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436534|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.252999-0.00360188-0.743399;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047212;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=15;RT=15;SR=0;TI=SMTPD_---.KY.h8bx_1624638772;
-Received: from zhouyanjie-virtual-machine(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KY.h8bx_1624638772)
-          by smtp.aliyun-inc.com(10.147.41.231);
-          Sat, 26 Jun 2021 00:32:53 +0800
-Date:   Sat, 26 Jun 2021 00:32:51 +0800
-From:   =?UTF-8?B?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com
-Subject: Re: [PATCH v3 4/4] MIPS: CI20: Add second percpu timer for SMP.
-Message-ID: <20210626003251.02312e1e@zhouyanjie-virtual-machine>
-In-Reply-To: <67L9VQ.H1SRDC272GKW@crapouillou.net>
-References: <1624547189-61079-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1624547189-61079-5-git-send-email-zhouyanjie@wanyeetech.com>
-        <5C99VQ.EJKI9MPO7XXO1@crapouillou.net>
-        <20210625231942.32945490@zhouyanjie-virtual-machine>
-        <67L9VQ.H1SRDC272GKW@crapouillou.net>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+        id S229997AbhFYQmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 12:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58838 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229950AbhFYQmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 12:42:20 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C742FC061574
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 09:39:58 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id y14so8037044pgs.12
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 09:39:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SBlU3FmazlByBy7OHLdn1ScUHY89iP5N5Z0k4Z9L/VM=;
+        b=hEL46Gg5Tb/L+hmyNJUMKOARy2IhwsQNOeZuydpIngFzU8V/bhjN45zsHBsz7kuviY
+         dVFzJbI5jequMkHRz91ltno55g0xIHhNXJKUyAbY4CM8tWB4FKyXZ8oLDzr6DyD5QZse
+         Mq2UHiHfLJ3xfQSp5yilfjqZ3V/1r/uv/xijI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SBlU3FmazlByBy7OHLdn1ScUHY89iP5N5Z0k4Z9L/VM=;
+        b=McA1J3cKaNcD7ga4eWdvCP6eE1cRS27uzvAEpmzyu8ZQHUKBRbZuKEtn/eiRdK8e50
+         PkFXWOsC3ac5rHwOC19iETDyeCuVEYFrIuB5oGuCnYqgmni7vz4jPkFsVQqiDFAvqsd2
+         C5FEEr38HpcqGgH/E5J4WjN1QKCuB/Rcc7by+8+I2Fl7+iaO8IcsWH+P/vuZ/An1qVst
+         84Dapb1S9cqk2HEntENW3piWddJYqRrewrdSCEjxMplGnvLJitLAtjF/A7XqDWE3oSQP
+         eGQFcOIGhVsTqeOBv2NZgPl/K/zwRl5aXNbAcjPCGi3jjeDqdruKCis8tIf9i82Uurac
+         b4JA==
+X-Gm-Message-State: AOAM531KIEbdvKtwbstJCc3F7C9y991mcwa1Bb7P+rOaNcsSGoAKkW1j
+        7j6TdctqYcAAOwdDXMi46oYTTw==
+X-Google-Smtp-Source: ABdhPJwp9EQbysYWlsvBRzN2DZlXYyVDXXNV+frWB56nArpzWdTzmCavnqZXAJIqk/FRUol53TE5Tw==
+X-Received: by 2002:a62:6d07:0:b029:2e9:1e3c:ad54 with SMTP id i7-20020a626d070000b02902e91e3cad54mr11456357pfc.46.1624639198128;
+        Fri, 25 Jun 2021 09:39:58 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:cc13:a7dd:f4b5:2160])
+        by smtp.gmail.com with UTF8SMTPSA id 71sm6731020pfw.13.2021.06.25.09.39.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Jun 2021 09:39:57 -0700 (PDT)
+Date:   Fri, 25 Jun 2021 09:39:55 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, will@kernel.org,
+        saiprakash.ranjan@codeaurora.org, ohad@wizery.com,
+        agross@kernel.org, mathieu.poirier@linaro.org,
+        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org
+Subject: Re: [PATCH 5/9] remoteproc: mss: q6v5-mss: Add modem support on
+ SC7280
+Message-ID: <YNYG200n8Zh9vDWL@google.com>
+References: <1624564058-24095-1-git-send-email-sibis@codeaurora.org>
+ <1624564058-24095-6-git-send-email-sibis@codeaurora.org>
+ <YNUkw5GDrHwTVcC5@google.com>
+ <73f9814fb4f3aa2abeee0ece3aa26312@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <73f9814fb4f3aa2abeee0ece3aa26312@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Hi Sibi,
 
-于 Fri, 25 Jun 2021 16:47:30 +0100
-Paul Cercueil <paul@crapouillou.net> 写道:
-
-> Hi Zhou,
+On Fri, Jun 25, 2021 at 07:51:38PM +0530, Sibi Sankar wrote:
+> Hey Matthias,
+> Thanks for taking time to review the patch
+> series.
 > 
-> Le ven., juin 25 2021 at 23:19:42 +0800, 周琰杰 
-> <zhouyanjie@wanyeetech.com> a écrit :
-> > Hi Paul,
+> On 2021-06-25 06:05, Matthias Kaehlcke wrote:
+> > Hi Sibi,
 > > 
-> > 于 Fri, 25 Jun 2021 12:31:17 +0100
-> > Paul Cercueil <paul@crapouillou.net> 写道:
-> >   
-> >>  Hi Zhou,
-> >> 
-> >>  Le jeu., juin 24 2021 at 23:06:29 +0800, 周琰杰 (Zhou Yanjie)
-> >>  <zhouyanjie@wanyeetech.com> a écrit :  
-> >>  > 1.Add a new TCU channel as the percpu timer of core1, this is to
-> >>  >   prepare for the subsequent SMP support. The newly added
-> >>  > channel will not adversely affect the current single-core state.
-> >>  > 2.Adjust the position of TCU node to make it consistent with the
-> >>  >   order in jz4780.dtsi file.  
-> >> 
-> >>  That's a bit superfluous, the order matters when adding new nodes,
-> >>  but once they are added, moving them around only cause annoyance.
-> >>   
-> >>  >
-> >>  > Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> >>  > ---
-> >>  >
-> >>  > Notes:
-> >>  >     v2:
-> >>  >     New patch.
-> >>  >
-> >>  >     v2->v3:
-> >>  >     No change.
-> >>  >
-> >>  >  arch/mips/boot/dts/ingenic/ci20.dts | 21 +++++++++++----------
-> >>  >  1 file changed, 11 insertions(+), 10 deletions(-)
-> >>  >
-> >>  > diff --git a/arch/mips/boot/dts/ingenic/ci20.dts
-> >>  > b/arch/mips/boot/dts/ingenic/ci20.dts
-> >>  > index 8877c62..70005cc 100644
-> >>  > --- a/arch/mips/boot/dts/ingenic/ci20.dts
-> >>  > +++ b/arch/mips/boot/dts/ingenic/ci20.dts
-> >>  > @@ -118,6 +118,17 @@
-> >>  >  	assigned-clock-rates = <48000000>;
-> >>  >  };
-> >>  >
-> >>  > +&tcu {
-> >>  > +	/*
-> >>  > +	 * 750 kHz for the system timers and 3 MHz for the
-> >>  > clocksources,
-> >>  > +	 * use channel #0 and #1 for the per cpu system timers,
-> >>  > and use
-> >>  > +	 * channel #2 for the clocksource.
-> >>  > +	 */
-> >>  > +	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu  
-> >>  > TCU_CLK_TIMER1>,  
-> >>  > +					  <&tcu
-> >>  > TCU_CLK_TIMER2>, <&tcu TCU_CLK_OST>;
-> >>  > +	assigned-clock-rates = <750000>, <750000>, <3000000>,
-> >>  > <3000000>;  
-> >> 
-> >>  Ideally you'd set TIMER1 to 3 MHz and TIMER2 to 750 kHz,
-> >> otherwise it
-> >>  kind of breaks support for older kernels (they would still boot,
-> >> but with a very slow clocksource). So in the new DTS you could use
-> >> the timer0 clock for CPU #0, timer1 for the clocksource, and
-> >> timer2+ for cpus > 0.  
+> > On Fri, Jun 25, 2021 at 01:17:34AM +0530, Sibi Sankar wrote:
+> > > Add out of reset sequence support for modem sub-system on SC7280 SoCs.
+> > > It requires access to an additional set of qaccept registers, external
+> > > power/clk control registers and halt vq6 register to put the modem
+> > > back
+> > > into reset.
+> > > 
+> > > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> > > ---
+> > >  drivers/remoteproc/qcom_q6v5_mss.c | 245
+> > > ++++++++++++++++++++++++++++++++++++-
+> > >  1 file changed, 241 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/drivers/remoteproc/qcom_q6v5_mss.c
+> > > b/drivers/remoteproc/qcom_q6v5_mss.c
+> > > index 5d21084004cb..4e32811e0025 100644
+> > > --- a/drivers/remoteproc/qcom_q6v5_mss.c
+> > > +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+> > > @@ -77,6 +77,14 @@
+> > > 
+> > >  #define HALT_ACK_TIMEOUT_US		100000
+> > > 
+> > > +/* QACCEPT Register Offsets */
+> > > +#define QACCEPT_ACCEPT_REG		0x0
+> > > +#define QACCEPT_ACTIVE_REG		0x4
+> > > +#define QACCEPT_DENY_REG		0x8
+> > > +#define QACCEPT_REQ_REG			0xC
+> > > +
+> > > +#define QACCEPT_TIMEOUT_US		50
+> > > +
+> > >  /* QDSP6SS_RESET */
+> > >  #define Q6SS_STOP_CORE			BIT(0)
+> > >  #define Q6SS_CORE_ARES			BIT(1)
+> > > @@ -143,6 +151,9 @@ struct rproc_hexagon_res {
+> > >  	bool has_alt_reset;
+> > >  	bool has_mba_logs;
+> > >  	bool has_spare_reg;
+> > > +	bool has_qaccept_regs;
+> > > +	bool has_ext_cntl_regs;
+> > > +	bool has_vq6;
+> > >  };
+> > > 
+> > >  struct q6v5 {
+> > > @@ -158,8 +169,18 @@ struct q6v5 {
+> > >  	u32 halt_q6;
+> > >  	u32 halt_modem;
+> > >  	u32 halt_nc;
+> > > +	u32 halt_vq6;
+> > >  	u32 conn_box;
+> > > 
+> > > +	u32 qaccept_mdm;
+> > > +	u32 qaccept_cx;
+> > > +	u32 qaccept_axi;
+> > > +
+> > > +	u32 axim1_clk_off;
+> > > +	u32 crypto_clk_off;
+> > > +	u32 force_clk_on;
+> > > +	u32 rscc_disable;
+> > > +
+> > >  	struct reset_control *mss_restart;
+> > >  	struct reset_control *pdc_reset;
+> > > 
+> > > @@ -201,6 +222,9 @@ struct q6v5 {
+> > >  	bool has_alt_reset;
+> > >  	bool has_mba_logs;
+> > >  	bool has_spare_reg;
+> > > +	bool has_qaccept_regs;
+> > > +	bool has_ext_cntl_regs;
+> > > +	bool has_vq6;
+> > >  	int mpss_perm;
+> > >  	int mba_perm;
+> > >  	const char *hexagon_mdt_image;
+> > > @@ -213,6 +237,7 @@ enum {
+> > >  	MSS_MSM8996,
+> > >  	MSS_MSM8998,
+> > >  	MSS_SC7180,
+> > > +	MSS_SC7280,
+> > >  	MSS_SDM845,
+> > >  };
+> > > 
+> > > @@ -473,6 +498,12 @@ static int q6v5_reset_assert(struct q6v5 *qproc)
+> > >  		regmap_update_bits(qproc->conn_map, qproc->conn_box,
+> > >  				   AXI_GATING_VALID_OVERRIDE, 0);
+> > >  		ret = reset_control_deassert(qproc->mss_restart);
+> > > +	} else if (qproc->has_ext_cntl_regs) {
+> > > +		regmap_write(qproc->conn_map, qproc->rscc_disable, 0);
+> > > +		reset_control_assert(qproc->pdc_reset);
+> > > +		reset_control_assert(qproc->mss_restart);
+> > > +		reset_control_deassert(qproc->pdc_reset);
+> > > +		ret = reset_control_deassert(qproc->mss_restart);
+> > >  	} else {
+> > >  		ret = reset_control_assert(qproc->mss_restart);
+> > >  	}
+> > > @@ -490,7 +521,7 @@ static int q6v5_reset_deassert(struct q6v5 *qproc)
+> > >  		ret = reset_control_reset(qproc->mss_restart);
+> > >  		writel(0, qproc->rmb_base + RMB_MBA_ALT_RESET);
+> > >  		reset_control_deassert(qproc->pdc_reset);
+> > > -	} else if (qproc->has_spare_reg) {
+> > > +	} else if (qproc->has_spare_reg || qproc->has_ext_cntl_regs) {
+> > >  		ret = reset_control_reset(qproc->mss_restart);
+> > >  	} else {
+> > >  		ret = reset_control_deassert(qproc->mss_restart);
+> > > @@ -604,7 +635,7 @@ static int q6v5proc_reset(struct q6v5 *qproc)
+> > >  		}
+> > > 
+> > >  		goto pbl_wait;
+> > > -	} else if (qproc->version == MSS_SC7180) {
+> > > +	} else if (qproc->version == MSS_SC7180 || qproc->version ==
+> > > MSS_SC7280) {
+> > >  		val = readl(qproc->reg_base + QDSP6SS_SLEEP);
+> > >  		val |= Q6SS_CBCR_CLKEN;
+> > >  		writel(val, qproc->reg_base + QDSP6SS_SLEEP);
+> > > @@ -787,6 +818,82 @@ static int q6v5proc_reset(struct q6v5 *qproc)
+> > >  	return ret;
+> > >  }
+> > > 
+> > > +static int q6v5proc_enable_qchannel(struct q6v5 *qproc, struct
+> > > regmap *map, u32 offset)
+> > > +{
+> > > +	unsigned int val;
+> > > +	int ret;
+> > > +
+> > > +	if (!qproc->has_qaccept_regs)
+> > > +		return 0;
+> > > +
+> > > +	if (qproc->has_ext_cntl_regs) {
+> > > +		regmap_write(qproc->conn_map, qproc->rscc_disable, 0);
+> > > +		regmap_write(qproc->conn_map, qproc->force_clk_on, 1);
+> > > +
+> > > +		ret = regmap_read_poll_timeout(qproc->halt_map,
+> > > qproc->axim1_clk_off, val,
+> > > +					       !val, 1, Q6SS_CBCR_TIMEOUT_US);
+> > > +		if (ret) {
+> > > +			dev_err(qproc->dev, "failed to enable axim1 clock\n");
+> > > +			return -ETIMEDOUT;
+> > > +		}
+> > > +	}
+> > > +
+> > > +	regmap_write(map, offset + QACCEPT_REQ_REG, 1);
+> > > +
+> > > +	/* Wait for accept */
+> > > +	ret = regmap_read_poll_timeout(map, offset + QACCEPT_ACCEPT_REG,
+> > > val, val, 5,
+> > > +				       QACCEPT_TIMEOUT_US);
+> > > +	if (ret) {
+> > > +		dev_err(qproc->dev, "qchannel enable failed\n");
+> > > +		return -ETIMEDOUT;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static void q6v5proc_disable_qchannel(struct q6v5 *qproc, struct
+> > > regmap *map, u32 offset)
+> > > +{
+> > > +	int ret;
+> > > +	unsigned int val, retry;
+> > > +	unsigned int nretry = 10;
+> > > +	bool takedown_complete = false;
+> > > +
+> > > +	if (!qproc->has_qaccept_regs)
+> > > +		return;
+> > > +
+> > > +	while (!takedown_complete && nretry) {
+> > > +		nretry--;
+> > > +
+> > > +		regmap_read_poll_timeout(map, offset + QACCEPT_ACTIVE_REG, val,
+> > > !val, 5,
+> > > +					 QACCEPT_TIMEOUT_US);
+> > > +
+> > > +		regmap_write(map, offset + QACCEPT_REQ_REG, 0);
+> 
+> Sure I'll add more comments to this func.
+> After lowering the request ^^ we wait
+> for deny to go high or accept to go low.
+> If it's the former then we do a request
+> high and repeat the entire process again.
+> If it's the latter then its considered
+> that the takedown is success.
+
+The above essentially is a transcript of the code into prose. For a reader
+who isn't familiar with the hardware and might not have access to the
+corresponding documentation the exact roles of the ACCEPT registers might
+not be evident.
+
+I was looking for something slightly higher level, a one liner here and
+there might be enough. E.g. something like 'request to disable the channel
+denied, re-enable it' in the loop below, if that is semantically correct.
+Is there a typical reason why such a request would be denied, maybe because
+the channel was busy? Also why is re-enabling actually required if the
+request to disable was denied?
+
+> Let me know if you feel any other parts of the patch requires more
+comments as well.
+
+For now it's mainly the code involving the ACCEPT registers and
+_disable_channel() in particular.
+
+> 
+> > > +
+> > > +		retry = 10;
+> > > +		while (retry) {
+> > > +			usleep_range(5, 10);
+> > > +			retry--;
+> > > +			ret = regmap_read(map, offset + QACCEPT_DENY_REG, &val);
+> > > +			if (!ret && val) {
+> > > +				regmap_write(map, offset + QACCEPT_REQ_REG, 1);
+> > > +				break;
+> > > +			}
+> > > +
+> > > +			ret = regmap_read(map, offset + QACCEPT_ACCEPT_REG, &val);
+> > > +			if (!ret && !val) {
+> > > +				takedown_complete = true;
+> > > +				break;
+> > > +			}
 > > 
-> > I checked the ingenic-timer driver, and it seems that the last TCU
-> > channel is always used as the clocksource in the driver, so it seems
-> > that we can only use timer2 as the clocksource in smp mode. Maybe we
-> > should add a note for smp is closed in the comment. And I found
-> > that I missed a problem, Nikolaus Schaller once reported that
-> > because the frequency of the tcu timer (only 16bit) used to provide
-> > the clocksource
-> > is too high, there will be a chance that the system will get stuck
-> > before the clocksource is switched to ost. And reducing the 
-> > clocksource
-> > to 750kz can prevent it from happening. I will add this part to v4.
-> > When this part is added, both clockevent and clocksource will be
-> > 750kHz, but the 750kHz clocksource is only temporary, because it
-> > will then switch to the clocksource provided by ost, and ost works
-> > at 3MHz.  
-> 
-> Ok, then first change the clocksource to 750 kHz, then update it with 
-> timer2.
-
-Sure, I will do it in v4.
-
-Thanks and best regards!
-
-> 
-> Cheers,
-> -Paul
-> 
-> > 
-> > Thanks and best regards!
-> >   
-> >> 
-> >>  Cheers,
-> >>  -Paul
-> >>   
-> >>  > +};
-> >>  > +
-> >>  >  &mmc0 {
-> >>  >  	status = "okay";
-> >>  >
-> >>  > @@ -522,13 +533,3 @@
-> >>  >  		bias-disable;
-> >>  >  	};
-> >>  >  };
-> >>  > -
-> >>  > -&tcu {
-> >>  > -	/*
-> >>  > -	 * 750 kHz for the system timer and 3 MHz for the
-> >>  > clocksource,
-> >>  > -	 * use channel #0 for the system timer, #1 for the
-> >>  > clocksource.
-> >>  > -	 */
-> >>  > -	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu  
-> >>  > TCU_CLK_TIMER1>,  
-> >>  > -					  <&tcu TCU_CLK_OST>;
-> >>  > -	assigned-clock-rates = <750000>, <3000000>, <3000000>;
-> >>  > -};
-> >>  > --
-> >>  > 2.7.4
-> >>  >  
-> >>   
-> >   
-> 
-
+> > A bit of commentary in this branch would do no harm. From the code flow
+> > I can guess that disabling the channel failed when QACCEPT_DENY_REG !=
+> > 0,
+> > and hence the channel is re-enabled (?) for the next try, and apparently
+> > things are fine when QACCEPT_ACCEPT_REG is 0 after disabling the
+> > channel.
+> > Would be good to be a bit more explicit about what all that actually
+> > means.
