@@ -2,224 +2,303 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 984CC3B43CA
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 14:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0D083B4436
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 15:15:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231626AbhFYNBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 09:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37118 "EHLO
+        id S231524AbhFYNRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 09:17:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231644AbhFYNBk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 09:01:40 -0400
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4E99C0611F8
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 05:59:17 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:1476:ce84:e216:add8])
-        by andre.telenet-ops.be with bizsmtp
-        id MQzD2500F2B1U9901QzDgG; Fri, 25 Jun 2021 14:59:14 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lwlQO-003TMb-OV; Fri, 25 Jun 2021 14:59:12 +0200
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1lwlQN-004sS7-Rm; Fri, 25 Jun 2021 14:59:11 +0200
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Robin van der Gracht <robin@protonic.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>
-Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH v2 18/18] auxdisplay: ht16k33: Add segment display LED support
-Date:   Fri, 25 Jun 2021 14:59:02 +0200
-Message-Id: <20210625125902.1162428-19-geert@linux-m68k.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210625125902.1162428-1-geert@linux-m68k.org>
-References: <20210625125902.1162428-1-geert@linux-m68k.org>
+        with ESMTP id S231492AbhFYNRq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 09:17:46 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9D5AC061766
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 06:15:25 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lwlfz-0008VS-Qv; Fri, 25 Jun 2021 15:15:19 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1lwlfw-0006nK-Sv; Fri, 25 Jun 2021 15:15:16 +0200
+Date:   Fri, 25 Jun 2021 15:15:16 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Subbaraman Narayanamurthy <subbaram@codeaurora.org>
+Subject: Re: [PATCH v9 2/2] leds: Add driver for Qualcomm LPG
+Message-ID: <20210625131516.qw3ig6dvmp4ftzos@pengutronix.de>
+References: <20210623035039.772660-1-bjorn.andersson@linaro.org>
+ <20210623035039.772660-2-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="urhwmfrrttawmmmp"
+Content-Disposition: inline
+In-Reply-To: <20210623035039.772660-2-bjorn.andersson@linaro.org>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Instantiate a single LED for a segment display.  This allows the user to
-control display brightness and blinking through the LED class API and
-triggers, and exposes the display color.
-The LED will be named "auxdisplay:<color>:backlight".
 
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
----
-For setting display brightness, this could use the existing backlight
-support for frame buffer devices instantiated for dot-matrix displays.
-However, using the leds subsystem instead has the advantage that the
-driver can make use of the HT16K33's hardware blinking support, and can
-expose the display color.  It can still be used with ledtrig-backlight.
-Using "led-backlight", the backlight can no longer be controlled from
-sysfs, precluding the use of other triggers incl. hardware blinking.
+--urhwmfrrttawmmmp
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-v2:
-  - Use "auxdisplay" instead of DRIVER_NAME in LED name.
----
- drivers/auxdisplay/ht16k33.c | 81 ++++++++++++++++++++++++++++++++++--
- 1 file changed, 77 insertions(+), 4 deletions(-)
+Hello Bjorn,
 
-diff --git a/drivers/auxdisplay/ht16k33.c b/drivers/auxdisplay/ht16k33.c
-index 28207517a4725250..cd88c7bcb1d713bf 100644
---- a/drivers/auxdisplay/ht16k33.c
-+++ b/drivers/auxdisplay/ht16k33.c
-@@ -29,6 +29,7 @@
- #include <asm/unaligned.h>
- 
- #include "line-display.h"
-+#include "../leds/leds.h"		/* for led_colors[] */
- 
- /* Registers */
- #define REG_SYSTEM_SETUP		0x20
-@@ -36,6 +37,10 @@
- 
- #define REG_DISPLAY_SETUP		0x80
- #define REG_DISPLAY_SETUP_ON		BIT(0)
-+#define REG_DISPLAY_SETUP_BLINK_OFF	(0 << 1)
-+#define REG_DISPLAY_SETUP_BLINK_2HZ	(1 << 1)
-+#define REG_DISPLAY_SETUP_BLINK_1HZ	(2 << 1)
-+#define REG_DISPLAY_SETUP_BLINK_0HZ5	(3 << 1)
- 
- #define REG_ROWINT_SET			0xA0
- #define REG_ROWINT_SET_INT_EN		BIT(0)
-@@ -57,6 +62,8 @@
- #define BYTES_PER_ROW		(HT16K33_MATRIX_LED_MAX_ROWS / 8)
- #define HT16K33_FB_SIZE		(HT16K33_MATRIX_LED_MAX_COLS * BYTES_PER_ROW)
- 
-+#define COLOR_DEFAULT		LED_COLOR_ID_RED
-+
- enum display_type {
- 	DISP_MATRIX = 0,
- 	DISP_QUAD_7SEG,
-@@ -85,6 +92,7 @@ struct ht16k33_fbdev {
- 
- struct ht16k33_seg {
- 	struct linedisp linedisp;
-+	struct led_classdev led;
- 	union {
- 		struct seg7_conversion_map seg7;
- 		struct seg14_conversion_map seg14;
-@@ -102,6 +110,7 @@ struct ht16k33_priv {
- 		struct ht16k33_seg seg;
- 	};
- 	enum display_type type;
-+	uint8_t blink;
- };
- 
- static const struct fb_fix_screeninfo ht16k33_fb_fix = {
-@@ -160,7 +169,7 @@ static DEVICE_ATTR(map_seg14, 0644, map_seg_show, map_seg_store);
- 
- static int ht16k33_display_on(struct ht16k33_priv *priv)
- {
--	uint8_t data = REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON;
-+	uint8_t data = REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON | priv->blink;
- 
- 	return i2c_smbus_write_byte(priv->client, data);
- }
-@@ -175,8 +184,11 @@ static int ht16k33_brightness_set(struct ht16k33_priv *priv,
- {
- 	int error;
- 
--	if (brightness == 0)
-+	if (brightness == 0) {
-+		// Disable blink mode
-+		priv->blink = REG_DISPLAY_SETUP_BLINK_OFF;
- 		return ht16k33_display_off(priv);
-+	}
- 
- 	error = ht16k33_display_on(priv);
- 	if (error)
-@@ -186,6 +198,49 @@ static int ht16k33_brightness_set(struct ht16k33_priv *priv,
- 				    REG_BRIGHTNESS | (brightness - 1));
- }
- 
-+static int ht16k33_brightness_set_blocking(struct led_classdev *led_cdev,
-+					   enum led_brightness brightness)
-+{
-+	struct ht16k33_priv *priv = container_of(led_cdev, struct ht16k33_priv,
-+						 seg.led);
-+
-+	return ht16k33_brightness_set(priv, brightness);
-+}
-+
-+static int ht16k33_blink_set(struct led_classdev *led_cdev,
-+			     unsigned long *delay_on, unsigned long *delay_off)
-+{
-+	struct ht16k33_priv *priv = container_of(led_cdev, struct ht16k33_priv,
-+						 seg.led);
-+	unsigned int delay;
-+	uint8_t blink;
-+	int error;
-+
-+	if (!*delay_on && !*delay_off) {
-+		blink = REG_DISPLAY_SETUP_BLINK_1HZ;
-+		delay = 1000;
-+	} else if (*delay_on <= 750) {
-+		blink = REG_DISPLAY_SETUP_BLINK_2HZ;
-+		delay = 500;
-+	} else if (*delay_on <= 1500) {
-+		blink = REG_DISPLAY_SETUP_BLINK_1HZ;
-+		delay = 1000;
-+	} else {
-+		blink = REG_DISPLAY_SETUP_BLINK_0HZ5;
-+		delay = 2000;
-+	}
-+
-+	error = i2c_smbus_write_byte(priv->client,
-+				     REG_DISPLAY_SETUP | REG_DISPLAY_SETUP_ON |
-+				     blink);
-+	if (error)
-+		return error;
-+
-+	priv->blink = blink;
-+	*delay_on = *delay_off = delay;
-+	return 0;
-+}
-+
- static void ht16k33_fb_queue(struct ht16k33_priv *priv)
- {
- 	struct ht16k33_fbdev *fbdev = &priv->fbdev;
-@@ -576,11 +631,29 @@ static int ht16k33_fbdev_probe(struct i2c_client *client,
- static int ht16k33_seg_probe(struct i2c_client *client,
- 			     struct ht16k33_priv *priv, uint32_t brightness)
- {
--	struct ht16k33_seg *seg = &priv->seg;
- 	struct device *dev = &client->dev;
-+	struct device_node *node = dev->of_node;
-+	struct ht16k33_seg *seg = &priv->seg;
-+	u32 color = COLOR_DEFAULT;
- 	int err;
- 
--	err = ht16k33_brightness_set(priv, MAX_BRIGHTNESS);
-+	of_property_read_u32(node, "color", &color);
-+	seg->led.name = devm_kasprintf(dev, GFP_KERNEL,
-+			"auxdisplay:%s:" LED_FUNCTION_BACKLIGHT,
-+			color < LED_COLOR_ID_MAX ? led_colors[color] : "");
-+	seg->led.brightness_set_blocking = ht16k33_brightness_set_blocking;
-+	seg->led.blink_set = ht16k33_blink_set;
-+	seg->led.flags = LED_CORE_SUSPENDRESUME;
-+	seg->led.brightness = brightness;
-+	seg->led.max_brightness = MAX_BRIGHTNESS;
-+
-+	err = devm_led_classdev_register(dev, &seg->led);
-+	if (err) {
-+		dev_err(dev, "Failed to register LED\n");
-+		return err;
-+	}
-+
-+	err = ht16k33_brightness_set(priv, seg->led.brightness);
- 	if (err)
- 		return err;
- 
--- 
-2.25.1
+On Tue, Jun 22, 2021 at 08:50:39PM -0700, Bjorn Andersson wrote:
+> +static const unsigned int lpg_clk_rates[] =3D {1024, 32768, 19200000};
+> +static const unsigned int lpg_pre_divs[] =3D {1, 3, 5, 6};
+> +
+> +static int lpg_calc_freq(struct lpg_channel *chan, uint64_t period)
+> +{
+> +	unsigned int clk, best_clk =3D 0;
+> +	unsigned int div, best_div =3D 0;
+> +	unsigned int m, best_m =3D 0;
+> +	unsigned int error;
+> +	unsigned int best_err =3D UINT_MAX;
+> +	u64 denom;
+> +	u64 best_period =3D 0;
+> +	u64 actual;
+> +	u64 ratio;
+> +	u64 nom;
+> +
+> +	/*
+> +	 * The PWM period is determined by:
+> +	 *
+> +	 *          resolution * pre_div * 2^M
+> +	 * period =3D --------------------------
+> +	 *                   refclk
+> +	 *
+> +	 * With resolution fixed at 2^9 bits, pre_div =3D {1, 3, 5, 6} and
+> +	 * M =3D [0..7].
+> +	 *
+> +	 * This allows for periods between 27uS and 381s, as the PWM framework
+> +	 * wants a period of equal or lower length than requested, reject
+> +	 * anything below 27uS.
+> +	 */
+> +	if (period <=3D (u64)NSEC_PER_SEC * LPG_RESOLUTION / 19200000)
+> +		return -EINVAL;
+> +
+> +	/* Limit period to largest possible value, to avoid overflows */
+> +	if (period > 381 * (u64)NSEC_PER_SEC)
+> +		period =3D 381 * (u64)NSEC_PER_SEC;
 
+Where does the magic 381 come from? This would be more obviously correct
+if you write out the formula as you did for the check above.
+
+> +	/*
+> +	 * Search for the pre_div, clk and M by solving the rewritten formula
+> +	 * for each clk and pre_div value:
+> +	 *
+> +	 *                       period * clk
+> +	 * M =3D log2 -------------------------------------
+> +	 *           NSEC_PER_SEC * pre_div * resolution
+> +	 */
+> +	for (clk =3D 0; clk < ARRAY_SIZE(lpg_clk_rates); clk++) {
+> +		nom =3D period * lpg_clk_rates[clk];
+
+nom is only used in this block, so the declaration can be put in here,
+too. Ditto for at least ratio and actual.
+
+> +
+> +		for (div =3D 0; div < ARRAY_SIZE(lpg_pre_divs); div++) {
+> +			denom =3D (u64)NSEC_PER_SEC * lpg_pre_divs[div] * (1 << 9);
+> +
+> +			if (nom < denom)
+> +				continue;
+> +
+> +			ratio =3D div64_u64(nom, denom);
+> +			m =3D ilog2(ratio);
+> +			if (m > LPG_MAX_M)
+> +				m =3D LPG_MAX_M;
+> +
+> +			actual =3D DIV_ROUND_UP_ULL(denom * (1 << m), lpg_clk_rates[clk]);
+> +
+> +			error =3D period - actual;
+> +			if (error < best_err) {
+> +				best_err =3D error;
+> +
+> +				best_div =3D div;
+> +				best_m =3D m;
+> +				best_clk =3D clk;
+> +				best_period =3D actual;
+> +			}
+> +		}
+> +	}
+> +
+> +	chan->clk =3D best_clk;
+> +	chan->pre_div =3D best_div;
+> +	chan->pre_div_exp =3D best_m;
+> +	chan->period =3D best_period;
+> +
+> +	return 0;
+> +}
+> +
+> +static void lpg_calc_duty(struct lpg_channel *chan, uint64_t duty)
+> +{
+> +	unsigned int max =3D LPG_RESOLUTION - 1;
+> +	unsigned int val =3D div_u64(duty * max, chan->period);
+
+You're losing precision here as chan->period is a rounded value.
+
+duty * max might overflow.
+
+> +	chan->pwm_value =3D min(val, max);
+> +}
+> [...]
+> +static void lpg_apply(struct lpg_channel *chan)
+> +{
+> +	lpg_disable_glitch(chan);
+
+Why do you have to do this?
+
+> +	lpg_apply_freq(chan);
+> +	lpg_apply_pwm_value(chan);
+> +	lpg_apply_control(chan);
+> +	lpg_apply_sync(chan);
+> +	lpg_apply_lut_control(chan);
+> +	lpg_enable_glitch(chan);
+> +}
+> [...]
+> +/*
+> + * Limitations:
+> + * - Updating both duty and period is not done atomically, so the output=
+ signal
+> + *   will momentarily be a mix of the settings.
+> + */
+> +static int lpg_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			 const struct pwm_state *state)
+> +{
+> +	struct lpg *lpg =3D container_of(chip, struct lpg, pwm);
+> +	struct lpg_channel *chan =3D &lpg->channels[pwm->hwpwm];
+> +	int ret;
+> +
+
+You have to care for state->polarity here.
+
+> +	ret =3D lpg_calc_freq(chan, state->period);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	lpg_calc_duty(chan, state->duty_cycle);
+> +	chan->enabled =3D state->enabled;
+> +
+> +	lpg_apply(chan);
+> +
+> +	triled_set(lpg, chan->triled_mask, chan->enabled ? chan->triled_mask : =
+0);
+> +
+> +	return 0;
+> +}
+> [...]
+> +static int lpg_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np;
+> +	struct lpg *lpg;
+> +	int ret;
+> +	int i;
+> +
+> +	lpg =3D devm_kzalloc(&pdev->dev, sizeof(*lpg), GFP_KERNEL);
+> +	if (!lpg)
+> +		return -ENOMEM;
+> +
+> +	lpg->data =3D of_device_get_match_data(&pdev->dev);
+> +	if (!lpg->data)
+> +		return -EINVAL;
+> +
+> +	lpg->dev =3D &pdev->dev;
+> +
+> +	lpg->map =3D dev_get_regmap(pdev->dev.parent, NULL);
+> +	if (!lpg->map) {
+> +		dev_err(&pdev->dev, "parent regmap unavailable\n");
+> +		return -ENXIO;
+> +	}
+> +
+> +	ret =3D lpg_init_channels(lpg);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =3D lpg_parse_dtest(lpg);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =3D lpg_init_triled(lpg);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret =3D lpg_init_lut(lpg);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	for_each_available_child_of_node(pdev->dev.of_node, np) {
+> +		ret =3D lpg_add_led(lpg, np);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	for (i =3D 0; i < lpg->num_channels; i++)
+> +		lpg_apply_dtest(&lpg->channels[i]);
+
+I wonder what all these register initialisations do. You should not do
+anything that modifies the PWM output here that the bootloader might
+have setup. Is this given?
+
+> +
+> +	ret =3D lpg_add_pwm(lpg);
+
+The patch would be easier to review if you split it into a led part and
+a pwm part. Then the responsibilities would be more clear, too.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	platform_set_drvdata(pdev, lpg);
+> +
+> +	return 0;
+
+If you do the platform_set_drvdata() earlier you can just
+
+	return ret;
+
+here.
+
+> +}
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--urhwmfrrttawmmmp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDV1t8ACgkQwfwUeK3K
+7AmAtwf/c17eW42kzb7FB0diljMy2ariD9OysT3gu7h1RVCmn8TveFAhfHEikYGm
+iORU9fbX/Hp8qMj7o0uyg/X4zJSuIkeZ4sMhdrtiaguPI+PWnvDvUJKqBxMy/0fu
+xVQZTeOYvpvdZpLg6UZgBcLpGXw95KJc3ErUmEZX7kc3RlqtK2Xteug1LZgMa0OZ
++/l/7u4efQvVbwtBFKSzjUFW3/UizxNYh/xRokccQntt3yf44Gp9+F40R/fWEHC/
+uYc7f8PcsJBWiCmIkv/6w9q290UsXQKB8c0gwaV4AkkMdZHjz+wSpASxYeiLadUV
+LkfsIvB4j0Q8IgcVWyWLnd/EbwBKRA==
+=0hd9
+-----END PGP SIGNATURE-----
+
+--urhwmfrrttawmmmp--
