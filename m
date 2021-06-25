@@ -2,82 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C91E83B3C3F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 07:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F3D23B3C75
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 08:09:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230097AbhFYFbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 01:31:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48412 "EHLO
+        id S233101AbhFYGLY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 02:11:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbhFYFbq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 01:31:46 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7248BC061574;
-        Thu, 24 Jun 2021 22:29:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=cLC98jiTPo1gha2IvZDXk9+JdpFRGnaI/CVGtq7Uo10=; b=VIfRY38T8ObhjQYAl4bld7vSFW
-        WiE8Bveu99uFFz5keRNKhvsD1IZ/0YAledCW4anb30got1YzBhmtrN8SXCp+f8rqgz+gDTePEBaX1
-        UQPy06n9v9shcCAEGQFTn/w24gNMd/n5vATugZEbKsgcUlA6bE+FGhFRpRGPktQOPx5bxA2Ew7B80
-        2DJVEeDqHwnMRR68ZoT59LxqgudH5SyUzCJRuncwidyiwQIbG2gFGvUIGlqjdMeUDg3UGkHXO6bVl
-        sYlljlvb5GOWDJZWVbbYHSogdVFbLXdL4DQdOEk0tZbfobdZ6L5/ygTcVR8raivaF2EAWrOOtMm1T
-        eopo0KRA==;
-Received: from [2601:1c0:6280:3f0::aefb]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1lweP5-00HJQu-AJ; Fri, 25 Jun 2021 05:29:23 +0000
-Subject: Re: [PATCH v4] Documentation, dt, numa: Add note to empty NUMA node
-To:     Gavin Shan <gshan@redhat.com>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        drjones@redhat.com, shan.gavin@gmail.com
-References: <20210625052338.4875-1-gshan@redhat.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <7cdbafb8-4c38-1aac-5362-25e27e1d13e4@infradead.org>
-Date:   Thu, 24 Jun 2021 22:29:22 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S230097AbhFYGLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 02:11:24 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF3AC061574;
+        Thu, 24 Jun 2021 23:09:02 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id w13so5886278edc.0;
+        Thu, 24 Jun 2021 23:09:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cB6SHhnptea5AXwthxguFpyULM/fN97QuDr3TvFBru4=;
+        b=jSXeYMdAUoVSpQ7wAUAhyY5d8KzH87BVf6YOwG4EcHRIagN/0o+oiRkElvM5LFsvY0
+         NjF5obNHjpvCtNWgvlTklXLh3MNO5Z/ENc8nfaYz6LzwT+C+1Q89+snyHzEsMZAQTqDq
+         3SdDsQJHM1+4vL7I9NjDCOkhNNNVJVazHJB7va+8u2RFzdD9ZqJuIpVYBU225hIKBcYv
+         RKGy1SVg/I0MI4wNZqaUxHwYQ235RaXuyt1wWV5SbuxvgWXpd9EPUPfIIBEWNpDc9bSb
+         LYvvGVzMqa8k5vAG1lFfPA2zvkkQGkJKYG1g4SMwzIAVE52PjHJI5ccbIaRscXeicxmz
+         6Dtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=cB6SHhnptea5AXwthxguFpyULM/fN97QuDr3TvFBru4=;
+        b=aEHvSLURXsqsIAQMdDtnADUI3hP9zIcnv7vgKdcK9Gl82kSmifbWlC9cnC1nqzz0+g
+         93Mv+zSBM2yEvRnRauVGCyezwhd7IXpV364ygWlzRO53Aw/tPbyNRv8YNFG2RvSh7diY
+         pDGe+8as7YzXKtSmh6lnKhHQSXdiTHz3CfgNE/eutuAztUYBQ0j+UYxPf+2fXO5x4gPk
+         PknY+2dSbXKpBM1vrkjLIO8AzMDKMbrJz+aNz+pROCzYK38+y+kagxvNqPN52WtgCOmc
+         pd2xcAx/sljRfYfndg+GCFZkuVOiGCrD4WSf5Jcs9lRm+JEjJpZG4tr21AYivPlHUwXO
+         ePqA==
+X-Gm-Message-State: AOAM5300KGlcJIOvj2sNQNeYWfOi4w9OAQRZlFoGDFN+QsZXRNH1gTh4
+        z5Yv1MljGx7VypTNQvatYas=
+X-Google-Smtp-Source: ABdhPJwjtpUuOqL7xAONY+oGXQ53Rdmuehkc898Fy4zYhfMXR8aV95jtC4NXSEIinEAtM2eF0fD1cw==
+X-Received: by 2002:a05:6402:206b:: with SMTP id bd11mr12588146edb.238.1624601341428;
+        Thu, 24 Jun 2021 23:09:01 -0700 (PDT)
+Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id l22sm3121979edr.15.2021.06.24.23.08.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Jun 2021 23:09:00 -0700 (PDT)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH v3 0/2] Add Pinctrl for SM4250 and SM6115
+Date:   Fri, 25 Jun 2021 09:08:55 +0300
+Message-Id: <20210625060857.3069255-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <20210625052338.4875-1-gshan@redhat.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/24/21 10:23 PM, Gavin Shan wrote:
-> The empty memory nodes, where no memory resides in, are allowed.
-> For these empty memory nodes, the 'len' of 'reg' property is zero.
-> The NUMA node IDs are still valid and parsed, but memory can be
-> added to them through hotplug afterwards. I finds difficulty to
-> get where it's properly documented.
-> 
-> So lets add note to empty memory nodes in the NUMA binding doc.
-> 
-> Signed-off-by: Gavin Shan <gshan@redhat.com>
+This patch adds support for the TLMM block on QCom SM4250 and SM6115, codename
+bengal. The code is taken from OnePlus repo [1], and the keyword bengal
+corresponds to sm4250 and sm6115, so I'm adding both compat strings.
 
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
+[1]: https://github.com/OnePlusOSS/android_kernel_oneplus_sm4250
 
-Thanks.
+v1: https://lkml.org/lkml/2021/6/22/1163
+v2: https://lkml.org/lkml/2021/6/25/28
 
-> ---
->  Documentation/devicetree/bindings/numa.txt | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
-> index 21b35053ca5a..0fc882e44270 100644
-> --- a/Documentation/devicetree/bindings/numa.txt
-> +++ b/Documentation/devicetree/bindings/numa.txt
-> @@ -109,6 +109,10 @@ Example:
->  Dual socket system consists of 2 boards connected through ccn bus and
->  each board having one socket/soc of 8 cpus, memory and pci bus.
->  
-> +Note that empty memory nodes, which no memory resides in, are allowed.
-> +The NUMA node IDs in these empty memory nodes are still valid, but
-> +memory can be added into them through hotplug afterwards.
-> +
->  	memory@c00000 {
->  		device_type = "memory";
->  		reg = <0x0 0xc00000 0x0 0x80000000>;
-> 
+Changes from v2:
+- suggestions from Rob:
+ - remove quotes around reg-names
+ - use -state$ subnode regex
+- suggestions from Bjorn
+ - remove '|' from description field
+ - use state def to allow arbitrary nesting
+ - fix gpio pattern to allow valid pin numbers
+ - fix number of gpio pins
+ - add tlmm label to example
+ - remove wakeup parent
+- other
+ - add some pins in example
+ - removed required function
+
+Changes from v1:
+- fix binding example
+- fix cover letter text
+
+Iskren Chernev (2):
+  dt-bindings: pinctrl: qcom: Add SM6115 pinctrl bindings
+  drivers: qcom: pinctrl: Add pinctrl driver for sm6115
+
+ .../bindings/pinctrl/qcom,sm6115-pinctrl.yaml |  208 +++
+ drivers/pinctrl/qcom/Kconfig                  |    9 +
+ drivers/pinctrl/qcom/Makefile                 |    1 +
+ drivers/pinctrl/qcom/pinctrl-sm6115.c         | 1482 +++++++++++++++++
+ 4 files changed, 1700 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6115-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sm6115.c
+
+
+base-commit: e71e3a48a7e89fa71fb70bf4602367528864d2ff
+-- 
+2.32.0
+
