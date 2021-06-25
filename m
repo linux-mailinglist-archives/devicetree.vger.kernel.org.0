@@ -2,195 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C653B4321
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 14:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 574FC3B4330
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 14:29:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229878AbhFYMbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 08:31:07 -0400
-Received: from mout.gmx.net ([212.227.17.22]:52903 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229498AbhFYMbH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 08:31:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1624624112;
-        bh=OSQyckPbw3HSVrcza1qfbGitHxWf8m8/W3YNrW4Ri7c=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=Lumec2k3Atjmeyg0Xtc35ID9/eM0wr4cQc1xgM1rx1ts10cp/VzkYZqMPlsuAfGrY
-         wNvExspkTaaSSeStaT90WpeBolFAGzQh1L4nma/OHPRVa9asx11EEySQ4T0l9/WW7Z
-         YT9/IdK2peJ5TAwUoStOKRi83r45IN6MSQ7ab0xI=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.157.219] ([217.61.157.219]) by web-mail.gmx.net
- (3c-app-gmx-bs66.server.lan [172.19.170.210]) (via HTTP); Fri, 25 Jun 2021
- 14:28:32 +0200
+        id S229498AbhFYMbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 08:31:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58506 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231273AbhFYMbo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 08:31:44 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF8BC061574;
+        Fri, 25 Jun 2021 05:29:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=sz0HFy97Sa2PQlVcns192PnKYImMp6PXF6QClznrDck=; b=b+RwXfLs/rhAp4aY2Yvho2UYh
+        luH0JJMHXYuV8C+3Cc1/n3catAqX99bs1kmRHn32KOUwPttIV1B+kBTCkaZJjmrPD9+oQKB4EQJSQ
+        zEpk1iEptToEkIHAf7+e2iH2G9QCFabjjBe9x7bmxgdkzn2rRbpVmH34ByaxZEH+B9+cQ4DNr07t+
+        KbPThT0j70AIka2yJ6PIBdzdKv3WZNSGbq5X/f5H4XxJb3l7Qk5y/hVxcRahKxAucx9FDoXHzEPnj
+        IlHWtghAB9Wd+DLa3PJjdYLdoRR/4rI68V/HJ/gn07YoUOmDd2oL5XcFOMmJYRBuAwuqUtTZeU8I9
+        edjy7OVqA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45348)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1lwkxR-0000hV-Pn; Fri, 25 Jun 2021 13:29:17 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1lwkxR-0006fu-A3; Fri, 25 Jun 2021 13:29:17 +0100
+Date:   Fri, 25 Jun 2021 13:29:17 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>, thomas.petazzoni@bootlin.com,
+        herve.codina@bootlin.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: imx6qdl-sr-som: Increase the PHY reset
+ duration to 10ms
+Message-ID: <20210625122917.GW22278@shell.armlinux.org.uk>
+References: <20210625121353.3698240-1-maxime.chevallier@bootlin.com>
 MIME-Version: 1.0
-Message-ID: <trinity-59bd4461-3429-4382-9754-90cf20287cad-1624624111998@3c-app-gmx-bs66>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Eric Woudstra <ericwouds@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sean Wang <sean.wang@mediatek.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Daniel Golle <daniel@makrotopia.org>
-Subject: Aw: Re:  Re: Re: [PATCH] Fix mt7622.dtsi thermal cpu
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 25 Jun 2021 14:28:32 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <915b101a-6bea-ae96-78ed-d27fa5bfce3a@linaro.org>
-References: <20210619121927.32699-1-ericwouds@gmail.com>
- <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org>
- <56fb5540-fb86-4e6a-a596-1276026b37e5@gmail.com>
- <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org>
- <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
- <fb633034-96e5-6165-b43f-290ae1a65cfd@linaro.org>
- <189b52d5-b103-43e1-a64f-1e627fbc75af@gmail.com>
- <173e6bab-9d21-eb28-9b91-a5f80c01fd03@linaro.org>
- <3dd22cf2-1186-4870-aa49-e5cddc18c6e9@gmail.com>
- <trinity-7580d955-3187-41e5-9297-1ac8f628a9d5-1624609003739@3c-app-gmx-bs66>
- <8b27246b-721e-fa0e-5c2b-b1b4b4d6fdd3@linaro.org>
- <trinity-2eb7c0ac-d9dc-446c-8907-69b5f4df6838-1624618996538@3c-app-gmx-bs66>
- <915b101a-6bea-ae96-78ed-d27fa5bfce3a@linaro.org>
-Content-Transfer-Encoding: quoted-printable
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:od0scxwbJ1nSJhIAUYPE2trywtLcZeB6ouz/UKD7WmKyMhXo6bKsskeKCb01sRHMI4NVM
- 80RQFPsgXQFcaurpT5/Q+yWRD2Wy+g2vRu7Njs3I8rKk3KwxuEFeQ6bK5IF+sII9P3o4R0zTWaz3
- oBsUNXA4FS+kcqBNGUN6BX9uQyNreIgPu5NDmYs1vSF8HAOA587d2ZfQt6/VrfusmvDdoZyncRkB
- YXLs/gJ3ULx69KCAxsnlkVSpuT42Qs3yu2TOHrJhzBje8+0XKI52AewxkJnq8ysmaV+HiuGQ4f/r
- IE=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:AvEMWffUDa4=:5Qe6+hxNliYMnd53d0bxNd
- RmiMDlmgGfPhgEbexzdxoIcXq2Iz6243smb0UmLokG5VUQhr2O2XChyXkaCok6wx+Xe/LOwJJ
- aGU/ZHtusv1AAhUnCoioqxjcpXvNeY9SCS6oR5Clq10ccCuE+L5Udw0NT9LRl3VHIJ+ay+s9I
- IC55+vL2/ixzw+wZ9aVC9d/XLIkBtUxUdDqTZ8Bo4gOz8mDb/leWLS39G3Ilbkih0A+7Blbuh
- Ek0ez9cUAN1lkCaS2DaffyxCrvkxiZLwVDWaf34at6IWQAPQDigDdIxzNGPtLOEg5itub84ix
- XmloSsSJGLLpz6JaK9dlWY2/NtOiPJ30WkfEgNCH4AekKWv8O0daQy3cd9+L3y0279iCnqfZ6
- hBQkaQOJzdv5N3wYQPeVJgLOYe1+G7qazooH1Lq64iD0wbUutcDpWHDzc5AFL4aj8C2gfgK29
- ZX8yYr3fVFV1k9QfSqCDkhbQ7GEXgdy3K2vpQJmMoImJBUGmzMBC2Bsiwi8llQwfedD0Lo4P6
- ZjeANm9/+DgTkJhnoI+/VpyB/MB7xY8I9Tv/hU46UvpEEOCfF4Hp/zZukyg+VzML+A/gGaPFO
- y8Vxm7vvFGdLyqv9iaTQGZKJDQyQTLS3RYZmlskOr2qewDoJfZD2LGJwgVVhAi4Rt5RVi2TJD
- gew1as39uC68Mqb3PLNrwvmJLsMtTnDRCznOnbWVp0MopBU2St6hgkp/IktbM+lJhGN0AmtPf
- NNHAkjnfMlulHtfI0DL0YVpwzdtDnNN+7ANiHU9YsS2yZnUYe4AwwsVQYJBnIeRscqXn2aZvd
- C4P1Fu3KyznNn+yxkuhS3kcOz58hduhCtHoWlEk2I/qgOD9lXk=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210625121353.3698240-1-maxime.chevallier@bootlin.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Freitag, 25=2E Juni 2021 um 13:47 Uhr
-> Von: "Daniel Lezcano" <daniel=2Elezcano@linaro=2Eorg>
+On Fri, Jun 25, 2021 at 02:13:53PM +0200, Maxime Chevallier wrote:
+> The AR803x PHY used on this modules seems to require the reset line to
+> be asserted for around 10ms in order to avoid rare cases where the PHY
+> gets stuck in an incoherent state that prevents it to function
+> correctly.
+> 
+> The previous value of 2ms was found to be problematic on some setups,
+> causing intermittent issues where the PHY would be unresponsive
+> every once in a while on some sytems, with a low occurrence (it typically
+> took around 30 consecutive reboots to encounter the issue).
+> 
+> Bumping the delay to the 10ms makes the issue dissapear, with more than
+> 2500 consecutive reboots performed without the issue showing-up.
+> 
+> Fixes: 208d7baf8085 ("ARM: imx: initial SolidRun HummingBoard support")
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Tested-by: Hervé Codina <herve.codina@bootlin.com>
 
-> > but we need to disable the passive trip as cpu-trotteling starts there=
-=2E=2E=2Ethe higher temperature trips are currently not reached
->=20
-> Sorry, can you rephrase it ? I'm not getting the point=2E
+Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
 
-the problem currently is that passive is at 47degress Celsius and trottles=
- cpu, active (67=C2=B0C) and hot points are never reached this way=2E so at=
- least we need to change temperatures in dtsi, and maybe disable cpu-trotte=
-ling on passive trip=2E imho fan will never start if it is in active and cp=
-u is trottled before in passive
+Thanks!
 
-> > summary
-> >=20
-> > moving fan and cpu_thermal-override to bananapi-r64=2Edts
-> >=20
-> > passive-trip: cooling-device =3D <&cpu0/1 0 0> as in erics Patch
-> > active trip: cooling-device =3D <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIM=
-IT>;
-> > the other 2 unchanged
-> >=20
-> > but i suggest changing the temperature points in mt7622 dtsi as this i=
-s SoC specific
-> >=20
-> > so basicly:
-> >=20
-> > --- a/arch/arm64/boot/dts/mediatek/mt7622=2Edtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt7622=2Edtsi
-> > @@ -143,13 +143,13 @@ cpu_thermal: cpu-thermal {
-> >=20
-> >                         trips {
-> >                                 cpu_passive: cpu-passive {
-> > -                                       temperature =3D <47000>;
-> > +                                       temperature =3D <70000>;
->=20
-> May be increase the passive temp to 75=C2=B0C=2E
->=20
-> >                                         hysteresis =3D <2000>;
-> >                                         type =3D "passive";
-> >                                 };
-> >=20
-> >                                 cpu_active: cpu-active {
-> > -                                       temperature =3D <67000>;
-> > +                                       temperature =3D <80000>;
-> >                                         hysteresis =3D <2000>;
-> >                                         type =3D "active";
-> >                                 };
->=20
-> Move the active trip 'cpu_active' to mt7622-bananapi-bpi-r64=2Edts=2E an=
-d
-> set it to 70=C2=B0C in the mt7622-bananapi-bpi-r64=2Edts, so the fan wil=
-l act
-> before the cpu throttling=2E
->=20
-> The behavior should be the following: The temperature reaches 70=C2=B0C,=
- the
-> fan will start, if the temperature continues to increase, it will
-> increase the speed=2E If the temperature reaches 75=C2=B0C, the fan is s=
-till
-> rotating at full speed but the cpu begins to be throttled=2E
-
-passive to 75 and active lower to 70? is this as intended that active come=
-s before passive?
-
-mt7622-bananapi-bpi-r64=2Edts:
-
-&cpu_thermal {
-	trips {
-		cpu_passive: cpu-passive {
-			temperature =3D <75000>;
-			hysteresis =3D <2000>;
-			type =3D "passive";
-		};
-
-		cpu_active: cpu-active {
-			temperature =3D <70000>;
-			hysteresis =3D <2000>;
-			type =3D "active";
-		};
-	};
-
-	cooling-maps {
-		map1 {
-			trip =3D <&cpu_active>;
-			cooling-device =3D <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-		};
-	};
-};
-
-
-> AFAIU, it is a Cortex-A53 running @1=2E35GH, so except the board is in a
-> black metal box under the sun, I don't see how we can reach this thermal
-> limits=2E
->=20
-> > @@ -170,8 +170,8 @@ cpu-crit {
-> >                         cooling-maps {
-> >                                 map0 {
-> >                                         trip =3D <&cpu_passive>;
-> > -                                       cooling-device =3D <&cpu0 THER=
-MAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> > -                                                        <&cpu1 THERMA=
-L_NO_LIMIT THERMAL_NO_LIMIT>;
-> > +                                       cooling-device =3D <&cpu0 0 0>=
-,
-> > +                                                        <&cpu1 0 0>;
->=20
-> You should keep it untouched=2E
-
-then cpu is trottled at passive point (currently 47=C2=B0C) and imho fan d=
-oes not start at active
-
-> >                                 };
-
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
