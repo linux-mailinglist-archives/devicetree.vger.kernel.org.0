@@ -2,115 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F030B3B4338
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 14:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB3193B437C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 14:39:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231390AbhFYMci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 08:32:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51312 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231273AbhFYMch (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 08:32:37 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A4C9361463;
-        Fri, 25 Jun 2021 12:30:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624624216;
-        bh=236dSGX7ExOVPv4h0UeOksGQ8SgYCOQ7aXD3NGK83S0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bCaWwZtC9a0kNjsO191mUbtUcojnviRFMJnXBZ/UQc+wZDgM8hUcreC3qNCEkirNE
-         bbLWlaMbJfBXlg05V08tS0sV+lbJ6mjPNoN7Y8AT15UfxghYQbA3zVDmQkdENHWUeg
-         aoWWbni5r3mbAZmV1yWyb6Qtn3Rm3bH4e4imD6DcErBaFTOVYzmckxYQM6wCi00qxL
-         IKspsHt2W8+A5P7LrhMSB0wLC0J5AtiueFbpUWEKsYqOURtPkRdQJiwA+N05SkMbY0
-         yNml1K+qGwoAZk+3C0lKdhaf1wsPR1zKe7fVETOXT9FqPpHlh5Z2ca5kWomvg9Dx6c
-         8Pdmk/dzJ5M/g==
-Date:   Fri, 25 Jun 2021 13:30:05 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        sstabellini@kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        grant.likely@arm.com, xypron.glpk@gmx.de,
-        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
-        bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>, tfiga@chromium.org,
-        bskeggs@redhat.com, bhelgaas@google.com, chris@chris-wilson.co.uk,
-        daniel@ffwll.ch, airlied@linux.ie, dri-devel@lists.freedesktop.org,
-        intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
-        jxgao@google.com, joonas.lahtinen@linux.intel.com,
-        linux-pci@vger.kernel.org, maarten.lankhorst@linux.intel.com,
-        matthew.auld@intel.com, rodrigo.vivi@intel.com,
-        thomas.hellstrom@linux.intel.com, thomas.lendacky@amd.com,
-        quic_qiancai@quicinc.com
-Subject: Re: [PATCH v15 00/12] Restricted DMA
-Message-ID: <20210625123004.GA3170@willie-the-truck>
-References: <20210624155526.2775863-1-tientzu@chromium.org>
- <YNTa1C5uvz+qWryf@char.us.oracle.com>
+        id S230151AbhFYMmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 08:42:13 -0400
+Received: from mail-vk1-f181.google.com ([209.85.221.181]:44693 "EHLO
+        mail-vk1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229498AbhFYMmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 08:42:13 -0400
+Received: by mail-vk1-f181.google.com with SMTP id w1so2043076vkg.11;
+        Fri, 25 Jun 2021 05:39:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BdAFQrYjZ7tFOmYJ4XAsP96fFhUM3/tL0iMbvfXhUVA=;
+        b=YH1Eak56KEbjaEIVcXd8xFwe5QAF6mFqvZ+iFSUcGNzoVIXHetbulVYs2cBTHbB/m5
+         uhYpQNDyWUxXS5Qa0DSQSGmpCxEMS7lJcYfxvlwWLZ5h2zufLtK7T5msjXJCNBzmom8S
+         Skjz/GD59OH5BI9PkoU1q3FStenYGbJh1SbGEeOfvH92y9Lstb2dOnxysMEAYRdoA5PE
+         9Fz6MyEJakXq1jglEUNAccvm03NUUAERlV3aGzC80mRr+Ju3YjzIF9DByOl9X7T0VqRH
+         YVoMUFrm39u6nR7X2veRiMdd+E7YHkhhrK+Oh7Fxhl0lNeIDpFJyPQ+9W7kehYp+ZFLm
+         MtTA==
+X-Gm-Message-State: AOAM532zfiZafocjEkZmnysF8lmK957vAgNXL0Ji0Na4cMkHhSmMgfeK
+        Z3gAhBIBEQRhh6e2vVHjRGE47/k0ivDCCscr3BHTjPKR2sg=
+X-Google-Smtp-Source: ABdhPJyaMqdhFPUsH/gm69FNnsiJ4N+ggk62xelaVga9bulLHdrSTNbV0aBsycWgJx4lWnTIwiUgTfw/VdhZO1fsgaE=
+X-Received: by 2002:a1f:ac45:: with SMTP id v66mr7482776vke.1.1624624792112;
+ Fri, 25 Jun 2021 05:39:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YNTa1C5uvz+qWryf@char.us.oracle.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20210322144848.1065067-1-geert@linux-m68k.org>
+ <20210322144848.1065067-18-geert@linux-m68k.org> <543ec200931af3192541fef51bc8e96a@protonic.nl>
+ <CAMuHMdXMQYoGbyLsbiZSEWKK0+iPZe7WELmtDUTjqK-VKMZURg@mail.gmail.com>
+ <20210323204038.GA10002@duo.ucw.cz> <CAMuHMdVF30BCA-7vCiwmKO6KVFhtNLbL+VEW59oxcAfwJ+jXyg@mail.gmail.com>
+In-Reply-To: <CAMuHMdVF30BCA-7vCiwmKO6KVFhtNLbL+VEW59oxcAfwJ+jXyg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 25 Jun 2021 14:39:40 +0200
+Message-ID: <CAMuHMdWQOQmeoNP8po19m_Fo9d55ur68CqOORX-NGhkLbRAsGg@mail.gmail.com>
+Subject: Re: [PATCH 17/17] auxdisplay: ht16k33: Add segment display LED support
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Robin van der Gracht <robin@protonic.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Miguel Ojeda <ojeda@kernel.org>,
+        Paul Burton <paulburton@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-leds <linux-leds@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 24, 2021 at 03:19:48PM -0400, Konrad Rzeszutek Wilk wrote:
-> On Thu, Jun 24, 2021 at 11:55:14PM +0800, Claire Chang wrote:
-> > This series implements mitigations for lack of DMA access control on
-> > systems without an IOMMU, which could result in the DMA accessing the
-> > system memory at unexpected times and/or unexpected addresses, possibly
-> > leading to data leakage or corruption.
-> > 
-> > For example, we plan to use the PCI-e bus for Wi-Fi and that PCI-e bus is
-> > not behind an IOMMU. As PCI-e, by design, gives the device full access to
-> > system memory, a vulnerability in the Wi-Fi firmware could easily escalate
-> > to a full system exploit (remote wifi exploits: [1a], [1b] that shows a
-> > full chain of exploits; [2], [3]).
-> > 
-> > To mitigate the security concerns, we introduce restricted DMA. Restricted
-> > DMA utilizes the existing swiotlb to bounce streaming DMA in and out of a
-> > specially allocated region and does memory allocation from the same region.
-> > The feature on its own provides a basic level of protection against the DMA
-> > overwriting buffer contents at unexpected times. However, to protect
-> > against general data leakage and system memory corruption, the system needs
-> > to provide a way to restrict the DMA to a predefined memory region (this is
-> > usually done at firmware level, e.g. MPU in ATF on some ARM platforms [4]).
-> > 
-> > [1a] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_4.html
-> > [1b] https://googleprojectzero.blogspot.com/2017/04/over-air-exploiting-broadcoms-wi-fi_11.html
-> > [2] https://blade.tencent.com/en/advisories/qualpwn/
-> > [3] https://www.bleepingcomputer.com/news/security/vulnerabilities-found-in-highly-popular-firmware-for-wifi-chips/
-> > [4] https://github.com/ARM-software/arm-trusted-firmware/blob/master/plat/mediatek/mt8183/drivers/emi_mpu/emi_mpu.c#L132
-> > 
-> > v15:
-> > - Apply Will's diff (https://lore.kernel.org/patchwork/patch/1448957/#1647521)
-> >   to fix the crash reported by Qian.
-> > - Add Stefano's Acked-by tag for patch 01/12 from v14
-> 
-> That all should be now be on
-> 
-> https://git.kernel.org/pub/scm/linux/kernel/git/konrad/swiotlb.git/
-> devel/for-linus-5.14 (and linux-next)
+On Wed, Mar 24, 2021 at 9:31 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Tue, Mar 23, 2021 at 9:40 PM Pavel Machek <pavel@ucw.cz> wrote:
+> > > CC linux-leds (which I intended, but forgot to add)
+> > >
+> > > cover letter at
+> > > https://lore.kernel.org/linux-devicetree/20210322144848.1065067-1-geert@linux-m68k.org/
 
-Thanks Konrad!
+> > > > > +     err = ht16k33_brightness_set(priv, seg->led.brightness);
+> > > > >       if (err)
+> > > > >               return err;
+> > > >
+> > > > The LED class can pretty much do what the backlight class can and more.
+> > > >
+> > > > Maybe we can stop registering a backlight device in the fbdev case and
+> > > > register a led device for both. This makes the code cleaner and drops
+> > > > a dependency but will break backwards compatibility.
+> > > >
+> > > > I'd prefer a single solution that covers both use cases, but I'm not
+> > > > sure about the 'breaking backwards compatibility' consequence...
+> >
+> > For new drivers, breaking compatibility should not be a problem.
+>
+> The dot-matrix support is part of the existing driver, thus subject to
+> backwards compatibility.
+> Perhaps we can register the LED device for both, and build the backlight
+> device on top of the LED device, like "led-backlight" does.  Would that
+> work? Or can't the LED no longer be controlled from sysfs (e.g.
+> triggers) if it is in use by a backlight driver?
 
-Will
+Using "led-backlight", the backlight can no longer be controlled from
+sysfs, precluding the use of other triggers incl. hardware blinking.
+But a normal LED can be used as a backlight, with ledtrig-backlight,
+so that is the most flexible option, but only if no backwards
+compatibility is to be considered.
+
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
