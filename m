@@ -2,109 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A1843B3F4D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 10:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49E4B3B3F55
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 10:31:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231144AbhFYIa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 04:30:57 -0400
-Received: from lucky1.263xmail.com ([211.157.147.130]:52318 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230251AbhFYIat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 04:30:49 -0400
-Received: from localhost (unknown [192.168.167.235])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 04463D5AC0;
-        Fri, 25 Jun 2021 16:28:28 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P5175T139828399277824S1624609700131161_;
-        Fri, 25 Jun 2021 16:28:21 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <26a5f75aa850e77c02c8ca96857f5a94>
-X-RL-SENDER: jon.lin@rock-chips.com
-X-SENDER: jon.lin@rock-chips.com
-X-LOGIN-NAME: jon.lin@rock-chips.com
-X-FST-TO: linux-spi@vger.kernel.org
-X-RCPT-COUNT: 20
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Jon Lin <jon.lin@rock-chips.com>
-To:     linux-spi@vger.kernel.org
-Cc:     jon.lin@rock-chips.com, broonie@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, jbx6244@gmail.com, hjc@rock-chips.com,
-        yifeng.zhao@rock-chips.com, sugar.zhang@rock-chips.com,
-        linux-rockchip@lists.infradead.org, linux-mtd@lists.infradead.org,
-        p.yadav@ti.com, macroalpha82@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: [RFC PATCH v9 10/10] arm64: dts: rockchip: Enable SFC for Odroid Go Advance
-Date:   Fri, 25 Jun 2021 16:28:18 +0800
-Message-Id: <20210625082818.884-1-jon.lin@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210625082735.562-1-jon.lin@rock-chips.com>
-References: <20210625082735.562-1-jon.lin@rock-chips.com>
+        id S229945AbhFYId1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 04:33:27 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:33861 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229772AbhFYId0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 04:33:26 -0400
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 5ADA71BF218;
+        Fri, 25 Jun 2021 08:31:02 +0000 (UTC)
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Russell King <linux@armlinux.org.uk>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        thomas.petazzoni@bootlin.com, herve.codina@bootlin.com,
+        devicetree@vger.kernel.org
+Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: imx6qdl-sr-som: Increase the PHY reset duration to 10ms
+Date:   Fri, 25 Jun 2021 10:30:51 +0200
+Message-Id: <20210625083051.3691737-1-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.25.4
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chris Morgan <macromorgan@hotmail.com>
+The datasheet for the AR803x PHY present on this SoM recommends that the
+reset line is asserted low for 10ms, so that the PHY has time to
+properly reset the internal blocks.
 
-This enables the Rockchip Serial Flash Controller for the Odroid Go
-Advance. Note that while the attached SPI NOR flash and the controller
-both support quad read mode, only 2 of the required 4 pins are present.
-The rx and tx bus width is set to 2 for this reason.
+The previous value of 2ms was found to be problematic on some setups,
+causing intermittent issues where the PHY would be unresponsive
+every once in a while on some sytems, with a low occurence (it typically
+took around 30 consecutive reboots to encounter the issue).
 
-Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+Bumping the delay to the 10ms recommended value makes the issue
+dissapear, with more than 2500 consecutive reboots performed without the
+issue showing-up.
+
+Fixes: 208d7baf8085 ("ARM: imx: initial SolidRun HummingBoard support")
+Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Tested-by: Hervé Codina <herve.codina@bootlin.com>
 ---
+ arch/arm/boot/dts/imx6qdl-sr-som.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Changes in v9: None
-Changes in v8: None
-Changes in v7: None
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
-Changes in v1: None
-
- .../boot/dts/rockchip/rk3326-odroid-go2.dts      | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-index 49c97f76df77..f78e11dd8447 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-odroid-go2.dts
-@@ -484,6 +484,22 @@
+diff --git a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
+index 0ad8ccde0cf8..a54dafce025b 100644
+--- a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
+@@ -54,7 +54,7 @@ &fec {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_microsom_enet_ar8035>;
+ 	phy-mode = "rgmii-id";
+-	phy-reset-duration = <2>;
++	phy-reset-duration = <10>;
+ 	phy-reset-gpios = <&gpio4 15 GPIO_ACTIVE_LOW>;
  	status = "okay";
- };
  
-+&sfc {
-+	pinctrl-0 = <&sfc_clk &sfc_cs0 &sfc_bus2>;
-+	pinctrl-names = "default";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <108000000>;
-+		spi-rx-bus-width = <2>;
-+		spi-tx-bus-width = <2>;
-+	};
-+};
-+
- &tsadc {
- 	status = "okay";
- };
 -- 
-2.17.1
-
-
+2.25.4
 
