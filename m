@@ -2,102 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36FCB3B3A9F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 03:49:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40E73B3AA3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 03:55:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232933AbhFYBve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Jun 2021 21:51:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56468 "EHLO
+        id S233023AbhFYB5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Jun 2021 21:57:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232917AbhFYBve (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 21:51:34 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 395F4C061574;
-        Thu, 24 Jun 2021 18:49:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=e1tpDeAEwxgZK2ZK4L54r7FiKBLJS+0x5+T+TRAyDls=; b=dIFI5qR6HvHwN0IAy0eWaLtPXl
-        VXRz+Opl7Hpa9XMxRQ4ZBzjfsrKcZZqeLJzh2KkcA55im/iTcNKybVROCpUIOymB8BBxgTNSwd65R
-        XghAtBk0UREhaJQidTG1jggYZnY9GzbHAaP3zwbmUwpiVb3Ybn8aB6IEX4SIBWHcKbbdyNgDsVdJu
-        zwfQ22eXYShdzRwsygSQyHf+uvjjc8y9VRFy1f9cZTJ1E7QT9+7U6hg1Y6cpD5U2jhGxu1MzgFLWB
-        w+L4RoT3CewrdPK2Bw0qaRc2B3lnQil4VQeKyW3Qw+KSU/fbfBdtm4xWunSZELFRlfKpMQEmh65TH
-        8uPIuyrw==;
-Received: from [2601:1c0:6280:3f0::aefb]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1lwaxx-00H4DU-3G; Fri, 25 Jun 2021 01:49:09 +0000
-Subject: Re: [PATCH v2] Documentation, dt, numa: Add note to empty NUMA node
-To:     Gavin Shan <gshan@redhat.com>, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        drjones@redhat.com, shan.gavin@gmail.com
-References: <20210625020322.43825-1-gshan@redhat.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <834b6b3a-c56b-b8e3-f401-30fdc689d6a2@infradead.org>
-Date:   Thu, 24 Jun 2021 18:49:08 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+        with ESMTP id S232937AbhFYB5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Jun 2021 21:57:46 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E30D0C06175F
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 18:55:26 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id c5so6771900pfv.8
+        for <devicetree@vger.kernel.org>; Thu, 24 Jun 2021 18:55:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=igel-co-jp.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=DgvXn3PwiL33+V2MPigrwm2vtPfix09cjVm/yIwhB0s=;
+        b=s504KnWSPBnvlcVjrEkj0svXJJPV6FPA89XUVCkhTJUFi3FXCxXk0vrr+kE/IWAQLw
+         COILHQO/0uk6k4XjWfxli245zRoL5KQrd3PzK9eyzyl69Dc44ZS90zepOBMSuPFKqNdC
+         NPqrg9y7CMaLdTSygxpqPWstw4cIfQtBJp5qV50EzWtU6QgDeUdyik0NdWC4dBXlYf+7
+         XsGa0Nsow2vmK8WHFEroSERvbLoGgxq15Fn02eSDy+uiO2b5cvI6duDNHv4e3KTBmMFE
+         mHesyVocr9PpxKjE4gWng4Wxb3CbAKBGZuf53Xc8lK4WGIWUyIdBedPkVn0kVV2qe21z
+         FXSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=DgvXn3PwiL33+V2MPigrwm2vtPfix09cjVm/yIwhB0s=;
+        b=VhJcP4aMcezXh963w33FioET6Q5TZXExCBRYouGOtndP0oKwIcYvzsRfW894ksMmBo
+         iYRCY95sAkX058ic2LrBmMk1Ln/Ya3xYUW4N57ad52A/9INAnT6em+2CylDwq8JFwfOu
+         1MmiXhKx28ANDjZD2NzbWSgO6P+YioB3slFNLPcGvk7dbCRfLWQuo5uwmAoOmi739495
+         pa/JSnYQCQkiPvPW9NDHEXP2yzFBn39/sP/8YjR3X3NUkEi0EN5oLGlC0JEFtwgTj1PL
+         iy9Dllq23tVZaf8/8juhX2h1X6f6D4qz3Q1uoSlI5HOxBuk2TgbItW5r/TINj67AGpbq
+         YVlQ==
+X-Gm-Message-State: AOAM530vWaFrtvmkg2r8E8eZlgs3nXcaO8fXAHc8tIhe/UUmnyX/HTUh
+        9I3/LUcBICRDfzB6ToPw0ajGUg==
+X-Google-Smtp-Source: ABdhPJyEk9Rv3KTOVxXC0NHAHj1jU5hyD7crHmZ2gsBN42qlG53UAeVEt8i2HW6LabaIKUQoWsPqjw==
+X-Received: by 2002:a62:5444:0:b029:2e9:c69d:dc64 with SMTP id i65-20020a6254440000b02902e9c69ddc64mr7771482pfb.32.1624586126291;
+        Thu, 24 Jun 2021 18:55:26 -0700 (PDT)
+Received: from ?IPv6:240b:10:c9a0:ca00:55ca:cffa:65dd:ae53? ([240b:10:c9a0:ca00:55ca:cffa:65dd:ae53])
+        by smtp.gmail.com with ESMTPSA id n69sm4037663pfd.132.2021.06.24.18.55.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Jun 2021 18:55:25 -0700 (PDT)
+Subject: Re: [PATH 0/4] [RFC] Support virtual DRM
+To:     Pekka Paalanen <ppaalanen@gmail.com>
+Cc:     "Enrico Weigelt, metux IT consult" <lkml@metux.net>,
+        devicetree@vger.kernel.org, Takanari Hayama <taki@igel.co.jp>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        linux-doc@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Damian Hobson-Garcia <dhobsong@igel.co.jp>
+References: <20210621062742.26073-1-etom@igel.co.jp>
+ <7cde82a9-c60c-e527-eeac-eaad0c5842a1@metux.net>
+ <1cfab5f9-f275-aa53-00de-5da3fcea71c5@igel.co.jp>
+ <20210622111239.73aa87aa@eldfell>
+ <ee0161b5-c88b-40ce-c02f-86e0927b70bb@igel.co.jp>
+ <20210623113922.1e603139@eldfell>
+ <ab816c34-ff98-911f-e53d-b91cd3be6f2b@igel.co.jp>
+ <20210623144115.1bc55db1@eldfell>
+From:   Esaki Tomohito <etom@igel.co.jp>
+Message-ID: <b212df8e-4e71-9cb5-d796-7f5d1e193b7e@igel.co.jp>
+Date:   Fri, 25 Jun 2021 10:55:20 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210625020322.43825-1-gshan@redhat.com>
+In-Reply-To: <20210623144115.1bc55db1@eldfell>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/24/21 7:03 PM, Gavin Shan wrote:
-> The empty NUMA nodes, where no memory resides in, are allowed. For
-> these empty NUMA nodes, the 'len' of 'reg' property is zero. These
-> empty NUMA node IDs are still valid and parsed. I finds difficulty
-> to get where it's properly documented.
+
+
+On 2021/06/23 20:41, Pekka Paalanen wrote:
+> On Wed, 23 Jun 2021 18:22:47 +0900
+> Esaki Tomohito <etom@igel.co.jp> wrote:
 > 
-> So lets add note to empty NUMA nodes in the NUMA binding doc.
+>> On 2021/06/23 17:39, Pekka Paalanen wrote:
+>>> On Wed, 23 Jun 2021 15:56:05 +0900
+>>> Esaki Tomohito <etom@igel.co.jp> wrote:
+>>>   
+>>>> Hi,
+>>>> Thank you all for your comments.
+>>>>
+>>>> On 2021/06/22 17:12, Pekka Paalanen wrote:  
+>>>>> On Tue, 22 Jun 2021 13:03:39 +0900
+>>>>> Esaki Tomohito <etom@igel.co.jp> wrote:
+>>>>>     
+>>>>>> Hi, Enrico Weigelt
+>>>>>> Thank you for reply.
+>>>>>>
+>>>>>> On 2021/06/22 1:05, Enrico Weigelt, metux IT consult wrote:    
+>>>>>>> On 21.06.21 08:27, Tomohito Esaki wrote:
+>>>>>>>
+>>>>>>> Hi,
+>>>>>>>       
+>>>>>>>> Virtual DRM splits the overlay planes of a display controller into multiple
+>>>>>>>> virtual devices to allow each plane to be accessed by each process.
+>>>>>>>>
+>>>>>>>> This makes it possible to overlay images output from multiple processes on a
+>>>>>>>> display. For example, one process displays the camera image without compositor
+>>>>>>>> while another process overlays the UI.      
+>>>>>>>
+>>>>>>> Are you attempting to create an simple in-kernel compositor ?      
+>>>>>>
+>>>>>> I think the basic idea is the same as DRMlease.    
+>>>>>
+>>>>> Hi,
+>>>>>
+>>>>> indeed. Why not use DRM leases instead?
+>>>>>     
+>>>>
+>>>> In this use case, I understand that this is not possible with DRM lease,
+>>>> am I wrong?
+>>>> I understand that it’s not possible to lease a plane and update planes
+>>>> on the same output independently from different processes in current DRM
+>>>> lease.
+>>>>
+>>>> If this is correct, what do you think of adding support for plane leases
+>>>> to the DRM lease to handle this case?  
+>>>
+>>> Hi,
+>>>
+>>> I would love to see support added for leasing individual planes,
+>>> especially to replace the virtual DRM proposal which seems to be
+>>> eradicating everything that atomic modesetting and nuclear pageflip
+>>> have built over the many years.
+>>>
+>>> However, please note that "on the same output independently" is
+>>> physically impossible. Semantically, the planes define what a CRTC
+>>> scans out, and the CRTC defines the scanout timings. Therefore it is not
+>>> possible to update individual planes independently, they will all
+>>> always share the timings of the CRTC.
+>>>
+>>> That combined with KMS not allowing multiple updates to be queued at
+>>> the same time for the same CRTC (atomic commits and legacy pageflips
+>>> returning EBUSY) makes the plane updates very much inter-dependent.
+>>>
+>>> If you want to avoid EBUSY and have planes update on the vblank you
+>>> intended, you really need a userspace compositor to pull everything
+>>> together *before* submitting anything to the kernel.  
+>>
+>> Hi,
+>>
+>> Thank you for your comments and advice.
+>> I will consider leasing a plane.
 > 
-> Signed-off-by: Gavin Shan <gshan@redhat.com>
-> ---
-> v2: Update to address Randy's comments
-
-Hi Gavin,
-
-Sorry, there has been some misunderstanding. Please see below.
-
-
-> ---
->  Documentation/devicetree/bindings/numa.txt | 4 ++++
->  1 file changed, 4 insertions(+)
+> Hi,
 > 
-> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
-> index 21b35053ca5a..08e361f9954c 100644
-> --- a/Documentation/devicetree/bindings/numa.txt
-> +++ b/Documentation/devicetree/bindings/numa.txt
-> @@ -109,6 +109,10 @@ Example:
->  Dual socket system consists of 2 boards connected through ccn bus and
->  each board having one socket/soc of 8 cpus, memory and pci bus.
->  
-> +Note that the empty NUMA nodes, which no memory resides in period, are
+> I wish you considered a userspace compositor first, once more, with
+> passion.
+> 
+> It does not need to be Weston, and it does not need to use Wayland.
+> Just a userspace daemon that owns the whole display device and somehow
+> talks to whatever else wants stuff on screen.
+> 
+> I have not seen any evidence that leasing individual planes would do
+> you any good. I can easily see it doing you harm. I'm only saying that
+> it would be better than the virtual DRM proposal if you absolutely have
+> to go there. Please, consider not going there at all.
+> 
+> "On the same output independently" is not possible for the very simple
+> reason that the pixel data needs to be streamed serially to a monitor.
+> 
 
-In patch v1, this was:
+Hi,
 
-  +Note that the empty NUMA nodes, which no memory resides in, are allowed 
+Thank you for your advice.
+Once again, I'll consider a userspace compositor first.
 
-and I said:
-
-  Missing period at end of the sentence above.
-
-What I meant by that was "Missing 'period' ('.') punctuation at the end
-of the sentence above. So it should simply be changed to:
-
-
-  +Note that the empty NUMA nodes, which no memory resides in, are allowed.
-
-
-
-> +allowed. Their NUMA node IDs are still valid so that memory can be added
-> +into these NUMA nodes through hotplug afterwards.
-> +
->  	memory@c00000 {
->  		device_type = "memory";
->  		reg = <0x0 0xc00000 0x0 0x80000000>;
-
-Sorry about the confusion.
+Best regards
+Esaki
