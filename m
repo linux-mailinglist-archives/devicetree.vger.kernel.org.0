@@ -2,80 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7FBA3B3C32
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 07:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E953B3C39
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 07:25:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230309AbhFYF0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 01:26:12 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:34791 "EHLO
+        id S230309AbhFYF1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 01:27:48 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:21018 "EHLO
         us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230193AbhFYF0M (ORCPT
+        by vger.kernel.org with ESMTP id S230193AbhFYF1r (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 01:26:12 -0400
+        Fri, 25 Jun 2021 01:27:47 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1624598631;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=JEzA3/KcHqjV1NTgdCCaV4I2K2xF2kBaxzJKUrI7KNU=;
-        b=YY9H2maviywsYbXtPGTiTgJyfmyTWscx08YR2RGDkKt89EaQBOLIisW49GKtPcfvjORH6Q
-        Qx83G8FXaOBA8iULU1oyNsXiOHz72kgPaxieZGgUFwhv8r49R7K0tE0K824QqS4+ry3HmL
-        r4Un2Ukha+GETEaMOPk9emGB0HfQRA4=
+        s=mimecast20190719; t=1624598727;
+        h=from:from:reply-to:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=5TebrKn3e3TKUvfSmuIpNlgqZKelIpKqLqrwtlWlah0=;
+        b=UFsFlJ7jyNUBhtdtAXK9Ja+Ups9LESLlpEj8TZ30IGPzqRxQ+y5o+WcuC0EpO49bsU1wOB
+        N46jh7+RSxUYzVYSDN4TW3XO+MLT644en2T3Xlc9UqzdidoKMDFW6Y7DcGc6tiVXlvYwHJ
+        w7F8NFY0nPcaJ8UuBL+VFwpR2u/3GM0=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-487-gp0CA3GcNw-ynVpkfZy3kA-1; Fri, 25 Jun 2021 01:23:49 -0400
-X-MC-Unique: gp0CA3GcNw-ynVpkfZy3kA-1
-Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com [10.5.11.12])
+ us-mta-164-u10RwiyANZyT_hriyhl8nw-1; Fri, 25 Jun 2021 01:25:25 -0400
+X-MC-Unique: u10RwiyANZyT_hriyhl8nw-1
+Received: from smtp.corp.redhat.com (int-mx03.intmail.prod.int.phx2.redhat.com [10.5.11.13])
         (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 79FC3802C89;
-        Fri, 25 Jun 2021 05:23:48 +0000 (UTC)
-Received: from gshan.redhat.com (vpn2-54-233.bne.redhat.com [10.64.54.233])
-        by smtp.corp.redhat.com (Postfix) with ESMTP id 3503760C05;
-        Fri, 25 Jun 2021 05:23:45 +0000 (UTC)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 5588D802C80;
+        Fri, 25 Jun 2021 05:25:24 +0000 (UTC)
+Received: from [10.64.54.233] (vpn2-54-233.bne.redhat.com [10.64.54.233])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 42E8360936;
+        Fri, 25 Jun 2021 05:25:21 +0000 (UTC)
+Reply-To: Gavin Shan <gshan@redhat.com>
+Subject: Re: [PATCH v3] Documentation, dt, numa: Add note to empty NUMA node
+To:     Randy Dunlap <rdunlap@infradead.org>, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        drjones@redhat.com, shan.gavin@gmail.com
+References: <20210625043025.47469-1-gshan@redhat.com>
+ <874bcd17-29b6-658b-fa11-7854b1300d30@infradead.org>
+ <2973ca46-c092-3ffe-b14a-7481e479012e@redhat.com>
+ <3e7eb6ca-6f4c-2a85-8ff2-f7daf186d7a1@infradead.org>
 From:   Gavin Shan <gshan@redhat.com>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, rdunlap@infradead.org,
-        robh+dt@kernel.org, drjones@redhat.com, shan.gavin@gmail.com
-Subject: [PATCH v4] Documentation, dt, numa: Add note to empty NUMA node
-Date:   Fri, 25 Jun 2021 13:23:38 +0800
-Message-Id: <20210625052338.4875-1-gshan@redhat.com>
+Message-ID: <c92b8d03-9e9a-2d61-a54e-d24c595cb911@redhat.com>
+Date:   Fri, 25 Jun 2021 15:25:19 +1000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <3e7eb6ca-6f4c-2a85-8ff2-f7daf186d7a1@infradead.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.13
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The empty memory nodes, where no memory resides in, are allowed.
-For these empty memory nodes, the 'len' of 'reg' property is zero.
-The NUMA node IDs are still valid and parsed, but memory can be
-added to them through hotplug afterwards. I finds difficulty to
-get where it's properly documented.
+On 6/25/21 2:49 PM, Randy Dunlap wrote:
+> On 6/24/21 9:32 PM, Gavin Shan wrote:
+>> On 6/25/21 1:47 PM, Randy Dunlap wrote:
+>>> On 6/24/21 9:30 PM, Gavin Shan wrote:
+>>>> The empty NUMA nodes, where no memory resides in, are allowed. For
+>>>> these empty NUMA nodes, the 'len' of 'reg' property is zero. These
+>>>> empty NUMA node IDs are still valid and parsed. I finds difficulty
+>>>> to get where it's properly documented.
+>>>>
+>>>> So lets add note to empty NUMA nodes in the NUMA binding doc.
+>>>>
+>>>> Signed-off-by: Gavin Shan <gshan@redhat.com>
+>>>> ---
+>>>>    Documentation/devicetree/bindings/numa.txt | 4 ++++
+>>>>    1 file changed, 4 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+>>>> index 21b35053ca5a..edf728cff155 100644
+>>>> --- a/Documentation/devicetree/bindings/numa.txt
+>>>> +++ b/Documentation/devicetree/bindings/numa.txt
+>>>> @@ -109,6 +109,10 @@ Example:
+>>>>    Dual socket system consists of 2 boards connected through ccn bus and
+>>>>    each board having one socket/soc of 8 cpus, memory and pci bus.
+>>>>    +Note that the empty NUMA nodes, which no memory resides in, are allowed.
+>>>
+>>> I would write that without "the":
+>>>
+>>> +Note that empty NUMA nodes, which no memory resides in, are allowed.
+>>>
+>>> BTW, AFAIK, NUMA nodes may contain memory, CPU(s), or I/O -- any one, two, or
+>>> three, without the other types of resources being present.
+>>>
+>>
+>> Sure, I will drop "the" in v4.
+>>
+>> The NUMA nodes here are memory nodes here. Since the NUMA node usually means
+>> memory node. I'm not sure if I change the term "NUMA node" to "NUMA memory
+>> node" in v4. If you agree, I would have something like this:
+>>
+>> Note that empty memory nodes, which no memory resides in, are allowed.
+>> The NUMA node IDs in these empty memory nodes are still valid, but memory
+>> can be added into them through hotplug afterwards.
+> 
+> OK, that sounds fine to me.
+> 
 
-So lets add note to empty memory nodes in the NUMA binding doc.
+Thanks, Randy. I just posted v4 to include the changes.
 
-Signed-off-by: Gavin Shan <gshan@redhat.com>
----
- Documentation/devicetree/bindings/numa.txt | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
-index 21b35053ca5a..0fc882e44270 100644
---- a/Documentation/devicetree/bindings/numa.txt
-+++ b/Documentation/devicetree/bindings/numa.txt
-@@ -109,6 +109,10 @@ Example:
- Dual socket system consists of 2 boards connected through ccn bus and
- each board having one socket/soc of 8 cpus, memory and pci bus.
- 
-+Note that empty memory nodes, which no memory resides in, are allowed.
-+The NUMA node IDs in these empty memory nodes are still valid, but
-+memory can be added into them through hotplug afterwards.
-+
- 	memory@c00000 {
- 		device_type = "memory";
- 		reg = <0x0 0xc00000 0x0 0x80000000>;
--- 
-2.23.0
+Thanks,
+Gavin
 
