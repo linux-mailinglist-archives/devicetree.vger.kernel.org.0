@@ -2,97 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C57603B4094
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 11:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0070D3B40A2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 11:35:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231167AbhFYJeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 05:34:37 -0400
-Received: from mout.gmx.net ([212.227.17.21]:40287 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230523AbhFYJeh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 05:34:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1624613519;
-        bh=c4s3npKDwZv6b/q1SzXsWsCp8/0lbD8GagzJKn9ZWB4=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=H1lJfD1vRIp1kzY0ewroxbWmdEwW9ixgTVfM8dMHHqMV33WP0/PNs81OF0d7Yd6PY
-         Zi/S1UveBxgY6f4vlKTBr1eSEvwXpLdt/s9faKvzOTGDkuRDbZ848+pfsfLgdH9KrL
-         jhJlGtBuLx5EyJpJaqeTV2zGHIstE9+ahc0hq0dU=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.157.219] ([217.61.157.219]) by web-mail.gmx.net
- (3c-app-gmx-bs66.server.lan [172.19.170.210]) (via HTTP); Fri, 25 Jun 2021
- 11:31:59 +0200
+        id S229940AbhFYJiR convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 25 Jun 2021 05:38:17 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:34251 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229902AbhFYJiQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 05:38:16 -0400
+Received: (Authenticated sender: maxime.chevallier@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 340181BF208;
+        Fri, 25 Jun 2021 09:35:52 +0000 (UTC)
+Date:   Fri, 25 Jun 2021 11:35:50 +0200
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>, thomas.petazzoni@bootlin.com,
+        herve.codina@bootlin.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: imx6qdl-sr-som: Increase the PHY reset
+ duration to 10ms
+Message-ID: <20210625113550.7a135e69@bootlin.com>
+In-Reply-To: <20210625083840.GS22278@shell.armlinux.org.uk>
+References: <20210625083051.3691737-1-maxime.chevallier@bootlin.com>
+        <20210625083840.GS22278@shell.armlinux.org.uk>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Message-ID: <trinity-1a7ab0b7-d895-49ab-b3b9-3bf426889418-1624613519415@3c-app-gmx-bs66>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     Eric Woudstra <ericwouds@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sean Wang <sean.wang@mediatek.com>,
-        Ryder Lee <ryder.lee@mediatek.com>
-Subject: Aw: Re: Re: [PATCH] Fix mt7622.dtsi thermal cpu
 Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 25 Jun 2021 11:31:59 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <YNWgVxvNbwNcT3B8@makrotopia.org>
-References: <20210619121927.32699-1-ericwouds@gmail.com>
- <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org>
- <56fb5540-fb86-4e6a-a596-1276026b37e5@gmail.com>
- <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org>
- <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com>
- <fb633034-96e5-6165-b43f-290ae1a65cfd@linaro.org>
- <189b52d5-b103-43e1-a64f-1e627fbc75af@gmail.com>
- <173e6bab-9d21-eb28-9b91-a5f80c01fd03@linaro.org>
- <3dd22cf2-1186-4870-aa49-e5cddc18c6e9@gmail.com>
- <trinity-7580d955-3187-41e5-9297-1ac8f628a9d5-1624609003739@3c-app-gmx-bs66>
- <YNWgVxvNbwNcT3B8@makrotopia.org>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:mcYdBRprVpY4oUEHthoriHz4c4RGuCLxPwnDUj20+/cU9hXfLJoDGmTsQV0KVrHHFk4ID
- C5CwhbBPk5KASUTVJHxlhkXeN+je2H/pvbhAmWT2sXrioONmmA17anzdDXldW2eliP+N6rsx2FIx
- rb+I4G+X7R/eSqGFlbgkrSdUsCVVlcAEW/Sv4S9PXkFMmJEdvO4c0pnMyMD2U+b4woh9X1omkDMb
- vKKAT7NZ3Y5mMDXNp2nT5ol/N0T2kwK3QJXHa1777joWA27j1fUteAR4HHYvI8zzpsmH/6e6UmK7
- LI=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:aPAPN+zv5mU=:LL43kiOXYJ1e+szzmutz9K
- zH4JEOUjfjfTdw3Qe+YEOISUJ8knpjA4WwcBmMgsv49NCkW6XKdtVEkK0UIHKkyIHQJaHtmj9
- 6zs3hJ1GIl+nb5JLVxPBzL+7E4XfpNZEMd2IblYxpUVbxpo22zsWRpuJ3ymbNIhrbK745R8KO
- K5MuxlsnjOBjaiOftwU2bVgePCNY1WJUhPnIA1h8z+QwUU/NVF6A4PJiOyNNSpIekKTvG9vhT
- TVX2sEFP0A/PjxhExG37uKA5x4AV7wrVnvO4L82s4+zVQBJdoVy0msRWYkGlhiX85AUTSBVtl
- orc1mPz7cB6QL6uWko0xyLLNp5jg+qrVL/7WOIEgk/kp0EhPMneVo07T9j/6LBLabBK1RWFWw
- mGLWWqrYZtAvHDLIyWb4uQkF/PAK1PJvKzYRiTkbm5c5wI8PblB7Ws615f/InmTk1g5CuFstP
- efWPvW4DwjIutfGF232T0gOgyGC3BsaX6vminEljrdsfdcje7T3eFLDfSWLBkz9IWEqtf9v0m
- CZ7MbJzoc1ZJATwSGxIJaocYZJzEUewgwo/ctlp6pgh4P4AdVFbchOoO2kmq4k8Ts8BvYZG9t
- /gC4aF56s+35SvzRMtVE6bwRTJri6skI/mw5RESBzVe/c0tnLc9luMU5KCOEhYlhHtE/t0qmO
- SPCUhG8bdCzQ2+sLHjb+LDYO4Sw3w2d2g4PYf9NFI4V8ADA/nE11qhmfSoaNGMS/vimIwCgv9
- 9Y3Ll/qcUxEPBCoOW6qB64b1RuTZTb0Zio/HJbZcPJIR7bioHqPAwkrBlRnjwawRiFhq7SXDD
- 3oySbFNDIeH2N648oJDgGprn92xmxh4pJ85NtfYtEBIc5be8r0=
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Freitag, 25. Juni 2021 um 11:22 Uhr
-> Von: "Daniel Golle" <daniel@makrotopia.org>
+Hi Russell,
 
-> On Fri, Jun 25, 2021 at 10:16:43AM +0200, Frank Wunderlich wrote:
-> > Daniel from openwrt have some other mt7622 Boards maybe he can test th=
-e Fan approach below
+On Fri, 25 Jun 2021 09:38:40 +0100
+"Russell King (Oracle)" <linux@armlinux.org.uk> wrote:
+
+>On Fri, Jun 25, 2021 at 10:30:51AM +0200, Maxime Chevallier wrote:
+>> The datasheet for the AR803x PHY present on this SoM recommends that the
+>> reset line is asserted low for 10ms, so that the PHY has time to
+>> properly reset the internal blocks.
+>> 
+>> The previous value of 2ms was found to be problematic on some setups,
+>> causing intermittent issues where the PHY would be unresponsive
+>> every once in a while on some sytems, with a low occurence (it typically
+>> took around 30 consecutive reboots to encounter the issue).
+>> 
+>> Bumping the delay to the 10ms recommended value makes the issue
+>> dissapear, with more than 2500 consecutive reboots performed without the
+>> issue showing-up.  
 >
-> I got Linksys E8450 aka. Belkin RT3200 ( https://fcc.io/K7S-03571 ) as
-> well as Ubiquiti UniFi 6 LR ( https://fcc.io/SWX-U6LR ). Both got quite
-> massive customized heatsinks (see internal photos on FCC submission),
-> which results in much better heat dissipation than just having the
-> naked chip like on the BPi-R64.
-> Hence I also can't test the fan approach on boards other than the R64.
+>This isn't actually what the datasheet says, which is:
+>
+>  Input clock including the crystal and external input clock should be
+>  stable for at least 1ms before RESET can be deasserted.
+>
+>  When using crystal, the clock is generated internally after power is
+>  stable. For a reliable power on reset, suggest to keep asserting the
+>  reset low long enough (10ms) to ensure the clock is stable and
+>  clock-to-reset 1ms requirement is satisfied.
+>
+>The 10ms duration you quote is the _power on reset_ duration, and in
+>those circumstances, there is a delay before the required clocks will
+>be stable.
+>
+>This is not a power on reset scenario - the power was applied long ago
+>by the time the kernel starts booting, and XI clock would have been
+>running.
+>
+>So, I think the commit message which seems to be claiming that the reset
+>line always needs to be asserted for 10ms is not entirely accurate.
 
-Do your both mt7622 boards miss the fan-socket or is it not connected to p=
-wm3? then we need to move the fan-parts to mt7622-bananapi-r64.dts instead=
- of mt7622.dtsi
+You're correct, indeed, I guess we read that a bit too fast.
 
-regards Frank
+However, we do see that bumping the reset duration fixes the issue that
+was encountered.
+
+To give you more details about this issue, in that scenario the PHY
+would fail the autoneg process, no matter how many times we
+enable/disable the link and restart autoneg.
+
+The low duration of the reset might put the internal blocks in an
+unknown state, but I don't actually have the real hardware-side
+explanation for what is actually happening.
+
+Further testing showed, for example, that decreasing the time of reset
+assertion to 1ms made the issue appear everytime, whereas bumping it to
+10 ms fixed it entirely.
+
+In the absence of any other indication about how long should that reset
+be asserted, and after thourough testing, 10ms seems like a good enough
+value.
+
+I'll send a V2 with the commit log fixed.
+
+Thanks for the quick review,
+
+Maxime
+
+>> 
+>> Fixes: 208d7baf8085 ("ARM: imx: initial SolidRun HummingBoard support")
+>> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+>> Tested-by: Hervé Codina <herve.codina@bootlin.com>
+>> ---
+>>  arch/arm/boot/dts/imx6qdl-sr-som.dtsi | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
+>> index 0ad8ccde0cf8..a54dafce025b 100644
+>> --- a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
+>> +++ b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
+>> @@ -54,7 +54,7 @@ &fec {
+>>  	pinctrl-names = "default";
+>>  	pinctrl-0 = <&pinctrl_microsom_enet_ar8035>;
+>>  	phy-mode = "rgmii-id";
+>> -	phy-reset-duration = <2>;
+>> +	phy-reset-duration = <10>;
+>>  	phy-reset-gpios = <&gpio4 15 GPIO_ACTIVE_LOW>;
+>>  	status = "okay";
+>>  
+>> -- 
+>> 2.25.4
+>> 
+>>   
+>
+
+
+
+-- 
+Maxime Chevallier, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
