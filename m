@@ -2,119 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04BA83B4742
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 18:15:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 160403B4772
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 18:32:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbhFYQR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 12:17:57 -0400
-Received: from foss.arm.com ([217.140.110.172]:59834 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229445AbhFYQR5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 12:17:57 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CE74D1063;
-        Fri, 25 Jun 2021 09:15:35 -0700 (PDT)
-Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2FEFA3F719;
-        Fri, 25 Jun 2021 09:15:33 -0700 (PDT)
-Date:   Fri, 25 Jun 2021 17:15:28 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-pci@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: Re: [PATCH v6 0/7] Add SR-IOV support in PCIe Endpoint Core
-Message-ID: <20210625161528.GA21595@lpieralisi>
-References: <20210616211630.GA3007203@bjorn-Precision-5520>
- <0fd19e28-e0a6-fd79-672a-b588fb2763ba@ti.com>
+        id S229671AbhFYQfR convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 25 Jun 2021 12:35:17 -0400
+Received: from out28-171.mail.aliyun.com ([115.124.28.171]:33674 "EHLO
+        out28-171.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229630AbhFYQfR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 12:35:17 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436534|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.252999-0.00360188-0.743399;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047212;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=15;RT=15;SR=0;TI=SMTPD_---.KY.h8bx_1624638772;
+Received: from zhouyanjie-virtual-machine(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KY.h8bx_1624638772)
+          by smtp.aliyun-inc.com(10.147.41.231);
+          Sat, 26 Jun 2021 00:32:53 +0800
+Date:   Sat, 26 Jun 2021 00:32:51 +0800
+From:   =?UTF-8?B?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com
+Subject: Re: [PATCH v3 4/4] MIPS: CI20: Add second percpu timer for SMP.
+Message-ID: <20210626003251.02312e1e@zhouyanjie-virtual-machine>
+In-Reply-To: <67L9VQ.H1SRDC272GKW@crapouillou.net>
+References: <1624547189-61079-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1624547189-61079-5-git-send-email-zhouyanjie@wanyeetech.com>
+        <5C99VQ.EJKI9MPO7XXO1@crapouillou.net>
+        <20210625231942.32945490@zhouyanjie-virtual-machine>
+        <67L9VQ.H1SRDC272GKW@crapouillou.net>
+X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0fd19e28-e0a6-fd79-672a-b588fb2763ba@ti.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 24, 2021 at 08:30:09PM +0530, Kishon Vijay Abraham I wrote:
-> Hi Lorenzo,
+Hi Paul,
+
+于 Fri, 25 Jun 2021 16:47:30 +0100
+Paul Cercueil <paul@crapouillou.net> 写道:
+
+> Hi Zhou,
 > 
-> On 17/06/21 2:46 am, Bjorn Helgaas wrote:
-> > On Wed, Jun 16, 2021 at 07:35:33PM +0530, Kishon Vijay Abraham I wrote:
-> >> Hi Lorenzo, Bjorn,
-> >>
-> >> On 17/05/21 1:17 pm, Kishon Vijay Abraham I wrote:
-> >>> Patch series
-> >>> *) Adds support to add virtual functions to enable endpoint controller
-> >>>    which supports SR-IOV capability
-> >>> *) Add support in Cadence endpoint driver to configure virtual functions
-> >>> *) Enable pci_endpoint_test driver to create pci_device for virtual
-> >>>    functions
-> >>>
-> >>> v1 of the patch series can be found at [1]
-> >>> v2 of the patch series can be found at [2]
-> >>> v3 of the patch series can be found at [3]
-> >>> v4 of the patch series can be found at [4]
-> >>> v5 of the patch series can be found at [5]
-> >>>
-> >>> Here both physical functions and virtual functions use the same
-> >>> pci_endpoint_test driver and existing pcitest utility can be used
-> >>> to test virtual functions as well.
-> >>>
-> >>> Changes from v5:
-> >>> *) Rebased to 5.13-rc1
-> >>>
-> >>> Changes from v4:
-> >>> *) Added a fix in Cadence driver which was overwriting BAR configuration
-> >>>    of physical function.
-> >>> *) Didn't include Tom's Acked-by since Cadence driver is modified in
-> >>>    this revision.
-> >>>
-> >>> Changes from v3:
-> >>> *) Fixed Rob's comment and added his Reviewed-by as suggested by him.
-> >>>
-> >>> Changes from v2:
-> >>> *) Fixed DT binding documentation comment by Rob
-> >>> *) Fixed the error check in pci-epc-core.c
-> >>>
-> >>> Changes from v1:
-> >>> *) Re-based and Re-worked to latest kernel 5.10.0-rc2+ (now has generic
-> >>>    binding for EP)
-> >>>
-> >>> [1] -> http://lore.kernel.org/r/20191231113534.30405-1-kishon@ti.com
-> >>> [2] -> http://lore.kernel.org/r/20201112175358.2653-1-kishon@ti.com
-> >>> [3] -> https://lore.kernel.org/r/20210305050410.9201-1-kishon@ti.com
-> >>> [4] -> http://lore.kernel.org/r/20210310160943.7606-1-kishon@ti.com
-> >>> [5] -> https://lore.kernel.org/r/20210419083401.31628-1-kishon@ti.com
-> >>
-> >> Can this series be merged for 5.14? It already includes Ack from Rob for
-> >> dt-binding changes and Ack from Tom for Cadence driver changes.
+> Le ven., juin 25 2021 at 23:19:42 +0800, 周琰杰 
+> <zhouyanjie@wanyeetech.com> a écrit :
+> > Hi Paul,
 > > 
-> > Sorry, I think this was assigned to me in patchwork, but Lorenzo
-> > usually takes care of the endpoint stuff.  He's away this week, but no
-> > doubt will look at it when he returns.
+> > 于 Fri, 25 Jun 2021 12:31:17 +0100
+> > Paul Cercueil <paul@crapouillou.net> 写道:
+> >   
+> >>  Hi Zhou,
+> >> 
+> >>  Le jeu., juin 24 2021 at 23:06:29 +0800, 周琰杰 (Zhou Yanjie)
+> >>  <zhouyanjie@wanyeetech.com> a écrit :  
+> >>  > 1.Add a new TCU channel as the percpu timer of core1, this is to
+> >>  >   prepare for the subsequent SMP support. The newly added
+> >>  > channel will not adversely affect the current single-core state.
+> >>  > 2.Adjust the position of TCU node to make it consistent with the
+> >>  >   order in jz4780.dtsi file.  
+> >> 
+> >>  That's a bit superfluous, the order matters when adding new nodes,
+> >>  but once they are added, moving them around only cause annoyance.
+> >>   
+> >>  >
+> >>  > Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+> >>  > ---
+> >>  >
+> >>  > Notes:
+> >>  >     v2:
+> >>  >     New patch.
+> >>  >
+> >>  >     v2->v3:
+> >>  >     No change.
+> >>  >
+> >>  >  arch/mips/boot/dts/ingenic/ci20.dts | 21 +++++++++++----------
+> >>  >  1 file changed, 11 insertions(+), 10 deletions(-)
+> >>  >
+> >>  > diff --git a/arch/mips/boot/dts/ingenic/ci20.dts
+> >>  > b/arch/mips/boot/dts/ingenic/ci20.dts
+> >>  > index 8877c62..70005cc 100644
+> >>  > --- a/arch/mips/boot/dts/ingenic/ci20.dts
+> >>  > +++ b/arch/mips/boot/dts/ingenic/ci20.dts
+> >>  > @@ -118,6 +118,17 @@
+> >>  >  	assigned-clock-rates = <48000000>;
+> >>  >  };
+> >>  >
+> >>  > +&tcu {
+> >>  > +	/*
+> >>  > +	 * 750 kHz for the system timers and 3 MHz for the
+> >>  > clocksources,
+> >>  > +	 * use channel #0 and #1 for the per cpu system timers,
+> >>  > and use
+> >>  > +	 * channel #2 for the clocksource.
+> >>  > +	 */
+> >>  > +	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu  
+> >>  > TCU_CLK_TIMER1>,  
+> >>  > +					  <&tcu
+> >>  > TCU_CLK_TIMER2>, <&tcu TCU_CLK_OST>;
+> >>  > +	assigned-clock-rates = <750000>, <750000>, <3000000>,
+> >>  > <3000000>;  
+> >> 
+> >>  Ideally you'd set TIMER1 to 3 MHz and TIMER2 to 750 kHz,
+> >> otherwise it
+> >>  kind of breaks support for older kernels (they would still boot,
+> >> but with a very slow clocksource). So in the new DTS you could use
+> >> the timer0 clock for CPU #0, timer1 for the clocksource, and
+> >> timer2+ for cpus > 0.  
+> > 
+> > I checked the ingenic-timer driver, and it seems that the last TCU
+> > channel is always used as the clocksource in the driver, so it seems
+> > that we can only use timer2 as the clocksource in smp mode. Maybe we
+> > should add a note for smp is closed in the comment. And I found
+> > that I missed a problem, Nikolaus Schaller once reported that
+> > because the frequency of the tcu timer (only 16bit) used to provide
+> > the clocksource
+> > is too high, there will be a chance that the system will get stuck
+> > before the clocksource is switched to ost. And reducing the 
+> > clocksource
+> > to 750kz can prevent it from happening. I will add this part to v4.
+> > When this part is added, both clockevent and clocksource will be
+> > 750kHz, but the 750kHz clocksource is only temporary, because it
+> > will then switch to the clocksource provided by ost, and ost works
+> > at 3MHz.  
 > 
-> Can you consider merging this series for 5.14?
+> Ok, then first change the clocksource to 750 kHz, then update it with 
+> timer2.
 
-I am running late this cycle on reviews and the merge window is about
-to open, I will review it and queue it first thing for the next cycle.
+Sure, I will do it in v4.
 
-Apologies.
+Thanks and best regards!
 
-Lorenzo
+> 
+> Cheers,
+> -Paul
+> 
+> > 
+> > Thanks and best regards!
+> >   
+> >> 
+> >>  Cheers,
+> >>  -Paul
+> >>   
+> >>  > +};
+> >>  > +
+> >>  >  &mmc0 {
+> >>  >  	status = "okay";
+> >>  >
+> >>  > @@ -522,13 +533,3 @@
+> >>  >  		bias-disable;
+> >>  >  	};
+> >>  >  };
+> >>  > -
+> >>  > -&tcu {
+> >>  > -	/*
+> >>  > -	 * 750 kHz for the system timer and 3 MHz for the
+> >>  > clocksource,
+> >>  > -	 * use channel #0 for the system timer, #1 for the
+> >>  > clocksource.
+> >>  > -	 */
+> >>  > -	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu  
+> >>  > TCU_CLK_TIMER1>,  
+> >>  > -					  <&tcu TCU_CLK_OST>;
+> >>  > -	assigned-clock-rates = <750000>, <3000000>, <3000000>;
+> >>  > -};
+> >>  > --
+> >>  > 2.7.4
+> >>  >  
+> >>   
+> >   
+> 
+
