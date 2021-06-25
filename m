@@ -2,148 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6E183B467C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 17:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C72783B4698
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 17:27:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229697AbhFYPWI convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 25 Jun 2021 11:22:08 -0400
-Received: from out28-219.mail.aliyun.com ([115.124.28.219]:56018 "EHLO
-        out28-219.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbhFYPWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 11:22:07 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07437938|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.153526-0.00393891-0.842535;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047198;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=15;RT=15;SR=0;TI=SMTPD_---.KY-7FRG_1624634383;
-Received: from zhouyanjie-virtual-machine(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KY-7FRG_1624634383)
-          by smtp.aliyun-inc.com(10.147.40.44);
-          Fri, 25 Jun 2021 23:19:43 +0800
-Date:   Fri, 25 Jun 2021 23:19:42 +0800
-From:   =?UTF-8?B?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
-        sboyd@kernel.org, robh+dt@kernel.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com
-Subject: Re: [PATCH v3 4/4] MIPS: CI20: Add second percpu timer for SMP.
-Message-ID: <20210625231942.32945490@zhouyanjie-virtual-machine>
-In-Reply-To: <5C99VQ.EJKI9MPO7XXO1@crapouillou.net>
-References: <1624547189-61079-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1624547189-61079-5-git-send-email-zhouyanjie@wanyeetech.com>
-        <5C99VQ.EJKI9MPO7XXO1@crapouillou.net>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
+        id S229796AbhFYP3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 11:29:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42246 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229974AbhFYP3S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 11:29:18 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75307C061767
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 08:26:57 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id g24so5643015pji.4
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 08:26:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=EBU3GLAC+a45xt1yxWQOeqLDSsSmayxggpNRfZ40lAk=;
+        b=S0wxwt84pNgekCQbFSoavTEgRtyZ6KZkDtvugyJNNmYSg/QGUSbKsoeMKSAC071Rzu
+         3OlPOyjt22AcDFzEypkvtzSriXD9cRGUdgwVzPe1EacwxDZsSd/7w0saOKVzblZNWMEK
+         mFTGe7qSS/LA16E+SVeSa97hDRLU5a7JvW0r8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=EBU3GLAC+a45xt1yxWQOeqLDSsSmayxggpNRfZ40lAk=;
+        b=XPpI3W86fttBTGTNtNGI74cmynI0KOxMbx1c4W9OAcOrDPtlTL5l9BgVNqFVfdS2NA
+         qP6Ef1eZPY9dnWNtlSqMwyVfDq2Hb+YWDNFX+3aLzFeWUCiETLR3YgatkQpB9CRINi1z
+         /pjvp5bFD7DoQKxsBnie7G7kxozmd5erp7mz2OiZMMoBLMELoVfWVMmo//VX89+LNNFm
+         NahPXKfEM5zjTwyuqBurRsBJZC4lZMXMRNeuOiTLajZv7I8/ttv5isGpmyxnEYLv0wmp
+         oIB8PkgGtWs9iu5rfOu7rcpcVkNy7r2/rl1b9xxwMQRU1zSLgeVzZRlebIkMOAgpcTaE
+         a2Ug==
+X-Gm-Message-State: AOAM531O1n/ShRVT8Tle2i1CzblKiqSs9OZtA8CB7BfBudL+rQqIY1jk
+        fJE9ESttaKy9BmpZrkd+qkG5Xg==
+X-Google-Smtp-Source: ABdhPJyW6iBUqYLEGCxq+VaEpd8j8/5xQuB+q1+7bPRZWeCnpkKIMs2kPLymnkrotgdqg3SR7s2Sjw==
+X-Received: by 2002:a17:90b:4b07:: with SMTP id lx7mr12131737pjb.158.1624634817024;
+        Fri, 25 Jun 2021 08:26:57 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:cc13:a7dd:f4b5:2160])
+        by smtp.gmail.com with UTF8SMTPSA id g8sm6031069pja.14.2021.06.25.08.26.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Jun 2021 08:26:56 -0700 (PDT)
+Date:   Fri, 25 Jun 2021 08:26:54 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Judy Hsiao <judyhsiao@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        dianders@chromium.org, dgreid@chromium.org, cychiang@google.com,
+        judyhsiao@google.com, tzungbi@chromium.org, swboyd@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: trogdor: Update audio codec to
+ Max98360A
+Message-ID: <YNX1vvwHfCkZHyaY@google.com>
+References: <20210625045010.2914289-1-judyhsiao@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210625045010.2914289-1-judyhsiao@chromium.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Fri, Jun 25, 2021 at 12:50:10PM +0800, Judy Hsiao wrote:
+> Use max98360a dts node to correctly describe the hardware.
+> 
+> Signed-off-by: Judy Hsiao <judyhsiao@chromium.org>
 
-于 Fri, 25 Jun 2021 12:31:17 +0100
-Paul Cercueil <paul@crapouillou.net> 写道:
+Confirmed that this matches the schematics. Apparently 'max98357a' was
+used initially because 'max98360a' wasn't supported yet in the kernel
+that was used for development and ships on trogdor devices (v5.4).
 
-> Hi Zhou,
-> 
-> Le jeu., juin 24 2021 at 23:06:29 +0800, 周琰杰 (Zhou Yanjie) 
-> <zhouyanjie@wanyeetech.com> a écrit :
-> > 1.Add a new TCU channel as the percpu timer of core1, this is to
-> >   prepare for the subsequent SMP support. The newly added channel
-> >   will not adversely affect the current single-core state.
-> > 2.Adjust the position of TCU node to make it consistent with the
-> >   order in jz4780.dtsi file.  
-> 
-> That's a bit superfluous, the order matters when adding new nodes,
-> but once they are added, moving them around only cause annoyance.
-> 
-> > 
-> > Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> > ---
-> > 
-> > Notes:
-> >     v2:
-> >     New patch.
-> > 
-> >     v2->v3:
-> >     No change.
-> > 
-> >  arch/mips/boot/dts/ingenic/ci20.dts | 21 +++++++++++----------
-> >  1 file changed, 11 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/arch/mips/boot/dts/ingenic/ci20.dts 
-> > b/arch/mips/boot/dts/ingenic/ci20.dts
-> > index 8877c62..70005cc 100644
-> > --- a/arch/mips/boot/dts/ingenic/ci20.dts
-> > +++ b/arch/mips/boot/dts/ingenic/ci20.dts
-> > @@ -118,6 +118,17 @@
-> >  	assigned-clock-rates = <48000000>;
-> >  };
-> > 
-> > +&tcu {
-> > +	/*
-> > +	 * 750 kHz for the system timers and 3 MHz for the
-> > clocksources,
-> > +	 * use channel #0 and #1 for the per cpu system timers,
-> > and use
-> > +	 * channel #2 for the clocksource.
-> > +	 */
-> > +	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu
-> > TCU_CLK_TIMER1>,
-> > +					  <&tcu TCU_CLK_TIMER2>,
-> > <&tcu TCU_CLK_OST>;
-> > +	assigned-clock-rates = <750000>, <750000>, <3000000>,
-> > <3000000>;  
-> 
-> Ideally you'd set TIMER1 to 3 MHz and TIMER2 to 750 kHz, otherwise it 
-> kind of breaks support for older kernels (they would still boot, but 
-> with a very slow clocksource). So in the new DTS you could use the 
-> timer0 clock for CPU #0, timer1 for the clocksource, and timer2+ for 
-> cpus > 0.
-
-I checked the ingenic-timer driver, and it seems that the last TCU
-channel is always used as the clocksource in the driver, so it seems
-that we can only use timer2 as the clocksource in smp mode. Maybe we
-should add a note for smp is closed in the comment. And I found that I
-missed a problem, Nikolaus Schaller once reported that because the
-frequency of the tcu timer (only 16bit) used to provide the clocksource
-is too high, there will be a chance that the system will get stuck
-before the clocksource is switched to ost. And reducing the clocksource
-to 750kz can prevent it from happening. I will add this part to v4.
-When this part is added, both clockevent and clocksource will be
-750kHz, but the 750kHz clocksource is only temporary, because it will
-then switch to the clocksource provided by ost, and ost works at 3MHz.
-
-Thanks and best regards!
-
-> 
-> Cheers,
-> -Paul
-> 
-> > +};
-> > +
-> >  &mmc0 {
-> >  	status = "okay";
-> > 
-> > @@ -522,13 +533,3 @@
-> >  		bias-disable;
-> >  	};
-> >  };
-> > -
-> > -&tcu {
-> > -	/*
-> > -	 * 750 kHz for the system timer and 3 MHz for the
-> > clocksource,
-> > -	 * use channel #0 for the system timer, #1 for the
-> > clocksource.
-> > -	 */
-> > -	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu
-> > TCU_CLK_TIMER1>,
-> > -					  <&tcu TCU_CLK_OST>;
-> > -	assigned-clock-rates = <750000>, <3000000>, <3000000>;
-> > -};
-> > --
-> > 2.7.4
-> >   
-> 
-
+Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
