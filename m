@@ -2,185 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E75E63B4727
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 18:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3880A3B4740
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 18:13:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbhFYQHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 12:07:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51054 "EHLO
+        id S229831AbhFYQQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 12:16:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbhFYQHX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 12:07:23 -0400
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25E7AC061574
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 09:05:03 -0700 (PDT)
-Received: by mail-ot1-x32c.google.com with SMTP id 6-20020a9d07860000b02903e83bf8f8fcso9714137oto.12
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 09:05:03 -0700 (PDT)
+        with ESMTP id S229759AbhFYQQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 12:16:10 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECC30C061766
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 09:13:48 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso9777791otu.10
+        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 09:13:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=xd9PNnGbU+0JOU0hQhDvobfIV8H89CTisLD0oCZtB/Q=;
-        b=ClbrzjpoTksrtFJM90bLEICDamVSAwKvnUIqWHFLdXIWK/KAikDxvddnvg+BPsyMGC
-         JKSzu4ZgAs8Fja8rYS653qZ7XUdU0vH4s0GzISfoaxD0VYMgMbS3qgjXvz7A1tIeh7wz
-         7P8zAYi1YzuWzIHyPmItNA6czsmz8ql9pwSUF9PSIogAuiRao4/0xP4D/q+/aq16aAU3
-         92G13Xs+ZpLs8+NLvKPyoBBd105jl+K3QI5U2gIoSez2Bz6Ef7UAR/bGBlK4KDq5855S
-         lU1UveAToK40bSlnLiIQ3cKnCBpuXGMz03zJjkRyQngDaM+RywVbWu/LuAuU+fQdL3TY
-         iNGA==
+        bh=MWWpxotgdBre27isI3DwZKQ334uPd/zecV0Lcyc3n7Q=;
+        b=N7zn6P76h5T81mOnWCupIHAcZvozSOjxZGTu/yWBXAFYQ7KtjfLycqT4XiBEFUrId1
+         xuFky7NkApH6BPvpnPP0zRNbC/4HgA3jtVvNGI+RUnb24WxoZeD9R+pzeMjUpHHNOo64
+         tHsRlMmWYgu6iwZ5Y1+vzK6RUg+S1UytBwSb/jEKBmT4hkrEWavEbxCZoV8vrmNjpV+R
+         WjDZQspCHpjwecQvvyvEw3rK09fdE1nXSzAmX3hc1Mn/MId88dV7sZ6g6dO+M1Eg6b/+
+         aznWTPJMenw99Iu2z8iwu/CLCOCmax7ptRtYD5oxbeGmSDu4wg2B69pO0hmJ5I5xAQrT
+         VxUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xd9PNnGbU+0JOU0hQhDvobfIV8H89CTisLD0oCZtB/Q=;
-        b=kHcYrLjsE3GXhHmsodEY2itUFgFZAdtKCbgy0U5LKoyuZqBfN1xvwrRIGaw2jPfAki
-         nU+Y1dyXZvcc3TLjdKMOrJ5r2h6EZAORLntptFs8FBaqBPahUQ2jMcLUWpyspKXdYr3f
-         pvnyOeTDh/oGpvidnNAPKTNDM1WbqVoAw7lhigqwX1hIN5mIxNOzpQeIzv0wnTv4qGaK
-         dgMB/bTf85cDom+DibK0qLfVaBQ9fy1jgsNyhrnCkkBU6DVfB0/3ta7JHQM2Fms5MSdY
-         5qLmpogG//dPofRaUjtl7wVNiw7jC8StlRZ05HXe/EsRluNJ6MG53WQJ5eRBMfQWMoLz
-         FxzQ==
-X-Gm-Message-State: AOAM532j1i5D1KCtGnnAlnQpi5R3OqOIOgQrPC+UKZh4eRZ0fiTSaSKw
-        LUrhkAOv6SYZkCRwFfu1FEyedg==
-X-Google-Smtp-Source: ABdhPJxmWQ5bf/6uYdjNUSQN553DmyHudDT79L+nx9GPVInArVpEskKs+ENqfS1mM6eR5Zl6azBIWQ==
-X-Received: by 2002:a9d:5885:: with SMTP id x5mr10281258otg.299.1624637102441;
-        Fri, 25 Jun 2021 09:05:02 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id s15sm1421205oih.15.2021.06.25.09.05.01
+        bh=MWWpxotgdBre27isI3DwZKQ334uPd/zecV0Lcyc3n7Q=;
+        b=aOQUcEvr2qZk/jZKA2wUAk7fJRuGjMezLxPyQFlKqslv2NDrQNHiRdmgtzAoiJ/JDf
+         cJz+ZEAJ+LRRIOlkSrR3V8xZ8Mlv6kfZ89X2Vdj7iz+4fbp1hMkxgpHWu9sfDOvYyUZO
+         1n3pkMLSRBDYg8lhTrqjnZoLrNuMYRaPoyl29YgW61qoPM5uPwSH3awvqWLkoKVRGxdR
+         C8o8yhtg8DzKZvCT8odQmPpP/f4Vg/oVfH1i1+xGqh30CIilvJlkynBD7lmgjyqdMQtB
+         5nRs9XVIWfXTQOkI4YRut0bsdXIPZaE6RzQBzNOrTAH2Kgo0VN7anrju7JzDmVN2AhgJ
+         /Erg==
+X-Gm-Message-State: AOAM530eVRw9eoSQhaqS5kqXGXOHYwsTU4KjYfAUnivV0/E8vvbOKhfT
+        68FNPQxtzaVsmmBA6+IMjDW5ig==
+X-Google-Smtp-Source: ABdhPJxTOT8pJDLAz3xdWNJ/+53maozvDLTDh1AQoHyWbRZamb70O7ND1oumpz1JDJMQrWT5GODECg==
+X-Received: by 2002:a05:6830:1309:: with SMTP id p9mr10338163otq.209.1624637628209;
+        Fri, 25 Jun 2021 09:13:48 -0700 (PDT)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id q9sm1509884ots.1.2021.06.25.09.13.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Jun 2021 09:05:01 -0700 (PDT)
-Date:   Fri, 25 Jun 2021 11:04:59 -0500
+        Fri, 25 Jun 2021 09:13:47 -0700 (PDT)
+Date:   Fri, 25 Jun 2021 11:13:45 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     khsieh@codeaurora.org
-Cc:     Stephen Boyd <swboyd@chromium.org>, robdclark@gmail.com,
-        sean@poorly.run, vkoul@kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        abhinavk@codeaurora.org, aravindh@codeaurora.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64/dts/qcom/sc7180: Add Display Port dt node
-Message-ID: <YNX+qyJjagO7A9+Q@yoga>
-References: <CAE-0n50WP25kRQkWMVdDZGsZWBXwfbVSTFKyBLF7f8Mp3x2Wfg@mail.gmail.com>
- <YL/wWdRs6e/eECiC@yoga>
- <CAE-0n51GM65rZVJgXuHy6FerJorHeHKf2W31GijG8sDEhaX_KQ@mail.gmail.com>
- <YL/41hWz8xB+jSeO@yoga>
- <21dc5c9fc2efdc1a0ba924354bfd9d75@codeaurora.org>
- <CAE-0n52J_mLsmXLS+skZn2u3k9dhn+GcHeXi0B2BeQyQxEUL9A@mail.gmail.com>
- <YM0THrlJlv7ADW8w@builder.lan>
- <CAE-0n53Zr-w5m-eFhLM2BVmphcYb_M4=s5je3Y7Lg6=onNo=uA@mail.gmail.com>
- <YNKiB3ZEtOQ+T/MX@yoga>
- <b157a691a1cb8f860219ca3b2c335411@codeaurora.org>
+To:     Kuogee Hsieh <khsieh@codeaurora.org>
+Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
+        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] arm64: dts: qcom: sc7180: Add DisplayPort node
+Message-ID: <YNYAuaBrGgdtToph@builder.lan>
+References: <1622758940-13485-1-git-send-email-khsieh@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b157a691a1cb8f860219ca3b2c335411@codeaurora.org>
+In-Reply-To: <1622758940-13485-1-git-send-email-khsieh@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 25 Jun 10:55 CDT 2021, khsieh@codeaurora.org wrote:
+On Thu 03 Jun 17:22 CDT 2021, Kuogee Hsieh wrote:
 
-> On 2021-06-22 19:52, Bjorn Andersson wrote:
-> > On Tue 22 Jun 15:23 CDT 2021, Stephen Boyd wrote:
-> > 
-> > > Quoting Bjorn Andersson (2021-06-18 14:41:50)
-> > > > On Fri 18 Jun 15:49 CDT 2021, Stephen Boyd wrote:
-> > > >
-> > > > > Quoting khsieh@codeaurora.org (2021-06-10 09:54:05)
-> > > > > > On 2021-06-08 16:10, Bjorn Andersson wrote:
-> > > > > > > On Tue 08 Jun 17:44 CDT 2021, Stephen Boyd wrote:
-> > > > > > >
-> > > > > > >> Honestly I suspect the DP PHY is _not_ in the CX domain as CX is for
-> > > > > > >> digital logic. Probably the PLL is the hardware that has some minimum
-> > > > > > >> CX
-> > > > > > >> requirement, and that flows down into the various display clks like
-> > > > > > >> the
-> > > > > > >> link clk that actually clock the DP controller hardware. The mdss_gdsc
-> > > > > > >> probably gates CX for the display subsystem (mdss) so if we had proper
-> > > > > > >> corner aggregation logic we could indicate that mdss_gdsc is a child
-> > > > > > >> of
-> > > > > > >> the CX domain and then make requests from the DP driver for particular
-> > > > > > >> link frequencies on the mdss_gdsc and then have that bubble up to CX
-> > > > > > >> appropriately. I don't think any of that sort of code is in place
-> > > > > > >> though, right?
-> > > > > > >
-> > > > > > > I haven't checked sc7180, but I'm guessing that it's following the
-> > > > > > > other
-> > > > > > > modern platforms, where all the MDSS related pieces (including e.g.
-> > > > > > > dispcc) lives in the MMCX domain, which is separate from CX.
-> > > > > > >
-> > > > > > > So the parent of MDSS_GDSC should be MMCX, while Kuogee's answer (and
-> > > > > > > the dp-opp-table) tells us that the PLL lives in the CX domain.
-> > > > >
-> > > > > Isn't MMCX a "child" of CX? At least my understanding is that MMCX is
-> > > > > basically a GDSC that clamps all of multimedia hardware block power
-> > > > > logic so that the leakage is minimized when multimedia isn't in use,
-> > > > > i.e. the device is suspended. In terms of bumping up the voltage we have
-> > > > > to pin that on CX though as far as I know because that's the only power
-> > > > > domain that can actually change voltage, while MMCX merely gates that
-> > > > > voltage for multimedia.
-> > > > >
-> > > >
-> > > > No, MMCX is a separate rail from CX, which powers the display blocks and
-> > > > is parent of MDSS_GDSC. But I see in rpmhpd that sc7180 is not one of
-> > > > these platforms, so I presume this means that the displayport controller
-> > > > thereby sits in MDSS_GDSC parented by CX.
-> > > >
-> > > > But in line with what you're saying, the naming of the supplies to the
-> > > > QMP indicates that the power for the PLLs is static. As such the only
-> > > > moving things would be the clock rates in the DP controller and as such
-> > > > that's what needs to scale the voltage.
-> > > >
-> > > > So if the resources we're scaling is the clocks in the DP controller
-> > > > then the gist of the patch is correct. The only details I see is that
-> > > > the DP controller actually sits in MDSS_GDSC - while it should control
-> > > > the level of its parent (CX). Not sure if we can describe that in a
-> > > > simple way.
-> > > 
-> > > Right. I'm not sure things could be described any better right now. If
-> > > we need to change this to be MDSS_GDSC power domain and control the
-> > > level of the parent then I suppose we'll have to make some sort of DT
-> > > change and pair that with a driver change. Maybe if that happens we
-> > > can
-> > > just pick a new compatible and leave the old code in place.
-> > > 
-> > 
-> > I would prefer that we stay away from making up a new compatible for
-> > that, but let's see when we get there.
-> > 
-> > > Are you happy enough with this current patch?
-> > > 
-> > 
-> > Yes, I think this looks good.
-> > 
-> > > >
-> > > >
-> > > > PS. Why does the node name of the opp-table have to be globally unique?
-> > > 
-> > > Presumably the opp table node name can be 'opp-table' as long as it
-> > > lives under the node that's using it. If the opp table is at / or /soc
-> > > then it will need to be unique. I'd prefer just 'opp-table' if
-> > > possible.
-> > 
-> > I asked the same question (if it has to be globally unique) in the patch
-> > adding sdhci nodes for sc7280 and I didn't get a sufficient answer...
-> > 
-> > So now I do want to know why "opp-table" wouldn't be sufficient name for
-> > these device-internal nodes.
-> > 
-> my opinion is dp_opp_table is more consistency with mdp and dsi.
-> Either one is fine. Please let me know asap.
+> Add DP device node on sc7180.
+> 
+> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+> ---
+> Changes in v2:
+> -- replace msm_dp with dp
+> -- replace dp_opp_table with opp_table
+> 
+> Changes in v3:
+> -- correct text of commit title
+> 
+> Changes in v4:
+> -- replace dp with mdss_dp
+> -- replace opp_table with dp_opp_table
+> 
+> 
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi |  9 ++++
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 78 ++++++++++++++++++++++++++++
+>  2 files changed, 87 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index 24d293e..051fb40 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -786,6 +786,15 @@ hp_i2c: &i2c9 {
+>  	status = "okay";
+>  };
+>  
+> +&mdss_dp {
+> +        status = "okay";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&dp_hot_plug_det>;
+> +        data-lanes = <0 1>;
+> +        vdda-1p2-supply = <&vdda_usb_ss_dp_1p2>;
+> +        vdda-0p9-supply = <&vdda_usb_ss_dp_core>;
+> +};
+> +
+>  &pm6150_adc {
+>  	charger-thermistor@4f {
+>  		reg = <ADC5_AMUX_THM3_100K_PU>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index 6228ba2..c779ad3 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -3032,6 +3032,13 @@
+>  							remote-endpoint = <&dsi0_in>;
+>  						};
+>  					};
+> +
+> +					port@2 {
+> +						reg = <2>;
+> +						dpu_intf0_out: endpoint {
+> +							remote-endpoint = <&dp_in>;
+> +						};
+> +					};
+>  				};
+>  
+>  				mdp_opp_table: mdp-opp-table {
+> @@ -3148,6 +3155,77 @@
+>  
+>  				status = "disabled";
+>  			};
+> +
+> +			mdss_dp: displayport-controller@ae90000 {
+> +				compatible = "qcom,sc7180-dp";
+> +				status = "disabled";
+> +
+> +				reg = <0 0x0ae90000 0 0x1400>;
+> +
+> +				interrupt-parent = <&mdss>;
+> +				interrupts = <12>;
+> +
+> +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
+> +					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
+> +				clock-names = "core_iface", "core_aux", "ctrl_link",
+> +					      "ctrl_link_iface", "stream_pixel";
+> +				#clock-cells = <1>;
+> +				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
+> +						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
+> +				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
+> +				phys = <&dp_phy>;
+> +				phy-names = "dp";
+> +
+> +				operating-points-v2 = <&dp_opp_table>;
+> +				power-domains = <&rpmhpd SC7180_CX>;
+> +
+> +				#sound-dai-cells = <0>;
+> +
+> +				ports {
+> +					#address-cells = <1>;
+> +					#size-cells = <0>;
+> +					port@0 {
+> +						reg = <0>;
+> +						dp_in: endpoint {
+> +							remote-endpoint = <&dpu_intf0_out>;
+> +						};
+> +					};
+> +
+> +					port@1 {
+> +						reg = <1>;
+> +						dp_out: endpoint { };
+> +					};
+> +				};
+> +
+> +				dp_opp_table: dp-opp-table {
 
-I presume you mean dp-opp-table, and you're right, that is perfectly in
-line with gpu-opp-table, mdp-opp-table and dsi-opp-table. But there's
-also a few examples showing me that there's no need for it to be
-globally unique.
+I forgot that our discussion about the node name here was on the
+previous revision, _this_ is the patch I will drop the "dp-" from and
+apply.
 
-So "dp_opp_table: opp-table" is the form I want and we should fix all
-those other cases.
+And as I've looked at this quite a bit now:
 
-I'll update your patch as I apply it, no need to respin it for that.
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Thanks,
+Thanks for following up on the other feedback!
+
+Regards,
 Bjorn
 
-> > Regards,
-> > Bjorn
+> +					compatible = "operating-points-v2";
+> +
+> +					opp-160000000 {
+> +						opp-hz = /bits/ 64 <160000000>;
+> +						required-opps = <&rpmhpd_opp_low_svs>;
+> +					};
+> +
+> +					opp-270000000 {
+> +						opp-hz = /bits/ 64 <270000000>;
+> +						required-opps = <&rpmhpd_opp_svs>;
+> +					};
+> +
+> +					opp-540000000 {
+> +						opp-hz = /bits/ 64 <540000000>;
+> +						required-opps = <&rpmhpd_opp_svs_l1>;
+> +					};
+> +
+> +					opp-810000000 {
+> +						opp-hz = /bits/ 64 <810000000>;
+> +						required-opps = <&rpmhpd_opp_nom>;
+> +					};
+> +				};
+> +			};
+> +
+> +
+>  		};
+>  
+>  		dispcc: clock-controller@af00000 {
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
