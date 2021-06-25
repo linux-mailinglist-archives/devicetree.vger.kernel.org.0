@@ -2,273 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A0CA3B422D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 13:07:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F4FE3B4248
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 13:14:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230192AbhFYLKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 07:10:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40370 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbhFYLKG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 07:10:06 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A50CC061574;
-        Fri, 25 Jun 2021 04:07:46 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id h2so12892296edt.3;
-        Fri, 25 Jun 2021 04:07:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=in-reply-to:references:thread-topic:user-agent:mime-version
-         :content-transfer-encoding:subject:from:date:to:cc:message-id;
-        bh=zS+Sy2JuyXUjHyIS0w19cZln6zoHhOgeM0Qhc+/cXBs=;
-        b=R9EzdJqKI8fn9iZhp0YgJ8pfmVFefMTQMKVqSscunCMLjkjqYZfF3rRvJKIsiNHY2R
-         SzPAZOKlqWsCCjE8VOAunUzBWWUL2M/ep75WyXHfk0Ro8KUSvcPLV6Dxt6FObgsyB8eg
-         JHL8+fxD/v9BEALcIQDv7HS/g/dgsLKOOxgfqMf1vSsWcXD/HjtTMg0PJrQWnuNHO6nq
-         jWyi32oA/WGhWp1ww+q4UuecpGmmCBaqbDqaEGciBpqeuY/GTpgVEiPl52bBTr9w6Ttf
-         JfRYrpXFPCRvLReavNC2tBgVdoxqFX/7GxPADzdV1No0Ln2xvCdvBGiXvuiqr8Bx97Id
-         W8RA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:in-reply-to:references:thread-topic:user-agent
-         :mime-version:content-transfer-encoding:subject:from:date:to:cc
-         :message-id;
-        bh=zS+Sy2JuyXUjHyIS0w19cZln6zoHhOgeM0Qhc+/cXBs=;
-        b=UbwJ/DzR7KsjdvMNO4/Ava6ixSKBjq6wOz4AxeBAd75/Sahe12nePTe1J90q9iVtKs
-         Y1BW85jWtwiZbT3UB/2TITvmYy0tC/Fb59/Hu4Pt6wdiSARFvATfSueldtWudhIT+sO0
-         3lbPDwLxSFhL/XgVJ00ixriXKZrhyQaVcc3cW3VXpsbO3XyRwJ/BaFdM5IPGZICxR9wk
-         GWPA8xMUl8NJXy+cXrgePuhlzuamjH0FtbNxE1Y1ANmH93tqXLs2WVmhE7emz5CEFH+2
-         JYNZDBzFCuK4oM2FJPbFTi8lMkRNFT80i92AjSpezLJPQoqy/nVrbauqyn0SwBIqNRHC
-         n1gQ==
-X-Gm-Message-State: AOAM533SpQ9EumDdyaQUMzolZSAZTycxBYXyRnSiMHv45DCmbcBT5JiL
-        5Lko2bjhwKnnvEDy7cqoUPg=
-X-Google-Smtp-Source: ABdhPJxAA2PYThH5HCe4nhv2JuPudiiWFmx883/ndYXLhIfPMVK4qdlr8pZNqHIVId0VJm5M1V6Ppg==
-X-Received: by 2002:a05:6402:31b4:: with SMTP id dj20mr14094807edb.186.1624619264824;
-        Fri, 25 Jun 2021 04:07:44 -0700 (PDT)
-Received: from [10.73.177.209] ([89.205.226.136])
-        by smtp.gmail.com with ESMTPSA id j19sm2626800ejo.3.2021.06.25.04.07.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jun 2021 04:07:44 -0700 (PDT)
-In-Reply-To: <trinity-2eb7c0ac-d9dc-446c-8907-69b5f4df6838-1624618996538@3c-app-gmx-bs66>
-References: <20210619121927.32699-1-ericwouds@gmail.com> <e30a2d01-a200-80cb-88d9-6aea62dd49f1@linaro.org> <56fb5540-fb86-4e6a-a596-1276026b37e5@gmail.com> <a4e41929-6ab4-fabb-741e-f25a5fd14e3b@linaro.org> <47261865-00e3-41eb-bb36-2b939f81f1e8@gmail.com> <fb633034-96e5-6165-b43f-290ae1a65cfd@linaro.org> <189b52d5-b103-43e1-a64f-1e627fbc75af@gmail.com> <173e6bab-9d21-eb28-9b91-a5f80c01fd03@linaro.org> <3dd22cf2-1186-4870-aa49-e5cddc18c6e9@gmail.com> <trinity-7580d955-3187-41e5-9297-1ac8f628a9d5-1624609003739@3c-app-gmx-bs66> <8b27246b-721e-fa0e-5c2b-b1b4b4d6fdd3@linaro.org> <trinity-2eb7c0ac-d9dc-446c-8907-69b5f4df6838-1624618996538@3c-app-gmx-bs66>
-X-Referenced-Uid: 5607
-Thread-Topic: Aw: Re:  Re: [PATCH] Fix mt7622.dtsi thermal cpu
-X-Blue-Identity: !l=334&o=43&fo=5970&pl=224&po=0&qs=PREFIX&f=HTML&m=!%3ANzRiZDk5M2QtNTJhNy00MTE4LThlNmYtYTk2ZDg2NDQzNGU0%3ASU5CT1g%3D%3ANTYwNw%3D%3D%3AANSWERED&p=195&q=SHOW
-X-Is-Generated-Message-Id: true
-User-Agent: Android
+        id S230020AbhFYLQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 07:16:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37318 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229974AbhFYLQW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Jun 2021 07:16:22 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6544661469;
+        Fri, 25 Jun 2021 11:13:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624619641;
+        bh=CeF7W3ZxfcmQOVYbFaxDuNkkKFqDV/crzaldiTiFwNA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=V2nuX61lH+7IUK4AWeskGiJMpx1dXiqViwnSs+t9XwMiBuX3dx8PdLlqMOtFGTlkN
+         3sp/zadb/tEBJ45lsuycgZq9rVZXJfP0voWwQMLFwYBrreG5znr22SG3uKOdawJXj2
+         3O6dxTlrUOzOpucTr3nEhu6yYekmNF3tpOB9v7uETt+A+HM9Op93rAx1+zwBTE/k/I
+         lC0mphnxlZMTEZGPBTzxR1AkTBjDWtPRoQiVSziBciw+ta/DwIJMWJFVmKZxTNqmVS
+         Mn0NeR5p8UtKmClyeY0GXr+FoQ0JAg2RDSZdkZHa3UaBQ5j/utRSznADCPoYtnxUas
+         LbjRHpNjpx7qw==
+Date:   Fri, 25 Jun 2021 13:13:56 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH RESEND v6 6/8] mfd: hi6421-spmi-pmic: move driver from
+ staging
+Message-ID: <20210625131356.55ffd067@coco.lan>
+In-Reply-To: <YNSRwIMr8+m9Sxk3@dell>
+References: <cover.1624525118.git.mchehab+huawei@kernel.org>
+        <1ad2cbbd182d18ba2cae716fb5f1497b1cabbdbe.1624525118.git.mchehab+huawei@kernel.org>
+        <YNRrISOGujxcJAGR@dell>
+        <20210624143605.153e1e34@coco.lan>
+        <YNSRwIMr8+m9Sxk3@dell>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Local-Message-Id: <52767351-83da-41e2-a746-3407ee9c73e8@gmail.com>
-Content-Type: text/plain;
- charset=UTF-8
-Subject: Re:  Re: [PATCH] Fix mt7622.dtsi thermal cpu
-From:   Eric Woudstra <ericwouds@gmail.com>
-Date:   Fri, 25 Jun 2021 13:07:42 +0200
-To:     Frank Wunderlich <frank-w@public-files.de>
-CC:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Sean Wang <sean.wang@mediatek.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Daniel Golle <daniel@makrotopia.org>
-Message-ID: <52767351-83da-41e2-a746-3407ee9c73e8@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I choose "hot* with CPU, because it was the best temperature=2E But it shou=
-ld really be passive only with the cooling device CPU but with a much highe=
-r temperature=2E For me 87 degrees is fine and tested=2E But for mainline w=
-e would better ask Mediatek for the correct maximum temperature=2E
+Em Thu, 24 Jun 2021 15:08:00 +0100
+Lee Jones <lee.jones@linaro.org> escreveu:
 
-=E2=81=
-=A3Get BlueMail for Android =E2=80=8B
+> > > > +/*
+> > > > + * The IRQs are mapped as:
+> > > > + *
+> > > > + *	======================  =============   ============	=====
+> > > > + *	IRQ			MASK REGISTER	IRQ REGISTER	BIT
+> > > > + *	======================  =============   ============	=====
+> > > > + *	OTMP			0x0202		0x212		bit 0
+> > > > + *	VBUS_CONNECT		0x0202		0x212		bit 1
+> > > > + *	VBUS_DISCONNECT		0x0202		0x212		bit 2
+> > > > + *	ALARMON_R		0x0202		0x212		bit 3
+> > > > + *	HOLD_6S			0x0202		0x212		bit 4
+> > > > + *	HOLD_1S			0x0202		0x212		bit 5
+> > > > + *	POWERKEY_UP		0x0202		0x212		bit 6
+> > > > + *	POWERKEY_DOWN		0x0202		0x212		bit 7
+> > > > + *
+> > > > + *	OCP_SCP_R		0x0203		0x213		bit 0
+> > > > + *	COUL_R			0x0203		0x213		bit 1
+> > > > + *	SIM0_HPD_R		0x0203		0x213		bit 2
+> > > > + *	SIM0_HPD_F		0x0203		0x213		bit 3
+> > > > + *	SIM1_HPD_R		0x0203		0x213		bit 4
+> > > > + *	SIM1_HPD_F		0x0203		0x213		bit 5
+> > > > + *	======================  =============   ============	=====
+> > > > + *
+> > > > + * Each mask register contains 8 bits. The ancillary macros below
+> > > > + * convert a number from 0 to 14 into a register address and a bit mask
+> > > > + */
+> > > > +#define HISI_IRQ_MASK_REG(irq_data)	(SOC_PMIC_IRQ_MASK_0_ADDR + \
+> > > > +					 (irqd_to_hwirq(irq_data) / BITS_PER_BYTE))
+> > > > +#define HISI_IRQ_MASK_BIT(irq_data)	BIT(irqd_to_hwirq(irq_data) & (BITS_PER_BYTE - 1))
+> > > > +#define HISI_8BITS_MASK			GENMASK(BITS_PER_BYTE - 1, 0)    
+> > > 
+> > > Are these lines up in real code?  Looks like they're not in the diff.  
+> > 
+> > Weird. The changes to use those are at patch 3/8. All the above
+> > macros are used at the patch.  
+> 
+> Sorry, that made no sense - it's been a long few days!
+> 
+> I meant to say "do these (the tabs) line up?"
 
-On Jun 25, 2021, 1:03 PM, at 1:03 PM=
-, Frank Wunderlich <frank-w@public-files=2Ede> wrote:
->Hi
->
->> Gesendet: Fr=
-eitag, 25=2E Juni 2021 um 11:57 Uhr
->> Von: "Daniel Lezcano" <daniel=2Elezc=
-ano@linaro=2Eorg>
->
->> You should not add the fan in the mt7622=2Edtsi itse=
-lf but in the board
->> specific file where there is a fan output on it=2E m=
-t7622=2Edtsi is
->supposed
->> to be the SoC itself AFAICT=2E
->>
->> For insta=
-nce:
->>
->>
->https://git=2Ekernel=2Eorg/pub/scm/linux/kernel/git/thermal/lin=
-ux=2Egit/tree/arch/arm64/boot/dts/rockchip/rk3399-sapphire=2Edtsi#n39
->>
->>=
+Yes, they line up (and aligned with the parenthesis, in the case of
+HISI_IRQ_MASK_REG).
 
->https://git=2Ekernel=2Eorg/pub/scm/linux/kernel/git/thermal/linux=2Egit/t=
-ree/arch/arm64/boot/dts/rockchip/rk3399-sapphire=2Edtsi#n164
->
->> > @@ -170=
-,14 +177,12 @@
->> >  			cooling-maps {
->> >  				map0 {
->> >  					trip =3D=
- <&cpu_passive>;
->> > -					cooling-device =3D <&cpu0 THERMAL_NO_LIMIT THER=
-MAL_NO_LIMIT>,
->> > -							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->> =
-> +					cooling-device =3D <&fan0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->> > =
- 				};
->>
->> fan =3D=3D active trip point
->>
->> This is referring to the p=
-assive trip point=2E So it should point to
->the
->> CPU as it is now=2E Note=
- the order of mitigation is inverted regarding
->the
->> proposal description=
-=2E
->
->but we need to disable the passive trip as cpu-trotteling starts
->th=
-ere=2E=2E=2Ethe higher temperature trips are currently not reached
->
->summa=
-ry
->
->moving fan and cpu_thermal-override to bananapi-r64=2Edts
->
->passive-=
-trip: cooling-device =3D <&cpu0/1 0 0> as in erics Patch
->active trip: cool=
-ing-device =3D <&fan0 THERMAL_NO_LIMIT
->THERMAL_NO_LIMIT>;
->the other 2 unc=
-hanged
->
->but i suggest changing the temperature points in mt7622 dtsi as t=
-his is
->SoC specific
->
->so basicly:
->
->--- a/arch/arm64/boot/dts/mediatek/m=
-t7622=2Edtsi
->+++ b/arch/arm64/boot/dts/mediatek/mt7622=2Edtsi
->@@ -143,13 =
-+143,13 @@ cpu_thermal: cpu-thermal {
->
->                        trips {
-> =
-                               cpu_passive: cpu-passive {
->-               =
-                        temperature =3D <47000>;
->+                        =
-               temperature =3D <70000>;
->                                  =
-      hysteresis =3D <2000>;
->                                        type =
-=3D "passive";
->                                };
->
->                     =
-           cpu_active: cpu-active {
->-                                     =
-  temperature =3D <67000>;
->+                                       tempera=
-ture =3D <80000>;
->                                        hysteresis =3D <=
-2000>;
->                                        type =3D "active";
->       =
-                         };
->@@ -170,8 +170,8 @@ cpu-crit {
->              =
-          cooling-maps {
->                                map0 {
->         =
-                               trip =3D <&cpu_passive>;
->-                 =
-                      cooling-device =3D <&cpu0
->THERMAL_NO_LIMIT THERMAL_N=
-O_LIMIT>,
->-                                                        <&cpu1
-=
->THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
->+                                    =
-   cooling-device =3D <&cpu0 0 0>,
->+                                      =
-                  <&cpu1 0 0>;
->                                };
->
->     =
-                           map1 {
->@@ -428,6 +428,7 @@ uart3: serial@110050=
-00 {
->        pwm: pwm@11006000 {
->                compatible =3D "mediatek=
-,mt7622-pwm";
->                reg =3D <0 0x11006000 0 0x1000>;
->+         =
-      #pwm-cells =3D <3>;
->                interrupts =3D <GIC_SPI 77 IRQ_T=
-YPE_LEVEL_LOW>;
->                clocks =3D <&topckgen CLK_TOP_PWM_SEL>,
-> =
-                        <&pericfg CLK_PERI_PWM_PD>,
->
->--- a/arch/arm64/boo=
-t/dts/mediatek/mt7622-bananapi-bpi-r64=2Edts
->+++ b/arch/arm64/boot/dts/med=
-iatek/mt7622-bananapi-bpi-r64=2Edts
->@@ -37,6 +37,13 @@ cpu@1 {
->          =
-      };
->        };
->
->+       fan0: pwm-fan {
->+               compatible=
- =3D "pwm-fan";
->+               #cooling-cells =3D <2>;
->+               p=
-wms =3D <&pwm 2 10000 0>;
->+               cooling-levels =3D <0 102 170 23=
-0>;
->+       };
->+
->        gpio-keys {
->                compatible =3D "gp=
-io-keys";
->
->@@ -582,6 +589,29 @@ &u3phy {
->        status =3D "okay";
-> };=
+> > > > +static const struct mfd_cell hi6421v600_devs[] = {
+> > > > +	{ .name = "hi6421v600-regulator", },
+> > > > +};    
+> > > 
+> > > Where are the other devices?  
+> > 
+> > While this is a MFD device, as it has regulators, ADC and other
+> > stuff, right now, only the regulator and the IRQs are implemented. 
+> > 
+> > The IRQs are at the core of this driver, while the regulator 
+> > is at the separate regulator driver.  
+> 
+> The rule usually goes:
+> 
+>  Drivers don't qualify as MFDs until you register >1 device.
 
->
->+&cpu_thermal {
->+       cooling-maps {
->+               map1 {
->+     =
-                  trip =3D <&cpu_active>;
->+                       cooling-=
-device =3D <&fan0 THERMAL_NO_LIMIT
->THERMAL_NO_LIMIT>;
->+               };
-=
->+       };
->+};
->+
-> &uart0 {
->        pinctrl-names =3D "default";
->     =
-   pinctrl-0 =3D <&uart0_pins>;
+Do you mean that, in order for this to be accepted, should
+I move the irq code to a separate driver?
 
+> > > > +	for (i = 0; i < PMIC_IRQ_LIST_MAX; i++) {
+> > > > +		virq = irq_create_mapping(ddata->domain, i);
+> > > > +		if (!virq) {
+> > > > +			dev_err(dev, "Failed to map H/W IRQ\n");
+> > > > +			return -ENOSPC;    
+> > > 
+> > > -ENOSPC doesn't seem right here.
+> > > 
+> > > Can't find any other uses of it for irq_create_mapping() either.  
+> > 
+> > There are two drivers returning -ENOSPC:
+> > 
+> > 	arch/powerpc/platforms/pseries/msi.c
+> > 	arch/powerpc/sysdev/mpic_u3msi.c  
+> 
+> I only looked in drivers/
+> 
+> > But others return -EIO, -EINVAL, -ENOMEM, -ENODEV, -ENXIO.
+> > 
+> > I think that -ENODEV would fit better here.  
+> 
+> I think -ENXIO is the most common, followed by -EINVAL.
+> 
+> This doesn't have anything to do with devices per say.
+
+Ok. I'll change it to -ENXIO.
+
+> > > > +static void hi6421_spmi_pmic_remove(struct spmi_device *pdev)
+> > > > +{
+> > > > +	struct hi6421_spmi_pmic *ddata = dev_get_drvdata(&pdev->dev);
+> > > > +
+> > > > +	free_irq(ddata->irq, ddata);    
+> > > 
+> > > No devm_* version?  
+> > 
+> > Are there a devm_* variant for gpio_to_irq()?  
+> 
+> Please refer to Dan's response.
+
+Ok.
+
+Thanks,
+Mauro
