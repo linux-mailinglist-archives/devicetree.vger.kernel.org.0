@@ -2,84 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1F4B3B480C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 19:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 576703B4831
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 19:26:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230002AbhFYRPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 13:15:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38066 "EHLO
+        id S229653AbhFYR2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 13:28:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbhFYRPO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 13:15:14 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3B10C061574
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 10:12:52 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id h1so5058012plt.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 10:12:52 -0700 (PDT)
+        with ESMTP id S229630AbhFYR2p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 13:28:45 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5907C061574;
+        Fri, 25 Jun 2021 10:26:23 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id a13so11371377wrf.10;
+        Fri, 25 Jun 2021 10:26:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=5t9z6ncjTfDboZM5CMH67oHu1/rwNvPtcXLXms6Lyjk=;
-        b=ZGd6Jo2iJFy0vt8+khjkWytwPXHyJrdTJ/cc4nRGr+ruQ9YLKnGqe/Lu68TfP57DTq
-         JFKJl6VEcevctxq7I1MItVsPVWIc23jk82XYZw8bAP9oFGN4Rn0UEdNbh7qYg+KWNeZY
-         3f5SnT4C9NVj30SoJ5yCmIRXZ8+V8Jls7rJZM=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=4QI+hOEPUjUXgGj/0NkLNcxkrgoIPtZX2ZwWHw7Tor0=;
+        b=JuXFHVRf8avdk6DJPLBA8wpDI1/HBLfgM4g2AX5CM/b6sZb1QPSzQw5+ymOX66jZLR
+         vg2/hAm9ZRwEnqX/AqZrKXE8uIFVZTGY846oips89npSGgAA+8Gk164AzP8FEDegFaeF
+         ehffEJ511FCWd4CKP/GFEFYzkkrUgO4UPB2qx1CfQ/C69sBdKK+MsloTrUQZV/WiNGT0
+         PSo39vzMbMNUcOhMeQ7aYX9pyqxMsBqKw4Ityz7v4Hsrzl+tPrHcy+xxWmshQbEk+sGA
+         WJHyWIzC8yPCEcIl9wPGpdeAy71bQlKy1JyvoTkYTZjwzNeA8s/KV8mTsQDtD5kJOi6C
+         Tyew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5t9z6ncjTfDboZM5CMH67oHu1/rwNvPtcXLXms6Lyjk=;
-        b=T6FX2FR7I9FGDOsqaFcKeEzKh4m4P5lHHRkYFLllEJu8wcW/i3w2TYNtTOXUtZlAcX
-         oVkE37Q+egE2wMZeKqCFUsdrAMP8YbmXoaTJJ2C4qiJDW9Lldci1YauML1NubcKDgFIX
-         f8GJkPsFvRdKNBdNnwc93xUxaRujrA0q5GqBY/X7Lknl1fbicZ8lSbyM2q3E1bj61Rd4
-         8NqLEHxPYVgZgv8o+YPnavEU12yB0/maDUnlAnp88lshKbiZFAOtdQts4sKl8dq2YwHO
-         ZKyS+qHCrPkgF1FV7MkNCfWBvhRZesWe2myWZJvh8oeInrXcY89Cc5CUdlbbHE9M8LIZ
-         rQJQ==
-X-Gm-Message-State: AOAM530+mHNadDYfmoWbSS88C+jCOzrH14EZavaeuKAx1Dnlv0p3T1XP
-        ZiR3s8/Ry0+0jMoOYyLFrfgPnA==
-X-Google-Smtp-Source: ABdhPJzTSyIG1tO8wfl096x6dYZqGyOAeZ/K0sXsK5rsKTqVdlp02LhSN7W7b1dwOVC6174Joh4ZaA==
-X-Received: by 2002:a17:90b:46c3:: with SMTP id jx3mr12084967pjb.206.1624641172552;
-        Fri, 25 Jun 2021 10:12:52 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:cc13:a7dd:f4b5:2160])
-        by smtp.gmail.com with UTF8SMTPSA id b10sm5823890pfi.122.2021.06.25.10.12.51
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=4QI+hOEPUjUXgGj/0NkLNcxkrgoIPtZX2ZwWHw7Tor0=;
+        b=YKpb3cZlb6barptozYeomHeg8+j6ZORNmMHt2eTLX2oiAExqvRZauK6texePy5X7Z+
+         sJWISY5YEwXjb2tZ+cbiSOue+6zGigBQqOkJ3KPiTRxCGNnatwVUUBqAfHh8upq0+bWy
+         CYx5fSffq4KrsoZIQxbqz04bKHunBKdSFWHSPhDnf9DKyLMg4ammjcSCRPfFiiTVzmUr
+         HZHp7H3jpKQVosXe7oGGN2ehgpU1i5HixAKKyF1hnRsi/6QYhHzEwKQZfk8LkHUDwyBX
+         H5nmFu/uMnCOGyIKSj185tt75Ykf1oxJSJSWoPQgAkXQBL07+nFRmlymjTgpWbSuDmcW
+         7zeA==
+X-Gm-Message-State: AOAM530zOvp6oJtzBuiOxyIj5VY/nZDjGre/y9Uy+6XS//dMDRKk3gJD
+        rXXKsAg1HLfYSGSSECV8DgbJ2NHzkdFXzQ==
+X-Google-Smtp-Source: ABdhPJwzxA9RRn9LlPBaD6PzNaRqzDeqYVg+jF+ZjyPUhEtVOcN/QYSI9Zjc9h5n1zVOWc2EAjbqcg==
+X-Received: by 2002:a5d:6d8d:: with SMTP id l13mr10740085wrs.358.1624641982413;
+        Fri, 25 Jun 2021 10:26:22 -0700 (PDT)
+Received: from localhost.localdomain (haganm.plus.com. [212.159.108.31])
+        by smtp.gmail.com with ESMTPSA id w9sm6609998wru.3.2021.06.25.10.26.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jun 2021 10:12:52 -0700 (PDT)
-Date:   Fri, 25 Jun 2021 10:12:50 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, will@kernel.org,
-        saiprakash.ranjan@codeaurora.org, ohad@wizery.com,
-        agross@kernel.org, mathieu.poirier@linaro.org,
-        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org
-Subject: Re: [PATCH 1/9] dt-bindings: remoteproc: qcom: pas: Add SC7280 MPSS
- support
-Message-ID: <YNYOkmja0kfuzLpF@google.com>
-References: <1624564058-24095-1-git-send-email-sibis@codeaurora.org>
- <1624564058-24095-2-git-send-email-sibis@codeaurora.org>
+        Fri, 25 Jun 2021 10:26:22 -0700 (PDT)
+Subject: Re: [PATCH v4 2/4] ARM: dts: NSP: Add DT files for Meraki MX64 series
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20210625095000.3358973-1-mnhagan88@gmail.com>
+ <20210625095000.3358973-3-mnhagan88@gmail.com>
+ <CAK8P3a3NAOgBa1j+Zsm6FwSm2ux49rFcnTEYJJsmSF8TggRnYA@mail.gmail.com>
+From:   Matthew Hagan <mnhagan88@gmail.com>
+Message-ID: <bbf38c31-ed75-69d2-39ed-94f324b1f220@gmail.com>
+Date:   Fri, 25 Jun 2021 18:26:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <CAK8P3a3NAOgBa1j+Zsm6FwSm2ux49rFcnTEYJJsmSF8TggRnYA@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1624564058-24095-2-git-send-email-sibis@codeaurora.org>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 25, 2021 at 01:17:30AM +0530, Sibi Sankar wrote:
-> Add MPSS PAS support for SC7280 SoCs.
-> 
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+On 25/06/2021 10:59, Arnd Bergmann wrote:
 
-On which tree is this series based? I guess it must be the remoteproc tree
-since the conversion of the binding to YAML isn't in Linus' tree yet,
-however the patch doesn't apply cleanly against remoteproc/for-next:
+> On Fri, Jun 25, 2021 at 11:52 AM Matthew Hagan <mnhagan88@gmail.com> wrote:
+>> MX64 & MX64W Hardware info:
+>>   - CPU: Broadcom BCM58625 Cortex A9 @ 1200Mhz
+>>   - RAM: 2 GB (4 x 4Gb SK Hynix H5TC4G83CFR)
+>>   - Storage: 1 GB (Micron MT29F8G08ABACA)
+>>   - Networking: BCM58625 internal switch (5x 1GbE ports)
+>>   - USB: 1x USB2.0
+>>   - Serial: Internal header
+>>   - WLAN(MX64W only): 2x Broadcom BCM43520KMLG on the PCI bus
+>>
+>> This patch adds the Meraki MX64 series-specific bindings. Since some
+>> devices make use of the older A0 SoC, changes need to be made to
+>> accommodate this case, including removal of coherency options and
+>> modification to the secondary-boot-reg.
+>>
+>> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+> Removing the dma-coherent flags in the dts file seemed really odd until
+> I read the text above. It would seem more logical to me to have a .dtsi file
+> that has all the a0 revision specific changes, and include that from the
+> dts file.
 
-  patching file Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-  Hunk #2 succeeded at 144 (offset -4 lines).
-  Hunk #3 succeeded at 285 (offset -4 lines).
-  Hunk #4 succeeded at 416 with fuzz 2 (offset 23 lines).
-  Hunk #5 succeeded at 492 (offset 25 lines).
-  Hunk #6 FAILED at 485.
+How about having separate bcm-nsp-ax and bcm-nsp-bx dtsi files with the
+appropriate secondary-boot-reg and dma-coherent (or lack of)
+properties, which then include bcm-nsp.dtsi. Thus we can also avoid use
+of /delete-property/. Would this be preferable?
+
+>
+> On the other hand, the /chosen, /aliases and  /memory nodes that you have
+> in the .dtsi file should probably get moved into the .dts files, as these tend
+> to be board specific settings, even if the examples you have are all
+> the same.
+
+I did not come across any convention regarding this, though there are
+plenty of cases where the /chosen, /aliases and /memory nodes are
+defined in a .dtsi file and used by multiple similar boards. Also note
+in this case /aliases is defined in bcm-nsp.dtsi, not by me. Would we
+not prefer to avoid having 6x duplication?
+
+>        Arnd
+>
+Matthew
+
