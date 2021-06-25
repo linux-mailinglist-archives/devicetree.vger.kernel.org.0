@@ -2,81 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A343B3E06
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 09:48:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4EC93B3E39
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 10:07:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbhFYHul (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 03:50:41 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:57915 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbhFYHul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 03:50:41 -0400
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 60A1B22249;
-        Fri, 25 Jun 2021 09:48:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1624607297;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=muVToPjbhEudsJJAmtZrtjaYbzMMnT/oWsAuUQB7DeY=;
-        b=uvpeR03zX5HVoJhVXczBF1935yKR5tSpkMX0iwaXWRRGDNa2bZwkhs7zy9BzCpbThTzfO1
-        5dCjy86V2SQ2dtSNeluBrmQsAoZv5Hbcn2UlK5Z0Oa2Atyct/f5FYM82KfNKGu9vchjSOE
-        tmOdXknO4aVm/SG5J7TGdxLGQDsBSTk=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 25 Jun 2021 09:48:15 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Jon Lin <jon.lin@rock-chips.com>
-Cc:     linux-spi@vger.kernel.org, broonie@kernel.org, robh+dt@kernel.org,
-        heiko@sntech.de, jbx6244@gmail.com, hjc@rock-chips.com,
-        yifeng.zhao@rock-chips.com, sugar.zhang@rock-chips.com,
-        linux-rockchip@lists.infradead.org, linux-mtd@lists.infradead.org,
-        p.yadav@ti.com, macroalpha82@gmail.com, devicetree@vger.kernel.org,
+        id S230063AbhFYIJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 04:09:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46368 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230048AbhFYIJu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Jun 2021 04:09:50 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 650EA61425;
+        Fri, 25 Jun 2021 08:07:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1624608448;
+        bh=3U9dOh8ubJIZg7LPE4ibu71lztZPpneG4VY8XUeQMJU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NecY4QLc6B1Iy1Wn0nDs+hgKCfA11BmN3lJ9UndAuFph4V3CxfXgv9bNevvKbpEhL
+         QZnZm+rwc2daJFC6U+4YlxDUBufuRCTZrFc3D2uKjcT6s7O9TLGP4upUN3PqsmiEB4
+         JINWJt7rhwJymccYInvr130+hYknFGYWh7OT+CPw=
+Date:   Fri, 25 Jun 2021 10:07:26 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v9 02/10] spi: rockchip-sfc: add rockchip serial flash
- controller
-In-Reply-To: <20210625071702.10374-3-jon.lin@rock-chips.com>
-References: <20210625071702.10374-1-jon.lin@rock-chips.com>
- <20210625071702.10374-3-jon.lin@rock-chips.com>
-User-Agent: Roundcube Webmail/1.4.11
-Message-ID: <118417b6dc18d345a1d1e10efd0c8a1a@walle.cc>
-X-Sender: michael@walle.cc
+        linux-phy@lists.infradead.org, linux-staging@lists.linux.dev,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v8 00/12] Move Hisilicon 6421v600 SPMI and USB drivers
+ out of staging
+Message-ID: <YNWOvn67Gl2v3Cco@kroah.com>
+References: <cover.1624606660.git.mchehab+huawei@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1624606660.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jon,
-
-Am 2021-06-25 09:16, schrieb Jon Lin:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Fri, Jun 25, 2021 at 09:45:52AM +0200, Mauro Carvalho Chehab wrote:
+> Hi Greg,
 > 
-> Add the rockchip serial flash controller (SFC) driver.
+> Thanks for merging patches 1 and 2 from the v7 series!
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
-> ---
+> Those are the remaining patches that are needed for the USB to work
+> with Hikey970.
 > 
-> Changes in v9: None
-> Changes in v8: None
-> Changes in v7: None
-> Changes in v6: None
-> Changes in v5: None
-> Changes in v4: None
-> Changes in v3: None
-> Changes in v2: None
-> Changes in v1: None
+> I guess patches 1 and 2 on this series are also OK, as they were acked
+> by the PHY and SPMI maintainers.
+> 
+> As suggested on your last review, I broke the MFD staging patches 
+> into one logical change per patch.
+> 
+> Except for the split, the only change from v7 was at the copyright: 
+> I'm using 20xx-2021 instead of 20xx- to indicate that the copyrights
+> extend to the present. I also changed the HiSilicon name to better
+> reflect the name of the company.
 
-This look wrong. Wasn't there any changes in any patches but 1/10?
+The copyright change is still not correct.  I recommend you take a look
+at this:
+	https://www.linuxfoundation.org/blog/copyright-notices-in-open-source-software-projects/
+and:
+	https://training.linuxfoundation.org/training/open-source-licensing-basics-for-software-developers/
+	(the copyright chapter)
+for specifics as to what to, and not to do with regards to copyright
+notices.
 
-Please include a proper version history instead of putting the
-burden to the reviewer.
+I'm sure your employer also has some information about what to do with
+regards to this as well.
 
--michael
+I've taken patches 1-3, 5-9 now.
+
+thanks,
+
+greg k-h
