@@ -2,234 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAA9F3B415B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 12:18:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29B1B3B4180
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 12:21:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229956AbhFYKUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 06:20:50 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:25410 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231193AbhFYKUt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 06:20:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1624616308;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=j4JjaRWxUDx5AdOtHK4Ew9qGgb8hCuqA6q+y3PqBTgY=;
-        b=KXos5XysV6RyJAD0+1KJuEpBBtLTSTX7rHQBE0M9ivBX6TVq1sQoyxnJTEFuisWFNtZpSe
-        RnkrM1BDNXOXPNd9zKosX3MECZJygtz7npBhA8TZR6KyhjRSg1ZCYMtAKL5kmYP2q+8PC3
-        vdhDP0h8R7k/P36QBqgWFEhS1dogGIA=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-543-jIBLCx5WOnSMb1sZO3RPXw-1; Fri, 25 Jun 2021 06:18:24 -0400
-X-MC-Unique: jIBLCx5WOnSMb1sZO3RPXw-1
-Received: by mail-ed1-f70.google.com with SMTP id l9-20020a0564022549b0290394bafbfbcaso4931905edb.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 03:18:24 -0700 (PDT)
+        id S231394AbhFYKYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 06:24:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231182AbhFYKYO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 06:24:14 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D982C061574;
+        Fri, 25 Jun 2021 03:21:53 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id s6so12649144edu.10;
+        Fri, 25 Jun 2021 03:21:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1f5PfyIGOazp+4XQe+W5WTgmVXLCa6NWwYJmG2wqXmc=;
+        b=RUS/TESyXiq8i2HWAQsJvNzUSUEzLUbEzCyUGrJuAxgqehII2+/akcPCTDeu7wu9Gs
+         u5+O6Lw2+b+JZ2JSo1C4VGmTWC4cFGVuR4cmqXxMX1ekl03kofKicg1EHfUa4mxOr190
+         23epN7VaHiaWsu5UQhET2MdQT+nFe7rYnT3jXVUo5g6kgYfjFJ6M8sALBU2dcH5i9baH
+         7FrrJ+YjjJqfI3YGtrTbblodMILpnh93V9DxIhTnpi4XtHSgedMOyPYTSvZkMEtxHw2f
+         Bvvs/aWEVlaPebnJ8znaKYfxjJswcRH9aQhmuQTNmR1obGSCQ4hHbY66utAvaZyVmm/M
+         Uc9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=j4JjaRWxUDx5AdOtHK4Ew9qGgb8hCuqA6q+y3PqBTgY=;
-        b=cycJwWGr4N+StLcvmisjWoejje0OhM6Jl2YmzTs3rAZzypF0kwmgSowRhcZE9kmkgf
-         DdmDNpb/U9aGyKgtAlB8pIGV6CdfXzsbNj1PWkhYY7YmCs4MnN8ouOtq8kHV1ITJjRCW
-         8+Jho0edCg8X3wGPqI6d0jaJcFDLRy/qhSdKIa8aVBNBJ2gDR780TsumUI3ne4vqJuAT
-         G/Ta+Huszr4nx7Wa+IIK9Q6v7RB0Zu3C3kPSrXvNBLfcdlmF3BUOxBvLUiPpRv9Zhp6F
-         pTa1gVIgZr3OELHSTdVOmyzUnpkrHKoFT6n835WSpRIDprvNV7QdiOXInEjZxQKgDAMQ
-         TH6A==
-X-Gm-Message-State: AOAM530JyYIXnaZVhjSNOBGto2e/pCGd5+ErPbUib0wtxogYqlJ0W+iC
-        11nMRcgHILC1ueREY7wYq/iSUryNTTQnq0M70MsFD23RxstBiWWm1esf+biAj3tM/iK90qE8SHV
-        JRHZgeVp/4olBXVMhUvHZDA==
-X-Received: by 2002:a05:6402:1205:: with SMTP id c5mr825481edw.68.1624616303496;
-        Fri, 25 Jun 2021 03:18:23 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzZ2VSyWKHxXfWjdEbJqwFfP1+cB72b3Qml5NrsRAiLAiJuSsz8pxPlIKRyTD4YB8/ZhtdlSg==
-X-Received: by 2002:a05:6402:1205:: with SMTP id c5mr825463edw.68.1624616303266;
-        Fri, 25 Jun 2021 03:18:23 -0700 (PDT)
-Received: from gator (cst2-174-132.cust.vodafone.cz. [31.30.174.132])
-        by smtp.gmail.com with ESMTPSA id s18sm2526921ejh.12.2021.06.25.03.18.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Jun 2021 03:18:22 -0700 (PDT)
-Date:   Fri, 25 Jun 2021 12:18:21 +0200
-From:   Andrew Jones <drjones@redhat.com>
-To:     Gavin Shan <gshan@redhat.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rdunlap@infradead.org, robh+dt@kernel.org, shan.gavin@gmail.com
-Subject: Re: [PATCH v4] Documentation, dt, numa: Add note to empty NUMA node
-Message-ID: <20210625101821.3t3vgj2pnw3hqpzm@gator>
-References: <20210625052338.4875-1-gshan@redhat.com>
- <20210625070217.4ffmfe7nwlusbbjc@gator>
- <20210625070656.j373hveemf5cdch4@gator>
- <41643136-798b-a0f3-aee7-b6af94a2fc67@redhat.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1f5PfyIGOazp+4XQe+W5WTgmVXLCa6NWwYJmG2wqXmc=;
+        b=pUcbnqxHBNXM4yJ5chXyRwdfsUd/EQ2rhpHmCL1ka9ec7tO6vzi4h7upK2pih1XCxk
+         Il9Nklg++Px+QXmAeW6olygV7BHU0/RSPU6jyK8XdXQtrcO4G29SHOSGq9IMixKwFEaP
+         KmB12YMKTdkTR92+UbKPnTcvEjLPZ0p/ijbL20BVdU9uJiQCsO68xbueSSu+CVQ1j+Kc
+         PENZWvoWZwq2jwt/9pe4QJW/oRkbtEjPlSuwMY9a8NXPT1TOHD7l66hmNzbSixwFvsBH
+         ac5FLapuZrMh9Ic4vonSjuGZWAbvT9oTCr2vPqt+GuQ0mGYZ+97sgj1O2brA2DuldoPe
+         dg/Q==
+X-Gm-Message-State: AOAM533KXOpbKb9NptZ0nhC0CSqAxhu9/EhHseShSe+aFlVDXScbKwmy
+        WttaMVG9nR+yC5HvyzU1pwQ=
+X-Google-Smtp-Source: ABdhPJwbZqc3uwNIS3Qj2TPwlCHpzl+Q2U1a2z0pBRAkLszen3zfGnNhO/SCcd73DNVm+d1im37WtA==
+X-Received: by 2002:a50:b2c5:: with SMTP id p63mr13393399edd.5.1624616511891;
+        Fri, 25 Jun 2021 03:21:51 -0700 (PDT)
+Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id s3sm2586519ejm.49.2021.06.25.03.21.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Jun 2021 03:21:51 -0700 (PDT)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH v4 0/2] Add Pinctrl for SM4250 and SM6115
+Date:   Fri, 25 Jun 2021 13:21:45 +0300
+Message-Id: <20210625102147.51162-1-iskren.chernev@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <41643136-798b-a0f3-aee7-b6af94a2fc67@redhat.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 25, 2021 at 06:36:48PM +1000, Gavin Shan wrote:
-> On 6/25/21 5:06 PM, Andrew Jones wrote:
-> > On Fri, Jun 25, 2021 at 09:02:17AM +0200, Andrew Jones wrote:
-> > > On Fri, Jun 25, 2021 at 01:23:38PM +0800, Gavin Shan wrote:
-> > > > The empty memory nodes, where no memory resides in, are allowed.
-> > > > For these empty memory nodes, the 'len' of 'reg' property is zero.
-> > > > The NUMA node IDs are still valid and parsed, but memory can be
-> > > > added to them through hotplug afterwards. I finds difficulty to
-> > > > get where it's properly documented.
-> > > > 
-> > > > So lets add note to empty memory nodes in the NUMA binding doc.
-> > > > 
-> > > > Signed-off-by: Gavin Shan <gshan@redhat.com>
-> > > > ---
-> > > >   Documentation/devicetree/bindings/numa.txt | 4 ++++
-> > > >   1 file changed, 4 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
-> > > > index 21b35053ca5a..0fc882e44270 100644
-> > > > --- a/Documentation/devicetree/bindings/numa.txt
-> > > > +++ b/Documentation/devicetree/bindings/numa.txt
-> > > > @@ -109,6 +109,10 @@ Example:
-> > > >   Dual socket system consists of 2 boards connected through ccn bus and
-> > > >   each board having one socket/soc of 8 cpus, memory and pci bus.
-> > > > +Note that empty memory nodes, which no memory resides in, are allowed.
-> > > > +The NUMA node IDs in these empty memory nodes are still valid, but
-> > > > +memory can be added into them through hotplug afterwards.
-> > > 
-> > > Please change the second sentence to:
-> > > 
-> > >    The NUMA node IDs in these empty memory nodes are still valid and
-> > >    memory may be added into them through hotplug afterwards.
-> > > 
-> > > But, this doesn't look like the right place for this paragraph. You're
-> > > adding the paragraph to the example section, but the example doesn't have
-> > > any empty memory nodes.
-> > > 
-> > > I think the paragraph should be added to section "2 - numa-node-id" and an
-> > 
-> > Or maybe even create a new section for it.
-> > 
-> > > example empty memory node should be provided. Also, the commit message
-> > > talks about the length of 'reg' being zero, which is an important
-> > > distinction which should also be documented.
-> > > 
-> 
-> Drew, thanks for your comments. Yeah, it sounds sensible to create
-> a new section for it and an example would be more helpful. Please
-> check if below changes are fine to you. I probably need Randy's review
-> again.
-> 
-> I'm trying to avoid too many revisions for this sort of trivial patch,
-> even though I already had. However, it's time frame for v5.14 and I'm
-> pushing this to be merged during the cycle.
+This patch adds support for the TLMM block on QCom SM4250 and SM6115, codename
+bengal. The code is taken from OnePlus repo [1], and the keyword bengal
+corresponds to sm4250 and sm6115, so I'm adding both compat strings.
 
-We must revise until we're satisfied... Also, I wouldn't call writing
-specifications trivial.
+[1]: https://github.com/OnePlusOSS/android_kernel_oneplus_sm4250
 
-> 
-> --- a/Documentation/devicetree/bindings/numa.txt
-> +++ b/Documentation/devicetree/bindings/numa.txt
-> @@ -103,7 +103,65 @@ Example:
->  		};
->  ==============================================================================
-> -4 - Example dts
-> +4 - Empty memory node
+v1: https://lkml.org/lkml/2021/6/22/1163
+v2: https://lkml.org/lkml/2021/6/25/28
+v3: https://lkml.org/lkml/2021/6/25/72
 
-nodes
+Changes from v3:
+- driver suggestions from Bjorn
+ - merge similarly named functions
+ - sort functions alphabetically
+ - move ufs-reset to 113
 
-> +==============================================================================
-> +
-> +Empty memory nodes, which no memory resides in, are allowed. The 'length'
-> +field of 'reg' property is zero, but 'base-address' is dummy and invalid
+Changes from v2:
+- suggestions from Rob:
+ - remove quotes around reg-names
+ - use -state$ subnode regex
+- suggestions from Bjorn
+ - remove '|' from description field
+ - use state def to allow arbitrary nesting
+ - fix gpio pattern to allow valid pin numbers
+ - fix number of gpio pins
+ - add tlmm label to example
+ - remove wakeup parent
+- other
+ - add some pins in example
+ - removed required function
 
- is a dummy address and is invalid.
+Changes from v1:
+- fix binding example
+- fix cover letter text
 
-> +for these empty memory nodes.
+Iskren Chernev (2):
+  dt-bindings: pinctrl: qcom: Add SM6115 pinctrl bindings
+  drivers: qcom: pinctrl: Add pinctrl driver for sm6115
 
-Can drop this "for these empty memory nodes" that's clear from the
-context.
+ .../bindings/pinctrl/qcom,sm6115-pinctrl.yaml | 182 ++++
+ drivers/pinctrl/qcom/Kconfig                  |   9 +
+ drivers/pinctrl/qcom/Makefile                 |   1 +
+ drivers/pinctrl/qcom/pinctrl-sm6115.c         | 924 ++++++++++++++++++
+ 4 files changed, 1116 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6115-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sm6115.c
 
-> However, the NUMA node IDs and distance maps
-> +for them are still valid, but memory may be added into them through hotplug
-   ^ drop 'for them'         ^ Again, this should be "and". "but" is a
-contrastive conjunction. We want to express that the nodes are valid *and*
-may have memory hotplugged later.
 
-> +afterwards.
-
-I'll just rewrite it:
-
- Empty memory nodes, which no memory resides in, are allowed. The 'length'
- field of the 'reg' property is zero, but the 'base-address' is a dummy
- address and invalid. However, the NUMA node IDs and distance maps are
- still valid and memory may be added into them through hotplug afterwards.
-
-> +
-> +Example:
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x80000000>;
-> +		numa-node-id = <0>;
-> +	};
-> +
-> +	memory@0x80000000 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x80000000 0x0 0x80000000>;
-> +		numa-node-id = <1>;
-> +	};
-> +
-> +	/* Empty memory node */
-
-You should write how you've selected the dummy addresses for the empty
-memory nodes, perhaps here in the /* Empty memory node */ comments or
-above in the paragraph or both.
-
-> +	memory@0x100000000 {
-> +		device_type = "memory";
-> +		reg = <0x1 0x0 0x0 0x0>;
-> +		numa-node-id = <2>;
-> +	};
-> +
-> +	/* Empty memory node */
-> +	memory@0x180000000 {
-> +		device_type = "memory";
-> +		reg = <0x1 0x80000000 0x0 0x0>;
-> +		numa-node-id = <3>;
-> +	};
-> +
-> +	distance-map {
-> +		compatible = "numa-distance-map-v1";
-> +		distance-matrix = <0 0  10>,
-> +				  <0 1  20>,
-> +				  <0 2  40>,
-> +				  <0 3  20>,
-> +				  <1 0  20>,
-> +				  <1 1  10>,
-> +				  <1 2  20>,
-> +				  <1 3  40>,
-> +				  <2 0  40>,
-> +				  <2 1  20>,
-> +				  <2 2  10>,
-> +				  <2 3  20>,
-> +				  <3 0  20>,
-> +				  <3 1  40>,
-> +				  <3 2  20>,
-> +				  <3 3  10>;
-> +	};
-> +
-> +==============================================================================
-> +5 - Example dts
->  ==============================================================================
->  Dual socket system consists of 2 boards connected through ccn bus and
-> 
-> 
-> Thanks,
-> Gavin
-> 
->
-
-Thanks,
-drew
+base-commit: e71e3a48a7e89fa71fb70bf4602367528864d2ff
+prerequisite-patch-id: 0949ba2e2f20cd3acfeff8be80dc78c7a02962fc
+prerequisite-patch-id: f72aa823fffe9b245a924a6da8a14a473fffa5a2
+-- 
+2.32.0
 
