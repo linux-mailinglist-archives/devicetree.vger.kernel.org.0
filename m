@@ -2,95 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08BD53B3C82
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 08:10:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC2DA3B3C8E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 08:17:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230097AbhFYGMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 02:12:54 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:34447 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230192AbhFYGMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Jun 2021 02:12:52 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id 9A56F5C0136;
-        Fri, 25 Jun 2021 02:10:30 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Fri, 25 Jun 2021 02:10:30 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm3; bh=LUduNXh8afYXbZaxuU0n9BSi4R
-        cIQyqyuYJqZGn4aX4=; b=A7w4iBn7/mLLqz57kL7lTTwksg0IDY0v6ZkbuqPMvz
-        ZQS6WHcPu2pvenIJMpdCRd3fwsR/eLdkPJJhkp66B7fnOM5niS5FQZWs2SmpNbuq
-        lwiatYzxCkHVzpYchDeN9dXmWdcbPknMR9xRO51xQBAvE08T3EnMLmXp2Isty6ty
-        mSwbeladtcJkyeQdEAlSw2fyZswXSE0uPghTx6o6bbVhyWQKiOhEH+LOItT/9DiJ
-        xexvHTz4kPon+bfuXIpmMu1qdNg7rROm6I7M5RYLmWki52Egqck8jma5BZJc91Le
-        BdX6vh7Tg9WyuT0w6iW3KF9hjHN/sIxRoVovxCUQKJoA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=LUduNXh8afYXbZaxu
-        U0n9BSi4RcIQyqyuYJqZGn4aX4=; b=Q5K7HNpydhuqt3xq/2HoSb8JAyO1BVkRj
-        8vOfbllhHjDDEd3PeNjNrvik/6yFaWnrhlasXCZ6pfUyg7C1Yacp8ZX7VHOmyl8X
-        q05WiDF9LwMh0uSmhrzgE4DASLWil7C6618qyLdH21IFBmlzwrDIdUi6tjX4pJLK
-        fcBkWkd7nSoUtD1p5wrKM5+Untm8F/V2qYPFYr0t9IzPEIXT4rqMNiePZFjw9/rp
-        0qbCc7SG9MYgmQYIKtudB1v6Yq0/cMBhjC+fdwACysN6hm1aWbpzvi3AFzMQvEJV
-        eL7ykRu1sUhzeipk23RiJTWA04KLLsrLtjA+Ki+R3jScJKbjMq2Jw==
-X-ME-Sender: <xms:VXPVYEYaYNDXcXN5gEboqhIaL-qf4pW2_NMr9wZ6AOP-HWUZm8cigA>
-    <xme:VXPVYPYvBEWYCj8GhPsv-lWQck6rdD_DDQqyT5D7otVHHj33XQTU_e_u7k5hHehM7
-    5BuvCosAuX6i2CNrw>
-X-ME-Received: <xmr:VXPVYO_HB6hePwbBJ5lqMOk6OIiUt1SRRwpri6xb3RQbLIGM8wuvmmWdkikdpmjPgzBmMkP85ln5uWT5r1W3lt7CBqx46ajz3NQZsdsPYDMzkAJp6cQ3A03BaLlgyEJ78dFUMQI2usFU8Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeegiedguddtiecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghj
-    rdhiugdrrghuqeenucggtffrrghtthgvrhhnpeekhfeiffejveefveehtdeiiefhfedvje
-    elvddvtdehffetudejtefhueeuleeftdenucevlhhushhtvghrufhiiigvpedtnecurfgr
-    rhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:VXPVYOpGKGDsj-ny5DcIJwp6pc36kAGNibwSOHIhQRaQkg0JVEHmog>
-    <xmx:VXPVYPox2Kge905tLt-o4kQxBUtW3_EGZJlMtmcydTDQCABgVy4Z0A>
-    <xmx:VXPVYMR_UoDv1kQRUNq1qD8AhMDdnm0dNHcbGiBx92e_uYIupChymA>
-    <xmx:VnPVYAAkG84Dwse1LP-Cfax3AKsqfFzLDT8b7kZhwK0EDPRmOhvEaw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 25 Jun 2021 02:10:26 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     linux-aspeed@lists.ozlabs.org
-Cc:     joel@jms.id.au, robh+dt@kernel.org, openbmc@lists.ozlabs.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: tacoma: Add phase corrections for eMMC
-Date:   Fri, 25 Jun 2021 15:40:17 +0930
-Message-Id: <20210625061017.1149942-1-andrew@aj.id.au>
-X-Mailer: git-send-email 2.30.2
+        id S233185AbhFYGUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Jun 2021 02:20:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59142 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233181AbhFYGUS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 02:20:18 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0ADFC061574;
+        Thu, 24 Jun 2021 23:17:57 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id h17so11863000edw.11;
+        Thu, 24 Jun 2021 23:17:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=OXD1nFT9T+bpMKYpL0JBavvAN5ulnBIHUSuyvaKQlW4=;
+        b=vaba2H5cgu7Xx1X891XBNDFnQvnWJYGck060oiXxaYazK/YHpzqwgP1LYoCTfCAeNw
+         7UtONnqYBEINag7wsvSxStQv5m1ddN4HGe6bb8YWxmqGyBdOrucxwklcqvBssiz6nivm
+         fK3Tk6HHiP7IN9uTggiXVmCasW0kz+8jk8U7RZBUKxWuG72ugNB+dZNQ4ecVVsV4+LvE
+         p7cMco9vtZ8brMozZ1B8u7/ms1uxmQAdDI/kqw8QvR4WnjjcJ7ZRPKGgm87YYBKoiTgL
+         HyCtkUJC1Fq/7d09yNBirSGTzaV8HWb1Dpjh9YePoDj/OEWjFO88rWYkLeQXZPjUtOra
+         hCYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=OXD1nFT9T+bpMKYpL0JBavvAN5ulnBIHUSuyvaKQlW4=;
+        b=YHEDEnfV3JFOr3kPMY2upzIXQrIyFlek89vmHHLWyG5vygmtwv/BZUM/nd1HIXg65Q
+         XWTa0uaH+NbX1f2oYRiAC7wANj8gPLcXNQEgolaRt1N8Flv65hg0nyE19tr5E3TIbDNF
+         vtXyMUcCT5kNJgjpJdpdSfcnEFnsRaWb+QIAS6vaqfKAZJourEc7/ruN1+5oVoQnwT99
+         9g1VIERPn85MDczUclmnMezbuY9C+sEwISlQF56eSDX87QdHWFppMOsYyLjG6zfZVRN0
+         AIEI1JDFmYgD8UtfczWenrUracWaTbypTJUhKuYxN4DaYpEUvrLclJwHeHBgw52uuYUy
+         jtQA==
+X-Gm-Message-State: AOAM5325IqGi/VnQYDQrBwN/S3iubRfNCQtGiWPzQ2AEeCZg59s4thbU
+        S7COyNGrEOeRQGCBSJCoYsI=
+X-Google-Smtp-Source: ABdhPJyfn1or367EG02dA6X/MR5ebjFu64dBDvYaOl9nk6hXypF6iHMOvw6uA2AR/FOJOPIFHMFBwQ==
+X-Received: by 2002:a05:6402:2210:: with SMTP id cq16mr12295912edb.261.1624601876248;
+        Thu, 24 Jun 2021 23:17:56 -0700 (PDT)
+Received: from [192.168.74.106] (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id hy5sm2259429ejc.72.2021.06.24.23.17.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Jun 2021 23:17:55 -0700 (PDT)
+Subject: Re: [PATCH v2 0/2] Add Pinctrl for SM4250 and SM6115
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20210625051138.2997854-1-iskren.chernev@gmail.com>
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+Message-ID: <e1e447f5-b0a2-e8a1-5d84-28dc29c50824@gmail.com>
+Date:   Fri, 25 Jun 2021 09:17:54 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210625051138.2997854-1-iskren.chernev@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The degree values were reversed out from the magic tap values of 7 (in)
-and 15 + inversion (out) initially suggested by Aspeed.
+Please discard this version, there is v3 addressing all points from Rob and Bjorn.
 
-With the patch tacoma survives several gigabytes of reads and writes
-using dd while without it locks up randomly during the boot process.
-
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
----
- arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-index c1478d2db602..670080bb80eb 100644
---- a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
-@@ -189,6 +189,7 @@ &emmc_controller {
- 
- &emmc {
- 	status = "okay";
-+	clk-phase-mmc-hs200 = <36>, <270>;
- };
- 
- &fsim0 {
--- 
-2.30.2
-
+On 6/25/21 8:11 AM, Iskren Chernev wrote:
+> This patch adds support for the TLMM block on QCom SM4250 and SM6115, codename
+> bengal. The code is taken from OnePlus repo [1], and the keyword bengal
+> corresponds to sm4250 and sm6115, so I'm adding both compat strings.
+> 
+> [1]: https://github.com/OnePlusOSS/android_kernel_oneplus_sm4250
+> 
+> v1: https://lkml.org/lkml/2021/6/22/1163
+> 
+> Changes from v1:
+> - fix binding example
+> - fix cover letter text
+> 
+> Iskren Chernev (2):
+>   dt-bindings: pinctrl: qcom: Add SM6115 pinctrl bindings
+>   drivers: qcom: pinctrl: Add pinctrl driver for sm6115
+> 
+>  .../bindings/pinctrl/qcom,sm6115-pinctrl.yaml |  172 ++
+>  drivers/pinctrl/qcom/Kconfig                  |    9 +
+>  drivers/pinctrl/qcom/Makefile                 |    1 +
+>  drivers/pinctrl/qcom/pinctrl-sm6115.c         | 1482 +++++++++++++++++
+>  4 files changed, 1664 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm6115-pinctrl.yaml
+>  create mode 100644 drivers/pinctrl/qcom/pinctrl-sm6115.c
+> 
+> 
+> base-commit: e71e3a48a7e89fa71fb70bf4602367528864d2ff
+> --
+> 2.32.0
+> 
