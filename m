@@ -2,162 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24AD63B46D8
-	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 17:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 875C03B46E2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Jun 2021 17:47:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229971AbhFYPsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Jun 2021 11:48:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46582 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229630AbhFYPsJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Jun 2021 11:48:09 -0400
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA708C061768
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 08:45:47 -0700 (PDT)
-Received: by mail-qk1-x72b.google.com with SMTP id 19so9226981qky.13
-        for <devicetree@vger.kernel.org>; Fri, 25 Jun 2021 08:45:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=mwj/CahjscU+y04bpHECBUvebi/V1MfEC2fzu395QLo=;
-        b=nGN4vMQZ8P1icKs0xdH3WkkvUZPThVxP/td0QdTl39qQJOP6NhKPS3e9RK+pI4LHdI
-         a2dGLPdCebQ+VeD0V/jh4Im7m46MIeigsGvBjy27GgG8SjVOPd5CYbtHw/86Fuegahfu
-         bXsWZDt7oTfEtuHt0FwS+6OS5EtwpT4QDzW4mBvC9IJeN3L+rPP9lRWeHKB0ww7eFHGx
-         681j/vv0uF6uiKG5FzsFC9hoMRqsUCpf2zmHWadlm/SUeUsuo/TX7+U1sThnPRH+9wKP
-         HESKor79vVfbqqfmzqJP7qFeNN0zL9YYJAK98R83MaIf4fqTQGLSOTS3FSwgK+w1+pMO
-         qopA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=mwj/CahjscU+y04bpHECBUvebi/V1MfEC2fzu395QLo=;
-        b=tqzjzN/fZHEDuFIIuzbNsR3l+z+fWqI/4Nbf7gdUAXTYWOypMwQesI1gF6rwAh2GCI
-         zrLA8UElz8DGrGSmTkp1XRQgSgWx/aF4IkL7bgTker7pHywX+pYGT0x3RLc4QGz43L5q
-         sWda+Lu3cZETJqywxkt+iStD2lhMJBr5+tVjERT+PZWCT4aBVFvcIXCaMpR5FVrJ6tdE
-         iwLCx3V00ixvlq1YCoTDSq6hCuL1wAid9u4rlYT9jN6sn8yZBOeoP+dGJi1WRSrS/RET
-         2/7fHlFb9/nm5mMeVy7P7j+KTV/pHYzsmOVSrVCTEtfYt9nIAgqb+WAxxpoXLlEo9k0g
-         Lmag==
-X-Gm-Message-State: AOAM5302NK3QQDIIJYtJjk6O+xAqcc6/h+AccKouBh7iZhyNIl9vTrgs
-        Vp1GQ3G56Bcb/F6ZdE/Oin4+TOyrRuZeJg==
-X-Google-Smtp-Source: ABdhPJwWTpsA8qfT4xts8nRvl/v0ZS30IZkHdZR0u40CfAR/R+mZvZlElQB5EgtIN1cIYBwALUmv8Q==
-X-Received: by 2002:a37:a254:: with SMTP id l81mr11818502qke.90.1624635946664;
-        Fri, 25 Jun 2021 08:45:46 -0700 (PDT)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id s8sm3805562qtk.96.2021.06.25.08.45.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Jun 2021 08:45:46 -0700 (PDT)
-Subject: Re: [Patch v2 1/5] firmware: qcom_scm: Introduce SCM calls to access
- LMh
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, viresh.kumar@linaro.org,
-        rjw@rjwysocki.net, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210624115813.3613290-1-thara.gopinath@linaro.org>
- <20210624115813.3613290-2-thara.gopinath@linaro.org>
- <YNTFdCPU2saMCT/y@google.com>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <9f302951-e65b-8b4f-7608-8b96e8d341a6@linaro.org>
-Date:   Fri, 25 Jun 2021 11:45:43 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S229924AbhFYPuD convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 25 Jun 2021 11:50:03 -0400
+Received: from aposti.net ([89.234.176.197]:57616 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229759AbhFYPuD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Jun 2021 11:50:03 -0400
+Date:   Fri, 25 Jun 2021 16:47:30 +0100
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v3 4/4] MIPS: CI20: Add second percpu timer for SMP.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com
+Message-Id: <67L9VQ.H1SRDC272GKW@crapouillou.net>
+In-Reply-To: <20210625231942.32945490@zhouyanjie-virtual-machine>
+References: <1624547189-61079-1-git-send-email-zhouyanjie@wanyeetech.com>
+        <1624547189-61079-5-git-send-email-zhouyanjie@wanyeetech.com>
+        <5C99VQ.EJKI9MPO7XXO1@crapouillou.net>
+        <20210625231942.32945490@zhouyanjie-virtual-machine>
 MIME-Version: 1.0
-In-Reply-To: <YNTFdCPU2saMCT/y@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Zhou,
 
-
-On 6/24/21 1:48 PM, Matthias Kaehlcke wrote:
-> On Thu, Jun 24, 2021 at 07:58:09AM -0400, Thara Gopinath wrote:
->> Introduce SCM calls to access/configure limits management hardware(LMH).
->>
->> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
->> ---
->>
->> v1->v2:
->> 	Changed the input parameters in qcom_scm_lmh_dcvsh from payload_buf and
->> 	payload_size to payload_fn, payload_reg, payload_val as per Bjorn's review
->> 	comments.
->>
->>   drivers/firmware/qcom_scm.c | 54 +++++++++++++++++++++++++++++++++++++
->>   drivers/firmware/qcom_scm.h |  4 +++
->>   include/linux/qcom_scm.h    | 14 ++++++++++
->>   3 files changed, 72 insertions(+)
->>
->> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
->> index ee9cb545e73b..19e9fb91d084 100644
->> --- a/drivers/firmware/qcom_scm.c
->> +++ b/drivers/firmware/qcom_scm.c
->> @@ -1147,6 +1147,60 @@ int qcom_scm_qsmmu500_wait_safe_toggle(bool en)
->>   }
->>   EXPORT_SYMBOL(qcom_scm_qsmmu500_wait_safe_toggle);
->>   
->> +bool qcom_scm_lmh_dcvsh_available(void)
->> +{
->> +	return __qcom_scm_is_call_available(__scm->dev, QCOM_SCM_SVC_LMH, QCOM_SCM_LMH_LIMIT_DCVSH);
->> +}
->> +EXPORT_SYMBOL(qcom_scm_lmh_dcvsh_available);
->> +
->> +int qcom_scm_lmh_profile_change(u32 profile_id)
->> +{
->> +	struct qcom_scm_desc desc = {
->> +		.svc = QCOM_SCM_SVC_LMH,
->> +		.cmd = QCOM_SCM_LMH_LIMIT_PROFILE_CHANGE,
->> +		.arginfo = QCOM_SCM_ARGS(1, QCOM_SCM_VAL),
->> +		.args[0] = profile_id,
->> +		.owner = ARM_SMCCC_OWNER_SIP,
->> +	};
->> +
->> +	return qcom_scm_call(__scm->dev, &desc, NULL);
->> +}
->> +EXPORT_SYMBOL(qcom_scm_lmh_profile_change);
->> +
->> +int qcom_scm_lmh_dcvsh(u32 payload_fn, u32 payload_reg, u32 payload_val,
->> +		       u64 limit_node, u32 node_id, u64 version)
->> +{
->> +	dma_addr_t payload_phys;
->> +	u32 *payload_buf;
->> +	int payload_size = 5 * sizeof(u32);
->> +
->> +	struct qcom_scm_desc desc = {
->> +		.svc = QCOM_SCM_SVC_LMH,
->> +		.cmd = QCOM_SCM_LMH_LIMIT_DCVSH,
->> +		.arginfo = QCOM_SCM_ARGS(5, QCOM_SCM_RO, QCOM_SCM_VAL, QCOM_SCM_VAL,
->> +					QCOM_SCM_VAL, QCOM_SCM_VAL),
->> +		.args[1] = payload_size,
->> +		.args[2] = limit_node,
->> +		.args[3] = node_id,
->> +		.args[4] = version,
->> +		.owner = ARM_SMCCC_OWNER_SIP,
->> +	};
->> +
->> +	payload_buf = dma_alloc_coherent(__scm->dev, payload_size, &payload_phys, GFP_KERNEL);
->> +	if (!payload_buf)
->> +		return -ENOMEM;
->> +
->> +	payload_buf[0] = payload_fn;
->> +	payload_buf[1] = 0;
->> +	payload_buf[2] = payload_reg;
->> +	payload_buf[3] = 1;
->> +	payload_buf[4] = payload_val;
->> +
->> +	desc.args[0] = payload_phys;
->> +	return qcom_scm_call(__scm->dev, &desc, NULL);
+Le ven., juin 25 2021 at 23:19:42 +0800, 周琰杰 
+<zhouyanjie@wanyeetech.com> a écrit :
+> Hi Paul,
 > 
-> dma_free_coherent()?
+> 于 Fri, 25 Jun 2021 12:31:17 +0100
+> Paul Cercueil <paul@crapouillou.net> 写道:
+> 
+>>  Hi Zhou,
+>> 
+>>  Le jeu., juin 24 2021 at 23:06:29 +0800, 周琰杰 (Zhou Yanjie)
+>>  <zhouyanjie@wanyeetech.com> a écrit :
+>>  > 1.Add a new TCU channel as the percpu timer of core1, this is to
+>>  >   prepare for the subsequent SMP support. The newly added channel
+>>  >   will not adversely affect the current single-core state.
+>>  > 2.Adjust the position of TCU node to make it consistent with the
+>>  >   order in jz4780.dtsi file.
+>> 
+>>  That's a bit superfluous, the order matters when adding new nodes,
+>>  but once they are added, moving them around only cause annoyance.
+>> 
+>>  >
+>>  > Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+>>  > ---
+>>  >
+>>  > Notes:
+>>  >     v2:
+>>  >     New patch.
+>>  >
+>>  >     v2->v3:
+>>  >     No change.
+>>  >
+>>  >  arch/mips/boot/dts/ingenic/ci20.dts | 21 +++++++++++----------
+>>  >  1 file changed, 11 insertions(+), 10 deletions(-)
+>>  >
+>>  > diff --git a/arch/mips/boot/dts/ingenic/ci20.dts
+>>  > b/arch/mips/boot/dts/ingenic/ci20.dts
+>>  > index 8877c62..70005cc 100644
+>>  > --- a/arch/mips/boot/dts/ingenic/ci20.dts
+>>  > +++ b/arch/mips/boot/dts/ingenic/ci20.dts
+>>  > @@ -118,6 +118,17 @@
+>>  >  	assigned-clock-rates = <48000000>;
+>>  >  };
+>>  >
+>>  > +&tcu {
+>>  > +	/*
+>>  > +	 * 750 kHz for the system timers and 3 MHz for the
+>>  > clocksources,
+>>  > +	 * use channel #0 and #1 for the per cpu system timers,
+>>  > and use
+>>  > +	 * channel #2 for the clocksource.
+>>  > +	 */
+>>  > +	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu
+>>  > TCU_CLK_TIMER1>,
+>>  > +					  <&tcu TCU_CLK_TIMER2>,
+>>  > <&tcu TCU_CLK_OST>;
+>>  > +	assigned-clock-rates = <750000>, <750000>, <3000000>,
+>>  > <3000000>;
+>> 
+>>  Ideally you'd set TIMER1 to 3 MHz and TIMER2 to 750 kHz, otherwise 
+>> it
+>>  kind of breaks support for older kernels (they would still boot, but
+>>  with a very slow clocksource). So in the new DTS you could use the
+>>  timer0 clock for CPU #0, timer1 for the clocksource, and timer2+ for
+>>  cpus > 0.
+> 
+> I checked the ingenic-timer driver, and it seems that the last TCU
+> channel is always used as the clocksource in the driver, so it seems
+> that we can only use timer2 as the clocksource in smp mode. Maybe we
+> should add a note for smp is closed in the comment. And I found that I
+> missed a problem, Nikolaus Schaller once reported that because the
+> frequency of the tcu timer (only 16bit) used to provide the 
+> clocksource
+> is too high, there will be a chance that the system will get stuck
+> before the clocksource is switched to ost. And reducing the 
+> clocksource
+> to 750kz can prevent it from happening. I will add this part to v4.
+> When this part is added, both clockevent and clocksource will be
+> 750kHz, but the 750kHz clocksource is only temporary, because it will
+> then switch to the clocksource provided by ost, and ost works at 3MHz.
 
-yep.. A free should be done here. Will fix it
+Ok, then first change the clocksource to 750 kHz, then update it with 
+timer2.
+
+Cheers,
+-Paul
 
 > 
+> Thanks and best regards!
+> 
+>> 
+>>  Cheers,
+>>  -Paul
+>> 
+>>  > +};
+>>  > +
+>>  >  &mmc0 {
+>>  >  	status = "okay";
+>>  >
+>>  > @@ -522,13 +533,3 @@
+>>  >  		bias-disable;
+>>  >  	};
+>>  >  };
+>>  > -
+>>  > -&tcu {
+>>  > -	/*
+>>  > -	 * 750 kHz for the system timer and 3 MHz for the
+>>  > clocksource,
+>>  > -	 * use channel #0 for the system timer, #1 for the
+>>  > clocksource.
+>>  > -	 */
+>>  > -	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu
+>>  > TCU_CLK_TIMER1>,
+>>  > -					  <&tcu TCU_CLK_OST>;
+>>  > -	assigned-clock-rates = <750000>, <3000000>, <3000000>;
+>>  > -};
+>>  > --
+>>  > 2.7.4
+>>  >
+>> 
+> 
 
--- 
-Warm Regards
-Thara (She/Her/Hers)
+
