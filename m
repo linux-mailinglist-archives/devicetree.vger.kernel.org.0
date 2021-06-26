@@ -2,150 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CBA03B4DA8
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jun 2021 10:14:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE6B53B4F3C
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jun 2021 17:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbhFZIQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Jun 2021 04:16:38 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:22217 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S229630AbhFZIQh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 26 Jun 2021 04:16:37 -0400
-X-IronPort-AV: E=Sophos;i="5.83,301,1616425200"; 
-   d="scan'208";a="85587094"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 26 Jun 2021 17:14:14 +0900
-Received: from localhost.localdomain (unknown [10.226.92.16])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id CD46C400389B;
-        Sat, 26 Jun 2021 17:14:12 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v4 10/10] arm64: dts: renesas: r9a07g044: Add I2C nodes
-Date:   Sat, 26 Jun 2021 09:13:44 +0100
-Message-Id: <20210626081344.5783-11-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210626081344.5783-1-biju.das.jz@bp.renesas.com>
-References: <20210626081344.5783-1-biju.das.jz@bp.renesas.com>
+        id S229890AbhFZPki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Jun 2021 11:40:38 -0400
+Received: from mail-bn8nam12on2066.outbound.protection.outlook.com ([40.107.237.66]:20704
+        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229657AbhFZPkh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 26 Jun 2021 11:40:37 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LWwpQr/2/iKV0zsjDIiz04alMLzqBtWla6AhbSCdvBstUtejw49lg+re7Si5He89VZLBKPNe+poi6Y3WyIitji0cmsfiVuZx/T/ZsiocIOC3vIqsEwSl1CViE7AbCHTbAdw2QFMu0PHz97A5occG3I8fg6M26LpZV9LqPcqvypabt7m7qV0Ruuuz8oK9yWRaPA2szWMIKS9YMGgCJbg80jy6+voqJ3q1PZMNRVSyDs9/ptpufEhwadjLJB1Z2uPqGbvP1TCqalO6XseMonEcS4W/7oq/c4WffOC28pDYfIO1Q3+Q2rjzkcVxc1DuyAcGejsKVTbEUp6vwUfgC7yMyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FILdz8TiwhkKk5gwqOsr38XQJWAoEqQBLMz/+O9atPM=;
+ b=dFmdbUjfH+0G/iceJODG9XNKVqRst/q8OvSmpqkpVfNYUet1DOCJ/nGNK/OeVOdgT/HIwPFCg/5G9QW/p/duUgUK8HdyvvaF9UKdr/5+1jv2viEFXOrJ+z1a7pjPlAhmiV3z8zz8w5sfx4JZWZTWwgtIhTx3ZaRpuEkpF8Anzb8fAkYTTYZoc+h7v4n3I5I5IWRJFYXTgRXp9aBkhLeJjje/F8Q39q8tQulPyGr1/RVPTl3yTQ0wRc/CdRsx6ixV98ZJUh1rEkaOy6buaI3tM4RFdSnS7YlLlVW1oFRj3ISRhFN8Rdbn3h/OfZg4gbBWha+QUfLNK/EuX+s+fDCo5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FILdz8TiwhkKk5gwqOsr38XQJWAoEqQBLMz/+O9atPM=;
+ b=AmvyVfTZplkBbwWgDVPg7REpZfBRtlyoGZbB8EY78/QwLQDylIFq1TmvpZfLVB4QB4os9F/bdyikFFbqRDBNwEatVvDRPyrJKi20AslxDBF+xhY2dkHgeuCr10Ztu6oMshH5pFn/KnwGfLX2OQwQOH0SxLCHokwGrCR7tyFjeSM=
+Received: from PH0PR02MB7336.namprd02.prod.outlook.com (2603:10b6:510:d::6) by
+ PH0PR02MB7381.namprd02.prod.outlook.com (2603:10b6:510:1e::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4264.19; Sat, 26 Jun 2021 15:38:01 +0000
+Received: from PH0PR02MB7336.namprd02.prod.outlook.com
+ ([fe80::a8bd:e49f:7daf:fb1e]) by PH0PR02MB7336.namprd02.prod.outlook.com
+ ([fe80::a8bd:e49f:7daf:fb1e%9]) with mapi id 15.20.4264.024; Sat, 26 Jun 2021
+ 15:38:00 +0000
+From:   Nava kishore Manne <navam@xilinx.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Michal Simek <michals@xilinx.com>,
+        "mdf@kernel.org" <mdf@kernel.org>,
+        "trix@redhat.com" <trix@redhat.com>,
+        "arnd@arndb.de" <arnd@arndb.de>, Rajan Vaja <RAJANV@xilinx.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        Amit Sunil Dhamne <amitsuni@xlnx.xilinx.com>,
+        Tejas Patel <tejasp@xlnx.xilinx.com>,
+        "zou_wei@huawei.com" <zou_wei@huawei.com>,
+        Sai Krishna Potthuri <lakshmis@xilinx.com>,
+        Ravi Patel <RAVIPATE@xilinx.com>,
+        "iwamatsu@nigauri.org" <iwamatsu@nigauri.org>,
+        Jiaying Liang <jliang@xilinx.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        git <git@xilinx.com>,
+        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>
+Subject: RE: [PATCH v7 3/4] dt-bindings: firmware: Add bindings for xilinx
+ firmware
+Thread-Topic: [PATCH v7 3/4] dt-bindings: firmware: Add bindings for xilinx
+ firmware
+Thread-Index: AQHXWTWLvlOlGYH4vk6tnK9on7ZPFKsNcfIAgBkc6RA=
+Date:   Sat, 26 Jun 2021 15:38:00 +0000
+Message-ID: <PH0PR02MB733685A0EE25D098C7A080A2C2059@PH0PR02MB7336.namprd02.prod.outlook.com>
+References: <20210604113332.1394-1-nava.manne@xilinx.com>
+ <20210604113332.1394-4-nava.manne@xilinx.com>
+ <20210610160342.GA1883933@robh.at.kernel.org>
+In-Reply-To: <20210610160342.GA1883933@robh.at.kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=xilinx.com;
+x-originating-ip: [149.199.50.130]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 91835715-5912-4b34-21f9-08d938b86171
+x-ms-traffictypediagnostic: PH0PR02MB7381:
+x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <PH0PR02MB73811088115D16EA2F8101E9C2059@PH0PR02MB7381.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EWSoeOmg1oyWYbrv+KE9I8bH6nHUBVq/b0Jt27vKUmZOf1OSI4adsxaAEalzc9Q/z1YSSJM+P8fc8tA6W8PHswUFbVi20Muoyx5Oko1Xzx2xRcX+R4IY1TnfvjpyFFh1BYePGBe1N1nXQs2/4byAq+MQsma1aR4T0r/k5wWQqzAzDQnYjndCegZSUWvw5WWdopldK2W7kwUOq8ddX9dxDUvp5UNAhsU5F2NhbPcchLbLghUt6OEM09EreideklWJi/WDJ4grOpuk7Pz7ChPJsZyo22+1Rfl2UprKyjRCm4Oj09IwA6HmvnjIRwUm8z+W1xeJwvKvNEze5+aqLLzGMjqqsT6O410oDFU72qU6cXCRZ5DYNpFpLRk6MbqCVjrEueBZy7qs5McGGoIb9s5Y/a/4hVRuC0Y7QNra7sc6Ly6I9hqQ7EcoktcoBwVliH+wJrh3f9yDm1Wja10b095q4KRt7AMfYz9iFsAPXDomwlEEOK5AnXCgEvqSC4b2wtHtIYyKd9nGEVrdK3+PR7PSovKGzFQU6nUVNC23gK7ZtXFQ9CrcsnN9nRnKZEaoMUpUM0MTT0cEER7gf8SHxtlvy4FgLs0BByuS0NM00P+i0Nwk2SdSbQQpQUs3g0GzjwiRpV5U2KMkQfzFohG7MFZ8kfJTKtsDcMUbemyXWDjidPMcIV1u9wERj5pX+JLr1EUrNnOdRcbqaYgJplbBFLEIOGzRMKvc3QrPKh/FBqULWpwKPQJRPhea0Y0qKubD8O/QsZoTkdj2qHMivtRn9GyEfNL5u9Z2HqjOKZAfCj2MDP4ajAaRJJpCl8Kx9crUeNq1
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR02MB7336.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39850400004)(396003)(136003)(346002)(376002)(54906003)(33656002)(9686003)(2906002)(186003)(478600001)(966005)(316002)(71200400001)(7696005)(6506007)(6916009)(26005)(4326008)(53546011)(86362001)(55016002)(7416002)(66946007)(8676002)(76116006)(8936002)(52536014)(38100700002)(83380400001)(5660300002)(66446008)(66556008)(64756008)(66476007)(122000001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?mhWxlyQHt2qAWXbsmy6QnSDfLgL0l3XVdGQLkwl0mWFDDsoMWiFtAxLiWF1d?=
+ =?us-ascii?Q?93Y1nhI4jLcJkMc6+2kku8hbAHN5m9DZmKbWpKif6qjPMd+AE3vYKCYKIgFC?=
+ =?us-ascii?Q?zXf3Yd9uAp+U8+kcgEvrSs2tereWAtwxmA4ZSXMZXMpcXHvReGSaDUQ2yoUr?=
+ =?us-ascii?Q?yIdBKHXOgP7Ny7oW3P16uTB81eOAi4pOFSQ9+nGZ7OW2xHLd8EXc9SCk0AmF?=
+ =?us-ascii?Q?EuQJepqYsZeLJBqx7LpNDK9YzVJQS7bV2A0Sh7hIu4GG6NwU3fm6SrRn5gBV?=
+ =?us-ascii?Q?1I+kANwQfjuI2UPHRhnR46jD8oMW8aX7aYKgK/JdjZX0znl5SJ6zqjzKjmRq?=
+ =?us-ascii?Q?o4ozUGG6k0T03EDLiIiRZTASsY/SoXo/3DODtyfpD9LoJ8XtfjxBSC2/dR37?=
+ =?us-ascii?Q?YRlqXBeq9N2kc8I/CMri+1TTNElRqetjL3iqPM/+0Dohr6G1gHgPz26OTffB?=
+ =?us-ascii?Q?q9wCkSH6zqDsiA42yQwowCpgQ9yxU5eDogEsRzjZInzDW4ktOUx6AGg2l899?=
+ =?us-ascii?Q?HcXI+JHDSO7hMZcDkVDj+zfgO0NEQTnUUftNmz3Rwp1VGaWh0erhAZAUvDdh?=
+ =?us-ascii?Q?H+X94oTdU9tafdotFer8bzj9Xkn4TMf/nZVMJEwVscv5ANEBp41geJpd5ZiJ?=
+ =?us-ascii?Q?gwQU5jMHFW9t0TfYykSqpwSwUDgc1hBi6oPvMfTiFCHOdDP/xOa4sh2hQwFa?=
+ =?us-ascii?Q?x7pfjuoXLtB/yTbUyS79l6gjO1wDb+DqQTDojUoXCj91tzaf2BYYkiOtypsT?=
+ =?us-ascii?Q?0HpqYdNN9DzJIE5qfZw+VMpYOOyAMhpa9q0u35A8/or2jrMZgTH/Q1WOuOfi?=
+ =?us-ascii?Q?ukVmz7hgfGcMi2TIhH7OBFamxLREhg9ul+b4a4p6gOil0cWkjPTDoUIGS/dH?=
+ =?us-ascii?Q?GquX33Z4f/n8FQLrG07Fj/bZoLS1kzoEmbYDQoXprZC8+9KcQwyE2qeqy16Q?=
+ =?us-ascii?Q?9nxY9cF3n/zWNZMobNMipdU8cJSuYawbPzrQcw8NLJupUG06SFWHro1sc+g3?=
+ =?us-ascii?Q?b7LXgzRhswj3KqliR88kMj1f8EnrgmqwtmhkJMotEwF8bEUJUQzkJ9cU3dIG?=
+ =?us-ascii?Q?At41QSt0QNFxj/wOi3z80J5yEnjdGo5bCzZOQCu22FwujYe5AC7nFUOF2hV/?=
+ =?us-ascii?Q?Qdz5bUIxH5X7bjPsNAS1ke5JF0dm7BTcmL+41yByP05yURo67jkOxlcgqoiF?=
+ =?us-ascii?Q?75XAvhdqoeDzsNKCMF3ZGT96U7aXR8u2YQ2A2SRNti0EN36sef+v6j4MfilX?=
+ =?us-ascii?Q?D7Z31jOQkrTT8t4DCdm5mULbrTsbRev/i727btAjK648mhLGaQt8zvgl6he1?=
+ =?us-ascii?Q?6/KigVdLDN1gdwZL3VI/EU9n?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR02MB7336.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91835715-5912-4b34-21f9-08d938b86171
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jun 2021 15:38:00.6551
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yufclNAFvgHqoMSeuwOAZkonIXNDgXwNWVfApubei5ifQZdALP2D6CDeBgCdcrltbc/ilRB2i60p17A1VPfC9g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB7381
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add I2C{0,1,2,3} nodes to RZ/G2L (R9A07G044) SoC DTSI.
+Hi Rob,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-v3->v4:
- * No change.
-v2->v3:
- * Added Geert's Rb tab
- * Fixes extra space in interrupt property
-v1->v2:
- * Updated reset entries.
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 80 ++++++++++++++++++++++
- 1 file changed, 80 insertions(+)
+	Please find my response inline.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 01482d227506..9a7489dc70d1 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -89,6 +89,86 @@
- 			status = "disabled";
- 		};
- 
-+		i2c0: i2c@10058000 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058000 0 0x400>;
-+			interrupts = <GIC_SPI 350 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 348 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 349 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 352 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 351 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_I2C0_PCLK>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_I2C0_MRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		i2c1: i2c@10058400 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058400 0 0x400>;
-+			interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 356 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 357 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 362 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 363 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_I2C1_PCLK>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_I2C1_MRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		i2c2: i2c@10058800 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058800 0 0x400>;
-+			interrupts = <GIC_SPI 366 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 364 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 365 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 367 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 370 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 371 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_I2C2_PCLK>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_I2C2_MRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
-+		i2c3: i2c@10058c00 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "renesas,riic-r9a07g044", "renesas,riic-rz";
-+			reg = <0 0x10058c00 0 0x400>;
-+			interrupts = <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 372 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 373 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 376 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD R9A07G044_I2C3_PCLK>;
-+			clock-frequency = <100000>;
-+			resets = <&cpg R9A07G044_I2C3_MRST>;
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
-+
- 		cpg: clock-controller@11010000 {
- 			compatible = "renesas,r9a07g044-cpg";
- 			reg = <0 0x11010000 0 0x10000>;
--- 
-2.17.1
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Thursday, June 10, 2021 9:34 PM
+> To: Nava kishore Manne <navam@xilinx.com>
+> Cc: Michal Simek <michals@xilinx.com>; mdf@kernel.org; trix@redhat.com;
+> arnd@arndb.de; Rajan Vaja <RAJANV@xilinx.com>;
+> gregkh@linuxfoundation.org; Amit Sunil Dhamne
+> <amitsuni@xlnx.xilinx.com>; Tejas Patel <tejasp@xlnx.xilinx.com>;
+> zou_wei@huawei.com; Sai Krishna Potthuri <lakshmis@xilinx.com>; Ravi
+> Patel <RAVIPATE@xilinx.com>; iwamatsu@nigauri.org; Jiaying Liang
+> <jliang@xilinx.com>; devicetree@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; linux-
+> fpga@vger.kernel.org; git <git@xilinx.com>; chinnikishore369@gmail.com
+> Subject: Re: [PATCH v7 3/4] dt-bindings: firmware: Add bindings for xilin=
+x
+> firmware
+>=20
+> On Fri, Jun 04, 2021 at 05:03:31PM +0530, Nava kishore Manne wrote:
+> > Add documentation to describe Xilinx firmware driver bindings.
+> > Firmware driver provides an interface to firmware APIs.
+> > Interface APIs can be used by any driver to communicate to Platform
+> > Management Unit.
+> >
+> > Signed-off-by: Nava kishore Manne <nava.manne@xilinx.com>
+> > ---
+> > Changes for v4:
+> >               -Added new yaml file for xilinx firmware
+> >                as suggested by Rob.
+> >
+> > Changes for v5:
+> >               -Fixed some minor issues and updated the fpga node name t=
+o
+> versal_fpga.
+> >
+> > Changes for v6:
+> >               -Added AES and Clk nodes as a sub nodes to the firmware n=
+ode.
+> >
+> > Changes for v7:
+> >               -Fixed child nodes format ssues.
+> >
+> >  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml | 94
+> > +++++++++++++++++++
+> >  1 file changed, 94 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
+> firmware
+> > .yaml
+>=20
+> You need to remove xlnx,zynqmp-firmware.txt
+>=20
 
+Will fix in v8.
+
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
+> firmwa
+> > re.yaml
+> > b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-
+> firmwa
+> > re.yaml
+> > new file mode 100644
+> > index 000000000000..8e0241c4c137
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-fi
+> > +++ rmware.yaml
+> > @@ -0,0 +1,94 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id:
+> > +http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.ya
+> > +ml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Xilinx firmware driver
+> > +
+> > +maintainers:
+> > +  - Nava kishore Manne <nava.manne@xilinx.com>
+> > +
+> > +description:
+> > +  The zynqmp-firmware node describes the interface to platform
+> firmware.
+> > +  ZynqMP has an interface to communicate with secure firmware.
+> > +Firmware
+> > +  driver provides an interface to firmware APIs. Interface APIs can
+> > +be
+> > +  used by any driver to communicate to PMUFW(Platform Management
+> Unit).
+> > +  These requests include clock management, pin control, device
+> > +control,
+> > +  power management service, FPGA service and other platform
+> > +management
+> > +  services.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - description:
+> > +          For implementations complying for Zynq Ultrascale+ MPSoC.
+> > +        const: xlnx,zynqmp-firmware
+> > +
+> > +      - description:
+> > +          For implementations complying for Versal.
+> > +        const: xlnx,versal-firmware
+> > +
+> > +  method:
+> > +    description: |
+> > +                 The method of calling the PM-API firmware layer.
+> > +                 Permitted values are.
+> > +                 - "smc" : SMC #0, following the SMCCC
+> > +                 - "hvc" : HVC #0, following the SMCCC
+> > +
+> > +    $ref: /schemas/types.yaml#/definitions/string-array
+> > +    enum:
+> > +      - smc
+> > +      - hvc
+> > +
+> > +  "versal_fpga":
+>=20
+> Don't need quotes
+>=20
+
+Will fix in v8.
+
+> > +    $ref: /schemas/fpga/xlnx,versal-fpga.yaml#
+> > +    description: Compatible of the FPGA device.
+> > +    type: object
+> > +
+> > +  "zynqmp-aes":
+>=20
+> Don't need quotes
+>=20
+
+Will fix in v8.
+
+> > +    $ref: /schemas/crypto/xlnx,zynqmp-aes.yaml#
+> > +    description: |
+> > +                 The ZynqMP AES-GCM hardened cryptographic accelerator=
+ is
+> > +                 used to encrypt or decrypt the data with provided key=
+ and
+> > +                 initialization vector.
+>=20
+> Don't need '|' here (there's no formatting) and indent 2 more than
+> 'description'.
+>=20
+
+Will fix in v8.
+
+Regards,
+Navakishore.
