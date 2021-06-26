@@ -2,92 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 277C23B4FDA
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jun 2021 20:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E008B3B5046
+	for <lists+devicetree@lfdr.de>; Sat, 26 Jun 2021 23:27:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230198AbhFZSbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Jun 2021 14:31:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230151AbhFZSbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Jun 2021 14:31:38 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20862C061768
-        for <devicetree@vger.kernel.org>; Sat, 26 Jun 2021 11:29:15 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id i12-20020a05683033ecb02903346fa0f74dso13223969otu.10
-        for <devicetree@vger.kernel.org>; Sat, 26 Jun 2021 11:29:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xsfNESfqMuHVR/3TWEKQgeF1cU+m5Si9kUXhTtiYi2M=;
-        b=AUVNQ6pPe4FF/zaIXnkLzesJs02J5fe9cvA6qVX9vqGnmRLKlVRNk2b7820AUsu0TM
-         t/lc6GywsJN1N4kLgz2qOaad3f555GN75Rqlf4mYrF7DT2gndEbx0zR+DCZwJ/1kP+nQ
-         wSrE9eWMEmYprGC9PZJ+egb2KQLDzZIyOJUn62dd6Z1+xSF3MP90/xOUkHG9aVPM8eHk
-         ca/DAqSRA1LyiFucGgCNOzoQ7FjdW5zXr7nBGwMhWaqBwueSsDcKfCgbeohBkEaFywLk
-         dotnFrJApzg9sDzJEka/le6GZUzU06ObsF+K+jPmm64iw8f7SIGw5jHTgqpsPRf3Q1SP
-         xIgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xsfNESfqMuHVR/3TWEKQgeF1cU+m5Si9kUXhTtiYi2M=;
-        b=K/MdeoOlu1HquMoNdyg+TtZcp9YRcfPs298W7mGD/VirrlChALWniO21BHpAA5k6hV
-         kiYcSV1sWc5OCEZuolN3xz5DEyxIpU0oM5nDI+PcBPckwp21SB3Rh7YdeE2aaQqi9il7
-         /Sc6aQ85kQy7Jx76l1d2U6XWh1PK/d2mexxxe/Nh2h4GwaQthVivtKtF4+5qnfBcpwGP
-         uGl3pfSzoi97uITwByWeMA/gH3nmRrUpd/L4c2TqS9P5DciA2mx+xa2m35QM3EQksT4K
-         EYmDWameU5+TsMloHk9lYzerUwPeG/IFNefztrJ6+dXyU3osBG9BBRO9fZ56R2+VZwif
-         OHww==
-X-Gm-Message-State: AOAM533zlIofv4S47OpadBLHRyrFKZLGsQLkZd0Sx/vkiICTBQUpdGeZ
-        MPcjmy98Odo2u5/jlATZVgQvzDnHVbRE6C9ditnJ9g==
-X-Google-Smtp-Source: ABdhPJzEYyfnyegOz/k5HDxQyXJRDyKFyA6MoFz3oNGViR9pD0HqIr10ZJLT3l532va7kK+4+T+2jtpiik5jFTu1KDM=
-X-Received: by 2002:a05:6830:15d3:: with SMTP id j19mr14303580otr.51.1624732154316;
- Sat, 26 Jun 2021 11:29:14 -0700 (PDT)
+        id S230180AbhFZV3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Jun 2021 17:29:51 -0400
+Received: from mout01.posteo.de ([185.67.36.65]:38569 "EHLO mout01.posteo.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230136AbhFZV3u (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 26 Jun 2021 17:29:50 -0400
+Received: from submission (posteo.de [89.146.220.130]) 
+        by mout01.posteo.de (Postfix) with ESMTPS id 91452240028
+        for <devicetree@vger.kernel.org>; Sat, 26 Jun 2021 23:27:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+        t=1624742845; bh=41rpbSn2Uyn0qALHKbYOc9/feymQyErjP+9elyuLFbA=;
+        h=Date:From:To:Cc:Subject:From;
+        b=bvIgsWtJyxdeZctJnYvxWGSrZkSp6GCM+gRxywmYrAsrxvdIiTN2jZ8Bpdmw6feVr
+         q0oAhT4o5GwqR//64oIF8NWv3eDtLxt7WPhwUQ0zlekHXa258m7ywtnijON1ql5Sse
+         2Y9x9BDRm4rq4h07Yz9TYR9HPSBSwIbEGFztQ6cdxKYgPxM2JF1NWEcKSAdJy0fQwr
+         mviXH07Yx9r5sKgyeQGQE/P1xD/xA2UgBXCa9T4UJTzrjf6BWj5jzj9cxAxD+O6h7j
+         hqADP6VO/WAvoVkNdS+snLgj517Tu2fDmYvPmmHRFhYxExHKqxKw0pkNTndSUNyTCZ
+         gIlnEPlODTBHQ==
+Received: from customer (localhost [127.0.0.1])
+        by submission (posteo.de) with ESMTPSA id 4GC6Qg0r7lz9rxL;
+        Sat, 26 Jun 2021 23:27:23 +0200 (CEST)
+Date:   Sat, 26 Jun 2021 21:27:22 +0000
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>
+To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Ash Logan <ash@heyquark.com>,
+        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: nintendo-otp: Document the Wii and
+ Wii U OTP support
+Message-ID: <YNebuj3J51FbWC1n@latitude>
+References: <20210519095044.4109-1-linkmauve@linkmauve.fr>
+ <20210519095044.4109-3-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
-References: <20210617053432.350486-1-bhupesh.sharma@linaro.org>
- <20210617053432.350486-2-bhupesh.sharma@linaro.org> <CACRpkdY9=Exgaqf4KdsfwH7gK=KGh0HVJSWD_FTqLtwd+pOBYQ@mail.gmail.com>
-In-Reply-To: <CACRpkdY9=Exgaqf4KdsfwH7gK=KGh0HVJSWD_FTqLtwd+pOBYQ@mail.gmail.com>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Sat, 26 Jun 2021 23:59:03 +0530
-Message-ID: <CAH=2Ntwef4SpAF+zAxkNvy2pjBfuQZONpUgJavMKfGuV-2uzow@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: pinctrl: qcom,pmic-gpio: Arrange
- compatibles alphabetically
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     MSM <linux-arm-msm@vger.kernel.org>, bhupesh.linux@gmail.com,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7j5plNaFnrRdIOyG"
+Content-Disposition: inline
+In-Reply-To: <20210519095044.4109-3-linkmauve@linkmauve.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
 
-On Sat, 26 Jun 2021 at 05:21, Linus Walleij <linus.walleij@linaro.org> wrote:
->
-> On Thu, Jun 17, 2021 at 7:34 AM Bhupesh Sharma
-> <bhupesh.sharma@linaro.org> wrote:
->
-> > Arrange the compatibles inside qcom-pmic gpio device tree
-> > bindings alphabetically.
-> >
-> > While at it, also make some minor cosmetic changes to allow
-> > future compatible addition to the bindings simpler.
-> >
-> > Cc: Linus Walleij <linus.walleij@linaro.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->
-> These patches do not apply on the current devel branch in the pin control
-> tree:
-> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=devel
->
-> Please rebase and resend!
+--7j5plNaFnrRdIOyG
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Sure, Let me rebase and resend the pinctrl patchset.
+Hello and sorry for the delay,
 
-Thanks,
-Bhupesh
+On Wed, May 19, 2021 at 11:50:42AM +0200, Emmanuel Gil Peyrot wrote:
+> Both of these consoles use the exact same two registers, even at the
+> same address, but the Wii=C2=A0U has eight banks of 128=C2=A0bytes memory=
+ while
+> the Wii only has one, hence the two compatible strings.
+>=20
+> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+
+A link to the (third-party) documentation for the OTP device would be nice.
+
+
+Best regards,
+Jonathan Neusch=C3=A4fer
+
+> ---
+>  .../devicetree/bindings/nvmem/nintendo-otp.txt     | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/nintendo-otp.=
+txt
+>=20
+> diff --git a/Documentation/devicetree/bindings/nvmem/nintendo-otp.txt b/D=
+ocumentation/devicetree/bindings/nvmem/nintendo-otp.txt
+> new file mode 100644
+> index 000000000000..b26d705ec52d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/nintendo-otp.txt
+> @@ -0,0 +1,14 @@
+> +Nintendo Wii and Wii=C2=A0U OTP
+> +
+> +Required Properties:
+> +- compatible: depending on the console this should be one of:
+> +	- "nintendo,hollywood-otp" for the Wii
+> +	- "nintendo,latte-otp" for the Wii=C2=A0U
+> +- reg: base address and size of the OTP registers
+> +
+> +
+> +Example:
+> +	otp@d8001ec {
+> +		compatible =3D "nintendo,latte-otp";
+> +		reg =3D <0x0d8001ec 0x8>;
+> +	};
+> --=20
+> 2.31.1
+>=20
+
+--7j5plNaFnrRdIOyG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmDXm4sACgkQCDBEmo7z
+X9veGhAAy2IY+Vkls/q+6+hkbYXDroy+O6Ogd0JYudibYnde3Y0McY0c+7nRHSBP
+jFIcSJfAEzdBk1X+g18nVJsB/ysvDZ3eMbWjGoOb2e5nNhT+G/Xhvpl0bSInHpel
+SqhHoCj3iSCzmZGlUiyKewjGEVboi1/iQR7Wq5gFctNgpDmwapb8w6RRYY8vjg/E
++iI4gSDqgWLkWkDqQengP9AP3X+IKYgs2Xg+ZbXyGl1kx3ZRwxT2G1UEao1T2l1o
+WKlUAAdlB30+qigZVuCkFkuGTMUn7eSLVyWm3gAzu1toHtMChz3faac4ZnYIxcjl
+1kJKnu3dcMySRO8ITQIPsbIxwweWoSoRST0kEGueFylSzo5Kgh93DCBeChoGIcCG
+WeyP7gspFkcm3c6iR4yG+7W+VdKmO3nhSMlMNnttH8mRIO66quV8qV9k0tfVD6DH
+litoyTLmNT4f34T1+kTo0lzo3sRDRcRYt4ZikEqFXVQOHCCAylo6MLjvXLbaFAFd
+3PGKz9tYf7RtT82DDuvnVje1S13hTZ10eOO6HDvSGWPB5zbTks15zNEAE6H2Un3Y
+Xy1Jewlg/9EgaQTM6JzQjz9DG5/z3v26QpfJYo3Kpqg0ssCr9TXkJ/SPSCtq5w7e
+Qmf5ZZpL5hbPj32UremiOB9lLHloav3l8w8E7HS0lVv6tszVyk8=
+=CJPN
+-----END PGP SIGNATURE-----
+
+--7j5plNaFnrRdIOyG--
