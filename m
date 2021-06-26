@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E008B3B5046
-	for <lists+devicetree@lfdr.de>; Sat, 26 Jun 2021 23:27:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C9C3B5075
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jun 2021 01:24:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230180AbhFZV3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Jun 2021 17:29:51 -0400
-Received: from mout01.posteo.de ([185.67.36.65]:38569 "EHLO mout01.posteo.de"
+        id S230180AbhFZX0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Jun 2021 19:26:41 -0400
+Received: from mout01.posteo.de ([185.67.36.65]:59931 "EHLO mout01.posteo.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230136AbhFZV3u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 26 Jun 2021 17:29:50 -0400
+        id S229630AbhFZX0k (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 26 Jun 2021 19:26:40 -0400
 Received: from submission (posteo.de [89.146.220.130]) 
-        by mout01.posteo.de (Postfix) with ESMTPS id 91452240028
-        for <devicetree@vger.kernel.org>; Sat, 26 Jun 2021 23:27:25 +0200 (CEST)
+        by mout01.posteo.de (Postfix) with ESMTPS id E37D5240028
+        for <devicetree@vger.kernel.org>; Sun, 27 Jun 2021 01:24:15 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-        t=1624742845; bh=41rpbSn2Uyn0qALHKbYOc9/feymQyErjP+9elyuLFbA=;
+        t=1624749855; bh=R9ujgHqs1BjJczriy1SBTuBrhRB6tHWhzFhcHRZqkgM=;
         h=Date:From:To:Cc:Subject:From;
-        b=bvIgsWtJyxdeZctJnYvxWGSrZkSp6GCM+gRxywmYrAsrxvdIiTN2jZ8Bpdmw6feVr
-         q0oAhT4o5GwqR//64oIF8NWv3eDtLxt7WPhwUQ0zlekHXa258m7ywtnijON1ql5Sse
-         2Y9x9BDRm4rq4h07Yz9TYR9HPSBSwIbEGFztQ6cdxKYgPxM2JF1NWEcKSAdJy0fQwr
-         mviXH07Yx9r5sKgyeQGQE/P1xD/xA2UgBXCa9T4UJTzrjf6BWj5jzj9cxAxD+O6h7j
-         hqADP6VO/WAvoVkNdS+snLgj517Tu2fDmYvPmmHRFhYxExHKqxKw0pkNTndSUNyTCZ
-         gIlnEPlODTBHQ==
+        b=STXoIKXQfof9AZAXQHJ6B3Y+h1T7Bs+ajOS5oETT3N+TG+DOLo0Ux7+Bgir9EaidA
+         DDbCl7vDR+ee5ibLAHhOAkfSSB7uS1vvEWLxmIDEpbG7ujkgnj8diciQpeQG8jJHYj
+         jERwxWvt/MPuqO0svzlK7KPfFretmpAIR9n6cfGfAehYQyaB1103DGkN9XRzbCd8Et
+         Lq8C/HWTNSnT5MNM6hH40RHs38sB4mzZXOBBboKt5Zsi8Q4Ut+MVdiIVaOT7yXbGKb
+         agLozYAzq07v2zWr/P4vhbkyn9iHz4FCJrlpgpbz3fWcCGOPB4+uEHBnZVlLprtzXe
+         63w5znOL/4JXA==
 Received: from customer (localhost [127.0.0.1])
-        by submission (posteo.de) with ESMTPSA id 4GC6Qg0r7lz9rxL;
-        Sat, 26 Jun 2021 23:27:23 +0200 (CEST)
-Date:   Sat, 26 Jun 2021 21:27:22 +0000
+        by submission (posteo.de) with ESMTPSA id 4GC91T3CVXz6tm6;
+        Sun, 27 Jun 2021 01:24:13 +0200 (CEST)
+Date:   Sat, 26 Jun 2021 23:24:07 +0000
 From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>
 To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
 Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
@@ -37,91 +37,142 @@ Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Michael Ellerman <mpe@ellerman.id.au>,
         Benjamin Herrenschmidt <benh@kernel.crashing.org>,
         Paul Mackerras <paulus@samba.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: nintendo-otp: Document the Wii and
- Wii U OTP support
-Message-ID: <YNebuj3J51FbWC1n@latitude>
+Subject: Re: [PATCH v2 1/4] nvmem: nintendo-otp: Add new driver for the Wii
+ and Wii U OTP
+Message-ID: <YNe3F7DPOOKuaFIm@latitude>
 References: <20210519095044.4109-1-linkmauve@linkmauve.fr>
- <20210519095044.4109-3-linkmauve@linkmauve.fr>
+ <20210519095044.4109-2-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7j5plNaFnrRdIOyG"
+        protocol="application/pgp-signature"; boundary="8Davdyx64OL/jq/h"
 Content-Disposition: inline
-In-Reply-To: <20210519095044.4109-3-linkmauve@linkmauve.fr>
+In-Reply-To: <20210519095044.4109-2-linkmauve@linkmauve.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---7j5plNaFnrRdIOyG
+--8Davdyx64OL/jq/h
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hello and sorry for the delay,
+Hi,
 
-On Wed, May 19, 2021 at 11:50:42AM +0200, Emmanuel Gil Peyrot wrote:
-> Both of these consoles use the exact same two registers, even at the
-> same address, but the Wii=C2=A0U has eight banks of 128=C2=A0bytes memory=
- while
-> the Wii only has one, hence the two compatible strings.
+
+On Wed, May 19, 2021 at 11:50:41AM +0200, Emmanuel Gil Peyrot wrote:
+> This OTP is read-only and contains various keys used by the console to
+> decrypt, encrypt or verify various pieces of storage.
+>=20
+> Its size depends on the console, it is 128=C2=A0bytes on the Wii and
+> 1024=C2=A0bytes on the Wii=C2=A0U (split into eight 128=C2=A0bytes banks).
+>=20
+> It can be used directly by writing into one register and reading from
+> the other one, without any additional synchronisation.
 >=20
 > Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-
-A link to the (third-party) documentation for the OTP device would be nice.
-
-
-Best regards,
-Jonathan Neusch=C3=A4fer
-
 > ---
->  .../devicetree/bindings/nvmem/nintendo-otp.txt     | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/nintendo-otp.=
-txt
->=20
-> diff --git a/Documentation/devicetree/bindings/nvmem/nintendo-otp.txt b/D=
-ocumentation/devicetree/bindings/nvmem/nintendo-otp.txt
-> new file mode 100644
-> index 000000000000..b26d705ec52d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/nvmem/nintendo-otp.txt
-> @@ -0,0 +1,14 @@
-> +Nintendo Wii and Wii=C2=A0U OTP
+
+A link to the (third-party) documentation would be nice, either in the
+commit message or in the code itself.
+
+(https://wiiubrew.org/wiki/Hardware/OTP i guess)
+
+[...]
+> +static int nintendo_otp_reg_read(void *context,
+> +				 unsigned int reg, void *_val, size_t bytes)
+> +{
+> +	struct nintendo_otp_priv *priv =3D context;
+> +	u32 *val =3D _val;
+> +	int words =3D bytes >> 2;
+> +	u32 bank, addr;
 > +
-> +Required Properties:
-> +- compatible: depending on the console this should be one of:
-> +	- "nintendo,hollywood-otp" for the Wii
-> +	- "nintendo,latte-otp" for the Wii=C2=A0U
-> +- reg: base address and size of the OTP registers
+> +	while (words--) {
+> +		bank =3D (reg << 1) & ~0xff;
+
+This is a bit non-obvious, IMHO. As far as I understand it, the expanded
+formula is:
+
+	bank =3D (reg / 128) << 8;
+
+I.e. first divide by bank size, then shift the parameter into the right
+place.
+
+> +		addr =3D (reg >> 2) & 0x1f;
+
+Here, I think it's about the word size (4 bytes); I think / 4 would be
+clearer.
+
+I *think* (but haven't checked) that gcc should generate efficent shifts
+for the divisions above, so using the division operator shouldn't be
+problem.
+
+> +		iowrite32be(OTP_READ | bank | addr, priv->regs + HW_OTPCMD);
+> +		*val++ =3D ioread32be(priv->regs + HW_OTPDATA);
+> +		reg +=3D 4;
+> +	}
 > +
+> +	return 0;
+> +}
 > +
-> +Example:
-> +	otp@d8001ec {
-> +		compatible =3D "nintendo,latte-otp";
-> +		reg =3D <0x0d8001ec 0x8>;
-> +	};
+[...]
+> +	if (of_id->data) {
+> +		const struct nintendo_otp_devtype_data *data =3D of_id->data;
+> +		config.name =3D data->name;
+> +		config.size =3D data->num_banks * 128;
+
+Given that 128 appears a few times, perhaps a #define would be good.
+
+> +	}
+> +
+> +	config.dev =3D dev;
+> +	config.priv =3D priv;
+> +
+> +	nvmem =3D devm_nvmem_register(dev, &config);
+> +
+> +	return PTR_ERR_OR_ZERO(nvmem);
+> +}
+> +
+> +static struct platform_driver nintendo_otp_driver =3D {
+> +	.probe =3D nintendo_otp_probe,
+> +	.driver =3D {
+> +		.name =3D "nintendo-otp",
+> +		.of_match_table =3D nintendo_otp_of_table,
+> +	},
+> +};
+> +module_platform_driver(nintendo_otp_driver);
+> +MODULE_AUTHOR("Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>");
+> +MODULE_DESCRIPTION("Nintendo Wii and Wii U OTP driver");
+> +MODULE_LICENSE("GPL v2");
 > --=20
 > 2.31.1
 >=20
 
---7j5plNaFnrRdIOyG
+Tested-by: Jonathan Neusch=C3=A4fer <j.ne@posteo.net>  # on Wii
+
+
+
+Thanks,
+Jonathan Neusch=C3=A4fer
+
+--8Davdyx64OL/jq/h
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmDXm4sACgkQCDBEmo7z
-X9veGhAAy2IY+Vkls/q+6+hkbYXDroy+O6Ogd0JYudibYnde3Y0McY0c+7nRHSBP
-jFIcSJfAEzdBk1X+g18nVJsB/ysvDZ3eMbWjGoOb2e5nNhT+G/Xhvpl0bSInHpel
-SqhHoCj3iSCzmZGlUiyKewjGEVboi1/iQR7Wq5gFctNgpDmwapb8w6RRYY8vjg/E
-+iI4gSDqgWLkWkDqQengP9AP3X+IKYgs2Xg+ZbXyGl1kx3ZRwxT2G1UEao1T2l1o
-WKlUAAdlB30+qigZVuCkFkuGTMUn7eSLVyWm3gAzu1toHtMChz3faac4ZnYIxcjl
-1kJKnu3dcMySRO8ITQIPsbIxwweWoSoRST0kEGueFylSzo5Kgh93DCBeChoGIcCG
-WeyP7gspFkcm3c6iR4yG+7W+VdKmO3nhSMlMNnttH8mRIO66quV8qV9k0tfVD6DH
-litoyTLmNT4f34T1+kTo0lzo3sRDRcRYt4ZikEqFXVQOHCCAylo6MLjvXLbaFAFd
-3PGKz9tYf7RtT82DDuvnVje1S13hTZ10eOO6HDvSGWPB5zbTks15zNEAE6H2Un3Y
-Xy1Jewlg/9EgaQTM6JzQjz9DG5/z3v26QpfJYo3Kpqg0ssCr9TXkJ/SPSCtq5w7e
-Qmf5ZZpL5hbPj32UremiOB9lLHloav3l8w8E7HS0lVv6tszVyk8=
-=CJPN
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmDXttcACgkQCDBEmo7z
+X9sKyg//ZTxyWmJLiKXuS5IMWgXtRrk1KE9KhjcJMkkaB8vJdKI7PD0RLx2MemWH
+wJyZhd2tc0K3GYDvTG//Jc5tAZ/GkwYAsqil4TdH3qdEZwhNAXiWJkn1FoRtj+BN
+7UUhthGVIKY8F3EEeHa5OPpZOo+DiI9/KalB3Nqtar4e/b3UDWnLCu90RF60sbnR
+3cw0z5QsBgN5p5IixJffHeHLLgyIYCL/CDMGIJm/sHg1xvD4ywvZHiXKWr5k2RbS
+v4bItXWuPXRtEGxDSeq05qvgokqH2AUoXumUPTwvrG5/6t9dxe4H2DkDiWlsSYxp
+Tq51R4f2Jrm4wdgBWMHPt8iqPpJALOIIgc1k4CrUdFd8ZetdqFPxc0KTcxgqmm6F
+ZgTZsXVb6dyedG1Zc77E4GbuG9zdJLVUIBtXtN9/P1nn1YFDbtPqaoipqfbn5RGS
+lmAFVXMXt+4W/7DHWeInMN110HtmsL0GEBpQkdtQjjIrGPeAvGElL7tm5Rq5lAUz
+ldTMqaQN3BmaaddNiGO4bJ2f0jgxPVN436vBUo9YYE/kPNv5I+uS4baqtmSSY/+L
+QBmRhB4mVIh0tsmpL4DzezQtUBhHHpCz11ONZJwpmJYy5rV7lcNl4JvkISVn0WLv
+ukumLTyu76erTnMdbmZpVu3TGDYfS0MyOY0qG0VjHKXR+d01zyI=
+=X6iX
 -----END PGP SIGNATURE-----
 
---7j5plNaFnrRdIOyG--
+--8Davdyx64OL/jq/h--
