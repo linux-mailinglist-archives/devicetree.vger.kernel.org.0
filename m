@@ -2,89 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A5DE3B5090
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jun 2021 01:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71AFF3B51F2
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jun 2021 06:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229955AbhFZXkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Jun 2021 19:40:49 -0400
-Received: from mout01.posteo.de ([185.67.36.65]:53711 "EHLO mout01.posteo.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229630AbhFZXkt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 26 Jun 2021 19:40:49 -0400
-Received: from submission (posteo.de [89.146.220.130]) 
-        by mout01.posteo.de (Postfix) with ESMTPS id 6C75B240026
-        for <devicetree@vger.kernel.org>; Sun, 27 Jun 2021 01:38:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-        t=1624750705; bh=s6esWgU/Xlf7w6ZVBczhpdMCl7wS0e60yh65YUkUMHg=;
-        h=Date:From:To:Cc:Subject:From;
-        b=q2f+UyV2GZN1y9xf4Par16MlJVGpK4axnyczLWB9F1rxzQsPQ2Ije04U9zXMFPNi7
-         aWelrLcwRckqP2+UaBq+K8Av7ZpJSwm5oEkI6R+QxTEoAvOUYBMgVbPSp9MCV116FZ
-         5DfmWSyNcJhuHueblZLQyBoob52CvqPC/aEe/dcoMUnVhCioAmutwZsFNoIZqnVwYB
-         QSO4OTdwTIC/vnv8lahkjce2UP2zb0dby6cKAnyo7gVUMAi49VU9+EhFHW8vHEh92k
-         rY4OyfL5Gnm48o6Jany7vZAn1eErsCFzEOoA0xsxL0lopvY4M+F+RkfuF7Y3qSt8G1
-         CGuxlOp2o6iGw==
-Received: from customer (localhost [127.0.0.1])
-        by submission (posteo.de) with ESMTPSA id 4GC9Kr45dPz6tm9;
-        Sun, 27 Jun 2021 01:38:24 +0200 (CEST)
-Date:   Sat, 26 Jun 2021 23:38:24 +0000
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>
-To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Ash Logan <ash@heyquark.com>,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] powerpc: wii_defconfig: Enable OTP by default
-Message-ID: <YNe6cPIhtc1Yh6Lf@latitude>
-References: <20210519095044.4109-1-linkmauve@linkmauve.fr>
- <20210519095044.4109-5-linkmauve@linkmauve.fr>
+        id S229588AbhF0E7N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Jun 2021 00:59:13 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:40977 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229519AbhF0E7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Jun 2021 00:59:13 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 633CB5807B0;
+        Sun, 27 Jun 2021 00:56:49 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Sun, 27 Jun 2021 00:56:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=OEzigg4+BoMPxsyoPsKvBQuXau
+        nF/DeXQiUJoqVNnGg=; b=ZzhTi7PWoalGaRkNmj4TNmwp+GyvJC1wVlMyZvGZbS
+        3FQHepYOSaREV6SWKRbqJjb+du7LOnvtCQ8NbRH3AvbnJ9XE+V40fPoj29f/F1xU
+        u3F/CRdCDLqhxBecGgZadXMk2AnZE979jOkOWXyPS4UasCYYBwVqPuRcE1WCLXi/
+        GIf67jWx8iyURz3NNX4i5AJ0Ugw5iuk1pYZneR+po9NRtM2n/jOifDba6+hn3N5R
+        I7yHz3YS37l3AbH4IBBUj/kp0e667QHHPTppVyyPnChSE5UZnoUZh2HZ7xTPolyK
+        t2gKaf4DVmELtBonu3NFhPzzloh4IA2sA0kxECsMS54w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=OEzigg4+BoMPxsyoP
+        sKvBQuXaunF/DeXQiUJoqVNnGg=; b=aiI2vGZl0DEOtYORnQ7gnZwWOIXdbacN0
+        MvjTFf2MYWr2SQ5iPtRUeGyjvGugvb7X5KPumHgT2GVcQMr4ev8wr3gX0umD15uh
+        bU2JP0ErmQua1dx/0fIUAPwWaiMLfOfwBDz+YSQhGiTXGBjs2BJyyCwZKNZUnsf+
+        u3qfEWdC5TuoFm3KQcfZHrOSGXVLpiPWvXyO/YvUSrEgtcmessV/unESf0pZkscx
+        Wx/TfNBmhhwb4gcHvyQfbub6fL+j/4qXmtsRfcXVcXQIDgUcews+GV08ajhdznih
+        GiHzrOEmS+3cRWBgRw/r0da68e9fM/fh4Z9XawGLVVnqCCuiSAAgQ==
+X-ME-Sender: <xms:EAXYYDAXl0bL-S3T0-tqW-TL5TEHRyAZDFVgS-zsxQUu9dDNH8-z_w>
+    <xme:EAXYYJgbYBU3eC_Y9svrHJLwUs8RVEuNCG-iZhn5cequ6WuigHPxVBENsgB7-vGb9
+    ZqY0Qrkdqb1OPzEM5E>
+X-ME-Received: <xmr:EAXYYOmnNqqoOpdJMFleiPLPEP0Org9Ynp7x8Y0dMQTLotn4I62b4t4qDwGM8E9hbQrj3a89GqA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeehuddgjeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomheplfhirgiguhhnucgjrghnghcuoehjihgrgihunhdrhigrnhhgsehf
+    lhihghhorghtrdgtohhmqeenucggtffrrghtthgvrhhnpefhjedtkedtueehtdeifeetke
+    evffetjeetfeegkeevgefftedvudfgleeihfdtudenucevlhhushhtvghrufhiiigvpedt
+    necurfgrrhgrmhepmhgrihhlfhhrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorg
+    htrdgtohhm
+X-ME-Proxy: <xmx:EAXYYFxA0LFQvwZP1rNzZeZ0gQBHm2W35kqSXn-UygMFqFGQJ8zRkw>
+    <xmx:EAXYYITTkShcHWtc_grNQEIkS8t-Mojh0uSopXsp29t9_UtuLy6M_Q>
+    <xmx:EAXYYIZDtkA2YTKCYXg0e336aUm20qYA7hx-vKqVstigWo3Kjd76qA>
+    <xmx:EQXYYNJO5Fj3kYT1hU07ISgqcWtMwIVLVidaufjjzE5E7KLnC_mJEw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 27 Jun 2021 00:56:41 -0400 (EDT)
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+To:     linux-mips@vger.kernel.org
+Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
+        daniel.lezcano@linaro.org, linus.walleij@linaro.org,
+        vkoul@kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: [PATCH 0/9] MIPS: Migrate pistachio to generic kernel
+Date:   Sun, 27 Jun 2021 12:56:22 +0800
+Message-Id: <20210627045631.2882-1-jiaxun.yang@flygoat.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SVeRRa6GP7W+F48g"
-Content-Disposition: inline
-In-Reply-To: <20210519095044.4109-5-linkmauve@linkmauve.fr>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+I'm lucky enough to get a Creator CI40 board from dusts.
+This patchset move it to gerneic kernel to reduce maintenance burden.
+It have been tested with SD Card boot.
 
---SVeRRa6GP7W+F48g
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Jiaxun Yang (9):
+  MIPS: generic: Allow generating FIT image for Marduk board
+  MIPS: DTS: Pistachio add missing cpc and cdmm
+  clk: pistachio: Make it selectable for generic MIPS kernel
+  clocksource/drivers/pistachio: Make it seletable for MIPS
+  phy: pistachio-usb: Depend on MIPS || COMPILE_TEST
+  pinctrl: pistachio: Make it as a option
+  MIPS: config: generic: Add config for Marduk board
+  MIPS: Retire MACH_PISTACHIO
+  MIPS: Make a alias for pistachio_defconfig
 
-On Wed, May 19, 2021 at 11:50:44AM +0200, Emmanuel Gil Peyrot wrote:
-> This selects the nintendo-otp module when building for this platform, if
-> CONFIG_NVMEM is also selected.
+ arch/mips/Kbuild.platforms                    |   1 -
+ arch/mips/Kconfig                             |  29 --
+ arch/mips/Makefile                            |   3 +
+ arch/mips/boot/dts/Makefile                   |   2 +-
+ arch/mips/boot/dts/img/Makefile               |   3 +-
+ arch/mips/boot/dts/img/pistachio.dtsi         |  10 +
+ arch/mips/configs/generic/board-marduk.config |  53 +++
+ arch/mips/configs/pistachio_defconfig         | 316 ------------------
+ arch/mips/generic/Kconfig                     |   6 +
+ arch/mips/generic/Platform                    |   1 +
+ arch/mips/generic/board-marduk.its.S          |  22 ++
+ arch/mips/pistachio/Kconfig                   |  14 -
+ arch/mips/pistachio/Makefile                  |   2 -
+ arch/mips/pistachio/Platform                  |   6 -
+ arch/mips/pistachio/init.c                    | 125 -------
+ arch/mips/pistachio/irq.c                     |  24 --
+ arch/mips/pistachio/time.c                    |  55 ---
+ drivers/clk/Kconfig                           |   1 +
+ drivers/clk/Makefile                          |   2 +-
+ drivers/clk/pistachio/Kconfig                 |   8 +
+ drivers/clocksource/Kconfig                   |   3 +-
+ drivers/phy/Kconfig                           |   2 +-
+ drivers/pinctrl/Kconfig                       |   5 +-
+ 23 files changed, 114 insertions(+), 579 deletions(-)
+ create mode 100644 arch/mips/configs/generic/board-marduk.config
+ delete mode 100644 arch/mips/configs/pistachio_defconfig
+ create mode 100644 arch/mips/generic/board-marduk.its.S
+ delete mode 100644 arch/mips/pistachio/Kconfig
+ delete mode 100644 arch/mips/pistachio/Makefile
+ delete mode 100644 arch/mips/pistachio/Platform
+ delete mode 100644 arch/mips/pistachio/init.c
+ delete mode 100644 arch/mips/pistachio/irq.c
+ delete mode 100644 arch/mips/pistachio/time.c
+ create mode 100644 drivers/clk/pistachio/Kconfig
 
-The 'if' is a bit confusing. CONFIG_NVRAM=3Dy has indeed been in
-wii_defconfig since 2009.
+-- 
+2.32.0
 
-
-Thanks,
-Jonathan Neusch=C3=A4fer
-
---SVeRRa6GP7W+F48g
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmDXum8ACgkQCDBEmo7z
-X9uYFxAArusbDqw9HFJIducCUsMF4cBXIOa+foSnzOZNuBQx64g58pTVNi9MZyK0
-ehLYLSwfsTMj/J10u/y55NkoVXPyOoLlbEgikH0VX5nixGIZP6XqxsKVp2eViTX8
-UZnRwTTPkocRABRALNBqIy2Vr3Xu0sc5cLj7Wr9mnME3EOdtj0529kt30qNLxFNa
-QgnEtfT9v2Xk8ZtcNcobYMbEqhAvACSB559cuVki4G1SsnHfVjBrJzYUFsPRSLty
-hLVcYrCnkoAL9MTYcnrI+vzdivZiDRxtj7OjcKiX/z34xKe74qNs+ZEaS9oe8xXM
-J/FF+Ur1BeDw0gGvXKr8zFgTAxPWy4F7TGjnqXRYVYWJuhHhSlJ4uH4YfTTplodG
-FB6KME8ERasehlObLt67QTbuxNoqbyz6GMBtNZ/41nvwnY+c14+rIsT8zNVrX7g1
-zTJ7x0lQO99aOMUD20MDKcwJy5tF9kILEKK5IE9ZdtSBZMctBNU8fjvPLswshHTV
-5OWpFee08odl3X3ItG2wbBZuDnGgtU/McM2aeCYJ13nAU0k4SlBw3MBx/sDfehI0
-tLnVgLWVnv612sV9haKgHbA4JdK1PeldbzDgZuf/xe2GEq6x6SZ56XLvw/1zA3po
-dOGetYL9Kwsmo+LBa0ooUM+Gl9b9ERG9ZEd/WsalsyjgMH1zhGs=
-=frcq
------END PGP SIGNATURE-----
-
---SVeRRa6GP7W+F48g--
