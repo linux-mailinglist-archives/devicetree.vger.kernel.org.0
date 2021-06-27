@@ -2,70 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 402143B55D5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 01:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B755C3B55ED
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 01:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231702AbhF0XlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Jun 2021 19:41:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52116 "EHLO mail.kernel.org"
+        id S231689AbhF0Xsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Jun 2021 19:48:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55654 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231491AbhF0XlP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Jun 2021 19:41:15 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 92AAE6161E;
-        Sun, 27 Jun 2021 23:38:50 +0000 (UTC)
+        id S231508AbhF0Xsm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Jun 2021 19:48:42 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 4ED7960FEF;
+        Sun, 27 Jun 2021 23:46:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624837130;
-        bh=lenqMCekltDX+AqjNhd4JqLUZdEG+Ux+jyQjI5v5huI=;
+        s=k20201202; t=1624837577;
+        bh=+nT0mJER1hBQ1oFK+9lqRvtBnr1c3IDijt7DiiL+dgo=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=jaZVw/TjdAeOh/2jAk4WhKHFhMjAGvUf86jBRnDRkR/jEDNzTsK77UOyarfX89h4V
-         X9DqNoC0n5e35VsFbj8h3BKLdtB93RQSzqOC3Iu+hYohijhD9K9YduwCS0hn/QEIKM
-         6qh876xSLr4e5mPDIM9UfvSzm77vfH+nwcgQEICFGQ2S8vKcqq4ZWmx+feItoTkdNQ
-         XiUNPCQzH/GxiXqJGJB8gOIovctHeWIWy6DOw22pDm/aYvYt2wOydWsgc3brAXU4vr
-         iPJOMG5SVhiW8idUi6G0sfbaLOlbwPv/O5iOwNA4gce9I5Ju19Q14+jRRb+3Q+15KG
-         gTBbmljy7GgoA==
+        b=tOYVv9a/dFAYjoIF9QmL8ELvSIaocp8NVF8LbXSnc+ZvWrXYhoQWBk4qRIobOMFFS
+         Lq4kYj3kSsoKHGmWkvG3yQxHpWeDpzsMNndM1IgX5Kj3hU+Lz2QoLsXMBE70f9Leax
+         c89fsL8ik0lh0SYaLencJiwMfc0hV8pJWiVyLTEACCwrqQ7ni4JVKjArVrQuJqiGba
+         onQJkJyfulPymd64pA4OYtayuO/CzO75ybVyvCbfGgyUzo94WbL59kLCnQjzIvOYxr
+         kIX88TX0LObzVe8JJvlhNqRChTtDX4fbiiQBzlMbzaR/InzeQPfEVwUBrgSi8QMpIN
+         5xwoG2xiM2skQ==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210627045631.2882-4-jiaxun.yang@flygoat.com>
-References: <20210627045631.2882-1-jiaxun.yang@flygoat.com> <20210627045631.2882-4-jiaxun.yang@flygoat.com>
-Subject: Re: [PATCH 3/9] clk: pistachio: Make it selectable for generic MIPS kernel
+In-Reply-To: <1624449471-9984-1-git-send-email-tdas@codeaurora.org>
+References: <1624449471-9984-1-git-send-email-tdas@codeaurora.org>
+Subject: Re: [PATCH v2] clk: qcom: gcc: Add support for a new frequency for SC7280
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
-        daniel.lezcano@linaro.org, linus.walleij@linaro.org,
-        vkoul@kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org
-Date:   Sun, 27 Jun 2021 16:38:49 -0700
-Message-ID: <162483712923.3259633.15640278024587375157@swboyd.mtv.corp.google.com>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org, robh+dt@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Taniya Das <tdas@codeaurora.org>
+Date:   Sun, 27 Jun 2021 16:46:16 -0700
+Message-ID: <162483757601.3259633.7788849421892603556@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jiaxun Yang (2021-06-26 21:56:25)
-> diff --git a/drivers/clk/pistachio/Kconfig b/drivers/clk/pistachio/Kconfig
-> new file mode 100644
-> index 000000000000..efb7a7f45259
-> --- /dev/null
-> +++ b/drivers/clk/pistachio/Kconfig
-> @@ -0,0 +1,8 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +
-> +config COMMON_CLK_PISTACHIO
-> +       bool "Support for IMG Pistachio SoC clock controllers"
-> +       depends on MIPS
+Quoting Taniya Das (2021-06-23 04:57:51)
+> There is a requirement to support 52MHz for qup clocks for bluetooth
+> usecase, thus update the frequency table to support the frequency.
+>=20
+> Fixes: a3cc092196ef ("clk: qcom: Add Global Clock controller (GCC) driver=
+ for SC7280")
+> Signed-off-by: Taniya Das <tdas@codeaurora.org>
+> ---
 
-Is anything MIPS specific? Or can this be=20
-
-	depends on MIPS || COMPILE_TEST
-
-
-> +       help
-> +         Support for the IMG Pistachio SoC clock controller.
-> +         Say Y if you want to include clock support.
-> \ No newline at end of file
-> --=20
-> 2.32.0
->
+Applied to clk-next
