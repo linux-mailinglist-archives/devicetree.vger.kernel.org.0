@@ -2,205 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C16C3B5357
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jun 2021 15:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 176173B53CD
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jun 2021 16:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229973AbhF0NKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Jun 2021 09:10:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42560 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229817AbhF0NKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Jun 2021 09:10:53 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04602C061574;
-        Sun, 27 Jun 2021 06:08:30 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id 21so11737605pfp.3;
-        Sun, 27 Jun 2021 06:08:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LG15p152Q19/jYJAfgGWGQMbR7hlErO+795zyErlEJE=;
-        b=TxIecD6mGQRB7Yd60ycSuNbG0gyheNRHb6rm01H/e0AmoWhaidVwFrBbXEPQ9z71MS
-         1U8ebjec1eJemOIh0HM0Rjap9X27+o59/X2zcg3Yf65GrE4Dp6sIOrO+/FkmfkEfvo05
-         Of0CT6c2Ba+F6A0zBRf34t1VlBbG+kN4ZOmG2bXDcOCrrKoyxscnTEzzdZ41FhnWRWaC
-         YAV1oaCQSpFE8yx2E3ij9dSpyd2LpuGQ0R2tmrIvb6tlSovZDsbtJL1kQNIbWyCCyZud
-         1f7aHB4ya9A6iNA6tgGsJQjwtNvyGwHGGVQbIGXF/kPBOFWlYfsFAzxl9tcqUvhK8852
-         Cdkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LG15p152Q19/jYJAfgGWGQMbR7hlErO+795zyErlEJE=;
-        b=BMDTZPWPzWrPIlegZruILelQFKWN0XYx5MWQGTtTl0/juaWtXQ7JOqXdDJPtJH0TMZ
-         QWet6PYSH9dE0SN6IlllnnCS8WZFaFXq8L6Ntzj1Yt+4gdjd5naB1w6+1J1eF1+2R3TN
-         K2+obwkIp5z2GEi/SGm4hcuIbi7S+iVmb3E/GTo8IZ9Tekj87steHaZJpjLha88KUVPw
-         rksNG+x4s5sLuavuf8MSPMk3SVBhzeQ2JzYt0k3T7uwUuarG+4oBLzEkAkSCWf3ojeLr
-         wRv43KYj/qtTNlV/CMdriVN21EyDckJl3Nv6pHuSZHA2o261v2gfVcMdIUuUI9UH1OUf
-         6qsw==
-X-Gm-Message-State: AOAM532H6E/+uzSe4OJ9LStjtDtEj6evAlEQ3xmmlcxY70PjxQMY3uvE
-        EIMbGbhnb5W9TFkJ7yCoUjHEgWCTUru6vQuKpww=
-X-Google-Smtp-Source: ABdhPJzeLc1jfR3GrTLHRCQL/6SjO7PG5HBb/f/MC9Iu7DTZSP8+GbNVqlVDpTW8VsxXXYGS7baGIrS3UBRc6QdNZ+c=
-X-Received: by 2002:aa7:8055:0:b029:303:36a6:fec7 with SMTP id
- y21-20020aa780550000b029030336a6fec7mr20400150pfm.40.1624799308940; Sun, 27
- Jun 2021 06:08:28 -0700 (PDT)
+        id S230260AbhF0Ojs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Jun 2021 10:39:48 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:60937 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230252AbhF0Ojr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Jun 2021 10:39:47 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 583E25806BC;
+        Sun, 27 Jun 2021 10:37:23 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Sun, 27 Jun 2021 10:37:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=ucRXwWejv64MFzazAwEltyGum6
+        z36bD1hippP3YWEjE=; b=y6fT8Wg3YQl154OoxC/i89oc0BfPzg4kSavNyvbJie
+        5WoSv52BvjpEAsxmoSAMU3HudImrE/z4gAxJYlUXXBLcGRpM+DzMkQHQB6qRAwO/
+        eJnLDTPdE3ClLkMXq+9cHKgML5+hR6lgDUWoL995nIGfV/PEAGMtIIPk2lg7iOLO
+        At05o/RmZDH13FqfxLC22DLMSnfM6CQRPrOOvyvKH/zMoT9A10Wtu1YUNcZ9P1fF
+        61yiSckJ1Kk429P3EQuQ1VeBgeMIGGHmZ7WMmcMRr0WNSCShxA2TAjiTLy4zpoBu
+        eq1qvjn1hU4dfod1Ws4L+Qz+UjRanws7vnzmuZvgOY7A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=ucRXwWejv64MFzazA
+        wEltyGum6z36bD1hippP3YWEjE=; b=NDilULHx486ywwTpyQ/u2gF53NLcUrjk9
+        McaKDbpetGTdQZ4bNYJTK1J7hQZtTrzYGmOEN6xGG047hVXGySF+r7vco/MIz4vZ
+        yaM++EqkzYeaGQS5nP1i5X7H8WJxu6F11dp9L4wRz3Iph2eBnjd9sNfneOxPxIk8
+        JMZlSojnbj/klfi4oJpgTqs4R0YMZNXQcMsg3nVQRwB6XYgReV3jflw0RmPHkuoS
+        q+ApqPobomS+Xws72YpXd0Wk63weKqBHURBBqfDJ1w+aZux8fH0YCBbyT4mfEt0f
+        88MoK1BM1UncdzJtzj+WWawFW8bw/B63YOIYyFWoo8vghEsX6twIg==
+X-ME-Sender: <xms:IY3YYE9uj2Sl9-c5XLH3U71O7b9DtK2IWER4LL1zIprlcNuR-IwXEw>
+    <xme:IY3YYMsN9ygMAVRb6TS7d3-xHZBXJpIGyVe-p02MvfRDRZSLNJK0B937vJ0a3p0Wi
+    M-L6MneQdZ27oPFHJg>
+X-ME-Received: <xmr:IY3YYKCZGSBiCUou2-3WrrtIt51QyeE09JoEGL-Fb87SOTRTAhKHu0L_z7muegjoDPL3RDNhryt8TtekAlk90ZObxmplrRmXZniKPJN-5zCuGf0T8NJOr-coZ7SSyQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeehvddgjeekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefuvhgvnhcurfgv
+    thgvrhcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvghrnh
+    epvdffieelfeekteeuvdejvdduteehfeeijeefkeevteehueegveeltdehkeffjeejnecu
+    ffhomhgrihhnpegrshgrhhhilhhinhhugidrohhrghdpkhgvrhhnvghlrdhorhhgpdhgih
+    hthhhusgdrtghomhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhl
+    fhhrohhmpehsvhgvnhesshhvvghnphgvthgvrhdruggvvh
+X-ME-Proxy: <xmx:IY3YYEeVT08VJu4gdMbAwWlO1EM2oNkp3nrILbHYeXl480emxkUUsw>
+    <xmx:IY3YYJMduLC9HrJKP7F9SPkMt0D_dVT0wUYE_7NA8sIzJC3OAd-qvg>
+    <xmx:IY3YYOlFYef-sgKH3kUcHxn5VwwGiNnDuqMWkdxeNy5sXJbUlVPNEQ>
+    <xmx:I43YYGexxLMifB7lhoiLz2EDB0HPMrTYTh8boHZrOJuGx9PXnVKhzA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 27 Jun 2021 10:37:18 -0400 (EDT)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>
+Cc:     Sven Peter <sven@svenpeter.dev>, Arnd Bergmann <arnd@kernel.org>,
+        devicetree@vger.kernel.org, Hector Martin <marcan@marcan.st>,
+        linux-kernel@vger.kernel.org, Marc Zyngier <maz@kernel.org>,
+        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
+        Stan Skowronek <stan@corellium.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        iommu@lists.linux-foundation.org, Alexander Graf <graf@amazon.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>, r.czerwinski@pengutronix.de
+Subject: [PATCH v4 0/3] Apple M1 DART IOMMU driver
+Date:   Sun, 27 Jun 2021 16:34:02 +0200
+Message-Id: <20210627143405.77298-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-References: <20210625235532.19575-1-dipenp@nvidia.com>
-In-Reply-To: <20210625235532.19575-1-dipenp@nvidia.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sun, 27 Jun 2021 16:07:52 +0300
-Message-ID: <CAHp75Vf4TKjtC7cLNape4r+hE-AWnbxtbww2ofCcHQJf9zyh-g@mail.gmail.com>
-Subject: Re: [RFC 00/11] Intro to Hardware timestamping engine
-To:     Dipen Patel <dipenp@nvidia.com>,
-        Jarkko Nikula <jarkko.nikula@linux.intel.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-tegra@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Kent Gibson <warthog618@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Documentation List <linux-doc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 26, 2021 at 2:48 AM Dipen Patel <dipenp@nvidia.com> wrote:
->
-> This patch series introduces new subsystem called hardware timestamping
-> engine (HTE). It offers functionality such as timestamping through hardware
-> means in realtime. The HTE subsystem centralizes HTE provider and consumers
-> where providers can register themselves with subsystem and the consumers can
-> request interested entity which could be lines, GPIO, signals or buses. The
-> HTE subsystem provides timestamp in nano seconds, having said that the provider
-> need to convert the timestamp if its not in that unit. There was upstream
-> discussion about the same at
-> https://lore.kernel.org/lkml/4c46726d-fa35-1a95-4295-bca37c8b6fe3@nvidia.com/
->
-> To summarize upstream discussion:
-> - It was heavily favoured by Linus and Kent to extend GPIOLIB and supporting
-> GPIO drivers to add HTE functionality and I agreed to experiment with it.
+Hi,
 
-I guess this series should include more people from different
-companies, especially documentation parts. This may be used by
-different hardware and quite different vendors. Developing a framework
-like this for only one vendor is no go in general.
+This is v4 of my Apple M1 DART IOMMU driver series as a follow up to the previous
+versions [1][2][3].
 
-> This patch series implements and extends GPIOLIB and GPIO tegra driver.
-> - Discussed possibility to add HTE provider as irqchip instead which
-> was argued against as HTE devices are not necessarily event emitting
-> devices.
-> - Discussed other possibility if HTE device can be added as posix clock
-> type like PTP clocks. That was also argues against since HTE devices
-> are not necessarily tightly coupled with hardware clock.
->
-> Typical HTE provider does following:
-> - Register itself with HTE subsystem
-> - Provide *request, *release, *enable, *disable timestamp callbacks and
-> optional get_clk_src_info callback to HTE subsystem.
-> - Provide optional xlate callback to the subsystem which can translate
-> consumer provided logical ids into actual ids of the entity, where entity here
-> is the provider dependent and could be GPIO, in chip lines or signals, buses
-> etc...This converted id will be used between HTE subsystem and the provider for
-> below bullet point.
-> - Push timestamps to the subsystem. This happens when HTE provider has
-> timestamp data available and willing to push it to HTE subsystem. The HTE
-> subsystem stores it into software buffer for the consumers.
-> - Unregister itself
->
-> Typical HTE consumer does following:
-> - Request interested entity it wishes to timestamp in realtime to the
-> subsystem. During this call HTE subsystem allocates software buffer to
-> store timestamps data.
-> - The subsystem does necessary communications with the provider to
-> complete the request, which includes translating logical id of the entity to
-> provider dependent physical/actual id and enabling hardware timestamping on
-> requested id.
-> - It can optionally specify callback during registration, this cb will
-> be called when provider pushes timestamps. Once notified through cb, the
-> consumer can call retrieve API to read the data from the software buffer.
-> If cb is not provided, the consumers can elect to call blocking version of
-> retrieve API.
-> - Manage pre allocated software buffer if needed. It includes changing buffer
-> length and watermark/threshold. The subsystem automatically sets watermark or
-> threshold at 1, consumers can later change it to any other value it wishes. The
-> main purpose for having threshold functionality is to notify consumer either
-> through callback if provided or unblock waiting consumer when threshold is
-> reached.
-> - Retrieve timestamp using various means provided by subsystem.
-> - Release entity and its resources.
->
-> HTE and GPIOLIB:
-> - For the HTE provider which can timestamp GPIO lines.
-> - For the GPIO consumers, either in kernel or userspace, The GPIOLIB and its
-> CDEV framework are extended as frontend to the HTE by introducing new APIs.
-> - Tegra194 AON GPIO controller has HTE support also known as GTE
-> (Generic Timestamping Engine). The tegra gpio driver is modified to accommodate
-> HTE functionality.
->
-> Dipen Patel (11):
->   Documentation: Add HTE subsystem guide
->   drivers: Add HTE subsystem
->   hte: Add tegra194 HTE kernel provider
->   dt-bindings: Add HTE bindings
->   hte: Add Tegra194 IRQ HTE test driver
->   gpiolib: Add HTE support
->   gpio: tegra186: Add HTE in gpio-tegra186 driver
->   gpiolib: cdev: Add hardware timestamp clock type
->   tools: gpio: Add new hardware clock type
->   hte: Add tegra GPIO HTE test driver
->   MAINTAINERS: Added HTE Subsystem
->
->  .../bindings/gpio/nvidia,tegra186-gpio.txt    |    7 +
->  .../devicetree/bindings/hte/hte-consumer.yaml |   47 +
->  .../devicetree/bindings/hte/hte.yaml          |   34 +
->  .../bindings/hte/nvidia,tegra194-hte.yaml     |   83 +
->  Documentation/hte/hte.rst                     |  198 +++
->  Documentation/hte/index.rst                   |   21 +
->  Documentation/hte/tegra194-hte.rst            |   65 +
->  Documentation/index.rst                       |    1 +
->  MAINTAINERS                                   |    8 +
->  drivers/Kconfig                               |    2 +
->  drivers/Makefile                              |    1 +
->  drivers/gpio/gpio-tegra186.c                  |   78 +
->  drivers/gpio/gpiolib-cdev.c                   |   65 +-
->  drivers/gpio/gpiolib.c                        |   92 ++
->  drivers/gpio/gpiolib.h                        |   11 +
->  drivers/hte/Kconfig                           |   49 +
->  drivers/hte/Makefile                          |    4 +
->  drivers/hte/hte-tegra194-gpio-test.c          |  255 +++
->  drivers/hte/hte-tegra194-irq-test.c           |  400 +++++
->  drivers/hte/hte-tegra194.c                    |  554 +++++++
->  drivers/hte/hte.c                             | 1368 +++++++++++++++++
->  include/linux/gpio/consumer.h                 |   21 +-
->  include/linux/gpio/driver.h                   |   13 +
->  include/linux/hte.h                           |  278 ++++
->  include/uapi/linux/gpio.h                     |    1 +
->  tools/gpio/gpio-event-mon.c                   |    6 +-
->  26 files changed, 3657 insertions(+), 5 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/hte/hte-consumer.yaml
->  create mode 100644 Documentation/devicetree/bindings/hte/hte.yaml
->  create mode 100644 Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml
->  create mode 100644 Documentation/hte/hte.rst
->  create mode 100644 Documentation/hte/index.rst
->  create mode 100644 Documentation/hte/tegra194-hte.rst
->  create mode 100644 drivers/hte/Kconfig
->  create mode 100644 drivers/hte/Makefile
->  create mode 100644 drivers/hte/hte-tegra194-gpio-test.c
->  create mode 100644 drivers/hte/hte-tegra194-irq-test.c
->  create mode 100644 drivers/hte/hte-tegra194.c
->  create mode 100644 drivers/hte/hte.c
->  create mode 100644 include/linux/hte.h
->
-> --
-> 2.17.1
->
+Short summary: this series adds support for the iommu found in Apple's new M1
+SoC which is required to use DMA on most peripherals like the display controller,
+the USB ports or the internal PCIe bus (which is used for WiFi, Ethernet and
+more USB ports).
+So far this code has been tested by multiple people with dwc3 in host and
+device mode (which both only require changes to the device tree after this
+patchset) and PCIe (using a yet to be finalized patchset).
 
+
+== Testing this patchset with the USB-C controller == 
+
+The two USB-C ports on the M1 machines are exposed as two separate dwc3
+controllers which are behind a DART. Now that my USB phy bringup code has been
+merged into our bootloader m1n1 you can easily test this patchset yourself:
+
+1) Follow the instructions at [4] to setup our bootloader m1n1 on your M1
+   machine which will allow you to boot kernels using a normal USB cable.
+   Note that you'll still need a special setup to expose the UART for very
+   low-level debugging.
+
+2) Either apply this patchset and add the DART and dwc3 nodes as done in [5]
+   or alternatively just pull from [6] to get the tree that I've been using.
+   (That tree contains two commits already in linux-next, this patchset and
+    a final commit to add the dart+dwc3 nodes)
+
+3) Boot the kernel through our bootloader m1n1. You'll need a version after
+   commit [7] which enables the USB PHY and the USB PD chip.
+
+Note that the dwc3 controller has a quirk where each root port can only be used
+once right now. The most stable way to test is to already connected the USB
+device(s) before booting the kernel.
+
+It's also possible to test the PCIe bus but this requires a more complex setup
+for now. I can write a quick howto if anyone is interested though.
+(tl;dr: Mark Kettenis has a u-boot fork that includes PCIe bringup code and
+Marc Zyngier has a WIP patchset to add a PCIe driver)
+
+
+== Hardwired 16K IOMMU pagesize ==
+
+This IOMMU comes with a hard-wired pagesize of 16K. This makes booting a
+kernel with 4K page challenging. Right now it will hit a BUG_ON if a translated
+domain is used.
+
+For dwc3 this is no issue: As long as the iommu is set to bypass mode
+dwc3 works just fine. Translated mode just isn't supported then.
+
+The most controversial part on which I'd like to get feedback are the
+PCIe DARTs. These DARTs do not support hardware bypass mode and also limit
+the iova space to 32 bit. To still allow booting on kernels with a 4K
+pagesize I manually program a software bypass mode. With a correctly configured
+dma-ranges in the PCIe nodes this then also allows a 4K kernel to boot.
+
+In the long term, I'd like to extend the dma-iommu framework itself to
+support iommu pagesizes with a larger granule than the CPU pagesize if that is
+something you agree with.
+This would be important to later support the thunderbolt DARTs since I would be
+very uncomfortable to have these running in (software or hardware) bypass mode.
+
+== Project Blurb ==
+
+Asahi Linux is an open community project dedicated to developing and
+maintaining mainline support for Apple Silicon on Linux. Feel free to
+drop by #asahi and #asahi-dev on OFTC to chat with us, or check
+our website for more information on the project:
+
+https://asahilinux.org/
+
+== Changes ==
+
+Changes for v4:
+ - Addressed Rob Herring's remark about the incorrect phandles in the device
+   tree binding example and added his reviewed-by tag
+ - Take the software linear mapping range from the bus instead of hardcoding
+   it in the driver
+ - Use def_domain_type to force bypass mode if there's a pagesize mismatch
+   between the DART (hardwired to 16KB) and the kernel (may use 4K)
+ - Added lockdep_assert_held instead of comments as suggested by Rouven Czerwinski
+ - rebased on 5.13-rc7
+
+Changes for v3:
+ - fixed name of the iommu node in the device tree binding example
+   pointed out by Arnd Bergmann
+ - remove hardware specific checks from io-pgtable.c  as pointed out by
+   Will Deacon
+ - introduced a fake bypass mode by programming static linear pagetables
+   if the DART does not support regular bypass mode as proposed by Alex
+   Graf
+ - added checks to enforce bypass mode if there is a pagesize mismatch
+   between the DART HW and the CPU.
+ - fixed usage of GFP_KERNEL during a held spinlock found by Julia Lawall
+ - rebased on v5.13-rc3
+
+Changes for v2:
+ - fixed devicetree binding linting issues pointed out by Rob Herring and
+   reworked that file.
+ - made DART-specific code in io-pgtable.c unconditional and removed flag from
+   Kconfig as proposed by Robin Murphy.
+ - allowed multiple DART nodes in the "iommus" property as proposed by
+   Rob Herring and Robin Murphy. this resulted in significant changes
+   to apple-iommu-dart.c.
+ - the domain aperture is now forced to 32bit if translation is enabled after
+   the original suggestion to limit the aperture by Mark Kettenis and the
+   follow-up discussion and investigation with Mark Kettenis, Arnd Bergmann,
+   Robin Murphy and Rob Herring. This change also simplified the code
+   in io-pgtable.c and made some of the improvements suggested during review
+   not apply anymore.
+ - added support for bypassed and isolated domain modes.
+ - reject IOMMU_MMIO and IOMMU_NOEXEC since it's unknown how to set these up
+   for now or if the hardware even supports these flags.
+ - renamed some registers to be less confusing (mainly s/DOMAIN/STREAM/ to
+   prevent confusion with linux's iommu domain concept).
+
+
+[1] https://lore.kernel.org/linux-iommu/20210320151903.60759-1-sven@svenpeter.dev/
+[2] https://lore.kernel.org/linux-iommu/20210328074009.95932-1-sven@svenpeter.dev/
+[3] https://lore.kernel.org/linux-iommu/20210603085003.50465-1-sven@svenpeter.dev/
+[4] https://github.com/AsahiLinux/docs/wiki/Developer-Quickstart
+[5] https://github.com/AsahiLinux/linux/commit/7d4ebb0b22e9bfec849e2af86ddeb46ec29d7feb
+[6] https://github.com/AsahiLinux/linux/tree/dart/dev
+[7] https://github.com/AsahiLinux/m1n1/commit/9529ec2b4fd6550f9cfd66d9f2448b90804699a1
+
+Sven Peter (3):
+  iommu: io-pgtable: add DART pagetable format
+  dt-bindings: iommu: add DART iommu bindings
+  iommu: dart: Add DART iommu driver
+
+ .../devicetree/bindings/iommu/apple,dart.yaml |   81 ++
+ MAINTAINERS                                   |    7 +
+ drivers/iommu/Kconfig                         |   15 +
+ drivers/iommu/Makefile                        |    1 +
+ drivers/iommu/apple-dart-iommu.c              | 1058 +++++++++++++++++
+ drivers/iommu/io-pgtable-arm.c                |   62 +
+ drivers/iommu/io-pgtable.c                    |    1 +
+ include/linux/io-pgtable.h                    |    7 +
+ 8 files changed, 1232 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iommu/apple,dart.yaml
+ create mode 100644 drivers/iommu/apple-dart-iommu.c
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.25.1
+
