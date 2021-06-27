@@ -2,95 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55B5B3B531D
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jun 2021 13:46:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 290623B531F
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jun 2021 13:46:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230232AbhF0LtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Jun 2021 07:49:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53102 "EHLO
+        id S230253AbhF0LtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Jun 2021 07:49:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230219AbhF0LtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Jun 2021 07:49:00 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C67EC061766
-        for <devicetree@vger.kernel.org>; Sun, 27 Jun 2021 04:46:35 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id e20so12828981pgg.0
-        for <devicetree@vger.kernel.org>; Sun, 27 Jun 2021 04:46:35 -0700 (PDT)
+        with ESMTP id S230174AbhF0LtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Jun 2021 07:49:02 -0400
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E7ECC061767
+        for <devicetree@vger.kernel.org>; Sun, 27 Jun 2021 04:46:39 -0700 (PDT)
+Received: by mail-pg1-x52f.google.com with SMTP id e33so12802967pgm.3
+        for <devicetree@vger.kernel.org>; Sun, 27 Jun 2021 04:46:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1APTTMV9Lifc+OwM91+HWP/syKCs1M6tgCrtH/oY5DM=;
-        b=OxFsle3TPnqpQrkKRfr6FIlIdft5npSSQVoSGZ9th5qDVwluDAs2xE3711qFgX5Vwb
-         3pDpi7HnXstmu0b07bzYN+juGc5BGdV5R3jpiI3Vgrk/tVa1h6A2zLPb+I5BN0evQIoH
-         DTaHh44mnVcM/TWMBTPTyO6SaMDWN258s2Yny7ylo64U+h7nY8Y9i9K8pIf3/gn/9NkI
-         MWdo8/Y5byyNO2yg3j03V91SXQoLQP0NKK7tg5eyfmAJBzgr57gud4OQ2d+OzyZ4uZXQ
-         xrTgy7+p4Qrv8LCZBhjFTBjFsfqHpaM8l9NJCKqmO6k1W7Nd38/R1lgU/MVhA27JKzQg
-         o+gA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=u6hU3l+WPFPeSH4wQjhvp1YpUcglpCldBoZsu5dQtpI=;
+        b=b8R2AneZnbX8PPDDPXYkgJUlXUDwvJNT42bL6aQ7hKUX41FQFDU+YANBjuhmVlW80w
+         RjGb41Qzsw/uKqkPzW+gA0XpYc0WAXLZoqsZFlDMYvdJWf0FYczUlaV87mbL7DEz8N/y
+         apgQ19hKZ1hGMNg9c2iB25Ds9KQ0RXevfgUD2H5T41Yembik3jekQ0olXFKxjnNAHPqS
+         dZVaplG2bpVjHoTyjfVVH2x6zF0chajkTZ9vLKDR+BCEoVeJtb3S4PiWAK9ndR4BJvnQ
+         TUWDpXAtU8wQ+3hY+67LpD2pso3C0UkPtyR3QiwowxwS+32K3L10jVHW8gb7sBmVBvAT
+         7ryw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=1APTTMV9Lifc+OwM91+HWP/syKCs1M6tgCrtH/oY5DM=;
-        b=osRA/InPtBdo2xMb3pDnFX54bw0Nz1+h27Vma3Zms+mKGqNRItHFMmDIdkfundj+Gv
-         w1d72qQITdp5RoChK7wTbdefrCEX69E9bdDAxrBK/liCjvEeTPrr3+RLY0bVTyrcI/4L
-         GyfxC/kXAgwdDwyR32IKLuaGmrSO7CpXyrf6/N1uISE4QoiXrQJyma51E6gaEW4lPTTr
-         zrdAXmR9b+XIvzfGpflVBz5cDb+lfm5mYMrA40raKqRIeA27332oLFaSj/2wffFtXAv6
-         2zjefcXTF+kUeqD2Q7x4H6Pd5lf4wfCL6RZu6bqQ9E5Qs3cURLgAgbizqRYjJdA5+jZm
-         YKkA==
-X-Gm-Message-State: AOAM533Xzo/hXb5N3g5pAb2GCz4eM+rZrQ1Nkq16ZeU7EdDwlnH6ZbZT
-        X8Cwbr8h92A3czsspMABxT7nEg==
-X-Google-Smtp-Source: ABdhPJwyGByc7wC4Sa8JpqOsVsN2rWIfXzFKknOfGa/yhwP91iSZ/b+QSaTvmv8LVAlexXW/s/Bu6Q==
-X-Received: by 2002:aa7:920d:0:b029:2d9:2ead:70dd with SMTP id 13-20020aa7920d0000b02902d92ead70ddmr19547335pfo.67.1624794394969;
-        Sun, 27 Jun 2021 04:46:34 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=u6hU3l+WPFPeSH4wQjhvp1YpUcglpCldBoZsu5dQtpI=;
+        b=CkOtfuAXS/hUaSeEiYegwPh+QeXGw4nrugr4U2xx1Op7f27odiFQZ3XCHg3911geRi
+         53OyyuFQRkzP62u32FNM5/bcA7cP1CDvH76N01zhfaVx+s5x4lYWLm+4EIE/M+Lcd3aH
+         IfdXTo90HF+3zEb+y4Oz7SHGnkgTtJwfFskCpBj19mMXmlWXj++rkKmQIah5TWQLkINh
+         UWvCIJYBiiJECimmnvBqn5lOFlHetgNoevX0U+K7Iz2gy06M6Y36QoEm1OPsqiVBPVmT
+         E0LRylg3xgBrBE6FCukomNQdUZuhxAnPNkCoCLfYFfn+an/rsjholIEJ7wuDjmJYnS1T
+         GqQg==
+X-Gm-Message-State: AOAM530BqwYJFVxyTZeApNtPhoLWya4v80Z+X51zmf37FDzrMgjuIF+l
+        WgaG+ihkKWqjFDXc09UslIzK8Q==
+X-Google-Smtp-Source: ABdhPJweancR/JKUhPGwBLPnVawpEDgcVCTXNT0G4vB5BxLchTtKtYBUFo49gOxNJOMooase+aRSDg==
+X-Received: by 2002:a63:25c5:: with SMTP id l188mr18457025pgl.283.1624794398588;
+        Sun, 27 Jun 2021 04:46:38 -0700 (PDT)
 Received: from localhost.localdomain.name ([182.69.217.12])
-        by smtp.gmail.com with ESMTPSA id x21sm10768762pfu.211.2021.06.27.04.46.31
+        by smtp.gmail.com with ESMTPSA id x21sm10768762pfu.211.2021.06.27.04.46.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Jun 2021 04:46:34 -0700 (PDT)
+        Sun, 27 Jun 2021 04:46:38 -0700 (PDT)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
         balbi@kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: [PATCH v2 0/3] arm64: dts: qcom: Fix usb entries for SA8155p-adp board
-Date:   Sun, 27 Jun 2021 17:16:13 +0530
-Message-Id: <20210627114616.717101-1-bhupesh.sharma@linaro.org>
+Subject: [PATCH v2 1/3] arm64: dts: qcom: Use correct naming for dwc3 usb nodes in dts files
+Date:   Sun, 27 Jun 2021 17:16:14 +0530
+Message-Id: <20210627114616.717101-2-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210627114616.717101-1-bhupesh.sharma@linaro.org>
+References: <20210627114616.717101-1-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changes since v1:
-----------------
-- v1 can be seen here: https://lore.kernel.org/linux-arm-msm/20210625220311.527549-1-bhupesh.sharma@linaro.org/T/#mc49710316c9b527c2ee6562f4b91a05a2d15ca8b
-- Addressed review comments from Bjorn.
+The dwc3 usb nodes in several arm64 qcom dts are currently named
+differently, somewhere as 'usb@<addr>' and somewhere as 'dwc3@<addr>',
+leading to some confusion when one sees the entries in sysfs or
+dmesg:
+[    1.943482] dwc3 a600000.usb: Adding to iommu group 1
+[    2.266127] dwc3 a800000.dwc3: Adding to iommu group 2
 
-This series enables the support for two USB ports (named portB and
-portC) found on the SA8155p-adp board which are connected to USB Type A
-connectors.
+Name the usb nodes as 'usb@<addr>' for consistency, which is
+the correct convention as per the 'snps,dwc3' dt-binding as
+well (see [1]).
 
-It also contains two minor cleanups:
-- naming related fix for dwc3 usb nodes found in qcom arm64 dts files.
-- arrange usb nodes together in sm8150 dts.
+[1]. Documentation/devicetree/bindings/usb/snps,dwc3.yaml
 
 Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8994.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi  | 2 +-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi  | 4 ++--
+ arch/arm64/boot/dts/qcom/sm8350.dtsi  | 4 ++--
+ 4 files changed, 6 insertions(+), 6 deletions(-)
 
-Bhupesh Sharma (3):
-  arm64: dts: qcom: Use correct naming for dwc3 usb nodes in dts files
-  arm64: dts: qcom: Cosmetic changes - arrange USB nodes together in
-    sm8150 dts
-  arm64: dts: qcom: Fix usb entries for SA8155p adp board
-
- arch/arm64/boot/dts/qcom/msm8994.dtsi    |  2 +-
- arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 60 ++++++++++++++++++++----
- arch/arm64/boot/dts/qcom/sm8150.dtsi     | 30 ++++++------
- arch/arm64/boot/dts/qcom/sm8250.dtsi     |  4 +-
- arch/arm64/boot/dts/qcom/sm8350.dtsi     |  4 +-
- 5 files changed, 71 insertions(+), 29 deletions(-)
-
+diff --git a/arch/arm64/boot/dts/qcom/msm8994.dtsi b/arch/arm64/boot/dts/qcom/msm8994.dtsi
+index f9f0b5aa6a26..662f2f246b9b 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8994.dtsi
+@@ -430,7 +430,7 @@ usb3: usb@f92f8800 {
+ 			power-domains = <&gcc USB30_GDSC>;
+ 			qcom,select-utmi-as-pipe-clk;
+ 
+-			dwc3@f9200000 {
++			usb@f9200000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0xf9200000 0xcc00>;
+ 				interrupts = <0 131 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 612dda0fef43..9c931beeb614 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -2389,7 +2389,7 @@ usb_2: usb@a8f8800 {
+ 
+ 			resets = <&gcc GCC_USB30_SEC_BCR>;
+ 
+-			usb_2_dwc3: dwc3@a800000 {
++			usb_2_dwc3: usb@a800000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0 0x0a800000 0 0xcd00>;
+ 				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index 4798368b02ef..9c1462cc9dad 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -2321,7 +2321,7 @@ usb_1: usb@a6f8800 {
+ 
+ 			resets = <&gcc GCC_USB30_PRIM_BCR>;
+ 
+-			usb_1_dwc3: dwc3@a600000 {
++			usb_1_dwc3: usb@a600000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0 0x0a600000 0 0xcd00>;
+ 				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+@@ -2372,7 +2372,7 @@ usb_2: usb@a8f8800 {
+ 
+ 			resets = <&gcc GCC_USB30_SEC_BCR>;
+ 
+-			usb_2_dwc3: dwc3@a800000 {
++			usb_2_dwc3: usb@a800000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0 0x0a800000 0 0xcd00>;
+ 				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 0d16392bb976..a631d58166b1 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -1273,7 +1273,7 @@ usb_1: usb@a6f8800 {
+ 
+ 			resets = <&gcc GCC_USB30_PRIM_BCR>;
+ 
+-			usb_1_dwc3: dwc3@a600000 {
++			usb_1_dwc3: usb@a600000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0 0x0a600000 0 0xcd00>;
+ 				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1317,7 +1317,7 @@ usb_2: usb@a8f8800 {
+ 
+ 			resets = <&gcc GCC_USB30_SEC_BCR>;
+ 
+-			usb_2_dwc3: dwc3@a800000 {
++			usb_2_dwc3: usb@a800000 {
+ 				compatible = "snps,dwc3";
+ 				reg = <0 0x0a800000 0 0xcd00>;
+ 				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.31.1
 
