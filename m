@@ -2,80 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BB13B52D6
-	for <lists+devicetree@lfdr.de>; Sun, 27 Jun 2021 12:36:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACED33B52F0
+	for <lists+devicetree@lfdr.de>; Sun, 27 Jun 2021 12:57:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229828AbhF0Kil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Jun 2021 06:38:41 -0400
-Received: from host30.axxesslocal.co.za ([154.0.166.217]:56794 "EHLO
-        host30.axxesslocal.co.za" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229761AbhF0Kil (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Jun 2021 06:38:41 -0400
-X-Greylist: delayed 587 seconds by postgrey-1.27 at vger.kernel.org; Sun, 27 Jun 2021 06:38:39 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by host30.axxesslocal.co.za (Postfix) with ESMTPA id 7D2D95107DF;
-        Sun, 27 Jun 2021 12:23:12 +0200 (SAST)
+        id S230103AbhF0K7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Jun 2021 06:59:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42464 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229526AbhF0K7b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Jun 2021 06:59:31 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A92FC061766
+        for <devicetree@vger.kernel.org>; Sun, 27 Jun 2021 03:57:07 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id x20so13516037ljc.5
+        for <devicetree@vger.kernel.org>; Sun, 27 Jun 2021 03:57:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OTEvR8vNZmSkCCvd7kXnIDqGnNbdwQ1baNJXm2EXJuU=;
+        b=yzdFGFOTrJISQhFLfqIYNb92VC4LFeeqggPC/JIl3EBFYPPxiO8a2k6IFEunTUrB2H
+         Xr0x8Erd8srzZR1Vu+Di1DnZ/gP3of5e3DXd2zIV4B3pB1AJyVqIuQNWm8b7CiaSSJYk
+         fe+WgfM3mNIqKhAfB7gXZUGQc89xHm6hXRm22Bx4u4kx5MciGEG+edOP43evKyoBsfnh
+         LqSlxZIoM7mGSNS1ZRB9c+TuCc8ClaTM00SWEZ4vQKRqi7FROihijgbc3NvVFtQRUz/B
+         yA8igIPPjX/GxtzQWvxn5aJbs5PvzPJ/K2YuSfiVqmOR5n9+iqXicbjDcKHiYNAaOr93
+         BaUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OTEvR8vNZmSkCCvd7kXnIDqGnNbdwQ1baNJXm2EXJuU=;
+        b=B6/Js6hXrWMnt3kQw0rYJRexqJOEbQZsMJxgVUXegMTNOJBUhN2iUyiE/5p6kXEOpS
+         jSkNlIDZ8cKA5vZl1WHlgi4HwzASOugD89uzzT0k0V9cZA7bqFgbgXi6QyNoe3trR++y
+         9VMDckLH0COs8sHfJ/uwCzrCqphvxMi0ZgZIpjfjMppjgfxXJN9uXxnMMJB3ytPlYVCe
+         CLajFzQ9fz+bK4hQ94+s5Zv5hn9FcJs9Di9hWQZ84DEeZ6xAs6j5CJElK+mB0yjOkkov
+         YfTysy3VLxphTbebW8F/jia4Eevi1c5n1Dx4SWVfqfX8VEl/ZTjqPsB7l54L1Pl4IxRe
+         vRGw==
+X-Gm-Message-State: AOAM530jEUOCfOghp1jghSDcm9Xup3DM9P9GSYCNVysif5sZy61VjQSR
+        XLRqcqC853I3hUT60ihdAlcakNB/C91JejI6LN9hJw==
+X-Google-Smtp-Source: ABdhPJwGAHXPLyOn5EGBJgA8Jv9S+SbKC/9qd0ekxItP16IN3TWo7m1K6877Hzmkxr5RaxT1yaMQrVKbviDJ/sVu27c=
+X-Received: by 2002:a05:651c:603:: with SMTP id k3mr15449365lje.368.1624791425668;
+ Sun, 27 Jun 2021 03:57:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Sun, 27 Jun 2021 12:23:12 +0200
-From:   Pfizer <info@saita.org.za>
-To:     undisclosed-recipients:;
-Subject: Invitation to Bid
-Reply-To: pfizersupplier@daum.net
-In-Reply-To: <b0dced5f1bda4b99c6dab8f69cf7505b@saita.org.za>
-References: <b9f2171e7e809dcb42ec439a74e4b7f7@saita.org.za>
- <53e7540c044f0b357ca58eb850658852@pfizer.com>
- <88cbc4f949c64719231f0d3890094d7d@pfizer.com>
- <2370665df6c1afd6b0ba640aea698767@saita.org.za>
- <12256e4c24066e02da22b38e5a13a51e@saita.org.za>
- <19a95c7d3aefabcbde7500034a1be707@saita.org.za>
- <71cbef32727b933074379fbe1ce76aea@saita.org.za>
- <8a4ac3f024b9d197af8ecf6ab6fc1149@saita.org.za>
- <1ed705adda8cbb78bc7c610932b44a09@saita.org.za>
- <6e8d71619ffdf8e12196e3d5e4d492e6@saita.org.za>
- <1afb48bb0d5f5c9a7954656837057347@saita.org.za>
- <6e682c972fc1d876d9a944aa9a681da2@saita.org.za>
- <391d3d62688a2de7bbb274c062e51eac@saita.org.za>
- <1a12c3a645ee379eedf08d18a4686000@saita.org.za>
- <13e5507d4255692bef75d825b9f64390@saita.org.za>
- <d8c57a78d2ec7945dea9e89faefe9c8a@saita.org.za>
- <52189f3fa69de19fb65bc1509fad68f5@saita.org.za>
- <aa9e2b6d698c6c6de1e1743f05fd098a@saita.org.za>
- <8e833c5f007a0544783c97b1bad83e55@saita.org.za>
- <7753173d00ff91d088eb9a02f4eda8fe@saita.org.za>
- <f455245e21af9226022b512a934eec4e@saita.org.za>
- <7afa6d861834cd4f133104762eb956b8@saita.org.za>
- <8fbe9f53dd2bdee663fa3d6adcc0744e@saita.org.za>
- <4c5056916de32d288dc5a5b0bcd4b9d2@saita.org.za>
- <b0dced5f1bda4b99c6dab8f69cf7505b@saita.org.za>
-User-Agent: Roundcube Webmail/1.4.0
-Message-ID: <66c65f64addeef42c573a3b07e14d745@saita.org.za>
-X-Sender: info@saita.org.za
+References: <20210625235532.19575-1-dipenp@nvidia.com> <20210625235532.19575-5-dipenp@nvidia.com>
+In-Reply-To: <20210625235532.19575-5-dipenp@nvidia.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 27 Jun 2021 12:56:54 +0200
+Message-ID: <CACRpkdbazcGqapWMLnj8=UShU0j002SkKRTxgpprfDeaP_nAQQ@mail.gmail.com>
+Subject: Re: [RFC 04/11] dt-bindings: Add HTE bindings
+To:     Dipen Patel <dipenp@nvidia.com>
+Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Kent Gibson <warthog618@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Dipen,
 
-Good Day Sir / Ms,
+thanks a lot for this very interesting patch set!
 
-We are please to invite you or your company to quote the following item
-listed
-below:
+I'm gonna try to review properly, just pointing out some conceptual
+things to begin with. Bindings is a good place to start.
 
-Product / Model No: A702TH FYNE PRESSURE REGULATOR
-Model Number: A702TH
-Qty. 30 units
+On Sat, Jun 26, 2021 at 1:48 AM Dipen Patel <dipenp@nvidia.com> wrote:
 
-Compulsory, Kindly send your quotation to:  order@pfizersupplier.com  
-for
-immediate approval.
+> +description: |
+> +  HTE properties should be named "htes". The exact meaning of each htes
+> +  property must be documented in the device tree binding for each device.
+> +  An optional property "hte-names" may contain a list of strings to label
+> +  each of the HTE devices listed in the "htes" property.
 
-Kind Regards,
-Albert Bourla
-PFIZER BV Supply Chain Manager
-Tel: +31 (0) 208080 880
-E-mail:  order@pfizersupplier.com
-ADDRESS: Rivium Westlaan 142, 2909 LD
-Capelle aan den IJssel, Netherlands
+I think this is a bit over-abbreviated. IIO has:
+io-channels =...
+io-channel-names =...
+
+Given DT:s infatuation with using english plural I would opt for:
+hardware-timestamps = ..
+hardware-timestamp-names = ...
+
+The "engine" part is a bit of an nVidia:ism I think and a too generic
+term. Could as well be "processor" or "automata" but nVidia just
+happened to name it an engine. (DMA engine would be a precedent
+though, so no hard preference from my side.)
+
+When reading this it is pretty intuitively evident what is going on.
+
+Other than that it looks really good!
+
+> +++ b/Documentation/devicetree/bindings/hte/hte.yaml
+
+I would name this hardware-timestamp-common.yamp or so.
+
+> +title: HTE providers
+
+Spell this out: Hardware timestamp providers
+
+> +properties:
+> +  $nodename:
+> +    pattern: "^hte(@.*|-[0-9a-f])*$"
+
+Likewise:
+hardware-timestamp@ ...
+
+I think this is good because it is very unambiguous.
+
+> +examples:
+> +  - |
+> +    tegra_hte_aon: hte@c1e0000 {
+> +              compatible = "nvidia,tegra194-gte-aon";
+> +              reg = <0xc1e0000 0x10000>;
+> +              interrupts = <0 13 0x4>;
+> +              int-threshold = <1>;
+> +              slices = <3>;
+> +              #hte-cells = <1>;
+> +    };
+
+The examples can be kept to the tegra194 bindings I think, this
+generic binding doesn't need an example as such.
+
+> +$id: http://devicetree.org/schemas/hte/nvidia,tegra194-hte.yaml#
+
+This one should be named like this, that is great.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Tegra194 on chip generic hardware timestamping engine (HTE)
+
+This is clear and nice.
+
+> +  int-threshold:
+> +    description:
+> +      HTE device generates its interrupt based on this u32 FIFO threshold
+> +      value. The recommended value is 1.
+> +    minimum: 1
+> +    maximum: 256
+
+Does this mean a single timestamp in the FIFO will generate an IRQ?
+Then spell that out so it is clear.
+
+> +  slices:
+> +   description:
+> +    HTE lines are arranged in 32 bit slice where each bit represents different
+> +    line/signal that it can enable/configure for the timestamp. It is u32
+> +    property and depends on the HTE instance in the chip.
+> +   oneOf:
+> +    - items:
+> +        - const: 3
+> +    - items:
+> +        - const: 11
+
+Can't you just use
+enum: [3, 11]
+?
+
+> +  '#hte-cells':
+> +    const: 1
+
+So IMO this would be something like
+#hardware-timestamp-cells
+
+Other than this it overall looks very nice to me!
+
+Yours,
+Linus Walleij
