@@ -2,156 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0FA63B66B1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 18:25:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 770A73B66CA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 18:31:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233189AbhF1Q1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 12:27:43 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:59984 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233176AbhF1Q1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 12:27:41 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B70B0B8A;
-        Mon, 28 Jun 2021 18:25:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1624897513;
-        bh=PTVouAjir6usC63yLGX1KM3ZF+0S4PlEQNTD7pbjgjQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=wN6Asf9EI2bthREFOQyceNmJ2tgepCv9DalpxhQD+eY5r8eeEareeXyaEx7lyZweQ
-         5xRo3GH7/hpnoHyulgJFbTpOgGqOUEWpJRWbfWQLx0NH1ON/wzTSPPSIySVrEeGP/e
-         P82BV1y03TGcjfAqsDhcR3YNQZichEUqoxvMI/QY=
-Date:   Mon, 28 Jun 2021 19:25:12 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Rajeev Nandan <rajeevny@codeaurora.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Clark <robdclark@gmail.com>, Lyude Paul <lyude@redhat.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rob Herring <robh@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Kalyan Thota <kalyan_t@codeaurora.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>
-Subject: Re: [v8 4/6] drm/panel-simple: Update validation warnings for eDP
- panel description
-Message-ID: <YNn36Bnc3MkhMC7L@pendragon.ideasonboard.com>
-References: <1624726268-14869-1-git-send-email-rajeevny@codeaurora.org>
- <1624726268-14869-5-git-send-email-rajeevny@codeaurora.org>
- <YNjA+jg9Khn+a9K+@pendragon.ideasonboard.com>
- <d75afefac48229657d36e12b6bac0e9f@codeaurora.org>
- <YNnPqYjaZjmmrQTA@pendragon.ideasonboard.com>
- <CAD=FV=WTuexwn8gWR8-VV_-5Frb-NCNHA7m0xhxdsc_riRUC8g@mail.gmail.com>
+        id S233108AbhF1Qde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 12:33:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35202 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233850AbhF1Qde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 12:33:34 -0400
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 742B7C061574;
+        Mon, 28 Jun 2021 09:31:07 -0700 (PDT)
+Received: by mail-oo1-xc2a.google.com with SMTP id 128-20020a4a11860000b029024b19a4d98eso4899993ooc.5;
+        Mon, 28 Jun 2021 09:31:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ORsTqvtDccq70X0poDFX9rVL1vOBMr3BTqbaDtdmVOw=;
+        b=UpMyg2XmV3vDgk1/2xl/Njoh5sd0HHrtg8nc5tD23UII3SHz53Y7HOHf+r2No6ZwUN
+         UXobGMR0FMhAdCcs6sZCBvfdhsN71+tty4c0PGiBk11hNmXfhPyYpUGss5WjNAwW6hU0
+         CXMzp3vt5rsB45GxLyjIlLYxBBe9Y45YLaKNzXydw4QEPN9pHWU7Q8Et8QJH9Uq80Nbz
+         i050jtkDvyf/h9SYMEUFx6TsXbkBn9TFomnbvAVntynS7tR+tkcpzSf8SozokT6zokjJ
+         AbNC+vCKn0n5NQfgTL35k4Z7DeVV/F1+myDmJ2axLVqGlQr7Fslg97WDdtay6duLNdjh
+         peeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=ORsTqvtDccq70X0poDFX9rVL1vOBMr3BTqbaDtdmVOw=;
+        b=rDEGqDz+DUEjoBEBMJQlHrRzhraUG0yj7/xDBq0g0oeD6oTkH5FFiQjKQtH/ozRf6e
+         rFy5sBkmYHw6xpAYpmIV17hqRA7t0TUZzaSiZhV7mYvj9ZdwC10Z1gqilgnYwxCemhqK
+         ZM6bsTRq7GZBKpDl/potK9WMqW8pcIEaYV/L8h7k0r1jKUXTaNTKyVcQvTO5XAkf19qL
+         uZy3esqf9K6cio5U0qvz/C8XPCkYSdIiK3wuym2mCKESupdgUFJ7g+n68vA8GVoj0+bE
+         8KyJ1kbUGiZD/LzlTlki6/7Ei4bzvu1va1CxjU+5IetSoQYwUwLKrvyL/XK7Ufbl8Rzn
+         NMLw==
+X-Gm-Message-State: AOAM533jeiGxPu6J59Mh9s2/XeARJx/TSz0GhhUrwbWO83tgw1i/481q
+        zjv0QyiVO6BQGXZf1RChOUU=
+X-Google-Smtp-Source: ABdhPJwIVZAsPTtdY7s/33Y9IxLRciwKAyNzbotER8p7TZSkeErswPhOGUzXkatH9kbGdaYgY45QCg==
+X-Received: by 2002:a4a:df18:: with SMTP id i24mr247039oou.68.1624897866822;
+        Mon, 28 Jun 2021 09:31:06 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id l2sm1624382otk.38.2021.06.28.09.31.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Jun 2021 09:31:06 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 28 Jun 2021 09:31:04 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Stefan Wahren <stefan.wahren@i2se.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Wim Van Sebroeck <wim@linux-watchdog.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH V2 2/7] watchdog: bcm2835_wdt: consider
+ system-power-controller property
+Message-ID: <20210628163104.GA444942@roeck-us.net>
+References: <1622981777-5023-1-git-send-email-stefan.wahren@i2se.com>
+ <1622981777-5023-3-git-send-email-stefan.wahren@i2se.com>
+ <f4e62eec-a1c3-7759-3de3-dec98064dc4a@i2se.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAD=FV=WTuexwn8gWR8-VV_-5Frb-NCNHA7m0xhxdsc_riRUC8g@mail.gmail.com>
+In-Reply-To: <f4e62eec-a1c3-7759-3de3-dec98064dc4a@i2se.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Doug,
-
-On Mon, Jun 28, 2021 at 08:34:04AM -0700, Doug Anderson wrote:
-> On Mon, Jun 28, 2021 at 6:33 AM Laurent Pinchart wrote:
-> > On Mon, Jun 28, 2021 at 05:46:24PM +0530, rajeevny@codeaurora.org wrote:
-> > > On 27-06-2021 23:48, Laurent Pinchart wrote:
-> > > > On Sat, Jun 26, 2021 at 10:21:06PM +0530, Rajeev Nandan wrote:
-> > > >> Do not give a warning for the eDP panels if the "bus_format" is
-> > > >> not specified, since most eDP panels can support more than one
-> > > >> bus formats and this can be auto-detected.
-> > > >> Also, update the check to include bpc=10 for the eDP panel.
-> > > >>
-> > > >> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
-> > > >> ---
-> > > >>
-> > > >> Changes in v8:
-> > > >> - New patch, to address the review comments of Sam Ravnborg [1]
-> > > >>
-> > > >> [1]
-> > > >> https://lore.kernel.org/dri-devel/20210621184157.GB918146@ravnborg.org/
-> > > >>
-> > > >>  drivers/gpu/drm/panel/panel-simple.c | 6 ++----
-> > > >>  1 file changed, 2 insertions(+), 4 deletions(-)
-> > > >>
-> > > >> diff --git a/drivers/gpu/drm/panel/panel-simple.c
-> > > >> b/drivers/gpu/drm/panel/panel-simple.c
-> > > >> index 86e5a45..f966b562 100644
-> > > >> --- a/drivers/gpu/drm/panel/panel-simple.c
-> > > >> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> > > >> @@ -772,10 +772,8 @@ static int panel_simple_probe(struct device *dev,
-> > > >> const struct panel_desc *desc,
-> > > >>                    desc->bpc != 8);
-> > > >>            break;
-> > > >>    case DRM_MODE_CONNECTOR_eDP:
-> > > >> -          if (desc->bus_format == 0)
-> > > >> -                  dev_warn(dev, "Specify missing bus_format\n");
-> > > >> -          if (desc->bpc != 6 && desc->bpc != 8)
-> > > >> -                  dev_warn(dev, "Expected bpc in {6,8} but got: %u\n", desc->bpc);
-> > > >> +          if (desc->bpc != 6 && desc->bpc != 8 && desc->bpc != 10)
-> > > >> +                  dev_warn(dev, "Expected bpc in {6,8,10} but got: %u\n", desc->bpc);
-> > > >
-> > > > You'll still get a warning is bpc == 0, is that intentional ?
-> > >
-> > > This was not intentional, I missed considering bpc=0 case. As we are
-> > > removing the warning for bus_format=0 then a similar thing can be done
-> > > for the bpc=0 also. The bpc value should be a valid one if it is
-> > > specified. Unlike the bus_format, bpc has few possible values that can
-> > > be checked here along with 0. Please correct me if I misunderstood the
-> > > concept.
-> > > I will fix this.
+On Tue, Jun 22, 2021 at 09:12:30AM +0200, Stefan Wahren wrote:
+> Hi Guenter,
+> 
+> Am 06.06.21 um 14:16 schrieb Stefan Wahren:
+> > Until now all Raspberry Pi boards used the power off function of the SoC.
+> > But the Raspberry Pi 400 uses gpio-poweroff for the whole board which
+> > possibly cannot register the poweroff handler because the it's
+> > already registered by this watchdog driver. So consider the
+> > system-power-controller property for registering, which is already
+> > defined in soc/bcm/brcm,bcm2835-pm.txt .
 > >
-> > What's the point of specifying bpc if it's optional though ? Users of
-> > the panel will need to support the case where bpc is set to 0. Have you
-> > ensured that they all do ? Can they meaningfully use the bpc value if
-> > they need to be ready to support bpc == 0 ?
+> > Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> > Reviewed-by: Nicolas Saenz Julienne <nsaenz@kernel.org>
+> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> > ---
+> >  drivers/watchdog/bcm2835_wdt.c | 10 +++++++---
+> >  1 file changed, 7 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/watchdog/bcm2835_wdt.c b/drivers/watchdog/bcm2835_wdt.c
+> > index dec6ca0..9490717 100644
+> > --- a/drivers/watchdog/bcm2835_wdt.c
+> > +++ b/drivers/watchdog/bcm2835_wdt.c
+> > @@ -205,9 +205,13 @@ static int bcm2835_wdt_probe(struct platform_device *pdev)
+> >  	if (err)
+> >  		return err;
+> >  
+> > -	if (pm_power_off == NULL) {
+> > -		pm_power_off = bcm2835_power_off;
+> > -		bcm2835_power_off_wdt = wdt;
+> > +	if (of_device_is_system_power_controller(pdev->dev.parent->of_node)) {
+> > +		if (!pm_power_off) {
+> > +			pm_power_off = bcm2835_power_off;
+> > +			bcm2835_power_off_wdt = wdt;
+> > +		} else {
+> > +			dev_info(dev, "Poweroff handler already present!\n");
+> > +		}
+> >  	}
+> >  
+> >  	dev_info(dev, "Broadcom BCM2835 watchdog timer");
 > 
-> I must be missing something, but to me it seems like Rajeev's patch is
-> fine as-is. From my reading of the code:
+> this isn't not applied yet. Can this go via the watchdog-next tree into
+> 5.14?
 > 
-> * Removes the warning if bus_format == 0. This is correct since I
-> don't think specifying bus format for eDP panels makes lots of sense.
+I applied it to my watchdog-next branch; it will be up to Wim to send
+it upstream. Note that the patch does not how up in linux-watchdog
+patchwork (no idea why, though), which is why it got lost.
 
-This is embarassing, I've been reading it as desc->bpc == 0 from the
-beginning :-( My bad. The bpc change is correct.
-
-> * Removes the warning if bpc == 10. This is correct since we've seen
-> eDP panels with 10bpc.
-> 
-> * Keeps the warning if bpc == 0. IMO we can/should still require
-> panels to specify their BPC. I guess I'm treating this as a "max BPC".
-> I know that we use this field in the sn65dsi86 driver, so if it's OK
-> for this to be 0 then we'll have to change that driver to handle it.
-> 
-> Does that sound right to you Laurent? So since I think Rajeev's patch
-> is OK, I'm happy with:
-> 
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> 
-> Unless I missed something and this patch needs to change then it feels
-> like Rajeev's patch series is in pretty good shape to land. I'm happy
-> to commit it but since Sam made comments on the previous version I'd
-> plan to wait a bit to make sure he has a chance for another look if he
-> wants to. I've also only got 2 days left before I vanish for 1 week of
-> vacation. ...so my plan is:
-> * If Sam / Laurent come back before tomorrow and say they're happy
-> then I'll commit.
-> * If I hear nothing then I'll check back after my vacation. If someone
-> else has committed then I'll be happy. If not and there has just been
-> silence then I'll commit it myself.
-> 
-> Please yell if that's not OK. :-)
-
--- 
-Regards,
-
-Laurent Pinchart
+Guenter
