@@ -2,107 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FDF43B5EEF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 15:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EF913B5F23
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 15:36:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231981AbhF1NgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 09:36:01 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:56100 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231978AbhF1Nf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 09:35:59 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 89E18B8A;
-        Mon, 28 Jun 2021 15:33:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1624887210;
-        bh=8EvENliQ1czpJAVajAWWleB/PdHmKzVxxIK0OwYkJWQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WSoM2MxAntz0fEuJAwhHPQ4QfYRSPEbdK2R11MuQQpO5r5olL00xbUF+6myFKKIrq
-         JOL7bDgdSriHiDvo3h6NJQoc46+RHCJVoC/jil7vXTn4r450VJWKtRREQkZLiImWtI
-         wyo1gLiBPIC4t3y6RlZ3MLlZKCr8p686kUIQZLtU=
-Date:   Mon, 28 Jun 2021 16:33:29 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     rajeevny@codeaurora.org
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
-        sam@ravnborg.org, robdclark@gmail.com, dianders@chromium.org,
-        lyude@redhat.com, jani.nikula@intel.com, robh@kernel.org,
-        a.hajda@samsung.com, daniel.thompson@linaro.org,
-        hoegsberg@chromium.org, abhinavk@codeaurora.org,
-        seanpaul@chromium.org, kalyan_t@codeaurora.org,
-        mkrishn@codeaurora.org
-Subject: Re: [v8 4/6] drm/panel-simple: Update validation warnings for eDP
- panel description
-Message-ID: <YNnPqYjaZjmmrQTA@pendragon.ideasonboard.com>
-References: <1624726268-14869-1-git-send-email-rajeevny@codeaurora.org>
- <1624726268-14869-5-git-send-email-rajeevny@codeaurora.org>
- <YNjA+jg9Khn+a9K+@pendragon.ideasonboard.com>
- <d75afefac48229657d36e12b6bac0e9f@codeaurora.org>
+        id S232171AbhF1NjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 09:39:07 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:41656 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232287AbhF1NiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 09:38:25 -0400
+Received: from [IPv6:2a01:e0a:4cb:a870:fc14:fe1d:1736:64c2] (unknown [IPv6:2a01:e0a:4cb:a870:fc14:fe1d:1736:64c2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 6598D1F42794;
+        Mon, 28 Jun 2021 14:35:56 +0100 (BST)
+Subject: Re: [PATCH v9 03/13] media: hantro: Use syscon instead of 'ctrl'
+ register
+To:     Lucas Stach <l.stach@pengutronix.de>, ezequiel@collabora.com,
+        p.zabel@pengutronix.de, mchehab@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        lee.jones@linaro.org, gregkh@linuxfoundation.org,
+        mripard@kernel.org, paul.kocialkowski@bootlin.com, wens@csie.org,
+        jernej.skrabec@siol.net, hverkuil-cisco@xs4all.nl,
+        emil.l.velikov@gmail.com, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>
+Cc:     devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-imx@nxp.com, kernel@pengutronix.de, kernel@collabora.com,
+        cphealy@gmail.com, linux-arm-kernel@lists.infradead.org,
+        linux-media@vger.kernel.org
+References: <20210407073534.376722-1-benjamin.gaignard@collabora.com>
+ <20210407073534.376722-4-benjamin.gaignard@collabora.com>
+ <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Message-ID: <24bea430-56d9-9a62-130d-1ed3830c1915@collabora.com>
+Date:   Mon, 28 Jun 2021 15:35:53 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <d75afefac48229657d36e12b6bac0e9f@codeaurora.org>
+In-Reply-To: <7bcbb787d82f21d42563d8fb7e3c2e7d40123932.camel@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rajeev,
 
-On Mon, Jun 28, 2021 at 05:46:24PM +0530, rajeevny@codeaurora.org wrote:
-> On 27-06-2021 23:48, Laurent Pinchart wrote:
-> > On Sat, Jun 26, 2021 at 10:21:06PM +0530, Rajeev Nandan wrote:
-> >> Do not give a warning for the eDP panels if the "bus_format" is
-> >> not specified, since most eDP panels can support more than one
-> >> bus formats and this can be auto-detected.
-> >> Also, update the check to include bpc=10 for the eDP panel.
-> >> 
-> >> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
-> >> ---
-> >> 
-> >> Changes in v8:
-> >> - New patch, to address the review comments of Sam Ravnborg [1]
-> >> 
-> >> [1] 
-> >> https://lore.kernel.org/dri-devel/20210621184157.GB918146@ravnborg.org/
-> >> 
-> >>  drivers/gpu/drm/panel/panel-simple.c | 6 ++----
-> >>  1 file changed, 2 insertions(+), 4 deletions(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/panel/panel-simple.c 
-> >> b/drivers/gpu/drm/panel/panel-simple.c
-> >> index 86e5a45..f966b562 100644
-> >> --- a/drivers/gpu/drm/panel/panel-simple.c
-> >> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> >> @@ -772,10 +772,8 @@ static int panel_simple_probe(struct device *dev, 
-> >> const struct panel_desc *desc,
-> >>  			desc->bpc != 8);
-> >>  		break;
-> >>  	case DRM_MODE_CONNECTOR_eDP:
-> >> -		if (desc->bus_format == 0)
-> >> -			dev_warn(dev, "Specify missing bus_format\n");
-> >> -		if (desc->bpc != 6 && desc->bpc != 8)
-> >> -			dev_warn(dev, "Expected bpc in {6,8} but got: %u\n", desc->bpc);
-> >> +		if (desc->bpc != 6 && desc->bpc != 8 && desc->bpc != 10)
-> >> +			dev_warn(dev, "Expected bpc in {6,8,10} but got: %u\n", desc->bpc);
-> > 
-> > You'll still get a warning is bpc == 0, is that intentional ?
-> 
-> This was not intentional, I missed considering bpc=0 case. As we are 
-> removing the warning for bus_format=0 then a similar thing can be done 
-> for the bpc=0 also. The bpc value should be a valid one if it is 
-> specified. Unlike the bus_format, bpc has few possible values that can 
-> be checked here along with 0. Please correct me if I misunderstood the 
-> concept.
-> I will fix this.
+Le 16/04/2021 à 12:54, Lucas Stach a écrit :
+> Am Mittwoch, dem 07.04.2021 um 09:35 +0200 schrieb Benjamin Gaignard:
+>> In order to be able to share the control hardware block between
+>> VPUs use a syscon instead a ioremap it in the driver.
+>> To keep the compatibility with older DT if 'nxp,imx8mq-vpu-ctrl'
+>> phandle is not found look at 'ctrl' reg-name.
+>> With the method it becomes useless to provide a list of register
+>> names so remove it.
+> Sorry for putting a spoke in the wheel after many iterations of the
+> series.
+>
+> We just discussed a way forward on how to handle the clocks and resets
+> provided by the blkctl block on i.MX8MM and later and it seems there is
+> a consensus on trying to provide virtual power domains from a blkctl
+> driver, controlling clocks and resets for the devices in the power
+> domain. I would like to avoid introducing yet another way of handling
+> the blkctl and thus would like to align the i.MX8MQ VPU blkctl with
+> what we are planning to do on the later chip generations.
+>
+> CC'ing Jacky Bai and Peng Fan from NXP, as they were going to give this
+> virtual power domain thing a shot.
 
-What's the point of specifying bpc if it's optional though ? Users of
-the panel will need to support the case where bpc is set to 0. Have you
-ensured that they all do ? Can they meaningfully use the bpc value if
-they need to be ready to support bpc == 0 ?
+Hey guys,
 
--- 
+I may I have miss them but I haven't see patches about power domain for IMX8MQ
+VPU control block ?
+Is it something that you still plan to do ?
+If not, I can resend my patches where I use syscon.
+
 Regards,
+Benjamin
 
-Laurent Pinchart
+>
+> Regards,
+> Lucas
+>
+>> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+>> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+>> ---
+>> version 9:
+>>   - Corrections in commit message
+>>
+>> version 7:
+>>   - Add Philipp reviewed-by tag.
+>>   - Change syscon phandle name.
+>>   
+>>
+>>
+>>
+>> version 5:
+>>   - use syscon instead of VPU reset driver.
+>>   - if DT doesn't provide syscon keep backward compatibilty by using
+>>     'ctrl' reg-name.
+>>
+>>   drivers/staging/media/hantro/hantro.h       |  5 +-
+>>   drivers/staging/media/hantro/imx8m_vpu_hw.c | 52 ++++++++++++---------
+>>   2 files changed, 34 insertions(+), 23 deletions(-)
+>>
+>> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
+>> index 6c1b888abe75..37b9ce04bd4e 100644
+>> --- a/drivers/staging/media/hantro/hantro.h
+>> +++ b/drivers/staging/media/hantro/hantro.h
+>> @@ -13,6 +13,7 @@
+>>   #define HANTRO_H_
+>>   
+>>
+>>
+>>
+>>   #include <linux/platform_device.h>
+>> +#include <linux/regmap.h>
+>>   #include <linux/videodev2.h>
+>>   #include <linux/wait.h>
+>>   #include <linux/clk.h>
+>> @@ -167,7 +168,7 @@ hantro_vdev_to_func(struct video_device *vdev)
+>>    * @reg_bases:		Mapped addresses of VPU registers.
+>>    * @enc_base:		Mapped address of VPU encoder register for convenience.
+>>    * @dec_base:		Mapped address of VPU decoder register for convenience.
+>> - * @ctrl_base:		Mapped address of VPU control block.
+>> + * @ctrl_base:		Regmap of VPU control block.
+>>    * @vpu_mutex:		Mutex to synchronize V4L2 calls.
+>>    * @irqlock:		Spinlock to synchronize access to data structures
+>>    *			shared with interrupt handlers.
+>> @@ -186,7 +187,7 @@ struct hantro_dev {
+>>   	void __iomem **reg_bases;
+>>   	void __iomem *enc_base;
+>>   	void __iomem *dec_base;
+>> -	void __iomem *ctrl_base;
+>> +	struct regmap *ctrl_base;
+>>   
+>>
+>>
+>>
+>>   	struct mutex vpu_mutex;	/* video_device lock */
+>>   	spinlock_t irqlock;
+>> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+>> index c222de075ef4..8d0c3425234b 100644
+>> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
+>> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+>> @@ -7,6 +7,7 @@
+>>   
+>>
+>>
+>>
+>>   #include <linux/clk.h>
+>>   #include <linux/delay.h>
+>> +#include <linux/mfd/syscon.h>
+>>   
+>>
+>>
+>>
+>>   #include "hantro.h"
+>>   #include "hantro_jpeg.h"
+>> @@ -24,30 +25,28 @@
+>>   #define CTRL_G1_PP_FUSE		0x0c
+>>   #define CTRL_G2_DEC_FUSE	0x10
+>>   
+>>
+>>
+>>
+>> +static const struct regmap_config ctrl_regmap_ctrl = {
+>> +	.reg_bits = 32,
+>> +	.val_bits = 32,
+>> +	.reg_stride = 0x14,
+>> +};
+>> +
+>>   static void imx8m_soft_reset(struct hantro_dev *vpu, u32 reset_bits)
+>>   {
+>> -	u32 val;
+>> -
+>>   	/* Assert */
+>> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
+>> -	val &= ~reset_bits;
+>> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
+>> +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET, reset_bits, 0);
+>>   
+>>
+>>
+>>
+>>   	udelay(2);
+>>   
+>>
+>>
+>>
+>>   	/* Release */
+>> -	val = readl(vpu->ctrl_base + CTRL_SOFT_RESET);
+>> -	val |= reset_bits;
+>> -	writel(val, vpu->ctrl_base + CTRL_SOFT_RESET);
+>> +	regmap_update_bits(vpu->ctrl_base, CTRL_SOFT_RESET,
+>> +			   reset_bits, reset_bits);
+>>   }
+>>   
+>>
+>>
+>>
+>>   static void imx8m_clk_enable(struct hantro_dev *vpu, u32 clock_bits)
+>>   {
+>> -	u32 val;
+>> -
+>> -	val = readl(vpu->ctrl_base + CTRL_CLOCK_ENABLE);
+>> -	val |= clock_bits;
+>> -	writel(val, vpu->ctrl_base + CTRL_CLOCK_ENABLE);
+>> +	regmap_update_bits(vpu->ctrl_base, CTRL_CLOCK_ENABLE,
+>> +			   clock_bits, clock_bits);
+>>   }
+>>   
+>>
+>>
+>>
+>>   static int imx8mq_runtime_resume(struct hantro_dev *vpu)
+>> @@ -64,9 +63,9 @@ static int imx8mq_runtime_resume(struct hantro_dev *vpu)
+>>   	imx8m_clk_enable(vpu, CLOCK_G1 | CLOCK_G2);
+>>   
+>>
+>>
+>>
+>>   	/* Set values of the fuse registers */
+>> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_DEC_FUSE);
+>> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G1_PP_FUSE);
+>> -	writel(0xffffffff, vpu->ctrl_base + CTRL_G2_DEC_FUSE);
+>> +	regmap_write(vpu->ctrl_base, CTRL_G1_DEC_FUSE, 0xffffffff);
+>> +	regmap_write(vpu->ctrl_base, CTRL_G1_PP_FUSE, 0xffffffff);
+>> +	regmap_write(vpu->ctrl_base, CTRL_G2_DEC_FUSE, 0xffffffff);
+>>   
+>>
+>>
+>>
+>>   	clk_bulk_disable_unprepare(vpu->variant->num_clocks, vpu->clocks);
+>>   
+>>
+>>
+>>
+>> @@ -150,8 +149,22 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
+>>   
+>>
+>>
+>>
+>>   static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
+>>   {
+>> -	vpu->dec_base = vpu->reg_bases[0];
+>> -	vpu->ctrl_base = vpu->reg_bases[vpu->variant->num_regs - 1];
+>> +	struct device_node *np = vpu->dev->of_node;
+>> +
+>> +	vpu->ctrl_base = syscon_regmap_lookup_by_phandle(np, "nxp,imx8m-vpu-ctrl");
+>> +	if (IS_ERR(vpu->ctrl_base)) {
+>> +		struct resource *res;
+>> +		void __iomem *ctrl;
+>> +
+>> +		res = platform_get_resource_byname(vpu->pdev, IORESOURCE_MEM, "ctrl");
+>> +		ctrl = devm_ioremap_resource(vpu->dev, res);
+>> +		if (IS_ERR(ctrl))
+>> +			return PTR_ERR(ctrl);
+>> +
+>> +		vpu->ctrl_base = devm_regmap_init_mmio(vpu->dev, ctrl, &ctrl_regmap_ctrl);
+>> +		if (IS_ERR(vpu->ctrl_base))
+>> +			return PTR_ERR(vpu->ctrl_base);
+>> +	}
+>>   
+>>
+>>
+>>
+>>   	return 0;
+>>   }
+>> @@ -198,7 +211,6 @@ static const struct hantro_irq imx8mq_irqs[] = {
+>>   };
+>>   
+>>
+>>
+>>
+>>   static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
+>> -static const char * const imx8mq_reg_names[] = { "g1", "g2", "ctrl" };
+>>   
+>>
+>>
+>>
+>>   const struct hantro_variant imx8mq_vpu_variant = {
+>>   	.dec_fmts = imx8m_vpu_dec_fmts,
+>> @@ -215,6 +227,4 @@ const struct hantro_variant imx8mq_vpu_variant = {
+>>   	.num_irqs = ARRAY_SIZE(imx8mq_irqs),
+>>   	.clk_names = imx8mq_clk_names,
+>>   	.num_clocks = ARRAY_SIZE(imx8mq_clk_names),
+>> -	.reg_names = imx8mq_reg_names,
+>> -	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
+>>   };
+>
+>
