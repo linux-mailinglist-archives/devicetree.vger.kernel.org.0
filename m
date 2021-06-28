@@ -2,143 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CD5A3B5F4D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 15:44:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E61133B6238
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 16:41:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232130AbhF1Nqr convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 28 Jun 2021 09:46:47 -0400
-Received: from frasgout.his.huawei.com ([185.176.79.56]:3327 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232058AbhF1Nqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 09:46:47 -0400
-Received: from fraeml708-chm.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GD7ld52cCz6L4tQ;
-        Mon, 28 Jun 2021 21:30:37 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml708-chm.china.huawei.com (10.206.15.36) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 28 Jun 2021 15:44:19 +0200
-Received: from localhost (10.47.24.170) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 28 Jun
- 2021 14:44:18 +0100
-Date:   Mon, 28 Jun 2021 14:44:07 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     "Sa, Nuno" <Nuno.Sa@analog.com>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        id S234472AbhF1On1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 10:43:27 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:59590 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234490AbhF1Ol0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Jun 2021 10:41:26 -0400
+Received: from localhost.localdomain (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxb0L93tlgmsoZAA--.8933S2;
+        Mon, 28 Jun 2021 22:38:53 +0800 (CST)
+From:   Qing Zhang <zhangqing@loongson.cn>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Lars-Peter Clausen" <lars@metafoo.de>,
-        Ricardo Ribalda <ribalda@kernel.org>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        Gwenhael Goavec-Merou <gwenhael.goavec-merou@trabucayre.com>,
-        Michael Welling <mwelling@ieee.org>
-Subject: Re: [PATCH 00/15] dt-bindings: iio: dac: Add most missing binding
- documents.
-Message-ID: <20210628144407.0000084e@Huawei.com>
-In-Reply-To: <PH0PR03MB6366F34DC0B3D7EB7A56B6A499039@PH0PR03MB6366.namprd03.prod.outlook.com>
-References: <20210627163244.1090296-1-jic23@kernel.org>
-        <PH0PR03MB6366F34DC0B3D7EB7A56B6A499039@PH0PR03MB6366.namprd03.prod.outlook.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Huacai Chen <chenhuacai@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] MIPS: Loongson-3: Add Loongson-2K1000 reset platform driver
+Date:   Mon, 28 Jun 2021 22:38:51 +0800
+Message-Id: <20210628143852.11504-1-zhangqing@loongson.cn>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [10.47.24.170]
-X-ClientProxiedBy: lhreml717-chm.china.huawei.com (10.201.108.68) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf9Dxb0L93tlgmsoZAA--.8933S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxCFy8WrWDXw4kCw17AF15twb_yoW5CryUpF
+        Z8Gw43CrWrG3W7Kw4rtFyUuFW5Z3Z3tFWjkFW2v345Z3sxWFZ8Jws8tFyFyrnrGrW7AFW3
+        ZFsYgFW8CF4ru3DanT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUkFb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+        A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+        jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
+        A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
+        w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r4j6F4UMc
+        vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY02Avz4vE14v_Xryl42xK82IY
+        c2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s
+        026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r126r1DMIIYrxkI7VAKI48JMIIF
+        0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0x
+        vE42xK8VAvwI8IcIk0rVWrZr1j6s0DMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2
+        jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07boD7-UUUUU=
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Jun 2021 07:09:18 +0000
-"Sa, Nuno" <Nuno.Sa@analog.com> wrote:
+Add power management register operations to support reboot and poweroff.
 
-> Hi Jonathan,
-> 
-> > -----Original Message-----
-> > From: Jonathan Cameron <jic23@kernel.org>
-> > Sent: Sunday, June 27, 2021 6:32 PM
-> > To: linux-iio@vger.kernel.org; Rob Herring <robh+dt@kernel.org>;
-> > devicetree@vger.kernel.org
-> > Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>; Lars-Peter
-> > Clausen <lars@metafoo.de>; Ricardo Ribalda <ribalda@kernel.org>;
-> > Hennerich, Michael <Michael.Hennerich@analog.com>; Gwenhael
-> > Goavec-Merou <gwenhael.goavec-merou@trabucayre.com>; Michael
-> > Welling <mwelling@ieee.org>
-> > Subject: [PATCH 00/15] dt-bindings: iio: dac: Add most missing binding
-> > documents.
-> > 
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > We have quite a few drivers in IIO that date back to the days of
-> > platform
-> > data.  Many of them either worked out of the box with device tree
-> > due to the spi core using the spi_device_id to match against
-> > device tree compatibles, or were updated to use newer interfaces in
-> > the
-> > intervening years.  As such, they mostly 'work' with device tree but
-> > can have some slightly odd quirks (particularly around naming of
-> > supplies).
-> > As we have no way of knowing what is out in the wild, we need to
-> > support
-> > these interesting bits of regulator naming.
-> > 
-> > I would ultimately like all such bindings to be documented both to
-> > facilitate
-> > automated check of device trees and to make things easier for people
-> > trying
-> > to write device tree files using these devices.
-> > 
-> > This series fills in the majority of the absent bindings for DACs.
-> > There are some outstanding
-> > * max517 - some platform data configuration needs porting over to
-> > device tree.
-> > * m62332 - this passes a consumer mapping in as platform data and will
-> > need
-> >   careful porting over the dt way of doing that.
-> > 
-> > There is one 'fixlet' in here for the driver to deal with a case were the
-> > code was intended to allow the presence of a regulator to dictate
-> > whether
-> > an internal reference was used, but did not use the optional regulator
-> > get.
-> > 
-> > I've mostly nominated maintainers based on original authorship +
-> > where
-> > I was feeling guilty or couldn't find anyone still active I've listed myself.
-> > 
-> > I got bored half way through of producing brief descriptions of
-> > the devices so stopped doing so. If anyone wants to provide one for
-> > these
-> > parts I'm happy to add it!
-> > 
-> > Future series will cover the c. 40 bindings that I've identified as missing
-> > for other types of devices.  I've also kept notes of easy cleanups in
-> > drivers spotted whilst working these out, so will probably follow up
-> > with
-> > those soon as well.
-> > 
-> > Note I haven't tested all of these so there may well be errors or
-> > elements
-> > I've missed.
-> >   
-> 
-> LGTM... Just wondering if we could not add the adi,ad5421 directly into
-> the trivial-devices yaml as it looks to be the only one without any odd
-> regulator name?
+Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+---
 
-We could, but would probably end up pulling it out again.  As noted in
-that patch description there is a bunch of stuff the binding doesn't currently
-support that would make sense to add if anyone actually needs it.
+v2-v3:
+-make reset support as a driver
 
-Hmm. I guess it's a question of whether we think anyone will ever care :)
+Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+---
+ drivers/platform/mips/Kconfig      |  6 +++
+ drivers/platform/mips/Makefile     |  1 +
+ drivers/platform/mips/ls2k-reset.c | 60 ++++++++++++++++++++++++++++++
+ 3 files changed, 67 insertions(+)
+ create mode 100644 drivers/platform/mips/ls2k-reset.c
 
-Jonathan
-> 
-> Anyways, feel free to add:
-> 
-> Acked-by: Nuno Sá <nuno.sa@analog.com>
+diff --git a/drivers/platform/mips/Kconfig b/drivers/platform/mips/Kconfig
+index 8ac149173c64..d421e1482395 100644
+--- a/drivers/platform/mips/Kconfig
++++ b/drivers/platform/mips/Kconfig
+@@ -30,4 +30,10 @@ config RS780E_ACPI
+ 	help
+ 	  Loongson RS780E PCH ACPI Controller driver.
+ 
++config LS2K_RESET
++	bool "Loongson-2K1000 Reset Controller"
++	depends on MACH_LOONGSON64 || COMPILE_TEST
++	help
++	  Loongson-2K1000 Reset Controller driver.
++
+ endif # MIPS_PLATFORM_DEVICES
+diff --git a/drivers/platform/mips/Makefile b/drivers/platform/mips/Makefile
+index 178149098777..4c71444e453a 100644
+--- a/drivers/platform/mips/Makefile
++++ b/drivers/platform/mips/Makefile
+@@ -1,3 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ obj-$(CONFIG_CPU_HWMON) += cpu_hwmon.o
+ obj-$(CONFIG_RS780E_ACPI) += rs780e-acpi.o
++obj-$(CONFIG_LS2K_RESET) += ls2k-reset.o
+diff --git a/drivers/platform/mips/ls2k-reset.c b/drivers/platform/mips/ls2k-reset.c
+new file mode 100644
+index 000000000000..c5f073c82c5e
+--- /dev/null
++++ b/drivers/platform/mips/ls2k-reset.c
+@@ -0,0 +1,60 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ *  Copyright (C) 2021, Qing Zhang <zhangqing@loongson.cn>
++ *  Loongson-2K1000 reset support
++ */
++
++#include <linux/of_address.h>
++#include <linux/pm.h>
++#include <asm/reboot.h>
++
++static char *pm_reg_name[] = {"pm1_sts", "pm1_cnt", "rst_cnt"};
++
++static void __iomem *get_reg_byname(struct device_node *node, const char *name)
++{
++	int index = of_property_match_string(node, "reg-names", name);
++
++	if (index < 0)
++		return NULL;
++
++	return of_iomap(node, index);
++}
++
++static void ls2k_restart(char *command)
++{
++	writel(0x1, (void *)pm_reg_name[2]);
++}
++
++static void ls2k_poweroff(void)
++{
++	/* Clear */
++	writel((readl((void *)pm_reg_name[0]) & 0xffffffff), (void *)pm_reg_name[0]);
++	/* Sleep Enable | Soft Off*/
++	writel(GENMASK(12, 10)|BIT(13), (void *)pm_reg_name[1]);
++}
++
++static int ls2k_reset_init(void)
++{
++	struct device_node *np;
++	int i;
++
++	np = of_find_node_by_type(NULL, "power management");
++	if (!np) {
++		pr_info("Failed to get PM node\n");
++		return -ENODEV;
++	}
++
++	for (i = 0; i < sizeof(pm_reg_name)/sizeof(char *); i++) {
++		pm_reg_name[i] = get_reg_byname(np, pm_reg_name[i]);
++		if (!pm_reg_name[i])
++			iounmap(pm_reg_name[i]);
++	}
++
++	_machine_restart = ls2k_restart;
++	pm_power_off = ls2k_poweroff;
++
++	of_node_put(np);
++	return 0;
++}
++
++arch_initcall(ls2k_reset_init);
+-- 
+2.31.0
 
