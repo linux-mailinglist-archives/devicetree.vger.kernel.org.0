@@ -2,89 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 580FB3B5B23
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 11:21:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF31F3B5B6E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 11:34:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232521AbhF1JXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 05:23:47 -0400
-Received: from mail-ua1-f43.google.com ([209.85.222.43]:45947 "EHLO
-        mail-ua1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230256AbhF1JXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 05:23:45 -0400
-Received: by mail-ua1-f43.google.com with SMTP id c20so6697964uar.12;
-        Mon, 28 Jun 2021 02:21:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dXsC1+zSEMlM+supXspj2457/hPp3B45hOkYONeY4Is=;
-        b=qrlxOug0ayMiXxP6fNYsRw65CzLYZE8opNHhx7tkFdA51EV6N6HyfE8IkQHSkEAZQL
-         bITGs/iWMSMCHrBwO6Wwg5SVbCwWId5CzRNu/BJi4k3hvKwzREMRIv5jOl53cwk3OW5x
-         O7UKkK4yjG7pgmXBoX5PrIiu075Mg26prnd8aCnJRzZMZxTT/yyq8IDztatQ8x390mf4
-         EEZUiuX848HVIs8cyhIqfc4jQBtpJQdyYljyboDMee36LHbaY2WZnTh86VS9rXn0jMHT
-         jHkurXLyOC8XexUSwohP71bQdpzjVHwlgZvyxD2FQQrNCCmIxckqtwwU9JvSEDJ2HmqP
-         kUhg==
-X-Gm-Message-State: AOAM53198+mg2uEDO/vr35w8jdkveYFyBSqslywTVN6p+XL9+DkDljNF
-        ig7ZychkP9WC3VRNSSlsYQZqI+GzXGQTL+Fvt0M=
-X-Google-Smtp-Source: ABdhPJyvpSl9Lwa3c1/yfWiKIw+V+kX10XFZlBG4/WXiv2OELPvofLcRPso0QjEiBSE6oMrTBkS+lP9yf990+QbGfeo=
-X-Received: by 2002:ab0:647:: with SMTP id f65mr19373178uaf.4.1624872079635;
- Mon, 28 Jun 2021 02:21:19 -0700 (PDT)
+        id S232512AbhF1Jgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 05:36:51 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:36021 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231935AbhF1Jgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Jun 2021 05:36:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1624872865;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=OH+jVVr1lvBtZ9CWlaipwKLG10KB8Y6CJCSIOW1M3BE=;
+        b=C1DUbap4RrCaGNcg1YPdrpWbk0j530e1Nw9WSrF+6i9rLlHkvIFOWbnglUwmtbsH+EXGI1
+        yutRYYLeGBpf5Aj7Kuwc6CB8kzfdsMc3ctSDtzrtn7+Idq8RZDul1gQn3G4PlQtmeMYAmS
+        z/vvlzqZ/uYInCPBJHUCCrGdP4QTq+8=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-178-SPwY-9xXNaWRvF0Vc_Vq1Q-1; Mon, 28 Jun 2021 05:34:22 -0400
+X-MC-Unique: SPwY-9xXNaWRvF0Vc_Vq1Q-1
+Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com [10.5.11.11])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id A17E8800C78;
+        Mon, 28 Jun 2021 09:34:21 +0000 (UTC)
+Received: from gshan.redhat.com (vpn2-54-204.bne.redhat.com [10.64.54.204])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id 319D819C87;
+        Mon, 28 Jun 2021 09:34:18 +0000 (UTC)
+From:   Gavin Shan <gshan@redhat.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, rdunlap@infradead.org,
+        drjones@redhat.com, robh+dt@kernel.org, shan.gavin@gmail.com
+Subject: [PATCH v5] Documentation, dt, numa: Add note to empty NUMA node
+Date:   Mon, 28 Jun 2021 17:34:11 +0800
+Message-Id: <20210628093411.88805-1-gshan@redhat.com>
 MIME-Version: 1.0
-References: <20210625125902.1162428-1-geert@linux-m68k.org>
- <20210625125902.1162428-19-geert@linux-m68k.org> <20210625223916.7e00e710@thinkpad>
- <20210625224001.115c938a@thinkpad>
-In-Reply-To: <20210625224001.115c938a@thinkpad>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 28 Jun 2021 11:21:08 +0200
-Message-ID: <CAMuHMdXYLkoS7hTi1OZx7PMSCcfAR9YviJMN-x_dWpbz5KW+JA@mail.gmail.com>
-Subject: Re: [PATCH v2 18/18] auxdisplay: ht16k33: Add segment display LED support
-To:     Marek Behun <marek.behun@nic.cz>
-Cc:     Robin van der Gracht <robin@protonic.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        Paul Burton <paulburton@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-leds <linux-leds@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+The empty memory nodes, where no memory resides in, are allowed.
+For these empty memory nodes, the 'len' of 'reg' property is zero.
+The NUMA node IDs are still valid and parsed, but memory may be
+added to them through hotplug afterwards. I finds difficulty to
+get where it's properly documented.
 
-On Fri, Jun 25, 2021 at 10:40 PM Marek Behun <marek.behun@nic.cz> wrote:
-> On Fri, 25 Jun 2021 22:39:16 +0200
-> Marek Behun <marek.behun@nic.cz> wrote:
-> > On Fri, 25 Jun 2021 14:59:02 +0200
-> > Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > Instantiate a single LED for a segment display.  This allows the user to
-> > > control display brightness and blinking through the LED class API and
-> > > triggers, and exposes the display color.
-> > > The LED will be named "auxdisplay:<color>:backlight".
-> >
-> > What if there are multiple "auxdisplay"s ?
-> > Doesn't this subsystem have IDs? So that you can use auxdisplayN for
-> > device name, for example?
->
-> Or if this driver creates a fbdev, maybe "fb<N>" for devicename?
+So lets add a section for empty memory nodes in NUMA binding
+document. Also, the 'unit-address', equivalent to 'base-address'
+in the 'reg' property of these empty memory nodes is suggested to
+be the summation of highest memory address plus the NUMA node ID.
 
-This LED device is only registered when using the HT16K33 to drive
-segment displays.
-When driving a dot matrix display, the driver still use fbdev and
-devm_backlight_device_register(), for backwards compatibility.
+Signed-off-by: Gavin Shan <gshan@redhat.com>
+---
+v5: Separate section for empty memory node
+---
+ Documentation/devicetree/bindings/numa.txt | 61 +++++++++++++++++++++-
+ 1 file changed, 60 insertions(+), 1 deletion(-)
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+index 21b35053ca5a..230c734af948 100644
+--- a/Documentation/devicetree/bindings/numa.txt
++++ b/Documentation/devicetree/bindings/numa.txt
+@@ -103,7 +103,66 @@ Example:
+ 		};
+ 
+ ==============================================================================
+-4 - Example dts
++4 - Empty memory nodes
++==============================================================================
++
++Empty memory nodes, which no memory resides in, are allowed. The 'length'
++field of the 'reg' property is zero, but the 'base-address' is a dummy
++address and invalid. The 'base-address' could be the summation of highest
++memory address plus the NUMA node ID. However, the NUMA node IDs and
++distance maps are still valid and memory may be added into them through
++hotplug afterwards.
++
++Example:
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++		numa-node-id = <0>;
++	};
++
++	memory@0x80000000 {
++		device_type = "memory";
++		reg = <0x0 0x80000000 0x0 0x80000000>;
++		numa-node-id = <1>;
++	};
++
++	/* Empty memory node */
++	memory@0x100000002 {
++		device_type = "memory";
++		reg = <0x1 0x2 0x0 0x0>;
++		numa-node-id = <2>;
++	};
++
++	/* Empty memory node */
++	memory@0x100000003 {
++		device_type = "memory";
++		reg = <0x1 0x3 0x0 0x0>;
++		numa-node-id = <3>;
++	};
++
++	distance-map {
++		compatible = "numa-distance-map-v1";
++		distance-matrix = <0 0  10>,
++				  <0 1  20>,
++				  <0 2  40>,
++				  <0 3  20>,
++				  <1 0  20>,
++				  <1 1  10>,
++				  <1 2  20>,
++				  <1 3  40>,
++				  <2 0  40>,
++				  <2 1  20>,
++				  <2 2  10>,
++				  <2 3  20>,
++				  <3 0  20>,
++				  <3 1  40>,
++				  <3 2  20>,
++				  <3 3  10>;
++	};
++
++==============================================================================
++5 - Example dts
+ ==============================================================================
+ 
+ Dual socket system consists of 2 boards connected through ccn bus and
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.23.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
