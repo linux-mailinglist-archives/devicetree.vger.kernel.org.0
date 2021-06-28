@@ -2,113 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 462B73B5D27
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 13:30:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA4223B5D3B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 13:39:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232858AbhF1LdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 07:33:13 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:39530 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232856AbhF1LdL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 07:33:11 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: aratiu)
-        with ESMTPSA id 6B3381F42102
-From:   Adrian Ratiu <adrian.ratiu@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc:     jack@radxa.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: [PATCH] arm64: dts: rockchip: add rock-pi-4 analog audio
-Date:   Mon, 28 Jun 2021 14:30:33 +0300
-Message-Id: <20210628113033.9145-1-adrian.ratiu@collabora.com>
-X-Mailer: git-send-email 2.32.0
+        id S232807AbhF1Llb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 07:41:31 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:55894 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S232526AbhF1Lla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 07:41:30 -0400
+X-UUID: 906c8f10508e48a3a2886492a53d2305-20210628
+X-UUID: 906c8f10508e48a3a2886492a53d2305-20210628
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <christine.zhu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1890320054; Mon, 28 Jun 2021 19:39:02 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 28 Jun 2021 19:39:01 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 28 Jun 2021 19:39:00 +0800
+From:   Christine Zhu <Christine.Zhu@mediatek.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <seiya.wang@mediatek.com>,
+        Christine Zhu <Christine.Zhu@mediatek.com>
+Subject: [v5,1/3] dt-bindings: mediatek: mt8195: update mtk-wdt document
+Date:   Mon, 28 Jun 2021 19:37:29 +0800
+Message-ID: <20210628113730.26107-2-Christine.Zhu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20210628113730.26107-1-Christine.Zhu@mediatek.com>
+References: <20210628113730.26107-1-Christine.Zhu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the necessary pinctrl and nodes to enable the
-analog audio on rk3399 rock-pi-4 SBCs using the es8316
-codec and the audio-graph-card driver.
+From: "Christine Zhu" <Christine.Zhu@mediatek.com>
 
-Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
+Update mtk-wdt document for MT8195 platform.
+
+Signed-off-by: Christine Zhu <Christine.Zhu@mediatek.com>
 ---
- .../boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-index b28888ea9262..77781d9150ac 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
-@@ -128,6 +128,12 @@ vdd_log: vdd-log {
- 		regulator-max-microvolt = <1400000>;
- 		vin-supply = <&vcc5v0_sys>;
- 	};
-+
-+	sound {
-+		compatible = "audio-graph-card";
-+		label = "rockchip,rk3399";
-+		dais = <&i2s0_p0>;
-+	};
- };
+diff --git a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+index e36ba60de829..d15a321b22bc 100644
+--- a/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
++++ b/Documentation/devicetree/bindings/watchdog/mtk-wdt.txt
+@@ -13,6 +13,7 @@ Required properties:
+ 	"mediatek,mt8183-wdt": for MT8183
+ 	"mediatek,mt8516-wdt", "mediatek,mt6589-wdt": for MT8516
+ 	"mediatek,mt8192-wdt": for MT8192
++	"mediatek,mt8195-wdt": for MT8195
  
- &cpu_l0 {
-@@ -422,6 +428,24 @@ &i2c1 {
- 	i2c-scl-rising-time-ns = <300>;
- 	i2c-scl-falling-time-ns = <15>;
- 	status = "okay";
-+
-+	es8316: codec@11 {
-+		compatible = "everest,es8316";
-+		reg = <0x11>;
-+		clocks = <&cru SCLK_I2S_8CH_OUT>;
-+		clock-names = "mclk";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_det_pin>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PA0 IRQ_TYPE_LEVEL_HIGH>;
-+		#sound-dai-cells = <0>;
-+
-+		port {
-+			es8316_p0_0: endpoint {
-+				remote-endpoint = <&i2s0_p0_0>;
-+			};
-+		};
-+	};
- };
+ - reg : Specifies base physical address and size of the registers.
  
- &i2c3 {
-@@ -441,6 +465,14 @@ &i2s0 {
- 	rockchip,capture-channels = <2>;
- 	rockchip,playback-channels = <2>;
- 	status = "okay";
-+
-+	i2s0_p0: port {
-+		i2s0_p0_0: endpoint {
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+			remote-endpoint = <&es8316_p0_0>;
-+		};
-+	};
- };
- 
- &i2s1 {
-@@ -556,6 +588,12 @@ wifi_host_wake_l: wifi-host-wake-l {
- 			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
-+
-+	es8316 {
-+		hp_det_pin: hp-det-pin {
-+			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
- };
- 
- &pwm2 {
 -- 
-2.32.0
+2.18.0
 
