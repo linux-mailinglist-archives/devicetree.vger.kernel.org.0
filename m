@@ -2,53 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 312BF3B5737
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 04:31:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D94213B5745
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 04:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231941AbhF1CeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Jun 2021 22:34:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53320 "EHLO mail.kernel.org"
+        id S231941AbhF1CmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Jun 2021 22:42:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53994 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231678AbhF1CeN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Jun 2021 22:34:13 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 12CBC619C5;
-        Mon, 28 Jun 2021 02:31:48 +0000 (UTC)
+        id S231678AbhF1CmI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Jun 2021 22:42:08 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3EFB4619C4;
+        Mon, 28 Jun 2021 02:39:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624847508;
-        bh=UvrnUJlvZGS8ahvkprOOj1Uez1eNq+9R61Yv8wYuzCI=;
+        s=k20201202; t=1624847983;
+        bh=SoCGeNG9HsDyxEtp2GU2WZmjAAPuhOGmCHPhhj60muU=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=abO9L+G0zRoraxKBz7u5J0N2c/MbvE8Rs21wyFERMnbHw38PvvayT+N1hDDOniJTc
-         X//7SbDfAg9NSz433AKslaHpQMpC/AyczfyfRX8IjbtSphhkgCtAwyIFSF/hLIX7A3
-         ljBldEdDdxfJWr9gfJAgwUDgqoCvz2y6hd2Y9FqjvLrUPMHDs86QC2LdgIcdOBwDWl
-         Rv23a+HD58s+nSvz+ztFK3i8y7EfjzjZYXDOYEZITx1bPEEtv5H0390nd/l34WRMuW
-         MBT8xPE8xXS5glvoApVmoklAPf7WYC2iSPemHceR00fbmgqLazxLgp7V3pREuwsS0K
-         R3wFLgqjyR8Tg==
+        b=JKIEBR2oQ9Uw+5+bfI1dRTWaB6ZUaiPcjiM+R1JnW5iWgLzXii3r0qdYEMoGCKVbQ
+         Z6zHPO1HRGvE9t8h6WAiAxvfs1llnO5STQhj5wxIZ3gsE/FuRE3yhl7aPg9cJ0zaWA
+         K4lm5rKgALzdaW0zO0iy/7swammUSOK5H5dhEJ/plzMkxVUVyrA55j5sNgdhzE5bnu
+         Vf9N+zBOhkTEd3ilJyQYF5iYuR2zWtTmUFwnnF+brjWadYyLQ90lj5mj6d4bsX6CDJ
+         buDcY2PbucRx0Y09LG1Donz/cBC1tozXuN4se0s8lTRHsQFhwpwiTvgLyee248n5qU
+         DAd0bUCLz+yWw==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210614155437.3979771-1-sean.anderson@seco.com>
-References: <20210614155437.3979771-1-sean.anderson@seco.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: clk: vc5: Add properties for configuring the SD/OE pin
+In-Reply-To: <56f3b0bd-5dd7-80d4-041a-0fd2daf4b1f2@marek.ca>
+References: <20210519001802.1863-1-jonathan@marek.ca> <20210519001802.1863-2-jonathan@marek.ca> <162266925581.4130789.10178141366818328902@swboyd.mtv.corp.google.com> <56f3b0bd-5dd7-80d4-041a-0fd2daf4b1f2@marek.ca>
+Subject: Re: [PATCH v2 2/2] dt-bindings: clock: add QCOM SM8350 display clock bindings
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Adam Ford <aford173@gmail.com>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-To:     Luca Ceresoli <luca@lucaceresoli.net>,
-        Sean Anderson <sean.anderson@seco.com>,
-        linux-clk@vger.kernel.org
-Date:   Sun, 27 Jun 2021 19:31:46 -0700
-Message-ID: <162484750680.3259633.18396498411614840341@swboyd.mtv.corp.google.com>
+Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org
+Date:   Sun, 27 Jun 2021 19:39:41 -0700
+Message-ID: <162484798199.3259633.9009940760433821881@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sean Anderson (2021-06-14 08:54:36)
-> These properties allow configuring the SD/OE pin as described in the
-> datasheet.
+Quoting Jonathan Marek (2021-06-04 10:25:41)
+> On 6/2/21 5:27 PM, Stephen Boyd wrote:
+> > Quoting Jonathan Marek (2021-05-18 17:18:02)
+> >> Add sm8350 DISPCC bindings, which are simply a symlink to the sm8250
+> >> bindings. Update the documentation with the new compatible.
+> >>
+> >> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >> ---
+> >>   .../devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml       | 6 ++++=
+--
+> >>   include/dt-bindings/clock/qcom,dispcc-sm8350.h              | 1 +
+> >=20
+> >>   2 files changed, 5 insertions(+), 2 deletions(-)
+> >>   create mode 120000 include/dt-bindings/clock/qcom,dispcc-sm8350.h
+> >=20
+> > Why the symlink? Can we have the dt authors use the existing header file
+> > instead?
+> >=20
 >=20
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
+> It would be strange to include bindings with the name of a different=20
+> SoC. I guess it is a matter a preference, is there any good reason to=20
+> *not* do it like this?
 
-Applied to clk-next
+ $ find include/dt-bindings -type l
+ include/dt-bindings/input/linux-event-codes.h
+ include/dt-bindings/clock/qcom,dispcc-sm8150.h
+
+It seems to not be common at all.
+
+>=20
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x5=
+0.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+> >> index 0cdf53f41f84..8f414642445e 100644
+> >> --- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+> >> +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+> >> @@ -4,24 +4,26 @@
+> >>   $id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8x50.yaml#
+> >>   $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>  =20
+> >> -title: Qualcomm Display Clock & Reset Controller Binding for SM8150/S=
+M8250
+> >> +title: Qualcomm Display Clock & Reset Controller Binding for SM8150/S=
+M8250/SM8350
+> >=20
+> > Maybe just "Binding for SM8x50 SoCs"
+> >=20
+>=20
+> Its likely these bindings won't be compatible with future "SM8x50" SoCs, =
+
+> listing supported SoCs explicitly will avoid confusion in the future.
+
+The yaml file has sm8x50 in the name. What's the plan there?
