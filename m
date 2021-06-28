@@ -2,90 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E6733B5A35
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 10:03:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B2753B5A4C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 10:13:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231845AbhF1IGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 04:06:18 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:17526 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229911AbhF1IGS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 04:06:18 -0400
-X-UUID: 37a9a923059e48819e7bcb92db666673-20210628
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=UyCUoWq5C8H8X3Ls/9jw1l30aSnsYNS8MIqI3Jdte34=;
-        b=NQShitKfmMb479YptqZkariH15y33S2g8+NDnwgUZ+eDrNkMRyFunmkMb7By0jVUIZSbsLMJqa2tFzr9mtZZChfk+abZn0TBa5ACznHKLh+5bkm38UEgRgGO8Ekd5hBsQJPM211xrhtYh9OPpy8oPpP01bUSxJ+/bQaXIaZWDag=;
-X-UUID: 37a9a923059e48819e7bcb92db666673-20210628
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1510859484; Mon, 28 Jun 2021 16:03:45 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 28 Jun
- 2021 16:03:36 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 28 Jun 2021 16:03:35 +0800
-Message-ID: <1624867415.19871.7.camel@mhfsdcap03>
-Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: mediatek-gen3: Add property to
- disable dvfsrc voltage request
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Ryder Lee <ryder.lee@mediatek.com>, <linux-pci@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <youlin.pei@mediatek.com>,
-        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
-        <sin_jieyang@mediatek.com>, <drinkcat@chromium.org>,
-        <Rex-BC.Chen@mediatek.com>, Krzysztof Wilczyski <kw@linux.com>,
-        <Ryan-JH.Yu@mediatek.com>
-Date:   Mon, 28 Jun 2021 16:03:35 +0800
-In-Reply-To: <20210611114824.14537-2-jianjun.wang@mediatek.com>
-References: <20210611114824.14537-1-jianjun.wang@mediatek.com>
-         <20210611114824.14537-2-jianjun.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S230294AbhF1IQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 04:16:11 -0400
+Received: from mx0a-00069f02.pphosted.com ([205.220.165.32]:11596 "EHLO
+        mx0a-00069f02.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229692AbhF1IQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Jun 2021 04:16:10 -0400
+Received: from pps.filterd (m0246617.ppops.net [127.0.0.1])
+        by mx0b-00069f02.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15S8BDEn026612;
+        Mon, 28 Jun 2021 08:13:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=KRojVssgRNCVXcgoVfDbbD51UHD1Mv55AN0oXr9yipw=;
+ b=ExwgNOSrpbKvThyFhn23pdtN/Tb4sa9fNu9lTZEgJXfZbFAjKioaNrOYj6YEFs/tYeTz
+ BI3MwbXwC9S7vP1BjPcMAh+Am4rdcD68oxy85EAzSiSLLB8cFDy8o9/koHxgw8D7TroQ
+ fb7wLnpkYxzCMenT5X711VY53c5IINH0tlkrXWmqCxLzcNRPQ+FPJWtcL6iFzXwTrugC
+ gKiTUT3QZa7d87W02cbSgm5W3qwvvmiwh4wX8W1+qZnTL9D0sJbwO/j6Kys/0eUip7Oi
+ Bo4jjFP2lJfpI9hZUcDEa4OffQ71N3m7x46G+BTl/JMw+Uc55xwSb1cJIiDqRkfWJfV9 gA== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+        by mx0b-00069f02.pphosted.com with ESMTP id 39f1hcgnyx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 28 Jun 2021 08:13:29 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 15S89kEC046396;
+        Mon, 28 Jun 2021 08:13:28 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by aserp3020.oracle.com with ESMTP id 39dv238yyw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 28 Jun 2021 08:13:28 +0000
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 15S8BagB052618;
+        Mon, 28 Jun 2021 08:13:27 GMT
+Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
+        by aserp3020.oracle.com with ESMTP id 39dv238yyg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 28 Jun 2021 08:13:27 +0000
+Received: from abhmp0009.oracle.com (abhmp0009.oracle.com [141.146.116.15])
+        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 15S8DP0b004205;
+        Mon, 28 Jun 2021 08:13:25 GMT
+Received: from kadam (/102.222.70.252)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Mon, 28 Jun 2021 01:13:25 -0700
+Date:   Mon, 28 Jun 2021 11:13:18 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v9 3/5] mfd: hi6421-spmi-pmic: move driver from staging
+Message-ID: <20210628081318.GL2040@kadam>
+References: <cover.1624640087.git.mchehab+huawei@kernel.org>
+ <6cdd91b60115dae8a62bea01ca7548c0a6642448.1624640087.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 3C847F0C72EE72988F88A8EF8A8CFC570617985F93A7278597666503F0F909702000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6cdd91b60115dae8a62bea01ca7548c0a6642448.1624640087.git.mchehab+huawei@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-ORIG-GUID: x_uiqtmPqccxgPP7Y1T8i9ldqkCtVCod
+X-Proofpoint-GUID: x_uiqtmPqccxgPP7Y1T8i9ldqkCtVCod
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLCBCam9ybiwgTWF0dGhpYXMsDQoNCkNvdWxkIHlvdSBwbGVhc2UgaGVscCB0byB0YWtl
-IGEgbG9vayBhdCB0aGlzIHBhdGNoIHNlcmllcz8NCg0KV2UgaGF2ZSBkb25lIHRoZSBpbnRlcm5h
-bCB0ZXN0cyBhbmQgbmVlZCB0byBpbXBsZW1lbnQgdGhpcyBmdW5jdGlvbiBpbg0KdGhlIGZpbmFs
-IHByb2R1Y3QsIFdlIHJlYWxseSBuZWVkIHlvdXIgc3VnZ2VzdGlvbnMuDQoNClRoYW5rcy4NCg0K
-T24gRnJpLCAyMDIxLTA2LTExIGF0IDE5OjQ4ICswODAwLCBKaWFuanVuIFdhbmcgd3JvdGU6DQo+
-IEFkZCBwcm9wZXJ0eSB0byBkaXNhYmxlIGR2ZnNyYyB2b2x0YWdlIHJlcXVlc3QsIGlmIHRoaXMg
-cHJvcGVydHkNCj4gaXMgcHJlc2VudGVkLCB3ZSBhc3N1bWUgdGhhdCB0aGUgcmVxdWVzdGVkIHZv
-bHRhZ2UgaXMgYWx3YXlzDQo+IGhpZ2hlciBlbm91Z2ggdG8ga2VlcCB0aGUgUENJZSBjb250cm9s
-bGVyIGFjdGl2ZS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEppYW5qdW4gV2FuZyA8amlhbmp1bi53
-YW5nQG1lZGlhdGVrLmNvbT4NCj4gUmV2aWV3ZWQtYnk6IFFpemhvbmcgQ2hlbmcgPHFpemhvbmcu
-Y2hlbmdAbWVkaWF0ZWsuY29tPg0KPiBUZXN0ZWQtYnk6IFFpemhvbmcgQ2hlbmcgPHFpemhvbmcu
-Y2hlbmdAbWVkaWF0ZWsuY29tPg0KPiAtLS0NCj4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Bj
-aS9tZWRpYXRlay1wY2llLWdlbjMueWFtbCAgICAgICB8IDggKysrKysrKysNCj4gIDEgZmlsZSBj
-aGFuZ2VkLCA4IGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtZ2VuMy55YW1sIGIvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWdlbjMueWFtbA0K
-PiBpbmRleCBlN2IxZjk4OTJkYTQuLjNlMjZjMDMyY2VhOSAxMDA2NDQNCj4gLS0tIGEvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWdlbjMueWFtbA0K
-PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBj
-aWUtZ2VuMy55YW1sDQo+IEBAIC05Niw2ICs5NiwxMiBAQCBwcm9wZXJ0aWVzOg0KPiAgICBwaHlz
-Og0KPiAgICAgIG1heEl0ZW1zOiAxDQo+ICANCj4gKyAgZGlzYWJsZS1kdmZzcmMtdmx0LXJlcToN
-Cj4gKyAgICBkZXNjcmlwdGlvbjogRGlzYWJsZSBkdmZzcmMgdm9sdGFnZSByZXF1ZXN0LCBpZiB0
-aGlzIHByb3BlcnR5IGlzIHByZXNlbnRlZCwNCj4gKyAgICAgIHdlIGFzc3VtZSB0aGF0IHRoZSBy
-ZXF1ZXN0ZWQgdm9sdGFnZSBpcyBhbHdheXMgaGlnaGVyIGVub3VnaCB0byBrZWVwDQo+ICsgICAg
-ICB0aGUgUENJZSBjb250cm9sbGVyIGFjdGl2ZS4NCj4gKyAgICB0eXBlOiBib29sZWFuDQo+ICsN
-Cj4gICAgJyNpbnRlcnJ1cHQtY2VsbHMnOg0KPiAgICAgIGNvbnN0OiAxDQo+ICANCj4gQEAgLTE2
-Niw2ICsxNzIsOCBAQCBleGFtcGxlczoNCj4gICAgICAgICAgICAgICAgICAgICAgIDwmaW5mcmFj
-ZmdfcnN0IDM+Ow0KPiAgICAgICAgICAgICAgcmVzZXQtbmFtZXMgPSAicGh5IiwgIm1hYyI7DQo+
-ICANCj4gKyAgICAgICAgICAgIGRpc2FibGUtZHZmc3JjLXZsdC1yZXE7DQo+ICsNCj4gICAgICAg
-ICAgICAgICNpbnRlcnJ1cHQtY2VsbHMgPSA8MT47DQo+ICAgICAgICAgICAgICBpbnRlcnJ1cHQt
-bWFwLW1hc2sgPSA8MCAwIDAgMHg3PjsNCj4gICAgICAgICAgICAgIGludGVycnVwdC1tYXAgPSA8
-MCAwIDAgMSAmcGNpZV9pbnRjIDA+LA0KDQo=
+On Fri, Jun 25, 2021 at 07:06:12PM +0200, Mauro Carvalho Chehab wrote:
+> +static int hi6421_spmi_pmic_probe(struct spmi_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +	struct hi6421_spmi_pmic *ddata;
+> +	ddata = devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
 
+No blank line.  Checkpatch.
+
+> +	if (!ddata)
+> +		return -ENOMEM;
+> +
+> +	ddata->regmap = devm_regmap_init_spmi_ext(pdev, &regmap_config);
+> +	if (IS_ERR(ddata->regmap))
+> +		return PTR_ERR(ddata->regmap);
+> +
+> +	mutex_init(&ddata->enable_mutex);
+> +
+> +	dev_set_drvdata(&pdev->dev, ddata);
+> +
+> +	ret = devm_mfd_add_devices(&pdev->dev, PLATFORM_DEVID_NONE,
+> +				   hi6421v600_devs, ARRAY_SIZE(hi6421v600_devs),
+> +				   NULL, 0, NULL);
+> +	if (ret < 0)
+> +		dev_err(dev, "Failed to add child devices: %d\n", ret);
+> +
+> +	return ret;
+> +}
+
+regards,
+dan carpenter
