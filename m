@@ -2,74 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A9B73B5DB2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 14:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 285F63B5DC7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 14:16:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232858AbhF1MNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 08:13:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50884 "EHLO mail.kernel.org"
+        id S232932AbhF1MSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 08:18:53 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:44625 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232933AbhF1MNR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Jun 2021 08:13:17 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 24EE161C49;
-        Mon, 28 Jun 2021 12:10:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624882252;
-        bh=hsJq4K0UQ3estcFibPEXpVe1Nv88MXs/+qqxawzOhRA=;
-        h=From:To:Cc:Subject:Date:From;
-        b=uIjOf7bJMdxmc2t375ISss25RTVzbzHsiMEPv2P0ql5aUoNpaN1TapTQ7XrsZoxb4
-         FmPH7fWnwS363O/j+8BwgFoeh/p296Ysq+o0oe39c7Pjdw94/SgMoWVTBx7vRJASm2
-         3mGyp/cGGqGddC1RHccFv6Mtq8qEnZPRJrZwmTwQ+O0bQosOku2N57JpgrdrtUIGip
-         9uK+xRqlv5wqzAtnByrf23IwZyMBsdim68G1PWlbDA4k+ERpZV9bYlu7UU3Rsx6x43
-         7pYrl7n2IFPI/p/dPwX4AS4c01czhmI1EEA8ICefL0aZNY0gjh8JCqjOjNDFDy7kBa
-         QGqOnkevPWkTQ==
-Received: by pali.im (Postfix)
-        id D3AD170A; Mon, 28 Jun 2021 14:10:49 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: armada-3720-turris-mox.dts: remove mrvl,i2c-fast-mode
-Date:   Mon, 28 Jun 2021 14:10:15 +0200
-Message-Id: <20210628121015.22660-1-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S232802AbhF1MSw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Jun 2021 08:18:52 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1624882587; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=eOk428q47G9JECgI305p0YfOtLH88pZzKPZeMrWmwQs=;
+ b=ECsOZkFq9WWEbrO3qg5tl4BW5k6Dd5OdAm/+zxFKkza984M3i663KpTdV2p/iE91ypbgXGG3
+ IovBk6Fu6NvQ0bYyHQpyKQjFvXOKsOc+GFHcehYZUPe4m9xbVK7toCb7V1sW68uluwaP8VS7
+ 1pYaA2H6SPn21VID4krLOaphEpY=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 60d9bd9a0090905e1665790d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 28 Jun 2021 12:16:26
+ GMT
+Sender: rajeevny=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9E2DEC4323A; Mon, 28 Jun 2021 12:16:25 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: rajeevny)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id ABA76C433D3;
+        Mon, 28 Jun 2021 12:16:24 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 28 Jun 2021 17:46:24 +0530
+From:   rajeevny@codeaurora.org
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
+        sam@ravnborg.org, robdclark@gmail.com, dianders@chromium.org,
+        lyude@redhat.com, jani.nikula@intel.com, robh@kernel.org,
+        a.hajda@samsung.com, daniel.thompson@linaro.org,
+        hoegsberg@chromium.org, abhinavk@codeaurora.org,
+        seanpaul@chromium.org, kalyan_t@codeaurora.org,
+        mkrishn@codeaurora.org
+Subject: Re: [v8 4/6] drm/panel-simple: Update validation warnings for eDP
+ panel description
+In-Reply-To: <YNjA+jg9Khn+a9K+@pendragon.ideasonboard.com>
+References: <1624726268-14869-1-git-send-email-rajeevny@codeaurora.org>
+ <1624726268-14869-5-git-send-email-rajeevny@codeaurora.org>
+ <YNjA+jg9Khn+a9K+@pendragon.ideasonboard.com>
+Message-ID: <d75afefac48229657d36e12b6bac0e9f@codeaurora.org>
+X-Sender: rajeevny@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some SFP modules are not detected when i2c-fast-mode is enabled even when
-clock-frequency is already set to 100000. The I2C bus violates the timing
-specifications when run in fast mode. So disable fast mode on Turris Mox.
+Hi Laurent,
 
-Same change was already applied for uDPU (also Armada 3720 board with SFP)
-in commit fe3ec631a77d ("arm64: dts: uDPU: remove i2c-fast-mode").
+On 27-06-2021 23:48, Laurent Pinchart wrote:
+> Hi Rajeev,
+> 
+> On Sat, Jun 26, 2021 at 10:21:06PM +0530, Rajeev Nandan wrote:
+>> Do not give a warning for the eDP panels if the "bus_format" is
+>> not specified, since most eDP panels can support more than one
+>> bus formats and this can be auto-detected.
+>> Also, update the check to include bpc=10 for the eDP panel.
+>> 
+>> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
+>> ---
+>> 
+>> Changes in v8:
+>> - New patch, to address the review comments of Sam Ravnborg [1]
+>> 
+>> [1] 
+>> https://lore.kernel.org/dri-devel/20210621184157.GB918146@ravnborg.org/
+>> 
+>>  drivers/gpu/drm/panel/panel-simple.c | 6 ++----
+>>  1 file changed, 2 insertions(+), 4 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/panel/panel-simple.c 
+>> b/drivers/gpu/drm/panel/panel-simple.c
+>> index 86e5a45..f966b562 100644
+>> --- a/drivers/gpu/drm/panel/panel-simple.c
+>> +++ b/drivers/gpu/drm/panel/panel-simple.c
+>> @@ -772,10 +772,8 @@ static int panel_simple_probe(struct device *dev, 
+>> const struct panel_desc *desc,
+>>  			desc->bpc != 8);
+>>  		break;
+>>  	case DRM_MODE_CONNECTOR_eDP:
+>> -		if (desc->bus_format == 0)
+>> -			dev_warn(dev, "Specify missing bus_format\n");
+>> -		if (desc->bpc != 6 && desc->bpc != 8)
+>> -			dev_warn(dev, "Expected bpc in {6,8} but got: %u\n", desc->bpc);
+>> +		if (desc->bpc != 6 && desc->bpc != 8 && desc->bpc != 10)
+>> +			dev_warn(dev, "Expected bpc in {6,8,10} but got: %u\n", 
+>> desc->bpc);
+> 
+> You'll still get a warning is bpc == 0, is that intentional ?
 
-Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
-Signed-off-by: Pali Rohár <pali@kernel.org>
----
- arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 1 +
- 1 file changed, 1 insertion(+)
+This was not intentional, I missed considering bpc=0 case. As we are 
+removing the warning for bus_format=0 then a similar thing can be done 
+for the bpc=0 also. The bpc value should be a valid one if it is 
+specified. Unlike the bus_format, bpc has few possible values that can 
+be checked here along with 0. Please correct me if I misunderstood the 
+concept.
+I will fix this.
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index 6bcc319a0161..27ded36a1a13 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -119,6 +119,7 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c1_pins>;
- 	clock-frequency = <100000>;
-+	/delete-property/mrvl,i2c-fast-mode;
- 	status = "okay";
- 
- 	rtc@6f {
--- 
-2.20.1
-
+Thanks,
+Rajeev
