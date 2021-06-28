@@ -2,83 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 337343B681E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 20:11:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 656023B6844
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 20:21:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233700AbhF1SOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 14:14:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58000 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232848AbhF1SOD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 14:14:03 -0400
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E31C1C061574
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 11:11:37 -0700 (PDT)
-Received: by mail-pg1-x532.google.com with SMTP id e33so16137339pgm.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 11:11:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=3CTgejj7lyDfhzX2dzFowMolpFgct9NOBpKU9MNvQtw=;
-        b=Sc6OqygxSFouqdOlogrAUiHLeOwpITrPTjkw/k2XBGHIR+ewdts2BLoNOigqRunYY2
-         NQfK/sE2nm+OPBV+wUEon7YtBOPCs8oGY0fBiCUk9MwRI23Ywn7rQLdX7tC+JbwduDcI
-         8mWebW8GUvPLzfIeXg3Ys58oS241vhtkwLq8E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3CTgejj7lyDfhzX2dzFowMolpFgct9NOBpKU9MNvQtw=;
-        b=ukpzJm3LwDft3XP64gLdbTFgY2lLNudsfhLtj9ThGO76skN3P0KACdJZVVBRdWlPv0
-         rfoEhxqHLZDM2MspM0c8MD1G9verDNuuHmxF5zU6Fdm6LM7CVikn8IGDL9grzx19NwCK
-         lUP//y4w5C2JJf9npR6YDtSfb4jOf82qL7hu0cwNbAwPS3RfjJNh+pPdIRuP+JVj1/tF
-         KXIgX+KMsk5Ffp+O5+Rc6XXAbYoLE9kmW6eIZZqY2tEBXIjnrswgVvXThziMm+0KrHCp
-         wSP2FSpckoOayDVqfNDT3zLco0iUlglKwUynL9qPviKWw4FUruMRfB/LVHi1sWlg65Z8
-         +AtQ==
-X-Gm-Message-State: AOAM531s/qz78cUBuS5JAyENmOZWpLXxztIh2VDtmYxVDotPiuUl+NaU
-        AaPnJNzJPHn95QyC//kjRwYU0w==
-X-Google-Smtp-Source: ABdhPJwDDSKq52s0pA5ZRq7/h6wngl4jVxfxRf//SwJNyTD1XT3Z5MwE0vonZHCEmP2mLfWZPTi04g==
-X-Received: by 2002:a62:174c:0:b029:30d:fab7:ef5a with SMTP id 73-20020a62174c0000b029030dfab7ef5amr923165pfx.75.1624903897438;
-        Mon, 28 Jun 2021 11:11:37 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:df70:d2d8:b384:35cf])
-        by smtp.gmail.com with UTF8SMTPSA id x13sm15787159pjh.30.2021.06.28.11.11.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Jun 2021 11:11:37 -0700 (PDT)
-Date:   Mon, 28 Jun 2021 11:11:33 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, will@kernel.org,
-        saiprakash.ranjan@codeaurora.org, ohad@wizery.com,
-        agross@kernel.org, mathieu.poirier@linaro.org,
-        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org
-Subject: Re: [PATCH 6/9] arm64: dts: qcom: sc7280: Update reserved memory map
-Message-ID: <YNoQ1d1hUyIh/qxz@google.com>
-References: <1624564058-24095-1-git-send-email-sibis@codeaurora.org>
- <1624564058-24095-7-git-send-email-sibis@codeaurora.org>
+        id S234478AbhF1SXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 14:23:25 -0400
+Received: from out28-49.mail.aliyun.com ([115.124.28.49]:50243 "EHLO
+        out28-49.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233351AbhF1SXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 14:23:20 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.09155044|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0147751-0.000601563-0.984623;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047207;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=14;RT=14;SR=0;TI=SMTPD_---.KZOO9TY_1624904444;
+Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KZOO9TY_1624904444)
+          by smtp.aliyun-inc.com(10.147.42.253);
+          Tue, 29 Jun 2021 02:20:49 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org
+Cc:     linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        paul@crapouillou.net, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com
+Subject: [PATCH v5 00/11] Add new clocks and fix bugs for Ingenic SoCs.
+Date:   Tue, 29 Jun 2021 02:20:33 +0800
+Message-Id: <1624904444-2618-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1624564058-24095-7-git-send-email-sibis@codeaurora.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 25, 2021 at 01:17:35AM +0530, Sibi Sankar wrote:
+v4->v5:
+1.modify the CGU PLL correlation code to make it compatible with I2S PLL.
+2.Change X1000's I2S clock to CGU_CLK_PLL as Paul Cercueil's suggestion.
+3.Add documentation for JZ4775 and X2000 bindings.
+4.Add JZ4775 and X2000 clock bindings.
+5.Add CGU driver for JZ4775 and X2000.
 
-> Subject: arm64: dts: qcom: sc7280: Update reserved memory map
+周琰杰 (Zhou Yanjie) (11):
+  clk: JZ4780: Add function for disable the second core.
+  clk: Ingenic: Adjust cgu code to make it compatible with I2S PLL.
+  dt-bindings: clock: Add missing clocks for Ingenic SoCs.
+  clk: Ingenic: Fix problem of MAC clock in Ingenic X1000 and X1830.
+  clk: Ingenic: Add missing clocks for Ingenic SoCs.
+  clk: Ingenic: Clean up and reformat the code.
+  dt-bindings: clock: Add documentation for JZ4775 and X2000 bindings.
+  dt-bindings: clock: Add JZ4775 clock bindings.
+  dt-bindings: clock: Add X2000 clock bindings.
+  clk: Ingenic: Add CGU driver for JZ4775.
+  clk: Ingenic: Add CGU driver for X2000.
 
-That's very vague. Also personally I'm not a fan of patches that touch
-SoC and board files with a commit message that only mentions the SoC, as
-is frequently done for IDP boards. Why not split this in (at least) two,
-one for adding the missing memory regions to the SoC, and one for the
-IDP.
+ .../devicetree/bindings/clock/ingenic,cgu.yaml     |   4 +
+ drivers/clk/ingenic/Kconfig                        |  20 +
+ drivers/clk/ingenic/Makefile                       |   2 +
+ drivers/clk/ingenic/cgu.c                          | 118 +++-
+ drivers/clk/ingenic/cgu.h                          |   1 +
+ drivers/clk/ingenic/jz4725b-cgu.c                  |  48 +-
+ drivers/clk/ingenic/jz4740-cgu.c                   |  48 +-
+ drivers/clk/ingenic/jz4760-cgu.c                   | 106 ++-
+ drivers/clk/ingenic/jz4770-cgu.c                   |  83 +--
+ drivers/clk/ingenic/jz4775-cgu.c                   | 571 +++++++++++++++
+ drivers/clk/ingenic/jz4780-cgu.c                   | 148 ++--
+ drivers/clk/ingenic/x1000-cgu.c                    | 209 ++++--
+ drivers/clk/ingenic/x1830-cgu.c                    | 209 ++++--
+ drivers/clk/ingenic/x2000-cgu.c                    | 783 +++++++++++++++++++++
+ include/dt-bindings/clock/jz4775-cgu.h             |  59 ++
+ include/dt-bindings/clock/x1000-cgu.h              |   5 +
+ include/dt-bindings/clock/x1830-cgu.h              |   5 +
+ include/dt-bindings/clock/x2000-cgu.h              |  88 +++
+ 18 files changed, 2189 insertions(+), 318 deletions(-)
+ create mode 100644 drivers/clk/ingenic/jz4775-cgu.c
+ create mode 100644 drivers/clk/ingenic/x2000-cgu.c
+ create mode 100644 include/dt-bindings/clock/jz4775-cgu.h
+ create mode 100644 include/dt-bindings/clock/x2000-cgu.h
 
-> Add missing regions and remove unused regions from the reserved memory
-> map, as described in version 1.
-
-What is this 'version 1'?
+-- 
+2.7.4
 
