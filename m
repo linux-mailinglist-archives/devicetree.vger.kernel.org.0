@@ -2,99 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E9AF3B6816
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 20:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 337343B681E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 20:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233564AbhF1SLm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 14:11:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57472 "EHLO
+        id S233700AbhF1SOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 14:14:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231950AbhF1SLm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 14:11:42 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30702C061574;
-        Mon, 28 Jun 2021 11:09:16 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id r3so7557448wmq.1;
-        Mon, 28 Jun 2021 11:09:16 -0700 (PDT)
+        with ESMTP id S232848AbhF1SOD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 14:14:03 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E31C1C061574
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 11:11:37 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id e33so16137339pgm.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 11:11:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=PU5EmP0vK/zlk943bOw9IRW6hnBl12QCnUBMMsEYT4U=;
-        b=GQPlJqWyKI4Nzj5T3iDayxFsget1QW5dDoyzUyE3y1TlFebvKsHuZnuKDQenwaUYfh
-         jt1boZZiaYfpnCCMeZkuZUs1DyXNpU7j9xh6PCG7iyVcHsAFLAPZrTwdi6atm97OpMsl
-         Zi341mI9S7nzIAHshizb2K03fuhosrY0SNB8hSABv0q8Jv0Ed5gN5DCsVJic2qwYQeRF
-         xrJ76i3/76qwG+S/5Z/KNeGqQ4VyUp2E2Hon59M6GUge0L9H9/YEPRq7QG85TxCqeryb
-         Bw9MkznJcXlspDjH2obckej3cLpW4J4rp9tAYacv0Quk1bYlvyvKYvF+FwN13ClikKXZ
-         uNuw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=3CTgejj7lyDfhzX2dzFowMolpFgct9NOBpKU9MNvQtw=;
+        b=Sc6OqygxSFouqdOlogrAUiHLeOwpITrPTjkw/k2XBGHIR+ewdts2BLoNOigqRunYY2
+         NQfK/sE2nm+OPBV+wUEon7YtBOPCs8oGY0fBiCUk9MwRI23Ywn7rQLdX7tC+JbwduDcI
+         8mWebW8GUvPLzfIeXg3Ys58oS241vhtkwLq8E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PU5EmP0vK/zlk943bOw9IRW6hnBl12QCnUBMMsEYT4U=;
-        b=UbTp+Dy8HM4e4eYaHQUoYjPz7n7nc+kYqbDL7oS1r1moriXsjOIIAAoVXRmGFvhPep
-         XXe1JszdnS8HoxbzTQGbJdoww+JVgrpjk1h/yK5Q2+65rwX+oorEK5TR2HJ6bodqUeSq
-         10IkyebehHD9oUP9fSmptgHJjlvqEhHABXLnuL4Hg0ETMw7mVVxwkhB2JxrtpsV6WHKY
-         T2U7BQWI+iMc21RdwRFbydWp2B1yRhTKMqcKTqVsP3ubrxbkN1ChWk220+e3RzoqJ1Sl
-         +8P+7YNxpY7ubSxW63s2E9LvXLBvC61GdC9ZRDvNtjRVHxb3UIhg2f0/fOnUraHi7PMW
-         GRnw==
-X-Gm-Message-State: AOAM530SzX+OenOZ694BQQh/WbUe9pZDuhmouiv/ukTPwWXWsTVetbvR
-        nKj/N5OEJATkJn7e16lRvJw=
-X-Google-Smtp-Source: ABdhPJww6WnF4wM3vbqWQ+u10Xvub+eJ62684M7pvUTgTJ6LKkMx8icKe24+3ov2Q2JXwDJgW3U29w==
-X-Received: by 2002:a1c:7410:: with SMTP id p16mr13396114wmc.24.1624903754624;
-        Mon, 28 Jun 2021 11:09:14 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id n4sm15720917wrw.21.2021.06.28.11.09.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jun 2021 11:09:13 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>, linux-tegra@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm64: tegra: Enable audio IOMMU support on Tegra194
-Date:   Mon, 28 Jun 2021 20:11:18 +0200
-Message-Id: <20210628181118.2295007-3-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210628181118.2295007-1-thierry.reding@gmail.com>
-References: <20210628181118.2295007-1-thierry.reding@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=3CTgejj7lyDfhzX2dzFowMolpFgct9NOBpKU9MNvQtw=;
+        b=ukpzJm3LwDft3XP64gLdbTFgY2lLNudsfhLtj9ThGO76skN3P0KACdJZVVBRdWlPv0
+         rfoEhxqHLZDM2MspM0c8MD1G9verDNuuHmxF5zU6Fdm6LM7CVikn8IGDL9grzx19NwCK
+         lUP//y4w5C2JJf9npR6YDtSfb4jOf82qL7hu0cwNbAwPS3RfjJNh+pPdIRuP+JVj1/tF
+         KXIgX+KMsk5Ffp+O5+Rc6XXAbYoLE9kmW6eIZZqY2tEBXIjnrswgVvXThziMm+0KrHCp
+         wSP2FSpckoOayDVqfNDT3zLco0iUlglKwUynL9qPviKWw4FUruMRfB/LVHi1sWlg65Z8
+         +AtQ==
+X-Gm-Message-State: AOAM531s/qz78cUBuS5JAyENmOZWpLXxztIh2VDtmYxVDotPiuUl+NaU
+        AaPnJNzJPHn95QyC//kjRwYU0w==
+X-Google-Smtp-Source: ABdhPJwDDSKq52s0pA5ZRq7/h6wngl4jVxfxRf//SwJNyTD1XT3Z5MwE0vonZHCEmP2mLfWZPTi04g==
+X-Received: by 2002:a62:174c:0:b029:30d:fab7:ef5a with SMTP id 73-20020a62174c0000b029030dfab7ef5amr923165pfx.75.1624903897438;
+        Mon, 28 Jun 2021 11:11:37 -0700 (PDT)
+Received: from localhost ([2620:15c:202:201:df70:d2d8:b384:35cf])
+        by smtp.gmail.com with UTF8SMTPSA id x13sm15787159pjh.30.2021.06.28.11.11.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Jun 2021 11:11:37 -0700 (PDT)
+Date:   Mon, 28 Jun 2021 11:11:33 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, will@kernel.org,
+        saiprakash.ranjan@codeaurora.org, ohad@wizery.com,
+        agross@kernel.org, mathieu.poirier@linaro.org,
+        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org
+Subject: Re: [PATCH 6/9] arm64: dts: qcom: sc7280: Update reserved memory map
+Message-ID: <YNoQ1d1hUyIh/qxz@google.com>
+References: <1624564058-24095-1-git-send-email-sibis@codeaurora.org>
+ <1624564058-24095-7-git-send-email-sibis@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1624564058-24095-7-git-send-email-sibis@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Fri, Jun 25, 2021 at 01:17:35AM +0530, Sibi Sankar wrote:
 
-Add iommus and interconnects properties to the ADMAIF device tree node
-on Tegra194. This ensures that the correct SID is used for translation
-of physical to I/O virtual addresses and that the path to system memory
-is properly described, which in turn can impact the range of memory that
-the device can address.
+> Subject: arm64: dts: qcom: sc7280: Update reserved memory map
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+That's very vague. Also personally I'm not a fan of patches that touch
+SoC and board files with a commit message that only mentions the SoC, as
+is frequently done for IDP boards. Why not split this in (at least) two,
+one for adding the missing memory regions to the SoC, and one for the
+IDP.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index 1fa503ab390d..b957cb8df927 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -200,6 +200,10 @@ tegra_admaif: admaif@290f000 {
- 						    "rx19", "tx19",
- 						    "rx20", "tx20";
- 					status = "disabled";
-+					interconnects = <&mc TEGRA194_MEMORY_CLIENT_APEDMAR &emc>,
-+							<&mc TEGRA194_MEMORY_CLIENT_APEDMAW &emc>;
-+					interconnect-names = "dma-mem", "write";
-+					iommus = <&smmu TEGRA194_SID_APE>;
- 				};
- 
- 				tegra_i2s1: i2s@2901000 {
--- 
-2.32.0
+> Add missing regions and remove unused regions from the reserved memory
+> map, as described in version 1.
+
+What is this 'version 1'?
 
