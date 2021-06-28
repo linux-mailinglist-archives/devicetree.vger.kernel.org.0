@@ -2,67 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C57FA3B5877
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 06:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D0453B5900
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 08:14:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbhF1Et3 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 28 Jun 2021 00:49:29 -0400
-Received: from out28-121.mail.aliyun.com ([115.124.28.121]:42793 "EHLO
-        out28-121.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbhF1Et2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 00:49:28 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1227538|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_news_journal|0.00527116-0.00049097-0.994238;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047208;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=15;RT=15;SR=0;TI=SMTPD_---.KZ3-RCe_1624855620;
-Received: from zhouyanjie-virtual-machine(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KZ3-RCe_1624855620)
-          by smtp.aliyun-inc.com(10.147.44.118);
-          Mon, 28 Jun 2021 12:47:01 +0800
-Date:   Mon, 28 Jun 2021 12:46:57 +0800
-From:   =?UTF-8?B?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     mturquette@baylibre.com, paul@crapouillou.net, robh+dt@kernel.org,
-        tsbogend@alpha.franken.de, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
-        sernia.zhou@foxmail.com
-Subject: Re: [PATCH v4 2/5] dt-bindings: clock: Add documentation for MAC
- PHY control bindings.
-Message-ID: <20210628124657.4a586b03@zhouyanjie-virtual-machine>
-In-Reply-To: <162484872210.2516444.13185593951785977784@swboyd.mtv.corp.google.com>
-References: <1624688321-69131-1-git-send-email-zhouyanjie@wanyeetech.com>
-        <1624688321-69131-3-git-send-email-zhouyanjie@wanyeetech.com>
-        <162484872210.2516444.13185593951785977784@swboyd.mtv.corp.google.com>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.30; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+        id S230134AbhF1GQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 02:16:40 -0400
+Received: from mga07.intel.com ([134.134.136.100]:60982 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229778AbhF1GQj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Jun 2021 02:16:39 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10028"; a="271751092"
+X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; 
+   d="scan'208";a="271751092"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2021 23:14:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; 
+   d="scan'208";a="407607313"
+Received: from bspteam04.iind.intel.com ([10.106.46.142])
+  by orsmga006.jf.intel.com with ESMTP; 27 Jun 2021 23:14:11 -0700
+From:   shruthi.sanil@intel.com
+To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     andriy.shevchenko@linux.intel.com, kris.pan@linux.intel.com,
+        mgross@linux.intel.com, srikanth.thokala@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        mallikarjunappa.sangannavar@intel.com, shruthi.sanil@intel.com
+Subject: [PATCH v4 0/2] Add the driver for Intel Keem Bay SoC timer block
+Date:   Mon, 28 Jun 2021 11:44:08 +0530
+Message-Id: <20210628061410.8009-1-shruthi.sanil@intel.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen,
+From: Shruthi Sanil <shruthi.sanil@intel.com>
 
-于 Sun, 27 Jun 2021 19:52:02 -0700
-Stephen Boyd <sboyd@kernel.org> 写道:
+The timer block supports 1 64-bit free running counter
+and 8 32-bit general purpose timers.
 
-> Quoting 周琰杰 (Zhou Yanjie) (2021-06-25 23:18:38)
-> > Update the CGU binding documentation, add mac-phy-ctrl as a
-> > pattern property.
-> > 
-> > Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-> > Acked-by: Paul Cercueil <paul@crapouillou.net>
-> > ---  
-> 
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
-> 
+Patch 1 holds the device tree binding documentation.
+Patch 2 holds the device driver.
 
-Thanks!
+This driver is tested on the Keem Bay evaluation module board.
 
-> Would also be good to add it to the example.
+Changes since v3:
+- Update in KConfig file to support COMPILE_TEST for Keem Bay timer.
+- Update in device tree bindings to remove status field.
+- Update in device tree bindings to remove 64-bit address space for
+  the child nodes by using non-empty ranges.
 
-Unfortunately, mac-phy-ctrl only appeared after JZ4775 (include JZ4775),
-but now the CGU driver of JZ4775 has not been merged into the mainline.
-My plan is to wait for the CGU driver of JZ4775 to be merged into the
-mainline and then add a new example based on JZ4775 :)
+Changes since v2:
+- Add multi timer support.
+- Update in the device tree binding to support multi timers.
+- Code optimization.
 
-Thanks and best regards!
+Changes since v1:
+- Add support for KEEMBAY_TIMER to get selected through Kconfig.platforms.
+- Add CLOCK_EVT_FEAT_DYNIRQ as part of clockevent feature.
+- Avoid overlapping reg regions across 2 device nodes.
+- Simplify 2 device nodes as 1 because both are from same IP block.
+- Adapt the driver code according to the new simplified devicetree.
+
+Shruthi Sanil (2):
+  dt-bindings: timer: Add bindings for Intel Keem Bay SoC Timer
+  clocksource: Add Intel Keem Bay timer support
+
+ .../bindings/timer/intel,keembay-timer.yaml   | 170 ++++++++++++
+ MAINTAINERS                                   |   5 +
+ drivers/clocksource/Kconfig                   |  11 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-keembay.c           | 255 ++++++++++++++++++
+ 5 files changed, 442 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml
+ create mode 100644 drivers/clocksource/timer-keembay.c
+
+
+base-commit: 62fb9874f5da54fdb243003b386128037319b219
+-- 
+2.17.1
+
