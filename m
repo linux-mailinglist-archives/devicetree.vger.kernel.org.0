@@ -2,93 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8E5E3B5D8C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 14:05:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A9B73B5DB2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 14:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232925AbhF1MHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 08:07:52 -0400
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:56194 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232920AbhF1MHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 08:07:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1624881924; x=1656417924;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=PaCSetCKwvtQGvTBWH5h3ispeHDjsJzITohck8b3c5g=;
-  b=tQTR69XmNB1NG8i/pu0JgpQzKZcQjJMIYvybyGqsAUyV4oIZmzDgLr/g
-   n4MPYYTe7kt2pG3kK0RcKBcT0xPOTd6GGiYqnvcqQn6PCO7TbPmIz/Wav
-   +yJ+e+iFDfkkRVmSPtZbnhseelbE6eULAz9S3wBD2GQhASOsQzl+sbLGB
-   6esUQVbebS4KCmifgqNjliGgC8rsdRq75RUQh+fQ387bj1jBCX3B7jWLF
-   ECNCTaCeSg5FBlH0OX+nPfnyYR3k+WUrgNgptucBGajef3DNituZdZWvW
-   /3brr7VDiVaHRDyLOzPdceXFW8Xg1w8Oi7L4OjF7rw+MDD96cNUe2XcwJ
-   w==;
-IronPort-SDR: 865UmXT1tBOZdFTzj2Jqa5XZNwZJ7NSDaQGuWC1NOSUe+2x6cMU/sjYRw5X9KLyiMYtABawFkX
- IfXpLEtFlv8coBHawKARQ3/XaUDFMVjU+FcStJPBZWbb0PlbiBmLs0dOsaglYtkg0hm3wOGhKE
- HsowOKoaGtZqTCnuGOGEr6Me3Qo00LbL94t/AZyKwYDnCnN9M5i5ih4PgTgt/9a4+YwZLiLTxb
- 91HohmnQ5sjAhl2X4WrY5/EiFBqjePSzrd0zNwNbt2TN5PSqewykDlJw686Mq3pv+jNrpQ3ZMh
- Yhk=
-X-IronPort-AV: E=Sophos;i="5.83,305,1616482800"; 
-   d="scan'208";a="60442228"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 28 Jun 2021 05:05:23 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.2; Mon, 28 Jun 2021 05:05:23 -0700
-Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2176.2 via Frontend Transport; Mon, 28 Jun 2021 05:05:20 -0700
-From:   Eugen Hristev <eugen.hristev@microchip.com>
-To:     <nicolas.ferre@microchip.com>, <robh+dt@kernel.org>
-CC:     <alexandre.belloni@bootlin.com>, <soc@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <ludovic.desroches@microchip.com>,
-        <claudiu.beznea@microchip.com>, <codrin.ciubotariu@microchip.com>,
-        "Eugen Hristev" <eugen.hristev@microchip.com>
-Subject: [PATCH v5 4/4] ARM: multi_v7_defconfig: add sama7g5 SoC
-Date:   Mon, 28 Jun 2021 15:04:52 +0300
-Message-ID: <20210628120452.74408-4-eugen.hristev@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210628120452.74408-1-eugen.hristev@microchip.com>
-References: <20210628120452.74408-1-eugen.hristev@microchip.com>
+        id S232858AbhF1MNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 08:13:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50884 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232933AbhF1MNR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Jun 2021 08:13:17 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 24EE161C49;
+        Mon, 28 Jun 2021 12:10:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624882252;
+        bh=hsJq4K0UQ3estcFibPEXpVe1Nv88MXs/+qqxawzOhRA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=uIjOf7bJMdxmc2t375ISss25RTVzbzHsiMEPv2P0ql5aUoNpaN1TapTQ7XrsZoxb4
+         FmPH7fWnwS363O/j+8BwgFoeh/p296Ysq+o0oe39c7Pjdw94/SgMoWVTBx7vRJASm2
+         3mGyp/cGGqGddC1RHccFv6Mtq8qEnZPRJrZwmTwQ+O0bQosOku2N57JpgrdrtUIGip
+         9uK+xRqlv5wqzAtnByrf23IwZyMBsdim68G1PWlbDA4k+ERpZV9bYlu7UU3Rsx6x43
+         7pYrl7n2IFPI/p/dPwX4AS4c01czhmI1EEA8ICefL0aZNY0gjh8JCqjOjNDFDy7kBa
+         QGqOnkevPWkTQ==
+Received: by pali.im (Postfix)
+        id D3AD170A; Mon, 28 Jun 2021 14:10:49 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+        Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: armada-3720-turris-mox.dts: remove mrvl,i2c-fast-mode
+Date:   Mon, 28 Jun 2021 14:10:15 +0200
+Message-Id: <20210628121015.22660-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Microchip SAMA7G5 ARM v7 Cortex-A7 based SoC to multi_v7_defconfig.
-Also add it's clock timer, the PIT64B.
+Some SFP modules are not detected when i2c-fast-mode is enabled even when
+clock-frequency is already set to 100000. The I2C bus violates the timing
+specifications when run in fast mode. So disable fast mode on Turris Mox.
 
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+Same change was already applied for uDPU (also Armada 3720 board with SFP)
+in commit fe3ec631a77d ("arm64: dts: uDPU: remove i2c-fast-mode").
+
+Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
+Signed-off-by: Pali Rohár <pali@kernel.org>
 ---
- arch/arm/configs/multi_v7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 52a0400fdd92..4a02c102128d 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -16,6 +16,7 @@ CONFIG_ARCH_AT91=y
- CONFIG_SOC_SAMA5D2=y
- CONFIG_SOC_SAMA5D3=y
- CONFIG_SOC_SAMA5D4=y
-+CONFIG_SOC_SAMA7G5=y
- CONFIG_ARCH_BCM=y
- CONFIG_ARCH_BCM_CYGNUS=y
- CONFIG_ARCH_BCM_HR2=y
-@@ -996,6 +997,7 @@ CONFIG_APQ_MMCC_8084=y
- CONFIG_MSM_GCC_8660=y
- CONFIG_MSM_MMCC_8960=y
- CONFIG_MSM_MMCC_8974=y
-+CONFIG_MICROCHIP_PIT64B=y
- CONFIG_BCM2835_MBOX=y
- CONFIG_ROCKCHIP_IOMMU=y
- CONFIG_TEGRA_IOMMU_GART=y
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+index 6bcc319a0161..27ded36a1a13 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+@@ -119,6 +119,7 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c1_pins>;
+ 	clock-frequency = <100000>;
++	/delete-property/mrvl,i2c-fast-mode;
+ 	status = "okay";
+ 
+ 	rtc@6f {
 -- 
-2.25.1
+2.20.1
 
