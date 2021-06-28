@@ -2,90 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCCD53B5C8F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 12:38:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E2233B5C9A
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 12:43:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232696AbhF1KlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 06:41:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41202 "EHLO
+        id S232566AbhF1Kpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 06:45:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232720AbhF1KlK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 06:41:10 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBA01C061767
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 03:38:43 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id u20so5916190wmq.4
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 03:38:43 -0700 (PDT)
+        with ESMTP id S232556AbhF1Kpg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 06:45:36 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89101C061766
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 03:43:10 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id j1so20627701wrn.9
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 03:43:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=0qFQ3U6jsg6qIs7KhbJBNtk6J/Y0oCVBp71I54LXLBM=;
-        b=zrbX05ANKJVsOPOZiX2DLCZgzOucc2vNcD5mDLD0rtzXhqPL4j9jXZorortgjgwEOu
-         Xmt3ndzxMzAL56ksiYw5gR9v+dDSg0+eih1BD7Dk9QQBrKCNyno4xyVKoDEJNZiLbQPm
-         BsPb19xHJVxibC+rc3Bv+zUrFq9r5Iky8VjEs7pr6I4hDlLIINaMfxKax8Kgni49mLT5
-         DLRGdH2523pzID0flvfDQQ/8JzCd2uDHMw6S8Ja8Z10hkgr5SZPFrhBUKjxtZdUJj/pD
-         jLbGsaOl9YqcdTWLSkepmPO1o5fqU8ZZx6gt6PQ7vQWMEq6AEbNBDV2tRNKbIo/IwbJ9
-         iemw==
+        bh=pNb+vUKWy59SB8eJVDEKMOkXhObwhOeVoLQvmeacdY8=;
+        b=eOGFkO3VQOSSW3VGHkzSGDCOLueIbkAUb8wZGIaiTv3wvhR35wBdHw8WXvKF9o3JgD
+         owDfZRS/DSf4IP+hkBXny+EPYead+ViKZ498lAGQ2begDBqIaMjTaPjtubbPHazUw56+
+         1Gg3y4jcgls4xE1TQMpelkJxcXsdT0PMzpBiz6g7fG9PQZZ2KS1joYQt+vneNvIlLcWG
+         mwvz9LFIye02MbySQfKzyJmD2ycS3XDrYG/XOSv6bgZYWn6KCgzFtjYCWrXv3+0RhmD2
+         LmBru9cnBCWfln5/BTO/vuY1fkXyGgplDOgc52+5kV1naVcPm8LcnqBBKfbbBgiU7y1b
+         2/Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=0qFQ3U6jsg6qIs7KhbJBNtk6J/Y0oCVBp71I54LXLBM=;
-        b=HT+O9oGdP3pN3XtuknsCdomKA08uvcdWG6j2hrhKGehoyJaeX2qw71hYWuXM9SyMCw
-         zXBE8mge9RJK8gKz6yg1uI5/QHNFFb8oi5nNd/nP1s4uAwP3wM8BDrjECnRNPSF6pAYb
-         HQ+xEkHGCJdbR85VsoHwZxdZqPgTZLmWtk/x0Y8G5p8HfL2Pa3Uoqc4p7Mva8DTJNTsX
-         2oHR1rVYEGSw/8/swWCuE0GVpyedZRLvNoIZ3FAL43xn1kFMEy6ioTADOXi7YOysd0F6
-         blyHNpJKG2axm5Lg7+YV7z7dr3HwpSy2wkYrt5xRq5iDtEmp0AVOTqERPHiSqYMocuCo
-         P6gw==
-X-Gm-Message-State: AOAM533X0bWF5XpvXnKCxgN8VUsCZ0yb6Od+TNGH2Hs6cX/OyEVRH7pQ
-        jDqGubh7E1pk0keTOzA9V1iZGG3hDqD/kA==
-X-Google-Smtp-Source: ABdhPJwLTkAQajwpkj6Z7Owjep39/6h4h6Ogd+7eakE6TPJFQqHxWWueTSFRYMTddDjl8IJxeyRA9w==
-X-Received: by 2002:a05:600c:224a:: with SMTP id a10mr26172573wmm.154.1624876722454;
-        Mon, 28 Jun 2021 03:38:42 -0700 (PDT)
+        bh=pNb+vUKWy59SB8eJVDEKMOkXhObwhOeVoLQvmeacdY8=;
+        b=rXQ1gCP5HDtAIfsJOAtVvbjPcY6VQTfndfdBqNMj0HTU0OuZ7yJEIhUVPtV85rNACg
+         /EDWdlMOgcDDQFn5GiR0DsltE459NV8EB2LFhePYHJp1U3rm/Qn9OLynrERBiv8jlgfD
+         UfNtKEoI8VTSygapLZQl+AU5oEJihd8suBqMTBqr87DVt9B8xlsFOy4Al0uRXUgJO5eT
+         QhR1cK6HNynAsFS2t/fRLEVPLnRymSPRyvbzN6HbAHjgZVVMPFW0HOzb2/aJGwaOMNMK
+         IQjwPj4GDP05qrvJB6y7+VZgVcNpLjcYkm3QLLyfP/Y05ZkjSXSWoPJy5XNgZi4zgWwQ
+         pGgw==
+X-Gm-Message-State: AOAM530vgtppFll3brdG2icV/BEprRrCG8/qOvcqLk4cm3Egs3Mg3jeZ
+        s2FpPSdpNBlkbwduE7UZV2MqSQ==
+X-Google-Smtp-Source: ABdhPJwBy4eD+dYimaiLRaibtlNAee135TlRNIAdEm0JndB8DbWYM106r0wQSw+7I2RhM2YrqLz/lg==
+X-Received: by 2002:a5d:4e52:: with SMTP id r18mr26571129wrt.372.1624876989198;
+        Mon, 28 Jun 2021 03:43:09 -0700 (PDT)
 Received: from dell ([95.144.13.187])
-        by smtp.gmail.com with ESMTPSA id h206sm18855813wmh.33.2021.06.28.03.38.41
+        by smtp.gmail.com with ESMTPSA id t128sm20419831wma.41.2021.06.28.03.43.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jun 2021 03:38:42 -0700 (PDT)
-Date:   Mon, 28 Jun 2021 11:38:40 +0100
+        Mon, 28 Jun 2021 03:43:08 -0700 (PDT)
+Date:   Mon, 28 Jun 2021 11:43:06 +0100
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Min Li <min.li.xe@renesas.com>
-Cc:     "sameo@linux.intel.com" <sameo@linux.intel.com>,
-        "grant.likely@linaro.org" <grant.likely@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH mfd v3] mfd: Add Renesas Synchronization Management Unit
- (SMU) support
-Message-ID: <YNmmsON7qP5+yjqp@dell>
-References: <1624034232-7952-1-git-send-email-min.li.xe@renesas.com>
- <OS3PR01MB659309124542B0D712FC9DEBBA069@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Johan Hovold <johan@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH RESEND v6 6/8] mfd: hi6421-spmi-pmic: move driver from
+ staging
+Message-ID: <YNmnulvokEuREmj9@dell>
+References: <cover.1624525118.git.mchehab+huawei@kernel.org>
+ <1ad2cbbd182d18ba2cae716fb5f1497b1cabbdbe.1624525118.git.mchehab+huawei@kernel.org>
+ <YNRrISOGujxcJAGR@dell>
+ <20210624143605.153e1e34@coco.lan>
+ <YNSRwIMr8+m9Sxk3@dell>
+ <YNSV+N0h7NoRpo/w@hovoldconsulting.com>
+ <20210625133858.3bf1835f@coco.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <OS3PR01MB659309124542B0D712FC9DEBBA069@OS3PR01MB6593.jpnprd01.prod.outlook.com>
+In-Reply-To: <20210625133858.3bf1835f@coco.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Jun 2021, Min Li wrote:
+On Fri, 25 Jun 2021, Mauro Carvalho Chehab wrote:
 
-> Hi Lee
+> Em Thu, 24 Jun 2021 16:26:00 +0200
+> Johan Hovold <johan@kernel.org> escreveu:
 > 
-> This is Min. I am wondering if you have had a chance to review my latest patch?
+> > On Thu, Jun 24, 2021 at 03:08:00PM +0100, Lee Jones wrote:
+> > > On Thu, 24 Jun 2021, Mauro Carvalho Chehab wrote:
+> > >   
+> > > > Em Thu, 24 Jun 2021 12:33:28 +0100
+> > > > Lee Jones <lee.jones@linaro.org> escreveu:  
+> > 
+> > > > > > --- /dev/null
+> > > > > > +++ b/drivers/mfd/hi6421-spmi-pmic.c
+> > > > > > @@ -0,0 +1,316 @@
+> > > > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > > > +/*
+> > > > > > + * Device driver for regulators in HISI PMIC IC
+> > > > > > + *
+> > > > > > + * Copyright (c) 2013 Linaro Ltd.
+> > > > > > + * Copyright (c) 2011 Hisilicon.
+> > > > > > + * Copyright (c) 2020-2021 Huawei Technologies Co., Ltd    
+> > > > > 
+> > > > > Can this be updated?  
+> > > > 
+> > > > Do you mean updating the copyrights to cover this year? E.g.
+> > > > something like this:
+> > > > 
+> > > > 	 * Copyright (c) 2013-2021 Linaro Ltd.
+> > > > 	 * Copyright (c) 2011-2021 Hisilicon.
+> > > > 	 * Copyright (c) 2020-2021 Huawei Technologies Co., Ltd  
+> > > > 
+> > > > Right? Or are you meaning something else?  
+> > > 
+> > > Yes, that's it.  I know this is just a move, but to MFD, it's new.  
+> > 
+> > That's not how copyright works. Unless Linaro and Hisilicon made
+> > nontrivial changes every year from 2011/2013 to 2021 you should not
+> > change those lines like this.
+> 
+> Only Linaro can answer what happened up to 2018, as this driver 
+> originally came from a Linaro tree, which has exactly one commit
+> for this driver:
+> 
+> 	https://github.com/96boards-hikey/linux/commit/08464419fba2417aa849fce976fac9c5f51b3ada#diff-604ef8563dcd9ace6e3e58aac38337c72924b0889f6972d7ee9e15e2335ba964
+> 
+> After merged upstream at staging, all changes are covered by the
+> Huawei's copyright (2020-2021).
+> 
+> So, I'll just drop this patch. If the information is not accurate,
+> someone from the original copyright holders can send followup
+> patches.
 
-Please don't nag.
+After taking the time to read up on Copyright rules and expectations,
+I think we can pretty much safely say that all of the Copyright
+entries above are incorrect.
 
-You should provide at least 2 weeks for someone to review.
-
-After 2 weeks has elapsed, you may consider a [RESEND].
-
-As it happens, your patch is in the queue and will be reviewed
-shortly.  Although this time has now been extended since you just
-pushed it to the back of the queue (patches are reviewed in
-chronological order by the date they were last updated).
+Copyright dates should only be listed if significant works were
+undertaken in each of the years listed.  So unless large adaptions
+happened every year since 2011, which I doubt very much, they're
+wrong.
 
 -- 
 Lee Jones [李琼斯]
