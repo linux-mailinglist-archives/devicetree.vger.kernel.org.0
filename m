@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 239FA3B6237
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 16:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9F103B64DA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 17:14:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234462AbhF1On1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 10:43:27 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:59592 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234491AbhF1Ol0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Jun 2021 10:41:26 -0400
-Received: from localhost.localdomain (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxb0L93tlgmsoZAA--.8933S3;
-        Mon, 28 Jun 2021 22:38:54 +0800 (CST)
-From:   Qing Zhang <zhangqing@loongson.cn>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        id S236280AbhF1PQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 11:16:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45464 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238024AbhF1PPP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Jun 2021 11:15:15 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5548661206;
+        Mon, 28 Jun 2021 15:12:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624893169;
+        bh=mKc+DGVUwwP3w69Df4E2RuWvYSvZU8sQpDkg3+zmHdQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Mj02hJ2U7DYOg1g9bW0KTyxbl1p3cDsRZs+m9IJNiri7W3tj2aDZhHBBtma9t5Knb
+         wIHyLhtsOHvdFjr18q0P7VNAucSu68J9B0Ml5R0XNMMiYPJN67xN16QTOTqzd4babm
+         53h2k2waAxLt3pciV5PyVhTekkQofqaOLRZ9VSd7iwo6+A7s52wWQg+l5doQWj7/wD
+         L88K/Be8vmXy8XM6X7f9/O+x9OO4Xd+bBuaT7ukFUcA/Myc56dvFxMhOzrJWdPDPJd
+         smAnU3PhpVWCgFiD3PHPV9yadjSFaGXp58StngFGRBPmTEwKK+Zioyh0DLyBA2oAnY
+         uBA+sSOKC3ikQ==
+Received: by pali.im (Postfix)
+        id 43D0070A; Mon, 28 Jun 2021 17:12:47 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+        Russell King <rmk+kernel@armlinux.org.uk>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] MIPS: Loongson64: DTS: Add pm block node for Loongson-2K1000
-Date:   Mon, 28 Jun 2021 22:38:52 +0800
-Message-Id: <20210628143852.11504-2-zhangqing@loongson.cn>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210628143852.11504-1-zhangqing@loongson.cn>
-References: <20210628143852.11504-1-zhangqing@loongson.cn>
+Subject: [PATCH v2] arm64: dts: armada-3720-turris-mox: remove mrvl,i2c-fast-mode
+Date:   Mon, 28 Jun 2021 17:12:29 +0200
+Message-Id: <20210628151229.25214-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210628121015.22660-1-pali@kernel.org>
+References: <20210628121015.22660-1-pali@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf9Dxb0L93tlgmsoZAA--.8933S3
-X-Coremail-Antispam: 1UD129KBjvdXoW7XF43KFWxZFyxZFW8GFWxZwb_yoWfCFg_ta
-        s293WkCrWfJF4ft3y8Xr1UGFy3u3y7Z3WrCFn8XF10qa90vFn3JFWUAayDCr1fWFyY9rs3
-        Xr4kWr18AF1xKjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUIcSsGvfJTRUUUbf8YjsxI4VWxJwAYFVCjjxCrM7AC8VAFwI0_Gr0_Xr1l1xkIjI8I
-        6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l82xGYIkIc2x26280x7
-        IE14v26r18M28IrcIa0xkI8VCY1x0267AKxVWUCVW8JwA2ocxC64kIII0Yj41l84x0c7CE
-        w4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6x
-        kF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF
-        7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F4
-        0Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC
-        6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc2xSY4AK67AK6ry5MxAIw28IcxkI7VAKI4
-        8JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xv
-        wVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCIc40Y0x0EwIxGrwCI42IY6xIIjx
-        v20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20E
-        Y4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267
-        AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8M7K3UUUUU==
-X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The module is now supported, enable it.
+Some SFP modules are not detected when i2c-fast-mode is enabled even when
+clock-frequency is already set to 100000. The I2C bus violates the timing
+specifications when run in fast mode. So disable fast mode on Turris Mox.
 
-Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+Same change was already applied for uDPU (also Armada 3720 board with SFP)
+in commit fe3ec631a77d ("arm64: dts: uDPU: remove i2c-fast-mode").
+
+Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
+Signed-off-by: Pali Rohár <pali@kernel.org>
+Reviewed-by: Marek Behún <kabel@kernel.org>
 ---
- arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-index 569e814def83..e31176ac0ac2 100644
---- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-+++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-@@ -101,6 +101,15 @@ uart0: serial@1fe00000 {
- 			no-loopback-test;
- 		};
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+index 6bcc319a0161..85f15f2a4740 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+@@ -119,6 +119,7 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&i2c1_pins>;
+ 	clock-frequency = <100000>;
++	/delete-property/ mrvl,i2c-fast-mode;
+ 	status = "okay";
  
-+		pm: power-controller {
-+			device_type = "power management";
-+			compatible = "loongson, reset-controller";
-+			reg = <0 0x1fe0700c 0 0x8>,
-+				<0 0x1fe07014 0 0x8>,
-+				<0 0x1fe07030 0 0x8>;
-+			reg-names = "pm1_sts", "pm1_cnt", "rst_cnt";
-+		};
-+
- 		pci@1a000000 {
- 			compatible = "loongson,ls2k-pci";
- 			device_type = "pci";
+ 	rtc@6f {
 -- 
-2.31.0
+2.20.1
 
