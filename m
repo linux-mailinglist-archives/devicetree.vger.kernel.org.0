@@ -2,218 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 547063B5B76
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 11:38:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C98F43B5BD8
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 11:57:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232437AbhF1Jkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 05:40:49 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:48021 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230256AbhF1Jks (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Jun 2021 05:40:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1624873099;
-        h=from:from:reply-to:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=KbstVO6yJsjAAz2Rw4pFG159iQgUyoPxnfRs5v5lilk=;
-        b=ZqIAoS7zESNCpH8om+WBC9jRWVOJC4BKH0Q3u9CUp4c9m5LdVAr7vkMnBckFpX9nEAEaEN
-        vN2fwKsgE1WmBuGzlS/j1ozxZ1ZC1nadxeT9vpz0iFl28hTKQUvc5WI7y4SlIWGITuu1lW
-        YtF8kIJzkEn5WpuVphYH54pWodO+3B0=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-424-XZYQWhsCMlauT0z5wfc2VA-1; Mon, 28 Jun 2021 05:38:17 -0400
-X-MC-Unique: XZYQWhsCMlauT0z5wfc2VA-1
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com [10.5.11.11])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 79ADE802E62;
-        Mon, 28 Jun 2021 09:38:16 +0000 (UTC)
-Received: from [10.64.54.204] (vpn2-54-204.bne.redhat.com [10.64.54.204])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id 0CE705B826;
-        Mon, 28 Jun 2021 09:38:13 +0000 (UTC)
-Reply-To: Gavin Shan <gshan@redhat.com>
-Subject: Re: [PATCH v4] Documentation, dt, numa: Add note to empty NUMA node
-To:     Andrew Jones <drjones@redhat.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rdunlap@infradead.org, robh+dt@kernel.org, shan.gavin@gmail.com
-References: <20210625052338.4875-1-gshan@redhat.com>
- <20210625070217.4ffmfe7nwlusbbjc@gator>
- <20210625070656.j373hveemf5cdch4@gator>
- <41643136-798b-a0f3-aee7-b6af94a2fc67@redhat.com>
- <20210625101821.3t3vgj2pnw3hqpzm@gator>
- <62d04903-e4f3-2302-d530-5942e33ae116@redhat.com>
- <20210628083420.v47xbbtcgjj2mu47@gator>
-From:   Gavin Shan <gshan@redhat.com>
-Message-ID: <60a2b930-40cc-ea32-878f-d063523b5fec@redhat.com>
-Date:   Mon, 28 Jun 2021 19:38:11 +1000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.0
+        id S232588AbhF1KAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 06:00:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59916 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232539AbhF1KAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 06:00:13 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C80CC061574;
+        Mon, 28 Jun 2021 02:57:47 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id w17so9463518edd.10;
+        Mon, 28 Jun 2021 02:57:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=e+9kaDM3HhtP8KWHAFI+SxFAMjAw0vko71CUZnvXp2k=;
+        b=PHK/IO+/Zw8aRHQhTJrG0CyxKfLxqnbDfhVcuuGq7k0yqLIDSDB2R5/DvItfco7zM9
+         hRdynGR61u5V5aMkXnFu1dM9VmXGFiIO+6a5hinTfr83zNTD+BcsRzowIizswSH3DW1f
+         ItbsmWY5++jM7p8NIGZ7H0VbcK6QvEAYADDeWn8yIDszuyO+D3FK+hdG+lFsORuBiMni
+         g2U4rH57wis5AyKOEnAiSJmaw48bBaM86ot7jUuEribnHUSV+2AC8GqP3dkD05ApviD3
+         q3nRxviYCPtDaIHguTGFa2wkeQ7PAx3t4t26ABbL1IYesR0WSJRq6xcMgR9oeiWzqJkA
+         KZLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=e+9kaDM3HhtP8KWHAFI+SxFAMjAw0vko71CUZnvXp2k=;
+        b=Kq/Ds5ojKBeKCI1gKX628gom5UOoLILCe1ctfRB3eldkR0R4eNH96cIA3fCT/Smhds
+         N+4E0Rv0TKbGPx27c0gaClHkafdbQHWPFQ9/2i8Ay/0SMS2f+WVBMLjAn1zqI1+clrB5
+         n3YFuDor78qLfl76lEk8kjryU0Rkz+3KQwIVPu6Y4KFfK024N7enSfiGzd0qImXjcHIi
+         DfydSXLqUirfDTNB957703UnyElJ1LEg/tzoS7guejSehkdkqnyab7mOoXcpC+My+r+L
+         urlTolUlTZE3UoctxNZ9zcWdK3cO+Hl6pIiRRQXHyh+FR3EcwYYZxx6E0/AEHPUYhz0R
+         UW0A==
+X-Gm-Message-State: AOAM532oTE29a9ZCrzZLZ37rWVYprZRVtfbdYUg/Z8SPx/5g6dKFbKwY
+        u8htZWLZkC+OLLpNIr8TL4c=
+X-Google-Smtp-Source: ABdhPJz2QPDPz5W0mtaAxWIDbNZiYiGbHW29D1G2FnYu7l2dRuXghrwYbFlmUNRV8i4TuOv30bG6Lg==
+X-Received: by 2002:aa7:cd85:: with SMTP id x5mr2227897edv.115.1624874265892;
+        Mon, 28 Jun 2021 02:57:45 -0700 (PDT)
+Received: from BV030612LT ([188.24.178.25])
+        by smtp.gmail.com with ESMTPSA id l26sm9373264edt.40.2021.06.28.02.57.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Jun 2021 02:57:45 -0700 (PDT)
+Date:   Mon, 28 Jun 2021 12:57:42 +0300
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+To:     Amit Tomer <amittomer25@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] net: ethernet: actions: Add Actions Semi Owl
+ Ethernet MAC driver
+Message-ID: <20210628095742.GA2261718@BV030612LT>
+References: <cover.1616368101.git.cristian.ciocaltea@gmail.com>
+ <ab25bd143589d3c1894cdb3189670efa62ed1440.1616368101.git.cristian.ciocaltea@gmail.com>
+ <17876c6e-4688-59e6-216f-445f91a8b884@gmail.com>
+ <20210322084420.GA1503756@BV030612LT>
+ <CABHD4K_r_ixtBXH_v82S62onYr-=fbh8cHJsdz0oo6MN-i5tVg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210628083420.v47xbbtcgjj2mu47@gator>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CABHD4K_r_ixtBXH_v82S62onYr-=fbh8cHJsdz0oo6MN-i5tVg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/28/21 6:34 PM, Andrew Jones wrote:
-> On Fri, Jun 25, 2021 at 09:14:49PM +1000, Gavin Shan wrote:
->> On 6/25/21 8:18 PM, Andrew Jones wrote:
->>> On Fri, Jun 25, 2021 at 06:36:48PM +1000, Gavin Shan wrote:
->>>> On 6/25/21 5:06 PM, Andrew Jones wrote:
->>>>> On Fri, Jun 25, 2021 at 09:02:17AM +0200, Andrew Jones wrote:
->>>>>> On Fri, Jun 25, 2021 at 01:23:38PM +0800, Gavin Shan wrote:
->>>>>>> The empty memory nodes, where no memory resides in, are allowed.
->>>>>>> For these empty memory nodes, the 'len' of 'reg' property is zero.
->>>>>>> The NUMA node IDs are still valid and parsed, but memory can be
->>>>>>> added to them through hotplug afterwards. I finds difficulty to
->>>>>>> get where it's properly documented.
->>>>>>>
->>>>>>> So lets add note to empty memory nodes in the NUMA binding doc.
->>>>>>>
->>>>>>> Signed-off-by: Gavin Shan <gshan@redhat.com>
->>>>>>> ---
->>>>>>>     Documentation/devicetree/bindings/numa.txt | 4 ++++
->>>>>>>     1 file changed, 4 insertions(+)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
->>>>>>> index 21b35053ca5a..0fc882e44270 100644
->>>>>>> --- a/Documentation/devicetree/bindings/numa.txt
->>>>>>> +++ b/Documentation/devicetree/bindings/numa.txt
->>>>>>> @@ -109,6 +109,10 @@ Example:
->>>>>>>     Dual socket system consists of 2 boards connected through ccn bus and
->>>>>>>     each board having one socket/soc of 8 cpus, memory and pci bus.
->>>>>>> +Note that empty memory nodes, which no memory resides in, are allowed.
->>>>>>> +The NUMA node IDs in these empty memory nodes are still valid, but
->>>>>>> +memory can be added into them through hotplug afterwards.
->>>>>>
->>>>>> Please change the second sentence to:
->>>>>>
->>>>>>      The NUMA node IDs in these empty memory nodes are still valid and
->>>>>>      memory may be added into them through hotplug afterwards.
->>>>>>
->>>>>> But, this doesn't look like the right place for this paragraph. You're
->>>>>> adding the paragraph to the example section, but the example doesn't have
->>>>>> any empty memory nodes.
->>>>>>
->>>>>> I think the paragraph should be added to section "2 - numa-node-id" and an
->>>>>
->>>>> Or maybe even create a new section for it.
->>>>>
->>>>>> example empty memory node should be provided. Also, the commit message
->>>>>> talks about the length of 'reg' being zero, which is an important
->>>>>> distinction which should also be documented.
->>>>>>
->>>>
->>>> Drew, thanks for your comments. Yeah, it sounds sensible to create
->>>> a new section for it and an example would be more helpful. Please
->>>> check if below changes are fine to you. I probably need Randy's review
->>>> again.
->>>>
->>>> I'm trying to avoid too many revisions for this sort of trivial patch,
->>>> even though I already had. However, it's time frame for v5.14 and I'm
->>>> pushing this to be merged during the cycle.
->>>
->>> We must revise until we're satisfied... Also, I wouldn't call writing
->>> specifications trivial.
->>>
->>
->> [...]
->>
->>> I'll just rewrite it:
->>>
->>>    Empty memory nodes, which no memory resides in, are allowed. The 'length'
->>>    field of the 'reg' property is zero, but the 'base-address' is a dummy
->>>    address and invalid. However, the NUMA node IDs and distance maps are
->>>    still valid and memory may be added into them through hotplug afterwards.
->>>
->>
->> [...]
->>
->>>
->>> You should write how you've selected the dummy addresses for the empty
->>> memory nodes, perhaps here in the /* Empty memory node */ comments or
->>> above in the paragraph or both.
->>>
->>>> +	memory@0x100000000 {
->>>> +		device_type = "memory";
->>>> +		reg = <0x1 0x0 0x0 0x0>;
->>>> +		numa-node-id = <2>;
->>>> +	};
->>>> +
->>>> +	/* Empty memory node */
->>>> +	memory@0x180000000 {
->>>> +		device_type = "memory";
->>>> +		reg = <0x1 0x80000000 0x0 0x0>;
->>>> +		numa-node-id = <3>;
->>>> +	};
->>>> +
->>
->> [...]
->>
->> Thanks, Drew. As 'base-address' is dummy address and invalid. So we
->> would note it as suggestion. With your suggestion integrated, how about
->> something like this?
->>
->> ==============================================================================
->> 4 - Empty memory nodes
->> ==============================================================================
->>
->> Empty memory nodes, which no memory resides in, are allowed. The 'length'
->> field of the 'reg' property is zero, but the 'base-address' is a dummy
->> address and invalid. The 'base-address' could be the summation of highest
->> memory address plus the NUMA node ID. However, the NUMA node IDs and
->> distance maps are still valid and memory may be added into them through
->> hotplug afterwards.
->>
->>         :
->>
->>         memory@0 {
->>                  device_type = "memory";
->>                  reg = <0x0 0x0 0x0 0x80000000>;
->>                  numa-node-id = <0>;
->>          };
->>
->>          memory@0x80000000 {
->>                  device_type = "memory";
->>                  reg = <0x0 0x80000000 0x0 0x80000000>;
->>                  numa-node-id = <1>;
->>          };
->>
->>          /* Empty memory node */
->>          memory@0x100000002 {
->>                  device_type = "memory";
->>                  reg = <0x1 0x2 0x0 0x0>;
->>                  numa-node-id = <2>;
->>          };
->>
->>          /* Empty memory node */
->>          memory@0x100000003 {
->>                  device_type = "memory";
->>                  reg = <0x1 0x3 0x0 0x0>;
->>                  numa-node-id = <3>;
->>          };
->>
->>          :
->>
->> Thanks,
->> Gavin
->>
->>
+Hi Amit,
+
+On Mon, Jun 28, 2021 at 01:55:40PM +0530, Amit Tomer wrote:
+> Hi,
 > 
-> Looks good to me.
+> > > Do you know the story behind this Ethernet controller?
+> >
+> > I just happened to get a board based on the S500 SoC, so I took this
+> > opportunity to help improving the mainline kernel support, but other
+> > than that I do not really know much about the hardware history.
+> >
+> > > The various
+> > > receive/transmit descriptor definitions are 99% those defined in
+> > > drivers/net/ethernet/stmmicro/stmmac/descs.h for the normal descriptor.
+> >
+> > That's an interesting observation. I could only assume the vendor did
+> > not want to reinvent the wheel here, but I cannot say if this is a
+> > common design scheme or is something specific to STMicroelectronics
+> > only.
 > 
+> I am not entirely sure about it but it looks like it *may* only need
+> to have a glue driver to
+> connect to DWMAC.
 
-Thanks, Drew. v5 was posted to reflect changes, but I don't
-include Randy's r-b because too much changes introduced.
-Hopefully, Randy can take a look on v5 when getting a chance.
+From the RX/TX descriptors perspective, this looks like a Synopsys IP,
+but the MAC register layout is not similar at all.
 
-Thanks,
-Gavin
+Thanks to Mani, a request for clarification has been also sent to Actions,
+but they could not confirm. Hence, at the moment, we do not have clear
+evidences that it is based on Designware.
 
+> For instance, on the U-boot[1] side (S700 is one of 64bit OWL SoC from
+> actions), we kind of re-uses already
+> existing DWMAC and provide a glue code, and on the Linux side as well
+> have some similar implementation (locally).
+
+The S700 SoC provides Gigabit ethernet capabilities and I assume the
+controller is quite different from the 10/100 variant present on S500.
+As a matter of fact, Actions has confirmed that in the case of S700, the
+licensing was obtained from a third party IP company, although they were
+not certain if the provider had previous agreements with Synopsys.
+
+Regards,
+Cristi
+
+> Thanks
+> -Amit.
+> 
+> [1]: https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/net/dwmac_s700.c
