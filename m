@@ -2,164 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF0B23B66AA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 18:24:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0FA63B66B1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 18:25:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233030AbhF1Q0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 12:26:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33582 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233616AbhF1Q0h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 12:26:37 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA21C061574
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 09:24:12 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lxu3N-0006TZ-5k; Mon, 28 Jun 2021 18:24:09 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lxu3L-00088p-V1; Mon, 28 Jun 2021 18:24:07 +0200
-Date:   Mon, 28 Jun 2021 18:24:07 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Emil Lenngren <emil.lenngren@gmail.com>,
-        michal.simek@xilinx.com, Alvaro Gamez <alvaro.gamez@hazent.com>,
+        id S233189AbhF1Q1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 12:27:43 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:59984 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233176AbhF1Q1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 12:27:41 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B70B0B8A;
+        Mon, 28 Jun 2021 18:25:13 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1624897513;
+        bh=PTVouAjir6usC63yLGX1KM3ZF+0S4PlEQNTD7pbjgjQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=wN6Asf9EI2bthREFOQyceNmJ2tgepCv9DalpxhQD+eY5r8eeEareeXyaEx7lyZweQ
+         5xRo3GH7/hpnoHyulgJFbTpOgGqOUEWpJRWbfWQLx0NH1ON/wzTSPPSIySVrEeGP/e
+         P82BV1y03TGcjfAqsDhcR3YNQZichEUqoxvMI/QY=
+Date:   Mon, 28 Jun 2021 19:25:12 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Rajeev Nandan <rajeevny@codeaurora.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
         Thierry Reding <thierry.reding@gmail.com>,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 3/3] pwm: Add support for Xilinx AXI Timer
-Message-ID: <20210628162407.dxxt6hqfzeokdtxa@pengutronix.de>
-References: <20210528214522.617435-1-sean.anderson@seco.com>
- <20210528214522.617435-3-sean.anderson@seco.com>
- <20210625061958.yeaxjltuq7q2t7i7@pengutronix.de>
- <a748143d-f157-562e-795d-dcd9a0cf9d85@seco.com>
- <20210625165642.5iuorl5guuq5c7gc@pengutronix.de>
- <f1772da9-8bd8-57cf-6eba-3c16c58a903f@seco.com>
- <20210627181919.iunagls4j67ignhh@pengutronix.de>
- <59e93f67-0552-04bb-116e-73ddf878761e@seco.com>
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Clark <robdclark@gmail.com>, Lyude Paul <lyude@redhat.com>,
+        Jani Nikula <jani.nikula@intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        Abhinav Kumar <abhinavk@codeaurora.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        Kalyan Thota <kalyan_t@codeaurora.org>,
+        Krishna Manikandan <mkrishn@codeaurora.org>
+Subject: Re: [v8 4/6] drm/panel-simple: Update validation warnings for eDP
+ panel description
+Message-ID: <YNn36Bnc3MkhMC7L@pendragon.ideasonboard.com>
+References: <1624726268-14869-1-git-send-email-rajeevny@codeaurora.org>
+ <1624726268-14869-5-git-send-email-rajeevny@codeaurora.org>
+ <YNjA+jg9Khn+a9K+@pendragon.ideasonboard.com>
+ <d75afefac48229657d36e12b6bac0e9f@codeaurora.org>
+ <YNnPqYjaZjmmrQTA@pendragon.ideasonboard.com>
+ <CAD=FV=WTuexwn8gWR8-VV_-5Frb-NCNHA7m0xhxdsc_riRUC8g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mxlp6tyzyeaflos4"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <59e93f67-0552-04bb-116e-73ddf878761e@seco.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <CAD=FV=WTuexwn8gWR8-VV_-5Frb-NCNHA7m0xhxdsc_riRUC8g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Doug,
 
---mxlp6tyzyeaflos4
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Jun 28, 2021 at 08:34:04AM -0700, Doug Anderson wrote:
+> On Mon, Jun 28, 2021 at 6:33 AM Laurent Pinchart wrote:
+> > On Mon, Jun 28, 2021 at 05:46:24PM +0530, rajeevny@codeaurora.org wrote:
+> > > On 27-06-2021 23:48, Laurent Pinchart wrote:
+> > > > On Sat, Jun 26, 2021 at 10:21:06PM +0530, Rajeev Nandan wrote:
+> > > >> Do not give a warning for the eDP panels if the "bus_format" is
+> > > >> not specified, since most eDP panels can support more than one
+> > > >> bus formats and this can be auto-detected.
+> > > >> Also, update the check to include bpc=10 for the eDP panel.
+> > > >>
+> > > >> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
+> > > >> ---
+> > > >>
+> > > >> Changes in v8:
+> > > >> - New patch, to address the review comments of Sam Ravnborg [1]
+> > > >>
+> > > >> [1]
+> > > >> https://lore.kernel.org/dri-devel/20210621184157.GB918146@ravnborg.org/
+> > > >>
+> > > >>  drivers/gpu/drm/panel/panel-simple.c | 6 ++----
+> > > >>  1 file changed, 2 insertions(+), 4 deletions(-)
+> > > >>
+> > > >> diff --git a/drivers/gpu/drm/panel/panel-simple.c
+> > > >> b/drivers/gpu/drm/panel/panel-simple.c
+> > > >> index 86e5a45..f966b562 100644
+> > > >> --- a/drivers/gpu/drm/panel/panel-simple.c
+> > > >> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> > > >> @@ -772,10 +772,8 @@ static int panel_simple_probe(struct device *dev,
+> > > >> const struct panel_desc *desc,
+> > > >>                    desc->bpc != 8);
+> > > >>            break;
+> > > >>    case DRM_MODE_CONNECTOR_eDP:
+> > > >> -          if (desc->bus_format == 0)
+> > > >> -                  dev_warn(dev, "Specify missing bus_format\n");
+> > > >> -          if (desc->bpc != 6 && desc->bpc != 8)
+> > > >> -                  dev_warn(dev, "Expected bpc in {6,8} but got: %u\n", desc->bpc);
+> > > >> +          if (desc->bpc != 6 && desc->bpc != 8 && desc->bpc != 10)
+> > > >> +                  dev_warn(dev, "Expected bpc in {6,8,10} but got: %u\n", desc->bpc);
+> > > >
+> > > > You'll still get a warning is bpc == 0, is that intentional ?
+> > >
+> > > This was not intentional, I missed considering bpc=0 case. As we are
+> > > removing the warning for bus_format=0 then a similar thing can be done
+> > > for the bpc=0 also. The bpc value should be a valid one if it is
+> > > specified. Unlike the bus_format, bpc has few possible values that can
+> > > be checked here along with 0. Please correct me if I misunderstood the
+> > > concept.
+> > > I will fix this.
+> >
+> > What's the point of specifying bpc if it's optional though ? Users of
+> > the panel will need to support the case where bpc is set to 0. Have you
+> > ensured that they all do ? Can they meaningfully use the bpc value if
+> > they need to be ready to support bpc == 0 ?
+> 
+> I must be missing something, but to me it seems like Rajeev's patch is
+> fine as-is. From my reading of the code:
+> 
+> * Removes the warning if bus_format == 0. This is correct since I
+> don't think specifying bus format for eDP panels makes lots of sense.
 
-Hello Sean,
+This is embarassing, I've been reading it as desc->bpc == 0 from the
+beginning :-( My bad. The bpc change is correct.
 
-On Mon, Jun 28, 2021 at 11:50:33AM -0400, Sean Anderson wrote:
-> On 6/27/21 2:19 PM, Uwe Kleine-K=F6nig wrote:
-> > On Fri, Jun 25, 2021 at 01:46:26PM -0400, Sean Anderson wrote:
-> > > So for the moment, why not give an error? This will be legal code both
-> > > now and after round_state is implemented.
-> >=20
-> > The problem is where to draw the line. To stay with your example: If a
-> > request for period =3D 150 ns comes in, and let X be the biggest period=
- <=3D
-> > 150 ns that the hardware can configure. For which values of X should an
-> > error be returned and for which values the setting should be
-> > implemented.
-> >=20
-> > In my eyes the only sensible thing to implement here is to tell the
-> > consumer about X and let it decide if it's good enough. If you have a
-> > better idea let me hear about it.
->=20
-> Sure. And I think it's ok to tell the consumer that X is the best we can
-> do. But if they go along and request an unconfigurable state anyway, we
-> should tell them as much.
+> * Removes the warning if bpc == 10. This is correct since we've seen
+> eDP panels with 10bpc.
+> 
+> * Keeps the warning if bpc == 0. IMO we can/should still require
+> panels to specify their BPC. I guess I'm treating this as a "max BPC".
+> I know that we use this field in the sn65dsi86 driver, so if it's OK
+> for this to be 0 then we'll have to change that driver to handle it.
+> 
+> Does that sound right to you Laurent? So since I think Rajeev's patch
+> is OK, I'm happy with:
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> 
+> Unless I missed something and this patch needs to change then it feels
+> like Rajeev's patch series is in pretty good shape to land. I'm happy
+> to commit it but since Sam made comments on the previous version I'd
+> plan to wait a bit to make sure he has a chance for another look if he
+> wants to. I've also only got 2 days left before I vanish for 1 week of
+> vacation. ...so my plan is:
+> * If Sam / Laurent come back before tomorrow and say they're happy
+> then I'll commit.
+> * If I hear nothing then I'll check back after my vacation. If someone
+> else has committed then I'll be happy. If not and there has just been
+> silence then I'll commit it myself.
+> 
+> Please yell if that's not OK. :-)
 
-I have the impression you didn't understand where I see the problem. If
-you request 150 ns and the controller can only do 149 ns (or 149.6667 ns)
-should we refuse? If yes: This is very unusable, e.g. the led-pwm driver
-expects that it can configure the duty_cycle in 1/256 steps of the
-period, and then maybe only steps 27 and 213 of the 256 possible steps
-work. (This example doesn't really match because the led-pwm driver
-varies duty_cycle and not period, but the principle becomes clear I
-assume.) If no: Should we accept 151 ns? Isn't that ridiculous?
+-- 
+Regards,
 
-> IMO, this is the best way to prevent surprising results in the API.
-
-I think it's not possible in practise to refuse "near" misses and every
-definition of "near" is in some case ridiculous. Also if you consider
-the pwm_round_state() case you don't want to refuse any request to tell
-as much as possible about your controller's capabilities. And then it's
-straight forward to let apply behave in the same way to keep complexity
-low.
-
-> The real issue here is that it is impossible to determine the correct
-> way to round the PWM a priori, and in particular, without considering
-> both duty_cycle and period. If a consumer requests very small
-> period/duty cycle which we cannot produce, how should it be rounded?
-
-Yeah, because there is no obviously right one, I picked one that is as
-wrong as the other possibilities but is easy to work with.
-
-> Should we just set TLR0=3D1 and TLR1=3D0 to give them 66% duty cycle with
-> the least period? Or should we try and increase the period to better
-> approximate the % duty cycle? And both of these decisions must be made
-> knowing both parameters. We cannot (for example) just always round up,
-> since we may produce a configuration with TLR0 =3D=3D TLR1, which would
-> produce 0% duty cycle instead of whatever was requested. Rounding rate
-> will introduce significant complexity into the driver. Most of the time
-> if a consumer requests an invalid rate, it is due to misconfiguration
-> which is best solved by fixing the configuration.
-
-In the first step pick the biggest period not bigger than the requested
-and then pick the biggest duty cycle that is not bigger than the
-requested and that can be set with the just picked period. That is the
-behaviour that all new drivers should do. This is somewhat arbitrary but
-after quite some thought the most sensible in my eyes.
-
-> > > Perhaps I should add
-> > >=20
-> > > 	if (tlr0 <=3D tlr1)
-> > > 		return -EINVAL;
-> > >=20
-> > > here to prevent accidentally getting 0% duty cycle.
-> >=20
-> > You can assume that duty_cycle <=3D period when .apply is called.
->=20
-> Ok, I will only check for =3D=3D then.
-
-You just have to pay attention to the case that you had to decrement
-=2Eperiod to the next possible value. Then .duty_cycle might be bigger
-than the corrected period.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---mxlp6tyzyeaflos4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDZ96QACgkQwfwUeK3K
-7AlJXgf7BKBFOIdY64LBcokhYBcDKmKMqIXrY1FhK8oF+FxlLdyQ89SrYSXpI29t
-DagR8JwKJZn6eigEOVD8b1q+0oB4Rrou9g6Q3CkfF5OMLBcxXCXqne1nAOY1lpD2
-AXzJjkfCHPNIcH6Cr3ESFhaGGdDzpb4KyxmYOjbrdxlbxlAr8HjgK8e2hbjAW31V
-m6jzcwWcE/Rru6TklnULd0pkGt4+hEbFTKuwsxoUVMQr10dT7ZN+5zSD9G4nOejc
-H6Zw8jdqSLsQ+DdI05+iADMUd7oVUnfYkMkCnJq8l7EYtrU35p+HDJNvJ0Djy19/
-JYMrzGjxkiegkRdQubUWtuMHlDQwOQ==
-=srzj
------END PGP SIGNATURE-----
-
---mxlp6tyzyeaflos4--
+Laurent Pinchart
