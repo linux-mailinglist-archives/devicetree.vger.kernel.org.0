@@ -2,136 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6355D3B68CF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 21:05:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41FC33B68EA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 21:14:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233161AbhF1THr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 15:07:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41814 "EHLO
+        id S236262AbhF1TRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 15:17:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233799AbhF1THo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 15:07:44 -0400
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 697E6C061766
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 12:05:17 -0700 (PDT)
-Received: by mail-pg1-x533.google.com with SMTP id u14so9800740pga.11
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 12:05:17 -0700 (PDT)
+        with ESMTP id S236223AbhF1TRQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 15:17:16 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E83DC061767
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 12:14:49 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id w13so12200219wmc.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 12:14:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=UuLWWmnvZt1Eact5E5zQvx40z47gJJnUBnaxQPWrxTo=;
-        b=AC1Pf6F2FnAnQz0fGMrj75w/nMyYp0qr4+QQ3bn8kV0Y4xcy0kSbGmGHTtvYY2nQUP
-         pzisKJXdkx3dVoHgrmy60jo1+oCRrQ1RaahFguj4q/uz7koXr6re8qrx5tC9FWYa0K41
-         mVxkrNdC0PcouiMQPDAnBH08fgAkPD870V2QI=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+htQTyEDF+CVc+mO+s5d9t8IztHN54DhG/4dMTnUuhs=;
+        b=M84CXuxddhwuBiLOn5s5lrAZLL1SfDCezNR9CfNLJ0MCC4ycfVQw0oBLTYJwtJ0cYl
+         TpQVpFZvX9c5NmVMSMBNb7p2IDcGKBUfnjWbISvK4cRF8wi0l3Jq0LB16GTBHxxxRr+z
+         e+ddYYTYKEtUNC+jy004NKbP+3D4/GA46E4B9CNLPF9fEUhqHgOqEs3JHnX8VU53uvwk
+         2595OdvZAb6Y6ZNNTx1YwvEaDi7AAl+K9dBaCesjWJ3OSrOxvQP0zm+n3V2Ey3hNx9lK
+         lsj2rkbvgcNq5oFDqZmGQWrAC+yHhHZdPpf3pJeTfCjlHXxhMeccrO06AP72HycuZCcd
+         qFHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UuLWWmnvZt1Eact5E5zQvx40z47gJJnUBnaxQPWrxTo=;
-        b=DgsXRyytcljyt3ZnzMHzAEMCJVq8rydqUWn/7H2DvZgko8bL6qjYXJ/HmVOC+kWk4R
-         Djg1P03t8GPBVY2P49xyhh2Z8+CqFtPHOjMzlvQVTZOfF0v/YQV+LFEaUcqMlV7C13IC
-         E6yCVnOQ8j8qbnJXCt1D8Twt2qc4FTejSfKXWTs8/lBJKmlYDm4KP+SCT2WXLN/c7aV6
-         WXE4kpKchfojEngu5wiAY0ly9w9qNFCIZ6G95g3+GXUGBaOUq/PcOCNK8FJ5fKkRyo6h
-         OD7erMBCt9G8i7dk4tlwjLH44H7KT1fXUCgq8r1ktRHFRgyonzK+BtVdPvNzCsOraD08
-         1+JA==
-X-Gm-Message-State: AOAM533Wvt/cFdgMjAKjBge6eEocUPZLU4LMEYkFzDamzvgJWOZoNM2U
-        6mkCrnT6gCs0V+ZHaczgGNEFIg==
-X-Google-Smtp-Source: ABdhPJwL7reP7lAruztnf+bjjxn2ijxUR1B0eGZgtokgGCAeZnkfQcn7emRJZqXYg3AtdmC6WtP+ug==
-X-Received: by 2002:a63:1215:: with SMTP id h21mr24262501pgl.173.1624907116892;
-        Mon, 28 Jun 2021 12:05:16 -0700 (PDT)
-Received: from localhost ([2620:15c:202:201:df70:d2d8:b384:35cf])
-        by smtp.gmail.com with UTF8SMTPSA id i3sm16606319pgc.92.2021.06.28.12.05.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Jun 2021 12:05:16 -0700 (PDT)
-Date:   Mon, 28 Jun 2021 12:05:14 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, will@kernel.org,
-        saiprakash.ranjan@codeaurora.org, ohad@wizery.com,
-        agross@kernel.org, mathieu.poirier@linaro.org,
-        robin.murphy@arm.com, joro@8bytes.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, evgreen@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org
-Subject: Re: [PATCH 9/9] arm64: dts: qcom: sc7280: Update Q6V5 MSS node
-Message-ID: <YNodaqE9n9+sQUFq@google.com>
-References: <1624564058-24095-1-git-send-email-sibis@codeaurora.org>
- <1624564058-24095-10-git-send-email-sibis@codeaurora.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+htQTyEDF+CVc+mO+s5d9t8IztHN54DhG/4dMTnUuhs=;
+        b=YW9ZFazQHAytnOXhqWyvt50T0GvXGmKiRz33qhBBCf7ySKmKn69BuzszRr647l/9RK
+         f0aiQhjLPSpcm0K2qlh/rjCr5b6XVG+zfgtzy8E2Vs6bGZVaO1EF1PdRA3k9csVVJFYj
+         IeuIJFhXv4nC8WpkEGcTu3F13MojwBfHodb4wwCwfPB92tXDyYXWrbjmnt/Je9Xzgdkp
+         4XvMYxF1Ag+Xy4q1HQzt8rZZfgMDe3AzYNdugg/z2BoN8YnP+gZBDJQ6/RIysm7Bs5a9
+         pfuRWRb7K9QJKX0+LFnsZLTyPujJ5dEcneId/SIlG+7g772aFGSzEB9XFrKbHyeAIMXK
+         9W/g==
+X-Gm-Message-State: AOAM531Xa3QafCE3sYKm93SBVFnqqw422VpuMvbQwmKFGX9LJoz08buI
+        5A/fU16q3jQx+JfzGJU/CB4RCQ==
+X-Google-Smtp-Source: ABdhPJyezEkTfArDKPV5DlchwZCsHL9GtWwN39ROTKBKy+ZAKVhOrjtAWdLO60RlnmSJF3S/SF58XA==
+X-Received: by 2002:a1c:e907:: with SMTP id q7mr28391463wmc.1.1624907687817;
+        Mon, 28 Jun 2021 12:14:47 -0700 (PDT)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id n8sm15591229wrt.95.2021.06.28.12.14.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Jun 2021 12:14:47 -0700 (PDT)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     miquel.raynal@bootlin.com, richard@nod.at, robh+dt@kernel.org,
+        vigneshr@ti.com, linus.walleij@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v2] dt_bindings: mtd: partitions: redboot: convert to YAML
+Date:   Mon, 28 Jun 2021 19:14:40 +0000
+Message-Id: <20210628191440.2823024-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1624564058-24095-10-git-send-email-sibis@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 25, 2021 at 01:17:38AM +0530, Sibi Sankar wrote:
-> Update MSS node to support MSA based modem boot on SC7280 SoCs.
-> 
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  7 +++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 19 ++++++++++++++++---
->  2 files changed, 23 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> index 191e8a92d153..d66e3ca42ad5 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> @@ -343,3 +343,10 @@
->  		bias-pull-up;
->  	};
->  };
-> +
-> +&remoteproc_mpss {
-> +	status = "okay";
-> +	compatible = "qcom,sc7280-mss-pil";
-> +	iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
-> +	memory-region = <&mba_mem &mpss_mem>;
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 56ea172f641f..6d3687744440 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -586,7 +586,8 @@
->  
->  		remoteproc_mpss: remoteproc@4080000 {
->  			compatible = "qcom,sc7280-mpss-pas";
-> -			reg = <0 0x04080000 0 0x10000>;
-> +			reg = <0 0x04080000 0 0x10000>, <0 0x04180000 0 0x48>;
-> +			reg-names = "qdsp6", "rmb";
+Converts mtd/partitions/redboot-fis.txt to YAML.
 
-Binding needs update?
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+Changes since v1:
+- fixed yamllint errors
+- removed @0 from flash
 
-Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml:
+ .../bindings/mtd/partitions/redboot-fis.txt   | 27 ------------
+ .../bindings/mtd/partitions/redboot-fis.yaml  | 42 +++++++++++++++++++
+ 2 files changed, 42 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/redboot-fis.txt
+ create mode 100644 Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml
 
-  reg:
-      maxItems: 1
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.txt b/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.txt
+deleted file mode 100644
+index fd0ebe4e3415..000000000000
+--- a/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-RedBoot FLASH Image System (FIS) Partitions
+-===========================================
+-
+-The FLASH Image System (FIS) directory is a flash description
+-format closely associated with the RedBoot boot loader.
+-
+-It uses one single flash eraseblock in the flash to store an index of
+-all images in the flash.
+-
+-This block size will vary depending on flash but is typically
+-32 KB in size.
+-
+-Required properties:
+-- compatible : (required) must be "redboot-fis"
+-- fis-index-block : (required) a index to the eraseblock containing
+-  the FIS directory on this device. On a flash memory with 32KB
+-  eraseblocks, 0 means the first eraseblock at 0x00000000, 1 means the
+-  second eraseblock at 0x00008000 and so on.
+-
+-Example:
+-
+-flash@0 {
+-	partitions {
+-		compatible = "redboot-fis";
+-		fis-index-block = <0>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml b/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml
+new file mode 100644
+index 000000000000..fee8d81b5276
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mtd/partitions/redboot-fis.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RedBoot FLASH Image System (FIS) Partitions
++
++description: The FLASH Image System (FIS) directory is a flash description
++    format closely associated with the RedBoot boot loader.
++    It uses one single flash eraseblock in the flash to store an index of
++    all images in the flash.
++    This block size will vary depending on flash but is typically
++    32 KB in size.
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++properties:
++  compatible:
++    const: redboot-fis
++
++  fis-index-block:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: a index to the eraseblock containing the FIS directory on this
++      device. On a flash memory with 32KB eraseblocks, 0 means the first
++      eraseblock at 0x00000000, 1 means the second eraseblock at 0x00008000 and so on.
++
++required:
++  - compatible
++  - fis-index-block
++
++additionalProperties: false
++
++examples:
++  - |
++    flash {
++      partitions {
++        compatible = "redboot-fis";
++        fis-index-block = <0>;
++      };
++    };
+-- 
+2.31.1
 
->  
->  			interrupts-extended = <&intc GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
->  					      <&modem_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> @@ -597,8 +598,11 @@
->  			interrupt-names = "wdog", "fatal", "ready", "handover",
->  					  "stop-ack", "shutdown-ack";
->  
-> -			clocks = <&rpmhcc RPMH_CXO_CLK>;
-> -			clock-names = "xo";
-> +			clocks = <&gcc GCC_MSS_CFG_AHB_CLK>,
-> +				 <&gcc GCC_MSS_OFFLINE_AXI_CLK>,
-> +				 <&gcc GCC_MSS_SNOC_AXI_CLK>,
-> +				 <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "iface", "offline", "snoc_axi", "xo";
-
-Binding needs update?
-
-Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml:
-
-  clocks:
-    items:
-      - description: XO clock
-  clock-names:
-    items:
-      - const: xo
