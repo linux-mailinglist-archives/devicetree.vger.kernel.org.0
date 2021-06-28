@@ -2,117 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 776E93B665A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 18:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F6423B6670
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 18:09:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232719AbhF1QGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 12:06:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57018 "EHLO
+        id S232856AbhF1QMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 12:12:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232012AbhF1QGD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 12:06:03 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A31C061760;
-        Mon, 28 Jun 2021 09:03:36 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id q16so19328727lfr.4;
-        Mon, 28 Jun 2021 09:03:35 -0700 (PDT)
+        with ESMTP id S232853AbhF1QMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 12:12:16 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987FDC061768
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 09:09:49 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id h24-20020a9d64180000b029036edcf8f9a6so19306385otl.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 09:09:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=9+6mDKjcYk8hmZtLfRjkLtLnizKdu7+ND6kkw+plZIs=;
-        b=WehXqygcDRvt7H9HPjI5+m5XGpLgfQrl2S4E24ioukuled6AKRRPWT6tZJFIsjbv6x
-         feAJbp9u4Y0M1ZAIef8CTj+XcaiQaoygNxtKSD02zlkdSy1nQ7IsQAw+golDYdRnxw+V
-         g0Cn1LTPqgn6gaQKz80QNVDm5o+/yw7nGphsowuJmLcchup/B0mLLaj7HxQo0SIpC/Fq
-         LbsowaQ3lZkLTDwpSTOFFdZRrU5S0o8U+BpInNBQ6UHzHv3NlOarIqRDcNgogLsJpeAy
-         G827P/fyaUcOI8tawXeElqqpKCGgkb8IFA0eKXioxSmVbVqiXCTjwzISSnsZU1QUGs6i
-         u7/g==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8C0Zt6lzqm7Cr6/B2lVDa8JG9oCZyzFu7BcHonMqt1I=;
+        b=lDiDyZDGCzNYEnqtmW7YtMOnLq3WQI6R/SGIbDezV2XMqhMiRJVFhn2g6rXVM9wcaV
+         EEDEPb6iAdC1Lm5F/hU6x0UI8n35znv8WEWdjgdiChRsCgd0Z9ZnDG5njbA88YRq6BO9
+         ZrBYGV+zGE4QNQ1nmmEBZgiOzZ5Knj6IKJKwyoeYG6z+t26t6D/2v9loRH9piTJd22gl
+         EgyCgXdgrYatKIQTqLWTw4A4o8svbDkMLhuqBSXDu/waTQ7tO6OxRfuuyJuIcg3PVU+h
+         RPfgnzoL1GBb9bC1uAHJFFIEaxvrdkB/jdwZEaZdX/aGg4dYC3VEAhRqzpoqQwRo7Zcq
+         TtQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=9+6mDKjcYk8hmZtLfRjkLtLnizKdu7+ND6kkw+plZIs=;
-        b=bLuMY66XAeLsf4Iugp5i87fEkWEmF5OmyVxwgWZ/W0fIwxR18tQySoLp1IXTxmIBwK
-         //Lmm2uIt4/ffW+HCd2y/SG7THSJjZIg2eISqMbiE8xRmz6G8ZKJhZXidLGegNrE5ZOS
-         wbLtA2WyBLge4WvNa/eNvvK1wQsLn8lWOG1mnX/exmvgUioEgFoFlWsdx1U4qD0k3ltZ
-         OC96Nac8ZAEaYli92gAZi+pcGuHJa051Ala1D5s3t64pb2FqGA+ScyhO0CS5bBAZ7iE9
-         DNnK9LWE/Qtmv0hpRfTeRNrYy/kKVLzGhFIDHEgn/P2el4l/y9HgfT51vK1dk5ANyX3e
-         uKDQ==
-X-Gm-Message-State: AOAM532uP+ff+nKqcbU4D/KZP4vSca9f3vnwgZ2kOGnxLEwwGZ5xR5FX
-        biuyChB5yk6H78PMz+MdShrIxb8r0f8=
-X-Google-Smtp-Source: ABdhPJwWRp7/DULQ49/P2nsYmvnte9IYLgVFSaYn2unNvjpyxcxi5BzVuL73LsQA3ECbcHYRzHP79w==
-X-Received: by 2002:a19:ef0b:: with SMTP id n11mr19284891lfh.119.1624896214269;
-        Mon, 28 Jun 2021 09:03:34 -0700 (PDT)
-Received: from [192.168.1.102] ([31.173.82.94])
-        by smtp.gmail.com with ESMTPSA id f15sm1348944lfa.56.2021.06.28.09.03.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Jun 2021 09:03:34 -0700 (PDT)
-Subject: Re: [PATCH v4 2/2] MIPS: Loongson64: Add pm block node for
- Loongson-2K1000
-To:     Qing Zhang <zhangqing@loongson.cn>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210628151330.11952-1-zhangqing@loongson.cn>
- <20210628151330.11952-2-zhangqing@loongson.cn>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <697cd16e-7131-95d6-6e0b-1034d493b3ce@gmail.com>
-Date:   Mon, 28 Jun 2021 19:03:32 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8C0Zt6lzqm7Cr6/B2lVDa8JG9oCZyzFu7BcHonMqt1I=;
+        b=OOahXqPqFmqHiqk4IclLuT+weMIMcq7M3tl2lwBDUjQLxX0ldH8FU6LqFgMJIiGv/2
+         sdU3+b0mHkeh3AEwhp6CZFxXX914Nxv3njaFoBOH++q7UAX9LR0cOggg2nDgTGFosctF
+         /U66cahKcTesdyQ2Eyg2lT/YDkAwjMHgBv1p7zoDkS5wRZqAEKcJ+tGrNs7fboWT8JFl
+         mOG48wwqYNFs8Sr5MBa7aQRmGZBsbHWIaQ1YL1ej8qdz3Kg+dHb4KxtzRQSaD0Jjszkz
+         XLXoNeVgoP0cphLzX/97l40ThspL8mBAJmEB+J9hMsN1FX9b9uOrLrmvws6OS2WwOUUk
+         FliA==
+X-Gm-Message-State: AOAM532FZ3RzUBsqNNpWXlD/qUMCTBKCWYELb7uA+qdjzgRhVaoz7DoF
+        j74F1L6vV8PSXrPGm/O+3zgIKw==
+X-Google-Smtp-Source: ABdhPJy0D0v2WxhN6uSxEEarbT3wFq9+1/FiOEnDYD6Z1BdPEkPpWK1ozR6o+4669oBiKBVDSlNjDA==
+X-Received: by 2002:a9d:2781:: with SMTP id c1mr316985otb.34.1624896588760;
+        Mon, 28 Jun 2021 09:09:48 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id k24sm3525002otp.55.2021.06.28.09.09.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Jun 2021 09:09:48 -0700 (PDT)
+Date:   Mon, 28 Jun 2021 11:09:46 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Sibi S <sibis@codeaurora.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: soc: qcom: aoss: Convert to YAML
+Message-ID: <YNn0Sg5tjVbu01oy@yoga>
+References: <20210625234018.1324681-1-bjorn.andersson@linaro.org>
+ <20210625234018.1324681-3-bjorn.andersson@linaro.org>
+ <20210628144908.GC4033@workstation>
 MIME-Version: 1.0
-In-Reply-To: <20210628151330.11952-2-zhangqing@loongson.cn>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210628144908.GC4033@workstation>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+On Mon 28 Jun 09:49 CDT 2021, Manivannan Sadhasivam wrote:
 
-On 6/28/21 6:13 PM, Qing Zhang wrote:
-
-> The module is now supported, enable it.
+> On Fri, Jun 25, 2021 at 04:40:17PM -0700, Bjorn Andersson wrote:
+> > Convert to YAML in order to allow validation.
+> > 
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > ---
+> > 
+> > I'm aware that this conflicts with Sibi's removal of '#power-domain-cells', but
+> > that's a trivial change regardless of which of the two patches gets in first.
+> > 
+> >  .../bindings/soc/qcom/qcom,aoss-qmp.txt       |  90 --------------
+> >  .../bindings/soc/qcom/qcom,aoss-qmp.yaml      | 115 ++++++++++++++++++
+> >  2 files changed, 115 insertions(+), 90 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
+> >  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
+> > 
 > 
-> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
-> ---
+> [...]
 > 
-> v3-v4:
-> No change
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - mboxes
+> > +  - "#clock-cells"
 > 
-> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
-> ---
->  arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 9 +++++++++
->  1 file changed, 9 insertions(+)
+> The old binding lists this property as optional but you're marking it
+> as required. And by looking at the driver it seems to be optional only.
 > 
-> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-> index 569e814def83..e31176ac0ac2 100644
-> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-> @@ -101,6 +101,15 @@ uart0: serial@1fe00000 {
->  			no-loopback-test;
->  		};
->  
-> +		pm: power-controller {
-> +			device_type = "power management";
-> +			compatible = "loongson, reset-controller";
 
-   No spaces allowed here, AFAIK.
+You're right, missed that detail. Will respin accordingly.
 
-> +			reg = <0 0x1fe0700c 0 0x8>,
-> +				<0 0x1fe07014 0 0x8>,
-> +				<0 0x1fe07030 0 0x8>;
+> > +  - "#power-domain-cells"
+> 
+> This one was marked optional as well but the driver registers the pd's
+> unconditionally, so I guess it is fine.
+> 
 
-   Better keep those aligned...
+I think this should be a required property, but the conversion should
+convert the binding, so I'll update accordingly.
 
-> +			reg-names = "pm1_sts", "pm1_cnt", "rst_cnt";
-> +		};
-> +
-[...]
+Also, Sibi has a series that drops the power-domains, due to some
+unforeseen complications related to suspend, so there's no need to
+follow up with a change to the binding in this regard.
 
-MBR, Sergei
+Thanks,
+Bjorn
+
+> Thanks,
+> Mani
+> 
+> > +
+> > +additionalProperties: false
+> > +
+> > +patternProperties:
+> > +  "^(cx|mx|ebi)$":
+> > +    type: object
+> > +    description:
+> > +      The AOSS side channel also provides the controls for three cooling devices,
+> > +      these are expressed as subnodes of the QMP node. The name of the node is
+> > +      used to identify the resource and must therefor be "cx", "mx" or "ebi".
+> > +
+> > +    properties:
+> > +      "#cooling-cells":
+> > +        const: 2
+> > +
+> > +    required:
+> > +      - "#cooling-cells"
+> > +
+> > +    additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    aoss_qmp: qmp@c300000 {
+> > +      compatible = "qcom,sdm845-aoss-qmp", "qcom,aoss-qmp";
+> > +      reg = <0x0c300000 0x100000>;
+> > +      interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+> > +      mboxes = <&apss_shared 0>;
+> > +
+> > +      #clock-cells = <0>;
+> > +      #power-domain-cells = <1>;
+> > +
+> > +      cx_cdev: cx {
+> > +        #cooling-cells = <2>;
+> > +      };
+> > +
+> > +      mx_cdev: mx {
+> > +        #cooling-cells = <2>;
+> > +      };
+> > +    };
+> > +...
+> > -- 
+> > 2.29.2
+> > 
