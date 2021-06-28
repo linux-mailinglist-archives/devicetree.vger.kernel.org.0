@@ -2,128 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 309BF3B5CC1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 12:54:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20DE33B5CD7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 12:59:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232745AbhF1K5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 06:57:05 -0400
-Received: from smtp-fw-2101.amazon.com ([72.21.196.25]:37345 "EHLO
-        smtp-fw-2101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232700AbhF1K5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 06:57:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1624877679; x=1656413679;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=40yGFLlFdyP2oUyLOKMw3GyY1D5jUGecldbwh8C4AXo=;
-  b=i4e+T2PgpeRNmhoxC1/eKxa/yI5pGslVNYz9glM1cxzvpLHa+0Jk6ylx
-   6SO22jdm5ZPf/weiLHMbNhGm9+iRrLvonj44vFEXYdc7jXCXDKF2ISJw9
-   v6w5O0Z1T6EGrpdG3Oij+HzDsw1dWOGkBwRnZ1QOvg9Umx8lVimLcDzij
-   g=;
-X-IronPort-AV: E=Sophos;i="5.83,305,1616457600"; 
-   d="scan'208";a="118759721"
-Received: from iad12-co-svc-p1-lb1-vlan2.amazon.com (HELO email-inbound-relay-2c-579b7f5b.us-west-2.amazon.com) ([10.43.8.2])
-  by smtp-border-fw-2101.iad2.amazon.com with ESMTP; 28 Jun 2021 10:54:30 +0000
-Received: from EX13MTAUWC001.ant.amazon.com (pdx1-ws-svc-p6-lb9-vlan3.pdx.amazon.com [10.236.137.198])
-        by email-inbound-relay-2c-579b7f5b.us-west-2.amazon.com (Postfix) with ESMTPS id 45F81A1DC8;
-        Mon, 28 Jun 2021 10:54:29 +0000 (UTC)
-Received: from EX13D20UWC001.ant.amazon.com (10.43.162.244) by
- EX13MTAUWC001.ant.amazon.com (10.43.162.135) with Microsoft SMTP Server (TLS)
- id 15.0.1497.18; Mon, 28 Jun 2021 10:54:28 +0000
-Received: from [192.168.24.203] (10.43.161.153) by
- EX13D20UWC001.ant.amazon.com (10.43.162.244) with Microsoft SMTP Server (TLS)
- id 15.0.1497.18; Mon, 28 Jun 2021 10:54:25 +0000
-Message-ID: <3a43b2de-6a71-2373-8695-5e96657c8fc2@amazon.com>
-Date:   Mon, 28 Jun 2021 12:54:23 +0200
+        id S232708AbhF1LCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 07:02:00 -0400
+Received: from phobos.denx.de ([85.214.62.61]:51970 "EHLO phobos.denx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232745AbhF1LB7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Jun 2021 07:01:59 -0400
+Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id F18FA82DA2;
+        Mon, 28 Jun 2021 12:59:31 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1624877973;
+        bh=/uSwIhUTGzgWud23+aNg1TbxMnbf4cZss/WEmETMEjk=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=x/vH1wVtGgHw+yvzhphYwEHnlVO5UOyO9VVWdjw6WXS5MjtoaIjT5EZZcYgEIRod4
+         ynJMaTJHC4Gx3F5FJhvJSPTBK15iV9wiODNuoGRDjbAbnliz5inXIdwXgRU/eWciTF
+         MLawKS6d+wtLoqTyouuSAiCsF9WrNxYjFMwU/aPQ25DSkNlufyl+LDSiz1V0+nLIJS
+         //mkv8ZCZgZx/9WjF021RhUhAKYjOVYYTQ+r2tdzaCmlEGwhBsoJ4P2zEbiae4U5uJ
+         FcYa+pdSUE47JCm4mZXKMXMK0mDTtjsxHW8Mi1P99BymubE1Hh+a1zgSynqj9nyeSk
+         5hVWfLoPBP2Bg==
+Subject: Re: [PATCH V7 4/4] soc: imx: Add blk-ctl driver for i.MX8MM
+To:     Adam Ford <aford173@gmail.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Abel Vesa <abel.vesa@nxp.com>, Peng Fan <peng.fan@nxp.com>
+References: <20210612133134.2738-1-peng.fan@oss.nxp.com>
+ <20210612133134.2738-5-peng.fan@oss.nxp.com>
+ <CAHCN7x+bCVcfgb-MmOApBgM=69rz0G8WhsU171SHF3H-12wSfw@mail.gmail.com>
+From:   Marek Vasut <marex@denx.de>
+Message-ID: <2c39672b-780a-8e33-038e-0856e32ede7a@denx.de>
+Date:   Mon, 28 Jun 2021 12:59:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:90.0)
- Gecko/20100101 Thunderbird/90.0
-Subject: Re: [PATCH v4 1/3] iommu: io-pgtable: add DART pagetable format
+In-Reply-To: <CAHCN7x+bCVcfgb-MmOApBgM=69rz0G8WhsU171SHF3H-12wSfw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-To:     Sven Peter <sven@svenpeter.dev>, Will Deacon <will@kernel.org>,
-        "Robin Murphy" <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>
-CC:     Arnd Bergmann <arnd@kernel.org>, <devicetree@vger.kernel.org>,
-        "Hector Martin" <marcan@marcan.st>, <linux-kernel@vger.kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        "Stan Skowronek" <stan@corellium.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
-        <iommu@lists.linux-foundation.org>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>, <r.czerwinski@pengutronix.de>
-References: <20210627143405.77298-1-sven@svenpeter.dev>
- <20210627143405.77298-2-sven@svenpeter.dev>
-From:   Alexander Graf <graf@amazon.com>
-In-Reply-To: <20210627143405.77298-2-sven@svenpeter.dev>
-X-Originating-IP: [10.43.161.153]
-X-ClientProxiedBy: EX13D17UWB001.ant.amazon.com (10.43.161.252) To
- EX13D20UWC001.ant.amazon.com (10.43.162.244)
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.2 at phobos.denx.de
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CgpPbiAyNy4wNi4yMSAxNjozNCwgU3ZlbiBQZXRlciB3cm90ZToKPiAKPiBBcHBsZSdzIERBUlQg
-aW9tbXUgdXNlcyBhIHBhZ2V0YWJsZSBmb3JtYXQgdGhhdCBzaGFyZXMgc29tZQo+IHNpbWlsYXJp
-dGllcyB3aXRoIHRoZSBvbmVzIGFscmVhZHkgaW1wbGVtZW50ZWQgYnkgaW8tcGd0YWJsZS5jLgo+
-IEFkZCBhIG5ldyBmb3JtYXQgdmFyaWFudCB0byBzdXBwb3J0IHRoZSByZXF1aXJlZCBkaWZmZXJl
-bmNlcwo+IHNvIHRoYXQgd2UgZG9uJ3QgaGF2ZSB0byBkdXBsaWNhdGUgdGhlIHBhZ2V0YWJsZSBo
-YW5kbGluZyBjb2RlLgo+IAo+IFNpZ25lZC1vZmYtYnk6IFN2ZW4gUGV0ZXIgPHN2ZW5Ac3ZlbnBl
-dGVyLmRldj4KPiAtLS0KPiAgIGRyaXZlcnMvaW9tbXUvaW8tcGd0YWJsZS1hcm0uYyB8IDYyICsr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysKPiAgIGRyaXZlcnMvaW9tbXUvaW8tcGd0
-YWJsZS5jICAgICB8ICAxICsKPiAgIGluY2x1ZGUvbGludXgvaW8tcGd0YWJsZS5oICAgICB8ICA3
-ICsrKysKPiAgIDMgZmlsZXMgY2hhbmdlZCwgNzAgaW5zZXJ0aW9ucygrKQo+IAo+IGRpZmYgLS1n
-aXQgYS9kcml2ZXJzL2lvbW11L2lvLXBndGFibGUtYXJtLmMgYi9kcml2ZXJzL2lvbW11L2lvLXBn
-dGFibGUtYXJtLmMKPiBpbmRleCA4N2RlZjU4ZTc5YjUuLjFkZDVjNDViNGI1YiAxMDA2NDQKPiAt
-LS0gYS9kcml2ZXJzL2lvbW11L2lvLXBndGFibGUtYXJtLmMKPiArKysgYi9kcml2ZXJzL2lvbW11
-L2lvLXBndGFibGUtYXJtLmMKPiBAQCAtMTI3LDYgKzEyNyw5IEBACj4gICAjZGVmaW5lIEFSTV9N
-QUxJX0xQQUVfTUVNQVRUUl9JTVBfREVGICAweDg4VUxMCj4gICAjZGVmaW5lIEFSTV9NQUxJX0xQ
-QUVfTUVNQVRUUl9XUklURV9BTExPQyAweDhEVUxMCj4gCj4gKyNkZWZpbmUgQVBQTEVfREFSVF9Q
-VEVfUFJPVF9OT19XUklURSAoMTw8NykKPiArI2RlZmluZSBBUFBMRV9EQVJUX1BURV9QUk9UX05P
-X1JFQUQgKDE8PDgpCj4gKwo+ICAgLyogSU9QVEUgYWNjZXNzb3JzICovCj4gICAjZGVmaW5lIGlv
-cHRlX2RlcmVmKHB0ZSxkKSBfX3ZhKGlvcHRlX3RvX3BhZGRyKHB0ZSwgZCkpCj4gCj4gQEAgLTM4
-MSw2ICszODQsMTUgQEAgc3RhdGljIGFybV9scGFlX2lvcHRlIGFybV9scGFlX3Byb3RfdG9fcHRl
-KHN0cnVjdCBhcm1fbHBhZV9pb19wZ3RhYmxlICpkYXRhLAo+ICAgewo+ICAgICAgICAgIGFybV9s
-cGFlX2lvcHRlIHB0ZTsKPiAKPiArICAgICAgIGlmIChkYXRhLT5pb3AuZm10ID09IEFSTV9BUFBM
-RV9EQVJUKSB7Cj4gKyAgICAgICAgICAgICAgIHB0ZSA9IDA7Cj4gKyAgICAgICAgICAgICAgIGlm
-ICghKHByb3QgJiBJT01NVV9XUklURSkpCj4gKyAgICAgICAgICAgICAgICAgICAgICAgcHRlIHw9
-IEFQUExFX0RBUlRfUFRFX1BST1RfTk9fV1JJVEU7Cj4gKyAgICAgICAgICAgICAgIGlmICghKHBy
-b3QgJiBJT01NVV9SRUFEKSkKPiArICAgICAgICAgICAgICAgICAgICAgICBwdGUgfD0gQVBQTEVf
-REFSVF9QVEVfUFJPVF9OT19SRUFEOwo+ICsgICAgICAgICAgICAgICByZXR1cm4gcHRlOwoKV2hh
-dCBhYm91dCB0aGUgb3RoZXIgYml0cywgc3VjaCBhcyBzaGFyYWJpbGl0eSwgWE4sIGV0Yz8gRG8g
-dGhleSBub3QgCmV4aXN0IG9uIERBUlQ/IE9yIGhhdmUgdGhleSBub3QgYmVlbiByZXZlcnNlIGVu
-Z2luZWVyZWQgYW5kIDBzIGhhcHBlbiB0byAKImp1c3Qgd29yayI/Cgo+ICsgICAgICAgfQo+ICsK
-PiAgICAgICAgICBpZiAoZGF0YS0+aW9wLmZtdCA9PSBBUk1fNjRfTFBBRV9TMSB8fAo+ICAgICAg
-ICAgICAgICBkYXRhLT5pb3AuZm10ID09IEFSTV8zMl9MUEFFX1MxKSB7Cj4gICAgICAgICAgICAg
-ICAgICBwdGUgPSBBUk1fTFBBRV9QVEVfbkc7Cj4gQEAgLTEwNDMsNiArMTA1NSw1MSBAQCBhcm1f
-bWFsaV9scGFlX2FsbG9jX3BndGFibGUoc3RydWN0IGlvX3BndGFibGVfY2ZnICpjZmcsIHZvaWQg
-KmNvb2tpZSkKPiAgICAgICAgICByZXR1cm4gTlVMTDsKPiAgIH0KPiAKPiArc3RhdGljIHN0cnVj
-dCBpb19wZ3RhYmxlICoKPiArYXBwbGVfZGFydF9hbGxvY19wZ3RhYmxlKHN0cnVjdCBpb19wZ3Rh
-YmxlX2NmZyAqY2ZnLCB2b2lkICpjb29raWUpCj4gK3sKPiArICAgICAgIHN0cnVjdCBhcm1fbHBh
-ZV9pb19wZ3RhYmxlICpkYXRhOwo+ICsgICAgICAgaW50IGk7Cj4gKwo+ICsgICAgICAgaWYgKGNm
-Zy0+b2FzID4gMzYpCj4gKyAgICAgICAgICAgICAgIHJldHVybiBOVUxMOwo+ICsKPiArICAgICAg
-IGRhdGEgPSBhcm1fbHBhZV9hbGxvY19wZ3RhYmxlKGNmZyk7Cj4gKyAgICAgICBpZiAoIWRhdGEp
-Cj4gKyAgICAgICAgICAgICAgIHJldHVybiBOVUxMOwo+ICsKPiArICAgICAgIC8qCj4gKyAgICAg
-ICAgKiBBcHBsZSdzIERBUlQgYWx3YXlzIHJlcXVpcmVzIHRocmVlIGxldmVscyB3aXRoIHRoZSBm
-aXJzdCBsZXZlbCBiZWluZwo+ICsgICAgICAgICogc3RvcmVkIGluIGZvdXIgTU1JTyByZWdpc3Rl
-cnMuIFdlIGFsd2F5cyBjb25jYXRlbmF0ZSB0aGUgZmlyc3QgYW5kCj4gKyAgICAgICAgKiBzZWNv
-bmQgbGV2ZWwgc28gdGhhdCB3ZSBvbmx5IGhhdmUgdG8gc2V0dXAgdGhlIE1NSU8gcmVnaXN0ZXJz
-IG9uY2UuCj4gKyAgICAgICAgKiBUaGlzIHJlc3VsdHMgaW4gYW4gZWZmZWN0aXZlIHR3byBsZXZl
-bCBwYWdldGFibGUuCj4gKyAgICAgICAgKi8KPiArICAgICAgIGlmIChkYXRhLT5zdGFydF9sZXZl
-bCA8IDEpCj4gKyAgICAgICAgICAgICAgIHJldHVybiBOVUxMOwo+ICsgICAgICAgaWYgKGRhdGEt
-PnN0YXJ0X2xldmVsID09IDEgJiYgZGF0YS0+cGdkX2JpdHMgPiAyKQo+ICsgICAgICAgICAgICAg
-ICByZXR1cm4gTlVMTDsKPiArICAgICAgIGlmIChkYXRhLT5zdGFydF9sZXZlbCA+IDEpCj4gKyAg
-ICAgICAgICAgICAgIGRhdGEtPnBnZF9iaXRzID0gMDsKPiArICAgICAgIGRhdGEtPnN0YXJ0X2xl
-dmVsID0gMjsKPiArICAgICAgIGNmZy0+YXBwbGVfZGFydF9jZmcubl90dGJycyA9IDEgPDwgZGF0
-YS0+cGdkX2JpdHM7CgpNYXliZSBhZGQgYSBCVUdfT04gaWYgbl90dGJycyA+IEFSUkFZX1NJWkUo
-dHRicik/IE9yIGFsdGVybmF0aXZlbHksIGRvIGEgCm5vcm1hbCBydW50aW1lIGNoZWNrIGFuZCBi
-YWlsIG91dCB0aGVuLgoKCkFsZXgKCgoKQW1hem9uIERldmVsb3BtZW50IENlbnRlciBHZXJtYW55
-IEdtYkgKS3JhdXNlbnN0ci4gMzgKMTAxMTcgQmVybGluCkdlc2NoYWVmdHNmdWVocnVuZzogQ2hy
-aXN0aWFuIFNjaGxhZWdlciwgSm9uYXRoYW4gV2Vpc3MKRWluZ2V0cmFnZW4gYW0gQW10c2dlcmlj
-aHQgQ2hhcmxvdHRlbmJ1cmcgdW50ZXIgSFJCIDE0OTE3MyBCClNpdHo6IEJlcmxpbgpVc3QtSUQ6
-IERFIDI4OSAyMzcgODc5CgoK
+On 6/14/21 8:07 PM, Adam Ford wrote:
+> On Sat, Jun 12, 2021 at 7:58 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
+>>
+>> From: Peng Fan <peng.fan@nxp.com>
+>>
+>> The i.MX8MM SoC has dispmix BLK-CTL and vpumix BLK-CTL, so we add
+>> that support in this driver.
+>>
+>> Reviewed-by: Abel Vesa <abel.vesa@nxp.com>
+>> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> 
+> Maybe my TF-A is too old, but I am not able to wake the device from
+> suspend-to-ram with this series.  I used the device tree from [1] to
+> enable both the GPCv2 and the blk-ctl stuff.
+> 
+> [1] - https://patchwork.kernel.org/project/linux-arm-kernel/patch/20210604111005.6804-1-peng.fan@oss.nxp.com/
+> 
+> I based both off Shawn's for-next branch.
 
+I also ran into issues with this, although it could also be related to 
+GPCv2. On MX8MM , the system sometimes hangs when bringing up the GPCv2 
+power domain 6 (VPUMIX). It seems that the GPCv2 driver sets 
+GPC_PU_PGC_SW_PUP_REQ register to 0x100 to bring up the VPUMIX and the 
+bit never self-clears. After that, it seems the entire GPC locks up. 
+Have you ever seen that kind of behavior ?
