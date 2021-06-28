@@ -2,56 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 414DC3B5601
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 02:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C0C3B5640
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 02:16:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231753AbhF1ADx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Jun 2021 20:03:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36600 "EHLO mail.kernel.org"
+        id S231815AbhF1AS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Jun 2021 20:18:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46734 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231709AbhF1ADw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Jun 2021 20:03:52 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 02FB5619C4;
-        Mon, 28 Jun 2021 00:01:27 +0000 (UTC)
+        id S231750AbhF1AS5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Jun 2021 20:18:57 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E470B61A2B;
+        Mon, 28 Jun 2021 00:16:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624838488;
-        bh=C0mM8kBMd3VD7tttt8n24YWpksKW/HJK/MIIwHcYnPE=;
+        s=k20201202; t=1624839393;
+        bh=FiDke5Fyewp54WfWgYCzPP8U1tqDo/9JLDPzlEDhTLg=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=SP94FDHKX61G+nO78JNdsdU2/txiIVAKcIJH6JQlcT6YdeH62uUpMGv8Hg4wNkOeh
-         H6/Ts6WjZMG5i+G4EUvd0VsYFaH6bFYbQegFiVzFuNg6nlPd1t21h8/Rju0Tkp4CTb
-         ve4BsphcIeG/Jym9WxOOV++SyqM13ROxi1Q+KEYEOENK3+TvaDveJITDWTT8YulkZ0
-         wG3Hp5K6u6B8wYFMgl9whr1sWOkOz71FikABh7pDJ4vvCE4i+XNKN+4TwfKlU8EZEB
-         uwoYaN3wB4FV2N5+SEnOSf6fuNq5WAbggiOe/kKVROFaqOpgEkEuLyITKNE81YPwCo
-         pMS5FZQYJJEvA==
+        b=AJ5f3euEZh4bzS05Z365AyhZbxCzQr4bi76KG9SJUM3RPIf2I3e3uyL/SBcJP8+jc
+         +sZ2Q0dgpD8qoimPxF3hV4j7ZeCEpwvwwdahdj5A+GVOnSNLmhGSIq74r5M7l4HZod
+         jn8sO5/eazlet9Gz9q1ndFwnlKbC7YAbkSnRoDKqpAbqDLIc+3xJU8bK3tV5SdB/3K
+         ehPhvLdRRpgapc8FkA7R79PUc8/ZDlcmJ9LiY8Mo3tMC54uvZCXyE8zE7yzBgwJtkD
+         gCFGZPKCtte+tGBYxCwy+iUD2gmmRD18JVU+QlIARrpGLDt5mgs+flW0snv5PUrUqI
+         r26TqNV8POtaA==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210418122909.71434-3-bartosz.dudziak@snejp.pl>
-References: <20210418122909.71434-1-bartosz.dudziak@snejp.pl> <20210418122909.71434-3-bartosz.dudziak@snejp.pl>
-Subject: Re: [PATCH v2 2/5] clk: qcom: gcc: Add support for Global Clock controller found on MSM8226
+In-Reply-To: <20210609022051.2171-3-jonathan@marek.ca>
+References: <20210609022051.2171-1-jonathan@marek.ca> <20210609022051.2171-3-jonathan@marek.ca>
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock: add QCOM SM8250 camera clock bindings
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
+Cc:     robert.foss@linaro.org, andrey.konovalov@linaro.org,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Sun, 27 Jun 2021 17:01:26 -0700
-Message-ID: <162483848682.3259633.12714299318722524172@swboyd.mtv.corp.google.com>
+        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org
+Date:   Sun, 27 Jun 2021 17:16:31 -0700
+Message-ID: <162483939176.3259633.14392995234481057001@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bartosz Dudziak (2021-04-18 05:29:06)
-> Modify existing MSM8974 driver to support MSM8226 SoC. Override frequenci=
-es
-> which are different in this older chip. Register all the clocks to the
-> framework for the clients to be able to request for them.
+Quoting Jonathan Marek (2021-06-08 19:20:47)
+> Add device tree bindings for camera clock controller for
+> Qualcomm Technology Inc's SM8250 SoC.
 >=20
-> Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
 > ---
 
 Applied to clk-next
