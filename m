@@ -2,68 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 400953B56C4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 03:36:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499DA3B56D1
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 03:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231986AbhF1Bi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Jun 2021 21:38:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39814 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232009AbhF1Bi0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Jun 2021 21:38:26 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 31CE161A1D;
-        Mon, 28 Jun 2021 01:36:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624844161;
-        bh=sIhBTuSvTzvzpOYA3vNS+ueHf+xQoVCrrpGOqlwJjEg=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=JTTi/5pfq6aUp2AcTANRH6cKx3BnbpZ7gtczAKnX/muZeR7KJf5cvhe0M/X50rzuf
-         mazgY5fowOCH8KgbSTWb94nZQ+UFKQPL3utfggaHrE41ilY42FHp4ftFWyepuktbxo
-         W5UjEhMJaFOZH58RdLMcoW1lyUdc8lfOFQDXFseU6X4MoFcEsdvul69latWIKSvGyx
-         CWw2SFkNynqGpyOvnmN2BxnjYiEBD4hGYwjlPlNAoK3q42441aQjppxf/ri7x6JkYH
-         YUNQfDSHoylY7H7cIgF0q+CDQXeEXDI/jalRz63M4SOINz2ClAxeoUS7l3EJpYYZfm
-         XrFRQrpPS4ZCQ==
-Content-Type: text/plain; charset="utf-8"
+        id S231955AbhF1Bio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Jun 2021 21:38:44 -0400
+Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:41103 "EHLO
+        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232035AbhF1Bin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Jun 2021 21:38:43 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailout.west.internal (Postfix) with ESMTP id 2A30E32004AE;
+        Sun, 27 Jun 2021 21:36:18 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute2.internal (MEProxy); Sun, 27 Jun 2021 21:36:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=Eh3iECIhPnnNClTAB2ZqsMeLKB
+        oI8ZytTsXkobUBnhM=; b=j3a0gTC/zeyDVt8VYPvTKAxiUHeXjYgzNcMa1jdj17
+        6gZQ/xpSdQiwsYzsW8FvL8gDBXuvxv2oe6E6FNDZSeZDNkcRsXfZBYfgnSDMdiaS
+        2TgBJJwQhh1OF//pENkZ7Ryl/sD/vO5KHQbx8NWe6qVxHq2iLcsTo/ezuxAFJ8cO
+        U4W1ZFPXUgpMURIr/xB03n7mQ/qaiZ24pXFWokTtST3Sla8QpP+BPF6fDuPNDrMw
+        MQihehuwghIUR9c5jkvMMZpeYHOIrR6onPkyjUrAzdhOdAAYEpByuqIJoRMFMVS6
+        p/9WNcEwCWqR+nj7010Hr9tsBon0Ns+91DSqZ9njWrlw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Eh3iECIhPnnNClTAB
+        2ZqsMeLKBoI8ZytTsXkobUBnhM=; b=TLPYVywG0uG41sE2k+tes34C2y7JsKLuw
+        G47b/932BrEIyWwHdwcLVmw+LTRHXrXHIXR9ygtRsUdIf9f9qRPWC3oGT+Qu5xKQ
+        cje7CJ0Blc/EII/PQSfVUoAx9m/qY+w4bJMLDgIRlELOcwbCLj67LGkDWUUv4JGu
+        mVOZEd1y5vnx8RZPhPq6l/2a5bSCE2sKrV6aO+o+wACtqhi+J+qb4wyqwhzU3Vnd
+        xqvzhNSSzwLk8mKb3C/drh8uJoDUQ8gT9WmxiDTrUepiYf/UAGXrvH1ocQFXNvcV
+        FQzvqMQNHkSMeaHoYegnxIJToZA4UKcVNi4+cNH39u0eTl/mIbPCA==
+X-ME-Sender: <xms:kCfZYD4j0derOus7kzYlWXDrlage9SQGmkN-tjgOZUCihN7JtXKzXQ>
+    <xme:kCfZYI7R01LMnWLv42hAiqsiSRDDk5fhoiWeZOC2bymyE6PVFjEaVMsQT0Ad042hq
+    q-yBnqDUiGFLElILA>
+X-ME-Received: <xmr:kCfZYKclvtxqgmPzTe-r9mOur8K7BQfBxbLjtVfZVBuCXLzt8TpEqUofxiElcpYwfgQOGfkIH_Rdgy_UQQYVxWZ_9oIsjbpLx-CiVRY0moFLCwwdhKQtXOcBjS6e5Vl2BMlxXUaCxHqITA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeehfedggeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
+    ihgurdgruheqnecuggftrfgrthhtvghrnhepkefhieffjeevfeevhedtieeihfefvdejle
+    dvvddthefftedujeethfeuueelfedtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghr
+    rghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:kCfZYEJ-oZ83N5LOhi4JJ7uO7rlNSVmK4N6xXmoNcAyxVBolY8ARkQ>
+    <xmx:kCfZYHLSTezIywRZYx5_yRhnktPzSMlYZugWbT1Q02HrraM9tOOo_Q>
+    <xmx:kCfZYNyiM-aiu6rm3hhmFpLB86bhDybeX8RmliOPmtVoOzZohr0bYA>
+    <xmx:kSfZYNg7hsxgrNZ2mzIwUpYsE6uHM79OICC6wIdlcZEgNScKnYX_Ng>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 27 Jun 2021 21:36:13 -0400 (EDT)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     linux-aspeed@lists.ozlabs.org
+Cc:     joel@jms.id.au, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: [PATCH] ARM: dts: everest: Add phase corrections for eMMC
+Date:   Mon, 28 Jun 2021 11:06:05 +0930
+Message-Id: <20210628013605.1257346-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210617051814.12018-9-gabriel.fernandez@foss.st.com>
-References: <20210617051814.12018-1-gabriel.fernandez@foss.st.com> <20210617051814.12018-9-gabriel.fernandez@foss.st.com>
-Subject: Re: [RESEND PATCH v3 08/11] dt-bindings: reset: add IDs for SCMI reset domains on stm32mp15
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-To:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Etienne Carriere <etienne.carriere@foss.st.com>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, marex@denx.de
-Date:   Sun, 27 Jun 2021 18:36:00 -0700
-Message-ID: <162484416011.3259633.1627850825241102954@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting gabriel.fernandez@foss.st.com (2021-06-16 22:18:11)
-> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
->=20
-> stm32mp15 TZ secure firmware provides SCMI reset domains for
-> secure resources. This change defines the SCMI reset domain
-> identifiers used by SCMI agents and servers.
->=20
-> Stm32mp15 TZ secure firmware provides SCMI clocks for oscillators, some
-> PLL output and few secure aware interfaces. This change defines the
-> SCMI clock identifiers used by SCMI agents and servers.
->=20
-> Server SCMI0 exposes reset controllers for resources under RCC[TZEN]
-> configuration control.
->=20
-> Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
-> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
+The values were determined experimentally via boot tests, not by
+measuring the bus behaviour with a scope. We plan to do scope
+measurements to confirm or refine the values and will update the
+devicetree if necessary once these have been obtained.
 
-Applied to clk-next
+However, with the patch we can write and read data without issue, where
+as booting the system without the patch failed at the point of mounting
+the rootfs.
+
+Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+---
+ arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
+index 3295c8c7c05c..3274a1f9047f 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
+@@ -1070,6 +1070,7 @@ &pinctrl_emmc_default {
+ 
+ &emmc {
+ 	status = "okay";
++	clk-phase-mmc-hs200 = <180>, <180>;
+ };
+ 
+ &fsim0 {
+-- 
+2.30.2
+
