@@ -2,119 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6934F3B59C2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 09:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E6733B5A35
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 10:03:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232357AbhF1Hd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 03:33:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56854 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232246AbhF1Hd4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Jun 2021 03:33:56 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6070561582;
-        Mon, 28 Jun 2021 07:31:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624865491;
-        bh=xQlF2kkg5CI8fR9QA6kLrmGihAIy44Vu5eKh0i1qOfI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pRdGiQJuy+CZrRTOvhalGZckEedXMagwjwVKyVUxPvgUaDo9IGMmS4ZzgamAacQML
-         zxFF9I+HWzNuOroMICqNtT9bP1esRSzk74CODW0FJaMsxngu0hjjPBDPgQvlI1SpFP
-         Gh+9pOSZqxUysbkDRrLTJf6AvmeN+NIvMc2DdBWdSpjv/D/zt4D/9l7IzmH2s4ZaS4
-         13kx+aN/R5C2vbwqkJNu4cRSxg06aW9849A2eZvwwW5Ijfg+9fuQG61KIO5SO8RYy7
-         ioK/pe8ltv6AmyfArSiyQYV8N5Bbw9Hb9V/oJhAizgBo4GYfYX2TDdLQk+xrnFWsil
-         V/lGCcGYNGqHQ==
-Date:   Mon, 28 Jun 2021 13:01:24 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     kernel test robot <lkp@intel.com>,
+        id S231845AbhF1IGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 04:06:18 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:17526 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229911AbhF1IGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 04:06:18 -0400
+X-UUID: 37a9a923059e48819e7bcb92db666673-20210628
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=UyCUoWq5C8H8X3Ls/9jw1l30aSnsYNS8MIqI3Jdte34=;
+        b=NQShitKfmMb479YptqZkariH15y33S2g8+NDnwgUZ+eDrNkMRyFunmkMb7By0jVUIZSbsLMJqa2tFzr9mtZZChfk+abZn0TBa5ACznHKLh+5bkm38UEgRgGO8Ekd5hBsQJPM211xrhtYh9OPpy8oPpP01bUSxJ+/bQaXIaZWDag=;
+X-UUID: 37a9a923059e48819e7bcb92db666673-20210628
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1510859484; Mon, 28 Jun 2021 16:03:45 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 28 Jun
+ 2021 16:03:36 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 28 Jun 2021 16:03:35 +0800
+Message-ID: <1624867415.19871.7.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: mediatek-gen3: Add property to
+ disable dvfsrc voltage request
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        kbuild-all@lists.01.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] ARM: dts: owl-s500: Add ethernet support
-Message-ID: <20210628073124.GB4033@workstation>
-References: <222ee0c2cb431619f558dce9726585ac92f65e00.1623401998.git.cristian.ciocaltea@gmail.com>
- <202106162101.RfHWePKS-lkp@intel.com>
- <20210628062235.GA4033@workstation>
- <20210628070234.GA1003245@ubuntu2004>
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Ryder Lee <ryder.lee@mediatek.com>, <linux-pci@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <youlin.pei@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
+        <sin_jieyang@mediatek.com>, <drinkcat@chromium.org>,
+        <Rex-BC.Chen@mediatek.com>, Krzysztof Wilczyski <kw@linux.com>,
+        <Ryan-JH.Yu@mediatek.com>
+Date:   Mon, 28 Jun 2021 16:03:35 +0800
+In-Reply-To: <20210611114824.14537-2-jianjun.wang@mediatek.com>
+References: <20210611114824.14537-1-jianjun.wang@mediatek.com>
+         <20210611114824.14537-2-jianjun.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210628070234.GA1003245@ubuntu2004>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-TM-SNTS-SMTP: 3C847F0C72EE72988F88A8EF8A8CFC570617985F93A7278597666503F0F909702000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 28, 2021 at 10:02:34AM +0300, Cristian Ciocaltea wrote:
-> Hi Mani,
-> 
-> On Mon, Jun 28, 2021 at 11:52:35AM +0530, Manivannan Sadhasivam wrote:
-> > Hi Cristi,
-> > 
-> > On Wed, Jun 16, 2021 at 09:30:13PM +0800, kernel test robot wrote:
-> > > Hi Cristian,
-> > > 
-> > > I love your patch! Yet something to improve:
-> > > 
-> > > [auto build test ERROR on robh/for-next]
-> > > [also build test ERROR on v5.13-rc6 next-20210615]
-> > > [If your patch is applied to the wrong git tree, kindly drop us a note.
-> > > And when submitting patch, we suggest to use '--base' as documented in
-> > > https://git-scm.com/docs/git-format-patch]
-> > > 
-> > > url:    https://github.com/0day-ci/linux/commits/Cristian-Ciocaltea/Add-Ethernet-DTS-for-Actions-Semi-Owl-S500-SoCs/20210616-121106
-> > > base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-> > > config: arm-randconfig-r025-20210615 (attached as .config)
-> > > compiler: arm-linux-gnueabi-gcc (GCC) 9.3.0
-> > > reproduce (this is a W=1 build):
-> > >         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-> > >         chmod +x ~/bin/make.cross
-> > >         # https://github.com/0day-ci/linux/commit/87e17f86112592e0805d0a081914f7b2eeb2770d
-> > >         git remote add linux-review https://github.com/0day-ci/linux
-> > >         git fetch --no-tags linux-review Cristian-Ciocaltea/Add-Ethernet-DTS-for-Actions-Semi-Owl-S500-SoCs/20210616-121106
-> > >         git checkout 87e17f86112592e0805d0a081914f7b2eeb2770d
-> > >         # save the attached .config to linux build tree
-> > >         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=arm 
-> > > 
-> > > If you fix the issue, kindly add following tag as appropriate
-> > > Reported-by: kernel test robot <lkp@intel.com>
-> > > 
-> > > All errors (new ones prefixed by >>):
-> > > 
-> > > >> Error: arch/arm/boot/dts/owl-s500.dtsi:332.19-20 syntax error
-> > > >> FATAL ERROR: Unable to parse input tree
-> > 
-> > Did you look into this error? Looks like CLK_ETHERNET is not defined in
-> > the s500 CMU binding.
-> 
-> CLK_ETHERNET is introduced through patches 5 & 6 from the patch series:
-> "[PATCH v3 0/6] Improve clock support for Actions S500 SoC"
-> 
-> Most probably those patches were not applied to the tested kernel tree
-> and that's why the robot reported the error.
-> 
+SGkgUm9iLCBCam9ybiwgTWF0dGhpYXMsDQoNCkNvdWxkIHlvdSBwbGVhc2UgaGVscCB0byB0YWtl
+IGEgbG9vayBhdCB0aGlzIHBhdGNoIHNlcmllcz8NCg0KV2UgaGF2ZSBkb25lIHRoZSBpbnRlcm5h
+bCB0ZXN0cyBhbmQgbmVlZCB0byBpbXBsZW1lbnQgdGhpcyBmdW5jdGlvbiBpbg0KdGhlIGZpbmFs
+IHByb2R1Y3QsIFdlIHJlYWxseSBuZWVkIHlvdXIgc3VnZ2VzdGlvbnMuDQoNClRoYW5rcy4NCg0K
+T24gRnJpLCAyMDIxLTA2LTExIGF0IDE5OjQ4ICswODAwLCBKaWFuanVuIFdhbmcgd3JvdGU6DQo+
+IEFkZCBwcm9wZXJ0eSB0byBkaXNhYmxlIGR2ZnNyYyB2b2x0YWdlIHJlcXVlc3QsIGlmIHRoaXMg
+cHJvcGVydHkNCj4gaXMgcHJlc2VudGVkLCB3ZSBhc3N1bWUgdGhhdCB0aGUgcmVxdWVzdGVkIHZv
+bHRhZ2UgaXMgYWx3YXlzDQo+IGhpZ2hlciBlbm91Z2ggdG8ga2VlcCB0aGUgUENJZSBjb250cm9s
+bGVyIGFjdGl2ZS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEppYW5qdW4gV2FuZyA8amlhbmp1bi53
+YW5nQG1lZGlhdGVrLmNvbT4NCj4gUmV2aWV3ZWQtYnk6IFFpemhvbmcgQ2hlbmcgPHFpemhvbmcu
+Y2hlbmdAbWVkaWF0ZWsuY29tPg0KPiBUZXN0ZWQtYnk6IFFpemhvbmcgQ2hlbmcgPHFpemhvbmcu
+Y2hlbmdAbWVkaWF0ZWsuY29tPg0KPiAtLS0NCj4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Bj
+aS9tZWRpYXRlay1wY2llLWdlbjMueWFtbCAgICAgICB8IDggKysrKysrKysNCj4gIDEgZmlsZSBj
+aGFuZ2VkLCA4IGluc2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtZ2VuMy55YW1sIGIvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWdlbjMueWFtbA0K
+PiBpbmRleCBlN2IxZjk4OTJkYTQuLjNlMjZjMDMyY2VhOSAxMDA2NDQNCj4gLS0tIGEvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWdlbjMueWFtbA0K
+PiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBj
+aWUtZ2VuMy55YW1sDQo+IEBAIC05Niw2ICs5NiwxMiBAQCBwcm9wZXJ0aWVzOg0KPiAgICBwaHlz
+Og0KPiAgICAgIG1heEl0ZW1zOiAxDQo+ICANCj4gKyAgZGlzYWJsZS1kdmZzcmMtdmx0LXJlcToN
+Cj4gKyAgICBkZXNjcmlwdGlvbjogRGlzYWJsZSBkdmZzcmMgdm9sdGFnZSByZXF1ZXN0LCBpZiB0
+aGlzIHByb3BlcnR5IGlzIHByZXNlbnRlZCwNCj4gKyAgICAgIHdlIGFzc3VtZSB0aGF0IHRoZSBy
+ZXF1ZXN0ZWQgdm9sdGFnZSBpcyBhbHdheXMgaGlnaGVyIGVub3VnaCB0byBrZWVwDQo+ICsgICAg
+ICB0aGUgUENJZSBjb250cm9sbGVyIGFjdGl2ZS4NCj4gKyAgICB0eXBlOiBib29sZWFuDQo+ICsN
+Cj4gICAgJyNpbnRlcnJ1cHQtY2VsbHMnOg0KPiAgICAgIGNvbnN0OiAxDQo+ICANCj4gQEAgLTE2
+Niw2ICsxNzIsOCBAQCBleGFtcGxlczoNCj4gICAgICAgICAgICAgICAgICAgICAgIDwmaW5mcmFj
+ZmdfcnN0IDM+Ow0KPiAgICAgICAgICAgICAgcmVzZXQtbmFtZXMgPSAicGh5IiwgIm1hYyI7DQo+
+ICANCj4gKyAgICAgICAgICAgIGRpc2FibGUtZHZmc3JjLXZsdC1yZXE7DQo+ICsNCj4gICAgICAg
+ICAgICAgICNpbnRlcnJ1cHQtY2VsbHMgPSA8MT47DQo+ICAgICAgICAgICAgICBpbnRlcnJ1cHQt
+bWFwLW1hc2sgPSA8MCAwIDAgMHg3PjsNCj4gICAgICAgICAgICAgIGludGVycnVwdC1tYXAgPSA8
+MCAwIDAgMSAmcGNpZV9pbnRjIDA+LA0KDQo=
 
-Ah, okay. I didn't see it. Then I'll just push the dts changes and see
-if they get applied for 5.14.
-
-Thanks,
-Mani
-
-> Thanks,
-> Cristi
-> 
-> > Today I saw that the clk patches are applied but then it is later for me
-> > to send the dts patches for v5.14. So please fix this error and
-> > resubmit, I'll take them for v5.15.
-> > 
-> > Thanks,
-> > Mani
-> > 
-> > > 
-> > > ---
-> > > 0-DAY CI Kernel Test Service, Intel Corporation
-> > > https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
-> > 
-> > 
