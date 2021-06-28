@@ -2,114 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B1893B59B8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 09:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6934F3B59C2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 09:31:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232376AbhF1H3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 03:29:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54578 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232375AbhF1H3L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 03:29:11 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA806C061766
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 00:26:44 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id i4so8398573plt.12
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 00:26:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=CsEyi+ba8SRVvbqYHH4jH1LVCacUh7q5WrGtZYt+9O0=;
-        b=uS/PWnJw9EEYCs7oPju6zEF2huhjziG/Ai+HwVvEbygzN696DD0hR6oCRnY0utpird
-         l9wslKvhoYQmH3iJmab+T+Abuj0VG2uHXJ9E1cksWc5ROkYG7zacDj2Peh0eUfzvmiEN
-         eSN+PgeDf0S2LYqlfaPzDTZidl7eXk4EjAFOtxV9aVje/oMACppZDyKCtPC0LKToHhRR
-         sljfjg637WIkilO3gLVuBmugZcTJ708YnXxdyXL0L+FhYYL/8DPeCjzi+mgSup2ZvXSq
-         PTZpWbv2FeE6I+50oVZTLZg3O6aCsSsH3/rmgRjl0jxwKsJIbaZxsQdx4DYZLE0oVFmj
-         Vc4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=CsEyi+ba8SRVvbqYHH4jH1LVCacUh7q5WrGtZYt+9O0=;
-        b=DEBpAyb3pxawFZYtYTtjU0+O5RMM/OS2C6BePwyunFTfJ6t5YWZ2ZdGSzjp3QG5W1P
-         MYHAyWUpd8eQrCMYux6bbEEgVEmrQBG8kaQyq4sRsxGxXZzv9UHkth00ucVxrMjx8izL
-         4XmpKKlLKXw701mkNGCt+prO5i7YIHI4Tc2+dMbzwLfU5N3sgS+wVUsNwUw86Pno5LQH
-         FmO5bcz8Z1ieSZLFzZMcTkAoW2BsV1q8sYf30Ev2LpG0Ljiw0x8DwCG64PYNXxOcCERA
-         6dovN7uSwAZibC1MWnbyasbyQKukxghv6PRYYto/p2sh7YgoxvkybrC4d6sWc2/iydTS
-         WFKA==
-X-Gm-Message-State: AOAM530PuX73D6NDVbs6jvKe/U/sHJmp2GM/UMuRnalLYZssw81wOIW4
-        PAaOIiCiR/AKTBSEm7S9OX4sTA==
-X-Google-Smtp-Source: ABdhPJzvj3RyJoV/06Ww25nVFOFF8bC770v05nPHwgY/XXaIshX/WE20M/moTS6WjQFUX7/ZSyTbWg==
-X-Received: by 2002:a17:90a:4d4e:: with SMTP id l14mr26329436pjh.129.1624865204126;
-        Mon, 28 Jun 2021 00:26:44 -0700 (PDT)
-Received: from localhost ([136.185.134.182])
-        by smtp.gmail.com with ESMTPSA id h24sm13522053pfn.180.2021.06.28.00.26.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jun 2021 00:26:43 -0700 (PDT)
-Date:   Mon, 28 Jun 2021 12:56:41 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>, Sudeep.Holla@arm.com
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wsd_upstream@mediatek.com
-Subject: Re: [PATCH v12 1/2] cpufreq: mediatek-hw: Add support for CPUFREQ HW
-Message-ID: <20210628072641.amqk5d3svwolvhic@vireshk-i7>
-References: <1622307153-3639-1-git-send-email-hector.yuan@mediatek.com>
- <1622307153-3639-2-git-send-email-hector.yuan@mediatek.com>
- <20210614104058.jdwb7godqzhf7rgd@vireshk-i7>
- <1624781848.1958.16.camel@mtkswgap22>
+        id S232357AbhF1Hd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 03:33:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56854 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232246AbhF1Hd4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Jun 2021 03:33:56 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6070561582;
+        Mon, 28 Jun 2021 07:31:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624865491;
+        bh=xQlF2kkg5CI8fR9QA6kLrmGihAIy44Vu5eKh0i1qOfI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pRdGiQJuy+CZrRTOvhalGZckEedXMagwjwVKyVUxPvgUaDo9IGMmS4ZzgamAacQML
+         zxFF9I+HWzNuOroMICqNtT9bP1esRSzk74CODW0FJaMsxngu0hjjPBDPgQvlI1SpFP
+         Gh+9pOSZqxUysbkDRrLTJf6AvmeN+NIvMc2DdBWdSpjv/D/zt4D/9l7IzmH2s4ZaS4
+         13kx+aN/R5C2vbwqkJNu4cRSxg06aW9849A2eZvwwW5Ijfg+9fuQG61KIO5SO8RYy7
+         ioK/pe8ltv6AmyfArSiyQYV8N5Bbw9Hb9V/oJhAizgBo4GYfYX2TDdLQk+xrnFWsil
+         V/lGCcGYNGqHQ==
+Date:   Mon, 28 Jun 2021 13:01:24 +0530
+From:   Manivannan Sadhasivam <mani@kernel.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     kernel test robot <lkp@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        kbuild-all@lists.01.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] ARM: dts: owl-s500: Add ethernet support
+Message-ID: <20210628073124.GB4033@workstation>
+References: <222ee0c2cb431619f558dce9726585ac92f65e00.1623401998.git.cristian.ciocaltea@gmail.com>
+ <202106162101.RfHWePKS-lkp@intel.com>
+ <20210628062235.GA4033@workstation>
+ <20210628070234.GA1003245@ubuntu2004>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1624781848.1958.16.camel@mtkswgap22>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20210628070234.GA1003245@ubuntu2004>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27-06-21, 16:17, Hector Yuan wrote:
-> On Mon, 2021-06-14 at 16:10 +0530, Viresh Kumar wrote:
-> > On 30-05-21, 00:52, Hector Yuan wrote:
-> > > +static int mtk_get_related_cpus(int index, struct cpufreq_mtk *c)
-> > > +{
-> > > +	struct device_node *cpu_np;
-> > > +	struct of_phandle_args args;
-> > > +	int cpu, ret;
-> > > +
-> > > +	for_each_possible_cpu(cpu) {
-> > > +		cpu_np = of_cpu_device_node_get(cpu);
-> > > +		if (!cpu_np)
-> > > +			continue;
-> > > +
-> > > +		ret = of_parse_phandle_with_args(cpu_np, "performance-domains",
-> > > +						 "#performance-domain-cells", 0,
-> > > +						 &args);
-> > > +		of_node_put(cpu_np);
-> > > +		if (ret < 0)
-> > > +			continue;
-> > > +
-> > > +		if (index == args.args[0]) {
-> > > +			cpumask_set_cpu(cpu, &c->related_cpus);
-> > > +			mtk_freq_domain_map[cpu] = c;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > 
-> > I really hope this can be moved to a common place as more than one
-> > drier should be required to parse this thing.
-> > 
+On Mon, Jun 28, 2021 at 10:02:34AM +0300, Cristian Ciocaltea wrote:
+> Hi Mani,
 > 
-> Yes, this can be a common part for all performance domain users. But may
-> I know whats your suggestion? Put this API in another file or? Thanks
+> On Mon, Jun 28, 2021 at 11:52:35AM +0530, Manivannan Sadhasivam wrote:
+> > Hi Cristi,
+> > 
+> > On Wed, Jun 16, 2021 at 09:30:13PM +0800, kernel test robot wrote:
+> > > Hi Cristian,
+> > > 
+> > > I love your patch! Yet something to improve:
+> > > 
+> > > [auto build test ERROR on robh/for-next]
+> > > [also build test ERROR on v5.13-rc6 next-20210615]
+> > > [If your patch is applied to the wrong git tree, kindly drop us a note.
+> > > And when submitting patch, we suggest to use '--base' as documented in
+> > > https://git-scm.com/docs/git-format-patch]
+> > > 
+> > > url:    https://github.com/0day-ci/linux/commits/Cristian-Ciocaltea/Add-Ethernet-DTS-for-Actions-Semi-Owl-S500-SoCs/20210616-121106
+> > > base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> > > config: arm-randconfig-r025-20210615 (attached as .config)
+> > > compiler: arm-linux-gnueabi-gcc (GCC) 9.3.0
+> > > reproduce (this is a W=1 build):
+> > >         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+> > >         chmod +x ~/bin/make.cross
+> > >         # https://github.com/0day-ci/linux/commit/87e17f86112592e0805d0a081914f7b2eeb2770d
+> > >         git remote add linux-review https://github.com/0day-ci/linux
+> > >         git fetch --no-tags linux-review Cristian-Ciocaltea/Add-Ethernet-DTS-for-Actions-Semi-Owl-S500-SoCs/20210616-121106
+> > >         git checkout 87e17f86112592e0805d0a081914f7b2eeb2770d
+> > >         # save the attached .config to linux build tree
+> > >         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=arm 
+> > > 
+> > > If you fix the issue, kindly add following tag as appropriate
+> > > Reported-by: kernel test robot <lkp@intel.com>
+> > > 
+> > > All errors (new ones prefixed by >>):
+> > > 
+> > > >> Error: arch/arm/boot/dts/owl-s500.dtsi:332.19-20 syntax error
+> > > >> FATAL ERROR: Unable to parse input tree
+> > 
+> > Did you look into this error? Looks like CLK_ETHERNET is not defined in
+> > the s500 CMU binding.
+> 
+> CLK_ETHERNET is introduced through patches 5 & 6 from the patch series:
+> "[PATCH v3 0/6] Improve clock support for Actions S500 SoC"
+> 
+> Most probably those patches were not applied to the tested kernel tree
+> and that's why the robot reported the error.
+> 
 
-Rob, Sudeep: You guys have a suggestion on where can we keep a routine for this
-?
+Ah, okay. I didn't see it. Then I'll just push the dts changes and see
+if they get applied for 5.14.
 
--- 
-viresh
+Thanks,
+Mani
+
+> Thanks,
+> Cristi
+> 
+> > Today I saw that the clk patches are applied but then it is later for me
+> > to send the dts patches for v5.14. So please fix this error and
+> > resubmit, I'll take them for v5.15.
+> > 
+> > Thanks,
+> > Mani
+> > 
+> > > 
+> > > ---
+> > > 0-DAY CI Kernel Test Service, Intel Corporation
+> > > https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> > 
+> > 
