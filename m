@@ -2,77 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F103B64DA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 17:14:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF9A3B64EF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 17:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236280AbhF1PQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 11:16:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45464 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238024AbhF1PPP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Jun 2021 11:15:15 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5548661206;
-        Mon, 28 Jun 2021 15:12:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624893169;
-        bh=mKc+DGVUwwP3w69Df4E2RuWvYSvZU8sQpDkg3+zmHdQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Mj02hJ2U7DYOg1g9bW0KTyxbl1p3cDsRZs+m9IJNiri7W3tj2aDZhHBBtma9t5Knb
-         wIHyLhtsOHvdFjr18q0P7VNAucSu68J9B0Ml5R0XNMMiYPJN67xN16QTOTqzd4babm
-         53h2k2waAxLt3pciV5PyVhTekkQofqaOLRZ9VSd7iwo6+A7s52wWQg+l5doQWj7/wD
-         L88K/Be8vmXy8XM6X7f9/O+x9OO4Xd+bBuaT7ukFUcA/Myc56dvFxMhOzrJWdPDPJd
-         smAnU3PhpVWCgFiD3PHPV9yadjSFaGXp58StngFGRBPmTEwKK+Zioyh0DLyBA2oAnY
-         uBA+sSOKC3ikQ==
-Received: by pali.im (Postfix)
-        id 43D0070A; Mon, 28 Jun 2021 17:12:47 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        id S235788AbhF1PSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 11:18:06 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:36392 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S235682AbhF1PQD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Jun 2021 11:16:03 -0400
+Received: from localhost.localdomain (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxz0Ia59lgs88ZAA--.8919S2;
+        Mon, 28 Jun 2021 23:13:30 +0800 (CST)
+From:   Qing Zhang <zhangqing@loongson.cn>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Huacai Chen <chenhuacai@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: armada-3720-turris-mox: remove mrvl,i2c-fast-mode
-Date:   Mon, 28 Jun 2021 17:12:29 +0200
-Message-Id: <20210628151229.25214-1-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210628121015.22660-1-pali@kernel.org>
-References: <20210628121015.22660-1-pali@kernel.org>
+Subject: [PATCH v4 1/2] MIPS: Loongson64: Add Loongson-2K1000 reset platform driver
+Date:   Mon, 28 Jun 2021 23:13:29 +0800
+Message-Id: <20210628151330.11952-1-zhangqing@loongson.cn>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf9Dxz0Ia59lgs88ZAA--.8919S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxCFy8WrWDXw4kCw17AF15twb_yoW5CF1rpF
+        Z8Gw43Cr4rG3W7Kw4rtF1UuFW5Z3Z3tFWjkFW2v34UZ3sxWFZ8Jwn8tFyrArnrGrW7AFW3
+        ZFsYgFW8CF4ru3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUvab7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
+        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+        A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
+        jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
+        A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
+        w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r4j6F4UMc
+        vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCY
+        02Avz4vE14v_XrWl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxV
+        Aqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r12
+        6r1DMIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6x
+        kF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWrJr0_WFyUJwCI42IY6I8E87Iv
+        67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyT
+        uYvjxUkwvKUUUUU
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some SFP modules are not detected when i2c-fast-mode is enabled even when
-clock-frequency is already set to 100000. The I2C bus violates the timing
-specifications when run in fast mode. So disable fast mode on Turris Mox.
+Add power management register operations to support reboot and poweroff.
 
-Same change was already applied for uDPU (also Armada 3720 board with SFP)
-in commit fe3ec631a77d ("arm64: dts: uDPU: remove i2c-fast-mode").
-
-Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
-Signed-off-by: Pali Rohár <pali@kernel.org>
-Reviewed-by: Marek Behún <kabel@kernel.org>
+Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
 ---
- arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index 6bcc319a0161..85f15f2a4740 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -119,6 +119,7 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c1_pins>;
- 	clock-frequency = <100000>;
-+	/delete-property/ mrvl,i2c-fast-mode;
- 	status = "okay";
+v2-v3:
+-make reset support as a driver
+
+v3-v4:
+-Modify patch title
+
+Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+---
+ drivers/platform/mips/Kconfig      |  6 +++
+ drivers/platform/mips/Makefile     |  1 +
+ drivers/platform/mips/ls2k-reset.c | 60 ++++++++++++++++++++++++++++++
+ 3 files changed, 67 insertions(+)
+ create mode 100644 drivers/platform/mips/ls2k-reset.c
+
+diff --git a/drivers/platform/mips/Kconfig b/drivers/platform/mips/Kconfig
+index 8ac149173c64..d421e1482395 100644
+--- a/drivers/platform/mips/Kconfig
++++ b/drivers/platform/mips/Kconfig
+@@ -30,4 +30,10 @@ config RS780E_ACPI
+ 	help
+ 	  Loongson RS780E PCH ACPI Controller driver.
  
- 	rtc@6f {
++config LS2K_RESET
++	bool "Loongson-2K1000 Reset Controller"
++	depends on MACH_LOONGSON64 || COMPILE_TEST
++	help
++	  Loongson-2K1000 Reset Controller driver.
++
+ endif # MIPS_PLATFORM_DEVICES
+diff --git a/drivers/platform/mips/Makefile b/drivers/platform/mips/Makefile
+index 178149098777..4c71444e453a 100644
+--- a/drivers/platform/mips/Makefile
++++ b/drivers/platform/mips/Makefile
+@@ -1,3 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ obj-$(CONFIG_CPU_HWMON) += cpu_hwmon.o
+ obj-$(CONFIG_RS780E_ACPI) += rs780e-acpi.o
++obj-$(CONFIG_LS2K_RESET) += ls2k-reset.o
+diff --git a/drivers/platform/mips/ls2k-reset.c b/drivers/platform/mips/ls2k-reset.c
+new file mode 100644
+index 000000000000..c5f073c82c5e
+--- /dev/null
++++ b/drivers/platform/mips/ls2k-reset.c
+@@ -0,0 +1,60 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ *  Copyright (C) 2021, Qing Zhang <zhangqing@loongson.cn>
++ *  Loongson-2K1000 reset support
++ */
++
++#include <linux/of_address.h>
++#include <linux/pm.h>
++#include <asm/reboot.h>
++
++static char *pm_reg_name[] = {"pm1_sts", "pm1_cnt", "rst_cnt"};
++
++static void __iomem *get_reg_byname(struct device_node *node, const char *name)
++{
++	int index = of_property_match_string(node, "reg-names", name);
++
++	if (index < 0)
++		return NULL;
++
++	return of_iomap(node, index);
++}
++
++static void ls2k_restart(char *command)
++{
++	writel(0x1, (void *)pm_reg_name[2]);
++}
++
++static void ls2k_poweroff(void)
++{
++	/* Clear */
++	writel((readl((void *)pm_reg_name[0]) & 0xffffffff), (void *)pm_reg_name[0]);
++	/* Sleep Enable | Soft Off*/
++	writel(GENMASK(12, 10)|BIT(13), (void *)pm_reg_name[1]);
++}
++
++static int ls2k_reset_init(void)
++{
++	struct device_node *np;
++	int i;
++
++	np = of_find_node_by_type(NULL, "power management");
++	if (!np) {
++		pr_info("Failed to get PM node\n");
++		return -ENODEV;
++	}
++
++	for (i = 0; i < sizeof(pm_reg_name)/sizeof(char *); i++) {
++		pm_reg_name[i] = get_reg_byname(np, pm_reg_name[i]);
++		if (!pm_reg_name[i])
++			iounmap(pm_reg_name[i]);
++	}
++
++	_machine_restart = ls2k_restart;
++	pm_power_off = ls2k_poweroff;
++
++	of_node_put(np);
++	return 0;
++}
++
++arch_initcall(ls2k_reset_init);
 -- 
-2.20.1
+2.31.0
 
