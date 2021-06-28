@@ -2,53 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C4873B5783
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 04:55:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93DCB3B5798
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 05:02:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231815AbhF1C5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Jun 2021 22:57:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59234 "EHLO mail.kernel.org"
+        id S232034AbhF1DEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Jun 2021 23:04:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60284 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231984AbhF1C5n (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Jun 2021 22:57:43 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 081A061A1D;
-        Mon, 28 Jun 2021 02:55:19 +0000 (UTC)
+        id S231753AbhF1DEo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Jun 2021 23:04:44 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7129161988;
+        Mon, 28 Jun 2021 03:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624848919;
-        bh=cx7qh3lkj8FpUVeQl1lHhT+q04JbXWm9rzjjdfTRFBs=;
+        s=k20201202; t=1624849339;
+        bh=cnsKi5eaK29RrwH3IZdPHerd5IolaP2txgKPxl/j1Lc=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=QkZHX99fahdBv9ZojAuvaIPwkQUl65cCpKUvcVmPqut+xtFPh1VTz9zZRxRlCSiZc
-         +E/4ojPJmgHfbsHrif++eifIhXviEz89BgGfQrLYHwxDX165GRVBe5Vn7BzHKkcDl3
-         NxMqR5MtXaHhjI6DIvlU9gfcwuXiMIEnHn/FNx8vw5QB/LnqSv23Rci3FPOBke9k/h
-         CT9GXPEbZTxOCmIGDKkfkHdwhvV7/0q1N9U2sCzY+6KbwCr6F6M/c2x8hnwmyO4gYS
-         1FZEimSti1s8W/nS+GqBCqF1xBfH6B10hHfYvp1DKgrSurhF4JwvKUNNx8qB1+lWi5
-         vKzSjys6BUaDQ==
+        b=HxOvkEDWXJ4A+Ss90MZI7dAPElS2v+OhZ4zpB+VbNnn04LcZN9lYXzetoHAlw8VXM
+         B041vdszLpNtiU9X6BJ4v2mFxgWIwGL0K6h3U+/9RmcxjMGyCscuQNko0zVTYtGTnl
+         lm3nOejWJzTw2taiIQrn+BST8WwGv8rvE48tOEHA/XwKyzGhM6h7G785zJ6CQBjm4r
+         hAqpDijisNVKe37zMony+qAjJn9k0SNryziM4UiE9GffbKxhG1Ifwzg4/TcTdZamQe
+         Y3NxLGkJMr4Sp+9jKSu1ABlSfdK6iuYh18D6kwYISI1RmTxVoX0tTxdokgfP3WII8t
+         Gh7EXqQRCWuRg==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20210331201632.24530-8-avolmat@me.com>
-References: <20210331201632.24530-1-avolmat@me.com> <20210331201632.24530-8-avolmat@me.com>
-Subject: Re: [PATCH v4 7/7] dt-bindings: clock: st: clkgen-fsyn: add new introduced compatible
+In-Reply-To: <20210325192643.2190069-2-robert.hancock@calian.com>
+References: <20210325192643.2190069-1-robert.hancock@calian.com> <20210325192643.2190069-2-robert.hancock@calian.com>
+Subject: Re: [PATCH v3 1/9] dt-bindings: clock: clk-si5341: Add new attributes
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Alain Volmat <avolmat@me.com>
-To:     Alain Volmat <avolmat@me.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Sun, 27 Jun 2021 19:55:17 -0700
-Message-ID: <162484891788.2516444.15034205531719797793@swboyd.mtv.corp.google.com>
+Cc:     mike.looijmans@topic.nl, robh+dt@kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Robert Hancock <robert.hancock@calian.com>
+To:     Robert Hancock <robert.hancock@calian.com>, mturquette@baylibre.com
+Date:   Sun, 27 Jun 2021 20:02:18 -0700
+Message-ID: <162484933814.2516444.5607074946847777797@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Alain Volmat (2021-03-31 13:16:32)
-> New compatible are added, supporting various kind of clkgen-fsyn
-> used for STiH407, STiH410 and STiH418
+Quoting Robert Hancock (2021-03-25 12:26:35)
+> Add new silabs,xaxb-ext-clk and silabs,iovdd-33 properties.
 >=20
-> Signed-off-by: Alain Volmat <avolmat@me.com>
+> Changed vdd-supply on top-level node to optional since it is not actually
+> used by the driver.
+>=20
+> Removed vdd-supply from output sub-nodes, as it was not supported by the
+> driver and it is not easily possible to support this in that location with
+> the kernel regulator infrastructure. Changed to have vddoX-supply
+> attributes for each output on the top-level device node.
+>=20
+> Signed-off-by: Robert Hancock <robert.hancock@calian.com>
 > ---
 
 Applied to clk-next
