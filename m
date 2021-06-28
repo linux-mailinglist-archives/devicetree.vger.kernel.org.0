@@ -2,53 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9A183B57BC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 05:06:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C85ED3B57FD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Jun 2021 06:03:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231972AbhF1DI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Jun 2021 23:08:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33078 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231815AbhF1DI4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Jun 2021 23:08:56 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4AF7561984;
-        Mon, 28 Jun 2021 03:06:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1624849591;
-        bh=Yol1WOyGdtl/K8uUJab1YEArblm92Sqcuc9K8JBBW4I=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=JjY6XSXAE+cupCXZnKscqpfFUwSfYnQmnluEydVuiBhaTGmFb8S1P20VhrQ5NlNn8
-         GAF6lWLQtVV1RcqAlCj3tuPzq8XaQc0AqhrypIjcjq16X529Mp4kLMXUANEQ+Nj9vs
-         vXCJi7ruE14akEc+vXjmGaMU8ENtQ/GgBQSsIoN0oX39F6revzJsecWLZuornsKwN4
-         rMzXFeQ4ljIEYp37YeYG/LpRRLoWbB6eS0IpLh3c5w9yUwKfqdQSAor6bFd5nCQfYO
-         B5emQzEDw+8xMkXQXm0Dqir3RZcZGBi2bc2p1R7SBzinPSVKkubljLjL5H/woE/QhT
-         55n8WgSODSLQA==
-Content-Type: text/plain; charset="utf-8"
+        id S229808AbhF1EF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 00:05:56 -0400
+Received: from regular1.263xmail.com ([211.150.70.202]:38124 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229578AbhF1EFz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 00:05:55 -0400
+X-Greylist: delayed 523 seconds by postgrey-1.27 at vger.kernel.org; Mon, 28 Jun 2021 00:05:54 EDT
+Received: from localhost (unknown [192.168.167.16])
+        by regular1.263xmail.com (Postfix) with ESMTP id 916D6829;
+        Mon, 28 Jun 2021 11:54:33 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED2: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 1
+Received: from localhost.localdomain (unknown [14.20.131.7])
+        by smtp.263.net (postfix) whith ESMTP id P12369T139709984536320S1624852472443677_;
+        Mon, 28 Jun 2021 11:54:33 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <fdf104fba4e4b2bf7e6009133de69086>
+X-RL-SENDER: djw@t-chip.com.cn
+X-SENDER: djw@t-chip.com.cn
+X-LOGIN-NAME: djw@t-chip.com.cn
+X-FST-TO: linux-rockchip@lists.infradead.org
+X-RCPT-COUNT: 18
+X-SENDER-IP: 14.20.131.7
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   djw@t-chip.com.cn
+To:     linux-rockchip@lists.infradead.org
+Cc:     Wayne Chou <zxf@t-chip.com.cn>, Kongxin Deng <dkx@t-chip.com.cn>,
+        Levin Du <djw@t-chip.com.cn>, Heiko Stuebner <heiko@sntech.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        David Bauer <mail@david-bauer.net>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Jensen Huang <jensenhuang@friendlyarm.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Liang Chen <cl@rock-chips.com>,
+        Marty Jones <mj8263788@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v0 0/2] Add support for Firefly ROC-RK3399-PC-PLUS
+Date:   Mon, 28 Jun 2021 11:54:00 +0800
+Message-Id: <20210628035402.16812-1-djw@t-chip.com.cn>
+X-Mailer: git-send-email 2.23.0.37.g745f6812895b
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1616498973-47067-3-git-send-email-gengdongjiu1@gmail.com>
-References: <1616498973-47067-1-git-send-email-gengdongjiu1@gmail.com> <1616498973-47067-3-git-send-email-gengdongjiu1@gmail.com>
-Subject: Re: [PATCH v8 2/2] clk: hisilicon: Add clock driver for hi3559A SoC
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Dongjiu Geng <gengdongjiu@huawei.com>
-To:     devicetree@vger.kernel.org, gengdongjiu1@gmail.com,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, robh+dt@kernel.org
-Date:   Sun, 27 Jun 2021 20:06:30 -0700
-Message-ID: <162484959011.2516444.7382814724138856354@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dongjiu Geng (2021-03-23 04:29:33)
-> From: Dongjiu Geng <gengdongjiu@huawei.com>
->=20
-> Add clock drivers for hi3559A SoC, this driver
-> controls the SoC registers to supply different
-> clocks to different IPs in the SoC.
->=20
-> Signed-off-by: Dongjiu Geng <gengdongjiu@huawei.com>
-> ---
+From: Levin Du <djw@t-chip.com.cn>
 
-Applied to clk-next
+
+Hi all, this is an attemp to add Firefly ROC-RK3399-PC-PLUS to the mainline
+kernel.
+
+ROC-RK3399-PC-PLUS is the board inside the portable Firefly Station P1 Geek
+PC. As a redesign after the ROC-RK3399-PC, it uses DC-12V as power input
+and spares a USB 3 host port. It is also equipped with a USB WiFi chip and
+audio codec without the mezzanine board.
+
+Many thanks to the Linux people!
+
+
+Levin Du (2):
+  dt-bindings: add doc for Firefly ROC-RK3399-PC-PLUS
+  arm64: dts: rockchip: add support for Firefly ROC-RK3399-PC-PLUS
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3399-roc-pc-plus.dts  | 223 ++++++++++++++++++
+ 3 files changed, 230 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-roc-pc-plus.dts
+
+--
+2.23.0.37.g745f6812895b
+
+
+
