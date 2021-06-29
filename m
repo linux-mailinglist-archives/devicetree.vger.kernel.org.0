@@ -2,608 +2,378 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB4323B7A39
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 00:03:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A11C33B7A5D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 00:21:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235233AbhF2WGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 18:06:21 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:61189 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S234958AbhF2WGS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Jun 2021 18:06:18 -0400
-X-IronPort-AV: E=Sophos;i="5.83,310,1616425200"; 
-   d="scan'208";a="85915417"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 30 Jun 2021 07:03:49 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 27FEA40108F3;
-        Wed, 30 Jun 2021 07:03:46 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] iio: adc: Add driver for Renesas RZ/G2L A/D converter
-Date:   Tue, 29 Jun 2021 23:03:28 +0100
-Message-Id: <20210629220328.13366-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210629220328.13366-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20210629220328.13366-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S234785AbhF2WXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 18:23:52 -0400
+Received: from mail-eopbgr60054.outbound.protection.outlook.com ([40.107.6.54]:52373
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234640AbhF2WXw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Jun 2021 18:23:52 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KSAX9YV03FZu/D1O2XJb3oae8F20N+6qCNSRKxioOOXlLahFImEz9mae9jP8gmRb2CgDoipF1UrCWVPBDd9JZXbgyIvMZNH6Jnzh7lSEeBnjYNCdn2vdnxD2SxSHf5LGIh6nYtV3ggyeQrpFqZ5nrofMENXLtAf0EAi89qT5geE0myh8cdvO3+7I/jEQAAALMXuJ+KsniDzWsdWBUxIl8Dvgkqm66WUvb2dBFwG/hZ2IvUInnGaPsDaD9UxDnyuNyKFii8OD7F+iGk/sBfbdhjDHuJJ/ROJotWjyXMpozpSk4ZAnnX1cBJH4AN3/VaY72vHz/EvoSGiPyFWUzWPdjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aAlwfQoqVqic4gsbpaafPlm0OgwxQaQL8U0rUUNFo/8=;
+ b=TWJu6jt6MfGllgXHbZHZYbBEVRLuKeEphUKkG1Tu/zPuJdMhMTkZcLV6BnDWW2DDqzKwCizv2pG68XDBt1mNMDLJOqY4ornQ0PUzhr93gm8XgeHdxFJUUq9061uad+aaIPmCEsiLEI58zw2d54WiJfAvCQxkFJE0s0SmSemv88QlNTuq42dOGEjQGgc5IlDyG0yWJeu25xKLOhgA+l/gMg0dLTwLOJe4FLEljsufXPdO9Posfr6q5xXEQb1bxhQT0CMxEdpUpbkPP0m04KN93RGN2iH+dNKoXQ1Nq85tGCVHJbRsMKrM+P08hVrfB7/x+E9vvuL3SBcUZTu/qXxFHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aAlwfQoqVqic4gsbpaafPlm0OgwxQaQL8U0rUUNFo/8=;
+ b=btKaAQJ1jz+pZqX03VJ2t0OOA7mAhsunRZ46YdiviDwJ38wqVKnTTQP/Orwcfxvn0dYtlDF9omYzH16SetBDtPd0hAXkItlY0Yei6+UenohnRrytr4imEixLG6deUCbsw/7O/Upz6TlbXDcAhzPR982Dbwuz+3QT26O160hQALc=
+Authentication-Results: lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=seco.com;
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
+ by DBBPR03MB5368.eurprd03.prod.outlook.com (2603:10a6:10:d6::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.23; Tue, 29 Jun
+ 2021 22:21:20 +0000
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4264.026; Tue, 29 Jun 2021
+ 22:21:20 +0000
+From:   Sean Anderson <sean.anderson@seco.com>
+Subject: Re: [PATCH v4 3/3] pwm: Add support for Xilinx AXI Timer
+To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Emil Lenngren <emil.lenngren@gmail.com>,
+        michal.simek@xilinx.com, Alvaro Gamez <alvaro.gamez@hazent.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
+References: <20210625165642.5iuorl5guuq5c7gc@pengutronix.de>
+ <f1772da9-8bd8-57cf-6eba-3c16c58a903f@seco.com>
+ <20210627181919.iunagls4j67ignhh@pengutronix.de>
+ <59e93f67-0552-04bb-116e-73ddf878761e@seco.com>
+ <20210628162407.dxxt6hqfzeokdtxa@pengutronix.de>
+ <27fca5ef-8c82-f122-4bd0-f595cad4d588@seco.com>
+ <20210628172021.q5enzmr7u6cornm6@pengutronix.de>
+ <661e52c3-cd79-c2aa-e031-64eef5617be0@seco.com>
+ <20210629083144.53onthkcchbk73lo@pengutronix.de>
+ <a4943aa5-956c-1820-3489-994f0812c3a7@seco.com>
+ <20210629205102.wtnhdlqdbkihi4mz@pengutronix.de>
+Message-ID: <dab8407a-7cff-392c-46b7-effc8ee7ecff@seco.com>
+Date:   Tue, 29 Jun 2021 18:21:15 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <20210629205102.wtnhdlqdbkihi4mz@pengutronix.de>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [50.195.82.171]
+X-ClientProxiedBy: BLAPR03CA0030.namprd03.prod.outlook.com
+ (2603:10b6:208:32b::35) To DB7PR03MB4523.eurprd03.prod.outlook.com
+ (2603:10a6:10:19::27)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.27.1.65] (50.195.82.171) by BLAPR03CA0030.namprd03.prod.outlook.com (2603:10b6:208:32b::35) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.19 via Frontend Transport; Tue, 29 Jun 2021 22:21:19 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 61fc0924-f97d-46ae-6003-08d93b4c38c8
+X-MS-TrafficTypeDiagnostic: DBBPR03MB5368:
+X-Microsoft-Antispam-PRVS: <DBBPR03MB53685333729A4CC80E94E32B96029@DBBPR03MB5368.eurprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RrRGBwhQ3fL7sDCy5M6ZFSGYqSqxIkLVVFJu2cNY9LtuKv3tWjf3oqyXASnhGpKiF5VYlGu+s4oPd5Jlx1EIM0oIraqFxc2g4lPHoxYoNJLTslidMDXSEAe6gLP8htDmeNHfIl0aCsNoIKMXc6F8tZX2CSXqtmypfKJTzJiINxc9tyDvtElYQTgKWBoUYxvULU/j/LBVmAiX6+PB1fswRPo1WDC8usBIJh6BpUotWU2S46W0fuIqi351xnG6xiFHQVaMGfshahwm94VkoE3N/HceNaemzPcYNX8lh8UPSULt5lqHke59NbKlQGjzojGGFi3bN/ODkrNl7p5Z/Zee6zxDxONtu+bt517Sk/zq+ItWYTB25O0p6malKEWHDlDeikoJC/T1lh6B6gz5u/lxEQI7vf7P8rQC/ByMZbavc5ojO4dcuXjH7m2aablI52NBcC0jf84Af2HFro85xsszr9+f/aDq68ZFv06ZugXN3Mq5yVWD0B8hBHCfb+0Z5ItrwTcWqZs0B1vSAkCaeZqQ/u18Hd5OZYf5kIW7S8KkaQO74XQ5H5CpbHbvbROewPF7yn1oH/2gHZqFk7IJJ21cBRu9EdbeRHhyrLW04Ywa1J8vsuTLu2oElZNopyx5pbCdFvxm2twUP5g3f7OmpaXWyjOeOi7Hw0SiqH5oqZ5TpsVd+jM3SWwzxqXIL0FDvU39blZdmofxwLF1fhcdHbK+ye4Fq4QzMOVQyZJtdSli7r/StlYD419l/7+DzVInoZXrjrgsNJyJNRMfW42i8EjUGw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(396003)(366004)(346002)(376002)(39840400004)(36756003)(54906003)(6916009)(31686004)(66574015)(956004)(44832011)(8936002)(5660300002)(2616005)(8676002)(66556008)(53546011)(66476007)(66946007)(6486002)(16576012)(316002)(26005)(4326008)(478600001)(83380400001)(86362001)(31696002)(38100700002)(38350700002)(16526019)(7416002)(52116002)(2906002)(6666004)(186003)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?Windows-1252?Q?iIMFb+JJtkBFDkb+dtRDYgKnTuk26BBN5hiNWCg4SD5KbrIrcCtGj30z?=
+ =?Windows-1252?Q?swrpbfTcMPwZe3x9yXoR2+dVzVoGYpDpDC59rmmvJVtqS8vkbjFBaKQW?=
+ =?Windows-1252?Q?vmijUdnq+0klAquRJrxKYT8NLR2zym+J/5m3pZUfmzqC4n7ozSaY0wzb?=
+ =?Windows-1252?Q?FQZMUDNF22TlLhO6kbEnkUa3qYauF4rVhY/qNGm9eJKrV1i3dpwMJJ7N?=
+ =?Windows-1252?Q?ECRmimrZLCjELmDe7M7SeUOGC18GcdCeLlwcNIF8HZlJMtxEXoL9vzcX?=
+ =?Windows-1252?Q?hxbds4jVtEcpMYYdZy73USI7LuyOnQ32lHNZ/DQB7wrP/yi/HwdLCuqu?=
+ =?Windows-1252?Q?2A1j0Ia6jWdROzYv0GB8zo00MxpCNS4gYpWu2irI8FpFwaaFdmDJsS0w?=
+ =?Windows-1252?Q?+PUV/h1cEVcAl7jvP+vL42fQnYltHtF3qojedcCi322Nhj8/lSmR/Dhf?=
+ =?Windows-1252?Q?tXqgNj5ftVAPyBNybntfR4+MbTRGHa7E3niba3MPZgP1JF/TsPocFgZ8?=
+ =?Windows-1252?Q?+OK+YHG587QQKbkNKr7yMt+NmKJkKe1aObAdQt3Ee9LL9fDypTeQzkU/?=
+ =?Windows-1252?Q?vuQc9eDvOoSFm8aFoJ/ptWgDMYet9ztY7IThI40O8Omvd9v/TDKE9vQi?=
+ =?Windows-1252?Q?rd68N3v57CB+xYsQB7R+58361gcuT/+MssFl4nKkeppa/9YSqfmz2pUC?=
+ =?Windows-1252?Q?ibOvDFyCUIV+hL37k6rrtYxTYjOwHQRt8ZMVdKBQxMP7eJoHg/3vnz+c?=
+ =?Windows-1252?Q?UiZOH9NuEzsaGnaUOhSt2B0W0MDU1ttRztV9g13HupU5yQ20twazrGal?=
+ =?Windows-1252?Q?0D/o4bi58HcfYppRar9/ToKL3y4q12GQPt3Fc/VvrdsS0z1yG/vGG9fx?=
+ =?Windows-1252?Q?ffPD26IPQx8wnhiQK9tq3Eb6kGT7MAQ17Ksa6pvnijWB+LyRa6NCCEyE?=
+ =?Windows-1252?Q?0Dqr5U0+fEcLCdDU0xYzqqslyFSDChTqi23lRBF3klnXfmWjlElui3bs?=
+ =?Windows-1252?Q?h//c4ragzjnd3BDETpcuQipFtoqGSY5gzHyKaM9Z/hXwNO8RVUfyovGs?=
+ =?Windows-1252?Q?2wvhGiMsfF1eGzLyKtZhNItmVV9TBySwLqzZi8sg7cJpBarx/cMdkVAh?=
+ =?Windows-1252?Q?ewzJ2Chugwxd2+cU/YvUr1e0CTZxRK21+QCTp0ZTun6Y5j2slnFMhUF+?=
+ =?Windows-1252?Q?7R8ZwbKCYXKyh0cAUVtevVQe3Aj6xPtefPa/bYy08TuZszavWyfLKVdZ?=
+ =?Windows-1252?Q?aZZQvPG51yoMwk7xVUwZAvfOucuPn0+pQ0jNsh7N+fEDo/+rRSZGS9Qr?=
+ =?Windows-1252?Q?sUP1EH19DYfodkzrhBFOccfEECqKknOerN12JeQIMPEW4ku9uYJd5UOG?=
+ =?Windows-1252?Q?aDdGaMWBBEQEYlwBzp/CpUEymEtWSIArRA4YEizTWNhkfub86KuqYE4Q?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61fc0924-f97d-46ae-6003-08d93b4c38c8
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2021 22:21:20.6914
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WT7FEg5AhF3gzHImVz4PFbpgl3vbUgyYk393LpXZUmRF3xEI2y89z/xdF5HOtSefc2M1AzoCTfdwLXJlhWQIxQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR03MB5368
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add ADC driver support for Renesas RZ/G2L A/D converter in SW
-trigger mode.
 
-A/D Converter block is a successive approximation analog-to-digital
-converter with a 12-bit accuracy and supports a maximum of 8 input
-channels.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- MAINTAINERS                 |   8 +
- drivers/iio/adc/Kconfig     |  10 +
- drivers/iio/adc/Makefile    |   1 +
- drivers/iio/adc/rzg2l_adc.c | 489 ++++++++++++++++++++++++++++++++++++
- 4 files changed, 508 insertions(+)
- create mode 100644 drivers/iio/adc/rzg2l_adc.c
+On 6/29/21 4:51 PM, Uwe Kleine-König wrote:
+> Hello Sean,
+>
+> On Tue, Jun 29, 2021 at 02:01:31PM -0400, Sean Anderson wrote:
+>> On 6/29/21 4:31 AM, Uwe Kleine-König wrote:
+>> > Hello Sean,
+>> >
+>> > On Mon, Jun 28, 2021 at 01:41:43PM -0400, Sean Anderson wrote:
+>> >> On 6/28/21 1:20 PM, Uwe Kleine-König wrote:
+>> >> > On Mon, Jun 28, 2021 at 12:35:19PM -0400, Sean Anderson wrote:
+>> >> >> On 6/28/21 12:24 PM, Uwe Kleine-König wrote:
+>> >> >> > On Mon, Jun 28, 2021 at 11:50:33AM -0400, Sean Anderson wrote:
+>> >> >> > > On 6/27/21 2:19 PM, Uwe Kleine-König wrote:
+>> >> >> > > > On Fri, Jun 25, 2021 at 01:46:26PM -0400, Sean Anderson wrote:
+>> >> >> > > IMO, this is the best way to prevent surprising results in the API.
+>> >> >> >
+>> >> >> > I think it's not possible in practise to refuse "near" misses and every
+>> >> >> > definition of "near" is in some case ridiculous. Also if you consider
+>> >> >> > the pwm_round_state() case you don't want to refuse any request to tell
+>> >> >> > as much as possible about your controller's capabilities. And then it's
+>> >> >> > straight forward to let apply behave in the same way to keep complexity
+>> >> >> > low.
+>> >> >> >
+>> >> >> > > The real issue here is that it is impossible to determine the correct
+>> >> >> > > way to round the PWM a priori, and in particular, without considering
+>> >> >> > > both duty_cycle and period. If a consumer requests very small
+>> >> >> > > period/duty cycle which we cannot produce, how should it be rounded?
+>> >> >> >
+>> >> >> > Yeah, because there is no obviously right one, I picked one that is as
+>> >> >> > wrong as the other possibilities but is easy to work with.
+>> >> >> >
+>> >> >> > > Should we just set TLR0=1 and TLR1=0 to give them 66% duty cycle with
+>> >> >> > > the least period? Or should we try and increase the period to better
+>> >> >> > > approximate the % duty cycle? And both of these decisions must be made
+>> >> >> > > knowing both parameters. We cannot (for example) just always round up,
+>> >> >> > > since we may produce a configuration with TLR0 == TLR1, which would
+>> >> >> > > produce 0% duty cycle instead of whatever was requested. Rounding rate
+>> >> >> > > will introduce significant complexity into the driver. Most of the time
+>> >> >> > > if a consumer requests an invalid rate, it is due to misconfiguration
+>> >> >> > > which is best solved by fixing the configuration.
+>> >> >> >
+>> >> >> > In the first step pick the biggest period not bigger than the requested
+>> >> >> > and then pick the biggest duty cycle that is not bigger than the
+>> >> >> > requested and that can be set with the just picked period. That is the
+>> >> >> > behaviour that all new drivers should do. This is somewhat arbitrary but
+>> >> >> > after quite some thought the most sensible in my eyes.
+>> >> >>
+>> >> >> And if there are no periods smaller than the requested period?
+>> >> >
+>> >> > Then return -ERANGE.
+>> >>
+>> >> Ok, so instead of
+>> >>
+>> >> 	if (cycles < 2 || cycles > priv->max + 2)
+>> >> 		return -ERANGE;
+>> >>
+>> >> you would prefer
+>> >>
+>> >> 	if (cycles < 2)
+>> >> 		return -ERANGE;
+>> >> 	else if (cycles > priv->max + 2)
+>> >> 		cycles = priv->max;
+>> >
+>> > The actual calculation is a bit harder to handle TCSR_UDT = 0 but in
+>> > principle, yes, but see below.
+>> >
+>> >> But if we do the above clamping for TLR0, then we have to recalculate
+>> >> the duty cycle for TLR1. Which I guess means doing something like
+>> >>
+>> >> 	ret = xilinx_timer_tlr_period(priv, &tlr0, tcsr0, state->period);
+>> >> 	if (ret)
+>> >> 		return ret;
+>> >>
+>> >> 	state->duty_cycle = mult_frac(state->duty_cycle,
+>> >> 				      xilinx_timer_get_period(priv, tlr0, tcsr0),
+>> >> 				      state->period);
+>> >>
+>> >> 	ret = xilinx_timer_tlr_period(priv, &tlr1, tcsr1, state->duty_cycle);
+>> >> 	if (ret)
+>> >> 		return ret;
+>> >
+>> > No, you need something like:
+>> >
+>> > 	/*
+>> > 	 * The multiplication cannot overflow as both priv_max and
+>> > 	 * NSEC_PER_SEC fit into an u32.
+>> > 	 */
+>> > 	max_period = div64_ul((u64)priv->max * NSEC_PER_SEC, clkrate);
+>> >
+>> > 	/* cap period to the maximal possible value */
+>> > 	if (state->period > max_period)
+>> > 		period = max_period;
+>> > 	else
+>> > 		period = state->period;
+>> >
+>> > 	/* cap duty_cycle to the maximal possible value */
+>> > 	if (state->duty_cycle > max_period)
+>> > 		duty_cycle = max_period;
+>> > 	else
+>> > 		duty_cycle = state->duty_cycle;
+>>
+>> These caps may increase the % duty cycle.
+>
+> Correct.
+>
+> For some usecases keeping the relative duty cycle might be better, for
+> others it might not. I'm still convinced that in general my solution
+> makes sense, is computationally cheaper and easier to work with.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 81e1edeceae4..bee4c3847e01 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15622,6 +15622,14 @@ L:	linux-renesas-soc@vger.kernel.org
- S:	Maintained
- F:	drivers/phy/renesas/phy-rcar-gen3-usb*.c
- 
-+RENESAS RZ/G2L A/D DRIVER
-+M:	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-+L:	linux-iio@vger.kernel.org
-+L:	linux-renesas-soc@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
-+F:	drivers/iio/adc/rzg2l_adc.c
-+
- RESET CONTROLLER FRAMEWORK
- M:	Philipp Zabel <p.zabel@pengutronix.de>
- S:	Maintained
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index c7946c439612..9408cbf97acc 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -887,6 +887,16 @@ config ROCKCHIP_SARADC
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called rockchip_saradc.
- 
-+config RZG2L_ADC
-+	tristate "Renesas RZ/G2L ADC driver"
-+	depends on ARCH_R9A07G044 || COMPILE_TEST
-+	help
-+	  Say yes here to build support for the ADC found in Renesas
-+	  RZ/G2L family.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called rzg2l_adc.
-+
- config SC27XX_ADC
- 	tristate "Spreadtrum SC27xx series PMICs ADC"
- 	depends on MFD_SC27XX_PMIC || COMPILE_TEST
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index a226657d19c0..d92bcc9c5fbb 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -82,6 +82,7 @@ obj-$(CONFIG_QCOM_PM8XXX_XOADC) += qcom-pm8xxx-xoadc.o
- obj-$(CONFIG_RCAR_GYRO_ADC) += rcar-gyroadc.o
- obj-$(CONFIG_RN5T618_ADC) += rn5t618-adc.o
- obj-$(CONFIG_ROCKCHIP_SARADC) += rockchip_saradc.o
-+obj-$(CONFIG_RZG2L_ADC) += rzg2l_adc.o
- obj-$(CONFIG_SC27XX_ADC) += sc27xx_adc.o
- obj-$(CONFIG_SPEAR_ADC) += spear_adc.o
- obj-$(CONFIG_STX104) += stx104.o
-diff --git a/drivers/iio/adc/rzg2l_adc.c b/drivers/iio/adc/rzg2l_adc.c
-new file mode 100644
-index 000000000000..1c58eb8ae1ec
---- /dev/null
-+++ b/drivers/iio/adc/rzg2l_adc.c
-@@ -0,0 +1,489 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * RZ/G2L A/D Converter driver
-+ *
-+ *  Copyright (c) 2021 Renesas Electronics Europe GmbH
-+ *
-+ * Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/completion.h>
-+#include <linux/delay.h>
-+#include <linux/iio/iio.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/reset.h>
-+
-+#define ADM(n)			((n) * 0x4)
-+#define ADM0_ADCE		BIT(0)
-+#define ADM0_ADBSY		BIT(1)
-+#define ADM0_PWDWNB		BIT(2)
-+#define ADM0_SRESB		BIT(15)
-+#define ADM1_TRG		BIT(0)
-+#define ADM1_MS			BIT(2)
-+#define ADM1_BS			BIT(4)
-+#define ADM1_EGA_CLEAR		~GENMASK(13, 12)
-+#define ADM2_CHSEL_CLEAR	~GENMASK(7, 0)
-+#define ADM3_ADSMP		0x578
-+#define ADM3_ADCMP		(0xe << 16)
-+#define ADM3_ADIL_CLEAR		~GENMASK(31, 24)
-+
-+#define ADINT			0x20
-+#define ADINT_CH_CLEAR		~GENMASK(7, 0)
-+#define ADINT_CSEEN		BIT(16)
-+#define ADINT_INTS		BIT(31)
-+#define ADSTS			0x24
-+#define ADINT_INTST_MASK	GENMASK(7, 0)
-+#define ADSTS_CSEST		BIT(16)
-+#define ADIVC			0x28
-+#define ADIVC_DIVADC_CLEAR	~GENMASK(8, 0)
-+#define ADIVC_DIVADC_4		0x4
-+#define ADFIL			0x2c
-+#define ADCR(n)			(0x30 + ((n) * 0x4))
-+#define ADCR_AD_MASK		GENMASK(11, 0)
-+
-+#define ADC_MAX_CHANNELS	8
-+#define ADC_CHN_MASK		0x7
-+#define ADC_TIMEOUT		usecs_to_jiffies(1 * 4)
-+
-+enum trigger_mode {
-+	SW_TRIGGER = 0,
-+	SYNC_TRIGGER,
-+	ASYNC_TRIGGER,
-+};
-+
-+struct rzg2l_adc_data {
-+	const struct iio_chan_spec *channels;
-+	u8 num_channels;
-+	u8 trigger;
-+};
-+
-+struct rzg2l_adc {
-+	void __iomem *base;
-+	struct clk *pclk;
-+	struct clk *adclk;
-+	struct reset_control *presetn;
-+	struct reset_control *adrstn;
-+	struct completion completion;
-+	const struct rzg2l_adc_data *data;
-+	bool adc_disabled; /* protected with mlock mutex from indio_dev */
-+	u16 last_val[ADC_MAX_CHANNELS];
-+};
-+
-+static unsigned int rzg2l_adc_readl(struct rzg2l_adc *adc, u32 reg)
-+{
-+	return readl(adc->base + reg);
-+}
-+
-+static void rzg2l_adc_writel(struct rzg2l_adc *adc, unsigned int reg, u32 val)
-+{
-+	writel(val, adc->base + reg);
-+}
-+
-+static int rzg2l_adc_adclk(struct rzg2l_adc *adc, bool prepare)
-+{
-+	if (prepare)
-+		return clk_prepare_enable(adc->adclk);
-+
-+	clk_disable_unprepare(adc->adclk);
-+	return 0;
-+}
-+
-+static void rzg2l_adc_pwr(struct rzg2l_adc *adc, bool on)
-+{
-+	u32 reg;
-+
-+	reg = rzg2l_adc_readl(adc, ADM(0));
-+	if (on)
-+		reg |= ADM0_PWDWNB;
-+	else
-+		reg &= ~ADM0_PWDWNB;
-+	rzg2l_adc_writel(adc, ADM(0), reg);
-+	udelay(2);
-+}
-+
-+static void rzg2l_adc_conversion(struct rzg2l_adc *adc, bool start)
-+{
-+	int timeout = 5;
-+	u32 reg;
-+
-+	/* stop A/D conversion */
-+	reg = rzg2l_adc_readl(adc, ADM(0));
-+	if (start)
-+		reg |= ADM0_ADCE;
-+	else
-+		reg &= ~ADM0_ADCE;
-+	rzg2l_adc_writel(adc, ADM(0), reg);
-+
-+	if (start)
-+		return;
-+
-+	do {
-+		usleep_range(100, 200);
-+		reg = rzg2l_adc_readl(adc, ADM(0));
-+		timeout--;
-+		if (!timeout) {
-+			pr_err("%s stopping ADC timed out\n", __func__);
-+			break;
-+		}
-+	} while (((reg & ADM0_ADBSY) || (reg & ADM0_ADCE)));
-+}
-+
-+static int rzg2l_adc_read_raw(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan,
-+			      int *val, int *val2, long mask)
-+{
-+	struct rzg2l_adc *adc = iio_priv(indio_dev);
-+	u32 reg;
-+	int ret;
-+	u8 ch;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		mutex_lock(&indio_dev->mlock);
-+
-+		if (adc->adc_disabled) {
-+			mutex_unlock(&indio_dev->mlock);
-+			return -EBUSY;
-+		}
-+
-+		if (rzg2l_adc_readl(adc, ADM(0)) & ADM0_ADBSY) {
-+			mutex_unlock(&indio_dev->mlock);
-+			return -EBUSY;
-+		}
-+
-+		ch = chan->channel & ADC_CHN_MASK;
-+		/* SW trigger */
-+		reg = rzg2l_adc_readl(adc, ADM(1));
-+		reg &= ADM1_EGA_CLEAR;
-+		reg &= ~ADM1_BS;
-+		reg |= ADM1_MS;
-+		reg &= ~ADM1_TRG;
-+		rzg2l_adc_writel(adc, ADM(1), reg);
-+
-+		/* select channel */
-+		reg = rzg2l_adc_readl(adc, ADM(2));
-+		reg &= ADM2_CHSEL_CLEAR;
-+		reg |= BIT(ch);
-+		rzg2l_adc_writel(adc, ADM(2), reg);
-+
-+		reg = rzg2l_adc_readl(adc, ADM(3));
-+		reg &= ADM3_ADIL_CLEAR;
-+		reg |= ADM3_ADCMP;
-+		reg |= ADM3_ADSMP;
-+		rzg2l_adc_writel(adc, ADM(3), reg);
-+
-+		reg = rzg2l_adc_readl(adc, ADIVC);
-+		reg &= ADIVC_DIVADC_CLEAR;
-+		reg |= ADIVC_DIVADC_4;
-+		rzg2l_adc_writel(adc, ADIVC, reg);
-+
-+		reg = rzg2l_adc_readl(adc, ADINT);
-+		reg &= ~ADINT_INTS;
-+		reg &= ADINT_CH_CLEAR;
-+		reg |= ADINT_CSEEN;
-+		reg |= BIT(ch);
-+		rzg2l_adc_writel(adc, ADINT, reg);
-+
-+		rzg2l_adc_pwr(adc, true);
-+
-+		ret = rzg2l_adc_adclk(adc, true);
-+		if (ret) {
-+			rzg2l_adc_pwr(adc, false);
-+			mutex_unlock(&indio_dev->mlock);
-+			return -EINVAL;
-+		}
-+
-+		reinit_completion(&adc->completion);
-+
-+		rzg2l_adc_conversion(adc, true);
-+
-+		if (!wait_for_completion_timeout(&adc->completion, ADC_TIMEOUT)) {
-+			reg &= ADINT_CH_CLEAR;
-+			rzg2l_adc_writel(adc, ADINT, reg);
-+			rzg2l_adc_conversion(adc, false);
-+			rzg2l_adc_adclk(adc, false);
-+			rzg2l_adc_pwr(adc, false);
-+			mutex_unlock(&indio_dev->mlock);
-+			return -ETIMEDOUT;
-+		}
-+
-+		*val = adc->last_val[ch];
-+		rzg2l_adc_conversion(adc, false);
-+		rzg2l_adc_adclk(adc, false);
-+		rzg2l_adc_pwr(adc, false);
-+		mutex_unlock(&indio_dev->mlock);
-+		return IIO_VAL_INT;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static irqreturn_t rzg2l_adc_isr(int irq, void *dev_id)
-+{
-+	struct rzg2l_adc *adc = (struct rzg2l_adc *)dev_id;
-+	u8 intst;
-+	u32 reg;
-+	u8 i;
-+
-+	reg = rzg2l_adc_readl(adc, ADSTS);
-+	if (reg & ADSTS_CSEST) {
-+		rzg2l_adc_writel(adc, ADSTS, reg);
-+		return IRQ_HANDLED;
-+	}
-+
-+	intst = reg & ADINT_INTST_MASK;
-+	if (!intst)
-+		return IRQ_HANDLED;
-+
-+	for (i = 0; i < ADC_MAX_CHANNELS; i++) {
-+		if (intst & BIT(i))
-+			adc->last_val[i] = rzg2l_adc_readl(adc, ADCR(i)) & ADCR_AD_MASK;
-+	}
-+
-+	rzg2l_adc_writel(adc, ADSTS, reg);
-+
-+	complete(&adc->completion);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static const struct iio_info rzg2l_adc_iio_info = {
-+	.read_raw = rzg2l_adc_read_raw,
-+};
-+
-+static const char * const rzg2l_adc_channel_name[] = {
-+	"adc0",
-+	"adc1",
-+	"adc2",
-+	"adc3",
-+	"adc4",
-+	"adc5",
-+	"adc6",
-+	"adc7",
-+};
-+
-+static int rzg2l_adc_parse_of(struct platform_device *pdev, struct rzg2l_adc *adc)
-+{
-+	struct device_node *node = pdev->dev.of_node;
-+	struct iio_chan_spec *chan_array;
-+	u8 channels[ADC_MAX_CHANNELS];
-+	struct rzg2l_adc_data *data;
-+	int num_channels;
-+	int ret;
-+	u8 i;
-+
-+	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	num_channels = of_property_count_u8_elems(node, "renesas-rzg2l,adc-channels");
-+	if (num_channels <= 0 || num_channels > ADC_MAX_CHANNELS)
-+		return -EINVAL;
-+
-+	ret = of_property_read_u8_array(node, "renesas-rzg2l,adc-channels",
-+					channels, num_channels);
-+	if (ret)
-+		return ret;
-+
-+	chan_array = devm_kcalloc(&pdev->dev, num_channels, sizeof(*chan_array),
-+				  GFP_KERNEL);
-+	if (!chan_array)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < num_channels; i++) {
-+		chan_array[i].type = IIO_VOLTAGE;
-+		chan_array[i].indexed = 1;
-+		chan_array[i].channel = channels[i];
-+		chan_array[i].info_mask_separate = BIT(IIO_CHAN_INFO_RAW);
-+		chan_array[i].info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE);
-+		chan_array[i].datasheet_name = rzg2l_adc_channel_name[i];
-+	}
-+
-+	ret = of_property_read_u8(node, "renesas-rzg2l,adc-trigger-mode",
-+				  &data->trigger);
-+	if (ret)
-+		data->trigger = SW_TRIGGER;
-+
-+	/* we support SW_TRIGGER as of now */
-+	if (data->trigger != SW_TRIGGER)
-+		return -EINVAL;
-+
-+	data->num_channels = num_channels;
-+	data->channels = chan_array;
-+	adc->data = data;
-+
-+	return 0;
-+}
-+
-+static int rzg2l_adc_sw_reset(struct rzg2l_adc *adc)
-+{
-+	int timeout = 5;
-+	u32 val;
-+
-+	val = rzg2l_adc_readl(adc, ADM(0));
-+	val |= ADM0_SRESB;
-+	rzg2l_adc_writel(adc, ADM(0), val);
-+
-+	while (!(rzg2l_adc_readl(adc, ADM(0)) & ADM0_SRESB)) {
-+		if (!timeout)
-+			return -EINVAL;
-+		timeout--;
-+		usleep_range(100, 200);
-+	}
-+
-+	return 0;
-+}
-+
-+static int rzg2l_adc_probe(struct platform_device *pdev)
-+{
-+	struct iio_dev *indio_dev;
-+	struct rzg2l_adc *adc;
-+	int ret;
-+	int irq;
-+
-+	indio_dev = devm_iio_device_alloc(&pdev->dev, sizeof(*adc));
-+	if (!indio_dev) {
-+		dev_err(&pdev->dev, "failed allocating iio device\n");
-+		return -ENOMEM;
-+	}
-+
-+	adc = iio_priv(indio_dev);
-+	if (!adc)
-+		return -ENOMEM;
-+
-+	ret = rzg2l_adc_parse_of(pdev, adc);
-+	if (ret)
-+		return -ENOMEM;
-+
-+	adc->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(adc->base)) {
-+		dev_err(&pdev->dev, "missing mem resource");
-+		return PTR_ERR(adc->base);
-+	}
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0) {
-+		dev_err(&pdev->dev, "no irq resource\n");
-+		return irq;
-+	}
-+
-+	adc->pclk = devm_clk_get(&pdev->dev, "pclk");
-+	if (IS_ERR(adc->pclk)) {
-+		dev_err(&pdev->dev, "Failed to get pclk");
-+		return PTR_ERR(adc->pclk);
-+	}
-+
-+	adc->adclk = devm_clk_get(&pdev->dev, "adclk");
-+	if (IS_ERR(adc->adclk)) {
-+		dev_err(&pdev->dev, "Failed to get adclk");
-+		return PTR_ERR(adc->adclk);
-+	}
-+
-+	adc->adrstn = devm_reset_control_get_exclusive(&pdev->dev, "adrst-n");
-+	if (IS_ERR(adc->adrstn)) {
-+		dev_err(&pdev->dev, "failed to get adrstn\n");
-+		return PTR_ERR(adc->adrstn);
-+	}
-+
-+	adc->presetn = devm_reset_control_get_exclusive(&pdev->dev, "presetn");
-+	if (IS_ERR(adc->presetn)) {
-+		dev_err(&pdev->dev, "failed to get presetn\n");
-+		return PTR_ERR(adc->presetn);
-+	}
-+
-+	ret = reset_control_deassert(adc->adrstn);
-+	if (ret)
-+		return ret;
-+
-+	ret = reset_control_deassert(adc->presetn);
-+	if (ret)
-+		goto assert_adrstn;
-+
-+	ret = clk_prepare_enable(adc->pclk);
-+	if (ret)
-+		goto assert_presetn;
-+
-+	ret = rzg2l_adc_sw_reset(adc);
-+	if (ret)
-+		goto unprepare_pclk;
-+
-+	init_completion(&adc->completion);
-+
-+	platform_set_drvdata(pdev, indio_dev);
-+
-+	ret = devm_request_irq(&pdev->dev, irq, rzg2l_adc_isr,
-+			       0, dev_name(&pdev->dev), adc);
-+	if (ret < 0)
-+		goto unprepare_pclk;
-+
-+	adc->adc_disabled = false;
-+	indio_dev->name = dev_name(&pdev->dev);
-+	indio_dev->dev.parent = &pdev->dev;
-+	indio_dev->dev.of_node = pdev->dev.of_node;
-+	indio_dev->info = &rzg2l_adc_iio_info;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->channels = adc->data->channels;
-+	indio_dev->num_channels = adc->data->num_channels;
-+
-+	ret = iio_device_register(indio_dev);
-+	if (ret)
-+		goto unprepare_pclk;
-+
-+	return 0;
-+
-+unprepare_pclk:
-+	clk_disable_unprepare(adc->pclk);
-+assert_presetn:
-+	reset_control_assert(adc->presetn);
-+assert_adrstn:
-+	reset_control_assert(adc->adrstn);
-+	return ret;
-+}
-+
-+static int rzg2l_adc_remove(struct platform_device *pdev)
-+{
-+	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
-+	struct rzg2l_adc *adc = iio_priv(indio_dev);
-+
-+	mutex_lock(&indio_dev->mlock);
-+	adc->adc_disabled = true;
-+	mutex_unlock(&indio_dev->mlock);
-+
-+	iio_device_unregister(indio_dev);
-+
-+	clk_disable_unprepare(adc->pclk);
-+	reset_control_assert(adc->presetn);
-+	reset_control_assert(adc->adrstn);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id rzg2l_adc_match[] = {
-+	{
-+		.compatible = "renesas,rzg2l-adc",
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, rzg2l_adc_match);
-+
-+static struct platform_driver rzg2l_adc_driver = {
-+	.probe		= rzg2l_adc_probe,
-+	.remove		= rzg2l_adc_remove,
-+	.driver		= {
-+		.name	= "rzg2l-adc",
-+		.of_match_table = rzg2l_adc_match,
-+	},
-+};
-+
-+module_platform_driver(rzg2l_adc_driver);
-+
-+MODULE_AUTHOR("Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>");
-+MODULE_DESCRIPTION("Renesas RZ/G2L ADC driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.17.1
+Can you please describe one of those use cases? Every PWM user I looked
+(grepping for pwm_apply_state and pwm_config) set the duty cycle as a
+percentage of the period, and not as an absolute time. Keeping the high
+time the same while changing the duty cycle runs contrary to the
+assumptions of all of those users.
 
+>>
+>> > 	period_cycles = period * clkrate / NSEC_PER_SEC;
+>> >
+>> > 	if (period_cycles < 2)
+>> > 		return -ERANGE;
+>> >
+>> > 	duty_cycles = duty_cycle * clkrate / NSEC_PER_SEC;
+>> >
+>> > 	/*
+>> > 	 * The hardware cannot emit a 100% relative duty cycle, if
+>> > 	 * duty_cycle >= period_cycles is programmed the hardware emits
+>> > 	 * a 0% relative duty cycle.
+>> > 	 */
+>> > 	if (duty_cycle == period_cycles)
+>> > 		duty_cycles = period_cycles - 1;
+>> >
+>> > 	/*
+>> > 	 * The hardware cannot emit a duty_cycle of one clk step, so
+>> > 	 * emit 0 instead.
+>> > 	 */
+>> > 	if (duty_cycles < 2)
+>> > 		duty_cycles = period_cycles;
+>>
+>> Of course, the above may result in 100% duty cycle being rounded down to
+>> 0%. I feel like that is too big of a jump to ignore. Perhaps if we
+>> cannot return -ERANGE we should at least dev_warn.
+>
+> You did it again. You picked one single case that you consider bad but
+> didn't provide a constructive way to make it better.
+
+Sure I did. I suggested that we warn. Something like
+
+if (duty_cycles == period_cycles)
+	if (--duty_cycles < 2)
+		dev_warn(chip->dev, "Rounding 100%% duty cycle down to 0%%; pick a longer period\n");
+
+or
+
+if (period_cycles < 2)
+	return -ERANGE;
+else if (period_cycles < 10)
+	dev_notice(chip->dev,
+		   "very short period of %u cycles; duty cycle may be rounded to 0%%\n",
+		   period_cycles);
+
+Because 90% of the time, if a user requests such a short period it is
+due to a typo or something similar. And if they really are doing it
+intentionally, then they should just set duty_cycle=0.
+
+> Assume there was already a pwm_round_state function (that returns the
+> state that pwm_apply_state would implement for a given request) Consider
+> a consumer that wants say a 50% relative duty together with a small
+> period. So it first might call:
+>
+> 	ret = pwm_round_rate(pwm, { .period = 20, .duty_cycle = 20, ... }, &rounded_state)
+>
+> to find out if .period = 20 can be implemented with the given PWM. If
+> this returns rounded state as:
+>
+> 	.period = 20
+> 	.duty_cycle = 0
+>
+> this says quite a lot about the pwm if the driver implements my policy.
+> (i.e.: The driver can do 20ns, but the biggest duty_cycle is only 0).
+> If however it returns -ERANGE this means (assuming the driver implements
+> the policy I try to convice you to be the right one) it means: The
+> hardware cannot implement 20 ns (or something smaller) and so the next
+> call probably tries 40 ns.
+>
+> With your suggested semantic -ERANGE might mean:
+>
+>   - The driver doesn't support .period = 20 ns
+>     (Follow up questions: What period should be tried next? 10 ns? 40
+>     ns? What if this returns -ERANGE again?)
+>   - The driver supports .period = 20 ns, but the biggest possible
+>     duty_cycle is "too different from 20 ns to ignore".
+>
+> Then how should the search continue?
+
+round_rate does not have to use the same logic as apply_state. That is,
+
+	ret = pwm_round_rate(pwm, { .period = 20, .duty_cycle = 20, ... }, &rounded_state)
+
+could be rounded to
+
+	{ .period = 20, .duty_cycle = 0 }
+
+but calling
+
+	ret = pwm_apply_state(pwm, { .period = 20, .duty_cycle = 20, ... })
+
+could return -ERANGE. However, calling
+
+	ret = pwm_apply_state(pwm, { .period = 20, .duty_cycle = 0, ... })
+
+should work just fine, as the caller clearly knows what they are getting
+into. IMO this is the best way to allow hypothetical round_rate users to
+find out the edges of the PWM while still protecting existing users.
+
+It's perfectly fine to round
+
+	{ .period = 150, .duty_cycle = 75 }
+
+to
+
+	{ .period = 100, .duty_cycle = 75 }
+
+in round_rate. But doing the same thing for apply_state would be very
+surprising to every existing PWM user.
+
+IMO the following invariant should hold
+
+	apply_state(round_rate(x))
+	assert(x == get_state())
+
+but the following should not necessarily hold
+
+	apply_state(x)
+	assert(round_rate(x) == get_state())
+
+Of course, where it is reasonable to round down, we should do so. But
+where the result may be surprising, then the caller should specify the
+rounded state specifically. It is better to fail loudly and noisily than
+to silently accept garbage.
+
+--Sean
+
+>
+> So: As soon as there is a pwm_round_rate function this can be catched
+> and then it's important that the drivers adhere to the expected policy.
+> Implementing this is a big thing and believe me I already spend quite
+> some brain cycles into it. Once the core is extended accordingly I will
+> be happy about each driver already doing the right thing.
+>
+> Best regards
+> Uwe
+>
