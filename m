@@ -2,111 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7BC13B7712
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 19:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62D3E3B773E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 19:30:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232322AbhF2RWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 13:22:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56236 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232284AbhF2RWj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 13:22:39 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3F6BC061760;
-        Tue, 29 Jun 2021 10:20:10 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id h6so15826420ljl.8;
-        Tue, 29 Jun 2021 10:20:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=LK5PQkS14wpetJcASWpCkEN2Wd6IM2V31FOvQQneP2w=;
-        b=f99Fj/YrcvxKZIpbq+97B3RhPbybF/gF5J7neDsWNfSdqlwdL7quuIGbsdgHzN0lNZ
-         JSnG9RSWcGiQJjY2ui5XK7zoYD816pqFmqP1gArn1pewGhz2dcr4b0V6IiClnQPena5I
-         8AU6qfqXa6+Svfq/h9fWYV4QCzO6/ZaUDRvSeSfKZea92XQ1j2m2GS52+AY9rmYzzBoA
-         zxBZ64ryFJMN61s/DVBiFqygIfsJRqNGRCoHVFZwY2lzFbNIsTQJ4idflxQb/CxVm5CO
-         2Oxr2JLEy9XJvtFTG4395GnAoKJ38ZnohoqaDYAUzSHN+8t4sj+b9uvcEJuCCovVo2uI
-         ItGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=LK5PQkS14wpetJcASWpCkEN2Wd6IM2V31FOvQQneP2w=;
-        b=Yy6ak+/Wc/plIGH91mpep3WHgnsO2KKvLPZmooM+6IraPWn5XR/0UmfqWvf5PI6OMp
-         SH+M5Ngi/k6ZiLiNOoOljdmGb9gL42ocnRI2KqkJzR649Ni6ojHPqzUqB/jIDHV+Q8Y3
-         9i1Xx01cNVo5+G1H61jCyzE5CoMT3Apehu/JPa7FaGDoXkdDjybU2zN2UDBE2Rqhwv/F
-         vZAPBu7c0IM31v1OHCA8ZDgQbMYCghXCTJmaxACxAcJ4QfGAAYzd5VJSN+ZCFweQdlvA
-         67OFhauT+g/3Nw54DDSk/+wpvEMQnyi6d/YZxwfTV81fjc4s6rjdnMew66fLxhMAqbNu
-         nt+A==
-X-Gm-Message-State: AOAM530nFy5XJEkkBMIqeiRY2chZVfdzHPuG0lA7QJaJcGM4ojtB/WHU
-        VWA8KMjKY3xcynIcTRzz1P47svhNh5k=
-X-Google-Smtp-Source: ABdhPJxW1kviTBnANF8eECQin5QSCZVDG6gyzsn+HPScc1Q5dP9+/YCLCng490d7rW5uubzuLvhAQQ==
-X-Received: by 2002:a2e:9a52:: with SMTP id k18mr4688098ljj.315.1624987208867;
-        Tue, 29 Jun 2021 10:20:08 -0700 (PDT)
-Received: from [192.168.1.102] ([178.176.72.235])
-        by smtp.gmail.com with ESMTPSA id t14sm1675527lfd.14.2021.06.29.10.20.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Jun 2021 10:20:08 -0700 (PDT)
-Subject: Re: [PATCH v5 2/2] MIPS: Loongson64: Add pm block node for
- Loongson-2K1000
-To:     Qing Zhang <zhangqing@loongson.cn>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Huacai Chen <chenhuacai@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20210629011913.18611-1-zhangqing@loongson.cn>
- <20210629011913.18611-2-zhangqing@loongson.cn>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <7caf171a-7d7d-4f2a-a065-58fadace690d@gmail.com>
-Date:   Tue, 29 Jun 2021 20:20:06 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        id S234405AbhF2RdS convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 29 Jun 2021 13:33:18 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:33974 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234182AbhF2RdS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 13:33:18 -0400
+Received: from chickenburger.collabora.co.uk (chickenburger.collabora.co.uk [46.235.227.242])
+        by bhuna.collabora.co.uk (Postfix) with ESMTP id 223B51F42F26;
+        Tue, 29 Jun 2021 18:30:49 +0100 (BST)
+From:   "Adrian Ratiu" <adrian.ratiu@collabora.com>
+In-Reply-To: <e37c4d79-36f9-217e-b6f6-acf1a9e7a63b@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+X-Forward: 188.24.96.153
+Date:   Tue, 29 Jun 2021 18:30:49 +0100
+Cc:     "Robin Murphy" <robin.murphy@arm.com>,
+        "Heiko Stuebner" <heiko@sntech.de>, jack@radxa.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, "Rob Herring" <robh+dt@kernel.org>
+To:     "Alex Bee" <knaerzche@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20210629011913.18611-2-zhangqing@loongson.cn>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Message-ID: <131f-60db5900-1d-7b1f8480@92301631>
+Subject: =?utf-8?q?Re=3A?= [PATCH] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= add rock-pi-4 analog audio
+User-Agent: SOGoMail 5.0.1
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/29/21 4:19 AM, Qing Zhang wrote:
-
-> The module is now supported, enable it.
+On Tuesday, June 29, 2021 20:04 EEST, Alex Bee <knaerzche@gmail.com> wrote: 
+ 
+> Hi Adrian, Hi Robin
+> Am 29.06.21 um 17:42 schrieb Robin Murphy:
+> > On 2021-06-29 16:07, Adrian Ratiu wrote:
+> >> Hi Alex,
+> >>
+> >> On Tue, 29 Jun 2021, Alex Bee <knaerzche@gmail.com> wrote:
+> >>> Hi Adrian,
+> >>> I've submitted similar patch already. Its part of [1]
+> >>
+> >> Thank you for pointing out your patch, I was not aware of it as it was 
+> >> not merged yet (I tested latest linux-next).
+> >>
+> >> It is a good sign that our code is almost identical except for the 
+> >> headphone detect pin which you mention.
+> >>
+> >>>
+> >>> There is no headphone detection pin in the schematics, btw.
+> >>
+> >> There are two reasons I added it:
+> >>
+> >> 1. The es8316 codec failed to probe() in my testing unless the irq was 
+> >> defined. That might have been due to me testing the codec directly 
+> >> with the simple card driver instead of the graph driver.
+> >>
+> >> Point 1 doesn't appear to be an issue anymore, the codec + graph 
+> >> driver probe correctly and audio supposedly (see below) works even 
+> >> without the irq.
+> I guess that just a "warning" that doesn't mean the driver failed to 
+> probe. (It the same for RockPro64, for example - where the interrupt 
+> line isn't connected as well)
+> >>
+> >> 2. I got the gpio bank 1 pin 0 location from various headphone 
+> >> detection commits in the vendor v4.4 kernel, like for example [1].
+> >>
+> >> Are you 100% sure there is no hp detection pin wired on the rock-pi-4?
+> >> Even if it might be missing from the schematics, the vendor driver 
+> >> code apparently defines and uses it?
+> > 
+> > FWIW according to the schematics it *is* wired up on the Model C board, 
+> > but not on the Model A or B.
+> > 
+> Thanks for the pointer, I did look at v1.3 only, tbh.
 > 
-> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
-> ---
+> I'm not sure I understand why we should pull up this pin.
 > 
-> v4-v5:
-> add missing spaces
+> Shouldn't we better use hp-det-gpio property of audio-graph-card to make 
+> real use of this pin?
+
+That sounds like the best way forward, only on the model / revision which actually has the pin connected.
+
 > 
->  arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> > Robin.
+> > 
+> >>  From booting with the irq defined I get the following in 
+> >> /proc/interrupts however I'm having an unrelated difficulty testing 
+> >> because the audio connector literally broke off the board like in [2].
+> >> 90: 1  0  0  0  0  rockchip_gpio_irq   0 Level     es8316
+> According to the Model C schematics the codec interrupt (HP_INT) is 
+> connected to GPIO1_PA1 (in contrast to GPIO1_PA0 which is used for hp 
+> detection).
 > 
-> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-> index 569e814def83..38bf14f00694 100644
-> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
-> @@ -101,6 +101,16 @@ uart0: serial@1fe00000 {
->  			no-loopback-test;
->  		};
->  
-> +		pm: power-controller {
-> +			device_type = "power management";
-> +			compatible = "loongson, reset-controller";
-                                               ^
-   When I said te space aren't allowed, I meant this place. :-)
+> If you're OK I'll update my series and add those pins for Model C only 
+> (and will request the schematics of A+ and B+ which seem not to be 
+> published yet to check out what the manufacturer decided for those variants)
 
-> +
-> +			reg = <0 0x1fe0700c 0 0x8>,
-> +			      <0 0x1fe07014 0 0x8>,
-> +			      <0 0x1fe07030 0 0x8>;
+Yes, thank you very much! Please CC me on the new series, hopefully I can provide a tested-by if I receive the fixed HW by then.
 
-   TY! :-)
+Adrian
 
-[...]
+> 
+> Alex
+> >>
+> >> Team Radxa was very nice in offering me a replacement but until that 
+> >> arrives I can't test this anymore.
+> >>
+> >> [1] 
+> >> https://github.com/radxa/kernel/commit/e945cad5c3ec82d171760465d3c7a84bb10ed1b7 
+> >>
+> >>
+> >> [2] https://forum.radxa.com/t/audio-jack-broke-off/935
+> >>
+> >>> [1] 
+> >>> https://patchwork.kernel.org/project/linux-rockchip/cover/20210618181256.27992-1-knaerzche@gmail.com/ 
+> >>>
+> >>>
+> >>> Best,
+> >>>
+> >>> Alex
+> >>>
+> >>> Am 28.06.21 um 13:30 schrieb Adrian Ratiu:
+> >>>> This adds the necessary pinctrl and nodes to enable the
+> >>>> analog audio on rk3399 rock-pi-4 SBCs using the es8316
+> >>>> codec and the audio-graph-card driver.
+> >>>>
+> >>>> Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
+> >>>> ---
+> >>>>   .../boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 38 
+> >>>> +++++++++++++++++++
+> >>>>   1 file changed, 38 insertions(+)
+> >>>>
+> >>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi 
+> >>>> b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> >>>> index b28888ea9262..77781d9150ac 100644
+> >>>> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> >>>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> >>>> @@ -128,6 +128,12 @@ vdd_log: vdd-log {
+> >>>>           regulator-max-microvolt = <1400000>;
+> >>>>           vin-supply = <&vcc5v0_sys>;
+> >>>>       };
+> >>>> +
+> >>>> +    sound {
+> >>>> +        compatible = "audio-graph-card";
+> >>>> +        label = "rockchip,rk3399";
+> >>>> +        dais = <&i2s0_p0>;
+> >>>> +    };
+> >>>>   };
+> >>>>   &cpu_l0 {
+> >>>> @@ -422,6 +428,24 @@ &i2c1 {
+> >>>>       i2c-scl-rising-time-ns = <300>;
+> >>>>       i2c-scl-falling-time-ns = <15>;
+> >>>>       status = "okay";
+> >>>> +
+> >>>> +    es8316: codec@11 {
+> >>>> +        compatible = "everest,es8316";
+> >>>> +        reg = <0x11>;
+> >>>> +        clocks = <&cru SCLK_I2S_8CH_OUT>;
+> >>>> +        clock-names = "mclk";
+> >>>> +        pinctrl-names = "default";
+> >>>> +        pinctrl-0 = <&hp_det_pin>;
+> >>>> +        interrupt-parent = <&gpio1>;
+> >>>> +        interrupts = <RK_PA0 IRQ_TYPE_LEVEL_HIGH>;
+> >>>> +        #sound-dai-cells = <0>;
+> >>>> +
+> >>>> +        port {
+> >>>> +            es8316_p0_0: endpoint {
+> >>>> +                remote-endpoint = <&i2s0_p0_0>;
+> >>>> +            };
+> >>>> +        };
+> >>>> +    };
+> >>>>   };
+> >>>>   &i2c3 {
+> >>>> @@ -441,6 +465,14 @@ &i2s0 {
+> >>>>       rockchip,capture-channels = <2>;
+> >>>>       rockchip,playback-channels = <2>;
+> >>>>       status = "okay";
+> >>>> +
+> >>>> +    i2s0_p0: port {
+> >>>> +        i2s0_p0_0: endpoint {
+> >>>> +            dai-format = "i2s";
+> >>>> +            mclk-fs = <256>;
+> >>>> +            remote-endpoint = <&es8316_p0_0>;
+> >>>> +        };
+> >>>> +    };
+> >>>>   };
+> >>>>   &i2s1 {
+> >>>> @@ -556,6 +588,12 @@ wifi_host_wake_l: wifi-host-wake-l {
+> >>>>               rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
+> >>>>           };
+> >>>>       };
+> >>>> +
+> >>>> +    es8316 {
+> >>>> +        hp_det_pin: hp-det-pin {
+> >>>> +            rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
+> >>>> +        };
+> >>>> +    };
+> >>>>   };
+> >>>>   &pwm2 {
+> >>
+> >> _______________________________________________
+> >> Linux-rockchip mailing list
+> >> Linux-rockchip@lists.infradead.org
+> >> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> > 
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
+>
 
-MBR, Sergei
