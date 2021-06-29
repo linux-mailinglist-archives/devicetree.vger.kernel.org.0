@@ -2,112 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBA943B74E7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 17:09:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED2B3B7597
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 17:38:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234772AbhF2PMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 11:12:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55056 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234730AbhF2PMN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 11:12:13 -0400
-Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BECC061768
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 08:09:45 -0700 (PDT)
-Received: by mail-ua1-x936.google.com with SMTP id f1so8483879uaj.10
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 08:09:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eJWr50Fry6uqoXk5lAjjCSrJTgyONGyHsCCbDexeDq4=;
-        b=DLvBDwVyXAlPrIUgIvyEic31ZBj6Sp22bOELuvFgTjEUBQqIw/Fa7ts6n75a1yLfkX
-         KKZOYkym+HPzR+l9YXMji2RFwqC+Rh8KhZ+pf5RTk/x2ozy1BKRzB/fmY1SdaI5cdEMg
-         gZaJeQL5d8VZCI70wvgMsHjvdqlRn8ThId20UKT+Ut+BTRH9MVaQrksnIT92QPGE9xag
-         OwytA3lEzflmTH2j5mDWZIitGJ3l5oPLuWz1kBZgBFRIdPgbC8nciKO11f/MtOpKrs+e
-         FdqlP/ZvPOlef6khjaqMXwwSlDhhu0YrsRFnnVV0KdYqcbBFkL7FKKXZh3pImMbzUEip
-         sCQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eJWr50Fry6uqoXk5lAjjCSrJTgyONGyHsCCbDexeDq4=;
-        b=MNXWDO7A1IQr9bGIH4yvkVSCAZDd3UV7DI4CgfqJ8u/tY7EzRtu5F+HdnWiRCb1KfF
-         GvZdTsHiM/Ng3cQK3TFbjzz3w4Vl3vOJQASdfPpjLuFB/exPqzKXVB1lpj6Z077j/BzK
-         J22SpXW0KRIlnydndaI+zN2I/iV49fXQA0VHTQnHrPmOPrjhCaFxyTu2MsYBG2Pv373K
-         dBjlLnZzV38VD4o+6qu3dL4xPhF29k4OlUQq9exv+enNfBDJKXjelOgKgg2TKMtHU3KZ
-         jTl1hSELzaWivN/cj072EibdUMDNoYhXV4eWnEXY1NwlNrFZsvhrwMZHm+7J3Pae22Bv
-         BNkA==
-X-Gm-Message-State: AOAM530hY+APiBcSz+vcRJZaSBh6P3eCHfUbebyoIUhl0ylvyNDb5Xix
-        +MnGYEgI43i5LcrTfqcnJdEfNAtywwfudnUL4Jadfg==
-X-Google-Smtp-Source: ABdhPJwxY4PW9KTJxYlpxoGoFSVzhCv4CAjIidf+1e1lhepu3gpgu5ty1cMhJ26lN/c5Hd/vVTH2ib0gNLc0GhUbJQA=
-X-Received: by 2002:ab0:3043:: with SMTP id x3mr27495431ual.15.1624979384489;
- Tue, 29 Jun 2021 08:09:44 -0700 (PDT)
+        id S234781AbhF2Pk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 11:40:59 -0400
+Received: from out28-52.mail.aliyun.com ([115.124.28.52]:39772 "EHLO
+        out28-52.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234549AbhF2Pk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 11:40:59 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.09404528|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0158635-0.000755938-0.983381;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047212;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=14;RT=14;SR=0;TI=SMTPD_---.KZtCVfJ_1624981102;
+Received: from zhouyanjie-virtual-machine.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.KZtCVfJ_1624981102)
+          by smtp.aliyun-inc.com(10.147.44.118);
+          Tue, 29 Jun 2021 23:38:28 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org
+Cc:     linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        paul@crapouillou.net, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        sihui.liu@ingenic.com, jun.jiang@ingenic.com,
+        sernia.zhou@foxmail.com
+Subject: [PATCH v6 00/11] Add new clocks and fix bugs for Ingenic SoCs.
+Date:   Tue, 29 Jun 2021 23:38:11 +0800
+Message-Id: <1624981102-26248-1-git-send-email-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <1623835207-29462-1-git-send-email-sbhanu@codeaurora.org>
-In-Reply-To: <1623835207-29462-1-git-send-email-sbhanu@codeaurora.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 29 Jun 2021 17:09:06 +0200
-Message-ID: <CAPDyKFqzGxO4HyEhuVCa6NGxwtkO1sO+7X8GXjQgiOO3HENimw@mail.gmail.com>
-Subject: Re: [PATCH V2] dt-bindings: mmc: sdhci-msm: Add compatible string for sc7280
-To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Sahitya Tummala <stummala@codeaurora.org>,
-        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
-        Ram Prakash Gupta <rampraka@codeaurora.org>,
-        Sayali Lokhande <sayalil@codeaurora.org>,
-        Sarthak Garg <sartgarg@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>, okukatla@codeaurora.org,
-        djakov@kernel.org, cang@codeaurora.org,
-        Pradeep P V K <pragalla@codeaurora.org>,
-        nitirawa@codeaurora.org, linux-mmc <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Jun 2021 at 11:20, Shaik Sajida Bhanu <sbhanu@codeaurora.org> wrote:
->
-> Add sc7280 SoC specific compatible strings for qcom-sdhci controller.
->
-> Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+v4->v5:
+1.modify the CGU PLL correlation code to make it compatible with I2S PLL.
+2.Change X1000's I2S clock to CGU_CLK_PLL as Paul Cercueil's suggestion.
+3.Add documentation for JZ4775 and X2000 bindings.
+4.Add JZ4775 and X2000 clock bindings.
+5.Add CGU driver for JZ4775 and X2000.
 
-Queued up for v5.15 (temporary on the devel branch), thanks!
+v5->v6:
+Change the type of stable_bit from u8 to s8, because a negative value will
+appear when the stable_bit bit does not exist.
 
-Kind regards
-Uffe
+周琰杰 (Zhou Yanjie) (11):
+  clk: JZ4780: Add function for disable the second core.
+  clk: Ingenic: Adjust cgu code to make it compatible with I2S PLL.
+  dt-bindings: clock: Add missing clocks for Ingenic SoCs.
+  clk: Ingenic: Fix problem of MAC clock in Ingenic X1000 and X1830.
+  clk: Ingenic: Add missing clocks for Ingenic SoCs.
+  clk: Ingenic: Clean up and reformat the code.
+  dt-bindings: clock: Add documentation for JZ4775 and X2000 bindings.
+  dt-bindings: clock: Add JZ4775 clock bindings.
+  dt-bindings: clock: Add X2000 clock bindings.
+  clk: Ingenic: Add CGU driver for JZ4775.
+  clk: Ingenic: Add CGU driver for X2000.
 
+ .../devicetree/bindings/clock/ingenic,cgu.yaml     |   4 +
+ drivers/clk/ingenic/Kconfig                        |  20 +
+ drivers/clk/ingenic/Makefile                       |   2 +
+ drivers/clk/ingenic/cgu.c                          | 118 +++-
+ drivers/clk/ingenic/cgu.h                          |  10 +-
+ drivers/clk/ingenic/jz4725b-cgu.c                  |  49 +-
+ drivers/clk/ingenic/jz4740-cgu.c                   |  49 +-
+ drivers/clk/ingenic/jz4760-cgu.c                   | 106 ++-
+ drivers/clk/ingenic/jz4770-cgu.c                   |  83 +--
+ drivers/clk/ingenic/jz4775-cgu.c                   | 572 +++++++++++++++
+ drivers/clk/ingenic/jz4780-cgu.c                   | 149 ++--
+ drivers/clk/ingenic/x1000-cgu.c                    | 210 ++++--
+ drivers/clk/ingenic/x1830-cgu.c                    | 210 ++++--
+ drivers/clk/ingenic/x2000-cgu.c                    | 784 +++++++++++++++++++++
+ include/dt-bindings/clock/jz4775-cgu.h             |  59 ++
+ include/dt-bindings/clock/x1000-cgu.h              |   5 +
+ include/dt-bindings/clock/x1830-cgu.h              |   5 +
+ include/dt-bindings/clock/x2000-cgu.h              |  88 +++
+ 18 files changed, 2203 insertions(+), 320 deletions(-)
+ create mode 100644 drivers/clk/ingenic/jz4775-cgu.c
+ create mode 100644 drivers/clk/ingenic/x2000-cgu.c
+ create mode 100644 include/dt-bindings/clock/jz4775-cgu.h
+ create mode 100644 include/dt-bindings/clock/x2000-cgu.h
 
-> ---
->
-> Changes since V1:
->         - Modified commit subject line.
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> index 4c7fa6a..365c3fc 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
-> @@ -19,6 +19,7 @@ Required properties:
->                 "qcom,msm8996-sdhci", "qcom,sdhci-msm-v4"
->                 "qcom,qcs404-sdhci", "qcom,sdhci-msm-v5"
->                 "qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
-> +               "qcom,sc7280-sdhci", "qcom,sdhci-msm-v5";
->                 "qcom,sdm845-sdhci", "qcom,sdhci-msm-v5"
->                 "qcom,sdx55-sdhci", "qcom,sdhci-msm-v5";
->                 "qcom,sm8250-sdhci", "qcom,sdhci-msm-v5"
-> --
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> of Code Aurora Forum, hosted by The Linux Foundation
->
+-- 
+2.7.4
+
