@@ -2,96 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8343B3B6FD9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 11:05:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E31B3B6FE0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 11:06:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232542AbhF2JHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 05:07:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57882 "EHLO
+        id S232577AbhF2JJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 05:09:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232518AbhF2JHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 05:07:52 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61992C061574
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 02:05:25 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id c8so16662845pfp.5
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 02:05:25 -0700 (PDT)
+        with ESMTP id S232524AbhF2JJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 05:09:22 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0C23C061574;
+        Tue, 29 Jun 2021 02:06:54 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id p8so8767331wrr.1;
+        Tue, 29 Jun 2021 02:06:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=zxf0nNdDqyVoap8M6CG4HmjTediBPHub6WIWm3X9tdg=;
-        b=oTXq0/zjuzYPodSFGvMyuSPm6dwszJ3EXXtGSdCk4pk1sIZN2jSadWGy9UglSbV4Id
-         Ak/vFfrERdzVadO8t+3Ll8wZbk6NySFl1q6Iqmkt8moV4/trIjpr+Hil3Z99I73TixFJ
-         zKkHDRWcaWS+vA4PTWDWT3GbCCsVwQp1MKHH/codd3Gg6YHr6rwlnVXsumEwnSAKd5mc
-         fhwJHhDBxLyoun0TjEQi5HIvBhNjwOa8GHN46cwYv4tS8LA3sibk2GeFpXnPnU3mtcmc
-         v75Nb3QrIXAHfdz0fZT0dZUmXyMGgivobj3/yRzZXqkLo03Tzk4GLHe0Cu8xkiBD6lZq
-         l8Xg==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=xUNa+0KV7B+vXGxAAaNhqc6ILKPrP8e6nGYC6NphWSA=;
+        b=Vu+xtrLTkJeh5aC5cORWSlDNFiwk1Ep9IDbU6YLNus2SyHOTPFGMpB4hpjwEu6xjrx
+         FxYvLll3mp6UpO2ZrGYwoNoegsMO13EAHAs6PkNHX1GVOGXj0B/8e5KahXvd9EWaD+Q5
+         VDhmCY0MY+vXv2+QoHaNEqgr1pR/+LwtiNt7qosHe/OOHMEN9Fh2IYIRbpFZbMI+RNQw
+         TSK4AAXGtKpdeyE2hCrvIGPilXdPe+1gf8sr7mo+pplIOLM1bMnPiTxpE93wahQKycD6
+         WeYOBp5m6x10oQ2mLdRV189fp8nqbtlUzcogzJ7XgyaxRACpDXS+Xs+AvOooO4LPiq/w
+         6UYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zxf0nNdDqyVoap8M6CG4HmjTediBPHub6WIWm3X9tdg=;
-        b=gMuJ+BLuNMhd8i/aHIu+z20pPv6TMBuCE/1TD2yZA3MpLFaF+KdrlKnVxyCQe6D+eV
-         hRQEHLX80A40JAZqrZrXczfvN9IKHSQx3unrYNUnUy/tYdRQOsCpkkelZ6U7ZfNJwFmk
-         sI8pnlStFo3cEPI5m8fR+haNt49EVh9Ms/kYUzWHWPrqICPs0eJgtCkTzZ13imJMuevr
-         HLweFy3bkDfV7ElaKVN4tOMgnV9ITfAyfPKdPh0I4j9l8JrPIWOCVMQA6ABWH9CpZFIV
-         8u2S/tuugvBSwvRu8fY+Nq+mm5IZsCs/hSx+1hcF2542pn4xq953ycZFLKw95anLNJ+c
-         bJFQ==
-X-Gm-Message-State: AOAM5326xHCNtMJiKI2Shszct5OglNBujgJGAhS6ei2oXNe7c866VBH4
-        FNVfT6QYx8FFMqkb0d/5+X3TjQ==
-X-Google-Smtp-Source: ABdhPJyUPZgwjS4wGEte0i7vATCyxhKkaNbcvSyv/AlwzZqne0dvhsrD9mp5zq7yjYCtC/F8sRmOQQ==
-X-Received: by 2002:a05:6a00:8:b029:308:1d62:ba56 with SMTP id h8-20020a056a000008b02903081d62ba56mr27553764pfk.60.1624957524945;
-        Tue, 29 Jun 2021 02:05:24 -0700 (PDT)
-Received: from localhost ([136.185.134.182])
-        by smtp.gmail.com with ESMTPSA id nr12sm2303013pjb.1.2021.06.29.02.05.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Jun 2021 02:05:24 -0700 (PDT)
-Date:   Tue, 29 Jun 2021 14:35:22 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Hector Yuan <hector.yuan@mediatek.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wsd_upstream@mediatek.com
-Subject: Re: [PATCH v12 1/2] cpufreq: mediatek-hw: Add support for CPUFREQ HW
-Message-ID: <20210629090522.jsiwkrki6lavo33z@vireshk-i7>
-References: <1622307153-3639-1-git-send-email-hector.yuan@mediatek.com>
- <1622307153-3639-2-git-send-email-hector.yuan@mediatek.com>
- <20210614104058.jdwb7godqzhf7rgd@vireshk-i7>
- <1624781848.1958.16.camel@mtkswgap22>
- <20210628072641.amqk5d3svwolvhic@vireshk-i7>
- <20210628090956.uwkrozdqvawsm3xp@bogus>
- <20210629024719.nmcygaigtx5wn7g5@vireshk-i7>
- <20210629090238.n23zcttkiqvzpbb5@bogus>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=xUNa+0KV7B+vXGxAAaNhqc6ILKPrP8e6nGYC6NphWSA=;
+        b=qZ2w19YL9ZtP0ZMDZrY54motekdOU6xSdFwbFcP3sPvfA904tz8XoGsfyEUk3aJhaE
+         5AvZRBtryvJckhpnaX1E5F9+EK8BD7amZLx6r+nniqy8/pRBKkscFqbm87QAFAA1B1te
+         4bom/83a1SqqVimuPOATPyIpRKsuRYuQ1xx1I6HSBULl/qSOjtB2EIcCcaJ6GtOl6+en
+         nPTCN3xxvztLt98KAxPi0kKIvCNEKAL89Tp2WRUZarZSXXfUAra8/oBGLGmrX/lCmbTj
+         uYiHy+pXi5AzagfW8PzEdkXyRRgTH0UNBTnoZKellFb+2kkQVd4AixD1zK/es6qWwpTT
+         2qCw==
+X-Gm-Message-State: AOAM5313zT0RkUGVpw36zsHcI8udZ1YA8V3TomZdrcJUB7NneUUS+vNC
+        agKyUlecyOpXdmNsvi2lbrQ77D9upqRA
+X-Google-Smtp-Source: ABdhPJwvKWCQVsOJd9eUeFeHQfLFrIdvqdtZZcxsszSocuFblwXkrTqLQOVIRnfeVYIvo7ZariePdA==
+X-Received: by 2002:a5d:51ce:: with SMTP id n14mr15179890wrv.209.1624957613371;
+        Tue, 29 Jun 2021 02:06:53 -0700 (PDT)
+Received: from [192.168.200.247] (ip5b434b8b.dynamic.kabel-deutschland.de. [91.67.75.139])
+        by smtp.gmail.com with ESMTPSA id l15sm17628496wrt.47.2021.06.29.02.06.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Jun 2021 02:06:52 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: rockchip: add rock-pi-4 analog audio
+To:     Adrian Ratiu <adrian.ratiu@collabora.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     jack@radxa.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com, Rob Herring <robh+dt@kernel.org>
+References: <20210628113033.9145-1-adrian.ratiu@collabora.com>
+From:   Alex Bee <knaerzche@gmail.com>
+Message-ID: <7f806d30-594e-2325-615a-8fee875c83a8@gmail.com>
+Date:   Tue, 29 Jun 2021 11:06:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210629090238.n23zcttkiqvzpbb5@bogus>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20210628113033.9145-1-adrian.ratiu@collabora.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-06-21, 10:02, Sudeep Holla wrote:
-> On Tue, Jun 29, 2021 at 08:17:19AM +0530, Viresh Kumar wrote:
-> > On 28-06-21, 10:09, Sudeep Holla wrote:
-> > > Probably in driver/cpufreq or some related headers if it needs to access
-> > > related_cpus and is more cpufreq related in that way ?
-> >
-> > It just needs to set a mask, so doesn't really depend on cpufreq. I
-> > was wondering if drivers/opp/of.c may be used for this, and I am not
-> > sure.
-> >
-> 
-> Sounds good to me.
+Hi Adrian,
 
-Okay.
+I've submitted similar patch already. Its part of [1]
 
-Hector, add the routine to of.c in OPP core.
+There is no headphone detection pin in the schematics, btw.
 
--- 
-viresh
+[1] 
+https://patchwork.kernel.org/project/linux-rockchip/cover/20210618181256.27992-1-knaerzche@gmail.com/
+
+Best,
+
+Alex
+
+Am 28.06.21 um 13:30 schrieb Adrian Ratiu:
+> This adds the necessary pinctrl and nodes to enable the
+> analog audio on rk3399 rock-pi-4 SBCs using the es8316
+> codec and the audio-graph-card driver.
+>
+> Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
+> ---
+>   .../boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 38 +++++++++++++++++++
+>   1 file changed, 38 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> index b28888ea9262..77781d9150ac 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+> @@ -128,6 +128,12 @@ vdd_log: vdd-log {
+>   		regulator-max-microvolt = <1400000>;
+>   		vin-supply = <&vcc5v0_sys>;
+>   	};
+> +
+> +	sound {
+> +		compatible = "audio-graph-card";
+> +		label = "rockchip,rk3399";
+> +		dais = <&i2s0_p0>;
+> +	};
+>   };
+>   
+>   &cpu_l0 {
+> @@ -422,6 +428,24 @@ &i2c1 {
+>   	i2c-scl-rising-time-ns = <300>;
+>   	i2c-scl-falling-time-ns = <15>;
+>   	status = "okay";
+> +
+> +	es8316: codec@11 {
+> +		compatible = "everest,es8316";
+> +		reg = <0x11>;
+> +		clocks = <&cru SCLK_I2S_8CH_OUT>;
+> +		clock-names = "mclk";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&hp_det_pin>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <RK_PA0 IRQ_TYPE_LEVEL_HIGH>;
+> +		#sound-dai-cells = <0>;
+> +
+> +		port {
+> +			es8316_p0_0: endpoint {
+> +				remote-endpoint = <&i2s0_p0_0>;
+> +			};
+> +		};
+> +	};
+>   };
+>   
+>   &i2c3 {
+> @@ -441,6 +465,14 @@ &i2s0 {
+>   	rockchip,capture-channels = <2>;
+>   	rockchip,playback-channels = <2>;
+>   	status = "okay";
+> +
+> +	i2s0_p0: port {
+> +		i2s0_p0_0: endpoint {
+> +			dai-format = "i2s";
+> +			mclk-fs = <256>;
+> +			remote-endpoint = <&es8316_p0_0>;
+> +		};
+> +	};
+>   };
+>   
+>   &i2s1 {
+> @@ -556,6 +588,12 @@ wifi_host_wake_l: wifi-host-wake-l {
+>   			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
+>   		};
+>   	};
+> +
+> +	es8316 {
+> +		hp_det_pin: hp-det-pin {
+> +			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
+> +		};
+> +	};
+>   };
+>   
+>   &pwm2 {
