@@ -2,95 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D0C63B742A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 16:19:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9206F3B7437
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 16:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234205AbhF2OWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 10:22:06 -0400
-Received: from mail-yb1-f174.google.com ([209.85.219.174]:37599 "EHLO
-        mail-yb1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233941AbhF2OWF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 10:22:05 -0400
-Received: by mail-yb1-f174.google.com with SMTP id b13so24667484ybk.4;
-        Tue, 29 Jun 2021 07:19:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OmfYFeRirvP4cQ2N39rXkFHGm2EQASVxATkQTIKgSb4=;
-        b=p1Yg1sCoeZts6v96syM3u830pDn49hdKzddMJ4dri3dEVRGsZ319Gzcz/mlN6GWN8R
-         Ej7GLyQGLUPX8+QKiUpJ9QdsYxzMVQ6YgU180u4TfayivsCdimKaT+fT+CyjcuNllsYw
-         vx3bHvY9FLVJiKtc7kX+w5nIVMyPZ/mu6k3CvqfKYaJewZAIfvXCOHK61EucG596fHa/
-         3P2j4RaHbPL8XOd5kJe53LmWuRhN0B4ILUPtv5HwJ4wfBLWOTWavEe/psE/6BQ9c4aPb
-         HIAgVxMXhFfjfavM8Sl7y1eK6Srq8zlS22TZvCsWPu8gEZfhKez2a7diPV89meciGhgA
-         I2ig==
-X-Gm-Message-State: AOAM532moDX0tXSw0eV15UYDfWgvVR3myIOoJO6Ba/dhevK/FEZIO7q/
-        CH3g2FLTleepI/VJOHv0xq2f77HUVciyrWNNY/U=
-X-Google-Smtp-Source: ABdhPJwh3NmBzgb+TQrqpLSgcfdIjjGTuKDw+AGtuQtl7YCn115+ZlQx/qWC8M0/eHSaDCghBvh18xfww9vTvoW8gZE=
-X-Received: by 2002:a25:6dc5:: with SMTP id i188mr39982005ybc.420.1624976377812;
- Tue, 29 Jun 2021 07:19:37 -0700 (PDT)
+        id S234163AbhF2O2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 10:28:01 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:14844 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232518AbhF2O17 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Jun 2021 10:27:59 -0400
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15TEJ1xJ024486;
+        Tue, 29 Jun 2021 10:25:32 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com with ESMTP id 39fp4btsrj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Jun 2021 10:25:32 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 15TEPUVo030065
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 29 Jun 2021 10:25:31 -0400
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
+ Tue, 29 Jun 2021 10:25:30 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
+ Tue, 29 Jun 2021 10:25:30 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.858.5 via Frontend Transport;
+ Tue, 29 Jun 2021 10:25:29 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.128])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 15TEPRhH027422;
+        Tue, 29 Jun 2021 10:25:27 -0400
+From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
+To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <jic23@kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>
+CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH 0/2] iio: frequency: adrf6780: add support for ADRF6780
+Date:   Tue, 29 Jun 2021 17:23:06 +0300
+Message-ID: <20210629142308.25868-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20210629094038.18610-1-harini.katakam@xilinx.com>
- <20210629094038.18610-4-harini.katakam@xilinx.com> <453afad0-4e4b-f1bf-6ec5-5675d2c9c1b6@gmail.com>
-In-Reply-To: <453afad0-4e4b-f1bf-6ec5-5675d2c9c1b6@gmail.com>
-From:   Harini Katakam <harinik@xilinx.com>
-Date:   Tue, 29 Jun 2021 19:49:26 +0530
-Message-ID: <CAFcVECK2COLnkr+7+4FKKn6anDPERsmxcVWsfwpBWnEXdD8KzQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] phy: mscc: Add support for VSC8531_02 with RGMII tuning
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Harini Katakam <harini.katakam@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        linux@armlinux.org.uk, David Miller <davem@davemloft.net>,
-        kuba@kernel.org, steen.hegelund@microchip.com,
-        bjarni.jonasson@microchip.com, ioana.ciornei@nxp.com,
-        likaige@loongson.cn, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Michal Simek <michal.simek@xilinx.com>,
-        radhey.shyam.pandey@xilinx.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: LodfvXz3tKzrTaUXEtSYtnmkvD1ALxgb
+X-Proofpoint-ORIG-GUID: LodfvXz3tKzrTaUXEtSYtnmkvD1ALxgb
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-06-29_06:2021-06-28,2021-06-29 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
+ malwarescore=0 clxscore=1011 adultscore=0 mlxscore=0 lowpriorityscore=0
+ mlxlogscore=999 priorityscore=1501 impostorscore=0 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2106290096
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiner,
+Add support for the ADRF6780 microwave upconverter.
 
-On Tue, Jun 29, 2021 at 4:11 PM Heiner Kallweit <hkallweit1@gmail.com> wrote:
->
-> On 29.06.2021 11:40, Harini Katakam wrote:
-> > Add support for VSC8531_02 (Rev 2) device.
-> > Add support for optional RGMII RX and TX delay tuning via devicetree.
-> > The hierarchy is:
-> > - Retain the defaul 0.2ns delay when RGMII tuning is not set.
-> > - Retain the default 2ns delay when RGMII tuning is set and DT delay
-> > property is NOT specified.
-> > - Use the DT delay value when RGMII tuning is set and a DT delay
-> > property is specified.
-> >
-> > Signed-off-by: Harini Katakam <harini.katakam@xilinx.com>
-> > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-> > Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-> > ---
-> >  drivers/net/phy/mscc/mscc.h      |  3 +++
-> >  drivers/net/phy/mscc/mscc_main.c | 41 ++++++++++++++++++++++++++++++--
-> >  2 files changed, 42 insertions(+), 2 deletions(-)
-> >
-<snip>
->  {
-> >       .phy_id         = PHY_ID_VSC8540,
-> >       .name           = "Microsemi FE VSC8540 SyncE",
-> > @@ -2668,6 +2704,7 @@ static struct mdio_device_id __maybe_unused vsc85xx_tbl[] = {
-> >       { PHY_ID_VSC8514, 0xfffffff0, },
-> >       { PHY_ID_VSC8530, 0xfffffff0, },
-> >       { PHY_ID_VSC8531, 0xfffffff0, },
-> > +     { PHY_ID_VSC8531_02, 0xfffffff0, },
->
-> Effectively this is the same as the line before. Maybe it would make sense
-> to change this table in a follow-up patch to just one entry covering all
-> PHY ID's with the vendor part being Microsemi, e.g. using macro
-> PHY_ID_MATCH_VENDOR().
+Antoniu Miclaus (2):
+  iio: frequency: adrf6780: add support for ADRF6780
+  dt-bindings: iio: frequency: add adrf6780 doc
 
-Thanks for the review. Let me check and test - I have a couple of these parts.
-Will try to include the patch in this series.
+ .../bindings/iio/frequency/adi,adrf6780.yaml  | 133 +++++
+ drivers/iio/frequency/Kconfig                 |  13 +
+ drivers/iio/frequency/Makefile                |   1 +
+ drivers/iio/frequency/adrf6780.c              | 534 ++++++++++++++++++
+ 4 files changed, 681 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,adrf6780.yaml
+ create mode 100644 drivers/iio/frequency/adrf6780.c
 
-Regards,
-Harini
+-- 
+2.32.0
+
