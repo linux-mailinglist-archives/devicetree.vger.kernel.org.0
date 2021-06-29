@@ -2,281 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C416A3B77BD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 20:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7735F3B7829
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 21:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235107AbhF2SX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 14:23:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41488 "EHLO
+        id S232416AbhF2TC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 15:02:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235071AbhF2SXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 14:23:24 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C892C061760;
-        Tue, 29 Jun 2021 11:20:57 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id t3so10994321edt.12;
-        Tue, 29 Jun 2021 11:20:56 -0700 (PDT)
+        with ESMTP id S234343AbhF2TC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 15:02:56 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45C8EC061760;
+        Tue, 29 Jun 2021 12:00:27 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id i24so32677441edx.4;
+        Tue, 29 Jun 2021 12:00:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=h0zp9c8GYaiYKUAv6eUT71QHbk6kPshdSqicnQkyE6Q=;
-        b=GrqadTrRLB1OVbXTgLZ0P82nA1TBRs/l2MN3GRvhnSYuPRq/H3zpCF1MRX7nxKN08V
-         HhbFjFNMlAeFW+NSEsnSabrZVMfLa6p7urTMraGuxuabRcMLGmDKozGEEsPMJ9TR5TnZ
-         +lNGazmW4Y/IkGfe4zIqhihhU7VU9khmzdJA7O+2bQNkjtvqjSTd+CulzsSBtLgANBye
-         vfY6Pt8wtJdh6w7W0VzRMBFDFdaOZnaJOC7zx5qhPsb9PnTTu7K06EwKoqvupG8PATCs
-         zsLdY60UccbpYwwPnHcOsXiQgCPWhHur4kVKl+oBokgegYtNFaQD/Rnv5jiqb9ySNwke
-         QS6Q==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=T2w95C+qM8k4odXnWTg+Qy+O6s4VgV9B2PzrgUQXnKg=;
+        b=BSv5xS6GlW9bzmWJDOWNhjaCgHH2uVlFFzpO6OOCFWUGAayOsUbIpHR2I9n64dwUeT
+         0BFcKHQzFU4g+ygEfNZTqJBSYWcwOjYIo5pH+T8xkrTZmYvHfTrvF69lRCqSf8UsfEVa
+         0M65hf3m4blUhYbiFgulaMPx9HmmEWZ8Ha0DqOI9fvSd5dFVOakp+txRPhqW48bX2gVH
+         4IZ5LSZIA4Vn6UKS6Zq9qIqiW6TSVlTBPcEYZAfsVNB+/J8Iy6h3LRQPnf9J5471L2/X
+         NNKmdMbhYRKoPoVV4B3wuywafJ5cFpfHAwhh1nSe91rC41vH9rHThILaSW1z4oCStJfu
+         yyww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=h0zp9c8GYaiYKUAv6eUT71QHbk6kPshdSqicnQkyE6Q=;
-        b=TgZnpue1yQNdy/6MbYQmE2bNVB9qQz8iNUIuNh9PR5qNpDhRWXz+sMVcW4t9+w7Q1v
-         qxiLSWcYMS1ra9bbgjAijmA3RUat2tHfNrSkPRtSlvd8VMB9ACLHgafs0f760Y28XOYr
-         5Wd0gwy6yrMzEXT2CUSSVgWOhN88TTOf6HjRdouwcwlVKpDgTrwnrSGWG0+MDR2kZViz
-         efUPRIm3onoLO5WcufkmOyTRcHvmy+WXuvGRGjee/+IGsWxV7b3WAwKysgXst5NTnqvJ
-         sI4FqdO+S/bqYppyTO7YnbdBRAid2ydLvKIE22pu42GXa1Ph9E6mmLAKMkICAmFaRc74
-         3oaQ==
-X-Gm-Message-State: AOAM533hamp4r16HS52h+Ujfha+B7iUNhe/kiHNt5ZJna8O5ZGWzrXeA
-        gHVDrYFEyttXVTfjS6XhjVc=
-X-Google-Smtp-Source: ABdhPJxd3rITz9Rmq4AnFZFiP+aFgBj8RiN+lMf0hdEoCzeVQixzQC8yslUroVWHRPPIAnXyr1BYAg==
-X-Received: by 2002:a50:f692:: with SMTP id d18mr41389020edn.202.1624990855557;
-        Tue, 29 Jun 2021 11:20:55 -0700 (PDT)
-Received: from localhost.localdomain (dynamic-2a01-0c23-c0d8-f500-f22f-74ff-fe21-0725.c23.pool.telefonica.de. [2a01:c23:c0d8:f500:f22f:74ff:fe21:725])
-        by smtp.googlemail.com with ESMTPSA id v5sm11565678edt.55.2021.06.29.11.20.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Jun 2021 11:20:54 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     robh+dt@kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org
-Cc:     kishon@ti.com, vkoul@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v2 2/2] phy: amlogic: Add a new driver for the HDMI TX PHY on Meson8/8b/8m2
-Date:   Tue, 29 Jun 2021 20:20:47 +0200
-Message-Id: <20210629182047.893415-3-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210629182047.893415-1-martin.blumenstingl@googlemail.com>
-References: <20210629182047.893415-1-martin.blumenstingl@googlemail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=T2w95C+qM8k4odXnWTg+Qy+O6s4VgV9B2PzrgUQXnKg=;
+        b=NPSZ4Mq0w8LtklvVLNb2lZEg09kaUqVXOsci2wB3gW7FY1da/B8fWU4D7MThQXRY3h
+         KOndGlyye9jfIsny0F9vWRASfFt4FYrZ+A6vwqQXArh+vgECIxE9szZ7zR26SUOPkf5j
+         BIQX46qfvxc2s3lhaAK/wnspOMy5gPrOROEYYSSYJWY+6wqMku7C3u09EbyyjJhAJfzE
+         UJ668nMkIwBd9QONJB4uTPxV/OCh5E2Tb+FwjpzQfCZ+YWDjlgqYFktpYLX/0CBJ+Dkj
+         knCMl/5lAzZd4l9w6uEG9k3Y2dzBjOIOe8K4TTrCLxo+jwKtVP+n6NpuvAFsV/Iw6gog
+         dDsQ==
+X-Gm-Message-State: AOAM532Fmutsuj4C0l125ABSjrJrESSU2cJ6p/fl1lywXPLPOTo/5MQX
+        obULRViNLeq4RQCcrvNaewTgSs6LyBrAGMNTAt0=
+X-Google-Smtp-Source: ABdhPJzrCyLePOZbwU/YpHBQ4dDhsP2MEebHmIWdFgk1MHa6jvvw6Bo0yP64kVLq5ru5+iYeULC4Bf9NSf6Uk3j1hlM=
+X-Received: by 2002:a05:6402:b83:: with SMTP id cf3mr36314741edb.130.1624993225914;
+ Tue, 29 Jun 2021 12:00:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210629121459.6341-1-linux.amoon@gmail.com> <CAFBinCA=COnsN4Cp-z0HAPgs4kqPdiKtkZkr_LDkGz68s7B7hA@mail.gmail.com>
+In-Reply-To: <CAFBinCA=COnsN4Cp-z0HAPgs4kqPdiKtkZkr_LDkGz68s7B7hA@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Wed, 30 Jun 2021 00:30:14 +0530
+Message-ID: <CANAwSgRD9_B7f5UjPrxeL+x-eMMc2MAG3tXLQw36x0ho+ba_Uw@mail.gmail.com>
+Subject: Re: [PATCHv1] arm: dts: meson: Fix the pwm regulator supply property
+ in node
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amlogic Meson8/8b/8m2 have a built-in HDMI PHY in the HHI register
-region. Unfortunately only few register bits are documented. For
-HHI_HDMI_PHY_CNTL0 the magic numbers are taken from the 3.10 vendor
-kernel.
+Hi Martin,
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- drivers/phy/amlogic/Kconfig              |  10 ++
- drivers/phy/amlogic/Makefile             |   1 +
- drivers/phy/amlogic/phy-meson8-hdmi-tx.c | 162 +++++++++++++++++++++++
- 3 files changed, 173 insertions(+)
- create mode 100644 drivers/phy/amlogic/phy-meson8-hdmi-tx.c
+Thanks for your review comments.
 
-diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-index db5d0cd757e3..486ca23aba32 100644
---- a/drivers/phy/amlogic/Kconfig
-+++ b/drivers/phy/amlogic/Kconfig
-@@ -2,6 +2,16 @@
- #
- # Phy drivers for Amlogic platforms
- #
-+config PHY_MESON8_HDMI_TX
-+	tristate "Meson8, Meson8b and Meson8m2 HDMI TX PHY driver"
-+	depends on (ARCH_MESON && ARM) || COMPILE_TEST
-+	depends on OF
-+	select MFD_SYSCON
-+	help
-+	  Enable this to support the HDMI TX PHYs found in Meson8,
-+	  Meson8b and Meson8m2 SoCs.
-+	  If unsure, say N.
-+
- config PHY_MESON8B_USB2
- 	tristate "Meson8, Meson8b, Meson8m2 and GXBB USB2 PHY driver"
- 	default ARCH_MESON
-diff --git a/drivers/phy/amlogic/Makefile b/drivers/phy/amlogic/Makefile
-index 8fa07fbd0d92..c0886c850bb0 100644
---- a/drivers/phy/amlogic/Makefile
-+++ b/drivers/phy/amlogic/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_PHY_MESON8_HDMI_TX)		+= phy-meson8-hdmi-tx.o
- obj-$(CONFIG_PHY_MESON8B_USB2)			+= phy-meson8b-usb2.o
- obj-$(CONFIG_PHY_MESON_GXL_USB2)		+= phy-meson-gxl-usb2.o
- obj-$(CONFIG_PHY_MESON_G12A_USB2)		+= phy-meson-g12a-usb2.o
-diff --git a/drivers/phy/amlogic/phy-meson8-hdmi-tx.c b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-new file mode 100644
-index 000000000000..ba5a4de54811
---- /dev/null
-+++ b/drivers/phy/amlogic/phy-meson8-hdmi-tx.c
-@@ -0,0 +1,162 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Meson8, Meson8b and Meson8m2 HDMI TX PHY.
-+ *
-+ * Copyright (C) 2021 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#define HHI_HDMI_PHY_CNTL0				0x0
-+	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL1		GENMASK(31, 16)
-+	#define HHI_HDMI_PHY_CNTL0_HDMI_CTL0		GENMASK(15, 0)
-+
-+#define HHI_HDMI_PHY_CNTL1				0x4
-+	#define HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE		BIT(1)
-+	#define HHI_HDMI_PHY_CNTL1_SOFT_RESET		BIT(0)
-+
-+#define HHI_HDMI_PHY_CNTL2				0x8
-+
-+struct phy_meson8_hdmi_tx_priv {
-+	struct regmap		*hhi;
-+	struct clk		*tmds_clk;
-+	unsigned int		reg_offset;
-+};
-+
-+static int phy_meson8_hdmi_tx_init(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+
-+	return clk_prepare_enable(priv->tmds_clk);
-+}
-+
-+static int phy_meson8_hdmi_tx_exit(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+
-+	clk_disable_unprepare(priv->tmds_clk);
-+
-+	return 0;
-+}
-+
-+static int phy_meson8_hdmi_tx_power_on(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+	unsigned int i;
-+	u16 hdmi_ctl0;
-+
-+	if (clk_get_rate(priv->tmds_clk) >= 2970UL * 1000 * 1000)
-+		hdmi_ctl0 = 0x1e8b;
-+	else
-+		hdmi_ctl0 = 0x4d0b;
-+
-+	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL0,
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x08c3) |
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, hdmi_ctl0));
-+
-+	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1, 0x0);
-+
-+	/* Reset three times, just like the vendor driver does */
-+	for (i = 0; i < 3; i++) {
-+		regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1,
-+			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE |
-+			     HHI_HDMI_PHY_CNTL1_SOFT_RESET);
-+		usleep_range(1000, 2000);
-+
-+		regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL1,
-+			     HHI_HDMI_PHY_CNTL1_CLOCK_ENABLE);
-+		usleep_range(1000, 2000);
-+	}
-+
-+	return 0;
-+}
-+
-+static int phy_meson8_hdmi_tx_power_off(struct phy *phy)
-+{
-+	struct phy_meson8_hdmi_tx_priv *priv = phy_get_drvdata(phy);
-+
-+	regmap_write(priv->hhi, priv->reg_offset + HHI_HDMI_PHY_CNTL0,
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL1, 0x0841) |
-+		     FIELD_PREP(HHI_HDMI_PHY_CNTL0_HDMI_CTL0, 0x8d00));
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops phy_meson8_hdmi_tx_ops = {
-+	.init		= phy_meson8_hdmi_tx_init,
-+	.exit		= phy_meson8_hdmi_tx_exit,
-+	.power_on	= phy_meson8_hdmi_tx_power_on,
-+	.power_off	= phy_meson8_hdmi_tx_power_off,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int phy_meson8_hdmi_tx_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct phy_meson8_hdmi_tx_priv *priv;
-+	struct phy_provider *phy_provider;
-+	struct phy *phy;
-+	u32 reg[2];
-+	int ret;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	ret = device_property_read_u32_array(&pdev->dev, "reg", reg,
-+					     ARRAY_SIZE(reg));
-+	if (ret)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "Failed to parse the 'reg' property\n");
-+
-+	priv->reg_offset = reg[0];
-+
-+	priv->hhi = syscon_node_to_regmap(np->parent);
-+	if (IS_ERR(priv->hhi))
-+		return PTR_ERR(priv->hhi);
-+
-+	priv->tmds_clk = devm_clk_get(&pdev->dev, NULL);
-+	if (IS_ERR(priv->tmds_clk))
-+		return PTR_ERR(priv->tmds_clk);
-+
-+	phy = devm_phy_create(&pdev->dev, np, &phy_meson8_hdmi_tx_ops);
-+	if (IS_ERR(phy))
-+		return PTR_ERR(phy);
-+
-+	phy_set_drvdata(phy, priv);
-+
-+	phy_provider = devm_of_phy_provider_register(&pdev->dev,
-+						     of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct of_device_id phy_meson8_hdmi_tx_of_match[] = {
-+	{ .compatible = "amlogic,meson8-hdmi-tx-phy" },
-+	{ .compatible = "amlogic,meson8b-hdmi-tx-phy" },
-+	{ .compatible = "amlogic,meson8m2-hdmi-tx-phy" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, phy_meson8_hdmi_tx_of_match);
-+
-+static struct platform_driver phy_meson8_hdmi_tx_driver = {
-+	.probe	= phy_meson8_hdmi_tx_probe,
-+	.driver	= {
-+		.name		= "phy-meson8-hdmi-tx",
-+		.of_match_table	= phy_meson8_hdmi_tx_of_match,
-+	},
-+};
-+module_platform_driver(phy_meson8_hdmi_tx_driver);
-+
-+MODULE_AUTHOR("Martin Blumenstingl <martin.blumenstingl@googlemail.com>");
-+MODULE_DESCRIPTION("Meson8, Meson8b and Meson8m2 HDMI TX PHY driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.32.0
+On Tue, 29 Jun 2021 at 21:31, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
+>
+> Hi Anand,
+>
+> On Tue, Jun 29, 2021 at 2:15 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> >
+> > On enable CONFIG_REGULATOR_DEBUG=y we observer below debug logs.
+> I (as non-native english speaker) suggest rewording this to:
+> After enabling CONFIG_REGULATOR_DEBUG=y we observe below debug logs.
+>
+Opps: I will fix this in the next version.
 
+> > Changes help link VCCK and VDDEE pwm regulator to 5V regulator supply
+> > instead of dummy regulator.
+> >
+> > [    7.117140] pwm-regulator regulator-vcck: Looking up pwm-supply from device tree
+> > [    7.117153] pwm-regulator regulator-vcck: Looking up pwm-supply property in node /regulator-vcck failed
+> > [    7.117184] VCCK: supplied by regulator-dummy
+> > [    7.117194] regulator-dummy: could not add device link regulator.8: -ENOENT
+> > [    7.117266] VCCK: 860 <--> 1140 mV at 986 mV, enabled
+> > [    7.118498] VDDEE: will resolve supply early: pwm
+> > [    7.118515] pwm-regulator regulator-vddee: Looking up pwm-supply from device tree
+> > [    7.118526] pwm-regulator regulator-vddee: Looking up pwm-supply property in node /regulator-vddee failed
+> > [    7.118553] VDDEE: supplied by regulator-dummy
+> > [    7.118563] regulator-dummy: could not add device link regulator.9: -ENOENT
+> excellent catch, thanks for sending a patch!
+>
+> > Fixes: 524d96083b66 ("ARM: dts: meson8b: odroidc1: add the CPU voltage regulator")
+> > Fixes: 8bdf38be712d ("ARM: dts: meson8b: odroidc1: add the VDDEE regulator")
+> >
+> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+Thanks
+
+> For the subject:
+> - patches for 32-bit ARM should start with upper-case ARM
+> - personally I also include the board name so the git history is easier to read
+>
+> My suggestion for the subject line is:
+> ARM: dts: meson8b: odroidc1: Fix the pwm regulator supply properties
+>
+Ok I will try to incorporate your suggestion in the next version.
+
+> Are you also planning to send patches for the following 32-bit SoC boards?
+> - arch/arm/boot/dts/meson8b-mxq.dts
+> - arch/arm/boot/dts/meson8b-ec100.dts
+>
+Ok I will try to send all updates in the next series.
+
+>
+> Best regards,
+> Martin
