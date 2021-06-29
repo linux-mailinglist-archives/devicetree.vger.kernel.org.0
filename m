@@ -2,129 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BC933B74E2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 17:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBA943B74E7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 17:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234697AbhF2PMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 11:12:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55022 "EHLO
+        id S234772AbhF2PMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 11:12:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234691AbhF2PMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 11:12:07 -0400
-Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DA56C061766
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 08:09:40 -0700 (PDT)
-Received: by mail-ua1-x92e.google.com with SMTP id u2so3369277uap.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 08:09:40 -0700 (PDT)
+        with ESMTP id S234730AbhF2PMN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 11:12:13 -0400
+Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BECC061768
+        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 08:09:45 -0700 (PDT)
+Received: by mail-ua1-x936.google.com with SMTP id f1so8483879uaj.10
+        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 08:09:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=LuyBMZGhtBgcRJwd1A74SaR7qMVubxg4OKYSD7bf0Rg=;
-        b=TGHWWV8kcyBivyZX88cWdYDh6ISxpSSnB+a3I2IZObT877GfF5myGHJDavSsywsD/+
-         HRNudBk1MUSh5BxtRJ1ScnfRqOaOuhXBHdXG62OzrMB44GRE6P1JiknjAtVrJ4pZdj/i
-         U5pXLro/rLS+ZY7yTlGCYle3qxXqCC9tPc4MXrPuipukj2QsFk68V37sCwZSf2hn+0J1
-         aKCbqF+sjF004LTaqivSO4eR3lo+h9VcydpASTFhp0b+bOVi84Wsx33m1aSAIudIK1xx
-         2rBMCcA0SsSfBjmlNB2BC67QUKQpheGAtnghLDKEJdOOrsg/Qq9BeURftGLO1HzvYeTT
-         eBJw==
+        bh=eJWr50Fry6uqoXk5lAjjCSrJTgyONGyHsCCbDexeDq4=;
+        b=DLvBDwVyXAlPrIUgIvyEic31ZBj6Sp22bOELuvFgTjEUBQqIw/Fa7ts6n75a1yLfkX
+         KKZOYkym+HPzR+l9YXMji2RFwqC+Rh8KhZ+pf5RTk/x2ozy1BKRzB/fmY1SdaI5cdEMg
+         gZaJeQL5d8VZCI70wvgMsHjvdqlRn8ThId20UKT+Ut+BTRH9MVaQrksnIT92QPGE9xag
+         OwytA3lEzflmTH2j5mDWZIitGJ3l5oPLuWz1kBZgBFRIdPgbC8nciKO11f/MtOpKrs+e
+         FdqlP/ZvPOlef6khjaqMXwwSlDhhu0YrsRFnnVV0KdYqcbBFkL7FKKXZh3pImMbzUEip
+         sCQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=LuyBMZGhtBgcRJwd1A74SaR7qMVubxg4OKYSD7bf0Rg=;
-        b=cf4SmY3Yc/l+uktVuBOVcUoxp9EkmTQnLdHDgIQZPyvAmlIY62cnMjLdQttMzygGAm
-         jtnbu/2LsBxFumSbqGECzvs3oOwLUwQNkb9bQtanhhnnMXzTN23cbmQ0aonSJuHLUJC1
-         urBXKNgjHNyfhEUZRP0HboBkHnQwuPt1b8beW2EiPbYkL8/+Qld8zDpIVTclCCQyuakR
-         Mhjnhfb8cbzBJfMqP/sUTYNoupF2WwuCKxRDZhzhUgE022tpWNTalKWSUvveKxRq9dzu
-         FQcCFfm9Qw7xPf9hCAxb9lq22v6zP/g6zetPE4QHv4llmGdn0LWnSbpkXXTXPxRdQSHg
-         l14Q==
-X-Gm-Message-State: AOAM531atMDF0WqrNkfgmEojtEnZfL1Uc7dofAKVTdsvt8cA1u4pjvT+
-        /JmSgak/ZcNXNeIzcwvOMAYq6EL7zgulHBEsG/x2tw==
-X-Google-Smtp-Source: ABdhPJzVIVyqLzXURZxn0TF1D1Ma0QIbM2IQTwNlaEsIhbBauCsjME4JZOq/bDRZJCt6zyyzOdYNbQVJX7NZ4PfyH7M=
-X-Received: by 2002:ab0:484b:: with SMTP id c11mr27684290uad.100.1624979377958;
- Tue, 29 Jun 2021 08:09:37 -0700 (PDT)
+        bh=eJWr50Fry6uqoXk5lAjjCSrJTgyONGyHsCCbDexeDq4=;
+        b=MNXWDO7A1IQr9bGIH4yvkVSCAZDd3UV7DI4CgfqJ8u/tY7EzRtu5F+HdnWiRCb1KfF
+         GvZdTsHiM/Ng3cQK3TFbjzz3w4Vl3vOJQASdfPpjLuFB/exPqzKXVB1lpj6Z077j/BzK
+         J22SpXW0KRIlnydndaI+zN2I/iV49fXQA0VHTQnHrPmOPrjhCaFxyTu2MsYBG2Pv373K
+         dBjlLnZzV38VD4o+6qu3dL4xPhF29k4OlUQq9exv+enNfBDJKXjelOgKgg2TKMtHU3KZ
+         jTl1hSELzaWivN/cj072EibdUMDNoYhXV4eWnEXY1NwlNrFZsvhrwMZHm+7J3Pae22Bv
+         BNkA==
+X-Gm-Message-State: AOAM530hY+APiBcSz+vcRJZaSBh6P3eCHfUbebyoIUhl0ylvyNDb5Xix
+        +MnGYEgI43i5LcrTfqcnJdEfNAtywwfudnUL4Jadfg==
+X-Google-Smtp-Source: ABdhPJwxY4PW9KTJxYlpxoGoFSVzhCv4CAjIidf+1e1lhepu3gpgu5ty1cMhJ26lN/c5Hd/vVTH2ib0gNLc0GhUbJQA=
+X-Received: by 2002:ab0:3043:: with SMTP id x3mr27495431ual.15.1624979384489;
+ Tue, 29 Jun 2021 08:09:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <1623726033-16073-1-git-send-email-wenbin.mei@mediatek.com> <1623726033-16073-2-git-send-email-wenbin.mei@mediatek.com>
-In-Reply-To: <1623726033-16073-2-git-send-email-wenbin.mei@mediatek.com>
+References: <1623835207-29462-1-git-send-email-sbhanu@codeaurora.org>
+In-Reply-To: <1623835207-29462-1-git-send-email-sbhanu@codeaurora.org>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 29 Jun 2021 17:09:01 +0200
-Message-ID: <CAPDyKFrqeYbxDyrcicS=DQLntF8PfNm9E4tZf7KgvzRJmciLog@mail.gmail.com>
-Subject: Re: [PATCH v1] dt-bindings: mmc: change compatiable string for MT8195
- mmc host IP
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
+Date:   Tue, 29 Jun 2021 17:09:06 +0200
+Message-ID: <CAPDyKFqzGxO4HyEhuVCa6NGxwtkO1sO+7X8GXjQgiOO3HENimw@mail.gmail.com>
+Subject: Re: [PATCH V2] dt-bindings: mmc: sdhci-msm: Add compatible string for sc7280
+To:     Shaik Sajida Bhanu <sbhanu@codeaurora.org>
+Cc:     Adrian Hunter <adrian.hunter@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Sahitya Tummala <stummala@codeaurora.org>,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        Ram Prakash Gupta <rampraka@codeaurora.org>,
+        Sayali Lokhande <sayalil@codeaurora.org>,
+        Sarthak Garg <sartgarg@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>, okukatla@codeaurora.org,
+        djakov@kernel.org, cang@codeaurora.org,
+        Pradeep P V K <pragalla@codeaurora.org>,
+        nitirawa@codeaurora.org, linux-mmc <linux-mmc@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Jun 2021 at 05:01, Wenbin Mei <wenbin.mei@mediatek.com> wrote:
+On Wed, 16 Jun 2021 at 11:20, Shaik Sajida Bhanu <sbhanu@codeaurora.org> wrote:
 >
-> MT8195 mmc host IP is compatible with MT8183, and currently it shows:
-> properties:
->   compatible:
->     oneOf:
-> ...
->       - items:
->          - const: mediatek,mt8192-mmc
->          - const: mediatek,mt8195-mmc
->          - const: mediatek,mt8183-mmc
-> which means the compatible string in the device tree would be:
->         compatible = "mediatek,mt8192-mmc", "mediatek,mt8195-mmc",
->                      "mediatek,mt8183-mmc";
-> The bindings is wrong and that isn't the result we want.
-> instead we want:
-> properties:
->   compatible:
->     oneOf:
-> ...
->       - items:
->          - const: mediatek,mt8192-mmc
->          - const: mediatek,mt8183-mmc
->       - items:
->          - const: mediatek,mt8195-mmc
->          - const: mediatek,mt8183-mmc
-> which would give us:
->         compatible = "mediatek,mt8192-mmc", "mediatek,mt8183-mmc";
-> and
->         compatible = "mediatek,mt8195-mmc", "mediatek,mt8183-mmc";
+> Add sc7280 SoC specific compatible strings for qcom-sdhci controller.
 >
-> Fixes: eb9cb7227e5c (dt-bindings: mmc: Add compatible for Mediatek MT8195)
-> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
+> Signed-off-by: Shaik Sajida Bhanu <sbhanu@codeaurora.org>
 
-Applied for fixes, thanks!
+Queued up for v5.15 (temporary on the devel branch), thanks!
 
 Kind regards
 Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 2 ++
->  1 file changed, 2 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> index 8648d48..adaba90 100644
-> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> @@ -31,6 +31,8 @@ properties:
->            - const: mediatek,mt2701-mmc
->        - items:
->            - const: mediatek,mt8192-mmc
-> +          - const: mediatek,mt8183-mmc
-> +      - items:
->            - const: mediatek,mt8195-mmc
->            - const: mediatek,mt8183-mmc
+> Changes since V1:
+>         - Modified commit subject line.
+> ---
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 1 +
+>  1 file changed, 1 insertion(+)
 >
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> index 4c7fa6a..365c3fc 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> @@ -19,6 +19,7 @@ Required properties:
+>                 "qcom,msm8996-sdhci", "qcom,sdhci-msm-v4"
+>                 "qcom,qcs404-sdhci", "qcom,sdhci-msm-v5"
+>                 "qcom,sc7180-sdhci", "qcom,sdhci-msm-v5";
+> +               "qcom,sc7280-sdhci", "qcom,sdhci-msm-v5";
+>                 "qcom,sdm845-sdhci", "qcom,sdhci-msm-v5"
+>                 "qcom,sdx55-sdhci", "qcom,sdhci-msm-v5";
+>                 "qcom,sm8250-sdhci", "qcom,sdhci-msm-v5"
 > --
-> 1.9.1
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
 >
