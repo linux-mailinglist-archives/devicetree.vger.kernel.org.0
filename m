@@ -2,73 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A99333B71E4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 14:13:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EF693B71E8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 14:15:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233483AbhF2MPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 08:15:30 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:49507 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233384AbhF2MP3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 08:15:29 -0400
-X-UUID: 1808bfb60d774362bc069ba1ed953987-20210629
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=4SbG1vndPjwBWteOUa61pelj+E3Mh/QyjRjIiC1LL3s=;
-        b=kt4DZhFF3c3qEU+rHgUIkRCJ65aiuh9VZPAoBNm0UUHyEc+i9i4qh8107WVX5qavw/gN1w3KZ4XG/XKmEEyr+s5FaRuJiZX8yfeLuny12Bf61yqxQjpk8sJ+pFDV2Mem95Lfi/jUiN5WXQm/YUlI8nEUSOeEq1u8ls5smIZxl4o=;
-X-UUID: 1808bfb60d774362bc069ba1ed953987-20210629
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <kewei.xu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1263429074; Tue, 29 Jun 2021 20:12:57 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 29 Jun
- 2021 20:12:48 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 29 Jun 2021 20:12:47 +0800
-Message-ID: <1624968767.5647.2.camel@mhfsdcap03>
-Subject: Re: [PATCH 2/3] i2c: mediatek: Dump i2c/dma register when a timeout
- occurs
-From:   Kewei Xu <kewei.xu@mediatek.com>
-To:     Tzung-Bi Shih <tzungbi@google.com>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>, <wsa@the-dreams.de>,
-        <robh+dt@kernel.org>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <qii.wang@mediatek.com>, <qiangming.xia@mediatek.com>,
-        <liguo.zhang@mediatek.com>
-Date:   Tue, 29 Jun 2021 20:12:47 +0800
-In-Reply-To: <CA+Px+wU8qqEDU+bV0QpoJssNOxebutzRGgHo6WpC9VFJwckKKQ@mail.gmail.com>
-References: <1623122200-1896-1-git-send-email-kewei.xu@mediatek.com>
-         <1623122200-1896-3-git-send-email-kewei.xu@mediatek.com>
-         <54301510-e0d5-0762-1979-b194b8fd5eb8@gmail.com>
-         <1623206624.14050.10.camel@mhfsdcap03>
-         <CA+Px+wU8qqEDU+bV0QpoJssNOxebutzRGgHo6WpC9VFJwckKKQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S233488AbhF2MRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 08:17:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43500 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233384AbhF2MRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 08:17:37 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C569AC061760;
+        Tue, 29 Jun 2021 05:15:08 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id v7so18334540pgl.2;
+        Tue, 29 Jun 2021 05:15:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mlqRgdeiXEIYSrXLcXViAJxLAnONyVn/mV1IwG0OAbE=;
+        b=bW4owkmj3xr8ZQb2A3aCyS1AqXdnbfAz+x61VdR5tSaFnD63cXTpQcNTncWTzlN9br
+         tNFPYFdKrf3Bjk27qeG7cToVRSa05Bd+3PEoqrEkteRvtNCuhzMZFAxWwpaPsXm0twNH
+         6CgIpdWqKtuFc3iUB2XrG1lMo42gtZUGGXEfEnvx9l5fdGjuA5Qo7/74rsBV0ncizrV4
+         Q1c9UluMJphyGuDqTcjk7sR/er2Arn11/U89bKnIFWLuYiotCYC0QqpP6X60VqVd655q
+         z38GSrCaIa4J+E7u1WGG6StfOodcFetaBCob5/vrLzxhXpILKBQJbgRFydcXVKomWc8W
+         SFLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mlqRgdeiXEIYSrXLcXViAJxLAnONyVn/mV1IwG0OAbE=;
+        b=UBiqZV1mYCFp5BDjD3FBuDuwmAEEiXqr4Y3WloiCRgw8yBLcRixn6CUz1AGqMUYsRZ
+         +ykKyBYMYKwQMsISy86mqm4cLFp9AbclahJF/XRxDU7uPbmTT9iURM/NKQIf5AFwAd5v
+         BEff941ywsd+QGlivVb3lKl3GWN1q3fP0fNWO8PkfmkzGinASNC6qAa6hiysRLkgoNGu
+         RNBFUpOqAgsy/xmNZqjoMKIYqI97TWMCrw0XsBSlgZeZFzMQ44eGVfK/jFouYKKwUi/v
+         4eA/+YDBoouhB1uCGe0d8xponB83c6DvoU7TMLEUhVyqmhKBFsV+VIjIQs2Uc7FJMfI1
+         Y6Tg==
+X-Gm-Message-State: AOAM531db44r1Ja4JI07xVWs/5pUouDelCWCZCYUm9z0y6Axw2iYyonD
+        e97xhlJ5Gmz0IThMItD7BAo=
+X-Google-Smtp-Source: ABdhPJz6IDnmzNNrr0eZ/jlPZz8aRmiSr1TQxpE+yHlMpP7iqM9Uea0AslVBxgA0SSdA1DVWiu5LZA==
+X-Received: by 2002:a63:234a:: with SMTP id u10mr6507856pgm.322.1624968908431;
+        Tue, 29 Jun 2021 05:15:08 -0700 (PDT)
+Received: from archl-c2lm.. ([103.51.72.37])
+        by smtp.gmail.com with ESMTPSA id j79sm19324714pfd.172.2021.06.29.05.15.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Jun 2021 05:15:07 -0700 (PDT)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Anand Moon <linux.amoon@gmail.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCHv1] arm: dts: meson: Fix the pwm regulator supply property in node
+Date:   Tue, 29 Jun 2021 12:14:58 +0000
+Message-Id: <20210629121459.6341-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 99D115C5B010B0D7F3D44B52D5ED0835CC3A0712A95D069472FE4D2D1B8632C52000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIxLTA2LTI5IGF0IDEyOjE5ICswODAwLCBUenVuZy1CaSBTaGloIHdyb3RlOg0K
-PiBPbiBXZWQsIEp1biA5LCAyMDIxIGF0IDEwOjQ0IEFNIEtld2VpIFh1IDxrZXdlaS54dUBtZWRp
-YXRlay5jb20+IHdyb3RlOg0KPiA+DQo+ID4gT24gVHVlLCAyMDIxLTA2LTA4IGF0IDE2OjAxICsw
-MjAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3RlOg0KPiA+ID4gSXMgdGhpcyBvZmZzZXQgb25seSBm
-b3IgbXQ4MTkyIG9yIGFsc28gZm9yIG10ODE4Mz8NCj4gPiA+IEluIGFueSBjYXNlIHRoYXQgc2hv
-dWxkIGdvIGluIGFzIGFub3RoZXIgcGF0Y2guIEVpdGhlciBhIGZpeCBvciBhIG5ldw0KPiA+ID4g
-bXRfaTJjX3JlZ3NfdjNbXQ0KPiA+DQo+ID4gVGhpcyBvZmZzZXQgdmFsdWUgaXMgc3VpdGFibGUg
-Zm9yIHRoZSBJQyBvZiBtdF9pMmNfcmVnc192MiBoYXJkd2FyZQ0KPiA+IGRlc2lnbiBzaW1pbGFy
-IHRvIG10ODE5Mi84MTk1LCBub3QgZm9yIDgxODMuDQo+ID4NCj4gPiBUaGUgcmVhc29uIGZvciB0
-aGUgbW9kaWZpY2F0aW9uIGhlcmUgaXMgdGhhdCB0aGUgcHJldmlvdXMNCj4gPiBvZmZzZXQgaW5m
-b3JtYXRpb24gaXMgaW5jb3JyZWN0LCBPRkZTRVRfREVCVUdTVEFUID0gMFhFNCBpcw0KPiA+IHRo
-ZSBjb3JyZWN0IHZhbHVlLg0KPiANCj4gUGxlYXNlIHN1Ym1pdCBhbm90aGVyIHBhdGNoIGZvciBm
-aXhpbmcgdGhlIGluY29ycmVjdCB2YWx1ZS4NCg0KT2theSwgSSB3aWxsIHJlc3VibWl0IGEgcGF0
-Y2ggdG8gZml4aW5nIHRoZSBpbmNvcnJlY3QgdmFsdWUsVGhhbmtzLg0KDQo=
+On enable CONFIG_REGULATOR_DEBUG=y we observer below debug logs.
+Changes help link VCCK and VDDEE pwm regulator to 5V regulator supply
+instead of dummy regulator.
+
+[    7.117140] pwm-regulator regulator-vcck: Looking up pwm-supply from device tree
+[    7.117153] pwm-regulator regulator-vcck: Looking up pwm-supply property in node /regulator-vcck failed
+[    7.117184] VCCK: supplied by regulator-dummy
+[    7.117194] regulator-dummy: could not add device link regulator.8: -ENOENT
+[    7.117266] VCCK: 860 <--> 1140 mV at 986 mV, enabled
+[    7.118498] VDDEE: will resolve supply early: pwm
+[    7.118515] pwm-regulator regulator-vddee: Looking up pwm-supply from device tree
+[    7.118526] pwm-regulator regulator-vddee: Looking up pwm-supply property in node /regulator-vddee failed
+[    7.118553] VDDEE: supplied by regulator-dummy
+[    7.118563] regulator-dummy: could not add device link regulator.9: -ENOENT
+
+Fixes: 524d96083b66 ("ARM: dts: meson8b: odroidc1: add the CPU voltage regulator")
+Fixes: 8bdf38be712d ("ARM: dts: meson8b: odroidc1: add the VDDEE regulator")
+
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+---
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
+index c440ef94e082..04356bc639fa 100644
+--- a/arch/arm/boot/dts/meson8b-odroidc1.dts
++++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
+@@ -131,7 +131,7 @@ vcck: regulator-vcck {
+ 		regulator-min-microvolt = <860000>;
+ 		regulator-max-microvolt = <1140000>;
+ 
+-		vin-supply = <&p5v0>;
++		pwm-supply = <&p5v0>;
+ 
+ 		pwms = <&pwm_cd 0 12218 0>;
+ 		pwm-dutycycle-range = <91 0>;
+@@ -163,7 +163,7 @@ vddee: regulator-vddee {
+ 		regulator-min-microvolt = <860000>;
+ 		regulator-max-microvolt = <1140000>;
+ 
+-		vin-supply = <&p5v0>;
++		pwm-supply = <&p5v0>;
+ 
+ 		pwms = <&pwm_cd 1 12218 0>;
+ 		pwm-dutycycle-range = <91 0>;
+-- 
+2.31.1
 
