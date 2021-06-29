@@ -2,85 +2,348 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFFFB3B7400
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 16:11:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB2463B7412
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 16:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234255AbhF2OOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 10:14:21 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:33390 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233106AbhF2OOV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Jun 2021 10:14:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=7ObJSRSuHN+MA7ZvW6xKZmT6lRaUAOxEM0Gf6yOQ90U=; b=GKS5AYdhZsSVl6B8uK2VN7XjBk
-        IFP2ierQijzZQBk/uevyncHpdW3dwKWyUpja9d9ufybUF/0wh07BTrIrzF+/U6u8pXSP3GrIVEMp/
-        5+CewPy5GSS9q9/Qv+gPKtywQ132SipwUlzSFIgQLgjgS34h+aoWl9fjiRURbqT1R7Kk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1lyESm-00BY9x-Jo; Tue, 29 Jun 2021 16:11:44 +0200
-Date:   Tue, 29 Jun 2021 16:11:44 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Harini Katakam <harini.katakam@xilinx.com>
-Cc:     robh+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        davem@davemloft.net, kuba@kernel.org, steen.hegelund@microchip.com,
-        bjarni.jonasson@microchip.com, ioana.ciornei@nxp.com,
-        likaige@loongson.cn, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        harinikatakamlinux@gmail.com, michal.simek@xilinx.com,
-        radhey.shyam.pandey@xilinx.com
-Subject: Re: [PATCH 3/3] phy: mscc: Add support for VSC8531_02 with RGMII
- tuning
-Message-ID: <YNsqIIUZbA+JTl0a@lunn.ch>
-References: <20210629094038.18610-1-harini.katakam@xilinx.com>
- <20210629094038.18610-4-harini.katakam@xilinx.com>
+        id S232992AbhF2OTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 10:19:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234313AbhF2OTP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 10:19:15 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F08FC061768
+        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 07:16:47 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id a127so17257411pfa.10
+        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 07:16:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=f3OA1dbE+qUdV5an6bSR6AZUtN3k+/RtXxo9mlqVUD4=;
+        b=giSyB9WUShwPd56VuIVkAfkBt51oAFRupZIVXyDbxohZNrT6uX/PGzO4YfcR6RXy2k
+         zOoE9FnqYNNNW96vvxr1bPmxraitY/YRdE38PjpLqermFLgjcezEOfBQhnrhgGLPsm+f
+         CQG1vwUpbeKG+RHT8FV7BQlX0VwMwVqiL+5I81G9bPoTOls0yp8tQBH/5g/2qknzQ9LP
+         M0W0367iZ77m2J9ZALvSFTI9B3aW/fKx33tP08PU/jatdYErjUNbeb3BGZjQpYU7WeG6
+         DZQbSIKryKZxXEKIk9HNZHVuX9QGC8N27FcFfBdaUyQzYZ5a4wmdfSssZuKrRBer787O
+         bQ/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=f3OA1dbE+qUdV5an6bSR6AZUtN3k+/RtXxo9mlqVUD4=;
+        b=g0lwAouS9SsEGea4uMrrAmbwLbS7eD9jTSv4iZjvs3IzisOmNAkJx4N7eTUjCG1pWU
+         PVxaCyw6ajwEA1X8JIXangQt4YoZ2BO+e25xBy9Qfd21TlFlXotyMuSmas6PWTZg4Uto
+         lnvL4qUu0qgyMA20v5FsPwzKfH1p5ysYqybtExCNa/nRSIQNZNZRGqJD5qchVs5Y4JyB
+         UqHYJzp+/wVQs+bbdbnbeGFa0pRXccdAY8uFoz531rIpeCpmN9Kco5B0LY6FmwOv6rgO
+         VPciNjFj/tGoHwWPk+CDq8j57it8ySldMfeG5ZbnA9zrzryv0wEvc7Mg5JSoYVxFA7gY
+         TE9Q==
+X-Gm-Message-State: AOAM533dF0uwiaSNvlw+98Lm5QSbh57+MM2wWXfX70GFutGlgbyTPjE1
+        MHs6wGYcf9DITlerztabPo+7
+X-Google-Smtp-Source: ABdhPJz6n3nDPMvA6az4RO6x+vwA2+2ZpH3IK3Jj/EID7/UDLLfvAlrM+x2LEg1Ff+/87fdn9cbU6w==
+X-Received: by 2002:a63:500f:: with SMTP id e15mr11092658pgb.391.1624976207008;
+        Tue, 29 Jun 2021 07:16:47 -0700 (PDT)
+Received: from workstation ([120.138.12.32])
+        by smtp.gmail.com with ESMTPSA id m2sm3676672pja.9.2021.06.29.07.16.42
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 29 Jun 2021 07:16:46 -0700 (PDT)
+Date:   Tue, 29 Jun 2021 19:46:41 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        hemantk@codeaurora.org,
+        Siddartha Mohanadoss <smohanad@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sriharsha Allenki <sallenki@codeaurora.org>,
+        skananth@codeaurora.org, vpernami@codeaurora.org,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>
+Subject: Re: [PATCH v4 2/3] PCI: dwc: Add Qualcomm PCIe Endpoint controller
+ driver
+Message-ID: <20210629141641.GB3580@workstation>
+References: <20210624072534.21191-1-manivannan.sadhasivam@linaro.org>
+ <20210624072534.21191-3-manivannan.sadhasivam@linaro.org>
+ <CAL_JsqLBuXvfEpMf4vo2YXsv3nprO-dkvzVp7LvWn+MYnAZvsw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210629094038.18610-4-harini.katakam@xilinx.com>
+In-Reply-To: <CAL_JsqLBuXvfEpMf4vo2YXsv3nprO-dkvzVp7LvWn+MYnAZvsw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> @@ -535,15 +535,16 @@ static int vsc85xx_rgmii_set_skews(struct phy_device *phydev, u32 rgmii_cntl,
->  	u16 rgmii_tx_delay_pos = ffs(rgmii_tx_delay_mask) - 1;
->  	u16 reg_val = 0;
->  	int rc;
-> +	struct vsc8531_private *vsc8531 = phydev->priv;
-  
-reverse christmass tree.
+On Thu, Jun 24, 2021 at 08:39:31AM -0600, Rob Herring wrote:
+> (). On Thu, Jun 24, 2021 at 1:26 AM Manivannan Sadhasivam
+> <manivannan.sadhasivam@linaro.org> wrote:
+> >
+> > Add driver support for Qualcomm PCIe Endpoint controller driver based on
+> > the Designware core with added Qualcomm specific wrapper around the
+> > core. The driver support is very basic such that it supports only
+> > enumeration, PCIe read/write, and MSI. There is no ASPM and PM support
+> > for now but these will be added later.
+> >
+> > The driver is capable of using the PERST# and WAKE# side-band GPIOs for
+> > operation and written on top of the DWC PCI framework.
+> >
+> > Co-developed-by: Siddartha Mohanadoss <smohanad@codeaurora.org>
+> > Signed-off-by: Siddartha Mohanadoss <smohanad@codeaurora.org>
+> > [mani: restructured the driver and fixed several bugs for upstream]
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  drivers/pci/controller/dwc/Kconfig        |  10 +
+> >  drivers/pci/controller/dwc/Makefile       |   1 +
+> >  drivers/pci/controller/dwc/pcie-qcom-ep.c | 751 ++++++++++++++++++++++
+> >  3 files changed, 762 insertions(+)
+> >  create mode 100644 drivers/pci/controller/dwc/pcie-qcom-ep.c
+> >
 
+[...]
 
->  	mutex_lock(&phydev->lock);
->  
->  	if (phydev->interface == PHY_INTERFACE_MODE_RGMII_RXID ||
->  	    phydev->interface == PHY_INTERFACE_MODE_RGMII_ID)
-> -		reg_val |= RGMII_CLK_DELAY_2_0_NS << rgmii_rx_delay_pos;
-> +		reg_val |= vsc8531->rx_delay << rgmii_rx_delay_pos;
->  	if (phydev->interface == PHY_INTERFACE_MODE_RGMII_TXID ||
->  	    phydev->interface == PHY_INTERFACE_MODE_RGMII_ID)
-> -		reg_val |= RGMII_CLK_DELAY_2_0_NS << rgmii_tx_delay_pos;
-> +		reg_val |= vsc8531->tx_delay << rgmii_tx_delay_pos;
->  
->  	rc = phy_modify_paged(phydev, MSCC_PHY_PAGE_EXTENDED_2,
->  			      rgmii_cntl,
-> @@ -1820,6 +1821,17 @@ static int vsc85xx_config_init(struct phy_device *phydev)
->  {
->  	int rc, i, phy_id;
->  	struct vsc8531_private *vsc8531 = phydev->priv;
-> +	struct device_node *of_node = phydev->mdio.dev.of_node;
-> +
-> +	rc = of_property_read_u32(of_node, "vsc8531,rx-delay",
-> +				  &vsc8531->rx_delay);
-> +	if (rc < 0)
-> +		vsc8531->rx_delay = RGMII_CLK_DELAY_2_0_NS;
+> A bunch of these defines are already in pcie-qcom.c. Make a header for
+> the registers and common bits.
+> 
 
-of_property_read_u32() is guaranteed not to touch the result value, if
-it is not in device tree. So you can simplify this to:
+The registers are shared but the offsets differ. By comparing, there are
+just 3 registers that share the same offset. So I don't think it gives
+any benefit in introducing a common header.
 
-	vsc8531->rx_delay = RGMII_CLK_DELAY_2_0_NS;
-	of_property_read_u32(of_node, "vsc8531,rx-delay", &vsc8531->rx_delay);
+> > +
+> > +/* ELBI registers */
+> > +#define ELBI_SYS_STTS                          0x08
+> > +
+> > +/* DBI registers */
+> > +#define DBI_CAP_ID_NXT_PTR                     0x40
+> > +#define DBI_CON_STATUS                         0x44
+> > +#define DBI_DEVICE_CAPABILITIES                        0x74
+> > +#define DBI_LINK_CAPABILITIES                  0x7c
+> > +#define DBI_LINK_CONTROL2_LINK_STATUS2         0xa0
+> > +#define DBI_L1SUB_CAPABILITY                   0x234
+> 
+> These are all standard PCIe config space registers. Use standard
+> defines and the offsets are discoverable.
+> 
 
+Okay.
+
+> > +#define DBI_ACK_F_ASPM_CTRL                    0x70c
+> > +#define DBI_GEN3_RELATED_OFF                   0x890
+> > +#define DBI_AUX_CLK_FREQ                       0xb40
+> > +
+> > +#define DBI_L0S_ACCPT_LATENCY_MASK             GENMASK(8, 6)
+> > +#define DBI_L1_ACCPT_LATENCY_MASK              GENMASK(11, 9)
+> > +#define DBI_L0S_EXIT_LATENCY_MASK              GENMASK(14, 12)
+> > +#define DBI_L1_EXIT_LATENCY_MASK               GENMASK(17, 15)
+> > +#define DBI_ACK_N_FTS_MASK                     GENMASK(15, 8)
+> 
+> Standard DWC DBI registers. Use defines in pcie-designware.h and
+> really any code touching these registers belongs in the common DWC
+> code.
+> 
+
+Looked into this part and found that most of the DBI settings can be
+skipped as the reset state is same.
+
+In v5, there will be only DBI_CON_STATUS register in this driver for
+reading the D-state in IRQ handler. I can't find any info about this
+register in the PCI spec. And by judging from its location (between
+PM capability register and MSI capability register), this seems to be
+Qcom specific.
+
+> > +
+> > +#define XMLH_LINK_UP                           0x400
+> > +#define CORE_RESET_TIME_US_MIN                 1000
+> > +#define CORE_RESET_TIME_US_MAX                 1005
+> > +#define WAKE_DELAY_US                          2000 /* 2 ms */
+> > +
+> > +#define to_pcie_ep(x)                          dev_get_drvdata((x)->dev)
+> > +
+> > +enum qcom_pcie_ep_link_status {
+> > +       QCOM_PCIE_EP_LINK_DISABLED,
+> > +       QCOM_PCIE_EP_LINK_ENABLED,
+> > +       QCOM_PCIE_EP_LINK_UP,
+> > +       QCOM_PCIE_EP_LINK_DOWN,
+> > +};
+> > +
+> > +enum qcom_pcie_ep_irq {
+> > +       QCOM_PCIE_EP_INT_RESERVED,
+> > +       QCOM_PCIE_EP_INT_LINK_DOWN,
+> > +       QCOM_PCIE_EP_INT_BME,
+> > +       QCOM_PCIE_EP_INT_PM_TURNOFF,
+> > +       QCOM_PCIE_EP_INT_DEBUG,
+> > +       QCOM_PCIE_EP_INT_LTR,
+> > +       QCOM_PCIE_EP_INT_MHI_Q6,
+> > +       QCOM_PCIE_EP_INT_MHI_A7,
+> > +       QCOM_PCIE_EP_INT_DSTATE_CHANGE,
+> > +       QCOM_PCIE_EP_INT_L1SUB_TIMEOUT,
+> > +       QCOM_PCIE_EP_INT_MMIO_WRITE,
+> > +       QCOM_PCIE_EP_INT_CFG_WRITE,
+> > +       QCOM_PCIE_EP_INT_BRIDGE_FLUSH_N,
+> > +       QCOM_PCIE_EP_INT_LINK_UP,
+> > +       QCOM_PCIE_EP_INT_AER_LEGACY,
+> > +       QCOM_PCIE_EP_INT_PLS_ERR,
+> > +       QCOM_PCIE_EP_INT_PME_LEGACY,
+> > +       QCOM_PCIE_EP_INT_PLS_PME,
+> > +       QCOM_PCIE_EP_INT_MAX,
+> > +};
+> > +
+> > +static struct clk_bulk_data qcom_pcie_ep_clks[] = {
+> > +       { .id = "cfg" },
+> > +       { .id = "aux" },
+> > +       { .id = "bus_master" },
+> > +       { .id = "bus_slave" },
+> > +       { .id = "ref" },
+> > +       { .id = "sleep" },
+> > +       { .id = "slave_q2a" },
+> > +};
+> > +
+> > +struct qcom_pcie_ep {
+> > +       struct dw_pcie pci;
+> > +
+> > +       void __iomem *parf;
+> > +       void __iomem *elbi;
+> > +       void __iomem *mmio;
+> > +       struct regmap *perst_map;
+> > +
+> > +       struct reset_control *core_reset;
+> > +       struct gpio_desc *reset;
+> > +       struct gpio_desc *wake;
+> > +       struct phy *phy;
+> > +
+> > +       resource_size_t dbi_phys;
+> > +       resource_size_t atu_phys;
+> 
+> These 2 are never used.
+> 
+
+oh, that's a left over. will remove.
+
+> > +       resource_size_t mmio_phys;
+> > +       u32 mmio_size;
+> 
+> 'mmio' is a horrible name. It's all MMIO. Is this 'addr_space' used by
+> other EP drivers?
+> 
+
+No, this is the BAR region used by the device. This region is called
+MMIO in the hardware as it relates to the MHI bus and has the registers
+for MHI. Calling this region by some other name will induce a confusion
+since the MHI spec has been referencing this region as MMIO.
+
+> Just save a pointer to the resource if you need these. Or retrieve the
+> resource in the one place you need it.
+> 
+
+Okay
+
+> > +       u32 perst_en;
+> > +       u32 perst_sep_en;
+> > +
+> > +       enum qcom_pcie_ep_link_status link_status;
+> > +       int global_irq;
+> > +       int perst_irq;
+> > +};
+> > +
+> > +static void qcom_pcie_ep_enable_ltssm(struct qcom_pcie_ep *pcie_ep)
+> > +{
+> > +       u32 reg;
+> > +
+> > +       reg = readl(pcie_ep->parf + PARF_LTSSM);
+> > +       reg |= BIT(8);
+> > +       writel(reg, pcie_ep->parf + PARF_LTSSM);
+> > +}
+> 
+> Same function as qcom_pcie_2_3_2_ltssm_enable().
+> 
+
+this is the only function shared between RC and EP drivers...
+
+> 
+> > +
+
+[...]
+
+> > +
+> > +       /* L1ss is supported */
+> > +       val = dw_pcie_readl_dbi(pci, DBI_L1SUB_CAPABILITY);
+> > +       val |= 0x1f;
+> > +       dw_pcie_writel_dbi(pci, DBI_L1SUB_CAPABILITY, val);
+> > +
+> > +       /* Enable Clock Power Management */
+> > +       val = dw_pcie_readl_dbi(pci, DBI_LINK_CAPABILITIES);
+> > +       val |= BIT(18);
+> > +       dw_pcie_writel_dbi(pci, DBI_LINK_CAPABILITIES, val);
+> 
+> Lots of magic values that need defines.
+> 
+
+Will add defines for all of them
+
+> > +
+> > +       dw_pcie_dbi_ro_wr_dis(pci);
+> > +
+> > +       /* Set FTS value to match the PHY setting */
+> > +       val = dw_pcie_readl_dbi(pci, DBI_ACK_F_ASPM_CTRL);
+> > +       val |= FIELD_PREP(DBI_ACK_N_FTS_MASK, 0x80);
+> > +       dw_pcie_writel_dbi(pci, DBI_ACK_F_ASPM_CTRL, val);
+> > +
+> > +       writel(0, pcie_ep->parf + PARF_INT_ALL_MASK);
+> > +       val = BIT(QCOM_PCIE_EP_INT_LINK_DOWN) |
+> > +               BIT(QCOM_PCIE_EP_INT_BME) |
+> > +               BIT(QCOM_PCIE_EP_INT_PM_TURNOFF) |
+> > +               BIT(QCOM_PCIE_EP_INT_DSTATE_CHANGE) |
+> > +               BIT(QCOM_PCIE_EP_INT_LINK_UP);
+> 
+> Move BIT() into the defines.
+> 
+
+This has been done because QCOM_PCIE_EP_INT_* are defined as enums and
+shared with the IRQ handler. But I'll change these to defines with BIT()
+macro and will use if() condition for matching the events in irq
+handler.
+
+> > +       writel(val, pcie_ep->parf + PARF_INT_ALL_MASK);
+> > +
+> > +       return 0;
+> > +}
+> > +
+
+[...]
+
+> > +
+> > +       res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "atu");
+> > +       pci->atu_base = devm_pci_remap_cfg_resource(dev, res);
+> 
+> The DWC core does this for you.
+>
+
+Oh yeah. I added this for getting the atu_phys address that needs to be
+written to some PARF registers. But in v4 I removed that logic and
+forgot to remove this.
+
+> > +       if (IS_ERR(pci->atu_base))
+> > +               return PTR_ERR(pci->atu_base);
+> > +       pcie_ep->atu_phys = res->start;
+> > +
+
+[...]
+
+> > +       pcie_ep->perst_irq = gpiod_to_irq(pcie_ep->reset);
+> > +       irq_set_status_flags(pcie_ep->perst_irq, IRQ_NOAUTOEN);
+> > +       ret = devm_request_threaded_irq(&pdev->dev, pcie_ep->perst_irq, NULL,
+> > +                                       qcom_pcie_ep_perst_threaded_irq,
+> > +                                       IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+> 
+> IRQ_TRIGGER_* should come from the DT.
+> 
+
+How? We can specify the triggers in "interrupts*" property but here the
+IRQ is obtained from the GPIO. So I'm not sure how to specify the
+trigger in DT.
+
+Thanks,
+Mani
