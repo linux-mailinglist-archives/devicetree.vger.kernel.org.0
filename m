@@ -2,108 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17EE53B6CF5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 05:25:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 297493B6D6F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 06:19:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231770AbhF2D1e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 23:27:34 -0400
-Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:34087 "EHLO
-        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231717AbhF2D1e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Jun 2021 23:27:34 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 706043200906;
-        Mon, 28 Jun 2021 23:25:07 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 28 Jun 2021 23:25:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm2; bh=C
-        48dFdNJ496G0g8Z8y2ldEPFtgm21ziIsTq8b2xD0Ds=; b=VMmYsvfsQb1CxwC2A
-        20INAg3dfKaCrgCG/mIErzFMTsNYr0UZsBg2PC6Pjx37xtg0Fw8Nz5VSRzM3jiDY
-        QNBHtddPbxG+4rAoY8zbK4a+h0qDWt+akNVn6HVGzJV14Xr7/Cd0G2lt1HxwMQDB
-        w5UKqRCWvT1QUiI0SICMZDQBSaGM41egy+TtGbUFb+JAP8Ik3FMvHAiRGbgamUVW
-        DfW3Lxpks6g7xIir3tK3Q2QYCmb/2MgvPAEVbgaA9gPithGbu7grgvj2Sn95HyMs
-        I4JDefYe8EAa/aT3RVixgUCv9WCbrV9CBngD3YzGT1ShGIfcuqggGteA1rm0XDEB
-        DkDSg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=C48dFdNJ496G0g8Z8y2ldEPFtgm21ziIsTq8b2xD0
-        Ds=; b=mw4rfn5c4AHC61UxUPnp3IVOL3p0MzhLl1vFTprs+Mk8iZyx1Z46OpqIY
-        2ymZEXXoNbHtrPgJMfmGRrxRmfCGgaWIL37FHNq5NG/mTynW3q40ioo007GMycbL
-        RGvavFryBSVwZsi0OcsNu96nul3m8N1ZBUApGOPVMnRmBzvrPpv2pvTSJSXraWNU
-        gk1n04lD37ew0pEb/2dQIrSLemKn8ujsaDjXfdbWTI6hVlwrD4PCk7Ht92Sx+hYJ
-        UfLAUAOIG4dFyy/RSEHS3SyfkBEMWRM5lvA3a1ifChU8v1wsJXrbcLY5Y472LoG3
-        e+tfgeyOU8D1OaPniIhvResRblrhQ==
-X-ME-Sender: <xms:kpLaYDjkmfNVzGeBxPqzRsS4hR8VT9436yDeuB7Wjvcwyl7YXuKK_w>
-    <xme:kpLaYACYJjdYKE24hzJLnsPhvMNh9Kwpug_1oe641tRoqAPPV-zBui1-mAhluo1IS
-    J3bfZK4MU4gv2XX_DA>
-X-ME-Received: <xmr:kpLaYDEQXz8rSrnrt8A1_8aNnu_JLDIreNZh3snFsUgXAg5sTeOd1cOs19P1>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeehhedgieeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefuvfhfhffkffgfgggjtgfgsehtke
-    ertddtfeftnecuhfhrohhmpeflihgrgihunhcujggrnhhguceojhhirgiguhhnrdihrghn
-    ghesfhhlhihgohgrthdrtghomheqnecuggftrfgrthhtvghrnhepfeeludeitddvkeffge
-    fgueekjeegfeefteelgffhkeffueetieejgeehhfeuffdvnecuvehluhhsthgvrhfuihii
-    vgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhi
-    hgohgrthdrtghomh
-X-ME-Proxy: <xmx:kpLaYARXFRRHVthZTUBM_TEn3KueCOkD1MbYCcdrVQZ6hMu1i82f8g>
-    <xmx:kpLaYAxpN6Vrt4kRcN6dzAQ01gCDMUkc5_1CBuy-PxXcviMY0wm4Tg>
-    <xmx:kpLaYG4e7-AvtJHVYq2YOPZqLuWCsa0FXnI8xMAMAGSH55heNSEAOQ>
-    <xmx:k5LaYM-jRyBDmoi4rF3eN0Fw36tQmcGOhA7h4CUAl4YFiQjawR2L5A>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 28 Jun 2021 23:25:04 -0400 (EDT)
-Subject: Re: [PATCH v4 3/6] MIPS: Loongson64: DTS: Add RTC support to LS7A
-To:     WANG Xuerui <git@xen0n.name>, linux-rtc@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org
-References: <20210628164552.1006079-1-git@xen0n.name>
- <20210628164552.1006079-4-git@xen0n.name>
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-Message-ID: <c55d1054-8536-a786-9687-da069faf9d1d@flygoat.com>
-Date:   Tue, 29 Jun 2021 11:25:02 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S230023AbhF2EVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 00:21:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51392 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229792AbhF2EVw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 00:21:52 -0400
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B38B9C061766
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 21:19:24 -0700 (PDT)
+Received: by mail-io1-xd2c.google.com with SMTP id v3so24966480ioq.9
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 21:19:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=T3qE6ClclvZmXMsxggvUPTF0EehyJNL1Noojj5cr7UM=;
+        b=O+eMyEdFQjVux0r8wDwpu0udj8DZYWYCef7lAmU3YwXnc0LzhjgXT7eHEEi/YS1Dvp
+         StYthzrnf98eK+oTs6iKE0z66wKcgEEHIZDfe0qN9/0aSNFtPa8HgGXrXkivh6TOVcYt
+         zj/iOjHElIuXXzh2P1CyYaYleLk1y2cKQXFX5EikvDgVTG29Y8Vxfdq7qeKytI2whPF4
+         D49m2aDYYpDVt7VeNwCks+P7IYbqzo9m/EN49ps21v+Me6CTsfY7nDr2OOGneMzWeTQ1
+         mb0EICF11wX4gmOfu3SbZsQvIdEtgq/EvLcrKyOSBRyiXCzIZq/1kv9vSHv8YPwbRAUp
+         +dMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=T3qE6ClclvZmXMsxggvUPTF0EehyJNL1Noojj5cr7UM=;
+        b=ilpJZ7r6Cb35dNBzaAXxV3vhRt87cIS4BxQuaBvpZEdu02OfI7Kpgv0m4IagVWjpyS
+         zSi9+MNCwdy1t2BXIT6otqET8l1AQkInt18R2WSVGd7HUHlwNRFL+fq+hRjjioS8LKUI
+         x62Sakxovo92kn7r+J0A6LfbMKcx0hc7KMw9SSmbKr2b2j4YzfbzeHe1jfFl8sOEXl7m
+         PQvrgcDqoLcMsmGRSj9PkhfJikGpLgjQ+YHkcBVS1VebbrWrIdIvtEIRsmsv7TNnvQE7
+         ZUJzGWzOoW0ZTUkN05Pr4rR+s2LJ4x2lgHnHLNuFBJO+yRNzHqi/MwBFIwfw3e9AkBOo
+         Popg==
+X-Gm-Message-State: AOAM531yD56VFO7YC1PqJ2K9jQNT2Ml+6yupszCcw28J+um+pJV4q8RU
+        MftJiYjB/BqlFE9bz+N4mvKWwy630a6dnM88UjYizQ==
+X-Google-Smtp-Source: ABdhPJwQrGwDnkfRKF30NiG2OP/q/WmFBZnXNe9cvWBWTWVauL3qA3P0SA2hl7b3R+aSH3FjlH67uaVD3PF4G+XG/oI=
+X-Received: by 2002:a5d:840c:: with SMTP id i12mr2208007ion.185.1624940363410;
+ Mon, 28 Jun 2021 21:19:23 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20210628164552.1006079-4-git@xen0n.name>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <1623122200-1896-1-git-send-email-kewei.xu@mediatek.com>
+ <1623122200-1896-3-git-send-email-kewei.xu@mediatek.com> <54301510-e0d5-0762-1979-b194b8fd5eb8@gmail.com>
+ <1623206624.14050.10.camel@mhfsdcap03>
+In-Reply-To: <1623206624.14050.10.camel@mhfsdcap03>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Tue, 29 Jun 2021 12:19:12 +0800
+Message-ID: <CA+Px+wU8qqEDU+bV0QpoJssNOxebutzRGgHo6WpC9VFJwckKKQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] i2c: mediatek: Dump i2c/dma register when a timeout occurs
+To:     Kewei Xu <kewei.xu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>, wsa@the-dreams.de,
+        robh+dt@kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
+        qii.wang@mediatek.com, qiangming.xia@mediatek.com,
+        liguo.zhang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-ÔÚ 2021/6/29 ÉÏÎç12:45, WANG Xuerui Ð´µÀ:
-> The LS7A RTC module is now supported, enable it.
+On Wed, Jun 9, 2021 at 10:44 AM Kewei Xu <kewei.xu@mediatek.com> wrote:
 >
-> Signed-off-by: WANG Xuerui <git@xen0n.name>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-mips@vger.kernel.org
-Acked-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
->   arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 5 +++++
->   1 file changed, 5 insertions(+)
+> On Tue, 2021-06-08 at 16:01 +0200, Matthias Brugger wrote:
+> > Is this offset only for mt8192 or also for mt8183?
+> > In any case that should go in as another patch. Either a fix or a new
+> > mt_i2c_regs_v3[]
 >
-> diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-> index 2f45fce2cdc4..82035de4774f 100644
-> --- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-> +++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-> @@ -19,6 +19,11 @@ pic: interrupt-controller@10000000 {
->   			#interrupt-cells = <2>;
->   		};
->   
-> +		rtc0: rtc@100d0100 {
-> +			compatible = "loongson,ls2x-rtc";
-> +			reg = <0 0x100d0100 0 0x78>;
-> +		};
-> +
->   		ls7a_uart0: serial@10080000 {
->   			compatible = "ns16550a";
->   			reg = <0 0x10080000 0 0x100>;
+> This offset value is suitable for the IC of mt_i2c_regs_v2 hardware
+> design similar to mt8192/8195, not for 8183.
+>
+> The reason for the modification here is that the previous
+> offset information is incorrect, OFFSET_DEBUGSTAT = 0XE4 is
+> the correct value.
 
+Please submit another patch for fixing the incorrect value.
