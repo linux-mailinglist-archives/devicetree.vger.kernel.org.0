@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45EE13B7395
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 15:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 148EB3B73C7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 16:07:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234199AbhF2OBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 10:01:07 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:33264 "EHLO vps0.lunn.ch"
+        id S231947AbhF2OJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 10:09:45 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:33306 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233329AbhF2OBH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Jun 2021 10:01:07 -0400
+        id S230100AbhF2OJn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Jun 2021 10:09:43 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
         s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
         References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
         Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
         Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=GE7y013gv+UJQ2wwu8UtEPjl7ZCtbs5UT/PDFigCAxs=; b=4gilTUTJK1UASaINjjFSWPJ23w
-        WX+1ETjlJyIlT6bFeHKNzSMK/69EPcZWgSK4XQMC0q3OjknIqq3OBz4TM81sumIo78jQV6xzBgDYO
-        hqUfxsMcK/FjmwBvk1Cv7cGObdvr9UfMH+lq+A95S+wrzNOhq/27GYf21uhn9uBzmLo4=;
+        bh=w0aRX+AVNRJPjlDg5QC6T0rQR3HiSguZvmev3Zp5piE=; b=WXGZ0/uFyApzN9diblYk6h+6Yv
+        JfykksEXxmGiyInS8Vhtw/9UhuzqGFhMHQsznmeAnoEP8tQJ+VWr2rEmxuUGxwgLZypG+F+XQf15/
+        5n8DnKvqothU3Lu+xHIEM41BYl9oBF5tnk5VN5kn+4oDeYpVQorcAQwYBHogf0yRCi1o=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
         (envelope-from <andrew@lunn.ch>)
-        id 1lyEFr-00BXyW-Jn; Tue, 29 Jun 2021 15:58:23 +0200
-Date:   Tue, 29 Jun 2021 15:58:23 +0200
+        id 1lyEOJ-00BY2O-34; Tue, 29 Jun 2021 16:07:07 +0200
+Date:   Tue, 29 Jun 2021 16:07:07 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
 To:     Harini Katakam <harini.katakam@xilinx.com>
 Cc:     robh+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
@@ -32,47 +32,48 @@ Cc:     robh+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         harinikatakamlinux@gmail.com, michal.simek@xilinx.com,
         radhey.shyam.pandey@xilinx.com
-Subject: Re: [PATCH 1/3] include: dt-bindings: Add mscc-vsc8531 RGMII clock
- delay definitions
-Message-ID: <YNsm/0dmpBgO8mqr@lunn.ch>
+Subject: Re: [PATCH 2/3] dt-bindings: mscc: Add RGMII RX and TX delay tuning
+Message-ID: <YNspC065DnVpzADe@lunn.ch>
 References: <20210629094038.18610-1-harini.katakam@xilinx.com>
- <20210629094038.18610-2-harini.katakam@xilinx.com>
+ <20210629094038.18610-3-harini.katakam@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210629094038.18610-2-harini.katakam@xilinx.com>
+In-Reply-To: <20210629094038.18610-3-harini.katakam@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 29, 2021 at 03:10:36PM +0530, Harini Katakam wrote:
-> Add RGMII clock delay definitions in mscc-phy-vsc8531 header.
+On Tue, Jun 29, 2021 at 03:10:37PM +0530, Harini Katakam wrote:
+> Add optional properties to tune RGMII RX and TX delay.
 > 
 > Signed-off-by: Harini Katakam <harini.katakam@xilinx.com>
 > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
 > Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
->  include/dt-bindings/net/mscc-phy-vsc8531.h | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  .../devicetree/bindings/net/mscc-phy-vsc8531.txt         | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 > 
-> diff --git a/include/dt-bindings/net/mscc-phy-vsc8531.h b/include/dt-bindings/net/mscc-phy-vsc8531.h
-> index 9eb2ec2b2ea9..242eb4c7ede9 100644
-> --- a/include/dt-bindings/net/mscc-phy-vsc8531.h
-> +++ b/include/dt-bindings/net/mscc-phy-vsc8531.h
-> @@ -28,4 +28,13 @@
->  #define VSC8531_FORCE_LED_OFF           14
->  #define VSC8531_FORCE_LED_ON            15
->  
-> +#define VSC8531_RGMII_CLK_DELAY_0_2_NS	0
-> +#define VSC8531_RGMII_CLK_DELAY_0_8_NS	1
-> +#define VSC8531_RGMII_CLK_DELAY_1_1_NS	2
-> +#define VSC8531_RGMII_CLK_DELAY_1_7_NS	3
-> +#define VSC8531_RGMII_CLK_DELAY_2_0_NS	4
-> +#define VSC8531_RGMII_CLK_DELAY_2_3_NS	5
-> +#define VSC8531_RGMII_CLK_DELAY_2_6_NS	6
-> +#define VSC8531_RGMII_CLK_DELAY_3_4_NS	7
+> diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> index 87a27d775d48..e201d24d8e27 100644
+> --- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> +++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> @@ -33,7 +33,14 @@ Optional properties:
+>  			  VSC8531_DUPLEX_COLLISION (8).
+>  - load-save-gpios	: GPIO used for the load/save operation of the PTP
+>  			  hardware clock (PHC).
+> -
+> +- vsc8531,rx-delay	: RGMII RX delay. Allowed values are defined in
+> +			  "include/dt-bindings/net/mscc-phy-vsc8531.h".
+> +			  Default value, set by the driver is
+> +			  VSC8531_RGMII_CLK_DELAY_2_0_NS.
+> +- vsc8531,tx-delay	: RGMII TX delay. Allowed values are defined in
+> +			  "include/dt-bindings/net/mscc-phy-vsc8531.h".
+> +			  Default value, set by the driver is
+> +			  VSC8531_RGMII_CLK_DELAY_2_0_NS.
 
-Using defines like this is no longer used. Please specify the delay in
-pS and convert to a register value within the driver.
+The default values need better explanation. So you are saying they are
+only used when 'rgmii' is not used. And they replace the default 2ns
+delay, they don't add to the default 2ns delay.
 
-   Andrew
+       Andrew
