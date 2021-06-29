@@ -2,184 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31C2D3B75C9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 17:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDEFB3B75D8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 17:48:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232034AbhF2Pok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 11:44:40 -0400
-Received: from foss.arm.com ([217.140.110.172]:53774 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231194AbhF2Pok (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Jun 2021 11:44:40 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 932A26D;
-        Tue, 29 Jun 2021 08:42:12 -0700 (PDT)
-Received: from [10.57.46.146] (unknown [10.57.46.146])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EA6E03F718;
-        Tue, 29 Jun 2021 08:42:10 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: rockchip: add rock-pi-4 analog audio
-To:     Adrian Ratiu <adrian.ratiu@collabora.com>,
-        Alex Bee <knaerzche@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, jack@radxa.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, Rob Herring <robh+dt@kernel.org>
-References: <20210628113033.9145-1-adrian.ratiu@collabora.com>
- <7f806d30-594e-2325-615a-8fee875c83a8@gmail.com>
- <87eeck3e1o.fsf@ryzen9.i-did-not-set--mail-host-address--so-tickle-me>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <6a9d976e-22fe-2723-9897-da58b3af456a@arm.com>
-Date:   Tue, 29 Jun 2021 16:42:05 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <87eeck3e1o.fsf@ryzen9.i-did-not-set--mail-host-address--so-tickle-me>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+        id S233829AbhF2PvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 11:51:14 -0400
+Received: from mail-eopbgr00063.outbound.protection.outlook.com ([40.107.0.63]:37315
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232428AbhF2PvN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Jun 2021 11:51:13 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bLTpbibtQVL0E5yknTwbynnr426QCotxCaFXX2FfdFFqu3FsVdxfp4N8cc0uVTWsXUO7CvOvCyXLgFI384KumI/nUd8AC2VrKGb/LNSpCrMm0AG3n48zyALdEMfurCvK0sMfVg8SgzPzniZ4ihm1miDtvE21AGrUlEkHluRoC5OWTCc+JkmoRJKAE3ThHKDginn1Wva7AkMpLiFMOTZp/rNBgyyQyKf3vPqRygGcu68UU0017+3ZJ7LK+3bZw6G+fQzEYiVkIb9vbuULgqt5L9bJJNl3jbXKNBBDDx/kqs0euwGsUpxKnga7VQCVCBQeTcX0QFj2UCBKoHUoU1DbpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sreuYVVbQ85q6pxSBEaAlVJZ9zA3jqVMLexO0/qOIY4=;
+ b=TSiXitfR8R+pIMTi6bkfJ/7dphMczzKBo8F0v88kkHwlBm4S1J1XvM+SIHHEyHGXdmCiT5I/h0X6tReeo11bVgpPORUvKtfLF67VO4L5DY7ksW1kB6YVXd8hfEK2toam66vjC8W9NwtV6HGdnAd97xMmde3c5LDWf5BUoOSxfv9VMehVenYYspxakN189FeYRa+IBqj8tYpuGDnwRmuSo51j18N9W62LoHGVuI/KPakaTDaqOIigrkQsY6rhda4mTpU7CAGaaeo/P92/4gBnHnfC0p+UdkXw1StDM2Tg0XdBWREVFIq61tlgDTAx76DBv+0ljF94Rn62Z1rIPkyI9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sreuYVVbQ85q6pxSBEaAlVJZ9zA3jqVMLexO0/qOIY4=;
+ b=Tfc23QzjJ56wb2vyBrA2SxUZfo8/TPfee0vnmLPCZj7+ZTcCdwMk6NKce42rljwwKGD14O8v1wGrsW0+MxusR+pQmFZDtahWf4R4KilGC6IFsGGTGmYqQN0TNuZ6MkNNJGbS3zaxfl+d0GjMxiheybMmMFcA6U1Ojx7TBcuGS98=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
+ by DB8PR03MB6028.eurprd03.prod.outlook.com (2603:10a6:10:ee::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.23; Tue, 29 Jun
+ 2021 15:48:39 +0000
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4264.026; Tue, 29 Jun 2021
+ 15:48:39 +0000
+From:   Sean Anderson <sean.anderson@seco.com>
+To:     linux-clk@vger.kernel.org, Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Adam Ford <aford173@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Sean Anderson <sean.anderson@seco.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: clk: vc5: Add properties for configuring the SD/OE pin
+Date:   Tue, 29 Jun 2021 11:47:39 -0400
+Message-Id: <20210629154740.3091884-1-sean.anderson@seco.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [50.195.82.171]
+X-ClientProxiedBy: BL1PR13CA0334.namprd13.prod.outlook.com
+ (2603:10b6:208:2c6::9) To DB7PR03MB4523.eurprd03.prod.outlook.com
+ (2603:10a6:10:19::27)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from plantagenet.inhand.com (50.195.82.171) by BL1PR13CA0334.namprd13.prod.outlook.com (2603:10b6:208:2c6::9) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.12 via Frontend Transport; Tue, 29 Jun 2021 15:48:38 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 4891c730-8b55-4fd5-4afa-08d93b155cfe
+X-MS-TrafficTypeDiagnostic: DB8PR03MB6028:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR03MB602815A34BA6D5C59542063596029@DB8PR03MB6028.eurprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2zo7PspAxGDcV+dDrUYepjB8gMUxw2REljSOlDXk6yTxef2OMA+r11cfB0q+En0dr8rud8zZ4BRrwo3cIBFfUdXtgfae3icmbXNBoWLbohJL0flDfwj/QumR7SCjaC0pAt0UHW9nzh7sn7TuvrfkC364RTrWx2Q/tAcNCJQ1oIdzUU3FHDjxS3y5vO4JZShWz05qv3SKp9RdwZykCrHcQQVuJ5U4HRefD5BEC4NxbwxPekq3Zd+kH9BWYIH3gfXnCu7fwHYBvn2lnb0ITM7NBj9zzqtzeR7k3T9QkLOS8O7fVGgrr5FyK1IdX/I8LvyEz8ZMEKKUEiICAu7kVjeRQziS/pwS3fdxTpgajE+TKyiX8W6WIw0KwqL96z9FjMylRWn9VZfJw35R5PMibcLRjhsWDEE/Q7VrAV4xuhd/iIZVFofMzAEvx/b4d/L8v3xnrms9R5aID8E7R5Ajte/Vgh1VskivWXjPzgmG2OrEAO/ZvEu4SyQp9GgiWTpJSyxLcO+9q88mTunglxTRID+B0TnvdFQ9QbUdCpNtZYIv90qBcQhMwArXm0uvmsawpygEGNDnAATHOzJEeexk2Rwh168DGYVafGyqbmF1X6Hke1qkiptZ0G0dUlM4c/SReimjdOh4gyryPsv76x2FEKlbeDvOqAiQCiJYYH4sEp1Wt6dVBV9cT1eyqrMx0nXtacomuUmVw6ca6aeYNVB4gIDhHw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(39830400003)(346002)(396003)(136003)(366004)(376002)(86362001)(83380400001)(478600001)(16526019)(4326008)(26005)(2906002)(52116002)(186003)(38100700002)(38350700002)(6506007)(6916009)(956004)(44832011)(1076003)(36756003)(6512007)(54906003)(6486002)(2616005)(66556008)(66476007)(66946007)(8936002)(316002)(5660300002)(8676002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oe6zFkiMa9lzpaP0OGRk3FR0VIcWnNEJefTjRTeT5R3d42jkJYBIx0l6o/jb?=
+ =?us-ascii?Q?tZayfpj3TFduaD1noGzHlFFJHlOvepM7cBA7N3yV6KJSaPsUPPl/YNVzO8bG?=
+ =?us-ascii?Q?Vf3U24t3cyl+I9WV3vhAAUwcLdrp1ABzBGCC8TdkMQCOSvT2gQnfrBFjJYWa?=
+ =?us-ascii?Q?PaB6WojvPT5GXxdn3wA2HNfVv+C+sXc2sEy63+cwEkD5KVZEMRWmJPPi2fBx?=
+ =?us-ascii?Q?qbkHfknjRnJC+P9QlaCDXqoy4rKcLmtSnXp9c4pTUG0eYaZ2Yc7CTLhzenLk?=
+ =?us-ascii?Q?SjFKMcG1hcUugBIRbe9nLdvokVWfWO3CkXCu5bmwuqzGa1GhXRPZli8SWu3W?=
+ =?us-ascii?Q?NHhguIton+xDSocfS0M9X8wViO/+OKcDZ2ffTiD/YZkVfL7+93WTwihis4a5?=
+ =?us-ascii?Q?U6JuErPYDuobl4EXMoSqJgPndGu3sqVxxXUkSAHKpWEZKLhwSjAtDB+DXzX9?=
+ =?us-ascii?Q?Ukfbey+1qLIaiDAyNpnWNpBqSA7hbW9BjMaKPXrr7uQfMlUeYMeatXPRx0V8?=
+ =?us-ascii?Q?L8JSvJ+OpW0T/NFB6ZpXuSLefduxlSc+bpvWiaQLi29qEKLFBUc+DXvCxs7y?=
+ =?us-ascii?Q?pUzrrSqaQxWvWTLUJkoIVj+abI0G0d7Y8ePp2W8WyRHz0X22EYrn37oPf5gx?=
+ =?us-ascii?Q?6wj46IFNcTFmvrzkNS5ylf/8wk207gKcW+ABYeXFrGR/Q6QihAJGXp10DYpO?=
+ =?us-ascii?Q?B/td6pySkGstUzoPQsH7ZGVYjLSP4n1XYiDFThpFriuchCMHXOunHdGDKfll?=
+ =?us-ascii?Q?dQtSRpeoHYCu6tceUzv2bBBUFt7MmfCAM5mjx6CyIzInz2XZAXs9v2u6bUgW?=
+ =?us-ascii?Q?JJo0VAWlYMFwr3Se5JJTy+hxIYdiGsiPzVSajB7lWZrO+9KZDpkxw7q2XRHV?=
+ =?us-ascii?Q?Yc4RWbLfZVusvUL9PrnxPGwHNMzDDxW3xxAbA+JqAElfYrRP55CMrpjfwTVy?=
+ =?us-ascii?Q?dA77kt2kNZpl5EQLNKREM+373i0xdA0hdamDdpeMhJySiOFWatjSSWM3JGlv?=
+ =?us-ascii?Q?EKaFb6dIFuwbLofEetxIHBcbDTfb/Pv0R0whPrTGDP7a1sbAKGN26HRVghj/?=
+ =?us-ascii?Q?0y4DLWEgr6K2/ngL6xwkq9hQsrXfXHCO2+aINz44B0l30gbIE5S5HALy5viH?=
+ =?us-ascii?Q?l4Fnth+YtDZF4eIsMiP5VlnCVuSfFVgiwRgYpaH+gZYMQabkVIKrCPSuMlFq?=
+ =?us-ascii?Q?IdFKHEyhomoanM4MJrFsytMts6ZA5f+w6l8RC8ccQn38+nnOMWwPIWG7F1+n?=
+ =?us-ascii?Q?Y/CdcvtDyjy2W1MOn+WZ4TQAhGoclFaDRC5JXRBsLmgE8Th6289AiSYDROen?=
+ =?us-ascii?Q?STIiq0CiYnbMWaR3ZTM2xiJ5?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4891c730-8b55-4fd5-4afa-08d93b155cfe
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2021 15:48:39.1456
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jKr8gNX3SpMS3BuPi+7TL/DI7al9Pugou05FAplJF+UTmUuf1MBCWTDMM4EpDeHJNBc1HGY98a2XShLO4C3cKw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR03MB6028
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-06-29 16:07, Adrian Ratiu wrote:
-> Hi Alex,
-> 
-> On Tue, 29 Jun 2021, Alex Bee <knaerzche@gmail.com> wrote:
->> Hi Adrian,
->> I've submitted similar patch already. Its part of [1]
-> 
-> Thank you for pointing out your patch, I was not aware of it as it was 
-> not merged yet (I tested latest linux-next).
-> 
-> It is a good sign that our code is almost identical except for the 
-> headphone detect pin which you mention.
-> 
->>
->> There is no headphone detection pin in the schematics, btw.
-> 
-> There are two reasons I added it:
-> 
-> 1. The es8316 codec failed to probe() in my testing unless the irq was 
-> defined. That might have been due to me testing the codec directly with 
-> the simple card driver instead of the graph driver.
-> 
-> Point 1 doesn't appear to be an issue anymore, the codec + graph driver 
-> probe correctly and audio supposedly (see below) works even without the 
-> irq.
-> 
-> 2. I got the gpio bank 1 pin 0 location from various headphone detection 
-> commits in the vendor v4.4 kernel, like for example [1].
-> 
-> Are you 100% sure there is no hp detection pin wired on the rock-pi-4?
-> Even if it might be missing from the schematics, the vendor driver code 
-> apparently defines and uses it?
+These properties allow configuring the SD/OE pin as described in the
+datasheet.
 
-FWIW according to the schematics it *is* wired up on the Model C board, 
-but not on the Model A or B.
+Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
 
-Robin.
+Changes in v3:
+- Add idt,disable-shutdown and idt,output-enable-active-low to allow for
+  a default of not changing the SP/SH bits at all.
 
->  From booting with the irq defined I get the following in 
-> /proc/interrupts however I'm having an unrelated difficulty testing 
-> because the audio connector literally broke off the board like in [2].
-> 90: 1  0  0  0  0  rockchip_gpio_irq   0 Level     es8316
-> 
-> Team Radxa was very nice in offering me a replacement but until that 
-> arrives I can't test this anymore.
-> 
-> [1] 
-> https://github.com/radxa/kernel/commit/e945cad5c3ec82d171760465d3c7a84bb10ed1b7 
-> 
-> 
-> [2] https://forum.radxa.com/t/audio-jack-broke-off/935
-> 
->> [1] 
->> https://patchwork.kernel.org/project/linux-rockchip/cover/20210618181256.27992-1-knaerzche@gmail.com/ 
->>
->>
->> Best,
->>
->> Alex
->>
->> Am 28.06.21 um 13:30 schrieb Adrian Ratiu:
->>> This adds the necessary pinctrl and nodes to enable the
->>> analog audio on rk3399 rock-pi-4 SBCs using the es8316
->>> codec and the audio-graph-card driver.
->>>
->>> Signed-off-by: Adrian Ratiu <adrian.ratiu@collabora.com>
->>> ---
->>>   .../boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 38 +++++++++++++++++++
->>>   1 file changed, 38 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi 
->>> b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
->>> index b28888ea9262..77781d9150ac 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
->>> @@ -128,6 +128,12 @@ vdd_log: vdd-log {
->>>           regulator-max-microvolt = <1400000>;
->>>           vin-supply = <&vcc5v0_sys>;
->>>       };
->>> +
->>> +    sound {
->>> +        compatible = "audio-graph-card";
->>> +        label = "rockchip,rk3399";
->>> +        dais = <&i2s0_p0>;
->>> +    };
->>>   };
->>>   &cpu_l0 {
->>> @@ -422,6 +428,24 @@ &i2c1 {
->>>       i2c-scl-rising-time-ns = <300>;
->>>       i2c-scl-falling-time-ns = <15>;
->>>       status = "okay";
->>> +
->>> +    es8316: codec@11 {
->>> +        compatible = "everest,es8316";
->>> +        reg = <0x11>;
->>> +        clocks = <&cru SCLK_I2S_8CH_OUT>;
->>> +        clock-names = "mclk";
->>> +        pinctrl-names = "default";
->>> +        pinctrl-0 = <&hp_det_pin>;
->>> +        interrupt-parent = <&gpio1>;
->>> +        interrupts = <RK_PA0 IRQ_TYPE_LEVEL_HIGH>;
->>> +        #sound-dai-cells = <0>;
->>> +
->>> +        port {
->>> +            es8316_p0_0: endpoint {
->>> +                remote-endpoint = <&i2s0_p0_0>;
->>> +            };
->>> +        };
->>> +    };
->>>   };
->>>   &i2c3 {
->>> @@ -441,6 +465,14 @@ &i2s0 {
->>>       rockchip,capture-channels = <2>;
->>>       rockchip,playback-channels = <2>;
->>>       status = "okay";
->>> +
->>> +    i2s0_p0: port {
->>> +        i2s0_p0_0: endpoint {
->>> +            dai-format = "i2s";
->>> +            mclk-fs = <256>;
->>> +            remote-endpoint = <&es8316_p0_0>;
->>> +        };
->>> +    };
->>>   };
->>>   &i2s1 {
->>> @@ -556,6 +588,12 @@ wifi_host_wake_l: wifi-host-wake-l {
->>>               rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
->>>           };
->>>       };
->>> +
->>> +    es8316 {
->>> +        hp_det_pin: hp-det-pin {
->>> +            rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
->>> +        };
->>> +    };
->>>   };
->>>   &pwm2 {
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+Changes in v2:
+- Rename idt,sd-active-high to idt,output-enable-active-high
+- Add idt,enable-shutdown
+
+ .../bindings/clock/idt,versaclock5.yaml       | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+index 28675b0b80f1..51f0f78cc3f4 100644
+--- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
++++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+@@ -30,6 +30,22 @@ description: |
+     3 -- OUT3
+     4 -- OUT4
+ 
++  The idt,(en|dis)able-shutdown and idt,output-enable-active-(high|low)
++  properties control the SH (en_global_shutdown) and SP bits of the
++  Primary Source and Shutdown Register, respectively. Their behavior is
++  summarized by the following table:
++
++  SH SP Output when the SD/OE pin is Low/High
++  == == =====================================
++   0  0 Active/Inactive
++   0  1 Inactive/Active
++   1  0 Active/Shutdown
++   1  1 Inactive/Shutdown
++
++  If no properties related to these bits are specified, then they will
++  be left in their default state. This may be useful if the SH and SP
++  bits are set to a default value using the OTP memory.
++
+ maintainers:
+   - Luca Ceresoli <luca@lucaceresoli.net>
+ 
+@@ -64,6 +80,34 @@ properties:
+     maximum: 22760
+     description: Optional load capacitor for XTAL1 and XTAL2
+ 
++  idt,enable-shutdown:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      Enable the shutdown function when the SD/OE pin is high. This
++      corresponds to setting the SH bit of the Primary Source and
++      Shutdown Register.
++
++  idt,disable-shutdown:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      Disable the shutdown function for the SD/OE pin. This corresponds
++      to clearing the SH bit of the Primary Source and Shutdown
++      Register.
++
++  idt,output-enable-active-high:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      This enables output when the SD/OE pin is high, and disables
++      output when the SD/OE pin is low. This corresponds to setting the
++      SP bit of the Primary Source and Shutdown Register.
++
++  idt,output-enable-active-low:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      This disables output when the SD/OE pin is high, and enables
++      output when the SD/OE pin is low. This corresponds to clearing the
++      SP bit of the Primary Source and Shutdown Register.
++
+ patternProperties:
+   "^OUT[1-4]$":
+     type: object
+-- 
+2.25.1
+
