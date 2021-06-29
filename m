@@ -2,117 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8A783B734E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 15:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45EE13B7395
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 15:58:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233689AbhF2Njg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 09:39:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33918 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233241AbhF2Nje (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 09:39:34 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92CB5C061766
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 06:37:06 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id e33so18523672pgm.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 06:37:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=28cl+bnywA6mqVAuFBWS4+DC1xuc9Ad1sU1g3enyY68=;
-        b=tl9PRIOlLaANqKjBqj1YyHJxzRrO+cwrBt+A0Hs89S5FdinhSuCCFpirzfGtEypVD/
-         X+4BF6To63r3yCHh20IBNtz/IEWoRwwpFn6v0akYlhLRy9jSeoHZOuRxMdyF31zvcf44
-         c/ln02ptAqH1W5oR/aXqrJTzv706amVkWEPakHjEfn3Lv42yerEEi35z51kv1MVHI7Eu
-         tx3bQ1UtvRhGXMt1vEYpIlIVCXnO8bfG8mmkVflfzMtdiXcVSOKs7diV7k/B7+9JN51L
-         YOSxFgt4IIF0nwS87kY1TYCz/OPuzqAdhBG/NtqbPjN6TlWEpEPQEkxGbqc7qw2zUfri
-         c7Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=28cl+bnywA6mqVAuFBWS4+DC1xuc9Ad1sU1g3enyY68=;
-        b=uBQFgvR0lhxF4Qh/e4oExLGfpBm7NH3iOHv+1kfYyQxAfXGy8NHRcgODsuEK1KDPAO
-         4aJ3qCCm+TwvficdUGvi2pbxOlmblaU/dYYXss8LiRXvuOUbTjha7qaSjB9iQDhF3VMz
-         8fayAwz5wfAa5umMkaZygVuOnWHkypFG5auqOUL+rSw4XmHVsdwL9IxcPdtKJtaAAe5s
-         yF9TVJPBAWoiDzlQgWf4kFg9V1abbP2Wb/Fr73xZWdAyM1jwvuk+XhAKkOfPGpO6gq4V
-         1atRFJmcyUH2Xtuu+RjtcMpdsRnh/w4beprI8RkMzV9xIyqzuy7Z8RWjZDRf5kLDUSlu
-         2inw==
-X-Gm-Message-State: AOAM5327Xs+STeXiFp++MpVY21q2pkKvV52M1msfyrhAYeFqWWKFXu8X
-        3lD4MlYVVdZzBKyMF9mzuKAQMw==
-X-Google-Smtp-Source: ABdhPJwIBnAsS1nw+GVh0TDVAwqpGC1ylXLRdSOya/DS07KIGiWDdVqLV6Kimp10EWjeGl4hNnRAmA==
-X-Received: by 2002:a62:d14b:0:b029:300:5e03:8e14 with SMTP id t11-20020a62d14b0000b02903005e038e14mr30288700pfl.21.1624973826085;
-        Tue, 29 Jun 2021 06:37:06 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id w20sm20759021pff.90.2021.06.29.06.37.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 29 Jun 2021 06:37:05 -0700 (PDT)
-Date:   Tue, 29 Jun 2021 21:36:59 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 3/5] clk: qcom: apcs-msm8916: Retrieve clock name from DT
-Message-ID: <20210629133658.GB32336@dragon>
-References: <20210504052844.21096-1-shawn.guo@linaro.org>
- <20210504052844.21096-4-shawn.guo@linaro.org>
- <162484011476.3259633.10138087900669024498@swboyd.mtv.corp.google.com>
+        id S234199AbhF2OBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 10:01:07 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:33264 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233329AbhF2OBH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Jun 2021 10:01:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=GE7y013gv+UJQ2wwu8UtEPjl7ZCtbs5UT/PDFigCAxs=; b=4gilTUTJK1UASaINjjFSWPJ23w
+        WX+1ETjlJyIlT6bFeHKNzSMK/69EPcZWgSK4XQMC0q3OjknIqq3OBz4TM81sumIo78jQV6xzBgDYO
+        hqUfxsMcK/FjmwBvk1Cv7cGObdvr9UfMH+lq+A95S+wrzNOhq/27GYf21uhn9uBzmLo4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1lyEFr-00BXyW-Jn; Tue, 29 Jun 2021 15:58:23 +0200
+Date:   Tue, 29 Jun 2021 15:58:23 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Harini Katakam <harini.katakam@xilinx.com>
+Cc:     robh+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        davem@davemloft.net, kuba@kernel.org, steen.hegelund@microchip.com,
+        bjarni.jonasson@microchip.com, ioana.ciornei@nxp.com,
+        likaige@loongson.cn, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        harinikatakamlinux@gmail.com, michal.simek@xilinx.com,
+        radhey.shyam.pandey@xilinx.com
+Subject: Re: [PATCH 1/3] include: dt-bindings: Add mscc-vsc8531 RGMII clock
+ delay definitions
+Message-ID: <YNsm/0dmpBgO8mqr@lunn.ch>
+References: <20210629094038.18610-1-harini.katakam@xilinx.com>
+ <20210629094038.18610-2-harini.katakam@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <162484011476.3259633.10138087900669024498@swboyd.mtv.corp.google.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210629094038.18610-2-harini.katakam@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 27, 2021 at 05:28:34PM -0700, Stephen Boyd wrote:
-> Quoting Shawn Guo (2021-05-03 22:28:42)
-> > Unlike MSM8916 which has only one APCS clock, MSM8939 gets three for
-> > Cluster0 (little cores), Cluster1 (big cores) and CCI (Cache Coherent
-> > Interconnect).  Instead of hard coding APCS (and A53PLL) clock name,
-> > retrieve the name from DT, so that multiple APCS clocks can be
-> > registered.
-> > 
-> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > ---
-> >  drivers/clk/qcom/a53-pll.c      | 5 ++++-
-> >  drivers/clk/qcom/apcs-msm8916.c | 5 ++++-
-> >  2 files changed, 8 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/clk/qcom/a53-pll.c b/drivers/clk/qcom/a53-pll.c
-> > index 8614b0b0e82c..964f5ab7d02f 100644
-> > --- a/drivers/clk/qcom/a53-pll.c
-> > +++ b/drivers/clk/qcom/a53-pll.c
-> > @@ -42,6 +42,7 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
-> >         struct clk_pll *pll;
-> >         void __iomem *base;
-> >         struct clk_init_data init = { };
-> > +       const char *clk_name = NULL;
-> >         int ret;
-> >  
-> >         pll = devm_kzalloc(dev, sizeof(*pll), GFP_KERNEL);
-> > @@ -66,7 +67,9 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
-> >         pll->status_bit = 16;
-> >         pll->freq_tbl = a53pll_freq;
-> >  
-> > -       init.name = "a53pll";
-> > +       of_property_read_string(pdev->dev.of_node, "clock-output-names",
-> > +                               &clk_name);
+On Tue, Jun 29, 2021 at 03:10:36PM +0530, Harini Katakam wrote:
+> Add RGMII clock delay definitions in mscc-phy-vsc8531 header.
 > 
-> Please no? Is there any use for this? Why not just generate the name as
-> a53pll@<MMIO ADDRESS>?
-
-There is no other use for this than getting different names.  I will do
-what you suggest here.  Thanks!
-
-Shawn
-
+> Signed-off-by: Harini Katakam <harini.katakam@xilinx.com>
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> ---
+>  include/dt-bindings/net/mscc-phy-vsc8531.h | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> > +       init.name = clk_name ? clk_name : "a53pll";
-> >         init.parent_names = (const char *[]){ "xo" };
-> >         init.num_parents = 1;
-> >         init.ops = &clk_pll_sr2_ops;
+> diff --git a/include/dt-bindings/net/mscc-phy-vsc8531.h b/include/dt-bindings/net/mscc-phy-vsc8531.h
+> index 9eb2ec2b2ea9..242eb4c7ede9 100644
+> --- a/include/dt-bindings/net/mscc-phy-vsc8531.h
+> +++ b/include/dt-bindings/net/mscc-phy-vsc8531.h
+> @@ -28,4 +28,13 @@
+>  #define VSC8531_FORCE_LED_OFF           14
+>  #define VSC8531_FORCE_LED_ON            15
+>  
+> +#define VSC8531_RGMII_CLK_DELAY_0_2_NS	0
+> +#define VSC8531_RGMII_CLK_DELAY_0_8_NS	1
+> +#define VSC8531_RGMII_CLK_DELAY_1_1_NS	2
+> +#define VSC8531_RGMII_CLK_DELAY_1_7_NS	3
+> +#define VSC8531_RGMII_CLK_DELAY_2_0_NS	4
+> +#define VSC8531_RGMII_CLK_DELAY_2_3_NS	5
+> +#define VSC8531_RGMII_CLK_DELAY_2_6_NS	6
+> +#define VSC8531_RGMII_CLK_DELAY_3_4_NS	7
+
+Using defines like this is no longer used. Please specify the delay in
+pS and convert to a register value within the driver.
+
+   Andrew
