@@ -2,142 +2,352 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A0E23B6F56
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 10:29:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57CF33B6F75
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 10:32:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232710AbhF2IZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 04:25:34 -0400
-Received: from mail-vi1eur05on2060.outbound.protection.outlook.com ([40.107.21.60]:17056
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232726AbhF2IZM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Jun 2021 04:25:12 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VBnveqb32Qju3dn7gFap+9wXDPZFCodZMefvahSwAzzmh+ui4VkQCslGttkHHoaQLJIwHTEQT+rHe6+bTDXTOvhBU+dcjevm75jcpRbEAVgzyzTJ6k3JzxMH5QtzhQU1YVjYKrhU9juAEhnjbKAJe85oXGKYcYAQnltCoSSJ1qIefNEm6zqz+CubmIUW+PM7/Y14H5T6YZP4f0VPKoYC61uuBrKYDzoBjodXdGd4N4Ss3WW6309dHyn4Gv9mcyeTbyHK2H2xezWw5Hc8NFxtVau9aPp8F89owG8eG2l/J9B7x3jI36BTaIkdvGN4xbTFRJRO5h1Y3d/sp2MIv2ZDQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4abajW1vhYPi9V1bSpIlYdoKd9unIa5A4cUELflhH/U=;
- b=a7c0fRd8dK/Tz44mcHMOE6sdwAFSfD2uwh5/rdTiUsEr/MbPkwPJ/DQd7+K998oZ30zDqi70RPCnvuEv2TKTDD6tNpChqMN6QAdy9Ukl2NpJXm+1LCxc9Y95M6AmbRutzu73KtEngaWHfrP2lTCFrn5kmsJxob1qOzgLCGk3dZrZEVIDoM45esL2PMFtY9bYRnkSZ2bahpWUD98IalJrvr1EFOTdXjHXeneTQD7iRkzgo+IBP2KxdAaQxVU/GqGhAx+EvUL6ZQUDNjwsCw2RjkG0zpve3P4YtkJpgfdKRubVev34tBpyj+bOD0ATlWYROfpoXvvtcHP/A+xnVA3SOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4abajW1vhYPi9V1bSpIlYdoKd9unIa5A4cUELflhH/U=;
- b=Rb8hU8xyaKg++JeNnbmp8MY1RFjBLUvYiO8QpOZ9IX9T0EC3YzH4IaOTvBtNkvkkoyf3uAROB1YFhWIAVcnWpc/d5aegsZ6tmESLjnk4swwUGapgGfWX0+wrv3a7OFleB8dIlcliKyksCnf+AgPWML++SFKPLdoB0nbq2OHbp8g=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by AM6PR04MB5014.eurprd04.prod.outlook.com (2603:10a6:20b:12::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.18; Tue, 29 Jun
- 2021 08:22:41 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::f91a:68d6:ffb8:1642]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::f91a:68d6:ffb8:1642%3]) with mapi id 15.20.4264.026; Tue, 29 Jun 2021
- 08:22:41 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     mchehab@kernel.org, shawnguo@kernel.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 13/13] MAINTAINERS: add NXP IMX8Q VPU CODEC V4L2 driver entry
-Date:   Tue, 29 Jun 2021 16:21:14 +0800
-Message-Id: <56637bd756fd68222138faac6617f19b1a2cca12.1624954576.git.ming.qian@nxp.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1624954576.git.ming.qian@nxp.com>
-References: <cover.1624954576.git.ming.qian@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.70]
-X-ClientProxiedBy: SG2PR06CA0160.apcprd06.prod.outlook.com
- (2603:1096:1:1e::14) To AM6PR04MB6341.eurprd04.prod.outlook.com
- (2603:10a6:20b:d8::14)
+        id S232705AbhF2IeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 04:34:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232625AbhF2IeP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 04:34:15 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B074C061574
+        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 01:31:48 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ly99l-0007vb-D9; Tue, 29 Jun 2021 10:31:45 +0200
+Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1ly99k-0003wC-NK; Tue, 29 Jun 2021 10:31:44 +0200
+Date:   Tue, 29 Jun 2021 10:31:44 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Emil Lenngren <emil.lenngren@gmail.com>,
+        michal.simek@xilinx.com, Alvaro Gamez <alvaro.gamez@hazent.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 3/3] pwm: Add support for Xilinx AXI Timer
+Message-ID: <20210629083144.53onthkcchbk73lo@pengutronix.de>
+References: <20210625061958.yeaxjltuq7q2t7i7@pengutronix.de>
+ <a748143d-f157-562e-795d-dcd9a0cf9d85@seco.com>
+ <20210625165642.5iuorl5guuq5c7gc@pengutronix.de>
+ <f1772da9-8bd8-57cf-6eba-3c16c58a903f@seco.com>
+ <20210627181919.iunagls4j67ignhh@pengutronix.de>
+ <59e93f67-0552-04bb-116e-73ddf878761e@seco.com>
+ <20210628162407.dxxt6hqfzeokdtxa@pengutronix.de>
+ <27fca5ef-8c82-f122-4bd0-f595cad4d588@seco.com>
+ <20210628172021.q5enzmr7u6cornm6@pengutronix.de>
+ <661e52c3-cd79-c2aa-e031-64eef5617be0@seco.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from lsv11149.swis.cn-sha01.nxp.com (119.31.174.70) by SG2PR06CA0160.apcprd06.prod.outlook.com (2603:1096:1:1e::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.19 via Frontend Transport; Tue, 29 Jun 2021 08:22:28 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 75833d33-5324-4a69-d185-08d93ad70aac
-X-MS-TrafficTypeDiagnostic: AM6PR04MB5014:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <AM6PR04MB5014746434B40CC822748017E7029@AM6PR04MB5014.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1u0+OUKo+bKlJQT4+gnU/vC0YGG/UMftOumaUDvR8amuR4RJInHQf1fGmqmEb5hFgTSwIh2j5Ut0D601C+xOUeHaV6SoxoF5B7JU6IZ2m7sbznQ33iGahu0EgYPIxQtOWWH/dVSl8QLf8r04+uqOy5TkU0ytsCAVuf0cJlsIsUwnT05PRtNCdBUFyBdVMwkTpMC3Iy+50FVYrgIIEQRc+vzr++eySXv6TXpKDJ6z4gpc1E3o4BrGuCN4e+kSKwhAYcorP7iC5ZdJoN9X7oLhJSiCP1q8T2Y2W5HlCaLphGam9zzCxQSshsEWOPCMDbSxyUKDQSPXnKzVdUi6Ck/KndrSp9uhv6c7nC6bJcHhMRfaEzv7xiK3BTwaxAfPCsYzNS/WJCQFKX0UgV30Atz3qAlf7R6voMGT7CzUnhTCPze4nK5DC9HQq8sYKn3+vgdPpwISTpj5ALYdv9WesGJ3NARElNpOY2xEvSsZs8M/ZAALEF9cLw3izMxc2qKFqoasKrAWG9J52OwQd1uisN4oMizDfp30kuErnPatlBEGuUnSG66Hzld2PN2eoOOG/wN6VMaRN3a43+v2HNFxy18z9pX7e+SuEJB0DYEOfIGEKPnAxNFAzQ56710R5XLungiaKgInfvfa4FjwFCAZsi35ezBq7TNTvEl32jNsH+bSJKnmzOcrMQxRhksTLBl6k5yZejoKCR0QJ4G1Y5rjKKobu4TaUl1Z6vf/k4JDLTgQHao=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(136003)(376002)(396003)(366004)(346002)(86362001)(52116002)(316002)(5660300002)(6666004)(66476007)(66946007)(478600001)(7696005)(66556008)(4326008)(2906002)(16526019)(8936002)(4744005)(186003)(8676002)(44832011)(2616005)(7416002)(6486002)(36756003)(38100700002)(38350700002)(26005)(956004)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BcjkkGYUTihEB0BLk8saJl/qfPOp+9FqM6VxnGNWvR4n4Fn/FQ62Q1ChbnQ0?=
- =?us-ascii?Q?O2ON3kh1Vc/EGKmvPqV+KP/yDnuHjWdLZiLj+4skgFno6QKzgrNnYG682yHU?=
- =?us-ascii?Q?jgCR+2zkw9JuaUD8HEWpAHPNtn+BLn834tM98upfCvog+vSbx2GeSTxsm7xT?=
- =?us-ascii?Q?xTr/F7wSxcE7UHvVohuzR/5IQx62JXSoFeyxjAm707evlnplJ68XArHhXrtl?=
- =?us-ascii?Q?abXpZ6Hw2eJXFppdRG9tQMoi6pR9D1u/5D1k/sZluy4rtuHK/xdvCt0ba8iW?=
- =?us-ascii?Q?aKhGFAbrZJYiLnjYeAxbOX43sgA9fr/K0SSqgsDfh2JKteCLzxCIkRDPKr/D?=
- =?us-ascii?Q?osRzzbVk+EZWebIxkltZ1QZQAxDakHofn2iZeJ2HSb4OOJBskiQf5GiTgP8V?=
- =?us-ascii?Q?h2Od8oDODZ2R5VUYmlg6aBtueQYOPI9wvdfPfR/yd72oArhXxtXJd3EdK60E?=
- =?us-ascii?Q?qtnyH89FwTiUryIdExUKUUco0SQghg55Ud6ddACiigMUQL2w8RqZG2POxfvd?=
- =?us-ascii?Q?bD6hkWVwU7MvUTTbYdhQsrm3EWad9A5R9WjdwbtSQONsXbR4heCdTyM5U8Pg?=
- =?us-ascii?Q?bheCoefaL0UhoWYglJLQ3b2+xkMdZP0i7EQcTvSWSST1H61QYJvTKXYvXZ6f?=
- =?us-ascii?Q?Rg+hHYghQkmxIF7rt4SGRb1IPOC2/fb+nLONOih0RJblBTA8TwcNfg3vXX8W?=
- =?us-ascii?Q?eta1oiocfveLSnpZBV6n7oHTrLxLvgsUkrb1sdMxjRSTn9hwiSNja7U4dpn4?=
- =?us-ascii?Q?/SkxMIhkB6BwK9LN/q0h/RtokxEnn0WNVQ3wi7PgXVYgs4u/XQ/MMiurIN7x?=
- =?us-ascii?Q?N8i592Sf1+0GuQfC6AyBcqLuyPrZ5m90IiNFvma/aMcU5YL2oz6F3UZND2yB?=
- =?us-ascii?Q?AJHznwnYfvQFP5a3lzBT8on3VDEcVkHCmkrVpcvCRsb5os1gMRvgzFdmA1rl?=
- =?us-ascii?Q?j0qZiThayExCmjq2gdzV7/U1nnfrVf3HoRTyJ/G/XyCg2vq1tQ1VZLlzxj4P?=
- =?us-ascii?Q?BLMebYgB+0gnqMBCmtQ+3vl5M6dsNVqwa/dbPyc6Q63l3IF4CAyoum8LbyvT?=
- =?us-ascii?Q?FvAGe2cCMuyz1vRl/zUrL+Bf3Oy1q+ytiu/ETzjRG96RqIjtc7LZR5Lo0K1k?=
- =?us-ascii?Q?ei/R5667jdi9BfG0UbuPUPWAOE3trW79Mo5cmUMbnYnH+cUYUhUizPlzLTRb?=
- =?us-ascii?Q?e7mGuOsLu4hA1rmMmgnVpeQw8hwxJMvBCjIKZbAv9acOWwz28jRDc3POTeJ+?=
- =?us-ascii?Q?PM2ORBLIOzKYX8vgTBS9PvWzyPX1oR0xDjzvilOowOeJhkOlMBtG1cq4jg4c?=
- =?us-ascii?Q?wWfyI73k4X++B4Id+15gM2p1?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75833d33-5324-4a69-d185-08d93ad70aac
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2021 08:22:32.3951
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cqsi44tsGzuTZQLgaBaXLNNX5/9jwPdDtkPRMchXLGb2YFJ6b7nwUv/OseRzE4UH7+89TATiTH9YuwTHdEvkcQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5014
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zw3gcxqombv3kcc7"
+Content-Disposition: inline
+In-Reply-To: <661e52c3-cd79-c2aa-e031-64eef5617be0@seco.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add NXP IMX8Q VPU CODEC v4l2 driver entry
 
-Signed-off-by: Ming Qian <ming.qian@nxp.com>
-Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
-Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+--zw3gcxqombv3kcc7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0f59b0412953..b88f6e650fab 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12600,6 +12600,16 @@ L:	linux-nfc@lists.01.org (moderated for non-subscribers)
- S:	Supported
- F:	drivers/nfc/nxp-nci
- 
-+NXP IMX8Q VPU CODEC V4L2 DRIVER
-+M:	Ming Qian <ming.qian@nxp.com>
-+M:	Shijie Qin <shijie.qin@nxp.com>
-+M:	Zhou Peng <eagle.zhou@nxp.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/media/nxp,imx8q-vpu.yaml
-+F:	drivers/media/platform/imx/vpu-8q
-+F:	include/uapi/linux/imx_vpu.h
-+
- OBJAGG
- M:	Jiri Pirko <jiri@nvidia.com>
- L:	netdev@vger.kernel.org
--- 
-2.31.1
+Hello Sean,
 
+On Mon, Jun 28, 2021 at 01:41:43PM -0400, Sean Anderson wrote:
+> On 6/28/21 1:20 PM, Uwe Kleine-K=F6nig wrote:
+> > On Mon, Jun 28, 2021 at 12:35:19PM -0400, Sean Anderson wrote:
+> >> On 6/28/21 12:24 PM, Uwe Kleine-K=F6nig wrote:
+> >> > On Mon, Jun 28, 2021 at 11:50:33AM -0400, Sean Anderson wrote:
+> >> > > On 6/27/21 2:19 PM, Uwe Kleine-K=F6nig wrote:
+> >> > > > On Fri, Jun 25, 2021 at 01:46:26PM -0400, Sean Anderson wrote:
+> >> > > > > So for the moment, why not give an error? This will be legal c=
+ode both
+> >> > > > > now and after round_state is implemented.
+> >> > > >
+> >> > > > The problem is where to draw the line. To stay with your example=
+: If a
+> >> > > > request for period =3D 150 ns comes in, and let X be the biggest=
+ period <=3D
+> >> > > > 150 ns that the hardware can configure. For which values of X sh=
+ould an
+> >> > > > error be returned and for which values the setting should be
+> >> > > > implemented.
+> >> > > >
+> >> > > > In my eyes the only sensible thing to implement here is to tell =
+the
+> >> > > > consumer about X and let it decide if it's good enough. If you h=
+ave a
+> >> > > > better idea let me hear about it.
+> >> > >
+> >> > > Sure. And I think it's ok to tell the consumer that X is the best =
+we can
+> >> > > do. But if they go along and request an unconfigurable state anywa=
+y, we
+> >> > > should tell them as much.
+> >> >
+> >> > I have the impression you didn't understand where I see the problem.=
+ If
+> >> > you request 150 ns and the controller can only do 149 ns (or 149.666=
+7 ns)
+> >> > should we refuse? If yes: This is very unusable, e.g. the led-pwm dr=
+iver
+> >> > expects that it can configure the duty_cycle in 1/256 steps of the
+> >> > period, and then maybe only steps 27 and 213 of the 256 possible ste=
+ps
+> >> > work. (This example doesn't really match because the led-pwm driver
+> >> > varies duty_cycle and not period, but the principle becomes clear I
+> >> > assume.) If no: Should we accept 151 ns? Isn't that ridiculous?
+> >>
+> >> I am fine with this sort of rounding. The part I take issue with is wh=
+en
+> >> the consumer requests (e.g.) a 10ns period, but the best we can do is
+> >> 20ns. Or at the other end if they request a 4s period but the best we
+> >> can do is 2s. Here, there is no obvious way to round it, so I think we
+> >> should just say "come back with a reasonable period" and let whoever
+> >> wrote the device tree pick a better period.
+> >
+> > Note that giving ridiculus examples is easy, but this doesn't help to
+> > actually implement something sensible. Please tell us for your example
+> > where the driver can only implement 20 ns what is the smallest requested
+> > period the driver should accept.
+>=20
+> 20ns :)
+>=20
+> In the case of this device, that would result in 0% duty cycle with a
+> 100MHz input. So the smallest reasonable period is 30ns with a duty
+> cycle of 20ns.
+
+I took the time to understand the hardware a bit better, also to be able
+to reply to your formulae below. So to recap (and simplify slightly
+assuming TCSR_UDT =3D 1):
+
+
+              TLR0 + 2
+ period     =3D --------
+              clkrate
+
+              TLR1 + 2
+ duty_cycle =3D -------- if TLR1 < TLR0, else 0
+              clkrate
+
+
+where TLRx has the range [0..0xffffffff] (for some devices the range is
+smaller). So clkrate seems to be 100 MHz?
+
+> >> > > IMO, this is the best way to prevent surprising results in the API.
+> >> >
+> >> > I think it's not possible in practise to refuse "near" misses and ev=
+ery
+> >> > definition of "near" is in some case ridiculous. Also if you consider
+> >> > the pwm_round_state() case you don't want to refuse any request to t=
+ell
+> >> > as much as possible about your controller's capabilities. And then i=
+t's
+> >> > straight forward to let apply behave in the same way to keep complex=
+ity
+> >> > low.
+> >> >
+> >> > > The real issue here is that it is impossible to determine the corr=
+ect
+> >> > > way to round the PWM a priori, and in particular, without consider=
+ing
+> >> > > both duty_cycle and period. If a consumer requests very small
+> >> > > period/duty cycle which we cannot produce, how should it be rounde=
+d?
+> >> >
+> >> > Yeah, because there is no obviously right one, I picked one that is =
+as
+> >> > wrong as the other possibilities but is easy to work with.
+> >> >
+> >> > > Should we just set TLR0=3D1 and TLR1=3D0 to give them 66% duty cyc=
+le with
+> >> > > the least period? Or should we try and increase the period to bett=
+er
+> >> > > approximate the % duty cycle? And both of these decisions must be =
+made
+> >> > > knowing both parameters. We cannot (for example) just always round=
+ up,
+> >> > > since we may produce a configuration with TLR0 =3D=3D TLR1, which =
+would
+> >> > > produce 0% duty cycle instead of whatever was requested. Rounding =
+rate
+> >> > > will introduce significant complexity into the driver. Most of the=
+ time
+> >> > > if a consumer requests an invalid rate, it is due to misconfigurat=
+ion
+> >> > > which is best solved by fixing the configuration.
+> >> >
+> >> > In the first step pick the biggest period not bigger than the reques=
+ted
+> >> > and then pick the biggest duty cycle that is not bigger than the
+> >> > requested and that can be set with the just picked period. That is t=
+he
+> >> > behaviour that all new drivers should do. This is somewhat arbitrary=
+ but
+> >> > after quite some thought the most sensible in my eyes.
+> >>
+> >> And if there are no periods smaller than the requested period?
+> >
+> > Then return -ERANGE.
+>=20
+> Ok, so instead of
+>=20
+> 	if (cycles < 2 || cycles > priv->max + 2)
+> 		return -ERANGE;
+>=20
+> you would prefer
+>=20
+> 	if (cycles < 2)
+> 		return -ERANGE;
+> 	else if (cycles > priv->max + 2)
+> 		cycles =3D priv->max;
+
+The actual calculation is a bit harder to handle TCSR_UDT =3D 0 but in
+principle, yes, but see below.
+
+> But if we do the above clamping for TLR0, then we have to recalculate
+> the duty cycle for TLR1. Which I guess means doing something like
+>=20
+> 	ret =3D xilinx_timer_tlr_period(priv, &tlr0, tcsr0, state->period);
+> 	if (ret)
+> 		return ret;
+>=20
+> 	state->duty_cycle =3D mult_frac(state->duty_cycle,
+> 				      xilinx_timer_get_period(priv, tlr0, tcsr0),
+> 				      state->period);
+>=20
+> 	ret =3D xilinx_timer_tlr_period(priv, &tlr1, tcsr1, state->duty_cycle);
+> 	if (ret)
+> 		return ret;
+
+No, you need something like:
+
+	/*
+	 * The multiplication cannot overflow as both priv_max and
+	 * NSEC_PER_SEC fit into an u32.
+	 */
+	max_period =3D div64_ul((u64)priv->max * NSEC_PER_SEC, clkrate);
+
+	/* cap period to the maximal possible value */
+	if (state->period > max_period)
+		period =3D max_period;
+	else
+		period =3D state->period;
+
+	/* cap duty_cycle to the maximal possible value */
+	if (state->duty_cycle > max_period)
+		duty_cycle =3D max_period;
+	else
+		duty_cycle =3D state->duty_cycle;
+
+	period_cycles =3D period * clkrate / NSEC_PER_SEC;
+
+	if (period_cycles < 2)
+		return -ERANGE;
+
+	duty_cycles =3D duty_cycle * clkrate / NSEC_PER_SEC;
+
+	/*
+	 * The hardware cannot emit a 100% relative duty cycle, if
+	 * duty_cycle >=3D period_cycles is programmed the hardware emits
+	 * a 0% relative duty cycle.
+	 */
+	if (duty_cycle =3D=3D period_cycles)
+		duty_cycles =3D period_cycles - 1;
+
+	/*
+	 * The hardware cannot emit a duty_cycle of one clk step, so
+	 * emit 0 instead.
+	 */
+	if (duty_cycles < 2)
+		duty_cycles =3D period_cycles;
+
+> >> > > > > Perhaps I should add
+> >> > > > >
+> >> > > > > 	if (tlr0 <=3D tlr1)
+> >> > > > > 		return -EINVAL;
+> >> > > > >
+> >> > > > > here to prevent accidentally getting 0% duty cycle.
+> >> > > >
+> >> > > > You can assume that duty_cycle <=3D period when .apply is called.
+> >> > >
+> >> > > Ok, I will only check for =3D=3D then.
+> >> >
+> >> > You just have to pay attention to the case that you had to decrement
+> >> > .period to the next possible value. Then .duty_cycle might be bigger
+> >> > than the corrected period.
+> >>
+> >> This is specifically to prevent 100% duty cycle from turning into 0%. =
+My
+> >> current draft is
+> >>
+> >> 	/*
+> >> 	 * If TLR0 =3D=3D TLR1, then we will produce 0% duty cycle instead of=
+ 100%
+> >> 	 * duty cycle. Try and reduce the high time to compensate. If we can't
+> >> 	 * do that because the high time is already 0 cycles, then just error
+> >> 	 * out.
+> >> 	 */
+> >> 	if (tlr0 =3D=3D tlr1 && !tlr1--)
+> >> 		return -EINVAL;
+> >
+> > If you follow my suggested policy this isn't an error and you should
+> > yield the biggest duty_cycle here even if it is zero.
+>=20
+> So like this?
+>=20
+> 	if (tlr0 =3D=3D tlr1) {
+> 		if (tlr1)
+> 			tlr1--;
+> 		else if (tlr0 !=3D priv->max)
+> 			tlr0++;
+> 		else
+> 			return -ERANGE;
+> 	}
+
+No, this is wrong as it configures a longer period than requested in
+some cases.
+
+> And I would really appreciate if you could write up some documentation
+> with common errors and how to handle them. It's not at all obvious to me
+> what all the implications of the above guidelines are.
+
+Yes, I fully agree this should be documented and doing that is on my
+todo list. Until I come around to do this, enabling PWM_DEBUG should
+help you getting this right (assuming you test extensively and read the
+resulting kernel messages).
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--zw3gcxqombv3kcc7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDa2m0ACgkQwfwUeK3K
+7AnqWAf7Bcs27Gx2S4VXUpSUFpFHo07wQYtDRmb3fhxv6K0C66frexKLCiLq7oSz
+IfnELRaL/tswH59hnHdjia4M6jR+m/1EaZa5kxJcuQcx2xAuQF3Sg6keNLYOQOsL
+nLU34jYgjClsSOsYzml0tiD/uASW+M+nYxxpyfvurdYD4MWx5CspO5XdRZ1xPkhN
+b9ZCrdtdb2gAPRT18AkOG6GwaVRe/tTgG6ZYoQGXUinXO8XopvOKUpTNf99n1EaH
+Edd4sKhJEgJxqKJm/bWuetL/MEs6/VzpWo/ZDPvwJe6RP4FPMBrfCUN58UXY+isQ
+Nh+qk4l8Mm6COQVx6PRacbm/2TV6jg==
+=QjkF
+-----END PGP SIGNATURE-----
+
+--zw3gcxqombv3kcc7--
