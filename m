@@ -2,269 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0208D3B79E5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 23:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5F7F3B79FD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 23:41:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234754AbhF2VfL convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 29 Jun 2021 17:35:11 -0400
-Received: from mout.kundenserver.de ([217.72.192.75]:48563 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232997AbhF2VfK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 17:35:10 -0400
-Received: from [192.168.1.107] ([37.4.249.97]) by mrelayeu.kundenserver.de
- (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MBE3k-1m5Xft1f2M-00Cm0F; Tue, 29 Jun 2021 23:31:59 +0200
-Subject: Re: dwc2: RPi 3 B plus - USB mass storage boot broken
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-To:     Saravana Kannan <saravanak@google.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Minas Harutyunyan <Minas.Harutyunyan@synopsys.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org
-References: <a385bbdf-8806-896d-5b9a-d26df907e43a@i2se.com>
-Autocrypt: addr=stefan.wahren@i2se.com; keydata=
- LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tClZlcnNpb246IEdudVBHIHYy
- CgptUUlOQkZ0NmdCTUJFQUN1Yi9wQmV2SHhidkplZnlaRzMySklObW4yYnNFUFgyNVY2ZmVq
- bXlZd21DR0tqRnRMCi9Eb1VNRVZIRHhDSjQ3Qk1YbzM0NGZIVjFDM0FudWRnTjFCZWhMb0J0
- TEh4bW5lQ3pnSDNLY1B0V1c3cHRqNEcKdEp2OUNRRFp5MjdTS29FUHh5YUk4Q0YweWdSeEpj
- NzJNOUk5d21zUFo1YlVIc0x1WVdNcVE3SmNSbVBzNkQ4ZwpCa2srOC95bmdFeU5FeHd4SnBS
- MXlsajVianhXREh5WVF2dUo1THpaS3VPOUxCM2xYVnNjNGJxWEVqYzZWRnVaCkZDQ2svc3lp
- by9ZaHNlOE4rUXN4N01RYWd6NHdLVWtRUWJmWGcxVnFrVG5BaXZYczQyVm5Ja211NWd6SXcv
- MHQKUkp2NTBGUmhIaHhweUtBSThCOG5oTjhRdng3TVZrUGM1dkRmZDN1R1lXNDdKUGhWUUJj
- VXdKd05rLzQ5RjllQQp2ZzJtdE1QRm5GT1JrV1VSdlArRzZGSmZtNitDdk92N1lmUDF1ZXdB
- aTRsbitKTzFnK2dqVklXbC9XSnB5MG5UCmlwZGZlSDlkSGtnU2lmUXVuWWN1Y2lzTXlvUmJG
- OTU1dENna0VZOUVNRWRZMXQ4aUdEaUNnWDZzNTBMSGJpM2sKNDUzdWFjcHhmUVhTYUF3UGtz
- bDhNa0NPc3YyZUVyNElOQ0hZUUR5WmljbEJ1dUNnOEVOYlI2QUdWdFpTUGNRYgplbnpTektS
- Wm9POUNhcUlEK2ZhdkxpQi9kaHptSEErOWJnSWhtWGZ2WFJMRFp6ZThwbzFkeXQzRTFzaFhp
- ZGRaClBBOE51SlZ6RUl0MmxtSTZWOHBaRHBuMjIxcmZLaml2UlFpYW9zNTRUZ1pqak1ZSTdu
- bko3ZTZ4endBUkFRQUIKdENCVGRHVm1ZVzRnVjJGb2NtVnVJRHgzWVdoeVpXNXpkRUJuYlhn
- dWJtVjBQb2tDTndRVEFRZ0FJUVVDWElkYwo0Z0liQXdVTENRZ0hBZ1lWQ0FrS0N3SUVGZ0lE
- QVFJZUFRSVhnQUFLQ1JDVWdld1BFWkR5MjFPVEQvOUdpWkxkCnRSWWNteVJKZ2x0aVFRekFp
- UWRjSUQ3OGxHb1dwL3grci92Y1U2YjZqdVl1ZVR3Z1Iwclc3djdsMklSQnlEN24KSEp4YSt0
- SVNvUVpCZ2hvbE1JZmI5TXRoR09KTENZNzdrL1FoQWhuMzJOR1prZWp3OXR6a3MvNDBtclpT
- VVQ4NApaeWJzUVhyTE0vSFI2VElJL0RlUEIwbktEM0ppcHBzMlVIUUQ5cUQySWpFd1NRUGxI
- akNPckVaaDQ1UFo3bTkrClo5M0x6aVRlc1dabFlRdUxpSndzNHJLcHRIVzFkL3dSZWxzaG1t
- NlFxY0wybDRDL2U0MGVEQjlncTRkU1poOVgKUEVZbGxpeU5RaDdhMkxTZHVtRTFyK2NTd0lq
- RS91ZHRSdmRPOWFLb0psT2JVSzVkTmpTUEg3d0tUYndkWGRZRApHUHdEaFhkNThOQXdyK1BY
- QmxQajB0STFMQ3ErTEJ4ZUt6aFdYK0dWcTlEb2pWanlVREV4Rk5Ga1h1b0M3ZzhtClY5VDB0
- ZUJpdVpSbm91WEt3VjJGcHRaT0hIN0JVRVd0a0t0aGgxZXRmT1dwaWdCemtVN2JQc2ZJWVQr
- cnk5dGIKMW9KK3Y0MVBOYXFaRW1QVXBKeHZmek5UN3Ayd01lRDdaajlmMHJ1YlJQdExBSjJR
- R2pyRkhzdVh3QU9xcHl6ZQoxOEVidHNZazBOMHp1SEVoY2orUEJJQmZoMFlJWWQ1MW9mNkdJ
- aU95UjlxMFhYdHBsVUo3VDIvSDF1UXFrWGxwCitnVzRWa2lmc2NJckl1eWZueFpXMTJlSXZq
- NnlicVdMN2FZS0dZbVQ2aUxDUGJIWXlZY2F5bDRFa0ZjckNGN0UKZTBXVC9zY1ZNaE8vNVgv
- SGFOQTVIQngvcjUycGdMY3Y0aTlNeExRbVUzUmxabUZ1SUZkaGFISmxiaUE4YzNSbApabUZ1
- TG5kaGFISmxia0JwTW5ObExtTnZiVDZKQWpnRUV3RUNBQ0lGQWx0NmdCTUNHd01HQ3drSUJ3
- TUNCaFVJCkFna0tDd1FXQWdNQkFoNEJBaGVBQUFvSkVKU0I3QThSa1BMYmpic1AvamdqYVNz
- NUh0bGtBSXZXUytGcm15N2MKaG5jT0F4TFRWL0Q2UkV3SU95R0poRkt3d29pck55UTJnOXZV
- YTNZQ1lDZjFmSjh3RWhhS09COWQwTHBNUm5MNApkRVQ4ZDgyMzhFL3BLK0hxTktpSXNKaHM2
- SnNLOFpnalZRR3JtbWZua0dyWisxdjBIQnV4ZGljZ0duUC9XdHVBClVsOGw2Mi9BTGJheXlq
- KzYxQ2xyc0V0UklhcU82N0xJWXdQaVBEUkkrWGlNek5pR3pIRi8xUTZHUjAyUkg2YTMKRjg5
- ejhhUHhjSGkxWnZDdDJ5a3o2VUVjaHpQMHI1Z3FGSisvTC9VcHU4ME1YaVk0djVlSWFCNTJn
- VlBnaXlNQQpsTDJkRHMxbUladm5yUkxSWTJ0YjNtQVlOa1Y1QjVJRFQzcGtXeTZrS281T0Nn
- SytZZFlPUjhGTloyb04ydDhPCnJLK1ZudGFLN01NU0tIbG1ZL3NPd3RSbEVoMU9CbXJjQ3dH
- d21wLzA1R2tSNDZmL0lzaFJWZUZPUmF3K0dBcXQKUDIrQ0ZhMkNOQS9JSG5aTm95aWtsRHpQ
- UUhVVUdzck5wcERyaFg5Sm1oQm1nMXYyeXdIMU5YdTFpRGZQMUJBdwpLZ29rdDVmNVVhUkY5
- c0FBNTN2V0V2YlVVTjllZXNGR0x6UFdkSkdRNWhwZC9WSDVJUXk5U0JyaC93SWNla3E1Cm4w
- a042cGJUSHhHRTUyU2kvTVZJa05UdURaM2FwbjJqbERaNHBPdHBCWEkydlAzYlBPK05pcUJa
- anNVM3R4TGkKV2R2MkZqeXp6NlhMUndlV1JZVkw1SGE2TER0eG9yMnZ1NlVQMDdwOXh6MXhS
- WmFPRFczb1lsSEZ6WXBhNFc1ZwpMSGIybEVrSXVVZlNjaWNHYmpqQXRDbFRkR1ZtWVc0Z1Yy
- Rm9jbVZ1SUR4emRHVm1ZVzR1ZDJGb2NtVnVRR2x1CkxYUmxZMmd1WTI5dFBva0NOd1FUQVFn
- QUlRVUNYSWRlaHdJYkF3VUxDUWdIQWdZVkNBa0tDd0lFRmdJREFRSWUKQVFJWGdBQUtDUkNV
- Z2V3UEVaRHkyeUhURC85VUY3UWxEa0d4elE3QWFDSTZOOTVpUWY4LzFvU1VhRE51Mlk2SQpL
- K0R6UXBiMVRiVE9yM1ZKd3dZOGEzT1d6NU5MU09MTVdlVnh0K29zTW1sUUlHdWJEM09EWko4
- aXpQbEcvSnJOCnQ1elNkbU41SUE1ZjNlc1dXUVZLdmdoWkFnVERxZHB2K1pIVzJFbXhuQUox
- dUxGWFhlUWQzVVpjQzVyMy9nL3YKU2FNbzl4ZWszSjVtTnVEbTcxbEVXc0FzL0JBY0ZjK3lu
- TGh4d0JXQld3c3Z3UjhiSHRKNURPTVd2YUt1RHNrcApJR0ZVZS9LYjJCK2pyYXZRM1RuNnMv
- SHFKTTBjZXhTSHo1cGUrMHNHdlArdDlKNzIzNEJGUXdlRkV4cmlleThVCkl4T3I0WEFiYWFi
- U3J5WW5VL3pWSDlVMWkyQUlRWk1XSkFldkN2VmdRL1UrTmVSaFh1ZGU5WVVtRE1EbzJzQjIK
- VkFGRUFxaUYyUVVIUEEybThhN0VPM3lmTDRyTWswaUh6TElLdmg2L3JIOFFDWThpM1h4VE5M
- OWlDTHpCV3UvTgpPbkNBYlMremx2TFphaVNNaDVFZnV4VHR2NFBsVmRFamY2MlArWkhJRDE2
- Z1VEd0VtYXpMQU1yeDY2NmpINWt1ClVDVFZ5bWJMMFR2Qis2TDZBUmw4QU55TTRBRG1rV2tw
- eU0yMmtDdUlTWUFFZlFSM3VXWFo5WWd4YVBNcWJWK3cKQnJoSmc0SGFONkM2eFRxR3YzcjRC
- MmFxYjc3L0NWb1JKMVo5Y3BIQ3dpT3pJYUFtdnl6UFU2TXhDRFhaOEZnWQpsVDR2MjNHNWlt
- SlAyemdYNXMrRjZBQ1VKOVVRUEQwdVRmK0o5RGEycitza2gvc1dPbloreWNvSE5CUXZvY1pF
- Ck5BSFFmN2tDRFFSYmVvQVRBUkFBMkhkMGZzRFZLNzJSTFNESGJ5ME9oZ0RjRGxWQk0yTSto
- WVlwTzNmWDFyKysKc2hpcVBLQ0hWQXNRNWJ4ZTdIbUppbUhhNEtLWXMya3YvbWx0L0NhdUNK
- Ly9wbWN5Y0JNN0d2d25Lem11WHp1QQpHbVZUWkM2V1I1TGtha0ZydEhPelZtc0VHcE52NVJj
- OWw2SFlGcExrYlNrVmk1U1BRWkp5K0VNZ01DRmdqclpmClZGNnlvdHdFMWFmN0hOdE1oTlBh
- TEROMW9VS0Y1aitSeVJnNWl3SnVDRGtuSGp3QlFWNHBndzIvNXZTOEE3WlEKdjJNYlcvVExF
- eXBLWGlmNzhJaGdBelh0RTJYck0xbi9vNlpINzFvUkZGS096NDJsRmR6ZHJTWDBZc3FYZ0hD
- WAo1Z0l0TGZxemoxcHNNYTlvMWVpTlRFbTFkVlFyVHFueXMwbDE4b2FsUk5zd1lsUW1uWUJ3
- cHdDa2FUSExNSHdLCmZHQmJvNWRMUEVzaHRWb3dJNm5zZ3FMVHlRSG1xSFlxVVpZSXBpZ21t
- QzNTd0JXWTFWNmZmVUVta3FwQUFDRW4KTDQvZ1Vnbjd5US81ZDBzZXFuQXEycFNCSE1VVW9D
- Y1R6RVFVV1ZraUR2M1JrN2hURm1oVHNNcTc4eHYyWFJzWApNUjZ5UWhTVFBGWkNZRFVFeEVs
- RXNTbzlGV0hXcjZ6SHlZY2M4cURMRnZHOUZQaG1RdVQyczlCbHg2Z0kzMjNHCm5FcTFsd1dQ
- SlZ6UDRqUWtKS0lBWHdGcHYrVzhDV0xxekRXT3ZkbHJEYVRhVk1zY0ZUZUg1VzZVcHJsNjVq
- cUYKUUdNcGNSR0NzOEdDVVcxM0gwSXlPdFF0d1dYQTRueStTTDgxcHZpQW1hU1hVOGxhS2FS
- dTkxVk9WYUY5ZjRzQQpFUUVBQVlrQ0h3UVlBUUlBQ1FVQ1czcUFFd0liREFBS0NSQ1VnZXdQ
- RVpEeTIrb1hELzljSEhSa0JaT2ZrbVNxCjE0U3Z4MDYyUHRVMEtWNDcwVFNucC9qV29ZSm5L
- SXczRzBtWElSZ3J0SDJkUHdwSWdWanNZeVJTVk1LbVNwdDUKWnJEZjlOdFRiTldnazhWb0xl
- WnpZRW8rSjNvUHFGclRNczNhWVl2N2U0K0pLNjk1WW5tUSttT0Q5bmlhOTE1dApyNUFaajk1
- VWZTVGx5VW15aWMxZDhvdnNmMWZQN1hDVVZSRmNSamZOZkRGMW9ML3BEZ01QNUdaMk93YVRl
- am15CkN1SGpNOElSMUNpYXZCcFlEbUJuVFlrN1B0aHk2YXRXdllsMGZ5L0NxYWpUS3N4Nytw
- OXh6aXU4WmZWWCtpS0IKQ2MrSGUrRURFZEdJRGh2TlovSVFIZk9CMlBVWFdHUytzOUZOVHhy
- L0E2bkxHWG5BOVk2dzkzaVBkWUl3eFM3SwpYTG9LSmVlMTBEamx6c1lzUmZsRk9XMFpPaVNp
- aElDWGlRVjF1cU02dHpGRzlndFJjaXVzNVVBdGhXYU8xT3dVClNDUW1mQ09tNGZ2TUlKSUE5
- cnh0b1M2T3FSUWNpRjNjcm1vMHJKQ3ROMmF3WmZnaThYRWlmN2Q2aGp2MEVLTTkKWFpvaUFa
- WVpEKy9pTG01VGFLV042b0dJdGkwVmpKdjhaWk9aT2ZDYjZ2cUZJa0pXK2FPdTRvclRMRk16
- MjhhbwpVM1F5V3BOQzhGRm1kWXNWdWE4czZnTjFOSWE2eTNxYS9aQjhiQS9pa3k1OUFFejRp
- RElScmdVek1FZzhBazdUCmZtMUtpWWVpVHRCRENvMjVCdlhqYnFzeXhrUUQxbmtSbTZGQVZ6
- RXVPUEllOEp1cVcyeEQ5aXhHWXZqVTVoa1IKZ0pwM2dQNWIrY25HM0xQcXF1UTJFNmdvS1VN
- TEFia0NEUVJiZmw5REFSQUFzRExjYStMbFAydm5mdEVHaHBjQQpCR1ZOUUVGbkdQckNhdVU2
- SGhOODA1V3RQVHRtc1JPdUp6cWdVVDBtcHFXSWZacTZzTXd5dkhLOVRzL0tIM0paClVWYlJD
- M3oyaDNLZmhIL0RhZjk1cGQ2bVBjL2g5dkYvT3kzK2VUV2hnR25QNmNBNWtsUitmTzFXaEc4
- VnJpWHYKck5lUkcyMHN6emplSG9jblNJY1Q1WHVaUjB1REhPaUd4T2l6MXNNUkZUR3h6R095
- MTlSOXJ2dTYzdGlJM2Q3dgpnYzc1T0NBZGtlQi9TZUNFbGFSdzBUZjdMWmJQampzRjI2M0JZ
- bk1mNGtrTkVLdnFXY1UyaWNNcCtxZXpqeW5CCnB2ZXVlMHJDVFFCWUFRbG9GQ1ZUR0hyV1dB
- NkQ0VzVPMkFmSWRJYzF1MUpDWnAyZjVMV1ZvVUZUVklyUW5RUVUKU0hDaWZyOU1aeExUdFBK
- ZFU1Mm9TUHczZGs0aExQOGlKSUx1dnYvYXZhakNzUVlIRXR3WXNiZUZaeGl1TGdscApBN1lj
- Sk5ObXBnQ3BNRDR3VWh2bEN0QUtOQlFXeXIyOTc2OThFUVRuNDZlQmVVNkttMkNpaFhrZ3dD
- eWY4ZXlLCkxFM3NYZXdhcTVrZ1pXdk5xNml1NXFZSVJCOXl3K2NYYzYwZE9aRE9scTkzWDVT
- QVJZemFvZXBrSHo0cmtMa1AKUG8rdENIeUhRUHNHblBYYzlXVDgwREM5Tm5KR2R2VWx5NXJk
- TUk0eHBaeWdlb2tqd293VlFsUFV1Y1M2TXluNwpmOHc4Y2dmQjdDMklBSWNEeDJwUC9IendY
- dmtDT1FOQTdtVjFsTTA4bitnVmtUcnpweGlwNURicTRDSW9ZeDJNCkpaVDhiR1JINlhqY1VE
- S2EwOVFoeVpzQUVRRUFBWWtFUkFRWUFRZ0FEd1VDVzM1ZlF3SWJBZ1VKQThKbkFBSXAKQ1JD
- VWdld1BFWkR5MjhGZElBUVpBUWdBQmdVQ1czNWZRd0FLQ1JCVnhETFBjVk1NamNkc0QvMFJo
- QXN1UVlPeQpyMTNCbDNOaFhrWUFaR3AyWkZER3VrZTdPU2tWOG9qT09UZFR5ei9jT1JHQ2J5
- ZEQrRGd2cUZ5VmRuT1hLZ08wCmxKbUd3ckdlTGRnZ0F2aDBpaHJwNU8wWVVKOWJCU1htR01t
- UVRZSC9BbUxUR2FkYnVqQ1dqNWZGVWtDeXd4aW0KSHV5MFBiMjRwelR2UzUwR1k1WStxSDBG
- SE5haWdka2tpV04zcnVnN0haRXUvQ3lsUFpqT1h6K0QxUVBNckV4dwo3ZC9NS2FiVis5YU5i
- UVlabGRJajk4UXd2VUYxS1N6YThqbFVJdnBoUnEyN0FUOGZER1lHUGZERU1nMmNCT2FlCkty
- N29uUXM0YjdhV082aWZEbHhRVHB6c3pvK0FuODA3Tk1TdFZFRmYrczNBaFZEM2U3bmY4SkJh
- dmJWckFlMGsKb20yNm96elBubnh6K2xxVlZ0dzZVazRYTUl6dGl4L0h3SFl3dUNuY1VYWndL
- MEkzeUFKd2pZd29vck9DaEozUwpFVWJKUVB0R3NneFJERXhWQkZlNk5MUC82MnhQOU82dGFj
- d09kYjBNbVAxYjM5cFJBVEM3YmdkMWxkVUxpNzVaCmxKckowL1NpVkVyb3FOWXk3OXRmbWdB
- WjJVeFptczlTckV5Nm85UVNmc24xYVh2K01QTDlKYUNHbWtQNnpiTFEKTm5kajBKY2FRbmtD
- MHZneWRPMUJtNk11OTZQOXVmbEtaY0FTNndtTE01SWRIT3lqTDg4d0h3anVjakFPQnRjdwpw
- MG9HVG5WT25Sc05ZU084VzhZWi9LZGJ1Nzg1ZGF6TXFKMmlOakFEdUJiZG02TjRqNUVkTW5r
- TG4wQklmUEpwCmRnbTR2bDJVcExqd1JHci9NM3dtbTVwdnMrNnVCN2hrL0ZKaUQvNGxsRU5Q
- NGVNMWg3U200aitWcTZOMSt6VEIKSVhKQWViSXFhc0RwNXlaUzdYcnk0STM2bjg1WEVZZkcw
- MWx0QXlob05WMkRPOFNJUlFwdWkydHErOVJQM1JLMQpKREJ4eEVKWTJFTzVKWjhNeGFQSFEw
- RFQwNWxSRmpLMkFsaGRFSXRqTGpwSjNmVW05c3FMeE1XeHpQNlV6M2lpCjJ1YTR1bnJ0Nk9D
- VHFRd2lqRi8zYlRXaXd2VkFBSG5NRlVpb1hzaEhhb2hWRGNWZm5lSU1mVjBiUUNYWWkzTnAK
- WTB2MFp3Y2lGSCtnU0M3cUQ2WE51aHBWR1NMNElpbGlGeS9TemNhSkV6QUhlTERTaFpQMkNX
- ZG5DNHZnbDM3dApocHg4aDU1WWhKbjZIU3VVelBnaGFLdFZCMmsrajdaZXlaK1NGeHA3SXVi
- SEN3TEhsUWhUNzVSd1EzaUF4S242CjBxajUxY1lUbnF4ZFpYVzZmSDNQa3VNellVNUdwcVIv
- MU9sNWMvd2ZJNmc2QW04eUtXLzBFVUx0K0tuNExGc1MKbTdZM201SDV2MTJVNkpCWXZWK3Ix
- M2paaW9zNEVFREU5M0Q1c05IMk1JeVJ6Q0RxMXpkZHQ0WHV5S0ZqUEtXMQo5aWJaRGZGVjdL
- dUNzdnVMMjNzQmMxc0NNb3ArRTFtVC9ReE9JQTZvRFQxTVFzdHdPVnVReURDdi9PdktTZ2Z6
- CjhGWEdMNkFQY2xqQ3FqOEFKaHhReXN4ZG9pUVA4bS92dStialdHR3Z4dzVzMWxncGlSRFRS
- VVBnY0pKTmFHWTIKVklEclpRaTROU2lOUTBOSWkrZGp1NGZOTW1DcFFxZzh0YkMzY0FhNnl3
- bTZvUUIxU0JobURYMmUxMWdSbGx1SQpPblRHUEUwSFRvM2w3MmxoYmc9PQo9cVpNVgotLS0t
- LUVORCBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCg==
-Message-ID: <6104f60b-9ba2-523f-de4b-af42b6c67e2e@i2se.com>
-Date:   Tue, 29 Jun 2021 23:31:56 +0200
+        id S235278AbhF2VoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 17:44:15 -0400
+Received: from mail-eopbgr60070.outbound.protection.outlook.com ([40.107.6.70]:11158
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234343AbhF2VoO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Jun 2021 17:44:14 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YJprNxVAk7o47ChkDgfMwDuQmcR1jSTTk7izM08rQNmWne1YyIa/W6pzyjuO4hRNG+RgRfa7plDdDzsqxWaiQ7NPQDpZbbctLsHOTIdiasqlYqhCXI7AuMgNPKSQyN7YIk5Nw4hf47y75oOIBg3lki8H20Rv+z32GZ6q+PD/7IZWxz66GJpJSXpr+aKp3/ZdMt7AxYiDTGHT3bQQw1T4bmkcWtPoWaaBvTm/ykOdI1sDSg0Ubonw6puyA6/4adJGay9nUuyfwIf7yLdTYIF6aUmUpOv4scZu6zLJ5jZByjTm5ayhPEyTsNiADdju4DPewF0wMZcr52EuDZQ+Y685jw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ke25K1tiiKuU3ySdewzaxNw9zWuTBPftH2RaRjIqyzs=;
+ b=cU36QkL5dSzzDVlqFM/OtP3+Wt8x2+Jl1SPkmLlF+PZQeNQno1QQiYvw+z4fkru5e4FtBNgAk5AzC8JSeDNXzOb+OAMFPbqiCdZaUoOgAjYBnmt1dNd7fvrTbf/ev/SAqVT/Gyo581k1MKEpbqWDgHWd72A6buJSTlaSI2QI0LnNi1O2g43lTv8Wrzap+a4I2nwnb8HF4HSdW/irSj06lSMAbfD4ZA0RdSJszB8+m9hsmXgwaBMwaWCuDB0/F4nEUbv64IwvbUJv1SpdvsPRFkaeQSplZqXRmpqSTW3zcjGIUu9f4Z+yDbZJ8TMPuOeF1BIJO5YVqkgeC7rvxtlNug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
+ dkim=pass header.d=seco.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ke25K1tiiKuU3ySdewzaxNw9zWuTBPftH2RaRjIqyzs=;
+ b=usXppLMcPnsbvCF9iX7WJNiWpobb2lX+95V0NLDYT6uauReuacnYF46laonPM0sEzj3VnxCsswWPQJOA5/ba4IJsE21OrwaAFn0S8d/hRfPGghuQowsdoPWRkxY/IgY6RnT13WlWVrx51BcZaBHRu5cMvlvPlBEIa837ySDo+pM=
+Authentication-Results: vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=none action=none header.from=seco.com;
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
+ by DB6PR0301MB2437.eurprd03.prod.outlook.com (2603:10a6:4:59::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.23; Tue, 29 Jun
+ 2021 21:41:44 +0000
+Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::40d5:3554:c709:6b1b]) by DB7PR03MB4523.eurprd03.prod.outlook.com
+ ([fe80::40d5:3554:c709:6b1b%5]) with mapi id 15.20.4264.026; Tue, 29 Jun 2021
+ 21:41:44 +0000
+From:   Sean Anderson <sean.anderson@seco.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: clk: vc5: Add properties for
+ configuring the SD/OE pin
+To:     Luca Ceresoli <luca@lucaceresoli.net>, linux-clk@vger.kernel.org
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Adam Ford <aford173@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+References: <20210629154740.3091884-1-sean.anderson@seco.com>
+ <9edd6194-3a71-4f31-dd39-ba831e00b9d8@lucaceresoli.net>
+Message-ID: <3feea852-cd59-520a-ec60-5dd1c1c7a824@seco.com>
+Date:   Tue, 29 Jun 2021 17:41:40 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <a385bbdf-8806-896d-5b9a-d26df907e43a@i2se.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <9edd6194-3a71-4f31-dd39-ba831e00b9d8@lucaceresoli.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-X-Provags-ID: V03:K1:F2h4nl+4HhJSB50IDmGcVMnlNr2UnG1M4kirRdh/HzWoHYBqU7D
- bvx1QPyAmghyXJDvHuaL+wox3XG7iFfKzlbnuNMThi0uPOgG3QVhRAoUPgIJNszUKPGQ4xE
- iU5cLKcECDVNVyBmR7JLaHtWl1K4iSEADdd8JdCpZ6j4gkJdp98vwNj0OQMux4qUMgnD14L
- ePJbp/QNl9p0TcBsLbstg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:3djWI/Py3R4=:x86tBiW7EHq/iap12deXZL
- OCiXDZqxb6EH08stkX54xKN6+JspiNXZ6TjOIr+NeZusyVKOp9j6PXKZhQ8ED1rihxuYbsq2y
- CPbQyRLLL4CDcBjI8R08QcuCDxT2bNeBEOeHycmK59N+b0kQIsMidQL49MC8iwxSnths1L1zx
- 3hnLjvUFdwMhwZU8fgyU53I5+a0sohEg4pI1PJN65p3erLNeGAgr8Kdyemk9NIeZnMvMoTArw
- 5/DehpKV8o0QYPw31P98T4DC/Mvdmap+8CB3P83bgypKU16jKxMDAmWICUzKxM3HdOkq0I0XT
- d1tIqekhXNqxSXcW+N5h/t7h+F7UK7aTiZXKincAoFV6MX4yaPIUi7JfR+QfOMVNMmB8k5TgG
- WsATlYX6kn3eTb4D8KRPPmSfMMWbACQS3YqevJ3BInymr70yuW3BHUEJ5MmtN3xdLif2HPG7e
- tVHFS7G3BhmKokKDJzTu1fZQix7OyQhbrGCOPVVDto9ysg6ZzodoRUMu3RMTAE5b3mMPiFI0R
- ZoIW4cw6F+ikGae1yHTvQg=
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [50.195.82.171]
+X-ClientProxiedBy: BL0PR01CA0005.prod.exchangelabs.com (2603:10b6:208:71::18)
+ To DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [172.27.1.65] (50.195.82.171) by BL0PR01CA0005.prod.exchangelabs.com (2603:10b6:208:71::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.19 via Frontend Transport; Tue, 29 Jun 2021 21:41:43 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 307e81b0-5489-444c-57a1-08d93b46b0a0
+X-MS-TrafficTypeDiagnostic: DB6PR0301MB2437:
+X-Microsoft-Antispam-PRVS: <DB6PR0301MB2437D2989DE191FA3F8F8BF596029@DB6PR0301MB2437.eurprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 1CmMrR8W3stfZS5V48n0pKnr1QSJ3ffgjAptLcMBVOZdieL7q0UDTNie3c6JGpnX3KQ0lb2cmVjDJkD7AKD8+JxfCs/o4umr7BZ6f6raKbZ45CQFZvJYvoZ5sqTvP9st/7wx2eO64wuRLRf1pWDhaBaH+KBawgdx4tBrdgRC6gWYh1k9gYqXilohCKVg2W3ffoslU1+NAe7Dx7KKCTPYfsVOgGyQ6u/OEQV7z7DJViwsSA0kos0khOEEZKSluhD6L25SmH2UHJ3cfzHO/uLy3gv7iYyFUaHX4ZzQmN1n367k3+Tc1WOPyAE3Nu6Fd8vhpLhs8NiGmnZy0WOeqD1An6VHp5ANbJ1wJz/WmPrd/mete9vlDIwuH5JFlBBLwpLQVC+vHbe5b3MHHuItRyWAIqtXrWz/2/e2bmWFkxt0ogV0tITNJD5l2xHkAqcP76nE7JR3w3hj2OMNb9q8rypTSjz47dh/hYqcwxMnLownRgCGA+JmV1mCmVcv3oMKatEJdmxOZn0ZRkV8rQZXn62oRMN0PAIvh4En8d1bVdKjML6lTQ/BQYLYtO/tvkVpZ84snOAXC8OwJ6ANwnJd0f2OKCZ1ucYt3L20w17+xTHxQvZ4GKX1MBfFiK0WibLjmaZSg04giBkk3sdYFNKu1+R+egmLLYuDxJdEcMw/J1nyn8wbys0KyJxJOf5kFMGsuxJEFNE7nkpHopQMPpEytCPMfLhibHTs4J+StZndvExnyKxMdEwEYc+6DInCYD3a/s6R
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(39830400003)(346002)(396003)(366004)(136003)(376002)(316002)(16576012)(2906002)(5660300002)(52116002)(83380400001)(86362001)(54906003)(31696002)(36756003)(8936002)(26005)(4326008)(6486002)(478600001)(16526019)(53546011)(38100700002)(38350700002)(44832011)(2616005)(66946007)(186003)(31686004)(66476007)(66556008)(956004)(8676002)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VHhDWGdodzdxWjFDSEdzbnZDN1JFS01UcUQ0aGxVa1RUVkQ2QWlnUm1JVFRY?=
+ =?utf-8?B?TnRiVXArN3c0enpzZ2VNbmFKWEwvUUJkK3lGZXNySFVPNjVTYmdRK1VhNFVB?=
+ =?utf-8?B?NzFwbE1sV0hrT2JOS2ROaFVrWWoxcUkxUjBKcWhPTVU0M3pCVlE4Z3I2L0Zq?=
+ =?utf-8?B?VktFeUUrWVZLQnh4OS9haG5xcENQQjl0YUYwSGhDSGlyRld5dW1FZEp2Tjc5?=
+ =?utf-8?B?d2dzSTdFRmtSUUZRdWliSDMxNHdrN1BjYkxNTkhzUFhMa0hnU2hJQ3pNQ2Rz?=
+ =?utf-8?B?V2VzMXZYNlFUOWh3eHRQR2xiQ3JCTWg3NEZoazFLWTY2WExETGhOQzRSMEhV?=
+ =?utf-8?B?WUZxNis3aHNCc1htMzZzcTdtY2pIVjMwMk9EOW92V1ZOS28wUkx5Y1FiTksw?=
+ =?utf-8?B?MWMrekk3TisxMWJxRm5LMGxqTXh2dXRMa2l4YmZpUlF4cWRmaXgzUlhid0x5?=
+ =?utf-8?B?VEE2bW42ZklSZTlxbnJBNWVTN2N5SFBDKy9BeWE0U2I5QWJaT2JIUkUzUEFu?=
+ =?utf-8?B?ZFBNOTBqczkxZTdKbGhLMGRzYUtvUi9TSk1zMDFTOWRvMXRJOWhSOVh5VWd5?=
+ =?utf-8?B?QkY5ajNSNW05WEJEQ050Tm1wVW9ZV1J5bTN5L2dzZEtidWxlVzhiWVRtNnRS?=
+ =?utf-8?B?cmdqbS82VmxydzdvSWZuR0RrQ0RYZDYrK0w3QzlXVWI3aW5xTW5JMFJreDh5?=
+ =?utf-8?B?YllvaE1Xdko2dGQ1Zy9hUjNTWFBTdEZBanRUV2VmRnV1d2xhL0U3V3BiNk1P?=
+ =?utf-8?B?YTR1TjFER211WldYQnJEVWtUKzlEdXYvRndZd2RVemhNRi80S3ViWlU2OUdh?=
+ =?utf-8?B?TWwxVkQxVkFTTHRvb1ZNQmw2REZHaEdJZW8ydDNBNklvSUhmcERVc1hkaGhq?=
+ =?utf-8?B?SGhySk14Tk1aeGtJMWppdTRPaGJNWTNKZXNJQXRDTHU3RGdqSCtFTzNkYTky?=
+ =?utf-8?B?TVhORm1hNzdkaE5MN1YvMmJzcE0vK0pQRVhkQUZ2VXNhbmlXcklqdVNSanAy?=
+ =?utf-8?B?QnNyL25sOVUrU3VoUDNHOXVsT3BhTkk0UktSS3dmbU0vQkIxQStyQlZHODlp?=
+ =?utf-8?B?dFpJUXF4VFFoekFmdWJodWhrMEJFeWw0OGlaSjFNQnY4aGxrK3BHMnBDL0p3?=
+ =?utf-8?B?bGRsYVJkaUdFNTl2eXJhNEExekY1U2xGcURjYnltS281bGJlTTFlbWxOZ2wy?=
+ =?utf-8?B?Nk9EUkRuVlYvWjN4YXZaN3ZlRHYzdmJwRWpPaTZuS2grVE5kcEZWMnkxOTNu?=
+ =?utf-8?B?cytyNDZOQW96ZmVjd2RNUzdHTUFrZXErbmNZeTZsb2pFaDAvbmVJQ0pZUVA2?=
+ =?utf-8?B?UzZzOEMyRHJDK2dYSlJGS2Y5TUk1WE5lUHZDcDBldzA5Nlg1eGQ4S0dWa2Np?=
+ =?utf-8?B?b2NiSGQ0eVExWU54UStWdW9mdk1hbW5ScCt4MnlMWDdvS2pPanpMNFRBMVNr?=
+ =?utf-8?B?U0lVU2U2T0c0TDJwUDM5OE1NbGo4cEJJY3BVSFlXWkw4amw5alhTeTVaOTYy?=
+ =?utf-8?B?aDJpc1RhV2s4emxpalZCR2RiVDZhQTZnNm5RQlM4NTFwVUgzcFNjTGFORUdZ?=
+ =?utf-8?B?dGxkbW1LN29HYjNiWGR0cmFuK201OGpqZU5SMFZLMFE4QlQzRWhEN1UxOC9G?=
+ =?utf-8?B?WCttbnhyQXJMeEwrYkxBZTUzdFhlbm44ZzlYT1BBT3dRaW1nOWZHNnJacUdp?=
+ =?utf-8?B?eVJSa1RmUGFlelZzektmSkVaK25sdHIrWTNNa0NPLzVLTlRhTUVOcDZqaGM5?=
+ =?utf-8?Q?l7pyV3FHURKsOUqRF5gADY4pay5LSf68SRFrEVh?=
+X-OriginatorOrg: seco.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 307e81b0-5489-444c-57a1-08d93b46b0a0
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2021 21:41:44.7583
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mL/uGyQNqGupJMCAU/4GnMdULhezzkjB7RjpvD/3B9bN4Sh/tB2k9wtOBGoKcjkq1NLAIyPE+83kePfn8/0EPA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0301MB2437
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 29.06.21 um 13:37 schrieb Stefan Wahren:
-> Hi,
->
-> i noticed more fallout connected to the recent fw_devlink changes in
-> Linux 5.13. Since fw_devlink=on the Raspberry Pi 3 B Plus
-> (multi_v7_defconfig, 32 bit) is unable to boot from USB because the dwc2
-> driver probe too late and the kernel waits endlessly for the rootfs.
-> Switching fw_devlink back to permissive makes the dwc2 driver probe
-> earlier and make USB mass storage boot work again.
->
-> Here are some dmesg extracts taken from a Raspberry Pi 3 B Plus (5.13,
-> multi_v7_defconfig, booting from SD card to show good and bad case):
->
-> fw_devlink=permissive
->
-> [    2.198105] calling  dwc2_platform_driver_init+0x0/0x10 @ 1
-> [    2.198663] initcall dwc2_platform_driver_init+0x0/0x10 returned 0
-> after 529 usecs
-> [    4.156494] dwc2 3f980000.usb: supply vusb_d not found, using dummy
-> regulator
-> [    4.174514] dwc2 3f980000.usb: supply vusb_a not found, using dummy
-> regulator
-> [    4.242973] dwc2 3f980000.usb: DWC OTG Controller
-> [    4.259505] dwc2 3f980000.usb: new USB bus registered, assigned bus
-> number 1
-> [    4.278483] dwc2 3f980000.usb: irq 66, io mem 0x3f980000
-> [    4.759700] usb 1-1: new high-speed USB device number 2 using dwc2
-> [    5.359793] usb 1-1.1: new high-speed USB device number 3 using dwc2
-> [    5.899703] usb 1-1.2: new low-speed USB device number 4 using dwc2
-> [    6.149705] usb 1-1.1.3: new low-speed USB device number 5 using dwc2
-> [    6.629761] usb 1-1.1.1: new high-speed USB device number 6 using dwc2
->
-> fw_devlink=on
->
-> [    2.198579] calling  dwc2_platform_driver_init+0x0/0x10 @ 1
-> [    2.199021] initcall dwc2_platform_driver_init+0x0/0x10 returned 0
-> after 416 usecs
-> [    7.693987] dwc2 3f980000.usb: supply vusb_d not found, using dummy
-> regulator
-> [    7.694228] dwc2 3f980000.usb: supply vusb_a not found, using dummy
-> regulator
-> [    7.747111] dwc2 3f980000.usb: DWC OTG Controller
-> [    7.747152] dwc2 3f980000.usb: new USB bus registered, assigned bus
-> number 1
-> [    7.747192] dwc2 3f980000.usb: irq 66, io mem 0x3f980000
-> [    8.179985] usb 1-1: new high-speed USB device number 2 using dwc2
-> [    8.749920] usb 1-1.1: new high-speed USB device number 3 using dwc2
-> [    9.179900] usb 1-1.2: new low-speed USB device number 4 using dwc2
-> [    9.409951] usb 1-1.1.3: new low-speed USB device number 5 using dwc2
-> [    9.849927] usb 1-1.1.1: new high-speed USB device number 6 using dwc2
->
-> Unfortunately i wasn't able to find the root cause for this delay of 3
-> seconds during boot. I noticed that usb_phy_generic_init is called very
-> late. Maybe this is related.
 
-I was able to investigate this further. The Raspberry Pi has a PHY
-defined in device tree ( compatible = "usb-nop-xceiv", bcm283x.dtsi )
-and in arm/multi_v7_defconfig the relevant driver is compiled as a module.
 
-The dwc2 platform code attempt to find the optional PHY. With
-fw_devlink=permissive the dwc2 driver seems to fail getting the PHY and
-proceed. But with fw_devlink=on the dwc2 driver seems to go the
-EPROBE_DEFER path and wait endlessly for the PHY driver which isn't
-built into the kernel. This PHY handling was a troublemaker in the past [1]
+On 6/29/21 5:23 PM, Luca Ceresoli wrote:
+> Hi Sean,
+>
+> On 29/06/21 17:47, Sean Anderson wrote:
+>> These properties allow configuring the SD/OE pin as described in the
+>> datasheet.
+>
+> *Many* thanks for addressing this issue so quickly!
+>
+>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>> Acked-by: Rob Herring <robh@kernel.org>
+>
+> I don't think Rob's ack should be present, he hasn't approved _this_
+> version of the patch.
 
-So there are two workarounds to avoid this issue with fw_devlink=on:
-
-a) make CONFIG_NOP_USB_XCEIV=y for multi_v7_defconfig
-b) remove the usb-nop-xceiv PHY from the device tree
-
-But it would be nice to have a clean solution.
-
-Best regards
-Stefan
-
-[1] -
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20180112101223.3661181-1-arnd@arndb.de/
+Sorry, I was unsure whether I should keep it or not.
 
 >
-> Best regards
-> Stefan
+>> ---
+>>
+>> Changes in v3:
+>> - Add idt,disable-shutdown and idt,output-enable-active-low to allow for
+>>   a default of not changing the SP/SH bits at all.
+>>
+>> Changes in v2:
+>> - Rename idt,sd-active-high to idt,output-enable-active-high
+>> - Add idt,enable-shutdown
+>>
+>>  .../bindings/clock/idt,versaclock5.yaml       | 44 +++++++++++++++++++
+>>  1 file changed, 44 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>> index 28675b0b80f1..51f0f78cc3f4 100644
+>> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>> @@ -30,6 +30,22 @@ description: |
+>>      3 -- OUT3
+>>      4 -- OUT4
+>>
+>> +  The idt,(en|dis)able-shutdown and idt,output-enable-active-(high|low)
+>> +  properties control the SH (en_global_shutdown) and SP bits of the
+>> +  Primary Source and Shutdown Register, respectively. Their behavior is
+>> +  summarized by the following table:
+>> +
+>> +  SH SP Output when the SD/OE pin is Low/High
+>> +  == == =====================================
+>> +   0  0 Active/Inactive
+>> +   0  1 Inactive/Active
+>> +   1  0 Active/Shutdown
+>> +   1  1 Inactive/Shutdown
+>> +
+>> +  If no properties related to these bits are specified, then they will
+>> +  be left in their default state. This may be useful if the SH and SP
+>> +  bits are set to a default value using the OTP memory.
 >
->
+> This paragraph looks more an implementation description than a hardware
+> description.
 
+It of course *is* an implementation description. As Geert found out, it
+is important to keep the defaults if none of these properties are
+specified.
+
+> I suggest something like (possibly better rephrased):
+>
+> It is recommended to specify the two properties that describe the
+> hardware. The lack of them leaves the value unspecified and thus opens
+> to the risk of future incompatibilities, depending on implementation
+> details.
+
+Ok, so if I understand correctly, you would like to deprecate existing
+bindings which do not specify any of these properties.
+
+>
+>> @@ -64,6 +80,34 @@ properties:
+>>      maximum: 22760
+>>      description: Optional load capacitor for XTAL1 and XTAL2
+>>
+>> +  idt,enable-shutdown:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description: |
+>> +      Enable the shutdown function when the SD/OE pin is high. This
+>> +      corresponds to setting the SH bit of the Primary Source and
+>> +      Shutdown Register.
+>> +
+>> +  idt,disable-shutdown:
+>> +    $ref: /schemas/types.yaml#/definitions/flag
+>> +    description: |
+>> +      Disable the shutdown function for the SD/OE pin. This corresponds
+>> +      to clearing the SH bit of the Primary Source and Shutdown
+>> +      Register.
+>
+> Saying "Disable the shutdown function" leaves a hole, it is not telling
+> what gets enabled. I'd rephrase using positive logic:
+>
+>    Enable the OE (output enable) function for the SD/OE pin. This...
+>
+> But there are too many "enable" words in it now, it's confusing, so why not:
+>
+>    Choose the OE (output enable) function for the SD/OE pin. This...
+
+The issue here is that the OE function is in some sense always enabled.
+So perhaps a better wording would be
+
+	Disable the shutdown functionality. The chip will never be
+	shut down based on the value of the SD/OE pin.
+
+And for enable-shutdown
+
+	Enable the shutdown functionality. The chip will be shut down if
+	the SD/OE pin is driven high.
+
+> And change correspondingly the idt,enable-shutdown description:
+> s/^Enable/Choose/.
+>
+> Also it would be nice to declare in DT that the two flags are mutually
+> exclusive (same for idt,output-enable-active-*).
+
+Ok, will fix in v4.
+
+--Sean
