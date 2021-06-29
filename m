@@ -2,75 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 911A93B7670
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 18:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7BC13B7712
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 19:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232698AbhF2Q3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 12:29:17 -0400
-Received: from [94.230.151.217] ([94.230.151.217]:40520 "EHLO ixit.cz"
-        rhost-flags-FAIL-FAIL-OK-OK) by vger.kernel.org with ESMTP
-        id S232398AbhF2Q3Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Jun 2021 12:29:16 -0400
-X-Greylist: delayed 473 seconds by postgrey-1.27 at vger.kernel.org; Tue, 29 Jun 2021 12:29:16 EDT
-Received: from newone.lan (ixit.cz [94.230.151.217])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 3E99923B1D;
-        Tue, 29 Jun 2021 18:18:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1624983534;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=8Z5q1XCsraCiEzJU+2MILwjiX4R20rQUeQFxDTdn/Yk=;
-        b=c4k+z3MyPZkz9XWKtolp+o1Pe6a1hmi9QTbHUtd8wxIAcfHR9Bl2f10BpiWP7twVZjbl0w
-        9HQ5s06nDCf4hUIjz8oQM9tH1EWy3SsSJ83QeTPgv3XcZDvJvy14vXmMGo+7xLnlCQV6Hl
-        tHGfPREMit5pKAQUFdsfpLPdWkfUQxI=
-From:   David Heidelberg <david@ixit.cz>
-To:     masneyb@onstation.org, linus.walleij@linaro.org
-Cc:     devicetree@vger.kernel.org, David Heidelberg <david@ixit.cz>
-Subject: [PATCH] ARM: dts: qcom: apq8064: correct clock names
-Date:   Tue, 29 Jun 2021 18:18:11 +0200
-Message-Id: <20210629161811.44252-1-david@ixit.cz>
-X-Mailer: git-send-email 2.30.2
+        id S232322AbhF2RWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 13:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56236 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232284AbhF2RWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 13:22:39 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3F6BC061760;
+        Tue, 29 Jun 2021 10:20:10 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id h6so15826420ljl.8;
+        Tue, 29 Jun 2021 10:20:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=LK5PQkS14wpetJcASWpCkEN2Wd6IM2V31FOvQQneP2w=;
+        b=f99Fj/YrcvxKZIpbq+97B3RhPbybF/gF5J7neDsWNfSdqlwdL7quuIGbsdgHzN0lNZ
+         JSnG9RSWcGiQJjY2ui5XK7zoYD816pqFmqP1gArn1pewGhz2dcr4b0V6IiClnQPena5I
+         8AU6qfqXa6+Svfq/h9fWYV4QCzO6/ZaUDRvSeSfKZea92XQ1j2m2GS52+AY9rmYzzBoA
+         zxBZ64ryFJMN61s/DVBiFqygIfsJRqNGRCoHVFZwY2lzFbNIsTQJ4idflxQb/CxVm5CO
+         2Oxr2JLEy9XJvtFTG4395GnAoKJ38ZnohoqaDYAUzSHN+8t4sj+b9uvcEJuCCovVo2uI
+         ItGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=LK5PQkS14wpetJcASWpCkEN2Wd6IM2V31FOvQQneP2w=;
+        b=Yy6ak+/Wc/plIGH91mpep3WHgnsO2KKvLPZmooM+6IraPWn5XR/0UmfqWvf5PI6OMp
+         SH+M5Ngi/k6ZiLiNOoOljdmGb9gL42ocnRI2KqkJzR649Ni6ojHPqzUqB/jIDHV+Q8Y3
+         9i1Xx01cNVo5+G1H61jCyzE5CoMT3Apehu/JPa7FaGDoXkdDjybU2zN2UDBE2Rqhwv/F
+         vZAPBu7c0IM31v1OHCA8ZDgQbMYCghXCTJmaxACxAcJ4QfGAAYzd5VJSN+ZCFweQdlvA
+         67OFhauT+g/3Nw54DDSk/+wpvEMQnyi6d/YZxwfTV81fjc4s6rjdnMew66fLxhMAqbNu
+         nt+A==
+X-Gm-Message-State: AOAM530nFy5XJEkkBMIqeiRY2chZVfdzHPuG0lA7QJaJcGM4ojtB/WHU
+        VWA8KMjKY3xcynIcTRzz1P47svhNh5k=
+X-Google-Smtp-Source: ABdhPJxW1kviTBnANF8eECQin5QSCZVDG6gyzsn+HPScc1Q5dP9+/YCLCng490d7rW5uubzuLvhAQQ==
+X-Received: by 2002:a2e:9a52:: with SMTP id k18mr4688098ljj.315.1624987208867;
+        Tue, 29 Jun 2021 10:20:08 -0700 (PDT)
+Received: from [192.168.1.102] ([178.176.72.235])
+        by smtp.gmail.com with ESMTPSA id t14sm1675527lfd.14.2021.06.29.10.20.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Jun 2021 10:20:08 -0700 (PDT)
+Subject: Re: [PATCH v5 2/2] MIPS: Loongson64: Add pm block node for
+ Loongson-2K1000
+To:     Qing Zhang <zhangqing@loongson.cn>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Huacai Chen <chenhuacai@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210629011913.18611-1-zhangqing@loongson.cn>
+ <20210629011913.18611-2-zhangqing@loongson.cn>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <7caf171a-7d7d-4f2a-a065-58fadace690d@gmail.com>
+Date:   Tue, 29 Jun 2021 20:20:06 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210629011913.18611-2-zhangqing@loongson.cn>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Prevents dmesg error:
+On 6/29/21 4:19 AM, Qing Zhang wrote:
 
-msm_dsi 4700000.mdss_dsi: dev_pm_opp_set_clkname: Couldn't find clock: -2
+> The module is now supported, enable it.
+> 
+> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+> ---
+> 
+> v4-v5:
+> add missing spaces
+> 
+>  arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+> index 569e814def83..38bf14f00694 100644
+> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+> @@ -101,6 +101,16 @@ uart0: serial@1fe00000 {
+>  			no-loopback-test;
+>  		};
+>  
+> +		pm: power-controller {
+> +			device_type = "power management";
+> +			compatible = "loongson, reset-controller";
+                                               ^
+   When I said te space aren't allowed, I meant this place. :-)
 
-and following kernel oops introduced by
-b0530eb1191 ("drm/msm/dpu: Use OPP API to set clk/perf state").
+> +
+> +			reg = <0 0x1fe0700c 0 0x8>,
+> +			      <0 0x1fe07014 0 0x8>,
+> +			      <0 0x1fe07030 0 0x8>;
 
-Also removes warning about deprecated clock names.
+   TY! :-)
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm/boot/dts/qcom-apq8064.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+[...]
 
-diff --git a/arch/arm/boot/dts/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom-apq8064.dtsi
-index 6005620ac297..96b7755afabf 100644
---- a/arch/arm/boot/dts/qcom-apq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom-apq8064.dtsi
-@@ -1262,9 +1262,9 @@ dsi0: mdss_dsi@4700000 {
- 				<&mmcc DSI1_BYTE_CLK>,
- 				<&mmcc DSI_PIXEL_CLK>,
- 				<&mmcc DSI1_ESC_CLK>;
--			clock-names = "iface_clk", "bus_clk", "core_mmss_clk",
--					"src_clk", "byte_clk", "pixel_clk",
--					"core_clk";
-+			clock-names = "iface", "bus", "core_mmss",
-+					"src", "byte", "pixel",
-+					"core";
- 
- 			assigned-clocks = <&mmcc DSI1_BYTE_SRC>,
- 					<&mmcc DSI1_ESC_SRC>,
--- 
-2.30.2
-
+MBR, Sergei
