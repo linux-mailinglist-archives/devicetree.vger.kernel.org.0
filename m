@@ -2,212 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 718013B743D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 16:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCCB03B7455
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 16:29:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234370AbhF2O2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 10:28:04 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:18430 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234292AbhF2O2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Jun 2021 10:28:02 -0400
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 15TEJ5JO025194;
-        Tue, 29 Jun 2021 10:25:34 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 39fp4btsrn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Jun 2021 10:25:34 -0400
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 15TEPX5F030073
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 29 Jun 2021 10:25:33 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5; Tue, 29 Jun 2021
- 10:25:32 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.858.5 via Frontend
- Transport; Tue, 29 Jun 2021 10:25:32 -0400
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.128])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 15TEPRhJ027422;
-        Tue, 29 Jun 2021 10:25:30 -0400
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <jic23@kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH 2/2] dt-bindings: iio: frequency: add adrf6780 doc
-Date:   Tue, 29 Jun 2021 17:23:08 +0300
-Message-ID: <20210629142308.25868-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210629142308.25868-1-antoniu.miclaus@analog.com>
-References: <20210629142308.25868-1-antoniu.miclaus@analog.com>
+        id S233600AbhF2OcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 10:32:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46008 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231194AbhF2OcB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 10:32:01 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B91ADC061760;
+        Tue, 29 Jun 2021 07:29:32 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id bu19so1180167lfb.9;
+        Tue, 29 Jun 2021 07:29:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yHqef71dDdDxk3wfRaTWaTfU7tVVIbFkB8emTOQrIgk=;
+        b=DD6AvVlPOLU7jCcEcwbT5RmX4LwdW8BBJ1r3NutDgTTMwIquFn+u+OXkbRy9LbxE8G
+         fD59LNz3i1LVSim55BZ05/m8x0MUQCZLuPcsZu/hks6xKbU9c19ApDrxAdZq6Dzs6nH4
+         Ai2lFRKbuxmG+mU/irok5xdlcT1CimyvRK2LEjl/Lk5P42g3bXR6hWajugMgOhpDhufP
+         OM9jNwrXjuWnOLhIeJ6n7EtffX5uwozOo4TsZlG2pJBvPop3acMXxu/AJV+AF3lEemFP
+         Rm8scEMUp1BUhqgBuWVHmYI0FWy+kOPvR5xd+b/cGUkzB5daikJ3imAENjEv+ihJX/SS
+         XfTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yHqef71dDdDxk3wfRaTWaTfU7tVVIbFkB8emTOQrIgk=;
+        b=qMsEsWts1mv698Nz+o/yyUuH7V/Zd37aSrutAfyRtd3HQP38le+qJ6fz0NAhEw8YCy
+         UdQUU685S44uk8c3yqskRJ4Yr5PjvbA4KFoNf96GO9YLalUK4JdT7iNKIlNUiynkA4GC
+         iMmyDHsyjVY3L4QksVYFC7pU/P0//aThykjLZarnjY22KJbar3PxLLqNUH+K06CXlnx7
+         8zDPlA8/EdFxkDydfjQnA1OFC9iPb1Eca/bUSBcFnWvljU+IJ8KMzlKWehmrOVaQPsuo
+         K1tgRX7Lyyebtcc0dxqEiSCYSCMEGvmscwVHn2qlgu438UP+JOADG/pj7yYzOpFy3AFw
+         NWQQ==
+X-Gm-Message-State: AOAM532OESdyZxat1R9GcHBdqbkpQN9EGJH6DXWAH1BOCcwJJd5Xsu0h
+        dDS9rFea7GwfPQ4qRdp8NqBkcm5kqrx2FPdvJtU=
+X-Google-Smtp-Source: ABdhPJy513jd82VDfZeVelNPEbdavppAak0lBXBwcn8VKf5jzV3t/ROZl71UYC5G8yOhjjgNR0HhyjnTKnv3OV6GXYw=
+X-Received: by 2002:a05:6512:219:: with SMTP id a25mr24912657lfo.295.1624976971092;
+ Tue, 29 Jun 2021 07:29:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: 20LX94TUeiaw5ui62SV7vv1f44f2M-mf
-X-Proofpoint-ORIG-GUID: 20LX94TUeiaw5ui62SV7vv1f44f2M-mf
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-06-29_06:2021-06-28,2021-06-29 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
- malwarescore=0 clxscore=1015 adultscore=0 mlxscore=0 lowpriorityscore=0
- mlxlogscore=999 priorityscore=1501 impostorscore=0 suspectscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2106290096
+References: <20210604111005.6804-1-peng.fan@oss.nxp.com> <CAHCN7xKYooBQzREdoa8ybhQUBXxy6RPaFX9rp1keD7_HgnVA9Q@mail.gmail.com>
+In-Reply-To: <CAHCN7xKYooBQzREdoa8ybhQUBXxy6RPaFX9rp1keD7_HgnVA9Q@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 29 Jun 2021 11:29:20 -0300
+Message-ID: <CAOMZO5Bwmw7kjvqp253Xf3dafdG71p=nNy9XuqnJg2R4SD12tg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: imx8mm: add pgc/blk_ctl nodes
+To:     Adam Ford <aford173@gmail.com>
+Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Marek Vasut <marex@denx.de>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Abel Vesa <abel.vesa@nxp.com>, Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the ADRF6780 Upconverter.
+Hi Adam,
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
- .../bindings/iio/frequency/adi,adrf6780.yaml  | 133 ++++++++++++++++++
- 1 file changed, 133 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,adrf6780.yaml
+On Tue, Jun 29, 2021 at 10:36 AM Adam Ford <aford173@gmail.com> wrote:
 
-diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,adrf6780.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,adrf6780.yaml
-new file mode 100644
-index 000000000000..008f76095a63
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/frequency/adi,adrf6780.yaml
-@@ -0,0 +1,133 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/frequency/adi,adrf6780.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ADRF6780 Microwave Upconverter
-+
-+maintainers:
-+- Antoniu Miclaus <antoniu.miclaus@analog.com>
-+
-+description: |
-+   wideband, microwave upconverter optimized for point to point microwave
-+   radio designs operating in the 5.9 GHz to 23.6 GHz frequency range.
-+   https://www.analog.com/en/products/adrf6780.html
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adrf6780
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 1000000
-+
-+  clocks:
-+    description:
-+      Definition of the external clock (see clock/clock-bindings.txt)
-+    minItems: 1
-+
-+  clock-names:
-+    description:
-+      Must be "lo_in"
-+    maxItems: 1
-+
-+  clock-output-names:
-+    maxItems: 1
-+
-+  adi,parity-en:
-+    description:
-+      Enable Parity for Write execution.
-+    type: boolean
-+
-+  adi,vga-buff-en:
-+    description:
-+      VGA Buffer Enable.
-+    type: boolean
-+
-+  adi,det-en:
-+    description:
-+      Detector Enable.
-+    type: boolean
-+
-+  adi,lo-buff-en:
-+    description:
-+      LO Buffer Enable.
-+    type: boolean
-+
-+  adi,if-mode-en:
-+    description:
-+      IF Mode Enable.
-+    type: boolean
-+
-+  adi,iq-mode-en:
-+    description:
-+      IQ Mode Enable.
-+    type: boolean
-+
-+  adi,lo-x2-en:
-+    description:
-+      LO x2 Enable.
-+    type: boolean
-+
-+  adi,lo-ppf-en:
-+    description:
-+      LO x1 Enable.
-+    type: boolean
-+
-+  adi,lo-en:
-+    description:
-+      LO Enable.
-+    type: boolean
-+
-+  adi,uc-bias-en:
-+    description:
-+      UC Bias Enable.
-+    type: boolean
-+
-+  adi,lo-sideband:
-+    description:
-+      Switch to the Other LO Sideband.
-+    type: boolean
-+
-+  adi,vdet-out-en:
-+    description:
-+      VDET Output Select Enable.
-+    type: boolean
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  '#clock-cells':
-+    const: 0
-+
-+required:
-+- compatible
-+- reg
-+- clocks
-+- clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+- |
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      adrf6780@0{
-+        compatible = "adi,adrf6780";
-+        reg = <0>;
-+        spi-max-frequency = <1000000>;
-+        clocks = <&adrf6780_lo>;
-+        clock-names = "lo_in";
-+        adi,parity-en;
-+      };
-+    };
-+...
-+
--- 
-2.32.0
+> Any change you could add the references to pgc_otg1 and pgc_otg2 to
+> their respective OTG nodes?  Without them, enabling OTG1 or OTG2 can
+> result in a hang unless it was started in U-Boot.
 
+There is a patch from Lucas doing that:
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20200930155006.535712-12-l.stach@pengutronix.de/
+
+Cheers
