@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EF693B71E8
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 14:15:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 608CF3B71F7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 14:19:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233488AbhF2MRi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 08:17:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43500 "EHLO
+        id S233589AbhF2MWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 08:22:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233384AbhF2MRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 08:17:37 -0400
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C569AC061760;
-        Tue, 29 Jun 2021 05:15:08 -0700 (PDT)
-Received: by mail-pg1-x536.google.com with SMTP id v7so18334540pgl.2;
-        Tue, 29 Jun 2021 05:15:08 -0700 (PDT)
+        with ESMTP id S233278AbhF2MV7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 08:21:59 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36078C061760;
+        Tue, 29 Jun 2021 05:19:32 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id s137so9395845pfc.4;
+        Tue, 29 Jun 2021 05:19:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=mlqRgdeiXEIYSrXLcXViAJxLAnONyVn/mV1IwG0OAbE=;
-        b=bW4owkmj3xr8ZQb2A3aCyS1AqXdnbfAz+x61VdR5tSaFnD63cXTpQcNTncWTzlN9br
-         tNFPYFdKrf3Bjk27qeG7cToVRSa05Bd+3PEoqrEkteRvtNCuhzMZFAxWwpaPsXm0twNH
-         6CgIpdWqKtuFc3iUB2XrG1lMo42gtZUGGXEfEnvx9l5fdGjuA5Qo7/74rsBV0ncizrV4
-         Q1c9UluMJphyGuDqTcjk7sR/er2Arn11/U89bKnIFWLuYiotCYC0QqpP6X60VqVd655q
-         z38GSrCaIa4J+E7u1WGG6StfOodcFetaBCob5/vrLzxhXpILKBQJbgRFydcXVKomWc8W
-         SFLw==
+        bh=LbbWX3kzjiR8qd3C6tMA1iMcCJEbQrwW1wisqFEE6eo=;
+        b=CiwrAGbBBkL09wtznxor+hUawt4GMD+TAkpbAhW9CEWWlP9Ru2jLMxVNUPAvfBChCv
+         rYDOPDhCo5wSXqKraUIZLSKSglwd8WEurGvSpIHkP/spzMrtsm0GSPE23P/TonQ52Z/4
+         qNZCTzkIVPBTyj6O1mcJbB/0Xc47w00n4H/53wgV+SvHjINdH21anWu7snAwjeS0qHWX
+         +UcZJEMaUyEKk3pnGwX8HPnFCJAR5kr9tiLGEFRs+qOKTfPhr7SS8mgmHrSdNaZN7kBV
+         ZBGFIzQ3efamjm7nk8QP2gCZ3TXsb8T02S/1pdavlqdD5w+S4Q2iwN4ABMIKqHOIcNUs
+         c4ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=mlqRgdeiXEIYSrXLcXViAJxLAnONyVn/mV1IwG0OAbE=;
-        b=UBiqZV1mYCFp5BDjD3FBuDuwmAEEiXqr4Y3WloiCRgw8yBLcRixn6CUz1AGqMUYsRZ
-         +ykKyBYMYKwQMsISy86mqm4cLFp9AbclahJF/XRxDU7uPbmTT9iURM/NKQIf5AFwAd5v
-         BEff941ywsd+QGlivVb3lKl3GWN1q3fP0fNWO8PkfmkzGinASNC6qAa6hiysRLkgoNGu
-         RNBFUpOqAgsy/xmNZqjoMKIYqI97TWMCrw0XsBSlgZeZFzMQ44eGVfK/jFouYKKwUi/v
-         4eA/+YDBoouhB1uCGe0d8xponB83c6DvoU7TMLEUhVyqmhKBFsV+VIjIQs2Uc7FJMfI1
-         Y6Tg==
-X-Gm-Message-State: AOAM531db44r1Ja4JI07xVWs/5pUouDelCWCZCYUm9z0y6Axw2iYyonD
-        e97xhlJ5Gmz0IThMItD7BAo=
-X-Google-Smtp-Source: ABdhPJz6IDnmzNNrr0eZ/jlPZz8aRmiSr1TQxpE+yHlMpP7iqM9Uea0AslVBxgA0SSdA1DVWiu5LZA==
-X-Received: by 2002:a63:234a:: with SMTP id u10mr6507856pgm.322.1624968908431;
-        Tue, 29 Jun 2021 05:15:08 -0700 (PDT)
+        bh=LbbWX3kzjiR8qd3C6tMA1iMcCJEbQrwW1wisqFEE6eo=;
+        b=TvdUGLl407ZbV9hLyKK81zsb5SqXYAgBCoP3Gl8aI0Karm4V1QphrmvguRcXDO6W04
+         QkHz1IvN/a8GIWcdzCMt9FajFP9ieQNrk3zA2sG1DO9324u/vBNzqOtq1WDTOtWOze4j
+         /roXLbpveGt0Z+KBGPOCgtR441kJ24lsGGhzRAdYhfXpZVO9K3OhtVncmslyDBKo/9bH
+         MWN6yrlEKrt5G1Tvww/JvmnB91TsZwGuTQxxEeIauyADqN8AfA9qaWrEXZgMiBV+XDef
+         u8WcWKxDc8jx/6XaWkI/+4/iGKykWOQBd1u2UiLfCvbWTRmyGpuLV7KxsGI05vNElUeX
+         U5qA==
+X-Gm-Message-State: AOAM531bd0l+RKK4u/3PQIKdJHwFLNZq2WXT76hch8sZ0vZJCbSqm8V/
+        pc8wUafuX4yzWA71HfCeT/Y=
+X-Google-Smtp-Source: ABdhPJwgEWD9yoqfctTRjncqD3b1L4F/TJFDXJAVBNMjtgkexqbPnBFFhHtf1MWe8URlnVLgjXJmSA==
+X-Received: by 2002:a63:df0f:: with SMTP id u15mr327288pgg.57.1624969171830;
+        Tue, 29 Jun 2021 05:19:31 -0700 (PDT)
 Received: from archl-c2lm.. ([103.51.72.37])
-        by smtp.gmail.com with ESMTPSA id j79sm19324714pfd.172.2021.06.29.05.15.04
+        by smtp.gmail.com with ESMTPSA id gg5sm8314730pjb.42.2021.06.29.05.19.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Jun 2021 05:15:07 -0700 (PDT)
+        Tue, 29 Jun 2021 05:19:31 -0700 (PDT)
 From:   Anand Moon <linux.amoon@gmail.com>
 To:     linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Anand Moon <linux.amoon@gmail.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
         Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Kevin Hilman <khilman@baylibre.com>,
         Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         devicetree@vger.kernel.org
-Subject: [PATCHv1] arm: dts: meson: Fix the pwm regulator supply property in node
-Date:   Tue, 29 Jun 2021 12:14:58 +0000
-Message-Id: <20210629121459.6341-1-linux.amoon@gmail.com>
+Subject: [PATCHv1] arm64: amlogic: Fix the pwm regulator supply property in node
+Date:   Tue, 29 Jun 2021 12:18:47 +0000
+Message-Id: <20210629121848.6527-1-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -68,51 +68,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On enable CONFIG_REGULATOR_DEBUG=y we observer below debug logs.
-Changes help link VCCK and VDDEE pwm regulator to 5V regulator supply
-instead of dummy regulator.
+Changes help link VDDCPU_A and VDDCPU_B pwm regulator to 12V regulator
+supply instead of dummy regulator.
 
-[    7.117140] pwm-regulator regulator-vcck: Looking up pwm-supply from device tree
-[    7.117153] pwm-regulator regulator-vcck: Looking up pwm-supply property in node /regulator-vcck failed
-[    7.117184] VCCK: supplied by regulator-dummy
-[    7.117194] regulator-dummy: could not add device link regulator.8: -ENOENT
-[    7.117266] VCCK: 860 <--> 1140 mV at 986 mV, enabled
-[    7.118498] VDDEE: will resolve supply early: pwm
-[    7.118515] pwm-regulator regulator-vddee: Looking up pwm-supply from device tree
-[    7.118526] pwm-regulator regulator-vddee: Looking up pwm-supply property in node /regulator-vddee failed
-[    7.118553] VDDEE: supplied by regulator-dummy
-[    7.118563] regulator-dummy: could not add device link regulator.9: -ENOENT
+[    4.147196] VDDCPU_A: will resolve supply early: pwm
+[    4.147216] pwm-regulator regulator-vddcpu-a: Looking up pwm-supply from device tree
+[    4.147227] pwm-regulator regulator-vddcpu-a: Looking up pwm-supply property in node /regulator-vddcpu-a failed
+[    4.147258] VDDCPU_A: supplied by regulator-dummy
+[    4.147288] regulator-dummy: could not add device link regulator.12: -ENOENT
+[    4.147353] VDDCPU_A: 721 <--> 1022 mV at 871 mV, enabled
+[    4.152014] VDDCPU_B: will resolve supply early: pwm
+[    4.152035] pwm-regulator regulator-vddcpu-b: Looking up pwm-supply from device tree
+[    4.152047] pwm-regulator regulator-vddcpu-b: Looking up pwm-supply property in node /regulator-vddcpu-b failed
+[    4.152079] VDDCPU_B: supplied by regulator-dummy
+[    4.152108] regulator-dummy: could not add device link regulator.13: -ENOENT
 
-Fixes: 524d96083b66 ("ARM: dts: meson8b: odroidc1: add the CPU voltage regulator")
-Fixes: 8bdf38be712d ("ARM: dts: meson8b: odroidc1: add the VDDEE regulator")
+Fixes: d14734a04a8a ("arm64: dts: meson-g12b-odroid-n2: enable DVFS")
 
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 ---
- arch/arm/boot/dts/meson8b-odroidc1.dts | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/meson8b-odroidc1.dts b/arch/arm/boot/dts/meson8b-odroidc1.dts
-index c440ef94e082..04356bc639fa 100644
---- a/arch/arm/boot/dts/meson8b-odroidc1.dts
-+++ b/arch/arm/boot/dts/meson8b-odroidc1.dts
-@@ -131,7 +131,7 @@ vcck: regulator-vcck {
- 		regulator-min-microvolt = <860000>;
- 		regulator-max-microvolt = <1140000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 344573e157a7..4f33820aba1f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -130,7 +130,7 @@ vddcpu_a: regulator-vddcpu-a {
+ 		regulator-min-microvolt = <721000>;
+ 		regulator-max-microvolt = <1022000>;
  
--		vin-supply = <&p5v0>;
-+		pwm-supply = <&p5v0>;
+-		vin-supply = <&main_12v>;
++		pwm-supply = <&main_12v>;
  
- 		pwms = <&pwm_cd 0 12218 0>;
- 		pwm-dutycycle-range = <91 0>;
-@@ -163,7 +163,7 @@ vddee: regulator-vddee {
- 		regulator-min-microvolt = <860000>;
- 		regulator-max-microvolt = <1140000>;
+ 		pwms = <&pwm_ab 0 1250 0>;
+ 		pwm-dutycycle-range = <100 0>;
+@@ -149,7 +149,7 @@ vddcpu_b: regulator-vddcpu-b {
+ 		regulator-min-microvolt = <721000>;
+ 		regulator-max-microvolt = <1022000>;
  
--		vin-supply = <&p5v0>;
-+		pwm-supply = <&p5v0>;
+-		vin-supply = <&main_12v>;
++		pwm-supply = <&main_12v>;
  
- 		pwms = <&pwm_cd 1 12218 0>;
- 		pwm-dutycycle-range = <91 0>;
+ 		pwms = <&pwm_AO_cd 1 1250 0>;
+ 		pwm-dutycycle-range = <100 0>;
 -- 
 2.31.1
 
