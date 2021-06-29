@@ -2,130 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72D973B760A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 17:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 196C73B761B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 18:03:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234012AbhF2QAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 12:00:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37706 "EHLO
+        id S234444AbhF2QFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 12:05:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233252AbhF2P77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 11:59:59 -0400
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A59C061767
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 08:57:32 -0700 (PDT)
-Received: by mail-oi1-x229.google.com with SMTP id b2so24407658oiy.6
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 08:57:32 -0700 (PDT)
+        with ESMTP id S234044AbhF2QE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 12:04:57 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3EF2C061766;
+        Tue, 29 Jun 2021 09:01:25 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id b2so5908281ejg.8;
+        Tue, 29 Jun 2021 09:01:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Hj/XUjWbzTW7RStndYxpSKqLyu9uKSKAbDqkypsguQ4=;
-        b=l/WRjXuvuJNNRElCjnA7o2qUgHbhd7H0bm3NElGnIOOPTAykkU4ro1O66pPoRbQ2DN
-         Ml0MO/Vr7UFddGTCwqUNQCSw9+JvfF+Qv5u6EpE+m6tXSlOkcikwPEWszIGeZvXPeNeK
-         72zhJ7xYbC52crinVmipYiPQQHxpWG9GuPiDSdlWbMYiIhFutkBLo8j12nscrGnLY2Ok
-         u+EHFHfRtiKr1mBYUMxOruASSalRhsr8C0YrKtZuClEloTVn1icvILoT4UNKos5zMB89
-         I/AZzusRarFwxMNVePxq97ZuPTYJ14wJazh/0OrQyLRJkQ3dWqkjCzh0ws2ioSvrIAUD
-         aUvw==
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CIUGtD1bEi8eoUbDB+wA/CgJYYMPlq0BzUAT42Y9V0k=;
+        b=KY1ebxS45Not5cYkWjeUO9g0K+pOkWHpuYWwvigvSekrUgQf8B9aMyjZyvOvSIPohe
+         MRDIhzcLMFUwkry7MIo+mXyWpmBOqz8524RarDKeljUscfem6vSbkYrkQn8eLVaVHTEe
+         l+hyuHhMg7NikvRQBAIMmiFrVlrkFOcg57pksunjR65ClaCLLE2Ywk7dx1ATmCmTHbtw
+         Dzf7yJ5mblmvsPF7e8O1tPk/wf0vpx2ItEzuLiNngc0IszwpxIAEjQVit7tT8sehjuXW
+         J9Wyw+/YruoHjUJ4+/CdA7BZQE/A5nCizXlwLNMjIN1OjkX5vy1Q1cVrkYKtI50kM85e
+         TM1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Hj/XUjWbzTW7RStndYxpSKqLyu9uKSKAbDqkypsguQ4=;
-        b=X7QOkclqGMXLTR9PyLRmUx4HNeCT1xLM5eQnQUtiDiEK8mXE5HaVACKl8ZSCXkAKJE
-         41oz+6tNZVQDG1CwA+IVo5hGAvRAanjh1Kqd8CXgEsnU+9dPVr7fQuegMKMejtUUhsme
-         KJhxhSjFi6mYJn07JQIqATuW+LjOucuard2lpCkrLo3XJ/yw5t5xGjbQi/VYv95/3V+Z
-         d4HFbzmX6fHf8Cu5Q8V30Uq5kWljnyHq+wQo7FENKQzELNXgawKH4p2rJPVyy3Pwty0z
-         e44PX85H//tixOBArgePjOGt5t5nRADcWkLFgLllMILrkFqYd83Gz6EqZsAbhd+xOztQ
-         Guhg==
-X-Gm-Message-State: AOAM531ItYMgmuOT+Gj5NUHpCs15ap4YWDakodhBY9OVMB6ttQaTbsEF
-        uAu1r9Q7HUk2FRYYGqN3DProQw==
-X-Google-Smtp-Source: ABdhPJw0n+3tKh6we1aP3+vNEQELk+n84iD7vZ06rs2Wf0rwdTzIDbeVysTjICcvzP90wRVvC8Vo6g==
-X-Received: by 2002:aca:6743:: with SMTP id b3mr22322535oiy.8.1624982251692;
-        Tue, 29 Jun 2021 08:57:31 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id j30sm3647035otc.43.2021.06.29.08.57.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Jun 2021 08:57:31 -0700 (PDT)
-Date:   Tue, 29 Jun 2021 10:57:29 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 3/5] clk: qcom: apcs-msm8916: Retrieve clock name from DT
-Message-ID: <YNtC6YSt1r+hbhPV@yoga>
-References: <20210504052844.21096-1-shawn.guo@linaro.org>
- <20210504052844.21096-4-shawn.guo@linaro.org>
- <162484011476.3259633.10138087900669024498@swboyd.mtv.corp.google.com>
- <20210629133658.GB32336@dragon>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CIUGtD1bEi8eoUbDB+wA/CgJYYMPlq0BzUAT42Y9V0k=;
+        b=IRzCS66JFsTGzljjf9KMry2cYoyF5rNYtLd0Hbm+CWlkmV/3jpPeTqvP/VEXfydy3w
+         mSKXBza4cuoFMQCtwUckMM/QkQCWrGeKaknxWBP8kDXOqAQu0cJUT4wgBq8889lH5eaZ
+         pwXu2qNiKv6ldsX+Nm53fbhExMc/zreSUg2nu8SpiGsTWTb2XysVSlEd4+QCJAwXRuD7
+         p70sypcGUdYVfufmejjJtSUjTg4hu51Y1LV3kWusyVe22lFng18yXSX1IzRgxg2C0ztj
+         IjzIjWpQ1SCXrkS3iYKmWWQDX6aHxo+Q8GKw6MEQ3JKrt0KAP6aP+IdMpY8xurF1PvEs
+         kYCw==
+X-Gm-Message-State: AOAM531PtoLW7hAUK4oJ6/rMLG5imN/rAHP4cQ3O9okBR1aMZ6ISASjZ
+        yDdSWnQSKNkOE/A1ukbtbJpSAbutkxgvagFdyOw=
+X-Google-Smtp-Source: ABdhPJwL0a8Z0qyHuDQ5nOn433fUQTT/9Adpa/RgGpa+Uk5hfcT9+hMbCvwns9mpypZMUeAd/h3HXLvSZLd9XFGOANo=
+X-Received: by 2002:a17:907:2d86:: with SMTP id gt6mr611612ejc.428.1624982484212;
+ Tue, 29 Jun 2021 09:01:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210629133658.GB32336@dragon>
+References: <20210629121459.6341-1-linux.amoon@gmail.com>
+In-Reply-To: <20210629121459.6341-1-linux.amoon@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 29 Jun 2021 18:01:13 +0200
+Message-ID: <CAFBinCA=COnsN4Cp-z0HAPgs4kqPdiKtkZkr_LDkGz68s7B7hA@mail.gmail.com>
+Subject: Re: [PATCHv1] arm: dts: meson: Fix the pwm regulator supply property
+ in node
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 29 Jun 08:36 CDT 2021, Shawn Guo wrote:
+Hi Anand,
 
-> On Sun, Jun 27, 2021 at 05:28:34PM -0700, Stephen Boyd wrote:
-> > Quoting Shawn Guo (2021-05-03 22:28:42)
-> > > Unlike MSM8916 which has only one APCS clock, MSM8939 gets three for
-> > > Cluster0 (little cores), Cluster1 (big cores) and CCI (Cache Coherent
-> > > Interconnect).  Instead of hard coding APCS (and A53PLL) clock name,
-> > > retrieve the name from DT, so that multiple APCS clocks can be
-> > > registered.
-> > > 
-> > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > > ---
-> > >  drivers/clk/qcom/a53-pll.c      | 5 ++++-
-> > >  drivers/clk/qcom/apcs-msm8916.c | 5 ++++-
-> > >  2 files changed, 8 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/clk/qcom/a53-pll.c b/drivers/clk/qcom/a53-pll.c
-> > > index 8614b0b0e82c..964f5ab7d02f 100644
-> > > --- a/drivers/clk/qcom/a53-pll.c
-> > > +++ b/drivers/clk/qcom/a53-pll.c
-> > > @@ -42,6 +42,7 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
-> > >         struct clk_pll *pll;
-> > >         void __iomem *base;
-> > >         struct clk_init_data init = { };
-> > > +       const char *clk_name = NULL;
-> > >         int ret;
-> > >  
-> > >         pll = devm_kzalloc(dev, sizeof(*pll), GFP_KERNEL);
-> > > @@ -66,7 +67,9 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
-> > >         pll->status_bit = 16;
-> > >         pll->freq_tbl = a53pll_freq;
-> > >  
-> > > -       init.name = "a53pll";
-> > > +       of_property_read_string(pdev->dev.of_node, "clock-output-names",
-> > > +                               &clk_name);
-> > 
-> > Please no? Is there any use for this? Why not just generate the name as
-> > a53pll@<MMIO ADDRESS>?
-> 
-> There is no other use for this than getting different names.  I will do
-> what you suggest here.  Thanks!
-> 
+On Tue, Jun 29, 2021 at 2:15 PM Anand Moon <linux.amoon@gmail.com> wrote:
+>
+> On enable CONFIG_REGULATOR_DEBUG=y we observer below debug logs.
+I (as non-native english speaker) suggest rewording this to:
+After enabling CONFIG_REGULATOR_DEBUG=y we observe below debug logs.
 
-I have exactly the same problem with my two DP PHYs (in
-phy_dp_clks_register()), so I'm in favor of us setting some sort of
-standard for this (not for anyone to rely on, but to avoid everyone
-coming up with their own scheme).
+> Changes help link VCCK and VDDEE pwm regulator to 5V regulator supply
+> instead of dummy regulator.
+>
+> [    7.117140] pwm-regulator regulator-vcck: Looking up pwm-supply from device tree
+> [    7.117153] pwm-regulator regulator-vcck: Looking up pwm-supply property in node /regulator-vcck failed
+> [    7.117184] VCCK: supplied by regulator-dummy
+> [    7.117194] regulator-dummy: could not add device link regulator.8: -ENOENT
+> [    7.117266] VCCK: 860 <--> 1140 mV at 986 mV, enabled
+> [    7.118498] VDDEE: will resolve supply early: pwm
+> [    7.118515] pwm-regulator regulator-vddee: Looking up pwm-supply from device tree
+> [    7.118526] pwm-regulator regulator-vddee: Looking up pwm-supply property in node /regulator-vddee failed
+> [    7.118553] VDDEE: supplied by regulator-dummy
+> [    7.118563] regulator-dummy: could not add device link regulator.9: -ENOENT
+excellent catch, thanks for sending a patch!
 
-But unfortunately I don't have easy access to the phy block's base
-address in phy_dp_clks_register().
+> Fixes: 524d96083b66 ("ARM: dts: meson8b: odroidc1: add the CPU voltage regulator")
+> Fixes: 8bdf38be712d ("ARM: dts: meson8b: odroidc1: add the VDDEE regulator")
+>
+> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-Regards,
-Bjorn
+For the subject:
+- patches for 32-bit ARM should start with upper-case ARM
+- personally I also include the board name so the git history is easier to read
 
-> Shawn
-> 
-> > 
-> > > +       init.name = clk_name ? clk_name : "a53pll";
-> > >         init.parent_names = (const char *[]){ "xo" };
-> > >         init.num_parents = 1;
-> > >         init.ops = &clk_pll_sr2_ops;
+My suggestion for the subject line is:
+ARM: dts: meson8b: odroidc1: Fix the pwm regulator supply properties
+
+Are you also planning to send patches for the following 32-bit SoC boards?
+- arch/arm/boot/dts/meson8b-mxq.dts
+- arch/arm/boot/dts/meson8b-ec100.dts
+
+
+Best regards,
+Martin
