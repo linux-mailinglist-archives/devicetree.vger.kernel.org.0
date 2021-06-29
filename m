@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 778763B6BCA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 02:40:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C32353B6BD3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 02:46:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231770AbhF2Amd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Jun 2021 20:42:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59308 "EHLO
+        id S229990AbhF2Asw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Jun 2021 20:48:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230483AbhF2Amc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 20:42:32 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01BFCC061760
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 17:40:05 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id o13-20020a9d404d0000b0290466630039caso5656044oti.6
-        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 17:40:04 -0700 (PDT)
+        with ESMTP id S229825AbhF2Asw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Jun 2021 20:48:52 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5BDC061766
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 17:46:23 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id m6-20020a9d1d060000b029044e2d8e855eso18915689otm.8
+        for <devicetree@vger.kernel.org>; Mon, 28 Jun 2021 17:46:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+6u2RG+sSlQSg+vc0Yj3ZZoGIOveJe7hDDIdJuTdPGM=;
-        b=V7kB/DTMK3LIspUUD1BmuRSiNMAFWbl/cBxbK8vYtvWpknYr2jZxiezDpkU72ZqF5k
-         O1Ecv5duSmcx8T4oheVkiSi8ooNi05+LnksmjSpCHyeIto8ZLMa9DMdGce/6/FuVU8y7
-         mEJIHhOLgSpkJWf8M6qgELcafcQUnrPK/nzSLlq4LN5D/Sb9ivmP6B8+ZKrXqJ01QP12
-         4ZLPo+Xbbw/bdcd99VLGQuWL/PpHXc8aMa7Jg4gqB+FP9YfT8kquduBkSsFGnTuNwC8z
-         erocY2F9DV9i3QnpXfCC5aCtVc3ZdhlLw8xCCUxahG4grVseNIjApmrsnWysZzUNJaEL
-         C7Ew==
+        bh=0d8zbMo9V9zxdFiDSYDzc1ZZBoiwj8ZiodSoR+dBxQM=;
+        b=hsKiwYalAxSUUx0v4gCd+27Xm+6jJ1qMca4RdjGuvuWKXA3RkC7jz+ANVpJIuK9dZO
+         u/WUDE0UkBa1c87HasMLvLXWv1/amOE5I4VXyT6M1hn1hrZFQ8lLbhW2wvtzRGBwh5Ka
+         ZQP5zSMJtZZ9BCyOLQpM0obhVYOKMg4b9/XzD/3BpHON/FevDsC8IuuY/wSFAvBnda+P
+         QN6GYs1t0/8hebF2eCVrVailE+SY6Vnvu0/3VY+gN2EKQo4QMdSga5WTo9AzKggoOQZ9
+         qidM2Z0wGjKLKw7sZd5BRg5K9enoTRJYaE5Qj/CvCHAGbx5e0nsqhbcVrHKHiUrFJuOS
+         9udw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=+6u2RG+sSlQSg+vc0Yj3ZZoGIOveJe7hDDIdJuTdPGM=;
-        b=QmFN8Yepjhy9NcYWDPE2dUQd1IhGCtRPV1u4b5cWcHzLjctZI+MnQdG3DSjTWnrH0t
-         zLjRDPrOUWpUPdB4TJX6E513a91Avq1QwbF5eWSShrMGl2U46PxbgOIc9sFEn1CPteQV
-         D+h7c6BfRANtlwFdmeVfecd/9quLKb9hFoDGnpg8K7ojrxCufzIUt21uuCtcO56q/lR9
-         bDSh/ZsuEhvTeRhemRA9kNrMCUoDYkUB4ulMG7zXg4pphsZzACiYM+fswlQRyK3favpD
-         ZAG+8j+3FAPEWYaAQFzcEXZfKbKVkXrSRMcnGIyCYgDI634UzNvfodwybavgf9cRstBk
-         MWNg==
-X-Gm-Message-State: AOAM532UZwKy0Xh/QtD080WmoNXYXgCUIwPB0U2mddidJNWrsZXp4mZf
-        RV9FLYBLnLa0wMUK9N1ix9cUcA==
-X-Google-Smtp-Source: ABdhPJxspl+N2dD5PBNJ3IIY9QGvG1iX57PP0YC/Ke4tIoOF5jmqOC0AlSIrVBSZ5i/lB7SrqYu6uw==
-X-Received: by 2002:a9d:68d1:: with SMTP id i17mr1990775oto.227.1624927204360;
-        Mon, 28 Jun 2021 17:40:04 -0700 (PDT)
+        bh=0d8zbMo9V9zxdFiDSYDzc1ZZBoiwj8ZiodSoR+dBxQM=;
+        b=ZsaOlkQqSmYx6MZzZGQRFXdi6OlEJM0/Wrq1jEttcenUtqkcveVU8vDj2jyHBnYwnY
+         BARCwSKPDgg7dEc35V1T1vqt8mr13wq3vEwdWjhKms8yIXnh9nJPW3rMPPEtQYIi75gr
+         8Ur7As+FyR5dptAulE3ryxjJnEoO7ZihTLJi6Rno+o3XjLOnUUW4BxQMttq4sjumETDV
+         zLd2WNDtQJms0ZgsM6+U7R43Ev5TbROAjjnr2Eq8ttFiT93+zVFbiQy6oLWWgszBntJv
+         E8fb1CMmepVdupTpuS6kJRmdup+uE7itd5LWAkcxcnlz336dtgzoZYJTliRey/x0qYRv
+         XB4w==
+X-Gm-Message-State: AOAM531Yb08WviF/YmhFl8yoweUv7ScXKBwwiJMLitrzSde6EozPByXh
+        oZ88rzOnVvtgvc5uDn99nieCGw==
+X-Google-Smtp-Source: ABdhPJygaGlBx4cJgfr4jOjytIOq6ewXtnUVJFP6+ftbUl4R7nxAOyT4TP5jOpwN0V0HHguQifak2g==
+X-Received: by 2002:a9d:6087:: with SMTP id m7mr2014551otj.318.1624927583076;
+        Mon, 28 Jun 2021 17:46:23 -0700 (PDT)
 Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id a7sm1860832oia.42.2021.06.28.17.40.03
+        by smtp.gmail.com with ESMTPSA id f3sm2671979ote.74.2021.06.28.17.46.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Jun 2021 17:40:04 -0700 (PDT)
+        Mon, 28 Jun 2021 17:46:22 -0700 (PDT)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manu Gautam <mgautam@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] pinctrl: qcom: spmi-gpio: Add pmc8180 & pmc8180c
-Date:   Mon, 28 Jun 2021 17:38:51 -0700
-Message-Id: <20210629003851.1787673-1-bjorn.andersson@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: phy: qcom,qmp: Add sc8180x PCIe compatible
+Date:   Mon, 28 Jun 2021 17:45:08 -0700
+Message-Id: <20210629004509.1788286-1-bjorn.andersson@linaro.org>
 X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -62,54 +64,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SC8180x platform comes with PMC8180 and PMC8180c, add support for
-the GPIO controller in these PMICs.
+Add a compatible for the sc8180x PCIe PHY.
 
 Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 4 ++++
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c                     | 2 ++
- 2 files changed, 6 insertions(+)
+ Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-index 161216daf463..412613c80e9e 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-@@ -30,6 +30,8 @@ PMIC's from Qualcomm.
- 		    "qcom,pm8350-gpio"
- 		    "qcom,pm8350b-gpio"
- 		    "qcom,pm8350c-gpio"
-+		    "qcom,pmc8180-gpio"
-+		    "qcom,pmc8180c-gpio"
- 		    "qcom,pmk8350-gpio"
- 		    "qcom,pm7325-gpio"
- 		    "qcom,pmr735a-gpio"
-@@ -120,6 +122,8 @@ to specify in a pin configuration subnode:
- 		    gpio1-gpio10 for pm8350
- 		    gpio1-gpio8 for pm8350b
- 		    gpio1-gpio9 for pm8350c
-+		    gpio1-gpio10 for pmc8180
-+		    gpio1-gpio12 for pmc8180c
- 		    gpio1-gpio4 for pmk8350
- 		    gpio1-gpio10 for pm7325
- 		    gpio1-gpio4 for pmr735a
-diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-index a89d24a040af..9251fb5153e7 100644
---- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-+++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-@@ -1123,10 +1123,12 @@ static const struct of_device_id pmic_gpio_of_match[] = {
- 	{ .compatible = "qcom,pm660l-gpio", .data = (void *) 12 },
- 	/* pm8150 has 10 GPIOs with holes on 2, 5, 7 and 8 */
- 	{ .compatible = "qcom,pm8150-gpio", .data = (void *) 10 },
-+	{ .compatible = "qcom,pmc8180-gpio", .data = (void *) 10 },
- 	/* pm8150b has 12 GPIOs with holes on 3, r and 7 */
- 	{ .compatible = "qcom,pm8150b-gpio", .data = (void *) 12 },
- 	/* pm8150l has 12 GPIOs with holes on 7 */
- 	{ .compatible = "qcom,pm8150l-gpio", .data = (void *) 12 },
-+	{ .compatible = "qcom,pmc8180c-gpio", .data = (void *) 12 },
- 	{ .compatible = "qcom,pm8350-gpio", .data = (void *) 10 },
- 	{ .compatible = "qcom,pm8350b-gpio", .data = (void *) 8 },
- 	{ .compatible = "qcom,pm8350c-gpio", .data = (void *) 9 },
+diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+index f0497b8623ad..242560ff52a4 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+@@ -27,6 +27,7 @@ properties:
+       - qcom,msm8998-qmp-ufs-phy
+       - qcom,msm8998-qmp-usb3-phy
+       - qcom,sc7180-qmp-usb3-phy
++      - qcom,sc8180x-qmp-pcie-phy
+       - qcom,sc8180x-qmp-ufs-phy
+       - qcom,sc8180x-qmp-usb3-phy
+       - qcom,sdm845-qhp-pcie-phy
+@@ -326,6 +327,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - qcom,sc8180x-qmp-pcie-phy
+               - qcom,sdm845-qhp-pcie-phy
+               - qcom,sdm845-qmp-pcie-phy
+               - qcom,sdx55-qmp-pcie-phy
 -- 
 2.29.2
 
