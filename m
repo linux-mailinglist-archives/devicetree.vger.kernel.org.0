@@ -2,220 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D12D83B6E8C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 09:10:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5911A3B6EE7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 09:38:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232182AbhF2HMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 03:12:37 -0400
-Received: from mail-eopbgr10075.outbound.protection.outlook.com ([40.107.1.75]:35969
-        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232176AbhF2HMg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Jun 2021 03:12:36 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lDGZTco9/o3N+EamKuaH5EUFeeMCti7TsClOopCThaPCGv6qfAGq9plrTrhtgQWQl0aZbVksumizytvCGGGsGG4mR7b++1B4Yb4hYIY6BZVZWNqDwzVnnWfMxV9QfpwSq3VrIfIkzs/BFGt6RD4xGe0rW+KLHR9214fVjMEeL3cdWfDLr2PXR3wpB5ZMZ6ltnQQrDik0xh/c5mLNLKFik2I0KgZRwoX3NIZrviIoX4o8jq2JbHjfpzdbZcxYlv2BKshQ9IEQjcj3v4Ixn7OhtyQbrbI8tYtL2y+BEINNBAIs25AeNmfLQbPy5UHLFpgAKTTNoQnYuOJBMKPQ8jkV0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4uisSBlKsVHh6C6tw6WfaBRfXEVGp6VAWGrxTLpmrss=;
- b=TyV6vEATNN7H5gcDlFuUgMwlEr+jHHsIQRPPftKvsSyGKh75TmCwlJRmJb3ElIInuguOt89cO5RNEQ9bP7gtegctvYLWGJvBJnvMfVj//Gw/scsO34yhWrAP5Rk6ALAqMG/gY6PE77Y26yHghxGWNPqltlnRPQxdcbncbgLbMPXrUQEghEdOu4QvyoX9DgtrpW/cHUHjT/rWOyCnF/Y4FE7zpdSCKzgtsA8FeY7IBRwMJM9V4z/YvkIpdvMCWPU8RI4ZAyZfzFuVSGvH4eF2OmXaq4S332l7TB3p43IOjArHAWo8MIAGO41m/DRCLGZSzts0pZ8YYBfu+N/UgRzT4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4uisSBlKsVHh6C6tw6WfaBRfXEVGp6VAWGrxTLpmrss=;
- b=cykY6VR86NP3XrQSvFWq+vTARwDIaEOmCplhHv+3fZ156K8AYIZiHyZr/tX7V3NYz5MEWrTGqE6iYdDlakdwJxqKgIdoeFbIaG3DS1376aa9ACqqW8bB5Q6CKEp0XAGg1HfyivyRgwO/EiEsSmThbSR389FB1BzawBO8Dooj6go=
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
- by DB7PR04MB4762.eurprd04.prod.outlook.com (2603:10a6:10:16::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.20; Tue, 29 Jun
- 2021 07:10:04 +0000
-Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c445:d742:eb76:86dd]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
- ([fe80::c445:d742:eb76:86dd%9]) with mapi id 15.20.4264.026; Tue, 29 Jun 2021
- 07:10:04 +0000
-From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Tomasz Figa <t.figa@samsung.com>,
-        Fancy Fang <chen.fang@nxp.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-amarula@amarulasolutions.com" 
-        <linux-amarula@amarulasolutions.com>,
-        Anthony Brandon <anthony@amarulasolutions.com>,
-        Francis Laniel <francis.laniel@amarulasolutions.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Milco Pratesi <milco.pratesi@engicam.com>
-Subject: RE: [RFC PATCH 0/9] arm64: imx8mm: Add MIPI DSI support
-Thread-Topic: [RFC PATCH 0/9] arm64: imx8mm: Add MIPI DSI support
-Thread-Index: AQHXZm6BrEMFEqCnfUmVVsyYC57skqsqm4mg
-Date:   Tue, 29 Jun 2021 07:10:04 +0000
-Message-ID: <DB6PR0402MB2760C13BBF36FF98E4F4635988029@DB6PR0402MB2760.eurprd04.prod.outlook.com>
-References: <20210621072424.111733-1-jagan@amarulasolutions.com>
-In-Reply-To: <20210621072424.111733-1-jagan@amarulasolutions.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: amarulasolutions.com; dkim=none (message not signed)
- header.d=none;amarulasolutions.com; dmarc=none action=none
- header.from=oss.nxp.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5e1f4aaf-1319-4c9d-40d1-08d93acceb16
-x-ms-traffictypediagnostic: DB7PR04MB4762:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB7PR04MB47621F29EF4B9178954E3CD1C9029@DB7PR04MB4762.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: N7/scxZU6AfaTly/cEVGhSDMCTT9iAy/If/kRlfXz1mStFB6sejGO2+DUaItZ5y3oPvg6dbRZxy4h99Tn2gx8JHKb0qvPW2v3dHuYR2zsAFPyjGbclAHG05D8lnjFU5V8Wx5sWoiFko8+twVUjzqqUKSRQAyL60JmXIC8o+aodB5z3wqqAHrkGExui9ZJNvxetwssKhqmv1u5tDF5FWNWSxYa83C3kaN6dRFFlHeC9fNQrmNFlEtRltutHgX56ZmnfS9Wq6GYgDEA4lOBC7ejol4zDpiF6IjuE00LNw9FCaMYQzL8Kk/RJl0FK/82s87+9uG6aU/41X111xRJLM5S9MuaT6QAowr+7B599aS4GIdSHUgz2i4onqSh8GYuJkL6XFH3AbXERPmZtKy3c2fmgHFWKQxctNnGQwEbDDvqrQO663nScbg9lE+MOGJ67XtX2GoePVCuJydSUSzOOzxT/WPW+ctdEp4PCnQo8n5U8oeqN63jVihye8XwGjkMQipjLxbO90xsaKMz6++Al/rI6sWlIayvqn12pVd6WjlFroZ56hNiqXdfzzHwM+GDGyUZS77k5zdr9ANFznQ3ZzPyzBZt8Q/ikx7Wuvk6tgysSDlbfjRck8ePgm6frGMx5ryfgNtJ8aysQ8rDmlkEwgZuEC1oVuXFdVyyz7a/JYZ014ftw/DbostAhS1TtGa25aRBINsUIVvvKWyQliFw90buWZ78ec5hMmZB5Wm1bx74tAkR94Z4qr2+gGwOwVWSZUuIGJOKqcegq7WjFqsi2sTeLA027cEfD86gfKywCZ6C8VE+Szdgj6okfy76qk6A0VZ
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(366004)(396003)(39860400002)(376002)(136003)(86362001)(26005)(76116006)(8676002)(7416002)(2906002)(9686003)(4326008)(55016002)(71200400001)(186003)(966005)(66946007)(5660300002)(38100700002)(64756008)(45080400002)(316002)(478600001)(52536014)(8936002)(83380400001)(122000001)(110136005)(66556008)(6506007)(54906003)(66476007)(33656002)(66446008)(7696005)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?MWdizohVjxjsCMb7zLthhlQQ12UYphisauXOY2urC++yPPlNK9F/TXAZ7tzm?=
- =?us-ascii?Q?2ZkD58SZY6W73Z7Ss+XOia/Bcx2BjdnduXOQvUjEmTaefpEN2OMeKO5trYF5?=
- =?us-ascii?Q?1UPfDm05MFIx/gWwTvMf4YTjsyP3k5ezfWlNk633xANHzCCnS9zxuPzDPTvG?=
- =?us-ascii?Q?kUS9iKf9PFQJEd/i6CMDIOLbT92u94wBW1penqwUYqawcNku8hhhIxmDPsdX?=
- =?us-ascii?Q?ddfD9PVA0U2y7U08HeDkCRq1aqkTdPaDE3lP9Z5ha73qpjDGj8VbquiRNBbc?=
- =?us-ascii?Q?cmoelumyxDnFxLtKtELczoKuLLK0FTzDkqrLXvAltgYMWM1koCrBqhTWmtMN?=
- =?us-ascii?Q?X8w1zQnu0qvlFF8pfaCX6cLvbuEg8ZYRG3Szf6kMk7zrYY5v2fbrHRCIhVta?=
- =?us-ascii?Q?KZf8TM1mTl/2CKhclcPgEADqaA8sJoQvgLEnjbn2FED6tPV8YF48kG+Xf0u8?=
- =?us-ascii?Q?+yy22ZJUOiKO9CHJKDxaQAQtHYOOSLT4phRBPKV66JsC12p/NgI1jGOhxC9B?=
- =?us-ascii?Q?AINJJU9wBBrHMVzydAHANRGxTpP5NeSTFAz11+rqJMSymhbF81BUncI8ad2z?=
- =?us-ascii?Q?oxddV0k5IScL3eVFLXwe+3sRdUCT6S5YNKqcvWBWWaVh1IXPs8YY8C54y5xe?=
- =?us-ascii?Q?nEFnl9pT47lzI8ydLxWtQi/RdUEu5QcwotnDtOVTA/9OE61krg+iAWB62+PC?=
- =?us-ascii?Q?mg19QPgesT89IU2G3yKnosulPcM7E13JOc/QI4i+ts+vhR+rKEhf7ufB5y7d?=
- =?us-ascii?Q?tyEESk+OK7jljSU28whAmQFKEYA4WUSfJx/bqZJyIxU4GiDhXBtFG+9geGHV?=
- =?us-ascii?Q?v3sq5yTDOF2/O7Z2n3zhpkvRCnGVMf48EyUW7+0UdrbvRfDzJncoTcVPZ+Le?=
- =?us-ascii?Q?7V+CwcLxZGRwJtPMu5RnrgE8vyWsRRdrJpDz8SA91S+keGZHqh1Z8LxeP1t9?=
- =?us-ascii?Q?S9iiyBIKiY1uSKatv4JKU++EsWCxRhMOn3EVdzzod+rMNlFSVaDyNT8WzceS?=
- =?us-ascii?Q?Ig+mHOxWmeHyU2FRTHTdtdhe5MTxqYLFYMs9LJXWuDt1rQnc/5x1Iun1+lHv?=
- =?us-ascii?Q?wpmNaeJVWCsGH3qkx4/Cek3gak+IMynN8qXQoA/QYrZrhhqu6YbjeuetKob1?=
- =?us-ascii?Q?GZfWkfpczuHAUznzRzcbmFWJoA6Q7CGoyKqKvTh4gXnCq6aNKngkhzm80Ogz?=
- =?us-ascii?Q?JKvLdWMzGwpRL7+ktZOu442ufWYzW+V1BREzA5JnZ8oChAjP/aV0GTNNs4rl?=
- =?us-ascii?Q?IF8QPg4B92B7NVQlQ+7sGmPeVnY/AxLPJA6CgYFyMINmUzw6xODAYwQaIBqi?=
- =?us-ascii?Q?aOLw6z369pE7WkqY2yzc1QCi?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e1f4aaf-1319-4c9d-40d1-08d93acceb16
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jun 2021 07:10:04.0299
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rh2FB7EJzaA8YjyXLP+GD7HzhLFx1O7Lfw7HmaiE/aW9waDHWRr6hYJXY7JlA70tk3cVoYDIv/7vGqS1GrTosg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4762
+        id S232258AbhF2Hkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 03:40:39 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:36183 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232233AbhF2Hkj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Jun 2021 03:40:39 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 305505802F1;
+        Tue, 29 Jun 2021 03:38:12 -0400 (EDT)
+Received: from imap21 ([10.202.2.71])
+  by compute1.internal (MEProxy); Tue, 29 Jun 2021 03:38:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm1; bh=xPpV66HQWYVIE36VUh3s2k+KXaQN
+        uzOi6HGwB2vvLlI=; b=AazxlZZVrmqm57X0pNXcZihlgEw8Rja3NTqf4rJAhrId
+        sZzWqzxnLqo9mXUeGtBkomuHVceuBcpOlkThWQ8sOCGcUEAuGD7E84/1QgptxDxp
+        VohUFHg1FgeZAkZM2TuUVE2+3LnW1tT6vvKOOsE5ulSvvJJYmwHOfxGqIKe4F8/V
+        tewSxjjE5XOKAqhA6el1jejPmzn4RT05Sh1L3odwkPPLSZTZNhe5q3yGyLkLzgT5
+        j+mhG6OzVYFkdnZS7X0UaF1NnkY/Iu+b2mupZW6OfpC70kQXkA+3gSuv7eEnsqu8
+        75vU/K8OhArsVgjGt0825AP9cpRgKIGF0h2MQw+33w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=xPpV66
+        HQWYVIE36VUh3s2k+KXaQNuzOi6HGwB2vvLlI=; b=TVuybdMj+mIXjt/SMDwlbh
+        sXV0LMaYWH58nxAH7/2fyt/n3U4cV6gQiBPI4xJYnAfdtof8Nadjo7h1zqcoMTRc
+        wms/fAYBxqNKdFdeLMQuUdZA9wdSyBQpQ7izbbYNtShwZKI62QDMOgxnxqy/23BI
+        lOJ1xx+YDU2E46iftghvIJLGtijpPE4z2vFrUfrANhOreffUS6hxqfY84+uGqCkD
+        beAxPx8FwIZcpClmn+SrFwQESJ9v5O2t3dE5dvw/ZnHgTlyBp5+sZmd7Chm/mg0B
+        OSwlldu12dqSG9D4HEWm0ibGdmUcvxU/fN/fVSx5ttYRTBeFIdHZFoWbWZWlpIyw
+        ==
+X-ME-Sender: <xms:4s3aYCw9WS5tkBhIVaEiwWmfJPFFLn1LHq14l3laXRWdD1wXOecRLA>
+    <xme:4s3aYOSver13dt2IzApPeQtnAmFfKdnSi9E3IqwmT1HVPizgWmgX4UEHkjRjIijUg
+    qZeuIwj8Q9T6AXB7tM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeehhedguddujecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhv
+    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
+    grthhtvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudeh
+    vdefkeffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:4s3aYEUU1LxQqndKn8vTxCWrNEdOpMqbGFQbrzw1B8yG1edecv94EQ>
+    <xmx:4s3aYIgLArskBRvcBRNz_paU13207fSaGy1M4-9hkrZA5MUjpRPqNg>
+    <xmx:4s3aYEDd3kPwpjbysHG8_AAKYdSwen0ND6HnGlmS-C_FYcfb00uq1A>
+    <xmx:5M3aYMaNWz_GSwOBNaTU7SxjDGMOZpvJXMTXg9BzOj_uaV5jLK3e4g>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 3F1AB51C0060; Tue, 29 Jun 2021 03:38:10 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-530-gd0c265785f-fm-20210616.002-gd0c26578
+Mime-Version: 1.0
+Message-Id: <fedb8d5a-a0f1-4216-bb46-1af31b716309@www.fastmail.com>
+In-Reply-To: <3a43b2de-6a71-2373-8695-5e96657c8fc2@amazon.com>
+References: <20210627143405.77298-1-sven@svenpeter.dev>
+ <20210627143405.77298-2-sven@svenpeter.dev>
+ <3a43b2de-6a71-2373-8695-5e96657c8fc2@amazon.com>
+Date:   Tue, 29 Jun 2021 09:37:48 +0200
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Alexander Graf" <graf@amazon.com>,
+        "Will Deacon" <will@kernel.org>,
+        "Robin Murphy" <robin.murphy@arm.com>,
+        "Joerg Roedel" <joro@8bytes.org>
+Cc:     "Arnd Bergmann" <arnd@kernel.org>, devicetree@vger.kernel.org,
+        "Hector Martin" <marcan@marcan.st>, linux-kernel@vger.kernel.org,
+        "Marc Zyngier" <maz@kernel.org>,
+        "Mohamed Mediouni" <mohamed.mediouni@caramail.com>,
+        "Stan Skowronek" <stan@corellium.com>,
+        linux-arm-kernel@lists.infradead.org,
+        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
+        "Petr Mladek via iommu" <iommu@lists.linux-foundation.org>,
+        "Alyssa Rosenzweig" <alyssa.rosenzweig@collabora.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Rouven Czerwinski" <r.czerwinski@pengutronix.de>
+Subject: Re: [PATCH v4 1/3] iommu: io-pgtable: add DART pagetable format
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jagan,
 
-> Subject: [RFC PATCH 0/9] arm64: imx8mm: Add MIPI DSI support
->=20
-> This series support MIPI DSI on i.MX8MM.
->=20
-> It worked directly with existing mxsfb driver but the SEC DSIM timings ha=
-s to
-> be validate and tested through all platforms, ie reason I'm sending it as=
- RFC.
->=20
-> Tested on Engicam i.Core MX8M Mini SoM.
 
-Thanks for the work.
+On Mon, Jun 28, 2021, at 12:54, Alexander Graf wrote:
+> 
+> 
+> On 27.06.21 16:34, Sven Peter wrote:
+> > 
+> > Apple's DART iommu uses a pagetable format that shares some
+> > similarities with the ones already implemented by io-pgtable.c.
+> > Add a new format variant to support the required differences
+> > so that we don't have to duplicate the pagetable handling code.
+> > 
+> > Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> > ---
+> >   drivers/iommu/io-pgtable-arm.c | 62 ++++++++++++++++++++++++++++++++++
+> >   drivers/iommu/io-pgtable.c     |  1 +
+> >   include/linux/io-pgtable.h     |  7 ++++
+> >   3 files changed, 70 insertions(+)
+> > 
+> > diff --git a/drivers/iommu/io-pgtable-arm.c b/drivers/iommu/io-pgtable-arm.c
+> > index 87def58e79b5..1dd5c45b4b5b 100644
+> > --- a/drivers/iommu/io-pgtable-arm.c
+> > +++ b/drivers/iommu/io-pgtable-arm.c
+> > @@ -127,6 +127,9 @@
+> >   #define ARM_MALI_LPAE_MEMATTR_IMP_DEF  0x88ULL
+> >   #define ARM_MALI_LPAE_MEMATTR_WRITE_ALLOC 0x8DULL
+> > 
+> > +#define APPLE_DART_PTE_PROT_NO_WRITE (1<<7)
+> > +#define APPLE_DART_PTE_PROT_NO_READ (1<<8)
+> > +
+> >   /* IOPTE accessors */
+> >   #define iopte_deref(pte,d) __va(iopte_to_paddr(pte, d))
+> > 
+> > @@ -381,6 +384,15 @@ static arm_lpae_iopte arm_lpae_prot_to_pte(struct arm_lpae_io_pgtable *data,
+> >   {
+> >          arm_lpae_iopte pte;
+> > 
+> > +       if (data->iop.fmt == ARM_APPLE_DART) {
+> > +               pte = 0;
+> > +               if (!(prot & IOMMU_WRITE))
+> > +                       pte |= APPLE_DART_PTE_PROT_NO_WRITE;
+> > +               if (!(prot & IOMMU_READ))
+> > +                       pte |= APPLE_DART_PTE_PROT_NO_READ;
+> > +               return pte;
+> 
+> What about the other bits, such as sharability, XN, etc? Do they not 
+> exist on DART? Or have they not been reverse engineered and 0s happen to 
+> "just work"?
 
->=20
-> patch 1: dt-bindings for SEC MIPI DSIM
->=20
-> patch 2: SEC MIPI DSIM bridge driver
->=20
-> patch 3: dt-bindings for SEC DSIM DPHY
->=20
-> patch 4: SEC DSIM DPHY driver
->=20
-> patch 5: MIPI DPHY reset enable in blk-ctl
->=20
-> patch 6: display mix blk ctl node
->=20
-> patch 7: eLCDIF node
->=20
-> patch 8: MIPI DSI pipeline nodes
->=20
-> patch 9: Enable LVDS panel on EDIMM2.2
->=20
-> Note:
-> - all these patches on top of Peng Fan's blk-ctl driver.
+I'm fairly certain they don't exist (or are at least not used by XNU).
 
-Would you please update to use V8 patchset?
+The co-processors that can run code also either use an entire separate iommu
+(e.g. the GPU) or only use DART as a "second stage" and have their own
+MMU which e.g. handles XN (e.g. the SEP or AOP).
 
-And the dtb:
-https://patchwork.kernel.org/project/linux-arm-kernel/
-patch/20210604111005.6804-1-peng.fan@oss.nxp.com/
+> 
+> > +       }
+> > +
+> >          if (data->iop.fmt == ARM_64_LPAE_S1 ||
+> >              data->iop.fmt == ARM_32_LPAE_S1) {
+> >                  pte = ARM_LPAE_PTE_nG;
+> > @@ -1043,6 +1055,51 @@ arm_mali_lpae_alloc_pgtable(struct io_pgtable_cfg *cfg, void *cookie)
+> >          return NULL;
+> >   }
+> > 
+> > +static struct io_pgtable *
+> > +apple_dart_alloc_pgtable(struct io_pgtable_cfg *cfg, void *cookie)
+> > +{
+> > +       struct arm_lpae_io_pgtable *data;
+> > +       int i;
+> > +
+> > +       if (cfg->oas > 36)
+> > +               return NULL;
+> > +
+> > +       data = arm_lpae_alloc_pgtable(cfg);
+> > +       if (!data)
+> > +               return NULL;
+> > +
+> > +       /*
+> > +        * Apple's DART always requires three levels with the first level being
+> > +        * stored in four MMIO registers. We always concatenate the first and
+> > +        * second level so that we only have to setup the MMIO registers once.
+> > +        * This results in an effective two level pagetable.
+> > +        */
+> > +       if (data->start_level < 1)
+> > +               return NULL;
+> > +       if (data->start_level == 1 && data->pgd_bits > 2)
+> > +               return NULL;
+> > +       if (data->start_level > 1)
+> > +               data->pgd_bits = 0;
+> > +       data->start_level = 2;
+> > +       cfg->apple_dart_cfg.n_ttbrs = 1 << data->pgd_bits;
+> 
+> Maybe add a BUG_ON if n_ttbrs > ARRAY_SIZE(ttbr)? Or alternatively, do a 
+> normal runtime check and bail out then.
 
-Thanks,
-Peng.
+n_ttbrs can't actually be larger than 4 at this point already due to the
+previous checks.
+I can add a BUG_ON though just to make it explicit and be safe in case those
+checks or the array size ever change.
 
-> - anyone interest, please have a look on this repo
->=20
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgithu=
-b.
-> com%2Fopenedev%2Flinux%2Fcommits%2Fimx8mm&amp;data=3D04%7C01%7
-> Cpeng.fan%40nxp.com%7C8185c94655404000316208d93485a285%7C686ea
-> 1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637598570833578734%7CU
-> nknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI
-> 6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3DHKAHBv4YM0G6mVV3bq
-> oPOyNb2mQTH03YSBU8RnrJmlE%3D&amp;reserved=3D0
->=20
-> Any inputs?
-> Jagan.
->=20
-> Jagan Teki (9):
->   dt-bindings: display: bridge: Add Samsung SEC MIPI DSIM bindings
->   drm: bridge: Add Samsung SEC MIPI DSIM bridge driver
->   dt-bindings: phy: Add SEC DSIM DPHY bindings
->   phy: samsung: Add SEC DSIM DPHY driver
->   soc: imx8mm: blk-ctl: Add MIPI DPHY reset enable
->   arm64: dts: imx8mm: Add display mix blk ctl
->   arm64: dts: imx8mm: Add eLCDIF node support
->   arm64: dts: imx8mm: Add MIPI DSI pipeline
->   arm64: dts: imx8mm-icore: Enable LVDS panel for EDIMM2.2
->=20
->  .../display/bridge/samsung,sec-dsim.yaml      |  184 ++
->  .../bindings/phy/samsung,sec-dsim-dphy.yaml   |   56 +
->  .../freescale/imx8mm-icore-mx8mm-edimm2.2.dts |   90 +
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  104 ++
->  drivers/gpu/drm/bridge/Kconfig                |   15 +
->  drivers/gpu/drm/bridge/Makefile               |    1 +
->  drivers/gpu/drm/bridge/sec-dsim.c             | 1535
-> +++++++++++++++++
->  drivers/phy/samsung/Kconfig                   |    9 +
->  drivers/phy/samsung/Makefile                  |    1 +
->  drivers/phy/samsung/phy-sec-dsim-dphy.c       |  236 +++
->  drivers/soc/imx/blk-ctl-imx8mm.c              |    4 +
->  include/dt-bindings/power/imx8mm-power.h      |    5 +-
->  12 files changed, 2238 insertions(+), 2 deletions(-)  create mode 100644
-> Documentation/devicetree/bindings/display/bridge/samsung,sec-dsim.yaml
->  create mode 100644
-> Documentation/devicetree/bindings/phy/samsung,sec-dsim-dphy.yaml
->  create mode 100644 drivers/gpu/drm/bridge/sec-dsim.c  create mode
-> 100644 drivers/phy/samsung/phy-sec-dsim-dphy.c
->=20
-> --
-> 2.25.1
+
+Sven
+
 
