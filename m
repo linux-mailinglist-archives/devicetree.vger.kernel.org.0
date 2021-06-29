@@ -2,51 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17DF33B70AE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 12:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48CDF3B70BB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 12:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232920AbhF2KaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 06:30:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47958 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232881AbhF2KaU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 06:30:20 -0400
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1131C061574;
-        Tue, 29 Jun 2021 03:27:52 -0700 (PDT)
-Received: from [192.168.1.142] (bband-dyn27.178-40-203.t-com.sk [178.40.203.27])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id E7DD11F949;
-        Tue, 29 Jun 2021 12:27:49 +0200 (CEST)
-Date:   Tue, 29 Jun 2021 12:27:43 +0200
-From:   Martin Botka <martin.botka@somainline.org>
-Subject: Re: [RESEND PATCH v2 0/3] RPMCC for SM6125
-To:     martin.botka1@gmail.com
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        konrad.dybcio@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        paul.bouchara@somainline.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <72LGVQ.D5B86EMT47072@somainline.org>
-In-Reply-To: <20210629102624.194378-1-martin.botka@somainline.org>
-References: <20210629102624.194378-1-martin.botka@somainline.org>
-X-Mailer: geary/40.0
+        id S233011AbhF2KeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 06:34:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51408 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232772AbhF2KeB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Jun 2021 06:34:01 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7953261D4E;
+        Tue, 29 Jun 2021 10:31:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624962694;
+        bh=jKXivDk711GJY/luPmn+YiYTQh6/YAbNd2X1b6kZVVQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Tucg4Vh1knXAFd0Fi/1pOBHS2zcZLYm972pEAhHOgJUOMOVMaroQsGe86dDCZJ/Mj
+         XA667h1MOVshuYX275n0359Sx2bOQ5DgJHcROCu2UfNo+W3mkOePedRknzLCE6psva
+         +BUGHImUPgm2LcI5pQwPxEy8BA0bVi30iDvVbDxq8kExxvNiUpPaNHgkhk1JGRMsHF
+         G8ZrztRlID+obtzGuf+szcIwoJpHQIYaPypQQAQSPvUn0Jd92oead524cn1thMYObC
+         jmdqdFxzwjZvEyJvZ0r4BwR324uPmwYGGv942/ahB+6HAUFlFU9Os7UHDWGanYq9Zg
+         nL+F2rBWMFNqg==
+Received: by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1lyB1g-00Cx7N-NP; Tue, 29 Jun 2021 12:31:32 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Axel Lin <axel.lin@ingics.com>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <dragan.cvetic@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+Subject: [PATCH v10 0/5] Move Hisilicon 6421v600 SPMI and USB drivers  out of staging
+Date:   Tue, 29 Jun 2021 12:31:26 +0200
+Message-Id: <cover.1624962269.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Greg,
 
-Sorry for sending it second time. Forgot to add To: as was previously 
-asked
+This series contain the final bits needed for the USB3 bus to work
+without staging drivers on Hikey 970.
+
+Tested on a Hikey 970:
+
+	$ lsusb
+	Bus 002 Device 002: ID 0451:8140 Texas Instruments, Inc. TUSB8041 4-Port Hub
+	Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+	Bus 001 Device 003: ID 046d:c52b Logitech, Inc. Unifying Receiver
+	Bus 001 Device 002: ID 0451:8142 Texas Instruments, Inc. TUSB8041 4-Port Hub
+	Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
+and checked that mouse events are working using evtest:
+
+	...
+	Input device ID: bus 0x3 vendor 0x46d product 0xc52b version 0x111
+	Input device name: "Logitech USB Receiver Mouse"
+	....
+	Testing ... (interrupt to exit)
+	Event: time 1624640001.871917, type 2 (EV_REL), code 0 (REL_X), value -4
+	Event: time 1624640001.871917, type 2 (EV_REL), code 1 (REL_Y), value -3
+	Event: time 1624640001.871917, -------------- SYN_REPORT ------------
+	Event: time 1624640001.879868, type 2 (EV_REL), code 0 (REL_X), value -5
+	Event: time 1624640001.879868, type 2 (EV_REL), code 1 (REL_Y), value -4
+	....
+
+v10:
+  - Addressed some issues pointed by Axel Lin at the regulator;
+  - Removed a now uneeded header file (hi6421-spmi-pmic.h);
+  - Addressed a couple of checkpatch warnings and did minor
+    cleanups.
+
+Mauro Carvalho Chehab (5):
+  staging: hikey9xx: split hi6421v600 irq into a separate driver
+  regulator: hi6421v600-regulator: fix platform drvdata
+  mfd: hi6421-spmi-pmic: move driver from staging
+  dts: hisilicon: add support for the PMIC found on Hikey 970
+  dts: hisilicon: add support for USB3 on Hikey 970
+
+ .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 134 ++++++++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/hisilicon/hi3670-hikey970.dts    | 129 ++++++--
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  56 ++++
+ .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  87 +++++
+ drivers/mfd/Kconfig                           |  16 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/hi6421-spmi-pmic.c                |  66 ++++
+ drivers/misc/Kconfig                          |  10 +
+ drivers/misc/Makefile                         |   1 +
+ drivers/misc/hi6421v600-irq.c                 | 313 ++++++++++++++++++
+ drivers/regulator/hi6421v600-regulator.c      |  49 +--
+ drivers/staging/Kconfig                       |   2 -
+ drivers/staging/Makefile                      |   1 -
+ drivers/staging/hikey9xx/Kconfig              |  19 --
+ drivers/staging/hikey9xx/Makefile             |   3 -
+ drivers/staging/hikey9xx/TODO                 |   5 -
+ drivers/staging/hikey9xx/hi6421-spmi-pmic.c   | 311 -----------------
+ .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 134 --------
+ include/linux/mfd/hi6421-spmi-pmic.h          |  30 --
+ 20 files changed, 826 insertions(+), 548 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+ create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+ create mode 100644 drivers/mfd/hi6421-spmi-pmic.c
+ create mode 100644 drivers/misc/hi6421v600-irq.c
+ delete mode 100644 drivers/staging/hikey9xx/Kconfig
+ delete mode 100644 drivers/staging/hikey9xx/Makefile
+ delete mode 100644 drivers/staging/hikey9xx/TODO
+ delete mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
+ delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
+ delete mode 100644 include/linux/mfd/hi6421-spmi-pmic.h
+
+-- 
+2.31.1
 
 
