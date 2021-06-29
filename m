@@ -2,125 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7735F3B7829
-	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 21:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 360413B7945
+	for <lists+devicetree@lfdr.de>; Tue, 29 Jun 2021 22:23:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232416AbhF2TC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 15:02:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50326 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234343AbhF2TC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 15:02:56 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45C8EC061760;
-        Tue, 29 Jun 2021 12:00:27 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id i24so32677441edx.4;
-        Tue, 29 Jun 2021 12:00:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=T2w95C+qM8k4odXnWTg+Qy+O6s4VgV9B2PzrgUQXnKg=;
-        b=BSv5xS6GlW9bzmWJDOWNhjaCgHH2uVlFFzpO6OOCFWUGAayOsUbIpHR2I9n64dwUeT
-         0BFcKHQzFU4g+ygEfNZTqJBSYWcwOjYIo5pH+T8xkrTZmYvHfTrvF69lRCqSf8UsfEVa
-         0M65hf3m4blUhYbiFgulaMPx9HmmEWZ8Ha0DqOI9fvSd5dFVOakp+txRPhqW48bX2gVH
-         4IZ5LSZIA4Vn6UKS6Zq9qIqiW6TSVlTBPcEYZAfsVNB+/J8Iy6h3LRQPnf9J5471L2/X
-         NNKmdMbhYRKoPoVV4B3wuywafJ5cFpfHAwhh1nSe91rC41vH9rHThILaSW1z4oCStJfu
-         yyww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=T2w95C+qM8k4odXnWTg+Qy+O6s4VgV9B2PzrgUQXnKg=;
-        b=NPSZ4Mq0w8LtklvVLNb2lZEg09kaUqVXOsci2wB3gW7FY1da/B8fWU4D7MThQXRY3h
-         KOndGlyye9jfIsny0F9vWRASfFt4FYrZ+A6vwqQXArh+vgECIxE9szZ7zR26SUOPkf5j
-         BIQX46qfvxc2s3lhaAK/wnspOMy5gPrOROEYYSSYJWY+6wqMku7C3u09EbyyjJhAJfzE
-         UJ668nMkIwBd9QONJB4uTPxV/OCh5E2Tb+FwjpzQfCZ+YWDjlgqYFktpYLX/0CBJ+Dkj
-         knCMl/5lAzZd4l9w6uEG9k3Y2dzBjOIOe8K4TTrCLxo+jwKtVP+n6NpuvAFsV/Iw6gog
-         dDsQ==
-X-Gm-Message-State: AOAM532Fmutsuj4C0l125ABSjrJrESSU2cJ6p/fl1lywXPLPOTo/5MQX
-        obULRViNLeq4RQCcrvNaewTgSs6LyBrAGMNTAt0=
-X-Google-Smtp-Source: ABdhPJzrCyLePOZbwU/YpHBQ4dDhsP2MEebHmIWdFgk1MHa6jvvw6Bo0yP64kVLq5ru5+iYeULC4Bf9NSf6Uk3j1hlM=
-X-Received: by 2002:a05:6402:b83:: with SMTP id cf3mr36314741edb.130.1624993225914;
- Tue, 29 Jun 2021 12:00:25 -0700 (PDT)
+        id S235156AbhF2U0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 16:26:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44868 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233801AbhF2U0X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Jun 2021 16:26:23 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6EE6D61DBC;
+        Tue, 29 Jun 2021 20:23:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1624998235;
+        bh=Fp778EdGKIF8waB2bigO8b15iU3CCDL78TCCaYo7Y/8=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=YTn5BNXvAbV8M6pXUYQ1gcbuBMFBo1mQDtRDRDxof8Z9qtdvndgylaG5FuysP4i3r
+         CssnKPOkTRMYxK1t60ee4dyLugmwBtZzJhDTa/VuzKetOaxmA2hufla7rgfcvmowpI
+         KA8u3SR4/yLPvVQhThcaTnP/Iu5zXFyEUM4WYWTE97Xb/v5BAr1n0DvtaiEyD21K2f
+         QmCv/udHlBM4pgDTG7htUTJMz/ZdmOUQ7CwxvUxQc+YPrcG7ksJnunSkd8YnrVB7yT
+         CoZ7UpxBEq7wx416WRXJBcNzzAXNbAw0l82CbyjMgxU0je3weuIJAZLyaezkm3WoKl
+         Ppe01bhabQ71Q==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20210629121459.6341-1-linux.amoon@gmail.com> <CAFBinCA=COnsN4Cp-z0HAPgs4kqPdiKtkZkr_LDkGz68s7B7hA@mail.gmail.com>
-In-Reply-To: <CAFBinCA=COnsN4Cp-z0HAPgs4kqPdiKtkZkr_LDkGz68s7B7hA@mail.gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Wed, 30 Jun 2021 00:30:14 +0530
-Message-ID: <CANAwSgRD9_B7f5UjPrxeL+x-eMMc2MAG3tXLQw36x0ho+ba_Uw@mail.gmail.com>
-Subject: Re: [PATCHv1] arm: dts: meson: Fix the pwm regulator supply property
- in node
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <YNtC6YSt1r+hbhPV@yoga>
+References: <20210504052844.21096-1-shawn.guo@linaro.org> <20210504052844.21096-4-shawn.guo@linaro.org> <162484011476.3259633.10138087900669024498@swboyd.mtv.corp.google.com> <20210629133658.GB32336@dragon> <YNtC6YSt1r+hbhPV@yoga>
+Subject: Re: [PATCH 3/5] clk: qcom: apcs-msm8916: Retrieve clock name from DT
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>
+Date:   Tue, 29 Jun 2021 13:23:54 -0700
+Message-ID: <162499823407.3331010.7870226601450224516@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+Quoting Bjorn Andersson (2021-06-29 08:57:29)
+> On Tue 29 Jun 08:36 CDT 2021, Shawn Guo wrote:
+>=20
+> > On Sun, Jun 27, 2021 at 05:28:34PM -0700, Stephen Boyd wrote:
+> > > Quoting Shawn Guo (2021-05-03 22:28:42)
+> > > > Unlike MSM8916 which has only one APCS clock, MSM8939 gets three for
+> > > > Cluster0 (little cores), Cluster1 (big cores) and CCI (Cache Cohere=
+nt
+> > > > Interconnect).  Instead of hard coding APCS (and A53PLL) clock name,
+> > > > retrieve the name from DT, so that multiple APCS clocks can be
+> > > > registered.
+> > > >=20
+> > > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> > > > ---
+> > > >  drivers/clk/qcom/a53-pll.c      | 5 ++++-
+> > > >  drivers/clk/qcom/apcs-msm8916.c | 5 ++++-
+> > > >  2 files changed, 8 insertions(+), 2 deletions(-)
+> > > >=20
+> > > > diff --git a/drivers/clk/qcom/a53-pll.c b/drivers/clk/qcom/a53-pll.c
+> > > > index 8614b0b0e82c..964f5ab7d02f 100644
+> > > > --- a/drivers/clk/qcom/a53-pll.c
+> > > > +++ b/drivers/clk/qcom/a53-pll.c
+> > > > @@ -42,6 +42,7 @@ static int qcom_a53pll_probe(struct platform_devi=
+ce *pdev)
+> > > >         struct clk_pll *pll;
+> > > >         void __iomem *base;
+> > > >         struct clk_init_data init =3D { };
+> > > > +       const char *clk_name =3D NULL;
+> > > >         int ret;
+> > > > =20
+> > > >         pll =3D devm_kzalloc(dev, sizeof(*pll), GFP_KERNEL);
+> > > > @@ -66,7 +67,9 @@ static int qcom_a53pll_probe(struct platform_devi=
+ce *pdev)
+> > > >         pll->status_bit =3D 16;
+> > > >         pll->freq_tbl =3D a53pll_freq;
+> > > > =20
+> > > > -       init.name =3D "a53pll";
+> > > > +       of_property_read_string(pdev->dev.of_node, "clock-output-na=
+mes",
+> > > > +                               &clk_name);
+> > >=20
+> > > Please no? Is there any use for this? Why not just generate the name =
+as
+> > > a53pll@<MMIO ADDRESS>?
+> >=20
+> > There is no other use for this than getting different names.  I will do
+> > what you suggest here.  Thanks!
+> >=20
+>=20
+> I have exactly the same problem with my two DP PHYs (in
+> phy_dp_clks_register()), so I'm in favor of us setting some sort of
+> standard for this (not for anyone to rely on, but to avoid everyone
+> coming up with their own scheme).
+>=20
+> But unfortunately I don't have easy access to the phy block's base
+> address in phy_dp_clks_register().
 
-Thanks for your review comments.
-
-On Tue, 29 Jun 2021 at 21:31, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Tue, Jun 29, 2021 at 2:15 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> >
-> > On enable CONFIG_REGULATOR_DEBUG=y we observer below debug logs.
-> I (as non-native english speaker) suggest rewording this to:
-> After enabling CONFIG_REGULATOR_DEBUG=y we observe below debug logs.
->
-Opps: I will fix this in the next version.
-
-> > Changes help link VCCK and VDDEE pwm regulator to 5V regulator supply
-> > instead of dummy regulator.
-> >
-> > [    7.117140] pwm-regulator regulator-vcck: Looking up pwm-supply from device tree
-> > [    7.117153] pwm-regulator regulator-vcck: Looking up pwm-supply property in node /regulator-vcck failed
-> > [    7.117184] VCCK: supplied by regulator-dummy
-> > [    7.117194] regulator-dummy: could not add device link regulator.8: -ENOENT
-> > [    7.117266] VCCK: 860 <--> 1140 mV at 986 mV, enabled
-> > [    7.118498] VDDEE: will resolve supply early: pwm
-> > [    7.118515] pwm-regulator regulator-vddee: Looking up pwm-supply from device tree
-> > [    7.118526] pwm-regulator regulator-vddee: Looking up pwm-supply property in node /regulator-vddee failed
-> > [    7.118553] VDDEE: supplied by regulator-dummy
-> > [    7.118563] regulator-dummy: could not add device link regulator.9: -ENOENT
-> excellent catch, thanks for sending a patch!
->
-> > Fixes: 524d96083b66 ("ARM: dts: meson8b: odroidc1: add the CPU voltage regulator")
-> > Fixes: 8bdf38be712d ("ARM: dts: meson8b: odroidc1: add the VDDEE regulator")
-> >
-> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> Tested-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-Thanks
-
-> For the subject:
-> - patches for 32-bit ARM should start with upper-case ARM
-> - personally I also include the board name so the git history is easier to read
->
-> My suggestion for the subject line is:
-> ARM: dts: meson8b: odroidc1: Fix the pwm regulator supply properties
->
-Ok I will try to incorporate your suggestion in the next version.
-
-> Are you also planning to send patches for the following 32-bit SoC boards?
-> - arch/arm/boot/dts/meson8b-mxq.dts
-> - arch/arm/boot/dts/meson8b-ec100.dts
->
-Ok I will try to send all updates in the next series.
-
->
-> Best regards,
-> Martin
+It really doesn't matter what name you use as it's basically only for
+debugging. The problem is uniqueness. I've wondered if leaving the name
+as NULL and then passing in a dev would be sufficient to generate a clk
+name at runtime. Basically dev_name() plus an incrementing global
+numberspace would probably work fine. Debugging would be annoying in
+that case, but maybe it wouldn't matter.
