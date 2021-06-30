@@ -2,178 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C683E3B7B82
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 04:27:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C02D3B7B94
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 04:35:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232520AbhF3C3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 22:29:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35114 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232459AbhF3C3p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 22:29:45 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EEB9C061768
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 19:27:14 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id h18so346561qve.1
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 19:27:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tLMSH/BMB3uEymS7rzii/Xh6++aPv9O2DmjWt+eI77Q=;
-        b=KKXjfX0zS+iZy8XOsNmPc2qONgDAEiLTLfA8c67gfaRXHxQr3aFCEcqUV3Iroa2tZu
-         TCjA+HqRkgJy3daRNGTYdXJWQliVQYh7co/IyGPs0U2na35YoS8hGKmFZwBFqZcveoGL
-         BjTvAg8VloasqDEwEhayNZBi3aZnO95wLkAAWItzAta+KlJEQLaikw9BJ9awnBNMQUYm
-         1zX6rKLbGls5aCKBMeUI5/BUpV0MgLi1Xt0NkJcdR4RB+QhiTIFuGPUX5PkPl5dpbURJ
-         9eZ6y7So/3JRn0Eib4mMtdmqDdOXqgf0LEBx7JO4X7EAcd4XgYSxVmCekmsQ4ND6YlCX
-         50jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=tLMSH/BMB3uEymS7rzii/Xh6++aPv9O2DmjWt+eI77Q=;
-        b=Mf8Go10qisjORfeFxqWYexJWnEwihAOOcyiJe0yUgBdZlMfOZACRfN2Zp/TYX93ZTE
-         K48LLSZ8SpTTeaSStb7zVBq9Fol3liVCcAc2Cao2AT59mi4GhRtxgswR9gBPRsziUZ+Q
-         QV3m9APFsr5wdv6S7IVEtV2TbCLcp5eZ5Zqmfx/vN2BUGkc4AcYxxWnjPxMIQTVRy2Az
-         /JVQzxjrW+CMm+P65BDvAoeG9VpnLs9Z6Ri6JfXgzKgQQBd/h8QLJ9zcdJRUurQVOD4H
-         imeIVnoeuoechup1LxCh2PP/oweyfVqRnSlO/MGufn1VC3nrflA845gOYt8uSvb7NvAQ
-         6c4w==
-X-Gm-Message-State: AOAM531HvEORxVB4Gw4nBSDq6h++FIMXiEJbwncFdTGtUATFo6isXvhi
-        b8CtSTMqDJ3h3Uz15L5fbDcL+R8NR650ZQ==
-X-Google-Smtp-Source: ABdhPJzrYhtmAlan5l1egUye4D6sjkG2tBt15IOpdEQlyL3tVN+CuPS33sx6P++iHlDtqd/j66Q/Zw==
-X-Received: by 2002:ad4:4245:: with SMTP id l5mr31231802qvq.45.1625020033191;
-        Tue, 29 Jun 2021 19:27:13 -0700 (PDT)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id k138sm2548006qke.71.2021.06.29.19.27.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Jun 2021 19:27:12 -0700 (PDT)
-Subject: Re: [Patch v2 3/5] cpufreq: qcom-cpufreq-hw: Add dcvs interrupt
- support
-To:     Taniya Das <tdas@codeaurora.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, viresh.kumar@linaro.org,
-        rjw@rjwysocki.net, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20210624115813.3613290-1-thara.gopinath@linaro.org>
- <20210624115813.3613290-4-thara.gopinath@linaro.org>
- <34542481-09b0-ae3b-25f1-77565bf47755@codeaurora.org>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <d911a44f-37df-65c1-d38f-55f13e630540@linaro.org>
-Date:   Tue, 29 Jun 2021 22:27:11 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S232478AbhF3CiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 22:38:10 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:33782 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231938AbhF3CiI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 22:38:08 -0400
+X-UUID: 5911c5eb51dc4d4887087db639e97605-20210630
+X-UUID: 5911c5eb51dc4d4887087db639e97605-20210630
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1746401114; Wed, 30 Jun 2021 10:35:36 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 30 Jun 2021 10:35:13 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 30 Jun 2021 10:35:12 +0800
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
+        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
+        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>
+Subject: [PATCH 00/24] MT8195 IOMMU SUPPORT
+Date:   Wed, 30 Jun 2021 10:34:40 +0800
+Message-ID: <20210630023504.18177-1-yong.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <34542481-09b0-ae3b-25f1-77565bf47755@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset add mt8195 iommu supports.
 
+mt8195 have 3 IOMMU HWs. 2 IOMMU HW is for multimedia, and 1 IOMMU HW is
+for infra-master, like PCIe/USB.
 
-On 6/28/21 10:50 PM, Taniya Das wrote:
-> 
-> 
-> On 6/24/2021 5:28 PM, Thara Gopinath wrote:
->> Add interrupt support to notify the kernel of h/w initiated frequency
->> throttling by LMh. Convey this to scheduler via thermal presssure
->> interface.
->>
->> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
->> ---
->>
->> v1->v2:
->>     - Introduced qcom_cpufreq_hw_lmh_init to consolidate LMh related 
->> initializations
->>       as per Viresh's review comment.
->>     - Moved the piece of code restarting polling/re-enabling LMh 
->> interrupt to
->>       qcom_lmh_dcvs_notify therby simplifying isr and timer callback 
->> as per Viresh's
->>       suggestion.
->>     - Droped cpus from qcom_cpufreq_data and instead using cpus from 
->> cpufreq_policy in
->>       qcom_lmh_dcvs_notify as per Viresh's review comment.
->>     - Dropped dt property qcom,support-lmh as per Bjorn's suggestion.
->>     - Other minor/cosmetic fixes
->>
->>   drivers/cpufreq/qcom-cpufreq-hw.c | 103 ++++++++++++++++++++++++++++++
->>   1 file changed, 103 insertions(+)
->>
->> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c 
->> b/drivers/cpufreq/qcom-cpufreq-hw.c
->> index f86859bf76f1..241f6f2b441f 100644
->> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
->> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+About the 2 MM IOMMU HW, something like this:
 
-[snip]
+        IOMMU(VDO)          IOMMU(VPP)
+           |                   |
+      SMI_COMMON(VDO)      SMI_COMMON(VPP)
+      ---------------     ----------------
+      |      |   ...      |      |     ...
+    larb0 larb2  ...    larb1 larb3    ...
 
->>   static const struct qcom_cpufreq_soc_data qcom_soc_data = {
->>       .reg_enable = 0x0,
->>       .reg_freq_lut = 0x110,
->>       .reg_volt_lut = 0x114,
->> +    .reg_current_vote = 0x704,
->>       .reg_perf_state = 0x920,
->>       .lut_row_size = 32,
->>   };
->> @@ -274,6 +350,23 @@ static const struct of_device_id 
->> qcom_cpufreq_hw_match[] = {
->>   };
->>   MODULE_DEVICE_TABLE(of, qcom_cpufreq_hw_match);
->> +static void qcom_cpufreq_hw_lmh_init(struct cpufreq_policy *policy)
->> +{
->> +    struct qcom_cpufreq_data *data = policy->driver_data;
->> +    struct platform_device *pdev = cpufreq_get_driver_data();
->> +    struct device *dev = &pdev->dev;
->> +    int ret;
->> +
->> +    ret = devm_request_irq(dev, data->lmh_dcvs_irq, 
->> qcom_lmh_dcvs_handle_irq,
->> +                   0, "dcvsh-irq", data);
-> 
-> 
-> It is better if you tag the CPU id while registering the IRQ.
-> "dcvsh-irq-x" (0/4/7)
+these two MM IOMMU HW share a pgtable.
 
-Sure. Will fix it.
+About the INFRA IOMMU, it don't have larbs, the master connects the iommu
+directly. It use a dependent pgtable.
 
-> 
->> +    if (ret) {
->> +        dev_err(dev, "Error %d registering irq %x\n", ret, 
->> data->lmh_dcvs_irq);
->> +        return;
->> +    }
->> +    data->policy = policy;
->> +    INIT_DEFERRABLE_WORK(&data->lmh_dcvs_poll_work, qcom_lmh_dcvs_poll);
->> +}
->> +
->>   static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->>   {
->>       struct platform_device *pdev = cpufreq_get_driver_data();
->> @@ -370,6 +463,16 @@ static int qcom_cpufreq_hw_cpu_init(struct 
->> cpufreq_policy *policy)
->>               dev_warn(cpu_dev, "failed to enable boost: %d\n", ret);
->>       }
->> +    /* Look for LMh interrupt. If no interrupt line is specified /
->> +     * if there is an error, allow cpufreq to be enabled as usual.
->> +     */
->> +    data->lmh_dcvs_irq = platform_get_irq(pdev, index);
->> +    if (data->lmh_dcvs_irq > 0) {
->> +        qcom_cpufreq_hw_lmh_init(policy);
->> +    } else if (data->lmh_dcvs_irq != -ENXIO) {
->> +        ret = data->lmh_dcvs_irq;
->> +        goto error;
->> +    }
->>       return 0;
->>   error:
->>       kfree(data);
->>
-> 
+Also, mt8195 IOMMU bank supports..Normally the IOMMU register size only
+is 0x1000. In this IOMMU HW, the register size is 5 * 0x1000. each 0x1000
+is a bank. the banks' register look like this:
+     ----------------------------------------
+     |bank0  | bank1 | bank2 | bank3 | bank4|
+     ----------------------------------------
+     |global |
+     |control|         null
+     |regs   |
+     -----------------------------------------
+     |bank   |bank   |bank   |bank   |bank   |
+     |regs   |regs   |regs   |regs   |regs   |
+     |       |       |       |       |       |
+     -----------------------------------------
+All the banks share some global control registers, and each bank have its
+special bank registers, like pgtable base registser, tlb operation registers,
+the fault status registers.
+ 
+In mt8195, we enable this bank feature for infra iommu, We put PCIe in bank0
+and USB in bank4. they have independent pgtable.
+
+patch[1..15]:  support mt8195 iommu. 
+patch[16..24]: support bank feature.
+
+base on v5.13-rc1.
+
+todo: there is another APU_IOMMU in mt8195, this should depend on APU patches.
+thus, we need add that feature after that.
+
+---
+Yong Wu (24):
+  dt-bindings: mediatek: mt8195: Add binding for MM IOMMU
+  dt-bindings: mediatek: mt8195: Add binding for infra IOMMU
+  iommu/mediatek: Fix 2 HW sharing pgtable issue
+  iommu/mediatek: Adapt sharing and non-sharing pgtable case
+  iommu/mediatek: Add 12G~16G support for mult domain
+  iommu/mediatek: Add a flag DCM_DISABLE
+  iommu/mediatek: Add flag NON_STD_AXI
+  iommu/mediatek: Remove for_each_m4u in tlb_sync_all
+  iommu/mediatek: Always pm_runtime_get while tlb flush
+  iommu/mediatek: Always enable output PA over 32bits
+  iommu/mediatek: Add SUB_COMMON_3BITS flag
+  iommu/mediatek: Add IOMMU_TYPE flag
+  iommu/mediatek: Add infra iommu support
+  iommu/mediatek: Add PCIe support
+  iommu/mediatek: Add mt8195 support
+  iommu/mediatek: Only adjust code about register base
+  iommu/mediatek: Just move code position in hw_init
+  iommu/mediatek: Add mtk_iommu_bank_data structure
+  iommu/mediatek: Initialise bank HW for each a bank
+  iommu/mediatek: Add bank_nr and bank_enable
+  iommu/mediatek: Change the domid to iova_region_id
+  iommu/mediatek: Get the proper bankid for multi banks
+  iommu/mediatek: Add multi bank support
+  iommu/mediatek: mt8195: Enable multi-bank for infra iommu
+
+ .../bindings/iommu/mediatek,iommu.yaml        |  21 +-
+ drivers/iommu/mtk_iommu.c                     | 760 ++++++++++++------
+ drivers/iommu/mtk_iommu.h                     |  33 +-
+ .../dt-bindings/memory/mt8195-memory-port.h   | 408 ++++++++++
+ include/dt-bindings/memory/mtk-memory-port.h  |   2 +
+ 5 files changed, 961 insertions(+), 263 deletions(-)
+ create mode 100644 include/dt-bindings/memory/mt8195-memory-port.h
 
 -- 
-Warm Regards
-Thara (She/Her/Hers)
+2.18.0
+
+
