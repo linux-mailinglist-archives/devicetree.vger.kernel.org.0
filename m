@@ -2,80 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 651413B7C4C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 05:53:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9AC33B7C4E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 05:55:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232840AbhF3D4P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 23:56:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54272 "EHLO
+        id S233237AbhF3D5l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 23:57:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232977AbhF3D4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 23:56:14 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA38EC061768
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 20:53:12 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id z4so699820plg.8
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 20:53:12 -0700 (PDT)
+        with ESMTP id S233127AbhF3D5i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 23:57:38 -0400
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 845F5C061766
+        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 20:55:03 -0700 (PDT)
+Received: by mail-pj1-x1030.google.com with SMTP id p4-20020a17090a9304b029016f3020d867so463259pjo.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 20:55:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=UD8T97d6m5wJ+ibsAaXsXaCeGXCEKJyV5O+K6ZTbqtk=;
-        b=R7GIPWVXUcCcFCZro/fdSCmKWKSZvb0/CPUuhSh6bLmBN+XLgDK4j3FaDTiEwW2Uyc
-         4jlJ2KBTfrJv6u4/aSfvO+bH6Y1Bw0Oe2fA800RIkbCB9DHg7SIguJYYOdTorgfb4I9D
-         ohrOYZYT/ehlwSZRzW5vwL7NJwK+XdkCOltFHuKFzwXVe0RrulCgKq8qSyIw8567KuQi
-         SF3Ka/kuOYQ6idEixi3oo3CsrtcRiCAirnFwdTLSQV1J6NVDIwgeu77++PNC+5KZ8ukw
-         RCccynICKc9Li5OSM0gK+/iCqXDWMWfQq4PGbmIsQHpsjyX8IWlYvLABj1BSmn6KjIMr
-         KkWQ==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XTRseahQAn7N0oXgs/qWK7jL4rGQhAjklYtYGhb1AyQ=;
+        b=NO5OEIQsKYNpdr2LWayi7XLdIScBEOu4kjYg+ef74vvy8kzigpTWON3vmLPFeT5gTC
+         f87p9QJk5st+s2ZG5dWu1HKfyRwJbDsbsauCW4e3auXjUhUmMsP3IxAZj9MRj9fiKDGL
+         Zug8Ck07asx4KGT0rcv05OFwQUGLRNCCTVgOM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=UD8T97d6m5wJ+ibsAaXsXaCeGXCEKJyV5O+K6ZTbqtk=;
-        b=dh98Jo3jDcfbVdS5VQyMuREK2Ac9MFJG4JQUmBOLj48w8I1O855RKr4MCKQq3V9rCA
-         DY3K6jv7BROYUPpP28vJNqEpuFe27bW0Uj3z1b+tPWXpg9J+8G2cqWk0YAJOHMT9CXdp
-         NDWKurRSOd89aayFe3s/m3Kp7a5Wy13iEn15T6m1jow4WgC7Dni5iAy5MyZjG6L778Or
-         ruyPJGPFVKCvGvSKkSEwH3xBfZmsQUo8VtkSClI/4V/Tvnb+gcfIQcnluiW4jujdW4XR
-         zxZQCaP2fJ1GMMqtCDGhU8CBrLFjOx0wI4LTamkewmqiNOMoBgT8F2zlEV3TUxamw+Kr
-         LvAQ==
-X-Gm-Message-State: AOAM531GPcqFuE3fiDs8/dgb/WeIzXMtzEadvhwxfEsbB7S9WygtmN4l
-        9+6ilr1ZMKGI9HDtyMrTIOC+BA==
-X-Google-Smtp-Source: ABdhPJzwaGRPZR/RwPb5361P3l44INggwSiCue7C9Mww3eNhmzaKQEkIeHOGInLB9v/6PM7o1G3asA==
-X-Received: by 2002:a17:90a:fa92:: with SMTP id cu18mr2311163pjb.215.1625025192309;
-        Tue, 29 Jun 2021 20:53:12 -0700 (PDT)
-Received: from localhost ([136.185.134.182])
-        by smtp.gmail.com with ESMTPSA id n33sm19872937pgm.55.2021.06.29.20.53.11
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XTRseahQAn7N0oXgs/qWK7jL4rGQhAjklYtYGhb1AyQ=;
+        b=i7b8q7RtUMEDq0bIjzAPu8L20QL7bUTYdRi7yxSxgSXpBge5+p5EqlSxarTqvrfyZI
+         2PYOhxnLHeCtbmgQ35yQSsyPa0Hec9+OIjbFVxrcucAv9rBgi1o7j+lMtY6cK+w8JVal
+         eBiUhGfPDw/wVfj7A/CQ/HiB7Ng2xxyTc7aWCzYwGzrXtpVnRAkf83KBfDNlR4ZNmFBW
+         tl7Bhb0vcKbyhoYjguWfbw0cYal2sYcECxriT6LyqitqjWCJyP5cZ8OpWJaAX645f8Ho
+         QFX7N9UiDqHReyTLJMpL07u5KnW/ZStOf4IsTf5LzfD2GtPt9W0DRSUuEqVEjsUOcOVh
+         A/4A==
+X-Gm-Message-State: AOAM532+pOyaf9h/uvSoaM6Y+q50DeMcyK8mj++lTjkWowcxLD4WyXG7
+        Eoz3Yd72W8FuHUoEi4KWZHFmcw1JqYhbQw==
+X-Google-Smtp-Source: ABdhPJxpm0eVuqMaGGYVUYcbD+lr8qVwBZYtjBw5loLKQrjnuA9sFFcXJwaQZLigcKOJJXKjl8OsjA==
+X-Received: by 2002:a17:902:b193:b029:11a:a179:453a with SMTP id s19-20020a170902b193b029011aa179453amr30293113plr.69.1625025303074;
+        Tue, 29 Jun 2021 20:55:03 -0700 (PDT)
+Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:2f49:a14d:fd5:cbd3])
+        by smtp.gmail.com with ESMTPSA id f6sm13264333pfj.28.2021.06.29.20.55.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Jun 2021 20:53:11 -0700 (PDT)
-Date:   Wed, 30 Jun 2021 09:23:07 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Thara Gopinath <thara.gopinath@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, rjw@rjwysocki.net, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [Patch v2 3/5] cpufreq: qcom-cpufreq-hw: Add dcvs interrupt
- support
-Message-ID: <20210630035307.gaglmi36lqk3shwp@vireshk-i7>
-References: <20210624115813.3613290-1-thara.gopinath@linaro.org>
- <20210624115813.3613290-4-thara.gopinath@linaro.org>
- <20210629023556.v3u4hdye5ojolubq@vireshk-i7>
- <5d194c91-e557-e5f5-60d6-ad2b1ca2def4@linaro.org>
+        Tue, 29 Jun 2021 20:55:02 -0700 (PDT)
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>, zhiyong.tao@mediatek.com
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: mt8183: kukui: use generic pin configs for i2c pins
+Date:   Wed, 30 Jun 2021 11:54:44 +0800
+Message-Id: <20210630035443.2144958-1-hsinyi@chromium.org>
+X-Mailer: git-send-email 2.32.0.93.g670b81a890-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5d194c91-e557-e5f5-60d6-ad2b1ca2def4@linaro.org>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-06-21, 22:25, Thara Gopinath wrote:
-> I don't think cpufreq_cooling recognizes boost frequencies. The max state
-> there is the max of nominal frequencies , right? If not, it might be a good
-> idea to add this check there as well.
+mt8183 i2c pins don't support PUPD register, so change to use generic
+pin configs instead of let it fail and fallback.
 
-Ahh, that explains it.
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index ae549d55a94fc..69dc04c3f7fff 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -426,7 +426,7 @@ i2c0_pins: i2c0 {
+ 		pins_bus {
+ 			pinmux = <PINMUX_GPIO82__FUNC_SDA0>,
+ 				 <PINMUX_GPIO83__FUNC_SCL0>;
+-			mediatek,pull-up-adv = <3>;
++			bias-pull-up;
+ 			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+@@ -435,7 +435,7 @@ i2c1_pins: i2c1 {
+ 		pins_bus {
+ 			pinmux = <PINMUX_GPIO81__FUNC_SDA1>,
+ 				 <PINMUX_GPIO84__FUNC_SCL1>;
+-			mediatek,pull-up-adv = <3>;
++			bias-pull-up;
+ 			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+@@ -453,7 +453,7 @@ i2c3_pins: i2c3 {
+ 		pins_bus {
+ 			pinmux = <PINMUX_GPIO50__FUNC_SCL3>,
+ 				 <PINMUX_GPIO51__FUNC_SDA3>;
+-			mediatek,pull-up-adv = <3>;
++			bias-pull-up;
+ 			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
+@@ -471,7 +471,7 @@ i2c5_pins: i2c5 {
+ 		pins_bus {
+ 			pinmux = <PINMUX_GPIO48__FUNC_SCL5>,
+ 				 <PINMUX_GPIO49__FUNC_SDA5>;
+-			mediatek,pull-up-adv = <3>;
++			bias-pull-up;
+ 			mediatek,drive-strength-adv = <00>;
+ 		};
+ 	};
 -- 
-viresh
+2.32.0.93.g670b81a890-goog
+
