@@ -2,257 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A6243B8383
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 15:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FCD53B83C5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 15:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235220AbhF3Ntx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 09:49:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45518 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235178AbhF3Ntu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 09:49:50 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CAB5C061787
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 06:47:20 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id nd37so4342191ejc.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 06:47:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=from:subject:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=NiFfnM4nxPKv3wBf/KQmGM6lG+GXst7adkovnLuCU8U=;
-        b=wQ/r+hCBG+g9+ksz+k4ZRvsyRx0gxoQDcA+TuwHe8mxhBDxQ0rPrEFZGazh7JncXtc
-         yYVWG8d6O7IOUocV6gfxaHea7kuewGWzhuXl2fmW4lF/KJTUcwvQplKndHLHkpEdlKR2
-         wtlPBg2u9Hlz4+xy1m3THQwLwcxAVllSBERvcXscx/4vwbUUawRuM29w63EaITUiEeGp
-         ibVGzMn9gY9Q3VAGLnNqg4IX0YHOI0eqya93IxLsJvxaicqDAkDynqW4fBF6XRGAmaOy
-         cF2tQYSrK3uJ4wfpJfXUGToIJbTQxUJJBe/RMkm66nE3cVv92G6bbEdxyqvB8unwLi2d
-         FhnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=NiFfnM4nxPKv3wBf/KQmGM6lG+GXst7adkovnLuCU8U=;
-        b=i3n8PyCrYkNP1JCDAgKVwmr+f/gz804RPmuaXD3QUj6XHqFOiQLJlQBhuDrS+NXch6
-         sbzOf++Wj5sW4/ttMc7ZAenbC+RuDNiq6QsLxR6EiiFNDVmeWfq4KtHztXZr5aduzscB
-         JGIe3ldcz8T3bbTfbO5L8gHQFst6OltBayJKDGjC2XUQ0yyi3dIzJehEbvs+HGHVq6tn
-         zd810HI8+oGQeOpApyMXWwgCIVvpx2ox1/2sgCfjOU1yiT/76OqV4GPJRD3rp4JwTanX
-         dD9BfRM5h+CmKKiT9YpOqL2GsqPgXGCRt7CfTrEXWcMpmTDUdlOug0lE4Yi5uhCo5LaY
-         jFNA==
-X-Gm-Message-State: AOAM532gmrtIFmEsHefMIL4lIDVFSohoPre8Afh4EyEi2B27OOhcgARj
-        ncvSeiQ/zRVnnwVeOf9NFfjnSQ==
-X-Google-Smtp-Source: ABdhPJxsqeSQfJuyngC91sLJZ+6xnm0UeG2PQ+/LMc3+fz5GGaWtZwgPqPtgtUI3SwnHPFIXlNQ59g==
-X-Received: by 2002:a17:906:c010:: with SMTP id e16mr35364761ejz.214.1625060839125;
-        Wed, 30 Jun 2021 06:47:19 -0700 (PDT)
-Received: from ?IPv6:2a02:768:2307:40d6::648? ([2a02:768:2307:40d6::648])
-        by smtp.gmail.com with ESMTPSA id s5sm12876834edi.93.2021.06.30.06.47.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Jun 2021 06:47:18 -0700 (PDT)
-From:   Michal Simek <monstr@monstr.eu>
-Subject: Re: [PATCH v4 1/3] dt-bindings: pwm: Add Xilinx AXI Timer
-To:     Sean Anderson <sean.anderson@seco.com>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     michal.simek@xilinx.com, linux-kernel@vger.kernel.org,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>
-References: <20210528214522.617435-1-sean.anderson@seco.com>
-Message-ID: <13c9345f-b3e5-cc97-437b-c342777fcf3c@monstr.eu>
-Date:   Wed, 30 Jun 2021 15:47:18 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20210528214522.617435-1-sean.anderson@seco.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S235964AbhF3Nut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 09:50:49 -0400
+Received: from lucky1.263xmail.com ([211.157.147.130]:43114 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235400AbhF3NuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 09:50:20 -0400
+Received: from localhost (unknown [192.168.167.16])
+        by lucky1.263xmail.com (Postfix) with ESMTP id CD461D5CE7;
+        Wed, 30 Jun 2021 21:47:47 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P12363T139710655624960S1625060866985686_;
+        Wed, 30 Jun 2021 21:47:48 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <df29b39a843015d3edb4889d309cad07>
+X-RL-SENDER: jon.lin@rock-chips.com
+X-SENDER: jon.lin@rock-chips.com
+X-LOGIN-NAME: jon.lin@rock-chips.com
+X-FST-TO: linux-spi@vger.kernel.org
+X-RCPT-COUNT: 20
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+From:   Jon Lin <jon.lin@rock-chips.com>
+To:     linux-spi@vger.kernel.org
+Cc:     jon.lin@rock-chips.com, broonie@kernel.org, robh+dt@kernel.org,
+        heiko@sntech.de, jbx6244@gmail.com, hjc@rock-chips.com,
+        yifeng.zhao@rock-chips.com, sugar.zhang@rock-chips.com,
+        linux-rockchip@lists.infradead.org, linux-mtd@lists.infradead.org,
+        p.yadav@ti.com, macroalpha82@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v10 05/10] clk: rockchip:  add dt-binding for hclk_sfc on rk3036
+Date:   Wed, 30 Jun 2021 21:47:40 +0800
+Message-Id: <20210630134745.7561-1-jon.lin@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210630134702.7346-1-jon.lin@rock-chips.com>
+References: <20210630134702.7346-1-jon.lin@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Chris Morgan <macromorgan@hotmail.com>
 
+Add dt-binding for hclk_sfc on rk3036
 
-On 5/28/21 11:45 PM, Sean Anderson wrote:
-> This adds a binding for the Xilinx LogiCORE IP AXI Timer. This device is
-> a "soft" block, so it has many parameters which would not be
-> configurable in most hardware. This binding is usually automatically
-> generated by Xilinx's tools, so the names and values of some properties
-> must be kept as they are. Replacement properties have been provided for
-> new device trees.
-> 
-> Because we need to init timer devices so early in boot, the easiest way
-> to configure things is to use a device tree property. For the moment
-> this is 'xlnx,pwm', but this could be extended/renamed/etc. in the
-> future if these is a need for a generic property.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> ---
-> 
-> Changes in v4:
-> - Remove references to generate polarity so this can get merged
-> - Predicate PWM driver on the presence of #pwm-cells
-> - Make some properties optional for clocksource drivers
-> 
-> Changes in v3:
-> - Mark all boolean-as-int properties as deprecated
-> - Add xlnx,pwm and xlnx,gen?-active-low properties.
-> - Make newer replacement properties mutually-exclusive with what they
->   replace
-> - Add an example with non-deprecated properties only.
-> 
-> Changes in v2:
-> - Use 32-bit addresses for example binding
-> 
->  .../bindings/pwm/xlnx,axi-timer.yaml          | 85 +++++++++++++++++++
->  1 file changed, 85 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml b/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
-> new file mode 100644
-> index 000000000000..48a280f96e63
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/xlnx,axi-timer.yaml
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+---
 
-I don't think this is the right location for this.
+Changes in v10: None
+Changes in v9:
+- Separate FDT binding docs and includes from rk3036 sfc_hclk patch
 
-I have done some grepping and I think this should be done in a different
-way. I pretty much like solution around "ti,omap3430-timer" which is
-calling dmtimer_systimer_select_best() and later dmtimer_is_preferred()
-which in this case would allow us to get rid of cases which are not
-suitable for clocksource and clockevent.
+Changes in v8: None
+Changes in v7: None
+Changes in v6: None
+Changes in v5: None
+Changes in v4: None
+Changes in v3: None
+Changes in v2: None
+Changes in v1: None
 
-And there is drivers/pwm/pwm-omap-dmtimer.c which has link to timer
-which is providing functions for it's functionality.
+ include/dt-bindings/clock/rk3036-cru.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-I have also looked at
-Documentation/devicetree/bindings/timer/nxp,tpm-timer.yaml which is also
-the same device.
-
-And sort of curious if you look at
-https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v2_0/pg079-axi-timer.pdf
-( Figure 1-1)
-that PWM is taking input from generate out 0 and generate out 1 which is
-maybe can be modeled is any output and pwm driver can register inputs
-for pwm driver.
-
-
-> @@ -0,0 +1,85 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/xlnx,axi-timer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx LogiCORE IP AXI Timer Device Tree Binding
-> +
-> +maintainers:
-> +  - Sean Anderson <sean.anderson@seco.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +         - const: xlnx,axi-timer-2.0
-> +         - const: xlnx,xps-timer-1.00.a
-> +      - items:
-> +         - const: xlnx,xps-timer-1.00.a
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: s_axi_aclk
-
-Origin driver is not using this clock name and it is only one that's why
-it shouldn't be listed.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  xlnx,count-width:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 8
-> +    maximum: 32
-> +    default: 32
-
-This is not accurate. It should be enum because only 8/16/32 are valid
-values here.
-
-> +    description:
-> +      The width of the counter(s), in bits.
-> +
-> +  xlnx,one-timer-only:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [ 0, 1 ]
-> +    description:
-> +      Whether only one timer is present in this block.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - xlnx,one-timer-only
-> +
-> +allOf:
-> +  - if:
-> +      required:
-> +        - '#pwm-cells'
-
-Let's discussed this usage based on design.
-
-> +    then:
-> +      allOf:
-> +        - required:
-> +            - clocks
-> +        - properties:
-> +            xlnx,one-timer-only:
-> +              const: 0
-> +    else:
-> +      required:
-> +        - interrupts
-> +  - if:
-> +      required:
-> +        - clocks
-> +    then:
-> +      required:
-> +        - clock-names
-
-And this checking should be removed too.
-
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    axi_timer_0: timer@800e0000 {
-
-label is useless here and should be removed.
-
-> +        #pwm-cells = <0>;
-> +        clock-names = "s_axi_aclk";
-> +        clocks = <&zynqmp_clk 71>;
-> +        compatible = "xlnx,axi-timer-2.0", "xlnx,xps-timer-1.00.a";
-> +        reg = <0x800e0000 0x10000>;
-> +        xlnx,count-width = <0x20>;
-> +        xlnx,one-timer-only = <0x0>;
-> +    };
-> 
-
-I would list example without pwm-cells first as it is valid and reflect
-current status.
-
-Thanks,
-Michal
-
-
+diff --git a/include/dt-bindings/clock/rk3036-cru.h b/include/dt-bindings/clock/rk3036-cru.h
+index 35a5a01f9697..a96a9870ad59 100644
+--- a/include/dt-bindings/clock/rk3036-cru.h
++++ b/include/dt-bindings/clock/rk3036-cru.h
+@@ -81,6 +81,7 @@
+ #define HCLK_OTG0		449
+ #define HCLK_OTG1		450
+ #define HCLK_NANDC		453
++#define HCLK_SFC		454
+ #define HCLK_SDMMC		456
+ #define HCLK_SDIO		457
+ #define HCLK_EMMC		459
 -- 
-Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
-w: www.monstr.eu p: +42-0-721842854
-Maintainer of Linux kernel - Xilinx Microblaze
-Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
-U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
+2.17.1
+
+
 
