@@ -2,93 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FC153B854C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 16:48:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 787AA3B85A5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 17:00:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235651AbhF3Ou1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 10:50:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58986 "EHLO
+        id S235416AbhF3PDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 11:03:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235659AbhF3Otr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 10:49:47 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA354C06124C;
-        Wed, 30 Jun 2021 07:47:16 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 78C381F435F8
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     jitao.shi@mediatek.com, chunkuang.hu@kernel.org,
-        matthias.bgg@gmail.com, drinkcat@chromium.org, eizan@chromium.org,
-        kernel@collabora.com, linux-mediatek@lists.infradead.org,
-        hsinyi@chromium.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 4/6] arm64: dts: mt8183: Add the mmsys reset bit to reset the dsi0
-Date:   Wed, 30 Jun 2021 16:46:44 +0200
-Message-Id: <20210630164623.4.I933f1532d7a1b2910843a9644c86a7d94a4b44e1@changeid>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210630144646.868702-1-enric.balletbo@collabora.com>
-References: <20210630144646.868702-1-enric.balletbo@collabora.com>
+        with ESMTP id S235316AbhF3PDB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 11:03:01 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81CBCC061787
+        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 08:00:32 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id l26so732612oic.7
+        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 08:00:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=FXVON6UbQqGkLPMTAZ705DncSqnWs/KJ6hi9B+B7iEA=;
+        b=BCdSFyncUkYSn+RAF0inhWzw5hfvKsy7Rq0z3ymrOlxDRQcfr0eDprK5y8SLjpDKTm
+         SRNifrQOzs0HIIabCQg6Uld3ud2rzdrF6rs/u/QTvpZ6d1SOSdtTImxeFRNaQbrAL304
+         /TPfgoI1jGhhFWsc/9Od8Tc6jwnSSPaaqStGNwu6NLJ4XaQTwMgOBBQCZDaqKuc8Gkd0
+         hf4nJ6EjpqNMeWsAD/wC37LRvfzg4cJojOtHhw3cJEEemY6LwA6/TSpkBPmxZe72YAS2
+         f4ZYRL5ugiq6BiktJzU1CkeKHExwHjo+6XuCwmjU/m7eZdysVWtvbedIV9GtSUx68NAH
+         MD5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FXVON6UbQqGkLPMTAZ705DncSqnWs/KJ6hi9B+B7iEA=;
+        b=fXYdv7/V3uTZhr3S06NtIOIFBvcg0QCoeu1YZKYABaOrlI1m446IaIf+HqFYM1PC8S
+         /Kzq7lTcCrDdljPMxyBNrZZk7jeKsLChbRqRIDZUiZ2gQf9BnY8JnltENEVixpTOWh/7
+         rafCv8LVX1aGV843tQC/XEn4Bq1Vu42dsKYlqPcs04yq5Ln/3h3W5ixJOAiNyhnl1o2V
+         lOTQfbS68zcZc8opyLSF5pAzF/rOPjeMLOdFx6MzZ7VCbPBEnuEytIe/8W9vm2IWNqA/
+         CSHYe2lDcU4T4XELjKakLbUfaixP3fpNufF7QMJ9B9qM1a509F0IY9EjqEHCcBHxS0vR
+         n+wQ==
+X-Gm-Message-State: AOAM531t2juQgrJ1w0PPWuhOInyrnIzfM0Uv4/godB8YklOgwMNVmvuM
+        05eJq3vEZK6I0gKLQDkdLdJpQw==
+X-Google-Smtp-Source: ABdhPJzNKiXR125pZK+K/v/cxzouxQWFjeB5S15bysaD6y142DEGtsFzzZ9qxyZhOhDXKOlq9AZcEw==
+X-Received: by 2002:aca:ad52:: with SMTP id w79mr12866589oie.86.1625065231559;
+        Wed, 30 Jun 2021 08:00:31 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id 5sm4494248oot.29.2021.06.30.08.00.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Jun 2021 08:00:30 -0700 (PDT)
+Date:   Wed, 30 Jun 2021 10:00:28 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/6] clk: qcom: gdsc: enable optional power domain support
+Message-ID: <YNyHDAHk6ad/XCGl@yoga>
+References: <20210630133149.3204290-1-dmitry.baryshkov@linaro.org>
+ <20210630133149.3204290-4-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210630133149.3204290-4-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reset the DSI hardware is needed to prevent different settings between
-the bootloader and the kernel.
+On Wed 30 Jun 08:31 CDT 2021, Dmitry Baryshkov wrote:
 
-While here, also remove the undocumented and also not used
-'mediatek,syscon-dsi' property.
+> On sm8250 dispcc and videocc registers are powered up by the MMCX power
+> domain. Currently we used a regulator to enable this domain on demand,
+> however this has some consequences, as genpd code is not reentrant.
+> 
+> Teach Qualcomm clock controller code about setting up power domains and
+> using them for gdsc control.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
+There's a proposal to add a generic binding for statically assigning a
+performance states here:
 
- arch/arm64/boot/dts/mediatek/mt8183.dtsi  | 3 ++-
- include/dt-bindings/reset/mt8183-resets.h | 3 +++
- 2 files changed, 5 insertions(+), 1 deletion(-)
+https://lore.kernel.org/linux-arm-msm/1622095949-2014-1-git-send-email-rnayak@codeaurora.org/
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 085e2c96b5f4..2d02365633c3 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -1286,6 +1286,7 @@ mmsys: syscon@14000000 {
- 			compatible = "mediatek,mt8183-mmsys", "syscon";
- 			reg = <0 0x14000000 0 0x1000>;
- 			#clock-cells = <1>;
-+			#reset-cells = <1>;
- 			mboxes = <&gce 0 CMDQ_THR_PRIO_HIGHEST>,
- 				 <&gce 1 CMDQ_THR_PRIO_HIGHEST>;
- 			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
-@@ -1400,11 +1401,11 @@ dsi0: dsi@14014000 {
- 			reg = <0 0x14014000 0 0x1000>;
- 			interrupts = <GIC_SPI 236 IRQ_TYPE_LEVEL_LOW>;
- 			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
--			mediatek,syscon-dsi = <&mmsys 0x140>;
- 			clocks = <&mmsys CLK_MM_DSI0_MM>,
- 				 <&mmsys CLK_MM_DSI0_IF>,
- 				 <&mipi_tx0>;
- 			clock-names = "engine", "digital", "hs";
-+			resets = <&mmsys MT8183_MMSYS_SW0_RST_B_DISP_DSI0>;
- 			phys = <&mipi_tx0>;
- 			phy-names = "dphy";
- 		};
-diff --git a/include/dt-bindings/reset/mt8183-resets.h b/include/dt-bindings/reset/mt8183-resets.h
-index a1bbd41e0d12..48c5d2de0a38 100644
---- a/include/dt-bindings/reset/mt8183-resets.h
-+++ b/include/dt-bindings/reset/mt8183-resets.h
-@@ -80,6 +80,9 @@
- 
- #define MT8183_INFRACFG_SW_RST_NUM				128
- 
-+/* MMSYS resets */
-+#define MT8183_MMSYS_SW0_RST_B_DISP_DSI0			25
-+
- #define MT8183_TOPRGU_MM_SW_RST					1
- #define MT8183_TOPRGU_MFG_SW_RST				2
- #define MT8183_TOPRGU_VENC_SW_RST				3
--- 
-2.30.2
 
+But that said, do you really need this?
+
+The requirement for driving MMCX to LOW_SVS on SM8250 (and NOM on
+SM8150/SC8180x) seems to only come from the fact that you push MDP_CLK
+to 460MHz in &mdss.
+
+But then in &mdss_mdp you do the same using an opp-table based on the
+actual MDP_CLK, which per its power-domains will scale MMCX accordingly.
+
+
+So wouldn't it be sufficient to ensure that MDSS_GDSC is parented by
+MMCX and then use opp-tables associated with the devices that scales the
+clock and thereby actually carries the "required-opps".
+
+
+I presume your testing indicates that it doesn't matter on sm8250, but
+as stated above, 460MHz on sm8150/sc8180x requires nominal, so per your
+suggestion we'd have to vote nominal in &mdss, which means that if the
+DPU decides to go to 200MHz the &mdss will still keep the voltage at
+NOM, even though the DPU's opp-table says that LOW_SVS is sufficient.
+
+Regards,
+Bjorn
+
+> ---
+>  drivers/clk/qcom/common.c | 55 ++++++++++++++++++++++++++++++++++-----
+>  drivers/clk/qcom/gdsc.c   |  6 +++++
+>  2 files changed, 55 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/common.c b/drivers/clk/qcom/common.c
+> index 60d2a78d1395..eeb5b8c93032 100644
+> --- a/drivers/clk/qcom/common.c
+> +++ b/drivers/clk/qcom/common.c
+> @@ -10,6 +10,8 @@
+>  #include <linux/clk-provider.h>
+>  #include <linux/reset-controller.h>
+>  #include <linux/of.h>
+> +#include <linux/pm_opp.h>
+> +#include <linux/pm_runtime.h>
+>  
+>  #include "common.h"
+>  #include "clk-rcg.h"
+> @@ -76,6 +78,16 @@ qcom_cc_map(struct platform_device *pdev, const struct qcom_cc_desc *desc)
+>  	struct resource *res;
+>  	struct device *dev = &pdev->dev;
+>  
+> +	if (of_find_property(dev->of_node, "required-opps", NULL)) {
+> +		int pd_opp;
+> +
+> +		pd_opp = of_get_required_opp_performance_state(dev->of_node, 0);
+> +		if (pd_opp < 0)
+> +			return ERR_PTR(pd_opp);
+> +
+> +		dev_pm_genpd_set_performance_state(dev, pd_opp);
+> +	}
+> +
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>  	base = devm_ioremap_resource(dev, res);
+>  	if (IS_ERR(base))
+> @@ -224,6 +236,11 @@ static struct clk_hw *qcom_cc_clk_hw_get(struct of_phandle_args *clkspec,
+>  	return cc->rclks[idx] ? &cc->rclks[idx]->hw : NULL;
+>  }
+>  
+> +static void qcom_cc_pm_runtime_disable(void *data)
+> +{
+> +	pm_runtime_disable(data);
+> +}
+> +
+>  int qcom_cc_really_probe(struct platform_device *pdev,
+>  			 const struct qcom_cc_desc *desc, struct regmap *regmap)
+>  {
+> @@ -236,11 +253,28 @@ int qcom_cc_really_probe(struct platform_device *pdev,
+>  	struct clk_regmap **rclks = desc->clks;
+>  	size_t num_clk_hws = desc->num_clk_hws;
+>  	struct clk_hw **clk_hws = desc->clk_hws;
+> +	bool use_pm = false;
+>  
+>  	cc = devm_kzalloc(dev, sizeof(*cc), GFP_KERNEL);
+>  	if (!cc)
+>  		return -ENOMEM;
+>  
+> +	if (of_find_property(dev->of_node, "required-opps", NULL)) {
+> +		use_pm = true;
+> +
+> +		pm_runtime_enable(dev);
+> +		ret = pm_runtime_get_sync(dev);
+> +		if (ret < 0) {
+> +			pm_runtime_put(dev);
+> +			pm_runtime_disable(dev);
+> +			return ret;
+> +		}
+> +
+> +		ret = devm_add_action_or_reset(dev, qcom_cc_pm_runtime_disable, dev);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	reset = &cc->reset;
+>  	reset->rcdev.of_node = dev->of_node;
+>  	reset->rcdev.ops = &qcom_reset_ops;
+> @@ -251,7 +285,7 @@ int qcom_cc_really_probe(struct platform_device *pdev,
+>  
+>  	ret = devm_reset_controller_register(dev, &reset->rcdev);
+>  	if (ret)
+> -		return ret;
+> +		goto err;
+>  
+>  	if (desc->gdscs && desc->num_gdscs) {
+>  		scd = devm_kzalloc(dev, sizeof(*scd), GFP_KERNEL);
+> @@ -262,11 +296,11 @@ int qcom_cc_really_probe(struct platform_device *pdev,
+>  		scd->num = desc->num_gdscs;
+>  		ret = gdsc_register(scd, &reset->rcdev, regmap);
+>  		if (ret)
+> -			return ret;
+> +			goto err;
+>  		ret = devm_add_action_or_reset(dev, qcom_cc_gdsc_unregister,
+>  					       scd);
+>  		if (ret)
+> -			return ret;
+> +			goto err;
+>  	}
+>  
+>  	cc->rclks = rclks;
+> @@ -277,7 +311,7 @@ int qcom_cc_really_probe(struct platform_device *pdev,
+>  	for (i = 0; i < num_clk_hws; i++) {
+>  		ret = devm_clk_hw_register(dev, clk_hws[i]);
+>  		if (ret)
+> -			return ret;
+> +			goto err;
+>  	}
+>  
+>  	for (i = 0; i < num_clks; i++) {
+> @@ -286,14 +320,23 @@ int qcom_cc_really_probe(struct platform_device *pdev,
+>  
+>  		ret = devm_clk_register_regmap(dev, rclks[i]);
+>  		if (ret)
+> -			return ret;
+> +			goto err;
+>  	}
+>  
+>  	ret = devm_of_clk_add_hw_provider(dev, qcom_cc_clk_hw_get, cc);
+>  	if (ret)
+> -		return ret;
+> +		goto err;
+> +
+> +	if (use_pm)
+> +		pm_runtime_put(dev);
+>  
+>  	return 0;
+> +
+> +err:
+> +	if (use_pm)
+> +		pm_runtime_put(dev);
+> +
+> +	return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(qcom_cc_really_probe);
+>  
+> diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
+> index 51ed640e527b..40c384bda4fc 100644
+> --- a/drivers/clk/qcom/gdsc.c
+> +++ b/drivers/clk/qcom/gdsc.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/ktime.h>
+>  #include <linux/pm_domain.h>
+> +#include <linux/pm_runtime.h>
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/reset-controller.h>
+> @@ -237,6 +238,8 @@ static int gdsc_enable(struct generic_pm_domain *domain)
+>  	struct gdsc *sc = domain_to_gdsc(domain);
+>  	int ret;
+>  
+> +	pm_runtime_get_sync(domain->dev.parent);
+> +
+>  	if (sc->pwrsts == PWRSTS_ON)
+>  		return gdsc_deassert_reset(sc);
+>  
+> @@ -326,6 +329,8 @@ static int gdsc_disable(struct generic_pm_domain *domain)
+>  	if (sc->flags & CLAMP_IO)
+>  		gdsc_assert_clamp_io(sc);
+>  
+> +	pm_runtime_put(domain->dev.parent);
+> +
+>  	return 0;
+>  }
+>  
+> @@ -427,6 +432,7 @@ int gdsc_register(struct gdsc_desc *desc,
+>  			continue;
+>  		scs[i]->regmap = regmap;
+>  		scs[i]->rcdev = rcdev;
+> +		scs[i]->pd.dev.parent = desc->dev;
+>  		ret = gdsc_init(scs[i]);
+>  		if (ret)
+>  			return ret;
+> -- 
+> 2.30.2
+> 
