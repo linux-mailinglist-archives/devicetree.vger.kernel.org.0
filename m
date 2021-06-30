@@ -2,193 +2,327 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E81CD3B8875
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 20:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DA843B8928
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 21:31:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232358AbhF3Scr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 14:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52710 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233030AbhF3Scr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 14:32:47 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498CFC061756
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 11:30:17 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id q18so6855011lfc.7
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 11:30:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=R0zkcKp841s0XqP9/v6DKydNJDudXDrtFk9F38hA3kg=;
-        b=iAvhLjlbRgIbfVOrvgRi4yXYup9sGDtgenU4nw6ewl8lfQKpxPbFvmboEJAhl41Qj3
-         ICfE97Y7bocbBzwVpez4SbsWKkr+6R3AitZ4IeF3a6D+C6Ldot65Psq+drJ+uN67SFJR
-         Hxni+3zVPreqATXYrOh00A8e4xQ5yNEo72u2Kggr/ThPtmoScsM4bXr5l9xeKh0mvWAe
-         VACANg7IOjrQzIXP05Zv2El2QN4KCpVPaDfzIWxoBvt7sUYQ7V4e4yUnATbnukxhmfzl
-         QXCQuSlyyQUbZ0Su/hBO2zR1lrmcGrphMtr2jTqsSlBHECE1VULFLfxbg1V6k9C2riUw
-         DoAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=R0zkcKp841s0XqP9/v6DKydNJDudXDrtFk9F38hA3kg=;
-        b=SqVNydcAnnxrnH7Us7UyOA4rG1BaivZYLBrUWzCWjYDQCojR9gQtS+BmOrJRbi6Qbx
-         iNdBq0MHdvsAimo/JrZ2m1hGPufXA3pWw9qBcodtehbd2F2+LWV5udlUfuZNump9b3hO
-         2RcfZ4P9xiEgCnDJPebWMAdqqh6SaShi3s0SqapRKNoB/vT03mfaKAWVcmS4gzruXlka
-         kavluN55oI3WJAw4OiVV8s0mxdXNrNYZOI6af746wakoo82iShA8Doa65xVq/5d5P49A
-         zXmpbR5W13T+78n/W4HScBgLSZ8M4DbCssuszPey/a/j6CLuj5IPsc7q/e23vduW4E5t
-         klEA==
-X-Gm-Message-State: AOAM533hRNyjw8alfq5zzljPvy1VUIiK2fTvfA7QSysptJF8AtE8Dkek
-        ClnmltKL6Etzn6YFSclKGl/m9Ppu/2hGzQ==
-X-Google-Smtp-Source: ABdhPJyX9dZzrJsmWrEgOlPJEtznkY+F9X3mNV59i3DMz+jgLtHpZHuAM2qCFzPCSvDVK00de1gsAQ==
-X-Received: by 2002:a05:6512:1c7:: with SMTP id f7mr28590543lfp.181.1625077815537;
-        Wed, 30 Jun 2021 11:30:15 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id o142sm1986251lfa.299.2021.06.30.11.30.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jun 2021 11:30:15 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
-Subject: [PATCH 1/2 v2] drm/panel: Add DT bindings for Samsung LMS380KF01
-Date:   Wed, 30 Jun 2021 20:28:03 +0200
-Message-Id: <20210630182804.3628410-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
+        id S233710AbhF3TeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 15:34:21 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:47552 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233675AbhF3TeV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 15:34:21 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1625081512; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=0SXU6AvU5sB2MZGk7w9XTvpdFJk9l/OjBx5DRCacHS0=;
+ b=b38IaQbucCVaOvQIUHOxmb/X07nTYmloPJiGviV1eyklhfcHrVGSdbLhM8/cBb41NeN9ZbjJ
+ VfCMERfAv+9a2o211mEf/y79IuhvkX3wTWwdOxQntmyfhlAfClmXmGpIbHtX0LyY9Rhdj0MR
+ 47x36vMJI10ADqJ3kDxfYd1Gf/c=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 60dcc6904ca9face34f35405 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 30 Jun 2021 19:31:28
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 27FC5C4360C; Wed, 30 Jun 2021 19:31:27 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B1B0CC433F1;
+        Wed, 30 Jun 2021 19:31:25 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 01 Jul 2021 01:01:25 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        swboyd@chromium.org, ulf.hansson@linaro.org, rjw@rjwysocki.net,
+        agross@kernel.org, ohad@wizery.com, mathieu.poirier@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dianders@chromium.org, rishabhb@codeaurora.org,
+        sidgup@codeaurora.org
+Subject: Re: [PATCH v3 04/13] remoteproc: qcom: q6v5: Use qmp_send to update
+ co-processor load state
+In-Reply-To: <YNZGls1wHbWgsEO5@google.com>
+References: <1624560727-6870-1-git-send-email-sibis@codeaurora.org>
+ <1624560727-6870-5-git-send-email-sibis@codeaurora.org>
+ <YNZGls1wHbWgsEO5@google.com>
+Message-ID: <82de11c77b8b46dcdfec4a2d2569ac95@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Samsung Mobile Displays
-LMS380KF01 RGB DPI display panel.
+Hey Matthias,
+Thanks for taking time to review the series.
 
-Cc: devicetree@vger.kernel.org
-Cc: phone-devel@vger.kernel.org
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Noralf Trønnes <noralf@tronnes.org>
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v1->v2:
-- Expect SPI bindings to be pulled in for the client and state
-  spi-cpha: true etc.
-- Make port a required node.
-- Update the example to use a proper SPI controller (spi-gpio)
-  so we get full validation of the example.
----
- .../display/panel/samsung,lms380kf01.yaml     | 97 +++++++++++++++++++
- 1 file changed, 97 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,lms380kf01.yaml
+On 2021-06-26 02:41, Matthias Kaehlcke wrote:
+> On Fri, Jun 25, 2021 at 12:21:58AM +0530, Sibi Sankar wrote:
+>> The power domains exposed by the AOSS QMP driver control the load 
+>> state
+>> resources linked to modem, adsp, cdsp remoteprocs. These are used to
+>> notify the Always on Subsystem (AOSS) that a particular co-processor 
+>> is
+>> up/down. AOSS uses this information to wait for the co-processors to
+>> suspend before starting its sleep sequence.
+>> 
+>> These co-processors enter low-power modes independent to that of the
+>> application processor and the load state resources linked to them are
+>> expected to remain unaltered across system suspend/resume cycles. To
+>> achieve this behavior lets stop using the power-domains exposed by the
+>> AOSS QMP node and replace them with generic qmp_send interface 
+>> instead.
+>> 
+>> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+>> ---
+>>  drivers/remoteproc/qcom_q6v5.c      | 56 +++++++++++++++++++++++++-
+>>  drivers/remoteproc/qcom_q6v5.h      |  7 +++-
+>>  drivers/remoteproc/qcom_q6v5_adsp.c |  7 +++-
+>>  drivers/remoteproc/qcom_q6v5_mss.c  | 44 ++++----------------
+>>  drivers/remoteproc/qcom_q6v5_pas.c  | 80 
+>> +++++++++----------------------------
+>>  drivers/remoteproc/qcom_q6v5_wcss.c |  4 +-
+>>  6 files changed, 94 insertions(+), 104 deletions(-)
+>> 
+>> diff --git a/drivers/remoteproc/qcom_q6v5.c 
+>> b/drivers/remoteproc/qcom_q6v5.c
+>> index 9627a950928e..4a9a481c211b 100644
+>> --- a/drivers/remoteproc/qcom_q6v5.c
+>> +++ b/drivers/remoteproc/qcom_q6v5.c
+>> @@ -16,8 +16,28 @@
+>>  #include "qcom_common.h"
+>>  #include "qcom_q6v5.h"
+>> 
+>> +#define Q6V5_LOAD_STATE_MSG_LEN	64
+>>  #define Q6V5_PANIC_DELAY_MS	200
+>> 
+>> +static int q6v5_load_state_toggle(struct qcom_q6v5 *q6v5, bool 
+>> enable)
+>> +{
+>> +	char buf[Q6V5_LOAD_STATE_MSG_LEN] = {};
+>> +	int ret;
+>> +
+>> +	if (IS_ERR(q6v5->qmp))
+>> +		return 0;
+>> +
+>> +	snprintf(buf, sizeof(buf),
+>> +		 "{class: image, res: load_state, name: %s, val: %s}",
+>> +		 q6v5->load_state, enable ? "on" : "off");
+>> +
+>> +	ret = qmp_send(q6v5->qmp, buf, sizeof(buf));
+>> +	if (ret)
+>> +		dev_err(q6v5->dev, "failed to toggle load state\n");
+>> +
+>> +	return ret;
+>> +}
+>> +
+>>  /**
+>>   * qcom_q6v5_prepare() - reinitialize the qcom_q6v5 context before 
+>> start
+>>   * @q6v5:	reference to qcom_q6v5 context to be reinitialized
+>> @@ -26,6 +46,12 @@
+>>   */
+>>  int qcom_q6v5_prepare(struct qcom_q6v5 *q6v5)
+>>  {
+>> +	int ret;
+>> +
+>> +	ret = q6v5_load_state_toggle(q6v5, true);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>>  	reinit_completion(&q6v5->start_done);
+>>  	reinit_completion(&q6v5->stop_done);
+>> 
+>> @@ -47,6 +73,7 @@ EXPORT_SYMBOL_GPL(qcom_q6v5_prepare);
+>>  int qcom_q6v5_unprepare(struct qcom_q6v5 *q6v5)
+>>  {
+>>  	disable_irq(q6v5->handover_irq);
+>> +	q6v5_load_state_toggle(q6v5, false);
+>> 
+>>  	return !q6v5->handover_issued;
+>>  }
+>> @@ -196,12 +223,13 @@ EXPORT_SYMBOL_GPL(qcom_q6v5_panic);
+>>   * @pdev:	platform_device reference for acquiring resources
+>>   * @rproc:	associated remoteproc instance
+>>   * @crash_reason: SMEM id for crash reason string, or 0 if none
+>> + * @load_state: load state resource string
+>>   * @handover:	function to be called when proxy resources should be 
+>> released
+>>   *
+>>   * Return: 0 on success, negative errno on failure
+>>   */
+>>  int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct platform_device 
+>> *pdev,
+>> -		   struct rproc *rproc, int crash_reason,
+>> +		   struct rproc *rproc, int crash_reason, const char *load_state,
+>>  		   void (*handover)(struct qcom_q6v5 *q6v5))
+>>  {
+>>  	int ret;
+>> @@ -210,6 +238,7 @@ int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct 
+>> platform_device *pdev,
+>>  	q6v5->dev = &pdev->dev;
+>>  	q6v5->crash_reason = crash_reason;
+>>  	q6v5->handover = handover;
+>> +	q6v5->load_state = kstrdup_const(load_state, GFP_KERNEL);
+>> 
+>>  	init_completion(&q6v5->start_done);
+>>  	init_completion(&q6v5->stop_done);
+>> @@ -286,9 +315,34 @@ int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct 
+>> platform_device *pdev,
+>>  		return PTR_ERR(q6v5->state);
+>>  	}
+>> 
+>> +	q6v5->qmp = qmp_get(&pdev->dev);
+>> +	if (IS_ERR(q6v5->qmp)) {
+>> +		if (PTR_ERR(q6v5->qmp) != -ENODEV) {
+>> +			if (PTR_ERR(q6v5->qmp) != -EPROBE_DEFER)
+>> +				dev_err(&pdev->dev, "failed to acquire load state\n");
+>> +			return PTR_ERR(q6v5->qmp);
+>> +		}
+>> +	} else {
+>> +		if (!q6v5->load_state) {
+>> +			dev_err(&pdev->dev, "load state resource string empty\n");
+>> +			return -EINVAL;
+>> +		}
+>> +	}
+>> +
+>>  	return 0;
+>>  }
+>>  EXPORT_SYMBOL_GPL(qcom_q6v5_init);
+>> 
+>> +/**
+>> + * qcom_q6v5_deinit() - deinitialize the q6v5 common struct
+>> + * @q6v5:	reference to qcom_q6v5 context to be deinitialized
+>> + * @pdev:	platform_device reference for acquiring resources
+>> + */
+>> +void qcom_q6v5_deinit(struct qcom_q6v5 *q6v5, struct platform_device 
+>> *pdev)
+>> +{
+> 
+> pdev isn't used, remove it?
 
-diff --git a/Documentation/devicetree/bindings/display/panel/samsung,lms380kf01.yaml b/Documentation/devicetree/bindings/display/panel/samsung,lms380kf01.yaml
-new file mode 100644
-index 000000000000..ebc33c36c124
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/samsung,lms380kf01.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/samsung,lms380kf01.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung LMS380KF01 display panel
-+
-+description: The LMS380KF01 is a 480x800 DPI display panel from Samsung Mobile
-+  Displays (SMD) utilizing the WideChips WS2401 display controller. It can be
-+  used with internal or external backlight control.
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: samsung,lms380kf01
-+
-+  reg: true
-+
-+  interrupts:
-+    description: provides an optional ESD (electrostatic discharge)
-+      interrupt that signals abnormalities in the display hardware.
-+      This can also be raised for other reasons like erroneous
-+      configuration.
-+    maxItems: 1
-+
-+  reset-gpios: true
-+
-+  vci-supply:
-+    description: regulator that supplies the VCI analog voltage
-+      usually around 3.0 V
-+
-+  vccio-supply:
-+    description: regulator that supplies the VCCIO voltage usually
-+      around 1.8 V
-+
-+  backlight: true
-+
-+  spi-cpha: true
-+
-+  spi-cpol: true
-+
-+  spi-max-frequency:
-+    maximum: 1200000
-+
-+  port: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - spi-cpha
-+  - spi-cpol
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    spi {
-+      compatible = "spi-gpio";
-+      sck-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
-+      miso-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
-+      mosi-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
-+      cs-gpios = <&gpio 3 GPIO_ACTIVE_HIGH>;
-+      num-chipselects = <1>;
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      panel@0 {
-+        compatible = "samsung,lms380kf01";
-+        spi-max-frequency = <1200000>;
-+        spi-cpha;
-+        spi-cpol;
-+        reg = <0>;
-+        vci-supply = <&lcd_3v0_reg>;
-+        vccio-supply = <&lcd_1v8_reg>;
-+        reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <5 IRQ_TYPE_EDGE_RISING>;
-+
-+        port {
-+          panel_in: endpoint {
-+            remote-endpoint = <&display_out>;
-+          };
-+        };
-+      };
-+    };
-+
-+...
+thanks for catching this. It was an
+artefact of the recent qmp api changes.
+
+> 
+> 	kfree_const(q6v5->load_state);
+> 
+>> +	qmp_put(q6v5->qmp);
+>> +}
+>> +EXPORT_SYMBOL_GPL(qcom_q6v5_deinit);
+>> +
+>>  MODULE_LICENSE("GPL v2");
+>>  MODULE_DESCRIPTION("Qualcomm Peripheral Image Loader for Q6V5");
+>> diff --git a/drivers/remoteproc/qcom_q6v5.h 
+>> b/drivers/remoteproc/qcom_q6v5.h
+>> index 1c212f670cbc..3d9f525cb4ec 100644
+>> --- a/drivers/remoteproc/qcom_q6v5.h
+>> +++ b/drivers/remoteproc/qcom_q6v5.h
+>> @@ -5,6 +5,7 @@
+>> 
+>>  #include <linux/kernel.h>
+>>  #include <linux/completion.h>
+>> +#include <linux/soc/qcom/qcom_aoss.h>
+>> 
+>>  struct rproc;
+>>  struct qcom_smem_state;
+>> @@ -15,6 +16,8 @@ struct qcom_q6v5 {
+>>  	struct rproc *rproc;
+>> 
+>>  	struct qcom_smem_state *state;
+>> +	struct qmp *qmp;
+>> +
+>>  	unsigned stop_bit;
+>> 
+>>  	int wdog_irq;
+>> @@ -32,12 +35,14 @@ struct qcom_q6v5 {
+>> 
+>>  	bool running;
+>> 
+>> +	const char *load_state;
+>>  	void (*handover)(struct qcom_q6v5 *q6v5);
+>>  };
+>> 
+>>  int qcom_q6v5_init(struct qcom_q6v5 *q6v5, struct platform_device 
+>> *pdev,
+>> -		   struct rproc *rproc, int crash_reason,
+>> +		   struct rproc *rproc, int crash_reason, const char *load_state,
+>>  		   void (*handover)(struct qcom_q6v5 *q6v5));
+>> +void qcom_q6v5_deinit(struct qcom_q6v5 *q6v5, struct platform_device 
+>> *pdev);
+>> 
+>>  int qcom_q6v5_prepare(struct qcom_q6v5 *q6v5);
+>>  int qcom_q6v5_unprepare(struct qcom_q6v5 *q6v5);
+>> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c 
+>> b/drivers/remoteproc/qcom_q6v5_adsp.c
+>> index 8b0d8bbacd2e..0f5e0fd216b4 100644
+>> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+>> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+>> @@ -185,7 +185,9 @@ static int adsp_start(struct rproc *rproc)
+>>  	int ret;
+>>  	unsigned int val;
+>> 
+>> -	qcom_q6v5_prepare(&adsp->q6v5);
+>> +	ret = qcom_q6v5_prepare(&adsp->q6v5);
+>> +	if (ret)
+>> +		return ret;
+>> 
+>>  	ret = clk_prepare_enable(adsp->xo);
+>>  	if (ret)
+>> @@ -465,7 +467,7 @@ static int adsp_probe(struct platform_device 
+>> *pdev)
+>>  	if (ret)
+>>  		goto disable_pm;
+>> 
+>> -	ret = qcom_q6v5_init(&adsp->q6v5, pdev, rproc, 
+>> desc->crash_reason_smem,
+>> +	ret = qcom_q6v5_init(&adsp->q6v5, pdev, rproc, 
+>> desc->crash_reason_smem, NULL,
+>>  			     qcom_adsp_pil_handover);
+> 
+> Doesn't passing a load_state of NULL cause qcom_q6v5_init() to fail
+> with -EINVAL?
+
+qmp_get is expected to error out with
+-ENODEV since we don't mention a qmp
+node in dt. When a client needs to use
+qmp in the future we would replace NULL
+with the proper load_state string value.
+
+> 
+>> --- a/drivers/remoteproc/qcom_q6v5_wcss.c
+>> +++ b/drivers/remoteproc/qcom_q6v5_wcss.c
+>> @@ -1044,8 +1044,7 @@ static int q6v5_wcss_probe(struct 
+>> platform_device *pdev)
+>>  	if (ret)
+>>  		goto free_rproc;
+>> 
+>> -	ret = qcom_q6v5_init(&wcss->q6v5, pdev, rproc, 
+>> desc->crash_reason_smem,
+>> -			     NULL);
+>> +	ret = qcom_q6v5_init(&wcss->q6v5, pdev, rproc, 
+>> desc->crash_reason_smem, NULL, NULL);
+> 
+> Same as for adsp_probe(), doesn't a load_state of NULL cause _init() to 
+> fail?
+
+it won't for the same reason explained
+above.
+
 -- 
-2.31.1
-
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
