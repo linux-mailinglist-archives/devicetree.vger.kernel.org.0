@@ -2,115 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77DDC3B7E48
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 09:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 101223B7E68
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 09:57:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232598AbhF3HnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 03:43:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47796 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232573AbhF3HnT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 03:43:19 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71BA0C061766;
-        Wed, 30 Jun 2021 00:40:50 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id a5-20020a7bc1c50000b02901e3bbe0939bso833509wmj.0;
-        Wed, 30 Jun 2021 00:40:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ESnsglEXUA/oJjny6ysW39DXZqWa0zaOszI34gO6+Xw=;
-        b=BZlmzT+xB4JIRTvah0usPFHMmSJcAwGpRUEE8yNnFHadXBng8BHWDGe5NiHn3I/pkk
-         b+mGUsQp1WgvWv7pNgLX3YWOrORvkrubrWsFPZ+SMC1WcjTq5vihnoId53id9aWpXGEt
-         cfUW8ILkisSYzEqTZ0YfCEimVggW6/PD/Oq4x+5gjF23O1oz3cc8LKU0wZZtMUFlcsuQ
-         bbRWnWIouTnYM7RJB3jEqEeUbIUTpvakZ8HBZ1AaY/k2XcywN0iZEXLm9xPz6/mtLL7B
-         OqMfZxxTUAjW6KHfhrM4GcVwsNg3Sem4MfILH9q0mJbakEYRrLX40grsNAzDq/PdgO3q
-         PiVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ESnsglEXUA/oJjny6ysW39DXZqWa0zaOszI34gO6+Xw=;
-        b=gnqOH9qCRhtTnfUfSukjnLyzHo7ZD69fNPqhn4gh5wutmJKqNXEzWTK24r1LRtTeet
-         asGbdPclc1XUZ2yL+BTKpwI/bmhCWwXlMKSAEtfC0i+n3h82Q5zu3MlFaGtwHEuEsn1P
-         Pi3/LOFm6YlZ25vYPlBUQfx8WYay8trLxoYVBzXFcgPnYld2CKe/i3YcMl1hPRuE1cmu
-         b+sxnhhcvQYmLFNElHANp8iAoF9XiXTT77/WlLZy0guPqID4bMAq7uOQzo+Q3rGCO2zr
-         oHFKFUqmbHrZcAnnZk9pKXJvg0KkaC/pR+9KTMZ+DpLapyAt840MfNqM2R3PyBssH82c
-         qArQ==
-X-Gm-Message-State: AOAM531XVbOj5iPcFv6iK1dXsgslPO250M019KZwQOOoyk58wSUdC+Mx
-        kfDSGzTY1E0WasTYDdTpmz4=
-X-Google-Smtp-Source: ABdhPJzEHpvyW7L35YzdPCMfy3750B4ApNGNOi4nwfJuKIL34GnQ57OlGDecCLVHBqBhmzoTebMLlg==
-X-Received: by 2002:a1c:2985:: with SMTP id p127mr37133724wmp.165.1625038849067;
-        Wed, 30 Jun 2021 00:40:49 -0700 (PDT)
-Received: from ziggy.stardust (static-55-132-6-89.ipcom.comunitel.net. [89.6.132.55])
-        by smtp.gmail.com with ESMTPSA id s5sm21282739wrn.38.2021.06.30.00.40.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Jun 2021 00:40:48 -0700 (PDT)
-Subject: Re: [RESEND PATCH v2 3/4] soc: mediatek: pm-domains: Add support for
- mt8195
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20210616000659.28347-1-chun-jie.chen@mediatek.com>
- <20210616000659.28347-4-chun-jie.chen@mediatek.com>
- <3c7695d9-f7aa-0cb0-871a-f53daee0362d@collabora.com>
- <526fc951eaf6c44f04c7a84786ca3c7ddf63a9d6.camel@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <4062efe7-b327-b33b-42d3-28570cae2c6e@gmail.com>
-Date:   Wed, 30 Jun 2021 09:40:47 +0200
+        id S232966AbhF3IAX convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 30 Jun 2021 04:00:23 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:51170 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232788AbhF3IAX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Jun 2021 04:00:23 -0400
+Received: from [77.244.183.192] (port=64010 helo=[192.168.178.41])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1lyV6X-0006JT-Af; Wed, 30 Jun 2021 09:57:53 +0200
+Subject: Re: [PATCH v3 1/2] dt-bindings: clk: vc5: Add properties for
+ configuring the SD/OE pin
+To:     Sean Anderson <sean.anderson@seco.com>, linux-clk@vger.kernel.org
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Adam Ford <aford173@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+References: <20210629154740.3091884-1-sean.anderson@seco.com>
+ <9edd6194-3a71-4f31-dd39-ba831e00b9d8@lucaceresoli.net>
+ <3feea852-cd59-520a-ec60-5dd1c1c7a824@seco.com>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <b546c671-2bec-4db7-2f5d-63c97c3a3258@lucaceresoli.net>
+Date:   Wed, 30 Jun 2021 09:57:52 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.2
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <526fc951eaf6c44f04c7a84786ca3c7ddf63a9d6.camel@mediatek.com>
+In-Reply-To: <3feea852-cd59-520a-ec60-5dd1c1c7a824@seco.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8BIT
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+On 29/06/21 23:41, Sean Anderson wrote:
+> 
+> 
+> On 6/29/21 5:23 PM, Luca Ceresoli wrote:
+>> Hi Sean,
+>>
+>> On 29/06/21 17:47, Sean Anderson wrote:
+>>> These properties allow configuring the SD/OE pin as described in the
+>>> datasheet.
+>>
+>> *Many* thanks for addressing this issue so quickly!
+>>
+>>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+>>> Acked-by: Rob Herring <robh@kernel.org>
+>>
+>> I don't think Rob's ack should be present, he hasn't approved _this_
+>> version of the patch.
+> 
+> Sorry, I was unsure whether I should keep it or not.
 
-On 28/06/2021 15:15, Chun-Jie Chen wrote:
-> On Fri, 2021-06-25 at 11:07 +0200, Enric Balletbo i Serra wrote:
->> Hi Chun-Jie Chen,
->>
->> Thank you for your patch.
->>
->> On 16/6/21 2:06, Chun-Jie Chen wrote:
->>> Add domain control data including bus protection data size
->>> change due to more protection steps in mt8195 and wakeup flag
->>> in power domain for wakeup control in suspend.
+It's OK if the patch is unchanged or has only changes that are
+minimal/irrelevant.
+
+>>> ---
 >>>
+>>> Changes in v3:
+>>> - Add idt,disable-shutdown and idt,output-enable-active-low to allow for
+>>>   a default of not changing the SP/SH bits at all.
+>>>
+>>> Changes in v2:
+>>> - Rename idt,sd-active-high to idt,output-enable-active-high
+>>> - Add idt,enable-shutdown
+>>>
+>>>  .../bindings/clock/idt,versaclock5.yaml       | 44 +++++++++++++++++++
+>>>  1 file changed, 44 insertions(+)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>>> b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>>> index 28675b0b80f1..51f0f78cc3f4 100644
+>>> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>>> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+>>> @@ -30,6 +30,22 @@ description: |
+>>>      3 -- OUT3
+>>>      4 -- OUT4
+>>>
+>>> +  The idt,(en|dis)able-shutdown and idt,output-enable-active-(high|low)
+>>> +  properties control the SH (en_global_shutdown) and SP bits of the
+>>> +  Primary Source and Shutdown Register, respectively. Their behavior is
+>>> +  summarized by the following table:
+>>> +
+>>> +  SH SP Output when the SD/OE pin is Low/High
+>>> +  == == =====================================
+>>> +   0  0 Active/Inactive
+>>> +   0  1 Inactive/Active
+>>> +   1  0 Active/Shutdown
+>>> +   1  1 Inactive/Shutdown
+>>> +
+>>> +  If no properties related to these bits are specified, then they will
+>>> +  be left in their default state. This may be useful if the SH and SP
+>>> +  bits are set to a default value using the OTP memory.
 >>
->> The wakeup flag is used for different SoCs apart from mt8195, isn't
->> it? I'd add
->> this on a separate patch so it is not dependent on the mt8195
->> changes. This will
->> also make more clear that is not really a mt8195 thing and can help
->> in case at
->> some point we need to run a bisection because something is broken on
->> another SoC.
->>
->> Thanks,
->>   Enric
->>
->>
+>> This paragraph looks more an implementation description than a hardware
+>> description.
 > 
-> Yes, this wakeup flag also is used by other SoC like MT8173, but
-> missing this flag in new power domain driver(mtk-pm-domain.c).
-> I will separate this modification of wakeup flag from this patch but
-> put it in same series. 
+> It of course *is* an implementation description. As Geert found out, it
+> is important to keep the defaults if none of these properties are
+> specified.
+
+DT should describe hardware, not implementation. The difference is
+subtle at times, but it is important. Other OSes, bootloaders,
+firmwares, whatever can have a totally different implementation but use
+the same DT.
+
+>> I suggest something like (possibly better rephrased):
+>>
+>> It is recommended to specify the two properties that describe the
+>> hardware. The lack of them leaves the value unspecified and thus opens
+>> to the risk of future incompatibilities, depending on implementation
+>> details.
 > 
+> Ok, so if I understand correctly, you would like to deprecate existing
+> bindings which do not specify any of these properties.
 
-Sounds perfect.
+Well, the first goal of my rephrasing was to change from "If no
+properties are specified, then they will be left in their default state"
+(telling what _your_ _Linux_ implementation _does_) to "if you don't
+tell how your HW is done, the implementation is not in a position to do
+the right thing" (telling what DT must _describe_ to _any_
+implementation for it to work properly). I hope this clarifies the idea.
+Again, it's a subtle but very important difference.
 
-Regards,
-Matthias
+While rephrasing I also thought I would be more explicit than "if
+(unspecified) {can't do the right thig}" and go direct: "you should
+specify either of them". I would like to say "must" in place of "should"
+but we must take care of existing DTs.
+
+Perhaps these properties might be made mandatory later, after upgrading
+all DTs (at least those in mainline Linux). and a grace period.
+
+>>> @@ -64,6 +80,34 @@ properties:
+>>>      maximum: 22760
+>>>      description: Optional load capacitor for XTAL1 and XTAL2
+>>>
+>>> +  idt,enable-shutdown:
+>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>> +    description: |
+>>> +      Enable the shutdown function when the SD/OE pin is high. This
+>>> +      corresponds to setting the SH bit of the Primary Source and
+>>> +      Shutdown Register.
+>>> +
+>>> +  idt,disable-shutdown:
+>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>> +    description: |
+>>> +      Disable the shutdown function for the SD/OE pin. This corresponds
+>>> +      to clearing the SH bit of the Primary Source and Shutdown
+>>> +      Register.
+>>
+>> Saying "Disable the shutdown function" leaves a hole, it is not telling
+>> what gets enabled. I'd rephrase using positive logic:
+>>
+>>    Enable the OE (output enable) function for the SD/OE pin. This...
+>>
+>> But there are too many "enable" words in it now, it's confusing, so
+>> why not:
+>>
+>>    Choose the OE (output enable) function for the SD/OE pin. This...
+> 
+> The issue here is that the OE function is in some sense always enabled.
+> So perhaps a better wording would be
+> 
+>     Disable the shutdown functionality. The chip will never be
+>     shut down based on the value of the SD/OE pin.
+> 
+> And for enable-shutdown
+> 
+>     Enable the shutdown functionality. The chip will be shut down if
+>     the SD/OE pin is driven high.
+
+This used to be my understanding too. However I recently got this from
+Renesas support and got confused again: "SH=1 means that you want the
+ShutDown function.  ShutDown fixes the polarity to active low so the SP
+bit becomes don’t care.".
+
+However looking at table 5 in the 5P49V6901 datasheet and other docs it
+seems you are right, and SP is don't care if SH=1 AND SD/OE pin is low.
+
+Forget my comment, this latest definition from you seems very good, but
+please keep also the "This corresponds to..." sentences, they remove any
+potential bad misunderstanding.
+
+-- 
+Luca
+
