@@ -2,209 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 101223B7E68
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 09:57:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E4193B7ED4
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 10:20:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232966AbhF3IAX convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 30 Jun 2021 04:00:23 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:51170 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232788AbhF3IAX (ORCPT
+        id S233085AbhF3IW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 04:22:59 -0400
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:51567 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232954AbhF3IW6 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Jun 2021 04:00:23 -0400
-Received: from [77.244.183.192] (port=64010 helo=[192.168.178.41])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1lyV6X-0006JT-Af; Wed, 30 Jun 2021 09:57:53 +0200
-Subject: Re: [PATCH v3 1/2] dt-bindings: clk: vc5: Add properties for
- configuring the SD/OE pin
-To:     Sean Anderson <sean.anderson@seco.com>, linux-clk@vger.kernel.org
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Adam Ford <aford173@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-References: <20210629154740.3091884-1-sean.anderson@seco.com>
- <9edd6194-3a71-4f31-dd39-ba831e00b9d8@lucaceresoli.net>
- <3feea852-cd59-520a-ec60-5dd1c1c7a824@seco.com>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <b546c671-2bec-4db7-2f5d-63c97c3a3258@lucaceresoli.net>
-Date:   Wed, 30 Jun 2021 09:57:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+        Wed, 30 Jun 2021 04:22:58 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id E320B32008FD;
+        Wed, 30 Jun 2021 04:20:26 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Wed, 30 Jun 2021 04:20:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm2; bh=D
+        rng5vQ9xEhy/55sVheiFX6YMfwmRBkRiTkkgCUzn8U=; b=Che3GtGF7eRc2l+6V
+        ncGzCc3hO2sSS0G1q8OAh85sd68wB/HG78x62a7b0PYmNskiEfCXjtMEXC7dNYRX
+        wJONVHLzX9LQr6I+rWSNRva6g63waNkf7zcf99CZdGfo5lnv2Yf06RAaetJOeoZZ
+        ViPSZfnUlazMknnMVpLNaGz+lFSmGbKWGbg17NefGWeL1hi5OoDcw8ipxF/cERbf
+        Ecjw8/m+4E177k6qmAxKLMc7DQbC//5AZpvEB04dqe8tK5CFRvMS2uoDu5sw2V5v
+        TWmIJhBKJ7v8UarsHCQlduCoJ9DwCkXCQwEflwA3M908tmYVXOufd/cxxjDn1+uJ
+        vZiDA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=Drng5vQ9xEhy/55sVheiFX6YMfwmRBkRiTkkgCUzn
+        8U=; b=OlcCJDLjIWiScaPtav06jT7GMaJ2rNd6CD0XfwSCqSC2GaWmYs9TaWQX9
+        luerQjBEMLssja1v39ibtpl329vFteEjg2KqgG4FWoxlJ6gopHtQd9BDjvum0NX7
+        T53oGRT39XKrWrotoanMJGuJAl5uKaZW1u10VpD2/oGAVGUeOCjfb6uknHEKEAvZ
+        nPNhJdR+q1V/5Bmrrmum05dHEWo5ZKNXc56aNjxuDzXE4XATHEfs/CuPqxDx0tbV
+        O8HWxM0QdY/8yomesydHldDcFzCUtnanLJEibvY/epdn0LLRoOqYWBb+b2kSpRrn
+        UTRdkHffzqP0M4987CSJHQ+ndFqcw==
+X-ME-Sender: <xms:SSncYCEUh_RJI4Arm3cmnIA5X_3p_qIVjT4-z58AlOXzGuWHqYJ5KQ>
+    <xme:SSncYDVU--35g_dj1JgDybjz7oq3DAD-LD3X7jiz3wlZBSbun4Zd6s5P182asit_n
+    2nuD2aSPbzOP3wy22Y>
+X-ME-Received: <xmr:SSncYMLQ5q8SmtBPjzQAJzZ7WWbQy7XnGhSx1b8G6RlI-vzDj6QbyZ0jn6w3LNV87_0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeeivddgtddvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdeftfenucfhrhhomheplfhirgig
+    uhhnucgjrghnghcuoehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhmqeenuc
+    ggtffrrghtthgvrhhnpeefleduiedtvdekffeggfeukeejgeeffeetlefghfekffeuteei
+    jeeghefhueffvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpehjihgrgihunhdrhigrnhhgsehflhihghhorghtrdgtohhm
+X-ME-Proxy: <xmx:SSncYMGakDguxokZLmaT1ew85TJlqWuQ9tYyDQrVVpb2QdCB_bKcOA>
+    <xmx:SSncYIUOy0REUQmsWlDI_gdfhGBoRoo7BBOTwhPdaNhsUrmp-4ie2A>
+    <xmx:SSncYPNIA_MrWD37TxyjjR4h67cBrXvRLFv3rQPCzNiBpsJO_wjREw>
+    <xmx:SincYGwEPic1n3-JvPTiEhmPH3bsqOizGU2JawgZmTk4kC4RpY_p3A>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 30 Jun 2021 04:20:23 -0400 (EDT)
+Subject: Re: [PATCH v6 2/2] MIPS: Loongson64: DTS: Add pm block node for
+ Loongson-2K1000
+To:     Qing Zhang <zhangqing@loongson.cn>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20210630065103.23665-1-zhangqing@loongson.cn>
+ <20210630065103.23665-2-zhangqing@loongson.cn>
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+Message-ID: <a69323fd-c770-89e2-d3a7-a0807ad831af@flygoat.com>
+Date:   Wed, 30 Jun 2021 16:20:19 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <3feea852-cd59-520a-ec60-5dd1c1c7a824@seco.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8BIT
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+In-Reply-To: <20210630065103.23665-2-zhangqing@loongson.cn>
+Content-Type: text/plain; charset=gbk; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On 29/06/21 23:41, Sean Anderson wrote:
-> 
-> 
-> On 6/29/21 5:23 PM, Luca Ceresoli wrote:
->> Hi Sean,
->>
->> On 29/06/21 17:47, Sean Anderson wrote:
->>> These properties allow configuring the SD/OE pin as described in the
->>> datasheet.
->>
->> *Many* thanks for addressing this issue so quickly!
->>
->>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
->>> Acked-by: Rob Herring <robh@kernel.org>
->>
->> I don't think Rob's ack should be present, he hasn't approved _this_
->> version of the patch.
-> 
-> Sorry, I was unsure whether I should keep it or not.
+�� 2021/6/30 14:51, Qing Zhang д��:
+> The module is now supported, enable it.
 
-It's OK if the patch is unchanged or has only changes that are
-minimal/irrelevant.
+Oh, you forgot binding document.
 
->>> ---
->>>
->>> Changes in v3:
->>> - Add idt,disable-shutdown and idt,output-enable-active-low to allow for
->>>   a default of not changing the SP/SH bits at all.
->>>
->>> Changes in v2:
->>> - Rename idt,sd-active-high to idt,output-enable-active-high
->>> - Add idt,enable-shutdown
->>>
->>>  .../bindings/clock/idt,versaclock5.yaml       | 44 +++++++++++++++++++
->>>  1 file changed, 44 insertions(+)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
->>> b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
->>> index 28675b0b80f1..51f0f78cc3f4 100644
->>> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
->>> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
->>> @@ -30,6 +30,22 @@ description: |
->>>      3 -- OUT3
->>>      4 -- OUT4
->>>
->>> +  The idt,(en|dis)able-shutdown and idt,output-enable-active-(high|low)
->>> +  properties control the SH (en_global_shutdown) and SP bits of the
->>> +  Primary Source and Shutdown Register, respectively. Their behavior is
->>> +  summarized by the following table:
->>> +
->>> +  SH SP Output when the SD/OE pin is Low/High
->>> +  == == =====================================
->>> +   0  0 Active/Inactive
->>> +   0  1 Inactive/Active
->>> +   1  0 Active/Shutdown
->>> +   1  1 Inactive/Shutdown
->>> +
->>> +  If no properties related to these bits are specified, then they will
->>> +  be left in their default state. This may be useful if the SH and SP
->>> +  bits are set to a default value using the OTP memory.
->>
->> This paragraph looks more an implementation description than a hardware
->> description.
-> 
-> It of course *is* an implementation description. As Geert found out, it
-> is important to keep the defaults if none of these properties are
-> specified.
+Thanks.
 
-DT should describe hardware, not implementation. The difference is
-subtle at times, but it is important. Other OSes, bootloaders,
-firmwares, whatever can have a totally different implementation but use
-the same DT.
+- Jiaxun
 
->> I suggest something like (possibly better rephrased):
->>
->> It is recommended to specify the two properties that describe the
->> hardware. The lack of them leaves the value unspecified and thus opens
->> to the risk of future incompatibilities, depending on implementation
->> details.
-> 
-> Ok, so if I understand correctly, you would like to deprecate existing
-> bindings which do not specify any of these properties.
-
-Well, the first goal of my rephrasing was to change from "If no
-properties are specified, then they will be left in their default state"
-(telling what _your_ _Linux_ implementation _does_) to "if you don't
-tell how your HW is done, the implementation is not in a position to do
-the right thing" (telling what DT must _describe_ to _any_
-implementation for it to work properly). I hope this clarifies the idea.
-Again, it's a subtle but very important difference.
-
-While rephrasing I also thought I would be more explicit than "if
-(unspecified) {can't do the right thig}" and go direct: "you should
-specify either of them". I would like to say "must" in place of "should"
-but we must take care of existing DTs.
-
-Perhaps these properties might be made mandatory later, after upgrading
-all DTs (at least those in mainline Linux). and a grace period.
-
->>> @@ -64,6 +80,34 @@ properties:
->>>      maximum: 22760
->>>      description: Optional load capacitor for XTAL1 and XTAL2
->>>
->>> +  idt,enable-shutdown:
->>> +    $ref: /schemas/types.yaml#/definitions/flag
->>> +    description: |
->>> +      Enable the shutdown function when the SD/OE pin is high. This
->>> +      corresponds to setting the SH bit of the Primary Source and
->>> +      Shutdown Register.
->>> +
->>> +  idt,disable-shutdown:
->>> +    $ref: /schemas/types.yaml#/definitions/flag
->>> +    description: |
->>> +      Disable the shutdown function for the SD/OE pin. This corresponds
->>> +      to clearing the SH bit of the Primary Source and Shutdown
->>> +      Register.
->>
->> Saying "Disable the shutdown function" leaves a hole, it is not telling
->> what gets enabled. I'd rephrase using positive logic:
->>
->>    Enable the OE (output enable) function for the SD/OE pin. This...
->>
->> But there are too many "enable" words in it now, it's confusing, so
->> why not:
->>
->>    Choose the OE (output enable) function for the SD/OE pin. This...
-> 
-> The issue here is that the OE function is in some sense always enabled.
-> So perhaps a better wording would be
-> 
->     Disable the shutdown functionality. The chip will never be
->     shut down based on the value of the SD/OE pin.
-> 
-> And for enable-shutdown
-> 
->     Enable the shutdown functionality. The chip will be shut down if
->     the SD/OE pin is driven high.
-
-This used to be my understanding too. However I recently got this from
-Renesas support and got confused again: "SH=1 means that you want the
-ShutDown function.  ShutDown fixes the polarity to active low so the SP
-bit becomes don’t care.".
-
-However looking at table 5 in the 5P49V6901 datasheet and other docs it
-seems you are right, and SP is don't care if SH=1 AND SD/OE pin is low.
-
-Forget my comment, this latest definition from you seems very good, but
-please keep also the "This corresponds to..." sentences, they remove any
-potential bad misunderstanding.
-
--- 
-Luca
-
+>
+> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+> ---
+>   arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 5 +++++
+>   1 file changed, 5 insertions(+)
+>
+> diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+> index 569e814def83..8f469b623740 100644
+> --- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+> +++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+> @@ -52,6 +52,11 @@ package0: bus@10000000 {
+>   			0 0x40000000 0 0x40000000 0 0x40000000
+>   			0xfe 0x00000000 0xfe 0x00000000 0 0x40000000>;
+>   
+> +		pm: power-controller@1fe07000 {
+> +			compatible = "loongson,ls2k-pm";
+> +			reg = <0 0x1fe07000 0 0x422>;
+> +		};
+> +
+>   		liointc0: interrupt-controller@1fe11400 {
+>   			compatible = "loongson,liointc-2.0";
+>   			reg = <0 0x1fe11400 0 0x40>,
