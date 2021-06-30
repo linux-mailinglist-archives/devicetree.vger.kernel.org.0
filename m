@@ -2,101 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E32243B7D5B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 08:27:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED4383B7D9D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 08:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232370AbhF3G3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 02:29:44 -0400
-Received: from youngberry.canonical.com ([91.189.89.112]:55752 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232304AbhF3G3o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 02:29:44 -0400
-Received: from mail-ed1-f70.google.com ([209.85.208.70])
-        by youngberry.canonical.com with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <krzysztof.kozlowski@canonical.com>)
-        id 1lyTgo-0007FX-LJ
-        for devicetree@vger.kernel.org; Wed, 30 Jun 2021 06:27:14 +0000
-Received: by mail-ed1-f70.google.com with SMTP id s6-20020a0564020146b029039578926b8cso575585edu.20
-        for <devicetree@vger.kernel.org>; Tue, 29 Jun 2021 23:27:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2nkD+uJbpxO3bUeNVNJ06+nPXq3al3hbepVix2nCh4U=;
-        b=LImUHt00X3OU/2X+SiUQNmN315Fta5UW40A+Q2klIwSZLpIShcLgg5s5S/bsHnkDu3
-         N0RnUTnnkEx5ywyrfP+Eki+zwc9JQ7MmBBBLp8Wa595acjs2QEGevky3QSjk5Z6w1NOk
-         ZleELyk4T9JS6BNrvM+IBgsQQ4QYNReCMuiC4Yr4j4gO+D73ZJ2YxNMsZ6HSvgfUW/Hy
-         PaLiU2LQ3mQ3DRKHKh7Piw80BOpsmK6/DIBSc4y4La65C1T9bv/oxpno7kOLmEN+1ouw
-         lXaHOsHYUG6BuN3mBpea/OkyRU+lnvfIT9blWb378y4tNrRTB/J2XoOsa6FXWZX18mUy
-         vK1A==
-X-Gm-Message-State: AOAM53373Yfy60BX1DrKrlmXfNY9EGgtBHtZipB9D6Pz5nW59O2GlhZu
-        VH1GECZVVqR33y23QzHPncERgf9ecIGxgGLDBIkQc9UJsXiOzZYpl5U1hZIk2Vz797BbVicYhIr
-        PPnfFucYYzrT2f/n30gDJmArEOekqMw2izV2eGkg=
-X-Received: by 2002:a05:6402:10c3:: with SMTP id p3mr42666271edu.175.1625034434344;
-        Tue, 29 Jun 2021 23:27:14 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxHQKqehToed8G/oeR4lBx7PzBHYBfu1zFW0rHyBt6DYz2r1CNwHTzMzCDFt1S6Up8CIq2JSA==
-X-Received: by 2002:a05:6402:10c3:: with SMTP id p3mr42666243edu.175.1625034434224;
-        Tue, 29 Jun 2021 23:27:14 -0700 (PDT)
-Received: from [192.168.1.115] (xdsl-188-155-177-222.adslplus.ch. [188.155.177.222])
-        by smtp.gmail.com with ESMTPSA id g8sm2791773edv.84.2021.06.29.23.27.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Jun 2021 23:27:13 -0700 (PDT)
-Subject: Re: [PATCH 02/24] dt-bindings: mediatek: mt8195: Add binding for
- infra IOMMU
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        id S232018AbhF3GwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 02:52:17 -0400
+Received: from regular1.263xmail.com ([211.150.70.206]:38378 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232518AbhF3GwR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 02:52:17 -0400
+Received: from localhost (unknown [192.168.167.69])
+        by regular1.263xmail.com (Postfix) with ESMTP id 259FE1B8E;
+        Wed, 30 Jun 2021 14:49:42 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED2: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 1
+Received: from [168.168.4.18] (unknown [183.57.25.242])
+        by smtp.263.net (postfix) whith ESMTP id P12349T139824115734272S1625035780273543_;
+        Wed, 30 Jun 2021 14:49:41 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <abb208db348bf36d1b7ccc7eb5e4bee0>
+X-RL-SENDER: djw@t-chip.com.cn
+X-SENDER: djw@t-chip.com.cn
+X-LOGIN-NAME: djw@t-chip.com.cn
+X-FST-TO: linux-kernel@vger.kernel.org
+X-RCPT-COUNT: 15
+X-SENDER-IP: 183.57.25.242
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: Re: [PATCH v0 2/2] arm64: dts: rockchip: add support for Firefly
+ ROC-RK3399-PC-PLUS
+To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     Wayne Chou <zxf@t-chip.com.cn>, Kongxin Deng <dkx@t-chip.com.cn>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Jensen Huang <jensenhuang@friendlyarm.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Liang Chen <cl@rock-chips.com>,
+        Marty Jones <mj8263788@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Cc:     Evan Green <evgreen@chromium.org>, Tomasz Figa <tfiga@google.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
-        chao.hao@mediatek.com
-References: <20210630023504.18177-1-yong.wu@mediatek.com>
- <20210630023504.18177-3-yong.wu@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Message-ID: <24f3e157-da9c-d353-e5ae-5dac9e7d9c1d@canonical.com>
-Date:   Wed, 30 Jun 2021 08:27:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20210628035402.16812-1-djw@t-chip.com.cn>
+ <149c2171-471e-343e-8126-38394746b044@t-chip.com.cn>
+ <3771996.aKNjEaI27c@diego> <4501122.2vfOZ694Ok@diego>
+From:   Levin <djw@t-chip.com.cn>
+Message-ID: <eb8acfdf-4bc9-7181-89bb-77995b9d2531@t-chip.com.cn>
+Date:   Wed, 30 Jun 2021 14:49:40 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210630023504.18177-3-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <4501122.2vfOZ694Ok@diego>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2021 04:34, Yong Wu wrote:
-> In mt8195, we have a new IOMMU that is for INFRA IOMMU. its masters
-> mainly are PCIe and USB. Different with MM IOMMU, all these masters
-> connect with IOMMU directly, there is no mediatek,larbs property for
-> infra IOMMU.
-> 
-> Another thing is about PCIe ports. currently the function
-> "of_iommu_configure_dev_id" only support the id number is 1, But our
-> PCIe have two ports, one is for reading and the other is for writing.
-> see more about the PCIe patch in this patchset. Thus, I only list
-> the reading id here and add the other id in our driver.
-> 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->  .../bindings/iommu/mediatek,iommu.yaml         | 14 +++++++++++++-
->  .../dt-bindings/memory/mt8195-memory-port.h    | 18 ++++++++++++++++++
->  include/dt-bindings/memory/mtk-memory-port.h   |  2 ++
->  3 files changed, 33 insertions(+), 1 deletion(-)
-> 
+Hi Heiko,
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Thanks for your reply.
 
 
-Best regards,
-Krzysztof
+On 2021-06-29 5:32 PM, Heiko Stübner wrote:
+> Am Dienstag, 29. Juni 2021, 11:30:10 CEST schrieb Heiko Stübner:
+>> Hi Levin,
+>>
+>> Am Dienstag, 29. Juni 2021, 11:15:59 CEST schrieb Levin:
+>>> Hi all, is it possible to turn on some codec mixer switch in the device
+>>> tree?
+>> I don't think that is appropriate and/or/ possible in the devicetree.
+>>
+>> Instead I think you want an Alsa UCM profile for it, see:
+>> https://github.com/alsa-project/alsa-ucm-conf/tree/master/ucm2/Rockchip
+>>
+
+Alsa UCM profile is a complete solution, yet it requires more labor work 
+of adding a complex profile with all the controls.
+
+
+The problem is, music/video player knows nothing of the mixers. And with 
+currently codec driver setting, user cannot
+
+hear any sound until he turns on two mixer switch.
+
+
+I hope to have a "simple-audio-card,switch" property here.
+
+
+>>>
+>>> Currently, to hear to sound, we need to run the following commands from
+>>> the user space:
+>>>
+>>>     # turn on mixer switch
+>>>
+>>>     amixer -c 1 sset 'Left Mixer' on
+>>>     amixer -c 1 sset 'Right Mixer' on
+>>>
+>>>     # raise volume
+>>>
+>>>     amixer -c 1 sset 'Output 2' 36
+>>>
+>>>
+>>> If these settings can be embedded into device tree, and set by kernel as
+>>> initial ALSA path settings,
+>>>
+>>> user can hear the sound with zero ALSA config. That'll be great.
+>>>
+>>>
+>>> On 2021-06-28 11:54 AM, djw@t-chip.com.cn wrote:
+>>>> +
+>>>> +	es8388-sound {
+>>>> +		compatible = "simple-audio-card";
+>>>> +		pinctrl-names = "default";
+>>>> +		pinctrl-0 = <&hp_det_pin>;
+>>>> +		simple-audio-card,name = "rockchip,es8388-codec";
+> and I guess you'd want a more specific name as that config likely is board-specific
+> not for all boards using the es8388-codec?
+>
+>
+> Heiko
+>
+
+I got what you mean now. It should be renamed to a board-specific card 
+name if using Alsa UCM profile, right ?
+
+-- 
+
+Best Regards!
+
+Levin Du
+
+
+
