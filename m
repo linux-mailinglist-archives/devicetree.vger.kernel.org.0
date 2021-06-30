@@ -2,94 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57BB83B87BF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 19:31:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA8C73B880F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 19:51:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232862AbhF3Rd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 13:33:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39328 "EHLO
+        id S232959AbhF3RyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 13:54:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232802AbhF3Rd1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 13:33:27 -0400
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C10C0617A8;
-        Wed, 30 Jun 2021 10:30:57 -0700 (PDT)
-Received: by mail-il1-x129.google.com with SMTP id h3so3625754ilc.9;
-        Wed, 30 Jun 2021 10:30:57 -0700 (PDT)
+        with ESMTP id S232727AbhF3RyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 13:54:13 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956AEC0617A8
+        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 10:51:44 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id t3so4013061oic.5
+        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 10:51:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3KbPgH3Xk8vzy7N0rAGS5ZuHlPaO+BHPUcyIIVc3h3I=;
-        b=u8HkHov21WA1HExul/8zyGWEsbf1N/U5ZMyWGWWpgejRWaeGKJT+r3zuHbAbzOtMnM
-         +lbI3Eym1qhs8PFQ21FppbrjBC/jqwdr0FxownqnwE8vvztzUJudox3sJFUPczhtmJnn
-         iRl6xvPqRP4GARFP1jPMJ9hZoRBIyrKrjAcAIxOs3vQPAX47OxhW1mnCLp2Z94ufA4Da
-         dbwriB8AeK6tBe8V6l1yl4L8RaZ0B17+2DHEP5XaUrPnR8jPwJm4YctnNpduPfepQV2H
-         KA8qGmWkeWRkiuBE8VyRuyB+M6qtfZRakkGlwHJZevmG9+drbNW0HwMvJ1uC0aHPVb/2
-         MkQQ==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=/TpbbonyK5cx17STCT313YsMTZEN2Fa3252nyd5WAKY=;
+        b=jZqjlYVOYTUdCBUwZYbUuN6kEGJHaE+01/l3M/0kh7APq5t1yDwuo+++hYoCABGFz0
+         x9g5o3Rjpx8HY7ff7/QyNQLNZHhXOBBrSX0v+/uXUmUrzI4JO046LWlbpgwdq8pEOMqJ
+         tHznXazHFvqaC2AaPQr5lZ+yZNbFgB+d5+Gus=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3KbPgH3Xk8vzy7N0rAGS5ZuHlPaO+BHPUcyIIVc3h3I=;
-        b=dhv2ecpqs+Sbytcvxtwi4KHr4V1JOcpISAGHXLrfpo9G4Xzx1WD1wp1fV+ys7Y/wIy
-         7XGA/5cE1ZcNhZQ29PaCOxK64o56YXnafQBLyS0hjm99fvKnPmlkKP7pzn9vi+7iCbIE
-         drSSQLYQDZUOVWbsaPkz0uhgF/0/LhfStcG9lIAUtKvgXxcOrUTF6oPdKGj4VdpRjlOd
-         qusTmNMzm8xboN7wkx+jWzpzZYhWQBUox7XAE2fGPfQMnFUn5rFg0XJLyv+IBm9l3BPE
-         WVz6r3bf29eqkT/Fe0Dxy4nHtX0Jjl8AKJCrBpruetWc0kxEu8gtm44TBezA0GOJrz24
-         GV0g==
-X-Gm-Message-State: AOAM533m/HAM/+wu3e74GYjx8jvDjT8a99BLJDpV2vMg/oijmBbPCM5g
-        1Feqc9MXgfotOCNNSD/ToDOEyNBq/AxGemVU
-X-Google-Smtp-Source: ABdhPJxkQ7etaWYt01MmObyEx/AcGL616JW9qRgYnObv+//ZvlM0vNWrHrAk86WLeywUHb7iZNF4BA==
-X-Received: by 2002:a05:6e02:1d04:: with SMTP id i4mr13985844ila.149.1625074256038;
-        Wed, 30 Jun 2021 10:30:56 -0700 (PDT)
-Received: from aford-IdeaCentre-A730.lan (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
-        by smtp.gmail.com with ESMTPSA id q19sm12207278ilc.70.2021.06.30.10.30.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jun 2021 10:30:55 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-usb@vger.kernel.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: renesas: beacon: Fix HSUSB ref clock references
-Date:   Wed, 30 Jun 2021 12:30:42 -0500
-Message-Id: <20210630173042.186394-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210630173042.186394-1-aford173@gmail.com>
-References: <20210630173042.186394-1-aford173@gmail.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=/TpbbonyK5cx17STCT313YsMTZEN2Fa3252nyd5WAKY=;
+        b=o5mFesdk/z42z89AV56G4sNl4br54ZoxsaFwChayUQ+NlBhNgFw2seaKdQ3c3W1fq7
+         32GaBZbDsIrHUbqKWaQVh/wGDVifz1EWCxUNP3u0VL++MRMoT/1cjm/OTag0nY3SPuFH
+         4CIyykL7est/o0eCjKeDjFMOTtk8WCnDdQ2BuS0KH+m7VzXiXW8fFRDwbHp73TlYb1Li
+         IBTGmSSa4LoObvd9hWbWyrC2fDX4L1HbqvulhRJpbssJksOyvnml+rP+UJ8u9JgTl/Y9
+         moCgOlkHAZQfzq5mw0TDhnIjdeAAoo3UKrUwSUslTYgZyllf4sV25WrTgYBlT/AR2AGJ
+         sk8Q==
+X-Gm-Message-State: AOAM532BMHAjHm3oXYqTZvMlXxLd9V67jsZZ0434ixiHRoBiMgNUspQS
+        7QBG1lcG1gtvp2Pbg42xVMA6JTBO6JT+4TynL5ddzA==
+X-Google-Smtp-Source: ABdhPJyt1BT0yyy26ZENhSRgNlnZIfJxRS8zE0C7/7zupBgcDtyelBnghwpsMShvQXBW5bgL8j5LBbgVPi78511rLKY=
+X-Received: by 2002:aca:5390:: with SMTP id h138mr3968714oib.125.1625075503995;
+ Wed, 30 Jun 2021 10:51:43 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 30 Jun 2021 10:51:43 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <YNYAuaBrGgdtToph@builder.lan>
+References: <1622758940-13485-1-git-send-email-khsieh@codeaurora.org> <YNYAuaBrGgdtToph@builder.lan>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Wed, 30 Jun 2021 10:51:43 -0700
+Message-ID: <CAE-0n500g=KuOsRgHe2vpL2JOuq+LRFEWEdEovMg8BJF4cKD1A@mail.gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: qcom: sc7180: Add DisplayPort node
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kuogee Hsieh <khsieh@codeaurora.org>
+Cc:     robdclark@gmail.com, sean@poorly.run, vkoul@kernel.org,
+        agross@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/G2 boards expect there to be an external clock reference for
-USBHS controller.  For the Beacon boards, this reference clock
-is controlled by a programmable versaclock.  Because the RZ/G2
-family has a special clock driver when using an external clock,
-the third clock reference in the USBHS node needs to point to this
-special clock, called usb2_clksel, and the 4th clock is the versaclock.
+Quoting Bjorn Andersson (2021-06-25 09:13:45)
+> On Thu 03 Jun 17:22 CDT 2021, Kuogee Hsieh wrote:
+> > +                                             dp_out: endpoint { };
+> > +                                     };
+> > +                             };
+> > +
+> > +                             dp_opp_table: dp-opp-table {
+>
+> I forgot that our discussion about the node name here was on the
+> previous revision, _this_ is the patch I will drop the "dp-" from and
+> apply.
+>
+> And as I've looked at this quite a bit now:
+>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+With that node name fixed
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-index e3c8b2fe143e..bcbf7eb5195b 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-baseboard.dtsi
-@@ -313,6 +313,7 @@ &hscif1 {
- };
- 
- &hsusb {
-+	clocks = <&cpg CPG_MOD 704>, <&cpg CPG_MOD 703>, <&usb2_clksel>, <&versaclock6_som 3>;
- 	dr_mode = "otg";
- 	status = "okay";
- };
--- 
-2.25.1
-
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
