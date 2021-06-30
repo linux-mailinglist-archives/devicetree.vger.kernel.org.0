@@ -2,49 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A55373B7BD6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 04:38:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C819D3B7BE7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 04:49:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233651AbhF3Ck6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Jun 2021 22:40:58 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:35726 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233726AbhF3Ckx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 22:40:53 -0400
-X-UUID: f0f88b3d43f147ecb528a99cf183e4b4-20210630
-X-UUID: f0f88b3d43f147ecb528a99cf183e4b4-20210630
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1704327587; Wed, 30 Jun 2021 10:38:22 +0800
+        id S232723AbhF3Cw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Jun 2021 22:52:26 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:43434 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231938AbhF3Cw0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Jun 2021 22:52:26 -0400
+X-UUID: 147451eed3b24a84b597ecc54aeff88d-20210630
+X-UUID: 147451eed3b24a84b597ecc54aeff88d-20210630
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1183337142; Wed, 30 Jun 2021 10:49:54 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 30 Jun 2021 10:38:20 +0800
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 30 Jun 2021 10:49:52 +0800
 Received: from localhost.localdomain (10.17.3.153) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 30 Jun 2021 10:38:19 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+ Transport; Wed, 30 Jun 2021 10:49:51 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
-        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>
-Subject: [PATCH 24/24] iommu/mediatek: mt8195: Enable multi-bank for infra iommu
-Date:   Wed, 30 Jun 2021 10:35:04 +0800
-Message-ID: <20210630023504.18177-25-yong.wu@mediatek.com>
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <qizhong.cheng@mediatek.com>, <ot_jieyang@mediatek.com>,
+        <drinkcat@chromium.org>, <Rex-BC.Chen@mediatek.com>,
+        Krzysztof Wilczyski <kw@linux.com>, <Ryan-JH.Yu@mediatek.com>
+Subject: [PATCH v3 0/2] PCI: mediatek-gen3: Add support for disable dvfsrc
+Date:   Wed, 30 Jun 2021 10:49:32 +0800
+Message-ID: <20210630024934.18903-1-jianjun.wang@mediatek.com>
 X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210630023504.18177-1-yong.wu@mediatek.com>
-References: <20210630023504.18177-1-yong.wu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-MTK:  N
@@ -52,33 +48,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the multi-bank functions for infra-iommu. We put PCIE in bank0
-and USB in the last bank(bank4). and we don't use the other banks
-currently, disable them.
+These series patches add support for disable dvfsrc voltage request.
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/iommu/mtk_iommu.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+Changes in v3:
+Fix typo.
 
-diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-index 3aaf425d5a18..435bb0fdd73f 100644
---- a/drivers/iommu/mtk_iommu.c
-+++ b/drivers/iommu/mtk_iommu.c
-@@ -1260,8 +1260,11 @@ static const struct mtk_iommu_plat_data mt8195_data_infra = {
- 	.flags            = WR_THROT_EN | DCM_DISABLE |
- 			    MTK_IOMMU_TYPE_INFRA | IFA_IOMMU_PCIe_SUPPORT,
- 	.pericfg_comp_str = "mediatek,mt8195-pericfg_ao",
--	.bank_nr	  = 1,
--	.bank_enable      = {true},
-+	.bank_nr	  = 5,
-+	.bank_enable      = {true, false, false, false, true},
-+	.bank_portmsk     = {[0] = GENMASK(19, 16),     /* PCIe */
-+			     [4] = GENMASK(31, 20),     /* USB */
-+			    },
- 	.inv_sel_reg      = REG_MMU_INV_SEL_GEN2,
- 	.iova_region      = single_domain,
- 	.iova_region_nr   = ARRAY_SIZE(single_domain),
+Changes in v2:
+Fix typo.
+
+Jianjun Wang (2):
+  dt-bindings: PCI: mediatek-gen3: Add property to disable dvfsrc
+    voltage request
+  PCI: mediatek-gen3: Add support for disable dvfsrc voltage request
+
+ .../bindings/pci/mediatek-pcie-gen3.yaml      |  8 +++++
+ drivers/pci/controller/pcie-mediatek-gen3.c   | 31 +++++++++++++++++++
+ 2 files changed, 39 insertions(+)
+
 -- 
 2.18.0
 
