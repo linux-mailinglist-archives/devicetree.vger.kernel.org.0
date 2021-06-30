@@ -2,441 +2,734 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 183CF3B7F1B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 10:35:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A0BC3B7F25
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 10:38:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233258AbhF3Ihr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 04:37:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59928 "EHLO
+        id S233289AbhF3Ikr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 04:40:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232860AbhF3Ihq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 04:37:46 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2212CC061756
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 01:35:18 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lyVgg-0006dI-R3; Wed, 30 Jun 2021 10:35:14 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1lyVgf-0003eC-R5; Wed, 30 Jun 2021 10:35:13 +0200
-Date:   Wed, 30 Jun 2021 10:35:13 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Emil Lenngren <emil.lenngren@gmail.com>,
-        michal.simek@xilinx.com, Alvaro Gamez <alvaro.gamez@hazent.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 3/3] pwm: Add support for Xilinx AXI Timer
-Message-ID: <20210630083513.gi3yql5u3tzuub3e@pengutronix.de>
-References: <20210627181919.iunagls4j67ignhh@pengutronix.de>
- <59e93f67-0552-04bb-116e-73ddf878761e@seco.com>
- <20210628162407.dxxt6hqfzeokdtxa@pengutronix.de>
- <27fca5ef-8c82-f122-4bd0-f595cad4d588@seco.com>
- <20210628172021.q5enzmr7u6cornm6@pengutronix.de>
- <661e52c3-cd79-c2aa-e031-64eef5617be0@seco.com>
- <20210629083144.53onthkcchbk73lo@pengutronix.de>
- <a4943aa5-956c-1820-3489-994f0812c3a7@seco.com>
- <20210629205102.wtnhdlqdbkihi4mz@pengutronix.de>
- <dab8407a-7cff-392c-46b7-effc8ee7ecff@seco.com>
+        with ESMTP id S232831AbhF3Ikq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 04:40:46 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C81C061756;
+        Wed, 30 Jun 2021 01:38:17 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id u14so1526206pga.11;
+        Wed, 30 Jun 2021 01:38:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kVZ6MO39i91rgDbPBGIigJFKWN2FhN70V1+xGsePjn4=;
+        b=O2jpiyWA484HlaD15fR+cMguAcXOYzSiWvdGt6JW576BosRWZBB9+SAiQEm4bNbRf1
+         CIRzxlqIC4EAlQHfkV6wNYO+ng8aR2fQO1M++e0rIdLpvOHxOaeqTmLgiczI578XmczC
+         BOKBagSnauQPgqAvTQvsF8V6YB77YXo/8np8YdL3+VU6gPcZ496DKtoR3Qnu0nwiobBd
+         2zlq8MWzC5VTtq5SaAcaoGOH8F3tiGBekh59CtyYLiW/N7+Y+iDYtTxLk4csEygdvV6b
+         qP9Df/quMwltu/A9YQhU09/J9aq5/G2Egg6u+rWr17cMJ31Q59S3+W5aUMuMlSPukT9R
+         rAAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kVZ6MO39i91rgDbPBGIigJFKWN2FhN70V1+xGsePjn4=;
+        b=WDTn/XNNgZyp2BBsixTiI/PXwo3ShbNCttmMETxmYEb80tSebagsE8uBsEullwwROc
+         y6KEH60CX888ZpSQdgaRyPO8x6UV516tIhAU1nzYl76rYdAgN1edS9WgUAqcPbI/ALIQ
+         Ihcp8YitF4S5OH0HoXU6tpRUe7166ubKttUcuMpa6irUYLhFPD21Oy/lcBneSyA/WKA0
+         wKRBLzIR+C5PLDkyDn9M1SAvJErpmt2zXigU1PFor6zFrdh5MFerztl9mfzTD6Q19Gkp
+         4XRTRA+Bhv+DtYVfmO2HtAcWcuNWiJR+BBPGBYOOe/K+XlnkmerkDJl3GzomVvnYfPbD
+         gckg==
+X-Gm-Message-State: AOAM533KNVyuahCwfeGX1RxDElK3WLb+k0Lf9mM44YtG4XAwptK7TQ4g
+        w04BUykatk4ayS0TCILiM/6hP3ePG4YXpWf3qRo=
+X-Google-Smtp-Source: ABdhPJwwbtS6Mu+z1VNXsZOMv8PmlvAUwo0+5v5qdJj4/cIqGbFNF/5QF6bgJnVfheddeR7k91tgDBZuWygo/VMh3Fs=
+X-Received: by 2002:a05:6a00:a1e:b029:30e:f6eb:c30b with SMTP id
+ p30-20020a056a000a1eb029030ef6ebc30bmr5785922pfh.72.1625042296708; Wed, 30
+ Jun 2021 01:38:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="czszgzwfssnh7tid"
-Content-Disposition: inline
-In-Reply-To: <dab8407a-7cff-392c-46b7-effc8ee7ecff@seco.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210629142308.25868-1-antoniu.miclaus@analog.com> <20210629142308.25868-2-antoniu.miclaus@analog.com>
+In-Reply-To: <20210629142308.25868-2-antoniu.miclaus@analog.com>
+From:   Alexandru Ardelean <ardeleanalex@gmail.com>
+Date:   Wed, 30 Jun 2021 11:38:04 +0300
+Message-ID: <CA+U=Dsq6kJjqgPUrZ3SE3+gpGN0e6Lh40dMKTvWs-zOPGN=rOQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] iio: frequency: adrf6780: add support for ADRF6780
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc:     linux-iio <linux-iio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 29, 2021 at 5:25 PM Antoniu Miclaus
+<antoniu.miclaus@analog.com> wrote:
+>
+> Add support for the ADRF6780 microwave upconverter.
 
---czszgzwfssnh7tid
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hey,
 
-Hello Sean,
+A few comments inline.
+The description of the commit could have a bit more information.
+Maybe a short description of the chip (typically I'd adapt something
+from the datasheet).
+And maybe a link to the datasheet.
 
-I often mistype the name of the rounding function as "pwm_round_rate",
-the better name is "pwm_round_state" of course. That's just me thinking
-about clk_round_rate where ".._rate" is the right term. I'll try harder
-to get this right from now on.
+>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+>  drivers/iio/frequency/Kconfig    |  13 +
+>  drivers/iio/frequency/Makefile   |   1 +
+>  drivers/iio/frequency/adrf6780.c | 534 +++++++++++++++++++++++++++++++
+>  3 files changed, 548 insertions(+)
+>  create mode 100644 drivers/iio/frequency/adrf6780.c
+>
+> diff --git a/drivers/iio/frequency/Kconfig b/drivers/iio/frequency/Kconfig
+> index 240b81502512..fc9751c48f59 100644
+> --- a/drivers/iio/frequency/Kconfig
+> +++ b/drivers/iio/frequency/Kconfig
+> @@ -49,5 +49,18 @@ config ADF4371
+>
+>           To compile this driver as a module, choose M here: the
+>           module will be called adf4371.
+> +
+> +config ADRF6780
+> +        tristate "Analog Devices ADRF6780 Microwave Upconverter"
+> +        depends on SPI
+> +        depends on COMMON_CLK
+> +        depends on OF
+> +        help
+> +          Say yes here to build support for Analog Devices ADRF6780
+> +          5.9 GHz to 23.6 GHz, Wideband, Microwave Upconverter.
+> +
+> +          To compile this driver as a module, choose M here: the
+> +          module will be called adrf6780.
+> +
+>  endmenu
+>  endmenu
+> diff --git a/drivers/iio/frequency/Makefile b/drivers/iio/frequency/Makefile
+> index 518b1e50caef..ae3136c79202 100644
+> --- a/drivers/iio/frequency/Makefile
+> +++ b/drivers/iio/frequency/Makefile
+> @@ -7,3 +7,4 @@
+>  obj-$(CONFIG_AD9523) += ad9523.o
+>  obj-$(CONFIG_ADF4350) += adf4350.o
+>  obj-$(CONFIG_ADF4371) += adf4371.o
+> +obj-$(CONFIG_ADRF6780) += adrf6780.o
+> diff --git a/drivers/iio/frequency/adrf6780.c b/drivers/iio/frequency/adrf6780.c
+> new file mode 100644
+> index 000000000000..c492c4e4adf1
+> --- /dev/null
+> +++ b/drivers/iio/frequency/adrf6780.c
+> @@ -0,0 +1,534 @@
+> +// SPDX-License-Identifier: GPL-2.0+
 
-On Tue, Jun 29, 2021 at 06:21:15PM -0400, Sean Anderson wrote:
-> On 6/29/21 4:51 PM, Uwe Kleine-K=F6nig wrote:
-> > On Tue, Jun 29, 2021 at 02:01:31PM -0400, Sean Anderson wrote:
-> > > On 6/29/21 4:31 AM, Uwe Kleine-K=F6nig wrote:
-> > > > On Mon, Jun 28, 2021 at 01:41:43PM -0400, Sean Anderson wrote:
-> > > >> On 6/28/21 1:20 PM, Uwe Kleine-K=F6nig wrote:
-> > > >> > On Mon, Jun 28, 2021 at 12:35:19PM -0400, Sean Anderson wrote:
-> > > >> >> On 6/28/21 12:24 PM, Uwe Kleine-K=F6nig wrote:
-> > > >> >> > On Mon, Jun 28, 2021 at 11:50:33AM -0400, Sean Anderson wrote:
-> > > >> >> > > On 6/27/21 2:19 PM, Uwe Kleine-K=F6nig wrote:
-> > > >> >> > > > On Fri, Jun 25, 2021 at 01:46:26PM -0400, Sean Anderson w=
-rote:
-> > > >> >> > > IMO, this is the best way to prevent surprising results in =
-the API.
-> > > >> >> >
-> > > >> >> > I think it's not possible in practise to refuse "near" misses=
- and every
-> > > >> >> > definition of "near" is in some case ridiculous. Also if you =
-consider
-> > > >> >> > the pwm_round_state() case you don't want to refuse any reque=
-st to tell
-> > > >> >> > as much as possible about your controller's capabilities. And=
- then it's
-> > > >> >> > straight forward to let apply behave in the same way to keep =
-complexity
-> > > >> >> > low.
-> > > >> >> >
-> > > >> >> > > The real issue here is that it is impossible to determine t=
-he correct
-> > > >> >> > > way to round the PWM a priori, and in particular, without c=
-onsidering
-> > > >> >> > > both duty_cycle and period. If a consumer requests very sma=
-ll
-> > > >> >> > > period/duty cycle which we cannot produce, how should it be=
- rounded?
-> > > >> >> >
-> > > >> >> > Yeah, because there is no obviously right one, I picked one t=
-hat is as
-> > > >> >> > wrong as the other possibilities but is easy to work with.
-> > > >> >> >
-> > > >> >> > > Should we just set TLR0=3D1 and TLR1=3D0 to give them 66% d=
-uty cycle with
-> > > >> >> > > the least period? Or should we try and increase the period =
-to better
-> > > >> >> > > approximate the % duty cycle? And both of these decisions m=
-ust be made
-> > > >> >> > > knowing both parameters. We cannot (for example) just alway=
-s round up,
-> > > >> >> > > since we may produce a configuration with TLR0 =3D=3D TLR1,=
- which would
-> > > >> >> > > produce 0% duty cycle instead of whatever was requested. Ro=
-unding rate
-> > > >> >> > > will introduce significant complexity into the driver. Most=
- of the time
-> > > >> >> > > if a consumer requests an invalid rate, it is due to miscon=
-figuration
-> > > >> >> > > which is best solved by fixing the configuration.
-> > > >> >> >
-> > > >> >> > In the first step pick the biggest period not bigger than the=
- requested
-> > > >> >> > and then pick the biggest duty cycle that is not bigger than =
-the
-> > > >> >> > requested and that can be set with the just picked period. Th=
-at is the
-> > > >> >> > behaviour that all new drivers should do. This is somewhat ar=
-bitrary but
-> > > >> >> > after quite some thought the most sensible in my eyes.
-> > > >> >>
-> > > >> >> And if there are no periods smaller than the requested period?
-> > > >> >
-> > > >> > Then return -ERANGE.
-> > > >>
-> > > >> Ok, so instead of
-> > > >>
-> > > >> 	if (cycles < 2 || cycles > priv->max + 2)
-> > > >> 		return -ERANGE;
-> > > >>
-> > > >> you would prefer
-> > > >>
-> > > >> 	if (cycles < 2)
-> > > >> 		return -ERANGE;
-> > > >> 	else if (cycles > priv->max + 2)
-> > > >> 		cycles =3D priv->max;
-> > > >
-> > > > The actual calculation is a bit harder to handle TCSR_UDT =3D 0 but=
- in
-> > > > principle, yes, but see below.
-> > > >
-> > > >> But if we do the above clamping for TLR0, then we have to recalcul=
-ate
-> > > >> the duty cycle for TLR1. Which I guess means doing something like
-> > > >>
-> > > >> 	ret =3D xilinx_timer_tlr_period(priv, &tlr0, tcsr0, state->period=
-);
-> > > >> 	if (ret)
-> > > >> 		return ret;
-> > > >>
-> > > >> 	state->duty_cycle =3D mult_frac(state->duty_cycle,
-> > > >> 				      xilinx_timer_get_period(priv, tlr0, tcsr0),
-> > > >> 				      state->period);
-> > > >>
-> > > >> 	ret =3D xilinx_timer_tlr_period(priv, &tlr1, tcsr1, state->duty_c=
-ycle);
-> > > >> 	if (ret)
-> > > >> 		return ret;
-> > > >
-> > > > No, you need something like:
-> > > >
-> > > > 	/*
-> > > > 	 * The multiplication cannot overflow as both priv_max and
-> > > > 	 * NSEC_PER_SEC fit into an u32.
-> > > > 	 */
-> > > > 	max_period =3D div64_ul((u64)priv->max * NSEC_PER_SEC, clkrate);
-> > > >
-> > > > 	/* cap period to the maximal possible value */
-> > > > 	if (state->period > max_period)
-> > > > 		period =3D max_period;
-> > > > 	else
-> > > > 		period =3D state->period;
-> > > >
-> > > > 	/* cap duty_cycle to the maximal possible value */
-> > > > 	if (state->duty_cycle > max_period)
-> > > > 		duty_cycle =3D max_period;
-> > > > 	else
-> > > > 		duty_cycle =3D state->duty_cycle;
-> > >=20
-> > > These caps may increase the % duty cycle.
-> >=20
-> > Correct.
-> >=20
-> > For some usecases keeping the relative duty cycle might be better, for
-> > others it might not. I'm still convinced that in general my solution
-> > makes sense, is computationally cheaper and easier to work with.
->=20
-> Can you please describe one of those use cases? Every PWM user I looked
-> (grepping for pwm_apply_state and pwm_config) set the duty cycle as a
-> percentage of the period, and not as an absolute time. Keeping the high
-> time the same while changing the duty cycle runs contrary to the
-> assumptions of all of those users.
+about the licensing;
 
-Indeed there is no mainline driver that relies on this. There are some
-smart LED controllers (e.g. WS2812B) where the duty_cycle is more
-important than the period. (I admit a PWM is not really the right driver
-for that one as it could only completely enable and complete disable
-white color.) Also there are some servo motor chips where the absolute
-duty is relevant but the period isn't (in some range). (See
-https://www.mikrocontroller.net/articles/Modellbauservo_Ansteuerung#Signala=
-ufbau
-for a article about that (in German though).)
+SPDX-License-Identifier: GPL-2.0+    ==   MODULE_LICENSE("GPL v2");
+SPDX-License-Identifier: GPL-2.0    ==   MODULE_LICENSE("GPL v2");
 
-In case you want to argue that out-of-mainline users don't count: I
-think in the design of an API they do count to place the bar to enter
-the mainline low. Frameworks should be generic enough to cover as much
-use cases as possible.
+I usually don't care about this licensing details, but it seems to be
+important elsewhere.
 
-And note that if you want a nearest to (say) 50% relative duty cycle and
-don't care much about the period it doesn't really matter if you scale
-duty_cycle in pwm_round_state() to the period change or not because in
-general you need several calls to pwm_round_state() anyhow to find a
-setting with 51% if the next lower possibility is 47%. So in the end you
-save (I think) one call in generic PWM code.
+> +/*
+> + * ADRF6780 driver
 
-In contrast the math gets quite a bit more complicated because there is
-rounding involved in scaling the duty cycle. Consider a PWM that can
-configure period and duty in 16.4 ns steps and you ask for
+This could be   "Analog Devices ADRF6780 driver"
 
-	.period =3D 100 ns
-	.duty_cycle =3D 50 ns
+> + *
+> + * Copyright 2021 Analog Devices Inc.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/clkdev.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/spi/spi.h>
 
-Then the best period you can provide is 98.4 ns, so you return .period =3D
-99 from pwm_round_state(). (Yes, you don't return 98, because
-round-nearest is much harder to handle than round down.) To determine
-the adapted duty_cycle you have to do
+Not all these headers look used.
+For one thing, regmap.h doesn't look used at all.
+Maybe trim the list.
 
-	50 * realperiod / 100
+> +
+> +/* ADRF6780 Register Map */
+> +#define ADRF6780_REG_CONTROL                   0x00
+> +#define ADRF6780_REG_ALARM_READBACK            0x01
+> +#define ADRF6780_REG_ALARM_MASKS               0x02
+> +#define ADRF6780_REG_ENABLE                    0x03
+> +#define ADRF6780_REG_LINEARIZE                 0x04
+> +#define ADRF6780_REG_LO_PATH                   0x05
+> +#define ADRF6780_REG_ADC_CONTROL               0x06
+> +#define ADRF6780_REG_ADC_OUTPUT                        0x0C
+> +
+> +/* ADRF6780_REG_CONTROL Map */
+> +#define ADRF6780_PARITY_EN_MSK                 BIT(15)
+> +#define ADRF6780_PARITY_EN(x)                  FIELD_PREP(ADRF6780_PARITY_EN_MSK, x)
+> +#define ADRF6780_SOFT_RESET_MSK                        BIT(14)
+> +#define ADRF6780_SOFT_RESET(x)                 FIELD_PREP(ADRF6780_SOFT_RESET_MSK, x)
+> +#define ADRF6780_CHIP_ID_MSK                   GENMASK(11, 4)
+> +#define ADRF6780_CHIP_ID                       0xA
+> +#define ADRF6780_CHIP_REVISION_MSK             GENMASK(3, 0)
+> +#define ADRF6780_CHIP_REVISION(x)              FIELD_PREP(ADRF6780_CHIP_REVISION_MSK, x)
+> +
+> +/* ADRF6780_REG_ALARM_READBACK Map */
+> +#define ADRF6780_PARITY_ERROR_MSK              BIT(15)
+> +#define ADRF6780_PARITY_ERROR(x)               FIELD_PREP(ADRF6780_PARITY_ERROR_MSK, x)
+> +#define ADRF6780_TOO_FEW_ERRORS_MSK            BIT(14)
+> +#define ADRF6780_TOO_FEW_ERRORS(x)             FIELD_PREP(ADRF6780_TOO_FEW_ERRORS_MSK, x)
+> +#define ADRF6780_TOO_MANY_ERRORS_MSK           BIT(13)
+> +#define ADRF6780_TOO_MANY_ERRORS(x)            FIELD_PREP(ADRF6780_TOO_MANY_ERRORS_MSK, x)
+> +#define ADRF6780_ADDRESS_RANGE_ERROR_MSK       BIT(12)
+> +#define ADRF6780_ADDRESS_RANGE_ERROR(x)                FIELD_PREP(ADRF6780_ADDRESS_RANGE_ERROR_MSK, x)
+> +
+> +/* ADRF6780_REG_ENABLE Map */
+> +#define ADRF6780_VGA_BUFFER_EN_MSK             BIT(8)
+> +#define ADRF6780_VGA_BUFFER_EN(x)              FIELD_PREP(ADRF6780_VGA_BUFFER_EN_MSK, x)
+> +#define ADRF6780_DETECTOR_EN_MSK               BIT(7)
+> +#define ADRF6780_DETECTOR_EN(x)                        FIELD_PREP(ADRF6780_DETECTOR_EN_MSK, x)
+> +#define ADRF6780_LO_BUFFER_EN_MSK              BIT(6)
+> +#define ADRF6780_LO_BUFFER_EN(x)               FIELD_PREP(ADRF6780_LO_BUFFER_EN_MSK, x)
+> +#define ADRF6780_IF_MODE_EN_MSK                        BIT(5)
+> +#define ADRF6780_IF_MODE_EN(x)                 FIELD_PREP(ADRF6780_IF_MODE_EN_MSK, x)
+> +#define ADRF6780_IQ_MODE_EN_MSK                        BIT(4)
+> +#define ADRF6780_IQ_MODE_EN(x)                 FIELD_PREP(ADRF6780_IQ_MODE_EN_MSK, x)
+> +#define ADRF6780_LO_X2_EN_MSK                  BIT(3)
+> +#define ADRF6780_LO_X2_EN(x)                   FIELD_PREP(ADRF6780_LO_X2_EN_MSK, x)
+> +#define ADRF6780_LO_PPF_EN_MSK                 BIT(2)
+> +#define ADRF6780_LO_PPF_EN(x)                  FIELD_PREP(ADRF6780_LO_PPF_EN_MSK, x)
+> +#define ADRF6780_LO_EN_MSK                     BIT(1)
+> +#define ADRF6780_LO_EN(x)                      FIELD_PREP(ADRF6780_LO_EN_MSK, x)
+> +#define ADRF6780_UC_BIAS_EN_MSK                        BIT(0)
+> +#define ADRF6780_UC_BIAS_EN(x)                 FIELD_PREP(ADRF6780_UC_BIAS_EN_MSK, x)
+> +
+> +/* ADRF6780_REG_LINEARIZE Map */
+> +#define ADRF6780_RDAC_LINEARIZE_MSK            GENMASK(7, 0)
+> +#define ADRF6780_RDAC_LINEARIZE(x)             FIELD_PREP(ADRF6780_RDAC_LINEARIZE_MSK, x)
+> +
+> +/* ADRF6780_REG_LO_PATH Map */
+> +#define ADRF6780_LO_SIDEBAND_MSK               BIT(10)
+> +#define ADRF6780_LO_SIDEBAND(x)                        FIELD_PREP(ADRF6780_LO_SIDEBAND_MSK, x)
+> +#define ADRF6780_Q_PATH_PHASE_ACCURACY_MSK     GENMASK(7, 4)
+> +#define ADRF6780_Q_PATH_PHASE_ACCURACY(x)      FIELD_PREP(ADRF6780_Q_PATH_PHASE_ACCURACY_MSK, x)
+> +#define ADRF6780_I_PATH_PHASE_ACCURACY_MSK     GENMASK(3, 0)
+> +#define ADRF6780_I_PATH_PHASE_ACCURACY(x)      FIELD_PREP(ADRF6780_I_PATH_PHASE_ACCURACY_MSK, x)
+> +
+> +/* ADRF6780_REG_ADC_CONTROL Map */
+> +#define ADRF6780_VDET_OUTPUT_SELECT_MSK                BIT(3)
+> +#define ADRF6780_VDET_OUTPUT_SELECT(x)         FIELD_PREP(ADRF6780_VDET_OUTPUT_SELECT_MSK, x)
+> +#define ADRF6780_ADC_START_MSK                 BIT(2)
+> +#define ADRF6780_ADC_START(x)                  FIELD_PREP(ADRF6780_ADC_START_MSK, x)
+> +#define ADRF6780_ADC_EN_MSK                    BIT(1)
+> +#define ADRF6780_ADC_EN(x)                     FIELD_PREP(ADRF6780_ADC_EN_MSK, x)
+> +#define ADRF6780_ADC_CLOCK_EN_MSK              BIT(0)
+> +#define ADRF6780_ADC_CLOCK_EN(x)               FIELD_PREP(ADRF6780_ADC_CLOCK_EN_MSK, x)
+> +
+> +/* ADRF6780_REG_ADC_OUTPUT Map */
+> +#define ADRF6780_ADC_STATUS_MSK                        BIT(8)
+> +#define ADRF6780_ADC_STATUS(x)                 FIELD_PREP(ADRF6780_ADC_STATUS_MSK, x)
+> +#define ADRF6780_ADC_VALUE_MSK                 GENMASK(7, 0)
+> +#define ADRF6780_ADC_VALUE(x)                  FIELD_PREP(ADRF6780_ADC_VALUE_MSK, x)
 
-which independently of choosing 98, 98.4 or 99 for realperiod is 49. Then
-to approximate 49 without rounding up you end up with 32.8 while 49.2
-would have be perfectly fine.
+The indentation for the bit-values doesn't look consistent in all places.
 
-You might find a way around that (maybe you have to round up in the
-adaption of duty_cycle, I didn't convince myself this is good enough
-though).
+> +
+> +enum supported_parts {
+> +       ADRF6780,
+> +};
 
-So your suggestion to adapt the duty_cycle to keep the relative
-duty_cycle constant (as good as possible within the bounds the hardware
-dictates) implies additional complication at the driver level.
+This enum doesn't seem used anywhere
 
-=46rom a framework maintainer's point of view (and also from a low-level
-driver maintainer's point of view) I prefer one complication in a
-generic function over a complication that I have to care for in each and
-every low-level driver by a big margin.
+> +
+> +struct adrf6780_dev {
+> +       struct spi_device       *spi;
+> +       struct clk              *clkin;
+> +       /* Protect against concurrent accesses to the device */
+> +       struct mutex            lock;
+> +       bool                    parity_en;
 
-So unless you volunteer to complete the math above and promise to review
-low-level drivers for that aspect in the future (or alternatively
-convince me that math is easy and I missed something) I would like to
-end this discussion here and stay with the policy I explained.
+Maybe remove this parity check.
+There are many drivers that support some form of simple error
+checking, but in the kernel this is typically left up to the SPI
+framework.
+So, I'd just disable the error checking entirely.
 
-> > > > 	period_cycles =3D period * clkrate / NSEC_PER_SEC;
-> > > >
-> > > > 	if (period_cycles < 2)
-> > > > 		return -ERANGE;
-> > > >
-> > > > 	duty_cycles =3D duty_cycle * clkrate / NSEC_PER_SEC;
-> > > >
-> > > > 	/*
-> > > > 	 * The hardware cannot emit a 100% relative duty cycle, if
-> > > > 	 * duty_cycle >=3D period_cycles is programmed the hardware emits
-> > > > 	 * a 0% relative duty cycle.
-> > > > 	 */
-> > > > 	if (duty_cycle =3D=3D period_cycles)
-> > > > 		duty_cycles =3D period_cycles - 1;
-> > > >
-> > > > 	/*
-> > > > 	 * The hardware cannot emit a duty_cycle of one clk step, so
-> > > > 	 * emit 0 instead.
-> > > > 	 */
-> > > > 	if (duty_cycles < 2)
-> > > > 		duty_cycles =3D period_cycles;
-> > >=20
-> > > Of course, the above may result in 100% duty cycle being rounded down=
- to
-> > > 0%. I feel like that is too big of a jump to ignore. Perhaps if we
-> > > cannot return -ERANGE we should at least dev_warn.
-> >=20
-> > You did it again. You picked one single case that you consider bad but
-> > didn't provide a constructive way to make it better.
->=20
-> Sure I did. I suggested that we warn. Something like
->=20
-> if (duty_cycles =3D=3D period_cycles)
-> 	if (--duty_cycles < 2)
-> 		dev_warn(chip->dev, "Rounding 100%% duty cycle down to 0%%; pick a long=
-er period\n");
->=20
-> or
->=20
-> if (period_cycles < 2)
-> 	return -ERANGE;
-> else if (period_cycles < 10)
-> 	dev_notice(chip->dev,
-> 		   "very short period of %u cycles; duty cycle may be rounded to 0%%\n",
-> 		   period_cycles);
+> +       bool                    vga_buff_en;
+> +       bool                    det_en;
+> +       bool                    lo_buff_en;
+> +       bool                    if_mode_en;
+> +       bool                    iq_mode_en;
+> +       bool                    lo_x2_en;
+> +       bool                    lo_ppf_en;
+> +       bool                    lo_en;
+> +       bool                    uc_bias_en;
+> +       bool                    lo_sideband;
+> +       bool                    vdet_out_en;
+> +};
+> +
+> +static int adrf6780_spi_read(struct adrf6780_dev *dev, unsigned int reg,
+> +                             unsigned int *val)
+> +{
+> +       int ret;
+> +       unsigned int cnt, temp;
+> +       struct spi_transfer t = {0};
+> +       u8 data[3];
+> +
+> +       data[0] = 0x80 | (reg << 1);
+> +       data[1] = 0x0;
+> +       data[2] = 0x0;
+> +
+> +       t.rx_buf = &data[0];
+> +       t.tx_buf = &data[0];
+> +       t.len = 3;
+> +
+> +       ret = spi_sync_transfer(dev->spi, &t, 1);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       temp = ((data[0] | 0x80 | (reg << 1)) << 16) |
+> +               (data[1] << 8) | data[2];
+> +
+> +       if (dev->parity_en) {
+> +               cnt = hweight_long(temp);
+> +               if (!(cnt % 2))
+> +                       return -EINVAL;
+> +       }
+> +
+> +       *val = (temp >> 1) & 0xFFFF;
+> +
+> +       return ret;
+> +}
+> +
+> +static int adrf6780_spi_write(struct adrf6780_dev *dev,
+> +                                     unsigned int reg,
+> +                                     unsigned int val)
+> +{
+> +       unsigned int cnt;
+> +       u8 data[3];
+> +
+> +       val = (val << 1);
+> +
+> +       if (dev->parity_en) {
+> +               cnt = hweight_long((reg << 17) | val);
+> +               if (cnt % 2 == 0)
+> +                       val |= 0x1;
+> +       }
+> +
+> +       data[0] = (reg << 1) | (val >> 16);
+> +       data[1] = val >> 8;
+> +       data[2] = val;
+> +
+> +       return spi_write(dev->spi, &data[0], 3);
+> +}
+> +
+> +static int __adrf6780_spi_update_bits(struct adrf6780_dev *dev, unsigned int reg,
+> +                              unsigned int mask, unsigned int val)
+> +{
+> +       int ret;
+> +       unsigned int data, temp;
+> +
+> +       ret = adrf6780_spi_read(dev, reg, &data);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       temp = (data & ~mask) | (val & mask);
+> +
+> +       return adrf6780_spi_write(dev, reg, temp);
+> +}
+> +
+> +static int adrf6780_spi_update_bits(struct adrf6780_dev *dev, unsigned int reg,
+> +                              unsigned int mask, unsigned int val)
+> +{
+> +       int ret;
+> +
+> +       mutex_lock(&dev->lock);
+> +       ret = __adrf6780_spi_update_bits(dev, reg, mask, val);
+> +       mutex_unlock(&dev->lock);
+> +       return ret;
+> +}
+> +
+> +static int adrf6780_read_raw(struct iio_dev *indio_dev,
+> +                           struct iio_chan_spec const *chan,
+> +                           int *val, int *val2, long info)
+> +{
+> +       struct adrf6780_dev *dev = iio_priv(indio_dev);
+> +       unsigned int data;
+> +       int ret;
+> +
+> +       switch (info) {
+> +       case IIO_CHAN_INFO_RAW:
+> +               mutex_lock(&dev->lock);
+> +
+> +               ret = __adrf6780_spi_update_bits(dev, ADRF6780_REG_ENABLE,
+> +                                               ADRF6780_DETECTOR_EN_MSK,
+> +                                               ADRF6780_DETECTOR_EN(1));
 
-Ah ok, so only a 100% jump warrants that warning. I think adding that
-has no practical relevance, so I don't oppose to that. Add it if you
-want. (But note that if it triggers indeed it might flood the kernel log
-if your consumer wants to start a motor but notices it doesn't run fast
-enough and so configures 100% in a tight loop. So I would recommend some
-rate limiting.)
+The detector seems to be enabled here regardless of the 'det_en' value.
+And it doesn't seem to put the value back to a 'det_en' state.
 
-> Because 90% of the time, if a user requests such a short period it is
-> due to a typo or something similar. And if they really are doing it
-> intentionally, then they should just set duty_cycle=3D0.
+But the question is, if it would make sense to always enable the detector?
+In any case enabling the detector in IIO_CHAN_INFO_RAW doesn't look
+like a good idea.
 
-Uh, don't you think that a warning that is wrong in 10% of the cases is
-bad?
+> +               if (ret < 0)
+> +                       goto exit;
+> +
+> +               ret = __adrf6780_spi_update_bits(dev, ADRF6780_REG_ADC_CONTROL,
+> +                                               ADRF6780_ADC_EN_MSK,
+> +                                               ADRF6780_ADC_EN(1));
+> +               if (ret < 0)
+> +                       goto exit;
+> +
+> +               ret = __adrf6780_spi_update_bits(dev, ADRF6780_REG_ADC_CONTROL,
+> +                                               ADRF6780_ADC_CLOCK_EN_MSK,
+> +                                               ADRF6780_ADC_CLOCK_EN(1));
+> +               if (ret < 0)
+> +                       goto exit;
+> +
+> +               ret = __adrf6780_spi_update_bits(dev, ADRF6780_REG_ADC_CONTROL,
+> +                                               ADRF6780_ADC_START_MSK,
+> +                                               ADRF6780_ADC_START(1));
+> +               if (ret < 0)
+> +                       goto exit;
 
-> > Assume there was already a pwm_round_state function (that returns the
-> > state that pwm_apply_state would implement for a given request) Consider
-> > a consumer that wants say a 50% relative duty together with a small
-> > period. So it first might call:
-> >=20
-> > 	ret =3D pwm_round_rate(pwm, { .period =3D 20, .duty_cycle =3D 20, ... =
-}, &rounded_state)
-> >=20
-> > to find out if .period =3D 20 can be implemented with the given PWM. If
-> > this returns rounded state as:
-> >=20
-> > 	.period =3D 20
-> > 	.duty_cycle =3D 0
-> >=20
-> > this says quite a lot about the pwm if the driver implements my policy.
-> > (i.e.: The driver can do 20ns, but the biggest duty_cycle is only 0).
-> > If however it returns -ERANGE this means (assuming the driver implements
-> > the policy I try to convice you to be the right one) it means: The
-> > hardware cannot implement 20 ns (or something smaller) and so the next
-> > call probably tries 40 ns.
-> >=20
-> > With your suggested semantic -ERANGE might mean:
-> >=20
-> >   - The driver doesn't support .period =3D 20 ns
-> >     (Follow up questions: What period should be tried next? 10 ns? 40
-> >     ns? What if this returns -ERANGE again?)
-> >   - The driver supports .period =3D 20 ns, but the biggest possible
-> >     duty_cycle is "too different from 20 ns to ignore".
-> >=20
-> > Then how should the search continue?
->=20
-> round_rate does not have to use the same logic as apply_state.
+This looks like 3 SPI operations on the same register.
+Would it work to group them in a single operation?
 
-I want to have .round_state() and .apply() (i.e. the driver callbacks)
-to behave identically. If we indeed come to the conclusion that
-pwm_apply_state needs to have some precautions, I'd like to have them
-implemented in pwm_apply_state() only and not in every driver.
+> +
+> +               usleep_range(200, 250);
+> +
+> +               ret = adrf6780_spi_read(dev, ADRF6780_REG_ADC_OUTPUT, &data);
+> +               if (ret < 0)
+> +                       goto exit;
+> +
+> +               if (!(data & ADRF6780_ADC_STATUS_MSK)) {
+> +                       ret = -EINVAL;
+> +                       goto exit;
+> +               }
+> +
+> +               ret = __adrf6780_spi_update_bits(dev, ADRF6780_REG_ADC_CONTROL,
+> +                                               ADRF6780_ADC_START_MSK,
+> +                                               ADRF6780_ADC_START(0));
+> +               if (ret < 0)
+> +                       goto exit;
+> +
+> +               ret = adrf6780_spi_read(dev, ADRF6780_REG_ADC_OUTPUT, &data);
+> +               if (ret < 0)
+> +                       goto exit;
+> +
+> +               mutex_unlock(&dev->lock);
+> +
+> +               *val = data & ADRF6780_ADC_VALUE_MSK;
+> +
+> +               return IIO_VAL_INT;
+> +exit:
+> +               mutex_unlock(&dev->lock);
+> +               return ret;
+> +       case IIO_CHAN_INFO_SCALE:
+> +               ret = adrf6780_spi_read(dev, ADRF6780_REG_LINEARIZE, &data);
+> +               if (ret < 0)
+> +                       return ret;
+> +
+> +               *val = data & ADRF6780_RDAC_LINEARIZE_MSK;
+> +
+> +               return IIO_VAL_INT;
+> +       case IIO_CHAN_INFO_PHASE:
+> +               ret = adrf6780_spi_read(dev, ADRF6780_REG_LO_PATH, &data);
+> +               if (ret < 0)
+> +                       return ret;
+> +
+> +               if (chan->channel2 == IIO_MOD_I)
+> +                       *val = data & ADRF6780_I_PATH_PHASE_ACCURACY_MSK;
+> +               else
+> +                       *val = (data & ADRF6780_Q_PATH_PHASE_ACCURACY_MSK) >> 4;
+> +
+> +               return IIO_VAL_INT;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +}
+> +
+> +static int adrf6780_write_raw(struct iio_dev *indio_dev,
+> +                            struct iio_chan_spec const *chan,
+> +                            int val, int val2, long info)
+> +{
+> +       struct adrf6780_dev *dev = iio_priv(indio_dev);
+> +       int ret;
+> +
+> +       switch (info) {
+> +       case IIO_CHAN_INFO_SCALE:
+> +               return adrf6780_spi_write(dev, ADRF6780_REG_LINEARIZE, val);
+> +       case IIO_CHAN_INFO_PHASE:
+> +               if (chan->channel2 == IIO_MOD_I)
+> +                       ret = adrf6780_spi_update_bits(dev, ADRF6780_REG_LO_PATH,
+> +                                                       ADRF6780_I_PATH_PHASE_ACCURACY_MSK,
+> +                                                       ADRF6780_I_PATH_PHASE_ACCURACY(val));
+> +               else
+> +                       ret = adrf6780_spi_update_bits(dev, ADRF6780_REG_LO_PATH,
+> +                                                       ADRF6780_Q_PATH_PHASE_ACCURACY_MSK,
+> +                                                       ADRF6780_Q_PATH_PHASE_ACCURACY(val));
+> +               return ret;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +}
+> +
+> +static int adrf6780_reg_access(struct iio_dev *indio_dev,
+> +                               unsigned int reg,
+> +                               unsigned int write_val,
+> +                               unsigned int *read_val)
+> +{
+> +       struct adrf6780_dev *dev = iio_priv(indio_dev);
+> +
+> +       if (read_val)
+> +               return adrf6780_spi_read(dev, reg, read_val);
+> +       else
+> +               return adrf6780_spi_write(dev, reg, write_val);
+> +}
+> +
+> +static const struct iio_info adrf6780_info = {
+> +       .read_raw = adrf6780_read_raw,
+> +       .write_raw = adrf6780_write_raw,
+> +       .debugfs_reg_access = &adrf6780_reg_access,
+> +};
+> +
+> +#define ADRF6780_CHAN(_channel) {                      \
+> +       .type = IIO_VOLTAGE,                            \
+> +       .output = 1,                                    \
+> +       .indexed = 1,                                   \
+> +       .channel = _channel,                            \
+> +       .info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |  \
+> +               BIT(IIO_CHAN_INFO_SCALE)                \
+> +}
+> +
+> +#define ADRF6780_CHAN_IQ(_channel, rf_comp) {                  \
+> +       .type = IIO_ALTVOLTAGE,                                 \
+> +       .modified = 1,                                          \
+> +       .output = 1,                                            \
+> +       .indexed = 1,                                           \
+> +       .channel2 = IIO_MOD_##rf_comp,                          \
+> +       .channel = _channel,                                    \
+> +       .info_mask_separate = BIT(IIO_CHAN_INFO_PHASE)          \
+> +}
+> +
+> +static const struct iio_chan_spec adrf6780_channels[] = {
+> +       ADRF6780_CHAN(0),
+> +       ADRF6780_CHAN_IQ(0, I),
+> +       ADRF6780_CHAN_IQ(0, Q),
+> +};
+> +
+> +static int adrf6780_init(struct adrf6780_dev *dev)
+> +{
+> +       int ret;
+> +       unsigned int chip_id, enable_reg, enable_reg_msk;
+> +       struct spi_device *spi = dev->spi;
+> +       bool temp_parity = dev->parity_en;
+> +
+> +       dev->parity_en = false;
+> +
+> +       /* Perform a software reset */
+> +       ret = __adrf6780_spi_update_bits(dev, ADRF6780_REG_CONTROL,
+> +                                ADRF6780_SOFT_RESET_MSK,
+> +                                ADRF6780_SOFT_RESET(1));
+> +       if (ret < 0) {
+> +               dev_err(&spi->dev, "ADRF6780 SPI software reset failed.\n");
+> +               return ret;
+> +       }
+> +
+> +       ret = __adrf6780_spi_update_bits(dev, ADRF6780_REG_CONTROL,
+> +                                ADRF6780_SOFT_RESET_MSK,
+> +                                ADRF6780_SOFT_RESET(0));
+> +       if (ret < 0) {
+> +               dev_err(&spi->dev, "ADRF6780 SPI software reset disable failed.\n");
+> +               return ret;
+> +       }
 
-> However, calling
->=20
-> 	ret =3D pwm_apply_state(pwm, { .period =3D 20, .duty_cycle =3D 0, ... })
->=20
-> should work just fine, as the caller clearly knows what they are getting
-> into. IMO this is the best way to allow hypothetical round_rate users to
-> find out the edges of the PWM while still protecting existing users.
->=20
-> It's perfectly fine to round
->=20
-> 	{ .period =3D 150, .duty_cycle =3D 75 }
->=20
-> to
->=20
-> 	{ .period =3D 100, .duty_cycle =3D 75 }
->=20
-> in round_rate. But doing the same thing for apply_state would be very
-> surprising to every existing PWM user.
->=20
-> IMO the following invariant should hold
->=20
-> 	apply_state(round_rate(x))
-> 	assert(round_rate(x) =3D=3D get_state())
+I'd create a adrf6780_reset() function.
+The driver has a reset pin, which [optionally] can be implemented [now
+or later].
+Typically, these resets are implemented is:
 
-(merged your correction of the follow up mail into the quote above)
+if (gpio)
+   gpio_reset()
+  return
 
-(Fun fact: Only needing this one would allow a generic implementation of
-round_state, it just had to return a pwm_state that doesn't depend on x
-:o)
+software_reset()
 
-> but the following should not necessarily hold
->=20
-> 	apply_state(x)
-> 	assert(round_rate(x) =3D=3D get_state())
->=20
-> Of course, where it is reasonable to round down, we should do so.
->=20
-> But where the result may be surprising, then the caller should specify
-> the rounded state specifically. It is better to fail loudly and
-> noisily than
-> to silently accept garbage.
 
-Can you please come up with an algorithm to judge if a given deviation
-is reasonable or surprising? I agree there are surprises and some of
-them are obviously bad. For most cases however the judgement depends on
-the use case so I fail to see how someone should program such a check
-that should cover all consumers and use cases. I prefer no precautions +
-an easy relation between pwm_round_state and pwm_apply_state (i.e.
-behave identically) over a most of the time(?) useless precaution and
-some policy defined differences between pwm_round_state and
-pwm_apply_state
+> +
+> +       ret = __adrf6780_spi_update_bits(dev, ADRF6780_REG_CONTROL,
+> +                                ADRF6780_PARITY_EN_MSK,
+> +                                ADRF6780_PARITY_EN(temp_parity));
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       dev->parity_en = temp_parity;
+> +
+> +       ret = adrf6780_spi_read(dev, ADRF6780_REG_CONTROL, &chip_id);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       chip_id = (chip_id & ADRF6780_CHIP_ID_MSK) >> 4;
+> +       if (chip_id != ADRF6780_CHIP_ID) {
+> +               dev_err(&spi->dev, "ADRF6780 Invalid Chip ID.\n");
+> +               return -EINVAL;
+> +       }
+> +
+> +       enable_reg_msk = ADRF6780_VGA_BUFFER_EN_MSK |
+> +                       ADRF6780_DETECTOR_EN_MSK |
+> +                       ADRF6780_LO_BUFFER_EN_MSK |
+> +                       ADRF6780_IF_MODE_EN_MSK |
+> +                       ADRF6780_IQ_MODE_EN_MSK |
+> +                       ADRF6780_LO_X2_EN_MSK |
+> +                       ADRF6780_LO_PPF_EN_MSK |
+> +                       ADRF6780_LO_EN_MSK |
+> +                       ADRF6780_UC_BIAS_EN_MSK;
+> +
+> +       enable_reg = ADRF6780_VGA_BUFFER_EN(dev->vga_buff_en) |
+> +                       ADRF6780_DETECTOR_EN(dev->det_en) |
+> +                       ADRF6780_LO_BUFFER_EN(dev->lo_buff_en) |
+> +                       ADRF6780_IF_MODE_EN(dev->if_mode_en) |
+> +                       ADRF6780_IQ_MODE_EN(dev->iq_mode_en) |
+> +                       ADRF6780_LO_X2_EN(dev->lo_x2_en) |
+> +                       ADRF6780_LO_PPF_EN(dev->lo_ppf_en) |
+> +                       ADRF6780_LO_EN(dev->lo_en) |
+> +                       ADRF6780_UC_BIAS_EN(dev->uc_bias_en);
+> +
+> +       ret = __adrf6780_spi_update_bits(dev, ADRF6780_REG_ENABLE, enable_reg_msk, enable_reg);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ret = __adrf6780_spi_update_bits(dev, ADRF6780_REG_LO_PATH,
+> +                                               ADRF6780_LO_SIDEBAND_MSK,
+> +                                               ADRF6780_LO_SIDEBAND(dev->lo_sideband));
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       return __adrf6780_spi_update_bits(dev, ADRF6780_REG_ADC_CONTROL,
+> +                                               ADRF6780_VDET_OUTPUT_SELECT_MSK,
+> +                                               ADRF6780_VDET_OUTPUT_SELECT(dev->vdet_out_en));
+> +}
+> +
+> +static void adrf6780_clk_disable(void *data)
+> +{
+> +       clk_disable_unprepare(data);
+> +}
+> +
+> +static int adrf6780_dt_parse(struct adrf6780_dev *dev)
+> +{
+> +       struct spi_device *spi = dev->spi;
+> +
+> +       dev->parity_en = of_property_read_bool(spi->dev.of_node, "adi,parity-en");
+> +       dev->vga_buff_en = of_property_read_bool(spi->dev.of_node, "adi,vga-buff-en");
+> +       dev->det_en = of_property_read_bool(spi->dev.of_node, "adi,det-en");
+> +       dev->lo_buff_en = of_property_read_bool(spi->dev.of_node, "adi,lo-buff-en");
+> +       dev->if_mode_en = of_property_read_bool(spi->dev.of_node, "adi,if-mode-en");
+> +       dev->iq_mode_en = of_property_read_bool(spi->dev.of_node, "adi,iq-mode-en");
+> +       dev->lo_x2_en = of_property_read_bool(spi->dev.of_node, "adi,lo-x2-en");
+> +       dev->lo_ppf_en = of_property_read_bool(spi->dev.of_node, "adi,lo-ppf-en");
+> +       dev->lo_en = of_property_read_bool(spi->dev.of_node, "adi,lo-en");
+> +       dev->uc_bias_en = of_property_read_bool(spi->dev.of_node, "adi,uc-bias-en");
+> +       dev->lo_sideband = of_property_read_bool(spi->dev.of_node, "adi,lo-sideband");
+> +       dev->vdet_out_en = of_property_read_bool(spi->dev.of_node, "adi,vdet-out-en");
 
-Best regards
-Uwe
+I'm not sure this is the best way to control these from the DT.
+So, the parity can be disabled/removed.
+Maybe the detector can always be enabled.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+The others may make sense to be enabled.
 
---czszgzwfssnh7tid
-Content-Type: application/pgp-signature; name="signature.asc"
+> +
+> +       dev->clkin = devm_clk_get(&spi->dev, "lo_in");
+> +       if (IS_ERR(dev->clkin))
+> +               return PTR_ERR(dev->clkin);
 
------BEGIN PGP SIGNATURE-----
+Initializing a clock in the adrf6780_dt_parse() function is weird.
+Mabe move this to the main probe function.
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDcLL4ACgkQwfwUeK3K
-7Al/3Qf/TULcy0EdS9212IgOJGM5ZHq6DIEuMTcgtt3RxmqpQPh2r0SZYfxePzWa
-ZzgCmy37FTP0C2L+RHD8pQ+rS2fA48E8daBG8hSO5YIMcqM1deAg+VIeP46fBK1e
-mVfk4lZirlLhWd7Wo99k2tn3MlkDtz3cbIP1eVyPfz9+qA9u6M3zMJHYK0tM1wpG
-xgKSO6JMlH10cwJZ3psV7sjw52fv7ntcV/JZOlq74Y34ixwQyV0eEzMEzZwVRNeX
-ec7s6V/kKR1Pq0N0HlWAdj75pOZEfWx2fMEGPJfimwomde3o8/sJ2VpJFCToldrZ
-afl37WwoaWZuunnqzNIS+NnA+AH8Fw==
-=almK
------END PGP SIGNATURE-----
+> +
+> +       return 0;
+> +}
+> +
+> +static int adrf6780_probe(struct spi_device *spi)
+> +{
+> +       struct iio_dev *indio_dev;
+> +       struct adrf6780_dev *dev;
+> +       int ret;
+> +
+> +       indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*dev));
+> +       if (!indio_dev)
+> +               return -ENOMEM;
+> +
+> +       dev = iio_priv(indio_dev);
+> +
+> +       indio_dev->dev.parent = &spi->dev;
 
---czszgzwfssnh7tid--
+this assignment can be removed in the upstream version of this driver;
+the assignment is done inside  devm_iio_device_alloc()
+
+
+> +       indio_dev->info = &adrf6780_info;
+> +       indio_dev->name = "adrf6780";
+> +       indio_dev->channels = adrf6780_channels;
+> +       indio_dev->num_channels = ARRAY_SIZE(adrf6780_channels);
+> +
+> +       dev->spi = spi;
+> +
+> +       ret = adrf6780_dt_parse(dev);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ret = clk_prepare_enable(dev->clkin);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ret = devm_add_action_or_reset(&spi->dev, adrf6780_clk_disable, dev->clkin);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       mutex_init(&dev->lock);
+> +
+> +       ret = adrf6780_init(dev);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       return devm_iio_device_register(&spi->dev, indio_dev);
+> +}
+> +
+> +static const struct spi_device_id adrf6780_id[] = {
+> +       { "adrf6780", ADRF6780 },
+> +       {}
+> +};
+> +MODULE_DEVICE_TABLE(spi, adrf6780_id);
+> +
+> +static const struct of_device_id adrf6780_of_match[] = {
+> +       { .compatible = "adi,adrf6780" },
+> +       {},
+
+you can remove the comma from this null terminator
+
+> +};
+> +MODULE_DEVICE_TABLE(of, adrf6780_of_match);
+> +
+> +static struct spi_driver adrf6780_driver = {
+> +       .driver = {
+> +               .name = "adrf6780",
+> +               .of_match_table = adrf6780_of_match,
+> +       },
+> +       .probe = adrf6780_probe,
+> +       .id_table = adrf6780_id,
+> +};
+> +module_spi_driver(adrf6780_driver);
+> +
+> +MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com");
+> +MODULE_DESCRIPTION("Analog Devices ADRF6780");
+> +MODULE_LICENSE("GPL v2");
+> --
+> 2.32.0
+>
