@@ -2,130 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D6793B877C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 19:14:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12A8C3B879B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 19:20:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229852AbhF3RPy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 13:15:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35364 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229991AbhF3RPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 13:15:54 -0400
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5D67C061756
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 10:13:24 -0700 (PDT)
-Received: by mail-ot1-x336.google.com with SMTP id 110-20020a9d0a770000b0290466fa79d098so3446705otg.9
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 10:13:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=jvZWepwL1G14uE4LBC+UAM7L1L1Q+rV5kcOeGj8qP9U=;
-        b=upmXr5DFLsVrOoR6J9W793kI99xmrLiW7jjYHtTF+6bjNzOUGTCL31xU7TWNTg1NQ4
-         oAU4L51KjXYdwSYTK92OaQBUvY8ZKqXvcXkqg0BhwiW2gBsylMoJpCWVN0dZ2qzFKgsW
-         O5o5yao5VNyVASENvu8OUHk4QZnLoF+RjS0OdT5DFbzgEEtQi+yYbS0kGng93VrYMLDG
-         IuHRG7ie78kgf7PIV4W+pIpUXEfjDH3qI5F0R+rCZ9o519dJKnhjpriHH5h666uCDjF8
-         mdjccHeIWBb9WspcEW2/00CHFlXL+0oiPO0wFnIkXYFQPf0lfZSkAiJ6VakG/+3eeeZz
-         sLNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jvZWepwL1G14uE4LBC+UAM7L1L1Q+rV5kcOeGj8qP9U=;
-        b=W6CLMyHtmQZ4uBmBMkam9OkVSzqEMsM/EcmLMWOTVm4arL1jgUI35MGMewnfdAlZvr
-         q30HP7SDnyntA2GWePyODK6MduaDfcKQcyt3qZunmKDqCGcC/45nHyUP+1MjuYP0a3Lz
-         cU9W+k5sEfmq33z4tSeazPdgtYocPr8tKx8dFJ7zLY7kqSWmxDeeovD8B+sj7LST9hdE
-         fCacuGfCQPNAPvvVmRILPYFCw6YCqoo4ouD11ptlPja8p31+f1a2rjBzaO1fSdNsEC68
-         lf7hSn5Hft64uvQStcVtLtE+Us1r6K7uAitigp6I8754UTinUQgVC561a1ay/II3wu7+
-         1Biw==
-X-Gm-Message-State: AOAM5330ddkOcl7J5eVSRCZqlf7Vo4oa8fSdbwkr1pgsDE6HzSzWPnh/
-        l7T19Z0+1YzuH2qVwg5jbY12bQ==
-X-Google-Smtp-Source: ABdhPJwAqdr+f/kdCkP44QvzdmkAYMv7aNdhdMYKEA4dUfvT7EvSlnO1GNaDFy2XRcGdmjUK/b+UbA==
-X-Received: by 2002:a9d:57ca:: with SMTP id q10mr9694037oti.224.1625073204149;
-        Wed, 30 Jun 2021 10:13:24 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id b11sm1204779otl.55.2021.06.30.10.13.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jun 2021 10:13:23 -0700 (PDT)
-Date:   Wed, 30 Jun 2021 12:13:21 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/6] clk: qcom: videocc-sm8250: stop using mmcx regulator
-Message-ID: <YNymMeXHMQspwlzR@yoga>
-References: <20210630133149.3204290-1-dmitry.baryshkov@linaro.org>
- <20210630133149.3204290-7-dmitry.baryshkov@linaro.org>
+        id S232364AbhF3RXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 13:23:03 -0400
+Received: from mail-eopbgr60137.outbound.protection.outlook.com ([40.107.6.137]:20259
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S232358AbhF3RXD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Jun 2021 13:23:03 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=h+N7lO6Dk+dUGw9Z20KTtJvde3UwqsQm1HeP7eMYHJzzNQQlc93sFK56DSZL5maHMKqcofqc9klsBr+nftblzA2izasv1tkXkkWn6xmErU23MRG4G3oTa1v1ONngR27H93RWBc8eNSco7SQxXqwFufoIqxg/PCwab0s0yRX1vEHHXkSjrcNTSmPOKCXiKPnoqGo05VJyNmOi3sUOgeIYE7sU2uxIhZZzuS9Nb/4VihJ/s/WLuBBVtTe8Sx7xmpS6OhHLl+GHGBITDewCDTGrtgr7lq4BfLbmoIVnQeqyhmkhYI2t/VwfPRSXsi73ukQnlds/IIjlI3KzmdzJrtk91A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UDq3HmpC7texZ67qlUtCBtHDL4rURFRM+kiKELDIqwM=;
+ b=PCUjYuf6ycdGQyVUNxcP0XIxLMDwa7cKBsQW4wq1BQv1ogSK0phS4MyWmzHGGiliOyEDKtCSbAzE9z7wXx9MEkHRQVfosAy5eGgIRwP9dO0Zn7LUuvRUlr4M34u6VYb+qmzGZfWsFsP14WrQZQV60G1UHY2b1vx8xWSJz3JgcmzFJJUk7zrhQjBGEekVgkzjdyV4YhHIFit1C7YyKT7xnzTqqkp/mO8zXPPa/QdCxvEQS7DUxZWVUVdk3yW2myGmT/SyyrztwtrMAh2C/1wY0OiHuPVrKZMTwbkpMrc7aRlGDozASKjcv+autZOBhEy1eHFEYu0srFQUvwxmfjOi3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UDq3HmpC7texZ67qlUtCBtHDL4rURFRM+kiKELDIqwM=;
+ b=LgjQCbVe39Red2gtFmjJu2ULS/8OZYBrATUZ9RiHmWxpbxlk+sPzAACb4fIVwEx5OK6fXBjJeukqhO8nOpjX1qimshwElP7MY5xiPcCThRR7taMVwTsLwGfBfaOxLsdw1k+M2soGqtLenB8jhynqGqyfqhIckfZbt6XPlWq+mSc=
+Authentication-Results: amarulasolutions.com; dkim=none (message not signed)
+ header.d=none;amarulasolutions.com; dmarc=none action=none
+ header.from=kontron.de;
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
+ by AM0PR10MB2529.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:df::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4264.23; Wed, 30 Jun
+ 2021 17:20:31 +0000
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::1133:8761:6cc9:9703]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::1133:8761:6cc9:9703%5]) with mapi id 15.20.4264.027; Wed, 30 Jun 2021
+ 17:20:31 +0000
+Subject: Re: [PATCH V8 0/4] soc: imx: add i.MX BLK-CTL support
+To:     Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        =?UTF-8?Q?Guido_G=c3=bcnther?= <agx@sigxcpu.org>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Jacky Bai <ping.bai@nxp.com>, Abel Vesa <abel.vesa@nxp.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+References: <20210629072941.7980-1-peng.fan@oss.nxp.com>
+ <CAHCN7xJgqRfg1sHNbcpdEFaLHUwhYxe7_r5SEMDqSaCPFXX7UQ@mail.gmail.com>
+ <DB6PR0402MB2760B05081D54D775B8949CA88019@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+ <CAHCN7xL6Rr41fHaaPwi6OA5Du8x09EHcE-bWyiGpz0pVn74jeQ@mail.gmail.com>
+ <c6a00f74-6c34-4208-0b17-7fa15835eb3a@kontron.de>
+ <181ac373-7701-361e-6364-6fc74b2d71fe@denx.de>
+From:   Frieder Schrempf <frieder.schrempf@kontron.de>
+Message-ID: <fc7fd710-a834-8273-62e7-6a151de03036@kontron.de>
+Date:   Wed, 30 Jun 2021 19:20:29 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+In-Reply-To: <181ac373-7701-361e-6364-6fc74b2d71fe@denx.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [89.244.188.134]
+X-ClientProxiedBy: AM5PR04CA0020.eurprd04.prod.outlook.com
+ (2603:10a6:206:1::33) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:157::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210630133149.3204290-7-dmitry.baryshkov@linaro.org>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.10.32] (89.244.188.134) by AM5PR04CA0020.eurprd04.prod.outlook.com (2603:10a6:206:1::33) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.22 via Frontend Transport; Wed, 30 Jun 2021 17:20:30 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: cb2bba1c-dd75-417f-c951-08d93beb5cff
+X-MS-TrafficTypeDiagnostic: AM0PR10MB2529:
+X-Microsoft-Antispam-PRVS: <AM0PR10MB252919CA16D6A3BBE8B7DDDDE9019@AM0PR10MB2529.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1332;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yeO4v88AigSJ4WwJ9bPvcVmiHEyjNYb70xAIY1d4Rjw7xQDtntG5VcoF1mMNb6su/kx8PDR+ELl1aEVlY4zVpUylGbq5O9OLrkBaCYSaYs25KpsDHMGPTV8xO2R2lroJgqHMNGLvlCNVE6TqQ/kpkKywYFQzDOzhhR5CHPh1zcLWCrkmSF+5cTvLvcy0NAjGQvPpeM4G5THwh3TC6n2aSId2EPhPmR9/KeSoLuFWgKe92n7cI+MD781MKiRiGY6XysxIEWDsm5ij/4gj/UZW9S3zupwn4NH49MgCB/59rygPiIhBVQ4mNwm6F8Rwtu66Jg2G39KaGFxECuWik2RsamU/DinEYydaPSNwtgjwBngA7B/iVqCfvveB+aOzc9G7u6M1zFjcEDoRDFMRAYTfLXSw63nl4/N4BV891IiCzAZpIwcTc705liGUX7xla83lLCgzNa01ewcFdt+abvgWB6ou6fCrsNdyeoJVSJB+P9rA4PGz2yzizhf0R3VYs3Cns4XdoPCDl5BMASqNfqXNbRPmVGcf3vMZi8dUxy4uT8wdTXoKoltRExYHApGvRuFKL+AYB+RU0d88YHei3yReCueebeDft4fs2d4IVz7I3vUBwb8OzV9fhqyKUHtqECAEm23jTnWcoXhN+WxlGWUH1KRpMVSXrT77HiJl1QLjddDFzvfjEd30KoIEl7OYEBJhp8Of/UV70zARZY6D8FDHBjgGxpUrdw4C1DJpoDb4SGI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(39850400004)(346002)(396003)(376002)(8676002)(53546011)(44832011)(4326008)(6486002)(66946007)(36756003)(2906002)(31686004)(478600001)(26005)(5660300002)(956004)(83380400001)(66556008)(66476007)(8936002)(54906003)(110136005)(38100700002)(7416002)(16526019)(31696002)(86362001)(16576012)(2616005)(186003)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UFFXeW1aeEVSTW1KUHRQQmdvMFBIQVJOZncvNHdSZzVuVHB2Mm1Sb01mN2Rq?=
+ =?utf-8?B?R1dKWlVhdkVsYnNCRHVKZlJ1M3NmY1hjNERRZ1dzcS81TUNKN1pvWURUdmMr?=
+ =?utf-8?B?MUVCY1ZCZVZGdTN4b3RIYmVSV2lQb0NyTWtjbWc4YkNMWHZKVzVYMGh1cG1X?=
+ =?utf-8?B?ZmVzWmJNTWtYL3l0YTMzWUsxQi96V2RYNitMcHJQVTZBWXBqdm16VUxoZDhE?=
+ =?utf-8?B?ckEvMUlaTjR3SUI3RVF6cXRkL2Z4TVRtQ2JRcnJNNHpxOFZNRnoyelJjVVpp?=
+ =?utf-8?B?UEtKeUxXajBRYkRDcHl4NDhPcDhKVGtIcG9SNUt4YzJ6QzIxQTBnaTN2OG1a?=
+ =?utf-8?B?OUhQZjY1cUZHZndYRUtGWURMR2VUZUVPYkdwRStyRythMFlSWDIrcVBRN0ZE?=
+ =?utf-8?B?R3IyZmRDVmtPbzFHU20xMnVwREJVYmpHQnVGMzVBa3dMbHZWMzExaWgyUzEx?=
+ =?utf-8?B?QzJMSVdhNlVpTVlQc2pMYnM3WHhHdkR2MWZMZE96Q1Q1STZPYkQrM3pOMXAv?=
+ =?utf-8?B?Zmp1enIzZWYwTU5zd1dDQ01OZCtYMGYyMG9FZ3hBKy9NdlZJWXJONjhJV0dj?=
+ =?utf-8?B?NHNYd3JSK2lxaE94Wk9XWHhSTDAzMWhINFVWNHdZZWJ0TXRuaFdtN0NIa0RG?=
+ =?utf-8?B?WUtTSDE4UHdpWDZVVUIxUi9ZT0ZYdVg5c3BycnlHQ1lPbGN2QnhKem5wYmEr?=
+ =?utf-8?B?aWZsRy9weEZaUmhvV0gyMk1HY3JReDJqNWRHZ1BCU2pyNy9GSUsrWUE0OGps?=
+ =?utf-8?B?QjJtTmJaU1dWY1lrTGU3eXR0cnBENlNyTWNlNUVSUnJ4enQzNnBnUGlIejkx?=
+ =?utf-8?B?MU1qcVVhRDNOL3Fid0dYVXZidENVZVRHejB1ajdvM3RxU3BnY2tPSEFDUUZ5?=
+ =?utf-8?B?NUlpK01wbFNXTmEwMUJwZ0JON1ZITnlGOUZZQnFOcDg5MGFLWGhMSnk5b1FM?=
+ =?utf-8?B?TGRUY3pMeldYTnF0SHJaVTZZV3hXZWI0Q0gxUEFvbCt6UUtYUytwYnVKWHAv?=
+ =?utf-8?B?eEhGT2xtRFFUVGtMcnlHdEltQ1htOXJ1UWFTWmJHUzk3SnBLVUdMZHpTUFho?=
+ =?utf-8?B?Sjd6dXczbHYzK3ZuQ2RvZkZ2ZFpjaEhROWNwMlFteE0rZkhrVkhxcGxyL1JL?=
+ =?utf-8?B?bE83S0ZYa2Qzd2lvazBpRDd4Y2V3STd4U2pHWEJtVXdMeFB1STVISDQ5Unlr?=
+ =?utf-8?B?K0ZIMElnc3NvRDZtZHdTU0VhaDhOdVJCNEVPSUhobmtHanBSMERiM3FWY0Fk?=
+ =?utf-8?B?UzV6S0tQS0RmMllLT0U1RTQ3MTZ1VWE1SVhmOE1qSjRVeHEvWWtrQW5zK1BZ?=
+ =?utf-8?B?UmpIRW4rbFBsOUgvTTk3amJCNVY1SXhvK3ZVRVF0SXNEZkpFY0R0MUF2dHFP?=
+ =?utf-8?B?Y1hwZVNQTkhKRktPL3BsRXZtaGtVeUNVUTBQYmNOakJ5ZFhNeUE4dDFDcGw3?=
+ =?utf-8?B?ZTV0b2lBaDdlSnpuc3FQeWI1QkJDWGF1VVlleVBCR1RnaExGcGdicWxOdTlm?=
+ =?utf-8?B?VW1KRTJ0Z0o5OVEwWTBCWTVQZWEvbnBtWHkyT0ZONXpNWVdUMlp4T3lQV052?=
+ =?utf-8?B?RmxsR2JCQU9UbXMrZGhyWEpQeFdJeE94VzliTlUvTnBVMGdiTFVwWjBmaGRV?=
+ =?utf-8?B?cjl2OFEzSUl4QmJzRjBNQm9tYkpiYXluMlNDUmFmOXNhZk43S2FDcXozZkNO?=
+ =?utf-8?B?MnVvaWVTdTFtUU13WENKQWpMeU9QUWo0ZzVJVWtVUldqbUk0Rk5ZZ0lON2p3?=
+ =?utf-8?Q?ggGAWbdY3eQkagZSM0lVL6dgD/IR2+7/IqUQbOa?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb2bba1c-dd75-417f-c951-08d93beb5cff
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2021 17:20:31.4615
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UEQVaCiEniJNv1Vjf0D8KluwTZ2EfGhLVMqXT+htUrOUxq7GFnRsVLh/nrBFC+SUzMeaTkUzegcZrA6Kqj58XgwxxsFPPKXF/x/fqzbZujI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2529
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 30 Jun 08:31 CDT 2021, Dmitry Baryshkov wrote:
-
-> Now as the common qcom clock controller code has been taught about power
-> domains, stop mentioning mmcx supply as a way to power up the clock
-> controller's gdscs.
+On 30.06.21 18:28, Marek Vasut wrote:
+> On 6/30/21 4:46 PM, Frieder Schrempf wrote:
+>> On 30.06.21 14:09, Adam Ford wrote:
+>>> On Wed, Jun 30, 2021 at 4:34 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
+>>>>
+>>>>> Subject: Re: [PATCH V8 0/4] soc: imx: add i.MX BLK-CTL support
+>>>>>
+>>>>> On Tue, Jun 29, 2021 at 1:56 AM Peng Fan (OSS) <peng.fan@oss.nxp.com>
+>>>>> wrote:
+>>>>>>
+>>>>>> From: Peng Fan <peng.fan@nxp.com>
+>>>>>>
+>>>>>> V8:
+>>>>>> Revert one change in v7, force goto disable_clk for handshake when
+>>>>>> power on in patch 3 One minor update to use if{} else {}, not if{};
+>>>>>> if{}; in patch 3 Typo Hankshake->Handshake
+>>>>>>
+>>>>> I am using ATF, branch lf_v2.4, from the NXP code aurora repo with U-Boot
+>>>>> v2021.07-rc5
+>>>>>
+>>>>> I applied this patch against linux-next, I applied the pgc patches [1], and the
+>>>>> suggested power-domains to the otg1 and otg2 nodes.
+>>>>> I am able to boot the device and use USB, but with this applied, I cannot wake
+>>>>> from sleep.  If I revert this, the system wakes from sleep again.
+>>>>
+>>>> I just tried linux-next without this patch on iMX8MM EVK, suspend/resume
+>>>> not work. Per my last test, it works before. Not sure what changed in kernel.
+>>>>
+>>>> Which kernel are you using, any commit or git repo? I could try on imx8mm
+>>>> evk and debug the issue you see.
+>>>
+>>> I used kernel-next,
+>>> git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+>>> commit 889bab4c367a0ef58208fd80fafa74bb6e2dca26 (tag: next-20210621)
+>>>
+>>> I then applied the GPCv2 patch that Marek sent.  You were CC'd on the
+>>> e-mail from Marek, but I can forward the patch to you if you can't
+>>> find it.
+>>> I tested his patch and I was able to suspend-to-RAM and resume.
+>>> Once I was comfortable that it worked, I then applied your patch
+>>> series for the blk-ctl.
+>>> With the blk-ctl series applied, the suspend-resume stopped working.
+>>
+>> Same here. I tested with linux-next-20210629 and as soon as I add the BLK-CTL driver and devicetree nodes, the resume after suspend causes a lockup each time.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> btw do you have etnaviv enabled ?
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Regards,
-Bjorn
-
-> ---
->  drivers/clk/qcom/videocc-sm8250.c | 4 ----
->  1 file changed, 4 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/videocc-sm8250.c b/drivers/clk/qcom/videocc-sm8250.c
-> index 7b435a1c2c4b..eedef85d90e5 100644
-> --- a/drivers/clk/qcom/videocc-sm8250.c
-> +++ b/drivers/clk/qcom/videocc-sm8250.c
-> @@ -276,7 +276,6 @@ static struct gdsc mvs0c_gdsc = {
->  	},
->  	.flags = 0,
->  	.pwrsts = PWRSTS_OFF_ON,
-> -	.supply = "mmcx",
->  };
->  
->  static struct gdsc mvs1c_gdsc = {
-> @@ -286,7 +285,6 @@ static struct gdsc mvs1c_gdsc = {
->  	},
->  	.flags = 0,
->  	.pwrsts = PWRSTS_OFF_ON,
-> -	.supply = "mmcx",
->  };
->  
->  static struct gdsc mvs0_gdsc = {
-> @@ -296,7 +294,6 @@ static struct gdsc mvs0_gdsc = {
->  	},
->  	.flags = HW_CTRL,
->  	.pwrsts = PWRSTS_OFF_ON,
-> -	.supply = "mmcx",
->  };
->  
->  static struct gdsc mvs1_gdsc = {
-> @@ -306,7 +303,6 @@ static struct gdsc mvs1_gdsc = {
->  	},
->  	.flags = HW_CTRL,
->  	.pwrsts = PWRSTS_OFF_ON,
-> -	.supply = "mmcx",
->  };
->  
->  static struct clk_regmap *video_cc_sm8250_clocks[] = {
-> -- 
-> 2.30.2
-> 
+yes, but I can try without and see if it's related.
