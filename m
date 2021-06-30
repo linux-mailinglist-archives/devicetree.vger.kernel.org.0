@@ -2,312 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C72463B867D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 17:47:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE9813B8698
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 17:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235862AbhF3Pt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 11:49:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44274 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235775AbhF3Pt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 11:49:58 -0400
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C00AC0617A6
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 08:47:28 -0700 (PDT)
-Received: by mail-qv1-xf2c.google.com with SMTP id g14so1313731qvo.7
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 08:47:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VxezOHsPVxs+xB6BVTLLYf2XI/Gpz28qXdqPvfvuUuY=;
-        b=swaiBn8GrCoTmoRBrySgqREVdAql6hqiSVM2EWhkYOjNdx1uYvOEZKtm6LuGTYKbNe
-         C6Y8HhXzvumyE55ctUhCymF4q7GKDLoD09ByN5GMlkH/J5e5MwpwSS37xdKzsIOYpW7j
-         WwiXv2C7tgQz8bS3v4kQhzF9AiN88YZt91YjpOc8Wp18kp/I5e+npykGyw4AzSR6SP4V
-         ywTkN21gsgbMydOL+WiGbLey/rCKJh3rXNe5keH9lsX+/57XWfJ8ssOTtf6Fe4AfV4SB
-         yynX3BebGV2NgYkLi+8eipvZ9s5UTQybGMOpDgWtRjtAo+4w87pxvaTAY4R+AY1eljjN
-         eFQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VxezOHsPVxs+xB6BVTLLYf2XI/Gpz28qXdqPvfvuUuY=;
-        b=o9IrsXKN0gb0hqQdGsFeuLbJe/Inv7htdRebtqIRaIi0BsPRyWHN9yh1KIL/whV9w0
-         60xtM6CVb4/vJRRrRR4Xmya9qlZn3pKCb24mCzLRLP3TUTSF2YiKjBZUvXQPlV0EnZ31
-         8NXin+fmfh//PRTuNTKNV9LXmirgrzqMZwmAU2O34twkkFp2m5MDgDgTU9Yv2yBJ/lO2
-         2vC7tdtFmRCaHN1UVYuu3rsmFSPFj0AYzAohHEMH1Ja+YFNxo2UgbiesOakdHx4QNMS2
-         LJruTT3gmdO6OehF8wNM1AZYcM79OmTzwULpbiNODewwf6cvOr/ciBzBDV1VxhFrFm21
-         o2KQ==
-X-Gm-Message-State: AOAM5324xm669nnjeIjOMXDWDyS405Fgq8vsRXSNdhZWHfyyT+rXDL+7
-        FOYSAupDMSgBVyHoSt0/tDlGVT8zMuTKt4okOxmhMQ==
-X-Google-Smtp-Source: ABdhPJzYqNwD4zU1M2ImlWlNP0d/DQxxzoAQ8IpRwQtALWrSM6WyNllcw8r40MR4AOeIs+TXf/dbsGl9oWW1vyky/+o=
-X-Received: by 2002:a05:6214:1021:: with SMTP id k1mr37760978qvr.4.1625068047671;
- Wed, 30 Jun 2021 08:47:27 -0700 (PDT)
+        id S235916AbhF3P7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 11:59:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60726 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235976AbhF3P7Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Jun 2021 11:59:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3EC0061396;
+        Wed, 30 Jun 2021 15:56:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625068615;
+        bh=t4c1D/KrdZudddoFFMreAQi55GnAG0OUL4mpRujr/+8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nFQR+NYjpCrpMIj0+9nBAj35wlj1qXRWbFKtyhNDLpJTAm3BAAOI+jIUn7QIQ6LMC
+         /D08b/Wyq1LKmfD6NJJYuuUXm1XpHRMF+bzag+U7SE0Xnf1l+0yaFFUCUoKE4yB6Fx
+         KHCUGF9UUbr1kSihYQ7S2P6QTrW/0sw9J8RiF/5y7S55QWGDrjBUVqbIJpceKtB839
+         13XYMsllNYSyOsjMPZqtEclitRsqTPicPLIWpPGvJ9tnj6RZjijLVBtTMriTuGUDnx
+         pujXO32GnzzUvzSsthpj3FxbtH2/lBtbWkeBfV4uT8mpQQ+qjMcUVFz7XO5LQkzFA7
+         Ko9guip4RPSmA==
+Date:   Wed, 30 Jun 2021 08:56:51 -0700
+From:   Nathan Chancellor <nathan@kernel.org>
+To:     Will Deacon <will@kernel.org>
+Cc:     Claire Chang <tientzu@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
+        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
+        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
+        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
+        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+        Tom Lendacky <thomas.lendacky@amd.com>,
+        Qian Cai <quic_qiancai@quicinc.com>
+Subject: Re: [PATCH v15 06/12] swiotlb: Use is_swiotlb_force_bounce for
+ swiotlb data bouncing
+Message-ID: <YNyUQwiagNeZ9YeJ@Ryzen-9-3900X.localdomain>
+References: <20210624155526.2775863-1-tientzu@chromium.org>
+ <20210624155526.2775863-7-tientzu@chromium.org>
+ <YNvMDFWKXSm4LRfZ@Ryzen-9-3900X.localdomain>
+ <CALiNf2-a-haQN0-4+gX8+wa++52-0CnO2O4BEkxrQCxoTa_47w@mail.gmail.com>
+ <20210630114348.GA8383@willie-the-truck>
 MIME-Version: 1.0
-References: <20210630133149.3204290-1-dmitry.baryshkov@linaro.org>
- <20210630133149.3204290-4-dmitry.baryshkov@linaro.org> <YNyHDAHk6ad/XCGl@yoga>
-In-Reply-To: <YNyHDAHk6ad/XCGl@yoga>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 30 Jun 2021 18:47:16 +0300
-Message-ID: <CAA8EJpqf6VyaS7KyhujFgST+S=fua4S-uXia0g7Qh7ogYgWYbw@mail.gmail.com>
-Subject: Re: [PATCH 3/6] clk: qcom: gdsc: enable optional power domain support
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210630114348.GA8383@willie-the-truck>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Will and Claire,
 
-On Wed, 30 Jun 2021 at 18:00, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Wed 30 Jun 08:31 CDT 2021, Dmitry Baryshkov wrote:
->
-> > On sm8250 dispcc and videocc registers are powered up by the MMCX power
-> > domain. Currently we used a regulator to enable this domain on demand,
-> > however this has some consequences, as genpd code is not reentrant.
-> >
-> > Teach Qualcomm clock controller code about setting up power domains and
-> > using them for gdsc control.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->
-> There's a proposal to add a generic binding for statically assigning a
-> performance states here:
->
-> https://lore.kernel.org/linux-arm-msm/1622095949-2014-1-git-send-email-rnayak@codeaurora.org/
->
->
-> But that said, do you really need this?
->
-> The requirement for driving MMCX to LOW_SVS on SM8250 (and NOM on
-> SM8150/SC8180x) seems to only come from the fact that you push MDP_CLK
-> to 460MHz in &mdss.
->
-> But then in &mdss_mdp you do the same using an opp-table based on the
-> actual MDP_CLK, which per its power-domains will scale MMCX accordingly.
+On Wed, Jun 30, 2021 at 12:43:48PM +0100, Will Deacon wrote:
+> On Wed, Jun 30, 2021 at 05:17:27PM +0800, Claire Chang wrote:
+> > On Wed, Jun 30, 2021 at 9:43 AM Nathan Chancellor <nathan@kernel.org> wrote:
+> > >
+> > > On Thu, Jun 24, 2021 at 11:55:20PM +0800, Claire Chang wrote:
+> > > > Propagate the swiotlb_force into io_tlb_default_mem->force_bounce and
+> > > > use it to determine whether to bounce the data or not. This will be
+> > > > useful later to allow for different pools.
+> > > >
+> > > > Signed-off-by: Claire Chang <tientzu@chromium.org>
+> > > > Reviewed-by: Christoph Hellwig <hch@lst.de>
+> > > > Tested-by: Stefano Stabellini <sstabellini@kernel.org>
+> > > > Tested-by: Will Deacon <will@kernel.org>
+> > > > Acked-by: Stefano Stabellini <sstabellini@kernel.org>
+> > >
+> > > This patch as commit af452ec1b1a3 ("swiotlb: Use is_swiotlb_force_bounce
+> > > for swiotlb data bouncing") causes my Ryzen 3 4300G system to fail to
+> > > get to an X session consistently (although not every single time),
+> > > presumably due to a crash in the AMDGPU driver that I see in dmesg.
+> > >
+> > > I have attached logs at af452ec1b1a3 and f127c9556a8e and I am happy
+> > > to provide any further information, debug, or test patches as necessary.
+> > 
+> > Are you using swiotlb=force? or the swiotlb_map is called because of
+> > !dma_capable? (https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/kernel/dma/direct.h#n93)
+> 
+> The command line is in the dmesg:
+> 
+>   | Kernel command line: initrd=\amd-ucode.img initrd=\initramfs-linux-next-llvm.img root=PARTUUID=8680aa0c-cf09-4a69-8cf3-970478040ee7 rw intel_pstate=no_hwp irqpoll
+> 
+> but I worry that this looks _very_ similar to the issue reported by Qian
+> Cai which we thought we had fixed. Nathan -- is the failure deterministic?
 
-MDSS and DSI would bump up MMCX performance state requirements on
-their own, depending on the frequency being selected.
+Yes, for the most part. It does not happen every single boot so when I
+was bisecting, I did a series of seven boots and only considered the
+revision good when all seven of them made it to LightDM's greeter. My
+results that I notated show most bad revisions failed anywhere from four
+to six times.
 
-> So wouldn't it be sufficient to ensure that MDSS_GDSC is parented by
-> MMCX and then use opp-tables associated with the devices that scales the
-> clock and thereby actually carries the "required-opps".
+> > `BUG: unable to handle page fault for address: 00000000003a8290` and
+> > the fact it crashed at `_raw_spin_lock_irqsave` look like the memory
+> > (maybe dev->dma_io_tlb_mem) was corrupted?
+> > The dev->dma_io_tlb_mem should be set here
+> > (https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/pci/probe.c#n2528)
+> > through device_initialize.
+> 
+> I'm less sure about this. 'dma_io_tlb_mem' should be pointing at
+> 'io_tlb_default_mem', which is a page-aligned allocation from memblock.
+> The spinlock is at offset 0x24 in that structure, and looking at the
+> register dump from the crash:
+> 
+> Jun 29 18:28:42 hp-4300G kernel: RSP: 0018:ffffadb4013db9e8 EFLAGS: 00010006
+> Jun 29 18:28:42 hp-4300G kernel: RAX: 00000000003a8290 RBX: 0000000000000000 RCX: ffff8900572ad580
+> Jun 29 18:28:42 hp-4300G kernel: RDX: ffff89005653f024 RSI: 00000000000c0000 RDI: 0000000000001d17
+> Jun 29 18:28:42 hp-4300G kernel: RBP: 000000000a20d000 R08: 00000000000c0000 R09: 0000000000000000
+> Jun 29 18:28:42 hp-4300G kernel: R10: 000000000a20d000 R11: ffff89005653f000 R12: 0000000000000212
+> Jun 29 18:28:42 hp-4300G kernel: R13: 0000000000001000 R14: 0000000000000002 R15: 0000000000200000
+> Jun 29 18:28:42 hp-4300G kernel: FS:  00007f1f8898ea40(0000) GS:ffff890057280000(0000) knlGS:0000000000000000
+> Jun 29 18:28:42 hp-4300G kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> Jun 29 18:28:42 hp-4300G kernel: CR2: 00000000003a8290 CR3: 00000001020d0000 CR4: 0000000000350ee0
+> Jun 29 18:28:42 hp-4300G kernel: Call Trace:
+> Jun 29 18:28:42 hp-4300G kernel:  _raw_spin_lock_irqsave+0x39/0x50
+> Jun 29 18:28:42 hp-4300G kernel:  swiotlb_tbl_map_single+0x12b/0x4c0
+> 
+> Then that correlates with R11 holding the 'dma_io_tlb_mem' pointer and
+> RDX pointing at the spinlock. Yet RAX is holding junk :/
+> 
+> I agree that enabling KASAN would be a good idea, but I also think we
+> probably need to get some more information out of swiotlb_tbl_map_single()
+> to see see what exactly is going wrong in there.
 
-Actually no. I set the performance state in the qcom_cc_map, so that
-further register access is possible. Initially I was doing this in the
-qcom_cc_really_probe() and it was already too late.
-Just to remind: this patchset is not about MDSS_GDSC being parented by
-MMCX, it is about dispcc/videocc registers being gated with MMCX.
+I can certainly enable KASAN and if there is any debug print I can add
+or dump anything, let me know!
 
-> I presume your testing indicates that it doesn't matter on sm8250, but
-> as stated above, 460MHz on sm8150/sc8180x requires nominal, so per your
-> suggestion we'd have to vote nominal in &mdss, which means that if the
-> DPU decides to go to 200MHz the &mdss will still keep the voltage at
-> NOM, even though the DPU's opp-table says that LOW_SVS is sufficient.
-
-Let me check whether LOW_SVS is really a requirement or if setting
-MIN_SVS would also be sufficient for that. Interesting enough, from
-the downstream drivers it looks like dispcc should be able to work
-with MIN_SVS, while videocc would require LOW_SVS.
-
->
-> Regards,
-> Bjorn
->
-> > ---
-> >  drivers/clk/qcom/common.c | 55 ++++++++++++++++++++++++++++++++++-----
-> >  drivers/clk/qcom/gdsc.c   |  6 +++++
-> >  2 files changed, 55 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/clk/qcom/common.c b/drivers/clk/qcom/common.c
-> > index 60d2a78d1395..eeb5b8c93032 100644
-> > --- a/drivers/clk/qcom/common.c
-> > +++ b/drivers/clk/qcom/common.c
-> > @@ -10,6 +10,8 @@
-> >  #include <linux/clk-provider.h>
-> >  #include <linux/reset-controller.h>
-> >  #include <linux/of.h>
-> > +#include <linux/pm_opp.h>
-> > +#include <linux/pm_runtime.h>
-> >
-> >  #include "common.h"
-> >  #include "clk-rcg.h"
-> > @@ -76,6 +78,16 @@ qcom_cc_map(struct platform_device *pdev, const struct qcom_cc_desc *desc)
-> >       struct resource *res;
-> >       struct device *dev = &pdev->dev;
-> >
-> > +     if (of_find_property(dev->of_node, "required-opps", NULL)) {
-> > +             int pd_opp;
-> > +
-> > +             pd_opp = of_get_required_opp_performance_state(dev->of_node, 0);
-> > +             if (pd_opp < 0)
-> > +                     return ERR_PTR(pd_opp);
-> > +
-> > +             dev_pm_genpd_set_performance_state(dev, pd_opp);
-> > +     }
-> > +
-> >       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> >       base = devm_ioremap_resource(dev, res);
-> >       if (IS_ERR(base))
-> > @@ -224,6 +236,11 @@ static struct clk_hw *qcom_cc_clk_hw_get(struct of_phandle_args *clkspec,
-> >       return cc->rclks[idx] ? &cc->rclks[idx]->hw : NULL;
-> >  }
-> >
-> > +static void qcom_cc_pm_runtime_disable(void *data)
-> > +{
-> > +     pm_runtime_disable(data);
-> > +}
-> > +
-> >  int qcom_cc_really_probe(struct platform_device *pdev,
-> >                        const struct qcom_cc_desc *desc, struct regmap *regmap)
-> >  {
-> > @@ -236,11 +253,28 @@ int qcom_cc_really_probe(struct platform_device *pdev,
-> >       struct clk_regmap **rclks = desc->clks;
-> >       size_t num_clk_hws = desc->num_clk_hws;
-> >       struct clk_hw **clk_hws = desc->clk_hws;
-> > +     bool use_pm = false;
-> >
-> >       cc = devm_kzalloc(dev, sizeof(*cc), GFP_KERNEL);
-> >       if (!cc)
-> >               return -ENOMEM;
-> >
-> > +     if (of_find_property(dev->of_node, "required-opps", NULL)) {
-> > +             use_pm = true;
-> > +
-> > +             pm_runtime_enable(dev);
-> > +             ret = pm_runtime_get_sync(dev);
-> > +             if (ret < 0) {
-> > +                     pm_runtime_put(dev);
-> > +                     pm_runtime_disable(dev);
-> > +                     return ret;
-> > +             }
-> > +
-> > +             ret = devm_add_action_or_reset(dev, qcom_cc_pm_runtime_disable, dev);
-> > +             if (ret)
-> > +                     return ret;
-> > +     }
-> > +
-> >       reset = &cc->reset;
-> >       reset->rcdev.of_node = dev->of_node;
-> >       reset->rcdev.ops = &qcom_reset_ops;
-> > @@ -251,7 +285,7 @@ int qcom_cc_really_probe(struct platform_device *pdev,
-> >
-> >       ret = devm_reset_controller_register(dev, &reset->rcdev);
-> >       if (ret)
-> > -             return ret;
-> > +             goto err;
-> >
-> >       if (desc->gdscs && desc->num_gdscs) {
-> >               scd = devm_kzalloc(dev, sizeof(*scd), GFP_KERNEL);
-> > @@ -262,11 +296,11 @@ int qcom_cc_really_probe(struct platform_device *pdev,
-> >               scd->num = desc->num_gdscs;
-> >               ret = gdsc_register(scd, &reset->rcdev, regmap);
-> >               if (ret)
-> > -                     return ret;
-> > +                     goto err;
-> >               ret = devm_add_action_or_reset(dev, qcom_cc_gdsc_unregister,
-> >                                              scd);
-> >               if (ret)
-> > -                     return ret;
-> > +                     goto err;
-> >       }
-> >
-> >       cc->rclks = rclks;
-> > @@ -277,7 +311,7 @@ int qcom_cc_really_probe(struct platform_device *pdev,
-> >       for (i = 0; i < num_clk_hws; i++) {
-> >               ret = devm_clk_hw_register(dev, clk_hws[i]);
-> >               if (ret)
-> > -                     return ret;
-> > +                     goto err;
-> >       }
-> >
-> >       for (i = 0; i < num_clks; i++) {
-> > @@ -286,14 +320,23 @@ int qcom_cc_really_probe(struct platform_device *pdev,
-> >
-> >               ret = devm_clk_register_regmap(dev, rclks[i]);
-> >               if (ret)
-> > -                     return ret;
-> > +                     goto err;
-> >       }
-> >
-> >       ret = devm_of_clk_add_hw_provider(dev, qcom_cc_clk_hw_get, cc);
-> >       if (ret)
-> > -             return ret;
-> > +             goto err;
-> > +
-> > +     if (use_pm)
-> > +             pm_runtime_put(dev);
-> >
-> >       return 0;
-> > +
-> > +err:
-> > +     if (use_pm)
-> > +             pm_runtime_put(dev);
-> > +
-> > +     return ret;
-> >  }
-> >  EXPORT_SYMBOL_GPL(qcom_cc_really_probe);
-> >
-> > diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
-> > index 51ed640e527b..40c384bda4fc 100644
-> > --- a/drivers/clk/qcom/gdsc.c
-> > +++ b/drivers/clk/qcom/gdsc.c
-> > @@ -11,6 +11,7 @@
-> >  #include <linux/kernel.h>
-> >  #include <linux/ktime.h>
-> >  #include <linux/pm_domain.h>
-> > +#include <linux/pm_runtime.h>
-> >  #include <linux/regmap.h>
-> >  #include <linux/regulator/consumer.h>
-> >  #include <linux/reset-controller.h>
-> > @@ -237,6 +238,8 @@ static int gdsc_enable(struct generic_pm_domain *domain)
-> >       struct gdsc *sc = domain_to_gdsc(domain);
-> >       int ret;
-> >
-> > +     pm_runtime_get_sync(domain->dev.parent);
-> > +
-> >       if (sc->pwrsts == PWRSTS_ON)
-> >               return gdsc_deassert_reset(sc);
-> >
-> > @@ -326,6 +329,8 @@ static int gdsc_disable(struct generic_pm_domain *domain)
-> >       if (sc->flags & CLAMP_IO)
-> >               gdsc_assert_clamp_io(sc);
-> >
-> > +     pm_runtime_put(domain->dev.parent);
-> > +
-> >       return 0;
-> >  }
-> >
-> > @@ -427,6 +432,7 @@ int gdsc_register(struct gdsc_desc *desc,
-> >                       continue;
-> >               scs[i]->regmap = regmap;
-> >               scs[i]->rcdev = rcdev;
-> > +             scs[i]->pd.dev.parent = desc->dev;
-> >               ret = gdsc_init(scs[i]);
-> >               if (ret)
-> >                       return ret;
-> > --
-> > 2.30.2
-> >
-
-
-
--- 
-With best wishes
-Dmitry
+Cheers,
+Nathan
