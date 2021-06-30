@@ -2,158 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9813B8698
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 17:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C3263B86DF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 18:11:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235916AbhF3P7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 11:59:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60726 "EHLO mail.kernel.org"
+        id S232052AbhF3QNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 12:13:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35242 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235976AbhF3P7Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Jun 2021 11:59:24 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3EC0061396;
-        Wed, 30 Jun 2021 15:56:53 +0000 (UTC)
+        id S232027AbhF3QNj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Jun 2021 12:13:39 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 9A1DD61456;
+        Wed, 30 Jun 2021 16:11:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625068615;
-        bh=t4c1D/KrdZudddoFFMreAQi55GnAG0OUL4mpRujr/+8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nFQR+NYjpCrpMIj0+9nBAj35wlj1qXRWbFKtyhNDLpJTAm3BAAOI+jIUn7QIQ6LMC
-         /D08b/Wyq1LKmfD6NJJYuuUXm1XpHRMF+bzag+U7SE0Xnf1l+0yaFFUCUoKE4yB6Fx
-         KHCUGF9UUbr1kSihYQ7S2P6QTrW/0sw9J8RiF/5y7S55QWGDrjBUVqbIJpceKtB839
-         13XYMsllNYSyOsjMPZqtEclitRsqTPicPLIWpPGvJ9tnj6RZjijLVBtTMriTuGUDnx
-         pujXO32GnzzUvzSsthpj3FxbtH2/lBtbWkeBfV4uT8mpQQ+qjMcUVFz7XO5LQkzFA7
-         Ko9guip4RPSmA==
-Date:   Wed, 30 Jun 2021 08:56:51 -0700
-From:   Nathan Chancellor <nathan@kernel.org>
-To:     Will Deacon <will@kernel.org>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
-        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
-        Tom Lendacky <thomas.lendacky@amd.com>,
-        Qian Cai <quic_qiancai@quicinc.com>
-Subject: Re: [PATCH v15 06/12] swiotlb: Use is_swiotlb_force_bounce for
- swiotlb data bouncing
-Message-ID: <YNyUQwiagNeZ9YeJ@Ryzen-9-3900X.localdomain>
-References: <20210624155526.2775863-1-tientzu@chromium.org>
- <20210624155526.2775863-7-tientzu@chromium.org>
- <YNvMDFWKXSm4LRfZ@Ryzen-9-3900X.localdomain>
- <CALiNf2-a-haQN0-4+gX8+wa++52-0CnO2O4BEkxrQCxoTa_47w@mail.gmail.com>
- <20210630114348.GA8383@willie-the-truck>
+        s=k20201202; t=1625069470;
+        bh=tS9UOkmHfzsDiNUImRMpoSlMeUJv0SfmW99iaB0fyqs=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=UY+gmNXatbjEY9Il2jN9pHQO7EtNS5/veu/rwgzFRZEZU6Jf6xY6/gvNj1HfO7vBp
+         KiRNt5lcbzaYyOMCqjgP/NmAaIPEURE708kZiMQH00zkZYdKGJ4l+QHwqHSx3KhCMS
+         yGJ2lqfg2syPDZlthTnBrTERONMFqLZv8PwsjNPzHSUKzQc6KOyLUelvHdgdYnZKsc
+         raEY7eTJMPJFrD2DaRb6NzGOK+tKGMnP/PY4MPi98LUxnhVLDi4c7viXSIhEVq05sL
+         a0M83yuoX23qjA6jO7SMhaJAMu0bQM1z3ZP07iFqE54yTwrx/OTsO7j20wkDPr2rYj
+         j8RQ96BLdV89A==
+From:   Mark Brown <broonie@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
+        Sameer Pujar <spujar@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: (subset) [PATCH 0/2] arm64: tegra: Enable audio IOMMU support on Tegra194
+Date:   Wed, 30 Jun 2021 17:10:33 +0100
+Message-Id: <162506854659.43525.4480397285287043164.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210628181118.2295007-1-thierry.reding@gmail.com>
+References: <20210628181118.2295007-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210630114348.GA8383@willie-the-truck>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Will and Claire,
+On Mon, 28 Jun 2021 20:11:16 +0200, Thierry Reding wrote:
+> This small series addresses a minor issue with how IOMMU support is
+> wired up on various Tegra generations. Currently the virtual "card"
+> device is used to allocate DMA memory for, but since that device does
+> not actually exist, the path to memory cannot be correctly described.
+> 
+> To address this, this series moves to using the ADMAIF as the DMA device
+> for audio. This is a real device that can have a proper DMA mask set and
+> with which a stream ID can be associated with in the SMMU. The memory
+> accesses technically originate from the ADMA controller (that the ADMAIF
+> uses), but DMA channel are dynamically allocated at runtime while DMA
+> memory is allocated at driver load time, drivers won't have access to
+> the ADMA device yet.
+> 
+> [...]
 
-On Wed, Jun 30, 2021 at 12:43:48PM +0100, Will Deacon wrote:
-> On Wed, Jun 30, 2021 at 05:17:27PM +0800, Claire Chang wrote:
-> > On Wed, Jun 30, 2021 at 9:43 AM Nathan Chancellor <nathan@kernel.org> wrote:
-> > >
-> > > On Thu, Jun 24, 2021 at 11:55:20PM +0800, Claire Chang wrote:
-> > > > Propagate the swiotlb_force into io_tlb_default_mem->force_bounce and
-> > > > use it to determine whether to bounce the data or not. This will be
-> > > > useful later to allow for different pools.
-> > > >
-> > > > Signed-off-by: Claire Chang <tientzu@chromium.org>
-> > > > Reviewed-by: Christoph Hellwig <hch@lst.de>
-> > > > Tested-by: Stefano Stabellini <sstabellini@kernel.org>
-> > > > Tested-by: Will Deacon <will@kernel.org>
-> > > > Acked-by: Stefano Stabellini <sstabellini@kernel.org>
-> > >
-> > > This patch as commit af452ec1b1a3 ("swiotlb: Use is_swiotlb_force_bounce
-> > > for swiotlb data bouncing") causes my Ryzen 3 4300G system to fail to
-> > > get to an X session consistently (although not every single time),
-> > > presumably due to a crash in the AMDGPU driver that I see in dmesg.
-> > >
-> > > I have attached logs at af452ec1b1a3 and f127c9556a8e and I am happy
-> > > to provide any further information, debug, or test patches as necessary.
-> > 
-> > Are you using swiotlb=force? or the swiotlb_map is called because of
-> > !dma_capable? (https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/kernel/dma/direct.h#n93)
-> 
-> The command line is in the dmesg:
-> 
->   | Kernel command line: initrd=\amd-ucode.img initrd=\initramfs-linux-next-llvm.img root=PARTUUID=8680aa0c-cf09-4a69-8cf3-970478040ee7 rw intel_pstate=no_hwp irqpoll
-> 
-> but I worry that this looks _very_ similar to the issue reported by Qian
-> Cai which we thought we had fixed. Nathan -- is the failure deterministic?
+Applied to
 
-Yes, for the most part. It does not happen every single boot so when I
-was bisecting, I did a series of seven boots and only considered the
-revision good when all seven of them made it to LightDM's greeter. My
-results that I notated show most bad revisions failed anywhere from four
-to six times.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> > `BUG: unable to handle page fault for address: 00000000003a8290` and
-> > the fact it crashed at `_raw_spin_lock_irqsave` look like the memory
-> > (maybe dev->dma_io_tlb_mem) was corrupted?
-> > The dev->dma_io_tlb_mem should be set here
-> > (https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/pci/probe.c#n2528)
-> > through device_initialize.
-> 
-> I'm less sure about this. 'dma_io_tlb_mem' should be pointing at
-> 'io_tlb_default_mem', which is a page-aligned allocation from memblock.
-> The spinlock is at offset 0x24 in that structure, and looking at the
-> register dump from the crash:
-> 
-> Jun 29 18:28:42 hp-4300G kernel: RSP: 0018:ffffadb4013db9e8 EFLAGS: 00010006
-> Jun 29 18:28:42 hp-4300G kernel: RAX: 00000000003a8290 RBX: 0000000000000000 RCX: ffff8900572ad580
-> Jun 29 18:28:42 hp-4300G kernel: RDX: ffff89005653f024 RSI: 00000000000c0000 RDI: 0000000000001d17
-> Jun 29 18:28:42 hp-4300G kernel: RBP: 000000000a20d000 R08: 00000000000c0000 R09: 0000000000000000
-> Jun 29 18:28:42 hp-4300G kernel: R10: 000000000a20d000 R11: ffff89005653f000 R12: 0000000000000212
-> Jun 29 18:28:42 hp-4300G kernel: R13: 0000000000001000 R14: 0000000000000002 R15: 0000000000200000
-> Jun 29 18:28:42 hp-4300G kernel: FS:  00007f1f8898ea40(0000) GS:ffff890057280000(0000) knlGS:0000000000000000
-> Jun 29 18:28:42 hp-4300G kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> Jun 29 18:28:42 hp-4300G kernel: CR2: 00000000003a8290 CR3: 00000001020d0000 CR4: 0000000000350ee0
-> Jun 29 18:28:42 hp-4300G kernel: Call Trace:
-> Jun 29 18:28:42 hp-4300G kernel:  _raw_spin_lock_irqsave+0x39/0x50
-> Jun 29 18:28:42 hp-4300G kernel:  swiotlb_tbl_map_single+0x12b/0x4c0
-> 
-> Then that correlates with R11 holding the 'dma_io_tlb_mem' pointer and
-> RDX pointing at the spinlock. Yet RAX is holding junk :/
-> 
-> I agree that enabling KASAN would be a good idea, but I also think we
-> probably need to get some more information out of swiotlb_tbl_map_single()
-> to see see what exactly is going wrong in there.
+Thanks!
 
-I can certainly enable KASAN and if there is any debug print I can add
-or dump anything, let me know!
+[1/2] ASoC: tegra: Use ADMAIF component for DMA allocations
+      commit: e6b66edfef64698d4d9ed3847c95cdfab9bde579
 
-Cheers,
-Nathan
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
