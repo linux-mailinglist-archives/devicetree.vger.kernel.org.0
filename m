@@ -2,83 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA8C73B880F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 19:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A92003B8850
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 20:23:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232959AbhF3RyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 13:54:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44118 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232727AbhF3RyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 13:54:13 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 956AEC0617A8
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 10:51:44 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id t3so4013061oic.5
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 10:51:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=/TpbbonyK5cx17STCT313YsMTZEN2Fa3252nyd5WAKY=;
-        b=jZqjlYVOYTUdCBUwZYbUuN6kEGJHaE+01/l3M/0kh7APq5t1yDwuo+++hYoCABGFz0
-         x9g5o3Rjpx8HY7ff7/QyNQLNZHhXOBBrSX0v+/uXUmUrzI4JO046LWlbpgwdq8pEOMqJ
-         tHznXazHFvqaC2AaPQr5lZ+yZNbFgB+d5+Gus=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=/TpbbonyK5cx17STCT313YsMTZEN2Fa3252nyd5WAKY=;
-        b=o5mFesdk/z42z89AV56G4sNl4br54ZoxsaFwChayUQ+NlBhNgFw2seaKdQ3c3W1fq7
-         32GaBZbDsIrHUbqKWaQVh/wGDVifz1EWCxUNP3u0VL++MRMoT/1cjm/OTag0nY3SPuFH
-         4CIyykL7est/o0eCjKeDjFMOTtk8WCnDdQ2BuS0KH+m7VzXiXW8fFRDwbHp73TlYb1Li
-         IBTGmSSa4LoObvd9hWbWyrC2fDX4L1HbqvulhRJpbssJksOyvnml+rP+UJ8u9JgTl/Y9
-         moCgOlkHAZQfzq5mw0TDhnIjdeAAoo3UKrUwSUslTYgZyllf4sV25WrTgYBlT/AR2AGJ
-         sk8Q==
-X-Gm-Message-State: AOAM532BMHAjHm3oXYqTZvMlXxLd9V67jsZZ0434ixiHRoBiMgNUspQS
-        7QBG1lcG1gtvp2Pbg42xVMA6JTBO6JT+4TynL5ddzA==
-X-Google-Smtp-Source: ABdhPJyt1BT0yyy26ZENhSRgNlnZIfJxRS8zE0C7/7zupBgcDtyelBnghwpsMShvQXBW5bgL8j5LBbgVPi78511rLKY=
-X-Received: by 2002:aca:5390:: with SMTP id h138mr3968714oib.125.1625075503995;
- Wed, 30 Jun 2021 10:51:43 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 30 Jun 2021 10:51:43 -0700
+        id S232851AbhF3S0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 14:26:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36532 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232358AbhF3S0Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Jun 2021 14:26:24 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A3B1261474;
+        Wed, 30 Jun 2021 18:23:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625077435;
+        bh=4obaIe35ZSS+oHdciFheQSkU3RY3pDJCdjmKqHmoW0c=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=kPE8MHv6jyippasun8dBIOGhwO92UFHZtzoyINDLwN1vbW9pbA3NriPQbReU5u14O
+         t0p9QUBbcOB8D2fIeLl2K/WklzVc4WUHkHVVxVEsCJN91IrwJfgwO8x8BUkvgGuTUU
+         HkJ7snfL0VYFZ0Wbb6VtjCCmnNqW3RvDAUm2vpStdpr+PiJq0TwvYX5GkY42czNcoC
+         1oia++zl10MZ9Gs5OAAmgfoTU2qacWXrBPUgUIKdmGuXZNUMkmAHpv/q0A29bAi/pd
+         DDxxKqLRmSNSTc+ylRTzhRDF3ENccbgr8xkCDdtLDy+FkAWnU5Rnvlzc3DpRsD61Eu
+         d1U4emwqkCVCw==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <YNYAuaBrGgdtToph@builder.lan>
-References: <1622758940-13485-1-git-send-email-khsieh@codeaurora.org> <YNYAuaBrGgdtToph@builder.lan>
-From:   Stephen Boyd <swboyd@chromium.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20210630134702.7346-5-jon.lin@rock-chips.com>
+References: <20210630134702.7346-1-jon.lin@rock-chips.com> <20210630134702.7346-5-jon.lin@rock-chips.com>
+Subject: Re: [PATCH v10 04/10] clk: rockchip: rk3036: fix up the sclk_sfc parent error
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     jon.lin@rock-chips.com, broonie@kernel.org, robh+dt@kernel.org,
+        heiko@sntech.de, jbx6244@gmail.com, hjc@rock-chips.com,
+        yifeng.zhao@rock-chips.com, sugar.zhang@rock-chips.com,
+        linux-rockchip@lists.infradead.org, linux-mtd@lists.infradead.org,
+        p.yadav@ti.com, macroalpha82@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mturquette@baylibre.com, linux-clk@vger.kernel.org,
+        Elaine Zhang <zhangqing@rock-chips.com>
+To:     Jon Lin <jon.lin@rock-chips.com>, linux-spi@vger.kernel.org
+Date:   Wed, 30 Jun 2021 11:23:54 -0700
+Message-ID: <162507743443.3331010.11705732490811171559@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
-Date:   Wed, 30 Jun 2021 10:51:43 -0700
-Message-ID: <CAE-0n500g=KuOsRgHe2vpL2JOuq+LRFEWEdEovMg8BJF4cKD1A@mail.gmail.com>
-Subject: Re: [PATCH v4] arm64: dts: qcom: sc7180: Add DisplayPort node
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kuogee Hsieh <khsieh@codeaurora.org>
-Cc:     robdclark@gmail.com, sean@poorly.run, vkoul@kernel.org,
-        agross@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        abhinavk@codeaurora.org, aravindh@codeaurora.org,
-        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2021-06-25 09:13:45)
-> On Thu 03 Jun 17:22 CDT 2021, Kuogee Hsieh wrote:
-> > +                                             dp_out: endpoint { };
-> > +                                     };
-> > +                             };
-> > +
-> > +                             dp_opp_table: dp-opp-table {
->
-> I forgot that our discussion about the node name here was on the
-> previous revision, _this_ is the patch I will drop the "dp-" from and
-> apply.
->
-> And as I've looked at this quite a bit now:
->
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->
+Quoting Jon Lin (2021-06-30 06:46:56)
+> Choose the correct pll
+>=20
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
+> ---
 
-With that node name fixed
-
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Acked-by: Stephen Boyd <sboyd@kernel.org>
