@@ -2,172 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA61A3B853C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 16:46:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73F2F3B8541
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 16:47:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235336AbhF3OtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 10:49:08 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:23739 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235352AbhF3OtF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Jun 2021 10:49:05 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1625064397; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=XyKDiODvliERgv50vKj1x6QF0TJ/5j1C/p7t9fvUQXU=;
- b=Tki+cn94S6JkVHEZODsZEFp6OGoq254BH5VzNNZ8Z/g/4+vX4uXGgCosvjKqH8jXGj5Q51si
- hi71BLBLScJ8xBZQ0cumCH5mwXkLTVQWSFH8o1Zy6Lpss+YP5AXyKExfICqhxR9iYNHEzV/q
- ga8G+t4mdTaS6YBqZexxw8Vbxhw=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 60dc83bfad0600eede5b20cf (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 30 Jun 2021 14:46:23
- GMT
-Sender: kathirav=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 6E7C9C4338A; Wed, 30 Jun 2021 14:46:23 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kathirav)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 71476C433D3;
-        Wed, 30 Jun 2021 14:46:20 +0000 (UTC)
+        id S235539AbhF3Ot1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 10:49:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58874 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235508AbhF3Ot0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 10:49:26 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4016BC061756;
+        Wed, 30 Jun 2021 07:46:57 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 9CA861F435EB
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     jitao.shi@mediatek.com, chunkuang.hu@kernel.org,
+        matthias.bgg@gmail.com, drinkcat@chromium.org, eizan@chromium.org,
+        kernel@collabora.com, linux-mediatek@lists.infradead.org,
+        hsinyi@chromium.org, Crystal Guo <crystal.guo@mediatek.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Fabien Parent <fparent@baylibre.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/6] Add support to the mmsys driver to be a reset controller
+Date:   Wed, 30 Jun 2021 16:46:40 +0200
+Message-Id: <20210630144646.868702-1-enric.balletbo@collabora.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 30 Jun 2021 20:16:20 +0530
-From:   Kathiravan T <kathirav@codeaurora.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Baruch Siach <baruch@tkos.co.il>, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: pwm: add IPQ6018 binding
-In-Reply-To: <YLgO0Aj1d4w9EcPv@yoga>
-References: <ea071bbcab92d4a296c7aee5d72de0427676847a.1621851644.git.baruch@tkos.co.il>
- <249bddc521b15e992d0846edf1813aeb577458b9.1621851644.git.baruch@tkos.co.il>
- <YLgO0Aj1d4w9EcPv@yoga>
-Message-ID: <5d1bb3b8b0eeedd82a3a6fb02ff5794d@codeaurora.org>
-X-Sender: kathirav@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-06-03 04:35, Bjorn Andersson wrote:
-> On Mon 24 May 05:20 CDT 2021, Baruch Siach wrote:
-> 
->> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
->> 
->> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
->> ---
->> v2: Make #pwm-cells const (Rob Herring)
->> ---
->>  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 52 
->> +++++++++++++++++++
->>  1 file changed, 52 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml 
->> b/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
->> new file mode 100644
->> index 000000000000..f85ce808a14e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
->> @@ -0,0 +1,52 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pwm/ipq-pwm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm IPQ6018 PWM controller
->> +
->> +maintainers:
->> +  - Baruch Siach <baruch@tkos.co.il>
->> +
->> +properties:
->> +  "#pwm-cells":
->> +    const: 2
->> +
->> +  compatible:
->> +    const: qcom,pwm-ipq6018
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    const: core
->> +
->> +required:
->> +  - "#pwm-cells"
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,gcc-ipq6018.h>
->> +
->> +    soc {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        pwm@1941010 {
->> +            #pwm-cells = <2>;
->> +            compatible = "qcom,pwm-ipq6018";
->> +            reg = <0x0 0x1941010 0x0 0x20>;
-> 
-> These 32 bytes are in the middle of the TCSR block, which is already
-> partially described by the &tcsr_q6 node, which is described as only
-> compatible = "syscon" - something no longer accepted by the DT
-> maintainers.
-> 
-> As such, I think we should adjust the &tcsr_q6 definition to cover the
-> entire TCSR: 0x01937000 of size 0x21000.
-> 
+Dear all,
 
-To my knowledge, we can cover the entire TCSR region, so that we can use 
-it
-for the other features like qcom,dload-mode as well.
+The following patchset is a reimplementation of the patch sent by Jitao
+Shi [1] some time ago. As suggested by Chun-Kuang Hu, this time the
+reset is done using the reset API, where the mmsys driver is the reset
+controller and the mtk_dsi driver is the reset consumer.
 
-> 
-> @Rob, should we represent the entire tcsr as a simple-mfd and then have
-> the pwm and q6 region as children of that? Or can we make the whole
-> thing as a simple-mfd and a syscon and only describe the pwm as a 
-> child?
-> 
-> Regards,
-> Bjorn
-> 
->> +            clocks = <&gcc GCC_ADSS_PWM_CLK>;
->> +            clock-names = "core";
->> +        };
->> +    };
->> --
->> 2.30.2
->> 
+Note that the first patch is kind of unrelated change, it's just a
+cleanup but is needed if you want to apply all the following patches
+cleanly.
+
+This patchset is important in order to have the DSI panel working on some
+kukui MT8183 Chromebooks (i.e Lenovo IdeaPad Duet). Without it, you just
+get a black screen.
+
+Best regards,
+  Enric
+
+[1] https://lore.kernel.org/linux-arm-kernel/20210420132614.150242-4-jitao.shi@mediatek.com/
+
+Enric Balletbo i Serra (6):
+  arm64: dts: mediatek: Move reset controller constants into common
+    location
+  dt-bindings: mediatek: Add #reset-cells to mmsys system controller
+  arm64: dts: mt8173: Add the mmsys reset bit to reset the dsi0
+  arm64: dts: mt8183: Add the mmsys reset bit to reset the dsi0
+  soc: mediatek: mmsys: Add reset controller support
+  drm/mediatek: mtk_dsi: Reset the dsi0 hardware
+
+ .../bindings/arm/mediatek/mediatek,mmsys.txt  |  2 +
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  2 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  5 +-
+ drivers/gpu/drm/mediatek/mtk_dsi.c            |  5 +-
+ drivers/soc/mediatek/mtk-mmsys.c              | 69 +++++++++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.h              |  2 +
+ .../mt2712-resets.h                           |  0
+ include/dt-bindings/reset/mt8173-resets.h     |  2 +
+ .../mt8183-resets.h                           |  3 +
+ .../mt8192-resets.h                           |  0
+ 10 files changed, 87 insertions(+), 3 deletions(-)
+ rename include/dt-bindings/{reset-controller => reset}/mt2712-resets.h (100%)
+ rename include/dt-bindings/{reset-controller => reset}/mt8183-resets.h (98%)
+ rename include/dt-bindings/{reset-controller => reset}/mt8192-resets.h (100%)
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member of Code Aurora Forum, hosted by The Linux Foundation
+2.30.2
+
