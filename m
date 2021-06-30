@@ -2,150 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18BD83B87A8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 19:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 487D03B87B6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Jun 2021 19:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231879AbhF3R3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 13:29:19 -0400
-Received: from mail-vs1-f47.google.com ([209.85.217.47]:35360 "EHLO
-        mail-vs1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbhF3R3T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 13:29:19 -0400
-Received: by mail-vs1-f47.google.com with SMTP id x141so2162469vsx.2;
-        Wed, 30 Jun 2021 10:26:50 -0700 (PDT)
+        id S231879AbhF3RdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 13:33:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39318 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229963AbhF3RdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 13:33:23 -0400
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 891D0C061756;
+        Wed, 30 Jun 2021 10:30:54 -0700 (PDT)
+Received: by mail-io1-xd2e.google.com with SMTP id k16so4067256ios.10;
+        Wed, 30 Jun 2021 10:30:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZkA2kH0ir4VrYzfKw+Bnoh3SYiMrQMASYfySQrKF/+Y=;
+        b=CYOWm8fCgsuyBiZmVg9VMJvz55bY0z82J8rWYnHye6VjH/XpZePZRwsGsuioKNoAq2
+         E6T2ZuLyzVQ1R8v+yQcUF4S0/breKFE1hTzER5s/C6G6c2/YK/lC9FHGfybYKaL9zxAh
+         NckQSaj2BM+6x7hM561eoR6YpRmdC0x3QuCdVO1oSjRtjd3fWeMC1WaC4+8hYjI6ggHN
+         PSoIXhppVfuS23jYseAhBpADZtCFP0wVRgsP1wFchzmHmGx/DScmf90jJdGDn567dB5i
+         71yUvhePUFXLC3QxVU/XLcyhFj2MHkTWP6wZjTY3zEIDkraxmvbH+vNo9Wj5n1ayMGJw
+         D67w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M1cCBRypI1mmkFDcRxzMzhSsB1YMOSDyt5G6Iq5VbjQ=;
-        b=tOakKMJ+Pka3MJkIPk3i1rNgNouGtd7e+NVnMJlYGqw/6iJnGdOUWM5CuAr7FHdozC
-         65khFjgWmX9HXC2441Vn98QJ7zVHxBWH156RJxsPKwtxQk6pzFyQdjCBuLZtrdTlFFYH
-         BNU0clMLN5yKUd3UkqQ+mhC806jjECpvfwMgkbH7s2aZpuxdI0CRGuEO9WEUHaCgmUZo
-         ma/Q77fZPvr3et88dZbxDRJ6ei0puJD1yMTbyAd5DiAF0ohZHaIqB8KaNLBXAsG7ouF1
-         bi75vH8Vctt4gpelArIThXo6SkkZqGOdVR4ozcTYY8m/z08Mk7F5KB+q/HVUEAjYvboA
-         +9yg==
-X-Gm-Message-State: AOAM533s1vR1g+fkGOEWwxhlZlzXWMmaF/uLMtytPZNMavY0swEgG1bH
-        2hlLM3VY92hx4sI5cRoJKpqPsu6pZAHLrYEzUG4=
-X-Google-Smtp-Source: ABdhPJyO/7Hv/uqbkT5lDAiumosw2G4sYTWyajEZ5JvFt9CW0sAOHu6sC9GxNjZOhlHdt9K7O16m1WSlzW3SPgOZtRw=
-X-Received: by 2002:a67:3c2:: with SMTP id 185mr31358417vsd.42.1625074009720;
- Wed, 30 Jun 2021 10:26:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210528134308.649769-1-daire.mcnamara@microchip.com> <20210528134308.649769-2-daire.mcnamara@microchip.com>
-In-Reply-To: <20210528134308.649769-2-daire.mcnamara@microchip.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 30 Jun 2021 19:26:38 +0200
-Message-ID: <CAMuHMdV=p_HD4VYa3jz8-zfvih-ZR=Kg_8Ye9YDc6o=Z+uyG8A@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: clk: microchip: Add Microchip
- PolarFire host binding
-To:     daire.mcnamara@microchip.com
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZkA2kH0ir4VrYzfKw+Bnoh3SYiMrQMASYfySQrKF/+Y=;
+        b=BLu3FoJ3t78C8hP8lXO+Pq3H2MTvFWWQSt6bSlt63wK6CPDizDBVPumcPFK7GtOsX9
+         8AWJzUBHx3naHeDLN9Pyj0gne+/4yivn5LdstJwuFoWvD4DtMEYj0bdgADdrtouqyQhz
+         x4koBhE5cqMfDF7Fl9qIQl/Hsj9sUDuKm5JZ7BR/nRoTQWQU+7tBVNLQHGsGlhuZzFAu
+         d95iWCwyFap7QoJmW/IWVCxT3ryW3/H+fhtnhD2h9wYpUjvdn4ipLTuVU6qjmSK5WrvH
+         7EhTE7bn/BfhoHK6iN4dbgj4p/9ejw/aW2jx4cfDA9kMDJCtFnOZr/mFJegojqaJhDPd
+         eIAQ==
+X-Gm-Message-State: AOAM533m5P+bRQEGzx4EtgDbuTb+0uldecQm6n5WTHrpg4UFYrxGWTYH
+        urmygGYwi8ukh7BUO61lDapx6+Ua436UzWT/
+X-Google-Smtp-Source: ABdhPJwhoD1OmmOWjhUbVu8iYuaFapecKT63UHWQ3u7fjWy/MwrRJmDbWqTC4dW1q1igmucH+gqYlg==
+X-Received: by 2002:a6b:3c01:: with SMTP id k1mr8622401iob.24.1625074253459;
+        Wed, 30 Jun 2021 10:30:53 -0700 (PDT)
+Received: from aford-IdeaCentre-A730.lan (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
+        by smtp.gmail.com with ESMTPSA id q19sm12207278ilc.70.2021.06.30.10.30.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Jun 2021 10:30:52 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-usb@vger.kernel.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-        cyril.jean@microchip.com, padmarao.begari@microchip.com,
-        lewis.hanly@microchip.com, conor.dooley@microchip.com,
-        david.abdurachmanov@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: usb: renesas,usbhs: Support external ref clock
+Date:   Wed, 30 Jun 2021 12:30:40 -0500
+Message-Id: <20210630173042.186394-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daire,
+The usbhs driver expects a fixed external reference clock, but it
+could be sourced from a programmable clock instead of a fixed clock.
+Add support for an optional 4th reference clock.
 
-On Fri, May 28, 2021 at 4:19 PM <daire.mcnamara@microchip.com> wrote:
-> From: Daire McNamara <daire.mcnamara@microchip.com>
->
-> Add device tree bindings for the Microchip PolarFire system
-> clock controller
->
-> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Thanks for your patch!
+diff --git a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
+index e67223d90bb7..2372d8c42979 100644
+--- a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
++++ b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
+@@ -53,11 +53,12 @@ properties:
+ 
+   clocks:
+     minItems: 1
+-    maxItems: 3
++    maxItems: 4
+     items:
+       - description: USB 2.0 host
+       - description: USB 2.0 peripheral
+       - description: USB 2.0 clock selector
++      - description: Optional external reference clock
+ 
+   interrupts:
+     maxItems: 1
+-- 
+2.25.1
 
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/microchip,mpfs.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/microchip,mpfs.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip PolarFire Clock Control Module Binding
-> +
-> +maintainers:
-> +  - Daire McNamara <daire.mcnamara@microchip.com>
-> +
-> +description: |
-> +  Microchip PolarFire clock control (CLKCFG) is an integrated clock controller,
-> +  which gates and enables all peripheral clocks.
-> +
-> +  This device tree binding describes 33 gate clocks.  Clocks are referenced by
-> +  user nodes by the CLKCFG node phandle and the clock index in the group, from
-> +  0 to 32.
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,mpfs-clkcfg
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +    description: |
-> +      The clock consumer should specify the desired clock by having the clock
-> +      ID in its "clocks" phandle cell. See include/dt-bindings/clock/microchip,mpfs-clock.h
-> +      for the full list of PolarFire clock IDs.
-> +
-> +  clock-output-names:
-> +    maxItems: 33
-
-Do you need clock-output-names?
-From a quick glance, the driver doesn't seem to need it.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - '#clock-cells'
-> +  - clock-output-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # Clock Config node:
-> +  - |
-> +    #include <dt-bindings/clock/microchip,mpfs-clock.h>
-> +    soc {
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
-> +            clkcfg: clock-controller@20002000 {
-> +                compatible = "microchip,mpfs-clkcfg";
-> +                reg = <0x0 0x20002000 0x0 0x1000>;
-> +                clocks = <&ref>;
-> +                #clock-cells = <1>;
-> +                clock-output-names = "cpu", "axi", "ahb", "envm", "mac0", "mac1", "mmc", "timer",
-> +                                     "mmuart0", "mmuart1", "mmuart2", "mmuart3", "mmuart4",
-> +                                     "spi0", "spi1", "i2c0", "i2c1", "can0", "can1", "usb", "rsvd",
-> +                                     "rtc", "qspi", "gpio0", "gpio1", "gpio2", "ddrc",
-> +                                     "fic0", "fic1", "fic2", "fic3", "athena", "cfm";
-> +        };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
