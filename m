@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BB3C3B92A6
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:03:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC3023B92A9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:03:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232889AbhGAOFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 10:05:34 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:40702 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232827AbhGAOFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:05:33 -0400
-Received: by mail-io1-f42.google.com with SMTP id l5so7618248iok.7;
-        Thu, 01 Jul 2021 07:03:02 -0700 (PDT)
+        id S232827AbhGAOFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 10:05:36 -0400
+Received: from mail-il1-f179.google.com ([209.85.166.179]:39885 "EHLO
+        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232545AbhGAOFg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:05:36 -0400
+Received: by mail-il1-f179.google.com with SMTP id o10so6466586ils.6;
+        Thu, 01 Jul 2021 07:03:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=UcGsYoboToTMhhq99sLHVgR7kDyS6L2KqvCfhnRDDM0=;
-        b=W9AvaaMS8dJlqzBNf7oQ7reXgnv3T83WQOtdNjRgX57HgNZxi3ItpOIZccAItTAgQ1
-         qe8A5Zdxshqi2e6zGmZkU/E1ajH40RIko+siiKLA9lQx/kkJqVWTLMrSrHtFKpPmJw0W
-         pyQ9R6rKwHMsDJXGIFKm0VXGhutVuTDqyG3Q5MTufDg4fZnPB7B95EC5HzuK7n2+BVAJ
-         y+T6k1pxiBvKxcU7BiDlt+AMiii13WWrLMwmWs1TNcBCtH8shGnGNU6EYmmy6IWN/oW1
-         wgzONHbYAOT7G5YFRGcRkp/T3yaouLpxl5YpUgmSJDxE7sqGTOpBmqQ00fuQI0eKn533
-         s/wg==
-X-Gm-Message-State: AOAM530UTHj+zNe89LR0nJlzcVwDrqhHXd4STD3SqayjaelO85kmlbpF
-        cbTUWKHh451ROyPJwrlpLsbhShhrKw==
-X-Google-Smtp-Source: ABdhPJxJk5BSMp+3ZujDe2uG20xKYmB9NoQEedsUGUAOdURlUY0ojNyY+yn9NBjzeaJ+CB+8MsHFvQ==
-X-Received: by 2002:a02:380c:: with SMTP id b12mr64155jaa.98.1625148180433;
-        Thu, 01 Jul 2021 07:03:00 -0700 (PDT)
+        bh=t8d1JVD+JV7Zgxco5WPYi4zIX7AeTaVK0hRhmb7TWLQ=;
+        b=sRkeqTFpzFZj+ZDXGAwxMnTIXG8SD5jLPlxjuZlBPwho9bMJvSLeXmhHkq+rmPDWRa
+         D4we/fYMbdQL2+xoFuXsd6rC2s1MIkLH3T8Hs0KdVesGg5D3I4OIj1e85Uo0GcKQ9FwQ
+         kZkAVDKwBVTA13QnyDq8+lVJMPRMgwgP/AqmS2TrBfX/8CLArdq/bpBd/g+N/ULAmAaG
+         tKs71QECchVRsNfSjd2tsm06XECCJtoIFnds4LVG2OCfY6m7zYJ92RfjZ586AmUnCGKT
+         UihzGRsBBtxuKcwlaG85niVuDdtUpnAcourPry1AAaidoSqLSuSgy/V/sdV2Ea8H4NAy
+         e/AA==
+X-Gm-Message-State: AOAM5312I0VtgEcBtfWWrbFx61DPnSVp4WehVMMZmlIEC+DHSt4R364L
+        BJ/q7BAPH6ZYZYWIVs5yFQ==
+X-Google-Smtp-Source: ABdhPJxWevjwZSZU4Y/+M8nNnPhvWZqRpMcVNhMl3on/VJEnFzUFk6T0TNJk7cWKJBYGyphbGlzDBw==
+X-Received: by 2002:a92:b30b:: with SMTP id p11mr28592991ilh.114.1625148185463;
+        Thu, 01 Jul 2021 07:03:05 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id s9sm32255ilt.44.2021.07.01.07.02.57
+        by smtp.gmail.com with ESMTPSA id b9sm43571ilo.23.2021.07.01.07.03.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jul 2021 07:02:59 -0700 (PDT)
-Received: (nullmailer pid 2278700 invoked by uid 1000);
+        Thu, 01 Jul 2021 07:03:04 -0700 (PDT)
+Received: (nullmailer pid 2278704 invoked by uid 1000);
         Thu, 01 Jul 2021 14:02:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Axel Lin <axel.lin@ingics.com>, devicetree@vger.kernel.org,
-        mauro.chehab@huawei.com, linux-staging@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linuxarm@huawei.com
-In-Reply-To: <8d871e2ccc544d11959c16d8312dbf03dd01b1c8.1624962269.git.mchehab+huawei@kernel.org>
-References: <cover.1624962269.git.mchehab+huawei@kernel.org> <8d871e2ccc544d11959c16d8312dbf03dd01b1c8.1624962269.git.mchehab+huawei@kernel.org>
-Subject: Re: [PATCH v10 3/5] mfd: hi6421-spmi-pmic: move driver from staging
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Biju Das <biju.das@bp.renesas.com>
+In-Reply-To: <20210630073013.22415-4-biju.das.jz@bp.renesas.com>
+References: <20210630073013.22415-1-biju.das.jz@bp.renesas.com> <20210630073013.22415-4-biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v3 03/11] dt-bindings: reset: Document RZ/G2L USBPHY Control bindings
 Date:   Thu, 01 Jul 2021 08:02:43 -0600
-Message-Id: <1625148163.537612.2278699.nullmailer@robh.at.kernel.org>
+Message-Id: <1625148163.555164.2278703.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Jun 2021 12:31:29 +0200, Mauro Carvalho Chehab wrote:
-> This driver is ready for mainstream. So, move it out of staging.
+On Wed, 30 Jun 2021 08:30:05 +0100, Biju Das wrote:
+> Add device tree binding document for RZ/G2L USBPHY Control Device.
+> It mainly controls reset and power down of the USB/PHY.
 > 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
->  .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 134 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  drivers/mfd/Kconfig                           |  16 +++
->  drivers/mfd/Makefile                          |   1 +
->  drivers/mfd/hi6421-spmi-pmic.c                |  66 +++++++++
->  drivers/staging/Kconfig                       |   2 -
->  drivers/staging/Makefile                      |   1 -
->  drivers/staging/hikey9xx/Kconfig              |  19 ---
->  drivers/staging/hikey9xx/Makefile             |   3 -
->  drivers/staging/hikey9xx/TODO                 |   5 -
->  drivers/staging/hikey9xx/hi6421-spmi-pmic.c   |  66 ---------
->  .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 134 ------------------
->  12 files changed, 224 insertions(+), 230 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
->  create mode 100644 drivers/mfd/hi6421-spmi-pmic.c
->  delete mode 100644 drivers/staging/hikey9xx/Kconfig
->  delete mode 100644 drivers/staging/hikey9xx/Makefile
->  delete mode 100644 drivers/staging/hikey9xx/TODO
->  delete mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
->  delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
+>  v3:
+>   * New patch.
+>   * Modelled USBPHY control from phy bindings to reset bindings, since the
+>     IP mainly contols the reset of USB PHY.
+> ---
+>  .../reset/renesas,rzg2l-usbphy-ctrl.yaml      | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -84,10 +77,16 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.example.dt.yaml:0:0: /example-0/pmic@0: failed to match any schema with compatible: ['hisilicon,hi6421-spmi']
+Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.example.dts:19:18: fatal error: dt-bindings/clock/r9a07g044-cpg.h: No such file or directory
+   19 |         #include <dt-bindings/clock/r9a07g044-cpg.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1416: dt_binding_check] Error 2
 \ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1498291
+See https://patchwork.ozlabs.org/patch/1498761
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
