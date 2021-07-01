@@ -2,126 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0093B9602
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 20:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FB273B95FA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 20:12:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232376AbhGASQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 14:16:15 -0400
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:23425 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229844AbhGASQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 14:16:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1625163224;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CywOQuoVk5N72tkIO6gfgUt+pTez87wevGV8+pLajjo=;
-        b=hv3clhl4ANFcmDgXTajiYKQar8RI+L7e0e7Gau7IdNMzyFSvzOEt/kdYBFerC6GS6k05Y0
-        +qpclpoH58YQroYyDvJHPBb2tCLgpPQB8grbJe46tlIxgPkWWSWwRGSGV7Uk/wmj8ormqR
-        xuyuLB1aeGfDuzB3MB/OSk9EFL4+Kv0=
-Received: from mail-io1-f70.google.com (mail-io1-f70.google.com
- [209.85.166.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-428-Awa4jE5MOPuO53TTtmpCJg-1; Thu, 01 Jul 2021 14:13:43 -0400
-X-MC-Unique: Awa4jE5MOPuO53TTtmpCJg-1
-Received: by mail-io1-f70.google.com with SMTP id l15-20020a5e820f0000b02904bd1794d00eso5044494iom.7
-        for <devicetree@vger.kernel.org>; Thu, 01 Jul 2021 11:13:43 -0700 (PDT)
+        id S233239AbhGASOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 14:14:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55220 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233140AbhGASOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 14:14:38 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A5A4C061762;
+        Thu,  1 Jul 2021 11:12:06 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id gt10so10527850ejc.5;
+        Thu, 01 Jul 2021 11:12:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=F36MKMagRhGCfKVfRAwtt9xJFZWHcYRQG0ajOVreECg=;
+        b=sXBMX71ZsDJHpmuzo1jBlRAOpZcNUKocEYuEHW/ck2Jnkb/4Qk7+Rma8JfUKZcdxp1
+         aXAN24ht8QX03jvqqW4shnVflz+OJrtLZkM/pUdQHUn5hnxtdox12AZpa5U9GfJnRU8X
+         ZiJJQJkF6NxHGlj2Qu++GhT6c60dy9HcyMx79WlC4vK7CEyTj4F/gRtWLpJZ5eqKHAbr
+         eaIhM2R5DFou7f6IOI4eEhjeH/+Ys42UrYDqxPRcETg2MpxJBLDzPkD74EDK+t2Zc6yt
+         Nyp81qJQ0VZHi137abD9SySk+srqxQoI44zjenl2QnVG+vXVUaGDFOFoQKe74c3dq7yM
+         2pcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=CywOQuoVk5N72tkIO6gfgUt+pTez87wevGV8+pLajjo=;
-        b=dypLimW9XRJh8CsBQCD28b0H4wATvxq7Ptq3RHndvlK8bpYLdViqqk+fntmJpobyz+
-         QTfO9JlARdJ7sSrzcJBSDKi3fjiRaN6b/lWaiTiOdrqa9c5eqd/r+gTd9eP5MyK0fsrc
-         IH9xocRERfEcHj0ePa6sWHyyYPvpqOaokMdAj2oMcaek05gbNiGjsYdSiHwKkM+tW05q
-         5duZObplMxsezTTzUUQvIbYt0O/ays7ylAg7SIBpumvNSHYqjhf+eE8ZGexcObakas28
-         7enoXxMME75CTlSKoA8kio2OwZVPMffG7p7viPTg3ZcYiXVlccc9hSfbKhlazHRvJ5aL
-         uiBw==
-X-Gm-Message-State: AOAM5302VF17wFxlNa58e3E15rlRaAAtY8rGOTq74x2plXiEZNO5J68z
-        6RByS5JOZskxceOKOQ/82qqrobjYyOpeIegdnbmCQM8RwqtT3Yma1UJ60cHyTd+KakNLOX27HfR
-        pOhwY7iNDRJjSvvymzPQhlQ==
-X-Received: by 2002:a92:ddc6:: with SMTP id d6mr472166ilr.51.1625163222655;
-        Thu, 01 Jul 2021 11:13:42 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzHTXwr1EsWNLVHHiri1W3U3TZItD53EsA6YVI/BP/RUPjAgrPo2OaUFyrUry8nZ0eZOCOiCw==
-X-Received: by 2002:a92:ddc6:: with SMTP id d6mr472153ilr.51.1625163222422;
-        Thu, 01 Jul 2021 11:13:42 -0700 (PDT)
-Received: from kasuf.ausil.us (207-179-239-100.mtco.com. [207.179.239.100])
-        by smtp.gmail.com with ESMTPSA id q8sm285806iot.30.2021.07.01.11.13.41
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=F36MKMagRhGCfKVfRAwtt9xJFZWHcYRQG0ajOVreECg=;
+        b=hqWwa7JpLupAtTpynHFZTpCrlxx6LcdxH+zvfRao/a9iYCYBxckPktOOHlCvH2/BHY
+         hTKm8cJNJ2mbH+cVoktaIrgSAwPdXa8Azx8b4FhVssDKZuCibv/JMhc+/AxlojBHxFhg
+         922pQEajHqA54tBwWoLkdSF1oqEGNeLcil6d2zK12ON/Q5Y9csZw2pRO3SgtIMgaizz7
+         kuqw4ylfjztAzrD7G3qfFzfCWHlMH6g+YeDDPXZMIb4eKS0/mhOxGgYqo+ANzdKhmjw6
+         FS4LYcUaTV1cAvl4jQLRPe3xY6sBr75Y4B3eKpfQfmCn8x0/tN49ihn0ghdIDsRz+2k4
+         6PvQ==
+X-Gm-Message-State: AOAM533oB9xaiUVF8t05resHSyU1hbWaj7wWgq658R2NsZZx5gxv6reX
+        eObxfi5984+lRTMzBPXs7ek=
+X-Google-Smtp-Source: ABdhPJx04srL5Kqb+Afxp55H3f+2E1NfRi73cTc19jrKbgpZQZM7MrtQy1ibUdloVutzgPzTdIq0MA==
+X-Received: by 2002:a17:907:207c:: with SMTP id qp28mr1204891ejb.311.1625163124916;
+        Thu, 01 Jul 2021 11:12:04 -0700 (PDT)
+Received: from localhost ([62.96.65.119])
+        by smtp.gmail.com with ESMTPSA id j22sm185495eje.123.2021.07.01.11.12.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jul 2021 11:13:42 -0700 (PDT)
-Message-ID: <9a144e2fed4fe6f4eb3c1c88a51d72e3db5a3cee.camel@redhat.com>
-Subject: Re: [PATCH 1/4] arm64: dts: rockchip: helios64: fixup USB setup
-From:   Dennis Gilmore <dgilmore@redhat.com>
-To:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
-        linux-rockchip@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Date:   Thu, 01 Jul 2021 13:13:26 -0500
-In-Reply-To: <dbb04649-d56c-32ac-913c-5b5795851bf4@kleine-koenig.org>
-References: <20210701004043.18585-1-dgilmore@redhat.com>
-         <01f1b032-14a8-a6fa-9063-23de65fc6f43@kleine-koenig.org>
-         <f46b234e0aaf4356804d5e1446910bbedcbddb51.camel@redhat.com>
-         <dbb04649-d56c-32ac-913c-5b5795851bf4@kleine-koenig.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.2 (3.40.2-1.fc34) 
+        Thu, 01 Jul 2021 11:12:03 -0700 (PDT)
+Date:   Thu, 1 Jul 2021 20:14:22 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: reserved-memory: Document memory
+ region specifier
+Message-ID: <YN4F/nH/9tDuWDnQ@orome.fritz.box>
+References: <20210423163234.3651547-1-thierry.reding@gmail.com>
+ <20210423163234.3651547-2-thierry.reding@gmail.com>
+ <20210520220306.GA1976116@robh.at.kernel.org>
+ <YLEgXyLBF8PEFNw2@orome.fritz.box>
+ <YL+gHN4YZ4vt1vPk@orome.fritz.box>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6YBegNniYlMh6yBT"
+Content-Disposition: inline
+In-Reply-To: <YL+gHN4YZ4vt1vPk@orome.fritz.box>
+User-Agent: Mutt/2.1 (4b100969) (2021-06-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-07-01 at 15:35 +0200, Uwe Kleine-König wrote:
-> Hello Dennis,
-> 
-> On 7/1/21 2:59 PM, Dennis Gilmore wrote:
-> > On Thu, 2021-07-01 at 11:31 +0200, Uwe Kleine-König wrote:
-> > > Hello,
-> > > 
-> > > On 7/1/21 2:40 AM, Dennis Gilmore wrote:
-> > > > Without the usbdrd_dwc3_1 node defined u-boot will throw an
-> > > > error
-> > > > and
-> > > > reset the system.
-> > > 
-> > > I wonder if this should better be fixed in u-boot then?!
-> > > 
-> > > > All other rk3399 systems use this format
-> > > 
-> > > This is true for the dwc nodes, however for the usb2 nodes there
-> > > are
-> > > several that use this idiom (and even repeat the label name), see
-> > > for
-> > > example the &u2phy0 node in
-> > > arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi .
-> > > 
-> > 
-> > looking at that file is where I got the idea to set it up as I have
-> > proposed, it follows the format I have submitted
-> 
-> I guess you didn't read exactly what I wrote and only looked at
-> &usbdrd* 
-> but not &u2phy0.
 
-Hi Uwe,
+--6YBegNniYlMh6yBT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I did read what you pointed at, the issue is that is already defined in
-arch/arm64/boot/dts/rockchip/rk3399.dtsi and all that is needed it to
-set the status to okay and minor enablement. as DTC merges all the
-snippets together they end up in the right place and doing the right
-thing, the approach you took is different to all the other boards I
-looked at and seemingly causes issues in u-boot. I did not get far
-enough in booting to verify the state in linux as I am updating u-boot
-as I go and testing using u-boots dtb for simplicty sake. It quite
-likely is a bug in u-boot that it resets the system, at the same time I
-do not think that doing it differently to how the other boards are
-implemented is right either. There is still a lot of the hardware in
-the system that is not defined in the devicetree file, including a lot
-of the usb stack.
+On Tue, Jun 08, 2021 at 06:51:40PM +0200, Thierry Reding wrote:
+> On Fri, May 28, 2021 at 06:54:55PM +0200, Thierry Reding wrote:
+> > On Thu, May 20, 2021 at 05:03:06PM -0500, Rob Herring wrote:
+> > > On Fri, Apr 23, 2021 at 06:32:30PM +0200, Thierry Reding wrote:
+> > > > From: Thierry Reding <treding@nvidia.com>
+> > > >=20
+> > > > Reserved memory region phandle references can be accompanied by a
+> > > > specifier that provides additional information about how that speci=
+fic
+> > > > reference should be treated.
+> > > >=20
+> > > > One use-case is to mark a memory region as needing an identity mapp=
+ing
+> > > > in the system's IOMMU for the device that references the region. Th=
+is is
+> > > > needed for example when the bootloader has set up hardware (such as=
+ a
+> > > > display controller) to actively access a memory region (e.g. a boot
+> > > > splash screen framebuffer) during boot. The operating system can us=
+e the
+> > > > identity mapping flag from the specifier to make sure an IOMMU iden=
+tity
+> > > > mapping is set up for the framebuffer before IOMMU translations are
+> > > > enabled for the display controller.
+> > > >=20
+> > > > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > > > ---
+> > > >  .../reserved-memory/reserved-memory.txt       | 21 +++++++++++++++=
+++++
+> > > >  include/dt-bindings/reserved-memory.h         |  8 +++++++
+> > > >  2 files changed, 29 insertions(+)
+> > > >  create mode 100644 include/dt-bindings/reserved-memory.h
+> > >=20
+> > > Sorry for being slow on this. I have 2 concerns.
+> > >=20
+> > > First, this creates an ABI issue. A DT with cells in 'memory-region'=
+=20
+> > > will not be understood by an existing OS. I'm less concerned about th=
+is=20
+> > > if we address that with a stable fix. (Though I'm pretty sure we've=
+=20
+> > > naively added #?-cells in the past ignoring this issue.)
+> >=20
+> > A while ago I had proposed adding memory-region*s* as an alternative
+> > name for memory-region to make the naming more consistent with other
+> > types of properties (think clocks, resets, gpios, ...). If we added
+> > that, we could easily differentiate between the "legacy" cases where
+> > no #memory-region-cells was allowed and the new cases where it was.
+> >=20
+> > > Second, it could be the bootloader setting up the reserved region. If=
+ a=20
+> > > node already has 'memory-region', then adding more regions is more=20
+> > > complicated compared to adding new properties. And defining what each=
+=20
+> > > memory-region entry is or how many in schemas is impossible.
+> >=20
+> > It's true that updating the property gets a bit complicated, but it's
+> > not exactly rocket science. We really just need to splice the array. I
+> > have a working implemention for this in U-Boot.
+> >=20
+> > For what it's worth, we could run into the same issue with any new
+> > property that we add. Even if we renamed this to iommu-memory-region,
+> > it's still possible that a bootloader may have to update this property
+> > if it already exists (it could be hard-coded in DT, or it could have
+> > been added by some earlier bootloader or firmware).
+> >=20
+> > > Both could be addressed with a new property. Perhaps something like=
+=20
+> > > 'iommu-memory-region =3D <&phandle>;'. I think the 'iommu' prefix is=
+=20
+> > > appropriate given this is entirely because of the IOMMU being in the=
+=20
+> > > mix. I might feel differently if we had other uses for cells, but I=
+=20
+> > > don't really see it in this case.=20
+> >=20
+> > I'm afraid that down the road we'll end up with other cases and then we
+> > might proliferate a number of *-memory-region properties with varying
+> > prefixes.
+> >=20
+> > I am aware of one other case where we might need something like this: on
+> > some Tegra SoCs we have audio processors that will access memory buffers
+> > using a DMA engine. These processors are booted from early firmware
+> > using firmware from system memory. In order to avoid trashing the
+> > firmware, we need to reserve memory. We can do this using reserved
+> > memory nodes. However, the audio DMA engine also uses the SMMU, so we
+> > need to make sure that the firmware memory is marked as reserved within
+> > the SMMU. This is similar to the identity mapping case, but not exactly
+> > the same. Instead of creating a 1:1 mapping, we just want that IOVA
+> > region to be reserved (i.e. IOMMU_RESV_RESERVED instead of
+> > IOMMU_RESV_DIRECT{,_RELAXABLE}).
+> >=20
+> > That would also fall into the IOMMU domain, but we can't reuse the
+> > iommu-memory-region property for that because then we don't have enough
+> > information to decide which type of reservation we need.
+> >=20
+> > We could obviously make iommu-memory-region take a specifier, but we
+> > could just as well use memory-regions in that case since we have
+> > something more generic anyway.
+> >=20
+> > With the #memory-region-cells proposal, we can easily extend the cell in
+> > the specifier with an additional MEMORY_REGION_IOMMU_RESERVE flag to
+> > take that other use case into account. If we than also change to the new
+> > memory-regions property name, we avoid the ABI issue (and we gain a bit
+> > of consistency while at it).
+>=20
+> Ping? Rob, do you want me to add this second use-case to the patch
+> series to make it more obvious that this isn't just a one-off thing? Or
+> how do we proceed?
 
-Dennis
+Rob, given that additional use-case, do you want me to run with this
+proposal and send out an updated series?
 
+Thierry
+
+--6YBegNniYlMh6yBT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmDeBfsACgkQ3SOs138+
+s6FEoRAArgfUJ2pN2AQEZGJFT3iV5IkbrhYdC58xmVQA7m0oyqllaDYcVzehvr3K
+/srNiOAoCsVqY0NX2oHNjS5osnC8j9spEG70LqEt3EuThasMFU4D2Z3Ron1IV6v3
+j0ycepZfYlxeCl/gHgvFIevQA8sWabNx+qjuSJoAjqgFALMdv0wBrdCdG0oOsqCI
+Z9a0B2TQG0JX+TSrlJNbM25zH/g1orMvWRo5H1cBDxCXSeRbbdJNZ/K+DY12kAVW
+dKWogA+wwereYONfIzQsCS/HqfT7dSSiA0sqBpAO78NfbD26OGMqd3Ue+mFp55mM
+dDca4qoEe8n9Je6Smu3YHMNcbkjgS5WZ2yklg8uDTkiQZBt70ZIFU5sgDsx9/I5d
+jEl6s20aCI7N8Bnj2zALU8VbZyBEUdGjGpgz9m+4Z2MXuPIEW0zcv63OdLPfapD3
+1D5DfGQrpkHzcjmCXf5usPTtHm6oi5iRb2xn9khuShYc9td2ZpxhSP7yugtbtbdO
+Vq2mf5wJO+hJeHSkRZlwQAW+lQ6eduHUAzI8f85+388XBC++pdcAA2Ku4rwzTVf1
+VSCL+6LBoTA+qVsGtFUIuXH+vJnO2cXz+WQf7mZ5j0a5dqaNNjHlQsWgkAvewt3M
+4UpP+4zqqb8fAupzRTIuC+8oZQ+szDDS8r0RMYqePR0w/1uYjAw=
+=/Iz1
+-----END PGP SIGNATURE-----
+
+--6YBegNniYlMh6yBT--
