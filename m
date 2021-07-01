@@ -2,97 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52DFA3B8C6E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 04:52:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 138F83B8C7C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 05:01:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238604AbhGACzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 22:55:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49330 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238056AbhGACzW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 22:55:22 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49900C061756
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 19:52:53 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id q91so3368152pjk.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 19:52:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hvxDF3nom/N8rPm+Ppo7zGPA/qzGtO9RuOCfsxZTu98=;
-        b=SpjFL08PBqV7tkh6qKJFbHlv80PlDkGq07wcYsvXaYnweI2EpYhmpM/u8RV0DX7eud
-         lszQ4GyMHGCeoLbl8uNh/YKcZWbdc+fRt/XgL1QGeyrevEt5RgdJ6m0PW/BND3i+5Mvt
-         Tf1Ptudl3du2nRf77SJ/JTGH4r2jVQ6ewpyf6qFhyG5k2cA8/+YIheA6dKXE0TLYOJ4N
-         TiemKl2puGeIDcT/OFNCWGTGKsgDz4DYMn/wxKrrGcVMn9+0e2BzC1Ov8ExreTRiJpb8
-         //MHSLFw+Mp/ugzIgYixQV3a4jfQgyIOYoHYuZkvH1D9IaVUWIAkkKC4GniP/WYVuQpc
-         HoJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=hvxDF3nom/N8rPm+Ppo7zGPA/qzGtO9RuOCfsxZTu98=;
-        b=DHVdLfcGIppGKMF0Oj2ruGTHdaa3Ir//rOXAispCVRd8Vv5YGewlhp1mmAV7HjuoT9
-         SQEw6DPJcZ7M/FfdMk9JSZA4QnPAsAILwL5pp0x4xIk7g8zLSNQZwYTtRmzLhK13r4n/
-         mmsi3LzB/cZLuERs/W2FLFcqMj0YnyCw4tS+/Eg7kB64SKa7HHILfNt5ifTtKUE0yHps
-         KuyrPONo6sZgTw4B1BfkFVN3gS/V2QHywzSOwPwcuZxXyl9fb+95P8eiBqldmyGopObK
-         H4bNcGZqPScy/mTrVxkz0XX1iDtBO77G1SW+vN9VlrQ9IoHAnZ0vt6U5xQ21p+yk3O5p
-         z9mw==
-X-Gm-Message-State: AOAM530cWb/+pPu4F9guvpOm0ih+KX0sG0MFrj3DzeL1siTZcFS0UVy7
-        Zqi2sBXMvg3lbuhsF+CQAfRXww==
-X-Google-Smtp-Source: ABdhPJwTB1Hi0X5cFeHOElli+j39Ed7Ljy/aE1Qg7eTojjCof97X9FW3uTdfNXuJxXddlvtQXZecVA==
-X-Received: by 2002:a17:903:2341:b029:129:1282:fd37 with SMTP id c1-20020a1709032341b02901291282fd37mr6223940plh.6.1625107972559;
-        Wed, 30 Jun 2021 19:52:52 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id 206sm23381385pfv.108.2021.06.30.19.52.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Jun 2021 19:52:51 -0700 (PDT)
-Date:   Wed, 30 Jun 2021 19:52:51 -0700 (PDT)
-X-Google-Original-Date: Wed, 30 Jun 2021 19:52:49 PDT (-0700)
-Subject:     Re: [PATCH 2/3] riscv: Remove non-standard linux,elfcorehdr handling
-In-Reply-To: <CAL_JsqKJgz=ixNAJProoVFmQXGEOsTYX=bXTdtf7RLQErL1VRg@mail.gmail.com>
-CC:     mick@ics.forth.gr, geert@linux-m68k.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, frowand.list@gmail.com,
-        catalin.marinas@arm.com, will@kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     robh+dt@kernel.org
-Message-ID: <mhng-6db38728-4f82-45bd-9b17-c41da55c41e9@palmerdabbelt-glaptop>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S238680AbhGADEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 23:04:14 -0400
+Received: from mail.loongson.cn ([114.242.206.163]:52784 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S238625AbhGADEO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Jun 2021 23:04:14 -0400
+Received: from localhost.localdomain (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxj0MRMN1gsBQbAA--.31546S2;
+        Thu, 01 Jul 2021 11:01:37 +0800 (CST)
+From:   Qing Zhang <zhangqing@loongson.cn>
+To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 1/3] MIPS: Loongson64: Add Loongson-2K1000 reset platform driver
+Date:   Thu,  1 Jul 2021 11:01:35 +0800
+Message-Id: <20210701030137.10566-1-zhangqing@loongson.cn>
+X-Mailer: git-send-email 2.31.0
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf9Dxj0MRMN1gsBQbAA--.31546S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxArW8WF1rGw1rGFy3WF18Grg_yoW5WrykpF
+        Z8Ka13Ar4rZa17Kw4fJa4UuFW5Z3Z3tFWUuF12v345Zas8WFWkJ3WDta4YyF9rGr17JFWa
+        qrZYqFW5CF4ruw7anT9S1TB71UUUUjUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUU9ab7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I2
+        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+        A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
+        jxv20xvEc7CjxVAFwI0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4
+        vEx4A2jsIEc7CjxVAFwI0_GcCE3s1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvE
+        ncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I
+        8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc2xS
+        Y4AK67AK6r48MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I
+        0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWl
+        x4CE17CEb7AF67AKxVWUAVWUtwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r
+        1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v20xvaj40_Wr1j
+        6rW3Jr1lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8Jr
+        UvcSsGvfC2KfnxnUUI43ZEXa7IUY8rc3UUUUU==
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Jun 2021 07:47:46 PDT (-0700), robh+dt@kernel.org wrote:
-> On Wed, Jun 16, 2021 at 4:43 AM Nick Kossifidis <mick@ics.forth.gr> wrote:
->>
->> Στις 2021-06-16 10:56, Geert Uytterhoeven έγραψε:
->> >
->> > I can't comment on the duplication on arm64, but to me, /chosen
->> > sounds like the natural place for both "linux,elfcorehdr" and
->> > "linux,usable-memory-range".  First rule of DT is "DT describes
->> > hardware, not software policy", with /chosen describing some software
->> > configuration.
->> >
->>
->> We already have "linux,usable-memory" on /memory node:
->> https://elixir.bootlin.com/linux/v5.13-rc6/source/drivers/of/fdt.c#L1011
->> and it makes perfect sense to be there since it overrides /memory's reg
->> property.
->>
->> Why define another binding for the same thing on /chosen ?
->
-> Go look at the thread adding "linux,usable-memory-range". There were
-> only 35 versions of it[1]. I wasn't happy with a 2nd way either, but
-> as I've mentioned before we don't always have /memory node.
+Add power management register operations to support reboot and poweroff.
 
-I don't really understand what's going on here, but IIUC what I merged 
-in 5.13 doesn't match the behavior that other architectures have.  In 
-that case I'm happy moving RISC-V over to the more standard way of doing 
-things and just calling what we have in 5.13 a screwup.
+Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+---
 
-Sorry for the confusion.
+v6-v7:
+No Change
+---
+ drivers/platform/mips/Kconfig      |  6 ++++
+ drivers/platform/mips/Makefile     |  1 +
+ drivers/platform/mips/ls2k-reset.c | 53 ++++++++++++++++++++++++++++++
+ 3 files changed, 60 insertions(+)
+ create mode 100644 drivers/platform/mips/ls2k-reset.c
+
+diff --git a/drivers/platform/mips/Kconfig b/drivers/platform/mips/Kconfig
+index 8ac149173c64..d421e1482395 100644
+--- a/drivers/platform/mips/Kconfig
++++ b/drivers/platform/mips/Kconfig
+@@ -30,4 +30,10 @@ config RS780E_ACPI
+ 	help
+ 	  Loongson RS780E PCH ACPI Controller driver.
+ 
++config LS2K_RESET
++	bool "Loongson-2K1000 Reset Controller"
++	depends on MACH_LOONGSON64 || COMPILE_TEST
++	help
++	  Loongson-2K1000 Reset Controller driver.
++
+ endif # MIPS_PLATFORM_DEVICES
+diff --git a/drivers/platform/mips/Makefile b/drivers/platform/mips/Makefile
+index 178149098777..4c71444e453a 100644
+--- a/drivers/platform/mips/Makefile
++++ b/drivers/platform/mips/Makefile
+@@ -1,3 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ obj-$(CONFIG_CPU_HWMON) += cpu_hwmon.o
+ obj-$(CONFIG_RS780E_ACPI) += rs780e-acpi.o
++obj-$(CONFIG_LS2K_RESET) += ls2k-reset.o
+diff --git a/drivers/platform/mips/ls2k-reset.c b/drivers/platform/mips/ls2k-reset.c
+new file mode 100644
+index 000000000000..286d47bf6964
+--- /dev/null
++++ b/drivers/platform/mips/ls2k-reset.c
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ *  Copyright (C) 2021, Qing Zhang <zhangqing@loongson.cn>
++ *  Loongson-2K1000 reset support
++ */
++
++#include <linux/of_address.h>
++#include <linux/pm.h>
++#include <asm/reboot.h>
++
++#define	PM1_STS		0x0c /* Power Management1 Status Register */
++#define	PM1_CNT		0x14 /* Power Management 1 Control Register */
++#define	RST_CNT		0x30 /* Reset Control Register */
++
++static void __iomem *base;
++
++static void ls2k_restart(char *command)
++{
++	writel(0x1, (void *)base + RST_CNT);
++}
++
++static void ls2k_poweroff(void)
++{
++	/* Clear */
++	writel((readl((void *)base + PM1_STS) & 0xffffffff), (void *)base + PM1_STS);
++	/* Sleep Enable | Soft Off*/
++	writel(GENMASK(12, 10)|BIT(13), (void *)base + PM1_CNT);
++}
++
++static int ls2k_reset_init(void)
++{
++	struct device_node *np;
++
++	np = of_find_compatible_node(NULL, NULL, "loongson,ls2k-pm");
++	if (!np) {
++		pr_info("Failed to get PM node\n");
++		return -ENODEV;
++	}
++
++	base = of_iomap(np, 0);
++	if (!base) {
++		pr_info("Failed to map PM register base address\n");
++		return -ENOMEM;
++	}
++
++	_machine_restart = ls2k_restart;
++	pm_power_off = ls2k_poweroff;
++
++	of_node_put(np);
++	return 0;
++}
++
++arch_initcall(ls2k_reset_init);
+-- 
+2.31.0
+
