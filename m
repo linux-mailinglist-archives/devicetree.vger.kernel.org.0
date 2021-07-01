@@ -2,87 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76BE73B9692
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 21:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 343583B96A0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 21:34:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbhGATck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 15:32:40 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:41765 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229894AbhGATck (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 15:32:40 -0400
-Received: by mail-io1-f54.google.com with SMTP id i189so8919632ioa.8;
-        Thu, 01 Jul 2021 12:30:08 -0700 (PDT)
+        id S233239AbhGATgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 15:36:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45136 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233045AbhGATge (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 15:36:34 -0400
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D368C061762
+        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 12:34:04 -0700 (PDT)
+Received: by mail-ot1-x334.google.com with SMTP id r4-20020a0568301204b029047d1030ef5cso761291otp.12
+        for <devicetree@vger.kernel.org>; Thu, 01 Jul 2021 12:34:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1dsJ9nM/AHXo3nN+7QZzkF6/u8tbDa7litsoX7e6e2g=;
+        b=QUI02bjdOUKb8cbvf5d3RCb7TsRHyMh4c2qiCN35S8Kwnohjf5dGvVWxJ2pjsNw1IC
+         J78J9AMoTfIdtRIVP2rEx8/HOnZAFhjL9wJIaqOhlj1sDC/yEObWnoBLRE0GenAY757S
+         +Dj4Z8FZLY9WGguim+CEhaO01Dr6wh/81kPeLaCD9dcR8A5p+094hTEqs79NVFuyDncK
+         iWIKFq3eCZWlnqcveO7cs2b7BWUefFvZKIf88ryinMqxjWLTzKP9LGUwbYM1WlaNPJDV
+         hmmDAbOminC3oLOlDHuK2B/QWNJu/WuIbnHxQn00OFGN51OJd2rU+nBhWdh5UCoCl2YH
+         U+mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=BCG+l1C0nlzP57WAnie7tTGSrBQ2K9z9qcnBqa3mQ08=;
-        b=obIteTTg35u9d1tXJFmpd0bNRSmSnyu16aLyyoXsbtmPDB9S7pUXL1BEwaJgFngy2F
-         kfLyLy0jV/iEt+a8JtFN4d4MsgWh373A+iZFrVVgIlsR/peaGkd3uoFqOuBw3jyS51h8
-         fANDi5gNupaCQ0Yw2EoehAL7Klv5wTB9odQwEjPUAMgQMKj11f8qZHAB2D2Em1xA8WMe
-         nHV5Reg9RgfMjd76I7+h2CK0Bi/DGljZmeCqZUxhAnLIhpIhRCvtRoo1LKYlnjreSrqV
-         RUUJ2NejDf1FTIM//713FRF1kKPbxjJg6X3xcaNgQrCKIQT2z5C5qPtJedMmy7dlsEAk
-         mLnw==
-X-Gm-Message-State: AOAM533B/UeuCg0a9Z2e2/A2YWtZ/WPTj8nItKVBuQPrGcJKG0bU/yv6
-        WtjWrG3GJ8thyUJHlQu7x1D6ASSsUQ==
-X-Google-Smtp-Source: ABdhPJz4zXBaD9zMJvFJEHcOBwmEkGRfn6ddfTYtBYMSOQaXcjX/t5kYLbUv78gkyUNkSccdacxizw==
-X-Received: by 2002:a6b:b5c7:: with SMTP id e190mr789909iof.31.1625167808431;
-        Thu, 01 Jul 2021 12:30:08 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id q131sm337757iod.54.2021.07.01.12.30.06
+        bh=1dsJ9nM/AHXo3nN+7QZzkF6/u8tbDa7litsoX7e6e2g=;
+        b=lMqg5Qt6d9whyr4sz2qIgGLI7LPESHJYC0iZ6P+9Y757bB97WlJYq/IjYfzqI+YhfA
+         LTySaTXDc4wl37Vy4ksJFMiq7kE+v6/QUOPUCJd3zLPKuBhXC4VNJPOpc8WPrmtLtmdi
+         c9bKweAnYmlBS4aIh/dfJuX8R5lcph5+kutEF80eMCH7dIQCUYmItldNsmdcnRo4c1G8
+         7wB4v+Mm0LkKHo0fUvlb2pfXL16Y4BT/4fZvGVPKWEmQxu+0+arfbSzyv+ATrQ0gKFVm
+         bMtlH7af+YD1IkPgFqbDimwTT889jgeLuXI5QFbn6xpJARXEYWAhpMMvd+J5BeJVTt5K
+         8EDg==
+X-Gm-Message-State: AOAM532Mff/bE+Mc4XQC4vtZonBW1WvLS5YmgvQLEDn+QSiAmQsmkLOX
+        MEhgQTIjq1aVFUILXy26AOLv8Q==
+X-Google-Smtp-Source: ABdhPJwkqKOevuirjSIlii0NRzKUoOH1I1qvot1Uay7FQ9yi5oZM34TgHS1U1Sef/3dXwoUxJikMGg==
+X-Received: by 2002:a9d:66d0:: with SMTP id t16mr1257920otm.29.1625168042730;
+        Thu, 01 Jul 2021 12:34:02 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id f19sm130014oou.22.2021.07.01.12.34.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jul 2021 12:30:07 -0700 (PDT)
-Received: (nullmailer pid 2783045 invoked by uid 1000);
-        Thu, 01 Jul 2021 19:30:05 -0000
-Date:   Thu, 1 Jul 2021 13:30:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-Subject: Re: [PATCH 05/15] dt-bindings: iio: dac: ad5446: Add missing binding
- document
-Message-ID: <20210701193005.GA2780955@robh.at.kernel.org>
-References: <20210627163244.1090296-1-jic23@kernel.org>
- <20210627163244.1090296-6-jic23@kernel.org>
- <1625148163.528787.2278697.nullmailer@robh.at.kernel.org>
+        Thu, 01 Jul 2021 12:34:02 -0700 (PDT)
+Date:   Thu, 1 Jul 2021 14:34:00 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Sibi S <sibis@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: soc: qcom: aoss: Add SC8180X compatible
+Message-ID: <YN4YqCgOei+IobEB@yoga>
+References: <20210625234018.1324681-1-bjorn.andersson@linaro.org>
+ <20210625234018.1324681-2-bjorn.andersson@linaro.org>
+ <20210701190359.GB2736150@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1625148163.528787.2278697.nullmailer@robh.at.kernel.org>
+In-Reply-To: <20210701190359.GB2736150@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 01, 2021 at 08:02:43AM -0600, Rob Herring wrote:
-> On Sun, 27 Jun 2021 17:32:34 +0100, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Thu 01 Jul 14:03 CDT 2021, Rob Herring wrote:
+
+> On Fri, Jun 25, 2021 at 04:40:16PM -0700, Bjorn Andersson wrote:
+> > Add compatible for the Qualcomm SC8180x platform to the AOSS QMP
+> > binding.
 > > 
-> > Binding is a little stricter than the Linux driver.
-> > 
-> > It requires vcc-supply to be present for devices that don't have
-> > an internal reference, whereas the driver just prints a message and
-> > carries on.  Given this means that it is impossible to establish
-> > a scaling of the output channel, let us make it required in the binding
-> > schema.
-> > 
-> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Cc: Lars-Peter Clausen <lars@metafoo.de>
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > > ---
-> >  .../bindings/iio/dac/adi,ad5446.yaml          | 105 ++++++++++++++++++
-> >  1 file changed, 105 insertions(+)
+> >  Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
 > > 
+> > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
+> > index 783dc81b0f26..3747032311a4 100644
+> > --- a/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
+> > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
+> > @@ -18,10 +18,13 @@ power-domains.
+> >  	Definition: must be one of:
+> >  		    "qcom,sc7180-aoss-qmp"
+> >  		    "qcom,sc7280-aoss-qmp"
+> > +		    "qcom,sc8180x-aoss-qmp"
+> >  		    "qcom,sdm845-aoss-qmp"
+> >  		    "qcom,sm8150-aoss-qmp"
+> >  		    "qcom,sm8250-aoss-qmp"
+> >  		    "qcom,sm8350-aoss-qmp"
+> > +		    and:
+> > +		    "qcom,aoss-qmp"
 > 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> This was missing from all the existing ones or is an addition?
 > 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/dac/ti,dac7512.example.dt.yaml: dac@0: 'vcc-supply' is a required property
-> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/dac/adi,ad5446.yaml
 
-Humm, seems it's not missing?
+We've only had platform-specific compatibles for this binding (and
+implementation) so far, this patch adds sc8180x and a common compatible.
 
-Rob
+So the commit message should have been rewritten to cover this as I
+extended my original patch. Sorry for missing that.
+
+Regards,
+Bjorn
+
+> >  
+> >  - reg:
+> >  	Usage: required
+> > @@ -70,7 +73,7 @@ The following example represents the AOSS side-channel message RAM and the
+> >  mechanism exposing the power-domains, as found in SDM845.
+> >  
+> >    aoss_qmp: qmp@c300000 {
+> > -	  compatible = "qcom,sdm845-aoss-qmp";
+> > +	  compatible = "qcom,sdm845-aoss-qmp", "qcom,aoss-qmp";
+> >  	  reg = <0x0c300000 0x100000>;
+> >  	  interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
+> >  	  mboxes = <&apss_shared 0>;
+> > -- 
+> > 2.29.2
+> > 
+> > 
