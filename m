@@ -2,111 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51C943B8C7F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 05:01:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B07D3B8C92
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 05:12:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238712AbhGADEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 23:04:16 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:52792 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S238647AbhGADEP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Jun 2021 23:04:15 -0400
-Received: from localhost.localdomain (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxj0MRMN1gsBQbAA--.31546S4;
-        Thu, 01 Jul 2021 11:01:39 +0800 (CST)
-From:   Qing Zhang <zhangqing@loongson.cn>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v7 3/3] dt-bindings: mips: Add Loongson-2K1000 reset support
-Date:   Thu,  1 Jul 2021 11:01:37 +0800
-Message-Id: <20210701030137.10566-3-zhangqing@loongson.cn>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210701030137.10566-1-zhangqing@loongson.cn>
-References: <20210701030137.10566-1-zhangqing@loongson.cn>
+        id S238682AbhGADOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 23:14:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53608 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238056AbhGADOv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 23:14:51 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B9F9C061756;
+        Wed, 30 Jun 2021 20:12:21 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id n9so3150623qtk.7;
+        Wed, 30 Jun 2021 20:12:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KqTfUx+1bpJ+GEZ1JasFELVQC7fHMfJcaiqyDCFPIuw=;
+        b=alBMPcQgQ4sDn+WFk4di7zdZI+/oW/JiE9BmC+6+i/eynxs5Q0F3qzXMd7jvbJKdcs
+         al/BWmsBczUkNgGX5+H5/V+IfzFfTZPVMZE1W6Noo41j/BuxZ885p4LEtUOIqJ4dG6lJ
+         XC9l//ve4l7B0pZnQSDiMWuxyfXb0dEdbjCBM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KqTfUx+1bpJ+GEZ1JasFELVQC7fHMfJcaiqyDCFPIuw=;
+        b=RkLFvN+NpaaRn1o+D03SPea5yaaFjN6h3rIMkCZlIanYKF+qyyydQsXIi/G+vWxX0H
+         ZsSoTaS7Z/0VKgewgeHRm3Cwzj+90BPeR5Cfe2si2C5BVn9VQ/1akfdscm1WH3OPCIcA
+         LdgxZjcIXwhNDGXbxguLSuCS1aomIOe+g97EWH31RcJptcI6LRBNGkODoc6OhF2LHAbO
+         Lg2Gtbkv1zHMZ8s5JMNf/RdPEmf2XqgIcKS8eLOWjOtKIkJj8SAbcB/9ZYhX5BmZlTJ+
+         VTGue79YqanBmVUyo2/oIRk/UiLhxC2Env/hCNDB3lDize5rzWQitnu2YDb2yArMEI59
+         S9VA==
+X-Gm-Message-State: AOAM5305AkUaCML9937HoruE9A1Awvp/O3B819J6e17I3eOtN90sKRM0
+        3Tpovxoq6TJQWJwPH5md4W2Jkr9AUd4ikodnkGr3xVeD6V8=
+X-Google-Smtp-Source: ABdhPJy2kf91B2vTqHlagKoi/6aakbeQj8UnEv2eAc/5e2Sz//Sa79thJYLh7yTsO1ikEDcd9FDWPoHzHnB45g8OURo=
+X-Received: by 2002:a05:622a:50f:: with SMTP id l15mr14036901qtx.263.1625109140085;
+ Wed, 30 Jun 2021 20:12:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf9Dxj0MRMN1gsBQbAA--.31546S4
-X-Coremail-Antispam: 1UD129KBjvJXoWxJF15tFW5Gr1xWw1rtFy7Wrg_yoW8Gw43p3
-        ZxC3W7Kr4F9F13uwsxKFy8AF1rZr9aya4xXF47twnrt3s8Ga1Yvw1ak3Z8ZF17GFy8XFW7
-        XFZ7WFWUKa4Ikw7anT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUQ2b7Iv0xC_Zr1lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI
-        8067AKxVWUXwA2048vs2IY020Ec7CjxVAFwI0_Gr0_Xr1l8cAvFVAK0II2c7xJM28CjxkF
-        64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcV
-        CY1x0267AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280
-        aVCY1x0267AKxVW0oVCq3wAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8w
-        Aqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE
-        14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCY1x0262kKe7
-        AKxVWUAVWUtwCY02Avz4vE14v_Gr4l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_
-        Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8Gjc
-        xK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r126r1DMIIYrxkI7VAKI48JMIIF0xvE2Ix0
-        cI8IcVAFwI0_JFI_Gr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8V
-        AvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF7I0E
-        14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU3BTYUUUUU
-X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
+References: <20210416075113.18047-1-zev@bewilderbeest.net>
+In-Reply-To: <20210416075113.18047-1-zev@bewilderbeest.net>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Thu, 1 Jul 2021 03:12:07 +0000
+Message-ID: <CACPK8XeRg5P8+W8kyxSNyOa7JBhua5QdP_oCVJALGPJQio0dhA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: aspeed: update e3c246d4i vuart properties
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch the DT binding to a YAML schema to enable the DT validation.
+On Fri, 16 Apr 2021 at 07:52, Zev Weiss <zev@bewilderbeest.net> wrote:
+>
+> This device-tree was merged with a provisional vuart IRQ-polarity
+> property that was still under review and ended up taking a somewhat
+> different form.  This patch updates it to match the final form of the
+> new vuart properties, which additionally allow specifying the SIRQ
+> number and LPC address.
+>
+> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
 
-Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
----
 
-v6-v7:
-Add yaml file
----
- .../bindings/mips/loongson/ls2k-reset.yaml    | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml
+Fixes: ca03042f0f12 ("serial: 8250_aspeed_vuart: add aspeed,
+lpc-io-reg and aspeed, lpc-interrupts DT properties")
+Reviewed-by: Joel Stanley <joel@jms.id.au>
 
-diff --git a/Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml b/Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml
-new file mode 100644
-index 000000000000..6016ea756ccd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/mips/loongson/ls2k-reset.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Loongson 2K1000 PM Controller
-+
-+maintainers:
-+  - Qing Zhang <zhangqing@loongson.cn>
-+
-+description: |
-+  This controller can be found in Loongson-2K1000 Soc systems.
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-pm
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        pm: power-controller@1fe07000 {
-+            compatible = "loongson,ls2k-pm";
-+            reg = <0 0x1fe07000 0 0x422>;
-+        };
-+    };
-+...
--- 
-2.31.0
-
+> ---
+>
+> The relevant aspeed-vuart patches [0] have been merged into Greg KH's
+> tty-next tree, so I figure it's probably okay to proceed with the
+> corresponding dts adjustments now.
+>
+> [0] https://lore.kernel.org/openbmc/20210412034712.16778-1-zev@bewilderbeest.net/
+>
+>  arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+> index dcab6e78dfa4..8be40c8283af 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
+> @@ -4,6 +4,7 @@
+>  #include "aspeed-g5.dtsi"
+>  #include <dt-bindings/gpio/aspeed-gpio.h>
+>  #include <dt-bindings/i2c/i2c.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+>
+>  /{
+>         model = "ASRock E3C246D4I BMC";
+> @@ -73,7 +74,8 @@ &uart5 {
+>
+>  &vuart {
+>         status = "okay";
+> -       aspeed,sirq-active-high;
+> +       aspeed,lpc-io-reg = <0x2f8>;
+> +       aspeed,lpc-interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+>  };
+>
+>  &mac0 {
+> --
+> 2.31.1
+>
