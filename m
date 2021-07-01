@@ -2,94 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 633813B95C8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 20:01:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECCB13B95DD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 20:04:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229844AbhGASDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 14:03:39 -0400
-Received: from finn.gateworks.com ([108.161.129.64]:51844 "EHLO
-        finn.localdomain" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S232971AbhGASDj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 14:03:39 -0400
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1lz0zl-004R0S-Dk; Thu, 01 Jul 2021 18:01:01 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] ARM: dts: imx6qdl-gw5xxx: add missing USB OTG OC pinmux
-Date:   Thu,  1 Jul 2021 11:00:57 -0700
-Message-Id: <20210701180057.4055-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.17.1
+        id S229967AbhGASHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 14:07:01 -0400
+Received: from mail-il1-f182.google.com ([209.85.166.182]:34320 "EHLO
+        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233683AbhGASHA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 14:07:00 -0400
+Received: by mail-il1-f182.google.com with SMTP id s19so7277567ilj.1;
+        Thu, 01 Jul 2021 11:04:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=nLpPbTEaH7bJoawLTwKW+ZFTzKsRW9kcPRyI4/uVbns=;
+        b=a5XjQObiFoL1ZGUtHl4xleJPD600GTwHKn8pcl+Va25GqoxXhvZqJo6V/2ftXIYC3o
+         1nR7b2SCk/xrw7KmOngr/VFF+T6Q7zrm+Cgq8zfmw2Ra0Bxf2EpDOwDR8vmclyTl0UrA
+         rNwMEnLl8RRIs9DDmiVbTIrs2+89t5Fa/XVInW6dS5DSWRHLbLPEq+dDgjjZHI6Vbmdj
+         XKpkyKePwNK1Zy2rfi9xpLsbyZMp4Og5wHHB63TQWFR7IIeNy/ZPiq46buyhUu0av6tz
+         CbhOlno8N+BF00AuMHJrH9U4gS5Q7KtDP5iXGylP6K+5LpqRrOaF2bFRpJN8n8yTvPra
+         RxUA==
+X-Gm-Message-State: AOAM530HUCgoHjttjT6tbJJA/Foi3MDZDC/EsIyhy2dw+aRJkz+QK4Gs
+        9pXjyBE+2Wdi5bo63YoPeA==
+X-Google-Smtp-Source: ABdhPJxBr2Zqbg3SKs3yZCdYqFZ4i4GsT3KjymIH9OjXeanlwvWmym5M68+qcKOL32uJhYofh+7Aog==
+X-Received: by 2002:a05:6e02:2144:: with SMTP id d4mr490842ilv.136.1625162668913;
+        Thu, 01 Jul 2021 11:04:28 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id c2sm355278ilk.30.2021.07.01.11.04.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jul 2021 11:04:28 -0700 (PDT)
+Received: (nullmailer pid 2650224 invoked by uid 1000);
+        Thu, 01 Jul 2021 18:04:22 -0000
+Date:   Thu, 1 Jul 2021 12:04:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     Peter Rosin <peda@axentia.se>, Andrew Lunn <andrew@lunn.ch>,
+        netdev@vger.kernel.org, Russell King <rmk+kernel@armlinux.org.uk>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC net-next] dt-bindings: ethernet-controller: document
+ signal multiplexer
+Message-ID: <20210701180422.GA2597277@robh.at.kernel.org>
+References: <20210701005347.8280-1-kabel@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210701005347.8280-1-kabel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add USB OTG over-current pinmux to the GW51xx/GW52xx/GW54xx/GW553x
-boards.
+On Thu, Jul 01, 2021 at 02:53:47AM +0200, Marek Behún wrote:
+> There are devices where the MAC signals from the ethernet controller are
+> not directly connected to an ethernet PHY or a SFP cage, but to a
+> multiplexer, so that the device can switch between the endpoints.
+> 
+> For example on Turris Omnia the WAN controller is connected to a SerDes
+> switch, which multiplexes the SerDes lanes between SFP cage and ethernet
+> PHY, depending on whether a SFP module is present (MOD_DEF0 GPIO from
+> the SFP cage).
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- arch/arm/boot/dts/imx6qdl-gw51xx.dtsi | 1 +
- arch/arm/boot/dts/imx6qdl-gw52xx.dtsi | 1 +
- arch/arm/boot/dts/imx6qdl-gw54xx.dtsi | 1 +
- arch/arm/boot/dts/imx6qdl-gw553x.dtsi | 1 +
- 4 files changed, 4 insertions(+)
+And s/w can read the MOD_DEF0 state to determine if SFP is present?
 
-diff --git a/arch/arm/boot/dts/imx6qdl-gw51xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw51xx.dtsi
-index 3c04b5a4f3cb..069c27fab432 100644
---- a/arch/arm/boot/dts/imx6qdl-gw51xx.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-gw51xx.dtsi
-@@ -626,6 +626,7 @@
- 		fsl,pins = <
- 			MX6QDL_PAD_GPIO_1__USB_OTG_ID		0x17059
- 			MX6QDL_PAD_EIM_D22__GPIO3_IO22		0x1b0b0 /* OTG_PWR_EN */
-+			MX6QDL_PAD_KEY_COL4__USB_OTG_OC		0x17059
- 		>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
-index 8e587e17e75d..b1df2beb2832 100644
---- a/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
-@@ -728,6 +728,7 @@
- 		fsl,pins = <
- 			MX6QDL_PAD_GPIO_1__USB_OTG_ID		0x17059
- 			MX6QDL_PAD_EIM_D22__GPIO3_IO22	0x1b0b0 /* OTG_PWR_EN */
-+			MX6QDL_PAD_KEY_COL4__USB_OTG_OC		0x17059
- 		>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-index 29ba24c273e9..cda48bf2f168 100644
---- a/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-@@ -812,6 +812,7 @@
- 		fsl,pins = <
- 			MX6QDL_PAD_GPIO_1__USB_OTG_ID		0x17059
- 			MX6QDL_PAD_EIM_D22__GPIO3_IO22		0x1b0b0 /* PWR_EN */
-+			MX6QDL_PAD_KEY_COL4__USB_OTG_OC		0x17059
- 		>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/imx6qdl-gw553x.dtsi b/arch/arm/boot/dts/imx6qdl-gw553x.dtsi
-index c15b9cc63bf8..4662408b225a 100644
---- a/arch/arm/boot/dts/imx6qdl-gw553x.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-gw553x.dtsi
-@@ -687,6 +687,7 @@
- 		fsl,pins = <
- 			MX6QDL_PAD_GPIO_1__USB_OTG_ID		0x17059
- 			MX6QDL_PAD_EIM_D22__GPIO3_IO22		0x1b0b0 /* OTG_PWR_EN */
-+			MX6QDL_PAD_KEY_COL4__USB_OTG_OC		0x17059
- 		>;
- 	};
- 
--- 
-2.17.1
+> 
+> Document how to describe such a situation for an ethernet controller in
+> the device tree bindings.
+> 
+> Example usage could then look like:
+>   &eth2 {
+>     status = "okay";
+>     phys = <&comphy5 2>;
+>     buffer-manager = <&bm>;
+>     bm,pool-long = <2>;
+>     bm,pool-short = <3>;
+> 
+>     signal-multiplexer {
+>       compatible = "gpio-signal-multiplexer";
+>       gpios = <&pcawan 4 GPIO_ACTIVE_LOW>;
+> 
+>       endpoint@0 {
+>         phy-mode = "sgmii";
+> 	phy-handle = <&phy1>;
+>       };
+> 
+>       endpoint@1 {
+>         sfp = <&sfp>;
+> 	phy-mode = "sgmii";
+> 	managed = "in-band-status";
+>       };
+>     };
+>   };
+> 
+> Signed-off-by: Marek Behún <kabel@kernel.org>
+> ---
+> I wonder if this is the proper way to do this.
+> 
+> We already have framework for multiplexers in Linux, in drivers/mux.
+> But as I understand it, that framework is meant to be used when the
+> multiplexer state is to be set by kernel, while here it is possible
+> that the multiplexer state can be (and on Turris Omnia is) set by
+> the user plugging a SFP module into the SFP cage.
 
+Right, seems like not a good fit ATM.
+
+> 
+> We theoretically could add a method for getting mux state into the mux
+> framework and state notification support. But using the mux framework
+> to solve this case in phylink would be rather complicated, especially
+> since mux framework is abstract, and if the multiplexer state is
+> determined by the MOD_DEF0 GPIO, which is also used by SFP code, the
+> implementation would get rather complicate in phylink...
+
+This doesn't seem like it would be very common, so I think I'd stick 
+with the simple solution unless there's a strong desire to make the mux 
+control work for this use case. Generically it would be a read-only or 
+externally controlled mux. 
+
+> I wonder whether driver implementation complexity should play a role
+> when proposing device tree bindings :-)
+
+Yes, at least in the sense of complicating any driver implementation.
+
+Keep in mind that using a binding doesn't require using a subsystem. You 
+could use the mux binding, but not the mux framework. (And the latter 
+could evolve with the OS.)
+
+> 
+> Some thoughts?
+> ---
+>  .../bindings/net/ethernet-controller.yaml     | 60 +++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> index b0933a8c295a..a7770edaec2b 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
+> @@ -226,6 +226,66 @@ properties:
+>            required:
+>              - speed
+>  
+> +  signal-multiplexer:
+> +    type: object
+> +    description:
+> +      Specifies that the signal pins (for example SerDes lanes) are connected
+> +      to a multiplexer from which they can be multiplexed to several different
+> +      endpoints, depending on the multiplexer configuration. (For example SerDes
+> +      lanes can be switched between an ethernet PHY and a SFP cage.)
+> +
+> +    properties:
+> +      compatible:
+> +        const: gpio-signal-multiplexer
+> +
+> +      gpios:
+> +        maxItems: 1
+> +        description:
+> +          GPIO to determine which endpoint the multiplexer is switched to.
+> +
+> +    patternProperties:
+> +      "^endpoint@[01]$":
+
+'endpoint' as a node name is already taken by the OF graph binding, so 
+pick something else.
+
+> +        type: object
+> +        description:
+> +          Specifies a multiplexer endpoint settings. Each endpoint can have
+> +          different settings. (For example in the case when multiplexing between
+> +          an ethernet PHY and a SFP cage, the SFP cage endpoint should specify
+> +          SFP phandle, while the PHY endpoint should specify PHY handle.)
+> +
+> +        properties:
+> +          reg:
+> +            enum: [ 0, 1 ]
+> +
+> +          phy-connection-type:
+> +            $ref: #/properties/phy-connection-type
+> +
+> +          phy-mode:
+> +            $ref: #/properties/phy-mode
+> +
+> +          phy-handle:
+> +            $ref: #/properties/phy-handle
+> +
+> +          phy:
+> +            $ref: #/properties/phy
+> +
+> +          phy-device:
+> +            $ref: #/properties/phy-device
+> +
+> +          sfp:
+> +            $ref: #/properties/sfp
+> +
+> +          managed:
+> +            $ref: #/properties/managed
+> +
+> +          fixed-link:
+> +            $ref: #/properties/fixed-link
+> +
+> +        required:
+> +          - reg
+> +
+> +    required:
+> +      - gpios
+> +
+>  additionalProperties: true
+>  
+>  ...
+> -- 
+> 2.31.1
+> 
+> 
