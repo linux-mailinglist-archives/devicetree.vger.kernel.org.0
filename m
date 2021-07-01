@@ -2,114 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 479593B8C57
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 04:25:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52DFA3B8C6E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 04:52:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238820AbhGAC2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 22:28:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43316 "EHLO
+        id S238604AbhGACzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 22:55:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238721AbhGAC1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 22:27:55 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CD96C061230;
-        Wed, 30 Jun 2021 19:25:25 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id m9so8381358ybo.5;
-        Wed, 30 Jun 2021 19:25:25 -0700 (PDT)
+        with ESMTP id S238056AbhGACzW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 22:55:22 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49900C061756
+        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 19:52:53 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id q91so3368152pjk.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 19:52:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EZ5joYeT1vWGOdC639vm4xzdrB9GYQUWOsxh2Cw62fs=;
-        b=BkB0e4A4lqcB9HHNA2CIuOXjjNW9v8VDOmenRqaJ781r8n/0x+dsT0IBYHzX3rQweN
-         BISCfVoYeGNeT0Y/7Amc1ZmdM13+MLVVny00hy8YUXVvf7njRGBYJeIlS3kJebNG9/DS
-         dQLrtToWKbw0tikxx+0n9EZ3a5ePESjLiPPUsKLTpObgT+t/+C3uqepOCYfSdJ8ZI8a6
-         Zg3jWh+72spwkqxwgS6IfiYRiuvY1A2Lf0u/xNrvu60BnWfuxylNrUvAuvmyDhfl7wYT
-         A611/g308s2p7vtfQG+FOLghXJzgMTSg4u/pl5ZSvR/F4aoKqIsFQP7yAopDZOrHbZm9
-         E9GA==
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hvxDF3nom/N8rPm+Ppo7zGPA/qzGtO9RuOCfsxZTu98=;
+        b=SpjFL08PBqV7tkh6qKJFbHlv80PlDkGq07wcYsvXaYnweI2EpYhmpM/u8RV0DX7eud
+         lszQ4GyMHGCeoLbl8uNh/YKcZWbdc+fRt/XgL1QGeyrevEt5RgdJ6m0PW/BND3i+5Mvt
+         Tf1Ptudl3du2nRf77SJ/JTGH4r2jVQ6ewpyf6qFhyG5k2cA8/+YIheA6dKXE0TLYOJ4N
+         TiemKl2puGeIDcT/OFNCWGTGKsgDz4DYMn/wxKrrGcVMn9+0e2BzC1Ov8ExreTRiJpb8
+         //MHSLFw+Mp/ugzIgYixQV3a4jfQgyIOYoHYuZkvH1D9IaVUWIAkkKC4GniP/WYVuQpc
+         HoJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EZ5joYeT1vWGOdC639vm4xzdrB9GYQUWOsxh2Cw62fs=;
-        b=ZN3uIDrm8AQkxV1xAzfYMiDwiYK9lFiJKYFY9gQF35CmCK1Fnj5O++lFrEU6q8TnE+
-         cuw63nzHNEOYEvOx6WhVBxsaK5nQKyKTuN8aBMCTqR7A4N4zdfg0GtYxR31au17AcsEa
-         jVvMFb9uHmFu5CdAHvXmpz+fa0XED7YjZYvcx5x14hZ80uoI0JK7wxyYvLCo+r4ntTqc
-         jVGtfiqnA8LpWh3W0zmJ81j3XBZ/AG85pGslS11cIhAf4E8YFIQfFS5ntcnas/PrYHTR
-         0TIi1pKsFcYPuikKb8sqM2+lbCGBvQT7ADLAtiySJZzn8za+OdmBu1GB8btdW6tWfmLf
-         9qpg==
-X-Gm-Message-State: AOAM5335YnvXbcU8ESEuQuUmnmMJC8KVXa32xF0rMxB2DxMvzrqjWfkS
-        HT2HgS6E+nw4aeIL5lu6HfCHY7pv+5hdo7Mx9co=
-X-Google-Smtp-Source: ABdhPJxpBls7pzAWN/Mwft/OqHg/7WX7iWrNpIvnEjCOGwEJubVbMovb1/Y4YrI++b13jH9vqJQvtaCGu7A4SMdBtkQ=
-X-Received: by 2002:a25:6c04:: with SMTP id h4mr50224689ybc.122.1625106324052;
- Wed, 30 Jun 2021 19:25:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210701002037.912625-1-drew@beagleboard.org> <20210701002037.912625-3-drew@beagleboard.org>
-In-Reply-To: <20210701002037.912625-3-drew@beagleboard.org>
-From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Thu, 1 Jul 2021 10:25:12 +0800
-Message-ID: <CAEUhbmXuxSePo22y_keGsqPWyCSAoUdTQPqCRJmYXS7rT4DhZA@mail.gmail.com>
-Subject: Re: [RFC PATH 2/2] gpio: starfive-jh7100: Add StarFive JH7100 GPIO driver
-To:     Drew Fustini <drew@beagleboard.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=hvxDF3nom/N8rPm+Ppo7zGPA/qzGtO9RuOCfsxZTu98=;
+        b=DHVdLfcGIppGKMF0Oj2ruGTHdaa3Ir//rOXAispCVRd8Vv5YGewlhp1mmAV7HjuoT9
+         SQEw6DPJcZ7M/FfdMk9JSZA4QnPAsAILwL5pp0x4xIk7g8zLSNQZwYTtRmzLhK13r4n/
+         mmsi3LzB/cZLuERs/W2FLFcqMj0YnyCw4tS+/Eg7kB64SKa7HHILfNt5ifTtKUE0yHps
+         KuyrPONo6sZgTw4B1BfkFVN3gS/V2QHywzSOwPwcuZxXyl9fb+95P8eiBqldmyGopObK
+         H4bNcGZqPScy/mTrVxkz0XX1iDtBO77G1SW+vN9VlrQ9IoHAnZ0vt6U5xQ21p+yk3O5p
+         z9mw==
+X-Gm-Message-State: AOAM530cWb/+pPu4F9guvpOm0ih+KX0sG0MFrj3DzeL1siTZcFS0UVy7
+        Zqi2sBXMvg3lbuhsF+CQAfRXww==
+X-Google-Smtp-Source: ABdhPJwTB1Hi0X5cFeHOElli+j39Ed7Ljy/aE1Qg7eTojjCof97X9FW3uTdfNXuJxXddlvtQXZecVA==
+X-Received: by 2002:a17:903:2341:b029:129:1282:fd37 with SMTP id c1-20020a1709032341b02901291282fd37mr6223940plh.6.1625107972559;
+        Wed, 30 Jun 2021 19:52:52 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id 206sm23381385pfv.108.2021.06.30.19.52.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Jun 2021 19:52:51 -0700 (PDT)
+Date:   Wed, 30 Jun 2021 19:52:51 -0700 (PDT)
+X-Google-Original-Date: Wed, 30 Jun 2021 19:52:49 PDT (-0700)
+Subject:     Re: [PATCH 2/3] riscv: Remove non-standard linux,elfcorehdr handling
+In-Reply-To: <CAL_JsqKJgz=ixNAJProoVFmQXGEOsTYX=bXTdtf7RLQErL1VRg@mail.gmail.com>
+CC:     mick@ics.forth.gr, geert@linux-m68k.org,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Huan Feng <huan.feng@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
+        aou@eecs.berkeley.edu, frowand.list@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     robh+dt@kernel.org
+Message-ID: <mhng-6db38728-4f82-45bd-9b17-c41da55c41e9@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 1, 2021 at 8:23 AM Drew Fustini <drew@beagleboard.org> wrote:
+On Wed, 16 Jun 2021 07:47:46 PDT (-0700), robh+dt@kernel.org wrote:
+> On Wed, Jun 16, 2021 at 4:43 AM Nick Kossifidis <mick@ics.forth.gr> wrote:
+>>
+>> Στις 2021-06-16 10:56, Geert Uytterhoeven έγραψε:
+>> >
+>> > I can't comment on the duplication on arm64, but to me, /chosen
+>> > sounds like the natural place for both "linux,elfcorehdr" and
+>> > "linux,usable-memory-range".  First rule of DT is "DT describes
+>> > hardware, not software policy", with /chosen describing some software
+>> > configuration.
+>> >
+>>
+>> We already have "linux,usable-memory" on /memory node:
+>> https://elixir.bootlin.com/linux/v5.13-rc6/source/drivers/of/fdt.c#L1011
+>> and it makes perfect sense to be there since it overrides /memory's reg
+>> property.
+>>
+>> Why define another binding for the same thing on /chosen ?
 >
-> Add GPIO driver for the StarFive JH7100 SoC [1] used on the
-> BeagleV Starlight JH7100 board [2].
->
-> [1] https://github.com/starfive-tech/beaglev_doc/
-> [2] https://github.com/beagleboard/beaglev-starlight
->
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
-> Signed-off-by: Drew Fustini <drew@beagleboard.org>
-> ---
->  MAINTAINERS                         |   8 +
->  drivers/gpio/Kconfig                |   8 +
->  drivers/gpio/Makefile               |   1 +
->  drivers/gpio/gpio-starfive-jh7100.c | 425 ++++++++++++++++++++++++++++
->  4 files changed, 442 insertions(+)
->  create mode 100644 drivers/gpio/gpio-starfive-jh7100.c
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index bc0ceef87b73..04fccc2ceffa 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17423,6 +17423,14 @@ S:     Supported
->  T:     git git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
->  F:     drivers/staging/
->
-> +SIFVE JH7100 SOC GPIO DRIVER
+> Go look at the thread adding "linux,usable-memory-range". There were
+> only 35 versions of it[1]. I wasn't happy with a 2nd way either, but
+> as I've mentioned before we don't always have /memory node.
 
-typo of SIFIVE, but it should be STARFIVE
+I don't really understand what's going on here, but IIUC what I merged 
+in 5.13 doesn't match the behavior that other architectures have.  In 
+that case I'm happy moving RISC-V over to the more standard way of doing 
+things and just calling what we have in 5.13 a screwup.
 
-> +M:     Drew Fustini <drew@beagleboard.org>
-> +M:     Huan Feng <huan.feng@starfivetech.com>
-> +L:     linux-riscv@lists.infradead.org
-> +L:     linux-gpio@vger.kernel.org
-> +F:     Documentation/devicetree/bindings/gpio/starfive,jh7100-gpio.yaml
-> +F:     drivers/gpio/gpio-starfive-jh7100.c
-> +
-
-[snip]
-
-Regards,
-Bin
+Sorry for the confusion.
