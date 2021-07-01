@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D10D3B92C5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:04:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3F493B92B9
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233481AbhGAOG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 10:06:26 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:34785 "EHLO
+        id S233131AbhGAOGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 10:06:10 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:37740 "EHLO
         mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232631AbhGAOG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:06:26 -0400
-Received: by mail-io1-f50.google.com with SMTP id g22so7687615iom.1;
-        Thu, 01 Jul 2021 07:03:55 -0700 (PDT)
+        with ESMTP id S233300AbhGAOGJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:06:09 -0400
+Received: by mail-io1-f50.google.com with SMTP id b15so7641916iow.4;
+        Thu, 01 Jul 2021 07:03:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=SmBXJ9fHetqXtaZ7gjDn9p2NACbKWCG+T7Pvmo1erz4=;
-        b=F/h4brM93Q4dSudqe92SP9u69hxlK7LKggMGYPHLb1aX/nmrQcJFR/5+FmQtZi3on0
-         z6yZXtROQ0WNeglefA7ooBWzzaqMWUXzqcIQb3e1ESK4tbKeiYaATuWApD0DE5DQUX0L
-         CJJd/XuPwxILW7+40EpeXdDMfYz+AMBrfo0AK9V42BQWInklTpzgWEN8sjjpfpwaYamD
-         BtjQTGEL8pHDj/CTweJaNeXWMnMNfIx06tVcrOKTZsc2ZYJJ8Qp3cV2h1Y0d8UidTGbK
-         DT9DIpw7+bWClNxr/l3g70k0kXU/jvzPAjsSq543D075ZkgBPMUfiFuyoVx6CahOg8BQ
-         hg2g==
-X-Gm-Message-State: AOAM531w+emcarDSYlOu7e+XI8dmAFCkAB5JnySHUDHws7qSWhUr6AOb
-        jf7EQ0U9H9uSnmN8YsC36g==
-X-Google-Smtp-Source: ABdhPJwfnI6olZAZZ6EN1RITBI2pL6d1o7qQWw48ciG943n3gVDOQnGTinSKHtu1eq3BGagIUsOS+A==
-X-Received: by 2002:a5d:8154:: with SMTP id f20mr12736753ioo.89.1625148235459;
-        Thu, 01 Jul 2021 07:03:55 -0700 (PDT)
+        bh=RIHU3Dvz8UVhaI+52yb7oaZyHsIEgAYHrT+AJwUGDLs=;
+        b=eCFaA2qQQrrx5FudTkEO3deBFhn7Fao2Oz1x29Kkcq5GHIi7py+iRb4J5GynbQQneS
+         UcgVLjmes5g34MElw4c4Cg8sd/Imb1MfhiC7kMD9c7zvuxJLG1Y16TEQbBg3xxFcalJU
+         aSNC7z8dCfrCOE2Hfq6cpUj1hWqFlS2KlYey/APJ/l/nQOFeoQ4SDmfaZgjjFxwUMU3J
+         lN4qIWCVechjun1syHYPFCCgzPV8EZFr3ZDCHYmdX8jn1q1z69eeJLNzIJLJWdyQNZFE
+         zOgD6nHuioWQcxgbYwBmaJ16qVu2FniRIqN1AW7DEPwgVIyiqDn7zhpJkxNXlc294SPa
+         C2sg==
+X-Gm-Message-State: AOAM5322AZry67LBsbvx9GCZCyRWf3vWl9FnYcZwWhWncKuKBtrRsKKl
+        Iertt0KacBDXCuSLvX6V6w==
+X-Google-Smtp-Source: ABdhPJwQKT+kR+WAjiGnVYsmWaj61qH7vLyuBErKzSWqz2Eyox/gsoOirr+2wRLgFZVQLStOn2NurQ==
+X-Received: by 2002:a5d:9ad6:: with SMTP id x22mr6096646ion.182.1625148217955;
+        Thu, 01 Jul 2021 07:03:37 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id a15sm43559ilq.18.2021.07.01.07.03.52
+        by smtp.gmail.com with ESMTPSA id r13sm38814ilg.37.2021.07.01.07.03.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jul 2021 07:03:54 -0700 (PDT)
-Received: (nullmailer pid 2278698 invoked by uid 1000);
+        Thu, 01 Jul 2021 07:03:36 -0700 (PDT)
+Received: (nullmailer pid 2278714 invoked by uid 1000);
         Thu, 01 Jul 2021 14:02:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-In-Reply-To: <20210627163244.1090296-6-jic23@kernel.org>
-References: <20210627163244.1090296-1-jic23@kernel.org> <20210627163244.1090296-6-jic23@kernel.org>
-Subject: Re: [PATCH 05/15] dt-bindings: iio: dac: ad5446: Add missing binding document
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Cc:     konrad.dybcio@somainline.org, broonie@kernel.org,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, jami.kettunen@somainline.org,
+        agross@kernel.org, jeffrey.l.hugo@gmail.com,
+        martin.botka@somainline.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        bjorn.andersson@linaro.org, paul.bouchara@somainline.org,
+        marijn.suijten@somainline.org, devicetree@vger.kernel.org
+In-Reply-To: <20210701105441.319572-7-angelogioacchino.delregno@somainline.org>
+References: <20210701105441.319572-1-angelogioacchino.delregno@somainline.org> <20210701105441.319572-7-angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH v6 6/6] dt-bindings: soc: qcom: cpr3: Add bindings for CPR3 driver
 Date:   Thu, 01 Jul 2021 08:02:43 -0600
-Message-Id: <1625148163.528787.2278697.nullmailer@robh.at.kernel.org>
+Message-Id: <1625148163.611445.2278713.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Jun 2021 17:32:34 +0100, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Thu, 01 Jul 2021 12:54:41 +0200, AngeloGioacchino Del Regno wrote:
+> Add the bindings for the CPR3 driver to the documentation.
 > 
-> Binding is a little stricter than the Linux driver.
-> 
-> It requires vcc-supply to be present for devices that don't have
-> an internal reference, whereas the driver just prints a message and
-> carries on.  Given this means that it is impossible to establish
-> a scaling of the output channel, let us make it required in the binding
-> schema.
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/iio/dac/adi,ad5446.yaml          | 105 ++++++++++++++++++
->  1 file changed, 105 insertions(+)
+>  .../bindings/soc/qcom/qcom,cpr3.yaml          | 241 ++++++++++++++++++
+>  1 file changed, 241 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -74,11 +72,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/dac/ti,dac7512.example.dt.yaml: dac@0: 'vcc-supply' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/dac/adi,ad5446.yaml
+Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dt.yaml:0:0: /example-0/cpu-silver-opp-table: failed to match any schema with compatible: ['operating-points-v2']
+Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dt.yaml:0:0: /example-0/cpu-gold-opp-table: failed to match any schema with compatible: ['operating-points-v2']
+Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dt.yaml:0:0: /example-0/cpr-hardened-opp-table: failed to match any schema with compatible: ['operating-points-v2-qcom-level']
 \ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1497723
+See https://patchwork.ozlabs.org/patch/1499495
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
