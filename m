@@ -2,112 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E95F63B921C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 15:16:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E65F3B9263
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 15:36:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236700AbhGANQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 09:16:58 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:40308 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S236673AbhGANQu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Jul 2021 09:16:50 -0400
-Received: from localhost.localdomain (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxf0OZv91gKz8bAA--.11066S4;
-        Thu, 01 Jul 2021 21:14:09 +0800 (CST)
-From:   Qing Zhang <zhangqing@loongson.cn>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v8 3/3] dt-bindings: mips: Add Loongson-2K1000 reset support
-Date:   Thu,  1 Jul 2021 21:14:00 +0800
-Message-Id: <20210701131400.4699-3-zhangqing@loongson.cn>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20210701131400.4699-1-zhangqing@loongson.cn>
-References: <20210701131400.4699-1-zhangqing@loongson.cn>
+        id S231342AbhGANib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 09:38:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49436 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229512AbhGANib (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 09:38:31 -0400
+X-Greylist: delayed 14678 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 01 Jul 2021 06:36:00 PDT
+Received: from antares.kleine-koenig.org (antares.kleine-koenig.org [IPv6:2a01:4f8:c0c:3a97::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0BC6C061762;
+        Thu,  1 Jul 2021 06:36:00 -0700 (PDT)
+Received: from antares.kleine-koenig.org (localhost [127.0.0.1])
+        by antares.kleine-koenig.org (Postfix) with ESMTP id 21629BEC22E;
+        Thu,  1 Jul 2021 15:35:59 +0200 (CEST)
+Received: from antares.kleine-koenig.org ([94.130.110.236])
+        by antares.kleine-koenig.org (antares.kleine-koenig.org [94.130.110.236]) (amavisd-new, port 10024)
+        with ESMTP id 1xiJBhPXBdcc; Thu,  1 Jul 2021 15:35:58 +0200 (CEST)
+Received: from taurus.defre.kleine-koenig.org (unknown [IPv6:2a02:8071:b5c8:7b00:36f3:9aff:fec2:7e46])
+        by antares.kleine-koenig.org (Postfix) with ESMTPSA;
+        Thu,  1 Jul 2021 15:35:57 +0200 (CEST)
+Subject: Re: [PATCH 1/4] arm64: dts: rockchip: helios64: fixup USB setup
+To:     Dennis Gilmore <dgilmore@redhat.com>,
+        linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20210701004043.18585-1-dgilmore@redhat.com>
+ <01f1b032-14a8-a6fa-9063-23de65fc6f43@kleine-koenig.org>
+ <f46b234e0aaf4356804d5e1446910bbedcbddb51.camel@redhat.com>
+From:   =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
+Message-ID: <dbb04649-d56c-32ac-913c-5b5795851bf4@kleine-koenig.org>
+Date:   Thu, 1 Jul 2021 15:35:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf9Dxf0OZv91gKz8bAA--.11066S4
-X-Coremail-Antispam: 1UD129KBjvJXoWxJF15uF47Gry3tr15Ary3twb_yoW8Gw4rpF
-        nxCw17Kr4F9F13uwsxKFy8AF1rZr9aya4xXF47tw17t3s8Ga1Yvw1ak3Z8ZF17GFy8XFW7
-        XFWxWFWUKa4Ikw7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUPqb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI
-        8067AKxVWUXwA2048vs2IY020Ec7CjxVAFwI0_Gr0_Xr1l8cAvFVAK0II2c7xJM28CjxkF
-        64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcV
-        CY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv
-        6xkF7I0E14v26rxl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c
-        02F40Ex7xfMcIj64x0Y40En7xvr7AKxVWUJVW8JwAv7VC0I7IYx2IY67AKxVWUAVWUtwAv
-        7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMx
-        kIecxEwVAFwVW5GwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s02
-        6c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_JF
-        0_Jw1lIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvE
-        c7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1I6r4UMIIF0xvEx4A2jsIE14
-        v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x
-        07jkb18UUUUU=
-X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
+In-Reply-To: <f46b234e0aaf4356804d5e1446910bbedcbddb51.camel@redhat.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="YvRvFodUNf3nRSgnK9VvTAA07ofwB48Cl"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch the DT binding to a YAML schema to enable the DT validation.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--YvRvFodUNf3nRSgnK9VvTAA07ofwB48Cl
+Content-Type: multipart/mixed; boundary="CMaIT3Zveiav2h1hm2zKMLUREiKWD8hmX";
+ protected-headers="v1"
+From: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
+To: Dennis Gilmore <dgilmore@redhat.com>, linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/Rockchip SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>
+Message-ID: <dbb04649-d56c-32ac-913c-5b5795851bf4@kleine-koenig.org>
+Subject: Re: [PATCH 1/4] arm64: dts: rockchip: helios64: fixup USB setup
+References: <20210701004043.18585-1-dgilmore@redhat.com>
+ <01f1b032-14a8-a6fa-9063-23de65fc6f43@kleine-koenig.org>
+ <f46b234e0aaf4356804d5e1446910bbedcbddb51.camel@redhat.com>
+In-Reply-To: <f46b234e0aaf4356804d5e1446910bbedcbddb51.camel@redhat.com>
 
-Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
----
+--CMaIT3Zveiav2h1hm2zKMLUREiKWD8hmX
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-v7-v8:
-No change
----
- .../bindings/mips/loongson/ls2k-reset.yaml    | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml
+Hello Dennis,
 
-diff --git a/Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml b/Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml
-new file mode 100644
-index 000000000000..6016ea756ccd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/mips/loongson/ls2k-reset.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Loongson 2K1000 PM Controller
-+
-+maintainers:
-+  - Qing Zhang <zhangqing@loongson.cn>
-+
-+description: |
-+  This controller can be found in Loongson-2K1000 Soc systems.
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-pm
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        pm: power-controller@1fe07000 {
-+            compatible = "loongson,ls2k-pm";
-+            reg = <0 0x1fe07000 0 0x422>;
-+        };
-+    };
-+...
--- 
-2.31.0
+On 7/1/21 2:59 PM, Dennis Gilmore wrote:
+> On Thu, 2021-07-01 at 11:31 +0200, Uwe Kleine-K=C3=B6nig wrote:
+>> Hello,
+>>
+>> On 7/1/21 2:40 AM, Dennis Gilmore wrote:
+>>> Without the usbdrd_dwc3_1 node defined u-boot will throw an error
+>>> and
+>>> reset the system.
+>>
+>> I wonder if this should better be fixed in u-boot then?!
+>>
+>>> All other rk3399 systems use this format
+>>
+>> This is true for the dwc nodes, however for the usb2 nodes there are
+>> several that use this idiom (and even repeat the label name), see for
+>> example the &u2phy0 node in
+>> arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi .
+>>
+>=20
+> looking at that file is where I got the idea to set it up as I have
+> proposed, it follows the format I have submitted
 
+I guess you didn't read exactly what I wrote and only looked at &usbdrd* =
+
+but not &u2phy0.
+
+Best regards
+Uwe
+
+
+--CMaIT3Zveiav2h1hm2zKMLUREiKWD8hmX--
+
+--YvRvFodUNf3nRSgnK9VvTAA07ofwB48Cl
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDdxLAACgkQwfwUeK3K
+7AlVQAf/RAQaPs27pUNomG8/r01G08LL88uLjlivWTkaxbrkeD+JsdQrkncdz2VR
+8kkoLdLPPl/coBFB4YFYmtKIXiYCG6fvorW19ciVM7Pe/s5VJSyJAbMF24MUwPkr
+IcugWcb5CVOTa4nuhWY3Up6C0q53IRFRACI72nlUc5mcq1h4nXuXCg5wFnFwOTNL
+/pwamhX8gPZd+54+YU16JgFf1rbdIJc43uSMY1kjXn8QFPcxKwZGQMKtDMRE75Ha
+50xbzSlXXSDndrZl3IeNJ3W4T+7I3tb3HFwhSjZVunLntoJAoFrVIEFQF7C3k6ey
+4E/EhDeFsAHZhAC7d1EnWKcMU3MBNA==
+=SvsZ
+-----END PGP SIGNATURE-----
+
+--YvRvFodUNf3nRSgnK9VvTAA07ofwB48Cl--
