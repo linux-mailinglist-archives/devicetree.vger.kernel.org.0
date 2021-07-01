@@ -2,143 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C82293B9518
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 18:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FB643B9579
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 19:25:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233024AbhGARBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 13:01:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229949AbhGARBc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 13:01:32 -0400
-Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32986C061764
-        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 09:59:01 -0700 (PDT)
-Received: by mail-vs1-xe29.google.com with SMTP id c26so4196763vso.8
-        for <devicetree@vger.kernel.org>; Thu, 01 Jul 2021 09:59:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Immfemhnpfwa8Nxg8YlJJPBmhUahLWtVsprTcnwHwPk=;
-        b=fosP1pivS/V7/7q1YVbmKOVzAiaVlm7zVcVZXe75oDTpnLQk/JKjyghVLBOJVFuoV3
-         HE3hPij/Y20fQDt6VeHfZvDLHTpLW3jPrwm4wyS7idrW9V4tmk++PdK8IjtEnRKXzvdZ
-         ZlagxBpjFbDf5GySfn9hAqblBML6XGQXPxbC+gb4Z8Nrj1ae4rS+814Zk81lR2ppJFSk
-         pRVxoVpBm2X4pnBqPLo/l8fEIxVRUJCBwumltoa5T/urpYAgqTCLy6ayZxz8lNEKiKSl
-         d9LHZd4OC61Dj9vw3HPRsXC7mlQJi7ZD5aakDa9hqqemjxNnjj3tKs7gVaMPkHOkCkax
-         zGiw==
+        id S232597AbhGAR2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 13:28:04 -0400
+Received: from mail-io1-f44.google.com ([209.85.166.44]:37395 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229987AbhGAR2D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 13:28:03 -0400
+Received: by mail-io1-f44.google.com with SMTP id b15so8478375iow.4;
+        Thu, 01 Jul 2021 10:25:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Immfemhnpfwa8Nxg8YlJJPBmhUahLWtVsprTcnwHwPk=;
-        b=JpVzjXB7LKqq1o0ildEL1mzk7cjtjYxlPu6+uux2yA8hov7Z/rgxWpLZJbpGNmQlaV
-         odDcdlmjR/RQ4B6xAUyXtzzrQPPlY2W3NQYsdTNeTaC968DKHFi1+jYdgtgZoeofNAG5
-         1IW9o+UnMr6nSaNcEPvCjLg3ZGtuNP10VOhxhYjhG9yHVJB4ERhHYs7dVBz8yKrgdeRb
-         /ozbB8bJXaXE+jnGnxWd8x4xXK+muvJKzspatFouVgSsoTj+FRgzxIhEOkeHcnNXIYrA
-         3nPHC+vlMO8tvIf+sdCaMRMeE8IO/7knuD9PTvDN6cKSrkH1bhpUQ0nWJtl8AGdDoRs7
-         mD5w==
-X-Gm-Message-State: AOAM530s6DURTNp277jFFO+oygqUo2aHN8BR+ku+HwpZnhINgwPzYWSm
-        +yKGtx1YojNzmmWM1qHTHiMpAayASrf1WWkWhAEGDw==
-X-Google-Smtp-Source: ABdhPJwb80n64AujBuKAB/6m8FZX3ULekcDZrX7rK4uDzligl8QBq8854MayUQyqde2ZRzptR9AszDxPsDj/QYmH4XI=
-X-Received: by 2002:a05:6102:502:: with SMTP id l2mr1354578vsa.19.1625158740105;
- Thu, 01 Jul 2021 09:59:00 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=w6gTmvRwcI4PnriyuDthCbCWYTTLF9ew6XglrfShjWU=;
+        b=YZFMY+Nxi/NS4z2uBu68ogLF9A5qU8wU3xKbY4eK6Vs51Zm+GT3MWaB8Mh19YK+dvH
+         U5/WtbSPI5dfQi2Yygn6XCAgxxqTYBepzeX0jswTSZC5c5fmP2XToMFHzt0XgtWTpXJn
+         Bh8eJIuiT9hsqTNCvpxvEzNTq+r3Wybq2pukMfDgn/ev6xOM4fhswSyzXeE9Wn803pss
+         iGa6NnBFzzT0ufxdrLDZXM0Di9P+FgubIUHMHp0RqE2H8Psdyi+CeTJsvv1Mr+qO2333
+         4ryLlKyNOZuV53RYKnq2Mfv/2kSWX+SxjM3dfJc4F8H5v6vxc4m5BfOYfN1h9oNBGpc1
+         G66Q==
+X-Gm-Message-State: AOAM531XHLI/qDm11kxOm/kGhkSzisXvElmTJu0/yRWYLMEYwMsDMf+/
+        1/eIBhYVTDY3UtrBcV+RVQ==
+X-Google-Smtp-Source: ABdhPJzVUV9TtPlXgeNsc5ysOOuVBhlUICgsvbPoIJOi3pjLqszdZrRPAZBviugbnCuPGPKk75paFA==
+X-Received: by 2002:a02:9402:: with SMTP id a2mr843416jai.110.1625160331152;
+        Thu, 01 Jul 2021 10:25:31 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id d6sm248649ioi.5.2021.07.01.10.25.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jul 2021 10:25:30 -0700 (PDT)
+Received: (nullmailer pid 2589752 invoked by uid 1000);
+        Thu, 01 Jul 2021 17:25:27 -0000
+Date:   Thu, 1 Jul 2021 11:25:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Gavin Shan <gshan@redhat.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rdunlap@infradead.org, drjones@redhat.com, shan.gavin@gmail.com
+Subject: Re: [PATCH v5] Documentation, dt, numa: Add note to empty NUMA node
+Message-ID: <20210701172527.GA2567910@robh.at.kernel.org>
+References: <20210628093411.88805-1-gshan@redhat.com>
 MIME-Version: 1.0
-References: <20210630133149.3204290-1-dmitry.baryshkov@linaro.org>
- <20210630133149.3204290-2-dmitry.baryshkov@linaro.org> <CAPDyKFpXD3rCmp53LFFYky_xQv9ucofvTezG5qWyDZt427chNQ@mail.gmail.com>
- <CAA8EJpob=TpXiJozac-5sKJzE71ddWRFDj7D2-F=W=a2mgKvxA@mail.gmail.com>
-In-Reply-To: <CAA8EJpob=TpXiJozac-5sKJzE71ddWRFDj7D2-F=W=a2mgKvxA@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 1 Jul 2021 18:58:22 +0200
-Message-ID: <CAPDyKFq-vwMchLFb3JvK7B9ZQ9=z-TXzGHUij6CocTR+VmAOqQ@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: clock: qcom,dispcc-sm8x50: add mmcx
- power domain
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210628093411.88805-1-gshan@redhat.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 1 Jul 2021 at 18:39, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Thu, 1 Jul 2021 at 19:17, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> >
-> > On Wed, 30 Jun 2021 at 15:31, Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> > >
-> > > On sm8250 dispcc requires MMCX power domain to be powered up before
-> > > clock controller's registers become available. For now sm8250 was using
-> > > external regulator driven by the power domain to describe this
-> > > relationship. Switch into specifying power-domain and required opp-state
-> > > directly.
-> > >
-> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > ---
-> > >  .../bindings/clock/qcom,dispcc-sm8x50.yaml    | 19 +++++++++++++++++++
-> > >  1 file changed, 19 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> > > index 0cdf53f41f84..48d86fb34fa7 100644
-> > > --- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> > > +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> > > @@ -55,6 +55,16 @@ properties:
-> > >    reg:
-> > >      maxItems: 1
-> > >
-> > > +  power-domains:
-> > > +    description:
-> > > +      A phandle and PM domain specifier for the MMCX power domain.
-> > > +    maxItems: 1
-> > > +
-> >
-> > Should you perhaps state that this is a parent domain? Or it isn't?
-> >
-> > Related to this and because this is a power domain provider, you
-> > should probably reference the common power-domain bindings somewhere
-> > here. Along the lines of this:
-> >
-> > - $ref: power-domain.yaml#
-> >
-> > As an example, you could have a look at
-> > Documentation/devicetree/bindings/power/pd-samsung.yaml.
->
-> I'll take a look.
->
-> >
-> > > +  required-opps:
-> > > +    description:
-> > > +      Performance state to use for MMCX to enable register access.
-> > > +    maxItems: 1
-> >
-> > According to the previous discussions, I was under the assumption that
-> > this property belongs to a consumer node rather than in the provider
-> > node, no?
->
-> It is both a consumer and a provider. It consumes SM8250_MMCX from
-> rpmhpd and provides MMSC_GDSC.
+On Mon, Jun 28, 2021 at 05:34:11PM +0800, Gavin Shan wrote:
+> The empty memory nodes, where no memory resides in, are allowed.
+> For these empty memory nodes, the 'len' of 'reg' property is zero.
+> The NUMA node IDs are still valid and parsed, but memory may be
+> added to them through hotplug afterwards. I finds difficulty to
+> get where it's properly documented.
 
-That sounds a bit weird to me.
+This is already in use? If so, what platform(s)?
 
-In my view and per the common power domain bindings (as pointed to
-above): If a power domain provider is a consumer of another power
-domain, that per definition means that there is a parent domain
-specified.
+> So lets add a section for empty memory nodes in NUMA binding
+> document. Also, the 'unit-address', equivalent to 'base-address'
+> in the 'reg' property of these empty memory nodes is suggested to
+> be the summation of highest memory address plus the NUMA node ID.
 
-[...]
+What purpose does this serve? The kernel won't do anything with it other 
+than validate the numa-node-id range.
 
-Kind regards
-Uffe
+> 
+> Signed-off-by: Gavin Shan <gshan@redhat.com>
+> ---
+> v5: Separate section for empty memory node
+> ---
+>  Documentation/devicetree/bindings/numa.txt | 61 +++++++++++++++++++++-
+>  1 file changed, 60 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+> index 21b35053ca5a..230c734af948 100644
+> --- a/Documentation/devicetree/bindings/numa.txt
+> +++ b/Documentation/devicetree/bindings/numa.txt
+> @@ -103,7 +103,66 @@ Example:
+>  		};
+>  
+>  ==============================================================================
+> -4 - Example dts
+> +4 - Empty memory nodes
+> +==============================================================================
+> +
+> +Empty memory nodes, which no memory resides in, are allowed. The 'length'
+> +field of the 'reg' property is zero, but the 'base-address' is a dummy
+> +address and invalid. The 'base-address' could be the summation of highest
+> +memory address plus the NUMA node ID. However, the NUMA node IDs and
+> +distance maps are still valid and memory may be added into them through
+> +hotplug afterwards.
+> +
+> +Example:
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x80000000>;
+> +		numa-node-id = <0>;
+> +	};
+> +
+> +	memory@0x80000000 {
+
+unit-address should not have '0x'.
+
+> +		device_type = "memory";
+> +		reg = <0x0 0x80000000 0x0 0x80000000>;
+> +		numa-node-id = <1>;
+> +	};
+> +
+> +	/* Empty memory node */
+> +	memory@0x100000002 {
+> +		device_type = "memory";
+> +		reg = <0x1 0x2 0x0 0x0>;
+> +		numa-node-id = <2>;
+> +	};
+> +
+> +	/* Empty memory node */
+> +	memory@0x100000003 {
+> +		device_type = "memory";
+> +		reg = <0x1 0x3 0x0 0x0>;
+> +		numa-node-id = <3>;
+> +	};
+> +
+> +	distance-map {
+> +		compatible = "numa-distance-map-v1";
+> +		distance-matrix = <0 0  10>,
+> +				  <0 1  20>,
+> +				  <0 2  40>,
+> +				  <0 3  20>,
+> +				  <1 0  20>,
+> +				  <1 1  10>,
+> +				  <1 2  20>,
+> +				  <1 3  40>,
+> +				  <2 0  40>,
+> +				  <2 1  20>,
+> +				  <2 2  10>,
+> +				  <2 3  20>,
+> +				  <3 0  20>,
+> +				  <3 1  40>,
+> +				  <3 2  20>,
+> +				  <3 3  10>;
+> +	};
+> +
+> +==============================================================================
+> +5 - Example dts
+>  ==============================================================================
+>  
+>  Dual socket system consists of 2 boards connected through ccn bus and
+> -- 
+> 2.23.0
+> 
+> 
