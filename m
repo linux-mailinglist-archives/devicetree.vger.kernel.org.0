@@ -2,68 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA53E3B92A3
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:02:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BB3C3B92A6
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:03:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232775AbhGAOF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 10:05:26 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:36616 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232545AbhGAOFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:05:25 -0400
-Received: by mail-io1-f51.google.com with SMTP id u7so5467118ion.3;
-        Thu, 01 Jul 2021 07:02:55 -0700 (PDT)
+        id S232889AbhGAOFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 10:05:34 -0400
+Received: from mail-io1-f42.google.com ([209.85.166.42]:40702 "EHLO
+        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232827AbhGAOFd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:05:33 -0400
+Received: by mail-io1-f42.google.com with SMTP id l5so7618248iok.7;
+        Thu, 01 Jul 2021 07:03:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=mYpWVNkGyyi4+D5Ik3YO8omc3O/tZSWPuO0UlaNpdPE=;
-        b=fAyOVUOcDZSHW58wbxWqW4TAvfLBRU1bsMUNfnY0MSfezl5MchfUJDGivQZnKuVZ1F
-         KitXSDgjX9siYDAEbS7dVfLq5FBKO0t3/nVlKqTg4dypm5+qc2HZ4773O+Q2fR3T1KyA
-         2vq6Nvh2rcpOZqN72dcQyT7xdC/Au2KJ8U4XBBwQ/eefMYD4IajNyGwb7lQutfC0A4Ml
-         n0v8OqeBR+RrEn9xlqaP7/mAqE9Jf8YQ1NmJ0DHDra4LJsmUFi9N2elsboSHfnEFKlku
-         QZJRacqtwKLxPffOeCUFI1lAvfEGeNlq98vzn+R9TW4q6iE3yTdMlpeDiRlQpjqQnrpD
-         l/XA==
-X-Gm-Message-State: AOAM532DMQohQZVFricciUpOwNLlBqjJc8DnoscA1zPUr5TPevWuUkXU
-        v5Vj/HHuULfeRfg7bEzsCw==
-X-Google-Smtp-Source: ABdhPJxvLXDtYCaeHE5BU26+kYkT3YksThGWXzGZkcTWU32ai4Ma0FLwraS4S2gZj5vctoN26xJltA==
-X-Received: by 2002:a05:6602:1846:: with SMTP id d6mr12160079ioi.111.1625148175051;
-        Thu, 01 Jul 2021 07:02:55 -0700 (PDT)
+        bh=UcGsYoboToTMhhq99sLHVgR7kDyS6L2KqvCfhnRDDM0=;
+        b=W9AvaaMS8dJlqzBNf7oQ7reXgnv3T83WQOtdNjRgX57HgNZxi3ItpOIZccAItTAgQ1
+         qe8A5Zdxshqi2e6zGmZkU/E1ajH40RIko+siiKLA9lQx/kkJqVWTLMrSrHtFKpPmJw0W
+         pyQ9R6rKwHMsDJXGIFKm0VXGhutVuTDqyG3Q5MTufDg4fZnPB7B95EC5HzuK7n2+BVAJ
+         y+T6k1pxiBvKxcU7BiDlt+AMiii13WWrLMwmWs1TNcBCtH8shGnGNU6EYmmy6IWN/oW1
+         wgzONHbYAOT7G5YFRGcRkp/T3yaouLpxl5YpUgmSJDxE7sqGTOpBmqQ00fuQI0eKn533
+         s/wg==
+X-Gm-Message-State: AOAM530UTHj+zNe89LR0nJlzcVwDrqhHXd4STD3SqayjaelO85kmlbpF
+        cbTUWKHh451ROyPJwrlpLsbhShhrKw==
+X-Google-Smtp-Source: ABdhPJxJk5BSMp+3ZujDe2uG20xKYmB9NoQEedsUGUAOdURlUY0ojNyY+yn9NBjzeaJ+CB+8MsHFvQ==
+X-Received: by 2002:a02:380c:: with SMTP id b12mr64155jaa.98.1625148180433;
+        Thu, 01 Jul 2021 07:03:00 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id m12sm32206iln.43.2021.07.01.07.02.51
+        by smtp.gmail.com with ESMTPSA id s9sm32255ilt.44.2021.07.01.07.02.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jul 2021 07:02:54 -0700 (PDT)
-Received: (nullmailer pid 2278702 invoked by uid 1000);
+        Thu, 01 Jul 2021 07:02:59 -0700 (PDT)
+Received: (nullmailer pid 2278700 invoked by uid 1000);
         Thu, 01 Jul 2021 14:02:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20210629220328.13366-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20210629220328.13366-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210629220328.13366-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add binding documentation for Renesas RZ/G2L A/D converter
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Axel Lin <axel.lin@ingics.com>, devicetree@vger.kernel.org,
+        mauro.chehab@huawei.com, linux-staging@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linuxarm@huawei.com
+In-Reply-To: <8d871e2ccc544d11959c16d8312dbf03dd01b1c8.1624962269.git.mchehab+huawei@kernel.org>
+References: <cover.1624962269.git.mchehab+huawei@kernel.org> <8d871e2ccc544d11959c16d8312dbf03dd01b1c8.1624962269.git.mchehab+huawei@kernel.org>
+Subject: Re: [PATCH v10 3/5] mfd: hi6421-spmi-pmic: move driver from staging
 Date:   Thu, 01 Jul 2021 08:02:43 -0600
-Message-Id: <1625148163.546497.2278701.nullmailer@robh.at.kernel.org>
+Message-Id: <1625148163.537612.2278699.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Jun 2021 23:03:27 +0100, Lad Prabhakar wrote:
-> Add binding documentation for Renesas RZ/G2L A/D converter block.
+On Tue, 29 Jun 2021 12:31:29 +0200, Mauro Carvalho Chehab wrote:
+> This driver is ready for mainstream. So, move it out of staging.
 > 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
->  .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 121 ++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+>  .../mfd/hisilicon,hi6421-spmi-pmic.yaml       | 134 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  drivers/mfd/Kconfig                           |  16 +++
+>  drivers/mfd/Makefile                          |   1 +
+>  drivers/mfd/hi6421-spmi-pmic.c                |  66 +++++++++
+>  drivers/staging/Kconfig                       |   2 -
+>  drivers/staging/Makefile                      |   1 -
+>  drivers/staging/hikey9xx/Kconfig              |  19 ---
+>  drivers/staging/hikey9xx/Makefile             |   3 -
+>  drivers/staging/hikey9xx/TODO                 |   5 -
+>  drivers/staging/hikey9xx/hi6421-spmi-pmic.c   |  66 ---------
+>  .../hikey9xx/hisilicon,hi6421-spmi-pmic.yaml  | 134 ------------------
+>  12 files changed, 224 insertions(+), 230 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.yaml
+>  create mode 100644 drivers/mfd/hi6421-spmi-pmic.c
+>  delete mode 100644 drivers/staging/hikey9xx/Kconfig
+>  delete mode 100644 drivers/staging/hikey9xx/Makefile
+>  delete mode 100644 drivers/staging/hikey9xx/TODO
+>  delete mode 100644 drivers/staging/hikey9xx/hi6421-spmi-pmic.c
+>  delete mode 100644 drivers/staging/hikey9xx/hisilicon,hi6421-spmi-pmic.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -72,16 +84,10 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.example.dts:19:18: fatal error: dt-bindings/clock/r9a07g044-cpg.h: No such file or directory
-   19 |         #include <dt-bindings/clock/r9a07g044-cpg.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1416: dt_binding_check] Error 2
+Documentation/devicetree/bindings/mfd/hisilicon,hi6421-spmi-pmic.example.dt.yaml:0:0: /example-0/pmic@0: failed to match any schema with compatible: ['hisilicon,hi6421-spmi']
 \ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1498675
+See https://patchwork.ozlabs.org/patch/1498291
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
