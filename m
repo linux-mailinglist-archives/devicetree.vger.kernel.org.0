@@ -2,170 +2,374 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62C443B9626
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 20:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A7783B9646
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 20:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230213AbhGASbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 14:31:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59192 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229812AbhGASbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 14:31:40 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D55C061762
-        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 11:29:09 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id p17-20020a17090b0111b02901723ab8d11fso4484993pjz.1
-        for <devicetree@vger.kernel.org>; Thu, 01 Jul 2021 11:29:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=APe8ECviB/cpQRnW4kX3yPns2UM4S6BVFeIAOgFnMX8=;
-        b=xRUMtCRD+qOYmKFjmmnqa0WdPbLyw9rAmGpaJeQy+BZeqH/it2wzsYYl6EIe6ytE8q
-         tjyObLMXBJTGN/5OUqO+srsn7hLv6bs2LJ7YlXZcjpo1ZwbtagJeE8dA9iAbdrL4Y8fc
-         MHwfA2nMRsWV80FxWgJgyDZoIZKTRmJL/WW4BHYRIEOnQ2n0Y4VjO+Bf9Z8H9trRF60Q
-         4aOvbm7In8zqGqO/fuTRXMbUGA5IlxebuoKT4imEhwEcx+wfhqborOZ0szmbXx5JpA5p
-         KqoH772Wr6DDAS4Pxm6UpEwHucapj9MGfZThb8LqqlsWQCDsQsbvLuwYChHkpNF1AdFd
-         4+FA==
+        id S233770AbhGAS5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 14:57:47 -0400
+Received: from mail-il1-f178.google.com ([209.85.166.178]:46927 "EHLO
+        mail-il1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233723AbhGAS5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 14:57:46 -0400
+Received: by mail-il1-f178.google.com with SMTP id t12so7362121ile.13;
+        Thu, 01 Jul 2021 11:55:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=APe8ECviB/cpQRnW4kX3yPns2UM4S6BVFeIAOgFnMX8=;
-        b=BGOaIkU5OonXliLX4tmvDYGTh7OhCrNwon5RkBQiBETuY6PRPD8QnnRKcYqDzvV08R
-         iH0e3wN/CoT9z+GmyyhljDEUR+8yW+p+Hcs+A+gkBzGdoUq17596niy0s110DCspLuSl
-         kfzA7e47qF9SQIZUXMcNwUsGPKAdEwrYJztYf/dPiNrG6dWjnQdLrWPdlpxxVvlBcTXM
-         xIBncrta4sfdEkTb5S3nCl/KQXRxQ8bwTc3+1xkBoEQCavXw3oIC9NmN0YNY8B9KxSkd
-         hU+KFqPIN4jgiKYNJJn/PjKBcqblJ/6ww//phKgK2bhyW6igeiIgBtMbZaG4wZFMn1ea
-         uOSw==
-X-Gm-Message-State: AOAM531gNC3joj1OzM5Dei2Kzrz5zHkFqQFvqCiiv1yDjrQXehpHRtoO
-        gvAZDkebcLsSkxb9QqevDMU9c/tKGLvJhW4z7nfiGQ==
-X-Google-Smtp-Source: ABdhPJxCOjdtDhn+6b6X1KFzfnquF3W5FHWHyQTkCTnb1rH0xhQkdRusQnrJquTOZSO/7mtsJ2nTeatWgJql0Wa9th8=
-X-Received: by 2002:a17:90b:3146:: with SMTP id ip6mr939866pjb.125.1625164149359;
- Thu, 01 Jul 2021 11:29:09 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=AjIdIvaKWs/g3YQH2y/9gcvEvxeRXnLIJy5WplUdJ10=;
+        b=bjIyfNy1nA99HYTyO/yiS7CRNUiwoMQoje9Bbf83RS3uBYpq5Ujl/n/1ZyJj/p/dP4
+         eXyC24qwKi90Z01+NPOee/ZYC2liXAY6fQGBkdamIM6wa0HYYqIqFqOcZeMzasznSQeF
+         Qoxa3ZO0c+Gu4kkWohRkxBnS/xLHUt6tnHaxOUEkQppxN40hRMJK+TyZAAGcCK/BOakH
+         GqViGW6DXI2QDgaVGVstMCvrAzDMclvNal9Yw48L06oIUChaD9NU1WhlSiCMLjJg6AoB
+         KpTdPcbDq/3Fe8XOODLxWeAU+mKt0aUBj5eDzqG/iDUpUDU3LYrY1uzVx8cslx0WeKnC
+         tpfw==
+X-Gm-Message-State: AOAM532/+bPl85OUUgt9BDol4e1lHVlplra+dwsTdl8emFjUc/KC2It3
+        8SVCgymWxoMawVAhqLq1bw==
+X-Google-Smtp-Source: ABdhPJwR2HQJJlZDFXRkP5IbkhozwMMQL8sc0gfhmj6y5COI1lXIuBJo2mO4kcKvs+Ld3Z1dYQ+rlw==
+X-Received: by 2002:a92:d246:: with SMTP id v6mr583454ilg.191.1625165715216;
+        Thu, 01 Jul 2021 11:55:15 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id z3sm368840ior.14.2021.07.01.11.55.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jul 2021 11:55:13 -0700 (PDT)
+Received: (nullmailer pid 2729152 invoked by uid 1000);
+        Thu, 01 Jul 2021 18:55:09 -0000
+Date:   Thu, 1 Jul 2021 12:55:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v3 11/11] media: dt-bindings: Convert Cadence CSI2RX
+ binding to YAML
+Message-ID: <20210701185509.GA2653882@robh.at.kernel.org>
+References: <20210624192200.22559-1-p.yadav@ti.com>
+ <20210624192200.22559-12-p.yadav@ti.com>
 MIME-Version: 1.0
-References: <20210604212217.70518-1-festevam@gmail.com> <20210604212217.70518-2-festevam@gmail.com>
-In-Reply-To: <20210604212217.70518-2-festevam@gmail.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Thu, 1 Jul 2021 11:28:58 -0700
-Message-ID: <CAJ+vNU35+U=pupo3bzKFnWuZgUKPe_C-0yGrcWnZH1R+PvbbWg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] media: i2c: adv7180: fix adv7280 BT.656-4 compatibility
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Matthew Michilot <matthew.michilot@gmail.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210624192200.22559-12-p.yadav@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 4, 2021 at 2:22 PM Fabio Estevam <festevam@gmail.com> wrote:
->
-> From: Matthew Michilot <matthew.michilot@gmail.com>
->
-> Captured video would be out of sync when using the adv7280 with
-> the BT.656-4 protocol. Certain registers (0x04, 0x31, 0xE6) had to
-> be configured properly to ensure BT.656-4 compatibility.
->
-> An error in the adv7280 reference manual suggested that EAV/SAV mode
-> was enabled by default, however upon inspecting register 0x31, it was
-> determined to be disabled by default.
->
-> Signed-off-by: Matthew Michilot <matthew.michilot@gmail.com>
-> Reviewed-by: Tim Harvey <tharvey@gateworks.com>
-> [fabio: Introduce "adv,force-bt656-4" to not affect the existing users]
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+On Fri, Jun 25, 2021 at 12:52:00AM +0530, Pratyush Yadav wrote:
+> Convert the Cadence CSI2RX binding to use YAML schema.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> 
 > ---
-> Changes since v1:
-> - Remove the part number from the property name (Rob)
->
->  drivers/media/i2c/adv7180.c | 30 ++++++++++++++++++++++++++----
->  1 file changed, 26 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/media/i2c/adv7180.c b/drivers/media/i2c/adv7180.c
-> index 44bb6fe85644..a532df813d74 100644
-> --- a/drivers/media/i2c/adv7180.c
-> +++ b/drivers/media/i2c/adv7180.c
-> @@ -94,6 +94,7 @@
->  #define ADV7180_REG_SHAP_FILTER_CTL_1  0x0017
->  #define ADV7180_REG_CTRL_2             0x001d
->  #define ADV7180_REG_VSYNC_FIELD_CTL_1  0x0031
-> +#define ADV7180_VSYNC_FIELD_CTL_1_NEWAV 0x12
->  #define ADV7180_REG_MANUAL_WIN_CTL_1   0x003d
->  #define ADV7180_REG_MANUAL_WIN_CTL_2   0x003e
->  #define ADV7180_REG_MANUAL_WIN_CTL_3   0x003f
-> @@ -216,6 +217,7 @@ struct adv7180_state {
->         struct i2c_client       *vpp_client;
->         const struct adv7180_chip_info *chip_info;
->         enum v4l2_field         field;
-> +       bool                    force_bt656_4;
->  };
->  #define to_adv7180_sd(_ctrl) (&container_of(_ctrl->handler,            \
->                                             struct adv7180_state,       \
-> @@ -963,10 +965,26 @@ static int adv7182_init(struct adv7180_state *state)
->                 adv7180_write(state, ADV7180_REG_EXTENDED_OUTPUT_CONTROL, 0x57);
->                 adv7180_write(state, ADV7180_REG_CTRL_2, 0xc0);
->         } else {
-> -               if (state->chip_info->flags & ADV7180_FLAG_V2)
-> -                       adv7180_write(state,
-> -                                     ADV7180_REG_EXTENDED_OUTPUT_CONTROL,
-> -                                     0x17);
-> +               if (state->chip_info->flags & ADV7180_FLAG_V2) {
-> +                       if (state->force_bt656_4) {
-> +                               /* ITU-R BT.656-4 compatible */
-> +                               adv7180_write(state,
-> +                                             ADV7180_REG_EXTENDED_OUTPUT_CONTROL,
-> +                                             ADV7180_EXTENDED_OUTPUT_CONTROL_NTSCDIS);
-> +                               /* Manually set NEWAVMODE */
-> +                               adv7180_write(state,
-> +                                             ADV7180_REG_VSYNC_FIELD_CTL_1,
-> +                                             ADV7180_VSYNC_FIELD_CTL_1_NEWAV);
-> +                               /* Manually set V bit end position in NTSC mode */
-> +                               adv7180_write(state,
-> +                                            ADV7180_REG_NTSC_V_BIT_END,
-> +                                            ADV7180_NTSC_V_BIT_END_MANUAL_NVEND);
-> +                       } else {
-> +                               adv7180_write(state,
-> +                                             ADV7180_REG_EXTENDED_OUTPUT_CONTROL,
-> +                                             0x17);
-> +                       }
-> +               }
->                 else
->                         adv7180_write(state,
->                                       ADV7180_REG_EXTENDED_OUTPUT_CONTROL,
-> @@ -1314,6 +1332,7 @@ static int init_device(struct adv7180_state *state)
->  static int adv7180_probe(struct i2c_client *client,
->                          const struct i2c_device_id *id)
->  {
-> +       struct device_node *np = client->dev.of_node;
->         struct adv7180_state *state;
->         struct v4l2_subdev *sd;
->         int ret;
-> @@ -1338,6 +1357,9 @@ static int adv7180_probe(struct i2c_client *client,
->                 return ret;
->         }
->
-> +       if (of_property_read_bool(np, "adv,force-bt656-4"))
-> +               state->force_bt656_4 = true;
+> 
+> Changes in v3:
+> - Add compatible: contains: const: cdns,csi2rx to allow SoC specific
+>   compatible.
+> - Add more constraints for data-lanes property.
+> 
+> Changes in v2:
+> - New in v2.
+> 
+>  .../devicetree/bindings/media/cdns,csi2rx.txt | 100 -----------
+>  .../bindings/media/cdns,csi2rx.yaml           | 169 ++++++++++++++++++
+>  2 files changed, 169 insertions(+), 100 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt b/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+> deleted file mode 100644
+> index 6b02a0657ad9..000000000000
+> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+> +++ /dev/null
+> @@ -1,100 +0,0 @@
+> -Cadence MIPI-CSI2 RX controller
+> -===============================
+> -
+> -The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
+> -lanes in input, and 4 different pixel streams in output.
+> -
+> -Required properties:
+> -  - compatible: must be set to "cdns,csi2rx" and an SoC-specific compatible
+> -  - reg: base address and size of the memory mapped region
+> -  - clocks: phandles to the clocks driving the controller
+> -  - clock-names: must contain:
+> -    * sys_clk: main clock
+> -    * p_clk: register bank clock
+> -    * pixel_if[0-3]_clk: pixel stream output clock, one for each stream
+> -                         implemented in hardware, between 0 and 3
+> -
+> -Optional properties:
+> -  - phys: phandle to the external D-PHY, phy-names must be provided
+> -  - phy-names: must contain "dphy", if the implementation uses an
+> -               external D-PHY
+> -
+> -Required subnodes:
+> -  - ports: A ports node with one port child node per device input and output
+> -           port, in accordance with the video interface bindings defined in
+> -           Documentation/devicetree/bindings/media/video-interfaces.txt. The
+> -           port nodes are numbered as follows:
+> -
+> -           Port Description
+> -           -----------------------------
+> -           0    CSI-2 input
+> -           1    Stream 0 output
+> -           2    Stream 1 output
+> -           3    Stream 2 output
+> -           4    Stream 3 output
+> -
+> -           The stream output port nodes are optional if they are not
+> -           connected to anything at the hardware level or implemented
+> -           in the design.Since there is only one endpoint per port,
+> -           the endpoints are not numbered.
+> -
+> -
+> -Example:
+> -
+> -csi2rx: csi-bridge@0d060000 {
+> -	compatible = "cdns,csi2rx";
+> -	reg = <0x0d060000 0x1000>;
+> -	clocks = <&byteclock>, <&byteclock>
+> -		 <&coreclock>, <&coreclock>,
+> -		 <&coreclock>, <&coreclock>;
+> -	clock-names = "sys_clk", "p_clk",
+> -		      "pixel_if0_clk", "pixel_if1_clk",
+> -		      "pixel_if2_clk", "pixel_if3_clk";
+> -
+> -	ports {
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		port@0 {
+> -			reg = <0>;
+> -
+> -			csi2rx_in_sensor: endpoint {
+> -				remote-endpoint = <&sensor_out_csi2rx>;
+> -				clock-lanes = <0>;
+> -				data-lanes = <1 2>;
+> -			};
+> -		};
+> -
+> -		port@1 {
+> -			reg = <1>;
+> -
+> -			csi2rx_out_grabber0: endpoint {
+> -				remote-endpoint = <&grabber0_in_csi2rx>;
+> -			};
+> -		};
+> -
+> -		port@2 {
+> -			reg = <2>;
+> -
+> -			csi2rx_out_grabber1: endpoint {
+> -				remote-endpoint = <&grabber1_in_csi2rx>;
+> -			};
+> -		};
+> -
+> -		port@3 {
+> -			reg = <3>;
+> -
+> -			csi2rx_out_grabber2: endpoint {
+> -				remote-endpoint = <&grabber2_in_csi2rx>;
+> -			};
+> -		};
+> -
+> -		port@4 {
+> -			reg = <4>;
+> -
+> -			csi2rx_out_grabber3: endpoint {
+> -				remote-endpoint = <&grabber3_in_csi2rx>;
+> -			};
+> -		};
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+> new file mode 100644
+> index 000000000000..8e42c9fdaaa3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/cdns,csi2rx.yaml
+> @@ -0,0 +1,169 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/cdns,csi2rx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->         if (state->chip_info->flags & ADV7180_FLAG_MIPI_CSI2) {
->                 state->csi_client = i2c_new_dummy_device(client->adapter,
->                                 ADV7180_DEFAULT_CSI_I2C_ADDR);
-> --
-> 2.25.1
+> +title: Cadence MIPI-CSI2 RX controller
+> +
+> +description: |
+> +  The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
+> +  lanes in input, and 4 different pixel streams in output.
+> +
+> +maintainers:
+> +  - Pratyush Yadav <p.yadav@ti.com>
+> +
+> +properties:
+> +  compatible:
+> +    contains:
+> +      const: cdns,csi2rx
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 3
+> +    maxItems: 6
+> +
+> +  clock-names:
+> +    minItems: 3
+> +    maxItems: 6
 
-Fabio,
+maxItems can be dropped here. Implied by items length.
 
-Thanks for the submission. This does resolve NTSC capture on a
-GW5410-G with an adv7280.
+> +    items:
+> +      - const: sys_clk # main clock
+> +      - const: p_clk # register bank clock
+> +      - const: pixel_if0_clk # pixel stream 0 output clock
+> +      - const: pixel_if1_clk # pixel stream 1 output clock
+> +      - const: pixel_if2_clk # pixel stream 2 output clock
+> +      - const: pixel_if3_clk # pixel stream 3 output clock
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: phandle to the external D-PHY
+> +
+> +  phy-names:
+> +    items:
+> +      - const: dphy
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI-2 input
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +
+> +              data-lanes:
+> +                $ref: /schemas/types.yaml#/definitions/uint32-array
 
-Reviewed-by: Tim Harvey <tharvey@gateworks.com>
-Tested-by: Tim Harvey <tharvey@gateworks.com>
+Don't need a type here.
 
-Best regards,
+> +                minItems: 1
+> +                maxItems: 4
+> +                uniqueItems: true
 
-Tim
+uniqueItems should be added in video-interfaces.yaml.
+
+> +                items:
+> +                  maximum: 4
+> +
+> +            required:
+> +              - clock-lanes
+> +              - data-lanes
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Stream 0 output
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Stream 1 output
+> +
+> +      port@3:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Stream 2 output
+> +
+> +      port@4:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Stream 3 output
+> +
+> +    required:
+> +      - port@0
+> +
+> +
+> +dependencies:
+> +  phys: [ 'phy-names' ]
+> +  phy-names: [ 'phys' ]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    csi2rx: csi-bridge@d060000 {
+> +      compatible = "cdns,csi2rx";
+> +      reg = <0x0d060000 0x1000>;
+> +      clocks = <&byteclock>, <&byteclock>,
+> +        <&coreclock>, <&coreclock>,
+> +        <&coreclock>, <&coreclock>;
+> +      clock-names = "sys_clk", "p_clk",
+> +              "pixel_if0_clk", "pixel_if1_clk",
+> +              "pixel_if2_clk", "pixel_if3_clk";
+> +      phys = <&dphy0>;
+> +      phy-names = "dphy";
+> +
+> +      ports {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        port@0 {
+> +          reg = <0>;
+> +
+> +          csi2rx_in_sensor: endpoint {
+> +            remote-endpoint = <&sensor_out_csi2rx>;
+> +            clock-lanes = <0>;
+> +            data-lanes = <1 2>;
+> +          };
+> +        };
+> +
+> +        port@1 {
+> +          reg = <1>;
+> +
+> +          csi2rx_out_grabber0: endpoint {
+> +            remote-endpoint = <&grabber0_in_csi2rx>;
+> +          };
+> +        };
+> +
+> +        port@2 {
+> +          reg = <2>;
+> +
+> +          csi2rx_out_grabber1: endpoint {
+> +            remote-endpoint = <&grabber1_in_csi2rx>;
+> +          };
+> +        };
+> +
+> +        port@3 {
+> +          reg = <3>;
+> +
+> +          csi2rx_out_grabber2: endpoint {
+> +            remote-endpoint = <&grabber2_in_csi2rx>;
+> +          };
+> +        };
+> +
+> +        port@4 {
+> +          reg = <4>;
+> +
+> +          csi2rx_out_grabber3: endpoint {
+> +            remote-endpoint = <&grabber3_in_csi2rx>;
+> +          };
+> +        };
+> +      };
+> +    };
+> -- 
+> 2.30.0
+> 
+> 
