@@ -2,88 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 830D93B92AC
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A32E3B92B5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:03:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232545AbhGAOFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 10:05:46 -0400
-Received: from mail-il1-f180.google.com ([209.85.166.180]:45717 "EHLO
-        mail-il1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232937AbhGAOFq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:05:46 -0400
-Received: by mail-il1-f180.google.com with SMTP id b5so6430045ilc.12;
-        Thu, 01 Jul 2021 07:03:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=34pditdGAnkmOoWQm+ofV1mGsalRsMGBBDjdbXOmEes=;
-        b=Cv2JvEXhmiF7Q6xcIlDCPuFDz5JAdT/03VrtXW7NEWUl+vIO1rcyxn/nm7qZ0W77V2
-         H0M4ysxvm+umhf0x0b1cm2BQFWVFYa4r298zjK0RhYsaRWxjIEe3izwk/wkrs2Dnxlq2
-         Yx8ObC83ZzirKhyt01ZZIpTl4c+NhksayH0JnugyRUnW0Ww0EfDxBMIlQhIamvU0rGsb
-         F2uPfKk9W/gZZyTKOxzRi4H7ti/vrq4ro/+vvmGtAKoaMcBKrHtQWnXfB/Z82HX+3hor
-         MjAbiBnZiK0n2kcfnBty6gWVRQ5uc9kZ078lcPz74GPGjo/XXUi0h3UKttFyeqm7XIpf
-         p7LQ==
-X-Gm-Message-State: AOAM533fhZWbdhHUoIAxTeHWFVK4eeEJrO5bu/tpSVDVxDOGIrJ2jCy6
-        oI41POZvf5WpyafVt8IuDjAa0IFN2A==
-X-Google-Smtp-Source: ABdhPJwC7NMLRfHWNQ8AaqlAY9dCRLK5L1h8nMWNBTSc/DgyiB2LGSdA4v3aEPQWf8EYA8dvoeC6YA==
-X-Received: by 2002:a05:6e02:1a02:: with SMTP id s2mr11414787ild.76.1625148194770;
-        Thu, 01 Jul 2021 07:03:14 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id l5sm14245907ion.44.2021.07.01.07.03.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jul 2021 07:03:13 -0700 (PDT)
-Received: (nullmailer pid 2278694 invoked by uid 1000);
-        Thu, 01 Jul 2021 14:02:43 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>, Sibi S <sibis@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20210625234018.1324681-3-bjorn.andersson@linaro.org>
-References: <20210625234018.1324681-1-bjorn.andersson@linaro.org> <20210625234018.1324681-3-bjorn.andersson@linaro.org>
-Subject: Re: [PATCH 2/3] dt-bindings: soc: qcom: aoss: Convert to YAML
-Date:   Thu, 01 Jul 2021 08:02:43 -0600
-Message-Id: <1625148163.508920.2278693.nullmailer@robh.at.kernel.org>
+        id S232937AbhGAOGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 10:06:04 -0400
+Received: from mailout1.samsung.com ([203.254.224.24]:23219 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233089AbhGAOGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:06:02 -0400
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20210701140330epoutp0190e931c4268d494ddbe4474a88691a09~Nr6-UVvZt3043130431epoutp01O
+        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 14:03:30 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20210701140330epoutp0190e931c4268d494ddbe4474a88691a09~Nr6-UVvZt3043130431epoutp01O
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1625148210;
+        bh=E1aaxR8FfUi3vlMZNGnaBp5eQ1CM10Z3mqMC5JAz3Cc=;
+        h=Subject:Reply-To:From:To:CC:Date:References:From;
+        b=ODDJbCkB42qiJP/sbRJmIJFXqxAHlgTxqJvql1lR33bf222eWDNrJ9QGWSuxTaVuO
+         PeI0Kp4y3Sunig0oJEk91g58YnG2e+2sMykML5YepS/YWR+m8V6whXq1xDgRZfEK9e
+         Nu75Ypsj/AfuP++/AmYHhWfY28kS501Wn2usVycU=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
+        20210701140329epcas1p35fd7d39293d17eaa8737b9353ce846a9~Nr6_7__Md1305613056epcas1p3c;
+        Thu,  1 Jul 2021 14:03:29 +0000 (GMT)
+Received: from epsmges1p3.samsung.com (unknown [182.195.40.160]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4GG0L86Q6Mz4x9Pt; Thu,  1 Jul
+        2021 14:03:28 +0000 (GMT)
+X-AuditID: b6c32a37-0c7ff700000024fc-91-60ddcb3082d2
+Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
+        epsmges1p3.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2A.F4.09468.03BCDD06; Thu,  1 Jul 2021 23:03:28 +0900 (KST)
+Mime-Version: 1.0
+Subject: [PATCH] of: base: remove unnecessary for loop
+Reply-To: ohoono.kwon@samsung.com
+Sender: =?UTF-8?B?6raM7Jik7ZuI?= <ohoono.kwon@samsung.com>
+From:   =?UTF-8?B?6raM7Jik7ZuI?= <ohoono.kwon@samsung.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>
+CC:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        =?UTF-8?B?6raM7Jik7ZuI?= <ohoono.kwon@samsung.com>,
+        "ohkwon1043@gmail.com" <ohkwon1043@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+X-Priority: 3
+X-Content-Kind-Code: NORMAL
+X-Drm-Type: N,general
+X-Msg-Generator: Mail
+X-Msg-Type: PERSONAL
+X-Reply-Demand: N
+Message-ID: <20210701140328epcms1p85149318b6c18fa18b3c7c8e966c14db0@epcms1p8>
+Date:   Thu, 01 Jul 2021 23:03:28 +0900
+X-CMS-MailID: 20210701140328epcms1p85149318b6c18fa18b3c7c8e966c14db0
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrNKsWRmVeSWpSXmKPExsWy7bCmnq7B6bsJBu8361rMP3KO1WLmm/9s
+        Fve/HmW0uLxrDpvF3v2+Frt+rmC2aN17hN2B3WPnrLvsHptWdbJ53Lm2h82jb8sqRo/Pm+QC
+        WKNybDJSE1NSixRS85LzUzLz0m2VvIPjneNNzQwMdQ0tLcyVFPISc1NtlVx8AnTdMnOArlBS
+        KEvMKQUKBSQWFyvp29kU5ZeWpCpk5BeX2CqlFqTkFBgaFOgVJ+YWl+al6yXn51oZGhgYmQJV
+        JuRkHL/7hbXgK2fF4yvPWRoYj7N3MXJySAiYSOza1M7axcjFISSwg1HiyvbLjF2MHBy8AoIS
+        f3cIg9QIC5hJLJ39kx0kLCSgKLHttBtE2EpiWt8/JhCbTcBC4vnan6wgtohAksSOlVMYQUYy
+        C0xhktjceIwVYhevxIz2pywQtrTE9uVbGSFsUYmbq9+yw9jvj82HiotItN47ywxhC0o8+Lkb
+        Ki4pcbPtLgvIAgmBfkaJ++taoJwJjBJLnkxig6gyl3i2oQVsKq+Ar8TtSYfBTmURUJWYc/IC
+        1EUuElc6N4HVMwvIS2x/O4cZ5EtmAU2J9bv0IUoUJXb+nssIUcIn8e5rD9wzO+Y9YQIplwAa
+        uey3B8xffdMvQ13gIfG9YS3YBUICgRK3ts9insAoPwsRurOQ7J2FsHcBI/MqRrHUguLc9NRi
+        wwJj5AjdxAhOhVrmOxinvf2gd4iRiYPxEKMEB7OSCO+E6XcThHhTEiurUovy44tKc1KLDzGa
+        An08kVlKNDkfmIzzSuINTY2MjY0tTMzMzUyNlcR5d7IdShASSE8sSc1OTS1ILYLpY+LglGpg
+        6uVfOP3Kqd3yEhOv9vd+cHlZVe4p6Bteu/b9Y28+L7dFN9ab/k46Pmv6PdGVQt1Ze3r6ApbX
+        XtyY+N32XKGmrPrECF61Kt9Fi7MT72/7u8vRr+XJ1m8fcnvnbbiypTKrf+v3Ram31x5+qsOj
+        O2/CTI4GicDuHUvmHm65YxKzukb505Gq1InL1zA++8P6NCAi7JnkQRX1q5VrVs3RucK8fLFX
+        8+OLbGIFnawKz/Pro7s+eQsHb+bd87ibYc02ZbEJe0sbt0089XKb0cUk+4xVPHavzV7KXck2
+        l9rWftHL+saECPZi6Uqf0ua8TY/O6Uys2PSXMTV+tuDKNV/zir0OKJr6eXg2/Nc+ckkpqa4h
+        XYmlOCPRUIu5qDgRANNZz4cOBAAA
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20210701140328epcms1p85149318b6c18fa18b3c7c8e966c14db0
+References: <CGME20210701140328epcms1p85149318b6c18fa18b3c7c8e966c14db0@epcms1p8>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Jun 2021 16:40:17 -0700, Bjorn Andersson wrote:
-> Convert to YAML in order to allow validation.
-> 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
-> 
-> I'm aware that this conflicts with Sibi's removal of '#power-domain-cells', but
-> that's a trivial change regardless of which of the two patches gets in first.
-> 
->  .../bindings/soc/qcom/qcom,aoss-qmp.txt       |  90 --------------
->  .../bindings/soc/qcom/qcom,aoss-qmp.yaml      | 115 ++++++++++++++++++
->  2 files changed, 115 insertions(+), 90 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml
-> 
+In __of_get_next_child function, loop iteration for getting next node is
+unnecessary.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+for loop is already checking if next is NULL or not, and
+of_node_get(next) always returns next itself.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.yaml:29:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+Therefore checking return value in the if clause always evaluates to
+true, and thus it always breaks out from for loop in the first iteration.
 
-dtschema/dtc warnings/errors:
-\ndoc reference errors (make refcheckdocs):
+Remove the unnecessary for loop for readability.
 
-See https://patchwork.ozlabs.org/patch/1497468
+I tested the code as below, and it showed that BUG was never called.
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+-       for (; next; next = next->sibling)
++       for (; next; next = next->sibling) {
+                if (of_node_get(next))
+                        break;
++               BUG();
++       }
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Signed-off-by: Ohhoon Kwon <ohoono.kwon@samsung.com>
+---
+ drivers/of/base.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+diff --git a/drivers/of/base.c b/drivers/of/base.c
+index 48e941f99558..ca60988ef428 100644
+--- a/drivers/of/base.c
++++ b/drivers/of/base.c
+@@ -708,9 +708,7 @@ static struct device_node *__of_get_next_child(const struct device_node *node,
+ 		return NULL;
+ 
+ 	next = prev ? prev->sibling : node->child;
+-	for (; next; next = next->sibling)
+-		if (of_node_get(next))
+-			break;
++	of_node_get(next);
+ 	of_node_put(prev);
+ 	return next;
+ }
+-- 
+2.17.1
