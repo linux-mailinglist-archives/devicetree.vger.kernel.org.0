@@ -2,176 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A6573B8B73
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 02:53:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFA843B8B78
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 03:00:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235557AbhGAA4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 20:56:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57952 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232066AbhGAA4V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Jun 2021 20:56:21 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6FC196124B;
-        Thu,  1 Jul 2021 00:53:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625100831;
-        bh=X1Yit87ebjU7Q0XF7mRkUpCYj5/wowh8TWqrZoeyU4Y=;
-        h=From:To:Cc:Subject:Date:From;
-        b=SKl4Fpadc7lo6ehwAu0BJ1KKR2gfNrh+iGLFwYrT4deSd1kJtk7bf7870Z7vavLdU
-         fTXJWecinMaBCmyaNQRZHFfBh9PfEZXuphZ1FIlIX76ebVgO7O06P2R+323DKiXLeA
-         KAj2VQG8mSZQGBoh6jr1Kg0lOKc8LTw6qzGyeL9im84FyVlHcAqhIKK9FVx0x8dzIt
-         JbYVT+irzZulaA45GEkkBmE7tfHqnXrdi5FU0n06HR33wSG1y7balaRDRDjvzGyCb6
-         ZNvdNew/IIayHwGsRUN/dIXSjcprzzqXO+7AEa65Vo7ulMBxmDVVgQcmBhaUv/NdzY
-         +YXgAXKVMu9TQ==
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To:     Peter Rosin <peda@axentia.se>, Andrew Lunn <andrew@lunn.ch>,
-        netdev@vger.kernel.org, Russell King <rmk+kernel@armlinux.org.uk>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [PATCH RFC net-next] dt-bindings: ethernet-controller: document signal multiplexer
-Date:   Thu,  1 Jul 2021 02:53:47 +0200
-Message-Id: <20210701005347.8280-1-kabel@kernel.org>
-X-Mailer: git-send-email 2.31.1
+        id S238259AbhGABDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 21:03:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53248 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232066AbhGABDS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 21:03:18 -0400
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19268C061756;
+        Wed, 30 Jun 2021 18:00:48 -0700 (PDT)
+Received: by mail-qv1-xf33.google.com with SMTP id dj3so2127771qvb.11;
+        Wed, 30 Jun 2021 18:00:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=aLIjEv3Y3XGxT5C/sRBa0wIugXh2Hwubx4IA7LHkqcs=;
+        b=abeBQ7HDze70AzrZWLTyi/x0HPTwfGhKphNcgOT8r7VAkeLghAo2c5uxwnmmWMLZAY
+         AGd2TI8mW6gja4AjQeqnzq5pDS8fVVUvHXfLvGtTB1MvlNpSKrfLyWdB2FLAbcVQNJ5f
+         ZWyJhcRBaqOWrU6DxLVPOc58Tud1NCer9EjcWTzwnxFGZPrVi4GJhNZSIsYJ2ZQwtVdd
+         3RDXjKz7oD0nd2iMjWrjuhpxdm7Jhtcab2a40eSzUF1DtqRVVoL1yEI3Xilb4VxfLZ7f
+         uAXvN5RNVJxQ4T3XxQRrjwc6AKY02TmQQ0eojkVwEr0hpmoUgRk9H4q5kIHkvE6/FzRD
+         XyaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=aLIjEv3Y3XGxT5C/sRBa0wIugXh2Hwubx4IA7LHkqcs=;
+        b=eumO9YpWvc0qGdP2Vv20ukSKPbYb1zViaecDIEnZItwqdTvDIOB/kVhfkg+nfzgYrF
+         jbisWcr8b+KE3ls7CRMKLqMTCK8ASgQPl63mEn6QeuM5UtCKMBgdNZM2MUqXNaeSHULZ
+         5bJaiyv/Lh+ga6wdjwfc4Iq+RLpjlclkt0ew/tfzuxbXy2S5tEzAQHZyPCFHEsu6+2wm
+         ugWxGnWSQHXhIM1uvYuo0DhvSbLW7e9od2DWkAaZkcllbYxQFP1v//f2knD/1yhNxXuN
+         5gwROEKdgDdLVSc2Tw++4pQYe5SETtFtv9kQQ1w6Z/gjnRceithbtLBKij9SC7Zj2Q2s
+         KBQw==
+X-Gm-Message-State: AOAM533yLVVKqrCK2C7l3SL/ZwlGGoiItW6dpC8qnphDnHpvopGa787D
+        +zje0kdg5Qq1LYzJeieSerk=
+X-Google-Smtp-Source: ABdhPJwSNrLpc8fuZVizpnNA/xDQxi4rl4wrIH4nvKcCWOhUShh+Y868e9ZGVwNzR8Rad3/CQtQ7yw==
+X-Received: by 2002:a0c:9e49:: with SMTP id z9mr39578031qve.52.1625101247172;
+        Wed, 30 Jun 2021 18:00:47 -0700 (PDT)
+Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id l127sm14087782qkc.64.2021.06.30.18.00.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Jun 2021 18:00:46 -0700 (PDT)
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     liambeguin@gmail.com, peda@axentia.se, jic23@kernel.org,
+        lars@metafoo.de, pmeerw@pmeerw.net
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: [PATCH v3 01/10] iio: inkern: apply consumer scale on IIO_VAL_INT cases
+Date:   Wed, 30 Jun 2021 21:00:25 -0400
+Message-Id: <20210701010034.303088-2-liambeguin@gmail.com>
+X-Mailer: git-send-email 2.30.1.489.g328c10930387
+In-Reply-To: <20210701010034.303088-1-liambeguin@gmail.com>
+References: <20210701010034.303088-1-liambeguin@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are devices where the MAC signals from the ethernet controller are
-not directly connected to an ethernet PHY or a SFP cage, but to a
-multiplexer, so that the device can switch between the endpoints.
+From: Liam Beguin <lvb@xiphos.com>
 
-For example on Turris Omnia the WAN controller is connected to a SerDes
-switch, which multiplexes the SerDes lanes between SFP cage and ethernet
-PHY, depending on whether a SFP module is present (MOD_DEF0 GPIO from
-the SFP cage).
+When a consumer calls iio_read_channel_processed() and the channel has
+an integer scale, the scale channel scale is applied and the processed
+value is returned as expected.
 
-Document how to describe such a situation for an ethernet controller in
-the device tree bindings.
+On the other hand, if the consumer calls iio_convert_raw_to_processed()
+the scaling factor requested by the consumer is not applied.
 
-Example usage could then look like:
-  &eth2 {
-    status = "okay";
-    phys = <&comphy5 2>;
-    buffer-manager = <&bm>;
-    bm,pool-long = <2>;
-    bm,pool-short = <3>;
+This for example causes the consumer to process mV when expecting uV.
+Make sure to always apply the scaling factor requested by the consumer.
 
-    signal-multiplexer {
-      compatible = "gpio-signal-multiplexer";
-      gpios = <&pcawan 4 GPIO_ACTIVE_LOW>;
-
-      endpoint@0 {
-        phy-mode = "sgmii";
-	phy-handle = <&phy1>;
-      };
-
-      endpoint@1 {
-        sfp = <&sfp>;
-	phy-mode = "sgmii";
-	managed = "in-band-status";
-      };
-    };
-  };
-
-Signed-off-by: Marek Behún <kabel@kernel.org>
+Fixes: 48e44ce0f881 ("iio:inkern: Add function to read the processed value")
+Signed-off-by: Liam Beguin <lvb@xiphos.com>
 ---
-I wonder if this is the proper way to do this.
+ drivers/iio/inkern.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-We already have framework for multiplexers in Linux, in drivers/mux.
-But as I understand it, that framework is meant to be used when the
-multiplexer state is to be set by kernel, while here it is possible
-that the multiplexer state can be (and on Turris Omnia is) set by
-the user plugging a SFP module into the SFP cage.
-
-We theoretically could add a method for getting mux state into the mux
-framework and state notification support. But using the mux framework
-to solve this case in phylink would be rather complicated, especially
-since mux framework is abstract, and if the multiplexer state is
-determined by the MOD_DEF0 GPIO, which is also used by SFP code, the
-implementation would get rather complicate in phylink...
-
-I wonder whether driver implementation complexity should play a role
-when proposing device tree bindings :-)
-
-Some thoughts?
----
- .../bindings/net/ethernet-controller.yaml     | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index b0933a8c295a..a7770edaec2b 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -226,6 +226,66 @@ properties:
-           required:
-             - speed
+diff --git a/drivers/iio/inkern.c b/drivers/iio/inkern.c
+index 391a3380a1d1..b752fe5818e7 100644
+--- a/drivers/iio/inkern.c
++++ b/drivers/iio/inkern.c
+@@ -599,7 +599,7 @@ static int iio_convert_raw_to_processed_unlocked(struct iio_channel *chan,
  
-+  signal-multiplexer:
-+    type: object
-+    description:
-+      Specifies that the signal pins (for example SerDes lanes) are connected
-+      to a multiplexer from which they can be multiplexed to several different
-+      endpoints, depending on the multiplexer configuration. (For example SerDes
-+      lanes can be switched between an ethernet PHY and a SFP cage.)
-+
-+    properties:
-+      compatible:
-+        const: gpio-signal-multiplexer
-+
-+      gpios:
-+        maxItems: 1
-+        description:
-+          GPIO to determine which endpoint the multiplexer is switched to.
-+
-+    patternProperties:
-+      "^endpoint@[01]$":
-+        type: object
-+        description:
-+          Specifies a multiplexer endpoint settings. Each endpoint can have
-+          different settings. (For example in the case when multiplexing between
-+          an ethernet PHY and a SFP cage, the SFP cage endpoint should specify
-+          SFP phandle, while the PHY endpoint should specify PHY handle.)
-+
-+        properties:
-+          reg:
-+            enum: [ 0, 1 ]
-+
-+          phy-connection-type:
-+            $ref: #/properties/phy-connection-type
-+
-+          phy-mode:
-+            $ref: #/properties/phy-mode
-+
-+          phy-handle:
-+            $ref: #/properties/phy-handle
-+
-+          phy:
-+            $ref: #/properties/phy
-+
-+          phy-device:
-+            $ref: #/properties/phy-device
-+
-+          sfp:
-+            $ref: #/properties/sfp
-+
-+          managed:
-+            $ref: #/properties/managed
-+
-+          fixed-link:
-+            $ref: #/properties/fixed-link
-+
-+        required:
-+          - reg
-+
-+    required:
-+      - gpios
-+
- additionalProperties: true
- 
- ...
+ 	switch (scale_type) {
+ 	case IIO_VAL_INT:
+-		*processed = raw64 * scale_val;
++		*processed = raw64 * scale_val * scale;
+ 		break;
+ 	case IIO_VAL_INT_PLUS_MICRO:
+ 		if (scale_val2 < 0)
 -- 
-2.31.1
+2.30.1.489.g328c10930387
 
