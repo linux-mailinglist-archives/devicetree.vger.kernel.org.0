@@ -2,133 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73D533B92F7
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:11:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17CA83B9306
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:18:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233335AbhGAOON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 10:14:13 -0400
-Received: from mailout3.samsung.com ([203.254.224.33]:40303 "EHLO
-        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233258AbhGAOOM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:14:12 -0400
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20210701141140epoutp03479e3a46d58ce5431b61793c7f3a2894~NsCIDoWLP2853628536epoutp03d
-        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 14:11:40 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20210701141140epoutp03479e3a46d58ce5431b61793c7f3a2894~NsCIDoWLP2853628536epoutp03d
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1625148700;
-        bh=C6nCjIM9xJ1StW0PX3KFLqc+Hv2Ypnn4LHXI1YI5WfM=;
-        h=Subject:Reply-To:From:To:CC:Date:References:From;
-        b=uiXuqigrpkJHe7zkZs6qJHI6UbNqP52dnv1MCHqLLUk2f0lFib6Ces2U0srJcZ99A
-         mR92/RBp3AuRUwrYPXzt6myIjVKdfDgYm65TLzFuje1MSyB6Y9FXgsxHPWbhZT1IEt
-         IelScvUO/ubD+rJzYU8U2zAVBe/jEnzWAFccIkms=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
-        20210701141139epcas1p334b3c29d4d866c93f4a5b87fbd149ae0~NsCHKjo2i1986619866epcas1p3W;
-        Thu,  1 Jul 2021 14:11:39 +0000 (GMT)
-Received: from epsmges1p5.samsung.com (unknown [182.195.40.164]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4GG0WZ5sZCz4x9Pv; Thu,  1 Jul
-        2021 14:11:38 +0000 (GMT)
-X-AuditID: b6c32a39-857ff70000002572-12-60ddcd1a552c
-Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
-        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
-        C4.20.09586.A1DCDD06; Thu,  1 Jul 2021 23:11:38 +0900 (KST)
-Mime-Version: 1.0
-Subject: [PATCH] of: of_reserved_mem: match memblock_free with
- memblock_reserve
-Reply-To: ohoono.kwon@samsung.com
-Sender: =?UTF-8?B?6raM7Jik7ZuI?= <ohoono.kwon@samsung.com>
-From:   =?UTF-8?B?6raM7Jik7ZuI?= <ohoono.kwon@samsung.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "frowand.list@gmail.com" <frowand.list@gmail.com>
-CC:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        =?UTF-8?B?6raM7Jik7ZuI?= <ohoono.kwon@samsung.com>,
-        "ohkwon1043@gmail.com" <ohkwon1043@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20210701141137epcms1p8e36d33056f5ad5351f5fe1fb35238e58@epcms1p8>
-Date:   Thu, 01 Jul 2021 23:11:37 +0900
-X-CMS-MailID: 20210701141137epcms1p8e36d33056f5ad5351f5fe1fb35238e58
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrFKsWRmVeSWpSXmKPExsWy7bCmnq7U2bsJBvve6VjMP3KO1WLmm/9s
-        Fve/HmW0uLxrDpvF3v2+Frt+rmC2aN17hN2B3WPnrLvsHptWdbJ53Lm2h82jb8sqRo/Pm+QC
-        WKNybDJSE1NSixRS85LzUzLz0m2VvIPjneNNzQwMdQ0tLcyVFPISc1NtlVx8AnTdMnOArlBS
-        KEvMKQUKBSQWFyvp29kU5ZeWpCpk5BeX2CqlFqTkFBgaFOgVJ+YWl+al6yXn51oZGhgYmQJV
-        JuRkLG5bwVywibti/rNu5gbGbZxdjJwcEgImEn2r5zCC2EICOxglls4q7WLk4OAVEJT4u0MY
-        JCwsECixZ8kxRpCwkICixLbTbhBhK4lpff+YQGw2AQuJ52t/soLYIgJJEjtWTgEq5+JgFpjC
-        JLG58RgrxCpeiRntT1kgbGmJ7cu3MkLYohI3V79lh7HfH5sPFReRaL13lhnCFpR48HM3VFxS
-        4mbbXRaQBRIC/YwS99e1QDkTGCWWPJnEBlFlLvFsQwvYVF4BX4ktd36BncoioCqx5U031CQX
-        iYN9U8FqmAXkJba/ncMM8iWzgKbE+l36ECWKEjt/z2WEKOGTePe1B+6ZHfOeMIGUSwCNXPbb
-        A+avvumXoS7wkPjesJYdErSBEre2z2KewCg/CxG6s5DsnYWwdwEj8ypGsdSC4tz01GLDAlPk
-        +NzECE6EWpY7GKe//aB3iJGJg/EQowQHs5II74TpdxOEeFMSK6tSi/Lji0pzUosPMZoCfTyR
-        WUo0OR+YivNK4g1NjYyNjS1MzMzNTI2VxHl3sh1KEBJITyxJzU5NLUgtgulj4uCUamBS89vb
-        ItLf8/bjFrX9K1zT/i9orbqpNMXizAcewekBTWkyTBJbFXT+84sm1syoZT/4yKrog1nOOU52
-        hwuNnvmPzhTn77fJMbLIdjjl+s/uRnXW/+xfTJW2KWtZvB4vz73s/+vLh6lSK6/tOanW//Xx
-        /kgBn5TPz9W0g7/OWMty+M2XLNFLk6T+3ueXVxE9xnzu9Nwq9QU5CzrmPb989NfKwMjqtfu5
-        3AyaTC//ZLms7DJNbE9eb9Obi7onQ0v8yziDlj9TiBZe9S7iyveVEpqqBTPSPp6M648XtOP8
-        eqbv9r7X/R4f7DgFptj0zjvIeHoOU2VCqOqvYM4i5tqK+ccyXCQlE5Q2F6xl0Qy4W6jEUpyR
-        aKjFXFScCABhFvCWDQQAAA==
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20210701140328epcms1p85149318b6c18fa18b3c7c8e966c14db0
-References: <CGME20210701140328epcms1p85149318b6c18fa18b3c7c8e966c14db0@epcms1p8>
+        id S232167AbhGAOU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 10:20:57 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:18222 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231844AbhGAOU4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:20:56 -0400
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 161E8Tsj025039;
+        Thu, 1 Jul 2021 10:18:26 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com with ESMTP id 39gsqmv6pn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 01 Jul 2021 10:18:25 -0400
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 161EIOWh031548
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 1 Jul 2021 10:18:24 -0400
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5; Thu, 1 Jul 2021
+ 10:18:23 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.858.5 via Frontend
+ Transport; Thu, 1 Jul 2021 10:18:23 -0400
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.128])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 161EILp4015832;
+        Thu, 1 Jul 2021 10:18:21 -0400
+From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
+To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <jic23@kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>
+CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v3] dt-bindings: iio: frequency: add adrf6780 doc
+Date:   Thu, 1 Jul 2021 17:16:48 +0300
+Message-ID: <20210701141648.131776-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 1MwEL1OgORHUxPKqp7F5GwnVUPKs7hUg
+X-Proofpoint-ORIG-GUID: 1MwEL1OgORHUxPKqp7F5GwnVUPKs7hUg
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-07-01_08:2021-07-01,2021-07-01 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 clxscore=1015
+ adultscore=1 impostorscore=0 spamscore=0 mlxlogscore=999
+ priorityscore=1501 suspectscore=0 bulkscore=0 mlxscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2104190000 definitions=main-2107010088
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When __reserved_mem_init_node called from fdt_init_reserved_mem fails,
-we try to undo __reserved_mem_alloc_size to prevent memory leak.
-'commit d0b8ed47e83a ("of: reserved_mem: fix reserve memory leak")'
+Add device tree bindings for the ADRF6780 Upconverter.
 
-Meanwhile, __reserved_mem_alloc_size calls
-early_init_dt_alloc_reserved_memory_arch to allocate memory,
-which calls
-1) memblock_remove when rmem is declared nomap,
-2) memblock_reserve, otherwise.
-
-static int __init early_init_dt_alloc_reserved_memory_arch(
-...
-	if (nomap)
-		return memblock_remove(base, size);
-
-	return memblock_reserve(base, size);
-}
-
-Therefore the proper undo-logic should be as follows:
-1) memblock_add when rmem is declared nomap,
-2) memblock_free, otherwise.
-
-Match the undo functions for readability.
-
-Signed-off-by: Ohhoon Kwon <ohoono.kwon@samsung.com>
+Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 ---
- drivers/of/of_reserved_mem.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+v3: remove `adi,parity-en` from example after latest changes in v2 
+ .../bindings/iio/frequency/adi,adrf6780.yaml  | 122 ++++++++++++++++++
+ 1 file changed, 122 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,adrf6780.yaml
 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 15e2417974d6..2279e1b55d1d 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -273,9 +273,10 @@ void __init fdt_init_reserved_mem(void)
- 			if (err != 0 && err != -ENOENT) {
- 				pr_info("node %s compatible matching fail\n",
- 					rmem->name);
--				memblock_free(rmem->base, rmem->size);
- 				if (nomap)
- 					memblock_add(rmem->base, rmem->size);
-+				else
-+					memblock_free(rmem->base, rmem->size);
- 			}
- 		}
- 	}
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,adrf6780.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,adrf6780.yaml
+new file mode 100644
+index 000000000000..b191d98bf778
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/frequency/adi,adrf6780.yaml
+@@ -0,0 +1,122 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/frequency/adi,adrf6780.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ADRF6780 Microwave Upconverter
++
++maintainers:
++- Antoniu Miclaus <antoniu.miclaus@analog.com>
++
++description: |
++   wideband, microwave upconverter optimized for point to point microwave
++   radio designs operating in the 5.9 GHz to 23.6 GHz frequency range.
++   https://www.analog.com/en/products/adrf6780.html
++
++properties:
++  compatible:
++    enum:
++      - adi,adrf6780
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 1000000
++
++  clocks:
++    description:
++      Definition of the external clock (see clock/clock-bindings.txt)
++    minItems: 1
++
++  clock-names:
++    description:
++      Must be "lo_in"
++    maxItems: 1
++
++  clock-output-names:
++    maxItems: 1
++
++  adi,vga-buff-en:
++    description:
++      VGA Buffer Enable.
++    type: boolean
++
++  adi,lo-buff-en:
++    description:
++      LO Buffer Enable.
++    type: boolean
++
++  adi,if-mode-en:
++    description:
++      IF Mode Enable.
++    type: boolean
++
++  adi,iq-mode-en:
++    description:
++      IQ Mode Enable.
++    type: boolean
++
++  adi,lo-x2-en:
++    description:
++      LO x2 Enable.
++    type: boolean
++
++  adi,lo-ppf-en:
++    description:
++      LO x1 Enable.
++    type: boolean
++
++  adi,lo-en:
++    description:
++      LO Enable.
++    type: boolean
++
++  adi,uc-bias-en:
++    description:
++      UC Bias Enable.
++    type: boolean
++
++  adi,lo-sideband:
++    description:
++      Switch to the Other LO Sideband.
++    type: boolean
++
++  adi,vdet-out-en:
++    description:
++      VDET Output Select Enable.
++    type: boolean
++
++  '#address-cells':
++    const: 1
++
++  '#size-cells':
++    const: 0
++
++  '#clock-cells':
++    const: 0
++
++required:
++- compatible
++- reg
++- clocks
++- clock-names
++
++additionalProperties: false
++
++examples:
++- |
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      adrf6780@0{
++        compatible = "adi,adrf6780";
++        reg = <0>;
++        spi-max-frequency = <1000000>;
++        clocks = <&adrf6780_lo>;
++        clock-names = "lo_in";
++      };
++    };
++...
++
 -- 
-2.17.1
+2.32.0
+
