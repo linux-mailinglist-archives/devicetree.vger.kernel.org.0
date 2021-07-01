@@ -2,112 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B07D3B8C92
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 05:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 347DA3B8CB0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 05:40:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238682AbhGADOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Jun 2021 23:14:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53608 "EHLO
+        id S232220AbhGADnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Jun 2021 23:43:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238056AbhGADOv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 23:14:51 -0400
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B9F9C061756;
-        Wed, 30 Jun 2021 20:12:21 -0700 (PDT)
-Received: by mail-qt1-x834.google.com with SMTP id n9so3150623qtk.7;
-        Wed, 30 Jun 2021 20:12:21 -0700 (PDT)
+        with ESMTP id S229622AbhGADnQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Jun 2021 23:43:16 -0400
+Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EAFCC061756;
+        Wed, 30 Jun 2021 20:40:45 -0700 (PDT)
+Received: by mail-qv1-xf31.google.com with SMTP id v17so2271343qvw.12;
+        Wed, 30 Jun 2021 20:40:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=KqTfUx+1bpJ+GEZ1JasFELVQC7fHMfJcaiqyDCFPIuw=;
-        b=alBMPcQgQ4sDn+WFk4di7zdZI+/oW/JiE9BmC+6+i/eynxs5Q0F3qzXMd7jvbJKdcs
-         al/BWmsBczUkNgGX5+H5/V+IfzFfTZPVMZE1W6Noo41j/BuxZ885p4LEtUOIqJ4dG6lJ
-         XC9l//ve4l7B0pZnQSDiMWuxyfXb0dEdbjCBM=
+        bh=4KzjvxraLHkUL6R1pcfOnqYkrW7Z0FdLZP/xq4dd/Y0=;
+        b=dlYhx9E99duCm0NaB/kWcOwhqCGzKn4RnKcOmg6LnkaTrQSWwnh5hiGs7AeTlYDmQY
+         Wu95jIzmVAqLiJ5EeuQdeURZCO7kRkO2xYvhyKtB/yUQ0lQyZejvw/hsguY8L+umYxI+
+         rK1KKE4emsqDUAu1hDycmWiTja/lMiLEwgtcQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=KqTfUx+1bpJ+GEZ1JasFELVQC7fHMfJcaiqyDCFPIuw=;
-        b=RkLFvN+NpaaRn1o+D03SPea5yaaFjN6h3rIMkCZlIanYKF+qyyydQsXIi/G+vWxX0H
-         ZsSoTaS7Z/0VKgewgeHRm3Cwzj+90BPeR5Cfe2si2C5BVn9VQ/1akfdscm1WH3OPCIcA
-         LdgxZjcIXwhNDGXbxguLSuCS1aomIOe+g97EWH31RcJptcI6LRBNGkODoc6OhF2LHAbO
-         Lg2Gtbkv1zHMZ8s5JMNf/RdPEmf2XqgIcKS8eLOWjOtKIkJj8SAbcB/9ZYhX5BmZlTJ+
-         VTGue79YqanBmVUyo2/oIRk/UiLhxC2Env/hCNDB3lDize5rzWQitnu2YDb2yArMEI59
-         S9VA==
-X-Gm-Message-State: AOAM5305AkUaCML9937HoruE9A1Awvp/O3B819J6e17I3eOtN90sKRM0
-        3Tpovxoq6TJQWJwPH5md4W2Jkr9AUd4ikodnkGr3xVeD6V8=
-X-Google-Smtp-Source: ABdhPJy2kf91B2vTqHlagKoi/6aakbeQj8UnEv2eAc/5e2Sz//Sa79thJYLh7yTsO1ikEDcd9FDWPoHzHnB45g8OURo=
-X-Received: by 2002:a05:622a:50f:: with SMTP id l15mr14036901qtx.263.1625109140085;
- Wed, 30 Jun 2021 20:12:20 -0700 (PDT)
+        bh=4KzjvxraLHkUL6R1pcfOnqYkrW7Z0FdLZP/xq4dd/Y0=;
+        b=Wkldgs/p0LwNj/cziB82HGsknmx21g5rkWp5Tz3AVvQC7VukD/1DzfUN+75H8p/ii/
+         sAiCdvN3rNI0pDJ5AoqFof8k9RBoR8nV+WPWzW1KlueOysiP6dwg2DVQWdU+2qpNNkr+
+         OcFBdjI2iJO8sZoMpkRda1qMG81O+6plxKa0WkVHdHWOltxNVSw2c5NjHManx9ftT693
+         kjGAXR+PUHdBz96G2Pnw2avEhn/sI8YS6sNwrxJcH1wOL7WBmuCa5jNB/+9koMHvCIiK
+         k/3x7RBeRRqRLDalMQVlyhmvzlbgpihsmSS6Up7bhffeJqvdWZreuUnuLmgD032MLQtZ
+         t61g==
+X-Gm-Message-State: AOAM531Hjr0MZYAyEorKhDave2TG/ORAG9AK598C73lso9njCW55jp5n
+        94Wb2P317/NSyb37G9Ua1zFwk35ZMTHcfuj2vzw=
+X-Google-Smtp-Source: ABdhPJxlwHAuvRqiX7FJucBQnUlJorGW5k5hBXv34Umx0R+6lHLkQ/CjjMPAF7JNAttwGM1syLRKCAOFGvlh3gI4ybk=
+X-Received: by 2002:ad4:48d1:: with SMTP id v17mr40319626qvx.16.1625110844609;
+ Wed, 30 Jun 2021 20:40:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210416075113.18047-1-zev@bewilderbeest.net>
-In-Reply-To: <20210416075113.18047-1-zev@bewilderbeest.net>
+References: <20210625061017.1149942-1-andrew@aj.id.au>
+In-Reply-To: <20210625061017.1149942-1-andrew@aj.id.au>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 1 Jul 2021 03:12:07 +0000
-Message-ID: <CACPK8XeRg5P8+W8kyxSNyOa7JBhua5QdP_oCVJALGPJQio0dhA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: update e3c246d4i vuart properties
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+Date:   Thu, 1 Jul 2021 03:40:32 +0000
+Message-ID: <CACPK8Xd9tsMJaQ9BQSGL0Vfi4UpJ1iuOtMVmfKneydd-zYBhsw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: tacoma: Add phase corrections for eMMC
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-aspeed <linux-aspeed@lists.ozlabs.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
         devicetree <devicetree@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Apr 2021 at 07:52, Zev Weiss <zev@bewilderbeest.net> wrote:
+On Fri, 25 Jun 2021 at 06:10, Andrew Jeffery <andrew@aj.id.au> wrote:
 >
-> This device-tree was merged with a provisional vuart IRQ-polarity
-> property that was still under review and ended up taking a somewhat
-> different form.  This patch updates it to match the final form of the
-> new vuart properties, which additionally allow specifying the SIRQ
-> number and LPC address.
+> The degree values were reversed out from the magic tap values of 7 (in)
+> and 15 + inversion (out) initially suggested by Aspeed.
 >
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> With the patch tacoma survives several gigabytes of reads and writes
+> using dd while without it locks up randomly during the boot process.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 
+Thanks for the fix. Is this required due to "mmc: sdhci-of-aspeed: Add
+AST2600 bus clock support" or "mmc: sdhci-of-aspeed: Expose clock
+phase controls"?
 
-Fixes: ca03042f0f12 ("serial: 8250_aspeed_vuart: add aspeed,
-lpc-io-reg and aspeed, lpc-interrupts DT properties")
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+On the topic of those patches, it would be good if we could operate
+the devices (with the slower speed?) when the device tree does not
+provide the phase values. Think about system bringup, or where you
+need the system booting in order to determine the phase calculations.
+
+What changes would be required to the host driver for it to work out of the box?
+
 
 > ---
+>  arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> The relevant aspeed-vuart patches [0] have been merged into Greg KH's
-> tty-next tree, so I figure it's probably okay to proceed with the
-> corresponding dts adjustments now.
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> index c1478d2db602..670080bb80eb 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> @@ -189,6 +189,7 @@ &emmc_controller {
 >
-> [0] https://lore.kernel.org/openbmc/20210412034712.16778-1-zev@bewilderbeest.net/
->
->  arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-> index dcab6e78dfa4..8be40c8283af 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-asrock-e3c246d4i.dts
-> @@ -4,6 +4,7 @@
->  #include "aspeed-g5.dtsi"
->  #include <dt-bindings/gpio/aspeed-gpio.h>
->  #include <dt-bindings/i2c/i2c.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  /{
->         model = "ASRock E3C246D4I BMC";
-> @@ -73,7 +74,8 @@ &uart5 {
->
->  &vuart {
+>  &emmc {
 >         status = "okay";
-> -       aspeed,sirq-active-high;
-> +       aspeed,lpc-io-reg = <0x2f8>;
-> +       aspeed,lpc-interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
+> +       clk-phase-mmc-hs200 = <36>, <270>;
 >  };
 >
->  &mac0 {
+>  &fsim0 {
 > --
-> 2.31.1
+> 2.30.2
 >
