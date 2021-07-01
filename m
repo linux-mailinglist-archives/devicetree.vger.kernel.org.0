@@ -2,150 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC1193B94D5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 18:44:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C82293B9518
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 18:59:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbhGAQqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 12:46:49 -0400
-Received: from mail-vk1-f179.google.com ([209.85.221.179]:45682 "EHLO
-        mail-vk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229759AbhGAQqq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 12:46:46 -0400
-Received: by mail-vk1-f179.google.com with SMTP id n19so696271vkl.12;
-        Thu, 01 Jul 2021 09:44:14 -0700 (PDT)
+        id S233024AbhGARBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 13:01:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229949AbhGARBc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 13:01:32 -0400
+Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32986C061764
+        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 09:59:01 -0700 (PDT)
+Received: by mail-vs1-xe29.google.com with SMTP id c26so4196763vso.8
+        for <devicetree@vger.kernel.org>; Thu, 01 Jul 2021 09:59:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Immfemhnpfwa8Nxg8YlJJPBmhUahLWtVsprTcnwHwPk=;
+        b=fosP1pivS/V7/7q1YVbmKOVzAiaVlm7zVcVZXe75oDTpnLQk/JKjyghVLBOJVFuoV3
+         HE3hPij/Y20fQDt6VeHfZvDLHTpLW3jPrwm4wyS7idrW9V4tmk++PdK8IjtEnRKXzvdZ
+         ZlagxBpjFbDf5GySfn9hAqblBML6XGQXPxbC+gb4Z8Nrj1ae4rS+814Zk81lR2ppJFSk
+         pRVxoVpBm2X4pnBqPLo/l8fEIxVRUJCBwumltoa5T/urpYAgqTCLy6ayZxz8lNEKiKSl
+         d9LHZd4OC61Dj9vw3HPRsXC7mlQJi7ZD5aakDa9hqqemjxNnjj3tKs7gVaMPkHOkCkax
+         zGiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=rNSmf6B2Lp5Ni3r8C+3XioZhDBEjQYkKkaF9nG/fIRU=;
-        b=A1lxa/W9fCVpwAi/MjtyOadokTXtc7tjbRX6hDqnxJQ9pjNuM1P44SHKZ/nCie4wFf
-         ILbPhaUODXOinus/BQOej0AwSduXgEGMsT/CmJXNyqbEHhqQ8oD3LdAQz8i0m7MlUhw5
-         kQvRIoWbcbvieOSFVjmP7cmGHKTprQ6Ub16Msp3nRTj7+KctBbTY3fSc6r5eLXiaMoJo
-         yuCjkQkBJv16WxEYsYtcu7uqGlh+1wx9YcicqCO7eAB93hRN0rC9pOSD3mNBJPvFulCM
-         1P1YbVmaB6q9UNfZeKNRFi2bxvrJENjlUStQ8JHKnO86431k3hQoB3vXJBFXZF9iQkjA
-         /ETQ==
-X-Gm-Message-State: AOAM530wjgNcOW6DYGuWgjDBJ/YXY4rLn2V/chjURHfwK8wT7JAFujQF
-        xXG9MnEEcXzYpPQkc3XwE2CowLHIlmnU+8RWzBA=
-X-Google-Smtp-Source: ABdhPJxf5jI1RXYckQGV+wx7dKKVWn1ugXLTjgcGK4PMkbXSCvBGlxwDTgUHZ+uemj9VkpW9BVvRAh6H2qIw5tssuHA=
-X-Received: by 2002:a05:6122:b72:: with SMTP id h18mr949370vkf.1.1625157854220;
- Thu, 01 Jul 2021 09:44:14 -0700 (PDT)
+        bh=Immfemhnpfwa8Nxg8YlJJPBmhUahLWtVsprTcnwHwPk=;
+        b=JpVzjXB7LKqq1o0ildEL1mzk7cjtjYxlPu6+uux2yA8hov7Z/rgxWpLZJbpGNmQlaV
+         odDcdlmjR/RQ4B6xAUyXtzzrQPPlY2W3NQYsdTNeTaC968DKHFi1+jYdgtgZoeofNAG5
+         1IW9o+UnMr6nSaNcEPvCjLg3ZGtuNP10VOhxhYjhG9yHVJB4ERhHYs7dVBz8yKrgdeRb
+         /ozbB8bJXaXE+jnGnxWd8x4xXK+muvJKzspatFouVgSsoTj+FRgzxIhEOkeHcnNXIYrA
+         3nPHC+vlMO8tvIf+sdCaMRMeE8IO/7knuD9PTvDN6cKSrkH1bhpUQ0nWJtl8AGdDoRs7
+         mD5w==
+X-Gm-Message-State: AOAM530s6DURTNp277jFFO+oygqUo2aHN8BR+ku+HwpZnhINgwPzYWSm
+        +yKGtx1YojNzmmWM1qHTHiMpAayASrf1WWkWhAEGDw==
+X-Google-Smtp-Source: ABdhPJwb80n64AujBuKAB/6m8FZX3ULekcDZrX7rK4uDzligl8QBq8854MayUQyqde2ZRzptR9AszDxPsDj/QYmH4XI=
+X-Received: by 2002:a05:6102:502:: with SMTP id l2mr1354578vsa.19.1625158740105;
+ Thu, 01 Jul 2021 09:59:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210629154740.3091884-1-sean.anderson@seco.com>
- <9edd6194-3a71-4f31-dd39-ba831e00b9d8@lucaceresoli.net> <3feea852-cd59-520a-ec60-5dd1c1c7a824@seco.com>
- <b546c671-2bec-4db7-2f5d-63c97c3a3258@lucaceresoli.net> <CAMuHMdWau7XH_Krpws6U_n1GeX-AFh139PsrmOux-5oO2DwNuA@mail.gmail.com>
- <af422b9e-8820-5c43-527a-ca1d9ee413f6@seco.com>
-In-Reply-To: <af422b9e-8820-5c43-527a-ca1d9ee413f6@seco.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 1 Jul 2021 18:44:03 +0200
-Message-ID: <CAMuHMdUYwEJ8Jauv1vdou_5kyx7WhMan8Zkme55LJixMqPCqKQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: clk: vc5: Add properties for
- configuring the SD/OE pin
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Adam Ford <aford173@gmail.com>,
+References: <20210630133149.3204290-1-dmitry.baryshkov@linaro.org>
+ <20210630133149.3204290-2-dmitry.baryshkov@linaro.org> <CAPDyKFpXD3rCmp53LFFYky_xQv9ucofvTezG5qWyDZt427chNQ@mail.gmail.com>
+ <CAA8EJpob=TpXiJozac-5sKJzE71ddWRFDj7D2-F=W=a2mgKvxA@mail.gmail.com>
+In-Reply-To: <CAA8EJpob=TpXiJozac-5sKJzE71ddWRFDj7D2-F=W=a2mgKvxA@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 1 Jul 2021 18:58:22 +0200
+Message-ID: <CAPDyKFq-vwMchLFb3JvK7B9ZQ9=z-TXzGHUij6CocTR+VmAOqQ@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: clock: qcom,dispcc-sm8x50: add mmcx
+ power domain
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
         Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sean,
-
-On Thu, Jul 1, 2021 at 5:52 PM Sean Anderson <sean.anderson@seco.com> wrote:
-> On 6/30/21 5:12 AM, Geert Uytterhoeven wrote:
-> > On Wed, Jun 30, 2021 at 9:57 AM Luca Ceresoli <luca@lucaceresoli.net> wrote:
-> >> On 29/06/21 23:41, Sean Anderson wrote:
-> >> > On 6/29/21 5:23 PM, Luca Ceresoli wrote:
-> >> >> On 29/06/21 17:47, Sean Anderson wrote:
-> >> >>> These properties allow configuring the SD/OE pin as described in the
-> >> >>> datasheet.
-> >> >>
-> >> >> *Many* thanks for addressing this issue so quickly!
-> >> >>
-> >> >>> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> >
-> >> >>> a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> >> >>> b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> >> >>> index 28675b0b80f1..51f0f78cc3f4 100644
-> >> >>> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> >> >>> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> >> >>> @@ -30,6 +30,22 @@ description: |
-> >> >>>      3 -- OUT3
-> >> >>>      4 -- OUT4
-> >> >>>
-> >> >>> +  The idt,(en|dis)able-shutdown and idt,output-enable-active-(high|low)
-> >> >>> +  properties control the SH (en_global_shutdown) and SP bits of the
-> >> >>> +  Primary Source and Shutdown Register, respectively. Their behavior is
-> >> >>> +  summarized by the following table:
-> >> >>> +
-> >> >>> +  SH SP Output when the SD/OE pin is Low/High
-> >> >>> +  == == =====================================
-> >> >>> +   0  0 Active/Inactive
-> >> >>> +   0  1 Inactive/Active
-> >> >>> +   1  0 Active/Shutdown
-> >> >>> +   1  1 Inactive/Shutdown
-> >> >>> +
-> >> >>> +  If no properties related to these bits are specified, then they will
-> >> >>> +  be left in their default state. This may be useful if the SH and SP
-> >> >>> +  bits are set to a default value using the OTP memory.
-> >> >>
-> >> >> This paragraph looks more an implementation description than a hardware
-> >> >> description.
-> >> >
-> >> > It of course *is* an implementation description. As Geert found out, it
-> >> > is important to keep the defaults if none of these properties are
-> >> > specified.
-> >>
-> >> DT should describe hardware, not implementation. The difference is
-> >> subtle at times, but it is important. Other OSes, bootloaders,
-> >> firmwares, whatever can have a totally different implementation but use
-> >> the same DT.
-> >
-> > In general, it's best for a driver not to rely on any preprogramming
-> > done by e.g. the bootloader before.
+On Thu, 1 Jul 2021 at 18:39, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
 >
-> This is part of the reason I wanted to add these properties in the first
-> place. I'm working on a board where one version has had the OTP
-> programmed, and one version has not. But of course, if we set these bits
-> in software then I do not have to worry about whether the OTP has set up
-> something sane.
+> On Thu, 1 Jul 2021 at 19:17, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> >
+> > On Wed, 30 Jun 2021 at 15:31, Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > >
+> > > On sm8250 dispcc requires MMCX power domain to be powered up before
+> > > clock controller's registers become available. For now sm8250 was using
+> > > external regulator driven by the power domain to describe this
+> > > relationship. Switch into specifying power-domain and required opp-state
+> > > directly.
+> > >
+> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > ---
+> > >  .../bindings/clock/qcom,dispcc-sm8x50.yaml    | 19 +++++++++++++++++++
+> > >  1 file changed, 19 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+> > > index 0cdf53f41f84..48d86fb34fa7 100644
+> > > --- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+> > > +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+> > > @@ -55,6 +55,16 @@ properties:
+> > >    reg:
+> > >      maxItems: 1
+> > >
+> > > +  power-domains:
+> > > +    description:
+> > > +      A phandle and PM domain specifier for the MMCX power domain.
+> > > +    maxItems: 1
+> > > +
+> >
+> > Should you perhaps state that this is a parent domain? Or it isn't?
+> >
+> > Related to this and because this is a power domain provider, you
+> > should probably reference the common power-domain bindings somewhere
+> > here. Along the lines of this:
+> >
+> > - $ref: power-domain.yaml#
+> >
+> > As an example, you could have a look at
+> > Documentation/devicetree/bindings/power/pd-samsung.yaml.
+>
+> I'll take a look.
 >
 > >
-> > The concept of "One-Time Programming (OTP) bits" adds yet another
-> > dimension to the already complicated boot chain of dependencies.
-> > But due to the one-time feature I consider that more stable than
-> > other firmware, which can be upgraded, causing changed behavior,
-> > unlike OTP bits.
+> > > +  required-opps:
+> > > +    description:
+> > > +      Performance state to use for MMCX to enable register access.
+> > > +    maxItems: 1
 > >
-> >> Perhaps these properties might be made mandatory later, after upgrading
-> >> all DTs (at least those in mainline Linux). and a grace period.
-> >
-> > Yes, they should be marked as required.
+> > According to the previous discussions, I was under the assumption that
+> > this property belongs to a consumer node rather than in the provider
+> > node, no?
 >
-> I don't think I can do that without going through all existing users and
-> defining these properties for them. Otherwise, dt_bindings_check will
-> complain. I believe (but please correct me if I'm wrong) that patches
-> are not to introduce new warnings.
->
-> However, setting these propreties is not possible for me to do; I would
-> need someone familiar with their board to determine how the SD/OE pin is
-> used, and what the correct setting is.
+> It is both a consumer and a provider. It consumes SM8250_MMCX from
+> rpmhpd and provides MMSC_GDSC.
 
-Sure, we can only make them required once all in-tree DTS files have been
-fixed.
+That sounds a bit weird to me.
 
-Gr{oetje,eeting}s,
+In my view and per the common power domain bindings (as pointed to
+above): If a power domain provider is a consumer of another power
+domain, that per definition means that there is a parent domain
+specified.
 
-                        Geert
+[...]
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Kind regards
+Uffe
