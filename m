@@ -2,179 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B3523B9689
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 21:26:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76BE73B9692
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 21:30:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234123AbhGAT3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 15:29:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43520 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234094AbhGAT3M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 15:29:12 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD396C061762
-        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 12:26:41 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id a133so8502943oib.13
-        for <devicetree@vger.kernel.org>; Thu, 01 Jul 2021 12:26:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=kgry+NHhIXRto0lihG09dvKrpOIpSuRCcDkQYUAh4RI=;
-        b=aizhnnYOcdskMEQ6r7sUhkeD59cflOqSzk9alJZHPv3y5LbR1/JWMIX51EAoC3Q6ya
-         T/1dJ9/FcXOXLZC9bgH1vVyLDDXla90OgKB4eygUvPEaddF7R/i311qvgRyaCIj3mH/D
-         UU1CdRZiiz8/tnHaMJQqP7qTCNTmp+cqjQBBqCiv6j5RpkjuLeNjfCYFeR5GoHElPWhF
-         u72S5BFduhL0HeBtjtkrN5E15Kt4cZH+d8HtNNB1CHW9w0yqkEteCl6REChwMY+rgDWj
-         SjUs9dSJpxkkFAEP1yvxhhjyyQlyZG1BrGdyH7Ms6GzJgo0wPAryxK1ZGl+4f2W/+lIY
-         mezQ==
+        id S229934AbhGATck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 15:32:40 -0400
+Received: from mail-io1-f54.google.com ([209.85.166.54]:41765 "EHLO
+        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229894AbhGATck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 15:32:40 -0400
+Received: by mail-io1-f54.google.com with SMTP id i189so8919632ioa.8;
+        Thu, 01 Jul 2021 12:30:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=kgry+NHhIXRto0lihG09dvKrpOIpSuRCcDkQYUAh4RI=;
-        b=gxCorrTByyfzH3/FHKITQxrMxxjBs4/whgLWZ46e12ySWB5glPn6T6b9kW/WgXpwy/
-         C8YbqRIJGr8l0oSpYffzj+SNUdtGtO/MqNaVaQLz2uAjs3V/jXeuFyAMbbVjyKdAXS9m
-         myGvGqdOXqPId2OcsopjGGi9nTSo4ALHip9YudFeUd3dWMN9lfVmPcWS/Iufe7GK3N4A
-         E4+xBDGZ5shN4QJyA0s/NfQYNPreXdn3rZtxzx+Ucus7JnlR2+Ob+YwLaYegWQHNLu7t
-         4lHO3wHsdO+mv67StdLfGv937xaNMQtDfYSyvDHKSc8egy5aiya5ki1/tw2Z/3g1JRtl
-         Q9Tg==
-X-Gm-Message-State: AOAM533J4wRJ+68zwnH6I7dXROoS/OWU0Nd/Ya76BhUJz1z9zBOM6jGO
-        fEfsZJAjEy7C5xDBSRNCvCiAAw==
-X-Google-Smtp-Source: ABdhPJw8dFMNFHOqRpqbt6qTcwP5OdglQZTYNAI/4mcxv9pX4SSp3kexHozFx6rQg5fYNi9NVdJGOw==
-X-Received: by 2002:aca:d0c:: with SMTP id 12mr2441231oin.62.1625167601087;
-        Thu, 01 Jul 2021 12:26:41 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id n65sm129311ota.37.2021.07.01.12.26.39
+        bh=BCG+l1C0nlzP57WAnie7tTGSrBQ2K9z9qcnBqa3mQ08=;
+        b=obIteTTg35u9d1tXJFmpd0bNRSmSnyu16aLyyoXsbtmPDB9S7pUXL1BEwaJgFngy2F
+         kfLyLy0jV/iEt+a8JtFN4d4MsgWh373A+iZFrVVgIlsR/peaGkd3uoFqOuBw3jyS51h8
+         fANDi5gNupaCQ0Yw2EoehAL7Klv5wTB9odQwEjPUAMgQMKj11f8qZHAB2D2Em1xA8WMe
+         nHV5Reg9RgfMjd76I7+h2CK0Bi/DGljZmeCqZUxhAnLIhpIhRCvtRoo1LKYlnjreSrqV
+         RUUJ2NejDf1FTIM//713FRF1kKPbxjJg6X3xcaNgQrCKIQT2z5C5qPtJedMmy7dlsEAk
+         mLnw==
+X-Gm-Message-State: AOAM533B/UeuCg0a9Z2e2/A2YWtZ/WPTj8nItKVBuQPrGcJKG0bU/yv6
+        WtjWrG3GJ8thyUJHlQu7x1D6ASSsUQ==
+X-Google-Smtp-Source: ABdhPJz4zXBaD9zMJvFJEHcOBwmEkGRfn6ddfTYtBYMSOQaXcjX/t5kYLbUv78gkyUNkSccdacxizw==
+X-Received: by 2002:a6b:b5c7:: with SMTP id e190mr789909iof.31.1625167808431;
+        Thu, 01 Jul 2021 12:30:08 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id q131sm337757iod.54.2021.07.01.12.30.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jul 2021 12:26:40 -0700 (PDT)
-Date:   Thu, 1 Jul 2021 14:26:38 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/6] dt-bindings: clock: qcom,dispcc-sm8x50: add mmcx
- power domain
-Message-ID: <YN4W7vd3Yep+DX3N@yoga>
-References: <20210630133149.3204290-1-dmitry.baryshkov@linaro.org>
- <20210630133149.3204290-2-dmitry.baryshkov@linaro.org>
- <CAPDyKFpXD3rCmp53LFFYky_xQv9ucofvTezG5qWyDZt427chNQ@mail.gmail.com>
- <CAA8EJpob=TpXiJozac-5sKJzE71ddWRFDj7D2-F=W=a2mgKvxA@mail.gmail.com>
- <CAPDyKFq-vwMchLFb3JvK7B9ZQ9=z-TXzGHUij6CocTR+VmAOqQ@mail.gmail.com>
+        Thu, 01 Jul 2021 12:30:07 -0700 (PDT)
+Received: (nullmailer pid 2783045 invoked by uid 1000);
+        Thu, 01 Jul 2021 19:30:05 -0000
+Date:   Thu, 1 Jul 2021 13:30:05 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
+Subject: Re: [PATCH 05/15] dt-bindings: iio: dac: ad5446: Add missing binding
+ document
+Message-ID: <20210701193005.GA2780955@robh.at.kernel.org>
+References: <20210627163244.1090296-1-jic23@kernel.org>
+ <20210627163244.1090296-6-jic23@kernel.org>
+ <1625148163.528787.2278697.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAPDyKFq-vwMchLFb3JvK7B9ZQ9=z-TXzGHUij6CocTR+VmAOqQ@mail.gmail.com>
+In-Reply-To: <1625148163.528787.2278697.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 01 Jul 11:58 CDT 2021, Ulf Hansson wrote:
-
-> On Thu, 1 Jul 2021 at 18:39, Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > On Thu, 1 Jul 2021 at 19:17, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > >
-> > > On Wed, 30 Jun 2021 at 15:31, Dmitry Baryshkov
-> > > <dmitry.baryshkov@linaro.org> wrote:
-> > > >
-> > > > On sm8250 dispcc requires MMCX power domain to be powered up before
-> > > > clock controller's registers become available. For now sm8250 was using
-> > > > external regulator driven by the power domain to describe this
-> > > > relationship. Switch into specifying power-domain and required opp-state
-> > > > directly.
-> > > >
-> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > ---
-> > > >  .../bindings/clock/qcom,dispcc-sm8x50.yaml    | 19 +++++++++++++++++++
-> > > >  1 file changed, 19 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> > > > index 0cdf53f41f84..48d86fb34fa7 100644
-> > > > --- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> > > > +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-> > > > @@ -55,6 +55,16 @@ properties:
-> > > >    reg:
-> > > >      maxItems: 1
-> > > >
-> > > > +  power-domains:
-> > > > +    description:
-> > > > +      A phandle and PM domain specifier for the MMCX power domain.
-> > > > +    maxItems: 1
-> > > > +
-> > >
-> > > Should you perhaps state that this is a parent domain? Or it isn't?
-> > >
-> > > Related to this and because this is a power domain provider, you
-> > > should probably reference the common power-domain bindings somewhere
-> > > here. Along the lines of this:
-> > >
-> > > - $ref: power-domain.yaml#
-> > >
-> > > As an example, you could have a look at
-> > > Documentation/devicetree/bindings/power/pd-samsung.yaml.
-> >
-> > I'll take a look.
-> >
-> > >
-> > > > +  required-opps:
-> > > > +    description:
-> > > > +      Performance state to use for MMCX to enable register access.
-> > > > +    maxItems: 1
-> > >
-> > > According to the previous discussions, I was under the assumption that
-> > > this property belongs to a consumer node rather than in the provider
-> > > node, no?
-> >
-> > It is both a consumer and a provider. It consumes SM8250_MMCX from
-> > rpmhpd and provides MMSC_GDSC.
+On Thu, Jul 01, 2021 at 08:02:43AM -0600, Rob Herring wrote:
+> On Sun, 27 Jun 2021 17:32:34 +0100, Jonathan Cameron wrote:
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > 
+> > Binding is a little stricter than the Linux driver.
+> > 
+> > It requires vcc-supply to be present for devices that don't have
+> > an internal reference, whereas the driver just prints a message and
+> > carries on.  Given this means that it is impossible to establish
+> > a scaling of the output channel, let us make it required in the binding
+> > schema.
+> > 
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Cc: Lars-Peter Clausen <lars@metafoo.de>
+> > ---
+> >  .../bindings/iio/dac/adi,ad5446.yaml          | 105 ++++++++++++++++++
+> >  1 file changed, 105 insertions(+)
+> > 
 > 
-> That sounds a bit weird to me.
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-
-dispcc is a hardware block powered by MMCX, so it is a consumer of it
-and needs to control MMCX.
-
-> In my view and per the common power domain bindings (as pointed to
-> above): If a power domain provider is a consumer of another power
-> domain, that per definition means that there is a parent domain
-> specified.
+> yamllint warnings/errors:
 > 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/dac/ti,dac7512.example.dt.yaml: dac@0: 'vcc-supply' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/dac/adi,ad5446.yaml
 
-And in addition to needing MMCX to access the dispcc, the exposed
-power-domain "MDSS_GDSC" is powered by the same MMCX and as such
-MDSS_GDSC should be a subdomain of MMCX.
+Humm, seems it's not missing?
 
-
-But what I was trying to say yesterday is that the power-domain property
-should be sufficient and that we shouldn't need to drive MMCX to a
-particular performance_state in order to access the registers.
-
-Then as clients make votes on clock rates that requires higher
-performance_state, they would describe this in their opp-tables etc.
-
-
-But without any performance_state requests, pd->corner will in
-rpmhpd_power_on() be 0 and as such powering on the power-domain won't
-actually do anything. Similarly dev_pm_genpd_set_performance_state(dev,
-0) on an active power-domain from rpmhpd will turn it off.
-
-
-So the reason why Dmitry is adding the required-opps to the binding is
-to get rpmhpd to actually tell the hardware to turn on the power domain.
-And I don't think this is in accordance with the framework's
-expectations.
-
-Regards,
-Bjorn
+Rob
