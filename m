@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F493B92B9
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:03:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA53E3B92A3
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:02:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233131AbhGAOGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 10:06:10 -0400
-Received: from mail-io1-f50.google.com ([209.85.166.50]:37740 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233300AbhGAOGJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:06:09 -0400
-Received: by mail-io1-f50.google.com with SMTP id b15so7641916iow.4;
-        Thu, 01 Jul 2021 07:03:38 -0700 (PDT)
+        id S232775AbhGAOF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 10:05:26 -0400
+Received: from mail-io1-f51.google.com ([209.85.166.51]:36616 "EHLO
+        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232545AbhGAOFZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:05:25 -0400
+Received: by mail-io1-f51.google.com with SMTP id u7so5467118ion.3;
+        Thu, 01 Jul 2021 07:02:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=RIHU3Dvz8UVhaI+52yb7oaZyHsIEgAYHrT+AJwUGDLs=;
-        b=eCFaA2qQQrrx5FudTkEO3deBFhn7Fao2Oz1x29Kkcq5GHIi7py+iRb4J5GynbQQneS
-         UcgVLjmes5g34MElw4c4Cg8sd/Imb1MfhiC7kMD9c7zvuxJLG1Y16TEQbBg3xxFcalJU
-         aSNC7z8dCfrCOE2Hfq6cpUj1hWqFlS2KlYey/APJ/l/nQOFeoQ4SDmfaZgjjFxwUMU3J
-         lN4qIWCVechjun1syHYPFCCgzPV8EZFr3ZDCHYmdX8jn1q1z69eeJLNzIJLJWdyQNZFE
-         zOgD6nHuioWQcxgbYwBmaJ16qVu2FniRIqN1AW7DEPwgVIyiqDn7zhpJkxNXlc294SPa
-         C2sg==
-X-Gm-Message-State: AOAM5322AZry67LBsbvx9GCZCyRWf3vWl9FnYcZwWhWncKuKBtrRsKKl
-        Iertt0KacBDXCuSLvX6V6w==
-X-Google-Smtp-Source: ABdhPJwQKT+kR+WAjiGnVYsmWaj61qH7vLyuBErKzSWqz2Eyox/gsoOirr+2wRLgFZVQLStOn2NurQ==
-X-Received: by 2002:a5d:9ad6:: with SMTP id x22mr6096646ion.182.1625148217955;
-        Thu, 01 Jul 2021 07:03:37 -0700 (PDT)
+        bh=mYpWVNkGyyi4+D5Ik3YO8omc3O/tZSWPuO0UlaNpdPE=;
+        b=fAyOVUOcDZSHW58wbxWqW4TAvfLBRU1bsMUNfnY0MSfezl5MchfUJDGivQZnKuVZ1F
+         KitXSDgjX9siYDAEbS7dVfLq5FBKO0t3/nVlKqTg4dypm5+qc2HZ4773O+Q2fR3T1KyA
+         2vq6Nvh2rcpOZqN72dcQyT7xdC/Au2KJ8U4XBBwQ/eefMYD4IajNyGwb7lQutfC0A4Ml
+         n0v8OqeBR+RrEn9xlqaP7/mAqE9Jf8YQ1NmJ0DHDra4LJsmUFi9N2elsboSHfnEFKlku
+         QZJRacqtwKLxPffOeCUFI1lAvfEGeNlq98vzn+R9TW4q6iE3yTdMlpeDiRlQpjqQnrpD
+         l/XA==
+X-Gm-Message-State: AOAM532DMQohQZVFricciUpOwNLlBqjJc8DnoscA1zPUr5TPevWuUkXU
+        v5Vj/HHuULfeRfg7bEzsCw==
+X-Google-Smtp-Source: ABdhPJxvLXDtYCaeHE5BU26+kYkT3YksThGWXzGZkcTWU32ai4Ma0FLwraS4S2gZj5vctoN26xJltA==
+X-Received: by 2002:a05:6602:1846:: with SMTP id d6mr12160079ioi.111.1625148175051;
+        Thu, 01 Jul 2021 07:02:55 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id r13sm38814ilg.37.2021.07.01.07.03.32
+        by smtp.gmail.com with ESMTPSA id m12sm32206iln.43.2021.07.01.07.02.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jul 2021 07:03:36 -0700 (PDT)
-Received: (nullmailer pid 2278714 invoked by uid 1000);
+        Thu, 01 Jul 2021 07:02:54 -0700 (PDT)
+Received: (nullmailer pid 2278702 invoked by uid 1000);
         Thu, 01 Jul 2021 14:02:43 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     konrad.dybcio@somainline.org, broonie@kernel.org,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, jami.kettunen@somainline.org,
-        agross@kernel.org, jeffrey.l.hugo@gmail.com,
-        martin.botka@somainline.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        bjorn.andersson@linaro.org, paul.bouchara@somainline.org,
-        marijn.suijten@somainline.org, devicetree@vger.kernel.org
-In-Reply-To: <20210701105441.319572-7-angelogioacchino.delregno@somainline.org>
-References: <20210701105441.319572-1-angelogioacchino.delregno@somainline.org> <20210701105441.319572-7-angelogioacchino.delregno@somainline.org>
-Subject: Re: [PATCH v6 6/6] dt-bindings: soc: qcom: cpr3: Add bindings for CPR3 driver
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20210629220328.13366-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20210629220328.13366-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20210629220328.13366-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add binding documentation for Renesas RZ/G2L A/D converter
 Date:   Thu, 01 Jul 2021 08:02:43 -0600
-Message-Id: <1625148163.611445.2278713.nullmailer@robh.at.kernel.org>
+Message-Id: <1625148163.546497.2278701.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 01 Jul 2021 12:54:41 +0200, AngeloGioacchino Del Regno wrote:
-> Add the bindings for the CPR3 driver to the documentation.
+On Tue, 29 Jun 2021 23:03:27 +0100, Lad Prabhakar wrote:
+> Add binding documentation for Renesas RZ/G2L A/D converter block.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  .../bindings/soc/qcom/qcom,cpr3.yaml          | 241 ++++++++++++++++++
->  1 file changed, 241 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
+>  .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -72,12 +72,16 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dt.yaml:0:0: /example-0/cpu-silver-opp-table: failed to match any schema with compatible: ['operating-points-v2']
-Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dt.yaml:0:0: /example-0/cpu-gold-opp-table: failed to match any schema with compatible: ['operating-points-v2']
-Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.example.dt.yaml:0:0: /example-0/cpr-hardened-opp-table: failed to match any schema with compatible: ['operating-points-v2-qcom-level']
+Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.example.dts:19:18: fatal error: dt-bindings/clock/r9a07g044-cpg.h: No such file or directory
+   19 |         #include <dt-bindings/clock/r9a07g044-cpg.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1416: dt_binding_check] Error 2
 \ndoc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1499495
+See https://patchwork.ozlabs.org/patch/1498675
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
