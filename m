@@ -2,123 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DCA63B8F7C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 11:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A45F3B8FCC
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 11:31:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235723AbhGAJKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 05:10:07 -0400
-Received: from mail-ua1-f45.google.com ([209.85.222.45]:35600 "EHLO
-        mail-ua1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235088AbhGAJKH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 05:10:07 -0400
-Received: by mail-ua1-f45.google.com with SMTP id n61so2196631uan.2;
-        Thu, 01 Jul 2021 02:07:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sIqUpSy3WHJ9LFXbxhxyvcyP769k+GgXVkD4XIt1npQ=;
-        b=fC8ODdPVYjPREdI8THrYL44SFYEIxCc4X0Kuk8IFNYjUeCsCXJ8+40YGdOEEXlOFWw
-         v8fp1ZM4PwyOhOXYjI2AW4IZkf6EXZOrY/r/CsKGxG53ibDEiL8G18m7PfSSpPDLO0hK
-         kMly2if8eHYqD+pYsTmLkp5JGyJQ6Sf6k5JGP9GHyPvvmzuu7HwRnnEFsoWEbCrKal0+
-         QRHE/hKVL3Zpr13MJSSG3GTRoPwfHKfElyxN9Zv+vOOhyWHHtcbxyrDXaVHFRFvJYZtW
-         kilK62qy9M0q8FOS3geWNVtPQF+W2oxbsyesLTDtLXxLj8GDu8j7huEGQ9nNvOUtvl4b
-         1WdQ==
-X-Gm-Message-State: AOAM533nzpXIjobhj3VRnrKO1iKPxBuShRPI2iM8AbTioY+fOkT3FH3t
-        +fwqT0Y3a9VeVBCEKiWVimEufMwoXrNuicBSbybdeVMz0Z+IZg==
-X-Google-Smtp-Source: ABdhPJwSnd+W/J0P9TXelJ4FicEnSI+QCWCk1Q85kOlLiIK0Xw+UCgAVpcQfY9FmPzhd6caL6KHABcksAAv39MCVf50=
-X-Received: by 2002:ab0:484b:: with SMTP id c11mr38743288uad.100.1625130456571;
- Thu, 01 Jul 2021 02:07:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210630173042.186394-1-aford173@gmail.com> <20210630173042.186394-2-aford173@gmail.com>
-In-Reply-To: <20210630173042.186394-2-aford173@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 1 Jul 2021 11:07:25 +0200
-Message-ID: <CAMuHMdXoWZMj8+LhUPSpqa4t-G1WrW-wfOy3XzEDe0ihSKQkCw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] usb: renesas_usbhs: Enable support for more than two clks
-To:     Adam Ford <aford173@gmail.com>
-Cc:     USB list <linux-usb@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        id S235180AbhGAJdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 05:33:55 -0400
+Received: from antares.kleine-koenig.org ([94.130.110.236]:33732 "EHLO
+        antares.kleine-koenig.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235256AbhGAJdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 05:33:55 -0400
+Received: from antares.kleine-koenig.org (localhost [127.0.0.1])
+        by antares.kleine-koenig.org (Postfix) with ESMTP id DAC7DBEBD19;
+        Thu,  1 Jul 2021 11:31:19 +0200 (CEST)
+Received: from antares.kleine-koenig.org ([94.130.110.236])
+        by antares.kleine-koenig.org (antares.kleine-koenig.org [94.130.110.236]) (amavisd-new, port 10024)
+        with ESMTP id SDSbjhjav00Y; Thu,  1 Jul 2021 11:31:18 +0200 (CEST)
+Received: from taurus.defre.kleine-koenig.org (unknown [IPv6:2a02:8071:b5c8:7b00:36f3:9aff:fec2:7e46])
+        by antares.kleine-koenig.org (Postfix) with ESMTPSA;
+        Thu,  1 Jul 2021 11:31:18 +0200 (CEST)
+To:     Dennis Gilmore <dgilmore@redhat.com>,
+        linux-rockchip@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20210701004043.18585-1-dgilmore@redhat.com>
+From:   =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
+Subject: Re: [PATCH 1/4] arm64: dts: rockchip: helios64: fixup USB setup
+Message-ID: <01f1b032-14a8-a6fa-9063-23de65fc6f43@kleine-koenig.org>
+Date:   Thu, 1 Jul 2021 11:31:09 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210701004043.18585-1-dgilmore@redhat.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="BpJ5xrTQirBbIjXcMUHPDnZ3mp4HzW92f"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--BpJ5xrTQirBbIjXcMUHPDnZ3mp4HzW92f
+Content-Type: multipart/mixed; boundary="1nWwQQLfYRngiveeI35Jked9SbcM6Pqbw";
+ protected-headers="v1"
+From: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
+To: Dennis Gilmore <dgilmore@redhat.com>, linux-rockchip@lists.infradead.org
+Cc: Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "moderated list:ARM/Rockchip SoC support"
+ <linux-arm-kernel@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>
+Message-ID: <01f1b032-14a8-a6fa-9063-23de65fc6f43@kleine-koenig.org>
+Subject: Re: [PATCH 1/4] arm64: dts: rockchip: helios64: fixup USB setup
+References: <20210701004043.18585-1-dgilmore@redhat.com>
+In-Reply-To: <20210701004043.18585-1-dgilmore@redhat.com>
 
-Thanks for your patch!
+--1nWwQQLfYRngiveeI35Jked9SbcM6Pqbw
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 30, 2021 at 7:30 PM Adam Ford <aford173@gmail.com> wrote:
-> The RZ/G2 boards expect there to be an external clock reference for
-> USBHS controller, but this could be set by a programmable clock.
-> For those devices using a programmable clock, there need to be two
-> additional clocks beyond the internal reference clocks:
->
-> rcar-usb2-clock-sel to specify we using an external clock, and
-> the external reference clock itself.
+Hello,
 
-Something is missing in the above sentence?
+On 7/1/21 2:40 AM, Dennis Gilmore wrote:
+> Without the usbdrd_dwc3_1 node defined u-boot will throw an error and
+> reset the system.
 
->
-> Make this driver dynamically enable all the clocks assigned to it
-> instead of only enabling the first one or two clocks.
->
-> Signed-off-by: Adam Ford <aford173@gmail.com>
->
-> diff --git a/drivers/usb/renesas_usbhs/common.c b/drivers/usb/renesas_usbhs/common.c
-> index 3af91b2b8f76..255e4bd68ed3 100644
-> --- a/drivers/usb/renesas_usbhs/common.c
-> +++ b/drivers/usb/renesas_usbhs/common.c
-> @@ -297,6 +297,8 @@ static bool usbhsc_is_multi_clks(struct usbhs_priv *priv)
->
->  static int usbhsc_clk_get(struct device *dev, struct usbhs_priv *priv)
->  {
-> +       unsigned int i;
-> +
->         if (!usbhsc_is_multi_clks(priv))
->                 return 0;
->
-> @@ -309,11 +311,13 @@ static int usbhsc_clk_get(struct device *dev, struct usbhs_priv *priv)
->          * To backward compatibility with old DT, this driver checks the return
->          * value if it's -ENOENT or not.
->          */
-> -       priv->clks[1] = of_clk_get(dev_of_node(dev), 1);
-> -       if (PTR_ERR(priv->clks[1]) == -ENOENT)
-> -               priv->clks[1] = NULL;
-> -       else if (IS_ERR(priv->clks[1]))
-> -               return PTR_ERR(priv->clks[1]);
-> +       for (i = 1; i < ARRAY_SIZE(priv->clks); i++) {
-> +               priv->clks[1] = of_clk_get(dev->of_node, i);
-> +               if (PTR_ERR(priv->clks[i]) == -ENOENT)
-> +                       priv->clks[i] = NULL;
-> +               else if (IS_ERR(priv->clks[i]))
-> +                       return PTR_ERR(priv->clks[i]);
-> +       }
+I wonder if this should better be fixed in u-boot then?!
 
-This is identical to the current code, as ARRAY_SIZE(priv->clks) == 2.
-Probably you wanted to increase usbhs_priv.clks[], too?
+> All other rk3399 systems use this format
 
-Does it make sense to start using the clk_bulk*() API?
+This is true for the dwc nodes, however for the usb2 nodes there are=20
+several that use this idiom (and even repeat the label name), see for=20
+example the &u2phy0 node in=20
+arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi .
 
->
->         return 0;
->  }
+In my eyes it's a bit ugly to have the two nodes as separate entities=20
+and on the same indentation level in the machine dts given that one is=20
+the parent of the other and enabling USB needs both status settings.
 
-Gr{oetje,eeting}s,
+Best regards
+Uwe
 
-                        Geert
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+--1nWwQQLfYRngiveeI35Jked9SbcM6Pqbw--
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--BpJ5xrTQirBbIjXcMUHPDnZ3mp4HzW92f
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDdi10ACgkQwfwUeK3K
+7Al/Pwf/fwKvnfatRdAv7KIh3rNNLcGJMdEn2xWYZ6hi1BSCujztTMA1Dwa6yMsy
+HxFEpDWx/dUEi6ZsLKZpKH4RRfB8TFpZX2bT2LhqRs8FsuIdbfr/gipul8dRv6k/
+8HqazpBR+flWTvGs1eaLRGGXOxAhvaZ/jXpihWJDGIX9inaLmUcHjr97yvXUMy7v
+7YU8MSICXSZri0gEp6M8ZiljvXN/Q9RZe1Z034zOwd4NNBpR/nmBd4xLgvotnlJj
+clNn+BwiSEBhfFjuRxaH0jo6hn3mDRmSDgxanuz7uKfFUPBpQ7ST50mMclzTZGyY
+fT3Q+7Frw5I70d/FOvrQRFy6nwY0aQ==
+=zJ9u
+-----END PGP SIGNATURE-----
+
+--BpJ5xrTQirBbIjXcMUHPDnZ3mp4HzW92f--
