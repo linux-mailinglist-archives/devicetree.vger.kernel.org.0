@@ -2,87 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7858B3B937E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:41:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D8A93B9393
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:51:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232157AbhGAOnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 10:43:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35916 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbhGAOnv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:43:51 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC8CAC061764;
-        Thu,  1 Jul 2021 07:41:20 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id df12so8796032edb.2;
-        Thu, 01 Jul 2021 07:41:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=AvF+6Thjc7VS3d+lH/xoSpjcWaqN37c3IWH+gDSK5LE=;
-        b=b25zxcDyLu1iUJc6dO4ans9rCu/b5OwLrgjWCInEg2cFxRJDk0vwYmxXLiTe0E4zdA
-         MJ3wLBe0PRmgqcmjhjolXhI9GoDJrCagKYEm6g1A2Kz7TVOTlCe0VE+C9Z0W9hmKWYEx
-         12MwmnvHKrlJHOaCNNBJAmMMAqMkns+LgZnYOSt7b4zeGt1SSJ1GCg437LqysbDtAbvq
-         QH4nvZ4PJdu367gTTj88J1EIJEOVOm1cOtTc9wDSQz/owet6wQSxaH+pW/pF82V5Vuqi
-         Mko7+/liayHEcpCg3yYutTAlcaVo7R6bXh+qpjwavy1VkYAippICanszMPLiY6wlRrzb
-         xC1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=AvF+6Thjc7VS3d+lH/xoSpjcWaqN37c3IWH+gDSK5LE=;
-        b=b6nV8OffUlJhze2dTzmwS/q5jvvVsg0AJEuZ/Mug+HU04VVsvqnzlMKXOtTJRIjCWF
-         ANvIpYrBIv2FlIQSI2F+dtjF8f0JTEIbOg3CvtBd3tBxY0j02PvNKWpyIh+Gt+eyLfg0
-         ucFMYCFZnK9/eCGy8dZrDEnmZmB1/7IzNiCINIukJXB2xk0Zo8lUq3Tt9cf7nV7iOqts
-         4+prsa1xAj7Nk0SB0t/jYlkI5QYrDwOs5uxwSFbsywtiKLJ3YsdhDrG8JvWRnZplgXgP
-         jrjlthgV11i9ZYdTVYnNoAAvXLPW/JEDUa1LXF4iq6OeZ22yKjthk90tc/cBPXeOdMeM
-         fPVQ==
-X-Gm-Message-State: AOAM533aH1Y2H6b7JyXS2ZavcgcaY1XNRAOqCZ41QDIeHCwHHUlLnPpI
-        xAESINnDhO6Et2T9mEHpjiYmmeVnNNsShA==
-X-Google-Smtp-Source: ABdhPJw+7B3axxOsOx75pV9gDw2Bqed7PttXMKPft6o0SQ5cklKiVayLhjUPf/7+qX9RUvRJzGKFmg==
-X-Received: by 2002:a05:6402:2681:: with SMTP id w1mr181454edd.275.1625150479387;
-        Thu, 01 Jul 2021 07:41:19 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id a8sm2239ejx.99.2021.07.01.07.41.18
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 01 Jul 2021 07:41:19 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linux-rockchip@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: remove ddc-i2c-scl-* properties from rk3318-a95x-z2.dts
-Date:   Thu,  1 Jul 2021 16:41:10 +0200
-Message-Id: <20210701144110.12333-2-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210701144110.12333-1-jbx6244@gmail.com>
-References: <20210701144110.12333-1-jbx6244@gmail.com>
+        id S230100AbhGAOyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 10:54:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40404 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232413AbhGAOyU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Jul 2021 10:54:20 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C23F56141F;
+        Thu,  1 Jul 2021 14:51:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625151109;
+        bh=OoCFtaHtPZONNovcwjiQpsNtvKfywEXzvUyvki/4k+A=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JDhaqLVqC4BotbIH8uTP3vsF/rd/qk2RLHv4c/haxKk1LsIYriF4ZZGm9VPntRjzT
+         J2V0vXMPgAIILb1H2mvt6GLRHWSJHswehtqD3GgTy0xl2B31rdBN8+8+Sp7EsRdluS
+         yW2Tuyefd13aE/Dezctt3HyyuJGRhpusdj4kTti6Xbbb0QZrGVLKjACHdhi/97pReX
+         u3Q2c83zO7fgz8pkd//g0yrn+NseB4f7qYy2VIjPm/K03rhYN5GPcSHk/WMaZHUTBi
+         vPrsItfB3KHIEzN1DrIcy17lu+sGE8RFW+saGohzR8SDwg6RAhTHbFGbCetmC8aeEA
+         7CLXiMrywT43Q==
+Received: by mail-qk1-f173.google.com with SMTP id b2so6226138qka.7;
+        Thu, 01 Jul 2021 07:51:49 -0700 (PDT)
+X-Gm-Message-State: AOAM533Esh+JwzIxnFSOfB6XkjFdHAVrhQTGU48/NfF2P9rmzKEghMqV
+        zz0mfa6Qeehvh1FEcUEL0EWhhfUWTu3HCHXVyA==
+X-Google-Smtp-Source: ABdhPJz1kSVMinw4yLjZ5WWPryE2wCRPjUk7fQZ5mVkY49e+ymIDPafKp9nM007EgQA1pjT2NxXixg440TSkB6+nsE4=
+X-Received: by 2002:a05:620a:1487:: with SMTP id w7mr421397qkj.128.1625151109003;
+ Thu, 01 Jul 2021 07:51:49 -0700 (PDT)
+MIME-Version: 1.0
+References: <CGME20210701140328epcms1p85149318b6c18fa18b3c7c8e966c14db0@epcms1p7>
+ <20210701141049epcms1p774955cc32210584be5aca8f1b3126e9c@epcms1p7>
+In-Reply-To: <20210701141049epcms1p774955cc32210584be5aca8f1b3126e9c@epcms1p7>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 1 Jul 2021 08:51:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL6LP+ksJSffTF8UU=m=u_aHLucq76HYyUio9_qDH9EdQ@mail.gmail.com>
+Message-ID: <CAL_JsqL6LP+ksJSffTF8UU=m=u_aHLucq76HYyUio9_qDH9EdQ@mail.gmail.com>
+Subject: Re: [PATCH] of: of_reserved_mem: match memblock_free with memblock_reserve
+To:     ohoono.kwon@samsung.com
+Cc:     "frowand.list@gmail.com" <frowand.list@gmail.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "ohkwon1043@gmail.com" <ohkwon1043@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ddc-i2c-scl-* properties in the hdmi node are
-not in use in the mainline kernel, so remove them.
+On Thu, Jul 1, 2021 at 8:10 AM =EA=B6=8C=EC=98=A4=ED=9B=88 <ohoono.kwon@sam=
+sung.com> wrote:
+>
+> When __reserved_mem_init_node called from fdt_init_reserved_mem fails,
+>
+> we try to undo __reserved_mem_alloc_size to prevent memory leak.
+>
+> 'commit d0b8ed47e83a ("of: reserved_mem: fix reserve memory leak")'
 
-Reported-by: Alex Bee <knaerzche@gmail.com>
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts | 2 --
- 1 file changed, 2 deletions(-)
+Your patch is corrupted and not plain text.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts b/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-index d41f786b2..43c928ac9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3318-a95x-z2.dts
-@@ -193,8 +193,6 @@
- };
- 
- &hdmi {
--	ddc-i2c-scl-high-time-ns = <9625>;
--	ddc-i2c-scl-low-time-ns = <10000>;
- 	status = "okay";
- };
- 
--- 
-2.11.0
+In any case, I believe this issue has already been fixed. Check the
+latest kernel tree(s).
 
+>
+> Meanwhile, __reserved_mem_alloc_size calls
+>
+> early_init_dt_alloc_reserved_memory_arch to allocate memory,
+>
+> which calls
+>
+> 1) memblock_remove when rmem is declared nomap,
+>
+> 2) memblock_reserve, otherwise.
+>
+>
+>
+> static int __init early_init_dt_alloc_reserved_memory_arch(
+>
+> ...
+>
+>         if (nomap)
+>
+>                 return memblock_remove(base, size);
+>
+>
+>
+>         return memblock_reserve(base, size);
+>
+> }
+>
+>
+>
+> Therefore the proper undo-logic should be as follows:
+>
+> 1) memblock_add when rmem is declared nomap,
+>
+> 2) memblock_free, otherwise.
+>
+>
+>
+> Match the undo functions for readability.
+>
+>
+>
+> Signed-off-by: Ohhoon Kwon <ohoono.kwon@samsung.com>
+>
+> ---
+>
+>  drivers/of/of_reserved_mem.c | 3 ++-
+>
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+>
+>
+> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+>
+> index 15e2417974d6..2279e1b55d1d 100644
+>
+> --- a/drivers/of/of_reserved_mem.c
+>
+> +++ b/drivers/of/of_reserved_mem.c
+>
+> @@ -273,9 +273,10 @@ void __init fdt_init_reserved_mem(void)
+>
+>                          if (err !=3D 0 && err !=3D -ENOENT) {
+>
+>                                  pr_info("node %s compatible matching fai=
+l\n",
+>
+>                                          rmem->name);
+>
+> -                                memblock_free(rmem->base, rmem->size);
+>
+>                                  if (nomap)
+>
+>                                          memblock_add(rmem->base, rmem->s=
+ize);
+>
+> +                                else
+>
+> +                                        memblock_free(rmem->base, rmem->=
+size);
+>
+>                          }
+>
+>                  }
+>
+>          }
+>
+> --
+>
+> 2.17.1
+>
+>
+>
+>
+>
+>
