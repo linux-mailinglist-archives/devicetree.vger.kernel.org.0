@@ -2,144 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 076D53B8CC2
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 06:02:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D1913B8CCA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 06:07:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229777AbhGAEFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 00:05:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36220 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229577AbhGAEFA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 00:05:00 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41B88C061756
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 21:02:30 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id a18so9200897lfs.10
-        for <devicetree@vger.kernel.org>; Wed, 30 Jun 2021 21:02:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7hi2FrhIaizwpDJPwnSinv9W2oMvoHm0CGYALUuuXDs=;
-        b=kWWeltzlSYGGc5QRSaAkNEu3wbwvMTyMjx7Hi1Du8rAm3U1ZDS7a2a2e9GB/JtvpeI
-         3iWP3ESanAX0jItDlj8NFWAfWGDMbaPHtU+xbFrBLaplzEIJyb0VhMk8diCaNxGaxuzy
-         R8XGe8kox80GEpIggg2eFJJwK/ZKq3i11ixHY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7hi2FrhIaizwpDJPwnSinv9W2oMvoHm0CGYALUuuXDs=;
-        b=PRICLGpRE8Q5scGhqx82cTGPkXocrBTmA5jrGYH5nab2XqOKGU+CpOgEhn2bBz1y3g
-         wdSbXwSPMwWtVQfDKuhRNPpW8VaGbnOLygGLXq7r7qB+sTrOks8861E/HFBder8CWIKT
-         A4+SoKFTVibAqNvz0bCMVv+/Y8pszjye3mQ+XYxZoav44xgKYPUIH21Df4Esl68ZpR4W
-         s62byJetfUpWcgzCytA9dv25GxERmIpYNtLiRWi038aB0JGyxGGugblNctSAdU33LIhz
-         gRIEppePRw81OG0Bfurq8DoxQJ1zypiboz+p86c+OS6xtNmHKRdssKyCAhgR/VsUd5tS
-         XTCw==
-X-Gm-Message-State: AOAM531UH+5oQFcR0AJcf1ExfdARGoKQYl3x4MYWnc4qN61+Eib2aiRv
-        2kRrxLtnJNbb+JNnKq7vK0tu4ydRWAppghaVfAFaMw==
-X-Google-Smtp-Source: ABdhPJw/v6AwK/W5MblRaHBzvNcBF8/BLoJuYBeXADDntlPIgf2Bpc9gBKz0UhSMGyatSQ8BxnhizhHgp4pWwKlsVxw=
-X-Received: by 2002:a05:6512:63:: with SMTP id i3mr29997663lfo.587.1625112148504;
- Wed, 30 Jun 2021 21:02:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210616224743.5109-1-chun-jie.chen@mediatek.com>
- <20210616224743.5109-4-chun-jie.chen@mediatek.com> <CAGXv+5F2zTcqnjH2ud38vUD149KJtgxhPQME2Mk6-vGtQv+2YQ@mail.gmail.com>
- <ff6179e8-06f9-fbba-c704-a74381c2149a@gmail.com> <CAGXv+5FXuMnhsnytLYKKA9YE97bps7KnkDNADvv8f_wdTqnrfg@mail.gmail.com>
- <be824462-4c2f-3bde-0a3d-c5470a5b0fbb@gmail.com>
-In-Reply-To: <be824462-4c2f-3bde-0a3d-c5470a5b0fbb@gmail.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 1 Jul 2021 12:02:17 +0800
-Message-ID: <CAGXv+5FSq-cCRR-wB_kp2s+59273r0nrhtkH9006ezN-sUtNzQ@mail.gmail.com>
-Subject: Re: [PATCH 03/22] clk: mediatek: Fix corner case of tuner_en_reg
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+        id S230255AbhGAEJa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 00:09:30 -0400
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:47355 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229577AbhGAEJ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 00:09:29 -0400
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.42])
+        by mailout.nyi.internal (Postfix) with ESMTP id 6EF0A5C00DD;
+        Thu,  1 Jul 2021 00:06:59 -0400 (EDT)
+Received: from imap43 ([10.202.2.93])
+  by compute2.internal (MEProxy); Thu, 01 Jul 2021 00:06:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=b9llwkSwjZo8KM7Yex+xrFxAOW2zg3o
+        RBtRbdMGHqB0=; b=G1QmCccEFko3Xu2jq2tb/saj0i5QzxnbX6jUzhTsNUzj4h/
+        ZToqGqm5mmrSbPG3k+LU/mHbbyAnkHY6yIHfefBGyknH88D8Gu84tmiQdN6VgVrk
+        yvYhx3WWEgFA7rBrzpHLvIXTab/CNYqXBml3nNEt7S2mbwQGvUTADbqMOPFwLyjW
+        7aAaX7We+vNKtOtQHIooJzqLUJqnIKXjciiCi3wIf9vV1Qi6dzCmpItsxuINdnW3
+        eoQQO2NAir0lREGVldgV94R6WK7QvqRTAaoNAULAzV0TwtcfZG+MyLtZJ4F5Mu44
+        oznjqkz8esEx9bRlvbYplTQbeUdvvV5hC8nULDw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=b9llwk
+        SwjZo8KM7Yex+xrFxAOW2zg3oRBtRbdMGHqB0=; b=I2TR+xMOnwQB1eU3SjoVpf
+        oy3/8x+qgRH9S5aduLYIW8Uu1hKwpQtDyHf6pGsFG3JLvQqz0hAolly/uAowU9Ju
+        C6DaWUDGZwyltHRIwQtzNkZfUgtd4rNxkcN51X51yfyoojxXRfIHPAsvLoyId3fa
+        /nPdpWFZsSDGrahvaSjQxIuNceVTqkX3/pS6nxD+5Jm7iUGRSqCXvjcNoaUBzB6E
+        190Z5YwoeqwBVNddCBnWOhmxp0RhWwZ6Xv7MhQt90YIS0mjSNVA+gRIbl241mmHg
+        HhLLdaCUEgQR2j2easdMex2tNiFRwBbmmfERNeXRgEXs/cGsuuLhop7RH3dHEY1Q
+        ==
+X-ME-Sender: <xms:Yj_dYKwI1X9tYlP5GkSGHRFvT_gDCFeicnwVwGbKI8_u8aEwwoGIPQ>
+    <xme:Yj_dYGRVBUIsPzWynZCuctEWy-Vg_wcqHViJQYSVVVI4p7aDNlQPCkHkb29NN42Hx
+    5gb9m50pqFbI42Jvg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduledrfeeihedgjeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefofgggkfgjfhffhffvufgtsehttd
+    ertderredtnecuhfhrohhmpedftehnughrvgifucflvghffhgvrhihfdcuoegrnhgurhgv
+    fiesrghjrdhiugdrrghuqeenucggtffrrghtthgvrhhnpeehhfefkefgkeduveehffehie
+    ehudejfeejveejfedugfefuedtuedvhefhveeuffenucevlhhushhtvghrufhiiigvpedt
+    necurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghu
+X-ME-Proxy: <xmx:Yj_dYMWLjU76N8iIO-7NevctuakLljdDF3tGDlZjHVnHLR2EYWxp8w>
+    <xmx:Yj_dYAjtVpLkSeO2xbaKoo78odtTyvidVMKmiydpN2epiWOucudSFg>
+    <xmx:Yj_dYMDgmxcC9-MRBjxGONi4e21P5iPeXn1zjaOMKR9NRuvrOSnxoA>
+    <xmx:Yz_dYL5PkTb1vFg7bplBh1Q22ZeoIsU02XA12YYSFTvJOQkocEb2Tw>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 24DB7AC0073; Thu,  1 Jul 2021 00:06:58 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-530-gd0c265785f-fm-20210616.002-gd0c26578
+Mime-Version: 1.0
+Message-Id: <8c808410-6444-46a3-8779-29ba1453a5ca@www.fastmail.com>
+In-Reply-To: <20210625074031.32576-1-liuxiwei@inspur.com>
+References: <20210625074031.32576-1-liuxiwei@inspur.com>
+Date:   Thu, 01 Jul 2021 13:36:37 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "George Liu" <liuxiwei1013@gmail.com>,
+        linux-aspeed@lists.ozlabs.org
+Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, "Rob Herring" <robh+dt@kernel.org>,
+        "George Liu" <liuxiwei@inspur.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1] ARM: dts: fp5280g2: Add KCS node for LPC MCTP
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"On Wed, Jun 30, 2021 at 7:43 PM Matthias Brugger
-<matthias.bgg@gmail.com> wrote:
-> On 30/06/2021 13:09, Chen-Yu Tsai wrote:
-> > On Wed, Jun 30, 2021 at 6:53 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
-> >> On 30/06/2021 09:31, Chen-Yu Tsai wrote:
-> >>> On Thu, Jun 17, 2021 at 7:01 AM Chun-Jie Chen
-> >>> <chun-jie.chen@mediatek.com> wrote:
-> >>>>
-> >>>> On MT8195, tuner_en_reg is moved to register offest 0x0.
-> >>>> If we only judge by tuner_en_reg, it may lead to wrong address.
-> >>>> Add tuner_en_bit to the check condition. And it has been confirmed,
-> >>>> on all the MediaTek SoCs, bit0 of offset 0x0 is always occupied by
-> >>>> clock square control.
-> >>>>
-> >>>> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> >>>
-> >>> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> >>>
-> >>> Though you might want to consider converting these types of checks into feature
-> >>> flags.
-> >>>
-> >>
-> >> Yes I think adding a feature flag is the way to go. Luckily there are only a few
-> >> SoCs that will need updates at the same time.
-> >
-> > I also see that the different clock modules are tied together using only clock
-> > names written in the drivers, instead of clock references in the device tree.
-> >
->
-> Not sure I understand what you mean. Do you refer to something like [1]? That's
-> because the clock is probed by the DRM driver, as they share the same compatible
-> and IP block.
+Hi George,
 
-In the example driver you mentioned, most of the registered clocks have the same
-parent clock, "mm_sel". This clock is from another hardware block,
-"topckgen" [1].
+On Fri, 25 Jun 2021, at 17:10, George Liu wrote:
+> Signed-off-by: George Liu <liuxiwei@inspur.com>
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-inspur-fp5280g2.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-inspur-fp5280g2.dts 
+> b/arch/arm/boot/dts/aspeed-bmc-inspur-fp5280g2.dts
+> index 1752f3250e44..66c0542b2694 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-inspur-fp5280g2.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-inspur-fp5280g2.dts
+> @@ -300,6 +300,11 @@ &lpc_ctrl {
+>  	flash = <&spi1>;
+>  };
+>  
+> +&kcs4 {
+> +	compatible = "openbmc,mctp-lpc";
+> +	status = "okay";
+> +};
 
-The two are linked together by looking up the clock name. The link should be
-explicitly described in the device tree, instead of implicitly by some name
-found in two drivers. The consuming driver can fetch the clock name via
-of_clk_get_parent_name(), or be migrated to use `struct clk_parent_data`,
-which allows specifying local (to the DT node) clock names or clk indices
-as parent clk references.
+This was a gross hack that we carried for a bit, it never went or was 
+intended to go upstream. Please just use the standard KCS bindings.
 
-What's more confusing is that the mmsys node actually has "assigned-clocks"
-properties [2] referencing the "mm_sel" clock, but not "clock" properties
-referencing the same clock. On the surface this looks like the hardware
-is trying to configure clocks that it doesn't use.
+Cheers,
 
-Also, Maxime Ripard made the argument before that "assigned-clock-rates"
-doesn't give any real guarantees that the clock rate won't change. A
-better method is to request and "lock" the clock rate in the consuming
-driver.
-
-So overall I think there are many improvements that can be made to the
-Mediatek clk drivers. They aren't real blockers to new drivers though,
-and I think each would take some effort and coordination across all
-the SoCs.
-
-
-Regards
-ChenYu
-
-[1] https://elixir.bootlin.com/linux/latest/source/drivers/clk/mediatek/clk-mt8173.c#L545
-[2] https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/mediatek/mt8173.dtsi#L996
-
-
-> Regards,
-> Matthias
->
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/clk/mediatek/clk-mt8173-mm.c?h=v5.13#n139
->
-> > Unfortunately reworking this would likely require a lot more work. I previously
-> > did a bit of internal reworking for the sunxi drivers. While not the same, I
-> > think the plumbing required is comparable.
-> >
-> > ChenYu
-> >
+Andrew
