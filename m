@@ -2,141 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 424683B983E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 23:38:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A87CC3B9856
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 23:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234183AbhGAVkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 17:40:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44496 "EHLO
+        id S234226AbhGAVyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 17:54:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229934AbhGAVky (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 17:40:54 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC1F2C061762
-        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 14:38:23 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id u20so10413867ljo.12
-        for <devicetree@vger.kernel.org>; Thu, 01 Jul 2021 14:38:23 -0700 (PDT)
+        with ESMTP id S234214AbhGAVyZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 17:54:25 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F314CC061765
+        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 14:51:53 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id q4so10465386ljp.13
+        for <devicetree@vger.kernel.org>; Thu, 01 Jul 2021 14:51:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=phystech-edu.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=QiNn8WEhtCBIq1rsfM6PoISeVVaGraw5Z7kWHh+wx5o=;
-        b=JqmwLN2M2erNRkHR+GXtJfvqyKLZCwbSMepixBsR2CIDgF8LoS6jgUdesNvivpmlmq
-         HkhlQCEarlKUijpESJEUmIvl0MYHstzrIDlJ63kIb230fuohVlE//5H2osICvaNprZTA
-         D0XC/c9ako4ddjeCiyqk3BJ88SY529kbayITCcbhDIC/BQBLjWznrtF+5XIIRpfC150n
-         fSvl75+pomMtvRMAsk5y1dYmKYb9UDGpNBptVkYCBigxqWkrejI7kZFWBtgwwm8IgBq3
-         wE5x8dKGaO8R4S6sPbVTj6s/D4vS4CIbjMOphhpLq3UjPJ6Xypem7H08cGz3SxCfLSjf
-         4ArA==
+        bh=a3IX/2KuwHeMRcmciK0Z/zcjVGMIarf1/EXwo1sUcpU=;
+        b=0/G8HqauhtiyYpibqNVecNYum5ecxe3IiMbygluzJPZOdzvWwW9vBN56yOOSDNv0eN
+         7ENGMx4jiGbO4xReSZS8rQFd62bvkl9RS+/aAN8jqFo0vy/fi35Ry6WbULuIxxLHAY+1
+         aLP1u8XhKEEcxhEN8mtj/XZZ25FVHLP/9IkcRf85IQY3R/3Zj4i/utnEz0/eMFfYMY8k
+         IF8DEdriWA8EWU8TuOCSPwCZ4jRsNU/JqjmiUbhrtu29fcj+06N1DrVb1kV9Cv5jn4aO
+         omaKfF4+mrdwJpaLeWs4OVyJ3Hl+rcMW/kO8wbBTVUzSLAcVW2A8d3yVId4ZN5uSOCN2
+         waSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=QiNn8WEhtCBIq1rsfM6PoISeVVaGraw5Z7kWHh+wx5o=;
-        b=lcJUrYQirEVvr/d+chSw7HFEoInXVaDdhvZPPPprqiYIxuLKudZ/da/IP+ILUU90/r
-         ZGFEr5N2kXei5MN5nXoJy6viYs5755ikmJHcjcjgppoHidYqxR8W0CvQri+jX9aGwRgV
-         0T1Dbqeq126x6Ps4sB02wuMrZkJwCjTy44Pjj9L1IURkjQ0lCz256avYtPYCvB0ngLm2
-         nFllLaeeefJFIgkx+khPKm41IDoz654xtRijliZJ/OslRp5TwIOieerIFeU0RFM4qB17
-         WICPTLVdv5DjounBbH3mLzxPTedw43OooNxt/WNWSIBZ2RU/3j7kh/kOHJ/xncqEol5c
-         8/7g==
-X-Gm-Message-State: AOAM530cQerPMUwNne2VVeY/oycSZX/UhPoGpBVgeV8pLCa8wQ2IFAXh
-        N2EwSC+mhB55wkvKJPYOpWIVTw==
-X-Google-Smtp-Source: ABdhPJxKSdwxg0SzbXr+B8xUxCSKmlJMTm1pbvTFWn5twYlTEE9rwrRIT9RFDou0o0sZwpudYNqmew==
-X-Received: by 2002:a2e:a276:: with SMTP id k22mr1148638ljm.465.1625175501296;
-        Thu, 01 Jul 2021 14:38:21 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id b5sm81131lfv.3.2021.07.01.14.38.20
+        bh=a3IX/2KuwHeMRcmciK0Z/zcjVGMIarf1/EXwo1sUcpU=;
+        b=QulY4Hg2EQsNh/Wg4JEViEikKYbcxU6A5PC34roil9RZlkUXonHRoB2CWqR5NbSKxp
+         xXG9CGe7p3uSZveDkeWLQyKt7vSktC8L6TJZmlRiJievXalA2Fq3csEredcUwAI4PUBQ
+         GfnuPmDDISpaqC92h1D6oXD0KPWR6XWAIZdew1iLAdZQ6H9lQtEko9/Yw6yNfVrFVf8l
+         AfMJcCB5gQkgJLveZLZsJkrh2dl5EoOLcTifVTkuTJeiMuTO6g5ttahCLm73CmlaPLzp
+         agYgzZoBc3wU7gz3Pf6iElmd00sgJWNYSx7N5wBu9G8VLYZJ7HEGTrljCnMgEmc3oP4r
+         R8ug==
+X-Gm-Message-State: AOAM532oj64/kzYLjhiqyAATn9ibnMKmkJh1c0rKXCTyUU/GUVd/P7bf
+        WpvEm30ShK96mAL9vNJMfgVY8g==
+X-Google-Smtp-Source: ABdhPJwFe3YY1ET2LKfFqWQ/0/xLKXQAv2E0/Kf2SXy1asZumMFcF3weWH7KiGXFHN5kVlXaSX2ieg==
+X-Received: by 2002:a2e:bc26:: with SMTP id b38mr1230428ljf.345.1625176312222;
+        Thu, 01 Jul 2021 14:51:52 -0700 (PDT)
+Received: from 192.168.1.3 ([2a00:1370:810e:4d3d:fdb7:f150:ee77:eba5])
+        by smtp.gmail.com with ESMTPSA id q17sm138623ljp.3.2021.07.01.14.51.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jul 2021 14:38:20 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] drm/panel: Fix up DT bindings for Samsung lms397kf04
-Date:   Thu,  1 Jul 2021 23:36:18 +0200
-Message-Id: <20210701213618.3818821-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
+        Thu, 01 Jul 2021 14:51:51 -0700 (PDT)
+From:   Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+To:     sean@mess.org, mchehab@kernel.org, robh+dt@kernel.org,
+        khilman@baylibre.com, narmstrong@baylibre.com
+Cc:     jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, rockosov@gmail.com,
+        Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+Subject: [PATCH 0/2] media: rc: add support for Amlogic Meson IR blaster
+Date:   Fri,  2 Jul 2021 00:51:30 +0300
+Message-Id: <20210701215132.16317-1-viktor.prutyanov@phystech.edu>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Improve the bindings and make them more usable:
+Hi,
 
-- Pick in spi-cpha and spi-cpol from the SPI node parent,
-  this will specify that we are "type 3" in the device tree
-  rather than hardcoding it in the operating system.
-- Drop the u32 ref from the SPI frequency: comes in from
-  the SPI host bindings.
-- Make spi-cpha, spi-cpol and port compulsory.
-- Update the example with a real-world SPI controller,
-  spi-gpio.
+this is a driver for the IR transmitter (also called IR blaster)
+available in some Amlogic Meson SoCs.
 
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Noralf Trønnes <noralf@tronnes.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../display/panel/samsung,lms397kf04.yaml      | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+Viktor Prutyanov (2):
+  media: rc: meson-irblaster: document device tree bindings
+  media: rc: introduce Meson IR blaster driver
 
-diff --git a/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml b/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml
-index 4cb75a5f2e3a..cd62968426fb 100644
---- a/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml
-@@ -33,8 +33,11 @@ properties:
- 
-   backlight: true
- 
-+  spi-cpha: true
-+
-+  spi-cpol: true
-+
-   spi-max-frequency:
--    $ref: /schemas/types.yaml#/definitions/uint32
-     description: inherited as a SPI client node, the datasheet specifies
-       maximum 300 ns minimum cycle which gives around 3 MHz max frequency
-     maximum: 3000000
-@@ -44,6 +47,9 @@ properties:
- required:
-   - compatible
-   - reg
-+  - spi-cpha
-+  - spi-cpol
-+  - port
- 
- additionalProperties: false
- 
-@@ -52,15 +58,23 @@ examples:
-     #include <dt-bindings/gpio/gpio.h>
- 
-     spi {
-+      compatible = "spi-gpio";
-+      sck-gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
-+      miso-gpios = <&gpio 1 GPIO_ACTIVE_HIGH>;
-+      mosi-gpios = <&gpio 2 GPIO_ACTIVE_HIGH>;
-+      cs-gpios = <&gpio 3 GPIO_ACTIVE_HIGH>;
-+      num-chipselects = <1>;
-       #address-cells = <1>;
-       #size-cells = <0>;
-       panel@0 {
-         compatible = "samsung,lms397kf04";
-         spi-max-frequency = <3000000>;
-+        spi-cpha;
-+        spi-cpol;
-         reg = <0>;
-         vci-supply = <&lcd_3v0_reg>;
-         vccio-supply = <&lcd_1v8_reg>;
--        reset-gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
-+        reset-gpios = <&gpio 4 GPIO_ACTIVE_LOW>;
-         backlight = <&ktd259>;
- 
-         port {
+ .../media/amlogic,meson-irblaster.yaml        |  63 +++
+ drivers/media/rc/Kconfig                      |  10 +
+ drivers/media/rc/Makefile                     |   1 +
+ drivers/media/rc/meson-irblaster.c            | 433 ++++++++++++++++++
+ 4 files changed, 507 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,meson-irblaster.yaml
+ create mode 100644 drivers/media/rc/meson-irblaster.c
+
 -- 
-2.31.1
+2.21.0
 
