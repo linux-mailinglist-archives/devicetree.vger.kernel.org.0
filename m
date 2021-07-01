@@ -2,121 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B66A63B9296
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:00:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EE5E3B929D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 16:02:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232081AbhGAODQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 10:03:16 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:9317 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231342AbhGAODQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:03:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1625148030;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=jdajgCtb8y8FBueJJb4PCu1MS3sUAvqVQcmmtwiQ4ug=;
-    b=gcansIWQTjqc6gmrNeOZs+66+/NogM4f4GQaBp4cbqd8X2/zV0RgJIClWznE1pKz4b
-    kdS9cJCdP1DSLg/YzZrn6Zg3kWARrKMVq+HdnKATfTXXRkPaKCYzkd1LMDtbimHLdjMp
-    ktzcwGvchwnz25Yrx4nxzwGLlWQz6IV53oOZnjnOmMFNNnzLtwg0r9qCqsaUNh6BY+X9
-    gqu8SuCWaogGucQEo3LGVNVI1l4G+4yCetQNVf+fSgJZt0kX1BIGu3q7tdcVq2LXSWfI
-    vVoH05kMF7exnkFDdOoPkmRgOzxWoUigvq2leuJDUvPMIndOrZeMtk9Yh5Q0GKcxkJK7
-    SaqA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1mfYzBGHXH7F/39n3sa"
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-    by smtp.strato.de (RZmta 47.28.1 DYNA|AUTH)
-    with ESMTPSA id h06665x61E0U64w
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 1 Jul 2021 16:00:30 +0200 (CEST)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Tony Lindgren <tony@atomide.com>, gg@slimlogic.co.uk,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>,
-        peter.ujfalusi@gmail.com,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, kernel@pyra-handheld.com,
+        id S232607AbhGAOFU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 10:05:20 -0400
+Received: from mail-io1-f46.google.com ([209.85.166.46]:34572 "EHLO
+        mail-io1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232545AbhGAOFU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 10:05:20 -0400
+Received: by mail-io1-f46.google.com with SMTP id g22so7682686iom.1;
+        Thu, 01 Jul 2021 07:02:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=THjpgrJovveE0NhsgOiUBUqHrg+mADZu3fJVwSRkCSc=;
+        b=o2ZzcFV81zc+nuN757TT6OGC16F/NfaF5W5J7xjGhO6NSQ+bIzJUaK9jy6pLZUleLI
+         BVnmhnqtUKMoZ3tpczrG+Pa8Fk8YpKYBT/zkRGNQ26vNAMtjlg3YPQA/tiiY5fQrmuHG
+         XQ6WyjKWRtEWS42nnjIW655dPc5YS/z3yXMnoWsDb8Enj8Rpz+l81AdkRwJOJpNbzCxS
+         Q/s0asRjks3YYqr6niLBoq/9DAyDXf9DChRQzWCEOLPeLh9Wmx4FEh0+T0KHh9oHR6Jj
+         73sGLe+ND8EbZTaN7dvifPBbOOpiBquFooTLI8wckddqwaWzrKXdqMb8dnbXdoQXj7Im
+         1SlQ==
+X-Gm-Message-State: AOAM5334vcq6weUz6U9kvcury6/P10Dc+T2FdIrFPwE1LueNRUIokq8B
+        iFWJqJgbIzphvl+RQG9IUQ==
+X-Google-Smtp-Source: ABdhPJzJ7Low6+obMGZc22tdSQJCTAnBXTetdd/zkTKltPCjJi63xgkwIOo8xZkxCniERctV+IGf2w==
+X-Received: by 2002:a6b:e911:: with SMTP id u17mr12551013iof.54.1625148169359;
+        Thu, 01 Jul 2021 07:02:49 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id h10sm29866ili.27.2021.07.01.07.02.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jul 2021 07:02:48 -0700 (PDT)
+Received: (nullmailer pid 2278689 invoked by uid 1000);
+        Thu, 01 Jul 2021 14:02:43 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nikhil Devshatwar <nikhil.nd@ti.com>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         devicetree@vger.kernel.org,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH v2] omap5-board-common: remove not physically existing vdds_1v8_main fixed-regulator
-Date:   Thu,  1 Jul 2021 16:00:22 +0200
-Message-Id: <e836d5d98b028bdbb8805bcf79489e0df28add6c.1625148021.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.31.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20210624192200.22559-11-p.yadav@ti.com>
+References: <20210624192200.22559-1-p.yadav@ti.com> <20210624192200.22559-11-p.yadav@ti.com>
+Subject: Re: [PATCH v3 10/11] media: dt-bindings: Add DT bindings for TI J721E CSI2RX driver
+Date:   Thu, 01 Jul 2021 08:02:43 -0600
+Message-Id: <1625148163.481805.2278688.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This device tree include file describes a fixed-regulator
-connecting smps7_reg output (1.8V) to some 1.8V rail and
-consumers (vdds_1v8_main).
+On Fri, 25 Jun 2021 00:51:59 +0530, Pratyush Yadav wrote:
+> TI's J721E uses the Cadence CSI2RX and DPHY peripherals to facilitate
+> capture over a CSI-2 bus. The TI CSI2RX platform driver glues all the
+> parts together.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> 
+> ---
+> 
+> (no changes since v2)
+> 
+> Changes in v2:
+> - Rename to ti,j721e-csi2rx.yaml
+> - Add an entry in MAINTAINERS.
+> - Add a description for the binding.
+> - Change compatible to ti,j721e-csi2rx to make it SoC specific.
+> - Remove description from dmas, reg, power-domains.
+> - Remove a limit of 2 from #address-cells and #size-cells.
+> - Fix add ^ to csi-bridge subnode regex.
+> - Make ranges mandatory.
+> - Add unit address in example.
+> - Add a reference to cdns,csi2rx in csi-bridge subnode.
+> - Expand the example to include the csi-bridge subnode as well.
+> - Re-order subject prefixes.
+> 
+>  .../bindings/media/ti,j721e-csi2rx.yaml       | 101 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 102 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/ti,j721e-csi2rx.yaml
+> 
 
-This regulator does not physically exist.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-I assume it was introduced as a wrapper around smps7_reg
-to provide a speaking signal name "vdds_1v8_main" as label.
+yamllint warnings/errors:
 
-This fixed-regulator without real function was not an issue
-in driver code until
+dtschema/dtc warnings/errors:
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/media/cdns,csi2rx.yaml'
+xargs: dt-doc-validate: exited with status 255; aborting
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/media/ti,j721e-csi2rx.example.dt.yaml'
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/media/cdns,csi2rx.yaml'
+make[1]: *** [scripts/Makefile.lib:380: Documentation/devicetree/bindings/media/ti,j721e-csi2rx.example.dt.yaml] Error 255
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1416: dt_binding_check] Error 2
+\ndoc reference errors (make refcheckdocs):
 
-  Commit 98e48cd9283d ("regulator: core: resolve supply for boot-on/always-on regulators")
+See https://patchwork.ozlabs.org/patch/1496774
 
-introduced a new check for regulator initialization which
-makes Palmas regulator registration fail:
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-[    5.407712] ldo1: supplied by vsys_cobra
-[    5.412748] ldo2: supplied by vsys_cobra
-[    5.417603] palmas-pmic 48070000.i2c:palmas@48:palmas_pmic: failed to register 48070000.i2c:palmas@48:palmas_pmic regulator
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-The reason is that the supply-chain of regulators is too
-long and goes from ldo3 through the virtual vdds_1v8_main
-regulator and then back to smps7. This adds a cross-dependency
-of probing Palmas regulators and the fixed-regulator which
-leads to probe deferral by the new check and is no longer
-resolved.
+pip3 install dtschema --upgrade
 
-Since we do not control what device tree files including this
-one reference (either &vdds_1v8_main or &smps7_reg or both)
-we keep both labels for smps7 for compatibility.
-
-Fixes: 98e48cd9283d ("regulator: core: resolve supply for boot-on/always-on regulators")
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- arch/arm/boot/dts/omap5-board-common.dtsi | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
-
-diff --git a/arch/arm/boot/dts/omap5-board-common.dtsi b/arch/arm/boot/dts/omap5-board-common.dtsi
-index d8f13626cfd1..3a8f10231475 100644
---- a/arch/arm/boot/dts/omap5-board-common.dtsi
-+++ b/arch/arm/boot/dts/omap5-board-common.dtsi
-@@ -30,14 +30,6 @@ vsys_cobra: fixedregulator-vsys_cobra {
- 		regulator-max-microvolt = <5000000>;
- 	};
- 
--	vdds_1v8_main: fixedregulator-vdds_1v8_main {
--		compatible = "regulator-fixed";
--		regulator-name = "vdds_1v8_main";
--		vin-supply = <&smps7_reg>;
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
--	};
--
- 	vmmcsd_fixed: fixedregulator-mmcsd {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vmmcsd_fixed";
-@@ -487,6 +479,7 @@ smps6_reg: smps6 {
- 					regulator-boot-on;
- 				};
- 
-+				vdds_1v8_main:
- 				smps7_reg: smps7 {
- 					/* VDDS_1v8_OMAP over VDDS_1v8_MAIN */
- 					regulator-name = "smps7";
--- 
-2.31.1
+Please check and re-submit.
 
