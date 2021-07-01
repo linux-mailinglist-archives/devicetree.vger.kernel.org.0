@@ -2,237 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59F4D3B970B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 22:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C4963B971F
+	for <lists+devicetree@lfdr.de>; Thu,  1 Jul 2021 22:18:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233703AbhGAUPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 16:15:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53688 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233080AbhGAUPL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 16:15:11 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 412D3C061765
-        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 13:12:40 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id f13so5036151qtb.6
-        for <devicetree@vger.kernel.org>; Thu, 01 Jul 2021 13:12:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IRBdJfZtqdTD8dfu42iDMw+1kiTU/iXVIZE4bw9+r8w=;
-        b=Uxtj/3SQ170QVlNu/SMKZ8EZu0BrxZFF1GQy9XJVD54dMG1+175ytv2DGm3HaKK/sO
-         HcSy0A+klkKcUI+A4u5m5MrKcIOUYO3iBR0ZKKvLhYEWlck6OyygIYPLV57njq4/Y+aF
-         0IN+OO7O5GdjNq7NMjN2pZp8fPOrKcGgEu1Bu7C+EB2RfPJjZUfWkJZh4iDXX/F/8Qm8
-         L6CM/fsyQp4XlqgthNWX2o5SJqMk0mmTbiVLSkwPY9BsPMNRq50FrT6ecxA9XV7ttfsk
-         9QJ9ZSoVpn2gBSd5UCZxWFkhnH+M8qssL177gkTWppJEdJCe1bK8GIO7x3wx0JV/tbgN
-         L/Wg==
+        id S233882AbhGAUVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 16:21:23 -0400
+Received: from mail-il1-f181.google.com ([209.85.166.181]:35748 "EHLO
+        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232113AbhGAUVX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 16:21:23 -0400
+Received: by mail-il1-f181.google.com with SMTP id a11so7665347ilf.2;
+        Thu, 01 Jul 2021 13:18:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IRBdJfZtqdTD8dfu42iDMw+1kiTU/iXVIZE4bw9+r8w=;
-        b=lD/01oSq/WF+yq4gPNJlSE6h4pXTjn9nUKGFzpvMxw9lZMRMmCax86wBzmgJV0IY2T
-         sdW8/jQUXkzewxgkIInJ9Bbz7zztVnsNsFXGGtsEPpCGLwhb/40PN9w6iLh9tLM0kIW9
-         /Mu4W6r+9QQJUJdXqCDHGBgo6PcQrb0qJBhBldZbYMBR2/hRP1ovyBuhQv+SBC8JSVEO
-         rL6jjKIEAk+xRtpHebNxZmc+jZ3+4MFFgRN6C4YeYdPYq+9VTQcNveWFcA3Xe9iPYkWM
-         MKISxEOor2POt/U+87cnjXXj0iFb6c+fsWAJcb/xpAkXc5FcSFknmohBvK09CEiylFzN
-         2EVg==
-X-Gm-Message-State: AOAM5313Oub9b9FIiAjJkYcFHO9mGF8mn1GByb+0xIvElirAwuwCCxMm
-        XN4mmrjubBjVj4WRh05Ld7mE6RGeDPjJP8VhEOndSQ==
-X-Google-Smtp-Source: ABdhPJw49As8AbIVoei6s0cq92oq3hCWuzSx1MGQeISmA95gFm4I7FY2spyQhoXdh7nHoImLTroCnRgnsNZf+X5rcIk=
-X-Received: by 2002:ac8:688:: with SMTP id f8mr1674302qth.135.1625170359373;
- Thu, 01 Jul 2021 13:12:39 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jkKNz83v8bTKAmVdHO7nGUak++aeSsOWlXuVgcISOl0=;
+        b=Upels+RW/G8dqi33Nuz8lHusjGDW7ton7n6GAFiUX18hM1gB+kA6+CuEi0QsTrNG1t
+         rcREUJdOMm9rVJVjGxXTjI2NBql/s59IMYyA2pI8/w61sZhF14lTe0yf4xVJJfzP//BX
+         J9koxzJvetZGZnxvxmWMJ7CEOHH83ajcbtRWWwyjPVrtQRo5Q1+2XgTamAdTkwfLWaM7
+         sQ6KeIW4cz0WdIBZPOLyCXwEaC0AF4/VqqzYp7QDWqTQi2A9e5llgcg51ertw/7SiMl1
+         UWoDF7IcpWXCGkZiDKwEQGOMxLm0pBllIJUEwHLbu4DtRKgA7qp0y70pdlISAEMWqMJH
+         B+YQ==
+X-Gm-Message-State: AOAM532T7WOvDlm95YF3VZpRBbgHhGxp33/E0P6dqC8kUv/5Y/WTNztg
+        /16EZrX0g+K/Nrqt/QkWvQ==
+X-Google-Smtp-Source: ABdhPJxtxgEA4kNkOytbyFpCO9NEcYOLLKLdFA7tA79AD7cIrlqW3i8z2e3RRRGjRSL7hT+sxY+b4g==
+X-Received: by 2002:a05:6e02:1292:: with SMTP id y18mr896855ilq.30.1625170732037;
+        Thu, 01 Jul 2021 13:18:52 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id u16sm419388iob.41.2021.07.01.13.18.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Jul 2021 13:18:51 -0700 (PDT)
+Received: (nullmailer pid 2858275 invoked by uid 1000);
+        Thu, 01 Jul 2021 20:18:46 -0000
+Date:   Thu, 1 Jul 2021 14:18:46 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Trevor Wu <trevor.wu@mediatek.com>
+Cc:     broonie@kernel.org, tiwai@suse.com, matthias.bgg@gmail.com,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, bicycle.tsai@mediatek.com,
+        jiaxin.yu@mediatek.com, cychiang@google.com, aaronyu@google.com
+Subject: Re: [PATCH v2 6/8] dt-bindings: mediatek: mt8195: add audio afe
+ document
+Message-ID: <20210701201846.GA2783836@robh.at.kernel.org>
+References: <20210629014736.31153-1-trevor.wu@mediatek.com>
+ <20210629014736.31153-7-trevor.wu@mediatek.com>
 MIME-Version: 1.0
-References: <20210630133149.3204290-1-dmitry.baryshkov@linaro.org>
- <20210630133149.3204290-4-dmitry.baryshkov@linaro.org> <YNyHDAHk6ad/XCGl@yoga>
- <CAA8EJpqf6VyaS7KyhujFgST+S=fua4S-uXia0g7Qh7ogYgWYbw@mail.gmail.com>
- <YNylqGEi7Q3tFCgy@yoga> <CAA8EJppHQ-XhZWbsPX39wie48JXWvsNerWB9=Q0yxxs7987xxA@mail.gmail.com>
- <YN1DIwR66JKoFhEZ@yoga>
-In-Reply-To: <YN1DIwR66JKoFhEZ@yoga>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 1 Jul 2021 23:12:27 +0300
-Message-ID: <CAA8EJpr6qrVJY7DdcNagrpaTFW2FMxE-GE8nHyxmiFHCY0A+jA@mail.gmail.com>
-Subject: Re: [PATCH 3/6] clk: qcom: gdsc: enable optional power domain support
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Taniya Das <tdas@codeaurora.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210629014736.31153-7-trevor.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 1 Jul 2021 at 07:23, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
->
-> On Wed 30 Jun 15:29 CDT 2021, Dmitry Baryshkov wrote:
->
-> > On Wed, 30 Jun 2021 at 20:11, Bjorn Andersson
-> > <bjorn.andersson@linaro.org> wrote:
-> > >
-> > > On Wed 30 Jun 10:47 CDT 2021, Dmitry Baryshkov wrote:
-> > >
-> > > > Hi,
-> > > >
-> > > > On Wed, 30 Jun 2021 at 18:00, Bjorn Andersson
-> > > > <bjorn.andersson@linaro.org> wrote:
-> > > > >
-> > > > > On Wed 30 Jun 08:31 CDT 2021, Dmitry Baryshkov wrote:
-> > > > >
-> > > > > > On sm8250 dispcc and videocc registers are powered up by the MMCX power
-> > > > > > domain. Currently we used a regulator to enable this domain on demand,
-> > > > > > however this has some consequences, as genpd code is not reentrant.
-> > > > > >
-> > > > > > Teach Qualcomm clock controller code about setting up power domains and
-> > > > > > using them for gdsc control.
-> > > > > >
-> > > > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > >
-> > > > > There's a proposal to add a generic binding for statically assigning a
-> > > > > performance states here:
-> > > > >
-> > > > > https://lore.kernel.org/linux-arm-msm/1622095949-2014-1-git-send-email-rnayak@codeaurora.org/
-> >
-> > I checked this thread. It looks like Rajendra will also switch to the
-> > "required-opps" property. So if that series goes in first, we can drop
-> > the call to set_performance_state. If this one goes in first, we can
-> > drop the set_performance_state call after getting Rajendra's work in.
-> >
-> > > > >
-> > > > >
-> > > > > But that said, do you really need this?
-> > > > >
-> > > > > The requirement for driving MMCX to LOW_SVS on SM8250 (and NOM on
-> > > > > SM8150/SC8180x) seems to only come from the fact that you push MDP_CLK
-> > > > > to 460MHz in &mdss.
-> > > > >
-> > > > > But then in &mdss_mdp you do the same using an opp-table based on the
-> > > > > actual MDP_CLK, which per its power-domains will scale MMCX accordingly.
-> > > >
-> > > > MDSS and DSI would bump up MMCX performance state requirements on
-> > > > their own, depending on the frequency being selected.
-> > > >
-> > >
-> > > Right, but as I copied things from the sm8250.dtsi to come up with
-> > > sm8150/sc8180x.dtsi I concluded that as soon as the assigned-clockrate
-> > > in &mdss kicks in I need the performance state to be at NOM.
-> > >
-> > > So keeping the assigned-clockrate in &mdss means that MMCX will never go
-> > > below NOM.
-> >
-> > No, because once MDP is fully running, it will lower the clock frequency:
-> >
-> > # grep mdp_clk /sys/kernel/debug/clk/clk_summary
-> >           disp_cc_mdss_mdp_clk_src       1        1        0
-> > 150000000          0     0  50000         ?
-> >              disp_cc_mdss_mdp_clk       2        2        0
-> > 150000000          0     0  50000         Y
-> >
->
-> But won't that just lower the performance state requested by the
-> &mdss_mdp, while the &mdss still votes for NOM - with the outcome being
-> that we maintain NOM even if the clock goes down?
+On Tue, Jun 29, 2021 at 09:47:34AM +0800, Trevor Wu wrote:
+> This patch adds mt8195 audio afe document.
+> 
+> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
+> ---
+> This patch depends on the following series that have not been accepted.
+> 
+> [1] Mediatek MT8195 clock support
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=501923
+> (dt-bindings/clock/mt8195-clk.h is included)
+> 
+> [2] Mediatek MT8195 power domain support
+> https://patchwork.kernel.org/project/linux-mediatek/list/?series=500709
+> (dt-bindings/power/mt8195-power.h is included)
+> ---
+>  .../bindings/sound/mt8195-afe-pcm.yaml        | 136 ++++++++++++++++++
+>  1 file changed, 136 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
+> new file mode 100644
+> index 000000000000..a4fb5c7dd022
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/mt8195-afe-pcm.yaml
+> @@ -0,0 +1,136 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/mt8195-afe-pcm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek AFE PCM controller for mt8195
+> +
+> +maintainers:
+> +  - Trevor Wu <trevor.wu@mediatek.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8195-audio
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  mediatek,topckgen:
+> +    $ref: "/schemas/types.yaml#/definitions/phandle"
+> +    description: The phandle of the mediatek topckgen controller
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: audio 26M clock
+> +      - description: AFE clock
+> +      - description: audio infra sys clock
+> +      - description: audio infra 26M clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: clk26m
+> +      - const: aud_afe
+> +      - const: infra_ao_audio
+> +      - const: infra_ao_audio_26m_b
+> +
+> +  etdm-in1-chn-disabled:
 
-&mdss doesn't vote on performance state. At least it does not on
-msm/msm-next which I have at hand right now.
-&mdss toggles mdss_gdsc, but does not assign any performance state.
+Needs a vendor prefix.
 
-On the other hand &mdss_mdp and &dsi0 clearly vote on mmcx's performance state.
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    maxItems: 24
+> +    description: Specify which input channel should be disabled.
+> +
+> +  etdm-in2-chn-disabled:
 
->
-> > >
-> > > > > So wouldn't it be sufficient to ensure that MDSS_GDSC is parented by
-> > > > > MMCX and then use opp-tables associated with the devices that scales the
-> > > > > clock and thereby actually carries the "required-opps".
-> > > >
-> > > > Actually no. I set the performance state in the qcom_cc_map, so that
-> > > > further register access is possible. Initially I was doing this in the
-> > > > qcom_cc_really_probe() and it was already too late.
-> > > > Just to remind: this patchset is not about MDSS_GDSC being parented by
-> > > > MMCX, it is about dispcc/videocc registers being gated with MMCX.
-> > > >
-> > >
-> > > So you're saying that just enabling MMCX isn't enough to touch the
-> > > dispcc/videocc registers? If that's the case it seems like MMCX's
-> > > definition of "on" needs to be adjusted - because just specifying MMCX
-> > > as the power-domain for dispcc/videocc and enabling pm_runtime should
-> > > ensure that MMCX is enabled when the clock registers are accessed (I
-> > > don't see anything like that for the GDSC part though).
-> >
-> > No, it is not enough. If I comment out the set_performance_state call,
-> > the board reboots.
-> >
-> > However I can set the opps as low as RET and register access will work.
-> > I'll run more experiments and if everything works as expected, I can
-> > use retention or min_svs level in the next iteration.
-> > Just note that downstream specifies low_svs as minimum voltage level
-> > for MMCX regulator.
-> >
->
-> It doesn't make sense to me that a lone power_on on the power-domain
-> wouldn't give us enough juice to poke the registers.
->
-> But digging into the rpmhpd implementation answers the question, simply
-> invoking rpmhpd_power_on() is a nop, unless
-> rpmhpd_set_performance_state() has previously been called, because
-> pd->corner is 0. So this explains why enable isn't sufficient.
->
-> Compare this with the rpmpd implementation that will send an
-> enable request to the RPM in this case.
+Needs a vendor prefix.
 
-Do you think that we should change that to:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    maxItems: 16
+> +    description: Specify which input channel should be disabled.
+> +
+> +patternProperties:
+> +  "^etdm-in[1-2]-mclk-source$":
 
-rpmhpd_aggregate_corner(pd, max(pd->corner, 1)) ?
+And all these need a vendor prefix.
 
-Or
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Specify etdm in mclk source clock.
+> +    enum:
+> +      - 0 # xtal_26m_ck
+> +      - 1 # apll1_ck
+> +      - 2 # apll2_ck
+> +      - 3 # apll3_ck
+> +      - 4 # apll4_ck
+> +      - 5 # apll5_ck
+> +      - 6 # hdmirx_apll_ck
+> +
+> +  "^etdm-out[1-3]-mclk-source$":
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Specify etdm out mclk source clock.
+> +
+> +  "^etdm-in[1-2]-mclk-alwasys-on-rate$":
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Specify etdm in mclk output rate for always on case.
 
-rpmhpd_aggregate_corner(pd, max(pd->corner, pd->levels[1])) ?
+Hz? If so, '-hz' unit suffix and drop the type ref.
 
->
-> > > I thought our problem you had was that you need to set a
-> > > performance_state in order to clock up some of the clocks - e.g.
-> > > MDP_CLK.
-> >
-> > No, even register access needs proper perf state.
-> >
->
-> Per above finding you're right, enabling a rpmhpd power-domain doesn't
-> do anything. And I don't find this intuitive or even in line with the
-> expectations of the api...
->
->
->
-> A quick test booting rb3 and rb5 seems to indicate that it's possible to
-> initialize pd->corner to 1 (to ensure that enable at least gives us the
-> lowest level).
->
-> set_performance_state(0) will however then result in voting for "off",
-> rather than the lowest enabled level.
+> +
+> +  "^etdm-out[1-3]-mclk-alwasys-on-rate$":
 
-Well, set_performance_state(0) means that "the device wouldn't
-participate anymore to find the target performance state of the
-genpd". Strictly speaking it does not specify whether it is ok to turn
-it off or not. (like the regulator with the voltage set to 0V).
-But I'd also like to hear a comment from Stephen here.
+typo: alwasys
 
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Specify etdm out mclk output rate for always on case.
 
-> Rajendra, Stephen, is this really how rpmhpd is supposed to work?!
+Hz?
 
+> +
+> +  "^etdm-in[1-2]-data-mode$":
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Specify etdm in data mode.
+> +    enum:
+> +      - 0 # one pin (TDM)
+> +      - 1 # multi pin (I2S)
 
+Can be boolean?
 
--- 
-With best wishes
-Dmitry
+> +
+> +  "^etdm-out[1-3]-data-mode$":
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Specify etdm out data mode.
+
+Constraints on values?
+
+> +
+> +  "^etdm-in[1-2]-cowork-source$":
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      etdm modules can share the same external clock pin. Specify
+> +      which etdm clock source is required by this etdm in moudule.
+> +    enum:
+> +      - 0 # etdm1_in
+> +      - 1 # etdm2_in
+> +      - 2 # etdm1_out
+> +      - 3 # etdm2_out
+> +      - 4 # etdm3_out
+> +
+> +  "^etdm-out[1-3]-cowork-source$":
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      etdm modules can share the same external clock pin. Specify
+> +      which etdm clock source is required by this etdm out moudule.
+
+Constraints?
+
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - mediatek,topckgen
+> +  - power-domains
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/mt8195-power.h>
+> +
+> +    afe: mt8195-afe-pcm {
+> +        compatible = "mediatek,mt8195-audio";
+> +        interrupts = <GIC_SPI 822 IRQ_TYPE_LEVEL_HIGH 0>;
+> +        mediatek,topckgen = <&topckgen>;
+> +        power-domains = <&spm MT8195_POWER_DOMAIN_AUDIO>;
+> +        clocks = <&clk26m>,
+> +                 <&audsys CLK_AUD_AFE>,
+> +                 <&infracfg_ao CLK_INFRA_AO_AUDIO>,
+> +                 <&infracfg_ao CLK_INFRA_AO_AUDIO_26M_B>;
+> +        clock-names = "clk26m",
+> +                      "aud_afe",
+> +                      "infra_ao_audio",
+> +                      "infra_ao_audio_26m_b";
+> +    };
+> +
+> +...
+> -- 
+> 2.18.0
+> 
+> 
