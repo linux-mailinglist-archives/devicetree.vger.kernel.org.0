@@ -2,135 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B66683B9997
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 01:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C3733B99DB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 02:02:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234621AbhGAXqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Jul 2021 19:46:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43896 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234527AbhGAXqc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 19:46:32 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1B81C061764;
-        Thu,  1 Jul 2021 16:44:00 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id u13so14928405lfk.2;
-        Thu, 01 Jul 2021 16:44:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+unlqaajKL+UdtGKZaBkJ1mKCovLdUju0d1rygjTQhE=;
-        b=iniODsK0ILiq3O7K8T4TiBZfT1PmucBVW8O4a4XrldImMkT/pH4rdIMZIv/rnxaN6Z
-         8cT2qoUxV9l503ixbCNjxRirhsRrtswiTtSuHCIAxYIJ1XfrDkbltoShIbuSykqsUS/J
-         E0IlVVoa4cxI/QYpsHs0gDycrLyXBBQCV+aikY32FsoGWQiWlFfuITJrvlgdRJCJwahi
-         ArIWDg5j4wtNgMuRU3fP2TBvGPz/yXIB8DXycKo9wzYsGfChzy1v2N94bQSUlMCJA0EI
-         nMmqUc92KwEBElSIL1XNQoat3rkpdsjKrXNYKZm7hi7FZ+JT8LKNzW8gmjI5ZO5NHPwC
-         s8UQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+unlqaajKL+UdtGKZaBkJ1mKCovLdUju0d1rygjTQhE=;
-        b=rsC8BjKFc/U1jyhFts07+g+tAQ1DgnLTqgzq4lSEHuCAof3f90Lr+52M/0xe2Ys+Jc
-         5olN06WaOqXI8Xxu99psV31E3pMNLb8mbxl4k8wL9heKANu4OJcgD7bJdN7g1LXHOXF/
-         VMfV3eSQL54WyYH0AEVuS7XpNTMcMfcmyN3DMynAoR1lDnzjBgOw/hnTUkdI+8riWP71
-         AMGinjSl+jaQmrDK/qUmHIn1GvX8M0O6W8LfUR9ySAC2Bk8hMrQDcSFjq5gTn6zHDbrx
-         HTJjS0ZYRve9WPmqRf+4OlHHRaZm0bHdK/oZD6fCVgwFpbAe3Sk2b1n8Ra3WSrL9VrYh
-         v0GA==
-X-Gm-Message-State: AOAM5328paSS2HR0GJb8w9KSo7kuWSnD88OVwO+Ws0jaEcjotaGUYUea
-        JEq5F37Ku8YNKBqBg6xDHHY=
-X-Google-Smtp-Source: ABdhPJyzCGwhxPL7ezuvAI2EmCZef0N2hJNcfbkPSe8ZUsqC4JKcehVh34cy4nu0b/W+JkVQGFe4Gg==
-X-Received: by 2002:a05:6512:3f1:: with SMTP id n17mr1570723lfq.355.1625183039264;
-        Thu, 01 Jul 2021 16:43:59 -0700 (PDT)
-Received: from localhost.localdomain (94-29-37-113.dynamic.spd-mgts.ru. [94.29.37.113])
-        by smtp.gmail.com with ESMTPSA id e23sm60743lfq.221.2021.07.01.16.43.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Jul 2021 16:43:58 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Peter Chen <peter.chen@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        David Heidelberg <david@ixit.cz>
-Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v2 12/12] ARM: tegra: nexus7: Enable USB OTG mode
-Date:   Fri,  2 Jul 2021 02:43:17 +0300
-Message-Id: <20210701234317.26393-13-digetx@gmail.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210701234317.26393-1-digetx@gmail.com>
-References: <20210701234317.26393-1-digetx@gmail.com>
+        id S234409AbhGBAEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Jul 2021 20:04:53 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:56013 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234391AbhGBAEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Jul 2021 20:04:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1625184141;
+        h=from:from:reply-to:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=kQa9AhG3ubmsrg3kaDvez+6g6tRTQsIoLD7B2XLxygc=;
+        b=MQ2ubl3tHD7OLEmHesx76UveVhsvO3dUake7j8JPL5hh3RjgCwMMbfnr6hIMmQ8wzTbO81
+        LSX8kRKTXz4hKrmzJ5IZuJ5JgEB+VgChhNdusfEnvec+9galfw1oCKyIEV41pwj4ObpLJ1
+        mHogvx7uqr7uyU28DC3o3DmsmvGQjZg=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-156-PUb6VjVlMXGRqNQJ7kTgcg-1; Thu, 01 Jul 2021 20:02:20 -0400
+X-MC-Unique: PUb6VjVlMXGRqNQJ7kTgcg-1
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com [10.5.11.15])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 74CA0A0CAB;
+        Fri,  2 Jul 2021 00:02:19 +0000 (UTC)
+Received: from [10.64.54.119] (vpn2-54-119.bne.redhat.com [10.64.54.119])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 1BD925D6AB;
+        Fri,  2 Jul 2021 00:02:16 +0000 (UTC)
+Reply-To: Gavin Shan <gshan@redhat.com>
+Subject: Re: [PATCH v5] Documentation, dt, numa: Add note to empty NUMA node
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rdunlap@infradead.org, drjones@redhat.com, shan.gavin@gmail.com
+References: <20210628093411.88805-1-gshan@redhat.com>
+ <20210701172527.GA2567910@robh.at.kernel.org>
+From:   Gavin Shan <gshan@redhat.com>
+Message-ID: <1c43cd39-7bf6-b99c-36ec-798b81b1aba1@redhat.com>
+Date:   Fri, 2 Jul 2021 10:02:14 +1000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210701172527.GA2567910@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nexus 7 has OTG-cable microUSB port, enable OTG mode. USB peripheral
-devices now can be connected to Nexus 7 using OTG adapter, switching
-USB port into host mode.
+Hi Rob,
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- .../tegra30-asus-nexus7-grouper-common.dtsi   | 25 +++++++++++++++++--
- 1 file changed, 23 insertions(+), 2 deletions(-)
+On 7/2/21 3:25 AM, Rob Herring wrote:
+> On Mon, Jun 28, 2021 at 05:34:11PM +0800, Gavin Shan wrote:
+>> The empty memory nodes, where no memory resides in, are allowed.
+>> For these empty memory nodes, the 'len' of 'reg' property is zero.
+>> The NUMA node IDs are still valid and parsed, but memory may be
+>> added to them through hotplug afterwards. I finds difficulty to
+>> get where it's properly documented.
+> 
+> This is already in use? If so, what platform(s)?
+> 
 
-diff --git a/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi b/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi
-index 8bc552b09672..c341e8971b2f 100644
---- a/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi
-+++ b/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi
-@@ -941,9 +941,29 @@ power_supply: charger@6a {
- 			interrupts = <TEGRA_GPIO(V, 1) IRQ_TYPE_EDGE_BOTH>;
- 
- 			summit,enable-charge-control = <SMB3XX_CHG_ENABLE_PIN_ACTIVE_LOW>;
-+			summit,inok-polarity = <SMB3XX_SYSOK_INOK_ACTIVE_LOW>;
- 			summit,enable-usb-charging;
- 
- 			monitored-battery = <&battery_cell>;
-+
-+			usb_vbus: usb-vbus {
-+				regulator-name = "usb_vbus";
-+				regulator-min-microvolt = <5000000>;
-+				regulator-max-microvolt = <5000000>;
-+				regulator-min-microamp = <750000>;
-+				regulator-max-microamp = <750000>;
-+
-+				/*
-+				 * SMB347 INOK input pin is connected to PMIC's
-+				 * ACOK output, which is fixed to ACTIVE_LOW as
-+				 * long as battery voltage is in a good range.
-+				 *
-+				 * Active INOK disables SMB347 output, so polarity
-+				 * needs to be toggled when we want to get the
-+				 * output.
-+				 */
-+				summit,needs-inok-toggle;
-+			};
- 		};
- 	};
- 
-@@ -1017,12 +1037,13 @@ sdmmc4: mmc@78000600 {
- 	usb@7d000000 {
- 		compatible = "nvidia,tegra30-udc";
- 		status = "okay";
--		dr_mode = "peripheral";
-+		dr_mode = "otg";
-+		vbus-supply = <&usb_vbus>;
- 	};
- 
- 	usb-phy@7d000000 {
- 		status = "okay";
--		dr_mode = "peripheral";
-+		dr_mode = "otg";
- 		nvidia,hssync-start-delay = <0>;
- 		nvidia,xcvr-lsfslew = <2>;
- 		nvidia,xcvr-lsrslew = <2>;
--- 
-2.30.2
+It's not used yet, but will be used by QEMU once this patch is merged.
+In QEMU, ARM64 could have multiple empty memory nodes. The corresponding
+NUMA ID and distance map are still valid because memory may be added into
+these empty memory nodes in future.
+
+For the QEMU case, the names of empty memory nodes are the biggest concern.
+According to device-tree specification, the name follows the format of
+'memory@unit-address' and the 'unit-address' is equivalent to 'base-address'.
+However, the 'base-address' should be invalid one. In current QEMU implementation,
+the valid 'base-address' and 'unit-address' are provided to these empty
+memory nodes. Another issue in QEMU is trying to populate two empty memory
+nodes, which have same names. This leads to failure of device-tree population
+because of the duplicated memory node names, blocking VM from booting.
+
+>> So lets add a section for empty memory nodes in NUMA binding
+>> document. Also, the 'unit-address', equivalent to 'base-address'
+>> in the 'reg' property of these empty memory nodes is suggested to
+>> be the summation of highest memory address plus the NUMA node ID.
+> 
+> What purpose does this serve? The kernel won't do anything with it other
+> than validate the numa-node-id range.
+> 
+
+As mentioned above, the point is to have dummy, invalid and non-overlapped
+'base-address' and 'unit-address' for these empty memory nodes, to avoid
+duplicated memory node names in devcie-tree.
+
+>>
+>> Signed-off-by: Gavin Shan <gshan@redhat.com>
+>> ---
+>> v5: Separate section for empty memory node
+>> ---
+>>   Documentation/devicetree/bindings/numa.txt | 61 +++++++++++++++++++++-
+>>   1 file changed, 60 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+>> index 21b35053ca5a..230c734af948 100644
+>> --- a/Documentation/devicetree/bindings/numa.txt
+>> +++ b/Documentation/devicetree/bindings/numa.txt
+>> @@ -103,7 +103,66 @@ Example:
+>>   		};
+>>   
+>>   ==============================================================================
+>> -4 - Example dts
+>> +4 - Empty memory nodes
+>> +==============================================================================
+>> +
+>> +Empty memory nodes, which no memory resides in, are allowed. The 'length'
+>> +field of the 'reg' property is zero, but the 'base-address' is a dummy
+>> +address and invalid. The 'base-address' could be the summation of highest
+>> +memory address plus the NUMA node ID. However, the NUMA node IDs and
+>> +distance maps are still valid and memory may be added into them through
+>> +hotplug afterwards.
+>> +
+>> +Example:
+>> +
+>> +	memory@0 {
+>> +		device_type = "memory";
+>> +		reg = <0x0 0x0 0x0 0x80000000>;
+>> +		numa-node-id = <0>;
+>> +	};
+>> +
+>> +	memory@0x80000000 {
+> 
+> unit-address should not have '0x'.
+> 
+
+Ok. Lets fix it in v6 after it's agreed to add the section into the
+NUMA binding document. Actually, the '0x' is copied from the existing
+example in same document. After this patch is finalized, I will post
+separate patch to fix all wrong formats in same document as well.
+
+>> +		device_type = "memory";
+>> +		reg = <0x0 0x80000000 0x0 0x80000000>;
+>> +		numa-node-id = <1>;
+>> +	};
+>> +
+>> +	/* Empty memory node */
+>> +	memory@0x100000002 {
+>> +		device_type = "memory";
+>> +		reg = <0x1 0x2 0x0 0x0>;
+>> +		numa-node-id = <2>;
+>> +	};
+>> +
+>> +	/* Empty memory node */
+>> +	memory@0x100000003 {
+>> +		device_type = "memory";
+>> +		reg = <0x1 0x3 0x0 0x0>;
+>> +		numa-node-id = <3>;
+>> +	};
+>> +
+>> +	distance-map {
+>> +		compatible = "numa-distance-map-v1";
+>> +		distance-matrix = <0 0  10>,
+>> +				  <0 1  20>,
+>> +				  <0 2  40>,
+>> +				  <0 3  20>,
+>> +				  <1 0  20>,
+>> +				  <1 1  10>,
+>> +				  <1 2  20>,
+>> +				  <1 3  40>,
+>> +				  <2 0  40>,
+>> +				  <2 1  20>,
+>> +				  <2 2  10>,
+>> +				  <2 3  20>,
+>> +				  <3 0  20>,
+>> +				  <3 1  40>,
+>> +				  <3 2  20>,
+>> +				  <3 3  10>;
+>> +	};
+>> +
+>> +==============================================================================
+>> +5 - Example dts
+>>   ==============================================================================
+>>   
+>>   Dual socket system consists of 2 boards connected through ccn bus and
+>> -- 
+>> 2.23.0
+>>
+
+Thanks,
+Gavin
 
