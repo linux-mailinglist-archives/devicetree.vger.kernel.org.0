@@ -2,136 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B08763BA11F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 15:18:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B71723BA139
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 15:28:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232382AbhGBNVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 09:21:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44320 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232363AbhGBNVM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Jul 2021 09:21:12 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4D3B36109D;
-        Fri,  2 Jul 2021 13:18:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625231920;
-        bh=GDNc99vWU2EKYVywroGm/MONGRMfJ1bw5GtcP1Kxyew=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UpJXnxcF4r+u8N9In3Ngt/3KsBiIssEtR46hbKVGD4imJoDwZps2CiNu9/tX6XODL
-         RkRPeCMJzkowmvGyx+vBIS2hY1z4ccknZBrbZdUt3JmjE2xh4ItTea2grkiScPUhIn
-         HLmoRTEOJQbfW+p5GY0xQ0VKUewGU1RsIqEJOhMbpuv3pp74w18YlrSAOnrKBIP55s
-         v+J/uIyo0HZY5XHsn1OOtuplTl/3fBAHP0aXr8wAQJjJJZ7gIcW+IXijJkOA5vhe1e
-         A78+z8Z0KIiDl7b4jtkq2bGKSaVHIDksVIMFkEDwiE3IncWj68Vxm0ezE9lm9A76mg
-         Qcdpn8Gt/MWYA==
-Date:   Fri, 2 Jul 2021 14:18:29 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Claire Chang <tientzu@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
-        Joerg Roedel <joro@8bytes.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
-        peterz@infradead.org, dri-devel@lists.freedesktop.org,
-        chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
-        mingo@kernel.org, jxgao@google.com, sstabellini@kernel.org,
-        Saravana Kannan <saravanak@google.com>, xypron.glpk@gmx.de,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        bskeggs@redhat.com, linux-pci@vger.kernel.org,
-        xen-devel@lists.xenproject.org,
-        Thierry Reding <treding@nvidia.com>,
-        intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
-        linux-devicetree <devicetree@vger.kernel.org>, airlied@linux.ie,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        rodrigo.vivi@intel.com, bhelgaas@google.com,
-        Dan Williams <dan.j.williams@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Randy Dunlap <rdunlap@infradead.org>, quic_qiancai@quicinc.com,
-        lkml <linux-kernel@vger.kernel.org>, tfiga@chromium.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        thomas.lendacky@amd.com, linuxppc-dev@lists.ozlabs.org,
-        bauerman@linux.ibm.com
-Subject: Re: [PATCH v15 12/12] of: Add plumbing for restricted DMA pool
-Message-ID: <20210702131829.GA11132@willie-the-truck>
-References: <20210624155526.2775863-1-tientzu@chromium.org>
- <20210624155526.2775863-13-tientzu@chromium.org>
- <20210702030807.GA2685166@roeck-us.net>
- <87ca3ada-22ed-f40c-0089-ca6fffc04f24@arm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87ca3ada-22ed-f40c-0089-ca6fffc04f24@arm.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S232517AbhGBNbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 09:31:11 -0400
+Received: from mail-io1-f45.google.com ([209.85.166.45]:45640 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232273AbhGBNbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 09:31:11 -0400
+Received: by mail-io1-f45.google.com with SMTP id g3so9671982iok.12;
+        Fri, 02 Jul 2021 06:28:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=6VAjp+1g1/6JxjvtnTpo35j86mJBNoZO/+9hIOMNiL8=;
+        b=Ovf2Murioq8ywPycdwkNGzkOETxRepQk2GGoOIQZNS7lXhuMKYUUvzkI/M/Awoy0Ws
+         rYlEFnste69TmDcEpazJAGxyvRiHhSTaObimML4S+Fa7WxwN94YkPGD8c8MTRWmSs4O/
+         /1z02XhZfANMS8B3EfUgVy84Wn3/GV6YUYpZLQVP0StHbmZWJzdcQRhfRhHvpUpcFlZ9
+         ouYCHofP3Y3pj+Y8HMuR8N4ZaGJldK0dezijyaI97YuPcsQCQ9ri97GbAh1X/86O11by
+         IszN17j4tAX2z3KTg2sEyftNqZuxo3yZw/5SxgAl2TtQhxZejRY8cVDh9RXtY6TEYan5
+         IC+A==
+X-Gm-Message-State: AOAM533WYCM1/cxj9FWCjLCsgKIOt0TfmOGDgLOstkJXu8hnC7pFqI0l
+        keBW+Xpt90WTCCQ5PWMnfQ==
+X-Google-Smtp-Source: ABdhPJzT6n33b3xKbEvJpC4uROSwAAAPdrO/QZIfQETl3OkC0z4NKXvm3j5l1qv2BaaKbjvD4xtxgA==
+X-Received: by 2002:a05:6638:4199:: with SMTP id az25mr4238547jab.45.1625232518931;
+        Fri, 02 Jul 2021 06:28:38 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id a12sm1820482ilt.3.2021.07.02.06.28.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Jul 2021 06:28:38 -0700 (PDT)
+Received: (nullmailer pid 274908 invoked by uid 1000);
+        Fri, 02 Jul 2021 13:28:35 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Alex Helms <alexander.helms.jy@renesas.com>
+Cc:     mturquette@baylibre.com, linux-clk@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, sboyd@kernel.org,
+        david.cater.jc@renesas.com, geert+renesas@glider.be,
+        devicetree@vger.kernel.org, michal.simek@xilinx.com
+In-Reply-To: <20210701232258.19146-2-alexander.helms.jy@renesas.com>
+References: <202107020640.YyVoU69S-lkp@intel.com> <20210701232258.19146-1-alexander.helms.jy@renesas.com> <20210701232258.19146-2-alexander.helms.jy@renesas.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: Add binding for Renesas 8T49N241
+Date:   Fri, 02 Jul 2021 07:28:35 -0600
+Message-Id: <1625232515.402706.274905.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 02, 2021 at 12:39:41PM +0100, Robin Murphy wrote:
-> On 2021-07-02 04:08, Guenter Roeck wrote:
-> > On Thu, Jun 24, 2021 at 11:55:26PM +0800, Claire Chang wrote:
-> > > If a device is not behind an IOMMU, we look up the device node and set
-> > > up the restricted DMA when the restricted-dma-pool is presented.
-> > > 
-> > > Signed-off-by: Claire Chang <tientzu@chromium.org>
-> > > Tested-by: Stefano Stabellini <sstabellini@kernel.org>
-> > > Tested-by: Will Deacon <will@kernel.org>
-> > 
-> > With this patch in place, all sparc and sparc64 qemu emulations
-> > fail to boot. Symptom is that the root file system is not found.
-> > Reverting this patch fixes the problem. Bisect log is attached.
+On Thu, 01 Jul 2021 16:22:57 -0700, Alex Helms wrote:
+> Renesas 8T49N241 has 4 outputs, 1 integral and 3 fractional dividers.
+> The 8T49N241 accepts up to two differential or single-ended input clocks
+> and a fundamental-mode crystal input. The internal PLL can lock to either
+> of the input reference clocks or to the crystal to behave as a frequency
+> synthesizer.
 > 
-> Ah, OF_ADDRESS depends on !SPARC, so of_dma_configure_id() is presumably
-> returning an unexpected -ENODEV from the of_dma_set_restricted_buffer()
-> stub. That should probably be returning 0 instead, since either way it's not
-> an error condition for it to simply do nothing.
+> Signed-off-by: Alex Helms <alexander.helms.jy@renesas.com>
+> ---
+>  .../bindings/clock/renesas,8t49n241.yaml      | 183 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 189 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml
+> 
 
-Something like below?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Will
+yamllint warnings/errors:
 
---->8
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/clock/renesas,8t49n241.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/clock/renesas,8t49n241.yaml#
+Documentation/devicetree/bindings/clock/renesas,8t49n241.example.dt.yaml:0:0: /example-0/i2c@0/clock-generator@6c: failed to match any schema with compatible: ['renesas,8t49n241']
+Documentation/devicetree/bindings/clock/renesas,8t49n241.example.dt.yaml:0:0: /example-1/i2c@0/clock-generator@6c: failed to match any schema with compatible: ['renesas,8t49n241']
+\ndoc reference errors (make refcheckdocs):
 
-From 4d9dcb9210c1f37435b6088284e04b6b36ee8c4d Mon Sep 17 00:00:00 2001
-From: Will Deacon <will@kernel.org>
-Date: Fri, 2 Jul 2021 14:13:28 +0100
-Subject: [PATCH] of: Return success from of_dma_set_restricted_buffer() when
- !OF_ADDRESS
+See https://patchwork.ozlabs.org/patch/1499761
 
-When CONFIG_OF_ADDRESS=n, of_dma_set_restricted_buffer() returns -ENODEV
-and breaks the boot for sparc[64] machines. Return 0 instead, since the
-function is essentially a glorified NOP in this configuration.
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-Cc: Claire Chang <tientzu@chromium.org>
-Cc: Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
-Reported-by: Guenter Roeck <linux@roeck-us.net>
-Suggested-by: Robin Murphy <robin.murphy@arm.com>
-Link: https://lore.kernel.org/r/20210702030807.GA2685166@roeck-us.net
-Signed-off-by: Will Deacon <will@kernel.org>
----
- drivers/of/of_private.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-index 8fde97565d11..34dd548c5eac 100644
---- a/drivers/of/of_private.h
-+++ b/drivers/of/of_private.h
-@@ -173,7 +173,8 @@ static inline int of_dma_get_range(struct device_node *np,
- static inline int of_dma_set_restricted_buffer(struct device *dev,
- 					       struct device_node *np)
- {
--	return -ENODEV;
-+	/* Do nothing, successfully. */
-+	return 0;
- }
- #endif
- 
--- 
-2.32.0.93.g670b81a890-goog
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
