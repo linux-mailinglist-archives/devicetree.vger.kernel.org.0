@@ -2,156 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 014393B9D91
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 10:33:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 384893B9DCF
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 10:56:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230237AbhGBIgJ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 2 Jul 2021 04:36:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46574 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230243AbhGBIgI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 04:36:08 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E39AC061762
-        for <devicetree@vger.kernel.org>; Fri,  2 Jul 2021 01:33:36 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1lzEbx-0002MD-KP; Fri, 02 Jul 2021 10:33:21 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1lzEbt-0002gx-GA; Fri, 02 Jul 2021 10:33:17 +0200
-Message-ID: <bf4f26cdca7174ba687e29a581a5276511112fe7.camel@pengutronix.de>
-Subject: Re: [PATCH v19 3/7] soc: mediatek: SVS: introduce MTK SVS engine
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Roger Lu <roger.lu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Guenter Roeck <linux@roeck-us.net>
-Date:   Fri, 02 Jul 2021 10:33:17 +0200
-In-Reply-To: <20210702031214.21597-4-roger.lu@mediatek.com>
-References: <20210702031214.21597-1-roger.lu@mediatek.com>
-         <20210702031214.21597-4-roger.lu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S230424AbhGBI7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 04:59:10 -0400
+Received: from mout01.posteo.de ([185.67.36.65]:34349 "EHLO mout01.posteo.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231163AbhGBI7J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Jul 2021 04:59:09 -0400
+Received: from submission (posteo.de [89.146.220.130]) 
+        by mout01.posteo.de (Postfix) with ESMTPS id AA2C324002D
+        for <devicetree@vger.kernel.org>; Fri,  2 Jul 2021 10:56:36 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+        t=1625216196; bh=TiLwUHSR7R0Qj3YVWzytod8xNxHzUWymnFs38evq0YU=;
+        h=Date:From:To:Cc:Subject:From;
+        b=GjNB7krnEHr4k1J8Q/asUpMJ3bG4aLw+w1Gf5RxxeVxEfVRCVkVWH7rmSM43gsjwf
+         6b4MNRWiVIhwUqtcWn4oaq+N4+IlRrnzs/P5KWPfL0ibhltnIF0Q3ulEnzrYkcFguS
+         NU+yF037JF2kU1mZWQvgs92NJQaqPQ1NSuKdwxIRfBr9+aYZ7pPmu3ddvUxsW03SCG
+         svFL50HU0H0kKIBZwO9zcZgf3s6XMD43ZBpwD6m6PWh1dbJamg4cp7XQ2fGDrVIAK4
+         5953D44AaJjeLbTbsQxClXoSSiwTO4/xqlDchgYWih7EKKplRbhJbrxgOn1Kj7RvKJ
+         mO7yuiDKsDFDA==
+Received: from customer (localhost [127.0.0.1])
+        by submission (posteo.de) with ESMTPSA id 4GGTTW6dstz9rxS;
+        Fri,  2 Jul 2021 10:56:31 +0200 (CEST)
+Date:   Fri,  2 Jul 2021 08:56:31 +0000
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>
+To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Ash Logan <ash@heyquark.com>, Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] powerpc: wii.dts: Expose the OTP on this platform
+Message-ID: <YN7Uv/43TwL4+9ic@latitude>
+References: <20210519095044.4109-1-linkmauve@linkmauve.fr>
+ <20210519095044.4109-4-linkmauve@linkmauve.fr>
+ <YNe5aW55SrXFGKFV@latitude>
+ <20210701195655.knbcikdga57a7epx@luna>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="/oh87RkuYSLgv47m"
+Content-Disposition: inline
+In-Reply-To: <20210701195655.knbcikdga57a7epx@luna>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Roger,
 
-On Fri, 2021-07-02 at 11:12 +0800, Roger Lu wrote:
+--/oh87RkuYSLgv47m
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Jul 01, 2021 at 09:56:55PM +0200, Emmanuel Gil Peyrot wrote:
+> On Sat, Jun 26, 2021 at 11:34:01PM +0000, Jonathan Neusch=C3=A4fer wrote:
+> > On Wed, May 19, 2021 at 11:50:43AM +0200, Emmanuel Gil Peyrot wrote:
 [...]
-> diff --git a/drivers/soc/mediatek/mtk-svs.c b/drivers/soc/mediatek/mtk-svs.c
-> new file mode 100644
-> index 000000000000..c2fcbc204b1d
-> --- /dev/null
-> +++ b/drivers/soc/mediatek/mtk-svs.c
-> @@ -0,0 +1,1724 @@
-[...]
-> +static int svs_suspend(struct device *dev)
-> +{
-> +	struct svs_platform *svsp = dev_get_drvdata(dev);
-> +	struct svs_bank *svsb;
-> +	unsigned long flags;
-> +	int ret;
-> +	u32 idx;
-> +
-> +	for (idx = 0; idx < svsp->bank_num; idx++) {
-> +		svsb = &svsp->banks[idx];
-> +
-> +		/* Wait if svs_isr() is still in process. */
-> +		spin_lock_irqsave(&mtk_svs_lock, flags);
-> +		svsp->pbank = svsb;
-> +		svs_switch_bank(svsp);
-> +		svs_writel(svsp, SVSB_EN_OFF, SVSEN);
-> +		svs_writel(svsp, SVSB_INTSTS_CLEAN, INTSTS);
-> +		spin_unlock_irqrestore(&mtk_svs_lock, flags);
-> +
-> +		svsb->suspended = true;
-> +		if (svsb->phase != SVSB_PHASE_INIT01) {
-> +			svsb->phase = SVSB_PHASE_ERROR;
-> +			svs_adjust_pm_opp_volts(svsb, true);
-> +		}
-> +	}
-> +
-> +	if (svsp->rst) {
+> > > +		otp@d8001ec {
+> > > +			compatible =3D "nintendo,hollywood-otp";
+> > > +			reg =3D <0x0d8001ec 0x8>;
+> >=20
+> > The OTP registers overlap with the previous node, control@d800100.
+> > Not sure what's the best way to structure the devicetree in this case,
+> > maybe something roughly like the following (untested, unverified):
+> [snip]
+>=20
+> I couldn=E2=80=99t get this to work, but additionally it looks like it sh=
+ould
+> start 0x100 earlier and contain pic1@d800030 and gpio@d8000c0, given
+> https://wiibrew.org/wiki/Hardware/Hollywood_Registers
+>=20
+> Would it make sense, for the time being, to reduce the size of this
+> control@d800100 device to the single register currently being used by
+> arch/powerpc/platforms/embedded6xx/wii.c (0xd800194, used to reboot the
+> system) and leave the refactor of restart + OTP + PIC + GPIO for a
+> future series?
 
-This is not necessary, reset_control_assert() checks for (rstc == NULL)
-itself.
+Makes sense to me!
 
-> +		ret = reset_control_assert(svsp->rst);
-> +		if (ret) {
-> +			dev_err(svsp->dev, "cannot assert reset %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	clk_disable_unprepare(svsp->main_clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int svs_resume(struct device *dev)
-> +{
-> +	struct svs_platform *svsp = dev_get_drvdata(dev);
-> +	struct svs_bank *svsb;
-> +	int ret;
-> +	u32 idx;
-> +
-> +	ret = clk_prepare_enable(svsp->main_clk);
-> +	if (ret) {
-> +		dev_err(svsp->dev, "cannot enable main_clk, disable svs\n");
-> +		return ret;
-> +	}
-> +
-> +	if (svsp->rst) {
+Jonathan
 
-Same as above, reset_control_deassert(NULL) will just return 0.
+--/oh87RkuYSLgv47m
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +		ret = reset_control_deassert(svsp->rst);
-> +		if (ret) {
-> +			dev_err(svsp->dev, "cannot deassert reset %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	for (idx = 0; idx < svsp->bank_num; idx++) {
-> +		svsb = &svsp->banks[idx];
-> +		svsb->suspended = false;
-> +	}
-> +
-> +	ret = svs_init02(svsp);
-> +	if (ret)
-> +		return ret;
-> +
-> +	svs_mon_mode(svsp);
-> +
-> +	return 0;
-> +}
+-----BEGIN PGP SIGNATURE-----
 
-regards
-Philipp
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmDe1JUACgkQCDBEmo7z
+X9vJqxAAyOC7GHGtEdGs0vs4QOo2/Kqcbn9qgnpKABaeF4UqeCCvRa8+mAAN3ai+
+87P+gZgBZoJb/p4bYR/kP7B4AtGBBhzAFTIyO1dLzt8bZtPpCcaOBWjKRlKGHVrH
+cQdBdPDTuhRbYR2iQLoweYXMiojsQqfCJVd5eEGXWEwItywRRtfZ3ZEVcPAzhNHK
+vhspIhK47tFZpgEK+bJza8GDjK2mgvDZp4+hNGzwKpzcjwEPgk+G4s+yT2xN0xDn
+4BP7UoER6NfpyQ5NYj81sGzcgzsWwCx9Tu/HeCA8wA30xxJQ/FUptyDw3hGuMiaM
+DQcRjAHCI+Yil/U3tB8XoNFx+xbkgvKj/DY9bm+IkbsFKki0eK63PhdNI9R//QuG
+zyTpzNNEvevNwtVH6stoBBLGqMDoXw2VuzgKmFkkTt0h7L7YCI5tYQ3aoZQi+tfl
+wpwi+dskP0BiICvv2n0CQketiITe3b3Q+yBwwXT5chcSh+TtliwJrzHWSK+DgE2r
+ixqJjg4Q6nDMsO7d8gwJTV/J3NAi3nIhIiuuFvtomqecOxq5jsnpyNRQTkFd0a19
+vrG//er+o0sOSrKcgD4he3K8rBzBMOt1+ZwcCgKwmlryHqB9iMqUyBXoBLHoy8s9
+CH+YMx0LNscsooI19FA595BOioLN+hlf8yprR54T5eARem3j1MQ=
+=jObg
+-----END PGP SIGNATURE-----
+
+--/oh87RkuYSLgv47m--
