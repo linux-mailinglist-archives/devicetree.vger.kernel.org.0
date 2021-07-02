@@ -2,107 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 384893B9DCF
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 10:56:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87F623B9DF9
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 11:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230424AbhGBI7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 04:59:10 -0400
-Received: from mout01.posteo.de ([185.67.36.65]:34349 "EHLO mout01.posteo.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231163AbhGBI7J (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Jul 2021 04:59:09 -0400
-Received: from submission (posteo.de [89.146.220.130]) 
-        by mout01.posteo.de (Postfix) with ESMTPS id AA2C324002D
-        for <devicetree@vger.kernel.org>; Fri,  2 Jul 2021 10:56:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-        t=1625216196; bh=TiLwUHSR7R0Qj3YVWzytod8xNxHzUWymnFs38evq0YU=;
-        h=Date:From:To:Cc:Subject:From;
-        b=GjNB7krnEHr4k1J8Q/asUpMJ3bG4aLw+w1Gf5RxxeVxEfVRCVkVWH7rmSM43gsjwf
-         6b4MNRWiVIhwUqtcWn4oaq+N4+IlRrnzs/P5KWPfL0ibhltnIF0Q3ulEnzrYkcFguS
-         NU+yF037JF2kU1mZWQvgs92NJQaqPQ1NSuKdwxIRfBr9+aYZ7pPmu3ddvUxsW03SCG
-         svFL50HU0H0kKIBZwO9zcZgf3s6XMD43ZBpwD6m6PWh1dbJamg4cp7XQ2fGDrVIAK4
-         5953D44AaJjeLbTbsQxClXoSSiwTO4/xqlDchgYWih7EKKplRbhJbrxgOn1Kj7RvKJ
-         mO7yuiDKsDFDA==
-Received: from customer (localhost [127.0.0.1])
-        by submission (posteo.de) with ESMTPSA id 4GGTTW6dstz9rxS;
-        Fri,  2 Jul 2021 10:56:31 +0200 (CEST)
-Date:   Fri,  2 Jul 2021 08:56:31 +0000
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>
-To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.ne@posteo.net>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Ash Logan <ash@heyquark.com>, Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] powerpc: wii.dts: Expose the OTP on this platform
-Message-ID: <YN7Uv/43TwL4+9ic@latitude>
-References: <20210519095044.4109-1-linkmauve@linkmauve.fr>
- <20210519095044.4109-4-linkmauve@linkmauve.fr>
- <YNe5aW55SrXFGKFV@latitude>
- <20210701195655.knbcikdga57a7epx@luna>
+        id S231193AbhGBJVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 05:21:48 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:39831 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S230112AbhGBJVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 05:21:44 -0400
+X-UUID: aefc18c3c8344f5695a816aabdf4c0da-20210702
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=IYyNmRrPNeyd0roXCcc3ug77Q20krYCuClxefjY+zjA=;
+        b=OBxH2xcXEmkripda1zuduv7SxCUobWyN+AsPyEXi+WIztrYQ/9nHQP2br4XnAn+8YDTob/E2wPxlgUmTOjXrO6KGb7AlHHY84WnUXxBaWLPsNQdiGBgU9FIQ9CNztxkR/KxFLCyJVLDKUGNUWifjtEFb17eIk+c8nzAJCItw09A=;
+X-UUID: aefc18c3c8344f5695a816aabdf4c0da-20210702
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 723412632; Fri, 02 Jul 2021 17:19:09 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 2 Jul 2021 17:19:06 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 2 Jul 2021 17:19:06 +0800
+Message-ID: <0911434c39aa76a6312f19baa2a468c65589de3d.camel@mediatek.com>
+Subject: Re: [PATCH v19 3/7] soc: mediatek: SVS: introduce MTK SVS engine
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Enric Balletbo Serra <eballetbo@gmail.com>,
+        "Kevin Hilman" <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Nicolas Boichat" <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>,
+        YT Lee <yt.lee@mediatek.com>,
+        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
+        Charles Yang <Charles.Yang@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Date:   Fri, 2 Jul 2021 17:19:06 +0800
+In-Reply-To: <bf4f26cdca7174ba687e29a581a5276511112fe7.camel@pengutronix.de>
+References: <20210702031214.21597-1-roger.lu@mediatek.com>
+         <20210702031214.21597-4-roger.lu@mediatek.com>
+         <bf4f26cdca7174ba687e29a581a5276511112fe7.camel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/oh87RkuYSLgv47m"
-Content-Disposition: inline
-In-Reply-To: <20210701195655.knbcikdga57a7epx@luna>
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+SGkgUGhpbGlwcCwNCg0KVGhhbmtzIGZvciB0aGUgYWR2aWNlLg0KDQpPbiBGcmksIDIwMjEtMDct
+MDIgYXQgMTA6MzMgKzAyMDAsIFBoaWxpcHAgWmFiZWwgd3JvdGU6DQo+IEhpIFJvZ2VyLA0KPiAN
+Cj4gT24gRnJpLCAyMDIxLTA3LTAyIGF0IDExOjEyICswODAwLCBSb2dlciBMdSB3cm90ZToNCj4g
+Wy4uLl0NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXN2cy5jIGIv
+ZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXN2cy5jDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQN
+Cj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLmMyZmNiYzIwNGIxZA0KPiA+IC0tLSAvZGV2L251bGwN
+Cj4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstc3ZzLmMNCj4gPiBAQCAtMCwwICsx
+LDE3MjQgQEANCj4gDQo+IFsuLi5dDQo+ID4gK3N0YXRpYyBpbnQgc3ZzX3N1c3BlbmQoc3RydWN0
+IGRldmljZSAqZGV2KQ0KPiA+ICt7DQo+ID4gKwlzdHJ1Y3Qgc3ZzX3BsYXRmb3JtICpzdnNwID0g
+ZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ID4gKwlzdHJ1Y3Qgc3ZzX2JhbmsgKnN2c2I7DQo+ID4g
+Kwl1bnNpZ25lZCBsb25nIGZsYWdzOw0KPiA+ICsJaW50IHJldDsNCj4gPiArCXUzMiBpZHg7DQo+
+ID4gKw0KPiA+ICsJZm9yIChpZHggPSAwOyBpZHggPCBzdnNwLT5iYW5rX251bTsgaWR4KyspIHsN
+Cj4gPiArCQlzdnNiID0gJnN2c3AtPmJhbmtzW2lkeF07DQo+ID4gKw0KPiA+ICsJCS8qIFdhaXQg
+aWYgc3ZzX2lzcigpIGlzIHN0aWxsIGluIHByb2Nlc3MuICovDQo+ID4gKwkJc3Bpbl9sb2NrX2ly
+cXNhdmUoJm10a19zdnNfbG9jaywgZmxhZ3MpOw0KPiA+ICsJCXN2c3AtPnBiYW5rID0gc3ZzYjsN
+Cj4gPiArCQlzdnNfc3dpdGNoX2Jhbmsoc3ZzcCk7DQo+ID4gKwkJc3ZzX3dyaXRlbChzdnNwLCBT
+VlNCX0VOX09GRiwgU1ZTRU4pOw0KPiA+ICsJCXN2c193cml0ZWwoc3ZzcCwgU1ZTQl9JTlRTVFNf
+Q0xFQU4sIElOVFNUUyk7DQo+ID4gKwkJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmbXRrX3N2c19s
+b2NrLCBmbGFncyk7DQo+ID4gKw0KPiA+ICsJCXN2c2ItPnN1c3BlbmRlZCA9IHRydWU7DQo+ID4g
+KwkJaWYgKHN2c2ItPnBoYXNlICE9IFNWU0JfUEhBU0VfSU5JVDAxKSB7DQo+ID4gKwkJCXN2c2It
+PnBoYXNlID0gU1ZTQl9QSEFTRV9FUlJPUjsNCj4gPiArCQkJc3ZzX2FkanVzdF9wbV9vcHBfdm9s
+dHMoc3ZzYiwgdHJ1ZSk7DQo+ID4gKwkJfQ0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCWlmIChzdnNw
+LT5yc3QpIHsNCj4gDQo+IFRoaXMgaXMgbm90IG5lY2Vzc2FyeSwgcmVzZXRfY29udHJvbF9hc3Nl
+cnQoKSBjaGVja3MgZm9yIChyc3RjID09IE5VTEwpDQo+IGl0c2VsZi4NCk9rYXkuIFdlJ2xsIHJl
+bW92ZSAiaWYgKHN2c3AtPnJzdCkgeyIgaW4gdGhlIG5leHQgcGF0Y2guIFRoYW5rcy4NCg0KPiAN
+Cj4gPiArCQlyZXQgPSByZXNldF9jb250cm9sX2Fzc2VydChzdnNwLT5yc3QpOw0KPiA+ICsJCWlm
+IChyZXQpIHsNCj4gPiArCQkJZGV2X2VycihzdnNwLT5kZXYsICJjYW5ub3QgYXNzZXJ0IHJlc2V0
+ICVkXG4iLCByZXQpOw0KPiA+ICsJCQlyZXR1cm4gcmV0Ow0KPiA+ICsJCX0NCj4gPiArCX0NCj4g
+PiArDQo+ID4gKwljbGtfZGlzYWJsZV91bnByZXBhcmUoc3ZzcC0+bWFpbl9jbGspOw0KPiA+ICsN
+Cj4gPiArCXJldHVybiAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IHN2c19yZXN1
+bWUoc3RydWN0IGRldmljZSAqZGV2KQ0KPiA+ICt7DQo+ID4gKwlzdHJ1Y3Qgc3ZzX3BsYXRmb3Jt
+ICpzdnNwID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ID4gKwlzdHJ1Y3Qgc3ZzX2JhbmsgKnN2
+c2I7DQo+ID4gKwlpbnQgcmV0Ow0KPiA+ICsJdTMyIGlkeDsNCj4gPiArDQo+ID4gKwlyZXQgPSBj
+bGtfcHJlcGFyZV9lbmFibGUoc3ZzcC0+bWFpbl9jbGspOw0KPiA+ICsJaWYgKHJldCkgew0KPiA+
+ICsJCWRldl9lcnIoc3ZzcC0+ZGV2LCAiY2Fubm90IGVuYWJsZSBtYWluX2NsaywgZGlzYWJsZSBz
+dnNcbiIpOw0KPiA+ICsJCXJldHVybiByZXQ7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJaWYgKHN2
+c3AtPnJzdCkgew0KPiANCj4gU2FtZSBhcyBhYm92ZSwgcmVzZXRfY29udHJvbF9kZWFzc2VydChO
+VUxMKSB3aWxsIGp1c3QgcmV0dXJuIDAuDQpPa2F5LiBXZSdsbCByZW1vdmUgImlmIChzdnNwLT5y
+c3QpIHsiIGluIHRoZSBuZXh0IHBhdGNoLiBUaGFua3MuDQo+IA0KPiA+ICsJCXJldCA9IHJlc2V0
+X2NvbnRyb2xfZGVhc3NlcnQoc3ZzcC0+cnN0KTsNCj4gPiArCQlpZiAocmV0KSB7DQo+ID4gKwkJ
+CWRldl9lcnIoc3ZzcC0+ZGV2LCAiY2Fubm90IGRlYXNzZXJ0IHJlc2V0ICVkXG4iLCByZXQpOw0K
+PiA+ICsJCQlyZXR1cm4gcmV0Ow0KPiA+ICsJCX0NCj4gPiArCX0NCj4gPiArDQo+ID4gKwlmb3Ig
+KGlkeCA9IDA7IGlkeCA8IHN2c3AtPmJhbmtfbnVtOyBpZHgrKykgew0KPiA+ICsJCXN2c2IgPSAm
+c3ZzcC0+YmFua3NbaWR4XTsNCj4gPiArCQlzdnNiLT5zdXNwZW5kZWQgPSBmYWxzZTsNCj4gPiAr
+CX0NCj4gPiArDQo+ID4gKwlyZXQgPSBzdnNfaW5pdDAyKHN2c3ApOw0KPiA+ICsJaWYgKHJldCkN
+Cj4gPiArCQlyZXR1cm4gcmV0Ow0KPiA+ICsNCj4gPiArCXN2c19tb25fbW9kZShzdnNwKTsNCj4g
+PiArDQo+ID4gKwlyZXR1cm4gMDsNCj4gPiArfQ0KPiANCj4gcmVnYXJkcw0KPiBQaGlsaXBwDQo=
 
---/oh87RkuYSLgv47m
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Jul 01, 2021 at 09:56:55PM +0200, Emmanuel Gil Peyrot wrote:
-> On Sat, Jun 26, 2021 at 11:34:01PM +0000, Jonathan Neusch=C3=A4fer wrote:
-> > On Wed, May 19, 2021 at 11:50:43AM +0200, Emmanuel Gil Peyrot wrote:
-[...]
-> > > +		otp@d8001ec {
-> > > +			compatible =3D "nintendo,hollywood-otp";
-> > > +			reg =3D <0x0d8001ec 0x8>;
-> >=20
-> > The OTP registers overlap with the previous node, control@d800100.
-> > Not sure what's the best way to structure the devicetree in this case,
-> > maybe something roughly like the following (untested, unverified):
-> [snip]
->=20
-> I couldn=E2=80=99t get this to work, but additionally it looks like it sh=
-ould
-> start 0x100 earlier and contain pic1@d800030 and gpio@d8000c0, given
-> https://wiibrew.org/wiki/Hardware/Hollywood_Registers
->=20
-> Would it make sense, for the time being, to reduce the size of this
-> control@d800100 device to the single register currently being used by
-> arch/powerpc/platforms/embedded6xx/wii.c (0xd800194, used to reboot the
-> system) and leave the refactor of restart + OTP + PIC + GPIO for a
-> future series?
-
-Makes sense to me!
-
-Jonathan
-
---/oh87RkuYSLgv47m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmDe1JUACgkQCDBEmo7z
-X9vJqxAAyOC7GHGtEdGs0vs4QOo2/Kqcbn9qgnpKABaeF4UqeCCvRa8+mAAN3ai+
-87P+gZgBZoJb/p4bYR/kP7B4AtGBBhzAFTIyO1dLzt8bZtPpCcaOBWjKRlKGHVrH
-cQdBdPDTuhRbYR2iQLoweYXMiojsQqfCJVd5eEGXWEwItywRRtfZ3ZEVcPAzhNHK
-vhspIhK47tFZpgEK+bJza8GDjK2mgvDZp4+hNGzwKpzcjwEPgk+G4s+yT2xN0xDn
-4BP7UoER6NfpyQ5NYj81sGzcgzsWwCx9Tu/HeCA8wA30xxJQ/FUptyDw3hGuMiaM
-DQcRjAHCI+Yil/U3tB8XoNFx+xbkgvKj/DY9bm+IkbsFKki0eK63PhdNI9R//QuG
-zyTpzNNEvevNwtVH6stoBBLGqMDoXw2VuzgKmFkkTt0h7L7YCI5tYQ3aoZQi+tfl
-wpwi+dskP0BiICvv2n0CQketiITe3b3Q+yBwwXT5chcSh+TtliwJrzHWSK+DgE2r
-ixqJjg4Q6nDMsO7d8gwJTV/J3NAi3nIhIiuuFvtomqecOxq5jsnpyNRQTkFd0a19
-vrG//er+o0sOSrKcgD4he3K8rBzBMOt1+ZwcCgKwmlryHqB9iMqUyBXoBLHoy8s9
-CH+YMx0LNscsooI19FA595BOioLN+hlf8yprR54T5eARem3j1MQ=
-=jObg
------END PGP SIGNATURE-----
-
---/oh87RkuYSLgv47m--
