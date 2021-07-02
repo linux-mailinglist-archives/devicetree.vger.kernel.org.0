@@ -2,129 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 490D23B9EB2
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 12:00:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D3BE3B9ECD
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 12:05:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231519AbhGBKCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 06:02:06 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:55534 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231502AbhGBKB7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 06:01:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1625219964; x=1627811964;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=MfDh1elcmtubGEkIf/niQl0eKkFxqT3rHEFU5MzWt8c=;
-        b=hiorjg7GOSVsodHMet9jdop5W948equtlyQk0yKfc2bgBCKgDlskLyBIollJ5wSR
-        OuLRAV4hjwgEtGtITOsvsfMYTumsAsIHDBfDmsXzvArsFwfTkmpLKurewszw1Qxh
-        QsY2xkxVUCjt75c1fNUZ+tiaE3aDDNuklzU3tV9WQRo=;
-X-AuditID: c39127d2-a9fbd70000001c5e-80-60dee37c2f12
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 17.01.07262.C73EED06; Fri,  2 Jul 2021 11:59:24 +0200 (CEST)
-Received: from lws-riedmueller.phytec.de ([172.16.23.108])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2021070211592418-1081051 ;
-          Fri, 2 Jul 2021 11:59:24 +0200 
-From:   Stefan Riedmueller <s.riedmueller@phytec.de>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Stefan Riedmueller <s.riedmueller@phytec.de>
-Subject: [PATCH v3 6/6] media: mt9p031: Use BIT macro
-Date:   Fri, 2 Jul 2021 11:59:22 +0200
-Message-Id: <20210702095922.118614-7-s.riedmueller@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210702095922.118614-1-s.riedmueller@phytec.de>
-References: <20210702095922.118614-1-s.riedmueller@phytec.de>
-MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 02.07.2021 11:59:24,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 02.07.2021 11:59:24
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrFLMWRmVeSWpSXmKPExsWyRoCBS7fm8b0Eg4l/VS3mHznHatE5cQm7
-        xeVdc9gsejZsZbVYtukPk0Xr3iPsFp+2fGNyYPeY3TGT1WPTqk42j3knAz0+b5ILYInisklJ
-        zcksSy3St0vgypjatIqpYKdYRf+k/cwNjE3CXYycHBICJhIvLrxj6mLk4hAS2MYocfTaJyjn
-        GqPE276zzCBVbAJGEgumNTKB2CICURI/z/ewgNjMAg8YJfa/SgCxhQVMJTZNWwdWwyKgIrHn
-        /VI2EJtXwFbizf5DjBDb5CVmXvrODmJzCthJnLl5FGyOEFDN0f5frBD1ghInZz5hATlCQuAK
-        o8TU49+ZIZqFJE4vhjiIWUBbYtnC18wTGAVmIemZhSS1gJFpFaNQbmZydmpRZrZeQUZlSWqy
-        XkrqJkZg+B6eqH5pB2PfHI9DjEwcjIcYJTiYlUR4Q+fdSxDiTUmsrEotyo8vKs1JLT7EKM3B
-        oiTOu4G3JExIID2xJDU7NbUgtQgmy8TBKdXAGPusbtVlLXaTQMnSqBW7hedsinhxzjVadNWP
-        Iyt3pGTmf6+tTb1buu+wMkOcge2PjlK/wOnyRV48zY4FB+smd/87uHODnexkJeHCMtYW0b7j
-        J41ear156/xsw92yAK6zJ8u+7l/ieTVwz6fPkpLFX85ktut3Sh5e/Fo53SkrY7VRQgzPW54A
-        JZbijERDLeai4kQAY4gW2U0CAAA=
+        id S231467AbhGBKIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 06:08:18 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:21609 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S231455AbhGBKIR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 06:08:17 -0400
+X-IronPort-AV: E=Sophos;i="5.83,317,1616425200"; 
+   d="scan'208";a="86432295"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 02 Jul 2021 19:05:31 +0900
+Received: from localhost.localdomain (unknown [10.226.92.6])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id ADB344010738;
+        Fri,  2 Jul 2021 19:05:29 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 0/4] Add RZ/G2L DMAC support
+Date:   Fri,  2 Jul 2021 11:05:23 +0100
+Message-Id: <20210702100527.28251-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Make use of the BIT macro for setting individual bits. This improves
-readability and safety with respect to shifts.
+This patch series aims to add DMAC support on RZ/G2L SoC's.
 
-Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
----
- drivers/media/i2c/mt9p031.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+It is based on the work done by Chris Brandt for RZ/A DMA driver.
 
-diff --git a/drivers/media/i2c/mt9p031.c b/drivers/media/i2c/mt9p031.c
-index 3511c4ff350d..0a5bcbebe55f 100644
---- a/drivers/media/i2c/mt9p031.c
-+++ b/drivers/media/i2c/mt9p031.c
-@@ -76,39 +76,39 @@
- #define	MT9P031=5FPLL=5FCONFIG=5F1				0x11
- #define	MT9P031=5FPLL=5FCONFIG=5F2				0x12
- #define MT9P031=5FPIXEL=5FCLOCK=5FCONTROL			0x0a
--#define		MT9P031=5FPIXEL=5FCLOCK=5FINVERT		(1 << 15)
-+#define		MT9P031=5FPIXEL=5FCLOCK=5FINVERT		BIT(15)
- #define		MT9P031=5FPIXEL=5FCLOCK=5FSHIFT(n)		((n) << 8)
- #define		MT9P031=5FPIXEL=5FCLOCK=5FDIVIDE(n)		((n) << 0)
- #define MT9P031=5FRESTART					0x0b
--#define		MT9P031=5FFRAME=5FPAUSE=5FRESTART		(1 << 1)
--#define		MT9P031=5FFRAME=5FRESTART			(1 << 0)
-+#define		MT9P031=5FFRAME=5FPAUSE=5FRESTART		BIT(1)
-+#define		MT9P031=5FFRAME=5FRESTART			BIT(0)
- #define MT9P031=5FSHUTTER=5FDELAY				0x0c
- #define MT9P031=5FRST					0x0d
- #define		MT9P031=5FRST=5FENABLE			1
- #define		MT9P031=5FRST=5FDISABLE			0
- #define MT9P031=5FREAD=5FMODE=5F1				0x1e
- #define MT9P031=5FREAD=5FMODE=5F2				0x20
--#define		MT9P031=5FREAD=5FMODE=5F2=5FROW=5FMIR		(1 << 15)
--#define		MT9P031=5FREAD=5FMODE=5F2=5FCOL=5FMIR		(1 << 14)
--#define		MT9P031=5FREAD=5FMODE=5F2=5FROW=5FBLC		(1 << 6)
-+#define		MT9P031=5FREAD=5FMODE=5F2=5FROW=5FMIR		BIT(15)
-+#define		MT9P031=5FREAD=5FMODE=5F2=5FCOL=5FMIR		BIT(14)
-+#define		MT9P031=5FREAD=5FMODE=5F2=5FROW=5FBLC		BIT(6)
- #define MT9P031=5FROW=5FADDRESS=5FMODE			0x22
- #define MT9P031=5FCOLUMN=5FADDRESS=5FMODE			0x23
- #define MT9P031=5FGLOBAL=5FGAIN				0x35
- #define		MT9P031=5FGLOBAL=5FGAIN=5FMIN			8
- #define		MT9P031=5FGLOBAL=5FGAIN=5FMAX			1024
- #define		MT9P031=5FGLOBAL=5FGAIN=5FDEF			8
--#define		MT9P031=5FGLOBAL=5FGAIN=5FMULT		(1 << 6)
-+#define		MT9P031=5FGLOBAL=5FGAIN=5FMULT		BIT(6)
- #define MT9P031=5FROW=5FBLACK=5FTARGET			0x49
- #define MT9P031=5FROW=5FBLACK=5FDEF=5FOFFSET			0x4b
- #define MT9P031=5FGREEN1=5FOFFSET				0x60
- #define MT9P031=5FGREEN2=5FOFFSET				0x61
- #define MT9P031=5FBLACK=5FLEVEL=5FCALIBRATION			0x62
--#define		MT9P031=5FBLC=5FMANUAL=5FBLC			(1 << 0)
-+#define		MT9P031=5FBLC=5FMANUAL=5FBLC			BIT(0)
- #define MT9P031=5FRED=5FOFFSET				0x63
- #define MT9P031=5FBLUE=5FOFFSET				0x64
- #define MT9P031=5FTEST=5FPATTERN				0xa0
- #define		MT9P031=5FTEST=5FPATTERN=5FSHIFT		3
--#define		MT9P031=5FTEST=5FPATTERN=5FENABLE		(1 << 0)
-+#define		MT9P031=5FTEST=5FPATTERN=5FENABLE		BIT(0)
- #define		MT9P031=5FTEST=5FPATTERN=5FDISABLE		(0 << 0)
- #define MT9P031=5FTEST=5FPATTERN=5FGREEN			0xa1
- #define MT9P031=5FTEST=5FPATTERN=5FRED			0xa2
---=20
-2.25.1
+This patch series is based on [1]
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git/log/?h=topic/rzg2l-update-clock-defs-v4
+
+Note:-  This patch has dependency on #include <dt-bindings/clock/r9a07g044-cpg.h> file which will be in next 5.14-rc1 release.
+
+v2->v3:
+  * Described clocks and resets in binding file as per Rob's feedback.
+
+v1->v2
+ * Started using virtual DMAC
+ * Added Geert's Rb tag for binding patch.
+
+Biju Das (4):
+  dt-bindings: dma: Document RZ/G2L bindings
+  drivers: dma: sh: Add DMAC driver for RZ/G2L SoC
+  arm64: dts: renesas: r9a07g044: Add DMAC support
+  arm64: defconfig: Enable DMA controller for RZ/G2L SoC's
+
+ .../bindings/dma/renesas,rz-dmac.yaml         | 124 +++
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  36 +
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/dma/sh/Kconfig                        |   9 +
+ drivers/dma/sh/Makefile                       |   1 +
+ drivers/dma/sh/rz-dmac.c                      | 946 ++++++++++++++++++
+ 6 files changed, 1117 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
+ create mode 100644 drivers/dma/sh/rz-dmac.c
+
+
+base-commit: 06c1e6911a7a76b446e4b00fc8bad5d8465932f8
+-- 
+2.17.1
 
