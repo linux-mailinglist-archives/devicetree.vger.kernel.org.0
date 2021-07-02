@@ -2,79 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D45B43BA2AB
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 17:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC58A3BA2B2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 17:18:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232370AbhGBPRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 11:17:15 -0400
-Received: from mail-il1-f174.google.com ([209.85.166.174]:44729 "EHLO
-        mail-il1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232248AbhGBPRP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 11:17:15 -0400
-Received: by mail-il1-f174.google.com with SMTP id f12so3721265ils.11;
-        Fri, 02 Jul 2021 08:14:43 -0700 (PDT)
+        id S231670AbhGBPUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 11:20:43 -0400
+Received: from mail-io1-f51.google.com ([209.85.166.51]:37688 "EHLO
+        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231134AbhGBPUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 11:20:42 -0400
+Received: by mail-io1-f51.google.com with SMTP id b15so12056022iow.4;
+        Fri, 02 Jul 2021 08:18:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ut9imKxL6QnSk4qfHyI4LHUlOzS0PtJ0GGDAQ0op66c=;
-        b=SJGZXTDhenUslSS9BqAXQ/qbYoqWr27zC5voqaxGmsBn+0WEncFCpHxyhH8tg6LJng
-         EFc282MDp3NDuh96e6a4NyccrnEnZIG400oAESlHPLbqYd1YfEeBxn4Gw5nmBvvr9uBH
-         LABgHn8exns+cOsWWEnFNP77hlzgX+HbcWb13/lkc7ZiiM7dn+ENULsPIj2gMAy2KdMC
-         cMjDhl5djMLwn1i9Ga75oSt1Bm9O8J2xHLwougcBnHcseSAADJ4DcOJLlePbETAkWRO7
-         LCw6M590+xmgueuG6swEgYmngMTsI1tVk7wbk/aTFNGUClnX+a6p7yK/PSQrhC0TikAa
-         XPrw==
-X-Gm-Message-State: AOAM531YR5bc/6OzUR32H8AIAWpitcm5M3sA3O5/SBiIFJHCzxhTVLvf
-        v090yGPKnN4LQ8qMpztl6Q==
-X-Google-Smtp-Source: ABdhPJyJQ+7r5oKAFDBY9y+s7apI5nAskZUs0JrjDvLU1ycLlp4sB/Uhwdv5yqQLYQelhXIiDZpx6g==
-X-Received: by 2002:a92:dd89:: with SMTP id g9mr333572iln.209.1625238882803;
-        Fri, 02 Jul 2021 08:14:42 -0700 (PDT)
+        bh=WB/Iy++8+d6EwbqT2Vw1Mm04L/H7dKksp6VYeRutpIM=;
+        b=lae84tAuWoCdHSvCOb4wvkZUcVzfJrtvGJFD93wsHGrefMo6Pp4K53sLibCSD45s3U
+         QFOuf7nEb/tG/eWT4t3FX72uxUJ9m9so/85cdPCDZOVN2QUwiqDH13RsOppwTrZGOz4m
+         PScxi2Xq7qeO7IVT4na7/Tx0iaccDibJb35+EMNQhedTeMTDhINzpp7dcCqjUsXDH47p
+         XpRR+XDTEHRsx2pbq6tIcPGpA4oP/sjafjDrKU3Kuk5xC0sZFZoCgTEIuqjztNACeIXn
+         GYJVEubHLGbEXjZtiFs+gJP3V/WPqzF2z0c2cj7RzuDIxYnffENFjeaGnQEnnS+Cc9hD
+         OEMw==
+X-Gm-Message-State: AOAM5336NzoxDjcmVngoTi+E3eD98Mf933qW/UH5nSq8ArRuzHsWK8Sz
+        Ke9zh2QXaj4h3FjlcxYaWQ==
+X-Google-Smtp-Source: ABdhPJx44mOoatPm/ATr1baOIQS1AkjQF5vUY1VUNABlaLY14UMbiHBg9C26NDUHU1DtF1ALOY4Fgw==
+X-Received: by 2002:a02:cbd9:: with SMTP id u25mr22685jaq.49.1625239090261;
+        Fri, 02 Jul 2021 08:18:10 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id g6sm1846444ilj.65.2021.07.02.08.14.38
+        by smtp.gmail.com with ESMTPSA id h19sm2073186iow.1.2021.07.02.08.18.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jul 2021 08:14:41 -0700 (PDT)
-Received: (nullmailer pid 437820 invoked by uid 1000);
-        Fri, 02 Jul 2021 15:14:37 -0000
-Date:   Fri, 2 Jul 2021 09:14:37 -0600
+        Fri, 02 Jul 2021 08:18:09 -0700 (PDT)
+Received: (nullmailer pid 444120 invoked by uid 1000);
+        Fri, 02 Jul 2021 15:18:05 -0000
+Date:   Fri, 2 Jul 2021 09:18:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        soc@kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-kernel@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 4/4] dt-bindings: arm: bcm: NSP: add Meraki MX64/MX65
-Message-ID: <20210702151437.GA437656@robh.at.kernel.org>
-References: <20210625095000.3358973-1-mnhagan88@gmail.com>
- <20210625095000.3358973-5-mnhagan88@gmail.com>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Luca Ceresoli <luca@lucaceresoli.net>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Adam Ford <aford173@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 1/3] dt-bindings: clk: vc5: Add properties for
+ configuring the SD/OE pin
+Message-ID: <20210702151805.GA439387@robh.at.kernel.org>
+References: <20210701182012.3421679-1-sean.anderson@seco.com>
+ <CAMuHMdVfeWH9G3sh3REfqYp8v3KHmX712Ar8XRxZpg9NWoVfGQ@mail.gmail.com>
+ <c1f93c0f-a155-a487-c168-b82e135d1781@seco.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210625095000.3358973-5-mnhagan88@gmail.com>
+In-Reply-To: <c1f93c0f-a155-a487-c168-b82e135d1781@seco.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Jun 2021 10:49:51 +0100, Matthew Hagan wrote:
-> Add bindings for the Meraki MX64/MX65 series.
+On Fri, Jul 02, 2021 at 11:07:57AM -0400, Sean Anderson wrote:
 > 
-> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/bcm/brcm,nsp.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
 > 
+> On 7/2/21 3:14 AM, Geert Uytterhoeven wrote:
+> > Hi Sean,
+> >
+> > On Thu, Jul 1, 2021 at 8:20 PM Sean Anderson <sean.anderson@seco.com> wrote:
+> >> These properties allow configuring the SD/OE pin as described in the
+> >> datasheet.
+> >>
+> >> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> >> ---
+> >>
+> >> Changes in v4:
+> >> - Specify that bindings should specify these properties, but don't make
+> >>   any guarantees about the driver's behavior when they are not present.
+> >> - Clarify description of idt,(en|dis)able-shutdown properties.
+> >> - Make opposing properties mutually exclusive.
+> >> - Add these properties to the example.
+> >
+> > Thanks for the update!
+> >
+> >> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> >> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+> >
+> >> @@ -109,6 +152,22 @@ allOf:
+> >>        required:
+> >>          - clock-names
+> >>          - clocks
+> >> +  - if:
+> >> +      true
+> >> +    then:
+> >> +      oneOf:
+> >> +        - required:
+> >> +            - idt,enable-shutdown
+> >> +        - required:
+> >> +            - idt,disable-shutdown
+> >> +  - if:
+> >> +      true
+> >> +    then:
+> >> +      oneOf:
+> >> +        - required:
+> >> +            - idt,output-enable-active-high
+> >> +        - required:
+> >> +            - idt,output-enable-active-low
+> >
+> > Do you really need the "if: true then:"?
+> > Just the "oneOf: ..." worked fine for me in another binding, but then I
+> > didn't have a surrounding "allOf" to interfere...
+> 
+> Yes. If you want to have multiple oneOfs, they have to go under an
+> allOf. And allOf *only* allows if statements. This is a pretty big
+> deficiency, IMO, but not something I can address here.
 
+Humm, we should relax that, not work around it.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
-
-If a tag was not added on purpose, please state why and what changed.
-
+Rob
