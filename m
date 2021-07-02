@@ -2,118 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC58A3BA2B2
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 17:18:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 737D93BA2F9
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 17:57:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231670AbhGBPUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 11:20:43 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:37688 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231134AbhGBPUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 11:20:42 -0400
-Received: by mail-io1-f51.google.com with SMTP id b15so12056022iow.4;
-        Fri, 02 Jul 2021 08:18:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WB/Iy++8+d6EwbqT2Vw1Mm04L/H7dKksp6VYeRutpIM=;
-        b=lae84tAuWoCdHSvCOb4wvkZUcVzfJrtvGJFD93wsHGrefMo6Pp4K53sLibCSD45s3U
-         QFOuf7nEb/tG/eWT4t3FX72uxUJ9m9so/85cdPCDZOVN2QUwiqDH13RsOppwTrZGOz4m
-         PScxi2Xq7qeO7IVT4na7/Tx0iaccDibJb35+EMNQhedTeMTDhINzpp7dcCqjUsXDH47p
-         XpRR+XDTEHRsx2pbq6tIcPGpA4oP/sjafjDrKU3Kuk5xC0sZFZoCgTEIuqjztNACeIXn
-         GYJVEubHLGbEXjZtiFs+gJP3V/WPqzF2z0c2cj7RzuDIxYnffENFjeaGnQEnnS+Cc9hD
-         OEMw==
-X-Gm-Message-State: AOAM5336NzoxDjcmVngoTi+E3eD98Mf933qW/UH5nSq8ArRuzHsWK8Sz
-        Ke9zh2QXaj4h3FjlcxYaWQ==
-X-Google-Smtp-Source: ABdhPJx44mOoatPm/ATr1baOIQS1AkjQF5vUY1VUNABlaLY14UMbiHBg9C26NDUHU1DtF1ALOY4Fgw==
-X-Received: by 2002:a02:cbd9:: with SMTP id u25mr22685jaq.49.1625239090261;
-        Fri, 02 Jul 2021 08:18:10 -0700 (PDT)
-Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id h19sm2073186iow.1.2021.07.02.08.18.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jul 2021 08:18:09 -0700 (PDT)
-Received: (nullmailer pid 444120 invoked by uid 1000);
-        Fri, 02 Jul 2021 15:18:05 -0000
-Date:   Fri, 2 Jul 2021 09:18:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Adam Ford <aford173@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: clk: vc5: Add properties for
- configuring the SD/OE pin
-Message-ID: <20210702151805.GA439387@robh.at.kernel.org>
-References: <20210701182012.3421679-1-sean.anderson@seco.com>
- <CAMuHMdVfeWH9G3sh3REfqYp8v3KHmX712Ar8XRxZpg9NWoVfGQ@mail.gmail.com>
- <c1f93c0f-a155-a487-c168-b82e135d1781@seco.com>
+        id S231804AbhGBP7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 11:59:37 -0400
+Received: from mailgate.ics.forth.gr ([139.91.1.2]:62154 "EHLO
+        mailgate.ics.forth.gr" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231757AbhGBP7g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 11:59:36 -0400
+Received: from av3.ics.forth.gr (av3in.ics.forth.gr [139.91.1.77])
+        by mailgate.ics.forth.gr (8.15.2/ICS-FORTH/V10-1.8-GATE) with ESMTP id 162Fv1PK051420
+        for <devicetree@vger.kernel.org>; Fri, 2 Jul 2021 18:57:01 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; d=ics.forth.gr; s=av; c=relaxed/simple;
+        q=dns/txt; i=@ics.forth.gr; t=1625241416; x=1627833416;
+        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=t0VSE4yvqzLzoGTJTNfADyTmW4ylvlyixsQMnViMXlE=;
+        b=W1poDQWGMNUQdc02AMMYJSW6C6qUeRH/acUywkO/d4MD5tgcU/o9zF5+Py8WOclL
+        trm5ZmcrwwzVK4p6jn0HpS5Fu2EVOWe5rdrsVUK5f4m856HJfHqlCAdFhMIzc8Mw
+        qlXFnflYUcFaIFRQLtnAtTpR/RFAVQ6p2k+US/xgkE0dRnOb1QNb3VWB1skgzSuU
+        IRGY4LBskN2z22ucXLRJ1hYPbxIYMyPjjcKxCvwTAikA6OF4CSPO5UuuqhQsc+B3
+        hMWF7K5VDUgEyqADTZetuUeeyG9M8AujzOnpBfW+Nde7H1TsvLDIagHEjYiRLTXO
+        zYReTKkrXBgvg7WKpeXrFQ==;
+X-AuditID: 8b5b014d-96ef2700000067b6-a9-60df37486b8d
+Received: from enigma.ics.forth.gr (enigma.ics.forth.gr [139.91.151.35])
+        by av3.ics.forth.gr (Symantec Messaging Gateway) with SMTP id F8.F9.26550.8473FD06; Fri,  2 Jul 2021 18:56:56 +0300 (EEST)
+X-ICS-AUTH-INFO: Authenticated user:  at ics.forth.gr
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c1f93c0f-a155-a487-c168-b82e135d1781@seco.com>
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Fri, 02 Jul 2021 18:56:55 +0300
+From:   Nick Kossifidis <mick@ics.forth.gr>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     robh+dt@kernel.org, mick@ics.forth.gr, geert@linux-m68k.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, frowand.list@gmail.com,
+        catalin.marinas@arm.com, will@kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] riscv: Remove non-standard linux,elfcorehdr handling
+Organization: FORTH
+In-Reply-To: <mhng-6db38728-4f82-45bd-9b17-c41da55c41e9@palmerdabbelt-glaptop>
+References: <mhng-6db38728-4f82-45bd-9b17-c41da55c41e9@palmerdabbelt-glaptop>
+Message-ID: <008ddfd79d256dcddd7c802e4eef6b5a@mailhost.ics.forth.gr>
+X-Sender: mick@mailhost.ics.forth.gr
+User-Agent: Roundcube Webmail/1.3.16
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpnkeLIzCtJLcpLzFFi42Lpjp6urOthfj/B4Mh+YYutv2exW7xf1sNo
+        Mf/IOVaLmW/+s1k8u7WXyWLT42usFpd3zWGz2Pa5hc2i+d05douXl3uYLdpm8Vu07j3CbtFy
+        x9SB12PNvDWMHm9evmTxONzxhd1j56y77B4PN11i8ti0qpPN49DhDkaPzUvqPS41X2f3+LxJ
+        LoArissmJTUnsyy1SN8ugSvjVvNy5oJNghULWjuYGxj7+boYOTkkBEwk+tr3sXQxcnEICRxl
+        lOhvuMQGkTCVmL23kxHE5hUQlDg58wkLiM0sYCEx9cp+RghbXqJ562xmEJtFQFXi2cmLYHE2
+        AU2J+ZcOgtWLCKhLHHh9hxmi/iWTxK6/VSC2sICvxK+ZF9lBbH4BYYlPdy+ygticAn4SHS92
+        Ad3AAXSQr8Tn6yYQJ7hI/N38lBXiNBWJD78fsIOUiALZm+cqTWAUnIXk0FlIDp2F5NAFjMyr
+        GAUSy4z1MpOL9dLyi0oy9NKLNjGC44rRdwfj7c1v9Q4xMnEwHmKU4GBWEuENnXcvQYg3JbGy
+        KrUoP76oNCe1+BCjNAeLkjgvr96EeCGB9MSS1OzU1ILUIpgsEwenVANT/6/LD0RTd+2v8D9Z
+        96Z3S0fekS9aMs67BYLYbdo39SwyOb71rcM7LbW/DE0f7yo+992sIJvzO3rFnXaPTc1XGXZd
+        ibz3dnrZef6tL765b70Y5RJqo79CNCzt6LO95r9nch91W/XLfW3P3lJxpZUb80ILRHPFDedZ
+        HLm3siqiTjDszu8nuRosz+qVGDylIr1qfLoELjG9/aGksoN58q9So0tdp1jC/EqrNnW2boiV
+        TZu+hV9l9dof9b1bCs+YbHvg49p+yMV/WhnrLLvJnHuU+2/9PJX74Uhb2baj36uLJ3Nv3PSQ
+        XUT/SWbUT3EG1ZvJEa+eVJ3u1J2ulHjnuyyP+okfd4OCjFuzj3pE5hUqsRRnJBpqMRcVJwIA
+        3+AlDBoDAAA=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 02, 2021 at 11:07:57AM -0400, Sean Anderson wrote:
+Στις 2021-07-01 05:52, Palmer Dabbelt έγραψε:
+> On Wed, 16 Jun 2021 07:47:46 PDT (-0700), robh+dt@kernel.org wrote:
+>> On Wed, Jun 16, 2021 at 4:43 AM Nick Kossifidis <mick@ics.forth.gr> 
+>> wrote:
+>>> 
+>>> Στις 2021-06-16 10:56, Geert Uytterhoeven έγραψε:
+>>> >
+>>> > I can't comment on the duplication on arm64, but to me, /chosen
+>>> > sounds like the natural place for both "linux,elfcorehdr" and
+>>> > "linux,usable-memory-range".  First rule of DT is "DT describes
+>>> > hardware, not software policy", with /chosen describing some software
+>>> > configuration.
+>>> >
+>>> 
+>>> We already have "linux,usable-memory" on /memory node:
+>>> https://elixir.bootlin.com/linux/v5.13-rc6/source/drivers/of/fdt.c#L1011
+>>> and it makes perfect sense to be there since it overrides /memory's 
+>>> reg
+>>> property.
+>>> 
+>>> Why define another binding for the same thing on /chosen ?
+>> 
+>> Go look at the thread adding "linux,usable-memory-range". There were
+>> only 35 versions of it[1]. I wasn't happy with a 2nd way either, but
+>> as I've mentioned before we don't always have /memory node.
 > 
+> I don't really understand what's going on here, but IIUC what I merged
+> in 5.13 doesn't match the behavior that other architectures have.  In
+> that case I'm happy moving RISC-V over to the more standard way of
+> doing things and just calling what we have in 5.13 a screwup.
 > 
-> On 7/2/21 3:14 AM, Geert Uytterhoeven wrote:
-> > Hi Sean,
-> >
-> > On Thu, Jul 1, 2021 at 8:20 PM Sean Anderson <sean.anderson@seco.com> wrote:
-> >> These properties allow configuring the SD/OE pin as described in the
-> >> datasheet.
-> >>
-> >> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-> >> ---
-> >>
-> >> Changes in v4:
-> >> - Specify that bindings should specify these properties, but don't make
-> >>   any guarantees about the driver's behavior when they are not present.
-> >> - Clarify description of idt,(en|dis)able-shutdown properties.
-> >> - Make opposing properties mutually exclusive.
-> >> - Add these properties to the example.
-> >
-> > Thanks for the update!
-> >
-> >> --- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> >> +++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
-> >
-> >> @@ -109,6 +152,22 @@ allOf:
-> >>        required:
-> >>          - clock-names
-> >>          - clocks
-> >> +  - if:
-> >> +      true
-> >> +    then:
-> >> +      oneOf:
-> >> +        - required:
-> >> +            - idt,enable-shutdown
-> >> +        - required:
-> >> +            - idt,disable-shutdown
-> >> +  - if:
-> >> +      true
-> >> +    then:
-> >> +      oneOf:
-> >> +        - required:
-> >> +            - idt,output-enable-active-high
-> >> +        - required:
-> >> +            - idt,output-enable-active-low
-> >
-> > Do you really need the "if: true then:"?
-> > Just the "oneOf: ..." worked fine for me in another binding, but then I
-> > didn't have a surrounding "allOf" to interfere...
-> 
-> Yes. If you want to have multiple oneOfs, they have to go under an
-> allOf. And allOf *only* allows if statements. This is a pretty big
-> deficiency, IMO, but not something I can address here.
+> Sorry for the confusion.
 
-Humm, we should relax that, not work around it.
+Long story short:
 
-Rob
+a) We use "linux,usable-memory" on /memory node to limit the memory of 
+the kdump kernel, it's a standard binding defined at:
+https://elixir.bootlin.com/linux/v5.13-rc6/source/drivers/of/fdt.c#L1011
+
+b) We used a reserved region (again a standard binding) named 
+"linux,elfcorehdr" which has the same name as a property on /chosen used 
+by arm64 for the same thing. With this patch we 'll use arm64's 
+approach, although it's a bit worse since we'll need to add the same 
+region twice on the fdt (once in /chosen as a property and another one 
+in the reservation map so that it gets reserved during early boot).
+
+Fortunately I (still) haven't posted the kexec-tools patches on the 
+mailing list so we don't break userspace by doing this.
