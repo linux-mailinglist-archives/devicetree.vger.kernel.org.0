@@ -2,82 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 112EF3BA46D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 21:49:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4827C3BA4A4
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 22:23:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229676AbhGBTv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 15:51:58 -0400
-Received: from ssl.serverraum.org ([176.9.125.105]:53475 "EHLO
-        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230119AbhGBTv5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 15:51:57 -0400
-Received: from mwalle01.fritz.box (ip4d17858c.dynamic.kabel-deutschland.de [77.23.133.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 62DE82224D;
-        Fri,  2 Jul 2021 21:49:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1625255363;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=1G+uDlz+vA24FK9D18rVmhAhg2oNivclrK25BBxeNOs=;
-        b=IS/2AQ9bRVMoA0FVTIblp0tJcpHPgEzkt0063hLxtkB+ziEZxtxVAxBYhE4OG0vDG2oCci
-        UVTDUGNgnK+dqH+D/GvVnD8IXHWZtRvc8WoyYg7GS0Y5xpDF/34jU1CT9CaU5xWCc1SHNW
-        qkkU+FXaOmHrcaw50LGw4nUBAjAtN4c=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH] arm64: dts: ls1028: sl28: fix networking for variant 2
-Date:   Fri,  2 Jul 2021 21:49:14 +0200
-Message-Id: <20210702194914.10921-1-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
+        id S231484AbhGBUZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 16:25:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34942 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231330AbhGBUZr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 16:25:47 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E5E0C061762
+        for <devicetree@vger.kernel.org>; Fri,  2 Jul 2021 13:23:14 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id bq39so7578398lfb.12
+        for <devicetree@vger.kernel.org>; Fri, 02 Jul 2021 13:23:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=phystech-edu.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :organization:mime-version:content-transfer-encoding;
+        bh=YS7Rh7bjOGjf3GzbkGuMZZqduHpV/ZItv36o34+uxXQ=;
+        b=URbyxG7Joz/rVUHzhPvmmIZ5C77NVhMjqmoxjqEbCAfbJ7+Py2lYdDaQ2km8wcPrAr
+         mGnMbqoXv9MpvRXKAV4SCMWYyFsj+UjsN0hktMR+E8RoJ20E5WmEALnI6Z5ZblNBPeJ1
+         dsjlrGx3wGG+aZL6gyybLP7REh0Gm8XCgvD1HQj7zbVimeiZ3y2PCfLdOZjzv7MKD6VA
+         fB7Bfht/TAXGm2kgZd9GTZAgPKC40M+CsW/Pa2NcsfRzc17Xb45w0IfVqPIUnM0yEbBk
+         vuTmFzu6DJF3zlUeDHU+aWcYxP+5lkUvwcIj3fVO0rHtlvDd7q43HOv4q0ffAFAgIWs9
+         zMHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:organization:mime-version:content-transfer-encoding;
+        bh=YS7Rh7bjOGjf3GzbkGuMZZqduHpV/ZItv36o34+uxXQ=;
+        b=iTKsh9AW1z6EJk/PYP31nJ1qX+Ukpn+rScs1wiHd762J6fRXBTzzU898wihgMREnmx
+         /pRsZYwrXEEM/3PAJ2HDX+aZpeQUFg5sA90Sd3wbjiaQgzOdkjRdj+Bxrh1h1Y8JMONA
+         xEa9YduN18UD9FzgReMa1W4J/9gDKzhWnDM/nZunHbAWjC0CxHjCWy0QnMuW+4ptHxDS
+         JuwMcSyK2ZtvPfLD35Nz0XfsPipyhTD0GOsT0lj5P/OpjCDIk9EX0LAQFqHaraMKchxX
+         J24poxJV+X2ThV4AScLUZpWGo0W6+d5lxd6pVMmBZyUxxQjZdWleEDE/IYR89s7fmhEf
+         /U+g==
+X-Gm-Message-State: AOAM533YxvPzt4on7OD0q+6/+8Kez6WR+EAsCI2Ub/yJyYGUznT/adHK
+        tcTBFJVcrHIBfUMlwudqYcRd8Q==
+X-Google-Smtp-Source: ABdhPJyAnONSruQCpJ77tfZgLVDFMcoJBz/dX6KycdmqQHOmvUz/HM0dEDf5d6/1kvt34oxf4TphzA==
+X-Received: by 2002:a05:6512:1188:: with SMTP id g8mr1032423lfr.114.1625257392632;
+        Fri, 02 Jul 2021 13:23:12 -0700 (PDT)
+Received: from 192.168.1.3 ([2a00:1370:810e:4d3d:fdb7:f150:ee77:eba5])
+        by smtp.gmail.com with ESMTPSA id m1sm453543ljb.138.2021.07.02.13.23.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Jul 2021 13:23:12 -0700 (PDT)
+Date:   Fri, 2 Jul 2021 23:23:05 +0300
+From:   Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Sean Young <sean@mess.org>, mchehab@kernel.org, robh+dt@kernel.org,
+        khilman@baylibre.com, Neil Armstrong <narmstrong@baylibre.com>,
+        jbrunet@baylibre.com, linux-media <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, rockosov@gmail.com
+Subject: Re: [PATCH 2/2] media: rc: introduce Meson IR blaster driver
+Message-ID: <20210702232305.5060a04b@192.168.1.3>
+In-Reply-To: <CAFBinCA+zud1THT6z2QsGCqXMT-3nqN_S4nR0FhaDGhcKzoe-Q@mail.gmail.com>
+References: <20210701215132.16317-1-viktor.prutyanov@phystech.edu>
+        <20210701215132.16317-3-viktor.prutyanov@phystech.edu>
+        <20210701224646.GA18540@gofer.mess.org>
+        <CAFBinCA+zud1THT6z2QsGCqXMT-3nqN_S4nR0FhaDGhcKzoe-Q@mail.gmail.com>
+Organization: MIPT
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PHY configuration for the variant 2 is still missing the flag for
-in-band signalling between PHY and MAC. Both sides - MAC and PHY - have
-to match the setting. For now, Linux only supports setting the MAC side
-and thus it has to match the setting the bootloader is configuring.
-Enable in-band signalling to make ethernet work.
+Hi Martin,
 
-Fixes: ab43f0307449 ("arm64: dts: ls1028a: sl28: add support for variant 2")
-Signed-off-by: Michael Walle <michael@walle.cc>
----
-What make things worse and why this might slipped through is that the
-setting in the PHY is persistent even after a soft reset of the PHY.
+On Fri, 2 Jul 2021 18:15:18 +0200
+Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
 
- arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts | 2 ++
- 1 file changed, 2 insertions(+)
+> Hi Sean,
+> 
+> On Fri, Jul 2, 2021 at 12:46 AM Sean Young <sean@mess.org> wrote:
+> >
+> > Hi Viktor,
+> >
+> > Thank you for your driver. Is there a datasheet available for this
+> > hardware?
+> The public S905X datasheet [0] (starting at page 515) and the public
+> S905D3 datasheet [1] (starting at page 1105) document the registers.
+> If Viktor has additional or better information then it would be great
+> if he could share it with us.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-index dd764b720fb0..f6a79c8080d1 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
-@@ -54,6 +54,7 @@
- 
- &mscc_felix_port0 {
- 	label = "swp0";
-+	managed = "in-band-status";
- 	phy-handle = <&phy0>;
- 	phy-mode = "sgmii";
- 	status = "okay";
-@@ -61,6 +62,7 @@
- 
- &mscc_felix_port1 {
- 	label = "swp1";
-+	managed = "in-band-status";
- 	phy-handle = <&phy1>;
- 	phy-mode = "sgmii";
- 	status = "okay";
--- 
-2.20.1
+I can add that descriptions of A311D and T950D4 blasters are the same
+as S905D3, including 0xFF800000 base address.
+The A311D public datasheet doesn't say anything about IR blaster, but
+it is still present on this SoC.
 
+Best regards,
+Viktor Prutyanov
