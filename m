@@ -2,152 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8316C3BA1CA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 15:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 708FC3BA1EE
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 16:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232695AbhGBOBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 10:01:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51692 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232661AbhGBOBl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Jul 2021 10:01:41 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E67B26142B;
-        Fri,  2 Jul 2021 13:59:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625234348;
-        bh=GAzz+9Wi5F3smddcMqAPXL+yX+g6y+b7+ZdyCyCYk6o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DRFf+Wzi4/1+CXjK9WTjhUw5flwP67NTwGefIxgOECtBfi65Tj3m3RZAnGmMeaHWN
-         2nB6ydioSV2HMouSGryEIIBRdSlehAFMTcH+PJ43Fzncx1dyolaRkF7sppvivPuZf7
-         cPX4Boe7jQMJiyFe3ZHKT4MFIZG39Q+YJQliaRWFbkh7/vzRbU7bxJi79Z1ru+gtBo
-         ad1ubKsTeSBiWjEpbwdaLM3RhLgyMoL6khfdtq+W/6U3noQUe78qA62SPzsLgc5K4n
-         HLEZtG+/PJtTdlqtEwnI8LIwqrv30Hz5pVN+cgBES579vlL24El76ac3B9gttOgNJw
-         +e4R0HS7ObwsQ==
-Date:   Fri, 2 Jul 2021 14:58:57 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Nathan Chancellor <nathan@kernel.org>
-Cc:     Claire Chang <tientzu@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        id S232808AbhGBOIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 10:08:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36648 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232686AbhGBOIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 10:08:10 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F4BBC061762;
+        Fri,  2 Jul 2021 07:05:38 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id bu19so18288444lfb.9;
+        Fri, 02 Jul 2021 07:05:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Cjfl3c0J1wDK0xB6m0y3uhz6p6gS8JB9sGZSHtLepfc=;
+        b=ocEmqlClYeANx41+Aff3aBsIZIc3UVL4RukOuIMXBs3c/pjDrBTh7SKzR1xGu3X1D+
+         HnLnYqQSqbVNwZphjkzXKuzrtTREydyNMI7xq0um2Dijg2FABDK5/f7wv3q1U9OPhpTD
+         lE9dlJ7Bl0jRg6UJdme4qM2uWiLTYOm4+6N9dZwQjsWyIWXYqUdoUeZ130j0vJXLsaUy
+         rbeGxR1S8HWJ8p9uPlQU7oCzGUJ3+DqhFRDtUqzcdd2gBc0jaZh6FDCzm4uoiOWIh32c
+         uK6h1asNzG2jqNBMt/8czvBAiSBePEULa8Ib1Bn/fGPGDaQpernRoyWYEJGdeA+/j4Gz
+         xkmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Cjfl3c0J1wDK0xB6m0y3uhz6p6gS8JB9sGZSHtLepfc=;
+        b=MMh5qrMDSt+MfbU1Z8VY6cEePQpJNFa0Z0vhWnHMJwGNExZo/pCqWeHXXtIr8A5Fzb
+         TRcWvbpd4xCn5pSMJX5A7s+kIEEOWqL2zyXklAsTnw1O9Le2o++BcLv1kvMsIKVlwWvI
+         33RwWy0w0Ryk0zgw/iRF0FEfA/5KqmixXKi6HSj69wxr1yIUB+WGU4iUx3D8S9MAFDM2
+         08NZ3xaNUTq7TVyFGR5S8SQxZRyGeuybSCt0GI2eMtnjqIUbZlxncOWqJFfQAR7DkvRs
+         Kw1DN5Doail9esgSWaABFQnHmc/mwB2JoIerix3PmJJIyLKzBgEjn7ZWi0WZ8GHhTsit
+         eNgw==
+X-Gm-Message-State: AOAM533oS1JRGuc2n7ZV28huf0UtryZy60R2yDBlXK3S/5Z/00YZBg8X
+        YloDi0fF1nPqQFo2D5BXFT0=
+X-Google-Smtp-Source: ABdhPJzkutMeeLEPXZOMUQKVeT4A2lCgpel8CCjVgI5HBDtKFzrED7+2eYblNwWvXC7GZ5j86yLWyw==
+X-Received: by 2002:a05:6512:3fa2:: with SMTP id x34mr3972751lfa.437.1625234736576;
+        Fri, 02 Jul 2021 07:05:36 -0700 (PDT)
+Received: from [192.168.2.145] (94-29-37-113.dynamic.spd-mgts.ru. [94.29.37.113])
+        by smtp.googlemail.com with ESMTPSA id q24sm304955lfj.200.2021.07.02.07.05.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jul 2021 07:05:35 -0700 (PDT)
+Subject: Re: [PATCH v2 2/5] iommu: Implement of_iommu_get_resv_regions()
+To:     Thierry Reding <thierry.reding@gmail.com>,
         Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Nicolin Chen <nicolinc@nvidia.com>,
+        Krishna Reddy <vdumpa@nvidia.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-tegra@vger.kernel.org,
         Frank Rowand <frowand.list@gmail.com>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        boris.ostrovsky@oracle.com, jgross@suse.com,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        benh@kernel.crashing.org, paulus@samba.org,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
-        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
-        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        heikki.krogerus@linux.intel.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
-        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
-        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
-        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
-        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
-        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
-        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
-        Tom Lendacky <thomas.lendacky@amd.com>,
-        Qian Cai <quic_qiancai@quicinc.com>
-Subject: Re: [PATCH v15 06/12] swiotlb: Use is_swiotlb_force_bounce for
- swiotlb data bouncing
-Message-ID: <20210702135856.GB11132@willie-the-truck>
-References: <20210624155526.2775863-1-tientzu@chromium.org>
- <20210624155526.2775863-7-tientzu@chromium.org>
- <YNvMDFWKXSm4LRfZ@Ryzen-9-3900X.localdomain>
- <CALiNf2-a-haQN0-4+gX8+wa++52-0CnO2O4BEkxrQCxoTa_47w@mail.gmail.com>
- <20210630114348.GA8383@willie-the-truck>
- <YNyUQwiagNeZ9YeJ@Ryzen-9-3900X.localdomain>
- <20210701074045.GA9436@willie-the-truck>
- <ea28db1f-846e-4f0a-4f13-beb67e66bbca@kernel.org>
+        Rob Herring <robh@kernel.org>
+References: <20210423163234.3651547-1-thierry.reding@gmail.com>
+ <20210423163234.3651547-3-thierry.reding@gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <bdc42077-d1f3-f561-2e4d-647b5fceb7b6@gmail.com>
+Date:   Fri, 2 Jul 2021 17:05:35 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ea28db1f-846e-4f0a-4f13-beb67e66bbca@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20210423163234.3651547-3-thierry.reding@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nathan,
+23.04.2021 19:32, Thierry Reding пишет:
+> +void of_iommu_get_resv_regions(struct device *dev, struct list_head *list)
+> +{
+> +	struct of_phandle_iterator it;
+> +	int err;
+> +
+> +	of_for_each_phandle(&it, err, dev->of_node, "memory-region", "#memory-region-cells", 0) {
+> +		struct iommu_resv_region *region;
+> +		struct of_phandle_args args;
+> +		struct resource res;
+> +
+> +		args.args_count = of_phandle_iterator_args(&it, args.args, MAX_PHANDLE_ARGS);
+> +
+> +		err = of_address_to_resource(it.node, 0, &res);
+> +		if (err < 0) {
+> +			dev_err(dev, "failed to parse memory region %pOF: %d\n",
+> +				it.node, err);
+> +			continue;
+> +		}
+> +
+> +		if (args.args_count > 0) {
+> +			/*
+> +			 * Active memory regions are expected to be accessed by hardware during
+> +			 * boot and must therefore have an identity mapping created prior to the
+> +			 * driver taking control of the hardware. This ensures that non-quiescent
+> +			 * hardware doesn't cause IOMMU faults during boot.
+> +			 */
+> +			if (args.args[0] & MEMORY_REGION_IDENTITY_MAPPING) {
+> +				region = iommu_alloc_resv_region(res.start, resource_size(&res),
+> +								 IOMMU_READ | IOMMU_WRITE,
+> +								 IOMMU_RESV_DIRECT_RELAXABLE);
+> +				if (!region)
+> +					continue;
+> +
+> +				list_add_tail(&region->list, list);
+> +			}
+> +		}
+> +	}
+> +}
+> +EXPORT_SYMBOL(of_iommu_get_resv_regions);
 
-On Thu, Jul 01, 2021 at 12:52:20AM -0700, Nathan Chancellor wrote:
-> On 7/1/2021 12:40 AM, Will Deacon wrote:
-> > On Wed, Jun 30, 2021 at 08:56:51AM -0700, Nathan Chancellor wrote:
-> > > On Wed, Jun 30, 2021 at 12:43:48PM +0100, Will Deacon wrote:
-> > > > On Wed, Jun 30, 2021 at 05:17:27PM +0800, Claire Chang wrote:
-> > > > > `BUG: unable to handle page fault for address: 00000000003a8290` and
-> > > > > the fact it crashed at `_raw_spin_lock_irqsave` look like the memory
-> > > > > (maybe dev->dma_io_tlb_mem) was corrupted?
-> > > > > The dev->dma_io_tlb_mem should be set here
-> > > > > (https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/pci/probe.c#n2528)
-> > > > > through device_initialize.
-> > > > 
-> > > > I'm less sure about this. 'dma_io_tlb_mem' should be pointing at
-> > > > 'io_tlb_default_mem', which is a page-aligned allocation from memblock.
-> > > > The spinlock is at offset 0x24 in that structure, and looking at the
-> > > > register dump from the crash:
-> > > > 
-> > > > Jun 29 18:28:42 hp-4300G kernel: RSP: 0018:ffffadb4013db9e8 EFLAGS: 00010006
-> > > > Jun 29 18:28:42 hp-4300G kernel: RAX: 00000000003a8290 RBX: 0000000000000000 RCX: ffff8900572ad580
-> > > > Jun 29 18:28:42 hp-4300G kernel: RDX: ffff89005653f024 RSI: 00000000000c0000 RDI: 0000000000001d17
-> > > > Jun 29 18:28:42 hp-4300G kernel: RBP: 000000000a20d000 R08: 00000000000c0000 R09: 0000000000000000
-> > > > Jun 29 18:28:42 hp-4300G kernel: R10: 000000000a20d000 R11: ffff89005653f000 R12: 0000000000000212
-> > > > Jun 29 18:28:42 hp-4300G kernel: R13: 0000000000001000 R14: 0000000000000002 R15: 0000000000200000
-> > > > Jun 29 18:28:42 hp-4300G kernel: FS:  00007f1f8898ea40(0000) GS:ffff890057280000(0000) knlGS:0000000000000000
-> > > > Jun 29 18:28:42 hp-4300G kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> > > > Jun 29 18:28:42 hp-4300G kernel: CR2: 00000000003a8290 CR3: 00000001020d0000 CR4: 0000000000350ee0
-> > > > Jun 29 18:28:42 hp-4300G kernel: Call Trace:
-> > > > Jun 29 18:28:42 hp-4300G kernel:  _raw_spin_lock_irqsave+0x39/0x50
-> > > > Jun 29 18:28:42 hp-4300G kernel:  swiotlb_tbl_map_single+0x12b/0x4c0
-> > > > 
-> > > > Then that correlates with R11 holding the 'dma_io_tlb_mem' pointer and
-> > > > RDX pointing at the spinlock. Yet RAX is holding junk :/
-> > > > 
-> > > > I agree that enabling KASAN would be a good idea, but I also think we
-> > > > probably need to get some more information out of swiotlb_tbl_map_single()
-> > > > to see see what exactly is going wrong in there.
-> > > 
-> > > I can certainly enable KASAN and if there is any debug print I can add
-> > > or dump anything, let me know!
-> > 
-> > I bit the bullet and took v5.13 with swiotlb/for-linus-5.14 merged in, built
-> > x86 defconfig and ran it on my laptop. However, it seems to work fine!
-> > 
-> > Please can you share your .config?
-> 
-> Sure thing, it is attached. It is just Arch Linux's config run through
-> olddefconfig. The original is below in case you need to diff it.
-> 
-> https://raw.githubusercontent.com/archlinux/svntogit-packages/9045405dc835527164f3034b3ceb9a67c7a53cd4/trunk/config
-> 
-> If there is anything more that I can provide, please let me know.
-
-I eventually got this booting (for some reason it was causing LD to SEGV
-trying to link it for a while...) and sadly it works fine on my laptop. Hmm.
-
-Did you manage to try again with KASAN?
-
-It might also be worth taking the IOMMU out of the equation, since that
-interfaces differently with SWIOTLB and I couldn't figure out the code path
-from the log you provided. What happens if you boot with "amd_iommu=off
-swiotlb=force"?
-
-(although word of warning here: i915 dies horribly on my laptop if I pass
-swiotlb=force, even with the distro 5.10 kernel)
-
-Will
+Any reason why this is not EXPORT_SYMBOL_GPL? I'm curious what is the
+logic behind the OF symbols in general since it looks like half of them
+are GPL.
