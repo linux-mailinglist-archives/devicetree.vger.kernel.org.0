@@ -2,85 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C4183B9B46
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 06:11:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98B9E3B9BBD
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 07:00:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232815AbhGBEN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 00:13:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45466 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232388AbhGBEN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 00:13:26 -0400
-Received: from mail-io1-xd2a.google.com (mail-io1-xd2a.google.com [IPv6:2607:f8b0:4864:20::d2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3688EC061765
-        for <devicetree@vger.kernel.org>; Thu,  1 Jul 2021 21:10:54 -0700 (PDT)
-Received: by mail-io1-xd2a.google.com with SMTP id b15so10153065iow.4
-        for <devicetree@vger.kernel.org>; Thu, 01 Jul 2021 21:10:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zeSfxgHTcElRZoSpX3vn4Ly7z/IXRbCeFw0dHTkG7AY=;
-        b=IuM+K/DrC/N1D8CS0EkEa3H706wC+2MyxRTwtdlaOVRQXrD1O8w7Ak9NSNpM/JQGdW
-         4Bpslu4+wwkq6u06q8ny1O51SVtLSqRnnZ7YBekiG0zikWd3ZGF0l6ACkcPgyZIVQWP1
-         EXvgsk07oRH7T6lLI6wvDLR2FcIzd8wOz9o+6BCh9CgD/g2hH6jhEsx2ctv1NKMqKQ/0
-         MkfamFBQBIcbgWJY+gVydu+F/z1KyT1ezsV8HY2ZDA9c8C9ZWPGinZdPbMqcMql9GkRd
-         G2Q48cdZlVKAmqHBiQqGteQSZo3jAv33rzxqDiBlaq3hy4A54huCAin9LmrbfGhYRiIR
-         BYRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zeSfxgHTcElRZoSpX3vn4Ly7z/IXRbCeFw0dHTkG7AY=;
-        b=bqc8EXbgGON/brTbeYMBLdmW8T7Oejpnu+9EURa4s6LZFvuqfzD8XhiaU5x8TDklE7
-         unwp9wVYi00kqcIAddgvkImuzpd4K9hStJZ4mPKrddgi4W/Svq7+yVOf8qi5n4VKkX5X
-         dvl2DNkn21xVKyoryusPC/29XQE7/vJ4SzY/ITBBnEn/bIGndDiVAQwOL0FCQgPE3Xuq
-         /QL2dWXIgXIPGu56Xp0gC3fDGsRSVDxvc4UKkHNqOR7T9Aebmth/1v1IrUklSmdU52Gc
-         4RhyN8otoJAPM5Aog3zxeaDXRuR/pBroFXxIPY4u/LJrF7VYlFqK57S0wQVMNafTut8P
-         g4bA==
-X-Gm-Message-State: AOAM532V+ZfYB8D4hEc4eihE5emr145EsvBpjtx+Q0HDCgw2aajEUCzm
-        QoxI8dlbFldOshf12p80zVYRstKYI1+26Q0Vh3jisg==
-X-Google-Smtp-Source: ABdhPJyBQxBUgBEzL+AgJh2pPTIZG1lq9jnjj4ShF+UvDdDfl3o1JmKmztNrF6SH8uOwDhhHcI3j4ElRt8sBOwAeUb0=
-X-Received: by 2002:a5d:840c:: with SMTP id i12mr2078731ion.185.1625199053517;
- Thu, 01 Jul 2021 21:10:53 -0700 (PDT)
+        id S232274AbhGBFCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 01:02:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34454 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229527AbhGBFCx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Jul 2021 01:02:53 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6FDE761413;
+        Fri,  2 Jul 2021 05:00:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1625202021;
+        bh=t2qyD3sHMTfsanlf2Ca59gxsFV/p6nqhM45H10N8ELk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=b3QQh4ifIgFmVEXnr7OSqfOiwNHzkC/Xi88eZ/6PTSL2q772nrfTuoTDMBm05+V0S
+         vjCD6yzn+HkvR52h4crxuS4xguYAC3JlA8Ul1srpDZbWFBXiwkRNOi6stY0E/Onlww
+         fZCfr1vMcOqq1iu7Jb6XuqBjelUVRKDQ7vo5NiVA=
+Date:   Fri, 2 Jul 2021 07:00:19 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Wesley Cheng <wcheng@codeaurora.org>
+Cc:     robh+dt@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        balbi@kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, jackp@codeaurora.org,
+        fntoth@gmail.com
+Subject: Re: [PATCH v11 1/5] usb: gadget: udc: core: Introduce check_config
+ to verify USB configuration
+Message-ID: <YN6dY8RBXRN4BW3n@kroah.com>
+References: <1625043642-29822-1-git-send-email-wcheng@codeaurora.org>
+ <1625043642-29822-2-git-send-email-wcheng@codeaurora.org>
 MIME-Version: 1.0
-References: <20210630085247.27554-1-irui.wang@mediatek.com>
-In-Reply-To: <20210630085247.27554-1-irui.wang@mediatek.com>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Fri, 2 Jul 2021 12:10:42 +0800
-Message-ID: <CA+Px+wUZJQXtF2_eti5baY_z_24Rm-_+389KAeT5+sNretTD5A@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Support h264 encoder on MT8195
-To:     Irui Wang <irui.wang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <Yunfei.Dong@mediatek.com>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1625043642-29822-2-git-send-email-wcheng@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 30, 2021 at 4:52 PM Irui Wang <irui.wang@mediatek.com> wrote:
->
-> Add MT8195 H264 venc driver
->
-> Irui Wang (3):
->   media: mtk-vcodec: Clean redundant encoder format definition
->   dt-bindings: media: mtk-vcodec: Add binding for MT8195 VENC
->   media: mtk-vcodec: Add MT8195 H264 venc driver
-A typo in the commit message of DT binding patch.  With that:
-Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
+On Wed, Jun 30, 2021 at 02:00:38AM -0700, Wesley Cheng wrote:
+> Some UDCs may have constraints on how many high bandwidth endpoints it can
+> support in a certain configuration.  This API allows for the composite
+> driver to pass down the total number of endpoints to the UDC so it can verify
+> it has the required resources to support the configuration.
+> 
+> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
+> ---
+>  drivers/usb/gadget/udc/core.c | 25 +++++++++++++++++++++++++
+>  include/linux/usb/gadget.h    |  4 ++++
+>  2 files changed, 29 insertions(+)
+> 
+> diff --git a/drivers/usb/gadget/udc/core.c b/drivers/usb/gadget/udc/core.c
+> index b7f0b1e..f1f44a6 100644
+> --- a/drivers/usb/gadget/udc/core.c
+> +++ b/drivers/usb/gadget/udc/core.c
+> @@ -1003,6 +1003,31 @@ int usb_gadget_ep_match_desc(struct usb_gadget *gadget,
+>  }
+>  EXPORT_SYMBOL_GPL(usb_gadget_ep_match_desc);
+>  
+> +/**
+> + * usb_gadget_check_config - checks if the UDC can support the number of eps
+
+"eps"?  What is that?
+
+> + * @gadget: controller to check the USB configuration
+> + * @ep_map: bitmap of endpoints being requested by a USB configuration
+
+There is no such option in this function, did you run 'make htmldocs'
+and see that this adds a warning?
+
+> + *
+> + * Ensure that a UDC is able to support the number of endpoints within a USB
+> + * configuration, and that there are no resource limitations to support all
+> + * requested eps.
+> + *
+> + * Returns zero on success, else a negative errno.
+> + */
+> +int usb_gadget_check_config(struct usb_gadget *gadget)
+> +{
+> +	int ret = 0;
+> +
+> +	if (!gadget->ops->check_config)
+> +		goto out;
+> +
+> +	ret = gadget->ops->check_config(gadget);
+> +
+> +out:
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(usb_gadget_check_config);
+
+This can be written in the much simpler form:
+{
+	if (gadget->ops->check_config)
+		return gadget->ops->check_config(gadget);
+	return 0;
+}
+
+But where are the endpoints that need to be checked???
+
+How is this working?
+
+thanks,
+
+greg k-h
