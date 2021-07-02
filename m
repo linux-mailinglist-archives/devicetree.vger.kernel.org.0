@@ -2,119 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20E273BA3B5
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 19:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 112EF3BA46D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 21:49:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229817AbhGBRoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 13:44:46 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:53165 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229455AbhGBRop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 13:44:45 -0400
-X-UUID: 25a63eb8ebbc4918912bc611a5dc5f62-20210703
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=W3mE1N6NI3osqqcQy+E1z3volKwDBN0BeypQrroDM1M=;
-        b=mNkERxTXO2mhw9YslIko/EncRE9voatsfxdSGzoDF0e9e7FqLWDOQxKjOaP16rOTvVem7cR9TCc5NQ4+xZcYG/7cr1eHCrqNcsgIy+a621wUwbbjNi1woWsOUTanANfebBlispyyMivE9jZiq2zoyWNfc6vNRT4DcosXV8IQxO8=;
-X-UUID: 25a63eb8ebbc4918912bc611a5dc5f62-20210703
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <jason-jh.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1516597151; Sat, 03 Jul 2021 01:42:10 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 3 Jul 2021 01:42:01 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 3 Jul 2021 01:42:01 +0800
-Message-ID: <06acd9a411edaf4dd3db4344646ca1e1875c8f0b.camel@mediatek.com>
-Subject: Re: [PATCH v1 3/5] arm64: dts: mt8195: add gce node
-From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Sat, 3 Jul 2021 01:42:01 +0800
-In-Reply-To: <CAAOTY_9B1L=1=LzdC_1_czFgc4smH0hTk0B=XCquH08KAjx_nA@mail.gmail.com>
-References: <20210630051418.14044-1-jason-jh.lin@mediatek.com>
-         <20210630051418.14044-4-jason-jh.lin@mediatek.com>
-         <CAAOTY_9B1L=1=LzdC_1_czFgc4smH0hTk0B=XCquH08KAjx_nA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S229676AbhGBTv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 15:51:58 -0400
+Received: from ssl.serverraum.org ([176.9.125.105]:53475 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230119AbhGBTv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 15:51:57 -0400
+Received: from mwalle01.fritz.box (ip4d17858c.dynamic.kabel-deutschland.de [77.23.133.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 62DE82224D;
+        Fri,  2 Jul 2021 21:49:23 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1625255363;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=1G+uDlz+vA24FK9D18rVmhAhg2oNivclrK25BBxeNOs=;
+        b=IS/2AQ9bRVMoA0FVTIblp0tJcpHPgEzkt0063hLxtkB+ziEZxtxVAxBYhE4OG0vDG2oCci
+        UVTDUGNgnK+dqH+D/GvVnD8IXHWZtRvc8WoyYg7GS0Y5xpDF/34jU1CT9CaU5xWCc1SHNW
+        qkkU+FXaOmHrcaw50LGw4nUBAjAtN4c=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH] arm64: dts: ls1028: sl28: fix networking for variant 2
+Date:   Fri,  2 Jul 2021 21:49:14 +0200
+Message-Id: <20210702194914.10921-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIxLTA3LTAxIGF0IDA3OjIxICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
-PiBIaSwgSmFzb246DQo+IA0KPiBqYXNvbi1qaC5saW4gPGphc29uLWpoLmxpbkBtZWRpYXRlay5j
-b20+IOaWvCAyMDIx5bm0NuaciDMw5pelIOmAseS4iSDkuIvljYgxOjE45a+r6YGT77yaDQo+ID4g
-DQo+ID4gYWRkIGdjZSBub2RlIG9uIGR0cyBmaWxlLg0KPiA+IA0KPiA+IENoYW5nZS1JZDogSTgw
-NTQ1NWNiN2M2NDVjYjVhMjRjZTFjODdmZTg5MWE4MDcwNjkxMjMNCj4gPiBTaWduZWQtb2ZmLWJ5
-OiBqYXNvbi1qaC5saW4gPGphc29uLWpoLmxpbkBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4g
-VGhpcyBwYXRjaCBpcyBiYXNlZCBvbiBbMV0NCj4gPiBbMV0gQWRkIE1lZGlhdGVrIFNvQyBNVDgx
-OTUgYW5kIGV2YWx1YXRpb24gYm9hcmQgZHRzIGFuZCBNYWtlZmlsZQ0KPiA+ICAgICAtIA0KPiA+
-IGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcHJvamVjdC9saW51eC1tZWRpYXRlay9wYXRj
-aC8yMDIxMDYwMTA3NTM1MC4zMTUxNS0yLXNlaXlhLndhbmdAbWVkaWF0ZWsuY29tLw0KPiA+IC0t
-LQ0KPiA+ICBhcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5NS5kdHNpIHwgMjENCj4g
-PiArKysrKysrKysrKysrKysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDIxIGluc2VydGlv
-bnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRl
-ay9tdDgxOTUuZHRzaQ0KPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxOTUu
-ZHRzaQ0KPiA+IGluZGV4IGMxNDZhOTFjNjI3Mi4uMzgwNTQxOTZlZWE0IDEwMDY0NA0KPiA+IC0t
-LSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTk1LmR0c2kNCj4gPiArKysgYi9h
-cmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5NS5kdHNpDQo+ID4gQEAgLTYsNiArNiw3
-IEBADQo+ID4gDQo+ID4gIC9kdHMtdjEvOw0KPiA+ICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvY2xv
-Y2svbXQ4MTk1LWNsay5oPg0KPiA+ICsjaW5jbHVkZSA8ZHQtYmluZGluZ3MvZ2NlL210ODE5NS1n
-Y2UuaD4NCj4gPiAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2Fy
-bS1naWMuaD4NCj4gPiAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVy
-L2lycS5oPg0KPiA+ICAjaW5jbHVkZSA8ZHQtYmluZGluZ3MvcG93ZXIvbXQ4MTk1LXBvd2VyLmg+
-DQo+ID4gQEAgLTcxNyw2ICs3MTgsMjYgQEANCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAj
-Y2xvY2stY2VsbHMgPSA8MT47DQo+ID4gICAgICAgICAgICAgICAgIH07DQo+ID4gDQo+ID4gKyAg
-ICAgICAgICAgICAgIGdjZTA6IG1kcF9tYWlsYm94QDEwMzIwMDAwIHsNCj4gPiArICAgICAgICAg
-ICAgICAgICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5NS1nY2UiOw0KPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDwwIDB4MTAzMjAwMDAgMCAweDQwMDA+Ow0KPiA+
-ICsgICAgICAgICAgICAgICAgICAgICAgIGludGVycnVwdHMgPSA8R0lDX1NQSSAyMjYNCj4gPiBJ
-UlFfVFlQRV9MRVZFTF9ISUdIIDA+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICNtYm94
-LWNlbGxzID0gPDM+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGNsb2NrcyA9IDwmaW5m
-cmFjZmdfYW8gQ0xLX0lORlJBX0FPX0dDRT4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfQU9fR0NFMj47DQo+ID4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgY2xvY2stbmFtZXMgPSAiZ2NlIiwgImdjZTEiOw0KPiA+ICsgICAgICAg
-ICAgICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAgZ2NlMTogZGlzcF9tYWlsYm94
-QDEwMzMwMDAwIHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gIm1l
-ZGlhdGVrLG10ODE5NS1nY2UiOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDww
-IDB4MTAzMzAwMDAgMCAweDQwMDA+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGludGVy
-cnVwdHMgPSA8R0lDX1NQSSAyMjgNCj4gPiBJUlFfVFlQRV9MRVZFTF9ISUdIIDA+Ow0KPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICNtYm94LWNlbGxzID0gPDM+Ow0KPiA+ICsgICAgICAgICAg
-ICAgICAgICAgICAgIGNsb2NrcyA9IDwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX0FPX0dDRT4sDQo+
-ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPCZpbmZyYWNmZ19hbyBDTEtfSU5G
-UkFfQU9fR0NFMj47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgY2xvY2stbmFtZXMgPSAi
-Z2NlIiwgImdjZTEiOw0KPiANCj4gSSB0aGluayBlYWNoIGdjZSBjb3VsZCBiZSBicm9rZW4gaW50
-byB0d28gZnVuY3Rpb24gYmxvY2ssIHRoZSBjb3JlDQo+IGZ1bmN0aW9uIGJsb2NrIGFuZCBldmVu
-dCBwcm9jZXNzaW5nIGJsb2NrLg0KPiBFYWNoIGJsb2NrIGhhcyBpbmRlcGVuZGVudCBjbG9jayBz
-b3VyY2UgYW5kICJnY2UiIGlzIGZvciBjb3JlDQo+IGZ1bmN0aW9uDQo+IGJsb2NrIGFuZCAiZ2Nl
-MSIgaXMgZm9yIGV2ZW50IHByb2Nlc3NpbmcgYmxvY2ssIGlzIGl0Pw0KPiBJZiBzbywgdGhlIGNv
-cmUgZnVuY3Rpb24gb2YgZ2NlMCBhbmQgZ2NlMSBoYXMgY29tbW9uIGNsb2NrIHNvdXJjZQ0KPiAo
-PCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfQU9fR0NFPiksIHJpZ2h0Pw0KPiANCj4gUmVnYXJkcywN
-Cj4gQ2h1bi1LdWFuZy4NCj4gDQo+ID4gKyAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICAg
-ICAgICAgICAgICAgICB1YXJ0MDogc2VyaWFsQDExMDAxMTAwIHsNCj4gPiAgICAgICAgICAgICAg
-ICAgICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5NS11YXJ0IiwNCj4gPiAibWVk
-aWF0ZWssbXQ2NTc3LXVhcnQiOw0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDww
-IDB4MTEwMDExMDAgMCAweDEwMD47DQo+ID4gLS0NCj4gPiAyLjE4LjANCj4gPiANCmdjZTAgYW5k
-IGdjZTEgYXJlIHR3byBkdXBsaWNhdGUgaGFyZHdhcmUgbm9kZSBlYWNoIG9mIHRoZW0gaGF2ZSB0
-aGllcg0Kb3duIGNvcmUgZnVuY3Rpb24gYmxvY2sgYW5kIGV2ZW50IHByb2NjZXNzaW5nIGJsb2Nr
-Lg0KVGhlIGNsb2NrczogPCZpbmZyYWNmZ19hbyBDTEtfSU5GUkFfQU9fR0NFPiBpcyBmb3IgZ2Nl
-MCwNCjwmaW5mcmFjZmdfYW8gQ0xLX0lORlJBX0FPX0dDRTI+IGlzIGZvciBnY2UxLg0KDQpGb3Ig
-dGhlIGRlc2lnbiBvZiBHQ0UgaGFyZHdhcmUgZXZlbnQgc2lnbmFsIHRyYW5zcG9ydGF0aW9uLCBl
-YWNoIGNtZHENCm1haWxib3ggc2hvdWxkIGVuYWJsZSBvciBkaXNhYmxlIHRoZSBvdGhlciBnY2Ug
-Y2xrIGF0IHRoZSBzYW1lIHRpbWUuDQoNCkkgcHV0IHR3byBjbG9jayBzb3VyY2UgaW4gb25lIGdj
-ZSBub2RlIHNvIHRoYXQgSSBjYW4gZ2V0IGJvdGggb2YgdGhlbQ0KZWFzaWVyIHdoZW4gZWFjaCBj
-bWRxIGRyaXZlciBwcm9iZS4NCkJ1dCBJIHRoaW5rIHRha2Ugb3V0IHRoZSBvdGhlciBnY2UgY2xr
-IGZvciBlYWNoIGdjZSBub2RlIGlzIGZpbmUuDQpJIHdpbGwgbW9kaWZ5IGl0IGF0IHRoZSBuZXh0
-IHBhdGNoIHZlcnNpb24uDQoNClJlZ2FyZHMsDQpKYXNvbi1KSC5MaW4uDQotLSANCkphc29uLUpI
-IExpbiA8amFzb24tamgubGluQG1lZGlhdGVrLmNvbT4NCg==
+The PHY configuration for the variant 2 is still missing the flag for
+in-band signalling between PHY and MAC. Both sides - MAC and PHY - have
+to match the setting. For now, Linux only supports setting the MAC side
+and thus it has to match the setting the bootloader is configuring.
+Enable in-band signalling to make ethernet work.
+
+Fixes: ab43f0307449 ("arm64: dts: ls1028a: sl28: add support for variant 2")
+Signed-off-by: Michael Walle <michael@walle.cc>
+---
+What make things worse and why this might slipped through is that the
+setting in the PHY is persistent even after a soft reset of the PHY.
+
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
+index dd764b720fb0..f6a79c8080d1 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dts
+@@ -54,6 +54,7 @@
+ 
+ &mscc_felix_port0 {
+ 	label = "swp0";
++	managed = "in-band-status";
+ 	phy-handle = <&phy0>;
+ 	phy-mode = "sgmii";
+ 	status = "okay";
+@@ -61,6 +62,7 @@
+ 
+ &mscc_felix_port1 {
+ 	label = "swp1";
++	managed = "in-band-status";
+ 	phy-handle = <&phy1>;
+ 	phy-mode = "sgmii";
+ 	status = "okay";
+-- 
+2.20.1
 
