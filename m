@@ -2,107 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3490E3BA17F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 15:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C03143BA196
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 15:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232816AbhGBNqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 09:46:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59768 "EHLO
+        id S232746AbhGBNvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 09:51:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232823AbhGBNp7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 09:45:59 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3A58C061764
-        for <devicetree@vger.kernel.org>; Fri,  2 Jul 2021 06:43:27 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id q18-20020a1ce9120000b02901f259f3a250so6422771wmc.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Jul 2021 06:43:27 -0700 (PDT)
+        with ESMTP id S232744AbhGBNvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 09:51:15 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 067C0C061764
+        for <devicetree@vger.kernel.org>; Fri,  2 Jul 2021 06:48:43 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id l8so12507275wry.13
+        for <devicetree@vger.kernel.org>; Fri, 02 Jul 2021 06:48:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=rEhU8Um5f0JiN5UeHBJI5GyHDmhvUyYTxNlEBkR3UOo=;
-        b=Olhx4UlCuIfRvcxRt/0zqVPZpQnQBNItBR/JKERv+Eev5CLysDIlTi2lcWT6kpawpK
-         x4pfq3AcH7YHbC2ZTTdraCay59JnayrekmOCc0cCcIeD7fjGqlx2xLsxOx9Krx1l6KY8
-         6kvCL5XcrRNOdqUoApmmPUUtebmR41JiiBlnnVFPeB/sY86Hhbun+gEZgyq0br9EXPS7
-         dI8YRus3MYM3+Xsn8UPe0JQqN5Qspc1iExCcbKHHNVakYOe4m0OLpD5+kqXk4Plr+4n+
-         9+ApgSFKmBEcpYkbN8qJZohcCL2+1yx5ZjENIwqKds/9oaV0casBgsmQMXtnD8QQWPx8
-         sGmA==
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dmdV5C0TPaZh38jwc22npxunHrSD6YlmILpaclb/0ko=;
+        b=MMaK4fWwJ0vbQk/VXI4ucI0gpZ5rMsazWB7JlYgn8qFz2g7U7vIaZoCdRMNNTmBQ+B
+         QG/HsfLU+K0cKJNZaN16m3SRn+5WQEmPVx97e1I0ZYsGKxi0o1gjjXkDimK7/vdY6XZ4
+         TxMKifvdwRulh4J8UjxgaWxj0irps6/o/rmbjojsBglcy5g9eGb8eQGp2J+yPuxCzGmK
+         2X8bx//QFTfi+eb50djSKk54h7N6+7O+rc9LxS8PZxJNAc8R0eLi8Y22ZJ4QgYcUdTk0
+         AkH9WyG5cA1ATdz5aAmf0/m5rnjQIx8DRZ05vQHPQeDZJvGExrcshvMhzdtym8nnumGk
+         hxMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=rEhU8Um5f0JiN5UeHBJI5GyHDmhvUyYTxNlEBkR3UOo=;
-        b=N63i0qVWMvlxI+pWlbMMUqPajr+MVm5+WVNXAPlHQZCJZ/ZrAi4AwHN+7DW4KZbtLc
-         IdSiXzfZR0AAmZuOfr8PCzRvNtr+oTdaI95GnyYQb9rA5EQjHjbMs+4CrJXC24xn8xjx
-         jKTjYInqxcjH2wjoS6x0JGYpEWfXJCj2RSp25bD04CdXLPRlveivk4baJX5TCzmGxrKu
-         nQUwKkwMgv4IvbAkzxoriAwrGf3IIRB9YLQcfouSB4xKzKv13E12iZkxUwrWLGZB7OF2
-         NVuf8ud8E66yyZ4YhoDMx3rkgxHKdTtK/CXqfw39a0Yv9xH4GZogJEFdGdbKGK1DQrTS
-         hD3A==
-X-Gm-Message-State: AOAM533vj6E1LuVvUsEOJYAokB4jh+KZc23rnDrzLXs208mWi3fOwicB
-        U3W3knjMnXPAYEgQusihcSUVkQ==
-X-Google-Smtp-Source: ABdhPJwnStGuaizhehaJ7yHxKMwHfg61nZmXZITfuPGPqNtQIfKaLtBLZH0EDnMdLDGsESkAkkkrww==
-X-Received: by 2002:a05:600c:1c8f:: with SMTP id k15mr5646909wms.91.1625233406190;
-        Fri, 02 Jul 2021 06:43:26 -0700 (PDT)
-Received: from groot.home ([2a01:cb19:826e:8e00:c5f3:6ae:eaf:87a2])
-        by smtp.gmail.com with ESMTPSA id s1sm12595512wmj.8.2021.07.02.06.43.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Jul 2021 06:43:25 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Fabien Parent <fparent@baylibre.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Subject: [PATCH v3 4/4] arm64: dts: mt6358: add mt6358-keys node
-Date:   Fri,  2 Jul 2021 15:43:10 +0200
-Message-Id: <20210702134310.3451560-5-mkorpershoek@baylibre.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20210702134310.3451560-1-mkorpershoek@baylibre.com>
-References: <20210702134310.3451560-1-mkorpershoek@baylibre.com>
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=dmdV5C0TPaZh38jwc22npxunHrSD6YlmILpaclb/0ko=;
+        b=OyIGkM5ZevFG1lKH9X/ul3vVbrXlTHry+p1jZzWCWYuYwQEKRa1lgAu6h9Sp+L6DgG
+         UOLdGWtuvMcNdA4ec0l4Rj6owP7XoiFgxXbqeygQs1JZ+3Mh4CTzjSWVsCYYhq3dIRrN
+         BgcMs6E0Vfz8lIqW05ntpGV+o5cXFFv/i97MqMEsUj8g8DRgdf2r1po3yw+gPPPabVoS
+         ErMMrxV5z9E/2/DdosJUl8IB377u/piwv6yAq1+Zrwy5bZcIx3yer/ecCklYN+qY1+/S
+         u5f5j63HzPcM2SnSPgk/7V8bv8Ig7uoK9zIamGbhjBuRIBLV9Qn+dcSF/ytxtwTJ9xm7
+         MXvA==
+X-Gm-Message-State: AOAM533yIoUEa05b7vHtwW3rJVYN53L5FEA6oVRZq1HbTzYMwHGMyrLi
+        lgNJgg6csXgpIFZMzpakUCXHCg==
+X-Google-Smtp-Source: ABdhPJwnfiPmpsT0TFwceB+yNPe62xHEvP1eccHb9f8GwnwPkFvep/IzIg4oQ9IT0EKqsY3+JcJqaA==
+X-Received: by 2002:adf:ef50:: with SMTP id c16mr5998912wrp.137.1625233721485;
+        Fri, 02 Jul 2021 06:48:41 -0700 (PDT)
+Received: from ?IPv6:2001:861:44c0:66c0:b194:a11e:9f1:225b? ([2001:861:44c0:66c0:b194:a11e:9f1:225b])
+        by smtp.gmail.com with ESMTPSA id s5sm3363652wrn.38.2021.07.02.06.48.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jul 2021 06:48:40 -0700 (PDT)
+Subject: Re: [PATCH 1/2] media: rc: meson-irblaster: document device tree
+ bindings
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+Cc:     sean@mess.org, mchehab@kernel.org, robh+dt@kernel.org,
+        khilman@baylibre.com, jbrunet@baylibre.com,
+        linux-media <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, rockosov@gmail.com
+References: <20210701215132.16317-1-viktor.prutyanov@phystech.edu>
+ <20210701215132.16317-2-viktor.prutyanov@phystech.edu>
+ <CAFBinCBZXRrPakwvRLsbNbuYY6fcYysMs0+SPUmAhKpcYxrq0g@mail.gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <cc677601-fb6b-970d-be8a-e68bea9727dd@baylibre.com>
+Date:   Fri, 2 Jul 2021 15:48:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAFBinCBZXRrPakwvRLsbNbuYY6fcYysMs0+SPUmAhKpcYxrq0g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables the power,home keys on MediaTek boards with a mt6358 pmic.
+Hi,
 
-Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
----
- arch/arm64/boot/dts/mediatek/mt6358.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On 02/07/2021 15:30, Martin Blumenstingl wrote:
+> Hi Viktor,
+> 
+> On Thu, Jul 1, 2021 at 11:51 PM Viktor Prutyanov
+> <viktor.prutyanov@phystech.edu> wrote:
+>>
+>> This patch adds binding documentation for the IR transmitter
+>> available in Amlogic Meson SoCs.
+> This is an interesting piece of hardware where I've always wondered if
+> there is any device out there which supports this functionality.It
+> turns out that there is
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt6358.dtsi b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-index fa159b20379e..a1b017a6a751 100644
---- a/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
-@@ -2,6 +2,7 @@
- /*
-  * Copyright (c) 2020 MediaTek Inc.
-  */
-+#include <dt-bindings/input/input.h>
- 
- &pwrap {
- 	pmic: mt6358 {
-@@ -356,5 +357,16 @@ mt6358_vsim2_reg: ldo_vsim2 {
- 		mt6358rtc: mt6358rtc {
- 			compatible = "mediatek,mt6358-rtc";
- 		};
-+
-+		mt6358keys: mt6358keys {
-+			compatible = "mediatek,mt6358-keys";
-+			power {
-+				linux,keycodes = <KEY_POWER>;
-+				wakeup-source;
-+			};
-+			home {
-+				linux,keycodes = <KEY_HOME>;
-+			};
-+		};
- 	};
- };
--- 
-2.27.0
+You did beat me, I started a driver some time ago but failed to finish debugging it...
+https://github.com/superna9999/linux/tree/amlogic/v5.2%2Fir-blaster
 
+> 
+> [...]
+>> +description: |
+>> +  Some Amlogic SoCs such as A311D and T950D4 have IR transmitter
+>> +  (blaster) controller onboard. It is capable of sending IR signals
+>> +  with arbitrary carrier frequency and duty cycle.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: amlogic,meson-irblaster
+> if you feel like some registers or register values are specific to
+> A311D or T950D4 then please also add a SoC-specific compatible string
+> (for example: amlogic,meson-g12b-irblaster).
+> An example can be seen in
+> Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+
+AFAIK there is 2 versions of the IP, the "old" one we can find on Meson6, 8/8b, GXBB, GXL & GXM (and maybe AXG ?),
+and the one we find on the latest G12A, G12B & SM1.
+
+The SEI510 and SEI610 boards we use for Yukawa android port do have the necessary HW for IR sending,
+so I'll eventually be able to test.
+
+So, as martin says you should add a "amlogic,g12a-ir-blaster" to be sure we support the older ir blaster version
+correctly with the right bindings.
+
+Neil
+
+> 
+> [...]
+>> +  clocks:
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +
+>> +  clock-names:
+>> +    minItems: 1
+>> +    maxItems: 2
+> from my understanding there are two clock inputs to the hardware
+> dt-bindings should always describe the hardware, not what the driver
+> may (or may not) use.
+> based on that I think you should drop minItems (then minItems will
+> have the same value as maxItems)
+> 
+> [...]
+>> +  mod-clock:
+>> +    oneOf:
+>> +      - const: sysclk
+>> +      - const: xtal
+> Does this "mod-clock" depend on something external to the IR blaster hardware?
+> If not this should be handled inside the driver only.
+> 
+> From how I understand the register description in the datasheet
+> there's two clock inputs.
+> XTAL is internally divided further down with fixed dividers.
+> Then there's a configurable divider which is then used to generate the
+> IR signal.
+> If the sysclk (I assume that this is clk81 - or at least derived from
+> it) is "too fast" then the driver should just ignore that clock while
+> the dt-bindings should still describe it (see my comment above)
+> 
+> [...]
+>> +    meson-irblaster@ff80014c {
+> node names should be generic, see for example
+> Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
+> (spifc is the name Amlogic has given this IP, but since node names are
+> supposed to be generic we use spi@...)
+> 
+> However, I am not sure if an IR blaster would be described as
+> ir-blaster@... or simply ir@...
+> 
+>> +      compatible = "amlogic,meson-irblaster";
+>> +      reg = <0xff80014c 0x10>;
+>> +      interrupts = <0 198 IRQ_TYPE_EDGE_RISING>;
+>> +      clocks = <&clkc CLKID_CLK81 &xtal>;
+> [...]
+>> +      clocks = <&clkc CLKID_CLK81 &xtal>;
+> while this works I think the recommended format is:
+>     clocks = <&clkc CLKID_CLK81>, <&xtal>
+> 
+> 
+> Best regards,
+> Martin
+> 
