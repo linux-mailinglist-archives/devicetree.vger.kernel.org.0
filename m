@@ -2,91 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6E733BA308
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 18:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B7B03BA322
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 18:15:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbhGBQGb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 12:06:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34520 "EHLO
+        id S229532AbhGBQSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 12:18:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbhGBQGa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 12:06:30 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 020D7C061762;
-        Fri,  2 Jul 2021 09:03:58 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id x21-20020a17090aa395b029016e25313bfcso6347091pjp.2;
-        Fri, 02 Jul 2021 09:03:57 -0700 (PDT)
+        with ESMTP id S229455AbhGBQSE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 12:18:04 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2672C061762;
+        Fri,  2 Jul 2021 09:15:31 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id t3so13951073edc.7;
+        Fri, 02 Jul 2021 09:15:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+LJxKyVwoQ+McSsqpufkf/CYhmI4kyUuSVLHiImkPFk=;
-        b=KnJsFvBpqL0laNoKqrPj5CdbK3FVhLgqkbPSRmYyPg1p2wAhvTkQOQ22fwT0eXUXFd
-         7lWVchk2oZ8YShvCcZdqdfvxzNk4FU5ZPqHK5YrEUN1opsTmHcLv24qgPJkJjNqzRkWb
-         TwuMhHwUIw561vklch5cYfbA0IQRsF+K38nz2zbM3fjApX7GsoBp/saoLrl7h7QKBS1t
-         CHls9gLe2eUz0LOcOevl8AQi2KeJjvfD8hYx7co0MFZwSh8zIgBq/hHyUCUsz91BBHEn
-         czKTssMkgy/94ip1d5kDPdD35s/WyYnXjvDe/AeYPMQ9W4CvGPOoKMNAjhRj+AqUKSXg
-         Af/A==
+        bh=0CyPLvqK+Q8NHzNuZTr5kPFxjhrjFYWhZY35XEzbiOQ=;
+        b=IbAqmb9ygFZk9a887t8qEkrN+RXWoHARiWHkHfVhqOrfUeyc5C9KeLOPdVZrHk2SVx
+         gyxP3zCIzw+ztAO+vEn42sXTsh6h61gb5b76gPnChKNurlELilaYebJuqwgBUd1N5npb
+         2UOAW6deQdfsq5DuDPWNRO0bW7/tGuEgUQk6jiHYWTI4klcfT8Be9PutLc+GLf7l7FDI
+         T2zucV7K6m8be2MAb4KqkkBgSSDJcVB5ajBC5egeKZuo5JMTncsxWB/dC3ln5YsvylpT
+         Y+SpGsQ+urLTsoI0AALKG3blP6Ud+U0jjQj9NXor35I1PG53iU8rD86ifFVgQxkHD/6O
+         OiOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+LJxKyVwoQ+McSsqpufkf/CYhmI4kyUuSVLHiImkPFk=;
-        b=G955isCYt74kLQwJcP0QAtlim+Z/Y4pZGXkYF0wo3d5d7aw455bnDIYnuAAXFGl5mK
-         4jyJt9AyVtkCpNGJ4uyuarqq1GT99nG5hZ0UnGvrH3hbWSKlPZhuW/gDVMy/AJP1yOEq
-         vXrNv6lkcrIC56YKNHrympk3ELazlsWm7FbUTABiStiJ6KxAOGkzxxPbaQYE55YmH9Cy
-         aV+sgNNL5Xja9i9XhdsMRiWoPiiMCFFEjk9S4r6/vk09oorWFW9/dXYlA36p1lUHj3Zo
-         wf70tK0caVp6uGzosSqsfp6gmR7eTb+SOjPW3Pq+DPvWa5ZiETQQ+lMNYeFAPZqJNyoq
-         fZXA==
-X-Gm-Message-State: AOAM532LIyE2YKsLku8ktdC2WDV3D8ESCvPevFFPkPG25JdGx6owQgJ7
-        Ckr1gBzJLZ4gMAwRj+oe5cktc/miI5ZfvR8orpI=
-X-Google-Smtp-Source: ABdhPJxunKummMJzWu/tehysV7Xsz1mBbx1VNw8K62HhbO027E9yy7oOifD4dymMRm7PjyxqE1uMt4oWnIRqaEZrUQs=
-X-Received: by 2002:a17:90a:af90:: with SMTP id w16mr457973pjq.129.1625241837450;
- Fri, 02 Jul 2021 09:03:57 -0700 (PDT)
+        bh=0CyPLvqK+Q8NHzNuZTr5kPFxjhrjFYWhZY35XEzbiOQ=;
+        b=L2qGVSn8IJSaVr4rHEzsELfK6uHK8TQP1gkuQkD/LQ3f7lVg+7KWDu6fBzBfVOb2KC
+         UtC1l4xFEoqgH7TbiL+i2pbcbmMxfYPvLkQSEPjDywqxAIY8gaKObjoqXmtQ/Eiup2TV
+         Mt7aDItjuRzZOEQqU+AQGtVCGRDW97qTqu600qwWgX30YzHd/KImRDHOK3U+xhgSY4PR
+         eYWSBiLouihQbQ3obTMOFdMTiovA01mpxaYsnl7t4Kn2BCQwAukfYQgF4HO7p8nTpf36
+         uswS+oaEtRrH+vUGIUjAjuTfxdUWQpYxJ1j2pjInxm+lXkRp7Km2auIyOga+NI7ZBBc+
+         9bRQ==
+X-Gm-Message-State: AOAM532i+fDLPbGySBNKwaFiJyBEa+HoQbegmEVRj+fFXltxcLhLZFAx
+        8/VvYTxo35uXz11g5EWN+gFPZ3xexEAbsQxHQ0w=
+X-Google-Smtp-Source: ABdhPJzTplJzJDgwT4b8/ikKLT8jsa9voYiaeLlsSCeJmsriCnofP+WlAfCEAN/jEj1wU+EwgK6wXThHemjJnDqwhik=
+X-Received: by 2002:aa7:d8d4:: with SMTP id k20mr266060eds.143.1625242530226;
+ Fri, 02 Jul 2021 09:15:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210701002037.912625-1-drew@beagleboard.org> <20210701002037.912625-3-drew@beagleboard.org>
-In-Reply-To: <20210701002037.912625-3-drew@beagleboard.org>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Fri, 2 Jul 2021 19:03:19 +0300
-Message-ID: <CAHp75Vc7kFk_SC8MSmFE5mBt53=4yUnxpSpr=cxZ+7eA-t1r5g@mail.gmail.com>
-Subject: Re: [RFC PATH 2/2] gpio: starfive-jh7100: Add StarFive JH7100 GPIO driver
-To:     Drew Fustini <drew@beagleboard.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Huan Feng <huan.feng@starfivetech.com>
+References: <20210701215132.16317-1-viktor.prutyanov@phystech.edu>
+ <20210701215132.16317-3-viktor.prutyanov@phystech.edu> <20210701224646.GA18540@gofer.mess.org>
+In-Reply-To: <20210701224646.GA18540@gofer.mess.org>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Fri, 2 Jul 2021 18:15:18 +0200
+Message-ID: <CAFBinCA+zud1THT6z2QsGCqXMT-3nqN_S4nR0FhaDGhcKzoe-Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] media: rc: introduce Meson IR blaster driver
+To:     Sean Young <sean@mess.org>
+Cc:     Viktor Prutyanov <viktor.prutyanov@phystech.edu>,
+        mchehab@kernel.org, robh+dt@kernel.org, khilman@baylibre.com,
+        Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com,
+        linux-media <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, rockosov@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 1, 2021 at 3:23 AM Drew Fustini <drew@beagleboard.org> wrote:
+Hi Sean,
+
+On Fri, Jul 2, 2021 at 12:46 AM Sean Young <sean@mess.org> wrote:
 >
-> Add GPIO driver for the StarFive JH7100 SoC [1] used on the
-> BeagleV Starlight JH7100 board [2].
+> Hi Viktor,
 >
-> [1] https://github.com/starfive-tech/beaglev_doc/
-> [2] https://github.com/beagleboard/beaglev-starlight
+> Thank you for your driver. Is there a datasheet available for this hardware?
+The public S905X datasheet [0] (starting at page 515) and the public
+S905D3 datasheet [1] (starting at page 1105) document the registers.
+If Viktor has additional or better information then it would be great
+if he could share it with us.
 
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
-> Signed-off-by: Drew Fustini <drew@beagleboard.org>
 
-Seems some Co-developed-by are missing.
+Best regards,
+Martin
 
-Brief look into the code brings the Q. Can't you utilize gpio-regmap
-here? Why not?
 
--- 
-With Best Regards,
-Andy Shevchenko
+[0] https://dl.khadas.com/Hardware/VIM1/Datasheet/S905X_Datasheet%20V0.3%2020170314publicversion-Wesion.pdf
+[1] https://dl.khadas.com/Hardware/VIM3/Datasheet/S905D3_datasheet_0.2_Wesion.pdf
