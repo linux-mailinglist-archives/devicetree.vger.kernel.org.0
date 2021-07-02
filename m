@@ -2,112 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87F623B9DF9
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 11:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3089B3B9E48
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 11:34:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231193AbhGBJVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 05:21:48 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:39831 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230112AbhGBJVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 05:21:44 -0400
-X-UUID: aefc18c3c8344f5695a816aabdf4c0da-20210702
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=IYyNmRrPNeyd0roXCcc3ug77Q20krYCuClxefjY+zjA=;
-        b=OBxH2xcXEmkripda1zuduv7SxCUobWyN+AsPyEXi+WIztrYQ/9nHQP2br4XnAn+8YDTob/E2wPxlgUmTOjXrO6KGb7AlHHY84WnUXxBaWLPsNQdiGBgU9FIQ9CNztxkR/KxFLCyJVLDKUGNUWifjtEFb17eIk+c8nzAJCItw09A=;
-X-UUID: aefc18c3c8344f5695a816aabdf4c0da-20210702
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 723412632; Fri, 02 Jul 2021 17:19:09 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 2 Jul 2021 17:19:06 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 2 Jul 2021 17:19:06 +0800
-Message-ID: <0911434c39aa76a6312f19baa2a468c65589de3d.camel@mediatek.com>
-Subject: Re: [PATCH v19 3/7] soc: mediatek: SVS: introduce MTK SVS engine
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        "Kevin Hilman" <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Nicolas Boichat" <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>
-CC:     Fan Chen <fan.chen@mediatek.com>,
-        HenryC Chen <HenryC.Chen@mediatek.com>,
-        YT Lee <yt.lee@mediatek.com>,
-        Xiaoqing Liu <Xiaoqing.Liu@mediatek.com>,
-        Charles Yang <Charles.Yang@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Guenter Roeck <linux@roeck-us.net>
-Date:   Fri, 2 Jul 2021 17:19:06 +0800
-In-Reply-To: <bf4f26cdca7174ba687e29a581a5276511112fe7.camel@pengutronix.de>
-References: <20210702031214.21597-1-roger.lu@mediatek.com>
-         <20210702031214.21597-4-roger.lu@mediatek.com>
-         <bf4f26cdca7174ba687e29a581a5276511112fe7.camel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S230245AbhGBJg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 05:36:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60040 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230205AbhGBJg3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 05:36:29 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42CE8C061762;
+        Fri,  2 Jul 2021 02:33:57 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 5A18722249;
+        Fri,  2 Jul 2021 11:33:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1625218433;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=dIgpNtb6bk7Xip9BGn8GnsVHJ/WF1JakLymLgy2KJk8=;
+        b=vXXDkhNWvpBcLBM8QHfOVJrNveocFevI0aNqo7+KH7yxb8jtCBDkFe6ywlDnqZnmU33PIB
+        IPkPWUsKu+G054p7+1WZFel7W1hLym/PvYufL8YYAjBKSR2r1tvEoJFCzdQfbB57xy9QCg
+        oMlJNs0xrND8IVHhmZ7zh4zTMprfC6Q=
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Fri, 02 Jul 2021 11:33:53 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH v2 5/5] mtd: core: add OTP nvmem provider support
+In-Reply-To: <e89da7a0-2e46-349c-9b25-f0b555a72b46@roeck-us.net>
+References: <20210424110608.15748-1-michael@walle.cc>
+ <20210424110608.15748-6-michael@walle.cc>
+ <20210701213420.GA1131789@roeck-us.net>
+ <f48661d2d54b37db395fb73af8b52359@walle.cc>
+ <e89da7a0-2e46-349c-9b25-f0b555a72b46@roeck-us.net>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <5ce79af321eb04e33178b78e4e3f45f0@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUGhpbGlwcCwNCg0KVGhhbmtzIGZvciB0aGUgYWR2aWNlLg0KDQpPbiBGcmksIDIwMjEtMDct
-MDIgYXQgMTA6MzMgKzAyMDAsIFBoaWxpcHAgWmFiZWwgd3JvdGU6DQo+IEhpIFJvZ2VyLA0KPiAN
-Cj4gT24gRnJpLCAyMDIxLTA3LTAyIGF0IDExOjEyICswODAwLCBSb2dlciBMdSB3cm90ZToNCj4g
-Wy4uLl0NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXN2cy5jIGIv
-ZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXN2cy5jDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQN
-Cj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLmMyZmNiYzIwNGIxZA0KPiA+IC0tLSAvZGV2L251bGwN
-Cj4gPiArKysgYi9kcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstc3ZzLmMNCj4gPiBAQCAtMCwwICsx
-LDE3MjQgQEANCj4gDQo+IFsuLi5dDQo+ID4gK3N0YXRpYyBpbnQgc3ZzX3N1c3BlbmQoc3RydWN0
-IGRldmljZSAqZGV2KQ0KPiA+ICt7DQo+ID4gKwlzdHJ1Y3Qgc3ZzX3BsYXRmb3JtICpzdnNwID0g
-ZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ID4gKwlzdHJ1Y3Qgc3ZzX2JhbmsgKnN2c2I7DQo+ID4g
-Kwl1bnNpZ25lZCBsb25nIGZsYWdzOw0KPiA+ICsJaW50IHJldDsNCj4gPiArCXUzMiBpZHg7DQo+
-ID4gKw0KPiA+ICsJZm9yIChpZHggPSAwOyBpZHggPCBzdnNwLT5iYW5rX251bTsgaWR4KyspIHsN
-Cj4gPiArCQlzdnNiID0gJnN2c3AtPmJhbmtzW2lkeF07DQo+ID4gKw0KPiA+ICsJCS8qIFdhaXQg
-aWYgc3ZzX2lzcigpIGlzIHN0aWxsIGluIHByb2Nlc3MuICovDQo+ID4gKwkJc3Bpbl9sb2NrX2ly
-cXNhdmUoJm10a19zdnNfbG9jaywgZmxhZ3MpOw0KPiA+ICsJCXN2c3AtPnBiYW5rID0gc3ZzYjsN
-Cj4gPiArCQlzdnNfc3dpdGNoX2Jhbmsoc3ZzcCk7DQo+ID4gKwkJc3ZzX3dyaXRlbChzdnNwLCBT
-VlNCX0VOX09GRiwgU1ZTRU4pOw0KPiA+ICsJCXN2c193cml0ZWwoc3ZzcCwgU1ZTQl9JTlRTVFNf
-Q0xFQU4sIElOVFNUUyk7DQo+ID4gKwkJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmbXRrX3N2c19s
-b2NrLCBmbGFncyk7DQo+ID4gKw0KPiA+ICsJCXN2c2ItPnN1c3BlbmRlZCA9IHRydWU7DQo+ID4g
-KwkJaWYgKHN2c2ItPnBoYXNlICE9IFNWU0JfUEhBU0VfSU5JVDAxKSB7DQo+ID4gKwkJCXN2c2It
-PnBoYXNlID0gU1ZTQl9QSEFTRV9FUlJPUjsNCj4gPiArCQkJc3ZzX2FkanVzdF9wbV9vcHBfdm9s
-dHMoc3ZzYiwgdHJ1ZSk7DQo+ID4gKwkJfQ0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCWlmIChzdnNw
-LT5yc3QpIHsNCj4gDQo+IFRoaXMgaXMgbm90IG5lY2Vzc2FyeSwgcmVzZXRfY29udHJvbF9hc3Nl
-cnQoKSBjaGVja3MgZm9yIChyc3RjID09IE5VTEwpDQo+IGl0c2VsZi4NCk9rYXkuIFdlJ2xsIHJl
-bW92ZSAiaWYgKHN2c3AtPnJzdCkgeyIgaW4gdGhlIG5leHQgcGF0Y2guIFRoYW5rcy4NCg0KPiAN
-Cj4gPiArCQlyZXQgPSByZXNldF9jb250cm9sX2Fzc2VydChzdnNwLT5yc3QpOw0KPiA+ICsJCWlm
-IChyZXQpIHsNCj4gPiArCQkJZGV2X2VycihzdnNwLT5kZXYsICJjYW5ub3QgYXNzZXJ0IHJlc2V0
-ICVkXG4iLCByZXQpOw0KPiA+ICsJCQlyZXR1cm4gcmV0Ow0KPiA+ICsJCX0NCj4gPiArCX0NCj4g
-PiArDQo+ID4gKwljbGtfZGlzYWJsZV91bnByZXBhcmUoc3ZzcC0+bWFpbl9jbGspOw0KPiA+ICsN
-Cj4gPiArCXJldHVybiAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IHN2c19yZXN1
-bWUoc3RydWN0IGRldmljZSAqZGV2KQ0KPiA+ICt7DQo+ID4gKwlzdHJ1Y3Qgc3ZzX3BsYXRmb3Jt
-ICpzdnNwID0gZGV2X2dldF9kcnZkYXRhKGRldik7DQo+ID4gKwlzdHJ1Y3Qgc3ZzX2JhbmsgKnN2
-c2I7DQo+ID4gKwlpbnQgcmV0Ow0KPiA+ICsJdTMyIGlkeDsNCj4gPiArDQo+ID4gKwlyZXQgPSBj
-bGtfcHJlcGFyZV9lbmFibGUoc3ZzcC0+bWFpbl9jbGspOw0KPiA+ICsJaWYgKHJldCkgew0KPiA+
-ICsJCWRldl9lcnIoc3ZzcC0+ZGV2LCAiY2Fubm90IGVuYWJsZSBtYWluX2NsaywgZGlzYWJsZSBz
-dnNcbiIpOw0KPiA+ICsJCXJldHVybiByZXQ7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJaWYgKHN2
-c3AtPnJzdCkgew0KPiANCj4gU2FtZSBhcyBhYm92ZSwgcmVzZXRfY29udHJvbF9kZWFzc2VydChO
-VUxMKSB3aWxsIGp1c3QgcmV0dXJuIDAuDQpPa2F5LiBXZSdsbCByZW1vdmUgImlmIChzdnNwLT5y
-c3QpIHsiIGluIHRoZSBuZXh0IHBhdGNoLiBUaGFua3MuDQo+IA0KPiA+ICsJCXJldCA9IHJlc2V0
-X2NvbnRyb2xfZGVhc3NlcnQoc3ZzcC0+cnN0KTsNCj4gPiArCQlpZiAocmV0KSB7DQo+ID4gKwkJ
-CWRldl9lcnIoc3ZzcC0+ZGV2LCAiY2Fubm90IGRlYXNzZXJ0IHJlc2V0ICVkXG4iLCByZXQpOw0K
-PiA+ICsJCQlyZXR1cm4gcmV0Ow0KPiA+ICsJCX0NCj4gPiArCX0NCj4gPiArDQo+ID4gKwlmb3Ig
-KGlkeCA9IDA7IGlkeCA8IHN2c3AtPmJhbmtfbnVtOyBpZHgrKykgew0KPiA+ICsJCXN2c2IgPSAm
-c3ZzcC0+YmFua3NbaWR4XTsNCj4gPiArCQlzdnNiLT5zdXNwZW5kZWQgPSBmYWxzZTsNCj4gPiAr
-CX0NCj4gPiArDQo+ID4gKwlyZXQgPSBzdnNfaW5pdDAyKHN2c3ApOw0KPiA+ICsJaWYgKHJldCkN
-Cj4gPiArCQlyZXR1cm4gcmV0Ow0KPiA+ICsNCj4gPiArCXN2c19tb25fbW9kZShzdnNwKTsNCj4g
-PiArDQo+ID4gKwlyZXR1cm4gMDsNCj4gPiArfQ0KPiANCj4gcmVnYXJkcw0KPiBQaGlsaXBwDQo=
+Am 2021-07-02 03:55, schrieb Guenter Roeck:
+> On 7/1/21 3:10 PM, Michael Walle wrote:
+>> Hi Guenter,
+>> 
+>> Am 2021-07-01 23:34, schrieb Guenter Roeck:
+>>> Hi,
+>>> 
+>>> On Sat, Apr 24, 2021 at 01:06:08PM +0200, Michael Walle wrote:
+>>>> Flash OTP regions can already be read via user space. Some boards 
+>>>> have
+>>>> their serial number or MAC addresses stored in the OTP regions. Add
+>>>> support for them being a (read-only) nvmem provider.
+>>>> 
+>>>> The API to read the OTP data is already in place. It distinguishes
+>>>> between factory and user OTP, thus there are up to two different
+>>>> providers.
+>>>> 
+>>>> Signed-off-by: Michael Walle <michael@walle.cc>
+>>> 
+>>> This patch causes a boot failure with one of my qemu tests.
+>>> With the patch in place, the flash fails to instantiate.
+>>> 
+>>> [    1.156578] Creating 3 MTD partitions on "physmap-flash":
+>>> [    1.157192] 0x000000000000-0x000000040000 : "U-Boot Bootloader"
+>>> [    1.184632] 0x000000040000-0x000000060000 : "U-Boot Environment"
+>>> [    1.201767] 0x000000060000-0x000000800000 : "Flash"
+>>> [    1.222320] Deleting MTD partitions on "physmap-flash":
+>>> [    1.222744] Deleting U-Boot Bootloader MTD partition
+>>> [    1.303597] Deleting U-Boot Environment MTD partition
+>>> [    1.368751] Deleting Flash MTD partition
+>>> [    1.430619] physmap-flash: probe of physmap-flash failed with 
+>>> error -61
+>>> 
+>>> -61 is -ENODATA.
+>>> 
+>>> Other boot tests with different flash chips can still boot.
+>>> Reverting this patch (as well as the follow-up patches) fixes
+>>> the problem.
+>>> 
+>>> I do not know if this is a problem with qemu or a problem with the
+>>> patch, but, as I mentioned, other flash chips do still instantiate.
+>>> 
+>>> Do you have an idea what to look for when I try to track down the 
+>>> problem ?
+>> 
+>> I'd start by looking at the return code of mtd_otp_size() because that
+>> should be the only function which communicates with the flash at probe
+>> time.
+>> 
+>> Can you share how to reproduce that problem? Like the qemu commandline
+>> and involved images?
+>> 
+> 
+> qemu-system-arm -M z2 -kernel arch/arm/boot/zImage -no-reboot \
+>     -snapshot -drive file=/tmp/flash,format=raw,if=pflash \
+>     --append "root=/dev/mtdblock2 console=ttyS0" \
+>     -nographic -monitor null -serial stdio
+> 
+> This is with qemu v6.0 and pxa_defconfig. The actual flash image 
+> doesn't
+> really matter (an empty file with a size of 1024*1024*8 bytes is 
+> sufficient).
 
+For completeness: with pxa_defconfig, I guess.
+
+> Debugging shows that -ENODATA is reported by cfi_intelext_otp_walk(),
+> thanks to:
+
+Thanks for already looking into this.
+
+> 
+> [    0.737244] #### FeatureSupport: 0x0 NumProtectionFields: 1
+> 
+> which seems to suggest that there are indeed flash chips which don't 
+> support
+> OTP data. With this in mind, is it indeed appropriate to disable 
+> support for
+> all flash chips which don't support OTP data ?
+
+Yes of course. The SPI NOR drivers doesn't register the callbacks if
+there is no OTP support. The others return ENODATA, which I missed.
+
+I'll send a patch shortly.
+
+-michael
