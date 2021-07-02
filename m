@@ -2,101 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 268DE3B9ED2
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 12:05:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6155F3B9EDE
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 12:09:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231474AbhGBKIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 06:08:21 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:38891 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231367AbhGBKIT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 06:08:19 -0400
-X-IronPort-AV: E=Sophos;i="5.83,317,1616425200"; 
-   d="scan'208";a="86432322"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 02 Jul 2021 19:05:39 +0900
-Received: from localhost.localdomain (unknown [10.226.92.6])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9E46A4010DC7;
-        Fri,  2 Jul 2021 19:05:37 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 3/4] arm64: dts: renesas: r9a07g044: Add DMAC support
-Date:   Fri,  2 Jul 2021 11:05:26 +0100
-Message-Id: <20210702100527.28251-4-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210702100527.28251-1-biju.das.jz@bp.renesas.com>
-References: <20210702100527.28251-1-biju.das.jz@bp.renesas.com>
+        id S230302AbhGBKL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 06:11:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40056 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230150AbhGBKL6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 06:11:58 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43C9DC061762;
+        Fri,  2 Jul 2021 03:09:25 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id bg14so15271141ejb.9;
+        Fri, 02 Jul 2021 03:09:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=mAcZq2qCj7fPqjewfevHu9BVjvRWMa9BAJtXnZItPUk=;
+        b=ZX3wiXi2Cp7D30SK7u2b/6N3EQO/PtXDFxT8dCSUPC3l0lyGm7p/lyUMElojTsGK15
+         dj5ONaXOjGOUE7MKCWKsTcXjAWs8wc797lJQFVYilN78AD3dnw5Po3uazzKWinOy6Cxz
+         pN0W+I4kvPIGreZcJwNhvlzgWBD8cm85c8rvY4KmCLLaNrihCBeWI0+eFOSZZq+QwZOm
+         93Q5Aw2j+CBqzk2FOjPnBqL6FYcFGZzvIVZmxlnn47gXxWuFcqyy68XXTy2FwoVz3Njj
+         HlJR8bOL+/ybuPB6laBbb/56UKDmOyRyA7MIhxvpSgnSz6jKyh1h61JxqDXYbNNJbb74
+         HVog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=mAcZq2qCj7fPqjewfevHu9BVjvRWMa9BAJtXnZItPUk=;
+        b=nuvMlRHGR2X64bvTdwx1eEudwKUNxT6KYoxLs9IxTJ7LszjaJXMvnsD8SHGknQGFdZ
+         +VQoQYS7KR6w8igx8KOFs6HIarTp6Z53sgmDq58bPvEedk79bljiFLEbj1/hZiXscO2G
+         +FyHnDqIE1jSb6NrEmoAmGHnBTV4GkFJ6qf4wdsGJrsmrrY1R4GWUa8KZxdwIopSnyrS
+         KA0R/ZapE7fLonoEEvZQOm69PPS0/1DS3wIwTsDkeuzj04/6iFfly7s/1ZG0XJgI3DQO
+         j/O/J9I8d598NzetIhgQMlNlD+KzMUwpMvwvJ5hf2RtLVhbWpeCjTZYYxUrRWhwa08ZI
+         pnXA==
+X-Gm-Message-State: AOAM5304eAn0I90aB3h18EI/Fg5xZkdwIwq87lv1D+GuLQZSGypUEvp3
+        CniCoqyUC/kbQayKlcNcOqD7f7OilrLzOQ==
+X-Google-Smtp-Source: ABdhPJxzOOvV1OKjShaxRdv3KbJpaLn65+XpLwJ5OjUumZHsnLoYAn3cZ4phxDeRwx1TT6ziq25HDQ==
+X-Received: by 2002:a17:906:3407:: with SMTP id c7mr4524715ejb.212.1625220563752;
+        Fri, 02 Jul 2021 03:09:23 -0700 (PDT)
+Received: from [192.168.2.2] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id jx12sm871098ejb.9.2021.07.02.03.09.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Jul 2021 03:09:23 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: rockchip-saradc: add
+ description for rk3568
+To:     Simon Xue <xxm@rock-chips.com>, Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org
+References: <20210702021403.146293-1-xxm@rock-chips.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+Message-ID: <9577a3cf-cd10-0aeb-d699-a23994c2e6e2@gmail.com>
+Date:   Fri, 2 Jul 2021 12:09:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux i686; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
+MIME-Version: 1.0
+In-Reply-To: <20210702021403.146293-1-xxm@rock-chips.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DMAC support to RZ/G2L SoC DT.
+Hi Simon,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v2->v3:
- * Updated reset properties
-v1->v2:
- * Updated clock and reset properties.
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 36 ++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+The file rk3568.dtsi is now available in linux-next.
+Could you make a complete package with also a patch for rk3568.dtsi?
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 81b31600bd6b..9f3e5ebd03f5 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -191,6 +191,42 @@
- 			status = "disabled";
- 		};
- 
-+		dmac: dma-controller@11820000 {
-+			compatible = "renesas,r9a07g044-dmac",
-+				     "renesas,rz-dmac";
-+			reg = <0 0x11820000 0 0x10000>,
-+			      <0 0x11830000 0 0x10000>;
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 125 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 126 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 127 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 128 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 129 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 130 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 131 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 132 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 133 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 134 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 135 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 136 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 137 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 138 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 139 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 140 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "error",
-+					  "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_MOD R9A07G044_DMAC_ACLK>,
-+				 <&cpg CPG_MOD R9A07G044_DMAC_PCLK>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg R9A07G044_DMAC_ARESETN>,
-+				 <&cpg R9A07G044_DMAC_RST_ASYNC>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+		};
-+
- 		gic: interrupt-controller@11900000 {
- 			compatible = "arm,gic-v3";
- 			#interrupt-cells = <3>;
--- 
-2.17.1
+Johan
 
+===
+
+rk3568.dtsi:
+
+	saradc: saradc@fe720000 {
+		compatible = "rockchip,rk3568-saradc", "rockchip,rk3399-saradc";
+		reg = <0x0 0xfe720000 0x0 0x100>;
+		interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
+		clocks = <&cru CLK_SARADC>, <&cru PCLK_SARADC>;
+		clock-names = "saradc", "apb_pclk";
+		resets = <&cru SRST_P_SARADC>;
+		reset-names = "saradc-apb";
+		#io-channel-cells = <1>;
+		status = "disabled";
+	};
+
+
+On 7/2/21 4:14 AM, Simon Xue wrote:
+> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+> ---
+>  Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+> index 1bb76197787b..e512a14e41b4 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/rockchip-saradc.yaml
+> @@ -20,6 +20,7 @@ properties:
+>                - rockchip,px30-saradc
+>                - rockchip,rk3308-saradc
+>                - rockchip,rk3328-saradc
+> +              - rockchip,rk3568-saradc
+>                - rockchip,rv1108-saradc
+>            - const: rockchip,rk3399-saradc
+>  
+> 
