@@ -2,92 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 772C13BA1B7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 15:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8316C3BA1CA
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 15:59:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232710AbhGBNxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 09:53:18 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:56601 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S232852AbhGBNxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 09:53:18 -0400
-X-IronPort-AV: E=Sophos;i="5.83,317,1616425200"; 
-   d="scan'208";a="86362037"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 02 Jul 2021 22:50:45 +0900
-Received: from localhost.localdomain (unknown [10.226.92.6])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id BFC30400619E;
-        Fri,  2 Jul 2021 22:50:43 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 9/9] arm64: dts: renesas: r9a07g044: Add SSI DMA support
-Date:   Fri,  2 Jul 2021 14:50:10 +0100
-Message-Id: <20210702135010.5937-10-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210702135010.5937-1-biju.das.jz@bp.renesas.com>
-References: <20210702135010.5937-1-biju.das.jz@bp.renesas.com>
+        id S232695AbhGBOBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 10:01:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51692 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232661AbhGBOBl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Jul 2021 10:01:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E67B26142B;
+        Fri,  2 Jul 2021 13:59:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625234348;
+        bh=GAzz+9Wi5F3smddcMqAPXL+yX+g6y+b7+ZdyCyCYk6o=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DRFf+Wzi4/1+CXjK9WTjhUw5flwP67NTwGefIxgOECtBfi65Tj3m3RZAnGmMeaHWN
+         2nB6ydioSV2HMouSGryEIIBRdSlehAFMTcH+PJ43Fzncx1dyolaRkF7sppvivPuZf7
+         cPX4Boe7jQMJiyFe3ZHKT4MFIZG39Q+YJQliaRWFbkh7/vzRbU7bxJi79Z1ru+gtBo
+         ad1ubKsTeSBiWjEpbwdaLM3RhLgyMoL6khfdtq+W/6U3noQUe78qA62SPzsLgc5K4n
+         HLEZtG+/PJtTdlqtEwnI8LIwqrv30Hz5pVN+cgBES579vlL24El76ac3B9gttOgNJw
+         +e4R0HS7ObwsQ==
+Date:   Fri, 2 Jul 2021 14:58:57 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Nathan Chancellor <nathan@kernel.org>
+Cc:     Claire Chang <tientzu@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>, grant.likely@arm.com,
+        xypron.glpk@gmx.de, Thierry Reding <treding@nvidia.com>,
+        mingo@kernel.org, bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
+        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
+        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+        Tom Lendacky <thomas.lendacky@amd.com>,
+        Qian Cai <quic_qiancai@quicinc.com>
+Subject: Re: [PATCH v15 06/12] swiotlb: Use is_swiotlb_force_bounce for
+ swiotlb data bouncing
+Message-ID: <20210702135856.GB11132@willie-the-truck>
+References: <20210624155526.2775863-1-tientzu@chromium.org>
+ <20210624155526.2775863-7-tientzu@chromium.org>
+ <YNvMDFWKXSm4LRfZ@Ryzen-9-3900X.localdomain>
+ <CALiNf2-a-haQN0-4+gX8+wa++52-0CnO2O4BEkxrQCxoTa_47w@mail.gmail.com>
+ <20210630114348.GA8383@willie-the-truck>
+ <YNyUQwiagNeZ9YeJ@Ryzen-9-3900X.localdomain>
+ <20210701074045.GA9436@willie-the-truck>
+ <ea28db1f-846e-4f0a-4f13-beb67e66bbca@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ea28db1f-846e-4f0a-4f13-beb67e66bbca@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SSI DMA support to SoC DTS.
+Hi Nathan,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+On Thu, Jul 01, 2021 at 12:52:20AM -0700, Nathan Chancellor wrote:
+> On 7/1/2021 12:40 AM, Will Deacon wrote:
+> > On Wed, Jun 30, 2021 at 08:56:51AM -0700, Nathan Chancellor wrote:
+> > > On Wed, Jun 30, 2021 at 12:43:48PM +0100, Will Deacon wrote:
+> > > > On Wed, Jun 30, 2021 at 05:17:27PM +0800, Claire Chang wrote:
+> > > > > `BUG: unable to handle page fault for address: 00000000003a8290` and
+> > > > > the fact it crashed at `_raw_spin_lock_irqsave` look like the memory
+> > > > > (maybe dev->dma_io_tlb_mem) was corrupted?
+> > > > > The dev->dma_io_tlb_mem should be set here
+> > > > > (https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/pci/probe.c#n2528)
+> > > > > through device_initialize.
+> > > > 
+> > > > I'm less sure about this. 'dma_io_tlb_mem' should be pointing at
+> > > > 'io_tlb_default_mem', which is a page-aligned allocation from memblock.
+> > > > The spinlock is at offset 0x24 in that structure, and looking at the
+> > > > register dump from the crash:
+> > > > 
+> > > > Jun 29 18:28:42 hp-4300G kernel: RSP: 0018:ffffadb4013db9e8 EFLAGS: 00010006
+> > > > Jun 29 18:28:42 hp-4300G kernel: RAX: 00000000003a8290 RBX: 0000000000000000 RCX: ffff8900572ad580
+> > > > Jun 29 18:28:42 hp-4300G kernel: RDX: ffff89005653f024 RSI: 00000000000c0000 RDI: 0000000000001d17
+> > > > Jun 29 18:28:42 hp-4300G kernel: RBP: 000000000a20d000 R08: 00000000000c0000 R09: 0000000000000000
+> > > > Jun 29 18:28:42 hp-4300G kernel: R10: 000000000a20d000 R11: ffff89005653f000 R12: 0000000000000212
+> > > > Jun 29 18:28:42 hp-4300G kernel: R13: 0000000000001000 R14: 0000000000000002 R15: 0000000000200000
+> > > > Jun 29 18:28:42 hp-4300G kernel: FS:  00007f1f8898ea40(0000) GS:ffff890057280000(0000) knlGS:0000000000000000
+> > > > Jun 29 18:28:42 hp-4300G kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> > > > Jun 29 18:28:42 hp-4300G kernel: CR2: 00000000003a8290 CR3: 00000001020d0000 CR4: 0000000000350ee0
+> > > > Jun 29 18:28:42 hp-4300G kernel: Call Trace:
+> > > > Jun 29 18:28:42 hp-4300G kernel:  _raw_spin_lock_irqsave+0x39/0x50
+> > > > Jun 29 18:28:42 hp-4300G kernel:  swiotlb_tbl_map_single+0x12b/0x4c0
+> > > > 
+> > > > Then that correlates with R11 holding the 'dma_io_tlb_mem' pointer and
+> > > > RDX pointing at the spinlock. Yet RAX is holding junk :/
+> > > > 
+> > > > I agree that enabling KASAN would be a good idea, but I also think we
+> > > > probably need to get some more information out of swiotlb_tbl_map_single()
+> > > > to see see what exactly is going wrong in there.
+> > > 
+> > > I can certainly enable KASAN and if there is any debug print I can add
+> > > or dump anything, let me know!
+> > 
+> > I bit the bullet and took v5.13 with swiotlb/for-linus-5.14 merged in, built
+> > x86 defconfig and ran it on my laptop. However, it seems to work fine!
+> > 
+> > Please can you share your .config?
+> 
+> Sure thing, it is attached. It is just Arch Linux's config run through
+> olddefconfig. The original is below in case you need to diff it.
+> 
+> https://raw.githubusercontent.com/archlinux/svntogit-packages/9045405dc835527164f3034b3ceb9a67c7a53cd4/trunk/config
+> 
+> If there is anything more that I can provide, please let me know.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index a14df300c8ae..27cd45b63d33 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -100,6 +100,9 @@
- 				 <&audio_clk2>;
- 			clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
- 			resets = <&cpg R9A07G044_SSI0_RST_M2_REG>;
-+			dmas = <&dmac 0x255>,
-+			       <&dmac 0x256>;
-+			dma-names = "tx", "rx";
- 			power-domains = <&cpg>;
- 			#sound-dai-cells = <0>;
- 			status = "disabled";
-@@ -120,6 +123,9 @@
- 				 <&audio_clk2>;
- 			clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
- 			resets = <&cpg R9A07G044_SSI1_RST_M2_REG>;
-+			dmas = <&dmac 0x259>,
-+			       <&dmac 0x25a>;
-+			dma-names = "tx", "rx";
- 			power-domains = <&cpg>;
- 			#sound-dai-cells = <0>;
- 			status = "disabled";
-@@ -140,6 +146,8 @@
- 				 <&audio_clk2>;
- 			clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
- 			resets = <&cpg R9A07G044_SSI2_RST_M2_REG>;
-+			dmas = <&dmac 0x25f>;
-+			dma-names = "rt";
- 			power-domains = <&cpg>;
- 			#sound-dai-cells = <0>;
- 			status = "disabled";
-@@ -160,6 +168,9 @@
- 				 <&audio_clk2>;
- 			clock-names = "ssi", "ssi_sfr", "audio_clk1", "audio_clk2";
- 			resets = <&cpg R9A07G044_SSI3_RST_M2_REG>;
-+			dmas = <&dmac 0x261>,
-+			       <&dmac 0x262>;
-+			dma-names = "tx", "rx";
- 			power-domains = <&cpg>;
- 			#sound-dai-cells = <0>;
- 			status = "disabled";
--- 
-2.17.1
+I eventually got this booting (for some reason it was causing LD to SEGV
+trying to link it for a while...) and sadly it works fine on my laptop. Hmm.
 
+Did you manage to try again with KASAN?
+
+It might also be worth taking the IOMMU out of the equation, since that
+interfaces differently with SWIOTLB and I couldn't figure out the code path
+from the log you provided. What happens if you boot with "amd_iommu=off
+swiotlb=force"?
+
+(although word of warning here: i915 dies horribly on my laptop if I pass
+swiotlb=force, even with the distro 5.10 kernel)
+
+Will
