@@ -2,104 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAD713B9E6E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 11:39:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 063EE3B9EA3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Jul 2021 12:00:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231422AbhGBJlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Jul 2021 05:41:04 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:34309 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231440AbhGBJkz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 05:40:55 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1625218703; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=nZjdf/YIZuObh/zYQVUmteSyPqAUYoSWQnYeQyM+fME=; b=cnZm20vPiO9vMLsLQpSBb8M2fG9n12mOfBXx90xv73PsvREoY2aEECBqdnPJJBNECWWU0JoL
- ffs+MW9BH3p0Oy1W+lTmO2tvRbVpqh0Tuxk4+SCEG3zHASjMF8SFoZ7H2lPji8fcGg9IWHNk
- eOqYFtoYVzaz8r2Qwu4d21RDCtg=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 60dede712a2a9a976135c3a4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 02 Jul 2021 09:37:53
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 95B57C43144; Fri,  2 Jul 2021 09:37:53 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from wcheng-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 37CC4C4323A;
-        Fri,  2 Jul 2021 09:37:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 37CC4C4323A
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-From:   Wesley Cheng <wcheng@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, balbi@kernel.org,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        frowand.list@gmail.com
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jackp@codeaurora.org, fntoth@gmail.com,
-        Wesley Cheng <wcheng@codeaurora.org>
-Subject: [PATCH v12 6/6] dt-bindings: usb: dwc3: Update dwc3 TX fifo properties
-Date:   Fri,  2 Jul 2021 02:37:35 -0700
-Message-Id: <1625218655-14180-7-git-send-email-wcheng@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1625218655-14180-1-git-send-email-wcheng@codeaurora.org>
-References: <1625218655-14180-1-git-send-email-wcheng@codeaurora.org>
+        id S231536AbhGBKB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Jul 2021 06:01:56 -0400
+Received: from mickerik.phytec.de ([195.145.39.210]:55526 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230450AbhGBKB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Jul 2021 06:01:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1625219963; x=1627811963;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=p9rlxZSBeYSZIBZ1+7KFz369cokhpJd7hOrC7JsuiFo=;
+        b=Z09ed5gm2Z464mWthzSrfPyR4nGgdZU5u5z+hYPXOGrYPwzCae8DTTD6yDAxtAvp
+        o8Nkb17ctbMWljzOwuLJo6H91UHE3OCS0/+jzxhWGiue/nKob2b3i0ASyylufkDs
+        7NxPlRYMlJxVNTHmpE3UC6vyFQqROmMFFpyrjIUv0Cg=;
+X-AuditID: c39127d2-a9fbd70000001c5e-72-60dee37abdd1
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 03.01.07262.A73EED06; Fri,  2 Jul 2021 11:59:22 +0200 (CEST)
+Received: from lws-riedmueller.phytec.de ([172.16.23.108])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2021070211592281-1081045 ;
+          Fri, 2 Jul 2021 11:59:22 +0200 
+From:   Stefan Riedmueller <s.riedmueller@phytec.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Stefan Riedmueller <s.riedmueller@phytec.de>
+Subject: [PATCH v3 0/6] media: mt9p031: Read back the real clock rate
+Date:   Fri, 2 Jul 2021 11:59:16 +0200
+Message-Id: <20210702095922.118614-1-s.riedmueller@phytec.de>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 02.07.2021 11:59:22,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 02.07.2021 11:59:22
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: quoted-printable
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrELMWRmVeSWpSXmKPExsWyRoCBS7fq8b0EgxmrbSzmHznHatE5cQm7
+        xeVdc9gsejZsZbVYtukPk0Xr3iPsFp+2fGNyYPeY3TGT1WPTqk42j3knAz0+b5ILYInisklJ
+        zcksSy3St0vgypj+ZBtzwXruir4DL1kaGF9zdDFyckgImEhs+ryGqYuRi0NIYBujxIS5y6Gc
+        a4wScx8cZAKpYhMwklgwrRHMFhGIkvh5vocFxGYWeMAosf9VAogtLOAqMav9ESOIzSKgIjH7
+        z392EJtXwFbi/ZQ97BDb5CVmXvoOFReUODnzCQvIMgmBK4wSy5vms0IUCUmcXnyWGWKBtsSy
+        ha+ZJzDyzULSMwtJagEj0ypGodzM5OzUosxsvYKMypLUZL2U1E2MwHA8PFH90g7GvjkehxiZ
+        OBgPMUpwMCuJ8IbOu5cgxJuSWFmVWpQfX1Sak1p8iFGag0VJnHcDb0mYkEB6YklqdmpqQWoR
+        TJaJg1OqgbFeJW39fkdviXVHRc9Lxjz+6fDdzrWroPfawrV/7h8xUDAsFJMLMPw152tD6vfD
+        Nwzehj+5/fqq85VjbL8P3vEvyL+ffSrAebFSR52FlNhevl8CMtn1ryduZLOzPDvxiVupSUnU
+        ny27Cjff9d7eHLj04KqGONnUgI7qmR4Cc1casSvqLb4T16nEUpyRaKjFXFScCABAku82NQIA
+        AA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the tx-fifo-resize property with a better description, while
-adding the tx-fifo-max-num, which is a new parameter allowing
-adjustments for the maximum number of packets the txfifo resizing logic
-can account for while resizing the endpoints.
+Hi,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
----
- Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+sorry it took me some time but this is the v3 for my previously send
+patchstack:
+https://lore.kernel.org/linux-media/20200930105133.139981-1-s.riedmueller@p=
+hytec.de/
 
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index 41416fb..078fb78 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -289,10 +289,21 @@ properties:
-     maximum: 16
- 
-   tx-fifo-resize:
--    description: Determines if the FIFO *has* to be reallocated
--    deprecated: true
-+    description: Determines if the TX fifos can be dynamically resized depending
-+      on the number of IN endpoints used and if bursting is supported.  This
-+      may help improve bandwidth on platforms with higher system latencies, as
-+      increased fifo space allows for the controller to prefetch data into its
-+      internal memory.
-     type: boolean
- 
-+  tx-fifo-max-num:
-+    description: Specifies the max number of packets the txfifo resizing logic
-+      can account for when higher endpoint bursting is used. (bMaxBurst > 6) The
-+      higher the number, the more fifo space the txfifo resizing logic will
-+      allocate for that endpoint.
-+    $ref: /schemas/types.yaml#/definitions/uint8
-+    minimum: 3
-+
-   snps,incr-burst-type-adjustment:
-     description:
-       Value for INCR burst type of GSBUSCFG0 register, undefined length INCR
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Changes in v3:
+ - Dropped 1/5 media: mt9p031: Add support for 8 bit and 10 bit formats
+ - Dropped 3/5 media: mt9p031: Implement [gs]=5Fregister debug calls
+ - Added reviewed-by from Laurent Pinchart to
+   media: mt9p031: Read back the real clock rate
+ - Dropped unnecessary register reads in
+   media: mt9p031: Fix corrupted frame after restarting
+ - Changed sorting of register bits from MSB to LSB
+ - Added patch to switch to BIT macro
+ - Added two additional dt-bindings patches to add missing properties
+   documentation
+
+Christian Hemp (1):
+  media: mt9p031: Make pixel clock polarity configurable by DT
+
+Dirk Bender (1):
+  media: mt9p031: Fix corrupted frame after restarting stream
+
+Enrico Scholz (1):
+  media: mt9p031: Read back the real clock rate
+
+Stefan Riedmueller (3):
+  dt-bindings: media: mt9p031: Add missing required properties
+  dt-bindings: media: mt9p031: add pclk-sample property
+  media: mt9p031: Use BIT macro
+
+ .../devicetree/bindings/media/i2c/mt9p031.txt | 17 +++++
+ drivers/media/i2c/Kconfig                     |  1 +
+ drivers/media/i2c/mt9p031.c                   | 71 +++++++++++++++----
+ include/media/i2c/mt9p031.h                   |  1 +
+ 4 files changed, 78 insertions(+), 12 deletions(-)
+
+--=20
+2.25.1
 
