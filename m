@@ -2,184 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43E353BA7DB
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jul 2021 10:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B95DF3BA7EA
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jul 2021 10:50:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbhGCIpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Jul 2021 04:45:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54720 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230115AbhGCIpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jul 2021 04:45:18 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12185C061762;
-        Sat,  3 Jul 2021 01:42:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:To:From:Sender:Reply-To:Cc:
-        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=PFCM19IYyhz7jH3VrV8Q9fkUeAhfoXHRT3367WSPUVc=; b=D6+pjJDGxiqOuFTDwu62WS7x7O
-        XacLijYjvp+DBB9APz5mEGC8TO3rYv/Oki/zn9/+MAeOpapdWONIp15/3ip8rGHfVP6yiMNcGL+Cg
-        hTNgT7ABQtIIRI8sHuppY9lWRHgFJlYGeIqVrA8VB6uAwzy7JnkxYq3G8iCS+qk2YwAs=;
-Received: from p200300ccff37da001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff37:da00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1lzbEX-0006OU-DJ; Sat, 03 Jul 2021 10:42:41 +0200
-Received: from andi by aktux with local (Exim 4.92)
-        (envelope-from <andreas@kemnade.info>)
-        id 1lzbEX-0008Hu-2W; Sat, 03 Jul 2021 10:42:41 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     lee.jones@linaro.org, robh+dt@kernel.org, jic23@kernel.org,
-        lars@metafoo.de, sre@kernel.org, andreas@kemnade.info,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
-        leonard.crestez@nxp.com, letux-kernel@openphoenux.org
-Subject: [PATCH 4/4] power: supply: rn5t618: Add voltage_now property
-Date:   Sat,  3 Jul 2021 10:42:24 +0200
-Message-Id: <20210703084224.31623-5-andreas@kemnade.info>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210703084224.31623-1-andreas@kemnade.info>
-References: <20210703084224.31623-1-andreas@kemnade.info>
+        id S229823AbhGCIwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Jul 2021 04:52:38 -0400
+Received: from mail-vs1-f42.google.com ([209.85.217.42]:37860 "EHLO
+        mail-vs1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229811AbhGCIwh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jul 2021 04:52:37 -0400
+Received: by mail-vs1-f42.google.com with SMTP id r24so1639324vsg.4;
+        Sat, 03 Jul 2021 01:50:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ztvTWAqkHN2mDtjML2AdkD2LHf36o5PEQqo09qwLkPY=;
+        b=VbNHRivAOWRQuNbOBkFVY4Nk8lTQmUuaGckyKlEHwlLJSVJx1lpxXtxLeCs+lmEwV/
+         ClQozK2JfMFhgl0K1pJ4aAajetRO958Aj0TvzDIBfNfNTrASngUFQBRXYwsJw4xgIw10
+         fgouUpVyz8y+iVBE8Tqs6JZTdsc3oDLy9mb7FOvH03adSCV/5SLzYY96d3TDQGkxnKD3
+         wBr7ETfDBwqvHK+0exNuLf2LtZgiP5QN1GthSw4P6plTcAQdZeh4UcSnkYDpwbSBZ3OR
+         ofkCAbCm2rziaRdCbRtStPhdlzmc69hOLDwbYKOCw+nuSRWdFO5vwZ5AjsYKXcy2r4K5
+         fzWw==
+X-Gm-Message-State: AOAM530553P6BEa/3mxIZKMMGIjHOoP2OQVYhOGBQLQsdZY6bRMFUnBi
+        2Q4mwBeeIEzwKaQ9XT5nCyLGEDRCyx0dHiT3ta4=
+X-Google-Smtp-Source: ABdhPJyuUXkzJRe7nyGQY7VgkmHMTPL/ZKX7ox8bFgwnO/Xk8lPPexJD9V2v7FD0qLeUSgwjtNu/9IKshQ+B396Uvoc=
+X-Received: by 2002:a67:3c2:: with SMTP id 185mr3311187vsd.42.1625302203003;
+ Sat, 03 Jul 2021 01:50:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -1.0 (-)
+References: <20210701002037.912625-1-drew@beagleboard.org> <20210701002037.912625-2-drew@beagleboard.org>
+ <CAMuHMdWLNy6_CnFEYDvHSEdMYH=T_Fy=DCjZCF9kPGWcD-B0Qw@mail.gmail.com>
+ <20210702205622.GA1035183@x1> <CAMuHMdXiebr7SnpShhcN9BPyha+=n=cNiX88q0wMVLrDY0r=qA@mail.gmail.com>
+ <20210703064600.GA1050194@x1>
+In-Reply-To: <20210703064600.GA1050194@x1>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sat, 3 Jul 2021 10:49:51 +0200
+Message-ID: <CAMuHMdVTj-TLZz=ieW648cqV4fWBHb4nnt59N5EEFw2qZ0jbaA@mail.gmail.com>
+Subject: Re: [RFC PATH 1/2] dt-bindings: gpio: add starfive,jh7100-gpio bindings
+To:     Drew Fustini <drew@beagleboard.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Huan Feng <huan.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Read voltage_now via IIO and provide the property.
+Hi Drew,
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- drivers/power/supply/rn5t618_power.c | 56 ++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+On Sat, Jul 3, 2021 at 8:46 AM Drew Fustini <drew@beagleboard.org> wrote:
+> On Fri, Jul 02, 2021 at 11:03:56PM +0200, Geert Uytterhoeven wrote:
+> > On Fri, Jul 2, 2021 at 10:56 PM Drew Fustini <drew@beagleboard.org> wrote:
+> > > On Thu, Jul 01, 2021 at 10:34:56AM +0200, Geert Uytterhoeven wrote:
+> > > > On Thu, Jul 1, 2021 at 2:22 AM Drew Fustini <drew@beagleboard.org> wrote:
+> > > > > Add bindings for the GPIO controller in the StarFive JH7100 SoC [1].
+> > > > >
+> > > > > [1] https://github.com/starfive-tech/beaglev_doc
+> > > > >
+> > > > > Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> > > > > Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
+> > > >
+> > > > Thanks for your patch!
+> > > >
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/gpio/starfive,jh7100-gpio.yaml
+> > > > > @@ -0,0 +1,60 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/gpio/starfive,jh7100-gpio.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: StarFive JH7100 GPIO controller
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Huan Feng <huan.feng@starfivetech.com>
+> > > > > +  - Drew Fustini <drew@beagleboard.org>
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    items:
+> > > > > +      - const: starfive,jh7100-gpio
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  interrupts:
+> > > > > +    description:
+> > > > > +      Interrupt mapping, one per GPIO. Maximum 32 GPIOs.
+> > > > > +    minItems: 1
+> > > > > +    maxItems: 32
+> > > >
+> > > > What about clocks and resets?
 
-diff --git a/drivers/power/supply/rn5t618_power.c b/drivers/power/supply/rn5t618_power.c
-index 819061918b2a..b062208c8a91 100644
---- a/drivers/power/supply/rn5t618_power.c
-+++ b/drivers/power/supply/rn5t618_power.c
-@@ -9,10 +9,12 @@
- #include <linux/device.h>
- #include <linux/bitops.h>
- #include <linux/errno.h>
-+#include <linux/iio/consumer.h>
- #include <linux/init.h>
- #include <linux/interrupt.h>
- #include <linux/module.h>
- #include <linux/mfd/rn5t618.h>
-+#include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/power_supply.h>
- #include <linux/regmap.h>
-@@ -64,6 +66,8 @@ struct rn5t618_power_info {
- 	struct power_supply *battery;
- 	struct power_supply *usb;
- 	struct power_supply *adp;
-+	struct iio_channel *channel_vusb;
-+	struct iio_channel *channel_vadp;
- 	int irq;
- };
- 
-@@ -77,6 +81,7 @@ static enum power_supply_usb_type rn5t618_usb_types[] = {
- static enum power_supply_property rn5t618_usb_props[] = {
- 	/* input current limit is not very accurate */
- 	POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT,
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
- 	POWER_SUPPLY_PROP_STATUS,
- 	POWER_SUPPLY_PROP_USB_TYPE,
- 	POWER_SUPPLY_PROP_ONLINE,
-@@ -85,6 +90,7 @@ static enum power_supply_property rn5t618_usb_props[] = {
- static enum power_supply_property rn5t618_adp_props[] = {
- 	/* input current limit is not very accurate */
- 	POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT,
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
- 	POWER_SUPPLY_PROP_STATUS,
- 	POWER_SUPPLY_PROP_ONLINE,
- };
-@@ -464,6 +470,16 @@ static int rn5t618_adp_get_property(struct power_supply *psy,
- 
- 		val->intval = FROM_CUR_REG(regval);
- 		break;
-+	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-+		if (!info->channel_vadp)
-+			return -ENODATA;
-+
-+		ret = iio_read_channel_processed(info->channel_vadp, &val->intval);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval *= 1000;
-+		break;
- 	default:
- 		return -EINVAL;
- 	}
-@@ -589,6 +605,16 @@ static int rn5t618_usb_get_property(struct power_supply *psy,
- 			val->intval = FROM_CUR_REG(regval);
- 		}
- 		break;
-+	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-+		if (!info->channel_vusb)
-+			return -ENODATA;
-+
-+		ret = iio_read_channel_processed(info->channel_vusb, &val->intval);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval *= 1000;
-+		break;
- 	default:
- 		return -EINVAL;
- 	}
-@@ -711,6 +737,28 @@ static int rn5t618_power_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, info);
- 
-+	info->channel_vusb = devm_iio_channel_get(&pdev->dev, "vusb");
-+	if (IS_ERR(info->channel_vusb)) {
-+		ret = PTR_ERR(info->channel_vusb);
-+		if (ret == -EPROBE_DEFER)
-+			return ret;
-+
-+		dev_warn(&pdev->dev, "could not request vusb iio channel (%d)",
-+			 ret);
-+		info->channel_vusb = NULL;
-+	}
-+
-+	info->channel_vadp = devm_iio_channel_get(&pdev->dev, "vadp");
-+	if (IS_ERR(info->channel_vadp)) {
-+		ret = PTR_ERR(info->channel_vadp);
-+		if (ret == -EPROBE_DEFER)
-+			return ret;
-+
-+		dev_warn(&pdev->dev, "could not request vadp iio channel (%d)",
-+			 ret);
-+		info->channel_vadp = NULL;
-+	}
-+
- 	ret = regmap_read(info->rn5t618->regmap, RN5T618_CONTROL, &v);
- 	if (ret)
- 		return ret;
-@@ -778,9 +826,17 @@ static int rn5t618_power_probe(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static const struct of_device_id rn5t618_power_of_match[] = {
-+	{.compatible = "ricoh,rc5t619-power", },
-+	{.compatible = "ricoh,rn5t618-power", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, rn5t618_power_of_match);
-+
- static struct platform_driver rn5t618_power_driver = {
- 	.driver = {
- 		.name   = "rn5t618-power",
-+		.of_match_table = of_match_ptr(rn5t618_power_of_match),
- 	},
- 	.probe = rn5t618_power_probe,
- };
+> > > But I am not sure how reset would work?
+> >
+> > That should become "resets = <&rstgen JH7100_RSTN_GPIO_APB>",
+> > but we don't have the reset controller in Linux yet (we do in barebox).
+>
+> Do you think I should add reset item like this?
+>
+>   resets:
+>     maxItems: 1
+>
+> I suppose this is supposed to describe the hardware and it shouldn't
+> matter whether or not Linux uses the property, right?
+
+Exactly.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.30.2
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
