@@ -2,481 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E09623BA92F
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jul 2021 17:19:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FF623BA93C
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jul 2021 17:30:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbhGCPV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Jul 2021 11:21:59 -0400
-Received: from ixit.cz ([94.230.151.217]:51676 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229562AbhGCPV7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 3 Jul 2021 11:21:59 -0400
-Received: from newone.lan (unknown [94.230.151.217])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 299A623B1D;
-        Sat,  3 Jul 2021 17:19:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1625325563;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=QWEdykZVrwjrwIWP9j//T9KR3l1pBkIHjTf/A+PgF/o=;
-        b=x3QaS0Gd/3aaevVGw3WKNJPbsMzLh+gYDmIfn8AewZ1ngsZSABPViv4SPA1sPgN2shEXcm
-        WJ66WArSlOY1HuD8lo2fMGqvGhCkxHAea9zYeSWDz/pq87Odcx3go5ZFs33WanTiCh+US5
-        beESniv2iI/sKHMISUABFmICW61KYqw=
-From:   David Heidelberg <david@ixit.cz>
-To:     smasetty@codeaurora.org, masneyb@onstation.org,
-        robdclark@chromium.org, jordan@cosmicpenguin.net
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        David Heidelberg <david@ixit.cz>
-Subject: [PATCH] RFC: dt-bindings: drm/msm/gpu: convert to YAML
-Date:   Sat,  3 Jul 2021 17:18:35 +0200
-Message-Id: <20210703151835.171313-1-david@ixit.cz>
-X-Mailer: git-send-email 2.30.2
+        id S229787AbhGCPce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Jul 2021 11:32:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58150 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229598AbhGCPce (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jul 2021 11:32:34 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C9A0C061762;
+        Sat,  3 Jul 2021 08:29:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=QABguMzP1/VumBvVHw70jOoK+BIUazJP6EF/sOlcL/c=; b=npD23N6p0GJrBNRRLPAmj8uzUr
+        URbfIkwPhkAPTv8LVCXhfP2Q8vAHRrTc3XepN21DEU/vL+SJSxxtQabOZHYLgaI1bA9JVkJObC+A5
+        7oIUx2KTa5jNqn/tQi8Xb58etTlKeW/eQWMA3kRJolh9qp50PPC24PcTJ9jT1d9Nwryk=;
+Received: from p200300ccff37da001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff37:da00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1lzhaW-000084-5L; Sat, 03 Jul 2021 17:29:48 +0200
+Date:   Sat, 3 Jul 2021 17:29:47 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     kernel test robot <lkp@intel.com>
+Cc:     lee.jones@linaro.org, robh+dt@kernel.org, jic23@kernel.org,
+        lars@metafoo.de, sre@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-pm@vger.kernel.org, kbuild-all@lists.01.org
+Subject: Re: [PATCH 4/4] power: supply: rn5t618: Add voltage_now property
+Message-ID: <20210703172947.60e456a1@aktux>
+In-Reply-To: <202107032203.CYwEkIW0-lkp@intel.com>
+References: <20210703084224.31623-5-andreas@kemnade.info>
+        <202107032203.CYwEkIW0-lkp@intel.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This warning cannot be fixed by conversion, since this naming is already used.
-Documentation/devicetree/bindings/display/msm/gpu.example.dt.yaml: gpu@5000000: interconnect-names: ['gfx-mem'] is too short
+Hi,
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../devicetree/bindings/display/msm/gpu.txt   | 157 -----------
- .../devicetree/bindings/display/msm/gpu.yaml  | 256 ++++++++++++++++++
- 2 files changed, 256 insertions(+), 157 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/msm/gpu.txt
- create mode 100644 Documentation/devicetree/bindings/display/msm/gpu.yaml
+oh, I forgot to add some depends IIO in the Makefile. I will wait some
+days for human reviewers before spinning a v2.
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gpu.txt b/Documentation/devicetree/bindings/display/msm/gpu.txt
-deleted file mode 100644
-index 090dcb3fc34d..000000000000
---- a/Documentation/devicetree/bindings/display/msm/gpu.txt
-+++ /dev/null
-@@ -1,157 +0,0 @@
--Qualcomm adreno/snapdragon GPU
--
--Required properties:
--- compatible: "qcom,adreno-XYZ.W", "qcom,adreno" or
--	      "amd,imageon-XYZ.W", "amd,imageon"
--    for example: "qcom,adreno-306.0", "qcom,adreno"
--  Note that you need to list the less specific "qcom,adreno" (since this
--  is what the device is matched on), in addition to the more specific
--  with the chip-id.
--  If "amd,imageon" is used, there should be no top level msm device.
--- reg: Physical base address and length of the controller's registers.
--- interrupts: The interrupt signal from the gpu.
--- clocks: device clocks (if applicable)
--  See ../clocks/clock-bindings.txt for details.
--- clock-names: the following clocks are required by a3xx, a4xx and a5xx
--  cores:
--  * "core"
--  * "iface"
--  * "mem_iface"
--  For GMU attached devices the GPU clocks are not used and are not required. The
--  following devices should not list clocks:
--   - qcom,adreno-630.2
--- iommus: optional phandle to an adreno iommu instance
--- operating-points-v2: optional phandle to the OPP operating points
--- interconnects: optional phandle to an interconnect provider.  See
--  ../interconnect/interconnect.txt for details. Some A3xx and all A4xx platforms
--  will have two paths; all others will have one path.
--- interconnect-names: The names of the interconnect paths that correspond to the
--  interconnects property. Values must be gfx-mem and ocmem.
--- qcom,gmu: For GMU attached devices a phandle to the GMU device that will
--  control the power for the GPU. Applicable targets:
--    - qcom,adreno-630.2
--- zap-shader: For a5xx and a6xx devices this node contains a memory-region that
--  points to reserved memory to store the zap shader that can be used to help
--  bring the GPU out of secure mode.
--- firmware-name: optional property of the 'zap-shader' node, listing the
--  relative path of the device specific zap firmware.
--- sram: phandle to the On Chip Memory (OCMEM) that's present on some a3xx and
--        a4xx Snapdragon SoCs. See
--        Documentation/devicetree/bindings/sram/qcom,ocmem.yaml.
--
--Optional properties:
--- #cooling-cells: The value must be 2. For details, please refer
--	Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml.
--
--Example 3xx/4xx:
--
--/ {
--	...
--
--	gpu: adreno@fdb00000 {
--		compatible = "qcom,adreno-330.2",
--		             "qcom,adreno";
--		reg = <0xfdb00000 0x10000>;
--		reg-names = "kgsl_3d0_reg_memory";
--		interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "kgsl_3d0_irq";
--		clock-names = "core",
--		              "iface",
--		              "mem_iface";
--		clocks = <&mmcc OXILI_GFX3D_CLK>,
--		         <&mmcc OXILICX_AHB_CLK>,
--		         <&mmcc OXILICX_AXI_CLK>;
--		sram = <&gpu_sram>;
--		power-domains = <&mmcc OXILICX_GDSC>;
--		operating-points-v2 = <&gpu_opp_table>;
--		iommus = <&gpu_iommu 0>;
--		#cooling-cells = <2>;
--	};
--
--	gpu_sram: ocmem@fdd00000 {
--		compatible = "qcom,msm8974-ocmem";
--
--		reg = <0xfdd00000 0x2000>,
--		      <0xfec00000 0x180000>;
--		reg-names = "ctrl",
--		            "mem";
--
--		clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>,
--		         <&mmcc OCMEMCX_OCMEMNOC_CLK>;
--		clock-names = "core",
--		              "iface";
--
--		#address-cells = <1>;
--		#size-cells = <1>;
--
--		gpu_sram: gpu-sram@0 {
--			reg = <0x0 0x100000>;
--			ranges = <0 0 0xfec00000 0x100000>;
--		};
--	};
--};
--
--Example a6xx (with GMU):
--
--/ {
--	...
--
--	gpu@5000000 {
--		compatible = "qcom,adreno-630.2", "qcom,adreno";
--		#stream-id-cells = <16>;
--
--		reg = <0x5000000 0x40000>, <0x509e000 0x10>;
--		reg-names = "kgsl_3d0_reg_memory", "cx_mem";
--
--		#cooling-cells = <2>;
--
--		/*
--		 * Look ma, no clocks! The GPU clocks and power are
--		 * controlled entirely by the GMU
--		 */
--
--		interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
--
--		iommus = <&adreno_smmu 0>;
--
--		operating-points-v2 = <&gpu_opp_table>;
--
--		interconnects = <&rsc_hlos MASTER_GFX3D &rsc_hlos SLAVE_EBI1>;
--		interconnect-names = "gfx-mem";
--
--		gpu_opp_table: opp-table {
--			compatible = "operating-points-v2";
--
--			opp-430000000 {
--				opp-hz = /bits/ 64 <430000000>;
--				opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
--				opp-peak-kBps = <5412000>;
--			};
--
--			opp-355000000 {
--				opp-hz = /bits/ 64 <355000000>;
--				opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
--				opp-peak-kBps = <3072000>;
--			};
--
--			opp-267000000 {
--				opp-hz = /bits/ 64 <267000000>;
--				opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
--				opp-peak-kBps = <3072000>;
--			};
--
--			opp-180000000 {
--				opp-hz = /bits/ 64 <180000000>;
--				opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
--				opp-peak-kBps = <1804000>;
--			};
--		};
--
--		qcom,gmu = <&gmu>;
--
--		zap-shader {
--			memory-region = <&zap_shader_region>;
--			firmware-name = "qcom/LENOVO/81JL/qcdxkmsuc850.mbn"
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-new file mode 100644
-index 000000000000..4315482e0b12
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-@@ -0,0 +1,256 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: "http://devicetree.org/schemas/display/msm/gpu.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Devicetree bindings for the Adreno or Snapdragon GPUs
-+
-+maintainers:
-+  - Rob Clark <robdclark@gmail.com>
-+
-+description: |
-+  These bindings describe the GPUs
-+
-+properties:
-+  compatible:
-+    anyOf:
-+      - items:
-+          - pattern: '^qcom,adreno-[3-6][0-9][0-9].[0-9]$'
-+          - const: qcom,adreno
-+      - items:
-+          - pattern: '^amd,imageon-200.[0-1]$'
-+          - const: amd,imageon
-+
-+  clocks:
-+    maxItems: 3
-+
-+  clock-names:
-+    maxItems: 3
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+    description: Physical base address and length of the controller's registers.
-+
-+  reg-names:
-+    minItems: 1
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    maxItems: 1
-+
-+  interconnects:
-+    minItems: 1
-+    maxItems: 2
-+    description: |
-+      optional phandle to an interconnect provider. See
-+      ../interconnect/interconnect.txt for details.
-+      Some A3xx and all A4xx platforms will have two paths;
-+      all others will have one path.
-+
-+  interconnect-names:
-+    items:
-+      - const: gfx-mem
-+      - const: ocmem
-+    description: |
-+      the names of the interconnect paths that correspond to
-+      the interconnects property
-+
-+  iommus:
-+    maxItems: 1
-+
-+  sram:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    minItems: 1
-+    maxItems: 4
-+    description: |
-+      phandles to one or more reserved on-chip SRAM regions.
-+      phandle to the On Chip Memory (OCMEM) that's present on some a3xx and
-+      a4xx Snapdragon SoCs. See
-+      Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
-+
-+  operating-points-v2: true
-+  opp-table: true
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  zap-shader:
-+    description: |
-+      For a5xx and a6xx devices this node contains a memory-region that
-+      points to reserved memory to store the zap shader that can be used to
-+      help bring the GPU out of secure mode.
-+
-+  "#cooling-cells":
-+    const: 2
-+    description: |
-+      For details, please refer
-+      Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
-+
-+  qcom,gmu:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: |
-+      for GMU attached devices a phandle to the GMU device that will
-+      control the power for the GPU
-+
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            pattern: '^qcom,adreno-[3-5][0-9][0-9].[0-9]$'
-+
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: GPU Core clock
-+            - description: GPU Interface clock
-+            - description: GPU Memory Interface clock
-+
-+        clock-names:
-+          items:
-+            - const: core
-+            - const: iface
-+            - const: mem_iface
-+      required:
-+        - clocks
-+        - clock-names
-+
-+examples:
-+  - |
-+
-+    // Example a3xx/4xx:
-+
-+    #include <dt-bindings/clock/qcom,mmcc-msm8974.h>
-+    #include <dt-bindings/clock/qcom,rpmcc.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    gpu: adreno@fdb00000 {
-+        compatible = "qcom,adreno-330.2", "qcom,adreno";
-+
-+        reg = <0xfdb00000 0x10000>;
-+        reg-names = "kgsl_3d0_reg_memory";
-+
-+        clock-names = "core", "iface", "mem_iface";
-+        clocks = <&mmcc OXILI_GFX3D_CLK>,
-+                 <&mmcc OXILICX_AHB_CLK>,
-+                 <&mmcc OXILICX_AXI_CLK>;
-+
-+        interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "kgsl_3d0_irq";
-+
-+        sram = <&gpu_sram>;
-+        power-domains = <&mmcc OXILICX_GDSC>;
-+        operating-points-v2 = <&gpu_opp_table>;
-+        iommus = <&gpu_iommu 0>;
-+        #cooling-cells = <2>;
-+    };
-+
-+    ocmem@fdd00000 {
-+        compatible = "qcom,msm8974-ocmem";
-+
-+        reg = <0xfdd00000 0x2000>,
-+              <0xfec00000 0x180000>;
-+        reg-names = "ctrl", "mem";
-+
-+        clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>,
-+                 <&mmcc OCMEMCX_OCMEMNOC_CLK>;
-+        clock-names = "core", "iface";
-+
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges = <0 0xfec00000 0x100000>;
-+
-+        gpu_sram: gpu-sram@0 {
-+            reg = <0x0 0x100000>;
-+        };
-+    };
-+  - |
-+
-+    // Example a6xx (with GMU):
-+
-+    #include <dt-bindings/clock/qcom,gpucc-sdm845.h>
-+    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interconnect/qcom,sdm845.h>
-+
-+    reserved-memory {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        zap_shader_region: gpu@8f200000 {
-+            compatible = "shared-dma-pool";
-+            reg = <0x0 0x90b00000 0x0 0xa00000>;
-+            no-map;
-+        };
-+    };
-+
-+    gpu@5000000 {
-+        compatible = "qcom,adreno-630.2", "qcom,adreno";
-+
-+        reg = <0x5000000 0x40000>, <0x509e000 0x10>;
-+        reg-names = "kgsl_3d0_reg_memory", "cx_mem";
-+
-+        #cooling-cells = <2>;
-+
-+        interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-+
-+        iommus = <&adreno_smmu 0>;
-+
-+        operating-points-v2 = <&gpu_opp_table>;
-+
-+        interconnects = <&rsc_hlos MASTER_GFX3D &rsc_hlos SLAVE_EBI1>;
-+        interconnect-names = "gfx-mem";
-+
-+        qcom,gmu = <&gmu>;
-+
-+        gpu_opp_table: opp-table {
-+            compatible = "operating-points-v2";
-+
-+            opp-430000000 {
-+                opp-hz = /bits/ 64 <430000000>;
-+                opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+                opp-peak-kBps = <5412000>;
-+            };
-+
-+            opp-355000000 {
-+                opp-hz = /bits/ 64 <355000000>;
-+                opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+                opp-peak-kBps = <3072000>;
-+            };
-+
-+            opp-267000000 {
-+                opp-hz = /bits/ 64 <267000000>;
-+                opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+                opp-peak-kBps = <3072000>;
-+            };
-+
-+            opp-180000000 {
-+                opp-hz = /bits/ 64 <180000000>;
-+                opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-+                opp-peak-kBps = <1804000>;
-+            };
-+        };
-+
-+        zap-shader {
-+            memory-region = <&zap_shader_region>;
-+            firmware-name = "qcom/LENOVO/81JL/qcdxkmsuc850.mbn";
-+        };
-+    };
--- 
-2.30.2
+Regards,
+Andreas
+
+On Sat, 3 Jul 2021 22:35:27 +0800
+kernel test robot <lkp@intel.com> wrote:
+
+> Hi Andreas,
+> 
+> Thank you for the patch! Yet something to improve:
+> 
+> [auto build test ERROR on power-supply/for-next]
+> [also build test ERROR on next-20210701]
+> [cannot apply to lee-mfd/for-mfd-next iio/togreg robh/for-next v5.13]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Andreas-Kemnade/mfd-rn5t618-Extend-ADC-support/20210703-164312
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git for-next
+> config: i386-randconfig-m031-20210702 (attached as .config)
+> compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+> reproduce (this is a W=1 build):
+>         # https://github.com/0day-ci/linux/commit/99953e2eb9d653eb8bc74eb482cef7c9fb4e69d7
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review Andreas-Kemnade/mfd-rn5t618-Extend-ADC-support/20210703-164312
+>         git checkout 99953e2eb9d653eb8bc74eb482cef7c9fb4e69d7
+>         # save the attached .config to linux build tree
+>         make W=1 ARCH=i386 
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>, old ones prefixed by <<):
+> 
+> >> ERROR: modpost: "devm_iio_channel_get" [drivers/power/supply/rn5t618_power.ko] undefined!
+> >> ERROR: modpost: "iio_read_channel_processed" [drivers/power/supply/rn5t618_power.ko] undefined!  
+> 
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
