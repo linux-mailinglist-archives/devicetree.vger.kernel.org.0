@@ -2,35 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0A733BA99D
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jul 2021 18:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 016063BA9B6
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jul 2021 19:17:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbhGCRAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Jul 2021 13:00:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48250 "EHLO mail.kernel.org"
+        id S229557AbhGCRTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Jul 2021 13:19:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52758 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229529AbhGCRAH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 3 Jul 2021 13:00:07 -0400
+        id S229463AbhGCRTx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 3 Jul 2021 13:19:53 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B9A9561627;
-        Sat,  3 Jul 2021 16:57:29 +0000 (UTC)
-Date:   Sat, 3 Jul 2021 17:59:52 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id 6B36C6192B;
+        Sat,  3 Jul 2021 17:17:15 +0000 (UTC)
+Date:   Sat, 3 Jul 2021 18:19:37 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Simon Xue <xxm@rock-chips.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: adc: rockchip_saradc: add support for rk3568
- saradc
-Message-ID: <20210703175952.238e6218@jic23-huawei>
-In-Reply-To: <20210702021527.146343-1-xxm@rock-chips.com>
-References: <20210702021403.146293-1-xxm@rock-chips.com>
-        <20210702021527.146343-1-xxm@rock-chips.com>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: Add binding documentation
+ for Renesas RZ/G2L A/D converter
+Message-ID: <20210703181937.510ec0fa@jic23-huawei>
+In-Reply-To: <20210629220328.13366-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20210629220328.13366-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20210629220328.13366-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -39,71 +41,170 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  2 Jul 2021 10:15:27 +0800
-Simon Xue <xxm@rock-chips.com> wrote:
+On Tue, 29 Jun 2021 23:03:27 +0100
+Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 
-A small amount of info on the device is always useful in a commit like this.
-Here, perhaps you could call out that it is similar to some other device, but
-with 8 channels?
+> Add binding documentation for Renesas RZ/G2L A/D converter block.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+Hi,
 
-Otherwise, looks good to me.  DT patch is fine as well.  I'll let them sit
-a little longer though to give others time to comment.
-
-The dtsi change requested by Johan goes via a different tree anyway so doesn't
-need to be part of this series.
+See inline
 
 Jonathan
 
-> Signed-off-by: Simon Xue <xxm@rock-chips.com>
 > ---
->  drivers/iio/adc/rockchip_saradc.c | 22 +++++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
+>  .../bindings/iio/adc/renesas,rzg2l-adc.yaml   | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
 > 
-> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
-> index 12584f1631d8..f3eb8d2e50dc 100644
-> --- a/drivers/iio/adc/rockchip_saradc.c
-> +++ b/drivers/iio/adc/rockchip_saradc.c
-> @@ -35,7 +35,7 @@
->  #define SARADC_DLY_PU_SOC_MASK		0x3f
->  
->  #define SARADC_TIMEOUT			msecs_to_jiffies(100)
-> -#define SARADC_MAX_CHANNELS		6
-> +#define SARADC_MAX_CHANNELS		8
->  
->  struct rockchip_saradc_data {
->  	const struct iio_chan_spec	*channels;
-> @@ -192,6 +192,23 @@ static const struct rockchip_saradc_data rk3399_saradc_data = {
->  	.clk_rate = 1000000,
->  };
->  
-> +static const struct iio_chan_spec rockchip_rk3568_saradc_iio_channels[] = {
-> +	SARADC_CHANNEL(0, "adc0", 10),
-> +	SARADC_CHANNEL(1, "adc1", 10),
-> +	SARADC_CHANNEL(2, "adc2", 10),
-> +	SARADC_CHANNEL(3, "adc3", 10),
-> +	SARADC_CHANNEL(4, "adc4", 10),
-> +	SARADC_CHANNEL(5, "adc5", 10),
-> +	SARADC_CHANNEL(6, "adc6", 10),
-> +	SARADC_CHANNEL(7, "adc7", 10),
-> +};
+> diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+> new file mode 100644
+> index 000000000000..db935d6d59eb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml
+> @@ -0,0 +1,121 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/renesas,rzg2l-adc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +static const struct rockchip_saradc_data rk3568_saradc_data = {
-> +	.channels = rockchip_rk3568_saradc_iio_channels,
-> +	.num_channels = ARRAY_SIZE(rockchip_rk3568_saradc_iio_channels),
-> +	.clk_rate = 1000000,
-> +};
+> +title: Renesas RZ/G2L ADC
 > +
->  static const struct of_device_id rockchip_saradc_match[] = {
->  	{
->  		.compatible = "rockchip,saradc",
-> @@ -202,6 +219,9 @@ static const struct of_device_id rockchip_saradc_match[] = {
->  	}, {
->  		.compatible = "rockchip,rk3399-saradc",
->  		.data = &rk3399_saradc_data,
-> +	}, {
-> +		.compatible = "rockchip,rk3568-saradc",
-> +		.data = &rk3568_saradc_data,
->  	},
->  	{},
->  };
+> +maintainers:
+> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> +
+> +description: |
+> +  A/D Converter block is a successive approximation analog-to-digital converter
+> +  with a 12-bit accuracy. Up to eight analog input channels can be selected.
+> +  Conversions can be performed in single or repeat mode. Result of the ADC is
+> +  stored in a 32-bit data register corresponding to each channel.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - renesas,r9a07g044-adc   # RZ/G2{L,LC}
+> +          - const: renesas,rzg2l-adc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: converter clock
+> +      - description: peripheral clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: adclk
+> +      - const: pclk
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 2
+> +
+> +  reset-names:
+> +    items:
+> +      - const: presetn
+> +      - const: adrst-n
+> +
+> +  renesas-rzg2l,adc-trigger-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    description: Trigger mode for A/D converter
+> +    enum:
+> +      - 0 # Software trigger mode (Defaults)
+> +      - 1 # Asynchronous trigger using ADC_TRG trigger input pin
+> +      - 2 # Synchronous trigger (Trigger from MTU3a/GPT)
+
+Is this a function of the board in some fashion?  If not it sounds like
+something that should be in control of userspace.  Normally we'd
+do that by having the driver register some iio_triggers and depending
+on which one is selected do the equivalent of what you have here.
+
+> +    default: 0
+> +
+> +  gpios:
+> +    description:
+> +      ADC_TRG trigger input pin
+> +    maxItems: 1
+Why is this mode useful?  I'm assuming the gpio write would take a register
+write and the software trigger mode also requires a register write.
+
+Normally the reason for a pin like this is to support synchronising with
+external hardware.   If that's the case, we should call that out here.
+often the pin isn't even connected to a gpio in our control.
+(i.e. it's a trigger signal from some other device.)
+
+> +
+> +  renesas-rzg2l,adc-channels:
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    description: Input channels available on platform
+> +    uniqueItems: true
+> +    minItems: 1
+> +    maxItems: 8
+> +    items:
+> +      enum: [0, 1, 2, 3, 4, 5, 6, 7]
+
+Is this a function of different devices (should have different compatibles)
+or of what is wired up.  If it's what is wired up, then how do you know which
+subset of channels are connected?  We have the generic adc channel binding
+in iio/adc/adc.yaml for the case where we only want to expose those channels
+that are wired up.  It uses a node per channel.
+
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - resets
+> +  - reset-names
+> +  - renesas-rzg2l,adc-channels
+> +  - "#io-channel-cells"
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        renesas-rzg2l,adc-trigger-mode:
+> +          const: 1
+> +    then:
+> +      required:
+> +        - gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    adc: adc@10059000 {
+> +      compatible = "renesas,r9a07g044-adc", "renesas,rzg2l-adc";
+> +      reg = <0x10059000 0x400>;
+> +      interrupts = <GIC_SPI 347 IRQ_TYPE_EDGE_RISING>;
+> +      clocks = <&cpg CPG_MOD R9A07G044_ADC_ADCLK>,
+> +               <&cpg CPG_MOD R9A07G044_ADC_PCLK>;
+> +      clock-names = "adclk", "pclk";
+> +      power-domains = <&cpg>;
+> +      resets = <&cpg R9A07G044_ADC_PRESETN>,
+> +               <&cpg R9A07G044_ADC_ADRST_N>;
+> +      reset-names = "presetn", "adrst-n";
+> +      #io-channel-cells = <1>;
+> +      renesas-rzg2l,adc-trigger-mode = /bits/ 8 <0>;
+> +      renesas-rzg2l,adc-channels = /bits/ 8 <0 1 2 3 4 5 6>;
+> +    };
 
