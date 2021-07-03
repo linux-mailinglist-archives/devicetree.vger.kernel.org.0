@@ -2,130 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 427E53BA954
-	for <lists+devicetree@lfdr.de>; Sat,  3 Jul 2021 18:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB0723BA95B
+	for <lists+devicetree@lfdr.de>; Sat,  3 Jul 2021 18:02:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229900AbhGCQCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Jul 2021 12:02:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39890 "EHLO mail.kernel.org"
+        id S229481AbhGCQFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Jul 2021 12:05:13 -0400
+Received: from gate.crashing.org ([63.228.1.57]:47667 "EHLO gate.crashing.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229818AbhGCQCy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 3 Jul 2021 12:02:54 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 33CA961935;
-        Sat,  3 Jul 2021 16:00:19 +0000 (UTC)
-Date:   Sat, 3 Jul 2021 17:02:45 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org, lars@metafoo.de,
-        sre@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-pm@vger.kernel.org, leonard.crestez@nxp.com,
-        letux-kernel@openphoenux.org
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: ricoh,rn5t618: ADC related nodes
- and properties
-Message-ID: <20210703170245.1d310342@jic23-huawei>
-In-Reply-To: <20210703084224.31623-2-andreas@kemnade.info>
-References: <20210703084224.31623-1-andreas@kemnade.info>
-        <20210703084224.31623-2-andreas@kemnade.info>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S229463AbhGCQFN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 3 Jul 2021 12:05:13 -0400
+Received: from gate.crashing.org (localhost.localdomain [127.0.0.1])
+        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id 163Fs1rg021323;
+        Sat, 3 Jul 2021 10:54:01 -0500
+Received: (from segher@localhost)
+        by gate.crashing.org (8.14.1/8.14.1/Submit) id 163FrvdE021319;
+        Sat, 3 Jul 2021 10:53:57 -0500
+X-Authentication-Warning: gate.crashing.org: segher set sender to segher@kernel.crashing.org using -f
+Date:   Sat, 3 Jul 2021 10:53:57 -0500
+From:   Segher Boessenkool <segher@kernel.crashing.org>
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.ne@posteo.net>
+Cc:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Ash Logan <ash@heyquark.com>,
+        Paul Mackerras <paulus@samba.org>,
+        linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH v2 3/4] powerpc: wii.dts: Expose the OTP on this platform
+Message-ID: <20210703155357.GG1583@gate.crashing.org>
+References: <20210519095044.4109-1-linkmauve@linkmauve.fr> <20210519095044.4109-4-linkmauve@linkmauve.fr> <YNe5aW55SrXFGKFV@latitude> <20210701195655.knbcikdga57a7epx@luna> <YN7Uv/43TwL4+9ic@latitude>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YN7Uv/43TwL4+9ic@latitude>
+User-Agent: Mutt/1.4.2.3i
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat,  3 Jul 2021 10:42:21 +0200
-Andreas Kemnade <andreas@kemnade.info> wrote:
-
-> Add ADC related nodes and properties. This will allow to wire
-> up ADC channels to consumers, especially to measure input voltages
-> by the power subdevice.
+On Fri, Jul 02, 2021 at 08:56:31AM +0000, Jonathan Neuschäfer wrote:
+> On Thu, Jul 01, 2021 at 09:56:55PM +0200, Emmanuel Gil Peyrot wrote:
+> > On Sat, Jun 26, 2021 at 11:34:01PM +0000, Jonathan Neuschäfer wrote:
+> > > On Wed, May 19, 2021 at 11:50:43AM +0200, Emmanuel Gil Peyrot wrote:
+> [...]
+> > > > +		otp@d8001ec {
+> > > > +			compatible = "nintendo,hollywood-otp";
+> > > > +			reg = <0x0d8001ec 0x8>;
+> > > 
+> > > The OTP registers overlap with the previous node, control@d800100.
+> > > Not sure what's the best way to structure the devicetree in this case,
+> > > maybe something roughly like the following (untested, unverified):
+> > [snip]
+> > 
+> > I couldn’t get this to work, but additionally it looks like it should
+> > start 0x100 earlier and contain pic1@d800030 and gpio@d8000c0, given
+> > https://wiibrew.org/wiki/Hardware/Hollywood_Registers
+> > 
+> > Would it make sense, for the time being, to reduce the size of this
+> > control@d800100 device to the single register currently being used by
+> > arch/powerpc/platforms/embedded6xx/wii.c (0xd800194, used to reboot the
+> > system) and leave the refactor of restart + OTP + PIC + GPIO for a
+> > future series?
 > 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> ---
->  .../bindings/mfd/ricoh,rn5t618.yaml           | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml b/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-> index 032a7fb0b4a7..185f87a14a54 100644
-> --- a/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-> @@ -73,6 +73,48 @@ properties:
->      description: |
->        See Documentation/devicetree/bindings/power/power-controller.txt
->  
-> +  adc:
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - ricoh,rn5t618-adc
-> +          - ricoh,rc5t619-adc
-> +
-> +      "#io-channel-cells":
-> +        const: 1
-> +
-> +    additionalProperties: false
-> +
-> +    required:
-> +      - compatible
-> +      - "#io-channel-cells"
+> Makes sense to me!
 
-Strictly required?  If not used below (where it is optional)
-then why do we require the ADC driver to provided the services?
+There is no benefit to pretending there is a "control" bus (there is no
+such thing), it only gets in the way.
 
-I don't mind you leave it as it is though if you prefer - it doesn't
-do any harm!
 
-> +
-> +  power:
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        enum:
-> +          - ricoh,rn5t618-power
-> +          - ricoh,rc5t619-power
-> +
-> +      io-channels:
-> +        items:
-> +          - description: ADP Voltage Channel
-> +          - description: USB Voltage Channel
-> +
-> +      io-channel-names:
-> +        items:
-> +          - const: vadp
-> +          - const: vusb
-> +
-> +    additionalProperties: false
-> +
-> +    required:
-> +      - compatible
-> +
->    regulators:
->      type: object
->  
-> @@ -96,6 +138,17 @@ examples:
->          interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
->          system-power-controller;
->  
-> +        rn5t618_adc: adc {
-> +          compatible = "ricoh,rn5t618-adc";
-> +          #io-channel-cells = <1>;
-> +        };
-> +
-> +        power {
-> +          compatible = "ricoh,rn5t618-power";
-> +          io-channels = <&rn5t618_adc 2>, <&rn5t618_adc 3>;
-> +          io-channel-names = "vadp", "vusb";
-> +        };
-> +
->          regulators {
->            DCDC1 {
->              regulator-min-microvolt = <1050000>;
-
+Segher
