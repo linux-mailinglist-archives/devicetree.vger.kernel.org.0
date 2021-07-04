@@ -2,542 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 179273BAC7B
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 11:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5141C3BAC82
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 11:37:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229499AbhGDJea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jul 2021 05:34:30 -0400
-Received: from ixit.cz ([94.230.151.217]:55418 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229476AbhGDJea (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 4 Jul 2021 05:34:30 -0400
-Received: from [192.168.1.138] (ixit.cz [94.230.151.217])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id DE3B823B1D;
-        Sun,  4 Jul 2021 11:31:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1625391114;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=W1g41h8Fs4lJKHljV9Uq64GlawCyLUePGmIHjM31M6c=;
-        b=vGiHUtF9tBOLHgI8H4RxPF+DiSowuCPZ/pcyuKhlPaGpAWFUVdLPZMyx9qPTdpPQlNFni2
-        iYv0c1xzdmoDo9r6NCuaNgouUWz01dFNumwte887igxJnpDbpNIFjVvTcjIr7rcvywkKE/
-        6IqBFKwyNN+1SlxBv18QO8JlOWMmwyA=
-Date:   Sun, 04 Jul 2021 11:31:06 +0200
-From:   David Heidelberg <david@ixit.cz>
-Subject: Re: [PATCH] RFC: dt-bindings: drm/msm/gpu: convert to YAML
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Sharat Masetty <smasetty@codeaurora.org>, masneyb@onstation.org,
-        Rob Clark <robdclark@chromium.org>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>
-Message-Id: <URRPVQ.B2SU4KSL2LD82@ixit.cz>
-In-Reply-To: <CAA8EJpqo=5JNVPfoB4QAJnYKEMV2PWgJL0=+8MEV7BVzL2ht=g@mail.gmail.com>
-References: <20210703151835.171313-1-david@ixit.cz>
-        <CAA8EJpqo=5JNVPfoB4QAJnYKEMV2PWgJL0=+8MEV7BVzL2ht=g@mail.gmail.com>
-X-Mailer: geary/40.0
+        id S229559AbhGDJjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jul 2021 05:39:36 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:21620 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229476AbhGDJjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 05:39:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1625391417;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=/+wpk91XMTrihc0Qk9RG3f8dQOkAeUU1aoN6fWllpYM=;
+    b=AWYE1y2P5P0ZuIi/dY80zB0abajbv326S4WSmfUtKjqLNdS64WjyVCK+I268e+bCmB
+    3jat+1qj/drJLCZm8NIr5jQifWLFuW2Qt1Q/XSOuGbDFApsBg6fM6j9q2xXyBihmy8zL
+    7o2+5mO2jKkvybUGwpM/4BpX1UiixBWPPk6ufsC5lPf67IbBXzzzAwmx9RFioAExvgwf
+    vAn7xPftt34vlxgLeuabOqIyJw1esIjmXwa+Y02VPRltZ+WYtlldQZZcmjk4dCJtujoI
+    /+LPXkzzI+T1lNHBg5Uq98FMAqVJtdbTEboP+riWTP4bYz4FNfu2w2TvL9QAMWI+yxHm
+    p0Ew==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j5Ic/HBg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.28.1 DYNA|AUTH)
+    with ESMTPSA id Y070ccx649avK4p
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Sun, 4 Jul 2021 11:36:57 +0200 (CEST)
+Date:   Sun, 4 Jul 2021 11:36:41 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: qcom,pon: Add 'qcom,mode-in-imem'
+ support
+Message-ID: <YOGArXunEf2O58gL@gerhold.net>
+References: <20210704074045.21643-1-shawn.guo@linaro.org>
+ <20210704074045.21643-3-shawn.guo@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210704074045.21643-3-shawn.guo@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you Dmitry,
-
-I'll fix it for [v2]. I'll wait a little bit for some feedback now.
-Best regards
-David Heidelberg
-
-On Sun, Jul 4 2021 at 11:18:36 +0300, Dmitry Baryshkov 
-<dmitry.baryshkov@linaro.org> wrote:
-> On Sat, 3 Jul 2021 at 18:19, David Heidelberg <david@ixit.cz> wrote:
->> 
->>  This warning cannot be fixed by conversion, since this naming is 
->> already used.
->>  Documentation/devicetree/bindings/display/msm/gpu.example.dt.yaml: 
->> gpu@5000000: interconnect-names: ['gfx-mem'] is too short
+On Sun, Jul 04, 2021 at 03:40:44PM +0800, Shawn Guo wrote:
+> It's not always the case that reboot mode value gets stored in PON
+> register.  For example, Sony Xperia M4 Aqua phone (MSM8939) uses a
+> different set of mode value and stores them in IMEM.  Add property
+> 'qcom,mode-in-imem' to distinguish this mechanism from the existing one.
 > 
-> It is not a problem of the name length. You've declared that
-> interconnect-names would contain two items (gfx-mem and ocmem), but
-> add just one.
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> ---
+>  .../bindings/power/reset/qcom,pon.yaml        | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
->> 
->>  Signed-off-by: David Heidelberg <david@ixit.cz>
->>  ---
->>   .../devicetree/bindings/display/msm/gpu.txt   | 157 -----------
->>   .../devicetree/bindings/display/msm/gpu.yaml  | 256 
->> ++++++++++++++++++
->>   2 files changed, 256 insertions(+), 157 deletions(-)
->>   delete mode 100644 
->> Documentation/devicetree/bindings/display/msm/gpu.txt
->>   create mode 100644 
->> Documentation/devicetree/bindings/display/msm/gpu.yaml
->> 
->>  diff --git a/Documentation/devicetree/bindings/display/msm/gpu.txt 
->> b/Documentation/devicetree/bindings/display/msm/gpu.txt
->>  deleted file mode 100644
->>  index 090dcb3fc34d..000000000000
->>  --- a/Documentation/devicetree/bindings/display/msm/gpu.txt
->>  +++ /dev/null
->>  @@ -1,157 +0,0 @@
->>  -Qualcomm adreno/snapdragon GPU
->>  -
->>  -Required properties:
->>  -- compatible: "qcom,adreno-XYZ.W", "qcom,adreno" or
->>  -             "amd,imageon-XYZ.W", "amd,imageon"
->>  -    for example: "qcom,adreno-306.0", "qcom,adreno"
->>  -  Note that you need to list the less specific "qcom,adreno" 
->> (since this
->>  -  is what the device is matched on), in addition to the more 
->> specific
->>  -  with the chip-id.
->>  -  If "amd,imageon" is used, there should be no top level msm 
->> device.
->>  -- reg: Physical base address and length of the controller's 
->> registers.
->>  -- interrupts: The interrupt signal from the gpu.
->>  -- clocks: device clocks (if applicable)
->>  -  See ../clocks/clock-bindings.txt for details.
->>  -- clock-names: the following clocks are required by a3xx, a4xx and 
->> a5xx
->>  -  cores:
->>  -  * "core"
->>  -  * "iface"
->>  -  * "mem_iface"
->>  -  For GMU attached devices the GPU clocks are not used and are not 
->> required. The
->>  -  following devices should not list clocks:
->>  -   - qcom,adreno-630.2
->>  -- iommus: optional phandle to an adreno iommu instance
->>  -- operating-points-v2: optional phandle to the OPP operating points
->>  -- interconnects: optional phandle to an interconnect provider.  See
->>  -  ../interconnect/interconnect.txt for details. Some A3xx and all 
->> A4xx platforms
->>  -  will have two paths; all others will have one path.
->>  -- interconnect-names: The names of the interconnect paths that 
->> correspond to the
->>  -  interconnects property. Values must be gfx-mem and ocmem.
->>  -- qcom,gmu: For GMU attached devices a phandle to the GMU device 
->> that will
->>  -  control the power for the GPU. Applicable targets:
->>  -    - qcom,adreno-630.2
->>  -- zap-shader: For a5xx and a6xx devices this node contains a 
->> memory-region that
->>  -  points to reserved memory to store the zap shader that can be 
->> used to help
->>  -  bring the GPU out of secure mode.
->>  -- firmware-name: optional property of the 'zap-shader' node, 
->> listing the
->>  -  relative path of the device specific zap firmware.
->>  -- sram: phandle to the On Chip Memory (OCMEM) that's present on 
->> some a3xx and
->>  -        a4xx Snapdragon SoCs. See
->>  -        Documentation/devicetree/bindings/sram/qcom,ocmem.yaml.
->>  -
->>  -Optional properties:
->>  -- #cooling-cells: The value must be 2. For details, please refer
->>  -       
->> Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml.
->>  -
->>  -Example 3xx/4xx:
->>  -
->>  -/ {
->>  -       ...
->>  -
->>  -       gpu: adreno@fdb00000 {
->>  -               compatible = "qcom,adreno-330.2",
->>  -                            "qcom,adreno";
->>  -               reg = <0xfdb00000 0x10000>;
->>  -               reg-names = "kgsl_3d0_reg_memory";
->>  -               interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
->>  -               interrupt-names = "kgsl_3d0_irq";
->>  -               clock-names = "core",
->>  -                             "iface",
->>  -                             "mem_iface";
->>  -               clocks = <&mmcc OXILI_GFX3D_CLK>,
->>  -                        <&mmcc OXILICX_AHB_CLK>,
->>  -                        <&mmcc OXILICX_AXI_CLK>;
->>  -               sram = <&gpu_sram>;
->>  -               power-domains = <&mmcc OXILICX_GDSC>;
->>  -               operating-points-v2 = <&gpu_opp_table>;
->>  -               iommus = <&gpu_iommu 0>;
->>  -               #cooling-cells = <2>;
->>  -       };
->>  -
->>  -       gpu_sram: ocmem@fdd00000 {
->>  -               compatible = "qcom,msm8974-ocmem";
->>  -
->>  -               reg = <0xfdd00000 0x2000>,
->>  -                     <0xfec00000 0x180000>;
->>  -               reg-names = "ctrl",
->>  -                           "mem";
->>  -
->>  -               clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>,
->>  -                        <&mmcc OCMEMCX_OCMEMNOC_CLK>;
->>  -               clock-names = "core",
->>  -                             "iface";
->>  -
->>  -               #address-cells = <1>;
->>  -               #size-cells = <1>;
->>  -
->>  -               gpu_sram: gpu-sram@0 {
->>  -                       reg = <0x0 0x100000>;
->>  -                       ranges = <0 0 0xfec00000 0x100000>;
->>  -               };
->>  -       };
->>  -};
->>  -
->>  -Example a6xx (with GMU):
->>  -
->>  -/ {
->>  -       ...
->>  -
->>  -       gpu@5000000 {
->>  -               compatible = "qcom,adreno-630.2", "qcom,adreno";
->>  -               #stream-id-cells = <16>;
->>  -
->>  -               reg = <0x5000000 0x40000>, <0x509e000 0x10>;
->>  -               reg-names = "kgsl_3d0_reg_memory", "cx_mem";
->>  -
->>  -               #cooling-cells = <2>;
->>  -
->>  -               /*
->>  -                * Look ma, no clocks! The GPU clocks and power are
->>  -                * controlled entirely by the GMU
->>  -                */
->>  -
->>  -               interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
->>  -
->>  -               iommus = <&adreno_smmu 0>;
->>  -
->>  -               operating-points-v2 = <&gpu_opp_table>;
->>  -
->>  -               interconnects = <&rsc_hlos MASTER_GFX3D &rsc_hlos 
->> SLAVE_EBI1>;
->>  -               interconnect-names = "gfx-mem";
->>  -
->>  -               gpu_opp_table: opp-table {
->>  -                       compatible = "operating-points-v2";
->>  -
->>  -                       opp-430000000 {
->>  -                               opp-hz = /bits/ 64 <430000000>;
->>  -                               opp-level = 
->> <RPMH_REGULATOR_LEVEL_SVS_L1>;
->>  -                               opp-peak-kBps = <5412000>;
->>  -                       };
->>  -
->>  -                       opp-355000000 {
->>  -                               opp-hz = /bits/ 64 <355000000>;
->>  -                               opp-level = 
->> <RPMH_REGULATOR_LEVEL_SVS>;
->>  -                               opp-peak-kBps = <3072000>;
->>  -                       };
->>  -
->>  -                       opp-267000000 {
->>  -                               opp-hz = /bits/ 64 <267000000>;
->>  -                               opp-level = 
->> <RPMH_REGULATOR_LEVEL_LOW_SVS>;
->>  -                               opp-peak-kBps = <3072000>;
->>  -                       };
->>  -
->>  -                       opp-180000000 {
->>  -                               opp-hz = /bits/ 64 <180000000>;
->>  -                               opp-level = 
->> <RPMH_REGULATOR_LEVEL_MIN_SVS>;
->>  -                               opp-peak-kBps = <1804000>;
->>  -                       };
->>  -               };
->>  -
->>  -               qcom,gmu = <&gmu>;
->>  -
->>  -               zap-shader {
->>  -                       memory-region = <&zap_shader_region>;
->>  -                       firmware-name = 
->> "qcom/LENOVO/81JL/qcdxkmsuc850.mbn"
->>  -               };
->>  -       };
->>  -};
->>  diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml 
->> b/Documentation/devicetree/bindings/display/msm/gpu.yaml
->>  new file mode 100644
->>  index 000000000000..4315482e0b12
->>  --- /dev/null
->>  +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
->>  @@ -0,0 +1,256 @@
->>  +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>  +%YAML 1.2
->>  +---
->>  +
->>  +$id: "http://devicetree.org/schemas/display/msm/gpu.yaml#"
->>  +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>  +
->>  +title: Devicetree bindings for the Adreno or Snapdragon GPUs
->>  +
->>  +maintainers:
->>  +  - Rob Clark <robdclark@gmail.com>
->>  +
->>  +description: |
->>  +  These bindings describe the GPUs
->>  +
->>  +properties:
->>  +  compatible:
->>  +    anyOf:
->>  +      - items:
->>  +          - pattern: '^qcom,adreno-[3-6][0-9][0-9].[0-9]$'
->>  +          - const: qcom,adreno
->>  +      - items:
->>  +          - pattern: '^amd,imageon-200.[0-1]$'
->>  +          - const: amd,imageon
->>  +
->>  +  clocks:
->>  +    maxItems: 3
->>  +
->>  +  clock-names:
->>  +    maxItems: 3
->>  +
->>  +  reg:
->>  +    minItems: 1
->>  +    maxItems: 2
->>  +    description: Physical base address and length of the 
->> controller's registers.
->>  +
->>  +  reg-names:
->>  +    minItems: 1
->>  +    maxItems: 2
->>  +
->>  +  interrupts:
->>  +    maxItems: 1
->>  +
->>  +  interrupt-names:
->>  +    maxItems: 1
->>  +
->>  +  interconnects:
->>  +    minItems: 1
->>  +    maxItems: 2
->>  +    description: |
->>  +      optional phandle to an interconnect provider. See
->>  +      ../interconnect/interconnect.txt for details.
->>  +      Some A3xx and all A4xx platforms will have two paths;
->>  +      all others will have one path.
->>  +
->>  +  interconnect-names:
->>  +    items:
->>  +      - const: gfx-mem
->>  +      - const: ocmem
->>  +    description: |
->>  +      the names of the interconnect paths that correspond to
->>  +      the interconnects property
->>  +
->>  +  iommus:
->>  +    maxItems: 1
->>  +
->>  +  sram:
->>  +    $ref: /schemas/types.yaml#/definitions/phandle-array
->>  +    minItems: 1
->>  +    maxItems: 4
->>  +    description: |
->>  +      phandles to one or more reserved on-chip SRAM regions.
->>  +      phandle to the On Chip Memory (OCMEM) that's present on some 
->> a3xx and
->>  +      a4xx Snapdragon SoCs. See
->>  +      Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
->>  +
->>  +  operating-points-v2: true
->>  +  opp-table: true
->>  +
->>  +  power-domains:
->>  +    maxItems: 1
->>  +
->>  +  zap-shader:
->>  +    description: |
->>  +      For a5xx and a6xx devices this node contains a memory-region 
->> that
->>  +      points to reserved memory to store the zap shader that can 
->> be used to
->>  +      help bring the GPU out of secure mode.
->>  +
->>  +  "#cooling-cells":
->>  +    const: 2
->>  +    description: |
->>  +      For details, please refer
->>  +      
->> Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
->>  +
->>  +  qcom,gmu:
->>  +    $ref: /schemas/types.yaml#/definitions/phandle
->>  +    description: |
->>  +      for GMU attached devices a phandle to the GMU device that 
->> will
->>  +      control the power for the GPU
->>  +
->>  +
->>  +required:
->>  +  - compatible
->>  +  - reg
->>  +  - interrupts
->>  +
->>  +additionalProperties: false
->>  +
->>  +allOf:
->>  +  - if:
->>  +      properties:
->>  +        compatible:
->>  +          contains:
->>  +            pattern: '^qcom,adreno-[3-5][0-9][0-9].[0-9]$'
->>  +
->>  +    then:
->>  +      properties:
->>  +        clocks:
->>  +          items:
->>  +            - description: GPU Core clock
->>  +            - description: GPU Interface clock
->>  +            - description: GPU Memory Interface clock
->>  +
->>  +        clock-names:
->>  +          items:
->>  +            - const: core
->>  +            - const: iface
->>  +            - const: mem_iface
->>  +      required:
->>  +        - clocks
->>  +        - clock-names
->>  +
->>  +examples:
->>  +  - |
->>  +
->>  +    // Example a3xx/4xx:
->>  +
->>  +    #include <dt-bindings/clock/qcom,mmcc-msm8974.h>
->>  +    #include <dt-bindings/clock/qcom,rpmcc.h>
->>  +    #include <dt-bindings/interrupt-controller/irq.h>
->>  +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>  +
->>  +    gpu: adreno@fdb00000 {
->>  +        compatible = "qcom,adreno-330.2", "qcom,adreno";
->>  +
->>  +        reg = <0xfdb00000 0x10000>;
->>  +        reg-names = "kgsl_3d0_reg_memory";
->>  +
->>  +        clock-names = "core", "iface", "mem_iface";
->>  +        clocks = <&mmcc OXILI_GFX3D_CLK>,
->>  +                 <&mmcc OXILICX_AHB_CLK>,
->>  +                 <&mmcc OXILICX_AXI_CLK>;
->>  +
->>  +        interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
->>  +        interrupt-names = "kgsl_3d0_irq";
->>  +
->>  +        sram = <&gpu_sram>;
->>  +        power-domains = <&mmcc OXILICX_GDSC>;
->>  +        operating-points-v2 = <&gpu_opp_table>;
->>  +        iommus = <&gpu_iommu 0>;
->>  +        #cooling-cells = <2>;
->>  +    };
->>  +
->>  +    ocmem@fdd00000 {
->>  +        compatible = "qcom,msm8974-ocmem";
->>  +
->>  +        reg = <0xfdd00000 0x2000>,
->>  +              <0xfec00000 0x180000>;
->>  +        reg-names = "ctrl", "mem";
->>  +
->>  +        clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>,
->>  +                 <&mmcc OCMEMCX_OCMEMNOC_CLK>;
->>  +        clock-names = "core", "iface";
->>  +
->>  +        #address-cells = <1>;
->>  +        #size-cells = <1>;
->>  +        ranges = <0 0xfec00000 0x100000>;
->>  +
->>  +        gpu_sram: gpu-sram@0 {
->>  +            reg = <0x0 0x100000>;
->>  +        };
->>  +    };
->>  +  - |
->>  +
->>  +    // Example a6xx (with GMU):
->>  +
->>  +    #include <dt-bindings/clock/qcom,gpucc-sdm845.h>
->>  +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
->>  +    #include <dt-bindings/power/qcom-rpmpd.h>
->>  +    #include <dt-bindings/interrupt-controller/irq.h>
->>  +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>  +    #include <dt-bindings/interconnect/qcom,sdm845.h>
->>  +
->>  +    reserved-memory {
->>  +        #address-cells = <2>;
->>  +        #size-cells = <2>;
->>  +
->>  +        zap_shader_region: gpu@8f200000 {
->>  +            compatible = "shared-dma-pool";
->>  +            reg = <0x0 0x90b00000 0x0 0xa00000>;
->>  +            no-map;
->>  +        };
->>  +    };
->>  +
->>  +    gpu@5000000 {
->>  +        compatible = "qcom,adreno-630.2", "qcom,adreno";
->>  +
->>  +        reg = <0x5000000 0x40000>, <0x509e000 0x10>;
->>  +        reg-names = "kgsl_3d0_reg_memory", "cx_mem";
->>  +
->>  +        #cooling-cells = <2>;
->>  +
->>  +        interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
->>  +
->>  +        iommus = <&adreno_smmu 0>;
->>  +
->>  +        operating-points-v2 = <&gpu_opp_table>;
->>  +
->>  +        interconnects = <&rsc_hlos MASTER_GFX3D &rsc_hlos 
->> SLAVE_EBI1>;
->>  +        interconnect-names = "gfx-mem";
->>  +
->>  +        qcom,gmu = <&gmu>;
->>  +
->>  +        gpu_opp_table: opp-table {
->>  +            compatible = "operating-points-v2";
->>  +
->>  +            opp-430000000 {
->>  +                opp-hz = /bits/ 64 <430000000>;
->>  +                opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
->>  +                opp-peak-kBps = <5412000>;
->>  +            };
->>  +
->>  +            opp-355000000 {
->>  +                opp-hz = /bits/ 64 <355000000>;
->>  +                opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
->>  +                opp-peak-kBps = <3072000>;
->>  +            };
->>  +
->>  +            opp-267000000 {
->>  +                opp-hz = /bits/ 64 <267000000>;
->>  +                opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
->>  +                opp-peak-kBps = <3072000>;
->>  +            };
->>  +
->>  +            opp-180000000 {
->>  +                opp-hz = /bits/ 64 <180000000>;
->>  +                opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
->>  +                opp-peak-kBps = <1804000>;
->>  +            };
->>  +        };
->>  +
->>  +        zap-shader {
->>  +            memory-region = <&zap_shader_region>;
->>  +            firmware-name = "qcom/LENOVO/81JL/qcdxkmsuc850.mbn";
->>  +        };
->>  +    };
->>  --
->>  2.30.2
->> 
-> 
-> 
-> --
-> With best wishes
-> Dmitry
+> diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+> index 7764c804af1d..a6270e39b7a2 100644
+> --- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+> +++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+> @@ -23,6 +23,10 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  qcom,mode-in-imem:
+> +    description: Reboot mode is stored in IMEM rather than PON register
+> +    type: boolean
+> +
+>  patternProperties:
+>    "^mode-.+":
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> @@ -35,6 +39,7 @@ required:
+>  additionalProperties: false
+>  
+>  examples:
+> +  # Example 1: Reboot mode is stored in PON register
+>    - |
+>      pmic {
+>          #address-cells = <1>;
+> @@ -47,3 +52,17 @@ examples:
+>              mode-recovery = <0x1>;
+>          };
+>      };
+> +  # Example 2: Reboot mode is stored in IMEM
+> +  - |
+> +    pmic {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        pon@800 {
+> +            compatible = "qcom,pm8916-pon";
+> +            reg = <0x860065c>;
 
+This is quite strange. pon@800 is a node of the PM8916 PMIC,
+so the reg should refer to the address inside the PMIC, not some memory
+address of the SoC. dtc will probably warn about this too since the unit
+address (@800) should match the first reg. (At least on W=1.)
 
+Actually we already have some devices using IMEM for the reboot mode,
+like this (qcom-msm8974.dtsi plus qcom-msm8974-fairphone-fp2.dts):
+
+	imem@fe805000 {
+		compatible = "syscon", "simple-mfd";
+		reg = <0xfe805000 0x1000>;
+
+		reboot-mode {
+			compatible = "syscon-reboot-mode";
+			offset = <0x65c>;
+			mode-normal	= <0x77665501>;
+			mode-bootloader	= <0x77665500>;
+			mode-recovery	= <0x77665502>;
+		};
+	};
+
+Perhaps it would be cleaner to add a property to disable the reboot mode
+functionality of pm8916-pon and then set it up like this?
+
+Thanks!
+Stephan
