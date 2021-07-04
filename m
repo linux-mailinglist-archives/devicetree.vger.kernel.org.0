@@ -2,119 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1264E3BAC65
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 11:05:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EF753BAC70
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 11:24:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbhGDJIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jul 2021 05:08:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60324 "EHLO
+        id S229502AbhGDJ0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jul 2021 05:26:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbhGDJI3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 05:08:29 -0400
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05CF9C061762
-        for <devicetree@vger.kernel.org>; Sun,  4 Jul 2021 02:05:55 -0700 (PDT)
-Received: by mail-pf1-x42d.google.com with SMTP id b12so12566841pfv.6
-        for <devicetree@vger.kernel.org>; Sun, 04 Jul 2021 02:05:55 -0700 (PDT)
+        with ESMTP id S229492AbhGDJ0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 05:26:55 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E2F7C061762;
+        Sun,  4 Jul 2021 02:24:20 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id g22so15071105pgl.7;
+        Sun, 04 Jul 2021 02:24:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=NPJDGg5FUIlGKxFIr3cHBiKXJApkbS5HOtFGL2ZFtnI=;
-        b=Y5vOqA5VOi+FrwY2NKDcz7f743/FfVMilz2a7ydOaqlPDwHXGJjXCnQvNZTUZG/VAJ
-         0BEywGa25xiOVnSMvFN7wTdpafQeHwxBu142wKYTkUutW6p/tf4wc4vO4Nx3curO3sw1
-         +8tiTqWBXHMVJq18XEJ+M59Ivjsq64+kwcAeQ=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=ctPbpBSME4Wk2MPaV81CnmhuA+m0hProI1IntXJRC/o=;
+        b=rFQn17qifWzHT2JAc5EbNAAM5gUKEO3zkypk6Ikt1di5LdTGaBOaYPKPvPYQKHCKvh
+         y56kp4phrKzHPrRjNOFchg6oDbSLuucuLGnThcnPOBwnQLfmv5SxBbIdW+AOKPGHUKuS
+         S4onIsh8ADY8K++Nutiq9F0MKhrqgtlkemT/9ZUBFprckKPxcrA4bHt6ooZ8qEgaDlf5
+         2UcjMPB01bS74VVM4h/96TJLCBc9QyKAoAXziLm5PzWAX0AUtSx4GaKCboXToMcUu5Wh
+         r8eKWkoUJt5NrPF+ndwy6gIOdtd/bF0gfwWCmSRfSus8Z4AcFv5KJlXF0mOcjQvdqavb
+         19xA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=NPJDGg5FUIlGKxFIr3cHBiKXJApkbS5HOtFGL2ZFtnI=;
-        b=Bmw6nXPiE3f74IfQLG1VBfGt94rxjTZe3dfSTQEoby2GEjXMsz694/VofOR1fKh2pP
-         XZX0AiuuBvHo6cpYSul/CBaZlhLcqQuk9nzst5PH6hcmE19LNlk+VUJUNolXKkOGu6aO
-         TxKfPzUIEBxcoax0YRdybcE+id4xfrIR6XIPGndXJf3z3L7nV8Jqi/QSFIe34A8fY3nP
-         n2SJx3uxSPIWZeXsH5NPkpdj7h0EDWg1/4cbs2ng8AvTJDB1a/EwiYvjBw8Mau6a+jNu
-         MYLfCmk5nNyNLSdOAxJQDnwzjM7JOHTGRcN/HQogGOn0AaWEeDk9I7HgqNIlwDzFvWZn
-         blbQ==
-X-Gm-Message-State: AOAM5301/Ru3tPIWXQwkchMuTKimvY/xYk3bvDjnV6GKvvnhe1An+HeQ
-        pb8no7M4tzgqQKs1fbAc8mBtGA==
-X-Google-Smtp-Source: ABdhPJzkHWVdOK7EaakstBIyQU5sd1VI/Q64M2LP26zyXubUC+ZrLsxppnNHkOOSw62DRzm7TEhTUg==
-X-Received: by 2002:a63:4b23:: with SMTP id y35mr9529467pga.179.1625389554638;
-        Sun, 04 Jul 2021 02:05:54 -0700 (PDT)
-Received: from localhost.localdomain ([2405:201:c00a:a884:1ae9:772f:6f0f:3e24])
-        by smtp.gmail.com with ESMTPSA id m24sm3360793pgd.60.2021.07.04.02.05.48
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=ctPbpBSME4Wk2MPaV81CnmhuA+m0hProI1IntXJRC/o=;
+        b=S2Jw/mXQpHJAd/ozXbuNqPOPtAkDXkS1s75lFTR0QKbJJ9ERz7pQjlnk+gWw2PlKzG
+         ISM4OJs7D2PmtoIrojOoPHr1EUkvIsve3d4Vm0AgWrwEG6clT3B7/AWJeqCbTl/36h+G
+         mYKRWQKNy10F5DKLKqEmncQl6SuABpE9DPlZ4v/dJo7tqKlhf2mgGwa8Gq48gwguK3Np
+         wYBl+8gsv8lOnllM+TaOxVnj5ZC6FRVgMAKuYWujXwmo6Rux0LKd6Zwg3Clxpz3GBoRF
+         EtD9yelJky8Kk7xjarWU0TcxFtajIS8QUEdk02lvNw7pGkf3ZwtNj9JJDhM8QEkYSbKN
+         1MNw==
+X-Gm-Message-State: AOAM533/7hL/Bv4m+9Skxrc0e7MP8KF5BGQ5RZjg+NHkfBmqeaTBokKF
+        HkgHUVtWYz+4S9V5HFNA5Q==
+X-Google-Smtp-Source: ABdhPJw95OVUnYnd1Oz/CSbTSFEictKjldcOyF0a5XSptSRDTQuHsji/68y46TdnR9WhtN5yeiDMMA==
+X-Received: by 2002:a65:6a01:: with SMTP id m1mr9640133pgu.201.1625390660296;
+        Sun, 04 Jul 2021 02:24:20 -0700 (PDT)
+Received: from localhost.localdomain ([121.35.181.130])
+        by smtp.gmail.com with ESMTPSA id v13sm18136526pja.44.2021.07.04.02.24.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Jul 2021 02:05:54 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [RFC PATCH 17/17] drm: bridge: samsung-dsim: Add bridge mode_fixup
-Date:   Sun,  4 Jul 2021 14:32:30 +0530
-Message-Id: <20210704090230.26489-18-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210704090230.26489-1-jagan@amarulasolutions.com>
-References: <20210704090230.26489-1-jagan@amarulasolutions.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Sun, 04 Jul 2021 02:24:20 -0700 (PDT)
+From:   fengzheng923@gmail.com
+To:     fengzheng923@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, mripard@kernel.org, wens@csie.org,
+        jernej.skrabec@gmail.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 2/2] ASoC: sun50i-dmic: dt-bindings: add DT bindings for DMIC controller
+Date:   Sun,  4 Jul 2021 05:22:51 -0400
+Message-Id: <20210704092251.40734-1-fengzheng923@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixing up the mode flags are required in order to correlate
-the correct sync flags in i.MX8MM eLCDIF.
+From: Ban Tao <fengzheng923@gmail.com>
 
-So, handle the mode flags via bridge, mode_fixup.
+DT binding documentation for this new ASoC driver.
 
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Signed-off-by: Ban Tao <fengzheng923@gmail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 ---
- drivers/gpu/drm/bridge/samsung-dsim.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+v1->v2:
+1.Fix some build errors.
+---
+v2->v3:
+1.Fix some build errors.
+---
+v3->v4:
+1.None.
+---
+v4->v5:
+1.Add interrupt.
+2.Keep clock and reset index.
+---
+ .../sound/allwinner,sun50i-h6-dmic.yaml       | 79 +++++++++++++++++++
+ 1 file changed, 79 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
 
-diff --git a/drivers/gpu/drm/bridge/samsung-dsim.c b/drivers/gpu/drm/bridge/samsung-dsim.c
-index 0ed218f5eefc..c2a76ee5ac4e 100644
---- a/drivers/gpu/drm/bridge/samsung-dsim.c
-+++ b/drivers/gpu/drm/bridge/samsung-dsim.c
-@@ -1474,6 +1474,16 @@ static void samsung_dsim_bridge_disable(struct drm_bridge *bridge)
- 	pm_runtime_put_sync(dsi->dev);
- }
- 
-+static bool samsung_dsim_bridge_mode_fixup(struct drm_bridge *bridge,
-+					   const struct drm_display_mode *mode,
-+					   struct drm_display_mode *adjusted_mode)
-+{
-+	adjusted_mode->flags |= (DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC);
-+	adjusted_mode->flags &= ~(DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC);
+diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+new file mode 100644
+index 000000000000..0cfc07f369bd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/allwinner,sun50i-h6-dmic.yaml
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/allwinner,sun50i-h6-dmic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	return true;
-+}
++title: Allwinner H6 DMIC Device Tree Bindings
 +
- static void samsung_dsim_bridge_mode_set(struct drm_bridge *bridge,
- 					 const struct drm_display_mode *mode,
- 					 const struct drm_display_mode *adjusted_mode)
-@@ -1542,6 +1552,7 @@ static const struct drm_bridge_funcs samsung_dsim_bridge_funcs = {
- 	.enable = samsung_dsim_bridge_enable,
- 	.disable = samsung_dsim_bridge_disable,
- 	.mode_set = samsung_dsim_bridge_mode_set,
-+	.mode_fixup = samsung_dsim_bridge_mode_fixup,
- 	.attach = samsung_dsim_bridge_attach,
- };
- 
++maintainers:
++  - Ban Tao <fengzheng923@gmail.com>
++
++properties:
++  "#sound-dai-cells":
++    const: 0
++
++  compatible:
++    const: allwinner,sun50i-h6-dmic
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Bus Clock
++      - description: Module Clock
++
++  clock-names:
++    items:
++      - const: bus
++      - const: mod
++
++  dmas:
++    items:
++      - description: RX DMA Channel
++
++  dma-names:
++    items:
++      - const: rx
++
++  resets:
++    maxItems: 1
++
++required:
++  - "#sound-dai-cells"
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - dmas
++  - dma-names
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    #include <dt-bindings/clock/sun50i-h6-ccu.h>
++    #include <dt-bindings/reset/sun50i-h6-ccu.h>
++
++    dmic: dmic@5095000 {
++      #sound-dai-cells = <0>;
++      compatible = "allwinner,sun50i-h6-dmic";
++      reg = <0x05095000 0x400>;
++      interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
++      clocks = <&ccu CLK_BUS_DMIC>, <&ccu CLK_DMIC>;
++      clock-names = "bus", "mod";
++      dmas = <&dma 7>;
++      dma-names = "rx";
++      resets = <&ccu RST_BUS_DMIC>;
++    };
++
++...
 -- 
-2.25.1
+2.17.1
 
