@@ -2,107 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FB223BAC1C
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 10:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D0B83BAC31
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 11:04:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229649AbhGDI2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jul 2021 04:28:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51422 "EHLO
+        id S229510AbhGDJGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jul 2021 05:06:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbhGDI2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 04:28:21 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB1A9C061762
-        for <devicetree@vger.kernel.org>; Sun,  4 Jul 2021 01:25:46 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id p24so20200594ljj.1
-        for <devicetree@vger.kernel.org>; Sun, 04 Jul 2021 01:25:46 -0700 (PDT)
+        with ESMTP id S229492AbhGDJGp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 05:06:45 -0400
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D077C061764
+        for <devicetree@vger.kernel.org>; Sun,  4 Jul 2021 02:04:09 -0700 (PDT)
+Received: by mail-pl1-x62b.google.com with SMTP id z13so1044257plg.8
+        for <devicetree@vger.kernel.org>; Sun, 04 Jul 2021 02:04:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=mem7aDqrdPAoK1Q+h1MiWVWd2rSQrghSbzr5cmPA4tE=;
-        b=T+e0XbVmuv9/j9Fjh+jIKG/WvWOhzEaVLBBiasfflltjEXdbclLUxmZe0Jykii0Awe
-         jTOWnYhIY4OJT+q2po++qNMQ+corj1KESALoloz2MDyWCViHpttTamqGUb7NPbH+pQdC
-         gWOFgtEoHCbknVjR8jx4bW0iUdhm8pGliOJlIJi/aZSh/cHNwvHAh3Rp3pea+MLo3ecN
-         WLX2XuB1g2ZkRX2lCtH3cuyZ6tkNfkSKS2IW8tdVKmHkID57ixsBhnh1XTvZ2j+vehfj
-         eXQiooSLrsJmBHy2vR9GbHy2PQhIlK5hoE+WdFPC46uJEbgYHz4AESQgaBC1gMsgtguM
-         hW3g==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LTKmWZ3CVp6OOAYCiyLaCDGps1R2HQjeuLrAdsNm2oA=;
+        b=UDC9ZLWAnBD/te5tkNc4neJrdsL39umnb6TeP5DVxcgX6VP1wc9JP051M8hMz8GF9C
+         3PMZSFE7eMEduQqdDhaE6yZAMNT1kdQyQ7Xoidg6iu1lW8ZOQT3t9Rnqqo6q2foTQLii
+         l/wW9qGcpF8BxYeozkF5e+ysR2VEEtjDL/K4A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=mem7aDqrdPAoK1Q+h1MiWVWd2rSQrghSbzr5cmPA4tE=;
-        b=H9xeZgAmF9dsFVU35QitCOff1mrGs3K1ZAb3vW2F48q2yDidUrAQfYo7HZkI5MsdPb
-         cOGhgXZoesSgs3O2EGKMd1D2ioNiUh+yz2bxN2nXYKx11hz8+kD1ojkfWqwPQZ5XMsYT
-         D8OyfkpqzEWktKGoSxDdNX/swlVkazlRM2TiaGjdpcGqtRJMeDx2siGQyzqOfnlkNF7h
-         wI8TuWu07H/m3TZvaaStl8Tw8DPc/o1hCbKBdv1pSekqdMnZlrnDTJWb6zkL5aLzTFhr
-         9Hazwb9nK2+vzHu5uOSKrNyN8HjZxcJ0rvfbostyhCBasXocp1o1inHobbIhP7eDuDWG
-         +dOw==
-X-Gm-Message-State: AOAM533AY9TQTNHSqWKtA7WS8eoYVvfdX9/6KorBeGTMGoOOxF1kHGH0
-        vUWr43Uqe/2eCLH73fM0WRL5T8AlXWDbUw==
-X-Google-Smtp-Source: ABdhPJy4nvOjyXAyQrOq0glZ90aFFBPgm0fiFPwTmBp3srbuOj7LS6n5pX1iTaiwSpzDGPyAnNIQZg==
-X-Received: by 2002:a2e:9e18:: with SMTP id e24mr6692205ljk.336.1625387145132;
-        Sun, 04 Jul 2021 01:25:45 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id f8sm737547lfu.188.2021.07.04.01.25.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 04 Jul 2021 01:25:44 -0700 (PDT)
-Subject: Re: [RFC] Inline rotation support in dpu driver
-To:     Kalyan Thota <kalyan_t@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, mkrishn@codeaurora.org
-References: <1625311962-14185-1-git-send-email-kalyan_t@codeaurora.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <5dcd850a-280c-c356-32e5-35a4fe089f4e@linaro.org>
-Date:   Sun, 4 Jul 2021 11:25:44 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        bh=LTKmWZ3CVp6OOAYCiyLaCDGps1R2HQjeuLrAdsNm2oA=;
+        b=o6qAMVjKOJ4yhV7V9eNqHqkXhVq0zB8fd/r6i7GvytcC9M0nAx6Ky7Bevx8UV7FHxT
+         sedGhpBMRf/vxJk4fOk86KDZBtwjQvFAbqt3UgURWMFGA5nDvN6uG/Zy8lw3NGWuuDzQ
+         WHnYYjhxEzIO+BgSjCL4YRAc9Huqz2pWYpjRBJxyLfTvs3zzJgcCo642GxGkfYCWuCc2
+         +SkBMjLA8h75g8QKP9Qvz0HTc3AcwfB9Z4jbs+Yqw146g4hZjkQCeccb0jjcGMBTos/p
+         HyxIOYxV8gbZbwP6yP/12ViVUE2orSTYgUPDOfPUvH/dzhr6GsxXXjSgm2XsJMTzk96d
+         uzXg==
+X-Gm-Message-State: AOAM531xehYt+Rmz950O1PQDQi3siT69cAIkIESlCBvmdsRtgvZLYyC+
+        TdEI5CHsn9Zm3h4Vpw4GK55hrA==
+X-Google-Smtp-Source: ABdhPJx7D44IjbUDdiCn9uNITwKa1N6d+4SXQCDPMDnwm/1x3fHOq9ypbbk1oXFGD/T4d0lggaK8jA==
+X-Received: by 2002:a17:90a:b316:: with SMTP id d22mr8682362pjr.233.1625389448833;
+        Sun, 04 Jul 2021 02:04:08 -0700 (PDT)
+Received: from localhost.localdomain ([2405:201:c00a:a884:1ae9:772f:6f0f:3e24])
+        by smtp.gmail.com with ESMTPSA id m24sm3360793pgd.60.2021.07.04.02.04.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Jul 2021 02:04:08 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [RFC PATCH 00/17] drm: bridge: Samsung MIPI DSIM bridge
+Date:   Sun,  4 Jul 2021 14:32:13 +0530
+Message-Id: <20210704090230.26489-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <1625311962-14185-1-git-send-email-kalyan_t@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/07/2021 14:32, Kalyan Thota wrote:
-> This change adds support for inline rotation in the dpu driver.
-> When inline rotation is enabled the VIG pipes will directly fetch the image
-> from memory in a rotated fashion
-> 
-> Inline rotation has following restrictions
-> 1) Supported only with compressed formats
+This series supports common bridge support for Samsung MIPI DSIM
+which is used in Exynos and i.MX8MM SoC's.
 
-NV12, which is the only format you declare, is not compressed.
+The final bridge supports both the Exynos and i.MX8MM DSI devices.
 
-> 2) max pre rotated height is 1088
-> 3) restrictions with downscaling ratio
-> 
-> Queries:
-> 
-> 1) Since inline rotation works for fewer pixel formats with specific modifier, how can we provide this information to the compositor so that
-> chrome compositor can choose between overlaying or falling back to GPU. In the patch it fails in the atomic check.
-> 
-> 2) If a display composition fails in atomic check due to any of the restrictions in overlays
-> can chrome compositor switch it back to the GPU and re trigger the commit ?
-> 
-> posting it as RFC as validation is not complete, please share early comments on this.
-> 
-> Kalyan Thota (1):
->    drm/msm/disp/dpu1: add support for inline rotation in dpu driver
-> 
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 47 +++++++++----
->   drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h | 20 ++++++
->   drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c      | 93 ++++++++++++++++++++------
->   drivers/gpu/drm/msm/disp/dpu1/dpu_plane.h      |  2 +
->   4 files changed, 128 insertions(+), 34 deletions(-)
-> 
+Right now bridge offers two sets of implementations.
 
+A. With component_ops and exynos specific code exclusively for
+   exynos dsi drivers and it's legacy bindings.
+
+B. Without componenet_ops for newly implemented bridges and its
+   users like i.MX8MM.
+
+The future plan is to fix the implementation A) by dropping
+component_ops and fixing exynos specific code in order to make
+the bridge more mature to use and the same is mentioned in
+drivers TODO.
+
+Patch 0001 - 0006: Bridge conversion
+Patch 0007 - 0017: Samsung MIPI DSIM bridge fixes, additions
+
+Tested in Engicam i.Core MX8M Mini SoM.
+
+Anyone interest, please have a look on this repo
+https://github.com/openedev/linux/tree/070421-imx8mm-dsim
+
+Would appreciate anyone from the exynos team to test it on
+the exynos platform?
+
+Any inputs?
+Jagan.
+
+Jagan Teki (17):
+  drm/exynos: dsi: Convert to bridge driver
+  drm/exynos: dsi: Handle drm_device for bridge
+  drm/exynos: dsi: Use the drm_panel_bridge API
+  drm/exynos: dsi: Create bridge connector for encoder
+  drm/exynos: dsi: Get the mode from bridge
+  drm/exynos: dsi: Handle exynos specifics via driver_data
+  drm: bridge: Move exynos_drm_dsi into bridges
+  dt-bindings: display: bridge: Add Samsung MIPI DSIM bridge
+  drm: bridge: samsung-dsim: Add module init, exit
+  drm: bridge: samsung-dsim: Update the of_node for port(s)
+  drm: bridge: samsung-dsim: Find the possible DSI devices
+  dt-bindings: display: bridge: samsung,mipi-dsim: Add i.MX8MM support
+  drm: bridge: samsung-dsim: Add i.MX8MM support
+  drm: bridge: samsung-dsim: Add input_bus_flags
+  drm: bridge: samsung-dsim: Move DSI init in bridge enable
+  drm: bridge: samsung-dsim: Fix PLL_P offset
+  drm: bridge: samsung-dsim: Add bridge mode_fixup
+
+ .../display/bridge/samsung,mipi-dsim.yaml     | 360 +++++++++
+ .../bindings/display/exynos/exynos_dsim.txt   |  90 ---
+ MAINTAINERS                                   |  12 +
+ drivers/gpu/drm/bridge/Kconfig                |  15 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ .../samsung-dsim.c}                           | 758 ++++++++++--------
+ drivers/gpu/drm/exynos/Kconfig                |   9 -
+ drivers/gpu/drm/exynos/Makefile               |   1 -
+ 8 files changed, 795 insertions(+), 451 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+ rename drivers/gpu/drm/{exynos/exynos_drm_dsi.c => bridge/samsung-dsim.c} (69%)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
