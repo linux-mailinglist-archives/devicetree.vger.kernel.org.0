@@ -2,87 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8600A3BAAF8
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 05:07:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D23F03BABD4
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 09:41:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229685AbhGDDJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Jul 2021 23:09:40 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:39830 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229529AbhGDDJj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jul 2021 23:09:39 -0400
-X-UUID: 64c9133fa8d949278109597ce187b93f-20210704
-X-UUID: 64c9133fa8d949278109597ce187b93f-20210704
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1605273528; Sun, 04 Jul 2021 11:07:03 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 4 Jul 2021 11:07:02 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 4 Jul 2021 11:07:02 +0800
-From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v9 5/5] arm64: dts: mt8192: add spmi node
-Date:   Sun, 4 Jul 2021 11:06:58 +0800
-Message-ID: <1625368018-17505-6-git-send-email-hsin-hsiung.wang@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1625368018-17505-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-References: <1625368018-17505-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+        id S229559AbhGDHnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jul 2021 03:43:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41516 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229492AbhGDHnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 03:43:45 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A69E4C061764
+        for <devicetree@vger.kernel.org>; Sun,  4 Jul 2021 00:41:10 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id u14so14918424pga.11
+        for <devicetree@vger.kernel.org>; Sun, 04 Jul 2021 00:41:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=KaN3RE0+9NsNDRthBW+pFqdpkAjR9drVErioQrFNtSI=;
+        b=P2rxe9qCfQwQ254RIgo1HLaGo2dMUvV5ZPc0lMo95rCWioDnPyQv4r6xdSf2ii3kSr
+         /EgFNTEsPgZaCinSa368b9iYqb6Wh+mw3MkDGWxkZaIvG2gsQuxOegqDnP5M4cPvKGpF
+         96J9rYMokNVeavYNe80+rUFF8Q2JEiszXIGU3XSFzPwVNfr/2KefJqbEvz94ffwFjZkF
+         PPzrq6Y2+yMLlr+29+SZKwdcNX/XDrw3np7vy0lcjJBRkgFeg28oS9UZBdP57uiTb7Jk
+         RIF0PnnENdlD0g9w7bYsAm7e3uw2m727l7yJwAhrgwJQKBQNogGWDSsFsKISLDB2e4DW
+         YAig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=KaN3RE0+9NsNDRthBW+pFqdpkAjR9drVErioQrFNtSI=;
+        b=o6EvpTLcDpjpNNpu5SA5KUXRD7AXKcWVhgCQvpgM43rZeTPlrzUT++2xVZmDrwFN7N
+         8FnV4QN3yEyTI3/nE4rAsKEOlD8+IunYF354MgpA7CUlwxh1rGQfMCEhJAmLuC2ejn3v
+         sUfnibmVxBRGijusffetkeoPaZdJF1z2mgz1a5/3haqYkEgeQRrNt+i0SQ7s+9EdRJDJ
+         ihOadtes210CgV+p5MHO33up4xsWocquaUZRKAQGcZQVEfRbRkABd1/K8wY+liAKADDj
+         a6A/2fU5O4n2gvKyOJmJJeX5z4E2c7DJLuhkkg+uPZhNNLDiu9vj7b1PTFstBqgaM5Ur
+         Vz9Q==
+X-Gm-Message-State: AOAM5301KxZZ6GUiUq24zJ1uAEyx49XPRrUkpYJZdpk/qyvuf+T3wmOf
+        3v7B1nNMrQOC+CJgmxo+t7ANXQ==
+X-Google-Smtp-Source: ABdhPJxFm52r7uA7oCYYTMgL58oAlH5DbhkXSUAMxP2ZR6ekG3pYWgFmpeaRToiK/GSZJBBYX07InA==
+X-Received: by 2002:a05:6a00:216c:b029:30c:5b4b:ee46 with SMTP id r12-20020a056a00216cb029030c5b4bee46mr8416365pff.81.1625384469533;
+        Sun, 04 Jul 2021 00:41:09 -0700 (PDT)
+Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id gz24sm7052956pjb.0.2021.07.04.00.41.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Jul 2021 00:41:09 -0700 (PDT)
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
+Subject: [PATCH 0/3] Add 'qcom,mode-in-imem' support in PON driver
+Date:   Sun,  4 Jul 2021 15:40:42 +0800
+Message-Id: <20210704074045.21643-1-shawn.guo@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add spmi node to SOC MT8192.
+It's not always the case that reboot mode value gets stored in PON
+register.  For example, Sony Xperia M4 Aqua phone (MSM8939) uses a
+different set of mode values and stores them in IMEM.  Add property
+'qcom,mode-in-imem' to distinguish this mechanism from the existing
+one.
 
-Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
----
-changes since v8:
-- No change.
----
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Shawn Guo (3):
+  dt-bindings: power: reset: Convert qcom,pon to DT schema
+  dt-bindings: qcom,pon: Add 'qcom,mode-in-imem' support
+  power: reset: qcom-pon: Add support for 'qcom,mode-in-imem'
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index b51409f516b1..e65890a347d0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -316,6 +316,23 @@
- 			clock-names = "clk13m";
- 		};
- 
-+		spmi: spmi@10027000 {
-+			compatible = "mediatek,mt6873-spmi";
-+			reg = <0 0x10027000 0 0x000e00>,
-+			      <0 0x10029000 0 0x000100>;
-+			reg-names = "pmif", "spmimst";
-+			clocks = <&infracfg CLK_INFRA_PMIC_AP>,
-+				 <&infracfg CLK_INFRA_PMIC_TMR>,
-+				 <&topckgen CLK_TOP_SPMI_MST_SEL>;
-+			clock-names = "pmif_sys_ck",
-+				      "pmif_tmr_ck",
-+				      "spmimst_clk_mux";
-+			assigned-clocks = <&topckgen CLK_TOP_PWRAP_ULPOSC_SEL>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_OSC_D10>;
-+			#address-cells = <2>;
-+			#size-cells = <0>;
-+		};
-+
- 		scp_adsp: clock-controller@10720000 {
- 			compatible = "mediatek,mt8192-scp_adsp";
- 			reg = <0 0x10720000 0 0x1000>;
+ .../bindings/power/reset/qcom,pon.txt         | 49 -------------
+ .../bindings/power/reset/qcom,pon.yaml        | 68 +++++++++++++++++++
+ drivers/power/reset/qcom-pon.c                | 25 ++++++-
+ 3 files changed, 92 insertions(+), 50 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/power/reset/qcom,pon.txt
+ create mode 100644 Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+
 -- 
-2.18.0
+2.17.1
 
