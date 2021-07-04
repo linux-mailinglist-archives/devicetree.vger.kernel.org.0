@@ -2,32 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45A473BADE7
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 19:00:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FEA33BAE20
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 19:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229614AbhGDRDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jul 2021 13:03:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46714 "EHLO mail.kernel.org"
+        id S229636AbhGDR50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jul 2021 13:57:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53680 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229539AbhGDRDO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 4 Jul 2021 13:03:14 -0400
+        id S229570AbhGDR50 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 4 Jul 2021 13:57:26 -0400
 Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4E914613CE;
-        Sun,  4 Jul 2021 17:00:36 +0000 (UTC)
-Date:   Sun, 4 Jul 2021 18:02:59 +0100
+        by mail.kernel.org (Postfix) with ESMTPSA id C626E613C8;
+        Sun,  4 Jul 2021 17:54:46 +0000 (UTC)
+Date:   Sun, 4 Jul 2021 18:57:10 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     peda@axentia.se, lars@metafoo.de, pmeerw@pmeerw.net,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v3 09/10] dt-bindings: iio: afe: add bindings for
- temperature-sense-rtd
-Message-ID: <20210704180259.7cba5831@jic23-huawei>
-In-Reply-To: <20210701010034.303088-10-liambeguin@gmail.com>
-References: <20210701010034.303088-1-liambeguin@gmail.com>
-        <20210701010034.303088-10-liambeguin@gmail.com>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: tsc2046: fix sleeping in atomic
+ context warning and a deadlock after iio_trigger_poll() call
+Message-ID: <20210704185710.07789b8f@jic23-huawei>
+In-Reply-To: <20210625065922.8310-2-o.rempel@pengutronix.de>
+References: <20210625065922.8310-1-o.rempel@pengutronix.de>
+        <20210625065922.8310-2-o.rempel@pengutronix.de>
 X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -36,156 +41,224 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Jun 2021 21:00:33 -0400
-Liam Beguin <liambeguin@gmail.com> wrote:
+On Fri, 25 Jun 2021 08:59:22 +0200
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-> From: Liam Beguin <lvb@xiphos.com>
+> If iio_trigger_poll() is called after IRQ was disabled, we will call
+> reenable_trigger() directly from hard IRQ or hrtimer context instead of
+> IRQ thread. In this case we will run in to multiple issue as sleeping in atomic
+> context and a deadlock.
+
+Hmm. This sounds like a problem that might bite us in other circumstances.
+
+So do I have the basic issue right in thinking we have a race between
+calling iio_trigger_poll() and having no devices still using that trigger?
+Thus we end up with all of trig->subirqs not being enabled.
+
+There was a previous discussion that the calls to iio_trigger_notify_done() in
+iio_trigger_poll() are only meant to decrement the counter, as the assumption
+was that the calls via threads would always happen later.  Unfortunately this
+is all clearly a little bit racy and I suspect not many of the reenable() callbacks
+are safe if they are called in interrupt context.
+
+Perhaps an alternative would be to schedule the reenable() if we hit it from
+that path thus ensuring it doesn't happen in a place where we can't sleep?
+
+Would something like that solve your problem?
+I'd do it by having a new function
+
+iio_trigger_notify_done_schedule() that uses a work struct to call
+trig->ops->reenable(trig) from a context that can sleep.
+
+It's a rare corner case so I don't really care that in theory we might have
+a device that was safe to reenable the trigger without sleeping.  That makes
+it easier to just have one path for this which allows sleeping.
+
+Jonathan
+
 > 
-> An ADC is often used to measure other quantities indirectly. This
-> binding describe one case, the measurement of a temperature through the
-> voltage across an RTD resistor such as a PT1000.
+> To avoid this issue, rework the trigger to use state machine. All state
+> changes are done over the hrtimer, so it allows us to drop fsleep() and
+> avoid the deadlock.
 > 
-> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> Fixes: 9374e8f5a38d ("iio: adc: add ADC driver for the TI TSC2046 controller")
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
->  .../iio/afe/temperature-sense-rtd.yaml        | 101 ++++++++++++++++++
->  MAINTAINERS                                   |   7 ++
->  2 files changed, 108 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
+>  drivers/iio/adc/ti-tsc2046.c | 102 ++++++++++++++++++++---------------
+>  1 file changed, 58 insertions(+), 44 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml b/Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
-> new file mode 100644
-> index 000000000000..e23e74e63ec5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
-> @@ -0,0 +1,101 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/afe/temperature-sense-rtd.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Temperature Sense RTD
-> +
-> +maintainers:
-> +  - Liam Beguin <lvb@xiphos.com>
-> +
-> +description: |
-> +  RTDs (Resistance Temperature Detectors) are a kind of temperature sensors
-> +  used to get a linear voltage to temperature reading within a give range
-> +  (usually 0 to 100 degrees Celsius).
-> +
-> +  When an io-channel measures the output voltage across an RTD such as a
-> +  PT1000, the interesting measurement is almost always the corresponding
-> +  temperature, not the voltage output. This binding describes such a circuit.
-> +
-> +  The general transfer function here is (using SI units)
-> +
-> +    V = R(T) * iexc
-> +    R(T) = r0 * (1 + alpha * T)
-> +    T = 1 / (alpha * r0 * iexc) * (V - r0 * iexc)
-> +
-> +  The following circuit matches what's in the examples section.
-> +
-> +           5V0
-> +          -----
-> +            |
-> +        +---+----+
-> +        |  R 5k  |
-> +        +---+----+
-> +            |
-> +            V 1mA
-> +            |
-> +            +---- Vout
-> +            |
-> +        +---+----+
-> +        | PT1000 |
-> +        +---+----+
-> +            |
-> +          -----
-> +           GND
-> +
-> +properties:
-> +  compatible:
-> +    const: temperature-sense-rtd
-> +
-> +  io-channels:
-> +    maxItems: 1
-> +    description: |
-> +      Channel node of a voltage io-channel.
-> +
-> +  '#io-channel-cells':
-> +    const: 1
-
-Only 1 channel, so this should be 0.  For consumers of this driver
-they only need to identify the device, not the device + channel.
-
-https://github.com/devicetree-org/dt-schema/blob/master/schemas/iio/iio.yaml
-
-> +
-> +  excitation-current-microamp:
-> +    description: The current fed through the RTD sensor.
-> +
-> +  alpha-ppm-per-celsius:
-> +    description: |
-> +      alpha can also be expressed in micro-ohms per ohm Celsius. It's a linear
-> +      approximation of the resistance versus temperature relationship
-> +      between 0 and 100 degrees Celsius.
-> +
-> +      alpha = (R_100 - R_0) / (100 * R_0)
-> +
-> +      Where, R_100 is the resistance of the sensor at 100 degrees Celsius, and
-> +      R_0 (or r-naught-ohms) is the resistance of the sensor at 0 degrees
-> +      Celsius.
-> +
-> +      Pure platinum has an alpha of 3925. Industry standards such as IEC60751
-> +      and ASTM E-1137 specify an alpha of 3850.
-> +
-> +  r-naught-ohms:
-> +    description: |
-> +      Resistance of the sensor at 0 degrees Celsius.
-> +      Common values are 100 for PT100, 500 for PT500, and 1000 for PT1000
-> +
-> +additionalProperties: false
-> +required:
-> +  - compatible
-> +  - io-channels
-> +  - excitation-current-microamp
-> +  - alpha-ppm-per-celsius
-> +  - r-naught-ohms
-> +
-> +examples:
-> +  - |
-> +    pt1000_1: temperature-sensor0 {
-> +        compatible = "temperature-sense-rtd";
-> +        #io-channel-cells = <1>;
-> +        io-channels = <&temp_adc1 0>;
-> +
-> +        excitation-current-microamp = <1000>; /* i = U/R = 5 / 5000 */
-> +        alpha-ppm-per-celsius = <3908>;
-> +        r-naught-ohms = <1000>;
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 9bf553e53f0f..ed80e671a16a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8897,6 +8897,13 @@ F:	Documentation/devicetree/bindings/iio/afe/current-sense-shunt.yaml
->  F:	Documentation/devicetree/bindings/iio/afe/voltage-divider.yaml
->  F:	drivers/iio/afe/iio-rescale.c
+> diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
+> index d84ae6b008c1..91f6bd5effe7 100644
+> --- a/drivers/iio/adc/ti-tsc2046.c
+> +++ b/drivers/iio/adc/ti-tsc2046.c
+> @@ -123,14 +123,21 @@ struct tsc2046_adc_ch_cfg {
+>  	unsigned int oversampling_ratio;
+>  };
 >  
-> +IIO UNIT CONVERTER (TEMPERATURE)
-> +M:	Liam Beguin <liambeguin@gmail.com>
-> +R:	Peter Rosin <peda@axentia.se>
-> +L:	linux-iio@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/afe/temperature-sense-rtd.yaml
-
-I'm not sure we'd normally bother with a MAINTAINERS entry when it is just the binding doc
-(as rest is in the driver).  The binding doc itself has it's own local maintainers entry
-which is the more useful one.
-
+> +enum tsc2046_state {
+> +	TSC2046_STATE_STANDBY,
+> +	TSC2046_STATE_ENABLE_IRQ_POLL,
+> +	TSC2046_STATE_POLL,
+> +	TSC2046_STATE_ENABLE_IRQ,
+> +};
 > +
->  IKANOS/ADI EAGLE ADSL USB DRIVER
->  M:	Matthieu Castet <castet.matthieu@free.fr>
->  M:	Stanislaw Gruszka <stf_xl@wp.pl>
+>  struct tsc2046_adc_priv {
+>  	struct spi_device *spi;
+>  	const struct tsc2046_adc_dcfg *dcfg;
+>  
+>  	struct iio_trigger *trig;
+>  	struct hrtimer trig_timer;
+> -	spinlock_t trig_lock;
+> -	unsigned int trig_more_count;
+> +	enum tsc2046_state state;
+> +	spinlock_t state_lock;
+>  
+>  	struct spi_transfer xfer;
+>  	struct spi_message msg;
+> @@ -411,21 +418,47 @@ static const struct iio_info tsc2046_adc_info = {
+>  	.update_scan_mode = tsc2046_adc_update_scan_mode,
+>  };
+>  
+> -static enum hrtimer_restart tsc2046_adc_trig_more(struct hrtimer *hrtimer)
+> +static enum hrtimer_restart tsc2046_adc_timer(struct hrtimer *hrtimer)
+>  {
+>  	struct tsc2046_adc_priv *priv = container_of(hrtimer,
+>  						     struct tsc2046_adc_priv,
+>  						     trig_timer);
+>  	unsigned long flags;
+>  
+> -	spin_lock_irqsave(&priv->trig_lock, flags);
+> -
+> -	disable_irq_nosync(priv->spi->irq);
+> -
+> -	priv->trig_more_count++;
+> -	iio_trigger_poll(priv->trig);
+> -
+> -	spin_unlock_irqrestore(&priv->trig_lock, flags);
+> +	spin_lock_irqsave(&priv->state_lock, flags);
+> +	switch (priv->state) {
+> +	case TSC2046_STATE_ENABLE_IRQ_POLL:
+> +		/*
+> +		 * IRQ handler called iio_trigger_poll() to sample ADC.
+> +		 * Here we
+> +		 * - re-enable IRQs
+> +		 * - start hrtimer for timeout if no IRQ will occur
+> +		 */
+> +		priv->state = TSC2046_STATE_POLL;
+> +		enable_irq(priv->spi->irq);
+> +		hrtimer_start(&priv->trig_timer,
+> +			      ns_to_ktime(priv->scan_interval_us *
+> +					  NSEC_PER_USEC),
+> +			      HRTIMER_MODE_REL_SOFT);
+> +		break;
+> +	case TSC2046_STATE_POLL:
+> +		disable_irq_nosync(priv->spi->irq);
+> +		priv->state = TSC2046_STATE_ENABLE_IRQ;
+> +		/* iio_trigger_poll() starts hrtimer */
+> +		iio_trigger_poll(priv->trig);
+> +		break;
+> +	case TSC2046_STATE_ENABLE_IRQ:
+> +		priv->state = TSC2046_STATE_STANDBY;
+> +		enable_irq(priv->spi->irq);
+> +		break;
+> +	case TSC2046_STATE_STANDBY:
+> +		fallthrough;
+> +	default:
+> +		dev_warn(&priv->spi->dev, "Got unexpected state: %i\n",
+> +			 priv->state);
+> +		break;
+> +	}
+> +	spin_unlock_irqrestore(&priv->state_lock, flags);
+>  
+>  	return HRTIMER_NORESTART;
+>  }
+> @@ -434,16 +467,17 @@ static irqreturn_t tsc2046_adc_irq(int irq, void *dev_id)
+>  {
+>  	struct iio_dev *indio_dev = dev_id;
+>  	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
+> -
+> -	spin_lock(&priv->trig_lock);
+> +	unsigned long flags;
+>  
+>  	hrtimer_try_to_cancel(&priv->trig_timer);
+>  
+> -	priv->trig_more_count = 0;
+> +	spin_lock_irqsave(&priv->state_lock, flags);
+>  	disable_irq_nosync(priv->spi->irq);
+> -	iio_trigger_poll(priv->trig);
+> +	priv->state = TSC2046_STATE_ENABLE_IRQ_POLL;
+>  
+> -	spin_unlock(&priv->trig_lock);
+> +	/* iio_trigger_poll() starts hrtimer */
+> +	iio_trigger_poll(priv->trig);
+> +	spin_unlock_irqrestore(&priv->state_lock, flags);
+>  
+>  	return IRQ_HANDLED;
+>  }
+> @@ -452,37 +486,16 @@ static void tsc2046_adc_reenable_trigger(struct iio_trigger *trig)
+>  {
+>  	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
+>  	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
+> -	unsigned long flags;
+> -	int delta;
+> +	ktime_t tim;
+>  
+>  	/*
+>  	 * We can sample it as fast as we can, but usually we do not need so
+>  	 * many samples. Reduce the sample rate for default (touchscreen) use
+>  	 * case.
+> -	 * Currently we do not need a highly precise sample rate. It is enough
+> -	 * to have calculated numbers.
+> -	 */
+> -	delta = priv->scan_interval_us - priv->time_per_scan_us;
+> -	if (delta > 0)
+> -		fsleep(delta);
+> -
+> -	spin_lock_irqsave(&priv->trig_lock, flags);
+> -
+> -	/*
+> -	 * We need to trigger at least one extra sample to detect state
+> -	 * difference on ADC side.
+>  	 */
+> -	if (!priv->trig_more_count) {
+> -		int timeout_ms = DIV_ROUND_UP(priv->scan_interval_us,
+> -					      USEC_PER_MSEC);
+> -
+> -		hrtimer_start(&priv->trig_timer, ms_to_ktime(timeout_ms),
+> -			      HRTIMER_MODE_REL_SOFT);
+> -	}
+> -
+> -	enable_irq(priv->spi->irq);
+> -
+> -	spin_unlock_irqrestore(&priv->trig_lock, flags);
+> +	tim = ns_to_ktime((priv->scan_interval_us - priv->time_per_scan_us) *
+> +			  NSEC_PER_USEC);
+> +	hrtimer_start(&priv->trig_timer, tim, HRTIMER_MODE_REL_SOFT);
+>  }
+>  
+>  static int tsc2046_adc_set_trigger_state(struct iio_trigger *trig, bool enable)
+> @@ -493,8 +506,8 @@ static int tsc2046_adc_set_trigger_state(struct iio_trigger *trig, bool enable)
+>  	if (enable) {
+>  		enable_irq(priv->spi->irq);
+>  	} else {
+> +		hrtimer_cancel(&priv->trig_timer);
+>  		disable_irq(priv->spi->irq);
+> -		hrtimer_try_to_cancel(&priv->trig_timer);
+>  	}
+>  
+>  	return 0;
+> @@ -668,10 +681,11 @@ static int tsc2046_adc_probe(struct spi_device *spi)
+>  	iio_trigger_set_drvdata(trig, indio_dev);
+>  	trig->ops = &tsc2046_adc_trigger_ops;
+>  
+> -	spin_lock_init(&priv->trig_lock);
+> +	spin_lock_init(&priv->state_lock);
+> +	priv->state = TSC2046_STATE_STANDBY;
+>  	hrtimer_init(&priv->trig_timer, CLOCK_MONOTONIC,
+>  		     HRTIMER_MODE_REL_SOFT);
+> -	priv->trig_timer.function = tsc2046_adc_trig_more;
+> +	priv->trig_timer.function = tsc2046_adc_timer;
+>  
+>  	ret = devm_iio_trigger_register(dev, trig);
+>  	if (ret) {
 
