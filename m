@@ -2,174 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B8623BAAF1
-	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 04:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D7D03BAAFA
+	for <lists+devicetree@lfdr.de>; Sun,  4 Jul 2021 05:07:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229732AbhGDCna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Jul 2021 22:43:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33528 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229874AbhGDCna (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jul 2021 22:43:30 -0400
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 899B4C061762
-        for <devicetree@vger.kernel.org>; Sat,  3 Jul 2021 19:40:55 -0700 (PDT)
-Received: by mail-pf1-x42f.google.com with SMTP id y4so13256299pfi.9
-        for <devicetree@vger.kernel.org>; Sat, 03 Jul 2021 19:40:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=d8JSTZ8+AJaTgMTmOHganaZdhQwLLSMBu10AnlPFiu8=;
-        b=PnY/ZDSCQHF9HQBdG9c1eAxBf+DvgnK/Fp3L2oNhBpUlIXGXseKmWkKH0t83FxzfVe
-         6ySklp1/zytHkgSkwaFl+PtOvzK/zeYaE8DzjHDdUO/KrLZ9it8CaaTNZO2zlfWNZWy+
-         FMHC6JMpOOTIJ937i3DJBh/BHNj53v3u5zIoZE5FUNJXVLB9EWjrDMB/xX1djQqgfRtu
-         c5gRdUHkyGOl4wRVekD2GYVZtFN96P8u0tIIDKs9Q8AuHAYaJSEOq25vKcrh9L4XN5I+
-         lebw/BuVFLpsGTt6mdDce1WSNKnJ181mNdFOB92XdxjLet+OptG0oPA8K9c5pKZldc4h
-         W62A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=d8JSTZ8+AJaTgMTmOHganaZdhQwLLSMBu10AnlPFiu8=;
-        b=uUoQouBmqE1tPZ0+chhPdI31Vt/PxgMNTXP+pLJ9YwOhE+EbDbIlg+GOOIqSUvGULM
-         +cqpIoL8eGY6rmSVEn8g3RmqWy3xEzNIm+h6e/Wdh2OvmJ1uah+eEStU02fgQorKMtYN
-         cbN+CEhFt7ex2eHLXqf182kih35xxXY+EhkQUGP8CrLtBE/jx4hB7FaLkT6Elb6ag+W6
-         pK4pV9pDn+HvXCHxBRVPl3I8+VyvL13euNQb8eYPgDmIivU8yhynZI3HvrmNaWoVhI0g
-         ZougTZb269x/3DXtF7s525G0FKyNZ1zrezXD8ypz3v3JemXUiaSUz1/eeXKwfO0A+fBA
-         xGTw==
-X-Gm-Message-State: AOAM5310Q5bI9XeLfJd2WEmY3lqKFJ0A8Woib55+smY2eF3T0mUu8yBM
-        eUcQtTpQDJynU5CDe4RyP68i9Q==
-X-Google-Smtp-Source: ABdhPJw30azYjSjAVyKtrYg9dwjnrZwUuxSrQwuNQdK1ZESMOLH4te0aJZ/9Jy4bxaJUh4+WFSHMUw==
-X-Received: by 2002:a63:de45:: with SMTP id y5mr1273481pgi.261.1625366454995;
-        Sat, 03 Jul 2021 19:40:54 -0700 (PDT)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id g17sm9394624pgh.61.2021.07.03.19.40.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Jul 2021 19:40:54 -0700 (PDT)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH v2 4/4] clk: qcom: a53-pll: Add MSM8939 a53pll support
-Date:   Sun,  4 Jul 2021 10:40:32 +0800
-Message-Id: <20210704024032.11559-5-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210704024032.11559-1-shawn.guo@linaro.org>
-References: <20210704024032.11559-1-shawn.guo@linaro.org>
+        id S229813AbhGDDJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Jul 2021 23:09:43 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:39830 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229639AbhGDDJk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Jul 2021 23:09:40 -0400
+X-UUID: e7b49e11c9e34494abd7e812c63c6ad5-20210704
+X-UUID: e7b49e11c9e34494abd7e812c63c6ad5-20210704
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1189049; Sun, 04 Jul 2021 11:07:02 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sun, 4 Jul 2021 11:07:01 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 4 Jul 2021 11:07:01 +0800
+From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v9 0/5] Add SPMI support for Mediatek SoC IC
+Date:   Sun, 4 Jul 2021 11:06:53 +0800
+Message-ID: <1625368018-17505-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+X-Mailer: git-send-email 2.6.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MSM8939 has 3 a53pll clocks with different frequency table for Cluster0,
-Cluster1 and CCI.  It adds function qcom_a53pll_get_freq_tbl() to create
-pll_freq_tbl from OPP, so that those a53pll frequencies can be defined
-in DT with operating-points-v2 bindings rather than being coded in the
-driver.  In this case, one compatible rather than three would be needed
-for these 3 a53pll clocks.
+This series adds support for new SoC MT6873/MT8192/MT8195 to the spmi driver.
+This series is based on Chun-Jie's patches[1][2].
 
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
----
- drivers/clk/qcom/a53-pll.c | 59 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 58 insertions(+), 1 deletion(-)
+[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=509159
+[2] https://patchwork.kernel.org/project/linux-mediatek/list/?series=501127
 
-diff --git a/drivers/clk/qcom/a53-pll.c b/drivers/clk/qcom/a53-pll.c
-index 96a118be912d..9e6decb9c26f 100644
---- a/drivers/clk/qcom/a53-pll.c
-+++ b/drivers/clk/qcom/a53-pll.c
-@@ -6,9 +6,11 @@
-  * Author: Georgi Djakov <georgi.djakov@linaro.org>
-  */
- 
-+#include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/kernel.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_opp.h>
- #include <linux/regmap.h>
- #include <linux/module.h>
- 
-@@ -34,6 +36,55 @@ static const struct regmap_config a53pll_regmap_config = {
- 	.fast_io		= true,
- };
- 
-+static struct pll_freq_tbl *qcom_a53pll_get_freq_tbl(struct device *dev)
-+{
-+	struct pll_freq_tbl *freq_tbl;
-+	unsigned long xo_freq;
-+	unsigned long freq;
-+	struct clk *xo_clk;
-+	int count;
-+	int ret;
-+	int i;
-+
-+	xo_clk = devm_clk_get(dev, "xo");
-+	if (IS_ERR(xo_clk))
-+		return NULL;
-+
-+	xo_freq = clk_get_rate(xo_clk);
-+
-+	ret = devm_pm_opp_of_add_table(dev);
-+	if (ret)
-+		return NULL;
-+
-+	count = dev_pm_opp_get_opp_count(dev);
-+	if (count <= 0)
-+		return NULL;
-+
-+	freq_tbl = devm_kcalloc(dev, count + 1, sizeof(*freq_tbl), GFP_KERNEL);
-+	if (!freq_tbl)
-+		return NULL;
-+
-+	for (i = 0, freq = 0; i < count; i++, freq++) {
-+		struct dev_pm_opp *opp;
-+
-+		opp = dev_pm_opp_find_freq_ceil(dev, &freq);
-+		if (IS_ERR(opp))
-+			return NULL;
-+
-+		/* Skip the freq that is not divisible */
-+		if (freq % xo_freq)
-+			continue;
-+
-+		freq_tbl[i].freq = freq;
-+		freq_tbl[i].l = freq / xo_freq;
-+		freq_tbl[i].n = 1;
-+
-+		dev_pm_opp_put(opp);
-+	}
-+
-+	return freq_tbl;
-+}
-+
- static int qcom_a53pll_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -65,7 +116,12 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
- 	pll->mode_reg = 0x00;
- 	pll->status_reg = 0x1c;
- 	pll->status_bit = 16;
--	pll->freq_tbl = a53pll_freq;
-+
-+	pll->freq_tbl = qcom_a53pll_get_freq_tbl(dev);
-+	if (!pll->freq_tbl) {
-+		/* Fall on a53pll_freq if no freq_tbl is found from OPP */
-+		pll->freq_tbl = a53pll_freq;
-+	}
- 
- 	/* Use an unique name by appending @unit-address */
- 	init.name = devm_kasprintf(dev, GFP_KERNEL, "a53pll%s",
-@@ -96,6 +152,7 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
- 
- static const struct of_device_id qcom_a53pll_match_table[] = {
- 	{ .compatible = "qcom,msm8916-a53pll" },
-+	{ .compatible = "qcom,msm8939-a53pll" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, qcom_a53pll_match_table);
+changes since v8:
+- Add MT8195 spmi support.
+
+Henry Chen (1):
+  spmi: mediatek: Add support for MT8195
+
+Hsin-Hsiung Wang (4):
+  dt-bindings: spmi: modify the constraint 'maxItems' to 'minItems'
+  dt-bindings: spmi: document binding for the Mediatek SPMI controller
+  spmi: mediatek: Add support for MT6873/8192
+  arm64: dts: mt8192: add spmi node
+
+ .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      |  76 +++
+ .../devicetree/bindings/spmi/spmi.yaml        |   2 +-
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi      |  17 +
+ drivers/spmi/Kconfig                          |  10 +
+ drivers/spmi/Makefile                         |   2 +
+ drivers/spmi/spmi-mtk-pmif.c                  | 555 ++++++++++++++++++
+ 6 files changed, 661 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
+ create mode 100644 drivers/spmi/spmi-mtk-pmif.c
+
+
+base-commit: 4b820e167bf6f410ace479d8df5b15a574000e75
+prerequisite-patch-id: 8d0ea71c97ffaea629a73e7e7606baa0947cd4ad
+prerequisite-patch-id: 15f52bb664f0f0436627d056a53afefb0b99f67a
+prerequisite-patch-id: 479b44dfdc6d7b367c0d441d8635d2dc02466057
+prerequisite-patch-id: 5df1858972e343d3750cdda1063655fc232eb831
+prerequisite-patch-id: 7e63a29430f65c2a0d56d7353df884645d70ed8c
+prerequisite-patch-id: 2a6200e8a05329d51aaa4fd63aacfbba66d16177
+prerequisite-patch-id: 604d2702c4217b77de3dc305ff08f630ba38fdb4
+prerequisite-patch-id: d3ece2688dbd45eee248a8c6ba3206c0c673c904
+prerequisite-patch-id: 1bebe1cd9b267c974cae50c3df8c0f8f4f0b0b3d
+prerequisite-patch-id: 3b34fe85667da5287bde9fd2378359be4a126266
+prerequisite-patch-id: 5d3d139212ab304739b75f7638251703b95948d5
+prerequisite-patch-id: 621291b21be177a63eaf6769aa6d2ee8ddb2ea2b
+prerequisite-patch-id: 024f786586b409420782d24218b15f05f6476667
+prerequisite-patch-id: 946aae93303bde26226289dc389c94de96a9dacd
+prerequisite-patch-id: b3ddf6f2079c3c269bd24091243030a971c43cbc
+prerequisite-patch-id: 5c0e0308aa8eb06ca6df6f5467bc925f2cc106ad
+prerequisite-patch-id: d4e481acd8b970f08d3e4da9c8fc0ad6e1fff551
+prerequisite-patch-id: 99db7309fbe1b9f73a07e25d5174db8976c77a2c
+prerequisite-patch-id: cffbc99e9e60f6db43cf7879f17e05c5b041d312
+prerequisite-patch-id: cd19be7b7f361644843ff8111f120e3da3330ab5
+prerequisite-patch-id: 4f5900b98a0c7cbe62694f2477a6cb410187714b
 -- 
-2.17.1
+2.18.0
 
