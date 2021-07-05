@@ -2,74 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FFF63BB6F6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 07:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A60763BB719
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 08:18:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229884AbhGEFoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 01:44:17 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:49991 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229956AbhGEFoM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 01:44:12 -0400
-X-UUID: 5d91e30e047643abb0e7ff5004960073-20210705
-X-UUID: 5d91e30e047643abb0e7ff5004960073-20210705
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2053183439; Mon, 05 Jul 2021 13:41:32 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 5 Jul 2021 13:41:32 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 5 Jul 2021 13:41:31 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [v3 5/5] soc: mediatek: pm-domains: Remove unused macro
-Date:   Mon, 5 Jul 2021 13:41:11 +0800
-Message-ID: <20210705054111.4473-6-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210705054111.4473-1-chun-jie.chen@mediatek.com>
-References: <20210705054111.4473-1-chun-jie.chen@mediatek.com>
+        id S229818AbhGEGVY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 02:21:24 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:28843 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229734AbhGEGVY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Jul 2021 02:21:24 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1625465927; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=yCrPkEAKmaz+cVp5YvGeM+Fn0+vuJCy4/YBCSelI6DE=;
+ b=mf02zcorruy/+aih6dZSzEWPAaqY8HFoKIHW0P4cVo+dB8Eual8WwGW25loddOVMrCPTlRsd
+ Qpz65hUrscOulc0mzn4eZy35QvRpMblIZ1SmtCDJrldKQAYYnIBlNQew7Sde2WifYDpSS/kM
+ Hj2CaQ6NssSV9jhNmTe5E1Yk9LU=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 60e2a43e3a8b6d0a458b74d6 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 05 Jul 2021 06:18:38
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 147B1C4360C; Mon,  5 Jul 2021 06:18:38 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2A775C433D3;
+        Mon,  5 Jul 2021 06:18:37 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Mon, 05 Jul 2021 11:48:37 +0530
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, bhelgaas@google.com,
+        robh+dt@kernel.org, swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mgautam@codeaurora.org, dianders@chromium.org, mka@chromium.org,
+        sanm@codeaurora.org
+Subject: Re: [PATCH v3 4/4] PCIe: qcom: Add support to control pipe clk mux
+In-Reply-To: <1624377651-30604-5-git-send-email-pmaliset@codeaurora.org>
+References: <1624377651-30604-1-git-send-email-pmaliset@codeaurora.org>
+ <1624377651-30604-5-git-send-email-pmaliset@codeaurora.org>
+Message-ID: <c334a6d11fae5bd135a94ab5c66b3f97@codeaurora.org>
+X-Sender: pmaliset@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to clk resource data will be allocated dynamically by
-searching parent count of clk in power domain node, so remove
-the unused marco MAX_SUBSYS_CLKS for static allocation.
+On 2021-06-22 21:30, Prasad Malisetty wrote:
+> pipe-clk mux needs to switch between pipe_clk
+> and XO as part of LPM squence. This is done by setting
+> pipe_clk mux as parent of pipe_clk after phy init.
+> This is a new requirement for sc7280.
+> For accessing to DBI registers during L23,
+> need to switch the pipe clock with free-running
+> clock (TCXO) using GCC’s registers
+> 
+> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c
+> b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 8a7a300..80e9ee4 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -166,6 +166,9 @@ struct qcom_pcie_resources_2_7_0 {
+>  	struct regulator_bulk_data supplies[2];
+>  	struct reset_control *pci_reset;
+>  	struct clk *pipe_clk;
+> +	struct clk *pipe_clk_mux;
+> +	struct clk *pipe_ext_src;
+> +	struct clk *ref_clk_src;
+>  };
+> 
+>  union qcom_pcie_resources {
+> @@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct
+> qcom_pcie *pcie)
+>  	if (ret < 0)
+>  		return ret;
+> 
+> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+> +		res->pipe_clk_mux = devm_clk_get(dev, "pipe_mux");
+> +		if (IS_ERR(res->pipe_clk_mux))
+> +			return PTR_ERR(res->pipe_clk_mux);
+> +
+> +		res->pipe_ext_src = devm_clk_get(dev, "phy_pipe");
+> +		if (IS_ERR(res->pipe_ext_src))
+> +			return PTR_ERR(res->pipe_ext_src);
+> +
+> +		res->ref_clk_src = devm_clk_get(dev, "ref");
+> +		if (IS_ERR(res->ref_clk_src))
+> +			return PTR_ERR(res->ref_clk_src);
+> +	}
+> +
+>  	res->pipe_clk = devm_clk_get(dev, "pipe");
+>  	return PTR_ERR_OR_ZERO(res->pipe_clk);
+>  }
+> @@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct
+> qcom_pcie *pcie)
+>  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>  {
+>  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+> +	struct dw_pcie *pci = pcie->pci;
+> +	struct device *dev = pci->dev;
+> +
+> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
+> +		clk_set_parent(res->pipe_clk_mux, res->pipe_ext_src);
+> 
+>  	return clk_prepare_enable(res->pipe_clk);
+>  }
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Reviewed-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
- drivers/soc/mediatek/mtk-pm-domains.h | 2 --
- 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
-index caaa38100093..1b8967b9829e 100644
---- a/drivers/soc/mediatek/mtk-pm-domains.h
-+++ b/drivers/soc/mediatek/mtk-pm-domains.h
-@@ -72,8 +72,6 @@ struct scpsys_bus_prot_data {
- 	bool ignore_clr_ack;
- };
- 
--#define MAX_SUBSYS_CLKS 10
--
- /**
-  * struct scpsys_domain_data - scp domain data for power on/off flow
-  * @name: The name of the power domain.
--- 
-2.18.0
+Hi All,
 
+Greetings of the day !!
+
+Could you please provide your comments on updated change series
+
+Thanks
+-Prasad
