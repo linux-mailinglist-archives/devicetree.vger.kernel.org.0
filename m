@@ -2,102 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDB13BB8A0
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 10:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2572F3BB900
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 10:21:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230073AbhGEIMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 04:12:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51734 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230032AbhGEIMG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 04:12:06 -0400
-Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86686C061762
-        for <devicetree@vger.kernel.org>; Mon,  5 Jul 2021 01:09:30 -0700 (PDT)
-Received: by mail-io1-xd2e.google.com with SMTP id u7so17800598ion.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Jul 2021 01:09:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6ZBH9ykzeoMrqSlrgZpvseA7xgJC3UHZbKlTJSyxYYE=;
-        b=vMJVUcrQnNHyGr1e2E/BBoCJ6Ml9vmYjG8w3y4ezQrmHEogj/M4Ky5n/R11b3OUHP+
-         GA0To8jdS+EcmI5/P9/WIwMSOKXzdcpQ56ciPZXsLuzhCebjrvgAjKMVj0ZSx/Rh9bv+
-         oXlnbv/La5iOfvDexZJU47ZVPg07ff2LAUCfOgs6Y1t84ZdmUZwHHXcFdMnDGr08ohIi
-         jAg4g2iJ6DEwZqa8bdRZInOXHa9ciiu9rr19zEl8/2xix+m5y77dPZvww9IhHTwvkUIg
-         fume5Bf4qhsquNTGV8+6wI8MJW55gP3FMqs1E+rG3ZTrB4s3NzG7t1aErBKD70HBEFdZ
-         dY8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6ZBH9ykzeoMrqSlrgZpvseA7xgJC3UHZbKlTJSyxYYE=;
-        b=tRQF5fbUGuOsCGhU125B63PZRa8PaYLCLcx0KrFTWQsPV6qo+YD4paSBJicptX+3/V
-         hEL1661kw91t2yg1Dy3+RcR1jlAYc+zJVg5x/EVT45ZX1jMAOn5fSI29/ELnH8I8Tr4H
-         ODvSCbr4HFhuEI5y2GJMdjPi8XzZuj9IdCmA6KH2dItHymitQKMsPycklKrtNU6f96hD
-         i3DfeZDgmzsuwC+73Oo94qH1V26idTcO5bXd7FA9lHOro9/8NX6DUHEkcPdQ0zYXQ7jc
-         jtAcEz5VkFE/YFjLj6hnt0rlJ9dyKFTMFv9ilLjGWwWfynN7Tx9UAAI7/juKQYP1BMoG
-         FYuQ==
-X-Gm-Message-State: AOAM533PXEHZS+1nR4bbrTy4a270v9jPd8xmisc9X/PtBzAtqtV8RJRA
-        eq5WdV4YzsOyVMWNmydJhWTv+6vV7gP3gR5oSm0NDQ==
-X-Google-Smtp-Source: ABdhPJwhLvFCwfzhhvvHGLbA3HvWk2qBShYvoOt9KTiT7lVNLd4KXAYWkrfEYA95oI9qjWhL1m8bENMubRJRcwBEMEc=
-X-Received: by 2002:a5e:a612:: with SMTP id q18mr10954029ioi.76.1625472569703;
- Mon, 05 Jul 2021 01:09:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <1624428350-1424-1-git-send-email-kyrie.wu@mediatek.com>
- <1624428350-1424-2-git-send-email-kyrie.wu@mediatek.com> <CA+Px+wW6PrYihYo8F2Op8XPfVHMmO7ODRQrF75DQxc4gRM-qfg@mail.gmail.com>
- <1625039759.22769.3.camel@mhfsdcap03>
-In-Reply-To: <1625039759.22769.3.camel@mhfsdcap03>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Mon, 5 Jul 2021 16:09:18 +0800
-Message-ID: <CA+Px+wUXK2t42S0HgcOj7_kbkSskHGris5LBquTS3d+hi8kCaQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mtk-jpeg: Add binding for MT8195 JPG
-To:     "kyrie.wu" <kyrie.wu@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S230115AbhGEIY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 04:24:27 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43966 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230081AbhGEIYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 04:24:24 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1658LTJ0005911;
+        Mon, 5 Jul 2021 03:21:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1625473289;
+        bh=Y5AlfMUgJJYX/2dmO0aHXkikhRLjjtuU8z3wKxricB0=;
+        h=From:Subject:To:CC:References:Date:In-Reply-To;
+        b=AaI85ThQ6sn8gb1DpFaqvtAe9iPcadMGWGata0NI9XKZ3m1sX8+UyeZt8Nm4GvGia
+         m6/BYDrsUoYJ0+4fW2O7HDwekOiteOnirynRY2s7B5m7PjzNCEoKIp6uNvMo6uIsQ+
+         PISwMnGtSwdxUbEli4ipDfWO5CjjQ3luGPrn8k6Y=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1658LTVF129783
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 5 Jul 2021 03:21:29 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 5 Jul
+ 2021 03:21:29 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+ Frontend Transport; Mon, 5 Jul 2021 03:21:28 -0500
+Received: from [10.250.232.207] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1658LNtD100793;
+        Mon, 5 Jul 2021 03:21:24 -0500
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Subject: Re: [RFC PATCH 08/40] PCI: keystone: Cleanup MSI/legacy interrupt
+ configuration and handling
+To:     =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>
+CC:     Jingoo Han <jingoohan1@gmail.com>,
+        Joao Pinto <Joao.Pinto@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Rick Chang <rick.chang@mediatek.com>,
-        Bin Liu <bin.liu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
-        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        <Gustavo.Pimentel@synopsys.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20180921102155.22839-1-kishon@ti.com>
+ <20180921102155.22839-9-kishon@ti.com> <20210703210152.GA16176@rocinante>
+Message-ID: <56160f1d-ec91-3b99-312c-aef66eb1a7c2@ti.com>
+Date:   Mon, 5 Jul 2021 13:51:23 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20210703210152.GA16176@rocinante>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 30, 2021 at 3:56 PM kyrie.wu <kyrie.wu@mediatek.com> wrote:
-> Mt8195 has two hardwares, "mediatek,mt8195-jpgenc0" for hw0 and
-> "mediatek,mt8195-jpgenc1" for HW1. These two nodes will register
-> hardware interrupt, initialize clock, power domain, remap register base
-> addr and other operations. But the device node is not registered.
-> "mediatek,mt8195-jpgenc" will register the device node to represent jpeg
-> encode device. Then the component framework is used to manage the above
-> two hardwares.
-Please don't top-posting.  Inline your replies so that people can
-easily follow the discussion.
+Hi Krzysztof,
 
-I still don't quite understand why it needs to introduce 2 compatible
-strings.  If hw0 and hw1 are different from interrupts, clocks, power
-domain, and etc, couldn't you use the same compatible string (e.g.
-"mt8195-jpgenc") and provide them different DT attributes?
+On 04/07/21 2:31 am, Krzysztof Wilczyński wrote:
+> Hi Kishon,
+> 
+>> Now that all PCI keystone functionality has been moved to pci-keystone.c,
+>> cleanup MSI/legacy interrupt configuration and handling.
+>>  *) Cleanup macros
+>>  *) Remove unnecessary structure variables (required when 2 files are
+>>     used)
+>>  *) Remove ks_dw_pcie_legacy_irq_chip and use dummy_irq_chip
+>>  *) Move request_irq of error irq from ks_add_pcie_port to ks_pcie_probe
+>>     as error_irq is common to both host mode and device mode
+> [...]
+> 
+> While looking at some small clean-ups for Bjorn, I stumbled upon this
+> series, and it seems a lot of your work here cover what Bjorn wanted to
+> do, thus I need to ask - do you recall, and I appreciate it's been
+> a while (three years actually), what happened and/or if you ever had the
+> time to work on this series?
+> 
+> Would it be possible to resurrect this?  Do you need any help?
 
-> On Fri, 2021-06-25 at 17:18 +0800, Tzung-Bi Shih wrote:
-> > On Wed, Jun 23, 2021 at 2:06 PM kyrie.wu <kyrie.wu@mediatek.com> wrote:
-> > >  Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > Note: the patch won't apply after [1].
-> >
-> > [1]: https://lore.kernel.org/patchwork/patch/1445298/
-> >
-> > >  Required properties:
-> > >  - compatible : "mediatek,mt2701-jpgenc"
-> > > +- compatible : "mediatek,mt8195-jpgenc"
-> > > +- compatible : "mediatek,mt8195-jpgenc0"
-> > > +- compatible : "mediatek,mt8195-jpgenc1"
-> > Why it needs 3 compatible strings?
+A lot of patches in this series should already be merged (after
+splitting into smaller ones)
+http://patchwork.ozlabs.org/project/linux-pci/list/?series=71185
+
+https://patchwork.kernel.org/project/linux-arm-kernel/cover/20190321095927.7058-1-kishon@ti.com/
+
+The following series is still pending and is in my TODO list
+https://lore.kernel.org/r/20210325090026.8843-1-kishon@ti.com
+
+Are there any other clean-ups you are looking into?
+
+Thanks and Regards
+Kishon
