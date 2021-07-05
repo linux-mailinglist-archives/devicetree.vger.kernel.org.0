@@ -2,106 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75B083BBC10
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 13:18:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57D5F3BBC22
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 13:25:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231158AbhGELV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 07:21:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38584 "EHLO
+        id S230459AbhGEL1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 07:27:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230174AbhGELV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 07:21:28 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE06C061574;
-        Mon,  5 Jul 2021 04:18:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=3lp+7OK+HfsYz8a5I6i5SZB/z375QfgglVqw2EMRVxs=; b=js14/rOGP2/QHs4YP5/Y57vnTd
-        faI60nHcL0hOioBaobuEeeoDtlQmp03wC23Hxaqi5RD5V5e0+ETORthBzSIKJmnGSQXhzQDOd9Z1h
-        hoDNOi5d5OylsWRr6V/TZ7RJiivTCWr4tFvYZmG0G6aSND88z//Dvfky168EgxZSIT38=;
-Received: from p200300ccff0e44001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0e:4400:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1m0Mci-00076D-Gq; Mon, 05 Jul 2021 13:18:48 +0200
-Date:   Mon, 5 Jul 2021 13:18:47 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Discussions about the Letux Kernel <letux-kernel@openphoenux.org>,
-        devicetree@vger.kernel.org, lars@metafoo.de,
-        linux-pm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sre@kernel.org, robh+dt@kernel.org,
-        leonard.crestez@nxp.com, lee.jones@linaro.org
-Subject: Re: [Letux-kernel] [PATCH 0/4] mfd: rn5t618: Extend ADC support
-Message-ID: <20210705131847.471d3ca5@aktux>
-In-Reply-To: <20210704171023.6199826a@jic23-huawei>
-References: <20210703084224.31623-1-andreas@kemnade.info>
-        <20210703165950.6e2aeb89@jic23-huawei>
-        <20210703183932.75c7012a@aktux>
-        <20210703185540.5b6bec20@aktux>
-        <20210704171023.6199826a@jic23-huawei>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S230174AbhGEL1w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 07:27:52 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E531C061574;
+        Mon,  5 Jul 2021 04:25:14 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id y17so17978442pgf.12;
+        Mon, 05 Jul 2021 04:25:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5O0fSJhaUzvQBS/JvZu/NJClK6d4varvuShuvbKWaFk=;
+        b=kFqMmoZoh8a0/xcYGHZ+zRDysUQBRHcs5T0gDEqAA+al4IGat9cHr1XU1S5XVwXzLA
+         uo5MiUMGtf4TQBD5prNba4pon/uJHm25f6+YhwYftINCPjPB6oHsgE5T/68gsDOiuKNo
+         2mMqxc966jXfKamCK/ssEvEpKy0PJlpt/yQ5hVNyga/DViPeehIIwUaSZ4Aju0P4Kpw1
+         GEW/ICOJhPR6VXDDKfqMZt8c9gTqfOdoM2q6ex1Yyaggpc31HHkqrz5+t83eqmyVdgB8
+         OZwF+wBqZR2coEez3wH4uF0iW4or0LfvsHX58sKqi5A7z52WWWshhJDHz1+byd9Us+VC
+         ZeNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5O0fSJhaUzvQBS/JvZu/NJClK6d4varvuShuvbKWaFk=;
+        b=g84AnVARyLsn57xDLR8XMcmgixHQEmbjKZYS7QJVaMR+YlASfBbBlaOqWxDkgTBVKA
+         SWRpKEtBkRhs8t5MSDbwyGkSt6oq09hyeSD/N3yaJGl0Khyosnri1EsM1gkyoPjELPdf
+         +sPIDQ1dyOpjP/hF/DC0SdrBwE9CHBGXzx5exLivON9uwzIhIC7ZAI3vBI4Rpg8VWEUR
+         d77flL7AMm97ojm5eCdEr06jdx6MhEGZ17am5CrUFBKffh/eaiohWz21yptdfWry8ekC
+         oGZdKIW5cIi+dy0byrbmTljooUdAP5Ywb7lYWO0151iir6ABG1AXRYkgs+kXYLvcyxlz
+         zQew==
+X-Gm-Message-State: AOAM530dW2is1JuHPu+7dZ9ruBIeGaEivsrw6TeYFSSF3KOr1xQwPfo/
+        1TNhgnlK4yIFlfbIv94ZyIs=
+X-Google-Smtp-Source: ABdhPJxnlaG524ObSrCFPEQsAQnTM1rthDLu6NOwfUx5Q9n7OL6ckReIPpid0igp+v8DCbTY7ebrcA==
+X-Received: by 2002:aa7:968e:0:b029:319:886f:fc2e with SMTP id f14-20020aa7968e0000b0290319886ffc2emr12728779pfk.49.1625484313903;
+        Mon, 05 Jul 2021 04:25:13 -0700 (PDT)
+Received: from archl-c2lm.. ([103.51.72.31])
+        by smtp.gmail.com with ESMTPSA id gi20sm20976959pjb.20.2021.07.05.04.25.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jul 2021 04:25:12 -0700 (PDT)
+From:   Anand Moon <linux.amoon@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Anand Moon <linux.amoon@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCHv2 0/3] Fix the pwm regulator supply properties
+Date:   Mon,  5 Jul 2021 11:23:52 +0000
+Message-Id: <20210705112358.3554-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 4 Jul 2021 17:10:23 +0100
-Jonathan Cameron <jic23@kernel.org> wrote:
+Changes PWM supply properties help fix internal link of PWM to
+main 5V supply as per the shematics.
 
-> On Sat, 3 Jul 2021 18:55:40 +0200
-> Andreas Kemnade <andreas@kemnade.info> wrote:
-> 
-> > On Sat, 3 Jul 2021 18:39:40 +0200
-> > Andreas Kemnade <andreas@kemnade.info> wrote:
-> >   
-> > > Hi,
-> > > 
-> > > On Sat, 3 Jul 2021 16:59:50 +0100
-> > > Jonathan Cameron <jic23@kernel.org> wrote:
-> > >     
-> > > > On Sat,  3 Jul 2021 10:42:20 +0200
-> > > > Andreas Kemnade <andreas@kemnade.info> wrote:
-> > > >       
-> > > > > Add devicetree support so that consumers can reference the channels
-> > > > > via devicetree, especially the power subdevice can make use of that
-> > > > > to provide voltage_now properties.        
-> > > > 
-> > > > Does the mapping vary from board to board?  Often these mappings are
-> > > > internal to the chip so might as well be provided hard coded in the
-> > > > relevant drivers rather than via DT. See drivers that have iio_map
-> > > > structure arrays.
-> > > >       
-> > > Most things are internal to the chip, but 
-> > > AIN1/AIN0 are external and could be connected to anything.
-> > >     
-> > hmm, iio_map stuff looks nice, so before messing with devicetree,
-> > I could solve 90% of the problem by just using iio_map? For my use
-> > cases it is enough to have the internal stuff at the moment. That would
-> > simplify stuff a lot.
-> > 
-> > So I could go forward with the iio_map stuff now, and if there is a use
-> > case for AIN1/0, the devicetree stuff can be added later?  
-> 
-> I was just thinking the same.  I 'think' that it will first try to find
-> a mapping via device tree and then use the iio_map stuff.
-> 
-> So you can probably get away with a mixture of the two.
-> Worth testing that works though (hook up iio-hwmon to AIN0 perhaps whilst
-> also using the iio_map approach).
-> 
-> I might be completely wrong though and am not aware of anyone currently
-> doing this...
-> 
-I tested that approach, It works, so I will first post a series with
-just the iio_map stuff and later the devicetree stuff.
+PATCHv1 below
+[0] https://lore.kernel.org/linux-amlogic/CANAwSgRD9_B7f5UjPrxeL+x-eMMc2MAG3tXLQw36x0ho+ba_Uw@mail.gmail.com/T/#t
 
-Regards,
-Andreas
+Thanks
+-Anand
+
+Anand Moon (3):
+  ARM: dts: meson8b: odroidc1: Fix the pwm regulator supply properties
+  ARM: dts: meson8b: mxq: Fix the pwm regulator supply properties
+  ARM: dts: meson8b: ec100: Fix the pwm regulator supply properties
+
+ arch/arm/boot/dts/meson8b-ec100.dts    | 4 ++--
+ arch/arm/boot/dts/meson8b-mxq.dts      | 4 +++-
+ arch/arm/boot/dts/meson8b-odroidc1.dts | 4 ++--
+ 3 files changed, 7 insertions(+), 5 deletions(-)
+
+-- 
+2.32.0
+
