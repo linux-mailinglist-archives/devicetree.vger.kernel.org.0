@@ -2,84 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90F343BB4EE
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 03:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 759463BB521
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 04:22:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbhGEB25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jul 2021 21:28:57 -0400
-Received: from lucky1.263xmail.com ([211.157.147.133]:34646 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbhGEB24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 21:28:56 -0400
-Received: from localhost (unknown [192.168.167.13])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 30100D5944;
-        Mon,  5 Jul 2021 09:26:19 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from xxm-vm.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P30156T139873811932928S1625448376209259_;
-        Mon, 05 Jul 2021 09:26:18 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <c362687bbb3d7b6ecdde6e56187c314d>
-X-RL-SENDER: xxm@rock-chips.com
-X-SENDER: xxm@rock-chips.com
-X-LOGIN-NAME: xxm@rock-chips.com
-X-FST-TO: jic23@kernel.org
-X-RCPT-COUNT: 10
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-From:   Simon Xue <xxm@rock-chips.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org, Simon Xue <xxm@rock-chips.com>
-Subject: [PATCH] arm64: dts: rockchip: add saradc node for rk3568.dtsi
-Date:   Mon,  5 Jul 2021 09:26:10 +0800
-Message-Id: <20210705012610.3831-1-xxm@rock-chips.com>
-X-Mailer: git-send-email 2.25.1
+        id S229652AbhGECYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jul 2021 22:24:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40406 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229549AbhGECYf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 4 Jul 2021 22:24:35 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 77544613BD;
+        Mon,  5 Jul 2021 02:21:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625451719;
+        bh=nCOdqQkG5UQ9ELEuMGrQai5rcTgVU73WviH2mpknfCY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OTcdkjxhu/1EaSqon4LOsiqxRvjiRfM3LTqS5m9JEc3MtH8W3TZuxBKGR1mAQpiSo
+         G+hlph1+lA6RxgcNL4OUxYr+kH457wAJc6hPbP3gIG+z6W/Nrz9weHT54R+x0/SL1V
+         0Pqk8OtxyO80i428JlNIFPt8jxUxCNn2XoBKb5EpzKuAxXMPXD5XKbVMIECGrhOHbo
+         IG+JUFTmY6m3vyz+0GKlepcxOL3Uz62eGvSuCPGe/1m+Vlkz9teJOwsNYT7+u7DCEr
+         zwc60jOZi80ln3Zse2/KUbXARNFVTK3CNNVBGKjsNMFCjh7C1B8cmpcFHTONPSBAwI
+         724WADwxhO1Ow==
+Date:   Mon, 5 Jul 2021 10:21:51 +0800
+From:   Peter Chen <peter.chen@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <treding@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 05/12] usb: otg-fsm: Fix hrtimer list corruption
+Message-ID: <20210705022151.GA12125@nchen>
+References: <20210701234317.26393-1-digetx@gmail.com>
+ <20210701234317.26393-6-digetx@gmail.com>
+ <20210703110809.GA4289@Peter>
+ <29476aa3-c34e-8bf0-5eab-f7def493f329@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <29476aa3-c34e-8bf0-5eab-f7def493f329@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Simon Xue <xxm@rock-chips.com>
----
- arch/arm64/boot/dts/rockchip/rk3568.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On 21-07-03 20:22:38, Dmitry Osipenko wrote:
+> 03.07.2021 14:08, Peter Chen пишет:
+> > On 21-07-02 02:43:10, Dmitry Osipenko wrote:
+> >> The HNP work can be re-scheduled while it's still in-fly. This results in
+> >> re-initialization of the busy work, resetting the hrtimer's list node of
+> >> the work and crashing kernel with null dereference within kernel/timer
+> >> once work's timer is expired. It's very easy to trigger this problem by
+> >> re-plugging USB cable quickly. Initialize HNP work only once to fix this
+> >> trouble.
+> > 
+> > Fully OTG compliance support has not maintained for years, what's the use case you
+> > still want to use?
+> 
+> I don't have any use case for it, but I had CONFIG_USB_OTG_FSM=y and it
+> was crashing kernel badly. The OTG works perfectly fine without the FSM.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index d225e6a45d5c..16621ecbb876 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -525,6 +525,18 @@ uart9: serial@fe6d0000 {
- 		status = "disabled";
- 	};
- 
-+	saradc: saradc@fe720000 {
-+		compatible = "rockchip,rk3568-saradc", "rockchip,rk3399-saradc";
-+		reg = <0x0 0xfe720000 0x0 0x100>;
-+		interrupts = <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru CLK_SARADC>, <&cru PCLK_SARADC>;
-+		clock-names = "saradc", "apb_pclk";
-+		resets = <&cru SRST_P_SARADC>;
-+		reset-names = "saradc-apb";
-+		#io-channel-cells = <1>;
-+		status = "disabled";
-+	};
-+
- 	pinctrl: pinctrl {
- 		compatible = "rockchip,rk3568-pinctrl";
- 		rockchip,grf = <&grf>;
+You could add below at your dts to disable OTG FSM:
+hnp-disable
+srp-disable
+adp-disable
+
+Since there are no users for OTG FSM, it hasn't maintained for years,
+I am not sure if it still works OK. If I remember correctly, the VBUS
+will be off if you enable HNP, and the device at the host port will be
+disconnected, that's may not your expectation.
+
 -- 
-2.25.1
 
-
+Thanks,
+Peter Chen
 
