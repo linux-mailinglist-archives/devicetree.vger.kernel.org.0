@@ -2,105 +2,347 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69E183BB552
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 04:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2D963BB5A8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 05:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229788AbhGECxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jul 2021 22:53:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37764 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229781AbhGECxg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 22:53:36 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F80BC061765
-        for <devicetree@vger.kernel.org>; Sun,  4 Jul 2021 19:51:00 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id o4so6409673plg.1
-        for <devicetree@vger.kernel.org>; Sun, 04 Jul 2021 19:51:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=0w/ce/936AZE4PtNhcMd+7r7gKVsqIHrI5nqRlAtLJk=;
-        b=HS4DyokZjNGvEUjCkb3k7+6tLiLu+9QZbUual5EICb3H0E611KtRHmRo8JYvg0TfNO
-         Y8kF+Uoy50inNABUw+jcEhAO2vk5lzCbo5cwGzVXbvm3kMflpVoG1R2EBxe29QkX2lNS
-         YA5SPYNUXVAK0gL19ki+6EURzdH4Gwt+3OPNGWvCxN/uMitaMWwHt3W86ORvMXf0Uw92
-         kzsXMRAJRoO4yOxPxTmYD4zVhadsDfn5ol2kq4nI2PzTtJegJ3+Fo8fBV0vKovxl7lg2
-         9KTqQxARG5Zlj0G+6r8qvayrlxpY02gA2pWg//f1Yxi1tNVvs76AalKd1Y2CtibjLqL+
-         93cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=0w/ce/936AZE4PtNhcMd+7r7gKVsqIHrI5nqRlAtLJk=;
-        b=FOWSM8rrOACjb2QwLrKdYnY/wQrnVqhZJN/awmTWNIg0TgjyVU+pcJzZPKgqBtEfwb
-         HwfuKVWpUeW3XjKe9RZXYdLe/EL3HqGWG9MIsVIWNauNbpNMcIV/Wh4cJELPlCR2Zrul
-         U9WQAA1eY43ceC0LtgpEgGGdxZZnz9m+XJcJbkJKdZiVTmONDUQEb74b3RyHUiLFDBjg
-         ijgXeF5U/mvPcbzBvKrVyv0zYshdt2ryj0auyORaJg66Bj5f1lXPkWZzlpO3EBaa1IDE
-         M50sEneoYFpyc4zMVjmHBSBrjot48xPmGxef2RkwPn5ibvHZI5f/wgvtCQnAh6E1hotP
-         wTfg==
-X-Gm-Message-State: AOAM530DxIo3zgIJS/MIgDfWpmf4JF0MxZMOTcDtAo+0FEmnI5qDzE7W
-        LU2YQ7CURwdX5WaOeKfNYlT2CQ==
-X-Google-Smtp-Source: ABdhPJxH+9i4yo7wFWjD0w0TRpb1iYk8WxY/FIwfzUZgWVgaPg6VBySJA65RG9M5Ibx19O7PxyP1uw==
-X-Received: by 2002:a17:902:b203:b029:127:16e0:286a with SMTP id t3-20020a170902b203b029012716e0286amr10451169plr.0.1625453460017;
-        Sun, 04 Jul 2021 19:51:00 -0700 (PDT)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id i13sm11891041pgm.26.2021.07.04.19.50.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Jul 2021 19:50:59 -0700 (PDT)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Stephan Gerhold <stephan@gerhold.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH 3/3] power: reset: qcom-pon: Add support for 'qcom,pon-reboot-not-used'
-Date:   Mon,  5 Jul 2021 10:50:32 +0800
-Message-Id: <20210705025032.12804-4-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210705025032.12804-1-shawn.guo@linaro.org>
-References: <20210705025032.12804-1-shawn.guo@linaro.org>
+        id S229715AbhGEDn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jul 2021 23:43:59 -0400
+Received: from mailgw01.mediatek.com ([60.244.123.138]:46911 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229700AbhGEDn7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 23:43:59 -0400
+X-UUID: 1c5849b235c04d81b32110355908d9bb-20210705
+X-UUID: 1c5849b235c04d81b32110355908d9bb-20210705
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 73691518; Mon, 05 Jul 2021 11:41:17 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 5 Jul 2021 11:41:16 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 5 Jul 2021 11:41:16 +0800
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Subject: [v12 01/20] dt-bindings: ARM: Mediatek: Add new document bindings of MT8192 clock
+Date:   Mon, 5 Jul 2021 11:38:05 +0800
+Message-ID: <20210705033824.1934-2-chun-jie.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20210705033824.1934-1-chun-jie.chen@mediatek.com>
+References: <20210705033824.1934-1-chun-jie.chen@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Check property 'qcom,pon-reboot-not-used' and skip reboot-mode setup
-if the property is present.  This is useful for devices that use IMEM
-instead of PON register to pass reboot mode, but still want to populate
-pwrkey and resin devices.
+This patch adds the new binding documentation for system clock
+and functional clock on Mediatek MT8192.
 
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- drivers/power/reset/qcom-pon.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ .../arm/mediatek/mediatek,mt8192-clock.yaml   | 207 ++++++++++++++++++
+ .../mediatek/mediatek,mt8192-sys-clock.yaml   |  65 ++++++
+ 2 files changed, 272 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-sys-clock.yaml
 
-diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
-index 4a688741a88a..85fae9e85878 100644
---- a/drivers/power/reset/qcom-pon.c
-+++ b/drivers/power/reset/qcom-pon.c
-@@ -47,6 +47,14 @@ static int pm8916_pon_probe(struct platform_device *pdev)
- 	struct pm8916_pon *pon;
- 	int error;
- 
-+	if (device_property_present(&pdev->dev, "qcom,pon-reboot-not-used")) {
-+		/*
-+		 * Skip reboot-mode setup and registration if PON is not used
-+		 * for passing reboot mode at all.
-+		 */
-+		goto done;
-+	}
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
+new file mode 100644
+index 000000000000..7b50fb34294a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-clock.yaml
+@@ -0,0 +1,207 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt8192-clock.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
- 	pon = devm_kzalloc(&pdev->dev, sizeof(*pon), GFP_KERNEL);
- 	if (!pon)
- 		return -ENOMEM;
-@@ -75,6 +83,7 @@ static int pm8916_pon_probe(struct platform_device *pdev)
- 
- 	platform_set_drvdata(pdev, pon);
- 
-+done:
- 	return devm_of_platform_populate(&pdev->dev);
- }
- 
++title: MediaTek Functional Clock Controller for MT8192
++
++maintainers:
++  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
++
++description:
++  The Mediatek functional clock controller provides various clocks on MT8192.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - mediatek,mt8192-scp_adsp
++          - mediatek,mt8192-imp_iic_wrap_c
++          - mediatek,mt8192-audsys
++          - mediatek,mt8192-imp_iic_wrap_e
++          - mediatek,mt8192-imp_iic_wrap_s
++          - mediatek,mt8192-imp_iic_wrap_ws
++          - mediatek,mt8192-imp_iic_wrap_w
++          - mediatek,mt8192-imp_iic_wrap_n
++          - mediatek,mt8192-msdc_top
++          - mediatek,mt8192-msdc
++          - mediatek,mt8192-mfgcfg
++          - mediatek,mt8192-imgsys
++          - mediatek,mt8192-imgsys2
++          - mediatek,mt8192-vdecsys_soc
++          - mediatek,mt8192-vdecsys
++          - mediatek,mt8192-vencsys
++          - mediatek,mt8192-camsys
++          - mediatek,mt8192-camsys_rawa
++          - mediatek,mt8192-camsys_rawb
++          - mediatek,mt8192-camsys_rawc
++          - mediatek,mt8192-ipesys
++          - mediatek,mt8192-mdpsys
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    scp_adsp: clock-controller@10720000 {
++        compatible = "mediatek,mt8192-scp_adsp";
++        reg = <0x10720000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    imp_iic_wrap_c: clock-controller@11007000 {
++        compatible = "mediatek,mt8192-imp_iic_wrap_c";
++        reg = <0x11007000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    audsys: clock-controller@11210000 {
++        compatible = "mediatek,mt8192-audsys";
++        reg = <0x11210000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    imp_iic_wrap_e: clock-controller@11cb1000 {
++        compatible = "mediatek,mt8192-imp_iic_wrap_e";
++        reg = <0x11cb1000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    imp_iic_wrap_s: clock-controller@11d03000 {
++        compatible = "mediatek,mt8192-imp_iic_wrap_s";
++        reg = <0x11d03000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    imp_iic_wrap_ws: clock-controller@11d23000 {
++        compatible = "mediatek,mt8192-imp_iic_wrap_ws";
++        reg = <0x11d23000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    imp_iic_wrap_w: clock-controller@11e01000 {
++        compatible = "mediatek,mt8192-imp_iic_wrap_w";
++        reg = <0x11e01000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    imp_iic_wrap_n: clock-controller@11f02000 {
++        compatible = "mediatek,mt8192-imp_iic_wrap_n";
++        reg = <0x11f02000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    msdc_top: clock-controller@11f10000 {
++        compatible = "mediatek,mt8192-msdc_top";
++        reg = <0x11f10000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    msdc: clock-controller@11f60000 {
++        compatible = "mediatek,mt8192-msdc";
++        reg = <0x11f60000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    mfgcfg: clock-controller@13fbf000 {
++        compatible = "mediatek,mt8192-mfgcfg";
++        reg = <0x13fbf000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    imgsys: clock-controller@15020000 {
++        compatible = "mediatek,mt8192-imgsys";
++        reg = <0x15020000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    imgsys2: clock-controller@15820000 {
++        compatible = "mediatek,mt8192-imgsys2";
++        reg = <0x15820000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    vdecsys_soc: clock-controller@1600f000 {
++        compatible = "mediatek,mt8192-vdecsys_soc";
++        reg = <0x1600f000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    vdecsys: clock-controller@1602f000 {
++        compatible = "mediatek,mt8192-vdecsys";
++        reg = <0x1602f000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    vencsys: clock-controller@17000000 {
++        compatible = "mediatek,mt8192-vencsys";
++        reg = <0x17000000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    camsys: clock-controller@1a000000 {
++        compatible = "mediatek,mt8192-camsys";
++        reg = <0x1a000000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    camsys_rawa: clock-controller@1a04f000 {
++        compatible = "mediatek,mt8192-camsys_rawa";
++        reg = <0x1a04f000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    camsys_rawb: clock-controller@1a06f000 {
++        compatible = "mediatek,mt8192-camsys_rawb";
++        reg = <0x1a06f000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    camsys_rawc: clock-controller@1a08f000 {
++        compatible = "mediatek,mt8192-camsys_rawc";
++        reg = <0x1a08f000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    ipesys: clock-controller@1b000000 {
++        compatible = "mediatek,mt8192-ipesys";
++        reg = <0x1b000000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    mdpsys: clock-controller@1f000000 {
++        compatible = "mediatek,mt8192-mdpsys";
++        reg = <0x1f000000 0x1000>;
++        #clock-cells = <1>;
++    };
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-sys-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-sys-clock.yaml
+new file mode 100644
+index 000000000000..5705bcf1fe47
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8192-sys-clock.yaml
+@@ -0,0 +1,65 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt8192-sys-clock.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: MediaTek System Clock Controller for MT8192
++
++maintainers:
++  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
++
++description:
++  The Mediatek system clock controller provides various clocks and system configuration
++  like reset and bus protection on MT8192.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - mediatek,mt8192-topckgen
++          - mediatek,mt8192-infracfg
++          - mediatek,mt8192-pericfg
++          - mediatek,mt8192-apmixedsys
++      - const: syscon
++
++  reg:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    topckgen: syscon@10000000 {
++        compatible = "mediatek,mt8192-topckgen", "syscon";
++        reg = <0x10000000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    infracfg: syscon@10001000 {
++        compatible = "mediatek,mt8192-infracfg", "syscon";
++        reg = <0x10001000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    pericfg: syscon@10003000 {
++        compatible = "mediatek,mt8192-pericfg", "syscon";
++        reg = <0x10003000 0x1000>;
++        #clock-cells = <1>;
++    };
++
++  - |
++    apmixedsys: syscon@1000c000 {
++        compatible = "mediatek,mt8192-apmixedsys", "syscon";
++        reg = <0x1000c000 0x1000>;
++        #clock-cells = <1>;
++    };
 -- 
-2.17.1
+2.18.0
 
