@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF5D53BB54F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 04:50:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E183BB552
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 04:51:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229770AbhGECxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jul 2021 22:53:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37736 "EHLO
+        id S229788AbhGECxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jul 2021 22:53:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229743AbhGECxd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 22:53:33 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80B46C061574
-        for <devicetree@vger.kernel.org>; Sun,  4 Jul 2021 19:50:57 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id cs1-20020a17090af501b0290170856e1a8aso13935459pjb.3
-        for <devicetree@vger.kernel.org>; Sun, 04 Jul 2021 19:50:57 -0700 (PDT)
+        with ESMTP id S229781AbhGECxg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 22:53:36 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F80BC061765
+        for <devicetree@vger.kernel.org>; Sun,  4 Jul 2021 19:51:00 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id o4so6409673plg.1
+        for <devicetree@vger.kernel.org>; Sun, 04 Jul 2021 19:51:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=77N/67rSOupK1Chm3/4oKVH0HtWBRmi/Fw54y3WWFfQ=;
-        b=S6Zwf1e/LnhulYerNCjOfNqfeDM2VNDoZdMluwc3wcHJSiqhctzalDIDSatEGVnmOB
-         VQkDMHBpuhJEsiy2S27bV/QZly6xp8pB747+9EbgURxw2OCg248OBM4ZmZIYdlbTyqI2
-         NcCI/WwKylPxOgQaMxi4dmS4tZlIxQUOIzCqeIzbxR/JUzuw7v2l0y52xwnRcFzi0Sjt
-         KmOZVzz9Vl1L2EizywSdr42sg+iGV5zyo1yI712mGkDA/ivTAlkeyKRGX9ZUnra0vByF
-         cWSnCKx9r6sb80MUZfwir9AVb2w3mBmQmwcf0Xrzg788T8txOttYtmh7AJ21irw2iMpv
-         SZng==
+        bh=0w/ce/936AZE4PtNhcMd+7r7gKVsqIHrI5nqRlAtLJk=;
+        b=HS4DyokZjNGvEUjCkb3k7+6tLiLu+9QZbUual5EICb3H0E611KtRHmRo8JYvg0TfNO
+         Y8kF+Uoy50inNABUw+jcEhAO2vk5lzCbo5cwGzVXbvm3kMflpVoG1R2EBxe29QkX2lNS
+         YA5SPYNUXVAK0gL19ki+6EURzdH4Gwt+3OPNGWvCxN/uMitaMWwHt3W86ORvMXf0Uw92
+         kzsXMRAJRoO4yOxPxTmYD4zVhadsDfn5ol2kq4nI2PzTtJegJ3+Fo8fBV0vKovxl7lg2
+         9KTqQxARG5Zlj0G+6r8qvayrlxpY02gA2pWg//f1Yxi1tNVvs76AalKd1Y2CtibjLqL+
+         93cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=77N/67rSOupK1Chm3/4oKVH0HtWBRmi/Fw54y3WWFfQ=;
-        b=UkLYs7ZjAVmPELe1mrl4gqTBHxMrDhe5N97qpROaG6Esr4rzPQPJ0uV5Oq1uKxwVwy
-         zsiWYfFNPs21H50MS+RYf2dqXcxHzywVhDVuSbZ0ROM0Bxh1Fjlhw+jb7wrWEPkz5h6j
-         MaP4pEP0DbhF5E/Zbipk/LbUp0AexH0MpcL0+jJaFx47gv4yYapStNMQ3w5PR0hPcKOO
-         dK9GUcla639gL7P9OUJzRC8RWcJVkRyYqHsuA9cvMfyjWUMysMrizngZtPOU1Tm+6v7M
-         n1wWSum/jboUDVXQGS5J0el7Aw+MotpFwz9bm5XH/+xZSzLq7p3w22ASi4+Ekkeh2SlR
-         2XAA==
-X-Gm-Message-State: AOAM5307VXst3pHYwVsx83k1YAmBc2Rz41UaN7kFDOBzzYZf0ckrQvuA
-        vbc+3xh2VsBMy/ITVTlZA1ZUcw==
-X-Google-Smtp-Source: ABdhPJzY3f2gHVvXij7AuGGJdzr5F1gId59J7RbuJOiaJF1b0tz0kXpXacL91zrmEuq87bpq31xp6Q==
-X-Received: by 2002:a17:90b:1085:: with SMTP id gj5mr12758117pjb.166.1625453457107;
-        Sun, 04 Jul 2021 19:50:57 -0700 (PDT)
+        bh=0w/ce/936AZE4PtNhcMd+7r7gKVsqIHrI5nqRlAtLJk=;
+        b=FOWSM8rrOACjb2QwLrKdYnY/wQrnVqhZJN/awmTWNIg0TgjyVU+pcJzZPKgqBtEfwb
+         HwfuKVWpUeW3XjKe9RZXYdLe/EL3HqGWG9MIsVIWNauNbpNMcIV/Wh4cJELPlCR2Zrul
+         U9WQAA1eY43ceC0LtgpEgGGdxZZnz9m+XJcJbkJKdZiVTmONDUQEb74b3RyHUiLFDBjg
+         ijgXeF5U/mvPcbzBvKrVyv0zYshdt2ryj0auyORaJg66Bj5f1lXPkWZzlpO3EBaa1IDE
+         M50sEneoYFpyc4zMVjmHBSBrjot48xPmGxef2RkwPn5ibvHZI5f/wgvtCQnAh6E1hotP
+         wTfg==
+X-Gm-Message-State: AOAM530DxIo3zgIJS/MIgDfWpmf4JF0MxZMOTcDtAo+0FEmnI5qDzE7W
+        LU2YQ7CURwdX5WaOeKfNYlT2CQ==
+X-Google-Smtp-Source: ABdhPJxH+9i4yo7wFWjD0w0TRpb1iYk8WxY/FIwfzUZgWVgaPg6VBySJA65RG9M5Ibx19O7PxyP1uw==
+X-Received: by 2002:a17:902:b203:b029:127:16e0:286a with SMTP id t3-20020a170902b203b029012716e0286amr10451169plr.0.1625453460017;
+        Sun, 04 Jul 2021 19:51:00 -0700 (PDT)
 Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id i13sm11891041pgm.26.2021.07.04.19.50.54
+        by smtp.gmail.com with ESMTPSA id i13sm11891041pgm.26.2021.07.04.19.50.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Jul 2021 19:50:56 -0700 (PDT)
+        Sun, 04 Jul 2021 19:50:59 -0700 (PDT)
 From:   Shawn Guo <shawn.guo@linaro.org>
 To:     Sebastian Reichel <sre@kernel.org>
 Cc:     Stephan Gerhold <stephan@gerhold.net>,
@@ -54,9 +54,9 @@ Cc:     Stephan Gerhold <stephan@gerhold.net>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-pm@vger.kernel.org, Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH 2/3] dt-bindings: qcom,pon: Add 'qcom,pon-reboot-not-used' property
-Date:   Mon,  5 Jul 2021 10:50:31 +0800
-Message-Id: <20210705025032.12804-3-shawn.guo@linaro.org>
+Subject: [PATCH 3/3] power: reset: qcom-pon: Add support for 'qcom,pon-reboot-not-used'
+Date:   Mon,  5 Jul 2021 10:50:32 +0800
+Message-Id: <20210705025032.12804-4-shawn.guo@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210705025032.12804-1-shawn.guo@linaro.org>
 References: <20210705025032.12804-1-shawn.guo@linaro.org>
@@ -64,30 +64,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add an optional 'qcom,pon-reboot-not-used' property for devices, which
-do not use PON register to pass reboot mode but other mechanism, e.g.
-particular IMEM address.
+Check property 'qcom,pon-reboot-not-used' and skip reboot-mode setup
+if the property is present.  This is useful for devices that use IMEM
+instead of PON register to pass reboot mode, but still want to populate
+pwrkey and resin devices.
 
 Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
 ---
- Documentation/devicetree/bindings/power/reset/qcom,pon.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/power/reset/qcom-pon.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-index 7764c804af1d..584eff179904 100644
---- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-+++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
-@@ -23,6 +23,10 @@ properties:
-   reg:
-     maxItems: 1
+diff --git a/drivers/power/reset/qcom-pon.c b/drivers/power/reset/qcom-pon.c
+index 4a688741a88a..85fae9e85878 100644
+--- a/drivers/power/reset/qcom-pon.c
++++ b/drivers/power/reset/qcom-pon.c
+@@ -47,6 +47,14 @@ static int pm8916_pon_probe(struct platform_device *pdev)
+ 	struct pm8916_pon *pon;
+ 	int error;
  
-+  qcom,pon-reboot-not-used:
-+    description: Support of reboot mode passing through PON register is not used
-+    type: boolean
++	if (device_property_present(&pdev->dev, "qcom,pon-reboot-not-used")) {
++		/*
++		 * Skip reboot-mode setup and registration if PON is not used
++		 * for passing reboot mode at all.
++		 */
++		goto done;
++	}
 +
- patternProperties:
-   "^mode-.+":
-     $ref: /schemas/types.yaml#/definitions/uint32
+ 	pon = devm_kzalloc(&pdev->dev, sizeof(*pon), GFP_KERNEL);
+ 	if (!pon)
+ 		return -ENOMEM;
+@@ -75,6 +83,7 @@ static int pm8916_pon_probe(struct platform_device *pdev)
+ 
+ 	platform_set_drvdata(pdev, pon);
+ 
++done:
+ 	return devm_of_platform_populate(&pdev->dev);
+ }
+ 
 -- 
 2.17.1
 
