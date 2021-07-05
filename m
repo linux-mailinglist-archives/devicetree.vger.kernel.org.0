@@ -2,109 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC543BB814
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 09:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DDB13BB8A0
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 10:09:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229817AbhGEHrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 03:47:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46046 "EHLO
+        id S230073AbhGEIMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 04:12:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbhGEHrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 03:47:16 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 143F4C061574
-        for <devicetree@vger.kernel.org>; Mon,  5 Jul 2021 00:44:40 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m0JGy-0006Vy-Ah; Mon, 05 Jul 2021 09:44:08 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m0JGv-0007oU-K0; Mon, 05 Jul 2021 09:44:05 +0200
-Date:   Mon, 5 Jul 2021 09:44:05 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     cl@rock-chips.com, thierry.reding@gmail.com, robh+dt@kernel.org,
-        heiko@sntech.de, jagan@amarulasolutions.com, wens@csie.org,
-        uwe@kleine-koenig.org, mail@david-bauer.net, jbx6244@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        jensenhuang@friendlyarm.com, michael@amarulasolutions.com,
-        cnsztl@gmail.com, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-serial@vger.kernel.org,
-        linux-i2c@vger.kernel.org, jay.xu@rock-chips.com,
-        shawn.lin@rock-chips.com, david.wu@rock-chips.com,
-        zhangqing@rock-chips.com, huangtao@rock-chips.com,
-        wim@linux-watchdog.org, linux@roeck-us.net, jamie@jamieiles.com,
-        linux-watchdog@vger.kernel.org, maz@kernel.org,
-        linux-pwm@vger.kernel.org
-Subject: Re: [RESEND PATCH v5 1/4] dt-bindings: pwm: rockchip: add
- description for rk3568
-Message-ID: <20210705074405.uj62h4evd6htftf3@pengutronix.de>
-References: <20210622020517.13100-1-cl@rock-chips.com>
- <20210623021303.28015-1-cl@rock-chips.com>
- <20210705064914.o2neaiwqndjfdyqd@pengutronix.de>
- <YOK1+pMy+N64eR75@dell>
+        with ESMTP id S230032AbhGEIMG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 04:12:06 -0400
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86686C061762
+        for <devicetree@vger.kernel.org>; Mon,  5 Jul 2021 01:09:30 -0700 (PDT)
+Received: by mail-io1-xd2e.google.com with SMTP id u7so17800598ion.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Jul 2021 01:09:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6ZBH9ykzeoMrqSlrgZpvseA7xgJC3UHZbKlTJSyxYYE=;
+        b=vMJVUcrQnNHyGr1e2E/BBoCJ6Ml9vmYjG8w3y4ezQrmHEogj/M4Ky5n/R11b3OUHP+
+         GA0To8jdS+EcmI5/P9/WIwMSOKXzdcpQ56ciPZXsLuzhCebjrvgAjKMVj0ZSx/Rh9bv+
+         oXlnbv/La5iOfvDexZJU47ZVPg07ff2LAUCfOgs6Y1t84ZdmUZwHHXcFdMnDGr08ohIi
+         jAg4g2iJ6DEwZqa8bdRZInOXHa9ciiu9rr19zEl8/2xix+m5y77dPZvww9IhHTwvkUIg
+         fume5Bf4qhsquNTGV8+6wI8MJW55gP3FMqs1E+rG3ZTrB4s3NzG7t1aErBKD70HBEFdZ
+         dY8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6ZBH9ykzeoMrqSlrgZpvseA7xgJC3UHZbKlTJSyxYYE=;
+        b=tRQF5fbUGuOsCGhU125B63PZRa8PaYLCLcx0KrFTWQsPV6qo+YD4paSBJicptX+3/V
+         hEL1661kw91t2yg1Dy3+RcR1jlAYc+zJVg5x/EVT45ZX1jMAOn5fSI29/ELnH8I8Tr4H
+         ODvSCbr4HFhuEI5y2GJMdjPi8XzZuj9IdCmA6KH2dItHymitQKMsPycklKrtNU6f96hD
+         i3DfeZDgmzsuwC+73Oo94qH1V26idTcO5bXd7FA9lHOro9/8NX6DUHEkcPdQ0zYXQ7jc
+         jtAcEz5VkFE/YFjLj6hnt0rlJ9dyKFTMFv9ilLjGWwWfynN7Tx9UAAI7/juKQYP1BMoG
+         FYuQ==
+X-Gm-Message-State: AOAM533PXEHZS+1nR4bbrTy4a270v9jPd8xmisc9X/PtBzAtqtV8RJRA
+        eq5WdV4YzsOyVMWNmydJhWTv+6vV7gP3gR5oSm0NDQ==
+X-Google-Smtp-Source: ABdhPJwhLvFCwfzhhvvHGLbA3HvWk2qBShYvoOt9KTiT7lVNLd4KXAYWkrfEYA95oI9qjWhL1m8bENMubRJRcwBEMEc=
+X-Received: by 2002:a5e:a612:: with SMTP id q18mr10954029ioi.76.1625472569703;
+ Mon, 05 Jul 2021 01:09:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="e56be3gekkps4fdv"
-Content-Disposition: inline
-In-Reply-To: <YOK1+pMy+N64eR75@dell>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <1624428350-1424-1-git-send-email-kyrie.wu@mediatek.com>
+ <1624428350-1424-2-git-send-email-kyrie.wu@mediatek.com> <CA+Px+wW6PrYihYo8F2Op8XPfVHMmO7ODRQrF75DQxc4gRM-qfg@mail.gmail.com>
+ <1625039759.22769.3.camel@mhfsdcap03>
+In-Reply-To: <1625039759.22769.3.camel@mhfsdcap03>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Mon, 5 Jul 2021 16:09:18 +0800
+Message-ID: <CA+Px+wUXK2t42S0HgcOj7_kbkSskHGris5LBquTS3d+hi8kCaQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mtk-jpeg: Add binding for MT8195 JPG
+To:     "kyrie.wu" <kyrie.wu@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rick Chang <rick.chang@mediatek.com>,
+        Bin Liu <bin.liu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 30, 2021 at 3:56 PM kyrie.wu <kyrie.wu@mediatek.com> wrote:
+> Mt8195 has two hardwares, "mediatek,mt8195-jpgenc0" for hw0 and
+> "mediatek,mt8195-jpgenc1" for HW1. These two nodes will register
+> hardware interrupt, initialize clock, power domain, remap register base
+> addr and other operations. But the device node is not registered.
+> "mediatek,mt8195-jpgenc" will register the device node to represent jpeg
+> encode device. Then the component framework is used to manage the above
+> two hardwares.
+Please don't top-posting.  Inline your replies so that people can
+easily follow the discussion.
 
---e56be3gekkps4fdv
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I still don't quite understand why it needs to introduce 2 compatible
+strings.  If hw0 and hw1 are different from interrupts, clocks, power
+domain, and etc, couldn't you use the same compatible string (e.g.
+"mt8195-jpgenc") and provide them different DT attributes?
 
-Hello Lee,
-
-On Mon, Jul 05, 2021 at 08:34:18AM +0100, Lee Jones wrote:
-> On Mon, 05 Jul 2021, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Jun 23, 2021 at 10:13:03AM +0800, cl@rock-chips.com wrote:
-> > > From: Liang Chen <cl@rock-chips.com>
-> > >=20
-> > > add "rockchip,rk3568-pwm", "rockchip,rk3328-pwm" for pwm nodes on
-> > > a rk3568 platform to pwm-rockchip.yaml.
-> >=20
-> > [...]
-> >=20
-> > Who is supposed to apply this patch? Does this need blessing by Rob?
->=20
-> There is no standard. [...]
-
-I'm aware of that. That's why I asked to prevent that everybody thinks
-some other maintainer will care for it.
-
-Thanks
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---e56be3gekkps4fdv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDiuEIACgkQwfwUeK3K
-7AkNrQf9FZHop8yLEFhUvrK0kVFAxxxvzzeTxbeluI3vqxKf7NEpfSi9f/GWjAn+
-oWZMKeL5yq8VOLUpyRVPhG0qMniFktzjagpfSajAYWhAZOhlQA8QGshrDoJ0wzkk
-62P3GDHORCli54O+jMDmrQHpv5ZuoOflAnQlJJdrIw3K26fLDw/jtp4wY8Q9S0Mg
-7A+8SsowcLPLcm/Z/LU4SrH7qAE27vUizpDwKDCWSf38dm5/yMIJZKXWJE8SxylA
-VyUTM7rASnKb8FbPFCpXd4dLrJKZftRnXZY1ObxaZjlSxI3KsiGAJqgWZYlBKg03
-kMCxLi0Hr3xVdIHSffZ6uSRGT7vCLg==
-=6Q0n
------END PGP SIGNATURE-----
-
---e56be3gekkps4fdv--
+> On Fri, 2021-06-25 at 17:18 +0800, Tzung-Bi Shih wrote:
+> > On Wed, Jun 23, 2021 at 2:06 PM kyrie.wu <kyrie.wu@mediatek.com> wrote:
+> > >  Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > Note: the patch won't apply after [1].
+> >
+> > [1]: https://lore.kernel.org/patchwork/patch/1445298/
+> >
+> > >  Required properties:
+> > >  - compatible : "mediatek,mt2701-jpgenc"
+> > > +- compatible : "mediatek,mt8195-jpgenc"
+> > > +- compatible : "mediatek,mt8195-jpgenc0"
+> > > +- compatible : "mediatek,mt8195-jpgenc1"
+> > Why it needs 3 compatible strings?
