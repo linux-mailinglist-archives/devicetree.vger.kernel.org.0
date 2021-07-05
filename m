@@ -2,490 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E1C03BB7B3
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 09:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65AA93BB7D9
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 09:30:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229817AbhGEHXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 03:23:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40654 "EHLO
+        id S230027AbhGEHch (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 03:32:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229907AbhGEHXo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 03:23:44 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3290C061760
-        for <devicetree@vger.kernel.org>; Mon,  5 Jul 2021 00:21:07 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m0IuX-0003wC-UY; Mon, 05 Jul 2021 09:20:57 +0200
-Received: from ukl by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1m0IuV-0006YR-Ia; Mon, 05 Jul 2021 09:20:55 +0200
-Date:   Mon, 5 Jul 2021 09:20:55 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 1/3] pwm: driver for qualcomm ipq6018 pwm block
-Message-ID: <20210705072055.5mvux5h6zdewzabz@pengutronix.de>
-References: <305eacc9c57c2404795b6be76a08915808e23108.1624771446.git.baruch@tkos.co.il>
+        with ESMTP id S230023AbhGEHcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 03:32:35 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54E7BC061574
+        for <devicetree@vger.kernel.org>; Mon,  5 Jul 2021 00:29:59 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id 62so9397333pgf.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jul 2021 00:29:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Z8aOTxpCpkipy5n3d0JHyfRjSSgUP3aCWoPMsdbSOV4=;
+        b=MJjJv9vXGkq68MzcWqJ8Lqqow7NxZ75tHGPZbYF1jhN9Bhg/MWiZ0zY75eGHeJNh5Z
+         PszBTQni1VZca3yQMBDVtTmKafxxH3GNCEriEJqlKouIDe5e4/R1nL0etnQNDybC+N/V
+         LRgX2z3bSUPhZ4K1Wms/UIusjY+z2apf3AHmo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Z8aOTxpCpkipy5n3d0JHyfRjSSgUP3aCWoPMsdbSOV4=;
+        b=HmB0Aga5LkBNxDqdDAY57lS4R+rgecnGpNE1Qxu6R6bOp6FPzPlkIvJmS3wH5xoQxf
+         1DcXd5uxDpxVJSn/l1JLULfh1G+mx9m/kYTM7yuPD3QTsb3ba7Ox/UkLlv3YEkLXexFQ
+         G7eyIZwawyhdlR35FrzeI2MgQAi6yGXPiT2VV1kZIeIueSyaPVthFeehLWAezLETtJwS
+         PVF1ooZ+eemqEMZHnga1RBHyXUdJ7i8PBFNJiSWWYJP3aPJBITLn9aP/d592AWuEDdr2
+         6J8r6bzJwQyWMPpeLCdxlzIOQTt7ZCAh2sF2R5+atPNw2uUVOKzahs3v8bcmgF5KC38r
+         b9tw==
+X-Gm-Message-State: AOAM532vu2ibnwRrNY1+8e4WVum1mU4ql1Z9f+Cha5KhoLx3xRhU+wVD
+        iWPwq7jN+ft9U4PBfkGRWH9SmLOGbrdafg==
+X-Google-Smtp-Source: ABdhPJxLPYBXvjtYaFxFh8ebjuNgD7rZIFaoFjJBVcZNsYVAEFycGfx5diUUaUO2cyRqKQG6PYwjNw==
+X-Received: by 2002:a62:3344:0:b029:28c:6f0f:cb90 with SMTP id z65-20020a6233440000b029028c6f0fcb90mr13586166pfz.58.1625470198596;
+        Mon, 05 Jul 2021 00:29:58 -0700 (PDT)
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com. [209.85.215.173])
+        by smtp.gmail.com with ESMTPSA id c24sm11737477pfn.86.2021.07.05.00.29.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jul 2021 00:29:57 -0700 (PDT)
+Received: by mail-pg1-f173.google.com with SMTP id g22so17490837pgl.7
+        for <devicetree@vger.kernel.org>; Mon, 05 Jul 2021 00:29:56 -0700 (PDT)
+X-Received: by 2002:a92:d10:: with SMTP id 16mr9764177iln.189.1625470185557;
+ Mon, 05 Jul 2021 00:29:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3r25sk2paghtmnoo"
-Content-Disposition: inline
-In-Reply-To: <305eacc9c57c2404795b6be76a08915808e23108.1624771446.git.baruch@tkos.co.il>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210624155526.2775863-1-tientzu@chromium.org>
+ <20210624155526.2775863-7-tientzu@chromium.org> <YNvMDFWKXSm4LRfZ@Ryzen-9-3900X.localdomain>
+ <CALiNf2-a-haQN0-4+gX8+wa++52-0CnO2O4BEkxrQCxoTa_47w@mail.gmail.com>
+ <20210630114348.GA8383@willie-the-truck> <YNyUQwiagNeZ9YeJ@Ryzen-9-3900X.localdomain>
+ <20210701074045.GA9436@willie-the-truck> <ea28db1f-846e-4f0a-4f13-beb67e66bbca@kernel.org>
+ <20210702135856.GB11132@willie-the-truck> <0f7bd903-e309-94a0-21d7-f0e8e9546018@arm.com>
+ <YN/7xcxt/XGAKceZ@Ryzen-9-3900X.localdomain>
+In-Reply-To: <YN/7xcxt/XGAKceZ@Ryzen-9-3900X.localdomain>
+From:   Claire Chang <tientzu@chromium.org>
+Date:   Mon, 5 Jul 2021 15:29:34 +0800
+X-Gmail-Original-Message-ID: <CALiNf2_ZJq4MoxOGe_m_KFv5xYw8t9SdscTFUwSoLBy5rEuxwQ@mail.gmail.com>
+Message-ID: <CALiNf2_ZJq4MoxOGe_m_KFv5xYw8t9SdscTFUwSoLBy5rEuxwQ@mail.gmail.com>
+Subject: Re: [PATCH v15 06/12] swiotlb: Use is_swiotlb_force_bounce for
+ swiotlb data bouncing
+To:     Nathan Chancellor <nathan@kernel.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>, Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, mpe@ellerman.id.au,
+        Joerg Roedel <joro@8bytes.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        boris.ostrovsky@oracle.com, jgross@suse.com,
+        Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        benh@kernel.crashing.org, paulus@samba.org,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        grant.likely@arm.com, xypron.glpk@gmx.de,
+        Thierry Reding <treding@nvidia.com>, mingo@kernel.org,
+        bauerman@linux.ibm.com, peterz@infradead.org,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        heikki.krogerus@linux.intel.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linuxppc-dev@lists.ozlabs.org, xen-devel@lists.xenproject.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Tomasz Figa <tfiga@chromium.org>, bskeggs@redhat.com,
+        Bjorn Helgaas <bhelgaas@google.com>, chris@chris-wilson.co.uk,
+        Daniel Vetter <daniel@ffwll.ch>, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+        jani.nikula@linux.intel.com, Jianxiong Gao <jxgao@google.com>,
+        joonas.lahtinen@linux.intel.com, linux-pci@vger.kernel.org,
+        maarten.lankhorst@linux.intel.com, matthew.auld@intel.com,
+        rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+        Tom Lendacky <thomas.lendacky@amd.com>,
+        Qian Cai <quic_qiancai@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Jul 3, 2021 at 1:55 PM Nathan Chancellor <nathan@kernel.org> wrote:
+>
+> Hi Will and Robin,
+>
+> On Fri, Jul 02, 2021 at 04:13:50PM +0100, Robin Murphy wrote:
+> > On 2021-07-02 14:58, Will Deacon wrote:
+> > > Hi Nathan,
+> > >
+> > > On Thu, Jul 01, 2021 at 12:52:20AM -0700, Nathan Chancellor wrote:
+> > > > On 7/1/2021 12:40 AM, Will Deacon wrote:
+> > > > > On Wed, Jun 30, 2021 at 08:56:51AM -0700, Nathan Chancellor wrote:
+> > > > > > On Wed, Jun 30, 2021 at 12:43:48PM +0100, Will Deacon wrote:
+> > > > > > > On Wed, Jun 30, 2021 at 05:17:27PM +0800, Claire Chang wrote:
+> > > > > > > > `BUG: unable to handle page fault for address: 00000000003a8290` and
+> > > > > > > > the fact it crashed at `_raw_spin_lock_irqsave` look like the memory
+> > > > > > > > (maybe dev->dma_io_tlb_mem) was corrupted?
+> > > > > > > > The dev->dma_io_tlb_mem should be set here
+> > > > > > > > (https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/pci/probe.c#n2528)
+> > > > > > > > through device_initialize.
+> > > > > > >
+> > > > > > > I'm less sure about this. 'dma_io_tlb_mem' should be pointing at
+> > > > > > > 'io_tlb_default_mem', which is a page-aligned allocation from memblock.
+> > > > > > > The spinlock is at offset 0x24 in that structure, and looking at the
+> > > > > > > register dump from the crash:
+> > > > > > >
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel: RSP: 0018:ffffadb4013db9e8 EFLAGS: 00010006
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel: RAX: 00000000003a8290 RBX: 0000000000000000 RCX: ffff8900572ad580
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel: RDX: ffff89005653f024 RSI: 00000000000c0000 RDI: 0000000000001d17
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel: RBP: 000000000a20d000 R08: 00000000000c0000 R09: 0000000000000000
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel: R10: 000000000a20d000 R11: ffff89005653f000 R12: 0000000000000212
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel: R13: 0000000000001000 R14: 0000000000000002 R15: 0000000000200000
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel: FS:  00007f1f8898ea40(0000) GS:ffff890057280000(0000) knlGS:0000000000000000
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel: CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel: CR2: 00000000003a8290 CR3: 00000001020d0000 CR4: 0000000000350ee0
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel: Call Trace:
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel:  _raw_spin_lock_irqsave+0x39/0x50
+> > > > > > > Jun 29 18:28:42 hp-4300G kernel:  swiotlb_tbl_map_single+0x12b/0x4c0
+> > > > > > >
+> > > > > > > Then that correlates with R11 holding the 'dma_io_tlb_mem' pointer and
+> > > > > > > RDX pointing at the spinlock. Yet RAX is holding junk :/
+> > > > > > >
+> > > > > > > I agree that enabling KASAN would be a good idea, but I also think we
+> > > > > > > probably need to get some more information out of swiotlb_tbl_map_single()
+> > > > > > > to see see what exactly is going wrong in there.
+> > > > > >
+> > > > > > I can certainly enable KASAN and if there is any debug print I can add
+> > > > > > or dump anything, let me know!
+> > > > >
+> > > > > I bit the bullet and took v5.13 with swiotlb/for-linus-5.14 merged in, built
+> > > > > x86 defconfig and ran it on my laptop. However, it seems to work fine!
+> > > > >
+> > > > > Please can you share your .config?
+> > > >
+> > > > Sure thing, it is attached. It is just Arch Linux's config run through
+> > > > olddefconfig. The original is below in case you need to diff it.
+> > > >
+> > > > https://raw.githubusercontent.com/archlinux/svntogit-packages/9045405dc835527164f3034b3ceb9a67c7a53cd4/trunk/config
+> > > >
+> > > > If there is anything more that I can provide, please let me know.
+> > >
+> > > I eventually got this booting (for some reason it was causing LD to SEGV
+> > > trying to link it for a while...) and sadly it works fine on my laptop. Hmm.
+>
+> Seems like it might be something specific to the amdgpu module?
+>
+> > > Did you manage to try again with KASAN?
+>
+> Yes, it took a few times to reproduce the issue but I did manage to get
+> a dmesg, please find it attached. I build from commit 7d31f1c65cc9 ("swiotlb:
+> fix implicit debugfs declarations") in Konrad's tree.
 
---3r25sk2paghtmnoo
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Looking at the logs, the use-after-free bug looked somehow relevant
+(and it's nvme again. Qian's crash is about nvme too):
 
-Hello Baruch,
+[    2.468288] BUG: KASAN: use-after-free in __iommu_dma_unmap_swiotlb+0x64/0xb0
+[    2.468288] Read of size 8 at addr ffff8881d7830000 by task swapper/0/0
 
-On Sun, Jun 27, 2021 at 08:24:04AM +0300, Baruch Siach wrote:
-> Driver for the PWM block in Qualcomm IPQ6018 line of SoCs. Based on
-> driver from downstream Codeaurora kernel tree. Removed support for older
-> (V1) variants because I have no access to that hardware.
->=20
-> Tested on IPQ6010 based hardware.
->=20
-> Signed-off-by: Baruch Siach <baruch@tkos.co.il>
-> ---
-> v4:
->=20
->   Use div64_u64() to fix link for 32-bit targets ((kernel test robot
->   <lkp@intel.com>, Uwe Kleine-K=F6nig)
->=20
-> v3:
->=20
->   s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
->=20
->   Fix integer overflow on 32-bit targets (kernel test robot <lkp@intel.co=
-m>)
->=20
-> v2:
->=20
-> Address Uwe Kleine-K=F6nig review comments:
->=20
->   Fix period calculation when out of range
->=20
->   Don't set period larger than requested
->=20
->   Remove PWM disable on configuration change
->=20
->   Implement .apply instead of non-atomic .config/.enable/.disable
->=20
->   Don't modify PWM on .request/.free
->=20
->   Check pwm_div underflow
->=20
->   Fix various code and comment formatting issues
->=20
-> Other changes:
->=20
->   Use u64 divisor safe division
->=20
->   Remove now empty .request/.free
-> ---
->  drivers/pwm/Kconfig   |  12 +++
->  drivers/pwm/Makefile  |   1 +
->  drivers/pwm/pwm-ipq.c | 238 ++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 251 insertions(+)
->  create mode 100644 drivers/pwm/pwm-ipq.c
->=20
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index c76adedd58c9..08add845596f 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -260,6 +260,18 @@ config PWM_INTEL_LGM
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-intel-lgm.
-> =20
-> +config PWM_IPQ
-> +	tristate "IPQ PWM support"
-> +	depends on ARCH_QCOM || COMPILE_TEST
-> +	depends on HAVE_CLK && HAS_IOMEM
-> +	help
-> +	  Generic PWM framework driver for IPQ PWM block which supports
-> +	  4 pwm channels. Each of the these channels can be configured
-> +	  independent of each other.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-ipq.
-> +
->  config PWM_IQS620A
->  	tristate "Azoteq IQS620A PWM support"
->  	depends on MFD_IQS62X || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index 708840b7fba8..7402feae4b36 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -22,6 +22,7 @@ obj-$(CONFIG_PWM_IMX1)		+=3D pwm-imx1.o
->  obj-$(CONFIG_PWM_IMX27)		+=3D pwm-imx27.o
->  obj-$(CONFIG_PWM_IMX_TPM)	+=3D pwm-imx-tpm.o
->  obj-$(CONFIG_PWM_INTEL_LGM)	+=3D pwm-intel-lgm.o
-> +obj-$(CONFIG_PWM_IPQ)		+=3D pwm-ipq.o
->  obj-$(CONFIG_PWM_IQS620A)	+=3D pwm-iqs620a.o
->  obj-$(CONFIG_PWM_JZ4740)	+=3D pwm-jz4740.o
->  obj-$(CONFIG_PWM_KEEMBAY)	+=3D pwm-keembay.o
-> diff --git a/drivers/pwm/pwm-ipq.c b/drivers/pwm/pwm-ipq.c
-> new file mode 100644
-> index 000000000000..966b051573c8
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-ipq.c
-> @@ -0,0 +1,238 @@
-> +// SPDX-License-Identifier: BSD-3-Clause OR GPL-2.0
-> +/*
-> + * Copyright (c) 2016-2017, 2020 The Linux Foundation. All rights reserv=
-ed.
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pwm.h>
-> +#include <linux/clk.h>
-> +#include <linux/io.h>
-> +#include <linux/math64.h>
-> +#include <linux/of_device.h>
-> +
-> +#define CLK_SRC_FREQ		(100*1000*1000)
-> +#define MAX_PWM_DEVICES		4
+[    2.468288] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.12.0-rc3-debug #1
+[    2.468288] Hardware name: HP HP Desktop M01-F1xxx/87D6, BIOS F.12 12/17/2020
+[    2.468288] Call Trace:
+[    2.468288]  <IRQ>
+[    2.479433]  dump_stack+0x9c/0xcf
+[    2.479433]  print_address_description.constprop.0+0x18/0x130
+[    2.479433]  ? __iommu_dma_unmap_swiotlb+0x64/0xb0
+[    2.479433]  kasan_report.cold+0x7f/0x111
+[    2.479433]  ? __iommu_dma_unmap_swiotlb+0x64/0xb0
+[    2.479433]  __iommu_dma_unmap_swiotlb+0x64/0xb0
+[    2.479433]  nvme_pci_complete_rq+0x73/0x130
+[    2.479433]  blk_complete_reqs+0x6f/0x80
+[    2.479433]  __do_softirq+0xfc/0x3be
+[    2.479433]  irq_exit_rcu+0xce/0x120
+[    2.479433]  common_interrupt+0x80/0xa0
+[    2.479433]  </IRQ>
+[    2.479433]  asm_common_interrupt+0x1e/0x40
+[    2.479433] RIP: 0010:cpuidle_enter_state+0xf9/0x590
 
-MAX_PWM_DEVICES is only used once, in my book this doesn't need a define
-then. (But if you still want to keep it, that's fine for me, too.)
+I wonder if this ended up unmapping something wrong and messing up the
+dev->dma_io_tlb_mem (i.e. io_tlb_default_mem)?
 
-> +/*
-> + * Enable bit is set to enable output toggling in pwm device.
-> + * Update bit is set to reflect the changed divider and high duration
-> + * values in register.
-> + */
-> +#define PWM_ENABLE		0x80000000
-> +#define PWM_UPDATE		0x40000000
-> +
-> +/* The frequency range supported is 1Hz to 100MHz */
-> +#define MIN_PERIOD_NS	10
-> +#define MAX_PERIOD_NS	1000000000
+Could you try this patch on top of 7d31f1c65cc9? This patch helps
+check if we try to unmap the wrong address.
 
-Please use a driver prefix for these defines.
+```
+diff --git a/kernel/dma/swiotlb.c b/kernel/dma/swiotlb.c
+index b7f76bca89bf..5ac08d50a394 100644
+--- a/kernel/dma/swiotlb.c
++++ b/kernel/dma/swiotlb.c
+@@ -613,6 +613,21 @@ void swiotlb_tbl_unmap_single(struct device *dev,
+phys_addr_t tlb_addr,
+                              size_t mapping_size, enum dma_data_direction dir,
+                              unsigned long attrs)
+ {
++       struct io_tlb_mem *mem = dev->dma_io_tlb_mem;
++       unsigned int offset = swiotlb_align_offset(dev, tlb_addr);
++       int index;
++
++       if (!is_swiotlb_buffer(dev, tlb_addr - offset)) {
++               dev_err(dev, "%s: attempt to unmap invalid address
+(0x%llx, offset=%u)\n", __func__, tlb_addr, offset);
++               return;
++       }
++
++       index = (tlb_addr - offset - mem->start) >> IO_TLB_SHIFT;
++       if (mem->slots[index].orig_addr == INVALID_PHYS_ADDR) {
++               dev_err(dev, "%s: memory is not mapped before (0x%llx,
+offset=%u)\n", __func__, tlb_addr, offset);
++               return;
++       }
++
+        /*
+         * First, sync the memory before unmapping the entry
+         */
+```
+It might be useful to have CONFIG_SLUB_DEBUG=y, CONFIG_SLUB_DEBUG_ON=y
+and line numbers (scripts/decode_stacktrace.sh) too.
 
-> +
-> +/*
-> + * The max value specified for each field is based on the number of bits
-> + * in the pwm control register for that field
-> + */
-> +#define MAX_PWM_CFG		0xFFFF
-> +
-> +#define PWM_CTRL_HI_SHIFT	16
-> +
-> +#define PWM_CFG_REG0 0 /*PWM_DIV PWM_HI*/
-> +#define PWM_CFG_REG1 1 /*ENABLE UPDATE PWM_PRE_DIV*/
-> +
-> +struct ipq_pwm_chip {
-> +	struct pwm_chip chip;
-> +	struct clk *clk;
-> +	void __iomem *mem;
-> +};
-> +
-> +static struct ipq_pwm_chip *to_ipq_pwm_chip(struct pwm_chip *chip)
-> +{
-> +	return container_of(chip, struct ipq_pwm_chip, chip);
-> +}
-> +
-> +static unsigned ipq_pwm_reg_offset(struct pwm_device *pwm, unsigned reg)
-> +{
-> +	return ((pwm->hwpwm * 2) + reg) * 4;
-> +}
-> +
-> +static void config_div_and_duty(struct pwm_device *pwm, int pre_div,
-> +			unsigned long long pwm_div, unsigned long period_ns,
-> +			unsigned long long duty_ns)
+Thank you so much for helping!
 
-Please also use a consistent prefix for function names.
-
-I suggest to use u64 for some of the parameters. While this doesn't
-change anything, it is cleaner as the caller passes variables of this
-type.
-
-> +{
-> +	unsigned long hi_dur;
-> +	unsigned long long quotient;
-> +	unsigned long val =3D 0;
-> +	struct ipq_pwm_chip *ipq_chip =3D to_ipq_pwm_chip(pwm->chip);
-> +
-> +	/*
-> +	 * high duration =3D pwm duty * (pwm div + 1)
-> +	 * pwm duty =3D duty_ns / period_ns
-> +	 */
-> +	quotient =3D (pwm_div + 1) * duty_ns;
-> +	hi_dur =3D div64_u64(quotient, period_ns);
-> +
-> +	val |=3D ((hi_dur & MAX_PWM_CFG) << PWM_CTRL_HI_SHIFT);
-> +	val |=3D (pwm_div & MAX_PWM_CFG);
-> +	writel(val, ipq_chip->mem + ipq_pwm_reg_offset(pwm, PWM_CFG_REG0));
-
-I consider it a bit irritating that the mask is called ...CFG but the
-shift define is called ..._CTRL_....
-
-I suggest something like:
-
-	#define IPQ_PWM_REG0	...
-	#define IPQ_PWM_REG0_HI		0xffff0000
-	#define IPQ_PWM_REG0_DIV	0x0000ffff
-
-	...
-
-	val =3D FIELD_PREP(IPQ_PWM_REG0_HI, hi_dur) |
-		FIELD_PREP(IPQ_PWM_REG0_DIV, pwm_div);
-
-	ipq_pwm_writel(ipq_chip, val, PWM_CFG_REG0);
-
-> +	val =3D pre_div & MAX_PWM_CFG;
-> +	writel(val, ipq_chip->mem + ipq_pwm_reg_offset(pwm, PWM_CFG_REG1));
-> +}
-> +
-> +static int ipq_pwm_enable(struct pwm_device *pwm)
-
-This is only called once. The caller (ipq_pwm_apply()) just before
-called config_div_and_duty() which already wrote PWM_CFG_REG1. If you
-unroll these calls you might fix a glitch or make it more unlikely.
-
-> +{
-> +	struct ipq_pwm_chip *ipq_chip =3D to_ipq_pwm_chip(pwm->chip);
-> +	unsigned offset =3D ipq_pwm_reg_offset(pwm, PWM_CFG_REG1);
-> +	unsigned long val;
-> +
-> +	val =3D readl(ipq_chip->mem + offset);
-> +	val |=3D PWM_ENABLE | PWM_UPDATE;
-> +	writel(val, ipq_chip->mem + offset);
-> +
-> +	return 0;
-> +}
-> +
-> +static void ipq_pwm_disable(struct pwm_device *pwm)
-> +{
-> +	struct ipq_pwm_chip *ipq_chip =3D to_ipq_pwm_chip(pwm->chip);
-> +	unsigned offset =3D ipq_pwm_reg_offset(pwm, PWM_CFG_REG1);
-> +	unsigned long val;
-> +
-> +	val =3D readl(ipq_chip->mem + offset);
-> +	val |=3D PWM_UPDATE;
-> +	val &=3D ~PWM_ENABLE;
-> +	writel(val, ipq_chip->mem + offset);
-> +}
-> +
-> +static int ipq_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			 const struct pwm_state *state)
-> +{
-> +	struct ipq_pwm_chip *ipq_chip =3D to_ipq_pwm_chip(chip);
-> +	unsigned long freq;
-> +	int pre_div, close_pre_div, close_pwm_div;
-> +	int pwm_div;
-> +	long long diff;
-> +	unsigned long rate =3D clk_get_rate(ipq_chip->clk);
-> +	unsigned long min_diff =3D rate;
-> +	uint64_t fin_ps;
-> +	u64 period_ns, duty_ns;
-> +
-> +	if (state->period < MIN_PERIOD_NS)
-> +		return -ERANGE;
-
-MIN_PERIOD_NS depends on clk_get_rate(ipq_chip->clk), doesn't it?
-
-> +	period_ns =3D min_t(u64, state->period, MAX_PERIOD_NS);
-> +	duty_ns =3D min_t(u64, state->duty_cycle, period_ns);
-
-If you define MAX_PERIOD_NS as (u64)1000000000 you can just use min().
-
-> +
-> +	/* freq in Hz for period in nano second*/
-
-Space before the closing */ please
-
-> +	freq =3D div64_u64(NSEC_PER_SEC, period_ns);
-> +	fin_ps =3D div64_u64(NSEC_PER_SEC * 1000ULL, rate);
-> +	close_pre_div =3D MAX_PWM_CFG;
-> +	close_pwm_div =3D MAX_PWM_CFG;
-> +
-> +	for (pre_div =3D 0; pre_div <=3D MAX_PWM_CFG; pre_div++) {
-> +		pwm_div =3D DIV64_U64_ROUND_CLOSEST(period_ns * 1000,
-> +						  fin_ps * (pre_div + 1));
-> +		pwm_div--;
-> +		if (pwm_div < 0 || pwm_div > MAX_PWM_CFG)
-> +			continue;
-> +
-> +		diff =3D ((uint64_t)freq * (pre_div + 1) * (pwm_div + 1))
-> +			- (uint64_t)rate;
-> +
-> +		if (diff < 0) /* period larger than requested */
-> +			continue;
-> +		if (diff =3D=3D 0) { /* bingo */
-> +			close_pre_div =3D pre_div;
-> +			close_pwm_div =3D pwm_div;
-> +			break;
-> +		}
-> +		if (diff < min_diff) {
-> +			min_diff =3D diff;
-> +			close_pre_div =3D pre_div;
-> +			close_pwm_div =3D pwm_div;
-> +		}
-
-I didn't check deeply, but I assume this calculation can be done more
-efficiently. Also I wonder if DIV64_U64_ROUND_CLOSEST is right. When you
-implement a .get_state() callback (which usually helps me to understand
-how the hardware works) I'm willing to take a closer look.
-
-> +	}
-> +
-> +	/* config divider values for the closest possible frequency */
-> +	config_div_and_duty(pwm, close_pre_div, close_pwm_div,
-> +			    period_ns, duty_ns);
-> +	if (state->enabled)
-> +		ipq_pwm_enable(pwm);
-> +	else
-> +		ipq_pwm_disable(pwm);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct pwm_ops ipq_pwm_ops =3D {
-> +	.apply =3D ipq_pwm_apply,
-
-Please implement a .get_state() function. (And in general, test your patch
-with PWM_DEBUG enabled.)
-
-> +	.owner =3D THIS_MODULE,
-> +};
-> +
-> +static int ipq_pwm_probe(struct platform_device *pdev)
-> +{
-> +	struct ipq_pwm_chip *pwm;
-> +	struct device *dev;
-> +	int ret;
-> +
-> +	dev =3D &pdev->dev;
-
-This can go to the line declaring dev.
-
-> +	pwm =3D devm_kzalloc(dev, sizeof(*pwm), GFP_KERNEL);
-> +	if (!pwm)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, pwm);
-> +
-> +	pwm->mem =3D devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(pwm->mem))
-> +		return PTR_ERR(pwm->mem);
-> +
-> +	pwm->clk =3D devm_clk_get(dev, "core");
-> +	if (IS_ERR(pwm->clk))
-
-Error message please. Preferably using dev_err_probe().
-
-> +		return PTR_ERR(pwm->clk);
-> +
-> +	ret =3D clk_set_rate(pwm->clk, CLK_SRC_FREQ);
-> +	if (ret)
-
-ditto.
-
-> +		return ret;
-
-empty line here?
-
-> +	ret =3D clk_prepare_enable(pwm->clk);
-> +	if (ret)
-
-ditto.
-
-> +		return ret;
-> +
-> +	pwm->chip.dev =3D dev;
-> +	pwm->chip.ops =3D &ipq_pwm_ops;
-> +	pwm->chip.npwm =3D MAX_PWM_DEVICES;
-> +
-> +	ret =3D pwmchip_add(&pwm->chip);
-> +	if (ret < 0) {
-> +		dev_err_probe(dev, ret, "pwmchip_add() failed\n");
-> +		clk_disable_unprepare(pwm->clk);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ipq_pwm_remove(struct platform_device *pdev)
-> +{
-> +	struct ipq_pwm_chip *pwm =3D platform_get_drvdata(pdev);
-> +
-> +	pwmchip_remove(&pwm->chip);
-
-clk_disable_unprepare missing here.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id pwm_ipq_dt_match[] =3D {
-> +	{ .compatible =3D "qcom,ipq6018-pwm", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, pwm_ipq_dt_match);
-> +
-> +static struct platform_driver ipq_pwm_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "ipq-pwm",
-> +		.owner =3D THIS_MODULE,
-
-Setting owner isn't necessary any more since v3.11 (commit 9447057eaff8
-("platform_device: use a macro instead of platform_driver_register").
-
-> +		.of_match_table =3D pwm_ipq_dt_match,
-> +	},
-> +	.probe =3D ipq_pwm_probe,
-> +	.remove =3D ipq_pwm_remove,
-> +};
-> +
-> +module_platform_driver(ipq_pwm_driver);
-> +
-> +MODULE_LICENSE("Dual BSD/GPL");
-> --=20
-> 2.30.2
->=20
->=20
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---3r25sk2paghtmnoo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmDistQACgkQwfwUeK3K
-7AmIfwf/c+s+Q3cnq1VOQMgIICX2BHS7UOXrukPHXbX6wkuAChPD3CGM1BASDKkd
-Fc67pZC/1++O7Kw+iXmamWkkBjt4QSqICe15NbW4ScSx9SBnCpORb2ngpOaLdzl9
-rKKp498T67btim2EE15xwqI5iLMyljlXEQxsFcmA7STe5ctQx3GgvPHY9bbrGau+
-q2wHzgp04U1tmFXlHNxmMWVrec4tndvcW6nKPL1lZAs4h6N1oNHwVykaZDVcvTxl
-/NH9dkWW+3IOiwKFnIeMIBYPvHohRaSZ+yTD8lTTk++yzK2GjaMxHUBTWDadu55J
-VnnsvoHTf+404EsVF8gNhnXu26Vg0w==
-=xkHO
------END PGP SIGNATURE-----
-
---3r25sk2paghtmnoo--
+>
+> > > It might also be worth taking the IOMMU out of the equation, since that
+> > > interfaces differently with SWIOTLB and I couldn't figure out the code path
+> > > from the log you provided. What happens if you boot with "amd_iommu=off
+> > > swiotlb=force"?
+> >
+> > Oh, now there's a thing... the chat from the IOMMU API in the boot log
+> > implies that the IOMMU *should* be in the picture - we see that default
+> > domains are IOMMU_DOMAIN_DMA default and the GPU 0000:0c:00.0 was added to a
+> > group. That means dev->dma_ops should be set and DMA API calls should be
+> > going through iommu-dma, yet the callstack in the crash says we've gone
+> > straight from dma_map_page_attrs() to swiotlb_map(), implying the inline
+> > dma_direct_map_page() path.
+> >
+> > If dev->dma_ops didn't look right in the first place, it's perhaps less
+> > surprising that dev->dma_io_tlb_mem might be wild as well. It doesn't seem
+> > plausible that we should have a race between initialising the device and
+> > probing its driver, so maybe the whole dev pointer is getting trampled
+> > earlier in the callchain (or is fundamentally wrong to begin with, but from
+> > a quick skim of the amdgpu code it did look like adev->dev and adev->pdev
+> > are appropriately set early on by amdgpu_pci_probe()).
+> >
+> > > (although word of warning here: i915 dies horribly on my laptop if I pass
+> > > swiotlb=force, even with the distro 5.10 kernel)
+> >
+> > FWIW I'd imagine you probably need to massively increase the SWIOTLB buffer
+> > size to have hope of that working.
+>
+> Is it worth trying this still then?
+>
+> Cheers,
+> Nathan
