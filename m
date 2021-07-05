@@ -2,101 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40F683BBABF
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 12:04:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5F323BBAD6
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 12:07:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230493AbhGEKGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 06:06:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49744 "EHLO
+        id S230496AbhGEKKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 06:10:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230366AbhGEKGv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 06:06:51 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C74C061574;
-        Mon,  5 Jul 2021 03:04:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=956zj6j30tlRZ1w7O85satSsrvmOb1dPD6tACO1pQag=; b=cZuA4cgxAzY/zyq6CS7qt/ZP14
-        AgGHO874BNBzPsWE7OUsSNXUXPE22cvBZLS3FY5eH0cdyehJCq/j9G1CAbonr8YYTVEWH7NQ+P7L1
-        mMJk3jLB4dlNQ7ZvyTyq6Zf711XxhvQ+LCX04izSQivtwSDxrl1ZUN06/QK5QdUWPL2Q=;
-Received: from p200300ccff0e44001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0e:4400:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1m0LSJ-0006aN-L5; Mon, 05 Jul 2021 12:03:59 +0200
-Date:   Mon, 5 Jul 2021 12:03:58 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <lars@metafoo.de>, <sre@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <leonard.crestez@nxp.com>,
-        <letux-kernel@openphoenux.org>
-Subject: Re: [PATCH 2/4] mfd: rn5t618: Add of compatibles for ADC and power
-Message-ID: <20210705120358.6bf737f7@aktux>
-In-Reply-To: <20210705093129.00005aab@Huawei.com>
-References: <20210703084224.31623-1-andreas@kemnade.info>
-        <20210703084224.31623-3-andreas@kemnade.info>
-        <20210703170405.60828c57@jic23-huawei>
-        <YOK2aKYU6TK1GO7H@dell>
-        <20210705093129.00005aab@Huawei.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S230442AbhGEKKB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 06:10:01 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB0CC061574
+        for <devicetree@vger.kernel.org>; Mon,  5 Jul 2021 03:07:24 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id p17-20020a17090b0111b02901723ab8d11fso11505270pjz.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Jul 2021 03:07:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=URzqQGQoXOhjWiVA59OemrOZ6RGERDqTdQyNEXeAAck=;
+        b=W+oJyrd0cywPJ2WKOIn0+/TZJnDNS67AnkdeDildmOBCR2YDCCSxGoymgaKDCH/Xs2
+         2Tt2Ykz8fdNewWrffXxMSL+OWuktoSP4WM0aP454Xp46wwMb5eQDfNyXE37UeyxZgEgh
+         ZqpnLRE0tGHO7RNqsdazo3gKrVWcANSkbLE+8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=URzqQGQoXOhjWiVA59OemrOZ6RGERDqTdQyNEXeAAck=;
+        b=iwb7Xn8etPe0nwN+e/fUzNsIuPtM2McGeOHDfkcCm3x0a3Ubg8XLWD2LbPrIAM9OqG
+         9Am8KKJQaDPrbCk/e7Ybweot6MtW59Zt1OZvgAvJIJZLB6WtLxVlJIxjveb0SPzVDd2v
+         +hPJVuo8AIob6DR6uksyhr9OMbDgel/YiDTW81+D8u3nVhwuarp9qjfVZky2w+w5dqA1
+         yUvjYrCMF0gUVfUkuC4s0PETljlxsjOxkODMc3ykqI2DnKm1cFq997MvGEP+UHPl0HNP
+         5fZg2czBmH0lnvQQ1roulxr93uNnvl+ioYl2ShSqk/squSL3XlHcz9JqacNsUw9QPiLp
+         u62Q==
+X-Gm-Message-State: AOAM530CoEF5ML91fk9MIVQpSrlAIWKI5PLOuuA3Y3ePlDAkRGJNpRv1
+        vZ7NMg/fQDzcO5RtwC/hKTtg9A==
+X-Google-Smtp-Source: ABdhPJzLaiyM+hJRO34T6/7krD6/7coonwGydXEI2SqB2V3Cc/mLh/HDAsZW7o4nnnI4Moc5m/2Myw==
+X-Received: by 2002:a17:902:bd03:b029:11c:d504:c1ce with SMTP id p3-20020a170902bd03b029011cd504c1cemr11838106pls.7.1625479643848;
+        Mon, 05 Jul 2021 03:07:23 -0700 (PDT)
+Received: from google.com ([2401:fa00:1:10:f66e:ef34:adcd:b33b])
+        by smtp.gmail.com with ESMTPSA id s126sm12354864pfb.164.2021.07.05.03.07.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jul 2021 03:07:23 -0700 (PDT)
+Date:   Mon, 5 Jul 2021 18:07:19 +0800
+From:   Chen-Yu Tsai <wenst@chromium.org>
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH 06/22] clk: mediatek: Add MT8195 audio src clock support
+Message-ID: <YOLZ12WWkk/0kAnd@google.com>
+References: <20210616224743.5109-1-chun-jie.chen@mediatek.com>
+ <20210616224743.5109-7-chun-jie.chen@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210616224743.5109-7-chun-jie.chen@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 5 Jul 2021 09:31:29 +0100
-Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+Hi,
 
-> On Mon, 5 Jul 2021 08:36:08 +0100
-> Lee Jones <lee.jones@linaro.org> wrote:
+On Thu, Jun 17, 2021 at 06:47:27AM +0800, Chun-Jie Chen wrote:
+> Add MT8195 audio src source clock provider
 > 
-> > On Sat, 03 Jul 2021, Jonathan Cameron wrote:
-> >   
-> > > On Sat,  3 Jul 2021 10:42:22 +0200
-> > > Andreas Kemnade <andreas@kemnade.info> wrote:
-> > >     
-> > > > This allows having devicetree nodes for the subdevices.
-> > > > 
-> > > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > > > ---
-> > > >  drivers/mfd/rn5t618.c | 6 ++++--
-> > > >  1 file changed, 4 insertions(+), 2 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/mfd/rn5t618.c b/drivers/mfd/rn5t618.c
-> > > > index 384acb459427..b916c7471ca3 100644
-> > > > --- a/drivers/mfd/rn5t618.c
-> > > > +++ b/drivers/mfd/rn5t618.c
-> > > > @@ -24,8 +24,10 @@ static const struct mfd_cell rn5t618_cells[] = {
-> > > >  };
-> > > >  
-> > > >  static const struct mfd_cell rc5t619_cells[] = {
-> > > > -	{ .name = "rn5t618-adc" },
-> > > > -	{ .name = "rn5t618-power" },
-> > > > +	{ .name = "rn5t618-adc",
-> > > > +	  .of_compatible = "ricoh,rc5t619-adc" },    
-> > > 
-> > > Odd to have a name of 618 and a compatible of 619.  Why?
-> > > Definitely deserves a comment if this is necessary for some reason!    
-> > 
-> > Actually this is the norm.  We have lots of drivers named after the
-> > *first* device they supported before expansion.  
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> ---
+>  drivers/clk/mediatek/Kconfig              |  6 +++
+>  drivers/clk/mediatek/Makefile             |  1 +
+>  drivers/clk/mediatek/clk-mt8195-aud_src.c | 60 +++++++++++++++++++++++
+>  3 files changed, 67 insertions(+)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8195-aud_src.c
 > 
-> Ah. I'd missed that this cells array is specific to the 5t619, though if
-> the driver is the same I'd also expect it to be needed for the 5t618 entry.
-> 
-Well, yes, it is needed for the 5t618 also. But if I would add it, it
-would be untested. And that second shorter array is also used for the
-rn5t567 which does not have an ADC, So I we need three arrays there.
+> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
+> index e2bae9d490a4..62dd02bc2755 100644
+> --- a/drivers/clk/mediatek/Kconfig
+> +++ b/drivers/clk/mediatek/Kconfig
+> @@ -594,6 +594,12 @@ config COMMON_CLK_MT8195_AUDSYS
+>  	help
+>  	  This driver supports MediaTek MT8195 audsys clocks.
+>  
+> +config COMMON_CLK_MT8195_AUDSYS_SRC
+> +	bool "Clock driver for MediaTek MT8195 audsys_src"
+> +	depends on COMMON_CLK_MT8195
+> +	help
+> +	  This driver supports MediaTek MT8195 audsys_src clocks.
+> +
 
-Regards,
-Andreas
+Same comments regarding the Kconfig symbol as the previous patch.
+
+>  config COMMON_CLK_MT8516
+>  	bool "Clock driver for MediaTek MT8516"
+>  	depends on ARCH_MEDIATEK || COMPILE_TEST
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
+> index f27c04314186..52a5d3f49ff0 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -82,5 +82,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_VDECSYS) += clk-mt8192-vdec.o
+>  obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195) += clk-mt8195.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_AUDSYS) += clk-mt8195-aud.o
+> +obj-$(CONFIG_COMMON_CLK_MT8195_AUDSYS_SRC) += clk-mt8195-aud_src.o
+>  obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
+>  obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
+> diff --git a/drivers/clk/mediatek/clk-mt8195-aud_src.c b/drivers/clk/mediatek/clk-mt8195-aud_src.c
+> new file mode 100644
+> index 000000000000..7cabe0d68825
+> --- /dev/null
+> +++ b/drivers/clk/mediatek/clk-mt8195-aud_src.c
+> @@ -0,0 +1,60 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// Copyright (c) 2021 MediaTek Inc.
+> +// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "clk-mtk.h"
+> +#include "clk-gate.h"
+> +
+> +#include <dt-bindings/clock/mt8195-clk.h>
+> +
+> +static const struct mtk_gate_regs aud_src_cg_regs = {
+> +	.set_ofs = 0x1004,
+> +	.clr_ofs = 0x1004,
+> +	.sta_ofs = 0x1004,
+> +};
+> +
+> +#define GATE_AUD_SRC(_id, _name, _parent, _shift)			\
+> +	GATE_MTK(_id, _name, _parent, &aud_src_cg_regs, _shift, &mtk_clk_gate_ops_no_setclr)
+> +
+> +static const struct mtk_gate aud_src_clks[] = {
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC0, "aud_src_asrc0", "asm_h_sel", 0),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC1, "aud_src_asrc1", "asm_h_sel", 1),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC2, "aud_src_asrc2", "asm_h_sel", 2),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC3, "aud_src_asrc3", "asm_h_sel", 3),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC4, "aud_src_asrc4", "asm_h_sel", 4),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC5, "aud_src_asrc5", "asm_h_sel", 5),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC6, "aud_src_asrc6", "asm_h_sel", 6),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC7, "aud_src_asrc7", "asm_h_sel", 7),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC8, "aud_src_asrc8", "asm_h_sel", 8),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC9, "aud_src_asrc9", "asm_h_sel", 9),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC10, "aud_src_asrc10", "asm_h_sel", 10),
+> +	GATE_AUD_SRC(CLK_AUD_SRC_ASRC11, "aud_src_asrc11", "asm_h_sel", 11),
+
+And same thing about moving this into the audio driver. AFAICT there is
+no audio driver supporting this hardware block, so this will never get
+used.
+
+
+Regards
+ChenYu
