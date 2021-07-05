@@ -2,253 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A8B3BBA56
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 11:39:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E9043BBA63
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 11:40:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230460AbhGEJll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 05:41:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57198 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230439AbhGEJlk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Jul 2021 05:41:40 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 668A2613E7;
-        Mon,  5 Jul 2021 09:39:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625477943;
-        bh=3wkeS6LjECniYU0Q4Rka5Hwi5+LM8FaepjAduPS6+SM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MLTtYfv6wCLFusCeVqOGFPTekN7Lc/68befOg9rdTC7i3askWx3S/pzlZtZj6gham
-         Id6yd6O1AePFfmzdecxIo/JJ6z/SU6pvywMujxvFJAGvIaF0OodXwwjrbcODnjb4MS
-         ekKiccPqzAPNsYBf7Kc2ddDhqNURS9S8N1HPW0k6rQRzkbq2ABdVdrnUi4eadb1hix
-         6mG06/OGmNc2Co9HXVDmJjAmgLkBZKbdCnzsAzSO+DXCHggFHfCswT5s80VsQuvPn6
-         w+dXI97cgwX10LZ2uo/Ee/diaJkCunF9YDgqHFoXSQllhpEMaMBwg9DcHEwJGcyxmX
-         yzewHTKl42UUQ==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1m0L43-002tp8-IN; Mon, 05 Jul 2021 11:38:55 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v12 9/9] dts: hisilicon: add support for USB3 on Hikey 970
-Date:   Mon,  5 Jul 2021 11:38:50 +0200
-Message-Id: <eeb2ba484877aaf5137d5ea8fd991a8efb3ffc69.1625477735.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1625477735.git.mchehab+huawei@kernel.org>
-References: <cover.1625477735.git.mchehab+huawei@kernel.org>
+        id S230352AbhGEJml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 05:42:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44280 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230343AbhGEJmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 05:42:40 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC77FC061760
+        for <devicetree@vger.kernel.org>; Mon,  5 Jul 2021 02:40:03 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id s18so2694150pgg.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Jul 2021 02:40:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9NEgfDbLASj9u3BPxvvxZ1ejuTwiwGxydassBot+RfA=;
+        b=ZTT+24SsIiUhwkeb67dSyuBKmhWy+p0YSpEeoGTVkBO3KEhZgxVzb1M0N+dmnQOuP+
+         NplltYl4f/jGYlMzZsb15OP4tzy1A2OFmiFn6litXc8osD2m1f5nN4rgZ/MUBegoeZBg
+         N3yb3yfrpYYpjnoMubFhC4naGQ547oMIKczz4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9NEgfDbLASj9u3BPxvvxZ1ejuTwiwGxydassBot+RfA=;
+        b=TDvVk9IWJsYrNgrJAC5RXfNy7ujUlQpED3AEkx4DiWobwKeCu0f1na5A0fLPEjihoy
+         fYsJJ7htUC4nk4e5cXnCaUqAL/CHAZvnqmKzKRK1PsnrdvKLod3d1WLU68kg7jFeYJK2
+         yX23s037ILVwSwPuVJqpYwtDVz6xVrKUYNOACa7UNTG5pMjd5itEOwyqg4KhdOc8tyRp
+         Zcfd/CfeUEk+MgDZSBUC69GX/PzZmoPeMc+wZokudsstT6j5FgCFYUAfTB00bzAZT+jd
+         LuA0B3b+iV8GlAvpM4HMlHQtUOLeFW31I/RqbydRbwe7hyjOKlLGdTLxNpt/MNJbhAM5
+         Q44Q==
+X-Gm-Message-State: AOAM531V1ZlOmrmWtstJG7PR6lBdrY//3t5C+rHbmoJT0KVJwzp3v5Pm
+        xTCmT4b5J0moiOPx75n4dH3VQkuyQPcXqnFX4erVeQ==
+X-Google-Smtp-Source: ABdhPJxehs17Gva3Z1PLinNDiwy6ZNwOYg8wG9gpLsrwSz4om20wFIio8AUK7w5i5rU5PDWp2naXrlLFq3lMCZFFA6U=
+X-Received: by 2002:a63:e316:: with SMTP id f22mr14711550pgh.100.1625478003378;
+ Mon, 05 Jul 2021 02:40:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+References: <20210630090710.1873559-1-kansho@chromium.org> <20210630180652.1.I88a52644e47e88b15f5db9841cb084dc53c5875c@changeid>
+ <716ab7a7-937d-df88-8d3c-8d35df473b4e@gmail.com>
+In-Reply-To: <716ab7a7-937d-df88-8d3c-8d35df473b4e@gmail.com>
+From:   Kansho Nishida <kansho@chromium.org>
+Date:   Mon, 5 Jul 2021 18:39:52 +0900
+Message-ID: <CAP3OrSLyoKNr7fMOx5sUtWi7PVQGuN-5w7k_0D2MhDUeXXmYCg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: mt8183: add audio node
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Shunli Wang <shunli.wang@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Eddie Huang <eddie.huang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the USB3 bindings for Kirin 970 phy and Hikey 970 board.
+On Fri, Jul 2, 2021 at 3:20 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
+>
+>
+>
+> On 30/06/2021 11:07, Kansho Nishida wrote:
+> > Add afe (audio front end) device node to the MT8183 dtsi.
+> >
+> > Signed-off-by: Kansho Nishida <kansho@chromium.org>
+> > ---
+> >
+> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 94 +++++++++++++++++++++++-
+> >  1 file changed, 93 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > index f90df6439c08..b06acb8d6527 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > @@ -1115,10 +1115,102 @@ usb_host: usb@11200000 {
+> >                       };
+> >               };
+> >
+> > -             audiosys: syscon@11220000 {
+> > +             audiosys: clock-controller@11220000 {
+>
+> Why do you change it from sysecon to clock-controller?
+>
+> Regards,
+> Matthias
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../boot/dts/hisilicon/hi3670-hikey970.dts    | 107 ++++++++++++++++++
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  56 +++++++++
- 2 files changed, 163 insertions(+)
+Hi Matthias,
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-index 5e6d7b329771..9e3dfe877ebe 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-@@ -53,6 +53,30 @@ wlan_en: wlan-en-1-8v {
- 		startup-delay-us = <70000>;
- 		enable-active-high;
- 	};
-+
-+	hikey_usbhub: hikey_usbhub {
-+		compatible = "hisilicon,kirin970_hikey_usbhub";
-+
-+		typec-vbus-gpios = <&gpio26 1 0>;
-+		otg-switch-gpios = <&gpio4 2 0>;
-+		hub_reset_en_gpio = <&gpio0 3 0>;
-+		hub-vdd-supply = <&ldo17>;
-+		usb-role-switch;
-+
-+		port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			hikey_usb_ep0: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&dwc3_role_switch>;
-+			};
-+			hikey_usb_ep1: endpoint@1 {
-+				reg = <1>;
-+				remote-endpoint = <&rt1711h_ep>;
-+			};
-+		};
-+	};
- };
- 
- /*
-@@ -430,3 +454,86 @@ &uart6 {
- 	label = "LS-UART1";
- 	status = "okay";
- };
-+
-+&usb_phy {
-+	phy-supply = <&ldo17>;
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	rt1711h: rt1711h@4e {
-+		compatible = "richtek,rt1711h";
-+		reg = <0x4e>;
-+		status = "okay";
-+		interrupt-parent = <&gpio27>;
-+		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usb_cfg_func>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 500, PDO_FIXED_USB_COMM)
-+				PDO_VAR(5000, 5000, 1000)>;
-+			op-sink-microwatt = <10000000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				port@1 {
-+					reg = <1>;
-+					usb_con_ss: endpoint {
-+						remote-endpoint = <&dwc3_ss>;
-+					};
-+				};
-+			};
-+		};
-+		port {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			rt1711h_ep: endpoint@0 {
-+				reg = <0>;
-+				remote-endpoint = <&hikey_usb_ep1>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	/* USB HUB is on this bus at address 0x44 */
-+	status = "okay";
-+};
-+
-+&dwc3 { /* USB */
-+	dr_mode = "otg";
-+	maximum-speed = "super-speed";
-+	phy_type = "utmi";
-+	snps,dis-del-phy-power-chg-quirk;
-+	snps,dis_u2_susphy_quirk;
-+	snps,dis_u3_susphy_quirk;
-+	snps,tx_de_emphasis_quirk;
-+	snps,tx_de_emphasis = <1>;
-+	snps,dis-split-quirk;
-+	snps,gctl-reset-quirk;
-+	usb-role-switch;
-+	role-switch-default-mode = "host";
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		dwc3_role_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&hikey_usb_ep0>;
-+		};
-+
-+		dwc3_ss: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&usb_con_ss>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 8830795c8efc..6476149d99e3 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -8,6 +8,7 @@
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/hi3670-clock.h>
-+#include <dt-bindings/usb/pd.h>
- 
- / {
- 	compatible = "hisilicon,hi3670";
-@@ -785,5 +786,60 @@ i2c4: i2c@fdf0d000 {
- 			pinctrl-0 = <&i2c4_pmx_func &i2c4_cfg_func>;
- 			status = "disabled";
- 		};
-+
-+		usb3_otg_bc: usb3_otg_bc@ff200000 {
-+			compatible = "syscon", "simple-mfd";
-+			reg = <0x0 0xff200000 0x0 0x1000>;
-+
-+			usb_phy: usbphy {
-+				compatible = "hisilicon,hi3670-usb-phy";
-+				#phy-cells = <0>;
-+				hisilicon,pericrg-syscon = <&crg_ctrl>;
-+				hisilicon,pctrl-syscon = <&pctrl>;
-+				hisilicon,sctrl-syscon = <&sctrl>;
-+				hisilicon,eye-diagram-param = <0xFDFEE4>;
-+				hisilicon,tx-vboost-lvl = <0x5>;
-+			};
-+		};
-+
-+		usb31_misc_rst: usb31_misc_rst_controller {
-+			compatible = "hisilicon,hi3660-reset";
-+			#reset-cells = <2>;
-+			hisi,rst-syscon = <&usb3_otg_bc>;
-+		};
-+
-+		usb3: hisi_dwc3 {
-+			compatible = "hisilicon,hi3670-dwc3";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			clocks = <&crg_ctrl HI3670_CLK_GATE_ABB_USB>,
-+				  <&crg_ctrl HI3670_HCLK_GATE_USB3OTG>,
-+				  <&crg_ctrl HI3670_CLK_GATE_USB3OTG_REF>,
-+				  <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-+			clock-names = "clk_gate_abb_usb",
-+				      "hclk_gate_usb3otg",
-+				      "clk_gate_usb3otg_ref",
-+				      "aclk_gate_usb3dvfs";
-+
-+			assigned-clocks = <&crg_ctrl HI3670_ACLK_GATE_USB3DVFS>;
-+			assigned-clock-rates = <238000000>;
-+			resets = <&crg_rst 0x90 6>,
-+				 <&crg_rst 0x90 7>,
-+				 <&usb31_misc_rst 0xA0 8>,
-+				 <&usb31_misc_rst 0xA0 9>;
-+
-+			dwc3: usb@ff100000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x0 0xff100000 0x0 0x100000>;
-+
-+				interrupts = <0 159 IRQ_TYPE_LEVEL_HIGH>,
-+					    <0 161 IRQ_TYPE_LEVEL_HIGH>;
-+
-+				phys = <&usb_phy>;
-+				phy-names = "usb3-phy";
-+			};
-+		};
- 	};
- };
--- 
-2.31.1
+Thanks for the comments!
+This should be "clock-controller" according to the binding description (*1).
+Moreover, you suggested doing so even though it's a long time ago (*2).
 
+*1) https://www.kernel.org/doc/Documentation/devicetree/bindings/arm/mediatek/mediatek%2Caudsys.txt
+*2) https://patchwork.kernel.org/project/linux-mediatek/patch/1559360354-22974-1-git-send-email-jiaxin.yu@mediatek.com/
+
+Regards,
+Kansho
+
+>
+> >                       compatible = "mediatek,mt8183-audiosys", "syscon";
+> >                       reg = <0 0x11220000 0 0x1000>;
+> >                       #clock-cells = <1>;
+> > +                     afe: mt8183-afe-pcm {
+> > +                             compatible = "mediatek,mt8183-audio";
+> > +                             interrupts = <GIC_SPI 161 IRQ_TYPE_LEVEL_LOW>;
+> > +                             resets = <&watchdog MT8183_TOPRGU_AUDIO_SW_RST>;
+> > +                             reset-names = "audiosys";
+> > +                             power-domains =
+> > +                                     <&spm MT8183_POWER_DOMAIN_AUDIO>;
+> > +                             clocks = <&audiosys CLK_AUDIO_AFE>,
+> > +                                      <&audiosys CLK_AUDIO_DAC>,
+> > +                                      <&audiosys CLK_AUDIO_DAC_PREDIS>,
+> > +                                      <&audiosys CLK_AUDIO_ADC>,
+> > +                                      <&audiosys CLK_AUDIO_PDN_ADDA6_ADC>,
+> > +                                      <&audiosys CLK_AUDIO_22M>,
+> > +                                      <&audiosys CLK_AUDIO_24M>,
+> > +                                      <&audiosys CLK_AUDIO_APLL_TUNER>,
+> > +                                      <&audiosys CLK_AUDIO_APLL2_TUNER>,
+> > +                                      <&audiosys CLK_AUDIO_I2S1>,
+> > +                                      <&audiosys CLK_AUDIO_I2S2>,
+> > +                                      <&audiosys CLK_AUDIO_I2S3>,
+> > +                                      <&audiosys CLK_AUDIO_I2S4>,
+> > +                                      <&audiosys CLK_AUDIO_TDM>,
+> > +                                      <&audiosys CLK_AUDIO_TML>,
+> > +                                      <&infracfg CLK_INFRA_AUDIO>,
+> > +                                      <&infracfg CLK_INFRA_AUDIO_26M_BCLK>,
+> > +                                      <&topckgen CLK_TOP_MUX_AUDIO>,
+> > +                                      <&topckgen CLK_TOP_MUX_AUD_INTBUS>,
+> > +                                      <&topckgen CLK_TOP_SYSPLL_D2_D4>,
+> > +                                      <&topckgen CLK_TOP_MUX_AUD_1>,
+> > +                                      <&topckgen CLK_TOP_APLL1_CK>,
+> > +                                      <&topckgen CLK_TOP_MUX_AUD_2>,
+> > +                                      <&topckgen CLK_TOP_APLL2_CK>,
+> > +                                      <&topckgen CLK_TOP_MUX_AUD_ENG1>,
+> > +                                      <&topckgen CLK_TOP_APLL1_D8>,
+> > +                                      <&topckgen CLK_TOP_MUX_AUD_ENG2>,
+> > +                                      <&topckgen CLK_TOP_APLL2_D8>,
+> > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S0>,
+> > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S1>,
+> > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S2>,
+> > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S3>,
+> > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S4>,
+> > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S5>,
+> > +                                      <&topckgen CLK_TOP_APLL12_DIV0>,
+> > +                                      <&topckgen CLK_TOP_APLL12_DIV1>,
+> > +                                      <&topckgen CLK_TOP_APLL12_DIV2>,
+> > +                                      <&topckgen CLK_TOP_APLL12_DIV3>,
+> > +                                      <&topckgen CLK_TOP_APLL12_DIV4>,
+> > +                                      <&topckgen CLK_TOP_APLL12_DIVB>,
+> > +                                      /*<&topckgen CLK_TOP_APLL12_DIV5>,*/
+> > +                                      <&clk26m>;
+> > +                             clock-names = "aud_afe_clk",
+> > +                                               "aud_dac_clk",
+> > +                                               "aud_dac_predis_clk",
+> > +                                               "aud_adc_clk",
+> > +                                               "aud_adc_adda6_clk",
+> > +                                               "aud_apll22m_clk",
+> > +                                               "aud_apll24m_clk",
+> > +                                               "aud_apll1_tuner_clk",
+> > +                                               "aud_apll2_tuner_clk",
+> > +                                               "aud_i2s1_bclk_sw",
+> > +                                               "aud_i2s2_bclk_sw",
+> > +                                               "aud_i2s3_bclk_sw",
+> > +                                               "aud_i2s4_bclk_sw",
+> > +                                               "aud_tdm_clk",
+> > +                                               "aud_tml_clk",
+> > +                                               "aud_infra_clk",
+> > +                                               "mtkaif_26m_clk",
+> > +                                               "top_mux_audio",
+> > +                                               "top_mux_aud_intbus",
+> > +                                               "top_syspll_d2_d4",
+> > +                                               "top_mux_aud_1",
+> > +                                               "top_apll1_ck",
+> > +                                               "top_mux_aud_2",
+> > +                                               "top_apll2_ck",
+> > +                                               "top_mux_aud_eng1",
+> > +                                               "top_apll1_d8",
+> > +                                               "top_mux_aud_eng2",
+> > +                                               "top_apll2_d8",
+> > +                                               "top_i2s0_m_sel",
+> > +                                               "top_i2s1_m_sel",
+> > +                                               "top_i2s2_m_sel",
+> > +                                               "top_i2s3_m_sel",
+> > +                                               "top_i2s4_m_sel",
+> > +                                               "top_i2s5_m_sel",
+> > +                                               "top_apll12_div0",
+> > +                                               "top_apll12_div1",
+> > +                                               "top_apll12_div2",
+> > +                                               "top_apll12_div3",
+> > +                                               "top_apll12_div4",
+> > +                                               "top_apll12_divb",
+> > +                                               /*"top_apll12_div5",*/
+> > +                                               "top_clk26m_clk";
+> > +                     };
+> >               };
+> >
+> >               mmc0: mmc@11230000 {
+> >
