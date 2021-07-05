@@ -2,104 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2572F3BB900
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 10:21:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7EBB3BB952
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 10:30:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230115AbhGEIY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 04:24:27 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:43966 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbhGEIYY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 04:24:24 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1658LTJ0005911;
-        Mon, 5 Jul 2021 03:21:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1625473289;
-        bh=Y5AlfMUgJJYX/2dmO0aHXkikhRLjjtuU8z3wKxricB0=;
-        h=From:Subject:To:CC:References:Date:In-Reply-To;
-        b=AaI85ThQ6sn8gb1DpFaqvtAe9iPcadMGWGata0NI9XKZ3m1sX8+UyeZt8Nm4GvGia
-         m6/BYDrsUoYJ0+4fW2O7HDwekOiteOnirynRY2s7B5m7PjzNCEoKIp6uNvMo6uIsQ+
-         PISwMnGtSwdxUbEli4ipDfWO5CjjQ3luGPrn8k6Y=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1658LTVF129783
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 5 Jul 2021 03:21:29 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 5 Jul
- 2021 03:21:29 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Mon, 5 Jul 2021 03:21:28 -0500
-Received: from [10.250.232.207] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1658LNtD100793;
-        Mon, 5 Jul 2021 03:21:24 -0500
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [RFC PATCH 08/40] PCI: keystone: Cleanup MSI/legacy interrupt
- configuration and handling
-To:     =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>
-CC:     Jingoo Han <jingoohan1@gmail.com>,
-        Joao Pinto <Joao.Pinto@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        <Gustavo.Pimentel@synopsys.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Nishanth Menon <nm@ti.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20180921102155.22839-1-kishon@ti.com>
- <20180921102155.22839-9-kishon@ti.com> <20210703210152.GA16176@rocinante>
-Message-ID: <56160f1d-ec91-3b99-312c-aef66eb1a7c2@ti.com>
-Date:   Mon, 5 Jul 2021 13:51:23 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S230109AbhGEIct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 04:32:49 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3353 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230085AbhGEIcr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 04:32:47 -0400
+Received: from fraeml743-chm.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GJJZR218rz6G8Bq;
+        Mon,  5 Jul 2021 16:22:07 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml743-chm.china.huawei.com (10.206.15.224) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Mon, 5 Jul 2021 10:30:08 +0200
+Received: from localhost (10.47.85.51) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 5 Jul 2021
+ 09:30:07 +0100
+Date:   Mon, 5 Jul 2021 09:29:49 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Liam Beguin <liambeguin@gmail.com>
+CC:     Jonathan Cameron <jic23@kernel.org>, <peda@axentia.se>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v3 04/10] iio: afe: rescale: reduce risk of integer
+ overflow
+Message-ID: <20210705092949.000060b1@Huawei.com>
+In-Reply-To: <CCKX5239AEWI.3T3JF9PXHIESQ@shaak>
+References: <20210701010034.303088-1-liambeguin@gmail.com>
+        <20210701010034.303088-5-liambeguin@gmail.com>
+        <20210704173639.622371bf@jic23-huawei>
+        <CCKX5239AEWI.3T3JF9PXHIESQ@shaak>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-In-Reply-To: <20210703210152.GA16176@rocinante>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.85.51]
+X-ClientProxiedBy: lhreml710-chm.china.huawei.com (10.201.108.61) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Mon, 05 Jul 2021 00:23:59 -0400
+"Liam Beguin" <liambeguin@gmail.com> wrote:
 
-On 04/07/21 2:31 am, Krzysztof Wilczyński wrote:
-> Hi Kishon,
+> On Sun Jul 4, 2021 at 12:36 PM EDT, Jonathan Cameron wrote:
+> > On Wed, 30 Jun 2021 21:00:28 -0400
+> > Liam Beguin <liambeguin@gmail.com> wrote:
+> >  
+> > > From: Liam Beguin <lvb@xiphos.com>
+> > > 
+> > > Reduce the risk of integer overflow by doing the scale calculation with
+> > > 64bit integers and looking for a Greatest Common Divider for both parts
+> > > of the fractional value.
+> > > 
+> > > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > > ---
+> > >  drivers/iio/afe/iio-rescale.c | 10 +++++++---
+> > >  1 file changed, 7 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescale.c
+> > > index 774eb3044edd..98bcb5d418d6 100644
+> > > --- a/drivers/iio/afe/iio-rescale.c
+> > > +++ b/drivers/iio/afe/iio-rescale.c
+> > > @@ -39,7 +39,8 @@ static int rescale_read_raw(struct iio_dev *indio_dev,
+> > >  			    int *val, int *val2, long mask)
+> > >  {
+> > >  	struct rescale *rescale = iio_priv(indio_dev);
+> > > -	unsigned long long tmp;
+> > > +	s64 tmp, tmp2;
+> > > +	u32 factor;
+> > >  	int ret;
+> > >  
+> > >  	switch (mask) {
+> > > @@ -67,8 +68,11 @@ static int rescale_read_raw(struct iio_dev *indio_dev,
+> > >  		}
+> > >  		switch (ret) {
+> > >  		case IIO_VAL_FRACTIONAL:
+> > > -			*val *= rescale->numerator;
+> > > -			*val2 *= rescale->denominator;
+> > > +			tmp = (s64)*val * rescale->numerator;
+> > > +			tmp2 = (s64)*val2 * rescale->denominator;
+> > > +			factor = gcd(tmp, tmp2);  
+> >
+> > Hmm. I wonder if there are cases where this doesn't work and we end up
+> > truncating because the gcd is say 1. If all of val, val2,
+> > rescale->numerator,
+> > rescale->denominator are primes and the rescale values are moderately
+> > large
+> > then that might happen. We probably need a fallback position. Perhaps
+> > check tmp / factor and temp2/factor will fit in an int. If not, shift
+> > them until
+> > they do even if we have to dump some precision to do so.
+> >  
 > 
->> Now that all PCI keystone functionality has been moved to pci-keystone.c,
->> cleanup MSI/legacy interrupt configuration and handling.
->>  *) Cleanup macros
->>  *) Remove unnecessary structure variables (required when 2 files are
->>     used)
->>  *) Remove ks_dw_pcie_legacy_irq_chip and use dummy_irq_chip
->>  *) Move request_irq of error irq from ks_add_pcie_port to ks_pcie_probe
->>     as error_irq is common to both host mode and device mode
-> [...]
+> I see what you mean. If we want to do that I guess it would also apply
+> to other areas of the driver.
+
+Certainly possible.  It's a bit obscure so may not have occurred to anyone
+on previous reviews :(
+
 > 
-> While looking at some small clean-ups for Bjorn, I stumbled upon this
-> series, and it seems a lot of your work here cover what Bjorn wanted to
-> do, thus I need to ask - do you recall, and I appreciate it's been
-> a while (three years actually), what happened and/or if you ever had the
-> time to work on this series?
+> > This stuff is getting fiddly enough we might want to figure out some
+> > self tests
+> > that exercise the various cases.
+> >  
 > 
-> Would it be possible to resurrect this?  Do you need any help?
+> I never implemented kernel self tests before, I guess it should follow
+> the example of drivers/iio/test/iio-test-format.c?
+> 
+> Would you be okay to add this in a follow up series?
 
-A lot of patches in this series should already be merged (after
-splitting into smaller ones)
-http://patchwork.ozlabs.org/project/linux-pci/list/?series=71185
+Yes, that's fine.
 
-https://patchwork.kernel.org/project/linux-arm-kernel/cover/20190321095927.7058-1-kishon@ti.com/
+> 
+> > > +			*val = tmp / factor;
+> > > +			*val2 = tmp2 / factor;  
+> >
+> > This is doing 64 bit numbers divided by 32 bit ones. Doesn't that
+> > require
+> > use of do_div() etc on 32 bit platforms?
+> >  
+> 
+> Apologies for that mistake, will fix.
+> 
+> > >  			return ret;
+> > >  		case IIO_VAL_INT:
+> > >  			*val *= rescale->numerator;  
+> 
 
-The following series is still pending and is in my TODO list
-https://lore.kernel.org/r/20210325090026.8843-1-kishon@ti.com
-
-Are there any other clean-ups you are looking into?
-
-Thanks and Regards
-Kishon
