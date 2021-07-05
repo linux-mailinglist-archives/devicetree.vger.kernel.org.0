@@ -2,125 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F02C63BBB80
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 12:46:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BB2E3BBBB4
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 12:58:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231190AbhGEKte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 06:49:34 -0400
-Received: from first.geanix.com ([116.203.34.67]:60676 "EHLO first.geanix.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231209AbhGEKte (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Jul 2021 06:49:34 -0400
-Received: from skn-laptop (unknown [185.233.254.173])
-        by first.geanix.com (Postfix) with ESMTPSA id BC8064C5383;
-        Mon,  5 Jul 2021 10:46:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
-        t=1625482015; bh=/8FqO6pBB1MSEkM8eBrDR29KNXvVw/vqG/8FEdlGiHU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=kDmIklMJBmOIl5BQ9Bv3Ly8GWxhpiYpztpHJ35MvrpmD7fC3h7/S94MlWE2MYfrIY
-         BBixsqqoIUJs9jbUBqnkxKyofKBcUCeRts3GP35rTDarTTYPZjR09bNHJydjvaBgRJ
-         fkTJuQe71mHSRivmxatVrUv5bS5DBYU3hwofvrSs1MJYRtqPDJJNzU2SsM/kSnlB1D
-         qXMQpzAAUq/Y/FSp8zQcNgoWKosSVY8zt1rXgxJX1RU3xcrLmA83I1yB0cfBgsdCeG
-         q8JYTUxvI5DR/QoWA2k7csQqvE0MPo+KNZ/YlefZAIKzJ8sNkTrPINgPFjX1/I0xm5
-         kxXzqnV2uj1bQ==
-Date:   Mon, 5 Jul 2021 12:46:54 +0200
-From:   Sean Nyekjaer <sean@geanix.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Han Xu <han.xu@nxp.com>, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] mtd: nand: raw: gpmi: new bch geometry settings
-Message-ID: <20210705104654.gko7ettkilrrosi7@skn-laptop>
-References: <20210522205136.19465-1-han.xu@nxp.com>
- <13c975bc-b37b-8708-9ac7-acdc62ef7108@geanix.com>
- <20210525191308.jlxqvy7khptbuj4z@umbrella>
- <20210526094136.279976a6@xps13>
- <20210526141700.5gygssig4rnzn6mj@umbrella>
- <20210526173123.1787713b@xps13>
+        id S231236AbhGELAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 07:00:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33862 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231184AbhGELAx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 07:00:53 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F087C061574
+        for <devicetree@vger.kernel.org>; Mon,  5 Jul 2021 03:58:16 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1m0MIj-00083W-VX; Mon, 05 Jul 2021 12:58:09 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1m0MIi-0001Ri-NR; Mon, 05 Jul 2021 12:58:08 +0200
+Date:   Mon, 5 Jul 2021 12:58:08 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: tsc2046: fix sleeping in atomic context
+ warning and a deadlock after iio_trigger_poll() call
+Message-ID: <20210705105808.GA7671@pengutronix.de>
+References: <20210625065922.8310-1-o.rempel@pengutronix.de>
+ <20210625065922.8310-2-o.rempel@pengutronix.de>
+ <20210704185710.07789b8f@jic23-huawei>
+ <20210705035440.35iualr6kkg22n56@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210526173123.1787713b@xps13>
-X-Spam-Status: No, score=-3.1 required=4.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,URIBL_BLOCKED
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on 93bd6fdb21b5
+In-Reply-To: <20210705035440.35iualr6kkg22n56@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:44:22 up 126 days, 20:19, 125 users,  load average: 26.63,
+ 23.43, 16.00
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 26, 2021 at 05:31:23PM +0200, Miquel Raynal wrote:
-> Hi Han,
+On Mon, Jul 05, 2021 at 05:54:40AM +0200, Oleksij Rempel wrote:
+> Hi Jonathan,
 > 
-
-[ ... ]
-
-> 
-> I understand that (2) might be ideal to meet but is breaking all the
-> boards that use this driver really worth the trouble?
-> 
-> Short answer: no. So we need to adapt the calculation for new
-> boards/new flash chips/certain geometries at most.
-> 
-> > > > The new implementation might get weak ecc than legacy way in some cases but it
-> > > > is safety guaranteed.  
-> > > 
-> > > What does "safety guaranteed" means?  
+> On Sun, Jul 04, 2021 at 06:57:10PM +0100, Jonathan Cameron wrote:
+> > On Fri, 25 Jun 2021 08:59:22 +0200
+> > Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 > > 
-> > set minimum ecc required by nand chip at least meet all requirements
+> > > If iio_trigger_poll() is called after IRQ was disabled, we will call
+> > > reenable_trigger() directly from hard IRQ or hrtimer context instead of
+> > > IRQ thread. In this case we will run in to multiple issue as sleeping in atomic
+> > > context and a deadlock.
 > > 
-> > >   
-> > > > This reminds me the gpmi raw access mode changes in kernel 3.19, it also changes
-> > > > the driver behaviors and makes totally different output compared with older
-> > > > versions. I know changes bring mess but we have to accept it at some point
-> > > > rather than keep compromising to the wrong way.  
-> > > 
-> > > How is this an argument? I am usually in favor of moving forward when
-> > > there is a real justification, but this does not seem the case, unless
-> > > I am understanding it all the wrong way.
-> > >   
-> > > > The change has been in NXP kernel fork for a while, so quite a few customers are
-> > > > using this bch geometry settings. I hope it can be upstreamed, any other things
-> > > > I can do may mitigate the imapact?  
-> > > 
-> > > You are well aware of the upstreaming process, trying to merge
-> > > something locally, making it used and then complaining because not
-> > > upstreaming it would break your customers really is your own
-> > > responsibility.  
+> > Hmm. This sounds like a problem that might bite us in other circumstances.
 > > 
-> > Sorry I understand I should try upstreaming it early, so I am still looking for
-> > a chance to avoid further divergence.
+> > So do I have the basic issue right in thinking we have a race between
+> > calling iio_trigger_poll() and having no devices still using that trigger?
+> > Thus we end up with all of trig->subirqs not being enabled.
 > > 
-> > > 
-> > > IMHO the solutions are:
-> > > - the current (mainline) default will remain the standard for
-> > >   geometries which are already widely supported
-> > > - if there are new geometries that must be supported and do not fit
-> > >   because of the "legacy" logic, then you may detect that and try
-> > >   to fallback to the "modern" way of calculating the ECC
-> > >   parameters (or even jump directly to the modern way if the geometry
-> > >   really is not currently supported officially)
-> > > - if your customers want a specific chunk size/strength when
-> > >   rebasing on top of a mainline kernel there are DT properties which do
-> > >   that anyway
-> > > - follow Sean advice: introduce a property requesting to use the
-> > >   'modern' or 'legacy' logic (with a better name than modern) but first
-> > >   check with Rob that this if valid.
+> > There was a previous discussion that the calls to iio_trigger_notify_done() in
+> > iio_trigger_poll() are only meant to decrement the counter, as the assumption
+> > was that the calls via threads would always happen later.  Unfortunately this
+> > is all clearly a little bit racy and I suspect not many of the reenable() callbacks
+> > are safe if they are called in interrupt context.
+> > 
+> > Perhaps an alternative would be to schedule the reenable() if we hit it from
+> > that path thus ensuring it doesn't happen in a place where we can't sleep?
+> > 
+> > Would something like that solve your problem?
 > 
-> Another hint: please check the core helpers and use them instead of
-> trying to re-invent the wheel: normally just describing the engine
-> capabilities and calling a single helper should do the trick. But this
-> 'new' calculation should only apply to eg. MLC devices or devices with
-> specific geometries, not to all devices.
-> 
-> Thanks,
-> Miquèl
+> Yes :)
 
-Hi Han,
+But the initial design of the driver wasn't that good, there were two
+variables to decide what to do and now there is a proper state machine.
+I see this as a cleanup, that also fixes the problem with the
+re-enable().
 
-Is this something you are working on?
-If not I really think we need to revert the changes to u-boot, to allign
-vanilla u-boot and kernel.
+> > I'd do it by having a new function
+> > 
+> > iio_trigger_notify_done_schedule() that uses a work struct to call
+> > trig->ops->reenable(trig) from a context that can sleep.
 
-/Sean
+Said that, the driver doesn't need the re-enable from sleeping context
+anymore. If you provide an initial patch I can test that.
+
+> > It's a rare corner case so I don't really care that in theory we might have
+> > a device that was safe to reenable the trigger without sleeping.  That makes
+> > it easier to just have one path for this which allows sleeping.
+
+Sure, having always the same (i.e. sleeping context) makes it easier for
+the driver, especially if the non sleeping re-enable is only called
+during shutdown of the trigger-consumer if an interrupt comes in.
+
+Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
