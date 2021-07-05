@@ -2,150 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55A963BB5E1
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 05:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 677DF3BB5FF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 05:54:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230145AbhGEDpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Jul 2021 23:45:06 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:47875 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S230118AbhGEDpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 23:45:02 -0400
-X-UUID: b39ee3735c08476f9870a01504f4f443-20210705
-X-UUID: b39ee3735c08476f9870a01504f4f443-20210705
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 691492012; Mon, 05 Jul 2021 11:42:23 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 5 Jul 2021 11:42:21 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 5 Jul 2021 11:42:21 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [v12 20/20] clk: mediatek: Add MT8192 vencsys clock support
-Date:   Mon, 5 Jul 2021 11:38:24 +0800
-Message-ID: <20210705033824.1934-21-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20210705033824.1934-1-chun-jie.chen@mediatek.com>
-References: <20210705033824.1934-1-chun-jie.chen@mediatek.com>
+        id S229689AbhGED50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Jul 2021 23:57:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51834 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229652AbhGED50 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Jul 2021 23:57:26 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3DD2C061574
+        for <devicetree@vger.kernel.org>; Sun,  4 Jul 2021 20:54:49 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1m0Fgv-0000hO-Ip; Mon, 05 Jul 2021 05:54:41 +0200
+Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ore@pengutronix.de>)
+        id 1m0Fgu-0007lf-6g; Mon, 05 Jul 2021 05:54:40 +0200
+Date:   Mon, 5 Jul 2021 05:54:40 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Robin van der Gracht <robin@protonic.nl>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: tsc2046: fix sleeping in atomic context
+ warning and a deadlock after iio_trigger_poll() call
+Message-ID: <20210705035440.35iualr6kkg22n56@pengutronix.de>
+References: <20210625065922.8310-1-o.rempel@pengutronix.de>
+ <20210625065922.8310-2-o.rempel@pengutronix.de>
+ <20210704185710.07789b8f@jic23-huawei>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20210704185710.07789b8f@jic23-huawei>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 05:46:02 up 214 days, 17:52, 35 users,  load average: 0.05, 0.05,
+ 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MT8192 vencsys clock provider
+Hi Jonathan,
 
-Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
----
- drivers/clk/mediatek/Kconfig           |  6 +++
- drivers/clk/mediatek/Makefile          |  1 +
- drivers/clk/mediatek/clk-mt8192-venc.c | 53 ++++++++++++++++++++++++++
- 3 files changed, 60 insertions(+)
- create mode 100644 drivers/clk/mediatek/clk-mt8192-venc.c
+On Sun, Jul 04, 2021 at 06:57:10PM +0100, Jonathan Cameron wrote:
+> On Fri, 25 Jun 2021 08:59:22 +0200
+> Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> 
+> > If iio_trigger_poll() is called after IRQ was disabled, we will call
+> > reenable_trigger() directly from hard IRQ or hrtimer context instead of
+> > IRQ thread. In this case we will run in to multiple issue as sleeping in atomic
+> > context and a deadlock.
+> 
+> Hmm. This sounds like a problem that might bite us in other circumstances.
+> 
+> So do I have the basic issue right in thinking we have a race between
+> calling iio_trigger_poll() and having no devices still using that trigger?
+> Thus we end up with all of trig->subirqs not being enabled.
+> 
+> There was a previous discussion that the calls to iio_trigger_notify_done() in
+> iio_trigger_poll() are only meant to decrement the counter, as the assumption
+> was that the calls via threads would always happen later.  Unfortunately this
+> is all clearly a little bit racy and I suspect not many of the reenable() callbacks
+> are safe if they are called in interrupt context.
+> 
+> Perhaps an alternative would be to schedule the reenable() if we hit it from
+> that path thus ensuring it doesn't happen in a place where we can't sleep?
+> 
+> Would something like that solve your problem?
 
-diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-index 31779f2c5c83..576babd86f98 100644
---- a/drivers/clk/mediatek/Kconfig
-+++ b/drivers/clk/mediatek/Kconfig
-@@ -574,6 +574,12 @@ config COMMON_CLK_MT8192_VDECSYS
- 	help
- 	  This driver supports MediaTek MT8192 vdecsys and vdecsys_soc clocks.
- 
-+config COMMON_CLK_MT8192_VENCSYS
-+	bool "Clock driver for MediaTek MT8192 vencsys"
-+	depends on COMMON_CLK_MT8192
-+	help
-+	  This driver supports MediaTek MT8192 vencsys clocks.
-+
- config COMMON_CLK_MT8516
- 	bool "Clock driver for MediaTek MT8516"
- 	depends on ARCH_MEDIATEK || COMPILE_TEST
-diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-index 887dd6bcf7f2..15bc045f0b71 100644
---- a/drivers/clk/mediatek/Makefile
-+++ b/drivers/clk/mediatek/Makefile
-@@ -79,5 +79,6 @@ obj-$(CONFIG_COMMON_CLK_MT8192_MMSYS) += clk-mt8192-mm.o
- obj-$(CONFIG_COMMON_CLK_MT8192_MSDC) += clk-mt8192-msdc.o
- obj-$(CONFIG_COMMON_CLK_MT8192_SCP_ADSP) += clk-mt8192-scp_adsp.o
- obj-$(CONFIG_COMMON_CLK_MT8192_VDECSYS) += clk-mt8192-vdec.o
-+obj-$(CONFIG_COMMON_CLK_MT8192_VENCSYS) += clk-mt8192-venc.o
- obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
- obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
-diff --git a/drivers/clk/mediatek/clk-mt8192-venc.c b/drivers/clk/mediatek/clk-mt8192-venc.c
-new file mode 100644
-index 000000000000..c0d867bff09e
---- /dev/null
-+++ b/drivers/clk/mediatek/clk-mt8192-venc.c
-@@ -0,0 +1,53 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// Copyright (c) 2021 MediaTek Inc.
-+// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-+
-+#include <linux/clk-provider.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+
-+#include "clk-mtk.h"
-+#include "clk-gate.h"
-+
-+#include <dt-bindings/clock/mt8192-clk.h>
-+
-+static const struct mtk_gate_regs venc_cg_regs = {
-+	.set_ofs = 0x4,
-+	.clr_ofs = 0x8,
-+	.sta_ofs = 0x0,
-+};
-+
-+#define GATE_VENC(_id, _name, _parent, _shift)	\
-+	GATE_MTK(_id, _name, _parent, &venc_cg_regs, _shift, &mtk_clk_gate_ops_setclr_inv)
-+
-+static const struct mtk_gate venc_clks[] = {
-+	GATE_VENC(CLK_VENC_SET0_LARB, "venc_set0_larb", "venc_sel", 0),
-+	GATE_VENC(CLK_VENC_SET1_VENC, "venc_set1_venc", "venc_sel", 4),
-+	GATE_VENC(CLK_VENC_SET2_JPGENC, "venc_set2_jpgenc", "venc_sel", 8),
-+	GATE_VENC(CLK_VENC_SET5_GALS, "venc_set5_gals", "venc_sel", 28),
-+};
-+
-+static const struct mtk_clk_desc venc_desc = {
-+	.clks = venc_clks,
-+	.num_clks = ARRAY_SIZE(venc_clks),
-+};
-+
-+static const struct of_device_id of_match_clk_mt8192_venc[] = {
-+	{
-+		.compatible = "mediatek,mt8192-vencsys",
-+		.data = &venc_desc,
-+	}, {
-+		/* sentinel */
-+	}
-+};
-+
-+static struct platform_driver clk_mt8192_venc_drv = {
-+	.probe = mtk_clk_simple_probe,
-+	.driver = {
-+		.name = "clk-mt8192-venc",
-+		.of_match_table = of_match_clk_mt8192_venc,
-+	},
-+};
-+
-+builtin_platform_driver(clk_mt8192_venc_drv);
+Yes :)
+
+> I'd do it by having a new function
+> 
+> iio_trigger_notify_done_schedule() that uses a work struct to call
+> trig->ops->reenable(trig) from a context that can sleep.
+> 
+> It's a rare corner case so I don't really care that in theory we might have
+> a device that was safe to reenable the trigger without sleeping.  That makes
+> it easier to just have one path for this which allows sleeping.
+
+Yes.
+
+Regards,
+Oleksij
+
+> 
+> > 
+> > To avoid this issue, rework the trigger to use state machine. All state
+> > changes are done over the hrtimer, so it allows us to drop fsleep() and
+> > avoid the deadlock.
+> > 
+> > Fixes: 9374e8f5a38d ("iio: adc: add ADC driver for the TI TSC2046 controller")
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> >  drivers/iio/adc/ti-tsc2046.c | 102 ++++++++++++++++++++---------------
+> >  1 file changed, 58 insertions(+), 44 deletions(-)
+> > 
+> > diff --git a/drivers/iio/adc/ti-tsc2046.c b/drivers/iio/adc/ti-tsc2046.c
+> > index d84ae6b008c1..91f6bd5effe7 100644
+> > --- a/drivers/iio/adc/ti-tsc2046.c
+> > +++ b/drivers/iio/adc/ti-tsc2046.c
+> > @@ -123,14 +123,21 @@ struct tsc2046_adc_ch_cfg {
+> >  	unsigned int oversampling_ratio;
+> >  };
+> >  
+> > +enum tsc2046_state {
+> > +	TSC2046_STATE_STANDBY,
+> > +	TSC2046_STATE_ENABLE_IRQ_POLL,
+> > +	TSC2046_STATE_POLL,
+> > +	TSC2046_STATE_ENABLE_IRQ,
+> > +};
+> > +
+> >  struct tsc2046_adc_priv {
+> >  	struct spi_device *spi;
+> >  	const struct tsc2046_adc_dcfg *dcfg;
+> >  
+> >  	struct iio_trigger *trig;
+> >  	struct hrtimer trig_timer;
+> > -	spinlock_t trig_lock;
+> > -	unsigned int trig_more_count;
+> > +	enum tsc2046_state state;
+> > +	spinlock_t state_lock;
+> >  
+> >  	struct spi_transfer xfer;
+> >  	struct spi_message msg;
+> > @@ -411,21 +418,47 @@ static const struct iio_info tsc2046_adc_info = {
+> >  	.update_scan_mode = tsc2046_adc_update_scan_mode,
+> >  };
+> >  
+> > -static enum hrtimer_restart tsc2046_adc_trig_more(struct hrtimer *hrtimer)
+> > +static enum hrtimer_restart tsc2046_adc_timer(struct hrtimer *hrtimer)
+> >  {
+> >  	struct tsc2046_adc_priv *priv = container_of(hrtimer,
+> >  						     struct tsc2046_adc_priv,
+> >  						     trig_timer);
+> >  	unsigned long flags;
+> >  
+> > -	spin_lock_irqsave(&priv->trig_lock, flags);
+> > -
+> > -	disable_irq_nosync(priv->spi->irq);
+> > -
+> > -	priv->trig_more_count++;
+> > -	iio_trigger_poll(priv->trig);
+> > -
+> > -	spin_unlock_irqrestore(&priv->trig_lock, flags);
+> > +	spin_lock_irqsave(&priv->state_lock, flags);
+> > +	switch (priv->state) {
+> > +	case TSC2046_STATE_ENABLE_IRQ_POLL:
+> > +		/*
+> > +		 * IRQ handler called iio_trigger_poll() to sample ADC.
+> > +		 * Here we
+> > +		 * - re-enable IRQs
+> > +		 * - start hrtimer for timeout if no IRQ will occur
+> > +		 */
+> > +		priv->state = TSC2046_STATE_POLL;
+> > +		enable_irq(priv->spi->irq);
+> > +		hrtimer_start(&priv->trig_timer,
+> > +			      ns_to_ktime(priv->scan_interval_us *
+> > +					  NSEC_PER_USEC),
+> > +			      HRTIMER_MODE_REL_SOFT);
+> > +		break;
+> > +	case TSC2046_STATE_POLL:
+> > +		disable_irq_nosync(priv->spi->irq);
+> > +		priv->state = TSC2046_STATE_ENABLE_IRQ;
+> > +		/* iio_trigger_poll() starts hrtimer */
+> > +		iio_trigger_poll(priv->trig);
+> > +		break;
+> > +	case TSC2046_STATE_ENABLE_IRQ:
+> > +		priv->state = TSC2046_STATE_STANDBY;
+> > +		enable_irq(priv->spi->irq);
+> > +		break;
+> > +	case TSC2046_STATE_STANDBY:
+> > +		fallthrough;
+> > +	default:
+> > +		dev_warn(&priv->spi->dev, "Got unexpected state: %i\n",
+> > +			 priv->state);
+> > +		break;
+> > +	}
+> > +	spin_unlock_irqrestore(&priv->state_lock, flags);
+> >  
+> >  	return HRTIMER_NORESTART;
+> >  }
+> > @@ -434,16 +467,17 @@ static irqreturn_t tsc2046_adc_irq(int irq, void *dev_id)
+> >  {
+> >  	struct iio_dev *indio_dev = dev_id;
+> >  	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
+> > -
+> > -	spin_lock(&priv->trig_lock);
+> > +	unsigned long flags;
+> >  
+> >  	hrtimer_try_to_cancel(&priv->trig_timer);
+> >  
+> > -	priv->trig_more_count = 0;
+> > +	spin_lock_irqsave(&priv->state_lock, flags);
+> >  	disable_irq_nosync(priv->spi->irq);
+> > -	iio_trigger_poll(priv->trig);
+> > +	priv->state = TSC2046_STATE_ENABLE_IRQ_POLL;
+> >  
+> > -	spin_unlock(&priv->trig_lock);
+> > +	/* iio_trigger_poll() starts hrtimer */
+> > +	iio_trigger_poll(priv->trig);
+> > +	spin_unlock_irqrestore(&priv->state_lock, flags);
+> >  
+> >  	return IRQ_HANDLED;
+> >  }
+> > @@ -452,37 +486,16 @@ static void tsc2046_adc_reenable_trigger(struct iio_trigger *trig)
+> >  {
+> >  	struct iio_dev *indio_dev = iio_trigger_get_drvdata(trig);
+> >  	struct tsc2046_adc_priv *priv = iio_priv(indio_dev);
+> > -	unsigned long flags;
+> > -	int delta;
+> > +	ktime_t tim;
+> >  
+> >  	/*
+> >  	 * We can sample it as fast as we can, but usually we do not need so
+> >  	 * many samples. Reduce the sample rate for default (touchscreen) use
+> >  	 * case.
+> > -	 * Currently we do not need a highly precise sample rate. It is enough
+> > -	 * to have calculated numbers.
+> > -	 */
+> > -	delta = priv->scan_interval_us - priv->time_per_scan_us;
+> > -	if (delta > 0)
+> > -		fsleep(delta);
+> > -
+> > -	spin_lock_irqsave(&priv->trig_lock, flags);
+> > -
+> > -	/*
+> > -	 * We need to trigger at least one extra sample to detect state
+> > -	 * difference on ADC side.
+> >  	 */
+> > -	if (!priv->trig_more_count) {
+> > -		int timeout_ms = DIV_ROUND_UP(priv->scan_interval_us,
+> > -					      USEC_PER_MSEC);
+> > -
+> > -		hrtimer_start(&priv->trig_timer, ms_to_ktime(timeout_ms),
+> > -			      HRTIMER_MODE_REL_SOFT);
+> > -	}
+> > -
+> > -	enable_irq(priv->spi->irq);
+> > -
+> > -	spin_unlock_irqrestore(&priv->trig_lock, flags);
+> > +	tim = ns_to_ktime((priv->scan_interval_us - priv->time_per_scan_us) *
+> > +			  NSEC_PER_USEC);
+> > +	hrtimer_start(&priv->trig_timer, tim, HRTIMER_MODE_REL_SOFT);
+> >  }
+> >  
+> >  static int tsc2046_adc_set_trigger_state(struct iio_trigger *trig, bool enable)
+> > @@ -493,8 +506,8 @@ static int tsc2046_adc_set_trigger_state(struct iio_trigger *trig, bool enable)
+> >  	if (enable) {
+> >  		enable_irq(priv->spi->irq);
+> >  	} else {
+> > +		hrtimer_cancel(&priv->trig_timer);
+> >  		disable_irq(priv->spi->irq);
+> > -		hrtimer_try_to_cancel(&priv->trig_timer);
+> >  	}
+> >  
+> >  	return 0;
+> > @@ -668,10 +681,11 @@ static int tsc2046_adc_probe(struct spi_device *spi)
+> >  	iio_trigger_set_drvdata(trig, indio_dev);
+> >  	trig->ops = &tsc2046_adc_trigger_ops;
+> >  
+> > -	spin_lock_init(&priv->trig_lock);
+> > +	spin_lock_init(&priv->state_lock);
+> > +	priv->state = TSC2046_STATE_STANDBY;
+> >  	hrtimer_init(&priv->trig_timer, CLOCK_MONOTONIC,
+> >  		     HRTIMER_MODE_REL_SOFT);
+> > -	priv->trig_timer.function = tsc2046_adc_trig_more;
+> > +	priv->trig_timer.function = tsc2046_adc_timer;
+> >  
+> >  	ret = devm_iio_trigger_register(dev, trig);
+> >  	if (ret) {
+> 
+> 
+
 -- 
-2.18.0
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
