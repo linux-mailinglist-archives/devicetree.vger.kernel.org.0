@@ -2,111 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C04223BBDF5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 16:03:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E07C73BBE3E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 16:33:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231343AbhGEOF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 10:05:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47070 "EHLO
+        id S231366AbhGEOf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 10:35:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231296AbhGEOF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 10:05:58 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 829B3C061762;
-        Mon,  5 Jul 2021 07:03:21 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:4cb:a870:e614:ab69:6d29:3012])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 6ABFD1F42A8F;
-        Mon,  5 Jul 2021 15:03:19 +0100 (BST)
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     hjc@rock-chips.com, heiko@sntech.de, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH 2/2] drm/rockchip: dw_hdmi: add rk3568 support
-Date:   Mon,  5 Jul 2021 16:03:04 +0200
-Message-Id: <20210705140304.652929-3-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210705140304.652929-1-benjamin.gaignard@collabora.com>
-References: <20210705140304.652929-1-benjamin.gaignard@collabora.com>
+        with ESMTP id S230285AbhGEOf4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 10:35:56 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C520C061574;
+        Mon,  5 Jul 2021 07:33:19 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id k8so24887845lja.4;
+        Mon, 05 Jul 2021 07:33:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=i+utG97jaWLbSw6GtvymEyma5n0QceYYYcL0QZrM+K0=;
+        b=LMDBO8vopAYlQ5RE/k0rqJbg2Lof4F7VcfrlSatlRA6OiVmsg0XFeRO3ttpq8y7XXy
+         tT7XUFAVfYK/DjclGtpF26OrL48I1xmIJGpYl0cS4qMSP49P4zQ4CS3I4ESXGBhJuTvQ
+         MUCYY/LXD5iIxXC00/gJd3pUueDCepbbIh7vaWddTYZjpkfJKAEicQATM3x/glfPAJCj
+         cc/iNTtcvnYjHnK8eLgKTvMI2Gpe53kabgrTJWp5AcbbtPsI2tDKm8GF30AL/rnAiSTW
+         YIZ/OKzJZ3QJplBbimqKm9BJqGA+5CShlMK3S5pt9HRuZB1EcPXTdEWoxnH1QoLEW4Ze
+         NqZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=i+utG97jaWLbSw6GtvymEyma5n0QceYYYcL0QZrM+K0=;
+        b=RzjdTJATv6hX95V+KxYcrxYDZ3mMpdqIZDgDy8RBXjYEr69dfKWCf6vGzhiEd5YOkO
+         gGN4FB/R9rKHXBQwL9g3M4DglEnJOmDfBl4sUNwxDaUOX9fYxKJpPwIejk2+ixjlcun4
+         nnEkvpnVP5MKKkBri07nv86MVioE+ktdnM0ST4+ggDYdMOAF64a7X/yJQolJkof/J/ct
+         5Zk6IcxN6kDs2Aw0m2J050Qdln3kYMWNH32nxfoeDLsYpV5rzld1ckQUXx4e/JAiUUZU
+         QTeYDU/JeNMnAzpn64gVwFWOXlSZGSZlx6Jlro+W3d5RiXLz7B0Sj1rguIYqgIdzIlgO
+         6Itw==
+X-Gm-Message-State: AOAM531oabgS/AQvuG5dECv+UJe40SBOLB2zu5dHQtau2/cuCuO4KSDi
+        TqCRfY36m7x1NkPsxK02ebdFhYVyGqfZjw==
+X-Google-Smtp-Source: ABdhPJwBxVU+K9bjigfPk+jbTac/NdSFFo7VBcAaWjm2aDFdnquAjxVcedwJB+wUU8apv/YN/OvCvw==
+X-Received: by 2002:a2e:9210:: with SMTP id k16mr10367590ljg.508.1625495597763;
+        Mon, 05 Jul 2021 07:33:17 -0700 (PDT)
+Received: from dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi (dc7vkhyyyyyyyyyyyyydy-3.rev.dnainternet.fi. [2001:14ba:16e2:8300::6])
+        by smtp.gmail.com with ESMTPSA id o10sm1096781lfk.271.2021.07.05.07.33.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Jul 2021 07:33:17 -0700 (PDT)
+Message-ID: <68dc9bba14776ecd07d1b9e6fe53956b892a4b56.camel@gmail.com>
+Subject: Re: [RFC PATH 2/2] gpio: starfive-jh7100: Add StarFive JH7100 GPIO
+ driver
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+To:     Michael Walle <michael@walle.cc>,
+        Drew Fustini <drew@beagleboard.org>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Huan Feng <huan.feng@starfivetech.com>
+Date:   Mon, 05 Jul 2021 17:33:10 +0300
+In-Reply-To: <991dddfee40c5b358c07257b58a316f3@walle.cc>
+References: <20210701002037.912625-1-drew@beagleboard.org>
+         <20210701002037.912625-3-drew@beagleboard.org>
+         <CAHp75Vc7kFk_SC8MSmFE5mBt53=4yUnxpSpr=cxZ+7eA-t1r5g@mail.gmail.com>
+         <20210702210622.GC1035183@x1> <991dddfee40c5b358c07257b58a316f3@walle.cc>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new dw_hdmi_plat_data struct and new compatible for rk3568.
+Hi deee Ho Drew, Michael, All
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
----
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 28 +++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+On Mon, 2021-07-05 at 15:29 +0200, Michael Walle wrote:
+> Hi Drew,
+> 
+> Am 2021-07-02 23:06, schrieb Drew Fustini:
+> > On Fri, Jul 02, 2021 at 07:03:19PM +0300, Andy Shevchenko wrote:
+> > > On Thu, Jul 1, 2021 at 3:23 AM Drew Fustini <drew@beagleboard.org
+> > > > 
+> > > wrote:
+> > > > Add GPIO driver for the StarFive JH7100 SoC [1] used on the
+> > > > BeagleV Starlight JH7100 board [2].
+> > > > 
+> > > > [1] https://github.com/starfive-tech/beaglev_doc/
+> > > > [2] https://github.com/beagleboard/beaglev-starlight
+> > > > Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> > > > Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
+> > > > Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> > > 
+> > > Seems some Co-developed-by are missing.
+> > 
+> > Thank you for suggesting this.  Huan Feng originally wrote the
+> > driver.
+> > Emil and I have made some changes to reorganize and clean it up for
+> > submission.
+> > 
+> > Do you think all three of us should list Co-developed-by: for our
+> > names
+> > in addition to the SOB?
+> > 
+> > > Brief look into the code brings the Q. Can't you utilize gpio-
+> > > regmap
+> > > here? Why not?
+> > 
+> > Michael Walle asked about this yesterday and it was my first time
+> > looking at regmap and gpio-regmap.  I've been reading the code and
+> > it
+> > does look like I should try convert this driver over to using
+> > gpio-regmap.
+> > 
+> > The open question in my mind is how to handle the interrupt type
+> > (edge
+> > trigged on positive or negative, level triggered on high or low).
+> > Hopefully I can find some other examples that can help me think
+> > about
+> > how to do that correctly.
 
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-index 830bdd5e9b7ce..5817c3a9fe64b 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-@@ -50,6 +50,10 @@
- #define RK3399_GRF_SOC_CON20		0x6250
- #define RK3399_HDMI_LCDC_SEL		BIT(6)
- 
-+#define RK3568_GRF_VO_CON1		0x0364
-+#define RK3568_HDMI_SDAIN_MSK		BIT(15)
-+#define RK3568_HDMI_SCLIN_MSK		BIT(14)
-+
- #define HIWORD_UPDATE(val, mask)	(val | (mask) << 16)
- 
- /**
-@@ -467,6 +471,19 @@ static const struct dw_hdmi_plat_data rk3399_hdmi_drv_data = {
- 	.use_drm_infoframe = true,
- };
- 
-+static struct rockchip_hdmi_chip_data rk3568_chip_data = {
-+	.lcdsel_grf_reg = -1,
-+};
-+
-+static const struct dw_hdmi_plat_data rk3568_hdmi_drv_data = {
-+	.mode_valid = dw_hdmi_rockchip_mode_valid,
-+	.mpll_cfg   = rockchip_mpll_cfg,
-+	.cur_ctr    = rockchip_cur_ctr,
-+	.phy_config = rockchip_phy_config,
-+	.phy_data = &rk3568_chip_data,
-+	.use_drm_infoframe = true,
-+};
-+
- static const struct of_device_id dw_hdmi_rockchip_dt_ids[] = {
- 	{ .compatible = "rockchip,rk3228-dw-hdmi",
- 	  .data = &rk3228_hdmi_drv_data
-@@ -480,6 +497,9 @@ static const struct of_device_id dw_hdmi_rockchip_dt_ids[] = {
- 	{ .compatible = "rockchip,rk3399-dw-hdmi",
- 	  .data = &rk3399_hdmi_drv_data
- 	},
-+	{ .compatible = "rockchip,rk3568-dw-hdmi",
-+	  .data = &rk3568_hdmi_drv_data
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, dw_hdmi_rockchip_dt_ids);
-@@ -536,6 +556,14 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
- 		return ret;
- 	}
- 
-+	if (hdmi->chip_data == &rk3568_chip_data) {
-+		regmap_write(hdmi->regmap, RK3568_GRF_VO_CON1,
-+			     HIWORD_UPDATE(RK3568_HDMI_SDAIN_MSK |
-+					   RK3568_HDMI_SCLIN_MSK,
-+					   RK3568_HDMI_SDAIN_MSK |
-+					   RK3568_HDMI_SCLIN_MSK));
-+	}
-+
- 	hdmi->phy = devm_phy_optional_get(dev, "hdmi");
- 	if (IS_ERR(hdmi->phy)) {
- 		ret = PTR_ERR(hdmi->phy);
--- 
-2.25.1
+> regmap_irq_type".
+> If you're lucky, you can just supply the corresponding values that
+> fits
+> your hardware.
+
+I added some level IRQ type-configuration support to regmap_irq back
+when I wrote the BD70528 support. You should be able to just fill the
+bit-mask indicating IRQ types supported by your GPIO controller
+hardware, and then the corresponding type register values. As far as I
+remember the supported types and values are given "per IRQ". If my
+memory serves me right there was a limitation that the regmap-IRQ does
+not distinguish setup where GPIO controller supports rising and falling
+edges - but not both. That would have required adding another type
+flag.
+
+>  If it doesn't match your hardware at all, then you can
+> keep your own functions, or if its slightly different, then maybe you
+> can add support for your quirk in regmap-irq. You don't necessarily
+> have
+> to use regmap-irq together with gpio-regmap. You can also just use
+> regmap-irq or gpio-regmap independently.
+> 
+> A quick grep for "type_rising_" lists drivers/mfd/max77650.c and
+> drivers/mfd/rohm-bd70528.c for example.
+
+The BD70528 has not been used too much and is scheduled for removal. It
+may have received only limited testing but it *should* be functional
+though.
+
+Best Regards
+	Matti Vaittinen
 
