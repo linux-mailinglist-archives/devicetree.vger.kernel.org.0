@@ -2,116 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A866C3BBCE1
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 14:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CEB43BBD2A
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 14:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231309AbhGEMhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 08:37:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55674 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230188AbhGEMhG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 08:37:06 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 047DDC061574
-        for <devicetree@vger.kernel.org>; Mon,  5 Jul 2021 05:34:29 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id ga42so11553501ejc.6
-        for <devicetree@vger.kernel.org>; Mon, 05 Jul 2021 05:34:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kYgCutTysFjToHhxhkTGe6Ke5bNipQU+7DP9IUElXsg=;
-        b=LgB9rSVsdNUUYfdjJMCGmGNKxmE2UF/Kjqs128rNHr99DqjGJlyFRjf64qSh2fzVuu
-         YhIcxtUz5+MsDVvCcsfObntGC/X3zaRGXeUgaeNxBWYGAzJc1ZdidX6ySdcEDFwTmicI
-         nE2fEdvZ3kRBG+3HWteSHTEstabuNuHjgJo1M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kYgCutTysFjToHhxhkTGe6Ke5bNipQU+7DP9IUElXsg=;
-        b=sNw6LpIqmlLNz+pWcBGS/AFa8MXCsS7YNlZ1CvTDoCHYcGtvxaIgQPZMkSgObqCPH2
-         mqOanLZwxBgkLsG2zEZRWe8vwaZ2FMaJofguSMDTBvLrM07PCMQxL4Lp0RwgDobCJIpu
-         g/Yfut5Rt1HeYqYyDvRP2k1ufYLbVyUOYSKAUJoMkPfL/PK+EpLfMnFZz+XYGUths31s
-         MRyfgxbRx76lqDgqm5brPj6wUSoETBTRKfmxjSoRH0qgM6vSLmaAOy9HTw6taV/D+3iU
-         H3Q/xF3bqHQBDS+sREO1xUKmOQ2Ku0H2rmlLfmmOHJvXvclOau0agYXYTAlWU5901eqC
-         lyfw==
-X-Gm-Message-State: AOAM5330dUjIZt8AaZEvE61luCkTBN5tgXH+tRimCUYO511lGUbXEXa5
-        E5BjvQcJp9e/xL7U0Xzrh2pg8GO3Wesl7R9q+z0AWA==
-X-Google-Smtp-Source: ABdhPJwGdD3qkRDbzHJZ7re9u/ZbvF8hk9l6hZz+QJMz7zwD2KihNnr1v6zzB8WCDMxiReKthjN3KTtJiypPnR6+HYA=
-X-Received: by 2002:a17:906:bb10:: with SMTP id jz16mr13254166ejb.252.1625488467616;
- Mon, 05 Jul 2021 05:34:27 -0700 (PDT)
+        id S230472AbhGEM5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 08:57:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52134 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230188AbhGEM5z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Jul 2021 08:57:55 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 33DD0613E0;
+        Mon,  5 Jul 2021 12:55:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625489718;
+        bh=DL/qfcwl7Mep35KybLuFTSiya/Gs+1I2TD7zA77f8q8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=MnWkYcT2jqvq7PjDgs2KzxLL6OQfPVobZRxWv1r3FgKMdG93QhxM4UQC9niDaUduc
+         zZST0SESd6LjNo7Cigo4Txqmwrcg1XDOfAsh/OFIWTfF4/6HwFs4XycSgDLLurqMPm
+         Dewv4LzkogHsJdo5gQyddmXn68J0CGkAXOSWXt91ylcXdZjkQbwjXizpehYz2V3G4F
+         wFNtOdKd9T47eeI9+4/tuLBp5iV/qd+S7mnEDtuXrtrAuGRxl9MpPzlLyLFBXt447G
+         GASPDQ5sVteJG886R2PiAVXYv8+pYk/kFaMiJJrbVY7Jcpa9rnosG39q0TP/XzOTl6
+         Arz+9US8SfwTQ==
+Received: by mail-ej1-f54.google.com with SMTP id bg14so28905247ejb.9;
+        Mon, 05 Jul 2021 05:55:18 -0700 (PDT)
+X-Gm-Message-State: AOAM530kdGPgD8xUKjSQjwIHzA62yvGffzgmgfDdOM4T9ldD1Df+oDLx
+        eYlEKCc6zQsvHHXoFnv2gVWZZxz0CBn3GySb2w==
+X-Google-Smtp-Source: ABdhPJz9geTByoPzNQSQooTOiO202kzh3UBmiiWSZZQvrpQFu4TaOlsLcSVYB+yGdIfA6X9oPf8eOjKGIf6mgQo89KE=
+X-Received: by 2002:a17:907:728e:: with SMTP id dt14mr13157240ejc.75.1625489716804;
+ Mon, 05 Jul 2021 05:55:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210704090230.26489-1-jagan@amarulasolutions.com>
- <CGME20210704090432eucas1p2fa4225336e35f3f5fd2fbf5da99001ff@eucas1p2.samsung.com>
- <20210704090230.26489-4-jagan@amarulasolutions.com> <7af964c7-0e92-f190-2a86-d7a061a05129@samsung.com>
- <CAMty3ZB6Y91iOBPujNWZh9h5kO4p04NioiL2zJY_j_c_LqOxBw@mail.gmail.com> <03653aa2-ed43-88b3-213a-9ccc99587844@samsung.com>
-In-Reply-To: <03653aa2-ed43-88b3-213a-9ccc99587844@samsung.com>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Mon, 5 Jul 2021 18:04:16 +0530
-Message-ID: <CAMty3ZCd7DugDYbOfro3e5uRgtXviP9p-5nXp30mRPcoy5gG4g@mail.gmail.com>
-Subject: Re: [RFC PATCH 03/17] drm/exynos: dsi: Use the drm_panel_bridge API
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     Inki Dae <inki.dae@samsung.com>,
-        Joonyoung Shim <jy0922.shim@samsung.com>,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        Marek Vasut <marex@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
+References: <20210705033824.1934-1-chun-jie.chen@mediatek.com> <20210705033824.1934-3-chun-jie.chen@mediatek.com>
+In-Reply-To: <20210705033824.1934-3-chun-jie.chen@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 5 Jul 2021 20:55:05 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-wLsBwWaaBX0tzt2e5z+3vLO2yMmX2VrCCtO5cs=_PqQ@mail.gmail.com>
+Message-ID: <CAAOTY_-wLsBwWaaBX0tzt2e5z+3vLO2yMmX2VrCCtO5cs=_PqQ@mail.gmail.com>
+Subject: Re: [v12 02/20] dt-bindings: ARM: Mediatek: Add mmsys document
+ binding for MT8192
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, linux-clk@vger.kernel.org,
+        DTML <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 5, 2021 at 5:43 PM Marek Szyprowski
-<m.szyprowski@samsung.com> wrote:
+Chun-Jie Chen <chun-jie.chen@mediatek.com> =E6=96=BC 2021=E5=B9=B47=E6=9C=
+=885=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8811:44=E5=AF=AB=E9=81=93=
+=EF=BC=9A
 >
-> On 05.07.2021 14:00, Jagan Teki wrote:
-> > On Mon, Jul 5, 2021 at 5:18 PM Marek Szyprowski
-> > <m.szyprowski@samsung.com> wrote:
-> >> On 04.07.2021 11:02, Jagan Teki wrote:
-> >>> Use drm_panel_bridge to replace manual panel and
-> >>> bridge_chain handling code.
-> >>>
-> >>> This makes the driver simpler to allow all components
-> >>> in the display pipeline to be treated as bridges by
-> >>> cleaning the way to generic connector handling.
-> >>>
-> >>> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> >> This breaks Exysos DSI driver operation (Trats board worked fine with
-> >> only patches 1-2):
-> >>
-> >> [    2.540066] exynos4-fb 11c00000.fimd: Adding to iommu group 0
-> >> [    2.554733] OF: graph: no port node found in /soc/fimd@11c00000
-> >> [    2.602819] [drm] Exynos DRM: using 11c00000.fimd device for DMA
-> >> mapping operations
-> >> [    2.609649] exynos-drm exynos-drm: bound 11c00000.fimd (ops
-> >> fimd_component_ops)
-> >> [    2.632558] exynos-drm exynos-drm: failed to bind 11c80000.dsi (ops
-> >> exynos_dsi_component_ops): -22
-> >> [    2.642263] exynos-drm exynos-drm: master bind failed: -22
-> >> [    2.651017] exynos-drm: probe of exynos-drm failed with error -22
-> > Thanks for testing it.
-> >
-> > Can you check Squash of 3,4 or 3,4,5 will work or not?
+> This patch adds the mmsys document binding for MT8192 SoC.
+
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+
 >
-> I've check both sets: 1-4 and 1-5 and none of them works. The result is
-> same as above. If I remember correctly, last time when I played with
-> that code, there was a problem with DRM core calling bridge ops in
-> different order than when they are used by the Exynos DSI driver.
-
-Okay. Let me check with sun6i-mipi-dsi as it is component_ops based.
-
-Jagan.
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> ---
+>  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.txt          | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsy=
+s.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
+> index 78c50733985c..9712a6831fab 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.txt
+> @@ -16,6 +16,7 @@ Required Properties:
+>         - "mediatek,mt8167-mmsys", "syscon"
+>         - "mediatek,mt8173-mmsys", "syscon"
+>         - "mediatek,mt8183-mmsys", "syscon"
+> +       - "mediatek,mt8192-mmsys", "syscon"
+>  - #clock-cells: Must be 1
+>
+>  For the clock control, the mmsys controller uses the common clk binding =
+from
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
