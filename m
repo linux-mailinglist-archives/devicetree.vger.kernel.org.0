@@ -2,230 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DB743BBA90
-	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 11:55:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40F683BBABF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Jul 2021 12:04:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230367AbhGEJ5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 05:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47672 "EHLO
+        id S230493AbhGEKGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 06:06:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230000AbhGEJ5t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 05:57:49 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0610BC061760
-        for <devicetree@vger.kernel.org>; Mon,  5 Jul 2021 02:55:13 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id a6so23944038ljq.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Jul 2021 02:55:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=76UHh0xd3/47lriNsZ56K8AIpOU4AXIgwxQmOqZVOu4=;
-        b=Gur909yNfRrbSLYCj5TF7f3/2EDRhQ6gnhZdbubcP/OR83toGfoysivDTuXmGBIbJd
-         WtGAWjpTPrkhBF0+pFEMzzlzEZzXfQlZRS3H+4s2aQwvo8AfoFG6jF6xPKR6PP+fsjnH
-         aKwgpjD/6Jww1bAokjcLrlvJ1mg2HbSAec8do=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=76UHh0xd3/47lriNsZ56K8AIpOU4AXIgwxQmOqZVOu4=;
-        b=a5LO/V15AeJdnuaMix50l34pWqNBu/b0SrrTJWhgCU/PRLaKh/hWxCS3BCtR6eRw54
-         TCHTArkD0q8niVp4EVmA198Hzc0h8IlMOCux96or36y2lX4Bax4sWtjB6M4xFov04TV5
-         xxf4O4nCUxM4AAKOHpWYYiYrnx+KxRw4Ux3nJxNkXKeitVfM8A8b1RMPBiSuSHkG6id4
-         M7CoAiyFVLnMcCjPVdBt2QMUMee8IPJ7LfTOO0xlQQ7kBL/ShI5G73DVrnFrryFyGYjM
-         gPH7h3BVVDmDCBWGRkrF5Fur4jXLGsNftyig+2lVaIbEGu4ZapxUuxbxSiKTDyAzmx9u
-         BjoA==
-X-Gm-Message-State: AOAM530CK231AnapgLuaN1qCCLuFUNgeLvXSKasUlSyWKJhQdO0Rc2D0
-        ycQIxAE17n7saXGNY9BwwtAP4sM1pqhT15IzwpTgCg==
-X-Google-Smtp-Source: ABdhPJyd+J7AADwR6pbVkPJj0QpvAzTSciPcJRxaXQx7VKleQjJCQk7Qi8C/Mv/1z/QFK8vAe5+pv0fE9PDIbsI+P4s=
-X-Received: by 2002:a2e:5c42:: with SMTP id q63mr10340582ljb.23.1625478911337;
- Mon, 05 Jul 2021 02:55:11 -0700 (PDT)
+        with ESMTP id S230366AbhGEKGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 06:06:51 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88C74C061574;
+        Mon,  5 Jul 2021 03:04:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=956zj6j30tlRZ1w7O85satSsrvmOb1dPD6tACO1pQag=; b=cZuA4cgxAzY/zyq6CS7qt/ZP14
+        AgGHO874BNBzPsWE7OUsSNXUXPE22cvBZLS3FY5eH0cdyehJCq/j9G1CAbonr8YYTVEWH7NQ+P7L1
+        mMJk3jLB4dlNQ7ZvyTyq6Zf711XxhvQ+LCX04izSQivtwSDxrl1ZUN06/QK5QdUWPL2Q=;
+Received: from p200300ccff0e44001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0e:4400:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1m0LSJ-0006aN-L5; Mon, 05 Jul 2021 12:03:59 +0200
+Date:   Mon, 5 Jul 2021 12:03:58 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>, <robh+dt@kernel.org>,
+        <lars@metafoo.de>, <sre@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <leonard.crestez@nxp.com>,
+        <letux-kernel@openphoenux.org>
+Subject: Re: [PATCH 2/4] mfd: rn5t618: Add of compatibles for ADC and power
+Message-ID: <20210705120358.6bf737f7@aktux>
+In-Reply-To: <20210705093129.00005aab@Huawei.com>
+References: <20210703084224.31623-1-andreas@kemnade.info>
+        <20210703084224.31623-3-andreas@kemnade.info>
+        <20210703170405.60828c57@jic23-huawei>
+        <YOK2aKYU6TK1GO7H@dell>
+        <20210705093129.00005aab@Huawei.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20210630090710.1873559-1-kansho@chromium.org> <20210630180652.1.I88a52644e47e88b15f5db9841cb084dc53c5875c@changeid>
- <716ab7a7-937d-df88-8d3c-8d35df473b4e@gmail.com> <CAP3OrSLyoKNr7fMOx5sUtWi7PVQGuN-5w7k_0D2MhDUeXXmYCg@mail.gmail.com>
-In-Reply-To: <CAP3OrSLyoKNr7fMOx5sUtWi7PVQGuN-5w7k_0D2MhDUeXXmYCg@mail.gmail.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 5 Jul 2021 17:55:00 +0800
-Message-ID: <CAGXv+5FVf3hu5Y+aFazqBwAcvWMGkyqXB-2VVnskmMsYKj2_yA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: mt8183: add audio node
-To:     Kansho Nishida <kansho@chromium.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Shunli Wang <shunli.wang@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Eddie Huang <eddie.huang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 5 Jul 2021 09:31:29 +0100
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
 
-On Mon, Jul 5, 2021 at 5:40 PM Kansho Nishida <kansho@chromium.org> wrote:
->
-> On Fri, Jul 2, 2021 at 3:20 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
-> >
-> >
-> >
-> > On 30/06/2021 11:07, Kansho Nishida wrote:
-> > > Add afe (audio front end) device node to the MT8183 dtsi.
-> > >
-> > > Signed-off-by: Kansho Nishida <kansho@chromium.org>
-> > > ---
-> > >
-> > >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 94 +++++++++++++++++++++++-
-> > >  1 file changed, 93 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > > index f90df6439c08..b06acb8d6527 100644
-> > > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > > @@ -1115,10 +1115,102 @@ usb_host: usb@11200000 {
-> > >                       };
-> > >               };
-> > >
-> > > -             audiosys: syscon@11220000 {
-> > > +             audiosys: clock-controller@11220000 {
-> >
-> > Why do you change it from sysecon to clock-controller?
-> >
-> > Regards,
-> > Matthias
->
-> Hi Matthias,
->
-> Thanks for the comments!
-> This should be "clock-controller" according to the binding description (*1).
-> Moreover, you suggested doing so even though it's a long time ago (*2).
+> On Mon, 5 Jul 2021 08:36:08 +0100
+> Lee Jones <lee.jones@linaro.org> wrote:
+> 
+> > On Sat, 03 Jul 2021, Jonathan Cameron wrote:
+> >   
+> > > On Sat,  3 Jul 2021 10:42:22 +0200
+> > > Andreas Kemnade <andreas@kemnade.info> wrote:
+> > >     
+> > > > This allows having devicetree nodes for the subdevices.
+> > > > 
+> > > > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > > > ---
+> > > >  drivers/mfd/rn5t618.c | 6 ++++--
+> > > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/mfd/rn5t618.c b/drivers/mfd/rn5t618.c
+> > > > index 384acb459427..b916c7471ca3 100644
+> > > > --- a/drivers/mfd/rn5t618.c
+> > > > +++ b/drivers/mfd/rn5t618.c
+> > > > @@ -24,8 +24,10 @@ static const struct mfd_cell rn5t618_cells[] = {
+> > > >  };
+> > > >  
+> > > >  static const struct mfd_cell rc5t619_cells[] = {
+> > > > -	{ .name = "rn5t618-adc" },
+> > > > -	{ .name = "rn5t618-power" },
+> > > > +	{ .name = "rn5t618-adc",
+> > > > +	  .of_compatible = "ricoh,rc5t619-adc" },    
+> > > 
+> > > Odd to have a name of 618 and a compatible of 619.  Why?
+> > > Definitely deserves a comment if this is necessary for some reason!    
+> > 
+> > Actually this is the norm.  We have lots of drivers named after the
+> > *first* device they supported before expansion.  
+> 
+> Ah. I'd missed that this cells array is specific to the 5t619, though if
+> the driver is the same I'd also expect it to be needed for the 5t618 entry.
+> 
+Well, yes, it is needed for the 5t618 also. But if I would add it, it
+would be untested. And that second shorter array is also used for the
+rn5t567 which does not have an ADC, So I we need three arrays there.
 
-The address space really covers the whole audio subsystem though. The clock
-controls only span a few registers. In hindsight the clock controls shouldn't
-have been modelled separately, since they are only used internally within the
-audio subsystem.
-
-See https://lore.kernel.org/linux-mediatek/YOLKxrJin5kkwiIl@google.com/T/#u
-for issues I raised on the MT8195.
-
-Now we are probably not going to be able to fix this for existing bindings,
-so let's just get the node name right. It should probably be audio-controller
-or something close instead.
-
-
-Regards
-ChenYu
-
-
-> *1) https://www.kernel.org/doc/Documentation/devicetree/bindings/arm/mediatek/mediatek%2Caudsys.txt
-> *2) https://patchwork.kernel.org/project/linux-mediatek/patch/1559360354-22974-1-git-send-email-jiaxin.yu@mediatek.com/
->
-> Regards,
-> Kansho
->
-> >
-> > >                       compatible = "mediatek,mt8183-audiosys", "syscon";
-> > >                       reg = <0 0x11220000 0 0x1000>;
-> > >                       #clock-cells = <1>;
-> > > +                     afe: mt8183-afe-pcm {
-> > > +                             compatible = "mediatek,mt8183-audio";
-> > > +                             interrupts = <GIC_SPI 161 IRQ_TYPE_LEVEL_LOW>;
-> > > +                             resets = <&watchdog MT8183_TOPRGU_AUDIO_SW_RST>;
-> > > +                             reset-names = "audiosys";
-> > > +                             power-domains =
-> > > +                                     <&spm MT8183_POWER_DOMAIN_AUDIO>;
-> > > +                             clocks = <&audiosys CLK_AUDIO_AFE>,
-> > > +                                      <&audiosys CLK_AUDIO_DAC>,
-> > > +                                      <&audiosys CLK_AUDIO_DAC_PREDIS>,
-> > > +                                      <&audiosys CLK_AUDIO_ADC>,
-> > > +                                      <&audiosys CLK_AUDIO_PDN_ADDA6_ADC>,
-> > > +                                      <&audiosys CLK_AUDIO_22M>,
-> > > +                                      <&audiosys CLK_AUDIO_24M>,
-> > > +                                      <&audiosys CLK_AUDIO_APLL_TUNER>,
-> > > +                                      <&audiosys CLK_AUDIO_APLL2_TUNER>,
-> > > +                                      <&audiosys CLK_AUDIO_I2S1>,
-> > > +                                      <&audiosys CLK_AUDIO_I2S2>,
-> > > +                                      <&audiosys CLK_AUDIO_I2S3>,
-> > > +                                      <&audiosys CLK_AUDIO_I2S4>,
-> > > +                                      <&audiosys CLK_AUDIO_TDM>,
-> > > +                                      <&audiosys CLK_AUDIO_TML>,
-> > > +                                      <&infracfg CLK_INFRA_AUDIO>,
-> > > +                                      <&infracfg CLK_INFRA_AUDIO_26M_BCLK>,
-> > > +                                      <&topckgen CLK_TOP_MUX_AUDIO>,
-> > > +                                      <&topckgen CLK_TOP_MUX_AUD_INTBUS>,
-> > > +                                      <&topckgen CLK_TOP_SYSPLL_D2_D4>,
-> > > +                                      <&topckgen CLK_TOP_MUX_AUD_1>,
-> > > +                                      <&topckgen CLK_TOP_APLL1_CK>,
-> > > +                                      <&topckgen CLK_TOP_MUX_AUD_2>,
-> > > +                                      <&topckgen CLK_TOP_APLL2_CK>,
-> > > +                                      <&topckgen CLK_TOP_MUX_AUD_ENG1>,
-> > > +                                      <&topckgen CLK_TOP_APLL1_D8>,
-> > > +                                      <&topckgen CLK_TOP_MUX_AUD_ENG2>,
-> > > +                                      <&topckgen CLK_TOP_APLL2_D8>,
-> > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S0>,
-> > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S1>,
-> > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S2>,
-> > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S3>,
-> > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S4>,
-> > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S5>,
-> > > +                                      <&topckgen CLK_TOP_APLL12_DIV0>,
-> > > +                                      <&topckgen CLK_TOP_APLL12_DIV1>,
-> > > +                                      <&topckgen CLK_TOP_APLL12_DIV2>,
-> > > +                                      <&topckgen CLK_TOP_APLL12_DIV3>,
-> > > +                                      <&topckgen CLK_TOP_APLL12_DIV4>,
-> > > +                                      <&topckgen CLK_TOP_APLL12_DIVB>,
-> > > +                                      /*<&topckgen CLK_TOP_APLL12_DIV5>,*/
-> > > +                                      <&clk26m>;
-> > > +                             clock-names = "aud_afe_clk",
-> > > +                                               "aud_dac_clk",
-> > > +                                               "aud_dac_predis_clk",
-> > > +                                               "aud_adc_clk",
-> > > +                                               "aud_adc_adda6_clk",
-> > > +                                               "aud_apll22m_clk",
-> > > +                                               "aud_apll24m_clk",
-> > > +                                               "aud_apll1_tuner_clk",
-> > > +                                               "aud_apll2_tuner_clk",
-> > > +                                               "aud_i2s1_bclk_sw",
-> > > +                                               "aud_i2s2_bclk_sw",
-> > > +                                               "aud_i2s3_bclk_sw",
-> > > +                                               "aud_i2s4_bclk_sw",
-> > > +                                               "aud_tdm_clk",
-> > > +                                               "aud_tml_clk",
-> > > +                                               "aud_infra_clk",
-> > > +                                               "mtkaif_26m_clk",
-> > > +                                               "top_mux_audio",
-> > > +                                               "top_mux_aud_intbus",
-> > > +                                               "top_syspll_d2_d4",
-> > > +                                               "top_mux_aud_1",
-> > > +                                               "top_apll1_ck",
-> > > +                                               "top_mux_aud_2",
-> > > +                                               "top_apll2_ck",
-> > > +                                               "top_mux_aud_eng1",
-> > > +                                               "top_apll1_d8",
-> > > +                                               "top_mux_aud_eng2",
-> > > +                                               "top_apll2_d8",
-> > > +                                               "top_i2s0_m_sel",
-> > > +                                               "top_i2s1_m_sel",
-> > > +                                               "top_i2s2_m_sel",
-> > > +                                               "top_i2s3_m_sel",
-> > > +                                               "top_i2s4_m_sel",
-> > > +                                               "top_i2s5_m_sel",
-> > > +                                               "top_apll12_div0",
-> > > +                                               "top_apll12_div1",
-> > > +                                               "top_apll12_div2",
-> > > +                                               "top_apll12_div3",
-> > > +                                               "top_apll12_div4",
-> > > +                                               "top_apll12_divb",
-> > > +                                               /*"top_apll12_div5",*/
-> > > +                                               "top_clk26m_clk";
-> > > +                     };
-> > >               };
-> > >
-> > >               mmc0: mmc@11230000 {
-> > >
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+Regards,
+Andreas
