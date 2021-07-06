@@ -2,110 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5779E3BC476
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 02:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 440103BC485
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 03:12:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229740AbhGFBAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 21:00:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46790 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229722AbhGFBAX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Jul 2021 21:00:23 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A021F6195E;
-        Tue,  6 Jul 2021 00:57:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625533065;
-        bh=3sZXtqzPBmQeDtxCNP5rxxVJeRlFAwqPjm3IYlPYZLg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dq0wOX39lFI1rViG4OrBnjClqeJW3nZ6ovSvlw0cGfvB/K7EZnA2KWFcshzstdftr
-         HBhNWQle5uDA/IYsbJJe66Z3i7Clq7NeQVE0ulqNAg9P0Ffqics1ANoyUh5mfCEMlG
-         mit6X+HBvVHHxhehKOAc7ro31jW7FEeOJbLylbc1PUAF3FPnSTYyU//AONbpKd/N+q
-         AxGU7cixYxF1iN13OsBzD2PsXkcd9VGZJTikRuI1SglIba7jKpUGU1JGE03XYv1lQr
-         PAE1FCLFp/94YhmxXxGjYQKcXvclDu/mA7cPXD1rURIycDkxfFf57vW+gpL/9Ovo2l
-         POJBzuN21/m5A==
-Date:   Tue, 6 Jul 2021 08:57:39 +0800
-From:   Peter Chen <peter.chen@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v3 05/12] usb: otg-fsm: Fix hrtimer list corruption
-Message-ID: <20210706005739.GA19143@nchen>
-References: <20210704225433.32029-1-digetx@gmail.com>
- <20210704225433.32029-6-digetx@gmail.com>
+        id S229722AbhGFBOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 21:14:42 -0400
+Received: from regular1.263xmail.com ([211.150.70.199]:47200 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229818AbhGFBOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 21:14:41 -0400
+X-Greylist: delayed 454 seconds by postgrey-1.27 at vger.kernel.org; Mon, 05 Jul 2021 21:14:40 EDT
+Received: from localhost (unknown [192.168.167.69])
+        by regular1.263xmail.com (Postfix) with ESMTP id 9A18F128E;
+        Tue,  6 Jul 2021 09:04:25 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from [172.16.12.76] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P12345T139823465625344S1625533463012840_;
+        Tue, 06 Jul 2021 09:04:24 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <7837a5db55880232f5007aae733043e7>
+X-RL-SENDER: hjc@rock-chips.com
+X-SENDER: hjc@rock-chips.com
+X-LOGIN-NAME: hjc@rock-chips.com
+X-FST-TO: hjc@rock-chips.com
+X-RCPT-COUNT: 14
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-System-Flag: 0
+Subject: Re: [PATCH 2/2] drm/rockchip: dw_hdmi: add rk3568 support
+To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        heiko@sntech.de, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org,
+        =?UTF-8?B?5pON55Ge5p2w?= <algea.cao@rock-chips.com>,
+        =?UTF-8?B?6Zer5a2d5Yab?= <andy.yan@rock-chips.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20210705140304.652929-1-benjamin.gaignard@collabora.com>
+ <20210705140304.652929-3-benjamin.gaignard@collabora.com>
+From:   Huang Jiachai <hjc@rock-chips.com>
+Message-ID: <2658816b-e6c1-06f7-03c2-3ec76fa49217@rock-chips.com>
+Date:   Tue, 6 Jul 2021 09:04:23 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210704225433.32029-6-digetx@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20210705140304.652929-3-benjamin.gaignard@collabora.com>
+Content-Type: text/plain; charset=gbk; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-07-05 01:54:26, Dmitry Osipenko wrote:
-> The HNP work can be re-scheduled while it's still in-fly. This results in
-> re-initialization of the busy work, resetting the hrtimer's list node of
-> the work and crashing kernel with null dereference within kernel/timer
-> once work's timer is expired. It's very easy to trigger this problem by
-> re-plugging USB cable quickly. Initialize HNP work only once to fix this
-> trouble.
-> 
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+add algea.cao and andy.yan
 
-Acked-by: Peter Chen <peter.chen@kernel.org>
-
-It is better to append kernel dump if you have v4 patchset.
-
-Peter
-
+在 2021/7/5 22:03, Benjamin Gaignard 写道:
+> Add a new dw_hdmi_plat_data struct and new compatible for rk3568.
+>
+> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
 > ---
->  drivers/usb/common/usb-otg-fsm.c | 6 +++++-
->  include/linux/usb/otg-fsm.h      | 1 +
->  2 files changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/common/usb-otg-fsm.c b/drivers/usb/common/usb-otg-fsm.c
-> index 3740cf95560e..0697fde51d00 100644
-> --- a/drivers/usb/common/usb-otg-fsm.c
-> +++ b/drivers/usb/common/usb-otg-fsm.c
-> @@ -193,7 +193,11 @@ static void otg_start_hnp_polling(struct otg_fsm *fsm)
->  	if (!fsm->host_req_flag)
->  		return;
->  
-> -	INIT_DELAYED_WORK(&fsm->hnp_polling_work, otg_hnp_polling_work);
-> +	if (!fsm->hnp_work_inited) {
-> +		INIT_DELAYED_WORK(&fsm->hnp_polling_work, otg_hnp_polling_work);
-> +		fsm->hnp_work_inited = true;
+>   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 28 +++++++++++++++++++++
+>   1 file changed, 28 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> index 830bdd5e9b7ce..5817c3a9fe64b 100644
+> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> @@ -50,6 +50,10 @@
+>   #define RK3399_GRF_SOC_CON20		0x6250
+>   #define RK3399_HDMI_LCDC_SEL		BIT(6)
+>   
+> +#define RK3568_GRF_VO_CON1		0x0364
+> +#define RK3568_HDMI_SDAIN_MSK		BIT(15)
+> +#define RK3568_HDMI_SCLIN_MSK		BIT(14)
+> +
+>   #define HIWORD_UPDATE(val, mask)	(val | (mask) << 16)
+>   
+>   /**
+> @@ -467,6 +471,19 @@ static const struct dw_hdmi_plat_data rk3399_hdmi_drv_data = {
+>   	.use_drm_infoframe = true,
+>   };
+>   
+> +static struct rockchip_hdmi_chip_data rk3568_chip_data = {
+> +	.lcdsel_grf_reg = -1,
+> +};
+> +
+> +static const struct dw_hdmi_plat_data rk3568_hdmi_drv_data = {
+> +	.mode_valid = dw_hdmi_rockchip_mode_valid,
+> +	.mpll_cfg   = rockchip_mpll_cfg,
+> +	.cur_ctr    = rockchip_cur_ctr,
+> +	.phy_config = rockchip_phy_config,
+> +	.phy_data = &rk3568_chip_data,
+> +	.use_drm_infoframe = true,
+> +};
+> +
+>   static const struct of_device_id dw_hdmi_rockchip_dt_ids[] = {
+>   	{ .compatible = "rockchip,rk3228-dw-hdmi",
+>   	  .data = &rk3228_hdmi_drv_data
+> @@ -480,6 +497,9 @@ static const struct of_device_id dw_hdmi_rockchip_dt_ids[] = {
+>   	{ .compatible = "rockchip,rk3399-dw-hdmi",
+>   	  .data = &rk3399_hdmi_drv_data
+>   	},
+> +	{ .compatible = "rockchip,rk3568-dw-hdmi",
+> +	  .data = &rk3568_hdmi_drv_data
+> +	},
+>   	{},
+>   };
+>   MODULE_DEVICE_TABLE(of, dw_hdmi_rockchip_dt_ids);
+> @@ -536,6 +556,14 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
+>   		return ret;
+>   	}
+>   
+> +	if (hdmi->chip_data == &rk3568_chip_data) {
+> +		regmap_write(hdmi->regmap, RK3568_GRF_VO_CON1,
+> +			     HIWORD_UPDATE(RK3568_HDMI_SDAIN_MSK |
+> +					   RK3568_HDMI_SCLIN_MSK,
+> +					   RK3568_HDMI_SDAIN_MSK |
+> +					   RK3568_HDMI_SCLIN_MSK));
 > +	}
 > +
->  	schedule_delayed_work(&fsm->hnp_polling_work,
->  					msecs_to_jiffies(T_HOST_REQ_POLL));
->  }
-> diff --git a/include/linux/usb/otg-fsm.h b/include/linux/usb/otg-fsm.h
-> index 3aee78dda16d..784659d4dc99 100644
-> --- a/include/linux/usb/otg-fsm.h
-> +++ b/include/linux/usb/otg-fsm.h
-> @@ -196,6 +196,7 @@ struct otg_fsm {
->  	struct mutex lock;
->  	u8 *host_req_flag;
->  	struct delayed_work hnp_polling_work;
-> +	bool hnp_work_inited;
->  	bool state_changed;
->  };
->  
-> -- 
-> 2.32.0
-> 
+>   	hdmi->phy = devm_phy_optional_get(dev, "hdmi");
+>   	if (IS_ERR(hdmi->phy)) {
+>   		ret = PTR_ERR(hdmi->phy);
 
 -- 
+Best Regard
 
-Thanks,
-Peter Chen
+黄家钗
+Sandy Huang
+Addr: 福州市鼓楼区铜盘路软件大道89号福州软件园A区21号楼(350003)
+       No. 21 Building, A District, No.89,software Boulevard Fuzhou,Fujian,PRC
+Tel：+86 0591-87884919  8690
+E-mail：hjc@rock-chips.com
+
+
 
