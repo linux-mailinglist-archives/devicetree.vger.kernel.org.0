@@ -2,145 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D0C83BCA2F
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 12:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B0A73BCB39
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 13:00:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231460AbhGFKi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 06:38:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37228 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231400AbhGFKi6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Jul 2021 06:38:58 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 463E7619AA;
-        Tue,  6 Jul 2021 10:36:20 +0000 (UTC)
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1m0iR8-00BeiL-2H; Tue, 06 Jul 2021 11:36:18 +0100
-From:   Marc Zyngier <maz@kernel.org>
-Date:   Tue, 06 Jul 2021 11:36:17 +0100
-Message-ID: <87czrv91b2.wl-maz@kernel.org>
-rom:    Marc Zyngier <maz@kernel.org>
-To:     Sumit Garg <sumit.garg@linaro.org>
-Cc:     Jens Wiklander <jens.wiklander@linaro.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
+        id S231360AbhGFLDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 07:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39772 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231293AbhGFLDH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 07:03:07 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B62EEC061760
+        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 04:00:28 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id d9so24376751ioo.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 04:00:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=85+RRGhjODs6lcH6FGoMJhqGI1UPU1GAYsHb+vDqTGI=;
+        b=kcovIMeHxj6d6wLhZ9CMLTwalFGptJT2AhB7Kp8+N3lEiQHjcOsi4c2/ggoM58tdcA
+         S39evUYCjLYP/6eY51tHdYzEl7GOPaCwr4GDqXkXsPX8vcgOnyZayFPvuuHaqGicqH61
+         hz/Nd9JWKB44kz3d3Ng4CIVm8WfbT8v4gGRO0MY0A/XoVjyEgchrXD/v3OQ221bUbNYi
+         NLK8xNdebbXAGR9KxoKq23Bz2yrx34YbloODkjeLElxtCbe6P/joEzomSRM0tCH4xJYt
+         cIXImUDQsVOe6upPw/A9lDbU7dRsRQjbq6yJYUCpzbGrNfMzTILlcc6ydf2sg7pNfe8X
+         wlkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=85+RRGhjODs6lcH6FGoMJhqGI1UPU1GAYsHb+vDqTGI=;
+        b=ZX3vvHV17YCu7v0JoZUgCSkocQdXtfxWRIsnlhdKv6UrVm+cb0+rSnfvvHcDIEFz57
+         LOpSQ266XlQn/udlDR55+haNzo8qLVidXfYToGazwZTM88lzFdmEKRF6QyBF2rvcYdl5
+         ZdVxrOClB4fNJ+P1s9xXF9Fj/fmLZvGxUl4/ygxo79uGK1wvH0S146+CGjooZ1Zm7zIm
+         +9RQ34rD8R0S3G1Ae32YWY7it5DgLs1eROFujQo2imFgXVtnsKQRbOY34hYHDs/bpAz/
+         u1tVZRlN6sATOm+oc44wZklp2jegTyG56Ir8+u10+u5litwl1VmJoyA4aIX1Xx3Ul9vq
+         Sivw==
+X-Gm-Message-State: AOAM530WcNDJItA/O+NbSJTTU4DyP6fF04pFo8hXpewlhkOsfe664j2J
+        tYLp35OTGLhmT/+diJp+k1axE2clknlX5ivQ7saVog==
+X-Google-Smtp-Source: ABdhPJwYqdX4uXaVnVQi0XP4/rzQ+1UfhvfYjksjrP95PYtkRwbQIPBuuu2IAg0m0BTSZ7BHhytyyXcXKrSXS2nUkA0=
+X-Received: by 2002:a5d:87d0:: with SMTP id q16mr15428748ios.109.1625569227924;
+ Tue, 06 Jul 2021 04:00:27 -0700 (PDT)
+MIME-Version: 1.0
+References: <1625038079-25815-1-git-send-email-kyrie.wu@mediatek.com>
+In-Reply-To: <1625038079-25815-1-git-send-email-kyrie.wu@mediatek.com>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Tue, 6 Jul 2021 19:00:17 +0800
+Message-ID: <CA+Px+wVQFK1MXbq6=x7gSfRu8uRp5hbiNgSWtJ-9ok3Lt+vz8A@mail.gmail.com>
+Subject: Re: [PATCH v2,0/9] Support jpeg encode for MT8195
+To:     "kyrie.wu" <kyrie.wu@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Ard Biesheuvel <ardb@kernel.org>
-Subject: Re: [PATCH v2 0/7] Asynchronous notifications from secure world
-In-Reply-To: <CAFA6WYMSAM2MDOXnhjuZFov3BtF8-nihZRUpR8ciUWsL4_nCWA@mail.gmail.com>
-References: <20210616103649.2662395-1-jens.wiklander@linaro.org>
-        <CAFA6WYMrxNfR09doWQgYKCQSYKyUMVKqSTPuRYn=-nueY9pSvQ@mail.gmail.com>
-        <CAHUa44EeAENHv+CxtXeLuqX_NGWW6w-6P8D-BLsb69+XmGaqEQ@mail.gmail.com>
-        <CAFA6WYMSAM2MDOXnhjuZFov3BtF8-nihZRUpR8ciUWsL4_nCWA@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: sumit.garg@linaro.org, jens.wiklander@linaro.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, jerome@forissier.org, etienne.carriere@linaro.org, vincent.guittot@linaro.org, robh+dt@kernel.org, corbet@lwn.net, ardb@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        Bin Liu <bin.liu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 06 Jul 2021 08:25:26 +0100,
-Sumit Garg <sumit.garg@linaro.org> wrote:
-> 
-> On Thu, 17 Jun 2021 at 11:40, Jens Wiklander <jens.wiklander@linaro.org> wrote:
-> >
-> > Hi Sumit,
-> >
-> > On Thu, Jun 17, 2021 at 6:33 AM Sumit Garg <sumit.garg@linaro.org> wrote:
-> > >
-> > > Hi Jens,
-> > >
-> > > On Wed, 16 Jun 2021 at 16:07, Jens Wiklander <jens.wiklander@linaro.org> wrote:
-> > > >
-> > > > Hi all,
-> > > >
-> > > > This adds support for asynchronous notifications from OP-TEE in secure
-> > > > world to the OP-TEE driver. This allows a design with a top half and bottom
-> > > > half type of driver where the top half runs in secure interrupt context and
-> > > > a notifications tells normal world to schedule a yielding call to do the
-> > > > bottom half processing.
-> > > >
-> > > > An interrupt is used to notify the driver that there are asynchronous
-> > > > notifications pending.
-> > > >
-> > >
-> > > It looks like a nice feature. I would like to get hands on with this.
-> > > Can I test this feature on Qemu?
-> >
-> > Absolutely, you can get this into the normal OP-TEE development repo setup with:
-> > repo init -u https://github.com/OP-TEE/manifest.git -m default.xml
-> > repo sync
-> > Update optee_os with
-> > https://github.com/jenswi-linaro/optee_os/tree/async_notif_v2
-> > Update linux with https://github.com/jenswi-linaro/linux-1/tree/async_notif_v2
-> > cd build
-> > make all -j...
-> > make run-only
-> >
-> > If you type anything at the secure console you'll notice how it
-> > changes behaviour once the Linux kernel has booted.
-> >
-> 
-> Thanks for sharing instructions as I now got some time to test and
-> deep dive into this feature. It looks like a pretty useful feature to
-> realize interrupt support in the secure world in its true sense. This
-> feature works for me as per your instructions.
-> 
-> I could recognise it's requirement from the time while I was playing
-> with secure timer interrupt support for OP-TEE RNG driver on
-> Developerbox. In that case I had to strip down the secure interrupt
-> handler to a minimum that would just collect entropy and dump into the
-> secure buffer. But with asynchronous notifications support, I could
-> add more functionality like entropy health tests in the bottom half
-> instead of doing those health tests while retrieving entropy from the
-> secure world.
-> 
-> Given that, have you explored the possibility to leverage SGI rather
-> than a platform specific SPI for notifying the normal world? If it's
-> possible to leverage Architecture specific SGI for this purpose then I
+On Wed, Jun 30, 2021 at 3:28 PM kyrie.wu <kyrie.wu@mediatek.com> wrote:
+> add component framework to using multi-HW for MT8195 jpeg encode.
+Could you add some summary for each patch for getting an overview of the series?
 
-What does "Architecture specific SGI" mean?
+>   dt-bindings: mediatek: Add mediatek, mt8195-jpgenc compatible
+>   media: mtk-jpegenc: Add MT8195 JPEG venc driver
+>   media: mtk-jpegenc: remove redundant code of irq
+>   media: mtk-jpegenc: Refactor jpeg clock interface
+>   media: mtk-jpegenc: Generalize jpeg encode irq interfaces
+>   media: mtk-jpegenc: Generalize jpegenc HW timeout interfaces
+>   media: mtk-jpegenc: Use component framework to manage each hardware
+>     information
+>   media: mtk-jpegenc: Generalize jpegenc HW operations interfaces
+>   media: mtk-jpegenc: Refactor jpegenc device run interface
+The series has some consistency issues which would make readers feel
+uncomfortable.
 
-> think this feature will come automatically enabled for every platform
-> without the need to reserve a platform specific SPI.
-
-That old chestnut again...
-
-- How do you discover that the secure side has graced you with a
-  Group-1 SGI (no, you can't use one of the first 8)? for both DT and
-  ACPI?
-
-- How do you find which CPUs are targeted by this SGI? All? One? A
-  subset? What is the expected behaviour with CPU hotplug? How can the
-  NS side (Linux) can inform the secure side about the CPUs it wants
-  to use?
-
-- Is there any case where you would instead need a level interrupt
-  (which a SGI cannot provide)?
-
-In general, cross world SGIs are a really bad idea. Yes, some people
-like them. I still think they are misguided, and I don't intend to
-provide a generic request interface for this.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+For example:
+- Whether to capitalize the first characters in the commit messages/titles.
+- Whether to add a period at the end of English sentences.
