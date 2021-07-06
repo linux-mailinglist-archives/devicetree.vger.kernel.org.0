@@ -2,143 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 440103BC485
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 03:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 545A83BC48A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 03:15:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229722AbhGFBOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 21:14:42 -0400
-Received: from regular1.263xmail.com ([211.150.70.199]:47200 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229818AbhGFBOl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 21:14:41 -0400
-X-Greylist: delayed 454 seconds by postgrey-1.27 at vger.kernel.org; Mon, 05 Jul 2021 21:14:40 EDT
-Received: from localhost (unknown [192.168.167.69])
-        by regular1.263xmail.com (Postfix) with ESMTP id 9A18F128E;
-        Tue,  6 Jul 2021 09:04:25 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.12.76] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P12345T139823465625344S1625533463012840_;
-        Tue, 06 Jul 2021 09:04:24 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <7837a5db55880232f5007aae733043e7>
-X-RL-SENDER: hjc@rock-chips.com
-X-SENDER: hjc@rock-chips.com
-X-LOGIN-NAME: hjc@rock-chips.com
-X-FST-TO: hjc@rock-chips.com
-X-RCPT-COUNT: 14
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-System-Flag: 0
-Subject: Re: [PATCH 2/2] drm/rockchip: dw_hdmi: add rk3568 support
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        heiko@sntech.de, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org,
-        =?UTF-8?B?5pON55Ge5p2w?= <algea.cao@rock-chips.com>,
-        =?UTF-8?B?6Zer5a2d5Yab?= <andy.yan@rock-chips.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-References: <20210705140304.652929-1-benjamin.gaignard@collabora.com>
- <20210705140304.652929-3-benjamin.gaignard@collabora.com>
-From:   Huang Jiachai <hjc@rock-chips.com>
-Message-ID: <2658816b-e6c1-06f7-03c2-3ec76fa49217@rock-chips.com>
-Date:   Tue, 6 Jul 2021 09:04:23 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+        id S229753AbhGFBSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 21:18:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52850 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229733AbhGFBST (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 21:18:19 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFCDAC061574;
+        Mon,  5 Jul 2021 18:15:41 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id bq39so22708878lfb.12;
+        Mon, 05 Jul 2021 18:15:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=xG6P1+sDQl4jEV3cq/HGM+DddaPYqM/HhUpbXndOJ58=;
+        b=HhsZ0ceURhcOFz0Vj0ytT1juZaq7agnU9T1ESybefYQGZPdHYOu6SPYBjEIBXwZMyw
+         zfpxxRW6w5uHhpT63pNPeB0Q7av4f6MWeAVz9f+hnbqjeMDogGshggk8FRMk8Vt0l3NX
+         0mc6lfcyV3/RE+2cNDGfY/6Z+22eoBmtqwxxpCwoPDHIw+K1CD9xvdbU0BKZ/qEbsINs
+         l4RqAxTy6eHzaeAzw0ado/C4Ns0k6POG/PmsXeW8nDWWSQggOjnhBytjgw4xPZRkS64x
+         cyzfsWt8kW9ncdpiz/KehBgmmyoQPzGncWOjuKoRPsSUVyqojrK1y6EhIiu9BXxYdRyM
+         q7Tg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=xG6P1+sDQl4jEV3cq/HGM+DddaPYqM/HhUpbXndOJ58=;
+        b=aZ5lMsgsazkX1O0KedjGWpwVVGYMXR33h7FjbfbJaoaG7jQxNSDa+5AnB9HE/L0kUM
+         vb43WFyluDbEJbfUYiegYe185+QjWepgGPBrd9lK3hMVf5R724ywYURA0hrp3c/agiJ+
+         hBWj7hbCI+S20CvtIyX587AHquIsUMrqpjJ/3rAs/RLgoxuvijNLrgFA1gW1tym+SphL
+         8nsBWMV+RQQ5U+U7A8DUairL58e5hSjFVBUWZa4yI49ezpj2kt5ykPJkXrK/oURtB47e
+         dTW61Mh2PbJJYnCOmX8Pz4mfTZiZSjtnwq1EjEnFfuSsUSxvhptTzbYHCqmSXxxDFx+7
+         OIAA==
+X-Gm-Message-State: AOAM5319fthad/HkAclvA6+KUJToXdy6JSN6vtp2hkfgbimXhowGdi6F
+        IJggWxyX3MkNh/50TX6R4ed5FfXWSIs=
+X-Google-Smtp-Source: ABdhPJx0b1UAbp7vUWsVA5lY+rJ5RQHv58/MSrNSLpj0P8z7RSnb7ral8ckTetYkrbknjOFXB26Q0Q==
+X-Received: by 2002:a05:6512:3c89:: with SMTP id h9mr12102895lfv.17.1625534140087;
+        Mon, 05 Jul 2021 18:15:40 -0700 (PDT)
+Received: from [192.168.2.145] (94-29-37-113.dynamic.spd-mgts.ru. [94.29.37.113])
+        by smtp.googlemail.com with ESMTPSA id a8sm1532867ljq.127.2021.07.05.18.15.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Jul 2021 18:15:39 -0700 (PDT)
+Subject: Re: [PATCH v3 05/12] usb: otg-fsm: Fix hrtimer list corruption
+To:     Peter Chen <peter.chen@kernel.org>
+Cc:     Thierry Reding <treding@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20210704225433.32029-1-digetx@gmail.com>
+ <20210704225433.32029-6-digetx@gmail.com> <20210706005739.GA19143@nchen>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <04a679be-ec66-f71f-5b61-59b8ef82e128@gmail.com>
+Date:   Tue, 6 Jul 2021 04:15:38 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210705140304.652929-3-benjamin.gaignard@collabora.com>
-Content-Type: text/plain; charset=gbk; format=flowed
+In-Reply-To: <20210706005739.GA19143@nchen>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add algea.cao and andy.yan
+06.07.2021 03:57, Peter Chen 锌懈褕械褌:
+> On 21-07-05 01:54:26, Dmitry Osipenko wrote:
+>> The HNP work can be re-scheduled while it's still in-fly. This results in
+>> re-initialization of the busy work, resetting the hrtimer's list node of
+>> the work and crashing kernel with null dereference within kernel/timer
+>> once work's timer is expired. It's very easy to trigger this problem by
+>> re-plugging USB cable quickly. Initialize HNP work only once to fix this
+>> trouble.
+>>
+>> Cc: stable@vger.kernel.org
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> 
+> Acked-by: Peter Chen <peter.chen@kernel.org>
+> 
+> It is better to append kernel dump if you have v4 patchset.
 
-在 2021/7/5 22:03, Benjamin Gaignard 写道:
-> Add a new dw_hdmi_plat_data struct and new compatible for rk3568.
->
-> Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-> ---
->   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 28 +++++++++++++++++++++
->   1 file changed, 28 insertions(+)
->
-> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> index 830bdd5e9b7ce..5817c3a9fe64b 100644
-> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> @@ -50,6 +50,10 @@
->   #define RK3399_GRF_SOC_CON20		0x6250
->   #define RK3399_HDMI_LCDC_SEL		BIT(6)
->   
-> +#define RK3568_GRF_VO_CON1		0x0364
-> +#define RK3568_HDMI_SDAIN_MSK		BIT(15)
-> +#define RK3568_HDMI_SCLIN_MSK		BIT(14)
-> +
->   #define HIWORD_UPDATE(val, mask)	(val | (mask) << 16)
->   
->   /**
-> @@ -467,6 +471,19 @@ static const struct dw_hdmi_plat_data rk3399_hdmi_drv_data = {
->   	.use_drm_infoframe = true,
->   };
->   
-> +static struct rockchip_hdmi_chip_data rk3568_chip_data = {
-> +	.lcdsel_grf_reg = -1,
-> +};
-> +
-> +static const struct dw_hdmi_plat_data rk3568_hdmi_drv_data = {
-> +	.mode_valid = dw_hdmi_rockchip_mode_valid,
-> +	.mpll_cfg   = rockchip_mpll_cfg,
-> +	.cur_ctr    = rockchip_cur_ctr,
-> +	.phy_config = rockchip_phy_config,
-> +	.phy_data = &rk3568_chip_data,
-> +	.use_drm_infoframe = true,
-> +};
-> +
->   static const struct of_device_id dw_hdmi_rockchip_dt_ids[] = {
->   	{ .compatible = "rockchip,rk3228-dw-hdmi",
->   	  .data = &rk3228_hdmi_drv_data
-> @@ -480,6 +497,9 @@ static const struct of_device_id dw_hdmi_rockchip_dt_ids[] = {
->   	{ .compatible = "rockchip,rk3399-dw-hdmi",
->   	  .data = &rk3399_hdmi_drv_data
->   	},
-> +	{ .compatible = "rockchip,rk3568-dw-hdmi",
-> +	  .data = &rk3568_hdmi_drv_data
-> +	},
->   	{},
->   };
->   MODULE_DEVICE_TABLE(of, dw_hdmi_rockchip_dt_ids);
-> @@ -536,6 +556,14 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
->   		return ret;
->   	}
->   
-> +	if (hdmi->chip_data == &rk3568_chip_data) {
-> +		regmap_write(hdmi->regmap, RK3568_GRF_VO_CON1,
-> +			     HIWORD_UPDATE(RK3568_HDMI_SDAIN_MSK |
-> +					   RK3568_HDMI_SCLIN_MSK,
-> +					   RK3568_HDMI_SDAIN_MSK |
-> +					   RK3568_HDMI_SCLIN_MSK));
-> +	}
-> +
->   	hdmi->phy = devm_phy_optional_get(dev, "hdmi");
->   	if (IS_ERR(hdmi->phy)) {
->   		ret = PTR_ERR(hdmi->phy);
-
--- 
-Best Regard
-
-黄家钗
-Sandy Huang
-Addr: 福州市鼓楼区铜盘路软件大道89号福州软件园A区21号楼(350003)
-       No. 21 Building, A District, No.89,software Boulevard Fuzhou,Fujian,PRC
-Tel：+86 0591-87884919  8690
-E-mail：hjc@rock-chips.com
-
-
-
+The stacktrace isn't very useful because it crashes within a hrtimer
+code from a work thread, i.e. it doesn't point at usb at all. It
+actually took me some effort to find where the bug was.
