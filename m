@@ -2,211 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D15B3BD371
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 13:51:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 771503BD614
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 14:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237167AbhGFLxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 07:53:34 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:47301 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234923AbhGFLnh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 07:43:37 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id AC18A58072D;
-        Tue,  6 Jul 2021 07:40:56 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Tue, 06 Jul 2021 07:40:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm1; bh=x//GlUaN3R+rfIHXOoIZVp3V3k
-        muONtJayusdAtObv0=; b=PTFgjsiQ0B+4TNTcSIghSCAqXFJTDDMwCQgwrjUPuZ
-        KZvhrAjI825efna+CKasePyPHCTHygxvAtJpe6hTYDL4MAqSAsal5CscEsbCQJ3a
-        LcXvujRAzRjKiGxTWlOrXcxSEboT/cgRlOlMDfTDEJ23BdoRkuXKvOT7qPNwu2Ml
-        4phms8swGv05Y0qsZgTfYcBMV4fu4p84L6aGtpLjYkcyq7qCDzffn7LMrYs2iHcn
-        vEgOtJEnxhFrxy9EavVeGuYFVLxHQLZe8WjLvGM+HMgM2JtsxOuk3RHpe1Vupp0m
-        +T/CeF6Zo/ySNTlOMfbqk3EYcJwthxQqZf+fVWx0J9/w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=x//GlUaN3R+rfIHXO
-        oIZVp3V3kmuONtJayusdAtObv0=; b=jmF+gkY7sAFfJwoNV8Dki71v/RRwWKi8s
-        wGcjqfMjae23S8GI6D7iKASlUsC7OPW9VYQ3/x8oLN4nm4CFs7MkKYNBVUbHVBEX
-        rD610jbvt5vNlAQhQtuShBokC/nn2sgWfa1BLUxZbLA8BDihASvzAV2sfvlgwlPy
-        d//Dro0CoQADIJ/E74DVrliRnGECLdFhuZICLbbyeOe1kw1eI/DBsLT3XdVGy/H+
-        q9B0n2fdIXzmE6TNQdl9l6c7arddCetouHMkrc85LunVWSSsVEO4iLPUAk1ww0FB
-        CQFRvDpyfK/R2tvOdQYX5YqFy991q3PgCWgnZ3nUCj+2f9g0JaO3w==
-X-ME-Sender: <xms:SEHkYLbhhhq2HDIYVp8VNfXIlbGWwIv8sl0j4j4ZxrrEaXCbbrCUCg>
-    <xme:SEHkYKa69amuNCYcWXTU07c0d3vWhiQUaEyGTrpRCLpAcxbVp2ac2wMjb7SI0QD-E
-    p0_PPnk9YurZjv6MrM>
-X-ME-Received: <xmr:SEHkYN_0uR8J8r9XPQ-12C_hjoNTfQEil4WAZD2eYuRkjm4jUOEmptTpBsFFt9gGKW_79BUDMqoG0ToqAu4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrtddtgddtvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
-    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
-    rghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepjeeliefhvdetgfdtte
-    fhtdegffdtiefffeejiefffeevueeljeehjeevhfffueeknecuvehluhhsthgvrhfuihii
-    vgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishhtrg
-    hirhdvfedrmhgv
-X-ME-Proxy: <xmx:SEHkYBoJpfilwPIvmkLIrHc1iPpBxkMI6rQhNGs97X0W5dC6__w4AQ>
-    <xmx:SEHkYGoArlB3esIv32WFFiIIBaKxsG8wB2way59ZLquRm6OgPmdBxg>
-    <xmx:SEHkYHQFFH3zJWhCftSdCweC_7mhvjZj8hyW32VvJKfxnt2cNlXR9g>
-    <xmx:SEHkYCfT205pt3yTaEnI1WDTlsTqFGN1wLZYssFn5zKSElaYNB-6Qw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 6 Jul 2021 07:40:48 -0400 (EDT)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alistair23@gmail.com,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v3] ARM: dts: imx7d-remarkable2: Add WiFi support
-Date:   Tue,  6 Jul 2021 21:40:28 +1000
-Message-Id: <20210706114028.132-1-alistair@alistair23.me>
-X-Mailer: git-send-email 2.20.1
+        id S241156AbhGFMbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 08:31:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42522 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235997AbhGFLbq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Jul 2021 07:31:46 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 531BE61CFB;
+        Tue,  6 Jul 2021 11:22:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625570556;
+        bh=pCcN7BDwCybXFoZyfxMlftp9PONrIJ9xYGZ2x7wtsgk=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=gYJ4sawt6C/t7URWIyJl2mmW3KWz+HvuDKxv3WVG25pqCdboKAFrMqXqNfBdR9wkf
+         Ssmdb+GRm9tdg+BbASQEemQEMpdnD/yVyv2FS3VSwgn9wWGKYtlSj1hAjdjkQiW0UZ
+         l97SSiszj9m8toiqf5MIgOPpv0fsqEA5NQXcc/5pTxPZVQShv0y+MwiLNfSLiBp8Z3
+         V/FZgb6ZHJ3S0WiMQ39CILgKWPcMZ/6a1Kk8AIDa+67/sF0dJc9EjeLRJ8aSOG4Mi9
+         qU1EU2UzxKSrR7V1YejwskmxSkYzKlxo6693etFBDTv8Hc70nd70/xNPiWgohTABDf
+         U4Q1wqDBTxqNQ==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.10 024/137] net: mdio: provide shim implementation of devm_of_mdiobus_register
+Date:   Tue,  6 Jul 2021 07:20:10 -0400
+Message-Id: <20210706112203.2062605-24-sashal@kernel.org>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210706112203.2062605-1-sashal@kernel.org>
+References: <20210706112203.2062605-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the bcm4329-fmac WiFi in the reMarkable 2, connected via SDHC.
+From: Vladimir Oltean <olteanv@gmail.com>
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
+[ Upstream commit 86544c3de6a2185409c5a3d02f674ea223a14217 ]
+
+Similar to the way in which of_mdiobus_register() has a fallback to the
+non-DT based mdiobus_register() when CONFIG_OF is not set, we can create
+a shim for the device-managed devm_of_mdiobus_register() which calls
+devm_mdiobus_register() and discards the struct device_node *.
+
+In particular, this solves a build issue with the qca8k DSA driver which
+uses devm_of_mdiobus_register and can be compiled without CONFIG_OF.
+
+Reported-by: Randy Dunlap <rdunlap@infradead.org>
+Signed-off-by: Vladimir Oltean <olteanv@gmail.com>
+Acked-by: Randy Dunlap <rdunlap@infradead.org> # build-tested
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+Signed-off-by: David S. Miller <davem@davemloft.net>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
-V3:
- - Remove the duplicate pinctrl-2
+ include/linux/of_mdio.h | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
- arch/arm/boot/dts/imx7d-remarkable2.dts | 91 +++++++++++++++++++++++++
- 1 file changed, 91 insertions(+)
-
-diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-index 8cbae656395c..89cbf13097a4 100644
---- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-+++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-@@ -21,6 +21,27 @@ memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x80000000 0x40000000>;
- 	};
-+
-+	reg_brcm: regulator-brcm {
-+		compatible = "regulator-fixed";
-+		regulator-name = "brcm_reg";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_brcm_reg>;
-+		gpio = <&gpio6 13 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <150>;
-+	};
-+
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_wifi>;
-+		reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+		clocks = <&clks IMX7D_CLKO2_ROOT_DIV>;
-+		clock-names = "ext_clock";
-+	};
- };
+diff --git a/include/linux/of_mdio.h b/include/linux/of_mdio.h
+index cfe8c607a628..f56c6a9230ac 100644
+--- a/include/linux/of_mdio.h
++++ b/include/linux/of_mdio.h
+@@ -75,6 +75,13 @@ static inline int of_mdiobus_register(struct mii_bus *mdio, struct device_node *
+ 	return mdiobus_register(mdio);
+ }
  
- &clks {
-@@ -56,6 +77,27 @@ &usbotg2 {
- 	status = "okay";
- };
- 
-+&usdhc2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
-+	pinctrl-0 = <&pinctrl_usdhc2>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
-+	mmc-pwrseq = <&wifi_pwrseq>;
-+	vmmc-supply = <&reg_brcm>;
-+	bus-width = <4>;
-+	non-removable;
-+	keep-power-in-suspend;
-+	cap-power-off-card;
-+	status = "okay";
++static inline int devm_of_mdiobus_register(struct device *dev,
++					   struct mii_bus *mdio,
++					   struct device_node *np)
++{
++	return devm_mdiobus_register(dev, mdio);
++}
 +
-+	brcmf: bcrmf@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+	};
-+};
-+
- &usdhc3 {
- 	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
- 	pinctrl-0 = <&pinctrl_usdhc3>;
-@@ -76,6 +118,13 @@ &wdog1 {
- };
- 
- &iomuxc {
-+	pinctrl_brcm_reg: brcmreggrp {
-+		fsl,pins = <
-+			/* WIFI_PWR_EN */
-+			MX7D_PAD_SAI1_TX_BCLK__GPIO6_IO13	0x14
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
-@@ -90,6 +139,39 @@ MX7D_PAD_EPDC_DATA08__UART6_DCE_RX		0x79
- 		>;
- 	};
- 
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD2_CMD__SD2_CMD		0x59
-+			MX7D_PAD_SD2_CLK__SD2_CLK		0x19
-+			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x59
-+			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x59
-+			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x59
-+			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x59
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2grp_100mhz {
-+		fsl,pins = <
-+			MX7D_PAD_SD2_CMD__SD2_CMD		0x5a
-+			MX7D_PAD_SD2_CLK__SD2_CLK		0x1a
-+			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x5a
-+			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x5a
-+			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x5a
-+			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x5a
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2grp_200mhz {
-+		fsl,pins = <
-+			MX7D_PAD_SD2_CMD__SD2_CMD		0x5b
-+			MX7D_PAD_SD2_CLK__SD2_CLK		0x1b
-+			MX7D_PAD_SD2_DATA0__SD2_DATA0		0x5b
-+			MX7D_PAD_SD2_DATA1__SD2_DATA1		0x5b
-+			MX7D_PAD_SD2_DATA2__SD2_DATA2		0x5b
-+			MX7D_PAD_SD2_DATA3__SD2_DATA3		0x5b
-+		>;
-+	};
-+
- 	pinctrl_usdhc3: usdhc3grp {
- 		fsl,pins = <
- 			MX7D_PAD_SD3_CMD__SD3_CMD		0x59
-@@ -143,4 +225,13 @@ pinctrl_wdog: wdoggrp {
- 			MX7D_PAD_ENET1_COL__WDOG1_WDOG_ANY	0x74
- 		>;
- 	};
-+
-+	pinctrl_wifi: wifigrp {
-+		fsl,pins = <
-+			/* WiFi Reg On */
-+			MX7D_PAD_SD2_CD_B__GPIO5_IO9		0x00000014
-+			/* WiFi Sleep 32k */
-+			MX7D_PAD_SD1_WP__CCM_CLKO2		0x00000014
-+		>;
-+	};
- };
+ static inline struct mdio_device *of_mdio_find_device(struct device_node *np)
+ {
+ 	return NULL;
 -- 
-2.31.1
+2.30.2
 
