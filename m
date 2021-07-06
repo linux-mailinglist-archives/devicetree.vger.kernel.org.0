@@ -2,152 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C1553BDFB4
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 01:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2493BDFBD
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 01:22:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230082AbhGFXTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 19:19:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36386 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230048AbhGFXTh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 19:19:37 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C4BAC06175F
-        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 16:16:57 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id g24so398376pji.4
-        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 16:16:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vhWcX4wZI8Gd9j2rinjQwhp8HvDxjLKtRKdl01al6B4=;
-        b=qA3fpEsAe6jsvhZqMAy6cwl8yXzdWfXG00y18wEaoGed37IU/nSfIFlFZLqJ+/lVHW
-         mi8cOgkmwjFMQMYZ174Wqm+ZObPLCa7TZadgFajCo+wukrWzsWmRSiOQs7+sOtOjGzCK
-         oTPhS5XuCMSwsSjJNI0wLlaZHxqserpJlr1ywLWTf9+B6EYGmwMZ/9oyDCYKSLd+wYFv
-         37T/s1Kz9X5nVDp1MncjRkNMgW1lHoPZA2Tnc7HLhFE8xFJmS3gehdrBXMG4hup/4aIw
-         LC+VBRzu32Ox/V2hhCnsFFaRGNVgb35g9NVckInof+vYLHfMpI98JywoK0zdTIMCnfPH
-         NM9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=vhWcX4wZI8Gd9j2rinjQwhp8HvDxjLKtRKdl01al6B4=;
-        b=ewYuOdzDQIWWKhbedgVeTrAEA0KbAbP6L0I3P1G20ZaXwjndYViz9/BJJjnPDuXZyN
-         7/CiBkhISGgd2pvK3AeEV/lbIkjJqVtjBzQS86I452PaJhugCAHhpq/aOpcKQ+lOo6U7
-         yKlK68a9z8LYmOKFUhRxYPf0hQHDVbDORt9JQd7sPQ1LizJmQXgvLvcOHtqU8DescjVW
-         Y6V46BWn6w764AmNMzjGOYKJlc3g2rvtxlueXAqm7dsK7Amb0JtatOUMmpPBGAoX26Eo
-         IXHTenZkNwRJwQcinMIdHeidhLuRKT31esbRV684ebwSYEWYfeoh/NyMjGQjUCwUJya2
-         3bpQ==
-X-Gm-Message-State: AOAM530v0IGw+gu25IbjgGvLPeyrKtl2keUTnHR0T/u+fce1dLaKh47S
-        uxrV50INfAEGPppVJTf4cdOeag==
-X-Google-Smtp-Source: ABdhPJw+S8scqaWlE3MYzQi76RwysDGhn8KLP6B59eb0mJaDLXFWOIh5UV7dvcXMehttPkOYFKPZ6A==
-X-Received: by 2002:a17:90a:6a0e:: with SMTP id t14mr5449215pjj.19.1625613416939;
-        Tue, 06 Jul 2021 16:16:56 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id w123sm18350483pff.152.2021.07.06.16.16.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jul 2021 16:16:56 -0700 (PDT)
-Date:   Tue, 06 Jul 2021 16:16:56 -0700 (PDT)
-X-Google-Original-Date: Tue, 06 Jul 2021 16:16:35 PDT (-0700)
-Subject:     Re: [PATCH v2] dt-bindings: riscv: add starfive jh7100 bindings
-In-Reply-To: <20210625071240.577796-1-drew@beagleboard.org>
-CC:     robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
-        michael.zhu@starfivetech.com, geert@linux-m68k.org,
-        tekkamanninja@gmail.com, kernel@esmil.dk,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, drew@beagleboard.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     drew@beagleboard.org
-Message-ID: <mhng-7fbbd583-fe4e-4f11-a028-3df3eca4ab41@palmerdabbelt-glaptop>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S229753AbhGFXZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 19:25:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38616 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229910AbhGFXZH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Jul 2021 19:25:07 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 666E061C93;
+        Tue,  6 Jul 2021 23:22:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625613748;
+        bh=5mlEDZpYyfsm7tdGyB+79GO9dRgHUn5r+UFeUbzhS/4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=sUesseh4jTaA8tnTNCEOEi+zDaJTAGkrhJ1JBopObj67sxM5KDnsFFM6Zh2K9DQ/w
+         vANHA6iRRzRo6MMSlxXsZ2gYmChCPdvjOZe8VMl6b17EgSZriPhvgCuw1ZujF0zBRZ
+         Ov+rsU/phD02mmkq6ovBv9AS3W6doxjdfPQObNcS+XWWN57a5FJLbuBrmo0tUg2NF4
+         f1Dt5hUFhERDh07SlfNK2zcR962IJSmgKGxWRj29YD9f8VuRWvEyQ2/TCTv+dSyc48
+         6DByJhVXX7gdSn0/CUIKghODj5ONUjZyaBtbkIdLS+UX8RF6vFm5oa/ZppYkp/lhWc
+         wEzkoQRMrYwhg==
+Date:   Wed, 7 Jul 2021 01:22:24 +0200
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Peter Rosin <peda@axentia.se>, netdev@vger.kernel.org,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH RFC net-next] dt-bindings: ethernet-controller: document
+ signal multiplexer
+Message-ID: <20210707012224.14df9eab@thinkpad>
+In-Reply-To: <YN5kGsMwds+wCACq@lunn.ch>
+References: <20210701005347.8280-1-kabel@kernel.org>
+        <YN5kGsMwds+wCACq@lunn.ch>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Jun 2021 00:12:42 PDT (-0700), drew@beagleboard.org wrote:
-> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
-> BeagleV Starlight JH7100 board [2].
->
-> [1] https://github.com/starfive-tech/beaglev_doc
-> [2] https://github.com/beagleboard/beaglev-starlight
->
-> Signed-off-by: Drew Fustini <drew@beagleboard.org>
-> ---
-> v2 changes:
-> - removed "items:" entry that only had "const: starfive,jh7100"
-> - correct typo in Description:
->
-> Results of running checks:
->
->   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
->   DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
->   DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
->   DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
->   CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
->
->   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
->   DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
->   DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
->   CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
->
-> The dts file is from vendor repo and is being cleaned up right now in
-> preperation for submitting to the mailing list:
-> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
->
->  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
->
-> diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
-> new file mode 100644
-> index 000000000000..68954d0a7108
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
-> @@ -0,0 +1,27 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/riscv/starfive.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive SoC-based boards
-> +
-> +maintainers:
-> +  - Michael Zhu <michael.zhu@starfivetech.com>
-> +  - Drew Fustini <drew@beagleboard.org>
-> +
-> +description:
-> +  StarFive SoC-based boards
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: beagle,beaglev-starlight-jh7100
-> +          - const: starfive,jh7100
+On Fri, 2 Jul 2021 02:55:54 +0200
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-The SiFive boards have
+> On Thu, Jul 01, 2021 at 02:53:47AM +0200, Marek Beh=C3=BAn wrote:
+> > There are devices where the MAC signals from the ethernet controller are
+> > not directly connected to an ethernet PHY or a SFP cage, but to a
+> > multiplexer, so that the device can switch between the endpoints.
+> >=20
+> > For example on Turris Omnia the WAN controller is connected to a SerDes
+> > switch, which multiplexes the SerDes lanes between SFP cage and ethernet
+> > PHY, depending on whether a SFP module is present (MOD_DEF0 GPIO from
+> > the SFP cage). =20
+>=20
+> At the moment, i don't think phylink supports this. It does not have a
+> way to dynamically switch PHY. If the SFP disappears, you probably
+> want to configure the PHY, so that it is up, autoneg started,
+> etc. When the SFP reappears, the PHY needs to be configured down, the
+> SFP probably needs its TX GPIO line set active, etc. None of this
+> currently exists.
 
-    oneOf:
-      - items:
-          - enum:
-              - sifive,hifive-unleashed-a00
-          - const: sifive,fu540-c000
-          - const: sifive,fu540
+Of course this is not supported by phylink: it can't be, since we don't
+even have a binding description :) I am figuring out how to do correct
+binding while working on implementing this into phylink.
 
-IIUC there's no practical difference between a single-option enum and 
-the const, but it does bring up the board version number.  Is there any 
-revision number on the beaglev boards?
+> The Marvell switches have something similar but different. Which ever
+> gets link first, SFP or PHY gets the data path. In this case, you
+> probably want phylink to configure both the SFP and the PHY, and then
+> wait and see what happens. The hardware will then set the mux when one
+> of them gets link. phylink should then configure the other
+> down. Again, non of this exists at the moment.
+>=20
+> I would imaging a similar binding could be used for these two
+> conditions. But until we get the needed code, it is hard for me to
+> say. So i think i would prefer to wait until we do have code.
+>=20
 
-> +
-> +additionalProperties: true
-> +
-> +...
+I now have an idea that might be sane for bindings, so next time I will
+send the code as well.
 
-Acked-by: Palmer Dabbelt <palmerdabbelt@google.com>
+> I also wonder how wise it is to put this into the generic ethernet
+> controller binding. Muxing based on MOD_DEF0 i expect to be very
+> rare. Muxing based on first port having link seems more likely. But
+> both i expect are pretty unusual. So i would be tempted to make it a
+> standalone binding, which can be imported into an MAC binding which
+> actually needs it. Or it actually becomes part of the phylink
+> binding, since this all appears to be PHY related, not MAC.
+>=20
+> 	  Andrew
 
-as I'm assuming this is targeted towards the DT tree.  Thanks!
+We'll see. Stay tuned for my patch series. :)
+
+Marek
