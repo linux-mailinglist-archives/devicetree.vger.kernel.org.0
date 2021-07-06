@@ -2,110 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5BCB3BDBEA
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 19:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45A113BDCCF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 20:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230193AbhGFRJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 13:09:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48986 "EHLO mail.kernel.org"
+        id S231162AbhGFSQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 14:16:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37476 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229956AbhGFRJs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Jul 2021 13:09:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D8BEB61C3B;
-        Tue,  6 Jul 2021 17:07:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625591229;
-        bh=VhhzIH6gzRT8gtRsisto5IDFaHK+/13p4/dNI43mqXQ=;
+        id S229954AbhGFSQI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Jul 2021 14:16:08 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 25A7461C5B;
+        Tue,  6 Jul 2021 18:13:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1625595208;
+        bh=bHnAYckIVuxZO/9EYFsl7HYVNOh8BlvdmxqH2jLYj0w=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hl0xCyjFbo3wnMVlDA8LcQL8eHToHXmUMr23zuNOTdipVfwNhivzNpi8rpTly6eYi
-         yPd2oC5omfpzshqqnFMLEQGIyy9TAQeSgCgSvFYmHpKLsM30eMNC98TPrdW8hja8Kb
-         4m1fjoFjCWorTG/lEoPVyDyK3SJHLMjyzybho2CdMauS/azg7sMbNbYLaDlqMOER13
-         ALFzRBBx8Uq7Drdf4gPPQLMEsDVKJLDGxMmwxLH7I7ZcRSFV8ffeda6f2WQMZefhG6
-         DGh52bATmGicYuUcNyMSkAeHgzE8e4+s/u25yglW+hkrikwQu6kPAYHnUHYwEX7ru4
-         L8ww7+blLmJBA==
-Date:   Tue, 6 Jul 2021 18:06:58 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Christoph Hellwig <hch@lst.de>, heikki.krogerus@linux.intel.com,
-        thomas.hellstrom@linux.intel.com, peterz@infradead.org,
-        benh@kernel.crashing.org, joonas.lahtinen@linux.intel.com,
-        dri-devel@lists.freedesktop.org, chris@chris-wilson.co.uk,
-        grant.likely@arm.com, paulus@samba.org,
-        Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
-        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        bskeggs@redhat.com, linux-pci@vger.kernel.org,
-        xen-devel@lists.xenproject.org,
-        Thierry Reding <treding@nvidia.com>,
-        intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        Jianxiong Gao <jxgao@google.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
-        maarten.lankhorst@linux.intel.com, airlied@linux.ie,
-        Dan Williams <dan.j.williams@intel.com>,
-        linuxppc-dev@lists.ozlabs.org, jani.nikula@linux.intel.com,
-        Nathan Chancellor <nathan@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, rodrigo.vivi@intel.com,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Claire Chang <tientzu@chromium.org>,
-        boris.ostrovsky@oracle.com,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        jgross@suse.com, Nicolas Boichat <drinkcat@chromium.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Qian Cai <quic_qiancai@quicinc.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
-        Tom Lendacky <thomas.lendacky@amd.com>, bauerman@linux.ibm.com
-Subject: Re: [PATCH v15 06/12] swiotlb: Use is_swiotlb_force_bounce for
- swiotlb data bouncing
-Message-ID: <20210706170657.GD20750@willie-the-truck>
-References: <ea28db1f-846e-4f0a-4f13-beb67e66bbca@kernel.org>
- <20210702135856.GB11132@willie-the-truck>
- <0f7bd903-e309-94a0-21d7-f0e8e9546018@arm.com>
- <YN/7xcxt/XGAKceZ@Ryzen-9-3900X.localdomain>
- <20210705190352.GA19461@willie-the-truck>
- <20210706044848.GA13640@lst.de>
- <20210706132422.GA20327@willie-the-truck>
- <a59f771f-3289-62f0-ca50-8f3675d9b166@arm.com>
- <20210706140513.GA26498@lst.de>
- <bb32d5a6-2b34-4524-e171-3e9f5f4d3a94@arm.com>
+        b=wZTv+P/O3sFBTABPV/Ms+tyI3IwjDMuI7vshyy+Ueww8rIBnsrifIQ0R8hzB45qCC
+         J7J0kCybSxSpAk2NEbe7NNI56603ce7K82mjHLewVn/bMELGQZl1+eBAvRmOIPXUO/
+         OYwAbBYVlOXFP7P5KJ406DlnBUY7idEGPVrZ714k=
+Date:   Tue, 6 Jul 2021 20:13:24 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Wesley Cheng <wcheng@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, balbi@kernel.org,
+        robh+dt@kernel.org, frowand.list@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        jackp@codeaurora.org, fntoth@gmail.com
+Subject: Re: [PATCH v12 3/6] usb: dwc3: Resize TX FIFOs to meet EP bursting
+ requirements
+Message-ID: <YOSdRKTy3+CdV/UF@kroah.com>
+References: <1625218655-14180-1-git-send-email-wcheng@codeaurora.org>
+ <1625218655-14180-4-git-send-email-wcheng@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <bb32d5a6-2b34-4524-e171-3e9f5f4d3a94@arm.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1625218655-14180-4-git-send-email-wcheng@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 06, 2021 at 04:39:11PM +0100, Robin Murphy wrote:
-> On 2021-07-06 15:05, Christoph Hellwig wrote:
-> > On Tue, Jul 06, 2021 at 03:01:04PM +0100, Robin Murphy wrote:
-> > > FWIW I was pondering the question of whether to do something along those
-> > > lines or just scrap the default assignment entirely, so since I hadn't got
-> > > round to saying that I've gone ahead and hacked up the alternative
-> > > (similarly untested) for comparison :)
-> > > 
-> > > TBH I'm still not sure which one I prefer...
-> > 
-> > Claire did implement something like your suggestion originally, but
-> > I don't really like it as it doesn't scale for adding multiple global
-> > pools, e.g. for the 64-bit addressable one for the various encrypted
-> > secure guest schemes.
+On Fri, Jul 02, 2021 at 02:37:32AM -0700, Wesley Cheng wrote:
+> Some devices have USB compositions which may require multiple endpoints
+> that support EP bursting.  HW defined TX FIFO sizes may not always be
+> sufficient for these compositions.  By utilizing flexible TX FIFO
+> allocation, this allows for endpoints to request the required FIFO depth to
+> achieve higher bandwidth.  With some higher bMaxBurst configurations, using
+> a larger TX FIFO size results in better TX throughput.
 > 
-> Ah yes, that had slipped my mind, and it's a fair point indeed. Since we're
-> not concerned with a minimal fix for backports anyway I'm more than happy to
-> focus on Will's approach. Another thing is that that looks to take us a
-> quiet step closer to the possibility of dynamically resizing a SWIOTLB pool,
-> which is something that some of the hypervisor protection schemes looking to
-> build on top of this series may want to explore at some point.
+> By introducing the check_config() callback, the resizing logic can fetch
+> the maximum number of endpoints used in the USB composition (can contain
+> multiple configurations), which helps ensure that the resizing logic can
+> fulfill the configuration(s), or return an error to the gadget layer
+> otherwise during bind time.
+> 
+> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
+> ---
+>  drivers/usb/dwc3/core.c   |   9 ++
+>  drivers/usb/dwc3/core.h   |  15 ++++
+>  drivers/usb/dwc3/ep0.c    |   2 +
+>  drivers/usb/dwc3/gadget.c | 221 ++++++++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 247 insertions(+)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index e0a8e79..a7bcdb9d 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -1267,6 +1267,7 @@ static void dwc3_get_properties(struct dwc3 *dwc)
+>  	u8			rx_max_burst_prd;
+>  	u8			tx_thr_num_pkt_prd;
+>  	u8			tx_max_burst_prd;
+> +	u8			tx_fifo_resize_max_num;
+>  	const char		*usb_psy_name;
+>  	int			ret;
+>  
+> @@ -1282,6 +1283,8 @@ static void dwc3_get_properties(struct dwc3 *dwc)
+>  	 */
+>  	hird_threshold = 12;
+>  
+> +	tx_fifo_resize_max_num = 6;
+> +
 
-Ok, I'll split that nasty diff I posted up into a reviewable series and we
-can take it from there.
+No comment as to why 6 was picked, like the other defaults in this
+function?
 
-Will
+Why was 6 picked?
+
+
+>  	dwc->maximum_speed = usb_get_maximum_speed(dev);
+>  	dwc->max_ssp_rate = usb_get_maximum_ssp_rate(dev);
+>  	dwc->dr_mode = usb_get_dr_mode(dev);
+> @@ -1325,6 +1328,10 @@ static void dwc3_get_properties(struct dwc3 *dwc)
+>  				&tx_thr_num_pkt_prd);
+>  	device_property_read_u8(dev, "snps,tx-max-burst-prd",
+>  				&tx_max_burst_prd);
+> +	dwc->do_fifo_resize = device_property_read_bool(dev,
+> +							"tx-fifo-resize");
+> +	device_property_read_u8(dev, "tx-fifo-max-num",
+> +				&tx_fifo_resize_max_num);
+
+So you overwrite the "max" with whatever is given to you?  What if
+tx-fifo-resize is not enabled?
+
+thanks,
+
+greg k-h
