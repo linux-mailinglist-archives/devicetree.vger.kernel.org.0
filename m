@@ -2,98 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA4403BDF8F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 01:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C1553BDFB4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 01:17:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229753AbhGFXH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 19:07:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33810 "EHLO
+        id S230082AbhGFXTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 19:19:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbhGFXHz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 19:07:55 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DE87C06175F
-        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 16:05:15 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id l5so794499wrv.7
-        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 16:05:15 -0700 (PDT)
+        with ESMTP id S230048AbhGFXTh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 19:19:37 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C4BAC06175F
+        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 16:16:57 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id g24so398376pji.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 16:16:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ZS9eSBzf7oMT7niMx+DkLzUKHx+ngK5Yq4k0GX/hQik=;
-        b=koPKEiSdiRlAQbZ2faLxK3HWhvpvv36DkP+iba3gGnHL8I9hgdexpS9Is/0zvVtQca
-         Ryr7XnnBJW/2ZoMrkHFamMjGyrP4Tv4F+t/eaZSjBPwwJiVjBGXA/M+wB3pKvtm4rc1W
-         wBqo7ilBtG3qyIxqvYftjZhw+HIZwYx/Q96ukjOSvmlMeZgC2N8+NcT0+cgxukYGNOVs
-         l4pJTi7B/BUddwfUCAa7yv+tQHEsFW5yZ60g1Gu8N11CdW0t0EXfOaS4XdNNgoHPdXpV
-         MV2kbMzHEQdTd857EfjH/MQ7qVJUOqZJZcEVPaGqkvdN6AL4PLgR3MewlYT++3iSGr5J
-         6TzQ==
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vhWcX4wZI8Gd9j2rinjQwhp8HvDxjLKtRKdl01al6B4=;
+        b=qA3fpEsAe6jsvhZqMAy6cwl8yXzdWfXG00y18wEaoGed37IU/nSfIFlFZLqJ+/lVHW
+         mi8cOgkmwjFMQMYZ174Wqm+ZObPLCa7TZadgFajCo+wukrWzsWmRSiOQs7+sOtOjGzCK
+         oTPhS5XuCMSwsSjJNI0wLlaZHxqserpJlr1ywLWTf9+B6EYGmwMZ/9oyDCYKSLd+wYFv
+         37T/s1Kz9X5nVDp1MncjRkNMgW1lHoPZA2Tnc7HLhFE8xFJmS3gehdrBXMG4hup/4aIw
+         LC+VBRzu32Ox/V2hhCnsFFaRGNVgb35g9NVckInof+vYLHfMpI98JywoK0zdTIMCnfPH
+         NM9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZS9eSBzf7oMT7niMx+DkLzUKHx+ngK5Yq4k0GX/hQik=;
-        b=KeOXvppyFLIHsHSZOD4XqxOPbH6/hrF5ydn+q1Q28JEXaKpjh9RYVC3mEoGpH5vni3
-         OMXhHo7PjBQEAK3RCbh637qNB1RcC3mCfKu5Tp4DsQHe1EPk0xpsbetwcr6DFfMREvfp
-         2oVsMo0j2vm3wVJ0gRB3ixgiLsf51yYY7fjkGJNff3qRflSBqCvurx1QcLImJTxQ9Rre
-         t5PX8eUuaSP1YSTruGwuYtGoldMN8BztTALYyHh4byAS0KjEdoIyCm5Rxvhg6j9+GjXt
-         6HhDygrblYd42scUKcfGytWn/HgcCaGmauE+/qeTO/rf3THClmToxkGHcUTjTFLCRO0f
-         gtiQ==
-X-Gm-Message-State: AOAM530QH0FxuEwVM/kabkZzKBCKNSgXX9nTaZXpJwjGN7WxIsqvefwA
-        FP4GXZreNV6szcH1q0mTuN71TQ==
-X-Google-Smtp-Source: ABdhPJwD7QjJ40WHE2rPUkBAA7dNmwSkssV2IMNCrPF6l8XoprKbp0mUXXzGCJAGhG3niOYAoQkREA==
-X-Received: by 2002:a5d:6c69:: with SMTP id r9mr23670257wrz.8.1625612714199;
-        Tue, 06 Jul 2021 16:05:14 -0700 (PDT)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id g15sm14241866wmh.16.2021.07.06.16.05.13
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=vhWcX4wZI8Gd9j2rinjQwhp8HvDxjLKtRKdl01al6B4=;
+        b=ewYuOdzDQIWWKhbedgVeTrAEA0KbAbP6L0I3P1G20ZaXwjndYViz9/BJJjnPDuXZyN
+         7/CiBkhISGgd2pvK3AeEV/lbIkjJqVtjBzQS86I452PaJhugCAHhpq/aOpcKQ+lOo6U7
+         yKlK68a9z8LYmOKFUhRxYPf0hQHDVbDORt9JQd7sPQ1LizJmQXgvLvcOHtqU8DescjVW
+         Y6V46BWn6w764AmNMzjGOYKJlc3g2rvtxlueXAqm7dsK7Amb0JtatOUMmpPBGAoX26Eo
+         IXHTenZkNwRJwQcinMIdHeidhLuRKT31esbRV684ebwSYEWYfeoh/NyMjGQjUCwUJya2
+         3bpQ==
+X-Gm-Message-State: AOAM530v0IGw+gu25IbjgGvLPeyrKtl2keUTnHR0T/u+fce1dLaKh47S
+        uxrV50INfAEGPppVJTf4cdOeag==
+X-Google-Smtp-Source: ABdhPJw+S8scqaWlE3MYzQi76RwysDGhn8KLP6B59eb0mJaDLXFWOIh5UV7dvcXMehttPkOYFKPZ6A==
+X-Received: by 2002:a17:90a:6a0e:: with SMTP id t14mr5449215pjj.19.1625613416939;
+        Tue, 06 Jul 2021 16:16:56 -0700 (PDT)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id w123sm18350483pff.152.2021.07.06.16.16.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jul 2021 16:05:13 -0700 (PDT)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     vkoul@kernel.org, kishon@ti.com, agross@kernel.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Cc:     robh+dt@kernel.org, jonathan@marek.ca, bryan.odonoghue@linaro.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/2] arm64: dts: qcom: sm8250: fix usb2 qmp phy node
-Date:   Wed,  7 Jul 2021 00:07:01 +0100
-Message-Id: <20210706230702.299047-2-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20210706230702.299047-1-bryan.odonoghue@linaro.org>
-References: <20210706230702.299047-1-bryan.odonoghue@linaro.org>
-MIME-Version: 1.0
+        Tue, 06 Jul 2021 16:16:56 -0700 (PDT)
+Date:   Tue, 06 Jul 2021 16:16:56 -0700 (PDT)
+X-Google-Original-Date: Tue, 06 Jul 2021 16:16:35 PDT (-0700)
+Subject:     Re: [PATCH v2] dt-bindings: riscv: add starfive jh7100 bindings
+In-Reply-To: <20210625071240.577796-1-drew@beagleboard.org>
+CC:     robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
+        michael.zhu@starfivetech.com, geert@linux-m68k.org,
+        tekkamanninja@gmail.com, kernel@esmil.dk,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, drew@beagleboard.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     drew@beagleboard.org
+Message-ID: <mhng-7fbbd583-fe4e-4f11-a028-3df3eca4ab41@palmerdabbelt-glaptop>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Fri, 25 Jun 2021 00:12:42 PDT (-0700), drew@beagleboard.org wrote:
+> Add DT binding documentation for the StarFive JH7100 Soc [1] and the
+> BeagleV Starlight JH7100 board [2].
+>
+> [1] https://github.com/starfive-tech/beaglev_doc
+> [2] https://github.com/beagleboard/beaglev-starlight
+>
+> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> ---
+> v2 changes:
+> - removed "items:" entry that only had "const: starfive,jh7100"
+> - correct typo in Description:
+>
+> Results of running checks:
+>
+>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
+>   DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+>   DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
+>   DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+>   CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+>
+>   $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
+>   DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml
+>   DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+>   CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+>
+> The dts file is from vendor repo and is being cleaned up right now in
+> preperation for submitting to the mailing list:
+> https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
+>
+>  .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> new file mode 100644
+> index 000000000000..68954d0a7108
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
+> @@ -0,0 +1,27 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/riscv/starfive.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive SoC-based boards
+> +
+> +maintainers:
+> +  - Michael Zhu <michael.zhu@starfivetech.com>
+> +  - Drew Fustini <drew@beagleboard.org>
+> +
+> +description:
+> +  StarFive SoC-based boards
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: beagle,beaglev-starlight-jh7100
+> +          - const: starfive,jh7100
 
-Use 'lanes' as SuperSpeed lanes device node instead of just 'lane' to
-fix issues with TypeC support.
+The SiFive boards have
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Fixes: be0624b99042 ("arm64: dts: qcom: sm8250: Add USB and PHY device nodes")
-Cc: robh+dt@kernel.org
-Cc: devicetree@vger.kernel.org
-Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+    oneOf:
+      - items:
+          - enum:
+              - sifive,hifive-unleashed-a00
+          - const: sifive,fu540-c000
+          - const: sifive,fu540
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 4c0de12aaba6..270d7ff59ec1 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2123,7 +2123,7 @@ usb_2_qmpphy: phy@88eb000 {
- 				 <&gcc GCC_USB3_PHY_SEC_BCR>;
- 			reset-names = "phy", "common";
- 
--			usb_2_ssphy: lane@88eb200 {
-+			usb_2_ssphy: lanes@88eb200 {
- 				reg = <0 0x088eb200 0 0x200>,
- 				      <0 0x088eb400 0 0x200>,
- 				      <0 0x088eb800 0 0x800>;
--- 
-2.30.1
+IIUC there's no practical difference between a single-option enum and 
+the const, but it does bring up the board version number.  Is there any 
+revision number on the beaglev boards?
 
+> +
+> +additionalProperties: true
+> +
+> +...
+
+Acked-by: Palmer Dabbelt <palmerdabbelt@google.com>
+
+as I'm assuming this is targeted towards the DT tree.  Thanks!
