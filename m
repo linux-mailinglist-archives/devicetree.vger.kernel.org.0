@@ -2,96 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 545A83BC48A
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 03:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 576AF3BC4B5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 04:06:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229753AbhGFBSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Jul 2021 21:18:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52850 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbhGFBST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 21:18:19 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFCDAC061574;
-        Mon,  5 Jul 2021 18:15:41 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id bq39so22708878lfb.12;
-        Mon, 05 Jul 2021 18:15:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xG6P1+sDQl4jEV3cq/HGM+DddaPYqM/HhUpbXndOJ58=;
-        b=HhsZ0ceURhcOFz0Vj0ytT1juZaq7agnU9T1ESybefYQGZPdHYOu6SPYBjEIBXwZMyw
-         zfpxxRW6w5uHhpT63pNPeB0Q7av4f6MWeAVz9f+hnbqjeMDogGshggk8FRMk8Vt0l3NX
-         0mc6lfcyV3/RE+2cNDGfY/6Z+22eoBmtqwxxpCwoPDHIw+K1CD9xvdbU0BKZ/qEbsINs
-         l4RqAxTy6eHzaeAzw0ado/C4Ns0k6POG/PmsXeW8nDWWSQggOjnhBytjgw4xPZRkS64x
-         cyzfsWt8kW9ncdpiz/KehBgmmyoQPzGncWOjuKoRPsSUVyqojrK1y6EhIiu9BXxYdRyM
-         q7Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xG6P1+sDQl4jEV3cq/HGM+DddaPYqM/HhUpbXndOJ58=;
-        b=aZ5lMsgsazkX1O0KedjGWpwVVGYMXR33h7FjbfbJaoaG7jQxNSDa+5AnB9HE/L0kUM
-         vb43WFyluDbEJbfUYiegYe185+QjWepgGPBrd9lK3hMVf5R724ywYURA0hrp3c/agiJ+
-         hBWj7hbCI+S20CvtIyX587AHquIsUMrqpjJ/3rAs/RLgoxuvijNLrgFA1gW1tym+SphL
-         8nsBWMV+RQQ5U+U7A8DUairL58e5hSjFVBUWZa4yI49ezpj2kt5ykPJkXrK/oURtB47e
-         dTW61Mh2PbJJYnCOmX8Pz4mfTZiZSjtnwq1EjEnFfuSsUSxvhptTzbYHCqmSXxxDFx+7
-         OIAA==
-X-Gm-Message-State: AOAM5319fthad/HkAclvA6+KUJToXdy6JSN6vtp2hkfgbimXhowGdi6F
-        IJggWxyX3MkNh/50TX6R4ed5FfXWSIs=
-X-Google-Smtp-Source: ABdhPJx0b1UAbp7vUWsVA5lY+rJ5RQHv58/MSrNSLpj0P8z7RSnb7ral8ckTetYkrbknjOFXB26Q0Q==
-X-Received: by 2002:a05:6512:3c89:: with SMTP id h9mr12102895lfv.17.1625534140087;
-        Mon, 05 Jul 2021 18:15:40 -0700 (PDT)
-Received: from [192.168.2.145] (94-29-37-113.dynamic.spd-mgts.ru. [94.29.37.113])
-        by smtp.googlemail.com with ESMTPSA id a8sm1532867ljq.127.2021.07.05.18.15.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Jul 2021 18:15:39 -0700 (PDT)
-Subject: Re: [PATCH v3 05/12] usb: otg-fsm: Fix hrtimer list corruption
-To:     Peter Chen <peter.chen@kernel.org>
-Cc:     Thierry Reding <treding@nvidia.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        David Heidelberg <david@ixit.cz>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20210704225433.32029-1-digetx@gmail.com>
- <20210704225433.32029-6-digetx@gmail.com> <20210706005739.GA19143@nchen>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <04a679be-ec66-f71f-5b61-59b8ef82e128@gmail.com>
-Date:   Tue, 6 Jul 2021 04:15:38 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S229774AbhGFCIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Jul 2021 22:08:41 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:33967 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229740AbhGFCIk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Jul 2021 22:08:40 -0400
+X-UUID: 472610ff395d4a51b35425899b9bca9f-20210706
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=rM/FDzGlB2uXisLxyE0DK9a6bsODNzTQuW4tR72IG4M=;
+        b=jeCiLS2C66R2mdNDwZZYVLRHWvA/5tAbywjdK1stt9cqztSizA/Sj1hTeWZ/Yi7EtNijctvYuEceNOSjsY27eIia43tY47Y8W9QABcg2/9lMm9A+51IrMAEuoTOOQGTpc8uKByW3taiTbyX9xScsrdAykaaVAMqOUdXQVs3gV3s=;
+X-UUID: 472610ff395d4a51b35425899b9bca9f-20210706
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1065779401; Tue, 06 Jul 2021 10:05:59 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 6 Jul 2021 10:05:57 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 6 Jul 2021 10:05:57 +0800
+Message-ID: <50ff125023425b58ba86eb50df51c34cea5ab7d8.camel@mediatek.com>
+Subject: Re: [v12 02/20] dt-bindings: ARM: Mediatek: Add mmsys document
+ binding for MT8192
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Tue, 6 Jul 2021 10:05:57 +0800
+In-Reply-To: <15d27282-54b2-2cfe-7f44-2df3be11dd40@gmail.com>
+References: <20210705033824.1934-1-chun-jie.chen@mediatek.com>
+         <20210705033824.1934-3-chun-jie.chen@mediatek.com>
+         <564fa3c8-1d85-5e98-f3f9-f83cb17e905a@gmail.com>
+         <15d27282-54b2-2cfe-7f44-2df3be11dd40@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <20210706005739.GA19143@nchen>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-06.07.2021 03:57, Peter Chen пишет:
-> On 21-07-05 01:54:26, Dmitry Osipenko wrote:
->> The HNP work can be re-scheduled while it's still in-fly. This results in
->> re-initialization of the busy work, resetting the hrtimer's list node of
->> the work and crashing kernel with null dereference within kernel/timer
->> once work's timer is expired. It's very easy to trigger this problem by
->> re-plugging USB cable quickly. Initialize HNP work only once to fix this
->> trouble.
->>
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> 
-> Acked-by: Peter Chen <peter.chen@kernel.org>
-> 
-> It is better to append kernel dump if you have v4 patchset.
+T24gTW9uLCAyMDIxLTA3LTA1IGF0IDE3OjQ1ICswMjAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3Rl
+Og0KPiBPbiAwNS8wNy8yMDIxIDE3OjQwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3RlOg0KPiA+IA0K
+PiA+IA0KPiA+IE9uIDA1LzA3LzIwMjEgMDU6MzgsIENodW4tSmllIENoZW4gd3JvdGU6DQo+ID4g
+PiBUaGlzIHBhdGNoIGFkZHMgdGhlIG1tc3lzIGRvY3VtZW50IGJpbmRpbmcgZm9yIE1UODE5MiBT
+b0MuDQo+ID4gPiANCj4gPiA+IFNpZ25lZC1vZmYtYnk6IENodW4tSmllIENoZW4gPGNodW4tamll
+LmNoZW5AbWVkaWF0ZWsuY29tPg0KPiA+IA0KPiA+IFJldmlld2VkLWJ5OiBNYXR0aGlhcyBCcnVn
+Z2VyIDxtYXR0aGlhcy5iZ2dAZ21haWwuY29tPg0KPiA+IA0KPiANCj4gT2YgY291cnNlLCB0aGF0
+J3Mgbm90IHdoYXQgd2UgbmVlZCBoZXJlLi4uDQo+IA0KPiBOb3cgcHVzaGVkIHRvIHY1LjE0LXRt
+cC9kdHM2NCB1bnRpbCB2NS4xNC1yYzEgaXMgcmVsZWFzZWQuDQo+IA0KPiBUaGFua3MhDQo+IE1h
+dHRoaWFzDQo+IA0KDQpJIHNlZSBzb21lIGRpc2N1c3Npb24gaW4gWzFdIGFuZCBjaGVjayB0aGUg
+aW1wbGVtZW50IG9mIGFmZQ0KZHJpdmVyKHNvYy9tZWRpYXRlay9tdDgxOTIvbXQ4MTkyLWFmZS1w
+Y20uYykNClRoZSBhdWRzeXMgc2hvdWQgYmUgZG9jdW1lbnRlZCBpbiBtZWRpYXRlayxhdWRzeXMu
+dHh0DQpJIHdpbGwgc2VuZCB2MTMgdG8gYXBwbHkgaXQgYW5kIHVwZGF0ZSBkdHMgWzJdLA0Kc29y
+cnkgZm9yIHRoZSBpbmNvbnZlbmllbmNlLg0KDQpbMV0NCmh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5l
+bC5vcmcvcHJvamVjdC9saW51eC1tZWRpYXRlay9wYXRjaC8yMDIxMDYzMDE4MDY1Mi4xLkk4OGE1
+MjY0NGU0N2U4OGIxNWY1ZGI5ODQxY2IwODRkYzUzYzU4NzVjQGNoYW5nZWlkLw0KWzJdDQpodHRw
+czovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsvY292ZXIvMjAy
+MTA2MTYwMTE1NTEuMjk2NTQtMS1jaHVuLWppZS5jaGVuQG1lZGlhdGVrLmNvbS8NCg0KQmVzdCBS
+ZWdhcmRzLA0KQ2h1bi1KaWUNCj4gPiA+IC0tLQ0KPiA+ID4gIC4uLi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL2FybS9tZWRpYXRlay9tZWRpYXRlayxtbXN5cy50eHQgICAgICAgICANCj4gPiA+ICB8IDEg
+Kw0KPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiA+ID4gDQo+ID4gPiBk
+aWZmIC0tZ2l0DQo+ID4gPiBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0v
+bWVkaWF0ZWsvbWVkaWF0ZWssbW1zeXMudA0KPiA+ID4geHQNCj4gPiA+IGIvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9tZWRpYXRlay9tZWRpYXRlayxtbXN5cy50DQo+ID4g
+PiB4dA0KPiA+ID4gaW5kZXggNzhjNTA3MzM5ODVjLi45NzEyYTY4MzFmYWIgMTAwNjQ0DQo+ID4g
+PiAtLS0NCj4gPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9tZWRp
+YXRlay9tZWRpYXRlayxtbXN5cy50DQo+ID4gPiB4dA0KPiA+ID4gKysrDQo+ID4gPiBiL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vbWVkaWF0ZWsvbWVkaWF0ZWssbW1zeXMu
+dA0KPiA+ID4geHQNCj4gPiA+IEBAIC0xNiw2ICsxNiw3IEBAIFJlcXVpcmVkIFByb3BlcnRpZXM6
+DQo+ID4gPiAgCS0gIm1lZGlhdGVrLG10ODE2Ny1tbXN5cyIsICJzeXNjb24iDQo+ID4gPiAgCS0g
+Im1lZGlhdGVrLG10ODE3My1tbXN5cyIsICJzeXNjb24iDQo+ID4gPiAgCS0gIm1lZGlhdGVrLG10
+ODE4My1tbXN5cyIsICJzeXNjb24iDQo+ID4gPiArCS0gIm1lZGlhdGVrLG10ODE5Mi1tbXN5cyIs
+ICJzeXNjb24iDQo+ID4gPiAgLSAjY2xvY2stY2VsbHM6IE11c3QgYmUgMQ0KPiA+ID4gIA0KPiA+
+ID4gIEZvciB0aGUgY2xvY2sgY29udHJvbCwgdGhlIG1tc3lzIGNvbnRyb2xsZXIgdXNlcyB0aGUg
+Y29tbW9uIGNsaw0KPiA+ID4gYmluZGluZyBmcm9tDQo+ID4gPiANCj4gDQo+IA0K
 
-The stacktrace isn't very useful because it crashes within a hrtimer
-code from a work thread, i.e. it doesn't point at usb at all. It
-actually took me some effort to find where the bug was.
