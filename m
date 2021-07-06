@@ -2,176 +2,316 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 354C03BC716
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 09:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA9903BC784
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 09:54:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbhGFH2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 03:28:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48500 "EHLO
+        id S230255AbhGFH5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 03:57:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230225AbhGFH2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 03:28:17 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D64C061760
-        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 00:25:39 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id r20so13237589ljd.10
-        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 00:25:39 -0700 (PDT)
+        with ESMTP id S230352AbhGFH5T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 03:57:19 -0400
+Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12857C061574
+        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 00:54:41 -0700 (PDT)
+Received: by mail-ua1-x930.google.com with SMTP id q20so979719uaa.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 00:54:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=v5VNmThjm4DmH+LnsaR0B3iwZoVfeb1fZ3oywOwn7G8=;
-        b=cVGcrT9zB5JzTP0aE9nAkyAmZxivH9ZNxMEDzFbar62SLEYX7QeCRPEtCcuzB+zt76
-         2WvL2z/tIUIDzTaL1iUq/x48nsuhSoxZTg9vDc9ybquiT4NBmQbPJP5YpueXbFyHx03M
-         APlLoefqRDNQii2urEZRAy1AhwsxOdaFu2Tqbdx3EmGNnsKfseEzD+FnOQAXXKn0Ojif
-         yVwS3JDB4ZTTxJP8/Q+1yCXnMKeAfNZzmMdY9PkPtLGIIsgFUYnp1/15SoOirApg81SE
-         VD7qYJ1Nb9b6VuRlDJTCO1mmkv/ZEnUOnqH6Vkjppsk4Ub0yfTo0TzjUjbd1A6q+H+tw
-         J3YA==
+        bh=3qVePH9JFi87gONiyEqEdKz88cGEkgKWEUb6Ms2bBU8=;
+        b=XRM9E87jhVyUlS0XtwfZ5x2PTgH5hDP6NQ5u66cYG0oPKzkuDFYWgxKpqOjeVUemWX
+         yp6ze/h8jcInvAKuFuqrN3gw5nEMqK/0z/nd/DkxJigc71FkzP14YJ90oivp2vncKvSB
+         RHQBawnAg5S5EpHEmcmHrKIfBPseJL3z/qsAJnSQAAqiBR+Zgo77DmKobTCIeoEuzvRC
+         jQwBkEc5cfDE/mlOz0JcE763rwsudr3CKHcNntk9D5SLRsbpWgiNsZ/9V3x4X8VzTQqx
+         88GQMa535qU15/xdVecvblRxVXJ6xWoVc6MKKYsEtmUTBc3tV/M+a8iqoLK9N8c8KgoO
+         HS8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=v5VNmThjm4DmH+LnsaR0B3iwZoVfeb1fZ3oywOwn7G8=;
-        b=dolinJjtjKynhchncoYTK7oKhLOiReW4pA9a2XPur5kIXKCaXbjJYH5fywB2GaKdM0
-         4khJ4NRyKGK/HLkE2C9IWBzO9JA4BxZxeXWQ6VpBge45ZH8Hl7/XJUdw94vrZHsIMXLr
-         iaxlup8/B/v/h1Qgiq022inTjMsf9hv4xY7dO7wGYGi1xH6qP1LCg6LUR97Kgqq5pIl5
-         sZu6ybnrmUajsTZlV3sPDR2odhQy3fynC51K7rFykQXC51xYFdsX94y7Un+MApqDtFAK
-         IYbnSAfN57TcuYCDt9nUsTqixQLfZbI7q5kH5Yae6fdvcEPGnhmf/2TiUKDl0QIKbKZZ
-         u2tg==
-X-Gm-Message-State: AOAM533VdlHFBQTYOPGbM0L50o3QZIidbfsSfhHGZIqT8VZCksFWJXa3
-        qLUPdGg7V/z/RtUviAHR/e+BKhm5yvGTvA/uILQjrw==
-X-Google-Smtp-Source: ABdhPJzBqENHysNuz9woqwFmjD9B+KAL6Oj7Tqd92ssm66C+8dzfCqg5FMbGILRpUR9/vpr05KVEHQ/454HYf1iVLo0=
-X-Received: by 2002:a2e:9059:: with SMTP id n25mr14700116ljg.314.1625556337523;
- Tue, 06 Jul 2021 00:25:37 -0700 (PDT)
+        bh=3qVePH9JFi87gONiyEqEdKz88cGEkgKWEUb6Ms2bBU8=;
+        b=dnHN2kFFNG9OU2HJbwK1MyC9gy/4E8eOAWB8IMxXp+IDyT8nUI44EfsPM1DwUDY2Sw
+         3u8JyWHDxVWFGTuVlCEGPpzId5NKL6j+1oMAN+j437Ep4Gu7G2fWNomNOGHY/NZ1dAke
+         9LFib8S33TWLb0FsBRkgu3VQUB3VVXf6pK/4N1z9UBFrpqpTWteLrU41FdcoV3tg1UEz
+         zVq5F8QHQYoXVb0JN9AJwT6E18CGacU+pFaPxfOxKojxm9Sk+xAO38hhsjCVrDJJ+Pfe
+         ChHsGXnm8Sm+d/YkQqN+TqijexDBtipjhP50pxi/8qCGlg9HOaHRG8Vfl9+yOTqUen6j
+         7qQQ==
+X-Gm-Message-State: AOAM531UizZRYUMVNsZ1XoS6JKq1oi86P3FwuhwU3lcPn5+VfDHMMdo3
+        CRQ81VjVmnk6hTLml00QCTNNQYBxFsjM4o5MCRNojw==
+X-Google-Smtp-Source: ABdhPJxEZnuXd+n69XMyNsgZarr+p438MNk52aNKyWibfsJUb8OZKm+m9/Gkou1JtUbyJlcMGha3wNxb2AkejdiHRxU=
+X-Received: by 2002:ab0:42a6:: with SMTP id j35mr11625376uaj.129.1625558080121;
+ Tue, 06 Jul 2021 00:54:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210616103649.2662395-1-jens.wiklander@linaro.org>
- <CAFA6WYMrxNfR09doWQgYKCQSYKyUMVKqSTPuRYn=-nueY9pSvQ@mail.gmail.com> <CAHUa44EeAENHv+CxtXeLuqX_NGWW6w-6P8D-BLsb69+XmGaqEQ@mail.gmail.com>
-In-Reply-To: <CAHUa44EeAENHv+CxtXeLuqX_NGWW6w-6P8D-BLsb69+XmGaqEQ@mail.gmail.com>
-From:   Sumit Garg <sumit.garg@linaro.org>
-Date:   Tue, 6 Jul 2021 12:55:26 +0530
-Message-ID: <CAFA6WYMSAM2MDOXnhjuZFov3BtF8-nihZRUpR8ciUWsL4_nCWA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/7] Asynchronous notifications from secure world
-To:     Jens Wiklander <jens.wiklander@linaro.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Jerome Forissier <jerome@forissier.org>,
-        Etienne Carriere <etienne.carriere@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
+References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org> <20210621223141.1638189-3-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20210621223141.1638189-3-dmitry.baryshkov@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 6 Jul 2021 09:54:03 +0200
+Message-ID: <CAPDyKFo6dmjw0TnaK7=35dq5Si_6YYpeeSa=gU++1od7WkQZ7A@mail.gmail.com>
+Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
+ powerup sequence
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Peter Chen <peter.chen@nxp.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Ard Biesheuvel <ardb@kernel.org>, Marc Zyngier <maz@kernel.org>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-bluetooth@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Jun 2021 at 11:40, Jens Wiklander <jens.wiklander@linaro.org> wrote:
->
-> Hi Sumit,
->
-> On Thu, Jun 17, 2021 at 6:33 AM Sumit Garg <sumit.garg@linaro.org> wrote:
-> >
-> > Hi Jens,
-> >
-> > On Wed, 16 Jun 2021 at 16:07, Jens Wiklander <jens.wiklander@linaro.org> wrote:
-> > >
-> > > Hi all,
-> > >
-> > > This adds support for asynchronous notifications from OP-TEE in secure
-> > > world to the OP-TEE driver. This allows a design with a top half and bottom
-> > > half type of driver where the top half runs in secure interrupt context and
-> > > a notifications tells normal world to schedule a yielding call to do the
-> > > bottom half processing.
-> > >
-> > > An interrupt is used to notify the driver that there are asynchronous
-> > > notifications pending.
-> > >
-> >
-> > It looks like a nice feature. I would like to get hands on with this.
-> > Can I test this feature on Qemu?
->
-> Absolutely, you can get this into the normal OP-TEE development repo setup with:
-> repo init -u https://github.com/OP-TEE/manifest.git -m default.xml
-> repo sync
-> Update optee_os with
-> https://github.com/jenswi-linaro/optee_os/tree/async_notif_v2
-> Update linux with https://github.com/jenswi-linaro/linux-1/tree/async_notif_v2
-> cd build
-> make all -j...
-> make run-only
->
-> If you type anything at the secure console you'll notice how it
-> changes behaviour once the Linux kernel has booted.
->
++ Peter
 
-Thanks for sharing instructions as I now got some time to test and
-deep dive into this feature. It looks like a pretty useful feature to
-realize interrupt support in the secure world in its true sense. This
-feature works for me as per your instructions.
-
-I could recognise it's requirement from the time while I was playing
-with secure timer interrupt support for OP-TEE RNG driver on
-Developerbox. In that case I had to strip down the secure interrupt
-handler to a minimum that would just collect entropy and dump into the
-secure buffer. But with asynchronous notifications support, I could
-add more functionality like entropy health tests in the bottom half
-instead of doing those health tests while retrieving entropy from the
-secure world.
-
-Given that, have you explored the possibility to leverage SGI rather
-than a platform specific SPI for notifying the normal world? If it's
-possible to leverage Architecture specific SGI for this purpose then I
-think this feature will come automatically enabled for every platform
-without the need to reserve a platform specific SPI.
-
--Sumit
-
-> Cheers,
-> Jens
+On Tue, 22 Jun 2021 at 00:32, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
 >
-> >
-> > -Sumit
-> >
-> > > v2:
-> > > * Added documentation
-> > > * Converted optee bindings to json-schema and added interrupt property
-> > > * Configure notification interrupt from DT instead of getting it
-> > >   from secure world, suggested by Ard Biesheuvel <ardb@kernel.org>.
-> > >
-> > > Thanks,
-> > > Jens
-> > >
-> > > Jens Wiklander (7):
-> > >   docs: staging/tee.rst: add a section on OP-TEE notifications
-> > >   dt-bindings: arm: Convert optee binding to json-schema
-> > >   dt-bindings: arm: optee: add interrupt property
-> > >   tee: fix put order in teedev_close_context()
-> > >   tee: add tee_dev_open_helper() primitive
-> > >   optee: separate notification functions
-> > >   optee: add asynchronous notifications
-> > >
-> > >  .../bindings/arm/firmware/linaro,optee-tz.txt |  31 ---
-> > >  .../arm/firmware/linaro,optee-tz.yaml         |  57 +++++
-> > >  Documentation/staging/tee.rst                 |  27 +++
-> > >  drivers/tee/optee/Makefile                    |   1 +
-> > >  drivers/tee/optee/call.c                      |  27 +++
-> > >  drivers/tee/optee/core.c                      |  87 +++++--
-> > >  drivers/tee/optee/notif.c                     | 226 ++++++++++++++++++
-> > >  drivers/tee/optee/optee_msg.h                 |   9 +
-> > >  drivers/tee/optee/optee_private.h             |  23 +-
-> > >  drivers/tee/optee/optee_rpc_cmd.h             |  31 +--
-> > >  drivers/tee/optee/optee_smc.h                 |  75 +++++-
-> > >  drivers/tee/optee/rpc.c                       |  73 +-----
-> > >  drivers/tee/tee_core.c                        |  37 ++-
-> > >  include/linux/tee_drv.h                       |  27 +++
-> > >  14 files changed, 576 insertions(+), 155 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/arm/firmware/linaro,optee-tz.yaml
-> > >  create mode 100644 drivers/tee/optee/notif.c
-> > >
-> > > --
-> > > 2.31.1
-> > >
+> Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
+> being controlled through the UART and WiFi being present on PCIe
+> bus. Both blocks share common power sources. Add device driver handling
+> power sequencing of QCA6390/1.
+>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Power sequencing of discoverable buses have been discussed several
+times before at LKML. The last attempt [1] I am aware of, was in 2017
+from Peter Chen. I don't think there is a common solution, yet.
+
+Note that, this isn't specific to the PCIe bus, but rather to all
+buses that may have discoverable devices attached and which need some
+kind of pre-power-sequence before they can be discovered/probed.  USB,
+PCIe, SDIO, etc.
+
+Long time ago, we fixed the problem for SDIO (that also can have WiFi,
+UART, bluetooth chips attached), but unfortunately through an MMC
+subsystem specific implementation, that can't be re-used in a generic
+way.
+
+In any case, I have looped in Peter Chen, maybe he can provide us with
+a better update on how things have moved forward, if at all.
+
+Kind regards
+Uffe
+
+[1]
+https://www.spinics.net/lists/linux-usb/msg158451.html
+
+> ---
+>  drivers/regulator/Kconfig        |  13 +++
+>  drivers/regulator/Makefile       |   1 +
+>  drivers/regulator/qcom-qca639x.c | 157 +++++++++++++++++++++++++++++++
+>  3 files changed, 171 insertions(+)
+>  create mode 100644 drivers/regulator/qcom-qca639x.c
+>
+> diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+> index 3e7a38525cb3..7a560cddea7a 100644
+> --- a/drivers/regulator/Kconfig
+> +++ b/drivers/regulator/Kconfig
+> @@ -909,6 +909,19 @@ config REGULATOR_PWM
+>           This driver supports PWM controlled voltage regulators. PWM
+>           duty cycle can increase or decrease the voltage.
+>
+> +config REGULATOR_QCOM_QCA639X
+> +       tristate "Qualcomm QCA639x WiFi/Bluetooth module support"
+> +       help
+> +         If you say yes to this option, support will be included for Qualcomm
+> +         QCA639x family of WiFi and Bluetooth SoCs. Note, this driver supports
+> +         only power control for this SoC, you still have to enable individual
+> +         Bluetooth and WiFi drivers. This driver is only necessary on ARM
+> +         platforms with this chip. PCIe cards handle power sequencing on their
+> +         own.
+> +
+> +         Say M here if you want to include support for QCA639x chips as a
+> +         module. This will build a module called "qcom-qca639x".
+> +
+>  config REGULATOR_QCOM_RPM
+>         tristate "Qualcomm RPM regulator driver"
+>         depends on MFD_QCOM_RPM
+> diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+> index 580b015296ea..129c2110b78d 100644
+> --- a/drivers/regulator/Makefile
+> +++ b/drivers/regulator/Makefile
+> @@ -99,6 +99,7 @@ obj-$(CONFIG_REGULATOR_MT6380)        += mt6380-regulator.o
+>  obj-$(CONFIG_REGULATOR_MT6397) += mt6397-regulator.o
+>  obj-$(CONFIG_REGULATOR_MTK_DVFSRC) += mtk-dvfsrc-regulator.o
+>  obj-$(CONFIG_REGULATOR_QCOM_LABIBB) += qcom-labibb-regulator.o
+> +obj-$(CONFIG_REGULATOR_QCOM_QCA639X) += qcom-qca639x.o
+>  obj-$(CONFIG_REGULATOR_QCOM_RPM) += qcom_rpm-regulator.o
+>  obj-$(CONFIG_REGULATOR_QCOM_RPMH) += qcom-rpmh-regulator.o
+>  obj-$(CONFIG_REGULATOR_QCOM_SMD_RPM) += qcom_smd-regulator.o
+> diff --git a/drivers/regulator/qcom-qca639x.c b/drivers/regulator/qcom-qca639x.c
+> new file mode 100644
+> index 000000000000..a2c78c0f8baa
+> --- /dev/null
+> +++ b/drivers/regulator/qcom-qca639x.c
+> @@ -0,0 +1,157 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2021, Linaro Limited
+> + */
+> +#include <linux/delay.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/regulator/driver.h>
+> +#include <linux/regulator/of_regulator.h>
+> +#include <linux/slab.h>
+> +
+> +#define MAX_NUM_REGULATORS     8
+> +
+> +static struct vreg {
+> +       const char *name;
+> +       unsigned int load_uA;
+> +} vregs[MAX_NUM_REGULATORS] = {
+> +       /* 2.0 V */
+> +       { "vddpcie2", 15000 },
+> +       { "vddrfa3", 400000 },
+> +
+> +       /* 0.95 V */
+> +       { "vddaon", 100000 },
+> +       { "vddpmu", 1250000 },
+> +       { "vddrfa1", 200000 },
+> +
+> +       /* 1.35 V */
+> +       { "vddrfa2", 400000 },
+> +       { "vddpcie1", 35000 },
+> +
+> +       /* 1.8 V */
+> +       { "vddio", 20000 },
+> +};
+> +
+> +struct qca6390_data {
+> +       struct device *dev;
+> +       struct regulator_bulk_data regulators[MAX_NUM_REGULATORS];
+> +       size_t num_vregs;
+> +
+> +       struct regulator_desc desc;
+> +       struct regulator_dev *regulator_dev;
+> +       unsigned int enable_counter;
+> +};
+> +
+> +#define domain_to_data(domain) container_of(domain, struct qca6390_data, pd)
+> +
+> +static int qca6390_enable(struct regulator_dev *rdev)
+> +{
+> +       struct qca6390_data *data = rdev_get_drvdata(rdev);
+> +       int ret;
+> +
+> +       ret = regulator_bulk_enable(data->num_vregs, data->regulators);
+> +       if (ret) {
+> +               dev_err(data->dev, "Failed to enable regulators");
+> +               return ret;
+> +       }
+> +
+> +       /* Wait for 1ms before toggling enable pins. */
+> +       usleep_range(1000, 2000);
+> +
+> +       data->enable_counter++;
+> +
+> +       return 0;
+> +}
+> +
+> +static int qca6390_disable(struct regulator_dev *rdev)
+> +{
+> +       struct qca6390_data *data = rdev_get_drvdata(rdev);
+> +
+> +       regulator_bulk_disable(data->num_vregs, data->regulators);
+> +
+> +       data->enable_counter--;
+> +
+> +       return 0;
+> +}
+> +
+> +static int qca6390_is_enabled(struct regulator_dev *rdev)
+> +{
+> +       struct qca6390_data *data = rdev_get_drvdata(rdev);
+> +
+> +       return data->enable_counter > 0;
+> +}
+> +
+> +static const struct regulator_ops qca6390_ops = {
+> +       .enable = qca6390_enable,
+> +       .disable = qca6390_disable,
+> +       .is_enabled = qca6390_is_enabled,
+> +};
+> +
+> +static int qca6390_probe(struct platform_device *pdev)
+> +{
+> +       struct qca6390_data *data;
+> +       struct device *dev = &pdev->dev;
+> +       struct regulator_config cfg = { };
+> +       int i, ret;
+> +
+> +       data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +       if (!data)
+> +               return -ENOMEM;
+> +
+> +       data->dev = dev;
+> +       data->num_vregs = ARRAY_SIZE(vregs);
+> +
+> +       for (i = 0; i < data->num_vregs; i++)
+> +               data->regulators[i].supply = vregs[i].name;
+> +
+> +       ret = devm_regulator_bulk_get(dev, data->num_vregs, data->regulators);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       for (i = 0; i < data->num_vregs; i++) {
+> +               ret = regulator_set_load(data->regulators[i].consumer, vregs[i].load_uA);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       data->desc.name = devm_kstrdup(dev, dev_name(dev), GFP_KERNEL);
+> +       if (!data->desc.name)
+> +               return -ENOMEM;
+> +
+> +       data->desc.type = REGULATOR_VOLTAGE;
+> +       data->desc.owner = THIS_MODULE;
+> +       data->desc.ops = &qca6390_ops;
+> +
+> +       cfg.dev = dev;
+> +       cfg.of_node = dev->of_node;
+> +       cfg.driver_data = data;
+> +       cfg.init_data = of_get_regulator_init_data(dev, dev->of_node, &data->desc);
+> +
+> +       data->regulator_dev = devm_regulator_register(dev, &data->desc, &cfg);
+> +       if (IS_ERR(data->regulator_dev)) {
+> +               ret = PTR_ERR(data->regulator_dev);
+> +               return ret;
+> +       }
+> +
+> +       platform_set_drvdata(pdev, data);
+> +
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id qca6390_of_match[] = {
+> +       { .compatible = "qcom,qca6390" },
+> +};
+> +
+> +static struct platform_driver qca6390_driver = {
+> +       .probe = qca6390_probe,
+> +       .driver = {
+> +               .name = "qca6390",
+> +               .of_match_table = qca6390_of_match,
+> +       },
+> +};
+> +
+> +module_platform_driver(qca6390_driver);
+> +MODULE_AUTHOR("Dmitry Baryshkov <dmitry.baryshkov@linaro.org>");
+> +MODULE_DESCRIPTION("Power control for Qualcomm QCA6390/1 BT/WiFi chip");
+> +MODULE_LICENSE("GPL v2");
+> --
+> 2.30.2
+>
