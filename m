@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21F453BCBF1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 13:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B2A83BCF43
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 13:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232239AbhGFLR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 07:17:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52984 "EHLO mail.kernel.org"
+        id S232957AbhGFL20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 07:28:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35426 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232071AbhGFLRg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Jul 2021 07:17:36 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 75EA0610F7;
-        Tue,  6 Jul 2021 11:14:56 +0000 (UTC)
+        id S234469AbhGFLYc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Jul 2021 07:24:32 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CAF5261CBC;
+        Tue,  6 Jul 2021 11:18:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625570097;
-        bh=d09ir3kgb9xtU564t4rO0NluCjTTcHfF8TAcNZAL3Ak=;
+        s=k20201202; t=1625570302;
+        bh=zitxiL8u4atmdpJKFak6cKFgHg9rSPTOWKskZ6B1fKM=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=A2OQ7cPg9reqNbspL/043nc17LiKrXW1y40FmfIPQGHtblahSvRsjI3rB6r871KBX
-         rKN1US+EUqzh7uDLWUFN05ZDi+WtrZdrrrzITKGyNb/Ih5OpOgkpHBwQKkK320r7fh
-         H00AzVSuH/IcvOO6SJHuLp0ID9FttJytZEhFVQjCZ/Y/X32jbx3WwurELiHlu0qe4e
-         50uD37z08vY5QAtSFTWoyBbrcEokBUD1lKt41CoJilHUw29/KHaKRbTo6sC1mTrdKK
-         zqkKiG7fTJAAH0HZO0d056vd8ZeXSuY+FncfdKhMDbVM3gsO2FW/i9/SWhXVtxQRVK
-         iFObD2VPAE5YA==
+        b=RrtRk3rl+cURXEm9XUnX1kNcsh+ACdscvb11GMnlcXGxGdYd2oZ9+hlRLt8e42t6Y
+         ocChBoHCUaK7YZWo8rs/Qw48BF+q5ZdZCAxbjhVjN68hJxzQwq1bTJYlO3kTIIxk28
+         iXycfe6YtCsD6M5qy3c0D626dhc0tON1sBOxDGxWFYLlk0BiiwNnFH8nmc9oka077u
+         cxR4MweY6F/B8QUOF50Vh0vPZoNNln90zykQCAZfQMR9kqKzl+nhGBkdCgkeT1w+Df
+         H+7itQUF7XBlAWLINSfEEJ/RH2rjg5DJPf8ybo+eu7rQfR6zoV6uOr1MCPEe0tz1zv
+         LuMzkFYPlaA1g==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Sasha Levin <sashal@kernel.org>, netdev@vger.kernel.org,
+Cc:     =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>, Nikolaus Schaller <hns@goldelico.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Sasha Levin <sashal@kernel.org>, linux-mips@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.13 033/189] net: mdio: provide shim implementation of devm_of_mdiobus_register
-Date:   Tue,  6 Jul 2021 07:11:33 -0400
-Message-Id: <20210706111409.2058071-33-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.13 189/189] MIPS: CI20: Reduce clocksource to 750 kHz.
+Date:   Tue,  6 Jul 2021 07:14:09 -0400
+Message-Id: <20210706111409.2058071-189-sashal@kernel.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20210706111409.2058071-1-sashal@kernel.org>
 References: <20210706111409.2058071-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -46,47 +46,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <olteanv@gmail.com>
+From: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
 
-[ Upstream commit 86544c3de6a2185409c5a3d02f674ea223a14217 ]
+[ Upstream commit 23c64447b3538a6f34cb38aae3bc19dc1ec53436 ]
 
-Similar to the way in which of_mdiobus_register() has a fallback to the
-non-DT based mdiobus_register() when CONFIG_OF is not set, we can create
-a shim for the device-managed devm_of_mdiobus_register() which calls
-devm_mdiobus_register() and discards the struct device_node *.
+The original clock (3 MHz) is too fast for the clocksource,
+there will be a chance that the system may get stuck.
 
-In particular, this solves a build issue with the qca8k DSA driver which
-uses devm_of_mdiobus_register and can be compiled without CONFIG_OF.
-
-Reported-by: Randy Dunlap <rdunlap@infradead.org>
-Signed-off-by: Vladimir Oltean <olteanv@gmail.com>
-Acked-by: Randy Dunlap <rdunlap@infradead.org> # build-tested
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-Signed-off-by: David S. Miller <davem@davemloft.net>
+Reported-by: Nikolaus Schaller <hns@goldelico.com>
+Tested-by: Nikolaus Schaller <hns@goldelico.com> # on CI20
+Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+Acked-by: Paul Cercueil <paul@crapouillou.net>
+Signed-off-by: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- include/linux/of_mdio.h | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/mips/boot/dts/ingenic/ci20.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/include/linux/of_mdio.h b/include/linux/of_mdio.h
-index 2b05e7f7c238..da633d34ab86 100644
---- a/include/linux/of_mdio.h
-+++ b/include/linux/of_mdio.h
-@@ -72,6 +72,13 @@ static inline int of_mdiobus_register(struct mii_bus *mdio, struct device_node *
- 	return mdiobus_register(mdio);
- }
+diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
+index 8877c62609de..3a4eaf1f3f48 100644
+--- a/arch/mips/boot/dts/ingenic/ci20.dts
++++ b/arch/mips/boot/dts/ingenic/ci20.dts
+@@ -525,10 +525,10 @@ pins_mmc1: mmc1 {
  
-+static inline int devm_of_mdiobus_register(struct device *dev,
-+					   struct mii_bus *mdio,
-+					   struct device_node *np)
-+{
-+	return devm_mdiobus_register(dev, mdio);
-+}
-+
- static inline struct mdio_device *of_mdio_find_device(struct device_node *np)
- {
- 	return NULL;
+ &tcu {
+ 	/*
+-	 * 750 kHz for the system timer and 3 MHz for the clocksource,
++	 * 750 kHz for the system timer and clocksource,
+ 	 * use channel #0 for the system timer, #1 for the clocksource.
+ 	 */
+ 	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER1>,
+ 					  <&tcu TCU_CLK_OST>;
+-	assigned-clock-rates = <750000>, <3000000>, <3000000>;
++	assigned-clock-rates = <750000>, <750000>, <3000000>;
+ };
 -- 
 2.30.2
 
