@@ -2,98 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96FD33BD617
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 14:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBA223BD61B
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 14:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237035AbhGFMb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 08:31:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33316 "EHLO mail.kernel.org"
+        id S237129AbhGFMbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 08:31:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45046 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237525AbhGFL63 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Jul 2021 07:58:29 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B6F8861179;
-        Tue,  6 Jul 2021 11:55:48 +0000 (UTC)
+        id S242161AbhGFMZt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Jul 2021 08:25:49 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6324C622E9;
+        Tue,  6 Jul 2021 12:23:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625572549;
-        bh=JXmBsXYXG9KG7U5AjlAUHgTa15XndAwh6xpRx35ssAo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JbOfwmVF4OkhS5vWEeG1/y6EzbbSwmaGz+O2PUgdxW8i2J5XsnE7M6+ypvPxZiLBM
-         3klouA+VESkfgGkHYyVBVx5HAXAMNeDdkwIVUlkmZB4SfoyyvNJwuuVLQZl1sl9nsf
-         0qQ7VeJLZSks0CiTqNdrnJgOXjaWxCHUW29odk/ZYWRSc+mczvm80gi1qDhbm2bNPq
-         XWfnvdeAJB7ZdvMhgvuqLB+U0egmAIOso0LHfx4nboab6JTrLN15TfrTVD7LgBqzzZ
-         nemt4h8ofc9CIUk76G2oifZwmbZ+SizUH2SPthodth6U5RWSM+ykcrqZnKpIuDWzz+
-         uyTdLgzFUAD1w==
-Date:   Tue, 6 Jul 2021 12:55:17 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Peter Chen <peter.chen@nxp.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-bluetooth@vger.kernel.org
-Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
- powerup sequence
-Message-ID: <20210706115517.GB4529@sirena.org.uk>
-References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
- <20210621223141.1638189-3-dmitry.baryshkov@linaro.org>
- <CAPDyKFo6dmjw0TnaK7=35dq5Si_6YYpeeSa=gU++1od7WkQZ7A@mail.gmail.com>
+        s=k20201202; t=1625574190;
+        bh=wz4Bic0LSPWmrCj80ELZl2dM0eChPNGuIIo785wRWDw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RXfwtOXbimz822euPvZ9jCYUkxtuTtUsicRgUhnDJ/VlBQFDfty6hxF87aW0Tf7Gw
+         GgGsvbXHPxBQEvWzc8021HYoSBJtcFtAb5OFuSaAoLGiXufB3IvOMxM+nB0XjcaOmp
+         9xXfYA4uRF+lH6MrDeL61na0vPyl0XK4/M7JtpLfFXatgY3SEQazITSz3eIIOs5sl8
+         qf/jyDqkE80a6QyL7LYofiV53/f5dtV187FLgxktsjIZoDR0KeCedMK0FTJI4AvP6F
+         Ps08ZgTnkwu4i9cDTGQCS7wWg5O2t0IEY3XHI8wkafg3uVgoRYh+n8VC8SJltZ0GXM
+         4sACa0d+6YT6Q==
+Received: by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1m0k6W-004qMk-4w; Tue, 06 Jul 2021 14:23:08 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Binghui Wang <wangbinghui@hisilicon.com>,
+        Xiaowei Song <songxiaowei@hisilicon.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: [PATCH RFC 0/1] Move PHY out of pcie-kirin driver
+Date:   Tue,  6 Jul 2021 14:23:05 +0200
+Message-Id: <cover.1625573452.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="24zk1gE8NUlDmwG9"
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFo6dmjw0TnaK7=35dq5Si_6YYpeeSa=gU++1od7WkQZ7A@mail.gmail.com>
-X-Cookie: Some restrictions may apply.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+During the review of the Kirin 970 PCIe patch series, it was pointed that
+the pcie-kirin driver has PHY logic mixed inside it:
 
---24zk1gE8NUlDmwG9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+   https://lore.kernel.org/lkml/CAL_JsqK7_hAw4aacHyiqJWE6zSWiMez5695+deaCSHfeWuX-XA@mail.gmail.com/
 
-On Tue, Jul 06, 2021 at 09:54:03AM +0200, Ulf Hansson wrote:
-> On Tue, 22 Jun 2021 at 00:32, Dmitry Baryshkov
+Probably due to that, support for those devices weren't added 
+upstream.
 
-> > Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
-> > being controlled through the UART and WiFi being present on PCIe
-> > bus. Both blocks share common power sources. Add device driver handling
-> > power sequencing of QCA6390/1.
+Before trying to re-send it again, let's split the existing PHY code
+for Kirin 960 (Hisi3660) from the driver.
 
-> Power sequencing of discoverable buses have been discussed several
-> times before at LKML. The last attempt [1] I am aware of, was in 2017
-> from Peter Chen. I don't think there is a common solution, yet.
+Please notice that this change will alter the device tree, as a new PHY
+descriptor will be needed, and the PHY properties from the pcie nodes
+will need to switch.
 
-This feels a bit different to the power sequencing problem - it's not
-exposing the individual inputs to the device but rather is a block that
-manages everything but needs a bit of a kick to get things going (I'd
-guess that with ACPI it'd be triggered via AML).  It's in the same space
-but it's not quite the same issue I think, something that can handle
-control of the individual resources might still struggle with this.
+This patch doesn't change the documentation yet, but it does change
+the DTS file. If this change is OK, I'll resend this patch together with
+the documentation changes.
 
---24zk1gE8NUlDmwG9
-Content-Type: application/pgp-signature; name="signature.asc"
+Tested on a Hikey 960. After the patch, the PCI bridge is properly
+displayed:
 
------BEGIN PGP SIGNATURE-----
+	$ lspci
+	00:00.0 PCI bridge: Huawei Technologies Co., Ltd. Device 3660 (rev 01)
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDkRKQACgkQJNaLcl1U
-h9A9oAf/QENRZjXRFVPDjWc5SZZ1jRLz0JmogYRWNMICgbOtz1VBdXoNW/Lww3pt
-dke5UKjZ+XQkNR3aavlJL+PatLcw5KcLLIM7q6seqDtyV3oesMqPe4eHpf7E8niH
-RlrkwxoSHb3r7/tYFr2TNDxL1ZuQKEOT1Bn1tcNP4krJ4sa2M4sYmM7XV4VdFlkE
-/ymTDt9FrU/lQZHkT414lAI615+uJqFaRn17h6TnrC0MhELJ/BoLo62tBWaO0gtv
-sey70r+PcIRzS6p/iA8i+HHNTfR5EiVnBF3tVidPeOwt8Haj8TfhdDGbvzeAuaDc
-sia1bg8tC8v+IFLkdkwWFG7TzvN8ZQ==
-=L8x2
------END PGP SIGNATURE-----
+Unfortunately, currently I can't test if the bridge is working as this
+bridge supports only non-SATA M.2 devices.  I'm acquiring one for
+tests, but it will take a couple weeks to arrive.
 
---24zk1gE8NUlDmwG9--
+Mauro Carvalho Chehab (1):
+  PCI: dwc: pcie-kirin: split PHY interface from the driver
+
+ arch/arm64/boot/dts/hisilicon/hi3660.dtsi |  24 +-
+ drivers/pci/controller/dwc/pcie-kirin.c   | 195 +++-------------
+ drivers/phy/hisilicon/Kconfig             |  10 +
+ drivers/phy/hisilicon/Makefile            |   1 +
+ drivers/phy/hisilicon/phy-hi3660-pcie.c   | 261 ++++++++++++++++++++++
+ 5 files changed, 321 insertions(+), 170 deletions(-)
+ create mode 100644 drivers/phy/hisilicon/phy-hi3660-pcie.c
+
+-- 
+2.31.1
+
+
