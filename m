@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B0A73BCB39
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 13:00:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B8853BCB3C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 13:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231360AbhGFLDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 07:03:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39772 "EHLO
+        id S231446AbhGFLDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 07:03:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231293AbhGFLDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 07:03:07 -0400
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B62EEC061760
-        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 04:00:28 -0700 (PDT)
-Received: by mail-io1-xd2d.google.com with SMTP id d9so24376751ioo.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 04:00:28 -0700 (PDT)
+        with ESMTP id S231559AbhGFLDP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 07:03:15 -0400
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F59C06175F
+        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 04:00:37 -0700 (PDT)
+Received: by mail-io1-xd33.google.com with SMTP id q2so9213787iot.11
+        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 04:00:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=85+RRGhjODs6lcH6FGoMJhqGI1UPU1GAYsHb+vDqTGI=;
-        b=kcovIMeHxj6d6wLhZ9CMLTwalFGptJT2AhB7Kp8+N3lEiQHjcOsi4c2/ggoM58tdcA
-         S39evUYCjLYP/6eY51tHdYzEl7GOPaCwr4GDqXkXsPX8vcgOnyZayFPvuuHaqGicqH61
-         hz/Nd9JWKB44kz3d3Ng4CIVm8WfbT8v4gGRO0MY0A/XoVjyEgchrXD/v3OQ221bUbNYi
-         NLK8xNdebbXAGR9KxoKq23Bz2yrx34YbloODkjeLElxtCbe6P/joEzomSRM0tCH4xJYt
-         cIXImUDQsVOe6upPw/A9lDbU7dRsRQjbq6yJYUCpzbGrNfMzTILlcc6ydf2sg7pNfe8X
-         wlkA==
+        bh=D9cJE9ZmLAhI4Z30OwANBpOGqptuN+YARhU6HockOH0=;
+        b=OHgy1t6yQ7FLN3DygkT/BL+g1Fd0Y0bRZKpFs6VjQGau1kDmMGzL7F0PoN0fZTXJd2
+         Qi9N0mqttZRAXdoPHG83q7gdrpYsOkUxdIvAJSSHYSGWL4DXfbc8zWv9CdDOsFCBwtT+
+         D23O7XCfv/5/VemHuPMLO7xRZ/ifUDfmjlDdKhcNWYhZ3Ybp1Q3BCBHt85KSa1KysN1P
+         VCJ6i61tTgQHnvs3ll/ziMz3PeOedLUZnwLerwbilVNQKAVBx13i15r3WJ6V0BBIDdUm
+         E0GS4Jm+xxRGuw1x7Jq93k2/zwBGAfrYJz1HGkhFn/hcxSJVliDJet/g+YqaXSia3VbK
+         P5EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=85+RRGhjODs6lcH6FGoMJhqGI1UPU1GAYsHb+vDqTGI=;
-        b=ZX3vvHV17YCu7v0JoZUgCSkocQdXtfxWRIsnlhdKv6UrVm+cb0+rSnfvvHcDIEFz57
-         LOpSQ266XlQn/udlDR55+haNzo8qLVidXfYToGazwZTM88lzFdmEKRF6QyBF2rvcYdl5
-         ZdVxrOClB4fNJ+P1s9xXF9Fj/fmLZvGxUl4/ygxo79uGK1wvH0S146+CGjooZ1Zm7zIm
-         +9RQ34rD8R0S3G1Ae32YWY7it5DgLs1eROFujQo2imFgXVtnsKQRbOY34hYHDs/bpAz/
-         u1tVZRlN6sATOm+oc44wZklp2jegTyG56Ir8+u10+u5litwl1VmJoyA4aIX1Xx3Ul9vq
-         Sivw==
-X-Gm-Message-State: AOAM530WcNDJItA/O+NbSJTTU4DyP6fF04pFo8hXpewlhkOsfe664j2J
-        tYLp35OTGLhmT/+diJp+k1axE2clknlX5ivQ7saVog==
-X-Google-Smtp-Source: ABdhPJwYqdX4uXaVnVQi0XP4/rzQ+1UfhvfYjksjrP95PYtkRwbQIPBuuu2IAg0m0BTSZ7BHhytyyXcXKrSXS2nUkA0=
-X-Received: by 2002:a5d:87d0:: with SMTP id q16mr15428748ios.109.1625569227924;
- Tue, 06 Jul 2021 04:00:27 -0700 (PDT)
+        bh=D9cJE9ZmLAhI4Z30OwANBpOGqptuN+YARhU6HockOH0=;
+        b=kSWSF5berAYqe2GaxWtrXuP3LIb6fbhbrPqygOqd1t759LcHgcs14fww8daO5fU4ss
+         qBb+ZbL7jrE9ZRBlDLvh+AIDjkMTiMoqQKdbhFa5zA+pQssyHjZjlVonsjay3oUrjVPJ
+         GyV+As8jv2XUJ6UhxBi6OQXBqGDuZekAFpQ21siNN4WnEqSteQNldaLj09vZwFtVlpEu
+         XiHI3TR3dEbTIODme4iTNGGVhXXXxRyzGmfw8DyZuPDwwIpootlR643ZBAg0xbI3iDvI
+         fGv+BG2dr/m8rh8bGS7MvzON9PkZ7L+RBoWT4VZnaZz+Hb4288wPYJwTnV2xMvJ60uY1
+         mwZw==
+X-Gm-Message-State: AOAM531c3/Qof6k1yHMGmlaEv23AxHZV/OKiGUqQ2vDZfRXsDIbDcWHw
+        mgYPn1s5zIe2dNgQOM9suM783wjGCtSsldybpWSLQg==
+X-Google-Smtp-Source: ABdhPJwQeTYajARaI85ZZA6cdpsrwFxnkE+PReeU0ZLQgcXDRmZbVRnHS07ukEQ4C29jdKjOddBIiVCJy35vC5fgxEA=
+X-Received: by 2002:a5d:840c:: with SMTP id i12mr15050087ion.185.1625569236207;
+ Tue, 06 Jul 2021 04:00:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <1625038079-25815-1-git-send-email-kyrie.wu@mediatek.com>
-In-Reply-To: <1625038079-25815-1-git-send-email-kyrie.wu@mediatek.com>
+References: <1625038079-25815-1-git-send-email-kyrie.wu@mediatek.com> <1625038079-25815-3-git-send-email-kyrie.wu@mediatek.com>
+In-Reply-To: <1625038079-25815-3-git-send-email-kyrie.wu@mediatek.com>
 From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Tue, 6 Jul 2021 19:00:17 +0800
-Message-ID: <CA+Px+wVQFK1MXbq6=x7gSfRu8uRp5hbiNgSWtJ-9ok3Lt+vz8A@mail.gmail.com>
-Subject: Re: [PATCH v2,0/9] Support jpeg encode for MT8195
+Date:   Tue, 6 Jul 2021 19:00:25 +0800
+Message-ID: <CA+Px+wVE=QKh2-+RZevLUweFEUuoovW-1=Da2AWzB1fnJP=EKw@mail.gmail.com>
+Subject: Re: [PATCH v2,2/9] media: mtk-jpegenc: Add MT8195 JPEG venc driver
 To:     "kyrie.wu" <kyrie.wu@mediatek.com>
 Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -68,23 +68,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 30, 2021 at 3:28 PM kyrie.wu <kyrie.wu@mediatek.com> wrote:
-> add component framework to using multi-HW for MT8195 jpeg encode.
-Could you add some summary for each patch for getting an overview of the series?
+On Wed, Jun 30, 2021 at 3:32 PM kyrie.wu <kyrie.wu@mediatek.com> wrote:
+> Add MT8195 JPEG venc driver's compatible and device private data.
+> compatible = "mediatek,mt8195-jpgenc": this node would only register
+> jpgenc device node;
+> compatible = "mediatek,mt8195-jpgenc0": HW0 node, this node would not
+> register jpgenc device node, but register irq, init clk and power,
+> remmap register base and do other resource options;
+> compatible = "mediatek,mt8195-jpgenc1": HW1 node, just like HW0 node;
+The commit message is not easy to read.  Please rephrase the sentences.
 
->   dt-bindings: mediatek: Add mediatek, mt8195-jpgenc compatible
->   media: mtk-jpegenc: Add MT8195 JPEG venc driver
->   media: mtk-jpegenc: remove redundant code of irq
->   media: mtk-jpegenc: Refactor jpeg clock interface
->   media: mtk-jpegenc: Generalize jpeg encode irq interfaces
->   media: mtk-jpegenc: Generalize jpegenc HW timeout interfaces
->   media: mtk-jpegenc: Use component framework to manage each hardware
->     information
->   media: mtk-jpegenc: Generalize jpegenc HW operations interfaces
->   media: mtk-jpegenc: Refactor jpegenc device run interface
-The series has some consistency issues which would make readers feel
-uncomfortable.
+What does "venc" stand for?  I believe it is a copy-n-paste typo.
 
-For example:
-- Whether to capitalize the first characters in the commit messages/titles.
-- Whether to add a period at the end of English sentences.
+The commit title "support MT8195 JPEG encoder" looks better to me.
+
+> -static const struct mtk_jpeg_variant mtk_jpeg_drvdata = {
+> +static const struct mtk_jpeg_variant mtk_jpegenc_drvdata = {
+Why remove mtk_jpeg_drvdata?
+
+> -       .irq_handler = mtk_jpeg_enc_irq,
+Why remove the IRQ handler?
+
+> @@ -1548,10 +1551,6 @@ static const struct of_device_id mtk_jpeg_match[] = {
+>                 .compatible = "mediatek,mt2701-jpgdec",
+>                 .data = &mt8173_jpeg_drvdata,
+>         },
+> -       {
+> -               .compatible = "mediatek,mtk-jpgenc",
+> -               .data = &mtk_jpeg_drvdata,
+> -       },
+Why remove "mediatek,mtk-jpgenc"?
+
+> +#if defined(CONFIG_OF)
+> +static const struct of_device_id mtk_jpegenc_hw_ids[] = {
+> +       {
+> +               .compatible = "mediatek,mt8195-jpgenc0",
+> +       },
+> +       {       .compatible = "mediatek,mt8195-jpgenc1",
+> +       },
+> +       {},
+> +};
+> +MODULE_DEVICE_TABLE(of, mtk_jpegenc_hw_ids);
+> +#endif
+Would expect somewhere to reference mtk_jpegenc_hw_ids but failed to find it.
