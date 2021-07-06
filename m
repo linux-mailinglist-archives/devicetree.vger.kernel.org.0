@@ -2,242 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DCFE3BC894
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 11:38:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0563E3BC8BF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 11:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231193AbhGFJlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 05:41:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49486 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231172AbhGFJlL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 05:41:11 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A00FC06175F
-        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 02:38:32 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id a127so18933716pfa.10
-        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 02:38:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yF9OMxS2c/2tokATGGfLkvP79xoaq/JM2vOaNahFcrY=;
-        b=K/xCtGhsSAOAnYR7nSSV1bWrTUYHM9dWS2fvDAwR0MMVeP28fB2KkgtgnqkSeywRFu
-         0eU7iezOAPPwFi+uYP8fMjxZJNhhZsyFnAcqdv9pYH8CI0ryXItb/KEVCYQedmk7sOzY
-         yisRJyiOamke/HQTntFEz9Y7qsj8EKwJ8DfLs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yF9OMxS2c/2tokATGGfLkvP79xoaq/JM2vOaNahFcrY=;
-        b=A1fCm2C8Sii07IOpygLVzo0jhzfjcd73+Xc+3NEAlJq2Navl3T+UnqIa53tU6vAqj1
-         MZcvwG0lEsj0MHd7UgPorvsIcNWUJcLs8K00HMO/PpqdQSZZkkOwkVTkWYVA4v9jl9+2
-         r8QjFKAIFXROY566WowrvDVFfTWkbZsuVoX+QOLNOJb79P/FKI/Dz1pm+6EUb5ZWqUzZ
-         iHwwLCoYtKE8x1XQi2A4wTn2FAF6fKYasZe+lIs/e1egOAcc1DWpPzEONKkIHdPipDVB
-         jF9dbFGLInV8xDtPA+BOetYg1Mjww0t0MMQDocYIyRlfUw653NmQSKycfqqGlN2/9PNw
-         Y+kw==
-X-Gm-Message-State: AOAM532jdq8iA6lfQ9rTWrnhWmX2cp0rK+jdyv8qZVoF4GQk34n01fFb
-        4WmPvv3MreW+sNFnPl+DddhnI3cAnJDbf7IAMt198A==
-X-Google-Smtp-Source: ABdhPJymcCrNGCc0r7o3SY6VsAaA9EN5U5abtpl7YUfwb0OBhex7wh98FaICBfBIrhrVRx2hWrKi9mRnsUA3QbY35k0=
-X-Received: by 2002:a62:e307:0:b029:321:98d5:ae46 with SMTP id
- g7-20020a62e3070000b029032198d5ae46mr5909502pfh.66.1625564311602; Tue, 06 Jul
- 2021 02:38:31 -0700 (PDT)
+        id S231231AbhGFJ71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 05:59:27 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:38512 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231181AbhGFJ71 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 05:59:27 -0400
+X-UUID: 8ce9252ed3744ad3a7359d426de39c51-20210706
+X-UUID: 8ce9252ed3744ad3a7359d426de39c51-20210706
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1254690984; Tue, 06 Jul 2021 17:56:43 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs06n2.mediatek.inc (172.21.101.130) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 6 Jul 2021 17:56:42 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 6 Jul 2021 17:56:42 +0800
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Subject: [v5 1/2] arm64: dts: mediatek: Add mt8192 clock controllers
+Date:   Tue, 6 Jul 2021 17:56:13 +0800
+Message-ID: <20210706095614.25603-2-chun-jie.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20210706095614.25603-1-chun-jie.chen@mediatek.com>
+References: <20210706095614.25603-1-chun-jie.chen@mediatek.com>
 MIME-Version: 1.0
-References: <20210630090710.1873559-1-kansho@chromium.org> <20210630180652.1.I88a52644e47e88b15f5db9841cb084dc53c5875c@changeid>
- <716ab7a7-937d-df88-8d3c-8d35df473b4e@gmail.com> <CAP3OrSLyoKNr7fMOx5sUtWi7PVQGuN-5w7k_0D2MhDUeXXmYCg@mail.gmail.com>
- <CAGXv+5FVf3hu5Y+aFazqBwAcvWMGkyqXB-2VVnskmMsYKj2_yA@mail.gmail.com>
-In-Reply-To: <CAGXv+5FVf3hu5Y+aFazqBwAcvWMGkyqXB-2VVnskmMsYKj2_yA@mail.gmail.com>
-From:   Kansho Nishida <kansho@chromium.org>
-Date:   Tue, 6 Jul 2021 18:38:20 +0900
-Message-ID: <CAP3OrSK_CVJO3s3YhO5e_m_k0z8h1GrrC8WMcRw1WD41nJk=XA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: mt8183: add audio node
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Shunli Wang <shunli.wang@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Eddie Huang <eddie.huang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chen,
+Add clock controller nodes for SoC mt8192
 
-On Mon, Jul 5, 2021 at 6:55 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
->
-> Hi,
->
-> On Mon, Jul 5, 2021 at 5:40 PM Kansho Nishida <kansho@chromium.org> wrote:
-> >
-> > On Fri, Jul 2, 2021 at 3:20 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
-> > >
-> > >
-> > >
-> > > On 30/06/2021 11:07, Kansho Nishida wrote:
-> > > > Add afe (audio front end) device node to the MT8183 dtsi.
-> > > >
-> > > > Signed-off-by: Kansho Nishida <kansho@chromium.org>
-> > > > ---
-> > > >
-> > > >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 94 +++++++++++++++++++++++-
-> > > >  1 file changed, 93 insertions(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > > > index f90df6439c08..b06acb8d6527 100644
-> > > > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > > > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > > > @@ -1115,10 +1115,102 @@ usb_host: usb@11200000 {
-> > > >                       };
-> > > >               };
-> > > >
-> > > > -             audiosys: syscon@11220000 {
-> > > > +             audiosys: clock-controller@11220000 {
-> > >
-> > > Why do you change it from sysecon to clock-controller?
-> > >
-> > > Regards,
-> > > Matthias
-> >
-> > Hi Matthias,
-> >
-> > Thanks for the comments!
-> > This should be "clock-controller" according to the binding description (*1).
-> > Moreover, you suggested doing so even though it's a long time ago (*2).
->
-> The address space really covers the whole audio subsystem though. The clock
-> controls only span a few registers. In hindsight the clock controls shouldn't
-> have been modelled separately, since they are only used internally within the
-> audio subsystem.
->
-> See https://lore.kernel.org/linux-mediatek/YOLKxrJin5kkwiIl@google.com/T/#u
-> for issues I raised on the MT8195.
->
-> Now we are probably not going to be able to fix this for existing bindings,
-> so let's just get the node name right. It should probably be audio-controller
-> or something close instead.
+Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+---
+Due to mmsys and audsys device not only a clock controller but also
+trigger the mm and audio subsystem to initialize, so modify these
+to "syscon" node
+---
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 163 +++++++++++++++++++++++
+ 1 file changed, 163 insertions(+)
 
-OK, let's use audio-controller instead. I'll submit the v3 patch.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index 9757138a8bbd..c7c7d4e017ae 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -5,6 +5,7 @@
+  */
+ 
+ /dts-v1/;
++#include <dt-bindings/clock/mt8192-clk.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
+@@ -257,6 +258,24 @@
+ 			};
+ 		};
+ 
++		topckgen: syscon@10000000 {
++			compatible = "mediatek,mt8192-topckgen", "syscon";
++			reg = <0 0x10000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		infracfg: syscon@10001000 {
++			compatible = "mediatek,mt8192-infracfg", "syscon";
++			reg = <0 0x10001000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		pericfg: syscon@10003000 {
++			compatible = "mediatek,mt8192-pericfg", "syscon";
++			reg = <0 0x10003000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		pio: pinctrl@10005000 {
+ 			compatible = "mediatek,mt8192-pinctrl";
+ 			reg = <0 0x10005000 0 0x1000>,
+@@ -282,6 +301,12 @@
+ 			#interrupt-cells = <2>;
+ 		};
+ 
++		apmixedsys: syscon@1000c000 {
++			compatible = "mediatek,mt8192-apmixedsys", "syscon";
++			reg = <0 0x1000c000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		systimer: timer@10017000 {
+ 			compatible = "mediatek,mt8192-timer",
+ 				     "mediatek,mt6765-timer";
+@@ -291,6 +316,12 @@
+ 			clock-names = "clk13m";
+ 		};
+ 
++		scp_adsp: clock-controller@10720000 {
++			compatible = "mediatek,mt8192-scp_adsp";
++			reg = <0 0x10720000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		uart0: serial@11002000 {
+ 			compatible = "mediatek,mt8192-uart",
+ 				     "mediatek,mt6577-uart";
+@@ -311,6 +342,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		imp_iic_wrap_c: clock-controller@11007000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_c";
++			reg = <0 0x11007000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		spi0: spi@1100a000 {
+ 			compatible = "mediatek,mt8192-spi",
+ 				     "mediatek,mt6765-spi";
+@@ -436,6 +473,12 @@
+ 			status = "disable";
+ 		};
+ 
++		audsys: clock-controller@11210000 {
++			compatible = "mediatek,mt8192-audsys", "syscon";
++			reg = <0 0x11210000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		i2c3: i2c3@11cb0000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11cb0000 0 0x1000>,
+@@ -449,6 +492,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		imp_iic_wrap_e: clock-controller@11cb1000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_e";
++			reg = <0 0x11cb1000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		i2c7: i2c7@11d00000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11d00000 0 0x1000>,
+@@ -488,6 +537,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		imp_iic_wrap_s: clock-controller@11d03000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_s";
++			reg = <0 0x11d03000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		i2c1: i2c1@11d20000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11d20000 0 0x1000>,
+@@ -527,6 +582,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		imp_iic_wrap_ws: clock-controller@11d23000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_ws";
++			reg = <0 0x11d23000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		i2c5: i2c5@11e00000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11e00000 0 0x1000>,
+@@ -540,6 +601,12 @@
+ 			status = "disabled";
+ 		};
+ 
++		imp_iic_wrap_w: clock-controller@11e01000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_w";
++			reg = <0 0x11e01000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
+ 		i2c0: i2c0@11f00000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11f00000 0 0x1000>,
+@@ -565,5 +632,101 @@
+ 			#size-cells = <0>;
+ 			status = "disabled";
+ 		};
++
++		imp_iic_wrap_n: clock-controller@11f02000 {
++			compatible = "mediatek,mt8192-imp_iic_wrap_n";
++			reg = <0 0x11f02000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		msdc_top: clock-controller@11f10000 {
++			compatible = "mediatek,mt8192-msdc_top";
++			reg = <0 0x11f10000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		msdc: clock-controller@11f60000 {
++			compatible = "mediatek,mt8192-msdc";
++			reg = <0 0x11f60000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		mfgcfg: clock-controller@13fbf000 {
++			compatible = "mediatek,mt8192-mfgcfg";
++			reg = <0 0x13fbf000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		mmsys: syscon@14000000 {
++			compatible = "mediatek,mt8192-mmsys", "syscon";
++			reg = <0 0x14000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		imgsys: clock-controller@15020000 {
++			compatible = "mediatek,mt8192-imgsys";
++			reg = <0 0x15020000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		imgsys2: clock-controller@15820000 {
++			compatible = "mediatek,mt8192-imgsys2";
++			reg = <0 0x15820000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vdecsys_soc: clock-controller@1600f000 {
++			compatible = "mediatek,mt8192-vdecsys_soc";
++			reg = <0 0x1600f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vdecsys: clock-controller@1602f000 {
++			compatible = "mediatek,mt8192-vdecsys";
++			reg = <0 0x1602f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		vencsys: clock-controller@17000000 {
++			compatible = "mediatek,mt8192-vencsys";
++			reg = <0 0x17000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys: clock-controller@1a000000 {
++			compatible = "mediatek,mt8192-camsys";
++			reg = <0 0x1a000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_rawa: clock-controller@1a04f000 {
++			compatible = "mediatek,mt8192-camsys_rawa";
++			reg = <0 0x1a04f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_rawb: clock-controller@1a06f000 {
++			compatible = "mediatek,mt8192-camsys_rawb";
++			reg = <0 0x1a06f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		camsys_rawc: clock-controller@1a08f000 {
++			compatible = "mediatek,mt8192-camsys_rawc";
++			reg = <0 0x1a08f000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		ipesys: clock-controller@1b000000 {
++			compatible = "mediatek,mt8192-ipesys";
++			reg = <0 0x1b000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
++
++		mdpsys: clock-controller@1f000000 {
++			compatible = "mediatek,mt8192-mdpsys";
++			reg = <0 0x1f000000 0 0x1000>;
++			#clock-cells = <1>;
++		};
+ 	};
+ };
+-- 
+2.18.0
 
-Regards,
-Kansho
-
->
->
-> Regards
-> ChenYu
->
->
-> > *1) https://www.kernel.org/doc/Documentation/devicetree/bindings/arm/mediatek/mediatek%2Caudsys.txt
-> > *2) https://patchwork.kernel.org/project/linux-mediatek/patch/1559360354-22974-1-git-send-email-jiaxin.yu@mediatek.com/
-> >
-> > Regards,
-> > Kansho
-> >
-> > >
-> > > >                       compatible = "mediatek,mt8183-audiosys", "syscon";
-> > > >                       reg = <0 0x11220000 0 0x1000>;
-> > > >                       #clock-cells = <1>;
-> > > > +                     afe: mt8183-afe-pcm {
-> > > > +                             compatible = "mediatek,mt8183-audio";
-> > > > +                             interrupts = <GIC_SPI 161 IRQ_TYPE_LEVEL_LOW>;
-> > > > +                             resets = <&watchdog MT8183_TOPRGU_AUDIO_SW_RST>;
-> > > > +                             reset-names = "audiosys";
-> > > > +                             power-domains =
-> > > > +                                     <&spm MT8183_POWER_DOMAIN_AUDIO>;
-> > > > +                             clocks = <&audiosys CLK_AUDIO_AFE>,
-> > > > +                                      <&audiosys CLK_AUDIO_DAC>,
-> > > > +                                      <&audiosys CLK_AUDIO_DAC_PREDIS>,
-> > > > +                                      <&audiosys CLK_AUDIO_ADC>,
-> > > > +                                      <&audiosys CLK_AUDIO_PDN_ADDA6_ADC>,
-> > > > +                                      <&audiosys CLK_AUDIO_22M>,
-> > > > +                                      <&audiosys CLK_AUDIO_24M>,
-> > > > +                                      <&audiosys CLK_AUDIO_APLL_TUNER>,
-> > > > +                                      <&audiosys CLK_AUDIO_APLL2_TUNER>,
-> > > > +                                      <&audiosys CLK_AUDIO_I2S1>,
-> > > > +                                      <&audiosys CLK_AUDIO_I2S2>,
-> > > > +                                      <&audiosys CLK_AUDIO_I2S3>,
-> > > > +                                      <&audiosys CLK_AUDIO_I2S4>,
-> > > > +                                      <&audiosys CLK_AUDIO_TDM>,
-> > > > +                                      <&audiosys CLK_AUDIO_TML>,
-> > > > +                                      <&infracfg CLK_INFRA_AUDIO>,
-> > > > +                                      <&infracfg CLK_INFRA_AUDIO_26M_BCLK>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_AUDIO>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_AUD_INTBUS>,
-> > > > +                                      <&topckgen CLK_TOP_SYSPLL_D2_D4>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_AUD_1>,
-> > > > +                                      <&topckgen CLK_TOP_APLL1_CK>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_AUD_2>,
-> > > > +                                      <&topckgen CLK_TOP_APLL2_CK>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_AUD_ENG1>,
-> > > > +                                      <&topckgen CLK_TOP_APLL1_D8>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_AUD_ENG2>,
-> > > > +                                      <&topckgen CLK_TOP_APLL2_D8>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S0>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S1>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S2>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S3>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S4>,
-> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S5>,
-> > > > +                                      <&topckgen CLK_TOP_APLL12_DIV0>,
-> > > > +                                      <&topckgen CLK_TOP_APLL12_DIV1>,
-> > > > +                                      <&topckgen CLK_TOP_APLL12_DIV2>,
-> > > > +                                      <&topckgen CLK_TOP_APLL12_DIV3>,
-> > > > +                                      <&topckgen CLK_TOP_APLL12_DIV4>,
-> > > > +                                      <&topckgen CLK_TOP_APLL12_DIVB>,
-> > > > +                                      /*<&topckgen CLK_TOP_APLL12_DIV5>,*/
-> > > > +                                      <&clk26m>;
-> > > > +                             clock-names = "aud_afe_clk",
-> > > > +                                               "aud_dac_clk",
-> > > > +                                               "aud_dac_predis_clk",
-> > > > +                                               "aud_adc_clk",
-> > > > +                                               "aud_adc_adda6_clk",
-> > > > +                                               "aud_apll22m_clk",
-> > > > +                                               "aud_apll24m_clk",
-> > > > +                                               "aud_apll1_tuner_clk",
-> > > > +                                               "aud_apll2_tuner_clk",
-> > > > +                                               "aud_i2s1_bclk_sw",
-> > > > +                                               "aud_i2s2_bclk_sw",
-> > > > +                                               "aud_i2s3_bclk_sw",
-> > > > +                                               "aud_i2s4_bclk_sw",
-> > > > +                                               "aud_tdm_clk",
-> > > > +                                               "aud_tml_clk",
-> > > > +                                               "aud_infra_clk",
-> > > > +                                               "mtkaif_26m_clk",
-> > > > +                                               "top_mux_audio",
-> > > > +                                               "top_mux_aud_intbus",
-> > > > +                                               "top_syspll_d2_d4",
-> > > > +                                               "top_mux_aud_1",
-> > > > +                                               "top_apll1_ck",
-> > > > +                                               "top_mux_aud_2",
-> > > > +                                               "top_apll2_ck",
-> > > > +                                               "top_mux_aud_eng1",
-> > > > +                                               "top_apll1_d8",
-> > > > +                                               "top_mux_aud_eng2",
-> > > > +                                               "top_apll2_d8",
-> > > > +                                               "top_i2s0_m_sel",
-> > > > +                                               "top_i2s1_m_sel",
-> > > > +                                               "top_i2s2_m_sel",
-> > > > +                                               "top_i2s3_m_sel",
-> > > > +                                               "top_i2s4_m_sel",
-> > > > +                                               "top_i2s5_m_sel",
-> > > > +                                               "top_apll12_div0",
-> > > > +                                               "top_apll12_div1",
-> > > > +                                               "top_apll12_div2",
-> > > > +                                               "top_apll12_div3",
-> > > > +                                               "top_apll12_div4",
-> > > > +                                               "top_apll12_divb",
-> > > > +                                               /*"top_apll12_div5",*/
-> > > > +                                               "top_clk26m_clk";
-> > > > +                     };
-> > > >               };
-> > > >
-> > > >               mmc0: mmc@11230000 {
-> > > >
-> >
-> > _______________________________________________
-> > Linux-mediatek mailing list
-> > Linux-mediatek@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
