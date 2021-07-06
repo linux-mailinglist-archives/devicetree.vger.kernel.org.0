@@ -2,207 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B811B3BC86C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 11:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DCFE3BC894
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 11:38:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231175AbhGFJWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 05:22:22 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:48780 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230472AbhGFJWV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 05:22:21 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1625563183; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=tVNox5UxH1mduv7g7ycIOmhCnRCLc2A4EM1ABCiryh8=;
- b=DO6sdCX9d7ibQkce8AD+FequsTDiemc1jwPVenoQg08JLzmXCcpMORjvSPoM+zhfErgUy0bN
- gMwTsrD/abZ0Vf8X4jKs2iGdrN715mmD2oqZoH1iFzXc5Zno4pBTj7oeC9dUuhHlEEPpHsRW
- WzMZK0Nef+9jJ80hVe6qHRHTS1E=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 60e42020c4cc543602c3521c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 06 Jul 2021 09:19:28
- GMT
-Sender: rojay=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D5EF9C433D3; Tue,  6 Jul 2021 09:19:27 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: rojay)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5C752C433F1;
-        Tue,  6 Jul 2021 09:19:27 +0000 (UTC)
+        id S231193AbhGFJlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 05:41:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49486 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231172AbhGFJlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 05:41:11 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A00FC06175F
+        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 02:38:32 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id a127so18933716pfa.10
+        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 02:38:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=yF9OMxS2c/2tokATGGfLkvP79xoaq/JM2vOaNahFcrY=;
+        b=K/xCtGhsSAOAnYR7nSSV1bWrTUYHM9dWS2fvDAwR0MMVeP28fB2KkgtgnqkSeywRFu
+         0eU7iezOAPPwFi+uYP8fMjxZJNhhZsyFnAcqdv9pYH8CI0ryXItb/KEVCYQedmk7sOzY
+         yisRJyiOamke/HQTntFEz9Y7qsj8EKwJ8DfLs=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yF9OMxS2c/2tokATGGfLkvP79xoaq/JM2vOaNahFcrY=;
+        b=A1fCm2C8Sii07IOpygLVzo0jhzfjcd73+Xc+3NEAlJq2Navl3T+UnqIa53tU6vAqj1
+         MZcvwG0lEsj0MHd7UgPorvsIcNWUJcLs8K00HMO/PpqdQSZZkkOwkVTkWYVA4v9jl9+2
+         r8QjFKAIFXROY566WowrvDVFfTWkbZsuVoX+QOLNOJb79P/FKI/Dz1pm+6EUb5ZWqUzZ
+         iHwwLCoYtKE8x1XQi2A4wTn2FAF6fKYasZe+lIs/e1egOAcc1DWpPzEONKkIHdPipDVB
+         jF9dbFGLInV8xDtPA+BOetYg1Mjww0t0MMQDocYIyRlfUw653NmQSKycfqqGlN2/9PNw
+         Y+kw==
+X-Gm-Message-State: AOAM532jdq8iA6lfQ9rTWrnhWmX2cp0rK+jdyv8qZVoF4GQk34n01fFb
+        4WmPvv3MreW+sNFnPl+DddhnI3cAnJDbf7IAMt198A==
+X-Google-Smtp-Source: ABdhPJymcCrNGCc0r7o3SY6VsAaA9EN5U5abtpl7YUfwb0OBhex7wh98FaICBfBIrhrVRx2hWrKi9mRnsUA3QbY35k0=
+X-Received: by 2002:a62:e307:0:b029:321:98d5:ae46 with SMTP id
+ g7-20020a62e3070000b029032198d5ae46mr5909502pfh.66.1625564311602; Tue, 06 Jul
+ 2021 02:38:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 06 Jul 2021 14:49:27 +0530
-From:   rojay@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com
-Subject: Re: [PATCH V3 1/3] arm64: dts: sc7280: Add QSPI node
-In-Reply-To: <98befc79fc039496b0c12d7983319c92@codeaurora.org>
-References: <20210604135439.19119-1-rojay@codeaurora.org>
- <20210604135439.19119-2-rojay@codeaurora.org> <YLxHTDxVcSvVxsd5@builder.lan>
- <98befc79fc039496b0c12d7983319c92@codeaurora.org>
-Message-ID: <2ad7a00924b5065bf61c47e8b6d24339@codeaurora.org>
-X-Sender: rojay@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+References: <20210630090710.1873559-1-kansho@chromium.org> <20210630180652.1.I88a52644e47e88b15f5db9841cb084dc53c5875c@changeid>
+ <716ab7a7-937d-df88-8d3c-8d35df473b4e@gmail.com> <CAP3OrSLyoKNr7fMOx5sUtWi7PVQGuN-5w7k_0D2MhDUeXXmYCg@mail.gmail.com>
+ <CAGXv+5FVf3hu5Y+aFazqBwAcvWMGkyqXB-2VVnskmMsYKj2_yA@mail.gmail.com>
+In-Reply-To: <CAGXv+5FVf3hu5Y+aFazqBwAcvWMGkyqXB-2VVnskmMsYKj2_yA@mail.gmail.com>
+From:   Kansho Nishida <kansho@chromium.org>
+Date:   Tue, 6 Jul 2021 18:38:20 +0900
+Message-ID: <CAP3OrSK_CVJO3s3YhO5e_m_k0z8h1GrrC8WMcRw1WD41nJk=XA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: mt8183: add audio node
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Shunli Wang <shunli.wang@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Eddie Huang <eddie.huang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-06-08 13:37, rojay@codeaurora.org wrote:
-> On 2021-06-06 09:25, Bjorn Andersson wrote:
->> On Fri 04 Jun 08:54 CDT 2021, Roja Rani Yarubandi wrote:
->> 
->>> Add QSPI DT node for SC7280 SoC.
->>> 
->>> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
->>> ---
->>> Changes in V3:
->>>  - Broken the huge V2 patch into 3 smaller patches.
->>>    1. QSPI DT nodes
->>>    2. QUP wrapper_0 DT nodes
->>>    3. QUP wrapper_1 DT nodes
->>> 
->>> Changes in V2:
->>>  - As per Doug's comments removed pinmux/pinconf subnodes.
->>>  - As per Doug's comments split of SPI, UART nodes has been done.
->>>  - Moved QSPI node before aps_smmu as per the order.
->>> 
->>>  arch/arm64/boot/dts/qcom/sc7280-idp.dts | 29 ++++++++++++
->>>  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 61 
->>> +++++++++++++++++++++++++
->>>  2 files changed, 90 insertions(+)
->>> 
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts 
->>> b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->>> index 3900cfc09562..d0edffc15736 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
->>> @@ -268,6 +268,22 @@ pmr735b_die_temp {
->>>  		};
->>>  };
->>> 
->>> +&qspi {
->>> +	status = "okay";
->>> +	pinctrl-names = "default";
->>> +	pinctrl-0 = <&qspi_clk>, <&qspi_cs0>, <&qspi_data01>;
->>> +
->>> +	flash@0 {
->>> +		compatible = "jedec,spi-nor";
->>> +		reg = <0>;
->>> +
->>> +		/* TODO: Increase frequency after testing */
->>> +		spi-max-frequency = <25000000>;
->>> +		spi-tx-bus-width = <2>;
->>> +		spi-rx-bus-width = <2>;
->>> +	};
->>> +};
->>> +
->>>  &qupv3_id_0 {
->>>  	status = "okay";
->>>  };
->>> @@ -278,6 +294,19 @@ &uart5 {
->>> 
->>>  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
->>> 
->>> +&qspi_cs0 {
->>> +	bias-disable;
->>> +};
->>> +
->>> +&qspi_clk {
->>> +	bias-disable;
->>> +};
->>> +
->>> +&qspi_data01 {
->>> +	/* High-Z when no transfers; nice to park the lines */
->>> +	bias-pull-up;
->>> +};
->>> +
->>>  &qup_uart5_default {
->>>  	tx {
->>>  		pins = "gpio46";
->>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
->>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> index 6c9d5eb93f93..3047ab802cd2 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
->>> @@ -1061,6 +1061,42 @@ apss_merge_funnel_in: endpoint {
->>>  			};
->>>  		};
->>> 
->>> +		qspi_opp_table: qspi-opp-table {
->> 
->> This node doesn't represents anything on the mmio bus, so it shouldn't
->> live in in /soc. Can't you move it into &qspi?
->> 
->> Regards,
->> Bjorn
->> 
-> 
-> Sure, will move it into qspi node.
-> 
-> Thanks,
-> Roja
-> 
+Hi Chen,
 
-Hi Bjorn,
+On Mon, Jul 5, 2021 at 6:55 PM Chen-Yu Tsai <wenst@chromium.org> wrote:
+>
+> Hi,
+>
+> On Mon, Jul 5, 2021 at 5:40 PM Kansho Nishida <kansho@chromium.org> wrote:
+> >
+> > On Fri, Jul 2, 2021 at 3:20 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
+> > >
+> > >
+> > >
+> > > On 30/06/2021 11:07, Kansho Nishida wrote:
+> > > > Add afe (audio front end) device node to the MT8183 dtsi.
+> > > >
+> > > > Signed-off-by: Kansho Nishida <kansho@chromium.org>
+> > > > ---
+> > > >
+> > > >  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 94 +++++++++++++++++++++++-
+> > > >  1 file changed, 93 insertions(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > > > index f90df6439c08..b06acb8d6527 100644
+> > > > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > > > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> > > > @@ -1115,10 +1115,102 @@ usb_host: usb@11200000 {
+> > > >                       };
+> > > >               };
+> > > >
+> > > > -             audiosys: syscon@11220000 {
+> > > > +             audiosys: clock-controller@11220000 {
+> > >
+> > > Why do you change it from sysecon to clock-controller?
+> > >
+> > > Regards,
+> > > Matthias
+> >
+> > Hi Matthias,
+> >
+> > Thanks for the comments!
+> > This should be "clock-controller" according to the binding description (*1).
+> > Moreover, you suggested doing so even though it's a long time ago (*2).
+>
+> The address space really covers the whole audio subsystem though. The clock
+> controls only span a few registers. In hindsight the clock controls shouldn't
+> have been modelled separately, since they are only used internally within the
+> audio subsystem.
+>
+> See https://lore.kernel.org/linux-mediatek/YOLKxrJin5kkwiIl@google.com/T/#u
+> for issues I raised on the MT8195.
+>
+> Now we are probably not going to be able to fix this for existing bindings,
+> so let's just get the node name right. It should probably be audio-controller
+> or something close instead.
 
-Moving "qspi_opp_table" inside &qspi node causing this warning:
-arch/arm64/boot/dts/qcom/sc7280.dtsi:1055.35-1072.6: Warning 
-(spi_bus_reg): /soc@0/spi@88dc000/qspi-opp-table: missing or empty reg 
-property
+OK, let's use audio-controller instead. I'll submit the v3 patch.
 
-Shall I keep the qspi-opp-table out of &qspi node?
+Regards,
+Kansho
 
-Thanks,
-Roja
-
->>> +			compatible = "operating-points-v2";
->>> +
->>> +			opp-75000000 {
->>> +				opp-hz = /bits/ 64 <75000000>;
->>> +				required-opps = <&rpmhpd_opp_low_svs>;
->>> +			};
->>> +
->>> +			opp-150000000 {
->>> +				opp-hz = /bits/ 64 <150000000>;
->>> +				required-opps = <&rpmhpd_opp_svs>;
->>> +			};
->>> +
->>> +			opp-300000000 {
->>> +				opp-hz = /bits/ 64 <300000000>;
->>> +				required-opps = <&rpmhpd_opp_nom>;
->>> +			};
->>> +		};
->>> +
->>> +		qspi: spi@88dc000 {
->>> +			compatible = "qcom,qspi-v1";
->>> +			reg = <0 0x088dc000 0 0x1000>;
->>> +			#address-cells = <1>;
->>> +			#size-cells = <0>;
->>> +			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
->>> +			clocks = <&gcc GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
->>> +				 <&gcc GCC_QSPI_CORE_CLK>;
->>> +			clock-names = "iface", "core";
->>> +			interconnects = <&gem_noc MASTER_APPSS_PROC 0
->>> +					&cnoc2 SLAVE_QSPI_0 0>;
->>> +			interconnect-names = "qspi-config";
->>> +			power-domains = <&rpmhpd SC7280_CX>;
->>> +			operating-points-v2 = <&qspi_opp_table>;
->>> +			status = "disabled";
->>> +		};
+>
+>
+> Regards
+> ChenYu
+>
+>
+> > *1) https://www.kernel.org/doc/Documentation/devicetree/bindings/arm/mediatek/mediatek%2Caudsys.txt
+> > *2) https://patchwork.kernel.org/project/linux-mediatek/patch/1559360354-22974-1-git-send-email-jiaxin.yu@mediatek.com/
+> >
+> > Regards,
+> > Kansho
+> >
+> > >
+> > > >                       compatible = "mediatek,mt8183-audiosys", "syscon";
+> > > >                       reg = <0 0x11220000 0 0x1000>;
+> > > >                       #clock-cells = <1>;
+> > > > +                     afe: mt8183-afe-pcm {
+> > > > +                             compatible = "mediatek,mt8183-audio";
+> > > > +                             interrupts = <GIC_SPI 161 IRQ_TYPE_LEVEL_LOW>;
+> > > > +                             resets = <&watchdog MT8183_TOPRGU_AUDIO_SW_RST>;
+> > > > +                             reset-names = "audiosys";
+> > > > +                             power-domains =
+> > > > +                                     <&spm MT8183_POWER_DOMAIN_AUDIO>;
+> > > > +                             clocks = <&audiosys CLK_AUDIO_AFE>,
+> > > > +                                      <&audiosys CLK_AUDIO_DAC>,
+> > > > +                                      <&audiosys CLK_AUDIO_DAC_PREDIS>,
+> > > > +                                      <&audiosys CLK_AUDIO_ADC>,
+> > > > +                                      <&audiosys CLK_AUDIO_PDN_ADDA6_ADC>,
+> > > > +                                      <&audiosys CLK_AUDIO_22M>,
+> > > > +                                      <&audiosys CLK_AUDIO_24M>,
+> > > > +                                      <&audiosys CLK_AUDIO_APLL_TUNER>,
+> > > > +                                      <&audiosys CLK_AUDIO_APLL2_TUNER>,
+> > > > +                                      <&audiosys CLK_AUDIO_I2S1>,
+> > > > +                                      <&audiosys CLK_AUDIO_I2S2>,
+> > > > +                                      <&audiosys CLK_AUDIO_I2S3>,
+> > > > +                                      <&audiosys CLK_AUDIO_I2S4>,
+> > > > +                                      <&audiosys CLK_AUDIO_TDM>,
+> > > > +                                      <&audiosys CLK_AUDIO_TML>,
+> > > > +                                      <&infracfg CLK_INFRA_AUDIO>,
+> > > > +                                      <&infracfg CLK_INFRA_AUDIO_26M_BCLK>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_AUDIO>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_AUD_INTBUS>,
+> > > > +                                      <&topckgen CLK_TOP_SYSPLL_D2_D4>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_AUD_1>,
+> > > > +                                      <&topckgen CLK_TOP_APLL1_CK>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_AUD_2>,
+> > > > +                                      <&topckgen CLK_TOP_APLL2_CK>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_AUD_ENG1>,
+> > > > +                                      <&topckgen CLK_TOP_APLL1_D8>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_AUD_ENG2>,
+> > > > +                                      <&topckgen CLK_TOP_APLL2_D8>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S0>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S1>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S2>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S3>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S4>,
+> > > > +                                      <&topckgen CLK_TOP_MUX_APLL_I2S5>,
+> > > > +                                      <&topckgen CLK_TOP_APLL12_DIV0>,
+> > > > +                                      <&topckgen CLK_TOP_APLL12_DIV1>,
+> > > > +                                      <&topckgen CLK_TOP_APLL12_DIV2>,
+> > > > +                                      <&topckgen CLK_TOP_APLL12_DIV3>,
+> > > > +                                      <&topckgen CLK_TOP_APLL12_DIV4>,
+> > > > +                                      <&topckgen CLK_TOP_APLL12_DIVB>,
+> > > > +                                      /*<&topckgen CLK_TOP_APLL12_DIV5>,*/
+> > > > +                                      <&clk26m>;
+> > > > +                             clock-names = "aud_afe_clk",
+> > > > +                                               "aud_dac_clk",
+> > > > +                                               "aud_dac_predis_clk",
+> > > > +                                               "aud_adc_clk",
+> > > > +                                               "aud_adc_adda6_clk",
+> > > > +                                               "aud_apll22m_clk",
+> > > > +                                               "aud_apll24m_clk",
+> > > > +                                               "aud_apll1_tuner_clk",
+> > > > +                                               "aud_apll2_tuner_clk",
+> > > > +                                               "aud_i2s1_bclk_sw",
+> > > > +                                               "aud_i2s2_bclk_sw",
+> > > > +                                               "aud_i2s3_bclk_sw",
+> > > > +                                               "aud_i2s4_bclk_sw",
+> > > > +                                               "aud_tdm_clk",
+> > > > +                                               "aud_tml_clk",
+> > > > +                                               "aud_infra_clk",
+> > > > +                                               "mtkaif_26m_clk",
+> > > > +                                               "top_mux_audio",
+> > > > +                                               "top_mux_aud_intbus",
+> > > > +                                               "top_syspll_d2_d4",
+> > > > +                                               "top_mux_aud_1",
+> > > > +                                               "top_apll1_ck",
+> > > > +                                               "top_mux_aud_2",
+> > > > +                                               "top_apll2_ck",
+> > > > +                                               "top_mux_aud_eng1",
+> > > > +                                               "top_apll1_d8",
+> > > > +                                               "top_mux_aud_eng2",
+> > > > +                                               "top_apll2_d8",
+> > > > +                                               "top_i2s0_m_sel",
+> > > > +                                               "top_i2s1_m_sel",
+> > > > +                                               "top_i2s2_m_sel",
+> > > > +                                               "top_i2s3_m_sel",
+> > > > +                                               "top_i2s4_m_sel",
+> > > > +                                               "top_i2s5_m_sel",
+> > > > +                                               "top_apll12_div0",
+> > > > +                                               "top_apll12_div1",
+> > > > +                                               "top_apll12_div2",
+> > > > +                                               "top_apll12_div3",
+> > > > +                                               "top_apll12_div4",
+> > > > +                                               "top_apll12_divb",
+> > > > +                                               /*"top_apll12_div5",*/
+> > > > +                                               "top_clk26m_clk";
+> > > > +                     };
+> > > >               };
+> > > >
+> > > >               mmc0: mmc@11230000 {
+> > > >
+> >
+> > _______________________________________________
+> > Linux-mediatek mailing list
+> > Linux-mediatek@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
