@@ -2,91 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 771503BD614
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 14:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94C3B3BD616
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 14:28:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241156AbhGFMbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 08:31:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42522 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235997AbhGFLbq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Jul 2021 07:31:46 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 531BE61CFB;
-        Tue,  6 Jul 2021 11:22:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625570556;
-        bh=pCcN7BDwCybXFoZyfxMlftp9PONrIJ9xYGZ2x7wtsgk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gYJ4sawt6C/t7URWIyJl2mmW3KWz+HvuDKxv3WVG25pqCdboKAFrMqXqNfBdR9wkf
-         Ssmdb+GRm9tdg+BbASQEemQEMpdnD/yVyv2FS3VSwgn9wWGKYtlSj1hAjdjkQiW0UZ
-         l97SSiszj9m8toiqf5MIgOPpv0fsqEA5NQXcc/5pTxPZVQShv0y+MwiLNfSLiBp8Z3
-         V/FZgb6ZHJ3S0WiMQ39CILgKWPcMZ/6a1Kk8AIDa+67/sF0dJc9EjeLRJ8aSOG4Mi9
-         qU1EU2UzxKSrR7V1YejwskmxSkYzKlxo6693etFBDTv8Hc70nd70/xNPiWgohTABDf
-         U4Q1wqDBTxqNQ==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 024/137] net: mdio: provide shim implementation of devm_of_mdiobus_register
-Date:   Tue,  6 Jul 2021 07:20:10 -0400
-Message-Id: <20210706112203.2062605-24-sashal@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210706112203.2062605-1-sashal@kernel.org>
-References: <20210706112203.2062605-1-sashal@kernel.org>
+        id S234220AbhGFMbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 08:31:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53058 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242933AbhGFMDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 08:03:04 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B152C073C08
+        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 04:39:26 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id k8so28656271lja.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 04:39:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6KHENRVTFcr1DeeaRLU/2vG0asdcInU8xhn1ZnIiQEc=;
+        b=IdGKMBytW7IOMBESz96dq6itTpIEDPBWGB5XRO+qSQ48yJT7yYAT9N8lqiHah9wnDY
+         3K6D67UfDsx2P/ABipjl30TBctWMN4qhsTRC4E4sc1XIGn/04HiicXlk8UmLQM6W2Kpr
+         7PNSQ5KyQpi5RAnSZMdMPgQeA0Twv6DZgMvu/nxu6Z15JYc+G6N/l9rt0dUMVRGcbsQG
+         jIxb3yy8OJnKogUutBA72zbdZTq1n+5HnQrIFBIFQZDQYf/yl9D5hlL0E2RnfqraqVuD
+         oc9p4c/bJt85uQ08MZVR9pynFPLB0W1DafWua6b73deN8YLYp9UoQQ19K9K219rSCjO/
+         tXOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6KHENRVTFcr1DeeaRLU/2vG0asdcInU8xhn1ZnIiQEc=;
+        b=rW6TLJfdoDNNPCVq73VC0WOIJ5FTLEiMlyWtPpxzfFpjbq5Lhn9TKdxRKscKF3xCfR
+         jjOMIe/MNtEGPp9YP6tD3JkXrQGljdXUQ1fqg5RQXAdFX2+y1VaN9mSxLRoefB+6PznS
+         70a3r8b1iMXZpOe9J/j5p6B3xubRRu/koEWjhZ+l2jBx2uyLXCqcj8qiipz856aMk59E
+         B0Lu+gr6n26qvOxfk7/p9NhK6SGwogOTOAY2FevnnUkiUMyUtMOzU65CLeewyjBcbZD3
+         UzX6EDS9InNTPZ4xR889Od6GcHUidGk2em/itfEdkcs6hGrcOrdx+MlMgv1qSTe7J5Ue
+         gpRg==
+X-Gm-Message-State: AOAM530IrXkFYAEs7Fe72YCzew0rtkL/LV1KzFdtgGQA6q9SEbn8u/uD
+        iN0EurjXQQGZ1a8YS7oTluCvWrl6YwXywLRHiyAV3laiRbA=
+X-Google-Smtp-Source: ABdhPJyelO119SdIxeoLnTAOiAmiMNIuQe3vuufuwv/8ig2netrG+imXeZJWy7PwGkasy+bYcpaaE4SV5ck1PxhSv58=
+X-Received: by 2002:a2e:bc13:: with SMTP id b19mr15061008ljf.480.1625571564690;
+ Tue, 06 Jul 2021 04:39:24 -0700 (PDT)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+References: <20210616103649.2662395-1-jens.wiklander@linaro.org>
+ <CAFA6WYMrxNfR09doWQgYKCQSYKyUMVKqSTPuRYn=-nueY9pSvQ@mail.gmail.com>
+ <CAHUa44EeAENHv+CxtXeLuqX_NGWW6w-6P8D-BLsb69+XmGaqEQ@mail.gmail.com>
+ <CAFA6WYMSAM2MDOXnhjuZFov3BtF8-nihZRUpR8ciUWsL4_nCWA@mail.gmail.com> <87czrv91b2.wl-maz@kernel.org>
+In-Reply-To: <87czrv91b2.wl-maz@kernel.org>
+From:   Sumit Garg <sumit.garg@linaro.org>
+Date:   Tue, 6 Jul 2021 17:09:13 +0530
+Message-ID: <CAFA6WYPVA5yP3trumfz=_oXzxKtfobQXRzDwZ1og8UXwaA1rkQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/7] Asynchronous notifications from secure world
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Jens Wiklander <jens.wiklander@linaro.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jerome Forissier <jerome@forissier.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vladimir Oltean <olteanv@gmail.com>
+Hi Marc,
 
-[ Upstream commit 86544c3de6a2185409c5a3d02f674ea223a14217 ]
+On Tue, 6 Jul 2021 at 16:06, Marc Zyngier <maz@kernel.org> wrote:
+>
+> On Tue, 06 Jul 2021 08:25:26 +0100,
+> Sumit Garg <sumit.garg@linaro.org> wrote:
+> >
+> > On Thu, 17 Jun 2021 at 11:40, Jens Wiklander <jens.wiklander@linaro.org> wrote:
+> > >
+> > > Hi Sumit,
+> > >
+> > > On Thu, Jun 17, 2021 at 6:33 AM Sumit Garg <sumit.garg@linaro.org> wrote:
+> > > >
+> > > > Hi Jens,
+> > > >
+> > > > On Wed, 16 Jun 2021 at 16:07, Jens Wiklander <jens.wiklander@linaro.org> wrote:
+> > > > >
+> > > > > Hi all,
+> > > > >
+> > > > > This adds support for asynchronous notifications from OP-TEE in secure
+> > > > > world to the OP-TEE driver. This allows a design with a top half and bottom
+> > > > > half type of driver where the top half runs in secure interrupt context and
+> > > > > a notifications tells normal world to schedule a yielding call to do the
+> > > > > bottom half processing.
+> > > > >
+> > > > > An interrupt is used to notify the driver that there are asynchronous
+> > > > > notifications pending.
+> > > > >
+> > > >
+> > > > It looks like a nice feature. I would like to get hands on with this.
+> > > > Can I test this feature on Qemu?
+> > >
+> > > Absolutely, you can get this into the normal OP-TEE development repo setup with:
+> > > repo init -u https://github.com/OP-TEE/manifest.git -m default.xml
+> > > repo sync
+> > > Update optee_os with
+> > > https://github.com/jenswi-linaro/optee_os/tree/async_notif_v2
+> > > Update linux with https://github.com/jenswi-linaro/linux-1/tree/async_notif_v2
+> > > cd build
+> > > make all -j...
+> > > make run-only
+> > >
+> > > If you type anything at the secure console you'll notice how it
+> > > changes behaviour once the Linux kernel has booted.
+> > >
+> >
+> > Thanks for sharing instructions as I now got some time to test and
+> > deep dive into this feature. It looks like a pretty useful feature to
+> > realize interrupt support in the secure world in its true sense. This
+> > feature works for me as per your instructions.
+> >
+> > I could recognise it's requirement from the time while I was playing
+> > with secure timer interrupt support for OP-TEE RNG driver on
+> > Developerbox. In that case I had to strip down the secure interrupt
+> > handler to a minimum that would just collect entropy and dump into the
+> > secure buffer. But with asynchronous notifications support, I could
+> > add more functionality like entropy health tests in the bottom half
+> > instead of doing those health tests while retrieving entropy from the
+> > secure world.
+> >
+> > Given that, have you explored the possibility to leverage SGI rather
+> > than a platform specific SPI for notifying the normal world? If it's
+> > possible to leverage Architecture specific SGI for this purpose then I
+>
+> What does "Architecture specific SGI" mean?
+>
 
-Similar to the way in which of_mdiobus_register() has a fallback to the
-non-DT based mdiobus_register() when CONFIG_OF is not set, we can create
-a shim for the device-managed devm_of_mdiobus_register() which calls
-devm_mdiobus_register() and discards the struct device_node *.
+Here I meant that SGI is specific to Arm architecture and doesn't
+require to be specific to per platform like an SPI.
 
-In particular, this solves a build issue with the qca8k DSA driver which
-uses devm_of_mdiobus_register and can be compiled without CONFIG_OF.
+> > think this feature will come automatically enabled for every platform
+> > without the need to reserve a platform specific SPI.
+>
+> That old chestnut again...
 
-Reported-by: Randy Dunlap <rdunlap@infradead.org>
-Signed-off-by: Vladimir Oltean <olteanv@gmail.com>
-Acked-by: Randy Dunlap <rdunlap@infradead.org> # build-tested
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
-Signed-off-by: David S. Miller <davem@davemloft.net>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- include/linux/of_mdio.h | 7 +++++++
- 1 file changed, 7 insertions(+)
+Okay, can you provide reference to earlier threads?
 
-diff --git a/include/linux/of_mdio.h b/include/linux/of_mdio.h
-index cfe8c607a628..f56c6a9230ac 100644
---- a/include/linux/of_mdio.h
-+++ b/include/linux/of_mdio.h
-@@ -75,6 +75,13 @@ static inline int of_mdiobus_register(struct mii_bus *mdio, struct device_node *
- 	return mdiobus_register(mdio);
- }
- 
-+static inline int devm_of_mdiobus_register(struct device *dev,
-+					   struct mii_bus *mdio,
-+					   struct device_node *np)
-+{
-+	return devm_mdiobus_register(dev, mdio);
-+}
-+
- static inline struct mdio_device *of_mdio_find_device(struct device_node *np)
- {
- 	return NULL;
--- 
-2.30.2
+>
+> - How do you discover that the secure side has graced you with a
+>   Group-1 SGI (no, you can't use one of the first 8)? for both DT and
+>   ACPI?
 
+I think the secure world can be probed for that during the OP-TEE
+driver probe. And I agree with you that the first 7 SGIs are already
+pre-occupied and I guess you remember mine patch-set that tried to
+leverage 8th SGI as pseudo NMI for kernel debug purposes.
+
+So yes for this use-case, the secure world can reserve one of the
+latter 8 SGIs (8 to 15) for cross world notification and I guess your
+earlier work to make SGIs to be requested as normal IRQs should make
+it easier to implement this as well.
+
+>
+> - How do you find which CPUs are targeted by this SGI? All? One? A
+>   subset? What is the expected behaviour with CPU hotplug? How can the
+>   NS side (Linux) can inform the secure side about the CPUs it wants
+>   to use?
+
+For the current OP-TEE use-case, I think targeting all CPUs would be
+efficient. So wouldn't it be possible for the CPU which receives the
+secure interrupt to raise that SGI to self that would in turn notify
+the normal world (Linux) to create a thread for OP-TEE to do bottom
+half processing?
+
+>
+> - Is there any case where you would instead need a level interrupt
+>   (which a SGI cannot provide)?
+
+I think SGI should be sufficient to suffice OP-TEE notifications use-case.
+
+>
+> In general, cross world SGIs are a really bad idea. Yes, some people
+> like them. I still think they are misguided, and I don't intend to
+> provide a generic request interface for this.
+
+Okay, as I mentioned above having it specific to OP-TEE driver
+requesting secure world donated SGI would work for you?
+
+-Sumit
+
+>
+>         M.
+>
+> --
+> Without deviation from the norm, progress is not possible.
