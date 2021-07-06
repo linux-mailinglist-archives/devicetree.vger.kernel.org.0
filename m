@@ -2,96 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2493BDFBD
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 01:22:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4FEE3BDFC7
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 01:26:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229753AbhGFXZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 19:25:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38616 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229910AbhGFXZH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Jul 2021 19:25:07 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 666E061C93;
-        Tue,  6 Jul 2021 23:22:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625613748;
-        bh=5mlEDZpYyfsm7tdGyB+79GO9dRgHUn5r+UFeUbzhS/4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=sUesseh4jTaA8tnTNCEOEi+zDaJTAGkrhJ1JBopObj67sxM5KDnsFFM6Zh2K9DQ/w
-         vANHA6iRRzRo6MMSlxXsZ2gYmChCPdvjOZe8VMl6b17EgSZriPhvgCuw1ZujF0zBRZ
-         Ov+rsU/phD02mmkq6ovBv9AS3W6doxjdfPQObNcS+XWWN57a5FJLbuBrmo0tUg2NF4
-         f1Dt5hUFhERDh07SlfNK2zcR962IJSmgKGxWRj29YD9f8VuRWvEyQ2/TCTv+dSyc48
-         6DByJhVXX7gdSn0/CUIKghODj5ONUjZyaBtbkIdLS+UX8RF6vFm5oa/ZppYkp/lhWc
-         wEzkoQRMrYwhg==
-Date:   Wed, 7 Jul 2021 01:22:24 +0200
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Peter Rosin <peda@axentia.se>, netdev@vger.kernel.org,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC net-next] dt-bindings: ethernet-controller: document
- signal multiplexer
-Message-ID: <20210707012224.14df9eab@thinkpad>
-In-Reply-To: <YN5kGsMwds+wCACq@lunn.ch>
-References: <20210701005347.8280-1-kabel@kernel.org>
-        <YN5kGsMwds+wCACq@lunn.ch>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S229811AbhGFX3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 19:29:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38454 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229753AbhGFX3A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 19:29:00 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B67EC06175F
+        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 16:26:19 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id d1so732459qto.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 16:26:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=b9NAwsJ8xPNo6tBHGAy9B/tfdHedu+gEEwjXYjTIV5A=;
+        b=fx9iG8nNUE/oGeq2ZZ0JrijeZdj7Bq5xLgfN0id4IHt3JEenbFhNscalBbWugnKqL2
+         OedqLjinMRrzHfMbgSeec0aewcR2OCA25zc0dgVatB5BVnlmCDZSjWBKjhOVG7WGA6PE
+         MNVIaPfBhsguodyetnF79nlPWMpKdizqKyPyV5AFAzz+TbUeJO6UZYwA8s/4PEIW+01c
+         2jPNz2rnlaaVHouWF3fNRjh7+33350FpyhxBzwWdfjBmh6bn2HjHVGCtbaKH4LOB58du
+         mf8BraZGzj8GtGxX4ARnxzTGysgrr/Ntykd5hf8+VchEdRo6Sv5WMVwk3a3VZIxSItB+
+         3byg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b9NAwsJ8xPNo6tBHGAy9B/tfdHedu+gEEwjXYjTIV5A=;
+        b=C11nKDJVC8hoCtmKS/vSuGGmNtpKOaIw7nZ45CwcOg+RrpJX9PUE/eWoCZY1ebQVh1
+         SWAZNLIJkCP+rk27QzDvG5c3bHKk6a1+A7hdKV9qiNKog1NVHyvuIST4KIoweqFVsehp
+         xPpYzYWWJZ8Rdv9JBPovAYd9XK1YW/7kFHyuj6j1H51x/avZpO0lXD5mSwaEcKIjxJh/
+         4vKPCZ+VmjaaK+wmPq2U7rPL3TERUplJrTiTjY5RJB6bJakvHCMMJpoCKBMWnVjM7L57
+         OE7Qwex3cXCv6pQGRCB1ArGsAepUuDBUs88oSwyZqBFp7VZFgUxuQaVS3NkNFEl2pcZb
+         LPCA==
+X-Gm-Message-State: AOAM533L406M84gPEglzcxnRBl8HXQZriSTEAyY1YXXunUZeTgTqQP1w
+        jccYYFds/jx9cgR7jGnV3skg7jxMGXA7ayLZLFbX7Q==
+X-Google-Smtp-Source: ABdhPJx5Dmnxv/z5BA2XO1srzzahRumLPcJvkaT4DmcM/8mfzGx0KXUC+7xiDGhICgbxmmjcXDyJsc5M1y5ERg9uuts=
+X-Received: by 2002:ac8:5b0d:: with SMTP id m13mr19600145qtw.364.1625613978231;
+ Tue, 06 Jul 2021 16:26:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+References: <20210706230702.299047-1-bryan.odonoghue@linaro.org> <20210706230702.299047-2-bryan.odonoghue@linaro.org>
+In-Reply-To: <20210706230702.299047-2-bryan.odonoghue@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 7 Jul 2021 02:26:07 +0300
+Message-ID: <CAA8EJpooqgScxnitvBjgofBk3cqEqOsO-sWU8VP07KpB10XT6A@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sm8250: fix usb2 qmp phy node
+To:     "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>, linux-phy@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2 Jul 2021 02:55:54 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
+Him
 
-> On Thu, Jul 01, 2021 at 02:53:47AM +0200, Marek Beh=C3=BAn wrote:
-> > There are devices where the MAC signals from the ethernet controller are
-> > not directly connected to an ethernet PHY or a SFP cage, but to a
-> > multiplexer, so that the device can switch between the endpoints.
-> >=20
-> > For example on Turris Omnia the WAN controller is connected to a SerDes
-> > switch, which multiplexes the SerDes lanes between SFP cage and ethernet
-> > PHY, depending on whether a SFP module is present (MOD_DEF0 GPIO from
-> > the SFP cage). =20
->=20
-> At the moment, i don't think phylink supports this. It does not have a
-> way to dynamically switch PHY. If the SFP disappears, you probably
-> want to configure the PHY, so that it is up, autoneg started,
-> etc. When the SFP reappears, the PHY needs to be configured down, the
-> SFP probably needs its TX GPIO line set active, etc. None of this
-> currently exists.
+On Wed, 7 Jul 2021 at 02:05, Bryan O'Donoghue
+<bryan.odonoghue@linaro.org> wrote:
+>
+> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>
+> Use 'lanes' as SuperSpeed lanes device node instead of just 'lane' to
+> fix issues with TypeC support.
 
-Of course this is not supported by phylink: it can't be, since we don't
-even have a binding description :) I am figuring out how to do correct
-binding while working on implementing this into phylink.
+I think this should not be required anymore, it is a leftover from the
+previous series which used strcmp("lanes") to create phys.
 
-> The Marvell switches have something similar but different. Which ever
-> gets link first, SFP or PHY gets the data path. In this case, you
-> probably want phylink to configure both the SFP and the PHY, and then
-> wait and see what happens. The hardware will then set the mux when one
-> of them gets link. phylink should then configure the other
-> down. Again, non of this exists at the moment.
->=20
-> I would imaging a similar binding could be used for these two
-> conditions. But until we get the needed code, it is hard for me to
-> say. So i think i would prefer to wait until we do have code.
->=20
+>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Fixes: be0624b99042 ("arm64: dts: qcom: sm8250: Add USB and PHY device nodes")
+> Cc: robh+dt@kernel.org
+> Cc: devicetree@vger.kernel.org
+> Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 4c0de12aaba6..270d7ff59ec1 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -2123,7 +2123,7 @@ usb_2_qmpphy: phy@88eb000 {
+>                                  <&gcc GCC_USB3_PHY_SEC_BCR>;
+>                         reset-names = "phy", "common";
+>
+> -                       usb_2_ssphy: lane@88eb200 {
+> +                       usb_2_ssphy: lanes@88eb200 {
+>                                 reg = <0 0x088eb200 0 0x200>,
+>                                       <0 0x088eb400 0 0x200>,
+>                                       <0 0x088eb800 0 0x800>;
+> --
+> 2.30.1
+>
 
-I now have an idea that might be sane for bindings, so next time I will
-send the code as well.
 
-> I also wonder how wise it is to put this into the generic ethernet
-> controller binding. Muxing based on MOD_DEF0 i expect to be very
-> rare. Muxing based on first port having link seems more likely. But
-> both i expect are pretty unusual. So i would be tempted to make it a
-> standalone binding, which can be imported into an MAC binding which
-> actually needs it. Or it actually becomes part of the phylink
-> binding, since this all appears to be PHY related, not MAC.
->=20
-> 	  Andrew
-
-We'll see. Stay tuned for my patch series. :)
-
-Marek
+--
+With best wishes
+Dmitry
