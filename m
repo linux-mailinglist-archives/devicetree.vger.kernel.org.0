@@ -2,83 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9291D3BC858
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 11:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B811B3BC86C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 11:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231156AbhGFJO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 05:14:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43702 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231136AbhGFJO3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 05:14:29 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A91DC061574
-        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 02:11:51 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id p21so15368783lfj.13
-        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 02:11:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=aBkKGziaj4RSYQU8gwfk0FrmJer1D24V4dZYAbmnoxs=;
-        b=XS5wTUCdxHC15PUxyxDqrPhwXwxUA3j52nH+yxpG+pfSfYIAtn+iiV4InkG5nO9rSV
-         +M68go/eB308e1uJfEQgo+bf9/gZtsOHZri7NHZ68wOMy1Pcfz3NBQW0fmyEM/NiQe+d
-         guci0TayPEt9dmWmJp+YYbalVT1NA+kiuaIlM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=aBkKGziaj4RSYQU8gwfk0FrmJer1D24V4dZYAbmnoxs=;
-        b=QwCUFcGwKq3upwKfYblgFqWLwE/k03YFbsIop2ihfRQBpKDzymVhiI5umkCx1dlTnJ
-         OG0jg8TOx+wUSWF05JGf/qXTBgxNgHaJ6lRH0fhXjEjEs/vxNiAgww4j1DyXfUs6FP7m
-         GwnZmvxVZG1f2SKRf/8ZtaqGxoybQk4aIRaBpCuM5WlgEXeGF4eP0vQbuoJmdWHM0WDd
-         4MZ1rPKHO5dCKS7/nA183Yr4BqgTb2SUiJLq43oyW9WCEFAA3kvDUkyVBXq1kiB5v/Gn
-         5ffsbflZVmIRoIua2QwnfhXb0ezy5pZe5VWuQak+BWIYmdInqTXmtk3QZK74NTMMQp2J
-         nmZQ==
-X-Gm-Message-State: AOAM531wOIAOXwpX49MQXkXftv2paEiP22+hCCViTZHaqvYznkfqZlOV
-        5BYxS7Wo+P/az0l56J0lQs3HuYHpz+1j2QApNvb0DA==
-X-Google-Smtp-Source: ABdhPJygTAoCzUuSlXy2SSRDYl6kk7yXXtcJN9JToMMi6g5XXB+H+1QY3X3T5IW2n3XK0DbgU6raZl/fZlssaegBtgA=
-X-Received: by 2002:ac2:4308:: with SMTP id l8mr14742181lfh.342.1625562709577;
- Tue, 06 Jul 2021 02:11:49 -0700 (PDT)
+        id S231175AbhGFJWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 05:22:22 -0400
+Received: from so254-9.mailgun.net ([198.61.254.9]:48780 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230472AbhGFJWV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 05:22:21 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1625563183; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=tVNox5UxH1mduv7g7ycIOmhCnRCLc2A4EM1ABCiryh8=;
+ b=DO6sdCX9d7ibQkce8AD+FequsTDiemc1jwPVenoQg08JLzmXCcpMORjvSPoM+zhfErgUy0bN
+ gMwTsrD/abZ0Vf8X4jKs2iGdrN715mmD2oqZoH1iFzXc5Zno4pBTj7oeC9dUuhHlEEPpHsRW
+ WzMZK0Nef+9jJ80hVe6qHRHTS1E=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 60e42020c4cc543602c3521c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 06 Jul 2021 09:19:28
+ GMT
+Sender: rojay=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D5EF9C433D3; Tue,  6 Jul 2021 09:19:27 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: rojay)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5C752C433F1;
+        Tue,  6 Jul 2021 09:19:27 +0000 (UTC)
 MIME-Version: 1.0
-References: <20210616224743.5109-1-chun-jie.chen@mediatek.com> <20210616224743.5109-11-chun-jie.chen@mediatek.com>
-In-Reply-To: <20210616224743.5109-11-chun-jie.chen@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Tue, 6 Jul 2021 17:11:38 +0800
-Message-ID: <CAGXv+5H-+cjbvivtAs0p=8o-ifkfqyWhSHBus=KBRwZW2wERLQ@mail.gmail.com>
-Subject: Re: [PATCH 10/22] clk: mediatek: Add MT8195 ipesys clock support
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 06 Jul 2021 14:49:27 +0530
+From:   rojay@codeaurora.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com
+Subject: Re: [PATCH V3 1/3] arm64: dts: sc7280: Add QSPI node
+In-Reply-To: <98befc79fc039496b0c12d7983319c92@codeaurora.org>
+References: <20210604135439.19119-1-rojay@codeaurora.org>
+ <20210604135439.19119-2-rojay@codeaurora.org> <YLxHTDxVcSvVxsd5@builder.lan>
+ <98befc79fc039496b0c12d7983319c92@codeaurora.org>
+Message-ID: <2ad7a00924b5065bf61c47e8b6d24339@codeaurora.org>
+X-Sender: rojay@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 17, 2021 at 7:08 AM Chun-Jie Chen
-<chun-jie.chen@mediatek.com> wrote:
->
-> Add MT8195 ipesys clock provider
+On 2021-06-08 13:37, rojay@codeaurora.org wrote:
+> On 2021-06-06 09:25, Bjorn Andersson wrote:
+>> On Fri 04 Jun 08:54 CDT 2021, Roja Rani Yarubandi wrote:
+>> 
+>>> Add QSPI DT node for SC7280 SoC.
+>>> 
+>>> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
+>>> ---
+>>> Changes in V3:
+>>>  - Broken the huge V2 patch into 3 smaller patches.
+>>>    1. QSPI DT nodes
+>>>    2. QUP wrapper_0 DT nodes
+>>>    3. QUP wrapper_1 DT nodes
+>>> 
+>>> Changes in V2:
+>>>  - As per Doug's comments removed pinmux/pinconf subnodes.
+>>>  - As per Doug's comments split of SPI, UART nodes has been done.
+>>>  - Moved QSPI node before aps_smmu as per the order.
+>>> 
+>>>  arch/arm64/boot/dts/qcom/sc7280-idp.dts | 29 ++++++++++++
+>>>  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 61 
+>>> +++++++++++++++++++++++++
+>>>  2 files changed, 90 insertions(+)
+>>> 
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts 
+>>> b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+>>> index 3900cfc09562..d0edffc15736 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+>>> @@ -268,6 +268,22 @@ pmr735b_die_temp {
+>>>  		};
+>>>  };
+>>> 
+>>> +&qspi {
+>>> +	status = "okay";
+>>> +	pinctrl-names = "default";
+>>> +	pinctrl-0 = <&qspi_clk>, <&qspi_cs0>, <&qspi_data01>;
+>>> +
+>>> +	flash@0 {
+>>> +		compatible = "jedec,spi-nor";
+>>> +		reg = <0>;
+>>> +
+>>> +		/* TODO: Increase frequency after testing */
+>>> +		spi-max-frequency = <25000000>;
+>>> +		spi-tx-bus-width = <2>;
+>>> +		spi-rx-bus-width = <2>;
+>>> +	};
+>>> +};
+>>> +
+>>>  &qupv3_id_0 {
+>>>  	status = "okay";
+>>>  };
+>>> @@ -278,6 +294,19 @@ &uart5 {
+>>> 
+>>>  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
+>>> 
+>>> +&qspi_cs0 {
+>>> +	bias-disable;
+>>> +};
+>>> +
+>>> +&qspi_clk {
+>>> +	bias-disable;
+>>> +};
+>>> +
+>>> +&qspi_data01 {
+>>> +	/* High-Z when no transfers; nice to park the lines */
+>>> +	bias-pull-up;
+>>> +};
+>>> +
+>>>  &qup_uart5_default {
+>>>  	tx {
+>>>  		pins = "gpio46";
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi 
+>>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> index 6c9d5eb93f93..3047ab802cd2 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+>>> @@ -1061,6 +1061,42 @@ apss_merge_funnel_in: endpoint {
+>>>  			};
+>>>  		};
+>>> 
+>>> +		qspi_opp_table: qspi-opp-table {
+>> 
+>> This node doesn't represents anything on the mmio bus, so it shouldn't
+>> live in in /soc. Can't you move it into &qspi?
+>> 
+>> Regards,
+>> Bjorn
+>> 
+> 
+> Sure, will move it into qspi node.
+> 
+> Thanks,
+> Roja
+> 
 
-It would be better if you could provide some more context for the patch,
-such as what hardware subsystem / group does this belong to, what do
-these clocks feed into? And in the case of supporting multiple clock
-controllers in one driver, what led you to group them in the same
-driver?
+Hi Bjorn,
 
-This applies to all your patches. The single statement "Add xxx clock
-provider" is simply repeating what the subject already says.
+Moving "qspi_opp_table" inside &qspi node causing this warning:
+arch/arm64/boot/dts/qcom/sc7280.dtsi:1055.35-1072.6: Warning 
+(spi_bus_reg): /soc@0/spi@88dc000/qspi-opp-table: missing or empty reg 
+property
 
-The code looks OK.
+Shall I keep the qspi-opp-table out of &qspi node?
 
-Thanks
-ChenYu
+Thanks,
+Roja
 
-> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+>>> +			compatible = "operating-points-v2";
+>>> +
+>>> +			opp-75000000 {
+>>> +				opp-hz = /bits/ 64 <75000000>;
+>>> +				required-opps = <&rpmhpd_opp_low_svs>;
+>>> +			};
+>>> +
+>>> +			opp-150000000 {
+>>> +				opp-hz = /bits/ 64 <150000000>;
+>>> +				required-opps = <&rpmhpd_opp_svs>;
+>>> +			};
+>>> +
+>>> +			opp-300000000 {
+>>> +				opp-hz = /bits/ 64 <300000000>;
+>>> +				required-opps = <&rpmhpd_opp_nom>;
+>>> +			};
+>>> +		};
+>>> +
+>>> +		qspi: spi@88dc000 {
+>>> +			compatible = "qcom,qspi-v1";
+>>> +			reg = <0 0x088dc000 0 0x1000>;
+>>> +			#address-cells = <1>;
+>>> +			#size-cells = <0>;
+>>> +			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+>>> +			clocks = <&gcc GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
+>>> +				 <&gcc GCC_QSPI_CORE_CLK>;
+>>> +			clock-names = "iface", "core";
+>>> +			interconnects = <&gem_noc MASTER_APPSS_PROC 0
+>>> +					&cnoc2 SLAVE_QSPI_0 0>;
+>>> +			interconnect-names = "qspi-config";
+>>> +			power-domains = <&rpmhpd SC7280_CX>;
+>>> +			operating-points-v2 = <&qspi_opp_table>;
+>>> +			status = "disabled";
+>>> +		};
