@@ -2,197 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8DFE3BDB1C
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 18:10:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B15A53BDBC2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 18:58:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230193AbhGFQMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 12:12:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54840 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230157AbhGFQMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 12:12:41 -0400
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66903C0613E6;
-        Tue,  6 Jul 2021 09:09:59 -0700 (PDT)
-Received: by mail-qv1-xf2e.google.com with SMTP id cz7so6424129qvb.9;
-        Tue, 06 Jul 2021 09:09:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=38gNgVCGdXWK7a3Ll4EpO6MNFOAWFuNGKoxsxeutofU=;
-        b=KUu3/z23XigRBfcZ+IG20t/DAhg0dnUkIbXzoXl11zTfE4nt6shBqdJ5f2WEarPqer
-         flnEp6Bjq0asBMhO+fj4OJGh9oGKttFCVfEOfejmW1CQ4fmdvdTOxnTwBpsp9n5X962h
-         pTWXMwjBbDwiy/xBgPithW4Suv79Tb990FCxL/awwzfhZRvB/xD4ZSA0EU6n+HJOb1zf
-         kNMP0lk1102zSS763t+/eXaxzpUEXKSJWhXKHsuVvj7d0oNpe2P6Kb0rz7Tlj5XUj5Ip
-         9aF8oN0CEzTzmXFwUILi0YCGpHKBxFdgmHaJftPT1B1KlpS1q0PPt+1bP2/2fQPj+noh
-         jECg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=38gNgVCGdXWK7a3Ll4EpO6MNFOAWFuNGKoxsxeutofU=;
-        b=dpAWTJ8jo7GU/8+fTXoLgnR8RpM7b7Y4ebterLQpS0NThVfimEx7aAjx6G9rtavOc6
-         FO/kWizyTU/nfr0iWCnzymZVdMroTq+XxSSTw5lE8xq+HdsDDpst2VLV/gAmsP9Z0h/t
-         njiD8tcrlVqdDwuoMGhuIbKsOtePVrO2oePak2TB6eWhDtmsXFwAky7LZPXLGi7BTQ0F
-         GWuYFllYLFl11YiiKCph3g2UUH66QbPus8Zd4Aw4Sv82RamgdEM+Nab3mrla+vwpHAPX
-         pW3f9r10Pb/fPklRbQmdv3hOzxxXXyByMuOe6UThboufBBDMkDYqbmTN1YqUeFytZP3H
-         65dw==
-X-Gm-Message-State: AOAM532h4iqpioNczy7QKi/7n7r3nhpZJmel0JdbEGoftURjvwlDw909
-        cjq6J2HkE5w2RQIgU7gpP0g=
-X-Google-Smtp-Source: ABdhPJw6ckwglMmg611576TJqIy8AEw6bxIX32H6R+mdPkS41MgGAMvON2hkDgX4YecMarFFiScslQ==
-X-Received: by 2002:ad4:5012:: with SMTP id s18mr19056714qvo.42.1625587798632;
-        Tue, 06 Jul 2021 09:09:58 -0700 (PDT)
-Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id n64sm6995371qkd.79.2021.07.06.09.09.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 06 Jul 2021 09:09:58 -0700 (PDT)
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     liambeguin@gmail.com, peda@axentia.se, jic23@kernel.org,
-        lars@metafoo.de, pmeerw@pmeerw.net
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: [PATCH v4 10/10] dt-bindings: iio: afe: add bindings for temperature transducers
-Date:   Tue,  6 Jul 2021 12:09:42 -0400
-Message-Id: <20210706160942.3181474-11-liambeguin@gmail.com>
-X-Mailer: git-send-email 2.30.1.489.g328c10930387
-In-Reply-To: <20210706160942.3181474-1-liambeguin@gmail.com>
-References: <20210706160942.3181474-1-liambeguin@gmail.com>
+        id S230157AbhGFRAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 13:00:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42536 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229873AbhGFRAL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Jul 2021 13:00:11 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 027E761A0F;
+        Tue,  6 Jul 2021 16:57:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625590652;
+        bh=5up8/Bb0rLsCNavkU95AUJkD0QYWqQ8IKvDM0S2EuWE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BdlCeYWdA0LGQqw4NCthGEImHDcykOTXLbRY0p2OzfXTSjVjgAkalkpSZRdXk7myS
+         ggdoMpep1HYdBLP4alpxbeLY2vbW4R6HTU/Vi4e5HLBlWUzcqfaGM7iFoc0a6mvwIQ
+         OtryjDMBpvdg7dJuiMXwOl88SmpKdFQmz0rw3SopyQp4YNJrpHbSZzb5034J5yMjTF
+         8iEUr6dVhZVSqKBvB0pDdDElb2vQPGkIFBQxZHqD6FxdW2DFwsOiJcnDaYmQKnMJGl
+         2f5cYXW5YDte/kZj3tp146452h4FgBzYXIDAdb4rsa2LksEi8bwpu2LbdNX+D444o2
+         b9VQWPtZ1e95g==
+Date:   Tue, 6 Jul 2021 17:57:21 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>
+Cc:     Christoph Hellwig <hch@lst.de>,
+        Robin Murphy <robin.murphy@arm.com>,
+        heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+        peterz@infradead.org, benh@kernel.crashing.org,
+        joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
+        chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
+        Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        bskeggs@redhat.com, linux-pci@vger.kernel.org,
+        xen-devel@lists.xenproject.org,
+        Thierry Reding <treding@nvidia.com>,
+        intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Jianxiong Gao <jxgao@google.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        maarten.lankhorst@linux.intel.com, airlied@linux.ie,
+        Dan Williams <dan.j.williams@intel.com>,
+        linuxppc-dev@lists.ozlabs.org, jani.nikula@linux.intel.com,
+        Nathan Chancellor <nathan@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, rodrigo.vivi@intel.com,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Claire Chang <tientzu@chromium.org>,
+        boris.ostrovsky@oracle.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        jgross@suse.com, Nicolas Boichat <drinkcat@chromium.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Qian Cai <quic_qiancai@quicinc.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+        Tom Lendacky <thomas.lendacky@amd.com>, bauerman@linux.ibm.com
+Subject: Re: [PATCH v15 06/12] swiotlb: Use is_swiotlb_force_bounce for
+ swiotlb data bouncing
+Message-ID: <20210706165720.GC20750@willie-the-truck>
+References: <ea28db1f-846e-4f0a-4f13-beb67e66bbca@kernel.org>
+ <20210702135856.GB11132@willie-the-truck>
+ <0f7bd903-e309-94a0-21d7-f0e8e9546018@arm.com>
+ <YN/7xcxt/XGAKceZ@Ryzen-9-3900X.localdomain>
+ <20210705190352.GA19461@willie-the-truck>
+ <20210706044848.GA13640@lst.de>
+ <20210706132422.GA20327@willie-the-truck>
+ <a59f771f-3289-62f0-ca50-8f3675d9b166@arm.com>
+ <20210706140513.GA26498@lst.de>
+ <YORsr0h7u5l9DZwh@char.us.oracle.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YORsr0h7u5l9DZwh@char.us.oracle.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Liam Beguin <lvb@xiphos.com>
+On Tue, Jul 06, 2021 at 10:46:07AM -0400, Konrad Rzeszutek Wilk wrote:
+> On Tue, Jul 06, 2021 at 04:05:13PM +0200, Christoph Hellwig wrote:
+> > On Tue, Jul 06, 2021 at 03:01:04PM +0100, Robin Murphy wrote:
+> > > FWIW I was pondering the question of whether to do something along those 
+> > > lines or just scrap the default assignment entirely, so since I hadn't got 
+> > > round to saying that I've gone ahead and hacked up the alternative 
+> > > (similarly untested) for comparison :)
+> > >
+> > > TBH I'm still not sure which one I prefer...
+> > 
+> > Claire did implement something like your suggestion originally, but
+> > I don't really like it as it doesn't scale for adding multiple global
+> > pools, e.g. for the 64-bit addressable one for the various encrypted
+> > secure guest schemes.
+> 
+> Couple of things:
+>  - I am not pushing to Linus the Claire's patchset until we have a
+>    resolution on this. I hope you all agree that is a sensible way
+>    forward as much as I hate doing that.
 
-An ADC is often used to measure other quantities indirectly.
-This binding describe one case, the measurement of a temperature
-through a temperature transducer (either voltage or current).
+Sure, it's a pity but we could clearly use a bit more time to get these
+just right and we've run out of time for 5.14.
 
-Signed-off-by: Liam Beguin <lvb@xiphos.com>
----
- .../iio/afe/temperature-transducer.yaml       | 111 ++++++++++++++++++
- 1 file changed, 111 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
+I think the main question I have is how would you like to see patches for
+5.15? i.e. as patches on top of devel/for-linus-5.14 or something else?
 
-diff --git a/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml b/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
-new file mode 100644
-index 000000000000..b5a4fbfe75e4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
-@@ -0,0 +1,111 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/afe/temperature-transducer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Temperature Transducer
-+
-+maintainers:
-+  - Liam Beguin <lvb@xiphos.com>
-+
-+description: |
-+  A temperature transducer is a device that converts a thermal quantity
-+  into any other physical quantity. This binding applies to temperature to
-+  voltage (like the LTC2997), and temperature to current (like the AD590)
-+  linear transducers.
-+  In both cases these are assumed to be connected to a voltage ADC.
-+
-+  When an io-channel measures the output voltage of a temperature analog front
-+  end such as a temperature transducer, the interesting measurement is almost
-+  always the corresponding temperature, not the voltage output. This binding
-+  describes such a circuit.
-+
-+  The general transfer function here is (using SI units)
-+    V(T) = Rsense * Isense(T)
-+    T = (Isense(T) / alpha) + offset
-+    T = 1 / (Rsense * alpha) * (V + offset * Rsense * alpha)
-+
-+  When using a temperature to voltage transducer, Rsense is set to 1.
-+
-+  The following circuits show a temperature to current and a temperature to
-+  voltage transducer that can be used with this binding.
-+
-+           VCC
-+          -----
-+            |
-+        +---+---+
-+        | AD590 |                               VCC
-+        +---+---+                              -----
-+            |                                    |
-+            V proportional to T             +----+----+
-+            |                          D+ --+         |
-+            +---- Vout                      | LTC2997 +--- Vout
-+            |                          D- --+         |
-+        +---+----+                          +---------+
-+        | Rsense |                               |
-+        +---+----+                             -----
-+            |                                   GND
-+          -----
-+           GND
-+
-+properties:
-+  compatible:
-+    const: temperature-transducer
-+
-+  io-channels:
-+    maxItems: 1
-+    description: |
-+      Channel node of a voltage io-channel.
-+
-+  '#io-channel-cells':
-+    const: 0
-+
-+  sense-offset-millicelsius:
-+    description: |
-+      Temperature offset. The default is <0>.
-+      This offset is commonly used to convert from Kelvins to degrees Celsius.
-+      In that case, sense-offset-millicelsius would be set to <(-273150)>.
-+
-+  sense-resistor-ohms:
-+    description: |
-+      The sense resistor. Defaults to <1>.
-+      Set sense-resistor-ohms to <1> when using a temperature to voltage
-+      transducer.
-+
-+  alpha-ppm-per-celsius:
-+    description: |
-+      Sometimes referred to as output gain, slope, or temperature coefficient.
-+
-+      alpha is expressed in parts per million which can be micro-amps per
-+      degrees Celsius or micro-volts per degrees Celsius. The is the main
-+      characteristic of a temperature transducer and should be stated in the
-+      datasheet.
-+
-+additionalProperties: false
-+required:
-+  - compatible
-+  - io-channels
-+  - alpha-ppm-per-celsius
-+
-+examples:
-+  - |
-+    ad950: temperature-sensor-0 {
-+        compatible = "temperature-transducer";
-+        #io-channel-cells = <0>;
-+        io-channels = <&temp_adc 3>;
-+
-+        sense-offset-millicelsius = <(-273150)>; /* Kelvin to degrees Celsius */
-+        sense-resistor-ohms = <8060>;
-+        alpha-ppm-per-celsius = <1>; /* 1 uA/K */
-+    };
-+  - |
-+    znq_tmp: temperature-sensor-1 {
-+        compatible = "temperature-transducer";
-+        #io-channel-cells = <0>;
-+        io-channels = <&temp_adc 2>;
-+
-+        sense-offset-millicelsius = <(-273150)>; /* Kelvin to degrees Celsius */
-+        alpha-ppm-per-celsius = <4000>; /* 4 mV/K */
-+    };
-+...
--- 
-2.30.1.489.g328c10930387
+Cheers,
 
+Will
