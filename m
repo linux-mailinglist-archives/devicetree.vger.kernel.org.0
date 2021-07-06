@@ -2,157 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32B2A3BDE67
-	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 22:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8174A3BDE76
+	for <lists+devicetree@lfdr.de>; Tue,  6 Jul 2021 22:34:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230193AbhGFUWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Jul 2021 16:22:32 -0400
-Received: from so254-9.mailgun.net ([198.61.254.9]:50001 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229938AbhGFUWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 16:22:30 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1625602791; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=bVsxEM7GBkgihUbSf5tSkkwxcoMoVHENciajGKiwiQA=; b=dAaHcBLcX6KgrElbF0fEBxuMdh4kA+x4EYtSqg0l2DRg4MMg9CMeS9V3Z9/OEoJVDt2ZZcKX
- bYB33r0Uv9qdginlw/PQgey5qRN+r6Gc751CV5IukBbiV/eqfeU3cKLofF1z8r/Xr+Zvpk09
- Od4epDC1CXIe85gG31nZ70D4zpE=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 60e4bae0f30429861410fb7b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 06 Jul 2021 20:19:44
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 2ED16C4360C; Tue,  6 Jul 2021 20:19:43 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.110.78.185] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C4A73C4360C;
-        Tue,  6 Jul 2021 20:19:39 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C4A73C4360C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-Subject: Re: [PATCH v12 3/6] usb: dwc3: Resize TX FIFOs to meet EP bursting
- requirements
-To:     Greg KH <gregkh@linuxfoundation.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, balbi@kernel.org,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jackp@codeaurora.org, fntoth@gmail.com
-References: <1625218655-14180-1-git-send-email-wcheng@codeaurora.org>
- <1625218655-14180-4-git-send-email-wcheng@codeaurora.org>
- <YOSdRKTy3+CdV/UF@kroah.com>
-From:   Wesley Cheng <wcheng@codeaurora.org>
-Message-ID: <2ee71465-d921-8904-2009-1e46ad1a988b@codeaurora.org>
-Date:   Tue, 6 Jul 2021 13:19:38 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S229879AbhGFUhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Jul 2021 16:37:02 -0400
+Received: from mail-ej1-f49.google.com ([209.85.218.49]:45992 "EHLO
+        mail-ej1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229781AbhGFUhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Jul 2021 16:37:01 -0400
+Received: by mail-ej1-f49.google.com with SMTP id hc16so36206247ejc.12;
+        Tue, 06 Jul 2021 13:34:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ICSJlQlSgTNd605M++v+mHZyBgX5QCDOQLTCW/JboK8=;
+        b=RbdwTONsbKLLWtK3IFGKix+k9A7v7MKeqjuCEYRRQ2QcEE4nlJVD/eyWME0smJb/+G
+         i4vrMfVMrKjyeOkVhk8Fg1KyYiTa9EA56+91IBZhDfwKZtqp6+eaaeqGyPNbnC9umDTN
+         mB6H4wb8EpfydJhgfvm74kHMipypuQzsfqwId+8cmS4CpsCX0dsWwUpYQ6UJ83zIQ740
+         cLo3gSP7An0sKB8Ds8aP14033HqSsvImePV3/GqtN1I+DdKqDgBLoUGeBBkkjScVvkMx
+         70mJOufC4Jmxx0ORwZvAM8OoqzAznooQYnZrhSlitPW+X7G4ScMvsUALAUSHnCLbeI0I
+         IOMQ==
+X-Gm-Message-State: AOAM533PGVB+ynXC2Q95KScdahL8AcLKVIdsxZHzLpaAJwfPFy2sEWCs
+        I0Hw6wwVvHlc+PBfxH0+IvXOTV6yNK488n6m
+X-Google-Smtp-Source: ABdhPJzk7Av2OZ6J6ktZL9FvReBxgzGh5O0TaVuvB2PM/lqy/MNt0nyKfPdOWfFinUNhQmGg4noc5g==
+X-Received: by 2002:a17:907:c0f:: with SMTP id ga15mr19995713ejc.228.1625603661503;
+        Tue, 06 Jul 2021 13:34:21 -0700 (PDT)
+Received: from rocinante ([95.155.85.46])
+        by smtp.gmail.com with ESMTPSA id k25sm6343895eds.77.2021.07.06.13.34.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 06 Jul 2021 13:34:21 -0700 (PDT)
+Date:   Tue, 6 Jul 2021 22:34:19 +0200
+From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Jingoo Han <jingoohan2@gmail.com>,
+        Joao Pinto <Joao.Pinto@synopsys.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Gustavo.Pimentel@synopsys.com, Mark Rutland <mark.rutland@arm.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Nishanth Menon <nm@ti.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFC PATCH 08/40] PCI: keystone: Cleanup MSI/legacy interrupt
+ configuration and handling
+Message-ID: <20210706203419.GA213769@rocinante>
+References: <20180921102155.22839-1-kishon@ti.com>
+ <20180921102155.22839-9-kishon@ti.com>
+ <20210703210152.GA16176@rocinante>
+ <56160f1d-ec91-3b99-312c-aef66eb1a7c2@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <YOSdRKTy3+CdV/UF@kroah.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+In-Reply-To: <56160f1d-ec91-3b99-312c-aef66eb1a7c2@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Kishon,
 
-
-On 7/6/2021 11:13 AM, Greg KH wrote:
-> On Fri, Jul 02, 2021 at 02:37:32AM -0700, Wesley Cheng wrote:
->> Some devices have USB compositions which may require multiple endpoints
->> that support EP bursting.  HW defined TX FIFO sizes may not always be
->> sufficient for these compositions.  By utilizing flexible TX FIFO
->> allocation, this allows for endpoints to request the required FIFO depth to
->> achieve higher bandwidth.  With some higher bMaxBurst configurations, using
->> a larger TX FIFO size results in better TX throughput.
->>
->> By introducing the check_config() callback, the resizing logic can fetch
->> the maximum number of endpoints used in the USB composition (can contain
->> multiple configurations), which helps ensure that the resizing logic can
->> fulfill the configuration(s), or return an error to the gadget layer
->> otherwise during bind time.
->>
->> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
->> ---
->>  drivers/usb/dwc3/core.c   |   9 ++
->>  drivers/usb/dwc3/core.h   |  15 ++++
->>  drivers/usb/dwc3/ep0.c    |   2 +
->>  drivers/usb/dwc3/gadget.c | 221 ++++++++++++++++++++++++++++++++++++++++++++++
->>  4 files changed, 247 insertions(+)
->>
->> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
->> index e0a8e79..a7bcdb9d 100644
->> --- a/drivers/usb/dwc3/core.c
->> +++ b/drivers/usb/dwc3/core.c
->> @@ -1267,6 +1267,7 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->>  	u8			rx_max_burst_prd;
->>  	u8			tx_thr_num_pkt_prd;
->>  	u8			tx_max_burst_prd;
->> +	u8			tx_fifo_resize_max_num;
->>  	const char		*usb_psy_name;
->>  	int			ret;
->>  
->> @@ -1282,6 +1283,8 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->>  	 */
->>  	hird_threshold = 12;
->>  
->> +	tx_fifo_resize_max_num = 6;
->> +
-
-Hi Greg,
+[...]
+> > Would it be possible to resurrect this?  Do you need any help?
 > 
-> No comment as to why 6 was picked, like the other defaults in this
-> function?
+> A lot of patches in this series should already be merged (after
+> splitting into smaller ones)
+> http://patchwork.ozlabs.org/project/linux-pci/list/?series=71185
 > 
-> Why was 6 picked?
-> 
-> 
-Talked with Thinh about this sometime back about why 6 was picked.  It
-was just an arbitrary setting we decided on throughout our testing, as
-that was what provided the best tput numbers for our system.  Hence why
-it was suggested to have a separate property, so other vendors can set
-this to accommodate their difference in HW latencies.
+> https://patchwork.kernel.org/project/linux-arm-kernel/cover/20190321095927.7058-1-kishon@ti.com/
 
->>  	dwc->maximum_speed = usb_get_maximum_speed(dev);
->>  	dwc->max_ssp_rate = usb_get_maximum_ssp_rate(dev);
->>  	dwc->dr_mode = usb_get_dr_mode(dev);
->> @@ -1325,6 +1328,10 @@ static void dwc3_get_properties(struct dwc3 *dwc)
->>  				&tx_thr_num_pkt_prd);
->>  	device_property_read_u8(dev, "snps,tx-max-burst-prd",
->>  				&tx_max_burst_prd);
->> +	dwc->do_fifo_resize = device_property_read_bool(dev,
->> +							"tx-fifo-resize");
->> +	device_property_read_u8(dev, "tx-fifo-max-num",
->> +				&tx_fifo_resize_max_num);
-> 
-> So you overwrite the "max" with whatever is given to you?  What if
-> tx-fifo-resize is not enabled?
->
-If tx-fifo-resize is not enabled, then there shouldn't be anything that
-will reference this property.  As mentioned in the previous comment, HW
-vendors may not need a FIFO size of 6 max packets for their particular
-system, so they should be able to program this to their needs.
+Ah!  Nice!
 
-If someone programs to this a large number, the logic works where it
-will allocate based off the space left after ensuring enough space for 1
-FIFO per ep.
+[...]
+> Are there any other clean-ups you are looking into?
 
-Thanks
-Wesley Cheng
+Bjorn was looking recently at struct keystone_pcie and suggested that
+perhaps things such as for example the legacy_host_irqs member could be
+refactored - in this particular case it seems to only store a single
+item in the array, etc.
 
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+And this series of patches I found is refactoring a lot of the elements
+of the driver and thus the struct keystone_pcie too in due process.
+
+I suppose, it would be just better to wait for you to complete all the
+work you have planned?  What do you think?
+
+	Krzysztof
