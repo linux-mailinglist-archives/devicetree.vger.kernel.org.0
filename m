@@ -2,146 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B04A03BE332
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 08:36:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C4FA3BE351
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 08:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230273AbhGGGiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jul 2021 02:38:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41800 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229696AbhGGGiv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Jul 2021 02:38:51 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F2E9261CAA;
-        Wed,  7 Jul 2021 06:36:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1625639771;
-        bh=lVp62dqoRHT+PCWCh6tGaw4or4Czo7KnudoAAREtJQ8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OOccRS10pPqm5HeMVsXj+Qev+Esdiv54okil4R3iP3hi4DOigIJFEnXBWaTCsbnP7
-         3TINxTn/fgXK/fWVCuPHA4wVDd+X4UzHmHgKHloE/iK9gDUcrw8vR0R4oJxUVsoAlj
-         MED0WNdwXLhoP7kQjAed1dj8jJ8rwFFTRamG/kAY=
-Date:   Wed, 7 Jul 2021 08:36:09 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Wesley Cheng <wcheng@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, balbi@kernel.org,
-        robh+dt@kernel.org, frowand.list@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jackp@codeaurora.org, fntoth@gmail.com
-Subject: Re: [PATCH v12 3/6] usb: dwc3: Resize TX FIFOs to meet EP bursting
- requirements
-Message-ID: <YOVLWWW7epSX2lkC@kroah.com>
-References: <1625218655-14180-1-git-send-email-wcheng@codeaurora.org>
- <1625218655-14180-4-git-send-email-wcheng@codeaurora.org>
- <YOSdRKTy3+CdV/UF@kroah.com>
- <2ee71465-d921-8904-2009-1e46ad1a988b@codeaurora.org>
+        id S230263AbhGGG5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jul 2021 02:57:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51298 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230305AbhGGG5M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jul 2021 02:57:12 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC961C061762
+        for <devicetree@vger.kernel.org>; Tue,  6 Jul 2021 23:54:31 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id g10so1080855wmh.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Jul 2021 23:54:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tUE8wev4VkWfjOiCPCyu/GqgRwGG7gs7uHBEzTIZe3c=;
+        b=HO5A4MDpkx13VC3Yw2cptgr73MkV2G5xH8GcIHQMD2ep1iOn3CS8VoF9o3sz43+71+
+         +R3aWRgRdYsGc6k3/64PPRrYJD21oDybN4rqEhpKo01JhMlzSsZO7a8AA9DtJ2BXuujx
+         c0clc8S636KiUYaSY0FYeM3+kPfaJyglcf4WULX91rK5G+Ro3gKLyhZetCrXWUeVW75Q
+         9BgGYbV10cmt9K9NMzE3gPVjlh5YklXD5+L+dtzEhOS+JPnIYcUslFn69z82ZRbmriW1
+         ljQbYX9t34JqSYy11CaSfLUYiyr0FBIn0f9gUvE74yfUhGspGvfKQP7V9EeJRc8IrIQb
+         0ZfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tUE8wev4VkWfjOiCPCyu/GqgRwGG7gs7uHBEzTIZe3c=;
+        b=glHeD17jr/8W8GiQLFKEEP8NJEflExqVrXR4rBa/zCWcbIuiud46snd+mNkiRGWEDn
+         FpPaDPA1FLP3sPjhWhfXEejy5eO2BcMIhj694LSU7YkXxxLsZqSVUDervwmasUxJYtpB
+         hG70WhqnQfyeea5gTwDnr3mmkenmQK4Thfj/5D25SISD90nHf6mfXDmsRVJB8iKQ4QSd
+         hq6LwWL6ib29WWQPHpcNt/m9Mqw0dM5XnHmu4/epcaR8fPhkz/4cxVbPIHweHVw90yku
+         Yki65jd+K2Vl7r+mXI1gT2CM2WWnuLQgSxcOKh0YQNobfbhjlGMPX/hQ0EOqhcvskOK7
+         Y/ZA==
+X-Gm-Message-State: AOAM533Mw3lvN3RLtoRa5xv/fPLJ7zjUr27c2VKPYDNo0V32cU3Uy/px
+        05UvVbCWNgCGyFW4ev4FEe1ucJ12kC9RFyPrQrYaVw==
+X-Google-Smtp-Source: ABdhPJystGdZsA+nB5gQafyHzssXeyJUm/HUE9cWQIs/s/XU88ED35qV7XIB+cBbpx80emEOfYRUo2JXYOLR4W96FtE=
+X-Received: by 2002:a7b:ce82:: with SMTP id q2mr4888352wmj.60.1625640870431;
+ Tue, 06 Jul 2021 23:54:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2ee71465-d921-8904-2009-1e46ad1a988b@codeaurora.org>
+References: <20210616103649.2662395-1-jens.wiklander@linaro.org>
+ <CAFA6WYMrxNfR09doWQgYKCQSYKyUMVKqSTPuRYn=-nueY9pSvQ@mail.gmail.com>
+ <CAHUa44EeAENHv+CxtXeLuqX_NGWW6w-6P8D-BLsb69+XmGaqEQ@mail.gmail.com>
+ <CAFA6WYMSAM2MDOXnhjuZFov3BtF8-nihZRUpR8ciUWsL4_nCWA@mail.gmail.com>
+ <87czrv91b2.wl-maz@kernel.org> <CAFA6WYPVA5yP3trumfz=_oXzxKtfobQXRzDwZ1og8UXwaA1rkQ@mail.gmail.com>
+ <87a6mz8vaj.wl-maz@kernel.org> <CAFA6WYMsjxYBw_0xzWMtHf=LtXzG+D113WSFuHCR7KhC1RuWYg@mail.gmail.com>
+In-Reply-To: <CAFA6WYMsjxYBw_0xzWMtHf=LtXzG+D113WSFuHCR7KhC1RuWYg@mail.gmail.com>
+From:   Jens Wiklander <jens.wiklander@linaro.org>
+Date:   Wed, 7 Jul 2021 08:54:19 +0200
+Message-ID: <CAHUa44GEPDYj6A9jOB8sHbbs_mSk1oiREywP6Z8s0vOhbpajpw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/7] Asynchronous notifications from secure world
+To:     Sumit Garg <sumit.garg@linaro.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jerome Forissier <jerome@forissier.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 06, 2021 at 01:19:38PM -0700, Wesley Cheng wrote:
-> 
-> 
-> On 7/6/2021 11:13 AM, Greg KH wrote:
-> > On Fri, Jul 02, 2021 at 02:37:32AM -0700, Wesley Cheng wrote:
-> >> Some devices have USB compositions which may require multiple endpoints
-> >> that support EP bursting.  HW defined TX FIFO sizes may not always be
-> >> sufficient for these compositions.  By utilizing flexible TX FIFO
-> >> allocation, this allows for endpoints to request the required FIFO depth to
-> >> achieve higher bandwidth.  With some higher bMaxBurst configurations, using
-> >> a larger TX FIFO size results in better TX throughput.
-> >>
-> >> By introducing the check_config() callback, the resizing logic can fetch
-> >> the maximum number of endpoints used in the USB composition (can contain
-> >> multiple configurations), which helps ensure that the resizing logic can
-> >> fulfill the configuration(s), or return an error to the gadget layer
-> >> otherwise during bind time.
-> >>
-> >> Signed-off-by: Wesley Cheng <wcheng@codeaurora.org>
-> >> ---
-> >>  drivers/usb/dwc3/core.c   |   9 ++
-> >>  drivers/usb/dwc3/core.h   |  15 ++++
-> >>  drivers/usb/dwc3/ep0.c    |   2 +
-> >>  drivers/usb/dwc3/gadget.c | 221 ++++++++++++++++++++++++++++++++++++++++++++++
-> >>  4 files changed, 247 insertions(+)
-> >>
-> >> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> >> index e0a8e79..a7bcdb9d 100644
-> >> --- a/drivers/usb/dwc3/core.c
-> >> +++ b/drivers/usb/dwc3/core.c
-> >> @@ -1267,6 +1267,7 @@ static void dwc3_get_properties(struct dwc3 *dwc)
-> >>  	u8			rx_max_burst_prd;
-> >>  	u8			tx_thr_num_pkt_prd;
-> >>  	u8			tx_max_burst_prd;
-> >> +	u8			tx_fifo_resize_max_num;
-> >>  	const char		*usb_psy_name;
-> >>  	int			ret;
-> >>  
-> >> @@ -1282,6 +1283,8 @@ static void dwc3_get_properties(struct dwc3 *dwc)
-> >>  	 */
-> >>  	hird_threshold = 12;
-> >>  
-> >> +	tx_fifo_resize_max_num = 6;
-> >> +
-> 
-> Hi Greg,
-> > 
-> > No comment as to why 6 was picked, like the other defaults in this
-> > function?
-> > 
-> > Why was 6 picked?
-> > 
-> > 
-> Talked with Thinh about this sometime back about why 6 was picked.  It
-> was just an arbitrary setting we decided on throughout our testing, as
-> that was what provided the best tput numbers for our system.  Hence why
-> it was suggested to have a separate property, so other vendors can set
-> this to accommodate their difference in HW latencies.
+Hi,
 
-My point is, this needs to be documented!!!
-
-Right now it just looks like you made up a magic number here.  Look at
-the other defaults in this function right above this line.  Those
-comments explain what is happening, unlike your change.
-
-Do you want to look at this code in 3 years and wonder why this number
-was picked?
-
-> >>  	dwc->maximum_speed = usb_get_maximum_speed(dev);
-> >>  	dwc->max_ssp_rate = usb_get_maximum_ssp_rate(dev);
-> >>  	dwc->dr_mode = usb_get_dr_mode(dev);
-> >> @@ -1325,6 +1328,10 @@ static void dwc3_get_properties(struct dwc3 *dwc)
-> >>  				&tx_thr_num_pkt_prd);
-> >>  	device_property_read_u8(dev, "snps,tx-max-burst-prd",
-> >>  				&tx_max_burst_prd);
-> >> +	dwc->do_fifo_resize = device_property_read_bool(dev,
-> >> +							"tx-fifo-resize");
-> >> +	device_property_read_u8(dev, "tx-fifo-max-num",
-> >> +				&tx_fifo_resize_max_num);
-> > 
-> > So you overwrite the "max" with whatever is given to you?  What if
-> > tx-fifo-resize is not enabled?
+On Wed, Jul 7, 2021 at 7:52 AM Sumit Garg <sumit.garg@linaro.org> wrote:
+>
+> On Tue, 6 Jul 2021 at 18:16, Marc Zyngier <maz@kernel.org> wrote:
 > >
-> If tx-fifo-resize is not enabled, then there shouldn't be anything that
-> will reference this property.  As mentioned in the previous comment, HW
-> vendors may not need a FIFO size of 6 max packets for their particular
-> system, so they should be able to program this to their needs.
+[snip]
+> > > > - Is there any case where you would instead need a level interrupt
+> > > >   (which a SGI cannot provide)?
+> > >
+> > > I think SGI should be sufficient to suffice OP-TEE notifications use-case.
+> >
+> > I don't care about OP-TEE. If you are proposing a contract between S
+> > and NS, it has to be TEE and OS independent. That's how the
+> > architecture works.
+> >
+>
+> Agree, here we are not proposing a common contract among the S and NS
+> world that every TEE (based on Arm TrustZone) will use to communicate
+> with REE (Linux in our case) but rather an OP-TEE specific
+> notifications feature that is built on top of OP-TEE specific ABIs.
+>
+> And I can see your arguments coming from an FFA perspective but there
+> are platforms like the ones based on Armv7 which don't support FFA
+> ABI. Maybe Jens can elaborate how this feature will fit in when FFA
+> comes into picture?
 
+OP-TEE has one official ABI at the moment, the SMC based one. It's
+about to get another one based on FF-A instead. The two ABIs will
+never be used at the same time. It's a build time option for the
+OP-TEE firmware to either use SMC or FF-A based communication.
 
-That's fine, but is that what is really happening here?  You are not
-looking at the "do_fifo_resize" value before you try to read the "max"
-value, why not?
+The patches I've posted here concern the SMC based ABI. Asynchronous
+notification in OP-TEE with a FF-A based ABI will use the notification
+framework provided by FF-A instead to implement that counterpart
+provided by these patches. So the OP-TEE driver here in the kernel
+will use the FF-A framework in the kernel instead of registering an
+interrupt handler directly.
 
-> If someone programs to this a large number, the logic works where it
-> will allocate based off the space left after ensuring enough space for 1
-> FIFO per ep.
-
-Where is that documented or happening?
-
-thanks,
-
-greg k-h
+Cheers,
+Jens
