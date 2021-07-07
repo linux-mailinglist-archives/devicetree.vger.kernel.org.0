@@ -2,106 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B665D3BECDD
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 19:14:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 477223BECF2
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 19:18:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230396AbhGGRRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jul 2021 13:17:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49544 "EHLO
+        id S230505AbhGGRVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jul 2021 13:21:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbhGGRRS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jul 2021 13:17:18 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45D3EC061574;
-        Wed,  7 Jul 2021 10:14:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=IKfLCMe4s5rWOvz/YeqfS96bhD2J6/ZLNE/tuqCpjyc=; b=udOdcZ0bZf+3+fMGXiAJn7UNb
-        kH76nzJJPqBD6lPUh2XRfZjMXYZuLoi2r1MgswcdE8bmeEfhc807qfV3Tef/+CXsVJ707nERGbZj6
-        JAjz15PJAeiIaXm0L3MgkAiEEROAi4txHjWjfT4nIhOLP0KEILipxlHLPKbTnSCZb92ckCa6VKQYB
-        yiR8har4UpmnBIiXmGCj+QSHMg5tCXnjotwdYIsIC8hW7dyPUvHWpKttnwu5Vu57IUP/0124Kdphx
-        TE/6tMAS7yLNbRWC7PD0SwTjnzZepvBqheAzuY6OxJepgMK5Us27YMUlDdaYNita9k48rE7mAMNY7
-        oF8fZ/3Rg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45838)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1m1B85-0008J0-9d; Wed, 07 Jul 2021 18:14:33 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1m1B84-00037N-Ez; Wed, 07 Jul 2021 18:14:32 +0100
-Date:   Wed, 7 Jul 2021 18:14:32 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Peter Rosin <peda@axentia.se>,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC net-next] dt-bindings: ethernet-controller: document
- signal multiplexer
-Message-ID: <20210707171432.GT22278@shell.armlinux.org.uk>
-References: <20210701005347.8280-1-kabel@kernel.org>
- <YN5kGsMwds+wCACq@lunn.ch>
- <20210707012224.14df9eab@thinkpad>
+        with ESMTP id S230126AbhGGRVd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jul 2021 13:21:33 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3EA3C06175F
+        for <devicetree@vger.kernel.org>; Wed,  7 Jul 2021 10:18:52 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id q18so5772509lfc.7
+        for <devicetree@vger.kernel.org>; Wed, 07 Jul 2021 10:18:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=phystech-edu.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ypxDnWif+H1Ur0uToOJNpXylwlZDL/gdovpiZt5z82o=;
+        b=IC5AgO9ygAj8ApySXTjmmQ1KSRN0cdqozzHfdj+K2tcM8hm0jOqYro9VjT7rBDRTuG
+         vq96jbhyu3H0Guey3tXVh2+IDVFs5M/aOsu0/rfVbG+21L/qlTgU4I9U46fPByKW8Z1A
+         YSIzGUUAZik7JSRdzuYfI72eXdMQZNJ/V7EUYDenIDFA/A//+T2mgyV55iCj7mBd0qyL
+         kAFVP8K4L5rCkyJJ3dYeFk3J3rdnHGDI5UaNh8w76d4ErteHIqVGV5cTGkBaGG0IJsSn
+         ebBCdUf6GuHyd8JUGxxSD+0ZrrEzX+HxaIz/Spjeq0R+bbGQdev5Ew7FeD4yLgwYv9vz
+         YRVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ypxDnWif+H1Ur0uToOJNpXylwlZDL/gdovpiZt5z82o=;
+        b=gQRRzDmuWMNpcdsEUm5t++EQ2eA0+5zd70tWRRbgzgRHM2Yn7+P+61f318o3onKXZ9
+         DT/2m3BCgI6b4WBVLaPE5V/QmDdIkUYC3HjdiBvdX/My6itW9Ims/6dCE3u45zqFNfZR
+         HY5mFgWwTSrmfP8O8mfyp9SYfSzhitFhLixYW35KKIV/EFovFsUXTpirga2uQBA1Udem
+         LBNmwNVU7Ka3vGo/CM7VqjvwRVUXdJPFODsz6SzD6ka8UEavx0JdorBZyv9NOEmqBB0b
+         8W80+hrdv9ItO1KEtECN0u0qX+mPeRF0h89NQ6wDIAfTInVyZsHM76s+SV+NSfevNMJ+
+         L/SQ==
+X-Gm-Message-State: AOAM5336G+HTTlgX9ijQP6sbzfeqDGEJE+AqwJD/B+eOPWqaw/MSf1SD
+        19XDQLgHtAxuiWc3egHHNAWqOA==
+X-Google-Smtp-Source: ABdhPJz8VSZiE1GbRIW2zEZJUmJvzpwEzRHId//RA7YGJlorwou9uYQ720aDMZGQWPSk0jqptMEGCA==
+X-Received: by 2002:ac2:4191:: with SMTP id z17mr19059617lfh.457.1625678331172;
+        Wed, 07 Jul 2021 10:18:51 -0700 (PDT)
+Received: from 192.168.1.3 ([2a00:1370:810e:abfe:9c62:44e3:b0ab:76fd])
+        by smtp.gmail.com with ESMTPSA id z9sm1652235lfu.120.2021.07.07.10.18.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Jul 2021 10:18:50 -0700 (PDT)
+From:   Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+To:     sean@mess.org, mchehab@kernel.org, robh+dt@kernel.org,
+        khilman@baylibre.com, narmstrong@baylibre.com
+Cc:     jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, rockosov@gmail.com,
+        Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+Subject: [PATCH] fixup! media: rc: introduce Meson IR blaster driver
+Date:   Wed,  7 Jul 2021 20:18:28 +0300
+Message-Id: <20210707171828.6967-1-viktor.prutyanov@phystech.edu>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20210707141323.20757-3-viktor.prutyanov@phystech.edu>
+References: <20210707141323.20757-3-viktor.prutyanov@phystech.edu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20210707012224.14df9eab@thinkpad>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 07, 2021 at 01:22:24AM +0200, Marek Behún wrote:
-> On Fri, 2 Jul 2021 02:55:54 +0200
-> Andrew Lunn <andrew@lunn.ch> wrote:
-> > On Thu, Jul 01, 2021 at 02:53:47AM +0200, Marek Behún wrote:
-> > > There are devices where the MAC signals from the ethernet controller are
-> > > not directly connected to an ethernet PHY or a SFP cage, but to a
-> > > multiplexer, so that the device can switch between the endpoints.
-> > > 
-> > > For example on Turris Omnia the WAN controller is connected to a SerDes
-> > > switch, which multiplexes the SerDes lanes between SFP cage and ethernet
-> > > PHY, depending on whether a SFP module is present (MOD_DEF0 GPIO from
-> > > the SFP cage).  
-> > 
-> > At the moment, i don't think phylink supports this. It does not have a
-> > way to dynamically switch PHY. If the SFP disappears, you probably
-> > want to configure the PHY, so that it is up, autoneg started,
-> > etc. When the SFP reappears, the PHY needs to be configured down, the
-> > SFP probably needs its TX GPIO line set active, etc. None of this
-> > currently exists.
-> 
-> Of course this is not supported by phylink: it can't be, since we don't
-> even have a binding description :) I am figuring out how to do correct
-> binding while working on implementing this into phylink.
+Fix building error. I mistakenly sent the patch from dirty git tree.
 
-I have been thinking that we need phylink to separate the PHY pointer
-that was probed by the network adapter and the PHY pointer for the SFP.
-The reason being that currently, a network adapter can remove the SFP
-PHY when it didn't create it - which is obviously not a good idea as it
-doesn't own it.
+Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
+---
+ drivers/media/rc/meson-irblaster.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The other reason is to do with this situation where we have separate
-PHY and SFP paths. I'm not intending at this point to add support for
-this, only to separate the two PHYs and have something like:
-
-static struct phy_device *phylink_phy(struct phylink *pl)
-{
-	if (pl->sfp_phy)
-		return pl->sfp_phydev;
-	return pl->phydev;
-}
-
-and use that everywhere we want to get at pl->phydev in the independent
-parts of the code. Those which want to get at a specific PHY will
-continue using their appropriate pointers directly.
-
+diff --git a/drivers/media/rc/meson-irblaster.c b/drivers/media/rc/meson-irblaster.c
+index bfcdf47e2100..f6cb47593392 100644
+--- a/drivers/media/rc/meson-irblaster.c
++++ b/drivers/media/rc/meson-irblaster.c
+@@ -215,7 +215,7 @@ static void irb_send(struct irblaster_dev *irb)
+ {
+ 	reinit_completion(&irb->completion);
+ 
+-	dev_dbg(irb->dev, "tx started, buffer length = %u\n", len);
++	dev_dbg(irb->dev, "tx started, buffer length = %u\n", irb->buf_len);
+ 	irb_send_buffer(irb);
+ 	wait_for_completion_interruptible(&irb->completion);
+ 	dev_dbg(irb->dev, "tx completed\n");
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+2.21.0
+
