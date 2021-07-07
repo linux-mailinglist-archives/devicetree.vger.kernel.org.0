@@ -2,87 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70C233BF1C2
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 23:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEFD53BF174
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 23:39:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230160AbhGGV5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jul 2021 17:57:35 -0400
-Received: from msg-1.mailo.com ([213.182.54.11]:59808 "EHLO msg-1.mailo.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229956AbhGGV5e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Jul 2021 17:57:34 -0400
-X-Greylist: delayed 1225 seconds by postgrey-1.27 at vger.kernel.org; Wed, 07 Jul 2021 17:57:34 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1625693659; bh=uVLcTeTi9/NfOuP9ILJQsYxEqwD0GlA+5zKs0YR3vDs=;
-        h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
-         References:Content-Type:MIME-Version:Content-Transfer-Encoding;
-        b=GBs/uke5gFPa3oWiTA5V8ZpviZkGRbFONX446DC/mbnkmTb4FRhjaJfuOYKRjeWO2
-         qdIqc0V0kS5Z/Gcrv3H0dX67MHm1JEONUlEHCeLe9MZFivCo02jyvgaVEsyuzYkTux
-         xggDGGp2vaf57eGmwGROAiq42abvoR/0ZELUSHME=
-Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
-        via proxy.mailoo.org [213.182.55.207]
-        Wed,  7 Jul 2021 23:34:19 +0200 (CEST)
-X-EA-Auth: qxLiGfzMY0iYof9pXOFmNbfz6GyxS7hNbOM3VyP6p733skERCuG09izmvGam57+QvZ4haxsk1duhgCuDrjM8Xc8+jmwl2xUr6Ig6lz2usSo=
-Message-ID: <c780e9df1b2f1eef6af1c9a10662f5a1952a1fae.camel@mailoo.org>
-Subject: Re: [PATCH v2 0/4] Add MSM8939 APCS/A53PLL clock support
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     Shawn Guo <shawn.guo@linaro.org>, Stephen Boyd <sboyd@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Date:   Wed, 07 Jul 2021 23:34:19 +0200
-In-Reply-To: <20210704024032.11559-1-shawn.guo@linaro.org>
-References: <20210704024032.11559-1-shawn.guo@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.4 (3.38.4-1.fc33) 
+        id S232939AbhGGVly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jul 2021 17:41:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52308 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230222AbhGGVly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jul 2021 17:41:54 -0400
+Received: from mail-ua1-x934.google.com (mail-ua1-x934.google.com [IPv6:2607:f8b0:4864:20::934])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36865C06175F
+        for <devicetree@vger.kernel.org>; Wed,  7 Jul 2021 14:39:12 -0700 (PDT)
+Received: by mail-ua1-x934.google.com with SMTP id k20so1385657uao.8
+        for <devicetree@vger.kernel.org>; Wed, 07 Jul 2021 14:39:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=RXyEo0cDhLbIf8bC+6p6VI3JmiO1V1r4nPpmv6Lh3cw=;
+        b=Yy3rye3RBQbSjlYsIw5+WREoZ/v6zvcRJLI1vd6HMBPsG4rTj8ekS6meVkapGwvMtU
+         Nar+4zMtYyko3QZCVjjDCf+YZA7odO3sUtVwhhj836GeaWTgluuNcqmkUp/Fyx51v4VG
+         tl9exKl+RVE36N0eza+lCllxta8jS8Q71A2RI+yUZA30SyGxNE41O0RIkIyL2i34OU+J
+         begmo3xXnyJTKUcDaqud2gaKw3izsW94xHNOJ+4tR8ogowORK5Si2gRETXwzSc0Cnw0w
+         DBvwMFSrmJVctYM9np9aiICqoJ6H2aYGM12n/pu7D2y7kQrh65/RQaAK4FzRxtTjhek6
+         UEDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=RXyEo0cDhLbIf8bC+6p6VI3JmiO1V1r4nPpmv6Lh3cw=;
+        b=i3+AxPHnqVpXgxPd/IvSvyI0cYtgoX+PBnRifxvdT+CsSg5LOHRyoZpVY13QjpXCn9
+         9ijgpQCDJmeGwyjGPL3YBbq5cayWyrkSYX+9uPBvesATCf3927YMrrMuP4F0O4xYKWmb
+         yaKgdDJ2AA+MdOYx8ia1KtTjbMKEtOP2+ET7CUFVG5vIsOH9m0iGZUr839TQytHQVxEQ
+         qIgbPSRw35I70ElIpIdE2gsKuo5txVsnZNHB90b5cLNTeqb+6wFC1vzLlLQU8c/TPjwF
+         8AdLVvpV4THzREHsRt3PN4H6Qyc99SlygsUu3PoKjlHJ/DK/qAiVjOJNAQwpQjhsbVy3
+         QZKQ==
+X-Gm-Message-State: AOAM531AEOO7Mc3MQUrI36mT6PwLbTLMnZH9FWuNJ7L9uK0gQj5D4Qe1
+        t7w5a5JbuP7q15Mk/9Z2eORMqMEp0ydGDzo/DBkr
+X-Google-Smtp-Source: ABdhPJwIDH0S+ZennpMtx4BVUQxVJpupWsgftT0fBDTm0RCw+rsKPUHbcaB9wVePwh2y08pfr2Vm3/Ynzl5/oV5v7CQ=
+X-Received: by 2002:ab0:2e81:: with SMTP id f1mr25499580uaa.74.1625693951226;
+ Wed, 07 Jul 2021 14:39:11 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210707071616.28976-1-matt@traverse.com.au> <20210707071616.28976-2-matt@traverse.com.au>
+In-Reply-To: <20210707071616.28976-2-matt@traverse.com.au>
+From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Date:   Thu, 8 Jul 2021 06:38:44 +0900
+Message-ID: <CABMQnVLm2f7cm_j3NtAKXzoyMHrm1ALSR7J99faEOCK6KysNnQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] rtc: rx8025: implement RX-8035 support
+To:     Mathew McBride <matt@traverse.com.au>
+Cc:     linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le dimanche 04 juillet 2021 =C3=A0 10:40 +0800, Shawn Guo a =C3=A9crit=C2=
-=A0:
-> This series adds MSM8939 APCS/A53PLL clock support.=C2=A0 Most outstandin=
-g
-> thing about MSM8939 is that it integrates 3 APCS instances, for Cluster0
-> (little cores), Cluster1 (big cores) and CCI (Cache Coherent Interconnect=
-)
-> respectively.
->=20
-> Changes for v2:
-> - Reword the commit log of first patch as suggested by Stephen.
-> - Drop 'clock-output-names' bindings and use @unit-address to get unique
-> =C2=A0 a53pll/mux clock names.
-> - Use 'operating-points-v2' bindings to pass frequency table via OPP, so
-> =C2=A0 that we can use one single compatible for all 3 MSM8939 a53pll.
->=20
-> Shawn Guo (4):
-> =C2=A0 clk: qcom: apcs-msm8916: Flag a53mux instead of a53pll as critical
-> =C2=A0 clk: qcom: a53pll/mux: Use unique clock name
-> =C2=A0 dt-bindings: clock: Update qcom,a53pll bindings for MSM8939 suppor=
-t
-> =C2=A0 clk: qcom: a53-pll: Add MSM8939 a53pll support
->=20
-> =C2=A0.../bindings/clock/qcom,a53pll.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 3 +
-> =C2=A0drivers/clk/qcom/a53-pll.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- | 68 ++++++++++++++++++-
-> =C2=A0drivers/clk/qcom/apcs-msm8916.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 10 ++-
-> =C2=A03 files changed, 76 insertions(+), 5 deletions(-)
+Hi,
 
-Hello,
+2021=E5=B9=B47=E6=9C=887=E6=97=A5(=E6=B0=B4) 16:17 Mathew McBride <matt@tra=
+verse.com.au>:
+>
+> The RX-8035 is a newer RTC from EPSON that is very
+> similar to the RX-8025.
+>
+> The key difference is in the oscillation stop (XSTP)
+> bit which is inverted on the RX-8035.
+>
+> Signed-off-by: Mathew McBride <matt@traverse.com.au>
+> ---
+>  drivers/rtc/rtc-rx8025.c | 59 ++++++++++++++++++++++++++++++++++++----
+>  1 file changed, 53 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/rtc/rtc-rx8025.c b/drivers/rtc/rtc-rx8025.c
+> index c914091819ba..1a33ec402f4a 100644
+> --- a/drivers/rtc/rtc-rx8025.c
+> +++ b/drivers/rtc/rtc-rx8025.c
+> @@ -60,14 +60,24 @@
+>  #define RX8025_ADJ_DATA_MAX    62
+>  #define RX8025_ADJ_DATA_MIN    -62
+>
+> +enum rx_model {
+> +       model_rx_unknown,
+> +       model_rx_8025,
+> +       model_rx_8035,
+> +       model_last
+> +};
+> +
+>  static const struct d rx8025_id[] =3D {
+> -       { "rx8025", 0 },
+> +       { "rx8025", model_rx_8025 },
+> +       { "rx8035", model_rx_8035 },
+>         { }
+>  };
+> +
+>  MODULE_DEVICE_TABLE(i2c, rx8025_id);
+>
+>  struct rx8025_data {
+>         struct rtc_device *rtc;
+> +       enum rx_model type;
 
-would you have a msm8939 dtsi/dts reference file working with all recent
-contributions for this SoC ?
-We the msm8939-focused PostmarketOS gang would be happy to boot our devices
-and test patches but we're not able to boot anything more recent that 5.9..=
-.
+I think 'model' is easier to understand than 'type'.
 
+>         u8 ctrl1;
+>  };
+>
+> @@ -100,10 +110,26 @@ static s32 rx8025_write_regs(const struct i2c_clien=
+t *client,
+>                                               length, values);
+>  }
+>
+> +static int rx8025_is_osc_stopped(enum rx_model model, int ctrl2)
+> +{
+> +       int xstp =3D ctrl2 & RX8025_BIT_CTRL2_XST;
+> +       /* XSTP bit has different polarity on RX-8025 vs RX-8035.
+> +        * RX-8025: 0 =3D=3D oscillator stopped
+> +        * RX-8035: 1 =3D=3D oscillator stopped
+> +        */
+> +
+> +       if (model =3D=3D model_rx_8025)
+> +               xstp =3D !xstp;
+> +
+> +       return xstp;
+> +}
+> +
+>  static int rx8025_check_validity(struct device *dev)
+>  {
+>         struct i2c_client *client =3D to_i2c_client(dev);
+> +       struct rx8025_data *drvdata =3D dev_get_drvdata(dev);
+>         int ctrl2;
+> +       int xstp;
+>
+>         ctrl2 =3D rx8025_read_reg(client, RX8025_REG_CTRL2);
+>         if (ctrl2 < 0)
+> @@ -117,7 +143,8 @@ static int rx8025_check_validity(struct device *dev)
+>                 return -EINVAL;
+>         }
+>
+> -       if (!(ctrl2 & RX8025_BIT_CTRL2_XST)) {
+> +       xstp =3D rx8025_is_osc_stopped(drvdata->type, ctrl2);
+> +       if (xstp) {
+>                 dev_warn(dev, "crystal stopped, date is invalid\n");
+>                 return -EINVAL;
+>         }
+> @@ -125,7 +152,7 @@ static int rx8025_check_validity(struct device *dev)
+>         return 0;
+>  }
+>
+> -static int rx8025_reset_validity(struct i2c_client *client)
+> +static int rx8025_reset_validity(enum rx_model model, struct i2c_client =
+*client)
 
+We can get the struct rx8025_data by using i2c_get_clientdata().
+Therefore, I think that it can be updated without increasing the arguments.
 
+```
+struct rx8025_data *rx8025 =3D i2c_get_clientdata(client);
 
+if (rx8025->type =3D=3D model_rx_8025)
+```
+
+>  {
+>         int ctrl2 =3D rx8025_read_reg(client, RX8025_REG_CTRL2);
+>
+> @@ -134,8 +161,13 @@ static int rx8025_reset_validity(struct i2c_client *=
+client)
+>
+>         ctrl2 &=3D ~(RX8025_BIT_CTRL2_PON | RX8025_BIT_CTRL2_VDET);
+>
+> +       if (model =3D=3D model_rx_8025)
+> +               ctrl2 |=3D RX8025_BIT_CTRL2_XST;
+> +       else
+> +               ctrl2 &=3D ~(RX8025_BIT_CTRL2_XST);
+> +
+>         return rx8025_write_reg(client, RX8025_REG_CTRL2,
+> -                               ctrl2 | RX8025_BIT_CTRL2_XST);
+> +                               ctrl2);
+>  }
+>
+>  static irqreturn_t rx8025_handle_irq(int irq, void *dev_id)
+> @@ -149,7 +181,7 @@ static irqreturn_t (int irq, void *dev_id)
+>         if (status < 0)
+>                 goto out;
+>
+> -       if (!(status & RX8025_BIT_CTRL2_XST))
+> +       if (rx8025_is_osc_stopped(rx8025->type, status))
+
+In rx8025_check_validity(), the return value is put in xstp and confirmed.
+I thought it would be better to unify to either one.
+
+>                 dev_warn(&client->dev, "Oscillation stop was detected,"
+>                          "you may have to readjust the clock\n");
+>
+> @@ -241,7 +273,7 @@ static int rx8025_set_time(struct device *dev, struct=
+ rtc_time *dt)
+>         if (ret < 0)
+>                 return ret;
+>
+> -       return rx8025_reset_validity(client);
+> +       return rx8025_reset_validity(rx8025->type, client);
+>  }
+>
+>  static int rx8025_init_client(struct i2c_client *client)
+> @@ -519,6 +551,21 @@ static int rx8025_probe(struct i2c_client *client,
+>
+>         i2c_set_clientdata(client, rx8025);
+>
+> +       if (id) {
+> +               rx8025->type =3D id->driver_data;
+> +               switch (rx8025->type) {
+> +               case model_rx_8025:
+> +                       dev_info(&client->dev, "Type RX-8025");
+> +               break;
+
+Please fix indent.
+
+> +               case model_rx_8035:
+> +                       dev_info(&client->dev, "Type RX-8035");
+> +                       break;
+> +               default:
+> +                       dev_warn(&client->dev, "Unknown type: %d\n", rx80=
+25->type);
+> +               break;
+
+ditto.
+
+> +               }
+> +       }
+> +
+>         err =3D rx8025_init_client(client);
+>         if (err)
+>                 return err;
+> --
+> 2.30.1
+>
+
+Best regards,
+  Nobuhiro
+
+--=20
+Nobuhiro Iwamatsu
+   iwamatsu at {nigauri.org / debian.org / kernel.org}
+   GPG ID: 40AD1FA6
