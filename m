@@ -2,731 +2,460 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B267D3BE6ED
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 13:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D89E3BE771
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 13:55:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231293AbhGGLOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jul 2021 07:14:07 -0400
-Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:27458 "EHLO
-        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231220AbhGGLOH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jul 2021 07:14:07 -0400
-Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 167B6hSl008758;
-        Wed, 7 Jul 2021 07:11:25 -0400
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0b-00128a01.pphosted.com with ESMTP id 39masxdu4q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 07 Jul 2021 07:11:25 -0400
-Received: from m0167090.ppops.net (m0167090.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 167B8ajv012010;
-        Wed, 7 Jul 2021 07:11:24 -0400
-Received: from nam04-mw2-obe.outbound.protection.outlook.com (mail-mw2nam08lp2173.outbound.protection.outlook.com [104.47.73.173])
-        by mx0b-00128a01.pphosted.com with ESMTP id 39masxdu4p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 07 Jul 2021 07:11:24 -0400
+        id S231405AbhGGL5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jul 2021 07:57:45 -0400
+Received: from mga04.intel.com ([192.55.52.120]:62665 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231358AbhGGL5o (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Jul 2021 07:57:44 -0400
+X-IronPort-AV: E=McAfee;i="6200,9189,10037"; a="207464726"
+X-IronPort-AV: E=Sophos;i="5.83,331,1616482800"; 
+   d="scan'208";a="207464726"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Jul 2021 04:54:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.83,331,1616482800"; 
+   d="scan'208";a="497802901"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+  by fmsmga002.fm.intel.com with ESMTP; 07 Jul 2021 04:54:59 -0700
+Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10; Wed, 7 Jul 2021 04:54:59 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.10 via Frontend Transport; Wed, 7 Jul 2021 04:54:59 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.4; Wed, 7 Jul 2021 04:54:58 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KxkzYwFdr71RkM+roIEg8qvwPM6QieDLyGw7hwhjTufZfOrpXTKOs7TgzzDBKcUNZB93sz2r4wFDq2/wygCqmjN5R14b/9PvE0v543A26CWNbotyK7Xxx8rok72SRR0xzLFU5HTmk77CvscB08q2mqdydvNPoqmDs6Tz9CTOKJnKiz0mHVFt+BNtqB5RDTQCAkDyFXCbw/QK/mnG8pTYKAkSITXHAJpLq897dJ8f8j90mMzzQjwGmIvJSpNMvpSgP1tN6emES5G1+31y4gvWxSVqgnJYkg3PjJqW8y/rzFDkmUg34RFx2ag0vzVqbaQ2JQc/zFo4PdR7mMtkWC4L8Q==
+ b=OwZt4pQlk99H4ikMcdXwDFu9+oL/TLvallAUMkxZ3EJM0fK9xdw4ROTKq1SdzOPkOnDJf34fvRZFS3AP9GKxCp+EkX+CoosmnAHK14vTNcNTvrhtRxGsHvRq/+nfu76ZLC6NjExjO+2yCcbjejv9WF1ao0jJfuHy8Qj1xFZBln1XJVN6VZEmTNXQ44XM8MGaoa2Y2RxQPRNXgqha7DSzhx+xDOweiFJ7jqYTx4nBw/dAZ04xcz6nyWcucAoYXyBNWxcUZXniJata7BL54m9GDtaLapzeYEgze5VlEhkrxk25geVgEqzWuPimiRIEhDEvHW255Eqvd0iQRgG847mEbw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9zkWWYAxDb4B2So6Ljf8HqU7S160hQCtHPEt7CHtT8E=;
- b=AeBfiyLA/3bOnBU/azleoBS4QSAfuuGaZZUq2rRWLz2JleHV7OYABEFxwEy+WF+r7iPcW1IXXyjK3xOCgrUyNYO5QFq2K+21q5/S9ZRzaLngiIRJOzm62l6al/nhGVzg+1knK6tGcHanwF27rOOs8Gu4XjrSrocZvI577mGgZkankfnfBcLFH643UZlCM9fCvelzxxTdFGvEJKO35x2rL2YDmTou39u6wg2QBbKilTUj8o7XT/Ht8Qc0CZWvUCkn4NNSD/8hQFEUj7tose8MP1fjusORJQ+BTz8nlZuQdE4B/GGrQHru3OhfQrJUKnMfuQk5W2tWJPk7voJAU7t28A==
+ bh=kMs8UO7Xvol032t+4aDhKjT78PC6/oT+ocH9T05Ktbw=;
+ b=ASLYfATSmVal7e62Itrt1v8z/ieS8m/c09t9IF6iOtKuRXzXbxLeumaRHRPCBE0ckeK+EaH0IUNt3ZziIMg7+INMxfW53TubhFBUbd7iIuFLzhU3DWxnNzcj0+sFJgnXMJ1FtpS+D0nTk8qZBWRvdUorltz0yIm2fYTJIPzyXcaYmzl8DSPcTKl1m45ttkaVIkmlKCA+qT3Cx1nn/ovk+e0mQVwauuRvt2MEssvOSEV1osJX2juCgfn2DZqS+BKoxz+ByKlylS3eJc/UXne0uqfIgSt0OV82fXfKmzCSbJKy5LYCKkcG2QsZ39YSVpwWJq/am5wWPFbQhfd1DJJdMA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9zkWWYAxDb4B2So6Ljf8HqU7S160hQCtHPEt7CHtT8E=;
- b=OjOQLXF1NXRF45mzvNfPk5HYz92dVnRRfhobSS7eVMsXzv2uk1cfhRRvv+pKRRkrRmi/4+n8Wlq2xpZ31aGm0zhB5HEzLUQTamxO75h2435Uu07DLs20/o1456x6OrNR+DJ1iHtT4fsIRjoxRo4KVBc/YmzimXJWRHsOK6zAv/w=
-Received: from PH0PR03MB6366.namprd03.prod.outlook.com (2603:10b6:510:ab::22)
- by PH0PR03MB5912.namprd03.prod.outlook.com (2603:10b6:510:40::13) with
+ bh=kMs8UO7Xvol032t+4aDhKjT78PC6/oT+ocH9T05Ktbw=;
+ b=MlxwQBEpiO4CIo24i9o/jN04smLE7Gq1vOpi6mTQn8Wj5WSZPbqMvIahnfIv/8Sp46vIBP1V2Vn81/JHSBge+Q/I+/gIxb0+gxhrvcGvrpnwMV7yMADrh+K9NrwcD1ScnqJIa+f29hfA2nrhjhIlQG/orYjoTLpeaG9mCfoNXe8=
+Received: from PH0PR11MB5595.namprd11.prod.outlook.com (2603:10b6:510:e5::16)
+ by PH0PR11MB5577.namprd11.prod.outlook.com (2603:10b6:510:eb::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.27; Wed, 7 Jul
- 2021 11:11:21 +0000
-Received: from PH0PR03MB6366.namprd03.prod.outlook.com
- ([fe80::4b7:376:c5f2:3891]) by PH0PR03MB6366.namprd03.prod.outlook.com
- ([fe80::4b7:376:c5f2:3891%3]) with mapi id 15.20.4242.023; Wed, 7 Jul 2021
- 11:11:21 +0000
-From:   "Sa, Nuno" <Nuno.Sa@analog.com>
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-CC:     Jonathan Cameron <jic23@kernel.org>,
-        "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.21; Wed, 7 Jul
+ 2021 11:54:57 +0000
+Received: from PH0PR11MB5595.namprd11.prod.outlook.com
+ ([fe80::947f:429f:312b:c530]) by PH0PR11MB5595.namprd11.prod.outlook.com
+ ([fe80::947f:429f:312b:c530%4]) with mapi id 15.20.4287.033; Wed, 7 Jul 2021
+ 11:54:57 +0000
+From:   "Thokala, Srikanth" <srikanth.thokala@intel.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        "maz@kernel.org" <maz@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: RE: [PATCH v4 1/2] iio: frequency: adrf6780: add support for ADRF6780
-Thread-Topic: [PATCH v4 1/2] iio: frequency: adrf6780: add support for
- ADRF6780
-Thread-Index: AQHXbzN7IY9R84leFkqsPFMOIAAoUasxeo0AgAKyeUCAAYBQgIAAFNGggAFwxKCAAAqhgIAAH07A
-Date:   Wed, 7 Jul 2021 11:11:20 +0000
-Message-ID: <PH0PR03MB63667F415CDC1003CC3BFC77991A9@PH0PR03MB6366.namprd03.prod.outlook.com>
-References: <20210702111239.174189-1-antoniu.miclaus@analog.com>
-        <20210703175716.7864358a@jic23-huawei>
-        <PH0PR03MB63667CCA2691D4A43F28041E991C9@PH0PR03MB6366.namprd03.prod.outlook.com>
-        <20210706100405.00001507@Huawei.com>
-        <PH0PR03MB6366190FBDC12B1AD1CCBC43991B9@PH0PR03MB6366.namprd03.prod.outlook.com>
-        <PH0PR03MB6366BC5E806B18A8889EDDE9991A9@PH0PR03MB6366.namprd03.prod.outlook.com>
- <20210707095629.00004bb8@Huawei.com>
-In-Reply-To: <20210707095629.00004bb8@Huawei.com>
-Accept-Language: en-US
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>,
+        "kw@linux.com" <kw@linux.com>
+Subject: RE: [PATCH v10 2/2] PCI: keembay: Add support for Intel Keem Bay
+Thread-Topic: [PATCH v10 2/2] PCI: keembay: Add support for Intel Keem Bay
+Thread-Index: AQHXW3FV4CKL56K+SEOKbFusTp+FKasexPQAgASQnFCAEpouoA==
+Date:   Wed, 7 Jul 2021 11:54:57 +0000
+Message-ID: <PH0PR11MB55950B723B19DDE38E408380851A9@PH0PR11MB5595.namprd11.prod.outlook.com>
+References: <20210607154044.26074-1-srikanth.thokala@intel.com>
+ <20210607154044.26074-3-srikanth.thokala@intel.com>
+ <20210621162506.GA31511@lpieralisi>
+ <PH0PR11MB559558D60263F29C168E6C5185069@PH0PR11MB5595.namprd11.prod.outlook.com>
+In-Reply-To: <PH0PR11MB559558D60263F29C168E6C5185069@PH0PR11MB5595.namprd11.prod.outlook.com>
+Accept-Language: en-IN, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-dg-ref: =?iso-8859-1?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcbnNhXGFwcG?=
- =?iso-8859-1?Q?RhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVlZS02Yjg0YmEy?=
- =?iso-8859-1?Q?OWUzNWJcbXNnc1xtc2ctMGNkZTViYzktZGYxNC0xMWViLThiNmYtZmM3Nz?=
- =?iso-8859-1?Q?c0MjFmY2FlXGFtZS10ZXN0XDBjZGU1YmNhLWRmMTQtMTFlYi04YjZmLWZj?=
- =?iso-8859-1?Q?Nzc3NDIxZmNhZWJvZHkudHh0IiBzej0iMjA3MTEiIHQ9IjEzMjcwMTI5OD?=
- =?iso-8859-1?Q?c4NzgwMTg0MyIgaD0idGNucFlYN0lhbm8xSGxQd2xMUmFrZG9SN3ZJPSIg?=
- =?iso-8859-1?Q?aWQ9IiIgYmw9IjAiIGJvPSIxIiBjaT0iY0FBQUFFUkhVMVJTUlVGTkNnVU?=
- =?iso-8859-1?Q?FBSVlEQUFEejJuclBJSFBYQWFxTGszUElyalpEcW91VGM4aXVOa01GQUFB?=
- =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUhBQUFBQVdBd0FBQUFBQUFBQUFBQU?=
- =?iso-8859-1?Q?FBQUFBQUFBQUFBQUVBQVFBQkFBQUFCT1lHY2dBQUFBQUFBQUFBQUFBQUFK?=
- =?iso-8859-1?Q?NEFBQUJoQUdRQWFRQmZBSE1BWlFCakFIVUFjZ0JsQUY4QWNBQnlBRzhBYW?=
- =?iso-8859-1?Q?dCbEFHTUFkQUJ6QUY4QVpnQmhBR3dBY3dCbEFGOEFaZ0J2QUhNQWFRQjBB?=
- =?iso-8859-1?Q?R2tBZGdCbEFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
- =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBRUFBQUFBQUFBQUFnQUFBQUFBbmdBQUFHRU?=
- =?iso-8859-1?Q?FaQUJwQUY4QWN3QmxBR01BZFFCeUFHVUFYd0J3QUhJQWJ3QnFBR1VBWXdC?=
- =?iso-8859-1?Q?MEFITUFYd0IwQUdrQVpRQnlBREVBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
- =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
- =?iso-8859-1?Q?FBQUFBQUFBQUFBQVFBQUFBQUFBQUFDQUFBQUFBQ2VBQUFBWVFCa0FHa0FY?=
- =?iso-8859-1?Q?d0J6QUdVQVl3QjFBSElBWlFCZkFIQUFjZ0J2QUdvQVpRQmpBSFFBY3dCZk?=
- =?iso-8859-1?Q?FIUUFhUUJsQUhJQU1nQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
- =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?iso-8859-1?Q?QUFBQUJBQUFBQUFBQUFBSUFBQUFBQUo0QUFBQmhBSElBYVFCaEFGOEFaQU?=
- =?iso-8859-1?Q?JwQUdNQWRBQnBBRzhBYmdCaEFISUFlUUJmQUhRQWFRQmxBSElBTVFBQUFB?=
- =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
- =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFFQU?=
- =?iso-8859-1?Q?FBQUFBQUFBQWdBQUFBQUFuZ0FBQUdFQWNnQnBBR0VBWHdCa0FHa0FZd0Iw?=
- =?iso-8859-1?Q?QUdrQWJ3QnVBR0VBY2dCNUFGOEFkQUJwQUdVQWNnQXlBQUFBQUFBQUFBQU?=
- =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
- =?iso-8859-1?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU?=
- =?iso-8859-1?Q?FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBUUFBQUFBQUFB?=
- =?iso-8859-1?Q?QUNBQUFBQUFBPSIvPjwvbWV0YT4=3D?=
-x-dg-rorf: true
-authentication-results: Huawei.com; dkim=none (message not signed)
- header.d=none;Huawei.com; dmarc=none action=none header.from=analog.com;
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+dlp-product: dlpe-windows
+authentication-results: arm.com; dkim=none (message not signed)
+ header.d=none;arm.com; dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d7bd1d6f-ed66-46d1-9d33-08d94137f345
-x-ms-traffictypediagnostic: PH0PR03MB5912:
+x-ms-office365-filtering-correlation-id: 842bcef7-2511-4f34-d569-08d9413e0afd
+x-ms-traffictypediagnostic: PH0PR11MB5577:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <PH0PR03MB5912A6F9C5647D3B6AD3161C991A9@PH0PR03MB5912.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-microsoft-antispam-prvs: <PH0PR11MB5577906BDDA42735A7A2AAE0851A9@PH0PR11MB5577.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ekEqkS0/3DHwj1kAotWesaixrYa8FSftC7ZALa8sys0XodZQLM9DNsT/Rzpkk4BstIlAAPRLkJIFNdCQ5Lplb4rQdSiiIS6/85xq4Jk9v3UtdIe5mR8FcD/WKYhjyfWC+zi7H+ZbDU+QFc2/tqvAj1e6hND+hEIBUfoGmAKfX0Ps2t4mT+iKg6Ydc7cVBajqXf0Y923XduY5HENvPjbiLosspcFiLe4ysioTnFx4+b2eIKcdrLpkeGdDYh8VKiGyTrAIhdk/XhWKThs8hpYVwbWIbcokHIvA3OoNV73cpIKjeCxU8FcLDYJ4yUEyxFwki+2sfkMG2VZ/DDsLpvshDjV8Z8tC5hfbRnHsQBML1ji1NGMldeWKcKJBUlzEvylj1XtAh0qvDLUY/1snm0R29AJ5SBDzPlh4nhcI+HVKEZY/qWCE+aLSKNv2slKXTRyHZltxae0MG7rD3tzJqZtNKyZ4McXAk+5y9YG6vjwy/4Gi0b4qONvPdYuz0fNSnf/S4dchMMeOA8SaZSRUnLUj/DHNE3Vhgyb1dNdCmfy3WOM6FXiEl7MFltXcIC+eVj5bvx7Mh5BQfmS1fVAfxSEp5v0Bys78wxM3rJUFOwWWknfyQpn86qhbYsxb3wmRK/pc5cKtQa0gg4XfjjHnV21Y2/qsSkKXnbAinooM/xl1/owsrv+4kagdMw/f6bDpsS/EzTkQ8n0R5EStaBNsX70g1pDwyyEv2yEUE+Q2vFSyPs4=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR03MB6366.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(366004)(136003)(376002)(396003)(83380400001)(478600001)(54906003)(38100700002)(2906002)(9686003)(64756008)(8936002)(86362001)(66556008)(966005)(55016002)(66446008)(76116006)(316002)(122000001)(4326008)(66946007)(33656002)(66476007)(53546011)(8676002)(5660300002)(186003)(71200400001)(6916009)(30864003)(7696005)(52536014)(6506007)(579004);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: OUeg5YYr3Q+VS/oJutYZlasyRaKsGGtST/6Uv+1tr8fc6GI/XUGFOzTFMx/l/Hl0P9KgZ2av6VDGTaj1lJLg+NDJNVKLZKfyyIAzu4c0+izh8oywNhH/37NKsVelYQINLS3L2JrwO0d+01q1OWG+5shv7UNRQY1hC6OD1WCA5RtVwRIW2WdTyJoJafSMhA9RiikM5CGQxzvqXAiuqiwBzWPkm1wq7suiqtqSQ/x5V2mz7S/xy/ISw6XSAtvNkPMkkBayjsimEr5MdGNUhAYuSAFxtw/VC3xzZEPixHqYEQA/SSc7ilGGeH2dIijt8WknDaRXrw5+F5YWyGoRJbft6zEzVt4F9uNzjCtZpsLitdGX4pT6V33AEzJxA55gYxaPZWy8GYotA8stoHFqlHH7PohRYXBoBVnf0thh6lnQl2HNugWB9nsC83ojPG9Jhl3Q2KVe4A5k6knw6y3PhH3JaEN9CovXmo/UtOy9t+QIkBDhO70YUcmSRhCR/VjVtvA/xpqxnDy1MqjFSqgsgl5WOoX+3mfE3t1RW/UmjZDEZZYC7bX8zcKlGBxVP+r429zsAq/RIpTvAWL/jB+YzJylZOa1uz1HaDebXeucPA+yO2cZIG/7lA+OxWeELQxHvGVW1vyvxIGgOL2mkyJH32cZdQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR11MB5595.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(376002)(39860400002)(366004)(136003)(396003)(76116006)(66446008)(38100700002)(66556008)(66946007)(9686003)(186003)(2906002)(66476007)(64756008)(26005)(8676002)(8936002)(52536014)(71200400001)(5660300002)(7696005)(55016002)(6506007)(53546011)(478600001)(54906003)(4326008)(122000001)(83380400001)(316002)(86362001)(33656002)(110136005);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?Uwshei2xIGaKHdiLvvtJIyBt6SbFaEjkE1Yu9MeJ3bsm1ZSPODylL6maaB?=
- =?iso-8859-1?Q?k6uKy9jM/sL4YxZGR1VMqSbuwfY9HL0N99mAewZouMSUp+j0kxiDPCgoQP?=
- =?iso-8859-1?Q?hobd/JgsPwHCdtl7LtPnBYhc/bsq+FJEUpUxjWoQ0BbrRXPU7nKMQ1wyKB?=
- =?iso-8859-1?Q?3PPNAkYnDSaXks4z5tsSDOSxyMRuO4hMxKdXWVV2y0f5hw8LCmItFEnWTv?=
- =?iso-8859-1?Q?6F18j03ayDTY0QLqc6C3T6oMShAnryAldAWeM4lalACB75T2rFRWZv4Cmz?=
- =?iso-8859-1?Q?vwbAEEhw/qmv+wUhcw4Xv51QgGcHT3Jsr7lhMBS0XvTGDQ1tD1SqJeGO9o?=
- =?iso-8859-1?Q?lKjTbaQwZwFOJCSncTcqrO6iYIGleRs26nEOwtIBbevt9vMy8WQMs8gxBQ?=
- =?iso-8859-1?Q?mYdxrocoHFmuXWYOZe6C5YgrswTa+I77+W/WdL5I/Ycso4xsOY2fCE6cHE?=
- =?iso-8859-1?Q?Ab3cV5KSV2rkiR8uR2eSm4A1A2G7RpGH4LKgyPVgmcELPVb+ASKXzhAHjZ?=
- =?iso-8859-1?Q?YKZyfxBYgnM5/T50hBDlslieSpJOtM2wgBRf8ktjDfQOka5xeQapAKtqEJ?=
- =?iso-8859-1?Q?izyK6DrHy+H5bMnUnvF6nUJtY9p57BUP41iXfsvqF9bY6Kh5KnVal5y2FS?=
- =?iso-8859-1?Q?XHAakDboEyR2KEqo8S972x6TqfLBDYrFKOOp7z1GfiUJzc8zoOw0K6Bqif?=
- =?iso-8859-1?Q?PtEkd4DUvrkCJGBuofjRPwy8XC1F41Jc5yXEGapIwUk2Zf8LTBSWD9PnPx?=
- =?iso-8859-1?Q?RaK8TGaQk6EkViOLgYG4cbewceZFZpxss5Swc+IY7RZJtVatDUktYksqDC?=
- =?iso-8859-1?Q?n2qmsyqO8wgJ05fRBQIRF8K6KgW0NxPlJkv1kPRECBsZ8KeCu4Ss2+WJdu?=
- =?iso-8859-1?Q?dG3NwUK8y3oaTv6kI8LyBltINOBwF1Ut+vHiNg5G9mJIV7SafbkcFNuxTd?=
- =?iso-8859-1?Q?JDQ9At4YsFMOQXoU7sOIfhaXRxYZra0Tjpz2j2PxpdwI4SZZMDozMsw11K?=
- =?iso-8859-1?Q?F0J0pRV9meeeRG6zwE+DlVzXvh4rXLg9y9rYc819RZcQf0mdgkPFlqWKRk?=
- =?iso-8859-1?Q?SE9RUlwC9b3o0cziVodW0oW4XmKohbdDRVsF2cDCD4janLQoXvNv1chaQ7?=
- =?iso-8859-1?Q?4Na3OKrt/AHnZTjNEHjfI/auptGe5TI1+wnvzHUdKmqSDyF0akVRqOaGhO?=
- =?iso-8859-1?Q?XLL7ZYEXdHLh5QnUTNeSwtjXrgO8R0Bn9njJp0XScsp5HshJcemPcKbQyf?=
- =?iso-8859-1?Q?4I06xBqPAJeWPCuW1OcUHBVeYZ1ke5msyMgB4CelaAAvP7YGT2n8SKMsQS?=
- =?iso-8859-1?Q?n60mFD2qNwdBfP6qfmdWDKVcAEbDVA9AB/qKOSicdfTmVcdAffOWqsXEG7?=
- =?iso-8859-1?Q?j4brti7e9qDy3ppV0hu/PpoNOMcLMXPG6dBHDp6VmAXywwmSPwJ6SaFinW?=
- =?iso-8859-1?Q?SR65be9zhS2uDccw?=
-Content-Type: text/plain; charset="iso-8859-1"
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?AlgsRRUGkGn6iDOim2gVSdZwnofiQj3M/NmLNRDnuCADJFooo5di7oeW+5ju?=
+ =?us-ascii?Q?RY1ozFGN6D51qRPyN16Fbfj52uvVA7dTea5w3TJU6NVXwt1oQ8QTLL49vSEx?=
+ =?us-ascii?Q?BGrkgtGjIN3hpfxq5teWjtUw8CA6igMqWtE9edx6FcQSubn1N0Z5oMlVZej1?=
+ =?us-ascii?Q?VAdDHZZtx5RY3EfqobO7g0OjRcZXU4A3voUsiUS7Mdm6sNezlDRM9jxJ/t3W?=
+ =?us-ascii?Q?5cEbio/iBdki2kuIpsmBketWXnaTwZdSbcgoNb7IU2dH5dSzJoyYRHLZ3F0g?=
+ =?us-ascii?Q?PaCl7sn6zVvshl9PEM8rhGd4VGnC5bnHDTgh/INQDOFBrwax+7oEWQEzn4TT?=
+ =?us-ascii?Q?Sj+yTqF+zaAkp0xAdOn0aAiYIms/fxZEo/7kVswEwAR7jRnD6UoFOnxOZRUN?=
+ =?us-ascii?Q?ZHW49mYSDR3EE/S7kE/pE8NNuLL71Lcw7irbq/SsXl3KkTyQyupMiEecPXxk?=
+ =?us-ascii?Q?liAy8nyI20n+E4O8wJ9LtRydn/TYHe4+lyTafNP920yzp8sGmPxwPls8dL08?=
+ =?us-ascii?Q?r+Wz1RkKjQK6JV+udVQw0LXLb/WopAIz7dFhB8VeSKMN0IxRD7LwSOTqyDj0?=
+ =?us-ascii?Q?dTZO8z28KMNcLbjBGYefJdurrEf/wf/N/nya4VPCljbtb0a7aPAtD5hE/e9X?=
+ =?us-ascii?Q?ZunJSb7EtK6f2zVPhjtmSx18A5a1YOJzvcNMY89fOXvl/blPc7KEa6DaCX6p?=
+ =?us-ascii?Q?wEirOGawE7aDsf1oUK/ZhyTNkSn6CZVhjb3rRfXP6UJJjkP8Tps+bWEtPzCH?=
+ =?us-ascii?Q?aqMZtnLCMh1JjRlIrWVM0uiuyJPllgFGwR4SjqB5+2Owcoz6knMe9TM33Sqj?=
+ =?us-ascii?Q?SfkEztcML/wuv268ESU6EhtXqzKs8/cEe2f9eNaLxriZwP+CybWJnmPnBIIP?=
+ =?us-ascii?Q?pbvCQd2WBaOo1qnxH+rjxznD6PKNjbubn+0aMiujvG3qVUJ2RVeyGgqldXt/?=
+ =?us-ascii?Q?Ox9IY3bObGJ1g0OUHJaj6nkSaBBzzwR0N41cl80RbHAiju1x7FfSAFbli9qm?=
+ =?us-ascii?Q?J3lbVpQjiHsNnis9IVj/FDZlJpEwFgfU5JZPH6aR+axACrE/3CBLsVZQRLmr?=
+ =?us-ascii?Q?ukkuRSe8E1/5kBpVPffaj0b2uFTctFeDM8niqwKd5iWwrB0VzrGohYD2KQ9S?=
+ =?us-ascii?Q?ZKRdqxdjQP4KYco8bveT9cZ0byG1E5SaEwxYpPP36GIKtRt/Eiqvy//vjeGF?=
+ =?us-ascii?Q?f59xf5+UMzJv6LPKRxVqio7/LV8Rl52UwrH1C8Nf0RsgdQRGgS6kbQyr9fmJ?=
+ =?us-ascii?Q?FB779HJcsy/ZytvMWlInSdvEQAN+cG5D94SjMilUFs/jZuEiwtIrskkejLdX?=
+ =?us-ascii?Q?NGM=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR03MB6366.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d7bd1d6f-ed66-46d1-9d33-08d94137f345
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2021 11:11:20.8853
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5595.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 842bcef7-2511-4f34-d569-08d9413e0afd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Jul 2021 11:54:57.6656
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Aek0qZAvGvxMXrna+cmzjiYNuJCUOKttTrk/dJMPN6WEenM61WYlYCC5JfaGusjeR7bY6Cc62v7j4n2c8/760w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR03MB5912
-X-Proofpoint-GUID: kO0LwyyzxmgxYh_RbiJsbvVXSATI8fyj
-X-Proofpoint-ORIG-GUID: 2V1RJ6ftnCEWoJrGR-him3LADA7yu_oD
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-07-07_06:2021-07-06,2021-07-07 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- spamscore=0 impostorscore=0 phishscore=0 mlxlogscore=999 clxscore=1015
- mlxscore=0 adultscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2107070067
+X-MS-Exchange-CrossTenant-userprincipalname: vgxVy8dy4enUKkZdDvQibke6duehQjr40XYO5aeDK+BEuj2QY7ahpD6zYpys0wixMa+FeVR+NIrCll48A98VI/DhZG+DM1Dey62LiRFT+LU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5577
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-> Sent: Wednesday, July 7, 2021 10:56 AM
-> To: Sa, Nuno <Nuno.Sa@analog.com>
-> Cc: Jonathan Cameron <jic23@kernel.org>; Miclaus, Antoniu
-> <Antoniu.Miclaus@analog.com>; linux-iio@vger.kernel.org; linux-
-> kernel@vger.kernel.org; devicetree@vger.kernel.org;
-> robh+dt@kernel.org
-> Subject: Re: [PATCH v4 1/2] iio: frequency: adrf6780: add support for
-> ADRF6780
+Hi Lorenzo and Marc,
+
+> -----Original Message-----
+> From: Thokala, Srikanth
+> Sent: Friday, June 25, 2021 8:54 AM
+> To: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>; maz@kernel.org
+> Cc: robh+dt@kernel.org; linux-pci@vger.kernel.org;
+> devicetree@vger.kernel.org; andriy.shevchenko@linux.intel.com;
+> mgross@linux.intel.com; Raja Subramanian, Lakshmi Bai
+> <lakshmi.bai.raja.subramanian@intel.com>; Sangannavar, Mallikarjunappa
+> <mallikarjunappa.sangannavar@intel.com>; kw@linux.com
+> Subject: RE: [PATCH v10 2/2] PCI: keembay: Add support for Intel Keem
+> Bay
 >=20
-> On Wed, 7 Jul 2021 08:26:59 +0000
-> "Sa, Nuno" <Nuno.Sa@analog.com> wrote:
+> Hi Lorenzo,
 >=20
-> > > From: Sa, Nuno <Nuno.Sa@analog.com>
-> > > Sent: Tuesday, July 6, 2021 12:23 PM
-> > > To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-> > > Cc: Jonathan Cameron <jic23@kernel.org>; Miclaus, Antoniu
-> > > <Antoniu.Miclaus@analog.com>; linux-iio@vger.kernel.org; linux-
-> > > kernel@vger.kernel.org; devicetree@vger.kernel.org;
-> > > robh+dt@kernel.org
-> > > Subject: RE: [PATCH v4 1/2] iio: frequency: adrf6780: add support
-> for
-> > > ADRF6780
-> > >
-> > >
-> > >
-> > > > From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-> > > > Sent: Tuesday, July 6, 2021 11:04 AM
-> > > > To: Sa, Nuno <Nuno.Sa@analog.com>
-> > > > Cc: Jonathan Cameron <jic23@kernel.org>; Miclaus, Antoniu
-> > > > <Antoniu.Miclaus@analog.com>; linux-iio@vger.kernel.org;
-> linux-
-> > > > kernel@vger.kernel.org; devicetree@vger.kernel.org;
-> > > > robh+dt@kernel.org
-> > > > Subject: Re: [PATCH v4 1/2] iio: frequency: adrf6780: add support
-> for
-> > > > ADRF6780
-> > > >
-> > > > On Mon, 5 Jul 2021 10:18:51 +0000
-> > > > "Sa, Nuno" <Nuno.Sa@analog.com> wrote:
-> > > >
-> > > > > > -----Original Message-----
-> > > > > > From: Jonathan Cameron <jic23@kernel.org>
-> > > > > > Sent: Saturday, July 3, 2021 6:57 PM
-> > > > > > To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>
-> > > > > > Cc: linux-iio@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > > > > > devicetree@vger.kernel.org; robh+dt@kernel.org
-> > > > > > Subject: Re: [PATCH v4 1/2] iio: frequency: adrf6780: add
-> support
-> > > > for
-> > > > > > ADRF6780
-> > > > > >
-> > > > > > On Fri, 2 Jul 2021 14:12:38 +0300
-> > > > > > Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
-> > > > > >
-> > > > > > > The ADRF6780 is a silicon germanium (SiGe) design,
-> wideband,
-> > > > > > > microwave upconverter optimized for point to point
-> microwave
-> > > > > > > radio designs operating in the 5.9 GHz to 23.6 GHz
-> frequency
-> > > > > > > range.
-> > > > > > >
-> > > > > > > Datasheet:
-> > > > > > > https://www.analog.com/media/en/technical-
-> > > > documentation/data-
-> > > > > > sheets/ADRF6780.pdf
-> > > > > > >
-> > > > > > > Signed-off-by: Antoniu Miclaus
-> <antoniu.miclaus@analog.com>
-> > > > > >
-> > > > > > Hi Antoniu,
-> > > > > >
-> > > > > > Frequency drivers are fairly unusual so if you could add a
-> listing of
-> > > > > > the attributes in sysfs that would be great (it's nice practice
-> > > anyway
-> > > > but
-> > > > > > I don't insist on it!)
-> > > > > >
-> > > > > > Various fairly minor comments inline.
-> > > > > >
-> > > > > > Thanks,
-> > > > > >
-> > > > > > Jonathan
-> > > > > >
-> > > > > >
-> > > > > > > ---
-> > > > > > >  changes in v4:
-> > > > > > >   - change license to: GPL-2.0-only
-> > > > > > >  drivers/iio/frequency/Kconfig    |  13 +
-> > > > > > >  drivers/iio/frequency/Makefile   |   1 +
-> > > > > > >  drivers/iio/frequency/adrf6780.c | 498
-> > > > > > +++++++++++++++++++++++++++++++
-> > > > > > >  3 files changed, 512 insertions(+)
-> > > > > > >  create mode 100644 drivers/iio/frequency/adrf6780.c
-> > > > > > >
-> > > > > > > diff --git a/drivers/iio/frequency/Kconfig
-> > > > > > b/drivers/iio/frequency/Kconfig
-> > > > > > > index 240b81502512..fc9751c48f59 100644
-> > > > > > > --- a/drivers/iio/frequency/Kconfig
-> > > > > > > +++ b/drivers/iio/frequency/Kconfig
-> > > > > > > @@ -49,5 +49,18 @@ config ADF4371
-> > > > > > >
-> > > > > > >  	  To compile this driver as a module, choose M here:
-> > > the
-> > > > > > >  	  module will be called adf4371.
-> > > > > > > +
-> > > > > > > +config ADRF6780
-> > > > > > > +        tristate "Analog Devices ADRF6780 Microwave
-> > > Upconverter"
-> > > > > > > +        depends on SPI
-> > > > > > > +        depends on COMMON_CLK
-> > > > > > > +        depends on OF
-> > > > > >
-> > > > > > Why?  Pretty much everything seems to have defaults if not
-> > > > provided
-> > > > > > via OF.
-> > > > > > I've asked for the generic firmware functions anyway, so you
-> can
-> > > > drop
-> > > > > > this
-> > > > > > for that reason if nothing else!
-> > > > > >
-> > > > > > > +        help
-> > > > > > > +          Say yes here to build support for Analog Devices
-> > > ADRF6780
-> > > > > > > +          5.9 GHz to 23.6 GHz, Wideband, Microwave
-> Upconverter.
-> > > > > > > +
-> > > > > > > +          To compile this driver as a module, choose M here:
-> the
-> > > > > > > +          module will be called adrf6780.
-> > > > > > > +
-> > > > > > >  endmenu
-> > > > > > >  endmenu
-> > > > > > > diff --git a/drivers/iio/frequency/Makefile
-> > > > > > b/drivers/iio/frequency/Makefile
-> > > > > > > index 518b1e50caef..ae3136c79202 100644
-> > > > > > > --- a/drivers/iio/frequency/Makefile
-> > > > > > > +++ b/drivers/iio/frequency/Makefile
-> > > > > > > @@ -7,3 +7,4 @@
-> > > > > > >  obj-$(CONFIG_AD9523) +=3D ad9523.o
-> > > > > > >  obj-$(CONFIG_ADF4350) +=3D adf4350.o
-> > > > > > >  obj-$(CONFIG_ADF4371) +=3D adf4371.o
-> > > > > > > +obj-$(CONFIG_ADRF6780) +=3D adrf6780.o
-> > > > > > > diff --git a/drivers/iio/frequency/adrf6780.c
-> > > > > > b/drivers/iio/frequency/adrf6780.c
-> > > > > > > new file mode 100644
-> > > > > > > index 000000000000..472a66f90c7f
-> > > > > > > --- /dev/null
-> > > > > > > +++ b/drivers/iio/frequency/adrf6780.c
-> > > > > > > @@ -0,0 +1,498 @@
-> > > > > > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > > > > > +/*
-> > > > > > > + * ADRF6780 driver
-> > > > > > > + *
-> > > > > > > + * Copyright 2021 Analog Devices Inc.
-> > > > > > > + */
-> > > > > > > +
-> > > > > > > +#include <linux/bitfield.h>
-> > > > > > > +#include <linux/bits.h>
-> > > > > > > +#include <linux/clk.h>
-> > > > > > > +#include <linux/clkdev.h>
-> > > > > > > +#include <linux/clk-provider.h>
-> > > > > > > +#include <linux/delay.h>
-> > > > > > > +#include <linux/device.h>
-> > > > > > > +#include <linux/iio/iio.h>
-> > > > > > > +#include <linux/module.h>
-> > > > > >
-> > > > > > #include <linux/mod_devicetable.h>
-> > > > > >
-> > > > > > > +#include <linux/spi/spi.h>
-> > > > > > > +
-> > > > > > > +/* ADRF6780 Register Map */
-> > > > > > > +#define ADRF6780_REG_CONTROL
-> 	0x00
-> > > > > > > +#define ADRF6780_REG_ALARM_READBACK
-> 	0x01
-> > > > > > > +#define ADRF6780_REG_ALARM_MASKS		0x02
-> > > > > > > +#define ADRF6780_REG_ENABLE			0x03
-> > > > > > > +#define ADRF6780_REG_LINEARIZE
-> 	0x04
-> > > > > > > +#define ADRF6780_REG_LO_PATH
-> 	0x05
-> > > > > > > +#define ADRF6780_REG_ADC_CONTROL		0x06
-> > > > > > > +#define ADRF6780_REG_ADC_OUTPUT
-> > > 	0x0C
-> > > > > > > +
-> > > > > > > +/* ADRF6780_REG_CONTROL Map */
-> > > > > > > +#define ADRF6780_PARITY_EN_MSK
-> 	BIT(15)
-> > > > > > > +#define ADRF6780_PARITY_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_PARITY_EN_MSK, x)
-> > > > > > > +#define ADRF6780_SOFT_RESET_MSK
-> > > 	BIT(14)
-> > > > > > > +#define ADRF6780_SOFT_RESET(x)
-> > > > > > 	FIELD_PREP(ADRF6780_SOFT_RESET_MSK, x)
-> > > > > > > +#define ADRF6780_CHIP_ID_MSK
-> > > > 	GENMASK(11, 4)
-> > > > > > > +#define ADRF6780_CHIP_ID			0xA
-> > > > > > > +#define ADRF6780_CHIP_REVISION_MSK
-> > > > 	GENMASK(3, 0)
-> > > > > > > +#define ADRF6780_CHIP_REVISION(x)
-> > > > > > 	FIELD_PREP(ADRF6780_CHIP_REVISION_MSK, x)
-> > > > > > > +
-> > > > > > > +/* ADRF6780_REG_ALARM_READBACK Map */
-> > > > > > > +#define ADRF6780_PARITY_ERROR_MSK		BIT(15)
-> > > > > > > +#define ADRF6780_PARITY_ERROR(x)
-> > > > > > 	FIELD_PREP(ADRF6780_PARITY_ERROR_MSK, x)
-> > > > > > > +#define ADRF6780_TOO_FEW_ERRORS_MSK
-> 	BIT(14)
-> > > > > > > +#define ADRF6780_TOO_FEW_ERRORS(x)
-> > > > > > 	FIELD_PREP(ADRF6780_TOO_FEW_ERRORS_MSK, x)
-> > > > > > > +#define ADRF6780_TOO_MANY_ERRORS_MSK
-> > > 	BIT(13)
-> > > > > > > +#define ADRF6780_TOO_MANY_ERRORS(x)
-> > > > > > 	FIELD_PREP(ADRF6780_TOO_MANY_ERRORS_MSK, x)
-> > > > > > > +#define ADRF6780_ADDRESS_RANGE_ERROR_MSK
-> 	BIT(12)
-> > > > > > > +#define ADRF6780_ADDRESS_RANGE_ERROR(x)
-> > > > > >
-> 	FIELD_PREP(ADRF6780_ADDRESS_RANGE_ERROR_MSK, x)
-> > > > > > > +
-> > > > > > > +/* ADRF6780_REG_ENABLE Map */
-> > > > > > > +#define ADRF6780_VGA_BUFFER_EN_MSK
-> 	BIT(8)
-> > > > > > > +#define ADRF6780_VGA_BUFFER_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_VGA_BUFFER_EN_MSK, x)
-> > > > > > > +#define ADRF6780_DETECTOR_EN_MSK		BIT(7)
-> > > > > > > +#define ADRF6780_DETECTOR_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_DETECTOR_EN_MSK, x)
-> > > > > > > +#define ADRF6780_LO_BUFFER_EN_MSK		BIT(6)
-> > > > > > > +#define ADRF6780_LO_BUFFER_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_LO_BUFFER_EN_MSK, x)
-> > > > > > > +#define ADRF6780_IF_MODE_EN_MSK
-> > > 	BIT(5)
-> > > > > > > +#define ADRF6780_IF_MODE_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_IF_MODE_EN_MSK, x)
-> > > > > > > +#define ADRF6780_IQ_MODE_EN_MSK
-> > > > 	BIT(4)
-> > > > > > > +#define ADRF6780_IQ_MODE_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_IQ_MODE_EN_MSK, x)
-> > > > > > > +#define ADRF6780_LO_X2_EN_MSK
-> 	BIT(3)
-> > > > > > > +#define ADRF6780_LO_X2_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_LO_X2_EN_MSK, x)
-> > > > > > > +#define ADRF6780_LO_PPF_EN_MSK
-> 	BIT(2)
-> > > > > > > +#define ADRF6780_LO_PPF_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_LO_PPF_EN_MSK, x)
-> > > > > > > +#define ADRF6780_LO_EN_MSK			BIT(1)
-> > > > > > > +#define ADRF6780_LO_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_LO_EN_MSK, x)
-> > > > > > > +#define ADRF6780_UC_BIAS_EN_MSK
-> > > 	BIT(0)
-> > > > > > > +#define ADRF6780_UC_BIAS_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_UC_BIAS_EN_MSK, x)
-> > > > > > > +
-> > > > > > > +/* ADRF6780_REG_LINEARIZE Map */
-> > > > > > > +#define ADRF6780_RDAC_LINEARIZE_MSK
-> > > > 	GENMASK(7, 0)
-> > > > > > > +#define ADRF6780_RDAC_LINEARIZE(x)
-> > > > > > 	FIELD_PREP(ADRF6780_RDAC_LINEARIZE_MSK, x)
-> > > > > > > +
-> > > > > > > +/* ADRF6780_REG_LO_PATH Map */
-> > > > > > > +#define ADRF6780_LO_SIDEBAND_MSK		BIT(10)
-> > > > > > > +#define ADRF6780_LO_SIDEBAND(x)
-> > > > > > 	FIELD_PREP(ADRF6780_LO_SIDEBAND_MSK, x)
-> > > > > > > +#define ADRF6780_Q_PATH_PHASE_ACCURACY_MSK
-> > > > > > 	GENMASK(7, 4)
-> > > > > > > +#define ADRF6780_Q_PATH_PHASE_ACCURACY(x)
-> > > > > >
-> 	FIELD_PREP(ADRF6780_Q_PATH_PHASE_ACCURACY_MSK, x)
-> > > > > > > +#define ADRF6780_I_PATH_PHASE_ACCURACY_MSK
-> > > > > > 	GENMASK(3, 0)
-> > > > > > > +#define ADRF6780_I_PATH_PHASE_ACCURACY(x)
-> > > > > >
-> 	FIELD_PREP(ADRF6780_I_PATH_PHASE_ACCURACY_MSK, x)
-> > > > > > > +
-> > > > > > > +/* ADRF6780_REG_ADC_CONTROL Map */
-> > > > > > > +#define ADRF6780_VDET_OUTPUT_SELECT_MSK
-> > > > 	BIT(3)
-> > > > > > > +#define ADRF6780_VDET_OUTPUT_SELECT(x)
-> > > > > > 	FIELD_PREP(ADRF6780_VDET_OUTPUT_SELECT_MSK,
-> x)
-> > > > > > > +#define ADRF6780_ADC_START_MSK
-> 	BIT(2)
-> > > > > > > +#define ADRF6780_ADC_START(x)
-> > > > > > 	FIELD_PREP(ADRF6780_ADC_START_MSK, x)
-> > > > > > > +#define ADRF6780_ADC_EN_MSK
-> 	BIT(1)
-> > > > > > > +#define ADRF6780_ADC_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_ADC_EN_MSK, x)
-> > > > > > > +#define ADRF6780_ADC_CLOCK_EN_MSK
-> 	BIT(0)
-> > > > > > > +#define ADRF6780_ADC_CLOCK_EN(x)
-> > > > > > 	FIELD_PREP(ADRF6780_ADC_CLOCK_EN_MSK, x)
-> > > > > > > +
-> > > > > > > +/* ADRF6780_REG_ADC_OUTPUT Map */
-> > > > > > > +#define ADRF6780_ADC_STATUS_MSK
-> > > 	BIT(8)
-> > > > > > > +#define ADRF6780_ADC_STATUS(x)
-> > > > > > 	FIELD_PREP(ADRF6780_ADC_STATUS_MSK, x)
-> > > > > > > +#define ADRF6780_ADC_VALUE_MSK
-> > > > > > 	GENMASK(7, 0)
-> > > > > > > +#define ADRF6780_ADC_VALUE(x)
-> > > > > > 	FIELD_PREP(ADRF6780_ADC_VALUE_MSK, x)
-> > > > > >
-> > > > > > Not used.  In general, just use FIELD_PREP / FIELD_GET inline
-> > > > rather
-> > > > > > than having extra
-> > > > > > macros like these. That approach is simpler for reviewers to
-> > > follow.
-> > > > > >
-> > > > > > > +
-> > > > > > > +struct adrf6780_dev {
-> > > > > > > +	struct spi_device	*spi;
-> > > > > > > +	struct clk		*clkin;
-> > > > > > > +	/* Protect against concurrent accesses to the device */
-> > > > > > > +	struct mutex		lock;
-> > > > > > > +	bool			vga_buff_en;
-> > > > > > > +	bool			lo_buff_en;
-> > > > > > > +	bool			if_mode_en;
-> > > > > > > +	bool			iq_mode_en;
-> > > > > > > +	bool			lo_x2_en;
-> > > > > > > +	bool			lo_ppf_en;
-> > > > > > > +	bool			lo_en;
-> > > > > > > +	bool			uc_bias_en;
-> > > > > > > +	bool			lo_sideband;
-> > > > > > > +	bool			vdet_out_en;
-> > > > > > > +};
-> > > > > > > +
-> > > > > > > +static int adrf6780_spi_read(struct adrf6780_dev *dev,
-> > > > unsigned int
-> > > > > > reg,
-> > > > > > > +			      unsigned int *val)
-> > > > > > > +{
-> > > > > > > +	int ret;
-> > > > > > > +	unsigned int temp;
-> > > > > > > +	struct spi_transfer t =3D {0};
-> > > > > > > +	u8 data[3];
-> > > > > > > +
-> > > > > > > +	data[0] =3D 0x80 | (reg << 1);
-> > > > > > > +	data[1] =3D 0x0;
-> > > > > > > +	data[2] =3D 0x0;
-> > > > > > > +
-> > > > > > > +	t.rx_buf =3D &data[0];
-> > > > > > > +	t.tx_buf =3D &data[0];
-> > > > > > > +	t.len =3D 3;
-> > > > > > > +
-> > > > > > > +	ret =3D spi_sync_transfer(dev->spi, &t, 1);
-> > > > > >
-> > > > > > data needs to be dma safe.
-> > > > > >
-> > > > > > > +	if (ret < 0)
-> > > > > > > +		return ret;
-> > > > > > > +
-> > > > > > > +	temp =3D ((data[0] | 0x80 | (reg << 1)) << 16) |
-> > > > > > > +		(data[1] << 8) | data[2];
-> > > > > >
-> > > > > > Ouch. That's a bit nasty, but why are you writing the reg into
-> > > > > > it?  Looks like a get_unaligned_be24() >> 1 and a 16bit mask.
-> > > > > > (use GENMASK(15, 0) for that to make it apparent what is
-> > > > happening.
-> > > > > >
-> > > > > > > +
-> > > > > > > +	*val =3D (temp >> 1) & 0xFFFF;
-> > > > > > > +
-> > > > > > > +	return ret;
-> > > > > > > +}
-> > > > > > > +
-> > > > > > > +static int adrf6780_spi_write(struct adrf6780_dev *dev,
-> > > > > > > +				      unsigned int reg,
-> > > > > > > +				      unsigned int val)
-> > > > > > > +{
-> > > > > > > +	u8 data[3];
-> > > > > > > +
-> > > > > > > +	val =3D (val << 1);
-> > > > > > > +
-> > > > > > > +	data[0] =3D (reg << 1) | (val >> 16);
-> > > > > > > +	data[1] =3D val >> 8;
-> > > > > > > +	data[2] =3D val;
-> > > > > >
-> > > > > > An opportunity for
-> > > > > > put_unaligned_be24() with a value of (I think)
-> > > > > >
-> > > > > > (val << 1) | (reg << 17)
-> > > > > >
-> > > > > >
-> > > > > > > +
-> > > > > > > +	return spi_write(dev->spi, &data[0], 3);
-> > > > > >
-> > > > > > Needs a dma safe buffer, which basically means it can't be on
-> the
-> > > > > > stack.
-> > > > > > Lots of ways of handling that, but look for
-> __cacheline_aligned in
-> > > > IIO
-> > > > > > drivers
-> > > > > > to see the one we probably use mostly commonly in IIO
-> drivers.
-> > > > >
-> > > > > Hi Jonathan,
-> > > > >
-> > > > > This is something I wanted to ask for some time so I will take
-> the
-> > > > opportunity here :).
-> > > > > Is this something you prefer just not to risk at all and make it =
-an
-> > > hard
-> > > > requirement
-> > > > > (which is fair)? ...
-> > > >
-> > > > Yes, I think we need to keep this as a hard requirement.
-> > > > There are drivers out there which we missed this on in the past,
-> and
-> > > > I'm not necessarily
-> > > > going to take the time to go through them all as this can be hard
-> to
-> > > > spot, but lets not
-> > > > introduce any more potential problems.
-> > > >
-> > >
-> > > I see. That makes sense and it's fair :). The only annoying (but not
-> too
-> > > annoying :)) is that
-> > > making the data/buffer global forces you to use a lock in cases you
-> > > potentially would
-> > > not have too (just using local buffers). But that's life, better play
-> safe :)
-> > >
-> > > > >
-> > > > > I'm asking this because, tbh, I would be very surprised if any
-> spi/i2c
-> > > > controller out there
-> > > > > is using dma for a 3byte transfer. I guess the overhead of
-> setting it
-> > > up
-> > > > is probably not
-> > > > > worth it...
-> > > >
-> > > > There are (I believe) a few i2c and spi controllers out there that
-> don't
-> > > > do anything other
-> > > > than DMA.  Wolfram mentioned one of those in his talk on adding
-> > > > DMA support to i2c.
-> > >
-> > > Hmm, I see...
-> > >
-> > > > Also, the reference in the file below to the wonderful case of
-> USB to
-> > > > i2c bridges that always
-> > > > require DMA safe buffers.
-> > >
-> > > Indeed it does.
-> > >
+> > -----Original Message-----
+> > From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> > Sent: Monday, June 21, 2021 10:23 PM
+> > To: Thokala, Srikanth <srikanth.thokala@intel.com>; maz@kernel.org
+> > Cc: robh+dt@kernel.org; linux-pci@vger.kernel.org;
+> > devicetree@vger.kernel.org; andriy.shevchenko@linux.intel.com;
+> > mgross@linux.intel.com; Raja Subramanian, Lakshmi Bai
+> > <lakshmi.bai.raja.subramanian@intel.com>; Sangannavar,
+> Mallikarjunappa
+> > <mallikarjunappa.sangannavar@intel.com>; kw@linux.com
+> > Subject: Re: [PATCH v10 2/2] PCI: keembay: Add support for Intel Keem
+> Bay
 > >
-> > Hi Jonathan,
+> > [+Marc]
 > >
-> > Just for closure, I also realized that the pattern in IIO looks to be t=
-o
-> use
-> > DMA safe buffers only on the tx side. For instance in the IMU lib [1],
-> > only the tx buffer is safe (well, I think there's problem with this as
-> > I believe all spi transfers buffers should be properly aligned which
-> won't
-> > be the case in the IMU lib). Is there any reason for this? AFAICT, we
-> should
-> > also take care with rx buffers or am I missing something?
-> Ah.  So this is a fun corner :)
+> > On Mon, Jun 07, 2021 at 09:10:44PM +0530, srikanth.thokala@intel.com
+> > wrote:
+> > [...]
+> >
+> > > +static void keembay_pcie_msi_irq_handler(struct irq_desc *desc)
+> > > +{
+> > > +	struct keembay_pcie *pcie =3D irq_desc_get_handler_data(desc);
+> > > +	struct irq_chip *chip =3D irq_desc_get_chip(desc);
+> > > +	u32 val, mask, status;
+> > > +	struct pcie_port *pp;
+> > > +
+> > > +	chained_irq_enter(chip, desc);
+> > > +
+> > > +	pp =3D &pcie->pci.pp;
+> > > +	val =3D readl(pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
+> > > +	mask =3D readl(pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
+> > > +
+> > > +	status =3D val & mask;
+> > > +
+> > > +	if (status & MSI_CTRL_INT) {
+> > > +		dw_handle_msi_irq(pp);
+> > > +		writel(status, pcie->apb_base +
+> PCIE_REGS_INTERRUPT_STATUS);
+> > > +	}
+> > > +
+> > > +	chained_irq_exit(chip, desc);
+> > > +}
+> > > +
+> > > +static int keembay_pcie_setup_msi_irq(struct keembay_pcie *pcie)
+> > > +{
+> > > +	struct dw_pcie *pci =3D &pcie->pci;
+> > > +	struct device *dev =3D pci->dev;
+> > > +	struct platform_device *pdev =3D to_platform_device(dev);
+> > > +	int irq;
+> > > +
+> > > +	irq =3D platform_get_irq_byname(pdev, "pcie");
+> > > +	if (irq < 0)
+> > > +		return irq;
+> > > +
+> > > +	irq_set_chained_handler_and_data(irq,
+> keembay_pcie_msi_irq_handler,
+> > > +					 pcie);
+> > > +
+> >
+> > Ok this is yet another DWC MSI incantation and given that Marc worked
+> > hard consolidating them let's have a look before we merge it.
+> >
+> > IIUC - this IP relies on the DWC logic to handle MSIs + custom
+> > registers to detect a pending MSI IRQ because the logic in
+> > dw_chained_msi_irq() is *not* enough so you have to register
+> > a driver specific chained handler. This looks similar to the dra7xx
+> > driver MSI handling but I am not entirely convinced it is needed.
+> >
+> > I assume this code in keembay_pcie_msi_irq_handler() is required
+> > owing to additional IP logic on top of the standard DWC IP, in
+> > particular the PCIE_REGS_INTERRUPT_STATUS write to "clear" the
+> > IRQ.
+> >
+> > We need more insights before merging it so please provide them.
+> >
+> > pp =3D &pcie->pci.pp;
+> > val =3D readl(pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
+> > mask =3D readl(pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
+> >
+> > status =3D val & mask;
+> >
+> > if (status & MSI_CTRL_INT) {
+> > 	dw_handle_msi_irq(pp);
+> > 	writel(status, pcie->apb_base + PCIE_REGS_INTERRUPT_STATUS);
+> > }
 >=20
-> The reason cache line corruption can occur is as follows.
-> 1. DMA starts, typically involving some tx and rx usage by the device.
->    This flushes the CPU caches for the relevant lines.
-> ... whilst DMA is not completed ...
-> 2. The host software pulls the line into it's cache and updates
-> something (say a flag
->    elsewhere in that cacheline).
-> 3. Cacheline is evicted from the CPU cache causing a write back.
-> 4. Device then writes back the stuff it had cached locally which is
-> allowed to include data
->    it wasn't accessing in the same cache line.  Boom, it just overwrote
-> the flag we updated
->    with an older value.  Basically this is a performance optimization /
-> simplification
->    the DMA engine is allowed to make.  Note I believe they are
-> 'technically' allowed to
->    write back to the RX buffers as well, though not sure what devices do
-> this for i2c/spi.
-
-Yes, got it...
-
-> So, why do we only need to force one of the buffers to the start of a
-> cacheline?
+> Yes, your understanding is correct.
 >=20
-> What we are actually doing, is not keeping the buffer in it's own
-> cacheline, but rather
-> making sure nothing else is in the same cacheline (so there is no race
-> as above).
-> (it's easier to move the buffer, than to ensure everything else is
-> moved out of the cache
-> line it happens to be in!)
-> There is a safe assumption here that the DMA device can't corrupt it's
-> own data as that
-> would be crazy :)
-
-My confusion here was looking at this [1] and somehow thinking that
-DMA mappings require that both 'tx_buf' and 'rx_buf' to be on their own
-cache lines... But I guess that since both buffers are guaranteed to be alo=
-ne
-(in our case) in their cache line (or span across multiple lines) we are fi=
-ne... Though
-I didn't really looked into the details on the DMA subsystem... I'm just aw=
-are that
-for instance 'dma_map_single()' states that the addr to map must begin on a=
- cache
-line boundary.
-
-> Hence, pushing the first buffer to the start of a line, allows the second
-> one to be
-> after it in the same line (it's not a problem if it takes multiple lines)
+> Additional registers PCIE_REGS_INTERRUPT_ENABLE/_STATUS are provided
+> by IP to control the interrupts.
 >=20
-> One more subtlety is why we can be sure nothing else ends up after
-> the buffers.
-> That's by construction.  The allocations IIO does for those iio_priv
-> structures should
-> always get padded out to at least the end of the cacheline.
-> (IIRC, not looked at this code for many years!)
+> To receive MSI interrupts, SW must enable bit '8' of _ENABLE register.
+> And once a MSI is raised by the End point, bit '8' of _STATUS register
+> will be set and it needs to be cleared after servicing the interrupt.
+
+Hope I have provided all the necessary information.
+Kindly feedback.
+
+Thanks!
+Srikanth
+
 >=20
-
-Looking at [2], I think that holds correct as long as private structures ha=
-ve
-their buffer properly aligned in the end of the struct. Hence, the natural =
-padding
-of the structure ensures us that nothing else gets into the same cache
-line as our buffer.
-
-Which means that, if I'm not missing nothing obvious, all the adis IMUS are=
- not
-complying with this [3]... I think the 'struct adis adis' field has to be i=
-n the end of the
-adis16480 structure so that our tx and rx buffers in the adis struct are on=
- their own
-line...
-
-Thanks for your inputs!
-- Nuno S=E1
-
-[1]: https://elixir.bootlin.com/linux/latest/source/drivers/spi/spi.c#L976
-[2]: https://elixir.bootlin.com/linux/v5.13/source/drivers/iio/industrialio=
--core.c#L1605
-[3]: https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/adis164=
-80.c#L159
+> Thanks!
+> Srikanth
+>=20
+> >
+> > Thanks,
+> > Lorenzo
+> >
+> > > +static void keembay_pcie_ep_init(struct dw_pcie_ep *ep)
+> > > +{
+> > > +	struct dw_pcie *pci =3D to_dw_pcie_from_ep(ep);
+> > > +	struct keembay_pcie *pcie =3D dev_get_drvdata(pci->dev);
+> > > +
+> > > +	writel(EDMA_INT_EN, pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
+> > > +}
+> > > +
+> > > +static int keembay_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8
+> func_no,
+> > > +				     enum pci_epc_irq_type type,
+> > > +				     u16 interrupt_num)
+> > > +{
+> > > +	struct dw_pcie *pci =3D to_dw_pcie_from_ep(ep);
+> > > +
+> > > +	switch (type) {
+> > > +	case PCI_EPC_IRQ_LEGACY:
+> > > +		/* Legacy interrupts are not supported in Keem Bay */
+> > > +		dev_err(pci->dev, "Legacy IRQ is not supported\n");
+> > > +		return -EINVAL;
+> > > +	case PCI_EPC_IRQ_MSI:
+> > > +		return dw_pcie_ep_raise_msi_irq(ep, func_no,
+> interrupt_num);
+> > > +	case PCI_EPC_IRQ_MSIX:
+> > > +		return dw_pcie_ep_raise_msix_irq(ep, func_no,
+> interrupt_num);
+> > > +	default:
+> > > +		dev_err(pci->dev, "Unknown IRQ type %d\n", type);
+> > > +		return -EINVAL;
+> > > +	}
+> > > +}
+> > > +
+> > > +static const struct pci_epc_features keembay_pcie_epc_features =3D {
+> > > +	.linkup_notifier	=3D false,
+> > > +	.msi_capable		=3D true,
+> > > +	.msix_capable		=3D true,
+> > > +	.reserved_bar		=3D BIT(BAR_1) | BIT(BAR_3) | BIT(BAR_5),
+> > > +	.bar_fixed_64bit	=3D BIT(BAR_0) | BIT(BAR_2) | BIT(BAR_4),
+> > > +	.align			=3D SZ_16K,
+> > > +};
+> > > +
+> > > +static const struct pci_epc_features *
+> > > +keembay_pcie_get_features(struct dw_pcie_ep *ep)
+> > > +{
+> > > +	return &keembay_pcie_epc_features;
+> > > +}
+> > > +
+> > > +static const struct dw_pcie_ep_ops keembay_pcie_ep_ops =3D {
+> > > +	.ep_init	=3D keembay_pcie_ep_init,
+> > > +	.raise_irq	=3D keembay_pcie_ep_raise_irq,
+> > > +	.get_features	=3D keembay_pcie_get_features,
+> > > +};
+> > > +
+> > > +static const struct dw_pcie_host_ops keembay_pcie_host_ops =3D {
+> > > +};
+> > > +
+> > > +static int keembay_pcie_add_pcie_port(struct keembay_pcie *pcie,
+> > > +				      struct platform_device *pdev)
+> > > +{
+> > > +	struct dw_pcie *pci =3D &pcie->pci;
+> > > +	struct pcie_port *pp =3D &pci->pp;
+> > > +	struct device *dev =3D &pdev->dev;
+> > > +	u32 val;
+> > > +	int ret;
+> > > +
+> > > +	pp->ops =3D &keembay_pcie_host_ops;
+> > > +	pp->msi_irq =3D -ENODEV;
+> > > +
+> > > +	ret =3D keembay_pcie_setup_msi_irq(pcie);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	pcie->reset =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> > > +	if (IS_ERR(pcie->reset))
+> > > +		return PTR_ERR(pcie->reset);
+> > > +
+> > > +	ret =3D keembay_pcie_probe_clocks(pcie);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	val =3D readl(pcie->apb_base + PCIE_REGS_PCIE_PHY_CNTL);
+> > > +	val |=3D PHY0_SRAM_BYPASS;
+> > > +	writel(val, pcie->apb_base + PCIE_REGS_PCIE_PHY_CNTL);
+> > > +
+> > > +	writel(PCIE_DEVICE_TYPE, pcie->apb_base + PCIE_REGS_PCIE_CFG);
+> > > +
+> > > +	ret =3D keembay_pcie_pll_init(pcie);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	val =3D readl(pcie->apb_base + PCIE_REGS_PCIE_CFG);
+> > > +	writel(val | PCIE_RSTN, pcie->apb_base + PCIE_REGS_PCIE_CFG);
+> > > +	keembay_ep_reset_deassert(pcie);
+> > > +
+> > > +	ret =3D dw_pcie_host_init(pp);
+> > > +	if (ret) {
+> > > +		keembay_ep_reset_assert(pcie);
+> > > +		dev_err(dev, "Failed to initialize host: %d\n", ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	val =3D readl(pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
+> > > +	if (IS_ENABLED(CONFIG_PCI_MSI))
+> > > +		val |=3D MSI_CTRL_INT_EN;
+> > > +	writel(val, pcie->apb_base + PCIE_REGS_INTERRUPT_ENABLE);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int keembay_pcie_probe(struct platform_device *pdev)
+> > > +{
+> > > +	const struct keembay_pcie_of_data *data;
+> > > +	struct device *dev =3D &pdev->dev;
+> > > +	struct keembay_pcie *pcie;
+> > > +	struct dw_pcie *pci;
+> > > +	enum dw_pcie_device_mode mode;
+> > > +
+> > > +	data =3D device_get_match_data(dev);
+> > > +	if (!data)
+> > > +		return -ENODEV;
+> > > +
+> > > +	mode =3D (enum dw_pcie_device_mode)data->mode;
+> > > +
+> > > +	pcie =3D devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+> > > +	if (!pcie)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	pci =3D &pcie->pci;
+> > > +	pci->dev =3D dev;
+> > > +	pci->ops =3D &keembay_pcie_ops;
+> > > +
+> > > +	pcie->mode =3D mode;
+> > > +
+> > > +	pcie->apb_base =3D devm_platform_ioremap_resource_byname(pdev,
+> "apb");
+> > > +	if (IS_ERR(pcie->apb_base))
+> > > +		return PTR_ERR(pcie->apb_base);
+> > > +
+> > > +	platform_set_drvdata(pdev, pcie);
+> > > +
+> > > +	switch (pcie->mode) {
+> > > +	case DW_PCIE_RC_TYPE:
+> > > +		if (!IS_ENABLED(CONFIG_PCIE_KEEMBAY_HOST))
+> > > +			return -ENODEV;
+> > > +
+> > > +		return keembay_pcie_add_pcie_port(pcie, pdev);
+> > > +	case DW_PCIE_EP_TYPE:
+> > > +		if (!IS_ENABLED(CONFIG_PCIE_KEEMBAY_EP))
+> > > +			return -ENODEV;
+> > > +
+> > > +		pci->ep.ops =3D &keembay_pcie_ep_ops;
+> > > +		return dw_pcie_ep_init(&pci->ep);
+> > > +	default:
+> > > +		dev_err(dev, "Invalid device type %d\n", pcie->mode);
+> > > +		return -ENODEV;
+> > > +	}
+> > > +}
+> > > +
+> > > +static const struct keembay_pcie_of_data keembay_pcie_rc_of_data =3D
+> {
+> > > +	.mode =3D DW_PCIE_RC_TYPE,
+> > > +};
+> > > +
+> > > +static const struct keembay_pcie_of_data keembay_pcie_ep_of_data =3D
+> {
+> > > +	.mode =3D DW_PCIE_EP_TYPE,
+> > > +};
+> > > +
+> > > +static const struct of_device_id keembay_pcie_of_match[] =3D {
+> > > +	{
+> > > +		.compatible =3D "intel,keembay-pcie",
+> > > +		.data =3D &keembay_pcie_rc_of_data,
+> > > +	},
+> > > +	{
+> > > +		.compatible =3D "intel,keembay-pcie-ep",
+> > > +		.data =3D &keembay_pcie_ep_of_data,
+> > > +	},
+> > > +	{}
+> > > +};
+> > > +
+> > > +static struct platform_driver keembay_pcie_driver =3D {
+> > > +	.driver =3D {
+> > > +		.name =3D "keembay-pcie",
+> > > +		.of_match_table =3D keembay_pcie_of_match,
+> > > +		.suppress_bind_attrs =3D true,
+> > > +	},
+> > > +	.probe  =3D keembay_pcie_probe,
+> > > +};
+> > > +builtin_platform_driver(keembay_pcie_driver);
+> > > --
+> > > 2.17.1
+> > >
