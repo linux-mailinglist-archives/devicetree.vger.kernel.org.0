@@ -2,127 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BE5F3BED5D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 19:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59A823BED74
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 19:52:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230106AbhGGRur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jul 2021 13:50:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49834 "EHLO mail.kernel.org"
+        id S230029AbhGGRyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jul 2021 13:54:53 -0400
+Received: from foss.arm.com ([217.140.110.172]:41936 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229956AbhGGRur (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Jul 2021 13:50:47 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 61B1561CC8;
-        Wed,  7 Jul 2021 17:48:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625680086;
-        bh=NwW9hPZbo6WiaVKQyVLBNly7QG86j34upQqrPkM7lOI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=N2Sijyod0DuXB32lTjytbHlzdmAzBRYmg1GW74O/g7kSdvSttqoNLZtfsEi833iiy
-         V+6TOPW7dFk98dW8LTT5NYlGOVb0yhtM5K1A5huUc2OlYOCjC/tyHaz1fGpRTYoBjO
-         62GdMD1lXp0mWtj9E5El1UqQz4dgPe18kgD3QVZf/zVPc7pziiNlb7+vQpKNbfi4Ph
-         Le7PT52I+XonZ0/aNiYJFWO5iZygX/HFQYcLpNtaxgFKDyZtfAq289Gyq6Xpalr6Jz
-         ps0qJKYaCXB+RnQfQ8pzdjkO5ZFEnR580PRR0D5HUl8tUE9crnwLC1FO0RAT2VzRty
-         EEF/BNXp3O3PQ==
-Date:   Wed, 7 Jul 2021 18:47:35 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jon Lin <jon.lin@rock-chips.com>
-Cc:     linux-spi@vger.kernel.org, robh+dt@kernel.org, heiko@sntech.de,
-        jbx6244@gmail.com, hjc@rock-chips.com, yifeng.zhao@rock-chips.com,
-        sugar.zhang@rock-chips.com, linux-rockchip@lists.infradead.org,
-        linux-mtd@lists.infradead.org, p.yadav@ti.com,
-        macroalpha82@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [RFC PATCH v11 02/10] spi: rockchip-sfc: add rockchip serial
- flash controller
-Message-ID: <20210707174735.GL4394@sirena.org.uk>
-References: <20210707090810.5717-1-jon.lin@rock-chips.com>
- <20210707090810.5717-3-jon.lin@rock-chips.com>
+        id S230000AbhGGRyx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Jul 2021 13:54:53 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AA4571042;
+        Wed,  7 Jul 2021 10:52:11 -0700 (PDT)
+Received: from bogus (unknown [10.57.78.75])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6095D3F694;
+        Wed,  7 Jul 2021 10:52:08 -0700 (PDT)
+Date:   Wed, 7 Jul 2021 18:51:23 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Sumit Garg <sumit.garg@linaro.org>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        OP-TEE TrustedFirmware <op-tee@lists.trustedfirmware.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jerome Forissier <jerome@forissier.org>,
+        Etienne Carriere <etienne.carriere@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Ard Biesheuvel <ardb@kernel.org>
+Subject: Re: [PATCH v2 0/7] Asynchronous notifications from secure world
+Message-ID: <20210707175123.xdotr3lsy3e32plm@bogus>
+References: <20210616103649.2662395-1-jens.wiklander@linaro.org>
+ <CAFA6WYMrxNfR09doWQgYKCQSYKyUMVKqSTPuRYn=-nueY9pSvQ@mail.gmail.com>
+ <CAHUa44EeAENHv+CxtXeLuqX_NGWW6w-6P8D-BLsb69+XmGaqEQ@mail.gmail.com>
+ <CAFA6WYMSAM2MDOXnhjuZFov3BtF8-nihZRUpR8ciUWsL4_nCWA@mail.gmail.com>
+ <87czrv91b2.wl-maz@kernel.org>
+ <CAFA6WYPVA5yP3trumfz=_oXzxKtfobQXRzDwZ1og8UXwaA1rkQ@mail.gmail.com>
+ <87a6mz8vaj.wl-maz@kernel.org>
+ <CAFA6WYMsjxYBw_0xzWMtHf=LtXzG+D113WSFuHCR7KhC1RuWYg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="DheUW4aQn8WJk6WR"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210707090810.5717-3-jon.lin@rock-chips.com>
-X-Cookie: I will never lie to you.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAFA6WYMsjxYBw_0xzWMtHf=LtXzG+D113WSFuHCR7KhC1RuWYg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sumit,
 
---DheUW4aQn8WJk6WR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I was holding off you reply as I didn't have all the background on this.
+Achin did mention that this is preparatory work for FFA notifications.
+I did mention to him that this is more than that, it is custom extension
+to address what FF-A notification is trying to in standard way.
 
-On Wed, Jul 07, 2021 at 05:08:02PM +0800, Jon Lin wrote:
+I share same opinion as Marc Z.
 
-This looks pretty nice, a few small issues below but nothing major:
+On Wed, Jul 07, 2021 at 11:22:23AM +0530, Sumit Garg wrote:
+> On Tue, 6 Jul 2021 at 18:16, Marc Zyngier <maz@kernel.org> wrote:
 
-> +/* Maximum clock values from datasheet suggest keeping clock value under
-> + * 150MHz. No minimum or average value is suggested, but the U-boot BSP driver
-> + * has a minimum of 10MHz and a default of 80MHz which seems reasonable.
-> + */
+[...]
 
-It's OK to just not specify a minimum if the hardware doesn't have one,
-and AFAICT the driver doesn't actually use the default speed (the SPI
-stack will generally try to go as fast as possible by default, the board
-can configure the maximum speed and should be doing that if there's
-issues).
+> >
+> > I don't care about OP-TEE. If you are proposing a contract between S
+> > and NS, it has to be TEE and OS independent. That's how the
+> > architecture works.
+> >
+> 
+> Agree, here we are not proposing a common contract among the S and NS
+> world that every TEE (based on Arm TrustZone) will use to communicate
+> with REE (Linux in our case) but rather an OP-TEE specific
+> notifications feature that is built on top of OP-TEE specific ABIs.
+> 
+> And I can see your arguments coming from an FFA perspective but there
+> are platforms like the ones based on Armv7 which don't support FFA
+> ABI. Maybe Jens can elaborate how this feature will fit in when FFA
+> comes into picture?
+>
 
-> +static irqreturn_t rockchip_sfc_irq_handler(int irq, void *dev_id)
-> +{
-> +	struct rockchip_sfc *sfc = dev_id;
-> +	u32 reg;
-> +
-> +	reg = readl(sfc->regbase + SFC_RISR);
-> +
-> +	/* Clear interrupt */
-> +	writel_relaxed(reg, sfc->regbase + SFC_ICLR);
-> +
-> +	if (reg & SFC_RISR_DMA)
-> +		complete(&sfc->cp);
-> +
-> +	return IRQ_HANDLED;
-> +}
+I can understand that but won't those platforms add the support both in
+the kernel(current series) and secure world to address notifications.
+While you could argue that it is small extension to what is already present
+but I prefer they support FF-A is they need such a support instead of adding
+custom mechanisms. It is hard to maintain and each vendor will deviate
+from this custom mechanism and soon we will have bunch of them to handle.
 
-This will unconditionally ack any interrupt that is flagged, and doesn't
-verify that there were any at all.  This won't work if the interrupt
-ever gets shared and will mean that if something goes wrong and an
-unexpected interrupt happens we'll at best just ignore it, at worst
-we'll end up with a screaming interrupt constantly firing.  It'd be
-better to at least return IRQ_NONE if we got anything unexpected (I
-guess just if SFC_RISR_DMA isn't set, assuming there's nothing else
-we're intentionally ignoring).
+> > > >
+> > > > In general, cross world SGIs are a really bad idea. Yes, some people
+> > > > like them. I still think they are misguided, and I don't intend to
+> > > > provide a generic request interface for this.
+> > >
+> > > Okay, as I mentioned above having it specific to OP-TEE driver
+> > > requesting secure world donated SGI would work for you?
+> >
+> > No. I want a proper architecture between secure and non-secure that
+> > explain how messages are conveyed between the two world, how
+> > signalling is done, how CPU PM is handled, how targeting is
+> > negotiated. And at the end of the day, this is starting to look a lot
+> > like FFA.
+> 
+> AFAIK when FFA comes in picture than OP-TEE will use the standard
+> interface provided by FFA ABIs but if FFA isn't supported by a
+> particular platform (eg. based on Armv7) then we need to rely on TEE
+> specific ABI like what OP-TEE currently provides:
+>
 
-> +	master->mode_bits = SPI_TX_QUAD | SPI_TX_DUAL | SPI_RX_QUAD | SPI_RX_DUAL;
+Who are asking for this ? Can we ask them to migrate to FF-A if this
+(new) notification support is needed on their platforms ? It is help to
+know the requesters so that they can be included in FF-A spec discussions.
 
-Should it also do SPI_HALF_DUPLEX?
+> > that. You'll even get to keep the pieces once it breaks. But if you
+> > are going to invent a new universal way of signalling things across
+> > world, you'd better start specifying things the right way, taking into
+> > considerations systems where the interrupt controller doesn't allow
+> > cross-world signalling.
+> 
+> As I mentioned above, this patch-set adds an OP-TEE specific
+> notifications feature. AFAIK, the interrupt controllers supported by
+> OP-TEE (GICv2, GICv3 etc.) don't restrict cross-world signaling.
+> 
+> So given the explanation above, if you still think requesting an SGI
+> as an IRQ by drivers isn't allowed then I am fine with the approach
+> that Jens has already implemented in this patch-set to use platform
+> specific SPI.
+>
 
-> +	ret = devm_request_irq(dev, ret, rockchip_sfc_irq_handler,
-> +			       0, pdev->name, sfc);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to request irq\n");
-> +
-> +		return ret;
-> +	}
+And I assume these platforms in question have SPI to spare and way to
+trigger it from secure world ?
 
-Should we have a call to _irq_mask() before this to make sure that the
-mask is set up correctly in the hardware, just in case?
-
---DheUW4aQn8WJk6WR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDl6LYACgkQJNaLcl1U
-h9CYCgf/edFgXLelZ8xTZPdjXTqht/bm/19/3/7E8zPciE7D4Rg52/Q7aSkg8FQT
-jeygndJe7ci6hOFa7wB4e7JEbeG68kEMKxMb0wum83t5yxaN3P3eorLQY38uOH6j
-NrvCs4tfsdJZGUPqvCZrCB/LC3JrvWv/Mqt8X0QijX0gMxfbERz05TEgtkDiHnrs
-iT+0XOmMrLMRNZUhwvT7kc99SuUi3f+XZ8O1PiDk5mYQmdhU2rl73p4XdS5xTixJ
-lzkaj7IPNZ4TLqWKYvgZBr5qB6LPDdz+xO8aWv43Tfzi23IzcbBH5WEseHHmHd8u
-fwzwyxWgxo6Wp9b+qiwS/MKug2MEow==
-=oXL8
------END PGP SIGNATURE-----
-
---DheUW4aQn8WJk6WR--
+-- 
+Regards,
+Sudeep
