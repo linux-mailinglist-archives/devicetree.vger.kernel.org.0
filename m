@@ -2,83 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 535613BED7D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 19:53:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7A3C3BED8D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 19:55:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231163AbhGGRzs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jul 2021 13:55:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52120 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230196AbhGGRzs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Jul 2021 13:55:48 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 60D5D61CCA;
-        Wed,  7 Jul 2021 17:53:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625680387;
-        bh=PxwpDaFOL7YNqHER3nHFJ1/ExlvewUZXOswIKlIEtmI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NvktAldGamqE+b2+uHaD0HGFyuXqh9AO42yZopm5CsbVJNnMQRuNp9LiPkWWZEU+G
-         ukKVe4hpQXPX7OqR58VnB7EptCg8vVgz0SN53qneztValrOg7ID7qxtggFkU6eviVz
-         hv+b6HzKo05TUWsEskGq4ydwh2OWNcge8otwfGlNzWWMw+dMAi8TC1WF4UZKemfYPn
-         45OMmGzfkB17940sgOsVlSXN0jEkhZqunfdFevbAyk5qnuqgbtD+Awze5N6oZm9ClR
-         4OeeaXQ25UFxVCvMaAfdJYQ8kXUFabdX5gucaQBC5iL28uFXGZPjn3C+gHBzCImJCu
-         xFpEfoOua4LvQ==
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] regulator: fixed: Mark regulator-fixed-domain as deprecated
-Date:   Wed,  7 Jul 2021 18:52:32 +0100
-Message-Id: <162567917757.18771.6197916653765804450.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20210705133441.11344-1-ulf.hansson@linaro.org>
-References: <20210705133441.11344-1-ulf.hansson@linaro.org>
+        id S231263AbhGGR5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jul 2021 13:57:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58654 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230164AbhGGR5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jul 2021 13:57:51 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DD18C061574;
+        Wed,  7 Jul 2021 10:55:10 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id r26so6126098lfp.2;
+        Wed, 07 Jul 2021 10:55:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=zQxdG9I9Woa7S81uA0jzyR2yog0q49/Cb6/kJl+fdKw=;
+        b=DPrgZiDxLxxXsaeiP6iCEpP5oqHrr32wA0cgJIU4nTet5CoaGBrMeLBSTguCnSMbsf
+         gZSBa6ckD574dcRSLXAaPOlgMNbtP5ibJLmgmaQs3IZbdYdaZNtkt8ORDtjofcwHrpeo
+         X0pDJA+cYDO1swW6g2Q2kqyKOTO8fpwcrGsKNfFX/veaD7X5aR4tyN0UwJxW0cVdsaAG
+         wlWHp1S8Dy3fnognXmJmrEUuiv9qpsJ8J1pNRtCaj4AIEeFfDE7oFqSg21b7NKdpOwWN
+         XML0iqOjspip/aEkvl7rbFttEMF9B2+b9l4hm+y9A0hch9vub5tdcE9jmGOqsqC3kS/C
+         qxzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zQxdG9I9Woa7S81uA0jzyR2yog0q49/Cb6/kJl+fdKw=;
+        b=SIllCcHpYNOh3tkuYWBZBkuoWgBvxQZyTM2WPLeqas7xaY6r6Jp5pGNpHjzcS5ydhu
+         1e8Y5NfrdVDDiVWYJ7p0GMJDK97/W7HRqwFJOREKVpxmoTwq1c9SsaPHEDgVZMXsr6CE
+         fG861IzeMxIM+IaH7ReKg3ug4Klma3aBLY9IHyZac/xYXZqC6HZtvNCfryot6a0j7Tzv
+         OvmRzr10mxy5M9OL0zE76g7clMAy1vj6WA1L1wMr2zqf2oQR2pzLo6sZcga2UwVQE778
+         uX2fnNaTvf827Hh96ekki0+34M8j592Gu3GPh2QCbN64v9L/yooG8waCsWW2n+pkY4dC
+         xWEw==
+X-Gm-Message-State: AOAM532YfHHC6+Sac5KqK109SIuzShlDaMd+n6jYbDyq0oPLTz7aiHf9
+        wJUpWrf6n2PKp92W+yI2zq8u6Zs0akg=
+X-Google-Smtp-Source: ABdhPJwyOvh7JP+XAqY+4wG4EDAsP16uap1AjswsK9fEtNc3A6WHJwpiIM6SORNrG7sPVt+w1f6m0Q==
+X-Received: by 2002:ac2:5189:: with SMTP id u9mr4551247lfi.161.1625680508344;
+        Wed, 07 Jul 2021 10:55:08 -0700 (PDT)
+Received: from [192.168.1.102] ([178.176.76.61])
+        by smtp.gmail.com with ESMTPSA id i6sm1761452lfe.164.2021.07.07.10.55.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jul 2021 10:55:08 -0700 (PDT)
+Subject: Re: [PATCH v2 4/9] clocksource/drivers/pistachio: Make it seletable
+ for MIPS
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>, linux-mips@vger.kernel.org
+Cc:     tsbogend@alpha.franken.de, mturquette@baylibre.com,
+        daniel.lezcano@linaro.org, linus.walleij@linaro.org,
+        vkoul@kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20210707031552.20166-1-jiaxun.yang@flygoat.com>
+ <20210707031552.20166-5-jiaxun.yang@flygoat.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <99803248-0a48-c4a8-e278-47e0794dbc48@gmail.com>
+Date:   Wed, 7 Jul 2021 20:55:06 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210707031552.20166-5-jiaxun.yang@flygoat.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 5 Jul 2021 15:34:41 +0200, Ulf Hansson wrote:
-> A power domain should not be modelled as a regulator, not even for the
-> simplest case as recent discussions have concluded around the existing
-> regulator-fixed-domain DT binding.
-> 
-> Fortunately, there is only one user of the binding that was recently added.
-> Therefore, let's mark the binding as deprecated to prevent it from being
-> further used.
+Hello!
 
-Applied to
+   "Selectable" in the subject.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+On 7/7/21 6:15 AM, Jiaxun Yang wrote:
 
-Thanks!
+> So it will be avilable for generic MIPS kenrel.
 
-[1/1] regulator: fixed: Mark regulator-fixed-domain as deprecated
-      commit: c9cd752d8f3a6b13afc5332a60bea3e68f141738
+   "Kernel" here. :-)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+[...]
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+MBR, Sergei
