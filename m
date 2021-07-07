@@ -2,185 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A36043BE793
-	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 14:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 377803BE796
+	for <lists+devicetree@lfdr.de>; Wed,  7 Jul 2021 14:05:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231517AbhGGMGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Jul 2021 08:06:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35958 "EHLO
+        id S231454AbhGGMHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Jul 2021 08:07:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbhGGMGU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jul 2021 08:06:20 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47E77C06175F;
-        Wed,  7 Jul 2021 05:03:40 -0700 (PDT)
-Received: from localhost.localdomain (unknown [IPv6:2a01:e0a:4cb:a870:c375:7561:3857:648])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 3C6231F43284;
-        Wed,  7 Jul 2021 13:03:38 +0100 (BST)
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     hjc@rock-chips.com, heiko@sntech.de, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org, algea.cao@rock-chips.com,
-        andy.yan@rock-chips.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH v2 2/2] drm/rockchip: dw_hdmi: add rk3568 support
-Date:   Wed,  7 Jul 2021 14:03:23 +0200
-Message-Id: <20210707120323.401785-3-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20210707120323.401785-1-benjamin.gaignard@collabora.com>
-References: <20210707120323.401785-1-benjamin.gaignard@collabora.com>
+        with ESMTP id S231359AbhGGMHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Jul 2021 08:07:50 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FDEAC061574
+        for <devicetree@vger.kernel.org>; Wed,  7 Jul 2021 05:05:08 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id r26so3674370lfp.2
+        for <devicetree@vger.kernel.org>; Wed, 07 Jul 2021 05:05:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=eg2LEXRfsjpWdaZzECnIB/6Nl4BEOgeKXpSvcx4qZO8=;
+        b=SHnTV6xabCMIr1yCB0cMKNO2uXFcPs8HGQrOmqsiTgPFRte15SkHQmQZLiXcc5cyq/
+         vzhzNKPLYT+s/p+2zqv68Ot54ILPli87F9UwkAzMLIGEioYTvVhBRrsGDh8EqL1CoL5n
+         yoonv/8+lKdEGeZcPogyKR5ab3Ddm0HfW0L1q3pSwOQ2gzV59MfS5jY9ORY944sgEyxo
+         i+se5VvKzTlpmPwssUDPDvw+lpnnOv7+63YcDW1nvkvv1jqDHDV/JwGqgoCuWClLR8M6
+         EuDghvpsvKICuuhvExn2wIwW2GsezLg+07Mfyo9gJfk1TOelhGFyaXVb+I8zaVt8Sfan
+         OgOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=eg2LEXRfsjpWdaZzECnIB/6Nl4BEOgeKXpSvcx4qZO8=;
+        b=ELLv/Q1lCRa9KRCLYfhWSrcEkMdXC0qlmb1vA7bQcwFyM+K5M9nRIDNezJDuxOo9uE
+         7cDs6zPVJvh4o0ove4u0Q3s3kFbEVAsnY9HkmidNlM/TPxLEAnJ033oFu9lb8IqDZuFf
+         3BHdvLOzO7Gx3MZ4rlyC279vYRbGG8whOeKPskbep27KFQvO6NhGdPdDAKkw+O45OoWp
+         vW/1t8TfswF6Ivd4644DT/MqgwhEGfdK4i0hh/jPEz8hFzHlceNdyJ1HL6Wbc9BCsgaZ
+         A9J3dZPQsI63wVIJd++C2Pm3b9a7TRqN1SHBsJkXU2Ye4sacD3KKLgL/PjfqWyUjHSjF
+         y12A==
+X-Gm-Message-State: AOAM532pRf0a/Q3gfSxaFS+HhuClYzbQPq/3flru0vGEC16hN+lWKEIw
+        eDNnT1kgTuUhyNGq3E6UGM90v3DXL7eI5/3XE8I=
+X-Google-Smtp-Source: ABdhPJwRQ9aRg4eK+GXc38kHaMWwAuQcZkbXW98A6o2I5cEnisd/oNi6csD+7dMjMHzJqEGA3aN6z45EMcOXoop/OK0=
+X-Received: by 2002:a19:6d06:: with SMTP id i6mr12256731lfc.295.1625659507001;
+ Wed, 07 Jul 2021 05:05:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210707105309.1693138-1-u.kleine-koenig@pengutronix.de> <800ac3ca-e3a0-8d6c-5164-af804c6b2d4d@pengutronix.de>
+In-Reply-To: <800ac3ca-e3a0-8d6c-5164-af804c6b2d4d@pengutronix.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 7 Jul 2021 09:04:55 -0300
+Message-ID: <CAOMZO5AqeFj=je8fvkUCMkY193DTGhKmRWEet9gY6QtR=Sj4JA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: freescale/imx8mp-evk.dts: reorder nodes alphabetically
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new dw_hdmi_plat_data struct and new compatible for rk3568.
-This version of the HDMI hardware block need two clocks to provide
-phy reference clock: hclk_vio and hclk.
+Hi Ahmad,
 
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
----
-version 2:
-- Add the clocks needed for the phy.
+On Wed, Jul 7, 2021 at 8:06 AM Ahmad Fatoum <a.fatoum@pengutronix.de> wrote=
+:
+>
+> On 07.07.21 12:53, Uwe Kleine-K=C3=B6nig wrote:
+> > The nodes after the root nodes are supposed to be ordered
+> > alphabetically. So move &flexcan1, &flexcan2 and &pinctrl to their
+> > proper place.
+>
+> At least for i.MX, it seems to be convention to have iomuxc at the end
+> of the file. I'd not reorder it, file is easier to browse when it's not
+> in the middle.
 
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 68 +++++++++++++++++++++
- 1 file changed, 68 insertions(+)
-
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-index 830bdd5e9b7ce..dc0e255e45745 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-@@ -50,6 +50,10 @@
- #define RK3399_GRF_SOC_CON20		0x6250
- #define RK3399_HDMI_LCDC_SEL		BIT(6)
- 
-+#define RK3568_GRF_VO_CON1		0x0364
-+#define RK3568_HDMI_SDAIN_MSK		BIT(15)
-+#define RK3568_HDMI_SCLIN_MSK		BIT(14)
-+
- #define HIWORD_UPDATE(val, mask)	(val | (mask) << 16)
- 
- /**
-@@ -71,6 +75,8 @@ struct rockchip_hdmi {
- 	const struct rockchip_hdmi_chip_data *chip_data;
- 	struct clk *vpll_clk;
- 	struct clk *grf_clk;
-+	struct clk *hclk_vio;
-+	struct clk *hclk_vop;
- 	struct dw_hdmi *hdmi;
- 	struct phy *phy;
- };
-@@ -216,6 +222,26 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
- 		return PTR_ERR(hdmi->grf_clk);
- 	}
- 
-+	hdmi->hclk_vio = devm_clk_get(hdmi->dev, "hclk_vio");
-+	if (PTR_ERR(hdmi->hclk_vio) == -ENOENT) {
-+		hdmi->hclk_vio = NULL;
-+	} else if (PTR_ERR(hdmi->hclk_vio) == -EPROBE_DEFER) {
-+		return -EPROBE_DEFER;
-+	} else if (IS_ERR(hdmi->hclk_vio)) {
-+		dev_err(hdmi->dev, "failed to get hclk_vio clock\n");
-+		return PTR_ERR(hdmi->hclk_vio);
-+	}
-+
-+	hdmi->hclk_vop = devm_clk_get(hdmi->dev, "hclk");
-+	if (PTR_ERR(hdmi->hclk_vop) == -ENOENT) {
-+		hdmi->hclk_vop = NULL;
-+	} else if (PTR_ERR(hdmi->hclk_vop) == -EPROBE_DEFER) {
-+		return -EPROBE_DEFER;
-+	} else if (IS_ERR(hdmi->hclk_vop)) {
-+		dev_err(hdmi->dev, "failed to get hclk_vop clock\n");
-+		return PTR_ERR(hdmi->hclk_vop);
-+	}
-+
- 	return 0;
- }
- 
-@@ -467,6 +493,19 @@ static const struct dw_hdmi_plat_data rk3399_hdmi_drv_data = {
- 	.use_drm_infoframe = true,
- };
- 
-+static struct rockchip_hdmi_chip_data rk3568_chip_data = {
-+	.lcdsel_grf_reg = -1,
-+};
-+
-+static const struct dw_hdmi_plat_data rk3568_hdmi_drv_data = {
-+	.mode_valid = dw_hdmi_rockchip_mode_valid,
-+	.mpll_cfg   = rockchip_mpll_cfg,
-+	.cur_ctr    = rockchip_cur_ctr,
-+	.phy_config = rockchip_phy_config,
-+	.phy_data = &rk3568_chip_data,
-+	.use_drm_infoframe = true,
-+};
-+
- static const struct of_device_id dw_hdmi_rockchip_dt_ids[] = {
- 	{ .compatible = "rockchip,rk3228-dw-hdmi",
- 	  .data = &rk3228_hdmi_drv_data
-@@ -480,6 +519,9 @@ static const struct of_device_id dw_hdmi_rockchip_dt_ids[] = {
- 	{ .compatible = "rockchip,rk3399-dw-hdmi",
- 	  .data = &rk3399_hdmi_drv_data
- 	},
-+	{ .compatible = "rockchip,rk3568-dw-hdmi",
-+	  .data = &rk3568_hdmi_drv_data
-+	},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, dw_hdmi_rockchip_dt_ids);
-@@ -536,6 +578,28 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
- 		return ret;
- 	}
- 
-+	ret = clk_prepare_enable(hdmi->hclk_vio);
-+	if (ret) {
-+		dev_err(hdmi->dev, "Failed to enable HDMI hclk_vio: %d\n",
-+			ret);
-+		return ret;
-+	}
-+
-+	ret = clk_prepare_enable(hdmi->hclk_vop);
-+	if (ret) {
-+		dev_err(hdmi->dev, "Failed to enable HDMI hclk_vop: %d\n",
-+			ret);
-+		return ret;
-+	}
-+
-+	if (hdmi->chip_data == &rk3568_chip_data) {
-+		regmap_write(hdmi->regmap, RK3568_GRF_VO_CON1,
-+			     HIWORD_UPDATE(RK3568_HDMI_SDAIN_MSK |
-+					   RK3568_HDMI_SCLIN_MSK,
-+					   RK3568_HDMI_SDAIN_MSK |
-+					   RK3568_HDMI_SCLIN_MSK));
-+	}
-+
- 	hdmi->phy = devm_phy_optional_get(dev, "hdmi");
- 	if (IS_ERR(hdmi->phy)) {
- 		ret = PTR_ERR(hdmi->phy);
-@@ -559,6 +623,8 @@ static int dw_hdmi_rockchip_bind(struct device *dev, struct device *master,
- 		ret = PTR_ERR(hdmi->hdmi);
- 		drm_encoder_cleanup(encoder);
- 		clk_disable_unprepare(hdmi->vpll_clk);
-+		clk_disable_unprepare(hdmi->hclk_vio);
-+		clk_disable_unprepare(hdmi->hclk_vop);
- 	}
- 
- 	return ret;
-@@ -571,6 +637,8 @@ static void dw_hdmi_rockchip_unbind(struct device *dev, struct device *master,
- 
- 	dw_hdmi_unbind(hdmi->hdmi);
- 	clk_disable_unprepare(hdmi->vpll_clk);
-+	clk_disable_unprepare(hdmi->hclk_vio);
-+	clk_disable_unprepare(hdmi->hclk_vop);
- }
- 
- static const struct component_ops dw_hdmi_rockchip_ops = {
--- 
-2.25.1
-
+Yes, agree. Thanks
