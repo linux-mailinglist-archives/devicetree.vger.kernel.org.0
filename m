@@ -2,96 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E22E3BF9D8
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 14:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 554623BF9B7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 14:05:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231414AbhGHMKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 08:10:53 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:50756 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231347AbhGHMKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 08:10:53 -0400
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 168Bt2di004728;
-        Thu, 8 Jul 2021 07:58:36 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 39mehm2qjt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 08 Jul 2021 07:58:36 -0400
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 168BwZkl042549
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 8 Jul 2021 07:58:35 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5; Thu, 8 Jul 2021
- 07:58:34 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.858.5 via Frontend Transport;
- Thu, 8 Jul 2021 07:58:34 -0400
-Received: from nsa.ad.analog.com ([10.44.3.58])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 168BwPts020146;
-        Thu, 8 Jul 2021 07:58:33 -0400
-From:   =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>
-To:     <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>
-Subject: [RFC PATCH 5/6] hwmon: axi-fan-control: clear the fan fault irq at startup
-Date:   Thu, 8 Jul 2021 14:01:10 +0200
-Message-ID: <20210708120111.519444-6-nuno.sa@analog.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210708120111.519444-1-nuno.sa@analog.com>
-References: <20210708120111.519444-1-nuno.sa@analog.com>
+        id S231423AbhGHMIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 08:08:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44962 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231397AbhGHMIj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 08:08:39 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BF14C061574;
+        Thu,  8 Jul 2021 05:05:56 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id n14so14714544lfu.8;
+        Thu, 08 Jul 2021 05:05:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RD1/6/jmD47YttIqk+9t+pHrc67BCgSGhpOheow4sIY=;
+        b=lAzrJcdoxD0YH80j6oxSekIGmPClzY0t1lkujYsp7F2vb15XXHlYcTE8rQ5se9REvI
+         a2NhbxUVftdUvnUqRzlxiGGP7vng+qbasFpAUVsWGWCygdS7wjLUb+r65eezCgr3MQ9u
+         Wn/bnKT6OS+ZRZ0Y9Ei3h3NgfhaFBmAvnGppSxqifoiB3cW3hF/Gwpqqw2GmQq/Vi3in
+         +Qz0ZwD19oQNg/DVAHeJ/9peTwApsOoTYVSq6+knveRYD5RbtS7/NpE8BtADkQzVCxm8
+         iU6n3rxbi2Rq8RPyCmNQLpKnI1r8KEWg9rOaNaOjc76Tu6vykJTOJjyE251zraqyagdy
+         +91w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RD1/6/jmD47YttIqk+9t+pHrc67BCgSGhpOheow4sIY=;
+        b=iV2ZnQ2K9zd93b6BmHXJVii4OpiVI176C7XU5KL6bw78rQ/p7vgAisz2XFRb4nozHF
+         NTeHwfUaaAdm/tQ5lozKTwcja9jJp4DaoyFh25kcWJMworwj3Hs9d+J3AFmjC/qxzwmy
+         11r0sf5uZhsaXevknccQKfSzSzGslNJ5rwpedGSZT3cx1rVLdUOgr+N0ejqy1VrqtdyA
+         d3EXXE8IHX0wxWwzy5yev2Tj3bzFlt5AYxslpxVFbjB7tXQboMEl7ra0Q3wGbZFtGgXX
+         +ZXax7fnTJDoCdNjVxZnneDJvyMWhR1FasabtCllIRkAtQ5KOw93YlEHCpVUhwSmUezd
+         U9UA==
+X-Gm-Message-State: AOAM531wek7bTOiqWvsWsk0OMjWh4CBAceJ417BJ+yKQuIBurp1+uMXV
+        nLCqrnmbEsD65+NMPT+VlM3ryZgL0a3Nx6qZE6E=
+X-Google-Smtp-Source: ABdhPJx6SX0r8fvbnYfayHEqpfIeV3JLezQLgvKici5Q8Gb9bx2Ia8CwMfE4+PnaZ8ESbmhzhnw/Z/VPC2vzAOIbEYU=
+X-Received: by 2002:a05:651c:481:: with SMTP id s1mr10736951ljc.444.1625745954768;
+ Thu, 08 Jul 2021 05:05:54 -0700 (PDT)
 MIME-Version: 1.0
+References: <20210706114028.132-1-alistair@alistair23.me> <CAOMZO5CEeBWEaRWXpfgjR+q0QnpPmoyGN+ShjCHNzoSqk_iW0Q@mail.gmail.com>
+ <CAKmqyKPLWft8kUR9A2V1fjpaD8dmpbT9=Lc-NY76wkgenLE93Q@mail.gmail.com>
+In-Reply-To: <CAKmqyKPLWft8kUR9A2V1fjpaD8dmpbT9=Lc-NY76wkgenLE93Q@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 8 Jul 2021 09:05:43 -0300
+Message-ID: <CAOMZO5C=CcJDg9BQMVd8UU7fryW9TqMvvnJCuC3cq-7rzTi=eQ@mail.gmail.com>
+Subject: Re: [PATCH v3] ARM: dts: imx7d-remarkable2: Add WiFi support
+To:     Alistair Francis <alistair23@gmail.com>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: Q8ykOz8sdWLmsg0O3Th9RWi2W7PeH1ci
-X-Proofpoint-GUID: Q8ykOz8sdWLmsg0O3Th9RWi2W7PeH1ci
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
- definitions=2021-07-08_06:2021-07-08,2021-07-08 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- phishscore=0 adultscore=0 clxscore=1015 spamscore=0 suspectscore=0
- mlxlogscore=999 impostorscore=0 lowpriorityscore=0 priorityscore=1501
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2104190000 definitions=main-2107080067
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The core might pull itself out of reset automatically which means it can
-run with invalid tacho evaluation parameters for some time. Thus, it will
-trigger a FAN FAULT interrupt as soon as we unmask it. Some userland apps
-might be sensitive to this and act drastically. Hence, we will clear it
-here and if there's something really wrong with the FAN or the evaluation
-parameters, we'll get that interrupt again...
+Hi Alistair,
 
-Signed-off-by: Nuno Sá <nuno.sa@analog.com>
----
- drivers/hwmon/axi-fan-control.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+On Thu, Jul 8, 2021 at 6:16 AM Alistair Francis <alistair23@gmail.com> wrote:
 
-diff --git a/drivers/hwmon/axi-fan-control.c b/drivers/hwmon/axi-fan-control.c
-index d4b62d54375b..59c9babb3850 100644
---- a/drivers/hwmon/axi-fan-control.c
-+++ b/drivers/hwmon/axi-fan-control.c
-@@ -379,6 +379,15 @@ static int axi_fan_control_init(struct axi_fan_control_data *ctl,
- 		      ADI_IRQ_SRC_PWM_CHANGED | ADI_IRQ_SRC_TEMP_INCREASE),
- 		    ADI_REG_IRQ_MASK, ctl);
- 
-+	/*
-+	 * The core might pull itself out of reset automatically which means it can run with
-+	 * invalid tacho evaluation parameters for some time. Thus, it will trigger a FAN
-+	 * FAULT interrupt as soon as we unmask it(and some userland apps might be sensitive to
-+	 * this). Hence, we will clear it here and if there's something really wrong with the
-+	 * FAN or the evaluation parameters, we'll get that interrupt again...
-+	 */
-+	axi_iowrite(ADI_IRQ_SRC_TACH_ERR, ADI_REG_IRQ_PENDING, ctl);
-+
- 	/* bring the device out of reset */
- 	axi_iowrite(0x01, ADI_REG_RSTN, ctl);
- 
--- 
-2.32.0
+> I'm not sure I follow, we do the same thing here with:
+>
+> &clks {
+>     assigned-clocks = <&clks IMX7D_CLKO2_ROOT_SRC>,
+>               <&clks IMX7D_CLKO2_ROOT_DIV>;
+>     assigned-clock-parents = <&clks IMX7D_CKIL>;
+>     assigned-clock-rates = <0>, <32768>;
+> };
 
+Ah, got it. This was not in the patch context, so that's why I got confused.
+
+Now I see it as part of the original file, so it looks good to me, thanks:
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
