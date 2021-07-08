@@ -2,87 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 554623BF9B7
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 14:05:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B49E3BF9BB
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 14:07:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231423AbhGHMIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 08:08:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44962 "EHLO
+        id S231543AbhGHMJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 08:09:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231397AbhGHMIj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 08:08:39 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BF14C061574;
-        Thu,  8 Jul 2021 05:05:56 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id n14so14714544lfu.8;
-        Thu, 08 Jul 2021 05:05:56 -0700 (PDT)
+        with ESMTP id S231487AbhGHMJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 08:09:41 -0400
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F80C06175F
+        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 05:06:58 -0700 (PDT)
+Received: by mail-qt1-x834.google.com with SMTP id c9so571761qte.6
+        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 05:06:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RD1/6/jmD47YttIqk+9t+pHrc67BCgSGhpOheow4sIY=;
-        b=lAzrJcdoxD0YH80j6oxSekIGmPClzY0t1lkujYsp7F2vb15XXHlYcTE8rQ5se9REvI
-         a2NhbxUVftdUvnUqRzlxiGGP7vng+qbasFpAUVsWGWCygdS7wjLUb+r65eezCgr3MQ9u
-         Wn/bnKT6OS+ZRZ0Y9Ei3h3NgfhaFBmAvnGppSxqifoiB3cW3hF/Gwpqqw2GmQq/Vi3in
-         +Qz0ZwD19oQNg/DVAHeJ/9peTwApsOoTYVSq6+knveRYD5RbtS7/NpE8BtADkQzVCxm8
-         iU6n3rxbi2Rq8RPyCmNQLpKnI1r8KEWg9rOaNaOjc76Tu6vykJTOJjyE251zraqyagdy
-         +91w==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WraCm6k694qyYZdK9xEDzADtbPmoM6wh7ruMF3c9sT0=;
+        b=ooXDU9ur9KqdBlX6bSV3k88fMSWEpbTCC5Kpt1F9uzG3Gzg4wQeTWPXlVVs9CylHHS
+         eEKbJPm21Ur3c6zSEG0znz/VLOPWIK+jp1rF+BSYCuCgC8Bhofc0ILZ4MnTPhxUL2ES0
+         jzxbIwh4RqQLf4KddXHHVO0dEvmL373dxEjwkWbmfaoCQKz7GNengI4yO1Tz+YFITGb0
+         G9xTikM6/8K2mYvPZg8ZHaqxdoguMGdUwOrZRh3RX6EGCY6jQXAbfpzxt+sDfNsf0xfz
+         y3flDutrawBHu0GtBOfyCHQjOPeenB1WZa99D1Xb0vGBGTsr6+xQ/J43WiJksKzZZI8i
+         mhkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RD1/6/jmD47YttIqk+9t+pHrc67BCgSGhpOheow4sIY=;
-        b=iV2ZnQ2K9zd93b6BmHXJVii4OpiVI176C7XU5KL6bw78rQ/p7vgAisz2XFRb4nozHF
-         NTeHwfUaaAdm/tQ5lozKTwcja9jJp4DaoyFh25kcWJMworwj3Hs9d+J3AFmjC/qxzwmy
-         11r0sf5uZhsaXevknccQKfSzSzGslNJ5rwpedGSZT3cx1rVLdUOgr+N0ejqy1VrqtdyA
-         d3EXXE8IHX0wxWwzy5yev2Tj3bzFlt5AYxslpxVFbjB7tXQboMEl7ra0Q3wGbZFtGgXX
-         +ZXax7fnTJDoCdNjVxZnneDJvyMWhR1FasabtCllIRkAtQ5KOw93YlEHCpVUhwSmUezd
-         U9UA==
-X-Gm-Message-State: AOAM531wek7bTOiqWvsWsk0OMjWh4CBAceJ417BJ+yKQuIBurp1+uMXV
-        nLCqrnmbEsD65+NMPT+VlM3ryZgL0a3Nx6qZE6E=
-X-Google-Smtp-Source: ABdhPJx6SX0r8fvbnYfayHEqpfIeV3JLezQLgvKici5Q8Gb9bx2Ia8CwMfE4+PnaZ8ESbmhzhnw/Z/VPC2vzAOIbEYU=
-X-Received: by 2002:a05:651c:481:: with SMTP id s1mr10736951ljc.444.1625745954768;
- Thu, 08 Jul 2021 05:05:54 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WraCm6k694qyYZdK9xEDzADtbPmoM6wh7ruMF3c9sT0=;
+        b=jLD7PHxWuikhi6b0frmNm555FjXftT3C6uCBEDYJKmRJYRL2T5WmQL28ukdrxt8IHP
+         IRUmkCLXbiWDgM2/jvPOFGSoROpbF3mvnqtn+rAz6okAqLrCjgi1jM1cV2z3BzTV/44+
+         ipO+AYsnsh4eM62+hmEe9Mb6In3veNFdimRuur4b8eallW0X2jiombk/9GF95t2s4iyy
+         E4MxXe654OkS1Ki6Es941fHNI4jTNWgYrkGqh9w7C9HJ5FwKHsrR12pCQVTiWvY22znR
+         ibkaurqY28z7FDTZX1hu0txltSQI9CXptC8CJilrp7tsrflnZ52KF2tREww5CpmTRHQc
+         hlNA==
+X-Gm-Message-State: AOAM532Lfe1FngqVa1VAYvT3QaquwEJ6fDX9OrpD7KV9zLSf5heLa7Ol
+        +4LHccu60V4e0+TnpXnDnXQcCg==
+X-Google-Smtp-Source: ABdhPJwpRfkMwjPp9U/1oZkibxvoQP+bjlbHKSCDkFJsNoCT4uIFKSTrQ03gIVxwkC67HJsfh5IQ3w==
+X-Received: by 2002:ac8:5c08:: with SMTP id i8mr28001007qti.129.1625746017582;
+        Thu, 08 Jul 2021 05:06:57 -0700 (PDT)
+Received: from pop-os.fios-router.home (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.googlemail.com with ESMTPSA id i2sm912541qko.43.2021.07.08.05.06.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jul 2021 05:06:57 -0700 (PDT)
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, viresh.kumar@linaro.org,
+        rjw@rjwysocki.net, robh+dt@kernel.org
+Cc:     tdas@codeaurora.org, mka@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [Patch v3 0/6] Introduce LMh driver for Qualcomm SoCs
+Date:   Thu,  8 Jul 2021 08:06:50 -0400
+Message-Id: <20210708120656.663851-1-thara.gopinath@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210706114028.132-1-alistair@alistair23.me> <CAOMZO5CEeBWEaRWXpfgjR+q0QnpPmoyGN+ShjCHNzoSqk_iW0Q@mail.gmail.com>
- <CAKmqyKPLWft8kUR9A2V1fjpaD8dmpbT9=Lc-NY76wkgenLE93Q@mail.gmail.com>
-In-Reply-To: <CAKmqyKPLWft8kUR9A2V1fjpaD8dmpbT9=Lc-NY76wkgenLE93Q@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 8 Jul 2021 09:05:43 -0300
-Message-ID: <CAOMZO5C=CcJDg9BQMVd8UU7fryW9TqMvvnJCuC3cq-7rzTi=eQ@mail.gmail.com>
-Subject: Re: [PATCH v3] ARM: dts: imx7d-remarkable2: Add WiFi support
-To:     Alistair Francis <alistair23@gmail.com>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alistair,
+Limits Management Hardware(LMh) is a hardware infrastructure on some
+Qualcomm SoCs that can enforce temperature and current limits as programmed
+by software for certain IPs like CPU. On many newer SoCs LMh is configured
+by firmware/TZ and no programming is needed from the kernel side. But on
+certain SoCs like sdm845 the firmware does not do a complete programming of
+the h/w block. On such SoCs kernel software has to explicitly set up the
+temperature limits and turn on various monitoring and enforcing algorithms
+on the hardware.
 
-On Thu, Jul 8, 2021 at 6:16 AM Alistair Francis <alistair23@gmail.com> wrote:
+Introduce support for enabling and programming various limit settings and
+monitoring capabilities of Limits Management Hardware(LMh) associated with
+cpu clusters. Also introduce support in cpufreq hardware driver to monitor
+the interrupt associated with cpu frequency throttling so that this
+information can be conveyed to the schdeuler via thermal pressure
+interface.
 
-> I'm not sure I follow, we do the same thing here with:
->
-> &clks {
->     assigned-clocks = <&clks IMX7D_CLKO2_ROOT_SRC>,
->               <&clks IMX7D_CLKO2_ROOT_DIV>;
->     assigned-clock-parents = <&clks IMX7D_CKIL>;
->     assigned-clock-rates = <0>, <32768>;
-> };
+With this patch series following cpu performance improvement(30-70%) is
+observed on sdm845. The reasoning here is that without LMh being programmed
+properly from the kernel, the default settings were enabling thermal
+mitigation for CPUs at too low a temperature (around 70-75 degree C).  This
+in turn meant that many a time CPUs were never actually allowed to hit the
+maximum possible/required frequencies.
 
-Ah, got it. This was not in the patch context, so that's why I got confused.
+UnixBench whets and dhry (./Run whets dhry)
+System Benchmarks Index Score
 
-Now I see it as part of the original file, so it looks good to me, thanks:
+                Without LMh Support             With LMh Support
+1 copy test     1353.7                          1773.2
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+8 copy tests    4473.6                          7402.3
+
+Sysbench cpu
+sysbench cpu --threads=8 --time=60 --cpu-max-prime=100000 run
+
+                Without LMh Support             With LMh Support
+Events per
+second                  355                             614
+
+Avg Latency(ms)         21.84                           13.02
+
+v2->v3:
+	- Included patch adding dt binding documentation for LMh nodes.
+	- Rebased to v5.13
+
+Thara Gopinath (6):
+  firmware: qcom_scm: Introduce SCM calls to access LMh
+  thermal: qcom: Add support for LMh driver
+  cpufreq: qcom-cpufreq-hw: Add dcvs interrupt support
+  arm64: boot: dts: qcom: sdm45: Add support for LMh node
+  arm64: boot: dts: qcom: sdm845: Remove cpufreq cooling devices for CPU
+    thermal zones
+  dt-bindings: thermal: Add dt binding for QCOM LMh
+
+ .../devicetree/bindings/thermal/qcom-lmh.yaml | 100 ++++++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          | 162 ++----------
+ drivers/cpufreq/qcom-cpufreq-hw.c             | 118 +++++++++
+ drivers/firmware/qcom_scm.c                   |  58 +++++
+ drivers/firmware/qcom_scm.h                   |   4 +
+ drivers/thermal/qcom/Kconfig                  |  10 +
+ drivers/thermal/qcom/Makefile                 |   1 +
+ drivers/thermal/qcom/lmh.c                    | 239 ++++++++++++++++++
+ include/linux/qcom_scm.h                      |  14 +
+ 9 files changed, 570 insertions(+), 136 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/qcom-lmh.yaml
+ create mode 100644 drivers/thermal/qcom/lmh.c
+
+-- 
+2.25.1
+
