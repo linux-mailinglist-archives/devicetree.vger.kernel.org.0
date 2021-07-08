@@ -2,48 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 394163BF7B1
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 11:39:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7C013BF7EC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 12:04:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230079AbhGHJm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 05:42:29 -0400
-Received: from 8bytes.org ([81.169.241.247]:33318 "EHLO theia.8bytes.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231371AbhGHJm3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Jul 2021 05:42:29 -0400
-Received: by theia.8bytes.org (Postfix, from userid 1000)
-        id 236A7312; Thu,  8 Jul 2021 11:39:47 +0200 (CEST)
-Date:   Thu, 8 Jul 2021 11:39:45 +0200
-From:   Joerg Roedel <joro@8bytes.org>
-To:     Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Cc:     will@kernel.org, robh+dt@kernel.org, heiko@sntech.de,
-        xxm@rock-chips.com, robin.murphy@arm.com, dan.carpenter@oracle.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com
-Subject: Re: [PATCH v2] iommu: rockchip: Fix physical address decoding
-Message-ID: <YObH4cb4vji/IvF5@8bytes.org>
-References: <20210618130047.547986-1-benjamin.gaignard@collabora.com>
- <e2c3d5c2-3f45-90b9-1b55-54df133a952f@collabora.com>
+        id S231364AbhGHKHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 06:07:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46198 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231345AbhGHKHk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 06:07:40 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB88AC061574
+        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 03:04:58 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id o10so6095963ils.6
+        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 03:04:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5IYDrTEMCDwnKyJ3pPqsfquwkNIQ3KZz5NeM09+NirQ=;
+        b=WT0IEe21WXTnQTiqpmOB+Z7yiM37k35gUjaW8q23hwFIywW2R2O7AFYBYWpcVr/+Es
+         YmKVFiMUfMAiwklQ2WYfEOX+1AzVmj9HIlAtY5tP3B/D370620P9O8uqI4w7idZcoJzb
+         mFD6oAx2w9DekQ0F48e2kH5ZJzTFTxb41fXfnwqRcmracyx6S+h4KwMD8p/N1Qb7aOlr
+         QM0+8o+Ciq5rgy6rSpW62cXas0FgzJvkZrwnmnyZkccPk8Z7zXjQl4SSv+4PEgROGeqW
+         UULK4pSaFMwqw6SHGqyAPdwIusNrevhgnIybsjDnZmKlBwOvpBQMvDoGL7ssMgG/5joI
+         iBHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5IYDrTEMCDwnKyJ3pPqsfquwkNIQ3KZz5NeM09+NirQ=;
+        b=Ca19tJCXshGCi/sXsllnzASS+x6Joe8VIzCO6qnJriI4HYDHFnPN7WFmGGDFvMVZVx
+         oULhtMd9RMiqTWEPBU48X6xOTlBOPwOr15hAjj+GSECVqfDB0yG0UrecdyWFYbDV4RfP
+         Crdn3c6+1ouVDFXI71Du0QnfyCcTUTzguJKxyRpIWloxz/+sUh4DEkqTFrBPeXsVWMT0
+         gEIdVE+XmLA0LFnhJWz7RVk3/5RKtq3w5ZC3iwM4Briq8AqMyGG2Ovo3MgpNvBifRbnD
+         efg1N7ToPRIJqybnXRrstIUyMGrSGSkZaDrk5FAUXQAXe64HX9udL7FgJqeTqjzT2rNC
+         C7Sw==
+X-Gm-Message-State: AOAM5332bnABK8mcRo1PKackV5OGr4CxlrLe/6UFfM1DVhe2Yw3DoHIS
+        gPeg2ouKU/RCybKRS9cc4n9wVPXpbFPNzOGgavxiCg==
+X-Google-Smtp-Source: ABdhPJykFqOjvbJ+tFHq+BR1iCn1BjA6c7p322S2tesr3rVOsU1F53n/ypS9lwQRgEvCQ2UtyFJ6k21/OShkUAaPpd8=
+X-Received: by 2002:a92:de12:: with SMTP id x18mr21843666ilm.302.1625738697789;
+ Thu, 08 Jul 2021 03:04:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e2c3d5c2-3f45-90b9-1b55-54df133a952f@collabora.com>
+References: <20210707062157.21176-1-yunfei.dong@mediatek.com> <20210707062157.21176-4-yunfei.dong@mediatek.com>
+In-Reply-To: <20210707062157.21176-4-yunfei.dong@mediatek.com>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Thu, 8 Jul 2021 18:04:46 +0800
+Message-ID: <CA+Px+wX+mT5fzJegoPc=4RRowVQ9PSievqMn+-20vTvmy6Dq2A@mail.gmail.com>
+Subject: Re: [PATCH v1, 03/14] media: mtk-vcodec: Use component framework to
+ manage each hardware information
+To:     Yunfei Dong <Yunfei.Dong@mediatek.com>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benjamin,
+On Wed, Jul 7, 2021 at 2:22 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
+> +#include "mtk_vcodec_util.h"
+> +
+>  #include <media/videobuf2-core.h>
+> +#include <media/v4l2-ctrls.h>
+>  #include <media/v4l2-mem2mem.h>
+The changes look like independent ones.  If any .c files need the
+headers, include them in the .c files instead of here.
 
-On Mon, Jul 05, 2021 at 01:40:24PM +0200, Benjamin Gaignard wrote:
-> Gentle ping on this patch :-)
+> +               comp_node = of_find_compatible_node(NULL, NULL,
+> +                       mtk_vdec_drv_ids[i].compatible);
+> +               if (!comp_node)
+> +                       continue;
+> +
+> +               if (!of_device_is_available(comp_node)) {
+> +                       of_node_put(comp_node);
+> +                       dev_err(&pdev->dev, "Fail to get MMSYS node\n");
+> +                       continue;
+> +               }
+> +
+> +               of_id = of_match_node(mtk_vdec_drv_ids, comp_node);
+> +               if (!of_id) {
+Doesn't it need to call of_node_put(comp_node)?
 
-Please fix the subject to match the IOMMU tree conventions. This would
-be:
+> +static int mtk_vcodec_init_master(struct mtk_vcodec_dev *dev)
+> +{
+> +       struct platform_device *pdev = dev->plat_dev;
+> +       struct component_match *match;
+> +       int ret = 0;
+ret doesn't need to be initialized.
 
-	iommu/rockchip: Fix physical address decoding
+> +       match = mtk_vcodec_match_add(dev);
+> +       if (IS_ERR_OR_NULL(match))
+> +               return -EINVAL;
+> +
+> +       platform_set_drvdata(pdev, dev);
+Why does platform_set_drvdata() need to be here?  The function neither
+creates pdev nor dev.
 
-Re-send the patch after the merge window is closed.
+> +static int mtk_vcodec_init_dec_params(struct mtk_vcodec_dev *dev)
+> +{
+> +       struct platform_device *pdev = dev->plat_dev;
+> +       struct resource *res;
+> +       int ret = 0;
+ret doesn't need to be initialized.
 
-Thanks,
+> +       if (!dev->is_support_comp) {
+> +               res = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
+> +               if (res == NULL) {
+!res, res is not used BTW.
 
-	Joerg
+> +               dev->dec_irq = platform_get_irq(dev->plat_dev, 0);
+Check return value.
+
+> +               irq_set_status_flags(dev->dec_irq, IRQ_NOAUTOEN);
+> +               ret = devm_request_irq(&pdev->dev, dev->dec_irq,
+> +                               mtk_vcodec_dec_irq_handler, 0, pdev->name, dev);
+> +               if (ret) {
+> +                       dev_err(&pdev->dev, "failed to install dev->dec_irq %d (%d)",
+> +                               dev->dec_irq,
+> +                               ret);
+Can join to previous line.
+
+> +       if (!of_find_compatible_node(NULL, NULL, "mediatek,mtk-vcodec-core"))
+> +               dev->is_support_comp = false;
+> +       else
+> +               dev->is_support_comp = true;
+Need a DT binding document patch for the attribute.
+
+Does it really need to call of_find_compatible_node() for parsing an
+attribute?  If so, it needs to call of_node_put() afterward.
+
+> @@ -319,7 +434,6 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+>                 MTK_VCODEC_DEC_NAME);
+>         video_set_drvdata(vfd_dec, dev);
+>         dev->vfd_dec = vfd_dec;
+> -       platform_set_drvdata(pdev, dev);
+Why does it need to remove platform_set_drvdata()?
+
+> @@ -370,8 +484,17 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+>         mtk_v4l2_debug(0, "decoder registered as /dev/video%d",
+>                 vfd_dec->num);
+>
+> -       return 0;
+> +       if (dev->is_support_comp) {
+> +               ret = mtk_vcodec_init_master(dev);
+> +               if (ret < 0)
+> +                       goto err_component_match;
+> +       } else {
+> +               platform_set_drvdata(pdev, dev);
+> +       }
+mtk_vcodec_init_master() also calls platform_set_drvdata().  What is
+the difference?
+
+> +       /* clear interrupt */
+> +       writel((readl(vdec_misc_addr) | VDEC_IRQ_CFG), vdec_misc_addr);
+> +       writel((readl(vdec_misc_addr) & ~VDEC_IRQ_CLR), vdec_misc_addr);
+Can remove 1 parenthese pair.
+
+> +static int mtk_vdec_comp_probe(struct platform_device *pdev)
+> +{
+> +       struct mtk_vdec_comp_dev *dev;
+> +       int ret;
+> +
+> +       dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
+> +       if (!dev)
+> +               return -ENOMEM;
+> +
+> +       dev->plat_dev = pdev;
+> +       spin_lock_init(&dev->irqlock);
+> +
+> +       ret = mtk_vcodec_init_dec_pm(dev->plat_dev, &dev->pm);
+To be concise, use pdev.
+
+> +       dev->reg_base[VDEC_COMP_MISC] =
+> +               devm_platform_ioremap_resource(pdev, 0);
+Confusing about the index 0, where:
+VDEC_COMP_SYS = 0
+VDEC_COMP_MISC = 1
+
+> +#ifndef _MTK_VCODEC_DEC_HW_H_
+> +#define _MTK_VCODEC_DEC_HW_H_
+> +
+> +#include <linux/component.h>
+Does it really need to include component.h?
+
+> +/**
+> + * enum mtk_comp_hw_reg_idx - component register base index
+> + */
+> +enum mtk_comp_hw_reg_idx {
+> +       VDEC_COMP_SYS,
+> +       VDEC_COMP_MISC,
+> +       NUM_MAX_COMP_VCODEC_REG_BASE
+The name is suboptimal.  How about VDEC_COMP_MAX or VDEC_COMP_LAST?
+
+> +#include <linux/component.h>
+> +#include <linux/io.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/videodev2.h>
+>  #include <media/v4l2-ctrls.h>
+The newly added code in the file doesn't look like it needs anything
+from component.h and io.h.
+
+> @@ -404,6 +422,7 @@ struct mtk_vcodec_enc_pdata {
+>   *
+>   * @fw_handler: used to communicate with the firmware.
+>   * @id_counter: used to identify current opened instance
+> + * @is_support_comp: 1: using compoent framework, 0: not support
+is_support_comp is a boolean.  Use true and false instead of 1 and 0.
+
+> @@ -422,6 +441,10 @@ struct mtk_vcodec_enc_pdata {
+>   * @pm: power management control
+>   * @dec_capability: used to identify decode capability, ex: 4k
+>   * @enc_capability: used to identify encode capability
+> + *
+> + * comp_dev: component hardware device
+> + * component_node: component node
+> + * comp_idx: component index
+To be neat, missing "@" before each symbol name.
