@@ -2,78 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AAA63BF90C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 13:31:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D88583BF921
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 13:37:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231609AbhGHLd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 07:33:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37134 "EHLO
+        id S231726AbhGHLkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 07:40:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231569AbhGHLd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 07:33:57 -0400
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF3AC061574;
-        Thu,  8 Jul 2021 04:31:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=bbyR1F16p1tRYPcUbpgTSalCf5u8zAJ9zT0uymCmpbc=; b=m6FT/x/yn/ggFqI2/qYAnOG4n
-        wz+NoEdUVAljhki0NCx0tZdeWTvXee+fseVcY9KD/SxFf/Cbavfj4iowpUwpjJik3Kim2zzGW3Fjk
-        tf6Afqbd3xXGNJg5tp7l7KqI0A5sI7MdIscjgmezPQDXClC4NuP/4Z8MGuJrLmubuH/e6e6gcNTZM
-        eDgYoE98S3/wwyehe06l2LWfQyZuqfLmQ7NzzXGL6rsHxI0Xw2RchIlbljHVdn3d5DJt9G5y/l7J8
-        Cz2MaiYrDBRW5Qs1ZvZ2idpXxrqxdTYz16e8619KUZpqfxCXqva46HduGQ5Jzmfl+ZhaRITwpy7OP
-        a9ulDj9Dw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45864)
-        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1m1SFK-0000a0-Ao; Thu, 08 Jul 2021 12:31:10 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1m1SFJ-0003qw-I3; Thu, 08 Jul 2021 12:31:09 +0100
-Date:   Thu, 8 Jul 2021 12:31:09 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     kostap@marvell.com
-Cc:     miquel.raynal@bootlin.com, kishon@ti.com, vkoul@kernel.org,
-        robh+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, vladimir.vid@sartura.hr,
-        luka.kovacic@sartura.hr, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, mw@semihalf.com,
-        jaz@semihalf.com, nadavh@marvell.com, stefanc@marvell.com,
-        bpeled@marvell.com
-Subject: Re: [PATCH v6 1/5] Documentation/bindings: phy: update references to
- cp11x
-Message-ID: <20210708113109.GV22278@shell.armlinux.org.uk>
-References: <20210708112528.3254-1-kostap@marvell.com>
- <20210708112528.3254-2-kostap@marvell.com>
+        with ESMTP id S231575AbhGHLkj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 07:40:39 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D5E4C061574
+        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 04:37:56 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id b18so5282046qkc.5
+        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 04:37:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=N/qY52HtEnySw8oiOqnCY6Vr04Y1zPZsw52TSvRcqL0=;
+        b=X3Au6Pi/gZuIKEizEtZpkpNYlgIbyi0G/awOjci961zqy8EYfCIrI09IB45E8MZzkn
+         7AVSU1L4UzvADeoHy3cJPWyN+BKIqrka7aQLlq0dTLu0v8Bd4yKSpQyb3T6Vsjf1cqC9
+         pbP9wWK6juYmhotjALZkdmH+dl8zKezlghv4zvCXvk0FunQYEervgRw4wCYkBksuC557
+         JGt2vEAgIUA5PDhK0O0Fhmslq7U4Av3gNG21p9JwL0p0HFzVXt93DVGB8IfThBaAfAFA
+         N49Jy+lJPz3i9tWnQoQk+O0Zv5Y8rD1iMixULgWhqGkhJInmouQgldcAyfIqcTqB44ID
+         9UbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=N/qY52HtEnySw8oiOqnCY6Vr04Y1zPZsw52TSvRcqL0=;
+        b=KQcdDlflhIv4iVx8ZU+Oq+D1KFnbJJbXlZYOGiQEkrsO0Lo6GMXsKhh4voPYCDSRX+
+         9pbMmZj46WYiyhJIfWwthOCiyD+2XjO6olUu2FsWHfr3kVGsjZTwEAw0T0iDXHTGWJio
+         9mX2gSDtt5OKxr+zyHXZTV6aaLW0RXQ/AmuZunV2y+64lkq1wmp1u4Dr/XMisJn3Vtcc
+         Bf8TsWtQf6YyDCkZxbqKE2NCBHOIlUzYKZY3lky13FhwWxydyCgr0Hixjsm7b0zI07Ec
+         Xn9dsq6HfkpWn+NzaNoBckSjRWuSlqZSh+ZQUPm8ugXEEPTU9arp9mdye5pXfRzrqnXW
+         8ySg==
+X-Gm-Message-State: AOAM531hoWcLlfrqAzFnqlPOAvaHxF05yZzE4avV0MCGDYcZdMHPh4Ct
+        lgw/Wfubtjs3uurWBeJ6y03uA/3Znb5y0Qfzk/HwzQ==
+X-Google-Smtp-Source: ABdhPJzLaw+Ocua2+xY6AepEwv2jQPUmOKbSjrNWV4ZgDNgxv4FrDkLyxft2BVw+2yuajvOMGGJpZ4Sga0z4xviKWRM=
+X-Received: by 2002:a05:620a:13ec:: with SMTP id h12mr14862220qkl.217.1625744275692;
+ Thu, 08 Jul 2021 04:37:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210708112528.3254-2-kostap@marvell.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
+ <20210621223141.1638189-3-dmitry.baryshkov@linaro.org> <CAPDyKFo6dmjw0TnaK7=35dq5Si_6YYpeeSa=gU++1od7WkQZ7A@mail.gmail.com>
+ <20210706115517.GB4529@sirena.org.uk> <CAPDyKFr=8spZBD+bTe3SjS=nATL-ByFu_epnT2Z4chSuQNke2w@mail.gmail.com>
+In-Reply-To: <CAPDyKFr=8spZBD+bTe3SjS=nATL-ByFu_epnT2Z4chSuQNke2w@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 8 Jul 2021 14:37:44 +0300
+Message-ID: <CAA8EJppSV--TBjnGxGhaTHeKWdpM6uz70bg7diU3_K7OHoka4g@mail.gmail.com>
+Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
+ powerup sequence
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Peter Chen <peter.chen@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-bluetooth@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 08, 2021 at 02:25:24PM +0300, kostap@marvell.com wrote:
-> From: Grzegorz Jaszczyk <jaz@semihalf.com>
-> 
-> The cp11x references in dts has changed, reflect it in comphy
-> documentation.
-> 
-> Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
-> Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
+Hi,
 
-I don't think it's really necessary to reflect the syntactic sugar
-that gets used to cope with the fact we have two CP11x dies in the
-DT examples. They are exactly that - an example of the usage. They
-don't need to reflect reality.
+On Thu, 8 Jul 2021 at 13:10, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> - Peter (the email was bouncing)
+
++ Peter's kernel.org address
+
+>
+> On Tue, 6 Jul 2021 at 13:55, Mark Brown <broonie@kernel.org> wrote:
+> >
+> > On Tue, Jul 06, 2021 at 09:54:03AM +0200, Ulf Hansson wrote:
+> > > On Tue, 22 Jun 2021 at 00:32, Dmitry Baryshkov
+> >
+> > > > Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
+> > > > being controlled through the UART and WiFi being present on PCIe
+> > > > bus. Both blocks share common power sources. Add device driver handling
+> > > > power sequencing of QCA6390/1.
+> >
+> > > Power sequencing of discoverable buses have been discussed several
+> > > times before at LKML. The last attempt [1] I am aware of, was in 2017
+> > > from Peter Chen. I don't think there is a common solution, yet.
+> >
+> > This feels a bit different to the power sequencing problem - it's not
+> > exposing the individual inputs to the device but rather is a block that
+> > manages everything but needs a bit of a kick to get things going (I'd
+> > guess that with ACPI it'd be triggered via AML).  It's in the same space
+> > but it's not quite the same issue I think, something that can handle
+> > control of the individual resources might still struggle with this.
+>
+> Well, to me it looks very similar to those resouses we could manage
+> with the mmc pwrseq, for SDIO. It's also typically the same kind of
+> combo-chips that moved from supporting SDIO to PCIe, for improved
+> performance I guess. More importantly, the same constraint to
+> pre-power on the device is needed to allow it to be discovered/probed.
+
+In our case we'd definitely use pwrseq for PCIe bus and we can also
+benefit from using pwrseq for serdev and for platform busses also (for
+the same story of WiFi+BT chips).
+
+I can take a look at rewriting pwrseq code to also handle the PCIe
+bus. Rewriting it to be a generic lib seems like an easy task,
+plugging it into PCIe code would be more fun.
+
+Platform and serdev... Definitely even more fun.
+
+> Therefore, I think it would be worth having a common solution for
+> this, rather than a solution per subsystem or even worse, per device.
+>
+> Unfortunately, it looks like Peter's email is bouncing so we can't get
+> an update from him.
+
+Let's see if the kernel.org email will get to him.
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+With best wishes
+Dmitry
