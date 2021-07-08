@@ -2,282 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAE093C14D2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 16:02:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C794A3C151B
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 16:23:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231823AbhGHOFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 10:05:21 -0400
-Received: from mga14.intel.com ([192.55.52.115]:53497 "EHLO mga14.intel.com"
+        id S231749AbhGHO0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 10:26:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39358 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231515AbhGHOFV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Jul 2021 10:05:21 -0400
-X-IronPort-AV: E=McAfee;i="6200,9189,10038"; a="209326210"
-X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; 
-   d="scan'208";a="209326210"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2021 07:02:39 -0700
-X-IronPort-AV: E=Sophos;i="5.84,222,1620716400"; 
-   d="scan'208";a="564522640"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Jul 2021 07:02:37 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with ESMTP id 34A7D20345;
-        Thu,  8 Jul 2021 17:02:35 +0300 (EEST)
-Date:   Thu, 8 Jul 2021 17:02:35 +0300
-From:   "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
-To:     Stefan =?iso-8859-1?Q?Riedm=FCller?= <S.Riedmueller@phytec.de>
-Cc:     "mchehab@kernel.org" <mchehab@kernel.org>,
-        "laurent.pinchart@ideasonboard.com" 
-        <laurent.pinchart@ideasonboard.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 5/6] media: dt-bindings: mt9p031: Convert bindings to
- yaml
-Message-ID: <20210708140235.GB3@paasikivi.fi.intel.com>
-References: <20210708091922.5508-1-s.riedmueller@phytec.de>
- <20210708091922.5508-6-s.riedmueller@phytec.de>
- <20210708112313.GA3@paasikivi.fi.intel.com>
- <b588b43347afe377b6fda03c54855f97a421d89f.camel@phytec.de>
+        id S231515AbhGHO0V (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Jul 2021 10:26:21 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 62D026186A;
+        Thu,  8 Jul 2021 14:23:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625754219;
+        bh=Jbd9IggvJ7GGkRHDwp6su00yw5ijHxncZTTO5Mzqt1A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eC4wsD6j5bH6p7WZt0YH1p1eB7no1QxWQuvdLMm4N4LKTOfeltnYJwpXDJzSVk6T2
+         cMkBaXpMN5ew16pafUOItx1h/k0VvsLm754saMKVv5hV5SNMlkeomNyufNmv80Pmld
+         hwMAYxkVwhH83wS0AAkZt3eN6nQAE2jrbHETzeBoW1xAX4nhJTBQ9rjzlaGNrt5wMN
+         8s+DiXzsKgf/RBgOqbk/0KzmgbQnlLDeW6Ryz+VfTw021aGM+lvFl2dXPvZkorgAjI
+         43vJ9VmYKQHUVTQqEOTA0AhBJg+9rx4B2cnzrf8FqbPCaTCi2nqai2QH1hQDTUYuOo
+         uBVI2fhfumyhQ==
+Date:   Thu, 8 Jul 2021 15:23:06 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Sander Vanheule <sander@svanheule.net>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 2/8] gpio: regmap: Add quirk for aliased data registers
+Message-ID: <20210708142306.GA4106@sirena.org.uk>
+References: <cover.1623532208.git.sander@svanheule.net>
+ <5d8e5e8a29ecf39da48beb94c42003a5c686ec4e.1623532208.git.sander@svanheule.net>
+ <CAHp75VeOMb2xUJ+g2UQJnBybmehmYr0dGPEzDZObUGr=Q95+wA@mail.gmail.com>
+ <dee12a4f5dc1a37feb14e20074cf365dbb86bc05.camel@svanheule.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="82I3+IH0IqGh5yIs"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b588b43347afe377b6fda03c54855f97a421d89f.camel@phytec.de>
+In-Reply-To: <dee12a4f5dc1a37feb14e20074cf365dbb86bc05.camel@svanheule.net>
+X-Cookie: You do not have mail.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
 
-On Thu, Jul 08, 2021 at 01:34:17PM +0000, Stefan Riedmüller wrote:
-> Hi Sakari,
-> 
-> On Thu, 2021-07-08 at 14:23 +0300, Sakari Ailus wrote:
-> > Hi Stefan,
-> > 
-> > Thanks for the patch.
-> 
-> Thanks for your feedback!
+--82I3+IH0IqGh5yIs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-You're welcome!
+On Wed, Jul 07, 2021 at 10:53:19PM +0200, Sander Vanheule wrote:
 
-> 
-> > 
-> > On Thu, Jul 08, 2021 at 11:19:21AM +0200, Stefan Riedmueller wrote:
-> > > Convert mt9p031 sensor bindings to yaml schema. Also update the
-> > > MAINTAINERS entry.
-> > > 
-> > > Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
-> > > ---
-> > >  .../bindings/media/i2c/aptina,mt9p031.yaml    | 75 +++++++++++++++++++
-> > >  .../devicetree/bindings/media/i2c/mt9p031.txt | 40 ----------
-> > >  MAINTAINERS                                   |  1 +
-> > >  3 files changed, 76 insertions(+), 40 deletions(-)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-> > >  delete mode 100644
-> > > Documentation/devicetree/bindings/media/i2c/mt9p031.txt
-> > > 
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-> > > b/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-> > > new file mode 100644
-> > > index 000000000000..7de62e339895
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-> > > @@ -0,0 +1,75 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/mt9p031.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Aptina 1/2.5-Inch 5Mp CMOS Digital Image Sensor
-> > > +
-> > > +maintainers:
-> > > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > +
-> > > +description: |
-> > > +  The Aptina MT9P031 is a 1/2.5-inch CMOS active pixel digital image
-> > > sensor
-> > > +  with an active array size of 2592H x 1944V. It is programmable through
-> > > a
-> > > +  simple two-wire serial interface.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - aptina,mt9p031
-> > > +      - aptina,mt9p031m
-> > > +
-> > > +  reg:
-> > > +    description: I2C device address
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +    description: Chip reset GPIO
-> > > +
-> > > +  port:
-> > > +    $ref: /schemas/graph.yaml#/properties/port
-> > 
-> > This should probably be:
-> > 
-> > 	$ref: /schemas/graph.yaml#/$defs/port-base
-> 
-> I actually was not sure which one of these to use because I found both in
-> existing bindings. Also /schemas/graph.yaml#/properties/port has a reference
-> to $defs/port-base. It would be nice if you or someone else could give me a
-> hint why /schemas/graph.yaml#/$defs/port-base would be the correct one here.
+> I've made an attempt at implementing a "regmap_aliased()", similar to
+> "regmap_volatile()". However, this meant I had to make _regmap_read() aware of
+> wether the read- or write-alias was being read (from cache), touching some parts
+> of the regmap code I'm not using myself. Furthermore, this "aliased" property
+> isn't really perpendicular to "volatile", since writes should never be volatile,
+> and non-volatile reads don't make much sense (to me) on a read-only register.
 
-I haven't dug into the details but:
+As far as the abstractions in regmap are concerned these registers are
+volatile, that's currently how regmap undertands registers where
+readback won't give you the last written value.  Trying to convince the
+framework to handle these registers as anything other than volatile is
+going to of need be an invasive change.
 
-<URL:https://lore.kernel.org/linux-media/20210623164344.2571043-1-robh@kernel.org/T/>
+> If a regmap_field could overwrite the specifiers of it's parent register, I
+> think this may provide quite a natural solution to the aliasing problem: just
+> create two regmap_field defintions. One definition would be 'write-only' (and
+> cached for RMW), the other 'volatile read-only'. All regmap_fields could still
+> rely on a single cached register value, I think. I didn't try to implement this
+> though, so maybe I'm missing some behaviour that would disqualify this solution.
+> Would you think this could be an acceptable way to move forward here?
 
-> 
-> > 
-> > > +    addittionalProeprties: false
-> > 
-> > Could you run
-> > 
-> > 	make dt_binding_check
-> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.y
-> > aml
-> > 
-> > please?
-> 
-> Sorry, I totally forgot about this. I'll do so before sending the next
-> version.
+This feels like a painful and potentially high overhead approach to
+things - at the minute fields are layered on top of registers and are
+totally invisible at the register level, pulling the two together would
+touch a lot of places and make things tense, especially if we ended up
+with two different fields aliasing each other.  I'd need to see code but
+it feels like a difficult approach to take.
 
-No worries.
+--82I3+IH0IqGh5yIs
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
-> > 
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        $ref: /schemas/media/video-interfaces.yaml#
-> > > +        unevaluatedProperties: false
-> > > +
-> > > +        properties:
-> > > +          input-clock-frequency: true
-> > > +          pixel-clock-frequency: true
-> > 
-> > These two legacy properties were not in the endpoint previously.
-> 
-> That's right, but they are being parsed from the endpoint so I figured they
-> belong here. Should I mention this in the commit message?
+-----BEGIN PGP SIGNATURE-----
 
-Please do. I missed the driver did this.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmDnCkkACgkQJNaLcl1U
+h9BgWQf9EXRMoRdnrVCUNqRa20ezBb+4TyMBmX2rqTraVIEfms7khy2lloQFA0t9
+ArWkAGDXYDTGJE5e4sHFNTKNHqSbdWkFSjl0chkoamwv5GgpBuyA3YIOXplpet2J
+eYxbvsuYh/TBYo2NFgKCVa0UXYjuD0aemNElyfrIltjBZqfAMlFJah40HsoZdDQj
+LwNmxou2+oaRmQw7u9qtzQvHbxv4a4dRMga7KdP6QK2gpqIGK04DnFMjAqaiv5uk
+L6BgvcrHDvhWOSNpguXdt4Actyyae0qPjs6258E4t1S3weKO5ZXOB8C1eQtQDxP2
++Zqh5cDxsxPtObuk4e7Bj2tJvlGEQw==
+=4IS2
+-----END PGP SIGNATURE-----
 
-Ideally the driver would use the common properties but it's old and
-unlikely to be used in new boards anyway I guess.
-
-> 
-> Thanks,
-> Stefan
-> 
-> > 
-> > > +
-> > > +        required:
-> > > +          - input-clock-frequency
-> > > +          - pixel-clock-frequency
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - port
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    i2c0 {
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +        mt9p031@5d {
-> > > +            compatible = "aptina,mt9p031";
-> > > +            reg = <0x5d>;
-> > > +            reset-gpios = <&gpio_sensor 0 0>;
-> > > +
-> > > +            port {
-> > > +                mt9p031_1: endpoint {
-> > > +                    input-clock-frequency = <6000000>;
-> > > +                    pixel-clock-frequency = <96000000>;
-> > > +                };
-> > > +            };
-> > > +        }:
-> > > +    };
-> > > +
-> > > +...
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/mt9p031.txt
-> > > b/Documentation/devicetree/bindings/media/i2c/mt9p031.txt
-> > > deleted file mode 100644
-> > > index cb60443ff78f..000000000000
-> > > --- a/Documentation/devicetree/bindings/media/i2c/mt9p031.txt
-> > > +++ /dev/null
-> > > @@ -1,40 +0,0 @@
-> > > -* Aptina 1/2.5-Inch 5Mp CMOS Digital Image Sensor
-> > > -
-> > > -The Aptina MT9P031 is a 1/2.5-inch CMOS active pixel digital image sensor
-> > > with
-> > > -an active array size of 2592H x 1944V. It is programmable through a
-> > > simple
-> > > -two-wire serial interface.
-> > > -
-> > > -Required Properties:
-> > > -- compatible: value should be either one among the following
-> > > -	(a) "aptina,mt9p031" for mt9p031 sensor
-> > > -	(b) "aptina,mt9p031m" for mt9p031m sensor
-> > > -
-> > > -- input-clock-frequency: Input clock frequency.
-> > > -
-> > > -- pixel-clock-frequency: Pixel clock frequency.
-> > > -
-> > > -Optional Properties:
-> > > -- reset-gpios: Chip reset GPIO
-> > > -
-> > > -For further reading on port node refer to
-> > > -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > > -
-> > > -Example:
-> > > -
-> > > -	i2c0@1c22000 {
-> > > -		...
-> > > -		...
-> > > -		mt9p031@5d {
-> > > -			compatible = "aptina,mt9p031";
-> > > -			reg = <0x5d>;
-> > > -			reset-gpios = <&gpio3 30 0>;
-> > > -
-> > > -			port {
-> > > -				mt9p031_1: endpoint {
-> > > -					input-clock-frequency = <6000000>;
-> > > -					pixel-clock-frequency = <96000000>;
-> > > -				};
-> > > -			};
-> > > -		};
-> > > -		...
-> > > -	};
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index c7456776ace5..f2123226baae 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -12610,6 +12610,7 @@ M:	Laurent Pinchart <
-> > > laurent.pinchart@ideasonboard.com>
-> > >  L:	linux-media@vger.kernel.org
-> > >  S:	Maintained
-> > >  T:	git git://linuxtv.org/media_tree.git
-> > > +F:	Documentation/devicetree/bindings/media/i2c/aptina,mt9p031.yaml
-> > >  F:	drivers/media/i2c/mt9p031.c
-> > >  F:	include/media/i2c/mt9p031.h
-> > >  
-
--- 
-Regards,
-
-Sakari Ailus
+--82I3+IH0IqGh5yIs--
