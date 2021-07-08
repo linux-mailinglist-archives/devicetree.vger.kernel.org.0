@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AF0F3BF6ED
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 10:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C3C43BF6F2
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 10:41:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231192AbhGHIkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 04:40:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54912 "EHLO
+        id S231241AbhGHIoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 04:44:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231144AbhGHIkR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 04:40:17 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 415B3C06175F
-        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 01:37:35 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id i13so2561328plb.10
-        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 01:37:35 -0700 (PDT)
+        with ESMTP id S231185AbhGHIoC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 04:44:02 -0400
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0B8C061574
+        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 01:41:19 -0700 (PDT)
+Received: by mail-pg1-x535.google.com with SMTP id s18so5208312pgg.8
+        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 01:41:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=ow6TssIgweT/GoAzxSRukYv145LzMR/18ewmHa903tU=;
-        b=fttXZFzoq1PFbtzT6GLchigJke//EcyHyL6cuG0NFxsW+gKl90hEVLn+Z6A8QGhs7Y
-         UEIIIiugt6qH9dZWB0JhMKIOFrdORsR4qtubn1qCXg4Rn7dv07ktzjKTAh0La7t4n12t
-         ZCpmtQBhp77h5hpZJaj/I/su2NJwX+nWQjNXHaTFlxPUwTDVl0Dwa+g3Ma0NlfoOQiXj
-         NKDGfAFtspcRP2MvlflXl67RtXOJAaLktk4YEBZaptevxHCoCVtf+ii3q1UR5I24mAg0
-         PNqfRuZ19MGwNrcCTKX4hyhcJtbBBtIec9cZBDabnJ1TyocsSRWsiaNy2+MskLFM6X7C
-         5G1A==
+        bh=siIuMvkXC2AVcIAZnzYzjDZWFrnTkQc9eTe2lFO2xjo=;
+        b=DujFxJpm3hWBqoWJv2Di1EJVj7ZvxBbelgppRj+l57Sj16YYV7daiUYS7bSKQLK47V
+         XYvc6MyAQLcUI98nH2Nyg+89rhjM1gpBmr3vQhv4MK9VXmhxAK7w03V23ZAtaWDomdIX
+         CH2ol5Xp3PT3v9YV282aWB8em1upmDM9DTQvqHOVutPqDwERWmM6xcPCa5RuGCHnm7tH
+         tdEQTLo9mOR4KFYjiPDjs636VQIQhu1dpwF/tcjd7CtSpZ/vipUc1ejrpi9pSBw5GZT/
+         wli1J17dDAN+Yby8fYAWDEbj1E3310hTETxEe71uBPFbMjWUrHc9dvw3Pe4eybBaO5Ts
+         xGCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ow6TssIgweT/GoAzxSRukYv145LzMR/18ewmHa903tU=;
-        b=jDJ6eba/U20PKXHpSyIgEV6mWQYoQDtc7MDt9Eb7n+I80uXaqa4bWBe90Og1ktRUfx
-         3F0uN/tjabE8BaeD1LZC5x9stCi9Skr9Va6vX+L1xU6fF+pvFzJ74xt8sD60jMVXBHAw
-         2hXbNSOLxclX598WBPNPz6Pmu6qe3LCqwTSOhwWDZcsjcG0Iz5ppT0uXKMTJwezNHz/k
-         FrUiDXAZuIgJybLK8XvHoS1mHDjoI/qq1PJAoYJOLIPP2Y3o+7vpGqyqi6jt/QjNtNig
-         Td16YkLK5pLD1CA2GsAjXzUCz0SIET4Vxy0YZh5rjRWkeHuah8SlbTfSaHOxjgj3oZ6v
-         HCTw==
-X-Gm-Message-State: AOAM530bEMnMlTi/ZMz4/zewUnD2gbz1urrme/1wqs2XO4pxn+u1TIJY
-        UpzbGb09EA9Jf4YDj5IOF1SBIA==
-X-Google-Smtp-Source: ABdhPJwy6EnErPIofL/vD7EAud7+o6gts5+joGCEo+xXtxdeyOlzlPOH9f2OIAv6neGs35KZkbJ9zg==
-X-Received: by 2002:a17:90a:eb0c:: with SMTP id j12mr7087591pjz.79.1625733448683;
-        Thu, 08 Jul 2021 01:37:28 -0700 (PDT)
+        bh=siIuMvkXC2AVcIAZnzYzjDZWFrnTkQc9eTe2lFO2xjo=;
+        b=RUi9Xd+31C6TqR6zAB0OKqAMqhU+P9HftnCboaRohvUBqhMulNwwARW7m58MLMCoBR
+         m7RemH1P8Tw7zGFY5Wr0IVb3BScybex5aKUMeBlCGoQlAbt4SxmWW6x6dsGXF0+Xd+F8
+         ow6fqNJmtoYuuX87VHoC2izaBoT9FT2S+pvILZDkY9F8gLBez5IyS4rl3gxQ/Nfy2cCh
+         umpk0IszLmyJLmsuVV09SG4tYHTsnebDIJG/hP5KfYW8f1Tl9m1+XUKtYdFP1Y+JZAcm
+         hEqiFsxfsZY6FXhhG/C5Vv9OvqnDoTNCA+Zx/chY90IDFYp3g/9ncbwZpVQJsZCeZolh
+         vy5Q==
+X-Gm-Message-State: AOAM531ZmUuOx2lCT9+slilEj0I/GsxBFyJ8jCGffvLgtMTVbVRdHRFl
+        woVqLQB6VKtGAmr1YfrGXl8YKw==
+X-Google-Smtp-Source: ABdhPJwNkrsYNZXeC2SoeK/gWKgSM6Q8IZozaSiKHUBGMkYNoeLiZIgsEUZu1iiiGpZWvV3hjOCAtA==
+X-Received: by 2002:a63:7152:: with SMTP id b18mr30661407pgn.224.1625733679256;
+        Thu, 08 Jul 2021 01:41:19 -0700 (PDT)
 Received: from localhost ([106.201.108.2])
-        by smtp.gmail.com with ESMTPSA id g9sm1782323pfj.49.2021.07.08.01.37.27
+        by smtp.gmail.com with ESMTPSA id 10sm1881109pjc.41.2021.07.08.01.41.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jul 2021 01:37:27 -0700 (PDT)
-Date:   Thu, 8 Jul 2021 14:07:25 +0530
+        Thu, 08 Jul 2021 01:41:18 -0700 (PDT)
+Date:   Thu, 8 Jul 2021 14:11:17 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@somainline.org>
@@ -58,52 +58,112 @@ Cc:     bjorn.andersson@linaro.org, agross@kernel.org, rjw@rjwysocki.net,
         konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
         martin.botka@somainline.org, jami.kettunen@somainline.org,
         paul.bouchara@somainline.org,
-        ~postmarketos/upstreaming@lists.sr.ht, jeffrey.l.hugo@gmail.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v6 3/9] dt-bindings: arm: cpus: Document
- 'qcom,freq-domain' property
-Message-ID: <20210708083725.ggq66mv5g3w4e6nk@vireshk-i7>
+        ~postmarketos/upstreaming@lists.sr.ht, jeffrey.l.hugo@gmail.com
+Subject: Re: [PATCH v6 7/9] cpufreq: qcom-hw: Allow getting the maximum
+ transition latency for OPPs
+Message-ID: <20210708084117.gk2b4cfbr774xuvy@vireshk-i7>
 References: <20210701105730.322718-1-angelogioacchino.delregno@somainline.org>
- <20210701105730.322718-4-angelogioacchino.delregno@somainline.org>
+ <20210701105730.322718-8-angelogioacchino.delregno@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210701105730.322718-4-angelogioacchino.delregno@somainline.org>
+In-Reply-To: <20210701105730.322718-8-angelogioacchino.delregno@somainline.org>
 User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01-07-21, 12:57, AngeloGioacchino Del Regno wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> 
-> Add devicetree documentation for 'qcom,freq-domain' property specific
-> to Qualcomm CPUs. This property is used to reference the CPUFREQ node
-> along with Domain ID (0/1).
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> In order to fine-tune the frequency scaling from various governors,
+> allow to set a maximum transition latency from OPPs, which may be
+> different depending on the SoC.
+
+You are doing much more than just this, why ?
+
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > ---
->  Documentation/devicetree/bindings/arm/cpus.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  drivers/cpufreq/qcom-cpufreq-hw.c | 35 +++++++++++++++++++++++--------
+>  1 file changed, 26 insertions(+), 9 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-> index f3c7249c73d6..8512fa0147fa 100644
-> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> @@ -290,6 +290,12 @@ properties:
+> diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
+> index 54b79fe772b6..0b80c65a22a8 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-hw.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-hw.c
+> @@ -1331,6 +1331,7 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  	void __iomem *base;
+>  	struct qcom_cpufreq_data *data;
+>  	char fdom_resname[] = "freq-domainX";
+> +	unsigned int transition_latency;
+>  	int cpu_count, index, ret;
 >  
->        * arm/msm/qcom,kpss-acc.txt
+>  	cpu_dev = get_cpu_device(policy->cpu);
+> @@ -1381,22 +1382,31 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  	data->soc_data = of_device_get_match_data(&pdev->dev);
+>  	data->base = base;
+>  	data->res = res;
+> +	policy->driver_data = data;
 >  
-> +  qcom,freq-domain:
-> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-> +    description: |
-> +      CPUs supporting freq-domain must set their "qcom,freq-domain" property
-> +      with phandle to a cpufreq_hw node followed by the Domain ID(0/1).
+> -	/* HW should be in enabled state to proceed */
+> -	if (!(readl_relaxed(base + data->soc_data->reg_enable) & 0x1)) {
+> -		dev_err(dev, "Domain-%d cpufreq hardware not enabled\n", index);
+> -		ret = -ENODEV;
+> -		goto error;
+> -	}
+> -
+> -	qcom_get_related_cpus(index, policy->cpus);
+> +	cpu_count = qcom_get_related_cpus(index, policy->cpus);
+>  	if (!cpumask_weight(policy->cpus)) {
+>  		dev_err(dev, "Domain-%d failed to get related CPUs\n", index);
+>  		ret = -ENOENT;
+>  		goto error;
+>  	}
+>  
+> -	policy->driver_data = data;
+> +	if (!data->soc_data->uses_tz) {
+> +		ret = qcom_cpufreq_hw_osm_setup(cpu_dev, policy,
+> +						cpu_count, index);
+> +		if (ret) {
+> +			dev_err(dev, "Cannot setup the OSM for CPU%d: %d\n",
+> +				policy->cpu, ret);
+> +			goto error;
+> +		}
+> +	}
+> +
+> +	/* HW should be in enabled state to proceed */
+> +	if (!(readl_relaxed(base + data->soc_data->reg_enable) & 0x1)) {
+> +		dev_err(dev, "Domain-%d cpufreq hardware not enabled\n", index);
+> +		ret = -ENODEV;
+> +		goto error;
+> +	}
 
-We should be moving this driver to the new generic bindings instead.
+The commit log doesn't speak about any of the above.
 
-commit 88bf5a85fe98 ("dt-bindings: dvfs: Add support for generic performance domains")
+>  
+>  	ret = qcom_cpufreq_hw_read_lut(cpu_dev, policy);
+>  	if (ret) {
+> @@ -1411,6 +1421,12 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  		goto error;
+>  	}
+>  
+> +	transition_latency = dev_pm_opp_get_max_transition_latency(cpu_dev);
+> +	if (!transition_latency)
+> +		transition_latency = CPUFREQ_ETERNAL;
+> +
+> +	policy->cpuinfo.transition_latency = transition_latency;
+> +
+>  	dev_pm_opp_of_register_em(cpu_dev, policy->cpus);
+>  
+>  	if (policy_has_boost_freq(policy)) {
+> @@ -1421,6 +1437,7 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  
+>  	return 0;
+>  error:
+> +	policy->driver_data = NULL;
+>  	kfree(data);
+>  unmap_base:
+>  	iounmap(base);
+> -- 
+> 2.32.0
 
 -- 
 viresh
