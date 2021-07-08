@@ -2,97 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C80653C1612
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 17:35:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F1213C1691
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 17:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231845AbhGHPiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 11:38:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35924 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbhGHPiB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 11:38:01 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A25FC061574;
-        Thu,  8 Jul 2021 08:35:19 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AE8C6E7;
-        Thu,  8 Jul 2021 17:35:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1625758516;
-        bh=lOmALG0jk8RYjnY4adsYErJuURf+RDznyPMxzd4bb1k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S+muCAkgJA/b0w+idZS7KSahEarx51z33dYV/lit22D6HYQJqSO/Y2sYUL0zk0cH1
-         cO0fGTWNAeNUM8asITNmKjY4n+Upyzn77WXmbCNZtluPrqqxkHinKBE05nGx/808I9
-         tjSYv8hhL+83u9+EgtDUOHzwCbdp+JvNkqiXCUEA=
-Date:   Thu, 8 Jul 2021 18:34:32 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Guido =?utf-8?Q?G=C3=BCnther?= <guido.gunther@puri.sm>
-Cc:     Sakari Ailus <sakari.ailus@iki.fi>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>,
-        krzysztof.kozlowski@canonical.com, devicetree@vger.kernel.org,
-        kernel@puri.sm, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, mchehab@kernel.org,
-        paul.kocialkowski@bootlin.com, pavel@ucw.cz,
-        phone-devel@vger.kernel.org, robh@kernel.org, shawnx.tu@intel.com
-Subject: Re: [PATCH v6 5/5] arm64: defconfig: enable VIDEO_HI846
-Message-ID: <YOcbCBEToGGHizYI@pendragon.ideasonboard.com>
-References: <20210628101054.828579-1-martin.kepplinger@puri.sm>
- <20210628101054.828579-6-martin.kepplinger@puri.sm>
- <20210708130003.GA3@valkosipuli.retiisi.eu>
- <YOcWCVSXfV+cKJ6H@qwark.sigxcpu.org>
+        id S229592AbhGHPxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 11:53:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59350 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231944AbhGHPxF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Jul 2021 11:53:05 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 956D2616ED;
+        Thu,  8 Jul 2021 15:50:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625759423;
+        bh=oa74Tybu5HedvZVZTqYR2f9HSos8k6RTN9dJvzTphn4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Q+O6ZDdGEBnkFEr6zQrynCPAe2CjViex2if/DDrh7a8iGMB4gdkfvP6M3dVr6JW5R
+         8s5YsA4HU1SJdXiBy2tMuflJey6gHdoldMCk8C3bApOjZB5rStVCKcTNlsHOy17bpP
+         cp+dTsNdPnAg0OiONG3gCYPPeW+17PCHGW91Rci53M4lml7E5uU0mhTjpfOXfx9Hpy
+         A2k/iaQgivlMcqDUnqttw893u4QmH4yNHNxn4J5EGDXyxck3XG47wEpLWm/9eG7NNd
+         1gQTrJI8xy0VEs8p2Eg+Xve2jljhJWPhE6u8L8+/MzGLUZL/LU2y+n7u8hRzb3qoW1
+         NWV28/c0V41tw==
+Received: by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1m1WI4-008VV0-Bs; Thu, 08 Jul 2021 17:50:16 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Binghui Wang <wangbinghui@hisilicon.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Xiaowei Song <songxiaowei@hisilicon.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Subject: [PATCH RFC 0/7] Add support for Hikey 970 PCIe
+Date:   Thu,  8 Jul 2021 17:50:07 +0200
+Message-Id: <cover.1625758732.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YOcWCVSXfV+cKJ6H@qwark.sigxcpu.org>
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guido,
+That's the third attempt of adding PCIe support for Hikey 970 from my side.
+The past attempt was this one:
 
-On Thu, Jul 08, 2021 at 05:13:13PM +0200, Guido Günther wrote:
-> On Thu, Jul 08, 2021 at 04:00:04PM +0300, Sakari Ailus wrote:
-> > On Mon, Jun 28, 2021 at 12:10:54PM +0200, Martin Kepplinger wrote:
-> > > Build the driver for the Hi-846 camera by default on arm64 where it's
-> > > going to be used on at least the imx8mq-librem5 board.
-> > > 
-> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > > ---
-> > >  arch/arm64/configs/defconfig | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> > > index f423d08b9a71..bf27d9cfbdd5 100644
-> > > --- a/arch/arm64/configs/defconfig
-> > > +++ b/arch/arm64/configs/defconfig
-> > > @@ -666,6 +666,7 @@ CONFIG_VIDEO_RENESAS_VSP1=m
-> > >  CONFIG_VIDEO_QCOM_VENUS=m
-> > >  CONFIG_SDR_PLATFORM_DRIVERS=y
-> > >  CONFIG_VIDEO_RCAR_DRIF=m
-> > > +CONFIG_VIDEO_HI846=m
-> > >  CONFIG_VIDEO_IMX219=m
-> > >  CONFIG_VIDEO_OV5645=m
-> > >  CONFIG_VIDEO_QCOM_CAMSS=m
-> > 
-> > The same sensor may be or may not used on a given board (and certainly it's
-> > not specific to arm64). Is it desirable all arm64 systems compile this in
-> > by default?
-> > 
-> > There appear to be a other sensor drivers though.
-> > 
-> > Is there a defconfig for the librem5 board?
-> 
-> arm64 has a single defconfig, there are no board specific ones (and
-> afaik they're not wanted either) so I think enabling it as a module is
-> the only way.
+	https://lore.kernel.org/lkml/cover.1612335031.git.mchehab+huawei@kernel.org/
 
-Do sensor drivers qualify for defconfig support though ? If they do,
-they should all be enabled.
+As requested by Rob Herring, this series use a different approach than
+the past attempt: it first splits the PHY part into a separate driver. Then, it
+adds support for Kirin 970.
 
-> > I wonder what others think.
+Due to such change, the DT bindings had to change, as several properties moved
+from the PCIe driver to the PHY. IMO, it makes a lot more sense now.
+
+This is is currently a work in progress. There are still a few things to be solved,
+but let me send what I have so far for a quick review if this approach is
+acceptable.
+
+Manivannan,
+
+Please notice that this patch:
+
+  PCI: kirin: split PHY interface from the driver
+
+Contains the code written by you, on your attempt to upstream this.
+If you're OK, please send your SoB. I should likely add a Co-authored-by:
+tag at the final version.
+
+The same somewhat applies to this patch:
+
+  arm64: dts: hisilicon: Add support for HiKey 970 PCIe controller hardware
+
+but at the reverse direction, as I had to shift some properties from the 
+PCIe binding to the PCIe PHY one.
+
+Also, if this approach is OK, I'm considering to move all clock lines to the
+PHY driver, as it makes more sense there, and the device is *very* sensitive
+to the clock order. Any change at the sequence may cause the SoC to generate
+a  NMI interrupt (SError), which, in turn, causes a kernel panic.
+
+Manivannan Sadhasivam (1):
+  arm64: dts: hisilicon: Add support for HiKey 970 PCIe controller
+    hardware
+
+Mauro Carvalho Chehab (6):
+  PCI: kirin: split PHY interface from the driver
+  PCI: kirin: use regmap for APB registers
+  bindings: kirin-pcie.txt: fix compatible string
+  bindings: kirin-pcie.txt: drop PHY properties
+  bindings: phy: add bindings for Hikey 960 PCIe PHY
+  phy: add driver for Kirin 970 PCIe PHY
+
+ .../devicetree/bindings/pci/kirin-pcie.txt    |  24 +-
+ .../phy/hisilicon,phy-hi3660-pcie.yaml        |  70 ++
+ arch/arm64/boot/dts/hisilicon/hi3660.dtsi     |  29 +-
+ arch/arm64/boot/dts/hisilicon/hi3670.dtsi     |  72 ++
+ .../boot/dts/hisilicon/hikey970-pmic.dtsi     |   1 -
+ drivers/pci/controller/dwc/pcie-kirin.c       | 254 ++----
+ drivers/phy/hisilicon/Kconfig                 |  20 +
+ drivers/phy/hisilicon/Makefile                |   2 +
+ drivers/phy/hisilicon/phy-hi3660-pcie.c       | 273 ++++++
+ drivers/phy/hisilicon/phy-hi3670-pcie.c       | 844 ++++++++++++++++++
+ 10 files changed, 1370 insertions(+), 219 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,phy-hi3660-pcie.yaml
+ create mode 100644 drivers/phy/hisilicon/phy-hi3660-pcie.c
+ create mode 100644 drivers/phy/hisilicon/phy-hi3670-pcie.c
 
 -- 
-Regards,
+2.31.1
 
-Laurent Pinchart
+
