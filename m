@@ -2,99 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A00D3BF875
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 12:32:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA7933BF8C9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 13:17:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231493AbhGHKev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 06:34:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52246 "EHLO
+        id S231628AbhGHLUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 07:20:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231470AbhGHKev (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 06:34:51 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ADC1C061574;
-        Thu,  8 Jul 2021 03:32:09 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id f17so6878722wrt.6;
-        Thu, 08 Jul 2021 03:32:09 -0700 (PDT)
+        with ESMTP id S231576AbhGHLUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 07:20:01 -0400
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A25C061574;
+        Thu,  8 Jul 2021 04:17:18 -0700 (PDT)
+Received: by mail-io1-xd2f.google.com with SMTP id d9so7689156ioo.2;
+        Thu, 08 Jul 2021 04:17:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=DMo1FwPXUmdGeHuTylB1bhXZtdOnnUeT5f6CbSUaCzs=;
-        b=p1FAx0sXOfW6uoejHheFl6xvVQZqCqeoJDup1pcl51HWurhVMhnRCKEsJ1RAQFooXl
-         QJ60l7CT0z5JrFWInnEHnVZwDIkYjw2aTrwu1XB2ZDbggC51KvsGl0/sf/d6AIoUbqrw
-         cTjDR63q6xN5qLSHPbnliQAk3djKNdR6PYveqztvQ7zA1n3zovLDGKzbJ7ZieeE7q7+Q
-         RaaQb3N7RO94pciVu14NO/AFmQ3dk4RS6clfXnNiaU+uHL7FSdt0b+uHcKaiT29aSCwH
-         NGHrQZTN7Kv1AXaDHq10myQ1w6EVxd+QwJsvFXjLPAIVzFqbaCQ00OT53LiKqJxL5WZZ
-         oNpA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=/V0elM834a3OKW2H0FfBYwtSWYinhNp/Aw2J7DdF6JE=;
+        b=YVaM3v+UJmsKu4L/OKfHU6cqxnysUL1XuA0lgUzxSwdK4BP1g6NZaFDD18VrRI3nHN
+         WEcPtBhK1JAUUudushpzmspqLHG4HU15ghiar1z0CdsXx4zsVl2Z/zokf926dUTc85Z9
+         vBZM/NYNphVEDZ1UqjX6RDVg7u+tiyY2tleZY8GOcaQXqIH0MusSIK3IXR7f9Um61KI2
+         Zogsjs+erxLhjyxyIL7ofovkkoRFrGxdlg+PfUVWj7Y+TTpuu0uvWHuj0JPo/O2gklJq
+         +8BCpibj8R9a4laEI7uiJRrFhD8Cn5AD1hAJsKPjynoRu+3lukSnv9K5NuItAu5QzI1V
+         3mVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=DMo1FwPXUmdGeHuTylB1bhXZtdOnnUeT5f6CbSUaCzs=;
-        b=Lfz6fbpu9LOCW1IQJw1TbnkaXCV/Spu9rF0k4tzlj9TCCATKyDgeIEoKVCTey4Hew+
-         6cCkOGnhvTYA6M1GrPenE/Me+xfL7QxfTtWTqpulHzNslzD2DrwphkBSTDoHBluiMOdq
-         ekI6zml34TgDNtth1Z2f0AReqzMhF+5WrGdZN13ScGUj+fk+6iBk5HKD+o9WxGI1eIaB
-         HvlottDbAYfSGvBBqqvHk3XJBFOhihpOC/7u8MJFsfZWLzXL79GUe2E9zB2i9Cyc414S
-         8I6zEnirEZeN8Y7P+5HCfcayQ6QfnZ/8TUX4a0FRbS+s6v84kFC5wYoYvlyP0hrlCtwJ
-         WzLg==
-X-Gm-Message-State: AOAM533PPU0RPEd8ITyRJXJKumdZB6XuY7cJ9/BJ5D8ixqurtDBdEflE
-        YFQnWeI/HX3GaAi2wJ+BaEw=
-X-Google-Smtp-Source: ABdhPJzlvFcZx5xlorsp2MwJBbqPjX+k+YaeqaloucD+hMVipmfutFPdh/YzQIe6ATjQbbORHM8SLA==
-X-Received: by 2002:a5d:6702:: with SMTP id o2mr27199118wru.405.1625740327975;
-        Thu, 08 Jul 2021 03:32:07 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id g10sm1383954wrq.63.2021.07.08.03.32.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jul 2021 03:32:07 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Sameer Pujar <spujar@nvidia.com>, linux-tegra@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: tegra: Enable audio IOMMU support on Tegra194
-Date:   Thu,  8 Jul 2021 12:34:32 +0200
-Message-Id: <20210708103432.1690385-3-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210708103432.1690385-1-thierry.reding@gmail.com>
-References: <20210708103432.1690385-1-thierry.reding@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=/V0elM834a3OKW2H0FfBYwtSWYinhNp/Aw2J7DdF6JE=;
+        b=pxVufJrFlWef+PSraO4UkLM3J9Gnhcst47uq3msGsJuie5ITLSapg1gA+KuPqIkUAT
+         wzI1xsUYPBJDhPm68VvIbQCLsefupNms5a5eEoffK2TBz1JyBxZTZnpxP0G9rBc6nVHn
+         ToNg3YMQza9D3tMoASq69mxluNE8CzjtqdJYHpw7d1PPgwV/+7BD7tl8SVK7AHRG40mr
+         arA69bkQ4hy56XG4EtjmkZNjcq+oYGM1jH4aB82fJY8TsJ6xYcGlDCNhHVzf5gVIHYmV
+         HSD5K7BqRJEeN5ZibeQxYNDhDVMbbx6ILK+Z2yGFww35lBa7jMeSoK1jDTkAxeLU3u+5
+         RjSQ==
+X-Gm-Message-State: AOAM533VYHWuz3eowAWTrF2hHy3G1HAnZR1UhNN7tHCSQz4wmU+FF/Qe
+        8zt8+zqOjgnzIetzROpq38OSmIrrY7fcrHGHD+w=
+X-Google-Smtp-Source: ABdhPJwWQy40NEsahulV5SZWonn4O9HZMSFGb0vJbBJG80figt1i33BmoUWxSe7/QuxODEm3LjI/hSTtCmJsfDYZ+OQ=
+X-Received: by 2002:a02:3781:: with SMTP id r123mr26311239jar.26.1625743037997;
+ Thu, 08 Jul 2021 04:17:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20210615103400.946-1-alistair@alistair23.me> <20210615103400.946-2-alistair@alistair23.me>
+ <YMnY7RLW6ml4Tq0g@dell> <CAKmqyKNs+Ebvd5MwtoKfKhNrMJVhTsBLjDhLXRuK8C+gs5MCcQ@mail.gmail.com>
+ <YMsTy3QnYzjrFSFg@dell>
+In-Reply-To: <YMsTy3QnYzjrFSFg@dell>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Thu, 8 Jul 2021 21:16:51 +1000
+Message-ID: <CAKmqyKODRkahuUL+SFj8RQYq2rvj=nLgseozAyiwkDmtD8JE+g@mail.gmail.com>
+Subject: Re: [PATCH v6 2/5] mfd: sy7636a: Initial commit
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Rob Herring <robh+dt@kernel.org>, lgirdwood@gmail.com,
+        Mark Brown <broonie@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Thu, Jun 17, 2021 at 7:20 PM Lee Jones <lee.jones@linaro.org> wrote:
+>
+> On Thu, 17 Jun 2021, Alistair Francis wrote:
+>
+> > On Wed, Jun 16, 2021 at 8:56 PM Lee Jones <lee.jones@linaro.org> wrote:
+> > >
+> > > On Tue, 15 Jun 2021, Alistair Francis wrote:
+> > >
+> > > > Initial support for the Silergy SY7636A Power Management chip.
+> > > >
+> > > > Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> > > > ---
+> > > >  drivers/mfd/Kconfig         |  9 ++++
+> > > >  drivers/mfd/Makefile        |  1 +
+> > > >  drivers/mfd/sy7636a.c       | 82 +++++++++++++++++++++++++++++++++=
+++++
+> > > >  include/linux/mfd/sy7636a.h | 47 +++++++++++++++++++++
+> > > >  4 files changed, 139 insertions(+)
+> > > >  create mode 100644 drivers/mfd/sy7636a.c
+> > > >  create mode 100644 include/linux/mfd/sy7636a.h
+> > > >
+> > > > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > > > index 5c7f2b100191..7d6cf32b1549 100644
+> > > > --- a/drivers/mfd/Kconfig
+> > > > +++ b/drivers/mfd/Kconfig
+> > > > @@ -1339,6 +1339,15 @@ config MFD_SYSCON
+> > > >         Select this option to enable accessing system control regis=
+ters
+> > > >         via regmap.
+> > > >
+> > > > +config MFD_SY7636A
+> > > > +     tristate "Silergy SY7636A Power Management chip"
+> > > > +     select MFD_CORE
+> > > > +     select REGMAP_I2C
+> > > > +     depends on I2C
+> > > > +     help
+> > > > +       Select this option to enable support for the Silergy SY7636=
+A
+> > > > +       Power Management chip.
+> > > > +
+> > > >  config MFD_DAVINCI_VOICECODEC
+> > > >       tristate
+> > > >       select MFD_CORE
+> > > > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > > > index 4f6d2b8a5f76..f95e1e725a95 100644
+> > > > --- a/drivers/mfd/Makefile
+> > > > +++ b/drivers/mfd/Makefile
+> > > > @@ -265,6 +265,7 @@ obj-$(CONFIG_MFD_STMFX)   +=3D stmfx.o
+> > > >  obj-$(CONFIG_MFD_KHADAS_MCU)         +=3D khadas-mcu.o
+> > > >  obj-$(CONFIG_MFD_ACER_A500_EC)       +=3D acer-ec-a500.o
+> > > >
+> > > > +obj-$(CONFIG_MFD_SY7636A)    +=3D sy7636a.o
+> > > >  obj-$(CONFIG_SGI_MFD_IOC3)   +=3D ioc3.o
+> > > >  obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)     +=3D simple-mfd-i2c.o
+> > > >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   +=3D intel-m10-bmc.o
+> > > > diff --git a/drivers/mfd/sy7636a.c b/drivers/mfd/sy7636a.c
+> > > > new file mode 100644
+> > > > index 000000000000..e08f29ea63f8
+> > > > --- /dev/null
+> > > > +++ b/drivers/mfd/sy7636a.c
+> > > > @@ -0,0 +1,82 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0+
+> > > > +//
+> > >
+> > > Only the SPDX with C++ style comments please.
+> > >
+> > > > +// MFD parent driver for SY7636A chip
+> > >
+> > > Drop the MFD part.  It's a Linuxisum that doesn't really exist.
+> > >
+> > > > +// Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
+> > > > +//
+> > > > +// Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.co=
+m>
+> > > > +//          Alistair Francis <alistair@alistair23.me>
+> > > > +//
+> > > > +// Based on the lp87565 driver by Keerthy <j-keerthy@ti.com>
+> > > > +
+> > > > +#include <linux/interrupt.h>
+> > > > +#include <linux/mfd/core.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/of_device.h>
+> > > > +
+> > > > +#include <linux/mfd/sy7636a.h>
+> > > > +
+> > > > +static const struct regmap_config sy7636a_regmap_config =3D {
+> > > > +     .reg_bits =3D 8,
+> > > > +     .val_bits =3D 8,
+> > > > +};
+> > > > +
+> > > > +static const struct mfd_cell sy7636a_cells[] =3D {
+> > > > +     { .name =3D "sy7636a-regulator", },
+> > > > +     { .name =3D "sy7636a-temperature", },
+> > > > +     { .name =3D "sy7636a-thermal", },
+> > > > +};
+> > > > +
+> > > > +static const struct of_device_id of_sy7636a_match_table[] =3D {
+> > > > +     { .compatible =3D "silergy,sy7636a", },
+> > > > +     {}
+> > > > +};
+> > > > +MODULE_DEVICE_TABLE(of, of_sy7636a_match_table);
+> > >
+> > > Hold on.  This driver doesn't really do anything.  If you create OF
+> > > nodes for all the sub-devices, you can use simple-mfd-i2c.
+> > >
+> > > Any reason you can't do that?
+> >
+> > Just to confirm, you mean something like this?
+> >
+> > diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts
+> > b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> > index 9327d1c06c96..3577104b3853 100644
+> > --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
+> > +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
+> > @@ -382,6 +382,21 @@ epd_pmic: sy7636a@62 {
+> >                 pinctrl-0 =3D <&pinctrl_epdpmic>;
+> >                 #thermal-sensor-cells =3D <0>;
+> >
+> > +               regulator@0 {
+> > +                       compatible =3D "sy7636a-regulator";
+> > +                       reg =3D <0>;
+> > +               };
+> > +
+> > +               temperature@0 {
+> > +                       compatible =3D "sy7636a-temperature";
+> > +                       reg =3D <0>;
+> > +               };
+> > +
+> > +               thermal@0 {
+> > +                       compatible =3D "sy7636a-thermal";
+> > +                       reg =3D <0>;
+> > +               };
+> > +
+> >                 regulators {
+> >                         compatible =3D "silergy,sy7636a-regulator";
+> > diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-i2c.=
+c
+> > index 87f684cff9a1..622a05318cff 100644
+> > --- a/drivers/mfd/simple-mfd-i2c.c
+> > +++ b/drivers/mfd/simple-mfd-i2c.c
+> > @@ -39,6 +39,7 @@ static int simple_mfd_i2c_probe(struct i2c_client *i2=
+c)
+> >
+> >  static const struct of_device_id simple_mfd_i2c_of_match[] =3D {
+> >         { .compatible =3D "kontron,sl28cpld" },
+> > +       { .compatible =3D "silergy,sy7636a" },
+> >         {}
+> >  };
+> >  MODULE_DEVICE_TABLE(of, simple_mfd_i2c_of_match);
+>
+> Essentially.  Take a look at how the other users are implementing.
+>
+> The reg entries look bogus to me though.  Maybe just leave them out?
 
-Add iommus and interconnects properties to the ADMAIF device tree node
-on Tegra194. This ensures that the correct SID is used for translation
-of physical to I/O virtual addresses and that the path to system memory
-is properly described, which in turn can impact the range of memory that
-the device can address.
+So I tried this and didn't have any luck.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+After some Kconfig changes to allow it to build, I managed to get it
+probing, but I never got it to power up. It doesn't seem to be the
+same.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index b7d532841390..07e61f084123 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -200,6 +200,10 @@ tegra_admaif: admaif@290f000 {
- 						    "rx19", "tx19",
- 						    "rx20", "tx20";
- 					status = "disabled";
-+					interconnects = <&mc TEGRA194_MEMORY_CLIENT_APEDMAR &emc>,
-+							<&mc TEGRA194_MEMORY_CLIENT_APEDMAW &emc>;
-+					interconnect-names = "dma-mem", "write";
-+					iommus = <&smmu TEGRA194_SID_APE>;
- 				};
- 
- 				tegra_i2s1: i2s@2901000 {
--- 
-2.32.0
+Alistair
 
+>
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> Senior Technical Lead - Developer Services
+> Linaro.org =E2=94=82 Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
