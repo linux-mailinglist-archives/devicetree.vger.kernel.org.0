@@ -2,71 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A37D3BF96A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 13:57:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CCE43BF96D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 13:58:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231441AbhGHMAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 08:00:38 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:57743 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231347AbhGHMAi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 08:00:38 -0400
+        id S231472AbhGHMA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 08:00:59 -0400
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:60095 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231347AbhGHMA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 08:00:59 -0400
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 0E86C580583;
-        Thu,  8 Jul 2021 07:57:56 -0400 (EDT)
+        by mailout.nyi.internal (Postfix) with ESMTP id 2CE215C0041;
+        Thu,  8 Jul 2021 07:58:17 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Thu, 08 Jul 2021 07:57:56 -0400
+  by compute4.internal (MEProxy); Thu, 08 Jul 2021 07:58:17 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
          h=from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm1; bh=TDZ9TqyEzhFi4Z160/490nIKbT
-        svjWH1kG4Ng2NyjUM=; b=DF61YvdQA9GzPniZ3TVEmvA7JQkqB8Km6NX2VGdG+L
-        00GuxI/2wd3UP5N0gbYgm0x48UFqkzXbEu8LhjNaWbZCjynnYK/OHZVYo4dbhZGw
-        s4bv6ERKqY9VyTxP2AiSBIm2eORwgx+ps8HcoQucWYNWhyIWLo19AMvG6CknhEEe
-        OJGpT7SQYrdgnxKmpPuPdCt50NGk52uQY8Sq47M8Dv209/e4lYjU0hAdXf056ZLG
-        /ElxKUdvAxlH3+bKrM627LhnvkYCV93yweL76v2jFXr9xzSe5eUyFF4ZlK+GNIzi
-        YHhVGojZtOoSh22e6DFdrxiTgfYFXEGKyFdpsmpiHaFQ==
+        :content-transfer-encoding; s=fm1; bh=pRIPB83la3iKOmVVHMgSN8VS8y
+        +Ff25CtnJH129lD38=; b=XHdw/n2X0QPHhk5Rk29wFDa/p/xkS59o/mc2SeDavS
+        3HukKqfZkR7YE/KafMUaT7+v431Tf9/nfa7M+xgzu1jYE3f3sdnPVfbiJAj7Ow8W
+        gk86tgDL8W9Bdo5eI1y2tM0KivP9sAWh9mORZkD0VAk7IAT9RiIRUtoSZFtTXI3r
+        0MJQv0fJd5i01ZlqGbbeYHVBXHM5gV4ojFXvXMG+BpUoZAc90bfYLT1un9TpDm9z
+        JhId10gbVqt5CVRwBn0XjXuSN2BbrOTu7PPWd/+qGhluzBsf1OSFqfu7EdHPqfHy
+        nncPVm89f+m+v47eAy8SmD8EmU+wDVmCKbjCM7PpylAg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=TDZ9TqyEzhFi4Z160
-        /490nIKbTsvjWH1kG4Ng2NyjUM=; b=pWwPnF9cXGqG1Fe4PkktmEGW/Ne2vejVg
-        TQHNASYqzxjWZqHZZHDCzdfWiRvrOALCWeje3mBh9IbpGMLIhUwJyJSX1KbuDGtw
-        iel8f01p7qmzXIEIbSgMLcvDdeR3neIa08bfuTRoYWvlGafDWMZkAJxV5gW46S77
-        rT4vlBIVEDbt5fUrxyzGo2ebYoYWYR9FlynKzLU/MC6txKMO6tBPYLjJj/dmbVoD
-        n/nphEjcRxZZYT1U7fg73UCp0cIQbPKeqWJprZmBvEsy9vK00hV/CVUzcHA6eqH1
-        YoBijNLXl45GZproVWz0WVxkYqRxbq9Vrx6OGXCPCv0uOERXQrfqw==
-X-ME-Sender: <xms:QejmYHSS_PncIBBNYVb3moguaqCMqcqkyfhEXMNhSJg2WkWjFjh7Xw>
-    <xme:QejmYIyvBD_9yRVFJlHt1ps5cevBkMcqpB97w_Sg6BvN7aWYUt8iQXtfTfq3dhsaS
-    XEI8JrIa2ezumcRn9A>
-X-ME-Received: <xmr:QejmYM3eJj9W2YiDEvyrrMmFTbuHkcCXr7iwthffSYdYam7RPpABsFKxD_zUiSTGNMQdK8L55ELCfwRZQxQ>
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=pRIPB83la3iKOmVVH
+        MgSN8VS8y+Ff25CtnJH129lD38=; b=s/iUt8VeVjzPozum6CJNWV6Xn3GrOETvg
+        DshS8wObJ82OBV8qXoTx2S2ALniOjn4WccVTD/xksmrsxsOuXbbZFhJvSJ6F4kFV
+        9wlZ86/MycnGXIHawyrhd/SRArdHbym9O+pIeVs0wQg8v2VLrMDPUj+qwA1bI2vf
+        fy5OknMGFe5jkOSaKO4wrdrp6/RvUefmp58utwYo3974tPNMXCkvPkXxefcKetNf
+        VPrNPTF99cCxB7lkKlCNYa7Uwjky3jiNDTM4rJC9Qbkm3jAwW2NUpm4JS9As9YOI
+        GCOZDTwV3nUaykgTqBsYy8qHOKzXF4ItNdURLG6tW2P208GQLz/DA==
+X-ME-Sender: <xms:WOjmYG3OItMVLig85IbwcM9d6MdyJghGDuL-OXNAWJSiNjBGggXDwQ>
+    <xme:WOjmYJHuuUXxRjLdeEBXhKWkt0hIe-9uYdnw7t_sj6ddBlj6KHsDO95HO7acGMBlE
+    xBhstK6mlz56-QbW8E>
+X-ME-Received: <xmr:WOjmYO4xjV94oMWQz9x0xnC70MFa4Z1SVgVupJeqRhbdVUjutP5uNlk32sxxWzKzw4_doPjH-w5hB6VniLc>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrtdeggdeghecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomheptehlihhsthgrihhr
-    ucfhrhgrnhgtihhsuceorghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgvqeenuc
-    ggtffrrghtthgvrhhnpefghfegkeejtddvfeekjeelgeffhefhvddvvddtvefgfffftdek
-    geeljeefvdeiudenucffohhmrghinhepvghinhhkrdgtohhmnecuvehluhhsthgvrhfuih
-    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhishht
-    rghirhdvfedrmhgv
-X-ME-Proxy: <xmx:QejmYHB3mD8O3fPyaatydnPI5DQ0dZSpxgBEohvUFOrKN9_5QlCDQg>
-    <xmx:QejmYAg_vYYGNeXAnZycQn68wsYYOad8pfpBTMYH3RKP_mXC6EEIBQ>
-    <xmx:QejmYLqie_G32bxkjwFw093WE_b5a26YIlZbjaevsqJb8L-hyMlPSg>
-    <xmx:ROjmYMwRHi30dL8cVS4GluEBiNcruMJJXrBLz5ZUvL0iwH3SUSgAvQ>
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghirhes
+    rghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepkeduveffffefffefve
+    fhudejfeefiedugfeltdegueehhfejkedvudeltdeihedtnecuffhomhgrihhnpehrvghm
+    rghrkhgrsghlvgdrtghomhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
+    grihhlfhhrohhmpegrlhhishhtrghirhesrghlihhsthgrihhrvdefrdhmvg
+X-ME-Proxy: <xmx:WOjmYH2CRToLzSgpwgTadkKWR2Kn5R81cg8D5745Ua9A1lcVTKcRdg>
+    <xmx:WOjmYJGhVDBtpRDjpfqTIAIO7H4HcoQANpYVy-dm9f1UHXKEjNcCtg>
+    <xmx:WOjmYA-tw82DfCW0tXCA9veYJ8muoZBYaTl9flw4-5mcYBkOI-EiOA>
+    <xmx:WejmYA0_MJS4lGi3rgrvbJra59FV3Qd9btLYNPKg_27PvO9ZrDF9VA>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 8 Jul 2021 07:57:48 -0400 (EDT)
+ 8 Jul 2021 07:58:13 -0400 (EDT)
 From:   Alistair Francis <alistair@alistair23.me>
-To:     robh+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
-        krzk@kernel.org, shawnguo@kernel.org, daniel@0x0f.com,
-        linux@rempel-privat.de, kuninori.morimoto.gx@renesas.com,
-        max.Merchel@tq-group.com, geert+renesas@glider.be,
-        airlied@linux.ie, daniel@ffwll.ch
+To:     lee.jones@linaro.org, robh+dt@kernel.org, lgirdwood@gmail.com,
+        broonie@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, alistair23@gmail.com,
-        Alistair Francis <alistair@alistair23.me>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3] drm/panel: Add support for E Ink VB3300-KCA
-Date:   Thu,  8 Jul 2021 21:57:35 +1000
-Message-Id: <20210708115735.142-1-alistair@alistair23.me>
+        alistair23@gmail.com, Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v7 1/6] mfd: sy7636a: Initial commit
+Date:   Thu,  8 Jul 2021 21:57:59 +1000
+Message-Id: <20210708115804.212-1-alistair@alistair23.me>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -74,90 +68,190 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the 10.3" E Ink panel described at:
-https://www.eink.com/product.html?type=productdetail&id=7
+Initial support for the Silergy SY7636A Power Management chip.
 
 Signed-off-by: Alistair Francis <alistair@alistair23.me>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
- .../bindings/display/panel/panel-simple.yaml  |  2 ++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
- drivers/gpu/drm/panel/panel-simple.c          | 29 +++++++++++++++++++
- 3 files changed, 33 insertions(+)
+ drivers/mfd/Kconfig         |  9 +++++
+ drivers/mfd/Makefile        |  1 +
+ drivers/mfd/sy7636a.c       | 81 +++++++++++++++++++++++++++++++++++++
+ include/linux/mfd/sy7636a.h | 47 +++++++++++++++++++++
+ 4 files changed, 138 insertions(+)
+ create mode 100644 drivers/mfd/sy7636a.c
+ create mode 100644 include/linux/mfd/sy7636a.h
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index b3797ba2698b..799e20222551 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -128,6 +128,8 @@ properties:
-         # Emerging Display Technology Corp. WVGA TFT Display with capacitive touch
-       - edt,etm0700g0dh6
-       - edt,etm0700g0edh6
-+        # E Ink VB3300-KCA
-+      - eink,vb3300-kca
-         # Evervision Electronics Co. Ltd. VGG804821 5.0" WVGA TFT LCD Panel
-       - evervision,vgg804821
-         # Foxlink Group 5" WVGA TFT LCD panel
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 0199728d2eaf..3612c6020fe4 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -335,6 +335,8 @@ patternProperties:
-     description: eGalax_eMPIA Technology Inc
-   "^einfochips,.*":
-     description: Einfochips
-+  "^eink,.*":
-+    description: E Ink Corporation
-   "^elan,.*":
-     description: Elan Microelectronic Corp.
-   "^element14,.*":
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 21939d4352cf..210377b03f6f 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2046,6 +2046,32 @@ static const struct panel_desc edt_etm0700g0bdh6 = {
- 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
- };
+diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+index 6a3fd2d75f96..7b59aa0fd3f2 100644
+--- a/drivers/mfd/Kconfig
++++ b/drivers/mfd/Kconfig
+@@ -1352,6 +1352,15 @@ config MFD_SYSCON
+ 	  Select this option to enable accessing system control registers
+ 	  via regmap.
  
-+static const struct display_timing eink_vb3300_kca_timing = {
-+	.pixelclock = { 40000000, 40000000, 40000000 },
-+	.hactive = { 334, 334, 334 },
-+	.hfront_porch = { 1, 1, 1 },
-+	.hback_porch = { 1, 1, 1 },
-+	.hsync_len = { 1, 1, 1 },
-+	.vactive = { 1405, 1405, 1405 },
-+	.vfront_porch = { 1, 1, 1 },
-+	.vback_porch = { 1, 1, 1 },
-+	.vsync_len = { 1, 1, 1 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW |
-+		 DISPLAY_FLAGS_DE_HIGH | DISPLAY_FLAGS_PIXDATA_POSEDGE,
++config MFD_SY7636A
++	tristate "Silergy SY7636A Power Management chip"
++	select MFD_CORE
++	select REGMAP_I2C
++	depends on I2C
++	help
++	  Select this option to enable support for the Silergy SY7636A
++	  Power Management chip.
++
+ config MFD_DAVINCI_VOICECODEC
+ 	tristate
+ 	select MFD_CORE
+diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+index 8116c19d5fd4..cbe581e87fa9 100644
+--- a/drivers/mfd/Makefile
++++ b/drivers/mfd/Makefile
+@@ -266,6 +266,7 @@ obj-$(CONFIG_MFD_KHADAS_MCU) 	+= khadas-mcu.o
+ obj-$(CONFIG_MFD_ACER_A500_EC)	+= acer-ec-a500.o
+ obj-$(CONFIG_MFD_QCOM_PM8008)	+= qcom-pm8008.o
+ 
++obj-$(CONFIG_MFD_SY7636A)	+= sy7636a.o
+ obj-$(CONFIG_SGI_MFD_IOC3)	+= ioc3.o
+ obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)	+= simple-mfd-i2c.o
+ obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
+diff --git a/drivers/mfd/sy7636a.c b/drivers/mfd/sy7636a.c
+new file mode 100644
+index 000000000000..345892e11221
+--- /dev/null
++++ b/drivers/mfd/sy7636a.c
+@@ -0,0 +1,81 @@
++// SPDX-License-Identifier: GPL-2.0+
++//
++// MFD parent driver for SY7636A chip
++//
++// Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
++//
++// Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
++//          Alistair Francis <alistair@alistair23.me>
++//
++// Based on the lp87565 driver by Keerthy <j-keerthy@ti.com>
++
++#include <linux/interrupt.h>
++#include <linux/mfd/core.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++
++#include <linux/mfd/sy7636a.h>
++
++static const struct regmap_config sy7636a_regmap_config = {
++	.reg_bits = 8,
++	.val_bits = 8,
 +};
 +
-+static const struct panel_desc eink_vb3300_kca = {
-+	.timings = &eink_vb3300_kca_timing,
-+	.num_timings = 1,
-+	.bpc = 6,
-+	.size = {
-+		.width = 157,
-+		.height = 209,
++static const struct mfd_cell sy7636a_cells[] = {
++	{ .name = "sy7636a-regulator", },
++	{ .name = "sy7636a-temperature", },
++	{ .name = "sy7636a-thermal", },
++};
++
++static const struct of_device_id of_sy7636a_match_table[] = {
++	{ .compatible = "silergy,sy7636a", },
++	{}
++};
++MODULE_DEVICE_TABLE(of, of_sy7636a_match_table);
++
++static int sy7636a_probe(struct i2c_client *client,
++			 const struct i2c_device_id *ids)
++{
++	struct sy7636a *sy7636a;
++	int ret;
++
++	sy7636a = devm_kzalloc(&client->dev, sizeof(*sy7636a), GFP_KERNEL);
++	if (!sy7636a)
++		return -ENOMEM;
++
++	sy7636a->dev = &client->dev;
++
++	sy7636a->regmap = devm_regmap_init_i2c(client, &sy7636a_regmap_config);
++	if (IS_ERR(sy7636a->regmap)) {
++		ret = PTR_ERR(sy7636a->regmap);
++		dev_err(sy7636a->dev,
++			"Failed to initialize register map: %d\n", ret);
++		return ret;
++	}
++
++	i2c_set_clientdata(client, sy7636a);
++
++	return devm_mfd_add_devices(sy7636a->dev, PLATFORM_DEVID_AUTO,
++					sy7636a_cells, ARRAY_SIZE(sy7636a_cells),
++					NULL, 0, NULL);
++}
++
++static const struct i2c_device_id sy7636a_id_table[] = {
++	{ "sy7636a", 0 },
++	{ },
++};
++MODULE_DEVICE_TABLE(i2c, sy7636a_id_table);
++
++static struct i2c_driver sy7636a_driver = {
++	.driver	= {
++		.name	= "sy7636a",
++		.of_match_table = of_sy7636a_match_table,
 +	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
++	.probe = sy7636a_probe,
++	.id_table = sy7636a_id_table,
++};
++module_i2c_driver(sy7636a_driver);
++
++MODULE_AUTHOR("Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>");
++MODULE_DESCRIPTION("Silergy SY7636A Multi-Function Device Driver");
++MODULE_LICENSE("GPL v2");
+diff --git a/include/linux/mfd/sy7636a.h b/include/linux/mfd/sy7636a.h
+new file mode 100644
+index 000000000000..b6845a3572b8
+--- /dev/null
++++ b/include/linux/mfd/sy7636a.h
+@@ -0,0 +1,47 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Functions to access SY3686A power management chip.
++ *
++ * Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
++ */
++
++#ifndef __MFD_SY7636A_H
++#define __MFD_SY7636A_H
++
++#include <linux/i2c.h>
++#include <linux/regmap.h>
++#include <linux/regulator/driver.h>
++#include <linux/regulator/machine.h>
++
++#define SY7636A_REG_OPERATION_MODE_CRL		0x00
++#define SY7636A_OPERATION_MODE_CRL_VCOMCTL	BIT(6)
++#define SY7636A_OPERATION_MODE_CRL_ONOFF	BIT(7)
++#define SY7636A_REG_VCOM_ADJUST_CTRL_L		0x01
++#define SY7636A_REG_VCOM_ADJUST_CTRL_H		0x02
++#define SY7636A_REG_VCOM_ADJUST_CTRL_MASK	0x01ff
++#define SY7636A_REG_VLDO_VOLTAGE_ADJULST_CTRL	0x03
++#define SY7636A_REG_POWER_ON_DELAY_TIME		0x06
++#define SY7636A_REG_FAULT_FLAG			0x07
++#define SY7636A_FAULT_FLAG_PG			BIT(0)
++#define SY7636A_REG_TERMISTOR_READOUT		0x08
++
++#define SY7636A_REG_MAX				0x08
++
++#define VCOM_MIN		0
++#define VCOM_MAX		5000
++
++#define VCOM_ADJUST_CTRL_MASK	0x1ff
++// Used to shift the high byte
++#define VCOM_ADJUST_CTRL_SHIFT	8
++// Used to scale from VCOM_ADJUST_CTRL to mv
++#define VCOM_ADJUST_CTRL_SCAL	10000
++
++#define FAULT_FLAG_SHIFT	1
++
++struct sy7636a {
++	struct device *dev;
++	struct regmap *regmap;
++	struct gpio_desc *pgood_gpio;
 +};
 +
- static const struct display_timing evervision_vgg804821_timing = {
- 	.pixelclock = { 27600000, 33300000, 50000000 },
- 	.hactive = { 800, 800, 800 },
-@@ -4344,6 +4370,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "edt,etm0700g0dh6",
- 		.data = &edt_etm0700g0dh6,
-+	}, {
-+		.compatible = "eink,vb3300-kca",
-+		.data = &eink_vb3300_kca,
- 	}, {
- 		.compatible = "edt,etm0700g0bdh6",
- 		.data = &edt_etm0700g0bdh6,
++#endif /* __LINUX_MFD_SY7636A_H */
 -- 
 2.31.1
 
