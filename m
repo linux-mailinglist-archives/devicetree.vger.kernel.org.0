@@ -2,166 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4C963C1690
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 17:50:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 033253C1743
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 18:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232098AbhGHPxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 11:53:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59334 "EHLO mail.kernel.org"
+        id S229767AbhGHQrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 12:47:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38410 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231896AbhGHPxF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Jul 2021 11:53:05 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9021461624;
-        Thu,  8 Jul 2021 15:50:23 +0000 (UTC)
+        id S229524AbhGHQrN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Jul 2021 12:47:13 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 88F256145A;
+        Thu,  8 Jul 2021 16:44:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625759423;
-        bh=oO0TJE2ebCH2U3v7nqyP0JF2DLGm9sfIIPwwlL+As0g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=b/Ch39fI+CWuV4Yu9mq3tzNUYHaLEVSf9JtJZH1R9/ZaW7vTBLy7gCinrIW7Wtr1w
-         QYT0cCJKBjWPqQ1zXzqgxSvMt4fHT9Uh8FcFc+05JAPWgBu6jwuEG3SLihiLSoO8wK
-         eNQGJB0STWx0m9a6vyuKVPH5+H/9H+bcv1/srzBHFwZt1+cyhdzFWzLnDVEBFIjxqO
-         mG9dL17zEmVogKjj03D2WikhOgyR6Us53SCWUGIVbuAALKdbp1+1L0TgF3CnjHlHfA
-         8L244kX5goXAkif2ve1l8x5G4+x1oknGxDknF9Ol83sNAT1h69KPL4dX+soqYImlb7
-         Q7mrmMFToeiyA==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1m1WI4-008VVL-Lc; Thu, 08 Jul 2021 17:50:16 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: [PATCH RFC 7/7] arm64: dts: hisilicon: Add support for HiKey 970 PCIe controller hardware
-Date:   Thu,  8 Jul 2021 17:50:14 +0200
-Message-Id: <00f9c0f215308629bc6a91682f3dcf528b351a7a.1625758732.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1625758732.git.mchehab+huawei@kernel.org>
-References: <cover.1625758732.git.mchehab+huawei@kernel.org>
+        s=k20201202; t=1625762671;
+        bh=W3zJ1dUIVfwK2RD5Gb/pjjaY8IvTpKuqVuwPdbuz25M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Sp+30VCoqVzKdRCHxsdjheJ32Al4GyKkdqY67UI3HBglP9/4ElBHuP/C2H/FyWKo7
+         e/R4/9B3d7vhaPNlh1DPVXpIf7uT6p/REBIACdKpJwJF9GZS42ymRBAxS0kVUi63dX
+         LFzIygW0HZtu2Ulg0IazOQ0jJMqOOsCWNLsNFVLNWlAdaw+e6puTS7FlMwyfD5gEdI
+         lFB3Rrin6g2B0nXBBJNO+PUuvd4DpkVlBGoDw/jR5Tje1HakbrKaEjYhMjAxMq0G0/
+         9JUb/J7ll5Lxx3f7sEDifcv8wjoDYV7KpD0n+YA4MYDlWDIvbopDufBoyo/NtyqWxC
+         FAtOTP/W4ikEQ==
+Date:   Thu, 8 Jul 2021 17:44:19 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Nathan Chancellor <nathan@kernel.org>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Christoph Hellwig <hch@lst.de>,
+        heikki.krogerus@linux.intel.com, thomas.hellstrom@linux.intel.com,
+        peterz@infradead.org, benh@kernel.crashing.org,
+        joonas.lahtinen@linux.intel.com, dri-devel@lists.freedesktop.org,
+        chris@chris-wilson.co.uk, grant.likely@arm.com, paulus@samba.org,
+        Frank Rowand <frowand.list@gmail.com>, mingo@kernel.org,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Saravana Kannan <saravanak@google.com>, mpe@ellerman.id.au,
+        "Rafael J . Wysocki" <rafael.j.wysocki@intel.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        bskeggs@redhat.com, linux-pci@vger.kernel.org,
+        xen-devel@lists.xenproject.org,
+        Thierry Reding <treding@nvidia.com>,
+        intel-gfx@lists.freedesktop.org, matthew.auld@intel.com,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        Jianxiong Gao <jxgao@google.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Konrad Rzeszutek Wilk <konrad.wilk@oracle.com>,
+        maarten.lankhorst@linux.intel.com, airlied@linux.ie,
+        Dan Williams <dan.j.williams@intel.com>,
+        linuxppc-dev@lists.ozlabs.org, jani.nikula@linux.intel.com,
+        Rob Herring <robh+dt@kernel.org>, rodrigo.vivi@intel.com,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Claire Chang <tientzu@chromium.org>,
+        boris.ostrovsky@oracle.com,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        jgross@suse.com, Nicolas Boichat <drinkcat@chromium.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Qian Cai <quic_qiancai@quicinc.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>, xypron.glpk@gmx.de,
+        Tom Lendacky <thomas.lendacky@amd.com>, bauerman@linux.ibm.com
+Subject: Re: [PATCH v15 06/12] swiotlb: Use is_swiotlb_force_bounce for
+ swiotlb data bouncing
+Message-ID: <20210708164418.GB23598@willie-the-truck>
+References: <0f7bd903-e309-94a0-21d7-f0e8e9546018@arm.com>
+ <YN/7xcxt/XGAKceZ@Ryzen-9-3900X.localdomain>
+ <20210705190352.GA19461@willie-the-truck>
+ <20210706044848.GA13640@lst.de>
+ <20210706132422.GA20327@willie-the-truck>
+ <a59f771f-3289-62f0-ca50-8f3675d9b166@arm.com>
+ <20210706140513.GA26498@lst.de>
+ <bb32d5a6-2b34-4524-e171-3e9f5f4d3a94@arm.com>
+ <20210706170657.GD20750@willie-the-truck>
+ <e1c026c6-22c7-8979-4941-de9cfab3863a@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e1c026c6-22c7-8979-4941-de9cfab3863a@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+On Tue, Jul 06, 2021 at 12:14:16PM -0700, Nathan Chancellor wrote:
+> On 7/6/2021 10:06 AM, Will Deacon wrote:
+> > On Tue, Jul 06, 2021 at 04:39:11PM +0100, Robin Murphy wrote:
+> > > On 2021-07-06 15:05, Christoph Hellwig wrote:
+> > > > On Tue, Jul 06, 2021 at 03:01:04PM +0100, Robin Murphy wrote:
+> > > > > FWIW I was pondering the question of whether to do something along those
+> > > > > lines or just scrap the default assignment entirely, so since I hadn't got
+> > > > > round to saying that I've gone ahead and hacked up the alternative
+> > > > > (similarly untested) for comparison :)
+> > > > > 
+> > > > > TBH I'm still not sure which one I prefer...
+> > > > 
+> > > > Claire did implement something like your suggestion originally, but
+> > > > I don't really like it as it doesn't scale for adding multiple global
+> > > > pools, e.g. for the 64-bit addressable one for the various encrypted
+> > > > secure guest schemes.
+> > > 
+> > > Ah yes, that had slipped my mind, and it's a fair point indeed. Since we're
+> > > not concerned with a minimal fix for backports anyway I'm more than happy to
+> > > focus on Will's approach. Another thing is that that looks to take us a
+> > > quiet step closer to the possibility of dynamically resizing a SWIOTLB pool,
+> > > which is something that some of the hypervisor protection schemes looking to
+> > > build on top of this series may want to explore at some point.
+> > 
+> > Ok, I'll split that nasty diff I posted up into a reviewable series and we
+> > can take it from there.
+> 
+> For what it's worth, I attempted to boot Will's diff on top of Konrad's
+> devel/for-linus-5.14 and it did not work; in fact, I got no output on my
+> monitor period, even with earlyprintk=, and I do not think this machine has
+> a serial console.
 
-Add DTS bindings for the Hikey 970 board's PCIe hardware.
+Looking back at the diff, I completely messed up swiotlb_exit() by mixing up
+physical and virtual addresses.
 
-[mchehab+huawei@kernel.org: fix merge conflicts]
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi     | 72 +++++++++++++++++++
- .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  1 -
- 2 files changed, 72 insertions(+), 1 deletion(-)
+> Robin's fix does work, it survived ten reboots with no issues getting to X
+> and I do not see the KASAN and slub debug messages anymore but I understand
+> that this is not the preferred solution it seems (although Konrad did want
+> to know if it works).
+> 
+> I am happy to test any further patches or follow ups as needed, just keep me
+> on CC.
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 6476149d99e3..0fbc1f2ac599 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -177,6 +177,12 @@ sctrl: sctrl@fff0a000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		pmctrl: pmctrl@fff31000 {
-+			compatible = "hisilicon,hi3670-pmctrl", "syscon";
-+			reg = <0x0 0xfff31000 0x0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
- 		iomcu: iomcu@ffd7e000 {
- 			compatible = "hisilicon,hi3670-iomcu", "syscon";
- 			reg = <0x0 0xffd7e000 0x0 0x1000>;
-@@ -660,6 +666,72 @@ gpio28: gpio@fff1d000 {
- 			clock-names = "apb_pclk";
- 		};
- 
-+		its_pcie: interrupt-controller@f4000000 {
-+			compatible = "arm,gic-v3-its";
-+			msi-controller;
-+			reg = <0x0 0xf5100000 0x0 0x100000>;
-+		};
-+
-+		pcie_phy: pcie-phy@fc000000 {
-+			compatible = "hisilicon,hi970-pcie-phy";
-+			reg = <0x0 0xfc000000 0x0 0x80000>;
-+			reg-names = "phy";
-+
-+			phy-supply = <&ldo33>;
-+
-+			clocks = <&crg_ctrl HI3670_CLK_GATE_PCIEPHY_REF>,
-+				 <&crg_ctrl HI3670_PCLK_GATE_PCIE_PHY>,
-+				 <&crg_ctrl HI3670_ACLK_GATE_PCIE>;
-+
-+			clock-names = "pcie_phy_ref", "pcie_apb_phy",
-+				      "pcie_aclk";
-+
-+			reset-gpios = <&gpio7 0 0 >, <&gpio25 2 0 >,
-+				      <&gpio3 1 0 >, <&gpio27 4 0 >;
-+
-+			clkreq-gpios = <&gpio20 6 0 >, <&gpio27 3 0 >,
-+				       <&gpio17 0 0 >;
-+
-+			/* vboost iboost pre post main */
-+			eye_param = <0xFFFFFFFF 0xFFFFFFFF
-+				     0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF>;
-+
-+			#phy-cells = <0>;
-+		};
-+
-+		pcie@f4000000 {
-+			compatible = "hisilicon,kirin970-pcie";
-+			reg = <0x0 0xf4000000 0x0 0x1000000>,
-+			      <0x0 0xfc180000 0x0 0x1000>,
-+			      <0x0 0xf5000000 0x0 0x2000>;
-+			reg-names = "dbi", "apb", "config";
-+			bus-range = <0x0  0x1>;
-+			msi-parent = <&its_pcie>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			device_type = "pci";
-+			phys = <&pcie_phy>;
-+			ranges = <0x02000000 0x0 0x00000000
-+				  0x0 0xf6000000
-+				  0x0 0x02000000>;
-+			num-lanes = <1>;
-+			#interrupt-cells = <1>;
-+			interrupts = <0 283 4>;
-+			interrupt-names = "msi";
-+			interrupt-map-mask = <0 0 0 7>;
-+			interrupt-map = <0x0 0 0 1
-+					 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 2
-+					 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 3
-+					 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 4
-+					 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&crg_ctrl HI3670_CLK_GATE_PCIEAUX>,
-+				 <&crg_ctrl HI3670_PCLK_GATE_PCIE_SYS>;
-+			clock-names = "pcie_aux", "pcie_apb_sys";
-+		};
-+
- 		/* UFS */
- 		ufs: ufs@ff3c0000 {
- 			compatible = "hisilicon,hi3670-ufs", "jedec,ufs-2.1";
-diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-index 48c739eacba0..03452e627641 100644
---- a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-@@ -73,7 +73,6 @@ ldo33: LDO33 { /* PEX8606 */
- 					regulator-name = "ldo33";
- 					regulator-min-microvolt = <2500000>;
- 					regulator-max-microvolt = <3300000>;
--					regulator-boot-on;
- 				};
- 
- 				ldo34: LDO34 { /* GPS AUX IN VDD */
--- 
-2.31.1
+Cheers. Since this isn't 5.14 material any more, I'll CC you on a series
+next week.
 
+Will
