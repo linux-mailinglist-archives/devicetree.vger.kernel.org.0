@@ -2,88 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF6D73BFACC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 14:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B53413BFAD3
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 15:00:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231808AbhGHNBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 09:01:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57060 "EHLO
+        id S231642AbhGHNCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 09:02:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231794AbhGHNBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 09:01:33 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E19EC061574;
-        Thu,  8 Jul 2021 05:58:52 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id t3so8386038edc.7;
-        Thu, 08 Jul 2021 05:58:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=F7/IfADTgL9yOioxWQhJ9S28lRDKiNWk3KD0yBlKwCc=;
-        b=TVDT44os/tMgjVjvo9RbDXQC2OG0po0QN8RuKbGmR6lSsyGZkhfPmFFFQWJ1J6Cv6a
-         qwcBn4C2BtVAAJehF1M8KyljHri4p1r0L9nL544ITb5DxJILtZ9lHI2qa35IdkMss6Ge
-         2JH/NzBbB2Oc47ZRRkKablIVKytugjXCHUCr7nSLKnCuOY97+FDO52+cNq386reO76oR
-         /vA12fxSIgzNpLeXKPXSw9tuNt3CBAXZEhMGKttBDUtHs/WTpCAhxNXJNOofJjlPr1m2
-         NEyo4iyZILSsFEWir1mNxStXvNFbd1MxgGkUURjdWPMRw/Y4G85baBw5h6PvKLBXqxIo
-         vymg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=F7/IfADTgL9yOioxWQhJ9S28lRDKiNWk3KD0yBlKwCc=;
-        b=AUVp5y7bbuFmOcpGjZAsqJFLeIMogQeBSM+xBnZL7CA/ZB+E1j3UOlpRwbUE2h0Hlm
-         iuvvOTtTI83EdXHZyWHGHReIk29ltgsFtaHaD42P6crpOzqOJrvYCRt4XwmMG5x6ZqSW
-         UR9/nlMFSs0DUusocXhgQYiIagr80BQFJhZGrrIFl6MaySXp3vA2I8+8yNbwiU+QqWda
-         ukTysI7vcDLNkElBxm5vWWn2mETupuYMHo/MfJubvx6seGkWIcHuGbWlCadpdfm2Ot75
-         Pnkd2fgNZLgz6g9oWl1RMwFKSnM+68skxBO/aDhr/k1mdKHKVoH1C/DelynF8yPzfq9m
-         nugg==
-X-Gm-Message-State: AOAM531RtliSMt8c0DTuipiMR0vBJAaSGYLQhV49MjiEwgiaMZujSxKH
-        BOX8fbLREnaHJyDNEzBqy85LQTw/vXo+NOW6gqI=
-X-Google-Smtp-Source: ABdhPJxh5e6Dih0tKgLooQiJgxsMnUHsrh4ajZkKoXviZRRgTEijVM+wNachv7JUoRtRkhpprj5tihI+WBFAnmw3tyA=
-X-Received: by 2002:a05:6402:190c:: with SMTP id e12mr4828457edz.176.1625749130631;
- Thu, 08 Jul 2021 05:58:50 -0700 (PDT)
+        with ESMTP id S231628AbhGHNCv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 09:02:51 -0400
+X-Greylist: delayed 157 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 08 Jul 2021 06:00:09 PDT
+Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 528C0C061574;
+        Thu,  8 Jul 2021 06:00:09 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (89-27-100-251.bb.dnainternet.fi [89.27.100.251])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 01AEC205CB;
+        Thu,  8 Jul 2021 16:00:05 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1625749205;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=x1DNkkZtencJ3hEhxOhBRHx+UOdiPMiP17BFn+qzJzY=;
+        b=FEIOb7w9DCIKYAec/wKPnOUoyxJuU62o3Z4RllSROl6mF42KbqyncNhb1rXM0jDHAZFUpS
+        O9fymfg6J5c2321ixWIi0Qg4EupswLQMc9BejEh6vIc9N/eFIVGi3CEjmExiaGMSN3ibvW
+        buFf3Jb35dLc7zyU2/Sqxd6eT+KplPw=
+Received: from valkosipuli.localdomain (valkosipuli.localdomain [IPv6:fd35:1bc8:1a6:d3d5::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id C14EF634C87;
+        Thu,  8 Jul 2021 15:59:25 +0300 (EEST)
+Received: from localhost ([127.0.0.1] helo=valkosipuli.retiisi.eu)
+        by valkosipuli.localdomain with esmtp (Exim 4.92)
+        (envelope-from <sakari.ailus@iki.fi>)
+        id 1m1TdM-000206-2k; Thu, 08 Jul 2021 16:00:04 +0300
+Date:   Thu, 8 Jul 2021 16:00:04 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     krzysztof.kozlowski@canonical.com,
+        laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
+        kernel@puri.sm, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, mchehab@kernel.org,
+        paul.kocialkowski@bootlin.com, pavel@ucw.cz,
+        phone-devel@vger.kernel.org, robh@kernel.org, shawnx.tu@intel.com
+Subject: Re: [PATCH v6 5/5] arm64: defconfig: enable VIDEO_HI846
+Message-ID: <20210708130003.GA3@valkosipuli.retiisi.eu>
+References: <20210628101054.828579-1-martin.kepplinger@puri.sm>
+ <20210628101054.828579-6-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-References: <20210705112358.3554-1-linux.amoon@gmail.com> <20210705112358.3554-4-linux.amoon@gmail.com>
-In-Reply-To: <20210705112358.3554-4-linux.amoon@gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Thu, 8 Jul 2021 14:58:39 +0200
-Message-ID: <CAFBinCAkAz7Vhd6Rkk3RYC7x7i-yZiNykObTxv-R2wYCTxHSRQ@mail.gmail.com>
-Subject: Re: [PATCHv2 3/3] ARM: dts: meson8b: ec100: Fix the pwm regulator
- supply properties
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210628101054.828579-6-martin.kepplinger@puri.sm>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1625749205;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=x1DNkkZtencJ3hEhxOhBRHx+UOdiPMiP17BFn+qzJzY=;
+        b=W4UBM4Se1NdlaYePN3RCbUw5C58oVUZVrdkqQv2Pw5TairBfyf+O09bBg+QPeQbpP4s4Hm
+        8eFdVCJ4sAc38tOYQUewRDS8msiLiXTTyMw+loJqkjcFiNAeg9NzpXkCKPe1gIAZADsq1I
+        y9Bx6VLF7eWLjhcTcJV8+QpdYR3rEHY=
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1625749205; a=rsa-sha256; cv=none;
+        b=KGZ+WoMm4S/8YKFVLcyWJMwe+KHeEU6h7G0XhLeIUFsw0T3uscmfsqtH+sWvEnGG+kjZRc
+        Xu9yWi/ofoeVuZxDz2UESlISOEoR+dpcASqWbua4evh6sPMpqw95rbc+VC8MVNmhs350me
+        Or2SzAzAQUaW2I5U8wzsdx/OdBKO32Q=
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 5, 2021 at 1:25 PM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> After enabling CONFIG_REGULATOR_DEBUG=y we observer below debug logs.
-> Changes help link VCCK and VDDEE pwm regulator to 5V regulator supply
-> instead of dummy regulator.
->
-> [    7.117140] pwm-regulator regulator-vcck: Looking up pwm-supply from device tree
-> [    7.117153] pwm-regulator regulator-vcck: Looking up pwm-supply property in node /regulator-vcck failed
-> [    7.117184] VCCK: supplied by regulator-dummy
-> [    7.117194] regulator-dummy: could not add device link regulator.8: -ENOENT
-> [    7.117266] VCCK: 860 <--> 1140 mV at 986 mV, enabled
-> [    7.118498] VDDEE: will resolve supply early: pwm
-> [    7.118515] pwm-regulator regulator-vddee: Looking up pwm-supply from device tree
-> [    7.118526] pwm-regulator regulator-vddee: Looking up pwm-supply property in node /regulator-vddee failed
-> [    7.118553] VDDEE: supplied by regulator-dummy
-> [    7.118563] regulator-dummy: could not add device link regulator.9: -ENOENT
->
-> Fixes: 087a1d8b4e4c ("ARM: dts: meson8b: ec100: add the VDDEE regulator")
-> Fixes: 3e7db1c1b7a3 ("ARM: dts: meson8b: ec100: improve the description of the regulators")
->
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Hi Martin,
+
+On Mon, Jun 28, 2021 at 12:10:54PM +0200, Martin Kepplinger wrote:
+> Build the driver for the Hi-846 camera by default on arm64 where it's
+> going to be used on at least the imx8mq-librem5 board.
+> 
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+>  arch/arm64/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index f423d08b9a71..bf27d9cfbdd5 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -666,6 +666,7 @@ CONFIG_VIDEO_RENESAS_VSP1=m
+>  CONFIG_VIDEO_QCOM_VENUS=m
+>  CONFIG_SDR_PLATFORM_DRIVERS=y
+>  CONFIG_VIDEO_RCAR_DRIF=m
+> +CONFIG_VIDEO_HI846=m
+>  CONFIG_VIDEO_IMX219=m
+>  CONFIG_VIDEO_OV5645=m
+>  CONFIG_VIDEO_QCOM_CAMSS=m
+
+The same sensor may be or may not used on a given board (and certainly it's
+not specific to arm64). Is it desirable all arm64 systems compile this in
+by default?
+
+There appear to be a other sensor drivers though.
+
+Is there a defconfig for the librem5 board?
+
+I wonder what others think.
+
+-- 
+Kind regards,
+
+Sakari Ailus
