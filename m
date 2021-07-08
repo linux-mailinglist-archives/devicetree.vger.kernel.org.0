@@ -2,89 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB303BF7EF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 12:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E41D3BF815
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 12:10:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231402AbhGHKHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 06:07:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46248 "EHLO
+        id S231478AbhGHKMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 06:12:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231388AbhGHKHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 06:07:49 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2C6BC061760
-        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 03:05:07 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id y8so7438253iop.13
-        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 03:05:07 -0700 (PDT)
+        with ESMTP id S231366AbhGHKMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 06:12:43 -0400
+Received: from mail-vs1-xe30.google.com (mail-vs1-xe30.google.com [IPv6:2607:f8b0:4864:20::e30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63A79C06175F
+        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 03:10:01 -0700 (PDT)
+Received: by mail-vs1-xe30.google.com with SMTP id j2so780537vsi.6
+        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 03:10:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=R4fhY/yLoZMmhCqnp0rYwJfbvJ3m+VsDi3PuO02Dh10=;
-        b=UYLH/VW8SI7ZogoX7fR4NWP4DRGl1d62SfimYKsYGCETDopjoL/y+RsptFQTSoByGW
-         q+sENfaHQCddz+goHWQTbvBYRlZpPNGTD+hwSbScS+9stYayGZQXolfj/woo+NmCRBFa
-         jGhhZ2GepPegJFGXuvZ83xSc31slF8PwiWyq/CFpd9Wkx+YE6ESZv0Bd/Zg2Bn1QN4L3
-         XlwQ5Gw1bepr7GNdQBbKm28jDLcSJf11PX8aOk5pdKA+hC4hLLRMYbVPpSJHXz2ar6DR
-         UDOSQX01Z+z/FHqmL6RR7vDsF7HIoczBZVtLjl/NWXDfF8VnYSiP+1906qUiWuzmA55S
-         3mlA==
+        bh=8XkfH9+fTTan24v4bvoti+pLXgKwMSUgTJQx2o0Bllo=;
+        b=gVmQ9nGXksd1SX9wHOHv2tLAo7F7JUgz0O1xj5BfEkwI9cnxv4Ts62oSThPZ6D6wCO
+         ZgUTmFBeNQYsuF2cVN6u9NWRyNeouHi1kaXG2xoT3wrXl9C/j6PC3badxUTUigGqAw0J
+         VC02TiDBaRv8k0IBH9yBV4KG9UUI/w25RN5OEZ3po6WJuAkuqyF23eLJwn9mqmWmO6np
+         RFcpWgayy7jKRBATf1fAY8oh4tpxVDdEFf3o+om1R1a7WhscmFLKNykB6rKxAuCXpVr9
+         hskxkSIgU2PxMaoL0dg07cHH8uymm3r2i2X7pEhreyex/UIqliMN5ob/EVG6kzz0xzNj
+         e1JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=R4fhY/yLoZMmhCqnp0rYwJfbvJ3m+VsDi3PuO02Dh10=;
-        b=bt9mrrgP5hLI4dlT9PsNu23PR0bL0bdVPZbS8Rr86kFzbVyLj1kIxO5+ATF5VyhrFG
-         8wHMfSmhs9R2F1Yk1FihmRIZZ3qEtydTSEiuA04JxXczUFTHsEnYMUTWRvzetBGkRC46
-         APG4Ge+RUh0OFdKS4uczoW2C5mc/LApZnFi8DYq57Evo8Fs9eVAystlIld4YJqL0FvXh
-         GOwT5wl3kv3zcaQVGAumdP4LQCR+NpP66boBIkhWaEBZhyaT62A1AMGd0nJoagLNVIGq
-         DEDKgXpwUCRCRZ4377HFGJ4SyEM/HfryBRKuUI451ked9uN6vgrVIRyJhJCgoHsiZzI9
-         vfHA==
-X-Gm-Message-State: AOAM532iLXOzM84Z9vwuoo/dn4cA6Qt62JE5uqbX0QNsMkmN7JKhEsa8
-        ES5HKRf5GxetNbbTEp9eI2Sty6GMExq8PWDCvzkyUQ==
-X-Google-Smtp-Source: ABdhPJxdKSoYDqcwBIX1WQ4+fbUqa84UqW8rvefJuvTTO1vwGh4lLoujDgkp/mZyijH1oUQhvQsnJcYa+CxvYJZElwI=
-X-Received: by 2002:a02:9402:: with SMTP id a2mr26130879jai.110.1625738705769;
- Thu, 08 Jul 2021 03:05:05 -0700 (PDT)
+        bh=8XkfH9+fTTan24v4bvoti+pLXgKwMSUgTJQx2o0Bllo=;
+        b=tg6/JVpdDDj6IclszvoOxqBnkDH7o/f59bvad2kEJXJTj3fj2ITKRK+HnVO2bqx2cR
+         ar5/Uly0131x+PIVCVg9kfa9qY7dWAhTAgI2a1TU0hEyxAowN544uH1dWeoBjonSZfNC
+         Sl0AJhPvb522Kcohu2XRkDg7vyahY833RcgNTRGUgLQmJ9QlwUZpL1uRzRgaxbIwl7sF
+         1N8VdxVZLfiZD8eeZRTlWkWqsX+0URCgVo88GoHQmC9w+X8a7Ms6YUEqCLrd+eLWm/Uw
+         U+S7l1LaboeI6wqoorltHtthL6w6UIjhacbwxgofxu0JoOnpv7GElgy2aIkTZumbIwBl
+         bo2g==
+X-Gm-Message-State: AOAM530ve+9YJQhbq3eCZCCIGREm77i/q+23tfNNzf4/NUoJYxMyzhd8
+        LPDrEzlPMehWxXmpaPSous7HUs3cjDMrEDAmuNavGA==
+X-Google-Smtp-Source: ABdhPJwHgh40ete+mWshNgBzlFotTAKewBYMMJyK7LdPKgcW1MKGOya9/zroMMERxNBQ9ffFUG/OviGrGS35sgyMGLQ=
+X-Received: by 2002:a05:6102:2324:: with SMTP id b4mr3247152vsa.48.1625739000496;
+ Thu, 08 Jul 2021 03:10:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210707062157.21176-1-yunfei.dong@mediatek.com> <20210707062157.21176-5-yunfei.dong@mediatek.com>
-In-Reply-To: <20210707062157.21176-5-yunfei.dong@mediatek.com>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Thu, 8 Jul 2021 18:04:54 +0800
-Message-ID: <CA+Px+wWQREny2KSjDfgdnMvk8GKKqr+QvRdSR8YXc1i73wbJSQ@mail.gmail.com>
-Subject: Re: [PATCH v1, 04/14] dt-bindings: media: mtk-vcodec: Separate video
- encoder and decoder dt-bindings
-To:     Yunfei Dong <Yunfei.Dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+References: <20210621223141.1638189-1-dmitry.baryshkov@linaro.org>
+ <20210621223141.1638189-3-dmitry.baryshkov@linaro.org> <CAPDyKFo6dmjw0TnaK7=35dq5Si_6YYpeeSa=gU++1od7WkQZ7A@mail.gmail.com>
+ <20210706115517.GB4529@sirena.org.uk>
+In-Reply-To: <20210706115517.GB4529@sirena.org.uk>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 8 Jul 2021 12:09:24 +0200
+Message-ID: <CAPDyKFr=8spZBD+bTe3SjS=nATL-ByFu_epnT2Z4chSuQNke2w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/7] regulator: qca6390: add support for QCA639x
+ powerup sequence
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-bluetooth@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 7, 2021 at 2:22 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
->  .../media/mediatek-vcodec-decoder.txt         | 169 ++++++++++++++++++
->  .../media/mediatek-vcodec-encoder.txt         |  73 ++++++++
->  2 files changed, 242 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek-vcodec-decoder.txt
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek-vcodec-encoder.txt
-The patch is weird.  Its title says "separate" but the changes are all
-creating new content.
+- Peter (the email was bouncing)
 
-Would expect the patch to remove content from some files (e.g.
-Documentation/devicetree/bindings/media/mediatek-vcodec.txt) and
-separate into 2 files.
+On Tue, 6 Jul 2021 at 13:55, Mark Brown <broonie@kernel.org> wrote:
+>
+> On Tue, Jul 06, 2021 at 09:54:03AM +0200, Ulf Hansson wrote:
+> > On Tue, 22 Jun 2021 at 00:32, Dmitry Baryshkov
+>
+> > > Qualcomm QCA6390/1 is a family of WiFi + Bluetooth SoCs, with BT part
+> > > being controlled through the UART and WiFi being present on PCIe
+> > > bus. Both blocks share common power sources. Add device driver handling
+> > > power sequencing of QCA6390/1.
+>
+> > Power sequencing of discoverable buses have been discussed several
+> > times before at LKML. The last attempt [1] I am aware of, was in 2017
+> > from Peter Chen. I don't think there is a common solution, yet.
+>
+> This feels a bit different to the power sequencing problem - it's not
+> exposing the individual inputs to the device but rather is a block that
+> manages everything but needs a bit of a kick to get things going (I'd
+> guess that with ACPI it'd be triggered via AML).  It's in the same space
+> but it's not quite the same issue I think, something that can handle
+> control of the individual resources might still struggle with this.
 
-Also would expect the patch is a refactor which shouldn't introduce
-any new things.
+Well, to me it looks very similar to those resouses we could manage
+with the mmc pwrseq, for SDIO. It's also typically the same kind of
+combo-chips that moved from supporting SDIO to PCIe, for improved
+performance I guess. More importantly, the same constraint to
+pre-power on the device is needed to allow it to be discovered/probed.
+
+Therefore, I think it would be worth having a common solution for
+this, rather than a solution per subsystem or even worse, per device.
+
+Unfortunately, it looks like Peter's email is bouncing so we can't get
+an update from him.
+
+Kind regards
+Uffe
