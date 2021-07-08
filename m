@@ -2,174 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BDA83BF8E9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 13:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6139F3BF8E7
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 13:26:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231732AbhGHL2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 07:28:47 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33562 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231716AbhGHL2q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 07:28:46 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 168BP8eU062944;
-        Thu, 8 Jul 2021 06:25:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1625743508;
-        bh=Nm5PF+zi+CnvnEIK9X8Ur0GOfFhsnJVQA+rpwvJmIYY=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=jIxJh+vcs42ss6Wd2ahnU6QWgOMNC0HE+rt7Al24ndBsIdWFopCegdE5hsVUMniVN
-         cKGJkaykLzk440G7cEe0NmntGx3WJWxjoreP5xg9qPfGdIG9sqry4iMidVD6Dks6KJ
-         6u9SBEY91lAi8i14SOW7D1EDB7pY2w4bBz0CelJE=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 168BP8uC088808
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 8 Jul 2021 06:25:08 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Thu, 8 Jul
- 2021 06:25:08 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
- Frontend Transport; Thu, 8 Jul 2021 06:25:08 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 168BP7CJ040075;
-        Thu, 8 Jul 2021 06:25:07 -0500
-Date:   Thu, 8 Jul 2021 16:55:06 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-CC:     Jacopo Mondi <jacopo@jmondi.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nikhil Devshatwar <nikhil.nd@ti.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Arnd Bergmann <arnd@arndb.de>, Benoit Parrot <bparrot@ti.com>,
-        Bert Vermeulen <bert@biot.com>,
-        Dikshita Agarwal <dikshita@codeaurora.org>,
-        Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Helen Koike <helen.koike@collabora.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Martina Krasteva <martinax.krasteva@intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Mirela Rabulea <mirela.rabulea@nxp.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Qiushi Wu <wu000273@umn.edu>, Raag Jadav <raagjadav@gmail.com>,
-        Ricardo Ribalda <ribalda@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Tianshu Qiu <tian.shu.qiu@intel.com>,
-        Yang Yingliang <yangyingliang@huawei.com>,
-        Zou Wei <zou_wei@huawei.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>
-Subject: Re: [PATCH v3 00/11] CSI2RX support on J721E
-Message-ID: <20210708112504.optj6xzkljrpbwsg@ti.com>
-References: <20210624192200.22559-1-p.yadav@ti.com>
- <dd3b13ec-a883-5b22-47ce-d6e591b674aa@ideasonboard.com>
- <20210707185636.xxu6n6p4gihrs37d@ti.com>
- <20210708081919.rlp5xv5f4jbx6uav@uno.localdomain>
- <c7ff2f59-7975-adad-d9dd-d4084eecb65b@ideasonboard.com>
+        id S231569AbhGHL2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 07:28:45 -0400
+Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:38348 "EHLO
+        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S231707AbhGHL2p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 07:28:45 -0400
+Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
+        by mx0a-0016f401.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 168BLcBO004916;
+        Thu, 8 Jul 2021 04:25:49 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type :
+ content-transfer-encoding; s=pfpt0220;
+ bh=GeNAMu0kd78iMzrl8zmafTGHE7bfc5UGTdnB58XifAs=;
+ b=Ej1b8LsO452aiVWRDt4epTan4Z4y1wb+ZkeeNwEzbblEHOTomJLGHi8UEUfKAhb2yOHq
+ n/BHn09p5zDOZQhVSeaOepQQzOhVrPd9fCQETwnYn31gFMoRLvQSs7hdTzEp1ZgWHcvB
+ e4N7SYS4Amyx3xLMfxim1heHhlm8r9P/6Y8EgR2cm1SK9/XBXqL1Qbee/LJrdm1ugvMq
+ CU9fGiDjIYf+ecW2Fp1yOnv3EppByoS83hCh402tton9vpPiVDrrsmtKHslVYCicgP1N
+ h2VgHTwTY7E3RUl08yePMd4kMHPQKteHkbGvMGH6DWnsh0bNyrInciumGs9U9C/M3TpD 4w== 
+Received: from dc5-exch02.marvell.com ([199.233.59.182])
+        by mx0a-0016f401.pphosted.com with ESMTP id 39nrnu1pax-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Thu, 08 Jul 2021 04:25:49 -0700
+Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Thu, 8 Jul
+ 2021 04:25:47 -0700
+Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
+ (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Thu, 8 Jul 2021 04:25:47 -0700
+Received: from octopus.marvell.com (octopus.marvell.com [10.5.24.3])
+        by maili.marvell.com (Postfix) with ESMTP id 8DE0D3F7064;
+        Thu,  8 Jul 2021 04:25:43 -0700 (PDT)
+From:   <kostap@marvell.com>
+To:     <miquel.raynal@bootlin.com>, <kishon@ti.com>, <vkoul@kernel.org>,
+        <robh+dt@kernel.org>, <andrew@lunn.ch>,
+        <gregory.clement@bootlin.com>, <sebastian.hesselbarth@gmail.com>,
+        <vladimir.vid@sartura.hr>, <luka.kovacic@sartura.hr>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <mw@semihalf.com>, <jaz@semihalf.com>, <nadavh@marvell.com>,
+        <stefanc@marvell.com>, <bpeled@marvell.com>,
+        Konstantin Porotchkin <kostap@marvell.com>
+Subject: [PATCH v6 0/5] DTS updates for Marvell Armada CN913x platforms
+Date:   Thu, 8 Jul 2021 14:25:23 +0300
+Message-ID: <20210708112528.3254-1-kostap@marvell.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <c7ff2f59-7975-adad-d9dd-d4084eecb65b@ideasonboard.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: xOBEOZrK8z6wqLm2RPV_KTJzdRMXEBDq
+X-Proofpoint-GUID: xOBEOZrK8z6wqLm2RPV_KTJzdRMXEBDq
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.790
+ definitions=2021-07-08_06:2021-07-08,2021-07-08 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/21 11:43AM, Tomi Valkeinen wrote:
-> On 08/07/2021 11:19, Jacopo Mondi wrote:
-> > Hi Tomi, Pratyush,
-> > 
-> > On Thu, Jul 08, 2021 at 12:26:38AM +0530, Pratyush Yadav wrote:
-> > > Hi Tomi,
-> > > 
-> > > Thanks for looking into the patches.
-> > > 
-> > > On 01/07/21 10:56AM, Tomi Valkeinen wrote:
-> > > > Hi Pratyush,
-> > > > 
-> > > > On 24/06/2021 22:21, Pratyush Yadav wrote:
-> > > > > Hi,
-> > > > > 
-> > > > > This series adds support for CSI2 capture on J721E. It includes some
-> > > > > fixes to the Cadence CSI2RX driver, adds runtime PM support to OV5640
-> > > > > driver, and finally adds the TI CSI2RX wrapper driver.
-> > > > > 
-> > > > > This series used to include the DPHY and DMA engine patches as well, but
-> > > > > they have been split off to facilitate easier merging. Patch 3 is
-> > > > > build-dependent on the DPHY series [0].
-> > > > > 
-> > > > > The DMA engine patch [1] can go in any order since that is only a run
-> > > > > time dependency. Things probably won't work without it but it will still
-> > > > > build fine.
-> > > > > 
-> > > > > Tested on TI's J721E with OV5640 sensor.
-> > > > 
-> > > > I applied these (csi-2 rx, phy, dma-engine) to linux-media/master, and added dts changes to add the csi2-rx. When sending the series, can you also push the branch you use for testing, as the posted patches do not include everything needed?
-> > > 
-> > > Please use https://github.com/prati0100/linux-next/ branch "capture"
-> > > 
-> > > I will include the link in the cover letter from next version onwards.
-> > > 
-> > > > 
-> > > > Here are some notes from quick tests:
-> > > > 
-> > > > Capture works, but the fps is ~28.98. I would expect it to be closer to 30. Are the clocks configured correctly?
-> > > 
-> > > I see this as well. I figured this had something to do with the sensor.
-> > 
-> > Tomi you might remember your patch to change the h/vtot values which I
-> > collected in a series which I never managed to bring to v1, as Hugues
-> > reported it was broken for JPEG capture.
-> > 
-> > I'll leave it here just for reference, I admit I dropped the ball
-> > rather quickly there:
-> > https://patchwork.linuxtv.org/project/linux-media/cover/20201028225706.110078-1-jacopo+renesas@jmondi.org/
-> > 
-> > I wish I could re-test but seems I've lost the powering cable of the
-> > device I used to test ov5640 :(
-> 
-> Yes, I'm still using my hack patch when working with OV5640. With that hack,
-> on TI platforms with CAL IP, I get ~30fps. With this series on J7, I get the
-> above mentioned 28.98.
-> 
-> It's possible my hack patch is wrong, and CAL driver is buggy, but together
-> they make things right. I guess I should also try J7 without my hack patch.
+From: Konstantin Porotchkin <kostap@marvell.com>
 
-I think this is a OV5640 related issue. On IMX219 I am seeing exactly 30 
-fps.
+This patch series contains the following changes/fixes:
+1. Add support for Armada CN913x Development Board topology "B"
+2. Add support for Armada CN913x Reference Design boards (CRB)
+3. Fixes the CP11X references in PHY binding document
+4. Fixes the NAND paritioninig scheme in DTS eliminating gap between
+consecutive partitions
+All above changes are already intergated into Marvell official SDK sources
 
-> 
-> If I recall right, I tested your changes but I couldn't get them to work on
-> my HW.
-> 
-> I haven't worked on that since then, as I decided that debugging blind is
-> pointless. We need someone to analyze the signals to see what OV5640 is
-> sending. Or some new understanding about the OV5640 HW.
-> 
->  Tomi
+v2:
+- extract common nodes from DB boards to separate DTSI files
+- disable eth2 on CRB boards until the required phy mode support is added
+- mention the switch part ID in CRB board description
+
+v3:
+- do not rename setup A DTS files for DB variants
+- fix a couple of wrong include names
+
+v4:
+- Rebase on top of Linus master branch (v5.11-rc7)
+- Remove HS400 timing from CRB AP SDHCI (not supported by connected eMMC)
+- Add cd-gpio entry to CP0 SDHCI for SD card support
+- Add a comment to CN9130-CRB patch about the required defconfig
+  changes for supporting the onboard i2c expander
+- Add Stefan's patch to enable 10G port on CN9130-DB platforms
+
+v5:
+- Extend enablement of 10G port to CN9131-DB platform
+
+v6:
+- Rebased on top of 5.13-rc, merging UTMI settings
+  (requested by Gregory Clement)
+
+Grzegorz Jaszczyk (1):
+  Documentation/bindings: phy: update references to cp11x
+
+Konstantin Porotchkin (3):
+  arch/arm64/boot/dts/marvell: fix NAND partitioning scheme
+  arm64: dts: cn913x: add device trees for topology B boards
+  arm64: dts: add support for Marvell cn9130-crb platform
+
+Stefan Chulski (1):
+  dts: marvell: Enable 10G interfaces on 9130-DB and 9131-DB boards
+
+ .../bindings/phy/phy-mvebu-comphy.txt         |  12 +-
+ arch/arm64/boot/dts/marvell/Makefile          |   5 +
+ arch/arm64/boot/dts/marvell/cn9130-crb-A.dts  |  38 ++
+ arch/arm64/boot/dts/marvell/cn9130-crb-B.dts  |  46 ++
+ arch/arm64/boot/dts/marvell/cn9130-crb.dtsi   | 222 ++++++++++
+ arch/arm64/boot/dts/marvell/cn9130-db-B.dts   |  22 +
+ arch/arm64/boot/dts/marvell/cn9130-db.dts     | 403 +----------------
+ arch/arm64/boot/dts/marvell/cn9130-db.dtsi    | 410 ++++++++++++++++++
+ arch/arm64/boot/dts/marvell/cn9131-db-B.dts   |  22 +
+ arch/arm64/boot/dts/marvell/cn9131-db.dts     | 197 +--------
+ arch/arm64/boot/dts/marvell/cn9131-db.dtsi    | 206 +++++++++
+ arch/arm64/boot/dts/marvell/cn9132-db-B.dts   |  22 +
+ arch/arm64/boot/dts/marvell/cn9132-db.dts     | 218 +---------
+ arch/arm64/boot/dts/marvell/cn9132-db.dtsi    | 227 ++++++++++
+ 14 files changed, 1244 insertions(+), 806 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb-A.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb-B.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db-B.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9130-db.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db-B.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9131-db.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db-B.dts
+ create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db.dtsi
 
 -- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+2.17.1
+
