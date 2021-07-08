@@ -2,88 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B81A3C13E2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 15:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88FD23C1416
+	for <lists+devicetree@lfdr.de>; Thu,  8 Jul 2021 15:17:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231414AbhGHNM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 09:12:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230080AbhGHNM0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 09:12:26 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78989C061574;
-        Thu,  8 Jul 2021 06:09:43 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id t10so2348206eds.2;
-        Thu, 08 Jul 2021 06:09:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rVMZlgd8HuXH+Zr7CeIddNtS2E8VXF0s39JXMW69Eds=;
-        b=lVCw9jTMb5lp5exvkpdXQ418ElmBbZFSFW2gy3wU7jTzyKswXLZXYm+IF1tIL4NJn2
-         BohNTFGfgApKj0Gp9C3kEd32STFbV3umWDo6SwLQ3tHyRB//mhf7GmpOWrSIEF/wzIMA
-         EEXtC6hXxnRJAozcBcFQVwQ23oN29mDCqmFitXm2tn8mI0YXZPUHx/a9VVwHNCvNClBm
-         mmQ3RiMQhAFwI82vpjYu2ReLpjBApi1SF06+R4Z9ZOmOpNOV9RTiDeZvnChTlYU2dVMo
-         6dFA8hZb1I+ZArLyghvJ5GDq/NYuemLoZjuJdG1xY4M6iIiSYHR0mEzFfwH9ufjwRpMR
-         pCoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rVMZlgd8HuXH+Zr7CeIddNtS2E8VXF0s39JXMW69Eds=;
-        b=hMS3t3weiDCWHEk7PwDLaOefAMx9MzeljPpoKp6eSuFD1MzKzqncThcJwQmz0okcBm
-         DrTfbsSHSwIVTA1M7PGe7OwQDYrmvtxBz/jH9UYKBP76YGcEMGs3bcTPLVrzVZfXN4sA
-         bzREqawpT4cnHZyjLXhF3QaBcjce3RxD6p0XOWGgxR4V3ILK3zVTHe5LUl2Y0jSM3dfw
-         r9Y6wEgnIvFSU5L8AT+pvKftG2DM4rCuVtQRo+o34XHfCKQi8P9kmNOg2IQJCD6fJpUI
-         6tjNjBFS5QYcMvpV0GorI9HaLXveDCEMbudnnVPuTiu9+/Z2rCFpBsEi6gEL6Iu45oqJ
-         f/Sg==
-X-Gm-Message-State: AOAM532dGCW6S2L+1ZGmctuti+U+Ww7XKii+GdWKbCzSpVMoh9wQts10
-        JovMH+L2Vh83OQQsXJQILLw6hNiTazehpYPJ3Jk=
-X-Google-Smtp-Source: ABdhPJwMuFfbqYswXBcN5yyjqiaonc89pYus9l6+a2zeMi0Vj6ymwjSLurSB4NuRp3SuW+C5oIeDeODQ0LtBBknkkM0=
-X-Received: by 2002:a05:6402:510d:: with SMTP id m13mr37825520edd.179.1625749782093;
- Thu, 08 Jul 2021 06:09:42 -0700 (PDT)
+        id S231698AbhGHNUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 09:20:08 -0400
+Received: from mx-n02.wc2.phx1.stabletransit.com ([207.246.242.248]:57206 "HELO
+        mx-n02.wc2.phx1.stabletransit.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with SMTP id S231433AbhGHNUH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 09:20:07 -0400
+X-Greylist: delayed 304 seconds by postgrey-1.27 at vger.kernel.org; Thu, 08 Jul 2021 09:20:07 EDT
+Received: by mx-n02.wc2.phx1.stabletransit.com (Postfix, from userid 114)
+        id F16DB16041A; Thu,  8 Jul 2021 08:12:21 -0500 (CDT)
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
+        mx-n02.wc2.phx1.stabletransit.com
+X-Spam-Level: **
+X-Spam-Status: No, score=2.6 required=6.0 tests=BAYES_50,FREEMAIL_FROM,
+        FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,SUBJ_ALL_CAPS,
+        T_FILL_THIS_FORM_SHORT,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.2
+X-Spam-Virus: No
+Received: from php-v027.wc2.phx1.stabletransit.com (unknown [10.40.206.156])
+        by mx-n02.wc2.phx1.stabletransit.com (Postfix) with ESMTP id 4D079160427
+        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 08:12:21 -0500 (CDT)
+Received: from digilu (uid 2914979)
+        (envelope-from noticedhl@citromail.hu)
+        id 20156
+        by php-v027.wc2.phx1.stabletransit.com (DragonFly Mail Agent v0.11);
+        Thu, 08 Jul 2021 08:12:21 -0500
+To:     devicetree@vger.kernel.org
+Subject: WORK OF GOD.
+X-PHP-Originating-Script: 2914979:class.engine.php(12) : runtime-created function
+Date:   Thu, 8 Jul 2021 08:12:21 -0500
+From:   MARY JOHNSON <noticedhl@citromail.hu>
+Reply-To: mj224294@gmail.com
+Message-ID: <700ce9f15190bb2ce60a61fcf1b71d43@jackieleestudio.com>
 MIME-Version: 1.0
-References: <20210707141323.20757-1-viktor.prutyanov@phystech.edu> <20210707141323.20757-2-viktor.prutyanov@phystech.edu>
-In-Reply-To: <20210707141323.20757-2-viktor.prutyanov@phystech.edu>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Thu, 8 Jul 2021 15:09:30 +0200
-Message-ID: <CAFBinCDgQHA1vmunNBdER0BfiKt8XYZ+-VBs3c21+S3bYP7GZQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] media: rc: meson-irblaster: document device tree bindings
-To:     Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-Cc:     sean@mess.org, mchehab@kernel.org, robh+dt@kernel.org,
-        khilman@baylibre.com, Neil Armstrong <narmstrong@baylibre.com>,
-        jbrunet@baylibre.com, linux-media <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, rockosov@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viktor,
+I am Mrs. Mary Johnson,78years,an aging widow suffering from cancer, I am on admission at a hospital.I would like to willfully entrust the rest of my monetary assets to you, Kindly reply back with your full Name, cellphone, address, to enable me to send you a letter of authorization to contact my bank first inland bank nigeria plc so that they can transfer my funds to your account for the purpose of helping the poor as indicated on my WILL.
 
-On Wed, Jul 7, 2021 at 4:13 PM Viktor Prutyanov
-<viktor.prutyanov@phystech.edu> wrote:
->
-> This patch adds binding documentation for the IR transmitter
-> available in Amlogic Meson SoCs.
->
-> Signed-off-by: Viktor Prutyanov <viktor.prutyanov@phystech.edu>
-> ---
->  changes in v2:
->    - compatible = "amlogic,meson-g12a-irblaster" added
->    - clocks, clock-names and mod-clock updated
-thanks for updating this patch with my feedback!
-
-[...]
-> +  mod-clock:
-> +    maxItems: 1
-in the change-log for this patch you mentioned that mod-clock is updated as well
-I think that mod-clock (as a whole property) should only be added if
-it's an external input to the IR blaster IP block
-
-
-Best regards,
-Martin
