@@ -2,129 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54C443C1F98
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 09:00:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 750F13C1FA3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 09:00:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbhGIGtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 02:49:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39768 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230316AbhGIGtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 02:49:33 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B942C0613E6
-        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 23:46:50 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id 37so9035644pgq.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 23:46:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=xaT7y+PG7DwjxYqSoSUwIQdL1dKO1pep2OkWSy56kbM=;
-        b=d5blS0UKDt1DBFfpUH8YUVsFUu3RxbvZlJYKp6BG++edlFbJ4tAl+QNPo4S8A/a+pV
-         ouFm4c9mTUFYOt6koEkc648nuL8RKfwUUv2hvolAnfM7rnACSEeebCiYWW44XhW3AiTK
-         o/BzoHT3HmebkOY9tmTaGCclZIgTjf7UsUWMhhhWRpmQgZ2PY+IA/VywWkqiBU4QH4SO
-         HDN17LUfO7CM8K4SOnRk4s7lKl3r/2j7DhNhzj9/Jmv1NfW4J7BLZb0OD/UPwGkK+NhS
-         tNpvX7YcI5LiKdjDVKVN490+uV/E148TR3rQwE6HYxJsK9Jxe6Gmos6rNW6hjUO8ljPv
-         vyPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xaT7y+PG7DwjxYqSoSUwIQdL1dKO1pep2OkWSy56kbM=;
-        b=tGfGSI5EnWd++CXP7RgexqZi7kQcAjFFRtAC1scivzuHXUyNXoq9hbo8EVrKoDKNhf
-         GzUInpu+wg3iKVsgFQ+v06dqf6XN3SWHvFF384PHlACbTtHQ7a2W3imkXoiC2SI2SZeV
-         +6MRBZ4M7JgQJso/x19RJDhp0zNHg4rCa/5cWncndP4qb+tL0uG60alszrgC8yp6oZv6
-         V853tbH7eN2blT7GLosHxRlbLxYbVWBWamtSMm/dd51ket346TCcG1b75o+agDSKvo9s
-         twQ/dftUaCZBaL/Mm7vOFw+aY2JzCq+zu/PCzb2I0XTGVqrAS/OmqGg3U8mMrM2rN/Vt
-         s1tg==
-X-Gm-Message-State: AOAM530QHVE188ChU/i77upoDLMLjaxTxR6eFYJazqSw20U5rF/BU44b
-        3zUtzS4fmsBjeUMaw9+yNVSW+Q==
-X-Google-Smtp-Source: ABdhPJyVTVZo24ToIx/xl45xZBXM5V3PkgfTRfpGnXJqHEyvGXd7a+kvj0PE+uAEH9XoX97HcocWOQ==
-X-Received: by 2002:a65:550a:: with SMTP id f10mr11024883pgr.155.1625813209004;
-        Thu, 08 Jul 2021 23:46:49 -0700 (PDT)
-Received: from localhost ([106.201.108.2])
-        by smtp.gmail.com with ESMTPSA id x13sm4283500pjh.30.2021.07.08.23.46.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jul 2021 23:46:48 -0700 (PDT)
-Date:   Fri, 9 Jul 2021 12:16:46 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Thara Gopinath <thara.gopinath@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, rui.zhang@intel.com,
-        daniel.lezcano@linaro.org, rjw@rjwysocki.net, robh+dt@kernel.org,
-        tdas@codeaurora.org, mka@chromium.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [Patch v3 3/6] cpufreq: qcom-cpufreq-hw: Add dcvs interrupt
- support
-Message-ID: <20210709064646.7vjgiba2o7beudly@vireshk-i7>
-References: <20210708120656.663851-1-thara.gopinath@linaro.org>
- <20210708120656.663851-4-thara.gopinath@linaro.org>
+        id S230505AbhGIGzd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 02:55:33 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:32930 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229979AbhGIGzd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 02:55:33 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 1696aPco083370;
+        Fri, 9 Jul 2021 14:36:25 +0800 (GMT-8)
+        (envelope-from billy_tsai@aspeedtech.com)
+Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 9 Jul
+ 2021 14:52:05 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <lee.jones@linaro.org>, <robh+dt@kernel.org>, <joel@jms.id.au>,
+        <andrew@aj.id.au>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <p.zabel@pengutronix.de>,
+        <billy_tsai@aspeedtech.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pwm@vger.kernel.org>
+CC:     <BMC-SW@aspeedtech.com>
+Subject: [v9 0/2] Support pwm driver for aspeed ast26xx
+Date:   Fri, 9 Jul 2021 14:52:15 +0800
+Message-ID: <20210709065217.6153-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210708120656.663851-4-thara.gopinath@linaro.org>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [192.168.2.149]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 1696aPco083370
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-07-21, 08:06, Thara Gopinath wrote:
->  static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->  {
->  	struct platform_device *pdev = cpufreq_get_driver_data();
-> @@ -370,6 +480,10 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->  			dev_warn(cpu_dev, "failed to enable boost: %d\n", ret);
->  	}
->  
-> +	ret = qcom_cpufreq_hw_lmh_init(policy, index);
+The legacy driver of aspeed pwm is binding with tach controller and it
+doesn't follow the pwm framworks usage. In addition, the pwm register
+usage of the 6th generation of ast26xx has drastic change. So these
+patch serials add the new aspeed pwm driver to fix up the problem above.
 
-You missed unregistering EM here (which is also missing from exit,
-which you need to fix first in a separate patch).
+Change since v8:
+- pwm-aspeed-ast2600.c
+  - Replace "* _BITULL(div_h)" to "<< div_h"
+  - Fix duty_cycle precision problem.
+  - Add the comment about the formula of duty_cycle.
 
-> +	if (ret)
-> +		goto error;
-> +
->  	return 0;
->  error:
->  	kfree(data);
-> @@ -389,6 +503,10 @@ static int qcom_cpufreq_hw_cpu_exit(struct cpufreq_policy *policy)
->  
->  	dev_pm_opp_remove_all_dynamic(cpu_dev);
->  	dev_pm_opp_of_cpumask_remove_table(policy->related_cpus);
-> +	if (data->lmh_dcvs_irq > 0) {
-> +		devm_free_irq(cpu_dev, data->lmh_dcvs_irq, data);
+Change since v7:
+- pwm-aspeed-g6.c
+  - Rename the driver: pwm-aspeed-g6.c -> pwm-aspeed-ast2600.c.
+  - Macro remove "_CH" part of the register name.
+  - Unroll the aspeed_pwm_get_period and remove it.
+  - Simplify the formula to get duty_pt
+  - Reduce the number of writting register. Organize all the fields and
+    write them at once.
 
-Why using devm variants here and while requesting the irq ? 
+Change since v6:
+- dt-bindings:
+  - Add blank line between each DT property.
+  - Change the sub-node name from fan to tach-ch.
+- pwm-aspeed-g6.c
+  - Merge aspeed_pwm_set_period and aspeed_pwm_set_duty into .apply.
+  - Convert the factor type to u64 when calculating the period value.
+  - Using ROUND_UP strategy to calculate div_h for finer resolution.
 
-> +		cancel_delayed_work_sync(&data->lmh_dcvs_poll_work);
-> +	}
+Change since v5:
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - Move the divide at the end of the calculation.
+  - Unified the prefix of the function name.
+  - Use div64_u64 to calculate the divider of frequency.
 
-Please move this to qcom_cpufreq_hw_lmh_exit() or something.
+Change since v4:
+- dt_binding:
+  - pwm/tach yaml: Replace child-node with additionalProperties
+  - pwm-tach yaml: Replace child-node with patternProperties
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - The bit definitions contained the name of the register.
+  - Remove single caller function and fold it to the caller.
+  - Avoid to divide by the result of a division.
+  - Remove unnecessary condition in .apply().
+  - Use goto for error handling
 
-Now with sequence of disabling interrupt, etc, I see a potential
-problem.
+Changes since v3:
+- Add the dt_binding for aspeed,ast2600-tach.
+- Describe the pwm/tach as child-node of pwm-tach mfd.
+- Complete the properties of pwm node.
 
-CPU0                                    CPU1
+Changes since v2:
+- Remove the tach node, #address-cells and #size-cells from pwm-tach.yaml
+- Add clocks and reset properties to pwm-tach.yaml
+- Kconfig/Makfile sorted alphabetically
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - Add more hardware descriptions at top of the driver.
+  - Remove unused api request and free
+  - Move the initialize settings of all pwm channel to probe.
+  - Change the method of getting the approximate period.
+  - Read the hardware register values to fill the state for .get_state()
 
-qcom_cpufreq_hw_cpu_exit()
--> devm_free_irq();
-                                        qcom_lmh_dcvs_poll()
-                                        -> qcom_lmh_dcvs_notify()
-                                          -> enable_irq()
+Changes since v1:
+- Fix the dt_binding_check fail suggested by Rob Herring
+- Add depends to PWM_ASPEED_G6 configure suggested by Uwe Kleine-Konig
+- pwm-aspeed-g6.c suggested by Uwe Kleine-König
+  - Fix license header
+  - Use bitfiled.h macro to define register fields
+  - Implement .remove device function
+  - Implement .get_state pwm api
 
--> cancel_delayed_work_sync();
+Billy Tsai (2):
+  dt-bindings: Add bindings for aspeed pwm-tach.
+  pwm: Add Aspeed ast2600 PWM support
 
-
-What will happen if enable_irq() gets called after freeing the irq ?
-Not sure, but it looks like you will hit this then from manage.c:
-
-WARN(!desc->irq_data.chip, KERN_ERR "enable_irq before
-                                     setup/request_irq: irq %u\n", irq))
-
-?
-
-You got a chicken n egg problem :)
+ .../bindings/hwmon/aspeed,ast2600-tach.yaml   |  69 ++++
+ .../bindings/mfd/aspeed,ast2600-pwm-tach.yaml |  87 +++++
+ .../bindings/pwm/aspeed,ast2600-pwm.yaml      |  64 ++++
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-aspeed-ast2600.c              | 316 ++++++++++++++++++
+ 6 files changed, 546 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,ast2600-tach.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/aspeed,ast2600-pwm-tach.yaml
+ create mode 100644 Documentation/devicetree/bindings/pwm/aspeed,ast2600-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-aspeed-ast2600.c
 
 -- 
-viresh
+2.25.1
+
