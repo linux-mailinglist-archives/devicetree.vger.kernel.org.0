@@ -2,131 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E8C3C21C1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 11:45:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50D413C21C9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 11:49:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231864AbhGIJrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 05:47:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51752 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231827AbhGIJrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 05:47:49 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AF10C0613DD
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 02:45:06 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1m1n43-0000Qj-5u; Fri, 09 Jul 2021 11:44:55 +0200
-Message-ID: <3ade0741d94e53eb2bca86743ad11e55899381d7.camel@pengutronix.de>
-Subject: Re: [PATCH v14 09/12] dmaengine: imx-sdma: remove ERR009165 on
- i.mx6ul
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Robin Gong <yibin.gong@nxp.com>, vkoul@kernel.org,
-        mark.rutland@arm.com, broonie@kernel.org, robh+dt@kernel.org,
-        catalin.marinas@arm.com, will.deacon@arm.com, shawnguo@kernel.org,
-        festevam@gmail.com, s.hauer@pengutronix.de,
-        martin.fuzzey@flowbird.group, u.kleine-koenig@pengutronix.de,
-        dan.j.williams@intel.com, matthias.schiffer@ew.tq-group.com,
-        frieder.schrempf@kontron.de, m.felsch@pengutronix.de,
-        xiaoning.wang@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, dmaengine@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Fri, 09 Jul 2021 11:44:53 +0200
-In-Reply-To: <1617809456-17693-10-git-send-email-yibin.gong@nxp.com>
-References: <1617809456-17693-1-git-send-email-yibin.gong@nxp.com>
-         <1617809456-17693-10-git-send-email-yibin.gong@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
+        id S231975AbhGIJwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 05:52:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34250 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229503AbhGIJwO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Jul 2021 05:52:14 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8D082613C9;
+        Fri,  9 Jul 2021 09:49:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1625824171;
+        bh=YZwPUM0lSWCTbis2MmjpX1SiDovOw/fIlz9+8wFkuu4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jh2j6/HywdOkvOKergRftBGHQA3Lz6fGFjar+rpj+IOL/tyjsk45725s2q1qufIsR
+         AmA3llgBmUWdrv4Y5Mwml4SLarVlxcXhnxDaJn27/aVfq6JmSMt8nDkixK5773Yr1n
+         B2yR2t3BOK2LKpgqbbYR04vr1Bdx1uDwqqBefYuY=
+Date:   Fri, 9 Jul 2021 11:49:27 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Nava kishore Manne <navam@xilinx.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        "mdf@kernel.org" <mdf@kernel.org>,
+        "trix@redhat.com" <trix@redhat.com>,
+        "arnd@arndb.de" <arnd@arndb.de>, Rajan Vaja <RAJANV@xilinx.com>,
+        Amit Sunil Dhamne <amitsuni@xlnx.xilinx.com>,
+        Tejas Patel <tejasp@xlnx.xilinx.com>,
+        "zou_wei@huawei.com" <zou_wei@huawei.com>,
+        Sai Krishna Potthuri <lakshmis@xilinx.com>,
+        Ravi Patel <ravipate@xlnx.xilinx.com>,
+        "iwamatsu@nigauri.org" <iwamatsu@nigauri.org>,
+        Jiaying Liang <jliang@xilinx.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-fpga@vger.kernel.org" <linux-fpga@vger.kernel.org>,
+        git <git@xilinx.com>,
+        "chinnikishore369@gmail.com" <chinnikishore369@gmail.com>
+Subject: Re: [RFC v2 1/4] drivers: firmware: Add user encrypted key load API
+ support
+Message-ID: <YOgbp79NQeN6K1e1@kroah.com>
+References: <20210609055232.4501-1-nava.manne@xilinx.com>
+ <20210609055232.4501-2-nava.manne@xilinx.com>
+ <YMCP/+uYMun478Z9@kroah.com>
+ <PH0PR02MB7336410E513B4D026BB4983EC2189@PH0PR02MB7336.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PH0PR02MB7336410E513B4D026BB4983EC2189@PH0PR02MB7336.namprd02.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 07.04.2021 um 23:30 +0800 schrieb Robin Gong:
-> ECSPI issue fixed from i.mx6ul at hardware level, no need
-> ERR009165 anymore on those chips such as i.mx8mq.
+On Fri, Jul 09, 2021 at 08:41:35AM +0000, Nava kishore Manne wrote:
+> Hi Greg,
 > 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-> Acked-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  drivers/dma/imx-sdma.c | 26 +++++++++++++++++++++++++-
->  1 file changed, 25 insertions(+), 1 deletion(-)
+> 	Thanks for providing the review comments.
+> Please find my response inline.
 > 
-> diff --git a/drivers/dma/imx-sdma.c b/drivers/dma/imx-sdma.c
-> index 86bd383..af85116 100644
-> --- a/drivers/dma/imx-sdma.c
-> +++ b/drivers/dma/imx-sdma.c
-> @@ -422,6 +422,13 @@ struct sdma_driver_data {
->  	int num_events;
->  	struct sdma_script_start_addrs	*script_addrs;
->  	bool check_ratio;
-> +	/*
-> +	 * ecspi ERR009165 fixed should be done in sdma script
-> +	 * and it has been fixed in soc from i.mx6ul.
-> +	 * please get more information from the below link:
-> +	 * https://www.nxp.com/docs/en/errata/IMX6DQCE.pdf
-> +	 */
-> +	bool ecspi_fixed;
->  };
->  
->  struct sdma_engine {
-> @@ -542,6 +549,13 @@ static struct sdma_driver_data sdma_imx6q = {
->  	.script_addrs = &sdma_script_imx6q,
->  };
->  
-> +static struct sdma_driver_data sdma_imx6ul = {
-> +	.chnenbl0 = SDMA_CHNENBL0_IMX35,
-> +	.num_events = 48,
-> +	.script_addrs = &sdma_script_imx6q,
-> +	.ecspi_fixed = true,
-> +};
-> +
->  static struct sdma_script_start_addrs sdma_script_imx7d = {
->  	.ap_2_ap_addr = 644,
->  	.uart_2_mcu_addr = 819,
-> @@ -575,6 +589,7 @@ static const struct of_device_id sdma_dt_ids[] = {
->  	{ .compatible = "fsl,imx31-sdma", .data = &sdma_imx31, },
->  	{ .compatible = "fsl,imx25-sdma", .data = &sdma_imx25, },
->  	{ .compatible = "fsl,imx7d-sdma", .data = &sdma_imx7d, },
-> +	{ .compatible = "fsl,imx6ul-sdma", .data = &sdma_imx6ul, },
->  	{ .compatible = "fsl,imx8mq-sdma", .data = &sdma_imx8mq, },
->  	{ /* sentinel */ }
->  };
-> @@ -1144,8 +1159,17 @@ static int sdma_config_channel(struct dma_chan *chan)
->  			if (sdmac->peripheral_type == IMX_DMATYPE_ASRC_SP ||
->  			    sdmac->peripheral_type == IMX_DMATYPE_ASRC)
->  				sdma_set_watermarklevel_for_p2p(sdmac);
-> -		} else
-> +		} else {
-> +			/*
-> +			 * ERR009165 fixed from i.mx6ul, no errata need,
-> +			 * set bit31 to let sdma script skip the errata.
-> +			 */
-> +			if (sdmac->peripheral_type == IMX_DMATYPE_CSPI &&
-> +			    sdmac->direction == DMA_MEM_TO_DEV &&
-> +			    sdmac->sdma->drvdata->ecspi_fixed)
-> +				__set_bit(31, &sdmac->watermark_level);
+> > -----Original Message-----
+> > From: Greg KH <gregkh@linuxfoundation.org>
+> > Sent: Wednesday, June 9, 2021 3:25 PM
+> > To: Nava kishore Manne <navam@xilinx.com>
+> > Cc: robh+dt@kernel.org; Michal Simek <michals@xilinx.com>;
+> > mdf@kernel.org; trix@redhat.com; arnd@arndb.de; Rajan Vaja
+> > <RAJANV@xilinx.com>; Amit Sunil Dhamne <amitsuni@xlnx.xilinx.com>;
+> > Tejas Patel <tejasp@xlnx.xilinx.com>; zou_wei@huawei.com; Sai Krishna
+> > Potthuri <lakshmis@xilinx.com>; Ravi Patel <RAVIPATE@xilinx.com>;
+> > iwamatsu@nigauri.org; Jiaying Liang <jliang@xilinx.com>;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> > kernel@vger.kernel.org; linux-fpga@vger.kernel.org; git <git@xilinx.com>;
+> > chinnikishore369@gmail.com
+> > Subject: Re: [RFC v2 1/4] drivers: firmware: Add user encrypted key load API
+> > support
+> > 
+> > On Wed, Jun 09, 2021 at 11:22:29AM +0530, Nava kishore Manne wrote:
+> > > This patch adds user encrypted key load API to support User key
+> > > encrypted images loading use cases from Linux.
+> > 
+> > What is "user key encrypted images"?  Do we need more documentation
+> > here for what this is and how to use it?
+> > 
+> 
+> Xilinx bitstream writer, using AES, encrypts the bitstream. This feature allows user to encrypt bitstream using 256-bit AES encryption in cipher block chaining (CBC) mode.
+> User can supply a 128-bit Initial Vector and 256-bit key(user key).
 
-Hm, I don't care much either way, but couldn't we just return the
-regular mcu_2_app script in sdma_get_pc when ecspi_fixed == true? Seems
-like this would be a simpler and more targeted code change.
+Please provide the needed information in the changelog comment.
 
-Regards,
-Lucas
+> For more info please refer here: 
+> https://www.xilinx.com/support/documentation/application_notes/xapp1239-fpga-bitstream-encryption.pdf 
 
->  			__set_bit(sdmac->event_id0, sdmac->event_mask);
-> +		}
->  
->  		/* Address */
->  		sdmac->shp_addr = sdmac->per_address;
+External links always grow stale.
 
+thanks,
 
+greg k-h
