@@ -2,94 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF5BD3C28AB
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 19:43:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E3303C28F8
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 20:23:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231593AbhGIRp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 13:45:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48074 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231519AbhGIRp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 13:45:56 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F737C0613E5
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 10:43:12 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id w127so13109410oig.12
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 10:43:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=5MQYZkcj7PXPFMtimh+m2etrFEIiXsdDPmjJZdcGVj4=;
-        b=aPLvukXvM1FC1LRyGwGij2jsF0yLRd2cT7TUSZ9bJjAuIx7TS6y1IoNHeazRuQn85I
-         Jc4Y/rWLe/HH7cOVQ5c2ZFKi7VE4/DpiCGUIfhF6Ed3MzuONdNd4oI5Seg3zxUR1uuPs
-         c5P56uAWAUPBxF7TixgekcTiQgC7z4ontqYTr4TDTW+mOzhk1asHrbq0b7MZoMgtqt/d
-         E037IyDwpnUwhZCVeNVlqQmXXSnT/nHH2lle5RUJKxSEwWJSBIRwLyPxTffkxPetlk41
-         o3aQoaz83tpiiizb8rQJfxikdr3BkQtZ5sxiZlQaw5j5lxy4GtGPf3XM/vjROYvudJVL
-         fnNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=5MQYZkcj7PXPFMtimh+m2etrFEIiXsdDPmjJZdcGVj4=;
-        b=OGcTkL0uuRJW1NRvCc6TJVTBS7+Ku/4arqGIt1IYEVlv/bDF4S4TW4WjGqZaDpRxrY
-         XXNMvN42uVD5lyVFf4zV4S7P8FvV40VcCpoP0o5B5stL1d1ZLK3JXjOb02IxOm/u+dzt
-         ura9aJIkRYOgLP+5SHDuVpcO3iRt+itj5LVHLxozjvUWBXwGTSV+OGTz6d47QIE/Prgy
-         NcLCKNl0Dr55L5Dceg7N8OyaQDDQi/YvE15tNzZEj5M2zussBEZs9+6o8Tl3G6izrDyk
-         3+/v2aPXAMZqhty/Qo4gFfCX6yNCgkNRocPlqUzJGeiLteovl4fpvvhaSWbIc8cTj5Ag
-         f7ig==
-X-Gm-Message-State: AOAM532i6Gq/z0lB9o60GuHFGKipT1MaZqhvmbKffDvwCwNJYtHw2fWS
-        WZJ2f6v1HOoJeTmoRO3bBs30fA==
-X-Google-Smtp-Source: ABdhPJyOlx52v2F41NFeyBTfCQWv3yZmy4Xt3t0F8QUUXQJEotXoT2vCvvP2SOrukmrSPeG6ziau1A==
-X-Received: by 2002:a05:6808:d8:: with SMTP id t24mr14549348oic.105.1625852591772;
-        Fri, 09 Jul 2021 10:43:11 -0700 (PDT)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 100sm1263446otv.32.2021.07.09.10.43.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jul 2021 10:43:11 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sibi S <sibis@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] soc: qcom: aoss: Add generic compatible
-Date:   Fri,  9 Jul 2021 10:41:42 -0700
-Message-Id: <20210709174142.1274554-4-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210709174142.1274554-1-bjorn.andersson@linaro.org>
-References: <20210709174142.1274554-1-bjorn.andersson@linaro.org>
+        id S229499AbhGIS0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 14:26:22 -0400
+Received: from mo4-p00-ob.smtp.rzone.de ([85.215.255.24]:26988 "EHLO
+        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229491AbhGIS0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 14:26:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1625855016;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=807nH3IImsijzSN7Ub0/B0AZ9EiwASXYOQFGdvH52Tc=;
+    b=Fph8v6w8/sGRlYe7D65HsqZGvlpGTuKUGLXieFwXffDEuXC/llM7psZev025ejzJfT
+    A7AfhSIMcQtUUsZLZjAZPoYJY2BI/N9q2jgTKrKfL8q35NcMxMqBHI8gKqD7A/3HrvYL
+    TRNZNMPlZ2630/fsp2uqQ1C/r5Torx25oW1veFP1cEZugNaFZCCKcdmc9u0kiHLfld20
+    vGKTKm+0OA0v242CPlTgUiMPc+nkf1t5ezfumMGFyPZs2fcSJGUQNUNZTu2/Pz/fiZ8i
+    lbR8mGU/FRWgscTg5O84SHM9MSVeEYbYS3JuC3BL+k6yWERb/hIGSjGGT/VLkSasH81S
+    m96g==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxO426NyZ1L"
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.28.1 DYNA|AUTH)
+    with ESMTPSA id Y070ccx69INaxPu
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 9 Jul 2021 20:23:36 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH] ARM: dts: ux500: ab8500: Link USB PHY to USB controller node
+Date:   Fri,  9 Jul 2021 20:22:34 +0200
+Message-Id: <20210709182234.47232-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It seems we don't need platform specific implementation for the AOSS
-QMP, so let's introduce a generic compatible to avoid having to update
-the driver for each platform.
+At the moment the AB8500 USB PHY driver still uses the old USB PHY
+subsystem instead of the generic PHY subsystem. This means that there
+is no explicit link between the USB controller and the USB PHY.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+In U-Boot the PHY driver is integrated in the generic PHY subsystem,
+so we need to use the typical PHY device tree bindings to specify
+which PHY belongs to the USB controller.
+
+Add the link between USB controller and PHY to both ste-ab8500.dtsi
+and ste-ab8505.dtsi. This is mainly for U-Boot for now and will just
+be ignored in Linux. However, if the AB8500 USB PHY driver in Linux
+is moved to the generic PHY subsystem at some point these device tree
+changes can be used as well.
+
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 ---
+ arch/arm/boot/dts/ste-ab8500.dtsi | 8 +++++++-
+ arch/arm/boot/dts/ste-ab8505.dtsi | 6 ++++++
+ 2 files changed, 13 insertions(+), 1 deletion(-)
 
-Changes since v1:
-- None
-
- drivers/soc/qcom/qcom_aoss.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/soc/qcom/qcom_aoss.c b/drivers/soc/qcom/qcom_aoss.c
-index 934fcc4d2b05..92a1af70a649 100644
---- a/drivers/soc/qcom/qcom_aoss.c
-+++ b/drivers/soc/qcom/qcom_aoss.c
-@@ -602,6 +602,7 @@ static const struct of_device_id qmp_dt_match[] = {
- 	{ .compatible = "qcom,sm8150-aoss-qmp", },
- 	{ .compatible = "qcom,sm8250-aoss-qmp", },
- 	{ .compatible = "qcom,sm8350-aoss-qmp", },
-+	{ .compatible = "qcom,aoss-qmp", },
- 	{}
+diff --git a/arch/arm/boot/dts/ste-ab8500.dtsi b/arch/arm/boot/dts/ste-ab8500.dtsi
+index d0fe3f9aa183..bebcbb759794 100644
+--- a/arch/arm/boot/dts/ste-ab8500.dtsi
++++ b/arch/arm/boot/dts/ste-ab8500.dtsi
+@@ -217,7 +217,7 @@ ab8500_chargalg {
+ 					battery		= <&ab8500_battery>;
+ 				};
+ 
+-				ab8500_usb {
++				ab8500_usb: ab8500_usb {
+ 					compatible = "stericsson,ab8500-usb";
+ 					interrupts = <90 IRQ_TYPE_LEVEL_HIGH>,
+ 						     <96 IRQ_TYPE_LEVEL_HIGH>,
+@@ -238,6 +238,7 @@ ab8500_usb {
+ 					musb_1v8-supply = <&db8500_vsmps2_reg>;
+ 					clocks = <&prcmu_clk PRCMU_SYSCLK>;
+ 					clock-names = "sysclk";
++					#phy-cells = <0>;
+ 				};
+ 
+ 				ab8500-ponkey {
+@@ -386,5 +387,10 @@ dsi@a0353000 {
+ 				vana-supply = <&ab8500_ldo_ana_reg>;
+ 			};
+ 		};
++
++		usb_per5@a03e0000 {
++			phys = <&ab8500_usb>;
++			phy-names = "usb";
++		};
+ 	};
  };
- MODULE_DEVICE_TABLE(of, qmp_dt_match);
+diff --git a/arch/arm/boot/dts/ste-ab8505.dtsi b/arch/arm/boot/dts/ste-ab8505.dtsi
+index 0defc15b9bbc..fb30e247ac9c 100644
+--- a/arch/arm/boot/dts/ste-ab8505.dtsi
++++ b/arch/arm/boot/dts/ste-ab8505.dtsi
+@@ -201,6 +201,7 @@ ab8500_usb: ab8500_usb {
+ 					musb_1v8-supply = <&db8500_vsmps2_reg>;
+ 					clocks = <&prcmu_clk PRCMU_SYSCLK>;
+ 					clock-names = "sysclk";
++					#phy-cells = <0>;
+ 				};
+ 
+ 				ab8500-ponkey {
+@@ -322,5 +323,10 @@ dsi@a0353000 {
+ 				vana-supply = <&ab8500_ldo_ana_reg>;
+ 			};
+ 		};
++
++		usb_per5@a03e0000 {
++			phys = <&ab8500_usb>;
++			phy-names = "usb";
++		};
+ 	};
+ };
 -- 
-2.29.2
+2.32.0
 
