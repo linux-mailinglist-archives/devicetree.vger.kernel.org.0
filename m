@@ -2,90 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AB2C3C23B1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 14:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B87A3C23DE
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 15:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231477AbhGIMuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 08:50:12 -0400
-Received: from mailgw01.mediatek.com ([60.244.123.138]:44482 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229671AbhGIMuM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 08:50:12 -0400
-X-UUID: 5d549ac9577e408195d1d8352c809edb-20210709
-X-UUID: 5d549ac9577e408195d1d8352c809edb-20210709
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <tinghan.shen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1797474909; Fri, 09 Jul 2021 20:47:25 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 9 Jul 2021 20:47:24 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 9 Jul 2021 20:47:24 +0800
-From:   Tinghan Shen <tinghan.shen@mediatek.com>
-To:     <ohad@wizery.com>, <bjorn.andersson@linaro.org>,
-        <mathieu.poirier@linaro.org>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        <tzungbi@google.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>
-Subject: [PATCH 2/2] remoteproc: mediatek: Support mt8195 scp
-Date:   Fri, 9 Jul 2021 20:46:31 +0800
-Message-ID: <20210709124631.28312-2-tinghan.shen@mediatek.com>
-X-Mailer: git-send-email 2.15.GIT
-In-Reply-To: <20210709124631.28312-1-tinghan.shen@mediatek.com>
-References: <20210709124631.28312-1-tinghan.shen@mediatek.com>
+        id S231543AbhGINCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 09:02:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39272 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231252AbhGINCn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 09:02:43 -0400
+Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86426C0613E5
+        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 05:59:59 -0700 (PDT)
+Received: by mail-qk1-x736.google.com with SMTP id r125so1600180qkf.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 05:59:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qHUKIAO+ag23hTE+JlEANC815kPjbkRicggysyG8Jlg=;
+        b=i3JcU8eAJ1FUfNlg79X+U4p7WO3GFW7qB8FvtBD5WhofvVvu2G56A3JOA5/vdgHN6c
+         zvfJGzH11cmDvGR5fGVJL4DPvmx2/a/mk9GYI28b5BrtQXpC0EDOEPpV90ZNeCLpph+b
+         OgqvUPA10mCm+2bqy/hBzMKrLS3GC9J6C2NdK1Xg04LO7jLBmsZGBezYvB2dXxvsdrQh
+         5ymM8/UDsXY81dWl0xecHiNrSkw8ubKlXwV6Z01SQZqIf7bMmA2kJzTMJl6rsfEJIin/
+         ayKkeJzm7ZDZgs/05IUiH2yMczzGls8HjeyD3OgYdwiA7vEDSMPwpXlDBRbHggWKPit3
+         BTkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qHUKIAO+ag23hTE+JlEANC815kPjbkRicggysyG8Jlg=;
+        b=ZcnZ6f33EchbKeStw+3WV5AxfcEpjiHEQovYb6aZbgvBNIAyq5HufGUPg09FNrW+SP
+         Vju1QtpNlJ+m9vtiSsZkfeskLPUoukDbNfc+LX4N+lCSV6A3B9C+PyE/dYVILhPVq/pM
+         0CKWdSU+HDYBInJjfTBCMpHPeoAvtJGi6VwVKkC4ZF+/WSiwJupQUAJsb25JJvTfn8b7
+         f0GT0O9hme6k7KavLutk4cbez4Xz4SEXrn9ipMgXZ1xTCCbOdibgwHzZkVyI4MwQSb24
+         84n1yy8K8CY2FKBhh2jn8wBVGVsf9bwT4NsPpCQVZDro/DU3cq4VKbltKQvBnom3ATwq
+         6RHw==
+X-Gm-Message-State: AOAM533XSzDzNptT9qklTMmQM3KSL8wOixAIl2xST69P5gwDe25XnyNm
+        Y3FfhpCTIsg15MjkGv08QDB0eQhB4dJWFWm9QhvFFg==
+X-Google-Smtp-Source: ABdhPJzndnsCyyGh8jUxDgcociSvc3ryge/5xkRw/ChC+jM3JKLtHvs2x6l09me2hWKF0pHigePtxJza/9DSKC6iXGA=
+X-Received: by 2002:ae9:e309:: with SMTP id v9mr13906999qkf.138.1625835598668;
+ Fri, 09 Jul 2021 05:59:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20210709043136.533205-1-dmitry.baryshkov@linaro.org>
+ <20210709043136.533205-5-dmitry.baryshkov@linaro.org> <CAPDyKFprYK8bSk+rdnDt3xRUR9BRNdyRiBdefO+s7qzOwHf7hg@mail.gmail.com>
+ <CAA8EJprrjz=o7Ymt1mNBZASzTeX==1ceRTeKA4f3QrVMcpO6xg@mail.gmail.com> <CAPDyKFoLcsYLisEiOF66dDsV+759c5k0PD64uxU11jc5VTdNYQ@mail.gmail.com>
+In-Reply-To: <CAPDyKFoLcsYLisEiOF66dDsV+759c5k0PD64uxU11jc5VTdNYQ@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 9 Jul 2021 15:59:47 +0300
+Message-ID: <CAA8EJpr2HEm4R+bGrH6DHA_z8bjN69Zam9UUiAeKAr5vsCKr3A@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 4/7] clk: qcom: gdsc: enable optional power
+ domain support
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SCP clock design is changed on mt8195 that doesn't need to control
-SCP clock on kernel side.
+On Fri, 9 Jul 2021 at 15:18, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> On Fri, 9 Jul 2021 at 13:46, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > On Fri, 9 Jul 2021 at 12:33, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+> > >
+> > > On Fri, 9 Jul 2021 at 06:32, Dmitry Baryshkov
+> > > <dmitry.baryshkov@linaro.org> wrote:
+> > > >
+> > > > On sm8250 dispcc and videocc registers are powered up by the MMCX power
+> > > > domain. Currently we used a regulator to enable this domain on demand,
+> > > > however this has some consequences, as genpd code is not reentrant.
+> > > >
+> > > > Teach Qualcomm clock controller code about setting up power domains and
+> > > > using them for gdsc control.
+> > > >
+> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > >
+> > > [...]
+> > >
+> > > > diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
+> > > > index 51ed640e527b..9401d01533c8 100644
+> > > > --- a/drivers/clk/qcom/gdsc.c
+> > > > +++ b/drivers/clk/qcom/gdsc.c
+> > > > @@ -427,6 +427,7 @@ int gdsc_register(struct gdsc_desc *desc,
+> > > >                         continue;
+> > > >                 scs[i]->regmap = regmap;
+> > > >                 scs[i]->rcdev = rcdev;
+> > > > +               scs[i]->pd.dev.parent = desc->dev;
+> > > >                 ret = gdsc_init(scs[i]);
+> > > >                 if (ret)
+> > > >                         return ret;
+> > > > @@ -439,6 +440,8 @@ int gdsc_register(struct gdsc_desc *desc,
+> > > >                         continue;
+> > > >                 if (scs[i]->parent)
+> > > >                         pm_genpd_add_subdomain(scs[i]->parent, &scs[i]->pd);
+> > > > +               else if (!IS_ERR_OR_NULL(dev->pm_domain))
+> > >
+> > > So dev_pm_domain_attach() (which calls genpd_dev_pm_attach() is being
+> > > called for gdsc platform device from the platform bus', to try to
+> > > attach the device to its corresponding PM domain.
+> > >
+> > > Looking a bit closer to genpd_dev_pm_attach(), I realize that we
+> > > shouldn't really try to attach a device to its PM domain, when its OF
+> > > node (dev->of_node) contains a "#power-domain-cells" specifier. This
+> > > is because it indicates that the device belongs to a genpd provider
+> > > itself. In this case, a "power-domains" specifier tells that it has a
+> > > parent domain.
+> > >
+> > > I will post a patch that fixes this asap.
+> >
+> > I think there is nothing to fix here. The dispcc/videocc drivers
+> > provide clocks in addition to the gdsc power domain. And provided
+> > clocks would definitely benefit from having the dispcc device being
+> > attached to the power domain which governs clock registers (MMCX in
+> > our case). Thus I think it is perfectly valid to have:
+> >
+> > rpmhpd device:
+> >  - provides MMCX domain.
+> >
+> > dispcc device:
+> >  - is attached to the MMCX domain,
+>
+> We don't need this, it's redundant and weird to me.
+>
+> Also I am kind of worried that you will hit another new path in genpd,
+> causing locking issues etc, as it has not been designed to work like
+> this (a provider device and a child domain sharing the same "parent").
 
-Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
----
- drivers/remoteproc/mtk_scp.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+So, which domain should the dispcc device belong to? It's registers
+are powered by the MMCX domain. I can not attach it to the child
+(GDSC) domain either: in the case of videocc there are 4 child
+domains.
+An alternative would be to request that all users of the provided
+clocks power on one of the child domains. However this is also not
+perfect. If some generic code (e.g. clock framework) calls into
+provided clocks (e.g. because of assigned-clock-rates), this can
+happen w/o proper power domain being powered up yet.
 
-diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-index 9679cc26895e..c31af75f947a 100644
---- a/drivers/remoteproc/mtk_scp.c
-+++ b/drivers/remoteproc/mtk_scp.c
-@@ -785,11 +785,13 @@ static int scp_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto destroy_mutex;
- 
--	scp->clk = devm_clk_get(dev, "main");
--	if (IS_ERR(scp->clk)) {
--		dev_err(dev, "Failed to get clock\n");
--		ret = PTR_ERR(scp->clk);
--		goto release_dev_mem;
-+	if (of_get_property(np, "clocks", NULL)) {
-+		scp->clk = devm_clk_get(dev, "main");
-+		if (IS_ERR(scp->clk)) {
-+			dev_err(dev, "Failed to get clock\n");
-+			ret = PTR_ERR(scp->clk);
-+			goto release_dev_mem;
-+		}
- 	}
- 
- 	/* register SCP initialization IPI */
-@@ -877,6 +879,7 @@ static const struct mtk_scp_of_data mt8192_of_data = {
- static const struct of_device_id mtk_scp_of_match[] = {
- 	{ .compatible = "mediatek,mt8183-scp", .data = &mt8183_of_data },
- 	{ .compatible = "mediatek,mt8192-scp", .data = &mt8192_of_data },
-+	{ .compatible = "mediatek,mt8195-scp", .data = &mt8192_of_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, mtk_scp_of_match);
+>
+> >  - provides MDSS_GDSC
+>
+> It's perfectly fine that dispcc acts as a genpd provider. In this
+> case, the corresponding PM domain should be assigned as a child for
+> the parent MMCX domain. That should make this work, I think.
+>
+> >  - provides clocks
+>
+> That sounds reasonable as well.
+>
+> >
+> > >
+> > > > +                       pm_genpd_add_subdomain(pd_to_genpd(dev->pm_domain), &scs[i]->pd);
+> > > >         }
+> > > >
+> > > >         return of_genpd_add_provider_onecell(dev->of_node, data);
+> > > > @@ -457,6 +460,8 @@ void gdsc_unregister(struct gdsc_desc *desc)
+> > > >                         continue;
+> > > >                 if (scs[i]->parent)
+> > > >                         pm_genpd_remove_subdomain(scs[i]->parent, &scs[i]->pd);
+> > > > +               else if (!IS_ERR_OR_NULL(dev->pm_domain))
+> > >
+> > > Ditto.
+> > >
+> > > > +                       pm_genpd_remove_subdomain(pd_to_genpd(dev->pm_domain), &scs[i]->pd);
+> > > >         }
+> > > >         of_genpd_del_provider(dev->of_node);
+> > > >  }
+> > > > --
+> > > > 2.30.2
+> > > >
+> > >
+>
+> Kind regards
+> Uffe
+
+
+
 -- 
-2.18.0
-
+With best wishes
+Dmitry
