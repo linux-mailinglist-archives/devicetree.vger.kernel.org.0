@@ -2,91 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D36F3C2A25
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 22:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFE0B3C2A3B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 22:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230453AbhGIUMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 16:12:17 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:49932 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230442AbhGIUMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 16:12:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1625861371; x=1628453371;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=GYoGy2G1a0uYVX5zuuv6GmMJBYgqtDpCCJ5Q2QV+qW0=;
-        b=U+cG/p3v0Be1UJ9UFmkal59mw/NlhqaFmcOO7i233OiAmlIK2EsvHWJ5OtMbq8Xq
-        VyjvZKvB4x6kXd+ntkLUM4ilPDfhRfiLb53aBpFWlY/t+heQ92XvpD5OYdv88Wg3
-        dvB4LGhnmM9se0nK3NAZ6iP95fUuNsy7KyAJHF85pOA=;
-X-AuditID: c39127d2-1e4f970000001daf-c0-60e8acfbacf0
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 10.14.07599.BFCA8E06; Fri,  9 Jul 2021 22:09:31 +0200 (CEST)
-Received: from lws-ybas.phytec.de ([172.16.21.122])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2021070922093127-1123548 ;
-          Fri, 9 Jul 2021 22:09:31 +0200 
-From:   Yunus Bas <y.bas@phytec.de>
-To:     sam@ravnborg.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     thierry.reding@gmail.com, airlied@linux.ie, daniel@ffwll.ch
-Subject: [PATCH v2 2/2] dt-bindings: display: simple: Add EDT ETM0350G0DH6
-Date:   Fri, 9 Jul 2021 22:09:13 +0200
-Message-Id: <20210709200913.2666570-2-y.bas@phytec.de>
-X-Mailer: git-send-email 2.30.0
-In-Reply-To: <20210709200913.2666570-1-y.bas@phytec.de>
-References: <20210709200913.2666570-1-y.bas@phytec.de>
+        id S229606AbhGIUTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 16:19:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54418 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229552AbhGIUTn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 16:19:43 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9153C0613DD
+        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 13:16:59 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id n11so6371791pjo.1
+        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 13:16:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VE8NLNhGFPN7qXnwo6GnJohAmUIG/mEAcTOghcJ/tYw=;
+        b=unp+hSNyALKLsqd7u1qNuLrdnRW4F28Fa86NuyBD9U5wkGyTPvUDri/GTCE4t7mDZC
+         Q/7OjCgD5/FgWFcMlvH5go44vCiJ2Jnk/HbKADyCD+gbbO76ARGcN3pKmiCsQy0mYzE+
+         eqCVMtcQiruCbiWt3jWz3fTFC7aSlu9DWdF4qD6uoVaheFiCTFF5O1tfrk7DdEzl1d8U
+         v4e+KsHAGme5xnsG/V9yGJpUZY4UOBCVs7N89TBUyro83zGKhSqUqzTx3O3XgxK9Mkh7
+         bOJHukR5Iw+A4twwHfa58M5xA/sfcq1kUG2qEqmWvf8XkzQab5LpFG0f8QKipp59xgey
+         18Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VE8NLNhGFPN7qXnwo6GnJohAmUIG/mEAcTOghcJ/tYw=;
+        b=fxkSPykRqBaJiazIzlpoRmftkd5e7q8ArbNkfVxcAyeiwHjpPOsofjPsxPkAW8+hEF
+         wmAEyfXbgMkTRx8zeU/NuTYaA8NEfYSVcCzfTSZ6lquLGI5C6BsBlRCo6BCEHXJc2OtZ
+         jB0mr/9CG1coa+tAgjOG2vOccNmjbgRvdoEFqoN6AoKc3GFpNCX2sIWmf+aHsF0OxxuJ
+         bEEKc9sIlEvvwTqeP/twDgibLXFDslVbxracQbtpOE0BRSh4ot1FsCRh5d+s78FSA5L3
+         lOly8JP1zk9JO1W2Tn/HeFabk75p4pZR5Uc9felMjCHvhKP7UZxD3mIaVfUzpx3ITAlG
+         yd5Q==
+X-Gm-Message-State: AOAM5303aT94LiSGTC6gvKkCEexaLClcD590B0Nk6r4tKl65lsrbmLB4
+        sa5F4M5lLYIA6jiAKtcc1MmxeA==
+X-Google-Smtp-Source: ABdhPJwsTex9cKmL6LslKd5Av4q4bNdTD9L8npwNfJ6/LlhBUloj6t2hiLzE1+epl2SAUQY0ZNJgEg==
+X-Received: by 2002:a17:90a:510b:: with SMTP id t11mr658578pjh.178.1625861819359;
+        Fri, 09 Jul 2021 13:16:59 -0700 (PDT)
+Received: from localhost.localdomain ([174.127.163.79])
+        by smtp.gmail.com with ESMTPSA id w22sm7220791pfn.188.2021.07.09.13.16.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jul 2021 13:16:58 -0700 (PDT)
+From:   Drew Fustini <drew@beagleboard.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Wei Fu <tekkamanninja@gmail.com>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Drew Fustini <drew@beagleboard.org>
+Subject: [PATCH v3] dt-bindings: riscv: add starfive jh7100 bindings
+Date:   Fri,  9 Jul 2021 13:16:04 -0700
+Message-Id: <20210709201603.2625664-1-drew@beagleboard.org>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 09.07.2021 22:09:31,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 09.07.2021 22:09:31
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrKLMWRmVeSWpSXmKPExsWyRoCBS/f3mhcJBjMfqFj0njvJZPF/20Rm
-        i/lHzrFaXN41h82ide8RdosVP7cyWvzcNY/Fgd1j77cFLB47Z91l99i0qpPNY/u3B6weS6Zd
-        ZfP4vEkugC2KyyYlNSezLLVI3y6BK+NQ40zWgtmcFddWr2NuYNzO3sXIySEhYCIxb/pVti5G
-        Lg4hgW2MEqem7WGEcM4zSlzrvsYIUsUmoChx/vZbVhBbRCBJ4sSUZWwgNrOAvcSlpX+YQWxh
-        AS+JJx82g01lEVCROLiwCSzOK2Am0bCwjw1im7zEybWHmUBsTgFziQWHL4PFhYBqep9+YYGo
-        F5Q4OfMJC8gREgJXGCXWb13BBNEsJHF68VlmiMXaEssWvmaewCgwC0nPLCSpBYxMqxiFcjOT
-        s1OLMrP1CjIqS1KT9VJSNzECg/rwRPVLOxj75ngcYmTiYDzEKMHBrCTCazTjWYIQb0piZVVq
-        UX58UWlOavEhRmkOFiVx3g28JWFCAumJJanZqakFqUUwWSYOTqkGRlm/GSH8sYeSjsmyT1OX
-        PvFpY1XNJ9WG34EHWnYkPGGyuVvgvySmd+6mtdoP4yfWfxD8fLl/5l8vUZkrop3LwzlDzI8y
-        P4++EtZr09m8Mit8cVIBT3en3WRJlmWfPBpr7LTetjOEtJ5aG3nq6FZHnulJVuZt89e0yIrX
-        Pl/oOMuzb81hAeUmJZbijERDLeai4kQAXqRGiVgCAAA=
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Emerging Display Technology ETM0350G0DH6 is a 3.5" WVGA TFT panel
-with capacitive multitouch. Add it to the list of compatibles.
+Add DT binding documentation for the StarFive JH7100 Soc [1] and the
+BeagleV Starlight JH7100 board [2].
 
-Signed-off-by: Yunus Bas <y.bas@phytec.de>
----
-Changes in v2:
-- No changes, resent on demand
----
- .../devicetree/bindings/display/panel/panel-simple.yaml        | 3 +++
- 1 file changed, 3 insertions(+)
+[1] https://github.com/starfive-tech/beaglev_doc
+[2] https://github.com/beagleboard/beaglev-starlight
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.y=
-aml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-index 7ee3a874249c..88ce049a0100 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-@@ -110,6 +110,9 @@ properties:
-         # Emerging Display Technology Corp. 5.7" VGA TFT LCD panel
-       - edt,et057090dhu
-       - edt,et070080dh6
-+        # Emerging Display Technology Corp. 3.5" WVGA TFT LCD panel with
-+        # capacitive multitouch
-+      - edt,etm0350g0dh6
-         # Emerging Display Technology Corp. 480x272 TFT Display with capac=
-itive touch
-       - edt,etm043080dh6gp
-         # Emerging Display Technology Corp. 480x272 TFT Display
---=20
-2.30.0
+Signed-off-by: Drew Fustini <drew@beagleboard.org>
+---
+v3 changes:
+- added revision number for the board and soc after question from Palmer
+
+v2 changes:
+- removed "items:" entry that only had "const: starfive,jh7100"
+- correct typo in Description:
+
+Results of running checks:
+  $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dt_binding_check \
+    DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml 
+    CHKDT   Documentation/devicetree/bindings/processed-schema-examples.json
+    DTEX    Documentation/devicetree/bindings/riscv/starfive.example.dts
+    SCHEMA  Documentation/devicetree/bindings/processed-schema-examples.json
+    DTC     Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+    CHECK   Documentation/devicetree/bindings/riscv/starfive.example.dt.yaml
+  $ make -j8 ARCH=riscv CROSS_COMPILE=riscv64-linux-gnu- dtbs_check \
+    DT_SCHEMA_FILES=Documentation/devicetree/bindings/riscv/starfive.yaml 
+    SYNC    include/config/auto.conf.cmd
+    UPD     include/config/kernel.release
+    SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+    DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dtb
+    DTC     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+    DTC     arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+    DTC     arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+    CHECK   arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml
+    CHECK   arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dt.yaml
+    CHECK   arch/riscv/boot/dts/starfive/jh7100-beaglev-starlight.dt.yaml
+
+The dts file is from vendor repo and is being cleaned up right now in
+preperation for submitting to the mailing list:
+https://github.com/starfive-tech/linux/tree/beaglev/arch/riscv/boot/dts/starfive
+
+ .../devicetree/bindings/riscv/starfive.yaml   | 27 +++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/riscv/starfive.yaml
+
+diff --git a/Documentation/devicetree/bindings/riscv/starfive.yaml b/Documentation/devicetree/bindings/riscv/starfive.yaml
+new file mode 100644
+index 000000000000..18d510904441
+--- /dev/null
++++ b/Documentation/devicetree/bindings/riscv/starfive.yaml
+@@ -0,0 +1,27 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/riscv/starfive.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: StarFive SoC-based boards
++
++maintainers:
++  - Michael Zhu <michael.zhu@starfivetech.com>
++  - Drew Fustini <drew@beagleboard.org>
++
++description:
++  StarFive SoC-based boards
++
++properties:
++  $nodename:
++    const: '/'
++  compatible:
++    oneOf:
++      - items:
++          - const: beagle,beaglev-starlight-jh7100-r0
++          - const: starfive,jh7100-r0
++
++additionalProperties: true
++
++...
+-- 
+2.27.0
 
