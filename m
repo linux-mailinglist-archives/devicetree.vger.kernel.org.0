@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 342F63C2A99
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 23:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD5F73C2A9D
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 23:07:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229546AbhGIVKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 17:10:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37302 "EHLO
+        id S230191AbhGIVKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 17:10:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229506AbhGIVKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 17:10:18 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 631B9C0613DD
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 14:07:34 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id k8so10115199lja.4
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 14:07:34 -0700 (PDT)
+        with ESMTP id S229506AbhGIVKT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 17:10:19 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31507C0613E8
+        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 14:07:35 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id r20so10091815ljd.10
+        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 14:07:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=V0Pj5fs6y1i+ayS07/Myij97c/TfTB9e9bw5kHFQa8I=;
-        b=Do3HtQ82nTRTNinJXs1skcFcaQgvRoQ1RiU+PMqYBLPZYmHEPkWvczi7c9SEqlpeNR
-         6AZlTSFTpkOtajIXVjQH0wC1bnnRk2Q7Y7Xxtg0GA7XYQ2Z/VaUG9Di8ZWckItYaHyHq
-         DQbj3LVqxijEFKoru1qyuwMX9PRPAXiIJYBGmcqpOyDTGmUDY88BOajZM1y46H8Mnr0B
-         71tP9OBrLqgBTPHBtjlkVyR1fHBqmH5ZrKXmbvDx81wP4wS/sBnp5xj535Bo9YeGQrAc
-         Fo8vBaJlLphQ09wIoI46U23MGCMh75nkF7FimcDJ8XYR66wqa0il3cEZRkpNzwyJWw9Z
-         /84g==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=hJEW9w0y6Vcyes9owQtz9S/0i0lXig3Az7cXFopBjtc=;
+        b=fErVVr4pfIJbVtUKRHnaiRSwiESw88MXK4nJOMrQurA3qSPw+jY8bZ7yjI0gwd8IcA
+         Z0Y9hswzeZlcQINkON1LTwNJGPzPwFkFjkioN0yYm4bVKTQJSbN7rKbcK3kHfHfOrGEF
+         s8eIlFTqWE8NVoVmXDfTK8o8YgUnlvq9pxg5UfvlUQsHTZUtHtQR7RuKOtJB27pdxDaq
+         s38BYWqY66kmHU+Hk1s9uVptda29k3gyzDeDP55L/YPk4BYTmFkgQzDvSpaBCruR5sZg
+         UoLfxq9JOioajcPf2PhCaWZA5FsUHeBHZQOkz+Xahi713/PersOMrDO5A12kVOY1wx6q
+         jx4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=V0Pj5fs6y1i+ayS07/Myij97c/TfTB9e9bw5kHFQa8I=;
-        b=EKNCDDQco5WuUjjWE/S2c0RyS0AP8xN4e4gCqJAUo0Q2JW/qkqFlx2Y1kkcY2vlCYT
-         mGVwj5ECLiiTdN7x7LKseSuRxOiWb+PaOqhpa5TCkVBM1XxtapubUqp117skCmC5mIK4
-         n2+0Rgc/D8inJwsvFK+KzrXHgOZ2ado6n1YpnQPPB2vZyPUv+ukeHP2ZfaGmg1gKXyZ+
-         dpGvw7ihTPKHYEYg3XSYQ9cvPpQD4mZ8z9U8g/6pfkBaWEtxVeQ8AqFSGv26YyYQgZBT
-         +qHs13Be2qXi2fKDXLibbUPfr3nZxZoGR8zyVFoeWoOYwg7woIKqTj+dp4ApofUxnZJi
-         6JEw==
-X-Gm-Message-State: AOAM53369aX7aFimuIdnsD1jcpInx6YGAZsKD7qrvaE0Fdq+fGGVNJJf
-        MbrZNfXf8HAZqDcLhLyqDRU0Tg==
-X-Google-Smtp-Source: ABdhPJx2hU6nkZH9hGkm3rh9KaX1jGm43K58snE62B+a2YdIn1sFqE2vg0qnzFdJpfNHVOXHdUJISQ==
-X-Received: by 2002:a2e:95d5:: with SMTP id y21mr13238967ljh.416.1625864852713;
-        Fri, 09 Jul 2021 14:07:32 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=hJEW9w0y6Vcyes9owQtz9S/0i0lXig3Az7cXFopBjtc=;
+        b=B1k3V8f6qOpZmqtqKgMvtYI1W6EeDgX/DB7VsGh/DbcWwCgaH/zvT2D0+TAX2VCdNo
+         7oJNZoFiZcyJDYeeacGV7kF6u4hupyIpLUnuTxbyeaV6P6zG++PbFzv1kpS5g81hagID
+         Ipd9JGUj8SKSSrLdK0NLHkohww3jbkUmA9B/c/h6ytAlJ1fabyc2Rod960T0eJKqW1du
+         ytkf5VYhrqIwuykOvCSMh/s3QfeAbRpaiU88AKpzfTnMUFk1GlRHdeL97Imuvy5jnheJ
+         9yzFmt7j9Tyk7i1SRJZBlSmQD2C1kFVDoyUCyF+XnfJte7IX7DtAlMSIVm1C1uePgKev
+         Sj2A==
+X-Gm-Message-State: AOAM531TxqZORTUJRZnOv58jwFnjg9ODj8wWkqofTgdwNRo7/t/EXIdh
+        eckU0A/InnlTb0H2WcZ1k5II+A==
+X-Google-Smtp-Source: ABdhPJxwEU1JXAYF23cylO9ydxaJi+pRUDC33zBTaCd/tXUSJbSPQBQH5TQCHFNqw+9C5KQLXr0Ddw==
+X-Received: by 2002:a2e:50c:: with SMTP id 12mr23647928ljf.173.1625864853431;
+        Fri, 09 Jul 2021 14:07:33 -0700 (PDT)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id n15sm590625lfh.70.2021.07.09.14.07.31
+        by smtp.gmail.com with ESMTPSA id n15sm590625lfh.70.2021.07.09.14.07.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jul 2021 14:07:32 -0700 (PDT)
+        Fri, 09 Jul 2021 14:07:33 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -59,71 +59,68 @@ Cc:     Jonathan Marek <jonathan@marek.ca>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
         devicetree@vger.kernel.org
-Subject: [PATCH v2 0/8] dsi: rework clock parents and timing handling
-Date:   Sat, 10 Jul 2021 00:07:21 +0300
-Message-Id: <20210709210729.953114-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 1/8] dt-bindings: display: msm: dsi-controller-main: restore assigned-clocks
+Date:   Sat, 10 Jul 2021 00:07:22 +0300
+Message-Id: <20210709210729.953114-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20210709210729.953114-1-dmitry.baryshkov@linaro.org>
+References: <20210709210729.953114-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series brings back several patches targeting assigning dispcc
-clock parents, that were removed from the massive dsi rework patchset
-earlier.
+Restore the assgined-clocks and assigned-clock-parents properties that
+were lost during the txt -> YAML conversion.
 
-Few notes:
- - assign-clock-parents is a mandatory proprety according to the current
-   dsi.txt description.
- - There is little point in duplicating this functionality with the ad-hoc
-   implementation in the dsi code.
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ .../display/msm/dsi-controller-main.yaml        | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-On top of that come few minor cleanups for the DSI PHY drivers.
-
-I'd kindly ask to bring all dts changes also through the drm tree, so
-that there won't be any breakage of the functionality.
-
-The patchset was tested on RB3 (single DSI), RB5 (single DSI, two
-independent DSI, bonded DSI, two last configs require additional patches
-which do not concern the DSI timings code).
-
-Changes since v1:
- - add dt-bindings change
- - drop the patch removing msm_dsi_dphy_timing
-
-The following changes since commit e88bbc91849b2bf57683119c339e52916d34433f:
-
-  Revert "drm/msm/mdp5: provide dynamic bandwidth management" (2021-06-23 14:06:20 -0700)
-
-are available in the Git repository at:
-
-  https://git.linaro.org/people/dmitry.baryshkov/kernel.git dsi-phy-update
-
-for you to fetch changes up to a79d84d8eac721a7ebaf3cfc65b200077b1d6947:
-
-  drm/msm/dsi: drop msm_dsi_phy_get_shared_timings (2021-07-10 00:02:18 +0300)
-
-----------------------------------------------------------------
-Dmitry Baryshkov (8):
-      dt-bindings: display: msm: dsi-controller-main: restore assigned-clocks
-      arm64: dts: qcom: sc7180: assign DSI clock source parents
-      arm64: dts: qcom: sdm845: assign DSI clock source parents
-      arm64: dts: qcom: sdm845-mtp: assign DSI clock source parents
-      arm64: dts: qcom: sm8250: assign DSI clock source parents
-      drm/msm/dsi: stop setting clock parents manually
-      drm/msm/dsi: phy: use of_device_get_match_data
-      drm/msm/dsi: drop msm_dsi_phy_get_shared_timings
-
- .../bindings/display/msm/dsi-controller-main.yaml  | 17 ++++++++
- arch/arm64/boot/dts/qcom/sc7180.dtsi               |  3 ++
- arch/arm64/boot/dts/qcom/sdm845-mtp.dts            |  3 ++
- arch/arm64/boot/dts/qcom/sdm845.dtsi               |  6 +++
- arch/arm64/boot/dts/qcom/sm8250.dtsi               |  6 +++
- drivers/gpu/drm/msm/dsi/dsi.h                      |  7 +--
- drivers/gpu/drm/msm/dsi/dsi_host.c                 | 51 ----------------------
- drivers/gpu/drm/msm/dsi/dsi_manager.c              |  8 +---
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              | 34 ++++-----------
- 9 files changed, 47 insertions(+), 88 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+index 76348b71f736..760eec6b0db1 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -64,6 +64,18 @@ properties:
+       Indicates if the DSI controller is driving a panel which needs
+       2 DSI links.
+ 
++  assigned-clocks:
++    minItems: 2
++    maxItems: 2
++    description: |
++      Parents of "byte" and "pixel" for the given platform.
++
++  assigned-clock-parents:
++    minItems: 2
++    maxItems: 2
++    description: |
++      The Byte clock and Pixel clock PLL outputs provided by a DSI PHY block.
++
+   power-domains:
+     maxItems: 1
+ 
+@@ -119,6 +131,8 @@ required:
+   - clock-names
+   - phys
+   - phy-names
++  - assigned-clocks
++  - assigned-clock-parents
+   - power-domains
+   - operating-points-v2
+   - ports
+@@ -159,6 +173,9 @@ examples:
+            phys = <&dsi0_phy>;
+            phy-names = "dsi";
+ 
++           assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK_SRC>, <&dispcc DISP_CC_MDSS_PCLK0_CLK_SRC>;
++           assigned-clock-parents = <&dsi_phy 0>, <&dsi_phy 1>;
++
+            power-domains = <&rpmhpd SC7180_CX>;
+            operating-points-v2 = <&dsi_opp_table>;
+ 
+-- 
+2.30.2
 
