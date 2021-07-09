@@ -2,166 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF9893C2258
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 12:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9C473C2278
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 12:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230164AbhGIKoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 06:44:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47544 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230000AbhGIKoe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Jul 2021 06:44:34 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 5EA19613F0;
-        Fri,  9 Jul 2021 10:41:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625827311;
-        bh=m59H58S8c6uJmUxjlwS9k0tBdkqFiZIxmvII33/F3pI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=SslcZji14eYszw8cDvpsfM8KITDXGg+CWncX5fUuz0NXcIxEYebukwcpftPMSPKsi
-         OJQaVqH/hzX9FY6T/BH1nwFf65zUpB4XhdGAnHLHCry2Vd0MUpEr1/gojp/fYU0Bpp
-         zdy+HKeWUoFzTuf8FACkfnSKhZ9AQoDsAzssUP/baWB1xYx2RmDpPb6/W4zNnhcoCl
-         bXDraS2bm3x4+0hDcMSKO6HmUzK/Dl5Rc1h7wimkUCTqWl5zfyuDha+8M8w2GRwTHi
-         50EmuXR3PcvLwUpyjzjawpFPOqxkOOd1yOGnzUxJsYeMjdw+RN5ISbSVQtLQnV1LmA
-         d4ApfW5g5CCwQ==
-Received: by mail.kernel.org with local (Exim 4.94.2)
-        (envelope-from <mchehab@kernel.org>)
-        id 1m1nx7-00B5G4-LF; Fri, 09 Jul 2021 12:41:49 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Subject: [PATCH v3 9/9] arm64: dts: hisilicon: Add support for HiKey 970 PCIe controller hardware
-Date:   Fri,  9 Jul 2021 12:41:45 +0200
-Message-Id: <c5bcb6cc896a0d48ed53d243f6c4b1cc1e7ea235.1625826353.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1625826353.git.mchehab+huawei@kernel.org>
-References: <cover.1625826353.git.mchehab+huawei@kernel.org>
+        id S229877AbhGIKsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 06:48:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37616 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229861AbhGIKsa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 06:48:30 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF64C0613E5
+        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 03:45:47 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id a18so22385218lfs.10
+        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 03:45:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=C6mnLkibuTq3O3RIj/A8hWNd/xjHPJDMjDp1O/G3Qf8=;
+        b=LzauGJ/W0SJTz14zlRSNp3tG3n9Ws3VCF9I3Gog1j48Ial81lRhuyOJirZjXtkPrP+
+         AixliN35gUn87RpjY/M1wP5drdEFDx0DidjeHpy0NUBPRCTf4I7F8iwvXNjRajr+JTNN
+         Q6k1Aqwq55REnZXeSgNZwNlz7EsQUbgevJ/0o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=C6mnLkibuTq3O3RIj/A8hWNd/xjHPJDMjDp1O/G3Qf8=;
+        b=ELyKw+VcHaRlRUi8aHYUSkzbbDuA/rH3OymewZUAniq8akb0Q8Pq3ZxBdA60eGjbXl
+         q99M4WNWYT7foiFcuq7dum8a1bRXg3a5QBo+9C1b+ixgw1Ufq1FNJ8jUsTpgtuSncMdU
+         UUFK01OzcHyru7LTA2z89Yp88y1bKJzdtbzd4DwBskC4Z7nT8rZuuwSQqTVLtlTh9yOx
+         QXTwJpzXGSO6Y+GjpO9+eE9/V2U/vTy8X1TpY20azHZxkenTVr2N6OuMo2NnPx0buUL7
+         cHuPZ2QJ20Kits9p4Bdsr3PYNNFtMtlAEjt3VBzUQd8d+Xp4gpnD3zwJeHl5U/Y4Ntfn
+         0sag==
+X-Gm-Message-State: AOAM532vOBh+5RslSJqOL55uTzkaY1q3Mk1/1yPPob2DqQSmDWDN7ATt
+        aSmnunnoulNf+1fcQcmPKzrBLJEzVqV8nHF0Vieauw==
+X-Google-Smtp-Source: ABdhPJx7RqOTMWa8I+UjEb9qnMaV29Z5bjjjl2WI7vBQRSsRr6A1xwWtK7BUmL37N4gurtLIBXKjiVTD256GsKYP1Jc=
+X-Received: by 2002:a05:6512:1303:: with SMTP id x3mr27753514lfu.276.1625827545601;
+ Fri, 09 Jul 2021 03:45:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+References: <20210616224743.5109-1-chun-jie.chen@mediatek.com> <20210616224743.5109-20-chun-jie.chen@mediatek.com>
+In-Reply-To: <20210616224743.5109-20-chun-jie.chen@mediatek.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Fri, 9 Jul 2021 18:45:34 +0800
+Message-ID: <CAGXv+5EyKJ=-hY+-kzzeFOZhSwiTTmGPi-4ux01hyimJfoEJRw@mail.gmail.com>
+Subject: Re: [PATCH 19/22] clk: mediatek: Add MT8195 vppsys1 clock support
+To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Hi,
 
-Add DTS bindings for the Hikey 970 board's PCIe hardware.
+On Thu, Jun 17, 2021 at 7:00 AM Chun-Jie Chen
+<chun-jie.chen@mediatek.com> wrote:
+>
+> Add MT8195 vppsys1 clock provider
+>
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> ---
+>  drivers/clk/mediatek/Kconfig           |   6 ++
+>  drivers/clk/mediatek/Makefile          |   1 +
+>  drivers/clk/mediatek/clk-mt8195-vpp1.c | 110 +++++++++++++++++++++++++
+>  3 files changed, 117 insertions(+)
+>  create mode 100644 drivers/clk/mediatek/clk-mt8195-vpp1.c
+>
+> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
+> index 2deef026fbb4..91b1c19da1ab 100644
+> --- a/drivers/clk/mediatek/Kconfig
+> +++ b/drivers/clk/mediatek/Kconfig
+> @@ -672,6 +672,12 @@ config COMMON_CLK_MT8195_VPPSYS0
+>         help
+>           This driver supports MediaTek MT8195 vppsys0 clocks.
+>
+> +config COMMON_CLK_MT8195_VPPSYS1
+> +       bool "Clock driver for MediaTek MT8195 vppsys1"
+> +       depends on COMMON_CLK_MT8195
+> +       help
+> +         This driver supports MediaTek MT8195 vppsys1 clocks.
+> +
+>  config COMMON_CLK_MT8516
+>         bool "Clock driver for MediaTek MT8516"
+>         depends on ARCH_MEDIATEK || COMPILE_TEST
+> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
+> index 34cd7f2c71ac..fbf57473bb91 100644
+> --- a/drivers/clk/mediatek/Makefile
+> +++ b/drivers/clk/mediatek/Makefile
+> @@ -95,5 +95,6 @@ obj-$(CONFIG_COMMON_CLK_MT8195_VDOSYS0) += clk-mt8195-vdo0.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_VDOSYS1) += clk-mt8195-vdo1.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_VENCSYS) += clk-mt8195-venc.o
+>  obj-$(CONFIG_COMMON_CLK_MT8195_VPPSYS0) += clk-mt8195-vpp0.o
+> +obj-$(CONFIG_COMMON_CLK_MT8195_VPPSYS1) += clk-mt8195-vpp1.o
+>  obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
+>  obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
+> diff --git a/drivers/clk/mediatek/clk-mt8195-vpp1.c b/drivers/clk/mediatek/clk-mt8195-vpp1.c
+> new file mode 100644
+> index 000000000000..0650ba86d5b6
+> --- /dev/null
+> +++ b/drivers/clk/mediatek/clk-mt8195-vpp1.c
+> @@ -0,0 +1,110 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// Copyright (c) 2021 MediaTek Inc.
+> +// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "clk-mtk.h"
+> +#include "clk-gate.h"
+> +
+> +#include <dt-bindings/clock/mt8195-clk.h>
+> +
+> +static const struct mtk_gate_regs vpp10_cg_regs = {
 
-Co-developed-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi     | 72 +++++++++++++++++++
- .../boot/dts/hisilicon/hikey970-pmic.dtsi     |  1 -
- 2 files changed, 72 insertions(+), 1 deletion(-)
+Again, please add a separator.
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 6476149d99e3..f54dab70f01b 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -177,6 +177,12 @@ sctrl: sctrl@fff0a000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		pmctrl: pmctrl@fff31000 {
-+			compatible = "hisilicon,hi3670-pmctrl", "syscon";
-+			reg = <0x0 0xfff31000 0x0 0x1000>;
-+			#clock-cells = <1>;
-+		};
-+
- 		iomcu: iomcu@ffd7e000 {
- 			compatible = "hisilicon,hi3670-iomcu", "syscon";
- 			reg = <0x0 0xffd7e000 0x0 0x1000>;
-@@ -660,6 +666,72 @@ gpio28: gpio@fff1d000 {
- 			clock-names = "apb_pclk";
- 		};
- 
-+		its_pcie: interrupt-controller@f4000000 {
-+			compatible = "arm,gic-v3-its";
-+			msi-controller;
-+			reg = <0x0 0xf5100000 0x0 0x100000>;
-+		};
-+
-+		pcie_phy: pcie-phy@fc000000 {
-+			compatible = "hisilicon,hi970-pcie-phy";
-+			reg = <0x0 0xfc000000 0x0 0x80000>;
-+			reg-names = "phy";
-+
-+			phy-supply = <&ldo33>;
-+
-+			clocks = <&crg_ctrl HI3670_CLK_GATE_PCIEPHY_REF>,
-+				 <&crg_ctrl HI3670_CLK_GATE_PCIEAUX>,
-+				 <&crg_ctrl HI3670_PCLK_GATE_PCIE_PHY>,
-+				 <&crg_ctrl HI3670_PCLK_GATE_PCIE_SYS>,
-+				 <&crg_ctrl HI3670_ACLK_GATE_PCIE>;
-+			clock-names = "pcie_phy_ref", "pcie_aux",
-+				      "pcie_apb_phy", "pcie_apb_sys",
-+				      "pcie_aclk";
-+
-+			reset-gpios = <&gpio7 0 0 >, <&gpio25 2 0 >,
-+				      <&gpio3 1 0 >, <&gpio27 4 0 >;
-+
-+			clkreq-gpios = <&gpio20 6 0 >, <&gpio27 3 0 >,
-+				       <&gpio17 0 0 >;
-+
-+			/* vboost iboost pre post main */
-+			hisilicon,eye-diagram-param = <0xFFFFFFFF 0xFFFFFFFF
-+						       0xFFFFFFFF 0xFFFFFFFF
-+						       0xFFFFFFFF>;
-+
-+			#phy-cells = <0>;
-+		};
-+
-+		pcie@f4000000 {
-+			compatible = "hisilicon,kirin970-pcie";
-+			reg = <0x0 0xf4000000 0x0 0x1000000>,
-+			      <0x0 0xfc180000 0x0 0x1000>,
-+			      <0x0 0xf5000000 0x0 0x2000>;
-+			reg-names = "dbi", "apb", "config";
-+			bus-range = <0x0  0x1>;
-+			msi-parent = <&its_pcie>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			device_type = "pci";
-+			phys = <&pcie_phy>;
-+			ranges = <0x02000000 0x0 0x00000000
-+				  0x0 0xf6000000
-+				  0x0 0x02000000>;
-+			num-lanes = <1>;
-+			#interrupt-cells = <1>;
-+			interrupts = <0 283 4>;
-+			interrupt-names = "msi";
-+			interrupt-map-mask = <0 0 0 7>;
-+			interrupt-map = <0x0 0 0 1
-+					 &gic GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 2
-+					 &gic GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 3
-+					 &gic GIC_SPI 284 IRQ_TYPE_LEVEL_HIGH>,
-+					<0x0 0 0 4
-+					 &gic GIC_SPI 285 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
- 		/* UFS */
- 		ufs: ufs@ff3c0000 {
- 			compatible = "hisilicon,hi3670-ufs", "jedec,ufs-2.1";
-diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-index 48c739eacba0..03452e627641 100644
---- a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-@@ -73,7 +73,6 @@ ldo33: LDO33 { /* PEX8606 */
- 					regulator-name = "ldo33";
- 					regulator-min-microvolt = <2500000>;
- 					regulator-max-microvolt = <3300000>;
--					regulator-boot-on;
- 				};
- 
- 				ldo34: LDO34 { /* GPS AUX IN VDD */
--- 
-2.31.1
+> +       .set_ofs = 0x104,
+> +       .clr_ofs = 0x108,
+> +       .sta_ofs = 0x100,
+> +};
+> +
+> +static const struct mtk_gate_regs vpp11_cg_regs = {
+> +       .set_ofs = 0x114,
+> +       .clr_ofs = 0x118,
+> +       .sta_ofs = 0x110,
+> +};
+> +
+> +#define GATE_VPP10(_id, _name, _parent, _shift)                        \
+> +       GATE_MTK(_id, _name, _parent, &vpp10_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+> +
+> +#define GATE_VPP11(_id, _name, _parent, _shift)                        \
+> +       GATE_MTK(_id, _name, _parent, &vpp11_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+> +
+> +static const struct mtk_gate vpp1_clks[] = {
+> +       /* VPP10 */
+> +       GATE_VPP10(CLK_VPP1_SVPP1_MDP_OVL, "vpp1_svpp1_mdp_ovl", "vpp_sel", 0),
+> +       GATE_VPP10(CLK_VPP1_SVPP1_MDP_TCC, "vpp1_svpp1_mdp_tcc", "vpp_sel", 1),
+> +       GATE_VPP10(CLK_VPP1_SVPP1_MDP_WROT, "vpp1_svpp1_mdp_wrot", "vpp_sel", 2),
+> +       GATE_VPP10(CLK_VPP1_SVPP1_VPP_PAD, "vpp1_svpp1_vpp_pad", "vpp_sel", 3),
+> +       GATE_VPP10(CLK_VPP1_SVPP2_MDP_WROT, "vpp1_svpp2_mdp_wrot", "vpp_sel", 4),
+> +       GATE_VPP10(CLK_VPP1_SVPP2_VPP_PAD, "vpp1_svpp2_vpp_pad", "vpp_sel", 5),
+> +       GATE_VPP10(CLK_VPP1_SVPP3_MDP_WROT, "vpp1_svpp3_mdp_wrot", "vpp_sel", 6),
+> +       GATE_VPP10(CLK_VPP1_SVPP3_VPP_PAD, "vpp1_svpp3_vpp_pad", "vpp_sel", 7),
+> +       GATE_VPP10(CLK_VPP1_SVPP1_MDP_RDMA, "vpp1_svpp1_mdp_rdma", "vpp_sel", 8),
+> +       GATE_VPP10(CLK_VPP1_SVPP1_MDP_FG, "vpp1_svpp1_mdp_fg", "vpp_sel", 9),
+> +       GATE_VPP10(CLK_VPP1_SVPP2_MDP_RDMA, "vpp1_svpp2_mdp_rdma", "vpp_sel", 10),
+> +       GATE_VPP10(CLK_VPP1_SVPP2_MDP_FG, "vpp1_svpp2_mdp_fg", "vpp_sel", 11),
+> +       GATE_VPP10(CLK_VPP1_SVPP3_MDP_RDMA, "vpp1_svpp3_mdp_rdma", "vpp_sel", 12),
+> +       GATE_VPP10(CLK_VPP1_SVPP3_MDP_FG, "vpp1_svpp3_mdp_fg", "vpp_sel", 13),
+> +       GATE_VPP10(CLK_VPP1_VPP_SPLIT, "vpp1_vpp_split", "vpp_sel", 14),
+> +       GATE_VPP10(CLK_VPP1_SVPP2_VDO0_DL_RELAY, "vpp1_svpp2_vdo0_dl_relay", "vpp_sel", 15),
+> +       GATE_VPP10(CLK_VPP1_SVPP1_MDP_TDSHP, "vpp1_svpp1_mdp_tdshp", "vpp_sel", 16),
+> +       GATE_VPP10(CLK_VPP1_SVPP1_MDP_COLOR, "vpp1_svpp1_mdp_color", "vpp_sel", 17),
+> +       GATE_VPP10(CLK_VPP1_SVPP3_VDO1_DL_RELAY, "vpp1_svpp3_vdo1_dl_relay", "vpp_sel", 18),
+> +       GATE_VPP10(CLK_VPP1_SVPP2_VPP_MERGE, "vpp1_svpp2_vpp_merge", "vpp_sel", 19),
+> +       GATE_VPP10(CLK_VPP1_SVPP2_MDP_COLOR, "vpp1_svpp2_mdp_color", "vpp_sel", 20),
+> +       GATE_VPP10(CLK_VPP1_VPPSYS1_GALS, "vpp1_vppsys1_gals", "vpp_sel", 21),
+> +       GATE_VPP10(CLK_VPP1_SVPP3_VPP_MERGE, "vpp1_svpp3_vpp_merge", "vpp_sel", 22),
+> +       GATE_VPP10(CLK_VPP1_SVPP3_MDP_COLOR, "vpp1_svpp3_mdp_color", "vpp_sel", 23),
+> +       GATE_VPP10(CLK_VPP1_VPPSYS1_LARB, "vpp1_vppsys1_larb", "vpp_sel", 24),
+> +       GATE_VPP10(CLK_VPP1_SVPP1_MDP_RSZ, "vpp1_svpp1_mdp_rsz", "vpp_sel", 25),
+> +       GATE_VPP10(CLK_VPP1_SVPP1_MDP_HDR, "vpp1_svpp1_mdp_hdr", "vpp_sel", 26),
+> +       GATE_VPP10(CLK_VPP1_SVPP1_MDP_AAL, "vpp1_svpp1_mdp_aal", "vpp_sel", 27),
+> +       GATE_VPP10(CLK_VPP1_SVPP2_MDP_HDR, "vpp1_svpp2_mdp_hdr", "vpp_sel", 28),
+> +       GATE_VPP10(CLK_VPP1_SVPP2_MDP_AAL, "vpp1_svpp2_mdp_aal", "vpp_sel", 29),
+> +       GATE_VPP10(CLK_VPP1_DL_ASYNC, "vpp1_dl_async", "vpp_sel", 30),
+> +       GATE_VPP10(CLK_VPP1_LARB5_FAKE_ENG, "vpp1_larb5_fake_eng", "vpp_sel", 31),
+> +       /* VPP11 */
+> +       GATE_VPP11(CLK_VPP1_SVPP3_MDP_HDR, "vpp1_svpp3_mdp_hdr", "vpp_sel", 0),
+> +       GATE_VPP11(CLK_VPP1_SVPP3_MDP_AAL, "vpp1_svpp3_mdp_aal", "vpp_sel", 1),
+> +       GATE_VPP11(CLK_VPP1_SVPP2_VDO1_DL_RELAY, "vpp1_svpp2_vdo1_dl_relay", "vpp_sel", 2),
+> +       GATE_VPP11(CLK_VPP1_LARB6_FAKE_ENG, "vpp1_larb6_fake_eng", "vpp_sel", 3),
+> +       GATE_VPP11(CLK_VPP1_SVPP2_MDP_RSZ, "vpp1_svpp2_mdp_rsz", "vpp_sel", 4),
+> +       GATE_VPP11(CLK_VPP1_SVPP3_MDP_RSZ, "vpp1_svpp3_mdp_rsz", "vpp_sel", 5),
+> +       GATE_VPP11(CLK_VPP1_SVPP3_VDO0_DL_RELAY, "vpp1_svpp3_vdo0_dl_relay", "vpp_sel", 6),
+> +       GATE_VPP11(CLK_VPP1_DISP_MUTEX, "vpp1_disp_mutex", "vpp_sel", 7),
+> +       GATE_VPP11(CLK_VPP1_SVPP2_MDP_TDSHP, "vpp1_svpp2_mdp_tdshp", "vpp_sel", 8),
+> +       GATE_VPP11(CLK_VPP1_SVPP3_MDP_TDSHP, "vpp1_svpp3_mdp_tdshp", "vpp_sel", 9),
+> +       GATE_VPP11(CLK_VPP1_VPP0_DL1_RELAY, "vpp1_vpp0_dl1_relay", "vpp_sel", 10),
+> +       GATE_VPP11(CLK_VPP1_HDMI_META, "vpp1_hdmi_meta", "hdmirx_p", 11),
+> +       GATE_VPP11(CLK_VPP1_VPP_SPLIT_HDMI, "vpp1_vpp_split_hdmi", "hdmirx_p", 12),
+> +       GATE_VPP11(CLK_VPP1_DGI_IN, "vpp1_dgi_in", "in_dgi", 13),
+> +       GATE_VPP11(CLK_VPP1_DGI_OUT, "vpp1_dgi_out", "dgi_out_sel", 14),
+> +       GATE_VPP11(CLK_VPP1_VPP_SPLIT_DGI, "vpp1_vpp_split_dgi", "dgi_out_sel", 15),
+> +       GATE_VPP11(CLK_VPP1_VPP0_DL_ASYNC, "vpp1_vpp0_dl_async", "vpp_sel", 16),
+> +       GATE_VPP11(CLK_VPP1_VPP0_DL_RELAY, "vpp1_vpp0_dl_relay", "vpp_sel", 17),
+> +       GATE_VPP11(CLK_VPP1_VPP_SPLIT_26M, "vpp1_vpp_split_26m", "clk26m", 26),
 
+The last two aren't in the datasheet.
+
+Same general comments apply.
+
+
+ChenYu
+
+> +};
+> +
+> +static const struct mtk_clk_desc vpp1_desc = {
+> +       .clks = vpp1_clks,
+> +       .num_clks = ARRAY_SIZE(vpp1_clks),
+> +};
+> +
+> +static const struct of_device_id of_match_clk_mt8195_vpp1[] = {
+> +       {
+> +               .compatible = "mediatek,mt8195-vppsys1",
+> +               .data = &vpp1_desc,
+> +       }, {
+> +               /* sentinel */
+> +       }
+> +};
+> +
+> +static struct platform_driver clk_mt8195_vpp1_drv = {
+> +       .probe = mtk_clk_simple_probe,
+> +       .driver = {
+> +               .name = "clk-mt8195-vpp1",
+> +               .of_match_table = of_match_clk_mt8195_vpp1,
+> +       },
+> +};
+> +
+> +builtin_platform_driver(clk_mt8195_vpp1_drv);
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
