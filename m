@@ -2,92 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EA143C2B00
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 23:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 978B13C2B30
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 00:10:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229948AbhGIV4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 17:56:38 -0400
-Received: from vern.gendns.com ([98.142.107.122]:33480 "EHLO vern.gendns.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229506AbhGIV4i (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Jul 2021 17:56:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=/Dddjv2tUyk98nV/3b27ic8yk/7On4PwpqZUZRCFkA8=; b=q6MPWvT4nG5euNmPZ64fqBiwRm
-        7tc1FZonw+5/4MB19dnQtEf4VoUtT7PHO4YDxWqfucBxoIWksndCXvTTR+mwilGlhke6rW7mRKavp
-        /qU3QOL8Q/gdneAp33DYn0mrYMwsTOpJol5uHwgo00sBNi8Bda3nzA9wFf92E9UyfXInYP/fSMV8K
-        M6djUOthxdm+CodZamR13DVmizxv2vHSudAr6h1UMkWfPkf6AjVdEIkq7/tWSAn62+bX2rlgPoA18
-        m9WccSa5kDBb5JNCA3jlJ/416dXrI8YN63oE0ObH2pQBKFIwyZMZp/8i1WTVjg/pNcoJZ+KnTCfXu
-        X8BPLrzg==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:57830 helo=[192.168.0.134])
-        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <david@lechnology.com>)
-        id 1m1yLv-00C9xh-37; Fri, 09 Jul 2021 17:48:20 -0400
-Subject: Re: [PATCH] ARM: dts: am335x-boneblue: add gpio-line-names
-To:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>
-Cc:     Drew Fustini <drew@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20210709214230.1581808-1-david@lechnology.com>
-From:   David Lechner <david@lechnology.com>
-Message-ID: <ee0e8beb-e128-7d6f-de34-f0adabe3c7b9@lechnology.com>
-Date:   Fri, 9 Jul 2021 16:48:19 -0500
+        id S229960AbhGIWNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 18:13:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51540 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229552AbhGIWNW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 18:13:22 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44659C0613E8
+        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 15:10:37 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id v14so26160527lfb.4
+        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 15:10:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uVekkBCXr4urFNfCMQxnITdCN/ES/x/lzFoar5LQqTw=;
+        b=GcJWh0B5u907ldfCF3RPOO/yD60iEF/fCXS6YCJqTvP8mSuZXcSCTXOo+toAA7Ffjn
+         OWfYlXi/ErTPbn8ReCPhHpb8G5EzEpGFxcZTKs3Mb6jWKJuECwze8j8JQT6hlRAEFvhJ
+         yLQODEuFGIk68GW4Im5F13bwukQ0f5tQIajLQoerjqECUv/WjMVWuNuHPRlC4f2NatSs
+         t39ld5Wq3QpXd7FGHaiV8N1QmlbbtVCmgZ2bZtJ4sEQI6ef5LwMle4fJHt/DO2Ju0F7U
+         NHO0o7YX9HzRxMlPx0VZdoGvwNUw5EeupU4zoKwmAuPkE9xiF94jK8N800ETjRammpC6
+         kp1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uVekkBCXr4urFNfCMQxnITdCN/ES/x/lzFoar5LQqTw=;
+        b=Rf48FQz6+Nrll1VQFERh+UNOsa3I3GRjTqB6auQ9hO4QPUtP37MzQau7rqampaks83
+         69kGJKX31OhZAYhtCv4WQS2T4Jzs0NNDAyNb1fDllhPDQaErL+3K3lmhsOp5Gyat759X
+         dHyQsdHP2eUIR5ecZH3v8z0zC5O8a8V4Bz4EdTDmcr5MXkSMBN47gTUNXcJo4mUb5ssd
+         5Glsu2IsdSsoJBiAC9cmFe+EUBieCxAiynATo3dVlJFubkC6H10oBbdcBmX8+XToi69/
+         FfqjuJ8YUeX8kp1mpfLzkLz5Rke3qbPHVUDvD1L3KHffgxmDxRK53WWmMFXjIWjWwomG
+         t2Kg==
+X-Gm-Message-State: AOAM531l/k1UlyENgS2li3USLvHxdNju6JdIv5aJMWxMSBswbDGn4TLM
+        XsWH71UW6ZWDarM4SLm8OClHXA==
+X-Google-Smtp-Source: ABdhPJyWQKDoo83HNZLdGACJlz1IfQyi1PreZXjqp6g8VGQEp76C3eaWxPrykp/WIHlLny20ybErqQ==
+X-Received: by 2002:ac2:5e39:: with SMTP id o25mr19305928lfg.504.1625868635334;
+        Fri, 09 Jul 2021 15:10:35 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id t7sm560505lfc.103.2021.07.09.15.10.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jul 2021 15:10:34 -0700 (PDT)
+Subject: Re: [PATCH v3 4/7] clk: qcom: gdsc: call runtime PM functions for the
+ provider device
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+References: <20210709173202.667820-1-dmitry.baryshkov@linaro.org>
+ <20210709173202.667820-5-dmitry.baryshkov@linaro.org> <YOibXCHvnG70ftQ0@yoga>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <613b2f07-ffea-9c65-ebd0-6ad3b4fe10b8@linaro.org>
+Date:   Sat, 10 Jul 2021 01:10:34 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.11.0
 MIME-Version: 1.0
-In-Reply-To: <20210709214230.1581808-1-david@lechnology.com>
+In-Reply-To: <YOibXCHvnG70ftQ0@yoga>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/9/21 4:42 PM, David Lechner wrote:
-> This adds gpio-line-names to the BeagleBone Blue DTS. The line names
-> are based on the BeagleBone Blue rev A2 schematic.
+On 09/07/2021 21:54, Bjorn Andersson wrote:
+> On Fri 09 Jul 12:31 CDT 2021, Dmitry Baryshkov wrote:
 > 
-> Signed-off-by: David Lechner <david@lechnology.com>
-> ---
->   arch/arm/boot/dts/am335x-boneblue.dts | 143 +++++++++++++++++++++++++-
->   1 file changed, 142 insertions(+), 1 deletion(-)
+>> In order to properly handle runtime PM status of the provider device,
+>> call pm_runtime_get/pm_runtime_put on the clock controller device.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   drivers/clk/qcom/gdsc.c | 66 ++++++++++++++++++++++++++++++++++++++---
+>>   drivers/clk/qcom/gdsc.h |  2 ++
+>>   2 files changed, 64 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
+>> index ccd36617d067..6bec31fccb09 100644
+>> --- a/drivers/clk/qcom/gdsc.c
+>> +++ b/drivers/clk/qcom/gdsc.c
+>> @@ -11,6 +11,7 @@
+>>   #include <linux/kernel.h>
+>>   #include <linux/ktime.h>
+>>   #include <linux/pm_domain.h>
+>> +#include <linux/pm_runtime.h>
+>>   #include <linux/regmap.h>
+>>   #include <linux/regulator/consumer.h>
+>>   #include <linux/reset-controller.h>
+>> @@ -50,6 +51,30 @@ enum gdsc_status {
+>>   	GDSC_ON
+>>   };
+>>   
+>> +static int gdsc_pm_runtime_get(struct gdsc *sc)
+>> +{
+>> +	int ret;
+>> +
+>> +	if (!sc->rpm_dev)
+>> +		return 0;
+>> +
+>> +	ret = pm_runtime_get_sync(sc->rpm_dev);
+>> +	if (ret < 0) {
+>> +		pm_runtime_put_noidle(sc->rpm_dev);
+>> +		return ret;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int gdsc_pm_runtime_put(struct gdsc *sc)
+>> +{
+>> +	if (!sc->rpm_dev)
+>> +		return 0;
+>> +
+>> +	return pm_runtime_put_sync(sc->rpm_dev);
+>> +}
+>> +
+>>   /* Returns 1 if GDSC status is status, 0 if not, and < 0 on error */
+>>   static int gdsc_check_status(struct gdsc *sc, enum gdsc_status status)
+>>   {
+>> @@ -232,9 +257,8 @@ static void gdsc_retain_ff_on(struct gdsc *sc)
+>>   	regmap_update_bits(sc->regmap, sc->gdscr, mask, mask);
+>>   }
+>>   
+>> -static int gdsc_enable(struct generic_pm_domain *domain)
+>> +static int _gdsc_enable(struct gdsc *sc)
+>>   {
+>> -	struct gdsc *sc = domain_to_gdsc(domain);
+>>   	int ret;
+>>   
+>>   	if (sc->pwrsts == PWRSTS_ON)
+>> @@ -290,11 +314,28 @@ static int gdsc_enable(struct generic_pm_domain *domain)
+>>   	return 0;
+>>   }
+>>   
+>> -static int gdsc_disable(struct generic_pm_domain *domain)
+>> +static int gdsc_enable(struct generic_pm_domain *domain)
+>>   {
+>>   	struct gdsc *sc = domain_to_gdsc(domain);
+>>   	int ret;
+>>   
+>> +	ret = gdsc_pm_runtime_get(sc);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = _gdsc_enable(sc);
+>> +	if (ret) {
+>> +		gdsc_pm_runtime_put(sc);
 > 
-> diff --git a/arch/arm/boot/dts/am335x-boneblue.dts b/arch/arm/boot/dts/am335x-boneblue.dts
-> index 69acaf4ea0f3..90e8b7d63f79 100644
-> --- a/arch/arm/boot/dts/am335x-boneblue.dts
-> +++ b/arch/arm/boot/dts/am335x-boneblue.dts
-> @@ -435,12 +435,153 @@ &dcan1 {
->   	status = "okay";
->   };
->   
-> +&gpio0 {
-> +	gpio-line-names =
-> +		"UART3_CTS", /* M17 */
-> +		"UART3_RTS", /* M18 */
-> +		"UART2_RX", /* A17 */
-> +		"UART2_TX", /* B17 */
-> +		"I2C1_SDA", /* B16 */
-> +		"I2C1_SCL", /* A16 */
-> +		"MMC0_CD", /* C15 */
-> +		"SPI1_SS2", /* C18 */
-> +		"EQEP_2A", /* V2 */
-> +		"EQEP_2B", /* V3 */
+> I presume what you do here is to leave the pm_runtime state of dispcc
+> active if we succeeded in enabling the gdsc. But the gdsc is a subdomain
+> of the parent domain, so the framework should take case of its
+> dependency.
+> 
+> So the reason for gdsc_pm_runtime_get()/put() in this code path is so
+> that you can access the dispcc registers, i.e. I think you should
+> get()/put() regardless of the return value.
 
-Found a typo already. Sending v2 patch...
+pm domain code will handle enabling MMCX, so this code is not required 
+strictly speaking. Ulf suggested adding it back, so I followed the 
+suggestion. Maybe I misunderstood his suggestion.
+
+putting pm_runtime after gdsc_enable does not sound like a logical case. 
+However it would simplify code a bit. Let me try...
+
+> 
+>> +		return ret;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int _gdsc_disable(struct gdsc *sc)
+>> +{
+>> +	int ret;
+>> +
+>>   	if (sc->pwrsts == PWRSTS_ON)
+>>   		return gdsc_assert_reset(sc);
+>>   
+>> @@ -329,6 +370,18 @@ static int gdsc_disable(struct generic_pm_domain *domain)
+>>   	return 0;
+>>   }
+>>   
+>> +static int gdsc_disable(struct generic_pm_domain *domain)
+>> +{
+>> +	struct gdsc *sc = domain_to_gdsc(domain);
+>> +	int ret;
+>> +
+> 
+> If the gdsc is found to be on at initialization, the next operation that
+> will happen is gdsc_disable() and as you didn't activate the pm_runtime
+> state in gdsc_init() you would in theory get here with registers
+> unaccessible.
+> 
+> In practice though, the active gdsc should through the being a subdomain
+> of the parent domain keep power on for you, so you won't notice this
+> issue.
+
+Nice catch.
+
+> 
+> But as above, I think you should wrap _gdsc_disable() in a get()/put()
+> pair.
+> 
+>> +	ret = _gdsc_disable(sc);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return gdsc_pm_runtime_put(sc);
+>> +}
+>> +
+>>   static int gdsc_init(struct gdsc *sc)
+>>   {
+>>   	u32 mask, val;
+>> @@ -425,6 +478,8 @@ int gdsc_register(struct gdsc_desc *desc,
+>>   	for (i = 0; i < num; i++) {
+>>   		if (!scs[i])
+>>   			continue;
+>> +		if (pm_runtime_enabled(dev))
+>> +			scs[i]->rpm_dev = dev;
+>>   		scs[i]->regmap = regmap;
+>>   		scs[i]->rcdev = rcdev;
+>>   		ret = gdsc_init(scs[i]);
+>> @@ -486,7 +541,10 @@ void gdsc_unregister(struct gdsc_desc *desc)
+>>    */
+>>   int gdsc_gx_do_nothing_enable(struct generic_pm_domain *domain)
+>>   {
+>> +	struct gdsc *sc = domain_to_gdsc(domain);
+>> +
+>>   	/* Do nothing but give genpd the impression that we were successful */
+>> -	return 0;
+>> +	/* Get the runtime PM device only */
+>> +	return gdsc_pm_runtime_get(sc);
+> 
+> Per above, if you let the framework deal with the gdsc's dependencies on
+> the parent domain and you only get()/put() for the sake of dispcc then
+> you don't need you don't need to do this to keep the subsequent
+> gdsc_disable() in balance.
+> 
+>>   }
+>>   EXPORT_SYMBOL_GPL(gdsc_gx_do_nothing_enable);
+>> diff --git a/drivers/clk/qcom/gdsc.h b/drivers/clk/qcom/gdsc.h
+>> index 5bb396b344d1..a82982df0a55 100644
+>> --- a/drivers/clk/qcom/gdsc.h
+>> +++ b/drivers/clk/qcom/gdsc.h
+>> @@ -25,6 +25,7 @@ struct reset_controller_dev;
+>>    * @resets: ids of resets associated with this gdsc
+>>    * @reset_count: number of @resets
+>>    * @rcdev: reset controller
+>> + * @rpm_dev: runtime PM device
+>>    */
+>>   struct gdsc {
+>>   	struct generic_pm_domain	pd;
+>> @@ -58,6 +59,7 @@ struct gdsc {
+>>   
+>>   	const char 			*supply;
+>>   	struct regulator		*rsupply;
+>> +	struct device 			*rpm_dev;
+> 
+> This isn't just the "runtime pm device", it's the device this gdsc is
+> associated with. So "dev" sounds sufficient to me, but that requires
+> that you have a separate bool rpm_enabled to remember if
+> pm_runtime_enabled() was true during probe.
+> 
+> So unless we need "dev" for something else this might be sufficient.
+> 
+> Regards,
+> Bjorn
+> 
+>>   };
+>>   
+>>   struct gdsc_desc {
+>> -- 
+>> 2.30.2
+>>
+
+
+-- 
+With best wishes
+Dmitry
