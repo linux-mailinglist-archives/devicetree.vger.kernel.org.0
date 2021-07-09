@@ -2,102 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60DEE3C21AA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 11:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA593C21B2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 11:39:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231758AbhGIJib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 05:38:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49638 "EHLO
+        id S231966AbhGIJmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 05:42:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50482 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbhGIJia (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 05:38:30 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A454C0613DD
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 02:35:47 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1m1mv3-0007h4-JP; Fri, 09 Jul 2021 11:35:37 +0200
-Message-ID: <6cacef63be4c6335b8bfa26043c3f787c9affd41.camel@pengutronix.de>
-Subject: Re: [PATCH v14 07/12] spi: imx: fix ERR009165
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Robin Gong <yibin.gong@nxp.com>, vkoul@kernel.org,
-        mark.rutland@arm.com, broonie@kernel.org, robh+dt@kernel.org,
-        catalin.marinas@arm.com, will.deacon@arm.com, shawnguo@kernel.org,
-        festevam@gmail.com, s.hauer@pengutronix.de,
-        martin.fuzzey@flowbird.group, u.kleine-koenig@pengutronix.de,
-        dan.j.williams@intel.com, matthias.schiffer@ew.tq-group.com,
-        frieder.schrempf@kontron.de, m.felsch@pengutronix.de,
-        xiaoning.wang@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, dmaengine@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Fri, 09 Jul 2021 11:35:35 +0200
-In-Reply-To: <1617809456-17693-8-git-send-email-yibin.gong@nxp.com>
-References: <1617809456-17693-1-git-send-email-yibin.gong@nxp.com>
-         <1617809456-17693-8-git-send-email-yibin.gong@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
+        with ESMTP id S231906AbhGIJmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 05:42:19 -0400
+Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8ABC0613E6
+        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 02:39:35 -0700 (PDT)
+Received: by mail-io1-xd2c.google.com with SMTP id v3so11735424ioq.9
+        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 02:39:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CPm+UWTNiAIbOXTnyThDLwHKCYRI8nfAa3UJkpw22i4=;
+        b=YUqkR0wAiqFcellO135dfvE1OHkkkK/UZtngpoUb3duLFViGdej3lqzs8rW7zYXdYT
+         XmBLzurgGguT+eVuQn2OAsWRYR3unlhnQcXwui28sTOdyJ15FzH4dp2WS1zgAKDmnHNT
+         2mSGfcPf4WAcEwUjTfYwFFKUANeZUflOb5DpA/HaPSICE3kHmX1QFEGBASd+mJtymGF0
+         21+C1kdfx6N5QmEefng8HIYihwp6tLrgj0WmSE0vjmw6Np0IP9FsOjL/yiwxcU2O9hbf
+         0/E20dNh1Eqh2HZoUqydzpfBUwy0tIgaL3dry9m/YYb4Qpxcl4CVy8s+MNTCv5k0dVuT
+         W3fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CPm+UWTNiAIbOXTnyThDLwHKCYRI8nfAa3UJkpw22i4=;
+        b=bVjA14YT9Wuq9cPC2ah1xLIvYq/n96Rxv5spX2VlSe7YooYb1f/DthGRo+qmS5yytB
+         aqlGrBossViqlua57YIAjGb0wVgUsOG0oHWJn/9ASvTbCAv1mkssxhY0SFUIh9VyQHDE
+         lecW3PCRTDX6kM5jqQ49Pnc6pRZE7DIOcRHilPupFZT9jtV7gf/HhJuV5cs6ATVU7Ny5
+         vlCFQgy75Bi6oq+6oCd1PvocQq5mdV5XIp5n8Raesv7qXzwaRV9na/CKsCTg0Kp7ddvP
+         PZyVsVKwM6b79FtBImPbSiLV8bH90hS+UfYG95c0twVawkyveFmwt4T4JgPPxREQyPec
+         NAzQ==
+X-Gm-Message-State: AOAM533AXnBxiD4OTWPoCZ0Gu1EsImqqlE5PcLoAR9hx4EFeURwXyCeH
+        v4CUUtRz/D6z4NiSjgI6g41L6VW0k72iHF3FMoeL9w==
+X-Google-Smtp-Source: ABdhPJz9hBCcJi5wbr9fX947LEIKbmpwMjcsEGA+ZlwVa7jEzL37XpfMwe+vnsSi16IqtEUtdVHeKOtpfM/gDHcOBxA=
+X-Received: by 2002:a02:b155:: with SMTP id s21mr27123288jah.50.1625823574468;
+ Fri, 09 Jul 2021 02:39:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20210707062157.21176-1-yunfei.dong@mediatek.com> <20210707062157.21176-8-yunfei.dong@mediatek.com>
+In-Reply-To: <20210707062157.21176-8-yunfei.dong@mediatek.com>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Fri, 9 Jul 2021 17:39:23 +0800
+Message-ID: <CA+Px+wUjJwksVfU6N8VZ9WMw-F-DHu67XwvDvMoiMcUBKF=P6Q@mail.gmail.com>
+Subject: Re: [PATCH v1, 07/14] media: mtk-vcodec: Add msg queue feature for
+ lat and core architecture
+To:     Yunfei Dong <Yunfei.Dong@mediatek.com>
+Cc:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 07.04.2021 um 23:30 +0800 schrieb Robin Gong:
-> Change to XCH  mode even in dma mode, please refer to the below
-> errata:
-> https://www.nxp.com/docs/en/errata/IMX6DQCE.pdf
-> 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
-> Acked-by: Mark Brown <broonie@kernel.org>
+On Wed, Jul 7, 2021 at 2:22 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
+> @@ -464,6 +469,11 @@ struct mtk_vcodec_enc_pdata {
+>   * comp_dev: component hardware device
+>   * component_node: component node
+>   * comp_idx: component index
+> + *
+> + * core_read: Wait queue used to signalize when core get useful lat buffer
+> + * core_queue: List of V4L2 lat_buf
+To be neat, replace "Wait" to "wait" and "List" to "list".
 
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+> +int vdec_msg_queue_init(
+> +       struct mtk_vcodec_ctx *ctx,
+> +       struct vdec_msg_queue *msg_queue,
+> +       core_decode_cb_t core_decode,
+> +       int private_size)
+> +{
+> +       struct vdec_lat_buf *lat_buf;
+> +       int i, err;
+> +
+> +       init_waitqueue_head(&msg_queue->lat_read);
+> +       INIT_LIST_HEAD(&msg_queue->lat_queue);
+> +       spin_lock_init(&msg_queue->lat_lock);
+> +       msg_queue->num_lat = 0;
+> +
+> +       msg_queue->wdma_addr.size = vde_msg_queue_get_trans_size(
+> +               ctx->picinfo.buf_w, ctx->picinfo.buf_h);
+> +
+> +       err = mtk_vcodec_mem_alloc(ctx, &msg_queue->wdma_addr);
+> +       if (err) {
+> +               mtk_v4l2_err("failed to allocate wdma_addr buf");
+> +               return -ENOMEM;
+> +       }
+> +       msg_queue->wdma_rptr_addr = msg_queue->wdma_addr.dma_addr;
+> +       msg_queue->wdma_wptr_addr = msg_queue->wdma_addr.dma_addr;
+> +
+> +       for (i = 0; i < NUM_BUFFER_COUNT; i++) {
+> +               lat_buf = &msg_queue->lat_buf[i];
+> +
+> +               lat_buf->wdma_err_addr.size = VDEC_ERR_MAP_SZ_AVC;
+> +               err = mtk_vcodec_mem_alloc(ctx, &lat_buf->wdma_err_addr);
+> +               if (err) {
+> +                       mtk_v4l2_err("failed to allocate wdma_err_addr buf[%d]", i);
+> +                       return -ENOMEM;
+> +               }
+> +
+> +               lat_buf->slice_bc_addr.size = VDEC_LAT_SLICE_HEADER_SZ;
+> +               err = mtk_vcodec_mem_alloc(ctx, &lat_buf->slice_bc_addr);
+> +               if (err) {
+> +                       mtk_v4l2_err("failed to allocate wdma_addr buf[%d]", i);
+> +                       return -ENOMEM;
+> +               }
+> +
+> +               lat_buf->private_data = kzalloc(private_size, GFP_KERNEL);
+> +               if (!lat_buf->private_data) {
+> +                       mtk_v4l2_err("failed to allocate private_data[%d]", i);
+> +                       return -ENOMEM;
+> +               }
+> +
+> +               lat_buf->ctx = ctx;
+> +               lat_buf->core_decode = core_decode;
+> +               vdec_msg_queue_buf_to_lat(lat_buf);
+> +       }
+Doesn't it need to call mtk_vcodec_mem_free() and kfree() for any failure paths?
 
-> ---
->  drivers/spi/spi-imx.c | 10 +++-------
->  1 file changed, 3 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/spi/spi-imx.c b/drivers/spi/spi-imx.c
-> index 4fe767a..cf235b9 100644
-> --- a/drivers/spi/spi-imx.c
-> +++ b/drivers/spi/spi-imx.c
-> @@ -593,8 +593,8 @@ static int mx51_ecspi_prepare_transfer(struct spi_imx_data *spi_imx,
->  	ctrl |= mx51_ecspi_clkdiv(spi_imx, t->speed_hz, &clk);
->  	spi_imx->spi_bus_clk = clk;
->  
-> -	if (spi_imx->usedma)
-> -		ctrl |= MX51_ECSPI_CTRL_SMC;
-> +	/* ERR009165: work in XHC mode as PIO */
-> +	ctrl &= ~MX51_ECSPI_CTRL_SMC;
->  
->  	writel(ctrl, spi_imx->base + MX51_ECSPI_CTRL);
->  
-> @@ -625,7 +625,7 @@ static void mx51_setup_wml(struct spi_imx_data *spi_imx)
->  	 * and enable DMA request.
->  	 */
->  	writel(MX51_ECSPI_DMA_RX_WML(spi_imx->wml - 1) |
-> -		MX51_ECSPI_DMA_TX_WML(spi_imx->wml) |
-> +		MX51_ECSPI_DMA_TX_WML(0) |
->  		MX51_ECSPI_DMA_RXT_WML(spi_imx->wml) |
->  		MX51_ECSPI_DMA_TEDEN | MX51_ECSPI_DMA_RXDEN |
->  		MX51_ECSPI_DMA_RXTDEN, spi_imx->base + MX51_ECSPI_DMA);
-> @@ -1234,10 +1234,6 @@ static int spi_imx_sdma_init(struct device *dev, struct spi_imx_data *spi_imx,
->  {
->  	int ret;
->  
-> -	/* use pio mode for i.mx6dl chip TKT238285 */
-> -	if (of_machine_is_compatible("fsl,imx6dl"))
-> -		return 0;
-> -
->  	spi_imx->wml = spi_imx->devtype_data->fifo_size / 2;
->  
->  	/* Prepare for TX DMA: */
+> +struct vdec_lat_buf *vdec_msg_queue_get_core_buf(
+> +       struct mtk_vcodec_dev *dev)
+> +{
+> +       struct vdec_lat_buf *buf;
+> +       int ret;
+> +
+> +       spin_lock(&dev->core_lock);
+> +       if (list_empty(&dev->core_queue)) {
+> +               mtk_v4l2_debug(3, "core queue is NULL, num_core = %d", dev->num_core);
+> +               spin_unlock(&dev->core_lock);
+> +               ret = wait_event_freezable(dev->core_read,
+> +                       !list_empty(&dev->core_queue));
+> +               if (ret)
+> +                       return NULL;
+Should be !ret?
+
+> +void vdec_msg_queue_buf_to_core(struct mtk_vcodec_dev *dev,
+> +       struct vdec_lat_buf *buf)
+> +{
+> +       spin_lock(&dev->core_lock);
+> +       list_add_tail(&buf->core_list, &dev->core_queue);
+> +       dev->num_core++;
+> +       wake_up_all(&dev->core_read);
+> +       mtk_v4l2_debug(3, "queu buf addr: (0x%p)", buf);
+Typo.
+
+> +bool vdec_msg_queue_wait_lat_buf_full(struct vdec_msg_queue *msg_queue)
+> +{
+> +       long timeout_jiff;
+> +       int ret, i;
+> +
+> +       for (i = 0; i < NUM_BUFFER_COUNT + 2; i++) {
+> +              timeout_jiff = msecs_to_jiffies(1000);
+> +              ret = wait_event_timeout(msg_queue->lat_read,
+> +                    msg_queue->num_lat == NUM_BUFFER_COUNT, timeout_jiff);
+> +              if (ret) {
+> +                     mtk_v4l2_debug(3, "success to get lat buf: %d",
+> +                            msg_queue->num_lat);
+> +                     return true;
+> +              }
+> +       }
+Why does it need the loop?  i is unused.
+
+> +void vdec_msg_queue_deinit(
+> +       struct mtk_vcodec_ctx *ctx,
+> +       struct vdec_msg_queue *msg_queue)
+> +{
+> +       struct vdec_lat_buf *lat_buf;
+> +       struct mtk_vcodec_mem *mem;
+> +       int i;
+> +
+> +       mem = &msg_queue->wdma_addr;
+> +       if (mem->va)
+> +               mtk_vcodec_mem_free(ctx, mem);
+> +       for (i = 0; i < NUM_BUFFER_COUNT; i++) {
+> +               lat_buf = &msg_queue->lat_buf[i];
+> +
+> +               mem = &lat_buf->wdma_err_addr;
+> +               if (mem->va)
+> +                       mtk_vcodec_mem_free(ctx, mem);
+> +
+> +               mem = &lat_buf->slice_bc_addr;
+> +               if (mem->va)
+> +                       mtk_vcodec_mem_free(ctx, mem);
+> +
+> +               if (lat_buf->private_data)
+> +                       kfree(lat_buf->private_data);
+> +       }
+> +
+> +       msg_queue->init_done = false;
+Have no idea what init_done does in the code.  It is not included in
+any branch condition.
+
+> +/**
+> + * vdec_msg_queue_init - init lat buffer information.
+> + * @ctx: v4l2 ctx
+> + * @msg_queue: used to store the lat buffer information
+> + * @core_decode: core decode callback for each codec
+> + * @private_size: the private data size used to share with core
+> + */
+> +int vdec_msg_queue_init(
+> +       struct mtk_vcodec_ctx *ctx,
+> +       struct vdec_msg_queue *msg_queue,
+> +       core_decode_cb_t core_decode,
+> +       int private_size);
+Would prefer to have *msg_queue as the first argument (also applies to
+all operators of vdec_msg_queue).
+
+> +/**
+> + * vdec_msg_queue_get_core_buf - get used core buffer for lat decode.
+> + * @dev: mtk vcodec device
+> + */
+> +struct vdec_lat_buf *vdec_msg_queue_get_core_buf(
+> +       struct mtk_vcodec_dev *dev);
+This is weird: vdec_msg_queue's operator but manipulating mtk_vcodec_dev?
+
+> +
+> +/**
+> + * vdec_msg_queue_buf_to_core - queue buf to the core for core decode.
+> + * @dev: mtk vcodec device
+> + * @buf: current lat buffer
+> + */
+> +void vdec_msg_queue_buf_to_core(struct mtk_vcodec_dev *dev,
+> +       struct vdec_lat_buf *buf);
+Also weird.
+
+> +/**
+> + * vdec_msg_queue_buf_to_lat - queue buf to lat for lat decode.
+> + * @buf: current lat buffer
+> + */
+> +void vdec_msg_queue_buf_to_lat(struct vdec_lat_buf *buf);
+It should at least accept a struct vdec_msg_queue argument (or which
+msg queue should the buf put into?).
+
+> +/**
+> + * vdec_msg_queue_update_ube_rptr - used to updata the ube read point.
+Typo.
+
+> +/**
+> + * vdec_msg_queue_update_ube_wptr - used to updata the ube write point.
+Typo.
+
+> +/**
+> + * vdec_msg_queue_deinit - deinit lat buffer information.
+> + * @ctx: v4l2 ctx
+> + * @msg_queue: used to store the lat buffer information
+> + */
+> +void vdec_msg_queue_deinit(
+> +       struct mtk_vcodec_ctx *ctx,
+> +       struct vdec_msg_queue *msg_queue);
+Would prefer to have *msg_queue as the first argument.
 
 
+The position of struct vdec_msg_queue is weird.  It looks like the msg
+queue is only for struct vdec_lat_buf.  If so, would vdec_msg_queue be
+better to call vdec_lat_queue or something similar?
+
+It shouldn't touch the core queue in mtk_vcodec_dev anyway.  Is it
+possible to generalize the queue-related code for both lat and core
+queues?
