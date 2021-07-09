@@ -2,109 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 351AE3C1D47
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 04:13:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7923E3C1D65
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 04:23:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230323AbhGICQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 22:16:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36148 "EHLO
+        id S230242AbhGIC0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 22:26:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbhGICQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 22:16:25 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24357C06175F
-        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 19:13:42 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id x3so3724481pfc.11
-        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 19:13:42 -0700 (PDT)
+        with ESMTP id S230141AbhGIC0T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 22:26:19 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 131A9C061574
+        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 19:23:37 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id u14so8394331pga.11
+        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 19:23:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=x6ANBpfcs5e16JKI1zhKSQnwm3SbozaLix0FKrdBRWc=;
-        b=dmYFQ0i2n5eI3mcXKrnPL7JzNSGiM1LKb6WIYTdQK2BE/UU/Cpi4LW+7gBJas2XHSA
-         ySUHka2jezNdy1ewG3zQkT4eeJkHaH1PyTYkx249iXuvrIi9cfUt5Q87BJuhCKbCYPda
-         oAhyPnf/B0VdaWlzwflzBgvjBh4f8bTgZqy8DCe4E497BAXckHjgIZmeS+d2aoHonnP/
-         Y+6DXrOACd/UupoUaUJbT6v3PWSuQaAxDjN1ziaqLp42YHrZqxRNkwY61ljia+VURyxa
-         ppfHvGl0AROCISeeg2i2KU5ERLINCyrNTeBMonqsbn1So5Hsg9CWs/42aUAQOK+G37Wp
-         ZeXQ==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v+EpRX0Vvrt/sxvQaLYzDThoftpQT11+CjjVmmHJsPQ=;
+        b=gJLwSUixj0oppWCY0qYOf+jJ5N0MAYwYaN0OXz/iZpqNxCNOZIJobLE7kEOvgZh83Q
+         Z1Bsw4thmyaGtN9IqzWNPGtuajf76sDwpaHoQACS4z309aS298OMRQ3Jk38pwShDvTsB
+         dsf59RphRpyWaeOhXbBkJF2S7t8KfRG8mgx7U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=x6ANBpfcs5e16JKI1zhKSQnwm3SbozaLix0FKrdBRWc=;
-        b=Y4Kx9vvDcLphP+9YCMeBLSVh5q0pZ77Udd9g8uDOcbq/ODHWOeyX7blNuBgnRY6p6a
-         auN4KdsSq/AFrdLODU6MKkYxIzHRstVfkyUJ/ypLhiE0Veh/l2U5cTb2M0GN6XDg3vDR
-         QbbUeYWfhIuLqd06OqOgHIDkYK8kVzve2AsklvlVfG1HDPvdESVvsXXw6Jg5n6+dwuvw
-         Tz9fmT0uVpuIafAtnq5ef6aT9V7keT5tn/5UT6+KlHRassqvWS/FP04eOepRjJGSIo4V
-         uqWeQ6+1qdZJ4RvVyR7hcp70CR191ljQRHzvVaSfvhI5B7G3TsPP/QqK6lvpPEHK41L5
-         Na6Q==
-X-Gm-Message-State: AOAM532dOuUXbhydJBJqy+tXAlF/4j/m15+TZrjasacvUrfjy9N5yMza
-        fIJzkoZ3Vh3eO0fHd8ugbFpQJQ==
-X-Google-Smtp-Source: ABdhPJyuTZgBJssNq7sXQcZFG629hsjUt77VS20Jf2WjGzdT2+3q9kvRlJ6kA+7ZpJX/caEufpW1Hw==
-X-Received: by 2002:a63:f64d:: with SMTP id u13mr35344162pgj.156.1625796821537;
-        Thu, 08 Jul 2021 19:13:41 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id m34sm4573560pgb.85.2021.07.08.19.13.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 08 Jul 2021 19:13:41 -0700 (PDT)
-Date:   Fri, 9 Jul 2021 10:13:35 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Vincent Knecht <vincent.knecht@mailoo.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] Add MSM8939 APCS/A53PLL clock support
-Message-ID: <20210709021334.GB11342@dragon>
-References: <20210704024032.11559-1-shawn.guo@linaro.org>
- <c780e9df1b2f1eef6af1c9a10662f5a1952a1fae.camel@mailoo.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v+EpRX0Vvrt/sxvQaLYzDThoftpQT11+CjjVmmHJsPQ=;
+        b=BpSKbUztAdxBYHV5XHzXmCeIkPVzELrZkll8DfHjopHiMOqGsIEo2Sgwad1aQa9SQG
+         kGjJ3CojxJ7t+1paRJ4CijQD22+p6cSsnjBTZ8MctEmz12bNeaiVTMLNHhrZYEMgxFtL
+         0lCpFD21MUFLRYs2T/OQsE2TIFm5ysMco+eJ4qJQ6coXCTOcmDHt7JdK3+InWs1Kj6J4
+         Dq9m/RNTMmJzi5Y80rlOj3RO0PuaHthixXrt3IECtWP74TcnVxcDA/mhK/MycKoZ6Oqf
+         kT1wONVXRCEDhWgOTNk4FjmXeyIQmJI75IkojnVwo5rnKPDoTBeRVCdrgvovBpoW3o8v
+         oJhQ==
+X-Gm-Message-State: AOAM5327D1SVOkJ7XdmPcPvVfjv4FWaKlmGayUYiacJ9HeAEfRR8+seP
+        UAXXqE5YcN8249EemjqbkyUpHQ==
+X-Google-Smtp-Source: ABdhPJxPINrKdc1ApCi7yYTCgm1y1Wps8+Yvwq+AF+aVfmGq/+OZBFtFlp1ODDIBVYVGdA6WjgQV7A==
+X-Received: by 2002:a63:d612:: with SMTP id q18mr35353686pgg.77.1625797416524;
+        Thu, 08 Jul 2021 19:23:36 -0700 (PDT)
+Received: from localhost ([2401:fa00:9:14:d956:2966:7910:2bd2])
+        by smtp.gmail.com with UTF8SMTPSA id x6sm5147650pgq.67.2021.07.08.19.23.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jul 2021 19:23:36 -0700 (PDT)
+From:   Eizan Miyamoto <eizan@chromium.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     wenst@chromium.org, chunkuang.hu@kernel.org, yong.wu@mediatek.com,
+        enric.balletbo@collabora.com, houlong.wei@mediatek.com,
+        Eizan Miyamoto <eizan@chromium.org>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Minghsiu Tsai <minghsiu.tsai@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v5 0/8] Refactor MTK MDP driver into core/components
+Date:   Fri,  9 Jul 2021 12:23:16 +1000
+Message-Id: <20210709022324.1607884-1-eizan@chromium.org>
+X-Mailer: git-send-email 2.32.0.93.g670b81a890-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c780e9df1b2f1eef6af1c9a10662f5a1952a1fae.camel@mailoo.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 07, 2021 at 11:34:19PM +0200, Vincent Knecht wrote:
-> Le dimanche 04 juillet 2021 à 10:40 +0800, Shawn Guo a écrit :
-> > This series adds MSM8939 APCS/A53PLL clock support.  Most outstanding
-> > thing about MSM8939 is that it integrates 3 APCS instances, for Cluster0
-> > (little cores), Cluster1 (big cores) and CCI (Cache Coherent Interconnect)
-> > respectively.
-> > 
-> > Changes for v2:
-> > - Reword the commit log of first patch as suggested by Stephen.
-> > - Drop 'clock-output-names' bindings and use @unit-address to get unique
-> >   a53pll/mux clock names.
-> > - Use 'operating-points-v2' bindings to pass frequency table via OPP, so
-> >   that we can use one single compatible for all 3 MSM8939 a53pll.
-> > 
-> > Shawn Guo (4):
-> >   clk: qcom: apcs-msm8916: Flag a53mux instead of a53pll as critical
-> >   clk: qcom: a53pll/mux: Use unique clock name
-> >   dt-bindings: clock: Update qcom,a53pll bindings for MSM8939 support
-> >   clk: qcom: a53-pll: Add MSM8939 a53pll support
-> > 
-> >  .../bindings/clock/qcom,a53pll.yaml           |  3 +
-> >  drivers/clk/qcom/a53-pll.c                    | 68 ++++++++++++++++++-
-> >  drivers/clk/qcom/apcs-msm8916.c               | 10 ++-
-> >  3 files changed, 76 insertions(+), 5 deletions(-)
-> 
-> Hello,
-> 
-> would you have a msm8939 dtsi/dts reference file working with all recent
-> contributions for this SoC ?
 
-Yes, the dts will be posted once it's ready for public review.
+This is an update to
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=283075
+To address some comments and fixes.
 
-Shawn
+This series has been verified to work on 5.13.
 
-> We the msm8939-focused PostmarketOS gang would be happy to boot our devices
-> and test patches but we're not able to boot anything more recent that 5.9...
+
+Changes in v5:
+- rebase and build-test on 5.13-next @ e2f74b13dbe6
+
+Changes in v4:
+- rebase and test on 5.13
+- don't depend on https://patchwork.kernel.org/project/linux-mediatek/list/?series=464873
+
+Changes in v3:
+- get mdp master from aliases instead of strcmp against of_node->name
+
+Changes in v2:
+- rebased onto Linux 5.12
+- 100 char line length allowance was utilized in a few places
+- Removal of a redundant dev_err() print at the end of
+  mtk_mdp_comp_init()
+- Instead of printing errors and ignoring them, I've added a patch to
+  correctly propagate them.
+- Use of C style comments.
+- Three additional patches were added to eliminate dependency on the
+  mediatek,vpu property inside the mdp_rdma0 device node.
+
+Eizan Miyamoto (8):
+  mtk-mdp: add driver to probe mdp components
+  mtk-mdp: use pm_runtime in MDP component driver
+  media: mtk-mdp: don't pm_run_time_get/put for master comp in clock_on
+  mtk-mdp: soc: mediatek: register mdp from mmsys
+  media: mtk-mdp: search for vpu node instead of linking it to a
+    property
+  media: mtk-mdp: propagate errors better in pm_suspend/resume
+  media: mtk-mdp: use mdp-rdma0 alias to point to MDP master
+  dts: mtk-mdp: remove mediatek,vpu property from primary MDP device
+
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      |   1 -
+ drivers/media/platform/mtk-mdp/mtk_mdp_comp.c | 272 +++++++++++++++--
+ drivers/media/platform/mtk-mdp/mtk_mdp_comp.h |  36 +--
+ drivers/media/platform/mtk-mdp/mtk_mdp_core.c | 281 ++++++++++++------
+ drivers/media/platform/mtk-mdp/mtk_mdp_core.h |   3 +
+ drivers/media/platform/mtk-mdp/mtk_mdp_m2m.c  |   4 +-
+ drivers/soc/mediatek/mtk-mmsys.c              |  20 +-
+ 7 files changed, 473 insertions(+), 144 deletions(-)
+
+-- 
+2.32.0.93.g670b81a890-goog
+
