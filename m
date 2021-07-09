@@ -2,113 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48F683C1FEF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 09:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AB153C2042
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 09:54:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230269AbhGIHW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 03:22:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47098 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230221AbhGIHW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 03:22:59 -0400
-Received: from mail-vs1-xe2f.google.com (mail-vs1-xe2f.google.com [IPv6:2607:f8b0:4864:20::e2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C1D5C0613E5
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 00:20:16 -0700 (PDT)
-Received: by mail-vs1-xe2f.google.com with SMTP id g24so5062658vsa.10
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 00:20:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=V2SOW7kDty897S4ueILqkh1N1C2NDC3+khk8yDqU2/M=;
-        b=HI6k8CGrF0n7W4bJwtxoMGKy2vHfcbOGpNWkPutBLh8FwyvVmPzar97PQNn6+6kzR1
-         aog7NYymPjPqutk8t+3EGXFS9pmnYSszZNaWjhiYIf+MjmdGsbxfpBn0nviyrVVVtOKJ
-         USxKOWu9emiNIlpfai7+4ZgX5Gio7yiqlJlqy2O2hpiZbCo3ct92dNZGShyyXhdzHjNW
-         cBJYv4qiFlkIXB146bTs7rau84YUHFvk1A5f/bpGPvMmbo2cU6W4uBqQKFzzwxpb1piC
-         HMO1qF469gORmHR+6h51D8zt47W41h0BF3BlYZMGzyD/o2ZwD55U9VbxcBXXsmIXf1Nq
-         dmIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=V2SOW7kDty897S4ueILqkh1N1C2NDC3+khk8yDqU2/M=;
-        b=gJrOZiU+HMnvyrmNJuVwp/aMK7nnrs0U0C+rQkfxDHqHN6pktuv3Q4rFH1quZ4mm3d
-         l2qD8547WhhQblUTovgbA3+vMHihdnKVlve0Sdz0U8TV7+K0NJDKRzPT0141HP9ed+vi
-         inFu9DB23EaYkF8OkrDyyyyy50EDz/YXlhHIggU44F9Rjn16YV66T4gla6h4LAvNEYix
-         dq9sIkO3sNBKAf3sjttVi95NGX2EV9T6N2Oag8IWiq/NKEFdeqx44CANeU2RIRGFoaiz
-         6MYrHzLEmBtuvAhaqLOzWDt05z3dv4hIRmtQ/f3Knrglauv102lNPfvWzDhVdnlnha19
-         xEoA==
-X-Gm-Message-State: AOAM5313T39c5+vyjvJCgG/dQao0Y7ML7a5Yb2vOBdoujiV1GigZK6/X
-        iM1pnzEndjkD8kQ8VJBPBUrZENWzbksdJDEDBwiFfeLlBA==
-X-Google-Smtp-Source: ABdhPJxONRr/UqxKbNV7hBzE75nHOgr/MIIVofMcuSGxMrnz3I7zLrx+xjStyF8jKSRxsu0Omvrg2SMYylSHDXxkKE4=
-X-Received: by 2002:a67:ba17:: with SMTP id l23mr33542899vsn.24.1625815215440;
- Fri, 09 Jul 2021 00:20:15 -0700 (PDT)
+        id S231271AbhGIH4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 03:56:44 -0400
+Received: from mail-eopbgr50079.outbound.protection.outlook.com ([40.107.5.79]:11279
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231146AbhGIH4n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Jul 2021 03:56:43 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HS39AITu1X73fPllmSuBb0IvmzyGeUlK/+Ffg/iwhIZM4QVi9sLvGHwtwp75ONuqzRcDj3RGQRqAPwjg997QF3u5wxcbLfaaCtfJq3+4aj/n78IgpmbMJK3KLhxe6shaf4VXA5IiG8H5gqlO1NoSStc+8pKTdok0ZdgRQ0i/lEZN8kic0UxnhN6hN2zkHwrmFvzDtVgPrOdC2QQGNA+XbIiW+YUzXFhNX9u0MHn9qt8PYXPGC7PSoVBUU2UrSeIv3wU0FIZtEXloDV11ujSbpchGSLyqj8Zde/RDoJ061Jh764iOJkEsJ2co8uLdkv+ZT71ikOFUFfmz2ZKwSIyF8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zRm0hj0wwoznHzCt/t5M1rx1J4ZzJ7URN7nOfFYV2Kw=;
+ b=g2N3DpPQo6sW+PBv0EJRqGQQ2wz1xX0z/xjry7hJ+/VhwW76NuK9wmZ9l5P2zsBW41xNTMjM34AnRtHFJ8V4uJGKYW4Wci8s1E2T/IHtXSnQPSKWm/kNgevGzGRnERJDu5y6MAllj8HAG1dP0kDYOgDTVLmIClfK9Zf5evzabNdRmK+N13fLHEYyVKiIwhZU5jQ0HMyDpOFN9d2tLBc7F400rGk3jLJTkaaUV9CEmZ9rQ0AxcOf7fYVddM7ufcbpV1OwZUbq+dVsUorDbr3oqLlUlz9gz7bKheuAoM9SeMoPPiif6R9qByGHTy6639z6/B8FFjzvNOaN5UceCQv9gg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zRm0hj0wwoznHzCt/t5M1rx1J4ZzJ7URN7nOfFYV2Kw=;
+ b=QVtDcx1pYEHVip4CXKitja9KQo3lnDA/isLs/Z2jG+UCIOiZagDZ9gwmbD9Eh9CAzrHEnc/QTMuEw/EvDerUps+pu1YH5h1E6o9ZZJURc7C7F0qMqxTXyp3JecFIxBrYNU76ZcSQMOI2ML8ibPq42ZRxL7j5hTJPhavAvwVoxnM=
+Authentication-Results: davemloft.net; dkim=none (message not signed)
+ header.d=none;davemloft.net; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DB6PR0401MB2502.eurprd04.prod.outlook.com (2603:10a6:4:37::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.22; Fri, 9 Jul
+ 2021 07:53:57 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::9c70:fd2f:f676:4802]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::9c70:fd2f:f676:4802%7]) with mapi id 15.20.4308.023; Fri, 9 Jul 2021
+ 07:53:57 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        andrew@lunn.ch
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: [PATCH V1 0/5] net: fec: add support for i.MX8MQ and i.MX8QM
+Date:   Fri,  9 Jul 2021 15:53:50 +0800
+Message-Id: <20210709075355.27218-1-qiangqing.zhang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR06CA0147.apcprd06.prod.outlook.com
+ (2603:1096:1:1f::25) To DB8PR04MB6795.eurprd04.prod.outlook.com
+ (2603:10a6:10:fa::15)
 MIME-Version: 1.0
-References: <20210707071616.28976-1-matt@traverse.com.au> <20210707071616.28976-3-matt@traverse.com.au>
- <CABMQnVL379GkR_s5c91a0LAPMemup_Lq8U+qU9M1-kBWfVqmTw@mail.gmail.com> <YOYiDlQM/xfgb0CH@piout.net>
-In-Reply-To: <YOYiDlQM/xfgb0CH@piout.net>
-From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Date:   Fri, 9 Jul 2021 16:19:49 +0900
-Message-ID: <CABMQnV+zxURp2K3aXjH3cobndoAXjTdb4xB4w+mMJmjnwyPyLg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: rtc: add Epson RX-8025 and RX-8035
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Mathew McBride <matt@traverse.com.au>, linux-rtc@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.71) by SG2PR06CA0147.apcprd06.prod.outlook.com (2603:1096:1:1f::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.19 via Frontend Transport; Fri, 9 Jul 2021 07:53:55 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 8db556aa-73c4-48f7-a3c7-08d942aeb4cd
+X-MS-TrafficTypeDiagnostic: DB6PR0401MB2502:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB6PR0401MB25029CEF6F3EF8B05025A345E6189@DB6PR0401MB2502.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sW8LwEAQfk9XWg7M7sqtRg564n920oBQT2a0/TlIveCsKyMFBQ2VwYSJlU0tIUN/w8lyaWbqJ66mX/jR9j1/6VMRegbrsgkY+u7rfnrCO4A6hvN2PPTP1Ybxqn6nhJaQXGFxPTWGXinU3HytIOmqvVl78YcgjVMhwP6KU9Y9zTU2qvQuEfXipOREy9qpn5Fbui8prCnkQhetnMD0+HngtGjirhGjTTRTwUKoBAysnRoH7Nzt5Z0Uh4xxbaG6oOiJiR1ta2Dx8XaHcL4/h9I/F+m8QQZMDGfINjhYBOhvGPtQw+IH0rYDjbehf6NX6cY2XxVbR50dpsjR/RSuWKgItYqI2eUe3kxZ+FNWlkax3MXeDiUgGyxAMbQwZ0FpvwxuETK1PuqOWmr8Z/ZXFdFqMT4eIjbnm0QlAgn8c01a5jo19UkzYs/ZMpBe4326nYJ/P1zueCewB3kWPNUIG8tUts8qfzj+50JjJ0pZeCCpdOK4Cj+Wf8cuAG1NPAOeezJ0Za6E91+ueAMSigbYPgs2s2jLaW171BHUnO5vUq5RF7TGHjyPONWior/CZHBmScLwOcir4f/+cZm8U58Dj+uGBXd9nSAjSgzqr74ODKlK0rEuViKiLIjE0+Eoal4NGghM3qfKFhAqRhxTIYe2SmAuaWgywHYtQkdRQiQvB6FWAuyYLRWS0U0e7tBS5jN7KxDxzE01PjrqbQslozjmo2Q99Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(346002)(39860400002)(376002)(136003)(956004)(8676002)(86362001)(2906002)(6512007)(1076003)(8936002)(4744005)(83380400001)(6486002)(4326008)(36756003)(2616005)(5660300002)(6666004)(38350700002)(316002)(66946007)(66476007)(38100700002)(52116002)(6506007)(66556008)(478600001)(186003)(26005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aU+K9SDMhL7qgMgqOB/npXTeXKIUnHLH7vlm7NX6AOijHsHYTvtGfPt8fViL?=
+ =?us-ascii?Q?m5NgIfm0ASV6VWC408qCpSSEW+ApvpbYVuNIS96XgdYuC9J5JNaROWc1jdQN?=
+ =?us-ascii?Q?J/ZV4/UB+sm80G25kqxDCdmaWHljZ+5bX40u36z95eycvBBHGuiUWEk1HmI4?=
+ =?us-ascii?Q?xg/1Z40Khi6AZ1XeMTwiC0ZgqNsSjuLCCHojtyM70N9HjpsAPnxD2RtgJpkP?=
+ =?us-ascii?Q?uYtKaBxfOh8A3xUgFmm4ZFuKHuAu2RFJuHgh5tUdH1Zh4LeYxtvf0siKhLOt?=
+ =?us-ascii?Q?FxuI2dGxs91vuNW1IC2iuhYdjOyOz0gEuN9jPf9IAvccXsEG6SXXh3Bf6j7Z?=
+ =?us-ascii?Q?1icbyN1AdU8/h/CzMim/nu8YqJQcoc2R0tJ+zYcIZswsTNfg4yByqc3xgSF4?=
+ =?us-ascii?Q?fHiqTG/eQOaRd5sdNhibNqWnz013qnIw9c8w4b4VqKDSQYmIyXwHYclxVdtk?=
+ =?us-ascii?Q?GRuLM4dsM2nXeAZx3pb21ulfMttsmitRuTfcYlcJNaTGwxhQj1UjMSBpd9Rg?=
+ =?us-ascii?Q?nSR93PJLlyUJCQMdAh+Pi/T9ijI6AYUxzbr40HffdeNF6QGpH8Bh+difibc3?=
+ =?us-ascii?Q?xvlTQZQ2fnKiT4xrASGBSXcRTGYLpX/QGLeS91IYL+vQrH00MVal8A4+lQmP?=
+ =?us-ascii?Q?1GgPoRSozW/MMofPcsrWa179QEei9NbhdM3uECvMMTFiEgyPUB2GFYmYxYPe?=
+ =?us-ascii?Q?NI0iwceszNl/CCNiJ0ejwEnz9Vta9YCB14CS6X+0TncFR1RVG+tBKBhtw+Iq?=
+ =?us-ascii?Q?eimIqbsOklWZClIiRfCO5QIQ3B+BUPXj2Fq04RFsbDcZzAoUTTQRgHl5Ithp?=
+ =?us-ascii?Q?r3y5+eUA2E4cB8nNKmJZHI8h2xVGP9ExqJDqbvjNDOFWplqoxmBUkeWLELEk?=
+ =?us-ascii?Q?5h2nV41nBBBD09qynYI/tBKVFLFgyU6jUTZ63H+Y7MVforF04nQraVJ0MfzI?=
+ =?us-ascii?Q?Mxn5uq8l4X+jMt/kickW1vT8cXfhCt2CWZG6mbGhT0qsyELQOes69UJ84rgu?=
+ =?us-ascii?Q?SkIBsax7Jo2K/TJ0Rf6LBteOfHn0eC1i7RoTD/qJK6PTc5SByxKCpe6icvTn?=
+ =?us-ascii?Q?L3YXrTskrBKJZqIMlnGfUwjKnAUlYsRaLQn+8brAsfIesjG/TDwq44JS2MqJ?=
+ =?us-ascii?Q?atDzoqDgNT+/GJn5aI3YO3wwI3kQRvPsQ51Cu7B7TQxQZJJrSyw+rRWOq9Z7?=
+ =?us-ascii?Q?Te1uBQUt0hrPvwUHUilPLO8qhU966HEA52KNOH/B+NP4ozv1lWLXDiNvjEls?=
+ =?us-ascii?Q?Q7N9T2ZNNY+POSN2jfJ3pXG6Ju9ECTonTNxhgHNbxIOTQKg62TH9ORs98FE6?=
+ =?us-ascii?Q?lFtfj/B9SRFOnrPmUhO8GyyK?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8db556aa-73c4-48f7-a3c7-08d942aeb4cd
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jul 2021 07:53:57.8109
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: crg12CbysOhLEKHLxAM3mAwnQPDHXIPLFp4FXUtxmAjew3KDBFO2Dx5BZhb9IWMWdWqMHzLODtcOmtMMA45Ccw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0401MB2502
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This patch set adds supports for i.MX8MQ and i.MX8QM, both of them
+extend new features.
 
-2021=E5=B9=B47=E6=9C=888=E6=97=A5(=E6=9C=A8) 6:52 Alexandre Belloni <alexan=
-dre.belloni@bootlin.com>:
->
-> On 08/07/2021 06:46:31+0900, Nobuhiro Iwamatsu wrote:
-> > Hi,
-> >
-> > 2021=E5=B9=B47=E6=9C=887=E6=97=A5(=E6=B0=B4) 16:17 Mathew McBride <matt=
-@traverse.com.au>:
-> > >
-> > > These are supported by the rtc-rx8025 module. RX-8025
-> > > also has support in ds1307 due to compatible time registers.
-> > >
-> > > Signed-off-by: Mathew McBride <matt@traverse.com.au>
-> > > ---
-> > >  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b=
-/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > > index 7548d8714871..13925bb78ec7 100644
-> > > --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > > +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-> > > @@ -32,6 +32,9 @@ properties:
-> > >        - dallas,ds3232
-> > >        # I2C-BUS INTERFACE REAL TIME CLOCK MODULE
-> > >        - epson,rx8010
-> > > +      # I2C-BUS INTERFACE REAL TIME CLOCK MODULE
-> > > +      - epson,rx8025
-> > > +      - epson,rx8035
-> >
-> > 'epson,rx8035' is unnsecessary.
-> > This lists compatible string, so we don't list compatible that doesn't =
-exist.
-> >
->
-> Well, the previous patch adds it.
->
+Fugang Duan (5):
+  dt-bindings: fec: add the missing clocks properties
+  dt-bindings: fec: add RGMII delayed clock property
+  net: fec: add imx8mq and imx8qm new versions support
+  net: fec: add eee mode tx lpi support
+  net: fec: add MAC internal delayed clock feature support
 
-I couldn't find anything to add "epson,rx8035" as device tree compatible in
-previous patch(rtc: rx8025: implement RX-8035 support)....
-I think that i2c_device_id was added and it is not device tree compatible.
-Can you tell me if my understanding is wrong?
+ .../devicetree/bindings/net/fsl-fec.txt       |  15 ++
+ drivers/net/ethernet/freescale/fec.h          |  25 +++
+ drivers/net/ethernet/freescale/fec_main.c     | 145 ++++++++++++++++++
+ 3 files changed, 185 insertions(+)
 
-Best regards,
-  Nobuhiro
---
-Nobuhiro Iwamatsu
-   iwamatsu at {nigauri.org / debian.org}
-   GPG ID: 40AD1FA6
+-- 
+2.17.1
+
