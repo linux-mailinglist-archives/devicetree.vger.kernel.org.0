@@ -2,79 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 124C33C1F74
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 08:46:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54C443C1F98
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 09:00:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230431AbhGIGmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 02:42:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38100 "EHLO
+        id S229954AbhGIGtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 02:49:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230436AbhGIGmb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 02:42:31 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6FA3C0613E6
-        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 23:39:46 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id t17so21281991lfq.0
-        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 23:39:46 -0700 (PDT)
+        with ESMTP id S230316AbhGIGtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 02:49:33 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B942C0613E6
+        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 23:46:50 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id 37so9035644pgq.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 23:46:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GdbwvfH2damctRl688URppCcO8HiCSnYmA4puvxValM=;
-        b=KARnKsI6wDXVlxoOJqqGBaT9Cvtu6meuaoim3L0lyRJTOtNHXTW15+lu+fX2Avc4SE
-         sclUFBx2eXDhb5Ek6QXiwTQZFR7u0/lkRPCyWJj7CZ75DdaQuqELDVVUi+O3wDDsq6XB
-         xaCqqW3u5S+0Z+S72yZYXwfyQ8NqtI/64qcv8=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=xaT7y+PG7DwjxYqSoSUwIQdL1dKO1pep2OkWSy56kbM=;
+        b=d5blS0UKDt1DBFfpUH8YUVsFUu3RxbvZlJYKp6BG++edlFbJ4tAl+QNPo4S8A/a+pV
+         ouFm4c9mTUFYOt6koEkc648nuL8RKfwUUv2hvolAnfM7rnACSEeebCiYWW44XhW3AiTK
+         o/BzoHT3HmebkOY9tmTaGCclZIgTjf7UsUWMhhhWRpmQgZ2PY+IA/VywWkqiBU4QH4SO
+         HDN17LUfO7CM8K4SOnRk4s7lKl3r/2j7DhNhzj9/Jmv1NfW4J7BLZb0OD/UPwGkK+NhS
+         tNpvX7YcI5LiKdjDVKVN490+uV/E148TR3rQwE6HYxJsK9Jxe6Gmos6rNW6hjUO8ljPv
+         vyPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GdbwvfH2damctRl688URppCcO8HiCSnYmA4puvxValM=;
-        b=F6OGtSxrlDlhFZ7zaN4QhvFby+eIurgiVtBVbrQNmWUTEBF+32XIeds2WBTXU4Bb44
-         TUYpH2/mQrjdTyx3m8A61qKlCTZIUI2dEB3E0AroxUwNgxSM7ghvinBffEZNhFtXFnEL
-         IUFbf4+jbRXYiSqSAp7yhesvNIl0h7P/fIOmT2QHty4VmjodvzKlON8NFnCEiNTMLytG
-         Teyoe/cHf+iW/z3aQISs6t3iutz+N5rbAAAgpE4F8gKibNeZZjXeAe6oapRJXu68C+RK
-         Y+/qng61Q8iDMKtauD9YKPEA/B4B0iIZDHoHTr3WAbVZUxuVeei+jDuh7W3tCydkOxTG
-         Z6CA==
-X-Gm-Message-State: AOAM533Q+ARSxkeIkfrboOdS3z6PF7MqW5alw1o9rqfMLWKxNuobopWD
-        9rEzFvJ2f8umAqgbYOGixxcQMrW2uihHStxePwDqhA==
-X-Google-Smtp-Source: ABdhPJyxfIq66PAyhcwZKY98vY9gxJePWfUzcQTs7lPlWbqVj656LIF99F/PEycna45aCaK+KtkLo7qALswN1VrtyeQ=
-X-Received: by 2002:a19:ca13:: with SMTP id a19mr27080916lfg.647.1625812785287;
- Thu, 08 Jul 2021 23:39:45 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=xaT7y+PG7DwjxYqSoSUwIQdL1dKO1pep2OkWSy56kbM=;
+        b=tGfGSI5EnWd++CXP7RgexqZi7kQcAjFFRtAC1scivzuHXUyNXoq9hbo8EVrKoDKNhf
+         GzUInpu+wg3iKVsgFQ+v06dqf6XN3SWHvFF384PHlACbTtHQ7a2W3imkXoiC2SI2SZeV
+         +6MRBZ4M7JgQJso/x19RJDhp0zNHg4rCa/5cWncndP4qb+tL0uG60alszrgC8yp6oZv6
+         V853tbH7eN2blT7GLosHxRlbLxYbVWBWamtSMm/dd51ket346TCcG1b75o+agDSKvo9s
+         twQ/dftUaCZBaL/Mm7vOFw+aY2JzCq+zu/PCzb2I0XTGVqrAS/OmqGg3U8mMrM2rN/Vt
+         s1tg==
+X-Gm-Message-State: AOAM530QHVE188ChU/i77upoDLMLjaxTxR6eFYJazqSw20U5rF/BU44b
+        3zUtzS4fmsBjeUMaw9+yNVSW+Q==
+X-Google-Smtp-Source: ABdhPJyVTVZo24ToIx/xl45xZBXM5V3PkgfTRfpGnXJqHEyvGXd7a+kvj0PE+uAEH9XoX97HcocWOQ==
+X-Received: by 2002:a65:550a:: with SMTP id f10mr11024883pgr.155.1625813209004;
+        Thu, 08 Jul 2021 23:46:49 -0700 (PDT)
+Received: from localhost ([106.201.108.2])
+        by smtp.gmail.com with ESMTPSA id x13sm4283500pjh.30.2021.07.08.23.46.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jul 2021 23:46:48 -0700 (PDT)
+Date:   Fri, 9 Jul 2021 12:16:46 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Thara Gopinath <thara.gopinath@linaro.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, rui.zhang@intel.com,
+        daniel.lezcano@linaro.org, rjw@rjwysocki.net, robh+dt@kernel.org,
+        tdas@codeaurora.org, mka@chromium.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [Patch v3 3/6] cpufreq: qcom-cpufreq-hw: Add dcvs interrupt
+ support
+Message-ID: <20210709064646.7vjgiba2o7beudly@vireshk-i7>
+References: <20210708120656.663851-1-thara.gopinath@linaro.org>
+ <20210708120656.663851-4-thara.gopinath@linaro.org>
 MIME-Version: 1.0
-References: <20210616224743.5109-1-chun-jie.chen@mediatek.com> <20210616224743.5109-13-chun-jie.chen@mediatek.com>
-In-Reply-To: <20210616224743.5109-13-chun-jie.chen@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 9 Jul 2021 14:39:34 +0800
-Message-ID: <CAGXv+5Ggv1ouJfGwfk8XbTZ1c61-QU-=M1pA=VB4oJqWwE2r3A@mail.gmail.com>
-Subject: Re: [PATCH 12/22] clk: mediatek: Add MT8195 scp adsp clock support
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210708120656.663851-4-thara.gopinath@linaro.org>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 08-07-21, 08:06, Thara Gopinath wrote:
+>  static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  {
+>  	struct platform_device *pdev = cpufreq_get_driver_data();
+> @@ -370,6 +480,10 @@ static int qcom_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>  			dev_warn(cpu_dev, "failed to enable boost: %d\n", ret);
+>  	}
+>  
+> +	ret = qcom_cpufreq_hw_lmh_init(policy, index);
 
-On Thu, Jun 17, 2021 at 6:59 AM Chun-Jie Chen
-<chun-jie.chen@mediatek.com> wrote:
->
-> Add MT8195 scp adsp clock provider
->
-> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+You missed unregistering EM here (which is also missing from exit,
+which you need to fix first in a separate patch).
 
-Same comments about commit log and Kconfig option applies.
+> +	if (ret)
+> +		goto error;
+> +
+>  	return 0;
+>  error:
+>  	kfree(data);
+> @@ -389,6 +503,10 @@ static int qcom_cpufreq_hw_cpu_exit(struct cpufreq_policy *policy)
+>  
+>  	dev_pm_opp_remove_all_dynamic(cpu_dev);
+>  	dev_pm_opp_of_cpumask_remove_table(policy->related_cpus);
+> +	if (data->lmh_dcvs_irq > 0) {
+> +		devm_free_irq(cpu_dev, data->lmh_dcvs_irq, data);
 
-Code looks good otherwise. Note that the datasheet I have does not include
-the registers used in this driver, so I cannot confirm them.
+Why using devm variants here and while requesting the irq ? 
+
+> +		cancel_delayed_work_sync(&data->lmh_dcvs_poll_work);
+> +	}
+
+Please move this to qcom_cpufreq_hw_lmh_exit() or something.
+
+Now with sequence of disabling interrupt, etc, I see a potential
+problem.
+
+CPU0                                    CPU1
+
+qcom_cpufreq_hw_cpu_exit()
+-> devm_free_irq();
+                                        qcom_lmh_dcvs_poll()
+                                        -> qcom_lmh_dcvs_notify()
+                                          -> enable_irq()
+
+-> cancel_delayed_work_sync();
 
 
-ChenYu
+What will happen if enable_irq() gets called after freeing the irq ?
+Not sure, but it looks like you will hit this then from manage.c:
+
+WARN(!desc->irq_data.chip, KERN_ERR "enable_irq before
+                                     setup/request_irq: irq %u\n", irq))
+
+?
+
+You got a chicken n egg problem :)
+
+-- 
+viresh
