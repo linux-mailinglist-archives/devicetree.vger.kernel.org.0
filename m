@@ -2,215 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 206AC3C25B3
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 16:15:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 922063C25C4
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 16:19:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232268AbhGIOSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 10:18:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57290 "EHLO
+        id S231972AbhGIOWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 10:22:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231942AbhGIOSb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 10:18:31 -0400
-Received: from mail-qt1-x82a.google.com (mail-qt1-x82a.google.com [IPv6:2607:f8b0:4864:20::82a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1BC5C0613E7
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 07:15:46 -0700 (PDT)
-Received: by mail-qt1-x82a.google.com with SMTP id v18so1018193qtk.5
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 07:15:46 -0700 (PDT)
+        with ESMTP id S229548AbhGIOWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 10:22:13 -0400
+Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com [IPv6:2607:f8b0:4864:20::f36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E28C0613DD;
+        Fri,  9 Jul 2021 07:19:30 -0700 (PDT)
+Received: by mail-qv1-xf36.google.com with SMTP id g14so4578231qvo.7;
+        Fri, 09 Jul 2021 07:19:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=M33a9nhurlkTFJs9VeR1HHlfHGFlu3qKRWk6opI+opw=;
-        b=mPAAE/KdxqHgpheCvAJeuNaMqCjgzLFDfgIrqC4MQwPAXgFsAvuEeFyYjsQYz6I63C
-         1xH2Om/QBoR6t/3Wt+xSoY3Q64jwq6uZxcWMmd+qexg72gi9vjYva5PVljWDp/NqyUAT
-         i/Sp4qFiopz2smSYzB4KTY1I+7BC3kY03s1jFURFFFQhUTTQ4BXxU0/koCSQQdllMHnG
-         0TZtCqNsvTXs0SaGGjNQTfSinYSq12p9fiHv16WdqMzPnnl2qtC2j5vmwfOmMWaIx++U
-         dexRP2PVCk2VoLtNjK6lMAILQ+r7mDhlNaWP+kE8yTTZ7nOVzNnprqyL76tvDqPVkbsz
-         SK1Q==
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=AbweScTu+CSzzG5mO4s7QPojjdx+SBj/a+asVBSmxkc=;
+        b=AouQHaKb6+HOpTFdltm93W8St56GH1+1PuGJjLNIpUiwKG9speTcmC40C+LWa1/1+4
+         0ryUgO0gUJohod1AQFCH7KzpugukPVSDEfB9hD4H2q7aF2/9hE+pKWaXiBiBuOzSDEb0
+         eWuOafwk9liKfVYg+p96ZeervMswHHHaLj7lpbKBFF70qr42GLE8qTZk6m0/H3Lp0yfX
+         TQ7WfpijYv2j2FtCB87oFVxcbd2neTsUkUS3P5U9yq6GAF9lMc0ZM0QfxWK0aIrVuI/Q
+         ipChWl9FoyWCfGGCRwRTEcVv4PaMIa2ZrFh2Imkvbgev2q/zHXEO7cn4e1mc9IPWocp3
+         aoBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M33a9nhurlkTFJs9VeR1HHlfHGFlu3qKRWk6opI+opw=;
-        b=DQqmJ7Y7JiUUwjVvWoqSEwe0seAqzV0Jijrdek4rldnAPMdtpcqYKF8LQFWoOn4T8u
-         XB0zOyBfzPOy2F/7emDzpoINcdDft/BK0jNGuQW7CFzSqSIepX7WN4xC9mIooWQm9w7W
-         LwA2ABo0hm84ou+QvIF8ilkPIgmdZQHP49gsRWqIwmmX2+1qmPRDh4FUei6ouoQo0Vk3
-         cL8ISKMVJOK9lYspyWKsqcio7NTpBMpsophD0vVifvMyRbbfFatPIdqZ4mo/ToArH73n
-         ihd+6tNTTcUpp+BLt6p2IahZnmgw7EdNnkCko8z/jBiEyACakj+sSHmYJxQ2JhZUc4/3
-         daeQ==
-X-Gm-Message-State: AOAM532/vZOGdL5OUt27Y+CHi3TSG68bbEo4mUg8yv8ELatfbvzcrXH3
-        Ziti24nxGcbIMd+iZgDz0hzbElaQtDUFIHDzGyQ2QQ==
-X-Google-Smtp-Source: ABdhPJxRMZ8IqU54zp9xUCY97QPAWSXjpu0GIaXhTQFDAaBho80mbtVBLIuWTNd1FQ08JJjxXTeCMWJHTLHkJTq6IlE=
-X-Received: by 2002:ac8:5b0d:: with SMTP id m13mr33972430qtw.364.1625840146016;
- Fri, 09 Jul 2021 07:15:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210709043136.533205-1-dmitry.baryshkov@linaro.org>
- <20210709043136.533205-5-dmitry.baryshkov@linaro.org> <CAPDyKFprYK8bSk+rdnDt3xRUR9BRNdyRiBdefO+s7qzOwHf7hg@mail.gmail.com>
- <CAA8EJprrjz=o7Ymt1mNBZASzTeX==1ceRTeKA4f3QrVMcpO6xg@mail.gmail.com>
- <CAPDyKFoLcsYLisEiOF66dDsV+759c5k0PD64uxU11jc5VTdNYQ@mail.gmail.com>
- <CAA8EJpr2HEm4R+bGrH6DHA_z8bjN69Zam9UUiAeKAr5vsCKr3A@mail.gmail.com>
- <CAPDyKFr+-qXbi4z4_wzDRaMMLKSKM7zNr55Kt-AOk97mVKM+8A@mail.gmail.com>
- <YOhXX+u9HuScTDp6@yoga> <CAPDyKFrsWhaURyOcR6_hY5nH=yOmwmnpCsMjPOTscXif7DPMUQ@mail.gmail.com>
-In-Reply-To: <CAPDyKFrsWhaURyOcR6_hY5nH=yOmwmnpCsMjPOTscXif7DPMUQ@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 9 Jul 2021 17:15:34 +0300
-Message-ID: <CAA8EJppUz2nuCkerW2wh56VfkvuxzUNS3qh8Bacn-RK1Wu99AA@mail.gmail.com>
-Subject: Re: [RESEND PATCH v2 4/7] clk: qcom: gdsc: enable optional power
- domain support
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=AbweScTu+CSzzG5mO4s7QPojjdx+SBj/a+asVBSmxkc=;
+        b=oelpxtHlN0yqGIY8/wFSv/63CSmGnzfhEg56TX4jyY1DJg6/Urd/hc3WXH6Dolb0Wq
+         URFZ8hb3e4Hlt0g0Trmnsr3kiM2eNq3vGuVaJZ3U+XAzdVRKkJ0jHt/cZN2+tt/X0MtD
+         lsn3iFDI+WBQS6xUCuNqGIAMvExbo15cIvqPql83SYrvyAdY/rv7GJ9weqRbZagjb2qC
+         DC8x98T6nrPofK5aFL2HKbJq2s981gBneRenxJ0fYchmQzs9DY8VTxYaUSkNSWs5yDmM
+         U/h/DUywulKppwiJma3KmS4fCX7JMP77pl5ZlnqLGdp3Jj7lai6qasTcrT42f1rDJ8LV
+         usEw==
+X-Gm-Message-State: AOAM53144HlebYChcG0XzTnCx4RjGmIH6K2rdtMwv5Xa5g3lTnzhfNXz
+        1YkB3diefA+mzss2lNSS2NY=
+X-Google-Smtp-Source: ABdhPJxVob48UIFSG4unefpkzdf7LQRsfXIysItrnGJy6edT/WhDIivxlCG3JhYAzxUZeZVD6VMGCg==
+X-Received: by 2002:ad4:4150:: with SMTP id z16mr12453311qvp.39.1625840369290;
+        Fri, 09 Jul 2021 07:19:29 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id s6sm2462794qkc.125.2021.07.09.07.19.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jul 2021 07:19:28 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 09 Jul 2021 10:19:27 -0400
+Message-Id: <CCOOB5Y7NI0J.QOZXSZ74JNFI@shaak>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: RE: [PATCH v1 4/4] dt-bindings: iio: adc: ad7949: add
+ adi,reference-source
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Sa, Nuno" <Nuno.Sa@analog.com>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "charles-antoine.couret@essensium.com" 
+        <charles-antoine.couret@essensium.com>
+References: <20210708235618.1541335-1-liambeguin@gmail.com>
+ <20210708235618.1541335-5-liambeguin@gmail.com>
+ <PH0PR03MB6366E7E1CBDC15B6B43F8BC699189@PH0PR03MB6366.namprd03.prod.outlook.com>
+In-Reply-To: <PH0PR03MB6366E7E1CBDC15B6B43F8BC699189@PH0PR03MB6366.namprd03.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 9 Jul 2021 at 17:13, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Fri, 9 Jul 2021 at 16:04, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
-> >
-> > On Fri 09 Jul 08:14 CDT 2021, Ulf Hansson wrote:
-> >
-> > > On Fri, 9 Jul 2021 at 14:59, Dmitry Baryshkov
-> > > <dmitry.baryshkov@linaro.org> wrote:
-> > > >
-> > > > On Fri, 9 Jul 2021 at 15:18, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > > > >
-> > > > > On Fri, 9 Jul 2021 at 13:46, Dmitry Baryshkov
-> > > > > <dmitry.baryshkov@linaro.org> wrote:
-> > > > > >
-> > > > > > On Fri, 9 Jul 2021 at 12:33, Ulf Hansson <ulf.hansson@linaro.org> wrote:
-> > > > > > >
-> > > > > > > On Fri, 9 Jul 2021 at 06:32, Dmitry Baryshkov
-> > > > > > > <dmitry.baryshkov@linaro.org> wrote:
-> > > > > > > >
-> > > > > > > > On sm8250 dispcc and videocc registers are powered up by the MMCX power
-> > > > > > > > domain. Currently we used a regulator to enable this domain on demand,
-> > > > > > > > however this has some consequences, as genpd code is not reentrant.
-> > > > > > > >
-> > > > > > > > Teach Qualcomm clock controller code about setting up power domains and
-> > > > > > > > using them for gdsc control.
-> > > > > > > >
-> > > > > > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > > > >
-> > > > > > > [...]
-> > > > > > >
-> > > > > > > > diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
-> > > > > > > > index 51ed640e527b..9401d01533c8 100644
-> > > > > > > > --- a/drivers/clk/qcom/gdsc.c
-> > > > > > > > +++ b/drivers/clk/qcom/gdsc.c
-> > > > > > > > @@ -427,6 +427,7 @@ int gdsc_register(struct gdsc_desc *desc,
-> > > > > > > >                         continue;
-> > > > > > > >                 scs[i]->regmap = regmap;
-> > > > > > > >                 scs[i]->rcdev = rcdev;
-> > > > > > > > +               scs[i]->pd.dev.parent = desc->dev;
-> > > > > > > >                 ret = gdsc_init(scs[i]);
-> > > > > > > >                 if (ret)
-> > > > > > > >                         return ret;
-> > > > > > > > @@ -439,6 +440,8 @@ int gdsc_register(struct gdsc_desc *desc,
-> > > > > > > >                         continue;
-> > > > > > > >                 if (scs[i]->parent)
-> > > > > > > >                         pm_genpd_add_subdomain(scs[i]->parent, &scs[i]->pd);
-> > > > > > > > +               else if (!IS_ERR_OR_NULL(dev->pm_domain))
-> > > > > > >
-> > > > > > > So dev_pm_domain_attach() (which calls genpd_dev_pm_attach() is being
-> > > > > > > called for gdsc platform device from the platform bus', to try to
-> > > > > > > attach the device to its corresponding PM domain.
-> > > > > > >
-> > > > > > > Looking a bit closer to genpd_dev_pm_attach(), I realize that we
-> > > > > > > shouldn't really try to attach a device to its PM domain, when its OF
-> > > > > > > node (dev->of_node) contains a "#power-domain-cells" specifier. This
-> > > > > > > is because it indicates that the device belongs to a genpd provider
-> > > > > > > itself. In this case, a "power-domains" specifier tells that it has a
-> > > > > > > parent domain.
-> > > > > > >
-> > > > > > > I will post a patch that fixes this asap.
-> > > > > >
-> > > > > > I think there is nothing to fix here. The dispcc/videocc drivers
-> > > > > > provide clocks in addition to the gdsc power domain. And provided
-> > > > > > clocks would definitely benefit from having the dispcc device being
-> > > > > > attached to the power domain which governs clock registers (MMCX in
-> > > > > > our case). Thus I think it is perfectly valid to have:
-> > > > > >
-> > > > > > rpmhpd device:
-> > > > > >  - provides MMCX domain.
-> > > > > >
-> > > > > > dispcc device:
-> > > > > >  - is attached to the MMCX domain,
-> > > > >
-> > > > > We don't need this, it's redundant and weird to me.
-> > > > >
-> > > > > Also I am kind of worried that you will hit another new path in genpd,
-> > > > > causing locking issues etc, as it has not been designed to work like
-> > > > > this (a provider device and a child domain sharing the same "parent").
-> > > >
-> > > > So, which domain should the dispcc device belong to? It's registers
-> > > > are powered by the MMCX domain. I can not attach it to the child
-> > > > (GDSC) domain either: in the case of videocc there are 4 child
-> > > > domains.
-> > >
-> > > The dispcc device should *not* be attached to a PM domain.
-> > >
-> >
-> > dispcc is powered by the MMCX power domain, so it needs to be on if you
-> > want to touch the registers.
-> >
-> > I presume that for genpd this might not be a problem as long as all the
-> > exposed power domains are parented by the genpd provider's parent, as
-> > the core would turn the parent on before and turn off after performing
-> > those operations. But without attaching to the domain we don't have
-> > power to get through probe/registration.
-> >
-> > Further more, dispcc is also a clock driver and there's certainly
-> > operations where the genpd framework won't save us.
-> >
-> > > Instead it should be registered as a genpd provider and the
-> > > corresponding PM domains it provides, should be assigned as child
-> > > domains to the MMCX domain.
-> > >
-> >
-> > Right, this relationship is today missing and is what Dmitry needs to
-> > add - so that the parent domains stays powered even when we're not
-> > keeping the parent domain enabled to poke the dispcc.
-> >
-> > > This is exactly what the child/parent domain support in genpd is there
-> > > to help with.
-> > >
-> > > > An alternative would be to request that all users of the provided
-> > > > clocks power on one of the child domains. However this is also not
-> > > > perfect. If some generic code (e.g. clock framework) calls into
-> > > > provided clocks (e.g. because of assigned-clock-rates), this can
-> > > > happen w/o proper power domain being powered up yet.
-> > >
-> > > Issues with power on/off synchronization during genpd initializations
-> > > and genpd provider registration, certainly need to be fixed and I am
-> > > happy to help. However, my point is that I think it's a bad idea to
-> > > fix it through modelling the PM domain hierarchy in an incorrect way.
-> > >
-> >
-> > This was my initial feeling to the patch as well and I think it might be
-> > better to push the pm_runtime_get/put operations into gdsc.c - in
-> > particular if you're saying that the general case is not for the genpd
-> > provider itself to be powered by the specified parent domain.
-> >
-> > At least we could start by doing it manually in gdsc.c and possibly move
-> > it into the framework if we're confident that it's a good idea.
->
-> Yes, better to start making this Qcom specific, then we can take it from there.
+Hi Nuno,
 
-I will re-add pm_runtime calls to gdsc.c and send a v3.
+On Fri Jul 9, 2021 at 4:15 AM EDT, Sa, Nuno wrote:
+>
+>
+> > -----Original Message-----
+> > From: Liam Beguin <liambeguin@gmail.com>
+> > Sent: Friday, July 9, 2021 1:56 AM
+> > To: liambeguin@gmail.com; lars@metafoo.de; Hennerich, Michael
+> > <Michael.Hennerich@analog.com>; jic23@kernel.org; charles-
+> > antoine.couret@essensium.com
+> > Cc: linux-kernel@vger.kernel.org; linux-iio@vger.kernel.org;
+> > devicetree@vger.kernel.org; robh+dt@kernel.org
+> > Subject: [PATCH v1 4/4] dt-bindings: iio: adc: ad7949: add
+> > adi,reference-source
+> >=20
+> > [External]
+> >=20
+> > From: Liam Beguin <lvb@xiphos.com>
+> >=20
+> > Add bindings documentation for the adi,reference-source property.
+> > This property is required to properly configure the ADC sample request
+> > based on which reference source should be used for the calculation.
+> >=20
+> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > ---
+> >  .../bindings/iio/adc/adi,ad7949.yaml          | 22 +++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> >=20
+> > diff --git
+> > a/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
+> > b/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
+> > index 9b56bd4d5510..3f4629281cc8 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
+> > @@ -35,6 +35,28 @@ properties:
+> >    "#io-channel-cells":
+> >      const: 1
+> >=20
+> > +  adi,reference-select:
+> > +    allOf:
+> > +      - $ref: /schemas/types.yaml#/definitions/uint32
+> > +      - enum: [0, 1, 2, 3, 6, 7]
+> > +
+> > +    default: 7
+> > +    description: |
+> > +      Select the reference voltage source to use when converting
+> > samples.
+> > +      Acceptable values are:
+> > +      - 0: Internal reference and temperature sensor enabled.
+> > +           Vref=3D2.5V, buffered output
+> > +      - 1: Internal reference and temperature sensor enabled.
+> > +           Vref=3D4.096V, buffered output
+> > +      - 2: Use external reference, temperature sensor enabled.
+> > +           Internal buffer disabled
+> > +      - 3: Use external reference, internal buffer and temperature
+> > sensor
+> > +           enabled.
+> > +      - 6: Use external reference, internal buffer and temperature
+> > sensor
+> > +           disabled.
+> > +      - 7: Use external reference, internal buffer enabled.
+> > +           Internal reference and temperature sensor disabled.
+>
+> I think typically the description comes first. I also don't think you
+> need the 'allOf'(not even sure if it will pass the binding check)...
+> Just have '$ref' and 'enum' on the same level.
+>
 
--- 
-With best wishes
-Dmitry
+Understood, I can reorder the patches so that the bindings come first.
+
+I thought I based that part on the `example-schema.yaml`, but looking at
+it again, it seems like you're right and the AllOf isn't required.
+
+I did run the bindings check on this, but I'll fix it.
+
+Thanks,
+Liam
+
+> - Nuno S=C3=A1
+>
+> >  required:
+> >    - compatible
+> >    - reg
+> > --
+> > 2.30.1.489.g328c10930387
+
