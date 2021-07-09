@@ -2,175 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB52D3C254B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 15:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70BAF3C255C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 15:57:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231817AbhGIN5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 09:57:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52262 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231756AbhGIN5D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 09:57:03 -0400
-Received: from mail-qt1-x82b.google.com (mail-qt1-x82b.google.com [IPv6:2607:f8b0:4864:20::82b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8B3C0613E5
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 06:54:20 -0700 (PDT)
-Received: by mail-qt1-x82b.google.com with SMTP id h2so7566112qtq.13
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 06:54:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qiOUB7HLvLlvZOpZ/gkN2JlQJ5E4mMeYNLinigOA+9s=;
-        b=T3wAp9DoNvgWy0Ro/pS13nqAvPokAxi8LgstNsyBbwHLqLqINLmtfgoFs/Q+BlwsIj
-         8gvKq/S9P92Ny6t7qSxlsWjHtwZcDtNlGlFjVqIfX3ba00kPul2dqbIUTDiz2sOPMEWj
-         EP/uYiL2UszRtbPSpERLnzSKOQQ6pm2kpZxkI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qiOUB7HLvLlvZOpZ/gkN2JlQJ5E4mMeYNLinigOA+9s=;
-        b=NdsWItEotKPq3f0UCkzB7bsWA44QweAxQiW+o3zRn9+F3GE+JXSv7Dk+P8Zuq+k+2P
-         tpZvBDoPQt7ZcFq0A75IgWJ+vE6jxQN7kSH7gYSQ76Imaj8GWBjYv5B9sRWk/C7DknPH
-         nb3k4sIaOOBjX3L4ca5o+4bksTDHWMJzAi/ji+N0gsuvVCdrVEnHQJxDQRhMyjHSonQH
-         idCCu42lyp62+X8a7dOpzjNm+WhGS7AuBLfgUrJa/aqcpMkSNMa+LqbN/QHHdOdSsrG0
-         2yzUkquCmGjLoUN60PtTYO9DCSK5mrFHw7wLN/jO4/Qb9A5KoqpeDp2Mpgs3GUeIxv4p
-         lpIA==
-X-Gm-Message-State: AOAM531BU9iZQQ01/HkkZPij/YbtmZI3pAywfN/+rQwojNDGh+yxQ8N4
-        WHEdiKwgHkDmgFuIYxnHDv+mRuVd5Uso3Q==
-X-Google-Smtp-Source: ABdhPJy0USLXcQhOsoxoicuYoPp4i5z0B0aFynuW7zh0HB86dGqoXHs2U7DGZA62L6gWfONAfJ1zAA==
-X-Received: by 2002:ac8:6619:: with SMTP id c25mr26759713qtp.127.1625838859175;
-        Fri, 09 Jul 2021 06:54:19 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id a62sm2560332qke.108.2021.07.09.06.54.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jul 2021 06:54:17 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id v189so6286612ybg.3
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 06:54:17 -0700 (PDT)
-X-Received: by 2002:a25:6088:: with SMTP id u130mr49090811ybb.257.1625838856780;
- Fri, 09 Jul 2021 06:54:16 -0700 (PDT)
+        id S232018AbhGIOAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 10:00:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34642 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231918AbhGIOAa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Jul 2021 10:00:30 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 5D05D613B2;
+        Fri,  9 Jul 2021 13:57:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1625839067;
+        bh=HyNehvqgAJQzHq1MhZD/QmNgbhv9hin721hnafe3LcI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=toOdvWw5iKKMV7gg70ONZoGKe3kIMcaKbL9tBcnZ6fQCipRadtQuP6o5myjdowG6K
+         yBxVgSqRaP1ZSBfkmvIFC5FC1N6TEY6CddTYG62SR6Fg/6iEgwLmLwX5VxogkIGDUs
+         afRoG2e5sMmA9EYSqOG4P1jb90w3Alz4L7pbqmOlpbVkirRXJ2kVpmFRD7sJsBKXUO
+         vY8zqFToJJxgS1uYKx9x0/78G+QMfqcv9e5W/U3ad5Rmfs6B3pL7NCxdi0PWJe4lgD
+         p+PFFgmr1TBdGROLHQbTeNMFNTKjCiZordM2C8hglZ25/+Rf4fkN5G355TVrYZpL54
+         h5lCS444TGgUg==
+Received: by mail.kernel.org with local (Exim 4.94.2)
+        (envelope-from <mchehab@kernel.org>)
+        id 1m1r0i-0004lB-Ik; Fri, 09 Jul 2021 15:57:44 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@axis.com, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v3 0/2] convert designware-pcie.txt and kirin-pcie.txt to yaml
+Date:   Fri,  9 Jul 2021 15:57:41 +0200
+Message-Id: <cover.1625838920.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <1624726268-14869-1-git-send-email-rajeevny@codeaurora.org>
-In-Reply-To: <1624726268-14869-1-git-send-email-rajeevny@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 9 Jul 2021 06:54:05 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UP9jrS=JG=TuB7+i9QcZv8GOLYdPdb3_KNhEsgapGeww@mail.gmail.com>
-Message-ID: <CAD=FV=UP9jrS=JG=TuB7+i9QcZv8GOLYdPdb3_KNhEsgapGeww@mail.gmail.com>
-Subject: Re: [v8 0/6] drm: Support basic DPCD backlight in panel-simple and
- add a new panel ATNA33XC20
-To:     Rajeev Nandan <rajeevny@codeaurora.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Rob Clark <robdclark@gmail.com>, Lyude Paul <lyude@redhat.com>,
-        Jani Nikula <jani.nikula@intel.com>,
-        Rob Herring <robh@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
-        Abhinav Kumar <abhinavk@codeaurora.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Kalyan Thota <kalyan_t@codeaurora.org>,
-        Krishna Manikandan <mkrishn@codeaurora.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Rob,
 
-On Sat, Jun 26, 2021 at 9:52 AM Rajeev Nandan <rajeevny@codeaurora.org> wrote:
->
-> This series adds the support for the eDP panel that needs the backlight
-> controlling over the DP AUX channel using DPCD registers of the panel
-> as per the VESA's standard.
->
-> This series also adds support for the Samsung eDP AMOLED panel that
-> needs DP AUX to control the backlight, and introduces new delays in the
-> @panel_desc.delay to support this panel.
->
-> This patch series depends on the following two series:
-> - Doug's series [1], exposed the DP AUX channel to the panel-simple.
-> - Lyude's series [2], introduced new drm helper functions for DPCD
->   backlight.
->
-> This series is the logical successor to the series [3].
->
-> Changes in v1:
-> - Created dpcd backlight helper with very basic functionality, added
->   backlight registration in the ti-sn65dsi86 bridge driver.
->
-> Changes in v2:
-> - Created a new DisplayPort aux backlight driver and moved the code from
->   drm_dp_aux_backlight.c (v1) to the new driver.
->
-> Changes in v3:
-> - Fixed module compilation (kernel test bot).
->
-> Changes in v4:
-> - Added basic DPCD backlight support in panel-simple.
-> - Added support for a new Samsung panel ATNA33XC20 that needs DPCD
->   backlight controlling and has a requirement of delays between enable
->   GPIO and regulator.
->
-> Changes in v5:
-> Addressed review suggestions from Douglas:
-> - Created a new API drm_panel_dp_aux_backlight() in drm_panel.c
-> - Moved DP AUX backlight functions from panel-simple.c to drm_panel.c
-> - panel-simple probe() calls drm_panel_dp_aux_backlight() to create
->   backlight when the backlight phandle is not specified in panel DT
->   and DP AUX channel is present.
-> - Added check for drm_edp_backlight_supported() before registering.
-> - Removed the @uses_dpcd_backlight flag from panel_desc as this
->   should be auto-detected.
-> - Updated comments/descriptions.
->
-> Changes in v6:
-> - Rebased
-> - Updated wanrning messages, fixed word wrapping in comments.
-> - Fixed ordering of memory allocation
->
-> Changes in v7:
-> - Updated the disable_to_power_off and power_to_enable panel delays
-> as discovered at <https://crrev.com/c/2966167> (Douglas)
->
-> Changes in v8:
-> - Now using backlight_is_blank() to get the backlight blank status (Sam Ravnborg)
-> - Added a new patch #4 to fix the warnings for eDP panel description (Sam Ravnborg)
->
-> [1] https://lore.kernel.org/dri-devel/20210525000159.3384921-1-dianders@chromium.org/
-> [2] https://lore.kernel.org/dri-devel/20210514181504.565252-1-lyude@redhat.com/
-> [3] https://lore.kernel.org/dri-devel/1619416756-3533-1-git-send-email-rajeevny@codeaurora.org/
->
-> Rajeev Nandan (6):
->   drm/panel: add basic DP AUX backlight support
->   drm/panel-simple: Support DP AUX backlight
->   drm/panel-simple: Support for delays between GPIO & regulator
->   drm/panel-simple: Update validation warnings for eDP panel description
->   dt-bindings: display: simple: Add Samsung ATNA33XC20
->   drm/panel-simple: Add Samsung ATNA33XC20
->
->  .../bindings/display/panel/panel-simple.yaml       |   2 +
->  drivers/gpu/drm/drm_panel.c                        | 108 +++++++++++++++++++++
->  drivers/gpu/drm/panel/panel-simple.c               |  73 +++++++++++++-
->  include/drm/drm_panel.h                            |  15 ++-
->  4 files changed, 190 insertions(+), 8 deletions(-)
+This series applies after this one:
+   https://lore.kernel.org/lkml/cover.1625826353.git.mchehab+huawei@kernel.org/
 
-Pushed to drm-misc-next.
+It basically converts two PCI DT-bindings to DT schema. On this version, I'm
+addressing some of your comments from v2, and rebased it on the top of
+my Hikey 960/970 tree (based on linus/master).
 
-4bfe6c8f7c23 drm/panel-simple: Add Samsung ATNA33XC20
-c20dec193584 dt-bindings: display: simple: Add Samsung ATNA33XC20
-13aceea56fd5 drm/panel-simple: Update validation warnings for eDP
-panel description
-18a1488bf1e1 drm/panel-simple: Support for delays between GPIO & regulator
-bfd451403d70 drm/panel-simple: Support DP AUX backlight
-10f7b40e4f30 drm/panel: add basic DP AUX backlight support
+The example for the designware file is producing some warnings here, as it
+can't find the right propertiesPattern. No idea why.
 
--Doug
+Mauro Carvalho Chehab (2):
+  dt-bindings: PCI: designware-pcie.txt: convert it to yaml
+  dt-bindings: PCI: kirin-pcie.txt: convert it to yaml
+
+ .../bindings/pci/amlogic,meson-pcie.txt       |   4 +-
+ .../bindings/pci/axis,artpec6-pcie.txt        |   2 +-
+ .../bindings/pci/designware-pcie.txt          |  77 ----------
+ .../bindings/pci/fsl,imx6q-pcie.txt           |   2 +-
+ .../bindings/pci/hisilicon,kirin-pcie.yaml    |  79 ++++++++++
+ .../bindings/pci/hisilicon-histb-pcie.txt     |   2 +-
+ .../devicetree/bindings/pci/kirin-pcie.txt    |  41 ------
+ .../bindings/pci/layerscape-pci.txt           |   2 +-
+ .../bindings/pci/nvidia,tegra194-pcie.txt     |   4 +-
+ .../devicetree/bindings/pci/pci-armada8k.txt  |   2 +-
+ .../devicetree/bindings/pci/pcie-al.txt       |   2 +-
+ .../devicetree/bindings/pci/qcom,pcie.txt     |  14 +-
+ .../bindings/pci/samsung,exynos-pcie.yaml     |   2 +-
+ .../bindings/pci/sifive,fu740-pcie.yaml       |   2 +-
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml | 135 ++++++++++++++++++
+ .../pci/socionext,uniphier-pcie-ep.yaml       |   2 +-
+ .../devicetree/bindings/pci/ti-pci.txt        |   4 +-
+ .../devicetree/bindings/pci/uniphier-pcie.txt |   2 +-
+ MAINTAINERS                                   |   4 +-
+ 19 files changed, 239 insertions(+), 143 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pci/designware-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/hisilicon,kirin-pcie.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/kirin-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+
+-- 
+2.31.1
+
+
