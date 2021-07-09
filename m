@@ -2,91 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48A9D3C1D78
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 04:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 830923C1E52
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 06:31:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231193AbhGIC1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 22:27:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38688 "EHLO
+        id S229597AbhGIEeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 00:34:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230242AbhGIC1S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 22:27:18 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67E0FC061574
-        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 19:24:35 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id s18so8421830pgg.8
-        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 19:24:35 -0700 (PDT)
+        with ESMTP id S229441AbhGIEeX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 00:34:23 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F821C06175F
+        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 21:31:40 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 8so8963560lfp.9
+        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 21:31:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Xa1QT/xqQMd9LJuGZv9EOkrq3F7P8S0t9twyB2ttUeY=;
-        b=Ih95Vv7sGBr3BHG6ejkyqiWc4YDQyURZhb3iXOesOn/6nVRUGD02x3zezztxDSoXIx
-         /blNBqXk6teH1HU4a19/wFKgte5ugaHIjoIJ/D5hjezzmyzoh9gyzR69lbWcotcReOtE
-         uyXgu7sa8Vcqj7G+hDzfGwLazos/WY4PQO3+Y=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6ZCukB0H7lhNNnQd+1bAW9ZLZj+MDCA+DrfCxB87atU=;
+        b=pUpRSDm2GW5P/FpEgw6wyQiZLxOd2tVKIXzj6A8zjb0KklDHXM+cZOnSDg6v0f7plo
+         W6aUpwu3UTZ9S6WvR/hcx/zHyBuzTN/zWGQRqERxd1u8GSxEYB0hX66gU7Bs/dlQrIjL
+         7YvkVCoKDXheMv7OEC+o/UvYwW6Qp3PZJ5qTdZhU+Y6jdsDVgu7lgzz5U8GhW77i7HZ0
+         4rmlUL47ubhtq5vLjMhoGlKKuGKCiUIN2u8Ds3Kr6Gf2SpqOrfEoi69U+WCaZ3RFoX7f
+         b3NH7o74U0kRayyVa1CbeL7zW4fe/xaxK29GdVedbsjQF88Jnm1iWVMGR1NbekBWLTS0
+         /K7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Xa1QT/xqQMd9LJuGZv9EOkrq3F7P8S0t9twyB2ttUeY=;
-        b=LW0GxJkKhcGjoLDWTCsPz8yvs9o2tCnc20KMiw/MjnwIc3NjLbU15/NYVaofe0cQ5P
-         Iahfp9DZGdbr0XnCm1zGFCkn1mVVUVYCbBwddYpGxCcudTuQ0R6M3rOXMgQnMJDojewD
-         BjMVe2AbsTnO7rofotrW1/9X7lnsDT4QdIQR3xCdiT9GOZecYGV85eXNqUDaH4P7bRxR
-         ta/NKkHhQMZXVKf6AHqXp+RSbIw8BCGAiN/anf8GbHvH/kB8A1rqNH8N9fXuUWTB5FhN
-         1S3VQPiBX631rMDHNa+OOwJ0x4Wee4M/lIquWgrGd84tc3vvjvq20gQWhdAKzOtT4qYD
-         AifA==
-X-Gm-Message-State: AOAM531RNFApK3lftG+BptgJIuEaeBDdEBB4j3DCk4hdRFdAdG/vUgEE
-        414ux01A5xq3fft4Hpipa0QNSg==
-X-Google-Smtp-Source: ABdhPJwZbjcIIk5gkbelY5NVALNeX+vFLNHPUdir3ykq4PvaBeBKBcrN8a8sMY7S44A1UhZJpupjmw==
-X-Received: by 2002:aa7:9436:0:b029:30b:30ba:5942 with SMTP id y22-20020aa794360000b029030b30ba5942mr34190104pfo.47.1625797475039;
-        Thu, 08 Jul 2021 19:24:35 -0700 (PDT)
-Received: from localhost ([2401:fa00:9:14:d956:2966:7910:2bd2])
-        by smtp.gmail.com with UTF8SMTPSA id z15sm4791808pgc.13.2021.07.08.19.24.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 08 Jul 2021 19:24:34 -0700 (PDT)
-From:   Eizan Miyamoto <eizan@chromium.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     wenst@chromium.org, chunkuang.hu@kernel.org, yong.wu@mediatek.com,
-        enric.balletbo@collabora.com, houlong.wei@mediatek.com,
-        Eizan Miyamoto <eizan@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v5 8/8] dts: mtk-mdp: remove mediatek,vpu property from primary MDP device
-Date:   Fri,  9 Jul 2021 12:23:24 +1000
-Message-Id: <20210709122040.v5.8.Ib681f06d5189351b7fda0e3dcd6b15f3863a0071@changeid>
-X-Mailer: git-send-email 2.32.0.93.g670b81a890-goog
-In-Reply-To: <20210709022324.1607884-1-eizan@chromium.org>
-References: <20210709022324.1607884-1-eizan@chromium.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6ZCukB0H7lhNNnQd+1bAW9ZLZj+MDCA+DrfCxB87atU=;
+        b=nTA7H2goqJE+M8Fif7FG3n/WvJUNa6ZUNMgP+YqKaAvIHPxBesMGgz8BtCTfvwBx8y
+         TjlhhPOCagFMXcfQlbFdrw4LceSbG3ZgUk/XbEMG0BVlWNd+TqQb+rDjiHShnIgKzo8C
+         TMhJBiDRUwa6TOsb+6/lYmkpx2LNqhJkRuZz7nZn+yu36VJhR4B9pa7CR8WZhJ4F9cJr
+         Qe2cdT+URYEyR0ouHU+mrQqiTpnGJkGNTUocT16fB2pzbtd5M6rwduqoO+yF+K+VIzAl
+         8KeGJJHt+r8RVrXuddxp1Ah2L0OqY7LLwjIZP03a2kerKFfWk2+dLNFbfIEwlgeMc6x3
+         k1Mw==
+X-Gm-Message-State: AOAM532VG3JJxC6u2an/CJ9QBAbYlDTXRHFDSEGdB8uFrV/OGWBMthou
+        KnHGcazoxC2BwqzhAq2/n2GLhvl5CV7Wgg==
+X-Google-Smtp-Source: ABdhPJycDcRQ51E+yA+HmmtPei7V60DaErQ5rNIFcsWod+olmwaSk4Z1kb/oTEqlMLkqP2IvNB35ig==
+X-Received: by 2002:a05:6512:3606:: with SMTP id f6mr15858081lfs.370.1625805098524;
+        Thu, 08 Jul 2021 21:31:38 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id h1sm13028lft.174.2021.07.08.21.31.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jul 2021 21:31:38 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: [RESEND PATCH v2 0/7] clk: qcom: use power-domain for sm8250's clock controllers
+Date:   Fri,  9 Jul 2021 07:31:29 +0300
+Message-Id: <20210709043136.533205-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It is no longer used by the mediatek MDP driver.
 
-Signed-off-by: Eizan Miyamoto <eizan@chromium.org>
----
+On SM8250 both the display and video clock controllers are powered up by
+the MMCX power domain. Handle this by linking clock controllers to the
+proper power domain, and using runtime power management to enable and
+disable the MMCX power domain.
 
-(no changes since v1)
+Dependencies:
+- https://lore.kernel.org/linux-pm/20210603093438.138705-1-ulf.hansson@linaro.org/ (merged in 5.14)
+- https://lore.kernel.org/linux-arm-msm/20210703005416.2668319-1-bjorn.andersson@linaro.org/
+  (pending)
 
- arch/arm64/boot/dts/mediatek/mt8173.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Patches resent because I missed one hunk in the PM domains patch, which
+got stuck in the git index. Now the patch is fixed.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-index d502073b551f..872427748110 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-@@ -1010,7 +1010,6 @@ mdp_rdma0: rdma@14001000 {
- 			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_RDMA0>;
- 			mediatek,larb = <&larb0>;
--			mediatek,vpu = <&vpu>;
- 		};
- 
- 		mdp_rdma1: rdma@14002000 {
--- 
-2.32.0.93.g670b81a890-goog
+Changes since v1:
+ - Rebase on top of Bjorn's patches, removing the need for setting
+   performance state directly.
+ - Move runtime PM calls from GDSC code to generic genpd code.
+ - Always call pm_runtime_enable in the Qualcomm generic clock
+   controller code.
+ - Register GDSC power domains as subdomains of the domain powering the
+   clock controller if there is one.
+
+----------------------------------------------------------------
+Dmitry Baryshkov (7):
+      dt-bindings: clock: qcom,dispcc-sm8x50: add mmcx power domain
+      dt-bindings: clock: qcom,videocc: add mmcx power domain
+      PM: domains: Add support for runtime PM
+      clk: qcom: gdsc: enable optional power domain support
+      arm64: dts: qcom: sm8250: remove mmcx regulator
+      clk: qcom: dispcc-sm8250: stop using mmcx regulator
+      clk: qcom: videocc-sm8250: stop using mmcx regulator
+
+ .../bindings/clock/qcom,dispcc-sm8x50.yaml         |  7 ++++
+ .../devicetree/bindings/clock/qcom,videocc.yaml    |  7 ++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 11 ++-----
+ drivers/base/power/domain.c                        | 33 +++++++++++++++++++
+ drivers/clk/qcom/common.c                          | 37 ++++++++++++++++++----
+ drivers/clk/qcom/dispcc-sm8250.c                   |  1 -
+ drivers/clk/qcom/gdsc.c                            |  5 +++
+ drivers/clk/qcom/videocc-sm8250.c                  |  4 ---
+ include/linux/pm_domain.h                          |  6 ++++
+ 9 files changed, 91 insertions(+), 20 deletions(-)
+
+
+
+
 
