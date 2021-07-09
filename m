@@ -2,122 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 870553C1E6A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 06:32:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 934223C1E95
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 06:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231237AbhGIEeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 00:34:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38076 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231254AbhGIEe3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 00:34:29 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81614C061760
-        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 21:31:46 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id b40so5905692ljf.12
-        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 21:31:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OW6r9Ztak14Z94NLN85hpavnPWferFff+9qy6SUKk4g=;
-        b=UvGi1B+es3fCaDxmJpGeewLmLB8C2VxxdjqqEEtrzFv0O0YZAolKlF756ouyrJpI2/
-         fY58oGEn7/X9Y0nAPmv0ScmYyuXiAwRTIXpbMMSsy3KmpFYPdYDg1hs/Xmv6cEngQ00W
-         gDrrrmODv6Sg1V7A1keQiN0XEBDXoTVvhSdXjWAvgBpuEOwDF2XdumPevBMFw29rfxHS
-         r3xkD6To+3liLwf4z+QeiiT/BX8mVtxJyeZ2BdpS6cOgLwozikH84JZ1KCpHwGlc+HkM
-         E5RZgZz7GZHGYnGfg8jPZwzKoepOd9ankKqCplBpO6fTlLs7AzIrDIjbJJsEY7xQVP86
-         SHBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OW6r9Ztak14Z94NLN85hpavnPWferFff+9qy6SUKk4g=;
-        b=Aap2P1SBJ0PFIys7oDvQ/oBrLXs0W1Hyi0sUdDMp92b9MLV2WatFeGJYlBEWHXCW/W
-         lH/uEc4t9JSbWbne9GvL5pZlnDc6tRJcJ5rc9oJBnqDqQyppwgWgjp81VnAJD4EmxNyx
-         E96uUceQ3C5jDiG3tRUeu3JhzcZg60RkjnPu/cmw9ZSZ95wSsHy2R0FtmAhgXWPcfbs7
-         o6DRCUcQutkfsUblinxke+mZy5YuQCLEQFOdp+7lEwrebjQ7SC+RHTdKMPkwaMGUocBD
-         YHYlmoquILvQRTQMCT1XKZLPtw4u/QE1yI5VyIfph2ER627weAXN8s2kzu3iTh0G4/kc
-         HmOw==
-X-Gm-Message-State: AOAM532s7+LwCiN2yHxdi4rSWtJQop+EN54cJRwQZMJSuvkh6WKVraoh
-        fL//ZW9c/Lvjg4/HQEIEdt4GNA==
-X-Google-Smtp-Source: ABdhPJyY7ngGsTRiOotvZgAIDUFql0+KdrxnztkmsKdBzpgq9oLFTrwe/YXta5EHMcKPW9w4HgfmDA==
-X-Received: by 2002:a2e:9b46:: with SMTP id o6mr21455694ljj.501.1625805104909;
-        Thu, 08 Jul 2021 21:31:44 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id h1sm13028lft.174.2021.07.08.21.31.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 08 Jul 2021 21:31:44 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: [RESEND PATCH v2 7/7] clk: qcom: videocc-sm8250: stop using mmcx regulator
-Date:   Fri,  9 Jul 2021 07:31:36 +0300
-Message-Id: <20210709043136.533205-8-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20210709043136.533205-1-dmitry.baryshkov@linaro.org>
-References: <20210709043136.533205-1-dmitry.baryshkov@linaro.org>
+        id S229611AbhGIEsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 00:48:16 -0400
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:51559 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229576AbhGIEsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 00:48:15 -0400
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.west.internal (Postfix) with ESMTP id D36FF320084E;
+        Fri,  9 Jul 2021 00:45:31 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Fri, 09 Jul 2021 00:45:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=traverse.com.au;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=mIyVDj+z5tzU60EY8rgjUDBXC0
+        HP2ZIeBXKfQ7Gbn3A=; b=bJWd6jq9ex8YOhyZKthMV7CRSPKIRmV9W7mENirzjL
+        jWT705wUIU/0DSe3oD1GDGuc7eiil1ZXovQMWitEItbH2B3lalQsI9LM2ESkHgUM
+        5kMUCqfn/s/yrWqGp/h+cSQRwX/dylE4Vqc2SDzIaEINt4I28fVb04AlHQc3qOgI
+        crk88UDYsQ2v2/1fueLM2H02T5Iscv0pwPuZq0aEbtwvP/ZLzeliSTWhtRtmjXZ9
+        YUcIOpOYZCf6yFsXjbqtlZnv9MJL+36ryoT90Fg8NWxJziC3H4hSsAAfF+C+HzMP
+        4s3pYdvx79WIkFh3G4XcZyzc9IYLLFQ8ha2dex6GxWFQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=mIyVDj+z5tzU60EY8
+        rgjUDBXC0HP2ZIeBXKfQ7Gbn3A=; b=bn8jFu2lVMO7HruWvN7M300Hpx8VFklbw
+        WSRRNH5vyfOA1X+djZp6/R0dt/dATlucbFe8FTwehmEII3Wx1m6agxbwqpYyeo6W
+        3B0GueDCdrU48Co3exPGDS8OmcmSR4EJFVLIA2q8IlicAqvdipSRXENifOBK4E+1
+        Dw5+fdXzEg9NMMTk7+9S8e2zZ3pcjYNyGBZBvhPu1UUZyrE/GvwRr0JB22ZUuk5e
+        2kRBmOXuaKy4JHXg7nyfyRCZu5AYKwWG5NMdLy09/lF2ak0fmxGuZsVEiOlNzjRh
+        tRKbKyhi3ComXV1tEOqVdU24a9jZGZjf9m/P+bn3bMUt9QB29Zy2w==
+X-ME-Sender: <xms:a9TnYEfatWTdhd1SCAQbGPBjmJq8JqNFt3YPjjHSYeUQExFlT-NNbg>
+    <xme:a9TnYGPW81Zk7SVaMi8HOr0nCPf3nu-5SHawb6Ye9BaPII3tGroQPpvqAIGFDPcs3
+    MzMLzuXAux2rTcYbXY>
+X-ME-Received: <xmr:a9TnYFiSE43L0KkuRV1fHkrSLzoiKRXrZAX0N_uXQPu9XtB07OXUG8zewPpy_CUgecp_2QlK4iWqC5BL-3vACn9zTX0nZdhQHRjEd9zbJH2Mi-b5T28de2CjQ5I7hhU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrtdehgdehkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepofgrthhhvgifucfo
+    tgeurhhiuggvuceomhgrthhtsehtrhgrvhgvrhhsvgdrtghomhdrrghuqeenucggtffrrg
+    htthgvrhhnpeehgeekkedtgefgueekjeetfeeujefhffdvgefhtefgveelkeegvdekuddu
+    veevffenucffohhmrghinhepvghpshhonhguvghvihgtvgdrtghomhenucevlhhushhtvg
+    hrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrghtthesthhrrghvvghr
+    shgvrdgtohhmrdgruh
+X-ME-Proxy: <xmx:a9TnYJ_L0yQortW87tuE0fB051cuYs8dutPjrONWWMQlmHEhg6tHnw>
+    <xmx:a9TnYAtR9stnSoYrvEZMVOJCUaAKcV1NjPj3Xv7e2DtyXH2FzqlAvQ>
+    <xmx:a9TnYAEAu-WfqDAsB-r1_eAJj19vtdbxK4EscvaazcXiLX6pemZkpg>
+    <xmx:a9TnYCLy6AJJFx450sWFSsN9bCXLS_fs7f4_RDQ9CgC6yyO4c3dgwA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 9 Jul 2021 00:45:29 -0400 (EDT)
+From:   Mathew McBride <matt@traverse.com.au>
+To:     linux-rtc@vger.kernel.org, Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Mathew McBride <matt@traverse.com.au>
+Subject: [PATCH v2 0/2] rtc: Implement support for EPSON RX-8035
+Date:   Fri,  9 Jul 2021 04:45:16 +0000
+Message-Id: <20210709044518.28769-1-matt@traverse.com.au>
+X-Mailer: git-send-email 2.30.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now as the common qcom clock controller code has been taught about power
-domains, stop mentioning mmcx supply as a way to power up the clock
-controller's gdscs.
+The EPSON RX-8035[SA] is a I2C real time clock module with
+built-in oscillator[1]. It is a very close relative of the EPSON
+RX-8025 that is supported by the rtc-rx8025 driver.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/clk/qcom/videocc-sm8250.c | 4 ----
- 1 file changed, 4 deletions(-)
+The main difference is that the RX-8035 has inverted the
+'oscillator stop' bit in the control register. The operation
+of the devices is otherwise identical for the features currently
+supported.
 
-diff --git a/drivers/clk/qcom/videocc-sm8250.c b/drivers/clk/qcom/videocc-sm8250.c
-index 7b435a1c2c4b..eedef85d90e5 100644
---- a/drivers/clk/qcom/videocc-sm8250.c
-+++ b/drivers/clk/qcom/videocc-sm8250.c
-@@ -276,7 +276,6 @@ static struct gdsc mvs0c_gdsc = {
- 	},
- 	.flags = 0,
- 	.pwrsts = PWRSTS_OFF_ON,
--	.supply = "mmcx",
- };
- 
- static struct gdsc mvs1c_gdsc = {
-@@ -286,7 +285,6 @@ static struct gdsc mvs1c_gdsc = {
- 	},
- 	.flags = 0,
- 	.pwrsts = PWRSTS_OFF_ON,
--	.supply = "mmcx",
- };
- 
- static struct gdsc mvs0_gdsc = {
-@@ -296,7 +294,6 @@ static struct gdsc mvs0_gdsc = {
- 	},
- 	.flags = HW_CTRL,
- 	.pwrsts = PWRSTS_OFF_ON,
--	.supply = "mmcx",
- };
- 
- static struct gdsc mvs1_gdsc = {
-@@ -306,7 +303,6 @@ static struct gdsc mvs1_gdsc = {
- 	},
- 	.flags = HW_CTRL,
- 	.pwrsts = PWRSTS_OFF_ON,
--	.supply = "mmcx",
- };
- 
- static struct clk_regmap *video_cc_sm8250_clocks[] = {
+Curiously, the RX-8025 is also supported by the ds1307 driver
+as the time register set is compatible. The control registers,
+however, are not.
+
+I have decided to implement the RX-8035 in rtc-rx8025 due the simplicity
+of that driver.
+
+As best as I can determine, the rtc-rx8025 driver was in the tree
+some months[1] before rx8025 support was added to ds1307[2].
+
+[1] - https://www5.epsondevice.com/en/products/rtc/rx8035sa.html
+[2] - commit 3c2b9075cbdb541dbe486bde45925c9610de6f35
+[3] - commit a216685818a54b4f15235068b53908f954850251
+
+Changes in v2:
+Coding style fixes as per suggestions
+Use 'model' instead of 'type' in drvdata
+Call rx8025_is_osc_stopped in a consistent manner
+
+Mathew McBride (2):
+  rtc: rx8025: implement RX-8035 support
+  dt-bindings: rtc: add Epson RX-8025 and RX-8035
+
+ .../devicetree/bindings/rtc/trivial-rtc.yaml  |  3 +
+ drivers/rtc/rtc-rx8025.c                      | 59 +++++++++++++++++--
+ 2 files changed, 57 insertions(+), 5 deletions(-)
+
 -- 
-2.30.2
+2.30.1
 
