@@ -2,131 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52D6D3C2957
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 20:55:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E58573C298C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 21:22:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230365AbhGIS6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 14:58:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36266 "EHLO
+        id S229552AbhGITZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 15:25:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230352AbhGIS6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 14:58:41 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5299FC0613E6
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 11:55:57 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id s17so13465011oij.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 11:55:57 -0700 (PDT)
+        with ESMTP id S229506AbhGITZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 15:25:36 -0400
+Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66230C0613DD;
+        Fri,  9 Jul 2021 12:22:51 -0700 (PDT)
+Received: by mail-qk1-x729.google.com with SMTP id t19so10400280qkg.7;
+        Fri, 09 Jul 2021 12:22:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hDBMTWvuC3NQG5GYyuFOUvgk3Gz5Q3JKQ7xIBH164Hw=;
-        b=t1wNfWAFzRd/LSvge8BEkwspf8qC363RNnNsyettGKyvBMAqU1MJjVB/SZJ+tNKHZe
-         wy5tu4W0u/64kNhoZlmftQnwEsTJqBM4qGQErzjEqsbDb3Oy9684poAnGFMjrn8RbtZy
-         b1SphMXcZseC94XW5R5aY6Pbungjf+g2aiKvMinnhNBkMvMGe5ADt1UIVkObdNSazUOQ
-         P1VpmsB5WC2t+6IO96DD3WwZusruNr8gHt2rmjqNhqdMNmORl61q7MowQ5vm6Mm5uIsd
-         E78o0qS7E8zyB90htaDuo+1U8qwi93H6NdHBc/1NaJyy9X0U+dqy063MsUid49MPxdud
-         qujw==
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=vQkGzinhkqT/iZv4cDuuh/s29v6DWdWXkPVZxeAxu60=;
+        b=Bm0yOPvHvaihbWpTL3H1l+ncNdcvgWc4HLdCWsrd/V09y4anp3ctzRfTDNaMa5yz60
+         24ZGQLQVCFbYmj1Qg/jlkTrxjdAzafdpzNMro9XGXCVRNLvjKC5Qs7OOAnaR3W1SczDC
+         +Dz4I4u9MJq2FMdkVxcTyj2s+T76og+T6HGuRHxRQWiB6OGMt65syWouXHWFUPnI6kVJ
+         MjjSunieobs3Je53tubo1UvhKsCdxH4N3hQMBYM2NfzYja7l3UQ7nMfscgfrgT39rYQl
+         BdXCg6mtIjfHLGStXTe+53AD8nk87apX37lrtA2xG2vm5bDP20+e1Yb2GC/ES5JGJ5LK
+         CQQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hDBMTWvuC3NQG5GYyuFOUvgk3Gz5Q3JKQ7xIBH164Hw=;
-        b=ooKCkOLvDUGjIwUHQ/R7TgL6URckkyb640zezq8cMnYudCmgbysV4gaebZ4KkcqpTD
-         fKrMAxMc4qvQT2FtoC3ZQmr3T0ovD8OD+NoUUy1bNhM2CATdrNjB8SwkrE/f3wYOson+
-         bczC1ykJdpUxovKD0rCgY9daom5BwijFNQOKFzbkUUs8Qpiew632tIMThaMPduveLP5D
-         FtQ83TXaWrjJnUiDYacyzfJCdgRqb2zVKdsAKi+UnQ1lU0zCynS2Z/DtCrq/lvYmcwOY
-         jAjP8UM5UAXMnCGjwSBzoCI2KzaoixD/YaWbN+XbBWiORWJNCubnaJChQ8pRFnaZ1YnI
-         wogQ==
-X-Gm-Message-State: AOAM533GWklnjENzs1nyH6cwWNj+xFO9FKjxrrLPZrzUkpMiAttAr0Hz
-        QHmb6lCR6/OIUjsW5k8RosAE9w==
-X-Google-Smtp-Source: ABdhPJwrdBkHKexQcA3MQDWTIUSN2qrz67mZEfXPOjoXn6nd5cGx4JU64z0rcGqP6Ik74wZQEtnGDA==
-X-Received: by 2002:aca:3d8a:: with SMTP id k132mr335865oia.120.1625856956740;
-        Fri, 09 Jul 2021 11:55:56 -0700 (PDT)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o63sm1403486oih.32.2021.07.09.11.55.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jul 2021 11:55:56 -0700 (PDT)
-Date:   Fri, 9 Jul 2021 13:55:54 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 7/7] clk: qcom: videocc-sm8250: stop using mmcx
- regulator
-Message-ID: <YOiburkKfepnS9TX@yoga>
-References: <20210709173202.667820-1-dmitry.baryshkov@linaro.org>
- <20210709173202.667820-8-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210709173202.667820-8-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=vQkGzinhkqT/iZv4cDuuh/s29v6DWdWXkPVZxeAxu60=;
+        b=Yy3IwEclB+MKed7mdt8v/plL6XWY3Gt1DQbt/mteQuWn6MBkZudA3CdDA8zpRexs9W
+         DYMyVcDFCeblBDU8r1pIuJNSz4XkfJU87PK7OeZajdbRSPiSRmZPkcCYEZZr4AgzNOZq
+         j1O0qKXGOzJW4uAqZCPp22jtkFLYjigQxwXhDO2t7qHHkmhnklnLW2eJx2N4HK13VI6o
+         JV3EHMQ1pIWhPGziUzmEKL1SYvmBWOFMhft/nXla1cgbEKNo51F+70eqii6xNu+YyVne
+         O+VkW2ob1Vr6vjlY/8CRfGJJNac00QkR7la2VDf1HRV0NsVHldAUPcsusv1t/0cTC9XU
+         JhnQ==
+X-Gm-Message-State: AOAM5319UQOuiQZ+hlnp6R/HWrIkvCCdNmPcc22PI8aPN5X7DGoRM4li
+        8y8oYu72D8RW0cc47IVTpXw=
+X-Google-Smtp-Source: ABdhPJwBIyu/zhah/lD711nISLAwXF9sBZyt8KUBqq/nMgK5fMnwp05EBd1Sf3hS8EzBjiqSv7EMlw==
+X-Received: by 2002:a37:a402:: with SMTP id n2mr29946484qke.103.1625858570562;
+        Fri, 09 Jul 2021 12:22:50 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id a20sm2905063qkg.44.2021.07.09.12.22.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Jul 2021 12:22:49 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 09 Jul 2021 15:22:48 -0400
+Message-Id: <CCOURFCFL6YC.1SGV7KHPWGIEI@shaak>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 04/10] iio: afe: rescale: reduce risk of integer
+ overflow
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>
+References: <20210706160942.3181474-1-liambeguin@gmail.com>
+ <20210706160942.3181474-5-liambeguin@gmail.com>
+ <13409f37-ecd4-5afb-e1ca-59f1f1f805b8@axentia.se>
+In-Reply-To: <13409f37-ecd4-5afb-e1ca-59f1f1f805b8@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 09 Jul 12:32 CDT 2021, Dmitry Baryshkov wrote:
+On Fri Jul 9, 2021 at 12:24 PM EDT, Peter Rosin wrote:
+>
+> On 2021-07-06 18:09, Liam Beguin wrote:
+> > From: Liam Beguin <lvb@xiphos.com>
+> >=20
+> > Reduce the risk of integer overflow by doing the scale calculation with
+> > 64bit integers and looking for a Greatest Common Divider for both parts
+> > of the fractional value.
+> >=20
+> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> > ---
+> >  drivers/iio/afe/iio-rescale.c | 12 +++++++++---
+> >  1 file changed, 9 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-rescal=
+e.c
+> > index 774eb3044edd..ba3bdcc69b16 100644
+> > --- a/drivers/iio/afe/iio-rescale.c
+> > +++ b/drivers/iio/afe/iio-rescale.c
+> > @@ -39,7 +39,8 @@ static int rescale_read_raw(struct iio_dev *indio_dev=
+,
+> >  			    int *val, int *val2, long mask)
+> >  {
+> >  	struct rescale *rescale =3D iio_priv(indio_dev);
+> > -	unsigned long long tmp;
+> > +	s64 tmp, tmp2;
+> > +	u32 factor;
+> >  	int ret;
+> > =20
+> >  	switch (mask) {
+> > @@ -67,8 +68,13 @@ static int rescale_read_raw(struct iio_dev *indio_de=
+v,
+> >  		}
+> >  		switch (ret) {
+> >  		case IIO_VAL_FRACTIONAL:
+> > -			*val *=3D rescale->numerator;
+> > -			*val2 *=3D rescale->denominator;
+> > +			tmp =3D (s64)*val * rescale->numerator;
+> > +			tmp2 =3D (s64)*val2 * rescale->denominator;
+> > +			factor =3D gcd(tmp, tmp2);
 
-> Now as the common qcom clock controller code has been taught about power
-> domains, stop mentioning mmcx supply as a way to power up the clock
-> controller's gdscs.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Hi Peter,
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>
+> Hi!
+>
+> gcd() isn't exactly free. I do not think it is suitable to call it for
+> each
+> and every value. So, if you really need it, then it should only be used
+> when there is an actual overflow (or if there is a high risk if that's
+> somehow easier).
 
-Regards,
-Bjorn
+Understood, digging into this a little bit, it seems like
+check_mul_overflow() could be used here.
 
-> ---
->  drivers/clk/qcom/videocc-sm8250.c | 4 ----
->  1 file changed, 4 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/videocc-sm8250.c b/drivers/clk/qcom/videocc-sm8250.c
-> index 7b435a1c2c4b..eedef85d90e5 100644
-> --- a/drivers/clk/qcom/videocc-sm8250.c
-> +++ b/drivers/clk/qcom/videocc-sm8250.c
-> @@ -276,7 +276,6 @@ static struct gdsc mvs0c_gdsc = {
->  	},
->  	.flags = 0,
->  	.pwrsts = PWRSTS_OFF_ON,
-> -	.supply = "mmcx",
->  };
->  
->  static struct gdsc mvs1c_gdsc = {
-> @@ -286,7 +285,6 @@ static struct gdsc mvs1c_gdsc = {
->  	},
->  	.flags = 0,
->  	.pwrsts = PWRSTS_OFF_ON,
-> -	.supply = "mmcx",
->  };
->  
->  static struct gdsc mvs0_gdsc = {
-> @@ -296,7 +294,6 @@ static struct gdsc mvs0_gdsc = {
->  	},
->  	.flags = HW_CTRL,
->  	.pwrsts = PWRSTS_OFF_ON,
-> -	.supply = "mmcx",
->  };
->  
->  static struct gdsc mvs1_gdsc = {
-> @@ -306,7 +303,6 @@ static struct gdsc mvs1_gdsc = {
->  	},
->  	.flags = HW_CTRL,
->  	.pwrsts = PWRSTS_OFF_ON,
-> -	.supply = "mmcx",
->  };
->  
->  static struct clk_regmap *video_cc_sm8250_clocks[] = {
-> -- 
-> 2.30.2
-> 
+I'll give it a try and will look at implementing Jonathan's suggestion
+in case we're dealing with a case where gcd() returns 1.
+
+Thanks,
+Liam
+
+>
+> Cheers,
+> Peter
+>
+> > +			do_div(tmp, factor);
+> > +			*val =3D tmp;
+> > +			do_div(tmp2, factor);
+> > +			*val2 =3D tmp2;
+> >  			return ret;
+> >  		case IIO_VAL_INT:
+> >  			*val *=3D rescale->numerator;
+> >=20
+
