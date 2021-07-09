@@ -2,233 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5CEE3C215C
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 11:20:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FD193C2185
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 11:25:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231790AbhGIJXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 05:23:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45968 "EHLO
+        id S231725AbhGIJ1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 05:27:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbhGIJXC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 05:23:02 -0400
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25200C0613DD
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 02:20:19 -0700 (PDT)
-Received: by mail-pg1-x535.google.com with SMTP id a2so9349031pgi.6
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 02:20:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=hoQn3oFU7ZRtUqLdJQZSv625TdF5Nr5oVUPR/hjrbE8=;
-        b=OtahX2vQRDH4vXsYYawxyPICBEajoJPujSji9KpHX7QFCnQ7qpsFQCJKvcOYt78MZ2
-         l9V1vS2dVHmqUivOaCqV/UhxOvzEnqckvtG2l7AdrVvlj7kfjdEC1uPcNMwzC8q5EJ5J
-         2YgTcYNnN2ksSizkhO4Kf4LLMVz5eudfLoFjM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hoQn3oFU7ZRtUqLdJQZSv625TdF5Nr5oVUPR/hjrbE8=;
-        b=qMgoDOGOkgHiOM6NtPtx43aix6tC1lRLqdPCX3SwhtFX0CL0SkXV/O4bJe98SxQGka
-         uMNntfWyNx/y9ow3VmpNbjh3SOTG5rmJuct5YtvF41i2hUnGTSebniB0avTLOI4Drlmp
-         43RR9dnv0JpuUS+XCTGdidprQY6LeoEJD+39hOU/glYz0XkA/jg0B3/TDsOaW2rI3KYs
-         VDBuArjbvVXjG70MZxrElmXrAYJpRhLvc7LzDTYIcIVfdB+a5Y1hCWmz6hsR2eE4FOE8
-         vPRZZMn7d/kNSh8xy/T97hXWeXV7Ic9LHHArGrPCBco6AD0h3vy+yERgGXT7K6/SjtFP
-         oCww==
-X-Gm-Message-State: AOAM532WODiaHH+RCcvraMHfEVzmr5YOJd6ukMRtylHyfAGfaIdF2Vi8
-        VLrSsR9kMphGdOUXgv0Q54IUFg==
-X-Google-Smtp-Source: ABdhPJw3RZDCkA6BRAqJQUHliq1oLYsw8xyE5dnnG1857hRiokfmx9p+cHA/vCqiDreL4+UpfdVGYw==
-X-Received: by 2002:a62:2686:0:b029:30c:828f:4447 with SMTP id m128-20020a6226860000b029030c828f4447mr36479426pfm.31.1625822418614;
-        Fri, 09 Jul 2021 02:20:18 -0700 (PDT)
-Received: from chromium.org ([2401:fa00:8f:203:735b:c3cc:6957:ae6d])
-        by smtp.gmail.com with ESMTPSA id n34sm4839205pji.45.2021.07.09.02.20.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jul 2021 02:20:18 -0700 (PDT)
-Date:   Fri, 9 Jul 2021 18:20:13 +0900
-From:   Tomasz Figa <tfiga@chromium.org>
-To:     "kyrie.wu" <kyrie.wu@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bin Liu <bin.liu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, xia.jiang@mediatek.com,
-        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
-Subject: Re: [PATCH v2,4/9] media: mtk-jpegenc: Refactor jpeg clock interface
-Message-ID: <YOgUzVmL9EDEdVRz@chromium.org>
-References: <1625038079-25815-1-git-send-email-kyrie.wu@mediatek.com>
- <1625038079-25815-5-git-send-email-kyrie.wu@mediatek.com>
+        with ESMTP id S231827AbhGIJ1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 05:27:48 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53DEAC0613DD
+        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 02:25:05 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1m1mke-0006Bw-KC; Fri, 09 Jul 2021 11:24:52 +0200
+Message-ID: <17cadf46f4a0f9771fdde1c9aba9ffecb20efc9f.camel@pengutronix.de>
+Subject: Re: [PATCH v14 05/12] dmaengine: dma: imx-sdma: add fw_loaded and
+ is_ram_script
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Robin Gong <yibin.gong@nxp.com>, vkoul@kernel.org,
+        mark.rutland@arm.com, broonie@kernel.org, robh+dt@kernel.org,
+        catalin.marinas@arm.com, will.deacon@arm.com, shawnguo@kernel.org,
+        festevam@gmail.com, s.hauer@pengutronix.de,
+        martin.fuzzey@flowbird.group, u.kleine-koenig@pengutronix.de,
+        dan.j.williams@intel.com, matthias.schiffer@ew.tq-group.com,
+        frieder.schrempf@kontron.de, m.felsch@pengutronix.de,
+        xiaoning.wang@nxp.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Date:   Fri, 09 Jul 2021 11:24:48 +0200
+In-Reply-To: <1617809456-17693-6-git-send-email-yibin.gong@nxp.com>
+References: <1617809456-17693-1-git-send-email-yibin.gong@nxp.com>
+         <1617809456-17693-6-git-send-email-yibin.gong@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.1 (3.40.1-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1625038079-25815-5-git-send-email-kyrie.wu@mediatek.com>
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kyrie,
-
-On Wed, Jun 30, 2021 at 03:27:54PM +0800, kyrie.wu wrote:
-> Using the needed param for lock on/off function.
+Am Mittwoch, dem 07.04.2021 um 23:30 +0800 schrieb Robin Gong:
+> Add 'fw_loaded' and 'is_ram_script' to check if the script used by channel
+> is ram script and it's loaded or not, so that could prevent meaningless
+> following malloc dma descriptor and bd allocate in sdma_transfer_init(),
+> otherwise memory may be consumed out potentially without free in case
+> that spi fallback into pio while dma transfer failed by sdma firmware not
+> ready(next ERR009165 patch depends on sdma RAM scripts/firmware).
 > 
-> Signed-off-by: kyrie.wu <kyrie.wu@mediatek.com>
+> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+> Acked-by: Vinod Koul <vkoul@kernel.org>
 > ---
->  drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c | 46 ++++++++++++++++++++++++-
->  drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h | 28 +++++++++++++++
->  2 files changed, 73 insertions(+), 1 deletion(-)
->
-
-Thanks for the patch. Please see my comments inline.
-
-Also, how does this patch refactor anything? I only see new code being
-added. Does the subject and/or commit message need some adjustment?
-
-> diff --git a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c
-> index 24edd87..7c053e3 100644
-> --- a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c
-> +++ b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c
-> @@ -1053,7 +1053,32 @@ static int mtk_jpeg_queue_init(void *priv, struct vb2_queue *src_vq,
->  
->  static void mtk_jpeg_clk_on(struct mtk_jpeg_dev *jpeg)
->  {
-> -	int ret;
-> +	struct mtk_jpeg_dev *comp_dev;
-> +	struct mtk_jpegenc_pm *pm;
-> +	struct mtk_jpegenc_clk *jpegclk;
-> +	struct mtk_jpegenc_clk_info *clk_info;
-> +	int ret, i;
-> +
-> +	if (jpeg->variant->is_encoder) {
-> +		for (i = 0; i < MTK_JPEGENC_HW_MAX; i++) {
-
-Why do we need to enable clocks for all hardware instances? Wouldn't it
-make more sense to only enable the clock for the instance that is
-selected for given encode job?
-
-> +			comp_dev = jpeg->hw_dev[i];
-> +			if (!comp_dev) {
-> +				dev_err(jpeg->dev, "Failed to get hw dev\n");
-> +				return;
-> +			}
-> +
-> +			pm = &comp_dev->pm;
-> +			jpegclk = &pm->venc_clk;
-> +			clk_info = jpegclk->clk_info;
-> +			ret = clk_prepare_enable(clk_info->jpegenc_clk);
-> +			if (ret) {
-> +				dev_err(jpeg->dev, "jpegenc clk enable %d %s fail\n",
-> +				       i, jpegclk->clk_info->clk_name);
-
-Missing undo. (But the suggestion below would take care of it.)
-
-> +				return;
-> +			}
-> +		}
-
-How about using the clk_bulk_ API instead of the open coded loop?
-
-> +		return;
-> +	}
-
-Rather than multiple if/else variants in one function, it's a common
-practice to have two separate functions and then a function pointer in a
-hardware variant descriptor struct pointing to the right function. It
-makes the code more readable.
-
->  
->  	ret = mtk_smi_larb_get(jpeg->larb);
->  	if (ret)
-> @@ -1067,6 +1092,25 @@ static void mtk_jpeg_clk_on(struct mtk_jpeg_dev *jpeg)
->  
->  static void mtk_jpeg_clk_off(struct mtk_jpeg_dev *jpeg)
->  {
-> +	struct mtk_jpeg_dev *comp_dev;
-> +	struct mtk_jpegenc_pm *pm;
-> +	struct mtk_jpegenc_clk *jpegclk;
-> +	int i;
-> +
-> +	if (jpeg->variant->is_encoder) {
-> +		for (i = 0; i < MTK_JPEGENC_HW_MAX; i++) {
-> +			comp_dev = jpeg->hw_dev[i];
-> +			if (!comp_dev) {
-> +				dev_err(jpeg->dev, "Failed to get hw dev\n");
-> +				return;
-> +			}
-> +
-> +			pm = &comp_dev->pm;
-> +			jpegclk = &pm->venc_clk;
-> +			clk_disable_unprepare(jpegclk->clk_info->jpegenc_clk);
-> +		}
-> +		return;
-> +	}
-
-Same comments here as for the clk_on function.
-
->  	clk_bulk_disable_unprepare(jpeg->variant->num_clks,
->  				   jpeg->variant->clks);
->  	mtk_smi_larb_put(jpeg->larb);
-> diff --git a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h
-> index bdbd768..93ea71c 100644
-> --- a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h
-> +++ b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h
-> @@ -75,6 +75,31 @@ struct mtk_jpeg_variant {
->  	u32 cap_q_default_fourcc;
+>  drivers/dma/imx-sdma.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/dma/imx-sdma.c b/drivers/dma/imx-sdma.c
+> index 1c636d2..78dcfe2 100644
+> --- a/drivers/dma/imx-sdma.c
+> +++ b/drivers/dma/imx-sdma.c
+> @@ -381,6 +381,7 @@ struct sdma_channel {
+>  	enum dma_status			status;
+>  	struct imx_dma_data		data;
+>  	struct work_struct		terminate_worker;
+> +	bool				is_ram_script;
 >  };
 >  
-> +enum mtk_jpegenc_hw_id {
-> +	MTK_JPEGENC_HW0,
-> +	MTK_JPEGENC_HW1,
-> +	MTK_JPEGENC_HW_MAX,
-> +};
-
-There is no added value from the enum above. Just use integer index,
-
+>  #define IMX_DMA_SG_LOOP		BIT(0)
+> @@ -444,6 +445,7 @@ struct sdma_engine {
+>  	struct sdma_buffer_descriptor	*bd0;
+>  	/* clock ratio for AHB:SDMA core. 1:1 is 1, 2:1 is 0*/
+>  	bool				clk_ratio;
+> +	bool                            fw_loaded;
+>  };
+>  
+>  static int sdma_config_write(struct dma_chan *chan,
+> @@ -899,6 +901,7 @@ static void sdma_get_pc(struct sdma_channel *sdmac,
+>  	case IMX_DMATYPE_SSI_DUAL:
+>  		per_2_emi = sdma->script_addrs->ssish_2_mcu_addr;
+>  		emi_2_per = sdma->script_addrs->mcu_2_ssish_addr;
+> +		sdmac->is_ram_script = true;
+>  		break;
+>  	case IMX_DMATYPE_SSI_SP:
+>  	case IMX_DMATYPE_MMC:
+> @@ -913,6 +916,7 @@ static void sdma_get_pc(struct sdma_channel *sdmac,
+>  		per_2_emi = sdma->script_addrs->asrc_2_mcu_addr;
+>  		emi_2_per = sdma->script_addrs->asrc_2_mcu_addr;
+>  		per_2_per = sdma->script_addrs->per_2_per_addr;
+> +		sdmac->is_ram_script = true;
+>  		break;
+>  	case IMX_DMATYPE_ASRC_SP:
+>  		per_2_emi = sdma->script_addrs->shp_2_mcu_addr;
+> @@ -1309,6 +1313,11 @@ static struct sdma_desc *sdma_transfer_init(struct sdma_channel *sdmac,
+>  {
+>  	struct sdma_desc *desc;
+>  
+> +	if (!sdmac->sdma->fw_loaded && sdmac->is_ram_script) {
+> +		dev_warn_once(sdmac->sdma->dev, "sdma firmware not ready!\n");
+> +		goto err_out;
+> +	}
 > +
-> +/** * struct mtk_jpegenc_clk_info - Structure used to store clock name */
-> +struct mtk_jpegenc_clk_info {
-> +	const char	*clk_name;
-> +	struct clk	*jpegenc_clk;
-> +};
+>  	desc = kzalloc((sizeof(*desc)), GFP_NOWAIT);
+>  	if (!desc)
+>  		goto err_out;
+> @@ -1559,6 +1568,8 @@ static int sdma_config_write(struct dma_chan *chan,
+>  {
+>  	struct sdma_channel *sdmac = to_sdma_chan(chan);
+>  
+> +	sdmac->is_ram_script = false;
 > +
-> +/* struct mtk_vcodec_clk - Structure used to store vcodec clock information */
-> +struct mtk_jpegenc_clk {
-> +	struct mtk_jpegenc_clk_info	*clk_info;
-> +	int	clk_num;
-> +};
+While it's working correctly, I find it confusing to have this
+initialization at this point in the code. Please fold this into
+sdma_get_pc(), where it gets changed as needed.
 
-This looks like the generic clk_bulk_data struct.
+Other than this small issue, this patch is:
+Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
 
+>  	if (direction == DMA_DEV_TO_MEM) {
+>  		sdmac->per_address = dmaengine_cfg->src_addr;
+>  		sdmac->watermark_level = dmaengine_cfg->src_maxburst *
+> @@ -1738,6 +1749,8 @@ static void sdma_load_firmware(const struct firmware *fw, void *context)
+>  
+>  	sdma_add_scripts(sdma, addr);
+>  
+> +	sdma->fw_loaded = true;
 > +
-> +/** * struct mtk_vcodec_pm - Power management data structure */
+>  	dev_info(sdma->dev, "loaded firmware %d.%d\n",
+>  			header->version_major,
+>  			header->version_minor);
 
-vcodec?
 
-> +struct mtk_jpegenc_pm {
-> +	struct mtk_jpegenc_clk	venc_clk;
-
-venc?
-
-> +	struct device	*dev;
-> +	struct mtk_jpeg_dev	*mtkdev;
-> +};
-> +
->  /**
->   * struct mtk_jpeg_dev - JPEG IP abstraction
->   * @lock:		the mutex protecting this structure
-> @@ -103,6 +128,9 @@ struct mtk_jpeg_dev {
->  	struct device		*larb;
->  	struct delayed_work job_timeout_work;
->  	const struct mtk_jpeg_variant *variant;
-> +
-> +	struct mtk_jpeg_dev *hw_dev[MTK_JPEGENC_HW_MAX];
-
-Why is this recursively having the same struct as its children?
-Should we have a separate struct that describes a hardware instance
-(core?)?
-
-Best regards,
-Tomasz
