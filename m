@@ -2,116 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 065593C2233
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 12:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D25883C2242
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 12:31:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232113AbhGIK3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 06:29:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33198 "EHLO
+        id S232052AbhGIKeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 06:34:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232010AbhGIK33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 06:29:29 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F650C0613E5
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 03:26:46 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id i20so15287767ejw.4
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 03:26:46 -0700 (PDT)
+        with ESMTP id S232113AbhGIKeY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 06:34:24 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA91C0613DD;
+        Fri,  9 Jul 2021 03:31:41 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id he13so15263448ejc.11;
+        Fri, 09 Jul 2021 03:31:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EE3G7qk9YjV6WICjXG49f7wI9xsGOugrChSPRCk7KBY=;
-        b=j6ueWrIhKJIqX+ueklioki6dIG0OTnmNayymWlaVcRO1HjVRRLInq8113rpC0VzsJE
-         LJlOHhgMqrPL7AbRHbdrjOpH5SkezCozW4eeIWh4PO1FXTa5NEVaruBmAWnQGauz7eGj
-         FQ2l2WvAoKeryPAxZP6iCnPC+YpHdEbovQavQ=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=AV0itCy7+VSBd3Vis/NNTVsow+Jfw/GotJ/dIEDBhVY=;
+        b=anZ1nB7jMfSF/BbJg/7OUb7JRZa+f+T42NmPKrSux5SApcRiWTOl0wBIx0GPyPI7vu
+         u9KfAcLV5QoM390qW2EjDO12itATk6FybnFX+ZhyFo60CrP0+snLP5r02bBeTNdWu0q1
+         YkAktOcdzlJaoEfWu/1yiXZTgmGF3b1iWP2KoupKkJfBfyGxSJ2OooD5YK02fVK+0+RR
+         /jbPPRtw7EIV6xizwA73xKvlHU2aRxX53pcKZwVtalwsMq11iAc7kMa5U28NRWsv0KX6
+         8yrj/MlnmtHU/+n8ETvJycRDtfZ8IoZjsjwUwjb23aceU81TakIjAIyR/dmuxspREmQN
+         FMhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EE3G7qk9YjV6WICjXG49f7wI9xsGOugrChSPRCk7KBY=;
-        b=F3x3ypNk14tBhDHu4poX3nJ89CawXZniejllOBRBF4dGYCzTh4M0SyWAzxBVPXP4aX
-         kjOqTdGFGoe+p93chGcYkfh4ol6cSL7xB0iv9Qk7pbl5VEA8z7/tVFt520KNSDYbnKbb
-         QG0rJtS+9seqS/6/xaQjpjXBDamPdDWx/6ZbTUB7b4yZBgt+e3CvBU6T9mF2necDPTqH
-         +UfcVVL+Ck1KzXh2IIAPZ9pgS+t5HCf15uj01eWWt9M/nXUxDpNkdezgnqYq8aWvTfoL
-         S61WAQm5G0W4cHPFXWc2UJFZE7m8/RTM7EmcnfbgLdOY7LGKp3nwOwaoCBcFTTjuWb/C
-         4Mew==
-X-Gm-Message-State: AOAM531hTFLqfTtztysfBUM9r9/7roKFTEh/3IwQ+TUZDuo1CxRw/HRQ
-        nsnt/A37gLLPSD+Teik9oP8V7cMscJfmEyXO
-X-Google-Smtp-Source: ABdhPJwV8Ozskr3jto9crPxioRM2GaJFGbm1QoJ7xQwSkjCOZMhqY8lhYxSYI/nKCSzMDdbJ1NIyxw==
-X-Received: by 2002:a17:906:48cd:: with SMTP id d13mr16856566ejt.311.1625826404295;
-        Fri, 09 Jul 2021 03:26:44 -0700 (PDT)
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com. [209.85.221.50])
-        by smtp.gmail.com with ESMTPSA id z21sm2679569edb.23.2021.07.09.03.26.43
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 09 Jul 2021 03:26:43 -0700 (PDT)
-Received: by mail-wr1-f50.google.com with SMTP id i94so11463618wri.4
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 03:26:43 -0700 (PDT)
-X-Received: by 2002:adf:f1c9:: with SMTP id z9mr12812492wro.159.1625826403104;
- Fri, 09 Jul 2021 03:26:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <1625038079-25815-1-git-send-email-kyrie.wu@mediatek.com>
-In-Reply-To: <1625038079-25815-1-git-send-email-kyrie.wu@mediatek.com>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Fri, 9 Jul 2021 19:26:31 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5D+Zwh6JxJqAbyLX9XeyFdnmjUgWTpFA6GvO2qNktOxBQ@mail.gmail.com>
-Message-ID: <CAAFQd5D+Zwh6JxJqAbyLX9XeyFdnmjUgWTpFA6GvO2qNktOxBQ@mail.gmail.com>
-Subject: Re: [PATCH v2,0/9] Support jpeg encode for MT8195
-To:     "kyrie.wu" <kyrie.wu@mediatek.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bin Liu <bin.liu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, Xia.Jiang@mediatek.com,
-        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=AV0itCy7+VSBd3Vis/NNTVsow+Jfw/GotJ/dIEDBhVY=;
+        b=eKrT51sGlce6zjJyyWuTBuNQ/IwxwErTFUoKCny/UAkyy2wjxe6UYntGW31hAIWjEx
+         zAMG+qqKIcR+UW8behJ3vO29POb04kp1GXbA6jeNYl7eSAensh0sKUpMvSGfFrOek1g6
+         n0J3w2y50GU6QXxZi+OrEPbpitAtSKKQKtpBfyfUGk5L5xqK09+5u5fOgxflcg1mGGHz
+         /E43+PNMHMf6CT4P9r4Y4jXOvwd98W4SGbX5guzcbOvOTvHcEER1v6Zx9NgjahXsfbla
+         Sm4Vc9kt+4ChdjFqZa0N5dT9VCp1p0gM04uBYnCoVDEioHb1J3K7Y1AT6eC9ckcR001x
+         w6iA==
+X-Gm-Message-State: AOAM533AcHdyfTnaiOPoiR2/dtPr6Egqh75N9AR8fUnDjq2hTUXrIOae
+        ODKCFaHKkfCOJa6qwd7IarM=
+X-Google-Smtp-Source: ABdhPJy2WkJz4UO1xDyhUCmcuIp8rOMlK4AzxuR9rvZrefzpo11yy+9cnOmhMOhgzWDCxlQ6Lrc48Q==
+X-Received: by 2002:a17:907:a04e:: with SMTP id gz14mr3062361ejc.24.1625826700118;
+        Fri, 09 Jul 2021 03:31:40 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id c2sm2180978ejz.73.2021.07.09.03.31.39
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 Jul 2021 03:31:39 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: rockchip: rk3188: add space after &grf
+Date:   Fri,  9 Jul 2021 12:31:34 +0200
+Message-Id: <20210709103134.1750-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kyrie,
+Fix layout by adding a space after &grf.
 
-On Wed, Jun 30, 2021 at 4:31 PM kyrie.wu <kyrie.wu@mediatek.com> wrote:
->
-> add component framework to using multi-HW for MT8195 jpeg encode.
->
-> kyrie.wu (9):
->   dt-bindings: mediatek: Add mediatek, mt8195-jpgenc compatible
->   media: mtk-jpegenc: Add MT8195 JPEG venc driver
->   media: mtk-jpegenc: remove redundant code of irq
->   media: mtk-jpegenc: Refactor jpeg clock interface
->   media: mtk-jpegenc: Generalize jpeg encode irq interfaces
->   media: mtk-jpegenc: Generalize jpegenc HW timeout interfaces
->   media: mtk-jpegenc: Use component framework to manage each hardware
->     information
->   media: mtk-jpegenc: Generalize jpegenc HW operations interfaces
->   media: mtk-jpegenc: Refactor jpegenc device run interface
->
->  .../bindings/media/mediatek-jpeg-encoder.yaml      |   3 +
->  drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c    | 600 +++++++++++++++++----
->  drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h    |  69 ++-
->  drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c  | 208 +++++++
->  4 files changed, 786 insertions(+), 94 deletions(-)
->
-> ---
-> This patch dependents on "dt-bindings: mediatek: convert mtk jpeg decoder/encoder to yaml"[1]
->
-> Please also accept this patch together with [1].
->
-> [1]https://lore.kernel.org/patchwork/patch/1445298/
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk3188.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thank you for the series. However, I gave reviewing it a try and
-unfortunately had a very hard time following it, because of the way
-the patches are organized. Please make sure to read and understand the
-kernel patch submission guide[1], adjust the series appropriately and
-send a new version which I'll review.
+diff --git a/arch/arm/boot/dts/rk3188.dtsi b/arch/arm/boot/dts/rk3188.dtsi
+index 793a1b911..6764776cc 100644
+--- a/arch/arm/boot/dts/rk3188.dtsi
++++ b/arch/arm/boot/dts/rk3188.dtsi
+@@ -638,7 +638,7 @@
+ 	power-domains = <&power RK3188_PD_GPU>;
+ };
+ 
+-&grf{
++&grf {
+ 	compatible = "rockchip,rk3188-grf", "syscon", "simple-mfd";
+ 
+ 	usbphy: usbphy {
+-- 
+2.11.0
 
-[1] https://www.kernel.org/doc/html/latest/process/submitting-patches.html
-
-Best regards,
-Tomasz
