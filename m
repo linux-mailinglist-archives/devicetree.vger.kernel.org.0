@@ -2,183 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85F533C1CE5
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 02:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 146503C1D06
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 03:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbhGIA67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Jul 2021 20:58:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47474 "EHLO
+        id S230193AbhGIBdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Jul 2021 21:33:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbhGIA66 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 20:58:58 -0400
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFCC5C061574
-        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 17:56:14 -0700 (PDT)
-Received: by mail-oi1-x231.google.com with SMTP id 65so8192624oie.11
-        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 17:56:14 -0700 (PDT)
+        with ESMTP id S230222AbhGIBdc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Jul 2021 21:33:32 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694ECC061574
+        for <devicetree@vger.kernel.org>; Thu,  8 Jul 2021 18:30:49 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id a18so5375505ljk.6
+        for <devicetree@vger.kernel.org>; Thu, 08 Jul 2021 18:30:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=xH3DG3G4r5p9q8V7df0cUTAWnPcNLJfwZNKDWmC9XZ4=;
-        b=WW2KIFSpYS45rQ1HgUSJPP0fBCbTpG59d4MCm0F05Sz0gzPrpDcSn+xUENac2npEqO
-         G48ZYewIkdwBRh3mOyYP+fQWK0jth43LKJJwLU0hhF9fNOc012T2XD/xORrZk7ja6NR3
-         jcJYpgtgYZ4Od12rLWWMSvzZXW5SePPE7xMOI=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wyP7J/Id9E/NiKqq0jzeu92fkn8P4xmDSwnVicPRwts=;
+        b=L0qpGINqAiLCW1vDeTta9d6iA3Qhk3vsc0qpOo3yqfMdLWREhYEwaHTQ6MVA7q1hYr
+         +AWh2YiU680qW0hGh9a7jxN6EZdNgJ8i7DiXR7kH5fMlHLxW8qEUIzF9zkHnmk7rClVq
+         1PlhS0v65woul6wWtwRrz+VfPIg0eu9DTn7QVUCqL6+dRngkTHLhz1T2sQgdGlVebFis
+         F6QMElGQc6qhoGdpEFsQvh4lmbQAYoZxF72OZKia0HVnTLrGYOAidBVTm+0ROmUK7qwj
+         Oybaoadvn99Ul0IhAfER5yEMiAr77dSb8iFZxUH1IfUDxV7PFnNf487c9ITYC3eY0DKH
+         qMtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=xH3DG3G4r5p9q8V7df0cUTAWnPcNLJfwZNKDWmC9XZ4=;
-        b=WC6V7pTvziQTvJS6ZBIuINgY9Lv6wVna8Q5ctyNSgHyJGn4XMJBlxI3cnp8NIOAT2I
-         e8dEggnKBiM1QfS9OKXoJRpooWOJ+G3S/ztqPtECO7JgM+vD3mkyFrGcvLlrX4AG9ulX
-         j6dpnmvKNTi6EQC1F2AxyUDmhObvWLsXZt8901GoP1SPRXOwXr1+LSfqXkIZPZ3apowy
-         V/hd672o9yoOCSXiyPnPk7UtBkXASj2WfXHmZukv5iSg1uloz1F/dk3U4Juprn0Y18rW
-         7YDZq8wVFVwKn+AGwdZ3MtpXJdqkZCUXo8obd2x6pCVqArg4QTe7OgBzEh3xf0AXxQ02
-         lg2w==
-X-Gm-Message-State: AOAM533uF71SRXWJRM6WODm6i14Kd9JgBMxq7PZRm5sDy4V94OGbeZqu
-        0gmMdxziB165tRUvimqxGJ00CfQuHCuNOVJ7CPmI2Q==
-X-Google-Smtp-Source: ABdhPJzxjyqVATWH3w+MMo3kXqpJVZaUvx6HdgTHiREi5pmsl9YOTMUnRd+WQ/UXNNiSuf9EAjAvqJVe5LhJBIFx7l4=
-X-Received: by 2002:aca:3012:: with SMTP id w18mr5941111oiw.125.1625792174060;
- Thu, 08 Jul 2021 17:56:14 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 9 Jul 2021 00:56:13 +0000
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wyP7J/Id9E/NiKqq0jzeu92fkn8P4xmDSwnVicPRwts=;
+        b=YHzhQy7aCp8xK72Ae7ak3MiG5i81+zfw5TctKNNtqwobx9UtbRBo+Rb6LGO0ZIXjV0
+         83h0CKMrnZjjYQw9rgb9zWkOiDKv95Z3UPP6Zdpi95jLVj7ADYlZ9ggfrH4fbv7G5xYu
+         HNq+yypHIAWOmSiSujKlrAwRjGE/WiW1IPVfO+Ethbv3q0/pIzL1ffmVrlbF1Ywn//9L
+         jJwUdx7qMtXZ2KawbGoks+5AzEA30GPA2lH8pCPiZvJdC/R1UhlHG17f6pglJ1s8C1YI
+         bJkjKEekIk15hJ5hciytri3UTsmwXT1uBoLFhn/cUbbqvld39PnSeVb6Tm4xxV6EPFYL
+         fN2A==
+X-Gm-Message-State: AOAM533ITNFb5LuSnjN2L/IDBfLqNcbdm10qZFMCjx0Au3nfPAaC8v4R
+        wn5NM7Rwh3nn5vU9e34MstgNfg==
+X-Google-Smtp-Source: ABdhPJwSiOxtKirHq+83112xdbi6R/UqdH2ba0ZYAeKWBSHK7MNc8HrJzfkrZWgI4roFi/eL5MwEWw==
+X-Received: by 2002:a2e:a546:: with SMTP id e6mr27080250ljn.155.1625794247525;
+        Thu, 08 Jul 2021 18:30:47 -0700 (PDT)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id u16sm405637ljj.113.2021.07.08.18.30.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 08 Jul 2021 18:30:47 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/7] clk: qcom: use power-domain for sm8250's clock controllers
+Date:   Fri,  9 Jul 2021 04:30:36 +0300
+Message-Id: <20210709013043.495233-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <2ad7a00924b5065bf61c47e8b6d24339@codeaurora.org>
-References: <20210604135439.19119-1-rojay@codeaurora.org> <20210604135439.19119-2-rojay@codeaurora.org>
- <YLxHTDxVcSvVxsd5@builder.lan> <98befc79fc039496b0c12d7983319c92@codeaurora.org>
- <2ad7a00924b5065bf61c47e8b6d24339@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Fri, 9 Jul 2021 00:56:13 +0000
-Message-ID: <CAE-0n51NfHSwRQvG0HnTcHBkv=Huy-CXEwJCxLG03MN3dSe5kA@mail.gmail.com>
-Subject: Re: [PATCH V3 1/3] arm64: dts: sc7280: Add QSPI node
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>, rojay@codeaurora.org
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        saiprakash.ranjan@codeaurora.org, msavaliy@qti.qualcomm.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting rojay@codeaurora.org (2021-07-06 02:19:27)
-> On 2021-06-08 13:37, rojay@codeaurora.org wrote:
-> > On 2021-06-06 09:25, Bjorn Andersson wrote:
-> >> On Fri 04 Jun 08:54 CDT 2021, Roja Rani Yarubandi wrote:
-> >>
-> >>> Add QSPI DT node for SC7280 SoC.
-> >>>
-> >>> Signed-off-by: Roja Rani Yarubandi <rojay@codeaurora.org>
-> >>> ---
-> >>> Changes in V3:
-> >>>  - Broken the huge V2 patch into 3 smaller patches.
-> >>>    1. QSPI DT nodes
-> >>>    2. QUP wrapper_0 DT nodes
-> >>>    3. QUP wrapper_1 DT nodes
-> >>>
-> >>> Changes in V2:
-> >>>  - As per Doug's comments removed pinmux/pinconf subnodes.
-> >>>  - As per Doug's comments split of SPI, UART nodes has been done.
-> >>>  - Moved QSPI node before aps_smmu as per the order.
-> >>>
-> >>>  arch/arm64/boot/dts/qcom/sc7280-idp.dts | 29 ++++++++++++
-> >>>  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 61
-> >>> +++++++++++++++++++++++++
-> >>>  2 files changed, 90 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> >>> b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> >>> index 3900cfc09562..d0edffc15736 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> >>> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> >>> @@ -268,6 +268,22 @@ pmr735b_die_temp {
-> >>>             };
-> >>>  };
-> >>>
-> >>> +&qspi {
-> >>> +   status = "okay";
-> >>> +   pinctrl-names = "default";
-> >>> +   pinctrl-0 = <&qspi_clk>, <&qspi_cs0>, <&qspi_data01>;
-> >>> +
-> >>> +   flash@0 {
-> >>> +           compatible = "jedec,spi-nor";
-> >>> +           reg = <0>;
-> >>> +
-> >>> +           /* TODO: Increase frequency after testing */
-> >>> +           spi-max-frequency = <25000000>;
-> >>> +           spi-tx-bus-width = <2>;
-> >>> +           spi-rx-bus-width = <2>;
-> >>> +   };
-> >>> +};
-> >>> +
-> >>>  &qupv3_id_0 {
-> >>>     status = "okay";
-> >>>  };
-> >>> @@ -278,6 +294,19 @@ &uart5 {
-> >>>
-> >>>  /* PINCTRL - additions to nodes defined in sc7280.dtsi */
-> >>>
-> >>> +&qspi_cs0 {
-> >>> +   bias-disable;
-> >>> +};
-> >>> +
-> >>> +&qspi_clk {
-> >>> +   bias-disable;
-> >>> +};
-> >>> +
-> >>> +&qspi_data01 {
-> >>> +   /* High-Z when no transfers; nice to park the lines */
-> >>> +   bias-pull-up;
-> >>> +};
-> >>> +
-> >>>  &qup_uart5_default {
-> >>>     tx {
-> >>>             pins = "gpio46";
-> >>> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> index 6c9d5eb93f93..3047ab802cd2 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> >>> @@ -1061,6 +1061,42 @@ apss_merge_funnel_in: endpoint {
-> >>>                     };
-> >>>             };
-> >>>
-> >>> +           qspi_opp_table: qspi-opp-table {
-> >>
-> >> This node doesn't represents anything on the mmio bus, so it shouldn't
-> >> live in in /soc. Can't you move it into &qspi?
-> >>
-> >> Regards,
-> >> Bjorn
-> >>
-> >
-> > Sure, will move it into qspi node.
-> >
-> > Thanks,
-> > Roja
-> >
->
-> Hi Bjorn,
->
-> Moving "qspi_opp_table" inside &qspi node causing this warning:
-> arch/arm64/boot/dts/qcom/sc7280.dtsi:1055.35-1072.6: Warning
-> (spi_bus_reg): /soc@0/spi@88dc000/qspi-opp-table: missing or empty reg
-> property
+On SM8250 both the display and video clock controllers are powered up by
+the MMCX power domain. Handle this by linking clock controllers to the
+proper power domain, and using runtime power management to enable and
+disable the MMCX power domain.
 
-If DT folks are OK I think we should hard-code 'opp-table' as not a
-device for spi to populate on the spi bus and relax the warning in the
-devicetree compiler (see [1] for more details). Technically, nodes that
-are bus controllers assume all child nodes are devices on that bus.  In
-this case, we want to stick the opp table as a child of the spi node so
-that it can be called 'opp-table' and not be a node in the root of DT.
+Dependencies:
+- https://lore.kernel.org/linux-pm/20210603093438.138705-1-ulf.hansson@linaro.org/ (merged in 5.14)
+- https://lore.kernel.org/linux-arm-msm/20210703005416.2668319-1-bjorn.andersson@linaro.org/
+  (pending)
 
->
-> Shall I keep the qspi-opp-table out of &qspi node?
->
+Changes since v1:
+ - Rebase on top of Bjorn's patches, removing the need for setting
+   performance state directly.
+ - Move runtime PM calls from GDSC code to generic genpd code.
+ - Always call pm_runtime_enable in the Qualcomm generic clock
+   controller code.
+ - Register GDSC power domains as subdomains of the domain powering the
+   clock controller if there is one.
 
-If you do, please move it to / instead of putting it under /soc as it
-doesn't have an address or a reg property.
+----------------------------------------------------------------
+Dmitry Baryshkov (7):
+      dt-bindings: clock: qcom,dispcc-sm8x50: add mmcx power domain
+      dt-bindings: clock: qcom,videocc: add mmcx power domain
+      PM: domains: Add support for runtime PM
+      clk: qcom: gdsc: enable optional power domain support
+      arm64: dts: qcom: sm8250: remove mmcx regulator
+      clk: qcom: dispcc-sm8250: stop using mmcx regulator
+      clk: qcom: videocc-sm8250: stop using mmcx regulator
 
-[1] https://github.com/dgibson/dtc/blob/69595a167f06c4482ce784e30df1ac9b16ceb5b0/checks.c#L1844
+ .../bindings/clock/qcom,dispcc-sm8x50.yaml         |  7 ++++
+ .../devicetree/bindings/clock/qcom,videocc.yaml    |  7 ++++
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 11 ++-----
+ drivers/base/power/domain.c                        | 33 +++++++++++++++++++
+ drivers/clk/qcom/common.c                          | 37 ++++++++++++++++++----
+ drivers/clk/qcom/dispcc-sm8250.c                   |  1 -
+ drivers/clk/qcom/gdsc.c                            |  5 +++
+ drivers/clk/qcom/videocc-sm8250.c                  |  4 ---
+ include/linux/pm_domain.h                          |  6 ++++
+ 9 files changed, 91 insertions(+), 20 deletions(-)
+
+
