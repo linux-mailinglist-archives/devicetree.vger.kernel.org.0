@@ -2,204 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B4BB3C20C9
-	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 10:25:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AC613C20CC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Jul 2021 10:27:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231553AbhGII2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Jul 2021 04:28:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33710 "EHLO
+        id S231429AbhGII3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Jul 2021 04:29:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231382AbhGII2V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 04:28:21 -0400
-Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20F2C0613E5
-        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 01:25:37 -0700 (PDT)
-Received: by mail-ua1-x92b.google.com with SMTP id e7so3287591uaj.11
-        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 01:25:37 -0700 (PDT)
+        with ESMTP id S229685AbhGII3u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Jul 2021 04:29:50 -0400
+Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A390C0613DD
+        for <devicetree@vger.kernel.org>; Fri,  9 Jul 2021 01:27:07 -0700 (PDT)
+Received: by mail-pg1-x536.google.com with SMTP id t9so9250350pgn.4
+        for <devicetree@vger.kernel.org>; Fri, 09 Jul 2021 01:27:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=t3RLL9HO+hRks/PkaZVZzTRgr7UF7nIkarU/0lU2gW0=;
-        b=xa8EcFrdSBerofKAu49UyccOsdgMTavqkP72/U4wlhtzAU56H3Rj/hASqT7/iblaWc
-         PbO8qb28TkXHozsJ33GCYE6az0gFPuHBFfxBylnqMfX6TBGzPmBFARb2AtVnjYr2CyYW
-         WI/3eah8ups/diSTfsx7Fb05cOyK1pM1WTarPOWDq1QB3bvNIseuTE7y+RiyVK9bl/fE
-         NFu5Je+z/+mJ61795+jV1DmJR+9q+EfGkuBMxUmaTirZEmxLkVHatsUcZUgZXWk5thzb
-         hyCcxgtcHbWlOZe0vhbrlTTqoqzMyrRWEAoKwAMBwuOc4RjZ50F9w+xIcpP8sUNbhkBL
-         N92w==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=yU9Twe5lXj23b1mNka/5xOrpyF7ZSTRqoQCTkjEokB4=;
+        b=LIfVVMZPNUHjO9GLLsf57mvnfsctNvpBsj6fgEhwtEMYU2QPQ6BXihMW4SZkVW2q16
+         Qxmr/bSKL2oMkgNy53y7JgditJt9aOU8Cd84q4+Vrqw63I36+wpNdi9w+PutgmATOf8b
+         7XabHAsqBzIS7zS4SnDN9sLqcex4HGp2Xy17w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t3RLL9HO+hRks/PkaZVZzTRgr7UF7nIkarU/0lU2gW0=;
-        b=fGMrznRtNfDNtwVtoNANII9QUl5ZoaNVeQSOMWmwbQhV8/fFgmo8OVwh7keqrqQR5+
-         QbiwE2d4SftElFECS97Ad6YwodGJ+BKPQOMzDnktbxFBC0XeZdfJa4nOXnq0Z5yRW7f+
-         oJ/dsFKM40xQGLEQ71v88STNbVV9L0mhvTzaIZzy0uW+OKa9ajXlEhZIRMqGhmrJ+VjA
-         D5k1j9F2ewhBtIJLUFucZVgMPl52+uTFirEWnY16CN6bXUZXpk74tZq3Md1+8RBxts9i
-         o6FIiSyeLvGX5hBr8ZUESaAzP0grnG5QILBr8Wa04oETVQ/UCmOeNj84ANxkV6lLhrQA
-         iNkg==
-X-Gm-Message-State: AOAM531Y9QuaN+eHsHIXpnc+URMyInE4LMbzuakerFcpXck0jqB0VH0U
-        RxeYv+PzCo+HLdsvDxa/VpSFOIAPawYBrLz/Gya7cg==
-X-Google-Smtp-Source: ABdhPJzMQyl6scM8lSRI3/3VcQLnb3dWbPw/GE5McGGy4qkNZvJw1LohG72KEsgcTXGV4e7TibVDqyBgR2zflxu3At4=
-X-Received: by 2002:a9f:2f14:: with SMTP id x20mr36234489uaj.104.1625819136865;
- Fri, 09 Jul 2021 01:25:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210709043136.533205-1-dmitry.baryshkov@linaro.org> <20210709043136.533205-4-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20210709043136.533205-4-dmitry.baryshkov@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 9 Jul 2021 10:24:59 +0200
-Message-ID: <CAPDyKFoNPkFqGMvR=JGXNVXp-UfWLUqReZ0DGP8+0PBh+7dCRg@mail.gmail.com>
-Subject: Re: [RESEND PATCH v2 3/7] PM: domains: Add support for runtime PM
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=yU9Twe5lXj23b1mNka/5xOrpyF7ZSTRqoQCTkjEokB4=;
+        b=CLl19i+HW48pL0JHfdrhd7VDgal0U4Xdxj3WET8HGGSfmExXhTsC6CF/M4QMqxE7rc
+         GKXnq12Uxv6JZsjtnHBikgT2DI99srZf/OxF/FWdDfJ18izGPn8kuHJtIajtJ7vdI2nn
+         0tX9RMd5rINpIR+8SWY0Rm9T3HuAhjwAmogMq1yoXRumsJM3a1ocl+vlGYcHj0TfBYyG
+         YuS30DI/yIAOSFY4g4YK/2CVPljaIpV/WqXdLbYhTNr4W4pBL8Y83q0cf7nqIxoZKcY2
+         tIfv5KdyByqLhPqNeryG2yhfQVihhJc4iF5ch5TVrsYg4wiA8nAY6KHTfev2BvNJOejt
+         HlqA==
+X-Gm-Message-State: AOAM533sab2GfFEFBVpFRsiVRtZItPj+L98aoCIqqoPYt7fBh+uK9PpM
+        M/tDB5Rz0wE9tii5sjRjc/huJg==
+X-Google-Smtp-Source: ABdhPJxk6FrpXb7jO30ZusT2cxQ16M60gq3kw3CbQwTLoJvyedQynzhdP7rkgXhS7oB7FCkbYSPS2A==
+X-Received: by 2002:a62:1750:0:b029:328:9c55:4f5b with SMTP id 77-20020a6217500000b02903289c554f5bmr3424022pfx.6.1625819226849;
+        Fri, 09 Jul 2021 01:27:06 -0700 (PDT)
+Received: from chromium.org ([2401:fa00:8f:203:735b:c3cc:6957:ae6d])
+        by smtp.gmail.com with ESMTPSA id cx4sm4143678pjb.53.2021.07.09.01.27.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 Jul 2021 01:27:06 -0700 (PDT)
+Date:   Fri, 9 Jul 2021 17:27:02 +0900
+From:   Tomasz Figa <tfiga@chromium.org>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     "kyrie.wu" <kyrie.wu@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Bin Liu <bin.liu@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
+Subject: Re: [PATCH v2,0/9] Support jpeg encode for MT8195
+Message-ID: <YOgIVnhdZeK/FR2q@chromium.org>
+References: <1625038079-25815-1-git-send-email-kyrie.wu@mediatek.com>
+ <CA+Px+wVQFK1MXbq6=x7gSfRu8uRp5hbiNgSWtJ-9ok3Lt+vz8A@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+Px+wVQFK1MXbq6=x7gSfRu8uRp5hbiNgSWtJ-9ok3Lt+vz8A@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 9 Jul 2021 at 06:32, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> Registers for some genpds can be located in the SoC area, powered up by
-> another power domain. To enabled access to those registers, respective
-> domain should be turned on.
->
-> This patch adds basic infrastructure to the genpd code to allow
-> implementing drivers for such genpd. PM domain can provide the parent
-> device through the genpd->dev.parent pointer. If its provided at the
-> pm_genpd_init() call time and if it is pm-enabled, genpd power_on and
-> power_off operations will call pm_runtime_get_sync() before powering up
-> the domain and pm_runtime_put_sync() after powering it down.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Tue, Jul 06, 2021 at 07:00:17PM +0800, Tzung-Bi Shih wrote:
+> On Wed, Jun 30, 2021 at 3:28 PM kyrie.wu <kyrie.wu@mediatek.com> wrote:
+> > add component framework to using multi-HW for MT8195 jpeg encode.
+> Could you add some summary for each patch for getting an overview of the series?
+> 
+> >   dt-bindings: mediatek: Add mediatek, mt8195-jpgenc compatible
+> >   media: mtk-jpegenc: Add MT8195 JPEG venc driver
+> >   media: mtk-jpegenc: remove redundant code of irq
+> >   media: mtk-jpegenc: Refactor jpeg clock interface
+> >   media: mtk-jpegenc: Generalize jpeg encode irq interfaces
+> >   media: mtk-jpegenc: Generalize jpegenc HW timeout interfaces
+> >   media: mtk-jpegenc: Use component framework to manage each hardware
+> >     information
+> >   media: mtk-jpegenc: Generalize jpegenc HW operations interfaces
+> >   media: mtk-jpegenc: Refactor jpegenc device run interface
+> The series has some consistency issues which would make readers feel
+> uncomfortable.
+> 
+> For example:
+> - Whether to capitalize the first characters in the commit messages/titles.
+> - Whether to add a period at the end of English sentences.
 
-Hi Dmitry,
+FWIW, it's not customary to add a period at the end of a patch subject.
 
-Using runtime PM for the genpd provider device, is not the correct
-approach. If the provider domain needs another domain to be powered on
-to work correctly, that per definition means that it has a parent
-domain.
+Best regards,
+Tomasz
 
-I suggest you try to build the correct PM domain topology, via using
-pm_genpd_add_subdomain() or of_genpd_add_subdomain(), then genpd will
-manages the power on/off for parent/child domain internally.
-
-Kind regards
-Uffe
-
-> ---
->  drivers/base/power/domain.c | 33 +++++++++++++++++++++++++++++++++
->  include/linux/pm_domain.h   |  6 ++++++
->  2 files changed, 39 insertions(+)
->
-> diff --git a/drivers/base/power/domain.c b/drivers/base/power/domain.c
-> index e5d97174c254..7d49531c9731 100644
-> --- a/drivers/base/power/domain.c
-> +++ b/drivers/base/power/domain.c
-> @@ -482,6 +482,30 @@ void dev_pm_genpd_set_next_wakeup(struct device *dev, ktime_t next)
->  }
->  EXPORT_SYMBOL_GPL(dev_pm_genpd_set_next_wakeup);
->
-> +static int _genpd_pm_runtime_get(struct generic_pm_domain *genpd)
-> +{
-> +       int ret;
-> +
-> +       if (!(genpd->flags & _GENPD_FLAG_RPM_ENABLED))
-> +               return 0;
-> +
-> +       ret = pm_runtime_get_sync(genpd->dev.parent);
-> +       if (ret < 0) {
-> +               pm_runtime_put_noidle(genpd->dev.parent);
-> +               return ret;
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static void _genpd_pm_runtime_put(struct generic_pm_domain *genpd)
-> +{
-> +       if (!(genpd->flags & _GENPD_FLAG_RPM_ENABLED))
-> +               return;
-> +
-> +       pm_runtime_put_sync(genpd->dev.parent);
-> +}
-> +
->  static int _genpd_power_on(struct generic_pm_domain *genpd, bool timed)
->  {
->         unsigned int state_idx = genpd->state_idx;
-> @@ -497,6 +521,10 @@ static int _genpd_power_on(struct generic_pm_domain *genpd, bool timed)
->         if (ret)
->                 return ret;
->
-> +       ret = _genpd_pm_runtime_get(genpd);
-> +       if (ret)
-> +               return ret;
-> +
->         if (!genpd->power_on)
->                 goto out;
->
-> @@ -526,6 +554,7 @@ static int _genpd_power_on(struct generic_pm_domain *genpd, bool timed)
->         raw_notifier_call_chain(&genpd->power_notifiers, GENPD_NOTIFY_ON, NULL);
->         return 0;
->  err:
-> +       _genpd_pm_runtime_put(genpd);
->         raw_notifier_call_chain(&genpd->power_notifiers, GENPD_NOTIFY_OFF,
->                                 NULL);
->         return ret;
-> @@ -572,6 +601,7 @@ static int _genpd_power_off(struct generic_pm_domain *genpd, bool timed)
->                  genpd->name, "off", elapsed_ns);
->
->  out:
-> +       _genpd_pm_runtime_put(genpd);
->         raw_notifier_call_chain(&genpd->power_notifiers, GENPD_NOTIFY_OFF,
->                                 NULL);
->         return 0;
-> @@ -1986,6 +2016,9 @@ int pm_genpd_init(struct generic_pm_domain *genpd,
->         genpd->domain.ops.complete = genpd_complete;
->         genpd->domain.start = genpd_dev_pm_start;
->
-> +       if (genpd->dev.parent && pm_runtime_enabled(genpd->dev.parent))
-> +               genpd->flags |= _GENPD_FLAG_RPM_ENABLED;
-> +
->         if (genpd->flags & GENPD_FLAG_PM_CLK) {
->                 genpd->dev_ops.stop = pm_clk_suspend;
->                 genpd->dev_ops.start = pm_clk_resume;
-> diff --git a/include/linux/pm_domain.h b/include/linux/pm_domain.h
-> index 21a0577305ef..e86cd7cfc9ec 100644
-> --- a/include/linux/pm_domain.h
-> +++ b/include/linux/pm_domain.h
-> @@ -60,6 +60,10 @@
->   * GENPD_FLAG_MIN_RESIDENCY:   Enable the genpd governor to consider its
->   *                             components' next wakeup when determining the
->   *                             optimal idle state.
-> + *
-> + * _GENPD_FLAG_RPM_ENABLED:    Use genpd's parent dev for runtime power
-> + *                             management. There is no need to set this flag,
-> + *                             it will be detected automatically.
->   */
->  #define GENPD_FLAG_PM_CLK       (1U << 0)
->  #define GENPD_FLAG_IRQ_SAFE     (1U << 1)
-> @@ -69,6 +73,8 @@
->  #define GENPD_FLAG_RPM_ALWAYS_ON (1U << 5)
->  #define GENPD_FLAG_MIN_RESIDENCY (1U << 6)
->
-> +#define _GENPD_FLAG_RPM_ENABLED         (1U << 31)
-> +
->  enum gpd_status {
->         GENPD_STATE_ON = 0,     /* PM domain is on */
->         GENPD_STATE_OFF,        /* PM domain is off */
-> --
-> 2.30.2
->
