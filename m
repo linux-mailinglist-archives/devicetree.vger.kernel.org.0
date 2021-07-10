@@ -2,220 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ECB63C35B1
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 19:16:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F9723C35E3
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 19:45:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229546AbhGJRDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jul 2021 13:03:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44818 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229500AbhGJRDe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Jul 2021 13:03:34 -0400
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C01476135B;
-        Sat, 10 Jul 2021 17:00:45 +0000 (UTC)
-Date:   Sat, 10 Jul 2021 18:03:17 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     lars@metafoo.de, Michael.Hennerich@analog.com,
-        charles-antoine.couret@essensium.com, Nuno.Sa@analog.com,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v2 3/4] iio: adc: ad7949: add support for internal vref
-Message-ID: <20210710180317.79889b53@jic23-huawei>
-In-Reply-To: <20210709155856.1732245-4-liambeguin@gmail.com>
-References: <20210709155856.1732245-1-liambeguin@gmail.com>
-        <20210709155856.1732245-4-liambeguin@gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S230332AbhGJRsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jul 2021 13:48:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54120 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229846AbhGJRsb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jul 2021 13:48:31 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082DDC0613DD;
+        Sat, 10 Jul 2021 10:45:44 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id j14so6212095qvu.6;
+        Sat, 10 Jul 2021 10:45:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
+         :subject:references:in-reply-to;
+        bh=sW9hZja3xQYTQGPj+6uAtbSZMYkpOa8syLZTN1hyNWA=;
+        b=l+idCI0aRPJOkC41EHdwZME3sL9B2PrRibbecoP3Ug1v4iyVplD6bvnPCWq+JGxJRI
+         uN9gVu4ES2JgRqxg+ttzKCyt52xiUJIgHp+b0xfyllHDjB5GQoJydmmFjKRBEOl/sd7N
+         NkjVkEaZW/c22jQC/vu/Vdso+3M7jxVF2rJmE6ve55NAaFG5bkPbe2dGjFJZkFfaEqkD
+         hnE1PtnYLbv4TSERPW5MKeRhpdfSVJcfABgxQnH/i9IXA7eQDdeqR+m5egjnesr1B4GD
+         uwHQ2KcVJ51Rn95rb66KSDYPoM/xAkyHQjf5TtelTaDSucrL7Qiwki6LQ8lTjC9y7gb6
+         gDaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:from:to:cc:subject:references:in-reply-to;
+        bh=sW9hZja3xQYTQGPj+6uAtbSZMYkpOa8syLZTN1hyNWA=;
+        b=Q8zZGfFQPzcrwjkCMaDg0JhnrvU52qPLQ79P7G0k8smsUU9dngr5BOG2G0sumno62V
+         BjTwRYfvqpU+61Oz2Mjk0QJT3DLjOVM0ghE+YLyC7Bqwe7H9OUvF2HFa/4S9Xem2uaAG
+         wR2Kk7Gy8ubLmBRU+jCC0RdExm4wXGDhiWQOLFa+Vg3kxZj6j3NXHpAWvK8fjd8LrTVo
+         PLUHe7yaQRQFrS0ApCH8LtDUSYYasVUM5uyBdaxDP9mi/G+/DqoPROBeQi8GAfr/fa/w
+         2EvVETWSWTK33+FiMvSKw2XW+Jp3RpZzdbeuHMpAuKCt0905gRFmmDpkkQ7xFXgKvntE
+         PXnw==
+X-Gm-Message-State: AOAM531QLNFlfU6RvZIPIDd/jUVqYD/Rdr83AYEXd0JLbK/a2Lh938S2
+        SE2wraS8IsO7bFY4vrzSkOrgL8O3LxnkyQ==
+X-Google-Smtp-Source: ABdhPJwyK/XfRyUOImaBHnO2b1uhIV9hHSRSnLVMKw43iuRXnfmhFBGZ5S0Mx2h7G1/J825AhHTTMw==
+X-Received: by 2002:a05:6214:172:: with SMTP id y18mr16067392qvs.14.1625939144124;
+        Sat, 10 Jul 2021 10:45:44 -0700 (PDT)
+Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id n64sm4167120qkd.79.2021.07.10.10.45.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 10 Jul 2021 10:45:43 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Sat, 10 Jul 2021 13:45:42 -0400
+Message-Id: <CCPNBMAIVJTV.3U5M70O21GDZ4@shaak>
+From:   "Liam Beguin" <liambeguin@gmail.com>
+To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
+        <lars@metafoo.de>, <pmeerw@pmeerw.net>
+Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 05/10] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
+ support
+References: <20210706160942.3181474-1-liambeguin@gmail.com>
+ <20210706160942.3181474-6-liambeguin@gmail.com>
+ <4be51a74-9913-291a-9dac-422ac23da3ea@axentia.se>
+ <CCOUX814CQ6U.XY2CIQKFE00V@shaak>
+ <353ceae9-ad7a-3175-d764-a9e590d3e8d3@axentia.se>
+In-Reply-To: <353ceae9-ad7a-3175-d764-a9e590d3e8d3@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  9 Jul 2021 11:58:55 -0400
-Liam Beguin <liambeguin@gmail.com> wrote:
+On Sat Jul 10, 2021 at 4:14 AM EDT, Peter Rosin wrote:
+>
+>
+> On 2021-07-09 21:30, Liam Beguin wrote:
+> > On Fri Jul 9, 2021 at 12:29 PM EDT, Peter Rosin wrote:
+> >>
+> >>
+> >> On 2021-07-06 18:09, Liam Beguin wrote:
+> >>> From: Liam Beguin <lvb@xiphos.com>
+> >>>
+> >>> Add IIO_VAL_INT_PLUS_{NANO,MICRO} scaling support.
+> >>> Scale the integer part and the decimal parts individually and keep th=
+e
+> >>> original scaling type.
+> >>>
+> >>> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> >>> ---
+> >>>  drivers/iio/afe/iio-rescale.c | 8 ++++++++
+> >>>  1 file changed, 8 insertions(+)
+> >>>
+> >>> diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-resc=
+ale.c
+> >>> index ba3bdcc69b16..1d0e24145d87 100644
+> >>> --- a/drivers/iio/afe/iio-rescale.c
+> >>> +++ b/drivers/iio/afe/iio-rescale.c
+> >>> @@ -89,7 +89,15 @@ static int rescale_read_raw(struct iio_dev *indio_=
+dev,
+> >>>  			do_div(tmp, 1000000000LL);
+> >>>  			*val =3D tmp;
+> >>>  			return ret;
+> >>> +		case IIO_VAL_INT_PLUS_NANO:
+> >>> +		case IIO_VAL_INT_PLUS_MICRO:
+> >>> +			tmp =3D (s64)*val * rescale->numerator;
+> >>> +			*val =3D div_s64(tmp, rescale->denominator);
+> >>> +			tmp =3D (s64)*val2 * rescale->numerator;
+> >>> +			*val2 =3D div_s64(tmp, rescale->denominator);
+> >>
+> >=20
+> > Hi Peter,
+> >=20
+> >> Hi!
+> >>
+> >> You are losing precision, and you are not mormalising after the
+> >> calculation.
+> >=20
+> > Can you elaborate a little on what you mean here?
+> >=20
+> > Do you mean that I should make sure that *val2, the PLUS_{NANO,MICRO}
+> > part, doesn't contain an integer part? And if so transfer that part bac=
+k
+> > to *val?
 
-> From: Liam Beguin <lvb@xiphos.com>
-> 
-> Add support for selecting a custom reference voltage from the
-> devicetree. If an external source is used, a vref regulator should be
-> defined in the devicetree.
-> 
-> Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> ---
->  drivers/iio/adc/ad7949.c | 94 ++++++++++++++++++++++++++++++++++------
->  1 file changed, 80 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
-> index 770112ac820f..a20fd81a0830 100644
-> --- a/drivers/iio/adc/ad7949.c
-> +++ b/drivers/iio/adc/ad7949.c
-> @@ -31,6 +31,7 @@
->  #define AD7949_CFG_VAL_BW_FULL			1
->  #define AD7949_CFG_VAL_BW_QUARTER		0
->  #define AD7949_CFG_BIT_REF		GENMASK(5, 3)
-> +#define AD7949_CFG_VAL_REF_EXTERNAL		BIT(1)
->  #define AD7949_CFG_BIT_SEQ		GENMASK(2, 1)
->  #define AD7949_CFG_BIT_RBN		BIT(0)
->  
-> @@ -40,6 +41,33 @@ enum {
->  	ID_AD7689,
->  };
->  
-> +/**
-> + * enum ad7949_ref - Reference selection
-> + *
-> + * AD7949_REF_INT_2500:     Internal reference and temperature sensor enabled.
-> + *                          Vref=2.5V, buffered output
-> + * AD7949_REF_INT_4096:     Internal reference and temperature sensor enabled.
-> + *                          Vref=4.096V, buffered output
-> + * AD7949_REF_EXT_TEMP:     Use external reference, temperature sensor enabled.
-> + *                          Internal buffer disabled
-> + * AD7949_REF_EXT_TEMP_BUF: Use external reference, internal buffer and
-> + *                          temperature sensor enabled.
-> + * AD7949_REF_RSRV_4:       Do not use
-> + * AD7949_REF_RSRV_5:       Do not use
-> + * AD7949_REF_EXT:          Use external reference, internal buffer and
-> + *                          temperature sensor disabled.
-> + * AD7949_REF_EXT_BUF:      Use external reference, internal buffer enabled.
-> + *                          Internal reference and temperature sensor disabled.
-> + */
-> +enum ad7949_ref {
-> +	AD7949_REF_INT_2500 = 0,
+Hi Peter,
 
-For case where you have gaps like this, an ENUM is probably not appropriate.
-I'd just used defines.
+>
+> Yes. On 32-bit, you will easily wrap, especially for PLUS_NANO. You'd
+> only need a scale factor of 10 or so and a fractional part above .5 to
+> hit the roof (10 * 500000000 > 2^32).
+>
 
-> +	AD7949_REF_INT_4096,
-> +	AD7949_REF_EXT_TEMP,
-> +	AD7949_REF_EXT_TEMP_BUF,
-> +	AD7949_REF_EXT = 6,
-> +	AD7949_REF_EXT_BUF,
-> +};
-> +
->  struct ad7949_adc_spec {
->  	u8 num_channels;
->  	u8 resolution;
-> @@ -55,6 +83,7 @@ static const struct ad7949_adc_spec ad7949_adc_spec[] = {
->   * struct ad7949_adc_chip - AD ADC chip
->   * @lock: protects write sequences
->   * @vref: regulator generating Vref
-> + * @refsel: reference selection
->   * @indio_dev: reference to iio structure
->   * @spi: reference to spi structure
->   * @resolution: resolution of the chip
-> @@ -66,6 +95,7 @@ static const struct ad7949_adc_spec ad7949_adc_spec[] = {
->  struct ad7949_adc_chip {
->  	struct mutex lock;
->  	struct regulator *vref;
-> +	enum ad7949_ref refsel;
->  	struct iio_dev *indio_dev;
->  	struct spi_device *spi;
->  	u8 resolution;
-> @@ -243,12 +273,28 @@ static int ad7949_spi_read_raw(struct iio_dev *indio_dev,
->  		return IIO_VAL_INT;
->  
->  	case IIO_CHAN_INFO_SCALE:
-> -		ret = regulator_get_voltage(ad7949_adc->vref);
-> -		if (ret < 0)
-> -			return ret;
-> +		switch (ad7949_adc->refsel) {
-> +		case AD7949_REF_INT_2500:
-> +			*val = 2500;
-> +			break;
-> +		case AD7949_REF_INT_4096:
-> +			*val = 4096;
-> +			break;
-> +		case AD7949_REF_EXT_TEMP:
-> +		case AD7949_REF_EXT_TEMP_BUF:
-> +		case AD7949_REF_EXT:
-> +		case AD7949_REF_EXT_BUF:
-> +			ret = regulator_get_voltage(ad7949_adc->vref);
-> +			if (ret < 0)
-> +				return ret;
-> +
-> +			/* convert value back to mV */
-> +			*val = ret / 1000;
-> +			break;
-> +		}
->  
-> -		*val = ret / 5000;
-> -		return IIO_VAL_INT;
-> +		*val2 = (1 << ad7949_adc->resolution) - 1;
-> +		return IIO_VAL_FRACTIONAL;
->  	}
->  
->  	return -EINVAL;
-> @@ -287,7 +333,7 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
->  		FIELD_PREP(AD7949_CFG_BIT_INCC, AD7949_CFG_VAL_INCC_UNIPOLAR_GND) |
->  		FIELD_PREP(AD7949_CFG_BIT_INX, ad7949_adc->current_channel) |
->  		FIELD_PREP(AD7949_CFG_BIT_BW, AD7949_CFG_VAL_BW_FULL) |
-> -		FIELD_PREP(AD7949_CFG_BIT_REF, AD7949_REF_EXT_BUF) |
-> +		FIELD_PREP(AD7949_CFG_BIT_REF, ad7949_adc->refsel) |
->  		FIELD_PREP(AD7949_CFG_BIT_SEQ, 0x0) |
->  		FIELD_PREP(AD7949_CFG_BIT_RBN, 1);
->  
-> @@ -306,6 +352,7 @@ static int ad7949_spi_init(struct ad7949_adc_chip *ad7949_adc)
->  static int ad7949_spi_probe(struct spi_device *spi)
->  {
->  	struct device *dev = &spi->dev;
-> +	struct device_node *np = dev->of_node;
->  	const struct ad7949_adc_spec *spec;
->  	struct ad7949_adc_chip *ad7949_adc;
->  	struct iio_dev *indio_dev;
-> @@ -332,16 +379,35 @@ static int ad7949_spi_probe(struct spi_device *spi)
->  	ad7949_adc->resolution = spec->resolution;
->  	ad7949_set_bits_per_word(ad7949_adc);
->  
-> -	ad7949_adc->vref = devm_regulator_get(dev, "vref");
-> -	if (IS_ERR(ad7949_adc->vref)) {
-> -		dev_err(dev, "fail to request regulator\n");
-> -		return PTR_ERR(ad7949_adc->vref);
-> +	/* Set default devicetree parameters */
-> +	ad7949_adc->refsel = AD7949_REF_EXT_BUF;
-> +	of_property_read_u32(np, "adi,reference-select", &ad7949_adc->refsel);
+Right, That makes sense!
 
-Check for errors.  Not being present is fine, but other errors may not be.
+> But I also mean that you are losing precision when you are scaling
+> the integer part and the fractional part separately. That deserves
+> at least a comment, but ideally it should be handled correctly.
+>
 
+Oh got it! Apologies, How did I miss that...
 
-> +	switch (ad7949_adc->refsel) {
-> +	case AD7949_REF_INT_2500:
-> +	case AD7949_REF_INT_4096:
-> +	case AD7949_REF_EXT_TEMP:
-> +	case AD7949_REF_EXT_TEMP_BUF:
-> +	case AD7949_REF_EXT:
-> +	case AD7949_REF_EXT_BUF:
-> +		break;
-> +	default:
-> +		dev_err(dev, "invalid adi,reference-select value (%d)\n",
-> +			ad7949_adc->refsel);
-> +		return -EINVAL;
->  	}
->  
-> -	ret = regulator_enable(ad7949_adc->vref);
-> -	if (ret < 0) {
-> -		dev_err(dev, "fail to enable regulator\n");
-> -		return ret;
-> +	if (ad7949_adc->refsel & AD7949_CFG_VAL_REF_EXTERNAL) {
-> +		ad7949_adc->vref = devm_regulator_get(dev, "vref");
-> +		if (IS_ERR(ad7949_adc->vref)) {
-> +			dev_err(dev, "fail to request regulator\n");
-> +			return PTR_ERR(ad7949_adc->vref);
-> +		}
-> +
-> +		ret = regulator_enable(ad7949_adc->vref);
+All things considered, it might make sense to also implement the
+test case Jonathan mentioned [1]. I'll look into it.
 
-Shouldn't be calling regulator_disable unless you enabled it...
+[1] https://lore.kernel.org/linux-devicetree/20210704173639.622371bf@jic23-=
+huawei/
 
-> +		if (ret < 0) {
-> +			dev_err(dev, "fail to enable regulator\n");
-> +			return ret;
-> +		}
->  	}
->  
->  	mutex_init(&ad7949_adc->lock);
+> >> I think it's better to not even attempt this given that the results ca=
+n
+> >> be
+> >> really poor.
+> >=20
+> > Unfortunatelly, I'm kinda stuck with this as some of my ADC use these
+> > types.
+>
+> Ok. Crap. :-)
+
+Can't agree more :-)
+
+Thanks,
+Liam
+
+>
+> Cheers,
+> Peter
 
