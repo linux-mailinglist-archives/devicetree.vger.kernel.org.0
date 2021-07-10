@@ -2,97 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 667593C3358
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 08:59:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 018473C3383
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 09:35:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230365AbhGJHCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jul 2021 03:02:42 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:46310 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229690AbhGJHCm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jul 2021 03:02:42 -0400
-X-UUID: a758cc349d7f42d6bfea7f873e789395-20210710
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=5AIx17dgaf9J9sK4Zh/t7h7NIr3pG6feU3yAreOp5as=;
-        b=YIa+4DpuAHAhBNZaj0cRYIowXlbxVys8fS2YLoLJ5OULX6fWsKw7dSd9RyyMMTPKxcrYoXrAIZFd4nsWVTgd73a0uzvIIAVq2xL4CFmVADwzqbEo2dk7WqrBbAqCZKXhqkpJjB3C11rRx1hvanKWD5CSnviChMSxZii5cjtUKJw=;
-X-UUID: a758cc349d7f42d6bfea7f873e789395-20210710
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <jason-jh.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1747223156; Sat, 10 Jul 2021 14:59:54 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sat, 10 Jul 2021 14:59:46 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 10 Jul 2021 14:59:46 +0800
-Message-ID: <ec19c5e28d0ba70cd8b53fdc082506c4eeab672f.camel@mediatek.com>
-Subject: Re: [PATCH v1 05/17] drm/mediatek: add mediatek-drm of vdosys0
- support for MT8195
-From:   Jason-JH Lin <jason-jh.lin@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>
-CC:     <chunkuang.hu@kernel.org>, <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <fshao@google.com>, <nancy.lin@mediatek.com>,
-        <singo.chang@mediatek.com>
-Date:   Sat, 10 Jul 2021 14:59:46 +0800
-In-Reply-To: <1625633339.7824.6.camel@mtksdaap41>
-References: <20210707041249.29816-1-jason-jh.lin@mediatek.com>
-         <20210707041249.29816-6-jason-jh.lin@mediatek.com>
-         <1625633339.7824.6.camel@mtksdaap41>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S231490AbhGJHhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jul 2021 03:37:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33962 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230317AbhGJHhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jul 2021 03:37:45 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C2CC0613E8
+        for <devicetree@vger.kernel.org>; Sat, 10 Jul 2021 00:35:00 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id z2so3328198plg.8
+        for <devicetree@vger.kernel.org>; Sat, 10 Jul 2021 00:35:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=iynl3OeXRI21z/39nujP5vnmSQx6hJ+4+BEhv+0X4uw=;
+        b=DW31LtAIJrZPDYhbwsY3bsU2q9Qym7WtZc5JhMpiI8o4lNCa6845d/kNKJcyLRaZU3
+         ZqZ9J3ZQrOaHzgOXAJ2DYRXOeK6kM3659Ms3/E2q1eADTZ00an1u8MnATaExURzM0Y6F
+         oZIx14GxoLkUowDapGpGPamQVhrepOPyM3fNXrYJtf9n+1ZF9XSyXtSpwcxQkCj+VCf1
+         XwCbhkDt1bCipkezhOsbA6e7NnorC10ZM/lySmrVIvmNHk6LmhNCupYvalErRtotn2IR
+         hdE5oL1nCcfrsI3LZXuOITxv+2jl8FBrB+5oxOaROyXIZo3M4tB0dO8tep4X4avaJ39s
+         r8+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=iynl3OeXRI21z/39nujP5vnmSQx6hJ+4+BEhv+0X4uw=;
+        b=DpU0FMCZzy0oDnRkEu7hN18ldZooial3D25nM+GcsGkWjT023T4EeMNNdXRpQ22t89
+         5XIrG1G78aC9ByICk6Id+L3HYBQAi1xwVTLQcjDXtRLR14LvI3Y8LJHlINJAwI8lIquq
+         ulloqKh1ve4q1NdeTDiFNrUxmF1nGop7yaPTL7YWLm92VQYgFKne4ytI/FiU3g6Y+rQb
+         kIfnuuqiVuu1jYC51uE4/r51VvO/ARroVmyAlsgSyZSF4ukVFRqSQG2IUQhnOrsLv9zQ
+         H99ECbE89NJ4UFXfl+MmhUm+eMi0Mq3XfrWF3rxlI/15Sp2CZiB8XKChf0UPJ6vX8aeI
+         tqrQ==
+X-Gm-Message-State: AOAM533fLVKnXndQp8JF1weTkJFRwAxcA4BZP+Bs2xHbSJgEJhlHVdY3
+        kAzfBCPWYiGyED5V+0EIzxspsg==
+X-Google-Smtp-Source: ABdhPJx8PAr5ZkGw9W2QZH6I91NNx14iNZmxRo5HT34g/1spJSCl+PSMfWAEeI1ef6bUDsPNplfArw==
+X-Received: by 2002:a17:90a:c283:: with SMTP id f3mr8311181pjt.138.1625902499861;
+        Sat, 10 Jul 2021 00:34:59 -0700 (PDT)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id n23sm7316974pjq.2.2021.07.10.00.34.57
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 10 Jul 2021 00:34:59 -0700 (PDT)
+Date:   Sat, 10 Jul 2021 15:34:53 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
+        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] clk: qcom: a53pll/mux: Use unique clock name
+Message-ID: <20210710073449.GC11342@dragon>
+References: <20210704024032.11559-1-shawn.guo@linaro.org>
+ <20210704024032.11559-3-shawn.guo@linaro.org>
+ <YOktbWmMKEw7g3+E@yoga>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YOktbWmMKEw7g3+E@yoga>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDIxLTA3LTA3IGF0IDEyOjQ4ICswODAwLCBDSyBIdSB3cm90ZToNCj4gSGksIEph
-c29uOg0KPiANCj4gT24gV2VkLCAyMDIxLTA3LTA3IGF0IDEyOjEyICswODAwLCBqYXNvbi1qaC5s
-aW4gd3JvdGU6DQo+ID4gQWRkIG1lZGlhdGVrLWRybSBvZiB2ZG9zeXMwIHN1cHBvcnQgZm9yIE1U
-ODE5NS4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBqYXNvbi1qaC5saW4gPGphc29uLWpoLmxp
-bkBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9t
-dGtfZHJtX2Rydi5jIHwgMjQNCj4gPiArKysrKysrKysrKysrKysrKysrKysrKysNCj4gPiAgMSBm
-aWxlIGNoYW5nZWQsIDI0IGluc2VydGlvbnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1fZHJ2LmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2Ry
-bS9tZWRpYXRlay9tdGtfZHJtX2Rydi5jDQo+ID4gaW5kZXggYjQ2YmRiODk4NWRhLi45MDc0Y2Uz
-MjkxMmMgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kcm1f
-ZHJ2LmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RybV9kcnYuYw0K
-PiA+IEBAIC0xNDcsNiArMTQ3LDIzIEBAIHN0YXRpYyBjb25zdCBlbnVtIG10a19kZHBfY29tcF9p
-ZA0KPiA+IG10ODE4M19tdGtfZGRwX2V4dFtdID0gew0KPiA+ICAJRERQX0NPTVBPTkVOVF9EUEkw
-LA0KPiA+ICB9Ow0KPiA+ICANCj4gPiArc3RhdGljIGNvbnN0IGVudW0gbXRrX2RkcF9jb21wX2lk
-IG10ODE5NV9tdGtfZGRwX21haW5bXSA9IHsNCj4gPiArCUREUF9DT01QT05FTlRfT1ZMMCwNCj4g
-PiArCUREUF9DT01QT05FTlRfUkRNQTAsDQo+ID4gKwlERFBfQ09NUE9ORU5UX0NPTE9SMCwNCj4g
-PiArCUREUF9DT01QT05FTlRfQ0NPUlIsDQo+ID4gKwlERFBfQ09NUE9ORU5UX0FBTDAsDQo+ID4g
-KwlERFBfQ09NUE9ORU5UX0dBTU1BLA0KPiA+ICsJRERQX0NPTVBPTkVOVF9ESVRIRVIsDQo+ID4g
-KyNpZmRlZiBDT05GSUdfTVRLX0RQVFhfU1VQUE9SVA0KPiA+ICsJRERQX0NPTVBPTkVOVF9EU0Mw
-LA0KPiA+ICsJRERQX0NPTVBPTkVOVF9NRVJHRTAsDQo+ID4gKwlERFBfQ09NUE9ORU5UX0RQX0lO
-VEYwLA0KPiA+ICsjZWxzZQ0KPiANCj4gQ09ORklHX01US19EUFRYX1NVUFBPUlQgaXMgbm90IGRl
-ZmluZWQsIHNvIHJlbW92ZSB0aGlzIHBhcnQuDQo+IA0KPiBSZWdhcmRzLA0KPiBDSw0KPiANCg0K
-SGkgQ0ssDQoNCk9LLCBJJ2xsIHJlbW92ZSB0aGlzIHBhcnQgYXQgdGhlIG5leHQgdmVyc2lvbi4N
-Cg0KUmVnYXJkLA0KSmFzb24tSkguTGluDQoNCj4gPiArCUREUF9DT01QT05FTlRfRFNJMCwNCj4g
-PiArI2VuZGlmDQo+ID4gK307DQo+ID4gKw0KPiA+ICBzdGF0aWMgY29uc3Qgc3RydWN0IG10a19t
-bXN5c19kcml2ZXJfZGF0YSBtdDI3MDFfbW1zeXNfZHJpdmVyX2RhdGENCj4gPiA9IHsNCj4gPiAg
-CS5tYWluX3BhdGggPSBtdDI3MDFfbXRrX2RkcF9tYWluLA0KPiA+ICAJLm1haW5fbGVuID0gQVJS
-QVlfU0laRShtdDI3MDFfbXRrX2RkcF9tYWluKSwNCj4gPiBAQCAtMTg2LDYgKzIwMywxMSBAQCBz
-dGF0aWMgY29uc3Qgc3RydWN0IG10a19tbXN5c19kcml2ZXJfZGF0YQ0KPiA+IG10ODE4M19tbXN5
-c19kcml2ZXJfZGF0YSA9IHsNCj4gPiAgCS5leHRfbGVuID0gQVJSQVlfU0laRShtdDgxODNfbXRr
-X2RkcF9leHQpLA0KPiA+ICB9Ow0KPiA+ICANCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBtdGtf
-bW1zeXNfZHJpdmVyX2RhdGENCj4gPiBtdDgxOTVfdmRvc3lzMF9kcml2ZXJfZGF0YSA9IHsNCj4g
-PiArCS5tYWluX3BhdGggPSBtdDgxOTVfbXRrX2RkcF9tYWluLA0KPiA+ICsJLm1haW5fbGVuID0g
-QVJSQVlfU0laRShtdDgxOTVfbXRrX2RkcF9tYWluKSwNCj4gPiArfTsNCj4gPiArDQo+ID4gIHN0
-YXRpYyBpbnQgbXRrX2RybV9rbXNfaW5pdChzdHJ1Y3QgZHJtX2RldmljZSAqZHJtKQ0KPiA+ICB7
-DQo+ID4gIAlzdHJ1Y3QgbXRrX2RybV9wcml2YXRlICpwcml2YXRlID0gZHJtLT5kZXZfcHJpdmF0
-ZTsNCj4gPiBAQCAtNDY4LDYgKzQ5MCw4IEBAIHN0YXRpYyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNl
-X2lkDQo+ID4gbXRrX2RybV9vZl9pZHNbXSA9IHsNCj4gPiAgCSAgLmRhdGEgPSAmbXQ4MTczX21t
-c3lzX2RyaXZlcl9kYXRhfSwNCj4gPiAgCXsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTgz
-LW1tc3lzIiwNCj4gPiAgCSAgLmRhdGEgPSAmbXQ4MTgzX21tc3lzX2RyaXZlcl9kYXRhfSwNCj4g
-PiArCXsuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxOTUtdmRvc3lzMCIsDQo+ID4gKwkgIC5k
-YXRhID0gJm10ODE5NV92ZG9zeXMwX2RyaXZlcl9kYXRhfSwNCj4gPiAgCXsgfQ0KPiA+ICB9Ow0K
-PiA+ICBNT0RVTEVfREVWSUNFX1RBQkxFKG9mLCBtdGtfZHJtX29mX2lkcyk7DQo+IA0KPiANCg==
+On Sat, Jul 10, 2021 at 12:17:33AM -0500, Bjorn Andersson wrote:
+> On Sat 03 Jul 21:40 CDT 2021, Shawn Guo wrote:
+> 
+> > Different from MSM8916 which has only one a53pll/mux clock, MSM8939 gets
+> > three for Cluster0 (little cores), Cluster1 (big cores) and CCI (Cache
+> > Coherent Interconnect).  That said, a53pll/mux clock needs to be named
+> > uniquely.  Append @unit-address of device node to the clock name, so
+> > that a53pll/mux will be named like below on MSM8939.
+> > 
+> >   a53pll@b016000
+> >   a53pll@b116000
+> >   a53pll@b1d0000
+> > 
+> >   a53mux@b1d1000
+> >   a53mux@b011000
+> >   a53mux@b111000
+> > 
+> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> > ---
+> >  drivers/clk/qcom/a53-pll.c      | 8 +++++++-
+> >  drivers/clk/qcom/apcs-msm8916.c | 8 +++++++-
+> >  2 files changed, 14 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/clk/qcom/a53-pll.c b/drivers/clk/qcom/a53-pll.c
+> > index d6756bd777ce..96a118be912d 100644
+> > --- a/drivers/clk/qcom/a53-pll.c
+> > +++ b/drivers/clk/qcom/a53-pll.c
+> > @@ -37,6 +37,7 @@ static const struct regmap_config a53pll_regmap_config = {
+> >  static int qcom_a53pll_probe(struct platform_device *pdev)
+> >  {
+> >  	struct device *dev = &pdev->dev;
+> > +	struct device_node *np = dev->of_node;
+> >  	struct regmap *regmap;
+> >  	struct resource *res;
+> >  	struct clk_pll *pll;
+> > @@ -66,7 +67,12 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
+> >  	pll->status_bit = 16;
+> >  	pll->freq_tbl = a53pll_freq;
+> >  
+> > -	init.name = "a53pll";
+> > +	/* Use an unique name by appending @unit-address */
+> > +	init.name = devm_kasprintf(dev, GFP_KERNEL, "a53pll%s",
+> > +				   strchrnul(np->full_name, '@'));
+> 
+> While the result is nice, this isn't...
+> 
+> Is your dev_name() reasonable? What about "%s:a53pll", dev_name(dev) ?
+
+dev_name() is somehow reasonable for a53pll.
+
+  b016000.clock-controller:a53pll
+  b116000.clock-controller:a53pll
+  b1d0000.clock-controller:a53pll
+
+But I prefer to the existing names, because I would like to use the same
+naming schema for both a53pll and a53mux.  If using dev_name() on a53mux,
+we will get the following which is less reasonable.
+
+  qcom-apcs-msm8916-clk.1.auto:a53mux
+  qcom-apcs-msm8916-clk.2.auto:a53mux
+  qcom-apcs-msm8916-clk.3.auto:a53mux
+
+Shawn
 
