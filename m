@@ -2,16 +2,16 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 584273C3401
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 11:43:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 011083C341A
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 12:22:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231877AbhGJJpt convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 10 Jul 2021 05:45:49 -0400
-Received: from aposti.net ([89.234.176.197]:56276 "EHLO aposti.net"
+        id S232135AbhGJKYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jul 2021 06:24:51 -0400
+Received: from aposti.net ([89.234.176.197]:57962 "EHLO aposti.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230134AbhGJJps (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Jul 2021 05:45:48 -0400
-Date:   Sat, 10 Jul 2021 10:42:53 +0100
+        id S230443AbhGJKYv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Jul 2021 06:24:51 -0400
+Date:   Sat, 10 Jul 2021 11:21:56 +0100
 From:   Paul Cercueil <paul@crapouillou.net>
 Subject: Re: [PATCH 1/2] dt-bindings: display/panel: Add Innolux EJ030NA
 To:     Sam Ravnborg <sam@ravnborg.org>
@@ -20,124 +20,57 @@ Cc:     Thierry Reding <thierry.reding@gmail.com>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, list@opendingux.net,
         Christophe Branchereau <cbranchereau@gmail.com>
-Message-Id: <HBW0WQ.NHPOJDIT9XWR1@crapouillou.net>
-In-Reply-To: <YOk60yTP9L1gT3+W@ravnborg.org>
+Message-Id: <K4Y0WQ.MLS1MDCVFJWL3@crapouillou.net>
+In-Reply-To: <YOlvev0nvXVYU01y@ravnborg.org>
 References: <20210625121045.81711-1-paul@crapouillou.net>
-        <YOk60yTP9L1gT3+W@ravnborg.org>
+        <YOk60yTP9L1gT3+W@ravnborg.org> <HBW0WQ.NHPOJDIT9XWR1@crapouillou.net>
+        <YOlvev0nvXVYU01y@ravnborg.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam, thanks for the review.
 
-Le sam., juil. 10 2021 at 08:14:43 +0200, Sam Ravnborg 
-<sam@ravnborg.org> a écrit :
-> Hi Paul,
-> 
-> On Fri, Jun 25, 2021 at 01:10:44PM +0100, Paul Cercueil wrote:
->>  Add binding for the Innolux EJ030NA panel, which is a 320x480 3.0" 
->> 4:3
->>  24-bit TFT LCD panel with non-square pixels and a delta-RGB 8-bit
->>  interface.
->> 
->>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
->>  ---
->>   .../display/panel/innolux,ej030na.yaml        | 62 
->> +++++++++++++++++++
->>   1 file changed, 62 insertions(+)
->>   create mode 100644 
->> Documentation/devicetree/bindings/display/panel/innolux,ej030na.yaml
->> 
->>  diff --git 
->> a/Documentation/devicetree/bindings/display/panel/innolux,ej030na.yaml 
->> b/Documentation/devicetree/bindings/display/panel/innolux,ej030na.yaml
->>  new file mode 100644
->>  index 000000000000..cda36c04e85c
->>  --- /dev/null
->>  +++ 
->> b/Documentation/devicetree/bindings/display/panel/innolux,ej030na.yaml
->>  @@ -0,0 +1,62 @@
->>  +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>  +%YAML 1.2
->>  +---
->>  +$id: 
->> http://devicetree.org/schemas/display/panel/innolux,ej030na.yaml#
->>  +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>  +
->>  +title: Innolux EJ030NA 3.0" (320x480 pixels) 24-bit TFT LCD panel
->>  +
->>  +description: |
->>  +  The panel must obey the rules for a SPI slave device as 
->> specified in
->>  +  spi/spi-controller.yaml
->>  +
->>  +maintainers:
->>  +  - Paul Cercueil <paul@crapouillou.net>
->>  +
->>  +allOf:
->>  +  - $ref: panel-common.yaml#
->>  +
->>  +properties:
->>  +  compatible:
->>  +    const: innolux,ej030na
->>  +
->>  +  backlight: true
->>  +  port: true
->>  +  power-supply: true
->>  +  reg: true
->>  +  reset-gpios: true
->>  +
->>  +required:
->>  +  - compatible
->>  +  - reg
->>  +  - power-supply
->>  +  - reset-gpios
->>  +
->>  +unevaluatedProperties: false
-> I had expected:
-> additionalProperties: false
-> 
-> With this fixed:
-> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+[...]
 
-I am not sure; the doc states that this (additionalProperties: false) 
-"can't be used in case where another schema is referenced", which is 
-the case here, as we include "panel-common.yaml".
+>>  I am not sure; the doc states that this (additionalProperties: 
+>> false) "can't
+>>  be used in case where another schema is referenced", which is the 
+>> case here,
+>>  as we include "panel-common.yaml".
+> 
+> This DT schema already list all relevant properties like:
+> 
+> 	backlight: true
+> 
+> So "additionalProperties: false" tells that no other properties are
+> allowed other than the listed properties.
+> 
+> To my best understanding unevaluatedProperties: false is less strict 
+> and
+> should be used if one does not list all possilbe properties.
+> This could be the case for a panel haging below a SPI controller as in
+> this case. So in other words giving this some extra thought I think
+> unevaluatedProperties: false is OK here.
+
+A panel below a SPI controller would have all its SPI-specific 
+properties covered by spi-controller.yaml, I believe? So maybe 
+"additionalProperties: false" would work?
+
+In any case, if I use "additionalProperties: false", "make 
+dt_binding_check" complains that my example's "spi-max-frequency" 
+property is not covered. So maybe you are right.
+
+> So my r-b is ok if you keep it as it.
+> 
+> PS. Where do you guys hang out with the downfall of freenode - 
+> somewhere
+> on oftc?
+
+We moved to #opendingux on Libera.
 
 Cheers,
 -Paul
-
->>  +
->>  +examples:
->>  +  - |
->>  +    #include <dt-bindings/gpio/gpio.h>
->>  +
->>  +    spi {
->>  +        #address-cells = <1>;
->>  +        #size-cells = <0>;
->>  +
->>  +        panel@0 {
->>  +            compatible = "innolux,ej030na";
->>  +            reg = <0>;
->>  +
->>  +            spi-max-frequency = <10000000>;
->>  +
->>  +            reset-gpios = <&gpe 4 GPIO_ACTIVE_LOW>;
->>  +            power-supply = <&lcd_power>;
->>  +
->>  +            backlight = <&backlight>;
->>  +
->>  +            port {
->>  +                panel_input: endpoint {
->>  +                    remote-endpoint = <&panel_output>;
->>  +                };
->>  +            };
->>  +        };
->>  +    };
->>  --
->>  2.30.2
 
 
