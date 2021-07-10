@@ -2,205 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EDF13C360E
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 20:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 091783C3658
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 21:27:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229714AbhGJSUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jul 2021 14:20:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60968 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbhGJSUJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jul 2021 14:20:09 -0400
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62FC4C0613DD;
-        Sat, 10 Jul 2021 11:17:24 -0700 (PDT)
-Received: by mail-qt1-x82c.google.com with SMTP id z25so7508515qto.12;
-        Sat, 10 Jul 2021 11:17:24 -0700 (PDT)
+        id S231157AbhGJT3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jul 2021 15:29:10 -0400
+Received: from mail-bn7nam10on2107.outbound.protection.outlook.com ([40.107.92.107]:9249
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229614AbhGJT3F (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Jul 2021 15:29:05 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZdGeF7paL4EIPXR4XeLEVgmA1/mvUNwsNd363eh84v0PUtODQv3Dfplmu8gpHNlqdLzheOE5P7OHW2h1ntp2LP+3039OQD4eEY5G6i+Q3tDpYTsBRJjRVI12JhYGU4y9qjfc/p6N6rPus3Wtsk1UHyYOhVxQj5NyhR/uTsr245jZit1drA3QN2QNBOJ95FYYEYvcCuLW6R+d4H7Zl6o/bS7sVwacaqX8ft+l7rn+8/xyS57VGpjh6oLsRxhdTQSydV9o1MS/FdmFAgq5LiO7RhYUzZePEPaIo+dH5gJCk/xV94q6PGAVc1zsBf2VUmT2wE73rX34LOEJuozlu3ezrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6Sll1HQrZ+iKaYGw5atsj5OKPSgrS5pUR9v1e1ssyjw=;
+ b=itkS9ne1L9xwaSFRL8lA1C9UEn/1OcDngcccuk37HnX8CoI6fXiwVngCP+X0XwAfdB61J18fRQuQvFHLLBbIDF5uKgh6KLlx7ur7ACzLov9Tr/nxaT1gDrMCXl8ymrhiGnyBp9RiKcgAaGF0dlODBXhWYrCRIyA/pgv5h87qz0CKS5FwA07SozkiCzbFBmoOWyp7R8i0/Act5Y2unBiXFajQ0sxKKKENFT7ipMU7xn4AhIGuY12V656q89iwKIWnSKpYUPYvmeRP8Lv/lhiYMbB9aD939ozOB7mHOs1gROH6EcrFUsWmbhBviqzL6bJrnNwkuWfX1Ef4QDnSru9yUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=in-advantage.com; dmarc=pass action=none
+ header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=NCUU5JuXWaoTBn7XNb1OVj/949g2YlQ7jTkVqCc7yQo=;
-        b=K9aXtxijKGMatgEuxOS9p1dO2+OnXbp2bNTci1vUfKh4NYQABKcF701cCK3HDDmayz
-         WDPF0UrVk5nTQEpvD0e3F6e3QYRyvZhBqpvPYlRSMX5JsVByFdNJy9cHmRCox9E6szie
-         0RTB/1FKxQfXae1rsTw0yG7/pAVViE/CQBCP2Kj187jsvfU3ruPo98+pZfL/m+PWK77K
-         7A6iypmXJyZaLPqKnjp+geyrPNktBr5/zMSRWEhxutitgLqVPZ5G3AdYcWwcDdKptpjY
-         wKsEbL3VPi+/IK08Rja1RyqbhiuzAzRLh/EKeuaFiBecV+q40WhPpHJc+X6yne23BwD2
-         HDIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=NCUU5JuXWaoTBn7XNb1OVj/949g2YlQ7jTkVqCc7yQo=;
-        b=j0HXtMa2QC7OwIftu6cFB5L3Y3o6Aw2sCSslOYkZ3UX58jtgWKzydHyhdyl9e5NVrV
-         ppG/4Vd4nMwL2o9MPUtelUkQZ1EH1iRI/cAQ9U/bb+sO8ZtjKe+SJZ0BS7Y43vcoLT4f
-         zPPw0Eb6DoBOKG+XPW/0RGWOfpuTnFvDk9xEc/vGJxQ3VIpXh0a0VKmws2WKYB+mr2tQ
-         Es0lDLZGI+P8LewwIKwJQrb9tGaDKp71e79VhANuSVrt3mC414BFJlYZvlzSYpiG7nAM
-         cqvDgrU3Y6kjm7SA4CsKHoP0gceGxk8/2tWplVzE/h8C+W2JTcwKYJVwP2YKjBUrh+WS
-         c2pA==
-X-Gm-Message-State: AOAM532dMQ+d9h6VP+9Dy9/AQ+GmtOexJfxXXz+owQbXxGENOl5SxZcq
-        gfM/NSM/f1uPDiupAN60N7I=
-X-Google-Smtp-Source: ABdhPJy77ebmU3YbXKzAIIqUP81l+O4tk1wiaTzXqqEJuG3bP6v+xyKfOBEumhoyvWP7IfP249bwwQ==
-X-Received: by 2002:ac8:1106:: with SMTP id c6mr40283019qtj.20.1625941043572;
-        Sat, 10 Jul 2021 11:17:23 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id j141sm4179192qke.33.2021.07.10.11.17.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Jul 2021 11:17:23 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Sat, 10 Jul 2021 14:17:22 -0400
-Message-Id: <CCPNZV2YBJBG.3VSIFN36ZOD4W@shaak>
-Cc:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <charles-antoine.couret@essensium.com>, <Nuno.Sa@analog.com>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 1/4] iio: adc: ad7949: define and use bitfield names
-From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Jonathan Cameron" <jic23@kernel.org>
-References: <20210709155856.1732245-1-liambeguin@gmail.com>
- <20210709155856.1732245-2-liambeguin@gmail.com>
- <20210710170837.263d6b1a@jic23-huawei>
-In-Reply-To: <20210710170837.263d6b1a@jic23-huawei>
+ d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6Sll1HQrZ+iKaYGw5atsj5OKPSgrS5pUR9v1e1ssyjw=;
+ b=pPagMDH1BloIir2uRCDrS8cmIBSFepQ2E4uEY9xkpRdMRKfQ7k+Dcm8gVXnb52IuXAwSrznlkp4IWFEbngVOvDjtDKpy1ao61F3ikjXazu4Niosyxh6lGDeNE4LLC1QMIsAS8aHvvXE7cN7QEa6zc9DE8u7V5ERzr3n0tLeAcU4=
+Authentication-Results: lunn.ch; dkim=none (message not signed)
+ header.d=none;lunn.ch; dmarc=none action=none header.from=in-advantage.com;
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37) by MWHPR10MB1709.namprd10.prod.outlook.com
+ (2603:10b6:301:7::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.22; Sat, 10 Jul
+ 2021 19:26:16 +0000
+Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::e81f:cf8e:6ad6:d24d]) by MWHPR1001MB2351.namprd10.prod.outlook.com
+ ([fe80::e81f:cf8e:6ad6:d24d%3]) with mapi id 15.20.4287.033; Sat, 10 Jul 2021
+ 19:26:16 +0000
+From:   Colin Foster <colin.foster@in-advantage.com>
+To:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        olteanv@gmail.com, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, claudiu.manoil@nxp.com,
+        alexandre.belloni@bootlin.com, UNGLinuxDriver@microchip.com,
+        linux@armlinux.org.uk
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v2 net-next 0/8] Add support for VSC7511-7514 chips over SPI
+Date:   Sat, 10 Jul 2021 12:25:54 -0700
+Message-Id: <20210710192602.2186370-1-colin.foster@in-advantage.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MWHPR12CA0042.namprd12.prod.outlook.com
+ (2603:10b6:301:2::28) To MWHPR1001MB2351.namprd10.prod.outlook.com
+ (2603:10b6:301:35::37)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (67.185.175.147) by MWHPR12CA0042.namprd12.prod.outlook.com (2603:10b6:301:2::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.19 via Frontend Transport; Sat, 10 Jul 2021 19:26:16 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 253a6814-6535-4106-4aed-08d943d8966e
+X-MS-TrafficTypeDiagnostic: MWHPR10MB1709:
+X-Microsoft-Antispam-PRVS: <MWHPR10MB1709AD29C8C84DED5496E2EBA4179@MWHPR10MB1709.namprd10.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KWSVZ8SGy4by7T0uXccsVvfX166u2z1gPRQaB7C8bjRjQNaH6dwfnXOKB4PZTDvsn4GChXv7bBUzsjxKhOvNIoFo/8UKLD3EOn09Qp8l+0W1Ov0YT/s5533raqWTGnwi2KUC1OnbqBw9aRagAmGWIjAVlMx59pF/782ULHYGak2jRxoxGCw5lBjamWYGJG2qbbukjwJ81Le50fCXDGCbSeLUizUT9ZyUD1zFlqwn28srq/gyJYtSLaATYcYv0NcnZ8Z7s87WQyIOgYjO/obJ9KMSGgwC6XN7jP78yzlCGtlhYlC6yXtQ0JMyjvfpFdZ5Y/km305rpwHpaIHIDMF0e8dAzkdQscYz6E79/2uVz7PPWjww+DSs35mT461PvfKJ8z2mo7qRA3aXiwilIsYzp2ji0ht2gOs+1ORfr2iVTPUG1KJNR2oc6o5EoTqS/dmWZp8qnsWv/c03BProcq+eFFyNRDuZiEdcNCFo5pwltigee33kBUzkHjO9dyqw9diXDvmtzlX0uNert1Kwy7FFpK/0yk09bN7d4u7TXJIO/fBBLL/55BqyEY1Bv8u6yFSjF2mgVHOd9/mV1ycuFFzwd4o9sshc39Jy9CJvBlOz8qNXn/lnMjPym9aWZB+xTOqgQyBfiVIMor99qxhvMY0n65lfITTLOG/mBUofez6Y8C5fYRmRnIwG+7842gCRmMWByjtepBqGiT3MyCGznuyKTsJrQlMY+RhkcKgp6qacipE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(396003)(376002)(39830400003)(136003)(366004)(8936002)(7416002)(6506007)(5660300002)(2906002)(66556008)(26005)(2616005)(8676002)(44832011)(6486002)(6512007)(66476007)(6666004)(38100700002)(38350700002)(52116002)(66946007)(921005)(4326008)(956004)(83380400001)(1076003)(316002)(36756003)(86362001)(186003)(478600001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?y2Pz5SLTVwV30de92rMtmREYB3Rci+DTR9ch/9GjlXSqK0jK8NVk/JnY/4BV?=
+ =?us-ascii?Q?yDhTjJf2dOwi/FU2pdDv9rbQE181foS8U7Ut33y0xe4lMAlxx9YrLd97rQft?=
+ =?us-ascii?Q?bsvZLWe+Y9rfPLDQM97BQQ8tCTsF2uVNDwbo4dEyAMSq3NQw74oKH8BEG4Qp?=
+ =?us-ascii?Q?FOECQ/WeLgGA+u/J92sx2SS0wNxbNIsFQdSuUJwNSico03qFHJU6i00lmKro?=
+ =?us-ascii?Q?5UoMOOuFGJnxUoz4+7aF5a3ZyOwKcAXGlacmBScHKMm0D0zLwdE4CbFcCuSX?=
+ =?us-ascii?Q?sLvWXmkQQf7Va9gHICocq/4RRcQ3HDWVE9LXLRFKrptKol2rKTm6NmE7lfpk?=
+ =?us-ascii?Q?lk1XWkD3PsTTAuf8qIH0vOHjYvHD56OpeBRlwKd2jQhlykg3sAsaLeZlIa8b?=
+ =?us-ascii?Q?kqN9yY/3KBz6FeQm+V6Lxjz1lU+s4b3BOh/WkG5bQJ48UOvq1fcSO3y9iK09?=
+ =?us-ascii?Q?rGxHu1gxjrAocPgmVWe1djayc61BEzy5OJikA85wrhHwES1t0Qa1wl3XiqXe?=
+ =?us-ascii?Q?1Cs6urLJmJKlG3oBRW+mw1XDe1G9kkiS8PEHkXUj+1tKZYrIZ1aRVs+yccsf?=
+ =?us-ascii?Q?AVrW9umIvtw7AFFa7nGmSGo8emgNvKiE8PdiyHbZeZFUQs94sycYEU1SRoH0?=
+ =?us-ascii?Q?hFnxVG0SuZRA0xygHhvviWV97N30lPpxj/cb828yBr1LRJzV+0/fdfW25ftU?=
+ =?us-ascii?Q?aYMkomlJuvHuw/jeWRrvDEn97VxaApYFNejQgF5NybK/tpIuyHzvZThFfkW6?=
+ =?us-ascii?Q?U5XN6Z/b8KkDymdzHBVEoXlS9tSfGKVweDZdC8Fkrwclj1J0UgCz/3YzKdsr?=
+ =?us-ascii?Q?wxTNS0+HccFUJQ0EBfkbj27y2BanWJ743Ek1B4hQg2qQxY8gnRO4YLY8C8lA?=
+ =?us-ascii?Q?/MWhWxCnEe/MWrtBlVNXY9qBgFxAUbDA0npkhEh28rRbAgFUNHTNGj7Sg/8c?=
+ =?us-ascii?Q?0VjB5s6OAExSfCCz+7DlMi+eUjxhPZFgT20zg6HWjyckh9iq/IS+x1jiM8JA?=
+ =?us-ascii?Q?UFluput9EWr8J/+9089zjUbYHaYp+WDJm2utf5UtbexQtdAbZ6l4/l3y5EoS?=
+ =?us-ascii?Q?t2hJFDm3+OCUVOlwrl6BT92NlF5TTQHLkwqlsZigP90Xjexym52Z2QrMuDnr?=
+ =?us-ascii?Q?lYYO6U7mkX7jIP/xVuL3YPeiHokjzcRtenpjOkBIYTE+Ac/u1K52IOXa0Y45?=
+ =?us-ascii?Q?Pf0trRbB7VXDIEu2Lm9kEaWRoiTCRtn2Byjsdn7CDo8FbYKQIQADwh7ctJnm?=
+ =?us-ascii?Q?JMB3kgIwv/fINvapAQ66CNeVtbAvG0t1oTGsiL+eS9iOfDYpbx20t6kYi2V8?=
+ =?us-ascii?Q?SsXNoXrnZTZFyZaP9LIt7Cu6?=
+X-OriginatorOrg: in-advantage.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 253a6814-6535-4106-4aed-08d943d8966e
+X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jul 2021 19:26:16.6802
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ePO2MeQAZFxcupehgLIiAWrmsIQB1XrpDby1/f1XMKw2ebZqKp6NS3YNWhzZxkxMGw2eCZO4vPcNUnKV26pFyZpLgrMX8BpSZ9YUDWMtcDE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR10MB1709
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat Jul 10, 2021 at 12:08 PM EDT, Jonathan Cameron wrote:
-> On Fri, 9 Jul 2021 11:58:53 -0400
-> Liam Beguin <liambeguin@gmail.com> wrote:
->
-> > From: Liam Beguin <lvb@xiphos.com>
-> >=20
-> > Replace raw configuration register values by using FIELD_PREP and
-> > defines to improve readability.
-> >=20
-> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
+Add support for configuration and control of the VSC7511, VSC7512, VSC7513, and
+VSC7514 chips over a SPI interface. The intent is to control these chips from an
+external CPU. The expectation is to have most of the features of the
+net/ethernet/mscc/ocelot_vsc7514 driver.
 
-Hi Jonathan,
+I have tried to heed all the advice from my first patch RFC. Thanks to everyone
+for all the feedback.
 
->
-> Ideally fixes should come before any refactors / cleanups like this one.
-> That reduces the burden if people want to backport them.
->
-> In this particular case I'm guessing no one ran into the issues the
-> following patches deal with so we can just take these in the order
-> you have here.
->
+The current status is that there are two functional "bugs" that need
+investigation:
+1. The first probe of the internal MDIO bus fails. I suspect this is related to
+power supplies / grounding issues that would not appear on standard hardware.
+2. Communication to the CPU bus doesn't seem to function properly. I suspect
+this is due to the fact that ocelot / felix assumes it is using the built-in CPU
+/ NPI port for forwarding, though I am not positive.
 
-Understood, I will follow that guideline next time.
+Nonetheless, these two issues likely won't require a large architecture change,
+and perhaps those who know much more about the ocelot chips than I could chime
+in.
 
-> Otherwise, good cleanup. A few minor comments inline, mostly as a result
-> of some less than ideal name choices on the datasheet.
->
-> > ---
-> >  drivers/iio/adc/ad7949.c | 38 +++++++++++++++++++++++++++++++-------
-> >  1 file changed, 31 insertions(+), 7 deletions(-)
-> >=20
-> > diff --git a/drivers/iio/adc/ad7949.c b/drivers/iio/adc/ad7949.c
-> > index 1b4b3203e428..93aacf4f680b 100644
-> > --- a/drivers/iio/adc/ad7949.c
-> > +++ b/drivers/iio/adc/ad7949.c
-> > @@ -12,12 +12,27 @@
-> >  #include <linux/regulator/consumer.h>
-> >  #include <linux/spi/spi.h>
-> > =20
-> > -#define AD7949_MASK_CHANNEL_SEL		GENMASK(9, 7)
-> >  #define AD7949_MASK_TOTAL		GENMASK(13, 0)
-> > -#define AD7949_OFFSET_CHANNEL_SEL	7
-> > -#define AD7949_CFG_READ_BACK		0x1
-> >  #define AD7949_CFG_REG_SIZE_BITS	14
-> > =20
-> > +#define AD7949_CFG_BIT_CFG		BIT(13)
->
-> Even though that's the name on the datasheet it is silly!
+Colin Foster (8):
+  net: dsa: ocelot: remove unnecessary pci_bar variables
+  net: dsa: ocelot: felix: move MDIO access to a common location
+  net: dsa: ocelot: felix: NULL check on variable
+  net: dsa: ocelot: felix: add interface for custom regmaps
+  net: mscc: ocelot: split register definitions to a separate file
+  net: mscc: ocelot: expose ocelot wm functions
+  net: dsa: ocelot: felix: add support for VSC75XX control over SPI
+  Update documentation for the VSC7512 SPI device
 
-Agreed, datasheet register and bitfield names aren't always great :-/
+ .../devicetree/bindings/net/dsa/ocelot.txt    |   68 ++
+ drivers/net/dsa/ocelot/Kconfig                |   12 +
+ drivers/net/dsa/ocelot/Makefile               |    7 +
+ drivers/net/dsa/ocelot/felix.c                |    6 +-
+ drivers/net/dsa/ocelot/felix.h                |    4 +-
+ drivers/net/dsa/ocelot/felix_mdio.c           |  145 +++
+ drivers/net/dsa/ocelot/felix_mdio.h           |   11 +
+ drivers/net/dsa/ocelot/felix_vsc9959.c        |   12 +-
+ drivers/net/dsa/ocelot/ocelot_vsc7512_spi.c   | 1068 +++++++++++++++++
+ drivers/net/dsa/ocelot/seville_vsc9953.c      |  109 +-
+ drivers/net/ethernet/mscc/Makefile            |    2 +
+ drivers/net/ethernet/mscc/ocelot.c            |    8 +
+ drivers/net/ethernet/mscc/ocelot_regs.c       |  310 +++++
+ drivers/net/ethernet/mscc/ocelot_vsc7514.c    |  323 +----
+ drivers/net/ethernet/mscc/ocelot_wm.c         |   40 +
+ include/soc/mscc/ocelot.h                     |   24 +
+ include/soc/mscc/ocelot_regs.h                |   21 +
+ 17 files changed, 1737 insertions(+), 433 deletions(-)
+ create mode 100644 drivers/net/dsa/ocelot/felix_mdio.c
+ create mode 100644 drivers/net/dsa/ocelot/felix_mdio.h
+ create mode 100644 drivers/net/dsa/ocelot/ocelot_vsc7512_spi.c
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_regs.c
+ create mode 100644 drivers/net/ethernet/mscc/ocelot_wm.c
+ create mode 100644 include/soc/mscc/ocelot_regs.h
 
->
-> I would have just one define called
-> AD7949_CFG_VAL_OVERWRITE BIT(13)
->
-> It's common to do that for single flags where
-> FIELD_PREP(AD7949_CFG_VAL_OVERWRITE, 1) for example has an
-> obvious meaning for the 1.
->
-
-Sounds good, I'll fix these with your recommendation.
-
-> > +#define AD7949_CFG_VAL_CFG_OVERWRITE		1
-> > +#define AD7949_CFG_VAL_CFG_KEEP			0
-> > +#define AD7949_CFG_BIT_INCC		GENMASK(12, 10)
-> > +#define AD7949_CFG_VAL_INCC_UNIPOLAR_GND	7
-> > +#define AD7949_CFG_VAL_INCC_UNIPOLAR_COMM	6
-> > +#define AD7949_CFG_VAL_INCC_UNIPOLAR_DIFF	4
-> > +#define AD7949_CFG_VAL_INCC_TEMP		3
-> > +#define AD7949_CFG_VAL_INCC_BIPOLAR		2
-> > +#define AD7949_CFG_VAL_INCC_BIPOLAR_DIFF	0
-> > +#define AD7949_CFG_BIT_INX		GENMASK(9, 7)
->
-> This is rather non obvious abbreviation. _INx would be clearer
-> perhaps, but then we'd get someone fixing the camel case...
-> Given it would be good to match the datasheet, keep the name
-> but add a comment to say this is the input channel select.
->
-
-I agree! While I'm at it, I might as well add comments for INCC and
-others that aren't so abvious.
-
-Thanks,
-Liam
-
-> > +#define AD7949_CFG_BIT_BW		BIT(6)
->
-> As above, I'd suggest just defining AD7949_CFG_VAL_BW_FULL BIT(6)
-> then it's either full or not depending on a 0 or 1 write.
->
-> > +#define AD7949_CFG_VAL_BW_FULL			1
-> > +#define AD7949_CFG_VAL_BW_QUARTER		0
-> > +#define AD7949_CFG_BIT_REF		GENMASK(5, 3)
-> > +#define AD7949_CFG_BIT_SEQ		GENMASK(2, 1)
-> > +#define AD7949_CFG_BIT_RBN		BIT(0)
-> > +
-> >  enum {
-> >  	ID_AD7949 =3D 0,
-> >  	ID_AD7682,
-> > @@ -109,8 +124,8 @@ static int ad7949_spi_read_channel(struct ad7949_ad=
-c_chip *ad7949_adc, int *val,
-> >  	 */
-> >  	for (i =3D 0; i < 2; i++) {
-> >  		ret =3D ad7949_spi_write_cfg(ad7949_adc,
-> > -					   channel << AD7949_OFFSET_CHANNEL_SEL,
-> > -					   AD7949_MASK_CHANNEL_SEL);
-> > +					   FIELD_PREP(AD7949_CFG_BIT_INX, channel),
-> > +					   AD7949_CFG_BIT_INX);
-> >  		if (ret)
-> >  			return ret;
-> >  		if (channel =3D=3D ad7949_adc->current_channel)
-> > @@ -214,10 +229,19 @@ static int ad7949_spi_init(struct ad7949_adc_chip=
- *ad7949_adc)
-> >  {
-> >  	int ret;
-> >  	int val;
-> > +	u16 cfg;
-> > =20
-> > -	/* Sequencer disabled, CFG readback disabled, IN0 as default channel =
-*/
-> >  	ad7949_adc->current_channel =3D 0;
-> > -	ret =3D ad7949_spi_write_cfg(ad7949_adc, 0x3C79, AD7949_MASK_TOTAL);
-> > +
-> > +	cfg =3D FIELD_PREP(AD7949_CFG_BIT_CFG, AD7949_CFG_VAL_CFG_OVERWRITE) =
-|
-> > +		FIELD_PREP(AD7949_CFG_BIT_INCC, AD7949_CFG_VAL_INCC_UNIPOLAR_GND) |
-> > +		FIELD_PREP(AD7949_CFG_BIT_INX, ad7949_adc->current_channel) |
-> > +		FIELD_PREP(AD7949_CFG_BIT_BW, AD7949_CFG_VAL_BW_FULL) |
-> > +		FIELD_PREP(AD7949_CFG_BIT_REF, AD7949_REF_EXT_BUF) |
-> > +		FIELD_PREP(AD7949_CFG_BIT_SEQ, 0x0) |
-> > +		FIELD_PREP(AD7949_CFG_BIT_RBN, 1);
-> > +
-> > +	ret =3D ad7949_spi_write_cfg(ad7949_adc, cfg, AD7949_MASK_TOTAL);
-> > =20
-> >  	/*
-> >  	 * Do two dummy conversions to apply the first configuration setting.
+--
+2.25.1
 
