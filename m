@@ -2,164 +2,616 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F9723C35E3
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 19:45:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B162D3C35F5
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 19:54:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230332AbhGJRsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jul 2021 13:48:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54120 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229846AbhGJRsb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jul 2021 13:48:31 -0400
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082DDC0613DD;
-        Sat, 10 Jul 2021 10:45:44 -0700 (PDT)
-Received: by mail-qv1-xf34.google.com with SMTP id j14so6212095qvu.6;
-        Sat, 10 Jul 2021 10:45:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
-         :subject:references:in-reply-to;
-        bh=sW9hZja3xQYTQGPj+6uAtbSZMYkpOa8syLZTN1hyNWA=;
-        b=l+idCI0aRPJOkC41EHdwZME3sL9B2PrRibbecoP3Ug1v4iyVplD6bvnPCWq+JGxJRI
-         uN9gVu4ES2JgRqxg+ttzKCyt52xiUJIgHp+b0xfyllHDjB5GQoJydmmFjKRBEOl/sd7N
-         NkjVkEaZW/c22jQC/vu/Vdso+3M7jxVF2rJmE6ve55NAaFG5bkPbe2dGjFJZkFfaEqkD
-         hnE1PtnYLbv4TSERPW5MKeRhpdfSVJcfABgxQnH/i9IXA7eQDdeqR+m5egjnesr1B4GD
-         uwHQ2KcVJ51Rn95rb66KSDYPoM/xAkyHQjf5TtelTaDSucrL7Qiwki6LQ8lTjC9y7gb6
-         gDaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:from:to:cc:subject:references:in-reply-to;
-        bh=sW9hZja3xQYTQGPj+6uAtbSZMYkpOa8syLZTN1hyNWA=;
-        b=Q8zZGfFQPzcrwjkCMaDg0JhnrvU52qPLQ79P7G0k8smsUU9dngr5BOG2G0sumno62V
-         BjTwRYfvqpU+61Oz2Mjk0QJT3DLjOVM0ghE+YLyC7Bqwe7H9OUvF2HFa/4S9Xem2uaAG
-         wR2Kk7Gy8ubLmBRU+jCC0RdExm4wXGDhiWQOLFa+Vg3kxZj6j3NXHpAWvK8fjd8LrTVo
-         PLUHe7yaQRQFrS0ApCH8LtDUSYYasVUM5uyBdaxDP9mi/G+/DqoPROBeQi8GAfr/fa/w
-         2EvVETWSWTK33+FiMvSKw2XW+Jp3RpZzdbeuHMpAuKCt0905gRFmmDpkkQ7xFXgKvntE
-         PXnw==
-X-Gm-Message-State: AOAM531QLNFlfU6RvZIPIDd/jUVqYD/Rdr83AYEXd0JLbK/a2Lh938S2
-        SE2wraS8IsO7bFY4vrzSkOrgL8O3LxnkyQ==
-X-Google-Smtp-Source: ABdhPJwyK/XfRyUOImaBHnO2b1uhIV9hHSRSnLVMKw43iuRXnfmhFBGZ5S0Mx2h7G1/J825AhHTTMw==
-X-Received: by 2002:a05:6214:172:: with SMTP id y18mr16067392qvs.14.1625939144124;
-        Sat, 10 Jul 2021 10:45:44 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id n64sm4167120qkd.79.2021.07.10.10.45.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 10 Jul 2021 10:45:43 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        id S230025AbhGJR5Z convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 10 Jul 2021 13:57:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51728 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229551AbhGJR5Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Jul 2021 13:57:25 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2799061353;
+        Sat, 10 Jul 2021 17:54:36 +0000 (UTC)
+Date:   Sat, 10 Jul 2021 18:57:08 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     "Sa, Nuno" <Nuno.Sa@analog.com>
+Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 1/2] iio: frequency: adrf6780: add support for
+ ADRF6780
+Message-ID: <20210710185708.2d240da5@jic23-huawei>
+In-Reply-To: <PH0PR03MB63667F415CDC1003CC3BFC77991A9@PH0PR03MB6366.namprd03.prod.outlook.com>
+References: <20210702111239.174189-1-antoniu.miclaus@analog.com>
+        <20210703175716.7864358a@jic23-huawei>
+        <PH0PR03MB63667CCA2691D4A43F28041E991C9@PH0PR03MB6366.namprd03.prod.outlook.com>
+        <20210706100405.00001507@Huawei.com>
+        <PH0PR03MB6366190FBDC12B1AD1CCBC43991B9@PH0PR03MB6366.namprd03.prod.outlook.com>
+        <PH0PR03MB6366BC5E806B18A8889EDDE9991A9@PH0PR03MB6366.namprd03.prod.outlook.com>
+        <20210707095629.00004bb8@Huawei.com>
+        <PH0PR03MB63667F415CDC1003CC3BFC77991A9@PH0PR03MB6366.namprd03.prod.outlook.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date:   Sat, 10 Jul 2021 13:45:42 -0400
-Message-Id: <CCPNBMAIVJTV.3U5M70O21GDZ4@shaak>
-From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Peter Rosin" <peda@axentia.se>, <jic23@kernel.org>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>
-Cc:     <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 05/10] iio: afe: rescale: add INT_PLUS_{MICRO,NANO}
- support
-References: <20210706160942.3181474-1-liambeguin@gmail.com>
- <20210706160942.3181474-6-liambeguin@gmail.com>
- <4be51a74-9913-291a-9dac-422ac23da3ea@axentia.se>
- <CCOUX814CQ6U.XY2CIQKFE00V@shaak>
- <353ceae9-ad7a-3175-d764-a9e590d3e8d3@axentia.se>
-In-Reply-To: <353ceae9-ad7a-3175-d764-a9e590d3e8d3@axentia.se>
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat Jul 10, 2021 at 4:14 AM EDT, Peter Rosin wrote:
->
->
-> On 2021-07-09 21:30, Liam Beguin wrote:
-> > On Fri Jul 9, 2021 at 12:29 PM EDT, Peter Rosin wrote:
-> >>
-> >>
-> >> On 2021-07-06 18:09, Liam Beguin wrote:
-> >>> From: Liam Beguin <lvb@xiphos.com>
-> >>>
-> >>> Add IIO_VAL_INT_PLUS_{NANO,MICRO} scaling support.
-> >>> Scale the integer part and the decimal parts individually and keep th=
-e
-> >>> original scaling type.
-> >>>
-> >>> Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> >>> ---
-> >>>  drivers/iio/afe/iio-rescale.c | 8 ++++++++
-> >>>  1 file changed, 8 insertions(+)
-> >>>
-> >>> diff --git a/drivers/iio/afe/iio-rescale.c b/drivers/iio/afe/iio-resc=
-ale.c
-> >>> index ba3bdcc69b16..1d0e24145d87 100644
-> >>> --- a/drivers/iio/afe/iio-rescale.c
-> >>> +++ b/drivers/iio/afe/iio-rescale.c
-> >>> @@ -89,7 +89,15 @@ static int rescale_read_raw(struct iio_dev *indio_=
-dev,
-> >>>  			do_div(tmp, 1000000000LL);
-> >>>  			*val =3D tmp;
-> >>>  			return ret;
-> >>> +		case IIO_VAL_INT_PLUS_NANO:
-> >>> +		case IIO_VAL_INT_PLUS_MICRO:
-> >>> +			tmp =3D (s64)*val * rescale->numerator;
-> >>> +			*val =3D div_s64(tmp, rescale->denominator);
-> >>> +			tmp =3D (s64)*val2 * rescale->numerator;
-> >>> +			*val2 =3D div_s64(tmp, rescale->denominator);
-> >>
-> >=20
-> > Hi Peter,
-> >=20
-> >> Hi!
-> >>
-> >> You are losing precision, and you are not mormalising after the
-> >> calculation.
-> >=20
-> > Can you elaborate a little on what you mean here?
-> >=20
-> > Do you mean that I should make sure that *val2, the PLUS_{NANO,MICRO}
-> > part, doesn't contain an integer part? And if so transfer that part bac=
-k
-> > to *val?
+On Wed, 7 Jul 2021 11:11:20 +0000
+"Sa, Nuno" <Nuno.Sa@analog.com> wrote:
 
-Hi Peter,
+> > From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+> > Sent: Wednesday, July 7, 2021 10:56 AM
+> > To: Sa, Nuno <Nuno.Sa@analog.com>
+> > Cc: Jonathan Cameron <jic23@kernel.org>; Miclaus, Antoniu
+> > <Antoniu.Miclaus@analog.com>; linux-iio@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; devicetree@vger.kernel.org;
+> > robh+dt@kernel.org
+> > Subject: Re: [PATCH v4 1/2] iio: frequency: adrf6780: add support for
+> > ADRF6780
+> > 
+> > On Wed, 7 Jul 2021 08:26:59 +0000
+> > "Sa, Nuno" <Nuno.Sa@analog.com> wrote:
+> >   
+> > > > From: Sa, Nuno <Nuno.Sa@analog.com>
+> > > > Sent: Tuesday, July 6, 2021 12:23 PM
+> > > > To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+> > > > Cc: Jonathan Cameron <jic23@kernel.org>; Miclaus, Antoniu
+> > > > <Antoniu.Miclaus@analog.com>; linux-iio@vger.kernel.org; linux-
+> > > > kernel@vger.kernel.org; devicetree@vger.kernel.org;
+> > > > robh+dt@kernel.org
+> > > > Subject: RE: [PATCH v4 1/2] iio: frequency: adrf6780: add support  
+> > for  
+> > > > ADRF6780
+> > > >
+> > > >
+> > > >  
+> > > > > From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+> > > > > Sent: Tuesday, July 6, 2021 11:04 AM
+> > > > > To: Sa, Nuno <Nuno.Sa@analog.com>
+> > > > > Cc: Jonathan Cameron <jic23@kernel.org>; Miclaus, Antoniu
+> > > > > <Antoniu.Miclaus@analog.com>; linux-iio@vger.kernel.org;  
+> > linux-  
+> > > > > kernel@vger.kernel.org; devicetree@vger.kernel.org;
+> > > > > robh+dt@kernel.org
+> > > > > Subject: Re: [PATCH v4 1/2] iio: frequency: adrf6780: add support  
+> > for  
+> > > > > ADRF6780
+> > > > >
+> > > > > On Mon, 5 Jul 2021 10:18:51 +0000
+> > > > > "Sa, Nuno" <Nuno.Sa@analog.com> wrote:
+> > > > >  
+> > > > > > > -----Original Message-----
+> > > > > > > From: Jonathan Cameron <jic23@kernel.org>
+> > > > > > > Sent: Saturday, July 3, 2021 6:57 PM
+> > > > > > > To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>
+> > > > > > > Cc: linux-iio@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > > > > > > devicetree@vger.kernel.org; robh+dt@kernel.org
+> > > > > > > Subject: Re: [PATCH v4 1/2] iio: frequency: adrf6780: add  
+> > support  
+> > > > > for  
+> > > > > > > ADRF6780
+> > > > > > >
+> > > > > > > On Fri, 2 Jul 2021 14:12:38 +0300
+> > > > > > > Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+> > > > > > >  
+> > > > > > > > The ADRF6780 is a silicon germanium (SiGe) design,  
+> > wideband,  
+> > > > > > > > microwave upconverter optimized for point to point  
+> > microwave  
+> > > > > > > > radio designs operating in the 5.9 GHz to 23.6 GHz  
+> > frequency  
+> > > > > > > > range.
+> > > > > > > >
+> > > > > > > > Datasheet:
+> > > > > > > > https://www.analog.com/media/en/technical-  
+> > > > > documentation/data-  
+> > > > > > > sheets/ADRF6780.pdf  
+> > > > > > > >
+> > > > > > > > Signed-off-by: Antoniu Miclaus  
+> > <antoniu.miclaus@analog.com>  
+> > > > > > >
+> > > > > > > Hi Antoniu,
+> > > > > > >
+> > > > > > > Frequency drivers are fairly unusual so if you could add a  
+> > listing of  
+> > > > > > > the attributes in sysfs that would be great (it's nice practice  
+> > > > anyway  
+> > > > > but  
+> > > > > > > I don't insist on it!)
+> > > > > > >
+> > > > > > > Various fairly minor comments inline.
+> > > > > > >
+> > > > > > > Thanks,
+> > > > > > >
+> > > > > > > Jonathan
+> > > > > > >
+> > > > > > >  
+> > > > > > > > ---
+> > > > > > > >  changes in v4:
+> > > > > > > >   - change license to: GPL-2.0-only
+> > > > > > > >  drivers/iio/frequency/Kconfig    |  13 +
+> > > > > > > >  drivers/iio/frequency/Makefile   |   1 +
+> > > > > > > >  drivers/iio/frequency/adrf6780.c | 498  
+> > > > > > > +++++++++++++++++++++++++++++++  
+> > > > > > > >  3 files changed, 512 insertions(+)
+> > > > > > > >  create mode 100644 drivers/iio/frequency/adrf6780.c
+> > > > > > > >
+> > > > > > > > diff --git a/drivers/iio/frequency/Kconfig  
+> > > > > > > b/drivers/iio/frequency/Kconfig  
+> > > > > > > > index 240b81502512..fc9751c48f59 100644
+> > > > > > > > --- a/drivers/iio/frequency/Kconfig
+> > > > > > > > +++ b/drivers/iio/frequency/Kconfig
+> > > > > > > > @@ -49,5 +49,18 @@ config ADF4371
+> > > > > > > >
+> > > > > > > >  	  To compile this driver as a module, choose M here:  
+> > > > the  
+> > > > > > > >  	  module will be called adf4371.
+> > > > > > > > +
+> > > > > > > > +config ADRF6780
+> > > > > > > > +        tristate "Analog Devices ADRF6780 Microwave  
+> > > > Upconverter"  
+> > > > > > > > +        depends on SPI
+> > > > > > > > +        depends on COMMON_CLK
+> > > > > > > > +        depends on OF  
+> > > > > > >
+> > > > > > > Why?  Pretty much everything seems to have defaults if not  
+> > > > > provided  
+> > > > > > > via OF.
+> > > > > > > I've asked for the generic firmware functions anyway, so you  
+> > can  
+> > > > > drop  
+> > > > > > > this
+> > > > > > > for that reason if nothing else!
+> > > > > > >  
+> > > > > > > > +        help
+> > > > > > > > +          Say yes here to build support for Analog Devices  
+> > > > ADRF6780  
+> > > > > > > > +          5.9 GHz to 23.6 GHz, Wideband, Microwave  
+> > Upconverter.  
+> > > > > > > > +
+> > > > > > > > +          To compile this driver as a module, choose M here:  
+> > the  
+> > > > > > > > +          module will be called adrf6780.
+> > > > > > > > +
+> > > > > > > >  endmenu
+> > > > > > > >  endmenu
+> > > > > > > > diff --git a/drivers/iio/frequency/Makefile  
+> > > > > > > b/drivers/iio/frequency/Makefile  
+> > > > > > > > index 518b1e50caef..ae3136c79202 100644
+> > > > > > > > --- a/drivers/iio/frequency/Makefile
+> > > > > > > > +++ b/drivers/iio/frequency/Makefile
+> > > > > > > > @@ -7,3 +7,4 @@
+> > > > > > > >  obj-$(CONFIG_AD9523) += ad9523.o
+> > > > > > > >  obj-$(CONFIG_ADF4350) += adf4350.o
+> > > > > > > >  obj-$(CONFIG_ADF4371) += adf4371.o
+> > > > > > > > +obj-$(CONFIG_ADRF6780) += adrf6780.o
+> > > > > > > > diff --git a/drivers/iio/frequency/adrf6780.c  
+> > > > > > > b/drivers/iio/frequency/adrf6780.c  
+> > > > > > > > new file mode 100644
+> > > > > > > > index 000000000000..472a66f90c7f
+> > > > > > > > --- /dev/null
+> > > > > > > > +++ b/drivers/iio/frequency/adrf6780.c
+> > > > > > > > @@ -0,0 +1,498 @@
+> > > > > > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > > > > > +/*
+> > > > > > > > + * ADRF6780 driver
+> > > > > > > > + *
+> > > > > > > > + * Copyright 2021 Analog Devices Inc.
+> > > > > > > > + */
+> > > > > > > > +
+> > > > > > > > +#include <linux/bitfield.h>
+> > > > > > > > +#include <linux/bits.h>
+> > > > > > > > +#include <linux/clk.h>
+> > > > > > > > +#include <linux/clkdev.h>
+> > > > > > > > +#include <linux/clk-provider.h>
+> > > > > > > > +#include <linux/delay.h>
+> > > > > > > > +#include <linux/device.h>
+> > > > > > > > +#include <linux/iio/iio.h>
+> > > > > > > > +#include <linux/module.h>  
+> > > > > > >
+> > > > > > > #include <linux/mod_devicetable.h>
+> > > > > > >  
+> > > > > > > > +#include <linux/spi/spi.h>
+> > > > > > > > +
+> > > > > > > > +/* ADRF6780 Register Map */
+> > > > > > > > +#define ADRF6780_REG_CONTROL  
+> > 	0x00  
+> > > > > > > > +#define ADRF6780_REG_ALARM_READBACK  
+> > 	0x01  
+> > > > > > > > +#define ADRF6780_REG_ALARM_MASKS		0x02
+> > > > > > > > +#define ADRF6780_REG_ENABLE			0x03
+> > > > > > > > +#define ADRF6780_REG_LINEARIZE  
+> > 	0x04  
+> > > > > > > > +#define ADRF6780_REG_LO_PATH  
+> > 	0x05  
+> > > > > > > > +#define ADRF6780_REG_ADC_CONTROL		0x06
+> > > > > > > > +#define ADRF6780_REG_ADC_OUTPUT  
+> > > > 	0x0C  
+> > > > > > > > +
+> > > > > > > > +/* ADRF6780_REG_CONTROL Map */
+> > > > > > > > +#define ADRF6780_PARITY_EN_MSK  
+> > 	BIT(15)  
+> > > > > > > > +#define ADRF6780_PARITY_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_PARITY_EN_MSK, x)  
+> > > > > > > > +#define ADRF6780_SOFT_RESET_MSK  
+> > > > 	BIT(14)  
+> > > > > > > > +#define ADRF6780_SOFT_RESET(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_SOFT_RESET_MSK, x)  
+> > > > > > > > +#define ADRF6780_CHIP_ID_MSK  
+> > > > > 	GENMASK(11, 4)  
+> > > > > > > > +#define ADRF6780_CHIP_ID			0xA
+> > > > > > > > +#define ADRF6780_CHIP_REVISION_MSK  
+> > > > > 	GENMASK(3, 0)  
+> > > > > > > > +#define ADRF6780_CHIP_REVISION(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_CHIP_REVISION_MSK, x)  
+> > > > > > > > +
+> > > > > > > > +/* ADRF6780_REG_ALARM_READBACK Map */
+> > > > > > > > +#define ADRF6780_PARITY_ERROR_MSK		BIT(15)
+> > > > > > > > +#define ADRF6780_PARITY_ERROR(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_PARITY_ERROR_MSK, x)  
+> > > > > > > > +#define ADRF6780_TOO_FEW_ERRORS_MSK  
+> > 	BIT(14)  
+> > > > > > > > +#define ADRF6780_TOO_FEW_ERRORS(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_TOO_FEW_ERRORS_MSK, x)  
+> > > > > > > > +#define ADRF6780_TOO_MANY_ERRORS_MSK  
+> > > > 	BIT(13)  
+> > > > > > > > +#define ADRF6780_TOO_MANY_ERRORS(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_TOO_MANY_ERRORS_MSK, x)  
+> > > > > > > > +#define ADRF6780_ADDRESS_RANGE_ERROR_MSK  
+> > 	BIT(12)  
+> > > > > > > > +#define ADRF6780_ADDRESS_RANGE_ERROR(x)  
+> > > > > > >  
+> > 	FIELD_PREP(ADRF6780_ADDRESS_RANGE_ERROR_MSK, x)  
+> > > > > > > > +
+> > > > > > > > +/* ADRF6780_REG_ENABLE Map */
+> > > > > > > > +#define ADRF6780_VGA_BUFFER_EN_MSK  
+> > 	BIT(8)  
+> > > > > > > > +#define ADRF6780_VGA_BUFFER_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_VGA_BUFFER_EN_MSK, x)  
+> > > > > > > > +#define ADRF6780_DETECTOR_EN_MSK		BIT(7)
+> > > > > > > > +#define ADRF6780_DETECTOR_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_DETECTOR_EN_MSK, x)  
+> > > > > > > > +#define ADRF6780_LO_BUFFER_EN_MSK		BIT(6)
+> > > > > > > > +#define ADRF6780_LO_BUFFER_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_LO_BUFFER_EN_MSK, x)  
+> > > > > > > > +#define ADRF6780_IF_MODE_EN_MSK  
+> > > > 	BIT(5)  
+> > > > > > > > +#define ADRF6780_IF_MODE_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_IF_MODE_EN_MSK, x)  
+> > > > > > > > +#define ADRF6780_IQ_MODE_EN_MSK  
+> > > > > 	BIT(4)  
+> > > > > > > > +#define ADRF6780_IQ_MODE_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_IQ_MODE_EN_MSK, x)  
+> > > > > > > > +#define ADRF6780_LO_X2_EN_MSK  
+> > 	BIT(3)  
+> > > > > > > > +#define ADRF6780_LO_X2_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_LO_X2_EN_MSK, x)  
+> > > > > > > > +#define ADRF6780_LO_PPF_EN_MSK  
+> > 	BIT(2)  
+> > > > > > > > +#define ADRF6780_LO_PPF_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_LO_PPF_EN_MSK, x)  
+> > > > > > > > +#define ADRF6780_LO_EN_MSK			BIT(1)
+> > > > > > > > +#define ADRF6780_LO_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_LO_EN_MSK, x)  
+> > > > > > > > +#define ADRF6780_UC_BIAS_EN_MSK  
+> > > > 	BIT(0)  
+> > > > > > > > +#define ADRF6780_UC_BIAS_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_UC_BIAS_EN_MSK, x)  
+> > > > > > > > +
+> > > > > > > > +/* ADRF6780_REG_LINEARIZE Map */
+> > > > > > > > +#define ADRF6780_RDAC_LINEARIZE_MSK  
+> > > > > 	GENMASK(7, 0)  
+> > > > > > > > +#define ADRF6780_RDAC_LINEARIZE(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_RDAC_LINEARIZE_MSK, x)  
+> > > > > > > > +
+> > > > > > > > +/* ADRF6780_REG_LO_PATH Map */
+> > > > > > > > +#define ADRF6780_LO_SIDEBAND_MSK		BIT(10)
+> > > > > > > > +#define ADRF6780_LO_SIDEBAND(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_LO_SIDEBAND_MSK, x)  
+> > > > > > > > +#define ADRF6780_Q_PATH_PHASE_ACCURACY_MSK  
+> > > > > > > 	GENMASK(7, 4)  
+> > > > > > > > +#define ADRF6780_Q_PATH_PHASE_ACCURACY(x)  
+> > > > > > >  
+> > 	FIELD_PREP(ADRF6780_Q_PATH_PHASE_ACCURACY_MSK, x)  
+> > > > > > > > +#define ADRF6780_I_PATH_PHASE_ACCURACY_MSK  
+> > > > > > > 	GENMASK(3, 0)  
+> > > > > > > > +#define ADRF6780_I_PATH_PHASE_ACCURACY(x)  
+> > > > > > >  
+> > 	FIELD_PREP(ADRF6780_I_PATH_PHASE_ACCURACY_MSK, x)  
+> > > > > > > > +
+> > > > > > > > +/* ADRF6780_REG_ADC_CONTROL Map */
+> > > > > > > > +#define ADRF6780_VDET_OUTPUT_SELECT_MSK  
+> > > > > 	BIT(3)  
+> > > > > > > > +#define ADRF6780_VDET_OUTPUT_SELECT(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_VDET_OUTPUT_SELECT_MSK,  
+> > x)  
+> > > > > > > > +#define ADRF6780_ADC_START_MSK  
+> > 	BIT(2)  
+> > > > > > > > +#define ADRF6780_ADC_START(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_ADC_START_MSK, x)  
+> > > > > > > > +#define ADRF6780_ADC_EN_MSK  
+> > 	BIT(1)  
+> > > > > > > > +#define ADRF6780_ADC_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_ADC_EN_MSK, x)  
+> > > > > > > > +#define ADRF6780_ADC_CLOCK_EN_MSK  
+> > 	BIT(0)  
+> > > > > > > > +#define ADRF6780_ADC_CLOCK_EN(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_ADC_CLOCK_EN_MSK, x)  
+> > > > > > > > +
+> > > > > > > > +/* ADRF6780_REG_ADC_OUTPUT Map */
+> > > > > > > > +#define ADRF6780_ADC_STATUS_MSK  
+> > > > 	BIT(8)  
+> > > > > > > > +#define ADRF6780_ADC_STATUS(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_ADC_STATUS_MSK, x)  
+> > > > > > > > +#define ADRF6780_ADC_VALUE_MSK  
+> > > > > > > 	GENMASK(7, 0)  
+> > > > > > > > +#define ADRF6780_ADC_VALUE(x)  
+> > > > > > > 	FIELD_PREP(ADRF6780_ADC_VALUE_MSK, x)
+> > > > > > >
+> > > > > > > Not used.  In general, just use FIELD_PREP / FIELD_GET inline  
+> > > > > rather  
+> > > > > > > than having extra
+> > > > > > > macros like these. That approach is simpler for reviewers to  
+> > > > follow.  
+> > > > > > >  
+> > > > > > > > +
+> > > > > > > > +struct adrf6780_dev {
+> > > > > > > > +	struct spi_device	*spi;
+> > > > > > > > +	struct clk		*clkin;
+> > > > > > > > +	/* Protect against concurrent accesses to the device */
+> > > > > > > > +	struct mutex		lock;
+> > > > > > > > +	bool			vga_buff_en;
+> > > > > > > > +	bool			lo_buff_en;
+> > > > > > > > +	bool			if_mode_en;
+> > > > > > > > +	bool			iq_mode_en;
+> > > > > > > > +	bool			lo_x2_en;
+> > > > > > > > +	bool			lo_ppf_en;
+> > > > > > > > +	bool			lo_en;
+> > > > > > > > +	bool			uc_bias_en;
+> > > > > > > > +	bool			lo_sideband;
+> > > > > > > > +	bool			vdet_out_en;
+> > > > > > > > +};
+> > > > > > > > +
+> > > > > > > > +static int adrf6780_spi_read(struct adrf6780_dev *dev,  
+> > > > > unsigned int  
+> > > > > > > reg,  
+> > > > > > > > +			      unsigned int *val)
+> > > > > > > > +{
+> > > > > > > > +	int ret;
+> > > > > > > > +	unsigned int temp;
+> > > > > > > > +	struct spi_transfer t = {0};
+> > > > > > > > +	u8 data[3];
+> > > > > > > > +
+> > > > > > > > +	data[0] = 0x80 | (reg << 1);
+> > > > > > > > +	data[1] = 0x0;
+> > > > > > > > +	data[2] = 0x0;
+> > > > > > > > +
+> > > > > > > > +	t.rx_buf = &data[0];
+> > > > > > > > +	t.tx_buf = &data[0];
+> > > > > > > > +	t.len = 3;
+> > > > > > > > +
+> > > > > > > > +	ret = spi_sync_transfer(dev->spi, &t, 1);  
+> > > > > > >
+> > > > > > > data needs to be dma safe.
+> > > > > > >  
+> > > > > > > > +	if (ret < 0)
+> > > > > > > > +		return ret;
+> > > > > > > > +
+> > > > > > > > +	temp = ((data[0] | 0x80 | (reg << 1)) << 16) |
+> > > > > > > > +		(data[1] << 8) | data[2];  
+> > > > > > >
+> > > > > > > Ouch. That's a bit nasty, but why are you writing the reg into
+> > > > > > > it?  Looks like a get_unaligned_be24() >> 1 and a 16bit mask.
+> > > > > > > (use GENMASK(15, 0) for that to make it apparent what is  
+> > > > > happening.  
+> > > > > > >  
+> > > > > > > > +
+> > > > > > > > +	*val = (temp >> 1) & 0xFFFF;
+> > > > > > > > +
+> > > > > > > > +	return ret;
+> > > > > > > > +}
+> > > > > > > > +
+> > > > > > > > +static int adrf6780_spi_write(struct adrf6780_dev *dev,
+> > > > > > > > +				      unsigned int reg,
+> > > > > > > > +				      unsigned int val)
+> > > > > > > > +{
+> > > > > > > > +	u8 data[3];
+> > > > > > > > +
+> > > > > > > > +	val = (val << 1);
+> > > > > > > > +
+> > > > > > > > +	data[0] = (reg << 1) | (val >> 16);
+> > > > > > > > +	data[1] = val >> 8;
+> > > > > > > > +	data[2] = val;  
+> > > > > > >
+> > > > > > > An opportunity for
+> > > > > > > put_unaligned_be24() with a value of (I think)
+> > > > > > >
+> > > > > > > (val << 1) | (reg << 17)
+> > > > > > >
+> > > > > > >  
+> > > > > > > > +
+> > > > > > > > +	return spi_write(dev->spi, &data[0], 3);  
+> > > > > > >
+> > > > > > > Needs a dma safe buffer, which basically means it can't be on  
+> > the  
+> > > > > > > stack.
+> > > > > > > Lots of ways of handling that, but look for  
+> > __cacheline_aligned in  
+> > > > > IIO  
+> > > > > > > drivers
+> > > > > > > to see the one we probably use mostly commonly in IIO  
+> > drivers.  
+> > > > > >
+> > > > > > Hi Jonathan,
+> > > > > >
+> > > > > > This is something I wanted to ask for some time so I will take  
+> > the  
+> > > > > opportunity here :).  
+> > > > > > Is this something you prefer just not to risk at all and make it an  
+> > > > hard  
+> > > > > requirement  
+> > > > > > (which is fair)? ...  
+> > > > >
+> > > > > Yes, I think we need to keep this as a hard requirement.
+> > > > > There are drivers out there which we missed this on in the past,  
+> > and  
+> > > > > I'm not necessarily
+> > > > > going to take the time to go through them all as this can be hard  
+> > to  
+> > > > > spot, but lets not
+> > > > > introduce any more potential problems.
+> > > > >  
+> > > >
+> > > > I see. That makes sense and it's fair :). The only annoying (but not  
+> > too  
+> > > > annoying :)) is that
+> > > > making the data/buffer global forces you to use a lock in cases you
+> > > > potentially would
+> > > > not have too (just using local buffers). But that's life, better play  
+> > safe :)  
+> > > >  
+> > > > > >
+> > > > > > I'm asking this because, tbh, I would be very surprised if any  
+> > spi/i2c  
+> > > > > controller out there  
+> > > > > > is using dma for a 3byte transfer. I guess the overhead of  
+> > setting it  
+> > > > up  
+> > > > > is probably not  
+> > > > > > worth it...  
+> > > > >
+> > > > > There are (I believe) a few i2c and spi controllers out there that  
+> > don't  
+> > > > > do anything other
+> > > > > than DMA.  Wolfram mentioned one of those in his talk on adding
+> > > > > DMA support to i2c.  
+> > > >
+> > > > Hmm, I see...
+> > > >  
+> > > > > Also, the reference in the file below to the wonderful case of  
+> > USB to  
+> > > > > i2c bridges that always
+> > > > > require DMA safe buffers.  
+> > > >
+> > > > Indeed it does.
+> > > >  
+> > >
+> > > Hi Jonathan,
+> > >
+> > > Just for closure, I also realized that the pattern in IIO looks to be to  
+> > use  
+> > > DMA safe buffers only on the tx side. For instance in the IMU lib [1],
+> > > only the tx buffer is safe (well, I think there's problem with this as
+> > > I believe all spi transfers buffers should be properly aligned which  
+> > won't  
+> > > be the case in the IMU lib). Is there any reason for this? AFAICT, we  
+> > should  
+> > > also take care with rx buffers or am I missing something?  
+> > Ah.  So this is a fun corner :)
+> > 
+> > The reason cache line corruption can occur is as follows.
+> > 1. DMA starts, typically involving some tx and rx usage by the device.
+> >    This flushes the CPU caches for the relevant lines.
+> > ... whilst DMA is not completed ...
+> > 2. The host software pulls the line into it's cache and updates
+> > something (say a flag
+> >    elsewhere in that cacheline).
+> > 3. Cacheline is evicted from the CPU cache causing a write back.
+> > 4. Device then writes back the stuff it had cached locally which is
+> > allowed to include data
+> >    it wasn't accessing in the same cache line.  Boom, it just overwrote
+> > the flag we updated
+> >    with an older value.  Basically this is a performance optimization /
+> > simplification
+> >    the DMA engine is allowed to make.  Note I believe they are
+> > 'technically' allowed to
+> >    write back to the RX buffers as well, though not sure what devices do
+> > this for i2c/spi.  
+> 
+> Yes, got it...
+> 
+> > So, why do we only need to force one of the buffers to the start of a
+> > cacheline?
+> > 
+> > What we are actually doing, is not keeping the buffer in it's own
+> > cacheline, but rather
+> > making sure nothing else is in the same cacheline (so there is no race
+> > as above).
+> > (it's easier to move the buffer, than to ensure everything else is
+> > moved out of the cache
+> > line it happens to be in!)
+> > There is a safe assumption here that the DMA device can't corrupt it's
+> > own data as that
+> > would be crazy :)  
+> 
+> My confusion here was looking at this [1] and somehow thinking that
+> DMA mappings require that both 'tx_buf' and 'rx_buf' to be on their own
+> cache lines... But I guess that since both buffers are guaranteed to be alone
+> (in our case) in their cache line (or span across multiple lines) we are fine... Though
+> I didn't really looked into the details on the DMA subsystem... I'm just aware that
+> for instance 'dma_map_single()' states that the addr to map must begin on a cache
+> line boundary.
+> 
+> > Hence, pushing the first buffer to the start of a line, allows the second
+> > one to be
+> > after it in the same line (it's not a problem if it takes multiple lines)
+> > 
+> > One more subtlety is why we can be sure nothing else ends up after
+> > the buffers.
+> > That's by construction.  The allocations IIO does for those iio_priv
+> > structures should
+> > always get padded out to at least the end of the cacheline.
+> > (IIRC, not looked at this code for many years!)
+> >   
+> 
+> Looking at [2], I think that holds correct as long as private structures have
+> their buffer properly aligned in the end of the struct. Hence, the natural padding
+> of the structure ensures us that nothing else gets into the same cache
+> line as our buffer.
+> 
+> Which means that, if I'm not missing nothing obvious, all the adis IMUS are not
+> complying with this [3]... I think the 'struct adis adis' field has to be in the end of the
+> adis16480 structure so that our tx and rx buffers in the adis struct are on their own
+> line...
 
->
-> Yes. On 32-bit, you will easily wrap, especially for PLUS_NANO. You'd
-> only need a scale factor of 10 or so and a fractional part above .5 to
-> hit the roof (10 * 500000000 > 2^32).
->
+Hmm.  Not quite because another subtlety of c slips in. Hohum - finding the reference
+for this always takes me a while... 
 
-Right, That makes sense!
+I can't find it in the c spec today for some reason (we tracked it down when fixing
+the timestamp alignment issues last year)... But the gcc docs refer to the correct
+requirements https://gcc.gnu.org/onlinedocs/gcc-3.3/gcc/Type-Attributes.html
 
-> But I also mean that you are losing precision when you are scaling
-> the integer part and the fractional part separately. That deserves
-> at least a comment, but ideally it should be handled correctly.
->
+Because we have the buffer embedded in the adis structure, the question becomes how
+is that aligned and how is the data after it aligned.
 
-Oh got it! Apologies, How did I miss that...
+Now, c structures are aligned to at least the alignment requirement of the element which has
+the largest alignment requirements.  Now the next bit I'm dodgier on proving, but 
+my understanding is the following elements of the outer structure are guaranteed
+to not be pushed into the padding at the end of the adis structure.  It's documented
+in that gcc thing that an array would be appropriately spaced, so I'd assume that
+also applies to the struct in struct case (or things would be really odd!)
 
-All things considered, it might make sense to also implement the
-test case Jonathan mentioned [1]. I'll look into it.
+If anyone else digs up the c spec reference that would be great. I remember it took
+quite some finding last time...
 
-[1] https://lore.kernel.org/linux-devicetree/20210704173639.622371bf@jic23-=
-huawei/
+Jonathan
 
-> >> I think it's better to not even attempt this given that the results ca=
-n
-> >> be
-> >> really poor.
-> >=20
-> > Unfortunatelly, I'm kinda stuck with this as some of my ADC use these
-> > types.
->
-> Ok. Crap. :-)
 
-Can't agree more :-)
 
-Thanks,
-Liam
-
->
-> Cheers,
-> Peter
+> 
+> Thanks for your inputs!
+> - Nuno Sá
+> 
+> [1]: https://elixir.bootlin.com/linux/latest/source/drivers/spi/spi.c#L976
+> [2]: https://elixir.bootlin.com/linux/v5.13/source/drivers/iio/industrialio-core.c#L1605
+> [3]: https://elixir.bootlin.com/linux/latest/source/drivers/iio/imu/adis16480.c#L159
 
