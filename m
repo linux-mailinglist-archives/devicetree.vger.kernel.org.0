@@ -2,102 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD9C53C34B2
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 15:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FDED3C350E
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 17:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbhGJNNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jul 2021 09:13:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50366 "EHLO
+        id S230325AbhGJPN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jul 2021 11:13:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232839AbhGJNNA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jul 2021 09:13:00 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E9FAC0613B4;
-        Sat, 10 Jul 2021 06:10:01 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id m17so18454985edc.9;
-        Sat, 10 Jul 2021 06:10:01 -0700 (PDT)
+        with ESMTP id S229805AbhGJPN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jul 2021 11:13:56 -0400
+Received: from mail-qt1-x836.google.com (mail-qt1-x836.google.com [IPv6:2607:f8b0:4864:20::836])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F95C0613DD;
+        Sat, 10 Jul 2021 08:11:10 -0700 (PDT)
+Received: by mail-qt1-x836.google.com with SMTP id x24so9919789qts.11;
+        Sat, 10 Jul 2021 08:11:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=m+2uDLVnJqvxnopDKdmW/+zUCo6k/oZnFyd1ECUsC0Q=;
-        b=P68we8SNJ2sqUT2CvfLm2T71TYpBDWvsKg7gFB24igqRL7zT7U5KJ4j7qMX8OIU8G8
-         dmGkQTSUg0f/xE52cnGQSgoqqz0wsZcJ3llsDjDB4r4Ax/Tdvub9hdu/wbYOryb5W0e+
-         /4Rh1O0Uxtm7X7IXR4UJPnJd4lw1sBFlpX8WUyOobvs76B+6J8ypOZQEuM1SVdJ4NIp5
-         XdrBK+wvaymKhxtV6Y9U46g50WbmQwuItykLbxabWbyS5BaUVOrZgD7UjkVjEET1TEC6
-         46Dc0+ZgkkKey+v5EKI7TpE5jeGJZsLWoAro4vDawKiuIhVYy/+qy5+BMoBQxZRKGdzJ
-         wJMw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9KndYjn/Dras9oVIQu2++er4oTGHdDL9wFnaryusxvs=;
+        b=B6WoR/v9T7cQNrzS57RnEcalDQ2xAUCVfH8AHia78qYmqJcnyTrzeJvYnUmMAGKbrh
+         L6lym41qO2VC+Zzi+b/1uoAMP8CMWXTOV/De66tzKyrdtIKDafc6526ll/7Om2FT7+dQ
+         IwviBoG7qWow5kxW1F/o1NfkclkhBolm+oyxy9/Fvs0Dv5/GYD70BJHAmzDUbabEHDpR
+         wm8Q0X2hRsA5C9Q3RESepneBX+abTr3GZBI5C9p7mGizrj8ZU5wh8S6s/yPf7ijSoFV2
+         CZlKWppIoOUOcLCRG4KlEfQovUaj7tjOhxHqJejWZuxmKtEK2Da8LNqj/jiiDGC2PKZr
+         J9Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=m+2uDLVnJqvxnopDKdmW/+zUCo6k/oZnFyd1ECUsC0Q=;
-        b=lYhE9GC0/E+XZzx3F/zadr+eHdIBljVIpv0VCmNlt8fXV/7YeImfwN8pjSrjt6e5Gc
-         QDE8PI5N3nrEbQoNknJQEHMVgjR/DNfXFQ4jGox4pnWbM5I/rI+M5a2l+cveQnNmDApv
-         d2OXpbG164ziAH/8DGiOcpHzV9ENioNBooDk5FmZVdLBm/0UezRqyTyxhEnMa3LA+YvF
-         d/Xlwx6VIuNf/9eGDYiHRheGQhjh3wxfkAHGQJxpG+oiSpetSqPzzCQSLmIXIPhY6gtx
-         XIwxpYbNQeWflMSJJHLpSil9sSSbiHuXQwXUf2gOd9MmiQkVCnbVVKXB0f/TCdgMpa8J
-         3geg==
-X-Gm-Message-State: AOAM532sdlyR1EzpzsPV60e3PATvlYpXr86YGUvq4PBoHrMJkeUeJkhc
-        wDt33pCGc/SEowI108C3cGM=
-X-Google-Smtp-Source: ABdhPJxLMZjNkBTHposEZBtwu92P2ac+tWFu+M8LeM7SSsF/AYfd57LXQAjUn40pivT1nrTwBo9L2w==
-X-Received: by 2002:a05:6402:20e:: with SMTP id t14mr52600538edv.193.1625922600001;
-        Sat, 10 Jul 2021 06:10:00 -0700 (PDT)
-Received: from eldamar (host-80-104-22-174.retail.telecomitalia.it. [80.104.22.174])
-        by smtp.gmail.com with ESMTPSA id l16sm3748873ejb.26.2021.07.10.06.09.58
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9KndYjn/Dras9oVIQu2++er4oTGHdDL9wFnaryusxvs=;
+        b=sNY/vK45F30MCE//8ePdxbyOnuEFNvzxQpfeEucxcjZ5uzRWjwB4zS/gQdW0a8m1Zb
+         f7PV/kb8mHnY4vY95/ye9/ygyRa+xExkDz/8Xq+E9gsY+mLFrRIak//Iw+0BqmP8zuYv
+         J3/KTKFriLn51PzvJAwo1SmL/dN87JNhhu/w0V42E/Wk9Nca9wc5iWFnngc8l4gvwK35
+         hPx5XGgyihz883eDCPDVuAI6F/wqKTC0Gt0GeUQFp5gzTyS9L9oQ8yAc/yUe6y6+0A3J
+         gkHjK1gyK6cNAR4zBRgTUwmohl9tGegheVsQTptPeZ4gkwN7MooxZjVnWBK7NkX9SvjC
+         N/pw==
+X-Gm-Message-State: AOAM53196nU9k7ZM104XHR5s6PHMQ/HI5nraxz4Q+AO52J3bX7rVqwX9
+        AP3BzxwSF+TV3frv2uzLhdIc3JguC2z1xP+6
+X-Google-Smtp-Source: ABdhPJz21VqzR4nb52cDDOeFHg0qPp4Qsl+zwsPTGvKAX58JL6UuNxo6EjbCCPKhk86LIDOel9MF0A==
+X-Received: by 2002:ac8:ece:: with SMTP id w14mr39481837qti.5.1625929869827;
+        Sat, 10 Jul 2021 08:11:09 -0700 (PDT)
+Received: from master-laptop.sparksnet ([2601:153:980:85b1:ecc6:5233:6153:7b36])
+        by smtp.gmail.com with ESMTPSA id w14sm3445482qtc.55.2021.07.10.08.11.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Jul 2021 06:09:58 -0700 (PDT)
-Sender: Salvatore Bonaccorso <salvatore.bonaccorso@gmail.com>
-Date:   Sat, 10 Jul 2021 15:09:55 +0200
-From:   Salvatore Bonaccorso <carnil@debian.org>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@kernel.org>,
-        Vagrant Cascadian <vagrant@reproducible-builds.org>,
-        "B.R. Oake" <broake@mailfence.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: sun8i: h3: orangepi-plus: Fix ethernet phy-mode
-Message-ID: <YOmcI191mbxXCrp1@eldamar.lan>
-References: <20210524122111.416885-1-carnil@debian.org>
- <20210524123506.cuwwtqgtejquuq5e@gilmour>
+        Sat, 10 Jul 2021 08:11:09 -0700 (PDT)
+From:   Peter Geis <pgwipeout@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Liang Chen <cl@rock-chips.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: [RFC PATCH 0/4] split rk3568 and rk3566 device trees
+Date:   Sat, 10 Jul 2021 11:10:30 -0400
+Message-Id: <20210710151034.32857-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210524123506.cuwwtqgtejquuq5e@gilmour>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+This is an example patch set that addresses the split of the rk3568 and
+rk3566 soc device trees.
+This method attempts to avoid deleting and modifing nodes by maintaining
+a common dtsi for all common items and adding in the differences in
+separate dtsi files.
+It also includes a basic dts for the Pine64 Quartz64 Model A board
+as an example of a rk3566 device.
 
-On Mon, May 24, 2021 at 02:35:06PM +0200, Maxime Ripard wrote:
-> On Mon, May 24, 2021 at 02:21:11PM +0200, Salvatore Bonaccorso wrote:
-> > Commit bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay
-> > config") sets the RX/TX delay according to the phy-mode property in the
-> > device tree. For the Orange Pi Plus board this is "rgmii", which is the
-> > wrong setting.
-> > 
-> > Following the example of a900cac3750b ("ARM: dts: sun7i: a20: bananapro:
-> > Fix ethernet phy-mode") the phy-mode is changed to "rgmii-id" which gets
-> > the Ethernet working again on this board.
-> > 
-> > Fixes: bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay config")
-> > Reported-by: "B.R. Oake" <broake@mailfence.com>
-> > Reported-by: Vagrant Cascadian <vagrant@reproducible-builds.org>
-> > Link: https://bugs.debian.org/988574
-> > Signed-off-by: Salvatore Bonaccorso <carnil@debian.org>
-> 
-> Applied, thanks!
+This series has the following prerequisite:
+arm64: dts: rockchip: add pmu and qos nodes for rk3568
+https://patchwork.kernel.org/project/linux-rockchip/patch/20210624114719.1685-4-cl@rock-chips.com/
 
-Did this fall trough the cracks? 
+Peter Geis (4):
+  arm64: dts: rockchip: move rk3568 dtsi to rk356x dtsi
+  arm64: dts: rockchip: split rk3568 device tree
+  arm64: dts: rockchip: add rk3566 dtsi
+  arm64: dts: rockchip: add basic dts for Pine64 Quartz64-A
 
-I see it in
-https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git/commit/?id=b19d3479f25e8a0ff24df0b46c82e50ef0f900dd
-but got not merged yet in mainline.
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 321 +++++++
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      |  20 +
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 814 +-----------------
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 786 +++++++++++++++++
+ 6 files changed, 1153 insertions(+), 794 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk356x.dtsi
 
-Thank you for your work!
+-- 
+2.25.1
 
-Regards,
-Salvatore
