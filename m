@@ -2,133 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 018473C3383
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 09:35:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89D593C339E
+	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 09:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231490AbhGJHhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jul 2021 03:37:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33962 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230317AbhGJHhp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jul 2021 03:37:45 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83C2CC0613E8
-        for <devicetree@vger.kernel.org>; Sat, 10 Jul 2021 00:35:00 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id z2so3328198plg.8
-        for <devicetree@vger.kernel.org>; Sat, 10 Jul 2021 00:35:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=iynl3OeXRI21z/39nujP5vnmSQx6hJ+4+BEhv+0X4uw=;
-        b=DW31LtAIJrZPDYhbwsY3bsU2q9Qym7WtZc5JhMpiI8o4lNCa6845d/kNKJcyLRaZU3
-         ZqZ9J3ZQrOaHzgOXAJ2DYRXOeK6kM3659Ms3/E2q1eADTZ00an1u8MnATaExURzM0Y6F
-         oZIx14GxoLkUowDapGpGPamQVhrepOPyM3fNXrYJtf9n+1ZF9XSyXtSpwcxQkCj+VCf1
-         XwCbhkDt1bCipkezhOsbA6e7NnorC10ZM/lySmrVIvmNHk6LmhNCupYvalErRtotn2IR
-         hdE5oL1nCcfrsI3LZXuOITxv+2jl8FBrB+5oxOaROyXIZo3M4tB0dO8tep4X4avaJ39s
-         r8+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=iynl3OeXRI21z/39nujP5vnmSQx6hJ+4+BEhv+0X4uw=;
-        b=DpU0FMCZzy0oDnRkEu7hN18ldZooial3D25nM+GcsGkWjT023T4EeMNNdXRpQ22t89
-         5XIrG1G78aC9ByICk6Id+L3HYBQAi1xwVTLQcjDXtRLR14LvI3Y8LJHlINJAwI8lIquq
-         ulloqKh1ve4q1NdeTDiFNrUxmF1nGop7yaPTL7YWLm92VQYgFKne4ytI/FiU3g6Y+rQb
-         kIfnuuqiVuu1jYC51uE4/r51VvO/ARroVmyAlsgSyZSF4ukVFRqSQG2IUQhnOrsLv9zQ
-         H99ECbE89NJ4UFXfl+MmhUm+eMi0Mq3XfrWF3rxlI/15Sp2CZiB8XKChf0UPJ6vX8aeI
-         tqrQ==
-X-Gm-Message-State: AOAM533fLVKnXndQp8JF1weTkJFRwAxcA4BZP+Bs2xHbSJgEJhlHVdY3
-        kAzfBCPWYiGyED5V+0EIzxspsg==
-X-Google-Smtp-Source: ABdhPJx8PAr5ZkGw9W2QZH6I91NNx14iNZmxRo5HT34g/1spJSCl+PSMfWAEeI1ef6bUDsPNplfArw==
-X-Received: by 2002:a17:90a:c283:: with SMTP id f3mr8311181pjt.138.1625902499861;
-        Sat, 10 Jul 2021 00:34:59 -0700 (PDT)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id n23sm7316974pjq.2.2021.07.10.00.34.57
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sat, 10 Jul 2021 00:34:59 -0700 (PDT)
-Date:   Sat, 10 Jul 2021 15:34:53 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Sivaprakash Murugesan <sivaprak@codeaurora.org>,
-        Benjamin Li <benl@squareup.com>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] clk: qcom: a53pll/mux: Use unique clock name
-Message-ID: <20210710073449.GC11342@dragon>
-References: <20210704024032.11559-1-shawn.guo@linaro.org>
- <20210704024032.11559-3-shawn.guo@linaro.org>
- <YOktbWmMKEw7g3+E@yoga>
+        id S231195AbhGJHte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jul 2021 03:49:34 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:59820 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231164AbhGJHte (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jul 2021 03:49:34 -0400
+X-UUID: cd21e36f3ea84d54bd1aea1e8f26f9e5-20210710
+X-UUID: cd21e36f3ea84d54bd1aea1e8f26f9e5-20210710
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1264103535; Sat, 10 Jul 2021 15:46:46 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sat, 10 Jul 2021 15:46:45 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 10 Jul 2021 15:46:44 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <eddie.huang@mediatek.com>,
+        <light.hsieh@mediatek.com>, <biao.huang@mediatek.com>,
+        <hongzhou.yang@mediatek.com>, <sean.wang@mediatek.com>,
+        <seiya.wang@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH v9 0/2] Mediatek pinctrl patch on mt8195 
+Date:   Sat, 10 Jul 2021 15:46:40 +0800
+Message-ID: <20210710074642.1052-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YOktbWmMKEw7g3+E@yoga>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 10, 2021 at 12:17:33AM -0500, Bjorn Andersson wrote:
-> On Sat 03 Jul 21:40 CDT 2021, Shawn Guo wrote:
-> 
-> > Different from MSM8916 which has only one a53pll/mux clock, MSM8939 gets
-> > three for Cluster0 (little cores), Cluster1 (big cores) and CCI (Cache
-> > Coherent Interconnect).  That said, a53pll/mux clock needs to be named
-> > uniquely.  Append @unit-address of device node to the clock name, so
-> > that a53pll/mux will be named like below on MSM8939.
-> > 
-> >   a53pll@b016000
-> >   a53pll@b116000
-> >   a53pll@b1d0000
-> > 
-> >   a53mux@b1d1000
-> >   a53mux@b011000
-> >   a53mux@b111000
-> > 
-> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > ---
-> >  drivers/clk/qcom/a53-pll.c      | 8 +++++++-
-> >  drivers/clk/qcom/apcs-msm8916.c | 8 +++++++-
-> >  2 files changed, 14 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/clk/qcom/a53-pll.c b/drivers/clk/qcom/a53-pll.c
-> > index d6756bd777ce..96a118be912d 100644
-> > --- a/drivers/clk/qcom/a53-pll.c
-> > +++ b/drivers/clk/qcom/a53-pll.c
-> > @@ -37,6 +37,7 @@ static const struct regmap_config a53pll_regmap_config = {
-> >  static int qcom_a53pll_probe(struct platform_device *pdev)
-> >  {
-> >  	struct device *dev = &pdev->dev;
-> > +	struct device_node *np = dev->of_node;
-> >  	struct regmap *regmap;
-> >  	struct resource *res;
-> >  	struct clk_pll *pll;
-> > @@ -66,7 +67,12 @@ static int qcom_a53pll_probe(struct platform_device *pdev)
-> >  	pll->status_bit = 16;
-> >  	pll->freq_tbl = a53pll_freq;
-> >  
-> > -	init.name = "a53pll";
-> > +	/* Use an unique name by appending @unit-address */
-> > +	init.name = devm_kasprintf(dev, GFP_KERNEL, "a53pll%s",
-> > +				   strchrnul(np->full_name, '@'));
-> 
-> While the result is nice, this isn't...
-> 
-> Is your dev_name() reasonable? What about "%s:a53pll", dev_name(dev) ?
+This series includes 2 patches:
+1.add rsel define
+2.add pinctrl rsel setting on MT8195.
 
-dev_name() is somehow reasonable for a53pll.
+Changes in patch v9:
+1)fix "mtk_pinconf_bias_set_rsel" build warning.
 
-  b016000.clock-controller:a53pll
-  b116000.clock-controller:a53pll
-  b1d0000.clock-controller:a53pll
+Changes in patch v8:
+1)add rsel define patch
+2)avoid  CamelCase
+3)add pinctrl rsel setting patch which is another resistance selection
+  solution for I2C on MT8195.
 
-But I prefer to the existing names, because I would like to use the same
-naming schema for both a53pll and a53mux.  If using dev_name() on a53mux,
-we will get the following which is less reasonable.
+Changes in patch v7:
+1)add version in patch and fix spelling mistakes.
 
-  qcom-apcs-msm8916-clk.1.auto:a53mux
-  qcom-apcs-msm8916-clk.2.auto:a53mux
-  qcom-apcs-msm8916-clk.3.auto:a53mux
+Changes in patch v6:
+1)add "pintcrl: mediatek" as prefix.
 
-Shawn
+Changes in patch v5:
+1)document and driver patch are apploed.
+2)change '-EOPNOTSUPP' to '-ENOTSUPP'
+
+Changes in patch v4:
+1)fix pinctrl-mt8195.yaml warning error.
+2)remove pinctrl device node patch which is based on "mt8195.dtsi".
+
+Changes in patch v3:
+1)change '^pins' to '-pins$'.
+2)change 'state_0_node_a' to 'gpio_pin' which is defined in dts.
+3)change 'state_0_node_b' to 'i2c0_pin' which is defined in dts.
+4)reorder this series patches. change pinctrl file and binding document
+together in one patch.
+
+There are no changes in v1 & v2.
+
+Zhiyong Tao (2):
+  dt-bindings: pinctrl: mt8195: add rsel define
+  pinctrl: mediatek: add rsel setting on MT8195
+
+ drivers/pinctrl/mediatek/pinctrl-mt8195.c     |  96 +++++++++++++
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  | 134 +++++++++++++++---
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  |  10 +-
+ drivers/pinctrl/mediatek/pinctrl-paris.c      |  23 ++-
+ drivers/pinctrl/mediatek/pinctrl-paris.h      |   2 +-
+ include/dt-bindings/pinctrl/mt65xx.h          |   9 ++
+ 6 files changed, 247 insertions(+), 27 deletions(-)
+
+--
+2.18.0
+
 
