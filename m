@@ -2,100 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 719C13C3F9B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 00:13:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCA403C3FEC
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 01:26:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229770AbhGKWQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jul 2021 18:16:16 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:61429 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbhGKWQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jul 2021 18:16:16 -0400
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 0C4BC40004;
-        Sun, 11 Jul 2021 22:13:24 +0000 (UTC)
-Date:   Mon, 12 Jul 2021 00:13:24 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     Vladimir Oltean <olteanv@gmail.com>, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        claudiu.manoil@nxp.com, UNGLinuxDriver@microchip.com,
-        linux@armlinux.org.uk, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 net-next 7/8] net: dsa: ocelot: felix: add support
- for VSC75XX control over SPI
-Message-ID: <YOttBHN7AJvqDXe8@piout.net>
-References: <20210710192602.2186370-1-colin.foster@in-advantage.com>
- <20210710192602.2186370-8-colin.foster@in-advantage.com>
- <20210710205205.blitrpvdwmf4au7z@skbuf>
- <20210711170927.GG2219684@euler>
+        id S229893AbhGKX26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jul 2021 19:28:58 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:54640 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229544AbhGKX26 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 11 Jul 2021 19:28:58 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m2ipq-0000zL-OX; Mon, 12 Jul 2021 01:26:06 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: remove clock_in_out from gmac2phy node in rk3318-a95x-z2.dts
+Date:   Mon, 12 Jul 2021 01:26:00 +0200
+Message-Id: <162604593565.371932.11619323372209333950.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20210701144110.12333-1-jbx6244@gmail.com>
+References: <20210701144110.12333-1-jbx6244@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210711170927.GG2219684@euler>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2021 10:09:27-0700, Colin Foster wrote:
-> On Sat, Jul 10, 2021 at 11:52:05PM +0300, Vladimir Oltean wrote:
-> > On Sat, Jul 10, 2021 at 12:26:01PM -0700, Colin Foster wrote:
-> > > +static const struct felix_info ocelot_spi_info = {
-> > > +	.target_io_res			= vsc7512_target_io_res,
-> > > +	.port_io_res			= vsc7512_port_io_res,
-> > > +	.regfields			= vsc7512_regfields,
-> > > +	.map				= vsc7512_regmap,
-> > > +	.ops				= &vsc7512_ops,
-> > > +	.stats_layout			= vsc7512_stats_layout,
-> > > +	.num_stats			= ARRAY_SIZE(vsc7512_stats_layout),
-> > > +	.vcap				= vsc7512_vcap_props,
-> > > +	.num_mact_rows			= 1024,
-> > > +
-> > > +	/* The 7512 and 7514 both have support for up to 10 ports. The 7511 and
-> > > +	 * 7513 have support for 4. Due to lack of hardware to test and
-> > > +	 * validate external phys, this is currently limited to 4 ports.
-> > > +	 * Expanding this to 10 for the 7512 and 7514 and defining the
-> > > +	 * appropriate phy-handle values in the device tree should be possible.
-> > > +	 */
-> > > +	.num_ports			= 4,
-> > 
-> > Ouch, this was probably not a good move.
-> > felix_setup() -> felix_init_structs sets ocelot->num_phys_ports based on
-> > this value.
-> > If you search for ocelot->num_phys_ports in ocelot and in felix, it is
-> > widely used to denote "the index of the CPU port module within the
-> > analyzer block", since the CPU port module's number is equal to the
-> > number of the last physical port + 1. If VSC7512 has 10 ports, then the
-> > CPU port module is port 10, and if you set num_ports to 4 you will cause
-> > the driver to misbehave.
-> 
-> Yes, this is part of my concern with the CPU / NPI module mentioned
-> before. In my hardware, I'd have port 0 plugged to the external CPU. In
-> Ocelot it is the internal bus, and in Felix it is the NPI. In this SPI
-> design, does the driver lose significant functionality by not having
-> access to those ports?
-> 
+On Thu, 1 Jul 2021 16:41:09 +0200, Johan Jonker wrote:
+> Recently a clock_in_out property was added to the gmac2phy node
+> in rk3328.dtsi, so now the clock_in_out in rk3318-a95x-z2.dts
+> can be removed.
 
-From the switchdev driver perspective, the CPU port is special because
-it is the one allowing to send and receive frames to/from the exposed
-ethernet interfaces. However, the goal is definitively to use that as
-little as possible (especially since as implemented right now,
-throughput is about 20Mbps).
+Applied, thanks!
 
-I didn't have a look at the DSA implementation but I wouldn't expect the
-NPI port to be that special.
+[1/2] arm64: dts: rockchip: remove clock_in_out from gmac2phy node in rk3318-a95x-z2.dts
+      commit: ac0af67f8c898f38427c7d15e3598773c19cd6e8
+[2/2] arm64: dts: rockchip: remove ddc-i2c-scl-* properties from rk3318-a95x-z2.dts
+      commit: 1aeab005562f8dc26f7df4eb76b130b591b56f63
 
-> In my test setup (and our expected production) we'd have port 0
-> connected to the external chip, and ports 1-3 exposed. Does Ocelot need
-> to be modified to allow a parameter for the CPU port?
-> 
-
-DSA is what allows you to select which of the port is the port connected
-to the BBB (this is the CPU port in DSA parlance). This is what you see
-in the example in Documentation/devicetree/bindings/net/dsa/ocelot.txt
-
+Best regards,
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Heiko Stuebner <heiko@sntech.de>
