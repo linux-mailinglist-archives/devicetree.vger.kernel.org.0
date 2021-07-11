@@ -2,231 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C313C3D5A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 16:34:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 402903C3D6B
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 16:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233161AbhGKOhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jul 2021 10:37:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43464 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233098AbhGKOh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jul 2021 10:37:29 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EC24C0613DD;
-        Sun, 11 Jul 2021 07:34:42 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id go30so948897ejc.8;
-        Sun, 11 Jul 2021 07:34:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=KMpCtnfaLEg5DaHCw+GoHXChsJFsIMroC3QE08V4048=;
-        b=EZpEgBlLKsCstEcEydwcr4vun9+LrNiEq5MFO8775o54SAj02ymkNSFN+culRhxVSm
-         +rxheICDsx/zjDVGnnbgY76XTWaFaoONBwFBRmR2TLdTRjbk3LJlA/1gvRwihOEvVX7B
-         ET0RixME2xpU79S6ogcbb9dSUZNd50V7ygn//qOu6BNhfcN4kTFhRMS9EDNSfbEE6cYb
-         lXYQU4ZMeX3onmmDdksU35IXakP700XVsEOUkep7YUdpAW7smYtIX7gSJRCAsokHxYJo
-         ZzZl5xqUnieNLnhjtb8oteMBB7yL4jgtCDcThjTZm3wV4BTJ2I6/xSwmpjBDUcjin2hZ
-         4wKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=KMpCtnfaLEg5DaHCw+GoHXChsJFsIMroC3QE08V4048=;
-        b=puWhqXrnqqsFjDHqJKTFTaWVnKMw069HkNWX5qMdG6LEU7yrk2SJnVZ5HCW9/qsqTD
-         qr5pQ4Umbn/5pA2sYZLf3H1nCCOflzeoV5FLbXndFxBgFs6pLOIkFoL+OFWpBTmhL23U
-         2OFvrrdp6Yn6P0qegDCRSZoDVywZYWHkpukDv2TwzIubx6mtc8J3K60uEIPG4vPnRFZB
-         H63eYPW4xepFYxJHWQUqacNsqr52BTM0MIOkvU/y+Pgz8HALQkG/HlfnV6TYBta8d0fU
-         IZsSgFyd3Ei6HbEAg6EyLGBTErT6RkN5pAbOAlDvQ2xdJAKZNh7JKPxhmPrq+zwDQFW6
-         dNbg==
-X-Gm-Message-State: AOAM531x80RCYtmoCQgJBd4mUdhj6ZhvkZXkUpg0q1QXQ0CyYFIkb6CM
-        7Pnsi/zCmK0tHft3KOvaQZAW15WmQoB3mA==
-X-Google-Smtp-Source: ABdhPJydr21UCMUsXHZCCZ+viDDPIXWW3OglmgYv2AhQ0Jl9vV1o7k14ED90Syn/Ta2DpBDDClurJQ==
-X-Received: by 2002:a17:906:1344:: with SMTP id x4mr48974884ejb.44.1626014080406;
-        Sun, 11 Jul 2021 07:34:40 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id a23sm4687076edt.42.2021.07.11.07.34.39
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 11 Jul 2021 07:34:40 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: remove interrupt-names from iommu nodes
-Date:   Sun, 11 Jul 2021 16:34:30 +0200
-Message-Id: <20210711143430.14347-2-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20210711143430.14347-1-jbx6244@gmail.com>
-References: <20210711143430.14347-1-jbx6244@gmail.com>
+        id S233445AbhGKOv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jul 2021 10:51:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51618 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233440AbhGKOv0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 11 Jul 2021 10:51:26 -0400
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 31961611AC;
+        Sun, 11 Jul 2021 14:48:35 +0000 (UTC)
+Date:   Sun, 11 Jul 2021 15:50:51 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+        <linux-iio@vger.kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
+        <Michael.Hennerich@analog.com>, <lars@metafoo.de>,
+        <devicetree@vger.kernel.org>, Nuno Sa <Nuno.Sa@analog.com>
+Subject: Re: [PATCH 00/17] iio:adc:ad7280a Cleanup and proposed staging
+ graduation.
+Message-ID: <20210711155051.713c1207@jic23-huawei>
+In-Reply-To: <20210623093741.00007d1d@Huawei.com>
+References: <20210614113507.897732-1-jic23@kernel.org>
+        <YNIfkaRZtWIXPbAj@marsc.168.1.7>
+        <20210623093741.00007d1d@Huawei.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The iommu driver gets the interrupts by platform_get_irq(),
-so remove interrupt-names property from iommu nodes.
+On Wed, 23 Jun 2021 09:37:41 +0100
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3328.dtsi | 5 -----
- arch/arm64/boot/dts/rockchip/rk3368.dtsi | 5 -----
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 8 --------
- 3 files changed, 18 deletions(-)
+> On Tue, 22 Jun 2021 14:36:17 -0300
+> Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
+> 
+> > Hey Jonathan,
+> > 
+> > On 06/14, Jonathan Cameron wrote:  
+> > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > 
+> > > Hi All,
+> > > 
+> > > This one proved an interesting diversion.
+> > > 
+> > > Work done against a somewhat hacked up QEMU emulation of 3 daisy chained
+> > > ad7280a devices (18 channels).  Note that the emulation isn't complete
+> > > but does do chaining, CRC, and readout of channels etc in a fashion that
+> > > worked with the original driver (up to the bug in patch 1) and continues
+> > > to work with the updated version. I've not intention to upstream the
+> > > emulation (as would need to make it more completed and flexible), but
+> > > happy to share it with anyone who is interested.    
+> > 
+> > I'm interested in seeing your device emulation with QEMU.
+> > I was looking at the ad7150 emulation you shared earlier this year but had
+> > some trouble getting the i2c slave created.  
+> 
+> Sure.  Let me do a bit of tidying up they I'll push a suitable branch out.
+> (probably will still have lots of stuff missing!)
+> 
+> Might take a little while to get to this though.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-index 8c821acb2..becc1c61b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-@@ -623,7 +623,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff330200 0 0x100>;
- 		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "h265e_mmu";
- 		clocks = <&cru ACLK_H265>, <&cru PCLK_H265>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -634,7 +633,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff340800 0x0 0x40>;
- 		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "vepu_mmu";
- 		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -656,7 +654,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff350800 0x0 0x40>;
- 		interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "vpu_mmu";
- 		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -667,7 +664,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff360480 0x0 0x40>, <0x0 0xff3604c0 0x0 0x40>;
- 		interrupts = <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "rkvdec_mmu";
- 		clocks = <&cru ACLK_RKVDEC>, <&cru HCLK_RKVDEC>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -700,7 +696,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff373f00 0x0 0x100>;
- 		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "vop_mmu";
- 		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3368.dtsi b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-index 4c64fbefb..4217897cd 100644
---- a/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3368.dtsi
-@@ -709,7 +709,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff900800 0x0 0x100>;
- 		interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "iep_mmu";
- 		clocks = <&cru ACLK_IEP>, <&cru HCLK_IEP>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -721,7 +720,6 @@
- 		reg = <0x0 0xff914000 0x0 0x100>,
- 		      <0x0 0xff915000 0x0 0x100>;
- 		interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "isp_mmu";
- 		clocks = <&cru ACLK_ISP>, <&cru HCLK_ISP>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -733,7 +731,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff930300 0x0 0x100>;
- 		interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "vop_mmu";
- 		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -745,7 +742,6 @@
- 		reg = <0x0 0xff9a0440 0x0 0x40>,
- 		      <0x0 0xff9a0480 0x0 0x40>;
- 		interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "hevc_mmu";
- 		clocks = <&cru ACLK_VIDEO>, <&cru HCLK_VIDEO>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -757,7 +753,6 @@
- 		reg = <0x0 0xff9a0800 0x0 0x100>;
- 		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "vepu_mmu", "vdpu_mmu";
- 		clocks = <&cru ACLK_VIDEO>, <&cru HCLK_VIDEO>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 3871c7fd8..aa5d7dca3 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1240,7 +1240,6 @@
- 		reg = <0x0 0xff650000 0x0 0x800>;
- 		interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH 0>,
- 			     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "vepu", "vdpu";
- 		clocks = <&cru ACLK_VCODEC>, <&cru HCLK_VCODEC>;
- 		clock-names = "aclk", "hclk";
- 		iommus = <&vpu_mmu>;
-@@ -1251,7 +1250,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff650800 0x0 0x40>;
- 		interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "vpu_mmu";
- 		clocks = <&cru ACLK_VCODEC>, <&cru HCLK_VCODEC>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -1273,7 +1271,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff660480 0x0 0x40>, <0x0 0xff6604c0 0x0 0x40>;
- 		interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "vdec_mmu";
- 		clocks = <&cru ACLK_VDU>, <&cru HCLK_VDU>;
- 		clock-names = "aclk", "iface";
- 		power-domains = <&power RK3399_PD_VDU>;
-@@ -1284,7 +1281,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff670800 0x0 0x40>;
- 		interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "iep_mmu";
- 		clocks = <&cru ACLK_IEP>, <&cru HCLK_IEP>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -1666,7 +1662,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff8f3f00 0x0 0x100>;
- 		interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "vopl_mmu";
- 		clocks = <&cru ACLK_VOP1>, <&cru HCLK_VOP1>;
- 		clock-names = "aclk", "iface";
- 		power-domains = <&power RK3399_PD_VOPL>;
-@@ -1723,7 +1718,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff903f00 0x0 0x100>;
- 		interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "vopb_mmu";
- 		clocks = <&cru ACLK_VOP0>, <&cru HCLK_VOP0>;
- 		clock-names = "aclk", "iface";
- 		power-domains = <&power RK3399_PD_VOPB>;
-@@ -1761,7 +1755,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff914000 0x0 0x100>, <0x0 0xff915000 0x0 0x100>;
- 		interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "isp0_mmu";
- 		clocks = <&cru ACLK_ISP0_WRAPPER>, <&cru HCLK_ISP0_WRAPPER>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-@@ -1773,7 +1766,6 @@
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff924000 0x0 0x100>, <0x0 0xff925000 0x0 0x100>;
- 		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH 0>;
--		interrupt-names = "isp1_mmu";
- 		clocks = <&cru ACLK_ISP1_WRAPPER>, <&cru HCLK_ISP1_WRAPPER>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
--- 
-2.11.0
+I pretended to myself for a few weeks that I'd get around to tidying this up in
+a remotely meaningful way.  That's clearly not happening so I pushed out the
+untidy version with appropriate eats babies messages:
+
+https://github.com/jic23/qemu/commits/ad7280a-hacks
+
+Note there is loads of stuff that isn't implemented as it was developed alongside
+this patch series to verify individual patches rather than with the intent of
+actually emulating the device.
+
+It's hard coded to 2 a chain of 3 ad7280a devices because that seemed to hit most possible
+corner cases.
+
+The top commit has the launch string I'm using.  You'll need a filesystem, but
+you can probably use one of the convenient ones debian posts as nocloud cloud
+images. 
+
+There is some info on that on people.kernel.org/jic23 as I wrote up how to test
+CXL stuff on ARM recently and gave guidance on easy ways to get a filesystem.
+http://cdimage.debian.org/cdimage/cloud/sid/daily/20210702-691/debian-sid-nocloud-arm64-daily-20210702-691.qcow2
+will probably work and is more recent than the one linked from that blog post. 
+
+Give me a shout if you need more specific guidance than this very very rough guide!
+
+I mentioned this thread in the diversion the rust on linux thread took into
+use of QEMU to emulate devices which motivated me to stop being lazy and at least
+post this hideous version.  Probably the most useful bit is how to get a working
+spi device emulated on the arm virt machine as that is very handy for all manner
+of testing.  One day someone might implement a large set of IIO device emulation
+and bolt it into a CI...
+
+Jonathan
+
+> 
+> > 
+> > Being able to see it running, I may feel more confident to provide a review
+> > for this set :)  
+> 
+> :)
+> 
+> > 
+> > Regards,
+> > 
+> > Marcelo  
+> > > 
+> > > I briefly flirted with posting a patch to just drop the driver entirely,
+> > > but the part is still available and it looked like fun + isn't going
+> > > to greatly impact maintainability of the subsystem long term so is low
+> > > cost even if it goes obsolete sometime soonish.
+> > > 
+> > > There are lots of things we could do after this set to improved the driver
+> > > and make things more flexible, but it should basically 'just work'
+> > > 
+> > > Anyhow, as normal for staging graduations, last patch has rename detection
+> > > turned off so that people can easily see what I am proposing we move
+> > > out of staging.
+> > > 
+> > > Jonathan Cameron (17):
+> > >   staging:iio:adc:ad7280a: Fix handing of device address bit reversing.
+> > >   staging:iio:adc:ad7280a: Register define cleanup.
+> > >   staging:iio:adc:ad7280a: rename _read() to _read_reg()
+> > >   staging:iio:adc:ad7280a: Split buff[2] into tx and rx parts
+> > >   staging:iio:adc:ad7280a: Use bitfield ops to managed fields in
+> > >     transfers.
+> > >   staging:iio:adc:ad7280a: Switch to standard event control
+> > >   staging:iio:adc:ad7280a: Standardize extended ABI naming
+> > >   staging:iio:adc:ad7280a: Drop unused timestamp channel.
+> > >   staging:iio:adc:ad7280a: Trivial comment formatting cleanup
+> > >   staging:iio:adc:ad7280a: Make oversampling_ratio a runtime control
+> > >   staging:iio:adc:ad7280a: Cleanup includes
+> > >   staging:iio:ad7280a: Reflect optionality of irq in ABI
+> > >   staging:iio:adc:ad7280a: Use a local dev pointer to avoid &spi->dev
+> > >   staging:iio:adc:ad7280a: Use device properties to replace platform
+> > >     data.
+> > >   dt-bindings:iio:adc:ad7280a: Add binding
+> > >   iio:adc:ad7280a: Document ABI for cell balance switches
+> > >   iio:adc:ad7280a: Move out of staging
+> > > 
+> > >  .../ABI/testing/sysfs-bus-iio-adc-ad7280a     |   14 +
+> > >  .../bindings/iio/adc/adi,ad7280a.yaml         |   87 ++
+> > >  drivers/iio/adc/Kconfig                       |   11 +
+> > >  drivers/iio/adc/Makefile                      |    1 +
+> > >  drivers/iio/adc/ad7280a.c                     | 1116 +++++++++++++++++
+> > >  drivers/staging/iio/adc/Kconfig               |   11 -
+> > >  drivers/staging/iio/adc/Makefile              |    1 -
+> > >  drivers/staging/iio/adc/ad7280a.c             | 1044 ---------------
+> > >  drivers/staging/iio/adc/ad7280a.h             |   37 -
+> > >  9 files changed, 1229 insertions(+), 1093 deletions(-)
+> > >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad7280a
+> > >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7280a.yaml
+> > >  create mode 100644 drivers/iio/adc/ad7280a.c
+> > >  delete mode 100644 drivers/staging/iio/adc/ad7280a.c
+> > >  delete mode 100644 drivers/staging/iio/adc/ad7280a.h
+> > > 
+> > > -- 
+> > > 2.32.0
+> > >     
+> 
 
