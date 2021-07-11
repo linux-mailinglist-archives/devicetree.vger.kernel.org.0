@@ -2,99 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C4D03C3D80
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 16:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 462BA3C3D84
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 17:03:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234216AbhGKPB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jul 2021 11:01:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48878 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234200AbhGKPB4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jul 2021 11:01:56 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77F66C0613DD;
-        Sun, 11 Jul 2021 07:59:09 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id o5so28149354ejy.7;
-        Sun, 11 Jul 2021 07:59:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=kVKa/qYsm/LpBgzMfgFjq0sOew6IiQd+6gndsgTAoYI=;
-        b=Ykk/6xz1usz9fsC1y04TF/bA30koNu2R8BTHIxArpRCZDmuJrslu6KANI2roRVhGBS
-         VM+vZkL8+Y+BuIPs8o6l60nvMUc7b8R5ArvXkFIZzV7w8TVdRzg7w3aMp2uP5MCZNGsU
-         J6Fob66RzlCNPB0Ta8ZRBbmb//bhNd0oWxTujujnk2GUkmH13ReXUD9l1wrBtx/MDwck
-         T8aIuJvLv1/VrCAaTw2RVRN3xIDNPTb2Q2F1uPMFYUlPFNIDaYD2HNTzkC9qC3lFr2v6
-         8xDvjKJm1oHANCEKYPcIdBvHNkc1v0BAUsrchPvVh8REUsoqtZGl7z/c4x2+mbjmjJKu
-         WOnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=kVKa/qYsm/LpBgzMfgFjq0sOew6IiQd+6gndsgTAoYI=;
-        b=DcnrJML7h/mWejlndhBOsL0E6dRsgvUbs2+dAeEAQcGQdHjG6I4fda7GYcO1s8H641
-         Ggdcyj6ws6P8KcqB/aE/E7DoMkAuWlZmcwqD8DEQFwxU7q+2ZFOzQLsT3tQI2HOf6XlC
-         nSJIeczuGv/W9KynJlVyS18vzURf/lT3qLsvvKQQghLaJyzDRH1VsWrMHct+dMcS225o
-         YATvMB+DBp7fklArgDVqONiAIvgG78JV7AUhox6xPWw3epBtRTeITELdQoQzWJ5d8uOG
-         wYj198VTkKH1I+/wpJbdz/w3hNHCdxzBFI2rl1rrdsKyuZH9eZeFL6IpDaq1uL+bWj8d
-         0IxA==
-X-Gm-Message-State: AOAM531VJ3qTYptFGxDZXWnSl1+zpEdK6QFVwt+M8II4n1FSFVg7pkVN
-        +vV+GzfLlHn47lgvFdnmT2r8UOJFKq2Z/Q==
-X-Google-Smtp-Source: ABdhPJxiqiHLAFDJEPlGH9Q9L7eaaJxjFmJd+1auawdbNyKHUZxhCQNu7/YDdiqHmB1tyW9wPQY6Xw==
-X-Received: by 2002:a17:906:660f:: with SMTP id b15mr48961130ejp.443.1626015548161;
-        Sun, 11 Jul 2021 07:59:08 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id t4sm1318045ejo.125.2021.07.11.07.59.07
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 11 Jul 2021 07:59:07 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: rename flash nodenames
-Date:   Sun, 11 Jul 2021 16:59:00 +0200
-Message-Id: <20210711145900.15443-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+        id S234220AbhGKPGI convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 11 Jul 2021 11:06:08 -0400
+Received: from mail.07d05.mspz7.gob.ec ([186.46.59.139]:56730 "EHLO
+        mail.07d05.mspz7.gob.ec" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234482AbhGKPGI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jul 2021 11:06:08 -0400
+X-Greylist: delayed 2907 seconds by postgrey-1.27 at vger.kernel.org; Sun, 11 Jul 2021 11:06:08 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by mail.07d05.mspz7.gob.ec (Postfix) with ESMTP id F3B0118456E0;
+        Sun, 11 Jul 2021 08:55:42 -0500 (-05)
+Received: from mail.07d05.mspz7.gob.ec ([127.0.0.1])
+        by localhost (mail.07d05.mspz7.gob.ec [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id X3A2Zdgkcrsz; Sun, 11 Jul 2021 08:55:42 -0500 (-05)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.07d05.mspz7.gob.ec (Postfix) with ESMTP id 99A4F184596F;
+        Sun, 11 Jul 2021 08:55:42 -0500 (-05)
+X-Virus-Scanned: amavisd-new at 07d05.mspz7.gob.ec
+Received: from mail.07d05.mspz7.gob.ec ([127.0.0.1])
+        by localhost (mail.07d05.mspz7.gob.ec [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id QtolAHgzpRZ6; Sun, 11 Jul 2021 08:55:42 -0500 (-05)
+Received: from cris-PC.wifi (unknown [105.9.79.139])
+        by mail.07d05.mspz7.gob.ec (Postfix) with ESMTPSA id A4CAD1845946;
+        Sun, 11 Jul 2021 08:55:34 -0500 (-05)
+Content-Type: text/plain; charset="iso-8859-1"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8BIT
+Content-Description: Mail message body
+Subject: spende von 2,000,000 euro
+To:     Recipients <maria.coronel@07d05.mspz7.gob.ec>
+From:   ''Tayeb souami'' <maria.coronel@07d05.mspz7.gob.ec>
+Date:   Sun, 11 Jul 2021 15:55:25 +0200
+Reply-To: Tayebsouam.spende@gmail.com
+Message-Id: <20210711135534.A4CAD1845946@mail.07d05.mspz7.gob.ec>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nodes with compatible "jedec,spi-nor" are now checked with
-jedec,spi-nor.yaml and mtd.yaml. The pattern is now
-"^flash(@.*)?$", so change that for the boards with a
-Rockchip SoC.
+Hallo mein lieber Freund
+Mein Name ist Tayeb Souami aus New Jersey in Amerika und ich habe den America Lottery Jackpot von 315 Millionen Euro gewonnen. Ich habe mich entschlossen, die Summe von 2.000.000 Euro an fünf glückliche Personen zu spenden, und Sie wurden als einer der Begünstigten ausgewählt. Bitte klicken Sie auf diesen Link, um mehr über meinen Gewinn zu erfahren.
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 2 +-
- arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi   | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-index 1b0f7e455..f69a38f42 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-@@ -345,7 +345,7 @@
- &spi0 {
- 	status = "okay";
- 
--	spiflash@0 {
-+	flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-index c1bcc8ca3..e310b51ab 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
-@@ -543,7 +543,7 @@ ap_i2c_audio: &i2c8 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-1 = <&spi1_sleep>;
- 
--	spiflash@0 {
-+	flash@0 {
- 		compatible = "jedec,spi-nor";
- 		reg = <0>;
- 
--- 
-2.11.0
+UHR MICH HIER: https://www.youtube.com/watch?v=Z6ui8ZDQ6Ks
 
+Bitte kontaktieren Sie mich über diese E-Mail:Tayebsouam.spende@gmail.com
+
+
+Ich hoffe, Sie und Ihre Familie glücklich zu machen.
+
+Grüße
+Herr Tayeb Souami
