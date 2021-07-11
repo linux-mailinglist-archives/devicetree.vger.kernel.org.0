@@ -2,99 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 906793C3D0D
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 15:40:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42EB73C3D58
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 16:34:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232775AbhGKNlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jul 2021 09:41:35 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:52982 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231658AbhGKNlf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 11 Jul 2021 09:41:35 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1m2ZfQ-0007Ul-TE; Sun, 11 Jul 2021 15:38:44 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Jonathan Cameron <jic23@kernel.org>, Simon Xue <xxm@rock-chips.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org, Simon Xue <xxm@rock-chips.com>
-Subject: Re: [PATCH v1 2/2] iio: adc: rockchip_saradc: add support for rk3568 saradc
-Date:   Sun, 11 Jul 2021 15:38:44 +0200
-Message-ID: <3140115.MfA8il8Al2@diego>
-In-Reply-To: <20210705012552.3781-1-xxm@rock-chips.com>
-References: <20210705012526.3731-1-xxm@rock-chips.com> <20210705012552.3781-1-xxm@rock-chips.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        id S233045AbhGKOh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jul 2021 10:37:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43466 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230050AbhGKOh2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jul 2021 10:37:28 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB1DC0613E5;
+        Sun, 11 Jul 2021 07:34:42 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id w14so11200386edc.8;
+        Sun, 11 Jul 2021 07:34:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=G4/vKfc2PJjfZ6X6kw4yk+dkdCYzRok+fw9mXUFf5m8=;
+        b=oKdZfBRmfRjQ2nC5RuHWchA+ZFmmiWpy/LzF38bR0HrH3juk8rLV2jZHXtQqjEi0XQ
+         zwnXrQR2fDoyPcQrmWv+lemhvhswrqk0B86HprJSH8GOHS5hmijnG/Cx5J/NHg1ylxHc
+         Loc2xOyFyCHF8OPqQHWVBYCrAl0r6HEbvQVQAEsTQRm0AAeegDP68PH4N8fEepTLw1A8
+         cmvenbGrrOk2Xprt9p/ZXr8CD4i+SyzQ5o31AoI6OS9OCb0j7hw6mrf6PPJ+antmS2X1
+         1gmYUXKtd+dUeUxnrs2MPYIfiL7wrkXPaAT2KsYj92ANlSKj2nKoCKTqzeN559H1yHV0
+         Nvaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=G4/vKfc2PJjfZ6X6kw4yk+dkdCYzRok+fw9mXUFf5m8=;
+        b=ieHhIwCz+LIefzj6mj+2uuowXfF6jVpsSclfKE4C/gPdJ+/ieS/ag7INgq9w6piJjs
+         LNq52mWF2DcX6V63gh/HKod7P9Xmi9KeQOt2h73PimpTkFcxLsGx5V9q2xjeq10XlcTx
+         z2wGeQkZfAMyJ09K12imrrcjAjz1xSfD5WPsq6cYdk4HvRojMmVz++3XA/XtYyHvCyLS
+         lBhrDuh2q3qmF2+Hp/g6MfKbcWPE5UAxBgN2VqzbcKnSmmZWyNlkFWximlI8FyzLveBV
+         jW5uQQASkIDID0VfRmFHa9bCHD+QI7e1+jYJ9I+Kdb5a5SOAs4BQdg8f1H4l30gJn+H/
+         cTGQ==
+X-Gm-Message-State: AOAM530ss5V8XH6iQw11g26ruRgf8BAyezdAvFEhQL8yoPVeBidmkgRa
+        f+v9FIhunlnySFn3VnENI6w=
+X-Google-Smtp-Source: ABdhPJxZrywtkxC9y5RlZG3iDoxJXZHnaFv84JhTwmO+affOXrUL0sp1Ig/rHM/d7sD0A0gZ2yaUCQ==
+X-Received: by 2002:aa7:c652:: with SMTP id z18mr1530065edr.361.1626014079744;
+        Sun, 11 Jul 2021 07:34:39 -0700 (PDT)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id a23sm4687076edt.42.2021.07.11.07.34.39
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 11 Jul 2021 07:34:39 -0700 (PDT)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] ARM: dts: rockchip: remove interrupt-names from iommu nodes
+Date:   Sun, 11 Jul 2021 16:34:29 +0200
+Message-Id: <20210711143430.14347-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 5. Juli 2021, 03:25:52 CEST schrieb Simon Xue:
-> It is similar to other devices, but with 8 channels.
-> 
-> Signed-off-by: Simon Xue <xxm@rock-chips.com>
+The iommu driver gets the interrupts by platform_get_irq(),
+so remove interrupt-names property from iommu nodes.
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+---
+ arch/arm/boot/dts/rk3288.dtsi | 6 ------
+ 1 file changed, 6 deletions(-)
 
-> ---
->  drivers/iio/adc/rockchip_saradc.c | 22 +++++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/iio/adc/rockchip_saradc.c b/drivers/iio/adc/rockchip_saradc.c
-> index 12584f1631d8..f3eb8d2e50dc 100644
-> --- a/drivers/iio/adc/rockchip_saradc.c
-> +++ b/drivers/iio/adc/rockchip_saradc.c
-> @@ -35,7 +35,7 @@
->  #define SARADC_DLY_PU_SOC_MASK		0x3f
->  
->  #define SARADC_TIMEOUT			msecs_to_jiffies(100)
-> -#define SARADC_MAX_CHANNELS		6
-> +#define SARADC_MAX_CHANNELS		8
->  
->  struct rockchip_saradc_data {
->  	const struct iio_chan_spec	*channels;
-> @@ -192,6 +192,23 @@ static const struct rockchip_saradc_data rk3399_saradc_data = {
->  	.clk_rate = 1000000,
->  };
->  
-> +static const struct iio_chan_spec rockchip_rk3568_saradc_iio_channels[] = {
-> +	SARADC_CHANNEL(0, "adc0", 10),
-> +	SARADC_CHANNEL(1, "adc1", 10),
-> +	SARADC_CHANNEL(2, "adc2", 10),
-> +	SARADC_CHANNEL(3, "adc3", 10),
-> +	SARADC_CHANNEL(4, "adc4", 10),
-> +	SARADC_CHANNEL(5, "adc5", 10),
-> +	SARADC_CHANNEL(6, "adc6", 10),
-> +	SARADC_CHANNEL(7, "adc7", 10),
-> +};
-> +
-> +static const struct rockchip_saradc_data rk3568_saradc_data = {
-> +	.channels = rockchip_rk3568_saradc_iio_channels,
-> +	.num_channels = ARRAY_SIZE(rockchip_rk3568_saradc_iio_channels),
-> +	.clk_rate = 1000000,
-> +};
-> +
->  static const struct of_device_id rockchip_saradc_match[] = {
->  	{
->  		.compatible = "rockchip,saradc",
-> @@ -202,6 +219,9 @@ static const struct of_device_id rockchip_saradc_match[] = {
->  	}, {
->  		.compatible = "rockchip,rk3399-saradc",
->  		.data = &rk3399_saradc_data,
-> +	}, {
-> +		.compatible = "rockchip,rk3568-saradc",
-> +		.data = &rk3568_saradc_data,
->  	},
->  	{},
->  };
-> 
-
-
-
+diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+index 9c5a7791a..4dcdcf17c 100644
+--- a/arch/arm/boot/dts/rk3288.dtsi
++++ b/arch/arm/boot/dts/rk3288.dtsi
+@@ -987,7 +987,6 @@
+ 		compatible = "rockchip,iommu";
+ 		reg = <0x0 0xff900800 0x0 0x40>;
+ 		interrupts = <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
+-		interrupt-names = "iep_mmu";
+ 		clocks = <&cru ACLK_IEP>, <&cru HCLK_IEP>;
+ 		clock-names = "aclk", "iface";
+ 		#iommu-cells = <0>;
+@@ -998,7 +997,6 @@
+ 		compatible = "rockchip,iommu";
+ 		reg = <0x0 0xff914000 0x0 0x100>, <0x0 0xff915000 0x0 0x100>;
+ 		interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+-		interrupt-names = "isp_mmu";
+ 		clocks = <&cru ACLK_ISP>, <&cru HCLK_ISP>;
+ 		clock-names = "aclk", "iface";
+ 		#iommu-cells = <0>;
+@@ -1059,7 +1057,6 @@
+ 		compatible = "rockchip,iommu";
+ 		reg = <0x0 0xff930300 0x0 0x100>;
+ 		interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+-		interrupt-names = "vopb_mmu";
+ 		clocks = <&cru ACLK_VOP0>, <&cru HCLK_VOP0>;
+ 		clock-names = "aclk", "iface";
+ 		power-domains = <&power RK3288_PD_VIO>;
+@@ -1109,7 +1106,6 @@
+ 		compatible = "rockchip,iommu";
+ 		reg = <0x0 0xff940300 0x0 0x100>;
+ 		interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+-		interrupt-names = "vopl_mmu";
+ 		clocks = <&cru ACLK_VOP1>, <&cru HCLK_VOP1>;
+ 		clock-names = "aclk", "iface";
+ 		power-domains = <&power RK3288_PD_VIO>;
+@@ -1252,7 +1248,6 @@
+ 		compatible = "rockchip,iommu";
+ 		reg = <0x0 0xff9a0800 0x0 0x100>;
+ 		interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+-		interrupt-names = "vpu_mmu";
+ 		clocks = <&cru ACLK_VCODEC>, <&cru HCLK_VCODEC>;
+ 		clock-names = "aclk", "iface";
+ 		#iommu-cells = <0>;
+@@ -1263,7 +1258,6 @@
+ 		compatible = "rockchip,iommu";
+ 		reg = <0x0 0xff9c0440 0x0 0x40>, <0x0 0xff9c0480 0x0 0x40>;
+ 		interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
+-		interrupt-names = "hevc_mmu";
+ 		clocks = <&cru ACLK_HEVC>, <&cru HCLK_HEVC>;
+ 		clock-names = "aclk", "iface";
+ 		#iommu-cells = <0>;
+-- 
+2.11.0
 
