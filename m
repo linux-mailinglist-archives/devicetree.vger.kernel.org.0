@@ -2,57 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEC9F3C3AFA
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 09:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 267523C3B5E
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 11:54:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229755AbhGKHSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jul 2021 03:18:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47690 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229544AbhGKHSi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 11 Jul 2021 03:18:38 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 833B561351;
-        Sun, 11 Jul 2021 07:15:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1625987751;
-        bh=z58bNMM3hhzvbsV96yCZjMHGp/nJ0qCVyPILy3am8HU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Cf1jGehHwUfnZ1auuGFj3S0WyxDdCMMrIZBILqFQWGphqz7heQfZm+nM6JuHoXxHX
-         tjgUbcJH2JaSPvb0FugFPlzTJwVGbNo+YFORJ3lJXFudDrcDHbQK9Whey1Ef+S+ZZj
-         GTuSKgWA+0xYqjPQxKObD9mPciknCK7BPU9Ts3Lmes3Z+/JU5Q7cM7uzk18vgsfzdF
-         x5Kfr7xikcWs8tZT19MWcUHHqA031byq7IJFnJGOmSv1DlEq499aEG2rkypv+KdfqS
-         wp61a3qPH6c4cTNt28iRI7SSguolvSHG7jnDo+b475WUcvFnIGiqjL2h4te6Cw1nAA
-         O/E9EJa96i50A==
-Date:   Sun, 11 Jul 2021 15:15:46 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: c630: fix correct powerdown pin for
- WSA881x
-Message-ID: <20210711071545.GA621@dragon>
-References: <20210706083523.10601-1-srinivas.kandagatla@linaro.org>
+        id S229758AbhGKJ51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jul 2021 05:57:27 -0400
+Received: from dcgsx-mrd02.server-mail.com ([114.31.72.18]:49259 "EHLO
+        dcgsx-mrd02.server-mail.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229688AbhGKJ51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 11 Jul 2021 05:57:27 -0400
+X-Greylist: delayed 1853 seconds by postgrey-1.27 at vger.kernel.org; Sun, 11 Jul 2021 05:57:27 EDT
+Received: from wic002mz.server-mail.com (wic002mz.server-mail.com [210.247.173.2])
+        by dcgsx-mrd02.server-mail.com (Postfix) with ESMTP id 100E64037F
+        for <devicetree@vger.kernel.org>; Sun, 11 Jul 2021 19:23:45 +1000 (EST)
+Received: from bne3-0003wm.server-mail.com ([203.147.156.179])
+        by wic002mz.server-mail.com with -
+        id TlMc250013sWqrv01lPX4h; Sun, 11 Jul 2021 19:23:44 +1000
+Received: by bne3-0003wm.server-mail.com (Postfix, from userid 48)
+        id AA0061388; Sun, 11 Jul 2021 19:22:55 +1000 (AEST)
+From:   "Wang Chen" <sales@atstravel.com.au>
+Date:   Sun, 11 Jul 2021 19:22:52 +1000
+Reply-To: wangchenw313@gmail.com
+Subject: Attention
+X-Mailer: Open WebMail 1.41
+X-OriginatingIP: 197.211.59.66 (sales@atstravel.com.au)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210706083523.10601-1-srinivas.kandagatla@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=iso-8859-1
+Message-Id: <20210711092255.AA0061388@bne3-0003wm.server-mail.com>
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 06, 2021 at 09:35:23AM +0100, Srinivas Kandagatla wrote:
-> WSA881x powerdown pin is connected to GPIO1, GPIO2 not GPIO2 and GPIO3,
-> so correct this. This was working so far due to a shift bug in gpio driver,
-> however once that is fixed this will stop working, so fix this!
-> 
-> For some reason we forgot to add this dts change in last merge cycle so
-> currently audio is broken in 5.13 as the gpio driver fix already landed
-> in 5.13.
-> 
-> Reported-by: Shawn Guo <shawnguo@kernel.org>
-> Fixes: 45021d35fcb2 ("arm64: dts: qcom: c630: Enable audio support")
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 
-Tested-by: Shawn Guo <shawnguo@kernel.org>
+Is it possible to discuss with you here?
+
+Best regards,
+Wang Chen
+wangchenw313@gmail.com
+
+
