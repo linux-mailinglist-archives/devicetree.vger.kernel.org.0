@@ -2,112 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 904B73C3BD4
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 13:22:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A433C3C04
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 13:55:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232787AbhGKLYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jul 2021 07:24:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57566 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232785AbhGKLYu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jul 2021 07:24:50 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0AF8C0613DD;
-        Sun, 11 Jul 2021 04:22:03 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id gn32so27332512ejc.2;
-        Sun, 11 Jul 2021 04:22:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=pPMmWhd2NgDyTJDkPom6RenStkxv3xOr8isEdZrof9A=;
-        b=qsMmuoGCGEd0t4fQfNoC8iD4mxlcgfc2qanHZJzHGF1fEykMVgLNyGkmfgxbxkeRf3
-         ot/pHLoT/ucnLDK/P6kK7TH4EwofDsZ4B7kxPHazINiGUZHJDAaaY1gsQK3znACrGWHi
-         lQEJPVct4UJ8Y+RKVQRn+j0iJE1WeYLOtqz2/mgG57xxelFWZZj+uQe1dBS0JuGgB/Xm
-         WNBimqn44yRK4VtigFdIDcAC+xGUA7EXqjsYR818vpjWNlYycOgok2J3JYVs2nssAVtv
-         XRRRv+7IrixR2bbi/+OmjDQ+RQoNiqzvDBnzEyw5FxLeaSLP45eGe6G3onFa0kRi7IJR
-         Rvtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=pPMmWhd2NgDyTJDkPom6RenStkxv3xOr8isEdZrof9A=;
-        b=ldw88tAPHp/R0G/V4nMM0/L1lI0v1njJhKKzoLGKIAhGmuVTLl0V8eYzKOqZpZ0G3G
-         TpxLYVHAYXHWKy7vCxYPcGTUs8NMMrdNUDJwhawQ0iYJlANm3Xv/NbnKbHql9XJ/afyR
-         1x+4SXfRoB/xIgmxxSEJLiNM6CgLoUtGbBV8onG5cAmy76B9Hg4AK91IN1uUi8TbnUDN
-         9FAIfRfEkBOFxdXT+RW60Imlbb9CoUHV75ekPBEb+2q6kuBV6t98XSQJBgYFgzfruZBv
-         +qvYJBKC0aGSQL9W8WPBge8VhPK7YSgyckRWYw2832xqtyfEfpg2Yc6vHduz6p7medtj
-         QoLQ==
-X-Gm-Message-State: AOAM531fLR3U7TZegWp1FaceUeXAkZFR7bnRgBv29jhJ6BJQjOBRQ42G
-        6EJXF3jdbvvuXxq12WnEBlAVlZegUAyzFg==
-X-Google-Smtp-Source: ABdhPJyjy6QnfSD6OM4I4cOTs1oT2UIedE4KbEAeSsuRoCk0ZZXeDzPUkvSmCvpR076C9VmQxr6uXA==
-X-Received: by 2002:a17:906:5d13:: with SMTP id g19mr48824982ejt.90.1626002522410;
-        Sun, 11 Jul 2021 04:22:02 -0700 (PDT)
-Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id g11sm5989505edt.85.2021.07.11.04.22.01
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 11 Jul 2021 04:22:02 -0700 (PDT)
-From:   Johan Jonker <jbx6244@gmail.com>
-To:     heiko@sntech.de
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        id S232376AbhGKL6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jul 2021 07:58:18 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:52722 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229688AbhGKL6S (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 11 Jul 2021 07:58:18 -0400
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1m2Y3R-0007Bq-TM; Sun, 11 Jul 2021 13:55:25 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Alex Bee <knaerzche@gmail.com>, Lee Jones <lee.jones@linaro.org>
+Cc:     Ezequiel Garcia <ezequiel@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: rockchip: rename pcfg_* nodenames for rk3066/rk3188
-Date:   Sun, 11 Jul 2021 13:21:54 +0200
-Message-Id: <20210711112154.5287-1-jbx6244@gmail.com>
-X-Mailer: git-send-email 2.11.0
+Subject: Re: [PATCH v2 01/12] dt-bindings: mfd: syscon: add Rockchip RK3036/RK3228 qos compatibles
+Date:   Sun, 11 Jul 2021 13:55:25 +0200
+Message-ID: <3527273.z0yIoBN5P9@diego>
+In-Reply-To: <20210601154651.GE2159518@dell>
+References: <20210525152225.154302-1-knaerzche@gmail.com> <20210527154455.358869-2-knaerzche@gmail.com> <20210601154651.GE2159518@dell>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rename pcfg_* nodenames for rk3066/rk3188 to pcfg-*,
-so that they fit in the regex with the other Rockchip SoCs.
+Hi Lee,
 
-Signed-off-by: Johan Jonker <jbx6244@gmail.com>
----
- arch/arm/boot/dts/rk3066a.dtsi | 4 ++--
- arch/arm/boot/dts/rk3188.dtsi  | 6 +++---
- 2 files changed, 5 insertions(+), 5 deletions(-)
+Am Dienstag, 1. Juni 2021, 17:46:51 CEST schrieb Lee Jones:
+> On Thu, 27 May 2021, Alex Bee wrote:
+> 
+> > Document Rockchip RK3036/RK3228 qos compatibles
+> > 
+> > Signed-off-by: Alex Bee <knaerzche@gmail.com>
+> > Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> > ---
+> > 
+> >  Changes in v2:
+> >  - collect Reviewed tag
+> > 
+> >  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> 
+> Applied, thanks.
 
-diff --git a/arch/arm/boot/dts/rk3066a.dtsi b/arch/arm/boot/dts/rk3066a.dtsi
-index b52ef9254..659c14795 100644
---- a/arch/arm/boot/dts/rk3066a.dtsi
-+++ b/arch/arm/boot/dts/rk3066a.dtsi
-@@ -368,11 +368,11 @@
- 			#interrupt-cells = <2>;
- 		};
- 
--		pcfg_pull_default: pcfg_pull_default {
-+		pcfg_pull_default: pcfg-pull-default {
- 			bias-pull-pin-default;
- 		};
- 
--		pcfg_pull_none: pcfg_pull_none {
-+		pcfg_pull_none: pcfg-pull-none {
- 			bias-disable;
- 		};
- 
-diff --git a/arch/arm/boot/dts/rk3188.dtsi b/arch/arm/boot/dts/rk3188.dtsi
-index 6764776cc..b46967ccd 100644
---- a/arch/arm/boot/dts/rk3188.dtsi
-+++ b/arch/arm/boot/dts/rk3188.dtsi
-@@ -275,15 +275,15 @@
- 			#interrupt-cells = <2>;
- 		};
- 
--		pcfg_pull_up: pcfg_pull_up {
-+		pcfg_pull_up: pcfg-pull-up {
- 			bias-pull-up;
- 		};
- 
--		pcfg_pull_down: pcfg_pull_down {
-+		pcfg_pull_down: pcfg-pull-down {
- 			bias-pull-down;
- 		};
- 
--		pcfg_pull_none: pcfg_pull_none {
-+		pcfg_pull_none: pcfg-pull-none {
- 			bias-disable;
- 		};
- 
--- 
-2.11.0
+not sure if I'm missing something, but this patch wasn't part of your 5.14?
+And I also don't see it in your for-mfd-next branch. Did it get lost somewhere?
+
+Thanks
+Heiko
+
 
