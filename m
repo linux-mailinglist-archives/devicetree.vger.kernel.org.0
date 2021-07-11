@@ -2,113 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50D923C36D5
-	for <lists+devicetree@lfdr.de>; Sat, 10 Jul 2021 22:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 927403C39B2
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 02:56:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229599AbhGJUyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Jul 2021 16:54:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38434 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbhGJUyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Jul 2021 16:54:54 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E12C0613DD;
-        Sat, 10 Jul 2021 13:52:08 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id o5so24035859ejy.7;
-        Sat, 10 Jul 2021 13:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=79nDPPhzMUdqY/HoQvtNoGx5K1d4gf+exWkNwx3ridI=;
-        b=ebGmXZhKg5B3ySOC3CMoPRdgy5KbrSu5oP9GL9eo8B8OoveTFjEeMLxGaImy/ym+h4
-         8D/O2YrirP1MXOb/ajnNn8lChcx8Ny5KERXXNWRmN62vhoP7OdsAT8cuC7tIKtoYCzzG
-         0kFXouvkCFaLXw3lgDF9ziL8ECYgjtJS1hvUClpjTrjbazX5QyN3oeAmPpzK70EqgPcD
-         kdi5ehNxkNR3wYmiKwy8iU/jrP1zldPeffHxIczH5qqtQLXn/+bZKfz2au0ixQplBNd9
-         WwopNOwJiSUF7Z1vuxBnzhx1v75xT8Okq7sGXuz3YFOg23HnE6glbn9b8HPuzkROxuBO
-         LwNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=79nDPPhzMUdqY/HoQvtNoGx5K1d4gf+exWkNwx3ridI=;
-        b=R0witO7j6wbOSneqiggVJTDL++s/f/bwZ4RoKPogaPIDpfr5E0reOd9mqTKU/LoOkg
-         +kTbXKfC+p9NM6CXFBMudFjVzrBKb0XDpg98wMDPquzARAZ8yv3Dw2dZYVFUAPY1OnJf
-         FF8+J2SyVNfWERN8O/AieYAHTKlQvxTQ8SEoGgpkCq7UAy8kF33u4XRUlZdKSS4V79CX
-         IOfgvqa7vV50QWsa5synxzH8GV+2k9TL3WQnXITn14Ur5umFiYj7PQS2jy41el1TNc1F
-         kPub/C64oGC2GIKIuzu/mOV+vGswl1GN74RME7eogSypzGLco38pY/o3taeLc+d7SrfT
-         3Ahg==
-X-Gm-Message-State: AOAM531UUAUDJL6GWcl7phQg6FLBniMBi126R/j6+hJ+npuT2/c1yD6N
-        y1iyO7JsUrAqQzinDBGG4DY=
-X-Google-Smtp-Source: ABdhPJzqaC35oHHK1IQahspaoHYpcQH0liZDpevV/3puO3dyOGvCcsB//CA6bdQ4KWYVMp1CMgcZpg==
-X-Received: by 2002:a17:907:990d:: with SMTP id ka13mr45551211ejc.392.1625950326866;
-        Sat, 10 Jul 2021 13:52:06 -0700 (PDT)
-Received: from skbuf ([82.76.66.29])
-        by smtp.gmail.com with ESMTPSA id ce21sm1724473ejc.25.2021.07.10.13.52.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 10 Jul 2021 13:52:06 -0700 (PDT)
-Date:   Sat, 10 Jul 2021 23:52:05 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Colin Foster <colin.foster@in-advantage.com>
-Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        claudiu.manoil@nxp.com, alexandre.belloni@bootlin.com,
-        UNGLinuxDriver@microchip.com, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 net-next 7/8] net: dsa: ocelot: felix: add support
- for VSC75XX control over SPI
-Message-ID: <20210710205205.blitrpvdwmf4au7z@skbuf>
-References: <20210710192602.2186370-1-colin.foster@in-advantage.com>
- <20210710192602.2186370-8-colin.foster@in-advantage.com>
+        id S229640AbhGKA7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Jul 2021 20:59:21 -0400
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:23655 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231179AbhGKA7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Jul 2021 20:59:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1625964992;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=FnNM7fXcs9SAtYFQNh27M2dM/fltJDgs7VIySGxQ9Mc=;
+        b=NgwqBII7bJsgq7qJ/ctaOeXmHXy47vdNv4UFgGToe5ATFBwbQmGAh91E+OONtRBQyAQXNg
+        FAYABzdxGPspn4V1CBPJRzTZ+SONByz2Q5ow46SV3kccsvNPM3rMj1cbMTL8z3Eqf/12X7
+        7k2ln44BIfQJv+bAw73H1vNthPL+ZpQ=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-397-huAfS36YPYuoZsyPm1fmfg-1; Sat, 10 Jul 2021 20:56:29 -0400
+X-MC-Unique: huAfS36YPYuoZsyPm1fmfg-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com [10.5.11.12])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 36FD4800D62;
+        Sun, 11 Jul 2021 00:56:28 +0000 (UTC)
+Received: from gshan.redhat.com (vpn2-54-119.bne.redhat.com [10.64.54.119])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id 51B4460C0F;
+        Sun, 11 Jul 2021 00:56:25 +0000 (UTC)
+From:   Gavin Shan <gshan@redhat.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        rdunlap@infradead.org, drjones@redhat.com, shan.gavin@gmail.com
+Subject: [PATCH v6] Documentation, dt, numa: Add note to empty NUMA node
+Date:   Sun, 11 Jul 2021 08:56:21 +0800
+Message-Id: <20210711005621.292702-1-gshan@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210710192602.2186370-8-colin.foster@in-advantage.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 10, 2021 at 12:26:01PM -0700, Colin Foster wrote:
-> +static const struct felix_info ocelot_spi_info = {
-> +	.target_io_res			= vsc7512_target_io_res,
-> +	.port_io_res			= vsc7512_port_io_res,
-> +	.regfields			= vsc7512_regfields,
-> +	.map				= vsc7512_regmap,
-> +	.ops				= &vsc7512_ops,
-> +	.stats_layout			= vsc7512_stats_layout,
-> +	.num_stats			= ARRAY_SIZE(vsc7512_stats_layout),
-> +	.vcap				= vsc7512_vcap_props,
-> +	.num_mact_rows			= 1024,
-> +
-> +	/* The 7512 and 7514 both have support for up to 10 ports. The 7511 and
-> +	 * 7513 have support for 4. Due to lack of hardware to test and
-> +	 * validate external phys, this is currently limited to 4 ports.
-> +	 * Expanding this to 10 for the 7512 and 7514 and defining the
-> +	 * appropriate phy-handle values in the device tree should be possible.
-> +	 */
-> +	.num_ports			= 4,
+The empty memory nodes, where no memory resides in, are allowed.
+For these empty memory nodes, the 'len' of 'reg' property is zero.
+The NUMA node IDs are still valid and parsed, but memory may be
+added to them through hotplug afterwards. I finds difficulty to
+get where it's properly documented.
 
-Ouch, this was probably not a good move.
-felix_setup() -> felix_init_structs sets ocelot->num_phys_ports based on
-this value.
-If you search for ocelot->num_phys_ports in ocelot and in felix, it is
-widely used to denote "the index of the CPU port module within the
-analyzer block", since the CPU port module's number is equal to the
-number of the last physical port + 1. If VSC7512 has 10 ports, then the
-CPU port module is port 10, and if you set num_ports to 4 you will cause
-the driver to misbehave.
+So lets add a section for empty memory nodes in NUMA binding
+document. Also, the 'unit-address', equivalent to 'base-address'
+in the 'reg' property of these empty memory nodes is suggested to
+be the summation of highest memory address plus the NUMA node ID.
 
-> +	.num_tx_queues			= OCELOT_NUM_TC,
-> +	.mdio_bus_alloc			= felix_mdio_bus_alloc,
-> +	.mdio_bus_free			= felix_mdio_bus_free,
-> +	.phylink_validate		= vsc7512_phylink_validate,
-> +	.prevalidate_phy_mode		= vsc7512_prevalidate_phy_mode,
-> +	.port_setup_tc			= vsc7512_port_setup_tc,
-> +	.init_regmap			= vsc7512_regmap_init,
-> +};
+Signed-off-by: Gavin Shan <gshan@redhat.com>
+Acked-by: Randy Dunlap <rdunlap@infradead.org>
+---
+v6: Drop '0x' in 'unit-address' as Rob suggested
+---
+ Documentation/devicetree/bindings/numa.txt | 61 +++++++++++++++++++++-
+ 1 file changed, 60 insertions(+), 1 deletion(-)
 
-> +	/* Not sure about this */
-> +	ocelot->num_flooding_pgids = 1;
+diff --git a/Documentation/devicetree/bindings/numa.txt b/Documentation/devicetree/bindings/numa.txt
+index 21b35053ca5a..7a7f281a401f 100644
+--- a/Documentation/devicetree/bindings/numa.txt
++++ b/Documentation/devicetree/bindings/numa.txt
+@@ -103,7 +103,66 @@ Example:
+ 		};
+ 
+ ==============================================================================
+-4 - Example dts
++4 - Empty memory nodes
++==============================================================================
++
++Empty memory nodes, which no memory resides in, are allowed. The 'length'
++field of the 'reg' property is zero, but the 'base-address' is a dummy
++address and invalid. The 'base-address' could be the summation of highest
++memory address plus the NUMA node ID. However, the NUMA node IDs and
++distance maps are still valid and memory may be added into them through
++hotplug afterwards.
++
++Example:
++
++	memory@0 {
++		device_type = "memory";
++		reg = <0x0 0x0 0x0 0x80000000>;
++		numa-node-id = <0>;
++	};
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x0 0x80000000 0x0 0x80000000>;
++		numa-node-id = <1>;
++	};
++
++	/* Empty memory node */
++	memory@100000002 {
++		device_type = "memory";
++		reg = <0x1 0x2 0x0 0x0>;
++		numa-node-id = <2>;
++	};
++
++	/* Empty memory node */
++	memory@100000003 {
++		device_type = "memory";
++		reg = <0x1 0x3 0x0 0x0>;
++		numa-node-id = <3>;
++	};
++
++	distance-map {
++		compatible = "numa-distance-map-v1";
++		distance-matrix = <0 0  10>,
++				  <0 1  20>,
++				  <0 2  40>,
++				  <0 3  20>,
++				  <1 0  20>,
++				  <1 1  10>,
++				  <1 2  20>,
++				  <1 3  40>,
++				  <2 0  40>,
++				  <2 1  20>,
++				  <2 2  10>,
++				  <2 3  20>,
++				  <3 0  20>,
++				  <3 1  40>,
++				  <3 2  20>,
++				  <3 3  10>;
++	};
++
++==============================================================================
++5 - Example dts
+ ==============================================================================
+ 
+ Dual socket system consists of 2 boards connected through ccn bus and
+-- 
+2.23.0
 
-Why are you not sure? It's the same as ocelot.
