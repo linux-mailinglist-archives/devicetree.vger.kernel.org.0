@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9CEE3C3E22
-	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 18:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 654913C3E2D
+	for <lists+devicetree@lfdr.de>; Sun, 11 Jul 2021 19:09:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230050AbhGKRA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jul 2021 13:00:57 -0400
-Received: from mail-mw2nam12on2098.outbound.protection.outlook.com ([40.107.244.98]:26208
+        id S231575AbhGKRMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jul 2021 13:12:20 -0400
+Received: from mail-mw2nam12on2119.outbound.protection.outlook.com ([40.107.244.119]:46176
         "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229893AbhGKRA4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 11 Jul 2021 13:00:56 -0400
+        id S229801AbhGKRMS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 11 Jul 2021 13:12:18 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HgvXGQf9QZquOzIT6UeRt1vyoIs1/kihORYBGwRqNU/W7XbWv56tFR9RSFnY/87+Er9qcSebJbx8HePe80Sa6ae3hxi5WvTzc+ulDmZqpmmGOTVoQMeKsRK0m6Kteoi5qJjmFtewx2duenLdRl4HxTpZRfV8LnZB0H/gqnf72wG5CXtPcfjbCINynfKg7CHgQnpG3idWlhjscyrBUWFnhuYGz7EnEfXA2qyo8f1osVyiOjBWantfKO2WtTU4Gm8DzzQmprsYM7ouuXVc2lenYYexi0sDJm1Tjz8f49YsqUmsHFNfSfTYD/Ultbk5InnG0lvacGv9gyV7DqPVW0HOxA==
+ b=avBEn/wLdl6o/9XFJJFnQB8GGcTsFnRyzGy15MFo8hmuNlJDYM5gFB+srwW11B1PAMze2hnPQcqpMZSjPFcnqHutNtVsn4OUAAcT4Vi2tWMfhyxLx8lvkg9/WAnDDDJP9AUHjx2TrqwmCM7hith6LqcRuQVfM5gTMV8aCso1T2tx7cxgY8xyWM6fXUoJQJ/GwtHmouYefbN18yqe4XMVxsik2RE1rg1cUbYni300DsTcv3cFsV+Q5ILeU6AQiDtBWROUx/rm/h7WqyYVzfkDmchRkNzb5Pk9oGftqULe/czHxGdGARk2+/tymvjj3G8GdlmMqeDFXwId7sxekWiUPg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h5/PQrLBenQdivB2/wmLXu+k9MiKYb/1nnVaNaUsw3s=;
- b=Dga+mL7G4zoEO5yFfH19H4Zg85AXV1asff2dRNVNIgMlfB+/pGbu+lJuidjVpUMvT6qsP+Wna1EMaGU27vDXTEJSCWtDrbKNyjZshlVqwPr8gROMknvbph94kXWE0Bb3CkjQ8UgMc3PDkkIEztuvO+0jjxxjqTv88SE3db91G7tBiwmKk+00MHqjHtHvmQ83e1ffSVpFcNslSl6Y9jV48sAJ206d/LD3IUKPCB+swFuw42BOI5ATiq2Bg+Jyy+uAfPPMZ656wfb/BeqBMFRZ37lrUdCx882cNkzF0XoYv12gymT7sdv3Q9U30OUWBQpfwfflJlxYZkuv/2qCNHAh9w==
+ bh=ll8rolpSxFM/SgComeoW1Co3BcFE/QMgkv8RTYwR7ls=;
+ b=Wuq6HtqscYjQDsILhTE9Pqm5Y1T8np07YIguhRevOpbmVivHqBS0JcnSZruYD87XJA1Ps1KaX4dfpKw7LO9jxC9Jc7vcogJjW52BCAFKeNA2QQAKj4oqjUlG+jkcSggO2bZ2J/HrKBe3ASM4PT6V3l2c8j1IcQ7VZgkGT7/dZQ57yfrCE1+eq+PXVQVaRsoB90dEmJYeVhJLCHs/Sc2DPe8gYmFIqXCmWKOHpX0K0TQnKKchJLWNESDiqMOhJh3OZnyk5j1jhqownW0t5v7OJ+j0Hf4MZ2uP+Up3h4RSAEOHVxibF9mhsFOl/FNDY42NmNVIXaviAeenfyAX+2expg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=in-advantage.com; dmarc=pass action=none
  header.from=in-advantage.com; dkim=pass header.d=in-advantage.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=inadvantage.onmicrosoft.com; s=selector2-inadvantage-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=h5/PQrLBenQdivB2/wmLXu+k9MiKYb/1nnVaNaUsw3s=;
- b=SnCgk9RrW8keqAvA1S4/07TyfgIhq6Lq5s5z7NCq/HHYpMgsXefd1BKnyas/am60vM7Lk6716NreWhCoyEdDFPztNavYKvB5F0R6zi//XrLjbOGsgkCbLwQiNVnZCcPFbDn+VKCKsGNTFQWiYFrablSZyRK+2NwM/DRaxP59E/k=
+ bh=ll8rolpSxFM/SgComeoW1Co3BcFE/QMgkv8RTYwR7ls=;
+ b=wiq/L34dnO5stlewbCSe/k/8y8GOaFcROAvfvvTpFt41K547S/RXHNvl9O0KFEibIcB3QK7uqy0lyw4xvOANQJnDNrqDQajMueZxiZTHMs4Ucw6K+/z9AP4QacSkOHIoE2RxXA+TgUSmHoMbeLI2Z4lvQIqHcyL35FSwM8WyD54=
 Authentication-Results: gmail.com; dkim=none (message not signed)
  header.d=none;gmail.com; dmarc=none action=none header.from=in-advantage.com;
 Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
- (2603:10b6:301:35::37) by MWHPR1001MB2175.namprd10.prod.outlook.com
- (2603:10b6:301:2d::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.20; Sun, 11 Jul
- 2021 16:58:08 +0000
+ (2603:10b6:301:35::37) by CO1PR10MB4420.namprd10.prod.outlook.com
+ (2603:10b6:303:97::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.23; Sun, 11 Jul
+ 2021 17:09:30 +0000
 Received: from MWHPR1001MB2351.namprd10.prod.outlook.com
  ([fe80::e81f:cf8e:6ad6:d24d]) by MWHPR1001MB2351.namprd10.prod.outlook.com
  ([fe80::e81f:cf8e:6ad6:d24d%3]) with mapi id 15.20.4308.026; Sun, 11 Jul 2021
- 16:58:08 +0000
-Date:   Sun, 11 Jul 2021 09:58:05 -0700
+ 17:09:30 +0000
+Date:   Sun, 11 Jul 2021 10:09:27 -0700
 From:   Colin Foster <colin.foster@in-advantage.com>
 To:     Vladimir Oltean <olteanv@gmail.com>
 Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
@@ -47,204 +47,126 @@ Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
         UNGLinuxDriver@microchip.com, linux@armlinux.org.uk,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v2 net-next 8/8] Update documentation for the VSC7512
- SPI device
-Message-ID: <20210711165805.GF2219684@euler>
+Subject: Re: [RFC PATCH v2 net-next 7/8] net: dsa: ocelot: felix: add support
+ for VSC75XX control over SPI
+Message-ID: <20210711170927.GG2219684@euler>
 References: <20210710192602.2186370-1-colin.foster@in-advantage.com>
- <20210710192602.2186370-9-colin.foster@in-advantage.com>
- <20210710203411.nahqkyy4umqbtfwm@skbuf>
+ <20210710192602.2186370-8-colin.foster@in-advantage.com>
+ <20210710205205.blitrpvdwmf4au7z@skbuf>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210710203411.nahqkyy4umqbtfwm@skbuf>
-X-ClientProxiedBy: MW4PR04CA0097.namprd04.prod.outlook.com
- (2603:10b6:303:83::12) To MWHPR1001MB2351.namprd10.prod.outlook.com
+In-Reply-To: <20210710205205.blitrpvdwmf4au7z@skbuf>
+X-ClientProxiedBy: MW3PR05CA0029.namprd05.prod.outlook.com
+ (2603:10b6:303:2b::34) To MWHPR1001MB2351.namprd10.prod.outlook.com
  (2603:10b6:301:35::37)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from euler (67.185.175.147) by MW4PR04CA0097.namprd04.prod.outlook.com (2603:10b6:303:83::12) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.21 via Frontend Transport; Sun, 11 Jul 2021 16:58:07 +0000
+Received: from euler (67.185.175.147) by MW3PR05CA0029.namprd05.prod.outlook.com (2603:10b6:303:2b::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.10 via Frontend Transport; Sun, 11 Jul 2021 17:09:29 +0000
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 95a37b8b-99d9-4755-dca3-08d9448d0eb8
-X-MS-TrafficTypeDiagnostic: MWHPR1001MB2175:
-X-Microsoft-Antispam-PRVS: <MWHPR1001MB2175133725C2C2222F3D6062A4169@MWHPR1001MB2175.namprd10.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Office365-Filtering-Correlation-Id: 14ed7193-55d5-4938-9f8d-08d9448ea539
+X-MS-TrafficTypeDiagnostic: CO1PR10MB4420:
+X-Microsoft-Antispam-PRVS: <CO1PR10MB44201A55045DF977F480E5F7A4169@CO1PR10MB4420.namprd10.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: M01uoSjQIgUTfgbGEXJFg3ClqjwpYdb2DvK2WrDK7OO6yUO2KrIUAbMuQis7WYycnKi22qiPi9fOppCRXhqSeKbgeMPOZGmXgwktmvzd2eP/Lr7p3Rksb/QR5R8/gbpxFgIpIbFaXPc2tnDM4PIoiJCCaLBfnpUoEyMoJLduyRKQy8KreuF9g2I16c1vOIozV4hPHqj02OIzXfMRPH39h3Wxgppsxvc/n2wyFp+M+brRBdg8hL1typQJ/Wysyf8Wl/kpLQLGexdKi9o6W6UzPrs44aSiNuCOIatbUI5lwZIi4tG+kDBKK6DHqLy1kFEgyeD7WIRdEjwt/DbYf+YxxtZSeX8FvlQeevvWrbXSpTEGLIPVJ9kqB2/aurA/rmvc6v6fvGDMij50SrgR/VRJ/oPjcTy8IIpxF+dV/dmPkmTlpO4uaBKPkwowU/n8oZ//HnfGCmpHz3AvqEKCj3MayHzrtZecbQv2We2w8HtT3/BSDzx6S1G02tLHN8ksHsoSa+xMlzXAoyy5bHdLf+Zg+2wLhXrDN0+jn/LOPDtH5fQE7AwUmWuuCpL/BJItzeVZu3YhVmH1Ip39rq6IEUtg4gh2dtTLQBuZajCrxZfgb0En4etfwZ3K/q/OJKkPuZeE6B6RR1ScYPrcILrTKta5+0pzz1BBciTvqCsYGavneOGizQ5Ixtlhzil3ZVZknM01CFavfEJTz9Yf4sAJLevBTOo6q5pTi6sc3rnr9hPyZAut5kectCNhE5rKvgek8IUZYSJATn6rsBBNZoTGcOAa1avieRjWA9Hxx1p0gd3+meA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(366004)(39840400004)(396003)(346002)(376002)(66476007)(55016002)(38350700002)(38100700002)(66946007)(33656002)(86362001)(66556008)(44832011)(6916009)(8936002)(316002)(83380400001)(966005)(4326008)(956004)(2906002)(33716001)(26005)(9576002)(6496006)(52116002)(186003)(478600001)(1076003)(9686003)(7416002)(8676002)(5660300002);DIR:OUT;SFP:1102;
+X-Microsoft-Antispam-Message-Info: VRauUL1ZZY53KCfUm3uc1ECyz+jo70an43gC+sUv5zfzxvDltzLSVStT9TGGzAXobOoMCvHfM7fA2gZoElU4aide3qmhmzmyJOHCPpwt1maHnWyTNKTHnlE6ijcvi78gCvH9v4Xm/AxRQv8TYEGVJn3c9+rSyjc0HKO0iBFyFknJRi05pHjt0py3UsrJqnpP3v2pxNK9sxK4GjjwVvY96wC9qy2Mx8AFlCIYXkWyYhPYDWV7LLn17ALrh24+zrSXluXzSPylEjgCKGKUMZkmqrbTAE5xmySbh/liKyLUPrl6pdE6oPYtXI9Fmw7d0FqIeOQ/2kLQi9oCkAU+EHKxvN2DZSVtMs3QLGNRVVBgDpIRh7K/HS+nF7oCBTE/OkWUeXpzsuwbQIcLUPy58XWZRTJdgesEAX6D2G+oKgUeTLipQgjgYIwAFGD2hJRH+xqGHgyzgv5+GCrCBpKtLV/49pDFsneJAU9kZ/MGK672TZvJUQok8xByBGrUlqy4P5YKp7/YCaKZk0C3R1TN9ms4B/HnBn8AqvHfSxIhdqXWPCSfrZViNZKURbbnYx+eK1/Ke33lPBiJRba8DvmUXmXqw494SZ5iBXgaFWgP3HHSzXU6QcGYdgeuTGYqohXvjmT3QfsVGeOymstTq2rSvDT7q51hjBU7PjloHyFKVAFDAgXTq8+vBoVRahcnd09V+taqusD/3OVSDPhoENvl8jn5zw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2351.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(346002)(39830400003)(366004)(396003)(376002)(26005)(956004)(66476007)(55016002)(66556008)(33656002)(316002)(478600001)(186003)(38100700002)(66946007)(6916009)(5660300002)(38350700002)(8676002)(8936002)(86362001)(9576002)(83380400001)(6496006)(52116002)(9686003)(33716001)(4326008)(7416002)(2906002)(1076003)(44832011);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?NJLF9BLmQ1A2oPhoTqEIWi0wrjx4AR40z5iapm5xRXcK1SJWbDtO+IpyyJF/?=
- =?us-ascii?Q?E9DZuFHe+X0i/3z185YPFZ8GO+z/4xCw0U0VWqF6BDfD2or31cGMj7NaE4tT?=
- =?us-ascii?Q?h15fCc/CUr3u0WZ+HLXayosU4jmAOv/2+kW/u2Cm60IEvIS8zqdUb6cab18p?=
- =?us-ascii?Q?7iIqiRL4xYb8LNhoQDqm/wUn8gZ0wHWdT1aPcd7aEAjZJNgiYFeEYwkTC/Ti?=
- =?us-ascii?Q?taTtou72EkxyElu71vub/qDRoJe4Dy9cdJLqazq0KsobsbfRrovExOf9pnkb?=
- =?us-ascii?Q?1sCwwDDSTRDflangJWl4XEfEw18QZjRDfmRjA8uqjFX9quk5Q5J/A/T6RkPV?=
- =?us-ascii?Q?1Iw9sheAAy84weHn7RyZUM3tQWUb+5RWYsxxdra2KKyKgNhOoMPo20XVVlqk?=
- =?us-ascii?Q?qkXS8TsYkPv4aRxGWmfaPCbnDUpx/ZzxALuGkqXPdPFLCIyiD5LbUyJuluuc?=
- =?us-ascii?Q?DeGvJ+RssDpuHG8oj0p+qm4dXWCrsCKUD33DeBjvNs9pmEdDZqbZeEkJogmX?=
- =?us-ascii?Q?rTtCpl2MvOVxv2dEfD9gl2dRAdbCLaSmgcjvB8mGlXuAX+irb+XDFWXMh+rc?=
- =?us-ascii?Q?iLwhXHRfXWmlhfwUB2ESmR4MhEs9mIbITQcWBwuuOWsMX89bDl6Jw7fq1b8S?=
- =?us-ascii?Q?AgF/xoHLwMfauHcKSQrnQmqcbilR8zFx/S2zHI2/mxGBgwG4P9lCbED4tKHR?=
- =?us-ascii?Q?c3yipCzUxQOAEG/EXR6gEj9/vycp7LVPtnsUoWBs04gDD2KbV06bsHW4L5yD?=
- =?us-ascii?Q?P4Vn/rF84RbiFKMjkh1gFbtIsNwew//ak/5eRuyqnURGibugHL59NdGIqMVI?=
- =?us-ascii?Q?4RhiG6tK+faExDDhbDl5AM7wyO6fQtDbiC8wpkFVmj8YHbBD/DCZ56hJ2fio?=
- =?us-ascii?Q?8kzoAT7vmZcJ1tDugm6tQ75NH80QwzcCVH/cJEfUBUmKVRj6I5L8w2x0Wagx?=
- =?us-ascii?Q?+2nUrMc8KqZKcXqBFDBoCSqxTqzpcJPabzreIoLGDboY6DUOpYsYuXj1+pft?=
- =?us-ascii?Q?RaYHKkkDallQ/GewfSuXrbFJQEdmD011Zisa2VCexlQ5qzsNFiI/V20LK1WK?=
- =?us-ascii?Q?kWJOLiiHUYNDeOSF8CaFf3niBeHo3viV4jfK++o6DRO/AFatHw0QiBIelZOE?=
- =?us-ascii?Q?fVNzo/IAn8mNO9OtPn4mOLUS9dGIOkfByIpk9ACe9EaTYq9x8jU8vfmXSVQp?=
- =?us-ascii?Q?+VDiQLPL7KPwpDTaxUah7/pawx3pjMG4sHCWQdZZlqKLxU3Az+mEOwVYxNrp?=
- =?us-ascii?Q?s8lXy3VxEpygtI0feLZwclotFBUz44KhkTZX7WArIwdOcp4Gn0tA9+rCQYkr?=
- =?us-ascii?Q?ajXhqAli1kpttLo5VGrlP5SU?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QYG4IoNiZXCjU0C63S39uJPgfRYi7QBAe0M0ataCJl6Ov32auen97A+iB3Fh?=
+ =?us-ascii?Q?IVYW6KlKghntxVTK+f5xBMphiYPQPSz/G4iAz76NZJvhx3UBzSCGoz+tzxAl?=
+ =?us-ascii?Q?QVRq5I9QJOmez73vGwk9YrHztMF+0/LqCpfO225sy0W67KLFyGAffwMHQ7m+?=
+ =?us-ascii?Q?SBXC2YTOJ1D6cKGSqHC2TjSupWytxYiRHWYO9Mi+7X46NauI0CvsC10RM+sg?=
+ =?us-ascii?Q?HZRIu5FuMqfc0wCgj6W+FbqOdhIUXeJIpOQyCHO+XqXejy6kSONRxr2wd33m?=
+ =?us-ascii?Q?vOiveeZZ7toVTNP30hVAzHSGzgD0c1Jq1svKfLnGbKF3IxWzkMKdk5sqXBHx?=
+ =?us-ascii?Q?3OiozCdO8kWkI44vCjpfVPxaJq7Fmt3bBi4D8MhffQt9hV4I8yUhmTinlHpS?=
+ =?us-ascii?Q?qMXzj67qsdsU/uodIIFAFZpVXzcguSE6YXWXatb0Sw9S7GxEGuxqVZ9GNnoN?=
+ =?us-ascii?Q?kRH5gin+Z28pGFfyhL14vneEAh7wXdWnAy9O+ruEnJr67CYuvt1UicrX+cwL?=
+ =?us-ascii?Q?QPsaFf3KSsV5TI/jOoMSHCwOG5RCkg2grWGTJJJjOUiz+bY9afGCE/mXI2g2?=
+ =?us-ascii?Q?sl89b+Uhq6ic0FsjHK3Q/1/6LscQzqgNKd5x3sbi55s4xfC0xG7OIxudCy1j?=
+ =?us-ascii?Q?rD3RVpkB2ZSWZYZUknXM9DmdtyP5r1S/e+lAxu69SDGqqwgb6Qh2AKVLsblY?=
+ =?us-ascii?Q?f7YI6bhYZjSDjttwLGkNQNBcLQvacgaxxT08X7FRNQjqiak+ahwJIHAupq1v?=
+ =?us-ascii?Q?eKGuBwIMHydh7stJWhyH5zuN67SUzNzCHBv4RDL2UKjzqy1jxkQQ2v9u/3UC?=
+ =?us-ascii?Q?QkWjTTTmPucGkIMgbDlZxh3ViQ6Q06QTWhHAUKGOKN765cU84GbPZrctyoqN?=
+ =?us-ascii?Q?uQFWTD4UJle7UlEsfcCFkMoQ8w9F8LIQOiBLfuRlF0VNQFUl1yRwWlsIfNz2?=
+ =?us-ascii?Q?ZYIghmKJRVieogcTCJ7pvpevBvaaH7chaWuOg7BZgJfKS8FtgecN7/Lkpict?=
+ =?us-ascii?Q?TkAUsSqtWZ+XwM3DgMrQC41K4l1RWYTZUljTIpmoFfeq/4xDHeWLq96r7iIU?=
+ =?us-ascii?Q?Aqc2EIPL6ttvEPi0DZbB4Tjmid8BTinfVDjJkWjJ5VzfkM8kmSmeWXM4c7i3?=
+ =?us-ascii?Q?dGXS+Hn8mdqZMAF5AZ0y4PIvzGKZ7IL2XHbYvh97nZrOLlP4TkFthbXzCY82?=
+ =?us-ascii?Q?u+XyGr7oM9Gd6o0lwbzLck2t9vT29o7IQ/rBmnlzuVxEzkcs6Lb1ze8bsiuc?=
+ =?us-ascii?Q?CjFOoaLkyS8F90vBPlSQEfM83s+ut7fBjMaxH0nOz9hqEEQUUbpwNScjCPYR?=
+ =?us-ascii?Q?mY+ZwPDmzjDXk9Gf1Ds+WSFu?=
 X-OriginatorOrg: in-advantage.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95a37b8b-99d9-4755-dca3-08d9448d0eb8
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14ed7193-55d5-4938-9f8d-08d9448ea539
 X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2351.namprd10.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2021 16:58:08.0118
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jul 2021 17:09:30.0386
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 48e842ca-fbd8-4633-a79d-0c955a7d3aae
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uE6wzgmKN6C+/8eP8p1TaKhGBqx+PviREzI9sSdQmIk37Eg4zM8p2b604NE69RQnLwxv02hyKLR2cna6+QQvjpjCkiM5uyOb+Ep4Db27qfc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1001MB2175
+X-MS-Exchange-CrossTenant-UserPrincipalName: qAgn73AoR4w9PB5wl0dp176G1U1hnmDO9AK34jSSsp9qssi95TJkqETin2I3HV5Ebu9ZORWeuJ/bPGhDfpxhZBJck6fnSYGToFvJKXtT00I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR10MB4420
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 10, 2021 at 11:34:11PM +0300, Vladimir Oltean wrote:
-> On Sat, Jul 10, 2021 at 12:26:02PM -0700, Colin Foster wrote:
-> > Signed-off-by: Colin Foster <colin.foster@in-advantage.com>
-> > ---
-> >  .../devicetree/bindings/net/dsa/ocelot.txt    | 68 +++++++++++++++++++
-> >  1 file changed, 68 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/ocelot.txt b/Documentation/devicetree/bindings/net/dsa/ocelot.txt
-> > index 7a271d070b72..f5d05bf8b093 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/ocelot.txt
-> > +++ b/Documentation/devicetree/bindings/net/dsa/ocelot.txt
-> > @@ -8,6 +8,7 @@ Currently the switches supported by the felix driver are:
-> >  
-> >  - VSC9959 (Felix)
-> >  - VSC9953 (Seville)
-> > +- VSC7511, VSC7512, VSC7513, VSC7514 via SPI
-> >  
-> >  The VSC9959 switch is found in the NXP LS1028A. It is a PCI device, part of the
-> >  larger ENETC root complex. As a result, the ethernet-switch node is a sub-node
-> > @@ -211,3 +212,70 @@ Example:
-> >  		};
-> >  	};
-> >  };
+On Sat, Jul 10, 2021 at 11:52:05PM +0300, Vladimir Oltean wrote:
+> On Sat, Jul 10, 2021 at 12:26:01PM -0700, Colin Foster wrote:
+> > +static const struct felix_info ocelot_spi_info = {
+> > +	.target_io_res			= vsc7512_target_io_res,
+> > +	.port_io_res			= vsc7512_port_io_res,
+> > +	.regfields			= vsc7512_regfields,
+> > +	.map				= vsc7512_regmap,
+> > +	.ops				= &vsc7512_ops,
+> > +	.stats_layout			= vsc7512_stats_layout,
+> > +	.num_stats			= ARRAY_SIZE(vsc7512_stats_layout),
+> > +	.vcap				= vsc7512_vcap_props,
+> > +	.num_mact_rows			= 1024,
 > > +
-> > +The VSC7513 and VSC7514 switches can be controlled internally via the MIPS
-> > +processor. The VSC7511 and VSC7512 don't have this internal processor, but all
-> > +four chips can be controlled externally through SPI with the following required
-> > +properties:
-> > +
-> > +- compatible:
-> > +	Can be "mscc,vsc7511", "mscc,vsc7512", "mscc,vsc7513", or
-> > +	"mscc,vsc7514".
-> > +
-> > +Supported phy modes for all chips are:
-> > +
-> > +* phy_mode = "internal": on ports 0, 1, 2, 3
-> > +
-> > +Additionally, the VSC7512 and VSC7514 support SGMII and QSGMII on various ports,
-> > +though that is currently untested.
-> > +
-> > +Example for control from a BeagleBone Black
-> > +
-> > +&spi0 {
-> > +	#address-cells = <1>;
-> > +	#size-cells = <0>;
-> > +	status = "okay";
-> > +
-> > +	vsc7512: vsc7512@0 {
+> > +	/* The 7512 and 7514 both have support for up to 10 ports. The 7511 and
+> > +	 * 7513 have support for 4. Due to lack of hardware to test and
+> > +	 * validate external phys, this is currently limited to 4 ports.
+> > +	 * Expanding this to 10 for the 7512 and 7514 and defining the
+> > +	 * appropriate phy-handle values in the device tree should be possible.
+> > +	 */
+> > +	.num_ports			= 4,
 > 
-> ethernet-switch@0
-> 
-> > +		compatible = "mscc,vsc7512";
-> > +		spi-max-frequency = <250000>;
-> > +		reg = <0>;
-> > +
-> > +		ports {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +
-> > +			port@0 {
-> > +				reg = <0>;
-> > +				ethernet = <&mac>;
-> > +				phy-mode = "internal";
-> > +
-> > +				fixed-link {
-> > +					speed = <100>;
-> > +					full-duplex;
-> > +				};
-> > +			};
-> > +
-> > +			port@1 {
-> > +				reg = <1>;
-> > +				label = "swp1";
-> > +				status = "okay";
-> 
-> I am not convinced that the status = "okay" lines are useful in the
-> example.
+> Ouch, this was probably not a good move.
+> felix_setup() -> felix_init_structs sets ocelot->num_phys_ports based on
+> this value.
+> If you search for ocelot->num_phys_ports in ocelot and in felix, it is
+> widely used to denote "the index of the CPU port module within the
+> analyzer block", since the CPU port module's number is equal to the
+> number of the last physical port + 1. If VSC7512 has 10 ports, then the
+> CPU port module is port 10, and if you set num_ports to 4 you will cause
+> the driver to misbehave.
 
-Fair enough
+Yes, this is part of my concern with the CPU / NPI module mentioned
+before. In my hardware, I'd have port 0 plugged to the external CPU. In
+Ocelot it is the internal bus, and in Felix it is the NPI. In this SPI
+design, does the driver lose significant functionality by not having
+access to those ports?
+
+In my test setup (and our expected production) we'd have port 0
+connected to the external chip, and ports 1-3 exposed. Does Ocelot need
+to be modified to allow a parameter for the CPU port?
+
+And obviously I'd imagine this would want to be done in such a way that
+it doesn't break existing device trees...
 
 > 
-> > +				phy-mode = "internal";
-> 
-> This syntax is ambiguous and does not obviously mean that the port has
-> an internal copper PHY. Please see this discussion for other meanings of
-> no 'phy-handle' and no 'fixed-link'.
-> 
-> https://www.mail-archive.com/u-boot@lists.denx.de/msg409571.html
-> 
-> I think it would be in the best interest of everyone to go through
-> phylink_of_phy_connect() instead of phylink_connect_phy(), aka use the
-> standard phy-handle property and create an mdio node under
-> ethernet-switch@0 where the internal PHY OF nodes are defined.
-> 
-> I don't know if this is true for VSC7512 or not, but for example on
-> NXP SJA1110, the internal PHYs can be accessed in 2 modes:
-> (a) through SPI transfers
-> (b) through an MDIO slave access point exposed by the switch chip, which
->     can be connected to an external MDIO controller
-> 
-> Some boards will use method (a), and others will use method (b).
-> 
-> Requiring a phy-handle under the port property is an absolutely generic
-> way to seamlessly deal with both cases. In case (a), the phy-handle
-> points to a child of an MDIO bus provided by the ocelot driver, in case
-> (b) the phy-handle points to a child provided by some other MDIO
-> controller driver.
-> 
-
-Yes, the Ocelot chips have the same functionality with the indirect /
-direct access. It seems like this would be coupled with the other
-discussion of updating mdio-mscc-miim.c so that the MDIO bus can be
-defined.
-
-And thank you for pointing out some examples. Having some starting
-points really helps!
-
-> > +			};
-> > +
-> > +			port@2 {
-> > +				reg = <2>;
-> > +				label = "swp2";
-> > +				status = "okay";
-> > +				phy-mode = "internal";
-> > +			};
-> > +
-> > +			port@3 {
-> > +				reg = <3>;
-> > +				label = "swp3";
-> > +				status = "okay";
-> > +				phy-mode = "internal";
-> > +			};
-> > +		};
-> > +	};
+> > +	.num_tx_queues			= OCELOT_NUM_TC,
+> > +	.mdio_bus_alloc			= felix_mdio_bus_alloc,
+> > +	.mdio_bus_free			= felix_mdio_bus_free,
+> > +	.phylink_validate		= vsc7512_phylink_validate,
+> > +	.prevalidate_phy_mode		= vsc7512_prevalidate_phy_mode,
+> > +	.port_setup_tc			= vsc7512_port_setup_tc,
+> > +	.init_regmap			= vsc7512_regmap_init,
 > > +};
-> > -- 
-> > 2.25.1
-> > 
+> 
+> > +	/* Not sure about this */
+> > +	ocelot->num_flooding_pgids = 1;
+> 
+> Why are you not sure? It's the same as ocelot.
+
+Sorry - missed removing that comment... Removed.
