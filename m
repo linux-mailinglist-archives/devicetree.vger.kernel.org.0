@@ -2,108 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DDC83C5EE8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 17:14:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F5073C5F36
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 17:23:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235188AbhGLPRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 11:17:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38580 "EHLO
+        id S235618AbhGLP03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 11:26:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbhGLPRa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 11:17:30 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0C59C0613DD;
-        Mon, 12 Jul 2021 08:14:41 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id y21-20020a7bc1950000b02902161fccabf1so11494175wmi.2;
-        Mon, 12 Jul 2021 08:14:41 -0700 (PDT)
+        with ESMTP id S235535AbhGLP03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 11:26:29 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CABF7C0613E5
+        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 08:23:40 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id hd33so6646259ejc.9
+        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 08:23:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=amarulasolutions.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=FgrvlkTg9/uXAH5M62IC4z6ysDDDFyj/9SoWCRpN0t4=;
-        b=UFFbUCIF/FxKZvWRNiFw0HpASNUk3LSbHPDZPrpVsnzb9ZU1Y0bWXON5z1JijtI8Ga
-         2w7zH9GEaaQAhQhcall5R9DaJmSqUWfDM82D8Oqn50leIb4dm8wUhD6bIMCkJhAUHS+b
-         8bSAP97sOCE6BjS24F0AUlPcSuLVyTouwB8B+SFdFlEsRkBWKsAckuq1UqDaKa7j6JpC
-         H3caswdy4BRPEFL94TRjtnuTeAiU9puWl8ehw3PFm/7c01oNY4qNB9JxqfYFRudSSq4g
-         kae80XVh09DBUo+vOVeaVOiIypQp/Ou/HnjN6Zqse7ttZxuVM5UmwkzKmASWzT9SCDWm
-         7Pew==
+        bh=VA3yp4yZWDVxCC+ZLuEwER2TrK+o/mFjvWm7UpsSPIY=;
+        b=NnYB8MzvR3bWYuv07pdYMOpvxr7ZdT5X5LJILgCRSWZa6lYStLwh1aVJo2KvQyrbp4
+         07/iNnTJKcR7XYGQJpOCCQ7X70rHvWg7n+W8gkVzWxH2wQDH/PiQzdZoA9ELdENxMI0B
+         GHtT+7zthyIEJ7kQGJxYi4iA+Uga6sZ0/5rH8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=FgrvlkTg9/uXAH5M62IC4z6ysDDDFyj/9SoWCRpN0t4=;
-        b=XO/OYDiTtLLfULwvcxbL/iw02ITQdIBL+iy9M0Q2PUxMngM/41wuGAggx4u5tTDgK7
-         +H2Pf/wXKWHnvNFWtRWA+hpEdQ2ciSorokFK02obSd2gVlWDi4QnPzRixA8o9oN8clN9
-         wR2UKJeP+64hoJwOiIySMDhSzuOVlyLIJTZiwI4Mhj2J6KKhoWCawgF6Xbg8aCvhGEQ+
-         YKKXnKyERTVLvcGAwtswtgNB4KUSMAMbFE/HfR133c3/PsQXsL1C+Den1M5VUUnNaRXi
-         VwjDkWBJvFKy88ADwnnTaCvL8T1Tw+0Di8tk3epfWZfJT4VguhKqanPbn/Es8sAMEv6U
-         a9dQ==
-X-Gm-Message-State: AOAM533ZC6x6dOSfGRT7qe6eqxq3XZf8VJ/P5oqeA9U8879koEhUmhXs
-        IIZFPblTvjRhlZixQneSXap6+Xqtw2jDmkNBOhE=
-X-Google-Smtp-Source: ABdhPJxkcUzuVWuWz5NTJOs2cfQ1UD5tPHkHAUqhXeP6vDvN6D/FVwPlYcp7y8metFR6XSVzBzOajDkm0UyChfHztys=
-X-Received: by 2002:a1c:4e18:: with SMTP id g24mr8944778wmh.175.1626102880428;
- Mon, 12 Jul 2021 08:14:40 -0700 (PDT)
+        bh=VA3yp4yZWDVxCC+ZLuEwER2TrK+o/mFjvWm7UpsSPIY=;
+        b=hUc+gCT/r6Snagxs8K9AotTW/N9iLZ5bE1VlzQvSME29i+RHeKSUHvr9WpZwZCZPB+
+         Q31woWcjPzspLiM9dZ65Opc9z/akDpG7fIJDTbNr+pXAfQ5GzuW2GvvAm/k6G7Ht+IWg
+         4Vg3ZSmN2mtl5C+cdEWrILWmHereMd57wwwkv0tZX0ZfsrWcbKIMStjd2sqzg8F1WJo/
+         tAf555IxYCc89zF90rb4SSFNIejDH71XBwTxa/7U1E1R8f231b5dztVHORb3yyGtQ132
+         3HhbFmB0chmRYXUhZFqYSX0DoZaX0KuIN5PMhAYmDxm0IJoVuQgC5sRcoJmuGUWbjA+g
+         48Tw==
+X-Gm-Message-State: AOAM533LXfed0cMMCxswXXi10wLnxR60DWmdJTdN7Q5MUmGDQlDVndiB
+        V7Q/Xh9daS9NER2+xzTWSG/EdrD59vEifgr4WtC+Og==
+X-Google-Smtp-Source: ABdhPJyh9uaWNvwE5VjJ4T2AJwMVEx/AiAZFwRgxIv+sj2fMKlHmDiozU9MZIqUPGmhK9A7ZHvT8/z/mDn3SdE6EjpA=
+X-Received: by 2002:a17:906:38f:: with SMTP id b15mr27458618eja.186.1626103419313;
+ Mon, 12 Jul 2021 08:23:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210703151835.171313-1-david@ixit.cz>
-In-Reply-To: <20210703151835.171313-1-david@ixit.cz>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Mon, 12 Jul 2021 08:18:46 -0700
-Message-ID: <CAF6AEGsAjjUtj=kE2Q5WFmfXsWcEG2K2=tfopuUK1ud4Z-6fMA@mail.gmail.com>
-Subject: Re: [PATCH] RFC: dt-bindings: drm/msm/gpu: convert to YAML
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Sharat Masetty <smasetty@codeaurora.org>,
-        Brian Masney <masneyb@onstation.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+References: <20210704090230.26489-1-jagan@amarulasolutions.com>
+ <20210704090230.26489-9-jagan@amarulasolutions.com> <20210712151322.GA1931925@robh.at.kernel.org>
+In-Reply-To: <20210712151322.GA1931925@robh.at.kernel.org>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Mon, 12 Jul 2021 20:53:28 +0530
+Message-ID: <CAMty3ZCa6sDKGvsJ3o8h6BX6CpPAuv_L17ErMcQ25-of-XNMVg@mail.gmail.com>
+Subject: Re: [RFC PATCH 08/17] dt-bindings: display: bridge: Add Samsung MIPI
+ DSIM bridge
+To:     Rob Herring <robh@kernel.org>
+Cc:     Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 3, 2021 at 8:20 AM David Heidelberg <david@ixit.cz> wrote:
+On Mon, Jul 12, 2021 at 8:43 PM Rob Herring <robh@kernel.org> wrote:
 >
-> This warning cannot be fixed by conversion, since this naming is already used.
-> Documentation/devicetree/bindings/display/msm/gpu.example.dt.yaml: gpu@5000000: interconnect-names: ['gfx-mem'] is too short
+> On Sun, Jul 04, 2021 at 02:32:21PM +0530, Jagan Teki wrote:
+> > Samsing MIPI DSIM bridge can be found on Exynos and NXP's
+> > i.MX8M Mini and Nano SoC's.
+> >
+> > This dt-bindings replaces legacy exynos_dsim.txt.
+> >
+> > Used the example node from latest Exynos SoC instead of
+> > the one used in legacy exynos_dsim.txt.
+> >
+> > Add dt-bingings for it.
 >
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  .../devicetree/bindings/display/msm/gpu.txt   | 157 -----------
->  .../devicetree/bindings/display/msm/gpu.yaml  | 256 ++++++++++++++++++
->  2 files changed, 256 insertions(+), 157 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/msm/gpu.txt
->  create mode 100644 Documentation/devicetree/bindings/display/msm/gpu.yaml
+> typo
 >
-> diff --git a/Documentation/devicetree/bindings/display/msm/gpu.txt b/Documentation/devicetree/bindings/display/msm/gpu.txt
-> deleted file mode 100644
+> >
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > ---
+> >  .../display/bridge/samsung,mipi-dsim.yaml     | 278 ++++++++++++++++++
+> >  .../bindings/display/exynos/exynos_dsim.txt   |  90 ------
+> >  MAINTAINERS                                   |   1 +
+> >  3 files changed, 279 insertions(+), 90 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+> > new file mode 100644
+> > index 000000000000..b2970734ffd7
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+> > @@ -0,0 +1,278 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/bridge/samsung,mipi-dsim.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Samsung MIPI DSIM bridge controller
+> > +
+> > +maintainers:
+> > +  - Inki Dae <inki.dae@samsung.com>
+> > +  - Joonyoung Shim <jy0922.shim@samsung.com>
+> > +  - Seung-Woo Kim <sw0312.kim@samsung.com>
+> > +  - Kyungmin Park <kyungmin.park@samsung.com>
+> > +  - Andrzej Hajda <a.hajda@samsung.com>
+> > +  - Jagan Teki <jagan@amarulasolutions.com>
+> > +
+> > +description: |
+> > +  Samsung MIPI DSIM bridge controller can be found it on Exynos
+> > +  and i.MX8M Mini and Nano SoC's.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - samsung,exynos3250-mipi-dsi
+> > +      - samsung,exynos4210-mipi-dsi
+> > +      - samsung,exynos5410-mipi-dsi
+> > +      - samsung,exynos5422-mipi-dsi
+> > +      - samsung,exynos5433-mipi-dsi
+>
+> What about i.MX compatibles?
 
-[snip]
+I have added in the next patch since this is yml conversation for
+existing .txt bindings.
 
-> diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> new file mode 100644
-> index 000000000000..4315482e0b12
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
+>
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> > +  clocks:
+> > +    minItems: 2
+> > +    maxItems: 5
+> > +
+> > +  clock-names:
+> > +    minItems: 2
+> > +    maxItems: 5
+> > +
+> > +  phys:
+> > +    maxItems: 1
+> > +    description: phandle to the phy module representing the DPHY
+>
+> Drop
+>
+> > +
+> > +  phy-names:
+> > +    items:
+> > +      - const: dsim
+> > +
+> > +  samsung,phy-type:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: phandle to the samsung phy-type
+> > +
+> > +  power-domains:
+> > +    description: phandle to the associated power domain
+>
+> Drop
+>
+> > +    maxItems: 1
+> > +
+> > +  samsung,power-domain:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: phandle to the associated samsung power domain
+> > +    maxItems: 1
+> > +
+> > +  vddcore-supply:
+> > +    description: MIPI DSIM Core voltage supply (e.g. 1.1V)
+> > +
+> > +  vddio-supply:
+> > +    description: MIPI DSIM I/O and PLL voltage supply (e.g. 1.8V)
+> > +
+> > +  samsung,burst-clock-frequency:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      DSIM high speed burst mode frequency.
+> > +
+> > +  samsung,esc-clock-frequency:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      DSIM escape mode frequency.
+> > +
+> > +  samsung,pll-clock-frequency:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      DSIM oscillator clock frequency.
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+>
+> If there are no extra endpoint properties, then use
+> '/schemas/graph.yaml#/properties/port'.
 
-[snip]
+Okay.
 
-> +  zap-shader:
-> +    description: |
-> +      For a5xx and a6xx devices this node contains a memory-region that
-> +      points to reserved memory to store the zap shader that can be used to
-> +      help bring the GPU out of secure mode.
-> +
+>
+> > +        description:
+> > +          Input port node to receive pixel data from the
+> > +          display controller. Exactly one endpoint must be
+> > +          specified.
+> > +        properties:
+> > +          endpoint@0:
+> > +            $ref: /schemas/graph.yaml#/properties/endpoint
+> > +            description: sub-node describing the input from MIC
+>
+> I'd assume i.MX has a different input than MIC?
 
-Side note, this node is optional now, we do have some a6xx devices out
-there which do not use/require a zap shader (in particular, the
-chromebooks).  Not sure if that effects how you want to document it in
-the yaml.
+Yes, updated in next patch.
 
-Also, new dts for devices that use zap, they should specify a
-"firmware-name", since the zap shader is usually signed with a board
-specific signing key.
-
-BR,
--R
+Thanks,
+Jagan.
