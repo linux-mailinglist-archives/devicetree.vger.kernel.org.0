@@ -2,38 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB10E3C5AFA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 13:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A96D03C5B00
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 13:05:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234352AbhGLKu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 06:50:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35318 "EHLO mail.kernel.org"
+        id S234484AbhGLKum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 06:50:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35384 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234454AbhGLKuS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Jul 2021 06:50:18 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 9393A61106;
-        Mon, 12 Jul 2021 10:47:29 +0000 (UTC)
+        id S234469AbhGLKu2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Jul 2021 06:50:28 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id C36CA610CD;
+        Mon, 12 Jul 2021 10:47:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626086850;
-        bh=BnlJcPr+Zyi8JXurFal5bKGXE9/r4rgeDkMZY1BrBOM=;
+        s=k20201202; t=1626086860;
+        bh=rRB64sjiBKQruseT1bEUVq+5wupC8VMPtoVNxCyIyEI=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=f54GkE7X6Zqs53ZTLbYjDPOw/jE4rqcqW2n7CfCsILVtFRmpt7oEXGJYmhBilOKQy
-         5rWNjL6LnpglqNZLwgGI2lNCM831XzsQwjr6XBT3Q6sW4ZJ7bExH1A01Fk2HsFiKuC
-         gI5vkCGhYqjQSCen4OcQPRN3bVj8jE0ti1fTKNhFCS1s2KHCGB/Lx84XHra5J2ufdI
-         gMkpTuQM6/Em/lkOGhtOnNstYm/crNJu4exNYvuBeOrWKsaeO/70RiMNbJvIgUPDSd
-         4zAE1UdNfspqpZ1qbkFlTXMWVx+vW3JL1yD1Kwbf0IRj2MJaFSEvWiX73UrPbpxbrJ
-         5DWp8AT6gi4oA==
+        b=CqaBZWa8B/RzkMpNzg2pUREb4m99FHCCi+BgPzMI3gBp7KIaEjQDI15R967JPVHZN
+         fy6kfNvy7u+HGV+NdZZ0jhyLagk87O22kRz7sj/RJx4ODORvj4HkdyVC3nqOCu0mip
+         3628geIVhUvowjNSywPgGajW8aWQHlNc9x+pX30XdnKSAZBXH4IPeRqKp6ZnL1oSpV
+         Pklg2fgfMCsbiyl3JnJP12QWxKO/qzXzWWA/OeE7XqUGFYHqFx63I6F0Ro24NCbYrO
+         Y2EXbVByywveXqyWiYwTKLBoHezzRGwAIgnBQ44siYYghnsaIIRsJPZn/DhpJM146M
+         7DNM2DtMMeqTA==
 From:   Mark Brown <broonie@kernel.org>
-To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        cy_huang@richtek.com
-Subject: Re: [PATCH 1/2] regulator: rtq6752: Add binding document for Richtek RTQ6752
-Date:   Mon, 12 Jul 2021 11:45:53 +0100
-Message-Id: <162608654080.4419.14873958641987918183.b4-ty@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>, linux-tegra@vger.kernel.org,
+        Sameer Pujar <spujar@nvidia.com>,
+        Jon Hunter <jonathanh@nvidia.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: (subset) [PATCH v2 0/2] arm64: tegra: Enable audio IOMMU support on Tegra194
+Date:   Mon, 12 Jul 2021 11:45:57 +0100
+Message-Id: <162608623153.3192.16025207604600677942.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <1625845236-30285-1-git-send-email-u0084500@gmail.com>
-References: <1625845236-30285-1-git-send-email-u0084500@gmail.com>
+In-Reply-To: <20210708103432.1690385-1-thierry.reding@gmail.com>
+References: <20210708103432.1690385-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -41,19 +43,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 9 Jul 2021 23:40:35 +0800, cy_huang wrote:
-> Add binding document for Richtek RTQ6752.
+On Thu, 8 Jul 2021 12:34:30 +0200, Thierry Reding wrote:
+> This small series addresses a minor issue with how IOMMU support is
+> wired up on various Tegra generations. Currently the virtual "card"
+> device is used to allocate DMA memory for, but since that device does
+> not actually exist, the path to memory cannot be correctly described.
+> 
+> To address this, this series moves to using the ADMAIF as the DMA device
+> for audio. This is a real device that can have a proper DMA mask set and
+> with which a stream ID can be associated with in the SMMU. The memory
+> accesses technically originate from the ADMA controller (that the ADMAIF
+> uses), but DMA channel are dynamically allocated at runtime while DMA
+> memory is allocated at driver load time, drivers won't have access to
+> the ADMA device yet.
+> 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
 Thanks!
 
-[1/2] regulator: rtq6752: Add binding document for Richtek RTQ6752
-      commit: 526e99cf43fe3884014f9e9f2ca5d04d56007287
-[2/2] regulator: rt6752: Add support for Richtek RTQ6752
-      commit: f40f9409719fa092924803723b9445be13fac8fb
+[1/2] ASoC: tegra: Use ADMAIF component for DMA allocations
+      commit: 0dfc21c1a4cac321749a53c92da616d9546d00e3
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
