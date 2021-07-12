@@ -2,221 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39D473C617B
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 19:05:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 136B03C618C
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 19:08:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234131AbhGLRIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 13:08:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36354 "EHLO
+        id S234244AbhGLRLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 13:11:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233869AbhGLRIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 13:08:14 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B57FC0613DD;
-        Mon, 12 Jul 2021 10:05:26 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id 77so16894108qkk.11;
-        Mon, 12 Jul 2021 10:05:26 -0700 (PDT)
+        with ESMTP id S234187AbhGLRLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 13:11:36 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7EB3C0613E8
+        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 10:08:47 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id o17-20020a9d76510000b02903eabfc221a9so19648411otl.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 10:08:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=qW4vqa6NnfEq0ub2+w7VBcq1lWh4sV+Zl2mjOZ0rHKw=;
-        b=JIlgREPo/qGJuHW6y2IUEsJ8vXSOJ0Z03XbkP7R/RUmI0AoJN+Z0KVLI1WqmbJ6INE
-         sbSGJU69B4rc97mt8yz5eDY91M7B/uRFizkKY8My0IKNxwnopy0vVGJ/HByp3S8rYEhF
-         64AK9Mbx1I8oxN1SNHHfvu5vlbs2AxJAKcILk18i/AUdfumft3BZY0KT8aeAjMgWyRuf
-         nB69cEVAYm8UBwd35UZHZGBZ8qdzcBBEShHWK3LrrsDEHVxBqDy5FUmimI4Y9Vcrq8NV
-         5s6zpHW9KdecBStLlxiS0DzeIOmPHo1Nyn0t60DRj0obKM9wxUvHgrzP0mU56+prlQ50
-         wpzA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=eoRs3jZry7KcnKcDapY0XJ0GGSCOklV/X4YSX1hb1x8=;
+        b=PJwQSJBOZq7qli3w+9NUFnTbKKfVbFNYdEcCYjiG5LdgbQCS1WBWDlpmNPEnPs2B1X
+         Ay6ImdQbwk+iELQJuM47wGLXfgueZE4gd29ibMTpGgraYgx4HGjYmW+SzhGouu8rpbRk
+         XysJ8L6C8UtquuBxPD7Lzea/Dz/3KWpU7ZkZok+EuT5ISKzEGnbco+nmZBCPDcvgg897
+         yGe6hnoxXAPt9VexTjmxAbnHSxvz21DMVAoAkC1BS0BMQbjx7tbjrMSBO9SFDHQYN4Fq
+         AfKBE/KnkIyCh4AV0bmfEArS4OcqmNwXx9LoIJxD0T/mSzBu1xGnYPEoEbMJEU75DmVy
+         z51w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=qW4vqa6NnfEq0ub2+w7VBcq1lWh4sV+Zl2mjOZ0rHKw=;
-        b=a1QBOaFgYrdObIpbUuVctORlFcnReQVz5p/XHbQcjECWUpiImU4fl+J3hXElf0MqcL
-         b4C57uzcGIK/vPyWClcrWO5nPMz3c3oYb8mkN+MbfwAf29sHZ0qP5KHPy1wxLObeM2fu
-         TFlnr1WFGeaf/stSoAIBiScwBRDoqjzKCqsIAtlR4EByZSAZp2b9RiWGLQST/hMfojDh
-         k3/AculRPQEgRIL6cJvrWMfAKvE/+B/J0xkqFSUkIvVzlxnyGBTve4H1MsM1ABT2KP2q
-         hNFEpZg5aCIwxQghYUpfaeuBYi3A8j5aGZ4r/tqrDYbBQ8GBz6SPJr10sC+AEPcN2MSk
-         95zw==
-X-Gm-Message-State: AOAM533AMYJrXcAlTouVzenr46fjzJZoPUbYHPVlbJmJw+L5PaHzHFFj
-        T+7YpTL1wwqlTz7aY8KC3ZA=
-X-Google-Smtp-Source: ABdhPJxMvILkCudEGp4iByocnGwNPm6xwP0S2sKOmh+OkKpC0mI85oIHD4p0I5bgaYFtcLCCdEZzog==
-X-Received: by 2002:a37:a2d4:: with SMTP id l203mr49010486qke.154.1626109525573;
-        Mon, 12 Jul 2021 10:05:25 -0700 (PDT)
-Received: from localhost (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id b6sm5875606qtg.1.2021.07.12.10.05.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Jul 2021 10:05:25 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 12 Jul 2021 13:05:23 -0400
-Message-Id: <CCRBPUEYGCAC.CJ1Y3GDWQYYJ@shaak>
-Cc:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <charles-antoine.couret@essensium.com>, <Nuno.Sa@analog.com>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 4/4] dt-bindings: iio: adc: ad7949: add
- adi,reference-source
-From:   "Liam Beguin" <liambeguin@gmail.com>
-To:     "Jonathan Cameron" <jic23@kernel.org>
-References: <20210709155856.1732245-1-liambeguin@gmail.com>
- <20210709155856.1732245-5-liambeguin@gmail.com>
- <20210710180001.051f7367@jic23-huawei>
-In-Reply-To: <20210710180001.051f7367@jic23-huawei>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eoRs3jZry7KcnKcDapY0XJ0GGSCOklV/X4YSX1hb1x8=;
+        b=IdPP8fTmG/UsMKCnAhCUgpo7fQZhaScPvy1jk/u27Li2fHUl6IE1+ijL7Mi6tAtnGu
+         SPm2HTWsq0dNno+xPrckbW6T7LgvJSiOxe0zz7H10zDA/qd7AHCdk/ai5eNrnPJOYols
+         euldsuASwCXt6TnWnKIyoOblFa1gx3G15s9je79J+YE6cindAKPnY3e0bXXRhgtVYBgR
+         FAezDJduJ2QOSbaeVvoiHmhXIoNBpe6hLQWZ4ESeWIvhks4i6sLYIUM8Ut44lsJexu8u
+         R6KbrixXXYTHLYVcyxAsprj9Ut+QvpVJKLalj4+Y08YW+kTWbpD2WsZwF8XrTrpcz6kN
+         OL2Q==
+X-Gm-Message-State: AOAM5308vmi1WbuK+fart5iW0/JFyO8CirSfOI/TuU0+lu24/g+IgqeM
+        tdqdKYnjxaYnfT01p9N3ubAfgg==
+X-Google-Smtp-Source: ABdhPJxxZh+RoC33x45e5HtehEjtcbXLDiBQcMFbCCv9umYtziLtzdZUph/tUf1jm3FlN+xmYmWL4Q==
+X-Received: by 2002:a05:6830:4027:: with SMTP id i7mr45106ots.180.1626109727111;
+        Mon, 12 Jul 2021 10:08:47 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id k4sm162226otp.2.2021.07.12.10.08.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jul 2021 10:08:46 -0700 (PDT)
+Date:   Mon, 12 Jul 2021 12:08:44 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: qcom,pon: Add
+ 'qcom,pon-reboot-not-used' property
+Message-ID: <YOx3HGWEyHWr8bYB@yoga>
+References: <20210705025032.12804-1-shawn.guo@linaro.org>
+ <20210705025032.12804-3-shawn.guo@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210705025032.12804-3-shawn.guo@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
+On Sun 04 Jul 21:50 CDT 2021, Shawn Guo wrote:
 
-On Sat Jul 10, 2021 at 1:00 PM EDT, Jonathan Cameron wrote:
-> On Fri, 9 Jul 2021 11:58:56 -0400
-> Liam Beguin <liambeguin@gmail.com> wrote:
->
-> > From: Liam Beguin <lvb@xiphos.com>
-> >=20
-> > Add bindings documentation for the adi,reference-source property.
-> > This property is required to properly configure the ADC sample request
-> > based on which reference source should be used for the calculation.
->
-> Should this be per channel? That will effect some of what I say below...
->
+> Add an optional 'qcom,pon-reboot-not-used' property for devices, which
+> do not use PON register to pass reboot mode but other mechanism, e.g.
+> particular IMEM address.
+> 
+> Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/power/reset/qcom,pon.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+> index 7764c804af1d..584eff179904 100644
+> --- a/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+> +++ b/Documentation/devicetree/bindings/power/reset/qcom,pon.yaml
+> @@ -23,6 +23,10 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  qcom,pon-reboot-not-used:
+> +    description: Support of reboot mode passing through PON register is not used
+> +    type: boolean
+> +
 
-We could make it per channel. Ideally, I'd also like to add support for
-differential channels, so might as well add per channel configurations
-now.
+How is this different from just not specifying any mode-* properties?
 
-> >=20
-> > Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> > ---
-> >  .../bindings/iio/adc/adi,ad7949.yaml          | 21 +++++++++++++++++++
-> >  1 file changed, 21 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml =
-b/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
-> > index 9b56bd4d5510..eae3121cad01 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
-> > @@ -35,6 +35,27 @@ properties:
-> >    "#io-channel-cells":
-> >      const: 1
-> > =20
-> > +  adi,reference-select:
->
-> This is one field in the register, but it's not one thing, so lets break
-> it up
-> in DT. We should do this both to make for more readable dts files and to
-> enforce the requirements on regulators...
->
-> > +    description: |
-> > +      Select the reference voltage source to use when converting sampl=
-es.
-> > +      Acceptable values are:
-> > +      - 0: Internal reference and temperature sensor enabled.
-> > +           Vref=3D2.5V, buffered output
-> > +      - 1: Internal reference and temperature sensor enabled.
-> > +           Vref=3D4.096V, buffered output
-> > +      - 2: Use external reference, temperature sensor enabled.
-> > +           Internal buffer disabled
-> > +      - 3: Use external reference, internal buffer and temperature sen=
-sor
-> > +           enabled.
-> > +      - 6: Use external reference, internal buffer and temperature sen=
-sor
-> > +           disabled.
-> > +      - 7: Use external reference, internal buffer enabled.
-> > +           Internal reference and temperature sensor disabled.
->
-> So question 1 is whether to use an external or internal reference.
-> Normally we'd make the coarse decision of whether to use an external
-> reference
-> by whether there is a regulator provided. That won't work so well if we
-> make
-> this per channel.
->
-> Question 2, assuming internal reference, what voltage? Those should take
-> an actual voltage (probably in mV and match against an enum of the two
-> possible values).
-> Binding should check to make sure this isn't specified as well as saying
-> we
-> are using an external refernce.
->
-> Question 3, assuming external reference, is temperature sensor enabled?
-> - actually dumb question, but why would anyone not want this enabled?
-> Maybe turn it
-> off in runtime pm, but in general if you've fitted a chip with a
-> temperature sensor
-> you at least sometimes want to measure temperature! So my gut feeling is
-> don't
-> allow this to be controlled (effectively drop cases 6 and 7 above as
-> being
-> unlikely to be of interest to anyone)
->
+Regards,
+Bjorn
 
-I like your suggestion of breaking this down so far, it would look
-something like this:
-
-	ad7949: adc@0 {
-		compatible =3D "adi,ad7949";
-		reg =3D <0>;
-
-		vref-supply =3D <&vdd_supply>;
-
-		channel@0 {
-			adi,internal-ref-mv =3D <2500>;
-			reg =3D <0>;
-		};
-
-		channel@1 {
-			reg =3D <1>;
-			/*
-			 * defaults to vref-supply if defined or error
-			 * out
-			 */
-		};
-	};
-
-> Question 4, Is the internal buffer enabled when using and external
-> reference.
-> This one is interesting. We could just expose it in general, but I
-> wonder
-> if we can do something that reflects how it is used. From the various
-> figures in
-> the datasheet this seems to be coupled to whether the external reference
-> is on
-> pin REF_IN or pin REF. If that's the case can we have two optional regs
-> only
-> one of which should be supplied? However, this gets more fiddly because
-> the default right now is vref-supply actually being connected to the
-> vrefin connection.
-> That's annoying as it stops us using the obvious naming...
-> Hence I think we can have
-> vref-supply (actually connected to vrefin) and vref-unbuffered-supply
->
-
-I really like the idea of using the same names as the datasheet
-(vref-supply and vrefin-supply), to infer the buffered state,
-but it's annoying (and confusing) that it's setup the other way
-right now.
-
-I wonder what happens if the reference is connected to refin and we're
-configured as unbuffered (and the other way around).
-I looked around and I might be able to test it on one setup I have where
-the external reference is connected to REF.
-
-If it's not a breaking change, would it be okay with you to follow the
-datasheet naming?
-
-Liam
-
->
->
-> > +
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [0, 1, 2, 3, 6, 7]
-> > +    default: 7
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
+>  patternProperties:
+>    "^mode-.+":
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> -- 
+> 2.17.1
+> 
