@@ -2,305 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECCE03C5A4A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 13:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B373C5A8D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 13:04:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238877AbhGLJsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 05:48:04 -0400
-Received: from smtp-out1.suse.de ([195.135.220.28]:45790 "EHLO
-        smtp-out1.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238845AbhGLJsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 05:48:03 -0400
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out1.suse.de (Postfix) with ESMTPS id ACB4022142;
-        Mon, 12 Jul 2021 09:45:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1626083113; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=gfwhSPRIk1+SU5zNMfYFVZ/T+A7xSDs2uH693upll9k=;
-        b=cCH0WnhWwxgMyqUi3AB538P3pV7PNZoCiQKbCqHz8+PnICeDkY+Nhrl7bdbiHlaQxMtOEH
-        w5mhyq8u+6RLMx5kTVZhZeub7ZgVcXFQP7XxJ1XfvgfdyQY9tf3lCCvZhUDWVewIZYMuDC
-        afMNyZDqJ/OWwCYdSz+yUocwnha4Eq0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1626083113;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=gfwhSPRIk1+SU5zNMfYFVZ/T+A7xSDs2uH693upll9k=;
-        b=Sc8CI5XeRV6twIKVWmbSDM9JxVmlgzFnM/oDF3vmiP1rO2Enj1E6QKpL6trvKngrYiJDcP
-        xkWeznEE7D0NLHBA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 423A913B1D;
-        Mon, 12 Jul 2021 09:45:13 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id veg6DykP7GAuKgAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Mon, 12 Jul 2021 09:45:13 +0000
-Subject: Re: [v8 1/6] drm/panel: add basic DP AUX backlight support
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-To:     Rajeev Nandan <rajeevny@codeaurora.org>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, thierry.reding@gmail.com,
-        sam@ravnborg.org, robdclark@gmail.com, dianders@chromium.org,
-        lyude@redhat.com, jani.nikula@intel.com, robh@kernel.org,
-        laurent.pinchart@ideasonboard.com, a.hajda@samsung.com,
-        daniel.thompson@linaro.org, hoegsberg@chromium.org,
-        abhinavk@codeaurora.org, seanpaul@chromium.org,
-        kalyan_t@codeaurora.org, mkrishn@codeaurora.org,
-        lee.jones@linaro.org, jingoohan1@gmail.com,
-        linux-fbdev@vger.kernel.org
-References: <1624726268-14869-1-git-send-email-rajeevny@codeaurora.org>
- <1624726268-14869-2-git-send-email-rajeevny@codeaurora.org>
- <7f8562df-7e1f-dcfb-1c58-f1edd9dcc606@suse.de>
-Message-ID: <00e95983-c7de-1091-d295-9d544f37687c@suse.de>
-Date:   Mon, 12 Jul 2021 11:45:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S238375AbhGLKHB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 06:07:01 -0400
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:18768 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233469AbhGLKGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 06:06:51 -0400
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 16C9lOl5099565;
+        Mon, 12 Jul 2021 17:47:24 +0800 (GMT-8)
+        (envelope-from steven_lee@aspeedtech.com)
+Received: from localhost.localdomain (192.168.100.253) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 12 Jul
+ 2021 18:03:18 +0800
+From:   Steven Lee <steven_lee@aspeedtech.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>
+CC:     <steven_lee@aspeedtech.com>, <Hongweiz@ami.com>,
+        <ryan_chen@aspeedtech.com>, <billy_tsai@aspeedtech.com>
+Subject: [PATCH v6 0/9] ASPEED sgpio driver enhancement.
+Date:   Mon, 12 Jul 2021 18:03:07 +0800
+Message-ID: <20210712100317.23298-1-steven_lee@aspeedtech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <7f8562df-7e1f-dcfb-1c58-f1edd9dcc606@suse.de>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="t9eMn3jl6KwcYz0iCxm3oll8aCOnlDRLo"
+Content-Type: text/plain
+X-Originating-IP: [192.168.100.253]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 16C9lOl5099565
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---t9eMn3jl6KwcYz0iCxm3oll8aCOnlDRLo
-Content-Type: multipart/mixed; boundary="DFHLtkuiMWmSrmqVbMA3p8REMY4RbpHUp";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Rajeev Nandan <rajeevny@codeaurora.org>, dri-devel@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, thierry.reding@gmail.com, sam@ravnborg.org,
- robdclark@gmail.com, dianders@chromium.org, lyude@redhat.com,
- jani.nikula@intel.com, robh@kernel.org, laurent.pinchart@ideasonboard.com,
- a.hajda@samsung.com, daniel.thompson@linaro.org, hoegsberg@chromium.org,
- abhinavk@codeaurora.org, seanpaul@chromium.org, kalyan_t@codeaurora.org,
- mkrishn@codeaurora.org, lee.jones@linaro.org, jingoohan1@gmail.com,
- linux-fbdev@vger.kernel.org
-Message-ID: <00e95983-c7de-1091-d295-9d544f37687c@suse.de>
-Subject: Re: [v8 1/6] drm/panel: add basic DP AUX backlight support
-References: <1624726268-14869-1-git-send-email-rajeevny@codeaurora.org>
- <1624726268-14869-2-git-send-email-rajeevny@codeaurora.org>
- <7f8562df-7e1f-dcfb-1c58-f1edd9dcc606@suse.de>
-In-Reply-To: <7f8562df-7e1f-dcfb-1c58-f1edd9dcc606@suse.de>
+AST2600 SoC has 2 SGPIO master interfaces one with 128 pins another one
+with 80 pins, AST2500/AST2400 SoC has 1 SGPIO master interface that
+supports up to 80 pins.
+In the current driver design, the max number of sgpio pins is hardcoded
+in macro MAX_NR_HW_SGPIO and the value is 80.
 
---DFHLtkuiMWmSrmqVbMA3p8REMY4RbpHUp
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+For supporting sgpio master interfaces of AST2600 SoC, the patch series
+contains the following enhancement:
+- Convert txt dt-bindings to yaml.
+- Update aspeed-g6 dtsi to support the enhanced sgpio.
+- Support muiltiple SGPIO master interfaces.
+- Support up to 128 pins by dts ngpios property.
+- Pair input/output GPIOs instead of using 0 as GPIO input pin base and
+  MAX_NR_HW_SGPIO as GPIO output pin base.
+- Support wdt reset tolerance.
+- Fix irq_chip issues which causes multiple sgpio devices use the same
+  irq_chip data.
+- Replace all of_*() APIs with device_*().
 
-Hi
+Changes from v5:
+* Squash v5 patch-05 and patch-06 to one patch.
+* Remove MAX_NR_HW_SGPIO and corresponding design to make the gpio
+  input/output pin base are determined by ngpios.
+  For example, if MAX_NR_HW_SGPIO is 80 and ngpios is 10, the original
+  pin order is as follows:
+    Input:
+    0 1 2 3 ... 9
+    Output:
+    80 81 82 ... 89
 
-Am 12.07.21 um 11:41 schrieb Thomas Zimmermann:
->=20
->=20
-> Am 26.06.21 um 18:51 schrieb Rajeev Nandan:
->> Some panels support backlight control over DP AUX channel using
->> VESA's standard backlight control interface.
->> Using new DRM eDP backlight helpers, add support to create and
->> register a backlight for those panels in drm_panel to simplify
->> the panel drivers.
->>
->> The panel driver with access to "struct drm_dp_aux" can create and
->> register a backlight device using following code snippet in its
->> probe() function:
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0err =3D drm_panel_dp_aux_backlight(panel, aux)=
-;
->> =C2=A0=C2=A0=C2=A0=C2=A0if (err)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return err;
->>
->> Then drm_panel will handle backlight_(enable|disable) calls
->> similar to the case when drm_panel_of_backlight() is used.
->>
->> Currently, we are not supporting one feature where the source
->> device can combine the backlight brightness levels set through
->> DP AUX and the BL_PWM_DIM eDP connector pin. Since it's not
->> required for the basic backlight controls, it can be added later.
->>
->> Signed-off-by: Rajeev Nandan <rajeevny@codeaurora.org>
->> Reviewed-by: Douglas Anderson <dianders@chromium.org>
->> Reviewed-by: Lyude Paul <lyude@redhat.com>
->> ---
->>
->> Changes in v5:
->> - New
->>
->> Changes in v6:
->> - Fixed ordering of memory allocation (Douglas)
->> - Updated word wrapping in a comment (Douglas)
->>
->> Changes in v8:
->> - Now using backlight_is_blank() to get the backlight blank status=20
->> (Sam Ravnborg)
->>
->> =C2=A0 drivers/gpu/drm/drm_panel.c | 108=20
->> ++++++++++++++++++++++++++++++++++++++++++++
->> =C2=A0 include/drm/drm_panel.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 15 ++++=
+  With the new design, pin order is changed as follows:
+    Input:
+    0 2 4 6 ... 18(ngpios * 2 - 2)
+    Output:
+    1 3 5 7 ... 19(ngpios * 2 - 1)
+* Replace ast2600-sgpiom-128 and ast2600-sgpiom-80 compatibles by
+  ast2600-sgpiom.
+* Fix coding style issues.
+
+Changes from v4:
+* Remove ngpios from dtsi
+* Add ast2400 and ast2500 platform data.
+* Remove unused macros.
+* Add ngpios check in a separate patch.
+* Fix coding style issues.
+
+Changes from v3:
+* Split dt-bindings patch to 2 patches
+* Rename ast2600-sgpiom1 compatible with ast2600-sgiom-128
+* Rename ast2600-sgpiom2 compatible with ast2600-sgiom-80
+* Correct the typo in commit messages.
+* Fix coding style issues.
+* Replace all of_*() APIs with device_*().
+
+Changes from v2:
+* Remove maximum/minimum of ngpios from bindings.
+* Remove max-ngpios from bindings and dtsi.
+* Remove ast2400-sgpiom and ast2500-sgpiom compatibles from dts and
+  driver.
+* Add ast2600-sgpiom1 and ast2600-sgpiom2 compatibles as their max
+  number of available gpio pins are different.
+* Modify functions to pass aspeed_sgpio struct instead of passing
+  max_ngpios.
+* Split sgpio driver patch to 3 patches
+
+Changes from v1:
+* Fix yaml format issues.
+* Fix issues reported by kernel test robot.
+
+Please help to review.
+
+Thanks,
+Steven
+
+Steven Lee (9):
+  dt-bindings: aspeed-sgpio: Convert txt bindings to yaml.
+  dt-bindings: aspeed-sgpio: Add ast2600 sgpio
+  ARM: dts: aspeed-g6: Add SGPIO node.
+  ARM: dts: aspeed-g5: Remove ngpios from sgpio node.
+  gpio: gpio-aspeed-sgpio: Add AST2600 sgpio support
+  gpio: gpio-aspeed-sgpio: Add set_config function
+  gpio: gpio-aspeed-sgpio: Move irq_chip to aspeed-sgpio struct
+  gpio: gpio-aspeed-sgpio: Use generic device property APIs
+  gpio: gpio-aspeed-sgpio: Return error if ngpios is not multiple of 8.
+
+ .../bindings/gpio/aspeed,sgpio.yaml           |  77 ++++++++
+ .../devicetree/bindings/gpio/sgpio-aspeed.txt |  46 -----
+ arch/arm/boot/dts/aspeed-g5.dtsi              |   1 -
+ arch/arm/boot/dts/aspeed-g6.dtsi              |  28 +++
+ drivers/gpio/gpio-aspeed-sgpio.c              | 178 +++++++++++-------
+ 5 files changed, 215 insertions(+), 115 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/aspeed,sgpio.yaml
+ delete mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+
 --
->> =C2=A0 2 files changed, 119 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c=
+2.17.1
 
->> index f634371..4fa1e3b 100644
->> --- a/drivers/gpu/drm/drm_panel.c
->> +++ b/drivers/gpu/drm/drm_panel.c
->> @@ -26,12 +26,20 @@
->> =C2=A0 #include <linux/module.h>
->> =C2=A0 #include <drm/drm_crtc.h>
->> +#include <drm/drm_dp_helper.h>
->> =C2=A0 #include <drm/drm_panel.h>
->> =C2=A0 #include <drm/drm_print.h>
->> =C2=A0 static DEFINE_MUTEX(panel_lock);
->> =C2=A0 static LIST_HEAD(panel_list);
->> +struct dp_aux_backlight {
->> +=C2=A0=C2=A0=C2=A0 struct backlight_device *base;
->> +=C2=A0=C2=A0=C2=A0 struct drm_dp_aux *aux;
->> +=C2=A0=C2=A0=C2=A0 struct drm_edp_backlight_info info;
->> +=C2=A0=C2=A0=C2=A0 bool enabled;
->> +};
->> +
->> =C2=A0 /**
->> =C2=A0=C2=A0 * DOC: drm panel
->> =C2=A0=C2=A0 *
->> @@ -342,6 +350,106 @@ int drm_panel_of_backlight(struct drm_panel *pan=
-el)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return 0;
->> =C2=A0 }
->> =C2=A0 EXPORT_SYMBOL(drm_panel_of_backlight);
->> +
->> +static int dp_aux_backlight_update_status(struct backlight_device *bd=
-)
->> +{
->> +=C2=A0=C2=A0=C2=A0 struct dp_aux_backlight *bl =3D bl_get_data(bd);
->> +=C2=A0=C2=A0=C2=A0 u16 brightness =3D backlight_get_brightness(bd);
->> +=C2=A0=C2=A0=C2=A0 int ret =3D 0;
->> +
->> +=C2=A0=C2=A0=C2=A0 if (!backlight_is_blank(bd)) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!bl->enabled) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dr=
-m_edp_backlight_enable(bl->aux, &bl->info, brightness);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bl=
-->enabled =3D true;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 re=
-turn 0;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D drm_edp_backlight_=
-set_level(bl->aux, &bl->info,=20
->> brightness);
->> +=C2=A0=C2=A0=C2=A0 } else {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (bl->enabled) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dr=
-m_edp_backlight_disable(bl->aux, &bl->info);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bl=
-->enabled =3D false;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> +=C2=A0=C2=A0=C2=A0 }
->> +
->> +=C2=A0=C2=A0=C2=A0 return ret;
->> +}
->> +
->> +static const struct backlight_ops dp_aux_bl_ops =3D {
->> +=C2=A0=C2=A0=C2=A0 .update_status =3D dp_aux_backlight_update_status,=
-
->> +};
->> +
->> +/**
->> + * drm_panel_dp_aux_backlight - create and use DP AUX backlight
->> + * @panel: DRM panel
->> + * @aux: The DP AUX channel to use
->> + *
->> + * Use this function to create and handle backlight if your panel
->> + * supports backlight control over DP AUX channel using DPCD
->> + * registers as per VESA's standard backlight control interface.
->> + *
->> + * When the panel is enabled backlight will be enabled after a
->> + * successful call to &drm_panel_funcs.enable()
->> + *
->> + * When the panel is disabled backlight will be disabled before the
->> + * call to &drm_panel_funcs.disable().
->> + *
->> + * A typical implementation for a panel driver supporting backlight
->> + * control over DP AUX will call this function at probe time.
->> + * Backlight will then be handled transparently without requiring
->> + * any intervention from the driver.
->> + *
->> + * drm_panel_dp_aux_backlight() must be called after the call to=20
->> drm_panel_init().
->> + *
->> + * Return: 0 on success or a negative error code on failure.
->> + */
->> +int drm_panel_dp_aux_backlight(struct drm_panel *panel, struct=20
->> drm_dp_aux *aux)
->> +{
->> +=C2=A0=C2=A0=C2=A0 struct dp_aux_backlight *bl;
->> +=C2=A0=C2=A0=C2=A0 struct backlight_properties props =3D { 0 };
->> +=C2=A0=C2=A0=C2=A0 u16 current_level;
->> +=C2=A0=C2=A0=C2=A0 u8 current_mode;
->> +=C2=A0=C2=A0=C2=A0 u8 edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE];
->> +=C2=A0=C2=A0=C2=A0 int ret;
->> +
->> +=C2=A0=C2=A0=C2=A0 if (!panel || !panel->dev || !aux)
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -EINVAL;
->> +
->> +=C2=A0=C2=A0=C2=A0 ret =3D drm_dp_dpcd_read(aux, DP_EDP_DPCD_REV, edp=
-_dpcd,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 EDP_DISPLAY_CTL_CAP_SIZE);
->=20
-> This creates a cyclic dependency between drm_kms_helper-ko and drm.ko. =
-
-> drm_panel.c is in the latter, while drm_dp_dpcd_read() in=20
-> drm_dp_helper.c is in the former. Please fix.
-
-FYI, build DRM as modules and the error shows up during make module_insta=
-ll.
-
-Best regards
-Thomas
-
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
---DFHLtkuiMWmSrmqVbMA3p8REMY4RbpHUp--
-
---t9eMn3jl6KwcYz0iCxm3oll8aCOnlDRLo
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmDsDygFAwAAAAAACgkQlh/E3EQov+AU
-kw//R7KbArU8YSyU6DQ9XelF9MKwAlhPhJXTR5BGVwrq8JiRKrc+JXxyAe1ScbUUEhIbMsgFHN3E
-X/MQ/qxycEc8A/Ud5hAOzGLdA+06WsDvDsN5TPBNmbJ/gTBIqnkj9nPWXNAhyVIm6pPjSJi7kwDZ
-j6cK8dUz3Np1W5ewQfMakllblTXHnYqD2q0fUGGNmsSnMSOc69rLataleWk70M3xZYBolAOMQpuG
-8EaVuVOXG1KyQSka15oZgpRnRsfXbfww5XKZca6hbUKZuJI7iMQtK8UHjL6ZGyL+2fQUqKKIqaxL
-Ksx6JFvA56BLDzoVokkOgx0DHw/VfqSU1w+uDIxrI7g1NtKxJaxr3wlQl94O0fVbPrzlJqp7ZxyT
-NA8FXUFB7EyyxfkpkVm/0jt2lFZfXLFS+kmcdR/j0cCwxxORnDmAL5TRLsIlz++J8Sfaj6UXtvq7
-5yvD56i7oQLCbgQFPUdlnCiziF4XVN0xQVkph43A6g5b0V9tDr2vHcIMuP2+oNq0eGJ1eBk0s7w5
-Y5LTfeugG+uXmeLxFRmEdQXQeuxGblg65r5tW5mZhEN/lvHKy9pgEk84tfueSdTYAE4UxZHNOYl/
-4xrUPztEJ8BHzL9PDSW47BgtCHht074azHLhX45a5qcMmuoFRW61OMpwSMAL+yC5vw0sN0b+7OH5
-VVE=
-=/HfC
------END PGP SIGNATURE-----
-
---t9eMn3jl6KwcYz0iCxm3oll8aCOnlDRLo--
