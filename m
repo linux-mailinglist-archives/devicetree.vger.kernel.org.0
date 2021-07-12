@@ -2,82 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7417D3C5FF5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 17:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 309B23C6009
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 18:03:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235547AbhGLQCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 12:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48976 "EHLO
+        id S230114AbhGLQGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 12:06:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235280AbhGLQCI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 12:02:08 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 886B0C0613DD;
-        Mon, 12 Jul 2021 08:59:18 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id a18so25017804ljk.6;
-        Mon, 12 Jul 2021 08:59:18 -0700 (PDT)
+        with ESMTP id S230022AbhGLQGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 12:06:40 -0400
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCEBCC0613E8
+        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 09:03:51 -0700 (PDT)
+Received: by mail-oi1-x22b.google.com with SMTP id w127so25013918oig.12
+        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 09:03:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PX6KW4lc9x9K8noyu3cbkpq9sdGp+o7RACRY5BiJWvg=;
-        b=USRxGpd0bN6j42j6oUGoVfM1c914AgaLvvaZEUZ4ZuJybrgMMxwfRm9/l/TqozauF2
-         HauZyhVLLWpomYlq/s+7Kn8LG3fDNQo8shd42HiucU3lIQOlZxsP5hhtLGq69PNkmyH3
-         Q5iKIjOvxRbAHyAUTN1IVzYKQLnqCTOD5y4JWztxKNAk9d+DcUbFHwdM082IZMXZxdVv
-         Ch8Qt72/tkeB06ST3a4R0LwkAP+3HwmejbyXihCg7crkjVFsGklaA/lK5xjuT9Vzlguz
-         Ku3EnOpWOE5cWRbdhjkdjTSlnFKRPS+ETND3Ilb65B3nmosd1/5WC9xOtZnMQzpg537Y
-         Jy+w==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=VYQdhl8WGpNZn7IHwYKLRg9DV0FPfiQGFVFR4KPgX0c=;
+        b=XSGbCrKyqK3ndOMFIBRp2HQGP9z52L4aOKWsy8RvSGGGFh+fx3biWqeYIqZwHykyu+
+         Jcz6zYKUDqSUwEDhLxYnftrY/LDZX+WEpNDBmyv5I2nyjHXPMnqLTTSz3nxLEFV4QbBA
+         OzW8SlBs5mCHHjCVVZp+b4mYvXXm94EtBVfHm8v4IbrykDmgM3De6gIKrVvbt8W/A/V6
+         beYDXOsm92b/ca0dXkn3rruOtDznbLyGfWxJ+Sd15Rnj7dUS6BJDVG6yFhb5jqSr3Bk8
+         OmDrAWqDlaIC5k70/KHUtRyrmVlHJQjkgnK05uzjpXXYWEeIXFNV0SDmJaLPUVr5vAIX
+         131Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PX6KW4lc9x9K8noyu3cbkpq9sdGp+o7RACRY5BiJWvg=;
-        b=dk3khLQ2sgF8+zmRkno7vRh1JKBTrWDArHkFmyW7YehQKavrZA3tcraKtMfZJPQbIv
-         vnmr2JsP/AmLaT/b7hn0Cd3MUoan6tQz0BbBwHBFSasNBCfxpt9gpE1UHhh1b0AwTdsH
-         wVC7j690pHo6HD8kDMYxSEfnmY5bTaiXvELBQMYZZBdDlz+KvxwycSlEA6UfqcXOK5pe
-         a+ePxGX+U1XraFjETRsay/k1+Q0EInhyI4VM9VeLFPcIWrAns78r+uA1kifYg994qJoc
-         mbnbhMbWKWFZWeyuxDCazpJll+6d7IluayFvZFKtDvZ7FmU6Gh/LKZ8ITrvP/wbJ473Z
-         gNQQ==
-X-Gm-Message-State: AOAM532bgKFyFNjFf+96kA4M3VTz9m4PJtz83heMlcvj8Ku1b9bDdeEM
-        xclSsxINm6KSaMMeMjBKtEScs6IFpXH6hvGTQGY=
-X-Google-Smtp-Source: ABdhPJxqHuMuxIaJSYKfTfMrHTxSgiMEiI5llEbLRWD432mKylVoZJDXu3ZTOjqR+rFuVpGyYj3slnSLSVGKIY/ZuwA=
-X-Received: by 2002:a2e:9b90:: with SMTP id z16mr10727408lji.444.1626105556883;
- Mon, 12 Jul 2021 08:59:16 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=VYQdhl8WGpNZn7IHwYKLRg9DV0FPfiQGFVFR4KPgX0c=;
+        b=XaCmLT39s+N8hHq8O4SdVgyeAeWCzlbMYmY2SugPTCWQ9xLj/azV8tRjkfr6K16+ER
+         F+wZyJK9TyXSuosk2pEmQROHaLlzI3PVuniovFMbe8e7RP2tIFgpciZ28natUcYIto3N
+         uWf5LB1HSrTgFI4793i7AWLiy3yaRUq1O2LCq4867BQfvK0u2Dfk4Za3rLw3aJKjN46h
+         gIhhtz7De54+ulRFXPJi7TYg0urF0a/TNHHeGsn0Lf7asDo+ZS36at0FYfk7QQsWuxm6
+         SCIktpToUzJCUpfDgtv3YG80LICNwBRaN1zuL4SoBi3BMPzKDDBeAU6o2t6PstZZhfxW
+         owuA==
+X-Gm-Message-State: AOAM530NHhd2VA/SJiiUHXvbroDJ2dEY4f26ilh+/xrEJlEhd+KZ7/5m
+        iFA2wh9EPaBFwCq0P7d33F24wQ==
+X-Google-Smtp-Source: ABdhPJxWVvHGQqmw4XVHZ9oLKOii3peGSB6g8nki90kRoK68heA+KbKagj74e1DGjUmoUOwQsea0jA==
+X-Received: by 2002:aca:acc5:: with SMTP id v188mr10863888oie.167.1626105831020;
+        Mon, 12 Jul 2021 09:03:51 -0700 (PDT)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id z5sm3229154oib.14.2021.07.12.09.03.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jul 2021 09:03:50 -0700 (PDT)
+Date:   Mon, 12 Jul 2021 11:03:48 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Prasad Malisetty <pmaliset@codeaurora.org>
+Cc:     agross@kernel.org, bhelgaas@google.com, robh+dt@kernel.org,
+        swboyd@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mgautam@codeaurora.org,
+        dianders@chromium.org, mka@chromium.org, sanm@codeaurora.org
+Subject: Re: [PATCH v3 4/4] PCIe: qcom: Add support to control pipe clk mux
+Message-ID: <YOxn5GWQsEH/+bSm@yoga>
+References: <1624377651-30604-1-git-send-email-pmaliset@codeaurora.org>
+ <1624377651-30604-5-git-send-email-pmaliset@codeaurora.org>
 MIME-Version: 1.0
-References: <20210604212217.70518-1-festevam@gmail.com> <20210604212217.70518-2-festevam@gmail.com>
- <CAJ+vNU35+U=pupo3bzKFnWuZgUKPe_C-0yGrcWnZH1R+PvbbWg@mail.gmail.com>
-In-Reply-To: <CAJ+vNU35+U=pupo3bzKFnWuZgUKPe_C-0yGrcWnZH1R+PvbbWg@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 12 Jul 2021 12:59:05 -0300
-Message-ID: <CAOMZO5CsBjW5RM0FESTeUSs6EONC+GV4VXVpLUxwnnRj1wYNog@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] media: i2c: adv7180: fix adv7280 BT.656-4 compatibility
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Matthew Michilot <matthew.michilot@gmail.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=windows-1252
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1624377651-30604-5-git-send-email-pmaliset@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
+On Tue 22 Jun 11:00 CDT 2021, Prasad Malisetty wrote:
 
-On Thu, Jul 1, 2021 at 3:29 PM Tim Harvey <tharvey@gateworks.com> wrote:
+> pipe-clk mux needs to switch between pipe_clk
 
-> Fabio,
->
-> Thanks for the submission. This does resolve NTSC capture on a
-> GW5410-G with an adv7280.
->
-> Reviewed-by: Tim Harvey <tharvey@gateworks.com>
-> Tested-by: Tim Harvey <tharvey@gateworks.com>
+If you spell "pipe-clk mux" as "gcc_pcie_N_pipe_clk_src" there's no
+ambiguity in which clock you refer to.
 
-Do you think this series could be applied?
+> and XO as part of LPM squence. This is done by setting
+> pipe_clk mux as parent of pipe_clk after phy init.
 
-Thanks,
+I thought the two possible cases where:
 
-Fabio Estevam
+xo -> gcc_pcie_N_pipe_clk_src -> gcc_pcie_N_pipe_clk
+PHY::pipe_clk -> gcc_pcie_N_pipe_clk_src -> gcc_pcie_N_pipe_clk
+
+But here you're saying that you're setting the parent of PHY::pipe_clk
+to gcc_pcie_N_pipe_clk?
+
+> This is a new requirement for sc7280.
+> For accessing to DBI registers during L23,
+> need to switch the pipe clock with free-running
+> clock (TCXO) using GCC’s registers
+
+So in previous platforms we could access DBI registers, in L23, without
+any clock?
+
+What happens if we use xo as parent for the pipe clock
+
+> 
+> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 8a7a300..80e9ee4 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -166,6 +166,9 @@ struct qcom_pcie_resources_2_7_0 {
+>  	struct regulator_bulk_data supplies[2];
+>  	struct reset_control *pci_reset;
+>  	struct clk *pipe_clk;
+> +	struct clk *pipe_clk_mux;
+> +	struct clk *pipe_ext_src;
+> +	struct clk *ref_clk_src;
+>  };
+>  
+>  union qcom_pcie_resources {
+> @@ -1167,6 +1170,20 @@ static int qcom_pcie_get_resources_2_7_0(struct qcom_pcie *pcie)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280")) {
+
+So this is the first 2.7.0 that has this need? Are we just going to add
+more compatibles to this list going forward?
+
+> +		res->pipe_clk_mux = devm_clk_get(dev, "pipe_mux");
+> +		if (IS_ERR(res->pipe_clk_mux))
+> +			return PTR_ERR(res->pipe_clk_mux);
+
+So this is gcc_pcie_N_pipe_clk_src?
+
+> +
+> +		res->pipe_ext_src = devm_clk_get(dev, "phy_pipe");
+> +		if (IS_ERR(res->pipe_ext_src))
+> +			return PTR_ERR(res->pipe_ext_src);
+
+And this is the pipe_clk coming out of the PHY (What I call
+PHY::pipe_clk above)?
+
+> +
+> +		res->ref_clk_src = devm_clk_get(dev, "ref");
+> +		if (IS_ERR(res->ref_clk_src))
+> +			return PTR_ERR(res->ref_clk_src);
+
+And this is TCXO?
+
+> +	}
+> +
+>  	res->pipe_clk = devm_clk_get(dev, "pipe");
+>  	return PTR_ERR_OR_ZERO(res->pipe_clk);
+>  }
+> @@ -1255,6 +1272,11 @@ static void qcom_pcie_deinit_2_7_0(struct qcom_pcie *pcie)
+>  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>  {
+>  	struct qcom_pcie_resources_2_7_0 *res = &pcie->res.v2_7_0;
+> +	struct dw_pcie *pci = pcie->pci;
+> +	struct device *dev = pci->dev;
+> +
+> +	if (of_device_is_compatible(dev->of_node, "qcom,pcie-sc7280"))
+> +		clk_set_parent(res->pipe_clk_mux, res->pipe_ext_src);
+>  
+
+So after phy_power_on() (not "phy init" as you say in the commit
+message, perhaps you don't mean phy_init() but in general terms "phy
+initialization") you need to make sure that gcc_pcie_N_pipe_clk_src is
+actually fed by PHY::pipe_clk?
+
+1) What's the gcc_pcie_N_pipe_clk_src parent before this?
+
+2) Will the PHY initialization really succeed if the pipe_clk feeding
+back from gcc isn't based on the PHY's pipe_clk? Is this a change in
+sc7280?
+
+3) In the commit message you're talking about the need to make XO the
+parent of gcc_pcie_N_pipe_clk_src during L23, where in this patch does
+that happen?
+
+Regards,
+Bjorn
+
+>  	return clk_prepare_enable(res->pipe_clk);
+>  }
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
