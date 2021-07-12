@@ -2,50 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3967F3C3FF1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 01:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 267343C403D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 02:03:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231277AbhGKX3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Jul 2021 19:29:04 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:54644 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229818AbhGKX26 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 11 Jul 2021 19:28:58 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1m2ips-0000zL-0w; Mon, 12 Jul 2021 01:26:08 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] ARM: dts: rockchip: rename timer compatible strings for rk3066a.dtsi
-Date:   Mon, 12 Jul 2021 01:26:05 +0200
-Message-Id: <162604593565.371932.2516692222189724334.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20210709101624.1463-1-jbx6244@gmail.com>
-References: <20210709101624.1463-1-jbx6244@gmail.com>
+        id S229758AbhGLAFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Jul 2021 20:05:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54482 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229660AbhGLAFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Jul 2021 20:05:54 -0400
+Received: from mail-vs1-xe2e.google.com (mail-vs1-xe2e.google.com [IPv6:2607:f8b0:4864:20::e2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27732C0613E5
+        for <devicetree@vger.kernel.org>; Sun, 11 Jul 2021 17:03:06 -0700 (PDT)
+Received: by mail-vs1-xe2e.google.com with SMTP id f4so5582118vsh.11
+        for <devicetree@vger.kernel.org>; Sun, 11 Jul 2021 17:03:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=k1+A7QcokWdPNl2M1r52ewHwT7LYjcRk65lo+mWhFnY=;
+        b=md8aiR8HKvNkFp+5k0RYao/RYfhmbAQooL535E6rA1GS0eCtls+Xl1dmep5lAQosKh
+         49XSxAckn4oXHGQEj1Ncer5NYD9BGSh10/KgfIVln+xJHdopb8gJdCWNYdxt8Geryo+x
+         4pGOf3tJqpgDWuUG+B74GnPg6wQjt811/FDJ4Nrs5Xiewp5fRVM8mmVGjTqj5A8H5hRq
+         oJv8LZcchBU5epKasgyMXODsrK++YWJN675SBhWxZY2hqDIdPvvXNuKvyS7+FLBVRfgD
+         Ld6TQ5TzhTblkx5hmk+hcIs+BJCRNT2r3L1keAWLQeIh1rV6F7m5DIuMZnqOAoUBNn0P
+         hKoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=k1+A7QcokWdPNl2M1r52ewHwT7LYjcRk65lo+mWhFnY=;
+        b=t/BABDfW/t1BjOCH7v3Y382GeJAgm7SjifZiOlAcdg0s176bp71j/o+VilOLir/FFC
+         Y5N0+qfleCIGrLVdOEV0H5xs64EqVCl2aJ/4ZtzLccEomTk4N5Zgw+FHFFLhRsAlDDAC
+         udZ09iPGJqfxPRczpG5l8AF8xN4HG05UR3fFvjxUfh4szpYaREWtJtLqrFkNuYUr752e
+         e7dOKXq9sCVmWiAXuvQeCgqZ4r4aOhybeEi9YlGXzSQ58rMhXZPaHtXPoPafqLDNz67p
+         DAJwLzMwiXxr3tq3XoerZlinlWpdhdwUyF3vAEcX55XlE6I21Uj/rIwKWPYSsLG+RS3d
+         FJBQ==
+X-Gm-Message-State: AOAM532KtnB2VA2/UNnUBUq1qnZQU0tlNBtEiH7tJCTkRAKrIzS6fSMs
+        0iRhSV26JfkplW/5ldhCWIbzl3Rxo6zpJYqn23w1
+X-Google-Smtp-Source: ABdhPJxANIsr4SOpdxnprb0mqLLonVDY6CQ0YruScAGFr0HZPF0Vf/yNL8cJmSzWAYg6KwaR4bXie2IvjN+PFCcRB7s=
+X-Received: by 2002:a05:6102:3089:: with SMTP id l9mr13148901vsb.2.1626048185107;
+ Sun, 11 Jul 2021 17:03:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20210707071616.28976-1-matt@traverse.com.au> <20210707071616.28976-3-matt@traverse.com.au>
+ <CABMQnVL379GkR_s5c91a0LAPMemup_Lq8U+qU9M1-kBWfVqmTw@mail.gmail.com>
+ <YOYiDlQM/xfgb0CH@piout.net> <CABMQnV+zxURp2K3aXjH3cobndoAXjTdb4xB4w+mMJmjnwyPyLg@mail.gmail.com>
+ <YOjsm9wujqczPIKw@piout.net>
+In-Reply-To: <YOjsm9wujqczPIKw@piout.net>
+From:   Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Date:   Mon, 12 Jul 2021 09:02:38 +0900
+Message-ID: <CABMQnVLMeDTNgDmuNKxbBYA4B4n0krzq5WQ8Lh4RKhVN_tPTJA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: rtc: add Epson RX-8025 and RX-8035
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Mathew McBride <matt@traverse.com.au>, linux-rtc@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 9 Jul 2021 12:16:24 +0200, Johan Jonker wrote:
-> The compatible string "snps,dw-apb-timer-osc" was deprecated in place
-> of "snps,dw-apb-timer". Rename the timer compatible strings in
-> rk3066a.dtsi, so boot loaders like U-boot can use the timer node
-> directly without conversion.
+Hi,
 
-Applied, thanks!
+2021=E5=B9=B47=E6=9C=8810=E6=97=A5(=E5=9C=9F) 9:41 Alexandre Belloni <alexa=
+ndre.belloni@bootlin.com>:
+>
+> Hello,
+>
+> On 09/07/2021 16:19:49+0900, Nobuhiro Iwamatsu wrote:
+> > Hi,
+> >
+> > 2021=E5=B9=B47=E6=9C=888=E6=97=A5(=E6=9C=A8) 6:52 Alexandre Belloni <al=
+exandre.belloni@bootlin.com>:
+> > >
+> > > On 08/07/2021 06:46:31+0900, Nobuhiro Iwamatsu wrote:
+> > > > Hi,
+> > > >
+> > > > 2021=E5=B9=B47=E6=9C=887=E6=97=A5(=E6=B0=B4) 16:17 Mathew McBride <=
+matt@traverse.com.au>:
+> > > > >
+> > > > > These are supported by the rtc-rx8025 module. RX-8025
+> > > > > also has support in ds1307 due to compatible time registers.
+> > > > >
+> > > > > Signed-off-by: Mathew McBride <matt@traverse.com.au>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 3 +++
+> > > > >  1 file changed, 3 insertions(+)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.ya=
+ml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> > > > > index 7548d8714871..13925bb78ec7 100644
+> > > > > --- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+> > > > > @@ -32,6 +32,9 @@ properties:
+> > > > >        - dallas,ds3232
+> > > > >        # I2C-BUS INTERFACE REAL TIME CLOCK MODULE
+> > > > >        - epson,rx8010
+> > > > > +      # I2C-BUS INTERFACE REAL TIME CLOCK MODULE
+> > > > > +      - epson,rx8025
+> > > > > +      - epson,rx8035
+> > > >
+> > > > 'epson,rx8035' is unnsecessary.
+> > > > This lists compatible string, so we don't list compatible that does=
+n't exist.
+> > > >
+> > >
+> > > Well, the previous patch adds it.
+> > >
+> >
+> > I couldn't find anything to add "epson,rx8035" as device tree compatibl=
+e in
+> > previous patch(rtc: rx8025: implement RX-8035 support)....
+> > I think that i2c_device_id was added and it is not device tree compatib=
+le.
+> > Can you tell me if my understanding is wrong?
+>
+> Having "rx8035" in the struct i2c_device_id array is enough to have the
+> driver probed using DT. IIRC, it is a side effect of
+> i2c_of_match_device_sysfs()
 
-[1/1] ARM: dts: rockchip: rename timer compatible strings for rk3066a.dtsi
-      commit: b3198e046821d395d148cfd5c623de4f280628d0
+I understood. Thanks for the explanation.
 
 Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+  Nobuhiro
+
+--=20
+Nobuhiro Iwamatsu
+   iwamatsu at {nigauri.org / debian.org}
+   GPG ID: 40AD1FA6
