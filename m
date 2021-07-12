@@ -2,117 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63D763C5F55
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 17:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8A0C3C5F60
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 17:37:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234116AbhGLPgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 11:36:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45282 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232203AbhGLPgo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Jul 2021 11:36:44 -0400
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 6B8BF61221;
-        Mon, 12 Jul 2021 15:33:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1626104036;
-        bh=5X2UURg25rMrNoAilDfJ7k5RncDDoVLvR+Fw5b9WLPE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dN9t5tWJoXIcqxJmju4K9H9qiofOopREzVIeKkjPOyRWSxyMPc5+lr+BWCkfl61Qy
-         eTun6f4aOQ5xKTiU6IpCRyY4dgvh5uTE3rvyCazU9lR82vjAk65hNQTbF0fLhXDHX6
-         BOPT3DwNCG4hkcAhXIe/NJ3k4AkJbRRC6RC34HbTcRgMHKJef/UyEGSdz6KwGHOfFI
-         aR2nqk3nPXYzYeude33hsHbYwOJ00nZjplGbhRvSu2UbzKir3Vdj1DZZdzTR3vQBct
-         4lcXjW5m4VCZU498cPGilAvzWtBqM/qU2n6q3rrGhwxKvt1gczZBAw4oebh658ugz1
-         pwQyWSbW/96sw==
-Received: by mail-ej1-f51.google.com with SMTP id i20so35399150ejw.4;
-        Mon, 12 Jul 2021 08:33:56 -0700 (PDT)
-X-Gm-Message-State: AOAM532ntn8SSOJ4tem1Y/U1bHxHIvLvT9OXk8Yq+lP4ovi30Q3uiyRh
-        2oFZWuy1wzvW05p0uYh52ef3jdiOoAkUoiAkHw==
-X-Google-Smtp-Source: ABdhPJwj+mU1GvCIh7UbOfcTMRsKzqq4SbbuuVJj57Xk+j0+HYYnALX6tsQE/1bSkimd2ZH7rSzVXRe5CtlOJPmpo1I=
-X-Received: by 2002:a17:906:7e4f:: with SMTP id z15mr49606241ejr.194.1626104034975;
- Mon, 12 Jul 2021 08:33:54 -0700 (PDT)
+        id S234264AbhGLPjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 11:39:51 -0400
+Received: from mail-il1-f175.google.com ([209.85.166.175]:37527 "EHLO
+        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232203AbhGLPjv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 11:39:51 -0400
+Received: by mail-il1-f175.google.com with SMTP id o8so9162903ilf.4;
+        Mon, 12 Jul 2021 08:37:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=+v/C3HhVpzVh+emkYtSgeszTQ+6xKMpx5E3RKEB3iPM=;
+        b=r9SWYg+Q7CkYIQyDKlB759YE8hC9YndXNltax7Ktd5et3CkwGf+Tikn2U9J6qCRiYu
+         RozpZ22u4QF/m3E9YFashQvGZ4oCm2/q9TDedZTk265b9EB5BovjQtU7IlTRHBwlRGcM
+         lmD2OrPKWSnb/s5txRwszeYw/vGshizHn2szc1/dyk0Bs8TMZN4KeSDau9iGSx0KB/+/
+         jOEMY6bo5sirk2wazYlGwskHoMcjUCEzg1EKdugKvxpAXxAbRmpI9O13pdYLmttnZ3Oj
+         e2eQeCN2oCEENYOPl7E9GUyOB+F8ykvHm8xLodrbKQycq+sr0NxS+kfkb6a6MgY3UAiA
+         Q1SQ==
+X-Gm-Message-State: AOAM530bjLdgiA3T0mui8Bhjd+MR6mPM5aI0UQh/kYgJ6zuIJpRjdgGW
+        4mfumley1Fxo/fS6BZTfhw==
+X-Google-Smtp-Source: ABdhPJzmc51CTY7qWur4uyZR4os11C6oex2SMvWqW2cYkTp5LM+cb9uBLblf3Ze6b3tN+PPkmiJSiQ==
+X-Received: by 2002:a92:d083:: with SMTP id h3mr13387917ilh.157.1626104222749;
+        Mon, 12 Jul 2021 08:37:02 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id t3sm5039256ilm.87.2021.07.12.08.37.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jul 2021 08:37:02 -0700 (PDT)
+Received: (nullmailer pid 1980098 invoked by uid 1000);
+        Mon, 12 Jul 2021 15:36:59 -0000
+Date:   Mon, 12 Jul 2021 09:36:59 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+        Thierry Reding <treding@nvidia.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 01/12] dt-bindings: phy: tegra20-usb-phy: Convert to
+ schema
+Message-ID: <20210712153659.GA1980043@robh.at.kernel.org>
+References: <20210704225433.32029-1-digetx@gmail.com>
+ <20210704225433.32029-2-digetx@gmail.com>
 MIME-Version: 1.0
-References: <1626051778-13577-1-git-send-email-yongqiang.niu@mediatek.com> <1626051778-13577-3-git-send-email-yongqiang.niu@mediatek.com>
-In-Reply-To: <1626051778-13577-3-git-send-email-yongqiang.niu@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Mon, 12 Jul 2021 23:33:43 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-W-wm2X5PPSzRjQ0LSFEQaDZvsC4bW_Q58NXX-PpBe+Q@mail.gmail.com>
-Message-ID: <CAAOTY_-W-wm2X5PPSzRjQ0LSFEQaDZvsC4bW_Q58NXX-PpBe+Q@mail.gmail.com>
-Subject: Re: [PATCH v2, 2/3] drm/mediatek: add mt8183 aal support
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210704225433.32029-2-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
-
-Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B47=E6=9C=
-=8812=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=889:03=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> This patch add mt8183 private data
-
-Applied to mediatek-drm-next [1], thanks.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
-
-Regards,
-Chun-Kuang.
-
->
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+On Mon, 05 Jul 2021 01:54:22 +0300, Dmitry Osipenko wrote:
+> Convert NVIDIA Tegra20 USB PHY binding to schema.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_disp_aal.c | 1 +
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c  | 2 ++
->  2 files changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_aal.c b/drivers/gpu/drm/me=
-diatek/mtk_disp_aal.c
-> index fb212e96..64b4528 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_aal.c
-> @@ -151,6 +151,7 @@ static int mtk_disp_aal_remove(struct platform_device=
- *pdev)
->  static const struct of_device_id mtk_disp_aal_driver_dt_match[] =3D {
->         { .compatible =3D "mediatek,mt8173-disp-aal",
->           .data =3D &mt8173_aal_driver_data},
-> +       { .compatible =3D "mediatek,mt8183-disp-aal"},
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, mtk_disp_aal_driver_dt_match);
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
-iatek/mtk_drm_drv.c
-> index 67a585e..143ba24 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -420,6 +420,8 @@ static void mtk_drm_unbind(struct device *dev)
->           .data =3D (void *)MTK_DISP_COLOR },
->         { .compatible =3D "mediatek,mt8173-disp-aal",
->           .data =3D (void *)MTK_DISP_AAL},
-> +       { .compatible =3D "mediatek,mt8183-disp-aal",
-> +         .data =3D (void *)MTK_DISP_AAL},
->         { .compatible =3D "mediatek,mt8173-disp-gamma",
->           .data =3D (void *)MTK_DISP_GAMMA, },
->         { .compatible =3D "mediatek,mt8183-disp-gamma",
-> --
-> 1.8.1.1.dirty
->
+>  .../bindings/phy/nvidia,tegra20-usb-phy.txt   |  74 ----
+>  .../bindings/phy/nvidia,tegra20-usb-phy.yaml  | 357 ++++++++++++++++++
+>  2 files changed, 357 insertions(+), 74 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/phy/nvidia,tegra20-usb-phy.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/nvidia,tegra20-usb-phy.yaml
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
