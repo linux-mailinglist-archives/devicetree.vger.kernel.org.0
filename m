@@ -2,298 +2,506 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D08C3C5EDB
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 17:10:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCE123C5EE4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 17:13:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235310AbhGLPMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 11:12:51 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:49750 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229987AbhGLPMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 11:12:51 -0400
-X-UUID: bc0d79e1639e46e7891fb22d37f768e6-20210712
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=s2Jj8A+/gRRkZUsAfcG2msfHvzYUimjIX+FoFvFaCNo=;
-        b=gG3ZyQ5EsYcCy6Smm7bFiJHsx/Po789nUYg29H38YpzT5E13anHCFWscvFgerUgs5FObv78UV68Lug4M917isqunYb0wJU+EPca0ce8xOwuw0noCDKnORMqYo4dCqpCXHDJd5yQ4x702H+2m4y6bHG5Z9/bRLKu2ybaGpkbHCZE=;
-X-UUID: bc0d79e1639e46e7891fb22d37f768e6-20210712
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1071743719; Mon, 12 Jul 2021 23:10:00 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 12 Jul 2021 23:09:58 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 12 Jul 2021 23:09:59 +0800
-Message-ID: <9929a3a20df1a89fc94baf7c75c0c65d9a61de0f.camel@mediatek.com>
-Subject: Re: [PATCH v2 5/8] ASoC: mediatek: mt8195: add platform driver
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     Chen-Yu Tsai <wenst@chromium.org>
-CC:     <broonie@kernel.org>, <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <alsa-devel@alsa-project.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <bicycle.tsai@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>, <cychiang@google.com>,
-        <aaronyu@google.com>
-Date:   Mon, 12 Jul 2021 23:09:58 +0800
-In-Reply-To: <CAGXv+5FzOs+=9PbYAEahVXvdJG1FnRkSUo_r3AVYZzNKGqg0oA@mail.gmail.com>
-References: <20210629014736.31153-1-trevor.wu@mediatek.com>
-         <20210629014736.31153-6-trevor.wu@mediatek.com>
-         <CAGXv+5FzOs+=9PbYAEahVXvdJG1FnRkSUo_r3AVYZzNKGqg0oA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S235318AbhGLPQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 11:16:17 -0400
+Received: from mail-io1-f48.google.com ([209.85.166.48]:33358 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235188AbhGLPQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 11:16:15 -0400
+Received: by mail-io1-f48.google.com with SMTP id z11so1356730iow.0;
+        Mon, 12 Jul 2021 08:13:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ywEGSSGnXYgQreUoGAWNVHwZEeeGGdOlrzirLAGyzSI=;
+        b=J2deELjZlBELy/Pl1j2J3o49DfQFELxdNaj7lWws3Nlpuo3VEdeC7Ez/tmwn6XBoBa
+         hAS4W1YWihmd2JwBDX+czBpx0IvpDe5GZstL1PbswGGBsCLhUm7g3FXju+3paIPtbJdn
+         MSQvDH2ofQttlyhbUhe7K/0AWwJsMjkpM8ajK3RHkyn2CLfKrHnjgvclRTWmkIVYhM0y
+         4nW6BIVifYsJXKBzZC/Bn1Ue4OI41CTw7wZNNLvvmdwGCa902KLtv4ukcRBrH27dbbgp
+         VIIVbpkaQjFRX9DTXrGi7gNcJBCKvDW4hLEGS3bkCrSIDfzOP4PmhaS2Sk02vEoCR+j5
+         wGPQ==
+X-Gm-Message-State: AOAM5324nopozvlWgJm1XbErce4gyg87S9TYCenAnWC1mMtI7yelmYn7
+        Ab4U0Tp8jz97L+S8IZsaTw==
+X-Google-Smtp-Source: ABdhPJwGzyduDXgO004wRTI2OMhmKNmAtIUZJZ3h6v1x6kCyzkOGf6zAO5Eneh4pVkn0cPr+MFqPKw==
+X-Received: by 2002:a02:a68e:: with SMTP id j14mr26364562jam.104.1626102805452;
+        Mon, 12 Jul 2021 08:13:25 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id d205sm7749793iof.31.2021.07.12.08.13.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Jul 2021 08:13:24 -0700 (PDT)
+Received: (nullmailer pid 1943556 invoked by uid 1000);
+        Mon, 12 Jul 2021 15:13:22 -0000
+Date:   Mon, 12 Jul 2021 09:13:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Inki Dae <inki.dae@samsung.com>,
+        Joonyoung Shim <jy0922.shim@samsung.com>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Marek Vasut <marex@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Subject: Re: [RFC PATCH 08/17] dt-bindings: display: bridge: Add Samsung MIPI
+ DSIM bridge
+Message-ID: <20210712151322.GA1931925@robh.at.kernel.org>
+References: <20210704090230.26489-1-jagan@amarulasolutions.com>
+ <20210704090230.26489-9-jagan@amarulasolutions.com>
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20210704090230.26489-9-jagan@amarulasolutions.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIxLTA3LTEyIGF0IDE0OjU3ICswODAwLCBDaGVuLVl1IFRzYWkgd3JvdGU6DQo+
-ICBhcmUgYWxsIGludGVybmFsIEhpLA0KPiANCj4gT24gVHVlLCBKdW4gMjksIDIwMjEgYXQgOTo0
-OSBBTSBUcmV2b3IgV3UgPHRyZXZvci53dUBtZWRpYXRlay5jb20+DQo+IHdyb3RlOg0KPiA+IA0K
-PiA+IFRoaXMgcGF0Y2ggYWRkcyBtdDgxOTUgcGxhdGZvcm0gYW5kIGFmZmlsaWF0ZWQgZHJpdmVy
-Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFRyZXZvciBXdSA8dHJldm9yLnd1QG1lZGlhdGVr
-LmNvbT4NCj4gPiAtLS0NCj4gPiAgc291bmQvc29jL21lZGlhdGVrL0tjb25maWcgICAgICAgICAg
-ICAgICAgICAgICB8ICAgIDkgKw0KPiA+ICBzb3VuZC9zb2MvbWVkaWF0ZWsvTWFrZWZpbGUgICAg
-ICAgICAgICAgICAgICAgfCAgICAxICsNCj4gPiAgc291bmQvc29jL21lZGlhdGVrL210ODE5NS9N
-YWtlZmlsZSAgICAgICAgICAgIHwgICAxMSArDQo+ID4gIHNvdW5kL3NvYy9tZWRpYXRlay9tdDgx
-OTUvbXQ4MTk1LWFmZS1jbGsuYyAgICB8ICA4OTkgKysrKysNCj4gPiAgc291bmQvc29jL21lZGlh
-dGVrL210ODE5NS9tdDgxOTUtYWZlLWNsay5oICAgIHwgIDIwMSArDQo+ID4gIHNvdW5kL3NvYy9t
-ZWRpYXRlay9tdDgxOTUvbXQ4MTk1LWFmZS1jb21tb24uaCB8ICAyMDAgKw0KPiA+ICBzb3VuZC9z
-b2MvbWVkaWF0ZWsvbXQ4MTk1L210ODE5NS1hZmUtcGNtLmMgICAgfCAzMjY0DQo+ID4gKysrKysr
-KysrKysrKysrKysNCj4gPiAgc291bmQvc29jL21lZGlhdGVrL210ODE5NS9tdDgxOTUtcmVnLmgg
-ICAgICAgIHwgMjc5Mw0KPiA+ICsrKysrKysrKysrKysrDQo+ID4gIDggZmlsZXMgY2hhbmdlZCwg
-NzM3OCBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBzb3VuZC9zb2MvbWVk
-aWF0ZWsvbXQ4MTk1L01ha2VmaWxlDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBzb3VuZC9zb2Mv
-bWVkaWF0ZWsvbXQ4MTk1L210ODE5NS1hZmUtY2xrLmMNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0
-IHNvdW5kL3NvYy9tZWRpYXRlay9tdDgxOTUvbXQ4MTk1LWFmZS1jbGsuaA0KPiA+ICBjcmVhdGUg
-bW9kZSAxMDA2NDQgc291bmQvc29jL21lZGlhdGVrL210ODE5NS9tdDgxOTUtYWZlLWNvbW1vbi5o
-DQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBzb3VuZC9zb2MvbWVkaWF0ZWsvbXQ4MTk1L210ODE5
-NS1hZmUtcGNtLmMNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IHNvdW5kL3NvYy9tZWRpYXRlay9t
-dDgxOTUvbXQ4MTk1LXJlZy5oDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy9tZWRp
-YXRlay9LY29uZmlnDQo+ID4gYi9zb3VuZC9zb2MvbWVkaWF0ZWsvS2NvbmZpZw0KPiA+IGluZGV4
-IDc0ZGFlNDMzMmQxNy4uMzM4OWYzODJiZTA2IDEwMDY0NA0KPiA+IC0tLSBhL3NvdW5kL3NvYy9t
-ZWRpYXRlay9LY29uZmlnDQo+ID4gKysrIGIvc291bmQvc29jL21lZGlhdGVrL0tjb25maWcNCj4g
-PiBAQCAtMTg0LDMgKzE4NCwxMiBAQCBjb25maWcgU05EX1NPQ19NVDgxOTJfTVQ2MzU5X1JUMTAx
-NV9SVDU2ODINCj4gPiAgICAgICAgICAgd2l0aCB0aGUgTVQ2MzU5IFJUMTAxNSBSVDU2ODIgYXVk
-aW8gY29kZWMuDQo+ID4gICAgICAgICAgIFNlbGVjdCBZIGlmIHlvdSBoYXZlIHN1Y2ggZGV2aWNl
-Lg0KPiA+ICAgICAgICAgICBJZiB1bnN1cmUgc2VsZWN0ICJOIi4NCj4gPiArDQo+ID4gK2NvbmZp
-ZyBTTkRfU09DX01UODE5NQ0KPiA+ICsgICAgICAgdHJpc3RhdGUgIkFTb0Mgc3VwcG9ydCBmb3Ig
-TWVkaWF0ZWsgTVQ4MTk1IGNoaXAiDQo+ID4gKyAgICAgICBzZWxlY3QgU05EX1NPQ19NRURJQVRF
-Sw0KPiA+ICsgICAgICAgaGVscA0KPiA+ICsgICAgICAgICBUaGlzIGFkZHMgQVNvQyBwbGF0Zm9y
-bSBkcml2ZXIgc3VwcG9ydCBmb3IgTWVkaWF0ZWsNCj4gPiBNVDgxOTUgY2hpcA0KPiA+ICsgICAg
-ICAgICB0aGF0IGNhbiBiZSB1c2VkIHdpdGggb3RoZXIgY29kZWNzLg0KPiA+ICsgICAgICAgICBT
-ZWxlY3QgWSBpZiB5b3UgaGF2ZSBzdWNoIGRldmljZS4NCj4gPiArICAgICAgICAgSWYgdW5zdXJl
-IHNlbGVjdCAiTiIuDQo+ID4gZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy9tZWRpYXRlay9NYWtlZmls
-ZQ0KPiA+IGIvc291bmQvc29jL21lZGlhdGVrL01ha2VmaWxlDQo+ID4gaW5kZXggZjZjYjZiODUw
-OGUzLi4zNDc3OGNhMTIxMDYgMTAwNjQ0DQo+ID4gLS0tIGEvc291bmQvc29jL21lZGlhdGVrL01h
-a2VmaWxlDQo+ID4gKysrIGIvc291bmQvc29jL21lZGlhdGVrL01ha2VmaWxlDQo+ID4gQEAgLTUs
-MyArNSw0IEBAIG9iai0kKENPTkZJR19TTkRfU09DX01UNjc5NykgKz0gbXQ2Nzk3Lw0KPiA+ICBv
-YmotJChDT05GSUdfU05EX1NPQ19NVDgxNzMpICs9IG10ODE3My8NCj4gPiAgb2JqLSQoQ09ORklH
-X1NORF9TT0NfTVQ4MTgzKSArPSBtdDgxODMvDQo+ID4gIG9iai0kKENPTkZJR19TTkRfU09DX01U
-ODE5MikgKz0gbXQ4MTkyLw0KPiA+ICtvYmotJChDT05GSUdfU05EX1NPQ19NVDgxOTUpICs9IG10
-ODE5NS8NCj4gPiBkaWZmIC0tZ2l0IGEvc291bmQvc29jL21lZGlhdGVrL210ODE5NS9NYWtlZmls
-ZQ0KPiA+IGIvc291bmQvc29jL21lZGlhdGVrL210ODE5NS9NYWtlZmlsZQ0KPiA+IG5ldyBmaWxl
-IG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi5iMmM5ZmQ4OGYzOWUNCj4gPiAt
-LS0gL2Rldi9udWxsDQo+ID4gKysrIGIvc291bmQvc29jL21lZGlhdGVrL210ODE5NS9NYWtlZmls
-ZQ0KPiA+IEBAIC0wLDAgKzEsMTEgQEANCj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
-R1BMLTIuMA0KPiA+ICsNCj4gPiArIyBwbGF0Zm9ybSBkcml2ZXINCj4gPiArc25kLXNvYy1tdDgx
-OTUtYWZlLW9ianMgOj0gXA0KPiA+ICsgICAgICAgbXQ4MTk1LWFmZS1jbGsubyBcDQo+ID4gKyAg
-ICAgICBtdDgxOTUtYWZlLXBjbS5vIFwNCj4gPiArICAgICAgIG10ODE5NS1kYWktYWRkYS5vIFwN
-Cj4gPiArICAgICAgIG10ODE5NS1kYWktZXRkbS5vIFwNCj4gPiArICAgICAgIG10ODE5NS1kYWkt
-cGNtLm8NCj4gPiArDQo+ID4gK29iai0kKENPTkZJR19TTkRfU09DX01UODE5NSkgKz0gc25kLXNv
-Yy1tdDgxOTUtYWZlLm8NCj4gPiBkaWZmIC0tZ2l0IGEvc291bmQvc29jL21lZGlhdGVrL210ODE5
-NS9tdDgxOTUtYWZlLWNsay5jDQo+ID4gYi9zb3VuZC9zb2MvbWVkaWF0ZWsvbXQ4MTk1L210ODE5
-NS1hZmUtY2xrLmMNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAw
-MDAwMC4uNTdhYTc5OWI0ZjQxDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL3NvdW5kL3Nv
-Yy9tZWRpYXRlay9tdDgxOTUvbXQ4MTk1LWFmZS1jbGsuYw0KPiA+IEBAIC0wLDAgKzEsODk5IEBA
-DQo+ID4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wDQo+ID4gKy8qDQo+ID4g
-KyAqIG10ODE5NS1hZmUtY2xrLmMgIC0tICBNZWRpYXRlayA4MTk1IGFmZSBjbG9jayBjdHJsDQo+
-ID4gKyAqDQo+ID4gKyAqIENvcHlyaWdodCAoYykgMjAyMSBNZWRpYVRlayBJbmMuDQo+ID4gKyAq
-IEF1dGhvcjogQmljeWNsZSBUc2FpIDxiaWN5Y2xlLnRzYWlAbWVkaWF0ZWsuY29tPg0KPiA+ICsg
-KiAgICAgICAgIFRyZXZvciBXdSA8dHJldm9yLnd1QG1lZGlhdGVrLmNvbT4NCj4gPiArICovDQo+
-ID4gKw0KPiA+ICsjaW5jbHVkZSA8bGludXgvY2xrLmg+DQo+ID4gKw0KPiA+ICsjaW5jbHVkZSAi
-bXQ4MTk1LWFmZS1jb21tb24uaCINCj4gPiArI2luY2x1ZGUgIm10ODE5NS1hZmUtY2xrLmgiDQo+
-ID4gKyNpbmNsdWRlICJtdDgxOTUtcmVnLmgiDQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3QgY2hh
-ciAqYXVkX2Nsa3NbTVQ4MTk1X0NMS19OVU1dID0gew0KPiANCj4gTW9zdCBvZiB0aGVzZSBjbG9j
-a3MgYXJlIG5vdCBkZXNjcmliZWQgaW4gdGhlIGRldmljZSB0cmVlIGJpbmRpbmcuIElmDQo+IHRo
-ZSBkcml2ZXIgbmVlZHMgdG8gcmVmZXJlbmNlIHRoZW0sIHRoZXkgc2hvdWxkIGJlIGRlc2NyaWJl
-ZC4gV2UNCj4gc2hvdWxkDQo+IG5vdCBiZSBoYXJkLWNvZGluZyBjbG9jayBuYW1lcyBhY3Jvc3Mg
-ZGlmZmVyZW50IGRyaXZlcnMuDQo+IA0KU29ycnksIEkgZGlkbid0IGtub3cgSSBoYXZlIHRvIGxp
-c3QgYWxsIGNsb2NrcyBpbiB0aGUgZHQtYmluZGluZy4NCk9yaWdpbmFsbHksIEkgdGhvdWdodCB0
-aGVzZSBjbG9ja3Mgd2lsbCBiZSBkZXNjcmliZWQgaW4gdGhlIGNsb2NrDQpiaW5kaW5nLCBzbyBJ
-IGRpZG4ndCBhZGQgdGhlbSB0byB0aGUgYmluZGluZyBvZiBhZmUgZHJpdmVyLg0KSSB3aWxsIGFk
-ZCB0aGVzZSBjbG9ja3MgdG8gbXQ4MTk1LWFmZS1wY20ueWFtbC4NCg0KPiBUaGUgbW9yZSBpbXBv
-cnRhbnQgcXVlc3Rpb24gaXMsIHdoeSBkb2VzIHRoZSBkcml2ZXIgbmVlZCB0byByZWZlcmVuY2UN
-Cj4gYWxsIG9mIHRoZW0/IE1heWJlIHdlIHNob3VsZCB0YWtlIGEgc3RlcCBiYWNrIGFuZCBkcmF3
-IG91dCBhIGNsb2NrDQo+IHRyZWUNCj4gZGlhZ3JhbSBmb3IgdGhlIGhhcmR3YXJlPw0KPiANClRo
-ZSBjbG9jayBzdHJ1Y3R1cmUgaXMgUExMIC0+IE1VWCAtPiBHQVRFLg0KeHRhbCwgcGxsIGFuZCBk
-aXZpZGVyIGFyZSB0aGUgcG9zc2libGUgY2xvY2sgaW5wdXRzIGZvciBNVVguDQpCZWNhdXNlIHdl
-IHNlbGVjdCB0aGUgY2xvY2sgaW5wdXQgb2YgYXVkaW8gbW9kdWxlIGJhc2VkIG9uIHRoZSB1c2UN
-CmNhc2UsIHdlIHVzZSBjbGtfZ2V0IHRvIHJldHJpdmUgYWxsIGNsb2NrcyB3aGljaCBhcmUgcG9z
-c2libGUgdG8gYmUNCnVzZWQuDQpTb21lIG9mIHRoZW0gYXJlIG5vdCB1c2VkIGluIHRoaXMgc2Vy
-aWVzLCBiZWNhdXNlIHNvbWUgbW9kdWxlcyBhcmUNCnN0aWxsIGRldmVsb3BpbmcuIFNob3VsZCBJ
-IG9ubHkga2VlcCB0aGUgY2xvY2tzIHRoYXQgaGF2ZSBiZWVuIHVzZWQgaW4NCnRoZSBzZXJpZXM/
-DQoNCj4gPiArICAgICAgIC8qIHh0YWwgKi8NCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1hUQUxf
-MjZNXSA9ICJjbGsyNm0iLA0KPiA+ICsgICAgICAgLyogcGxsICovDQo+ID4gKyAgICAgICBbTVQ4
-MTk1X0NMS19BUE1JWEVEX0FQTEwxXSA9ICJhcGxsMSIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NM
-S19BUE1JWEVEX0FQTEwyXSA9ICJhcGxsMiIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BUE1J
-WEVEX0FQTEwzXSA9ICJhcGxsMyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BUE1JWEVEX0FQ
-TEw0XSA9ICJhcGxsNCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BUE1JWEVEX0FQTEw1XSA9
-ICJhcGxsNSIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BUE1JWEVEX0hETUlSWF9BUExMXSA9
-ICJoZG1pcnhfYXBsbCIsDQo+ID4gKyAgICAgICAvKiBkaXZpZGVyICovDQo+ID4gKyAgICAgICBb
-TVQ4MTk1X0NMS19UT1BfQVBMTDFdID0gImFwbGwxX2NrIiwNCj4gPiArICAgICAgIFtNVDgxOTVf
-Q0xLX1RPUF9BUExMMV9ENF0gPSAiYXBsbDFfZDQiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtf
-VE9QX0FQTEwyXSA9ICJhcGxsMl9jayIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19UT1BfQVBM
-TDJfRDRdID0gImFwbGwyX2Q0IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9BUExMM10g
-PSAiYXBsbDNfY2siLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX0FQTEwzX0Q0XSA9ICJh
-cGxsM19kNCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19UT1BfQVBMTDRdID0gImFwbGw0X2Nr
-IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9BUExMNF9ENF0gPSAiYXBsbDRfZDQiLA0K
-PiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX0FQTEw1XSA9ICJhcGxsNV9jayIsDQo+ID4gKyAg
-ICAgICBbTVQ4MTk1X0NMS19UT1BfQVBMTDVfRDRdID0gImFwbGw1X2Q0IiwNCj4gPiArICAgICAg
-IFtNVDgxOTVfQ0xLX1RPUF9BUExMMTJfRElWMF0gPSAiYXBsbDEyX2RpdjAiLA0KPiA+ICsgICAg
-ICAgW01UODE5NV9DTEtfVE9QX0FQTEwxMl9ESVYxXSA9ICJhcGxsMTJfZGl2MSIsDQo+ID4gKyAg
-ICAgICBbTVQ4MTk1X0NMS19UT1BfQVBMTDEyX0RJVjJdID0gImFwbGwxMl9kaXYyIiwNCj4gPiAr
-ICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9BUExMMTJfRElWM10gPSAiYXBsbDEyX2RpdjMiLA0KPiA+
-ICsgICAgICAgW01UODE5NV9DTEtfVE9QX0FQTEwxMl9ESVY0XSA9ICJhcGxsMTJfZGl2NCIsDQo+
-ID4gKyAgICAgICBbTVQ4MTk1X0NMS19UT1BfQVBMTDEyX0RJVjldID0gImFwbGwxMl9kaXY5IiwN
-Cj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9IRE1JUlhfQVBMTF0gPSAiaGRtaXJ4X2FwbGxf
-Y2siLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX01BSU5QTExfRDRfRDRdID0gIm1haW5w
-bGxfZDRfZDQiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX01BSU5QTExfRDVfRDJdID0g
-Im1haW5wbGxfZDVfZDIiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX01BSU5QTExfRDdf
-RDJdID0gIm1haW5wbGxfZDdfZDIiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX1VOSVZQ
-TExfRDRdID0gInVuaXZwbGxfZDQiLA0KPiA+ICsgICAgICAgLyogbXV4ICovDQo+ID4gKyAgICAg
-ICBbTVQ4MTk1X0NMS19UT1BfQVBMTDFfU0VMXSA9ICJhcGxsMV9zZWwiLA0KPiA+ICsgICAgICAg
-W01UODE5NV9DTEtfVE9QX0FQTEwyX1NFTF0gPSAiYXBsbDJfc2VsIiwNCj4gPiArICAgICAgIFtN
-VDgxOTVfQ0xLX1RPUF9BUExMM19TRUxdID0gImFwbGwzX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4
-MTk1X0NMS19UT1BfQVBMTDRfU0VMXSA9ICJhcGxsNF9zZWwiLA0KPiA+ICsgICAgICAgW01UODE5
-NV9DTEtfVE9QX0FQTEw1X1NFTF0gPSAiYXBsbDVfc2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVf
-Q0xLX1RPUF9BMVNZU19IUF9TRUxdID0gImExc3lzX2hwX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4
-MTk1X0NMS19UT1BfQTJTWVNfU0VMXSA9ICJhMnN5c19zZWwiLA0KPiA+ICsgICAgICAgW01UODE5
-NV9DTEtfVE9QX0EzU1lTX1NFTF0gPSAiYTNzeXNfc2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVf
-Q0xLX1RPUF9BNFNZU19TRUxdID0gImE0c3lzX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NM
-S19UT1BfQVNNX0hfU0VMXSA9ICJhc21faF9zZWwiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtf
-VE9QX0FTTV9NX1NFTF0gPSAiYXNtX21fc2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RP
-UF9BU01fTF9TRUxdID0gImFzbV9sX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19UT1Bf
-QVVEX0lFQ19TRUxdID0gImF1ZF9pZWNfc2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RP
-UF9BVURfSU5UQlVTX1NFTF0gPSAiYXVkX2ludGJ1c19zZWwiLA0KPiA+ICsgICAgICAgW01UODE5
-NV9DTEtfVE9QX0FVRElPX0hfU0VMXSA9ICJhdWRpb19oX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4
-MTk1X0NMS19UT1BfQVVESU9fTE9DQUxfQlVTX1NFTF0gPQ0KPiA+ICJhdWRpb19sb2NhbF9idXNf
-c2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9EUFRYX01fU0VMXSA9ICJkcHR4X21f
-c2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9JTlRESVJfU0VMXSA9ICJpbnRkaXJf
-c2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9JMlNPMV9NX1NFTF0gPSAiaTJzbzFf
-bV9zZWwiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX0kyU08yX01fU0VMXSA9ICJpMnNv
-Ml9tX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19UT1BfSTJTSTFfTV9TRUxdID0gImky
-c2kxX21fc2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9JMlNJMl9NX1NFTF0gPSAi
-aTJzaTJfbV9zZWwiLA0KPiA+ICsgICAgICAgLyogY2xvY2sgZ2F0ZSAqLw0KPiA+ICsgICAgICAg
-W01UODE5NV9DTEtfVE9QX01QSE9ORV9TTEFWRV9CXSA9ICJtcGhvbmVfc2xhdmVfYiIsDQo+ID4g
-KyAgICAgICBbTVQ4MTk1X0NMS19UT1BfQ0ZHXzI2TV9BVURdID0gImNmZ18yNm1fYXVkIiwNCj4g
-PiArICAgICAgIFtNVDgxOTVfQ0xLX0lORlJBX0FPX0FVRElPXSA9ICJpbmZyYV9hb19hdWRpbyIs
-DQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19JTkZSQV9BT19BVURJT18yNk1fQl0gPSAiaW5mcmFf
-YW9fYXVkaW9fMjZtX2IiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfU0NQX0FEU1BfQVVESU9E
-U1BdID0gInNjcF9hZHNwX2F1ZGlvZHNwIiwNCj4gDQo+IA0KPiA+ICsgICAgICAgW01UODE5NV9D
-TEtfQVVEX0FGRV0gPSAiYXVkX2FmZSIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfTFJD
-S19DTlRdID0gImF1ZF9scmNrX2NudCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfU1BE
-SUZJTl9UVU5FUl9BUExMXSA9DQo+ID4gImF1ZF9zcGRpZmluX3R1bmVyX2FwbGwiLA0KPiA+ICsg
-ICAgICAgW01UODE5NV9DTEtfQVVEX1NQRElGSU5fVFVORVJfREJHXSA9DQo+ID4gImF1ZF9zcGRp
-ZmluX3R1bmVyX2RiZyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfVUxfVE1MXSA9ICJh
-dWRfdWxfdG1sIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9BUExMMV9UVU5FUl0gPSAi
-YXVkX2FwbGwxX3R1bmVyIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9BUExMMl9UVU5F
-Ul0gPSAiYXVkX2FwbGwyX3R1bmVyIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9UT1Aw
-X1NQREZdID0gImF1ZF90b3AwX3NwZGYiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0FQ
-TExdID0gImF1ZF9hcGxsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9BUExMMl0gPSAi
-YXVkX2FwbGwyIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9EQUNdID0gImF1ZF9kYWMi
-LA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0RBQ19QUkVESVNdID0gImF1ZF9kYWNfcHJl
-ZGlzIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9UTUxdID0gImF1ZF90bWwiLA0KPiA+
-ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0FEQ10gPSAiYXVkX2FkYyIsDQo+ID4gKyAgICAgICBb
-TVQ4MTk1X0NMS19BVURfREFDX0hJUkVTXSA9ICJhdWRfZGFjX2hpcmVzIiwNCj4gPiArICAgICAg
-IFtNVDgxOTVfQ0xLX0FVRF9BMVNZU19IUF0gPSAiYXVkX2Exc3lzX2hwIiwNCj4gPiArICAgICAg
-IFtNVDgxOTVfQ0xLX0FVRF9BRkVfRE1JQzFdID0gImF1ZF9hZmVfZG1pYzEiLA0KPiA+ICsgICAg
-ICAgW01UODE5NV9DTEtfQVVEX0FGRV9ETUlDMl0gPSAiYXVkX2FmZV9kbWljMiIsDQo+ID4gKyAg
-ICAgICBbTVQ4MTk1X0NMS19BVURfQUZFX0RNSUMzXSA9ICJhdWRfYWZlX2RtaWMzIiwNCj4gPiAr
-ICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9BRkVfRE1JQzRdID0gImF1ZF9hZmVfZG1pYzQiLA0KPiA+
-ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0FGRV8yNk1fRE1JQ19UTV0gPSAiYXVkX2FmZV8yNm1f
-ZG1pY190bSIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfVUxfVE1MX0hJUkVTXSA9ICJh
-dWRfdWxfdG1sX2hpcmVzIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9BRENfSElSRVNd
-ID0gImF1ZF9hZGNfaGlyZXMiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0FEREE2X0FE
-Q10gPSAiYXVkX2FkZGE2X2FkYyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfQUREQTZf
-QURDX0hJUkVTXSA9ICJhdWRfYWRkYTZfYWRjX2hpcmVzIiwNCj4gPiArICAgICAgIFtNVDgxOTVf
-Q0xLX0FVRF9MSU5FSU5fVFVORVJdID0gImF1ZF9saW5laW5fdHVuZXIiLA0KPiA+ICsgICAgICAg
-W01UODE5NV9DTEtfQVVEX0VBUkNfVFVORVJdID0gImF1ZF9lYXJjX3R1bmVyIiwNCj4gPiArICAg
-ICAgIFtNVDgxOTVfQ0xLX0FVRF9JMlNJTl0gPSAiYXVkX2kyc2luIiwNCj4gPiArICAgICAgIFtN
-VDgxOTVfQ0xLX0FVRF9URE1fSU5dID0gImF1ZF90ZG1faW4iLA0KPiA+ICsgICAgICAgW01UODE5
-NV9DTEtfQVVEX0kyU19PVVRdID0gImF1ZF9pMnNfb3V0IiwNCj4gPiArICAgICAgIFtNVDgxOTVf
-Q0xLX0FVRF9URE1fT1VUXSA9ICJhdWRfdGRtX291dCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NM
-S19BVURfSERNSV9PVVRdID0gImF1ZF9oZG1pX291dCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NM
-S19BVURfQVNSQzExXSA9ICJhdWRfYXNyYzExIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FV
-RF9BU1JDMTJdID0gImF1ZF9hc3JjMTIiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01V
-TFRJX0lOXSA9ICJhdWRfbXVsdGlfaW4iLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0lO
-VERJUl0gPSAiYXVkX2ludGRpciIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfQTFTWVNd
-ID0gImF1ZF9hMXN5cyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfQTJTWVNdID0gImF1
-ZF9hMnN5cyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfUENNSUZdID0gImF1ZF9wY21p
-ZiIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfQTNTWVNdID0gImF1ZF9hM3N5cyIsDQo+
-ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfQTRTWVNdID0gImF1ZF9hNHN5cyIsDQo+ID4gKyAg
-ICAgICBbTVQ4MTk1X0NMS19BVURfTUVNSUZfVUwxXSA9ICJhdWRfbWVtaWZfdWwxIiwNCj4gPiAr
-ICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9NRU1JRl9VTDJdID0gImF1ZF9tZW1pZl91bDIiLA0KPiA+
-ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01FTUlGX1VMM10gPSAiYXVkX21lbWlmX3VsMyIsDQo+
-ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfTUVNSUZfVUw0XSA9ICJhdWRfbWVtaWZfdWw0IiwN
-Cj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9NRU1JRl9VTDVdID0gImF1ZF9tZW1pZl91bDUi
-LA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01FTUlGX1VMNl0gPSAiYXVkX21lbWlmX3Vs
-NiIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfTUVNSUZfVUw4XSA9ICJhdWRfbWVtaWZf
-dWw4IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9NRU1JRl9VTDldID0gImF1ZF9tZW1p
-Zl91bDkiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01FTUlGX1VMMTBdID0gImF1ZF9t
-ZW1pZl91bDEwIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9NRU1JRl9ETDJdID0gImF1
-ZF9tZW1pZl9kbDIiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01FTUlGX0RMM10gPSAi
-YXVkX21lbWlmX2RsMyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfTUVNSUZfREw2XSA9
-ICJhdWRfbWVtaWZfZGw2IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9NRU1JRl9ETDdd
-ID0gImF1ZF9tZW1pZl9kbDciLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01FTUlGX0RM
-OF0gPSAiYXVkX21lbWlmX2RsOCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfTUVNSUZf
-REwxMF0gPSAiYXVkX21lbWlmX2RsMTAiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01F
-TUlGX0RMMTFdID0gImF1ZF9tZW1pZl9kbDExIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FV
-RF9HQVNSQzBdID0gImF1ZF9nYXNyYzAiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0dB
-U1JDMV0gPSAiYXVkX2dhc3JjMSIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfR0FTUkMy
-XSA9ICJhdWRfZ2FzcmMyIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9HQVNSQzNdID0g
-ImF1ZF9nYXNyYzMiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0dBU1JDNF0gPSAiYXVk
-X2dhc3JjNCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfR0FTUkM1XSA9ICJhdWRfZ2Fz
-cmM1IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9HQVNSQzZdID0gImF1ZF9nYXNyYzYi
-LA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0dBU1JDN10gPSAiYXVkX2dhc3JjNyIsDQo+
-ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfR0FTUkM4XSA9ICJhdWRfZ2FzcmM4IiwNCj4gPiAr
-ICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9HQVNSQzldID0gImF1ZF9nYXNyYzkiLA0KPiA+ICsgICAg
-ICAgW01UODE5NV9DTEtfQVVEX0dBU1JDMTBdID0gImF1ZF9nYXNyYzEwIiwNCj4gPiArICAgICAg
-IFtNVDgxOTVfQ0xLX0FVRF9HQVNSQzExXSA9ICJhdWRfZ2FzcmMxMSIsDQo+ID4gKyAgICAgICBb
-TVQ4MTk1X0NMS19BVURfR0FTUkMxMl0gPSAiYXVkX2dhc3JjMTIiLA0KPiA+ICsgICAgICAgW01U
-ODE5NV9DTEtfQVVEX0dBU1JDMTNdID0gImF1ZF9nYXNyYzEzIiwNCj4gPiArICAgICAgIFtNVDgx
-OTVfQ0xLX0FVRF9HQVNSQzE0XSA9ICJhdWRfZ2FzcmMxNCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1
-X0NMS19BVURfR0FTUkMxNV0gPSAiYXVkX2dhc3JjMTUiLA0KPiA+ICsgICAgICAgW01UODE5NV9D
-TEtfQVVEX0dBU1JDMTZdID0gImF1ZF9nYXNyYzE2IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xL
-X0FVRF9HQVNSQzE3XSA9ICJhdWRfZ2FzcmMxNyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19B
-VURfR0FTUkMxOF0gPSAiYXVkX2dhc3JjMTgiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVE
-X0dBU1JDMTldID0gImF1ZF9nYXNyYzE5IiwNCj4gDQo+IFRoZSBNVDgxOTVfQ0xLX0FVRF8qIGNs
-b2NrcyBhcmUgYWxsIGludGVybmFsIHRvIHRoZSBhdWRpbyBzdWJzeXN0ZW06DQo+IHRoZSBiaXRz
-IHRoYXQgY29udHJvbCB0aGVzZSBjbG9jayBnYXRlcyBhcmUgaW4gdGhlIHNhbWUgYWRkcmVzcyBz
-cGFjZQ0KPiBhcyB0aGUgYXVkaW8gcGFydHMuIFdvdWxkIGl0IGJlIHBvc3NpYmxlIHRvIG1vZGVs
-IHRoZW0gYXMgaW50ZXJuYWwNCj4gQVNvQyBTVVBQTFkgd2lkZ2V0cz8gVGhlIGV4dGVybmFsIG9u
-ZXMgY291bGQgYmUgbW9kZWxlZCB1c2luZyBBU29DDQo+IENMS19TVVBQTFkgd2lkZ2V0cywgYW5k
-IHRoZSBkZXBlbmRlbmNpZXMgY291bGQgYmUgbW9kZWxlZCB3aXRoIEFTb0MNCj4gcm91dGVzLiBU
-aGUgQVNvQyBjb3JlIGNvdWxkIHRoZW4gaGFuZGxlIHBvd2VyIHNlcXVlbmNpbmcsIHdoaWNoIHRo
-ZQ0KPiBkcml2ZXIgY3VycmVudGx5IGRvZXMgbWFudWFsbHkuDQo+IA0KPiBJTU8gdGhpcyBpcyBi
-ZXR0ZXIgdGhhbiBoYXZpbmcgdHdvIGRyaXZlcnMgaGFuZGxpbmcgdHdvIGFzcGVjdHMgb2YNCj4g
-dGhlIHNhbWUgcGllY2Ugb2YgaGFyZHdhcmUsIHdoaWxlIHRoZSB0d28gYXNwZWN0cyBhcmUgaW50
-ZXJ0d2luZWQuDQo+IA0KDQpZZXMsIGl0J3Mgb2sgdG8gdXNlIHRoZSBDTEtfU1VQUExZIGFuZCBT
-VVBQTFkgdG8gbW9kZWwgc3VjaCBjbG9ja3MuDQpCdXQgdGhvc2UgY2xvY2tzIGFyZSBtYW5hZ2Vk
-IGJ5IENDRiBpbiB0aGUgcHJlY2VkaW5nIFNPQ3MgbGlrZSBtdDI3MDEsDQptdDY3NzkgYW5kIG10
-ODE4My4gQWRkaXRpb25hbGx5LCBpbiBzb21lIGF1ZGlvIG1vZHVsZXMsIGNsb2NrcyBzaG91bGQN
-CmJlIGVuYWJsZWQgYmVmb3JlIGNvbmZpZ3VyaW5nIHBhcmFtZXRlcnMoaHdfcGFyYW1zKS4gQXMg
-ZmFyIGFzIEkga25vdywNCmlmIHdlIHVzZSBDTEtfU1VQUExZIG9yIFNVUFBMWSB0byBtb2RlbCBj
-bG9ja3MsIHRoZSBwb3dlciBzZXF1ZW5jZSBpcw0KY29udHJvbGxlZCBieSBEQVBNLiBJdCBzZWVt
-cyB0byBiZSBpbXBvc3NpYmxlIHRvIGZ1bGZpbGwgYWxsIHVzZSBjYXNlcy4NClRoYXQncyB3aHkg
-d2UganVzdCBrZWVwIHRoZSBtYW51YWwgY29udHJvbCBzZXF1ZW5jZSBhbmQgQ0NGIHNlZW1zIHRv
-IGJlDQp0aGUgYmVzdCBjaG9pY2UgdG8gbW9kZWwgc3VjaCBjbG9jayBnYXRlc3MuDQoNClRoYW5r
-cywNClRyZXZvcg0KPiANCj4gUmVnYXJkcw0KPiBDaGVuWXUNCg==
+On Sun, Jul 04, 2021 at 02:32:21PM +0530, Jagan Teki wrote:
+> Samsing MIPI DSIM bridge can be found on Exynos and NXP's
+> i.MX8M Mini and Nano SoC's.
+> 
+> This dt-bindings replaces legacy exynos_dsim.txt.
+> 
+> Used the example node from latest Exynos SoC instead of
+> the one used in legacy exynos_dsim.txt.
+> 
+> Add dt-bingings for it.
 
+typo
+
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  .../display/bridge/samsung,mipi-dsim.yaml     | 278 ++++++++++++++++++
+>  .../bindings/display/exynos/exynos_dsim.txt   |  90 ------
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 279 insertions(+), 90 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+> new file mode 100644
+> index 000000000000..b2970734ffd7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+> @@ -0,0 +1,278 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/samsung,mipi-dsim.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung MIPI DSIM bridge controller
+> +
+> +maintainers:
+> +  - Inki Dae <inki.dae@samsung.com>
+> +  - Joonyoung Shim <jy0922.shim@samsung.com>
+> +  - Seung-Woo Kim <sw0312.kim@samsung.com>
+> +  - Kyungmin Park <kyungmin.park@samsung.com>
+> +  - Andrzej Hajda <a.hajda@samsung.com>
+> +  - Jagan Teki <jagan@amarulasolutions.com>
+> +
+> +description: |
+> +  Samsung MIPI DSIM bridge controller can be found it on Exynos
+> +  and i.MX8M Mini and Nano SoC's.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - samsung,exynos3250-mipi-dsi
+> +      - samsung,exynos4210-mipi-dsi
+> +      - samsung,exynos5410-mipi-dsi
+> +      - samsung,exynos5422-mipi-dsi
+> +      - samsung,exynos5433-mipi-dsi
+
+What about i.MX compatibles?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 5
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description: phandle to the phy module representing the DPHY
+
+Drop
+
+> +
+> +  phy-names:
+> +    items:
+> +      - const: dsim
+> +
+> +  samsung,phy-type:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: phandle to the samsung phy-type
+> +
+> +  power-domains:
+> +    description: phandle to the associated power domain
+
+Drop
+
+> +    maxItems: 1
+> +
+> +  samsung,power-domain:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: phandle to the associated samsung power domain
+> +    maxItems: 1
+> +
+> +  vddcore-supply:
+> +    description: MIPI DSIM Core voltage supply (e.g. 1.1V)
+> +
+> +  vddio-supply:
+> +    description: MIPI DSIM I/O and PLL voltage supply (e.g. 1.8V)
+> +
+> +  samsung,burst-clock-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      DSIM high speed burst mode frequency.
+> +
+> +  samsung,esc-clock-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      DSIM escape mode frequency.
+> +
+> +  samsung,pll-clock-frequency:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      DSIM oscillator clock frequency.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+
+If there are no extra endpoint properties, then use 
+'/schemas/graph.yaml#/properties/port'.
+
+> +        description:
+> +          Input port node to receive pixel data from the
+> +          display controller. Exactly one endpoint must be
+> +          specified.
+> +        properties:
+> +          endpoint@0:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+> +            description: sub-node describing the input from MIC
+
+I'd assume i.MX has a different input than MIC?
+
+> +
+> +        unevaluatedProperties: false
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          DSI output port node to the panel or the next bridge
+> +          in the chain
+> +
+> +required:
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - clock-names
+> +  - clocks
+> +  - compatible
+> +  - interrupts
+> +  - phy-names
+> +  - phys
+> +  - reg
+> +  - samsung,burst-clock-frequency
+> +  - samsung,esc-clock-frequency
+> +  - samsung,pll-clock-frequency
+> +
+> +allOf:
+> +  - $ref: ../dsi-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos5433-mipi-dsi
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 5
+> +
+> +        clock-names:
+> +          items:
+> +            - const: bus_clk
+> +            - const: phyclk_mipidphy0_bitclkdiv8
+> +            - const: phyclk_mipidphy0_rxclkesc0
+> +            - const: sclk_rgb_vclk_to_dsim0
+> +            - const: sclk_mipi
+> +
+> +        ports:
+> +          required:
+> +            - port@0
+> +
+> +      required:
+> +        - ports
+> +        - vddcore-supply
+> +        - vddio-supply
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos5410-mipi-dsi
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +
+> +        clock-names:
+> +          items:
+> +            - const: bus_clk
+> +            - const: pll_clk
+> +
+> +      required:
+> +        - vddcore-supply
+> +        - vddio-supply
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos4210-mipi-dsi
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +
+> +        clock-names:
+> +          items:
+> +            - const: bus_clk
+> +            - const: sclk_mipi
+> +
+> +      required:
+> +        - vddcore-supply
+> +        - vddio-supply
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynos3250-mipi-dsi
+> +
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +
+> +        clock-names:
+> +          items:
+> +            - const: bus_clk
+> +            - const: pll_clk
+> +
+> +      required:
+> +        - vddcore-supply
+> +        - vddio-supply
+> +        - samsung,phy-type
+> +
+> +additionalProperties:
+> +  type: object
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/exynos5433.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    dsi@13900000 {
+> +       compatible = "samsung,exynos5433-mipi-dsi";
+> +       reg = <0x13900000 0xC0>;
+> +       interrupts = <GIC_SPI 205 IRQ_TYPE_LEVEL_HIGH>;
+> +       phys = <&mipi_phy 1>;
+> +       phy-names = "dsim";
+> +       clocks = <&cmu_disp CLK_PCLK_DSIM0>,
+> +                <&cmu_disp CLK_PHYCLK_MIPIDPHY0_BITCLKDIV8>,
+> +                <&cmu_disp CLK_PHYCLK_MIPIDPHY0_RXCLKESC0>,
+> +                <&cmu_disp CLK_SCLK_RGB_VCLK_TO_DSIM0>,
+> +                <&cmu_disp CLK_SCLK_DSIM0>;
+> +       clock-names = "bus_clk",
+> +                     "phyclk_mipidphy0_bitclkdiv8",
+> +                     "phyclk_mipidphy0_rxclkesc0",
+> +                     "sclk_rgb_vclk_to_dsim0",
+> +                     "sclk_mipi";
+> +       power-domains = <&pd_disp>;
+> +       vddcore-supply = <&ldo6_reg>;
+> +       vddio-supply = <&ldo7_reg>;
+> +       samsung,burst-clock-frequency = <512000000>;
+> +       samsung,esc-clock-frequency = <16000000>;
+> +       samsung,pll-clock-frequency = <24000000>;
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&te_irq>;
+> +       status = "disabled";
+> +       #address-cells = <1>;
+> +       #size-cells = <0>;
+> +
+> +       panel@0 {
+> +          compatible = "samsung,s6e3ha2";
+> +          reg = <0>;
+> +          vdd3-supply = <&ldo27_reg>;
+> +          vci-supply = <&ldo28_reg>;
+> +          reset-gpios = <&gpg0 0 GPIO_ACTIVE_LOW>;
+> +          enable-gpios = <&gpf1 5 GPIO_ACTIVE_HIGH>;
+> +       };
+> +
+> +       ports {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +
+> +          port@0 {
+> +             reg = <0>;
+> +
+> +             dsi_to_mic: endpoint {
+> +                remote-endpoint = <&mic_to_dsi>;
+> +             };
+> +          };
+> +       };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt b/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+> deleted file mode 100644
+> index be377786e8cd..000000000000
+> --- a/Documentation/devicetree/bindings/display/exynos/exynos_dsim.txt
+> +++ /dev/null
+> @@ -1,90 +0,0 @@
+> -Exynos MIPI DSI Master
+> -
+> -Required properties:
+> -  - compatible: value should be one of the following
+> -		"samsung,exynos3250-mipi-dsi" /* for Exynos3250/3472 SoCs */
+> -		"samsung,exynos4210-mipi-dsi" /* for Exynos4 SoCs */
+> -		"samsung,exynos5410-mipi-dsi" /* for Exynos5410/5420/5440 SoCs */
+> -		"samsung,exynos5422-mipi-dsi" /* for Exynos5422/5800 SoCs */
+> -		"samsung,exynos5433-mipi-dsi" /* for Exynos5433 SoCs */
+> -  - reg: physical base address and length of the registers set for the device
+> -  - interrupts: should contain DSI interrupt
+> -  - clocks: list of clock specifiers, must contain an entry for each required
+> -    entry in clock-names
+> -  - clock-names: should include "bus_clk"and "sclk_mipi" entries
+> -		 the use of "pll_clk" is deprecated
+> -  - phys: list of phy specifiers, must contain an entry for each required
+> -    entry in phy-names
+> -  - phy-names: should include "dsim" entry
+> -  - vddcore-supply: MIPI DSIM Core voltage supply (e.g. 1.1V)
+> -  - vddio-supply: MIPI DSIM I/O and PLL voltage supply (e.g. 1.8V)
+> -  - samsung,pll-clock-frequency: specifies frequency of the oscillator clock
+> -  - #address-cells, #size-cells: should be set respectively to <1> and <0>
+> -    according to DSI host bindings (see MIPI DSI bindings [1])
+> -  - samsung,burst-clock-frequency: specifies DSI frequency in high-speed burst
+> -    mode
+> -  - samsung,esc-clock-frequency: specifies DSI frequency in escape mode
+> -
+> -Optional properties:
+> -  - power-domains: a phandle to DSIM power domain node
+> -
+> -Child nodes:
+> -  Should contain DSI peripheral nodes (see MIPI DSI bindings [1]).
+> -
+> -Video interfaces:
+> -  Device node can contain following video interface port nodes according to [2]:
+> -  0: RGB input,
+> -  1: DSI output
+> -
+> -[1]: Documentation/devicetree/bindings/display/mipi-dsi-bus.txt
+> -[2]: Documentation/devicetree/bindings/media/video-interfaces.txt
+> -
+> -Example:
+> -
+> -	dsi@11c80000 {
+> -		compatible = "samsung,exynos4210-mipi-dsi";
+> -		reg = <0x11C80000 0x10000>;
+> -		interrupts = <0 79 0>;
+> -		clocks = <&clock 286>, <&clock 143>;
+> -		clock-names = "bus_clk", "sclk_mipi";
+> -		phys = <&mipi_phy 1>;
+> -		phy-names = "dsim";
+> -		vddcore-supply = <&vusb_reg>;
+> -		vddio-supply = <&vmipi_reg>;
+> -		power-domains = <&pd_lcd0>;
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -		samsung,pll-clock-frequency = <24000000>;
+> -
+> -		panel@1 {
+> -			reg = <0>;
+> -			...
+> -			port {
+> -				panel_ep: endpoint {
+> -					remote-endpoint = <&dsi_ep>;
+> -				};
+> -			};
+> -		};
+> -
+> -		ports {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			port@0 {
+> -				reg = <0>;
+> -				decon_to_mic: endpoint {
+> -					remote-endpoint = <&mic_to_decon>;
+> -				};
+> -			};
+> -
+> -			port@1 {
+> -				reg = <1>;
+> -				dsi_ep: endpoint {
+> -					reg = <0>;
+> -					samsung,burst-clock-frequency = <500000000>;
+> -					samsung,esc-clock-frequency = <20000000>;
+> -					remote-endpoint = <&panel_ep>;
+> -				};
+> -			};
+> -		};
+> -	};
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 733c2ebc0393..e571fc7792aa 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -5873,6 +5873,7 @@ M:	Andrzej Hajda <a.hajda@samsung.com>
+>  M:	Jagan Teki <jagan@amarulasolutions.com>
+>  S:	Maintained
+>  T:	git git://anongit.freedesktop.org/drm/drm-misc
+> +F:	Documentation/devicetree/bindings/display/bridge/samsung,mipi-dsim.yaml
+>  F:	drivers/gpu/drm/bridge/samsung-dsim.c
+>  
+>  DRM DRIVER FOR SITRONIX ST7703 PANELS
+> -- 
+> 2.25.1
+> 
+> 
