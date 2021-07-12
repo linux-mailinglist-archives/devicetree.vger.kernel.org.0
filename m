@@ -2,81 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9764D3C64F9
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 22:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 904483C64FB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 22:28:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234356AbhGLUaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 16:30:39 -0400
-Received: from mail-il1-f182.google.com ([209.85.166.182]:38717 "EHLO
-        mail-il1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230284AbhGLUaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 16:30:39 -0400
-Received: by mail-il1-f182.google.com with SMTP id e2so4375615ilu.5;
-        Mon, 12 Jul 2021 13:27:49 -0700 (PDT)
+        id S236674AbhGLUbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 16:31:08 -0400
+Received: from mail-io1-f45.google.com ([209.85.166.45]:37536 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230284AbhGLUbI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 16:31:08 -0400
+Received: by mail-io1-f45.google.com with SMTP id l18so19334498iow.4
+        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 13:28:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=IGUnB/IK895e75pARJYVX3y+icUY95HCtQq4FMsIGN4=;
-        b=e9EhRFf/4gM8c4vucFjCYhYaqhPsaBC+r9g8fORnZ50pa7dUucBjDe531WyGuuv6pe
-         cP0HpwVnZZEa9PMnP3mC7StayCANydS90PkNt2XFiW/gseVbwg95FL76AI+1g5FBxGq8
-         xACCsKC0EMh3PdUj5ulfbz+freC6OL6BTIX7HY2wSNaSQiUAHhfDh8pMowMr0W9js33H
-         VYiNAPpuWA3b1Vw6kW8cj0k4RvYrc22NMcdYk4aB53PD6AoKolnBK5RYEVWkBnqdg1Mz
-         q7CgaLJO1hB1fmampuAHyurz7jq6rE0Rh9b0OPtFXXTe/oUf6pARN4LoirYzX31jQLUJ
-         vaUg==
-X-Gm-Message-State: AOAM532asfTk8oZCpVaSaHluO0mF5+A/TvfY2HKgyoQZ36wgae7OnQqZ
-        hxc+qe4BzpNuCEx2Cbd26Q==
-X-Google-Smtp-Source: ABdhPJxudGunpYFTzV+G3cetrv8mvUuT2Rt4oMVN1NQ3hHMT/LLQVnxP13B7CxT0O0tJjkZU3JIqJg==
-X-Received: by 2002:a92:7d07:: with SMTP id y7mr464051ilc.68.1626121669140;
-        Mon, 12 Jul 2021 13:27:49 -0700 (PDT)
+        bh=fGvC8Rmlq+HbHIPe8BroS93uEk+31V5VzKS9PYAOT20=;
+        b=Xfd9QnfV9yHJHlTDT7DOEjSQOmfid2Tj5w+gGbYjSexhD2FBdjPy/zZFap0Y/HoyMA
+         Vi1qz353bHyFoHM2PQYLP/WyZ8qxEu/jXjfwGQrNMJ4urDiiS/HkWE6aYYb9yO8nvCW+
+         ENUMMnE73NJpjV8iBfDt0X8gVhkXnWeGAUFCbtaMTGHBR3vVX2bHItgtBuwGGnpu3I5r
+         LVvwPdBvT/igeWla9oXF3qhI358QU73Xl2So10/5iXhFbk2sEDqXj6o5NjP/8ZM8Prgb
+         0HwdOqIH6YqLg7HLtNvtrasSLZS/h1KsCwqw/6lDhmAASwXPw2z7mdAHCJDQDpYC51aH
+         mX1A==
+X-Gm-Message-State: AOAM5316Evom0O1y5wgu7FUs0kdbCTUQeKcLS52es5w5q4dUmwRQiNIw
+        BEmxWs5xFprzBb589+iyyw==
+X-Google-Smtp-Source: ABdhPJz2qMCXjyNZLcbWzAj/h0dcj5RqxPvPxt4ihvWtQkgIXY198CeiemIgAYh6E0G48NPKm9cALg==
+X-Received: by 2002:a05:6602:3315:: with SMTP id b21mr527199ioz.13.1626121699074;
+        Mon, 12 Jul 2021 13:28:19 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id n13sm8652239ilq.5.2021.07.12.13.27.47
+        by smtp.gmail.com with ESMTPSA id 15sm8688273ilt.66.2021.07.12.13.28.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jul 2021 13:27:48 -0700 (PDT)
-Received: (nullmailer pid 2433490 invoked by uid 1000);
-        Mon, 12 Jul 2021 20:27:47 -0000
-Date:   Mon, 12 Jul 2021 14:27:47 -0600
+        Mon, 12 Jul 2021 13:28:18 -0700 (PDT)
+Received: (nullmailer pid 2434430 invoked by uid 1000);
+        Mon, 12 Jul 2021 20:28:17 -0000
+Date:   Mon, 12 Jul 2021 14:28:17 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Marek Vasut <marex@denx.de>
-Cc:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
-        Petr Stetiar <ynezz@true.cz>, linux@dh-electronics.com,
-        devicetree@vger.kernel.org, Lukas Wunner <lukas@wunner.de>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v3] dt-bindings: net: ks8851: Convert to YAML schema
-Message-ID: <20210712202747.GA2433402@robh.at.kernel.org>
-References: <20210620210741.100206-1-marex@denx.de>
+Cc:     Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: Re: [PATCH] dt-bindings: mxsfb: Add compatible for i.MX8MN
+Message-ID: <20210712202817.GA2434371@robh.at.kernel.org>
+References: <20210620225028.189637-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210620210741.100206-1-marex@denx.de>
+In-Reply-To: <20210620225028.189637-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 20 Jun 2021 23:07:41 +0200, Marek Vasut wrote:
-> Convert the Micrel KSZ8851 DT bindings to YAML schema.
+On Mon, 21 Jun 2021 00:50:28 +0200, Marek Vasut wrote:
+> NXP's i.MX8MN has an LCDIF as well.
 > 
 > Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: David S. Miller <davem@davemloft.net>
-> Cc: Lukas Wunner <lukas@wunner.de>
-> Cc: Petr Stetiar <ynezz@true.cz>
+> Cc: Fabio Estevam <festevam@gmail.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
 > Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: linux@dh-electronics.com
-> Cc: netdev@vger.kernel.org
-> To: devicetree@vger.kernel.org
+> Cc: Shawn Guo <shawnguo@kernel.org>
 > ---
-> V2: - Explicitly state the bindings are for both SPI and parallel bus options
->     - Switch the license to (GPL-2.0-only OR BSD-2-Clause)
-> V3: - Drop quotes, use enum: instead of oneOf+const
->     - Add reg: items list describing what each reg entry is
->     - Drop regulator.yaml reference
-> ---
->  .../bindings/net/micrel,ks8851.yaml           | 97 +++++++++++++++++++
->  .../devicetree/bindings/net/micrel-ks8851.txt | 18 ----
->  2 files changed, 97 insertions(+), 18 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/micrel,ks8851.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/micrel-ks8851.txt
+>  Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Applied, thanks!
