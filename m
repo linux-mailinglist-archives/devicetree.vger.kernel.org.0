@@ -2,547 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF9953C5ECE
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 17:04:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D08C3C5EDB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 17:10:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235277AbhGLPHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 11:07:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36344 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235276AbhGLPHW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 11:07:22 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25AE9C0613DD;
-        Mon, 12 Jul 2021 08:04:33 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id a13so26049729wrf.10;
-        Mon, 12 Jul 2021 08:04:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=P4x9ngsQZ6dM/wC80e125gR+0+UIoP4BLSPS21gx258=;
-        b=NuutA/xGl/ivnXIMf6Uo6oDUQDOzG6Xl+BBnd6KqzDMQTjH4UObTk/2++fTFb/Dl8t
-         LVIjmSrMglqYyhhroUKCZrTTf67JKxriFkstqVeKlhDU9MMDFez8savOw7Rfa5e9UOx/
-         E/uO3Z6qysCLetzaoPs0Da4EZtw1ptFKMuIiqQJyiGOwkfexplTkZsUIixd1KC8W2ESy
-         jPH8k3U9ByvD3NLYdJMPTER+EQ9e+fhJnBOZLMkZrKizqEpQuvw3gPj+zYUOwd5JDhWM
-         JUtCoevmjtcOKFy7HGy6Z5vDSGYrzL/FIFUgEgqhREf++ehfkxNBhOcQD3y6z8qcbuLa
-         CxGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=P4x9ngsQZ6dM/wC80e125gR+0+UIoP4BLSPS21gx258=;
-        b=NqnoPqV4Bdc92Hp59JGFmVXSB6w8vmFeenfpncsms7yXwSnXhJ4HEzb3WPvygCRKbc
-         jZh4YuWQV/BSkhq3iP8mOXjB3pwfWz2fW59s8X/oTAcVmt8oGxOW2EyOnqFEWVgprJbk
-         D7xAnGtv3ecCGabArMH8kgsmJyoZ+zAhDSydTJSA9YEuX9FG4YQbJ0vpWdiFJnYZvFNc
-         SVG6hqPRdjYDgB/wjnoN5meoq9IwhyiA7S2H32N5M4AdGHJW423ixdO+3inQthawt7th
-         13w/lilH1aJ0d/8d9SQdEG70hnAsnx/Yg/WkGBYx6TajAFBDT3oCoX8l7Rkt3KPqQwOO
-         e2Tw==
-X-Gm-Message-State: AOAM531Gwvjcxqv/a0TUdfwcuuStzkS0ngAZpxv2aG0YdFRoIc2m9w0i
-        t/aec719Jnc6Sei/pU1AzbUNlcN+nOFF944MVe0=
-X-Google-Smtp-Source: ABdhPJxvox1OrFAFUF4ib7ALy86XyHdv/10koDZja9voJr42EI0RkGEcT+1TnuUqCjyKoknAwehfWxg7iCrdBzyg/HE=
-X-Received: by 2002:adf:eb43:: with SMTP id u3mr60157987wrn.83.1626102271732;
- Mon, 12 Jul 2021 08:04:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210703151835.171313-1-david@ixit.cz> <20210712145111.GA1896405@robh.at.kernel.org>
-In-Reply-To: <20210712145111.GA1896405@robh.at.kernel.org>
-From:   Rob Clark <robdclark@gmail.com>
-Date:   Mon, 12 Jul 2021 08:08:36 -0700
-Message-ID: <CAF6AEGsEC=0BPwpXMYNcZ=mxFVRYiP8Sjf+dsF_GvAMiG=9hdA@mail.gmail.com>
-Subject: Re: [PATCH] RFC: dt-bindings: drm/msm/gpu: convert to YAML
-To:     Rob Herring <robh@kernel.org>
-Cc:     David Heidelberg <david@ixit.cz>,
-        Sharat Masetty <smasetty@codeaurora.org>,
-        Brian Masney <masneyb@onstation.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
+        id S235310AbhGLPMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 11:12:51 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:49750 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229987AbhGLPMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 11:12:51 -0400
+X-UUID: bc0d79e1639e46e7891fb22d37f768e6-20210712
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=s2Jj8A+/gRRkZUsAfcG2msfHvzYUimjIX+FoFvFaCNo=;
+        b=gG3ZyQ5EsYcCy6Smm7bFiJHsx/Po789nUYg29H38YpzT5E13anHCFWscvFgerUgs5FObv78UV68Lug4M917isqunYb0wJU+EPca0ce8xOwuw0noCDKnORMqYo4dCqpCXHDJd5yQ4x702H+2m4y6bHG5Z9/bRLKu2ybaGpkbHCZE=;
+X-UUID: bc0d79e1639e46e7891fb22d37f768e6-20210712
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1071743719; Mon, 12 Jul 2021 23:10:00 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 12 Jul 2021 23:09:58 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 12 Jul 2021 23:09:59 +0800
+Message-ID: <9929a3a20df1a89fc94baf7c75c0c65d9a61de0f.camel@mediatek.com>
+Subject: Re: [PATCH v2 5/8] ASoC: mediatek: mt8195: add platform driver
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     Chen-Yu Tsai <wenst@chromium.org>
+CC:     <broonie@kernel.org>, <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <alsa-devel@alsa-project.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <bicycle.tsai@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>, <cychiang@google.com>,
+        <aaronyu@google.com>
+Date:   Mon, 12 Jul 2021 23:09:58 +0800
+In-Reply-To: <CAGXv+5FzOs+=9PbYAEahVXvdJG1FnRkSUo_r3AVYZzNKGqg0oA@mail.gmail.com>
+References: <20210629014736.31153-1-trevor.wu@mediatek.com>
+         <20210629014736.31153-6-trevor.wu@mediatek.com>
+         <CAGXv+5FzOs+=9PbYAEahVXvdJG1FnRkSUo_r3AVYZzNKGqg0oA@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 12, 2021 at 7:51 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Sat, Jul 03, 2021 at 05:18:35PM +0200, David Heidelberg wrote:
-> > This warning cannot be fixed by conversion, since this naming is already used.
-> > Documentation/devicetree/bindings/display/msm/gpu.example.dt.yaml: gpu@5000000: interconnect-names: ['gfx-mem'] is too short
-> >
-> > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > ---
-> >  .../devicetree/bindings/display/msm/gpu.txt   | 157 -----------
-> >  .../devicetree/bindings/display/msm/gpu.yaml  | 256 ++++++++++++++++++
-> >  2 files changed, 256 insertions(+), 157 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/display/msm/gpu.txt
-> >  create mode 100644 Documentation/devicetree/bindings/display/msm/gpu.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/msm/gpu.txt b/Documentation/devicetree/bindings/display/msm/gpu.txt
-> > deleted file mode 100644
-> > index 090dcb3fc34d..000000000000
-> > --- a/Documentation/devicetree/bindings/display/msm/gpu.txt
-> > +++ /dev/null
-> > @@ -1,157 +0,0 @@
-> > -Qualcomm adreno/snapdragon GPU
-> > -
-> > -Required properties:
-> > -- compatible: "qcom,adreno-XYZ.W", "qcom,adreno" or
-> > -           "amd,imageon-XYZ.W", "amd,imageon"
-> > -    for example: "qcom,adreno-306.0", "qcom,adreno"
-> > -  Note that you need to list the less specific "qcom,adreno" (since this
-> > -  is what the device is matched on), in addition to the more specific
-> > -  with the chip-id.
-> > -  If "amd,imageon" is used, there should be no top level msm device.
-> > -- reg: Physical base address and length of the controller's registers.
-> > -- interrupts: The interrupt signal from the gpu.
-> > -- clocks: device clocks (if applicable)
-> > -  See ../clocks/clock-bindings.txt for details.
-> > -- clock-names: the following clocks are required by a3xx, a4xx and a5xx
-> > -  cores:
-> > -  * "core"
-> > -  * "iface"
-> > -  * "mem_iface"
-> > -  For GMU attached devices the GPU clocks are not used and are not required. The
-> > -  following devices should not list clocks:
-> > -   - qcom,adreno-630.2
-> > -- iommus: optional phandle to an adreno iommu instance
-> > -- operating-points-v2: optional phandle to the OPP operating points
-> > -- interconnects: optional phandle to an interconnect provider.  See
-> > -  ../interconnect/interconnect.txt for details. Some A3xx and all A4xx platforms
-> > -  will have two paths; all others will have one path.
-> > -- interconnect-names: The names of the interconnect paths that correspond to the
-> > -  interconnects property. Values must be gfx-mem and ocmem.
-> > -- qcom,gmu: For GMU attached devices a phandle to the GMU device that will
-> > -  control the power for the GPU. Applicable targets:
-> > -    - qcom,adreno-630.2
-> > -- zap-shader: For a5xx and a6xx devices this node contains a memory-region that
-> > -  points to reserved memory to store the zap shader that can be used to help
-> > -  bring the GPU out of secure mode.
-> > -- firmware-name: optional property of the 'zap-shader' node, listing the
-> > -  relative path of the device specific zap firmware.
-> > -- sram: phandle to the On Chip Memory (OCMEM) that's present on some a3xx and
-> > -        a4xx Snapdragon SoCs. See
-> > -        Documentation/devicetree/bindings/sram/qcom,ocmem.yaml.
-> > -
-> > -Optional properties:
-> > -- #cooling-cells: The value must be 2. For details, please refer
-> > -     Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml.
-> > -
-> > -Example 3xx/4xx:
-> > -
-> > -/ {
-> > -     ...
-> > -
-> > -     gpu: adreno@fdb00000 {
-> > -             compatible = "qcom,adreno-330.2",
-> > -                          "qcom,adreno";
-> > -             reg = <0xfdb00000 0x10000>;
-> > -             reg-names = "kgsl_3d0_reg_memory";
-> > -             interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> > -             interrupt-names = "kgsl_3d0_irq";
-> > -             clock-names = "core",
-> > -                           "iface",
-> > -                           "mem_iface";
-> > -             clocks = <&mmcc OXILI_GFX3D_CLK>,
-> > -                      <&mmcc OXILICX_AHB_CLK>,
-> > -                      <&mmcc OXILICX_AXI_CLK>;
-> > -             sram = <&gpu_sram>;
-> > -             power-domains = <&mmcc OXILICX_GDSC>;
-> > -             operating-points-v2 = <&gpu_opp_table>;
-> > -             iommus = <&gpu_iommu 0>;
-> > -             #cooling-cells = <2>;
-> > -     };
-> > -
-> > -     gpu_sram: ocmem@fdd00000 {
-> > -             compatible = "qcom,msm8974-ocmem";
-> > -
-> > -             reg = <0xfdd00000 0x2000>,
-> > -                   <0xfec00000 0x180000>;
-> > -             reg-names = "ctrl",
-> > -                         "mem";
-> > -
-> > -             clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>,
-> > -                      <&mmcc OCMEMCX_OCMEMNOC_CLK>;
-> > -             clock-names = "core",
-> > -                           "iface";
-> > -
-> > -             #address-cells = <1>;
-> > -             #size-cells = <1>;
-> > -
-> > -             gpu_sram: gpu-sram@0 {
-> > -                     reg = <0x0 0x100000>;
-> > -                     ranges = <0 0 0xfec00000 0x100000>;
-> > -             };
-> > -     };
-> > -};
-> > -
-> > -Example a6xx (with GMU):
-> > -
-> > -/ {
-> > -     ...
-> > -
-> > -     gpu@5000000 {
-> > -             compatible = "qcom,adreno-630.2", "qcom,adreno";
-> > -             #stream-id-cells = <16>;
-> > -
-> > -             reg = <0x5000000 0x40000>, <0x509e000 0x10>;
-> > -             reg-names = "kgsl_3d0_reg_memory", "cx_mem";
-> > -
-> > -             #cooling-cells = <2>;
-> > -
-> > -             /*
-> > -              * Look ma, no clocks! The GPU clocks and power are
-> > -              * controlled entirely by the GMU
-> > -              */
-> > -
-> > -             interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-> > -
-> > -             iommus = <&adreno_smmu 0>;
-> > -
-> > -             operating-points-v2 = <&gpu_opp_table>;
-> > -
-> > -             interconnects = <&rsc_hlos MASTER_GFX3D &rsc_hlos SLAVE_EBI1>;
-> > -             interconnect-names = "gfx-mem";
-> > -
-> > -             gpu_opp_table: opp-table {
-> > -                     compatible = "operating-points-v2";
-> > -
-> > -                     opp-430000000 {
-> > -                             opp-hz = /bits/ 64 <430000000>;
-> > -                             opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-> > -                             opp-peak-kBps = <5412000>;
-> > -                     };
-> > -
-> > -                     opp-355000000 {
-> > -                             opp-hz = /bits/ 64 <355000000>;
-> > -                             opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-> > -                             opp-peak-kBps = <3072000>;
-> > -                     };
-> > -
-> > -                     opp-267000000 {
-> > -                             opp-hz = /bits/ 64 <267000000>;
-> > -                             opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> > -                             opp-peak-kBps = <3072000>;
-> > -                     };
-> > -
-> > -                     opp-180000000 {
-> > -                             opp-hz = /bits/ 64 <180000000>;
-> > -                             opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-> > -                             opp-peak-kBps = <1804000>;
-> > -                     };
-> > -             };
-> > -
-> > -             qcom,gmu = <&gmu>;
-> > -
-> > -             zap-shader {
-> > -                     memory-region = <&zap_shader_region>;
-> > -                     firmware-name = "qcom/LENOVO/81JL/qcdxkmsuc850.mbn"
-> > -             };
-> > -     };
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/display/msm/gpu.yaml b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> > new file mode 100644
-> > index 000000000000..4315482e0b12
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/msm/gpu.yaml
-> > @@ -0,0 +1,256 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +
-> > +$id: "http://devicetree.org/schemas/display/msm/gpu.yaml#"
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Devicetree bindings for the Adreno or Snapdragon GPUs
-> > +
-> > +maintainers:
-> > +  - Rob Clark <robdclark@gmail.com>
-> > +
-> > +description: |
-> > +  These bindings describe the GPUs
->
-> Describe what this h/w is/does. The 'title' tells me more than this
-> sentence.
->
-> > +
-> > +properties:
-> > +  compatible:
-> > +    anyOf:
->
-> How can both be true? Use 'oneOf'.
->
-> > +      - items:
-> > +          - pattern: '^qcom,adreno-[3-6][0-9][0-9].[0-9]$'
-> > +          - const: qcom,adreno
-> > +      - items:
-> > +          - pattern: '^amd,imageon-200.[0-1]$'
-> > +          - const: amd,imageon
-> > +
-> > +  clocks:
-> > +    maxItems: 3
-> > +
-> > +  clock-names:
-> > +    maxItems: 3
-> > +
-> > +  reg:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    description: Physical base address and length of the controller's registers.
->
-> Drop description. That's every 'reg'.
->
-> > +
-> > +  reg-names:
-> > +    minItems: 1
-> > +    maxItems: 2
->
-> Need defined names.
->
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  interrupt-names:
-> > +    maxItems: 1
-> > +
-> > +  interconnects:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +    description: |
-> > +      optional phandle to an interconnect provider. See
-> > +      ../interconnect/interconnect.txt for details.
-> > +      Some A3xx and all A4xx platforms will have two paths;
-> > +      all others will have one path.
-> > +
-> > +  interconnect-names:
->
-> minItems: 1
->
-> to fix your warning.
->
-> > +    items:
-> > +      - const: gfx-mem
-> > +      - const: ocmem
-> > +    description: |
-> > +      the names of the interconnect paths that correspond to
-> > +      the interconnects property
-> > +
-> > +  iommus:
-> > +    maxItems: 1
-> > +
-> > +  sram:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    minItems: 1
-> > +    maxItems: 4
-> > +    description: |
-> > +      phandles to one or more reserved on-chip SRAM regions.
-> > +      phandle to the On Chip Memory (OCMEM) that's present on some a3xx and
-> > +      a4xx Snapdragon SoCs. See
-> > +      Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
-> > +
-> > +  operating-points-v2: true
-> > +  opp-table: true
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +
-> > +  zap-shader:
-> > +    description: |
-> > +      For a5xx and a6xx devices this node contains a memory-region that
-> > +      points to reserved memory to store the zap shader that can be used to
-> > +      help bring the GPU out of secure mode.
->
-> Needs a type.
->
-> > +
-> > +  "#cooling-cells":
-> > +    const: 2
-> > +    description: |
-> > +      For details, please refer
-> > +      Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
->
-> Drop this.
->
-> > +
-> > +  qcom,gmu:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: |
-> > +      for GMU attached devices a phandle to the GMU device that will
-> > +      control the power for the GPU
-> > +
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +
-> > +additionalProperties: false
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            pattern: '^qcom,adreno-[3-5][0-9][0-9].[0-9]$'
->
-> Would be simpler to use just 'qcom,adreno' here.
+T24gTW9uLCAyMDIxLTA3LTEyIGF0IDE0OjU3ICswODAwLCBDaGVuLVl1IFRzYWkgd3JvdGU6DQo+
+ICBhcmUgYWxsIGludGVybmFsIEhpLA0KPiANCj4gT24gVHVlLCBKdW4gMjksIDIwMjEgYXQgOTo0
+OSBBTSBUcmV2b3IgV3UgPHRyZXZvci53dUBtZWRpYXRlay5jb20+DQo+IHdyb3RlOg0KPiA+IA0K
+PiA+IFRoaXMgcGF0Y2ggYWRkcyBtdDgxOTUgcGxhdGZvcm0gYW5kIGFmZmlsaWF0ZWQgZHJpdmVy
+Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFRyZXZvciBXdSA8dHJldm9yLnd1QG1lZGlhdGVr
+LmNvbT4NCj4gPiAtLS0NCj4gPiAgc291bmQvc29jL21lZGlhdGVrL0tjb25maWcgICAgICAgICAg
+ICAgICAgICAgICB8ICAgIDkgKw0KPiA+ICBzb3VuZC9zb2MvbWVkaWF0ZWsvTWFrZWZpbGUgICAg
+ICAgICAgICAgICAgICAgfCAgICAxICsNCj4gPiAgc291bmQvc29jL21lZGlhdGVrL210ODE5NS9N
+YWtlZmlsZSAgICAgICAgICAgIHwgICAxMSArDQo+ID4gIHNvdW5kL3NvYy9tZWRpYXRlay9tdDgx
+OTUvbXQ4MTk1LWFmZS1jbGsuYyAgICB8ICA4OTkgKysrKysNCj4gPiAgc291bmQvc29jL21lZGlh
+dGVrL210ODE5NS9tdDgxOTUtYWZlLWNsay5oICAgIHwgIDIwMSArDQo+ID4gIHNvdW5kL3NvYy9t
+ZWRpYXRlay9tdDgxOTUvbXQ4MTk1LWFmZS1jb21tb24uaCB8ICAyMDAgKw0KPiA+ICBzb3VuZC9z
+b2MvbWVkaWF0ZWsvbXQ4MTk1L210ODE5NS1hZmUtcGNtLmMgICAgfCAzMjY0DQo+ID4gKysrKysr
+KysrKysrKysrKysNCj4gPiAgc291bmQvc29jL21lZGlhdGVrL210ODE5NS9tdDgxOTUtcmVnLmgg
+ICAgICAgIHwgMjc5Mw0KPiA+ICsrKysrKysrKysrKysrDQo+ID4gIDggZmlsZXMgY2hhbmdlZCwg
+NzM3OCBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBzb3VuZC9zb2MvbWVk
+aWF0ZWsvbXQ4MTk1L01ha2VmaWxlDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBzb3VuZC9zb2Mv
+bWVkaWF0ZWsvbXQ4MTk1L210ODE5NS1hZmUtY2xrLmMNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0
+IHNvdW5kL3NvYy9tZWRpYXRlay9tdDgxOTUvbXQ4MTk1LWFmZS1jbGsuaA0KPiA+ICBjcmVhdGUg
+bW9kZSAxMDA2NDQgc291bmQvc29jL21lZGlhdGVrL210ODE5NS9tdDgxOTUtYWZlLWNvbW1vbi5o
+DQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBzb3VuZC9zb2MvbWVkaWF0ZWsvbXQ4MTk1L210ODE5
+NS1hZmUtcGNtLmMNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IHNvdW5kL3NvYy9tZWRpYXRlay9t
+dDgxOTUvbXQ4MTk1LXJlZy5oDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy9tZWRp
+YXRlay9LY29uZmlnDQo+ID4gYi9zb3VuZC9zb2MvbWVkaWF0ZWsvS2NvbmZpZw0KPiA+IGluZGV4
+IDc0ZGFlNDMzMmQxNy4uMzM4OWYzODJiZTA2IDEwMDY0NA0KPiA+IC0tLSBhL3NvdW5kL3NvYy9t
+ZWRpYXRlay9LY29uZmlnDQo+ID4gKysrIGIvc291bmQvc29jL21lZGlhdGVrL0tjb25maWcNCj4g
+PiBAQCAtMTg0LDMgKzE4NCwxMiBAQCBjb25maWcgU05EX1NPQ19NVDgxOTJfTVQ2MzU5X1JUMTAx
+NV9SVDU2ODINCj4gPiAgICAgICAgICAgd2l0aCB0aGUgTVQ2MzU5IFJUMTAxNSBSVDU2ODIgYXVk
+aW8gY29kZWMuDQo+ID4gICAgICAgICAgIFNlbGVjdCBZIGlmIHlvdSBoYXZlIHN1Y2ggZGV2aWNl
+Lg0KPiA+ICAgICAgICAgICBJZiB1bnN1cmUgc2VsZWN0ICJOIi4NCj4gPiArDQo+ID4gK2NvbmZp
+ZyBTTkRfU09DX01UODE5NQ0KPiA+ICsgICAgICAgdHJpc3RhdGUgIkFTb0Mgc3VwcG9ydCBmb3Ig
+TWVkaWF0ZWsgTVQ4MTk1IGNoaXAiDQo+ID4gKyAgICAgICBzZWxlY3QgU05EX1NPQ19NRURJQVRF
+Sw0KPiA+ICsgICAgICAgaGVscA0KPiA+ICsgICAgICAgICBUaGlzIGFkZHMgQVNvQyBwbGF0Zm9y
+bSBkcml2ZXIgc3VwcG9ydCBmb3IgTWVkaWF0ZWsNCj4gPiBNVDgxOTUgY2hpcA0KPiA+ICsgICAg
+ICAgICB0aGF0IGNhbiBiZSB1c2VkIHdpdGggb3RoZXIgY29kZWNzLg0KPiA+ICsgICAgICAgICBT
+ZWxlY3QgWSBpZiB5b3UgaGF2ZSBzdWNoIGRldmljZS4NCj4gPiArICAgICAgICAgSWYgdW5zdXJl
+IHNlbGVjdCAiTiIuDQo+ID4gZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy9tZWRpYXRlay9NYWtlZmls
+ZQ0KPiA+IGIvc291bmQvc29jL21lZGlhdGVrL01ha2VmaWxlDQo+ID4gaW5kZXggZjZjYjZiODUw
+OGUzLi4zNDc3OGNhMTIxMDYgMTAwNjQ0DQo+ID4gLS0tIGEvc291bmQvc29jL21lZGlhdGVrL01h
+a2VmaWxlDQo+ID4gKysrIGIvc291bmQvc29jL21lZGlhdGVrL01ha2VmaWxlDQo+ID4gQEAgLTUs
+MyArNSw0IEBAIG9iai0kKENPTkZJR19TTkRfU09DX01UNjc5NykgKz0gbXQ2Nzk3Lw0KPiA+ICBv
+YmotJChDT05GSUdfU05EX1NPQ19NVDgxNzMpICs9IG10ODE3My8NCj4gPiAgb2JqLSQoQ09ORklH
+X1NORF9TT0NfTVQ4MTgzKSArPSBtdDgxODMvDQo+ID4gIG9iai0kKENPTkZJR19TTkRfU09DX01U
+ODE5MikgKz0gbXQ4MTkyLw0KPiA+ICtvYmotJChDT05GSUdfU05EX1NPQ19NVDgxOTUpICs9IG10
+ODE5NS8NCj4gPiBkaWZmIC0tZ2l0IGEvc291bmQvc29jL21lZGlhdGVrL210ODE5NS9NYWtlZmls
+ZQ0KPiA+IGIvc291bmQvc29jL21lZGlhdGVrL210ODE5NS9NYWtlZmlsZQ0KPiA+IG5ldyBmaWxl
+IG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi5iMmM5ZmQ4OGYzOWUNCj4gPiAt
+LS0gL2Rldi9udWxsDQo+ID4gKysrIGIvc291bmQvc29jL21lZGlhdGVrL210ODE5NS9NYWtlZmls
+ZQ0KPiA+IEBAIC0wLDAgKzEsMTEgQEANCj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjog
+R1BMLTIuMA0KPiA+ICsNCj4gPiArIyBwbGF0Zm9ybSBkcml2ZXINCj4gPiArc25kLXNvYy1tdDgx
+OTUtYWZlLW9ianMgOj0gXA0KPiA+ICsgICAgICAgbXQ4MTk1LWFmZS1jbGsubyBcDQo+ID4gKyAg
+ICAgICBtdDgxOTUtYWZlLXBjbS5vIFwNCj4gPiArICAgICAgIG10ODE5NS1kYWktYWRkYS5vIFwN
+Cj4gPiArICAgICAgIG10ODE5NS1kYWktZXRkbS5vIFwNCj4gPiArICAgICAgIG10ODE5NS1kYWkt
+cGNtLm8NCj4gPiArDQo+ID4gK29iai0kKENPTkZJR19TTkRfU09DX01UODE5NSkgKz0gc25kLXNv
+Yy1tdDgxOTUtYWZlLm8NCj4gPiBkaWZmIC0tZ2l0IGEvc291bmQvc29jL21lZGlhdGVrL210ODE5
+NS9tdDgxOTUtYWZlLWNsay5jDQo+ID4gYi9zb3VuZC9zb2MvbWVkaWF0ZWsvbXQ4MTk1L210ODE5
+NS1hZmUtY2xrLmMNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAw
+MDAwMC4uNTdhYTc5OWI0ZjQxDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL3NvdW5kL3Nv
+Yy9tZWRpYXRlay9tdDgxOTUvbXQ4MTk1LWFmZS1jbGsuYw0KPiA+IEBAIC0wLDAgKzEsODk5IEBA
+DQo+ID4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wDQo+ID4gKy8qDQo+ID4g
+KyAqIG10ODE5NS1hZmUtY2xrLmMgIC0tICBNZWRpYXRlayA4MTk1IGFmZSBjbG9jayBjdHJsDQo+
+ID4gKyAqDQo+ID4gKyAqIENvcHlyaWdodCAoYykgMjAyMSBNZWRpYVRlayBJbmMuDQo+ID4gKyAq
+IEF1dGhvcjogQmljeWNsZSBUc2FpIDxiaWN5Y2xlLnRzYWlAbWVkaWF0ZWsuY29tPg0KPiA+ICsg
+KiAgICAgICAgIFRyZXZvciBXdSA8dHJldm9yLnd1QG1lZGlhdGVrLmNvbT4NCj4gPiArICovDQo+
+ID4gKw0KPiA+ICsjaW5jbHVkZSA8bGludXgvY2xrLmg+DQo+ID4gKw0KPiA+ICsjaW5jbHVkZSAi
+bXQ4MTk1LWFmZS1jb21tb24uaCINCj4gPiArI2luY2x1ZGUgIm10ODE5NS1hZmUtY2xrLmgiDQo+
+ID4gKyNpbmNsdWRlICJtdDgxOTUtcmVnLmgiDQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3QgY2hh
+ciAqYXVkX2Nsa3NbTVQ4MTk1X0NMS19OVU1dID0gew0KPiANCj4gTW9zdCBvZiB0aGVzZSBjbG9j
+a3MgYXJlIG5vdCBkZXNjcmliZWQgaW4gdGhlIGRldmljZSB0cmVlIGJpbmRpbmcuIElmDQo+IHRo
+ZSBkcml2ZXIgbmVlZHMgdG8gcmVmZXJlbmNlIHRoZW0sIHRoZXkgc2hvdWxkIGJlIGRlc2NyaWJl
+ZC4gV2UNCj4gc2hvdWxkDQo+IG5vdCBiZSBoYXJkLWNvZGluZyBjbG9jayBuYW1lcyBhY3Jvc3Mg
+ZGlmZmVyZW50IGRyaXZlcnMuDQo+IA0KU29ycnksIEkgZGlkbid0IGtub3cgSSBoYXZlIHRvIGxp
+c3QgYWxsIGNsb2NrcyBpbiB0aGUgZHQtYmluZGluZy4NCk9yaWdpbmFsbHksIEkgdGhvdWdodCB0
+aGVzZSBjbG9ja3Mgd2lsbCBiZSBkZXNjcmliZWQgaW4gdGhlIGNsb2NrDQpiaW5kaW5nLCBzbyBJ
+IGRpZG4ndCBhZGQgdGhlbSB0byB0aGUgYmluZGluZyBvZiBhZmUgZHJpdmVyLg0KSSB3aWxsIGFk
+ZCB0aGVzZSBjbG9ja3MgdG8gbXQ4MTk1LWFmZS1wY20ueWFtbC4NCg0KPiBUaGUgbW9yZSBpbXBv
+cnRhbnQgcXVlc3Rpb24gaXMsIHdoeSBkb2VzIHRoZSBkcml2ZXIgbmVlZCB0byByZWZlcmVuY2UN
+Cj4gYWxsIG9mIHRoZW0/IE1heWJlIHdlIHNob3VsZCB0YWtlIGEgc3RlcCBiYWNrIGFuZCBkcmF3
+IG91dCBhIGNsb2NrDQo+IHRyZWUNCj4gZGlhZ3JhbSBmb3IgdGhlIGhhcmR3YXJlPw0KPiANClRo
+ZSBjbG9jayBzdHJ1Y3R1cmUgaXMgUExMIC0+IE1VWCAtPiBHQVRFLg0KeHRhbCwgcGxsIGFuZCBk
+aXZpZGVyIGFyZSB0aGUgcG9zc2libGUgY2xvY2sgaW5wdXRzIGZvciBNVVguDQpCZWNhdXNlIHdl
+IHNlbGVjdCB0aGUgY2xvY2sgaW5wdXQgb2YgYXVkaW8gbW9kdWxlIGJhc2VkIG9uIHRoZSB1c2UN
+CmNhc2UsIHdlIHVzZSBjbGtfZ2V0IHRvIHJldHJpdmUgYWxsIGNsb2NrcyB3aGljaCBhcmUgcG9z
+c2libGUgdG8gYmUNCnVzZWQuDQpTb21lIG9mIHRoZW0gYXJlIG5vdCB1c2VkIGluIHRoaXMgc2Vy
+aWVzLCBiZWNhdXNlIHNvbWUgbW9kdWxlcyBhcmUNCnN0aWxsIGRldmVsb3BpbmcuIFNob3VsZCBJ
+IG9ubHkga2VlcCB0aGUgY2xvY2tzIHRoYXQgaGF2ZSBiZWVuIHVzZWQgaW4NCnRoZSBzZXJpZXM/
+DQoNCj4gPiArICAgICAgIC8qIHh0YWwgKi8NCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1hUQUxf
+MjZNXSA9ICJjbGsyNm0iLA0KPiA+ICsgICAgICAgLyogcGxsICovDQo+ID4gKyAgICAgICBbTVQ4
+MTk1X0NMS19BUE1JWEVEX0FQTEwxXSA9ICJhcGxsMSIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NM
+S19BUE1JWEVEX0FQTEwyXSA9ICJhcGxsMiIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BUE1J
+WEVEX0FQTEwzXSA9ICJhcGxsMyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BUE1JWEVEX0FQ
+TEw0XSA9ICJhcGxsNCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BUE1JWEVEX0FQTEw1XSA9
+ICJhcGxsNSIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BUE1JWEVEX0hETUlSWF9BUExMXSA9
+ICJoZG1pcnhfYXBsbCIsDQo+ID4gKyAgICAgICAvKiBkaXZpZGVyICovDQo+ID4gKyAgICAgICBb
+TVQ4MTk1X0NMS19UT1BfQVBMTDFdID0gImFwbGwxX2NrIiwNCj4gPiArICAgICAgIFtNVDgxOTVf
+Q0xLX1RPUF9BUExMMV9ENF0gPSAiYXBsbDFfZDQiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtf
+VE9QX0FQTEwyXSA9ICJhcGxsMl9jayIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19UT1BfQVBM
+TDJfRDRdID0gImFwbGwyX2Q0IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9BUExMM10g
+PSAiYXBsbDNfY2siLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX0FQTEwzX0Q0XSA9ICJh
+cGxsM19kNCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19UT1BfQVBMTDRdID0gImFwbGw0X2Nr
+IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9BUExMNF9ENF0gPSAiYXBsbDRfZDQiLA0K
+PiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX0FQTEw1XSA9ICJhcGxsNV9jayIsDQo+ID4gKyAg
+ICAgICBbTVQ4MTk1X0NMS19UT1BfQVBMTDVfRDRdID0gImFwbGw1X2Q0IiwNCj4gPiArICAgICAg
+IFtNVDgxOTVfQ0xLX1RPUF9BUExMMTJfRElWMF0gPSAiYXBsbDEyX2RpdjAiLA0KPiA+ICsgICAg
+ICAgW01UODE5NV9DTEtfVE9QX0FQTEwxMl9ESVYxXSA9ICJhcGxsMTJfZGl2MSIsDQo+ID4gKyAg
+ICAgICBbTVQ4MTk1X0NMS19UT1BfQVBMTDEyX0RJVjJdID0gImFwbGwxMl9kaXYyIiwNCj4gPiAr
+ICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9BUExMMTJfRElWM10gPSAiYXBsbDEyX2RpdjMiLA0KPiA+
+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX0FQTEwxMl9ESVY0XSA9ICJhcGxsMTJfZGl2NCIsDQo+
+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19UT1BfQVBMTDEyX0RJVjldID0gImFwbGwxMl9kaXY5IiwN
+Cj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9IRE1JUlhfQVBMTF0gPSAiaGRtaXJ4X2FwbGxf
+Y2siLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX01BSU5QTExfRDRfRDRdID0gIm1haW5w
+bGxfZDRfZDQiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX01BSU5QTExfRDVfRDJdID0g
+Im1haW5wbGxfZDVfZDIiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX01BSU5QTExfRDdf
+RDJdID0gIm1haW5wbGxfZDdfZDIiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX1VOSVZQ
+TExfRDRdID0gInVuaXZwbGxfZDQiLA0KPiA+ICsgICAgICAgLyogbXV4ICovDQo+ID4gKyAgICAg
+ICBbTVQ4MTk1X0NMS19UT1BfQVBMTDFfU0VMXSA9ICJhcGxsMV9zZWwiLA0KPiA+ICsgICAgICAg
+W01UODE5NV9DTEtfVE9QX0FQTEwyX1NFTF0gPSAiYXBsbDJfc2VsIiwNCj4gPiArICAgICAgIFtN
+VDgxOTVfQ0xLX1RPUF9BUExMM19TRUxdID0gImFwbGwzX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4
+MTk1X0NMS19UT1BfQVBMTDRfU0VMXSA9ICJhcGxsNF9zZWwiLA0KPiA+ICsgICAgICAgW01UODE5
+NV9DTEtfVE9QX0FQTEw1X1NFTF0gPSAiYXBsbDVfc2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVf
+Q0xLX1RPUF9BMVNZU19IUF9TRUxdID0gImExc3lzX2hwX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4
+MTk1X0NMS19UT1BfQTJTWVNfU0VMXSA9ICJhMnN5c19zZWwiLA0KPiA+ICsgICAgICAgW01UODE5
+NV9DTEtfVE9QX0EzU1lTX1NFTF0gPSAiYTNzeXNfc2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVf
+Q0xLX1RPUF9BNFNZU19TRUxdID0gImE0c3lzX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NM
+S19UT1BfQVNNX0hfU0VMXSA9ICJhc21faF9zZWwiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtf
+VE9QX0FTTV9NX1NFTF0gPSAiYXNtX21fc2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RP
+UF9BU01fTF9TRUxdID0gImFzbV9sX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19UT1Bf
+QVVEX0lFQ19TRUxdID0gImF1ZF9pZWNfc2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RP
+UF9BVURfSU5UQlVTX1NFTF0gPSAiYXVkX2ludGJ1c19zZWwiLA0KPiA+ICsgICAgICAgW01UODE5
+NV9DTEtfVE9QX0FVRElPX0hfU0VMXSA9ICJhdWRpb19oX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4
+MTk1X0NMS19UT1BfQVVESU9fTE9DQUxfQlVTX1NFTF0gPQ0KPiA+ICJhdWRpb19sb2NhbF9idXNf
+c2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9EUFRYX01fU0VMXSA9ICJkcHR4X21f
+c2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9JTlRESVJfU0VMXSA9ICJpbnRkaXJf
+c2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9JMlNPMV9NX1NFTF0gPSAiaTJzbzFf
+bV9zZWwiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfVE9QX0kyU08yX01fU0VMXSA9ICJpMnNv
+Ml9tX3NlbCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19UT1BfSTJTSTFfTV9TRUxdID0gImky
+c2kxX21fc2VsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX1RPUF9JMlNJMl9NX1NFTF0gPSAi
+aTJzaTJfbV9zZWwiLA0KPiA+ICsgICAgICAgLyogY2xvY2sgZ2F0ZSAqLw0KPiA+ICsgICAgICAg
+W01UODE5NV9DTEtfVE9QX01QSE9ORV9TTEFWRV9CXSA9ICJtcGhvbmVfc2xhdmVfYiIsDQo+ID4g
+KyAgICAgICBbTVQ4MTk1X0NMS19UT1BfQ0ZHXzI2TV9BVURdID0gImNmZ18yNm1fYXVkIiwNCj4g
+PiArICAgICAgIFtNVDgxOTVfQ0xLX0lORlJBX0FPX0FVRElPXSA9ICJpbmZyYV9hb19hdWRpbyIs
+DQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19JTkZSQV9BT19BVURJT18yNk1fQl0gPSAiaW5mcmFf
+YW9fYXVkaW9fMjZtX2IiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfU0NQX0FEU1BfQVVESU9E
+U1BdID0gInNjcF9hZHNwX2F1ZGlvZHNwIiwNCj4gDQo+IA0KPiA+ICsgICAgICAgW01UODE5NV9D
+TEtfQVVEX0FGRV0gPSAiYXVkX2FmZSIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfTFJD
+S19DTlRdID0gImF1ZF9scmNrX2NudCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfU1BE
+SUZJTl9UVU5FUl9BUExMXSA9DQo+ID4gImF1ZF9zcGRpZmluX3R1bmVyX2FwbGwiLA0KPiA+ICsg
+ICAgICAgW01UODE5NV9DTEtfQVVEX1NQRElGSU5fVFVORVJfREJHXSA9DQo+ID4gImF1ZF9zcGRp
+ZmluX3R1bmVyX2RiZyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfVUxfVE1MXSA9ICJh
+dWRfdWxfdG1sIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9BUExMMV9UVU5FUl0gPSAi
+YXVkX2FwbGwxX3R1bmVyIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9BUExMMl9UVU5F
+Ul0gPSAiYXVkX2FwbGwyX3R1bmVyIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9UT1Aw
+X1NQREZdID0gImF1ZF90b3AwX3NwZGYiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0FQ
+TExdID0gImF1ZF9hcGxsIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9BUExMMl0gPSAi
+YXVkX2FwbGwyIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9EQUNdID0gImF1ZF9kYWMi
+LA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0RBQ19QUkVESVNdID0gImF1ZF9kYWNfcHJl
+ZGlzIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9UTUxdID0gImF1ZF90bWwiLA0KPiA+
+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0FEQ10gPSAiYXVkX2FkYyIsDQo+ID4gKyAgICAgICBb
+TVQ4MTk1X0NMS19BVURfREFDX0hJUkVTXSA9ICJhdWRfZGFjX2hpcmVzIiwNCj4gPiArICAgICAg
+IFtNVDgxOTVfQ0xLX0FVRF9BMVNZU19IUF0gPSAiYXVkX2Exc3lzX2hwIiwNCj4gPiArICAgICAg
+IFtNVDgxOTVfQ0xLX0FVRF9BRkVfRE1JQzFdID0gImF1ZF9hZmVfZG1pYzEiLA0KPiA+ICsgICAg
+ICAgW01UODE5NV9DTEtfQVVEX0FGRV9ETUlDMl0gPSAiYXVkX2FmZV9kbWljMiIsDQo+ID4gKyAg
+ICAgICBbTVQ4MTk1X0NMS19BVURfQUZFX0RNSUMzXSA9ICJhdWRfYWZlX2RtaWMzIiwNCj4gPiAr
+ICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9BRkVfRE1JQzRdID0gImF1ZF9hZmVfZG1pYzQiLA0KPiA+
+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0FGRV8yNk1fRE1JQ19UTV0gPSAiYXVkX2FmZV8yNm1f
+ZG1pY190bSIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfVUxfVE1MX0hJUkVTXSA9ICJh
+dWRfdWxfdG1sX2hpcmVzIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9BRENfSElSRVNd
+ID0gImF1ZF9hZGNfaGlyZXMiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0FEREE2X0FE
+Q10gPSAiYXVkX2FkZGE2X2FkYyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfQUREQTZf
+QURDX0hJUkVTXSA9ICJhdWRfYWRkYTZfYWRjX2hpcmVzIiwNCj4gPiArICAgICAgIFtNVDgxOTVf
+Q0xLX0FVRF9MSU5FSU5fVFVORVJdID0gImF1ZF9saW5laW5fdHVuZXIiLA0KPiA+ICsgICAgICAg
+W01UODE5NV9DTEtfQVVEX0VBUkNfVFVORVJdID0gImF1ZF9lYXJjX3R1bmVyIiwNCj4gPiArICAg
+ICAgIFtNVDgxOTVfQ0xLX0FVRF9JMlNJTl0gPSAiYXVkX2kyc2luIiwNCj4gPiArICAgICAgIFtN
+VDgxOTVfQ0xLX0FVRF9URE1fSU5dID0gImF1ZF90ZG1faW4iLA0KPiA+ICsgICAgICAgW01UODE5
+NV9DTEtfQVVEX0kyU19PVVRdID0gImF1ZF9pMnNfb3V0IiwNCj4gPiArICAgICAgIFtNVDgxOTVf
+Q0xLX0FVRF9URE1fT1VUXSA9ICJhdWRfdGRtX291dCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NM
+S19BVURfSERNSV9PVVRdID0gImF1ZF9oZG1pX291dCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NM
+S19BVURfQVNSQzExXSA9ICJhdWRfYXNyYzExIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FV
+RF9BU1JDMTJdID0gImF1ZF9hc3JjMTIiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01V
+TFRJX0lOXSA9ICJhdWRfbXVsdGlfaW4iLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0lO
+VERJUl0gPSAiYXVkX2ludGRpciIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfQTFTWVNd
+ID0gImF1ZF9hMXN5cyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfQTJTWVNdID0gImF1
+ZF9hMnN5cyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfUENNSUZdID0gImF1ZF9wY21p
+ZiIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfQTNTWVNdID0gImF1ZF9hM3N5cyIsDQo+
+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfQTRTWVNdID0gImF1ZF9hNHN5cyIsDQo+ID4gKyAg
+ICAgICBbTVQ4MTk1X0NMS19BVURfTUVNSUZfVUwxXSA9ICJhdWRfbWVtaWZfdWwxIiwNCj4gPiAr
+ICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9NRU1JRl9VTDJdID0gImF1ZF9tZW1pZl91bDIiLA0KPiA+
+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01FTUlGX1VMM10gPSAiYXVkX21lbWlmX3VsMyIsDQo+
+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfTUVNSUZfVUw0XSA9ICJhdWRfbWVtaWZfdWw0IiwN
+Cj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9NRU1JRl9VTDVdID0gImF1ZF9tZW1pZl91bDUi
+LA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01FTUlGX1VMNl0gPSAiYXVkX21lbWlmX3Vs
+NiIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfTUVNSUZfVUw4XSA9ICJhdWRfbWVtaWZf
+dWw4IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9NRU1JRl9VTDldID0gImF1ZF9tZW1p
+Zl91bDkiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01FTUlGX1VMMTBdID0gImF1ZF9t
+ZW1pZl91bDEwIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9NRU1JRl9ETDJdID0gImF1
+ZF9tZW1pZl9kbDIiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01FTUlGX0RMM10gPSAi
+YXVkX21lbWlmX2RsMyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfTUVNSUZfREw2XSA9
+ICJhdWRfbWVtaWZfZGw2IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9NRU1JRl9ETDdd
+ID0gImF1ZF9tZW1pZl9kbDciLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01FTUlGX0RM
+OF0gPSAiYXVkX21lbWlmX2RsOCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfTUVNSUZf
+REwxMF0gPSAiYXVkX21lbWlmX2RsMTAiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX01F
+TUlGX0RMMTFdID0gImF1ZF9tZW1pZl9kbDExIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FV
+RF9HQVNSQzBdID0gImF1ZF9nYXNyYzAiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0dB
+U1JDMV0gPSAiYXVkX2dhc3JjMSIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfR0FTUkMy
+XSA9ICJhdWRfZ2FzcmMyIiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9HQVNSQzNdID0g
+ImF1ZF9nYXNyYzMiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0dBU1JDNF0gPSAiYXVk
+X2dhc3JjNCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfR0FTUkM1XSA9ICJhdWRfZ2Fz
+cmM1IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9HQVNSQzZdID0gImF1ZF9nYXNyYzYi
+LA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVEX0dBU1JDN10gPSAiYXVkX2dhc3JjNyIsDQo+
+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19BVURfR0FTUkM4XSA9ICJhdWRfZ2FzcmM4IiwNCj4gPiAr
+ICAgICAgIFtNVDgxOTVfQ0xLX0FVRF9HQVNSQzldID0gImF1ZF9nYXNyYzkiLA0KPiA+ICsgICAg
+ICAgW01UODE5NV9DTEtfQVVEX0dBU1JDMTBdID0gImF1ZF9nYXNyYzEwIiwNCj4gPiArICAgICAg
+IFtNVDgxOTVfQ0xLX0FVRF9HQVNSQzExXSA9ICJhdWRfZ2FzcmMxMSIsDQo+ID4gKyAgICAgICBb
+TVQ4MTk1X0NMS19BVURfR0FTUkMxMl0gPSAiYXVkX2dhc3JjMTIiLA0KPiA+ICsgICAgICAgW01U
+ODE5NV9DTEtfQVVEX0dBU1JDMTNdID0gImF1ZF9nYXNyYzEzIiwNCj4gPiArICAgICAgIFtNVDgx
+OTVfQ0xLX0FVRF9HQVNSQzE0XSA9ICJhdWRfZ2FzcmMxNCIsDQo+ID4gKyAgICAgICBbTVQ4MTk1
+X0NMS19BVURfR0FTUkMxNV0gPSAiYXVkX2dhc3JjMTUiLA0KPiA+ICsgICAgICAgW01UODE5NV9D
+TEtfQVVEX0dBU1JDMTZdID0gImF1ZF9nYXNyYzE2IiwNCj4gPiArICAgICAgIFtNVDgxOTVfQ0xL
+X0FVRF9HQVNSQzE3XSA9ICJhdWRfZ2FzcmMxNyIsDQo+ID4gKyAgICAgICBbTVQ4MTk1X0NMS19B
+VURfR0FTUkMxOF0gPSAiYXVkX2dhc3JjMTgiLA0KPiA+ICsgICAgICAgW01UODE5NV9DTEtfQVVE
+X0dBU1JDMTldID0gImF1ZF9nYXNyYzE5IiwNCj4gDQo+IFRoZSBNVDgxOTVfQ0xLX0FVRF8qIGNs
+b2NrcyBhcmUgYWxsIGludGVybmFsIHRvIHRoZSBhdWRpbyBzdWJzeXN0ZW06DQo+IHRoZSBiaXRz
+IHRoYXQgY29udHJvbCB0aGVzZSBjbG9jayBnYXRlcyBhcmUgaW4gdGhlIHNhbWUgYWRkcmVzcyBz
+cGFjZQ0KPiBhcyB0aGUgYXVkaW8gcGFydHMuIFdvdWxkIGl0IGJlIHBvc3NpYmxlIHRvIG1vZGVs
+IHRoZW0gYXMgaW50ZXJuYWwNCj4gQVNvQyBTVVBQTFkgd2lkZ2V0cz8gVGhlIGV4dGVybmFsIG9u
+ZXMgY291bGQgYmUgbW9kZWxlZCB1c2luZyBBU29DDQo+IENMS19TVVBQTFkgd2lkZ2V0cywgYW5k
+IHRoZSBkZXBlbmRlbmNpZXMgY291bGQgYmUgbW9kZWxlZCB3aXRoIEFTb0MNCj4gcm91dGVzLiBU
+aGUgQVNvQyBjb3JlIGNvdWxkIHRoZW4gaGFuZGxlIHBvd2VyIHNlcXVlbmNpbmcsIHdoaWNoIHRo
+ZQ0KPiBkcml2ZXIgY3VycmVudGx5IGRvZXMgbWFudWFsbHkuDQo+IA0KPiBJTU8gdGhpcyBpcyBi
+ZXR0ZXIgdGhhbiBoYXZpbmcgdHdvIGRyaXZlcnMgaGFuZGxpbmcgdHdvIGFzcGVjdHMgb2YNCj4g
+dGhlIHNhbWUgcGllY2Ugb2YgaGFyZHdhcmUsIHdoaWxlIHRoZSB0d28gYXNwZWN0cyBhcmUgaW50
+ZXJ0d2luZWQuDQo+IA0KDQpZZXMsIGl0J3Mgb2sgdG8gdXNlIHRoZSBDTEtfU1VQUExZIGFuZCBT
+VVBQTFkgdG8gbW9kZWwgc3VjaCBjbG9ja3MuDQpCdXQgdGhvc2UgY2xvY2tzIGFyZSBtYW5hZ2Vk
+IGJ5IENDRiBpbiB0aGUgcHJlY2VkaW5nIFNPQ3MgbGlrZSBtdDI3MDEsDQptdDY3NzkgYW5kIG10
+ODE4My4gQWRkaXRpb25hbGx5LCBpbiBzb21lIGF1ZGlvIG1vZHVsZXMsIGNsb2NrcyBzaG91bGQN
+CmJlIGVuYWJsZWQgYmVmb3JlIGNvbmZpZ3VyaW5nIHBhcmFtZXRlcnMoaHdfcGFyYW1zKS4gQXMg
+ZmFyIGFzIEkga25vdywNCmlmIHdlIHVzZSBDTEtfU1VQUExZIG9yIFNVUFBMWSB0byBtb2RlbCBj
+bG9ja3MsIHRoZSBwb3dlciBzZXF1ZW5jZSBpcw0KY29udHJvbGxlZCBieSBEQVBNLiBJdCBzZWVt
+cyB0byBiZSBpbXBvc3NpYmxlIHRvIGZ1bGZpbGwgYWxsIHVzZSBjYXNlcy4NClRoYXQncyB3aHkg
+d2UganVzdCBrZWVwIHRoZSBtYW51YWwgY29udHJvbCBzZXF1ZW5jZSBhbmQgQ0NGIHNlZW1zIHRv
+IGJlDQp0aGUgYmVzdCBjaG9pY2UgdG8gbW9kZWwgc3VjaCBjbG9jayBnYXRlc3MuDQoNClRoYW5r
+cywNClRyZXZvcg0KPiANCj4gUmVnYXJkcw0KPiBDaGVuWXUNCg==
 
-I just noticed that this pattern is incomplete (misses a6xx), which
-might be an argument for just using 'qcom,adreno'..
-
-OTOH, it may be worth pointing out that the driver is parsing the
-compat string to figure out the gpu-id and patch level.
-
-BR,
--R
-
-> > +
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          items:
-> > +            - description: GPU Core clock
-> > +            - description: GPU Interface clock
-> > +            - description: GPU Memory Interface clock
-> > +
-> > +        clock-names:
-> > +          items:
-> > +            - const: core
-> > +            - const: iface
-> > +            - const: mem_iface
-> > +      required:
-> > +        - clocks
-> > +        - clock-names
->
-> What do we have for clocks if this is false?
->
-> > +
-> > +examples:
-> > +  - |
-> > +
-> > +    // Example a3xx/4xx:
-> > +
-> > +    #include <dt-bindings/clock/qcom,mmcc-msm8974.h>
-> > +    #include <dt-bindings/clock/qcom,rpmcc.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    gpu: adreno@fdb00000 {
-> > +        compatible = "qcom,adreno-330.2", "qcom,adreno";
-> > +
-> > +        reg = <0xfdb00000 0x10000>;
-> > +        reg-names = "kgsl_3d0_reg_memory";
-> > +
-> > +        clock-names = "core", "iface", "mem_iface";
-> > +        clocks = <&mmcc OXILI_GFX3D_CLK>,
-> > +                 <&mmcc OXILICX_AHB_CLK>,
-> > +                 <&mmcc OXILICX_AXI_CLK>;
-> > +
-> > +        interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> > +        interrupt-names = "kgsl_3d0_irq";
-> > +
-> > +        sram = <&gpu_sram>;
-> > +        power-domains = <&mmcc OXILICX_GDSC>;
-> > +        operating-points-v2 = <&gpu_opp_table>;
-> > +        iommus = <&gpu_iommu 0>;
-> > +        #cooling-cells = <2>;
-> > +    };
-> > +
-> > +    ocmem@fdd00000 {
-> > +        compatible = "qcom,msm8974-ocmem";
-> > +
-> > +        reg = <0xfdd00000 0x2000>,
-> > +              <0xfec00000 0x180000>;
-> > +        reg-names = "ctrl", "mem";
-> > +
-> > +        clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>,
-> > +                 <&mmcc OCMEMCX_OCMEMNOC_CLK>;
-> > +        clock-names = "core", "iface";
-> > +
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +        ranges = <0 0xfec00000 0x100000>;
-> > +
-> > +        gpu_sram: gpu-sram@0 {
-> > +            reg = <0x0 0x100000>;
-> > +        };
-> > +    };
-> > +  - |
-> > +
-> > +    // Example a6xx (with GMU):
-> > +
-> > +    #include <dt-bindings/clock/qcom,gpucc-sdm845.h>
-> > +    #include <dt-bindings/clock/qcom,gcc-sdm845.h>
-> > +    #include <dt-bindings/power/qcom-rpmpd.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interconnect/qcom,sdm845.h>
-> > +
-> > +    reserved-memory {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        zap_shader_region: gpu@8f200000 {
-> > +            compatible = "shared-dma-pool";
-> > +            reg = <0x0 0x90b00000 0x0 0xa00000>;
-> > +            no-map;
-> > +        };
-> > +    };
-> > +
-> > +    gpu@5000000 {
-> > +        compatible = "qcom,adreno-630.2", "qcom,adreno";
-> > +
-> > +        reg = <0x5000000 0x40000>, <0x509e000 0x10>;
-> > +        reg-names = "kgsl_3d0_reg_memory", "cx_mem";
-> > +
-> > +        #cooling-cells = <2>;
-> > +
-> > +        interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-> > +
-> > +        iommus = <&adreno_smmu 0>;
-> > +
-> > +        operating-points-v2 = <&gpu_opp_table>;
-> > +
-> > +        interconnects = <&rsc_hlos MASTER_GFX3D &rsc_hlos SLAVE_EBI1>;
-> > +        interconnect-names = "gfx-mem";
-> > +
-> > +        qcom,gmu = <&gmu>;
-> > +
-> > +        gpu_opp_table: opp-table {
-> > +            compatible = "operating-points-v2";
-> > +
-> > +            opp-430000000 {
-> > +                opp-hz = /bits/ 64 <430000000>;
-> > +                opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-> > +                opp-peak-kBps = <5412000>;
-> > +            };
-> > +
-> > +            opp-355000000 {
-> > +                opp-hz = /bits/ 64 <355000000>;
-> > +                opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-> > +                opp-peak-kBps = <3072000>;
-> > +            };
-> > +
-> > +            opp-267000000 {
-> > +                opp-hz = /bits/ 64 <267000000>;
-> > +                opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-> > +                opp-peak-kBps = <3072000>;
-> > +            };
-> > +
-> > +            opp-180000000 {
-> > +                opp-hz = /bits/ 64 <180000000>;
-> > +                opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-> > +                opp-peak-kBps = <1804000>;
-> > +            };
-> > +        };
-> > +
-> > +        zap-shader {
-> > +            memory-region = <&zap_shader_region>;
-> > +            firmware-name = "qcom/LENOVO/81JL/qcdxkmsuc850.mbn";
-> > +        };
-> > +    };
-> > --
-> > 2.30.2
-> >
-> >
