@@ -2,61 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F58A3C5DC5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 15:53:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A66C3C5DD2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 15:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232218AbhGLN4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 09:56:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48264 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230518AbhGLN4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 09:56:12 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 414F3C0613DD;
-        Mon, 12 Jul 2021 06:53:24 -0700 (PDT)
-Received: from maud (unknown [IPv6:2600:8800:8c04:8c00::ffa6])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: alyssa)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 198401F4249E;
-        Mon, 12 Jul 2021 14:53:16 +0100 (BST)
-Date:   Mon, 12 Jul 2021 09:53:11 -0400
-From:   Alyssa Rosenzweig <alyssa@collabora.com>
-To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Arnd Bergmann <arnd@kernel.org>, devicetree@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>, linux-kernel@vger.kernel.org,
-        Marc Zyngier <maz@kernel.org>,
-        Mohamed Mediouni <mohamed.mediouni@caramail.com>,
-        Stan Skowronek <stan@corellium.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        Petr Mladek via iommu <iommu@lists.linux-foundation.org>,
-        Alexander Graf <graf@amazon.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rouven Czerwinski <r.czerwinski@pengutronix.de>
-Subject: Re: [PATCH v4 3/3] iommu: dart: Add DART iommu driver
-Message-ID: <YOxJRw9H08pwnRgc@maud>
-References: <20210627143405.77298-1-sven@svenpeter.dev>
- <20210627143405.77298-4-sven@svenpeter.dev>
- <YNx2U4GPoKxV3PWd@maud>
- <16ffb4ec-86a4-4300-b175-5d7a1fcbf994@www.fastmail.com>
+        id S234809AbhGLN7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 09:59:49 -0400
+Received: from frasgout.his.huawei.com ([185.176.79.56]:3388 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234779AbhGLN7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 09:59:48 -0400
+Received: from fraeml744-chm.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4GNlTt1ZMQz6K5qX;
+        Mon, 12 Jul 2021 21:48:34 +0800 (CST)
+Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
+ fraeml744-chm.china.huawei.com (10.206.15.225) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Mon, 12 Jul 2021 15:56:58 +0200
+Received: from localhost (10.47.25.8) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.2; Mon, 12 Jul
+ 2021 14:56:57 +0100
+Date:   Mon, 12 Jul 2021 14:56:39 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+CC:     Linus Walleij <linus.walleij@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        <linux-iio@vger.kernel.org>, Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Peter Meerwald-Stadler" <pmeerw@pmeerw.net>,
+        <devicetree@vger.kernel.org>, "Rob Herring" <robh@kernel.org>
+Subject: Re: [PATCH] iio: st-sensors: Update ST Sensor bindings
+Message-ID: <20210712145639.00004604@Huawei.com>
+In-Reply-To: <20210712130444.bois24oukqmxpg27@gilmour>
+References: <20210412122331.1631643-1-linus.walleij@linaro.org>
+        <20210712130444.bois24oukqmxpg27@gilmour>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <16ffb4ec-86a4-4300-b175-5d7a1fcbf994@www.fastmail.com>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.25.8]
+X-ClientProxiedBy: lhreml727-chm.china.huawei.com (10.201.108.78) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > Should we be checking alignment here? Something like
-> > 
-> >     BUG_ON(paddr & ((1 << DART_TTBR_SHIFT) - 1));
-> > 
-> 
-> Sure, right now paddr will always be aligned but adding that
-> BUG_ON doesn't hurt :)
+On Mon, 12 Jul 2021 15:04:44 +0200
+Maxime Ripard <maxime@cerno.tech> wrote:
 
-Probably should have suggested WARN_ON instead of BUG_ON but yes.
+> Hi,
+> 
+> On Mon, Apr 12, 2021 at 02:23:31PM +0200, Linus Walleij wrote:
+> > This adjusts the ST Sensor bindings with the more fine-grained
+> > syntax checks that were proposed late in the last kernel cycle
+> > and colliding with parallel work.
+> > 
+> > Cc: devicetree@vger.kernel.org
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>  
+> 
+> I'm not really sure of how I supposed to fix this, but this creates an
+> issue on the Pinephone
+> (arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone-1.2.dts) that has a
+> LIS3MDL with only the DRDY pin routed and thus only has a single
+> interrupt in the DT.
+> 
+> One of the if condition in that patch enforces that there's two
+> interrupts for the LIS3MDL, but it's not really clear to me why after
+> looking at the datasheet?
+
+It shouldn't be enforcing that 2 are specified rather that 2 'might' be
+specified.  maxItems is set, but not minItems. 
+
+Driver wise, at the moment it looks like we only handle one interrupt.
+So to handle selection when two are possible and either 1 or 2 might
+be wired up we need to add interrupt names (with default order so we
+don't break anything before adding them to the binding).
+
+Would that work for this device?
+
+Jonathan
+ 
+> 
+> Maxime
+> 
+
