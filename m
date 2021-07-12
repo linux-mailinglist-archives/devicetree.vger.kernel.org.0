@@ -2,203 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A0AD3C602C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 18:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08BE53C6054
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 18:19:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231971AbhGLQOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 12:14:49 -0400
-Received: from mail-il1-f181.google.com ([209.85.166.181]:36580 "EHLO
-        mail-il1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231463AbhGLQOt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 12:14:49 -0400
-Received: by mail-il1-f181.google.com with SMTP id j5so2511346ilk.3;
-        Mon, 12 Jul 2021 09:11:59 -0700 (PDT)
+        id S232852AbhGLQWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 12:22:09 -0400
+Received: from mail-il1-f175.google.com ([209.85.166.175]:43726 "EHLO
+        mail-il1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231821AbhGLQWJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 12:22:09 -0400
+Received: by mail-il1-f175.google.com with SMTP id w1so18092274ilg.10;
+        Mon, 12 Jul 2021 09:19:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9HMN5LJZVuVA0FOK0FGkM8nqyj4ld2XA2G0Cc8q6SD0=;
-        b=rXnWrTUHQLMDfQ3t+E8/EpEZTn4bcgscmBoQbBNe92o0p0lt+jihzfQwLDOwocRQS+
-         mFHrH+AVAefRQmv5M9EbTqIeN9GaSguVGAWP46c+alxH1E2iSs4noC9VnITi6YXDkUog
-         ZuzyLLO4I9Rcw7v71zD5zIeePmZyRmhodMjYOYWDG8ydZcc7bKaCJBeCkepMULDWTWbv
-         BhZC0E+oINNiVu5EsFN9kOlCTK+3NmWP1UwgASP6XcigBeO4C2ocQb5wt0CdEJZnqQHt
-         f3ko5oYwvjFReetOq1kYBMXEJUm1NPlgQqCVt4FskTJTe9BeM2tnuu4HNGzo8RTf6fSq
-         hDhw==
-X-Gm-Message-State: AOAM5320v8QZc6DkTsQM27h2Siwh3K3C9GdB49imZUUMFs245my7fS1K
-        U0cMGAVspCcUl4eYCKmfaQ==
-X-Google-Smtp-Source: ABdhPJzexgPf2jnfJFGtPKXhUglMRagL0lC++MIZgyNXUnpXfQx4WcWjb5+OQAj2GmyFY1KFtUj8cw==
-X-Received: by 2002:a05:6e02:602:: with SMTP id t2mr13857344ils.118.1626106318750;
-        Mon, 12 Jul 2021 09:11:58 -0700 (PDT)
+        bh=BYWFIpvnWOMWw5lwd/Bql1Vd1w1jWkUEvAEN0va6yYQ=;
+        b=fgVo1vlojsridWcHK7WYIqta7wPG7npdHPfmytUgAsWbUy3IcifYLWlOEeSI95gn+2
+         xOnZlOg/LzQgfE+uJicQx0hiY1npMDDB7stPwj4Fx/eL48iC7p0eNWGle81OC8Infb+k
+         BdJBSqSYsvZ5n93va9dNzyHUn+wRaqdGf7xwquCKRkx01S6fUE/rEOwpP79p/F1nvMPC
+         xKjoBIrd/ndoL42ivHTlKua6lBvLaaszp/NAb5u3xu6X2+ka0DpFVO58yQUmSKvRQDEu
+         Nk9NL0QG5Zm4bfEDeJVZe7Q9CdEi9Yt33ru2MgUHrduBX6YbHzUAgZ/YWpcS/WnP1JEn
+         7XNg==
+X-Gm-Message-State: AOAM530uLYNkGXmo6PFUbXhHJmM7t/Rz+DJzoAljCB8lgGRXQuk3nSFV
+        1OEI2Aod1KS1MR+lnRy3Yw==
+X-Google-Smtp-Source: ABdhPJyCUSsKUs1qYQs/Fe5xR2z3A+oR1b+ETcomlrG8Tj3YzNAWzZe3u4suyj+O250ZxIo+KVQz0A==
+X-Received: by 2002:a05:6e02:138b:: with SMTP id d11mr1077187ilo.229.1626106759265;
+        Mon, 12 Jul 2021 09:19:19 -0700 (PDT)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id l8sm8740446iok.26.2021.07.12.09.11.57
+        by smtp.gmail.com with ESMTPSA id b2sm5042148ioj.19.2021.07.12.09.19.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 12 Jul 2021 09:11:58 -0700 (PDT)
-Received: (nullmailer pid 2034482 invoked by uid 1000);
-        Mon, 12 Jul 2021 16:11:56 -0000
-Date:   Mon, 12 Jul 2021 10:11:56 -0600
+        Mon, 12 Jul 2021 09:19:18 -0700 (PDT)
+Received: (nullmailer pid 2045715 invoked by uid 1000);
+        Mon, 12 Jul 2021 16:19:15 -0000
+Date:   Mon, 12 Jul 2021 10:19:15 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     peda@axentia.se, jic23@kernel.org, lars@metafoo.de,
-        pmeerw@pmeerw.net, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 10/10] dt-bindings: iio: afe: add bindings for
- temperature transducers
-Message-ID: <20210712161156.GA2029104@robh.at.kernel.org>
-References: <20210706160942.3181474-1-liambeguin@gmail.com>
- <20210706160942.3181474-11-liambeguin@gmail.com>
+To:     Jon Lin <jon.lin@rock-chips.com>
+Cc:     linux-spi@vger.kernel.org, broonie@kernel.org, heiko@sntech.de,
+        jbx6244@gmail.com, hjc@rock-chips.com, yifeng.zhao@rock-chips.com,
+        sugar.zhang@rock-chips.com, linux-rockchip@lists.infradead.org,
+        linux-mtd@lists.infradead.org, p.yadav@ti.com,
+        macroalpha82@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [RFC PATCH v11 01/10] dt-bindings: rockchip-sfc: Bindings for
+ Rockchip serial flash controller
+Message-ID: <20210712161915.GA2034807@robh.at.kernel.org>
+References: <20210707090810.5717-1-jon.lin@rock-chips.com>
+ <20210707090810.5717-2-jon.lin@rock-chips.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20210706160942.3181474-11-liambeguin@gmail.com>
+In-Reply-To: <20210707090810.5717-2-jon.lin@rock-chips.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 06, 2021 at 12:09:42PM -0400, Liam Beguin wrote:
-> From: Liam Beguin <lvb@xiphos.com>
+On Wed, Jul 07, 2021 at 05:08:01PM +0800, Jon Lin wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
 > 
-> An ADC is often used to measure other quantities indirectly.
-> This binding describe one case, the measurement of a temperature
-> through a temperature transducer (either voltage or current).
+> Add bindings for the Rockchip serial flash controller. New device
+> specific parameter of rockchip,sfc-no-dma included in documentation.
 > 
-> Signed-off-by: Liam Beguin <lvb@xiphos.com>
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Jon Lin <jon.lin@rock-chips.com>
 > ---
->  .../iio/afe/temperature-transducer.yaml       | 111 ++++++++++++++++++
->  1 file changed, 111 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml b/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
+> Changes in v11: None
+> Changes in v10: None
+> Changes in v9: None
+> Changes in v8:
+> - Fix indent 4 to 2 in yaml
+
+Sigh, my comments from v7 still remain. I told you the same thing on v8.
+
+> 
+> Changes in v7:
+> - Fix up the sclk_sfc parent error in rk3036
+> - Unify to "rockchip,sfc" compatible id because all the feature update
+>   will have a new IP version, so the driver is used for the SFC IP in
+>   all SoCs
+> - Change to use node "sfc" to name the SFC pinctrl group
+> - Add subnode reg property check
+> - Add rockchip_sfc_adjust_op_size to workaround in CMD + DUMMY case
+> - Limit max_iosize to 32KB
+> 
+> Changes in v6:
+> - Add support in device trees for rv1126(Declared in series 5 but not
+>   submitted)
+> - Change to use "clk_sfc" "hclk_sfc" as clock lable, since it does not
+>   affect interpretation and has been widely used
+> - Support sfc tx_dual, tx_quad(Declared in series 5 but not submitted)
+> - Simplify the code, such as remove "rockchip_sfc_register_all"(Declared
+>   in series 5 but not submitted)
+> - Support SFC ver4 ver5(Declared in series 5 but not submitted)
+> - Add author Chris Morgan and Jon Lin to spi-rockchip-sfc.c
+> - Change to use devm_spi_alloc_master and spi_unregister_master
+> 
+> Changes in v5:
+> - Add support in device trees for rv1126
+> - Support sfc tx_dual, tx_quad
+> - Simplify the code, such as remove "rockchip_sfc_register_all"
+> - Support SFC ver4 ver5
+> 
+> Changes in v4:
+> - Changing patch back to an "RFC". An engineer from Rockchip
+>   reached out to me to let me know they are working on this patch for
+>   upstream, I am submitting this v4 for the community to see however
+>   I expect Jon Lin (jon.lin@rock-chips.com) will submit new patches
+>   soon and these are the ones we should pursue for mainlining. Jon's
+>   patch series should include support for more hardware than this
+>   series.
+> - Clean up documentation more and ensure it is correct per
+>   make dt_binding_check.
+> - Add support in device trees for rk3036, rk3308, and rv1108.
+> - Add ahb clock (hclk_sfc) support for rk3036.
+> - Change rockchip_sfc_wait_fifo_ready() to use a switch statement.
+> - Change IRQ code to only mark IRQ as handled if it handles the
+>   specific IRQ (DMA transfer finish) it is supposed to handle.
+> 
+> Changes in v3:
+> - Changed the name of the clocks to sfc/ahb (from clk-sfc/clk-hsfc).
+> - Changed the compatible string from rockchip,sfc to
+>   rockchip,rk3036-sfc. A quick glance at the datasheets suggests this
+>   driver should work for the PX30, RK180x, RK3036, RK312x, RK3308 and
+>   RV1108 SoCs, and possibly more. However, I am currently only able
+>   to test this on a PX30 (an RK3326). The technical reference manuals
+>   appear to list the same registers for each device.
+> - Corrected devicetree documentation for formatting and to note these
+>   changes.
+> - Replaced the maintainer with Heiko Stuebner and myself, as we will
+>   take ownership of this going forward.
+> - Noted that the device (per the reference manual) supports 4 CS, but
+>   I am only able to test a single CS (CS 0).
+> - Reordered patches to comply with upstream rules.
+> 
+> Changes in v2:
+> - Reimplemented driver using spi-mem subsystem.
+> - Removed power management code as I couldn't get it working properly.
+> - Added device tree bindings for Odroid Go Advance.
+> 
+> Changes in v1:
+> hanges made in this new series versus the v8 of the old series:
+> - Added function to read spi-rx-bus-width from device tree, in the
+>   event that the SPI chip supports 4x mode but only has 2 pins
+>   wired (such as the Odroid Go Advance).
+> - Changed device tree documentation from txt to yaml format.
+> - Made "reset" message a dev_dbg from a dev_info.
+> - Changed read and write fifo functions to remove redundant checks.
+> - Changed the write and read from relaxed to non-relaxed when
+>   starting the DMA transfer or reading the DMA IRQ.
+> - Changed from dma_coerce_mask_and_coherent to just
+>   dma_set_mask_and_coherent.
+> - Changed name of get_if_type to rockchip_sfc_get_if_type.
+> 
+>  .../devicetree/bindings/spi/rockchip-sfc.yaml | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml b/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
 > new file mode 100644
-> index 000000000000..b5a4fbfe75e4
+> index 000000000000..162993a97290
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/spi/rockchip-sfc.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/iio/afe/temperature-transducer.yaml#
+> +$id: http://devicetree.org/schemas/spi/rockchip-sfc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Temperature Transducer
+> +title: Rockchip Serial Flash Controller (SFC)
 > +
 > +maintainers:
-> +  - Liam Beguin <lvb@xiphos.com>
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +  - Chris Morgan <macromorgan@hotmail.com>
 > +
-> +description: |
-> +  A temperature transducer is a device that converts a thermal quantity
-> +  into any other physical quantity. This binding applies to temperature to
-> +  voltage (like the LTC2997), and temperature to current (like the AD590)
-> +  linear transducers.
-> +  In both cases these are assumed to be connected to a voltage ADC.
-> +
-> +  When an io-channel measures the output voltage of a temperature analog front
-> +  end such as a temperature transducer, the interesting measurement is almost
-> +  always the corresponding temperature, not the voltage output. This binding
-> +  describes such a circuit.
-> +
-> +  The general transfer function here is (using SI units)
-> +    V(T) = Rsense * Isense(T)
-> +    T = (Isense(T) / alpha) + offset
-> +    T = 1 / (Rsense * alpha) * (V + offset * Rsense * alpha)
-> +
-> +  When using a temperature to voltage transducer, Rsense is set to 1.
-> +
-> +  The following circuits show a temperature to current and a temperature to
-> +  voltage transducer that can be used with this binding.
-> +
-> +           VCC
-> +          -----
-> +            |
-> +        +---+---+
-> +        | AD590 |                               VCC
-> +        +---+---+                              -----
-> +            |                                    |
-> +            V proportional to T             +----+----+
-> +            |                          D+ --+         |
-> +            +---- Vout                      | LTC2997 +--- Vout
-> +            |                          D- --+         |
-> +        +---+----+                          +---------+
-> +        | Rsense |                               |
-> +        +---+----+                             -----
-> +            |                                   GND
-> +          -----
-> +           GND
+> +allOf:
+> +  - $ref: spi-controller.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    const: temperature-transducer
+> +    oneOf:
+
+Don't need oneOf when there is only one.
+
+> +      - const: rockchip,sfc
+
+As I mentioned in v7, add a comment here why a non-specific compatible 
+string is okay here.
+
 > +
-> +  io-channels:
+> +  reg:
 > +    maxItems: 1
-> +    description: |
-> +      Channel node of a voltage io-channel.
 > +
-> +  '#io-channel-cells':
-> +    const: 0
-
-This is a io-channel consumer and producer?
-
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +  sense-offset-millicelsius:
-> +    description: |
-> +      Temperature offset. The default is <0>.
-> +      This offset is commonly used to convert from Kelvins to degrees Celsius.
-> +      In that case, sense-offset-millicelsius would be set to <(-273150)>.
-
-default: 0
-
+> +  clocks:
+> +    items:
+> +      - description: Bus Clock
+> +      - description: Module Clock
 > +
-> +  sense-resistor-ohms:
-> +    description: |
-> +      The sense resistor. Defaults to <1>.
-> +      Set sense-resistor-ohms to <1> when using a temperature to voltage
-> +      transducer.
-
-default: 1
-
-Though why would we set the value to 1 if the default is 1?
-
+> +  clock-names:
+> +    items:
+> +      - const: clk_sfc
+> +      - const: hclk_sfc
 > +
-> +  alpha-ppm-per-celsius:
-> +    description: |
-> +      Sometimes referred to as output gain, slope, or temperature coefficient.
+> +  power-domains:
+> +    maxItems: 1
 > +
-> +      alpha is expressed in parts per million which can be micro-amps per
-> +      degrees Celsius or micro-volts per degrees Celsius. The is the main
-> +      characteristic of a temperature transducer and should be stated in the
-> +      datasheet.
+> +  rockchip,sfc-no-dma:
+> +    description: Disable DMA and utilize FIFO mode only
+> +    type: boolean
 > +
-> +additionalProperties: false
-
-Blank line here.
-
+> +patternProperties:
+> +  "^flash@[0-3]$":
+> +    type: object
+> +    properties:
+> +      reg:
+> +        minimum: 0
+> +        maximum: 3
+> +
 > +required:
 > +  - compatible
-> +  - io-channels
-> +  - alpha-ppm-per-celsius
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
 > +
 > +examples:
 > +  - |
-> +    ad950: temperature-sensor-0 {
-> +        compatible = "temperature-transducer";
-> +        #io-channel-cells = <0>;
-> +        io-channels = <&temp_adc 3>;
+> +    #include <dt-bindings/clock/px30-cru.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/px30-power.h>
 > +
-> +        sense-offset-millicelsius = <(-273150)>; /* Kelvin to degrees Celsius */
-> +        sense-resistor-ohms = <8060>;
-> +        alpha-ppm-per-celsius = <1>; /* 1 uA/K */
-> +    };
-> +  - |
-> +    znq_tmp: temperature-sensor-1 {
-> +        compatible = "temperature-transducer";
-> +        #io-channel-cells = <0>;
-> +        io-channels = <&temp_adc 2>;
+> +    sfc: spi@ff3a0000 {
+> +        compatible = "rockchip,sfc";
+> +        reg = <0xff3a0000 0x4000>;
+> +        interrupts = <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&cru SCLK_SFC>, <&cru HCLK_SFC>;
+> +        clock-names = "clk_sfc", "hclk_sfc";
+> +        pinctrl-0 = <&sfc_clk &sfc_cs &sfc_bus2>;
+> +        pinctrl-names = "default";
+> +        power-domains = <&power PX30_PD_MMC_NAND>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
 > +
-> +        sense-offset-millicelsius = <(-273150)>; /* Kelvin to degrees Celsius */
-> +        alpha-ppm-per-celsius = <4000>; /* 4 mV/K */
+> +        flash@0 {
+> +            compatible = "jedec,spi-nor";
+> +            reg = <0>;
+> +            spi-max-frequency = <108000000>;
+> +            spi-rx-bus-width = <2>;
+> +            spi-tx-bus-width = <2>;
+> +        };
 > +    };
+> +
 > +...
 > -- 
-> 2.30.1.489.g328c10930387
+> 2.17.1
+> 
+> 
 > 
 > 
