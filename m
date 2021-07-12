@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD5FF3C5AB8
-	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 13:04:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01EAD3C5AED
+	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 13:05:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235617AbhGLKQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Jul 2021 06:16:13 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:51788 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234153AbhGLKQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 06:16:00 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 704B51F4210C
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Subject: Re: [PATCH v5 8/8] dts: mtk-mdp: remove mediatek,vpu property from
- primary MDP device
-To:     Eizan Miyamoto <eizan@chromium.org>, linux-kernel@vger.kernel.org
-Cc:     wenst@chromium.org, chunkuang.hu@kernel.org, yong.wu@mediatek.com,
-        houlong.wei@mediatek.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20210709022324.1607884-1-eizan@chromium.org>
- <20210709122040.v5.8.Ib681f06d5189351b7fda0e3dcd6b15f3863a0071@changeid>
-Message-ID: <a7d0bb06-345f-8e74-e272-cf241b2a122f@collabora.com>
-Date:   Mon, 12 Jul 2021 12:13:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        id S234118AbhGLKtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Jul 2021 06:49:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34772 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234085AbhGLKtl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Jul 2021 06:49:41 -0400
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A0FAD610A7;
+        Mon, 12 Jul 2021 10:46:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1626086813;
+        bh=Ao3c5ZQCxM2QID6m4VZxbaPV+tdCnDhxUfo395ZRO4Q=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=QS+DcUhYhU5EcnC3uQl6KIo23hoLVhexryf+QJgueL7Kdzc8Kp8lMucMbl1MWMg3n
+         hlIKa+KL4n0x2BzsYBMbu+o5mXk3sinXUPAxGeABmDvnei6YVVmdqVWypWhmKF1fvD
+         IyzuBHb2Aiyxqym7MkJ9zLGRQgkPYlYA138MCE+PYQqphSj//SSg/kU6FSQz0p2hy6
+         jM+AEETvquUxCQ9RFFHK9ALAzvNoRsb7zdRWS5XQjn4mmKIjZprZgV4p18i7cGnGDm
+         X7c1VN7tDz0e+4k6STP6KPJxKYWSBjuR7cXmNqDfO3eZn3z/Um3ObLVFFSA8kVNwpX
+         nJSmmo3QyCl2A==
+From:   Mark Brown <broonie@kernel.org>
+To:     Mason Zhang <mason.zhang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Mason Zhang <Mason.Zhang@mediatek.com>,
+        linux-mediatek@lists.infradead.org, wsd_upstream@mediatek.com,
+        linux-spi@vger.kernel.org, leilk.liu@mediatek.com
+Subject: Re: [PATCH 2/2] spi: mediatek: update spi master bingdings for MT6893 SOC
+Date:   Mon, 12 Jul 2021 11:45:40 +0100
+Message-Id: <162608669457.4543.2639315857957915855.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20210629101310.21045-1-mason.zhang@mediatek.com>
+References: <20210629101310.21045-1-mason.zhang@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <20210709122040.v5.8.Ib681f06d5189351b7fda0e3dcd6b15f3863a0071@changeid>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eizan,
+On Tue, 29 Jun 2021 18:13:11 +0800, Mason Zhang wrote:
+> this patch update spi master bingdings for MT6893 SOC.
 
-Thank you for your patch.
+Applied to
 
-On 9/7/21 4:23, Eizan Miyamoto wrote:
-> It is no longer used by the mediatek MDP driver.
-> 
-> Signed-off-by: Eizan Miyamoto <eizan@chromium.org>
-> ---
-> 
-> (no changes since v1)
-> 
->  arch/arm64/boot/dts/mediatek/mt8173.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> index d502073b551f..872427748110 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> @@ -1010,7 +1010,6 @@ mdp_rdma0: rdma@14001000 {
->  			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
->  			iommus = <&iommu M4U_PORT_MDP_RDMA0>;
->  			mediatek,larb = <&larb0>;
-> -			mediatek,vpu = <&vpu>;
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
+Thanks!
 
-Should be also removed from the documentation binding?
+[2/2] spi: mediatek: update spi master bingdings for MT6893 SOC
+      commit: 3522d9aa19285bbff14da20cb3481e36ef4835fd
 
->  		};
->  
->  		mdp_rdma1: rdma@14002000 {
-> 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
