@@ -2,228 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 831863C59B7
+	by mail.lfdr.de (Postfix) with ESMTP id 3A8A93C59B6
 	for <lists+devicetree@lfdr.de>; Mon, 12 Jul 2021 13:02:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347385AbhGLJHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S243780AbhGLJHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 12 Jul 2021 05:07:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33234 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381734AbhGLJAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 05:00:15 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34534C05BD38
-        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 01:51:45 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id r20so22926807ljd.10
-        for <devicetree@vger.kernel.org>; Mon, 12 Jul 2021 01:51:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sR4KnKKgxHN9z8BeYEVAscsOfy0MsCFzGozgJRmjHoQ=;
-        b=KBTKNUYZKpv1sfofoG4yBTpCqrXuE/QxxcU5XAWeL7z1AGVZFoAa5YAou4XmMVTWqr
-         oKvV+cFzMqHu22KtQT1+v+8BIhMvn9fPjAqM+CkB2XEcVzcqyWrW/KgN16Lto6pSAWNW
-         yMOezXNLCbp6WHbZzS+yVgpy7N2WIXBtiL8DA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sR4KnKKgxHN9z8BeYEVAscsOfy0MsCFzGozgJRmjHoQ=;
-        b=tQzPDMn/2WNdErqcmMTUMEL6BCdkMOraj8JOEh+nnaPRf6kk9dzfXvcFy6vExFcBR+
-         hqQNbL+JefqIfK0HpfsNgXJLrHkOBSV97huaop9ZVzzv/WNFpbLkJLUMPNlzremif9R3
-         w4XXDrG579dAeqQGg5NfTQJRcrpmw79ypR9Pc2uxdfucjwzKgJEo2HIoZYLwq7xsFh3a
-         cDNefhXplWaGqQrOSRIPlqp9+asPKCyGYfzRCZDD8fiwOuni1FRlPN9VAcmzj1UiutsH
-         UxMYWQtZpLuKMLcn4jc6sS7WqL48IzKhjZzzNh6BoQA3kkgGLqfj9IrVX3LKlY3eIsXT
-         EeEw==
-X-Gm-Message-State: AOAM530p/iXqJXfBuRr9CalTfoQfp9m4mVcqBAK7tEWwjJJzLWFaNx86
-        zIBr4QkH13FXRPPxN8PDDW3RYByj6gqqLwObZlE4GA==
-X-Google-Smtp-Source: ABdhPJznoaETcAUcESZx3FrbuVmH9FyPfOB6iuI5K/5+igBo1ampLvrOGeE2zzhzQgFOCefiXeU1BA4Gn8l8OL90wfU=
-X-Received: by 2002:a05:651c:2115:: with SMTP id a21mr41006635ljq.185.1626079903572;
- Mon, 12 Jul 2021 01:51:43 -0700 (PDT)
+Received: from mickerik.phytec.de ([195.145.39.210]:45256 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1357119AbhGLI6Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Jul 2021 04:58:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1626080136; x=1628672136;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Dy+6iS++meqFzqSVYFxZfoHj7hwMnTUdHBIuRK5abJ4=;
+        b=nqK+FB6co5UdUFfGyeSFIxNM4MMi45ORkLHt4DViSvGcUKwsd3a8HcmERAF/yTKW
+        00xdDd/s6EX2WK5OkyVnCfKJZ6i5uNXKEJig4rEp+vVo1Wrs5guMYQXNmfZbuQlg
+        QoZj7YqAhrs6Cl+H9oixwh3Yq4HoctC19qb7HM+AZ7U=;
+X-AuditID: c39127d2-1e4f970000001daf-19-60ec03882add
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id D9.8D.07599.8830CE06; Mon, 12 Jul 2021 10:55:36 +0200 (CEST)
+Received: from lws-riedmueller.phytec.de ([172.16.23.108])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2021071210553587-1131630 ;
+          Mon, 12 Jul 2021 10:55:35 +0200 
+From:   Stefan Riedmueller <s.riedmueller@phytec.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Stefan Riedmueller <s.riedmueller@phytec.de>
+Subject: [PATCH v5 0/6] media: mt9p031: Read back the real clock rate
+Date:   Mon, 12 Jul 2021 10:55:29 +0200
+Message-Id: <20210712085535.11907-1-s.riedmueller@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210616224743.5109-1-chun-jie.chen@mediatek.com> <20210616224743.5109-23-chun-jie.chen@mediatek.com>
-In-Reply-To: <20210616224743.5109-23-chun-jie.chen@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Mon, 12 Jul 2021 16:51:32 +0800
-Message-ID: <CAGXv+5EkunhQMnEP1gfkM-t1X+wUed1PkBTA+RZTdBQ3OGgd3g@mail.gmail.com>
-Subject: Re: [PATCH 22/22] clk: mediatek: Add MT8195 apusys clock support
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 12.07.2021 10:55:35,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 12.07.2021 10:55:36
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: quoted-printable
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrMLMWRmVeSWpSXmKPExsWyRoCBS7eD+U2CwfpPzBbzj5xjteicuITd
+        4vKuOWwWPRu2slos2/SHyaJ17xF2i09bvjE5sHvM7pjJ6rFpVSebx7yTgR6fN8kFsERx2aSk
+        5mSWpRbp2yVwZbQcm8lYsEKgYvOi9WwNjFd5uhg5OSQETCQabqxlBbGFBLYxShzpK+pi5AKy
+        rzNKvFrTwgaSYBMwklgwrZEJJCEi0MYoseNIM5jDLLCFUeLz/f1MIFXCAq4SO+/tYwaxWQRU
+        JVpabzOC2LwCNhI75vYzQ6yTl5h56Ts7RFxQ4uTMJywggyQErjBKrJxzkB2iSEji9OKzYA3M
+        AtoSyxa+Zp7AyDcLSc8sJKkFjEyrGIVyM5OzU4sys/UKMipLUpP1UlI3MQID8vBE9Us7GPvm
+        eBxiZOJgPMQowcGsJML7rfdVghBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeDbwlYUIC6Yklqdmp
+        qQWpRTBZJg5OqQbGhpi5523NTR7euVuuc0mWwyPs9qvwxk8SG88XRawU1Fi9sVtA8738o1Tl
+        H0HpscrpeWtPTdkTpiLCujThW8/S5RlzFZ5oVIbMV77Kc2h+ZskjTzEPV/OowxW8DNcTPQrU
+        5lzO4LzE4xPpt4Or7L/UYXMdjp0b33Lu42DZ7uj9zkRi0rtY6yolluKMREMt5qLiRABYeavb
+        NgIAAA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Thu, Jun 17, 2021 at 7:00 AM Chun-Jie Chen
-<chun-jie.chen@mediatek.com> wrote:
->
-> Add MT8195 apusys clock provider
->
-> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> ---
->  drivers/clk/mediatek/Kconfig                 |  6 ++
->  drivers/clk/mediatek/Makefile                |  1 +
->  drivers/clk/mediatek/clk-mt8195-apusys_pll.c | 84 ++++++++++++++++++++
->  3 files changed, 91 insertions(+)
->  create mode 100644 drivers/clk/mediatek/clk-mt8195-apusys_pll.c
->
-> diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfig
-> index ade85a52b7ed..9bd1ebff61f2 100644
-> --- a/drivers/clk/mediatek/Kconfig
-> +++ b/drivers/clk/mediatek/Kconfig
-> @@ -690,6 +690,12 @@ config COMMON_CLK_MT8195_IMP_IIC_WRAP
->         help
->           This driver supports MediaTek MT8195 imp_iic_wrap clocks.
->
-> +config COMMON_CLK_MT8195_APUSYS_PLL
-> +       bool "Clock driver for MediaTek MT8195 apusys_pll"
-> +       depends on COMMON_CLK_MT8195
-> +       help
-> +         This driver supports MediaTek MT8195 apusys_pll clocks.
-> +
->  config COMMON_CLK_MT8516
->         bool "Clock driver for MediaTek MT8516"
->         depends on ARCH_MEDIATEK || COMPILE_TEST
-> diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makefile
-> index b10c6267ba98..676ed7d665b7 100644
-> --- a/drivers/clk/mediatek/Makefile
-> +++ b/drivers/clk/mediatek/Makefile
-> @@ -98,5 +98,6 @@ obj-$(CONFIG_COMMON_CLK_MT8195_VPPSYS0) += clk-mt8195-vpp0.o
->  obj-$(CONFIG_COMMON_CLK_MT8195_VPPSYS1) += clk-mt8195-vpp1.o
->  obj-$(CONFIG_COMMON_CLK_MT8195_WPESYS) += clk-mt8195-wpe.o
->  obj-$(CONFIG_COMMON_CLK_MT8195_IMP_IIC_WRAP) += clk-mt8195-imp_iic_wrap.o
-> +obj-$(CONFIG_COMMON_CLK_MT8195_APUSYS_PLL) += clk-mt8195-apusys_pll.o
->  obj-$(CONFIG_COMMON_CLK_MT8516) += clk-mt8516.o
->  obj-$(CONFIG_COMMON_CLK_MT8516_AUDSYS) += clk-mt8516-aud.o
-> diff --git a/drivers/clk/mediatek/clk-mt8195-apusys_pll.c b/drivers/clk/mediatek/clk-mt8195-apusys_pll.c
-> new file mode 100644
-> index 000000000000..d9b49cf71281
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt8195-apusys_pll.c
-> @@ -0,0 +1,84 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +//
-> +// Copyright (c) 2021 MediaTek Inc.
-> +// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> +
-> +#include <linux/clk-provider.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "clk-mtk.h"
-> +#include "clk-gate.h"
-> +
-> +#include <dt-bindings/clock/mt8195-clk.h>
-> +
-> +#define MT8195_PLL_FMAX                (3800UL * MHZ)
-> +#define MT8195_PLL_FMIN                (1500UL * MHZ)
-> +#define MT8195_INTEGER_BITS    8
-> +
-> +#define PLL(_id, _name, _reg, _pwr_reg, _en_mask, _flags,      \
-> +                       _rst_bar_mask, _pcwbits, _pd_reg, _pd_shift,    \
-> +                       _tuner_reg, _tuner_en_reg, _tuner_en_bit,       \
-> +                       _pcw_reg, _pcw_shift, _pcw_chg_reg,                             \
-> +                       _en_reg, _pll_en_bit) {                                 \
+Changes in v5:
+ - Fixed issues reported by dt=5Fbinding=5Fcheck
+ - Use /schemas/graph.yaml#/$defs/port-base instead of
+   /schemas/graph.yaml#/properties/port since we have additional
+   endpoint properties
+ - Update commit message
 
-Some of these fields are always set to zero in this driver. Either they
-use the same value, or it means the particular function is not supported
-in the hardware.
+Changes in v4:
+ - Add two missing BIT macro conversions
+ - Switch to dt-bindings yaml schema before applying changes
+ - Drop explicit pclk-sample property documentation patch since it is
+   documented in the referenced video-interface schema now. (I hope that
+   is correct)
 
-You could move the fixed value for unsupported functions, such as rst_bar_mask,
-or even all common values, into the macro to simplify the macro argument list.
-And if you do so, please also add comments explaining which values are shared,
-and why they can be shared.
+Changes in v3:
+ - Dropped 1/5 media: mt9p031: Add support for 8 bit and 10 bit formats
+ - Dropped 3/5 media: mt9p031: Implement [gs]=5Fregister debug calls
+ - Added reviewed-by from Laurent Pinchart to
+   media: mt9p031: Read back the real clock rate
+ - Dropped unnecessary register reads in
+   media: mt9p031: Fix corrupted frame after restarting
+ - Changed sorting of register bits from MSB to LSB
+ - Added patch to switch to BIT macro
+ - Added two additional dt-bindings patches to add missing properties
+   documentation
 
-I believe the same could also be done for the APLL driver.
+Christian Hemp (2):
+  media: mt9p031: Make pixel clock polarity configurable by DT
+  media: mt9p031: Add support for 8 bit and 10 bit formats
 
-> +               .id = _id,                                              \
-> +               .name = _name,                                          \
-> +               .reg = _reg,                                            \
-> +               .pwr_reg = _pwr_reg,                                    \
-> +               .en_mask = _en_mask,                                    \
-> +               .flags = _flags,                                        \
-> +               .rst_bar_mask = _rst_bar_mask,                          \
-> +               .fmax = MT8195_PLL_FMAX,                                \
-> +               .fmin = MT8195_PLL_FMIN,                                \
-> +               .pcwbits = _pcwbits,                                    \
-> +               .pcwibits = MT8195_INTEGER_BITS,                        \
-> +               .pd_reg = _pd_reg,                                      \
-> +               .pd_shift = _pd_shift,                                  \
-> +               .tuner_reg = _tuner_reg,                                \
-> +               .tuner_en_reg = _tuner_en_reg,                          \
-> +               .tuner_en_bit = _tuner_en_bit,                          \
-> +               .pcw_reg = _pcw_reg,                                    \
-> +               .pcw_shift = _pcw_shift,                                \
-> +               .pcw_chg_reg = _pcw_chg_reg,                            \
-> +               .en_reg = _en_reg,                                      \
-> +               .pll_en_bit = _pll_en_bit,                              \
-> +       }
-> +
-> +static const struct mtk_pll_data apusys_plls[] = {
-> +       PLL(CLK_APUSYS_PLL_APUPLL, "apusys_pll_apupll", 0x008, 0x014, 0,
-> +               0, 0, 22, 0x00c, 24, 0, 0, 0, 0x00c, 0, 0, 0, 0),
-> +       PLL(CLK_APUSYS_PLL_NPUPLL, "apusys_pll_npupll", 0x018, 0x024, 0,
-> +               0, 0, 22, 0x01c, 24, 0, 0, 0, 0x01c, 0, 0, 0, 0),
-> +       PLL(CLK_APUSYS_PLL_APUPLL1, "apusys_pll_apupll1", 0x028, 0x034, 0,
-> +               0, 0, 22, 0x02c, 24, 0, 0, 0, 0x02c, 0, 0, 0, 0),
-> +       PLL(CLK_APUSYS_PLL_APUPLL2, "apusys_pll_apupll2", 0x038, 0x044, 0,
-> +               0, 0, 22, 0x03c, 24, 0, 0, 0, 0x03c, 0, 0, 0, 0),
+Dirk Bender (1):
+  media: mt9p031: Fix corrupted frame after restarting stream
 
-The datasheet doesn't provide names for these clocks. The values here look
-correct though.
+Stefan Riedmueller (3):
+  media: mt9p031: Use BIT macro
+  media: dt-bindings: mt9p031: Convert bindings to yaml
+  media: dt-bindings: mt9p031: Add missing required properties
 
-> +};
-> +
-> +static int clk_mt8195_apusys_pll_probe(struct platform_device *pdev)
-> +{
-> +       struct clk_onecell_data *clk_data;
-> +       struct device_node *node = pdev->dev.of_node;
-> +
-> +       clk_data = mtk_alloc_clk_data(CLK_APUSYS_PLL_NR_CLK);
-> +       if (!clk_data)
-> +               return -ENOMEM;
-> +
-> +       mtk_clk_register_plls(node, apusys_plls, ARRAY_SIZE(apusys_plls), clk_data);
-> +
-> +       return of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
-> +}
-> +
-> +static const struct of_device_id of_match_clk_mt8195_apusys_pll[] = {
-> +       { .compatible = "mediatek,mt8195-apusys_pll", },
-> +       {}
-> +};
-> +
-> +static struct platform_driver clk_mt8195_apusys_pll_drv = {
-> +       .probe = clk_mt8195_apusys_pll_probe,
-> +       .driver = {
-> +               .name = "clk-mt8195-apusys_pll",
-> +               .of_match_table = of_match_clk_mt8195_apusys_pll,
-> +       },
-> +};
-> +
+ .../bindings/media/i2c/aptina,mt9p031.yaml    |  97 ++++++++++++++
+ .../devicetree/bindings/media/i2c/mt9p031.txt |  40 ------
+ MAINTAINERS                                   |   1 +
+ drivers/media/i2c/Kconfig                     |   1 +
+ drivers/media/i2c/mt9p031.c                   | 121 ++++++++++++++----
+ include/media/i2c/mt9p031.h                   |   1 +
+ 6 files changed, 196 insertions(+), 65 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/aptina,mt9p=
+031.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/mt9p031.txt
 
-The general comments from the other patches apply as well
+--=20
+2.25.1
 
-
-Regards
-ChenYu
-
-
-> +builtin_platform_driver(clk_mt8195_apusys_pll_drv);
-> --
-> 2.18.0
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
